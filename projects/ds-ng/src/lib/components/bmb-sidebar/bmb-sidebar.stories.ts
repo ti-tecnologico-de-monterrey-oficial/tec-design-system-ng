@@ -5,16 +5,23 @@ import {
   moduleMetadata,
 } from '@storybook/angular';
 import { BmbSidebarComponent } from './bmb-sidebar.component';
-import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { CommonModule } from '@angular/common';
 import { RouterTestingModule } from '@angular/router/testing';
+import {
+  getBasicExampleBlock,
+  getGeneralComponentDescription,
+  getGeneralDescription,
+  getSpecialSpecifications,
+} from '../../utils/doc/utils';
 
+const LEVEL_DESCRIPTION = `**‼︎Important:**
+There is a limit of two levels of nesting and the main list must have a maximum of two lists, the first has a limit of 5 elements and the second a limit of 3.`;
 export default {
   title: 'Components/Menus/Sidebar',
   component: BmbSidebarComponent,
   decorators: [
     moduleMetadata({
-      imports: [CommonModule, BmbIconComponent, RouterTestingModule],
+      imports: [CommonModule, RouterTestingModule],
     }),
     componentWrapperDecorator((story: string) => {
       return `<div style="height: 50vh;">
@@ -24,12 +31,32 @@ export default {
   ],
   parameters: {
     docs: {
+      controls: {
+        exclude: [
+          'ngOnInit',
+          'checkIfFocusInsideSidebar',
+          'checkToCloseSidebar',
+          'closeSideBar',
+          'getLink',
+          'getMobileIcon',
+          'onFocusIn',
+          'onFocusOut',
+          'toggleChildren',
+          'toggleSidebar',
+          'currentUrl',
+          'hasSubmenu',
+          'isActive',
+          'isOpen',
+          'selectedElement',
+        ],
+      },
       description: {
         component: `
-The \`BmbSidebarComponent\` is a versatile sidebar component that can be used to display a list of navigation items. Below is an example of how to use this component in TypeScript:
-
-\`\`\`typescript
-import { Routes } from '@angular/router';
+${getGeneralDescription(`${getGeneralComponentDescription('sidebar')} to implement a vertical menu with links to navigate through the application.`, 'https://bamboo.tec.mx/latest/componentes/sidebar/descripcion-general-5sco6X1N')}
+${getSpecialSpecifications(` ###${LEVEL_DESCRIPTION}`)}
+${getBasicExampleBlock(
+  'BmbSidebarComponent',
+  `import { Routes } from '@angular/router';
 
 export const routes: Routes = [
   {
@@ -53,26 +80,8 @@ export const routes: Routes = [
   },
 ];
 
-
-import { BmbSidebarComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
-
-@Component({
-  selector: 'app-component',
-  standalone: true,
-  imports: [ BmbSidebarComponent ],
-  templateUrl: './app-component.html',
-  styleUrl: './app-component.scss',
-})
-export class AppComponent {
-  elements: {
-    id: number;
-    icon: string;
-    title: string;
-    link: string;
-    target?: string;
-    children?: SidebarElement[];
-    isOpen?: boolean;
-  }[][] = [
+`,
+  ` elements = [
     [
       {
         id: 1,
@@ -166,14 +175,10 @@ export class AppComponent {
         link: 'vivencia5',
       },
     ],
-  ];
-}
-\`\`\`
-
-Below is an example of how to use this component in HTML:
-
+  ];`,
+)}
 \`\`\`html
-<bmb-sidebar [elements]="elements"></bmb-sidebar>
+<bmb-sidebar [elements]="elements" />
 \`\`\`
         `,
       },
@@ -181,39 +186,138 @@ Below is an example of how to use this component in HTML:
   },
   argTypes: {
     elements: {
-      name: 'Elements',
       control: {
         type: 'object',
       },
-      description:
-        'An array of sidebar elements, each containing a list of child elements. There is a limit of two levels of nesting and the main list must have a maximum of two lists, the first has a limit of 5 elements and the second a limit of 3.',
+      description: `
+Sets the list of the elements, each containing a list of child elements.<br/><br/>
+${LEVEL_DESCRIPTION}
+      `,
       table: {
-        type: { summary: 'SidebarElement[][]' },
+        type: {
+          summary: 'SidebarElement[][]',
+          detail: `SidebarElement {
+          id: number;
+          icon: string;
+          title: string;
+          link: string;
+          target?: IBmbTargetLink;
+          children?: SidebarElement[];
+          isOpen?: boolean;
+        }`,
+        },
         category: 'Properties',
-        defaultValue: { summary: '[]' },
+        defaultValue: {
+          summary: '[]',
+          detail: `elements:SidebarElement[][] = [
+      [
+        {
+          id: 1,
+          icon: 'assignment_add',
+          title: 'Elegir documentos',
+          link: '/home',
+        },
+        {
+          id: 2,
+          icon: 'task',
+          title: 'Agregar firmantes',
+          link: 'https://www.youtube.com/watch?v=beh56CrNRsQ',
+        },
+        {
+          id: 3,
+          icon: 'note_alt',
+          title: 'Crear envelope',
+          link: '#contact',
+          target: '_self',
+        },
+        {
+          id: 4,
+          icon: 'checklist_rtl',
+          title: 'Estado de archivos anonimos',
+          link: 'inicio',
+          children: [
+            {
+              id: 4.1,
+              icon: 'file_copy',
+              title: 'Sub-item 1',
+              link: '/emprendedor',
+            },
+            {
+              id: 4.2,
+              icon: 'file_copy',
+              title: 'Sub-item 2',
+              link: 'https://www.youtube.com/watch?v=beh56CrNRsQ',
+            },
+          ],
+        },
+        {
+          id: 5,
+          icon: 'account_box',
+          title: 'Admin.usuariosusuariosusuarios',
+          link: 'vivencia',
+          children: [
+            {
+              id: 5.1,
+              icon: 'file_copy',
+              title: 'Sub-item 3',
+              link: '/home',
+            },
+            {
+              id: 5.2,
+              icon: 'file_copy',
+              title: 'Sub-item 4',
+              link: 'https://www.youtube.com/watch?v=beh56CrNRsQ',
+            },
+          ],
+        },
+      ],
+      [
+        {
+          id: 7,
+          icon: 'account_box',
+          title: 'Admin. usuarios',
+          link: 'vivencia1',
+        },
+        {
+          id: 8,
+          icon: 'account_box',
+          title: 'Admin. usuarios',
+          link: 'vivencia2',
+        },
+        {
+          id: 9,
+          icon: 'account_box',
+          title: 'Admin. usuarios',
+          link: 'vivencia3',
+        },
+      ],
+    ]`,
+        },
       },
     },
     title: {
-      name: 'Title',
       control: {
         type: 'text',
       },
-      description: 'The title of the navigation sidebar for mobile.',
+      description: 'Sets the title of the navigation sidebar for mobile.',
       table: {
         category: 'Properties',
         type: { summary: 'string' },
+        defaultValue: { summary: '' },
       },
     },
     position: {
-      name: 'Position',
       control: {
         type: 'select',
       },
       options: ['left', 'right'],
-      description: 'The position of the sidebar.',
+      description: 'Sets the position of the sidebar.',
       table: {
         category: 'Properties',
-        type: { summary: 'IPositionButtonMenu' },
+        type: {
+          summary: 'IPositionButtonMenu',
+          detail: `IPositionButtonMenu = 'left' | 'right'`,
+        },
         defaultValue: { summary: 'left' },
       },
     },

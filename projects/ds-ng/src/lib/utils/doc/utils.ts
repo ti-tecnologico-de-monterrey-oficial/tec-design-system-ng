@@ -683,6 +683,7 @@ ${getBasicExampleBlock('')}
           '',
           'other'
         ),
+getPropertyParamDesc('')
 
 controls: { exclude: ['', ''] },
 controls: {

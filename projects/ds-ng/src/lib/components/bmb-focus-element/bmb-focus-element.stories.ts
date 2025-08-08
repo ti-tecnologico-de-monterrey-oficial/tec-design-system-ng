@@ -1,73 +1,52 @@
-import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
-import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
+import { Meta, StoryObj } from '@storybook/angular';
 import { BmbFocusElementComponent } from './bmb-focus-element.component';
+import {
+  getBasicExampleBlock,
+  getGeneralComponentDescription,
+  getGeneralDescription,
+} from '../../utils/doc/utils';
+import {
+  DBmbIconParamDesc,
+  getPropertyParamDesc,
+} from '../../utils/doc/parameterDescriptions';
 
 export default {
   title: 'Components/Status indicators/Focus element',
   component: BmbFocusElementComponent,
-  decorators: [
-    moduleMetadata({
-      imports: [BmbIconComponent],
-    }),
-  ],
   parameters: {
     docs: {
+      controls: {
+        exclude: ['getBackgroundClass', 'getCircleClass', 'baseClass'],
+      },
       description: {
         component: `
-Below is an example of how you can use this component in TypeScript:
-
-\`\`\`typescript
-import { BmbFocusElementComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
-@Component({
-  selector: 'component',
-  standalone: true,
-  imports: [ BmbFocusElementComponent ],
-  templateUrl: './component.html',
-  styleUrl: './component.scss',
-})
-\`\`\`
-
-Below is an example of how you can use this component in HTML:
+${getGeneralDescription(`${getGeneralComponentDescription('focus-element')} to highlight an element.`, 'https://bamboo.tec.mx/latest/componentes/focus-element/descripcion-general-kMjMy40y')}
+${getBasicExampleBlock('BmbFocusElementComponent')}
         `,
       },
     },
   },
   argTypes: {
-    title: {
-      name: 'Title',
-      control: {
-        type: 'text',
-      },
-      description: 'Sets the title of the focus element.',
-      table: {
-        category: 'Properties',
-        type: { summary: 'string (optional)' },
-      },
-    },
+    title: getPropertyParamDesc('focus element'),
     number: {
-      name: 'Number',
       control: {
         type: 'text',
       },
-      description:
-        'Sets the number of the focus element. The number is only considered if it does not have icon.',
+      description: `Sets the number of the focus element.<br/><br/>
+**‼︎Important:**<br/><br/>
+The number is only considered if it does not have icon.`,
       table: {
         category: 'Properties',
         type: { summary: 'string (optional)' },
       },
     },
     icon: {
-      name: 'Icon',
-      control: { type: 'text' },
-      description:
-        'Sets the name of the icon to use. Please use Material icons: https://fonts.google.com/icons. Do not use the number property if you want to use an icon.',
-      table: {
-        category: 'Properties',
-        type: { summary: 'string (optional)' },
-      },
+      ...DBmbIconParamDesc.icon,
+      description: DBmbIconParamDesc.icon.description.concat(
+        '<br/><br/>**‼︎Important:**<br/><br/>Do not use the number property if you want to use an icon.',
+      ),
     },
     isNonFocused: {
-      name: 'Non focused',
       control: { type: 'boolean' },
       description: 'Removes focus state when true',
       table: {

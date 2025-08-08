@@ -1,7 +1,16 @@
 import { Meta, moduleMetadata, StoryObj } from '@storybook/angular';
 import { BmbActionMenuComponent } from './bmb-action-menu.component';
-import { attributes } from '../../utils/doc/utils';
+import {
+  attributes,
+  getBasicExampleBlock,
+  getGeneralComponentDescription,
+  getGeneralDescription,
+} from '../../utils/doc/utils';
 import { BmbItemComponent } from '../bmb-item/bmb-item.component';
+import {
+  DBmbGenericParamDesc,
+  DBmbHomeCardParamDesc,
+} from '../../utils/doc/parameterDescriptions';
 
 export default {
   title: 'Components/Menus/Action menu',
@@ -15,87 +24,43 @@ export default {
     docs: {
       description: {
         component: `
-Below is an example of how you can use this component in TypeScript:
-
-\`\`\`typescript
-import { BmbActionMenuComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
-
-@Component({
-  selector: 'component',
-  standalone: true,
-  imports: [ BmbActionMenuComponent, BmbItemComponent ],
-  templateUrl: './component.html',
-  styleUrl: './component.scss',
-})
-export class AppComponent {
-}
-...
-\`\`\`
-
-
-Below is an example of how you can use this component in HTML:
+${getGeneralDescription(
+  `${getGeneralComponentDescription('action-menu')} o group and display action options in a context menu. It is triggered by a specific button or event.
+`,
+  'https://bamboo.tec.mx/latest/componentes/action-menu/descripcion-general-gXdipbgD',
+)}
+${getBasicExampleBlock('BmbActionMenuComponent')}
         `,
       },
     },
   },
   argTypes: {
-    icon: {
-      name: 'Icon',
-      control: { type: 'text' },
-      description: 'Sets header icon.',
-      table: {
-        category: 'Properties',
-        type: { summary: 'string (optional)' },
-      },
-    },
-    bgIconAppearance: {
-      name: 'Icon background color',
-      control: { type: 'text' },
-      description: 'Sets icon background color.',
-      table: {
-        category: 'Properties',
-        type: { summary: 'IBmbColor (optional)' },
-      },
-    },
-    title: {
-      name: 'Title',
-      control: { type: 'text' },
-      description: 'Sets he main title of the home card..',
-      table: {
-        category: 'Properties',
-        type: { summary: 'string (required)' },
-      },
-    },
-    subtitle: {
-      name: 'Subtitle',
-      control: { type: 'text' },
-      description: 'Sets card subtitle',
-      table: {
-        category: 'Properties',
-        type: { summary: 'string (optional)' },
-      },
-    },
+    icon: DBmbHomeCardParamDesc.icon,
+    iconSize: DBmbHomeCardParamDesc.iconSize,
+    bgIconAppearance: DBmbHomeCardParamDesc.bgIconAppearance,
+    title: DBmbHomeCardParamDesc.title,
+    subtitle: DBmbHomeCardParamDesc.subtitle,
     showHeader: {
-      name: 'Show header',
-      control: { type: 'boolean' },
-      description: 'This property hides or show the header',
-      table: {
-        category: 'Properties',
-        type: { summary: 'boolean' },
-        defaultValue: { summary: 'true' },
-      },
-    },
-    isAList: {
-      name: 'Is a list',
       control: { type: 'boolean' },
       description:
-        'This property hides or show the divider on each item and you can place whatever you want',
+        'Sets a flag to indicate whether the card should show the header.<br/><br/>Shows the header when true. ',
       table: {
-        category: 'Deprecated',
-        type: { summary: 'boolean' },
+        category: 'Properties',
+        type: { summary: 'boolean (optional)' },
         defaultValue: { summary: 'true' },
       },
     },
+    projectedContent: {
+      control: false,
+      description:
+        'Allows projecting custom content into the action menu using ng-template.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'TemplateRef<any>[] (optional)' },
+        defaultValue: false,
+      },
+    },
+    isAList: DBmbGenericParamDesc.deprecated,
   },
   args: {
     icon: 'account_balance_wallet',

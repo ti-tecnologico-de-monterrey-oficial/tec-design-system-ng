@@ -10,6 +10,8 @@ import {
   getSpecialSpecifications,
 } from '../../utils/doc/utils';
 import {
+  DBmbGenericParamDesc,
+  DBmbHomeCardParamDesc,
   DBmbIconParamDesc,
   getOnClickParam,
 } from '../../utils/doc/parameterDescriptions';
@@ -66,111 +68,11 @@ ${getBasicExampleBlock(
         },
       },
     },
-    icon: {
-      ...DBmbIconParamDesc.icon,
-      table: {
-        ...DBmbIconParamDesc.icon.table,
-        type: {
-          summary:
-            DBmbIconParamDesc.icon.table.type.summary.concat(' (optional)'),
-        },
-      },
-    },
-    iconSize: DBmbIconParamDesc.iconSize,
-    bgIconAppearance: {
-      control: { type: 'text' },
-      description: 'Sets icon background color.',
-      table: {
-        category: 'Properties',
-        type: {
-          summary: 'IBmbColor (optional)',
-          detail: `IBmbColor =
-  | 'mariner-50'
-  | 'mariner-100'
-  | 'mariner-200'
-  | 'mariner-300'
-  | 'mariner-400'
-  | 'mariner-500'
-  | 'mariner-700'
-  | 'mariner-800'
-  | 'mariner-900'
-  | 'mariner-950'
-  | 'charade-50'
-  | 'charade-100'
-  | 'charade-200'
-  | 'charade-300'
-  | 'charade-500'
-  | 'charade-600'
-  | 'charade-700'
-  | 'charade-800'
-  | 'charade-900'
-  | 'charade-950'
-  | 'white-primary'
-  | 'blue-tec'
-  | 'mitec-blue'
-  | 'mitec-green'
-  | 'mitec-red'
-  | 'mitec-orange'
-  | 'black-primary'
-  | 'black-light'
-  | 'black-tint'
-  | 'black-min'
-  | 'white-light'
-  | 'white-tint'
-  | 'white-min'
-  | 'neon-primary'
-  | 'neon-light'
-  | 'neon-tint'
-  | 'blue-primary'
-  | 'blue-light'
-  | 'blue-tint'
-  | 'green-primary'
-  | 'green-light'
-  | 'green-tint'
-  | 'purple-primary'
-  | 'purple-light'
-  | 'purple-tint'
-  | 'red-primary'
-  | 'red-light'
-  | 'red-tint'
-  | 'yellow-primary'
-  | 'yellow-light'
-  | 'yellow-tint'
-  | 'teal-primary'
-  | 'teal-light'
-  | 'teal-tint'
-  | 'container-home'
-  | 'container-secondary'
-  | 'container-button'
-  | 'background-main'
-  | 'container-home-light'
-  | 'container-secondary-light'
-  | 'container-button-light'
-  | 'background-main-light'
-  | 'container-home-tec'
-  | 'container-secondary-tec'
-  | 'container-button-tec'
-  | 'background-main-tec';
-`,
-        },
-      },
-    },
-    title: {
-      control: { type: 'text' },
-      description: 'Sets he main title of the home card.',
-      table: {
-        category: 'Properties',
-        type: { summary: 'string (required)' },
-      },
-    },
-    subtitle: {
-      control: { type: 'text' },
-      description: 'Sets card subtitle',
-      table: {
-        category: 'Properties',
-        type: { summary: 'string (optional)' },
-      },
-    },
+    icon: DBmbHomeCardParamDesc.icon,
+    iconSize: DBmbHomeCardParamDesc.iconSize,
+    bgIconAppearance: DBmbHomeCardParamDesc.bgIconAppearance,
+    title: DBmbHomeCardParamDesc.title,
+    subtitle: DBmbHomeCardParamDesc.subtitle,
     dataLocalNav: {
       control: { type: 'object' },
       description: 'Sets the array of breadcrumb data for Local Navigation.',
@@ -186,32 +88,7 @@ ${getBasicExampleBlock(
         },
       },
     },
-    actionHeaders: {
-      control: { type: 'object' },
-      description: 'Sets an array of IBmbActionHeader objects.',
-      table: {
-        category: 'Properties',
-        defaultValue: { summary: '[]' },
-        type: {
-          summary: 'IBmbActionHeader[] (optional)',
-          detail: `
-IBmbActionHeader {
-  icon: string;
-  alt?: string;
-  iconSize?: number;
-  iconActiveToggle?: string;
-  isToggleActive?: boolean;
-  isAccentColor?: boolean;
-  link?: string;
-  target?: IBmbTargetLink;
-  action: () => void;
-}
-
-IBmbTargetLink = '_blank' | '_parent' | '_self' | '_top';
-          `,
-        },
-      },
-    },
+    actionHeaders: DBmbGenericParamDesc.actionHeaders,
     showRightButton: {
       control: { type: 'boolean' },
       description:

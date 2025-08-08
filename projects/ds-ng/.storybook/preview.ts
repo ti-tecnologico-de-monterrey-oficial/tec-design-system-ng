@@ -56,12 +56,14 @@ const preview: Preview = {
       controls: {
         exclude: [
           'ngOnInit',
-          'ngOnChanges',
+          'ngAfterContentInit',
           'ngAfterViewInit',
+          'ngOnChanges',
+          'ngOnDestroy',
           'isControlNull',
           'clickOutside',
-          'ngOnDestroy',
           'getClasses',
+          'baseClass',
         ],
       },
       source: {

@@ -1,10 +1,18 @@
-import { Meta, StoryFn, moduleMetadata } from '@storybook/angular';
-import { attributes } from '../../utils/doc/utils';
-
-import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
+import { Meta, StoryObj } from '@storybook/angular';
+import {
+  attributes,
+  getBasicExampleBlock,
+  getGeneralComponentDescription,
+  getGeneralDescription,
+  getOnEvent,
+} from '../../utils/doc/utils';
 import { BmbLoaderComponent } from './bmb-loader.component';
-import { BmbButtonDirective } from '../../directives/bmb-button/button.directive';
 import { IBbmBgAppearance } from '../bmb-advertisement-card/types';
+import {
+  getAppearanceParam,
+  getOnClickParam,
+  getPropertyParamDesc,
+} from '../../utils/doc/parameterDescriptions';
 
 const appearanceOptions: IBbmBgAppearance[] = [
   'normal',
@@ -39,157 +47,105 @@ const appearanceOptions: IBbmBgAppearance[] = [
 export default {
   title: 'Components/Status indicators/Loading screen',
   component: BmbLoaderComponent,
-  decorators: [
-    moduleMetadata({
-      imports: [BmbIconComponent, BmbButtonDirective],
-    }),
-  ],
   parameters: {
     docs: {
+      controls: {
+        exclude: [
+          'cleanupBody',
+          'handleButtonPrimary',
+          'handleButtonSecondary',
+          'isInsideIframe',
+          'updateBodyClass',
+          'ngOnChanges',
+          'ngOnDestroy',
+          'ngOnInit',
+        ],
+      },
       description: {
         component: `
-Below is an example of how you can use this component in TypeScript:
-
-\`\`\`typescript
-import { BmbLoaderComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
-@Component({
-  selector: 'component',
-  standalone: true,
-  imports: [ BmbLoaderComponent ],
-  templateUrl: './component.html',
-  styleUrl: './component.scss',
-})
-\`\`\`
-
-Below is an example of how you can use this component in HTML:
+${getGeneralDescription(`${getGeneralComponentDescription('loader')} to indicate that a process is running.`, 'https://bamboo.tec.mx/latest/componentes/loading-screens/descripcion-general-TzvjIs5D')}
+${getBasicExampleBlock('BmbLoaderComponent')}
         `,
       },
     },
   },
   argTypes: {
-    title: {
-      control: {
-        type: 'text',
-      },
-      description: '',
-      table: {
-        category: 'Properties',
-        type: { summary: 'string' },
-        defaultValue: { summary: 'optional' },
-      },
-    },
+    title: getPropertyParamDesc('loading'),
     subtitle: {
       control: {
         type: 'text',
       },
-      description: '',
+      description: 'Sets the subtitle, text displayed below the loader title.',
       table: {
         category: 'Properties',
-        defaultValue: { summary: 'optional' },
+        defaultValue: { summary: '' },
         type: { summary: 'string' },
       },
     },
     overlay: {
       control: { type: 'boolean' },
-      description: '',
+      description: 'Determines if the loader should display as an overlay.',
       table: {
         category: 'Properties',
         defaultValue: { summary: 'false' },
-        type: { summary: 'string' },
+        type: { summary: 'boolean' },
       },
     },
     isVisible: {
       control: { type: 'boolean' },
-      description: '',
+      description: 'Controls the visibility of the loader.',
       table: {
         category: 'Properties',
         defaultValue: { summary: 'true' },
-        type: { summary: 'string' },
+        type: { summary: 'boolean' },
       },
     },
-    errorState: {
-      control: { type: 'boolean' },
-      description: '',
-      table: {
-        category: 'Properties',
-        defaultValue: { summary: 'false' },
-        type: { summary: 'string' },
-      },
-    },
-    appearance: {
-      control: {
-        type: 'select',
-      },
-      options: appearanceOptions,
-      table: {
-        category: 'Properties',
-        defaultValue: { summary: 'normal' },
-        type: { summary: 'string' },
-      },
-      description: 'The color of the icon loader, affecting its visual style.',
-    },
+    errorState: getPropertyParamDesc('error state','boolean'),
+    appearance: getAppearanceParam('icon loader', appearanceOptions, 'normal'),
     icon: {
       control: {
         type: 'text',
       },
-      description: 'Icon on error state',
+      description: 'Sets the icon on error state',
       table: {
         category: 'Properties',
         type: { summary: 'string' },
-        defaultValue: { summary: 'optional' },
+        defaultValue: { summary: 'wifi_off' },
       },
     },
     actions: {
       control: { type: 'boolean' },
-      description: '',
+      description: 'Enables or disables the display of action buttons.',
       table: {
         category: 'Properties',
         defaultValue: { summary: 'false' },
-        type: { summary: 'string' },
+        type: { summary: 'boolean' },
       },
     },
     buttonPrimary: {
       control: {
         type: 'text',
       },
-      description: '',
+      description: 'Sets the label for the primary button',
       table: {
         category: 'Properties',
         type: { summary: 'string' },
-        defaultValue: { summary: 'optional' },
+        defaultValue: { summary: '' },
       },
     },
     buttonSecondary: {
       control: {
         type: 'text',
       },
-      description: '',
+      description: 'Sets the label for the secondary button',
       table: {
         category: 'Properties',
         type: { summary: 'string' },
-        defaultValue: { summary: 'optional' },
+        defaultValue: { summary: '' },
       },
     },
-    onButtonPrimary: {
-      control: {
-        type: '',
-      },
-      description: '',
-      table: {
-        category: 'Events',
-        type: { summary: '(onButtonPrimary)="yourFunction()"' },
-      },
-    },
-    onButtonSecondary: {
-      control: {
-        type: '',
-      },
-      description: '',
-      table: {
-        category: 'Events',
-        type: { summary: '(onButtonSecondary)="yourFunction()"' },
-      },
-    },
+    onButtonPrimary: getOnClickParam(getOnEvent('primary', 'onButtonPrimary')),
+    onButtonSecondary: getOnClickParam(getOnEvent('secondary', 'onButtonSecondary')),
     showInline: {
       control: { type: 'boolean' },
       description: 'Indicates if the loader should be shown inline',
@@ -213,22 +169,23 @@ Below is an example of how you can use this component in HTML:
     buttonSecondary: 'Salir',
     showInline: false,
     onButtonPrimary: () => {
-      window.alert('Button Primary clicked in Storybook');
+      console.log('Button Primary clicked in Storybook');
     },
     onButtonSecondary: () => {
-      window.alert('Button Secondary clicked in Storybook');
+      console.log('Button Secondary clicked in Storybook');
     },
   },
 } as Meta<typeof BmbLoaderComponent>;
 
-const customizable = (): StoryFn => (args) => ({
-  props: args,
-  template: `
+type Story = StoryObj<BmbLoaderComponent>;
+
+export const Default: Story = {
+  render: (args) => ({
+    props: args,
+    template: `
     <bmb-loader
       ${attributes(args)}
-    >
-    </bmb-loader>
+    />
   `,
-});
-
-export const Default = customizable();
+  }),
+};

@@ -6,16 +6,25 @@ import {
 } from '@storybook/angular';
 import { BmbDropdownMenuComponent } from './bmb-dropdown-menu.component';
 import { CommonModule } from '@angular/common';
-import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { ActivatedRoute } from '@angular/router';
-import { getEmptyStateMessage } from '../../utils/doc/utils';
+import {
+  getBasicExampleBlock,
+  getEmptyStateMessage,
+  getGeneralComponentDescription,
+  getGeneralDescription,
+  getSpecialSpecifications,
+} from '../../utils/doc/utils';
+import {
+  DBmbDropdownMenuParamDesc,
+  getPropertyParamDesc,
+} from '../../utils/doc/parameterDescriptions';
 
 export default {
   title: 'Components/Menus/Dropdown menu',
   component: BmbDropdownMenuComponent,
   decorators: [
     moduleMetadata({
-      imports: [CommonModule, BmbIconComponent],
+      imports: [CommonModule],
       providers: [
         {
           provide: ActivatedRoute,
@@ -36,63 +45,23 @@ export default {
   ],
   parameters: {
     docs: {
+      controls: { exclude: ['closeDropdown', 'openDropdown'] },
       description: {
         component: `
-${getEmptyStateMessage()}
-Below is an example of how you can use this component in TypeScript:
-
-\`\`\`typescript
-import { BmbDropdownMenuComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
-@Component({
-  selector: 'component',
-  standalone: true,
-  imports: [ BmbDropdownMenuComponent ],
-  templateUrl: './component.html',
-  styleUrl: './component.scss',
-})
-\`\`\`
-
-Below is an example of how you can use this component in HTML:
+${getGeneralDescription(`${getGeneralComponentDescription('dropdown-menu')} navigation through the options displayed in the menu listing.`, 'https://bamboo.tec.mx/latest/componentes/dropdown-menu/descripcion-general-kEoPUKDr')}
+${getSpecialSpecifications(getEmptyStateMessage())}
+${getBasicExampleBlock('BmbDropdownMenuComponent', '', '', '', 'ActivatedRoute', '@angular/router')}
         `,
       },
     },
   },
   argTypes: {
-    items: {
-      name: 'Items',
-      control: { type: 'object' },
-      description: `
-Sets the list of items for the dropdown menu.
-
-    IDropdownItem {
-      idItem?: string
-      icon: string;
-      text: string;
-      url?: string;
-      target?: IBmbTargetLink;
-      action?: () => void;
-    }
-
-    IBmbTargetLink =
-    '_blank' | '_parent' | '_self' | '_top';
-      `,
-      table: {
-        category: 'Properties',
-        type: {
-          summary: 'IDropdownItem[] (required)',
-        },
-      },
-    },
-    isOpen: {
-      name: 'Is open',
-      control: { type: 'boolean' },
-      description: 'Show dropdown when true and hide when false.',
-      table: {
-        category: 'Properties',
-        defaultValue: { summary: 'false' },
-        type: { summary: 'boolean (optional)' },
-      },
-    },
+    items: DBmbDropdownMenuParamDesc.items,
+    isOpen: getPropertyParamDesc(
+      'flag to display the listing',
+      'boolean',
+      false,
+    ),
   },
   args: {
     items: [

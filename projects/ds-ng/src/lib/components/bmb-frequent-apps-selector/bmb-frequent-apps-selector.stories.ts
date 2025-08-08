@@ -2,6 +2,19 @@ import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
 import { CommonModule } from '@angular/common';
 import { RouterTestingModule } from '@angular/router/testing';
 import { BmbFrequentAppsSelectorComponent } from './bmb-frequent-apps-selector.component';
+import {
+  getBasicExampleBlock,
+  getGeneralComponentDescription,
+  getGeneralDescription,
+  getOnEvent,
+  getSpecialSpecifications,
+} from '../../utils/doc/utils';
+import {
+  getAppearanceDescription,
+  getOnClickParam,
+  getPropertyParamDesc,
+  ON_CLICK_DESCRIPTION,
+} from '../../utils/doc/parameterDescriptions';
 
 export default {
   title: 'Components/Menus/Frequent apps selector',
@@ -13,21 +26,16 @@ export default {
   ],
   parameters: {
     docs: {
+      controls: { exclude: ['getClassesFAC', 'handleButtonClick'] },
       description: {
         component: `
-Below is an example of how you can use this component in TypeScript:
-
-\`\`\`typescript
-import { BmbFrequentAppsSelectorComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
-@Component({
-  selector: 'component',
-  standalone: true,
-  imports: [ BmbFrequentAppsSelectorComponent ],
-  templateUrl: './component.html',
-  styleUrl: './component.scss',
-})
-export class AppComponent {
-  apps = [
+${getGeneralDescription(`${getGeneralComponentDescription('frequent-apps-selector')} the implementation of a carousel-type selector to quickly identify and access the most frequently used applications.`, 'https://bamboo.tec.mx/latest/componentes/frequent-apps-selector/descripcion-general-x3K6Mm3k')}
+${getSpecialSpecifications(`Please refer to [Interactive icon](/docs/components-buttons-interactive-icon--documentation) documentation for more details.
+`)}
+${getBasicExampleBlock(
+  'BmbFrequentAppsSelectorComponent',
+  '',
+  `apps = [
     { icon: 'home', title: 'Home', link: '/home', target: '_blank', appearance: 'red' },
     { icon: 'settings', title: 'My Page', link: '/my-page', appearance: 'yellow' },
     { icon: 'settings', title: 'School Calendar', link: 'https://configuration.com', target: '_blank', appearance: 'yellow' },
@@ -37,18 +45,16 @@ export class AppComponent {
     { icon: 'settings', title: 'School Calendar', link: 'https://configuration.com', target: '_blank', appearance: 'yellow' },
     { icon: 'settings', title: 'Configuration', link: 'https://configuration.com', target: '_blank', appearance: 'yellow' },
   ];
-}
-\`\`\`
-
-Below is an example of how to use this component in HTML:
-
+  //Add your code
+`,
+)}
 \`\`\`html
 <bmb-frequent-apps-selector
-  [title]="'My Frequent Apps'"
+  title="My Frequent Apps"
   [apps]="apps"
 />
 \`\`\`
-        `,
+`,
       },
     },
   },
@@ -57,45 +63,97 @@ Below is an example of how to use this component in HTML:
       control: {
         type: 'object',
       },
-      description:
-        'List of applications to display, each with properties such as icon, title, link, target, and appearance.',
+      description: `
+Sets the data to be displayed in the frequent apps.
+
+Properties:
+
+- \`icon\`: (string) Sets the name of the interactive icon.
+
+- \`title\`: (string) Sets the title.
+
+- \`url\`: (optional, string) Sets the URL to navigate when the icon is clicked.
+
+- \`target\`: (optional, string).
+
+- \`appearance\`: (string) ${getAppearanceDescription('interactive icon')}
+
+- \`callbackParam\`: (optional, function) A custom function executed when the icon is clicked${ON_CLICK_DESCRIPTION}.
+    `,
       table: {
         category: 'Properties',
-        type: { summary: 'object' },
+        defaultValue: { summary: '[]' },
+        type: {
+          summary: 'IBmbApp[]',
+          detail: `IBmbApp {
+  icon: string;
+  title: string;
+  link?: string;
+  target?: IBmbTargetLink;
+  appearance: IBmbInteractiveIconAppearance;
+  callbackParam?: any;
+}
+
+IBmbTargetLink = '_blank' | '_parent' | '_self' | '_top'
+
+IBmbInteractiveIconAppearance =
+  | 'red'
+  | 'blue'
+  | 'green'
+  | 'yellow'
+  | 'purple'
+  | 'none'
+  | 'mitec_blue'
+  | 'mitec_red'
+  | 'mitec_green'
+  | 'mitec_orange'
+  | 'mitec_light_green'
+  | 'mitec_purple'
+  | 'creative_violet'
+  | 'creative_indigo'
+  | 'creative_emerald'
+  | 'creative_licorice'
+  | 'creative_darkteal'
+  | 'creative_peach'
+  | 'creative_sepia'
+  | 'creative_softred'
+  | 'creative_wattle'
+  | 'creative_shipcove'
+  | 'creative_plantation'
+  | 'creative_rum'
+  | 'creative_hibiscus'
+  | 'creative_ripelemon'
+  | 'buttons-primary-normal'
+  | 'purple-primary'
+  | 'general_contrasts-main-selection'
+  | 'general_contrasts-main-selection-alternative';
+    `,
+        },
       },
     },
-    title: {
-      control: {
-        type: 'text',
-      },
-      description: 'Title to display above the list of applications.',
-      table: {
-        category: 'Properties',
-        type: { summary: 'string' },
-      },
-    },
+    title: getPropertyParamDesc(
+      'frequent apps to display above the list of applications.',
+    ),
     layout: {
       control: {
         type: 'select',
       },
       options: ['regular', 'button', 'app_drawer'],
-      description: 'Set the layout behavior.',
+      description: 'Sets the layout behavior.',
       table: {
         category: 'Properties',
-        type: { summary: 'string' },
+        defaultValue: { summary: 'regular' },
+        type: {
+          summary: 'IBmbInteractiveIconType',
+          detail: `IBmbInteractiveIconType = 'regular' | 'button' | 'app_drawer'`,
+        },
       },
     },
-    appClick: {
-      control: null,
-      description: `
-Emitted when an icon is clicked. It's important to avoid sending the link and target property to the icon.
-A parameter is sent, either the \`callbackParam\` or the object with the \`IBmbApp\` interface.
-`,
-      table: {
-        category: 'Events',
-        type: { summary: 'any' },
-      },
-    },
+    appClick: getOnClickParam(
+      getOnEvent('icon', 'buttonPress', 'unknown'),
+      ON_CLICK_DESCRIPTION,
+      'pressed',
+    ),
   },
   args: {
     apps: [
