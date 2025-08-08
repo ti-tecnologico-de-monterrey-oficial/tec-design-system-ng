@@ -100,7 +100,7 @@ ${getBasicExampleBlock('BmbLoaderComponent')}
         type: { summary: 'boolean' },
       },
     },
-    errorState: getPropertyParamDesc('error state','boolean'),
+    errorState: getPropertyParamDesc('error state', 'boolean'),
     appearance: getAppearanceParam('icon loader', appearanceOptions, 'normal'),
     icon: {
       control: {
@@ -145,7 +145,9 @@ ${getBasicExampleBlock('BmbLoaderComponent')}
       },
     },
     onButtonPrimary: getOnClickParam(getOnEvent('primary', 'onButtonPrimary')),
-    onButtonSecondary: getOnClickParam(getOnEvent('secondary', 'onButtonSecondary')),
+    onButtonSecondary: getOnClickParam(
+      getOnEvent('secondary', 'onButtonSecondary'),
+    ),
     showInline: {
       control: { type: 'boolean' },
       description: 'Indicates if the loader should be shown inline',
