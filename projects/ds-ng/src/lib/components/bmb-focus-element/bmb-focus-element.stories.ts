@@ -56,7 +56,6 @@ The number is only considered if it does not have icon.`,
       },
     },
     isNormal: {
-      name: 'Normal',
       control: { type: 'boolean' },
       description: 'Sets the normal border and color',
       table: {
@@ -66,7 +65,6 @@ The number is only considered if it does not have icon.`,
       },
     },
     isInheritedBg: {
-      name: 'Inherited background color',
       control: { type: 'boolean' },
       description: 'Sets the inherited background color when true',
       table: {
