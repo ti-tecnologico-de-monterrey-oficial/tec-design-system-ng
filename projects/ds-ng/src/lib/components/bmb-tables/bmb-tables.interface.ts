@@ -10,6 +10,7 @@ export interface TableColum {
   width?: number;
   type?: 'string' | 'number' | 'date';
   icon?: string;
+  dateFormat?: string;
 }
 
 export interface TableConfig {
