@@ -143,12 +143,44 @@
   ></bmb-top-bar>
   <section bmbVerticalLayoutItem [rowGrow]="1">
     <router-outlet></router-outlet>
+    @if (isTheModalOpen()) {
+      <div>El modal está abierto</div>
+    } @else {
+      <div>El modal está cerrado</div>
+    }
   </section>
   <bmb-sidebar [elements]="routes" />
 </main>
-<bmb-portal />
-<!-- <bmb-native-modal
-  [title]="'Modal Title'"
-  [content]="'Modal Content'"
-  modalID="exampleModal"
-></bmb-native-modal> -->
+
+<ng-template #modalTemplate>
+  <div>
+    <p>Some content for the modal</p>
+    <p>
+      Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus
+      ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus
+      duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar
+      vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl
+      malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class
+      aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos
+      himenaeos.
+    </p>
+    <p>
+      Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus
+      ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus
+      duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar
+      vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl
+      malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class
+      aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos
+      himenaeos.
+    </p>
+    <p>
+      Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus
+      ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus
+      duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar
+      vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl
+      malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class
+      aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos
+      himenaeos.
+    </p>
+  </div>
+</ng-template>

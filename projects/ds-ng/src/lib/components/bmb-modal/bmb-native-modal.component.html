@@ -1,7 +1,7 @@
 <bmb-overlay [active]="true" />
-<dialog class="bmb-native-modal" [open]="true">
-  <div class="bmb-native-modal-container">
-    <header class="bmb-native-modal-header">
+<dialog class="bmb_native-modal" [open]="true">
+  <div class="bmb_native-modal-container bmb_box-shadow-3" [ngClass]="getContainerClass()">
+    <header class="bmb_native-modal-header">
       <bmb-three-cols
         [expandMainColumn]="true"
         gapSize="none"
@@ -13,7 +13,7 @@
               [title]="title()"
               titleSize="9"
               [subtitle]="subtitle()"
-              [icon]="getIcon()"
+              [icon]="modalIcon()"
               [iconSize]="48"
               [transparentBgC]="true"
             />
@@ -29,9 +29,8 @@
           </span>
         </ng-template>
       </bmb-three-cols>
-      <h2>{{ title() }}</h2>
     </header>
-    <section class="bmb-native-modal-content">
+    <section class="bmb_native-modal-content">
       @if (isTemplateRef()) {
         <ng-template #templateContent>
           <ng-container *ngTemplateOutlet="getContent()"></ng-container>
@@ -43,19 +42,21 @@
         </p>
       }
     </section>
-    <footer class="bmb-native-modal-footer">
-      @for (btn of actions(); track $index) {
-        <button
-          bmbButton
-          [appearance]="btn.appearance || 'secondary-outlined'"
-          (click)="handleButtonClick(btn.buttonName, $event)"
-        >
-          <ng-container *ngIf="btn.icon">
-            <i class="{{ btn.icon }}"></i>
-          </ng-container>
-          {{ btn.buttonName }}
-        </button>
-      }
-    </footer>
+    @if (actions().length) {
+      <footer class="bmb_native-modal-footer">
+        @for (btn of actions(); track $index) {
+          <button
+            bmbButton
+            [appearance]="btn.appearance || 'secondary-outlined'"
+            (click)="btn.action()"
+          >
+            <ng-container *ngIf="btn.icon">
+              <i class="{{ btn.icon }}"></i>
+            </ng-container>
+            {{ btn.buttonName }}
+          </button>
+        }
+      </footer>
+    }
   </div>
 </dialog>

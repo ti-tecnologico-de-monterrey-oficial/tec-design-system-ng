@@ -33,7 +33,7 @@ import { BmbNativeModalComponent } from '../bmb-modal/bmb-native-modal.component
 export class BmbPortalComponent {
   constructor(
     private notificationSignal: BmbNotificationService,
-    private modalService: BmbNativeModalService
+    private modalService: BmbNativeModalService,
   ) {}
 
   modalSignal = computed(() => this.modalService.getModalList());
