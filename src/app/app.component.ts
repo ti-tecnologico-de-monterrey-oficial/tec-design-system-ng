@@ -87,35 +87,8 @@ export class AppComponent {
           icon: 'close',
           action: () => this.handleCloseModal.bind(this)(),
         },
-        {
-          buttonName: 'Close',
-          appearance: 'secondary-outlined',
-          label: 'Close',
-          icon: 'close',
-          action: () => this.handleCloseModal.bind(this)(),
-        },
-        {
-          buttonName: 'Close',
-          appearance: 'secondary-outlined',
-          label: 'Close',
-          icon: 'close',
-          action: () => this.handleCloseModal.bind(this)(),
-        },
-        {
-          buttonName: 'Close',
-          appearance: 'secondary-outlined',
-          label: 'Close',
-          icon: 'close',
-          action: () => this.handleCloseModal.bind(this)(),
-        },
-        {
-          buttonName: 'Close',
-          appearance: 'secondary-outlined',
-          label: 'Close',
-          icon: 'close',
-          action: () => this.handleCloseModal.bind(this)(),
-        },
       ],
+      closeModalClicked: () => this.handleActionsCloseClick.bind(this)(event),
     };
     this.modalId.set(this.modalService.openModal(data));
   }
@@ -137,5 +110,9 @@ export class AppComponent {
 
   handleAlertButtonClick(): void {
     this.router.navigate(['/alerts']);
+  }
+
+  handleActionsCloseClick(params: unknown): void {
+    console.log('Close button clicked', params);
   }
 }

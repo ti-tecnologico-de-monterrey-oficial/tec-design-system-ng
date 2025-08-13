@@ -51,4 +51,5 @@ export interface IBmbNativeModal
   size?: IBmbNativeModalSize;
   iconStyle?: IBmbModalAlertStyle;
   actions?: IBmbActionButton[];
+  closeModalClicked?: (event: unknown) => void;
 }

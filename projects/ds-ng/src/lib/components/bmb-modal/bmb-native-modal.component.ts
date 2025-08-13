@@ -41,7 +41,7 @@ import { BmbNativeModalService } from '../../services/native-modal.service';
 export class BmbNativeModalComponent {
   title = input<string>('');
   subtitle = input<string>('');
-  content = input<TemplateRef<any> | string | Type<any>>('');
+  content = input<TemplateRef<any> | string>('');
   actions = input<IBmbActionButton[]>([]);
   alertIcon = input<IBmbModalAlertStyle>();
   modalId = input.required<string>();
