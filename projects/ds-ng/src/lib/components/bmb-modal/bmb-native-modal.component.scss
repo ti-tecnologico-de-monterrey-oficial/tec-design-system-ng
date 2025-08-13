@@ -55,6 +55,12 @@ $modalSize: (
     justify-content: flex-end;
     gap: var(--bmb-spacing-m);
     flex-wrap: wrap;
+
+    @media (max-width: 1000px) {
+      .bmb_btn {
+        flex: 1 1 100%;
+      }
+    }
   }
 }
 
