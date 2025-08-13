@@ -226,7 +226,6 @@ export class BmbTablesComponent implements AfterViewInit, OnInit, OnChanges {
         this.searchChange.emit(search);
       } else {
         this.searchModeChange.emit('client');
-        console.log('Client-side search:', search, this.dataSource.filter);
 
         this.dataSource.filter = search;
       }
