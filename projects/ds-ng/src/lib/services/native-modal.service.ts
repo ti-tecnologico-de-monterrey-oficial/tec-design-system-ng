@@ -49,7 +49,7 @@ export class BmbNativeModalService {
   }
 
   openModal(newModal: IBmbNativeModal): string {
-    const id = newModal.modalId ?? getUUID();
+    const id = (newModal.modalId && newModal.modalId !== '') ? newModal.modalId : getUUID();
     this.getOrCreatePortal();
     this.modalList.update((currentModals) => [
       ...currentModals,
