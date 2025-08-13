@@ -528,7 +528,6 @@ export class BmbTablesComponent implements AfterViewInit, OnInit, OnChanges {
       if (type === 'number') {
         const min = parseInt(values[`${key}_min`]) || null;
         const max = parseInt(values[`${key}_max`]) || null;
-        console.log('Number filter:', { min, max });
 
         filtered = filtered.filter((row) => {
           const value = +row[key];
