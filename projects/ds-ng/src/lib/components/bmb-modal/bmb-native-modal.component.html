@@ -50,9 +50,9 @@
             [appearance]="btn.appearance || 'secondary-outlined'"
             (click)="btn.action()"
           >
-            <ng-container *ngIf="btn.icon">
+            @if (btn.icon) {
               <i class="{{ btn.icon }}"></i>
-            </ng-container>
+            }
             {{ btn.buttonName }}
           </button>
         }
