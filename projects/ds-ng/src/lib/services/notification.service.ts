@@ -1,4 +1,14 @@
-import { ApplicationRef, ComponentRef, createComponent, EmbeddedViewRef, EnvironmentInjector, Inject, Injectable, Optional, signal } from '@angular/core';
+import {
+  ApplicationRef,
+  ComponentRef,
+  createComponent,
+  EmbeddedViewRef,
+  EnvironmentInjector,
+  Inject,
+  Injectable,
+  Optional,
+  signal,
+} from '@angular/core';
 import { INotification } from '../components/bmb-push-notification/types';
 import { getUUID } from '../utils/utils';
 import { BmbPortalComponent } from '../components/bmb-portal/bmb-portal.component';
@@ -33,7 +43,7 @@ export class BmbNotificationService {
     const existingHost = document.querySelector('app-modal-host');
     if (existingHost) {
       const componentRef = this.appRef.components.find(
-        ref => ref.instance instanceof BmbPortalComponent
+        (ref) => ref.instance instanceof BmbPortalComponent,
       );
       if (componentRef) {
         this.portalComponentRef = componentRef;
@@ -43,14 +53,16 @@ export class BmbNotificationService {
 
     // Crear host dinámicamente
     this.portalComponentRef = createComponent(BmbPortalComponent, {
-      environmentInjector: this.environmentInjector
+      environmentInjector: this.environmentInjector,
     });
 
     // Adjuntar al árbol de aplicaciones
     this.appRef.attachView(this.portalComponentRef.hostView);
 
     // Insertar en el DOM
-    const hostDomElem = (this.portalComponentRef.hostView as EmbeddedViewRef<any>).rootNodes[0] as HTMLElement;
+    const hostDomElem = (
+      this.portalComponentRef.hostView as EmbeddedViewRef<any>
+    ).rootNodes[0] as HTMLElement;
     document.body.appendChild(hostDomElem);
 
     return this.portalComponentRef.instance;

@@ -1,4 +1,12 @@
-import { ApplicationRef, ComponentRef, createComponent, EmbeddedViewRef, EnvironmentInjector, Injectable, signal } from '@angular/core';
+import {
+  ApplicationRef,
+  ComponentRef,
+  createComponent,
+  EmbeddedViewRef,
+  EnvironmentInjector,
+  Injectable,
+  signal,
+} from '@angular/core';
 import { getUUID } from '../utils/utils';
 import { IBmbNativeModal } from '../components/bmb-modal/bmb-modal.interface';
 import { BmbPortalComponent } from '../components/bmb-portal/bmb-portal.component';
@@ -25,7 +33,7 @@ export class BmbNativeModalService {
     const existingHost = document.querySelector('bmb_native-modal');
     if (existingHost) {
       const componentRef = this.appRef.components.find(
-        ref => ref.instance instanceof BmbPortalComponent
+        (ref) => ref.instance instanceof BmbPortalComponent,
       );
       if (componentRef) {
         this.portalComponentRef = componentRef;
@@ -35,21 +43,26 @@ export class BmbNativeModalService {
 
     // Crear host dinámicamente
     this.portalComponentRef = createComponent(BmbPortalComponent, {
-      environmentInjector: this.environmentInjector
+      environmentInjector: this.environmentInjector,
     });
 
     // Adjuntar al árbol de aplicaciones
     this.appRef.attachView(this.portalComponentRef.hostView);
 
     // Insertar en el DOM
-    const hostDomElem = (this.portalComponentRef.hostView as EmbeddedViewRef<any>).rootNodes[0] as HTMLElement;
+    const hostDomElem = (
+      this.portalComponentRef.hostView as EmbeddedViewRef<any>
+    ).rootNodes[0] as HTMLElement;
     document.body.appendChild(hostDomElem);
 
     return this.portalComponentRef.instance;
   }
 
   openModal(newModal: IBmbNativeModal): string {
-    const id = (newModal.modalId && newModal.modalId !== '') ? newModal.modalId : getUUID();
+    const id =
+      newModal.modalId && newModal.modalId !== ''
+        ? newModal.modalId
+        : getUUID();
     this.getOrCreatePortal();
     this.modalList.update((currentModals) => [
       ...currentModals,

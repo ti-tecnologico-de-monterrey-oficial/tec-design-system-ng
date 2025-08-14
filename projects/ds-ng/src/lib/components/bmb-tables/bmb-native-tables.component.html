@@ -1,0 +1,7 @@
+<div class="bmb-native-tables">
+  @for (row of data(); track $index) {
+    <div class="bmb-native-table-row">
+      {{ row | json }}
+    </div>
+  }
+</div>

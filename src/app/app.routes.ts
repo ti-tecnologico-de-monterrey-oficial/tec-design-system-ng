@@ -58,5 +58,12 @@ export const routes: Routes = [
         (h) => h.HomeCardComponent,
       ),
   },
+  {
+    path: 'tables',
+    loadComponent: () =>
+      import('./pages/new-tables/new-tables.component').then(
+        (n) => n.NewTablesComponent,
+      ),
+  },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
 ];

@@ -69,6 +69,12 @@ export class AppComponent {
         title: 'Flex',
         link: '/flex',
       },
+      {
+        id: 4,
+        icon: 'table',
+        title: 'Tables',
+        link: '/tables',
+      },
     ],
   ];
 

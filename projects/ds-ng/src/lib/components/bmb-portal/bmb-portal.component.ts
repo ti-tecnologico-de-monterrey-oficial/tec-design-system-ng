@@ -63,7 +63,7 @@ export class BmbPortalComponent {
 
   handleModalClick(item: IBmbNativeModal, event: unknown) {
     if (item.closeModalClicked) {
-      item.closeModalClicked({item, event});
+      item.closeModalClicked({ item, event });
     }
   }
 }

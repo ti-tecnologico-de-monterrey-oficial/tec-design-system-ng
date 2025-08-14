@@ -1,0 +1,18 @@
+<header class="bmb_template-header">
+  <h3>Tables</h3>
+</header>
+<div class="bmb_template-margin-for-sidebar">
+  <bmb-table
+    [data]="data"
+    [columns]="columns"
+    [pageSize]="10"
+    [config]="{
+      isSelectable: false,
+      isExpandible: false,
+      isPaginable: true,
+      showActions: true,
+    }"
+  ></bmb-table>
+
+  <bmb-native-tables [data]="data" [columns]="columns"></bmb-native-tables>
+</div>
