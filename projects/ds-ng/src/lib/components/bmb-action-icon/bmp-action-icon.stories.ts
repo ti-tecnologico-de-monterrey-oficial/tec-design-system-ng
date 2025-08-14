@@ -28,7 +28,12 @@ export default {
       description: {
         component: `
 ${getGeneralDescription(`${getGeneralComponentDescription('action-icon', 'component', 'interactive')} to use icons as buttons to execute actions`, 'https://bamboo.tec.mx/latest/componentes/action-icon/descripcion-general-FzB28S1H')}
-${getBasicExampleBlock('BmbActionIconComponent', '', `${onButtonPress.handleExample}${ON_BUTTON_CLICK.handleExample}`)}
+${getBasicExampleBlock(
+  'BmbActionIconComponent',
+  '',
+  `${onButtonPress.handleExample}
+  ${ON_BUTTON_CLICK.handleExample}`,
+)}
         `,
       },
     },
@@ -72,7 +77,7 @@ The toggle needs the following properties for correct operation:
       },
     },
     dotNotification: DBmbIconParamDesc.iconDotNotification,
-    link: DBmbGenericParamDesc.link,
+    link: DBmbGenericParamDesc.linkOrButton,
     target: DBmbGenericParamDesc.target,
     buttonClick: getOnClickParam(
       ON_BUTTON_CLICK,

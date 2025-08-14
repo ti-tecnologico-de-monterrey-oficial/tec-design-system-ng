@@ -1,29 +1,57 @@
 import { Meta, StoryObj } from '@storybook/angular';
 import { BmbChevronTitleSelectorComponent } from './bmb-chevron-title-selector.component';
+import {
+  getArchitectureSection,
+  getBasicExampleBlock,
+  getGeneralComponentDescription,
+  getGeneralDescription,
+  getOnEvent,
+} from '../../utils/doc/utils';
+import {
+  DBmbIconParamDesc,
+  getOnClickParam,
+  getPropertyParamDesc,
+} from '../../utils/doc/parameterDescriptions';
+
+const getIconParamDescription = (name: string, defaultValue: string = '') => {
+  return {
+    ...DBmbIconParamDesc.icon,
+    description: DBmbIconParamDesc.icon.description.replace(
+      'icon name',
+      `name of the ${name} icon`,
+    ),
+    table: {
+      ...DBmbIconParamDesc.icon.table,
+      defaultValue: { summary: defaultValue },
+    },
+  };
+};
+
+const getFlagParamDescription = (name: string) =>
+  getPropertyParamDesc(
+    `${name} icon to disabled and unclickable`,
+    'boolean',
+    false,
+  );
 
 export default {
   title: 'Components/Menus/Chevron title selector',
   component: BmbChevronTitleSelectorComponent,
   parameters: {
     docs: {
+      controls: {
+        exclude: [
+          'handleLeadingClick',
+          'handleTrailingClick',
+          'subtitle',
+          'isIconSubtitle',
+          'iconSubtitle',
+        ],
+      },
       description: {
         component: `
-Below is an example of how you can use this component in TypeScript:
-
-\`\`\`typescript
-import { BmbChevronTitleSelectorComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
-@Component({
-  selector: 'component',
-  standalone: true,
-  imports: [ BmbChevronTitleSelectorComponent ],
-  templateUrl: './component.html',
-  styleUrl: './component.scss',
-})
-\`\`\`
-
-## Architecture
-
-\`\`\`html
+${getGeneralDescription(`${getGeneralComponentDescription('chevron-title-selector')} to create sections that are related to each other.`, 'https://bamboo.tec.mx/latest/componentes/chevron-title-selector/descripcion-general-n1viJn3v')}
+${getArchitectureSection(`
 <section class="bmb_chevron">
   <button class="bmb_chevron-button">
     < icon />
@@ -43,103 +71,37 @@ import { BmbChevronTitleSelectorComponent } from '@ti-tecnologico-de-monterrey-o
     < icon />
   </button>
 </section>
-\`\`\`
-
-Below is an example of how you can use this component in HTML:
+`)}
+${getBasicExampleBlock('BmbChevronTitleSelectorComponent')}
         `,
       },
     },
   },
   argTypes: {
-    title: {
-      name: 'Title',
-      control: {
-        type: 'text',
-      },
-      description: 'The title of the home section.',
-      table: {
-        category: 'Properties',
-        type: { summary: 'string' },
-      },
-    },
-    leadingIcon: {
-      name: 'Leading con',
-      control: { type: 'text' },
-      description:
-        'Name of the icon to use. Please use Material icons: https://fonts.google.com/icons.',
-      table: {
-        category: 'Properties',
-        type: { summary: 'string' },
-      },
-    },
-    trailingIcon: {
-      name: 'Leading con',
-      control: { type: 'text' },
-      description:
-        'Name of the icon to use. Please use Material icons: https://fonts.google.com/icons.',
-      table: {
-        category: 'Properties',
-        type: { summary: 'string' },
-      },
-    },
-    isDisabledLeadingIcon: {
-      name: 'Is Disabled Leading Icon',
-      control: { type: 'boolean' },
-      description:
-        'If true, the leading icon will be disabled and not clickable.',
-      table: {
-        category: 'Properties',
-        type: { summary: 'boolean' },
-        defaultValue: { summary: 'false' },
-      },
-    },
-    isDisabledTrailingIcon: {
-      name: 'Is Disabled Trailing Icon',
-      control: { type: 'boolean' },
-      description:
-        'If true, the trailing icon will be disabled and not clickable.',
-      table: {
-        category: 'Properties',
-        type: { summary: 'boolean' },
-        defaultValue: { summary: 'false' },
-      },
-    },
-    onLeadingClick: {
-      name: 'On Leading Click',
-      control: {
-        type: '',
-      },
-      description:
-        'This handler can be used when you have the left icon available and want to perform a specific interaction.',
-      table: {
-        category: 'Events',
-        type: { summary: '(onLeadingClick)="yourFunction()"' },
-      },
-    },
-    onTrailingClick: {
-      name: 'On Trailing Click',
-      control: {
-        type: '',
-      },
-      description:
-        'This handler can be used when you have the right icon available and want to perform a specific interaction.',
-      table: {
-        category: 'Events',
-        type: { summary: '(onTrailingClick)="yourFunction()"' },
-      },
-    },
+    title: getPropertyParamDesc('chevron selector'),
+    leadingIcon: getIconParamDescription('left', 'chevron_left'),
+    trailingIcon: getIconParamDescription('right', 'chevron_right'),
+    isDisabledLeadingIcon: getFlagParamDescription('left'),
+    isDisabledTrailingIcon: getFlagParamDescription('right'),
+    onLeadingClick: getOnClickParam(
+      getOnEvent('left icon', 'onLeadingClick', 'void'),
+    ),
+    onTrailingClick: getOnClickParam(
+      getOnEvent('right icon', 'onTrailingClick', 'void'),
+    ),
   },
   args: {
     title: 'Title',
+    subtitle: '',
     leadingIcon: 'chevron_left',
     trailingIcon: 'chevron_right',
     isDisabledLeadingIcon: false,
     isDisabledTrailingIcon: false,
     onLeadingClick: () => {
-      window.alert('Icon left clicked in Storybook');
+      console.log('Icon left clicked in Storybook');
     },
     onTrailingClick: () => {
-      window.alert('Icon right clicked in Storybook');
+      console.log('Icon right clicked in Storybook');
     },
   },
 } as Meta<typeof BmbChevronTitleSelectorComponent>;

@@ -2,7 +2,15 @@ import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
 import { BmbAccordionControlDirective } from './bmb-accordion-control.directive';
 import { CommonModule } from '@angular/common';
 import { BmbAccordionComponent } from '../../../public-api';
-import { getEmptyStateMessage } from '../../utils/doc/utils';
+import {
+  getBasicExampleBlock,
+  getEmptyStateMessage,
+  getGeneralComponentDescription,
+  getGeneralDescription,
+  getSpecialSpecifications,
+  getSubStoryIdentifier,
+  RELEVANT_TITLE_LEVEL,
+} from '../../utils/doc/utils';
 
 const meta: Meta<BmbAccordionControlDirective> = {
   title: 'Components/Containers/Accordion/Accordion control',
@@ -23,23 +31,18 @@ const meta: Meta<BmbAccordionControlDirective> = {
     docs: {
       description: {
         component: `
-${getEmptyStateMessage()}
-Below is an example of how you can use this component in TypeScript:
-
-\`\`\`typescript
-import { BmbAccordionControlDirective, BmbAccordionComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
-@Component({
-  selector: 'component',
-  standalone: true,
-  imports: [ BmbAccordionControlDirective, BmbAccordionComponent ],
-  templateUrl: './component.html',
-  styleUrl: './component.scss',
-})
-\`\`\`
-
-**For the correct operation of the Accordion Control Directive the Accordion Components need to have the attribute "accordionId" and the accordion component must not have the "lockToogle" attribute**
-
-Below is an example of how you can use this component in HTML:
+${getGeneralDescription(`${getGeneralComponentDescription('AccordionControl', 'directive')} to bmb-accordion components to be presented in collapsible and vertically stacked elements.`, 'https://bamboo.tec.mx/latest/componentes/accordion/descripcion-general-yABR8pUx', true)}
+${getSpecialSpecifications(
+  `${getEmptyStateMessage(true)}<br/><br/>
+###${getSubStoryIdentifier(true)}${RELEVANT_TITLE_LEVEL[0]}
+>
+For the correct operation of the Accordion control directive the Accordion component must have
+\`accordionId\` attribute
+and must not have \`lockToogle\` attribute
+`,
+  true,
+)}
+${getBasicExampleBlock('BmbAccordionComponent', '', '', true)}
         `,
       },
     },

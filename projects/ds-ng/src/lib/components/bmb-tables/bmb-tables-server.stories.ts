@@ -2,11 +2,16 @@ import { BmbTablesComponent } from './bmb-tables.component';
 import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
 import { CommonModule } from '@angular/common';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
-import { getEmptyStateMessage } from '../../utils/doc/utils';
+import {
+  getBasicExampleBlock,
+  getGeneralComponentDescription,
+  getGeneralDescription,
+} from '../../utils/doc/utils';
 
 export default {
   title: 'Components/Containers/Table/ServerSide',
   component: BmbTablesComponent,
+  tags: ['!autodocs'],
   decorators: [
     moduleMetadata({
       imports: [CommonModule, BmbIconComponent],
@@ -16,6 +21,8 @@ export default {
     docs: {
       description: {
         component: `
+${getGeneralDescription(`${getGeneralComponentDescription('', 'service')} `, 'https://bamboo.tec.mx/latest/componentes/table/descripcion-general-h1hRplJO')}
+${getBasicExampleBlock('BmbTablesComponent')}
 Below is an example of how you can use this component in TypeScript:
 
 \`\`\`typescript
@@ -243,7 +250,7 @@ Below is an example of how to use this component in HTML:
 
 type Story = StoryObj<BmbTablesComponent>;
 
-export const ServerSide: Story = {
+export const Default: Story = {
   render: (args) => ({
     props: {
       ...args,

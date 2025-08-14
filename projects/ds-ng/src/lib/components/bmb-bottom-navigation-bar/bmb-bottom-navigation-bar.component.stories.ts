@@ -1,34 +1,31 @@
 import { Meta, StoryObj } from '@storybook/angular';
 import { BmbBottomNavigationBarComponent } from './bmb-bottom-navigation-bar.component';
+import {
+  getBasicExampleBlock,
+  getGeneralComponentDescription,
+  getGeneralDescription,
+  getOnEvent,
+} from '../../utils/doc/utils';
+import { getOnClickParam } from '../../utils/doc/parameterDescriptions';
 
 export default {
   title: 'Components/Menus/Bottom navigation bar',
   component: BmbBottomNavigationBarComponent,
   parameters: {
+    controls: {
+      exclude: ['actionHeaders', 'buildElement', 'onNavigationBarOptionClick'],
+    },
     docs: {
       description: {
         component: `
-Below is an example of how you can use this component in TypeScript:
-
-\`\`\`typescript
-import { BmbBottomNavigationBarComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
-@Component({
-  selector: 'component',
-  standalone: true,
-  imports: [ BmbBottomNavigationBarComponent ],
-  templateUrl: './component.html',
-  styleUrl: './component.scss',
-})
-\`\`\`
-
-Below is an example of how you can use this component in HTML:
+${getGeneralDescription(`${getGeneralComponentDescription('bottom-navigation-bar')} for a bottom navigation bar with four customizable icons.`, 'https://bamboo.tec.mx/latest/componentes/bottom-navigation-bar/descripcion-general-eeQGlgdA')}
+${getBasicExampleBlock('BmbBottomNavigationBarComponent')}
         `,
       },
     },
   },
   argTypes: {
     navigationBarIcons: {
-      name: 'Navigation bar icons',
       control: {
         type: 'IBmbNavigationBarIcons',
       },
@@ -37,34 +34,45 @@ Below is an example of how you can use this component in HTML:
         category: 'Properties',
         defaultValue: { summary: 'Icons: back, forward, share, reload.' },
         type: {
-          summary: `IBmbNavigationBarIcons = {
-          one: { name: '', label: '' },
-          two: { name: '', label: '' },
-          three: { name: '', label: '' },
-          four: { name: '', label: '' },
-        }`,
+          summary: 'IBmbNavigationBarIcons',
+          detail: `
+IBmbNavigationBarIcons = {
+  one: IBmbNavigationBarIcon;
+  two: IBmbNavigationBarIcon;
+  three: IBmbNavigationBarIcon;
+  four: IBmbNavigationBarIcon;
+}
+
+IBmbNavigationBarIcon = {
+  name: string;
+  label: string;
+  eventName?: IBmbFooterEvent;
+  dotNotification?: number;
+}
+
+IBmbFooterEvent = 'back' | 'forward' | 'share' | 'reload'
+          `,
         },
       },
     },
-    navigationBarEvents: {
-      name: 'Navigation bar events',
-      control: false,
-      description: 'Used for the icon option that was clicked.',
-      table: {
-        type: { summary: 'function' },
-        category: 'Events',
-      },
-    },
+    navigationBarEvents: getOnClickParam(
+      getOnEvent(
+        'back, forward, share, and reload',
+        'navigationBarEvents',
+        'IBmbFooterEvent',
+      ),
+      ``,
+    ),
   },
   args: {
-    navigationBarEvents: (event: unknown) => {
-      alert('Selection: ' + event);
-    },
     navigationBarIcons: {
       one: { name: 'home', label: '' },
       two: { name: 'share', label: '' },
       three: { name: 'inventory_2', label: '' },
       four: { name: 'send', label: '' },
+    },
+    navigationBarEvents: (event: unknown) => {
+      alert('Selection: ' + event);
     },
   },
 } as Meta<typeof BmbBottomNavigationBarComponent>;

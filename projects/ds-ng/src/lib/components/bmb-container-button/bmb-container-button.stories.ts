@@ -89,7 +89,7 @@ ${getBasicExampleBlock('BmbContainerButtonComponent')}
         type: { summary: 'string' },
       },
     },
-    link: DBmbGenericParamDesc.link,
+    link: DBmbGenericParamDesc.linkOrButton,
     target: DBmbGenericParamDesc.target,
     iconLeft: DBmbIconParamDesc.icon,
     isUserImage: {

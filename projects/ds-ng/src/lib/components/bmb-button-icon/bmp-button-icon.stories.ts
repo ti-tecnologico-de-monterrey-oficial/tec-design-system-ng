@@ -9,6 +9,7 @@ import {
   getOnEvent,
   getSpecialSpecifications,
   IBmbOnEvent,
+  RELEVANT_TITLE_LEVEL,
 } from '../../utils/doc/utils';
 import {
   DBmbGenericParamDesc,
@@ -63,7 +64,7 @@ ${getBasicExampleBlock('BmbButtonIconComponent', '', onEvent.handleExample)}
       description: `
 Sets the appearance of the outline when true.
 
-**Note:** Show container must also be true.
+${RELEVANT_TITLE_LEVEL[2]} \`showContainer\` must also be true.
       `,
       table: {
         category: 'Properties',
