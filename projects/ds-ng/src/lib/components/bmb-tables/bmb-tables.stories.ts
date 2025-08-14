@@ -8,6 +8,7 @@ import {
   getGeneralComponentDescription,
   getGeneralDescription,
   getSpecialSpecifications,
+  RELEVANT_TITLE_LEVEL,
 } from '../../utils/doc/utils';
 
 const additionalBlock: string = `
@@ -213,6 +214,7 @@ const additionalBlock: string = `
 
 export default {
   title: 'Components/Containers/Table',
+  tags: ['!autodocs'],
   component: BmbTablesComponent,
   decorators: [
     moduleMetadata({
@@ -482,8 +484,12 @@ ${getBasicExampleBlock(
       control: {
         type: 'object',
       },
-      description:
-        'Set the initial selection of the table. This is an array of indexes that will be selected when the table is initialized. **Warning**: If the data is asynchronous, this property must also be asynchronous.',
+      description: `
+Set the initial selection of the table.
+
+This is an array of indexes that will be selected when the table is initialized.
+
+${RELEVANT_TITLE_LEVEL[0]} If the data is asynchronous, this property must also be asynchronous.`,
       table: {
         category: 'Properties',
         type: { summary: 'number[]' },

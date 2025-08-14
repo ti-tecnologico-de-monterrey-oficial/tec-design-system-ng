@@ -1,5 +1,6 @@
 import { Meta, StoryObj } from '@storybook/angular';
 import { BmbTabsComponent } from './bmb-tabs.component';
+import { RELEVANT_TITLE_LEVEL } from '../../utils/doc/utils';
 
 export default {
   title: 'Components/Visual labels/Tab',
@@ -139,7 +140,7 @@ export class AppComponent implements OnInit {
 <button (click)="setFirstTabFromOutside()">Set first tab</button>
 \`\`\`
 
-#### Notes
+####${RELEVANT_TITLE_LEVEL[2]}
 - **Tabs Data:** You can define the tabs data dynamically, as shown in the example.
 - **Button Actions:**
   - The "Continuar" button uses the \`goToNextTab\` method to move to the next tab programmatically.

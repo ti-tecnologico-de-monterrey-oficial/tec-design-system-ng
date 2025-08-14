@@ -6,28 +6,16 @@ import {
 } from '@storybook/addon-docs/blocks';
 import { getListingOnOneLine } from '../utils';
 
-export const DESIGN_SYSTEM_TITLE = '***Bamboo***';
-export const STORIES_TITLE = 'Variant templates';
-export const TITLE_OF_CONTROLS = 'Properties / Events';
-const TOC_TITLE = 'On this page';
-export const DESCRIPTION_TITLE = 'Description';
-export const SPECIAL_SPECIFICATIONS_TITLE = 'Considerations / Restrictions';
-export const SANDBOX_TITLE = 'Sandbox';
-export const SPACING_DESCRIPTION =
-  'Spacing is used to give space to components and their sections.';
-export const TYPOGRAPHY_DESCRIPTION =
-  'Typography refers to the design or selection of letter forms that are arranged in typo of blocks to create written content that is legible, readable, and visually appealing.<br/>';
-export const FONT_FAMILY_DESCRIPTION = `Explore the typographic scale with ${DESIGN_SYSTEM_TITLE} **Popping** font family`;
-
 interface IBmbVariableDesc {
   element: string;
   name: string;
 }
-export const TOC_OBJ = {
-  title: TOC_TITLE,
-  headingSelector: 'h2, h3',
-};
-export type IBmbStoryType = 'element' | 'component' | 'organism' | 'directive';
+export type IBmbStoryType =
+  | 'element'
+  | 'component'
+  | 'organism'
+  | 'directive'
+  | 'service';
 export interface IBmbOnEvent {
   name?: string;
   handleExample?: string;
@@ -36,6 +24,31 @@ export interface IBmbOnEvent {
   event_type?: string;
 }
 export type IBmbOnEventType = 'change' | 'keyDown' | 'other';
+
+export const DESIGN_SYSTEM_TITLE: string = '***Bamboo***';
+export const STORIES_TITLE: string = 'Variant templates';
+export const TITLE_OF_CONTROLS: string = 'Properties / Events';
+const TOC_TITLE: string = 'On this page';
+export const DESCRIPTION_TITLE: string = 'Description';
+export const SPECIAL_SPECIFICATIONS_TITLE: string =
+  'Considerations / Restrictions';
+export const SANDBOX_TITLE: string = 'Sandbox';
+export const SPACING_DESCRIPTION: string =
+  'Spacing is used to give space to components and their sections.';
+export const TYPOGRAPHY_DESCRIPTION: string =
+  'Typography refers to the design or selection of letter forms that are arranged in typo of blocks to create written content that is legible, readable, and visually appealing.<br/>';
+export const FONT_FAMILY_DESCRIPTION: string = `Explore the typographic scale with ${DESIGN_SYSTEM_TITLE} **Popping** font family`;
+
+export const TOC_OBJ = {
+  title: TOC_TITLE,
+  headingSelector: 'h2, h3',
+};
+
+export const RELEVANT_TITLE_LEVEL: string[] = [
+  '⚠️**Warning**<br/>',
+  '‼️**Important**<br/>',
+  '✳️**Note**<br/>',
+];
 
 export const getPageStructureForFoundationStories = () => {
   return [Title({}), Description({}), Primary({}), Controls({})];
@@ -66,7 +79,7 @@ export const attributesText = (object: { [key: string]: any }): string =>
     .map(([_, value]) => `${value}`)
     .join(' ');
 
-const getProperName = (name: string) =>
+const getProperName = (name: string): string =>
   name.replace(name.slice(0, 1), name.slice(0, 1).toLocaleUpperCase());
 
 export const getFormatName = (
@@ -105,8 +118,7 @@ export const getOnEvent = (
     handleExample: `
   ${handleName}(${_type}) {${additionalBlock}
     //Add your code
-  }
-  `,
+  }`,
     propertyValue: `${handleName}(${_type === '' ? '' : '$event'})`,
   };
 
@@ -125,12 +137,12 @@ export const getAccordionDetail = (title: string, content: string) => `
 export const generateLabel = (inputName: string): string =>
   getFormatName(inputName, '_', ' ');
 
-export const getEmptyStateMessage = () => `
-###‼︎Important:
+export const getEmptyStateMessage = (isSubStory: boolean = false): string => `
+###${getSubStoryIdentifier(isSubStory)}${RELEVANT_TITLE_LEVEL[1]}
 Remember to use the \`empty state\` for the cases that apply to this. Related documentation is available [here](https://bamboo.tec.mx/latest/guia-ux-writing/mensajes-del-producto/empty-states-OQYyq6h8-OQYyq6h8).
 `;
 
-export const getGridGeneratorLink = () =>
+export const getGridGeneratorLink = (): string =>
   `### Grid generator
 [Grid generator](/docs/dev-tools-grid-generator--documentation) is a tool that can be used to generate custom grids.`;
 
@@ -142,10 +154,11 @@ export const getAuxiliaryDescription = (
 
 export const getArchitectureSection = (
   architectureBlock: string,
+  isSubStory: boolean = false,
   bmbNameLink: string = '',
   documentationLink: string = '',
 ): string => `
-## DOM Architecture
+## ${getSubStoryIdentifier(isSubStory)}DOM Architecture
 Represents the structure of the component.
 \`\`\`html
 ${architectureBlock}
@@ -171,8 +184,9 @@ export const getDescribeTypeTextBlock = (
   additionalTitle: string = '',
   isLevel3: boolean = false,
   additionalText: string = '',
+  isSubStory: boolean = false,
 ): string => `
-##${isLevel3 ? '#' : ''} ${typeExampleName} example ${additionalTitle}
+##${isLevel3 ? '#' : ''} ${getSubStoryIdentifier(isSubStory)}${typeExampleName} example ${additionalTitle}
 Below is a *${typeExampleName}* example with the basic code to use this component ${additionalText}:`;
 
 const getTypescriptExampleBlock = (
@@ -233,14 +247,18 @@ export const getTypescriptExampleTextBlock = (
   additionalText: string = '',
   additionalBlock: string = '',
   replaceChar: string = '',
+  isSubStory: boolean = false,
 ): string =>
   `
-__${getDescribeTypeTextBlock('TypeScript', additionalTitle, isLevel3, additionalText)}
+__${getDescribeTypeTextBlock('TypeScript', additionalTitle, isLevel3, additionalText, isSubStory)}
 __${getTypescriptExampleBlock(inputName, additionalAngularCommonImportName, additionalImportName, additionalImportFrom, importComments, additionalBlock, replaceChar)}
 __`.replaceAll('__', replaceChar);
 
-export const getReactiveFormTitle = (bmbInputName: string): string => `
-##Reactive form example
+export const getReactiveFormTitle = (
+  bmbInputName: string,
+  isSubStory: boolean = false,
+): string => `
+##${getSubStoryIdentifier(isSubStory)}Reactive form example
 >This example demonstrates how to use **${bmbInputName}** within an Angular reactive form, ensuring validation and handling the field and its value correctly.
 >`;
 
@@ -249,8 +267,9 @@ export const getFormExampleBlock = (
   inputName: string,
   additionalBlock: string = '',
   inputExample: string,
+  isSubStory: boolean = false,
 ): string => `
-${getReactiveFormTitle(bmbInputName)}
+${getReactiveFormTitle(bmbInputName, isSubStory)}
 >
 ><br/>
 >${getTypescriptExampleTextBlock(
@@ -290,13 +309,17 @@ ${getReactiveFormTitle(bmbInputName)}
   >     return this.userForm.get(name) as FormControl;
   >   }`,
   '>',
+  isSubStory,
 )}
->${getHTMLFormExampleTextBlock(inputExample)}
+>${getHTMLFormExampleTextBlock(inputExample, isSubStory)}
 
 `;
 
-export const getHTMLFormExampleTextBlock = (inputExample: string): string => `>
->${getDescribeTypeTextBlock('HTML', 'for reactive form', true, 'in a reactive form')}
+export const getHTMLFormExampleTextBlock = (
+  inputExample: string,
+  isSubStory: boolean = false,
+): string => `>
+>${getDescribeTypeTextBlock('HTML', 'for reactive form', true, 'in a reactive form', isSubStory)}
 >\`\`\`html
 ><form [formGroup]="userForm" (ngSubmit)="onSubmit()">
 >  ${inputExample}
@@ -304,6 +327,9 @@ export const getHTMLFormExampleTextBlock = (inputExample: string): string => `>
 ></form>
 >\`\`\`
 `;
+
+export const getSubStoryIdentifier = (isSubStory: boolean = false): string =>
+  isSubStory ? '-' : '';
 
 export const getGeneralComponentDescription = (
   name: string,
@@ -316,9 +342,10 @@ export const getGeneralComponentDescription = (
 export const getGeneralDescription = (
   content: string,
   generalDocLink: string = '',
+  isSubStory: boolean = false,
 ): string => `
 <br/>
-## ${DESCRIPTION_TITLE}
+## ${getSubStoryIdentifier(isSubStory)}${DESCRIPTION_TITLE}
 >${content}
 >
 ${!!generalDocLink ? `>Please remember to refer to the [Bamboo - General documentation](${generalDocLink}) for more details about it.` : '>'}
@@ -353,8 +380,11 @@ ${getGeneralDescription(
 )}
 `;
 
-export const getSpecialSpecifications = (content: string): string => `
-## ${SPECIAL_SPECIFICATIONS_TITLE}
+export const getSpecialSpecifications = (
+  content: string,
+  isSubStory: boolean = false,
+): string => `
+## ${getSubStoryIdentifier(isSubStory)}${SPECIAL_SPECIFICATIONS_TITLE}
 >${content}
 <br/>
 `;
@@ -363,12 +393,13 @@ export const getBasicExampleBlock = (
   inputName: string,
   importComments: string = '',
   additionalBlock: string = '',
+  isSubStory: boolean = false,
   additionalAngularCommonImportName: string = '',
   additionalImportName: string = '',
   additionalImportFrom: string = '',
 ): string => `
-${getTypescriptExampleTextBlock(inputName, additionalAngularCommonImportName, additionalImportName, additionalImportFrom, importComments, '', false, '', additionalBlock)}
-${getDescribeTypeTextBlock('HTML')}
+${getTypescriptExampleTextBlock(inputName, additionalAngularCommonImportName, additionalImportName, additionalImportFrom, importComments, '', false, '', additionalBlock, '', isSubStory)}
+${getDescribeTypeTextBlock('HTML', '', false, '', isSubStory)}
 `;
 
 export const getFoundationDescriptions = (
@@ -628,14 +659,14 @@ ${introductionContent}
     isOmitImportant
       ? ''
       : `
-### ‼︎Important:
+### ${RELEVANT_TITLE_LEVEL[1]}
 Please refer to the [Variables documentation](/docs/foundations-variables--documentation&globals=#dom-architecture) for details on how to implement ${element} in CSS, where it is detailed that these can be implemented through variables.<br/><br/><br/>`
   }
 >
 >${
     isWarning
       ? `
-### ⚠ Warning:
+### ${RELEVANT_TITLE_LEVEL[0]}
 You should be careful when using ${element}, as they can affect ${DESIGN_SYSTEM_TITLE} components. Some components may override this attribute, so check the component's documentation before applying the ${element} class.
 <br/><br/><br/>`
       : ''
@@ -670,6 +701,13 @@ ON THIS PAGE (optional, TABLE OF CONTENTS) [Done, is in preview, if not so add p
 */
 
 /*
+RELEVANT_TITLE_LEVEL: string[] = [
+  '⚠️**Warning**<br/>',
+  '‼️**Important**<br/>',
+  '✳️**Note**<br/>',
+];
+${RELEVANT_TITLE_LEVEL[_]}
+
 ${getGeneralDescription(`${getGeneralComponentDescription('')} `, '')}
 ${getBasicExampleBlock('')}
 
@@ -699,4 +737,52 @@ controls: {
           '',
         ],
       },
+
+import {
+  Canvas,
+  Controls,
+  Description,
+  Meta,
+  Title,
+  Stories,
+} from "@storybook/addon-docs/blocks";
+
+import * as listStory from "./bmb-accordion.stories";
+import * as itemStory from "../../directives/bmb-accordion/bmb-accordion-control.stories";
+import { Tabs } from "../../../DocComponents/Tabs.mdx";
+
+export const List = () => (
+  <section>
+    <Meta of={listStory} />
+    <Title />
+    <Description />
+    <Canvas withToolbar={true} />
+    <Controls />
+    <Stories />
+  </section>
+);
+
+export const Item = () => (
+  <section>
+    <Meta of={itemStory} />
+    <Title of={itemStory}>{itemStory?.title}</Title>
+    <Description of={itemStory}>{itemStory}</Description>
+    <Canvas of={itemStory.Default} withToolbar={true} />
+    <Controls of={itemStory.Default} />
+    <Stories of={itemStory.Default} />
+  </section>
+);
+
+<Meta of={listStory} />
+<Tabs
+  tabs={[
+    <Title>{listStory?.title}</Title>,
+    <Title of={itemStory}>{itemStory?.title}</Title>,
+  ]}
+  content={[<List />, <Item />]}
+/>
+
+
+  isSubStory: boolean = false,
+  ${getSubStoryIdentifier(isSubStory)}
 */

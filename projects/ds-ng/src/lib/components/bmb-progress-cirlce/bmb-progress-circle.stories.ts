@@ -1,63 +1,69 @@
 import { Meta, StoryObj } from '@storybook/angular';
 import { BmbProgressCircleComponent } from './bmb-progress-circle.component';
+import {
+  getBasicExampleBlock,
+  getGeneralComponentDescription,
+  getGeneralDescription,
+  RELEVANT_TITLE_LEVEL,
+} from '../../utils/doc/utils';
+import {
+  DBmbGenericParamDesc,
+  getPropertyParamDesc,
+} from '../../utils/doc/parameterDescriptions';
 
+const IMPORTANT_DESCRIPTION = `<br/><br/>${RELEVANT_TITLE_LEVEL[1]} The gray fill path (fillPathStatus) does not work for the full state (fullFillPathStatus).`;
 export default {
   title: 'Components/Status indicators/Progress circle',
   component: BmbProgressCircleComponent,
   parameters: {
     docs: {
+      controls: {
+        exclude: [
+          'applyOptions',
+          'draw',
+          'getFillPathStatus',
+          'getRelativeY',
+          'isFullColored',
+          'polarToCartesian',
+          'render',
+          'shouldShowProgressPath',
+          'shouldShowValueLabel',
+          'ngOnChanges',
+          'ngOnInit',
+          '_lastPercent',
+          'options',
+          'responsive',
+          'svg',
+          'showRestBackground',
+        ],
+      },
       description: {
         component: `
-Below is an example of how you can use this component in TypeScript:
-
-\`\`\`typescript
-import { BmbProgressCircleComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
-@Component({
-  selector: 'component',
-  standalone: true,
-  imports: [ BmbProgressCircleComponent ],
-  templateUrl: './component.html',
-  styleUrl: './component.scss',
-})
-\`\`\`
-
-Below is an example of how you can use this component in HTML:
+${getGeneralDescription(`${getGeneralComponentDescription('progress-circle')} visually indicates the status of a definite amount of work completed.`, 'https://bamboo.tec.mx/latest/componentes/progress-circle/descripcion-general-M5Xm37iL')}
+${getBasicExampleBlock('BmbProgressCircleComponent')}
         `,
       },
     },
   },
   argTypes: {
-    valueLabel: {
-      name: 'Value Label',
-      control: {
-        type: 'text',
-      },
-      description: 'Refers to the total value that the component show.',
-      table: {
-        category: 'Properties',
-        type: { summary: 'string' },
-        defaultValue: { summary: '' },
-      },
-    },
-    fullFillPathStatus: {
-      name: 'Full Fill Path Status',
-      control: {
-        type: 'boolean',
-      },
-      description:
-        'If true, the progress circle will display in a full state, hiding the percentage path and value content. Not work for gray status.',
-      table: {
-        category: 'Properties',
-        type: { summary: 'boolean' },
-        defaultValue: { summary: false },
-      },
-    },
+    valueLabel: getPropertyParamDesc(
+      'value label',
+      'text',
+      '',
+      '<br/><br/>The value label will be displayed in the center of the progress circle.',
+    ),
+    fullFillPathStatus: getPropertyParamDesc(
+      'full state',
+      'boolean',
+      false,
+      `<br/><br/>The progress circle will display in a full state and the percentage path and value content will be hidden.
+${IMPORTANT_DESCRIPTION}`,
+    ),
     showValueLabel: {
-      name: 'Show Value Label',
       control: {
         type: 'boolean',
       },
-      description: 'Set if the value label will be displayed.',
+      description: 'Displays the value label when true.',
       table: {
         category: 'Properties',
         type: { summary: 'boolean' },
@@ -65,35 +71,31 @@ Below is an example of how you can use this component in HTML:
       },
     },
     percent: {
-      name: 'Percent',
       control: {
         type: 'number',
       },
-      description: 'Refers to the percentage that the component show.',
+      description: 'Sets the percentage of progress to be displayed.',
       table: {
         category: 'Properties',
         type: { summary: 'number' },
         defaultValue: { summary: 0 },
       },
     },
-    title: {
-      name: 'Title',
-      control: {
-        type: 'object',
-      },
-      description:
-        'Is the text of the component, to show the text in one line use a simple array, if you want to show the title in more than one line, use an array string',
-      table: {
-        category: 'Properties',
-        type: { summary: 'string | string[]' },
-      },
-    },
+    title: getPropertyParamDesc(
+      'progress circle',
+      'text',
+      '',
+      `
+<br/><br/>Considerations for displaying text on one or more lines:
+- Use a string to display the title on a single line.
+- Use a string array to display the title on more than one line.
+`,
+    ),
     showTitle: {
-      name: 'Show Title',
       control: {
         type: 'boolean',
       },
-      description: 'Set if the title label will be displayed.',
+      description: 'Displays the title when true.',
       table: {
         category: 'Properties',
         type: { summary: 'boolean' },
@@ -101,36 +103,28 @@ Below is an example of how you can use this component in HTML:
       },
     },
     fillPathStatus: {
-      name: 'Fill Path Status',
       control: {
         type: 'select',
       },
       options: ['gray', 'success', 'error', 'warning'],
-      description:
-        'Set the color of the path that fills the circle, it can be transparent, success, error or warning.',
+      description: `
+Sets the color of the path that fills the circle.
+${IMPORTANT_DESCRIPTION}
+      `,
       table: {
         category: 'Properties',
         type: { summary: 'BmbProgressCirclePathStatus' },
         defaultValue: { summary: 'success' },
       },
     },
-    showBackground: {
-      name: 'Show Background',
-      description:
-        'Set if the background of the progress circle will be displayed.',
-      table: {
-        category: 'Deprecated',
-        type: { summary: 'boolean' },
-        defaultValue: { summary: true },
-      },
-    },
+    showBackground: DBmbGenericParamDesc.deprecated,
   },
   args: {
     fullFillPathStatus: false,
     percent: 85,
     title: ['Total a pagar', 'este mes'],
-    valueLabel: '$10000',
     showTitle: false,
+    valueLabel: '$10000',
     showValueLabel: false,
     fillPathStatus: 'success',
   },

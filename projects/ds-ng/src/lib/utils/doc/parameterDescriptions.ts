@@ -3,35 +3,43 @@ import {
   getOnEvent,
   IBmbOnEventType,
   IBmbOnEvent,
+  RELEVANT_TITLE_LEVEL,
 } from './utils';
 
 type IBmbButtonEventType = 'clicked' | 'pressed';
 type IBmbControlType = 'text' | 'boolean' | 'number' | 'object';
 
-export const DEPRECATED_PROPERTIES_DESCRIPTION =
+export const DEPRECATED_PROPERTIES_DESCRIPTION: string =
   'This property is deprecated and will be removed in future versions.';
-export const GOGGLE_FONTS_LINK = `Please refer to [Google Fonts](https://fonts.google.com/icons?icon.size=24&icon.color=%23e8eaed&selected=Material+Symbols+Outlined:more_vert:FILL@0;wght@400;GRAD@0;opsz@24) for more icons.`;
-const DISABLE_DESCRIPTION = `
+const DISABLE_DESCRIPTION: string = `
 Disables the field when true, making it non-interactive and cannot be clicked.
 
 This is useful for conditions where user interaction should be restricted.
 `;
-const UNIQUE_IDENTIFY_DESCRIPTION = 'Sets the unique identifier for';
+const UNIQUE_IDENTIFY_DESCRIPTION: string = 'Sets the unique identifier for';
+const LINK_DESCRIPTION: string =
+  'Sets the link for redirection to another or same page.';
+export const ON_CLICK_DESCRIPTION: string =
+  ', this event is only emitted if the *link* property is empty';
+export const GOOGLE_FONTS_LINK: string = `Please refer to [Google Fonts](https://fonts.google.com/icons?icon.size=24&icon.color=%23e8eaed&selected=Material+Symbols+Outlined:more_vert:FILL@0;wght@400;GRAD@0;opsz@24) for more icons.`;
+export const ICON_IMAGE_DETAIL: string =
+  'Supports images; instead of the icon name, enter the URL or path of the image to use.';
+export const SIMPLE_ICON_DESCRIPTION: string = `Sets the icon name to be displayed.
+<br/><br/>${GOOGLE_FONTS_LINK}`;
+export const ICON_DESCRIPTION: string = `${SIMPLE_ICON_DESCRIPTION}<br/><br/>${ICON_IMAGE_DETAIL}`;
+
+export const ON_BUTTON_CLICK: IBmbOnEvent = getOnEvent('', 'buttonClick');
+
 export const getLabelDescription = (
   positionDescription: string,
   type: string = ' field',
-) => `
+): string => `
 Sets the label associated with ${type}.
 
 The label helps users understand the context of what the ${type} represents.
 
 The label will be displayed ${positionDescription} the ${type}.
 `;
-export const ON_BUTTON_CLICK: IBmbOnEvent = getOnEvent('', 'buttonClick');
-export const ON_CLICK_DESCRIPTION: string =
-  ', this event is only emitted if the *link* property is empty';
-export const ICON_IMAGE_DETAIL: string =
-  'Supports images; instead of the icon name, enter the URL of the image to use.';
 
 const getCheckboxOrRadialLabel = (type: string) => {
   return {
@@ -72,7 +80,9 @@ The possible positions to indicate where the label should be displayed in relati
   };
 };
 
-export const getFormControlConsiderations = (replaceChar: string = '') =>
+export const getFormControlConsiderations = (
+  replaceChar: string = '',
+): string =>
   `__
 __It is essential to assign the property \`name\` for correct behavior of the field.
 __
@@ -91,7 +101,7 @@ __- **pattern**: adds \`Validators.pattern\` to the \`FormControl\``.replaceAll(
     replaceChar,
   );
 
-export const getFormControlDescription = (replaceChar: string = '') =>
+export const getFormControlDescription = (replaceChar: string = ''): string =>
   `__In ${DESIGN_SYSTEM_TITLE}, it is possible to implement automatic field validation using the \`bmb-form-validator\` component.
 __
 __<br/>
@@ -100,14 +110,14 @@ __The \`bmb-form-validator\` component contains the state of the form by collect
     replaceChar,
   );
 
-export const getControlDescription = (isComplete: boolean = false) => `
+export const getControlDescription = (isComplete: boolean = false): string => `
 Sets the \`FormControl\` instance to manage the state of the field.
 ${
   isComplete
     ? `
 
 <br/>
-**‼︎Important:**
+${RELEVANT_TITLE_LEVEL[1]}
 ${getFormControlConsiderations()}
 <br/>
 ${getFormControlDescription()}
@@ -135,7 +145,9 @@ export const getPropertyParamDesc = (
     },
     description:
       alternativeDescription ||
-      (controlType === 'boolean' ? `Sets the ${name} when true.` : '') ||
+      (controlType === 'boolean'
+        ? `Sets the ${name} when true.${additionalDescription}`
+        : '') ||
       `Sets the title of the ${name}.${additionalDescription}`,
     table: {
       category: 'Properties',
@@ -145,24 +157,30 @@ export const getPropertyParamDesc = (
   };
 };
 
-export const getAppearanceDescription = (name: string) =>
+export const getAppearanceDescription = (name: string): string =>
   `Sets the appearance of ${name}, affecting its visual style.`;
 
 export const getAppearanceParam = (
   name: string,
   options: unknown[],
   defaultSummary: string = ' ',
+  additionalDescription: string = '',
 ) => {
+  const detailType: string = options.toString().replaceAll(
+    ',',
+    `
+`,
+  );
   return {
     control: {
       type: 'select',
     },
     options,
-    description: getAppearanceDescription(name),
+    description: `${getAppearanceDescription(name)}${additionalDescription}`,
     table: {
       category: 'Properties',
       defaultValue: { summary: defaultSummary },
-      type: { summary: 'string' },
+      type: { summary: 'string', detail: detailType },
     },
   };
 };
@@ -254,8 +272,18 @@ IBmbTargetLink = '_blank' | '_parent' | '_self' | '_top';
     control: {
       type: 'text',
     },
-    description:
-      'Sets the link for redirection to another or same page. If this property is empty it will emit the button event.',
+    description: `${LINK_DESCRIPTION} If this property is empty it will emit the button event.`,
+    table: {
+      category: 'Events',
+      defaultValue: { summary: '' },
+      type: { summary: 'string' },
+    },
+  },
+  linkOrButton: {
+    control: {
+      type: 'text',
+    },
+    description: `${LINK_DESCRIPTION} If this property is empty it will emit the button event.`,
     table: {
       category: 'Events',
       defaultValue: { summary: '' },
@@ -426,9 +454,9 @@ export const DBmbIconParamDesc = {
     control: {
       type: 'text',
     },
-    description: `
-Sets the icon name to be displayed.
-<br/><br/>${GOGGLE_FONTS_LINK}<br/><br/>${ICON_IMAGE_DETAIL}`,
+    description: SIMPLE_ICON_DESCRIPTION.concat(
+      `<br/><br/>${ICON_IMAGE_DETAIL}`,
+    ),
     table: {
       category: 'Properties',
       type: { summary: 'string' },
@@ -439,8 +467,8 @@ Sets the icon name to be displayed.
     control: {
       type: 'number',
     },
-    description:
-      'Sets the size of the icon or width of the image to use.<br/><br/>‼︎**Note:** <= 0 will be inherited.',
+    description: `Sets the size of the icon or width of the image to use.<br/><br/>
+${RELEVANT_TITLE_LEVEL[2]} <= 0 will be inherited.`,
     table: {
       category: 'Properties',
       defaultValue: { summary: '' },
@@ -450,7 +478,7 @@ Sets the icon name to be displayed.
   isIconFill: {
     control: { type: 'boolean' },
     description:
-      'Determines whether the icon is filled (`true`) or outlined (`false`).',
+      'Determines whether the icon is filled (***true***) or outlined (***false***).',
     table: {
       category: 'Properties',
       defaultValue: { summary: 'true' },
@@ -504,10 +532,17 @@ export const DBmbButtonParamDesc = {
     description: 'Sets the size of the button, affecting its visual size.',
   },
   icon: {
-    ...DBmbIconParamDesc.icon,
-    description: DBmbIconParamDesc.icon.description.concat(
+    control: {
+      type: 'text',
+    },
+    description: ICON_DESCRIPTION.concat(
       '<br/><br/>The icon to display on the button.',
     ),
+    table: {
+      category: 'Properties',
+      type: { summary: 'string' },
+      defaultValue: { summary: '' },
+    },
   },
 };
 
@@ -652,7 +687,7 @@ export const DBmbHomeCardParamDesc = {
   },
   title: {
     control: { type: 'text' },
-    description: 'Sets the main title of the card.',
+    description: 'Sets the title of the card.',
     table: {
       category: 'Properties',
       defaultValue: { summary: '' },
@@ -714,6 +749,46 @@ IBmbTargetLink = '_blank' | '_parent' | '_self' | '_top';
   },
 };
 
+export const DBmbTooltipParamDesc = {
+  text: {
+    control: {
+      type: 'text',
+    },
+    description: 'Sets the detail or description to show as a tooltip.',
+    table: {
+      category: 'Properties',
+      type: { summary: 'string' },
+      defaultValue: { summary: '' },
+    },
+  },
+  align: {
+    control: { type: 'radio' },
+    options: ['above', 'below', 'left', 'right'],
+    description: 'Sets the position of the tooltip.',
+    table: {
+      category: 'Properties',
+      defaultValue: { summary: 'right' },
+      type: {
+        summary: 'IBmbAlignTooltip',
+        detail: "IBmbAlignTooltip = 'above' | 'below' | 'left' | 'right'",
+      },
+    },
+  },
+  justify: {
+    control: { type: 'radio' },
+    options: ['centered', 'before', 'after'],
+    description: "Sets the justification with reference to the icon's tooltip.",
+    table: {
+      category: 'Properties',
+      defaultValue: { summary: 'after' },
+      type: {
+        summary: 'IBmbJustifyTooltip',
+        detail: "IBmbJustifyTooltip = 'centered' | 'before' | 'after'",
+      },
+    },
+  },
+};
+
 export const DBmbInputParamDesc = {
   inputId: {
     description: `
@@ -737,7 +812,7 @@ This property is used to link the label to the field through the ***for*** attri
 Sets the field name.
 
 <br/>
-**‼︎Important:**
+${RELEVANT_TITLE_LEVEL[1]}
 
 This property is essential for correct behavior of the the \`FormControl\`.
 
@@ -759,11 +834,11 @@ Sets the value of the field.
 
 This is the value that is taken when the form is submitted.
 
-**‼︎Important**
+${RELEVANT_TITLE_LEVEL[1]}
 
 The value will not be necessary to define a value on the \`FormControl\` instance, as long as this properties is correctly assigned of this field .
 
-**Note**:
+${RELEVANT_TITLE_LEVEL[2]}
 
 The configuration implemented in the \`FormControl\` object will always be prioritized.
 
@@ -798,7 +873,9 @@ ${getLabelDescription('above')}
     control: {
       type: 'text',
     },
-    description: 'Sets the text to be displayed as a tooltip above the field.',
+    description: DBmbTooltipParamDesc.text.description.concat(
+      ' It will appear above the field.',
+    ),
     table: {
       category: 'Properties',
       type: { summary: 'string' },
@@ -809,7 +886,13 @@ ${getLabelDescription('above')}
     control: {
       type: 'object',
     },
-    description: 'Sets the position of the tooltip.',
+    description: `
+Sets the position of the tooltip.
+
+Properties:
+- \`align\`: ${DBmbTooltipParamDesc.align.description}
+- \`justify\`: ${DBmbTooltipParamDesc.justify.description}
+`,
     table: {
       category: 'Properties',
       defaultValue: { summary: `{ align:'above', justify:'before' }` },
@@ -821,9 +904,9 @@ IBmbInputTooltipPosition {
   justify: IBmbJustifyTooltip;
 }
 
-IBmbAlignTooltip = 'above' | 'below' | 'left' | 'right'
+${DBmbTooltipParamDesc.align.table.type.detail}
 
-IBmbJustifyTooltip = 'centered' | 'before' | 'after'
+${DBmbTooltipParamDesc.justify.table.type.detail}
         `,
       },
     },
@@ -841,10 +924,17 @@ IBmbJustifyTooltip = 'centered' | 'before' | 'after'
     },
   },
   icon: {
-    ...DBmbIconParamDesc.icon,
-    description: DBmbIconParamDesc.icon.description.concat(
+    control: {
+      type: 'text',
+    },
+    description: ICON_DESCRIPTION.concat(
       '<br/><br/>The icon to display within the field.',
     ),
+    table: {
+      category: 'Properties',
+      type: { summary: 'string' },
+      defaultValue: { summary: '' },
+    },
   },
   disabled: {
     control: { type: 'boolean' },
@@ -915,7 +1005,7 @@ Validations supported in instantiation:
 - **customValidation**: corresponds to the validation assigned to the \`customValidation\` property
 
 <br/>
-**Note:**
+${RELEVANT_TITLE_LEVEL[2]}
 
 Default error messages will be displayed if this property is not assigned correctly.
     `,

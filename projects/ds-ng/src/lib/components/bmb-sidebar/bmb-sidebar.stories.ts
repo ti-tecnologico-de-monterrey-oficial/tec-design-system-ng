@@ -12,9 +12,10 @@ import {
   getGeneralComponentDescription,
   getGeneralDescription,
   getSpecialSpecifications,
+  RELEVANT_TITLE_LEVEL,
 } from '../../utils/doc/utils';
 
-const LEVEL_DESCRIPTION = `**‼︎Important:**
+const LEVEL_DESCRIPTION = `${RELEVANT_TITLE_LEVEL[1]}
 There is a limit of two levels of nesting and the main list must have a maximum of two lists, the first has a limit of 5 elements and the second a limit of 3.`;
 export default {
   title: 'Components/Menus/Sidebar',

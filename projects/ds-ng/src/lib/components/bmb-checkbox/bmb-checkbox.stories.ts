@@ -9,6 +9,7 @@ import {
   getFormExampleBlock,
   getOnEvent,
   IBmbOnEvent,
+  RELEVANT_TITLE_LEVEL,
 } from '../../utils/doc/utils';
 import {
   DBmbInputParamDesc,
@@ -60,7 +61,13 @@ ${getFieldDescription(
   'https://bamboo.tec.mx/latest/componentes/checkbox/descripcion-general-nl6Z6U1M',
 )}
 ${getCheckboxOrRadialArchitecture('checkbox')}
-${getFormExampleBlock('BmbCheckboxComponent', inputName, handleChange.handleExample, inputExample)}
+${getFormExampleBlock(
+  'BmbCheckboxComponent',
+  inputName,
+  `${handleChange.handleExample}
+  `,
+  inputExample,
+)}
 ${getBasicExampleBlock('BmbCheckboxComponent', '', onChange.handleExample)}
         `,
       },
@@ -89,7 +96,7 @@ If this property is set to **true**, the checkbox is selected; if set to **false
       description: `
 Sets the checkbox to an indeterminate state, which is typically used to represent a mixed state in complex forms like tree views or nested lists.
 
-**Note:**
+${RELEVANT_TITLE_LEVEL[2]}
 
 This does not affect the checked property and is purely visual.
       `,
@@ -104,7 +111,7 @@ This does not affect the checked property and is purely visual.
       description: `
 ${DBmbInputParamDesc.value.description}
 
-**‼︎Important:**
+${RELEVANT_TITLE_LEVEL[0]}
 For cases where this field is part of a checkbox list, this will be the value that will be sent with the form if the checkbox is checked.
       `,
     },

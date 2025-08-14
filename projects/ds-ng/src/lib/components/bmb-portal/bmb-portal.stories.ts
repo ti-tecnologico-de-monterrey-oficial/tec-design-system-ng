@@ -10,7 +10,7 @@ import {
 } from '../bmb-toast/bmb-toast.component';
 import { NotificationType } from '../bmb-push-notification/types';
 import { BmbPortalComponent } from './bmb-portal.component';
-import { attributes } from '../../utils/doc/utils';
+import { attributes, RELEVANT_TITLE_LEVEL } from '../../utils/doc/utils';
 
 @Component({
   standalone: true,
@@ -224,7 +224,7 @@ Add the \`BmbPortalComponent\` at the bottom of your **app.component.html**.
 
 If you need to reproduce sticky behavior on your notifications, you can add the bmb_main-container class to your app container in the **app.component.html** file as shown below.
 
-> **‼︎Important**: If you show many notifications at the same time, the browser may display two scrolls bars.
+> ${RELEVANT_TITLE_LEVEL[1]} If you show many notifications at the same time, the browser may display two scrolls bars.
 
 \`\`\`html
 <div class="bmb_main-container">

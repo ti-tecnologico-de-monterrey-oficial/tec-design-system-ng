@@ -4,6 +4,7 @@ import {
   getBasicExampleBlock,
   getGeneralComponentDescription,
   getGeneralDescription,
+  RELEVANT_TITLE_LEVEL,
 } from '../../utils/doc/utils';
 import {
   DBmbIconParamDesc,
@@ -33,7 +34,7 @@ ${getBasicExampleBlock('BmbFocusElementComponent')}
         type: 'text',
       },
       description: `Sets the number of the focus element.<br/><br/>
-**‼︎Important:**<br/><br/>
+${RELEVANT_TITLE_LEVEL[1]}
 The number is only considered if it does not have icon.`,
       table: {
         category: 'Properties',
@@ -43,7 +44,7 @@ The number is only considered if it does not have icon.`,
     icon: {
       ...DBmbIconParamDesc.icon,
       description: DBmbIconParamDesc.icon.description.concat(
-        '<br/><br/>**‼︎Important:**<br/><br/>Do not use the number property if you want to use an icon.',
+        `<br/><br/>${RELEVANT_TITLE_LEVEL[1]}Do not use the number property if you want to use an icon.`,
       ),
     },
     isNonFocused: {

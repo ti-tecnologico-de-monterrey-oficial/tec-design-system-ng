@@ -6,7 +6,18 @@ import {
 } from '@storybook/angular';
 import { BmbTooltipComponent } from './bmb-tooltip.component';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
-import { attributes } from '../../utils/doc/utils';
+import {
+  attributes,
+  getBasicExampleBlock,
+  getGeneralComponentDescription,
+  getGeneralDescription,
+} from '../../utils/doc/utils';
+import {
+  DBmbIconParamDesc,
+  DBmbTooltipParamDesc,
+  getPropertyParamDesc,
+  SIMPLE_ICON_DESCRIPTION,
+} from '../../utils/doc/parameterDescriptions';
 
 export default {
   title: 'Components/Status indicators/ToolTip',
@@ -26,103 +37,30 @@ export default {
     docs: {
       description: {
         component: `
-Below is an example of how you can use this component in TypeScript:
-
-\`\`\`typescript
-import { BmbTooltipComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
-@Component({
-  selector: 'component',
-  standalone: true,
-  imports: [ BmbTooltipComponent ],
-  templateUrl: './component.html',
-  styleUrl: './component.scss',
-})
-\`\`\`
-
-Below is an example of how you can use this component in HTML:
+${getGeneralDescription(`${getGeneralComponentDescription('tooltip')} to provide additional, brief information about the element's purpose.`, 'https://bamboo.tec.mx/latest/componentes/tooltip/descripcion-general-Y5OcIrFr')}
+${getBasicExampleBlock('')}
         `,
       },
     },
   },
   argTypes: {
-    title: {
-      name: 'Title',
-      control: {
-        type: 'text',
-      },
-      description: 'Set the title to show in the tooltip',
-      table: {
-        category: 'Properties',
-        type: { summary: 'string' },
-        defaultValue: { summary: '' },
-      },
-    },
-    text: {
-      name: 'Text',
-      control: {
-        type: 'text',
-      },
-      description: 'Set the text to show in the tooltip',
-      table: {
-        category: 'Properties',
-        type: { summary: 'string' },
-        defaultValue: { summary: '' },
-      },
-    },
+    title: getPropertyParamDesc('tooltip'),
+    text: DBmbTooltipParamDesc.text,
     icon: {
-      name: 'Icon',
-      control: { type: 'text' },
-      description:
-        'Name of the icon to use. Please use Material icons: https://fonts.google.com/icons. The color of the icon depend on the parent. Alternative you can use the ng-content to add custom elements instead of a simple icon.',
+      control: {
+        type: 'text',
+      },
+      description: SIMPLE_ICON_DESCRIPTION,
       table: {
         category: 'Properties',
         type: { summary: 'string' },
         defaultValue: { summary: 'help' },
       },
     },
-    size: {
-      name: 'size',
-      control: { type: 'number' },
-      description: 'Size of the icon to use. Note: <= 0 will be inherited.',
-      table: {
-        category: 'Properties',
-        type: { summary: 'number' },
-      },
-    },
-    isFill: {
-      name: 'Is Fill',
-      control: { type: 'boolean' },
-      description:
-        'Determines whether the icon is filled (`true`) or outlined (`false`).',
-      table: {
-        category: 'Properties',
-        defaultValue: { summary: 'true' },
-        type: { summary: 'boolean' },
-      },
-    },
-    align: {
-      name: 'Align',
-      control: { type: 'radio' },
-      options: ['above', 'below', 'left', 'right'],
-      description: 'Defines the position of the tooltip.',
-      table: {
-        category: 'Properties',
-        defaultValue: { summary: 'right' },
-        type: { summary: 'string' },
-      },
-    },
-    justify: {
-      name: 'Justify',
-      control: { type: 'radio' },
-      options: ['centered', 'before', 'after'],
-      description:
-        'Defines the justification with reference to the icon tooltip.',
-      table: {
-        category: 'Properties',
-        defaultValue: { summary: 'after' },
-        type: { summary: 'string' },
-      },
-    },
+    size: DBmbIconParamDesc.iconSize,
+    isFill: DBmbIconParamDesc.isIconFill,
+    align: DBmbTooltipParamDesc.align,
+    justify: DBmbTooltipParamDesc.justify,
   },
   args: {
     title: 'Titulo del tooltip',

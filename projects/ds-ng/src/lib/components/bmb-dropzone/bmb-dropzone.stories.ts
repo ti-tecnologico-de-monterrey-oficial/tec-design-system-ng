@@ -7,6 +7,7 @@ import {
   getBasicExampleBlock,
   getGeneralComponentDescription,
   getGeneralDescription,
+  RELEVANT_TITLE_LEVEL,
 } from '../../utils/doc/utils';
 import { DBmbInputParamDesc } from '../../utils/doc/parameterDescriptions';
 
@@ -222,7 +223,7 @@ ${getBasicExampleBlock('BmbDropzoneComponent')}
       description: `
 Upload progress of the file.
 
-**Note:** For the multi option, a record must be used.
+${RELEVANT_TITLE_LEVEL[2]} For the multi option, a record must be used.
 
   Example:
       progress = signal<Record<string, number>>({});

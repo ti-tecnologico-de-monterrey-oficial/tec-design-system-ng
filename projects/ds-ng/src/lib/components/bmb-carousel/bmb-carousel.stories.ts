@@ -9,6 +9,7 @@ import {
   getGeneralComponentDescription,
   getGeneralDescription,
   getSpecialSpecifications,
+  RELEVANT_TITLE_LEVEL,
 } from '../../utils/doc/utils';
 
 export default {
@@ -42,7 +43,7 @@ export default {
 ${getGeneralDescription(`${getGeneralComponentDescription('carousel')} to present a series of sequentially rotating content by clicking or swiping to view the next or previous item.`, 'https://bamboo.tec.mx/latest/componentes/carousel/descripcion-general-5KuPHrn1')}
 ${getSpecialSpecifications(`Any ${DESIGN_SYSTEM_TITLE} component or html element can be easily added to \`bmb-carousel\`.
 ><br/><br/>
-###‼︎Important:
+###${RELEVANT_TITLE_LEVEL[1]}
 It is essential to add ***#carouselItem*** to each of the elements or components that \`bmb-carousel\` will embrace.
 `)}
 ${getBasicExampleBlock('BmbCarouselComponent')}

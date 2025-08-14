@@ -48,7 +48,7 @@ ${getBasicExampleBlock('BmbUserImageComponent')}
       description:
         'Sets the size of the user image, affecting its visual size.',
     },
-    link: DBmbGenericParamDesc.link,
+    link: DBmbGenericParamDesc.linkOrButton,
     target: DBmbGenericParamDesc.target,
     bordered: {
       control: {

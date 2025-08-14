@@ -10,6 +10,7 @@ import {
   getOnEvent,
   getSpecialSpecifications,
   IBmbOnEvent,
+  RELEVANT_TITLE_LEVEL,
 } from '../../utils/doc/utils';
 import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
 import { InputSignal } from '@angular/core';
@@ -144,7 +145,7 @@ Badge info properties:
 
   **Default appearance**: normal.
 
-  **Note**: disabled and background do not exist for container.
+  ${RELEVANT_TITLE_LEVEL[2]} disabled and background do not exist for container.
 
 - \`container\`: (optional, boolean) Sets the container flag. This displays the container when true; if false, it displays a bullet.
       `,
@@ -231,7 +232,7 @@ Enables the use of templates so that icons appear before the drop-down menu. You
 </bmb-card-button>
 \`\`\`
 
-Note: there is an example in the **Template example** the section.
+${RELEVANT_TITLE_LEVEL[2]} there is an example in the **Template example** the section.
         `,
       table: {
         category: 'Full Interactive',
