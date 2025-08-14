@@ -37,16 +37,19 @@ const meta: Meta<BmbLayoutGridItemDirective> = {
     docs: {
       description: {
         component: `
-${getGeneralDescription(getAuxiliaryDescription('Layout grid', 'Layout grid item'), '').replace('Description', '-Description')}
-${getSpecialSpecifications(`
+${getGeneralDescription(getAuxiliaryDescription('Layout grid', 'Layout grid item'), '', true)}
+${getSpecialSpecifications(
+  `
 The layout grid item is used to define an item within a layout grid. It allows you to specify the position and size of the item within the grid.
 ><br/><br/><br/>
-## Defining the position of the item
+### Defining the position of the item
 You can define the position of the item within the grid using the \`colStart\`, \`rowStart\`, \`numberOfColumns\`, and \`numberOfRows\` properties. These properties allow you to specify the starting column and row for the item, as well as how many columns and rows it should span.
 ><br/><br/><br/>
 ${getGridGeneratorLink()}
-`).replace('Considerations / Restrictions', '-Considerations / Restrictions')}
-${getBasicExampleBlock('BmbLayoutGridDirective, BmbLayoutGridItemDirective').replace('TypeScript example', '-TypeScript example').replace('HTML example', '-HTML example')}
+`,
+  true,
+)}
+${getBasicExampleBlock('BmbLayoutGridDirective, BmbLayoutGridItemDirective', '', '', true)}
         `,
       },
     },

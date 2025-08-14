@@ -62,6 +62,7 @@ ${getArchitectureSection(
   <bmb-datepicker/>
 </section>
 `,
+  false,
   'datepicker',
   'components-inputs-calendar-date-picker',
 )}
@@ -144,7 +145,13 @@ The name of the \`FormControl\` must consist of the name assigned in the \`name\
         ...DBmbInputParamDesc.control.table,
         type: {
           ...DBmbInputParamDesc.control.table.type,
-          detail: getControlDescription(true),
+          detail: getControlDescription(true)
+            .replaceAll('*', '')
+            .replaceAll(
+              '<br/>',
+              `
+            `,
+            ),
         },
       },
     },

@@ -1,8 +1,19 @@
 import { applicationConfig, Meta, StoryObj } from '@storybook/angular';
 import { BmbNativeModalService } from '../../services/native-modal.service';
-import { Component, computed, input, output, signal, TemplateRef } from '@angular/core';
+import {
+  Component,
+  computed,
+  input,
+  output,
+  signal,
+  TemplateRef,
+} from '@angular/core';
 import { BmbButtonDirective } from '../../directives/bmb-button/button.directive';
-import { IBmbActionButton, IBmbNativeModalSize, IBmbModalAlertStyle } from './bmb-modal.interface';
+import {
+  IBmbActionButton,
+  IBmbNativeModalSize,
+  IBmbModalAlertStyle,
+} from './bmb-modal.interface';
 import { DBmbModalParamDesc } from '../../utils/doc/parameterDescriptions';
 import {
   DESIGN_SYSTEM_TITLE,
@@ -49,8 +60,7 @@ class BmbNativeModalStory {
 
   closeModalClicked = output();
 
-  constructor(private nativeModalService: BmbNativeModalService) {
-  }
+  constructor(private nativeModalService: BmbNativeModalService) {}
 
   myModalId = signal<string | null>(null);
   userStatus = signal<string | null>(null);
@@ -361,7 +371,7 @@ openModalComponent() {
         category: 'Events',
         type: { summary: 'void' },
       },
-    }
+    },
   },
   args: {
     title: '',
@@ -375,17 +385,23 @@ openModalComponent() {
         appearance: 'secondary-outlined',
         label: 'Reject',
         icon: 'close',
-        action: () => { console.log('Reject action clicked');},
+        action: () => {
+          console.log('Reject action clicked');
+        },
       },
       {
         buttonName: 'accept',
         appearance: 'primary',
         label: 'Accept',
         icon: 'check',
-        action: () => { console.log('Accept action clicked');},
+        action: () => {
+          console.log('Accept action clicked');
+        },
       },
     ],
-    closeModalClicked: () => { console.log('Close modal clicked');},
+    closeModalClicked: () => {
+      console.log('Close modal clicked');
+    },
   },
 } as Meta<BmbNativeModalStory>;
 

@@ -3,40 +3,72 @@ import { BmbCarouselComponent } from './bmb-carousel.component';
 import { CommonModule } from '@angular/common';
 import { moduleMetadata } from '@storybook/angular';
 import { BmbHomeCardComponent } from '../bmb-home-card/bmb-home-card.component';
+import {
+  DESIGN_SYSTEM_TITLE,
+  getBasicExampleBlock,
+  getGeneralComponentDescription,
+  getGeneralDescription,
+  getSpecialSpecifications,
+  RELEVANT_TITLE_LEVEL,
+} from '../../utils/doc/utils';
 
 export default {
   title: 'Components/Status indicators/Carousel',
   component: BmbCarouselComponent,
-  subcomponents: {},
   decorators: [
     moduleMetadata({
-      declarations: [],
       imports: [CommonModule, BmbCarouselComponent, BmbHomeCardComponent],
     }),
   ],
   parameters: {
     docs: {
+      controls: {
+        exclude: [
+          'numberOfElements',
+          'selectedIndex',
+          'swipeThreshold',
+          'touchEndX',
+          'touchStartX',
+          'onTouchEnd',
+          'onTouchMove',
+          'onTouchStart',
+          'selectItem',
+          'setClassActive',
+          'ngAfterContentInit',
+          'contentChildren',
+        ],
+      },
       description: {
         component: `
-Below is an example of how you can use this component in TypeScript:
-
-\`\`\`typescript
-import { BmbCarouselComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
-@Component({
-  selector: 'component',
-  standalone: true,
-  imports: [ BmbCarouselComponent ],
-  templateUrl: './component.html',
-  styleUrl: './component.scss',
-})
+${getGeneralDescription(`${getGeneralComponentDescription('carousel')} to present a series of sequentially rotating content by clicking or swiping to view the next or previous item.`, 'https://bamboo.tec.mx/latest/componentes/carousel/descripcion-general-5KuPHrn1')}
+${getSpecialSpecifications(`Any ${DESIGN_SYSTEM_TITLE} component or html element can be easily added to \`bmb-carousel\`.
+><br/><br/>
+###${RELEVANT_TITLE_LEVEL[1]}
+It is essential to add ***#carouselItem*** to each of the elements or components that \`bmb-carousel\` will embrace.
+`)}
+${getBasicExampleBlock('BmbCarouselComponent')}
+\`\`\`html
+<bmb-carousel>
+<!-- Add your ${DESIGN_SYSTEM_TITLE} component or HTML code, please remember to add #carouselItem for each of them -->
+</bmb-carousel>
 \`\`\`
-
-Below is an example of how you can use this component in HTML:
         `,
       },
     },
   },
-  argTypes: {},
+  argTypes: {
+    carouselItem: {
+      name: '#carouselItem',
+      control: { type: '' },
+      description: `
+  Assigns the element or component as @ContentChildren of \`bmb-carousel\`, as long as it is inside \`bmb-carousel\`.
+
+  For each element or component with #carouselItem there will be a slider item in the carousel.`,
+      table: {
+        category: 'Properties',
+      },
+    },
+  },
   args: {},
 } as Meta<typeof BmbCarouselComponent>;
 
@@ -48,13 +80,14 @@ export const Default: Story = {
     props: args,
     template: `
 <bmb-carousel>
-<!-- Here you can add whatever you want to the carousel but need to add #carouselItem for each one -->
   <h1 #carouselItem>Slide 1</h1>
-  <div #carouselItem><img
-              width="100%"
-              alt="gatito"
-              src="https://img.freepik.com/fotos-premium/dia-internacional-gato-8-agosto-gatos-lindos-gatito-pequeno-hermosos-pequenos-animales-compania-verdadero-amigo-bonitos-divertidos-tiernos-esponjosos-juguetones-shorties-ia-generativa_887181-4265.jpg?w=2000"
-            /></div>
+  <div #carouselItem>
+    <img
+    width="100%"
+    alt="gatito"
+    src="https://img.freepik.com/fotos-premium/dia-internacional-gato-8-agosto-gatos-lindos-gatito-pequeno-hermosos-pequenos-animales-compania-verdadero-amigo-bonitos-divertidos-tiernos-esponjosos-juguetones-shorties-ia-generativa_887181-4265.jpg?w=2000"
+  />
+  </div>
   <h1 #carouselItem>Slide 3</h1>
 </bmb-carousel>
   `,

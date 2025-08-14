@@ -38,12 +38,7 @@ ${getBasicExampleBlock('BmbCheckExternalLinkButtonComponent')}
         type: { summary: 'string' },
       },
     },
-    link: {
-      ...DBmbGenericParamDesc.link,
-      description: DBmbGenericParamDesc.link.description.concat(
-        '<br/><br/> If this property is empty it will emit the button event.',
-      ),
-    },
+    link: DBmbGenericParamDesc.linkOrButton,
     target: DBmbGenericParamDesc.target,
     buttonClick: DBmbGenericParamDesc.onButtonClick,
     disabled: {

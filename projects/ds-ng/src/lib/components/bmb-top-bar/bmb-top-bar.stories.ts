@@ -1,70 +1,103 @@
 import type { Meta, StoryObj } from '@storybook/angular';
 import { BmbTopBarComponent } from './bmb-top-bar.component';
+import {
+  getBasicExampleBlock,
+  getGeneralComponentDescription,
+  getGeneralDescription,
+  getOnEvent,
+} from '../../utils/doc/utils';
+import {
+  DBmbGenericParamDesc,
+  getOnClickParam,
+} from '../../utils/doc/parameterDescriptions';
 
+const getShowButton = (name: string) => {
+  return {
+    control: { type: 'boolean' },
+    description: `
+Shows the ${name} button when true and mitec version is active.
+      `,
+    table: {
+      category: 'Properties',
+      type: { summary: 'boolean' },
+      defaultValue: { summary: 'false' },
+    },
+  };
+};
 export default {
   title: 'Components/Menus/Top bar',
   component: BmbTopBarComponent,
   parameters: {
     docs: {
+      controls: {
+        exclude: [
+          'ngOnInit',
+          'getCountryName',
+          'handleAlertClick',
+          'handleBackToHome',
+          'handleHelpButtonClick',
+          'handleLangChange',
+          'handleLogOutClick',
+          'handleRoleChange',
+          'handleUserClick',
+          'imageDefault',
+          'imageMitecDefault',
+          'mobileImageDefault',
+          'mobileImageMitecDefault',
+          'showAnimation',
+          'showUserName',
+        ],
+      },
       description: {
         component: `
-Below is an example of how you can use this component in TypeScript:
-
-\`\`\`typescript
-import { BmbTopBarComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
-@Component({
-  selector: 'component',
-  standalone: true,
-  imports: [ BmbTopBarComponent ],
-  templateUrl: './component.html',
-  styleUrl: './component.scss',
-})
-\`\`\`
-
-Below is an example of how you can use this component in HTML:
+${getGeneralDescription(`${getGeneralComponentDescription('top-bar')} to display user information, notifications, and various action buttons.`, 'https://bamboo.tec.mx/latest/componentes/top-bar/descripcion-general-WczOiPOw')}
+${getBasicExampleBlock('BmbTopBarComponent')}
         `,
       },
     },
   },
   argTypes: {
     userInformation: {
-      name: 'User information',
       value: null,
       control: false,
       table: {
         category: 'Properties',
-        type: { summary: 'IUserInformation' },
+        type: {
+          summary: 'IUserInformation',
+          detail: `IUserInformation {
+  name: string;
+  image: string;
+  role: string;
+}`,
+        },
         defaultValue: { summary: 'null' },
       },
     },
     image: {
-      name: 'TEC logo image',
       control: {
         type: 'text',
       },
-      description: 'Replace the default logo.',
+      description: 'Sets the app logo.',
       table: {
         category: 'Properties',
         type: { summary: 'string' },
       },
     },
     mobileImage: {
-      name: 'TEC logo image for low resolutions',
       control: {
         type: 'text',
       },
-      description: 'Replace the default logo for low resolutions.',
+      description: 'Sets the app logo for low resolutions.',
       table: {
         category: 'Properties',
         type: { summary: 'string' },
       },
     },
     appName: {
-      name: 'App name',
       control: {
         type: 'text',
       },
-      description: 'Set the App name.',
+      description: 'Sets the App name.',
       table: {
         category: 'Properties',
         type: { summary: 'string' },
@@ -72,11 +105,10 @@ Below is an example of how you can use this component in HTML:
       },
     },
     lang: {
-      name: 'Language',
       control: {
         type: 'text',
       },
-      description: 'Set the default language.',
+      description: 'Sets the default language.',
       table: {
         category: 'Properties',
         type: { summary: 'string' },
@@ -84,11 +116,10 @@ Below is an example of how you can use this component in HTML:
       },
     },
     mitec: {
-      name: 'Mitec',
       control: {
         type: 'boolean',
       },
-      description: 'Top Bar changes to the mitec version',
+      description: 'Switches to the mitec top bar version.',
       table: {
         type: { summary: 'boolean' },
         category: 'Properties',
@@ -96,157 +127,47 @@ Below is an example of how you can use this component in HTML:
       },
     },
     alertNotification: {
-      name: 'Alert Notification',
       control: {
         type: 'object',
       },
-      description: 'Set the notifications for the top bar in the alert icon',
+      description: 'Sets the notifications for the top bar in the alert icon',
       table: {
-        type: { summary: 'IBmbDataAlert[]' },
+        type: {
+          summary: 'IBmbDataAlert[]',
+          detail: `IBmbDataAlert {
+          id: number | string;
+          title: string;
+          description: IBmbDataAlertDetails[];
+          date: string;
+          isRead: boolean;
+          time: string;
+          tags?: IBmbAlertTag[];
+          type: string;
+          isFavorite: boolean;
+          isArchived: boolean;
+        }`,
+        },
         category: 'Properties',
       },
     },
-    helpButtonClick: {
-      name: 'Handle Help button click',
-      control: false,
-      description: 'Function that is executed when the help button is clicked.',
-      table: {
-        type: { summary: 'function' },
-        category: 'Events',
-      },
-    },
-    userProfileClick: {
-      name: 'Handle user profile click',
-      control: false,
-      description:
-        'Function that is executed when the user profile is clicked.',
-      table: {
-        type: { summary: 'function' },
-        category: 'Events',
-      },
-    },
-    showHelpButton: {
-      name: 'Show Help button',
-      control: { type: 'boolean' },
-      description:
-        'Shows the help button this property is `true` if Mitec is active.',
-      table: {
-        category: 'Properties',
-        type: { summary: 'boolean' },
-        defaultValue: { summary: 'false' },
-      },
-    },
-    alertButtonClick: {
-      name: 'Handle alert button click',
-      control: false,
-      description:
-        'Function that is executed when the alert button is clicked.',
-      table: {
-        type: { summary: 'function' },
-        category: 'Events',
-      },
-    },
-    positionButtonMenu: {
-      name: 'Responsive menu button position',
-      control: {
-        type: 'radio',
-      },
-      options: ['left', 'right'],
-      description: 'Set responsive menu button position.',
-      table: {
-        category: 'Deprecated',
-        type: { summary: 'string' },
-        defaultValue: { summary: 'left' },
-      },
-    },
-    roleButtonClick: {
-      name: 'Handle role button click',
-      control: false,
-      description: 'Function that is executed when the role button is clicked.',
-      table: {
-        type: { summary: 'function' },
-        category: 'Events',
-      },
-    },
-    showRoleButton: {
-      name: 'Show role button',
-      control: { type: 'boolean' },
-      description: 'Shows the role button only available for Mitec version.',
-      table: {
-        category: 'Properties',
-        type: { summary: 'boolean' },
-        defaultValue: { summary: 'false' },
-      },
-    },
-    backToHomeClick: {
-      name: 'Back to home click',
-      control: false,
-      description:
-        'Function that is executed when the back to home button is clicked.',
-      table: {
-        type: { summary: 'function' },
-        category: 'Events',
-      },
-    },
-    onLangChange: {
-      name: 'Language change event',
-      control: false,
-      description: 'Function that is executed when the lang change.',
-      table: {
-        type: { summary: 'function' },
-        category: 'Deprecated',
-      },
-    },
-    logOut: {
-      name: 'Logout event',
-      control: false,
-      description:
-        'Function that is executed when the logout button is clicked.',
-      table: {
-        type: { summary: 'function' },
-        category: 'Deprecated',
-      },
-    },
-    assignmentNotification: {
-      name: 'Assigment Notification',
-      control: {
-        type: 'object',
-      },
-      description:
-        'Set the notifications for the  top bar in the assignment icon',
-      table: {
-        type: { summary: 'string[]' },
-        category: 'Deprecated',
-      },
-    },
-    appSubTitle: {
-      name: 'App sub-title',
-      description: 'Deprecated',
-      table: {
-        category: 'Deprecated',
-      },
-    },
-    hasLogoutButton: {
-      name: 'Has logout button',
-      control: { type: 'boolean' },
-      description:
-        'Shows the end session button, only works if the user information is provided.',
-      table: {
-        category: 'Deprecated',
-        defaultValue: { summary: 'false' },
-        type: { summary: 'boolean' },
-      },
-    },
-    showLang: {
-      name: 'Lang selector',
-      control: { type: 'boolean' },
-      description: 'Shows the lang selector.',
-      table: {
-        category: 'Deprecated',
-        defaultValue: { summary: 'false' },
-        type: { summary: 'boolean' },
-      },
-    },
+    helpButtonClick: getOnClickParam(getOnEvent('help', 'helpButtonClick')),
+    userProfileClick: getOnClickParam(
+      getOnEvent('user profile', 'userProfileClick'),
+    ),
+    showHelpButton: getShowButton('help'),
+    alertButtonClick: getOnClickParam(getOnEvent('alert', 'alertButtonClick')),
+    positionButtonMenu: DBmbGenericParamDesc.deprecated,
+    roleButtonClick: getOnClickParam(getOnEvent('role', 'roleButtonClick')),
+    showRoleButton: getShowButton('role'),
+    backToHomeClick: getOnClickParam(
+      getOnEvent('back to home', 'backToHomeClick', 'void'),
+    ),
+    onLangChange: getOnClickParam(getOnEvent('language', 'onLangChange')),
+    logOut: DBmbGenericParamDesc.deprecated,
+    assignmentNotification: DBmbGenericParamDesc.deprecated,
+    appSubTitle: DBmbGenericParamDesc.deprecated,
+    hasLogoutButton: DBmbGenericParamDesc.deprecated,
+    showLang: DBmbGenericParamDesc.deprecated,
   },
   args: {
     userInformation: null,
@@ -255,7 +176,7 @@ Below is an example of how you can use this component in HTML:
     showRoleButton: false,
     showHelpButton: false,
     backToHomeClick: () => {
-      window.alert('Back to home clicked');
+      console.log('Back to home clicked');
     },
   },
 } as Meta<typeof BmbTopBarComponent>;

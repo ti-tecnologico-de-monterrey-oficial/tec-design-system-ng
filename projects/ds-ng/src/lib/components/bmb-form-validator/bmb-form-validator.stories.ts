@@ -12,6 +12,8 @@ import {
   getSpecialSpecifications,
   getTypescriptExampleTextBlock,
   getGeneralDescription,
+  RELEVANT_TITLE_LEVEL,
+  getBasicExampleBlock,
 } from '../../utils/doc/utils';
 import {
   BmbButtonDirective,
@@ -91,17 +93,23 @@ ${getFormControlDescription('>').replace('<br/>', '')}
 >- [Text input with tags](/docs/components-inputs-text-input-with-tags--documentation)
   `,
   'https://bamboo.tec.mx/latest/patterns/forms/descripcion-general-FDqTdYSy',
-).replace('Description', '-Description')}
-${getArchitectureSection(`
+  true,
+)}
+${getArchitectureSection(
+  `
 <form (ngSubmit)="onSubmit()">
   <custom-content />
 </form>
-`).replace('DOM Architecture', '-DOM Architecture')}
-${getSpecialSpecifications(`
-  **‼︎Important:**
+`,
+  true,
+)}
+${getSpecialSpecifications(
+  `
   ${getFormControlConsiderations('>')}
-`).replace('Considerations / Restrictions', '-Considerations / Restrictions')}
-${getReactiveFormTitle('BmbFormValidatorComponent').replace('Reactive form example', '-Reactive form example')}
+`,
+  true,
+)}
+${getReactiveFormTitle('BmbFormValidatorComponent', true)}
 ><br/>
 >${getTypescriptExampleTextBlock(
           'BmbButtonDirective, BmbFormValidatorComponent',
@@ -117,13 +125,9 @@ ${getReactiveFormTitle('BmbFormValidatorComponent').replace('Reactive form examp
     //Add your code
   }`,
           '>',
-        )
-          .replace('in with', 'with')
-          .replace(
-            'TypeScript example for reactive form',
-            '-TypeScript example for reactive form',
-          )}
->${getDescribeTypeTextBlock('HTML', 'for reactive form', true, 'with status handle function').replace('HTML example for reactive form', '-HTML example for reactive form')}
+          true,
+        ).replace('in with', 'with')}
+>${getDescribeTypeTextBlock('HTML', 'for reactive form', true, 'with status handle function', true)}
 \`\`\`html
 <bmb-form-validator (formGroupState)="handleFormGroupState($event)">
   <!--Add your Bamboo inputs-->
@@ -132,18 +136,7 @@ ${getReactiveFormTitle('BmbFormValidatorComponent').replace('Reactive form examp
   </button>
 </bmb-form-validator>
 \`\`\`
-${getTypescriptExampleTextBlock(
-  'BmbFormValidatorComponent, BmbButtonDirective',
-  '',
-  '',
-  '',
-  '',
-  '',
-  false,
-  '',
-  'formGroup:FormGroup = new FormGroup({});',
-).replace('TypeScript example', '-TypeScript example')}
-${getDescribeTypeTextBlock('HTML').replace('HTML example', '-HTML example')}
+${getBasicExampleBlock('BmbButtonDirective, BmbFormValidatorComponent', '', 'formGroup:FormGroup = new FormGroup({});', true)}
 \`\`\`html
 <bmb-form-validator [(formGroup)]="formGroup">
 <!--Add your Bamboo inputs-->
@@ -165,7 +158,7 @@ ${getDescribeTypeTextBlock('HTML').replace('HTML example', '-HTML example')}
 Sets the \`FormGroup\` instance defined for cases where the validations are different from those already natively supported by **Bamboo inputs**.
 
 <br/>
-**‼︎Important:**
+${RELEVANT_TITLE_LEVEL[1]}
 
 It is essential to assign the property \`name\` for correct behavior of the field.
 

@@ -4,6 +4,7 @@ import { BmbMultiDotPaginatorItemComponent } from './bmb-multi-dot-paginator-ite
 import { CommonModule } from '@angular/common';
 import { moduleMetadata } from '@storybook/angular';
 import { BmbHomeCardComponent } from '../bmb-home-card/bmb-home-card.component';
+import { RELEVANT_TITLE_LEVEL } from '../../utils/doc/utils';
 
 export default {
   title: 'Components/Status indicators/Multi dot paginator',
@@ -23,7 +24,7 @@ export default {
   parameters: {
     docs: {
       description: {
-        component: `Note: When you click on fullscreen icon, in Storybook doesn’t look the best due to the many elements, but in your project, it should display correctly.
+        component: `${RELEVANT_TITLE_LEVEL[2]}When you click on fullscreen icon, in Storybook doesn’t look the best due to the many elements, but in your project, it should display correctly.
 
 Below is an example of how you can use this component in TypeScript:
 

@@ -8,7 +8,7 @@ import {
   getSpecialSpecifications,
 } from '../../utils/doc/utils';
 import {
-  GOGGLE_FONTS_LINK,
+  GOOGLE_FONTS_LINK,
   DBmbGenericParamDesc,
   DBmbIconParamDesc,
   ICON_IMAGE_DETAIL,
@@ -38,7 +38,7 @@ ${getArchitectureSection(
 ${getSpecialSpecifications(`
 - Use the icons as a visual guide.
 - Check out the icon library in the documentation [here](https://bamboo.tec.mx/latest/foundations/iconos/biblioteca-WrE6VXv5)
-- ${GOGGLE_FONTS_LINK}
+- ${GOOGLE_FONTS_LINK}
 - ${ICON_IMAGE_DETAIL}`)}
 <br/>
 ${getBasicExampleBlock('BmbIconComponent')}
@@ -64,7 +64,7 @@ ${getBasicExampleBlock('BmbIconComponent')}
     fontWeight: {
       control: { type: 'text' },
       description:
-        'Specifies the weight of the font. Common values are `400` (normal) or `700` (bold).',
+        'Specifies the weight of the font. Common values are ***400*** (normal) or ***700*** (bold).',
       table: {
         category: 'Properties',
         defaultValue: { summary: '400' },

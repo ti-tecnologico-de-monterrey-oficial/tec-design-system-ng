@@ -9,6 +9,7 @@ import {
   getFormExampleBlock,
   getOnEvent,
   IBmbOnEvent,
+  RELEVANT_TITLE_LEVEL,
 } from '../../utils/doc/utils';
 import {
   DEPRECATED_PROPERTIES_DESCRIPTION,
@@ -52,8 +53,7 @@ const getTextInputWarnings = (
   isPatternProperty: boolean = false,
 ) => `
 
-**‼︎Important:**
-
+${RELEVANT_TITLE_LEVEL[1]}
 This \`${propertyName}\` property should only be used for input fields of the type:
 
 - **text**
@@ -293,8 +293,7 @@ Example of a \`ValidatorFn\`
 Enables the skill to validate JSON content when true, this skill only works for the form textarea field.
 
 <br/>
-**‼︎Important:**
-
+${RELEVANT_TITLE_LEVEL[1]}
 For correct behavior, the \`pattern\` property must not be assigned to the input field.
       `,
       table: {

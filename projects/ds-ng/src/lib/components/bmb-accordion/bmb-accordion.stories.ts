@@ -1,41 +1,41 @@
 import { BmbAccordionComponent } from './bmb-accordion.component';
 import { Meta, StoryObj } from '@storybook/angular';
-import { moduleMetadata } from '@storybook/angular';
-import { CommonModule } from '@angular/common';
-import { attributes, getEmptyStateMessage } from '../../utils/doc/utils';
+import {
+  attributes,
+  getArchitectureSection,
+  getBasicExampleBlock,
+  getEmptyStateMessage,
+  getGeneralComponentDescription,
+  getGeneralDescription,
+  getSpecialSpecifications,
+} from '../../utils/doc/utils';
 
 export default {
   title: 'Components/Containers/Accordion',
   tags: ['!autodocs'],
   component: BmbAccordionComponent,
-  decorators: [
-    moduleMetadata({
-      declarations: [],
-      imports: [CommonModule, BmbAccordionComponent],
-    }),
-  ],
   parameters: {
     docs: {
+      controls: {
+        exclude: [
+          '_active',
+          '_disabled',
+          '_expanded',
+          'isOpen',
+          'getClassesAccordion',
+          'getClassesContent',
+          'getClassesHeader',
+          'getIconToggle',
+          'getStyles',
+          'toggle',
+          'ngOnChanges',
+          'ngOnInit',
+        ],
+      },
       description: {
         component: `
-${getEmptyStateMessage()}
-Below is an example of how you can use this component in TypeScript:
-
-\`\`\`typescript
-import { BmbAccordionComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
-@Component({
-  selector: 'component',
-  standalone: true,
-  imports: [ BmbAccordionComponent ],
-  templateUrl: './component.html',
-  styleUrl: './component.scss',
-})
-\`\`\`
-
-## Architecture
-
-\`\`\`html
-<section class="bmb_accordion"
+${getGeneralDescription(`${getGeneralComponentDescription('accordion')} to present content on vertically stacked, collapsible elements.`, 'https://bamboo.tec.mx/latest/componentes/accordion/descripcion-general-yABR8pUx')}
+${getArchitectureSection(`<section class="bmb_accordion"
 <!-- conditional class bmb_radius-{borderRadius} bmb_margin-{this.margin} -> >
   <!-- if Accordion is disabled -->
   <section class="bmb_accordion-overlay"></section>
@@ -54,10 +54,9 @@ import { BmbAccordionComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-n
   <section class="bmb_accordion-content" <!-- conditional class bmb_padding-{paddingContent} bmb_accordion-content-open --> >
     <div> {content} </div>
   </section>
-</section>
-\`\`\`
-
-Below is an example of how you can use this component in HTML:
+</section>`)}
+${getSpecialSpecifications(getEmptyStateMessage())}
+${getBasicExampleBlock('BmbAccordionComponent')}
         `,
       },
     },

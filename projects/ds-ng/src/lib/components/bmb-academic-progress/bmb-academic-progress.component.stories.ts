@@ -1,86 +1,82 @@
 import { Meta, StoryObj } from '@storybook/angular';
 import { BmbAcademicProgressComponent } from './bmb-academic-progress.component';
+import {
+  getBasicExampleBlock,
+  getGeneralComponentDescription,
+  getGeneralDescription,
+} from '../../utils/doc/utils';
 
 export default {
   title: 'Components/Visual labels/Academic progress',
   component: BmbAcademicProgressComponent,
   parameters: {
     docs: {
+      controls: {
+        exclude: [
+          'metrics',
+          'shouldShowMetric',
+          'updateMetrics',
+          'ngOnChanges',
+          'ngOnInit',
+        ],
+      },
       description: {
         component: `
-Below is an example of how you can use this component in TypeScript:
-
-\`\`\`typescript
-import { BmbAcademicProgressComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
-@Component({
-  selector: 'component',
-  standalone: true,
-  imports: [ BmbAcademicProgressComponent ],
-  templateUrl: './component.html',
-  styleUrl: './component.scss',
-})
-\`\`\`
-
-Below is an example of how you can use this component in HTML:
+${getGeneralDescription(`${getGeneralComponentDescription('academic-progress')} to be provided clearly and quickly, with a focus on readability and visual hierarchy.`, 'https://bamboo.tec.mx/latest/componentes/academic-progress/descripcion-general-f8fNoijD')}
+${getBasicExampleBlock('BmbAcademicProgressComponent')}
         `,
       },
     },
   },
   argTypes: {
     accredited: {
-      name: 'Accredited',
       control: {
         type: 'object',
       },
-      description: `
-Sets the value of accredited.
-
-    IBmbNameValuePair {
-      name: string;
-      value: string | number | boolean;
-    }
-      `,
+      description: 'Sets the value of accredited.',
       table: {
         category: 'Properties',
-        type: { summary: 'IBmbNameValuePair (required)' },
+        type: {
+          summary: 'IBmbNameValuePair (required)',
+          detail: `IBmbNameValuePair {
+  name: string;
+  value: string | number | boolean;
+}`,
+        },
         defaultValue: { summary: '{}' },
       },
     },
     average: {
-      name: 'Average',
       control: {
         type: 'object',
       },
-      description: `
-Sets the value of accredited.
-
-    IBmbNameValuePair {
-      name: string;
-      value: string | number | boolean;
-    }
-      `,
+      description: 'Sets the value of average.',
       table: {
         category: 'Properties',
-        type: { summary: 'IBmbNameValuePair (required)' },
+        type: {
+          summary: 'IBmbNameValuePair (required)',
+          detail: `IBmbNameValuePair {
+  name: string;
+  value: string | number | boolean;
+}`,
+        },
         defaultValue: { summary: '{}' },
       },
     },
     summary: {
-      name: 'Summary',
       control: {
         type: 'object',
       },
-      description: `
-Sets the value of summary.
-
-    IBmbNameValuePair {
-      name: string;
-      value: string | number | boolean;
-    }
-      `,
+      description: 'Sets the value of summary.',
       table: {
         category: 'Properties',
-        type: { summary: 'IBmbNameValuePair (required)' },
+        type: {
+          summary: 'IBmbNameValuePair (required)',
+          detail: `IBmbNameValuePair {
+  name: string;
+  value: string | number | boolean;
+}`,
+        },
         defaultValue: { summary: '{}' },
       },
     },

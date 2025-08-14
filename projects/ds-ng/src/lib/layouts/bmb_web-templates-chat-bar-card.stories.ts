@@ -6,7 +6,7 @@ import {
   BmbHomeCardChatComponent,
   IBmbChatMessage,
 } from '../../public-api';
-import { attributes } from '../utils/doc/utils';
+import { attributes, RELEVANT_TITLE_LEVEL } from '../utils/doc/utils';
 
 @Component({
   standalone: true,
@@ -103,7 +103,7 @@ export default {
   parameters: {
     docs: {
       description: {
-        component: `Note: When you click on fullscreen icon, in Storybook doesn’t look the best due to the many elements, but in your project, it should display correctly.
+        component: `${RELEVANT_TITLE_LEVEL[2]}When you click on fullscreen icon, in Storybook doesn’t look the best due to the many elements, but in your project, it should display correctly.
 
 Below is an example of how you can use this component in TypeScript:
 

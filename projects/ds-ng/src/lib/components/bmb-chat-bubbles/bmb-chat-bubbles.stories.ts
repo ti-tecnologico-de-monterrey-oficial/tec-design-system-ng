@@ -6,13 +6,14 @@ import {
   getGeneralDescription,
   getOnEvent,
   getSpecialSpecifications,
+  RELEVANT_TITLE_LEVEL,
 } from '../../utils/doc/utils';
 import {
   getOnClickParam,
   getOnEventParam,
 } from '../../utils/doc/parameterDescriptions';
 
-const IMPORTANT_DESCRIPTION: string = `‼︎ Important: <br/>
+const IMPORTANT_DESCRIPTION: string = `${RELEVANT_TITLE_LEVEL[1]}
 The event only returns a signal to indicates the click event.
 `;
 const getOnClickAndImportantParam = (

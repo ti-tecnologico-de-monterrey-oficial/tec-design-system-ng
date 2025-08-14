@@ -1,68 +1,49 @@
 import { Meta, StoryObj } from '@storybook/angular';
 import { BmbIconStatusComponent } from './bmb-icon-status.component';
+import {
+  getBasicExampleBlock,
+  getGeneralComponentDescription,
+  getGeneralDescription,
+  RELEVANT_TITLE_LEVEL,
+} from '../../utils/doc/utils';
+import {
+  DBmbIconParamDesc,
+  getAppearanceParam,
+  SIMPLE_ICON_DESCRIPTION,
+} from '../../utils/doc/parameterDescriptions';
 
 export default {
   title: 'Components/Status indicators/Status icon',
   component: BmbIconStatusComponent,
   parameters: {
     docs: {
+      controls: { exclude: ['getClassName', 'getIconSize'] },
       description: {
         component: `
-Below is an example of how you can use this component in TypeScript:
-
-\`\`\`typescript
-import { BmbIconStatusComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
-
-@Component({
-  selector: 'component',
-  standalone: true,
-  imports: [ BmbIconStatusComponent ],
-  templateUrl: './component.html',
-  styleUrl: './component.scss',
-})
-export class AppComponent {
-
-...
-\`\`\`
-
-
-Below is an example of how you can use this component in HTML:
+${getGeneralDescription(`${getGeneralComponentDescription('icon-status')} a graphical message to be displayed after executing an action.`, 'https://bamboo.tec.mx/latest/componentes/status-icon/descripcion-general-pht26G2A')}
+${getBasicExampleBlock('BmbIconStatusComponent')}
         `,
       },
     },
   },
   argTypes: {
     icon: {
-      name: 'Icon',
-      control: { type: 'text' },
-      description:
-        'Sets the name of the icon to use. Please use Material icons: https://fonts.google.com/icons.',
+      control: {
+        type: 'text',
+      },
+      description: SIMPLE_ICON_DESCRIPTION,
       table: {
         category: 'Properties',
         type: { summary: 'string (required)' },
-      },
-    },
-    statusAppearance: {
-      name: 'Status appearance',
-      control: {
-        type: 'select',
-      },
-      description: `
-Sets the background color of the icon, which affects its visual style.
-
-    IBmbStatusAppearance =
-      | 'success'
-      | 'event'
-      | 'warning'
-      | 'error'
-      `,
-      options: ['', 'success', 'event', 'warning', 'error'],
-      table: {
-        category: 'Properties',
         defaultValue: { summary: '' },
-        type: { summary: 'IBmbStatusAppearance (optional)' },
       },
     },
+    statusAppearance: getAppearanceParam(
+      'the background of the icon',
+      ['', 'success', 'event', 'warning', 'error'],
+      '',
+      `<br/><br/>${RELEVANT_TITLE_LEVEL[2]} Empty string will set transparent background.`,
+    ),
   },
   args: {
     icon: 'check',

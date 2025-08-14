@@ -1,5 +1,16 @@
 import { Meta, StoryObj } from '@storybook/angular';
 import { BmbToastAppearance, BmbToastComponent } from './bmb-toast.component';
+import {
+  getArchitectureSection,
+  getBasicExampleBlock,
+  getGeneralComponentDescription,
+  getGeneralDescription,
+  getOnEvent,
+} from '../../utils/doc/utils';
+import {
+  DBmbGenericParamDesc,
+  getOnClickParam,
+} from '../../utils/doc/parameterDescriptions';
 
 const appearanceOptions: BmbToastAppearance[] = [
   'neutral',
@@ -30,31 +41,18 @@ const appearanceOptions: BmbToastAppearance[] = [
   'creative_hibiscus',
   'creative_ripelemon',
 ];
+const onEventBlock = getOnEvent('close', 'onClose');
 
 export default {
   title: 'Components/Status indicators/Toast',
   component: BmbToastComponent,
   parameters: {
     docs: {
+      controls: { exclude: ['getIcon', 'handleClose', 'getClasses'] },
       description: {
         component: `
-Below is an example of how you can use this component in TypeScript:
-
-\`\`\`typescript
-import { BmbToastComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
-@Component({
-  selector: 'component',
-  standalone: true,
-  imports: [ BmbToastComponent ],
-  templateUrl: './component.html',
-  styleUrl: './component.scss',
-})
-\`\`\`
-
-## Architecture
-
-\`\`\`html
-<div class="bmb_toast" <!-- conditional classes bmb_toast bmb_toast-{this.appearance} >
+${getGeneralDescription(`${getGeneralComponentDescription('toast')} to display a short, non-critical message without interrupting browsing or the task at hand.`, 'https://bamboo.tec.mx/latest/componentes/toast/descripcion-general-1yUMwDNA')}
+${getArchitectureSection(`<div class="bmb_toast" <!-- conditional classes bmb_toast bmb_toast-{this.appearance} >
   < icon />
   <div class="bmb_toast-content" <!-- conditional classes bmb_toast-content bmb_toast-content-{appearance} --> >
     <h4 class="bmb_toast-title">{ title }</h4>
@@ -67,45 +65,46 @@ import { BmbToastComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
   <button class="bmb_toast-button">
     < icon />
   </button>
-</div>
-\`\`\`
+</div>`)}
+${getBasicExampleBlock(
+  'BmbToastComponent',
+  '',
+  ` //Add your code
 
-Below is an example of how you can use this component in HTML:
+//This block of code is only needed if the close button is displayed${onEventBlock.handleExample}`,
+)}
         `,
       },
     },
   },
   argTypes: {
     title: {
-      name: 'Title',
       control: {
         type: 'text',
       },
       description:
-        'Specifies the title displayed within the toast notification. This title should be concise and direct, providing the user with immediate feedback or information related to their actions.',
+        'Sets the title displayed within the toast notification. This title should be concise and direct, providing the user with immediate feedback or information related to their actions.',
       table: {
         category: 'Properties',
         type: { summary: 'string' },
       },
     },
     description: {
-      name: 'Description',
       control: {
         type: 'text',
       },
       description:
-        'Provides additional details or context in the toast notification, displayed beneath the title. This is optional and should be used when more information is needed.',
+        'Sets additional details or context in the toast notification, displayed beneath the title. This is optional and should be used when more information is needed.',
       table: {
         category: 'Properties',
         type: { summary: 'string' },
       },
     },
     appearance: {
-      name: 'Appearance',
       control: 'select',
       options: appearanceOptions,
       description:
-        'Defines the visual style of the toast, allowing it to match the context of the notification. Each option represents a different level of notification severity or type, such as informational (neutral), success (successful), warning (warning), error (error), event (event), or reminder (reminder).',
+        'Sets the visual style of the toast, allowing it to match the context of the notification. Each option represents a different level of notification severity or type, such as informational (neutral), success (successful), warning (warning), error (error), event (event), or reminder (reminder).',
       table: {
         category: 'Properties',
         defaultValue: { summary: 'neutral' },
@@ -113,10 +112,9 @@ Below is an example of how you can use this component in HTML:
       },
     },
     isClosable: {
-      name: 'Is Closable',
       control: 'boolean',
       description:
-        'Determines whether the toast can be closed by the user. **this property is valid only for the `portal` component.**',
+        'Shows the close button when true. Determines whether the toast can be closed by the user. **this property is valid only for the `portal` component.**',
       table: {
         category: 'Properties',
         defaultValue: { summary: 'false' },
@@ -124,37 +122,17 @@ Below is an example of how you can use this component in HTML:
       },
     },
     id: {
-      name: 'ID',
       control: 'text',
       description:
-        'A unique identifier for the toast, allowing you to target specific notifications for updates or removal.',
+        'Sets the unique identifier for the toast, allowing you to target specific notifications for updates or removal.',
       table: {
         category: 'Properties',
         defaultValue: { summary: '' },
         type: { summary: 'string' },
       },
     },
-    onClose: {
-      name: 'On Close',
-      control: null,
-      description:
-        'Emits an event when the user closes the toast notification.',
-      table: {
-        category: 'Events',
-        type: { summary: 'Event' },
-      },
-    },
-    position: {
-      name: 'Position',
-      control: null,
-      description:
-        'Controls the position of the toast on the screen, **this property is valid only for the `portal` component.**',
-      table: {
-        category: 'Deprecated',
-        defaultValue: { summary: 'top' },
-        type: { summary: 'string' },
-      },
-    },
+    onClose: getOnClickParam(onEventBlock, ` and the toast is closed`),
+    position: DBmbGenericParamDesc.deprecated,
   },
   args: {
     title: 'Your toast title here',

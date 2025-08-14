@@ -1,28 +1,26 @@
 import { Meta, StoryObj } from '@storybook/angular';
 import { BmbPaginatorComponent } from './bmb-paginator.component';
+import {
+  getBasicExampleBlock,
+  getGeneralComponentDescription,
+  getGeneralDescription,
+  getOnEvent,
+} from '../../utils/doc/utils';
+import { getOnEventParam } from '../../utils/doc/parameterDescriptions';
 
 export default {
   title: 'Components/Status indicators/Paginator',
   component: BmbPaginatorComponent,
   parameters: {
     docs: {
+      controls: { exclude: ['getPaginationText', 'onPageChange', ''] },
       description: {
         component: `
-Below is an example of how you can use this component in TypeScript:
-
-\`\`\`typescript
-import { BmbPaginatorComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
-@Component({
-  selector: 'component',
-  standalone: true,
-  imports: [ BmbPaginatorComponent, CommonModule],
-  templateUrl: './component.html',
-  styleUrl: './component.scss',
-})
-
-export class AppComponent {
-
-    items: any[] = []; // Datos completos
+${getGeneralDescription(`${getGeneralComponentDescription('paginator')} to add controls to navigate between pages, using "next" and "previous" buttons, even displays a specific subset of the total pages at a time.`, 'https://bamboo.tec.mx/latest/componentes/paginator/descripcion-general-ermvHDlX')}
+${getBasicExampleBlock(
+  'BmbPaginatorComponent',
+  '',
+  `items: any[] = []; // Datos completos
     displayedItems: any[] = []; // Datos a mostrar en la página actual
     totalItems: number = 0;
     itemsPerPage: number = 5;
@@ -65,13 +63,8 @@ export class AppComponent {
     onPageChange(page: number): void {
         this.currentPage = page;
         this.updateDisplayedItems();
-    }
-
-}
-\`\`\`
-
-Below is an example of how you can use this component in HTML:
-
+    }`,
+)}
 \`\`\`html
 <table class="table">
   <thead>
@@ -101,9 +94,8 @@ Below is an example of how you can use this component in HTML:
   },
   argTypes: {
     totalItems: {
-      name: 'Total Items',
       control: 'number',
-      description: 'Refers to the total items of the table',
+      description: 'Sets the total items of the table',
       table: {
         type: { summary: 'number' },
         category: 'Properties',
@@ -111,11 +103,10 @@ Below is an example of how you can use this component in HTML:
       },
     },
     itemsPerPage: {
-      name: 'Items Per Page',
       control: {
         type: 'number',
       },
-      description: 'Set the total numer of items to show per page',
+      description: 'Sets the total number of items to show per page',
       table: {
         type: { summary: 'number' },
         category: 'Properties',
@@ -123,28 +114,20 @@ Below is an example of how you can use this component in HTML:
       },
     },
     currentPage: {
-      name: 'Current Page',
       control: {
         type: 'number',
       },
-      description: 'Set the number of page to show',
+      description: 'Sets the number of page to show',
       table: {
         type: { summary: 'number' },
         category: 'Properties',
         defaultValue: { summary: 5 },
       },
     },
-    pageChange: {
-      name: 'Page change',
-      control: {
-        type: '',
-      },
-      description: 'This output is used to receive the new page to show.',
-      table: {
-        category: 'Events',
-        type: { summary: 'onPageChange($event)' },
-      },
-    },
+    pageChange: getOnEventParam(
+      getOnEvent('page number', 'pageChange'),
+      `<br/>Useful to use to receive the new page that will be displayed.`,
+    ),
   },
   args: {
     totalItems: 20,

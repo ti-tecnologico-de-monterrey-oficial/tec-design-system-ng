@@ -82,10 +82,17 @@ ${getArchitectureSection(
   </section>
 </div>
 `,
+  false,
   'input',
   'components-inputs-text-input',
 )}
-${getFormExampleBlock('BmbDatepickerComponent', inputName, handleChange.handleExample, inputExample)}
+${getFormExampleBlock(
+  'BmbDatepickerComponent',
+  inputName,
+  `${handleChange.handleExample}
+  `,
+  inputExample,
+)}
 ${getBasicExampleBlock('BmbDatepickerComponent', '', onChange.handleExample)}
         `,
       },

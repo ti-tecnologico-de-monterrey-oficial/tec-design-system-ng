@@ -1,51 +1,62 @@
 import type { Meta, StoryObj } from '@storybook/angular';
 import { BmbProgressBarComponent } from './bmb-progress-bar.component';
+import {
+  getBasicExampleBlock,
+  getGeneralComponentDescription,
+  getGeneralDescription,
+  RELEVANT_TITLE_LEVEL,
+} from '../../utils/doc/utils';
+import {
+  DBmbGenericParamDesc,
+  getAppearanceParam,
+  getPropertyParamDesc,
+} from '../../utils/doc/parameterDescriptions';
+
+const getPropertyForType = (
+  isCounter: boolean = true,
+  isSimple: boolean = false,
+) => `
+<br/><br/>This property is displayed for the property type:
+${isSimple ? '- simple' : ''}
+${isCounter ? '- counter' : ''}
+- container
+`;
 
 export default {
   title: 'Components/Status indicators/Progress bar',
   component: BmbProgressBarComponent,
   parameters: {
     docs: {
+      controls: { exclude: ['getFormattedText', 'progressValue'] },
       description: {
         component: `
-Below is an example of how you can use this component in TypeScript:
-
-\`\`\`typescript
-import { BmbProgressBarComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
-@Component({
-  selector: 'component',
-  standalone: true,
-  imports: [ BmbProgressBarComponent ],
-  templateUrl: './component.html',
-  styleUrl: './component.scss',
-})
-\`\`\`
-
-Below is an example of how you can use this component in HTML:
+${getGeneralDescription(`${getGeneralComponentDescription('progress-bar')} to show how complete a process is, visually indicating the progression gradually.`, 'https://bamboo.tec.mx/latest/componentes/progress-bar/descripcion-general-EZrYlLVQ')}
+${getBasicExampleBlock('BmbProgressBarComponent')}
         `,
       },
     },
   },
   argTypes: {
     type: {
-      name: 'Type',
       control: {
         type: 'radio',
       },
       options: ['simple', 'counter', 'container'],
-      description: 'Select the design of the progress bar',
+      description: 'Sets the type of progress bar to display.',
       table: {
         category: 'Properties',
-        type: { summary: 'string' },
+        type: {
+          summary: 'IBmbProgressBarTypes',
+          detail: `IBmbProgressBarTypes = 'simple' | 'counter' | 'container'`,
+        },
         defaultValue: { summary: 'simple' },
       },
     },
     totalCount: {
-      name: 'Total Count',
       control: {
         type: 'number',
       },
-      description: 'Set the total value to calculate the percentage',
+      description: `Sets the total value to calculate the percentage. ${getPropertyForType()}`,
       table: {
         category: 'Properties',
         type: { summary: 'number' },
@@ -53,103 +64,70 @@ Below is an example of how you can use this component in HTML:
       },
     },
     counter: {
-      name: 'Counter',
       control: {
         type: 'number',
       },
-      description: 'Set the amount of the total to calculate the percentage ',
+      description: `Sets the amount of the total to calculate the percentage. ${getPropertyForType()}`,
       table: {
         category: 'Properties',
         type: { summary: 'number' },
       },
     },
-    title: {
-      name: 'Title',
-      control: {
-        type: 'text',
-      },
-      description:
-        'Set the title that the component will show if the type is set as a container',
-      table: {
-        category: 'Properties',
-        type: { summary: 'string' },
-      },
-    },
-    appearance: {
-      name: 'Appearance',
-      control: {
-        type: 'radio',
-      },
-      options: ['info', 'warning', 'error'],
-      description: 'Set the appearance of the progress bar',
-      table: {
-        category: 'Properties',
-        type: { summary: 'number' },
-        defaultValue: { summary: 'info' },
-      },
-    },
+    title: getPropertyParamDesc(
+      'progress bar',
+      'text',
+      '',
+      getPropertyForType(false),
+    ),
+    appearance: getAppearanceParam(
+      'progress bar',
+      ['info', 'warning', 'error'],
+      'info',
+      getPropertyForType(true, true),
+    ),
     textLink: {
       name: 'Text link',
       control: {
         type: 'text',
       },
-      description: 'Set the text for the link',
+      description: `Sets the text for the link ${getPropertyForType(false)}`,
       table: {
         category: 'Events',
-        type: { summary: 'string' },
-      },
-    },
-    href: {
-      name: 'Href',
-      control: {
-        type: 'text',
-      },
-      description: 'Set the url to follow in the text link',
-      table: {
-        category: 'Properties',
         type: { summary: 'string' },
         defaultValue: { summary: '' },
       },
     },
-    target: {
-      name: 'Target',
-      control: {
-        type: 'radio',
-      },
-      options: ['_blank', '_parent', '_self', '_top'],
-      description: 'Set the percentage to show in the progress bar',
-      table: {
-        category: 'Events',
-        type: { summary: 'IBmbTargetLink' },
-        defaultValue: { summary: '_blank' },
-      },
+    href: {
+      ...DBmbGenericParamDesc.link,
+      description: DBmbGenericParamDesc.link.description.concat(
+        getPropertyForType(false),
+      ),
     },
-    progress: {
-      name: 'Porcentaje',
-      control: {
-        type: 'number',
-      },
-      description: 'Set the percentage to show in the progress bar',
-      table: {
-        category: 'Properties',
-        type: { summary: 'number' },
-      },
+    target: {
+      ...DBmbGenericParamDesc.target,
+      description: DBmbGenericParamDesc.target.description.concat(
+        getPropertyForType(false),
+      ),
     },
     textFormat: {
-      name: 'Text format',
       control: {
         type: 'function',
       },
       description: `
-Set the text format function to show the percentage in the progress bar.
+Sets the text format function to show the percentage in the progress bar.
+${getPropertyForType()}
 The function receives two parameters: the current value and the total value, and should return a formatted string.
 
 If not set, it defaults to showing the value as *"value/total"*.
 
-**Note**: Avoid return HTML code, any HTML code will be parsed.`,
+${RELEVANT_TITLE_LEVEL[2]} Avoid return HTML code, any HTML code will be parsed.`,
       table: {
         category: 'Properties',
-        type: { summary: '(value: string, total: string) => string' },
+        type: {
+          summary: '(value: string, total: string) => string',
+          detail:
+            'textFormat: (value: string, total: string) => `$${value}/$${total}MXN`',
+        },
         defaultValue: { summary: 'value => value' },
       },
     },
@@ -161,8 +139,8 @@ If not set, it defaults to showing the value as *"value/total"*.
     title: 'Creditos ocupados para esta iniciativa',
     appearance: 'info',
     textLink: 'Aumentar Creditos',
-    target: '_blank',
     href: 'https://www.google.com',
+    target: '_blank',
     progress: 0,
     textFormat: (value: string, total: string) => `$${value}/$${total}MXN`,
   },

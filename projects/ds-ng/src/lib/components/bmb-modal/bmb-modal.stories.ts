@@ -16,6 +16,7 @@ import {
   getGeneralDescription,
   getOnEvent,
   getSpecialSpecifications,
+  RELEVANT_TITLE_LEVEL,
 } from '../../utils/doc/utils';
 import {
   DBmbModalParamDesc,
@@ -218,7 +219,7 @@ openModalTemplate() {
 <button (click)="openModalTemplate()">Open Modal</button>
 \`\`\`
 >
-### ⚠ Note:
+###${RELEVANT_TITLE_LEVEL[2]}
 >
 Make sure you are using:
 >
@@ -246,6 +247,7 @@ ${getBasicExampleBlock(
       }
     });
   }`,
+  false,
   '',
   'MatDialog',
   '@angular/material/dialog',
@@ -334,7 +336,7 @@ ${getBasicExampleBlock(
     ),
     closeAction: getOnClickParam(
       getOnEvent('secondary action', 'secondaryAction', 'void'),
-      '.<br/><br/>⚠ **Warning:**<br/>This event will not prevent the modal from closing',
+      `.<br/><br/>${RELEVANT_TITLE_LEVEL[0]}This event will not prevent the modal from closing`,
     ),
     hidePrimaryButton: {
       control: { type: 'boolean' },

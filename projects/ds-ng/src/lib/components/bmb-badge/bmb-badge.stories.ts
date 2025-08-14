@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/angular';
 import { BmbBadgeComponent } from './bmb-badge.component';
 import { IBbmBgAppearance } from '../bmb-advertisement-card/types';
+import { RELEVANT_TITLE_LEVEL } from '../../utils/doc/utils';
 
 const appearanceOptions: IBbmBgAppearance[] = [
   'normal',
@@ -96,7 +97,7 @@ Sets the appearance of the badge, affecting its visual style.
 
   **Default appearance**: normal.
 
-  **Note**: background appareance is deprecated.
+  ${RELEVANT_TITLE_LEVEL[2]} background appearance is deprecated.
       `,
     },
     container: {
