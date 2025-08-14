@@ -11,6 +11,7 @@
         @for (field of codesArray(); track $index) {
           <section class="bmb_totp-separator">
             <bmb-input-content
+              type="number"
               class="bmb_totp-input"
               [inputId]="'code_' + instanceId() + '_' + $index"
               [name]="'name_' + instanceId() + '_' + $index"

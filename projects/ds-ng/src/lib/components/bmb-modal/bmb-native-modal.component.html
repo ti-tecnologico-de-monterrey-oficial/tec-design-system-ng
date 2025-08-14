@@ -1,0 +1,62 @@
+<bmb-overlay [active]="true" />
+<dialog class="bmb_native-modal" [open]="true">
+  <div class="bmb_native-modal-container bmb_box-shadow-3" [ngClass]="getContainerClass()">
+    <header class="bmb_native-modal-header">
+      <bmb-three-cols
+        [expandMainColumn]="true"
+        gapSize="none"
+        alignItems="start"
+      >
+        <ng-template #bmbMainContent>
+          <span class="bmb_modal-container-header-title">
+            <bmb-title-content
+              [title]="title()"
+              titleSize="9"
+              [subtitle]="subtitle()"
+              [icon]="modalIcon()"
+              [iconSize]="48"
+              [transparentBgC]="true"
+            />
+          </span>
+        </ng-template>
+        <ng-template #bmbRightContent>
+          <span class="bmb_modal-container-header-icon_close">
+            <bmb-action-icon
+              icon="close"
+              [iconSize]="24"
+              (buttonClick)="handleCloseModal($event)"
+            />
+          </span>
+        </ng-template>
+      </bmb-three-cols>
+    </header>
+    <section class="bmb_native-modal-content">
+      @if (isTemplateRef()) {
+        <ng-template #templateContent>
+          <ng-container *ngTemplateOutlet="getContent()"></ng-container>
+        </ng-template>
+        <ng-container *ngTemplateOutlet="templateContent"></ng-container>
+      } @else {
+        <p>
+          {{ content() }}
+        </p>
+      }
+    </section>
+    @if (actions().length) {
+      <footer class="bmb_native-modal-footer">
+        @for (btn of actions(); track $index) {
+          <button
+            bmbButton
+            [appearance]="btn.appearance || 'secondary-outlined'"
+            (click)="btn.action()"
+          >
+            @if (btn.icon) {
+              <i class="{{ btn.icon }}"></i>
+            }
+            {{ btn.buttonName }}
+          </button>
+        }
+      </footer>
+    }
+  </div>
+</dialog>

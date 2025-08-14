@@ -18,6 +18,7 @@ import {
   SimpleChanges,
   model,
   ChangeDetectorRef,
+  computed,
 } from '@angular/core';
 import {
   MatPaginator,
@@ -48,10 +49,12 @@ import { TableColum, TableConfig } from './bmb-tables.interface';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { BmbInputComponent } from '../bmb-input/bmb-input.component';
-import { BmbDropdownComponent } from '../bmb-dropdown/bmb-dropdown.component';
 import { ReactiveFormsModule, FormControl, FormGroup } from '@angular/forms';
 import { BmbDateRangeComponent } from '../bmb-date-range/bmb-date-range.component';
 import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
+import { BmbLayoutDirective } from '../../directives/bmb-layout/bmb-layout.directive';
+import { BmbLayoutItemDirective } from '../../directives/bmb-layout/bmb-layout-item.directive';
+import { DateTime } from 'luxon';
 
 export type BmbTableLang = 'en' | 'es';
 
@@ -71,10 +74,11 @@ export type BmbTableLang = 'en' | 'es';
     MatInputModule,
     MatTooltipModule,
     BmbInputComponent,
-    BmbDropdownComponent,
     ReactiveFormsModule,
     BmbDateRangeComponent,
     BmbActionIconComponent,
+    BmbLayoutDirective,
+    BmbLayoutItemDirective,
   ],
   templateUrl: './bmb-tables.component.html',
   styleUrl: './bmb-tables.component.scss',
@@ -118,7 +122,6 @@ export class BmbTablesComponent implements AfterViewInit, OnInit, OnChanges {
   resizableMouseup?: () => void;
 
   searchControl = new FormControl('');
-  filtersVisible = false;
 
   showSearch = input<boolean>(false);
   showFilters = input<boolean>(false);
@@ -136,6 +139,7 @@ export class BmbTablesComponent implements AfterViewInit, OnInit, OnChanges {
   clearSelection = model<boolean>(false);
   serverSide = input<boolean>(false);
   currentPage = model<number>(0);
+  filtersVisible = model<boolean>(false);
 
   @Output() select: EventEmitter<any> = new EventEmitter();
   @Output() clickedRow: EventEmitter<any> = new EventEmitter();
@@ -222,6 +226,7 @@ export class BmbTablesComponent implements AfterViewInit, OnInit, OnChanges {
         this.searchChange.emit(search);
       } else {
         this.searchModeChange.emit('client');
+
         this.dataSource.filter = search;
       }
     });
@@ -285,7 +290,14 @@ export class BmbTablesComponent implements AfterViewInit, OnInit, OnChanges {
     if (!newColumns || !Array.isArray(newColumns) || newColumns.length === 0)
       return;
 
-    const displayColumns = [...newColumns.map((col) => col.def)];
+    const parsedNewColumns: TableColum[] = newColumns.map((col) => {
+      return {
+        type: 'string',
+        labelEn: col.label,
+        ...col,
+      };
+    });
+    const displayColumns = [...parsedNewColumns.map((col) => col.def)];
 
     if (this._rawConfig.isExpandible) {
       displayColumns.unshift('expand');
@@ -299,8 +311,8 @@ export class BmbTablesComponent implements AfterViewInit, OnInit, OnChanges {
       displayColumns.push('actions');
     }
 
-    this._rawColumns = newColumns;
-    this.tableColumns = newColumns;
+    this._rawColumns = parsedNewColumns;
+    this.tableColumns = parsedNewColumns;
     this.tableDisplayColumns = displayColumns;
     this.tableConfig = this._rawConfig;
   }
@@ -492,7 +504,6 @@ export class BmbTablesComponent implements AfterViewInit, OnInit, OnChanges {
           this.filterForm.addControl(`${key}_to`, new FormControl());
           break;
         case 'string':
-          this.filterForm.addControl(`${key}_sort`, new FormControl('none'));
           this.filterForm.addControl(`${key}_contains`, new FormControl(''));
           break;
       }
@@ -515,23 +526,29 @@ export class BmbTablesComponent implements AfterViewInit, OnInit, OnChanges {
       const type = column.type;
 
       if (type === 'number') {
-        const min = values[`${key}_min`];
-        const max = values[`${key}_max`];
+        const min = parseInt(values[`${key}_min`]) || null;
+        const max = parseInt(values[`${key}_max`]) || null;
+
         filtered = filtered.filter((row) => {
           const value = +row[key];
-          return (min == null || value >= min) && (max == null || value <= max);
+          return (
+            (min === null || value >= min) &&
+            (max === null || value <= max)
+          );
         });
       }
 
       if (type === 'date') {
+        const dateFormat = column.dateFormat || 'yyyy-MM-dd';
         const from = values[`${key}_from`]
-          ? new Date(values[`${key}_from`]).getTime()
+          ? DateTime.fromFormat(values[`${key}_from`], dateFormat)
           : null;
         const to = values[`${key}_to`]
-          ? new Date(values[`${key}_to`]).getTime()
+          ? DateTime.fromFormat(values[`${key}_to`], dateFormat)
           : null;
+
         filtered = filtered.filter((row) => {
-          const dateVal = new Date(row[key]).getTime();
+          const dateVal = DateTime.fromFormat(row[key], dateFormat);
           return (!from || dateVal >= from) && (!to || dateVal <= to);
         });
       }
@@ -542,13 +559,6 @@ export class BmbTablesComponent implements AfterViewInit, OnInit, OnChanges {
           filtered = filtered.filter((row) =>
             row[key]?.toLowerCase().includes(search),
           );
-        }
-
-        const sort = values[`${key}_sort`];
-        if (sort === 'asc') {
-          filtered.sort((a, b) => a[key]?.localeCompare(b[key]));
-        } else if (sort === 'desc') {
-          filtered.sort((a, b) => b[key]?.localeCompare(a[key]));
         }
       }
     });
@@ -561,7 +571,7 @@ export class BmbTablesComponent implements AfterViewInit, OnInit, OnChanges {
   }
 
   toggleFilters(): void {
-    this.filtersVisible = !this.filtersVisible;
+    this.filtersVisible.set(!this.filtersVisible());
   }
 
   onPageEvent(event: PageEvent) {

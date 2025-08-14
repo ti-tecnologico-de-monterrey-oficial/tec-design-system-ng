@@ -10,6 +10,7 @@ export * from './lib/services/calendar.service';
 export * from './lib/services/user/profile.service';
 export * from './lib/components/bmb-login-onboarding/bmb-login-onboarding.service';
 export * from './lib/components/bmb-alert-center/bmb-alert-center.service';
+export * from './lib/services/native-modal.service';
 
 // Directives
 export * from './lib/ds-ng.component';
@@ -145,6 +146,7 @@ export * from './lib/components/bmb-title-content/bmb-title-content.component';
 export * from './lib/components/bmb-item/bmb-item.component';
 export * from './lib/components/bmb-navigation-bar/bmb-navigation-bar.component';
 export * from './lib/components/bmb-notice-card/bmb-notice-card.component';
+export * from './lib/components/bmb-modal/bmb-native-modal.component';
 // types
 export * from './lib/types';
 

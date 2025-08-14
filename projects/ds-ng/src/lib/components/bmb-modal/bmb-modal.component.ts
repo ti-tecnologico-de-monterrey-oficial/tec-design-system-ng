@@ -121,19 +121,11 @@ export class BmbModalComponent {
     const alertStyle: string = data.alertStyle!;
 
     if (data.type === 'alert') {
-      if (alertStyle === 'primary') {
-        return `${this.svgUrl}info_fill_${alertStyle}.svg`;
-      }
-      if (alertStyle === 'neutral') return `${this.svgUrl}info_fill.svg`;
-      if (
-        alertStyle === 'error' ||
-        alertStyle === 'event' ||
-        alertStyle === 'success' ||
-        alertStyle === 'warning'
-      )
+      if (alertStyle) {
         return `${this.svgUrl}${alertStyle}_fill.svg`;
+      }
 
-      return `${this.svgUrl}info_fill.svg`;
+      return `${this.svgUrl}neutral_fill.svg`;
     }
 
     return '';

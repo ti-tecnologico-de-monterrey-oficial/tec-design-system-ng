@@ -19,69 +19,65 @@
         [iconSize]="24"
         (buttonClick)="toggleFilters()"
       ></bmb-action-icon>
+    }
 
-      <div class="bmb_table-filters" *ngIf="filtersVisible">
-        <ng-container *ngFor="let column of tableColumns">
-          <div [ngSwitch]="column.type" class="bmb_table-filter-item">
-            <!-- STRING -->
-            <ng-container *ngSwitchCase="'string'">
-              <bmb-dropdown
-                [isMultiSelect]="false"
-                [label]="column.label"
-                [options]="[
-                  { name: 'Sin orden', value: 'none', id: 'none' },
-                  { name: 'A-Z', value: 'asc', id: 'asc' },
-                  { name: 'Z-A', value: 'desc', id: 'desc' },
-                ]"
-                [placeholder]="'Ordenar'"
-                [value]="getFormControl(column.dataKey + '_sort').value"
-                (onValueChange)="
-                  getFormControl(column.dataKey + '_sort').setValue($event)
-                "
-              />
-            </ng-container>
+    @if (filtersVisible()) {
+      <div class="bmb_table-filters" bmbLayout margin="none">
+        @for (column of tableColumns; track $index) {
+          <section class="bmb_table-filter-item" bmbLayoutItem [colLg]="6">
+            @switch (column.type) {
+              @case ("number") {
+                <div class="filter-number" bmbLayout margin="none">
+                  <bmb-input
+                    [label]="column.label + ' mínimo'"
+                    [type]="'number'"
+                    [placeholder]="'Mín'"
+                    [appearance]="'normal'"
+                    [control]="getFormControl(column.dataKey + '_min')"
+                    bmbLayoutItem
+                    [colLg]="6"
+                  />
+                  <bmb-input
+                    [label]="column.label + ' máximo'"
+                    [type]="'number'"
+                    [placeholder]="'Máx'"
+                    [appearance]="'normal'"
+                    [control]="getFormControl(column.dataKey + '_max')"
+                    bmbLayoutItem
+                    [colLg]="6"
+                  />
+                </div>
+              }
 
-            <!-- NUMBER -->
-            <ng-container *ngSwitchCase="'number'">
-              <div class="filter-number">
+              @case ("date") {
+                <bmb-date-range
+                  [label]="column.label"
+                  [placeholderStartDate]="'Desde'"
+                  [placeholderEndDate]="'Hasta'"
+                  [icon]="'calendar_month'"
+                  [appearance]="'normal'"
+                  [dateFormat]="'dd/MM/yyyy'"
+                  [controlStart]="getFormControl(column.dataKey + '_from')"
+                  [controlEnd]="getFormControl(column.dataKey + '_to')"
+                  (startDateChange)="
+                    getFormControl(column.dataKey + '_from').setValue($event)
+                  "
+                  (endDateChange)="
+                    getFormControl(column.dataKey + '_to').setValue($event)
+                  "
+                />
+              }
+
+              @default {
                 <bmb-input
                   [label]="column.label"
-                  [type]="'number'"
-                  [placeholder]="'Mín'"
-                  [appearance]="'normal'"
-                  [control]="getFormControl(column.dataKey + '_min')"
+                  [placeholder]="'Filtrar'"
+                  [control]="getFormControl(column.dataKey + '_contains')"
                 />
-                <bmb-input
-                  [type]="'number'"
-                  [placeholder]="'Máx'"
-                  [appearance]="'normal'"
-                  [control]="getFormControl(column.dataKey + '_max')"
-                />
-              </div>
-            </ng-container>
-
-            <!-- DATE -->
-            <ng-container *ngSwitchCase="'date'">
-              <bmb-date-range
-                [label]="column.label"
-                [placeholderStartDate]="'Desde'"
-                [placeholderEndDate]="'Hasta'"
-                [icon]="'calendar_month'"
-                [appearance]="'normal'"
-                [dateFormat]="'dd/MM/yyyy'"
-                [multipleRow]="true"
-                [controlStart]="getFormControl(column.dataKey + '_from')"
-                [controlEnd]="getFormControl(column.dataKey + '_to')"
-                (startDateChange)="
-                  getFormControl(column.dataKey + '_from').setValue($event)
-                "
-                (endDateChange)="
-                  getFormControl(column.dataKey + '_to').setValue($event)
-                "
-              />
-            </ng-container>
-          </div>
-        </ng-container>
+              }
+            }
+          </section>
+        }
       </div>
     }
   </div>
