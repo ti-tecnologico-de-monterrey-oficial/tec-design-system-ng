@@ -532,8 +532,7 @@ export class BmbTablesComponent implements AfterViewInit, OnInit, OnChanges {
         filtered = filtered.filter((row) => {
           const value = +row[key];
           return (
-            (min === null || value >= min) &&
-            (max === null || value <= max)
+            (min === null || value >= min) && (max === null || value <= max)
           );
         });
       }

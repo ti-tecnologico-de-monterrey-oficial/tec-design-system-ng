@@ -1,11 +1,11 @@
 @use "../../../assets/styles/base/rem" as rem;
 
 $modalSize: (
-  'x-small': rem.rem_calc(472),
-  'small': rem.rem_calc(654),
-  'medium': rem.rem_calc(760),
-  'large': rem.rem_calc(920),
-  'x-large': rem.rem_calc(1080),
+  "x-small": rem.rem_calc(472),
+  "small": rem.rem_calc(654),
+  "medium": rem.rem_calc(760),
+  "large": rem.rem_calc(920),
+  "x-large": rem.rem_calc(1080),
 );
 
 .bmb_native-modal {
@@ -23,7 +23,7 @@ $modalSize: (
   padding: 0;
 
   &[open] {
-    animation: fadein .3s ease-in forwards;
+    animation: fadein 0.3s ease-in forwards;
   }
 
   &-container {
