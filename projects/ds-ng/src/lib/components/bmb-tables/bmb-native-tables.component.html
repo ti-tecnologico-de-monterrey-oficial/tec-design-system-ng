@@ -1,7 +1,44 @@
-<div class="bmb-native-tables">
-  @for (row of data(); track $index) {
-    <div class="bmb-native-table-row">
-      {{ row | json }}
-    </div>
-  }
+<div class="bmb_native-tables">
+  <table class="bmb_native-tables-table">
+    <thead>
+      <tr>
+        @for (col of parsedColumns(); track $index) {
+          <th>{{ col.label }}</th>
+        }
+      </tr>
+    </thead>
+    <tbody>
+      @for (row of parsedData()[0]; track $index) {
+        <tr>
+          @for (col of parsedColumns(); track $index) {
+            @if (isTemplateRef(col)) {
+              <td>
+                <ng-container
+                  *ngTemplateOutlet="
+                    col.templateRef ?? null;
+                    context: {
+                      cell: row[col.dataKey],
+                      row: row,
+                      col: col,
+                    }
+                  "
+                ></ng-container>
+              </td>
+            } @else {
+              <td>{{ row[col.def] }}</td>
+            }
+          }
+        </tr>
+      }
+    </tbody>
+  </table>
 </div>
+
+<ng-template #selectionColumnTemplate let-row="row">
+  <div class="selection-column">
+    <input
+      type="checkbox"
+      [checked]="selection().includes(row)"
+    />
+  </div>
+</ng-template>

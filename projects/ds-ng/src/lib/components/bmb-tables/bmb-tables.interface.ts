@@ -19,3 +19,11 @@ export interface TableConfig {
   isExpandible?: boolean;
   showActions?: boolean;
 }
+
+export interface IBmbNativeColumn extends TableColum {
+  isResizable?: boolean;
+  isSortable?: boolean;
+  isFilterable?: boolean;
+  isPinned?: boolean;
+  templateRef?: TemplateRef<any>;
+}

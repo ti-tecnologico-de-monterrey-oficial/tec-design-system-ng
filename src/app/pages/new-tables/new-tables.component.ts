@@ -1,18 +1,26 @@
-import { Component } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  TemplateRef,
+  ViewChild,
+} from '@angular/core';
 import {
   BmbTablesComponent,
   BmbNativeTablesComponent,
+  IBmbNativeColumn,
 } from '../../../../projects/ds-ng/src/public-api';
-import { TableColum } from '../../../../dist/ds-ng/lib/components/bmb-tables/bmb-tables.interface';
-
+import { CommonModule } from '@angular/common';
+import { DateTime } from 'luxon';
 @Component({
   selector: 'bmb-new-tables',
   standalone: true,
-  imports: [BmbTablesComponent, BmbNativeTablesComponent],
+  imports: [BmbTablesComponent, BmbNativeTablesComponent, CommonModule],
   templateUrl: './new-tables.component.html',
   styleUrl: './new-tables.component.scss',
 })
-export class NewTablesComponent {
+export class NewTablesComponent implements AfterViewInit {
+  @ViewChild('ageColumnTemplate') ageColumnTemplate!: TemplateRef<unknown>;
+
   data = [
     {
       id: 1,
@@ -555,50 +563,73 @@ export class NewTablesComponent {
       balance: 1709,
     },
   ];
-  columns: TableColum[] = [
-    {
-      def: 'first_name',
-      label: 'Nombre',
-      dataKey: 'first_name',
-      icon: 'face',
-      labelEn: 'Name',
-      type: 'string',
-    },
-    {
-      def: 'last_name',
-      label: 'Apellido',
-      dataKey: 'last_name',
-      icon: 'face',
-      labelEn: 'Last Name',
-      type: 'string',
-    },
-    {
-      def: 'email',
-      label: 'Correo Electrónico',
-      dataKey: 'email',
-      icon: 'email',
-      labelEn: 'Email',
-      type: 'string',
-    },
-    {
-      def: 'birthday',
-      label: 'Cumpleaños',
-      dataKey: 'birthday',
-      labelEn: 'Birthday',
-      type: 'date',
-    },
-    {
-      def: 'country',
-      label: 'País',
-      dataKey: 'country',
-      labelEn: 'Country',
-    },
-    {
-      def: 'balance',
-      label: 'Saldo',
-      dataKey: 'balance',
-      labelEn: 'Balance',
-      type: 'number',
-    },
-  ];
+  columns: IBmbNativeColumn[] = [];
+
+  ngAfterViewInit() {
+    this.columns = [
+      {
+        def: 'first_name',
+        label: 'Nombre',
+        dataKey: 'first_name',
+        icon: 'face',
+        labelEn: 'Name',
+        type: 'string',
+      },
+      {
+        def: 'last_name',
+        label: 'Apellido',
+        dataKey: 'last_name',
+        icon: 'face',
+        labelEn: 'Last Name',
+        type: 'string',
+      },
+      {
+        def: 'email',
+        label: 'Correo Electrónico',
+        dataKey: 'email',
+        icon: 'email',
+        labelEn: 'Email',
+        type: 'string',
+      },
+      {
+        def: 'birthday',
+        label: 'Cumpleaños',
+        dataKey: 'birthday',
+        labelEn: 'Birthday',
+        type: 'date',
+        dateFormat: 'dd/MM/yyyy',
+      },
+      {
+        def: 'country',
+        label: 'País',
+        dataKey: 'country',
+        labelEn: 'Country',
+      },
+      {
+        def: 'balance',
+        label: 'Saldo',
+        dataKey: 'balance',
+        labelEn: 'Balance',
+        type: 'number',
+      },
+      {
+        def: 'age',
+        label: 'Edad',
+        dataKey: 'age',
+        labelEn: 'Age',
+        type: 'number',
+        templateRef: this.ageColumnTemplate,
+      },
+    ];
+  }
+
+  getAge(row: { [key: string]: string }): number {
+    const dateFormat = row['dateFormat'] || 'dd/MM/yyyy';
+    const birthday = row['birthday'] || '';
+    const age = DateTime.now().diff(
+      DateTime.fromFormat(birthday, dateFormat),
+      'years',
+    ).years;
+    return Math.trunc(age);
+  }
 }

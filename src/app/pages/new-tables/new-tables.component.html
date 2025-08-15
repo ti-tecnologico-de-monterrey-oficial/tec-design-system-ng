@@ -7,12 +7,22 @@
     [columns]="columns"
     [pageSize]="10"
     [config]="{
-      isSelectable: false,
+      isSelectable: true,
       isExpandible: false,
       isPaginable: true,
       showActions: true,
     }"
   ></bmb-table>
 
-  <bmb-native-tables [data]="data" [columns]="columns"></bmb-native-tables>
+  <bmb-native-tables
+    [data]="data"
+    [columns]="columns"
+    [pageSize]="10"
+    [enableSelection]="true"
+    [columnVisibility]="{ birthday: false }"
+  ></bmb-native-tables>
 </div>
+
+<ng-template #ageColumnTemplate let-col="col" let-cell="cell" let-row="row">
+  <div class="age-column">{{ getAge(row) }}</div>
+</ng-template>
