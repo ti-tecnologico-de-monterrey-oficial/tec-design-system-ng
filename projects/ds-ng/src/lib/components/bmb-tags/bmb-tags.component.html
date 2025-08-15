@@ -6,6 +6,7 @@
       class="bmb_tag-btn"
       (click)="closeTag(text())"
       [icon]="'close'"
+      [tabindex]="dismissible() && !activityTag() && !isDisabled() ? 0 : -1"
     />
   }
 </ng-template>
@@ -16,6 +17,7 @@
   </div>
 } @else {
   <button
+    [tabindex]="dismissible() && !activityTag() && !isDisabled() ? -1: 0"
     type="button"
     [disabled]="isDisabled()"
     [ngClass]="getClasses()"
