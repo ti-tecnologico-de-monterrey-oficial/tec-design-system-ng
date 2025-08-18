@@ -8,6 +8,7 @@ import {
   getBasicExampleBlock,
   getGeneralComponentDescription,
   getGeneralDescription,
+  RELEVANT_TITLE_LEVEL,
 } from '../../utils/doc/utils';
 import {
   DBmbButtonParamDesc,
@@ -43,8 +44,9 @@ ${getBasicExampleBlock('BmbButtonDirective')}
     icon: DBmbButtonParamDesc.icon,
     iconSize: {
       control: { type: 'number' },
-      description:
-        'Sets size of the icon to use. Note: <= 0 will be inherited. Icon size is only recommended when no text or content is added.',
+      description: `
+Sets size of the icon to use. <br/><br/>${RELEVANT_TITLE_LEVEL[2]} <= 0 will be inherited.
+`,
       table: {
         category: 'Properties',
         defaultValue: { summary: '' },

@@ -57,7 +57,7 @@ ${getBasicExampleBlock('BmbHeaderMobileComponent')}
     trailingIcon: DBmbIconParamDesc.icon,
     userImage: DBmbImageParamDesc.image,
     userAltImage: DBmbImageParamDesc.alt,
-    userLink: DBmbGenericParamDesc.link,
+    userLink: DBmbGenericParamDesc.linkOrButton,
     userTarget: targetParamDesc,
     logo: {
       ...DBmbImageParamDesc.image,
@@ -70,7 +70,7 @@ ${getBasicExampleBlock('BmbHeaderMobileComponent')}
       ...DBmbImageParamDesc.alt,
       description: DBmbImageParamDesc.alt.description.replace('image', 'logo'),
     },
-    logoLink: DBmbGenericParamDesc.link,
+    logoLink: DBmbGenericParamDesc.linkOrButton,
     logoTarget: targetParamDesc,
     onTrailingIconClick: getOnClickParam(
       getOnEvent('trailing icon', 'onTrailingIconClick', 'unknown'),

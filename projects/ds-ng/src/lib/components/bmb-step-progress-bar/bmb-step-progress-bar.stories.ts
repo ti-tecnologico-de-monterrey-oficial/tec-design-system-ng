@@ -1,6 +1,7 @@
 import { Meta, moduleMetadata, StoryObj } from '@storybook/angular';
 import { BmbStepProgressBarComponent } from './bmb-step-progress-bar.component';
 import { CommonModule } from '@angular/common';
+import { RELEVANT_TITLE_LEVEL } from '../../utils/doc/utils';
 
 export default {
   title: 'Components/Status indicators/Step progress bar',
@@ -62,8 +63,7 @@ Below is an example of how you can use this component in HTML:
         type: 'radio',
       },
       options: ['small', 'medium', 'default'],
-      description:
-        'Set the size of the steps. **Note**: This property only works when the `type` is `horizontal`.',
+      description: `Set the size of the steps. ${RELEVANT_TITLE_LEVEL[0]} This property only works when the ***type*** is ***horizontal***.`,
       table: {
         category: 'Properties',
         type: { summary: 'select' },

@@ -4,34 +4,24 @@ import {
   createComponent,
   EmbeddedViewRef,
   EnvironmentInjector,
-  Inject,
   Injectable,
-  Optional,
   signal,
 } from '@angular/core';
-import { INotification } from '../components/bmb-push-notification/types';
 import { getUUID } from '../utils/utils';
+import { IBmbNativeModal } from '../components/bmb-modal/bmb-modal.interface';
 import { BmbPortalComponent } from '../components/bmb-portal/bmb-portal.component';
-
-export type NotificationPositionX = 'left' | 'right';
-export type NotificationPositionY = 'top' | 'bottom';
 
 @Injectable({
   providedIn: 'root',
 })
-export class BmbNotificationService {
-  readonly notificationList = signal<INotification[]>([]);
+export class BmbNativeModalService {
+  readonly modalList = signal<IBmbNativeModal[]>([]);
   private portalComponentRef: ComponentRef<BmbPortalComponent> | null = null;
 
   constructor(
     private appRef: ApplicationRef,
     private environmentInjector: EnvironmentInjector,
-    @Inject('positionX') @Optional() public positionX?: NotificationPositionX,
-    @Inject('positionY') @Optional() public positionY?: NotificationPositionY,
-  ) {
-    this.positionX = positionX || 'right';
-    this.positionY = positionY || 'top';
-  }
+  ) {}
 
   private getOrCreatePortal(): BmbPortalComponent {
     // Si ya tenemos referencia, devolver instancia
@@ -40,7 +30,7 @@ export class BmbNotificationService {
     }
 
     // Buscar si ya existe en el DOM
-    const existingHost = document.querySelector('app-modal-host');
+    const existingHost = document.querySelector('bmb_native-modal');
     if (existingHost) {
       const componentRef = this.appRef.components.find(
         (ref) => ref.instance instanceof BmbPortalComponent,
@@ -68,28 +58,35 @@ export class BmbNotificationService {
     return this.portalComponentRef.instance;
   }
 
-  addNotification(notification: INotification) {
-    const id = notification.id ?? getUUID();
-
+  openModal(newModal: IBmbNativeModal): string {
+    const id =
+      newModal.modalId && newModal.modalId !== ''
+        ? newModal.modalId
+        : getUUID();
     this.getOrCreatePortal();
-
-    this.notificationList.update((currentNotifications) => [
-      ...currentNotifications,
-      { ...notification, id },
+    this.modalList.update((currentModals) => [
+      ...currentModals,
+      { ...newModal, modalId: id },
     ]);
 
-    setTimeout(() => {
-      this.deleteNotification(id);
-    }, notification.delay || 5000);
+    return id;
   }
 
-  deleteNotification(id: string) {
-    this.notificationList.update((currentNotifications) =>
-      currentNotifications.filter((notification) => notification.id !== id),
+  closeModal(id: string) {
+    this.modalList.update((currentModals) =>
+      currentModals.filter((modal) => modal.modalId !== id),
     );
   }
 
-  getNotificationList() {
-    return this.notificationList();
+  closeAllModals() {
+    this.modalList.set([]);
+  }
+
+  getModalList() {
+    return this.modalList();
+  }
+
+  checkIfModalExists(id: string): boolean {
+    return this.modalList().some((modal) => modal.modalId === id);
   }
 }

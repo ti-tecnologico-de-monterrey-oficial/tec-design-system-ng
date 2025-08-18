@@ -1,5 +1,7 @@
 import { Meta, StoryObj } from '@storybook/angular';
 import { BmbTitleContentComponent } from './bmb-title-content.component';
+import { RELEVANT_TITLE_LEVEL } from '../../utils/doc/utils';
+import { DBmbIconParamDesc } from '../../utils/doc/parameterDescriptions';
 
 export default {
   title: 'Internals/Title content template',
@@ -172,8 +174,8 @@ Below is an example of how you can use this component in HTML:
     subtitleIconSize: {
       name: 'Subtitle icon size',
       control: { type: 'number' },
-      description:
-        'Size of the subtitle icon or width of the image to use. Note: <= 0 will be inherited.',
+      description: `Size of the subtitle icon or width of the image to use.<br/><br/>
+${RELEVANT_TITLE_LEVEL[2]}<= 0 will be inherited.`,
       table: {
         category: 'Properties',
         defaultValue: { summary: '0' },
@@ -212,17 +214,7 @@ Below is an example of how you can use this component in HTML:
         type: { summary: 'string (optional)' },
       },
     },
-    iconSize: {
-      name: 'Icon size',
-      control: { type: 'number' },
-      description:
-        'Size of the icon or width of the image to use. Note: <= 0 will be inherited.',
-      table: {
-        category: 'Properties',
-        defaultValue: { summary: '24' },
-        type: { summary: 'number  (optional)' },
-      },
-    },
+    iconSize: DBmbIconParamDesc.iconSize,
     bgIconAppearance: {
       name: 'Icon background color',
       control: {

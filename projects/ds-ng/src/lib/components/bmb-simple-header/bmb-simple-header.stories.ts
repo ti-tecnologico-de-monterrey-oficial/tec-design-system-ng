@@ -28,7 +28,6 @@ Below is an example of how you can use this component in HTML:
   },
   argTypes: {
     title: {
-      name: 'Title',
       control: 'text',
       description: 'Sets the title to be displayed in the header.',
       table: {
@@ -37,7 +36,6 @@ Below is an example of how you can use this component in HTML:
       },
     },
     icon: {
-      name: 'Icon',
       control: 'text',
       description: 'Sets the icon to be displayed in the header.',
       table: {
@@ -45,8 +43,15 @@ Below is an example of how you can use this component in HTML:
         type: { summary: 'string' },
       },
     },
+    iconAlternativeColor: {
+      control: 'boolean',
+      description: 'Sets the icon color to the primary color if true.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'boolean' },
+      },
+    },
     onIconClick: {
-      name: 'On icon click',
       control: {
         type: '',
       },
@@ -60,6 +65,7 @@ Below is an example of how you can use this component in HTML:
   args: {
     title: 'Mis apps',
     icon: 'apps',
+    iconAlternativeColor: false,
     onIconClick: () => {
       alert('On icon click');
     },

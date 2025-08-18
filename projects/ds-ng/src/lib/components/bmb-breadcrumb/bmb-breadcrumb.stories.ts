@@ -5,6 +5,11 @@ import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 import { of } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
+import {
+  getBasicExampleBlock,
+  getGeneralComponentDescription,
+  getGeneralDescription,
+} from '../../utils/doc/utils';
 
 export default {
   title: 'Components/Menus/Breadcrumb',
@@ -39,52 +44,61 @@ export default {
   ],
   parameters: {
     docs: {
+      controls: {
+        exclude: [
+          'getDropdownItems',
+          'getLinkClass',
+          'getPenultimateLink',
+          'toggleDropdown',
+          'getClasses',
+          'ngOnDestroy',
+          'ngOnInit',
+        ],
+      },
       description: {
         component: `
-Below is an example of how you can use this component in TypeScript:
-
-\`\`\`typescript
-import { BmbBreadcrumbComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
-@Component({
-  selector: 'component',
-  standalone: true,
-  imports: [ BmbBreadcrumbComponent ],
-  templateUrl: './component.html',
-  styleUrl: './component.scss',
-})
-\`\`\`
-
-Below is an example of how you can use this component in HTML:
+${getGeneralDescription(`${getGeneralComponentDescription('breadcrumb')} to navigate, providing a trail of clickable links leading to different pages.`, 'https://bamboo.tec.mx/latest/componentes/breadcrumb/descripcion-general-w8BsNT9r')}
+${getBasicExampleBlock('BmbBreadcrumbComponent')}
         `,
       },
     },
   },
   argTypes: {
     dataTopBar: {
-      name: 'Data Top Bar',
       control: { type: 'object' },
       description:
-        'An array of breadcrumb data for the Top Bar, each containing a label and a link. The first item contains text and internal (router) link, and clicking it navigates to the designated home page. The second item displays the name of the global page and has no link.',
+        'Sets the array of breadcrumb data for the top bar.<br/><br/>The first item contains text and internal (router) link, and clicking it navigates to the designated home page.<br/><br/>The second item displays the name of the global page and has no link.',
       table: {
         category: 'Properties',
-        type: { summary: '{ text: string, link?: string}[]' },
+        defaultValue: { summary: '[]' },
+        type: {
+          summary: 'IBmbDataTopBar[]',
+          detail: `IBmbDataTopBar {
+  text: string;
+  link?: string;
+}`,
+        },
       },
     },
     dataLocalNav: {
-      name: 'Data Local Navigation',
       control: { type: 'object' },
-      description:
-        'An array of breadcrumb data for Local Navigation, each containing a text and an internal (router) link.',
+      description: 'Sets the array of breadcrumb data for local navigation.',
       table: {
         category: 'Properties',
-        type: { summary: '{ text: string, link?: string, }[]' },
+        defaultValue: { summary: '[]' },
+        type: {
+          summary: 'IBmbDataTopBar[]',
+          detail: `IBmbDataTopBar {
+  text: string;
+  link?: string;
+}`,
+        },
       },
     },
     isTopBar: {
-      name: 'Is Top Bar',
       control: { type: 'boolean' },
       description:
-        'Toggles between Top Bar breadcrumb style and Local Navigation style.',
+        'Sets the toggles between top bar breadcrumb style and local navigation style.',
       table: {
         category: 'Properties',
         defaultValue: { summary: 'false' },
@@ -92,9 +106,19 @@ Below is an example of how you can use this component in HTML:
       },
     },
     isInactive: {
-      name: 'Inactive Local Navigation',
       control: { type: 'boolean' },
-      description: 'Indicates whether the local navigation is inactive or not.',
+      description:
+        'Sets a flag to indicate whether the local navigation is inactive or not.<br/>Sets inactive when true.',
+      table: {
+        category: 'Properties',
+        defaultValue: { summary: 'false' },
+        type: { summary: 'boolean' },
+      },
+    },
+    dropdownOpen: {
+      control: { type: 'boolean' },
+      description:
+        'Sets a flag to indicate whether the dropdown is open.<br/>The dropdown is open when true.',
       table: {
         category: 'Properties',
         defaultValue: { summary: 'false' },

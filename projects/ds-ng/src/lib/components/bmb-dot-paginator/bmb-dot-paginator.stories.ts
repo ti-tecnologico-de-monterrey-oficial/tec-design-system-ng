@@ -1,7 +1,17 @@
 import { Meta, StoryObj } from '@storybook/angular';
 import { BehaviorSubject } from 'rxjs';
 import { BmbDotPaginatorComponent } from './bmb-dot-paginator.component';
-import { attributes } from '../../utils/doc/utils';
+import {
+  attributes,
+  getBasicExampleBlock,
+  getGeneralComponentDescription,
+  getGeneralDescription,
+  getOnEvent,
+} from '../../utils/doc/utils';
+import {
+  getAppearanceParam,
+  getOnClickParam,
+} from '../../utils/doc/parameterDescriptions';
 
 export interface Target {
   target: string;
@@ -13,49 +23,14 @@ export default {
   component: BmbDotPaginatorComponent,
   parameters: {
     docs: {
+      controls: { exclude: ['getDotsArray', 'onDotClicked', 'getClasses'] },
       description: {
         component: `
-Below is an example of how you can use this component in TypeScript:
-
-\`\`\`typescript
-import { BmbDotPaginatorComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
-
-export interface Target {
-  target: string;
-  index: number;
-}
-
-@Component({
-  selector: 'component',
-  standalone: true,
-  imports: [ BmbDotPaginatorComponent ],
-  templateUrl: '
-  <!-- USE EXAMPLE -->
-      <figure>
-        <picture>
-          <source
-            media="(min-width: 100px)"
-            [srcset]="imgArray[myActiveDotIndex]"
-          />
-          <img
-            [loading]="'lazy'"
-            [srcset]="imgArray[myActiveDotIndex]"
-            alt=""
-          />
-        </picture>
-      </figure>
-
-      <bmb-dot-paginator
-        [activeDotIndex]="myActiveDotIndex"
-        [totalDots]="imgArray.length"
-        (onDotPress)="handleDotPress($event)"
-      ></bmb-dot-paginator>
-  ',
-  styleUrl: './component.scss',
-})
-
-export class Component {
-  imgArray = [
+${getGeneralDescription(`${getGeneralComponentDescription('dot-paginator')} to create a pager using dots to select elements.`, 'https://bamboo.tec.mx/latest/componentes/dot-paginator/descripcion-general-gKwavF4A')}
+${getBasicExampleBlock(
+  'BmbDotPaginatorComponent',
+  '',
+  `imgArray = [
     'https://es.mypet.com/wp-content/uploads/sites/23/2021/03/GettyImages-1143107320-e1597136744606.jpg',
     'https://ichef.bbci.co.uk/ace/ws/640/cpsprodpb/15665/production/_107435678_perro1.jpg',
     'https://definicion.de/wp-content/uploads/2013/03/perro-1.jpg',
@@ -70,34 +45,42 @@ export class Component {
 
   handleDotPress(index: number): void {
     this.myActiveDotIndex = index;
-  }
-}
+  }`,
+)}
+\`\`\`html
+<!-- EXAMPLE -->
+<figure>
+  <picture>
+    <source
+      media="(min-width: 100px)"
+      [srcset]="imgArray[myActiveDotIndex]"
+    />
+    <img
+      [loading]="'lazy'"
+      [srcset]="imgArray[myActiveDotIndex]"
+      alt=""
+    />
+  </picture>
+</figure>
+<bmb-dot-paginator
+  [activeDotIndex]="myActiveDotIndex"
+  [totalDots]="imgArray.length"
+  (onDotPress)="handleDotPress($event)"
+/>
 \`\`\`
-
-Below is an example of how you can use this component in HTML:
         `,
       },
     },
   },
   argTypes: {
-    appearance: {
-      name: 'Appearance',
-      control: {
-        type: 'radio',
-      },
-      options: ['primary', 'secondary'],
-      description:
-        'The style of the dot paginator. Is not neccesary to add the "primary" style.',
-      table: {
-        category: 'Properties',
-        defaultValue: { summary: 'primary' },
-        type: { summary: 'string' },
-      },
-    },
+    appearance: getAppearanceParam(
+      'dot paginator',
+      ['primary', 'secondary'],
+      'primary',
+    ),
     activeDotIndex: {
-      name: 'Active dot index',
       control: 'number',
-      description: 'Index of the active dot.',
+      description: 'Sets the index of the active dot.',
       table: {
         category: 'Properties',
         defaultValue: { summary: 0 },
@@ -105,37 +88,33 @@ Below is an example of how you can use this component in HTML:
       },
     },
     totalDots: {
-      name: 'Total Dots',
       control: 'number',
-      description: 'Total number of dots.',
+      description: 'Sets the total number of dots.',
       table: {
         category: 'Properties',
-        defaultValue: { summary: 5 },
+        defaultValue: { summary: 0 },
         type: { summary: 'number' },
       },
     },
     targets: {
-      name: 'Targets',
       control: 'object',
       description: 'Target objects for each dot.',
       table: {
         category: 'Properties',
-        defaultValue: { summary: 'optional' },
-        type: { summary: 'Target[]' },
+        defaultValue: { summary: '[]' },
+        type: {
+          summary: 'Target[]',
+          detail: `Target {
+  target: string;
+  index: number;
+}`,
+        },
       },
     },
-    onDotPress: {
-      name: 'On Dot Press',
-      control: {
-        type: '',
-      },
-      description:
-        'This handler can be used to perform a specific interaction with each dot.',
-      table: {
-        category: 'Events',
-        type: { summary: '(onDotPress)="yourFunction($event)"' },
-      },
-    },
+    onDotPress: getOnClickParam(
+      getOnEvent('each dot', 'onDotPress', 'number'),
+      ``,
+    ),
   },
   args: {
     activeDotIndex: 0,

@@ -6,9 +6,10 @@ import {
   getGeneralDescription,
   getOnEvent,
   IBmbOnEvent,
+  RELEVANT_TITLE_LEVEL,
 } from '../../utils/doc/utils';
 import {
-  GOGGLE_FONTS_LINK,
+  GOOGLE_FONTS_LINK,
   DBmbInputParamDesc,
   getOnEventParam,
 } from '../../utils/doc/parameterDescriptions';
@@ -25,7 +26,7 @@ const getLabelIconDescription = (
   const switchDescription: string[] = ['of', 'on'];
   return `Sets the ${type[getIndex(isLabel)]} displayed on the ${position[getIndex(isRightPosition)]} side of the switch.<br/><br/>
   Useful to indicate the action or state associated with the ***${switchDescription[getIndex(isRightPosition)]}*** position.<br/><br/>
-  ***‼︎Important:*** <br/><br/>
+  ${RELEVANT_TITLE_LEVEL[1]}
   Do not use the \`${position[getIndex(!isRightPosition)]}Icon\` property if you want to use \`${position[getIndex(isRightPosition)]}Text.\``;
 };
 const onChange: IBmbOnEvent = getOnEvent('switch', 'change', 'boolean');
@@ -65,7 +66,7 @@ ${getBasicExampleBlock('BmbSwitchComponent', '', onChange.handleExample)}
     },
     leftIcon: {
       control: { type: 'text' },
-      description: `${getLabelIconDescription(false, false)}<br/><br/>${GOGGLE_FONTS_LINK}`,
+      description: `${getLabelIconDescription(false, false)}<br/><br/>${GOOGLE_FONTS_LINK}`,
       table: {
         category: 'Properties',
         type: { summary: 'string' },
@@ -83,7 +84,7 @@ ${getBasicExampleBlock('BmbSwitchComponent', '', onChange.handleExample)}
     },
     rightIcon: {
       control: { type: 'text' },
-      description: `${getLabelIconDescription(true, false)}<br/><br/>${GOGGLE_FONTS_LINK}`,
+      description: `${getLabelIconDescription(true, false)}<br/><br/>${GOOGLE_FONTS_LINK}`,
       table: {
         category: 'Properties',
         type: { summary: 'string' },

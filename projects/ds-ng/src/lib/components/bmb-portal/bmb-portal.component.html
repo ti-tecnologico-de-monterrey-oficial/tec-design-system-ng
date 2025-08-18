@@ -55,6 +55,19 @@
   </div>
 </section>
 
+@for (item of modalSignal(); track $index) {
+  <bmb-native-modal
+    [title]="item.title || ''"
+    [content]="item.content || ''"
+    [modalId]="item.modalId || ''"
+    [subtitle]="item.subtitle || ''"
+    [size]="item.size || 'medium'"
+    [iconStyle]="item.iconStyle"
+    [actions]="item.actions || []"
+    (closeModalClicked)="handleModalClick(item, $event)"
+  />
+}
+
 <ng-template
   #commonTemplate
   let-notifications="notifications"

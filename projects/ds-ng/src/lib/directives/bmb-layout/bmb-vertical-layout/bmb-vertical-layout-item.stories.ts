@@ -40,8 +40,8 @@ export default {
     docs: {
       description: {
         component: `
-${getGeneralDescription(getAuxiliaryDescription('Vertical layout container', 'Vertical layout container item'), 'https://bamboo.tec.mx/latest/foundations/vertical-layout-container/descripcion-general-Crf8ymYZ').replace('Description', '-Description')}
-${getBasicExampleBlock('BmbVerticalLayoutDirective, BmbVerticalLayoutItemDirective').replace('TypeScript example', '-TypeScript example').replace('HTML example', '-HTML example')}
+${getGeneralDescription(getAuxiliaryDescription('Vertical layout container', 'Vertical layout container item'), 'https://bamboo.tec.mx/latest/foundations/vertical-layout-container/descripcion-general-Crf8ymYZ', true)}
+${getBasicExampleBlock('BmbVerticalLayoutDirective, BmbVerticalLayoutItemDirective', '', '', true)}
         `,
       },
     },

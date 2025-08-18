@@ -114,7 +114,7 @@ ${getBasicExampleBlock('BmbInteractiveIconComponent', ON_BUTTON_CLICK.handleExam
       interactiveIconAppearanceOptions,
       'red',
     ),
-    link: DBmbGenericParamDesc.link,
+    link: DBmbGenericParamDesc.linkOrButton,
     target: DBmbGenericParamDesc.target,
     horizontal: {
       control: { type: 'boolean' },

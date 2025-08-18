@@ -15,6 +15,7 @@ import {
   getGeneralDescription,
   getSpecialSpecifications,
 } from '../../utils/doc/utils';
+import { DBmbLayoutParamDesc } from '../../utils/doc/parameterDescriptions';
 
 const meta: Meta<BmbLayoutDirective> = {
   title: 'Foundations/Layouts/Layout',
@@ -70,18 +71,7 @@ ${getBasicExampleBlock('BmbLayoutDirective, BmbLayoutItemDirective')}
     },
   },
   argTypes: {
-    gapSize: {
-      control: {
-        type: 'select',
-      },
-      options: ['xs', 's', 'm', 'l', 'xl', 'none', 'auto'],
-      table: {
-        type: { summary: 'string' },
-        category: 'Properties',
-        defaultValue: { summary: 'm' },
-      },
-      description: 'Determines the size of the space between elements.',
-    },
+    gapSize: DBmbLayoutParamDesc.gapSize,
     margin: {
       control: {
         type: 'select',
@@ -103,38 +93,8 @@ ${getBasicExampleBlock('BmbLayoutDirective, BmbLayoutItemDirective')}
         type: { summary: 'boolean' },
       },
     },
-    justify: {
-      control: {
-        type: 'select',
-      },
-      options: [
-        'center',
-        'end',
-        'start',
-        'stretch',
-        'spaceAround',
-        'spaceBetween',
-        'spaceEvenly',
-      ],
-      table: {
-        type: { summary: 'string' },
-        category: 'Properties',
-        defaultValue: { summary: 'start' },
-      },
-      description: 'Set the justify content.',
-    },
-    alignItems: {
-      control: {
-        type: 'select',
-      },
-      options: ['center', 'end', 'start', 'stretch'],
-      table: {
-        type: { summary: 'string' },
-        category: 'Properties',
-        defaultValue: { summary: 'start' },
-      },
-      description: 'Set the align items.',
-    },
+    justify: DBmbLayoutParamDesc.justify,
+    alignItems: DBmbLayoutParamDesc.alignItems,
   },
   args: {
     gapSize: 'm',

@@ -5,8 +5,22 @@ import { BmbButtonDirective } from '../../directives/bmb-button/button.directive
 import { BmbNotificationService } from '../../services/notification.service';
 import { BmbPushNotificationComponent } from './bmb-push-notification.component';
 import { NotificationType } from './types';
-import { attributes } from '../../utils/doc/utils';
+import {
+  attributes,
+  getBasicExampleBlock,
+  getGeneralComponentDescription,
+  getGeneralDescription,
+  getOnEvent,
+  getSpecialSpecifications,
+} from '../../utils/doc/utils';
+import {
+  DBmbIconParamDesc,
+  getAppearanceParam,
+  getOnEventParam,
+  getPropertyParamDesc,
+} from '../../utils/doc/parameterDescriptions';
 
+const TITLE_PROPERTY_DESCRIPTION = getPropertyParamDesc('notification');
 @Component({
   standalone: true,
   imports: [BmbPushNotificationComponent, BmbButtonDirective],
@@ -42,7 +56,7 @@ class StorybookToastWrapperComponent {
   userMail = input('');
 
   enableDontAskAgain() {
-    alert("Don't ask again");
+    console.log("Don't ask again");
   }
 
   constructor(private notificationSignal: BmbNotificationService) {}
@@ -86,154 +100,109 @@ export default {
   ],
   parameters: {
     docs: {
+      controls: { exclude: ['closeNotification', 'getNotifications'] },
       description: {
         component: `
-Below is an example of how you can use this component in TypeScript:
-
-##Configuration
-Add the \`BmbNotificationService\` to your App providers:
-
-\`\`\`providers: [
+${getGeneralDescription(`${getGeneralComponentDescription('push-notification')} to easily configure notifications to display in the apps.`, 'https://bamboo.tec.mx/latest/componentes/push-notification/descripcion-general-neloJm9o')}
+${getSpecialSpecifications(` ### Configuration
+Add the **BmbNotificationService** to your App providers:
+\`\`\`typescript
+providers: [
   provideRouter(routes),
   importProvidersFrom([BmbNotificationService, ...]),
 ],\`\`\`
-
-##Show notifications
-Add the \`BmbPushNotificationComponent\` at the bottom of your **app.component.html**
-
-\`\`\`typescript
-import { BmbPushNotificationComponent, NotificationType, INotificationAction, NotificationType } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
-@Component({
-  selector: 'component',
-  standalone: true,
-  imports: [ BmbPushNotificationComponent ],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.scss',
-})
-\`\`\`
-
-Below is an example of how you can use this component in HTML:
+###Show notifications
+Add the **BmbPushNotificationComponent** at the bottom of your **app.component.html**.
+`)}
+${getBasicExampleBlock('BmbPushNotificationComponent')}
         `,
       },
     },
   },
   argTypes: {
-    title: {
-      name: 'Title',
-      control: {
-        type: 'text',
-      },
-      description: 'Set the notification title.',
-      table: {
-        category: 'Properties',
-        type: { summary: 'string' },
-      },
-    },
+    title: TITLE_PROPERTY_DESCRIPTION,
     subtitle: {
-      name: 'Subtitle',
-      control: {
-        type: 'text',
-      },
-      description: 'Set the notification subtitle.',
-      table: {
-        category: 'Properties',
-        type: { summary: 'string' },
-      },
+      ...TITLE_PROPERTY_DESCRIPTION,
+      description: TITLE_PROPERTY_DESCRIPTION.description.replace(
+        'title',
+        'subtitle',
+      ),
     },
     content: {
-      name: 'Content',
       control: {
         type: 'text',
       },
-      description: 'Set the notification content.',
+      description: 'Sets the notification content.',
       table: {
         category: 'Properties',
-        type: { summary: ['string', 'Template Reference'] },
+        type: { summary: 'string, Template Reference' },
       },
     },
     icon: {
-      name: 'Icon',
-      control: {
-        type: 'text',
-      },
-      table: {
-        category: 'Properties',
-        type: { summary: 'string' },
-      },
-      description: 'Set the notification icon.',
+      ...DBmbIconParamDesc.icon,
+      description: DBmbIconParamDesc.icon.description.concat(
+        '<br/><br/>The notification icon.',
+      ),
     },
-    type: {
-      name: 'Type',
-      control: {
-        type: 'select',
-      },
-      options: [
-        'tec',
-        'success',
-        'info',
-        'neutral',
-        'event',
-        'error',
-        'warning',
-        'black',
-        'creative_violet',
-        'creative_indigo',
-        'creative_emerald',
-        'creative_licorice',
-        'creative_darkteal',
-        'creative_orange',
-        'creative_peach',
-        'creative_sepia',
-        'creative_softred',
-        'creative_wattle',
-        'creative_shipcove',
-        'creative_plantation',
-        'creative_rum',
-        'creative_hibiscus',
-        'creative_ripelemon',
-      ],
-      table: {
-        category: 'Properties',
-        defaultValue: { summary: 'tec' },
-        type: { summary: 'NotificationType' },
-      },
-      description: 'Set the noticication color schema.',
-    },
-    enableDontAskAgain: {
-      name: "Enable don't ask again",
-      control: null,
-      description:
-        'Enable the option to check the property "Don don\'t ask again", once the user click on the checkbox the function is trigger.',
-      table: {
-        category: 'Events',
-        type: { summary: 'function' },
-      },
-    },
-    actions: {
-      name: 'Actions',
-      control: null,
-      description:
-        'List of actions and their events to display `[{ title, action, type?,  icon? }]`',
-      table: {
-        category: 'Events',
-        type: { summary: 'INotificationAction' },
-      },
-    },
-    isFullColor: {
-      name: 'Full color',
-      control: { type: 'boolean' },
-      description:
-        'Set the Notification virtualization type, Full color is a short notification type, a side effect of enable this option hide the next properties: ',
-      table: {
-        category: 'Properties',
-        defaultValue: { summary: 'false' },
-        type: { summary: 'boolean' },
-      },
-    },
+    type: getAppearanceParam('notification', [
+      'tec',
+      'success',
+      'info',
+      'neutral',
+      'event',
+      'error',
+      'warning',
+      'black',
+      'creative_violet',
+      'creative_indigo',
+      'creative_emerald',
+      'creative_licorice',
+      'creative_darkteal',
+      'creative_orange',
+      'creative_peach',
+      'creative_sepia',
+      'creative_softred',
+      'creative_wattle',
+      'creative_shipcove',
+      'creative_plantation',
+      'creative_rum',
+      'creative_hibiscus',
+      'creative_ripelemon',
+    ]),
+    enableDontAskAgain: getOnEventParam(
+      getOnEvent('', 'dontAskAgainEvent', 'string'),
+      "when the checkbox is clicked, emits the id of the notification.<br/><br/> Useful for enabling the **Don't ask again** flag.",
+      'other',
+    ),
+    actions: getOnEventParam(
+      getOnEvent('', 'actions', 'INotificationAction[]'),
+      `list of actions and their events to display.
+    [{
+      title: string;
+      type?: IButtonAppearance;
+      icon?: string;
+      subTitle?: string;
+        content?: string;
+        isFullColor: boolean;
+        id?: string;
+    }]
+
+    IButtonAppearance =
+    | 'primary'
+    | 'secondary-filled'
+    | 'secondary-outlined'
+    | 'destructive'
+    | 'transparent';
+          `,
+      'other',
+    ),
+    isFullColor: getPropertyParamDesc(
+      'full color to the notification',
+      'boolean',
+    ),
     delay: {
-      name: 'Delay',
       control: { type: 'number' },
-      description: 'Delay',
+      description: '',
       table: {
         category: 'Properties',
         defaultValue: { summary: '5000' },
@@ -241,7 +210,6 @@ Below is an example of how you can use this component in HTML:
       },
     },
     date: {
-      name: 'Date',
       control: {
         type: 'text',
       },
@@ -249,10 +217,10 @@ Below is an example of how you can use this component in HTML:
         category: 'Properties',
         type: { summary: 'string' },
       },
-      description: 'Set a leyend with a date or days to left.',
+      description: `Sets a label with a date or **number days**.
+  It will be displayed at the top left.`,
     },
     appName: {
-      name: 'App name',
       control: {
         type: 'text',
       },
@@ -261,22 +229,22 @@ Below is an example of how you can use this component in HTML:
         defaultValue: { summary: 'mitec.com' },
         type: { summary: 'string' },
       },
-      description: 'Set the App name at the top of the notification.',
+      description:
+        'Sets the **App name**, it will be display at the top of the notification.',
     },
     appIcon: {
-      name: 'App icon',
       control: {
         type: 'text',
       },
+      description:
+        'Sets the app logo name will be display at the top of the notification.',
       table: {
         category: 'Properties',
-        defaultValue: { summary: 'assets/images/tec-logo-mob.svg' },
         type: { summary: 'string' },
+        defaultValue: { summary: '' },
       },
-      description: 'Set the App name at the top of the notification.',
     },
     media: {
-      name: 'Media',
       control: {
         type: 'text',
       },
@@ -284,10 +252,10 @@ Below is an example of how you can use this component in HTML:
         category: 'Properties',
         type: { summary: 'string' },
       },
-      description: 'Set an image at the bottom of the notification.',
+      description:
+        'Sets the image of the notification, will be display at the bottom of the notification.',
     },
     userName: {
-      name: 'User name',
       control: {
         type: 'text',
       },
@@ -296,10 +264,9 @@ Below is an example of how you can use this component in HTML:
         type: { summary: 'string' },
       },
       description:
-        'Set the user name label, and in order to enable the user section this filed is required as `userAvatar`.',
+        'Sets the user name label, in order to enable the user section this field is required as \`userAvatar\`.',
     },
     userAvatar: {
-      name: 'User avatar',
       control: {
         type: 'text',
       },
@@ -308,10 +275,9 @@ Below is an example of how you can use this component in HTML:
         type: { summary: 'string' },
       },
       description:
-        'Set the user avatar, and in order to enable the user section this filed is required as `userName`.',
+        'Sets the user avatar, and in order to enable the user section this filed is required as \`userName\`.',
     },
     userMail: {
-      name: 'User email',
       control: {
         type: 'text',
       },
@@ -320,7 +286,7 @@ Below is an example of how you can use this component in HTML:
         type: { summary: 'string' },
       },
       description:
-        'Set the user email for the user section, and in order to enable the user section this filed is required as `userName and `userName`.',
+        'Sets the user email for the user section, and in order to enable the user section this filed is required as \`userName\` and \`userName\`.',
     },
   },
   args: {

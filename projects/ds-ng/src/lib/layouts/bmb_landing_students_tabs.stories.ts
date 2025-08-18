@@ -11,6 +11,7 @@ import {
 } from '../../public-api';
 import { CommonModule } from '@angular/common';
 import { BmbImageComponent } from '../components/bmb-image/bmb-image.component';
+import { RELEVANT_TITLE_LEVEL } from '../utils/doc/utils';
 
 @Component({
   standalone: true,
@@ -174,7 +175,7 @@ export default {
   parameters: {
     docs: {
       description: {
-        component: `Note: When you click on fullscreen icon, in Storybook doesn’t look the best due to the many elements, but in your project, it should display correctly.
+        component: `${RELEVANT_TITLE_LEVEL[2]}When you click on fullscreen icon, in Storybook doesn’t look the best due to the many elements, but in your project, it should display correctly.
 
 Below is an example of how you can use the components needed for this organization ingit status
  TypeScript:

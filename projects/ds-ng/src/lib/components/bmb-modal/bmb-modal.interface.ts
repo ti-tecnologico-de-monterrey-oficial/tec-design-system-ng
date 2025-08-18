@@ -1,7 +1,9 @@
 import { TemplateRef } from '@angular/core';
+import { IButtonAppearance } from '../../types';
 
 export type IBmbModalSize = 'small' | 'medium' | 'large';
 export type IBmbModalType = 'informative' | 'action' | 'alert';
+export type IBmbNativeModalSize = IBmbModalSize | 'x-small' | 'x-large';
 export type IBmbModalAlertStyle =
   | 'warning'
   | 'neutral'
@@ -9,6 +11,14 @@ export type IBmbModalAlertStyle =
   | 'event'
   | 'success'
   | 'error';
+export interface IBmbActionButton {
+  buttonName: string;
+  appearance?: IButtonAppearance;
+  label: string;
+  icon?: string;
+  action: () => void;
+}
+
 export interface ModalDataConfig {
   title?: string;
   subtitle?: string;
@@ -25,4 +35,21 @@ export interface ModalDataConfig {
   primaryAction?: () => void;
   secondaryAction?: () => void;
   closeAction?: () => void;
+}
+export interface IBmbNativeModal
+  extends Omit<
+    ModalDataConfig,
+    | 'primaryAction'
+    | 'secondaryAction'
+    | 'closeAction'
+    | 'extendButtons'
+    | 'alertStyle'
+    | 'size'
+    | 'type'
+  > {
+  modalId?: string;
+  size?: IBmbNativeModalSize;
+  iconStyle?: IBmbModalAlertStyle;
+  actions?: IBmbActionButton[];
+  closeModalClicked?: (event: unknown) => void;
 }
