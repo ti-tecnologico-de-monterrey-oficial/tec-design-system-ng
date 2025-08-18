@@ -40,11 +40,20 @@ ${getBasicExampleBlock('BmbSimpleHeaderComponent', '', onIconClickEvent.handleEx
         'The icon is shown at right',
       ),
     },
+    iconAlternativeColor: {
+      control: 'boolean',
+      description: 'Sets the icon color to the primary color if true.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'boolean' },
+      },
+    },
     onIconClick: getOnClickParam(onIconClickEvent),
   },
   args: {
     title: 'Mis apps',
     icon: 'apps',
+    iconAlternativeColor: false,
     onIconClick: () => {
       alert('On icon click');
     },
