@@ -11,6 +11,7 @@ export interface TableColum {
   type?: 'string' | 'number' | 'date';
   icon?: string;
   dateFormat?: string;
+  isFilterable?: boolean;
 }
 
 export interface TableConfig {
@@ -19,3 +20,5 @@ export interface TableConfig {
   isExpandible?: boolean;
   showActions?: boolean;
 }
+
+export type IBmbFiltersPosition = 'top' | 'right' | 'bottom' | 'left';
