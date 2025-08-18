@@ -40,14 +40,7 @@ ${getBasicExampleBlock('BmbSimpleHeaderComponent', '', onIconClickEvent.handleEx
         'The icon is shown at right',
       ),
     },
-    iconAlternativeColor: {
-      control: 'boolean',
-      description: 'Sets the icon color to the primary color if true.',
-      table: {
-        category: 'Properties',
-        type: { summary: 'boolean' },
-      },
-    },
+    iconAlternativeColor: getPropertyParamDesc('primary color on the icon','boolean'),
     onIconClick: getOnClickParam(onIconClickEvent),
   },
   args: {
@@ -55,7 +48,7 @@ ${getBasicExampleBlock('BmbSimpleHeaderComponent', '', onIconClickEvent.handleEx
     icon: 'apps',
     iconAlternativeColor: false,
     onIconClick: () => {
-      alert('On icon click');
+      console.log('On icon click');
     },
   },
 } as Meta<typeof BmbSimpleHeaderComponent>;
