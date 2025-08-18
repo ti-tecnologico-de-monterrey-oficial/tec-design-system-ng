@@ -1,57 +1,45 @@
 import type { Meta, StoryObj } from '@storybook/angular';
 import { BmbGradeValueComponent } from './bmb-grade-value.component';
+import {
+  getBasicExampleBlock,
+  getGeneralComponentDescription,
+  getGeneralDescription,
+} from '../../utils/doc/utils';
+import { getAppearanceParam } from '../../utils/doc/parameterDescriptions';
 
 export default {
   title: 'Components/Visual labels/Grade value',
   component: BmbGradeValueComponent,
   parameters: {
     docs: {
+      controls: { exclude: ['truncatedScore', ''] },
       description: {
         component: `
-Below is an example of how you can use this component in TypeScript:
+${getGeneralDescription(`${getGeneralComponentDescription('grade-value')} to display grades in a simple way.`, 'https://bamboo.tec.mx/latest/componentes/grade-value/descripcion-general-3uKxUiLU')}
+${getBasicExampleBlock('BmbGradeValueComponent')}
 
-\`\`\`typescript
-import { BmbGradeValueComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
-@Component({
-  selector: 'component',
-  standalone: true,
-  imports: [],
-  templateUrl: './component.html',
-  styleUrl: './component.scss',
-})
-\`\`\`
-Below is an example of how you can use this component in HTML:
         `,
       },
     },
   },
   argTypes: {
-    appearanceContrast: {
-      control: {
-        type: 'select',
-      },
-      options: ['default', 'primary', 'alternative'],
-      description: 'Defines the appearance style.',
-      table: {
-        category: 'Properties',
-        type: { summary: 'string' },
-      },
-    },
+    appearanceContrast: getAppearanceParam(
+      'grade value',
+      ['default', 'primary', 'alternative'],
+      'default',
+    ),
     type: {
       control: {
         type: 'radio',
       },
       options: ['main-grade', 'partial-grade'],
-      description: `
-Sets the type of anatomy variation to display.
-
-      IBmbGradeType =
-      | 'main-grade'
-      | 'partial-grade'
-      `,
+      description: 'Sets the type of anatomy variation to display.',
       table: {
         category: 'Properties',
-        type: { summary: 'IBmbGradeType' },
+        type: {
+          summary: 'IBmbGradeType',
+          detail: "IBmbGradeType = 'main-grade' | 'partial-grade'",
+        },
         defaultValue: { summary: 'main-grade' },
       },
     },
@@ -75,7 +63,7 @@ Sets the type of anatomy variation to display.
 
 type Story = StoryObj<BmbGradeValueComponent>;
 
-export const MainGradeTypeExample: Story = {
+export const Default: Story = {
   name: "'main-grade' type example",
 };
 

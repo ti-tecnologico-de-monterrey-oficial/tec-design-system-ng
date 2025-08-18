@@ -1,5 +1,11 @@
 import { Meta, StoryObj } from '@storybook/angular';
 import { BmbValueCounterComponent } from './bmb-value-counter.component';
+import {
+  getBasicExampleBlock,
+  getGeneralComponentDescription,
+  getGeneralDescription,
+} from '../../utils/doc/utils';
+import { getLabelParamDesc } from '../../utils/doc/parameterDescriptions';
 
 export default {
   title: 'Components/Visual labels/Value counter',
@@ -8,57 +14,17 @@ export default {
     docs: {
       description: {
         component: `
-Below is an example of how you can use this component in TypeScript:
+${getGeneralDescription(`${getGeneralComponentDescription('value-counter')} to display progress considering a fraction of a total value.`, 'https://bamboo.tec.mx/latest/componentes/value-counter/descripcion-general-9QAWIHwf')}
+${getBasicExampleBlock('BmbValueCounterComponent')}
 
-\`\`\`typescript
-import { BmbValueCounterComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
-@Component({
-  selector: 'component',
-  standalone: true,
-  imports: [ BmbValueCounterComponent ],
-  templateUrl: './component.html',
-  styleUrl: './component.scss',
-})
-\`\`\`
-
-Below is an example of how you can use this component in HTML:
         `,
       },
     },
   },
   argTypes: {
-    label: {
-      name: 'Label',
-      control: 'text',
-      description: 'Label section content.',
-      table: {
-        type: { summary: 'string' },
-        defaultValue: { summary: '' },
-        category: 'Properties',
-      },
-    },
-    value: {
-      name: 'Value',
-      control: 'text',
-      description: 'Value section content.',
-      table: {
-        type: { summary: 'string' },
-        defaultValue: { summary: '' },
-        category: 'Properties',
-      },
-    },
-    progress: {
-      name: 'Progress',
-      control: {
-        type: 'text',
-      },
-      description: 'Progress value section content.',
-      table: {
-        type: { summary: 'string' },
-        defaultValue: { summary: '' },
-        category: 'Properties',
-      },
-    },
+    label: getLabelParamDesc('left'),
+    value: getLabelParamDesc('right', 'total value'),
+    progress: getLabelParamDesc('right', 'progress value'),
   },
   args: {
     label: 'Title',

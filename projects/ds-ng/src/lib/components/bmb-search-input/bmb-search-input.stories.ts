@@ -11,6 +11,7 @@ import {
 } from '../../utils/doc/utils';
 import {
   DBmbInputParamDesc,
+  getDefaultValueControl,
   getOnEventParam,
 } from '../../utils/doc/parameterDescriptions';
 
@@ -75,7 +76,7 @@ ${getBasicExampleBlock('BmbSearchInputComponent', '', onChange.handleExample)}
       description: 'Set the loading state.',
       table: {
         type: { summary: 'boolean' },
-        defaultValue: { summary: false },
+        defaultValue: getDefaultValueControl(false),
         category: 'Properties',
       },
     },
@@ -84,7 +85,7 @@ ${getBasicExampleBlock('BmbSearchInputComponent', '', onChange.handleExample)}
       description: 'Set the server side filter.',
       table: {
         type: { summary: 'boolean' },
-        defaultValue: { summary: false },
+        defaultValue: getDefaultValueControl(false),
         category: 'Properties',
       },
     },

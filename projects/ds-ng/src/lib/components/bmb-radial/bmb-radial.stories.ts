@@ -11,6 +11,7 @@ import {
 } from '../../utils/doc/utils';
 import {
   DBmbInputParamDesc,
+  getDefaultValueControl,
   getOnEventParam,
 } from '../../utils/doc/parameterDescriptions';
 
@@ -84,7 +85,7 @@ ${DBmbInputParamDesc.value.description}
 `,
       table: {
         category: 'Properties',
-        defaultValue: { summary: 'false' },
+        defaultValue: getDefaultValueControl(false),
         type: { summary: 'boolean' },
       },
     },
@@ -96,7 +97,7 @@ ${DBmbInputParamDesc.value.description}
       table: {
         category: 'Properties',
         type: { summary: 'string' },
-        defaultValue: { summary: '' },
+        defaultValue: getDefaultValueControl(),
       },
     },
     name: {

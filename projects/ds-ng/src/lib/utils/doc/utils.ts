@@ -331,6 +331,9 @@ export const getHTMLFormExampleTextBlock = (
 export const getSubStoryIdentifier = (isSubStory: boolean = false): string =>
   isSubStory ? '-' : '';
 
+export const getGeneralDocDescription = (generalDocLink: string): string =>
+  `Please remember to refer to the [Bamboo - General documentation](${generalDocLink}) for more details about it.`;
+
 export const getGeneralComponentDescription = (
   name: string,
   type: IBmbStoryType = 'component',
@@ -348,7 +351,7 @@ export const getGeneralDescription = (
 ## ${getSubStoryIdentifier(isSubStory)}${DESCRIPTION_TITLE}
 >${content}
 >
-${!!generalDocLink ? `>Please remember to refer to the [Bamboo - General documentation](${generalDocLink}) for more details about it.` : '>'}
+${!!generalDocLink ? `>${getGeneralDocDescription(generalDocLink)}` : '>'}
 
 <br/>
 `;
@@ -722,6 +725,8 @@ ${getBasicExampleBlock('')}
           'other'
         ),
 getPropertyParamDesc('')
+
+getDefaultValueControl(false)
 
 controls: { exclude: ['', ''] },
 controls: {

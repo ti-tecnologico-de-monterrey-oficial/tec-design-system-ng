@@ -2,7 +2,6 @@ import {
   componentWrapperDecorator,
   StoryObj,
   type Meta,
-  type StoryFn,
 } from '@storybook/angular';
 import {
   attributes,
@@ -20,6 +19,7 @@ import { BmbInputTagsComponent } from './bmb-input-tags.component';
 import {
   DBmbGenericParamDesc,
   DBmbInputParamDesc,
+  getDefaultValueControl,
   getOnEventParam,
 } from '../../utils/doc/parameterDescriptions';
 
@@ -133,7 +133,7 @@ ${getBasicExampleBlock('BmbInputTagsComponent', '', additionalBlock)}
       table: {
         category: 'Properties',
         type: { summary: 'string, string[]' },
-        defaultValue: { summary: '' },
+        defaultValue: getDefaultValueControl(),
       },
     },
     tooltip: DBmbInputParamDesc.tooltip,

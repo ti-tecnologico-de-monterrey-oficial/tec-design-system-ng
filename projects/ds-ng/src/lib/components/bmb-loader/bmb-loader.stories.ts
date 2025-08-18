@@ -9,6 +9,7 @@ import {
 import { BmbLoaderComponent } from './bmb-loader.component';
 import { IBbmBgAppearance } from '../bmb-advertisement-card/types';
 import {
+  getDefaultValueControl,
   getAppearanceParam,
   getOnClickParam,
   getPropertyParamDesc,
@@ -78,7 +79,7 @@ ${getBasicExampleBlock('BmbLoaderComponent')}
       description: 'Sets the subtitle, text displayed below the loader title.',
       table: {
         category: 'Properties',
-        defaultValue: { summary: '' },
+        defaultValue: getDefaultValueControl(),
         type: { summary: 'string' },
       },
     },
@@ -87,7 +88,7 @@ ${getBasicExampleBlock('BmbLoaderComponent')}
       description: 'Determines if the loader should display as an overlay.',
       table: {
         category: 'Properties',
-        defaultValue: { summary: 'false' },
+        defaultValue: getDefaultValueControl(false),
         type: { summary: 'boolean' },
       },
     },
@@ -96,7 +97,7 @@ ${getBasicExampleBlock('BmbLoaderComponent')}
       description: 'Controls the visibility of the loader.',
       table: {
         category: 'Properties',
-        defaultValue: { summary: 'true' },
+        defaultValue: getDefaultValueControl('true'),
         type: { summary: 'boolean' },
       },
     },
@@ -110,7 +111,7 @@ ${getBasicExampleBlock('BmbLoaderComponent')}
       table: {
         category: 'Properties',
         type: { summary: 'string' },
-        defaultValue: { summary: 'wifi_off' },
+        defaultValue: getDefaultValueControl('wifi_off'),
       },
     },
     actions: {
@@ -118,7 +119,7 @@ ${getBasicExampleBlock('BmbLoaderComponent')}
       description: 'Enables or disables the display of action buttons.',
       table: {
         category: 'Properties',
-        defaultValue: { summary: 'false' },
+        defaultValue: getDefaultValueControl(false),
         type: { summary: 'boolean' },
       },
     },
@@ -130,7 +131,7 @@ ${getBasicExampleBlock('BmbLoaderComponent')}
       table: {
         category: 'Properties',
         type: { summary: 'string' },
-        defaultValue: { summary: '' },
+        defaultValue: getDefaultValueControl(),
       },
     },
     buttonSecondary: {
@@ -141,7 +142,7 @@ ${getBasicExampleBlock('BmbLoaderComponent')}
       table: {
         category: 'Properties',
         type: { summary: 'string' },
-        defaultValue: { summary: '' },
+        defaultValue: getDefaultValueControl(),
       },
     },
     onButtonPrimary: getOnClickParam(getOnEvent('primary', 'onButtonPrimary')),
@@ -153,7 +154,7 @@ ${getBasicExampleBlock('BmbLoaderComponent')}
       description: 'Indicates if the loader should be shown inline',
       table: {
         category: 'Properties',
-        defaultValue: { summary: 'false' },
+        defaultValue: getDefaultValueControl(false),
         type: { summary: 'boolean' },
       },
     },

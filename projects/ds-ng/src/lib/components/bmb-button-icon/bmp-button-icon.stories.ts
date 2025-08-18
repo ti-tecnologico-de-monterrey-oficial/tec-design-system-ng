@@ -14,6 +14,8 @@ import {
 import {
   DBmbGenericParamDesc,
   DBmbIconParamDesc,
+  getAppearanceParam,
+  getDefaultValueControl,
   getOnClickParam,
 } from '../../utils/doc/parameterDescriptions';
 
@@ -37,17 +39,11 @@ ${getBasicExampleBlock('BmbButtonIconComponent', '', onEvent.handleExample)}
     },
   },
   argTypes: {
-    appearanceContrast: {
-      control: {
-        type: 'select',
-      },
-      options: ['default', 'primary', 'alternative'],
-      description: 'Defines the appearance style.',
-      table: {
-        category: 'Properties',
-        type: { summary: 'string' },
-      },
-    },
+    appearanceContrast: getAppearanceParam(
+      'button icon',
+      ['default', 'primary', 'alternative'],
+      'default',
+    ),
     idElement: DBmbGenericParamDesc.uniqueId,
     icon: DBmbIconParamDesc.icon,
     showContainer: {
@@ -55,7 +51,7 @@ ${getBasicExampleBlock('BmbButtonIconComponent', '', onEvent.handleExample)}
       description: 'Sets the flag to show the container when true.',
       table: {
         category: 'Properties',
-        defaultValue: { summary: 'true' },
+        defaultValue: getDefaultValueControl(true),
         type: { summary: 'boolean (optional)' },
       },
     },
@@ -68,7 +64,7 @@ ${RELEVANT_TITLE_LEVEL[2]} \`showContainer\` must also be true.
       `,
       table: {
         category: 'Properties',
-        defaultValue: { summary: 'true' },
+        defaultValue: getDefaultValueControl(true),
         type: { summary: 'boolean (optional)' },
       },
     },
@@ -82,7 +78,7 @@ ${RELEVANT_TITLE_LEVEL[2]} \`showContainer\` must also be true.
       table: {
         category: 'Properties',
         type: { summary: 'boolean' },
-        defaultValue: { summary: 'false' },
+        defaultValue: getDefaultValueControl(false),
       },
     },
     onButtonClick: getOnClickParam(onEvent),

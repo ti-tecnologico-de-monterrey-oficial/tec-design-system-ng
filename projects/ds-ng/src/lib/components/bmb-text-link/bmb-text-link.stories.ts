@@ -8,6 +8,7 @@ import {
 import {
   DBmbGenericParamDesc,
   DBmbIconParamDesc,
+  getDefaultValueControl,
 } from '../../utils/doc/parameterDescriptions';
 
 export default {
@@ -45,7 +46,7 @@ ${getBasicExampleBlock('BmbTextLinkComponent')}
       table: {
         category: 'Properties',
         type: { summary: 'radio' },
-        defaultValue: { summary: 'icon' },
+        defaultValue: getDefaultValueControl('icon'),
       },
     },
     target: DBmbGenericParamDesc.target,
@@ -53,7 +54,7 @@ ${getBasicExampleBlock('BmbTextLinkComponent')}
       ...DBmbIconParamDesc.icon,
       table: {
         ...DBmbIconParamDesc.icon.table,
-        defaultValue: { summary: 'arrow_forward' },
+        defaultValue: getDefaultValueControl('arrow_forward'),
       },
     },
     iconPosition: {
@@ -65,7 +66,7 @@ ${getBasicExampleBlock('BmbTextLinkComponent')}
       table: {
         category: 'Properties',
         type: { summary: 'string' },
-        defaultValue: { summary: 'right' },
+        defaultValue: getDefaultValueControl('right'),
       },
     },
     link: DBmbGenericParamDesc.link,

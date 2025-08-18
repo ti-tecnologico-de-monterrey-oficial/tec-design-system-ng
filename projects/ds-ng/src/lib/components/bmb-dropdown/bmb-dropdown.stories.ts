@@ -21,6 +21,7 @@ import {
 import { BmbFormValidatorComponent } from '../bmb-form-validator/bmb-form-validator.component';
 import {
   DBmbInputParamDesc,
+  getDefaultValueControl,
   getOnEventParam,
 } from '../../utils/doc/parameterDescriptions';
 
@@ -134,7 +135,7 @@ Shows the icon assigned in the \`icon\` property when true.
       table: {
         category: 'Properties',
         type: { summary: 'boolean' },
-        defaultValue: { summary: 'false' },
+        defaultValue: getDefaultValueControl(false),
       },
     },
     placeholder: DBmbInputParamDesc.placeholder,
@@ -174,7 +175,7 @@ The \`isFilterable\` is not compatible with the \`isMultiSelect\`.
 If you set the \`isMultiSelect\` property to true, the \`isFilterable\` property will be ignored.`,
       table: {
         category: 'Properties',
-        defaultValue: { summary: 'false' },
+        defaultValue: getDefaultValueControl(false),
         type: { summary: 'boolean' },
       },
     },
@@ -232,7 +233,7 @@ If the data is a list of  IBmbDropdownItem type, the preferred options should be
       table: {
         category: 'Properties',
         type: { summary: 'boolean' },
-        defaultValue: { summary: 'false' },
+        defaultValue: getDefaultValueControl(false),
       },
     },
     inputId: DBmbInputParamDesc.inputId,

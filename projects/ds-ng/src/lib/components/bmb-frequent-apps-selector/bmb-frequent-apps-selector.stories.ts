@@ -10,6 +10,7 @@ import {
   getSpecialSpecifications,
 } from '../../utils/doc/utils';
 import {
+  getDefaultValueControl,
   getAppearanceDescription,
   getOnClickParam,
   getPropertyParamDesc,
@@ -142,7 +143,7 @@ IBmbInteractiveIconAppearance =
       description: 'Sets the layout behavior.',
       table: {
         category: 'Properties',
-        defaultValue: { summary: 'regular' },
+        defaultValue: getDefaultValueControl('regular'),
         type: {
           summary: 'IBmbInteractiveIconType',
           detail: `IBmbInteractiveIconType = 'regular' | 'button' | 'app_drawer'`,

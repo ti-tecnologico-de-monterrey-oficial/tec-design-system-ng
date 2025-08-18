@@ -12,6 +12,7 @@ import {
   DBmbGenericParamDesc,
   DBmbIconParamDesc,
   getAppearanceParam,
+  getDefaultValueControl,
   ON_BUTTON_CLICK,
 } from '../../utils/doc/parameterDescriptions';
 
@@ -70,17 +71,11 @@ ${getBasicExampleBlock('BmbInteractiveIconComponent', ON_BUTTON_CLICK.handleExam
     },
   },
   argTypes: {
-    appearanceContrast: {
-      control: {
-        type: 'select',
-      },
-      options: ['default', 'primary', 'alternative'],
-      description: 'Defines the appearance style.',
-      table: {
-        category: 'Properties',
-        type: { summary: 'string' },
-      },
-    },
+    appearanceContrast: getAppearanceParam(
+      'contrast to be applied to the interactive icon',
+      ['default', 'primary', 'alternative'],
+      'default',
+    ),
     dotNotification: DBmbIconParamDesc.iconDotNotification,
     title: {
       control: {
@@ -89,6 +84,7 @@ ${getBasicExampleBlock('BmbInteractiveIconComponent', ON_BUTTON_CLICK.handleExam
       description: 'Sets the title of the interactive icon.',
       table: {
         category: 'Properties',
+        defaultValue: getDefaultValueControl(),
         type: { summary: 'string' },
       },
     },
@@ -99,6 +95,7 @@ ${getBasicExampleBlock('BmbInteractiveIconComponent', ON_BUTTON_CLICK.handleExam
       description: 'Sets the description of the interactive icon.',
       table: {
         category: 'Properties',
+        defaultValue: getDefaultValueControl(),
         type: { summary: 'string' },
       },
     },
@@ -106,7 +103,7 @@ ${getBasicExampleBlock('BmbInteractiveIconComponent', ON_BUTTON_CLICK.handleExam
       ...DBmbIconParamDesc.icon,
       table: {
         ...DBmbIconParamDesc.icon.table,
-        defaultValue: { summary: 'face' },
+        defaultValue: getDefaultValueControl('face'),
       },
     },
     appearance: getAppearanceParam(
@@ -122,7 +119,7 @@ ${getBasicExampleBlock('BmbInteractiveIconComponent', ON_BUTTON_CLICK.handleExam
         'Sets the horizontal orientation when true. This property is effective when you want to include a description with a horizontal orientation.',
       table: {
         category: 'Properties',
-        defaultValue: { summary: 'false' },
+        defaultValue: getDefaultValueControl(false),
         type: { summary: 'boolean' },
       },
     },
@@ -134,6 +131,7 @@ ${getBasicExampleBlock('BmbInteractiveIconComponent', ON_BUTTON_CLICK.handleExam
       description: 'Sets the layout behavior.',
       table: {
         category: 'Properties',
+        defaultValue: getDefaultValueControl(),
         type: { summary: 'string' },
       },
     },

@@ -10,6 +10,7 @@ import {
   getGeneralComponentDescription,
   getGeneralDescription,
 } from '../../utils/doc/utils';
+import { getDefaultValueControl } from '../../utils/doc/parameterDescriptions';
 
 export default {
   title: 'Components/Menus/Breadcrumb',
@@ -101,7 +102,7 @@ ${getBasicExampleBlock('BmbBreadcrumbComponent')}
         'Sets the toggles between top bar breadcrumb style and local navigation style.',
       table: {
         category: 'Properties',
-        defaultValue: { summary: 'false' },
+        defaultValue: getDefaultValueControl(false),
         type: { summary: 'boolean' },
       },
     },
@@ -111,7 +112,7 @@ ${getBasicExampleBlock('BmbBreadcrumbComponent')}
         'Sets a flag to indicate whether the local navigation is inactive or not.<br/>Sets inactive when true.',
       table: {
         category: 'Properties',
-        defaultValue: { summary: 'false' },
+        defaultValue: getDefaultValueControl(false),
         type: { summary: 'boolean' },
       },
     },
@@ -121,7 +122,7 @@ ${getBasicExampleBlock('BmbBreadcrumbComponent')}
         'Sets a flag to indicate whether the dropdown is open.<br/>The dropdown is open when true.',
       table: {
         category: 'Properties',
-        defaultValue: { summary: 'false' },
+        defaultValue: getDefaultValueControl(false),
         type: { summary: 'boolean' },
       },
     },

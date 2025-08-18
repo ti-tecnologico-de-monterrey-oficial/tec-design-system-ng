@@ -10,6 +10,7 @@ import { BmbItemComponent } from '../bmb-item/bmb-item.component';
 import {
   DBmbGenericParamDesc,
   DBmbHomeCardParamDesc,
+  getDefaultValueControl,
 } from '../../utils/doc/parameterDescriptions';
 
 export default {
@@ -47,7 +48,7 @@ ${getBasicExampleBlock('BmbActionMenuComponent')}
       table: {
         category: 'Properties',
         type: { summary: 'boolean (optional)' },
-        defaultValue: { summary: 'true' },
+        defaultValue: getDefaultValueControl(true),
       },
     },
     projectedContent: {

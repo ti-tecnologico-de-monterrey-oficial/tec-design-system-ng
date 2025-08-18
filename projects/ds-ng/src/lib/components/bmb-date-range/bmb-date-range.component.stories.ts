@@ -11,6 +11,7 @@ import {
   getControlDescription,
   DBmbInputParamDesc,
   DBmbGenericParamDesc,
+  getDefaultValueControl,
 } from '../../utils/doc/parameterDescriptions';
 
 const inputName = 'date_range';
@@ -102,7 +103,10 @@ ${getBasicExampleBlock('BmbDateRangeComponent')}
       ),
       table: {
         ...DBmbInputParamDesc.placeholder.table,
-        defaultValue: { summary: 'value assigned to the dateFormat property' },
+        defaultValue: {
+          summary: 'value assigned to the dateFormat property',
+          detail: getDefaultValueControl,
+        },
       },
     },
     placeholderEndDate: {
@@ -113,14 +117,20 @@ ${getBasicExampleBlock('BmbDateRangeComponent')}
       ),
       table: {
         ...DBmbInputParamDesc.placeholder.table,
-        defaultValue: { summary: 'value assigned to the dateFormat property' },
+        defaultValue: {
+          summary: 'value assigned to the dateFormat property',
+          detail: getDefaultValueControl,
+        },
       },
     },
     icon: {
       ...DBmbInputParamDesc.icon,
       table: {
         ...DBmbInputParamDesc.icon.table,
-        defaultValue: { summary: 'calendar_month' },
+        defaultValue: {
+          summary: 'calendar_month',
+          detail: getDefaultValueControl,
+        },
       },
     },
     invalidFormatErrorMessage: DBmbInputParamDesc.invalidFormatErrorMessage,
@@ -183,7 +193,7 @@ The name of the \`FormControl\` must consist of the name assigned in the \`name\
 
       table: {
         category: 'Properties',
-        defaultValue: { summary: 'false' },
+        defaultValue: getDefaultValueControl(false),
         type: { summary: 'boolean' },
       },
     },
