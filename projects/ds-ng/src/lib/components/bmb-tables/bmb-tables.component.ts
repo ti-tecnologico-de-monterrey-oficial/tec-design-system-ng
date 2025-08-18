@@ -45,7 +45,11 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { SelectionModel } from '@angular/cdk/collections';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { BmbCheckboxComponent } from '../bmb-checkbox/bmb-checkbox.component';
-import { TableColum, TableConfig } from './bmb-tables.interface';
+import {
+  IBmbFiltersPosition,
+  TableColum,
+  TableConfig,
+} from './bmb-tables.interface';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { BmbInputComponent } from '../bmb-input/bmb-input.component';
@@ -140,6 +144,7 @@ export class BmbTablesComponent implements AfterViewInit, OnInit, OnChanges {
   serverSide = input<boolean>(false);
   currentPage = model<number>(0);
   filtersVisible = model<boolean>(false);
+  filtersPosition = input<IBmbFiltersPosition>('top');
 
   @Output() select: EventEmitter<any> = new EventEmitter();
   @Output() clickedRow: EventEmitter<any> = new EventEmitter();
@@ -161,6 +166,10 @@ export class BmbTablesComponent implements AfterViewInit, OnInit, OnChanges {
   onResize(event: any) {
     this.setTableResize(this.matTableRef!.nativeElement.clientWidth);
   }
+
+  parsedFiltersColumns = computed(() =>
+    this.columns().filter((column) => column.isFilterable !== false),
+  );
 
   constructor(
     private renderer: Renderer2,
@@ -633,5 +642,23 @@ export class BmbTablesComponent implements AfterViewInit, OnInit, OnChanges {
       pageIndex: last + 1,
       pageSize: this.resolvedPageSize,
     });
+  }
+
+  getTableClasses(): string[] {
+    const classList = ['bmb_table'];
+    switch (this.filtersPosition()) {
+      case 'right':
+        classList.push('bmb_table-filters-right');
+        break;
+      case 'bottom':
+        classList.push('bmb_table-filters-bottom');
+        break;
+      case 'left':
+        classList.push('bmb_table-filters-left');
+        break;
+      default:
+        classList.push('bmb_table-filters-top');
+    }
+    return classList;
   }
 }
