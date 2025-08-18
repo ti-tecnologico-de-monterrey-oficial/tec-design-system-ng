@@ -1,23 +1,17 @@
 <ng-template #tag>
   <span class="bmb_tag-text">{{ text() }}</span>
-  @if (dismissible() && !activityTag()) {
+  @if (dismissible()) {
     <bmb-icon
       [size]="16"
       class="bmb_tag-btn"
       (click)="closeTag(text())"
       [icon]="'close'"
-      [tabindex]="dismissible() && !activityTag() && !isDisabled() ? 0 : -1"
     />
   }
 </ng-template>
 
-@if (activityTag()) {
-  <div [ngClass]="getClasses()">
-    <ng-container [ngTemplateOutlet]="tag" />
-  </div>
-} @else {
+@if (dismissible()) {
   <button
-    [tabindex]="dismissible() && !activityTag() && !isDisabled() ? -1: 0"
     type="button"
     [disabled]="isDisabled()"
     [ngClass]="getClasses()"
@@ -25,4 +19,8 @@
   >
     <ng-container [ngTemplateOutlet]="tag" />
   </button>
+} @else {
+  <div [ngClass]="getClasses()">
+    <ng-container [ngTemplateOutlet]="tag" />
+  </div>
 }

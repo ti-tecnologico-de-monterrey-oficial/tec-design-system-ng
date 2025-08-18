@@ -49,7 +49,7 @@ export class BmbTagComponent implements AfterViewInit {
   grouped = input<boolean>(false);
   dismissible = input<boolean>(false);
   rounded = input<boolean>(false);
-  activityTag = input<boolean>(false);
+  activityTag = input<boolean>(false); //Disable
   isDisabled = input<boolean>(false);
   isActive = input<boolean>(false);
 
@@ -86,9 +86,10 @@ export class BmbTagComponent implements AfterViewInit {
       `bmb_tag-${this.appearance()}`,
     ];
 
-    if (this.activityTag()) classes.push('bmb_tag-activity');
-
-    if (this.isActive()) classes.push('bmb_tag-active');
+    if (this.dismissible()) {
+      if (this.isActive()) classes.push('bmb_tag-active');
+      if (this.isDisabled()) classes.push('bmb_tag-disabled');
+    } else classes.push('bmb_tag-activity');
 
     return classes;
   }
