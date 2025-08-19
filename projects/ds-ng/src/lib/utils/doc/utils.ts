@@ -743,6 +743,8 @@ controls: {
         ],
       },
 
+tags: ['!autodocs'],
+
 import {
   Canvas,
   Controls,
@@ -786,6 +788,15 @@ export const Item = () => (
   ]}
   content={[<List />, <Item />]}
 />
+
+import { Meta } from "@storybook/addon-docs/blocks";
+
+import * as listStory from "./bmb-list-group.stories";
+import * as itemStory from "./bmb-list-group-item/bmb-list-group-item.stories";
+import { ListTemplate } from "../../../DocComponents/ListTemplate.mdx";
+
+<Meta of={listStory} />
+<ListTemplate>{itemStory}</ListTemplate>
 
 
   isSubStory: boolean = false,

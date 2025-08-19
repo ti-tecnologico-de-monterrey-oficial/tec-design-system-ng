@@ -102,7 +102,8 @@ class StorybookModalWrapperComponent {
 }
 
 export default {
-  title: 'Components/Containers/Modal',
+  title: 'Components/Containers/Modal (LTS)',
+  tags: ['!autodocs'],
   component: BmbModalComponent,
   decorators: [
     moduleMetadata({
@@ -148,9 +149,11 @@ ${getGeneralDescription(
   `***Modal*** is a pop-up window that helps display additional information or perform actions without changing the main page. ${DESIGN_SYSTEM_TITLE} ***Modal*** supports various configurations such as alert styles, custom content (string or template),
  and primary/secondary actions.`,
   'https://bamboo.tec.mx/latest/componentes/modal/descripcion-general-sLOq8HIt',
+  true,
 )}
-${getSpecialSpecifications(`
-### 🟣 Modal Usage with String Content
+${getSpecialSpecifications(
+  `
+### 🟣 -Modal Usage with String Content
 >
 The simplest way to use the \`BmbModalComponent\` is by providing a plain text as content:
 >
@@ -177,7 +180,7 @@ openModal() {
 >
 ---
 >
-### 🟢 Modal Usage with TemplateRef Content (Recommended for complex content)
+### 🟢 -Modal Usage with TemplateRef Content (Recommended for complex content)
 >
 If you need to render custom components, inputs, or forms inside the modal, you can pass a \`TemplateRef\` instead of a plain string.
 >
@@ -185,7 +188,7 @@ This behavior is automatically detected internally using the \`isModalTemplate()
 >
 ---
 >
-### Example Template:
+### -Example Template:
 \`\`\`typescript
 @ViewChild('modalTemplate') modalTemplate!: TemplateRef<any>;
 >
@@ -219,14 +222,16 @@ openModalTemplate() {
 <button (click)="openModalTemplate()">Open Modal</button>
 \`\`\`
 >
-###${RELEVANT_TITLE_LEVEL[2]}
+###-${RELEVANT_TITLE_LEVEL[2]}
 >
 Make sure you are using:
 >
 \`\`\`typescript
 constructor(private matDialog: MatDialog) {}
 \`\`\`
-`)}
+`,
+  true,
+)}
 ${getBasicExampleBlock(
   'BmbModalComponent',
   `import { TemplateRef } from '@angular/core';
@@ -247,7 +252,7 @@ ${getBasicExampleBlock(
       }
     });
   }`,
-  false,
+  true,
   '',
   'MatDialog',
   '@angular/material/dialog',
