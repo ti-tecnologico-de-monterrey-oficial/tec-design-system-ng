@@ -27,6 +27,21 @@ async function runDockerCommands(version) {
       `docker cp temp-container-${version}:/ds-ng ./dist/ds-ng-${version}`,
     );
     console.log("Files copied successfully");
+
+    // 5. Modify package.json
+    const packageJsonPath = `./dist/ds-ng-${version}/ds-ng/package.json`;
+    const packageJsonRaw = await fs.promises.readFile(packageJsonPath, "utf-8");
+    const packageJson = JSON.parse(packageJsonRaw);
+    // 5.1 Update version: "1.5.10" -> "1.5.10-17-d"
+    const currentVersion = packageJson.version;
+    packageJson.version = currentVersion.replace("{angularVersion}", version);
+
+    await fs.promises.writeFile(
+      packageJsonPath,
+      JSON.stringify(packageJson, null, 2),
+      "utf-8",
+    );
+    console.log(`package.json updated: version set to ${packageJson.version}`);
   } catch (error) {
     console.error("Error:", error.message);
   } finally {

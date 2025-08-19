@@ -10,7 +10,7 @@ export * from '../components/bmb-alert-center/types';
 export * from '../components/bmb-chat-bubbles/types';
 export * from '../components/bmb-sidebar/bmb-sidebar.interface';
 export * from '../components/bmb-grades/types';
-export * from '../components/bmb-tables/bmb-tables.interface'
+export * from '../components/bmb-tables/bmb-tables.interface';
 
 export type SizeNames = 'xs' | 's' | 'm' | 'l' | 'xl' | 'none' | 'auto';
 export type IButtonAppearance =

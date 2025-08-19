@@ -16,7 +16,13 @@ import { BmbLayoutItemDirective } from '../../directives/bmb-layout/bmb-layout-i
   template: `
     <section bmbLayout alignItems="center">
       <h4 bmbLayoutItem [isDynamicItem]="true" [colGrow]="1">{{ title() }}</h4>
-      <span [style.color]="iconAlternativeColor() ? 'var(--buttons-primary-normal)' : 'currentColor'">
+      <span
+        [style.color]="
+          iconAlternativeColor()
+            ? 'var(--buttons-primary-normal)'
+            : 'currentColor'
+        "
+      >
         <bmb-action-icon
           [icon]="icon()"
           [iconSize]="24"
