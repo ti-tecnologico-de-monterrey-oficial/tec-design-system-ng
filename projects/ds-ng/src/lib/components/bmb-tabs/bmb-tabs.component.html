@@ -15,7 +15,7 @@
       (scroll)="scrollEvent($event)"
     >
       @for (tab of tabs(); track $index) {
-        <li role="none">
+        <li role="none" class="bmb_tabs-item-li">
           <button
             role="tab"
             [attr.aria-selected]="$index === selectedTabId() - 1"

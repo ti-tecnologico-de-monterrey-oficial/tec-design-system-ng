@@ -253,99 +253,94 @@
           ></tr>
         </ng-container>
       </table>
-
     </section>
     <!-- Paginator -->
-      <ng-container *ngIf="tableConfig?.isPaginable" sticky>
-        <mat-paginator
-          #paginator
-          [length]="totalItems()"
-          [pageSize]="this.pageSize()"
-          [hidePageSize]="true"
-          (page)="onPageEvent($event)"
+    <ng-container *ngIf="tableConfig?.isPaginable" sticky>
+      <mat-paginator
+        #paginator
+        [length]="totalItems()"
+        [pageSize]="this.pageSize()"
+        [hidePageSize]="true"
+        (page)="onPageEvent($event)"
+      >
+      </mat-paginator>
+
+      <div class="bmb_table-paginator">
+        <span class="bmb_table-paginator-text">{{ getPaginationText() }}</span>
+
+        <button
+          [disabled]="
+            serverSide() ? currentPage() === 0 : !paginator?.hasPreviousPage()
+          "
+          [ngClass]="{
+            'bmb_table-paginator-btn-disabled': serverSide()
+              ? currentPage() === 0
+              : !paginator?.hasPreviousPage(),
+          }"
+          (click)="serverSide() ? goToFirstPage() : paginator.firstPage()"
+          class="bmb_table-paginator-btn"
         >
-        </mat-paginator>
-
-        <div class="bmb_table-paginator">
-          <span class="bmb_table-paginator-text">{{
-            getPaginationText()
-          }}</span>
-
-          <button
-            [disabled]="
-              serverSide() ? currentPage() === 0 : !paginator?.hasPreviousPage()
-            "
-            [ngClass]="{
-              'bmb_table-paginator-btn-disabled': serverSide()
-                ? currentPage() === 0
-                : !paginator?.hasPreviousPage(),
-            }"
-            (click)="serverSide() ? goToFirstPage() : paginator.firstPage()"
-            class="bmb_table-paginator-btn"
-          >
-            <bmb-icon
-              icon="keyboard_double_arrow_left"
-              class="bmb_table-paginator-icon"
-            />
-          </button>
-          <button
-            [disabled]="
-              serverSide() ? currentPage() === 0 : !paginator?.hasPreviousPage()
-            "
-            [ngClass]="{
-              'bmb_table-paginator-btn-disabled': serverSide()
-                ? currentPage() === 0
-                : !paginator?.hasPreviousPage(),
-            }"
-            (click)="
-              serverSide() ? goToPreviousPage() : paginator.previousPage()
-            "
-            class="bmb_table-paginator-btn"
-          >
-            <bmb-icon
-              icon="keyboard_arrow_left"
-              class="bmb_table-paginator-icon"
-            />
-          </button>
-          <button
-            [disabled]="
-              serverSide()
-                ? currentPage() >= lastPage()
-                : !paginator?.hasNextPage()
-            "
-            [ngClass]="{
-              'bmb_table-paginator-btn-disabled': serverSide()
-                ? currentPage() >= lastPage()
-                : !paginator?.hasNextPage(),
-            }"
-            (click)="serverSide() ? goToNextPage() : paginator.nextPage()"
-            class="bmb_table-paginator-btn"
-          >
-            <bmb-icon
-              icon="keyboard_arrow_right"
-              class="bmb_table-paginator-icon"
-            />
-          </button>
-          <button
-            [disabled]="
-              serverSide()
-                ? currentPage() >= lastPage()
-                : !paginator?.hasNextPage()
-            "
-            [ngClass]="{
-              'bmb_table-paginator-btn-disabled': serverSide()
-                ? currentPage() >= lastPage()
-                : !paginator?.hasNextPage(),
-            }"
-            (click)="serverSide() ? goToLastPage() : paginator.lastPage()"
-            class="bmb_table-paginator-btn"
-          >
-            <bmb-icon
-              icon="keyboard_double_arrow_right"
-              class="bmb_table-paginator-icon"
-            />
-          </button>
-        </div>
-      </ng-container>
+          <bmb-icon
+            icon="keyboard_double_arrow_left"
+            class="bmb_table-paginator-icon"
+          />
+        </button>
+        <button
+          [disabled]="
+            serverSide() ? currentPage() === 0 : !paginator?.hasPreviousPage()
+          "
+          [ngClass]="{
+            'bmb_table-paginator-btn-disabled': serverSide()
+              ? currentPage() === 0
+              : !paginator?.hasPreviousPage(),
+          }"
+          (click)="serverSide() ? goToPreviousPage() : paginator.previousPage()"
+          class="bmb_table-paginator-btn"
+        >
+          <bmb-icon
+            icon="keyboard_arrow_left"
+            class="bmb_table-paginator-icon"
+          />
+        </button>
+        <button
+          [disabled]="
+            serverSide()
+              ? currentPage() >= lastPage()
+              : !paginator?.hasNextPage()
+          "
+          [ngClass]="{
+            'bmb_table-paginator-btn-disabled': serverSide()
+              ? currentPage() >= lastPage()
+              : !paginator?.hasNextPage(),
+          }"
+          (click)="serverSide() ? goToNextPage() : paginator.nextPage()"
+          class="bmb_table-paginator-btn"
+        >
+          <bmb-icon
+            icon="keyboard_arrow_right"
+            class="bmb_table-paginator-icon"
+          />
+        </button>
+        <button
+          [disabled]="
+            serverSide()
+              ? currentPage() >= lastPage()
+              : !paginator?.hasNextPage()
+          "
+          [ngClass]="{
+            'bmb_table-paginator-btn-disabled': serverSide()
+              ? currentPage() >= lastPage()
+              : !paginator?.hasNextPage(),
+          }"
+          (click)="serverSide() ? goToLastPage() : paginator.lastPage()"
+          class="bmb_table-paginator-btn"
+        >
+          <bmb-icon
+            icon="keyboard_double_arrow_right"
+            class="bmb_table-paginator-icon"
+          />
+        </button>
+      </div>
+    </ng-container>
   </div>
 </div>
