@@ -1,6 +1,10 @@
 <!-- Template for element -->
 <ng-template #elementTemplate let-element="element">
-  <bmb-icon class="bmb_sidebar-icon" [icon]="element?.icon!" />
+  <bmb-icon
+    class="bmb_sidebar-icon"
+    [icon]="element?.icon!"
+    [alt]="element.title"
+  />
   <span class="bmb_sidebar-text">{{ element!.title }}</span>
 </ng-template>
 

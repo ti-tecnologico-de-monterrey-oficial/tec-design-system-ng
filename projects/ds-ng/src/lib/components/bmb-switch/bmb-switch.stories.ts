@@ -117,8 +117,8 @@ ${getBasicExampleBlock('BmbSwitchComponent', '', onChange.handleExample)}
     control: DBmbInputParamDesc.control,
   },
   args: {
-    inputId: '',
-    name: '',
+    inputId: 'testId',
+    name: 'testName',
     leftText: 'Light',
     rightText: 'Dark',
     leftIcon: '',
