@@ -103,10 +103,9 @@ ${getBasicExampleBlock('BmbDateRangeComponent')}
       ),
       table: {
         ...DBmbInputParamDesc.placeholder.table,
-        defaultValue: {
-          summary: 'value assigned to the dateFormat property',
-          detail: getDefaultValueControl,
-        },
+        defaultValue: getDefaultValueControl(
+          'value assigned to the dateFormat property',
+        ),
       },
     },
     placeholderEndDate: {
@@ -117,20 +116,16 @@ ${getBasicExampleBlock('BmbDateRangeComponent')}
       ),
       table: {
         ...DBmbInputParamDesc.placeholder.table,
-        defaultValue: {
-          summary: 'value assigned to the dateFormat property',
-          detail: getDefaultValueControl,
-        },
+        defaultValue: getDefaultValueControl(
+          'value assigned to the dateFormat property',
+        ),
       },
     },
     icon: {
       ...DBmbInputParamDesc.icon,
       table: {
         ...DBmbInputParamDesc.icon.table,
-        defaultValue: {
-          summary: 'calendar_month',
-          detail: getDefaultValueControl,
-        },
+        defaultValue: getDefaultValueControl('calendar_month'),
       },
     },
     invalidFormatErrorMessage: DBmbInputParamDesc.invalidFormatErrorMessage,
@@ -199,7 +194,6 @@ The name of the \`FormControl\` must consist of the name assigned in the \`name\
     },
     inputId: DBmbInputParamDesc.inputId,
   },
-
   args: {
     inputId: '',
     name: 'custom_date_picker',

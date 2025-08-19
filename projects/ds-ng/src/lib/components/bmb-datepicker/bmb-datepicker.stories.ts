@@ -105,10 +105,7 @@ ${getBasicExampleBlock('BmbDatepickerComponent', '', onChange.handleExample)}
       ...DBmbInputParamDesc.icon,
       table: {
         ...DBmbInputParamDesc.icon.table,
-        defaultValue: {
-          summary: 'calendar_month',
-          detail: getDefaultValueControl,
-        },
+        defaultValue: getDefaultValueControl('calendar_month'),
       },
     },
     invalidFormatErrorMessage: DBmbInputParamDesc.invalidFormatErrorMessage,
@@ -118,10 +115,9 @@ ${getBasicExampleBlock('BmbDatepickerComponent', '', onChange.handleExample)}
       ...DBmbInputParamDesc.placeholder,
       table: {
         ...DBmbInputParamDesc.placeholder.table,
-        defaultValue: {
-          summary: 'value assigned to the dateFormat property',
-          detail: getDefaultValueControl,
-        },
+        defaultValue: getDefaultValueControl(
+          'value assigned to the dateFormat property',
+        ),
       },
     },
     disabled: DBmbInputParamDesc.disabled,
@@ -175,17 +171,13 @@ This date must have the same format as \`dateFormat\`.
       ...DBmbInputParamDesc.helperMessage,
       table: {
         ...DBmbInputParamDesc.helperMessage.table,
-        defaultValue: {
-          summary: 'value assigned to the dateFormat property',
-          detail: getDefaultValueControl,
-        },
+        defaultValue: getDefaultValueControl(),
       },
     },
     value: DBmbInputParamDesc.value,
     inputId: DBmbInputParamDesc.inputId,
     onChange: getOnEventParam(onChange),
   },
-
   args: {
     inputId: '',
     name: '',

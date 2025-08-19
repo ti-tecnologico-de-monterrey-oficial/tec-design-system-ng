@@ -33,7 +33,8 @@ const onChange: IBmbOnEvent = getOnEvent(
   ),
   onKeyDown = getOnEvent('', `${formatName}KeyDown`, 'KeyboardEvent', true);
 const additionalBlock: string = `${onChange.handleExample}
-${onKeyDown.handleExample}`;
+>${onKeyDown.handleExample}
+>`;
 const inputExample = `<bmb-input-tags
   id="${inputName}_id"
   name="${inputName}"

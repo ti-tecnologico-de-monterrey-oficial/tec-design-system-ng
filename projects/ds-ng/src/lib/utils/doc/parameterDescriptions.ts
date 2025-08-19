@@ -246,7 +246,7 @@ export const getOnEventParam = (
 ) => {
   return {
     control: false,
-    description: `Emits the event ${eventType === 'change' || eventType === 'other' ? `${eventType === 'change' ? `when the ${onEvent.name} changed.` : ''}` : 'when a key is pressed while the input is focused.'}${additionalDescription}`,
+    description: `Emits the event ${eventType === 'change' || eventType === 'other' ? `${eventType === 'change' ? `when ${onEvent.name} changed.` : ''}` : 'when a key is pressed while the input is focused.'}${additionalDescription}`,
     table: {
       category: 'Events',
       defaultValue: false,
@@ -262,7 +262,7 @@ export const getOnClickParam = (
 ) =>
   getOnEventParam(
     onEvent,
-    `triggered after the ${onEvent.name} button is ${buttonEventType}${additionalDescription}.`,
+    `triggered after ${onEvent.name} button is ${buttonEventType}${additionalDescription}.`,
     'other',
   );
 
@@ -1204,10 +1204,9 @@ Adding the id using a property with the same name affects the operation of the f
     table: {
       category: 'Properties',
       type: { summary: 'string' },
-      defaultValue: {
-        summary: 'Por favor ingresa la fecha con formato [dateFormat]}',
-        detail: DEFAULT_VALUE_DETAIL,
-      },
+      defaultValue: getDefaultValueControl(
+        'Por favor ingresa la fecha con formato [\`dateFormat\`]}',
+      ),
     },
   },
   requiredFieldErrorMessage: {
@@ -1218,10 +1217,9 @@ Adding the id using a property with the same name affects the operation of the f
     table: {
       category: 'Properties',
       type: { summary: 'string' },
-      defaultValue: {
-        summary: 'Por favor ingresa la fecha de [label]',
-        detail: DEFAULT_VALUE_DETAIL,
-      },
+      defaultValue: getDefaultValueControl(
+        'Por favor ingresa la fecha de [\`label\`]',
+      ),
     },
   },
   onKeyDown: getOnEventParam(
