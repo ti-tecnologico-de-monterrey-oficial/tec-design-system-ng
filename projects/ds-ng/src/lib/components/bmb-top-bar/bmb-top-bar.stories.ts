@@ -8,6 +8,7 @@ import {
 } from '../../utils/doc/utils';
 import {
   DBmbGenericParamDesc,
+  getDefaultValueControl,
   getOnClickParam,
 } from '../../utils/doc/parameterDescriptions';
 
@@ -20,7 +21,7 @@ Shows the ${name} button when true and mitec version is active.
     table: {
       category: 'Properties',
       type: { summary: 'boolean' },
-      defaultValue: { summary: 'false' },
+      defaultValue: getDefaultValueControl(false),
     },
   };
 };
@@ -70,7 +71,7 @@ ${getBasicExampleBlock('BmbTopBarComponent')}
   role: string;
 }`,
         },
-        defaultValue: { summary: 'null' },
+        defaultValue: false,
       },
     },
     image: {
@@ -101,7 +102,7 @@ ${getBasicExampleBlock('BmbTopBarComponent')}
       table: {
         category: 'Properties',
         type: { summary: 'string' },
-        defaultValue: { summary: '' },
+        defaultValue: getDefaultValueControl(),
       },
     },
     lang: {
@@ -112,7 +113,7 @@ ${getBasicExampleBlock('BmbTopBarComponent')}
       table: {
         category: 'Properties',
         type: { summary: 'string' },
-        defaultValue: { summary: 'es' },
+        defaultValue: getDefaultValueControl('es'),
       },
     },
     mitec: {
@@ -123,7 +124,7 @@ ${getBasicExampleBlock('BmbTopBarComponent')}
       table: {
         type: { summary: 'boolean' },
         category: 'Properties',
-        defaultValue: { summary: false },
+        defaultValue: getDefaultValueControl(false),
       },
     },
     alertNotification: {

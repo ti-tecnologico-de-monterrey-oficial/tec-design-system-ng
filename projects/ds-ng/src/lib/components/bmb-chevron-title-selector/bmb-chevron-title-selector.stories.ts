@@ -9,11 +9,12 @@ import {
 } from '../../utils/doc/utils';
 import {
   DBmbIconParamDesc,
+  getDefaultValueControl,
   getOnClickParam,
   getPropertyParamDesc,
 } from '../../utils/doc/parameterDescriptions';
 
-const getIconParamDescription = (name: string, defaultValue: string = '') => {
+const getIconParamDescription = (name: string, defaultValue: string = '""') => {
   return {
     ...DBmbIconParamDesc.icon,
     description: DBmbIconParamDesc.icon.description.replace(
@@ -22,7 +23,7 @@ const getIconParamDescription = (name: string, defaultValue: string = '') => {
     ),
     table: {
       ...DBmbIconParamDesc.icon.table,
-      defaultValue: { summary: defaultValue },
+      defaultValue: getDefaultValueControl(defaultValue),
     },
   };
 };
@@ -78,7 +79,15 @@ ${getBasicExampleBlock('BmbChevronTitleSelectorComponent')}
     },
   },
   argTypes: {
-    title: getPropertyParamDesc('chevron selector'),
+    title: getPropertyParamDesc(
+      'chevron selector',
+      'text',
+      '""',
+      '',
+      '',
+      '',
+      'string (required)',
+    ),
     leadingIcon: getIconParamDescription('left', 'chevron_left'),
     trailingIcon: getIconParamDescription('right', 'chevron_right'),
     isDisabledLeadingIcon: getFlagParamDescription('left'),

@@ -10,6 +10,7 @@ import {
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
+import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
 
 export type IBmbActivityTags =
   | 'normal'
@@ -37,7 +38,7 @@ export type IBmbActivityTags =
 @Component({
   selector: 'bmb-tag',
   standalone: true,
-  imports: [CommonModule, BmbIconComponent],
+  imports: [CommonModule, BmbIconComponent, BmbActionIconComponent],
   styleUrl: './bmb-tags.component.scss',
   templateUrl: './bmb-tags.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -49,7 +50,7 @@ export class BmbTagComponent implements AfterViewInit {
   grouped = input<boolean>(false);
   dismissible = input<boolean>(false);
   rounded = input<boolean>(false);
-  activityTag = input<boolean>(false);
+  activityTag = input<boolean>(false); //Disable
   isDisabled = input<boolean>(false);
   isActive = input<boolean>(false);
 
@@ -86,9 +87,10 @@ export class BmbTagComponent implements AfterViewInit {
       `bmb_tag-${this.appearance()}`,
     ];
 
-    if (this.activityTag()) classes.push('bmb_tag-activity');
-
-    if (this.isActive()) classes.push('bmb_tag-active');
+    if (this.dismissible()) {
+      if (this.isActive()) classes.push('bmb_tag-active');
+      if (this.isDisabled()) classes.push('bmb_tag-disabled');
+    } else classes.push('bmb_tag-activity');
 
     return classes;
   }

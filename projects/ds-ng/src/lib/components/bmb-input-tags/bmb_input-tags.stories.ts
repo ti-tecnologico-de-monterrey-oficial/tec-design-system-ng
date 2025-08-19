@@ -2,7 +2,6 @@ import {
   componentWrapperDecorator,
   StoryObj,
   type Meta,
-  type StoryFn,
 } from '@storybook/angular';
 import {
   attributes,
@@ -20,6 +19,7 @@ import { BmbInputTagsComponent } from './bmb-input-tags.component';
 import {
   DBmbGenericParamDesc,
   DBmbInputParamDesc,
+  getDefaultValueControl,
   getOnEventParam,
 } from '../../utils/doc/parameterDescriptions';
 
@@ -33,7 +33,8 @@ const onChange: IBmbOnEvent = getOnEvent(
   ),
   onKeyDown = getOnEvent('', `${formatName}KeyDown`, 'KeyboardEvent', true);
 const additionalBlock: string = `${onChange.handleExample}
-${onKeyDown.handleExample}`;
+>${onKeyDown.handleExample}
+>`;
 const inputExample = `<bmb-input-tags
   id="${inputName}_id"
   name="${inputName}"
@@ -133,7 +134,7 @@ ${getBasicExampleBlock('BmbInputTagsComponent', '', additionalBlock)}
       table: {
         category: 'Properties',
         type: { summary: 'string, string[]' },
-        defaultValue: { summary: '' },
+        defaultValue: getDefaultValueControl(),
       },
     },
     tooltip: DBmbInputParamDesc.tooltip,

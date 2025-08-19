@@ -14,6 +14,7 @@ import {
   getSpecialSpecifications,
   RELEVANT_TITLE_LEVEL,
 } from '../../utils/doc/utils';
+import { getDefaultValueControl } from '../../utils/doc/parameterDescriptions';
 
 const LEVEL_DESCRIPTION = `${RELEVANT_TITLE_LEVEL[1]}
 There is a limit of two levels of nesting and the main list must have a maximum of two lists, the first has a limit of 5 elements and the second a limit of 3.`;
@@ -304,7 +305,7 @@ ${LEVEL_DESCRIPTION}
       table: {
         category: 'Properties',
         type: { summary: 'string' },
-        defaultValue: { summary: '' },
+        defaultValue: getDefaultValueControl(),
       },
     },
     position: {
@@ -319,7 +320,7 @@ ${LEVEL_DESCRIPTION}
           summary: 'IPositionButtonMenu',
           detail: `IPositionButtonMenu = 'left' | 'right'`,
         },
-        defaultValue: { summary: 'left' },
+        defaultValue: getDefaultValueControl('left'),
       },
     },
   },

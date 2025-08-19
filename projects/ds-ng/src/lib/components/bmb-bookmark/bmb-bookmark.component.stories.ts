@@ -5,6 +5,7 @@ import {
   getGeneralComponentDescription,
   getGeneralDescription,
 } from '../../utils/doc/utils';
+import { getDefaultValueControl } from '../../utils/doc/parameterDescriptions';
 
 export default {
   title: 'Components/Buttons/Bookmark',
@@ -30,7 +31,7 @@ ${getBasicExampleBlock('BmbBookmarkComponent')}
       table: {
         category: 'Properties',
         type: { summary: 'boolean' },
-        defaultValue: { summary: 'false' },
+        defaultValue: getDefaultValueControl(false),
       },
     },
   },

@@ -6,6 +6,7 @@ import {
   getGeneralComponentDescription,
   getGeneralDescription,
 } from '../../utils/doc/utils';
+import { getDefaultValueControl } from '../../utils/doc/parameterDescriptions';
 
 const inputName = 'text_editor';
 const inputExample = `<bmb-text-editor
@@ -59,7 +60,9 @@ ${getBasicExampleBlock('BmbTextEditorComponent')}
       table: {
         category: 'Properties',
         type: { summary: 'FormControl' },
-        defaultValue: { summary: "FormControl('', Validators.required)" },
+        defaultValue: getDefaultValueControl(
+          "FormControl('', Validators.required)",
+        ),
       },
     },
   },

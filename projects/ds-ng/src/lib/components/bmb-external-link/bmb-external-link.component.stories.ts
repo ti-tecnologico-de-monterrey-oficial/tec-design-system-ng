@@ -1,122 +1,102 @@
 import { Meta, StoryObj } from '@storybook/angular';
 import { BmbExternalLinkComponent } from './bmb-external-link.component';
-import { getEmptyStateMessage } from '../../utils/doc/utils';
+import {
+  getBasicExampleBlock,
+  getEmptyStateMessage,
+  getGeneralComponentDescription,
+  getGeneralDescription,
+  getOnEvent,
+  getSpecialSpecifications,
+  IBmbOnEvent,
+} from '../../utils/doc/utils';
+import {
+  getDefaultValueControl,
+  getOnClickParam,
+  getOnEventParam,
+  getPropertyParamDesc,
+} from '../../utils/doc/parameterDescriptions';
 
 export default {
   title: 'Organisms/Access to external link',
   component: BmbExternalLinkComponent,
   parameters: {
     docs: {
+      controls: {
+        exclude: [
+          'getMenuItems',
+          'getSubtitleIcon',
+          'handleClose',
+          'handleCloseMenu',
+          'handleOpenMenu',
+          'onFooterOptionClick',
+          'onMenuOptionClick',
+          'showMenu',
+          '',
+        ],
+      },
       description: {
         component: `
-${getEmptyStateMessage()}
-Below is an example of how you can use this component in TypeScript:
-
-\`\`\`typescript
-import { BmbExternalLinkComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
-@Component({
-  selector: 'component',
-  standalone: true,
-  imports: [ BmbExternalLinkComponent ],
-  templateUrl: './component.html',
-  styleUrl: './component.scss',
-})
-\`\`\`
-
-Below is an example of how you can use this component in HTML:
+${getGeneralDescription(
+  `${getGeneralComponentDescription('external-link', 'organism')} to integrate links that lead to resources or pages outside of the main website or application.`,
+  'https://bamboo.tec.mx/latest/organismos/access-to-external-link/descripcion-general-JFCWgYI5',
+)}
+${getSpecialSpecifications(getEmptyStateMessage())}
+${getBasicExampleBlock('BmbExternalLinkComponent')}
         `,
       },
     },
   },
   argTypes: {
-    title: {
-      name: 'Title',
-      control: {
-        type: 'text',
-      },
-      description: 'Header title',
-      table: {
-        category: 'Properties',
-        type: { summary: 'string (required)' },
-      },
-    },
-    subtitle: {
-      name: 'subtitle',
-      control: {
-        type: 'text',
-      },
-      description: 'Header subtitle/url',
-      table: {
-        category: 'Properties',
-        type: { summary: 'string (required)' },
-      },
-    },
+    title: getPropertyParamDesc('header'),
+    subtitle: getPropertyParamDesc('header', 'text', '', '', '', 'subtitle'),
     navigationBarIcons: {
-      name: 'Configuration for the navigation bar icons.',
       control: {
         type: 'object',
       },
-      description: `
-        Header subtitle. The subtitle can also be a URL.
-
-        IBmbNavigationBarIcons = {
-          one: IBmbNavigationBarIcon;
-          two: IBmbNavigationBarIcon;
-          three: IBmbNavigationBarIcon;
-          four: IBmbNavigationBarIcon;
-        }
-
-        IBmbNavigationBarIcon = {
-        name: string;
-        label: string;
-        dotNotification?: number;
-        }
-      `,
+      description: 'Sets the configuration for the navigation bar icons.',
       table: {
         category: 'Properties',
-        type: { summary: 'IBmbNavigationBarIcons (optional)' },
-        defaultValue: {
-          summary: `
-      {
-        one: { name: 'arrow_back_ios', label: '' },
-        two: { name: 'arrow_forward_ios', label: '' },
-        three: { name: 'share', label: '' },
-        four: { name: 'refresh', label: '' },
-      }
+        type: {
+          summary: 'IBmbNavigationBarIcons (optional)',
+          detail: `
+IBmbNavigationBarIcons = {
+  one: IBmbNavigationBarIcon;
+  two: IBmbNavigationBarIcon;
+  three: IBmbNavigationBarIcon;
+  four: IBmbNavigationBarIcon;
+}
+
+IBmbNavigationBarIcon = {
+  name: string;
+  label: string;
+  eventName?: IBmbFooterEvent;
+  dotNotification?: number;
+}
+
+IBmbFooterEvent = 'back' | 'forward' | 'share' | 'reload'
+
         `,
         },
+        defaultValue: getDefaultValueControl(`
+{
+one: { name: 'arrow_back_ios', label: '' },
+two: { name: 'arrow_forward_ios', label: '' },
+three: { name: 'share', label: '' },
+four: { name: 'refresh', label: '' },
+}
+        `),
       },
     },
-    onClose: {
-      name: 'Close event',
-      control: false,
-      description:
-        'Close button event. Emitted when the user closes the component.',
-      table: {
-        type: { summary: 'function' },
-        category: 'Events',
-      },
-    },
-    menuEvent: {
-      name: 'Menu events',
-      control: false,
-      description:
-        'Used for the menu option that was clicked. Options: link, openNew, info. Emitted when the user clicks on a menu options.',
-      table: {
-        type: { summary: 'function' },
-        category: 'Events',
-      },
-    },
-    footerEvent: {
-      name: 'Footer events',
-      control: false,
-      description:
-        'Used for the icon option that was clicked. Options: back, forward, share, reload. Emitted when the user clicks on a footer options.',
-      table: {
-        type: { summary: 'function' },
-        category: 'Events',
-      },
-    },
+    onClose: getOnClickParam(getOnEvent('close icon', 'onClose'), ``),
+    menuEvent: getOnEventParam(
+      getOnEvent('', 'menuEvent', 'IBmbNavigationBarIcon'),
+      'when one of the menu option is selected',
+      'other',
+    ),
+    footerEvent: getOnClickParam(
+      getOnEvent('one of the footer icon', 'footerEvent', 'IBmbFooterEvent'),
+      ``,
+    ),
   },
   args: {
     title: 'CONECTA',
