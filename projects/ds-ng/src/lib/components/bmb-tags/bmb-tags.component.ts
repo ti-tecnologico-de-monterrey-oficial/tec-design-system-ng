@@ -10,6 +10,7 @@ import {
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
+import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
 
 export type IBmbActivityTags =
   | 'normal'
@@ -37,7 +38,7 @@ export type IBmbActivityTags =
 @Component({
   selector: 'bmb-tag',
   standalone: true,
-  imports: [CommonModule, BmbIconComponent],
+  imports: [CommonModule, BmbIconComponent, BmbActionIconComponent],
   styleUrl: './bmb-tags.component.scss',
   templateUrl: './bmb-tags.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,

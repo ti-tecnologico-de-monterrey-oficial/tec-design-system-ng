@@ -1,10 +1,10 @@
 <ng-template #tag>
   <span class="bmb_tag-text">{{ text() }}</span>
   @if (dismissible()) {
-    <bmb-icon
-      [size]="16"
+    <bmb-action-icon
+      [iconSize]="16"
       class="bmb_tag-btn"
-      (click)="closeTag(text())"
+      (buttonClick)="closeTag(text())"
       [icon]="'close'"
     />
   }
