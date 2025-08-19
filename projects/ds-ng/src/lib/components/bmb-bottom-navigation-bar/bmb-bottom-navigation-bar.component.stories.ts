@@ -45,7 +45,6 @@ IBmbNavigationBarIcons = {
 
 IBmbNavigationBarIcon = {
   name: string;
-  label: string;
   eventName?: IBmbFooterEvent;
   dotNotification?: number;
 }
@@ -66,10 +65,10 @@ IBmbFooterEvent = 'back' | 'forward' | 'share' | 'reload'
   },
   args: {
     navigationBarIcons: {
-      one: { name: 'home', label: '' },
-      two: { name: 'share', label: '' },
-      three: { name: 'inventory_2', label: '' },
-      four: { name: 'send', label: '' },
+      one: { name: 'home' },
+      two: { name: 'share' },
+      three: { name: 'inventory_2' },
+      four: { name: 'send' },
     },
     navigationBarEvents: (event: unknown) => {
       alert('Selection: ' + event);

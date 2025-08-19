@@ -13,6 +13,7 @@ import {
 } from '../../utils/doc/utils';
 import {
   DBmbInputParamDesc,
+  getDefaultValueControl,
   getOnEventParam,
 } from '../../utils/doc/parameterDescriptions';
 
@@ -85,7 +86,7 @@ If this property is set to **true**, the checkbox is selected; if set to **false
       `,
       table: {
         category: 'Properties',
-        defaultValue: { summary: 'false' },
+        defaultValue: getDefaultValueControl(false),
         type: { summary: 'boolean' },
       },
     },
@@ -102,7 +103,7 @@ This does not affect the checked property and is purely visual.
       `,
       table: {
         category: 'Properties',
-        defaultValue: { summary: 'false' },
+        defaultValue: getDefaultValueControl(false),
         type: { summary: 'boolean' },
       },
     },

@@ -542,7 +542,7 @@ ${RELEVANT_TITLE_LEVEL[0]} If the data is asynchronous, this property must also 
         type: { summary: 'IBmbFiltersPosition' },
         defaultValue: { summary: 'top' },
       },
-    }
+    },
   },
   args: {
     data: [

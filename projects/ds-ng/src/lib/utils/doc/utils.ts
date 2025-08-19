@@ -331,6 +331,9 @@ export const getHTMLFormExampleTextBlock = (
 export const getSubStoryIdentifier = (isSubStory: boolean = false): string =>
   isSubStory ? '-' : '';
 
+export const getGeneralDocDescription = (generalDocLink: string): string =>
+  `Please remember to refer to the [Bamboo - General documentation](${generalDocLink}) for more details about it.`;
+
 export const getGeneralComponentDescription = (
   name: string,
   type: IBmbStoryType = 'component',
@@ -348,7 +351,7 @@ export const getGeneralDescription = (
 ## ${getSubStoryIdentifier(isSubStory)}${DESCRIPTION_TITLE}
 >${content}
 >
-${!!generalDocLink ? `>Please remember to refer to the [Bamboo - General documentation](${generalDocLink}) for more details about it.` : '>'}
+${!!generalDocLink ? `>${getGeneralDocDescription(generalDocLink)}` : '>'}
 
 <br/>
 `;
@@ -723,6 +726,8 @@ ${getBasicExampleBlock('')}
         ),
 getPropertyParamDesc('')
 
+getDefaultValueControl(false)
+
 controls: { exclude: ['', ''] },
 controls: {
         exclude: [
@@ -737,6 +742,8 @@ controls: {
           '',
         ],
       },
+
+tags: ['!autodocs'],
 
 import {
   Canvas,
@@ -781,6 +788,15 @@ export const Item = () => (
   ]}
   content={[<List />, <Item />]}
 />
+
+import { Meta } from "@storybook/addon-docs/blocks";
+
+import * as listStory from "./bmb-list-group.stories";
+import * as itemStory from "./bmb-list-group-item/bmb-list-group-item.stories";
+import { ListTemplate } from "../../../DocComponents/ListTemplate.mdx";
+
+<Meta of={listStory} />
+<ListTemplate>{itemStory}</ListTemplate>
 
 
   isSubStory: boolean = false,

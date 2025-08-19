@@ -3,6 +3,7 @@ import { BmbDatepickerComponent } from './bmb-datepicker.component';
 import {
   DBmbGenericParamDesc,
   DBmbInputParamDesc,
+  getDefaultValueControl,
   getOnEventParam,
 } from '../../utils/doc/parameterDescriptions';
 import {
@@ -104,7 +105,7 @@ ${getBasicExampleBlock('BmbDatepickerComponent', '', onChange.handleExample)}
       ...DBmbInputParamDesc.icon,
       table: {
         ...DBmbInputParamDesc.icon.table,
-        defaultValue: { summary: 'calendar_month' },
+        defaultValue: getDefaultValueControl('calendar_month'),
       },
     },
     invalidFormatErrorMessage: DBmbInputParamDesc.invalidFormatErrorMessage,
@@ -114,7 +115,9 @@ ${getBasicExampleBlock('BmbDatepickerComponent', '', onChange.handleExample)}
       ...DBmbInputParamDesc.placeholder,
       table: {
         ...DBmbInputParamDesc.placeholder.table,
-        defaultValue: { summary: 'value assigned to the dateFormat property' },
+        defaultValue: getDefaultValueControl(
+          'value assigned to the dateFormat property',
+        ),
       },
     },
     disabled: DBmbInputParamDesc.disabled,
@@ -135,7 +138,7 @@ This date must have the same format as \`dateFormat\`.
       table: {
         category: 'Properties',
         type: { summary: 'string' },
-        defaultValue: { summary: '' },
+        defaultValue: getDefaultValueControl(),
       },
     },
     disableDatesAfter: {
@@ -150,7 +153,7 @@ This date must have the same format as \`dateFormat\`.
       table: {
         category: 'Properties',
         type: { summary: 'string' },
-        defaultValue: { summary: '' },
+        defaultValue: getDefaultValueControl(),
       },
     },
     lang: {
@@ -161,21 +164,20 @@ This date must have the same format as \`dateFormat\`.
       table: {
         category: 'Properties',
         type: { summary: 'string' },
-        defaultValue: { summary: 'es-MX' },
+        defaultValue: getDefaultValueControl('es-MX'),
       },
     },
     helperMessage: {
       ...DBmbInputParamDesc.helperMessage,
       table: {
         ...DBmbInputParamDesc.helperMessage.table,
-        defaultValue: { summary: 'value assigned to the dateFormat property' },
+        defaultValue: getDefaultValueControl(),
       },
     },
     value: DBmbInputParamDesc.value,
     inputId: DBmbInputParamDesc.inputId,
     onChange: getOnEventParam(onChange),
   },
-
   args: {
     inputId: '',
     name: '',

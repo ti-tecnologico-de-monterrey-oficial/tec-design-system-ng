@@ -1,36 +1,43 @@
 import { Meta, StoryObj } from '@storybook/angular';
 import { BmbPullWedgeComponent } from './bmb-pull-wedge.component';
+import {
+  getBasicExampleBlock,
+  getGeneralComponentDescription,
+  getGeneralDescription,
+  RELEVANT_TITLE_LEVEL,
+} from '../../utils/doc/utils';
+import {
+  getDefaultValueControl,
+  getPropertyParamDesc,
+} from '../../utils/doc/parameterDescriptions';
 
 export default {
   title: 'Components/Visual labels/Header pull wedge',
   component: BmbPullWedgeComponent,
   parameters: {
     docs: {
+      controls: {
+        exclude: [
+          'contentHeight',
+          'initialDragHeight',
+          'isVisible',
+          'maxDragHeight',
+          'onDragEnded',
+          'onDragMoved',
+          'onDragStarted',
+          'toggleWedge',
+          'ngAfterViewInit',
+          'ngOnChanges',
+        ],
+      },
       description: {
         component: `
-Below is an example of how you can use this component in TypeScript:
-
-\`\`\`typescript
-import { BmbPullWedgeComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
-@Component({
-  selector: 'component',
-  standalone: true,
-  imports: [ BmbPullWedgeComponent, BmbSkeletonComponent ],
-  templateUrl: './component.html',
-  styleUrl: './component.scss',
-})
-export class AppComponent {
-  initialHeight = 300;
-  minContentHeight = 50;
-}
-\`\`\`
-
-Below is an example of how you can use this component in HTML:
-
+${getGeneralDescription(`${getGeneralComponentDescription('pull-wedge')} to enhance the experience of a collapsible menu or panel.`, 'https://bamboo.tec.mx/latest/componentes/header-pull-wedge/descripcion-general-rOxNlcIw')}
+${getBasicExampleBlock('BmbPullWedgeComponent')}
 \`\`\`html
-<bmb-pull-wedge [initialHeight]="'200'">
-  <bmb-skeleton [type]="'generic3'" collapsible style="width: 100%;"></bmb-skeleton>
-  <bmb-skeleton [type]="'generic1'" collapsible style="width: 100%;"></bmb-skeleton>
+<bmb-pull-wedge initialHeight="200">
+  <bmb-skeleton type="generic3" collapsible style="width: 100%;" />
+  <bmb-skeleton type="generic1" collapsible style="width: 100%;" />
 </bmb-pull-wedge>
 \`\`\`
         `,
@@ -39,25 +46,30 @@ Below is an example of how you can use this component in HTML:
   },
   argTypes: {
     initialHeight: {
-      name: 'Full Height',
       control: { type: 'number' },
-      description:
-        'The full height of the pull wedge for the content to be shown. Default height is 300px',
+      description: `Sets the full height of the pull wedge for the content to be shown.`,
       table: {
         category: 'Properties',
-        type: { summary: 'number' },
+        type: { summary: 'number (px)' },
+        defaultValue: getDefaultValueControl(300),
       },
     },
     minContentHeight: {
-      name: 'Minimum Content Height',
       control: { type: 'number' },
-      description:
-        'The initial height of the pull wedge. Default height is 100px, minimum is 50px',
+      description: `Sets the initial height of the pull wedge.<br/><br/>
+${RELEVANT_TITLE_LEVEL[2]} Minimum height: 50px.`,
       table: {
         category: 'Properties',
         type: { summary: 'number' },
+        defaultValue: getDefaultValueControl(100),
       },
     },
+    isOpen: getPropertyParamDesc(
+      'open pull wedge',
+      'boolean',
+      false,
+      ' Otherwise it sets it as closed.',
+    ),
   },
   args: {
     initialHeight: 300,

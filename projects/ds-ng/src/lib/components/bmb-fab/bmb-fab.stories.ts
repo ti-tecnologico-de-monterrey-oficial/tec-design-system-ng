@@ -10,6 +10,7 @@ import {
 } from '../../utils/doc/utils';
 import {
   DBmbIconParamDesc,
+  getDefaultValueControl,
   getOnClickParam,
 } from '../../utils/doc/parameterDescriptions';
 
@@ -44,7 +45,7 @@ ${getBasicExampleBlock('BmbFabComponent', '', onEvent.handleExample)}
         'Sets the text of the Extended Fab. The width will increase depending on the length of the text.',
       table: {
         category: 'Properties',
-        defaultValue: { summary: '' },
+        defaultValue: getDefaultValueControl(),
         type: { summary: 'string' },
       },
     },
@@ -52,13 +53,21 @@ ${getBasicExampleBlock('BmbFabComponent', '', onEvent.handleExample)}
       control: { type: 'radio' },
       options: ['small', 'large'],
       description: 'Sets the size of the fab component.',
-      table: { category: 'Properties', type: { summary: 'string' } },
+      table: {
+        category: 'Properties',
+        defaultValue: getDefaultValueControl(),
+        type: { summary: 'string' },
+      },
     },
     type: {
       control: { type: 'radio' },
       options: ['extended', 'normal'],
       description: 'Sets the type of the fab component.',
-      table: { category: 'Properties', type: { summary: 'string' } },
+      table: {
+        category: 'Properties',
+        defaultValue: getDefaultValueControl(),
+        type: { summary: 'string' },
+      },
     },
     fabClick: getOnClickParam(onEvent),
     mitec: {
@@ -67,7 +76,7 @@ ${getBasicExampleBlock('BmbFabComponent', '', onEvent.handleExample)}
         'Sets the component changes to a version that is used for the platform "Mitec", this version changes the color and the position of the text.',
       table: {
         type: { summary: 'boolean' },
-        defaultValue: { summary: 'false' },
+        defaultValue: getDefaultValueControl(false),
       },
     },
   },

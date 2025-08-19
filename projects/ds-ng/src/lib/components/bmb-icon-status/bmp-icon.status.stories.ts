@@ -38,12 +38,13 @@ ${getBasicExampleBlock('BmbIconStatusComponent')}
         defaultValue: { summary: '' },
       },
     },
-    statusAppearance: getAppearanceParam(
-      'the background of the icon',
-      ['', 'success', 'event', 'warning', 'error'],
+    statusAppearance: getAppearanceParam('the background of the icon', [
       '',
-      `<br/><br/>${RELEVANT_TITLE_LEVEL[2]} Empty string will set transparent background.`,
-    ),
+      'success',
+      'event',
+      'warning',
+      'error',
+    ]),
   },
   args: {
     icon: 'check',

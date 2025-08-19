@@ -15,6 +15,7 @@ import {
 } from '../../utils/doc/utils';
 import {
   DBmbIconParamDesc,
+  getDefaultValueControl,
   getAppearanceParam,
   getOnEventParam,
   getPropertyParamDesc,
@@ -135,6 +136,7 @@ ${getBasicExampleBlock('BmbPushNotificationComponent')}
       description: 'Sets the notification content.',
       table: {
         category: 'Properties',
+        defaultValue: getDefaultValueControl(),
         type: { summary: 'string, Template Reference' },
       },
     },
@@ -199,13 +201,14 @@ ${getBasicExampleBlock('BmbPushNotificationComponent')}
     isFullColor: getPropertyParamDesc(
       'full color to the notification',
       'boolean',
+      false,
     ),
     delay: {
       control: { type: 'number' },
       description: '',
       table: {
         category: 'Properties',
-        defaultValue: { summary: '5000' },
+        defaultValue: getDefaultValueControl('5000'),
         type: { summary: 'number' },
       },
     },
@@ -215,6 +218,7 @@ ${getBasicExampleBlock('BmbPushNotificationComponent')}
       },
       table: {
         category: 'Properties',
+        defaultValue: getDefaultValueControl(),
         type: { summary: 'string' },
       },
       description: `Sets a label with a date or **number days**.
@@ -226,7 +230,7 @@ ${getBasicExampleBlock('BmbPushNotificationComponent')}
       },
       table: {
         category: 'Properties',
-        defaultValue: { summary: 'mitec.com' },
+        defaultValue: getDefaultValueControl('mitec.com'),
         type: { summary: 'string' },
       },
       description:
@@ -241,7 +245,7 @@ ${getBasicExampleBlock('BmbPushNotificationComponent')}
       table: {
         category: 'Properties',
         type: { summary: 'string' },
-        defaultValue: { summary: '' },
+        defaultValue: getDefaultValueControl(),
       },
     },
     media: {
@@ -250,6 +254,7 @@ ${getBasicExampleBlock('BmbPushNotificationComponent')}
       },
       table: {
         category: 'Properties',
+        defaultValue: getDefaultValueControl(),
         type: { summary: 'string' },
       },
       description:
@@ -261,6 +266,7 @@ ${getBasicExampleBlock('BmbPushNotificationComponent')}
       },
       table: {
         category: 'Properties',
+        defaultValue: getDefaultValueControl(),
         type: { summary: 'string' },
       },
       description:
@@ -272,6 +278,7 @@ ${getBasicExampleBlock('BmbPushNotificationComponent')}
       },
       table: {
         category: 'Properties',
+        defaultValue: getDefaultValueControl(),
         type: { summary: 'string' },
       },
       description:
@@ -283,6 +290,7 @@ ${getBasicExampleBlock('BmbPushNotificationComponent')}
       },
       table: {
         category: 'Properties',
+        defaultValue: getDefaultValueControl(),
         type: { summary: 'string' },
       },
       description:

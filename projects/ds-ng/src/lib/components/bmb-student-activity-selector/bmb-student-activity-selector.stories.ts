@@ -3,13 +3,10 @@ import { CommonModule } from '@angular/common';
 import { BmbStudentActivitySelectorComponent } from './bmb-student-activity-selector.component';
 import { BmbTabStudentActivityComponent } from './bmb-student-activity-tab/bmb-student-activity-tab.component';
 import { BmbCardComponent } from '../bmb-card/bmb-card.component';
-import { IStudentActivityAppearance } from '../../types';
-
-const appearanceOptions: IStudentActivityAppearance[] = [
-  'academic',
-  'life',
-  'events',
-];
+import {
+  getAppearanceParam,
+  getDefaultValueControl,
+} from '../../utils/doc/parameterDescriptions';
 
 export default {
   title: 'Components/Menus/Student activity selector',
@@ -72,30 +69,18 @@ Below is an example of how to use this component in HTML:
     },
   },
   argTypes: {
-    appearance: {
-      name: 'Appearance',
-      control: {
-        type: 'select',
-      },
-      options: appearanceOptions,
-      table: {
-        category: 'Properties',
-        defaultValue: { summary: 'normal' },
-        type: { summary: 'string' },
-      },
-      description: `
-Sets the appearance of the component, affecting its visual style.
-
-  **Default appearance**: academic.
-      `,
-    },
+    appearance: getAppearanceParam(
+      'student activity selector',
+      ['academic', 'life', 'events'],
+      'academic',
+    ),
     title: {
       control: { type: 'text' },
       description: 'Tab name.',
       table: {
         category: 'Properties',
         type: { summary: 'string' },
-        defaultValue: { summary: '' },
+        defaultValue: getDefaultValueControl(),
       },
     },
     subtitle: {
@@ -106,7 +91,7 @@ Sets the appearance of the component, affecting its visual style.
       table: {
         category: 'Properties',
         type: { summary: 'string' },
-        defaultValue: { summary: '' },
+        defaultValue: getDefaultValueControl(),
       },
     },
   },

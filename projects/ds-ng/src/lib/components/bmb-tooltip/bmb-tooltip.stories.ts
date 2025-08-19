@@ -15,6 +15,7 @@ import {
 import {
   DBmbIconParamDesc,
   DBmbTooltipParamDesc,
+  getDefaultValueControl,
   getPropertyParamDesc,
   SIMPLE_ICON_DESCRIPTION,
 } from '../../utils/doc/parameterDescriptions';
@@ -54,7 +55,7 @@ ${getBasicExampleBlock('')}
       table: {
         category: 'Properties',
         type: { summary: 'string' },
-        defaultValue: { summary: 'help' },
+        defaultValue: getDefaultValueControl('help'),
       },
     },
     size: DBmbIconParamDesc.iconSize,

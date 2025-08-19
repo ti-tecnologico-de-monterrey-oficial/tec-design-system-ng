@@ -8,6 +8,7 @@ import {
 } from '../../utils/doc/utils';
 import {
   DBmbIconParamDesc,
+  getDefaultValueControl,
   getPropertyParamDesc,
 } from '../../utils/doc/parameterDescriptions';
 
@@ -29,18 +30,16 @@ ${getBasicExampleBlock('BmbFocusElementComponent')}
   },
   argTypes: {
     title: getPropertyParamDesc('focus element'),
-    number: {
-      control: {
-        type: 'text',
-      },
-      description: `Sets the number of the focus element.<br/><br/>
-${RELEVANT_TITLE_LEVEL[1]}
-The number is only considered if it does not have icon.`,
-      table: {
-        category: 'Properties',
-        type: { summary: 'string (optional)' },
-      },
-    },
+    number: getPropertyParamDesc(
+      'focus element',
+      'number',
+      0,
+      `<br/><br/>
+ ${RELEVANT_TITLE_LEVEL[1]}
+ The number is only considered if it does not have icon.`,
+      '',
+      'number',
+    ),
     icon: {
       ...DBmbIconParamDesc.icon,
       description: DBmbIconParamDesc.icon.description.concat(
@@ -52,8 +51,8 @@ The number is only considered if it does not have icon.`,
       description: 'Removes focus state when true',
       table: {
         category: 'Properties',
-        defaultValue: { summary: 'false' },
-        type: { summary: 'boolean (optional)' },
+        defaultValue: getDefaultValueControl(false),
+        type: { summary: 'boolean' },
       },
     },
     isNormal: {
@@ -61,8 +60,8 @@ The number is only considered if it does not have icon.`,
       description: 'Sets the normal border and color',
       table: {
         category: 'Internal',
-        defaultValue: { summary: 'false' },
-        type: { summary: 'boolean (optional)' },
+        defaultValue: getDefaultValueControl(false),
+        type: { summary: 'boolean' },
       },
     },
     isInheritedBg: {
@@ -70,8 +69,8 @@ The number is only considered if it does not have icon.`,
       description: 'Sets the inherited background color when true',
       table: {
         category: 'Internal',
-        defaultValue: { summary: 'false' },
-        type: { summary: 'boolean (optional)' },
+        defaultValue: getDefaultValueControl(false),
+        type: { summary: 'boolean' },
       },
     },
   },

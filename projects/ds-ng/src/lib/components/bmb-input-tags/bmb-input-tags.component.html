@@ -42,7 +42,8 @@
             [text]="item.selectedText!"
             [dismissible]="true"
             [isDisabled]="disabled()"
-            (click)="removeTag(item)"
+            (clickedTag)="removeTag(item)"
+            (closedTag)="removeTag(item)"
           />
         }
       </div>
