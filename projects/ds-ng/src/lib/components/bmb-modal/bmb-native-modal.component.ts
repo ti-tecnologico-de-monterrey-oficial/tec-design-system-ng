@@ -20,6 +20,7 @@ import {
 } from './bmb-modal.interface';
 import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
 import { BmbNativeModalService } from '../../services/native-modal.service';
+import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 
 @Component({
   selector: 'bmb-native-modal',
@@ -36,6 +37,7 @@ import { BmbNativeModalService } from '../../services/native-modal.service';
     BmbThreeColsComponent,
     BmbTitleContentComponent,
     BmbActionIconComponent,
+    BmbIconComponent,
   ],
 })
 export class BmbNativeModalComponent {
@@ -47,6 +49,9 @@ export class BmbNativeModalComponent {
   modalId = input.required<string>();
   size = input<IBmbNativeModalSize>('medium');
   iconStyle = input<IBmbModalAlertStyle>();
+  autoFocus = input<boolean>(false);
+  disableClose = input<boolean>(true);
+  hasBackdrop = input<boolean>(true);
 
   actionsClicked = output<{ buttonName: string; event: MouseEvent }>();
   closeModalClicked = output<{ modalId: string; event: MouseEvent }>();
@@ -94,5 +99,11 @@ export class BmbNativeModalComponent {
   handleCloseModal(event: MouseEvent): void {
     this.closeModalClicked.emit({ modalId: this.modalId(), event });
     this.modalService.closeModal(this.modalId());
+  }
+
+  handleBackdropClick(): void {
+    if (!this.disableClose()) {
+      this.handleCloseModal(new MouseEvent('click'));
+    }
   }
 }
