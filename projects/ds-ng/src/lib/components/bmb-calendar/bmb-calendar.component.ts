@@ -191,38 +191,6 @@ export class BmbCalendarComponent {
   }
 
   getEvents(): IBmbCalendarEvent[] {
-    // return [
-    //   {
-    //     title: 'test title',
-    //     detail: 'test detail',
-    //     start: '2025-02-21T13:00:00',
-    //     end: '2025-02-21T13:30:00',
-    //     modalTitle: 'test modal title',
-    //     subtitle: 'test subtitle',
-    //     place: 'test place',
-    //     tags: [
-    //       {
-    //         appearance: 'success',
-    //         text: 'test tag',
-    //       },
-    //     ],
-    //   },
-    //   {
-    //     title: 'test title',
-    //     detail: 'test detail',
-    //     start: '2025-02-21T20:30:00',
-    //     end: '2025-02-21T21:30:00',
-    //     modalTitle: 'test modal title',
-    //   },
-    //   {
-    //     title: 'test title',
-    //     detail: 'test detail',
-    //     start: '2025-02-21T21:30:00',
-    //     end: '2025-02-21T22:00:00',
-    //     modalTitle: 'test modal title',
-    //     status: 'disabled',
-    //   }
-    // ]
     return this.eventsSignal.getEventList();
   }
 

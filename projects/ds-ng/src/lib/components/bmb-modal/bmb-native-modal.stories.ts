@@ -36,9 +36,6 @@ import {
     <p>
       Modal ID: <strong>{{ myModalId() ? myModalId() : '-' }}</strong>
     </p>
-    <p>
-      User Status: <strong>{{ userStatus() ? userStatus() : '-' }}</strong>
-    </p>
     <button
       bmbButton
       appearance="primary"
@@ -90,8 +87,6 @@ class BmbNativeModalStory {
         this.myModalId.set(null);
       },
     });
-    console.log(id);
-
     this.myModalId.set(id);
   }
 }

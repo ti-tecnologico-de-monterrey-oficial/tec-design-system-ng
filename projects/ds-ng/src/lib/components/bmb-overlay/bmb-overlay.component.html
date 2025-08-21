@@ -1,1 +1,3 @@
-<div class="bmb_overlay" [style.display]="this.displayStyle"></div>
+@if (active()) {
+  <div class="bmb_overlay" (click)="handleClick()"></div>
+}
