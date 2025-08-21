@@ -1,6 +1,7 @@
 import { componentWrapperDecorator, Meta, StoryObj } from '@storybook/angular';
 import { BmbTimestreamComponent } from './bmb-timestream.component';
-import { getEmptyStateMessage } from '../../utils/doc/utils';
+import { getBasicExampleBlock, getEmptyStateMessage, getGeneralComponentDescription, getGeneralDescription, getSpecialSpecifications } from '../../utils/doc/utils';
+import { DBmbGenericParamDesc } from '../../utils/doc/parameterDescriptions';
 
 export default {
   title: 'Internals/Timestream',
@@ -16,32 +17,19 @@ export default {
     docs: {
       description: {
         component: `
-${getEmptyStateMessage()}
-Below is an example of how you can use this component in TypeScript:
-
-\`\`\`typescript
-import { BmbTimestreamComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
-@Component({
-  selector: 'component',
-  standalone: true,
-  imports: [ BmbTimestreamComponent ],
-  templateUrl: './component.html',
-  styleUrl: './component.scss',
-})
-\`\`\`
-
-Below is an example of how you can use this component in HTML:
+${getGeneralDescription(`${getGeneralComponentDescription('timestream ')} to implement the timestream without card.`)}
+${getSpecialSpecifications(getEmptyStateMessage())}
+${getBasicExampleBlock('BmbTimestreamComponent')}
         `,
       },
     },
   },
   argTypes: {
     isMicro: {
-      name: 'Micro version',
       control: {
         type: 'boolean',
       },
-      description: 'Show micro version of the timestream.',
+      description: 'Shows micro version of the timestream.',
       table: {
         category: 'Properties',
         type: { summary: 'boolean' },
@@ -49,46 +37,32 @@ Below is an example of how you can use this component in HTML:
       },
     },
     dateFormat: {
-      name: 'Date format',
       control: {
         type: 'text',
       },
-      description: 'Set the format for all dates.',
+      description: 'Sets the format for all dates.',
       table: {
         category: 'Properties',
         type: { summary: 'string' },
         defaultValue: { summary: 'dd/MM/yyyy' },
       },
     },
-    lang: {
-      name: 'Language',
-      control: {
-        type: 'text',
-      },
-      description: 'Set the language for the translations.',
-      table: {
-        category: 'Properties',
-        type: { summary: 'string' },
-        defaultValue: { summary: 'es' },
-      },
-    },
+    lang: DBmbGenericParamDesc.lang,
     events: {
-      name: 'Events',
       control: {
         type: 'object',
       },
-      description: 'List of events to display.',
+      description: 'Sets the list of events to display.',
       table: {
         category: 'Properties',
         type: { summary: 'object' },
       },
     },
     clamp: {
-      name: 'Clamp',
       control: {
         type: 'object',
       },
-      description: 'Object that controls the height of the timestream',
+      description: 'Sets the height of the timestream',
       table: {
         category: 'Properties',
         type: { summary: 'object' },

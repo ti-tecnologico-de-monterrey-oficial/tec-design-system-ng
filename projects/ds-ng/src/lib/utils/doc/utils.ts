@@ -48,6 +48,8 @@ export const RELEVANT_TITLE_LEVEL: string[] = [
   '⚠️**Warning**<br/>',
   '‼️**Important**<br/>',
   '✳️**Note**<br/>',
+  '⚙️**Configuration**',
+  '⭐**Example**',
 ];
 
 export const getPageStructureForFoundationStories = () => {
@@ -708,6 +710,8 @@ RELEVANT_TITLE_LEVEL: string[] = [
   '⚠️**Warning**<br/>',
   '‼️**Important**<br/>',
   '✳️**Note**<br/>',
+  '⚙️**Configuration**',
+  '⭐**Example**',
 ];
 ${RELEVANT_TITLE_LEVEL[_]}
 
