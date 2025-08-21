@@ -1,247 +1,205 @@
 import { Meta, StoryObj } from '@storybook/angular';
 import { BmbLoginComponent } from './bmb-login.component';
+import {
+  getBasicExampleBlock,
+  getGeneralComponentDescription,
+  getGeneralDescription,
+  getOnEvent,
+} from '../../utils/doc/utils';
+import {
+  DBmbGenericParamDesc,
+  getDefaultValueControl,
+  getOnClickParam,
+  getOnEventParam,
+} from '../../utils/doc/parameterDescriptions';
 
 export default {
   title: 'Organisms/Login layout web',
   component: BmbLoginComponent,
   parameters: {
     docs: {
+      controls: {
+        exclude: [
+          'isEnabled',
+          'isLoading',
+          'userForm',
+          'handleContinue',
+          'handleFormGroup',
+          'handleRememberMe',
+          '',
+          '',
+          '',
+        ],
+      },
       description: {
         component: `
-Below is an example of how you can use this component in TypeScript:
-
-\`\`\`typescript
-import { BmbLoginComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
-@Component({
-  selector: 'component',
-  standalone: true,
-  imports: [ BmbLoginComponent ],
-  templateUrl: './component.html',
-  styleUrl: './component.scss',
-})
-\`\`\`
-
-Below is an example of how you can use this component in HTML:
+${getGeneralDescription(`${getGeneralComponentDescription('login', 'organism')} to log in to the web platform. It includes fields for credentials and password recovery.`, 'https://bamboo.tec.mx/latest/organisms/login-layout-web/descripcion-general-uYEtF9vq')}
+${getBasicExampleBlock('BmbLoginComponent')}
         `,
       },
     },
   },
   argTypes: {
     headerLabel: {
-      name: 'Header label',
       control: 'text',
       description: 'Sets the label to be displayed in the header.',
       table: {
         category: 'Properties',
         type: { summary: 'string' },
-        defaultValue: { summary: 'ESTUDIANTES' },
+        defaultValue: getDefaultValueControl('ESTUDIANTES'),
       },
     },
     forgottenPasswordLabel: {
-      name: 'Forgotten password label',
       control: 'text',
-      description: 'Sets the label to be displayed for forgotten password.',
+      description: 'Sets the label to be displayed for *forgotten password.*',
       table: {
         category: 'Properties',
         type: { summary: 'string' },
-        defaultValue: { summary: '¿Olvidaste tu contraseña?' },
+        defaultValue: getDefaultValueControl('¿Olvidaste tu contraseña?'),
       },
     },
     forgottenPasswordLink: {
-      name: 'Forgotten password link',
-      control: 'text',
+      ...DBmbGenericParamDesc.link,
       description:
         'Sets the link for the option to log in with forgotten password.',
-      table: {
-        category: 'Events',
-        type: { summary: 'string' },
-        defaultValue: { summary: '' },
-      },
     },
     forgottenPasswordTarget: {
-      name: 'Forgotten password target',
-      control: {
-        type: 'radio',
-      },
-      options: ['_blank', '_parent', '_self', '_top'],
-      description:
-        'Sets the target for the option to log in with forgotten password.',
-      table: {
-        category: 'Events',
-        type: { summary: 'IBmbTargetLink' },
-        defaultValue: { summary: '_blank' },
-      },
+      ...DBmbGenericParamDesc.target,
+      description: DBmbGenericParamDesc.target.description.concat(
+        '<br/><br/>Corresponds to the \`forgottenPasswordLink\` link property.',
+      ),
     },
     buttonLabel: {
-      name: 'Button label',
       control: 'text',
       description: 'Sets the label for the continue button.',
       table: {
         category: 'Properties',
         type: { summary: 'string' },
-        defaultValue: { summary: 'Ingresar' },
+        defaultValue: getDefaultValueControl('Ingresar'),
       },
     },
     actionHeaderLinks: {
-      name: 'Action header Links',
       control: { type: 'object' },
-      description: `
-Sets an object of IBmbActionHeaderLinks type.
-
-    export interface IBmbActionHeaderLinks {
-      apple: IBmbLinkInfo,
-      android: IBmbLinkInfo,
-      twitter: IBmbLinkInfo,
-      facebook: IBmbLinkInfo,
-      instagram: IBmbLinkInfo,
-      youtube: IBmbLinkInfo,
-    }
-
-Template:
-
-    actionHeaderLinks:IBmbActionHeaderLinks = {
-      apple: {
-        link: '',
-        target: '',
-      },
-      android: {
-        link: '',
-        target: '',
-      },
-      twitter: {
-        link: '',
-        target: '',
-      },
-      facebook: {
-        link: '',
-        target: '',
-      },
-      instagram: {
-        link: '',
-        target: '',
-      },
-      youtube: {
-        link: '',
-        target: '',
-      },
-    },
-      `,
+      description: 'Sets the list of links for the header icons.',
       table: {
         category: 'Properties',
+        defaultValue: {
+          summary: '',
+          detail: `
+Template:
+
+actionHeaderLinks:IBmbActionHeaderLinks = {
+  apple: {
+    link: '',
+    target: '',
+  },
+  android: {
+    link: '',
+    target: '',
+  },
+  twitter: {
+    link: '',
+    target: '',
+  },
+  facebook: {
+    link: '',
+    target: '',
+  },
+  instagram: {
+    link: '',
+    target: '',
+  },
+  youtube: {
+    link: '',
+    target: '',
+  },
+},
+`,
+        },
         type: {
           summary: 'IBmbActionHeaderLinks',
+          detail: `
+IBmbActionHeaderLinks {
+  apple: IBmbLinkInfo;
+  android: IBmbLinkInfo;
+  twitter: IBmbLinkInfo;
+  facebook: IBmbLinkInfo;
+  instagram: IBmbLinkInfo;
+  youtube: IBmbLinkInfo;
+}
+
+IBmbLinkInfo {
+  link: string;
+  target?: IBmbTargetLink;
+}
+
+IBmbTargetLink = '_blank' | '_parent' | '_self' | '_top'
+            `,
         },
       },
     },
-    actionHeaders: {
-      name: 'Action header',
-      control: { type: 'object' },
-      description: '',
-      table: {
-        category: 'Deprecated',
-        type: {
-          summary: 'IBmbActionHeader[]',
-        },
-      },
-    },
-    onRequest: {
-      name: 'On Request',
-      control: {
-        type: '',
-      },
-      description:
-        'Emits an event when a request is made, typically when the continue button is clicked.',
-      table: {
-        type: { summary: 'function' },
-        category: 'Events',
-      },
-    },
-    onContinue: {
-      name: 'On Continue',
-      control: {
-        type: '',
-      },
-      description:
-        'Emits an event when the continue action is completed successfully.',
-      table: {
-        type: { summary: 'function' },
-        category: 'Events',
-      },
-    },
+    actionHeaders: DBmbGenericParamDesc.deprecated,
+    onRequest: getOnEventParam(
+      getOnEvent('', 'onRequest', 'unknown'),
+      ` when a request is made, typically when the continue button is clicked.`,
+      'other',
+    ),
+    onContinue: getOnEventParam(
+      getOnEvent('', 'onContinue', 'void'),
+      ` when the continue action is completed successfully.`,
+      'other',
+    ),
     showRememberMeCheckbox: {
-      name: 'Shows remember me checkbox',
       control: 'boolean',
       description: 'Shows remember me checkbox when true',
       table: {
         category: 'Properties',
         type: { summary: 'boolean' },
-        defaultValue: { summary: 'false' },
+        defaultValue: getDefaultValueControl(false),
       },
     },
     rememberMeCheckboxLabel: {
-      name: 'Remember me checkbox label',
       control: 'text',
-      description: 'Sets the label to be displayed for remember me checkbox.',
+      description: 'Sets the label to be displayed for *remember me* checkbox.',
       table: {
         category: 'Properties',
         type: { summary: 'string' },
-        defaultValue: { summary: 'Recordarme' },
+        defaultValue: getDefaultValueControl('Recordarme'),
       },
     },
     showLoginAsGuest: {
-      name: 'Show log in as a guest',
       control: 'boolean',
-      description: 'Shows log in as a guest when true',
+      description: 'Shows *log in as a guest* when true',
       table: {
         category: 'Properties',
         type: { summary: 'boolean' },
-        defaultValue: { summary: 'false' },
+        defaultValue: getDefaultValueControl('false'),
       },
     },
     loginAsGuestLabel: {
-      name: 'Log in as a guest label',
       control: 'text',
-      description: 'Sets the label to be displayed for log in as a guest.',
+      description: 'Sets the label to be displayed for *log in as a guest*.',
       table: {
         category: 'Properties',
         type: { summary: 'string  (required)' },
-        defaultValue: { summary: 'Entrar como invitado' },
+        defaultValue: getDefaultValueControl('Entrar como invitado'),
       },
     },
     loginAsGuestLink: {
-      name: 'Log in as a guest link',
-      control: 'text',
+      ...DBmbGenericParamDesc.link,
       description: 'Sets the link for log in as a guest.',
-      table: {
-        category: 'Events',
-        type: { summary: 'string' },
-        defaultValue: { summary: '' },
-      },
     },
     loginAsGuestTarget: {
-      name: 'Log in as a guest target',
-      control: {
-        type: 'radio',
-      },
-      options: ['_blank', '_parent', '_self', '_top'],
-      description: 'Sets the target for log in as a guest.',
-      table: {
-        category: 'Events',
-        type: { summary: 'IBmbTargetLink' },
-        defaultValue: { summary: '_blank' },
-      },
+      ...DBmbGenericParamDesc.target,
+      description: DBmbGenericParamDesc.target.description.concat(
+        '<br/><br/>Corresponds to the \`loginAsGuestLink\` link property.',
+      ),
     },
-    onRememberMeChecked: {
-      name: 'Remember me checked',
-      control: {
-        type: '',
-      },
-      description:
-        'Event that is emitted when the state of the checkbox changes, such as when it is checked or unchecked. This can be used to trigger functions or actions based on the checkbox’s state change.',
-      table: {
-        category: 'Events',
-      },
-    },
+    onRememberMeChecked: getOnEventParam(
+      getOnEvent('', 'onRememberMeChecked', 'unknown'),
+      `when the state of the checkbox changes, such as when it is checked or unchecked.`,
+      'other',
+    ),
   },
   args: {
     headerLabel: '',
