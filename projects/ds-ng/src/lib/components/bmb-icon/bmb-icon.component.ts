@@ -52,4 +52,11 @@ export class BmbIconComponent implements OnInit {
     const weight = `'wght' ${this.fontWeight()}`;
     return `${fill}, ${weight}`;
   }
+
+  getImageStyles() {
+    return {
+      'width': !!this.size() ? `${this.size()}px` : 'inherit',
+      'height': !!this.size() ? `${this.size()}px` : 'inherit',
+    };
+  }
 }
