@@ -504,6 +504,30 @@
   }
 }
 
+.bmb_template-accordion-modal {
+  .bmb_accordion {
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
+.bmb_template-accordion {
+  .bmb_tabs {
+    margin-bottom: rem.rem_calc(40);
+  }
+
+  .bmb_check-external-link-button {
+    color: var(--general_contrasts-main-selection);
+
+    button {
+      font-size: rem.rem_calc(14);
+      font-weight: 600;
+
+      bmb-icon {
+        padding-left: rem.rem_calc(8);
+      }
+    }
+  }
+}
 .bmb_template-stand-alone-tags {
   display: flex;
   background-color: var(--containers-main);
