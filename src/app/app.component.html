@@ -143,11 +143,6 @@
   ></bmb-top-bar>
   <section bmbVerticalLayoutItem [rowGrow]="1">
     <router-outlet></router-outlet>
-    @if (isTheModalOpen()) {
-      <div>El modal está abierto</div>
-    } @else {
-      <div>El modal está cerrado</div>
-    }
   </section>
   <bmb-sidebar [elements]="routes" />
 </main>

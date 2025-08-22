@@ -474,7 +474,8 @@ ${getBasicExampleBlock('BmbAlertCenterComponent')}
       table: {
         category: 'Properties',
         type: { summary: 'string[] | IBmbAlertCenterTabConfig[]' },
-        defaultValue: getDefaultValueControl('["Todos", "No Leídos", "Favoritos", "Archivados"]',
+        defaultValue: getDefaultValueControl(
+          '["Todos", "No Leídos", "Favoritos", "Archivados"]',
         ),
       },
     },
@@ -502,11 +503,15 @@ ${getBasicExampleBlock('BmbAlertCenterComponent')}
         'IBmbDataAlertsOutput',
       ),
     ),
-    alertEvent:  getOnEventParam(
-      getOnEvent('an alert is clicked', 'alertEvent','IBmbDataAlert')
+    alertEvent: getOnEventParam(
+      getOnEvent('an alert is clicked', 'alertEvent', 'IBmbDataAlert'),
     ),
     closeAlertDetail: getOnEventParam(
-      getOnEvent('the alert detail is closed (mobile only)', 'closeAlertDetail','IBmbDataAlert')
+      getOnEvent(
+        'the alert detail is closed (mobile only)',
+        'closeAlertDetail',
+        'IBmbDataAlert',
+      ),
     ),
     advertisements: {
       ...DBmbGenericParamDesc.deprecated,
@@ -515,8 +520,12 @@ ${getBasicExampleBlock('BmbAlertCenterComponent')}
       ),
     },
     showAlertDetail: getOnEventParam(
-          getOnEvent('show alert details is selected', 'showAlertDetail','IBmbDataAlert'),
-        ),
+      getOnEvent(
+        'show alert details is selected',
+        'showAlertDetail',
+        'IBmbDataAlert',
+      ),
+    ),
     hideTabs: getPropertyParamDesc('hide tabs', 'boolean'),
     emptyStateData: {
       control: { type: 'object' },
