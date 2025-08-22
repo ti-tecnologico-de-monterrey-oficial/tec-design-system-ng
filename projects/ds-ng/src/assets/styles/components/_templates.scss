@@ -515,19 +515,36 @@
     margin-bottom: rem.rem_calc(40);
   }
 
-  .bmb_check-external-link-button {
-    color: var(--general_contrasts-main-selection);
+  .bmb_accordion {
+    .bmb_check-external-link-button {
+      color: var(--general_contrasts-main-selection);
 
-    button {
-      font-size: rem.rem_calc(14);
-      font-weight: 600;
+      button {
+        font-size: rem.rem_calc(14);
+        font-weight: 600;
 
-      bmb-icon {
-        padding-left: rem.rem_calc(8);
+        bmb-icon {
+          padding-left: rem.rem_calc(8);
+        }
       }
     }
   }
+  &-content {
+    display: flex;
+    flex-direction: column;
+    gap: rem.rem_calc(32);
+  }
+
+  &-image {
+    border-radius: rem.rem_calc(20);
+    overflow: hidden;
+    img {
+      border-radius: rem.rem_calc(20);
+      width: 100%;
+    }
+  }
 }
+
 .bmb_template-stand-alone-tags {
   display: flex;
   background-color: var(--containers-main);
