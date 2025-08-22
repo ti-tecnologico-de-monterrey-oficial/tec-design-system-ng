@@ -9,8 +9,16 @@ import { BmbAlertCenterService } from './bmb-alert-center.service';
 import {
   getBasicExampleBlock,
   getGeneralDescription,
+  getOnEvent,
   getSpecialSpecifications,
+  RELEVANT_TITLE_LEVEL,
 } from '../../utils/doc/utils';
+import {
+  DBmbGenericParamDesc,
+  getDefaultValueControl,
+  getOnEventParam,
+  getPropertyParamDesc,
+} from '../../utils/doc/parameterDescriptions';
 
 class mockService {
   getAlerts() {
@@ -295,9 +303,33 @@ export default {
   ],
   parameters: {
     docs: {
+      controls: {
+        exclude: [
+          'advertisementsList',
+          'alertList',
+          'eventsInCategories',
+          'isLoading',
+          'isLoading',
+          'now',
+          'orderedEvents',
+          'selectedAlert',
+          'tabs',
+          'visibleAlert',
+          'handleAlertEvent',
+          'handleChangeAlertStatus',
+          'handleCloseDetail',
+          'handleNavigationBarEvents',
+          'handleShowAlert',
+          'orderCategories',
+          'orderEvents',
+          'container',
+          'detailContent',
+          'navigationBarEvents',
+        ],
+      },
       description: {
         component: `
-${getGeneralDescription('bmb-alert-center Alert Center is a component designed to centralize and display all important alerts and notifications that require users attention.', 'https://bamboo.tec.mx/latest/organismos/alert-center/descripcion-general-ws9A3oYS')}
+${getGeneralDescription('\`bmb-alert-center\` is an organism designed to centralize and display all important alerts and notifications that require users attention.', 'https://bamboo.tec.mx/latest/organismos/alert-center/descripcion-general-ws9A3oYS')}
 ${getSpecialSpecifications(`
   > ###Configuration
   > Add the \`BmbAlertCenterService\` to your App providers:
@@ -419,6 +451,20 @@ ${getBasicExampleBlock('BmbAlertCenterComponent')}
     },
   },
   argTypes: {
+    selectedTab: {
+      control: {
+        type: 'number',
+      },
+      description:
+        'Sets the selected tab number. This is a ***model***, in such a way the selected tab number will automatically update every time any tab is clicked.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'number' },
+        defaultValue: {
+          summary: 0,
+        },
+      },
+    },
     tabsName: {
       control: {
         type: 'object',
@@ -428,102 +474,82 @@ ${getBasicExampleBlock('BmbAlertCenterComponent')}
       table: {
         category: 'Properties',
         type: { summary: 'string[] | IBmbAlertCenterTabConfig[]' },
-        defaultValue: {
-          summary: '["Todos", "No Leídos", "Favoritos", "Archivados"]',
-        },
+        defaultValue: getDefaultValueControl(
+          '["Todos", "No Leídos", "Favoritos", "Archivados"]',
+        ),
       },
     },
     dateFormat: {
       control: {
         type: 'text',
       },
-      description: 'Format of the dates.',
+      description: 'Sets the format of the dates.',
       table: {
         category: 'Properties',
         type: { summary: 'string' },
-        defaultValue: { summary: 'dd/MM/yyyy' },
+        defaultValue: getDefaultValueControl('dd/MM/yyyy'),
       },
     },
     alerts: {
-      control: {
-        type: 'object',
-      },
-      description:
-        '**Deprecated**: use bmbAlertCenterService.getAlerts() instead.',
-      table: {
-        category: 'Deprecated',
-        type: { summary: 'IBmbDataAlert[]' },
-      },
+      ...DBmbGenericParamDesc.deprecated,
+      description: DBmbGenericParamDesc.deprecated.description.concat(
+        `<br/><br/>${RELEVANT_TITLE_LEVEL[2]}Use bmbAlertCenterService.getAlerts() instead.`,
+      ),
     },
-    onChangeAlertStatus: {
-      action: 'onChangeAlertStatus',
-      description: 'Event emitted when the status of an alert changes.',
-      table: {
-        category: 'Events',
-        type: { summary: 'IBmbDataAlertsOutput' },
-      },
-    },
-    alertEvent: {
-      action: 'alertEvent',
-      description: 'Event emitted when an alert is clicked.',
-      table: {
-        category: 'Events',
-        type: { summary: 'IBmbDataAlert' },
-      },
-    },
-    closeAlertDetail: {
-      action: 'closeAlertDetail',
-      description: 'Event emitted to close the alert detail (mobile only).',
-      table: {
-        category: 'Events',
-        type: { summary: 'IBmbDataAlert' },
-      },
-    },
+    onChangeAlertStatus: getOnEventParam(
+      getOnEvent(
+        'the status of an alert',
+        'onChangeAlertStatus',
+        'IBmbDataAlertsOutput',
+      ),
+    ),
+    alertEvent: getOnEventParam(
+      getOnEvent('an alert is clicked', 'alertEvent', 'IBmbDataAlert'),
+    ),
+    closeAlertDetail: getOnEventParam(
+      getOnEvent(
+        'the alert detail is closed (mobile only)',
+        'closeAlertDetail',
+        'IBmbDataAlert',
+      ),
+    ),
     advertisements: {
-      control: {
-        type: 'IBmbDataAlert[]',
-      },
-      description:
-        '**Deprecated**: use bmbAlertCenterService.addAdvertisements() instead.',
-      table: {
-        category: 'Deprecated',
-        type: { summary: 'IBmbDataAlert[]' },
-        defaultValue: { summary: `[]` },
-      },
+      ...DBmbGenericParamDesc.deprecated,
+      description: DBmbGenericParamDesc.deprecated.description.concat(
+        `<br/><br/>${RELEVANT_TITLE_LEVEL[2]}Use bmbAlertCenterService.addAdvertisements() instead.`,
+      ),
     },
-    showAlertDetail: {
-      description: 'Event emitted to show alert details.',
-      table: {
-        category: 'Events',
-        type: { summary: 'IBmbDataAlert' },
-      },
-    },
-    hideTabs: {
-      control: {
-        type: 'boolean',
-      },
-      description: 'Hide tabs.',
-      table: {
-        category: 'Properties',
-        type: { summary: 'boolean' },
-        defaultValue: { summary: 'false' },
-      },
-    },
+    showAlertDetail: getOnEventParam(
+      getOnEvent(
+        'show alert details is selected',
+        'showAlertDetail',
+        'IBmbDataAlert',
+      ),
+    ),
+    hideTabs: getPropertyParamDesc('hide tabs', 'boolean'),
     emptyStateData: {
       control: { type: 'object' },
       table: {
         category: 'Properties',
         type: { summary: 'IBmbAlertEmptyState' },
+        defaultValue: getDefaultValueControl(`{
+    primaryText: 'No tienes notificaciones para mostrar',
+    secondaryText: '',
+    tertiaryText: '',
+    buttonText: '',
+    size: 'large',
+    showButton: false,
+  }`),
       },
-      description: 'Configuration object for the empty state display.',
+      description: 'Sets the configuration object for the empty state display.',
     },
     enableMultipleSelection: {
       control: { type: 'boolean' },
-      description: 'Enable multiple selection of alerts.',
+      description: 'Enables multiple selection of alerts.',
       table: {
         category: 'Properties',
         type: { summary: 'boolean' },
-        defaultValue: { summary: 'true' },
+        defaultValue: getDefaultValueControl('true'),
       },
     },
   },
@@ -549,7 +575,6 @@ ${getBasicExampleBlock('BmbAlertCenterComponent')}
       console.log('closeAlertDetail', event);
     },
     hideTabs: false,
-    emptyState: false,
     emptyStateData: '',
     enableMultipleSelection: true,
   },

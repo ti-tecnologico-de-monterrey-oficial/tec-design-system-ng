@@ -8,6 +8,7 @@ import {
 } from '../../utils/doc/utils';
 import {
   DBmbGenericParamDesc,
+  getDefaultValueControl,
   getAppearanceParam,
   getPropertyParamDesc,
 } from '../../utils/doc/parameterDescriptions';
@@ -49,7 +50,7 @@ ${getBasicExampleBlock('BmbProgressBarComponent')}
           summary: 'IBmbProgressBarTypes',
           detail: `IBmbProgressBarTypes = 'simple' | 'counter' | 'container'`,
         },
-        defaultValue: { summary: 'simple' },
+        defaultValue: getDefaultValueControl('simple'),
       },
     },
     totalCount: {
@@ -60,7 +61,7 @@ ${getBasicExampleBlock('BmbProgressBarComponent')}
       table: {
         category: 'Properties',
         type: { summary: 'number' },
-        defaultValue: { summary: '0' },
+        defaultValue: getDefaultValueControl(0),
       },
     },
     counter: {
@@ -71,12 +72,13 @@ ${getBasicExampleBlock('BmbProgressBarComponent')}
       table: {
         category: 'Properties',
         type: { summary: 'number' },
+        defaultValue: getDefaultValueControl(0),
       },
     },
     title: getPropertyParamDesc(
       'progress bar',
       'text',
-      '',
+      '""',
       getPropertyForType(false),
     ),
     appearance: getAppearanceParam(
@@ -94,7 +96,7 @@ ${getBasicExampleBlock('BmbProgressBarComponent')}
       table: {
         category: 'Events',
         type: { summary: 'string' },
-        defaultValue: { summary: '' },
+        defaultValue: getDefaultValueControl(),
       },
     },
     href: {
@@ -128,7 +130,7 @@ ${RELEVANT_TITLE_LEVEL[2]} Avoid return HTML code, any HTML code will be parsed.
           detail:
             'textFormat: (value: string, total: string) => `$${value}/$${total}MXN`',
         },
-        defaultValue: { summary: 'value => value' },
+        defaultValue: getDefaultValueControl('value => value'),
       },
     },
   },
@@ -141,7 +143,6 @@ ${RELEVANT_TITLE_LEVEL[2]} Avoid return HTML code, any HTML code will be parsed.
     textLink: 'Aumentar Creditos',
     href: 'https://www.google.com',
     target: '_blank',
-    progress: 0,
     textFormat: (value: string, total: string) => `$${value}/$${total}MXN`,
   },
 } as Meta<typeof BmbProgressBarComponent>;

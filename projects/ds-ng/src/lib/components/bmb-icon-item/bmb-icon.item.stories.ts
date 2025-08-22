@@ -6,6 +6,12 @@ import {
 } from '@storybook/angular';
 import { BmbIconItemComponent } from './bmb-icon-item.component';
 import { BmbDividerComponent } from '../bmb-divider/bmb-divider.component';
+import {
+  getBasicExampleBlock,
+  getGeneralComponentDescription,
+  getGeneralDescription,
+} from '../../utils/doc/utils';
+import { DBmbIconParamDesc } from '../../utils/doc/parameterDescriptions';
 
 export default {
   title: 'Components/Visual labels/Icon item',
@@ -25,60 +31,44 @@ export default {
     docs: {
       description: {
         component: `
-Below is an example of how you can use this component in TypeScript:
-
-\`\`\`typescript
-import { BmbIconItemComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
-
-@Component({
-  selector: 'component',
-  standalone: true,
-  imports: [ BmbIconItemComponent ],
-  templateUrl: './component.html',
-  styleUrl: './component.scss',
-})
-export class AppComponent {
-}
-...
-\`\`\`
-
-
-Below is an example of how you can use this component in HTML:
+${getGeneralDescription(`${getGeneralComponentDescription('icon-item')} o create elements to display information in two columns.`, 'https://bamboo.tec.mx/latest/componentes/icon-item/descripcion-general-F7c7dOy7')}
+${getBasicExampleBlock('BmbIconItemComponent')}
         `,
       },
     },
   },
   argTypes: {
     icon: {
-      name: 'Icon',
-      control: { type: 'text' },
-      description: 'Sets the icon for the item.',
-      table: { category: 'Properties', type: { summary: 'string (required)' } },
-    },
-    iconSize: {
-      name: 'Icon size',
-      control: { type: 'number' },
-      description: "Sets the size of the item's icon.",
+      ...DBmbIconParamDesc.icon,
+      description: DBmbIconParamDesc.icon.description.concat(
+        '<br/><br/>Generally this icon will be displayed on the left.',
+      ),
       table: {
-        category: 'Properties',
-        defaultValue: { summary: 24 },
-        type: { summary: 'number' },
+        ...DBmbIconParamDesc.icon.table,
+        type: { summary: 'string (required)' },
       },
     },
+    iconSize: DBmbIconParamDesc.iconSize,
     label: {
-      name: 'Label',
       control: { type: 'text' },
       description:
         'Sets the label for the item. This corresponds to the text shown on the left.',
-      table: { category: 'Properties', type: { summary: 'string (required)' } },
+      table: {
+        category: 'Properties',
+        defaultValue: { summary: '' },
+        type: { summary: 'string (required)' },
+      },
     },
     value: {
-      name: 'Value',
       control: { type: 'text' },
       description: `Sets the value for the item. This corresponds to the text shown on the right.
 
 You can pass plain text or valid HTML tags. If HTML is used, it will be safely rendered inside the component.`,
-      table: { category: 'Properties', type: { summary: 'string (required)' } },
+      table: {
+        category: 'Properties',
+        defaultValue: { summary: '' },
+        type: { summary: 'string (required)' },
+      },
     },
   },
   args: {

@@ -1,20 +1,16 @@
 <ng-template #tag>
   <span class="bmb_tag-text">{{ text() }}</span>
-  @if (dismissible() && !activityTag()) {
-    <bmb-icon
-      [size]="16"
+  @if (dismissible()) {
+    <bmb-action-icon
+      [iconSize]="16"
       class="bmb_tag-btn"
-      (click)="closeTag(text())"
+      (buttonClick)="closeTag(text())"
       [icon]="'close'"
     />
   }
 </ng-template>
 
-@if (activityTag()) {
-  <div [ngClass]="getClasses()">
-    <ng-container [ngTemplateOutlet]="tag" />
-  </div>
-} @else {
+@if (dismissible()) {
   <button
     type="button"
     [disabled]="isDisabled()"
@@ -23,4 +19,8 @@
   >
     <ng-container [ngTemplateOutlet]="tag" />
   </button>
+} @else {
+  <div [ngClass]="getClasses()">
+    <ng-container [ngTemplateOutlet]="tag" />
+  </div>
 }

@@ -8,6 +8,7 @@ import {
 } from '../../utils/doc/utils';
 import {
   DBmbGenericParamDesc,
+  getDefaultValueControl,
   getPropertyParamDesc,
 } from '../../utils/doc/parameterDescriptions';
 
@@ -49,7 +50,7 @@ ${getBasicExampleBlock('BmbProgressCircleComponent')}
     valueLabel: getPropertyParamDesc(
       'value label',
       'text',
-      '',
+      '""',
       '<br/><br/>The value label will be displayed in the center of the progress circle.',
     ),
     fullFillPathStatus: getPropertyParamDesc(
@@ -67,7 +68,7 @@ ${IMPORTANT_DESCRIPTION}`,
       table: {
         category: 'Properties',
         type: { summary: 'boolean' },
-        defaultValue: { summary: false },
+        defaultValue: getDefaultValueControl(false),
       },
     },
     percent: {
@@ -78,13 +79,13 @@ ${IMPORTANT_DESCRIPTION}`,
       table: {
         category: 'Properties',
         type: { summary: 'number' },
-        defaultValue: { summary: 0 },
+        defaultValue: getDefaultValueControl(0),
       },
     },
     title: getPropertyParamDesc(
       'progress circle',
       'text',
-      '',
+      '""',
       `
 <br/><br/>Considerations for displaying text on one or more lines:
 - Use a string to display the title on a single line.
@@ -99,7 +100,7 @@ ${IMPORTANT_DESCRIPTION}`,
       table: {
         category: 'Properties',
         type: { summary: 'boolean' },
-        defaultValue: { summary: false },
+        defaultValue: getDefaultValueControl(false),
       },
     },
     fillPathStatus: {
@@ -114,7 +115,7 @@ ${IMPORTANT_DESCRIPTION}
       table: {
         category: 'Properties',
         type: { summary: 'BmbProgressCirclePathStatus' },
-        defaultValue: { summary: 'success' },
+        defaultValue: getDefaultValueControl('success'),
       },
     },
     showBackground: DBmbGenericParamDesc.deprecated,

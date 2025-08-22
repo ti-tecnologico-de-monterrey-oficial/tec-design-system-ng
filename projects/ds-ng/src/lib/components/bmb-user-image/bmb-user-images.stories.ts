@@ -8,6 +8,7 @@ import {
 import {
   DBmbGenericParamDesc,
   DBmbImageParamDesc,
+  getDefaultValueControl,
 } from '../../utils/doc/parameterDescriptions';
 
 export default {
@@ -59,7 +60,7 @@ ${getBasicExampleBlock('BmbUserImageComponent')}
       table: {
         category: 'Properties',
         type: { summary: 'boolean' },
-        defaultValue: { summary: 'false' },
+        defaultValue: getDefaultValueControl(false),
       },
     },
     buttonClick: DBmbGenericParamDesc.onButtonClick,

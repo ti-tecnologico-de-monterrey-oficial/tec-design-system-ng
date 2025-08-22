@@ -47,7 +47,7 @@ ${getBasicExampleBlock('BmbNavigationBarComponent')}
       {
         icon: 'share',
         action: () => {
-          alert('share');
+          console.log('share');
         },
       },
       {
@@ -58,7 +58,7 @@ ${getBasicExampleBlock('BmbNavigationBarComponent')}
       {
         icon: 'send',
         action: () => {
-          alert('send');
+          console.log('send');
         },
       },
     ],

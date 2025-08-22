@@ -1,68 +1,118 @@
-import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
+import { Meta, StoryObj } from '@storybook/angular';
 import { BmbInvoiceComponent } from './bmb-invoice.component';
-import { BmbBadgeComponent } from '../bmb-badge/bmb-badge.component';
-import { CommonModule } from '@angular/common';
-import { getEmptyStateMessage } from '../../utils/doc/utils';
+import {
+  getBasicExampleBlock,
+  getEmptyStateMessage,
+  getGeneralComponentDescription,
+  getGeneralDescription,
+  getSpecialSpecifications,
+} from '../../utils/doc/utils';
+import { getAppearanceParam } from '../../utils/doc/parameterDescriptions';
 
 export default {
   title: 'Components/Visual labels/Invoice',
   component: BmbInvoiceComponent,
-  decorators: [
-    moduleMetadata({
-      imports: [CommonModule, BmbBadgeComponent],
-    }),
-  ],
   parameters: {
     docs: {
+      controls: { exclude: ['getInvoiceClasses', 'isNegative', 'ngOnInit'] },
       description: {
         component: `
-${getEmptyStateMessage()}
-Below is an example of how you can use this component in TypeScript:
-
-\`\`\`typescript
-import { BmbInvoiceComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
-@Component({
-  selector: 'component',
-  standalone: true,
-  imports: [ BmbInvoiceComponent ],
-  templateUrl: './component.html',
-  styleUrl: './component.scss',
-})
-\`\`\`
-
-Below is an example of how you can use this component in HTML:
+${getGeneralDescription(`${getGeneralComponentDescription('invoice ')} to generate electronic invoices.`, 'https://bamboo.tec.mx/latest/componentes/invoice/descripcion-general-cAzfIad4')}
+${getSpecialSpecifications(getEmptyStateMessage())}
+${getBasicExampleBlock(
+  'BmbInvoiceComponent',
+  '',
+  `//Data example
+  data: {
+      concept: [
+        {
+          concept: 'Fecha de solicitud',
+          quantity: '$0,000 USD',
+          badge: { label: 'Discount', appearance: 'success', container: true },
+        },
+        {
+          concept: 'Tipo de cambio al día de hoy *',
+          quantity: '-$0,000 USD',
+        },
+        {
+          concept: 'Fecha de solicitud',
+          quantity: '$0,000 USD',
+          badge: { label: 'Discount', appearance: 'success', container: false },
+        },
+      ],
+      total: {
+        label: 'Total',
+        value: '$0,000 USD',
+        equivalence: ['3,828 créditos • 12 meses', '319 créditos • al mes'],
+      },
+    };`,
+)}
         `,
       },
     },
   },
   argTypes: {
-    appearanceContrast: {
-      control: {
-        type: 'select',
-      },
-      options: ['default', 'primary', 'alternative'],
-      description: 'Defines the appearance style.',
-      table: {
-        category: 'Properties',
-        type: { summary: 'string' },
-      },
-    },
+    appearanceContrast: getAppearanceParam('invoice', [
+      'default',
+      'primary',
+      'alternative',
+    ]),
     data: {
-      name: 'Data',
       control: { type: 'object' },
-      description: 'Data object containing invoice information',
+      description: 'Sets the invoice data.',
       table: {
         category: 'Properties',
+        defaultValue: false,
         type: {
-          summary: `
-            {
-              concept: Concept[],
-              total: {
-                label: string,
-                value: string,
-                equivalence: string[]
-              }
-            }
+          summary: 'IBmbInvoice',
+          detail: `
+IBmbInvoice {
+  concept: IBmbConcept[];
+  total: {
+    label: string;
+    value: string;
+    equivalence: string[];
+  };
+}
+
+IBmbConcept {
+  concept: string;
+  quantity: string;
+  price?: number;
+  badge?: { label: string; appearance: IBbmBgAppearance; container: boolean };
+}
+
+IBbmBgAppearance =
+  | 'normal'
+  | 'strong'
+  | 'success'
+  | 'info'
+  | 'warning'
+  | 'error'
+  | 'brand'
+  | 'alert'
+  | 'background'
+  | 'disabled'
+  | 'mitec_blue'
+  | 'mitec_red'
+  | 'mitec_green'
+  | 'mitec_orange'
+  | 'mitec_light_green'
+  | 'mitec_purple'
+  | 'creative_violet'
+  | 'creative_indigo'
+  | 'creative_emerald'
+  | 'creative_licorice'
+  | 'creative_darkteal'
+  | 'creative_peach'
+  | 'creative_sepia'
+  | 'creative_softred'
+  | 'creative_wattle'
+  | 'creative_shipcove'
+  | 'creative_plantation'
+  | 'creative_rum'
+  | 'creative_hibiscus'
+  | 'creative_ripelemon';
           `,
         },
       },

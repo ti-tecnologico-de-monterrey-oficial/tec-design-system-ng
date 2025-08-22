@@ -18,6 +18,7 @@ import { IDropdownItem } from '../../types';
 import {
   DBmbDropdownMenuParamDesc,
   DBmbIconParamDesc,
+  getDefaultValueControl,
   getOnClickParam,
   ON_CLICK_DESCRIPTION,
 } from '../../utils/doc/parameterDescriptions';
@@ -61,7 +62,7 @@ ${getBasicExampleBlock('BmbCardButtonComponent')}
       description: '',
       table: {
         category: 'Template',
-        defaultValue: { summary: '' },
+        defaultValue: getDefaultValueControl(),
         type: { summary: 'TemplateRef' },
       },
     },
@@ -70,6 +71,7 @@ ${getBasicExampleBlock('BmbCardButtonComponent')}
       description: 'Sets the toggle between regular and small card button.',
       table: {
         category: 'Small Card',
+        defaultValue: getDefaultValueControl(false),
         type: { summary: 'boolean' },
       },
     },
@@ -79,7 +81,7 @@ ${getBasicExampleBlock('BmbCardButtonComponent')}
         'Sets the bot image, it is an object with `src` and `alt` small card to display the image.',
       table: {
         category: 'Small Card',
-        defaultValue: { summary: '' },
+        defaultValue: getDefaultValueControl(),
         type: {
           summary: 'IBmbImageInfo',
           detail: `
@@ -95,6 +97,7 @@ IBmbImageInfo {
       description: 'Sets the info icon at the top right. Only for mobile.',
       table: {
         category: 'Small Card',
+        defaultValue: getDefaultValueControl(),
         type: { summary: 'string' },
       },
     },
@@ -103,6 +106,7 @@ IBmbImageInfo {
       description: 'Sets the title text.',
       table: {
         category: 'Small Card',
+        defaultValue: getDefaultValueControl(),
         type: { summary: 'string' },
       },
     },
@@ -111,6 +115,7 @@ IBmbImageInfo {
       description: 'Sets the text shown on the back of the card button.',
       table: {
         category: 'Small Card',
+        defaultValue: getDefaultValueControl(),
         type: { summary: 'string' },
       },
     },
@@ -120,7 +125,7 @@ IBmbImageInfo {
       description: 'Toggle between Full Interactive and Add Content mode.',
       table: {
         category: 'Full Interactive',
-        defaultValue: { summary: 'true' },
+        defaultValue: getDefaultValueControl(true),
         type: { summary: 'boolean' },
       },
     },
@@ -130,6 +135,7 @@ IBmbImageInfo {
         'The body content of the card button. Text will be truncated to 3 lines if it exceeds the length.',
       table: {
         category: 'Full Interactive',
+        defaultValue: getDefaultValueControl(),
         type: { summary: 'string' },
       },
     },
@@ -151,6 +157,7 @@ Badge info properties:
       `,
       table: {
         category: 'Full Interactive',
+        defaultValue: getDefaultValueControl(),
         type: {
           summary: 'IBmbBadgeInfo',
           detail: `
@@ -170,6 +177,7 @@ IBmbBadgeInfo {
         'Toggle to show an icon or image on the left side of the card button. If no icon is present, the image will be shown.',
       table: {
         category: 'Full Interactive',
+        defaultValue: getDefaultValueControl(),
         type: { summary: 'boolean' },
       },
     },
@@ -179,6 +187,7 @@ IBmbBadgeInfo {
         'The icon for the left content when the card is interactive.',
       table: {
         category: 'Full Interactive',
+        defaultValue: getDefaultValueControl(),
         type: { summary: 'string' },
       },
     },
@@ -189,6 +198,7 @@ An object with \`src\` and \`alt\` Full Interactive to display the image if left
       `,
       table: {
         category: 'Full Interactive',
+        defaultValue: getDefaultValueControl(),
         type: {
           summary: 'IBmbImageInfo',
           detail: `
@@ -205,6 +215,7 @@ IBmbImageInfo {
       description: 'Toggle to show or hide the dropdown menu.',
       table: {
         category: 'Full Interactive',
+        defaultValue: getDefaultValueControl(false),
         type: { summary: 'boolean' },
       },
     },
@@ -236,6 +247,7 @@ ${RELEVANT_TITLE_LEVEL[2]} there is an example in the **Template example** the s
         `,
       table: {
         category: 'Full Interactive',
+        defaultValue: getDefaultValueControl(false),
         type: { summary: 'boolean' },
       },
     },
@@ -252,6 +264,7 @@ ${RELEVANT_TITLE_LEVEL[2]} there is an example in the **Template example** the s
       description: 'Sets the title of the card button.',
       table: {
         category: 'Common Properties',
+        defaultValue: getDefaultValueControl(),
         type: {
           summary: 'string',
           detail: `
@@ -283,6 +296,7 @@ Usage:
       `,
       table: {
         category: 'Common Properties',
+        defaultValue: getDefaultValueControl(),
         type: { summary: 'string' },
       },
     },

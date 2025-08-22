@@ -12,9 +12,11 @@ import {
   RELEVANT_TITLE_LEVEL,
 } from '../../utils/doc/utils';
 import {
-  DEPRECATED_PROPERTIES_DESCRIPTION,
   DBmbInputParamDesc,
   getOnEventParam,
+  DBmbGenericParamDesc,
+  getDefaultValueControl,
+  getAppearanceParam,
 } from '../../utils/doc/parameterDescriptions';
 
 const additionalDescription = `input various types of data, such as:
@@ -116,29 +118,13 @@ ${getBasicExampleBlock('BmbInputComponent', '', onChange.handleExample)}
 IBmbInputType = 'text' | 'password' | 'number' | 'text-area'
           `,
         },
-        defaultValue: { summary: 'text' },
+        defaultValue: getDefaultValueControl('text'),
       },
     },
     id: DBmbInputParamDesc.inputId,
     name: DBmbInputParamDesc.name,
     value: DBmbInputParamDesc.value,
-    appearance: {
-      control: {
-        type: 'select',
-      },
-      options: ['normal', 'simple'],
-      description: 'Sets the appearance style of the input field.',
-      table: {
-        category: 'Properties',
-        type: {
-          summary: 'IBmbInputAppearance',
-          detail: `
-IBmbInputAppearance = 'normal' | 'simple'
-          `,
-        },
-        defaultValue: { summary: 'normal' },
-      },
-    },
+    appearance: getAppearanceParam('input field', ['normal', 'simple']),
     label: DBmbInputParamDesc.label,
     tooltip: DBmbInputParamDesc.tooltip,
     tooltipPosition: DBmbInputParamDesc.tooltipPosition,
@@ -156,7 +142,7 @@ IBmbInputAppearance = 'normal' | 'simple'
       table: {
         category: 'Properties',
         type: { summary: 'boolean' },
-        defaultValue: { summary: 'false' },
+        defaultValue: getDefaultValueControl(false),
       },
     },
     autocomplete: {
@@ -166,6 +152,7 @@ IBmbInputAppearance = 'normal' | 'simple'
       description: 'Sets autocomplete on the input field when true.',
       table: {
         category: 'Properties',
+        defaultValue: getDefaultValueControl('off'),
         type: { summary: 'string' },
       },
     },
@@ -245,7 +232,7 @@ Example: 10/20 or 10/-
         category: 'Properties',
         subcategory: 'Textarea',
         type: { summary: 'boolean' },
-        defaultValue: { summary: 'true' },
+        defaultValue: getDefaultValueControl('true'),
       },
     },
     rows: {
@@ -258,6 +245,7 @@ Example: 10/20 or 10/-
         category: 'Properties',
         subcategory: 'Textarea',
         type: { summary: 'number' },
+        defaultValue: getDefaultValueControl(3),
       },
     },
     customValidation: {
@@ -300,7 +288,7 @@ For correct behavior, the \`pattern\` property must not be assigned to the input
         category: 'Properties',
         subcategory: 'Textarea',
         type: { summary: 'boolean' },
-        defaultValue: { summary: 'false' },
+        defaultValue: getDefaultValueControl(false),
       },
     },
     heightTextArea: {
@@ -333,7 +321,7 @@ Sets additional skills to run on this input field.
 IBmbAdditionalAction = 'copy' | 'showHide' | 'none'
           `,
         },
-        defaultValue: { summary: 'none' },
+        defaultValue: getDefaultValueControl('none'),
       },
     },
     control: DBmbInputParamDesc.control,
@@ -350,6 +338,7 @@ IBmbAdditionalAction = 'copy' | 'showHide' | 'none'
     onChange: getOnEventParam(onChange),
     onKeyDown: DBmbInputParamDesc.onKeyDown,
     customInputContent: {
+      control: false,
       description:
         'Allows to provide custom content inside the input field using a TemplateRef.',
       table: {
@@ -358,16 +347,7 @@ IBmbAdditionalAction = 'copy' | 'showHide' | 'none'
       },
     },
     showError: DBmbInputParamDesc.showError,
-    size: {
-      control: {
-        type: 'text',
-      },
-      description: DEPRECATED_PROPERTIES_DESCRIPTION,
-      table: {
-        category: 'Deprecated',
-        type: { summary: 'number' },
-      },
-    },
+    size: DBmbGenericParamDesc.deprecated,
   },
   args: {
     type: 'text',

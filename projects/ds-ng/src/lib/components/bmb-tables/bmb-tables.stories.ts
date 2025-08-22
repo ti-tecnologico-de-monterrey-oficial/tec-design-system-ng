@@ -531,6 +531,18 @@ ${RELEVANT_TITLE_LEVEL[0]} If the data is asynchronous, this property must also 
         defaultValue: { summary: 'es' },
       },
     },
+    filtersPosition: {
+      control: {
+        type: 'select',
+      },
+      options: ['top', 'right', 'bottom', 'left'],
+      description: 'Set the position of the filters section.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'IBmbFiltersPosition' },
+        defaultValue: { summary: 'top' },
+      },
+    },
   },
   args: {
     data: [
@@ -1088,7 +1100,6 @@ ${RELEVANT_TITLE_LEVEL[0]} If the data is asynchronous, this property must also 
         def: 'last_name',
         label: 'Apellido',
         dataKey: 'last_name',
-        cellTemplate: 'dynamicCell',
         icon: 'face',
         labelEn: 'Last Name',
         type: 'string',
@@ -1100,6 +1111,7 @@ ${RELEVANT_TITLE_LEVEL[0]} If the data is asynchronous, this property must also 
         icon: 'email',
         labelEn: 'Email',
         type: 'string',
+        isFilterable: false,
       },
       {
         def: 'birthday',
@@ -1134,6 +1146,7 @@ ${RELEVANT_TITLE_LEVEL[0]} If the data is asynchronous, this property must also 
     initialTableSelection: [1],
     lang: 'es',
     pageSize: 20,
+    filtersPosition: 'top',
   },
 } as Meta<typeof BmbTablesComponent>;
 

@@ -1,5 +1,14 @@
 import { Meta, StoryObj } from '@storybook/angular';
 import { BmbLegendComponent } from './bmb-legend.component';
+import {
+  getBasicExampleBlock,
+  getGeneralComponentDescription,
+  getGeneralDescription,
+} from '../../utils/doc/utils';
+import {
+  getAppearanceParam,
+  getLabelParamDesc,
+} from '../../utils/doc/parameterDescriptions';
 
 export default {
   title: 'Components/Visual labels/Legend',
@@ -8,68 +17,20 @@ export default {
     docs: {
       description: {
         component: `
-Below is an example of how you can use this component in TypeScript:
-
-\`\`\`typescript
-import { BmbLegendComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
-@Component({
-  selector: 'component',
-  standalone: true,
-  imports: [ BmbLegendComponent ],
-  templateUrl: './component.html',
-  styleUrl: './component.scss',
-})
-\`\`\`
-
-Below is an example of how you can use this component in HTML:
+${getGeneralDescription(`${getGeneralComponentDescription('legend')} to show a correlation between data or values and their representation.`, 'https://bamboo.tec.mx/latest/componentes/legend/descripcion-general-23itzHxE')}
+${getBasicExampleBlock('BmbLegendComponent')}
         `,
       },
     },
   },
   argTypes: {
-    label: {
-      name: 'Label',
-      control: 'text',
-      description: 'Label section content.',
-      table: {
-        type: { summary: 'string' },
-        category: 'Properties',
-        defaultValue: { summary: '' },
-      },
-    },
-    value: {
-      name: 'Value',
-      control: {
-        type: 'text',
-      },
-      description: 'Value section content.',
-      table: {
-        type: { summary: 'string' },
-        category: 'Properties',
-        defaultValue: { summary: '' },
-      },
-    },
-    indicatorAppearance: {
-      name: 'Indicator appearance',
-      control: {
-        type: 'select',
-      },
-      options: [
-        'normal',
-        'strong',
-        'success',
-        'info',
-        'warning',
-        'error',
-        'brand',
-      ],
-      table: {
-        type: { summary: 'string' },
-        category: 'Properties',
-        defaultValue: { summary: 'normal' },
-      },
-      description: 'Determines the indicator color',
-    },
+    label: getLabelParamDesc('top'),
+    value: getLabelParamDesc('bottom', 'value'),
+    indicatorAppearance: getAppearanceParam(
+      'legend',
+      ['normal', 'strong', 'success', 'info', 'warning', 'error', 'brand'],
+      'normal',
+    ),
   },
   args: {
     label: 'Title',
