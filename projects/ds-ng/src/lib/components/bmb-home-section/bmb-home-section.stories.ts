@@ -2,6 +2,16 @@ import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { BmbContainerComponent } from '../bmb-container/bmb-container.component';
 import { BmbHomeSectionComponent } from './bmb-home-section.component';
+import {
+  getBasicExampleBlock,
+  getGeneralComponentDescription,
+  getGeneralDescription,
+} from '../../utils/doc/utils';
+import {
+  DBmbGenericParamDesc,
+  DBmbIconParamDesc,
+  getPropertyParamDesc,
+} from '../../utils/doc/parameterDescriptions';
 
 export default {
   title: 'Components/Containers/Home section',
@@ -15,71 +25,22 @@ export default {
     docs: {
       description: {
         component: `
-Below is an example of how you can use this component in TypeScript:
-
-\`\`\`typescript
-import { BmbHomeSectionComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
-@Component({
-  selector: 'component',
-  standalone: true,
-  imports: [ BmbHomeSectionComponent ],
-  templateUrl: './component.html',
-  styleUrl: './component.scss',
-})
+${getGeneralDescription(`${getGeneralComponentDescription('home-section')} for easy grouping of header content.`, 'https://bamboo.tec.mx/latest/components/home-section/descripcion-general-m2zcAnWW')}
+${getBasicExampleBlock('BmbHomeSectionComponent')}
+\`\`\`html
+<bmb-home-section>
+  <div>Content</div>
+</bmb-home-section>
 \`\`\`
-
-Below is an example of how you can use this component in HTML and also you can include whatever you want inside \`\`\`<bmb-home-section><div>Content</div></bmb-home-section>\`\`\`:
         `,
       },
     },
   },
   argTypes: {
-    title: {
-      name: 'Title',
-      control: {
-        type: 'text',
-      },
-      description: 'The title of the home section.',
-      table: {
-        category: 'Properties',
-        type: { summary: 'string' },
-      },
-    },
-    icon: {
-      name: 'Icon',
-      control: { type: 'text' },
-      description:
-        'Name of the icon to use. Please use Material icons: https://fonts.google.com/icons.',
-      table: {
-        category: 'Properties',
-        type: { summary: 'string' },
-      },
-    },
-    link: {
-      name: 'Link',
-      control: {
-        type: 'text',
-      },
-      description: 'The link for redirection to another page.',
-      table: {
-        category: 'Events',
-        type: { summary: 'string' },
-      },
-    },
-    target: {
-      name: 'Target',
-      control: {
-        type: 'radio',
-      },
-      options: ['_blank', '_self', '_parent', '_top'],
-      description:
-        'The target attribute for the link. Refer to https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a for more information.',
-      table: {
-        category: 'Events',
-        type: { summary: 'IBmbTargetLink' },
-        defaultValue: { summary: '_blank' },
-      },
-    },
+    title: getPropertyParamDesc('home section'),
+    icon: DBmbIconParamDesc.icon,
+    link: DBmbGenericParamDesc.link,
+    target: DBmbGenericParamDesc.target,
   },
   args: {
     title: 'Section name',

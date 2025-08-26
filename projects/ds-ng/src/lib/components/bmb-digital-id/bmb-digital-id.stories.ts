@@ -1,174 +1,117 @@
-import type { Meta, StoryFn, StoryObj } from '@storybook/angular';
+import {
+  componentWrapperDecorator,
+  StoryObj,
+  type Meta,
+} from '@storybook/angular';
 import { BmbDigitalIdComponent } from './bmb-digital-id.component';
-import { attributes } from '../../utils/doc/utils';
+import {
+  attributes,
+  getBasicExampleBlock,
+  getGeneralComponentDescription,
+  getGeneralDescription,
+  getOnEvent,
+  IBmbOnEvent,
+} from '../../utils/doc/utils';
+import {
+  DBmbIconParamDesc,
+  DBmbImageParamDesc,
+  getDefaultValueControl,
+  getOnClickParam,
+  getPropertyParamDesc,
+} from '../../utils/doc/parameterDescriptions';
+
+const onCloseEvent: IBmbOnEvent = getOnEvent('close', 'close'),
+  onAccessEvent: IBmbOnEvent = getOnEvent('access', 'access');
+const getPropDesc = (name: string) => {
+  const propDesc = getPropertyParamDesc(
+    '',
+    'text',
+    false,
+    '',
+    `Sets the ${name} that will be shown on the profile.`,
+  );
+
+  return {
+    ...propDesc,
+    table: {
+      ...propDesc.table,
+      type: {
+        summary: propDesc.table.type.summary.toString().concat(' (required)'),
+      },
+    },
+  };
+};
 
 export default {
   title: 'Particularities/mitec app/Digital id',
   component: BmbDigitalIdComponent,
+  decorators: [
+    componentWrapperDecorator((story: string) => {
+      return `<div style="max-width: 430px; margin: 0 auto">
+          ${story}
+        </div>`;
+    }),
+  ],
   parameters: {
     docs: {
+      controls: {
+        exclude: ['logoSrc', 'clickAccess', 'closeDigitalId'],
+      },
       description: {
         component: `
-Below is an example of how you can use this component in TypeScript:
-
-\`\`\`typescript
-import { BmbDigitalIdComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
-@Component({
-  selector: 'component',
-  standalone: true,
-  imports: [BmbDigitalIdComponent],
-  templateUrl: './component.html',
-  styleUrl: './component.scss',
-})
-
-export class AppComponent(){
-    access() {
-        window.alert('Access Button');
-    }
-}
-\`\`\`
-Below is an example of how you can use this component in HTML:
+${getGeneralDescription(`${getGeneralComponentDescription('digital-id')} the digital identification to be displayed, adapting to the profile within the institution.`, 'https://bamboo.tec.mx/latest/particularities/mitec-app/digital-id-OGcI0rQ5')}
+${getBasicExampleBlock(
+  'BmbDigitalIdComponent',
+  '',
+  `${onCloseEvent.handleExample}
+  ${onAccessEvent.handleExample}`,
+)}
         `,
       },
     },
   },
   argTypes: {
-    name: {
-      name: 'Name',
-      control: {
-        type: 'text',
-      },
-      description: 'The name of the user to show.',
-      table: {
-        category: 'Properties',
-      },
-    },
-    surname: {
-      name: 'SurName',
-      control: {
-        type: 'text',
-      },
-      description: 'The Surname of the user to show.',
-      table: {
-        category: 'Properties',
-      },
-    },
-    registration: {
-      name: 'Registration',
-      control: {
-        type: 'text',
-      },
-      description: 'The id of the user to show.',
-      table: {
-        category: 'Properties',
-      },
-    },
-    campus: {
-      name: 'Campus',
-      control: {
-        type: 'text',
-      },
-      description: 'The Campus of the user to show.',
-      table: {
-        category: 'Properties',
-      },
-    },
-    career: {
-      name: 'Career',
-      control: {
-        type: 'text',
-      },
-      description: 'The career of the user to show.',
-      table: {
-        category: 'Properties',
-      },
-    },
-    role: {
-      name: 'Role',
-      control: {
-        type: 'text',
-      },
-      description: 'The role of the user to show.',
-      table: {
-        category: 'Properties',
-      },
-    },
+    name: getPropDesc('user name'),
+    surname: getPropDesc('last name of the user'),
+    registration: getPropDesc('id of the user'),
+    campus: getPropDesc('campus of the user'),
+    career: getPropDesc('career of the user'),
+    role: getPropDesc('role of the user'),
     textButton: {
-      name: 'Text Button',
       control: {
         type: 'text',
       },
-      description: 'The text that the action button shows.',
+      description: 'Sets the access button label.',
       table: {
         category: 'Properties',
       },
     },
     icon: {
-      name: 'Icon',
-      control: { type: 'text' },
-      description:
-        'Sets the name of the icon to use. Please use Material icons: https://fonts.google.com/icons. Do not use the image property if you want to use an icon. If you need to set an image as icon, you can set the image path here.',
+      ...DBmbIconParamDesc.icon,
       table: {
-        category: 'Properties',
-        type: { summary: 'string' },
+        ...DBmbIconParamDesc.icon.table,
+        defaultValue: getDefaultValueControl('qr_code_scanner'),
       },
     },
     imgProfile: {
-      name: 'Image Profile',
-      control: {
-        type: 'text',
-      },
-      description: 'The source of the image to display.',
+      ...DBmbImageParamDesc.image,
       table: {
-        category: 'Properties',
-        type: { summary: 'string' },
+        ...DBmbImageParamDesc.image.table,
+        type: {
+          summary:
+            DBmbImageParamDesc.image.table.type.summary.concat(' (required)'),
+        },
       },
     },
     imgBackground: {
-      name: 'Image Background',
-      control: {
-        type: 'text',
-      },
-      description:
-        'The source of the image to display in the background of the component.',
-      table: {
-        category: 'Properties',
-        type: { summary: 'string' },
-      },
+      ...DBmbImageParamDesc.image,
+      description: DBmbImageParamDesc.image.description.concat(
+        '<br/><br/>This image will be shown as the background on the profile.',
+      ),
     },
-    hideButton: {
-      name: 'Hide Button',
-      control: { type: 'boolean' },
-      description: 'Sets the if the button is visible to the user',
-      table: {
-        category: 'Properties',
-        type: { summary: 'string' },
-      },
-    },
-    close: {
-      name: 'Handle Close',
-      control: {
-        type: '',
-      },
-      description:
-        'Output function, returns a void signal to indicates that close the component',
-      table: {
-        category: 'Events',
-        type: { summary: 'function' },
-      },
-    },
-    access: {
-      name: 'Handle Access',
-      control: {
-        type: '',
-      },
-      description:
-        'Output function, returns a void signal to indicates that button access was clicked',
-      table: {
-        category: 'Events',
-        type: { summary: 'function' },
-      },
-    },
+    hideButton: getPropertyParamDesc('button to hidden', 'boolean', false),
+    close: getOnClickParam(onCloseEvent),
+    access: getOnClickParam(onAccessEvent),
   },
   args: {
     name: 'Paola',
@@ -184,23 +127,24 @@ Below is an example of how you can use this component in HTML:
     imgBackground:
       'https://2.bp.blogspot.com/-YkNDZEbKt_g/TYzcbF2_tkI/AAAAAAAAalk/Vt_MHS60Xv8/s1600/www.JoseLuisAvilaHerrera.BLOGSPOT.com%2B-%2BFunny%2BCats%2B-%2BGatitos%2Bmuy%2Btiernos%2B8.jpg',
     access: () => {
-      window.alert('Access Button');
+      console.log('Access Button');
     },
     close: () => {
-      window.alert('Close Button');
+      console.log('Close Button');
     },
   },
 } as Meta<typeof BmbDigitalIdComponent>;
 
-const customizable = (): StoryFn => (args) => ({
-  props: args,
-  template: `
-    <div style="max-width: 430px; margin: 0 auto">
+type Story = StoryObj<BmbDigitalIdComponent>;
+
+export const Default: Story = {
+  args: {},
+  render: (args) => ({
+    props: args,
+    template: `
       <bmb-digital-id
         ${attributes(args)}
       />
-    </div>
-  `,
-});
-
-export const Default = customizable();
+    `,
+  }),
+};

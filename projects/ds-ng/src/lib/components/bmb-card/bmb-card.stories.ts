@@ -7,7 +7,15 @@ import {
 } from './bmb-card.component';
 import { moduleMetadata } from '@storybook/angular';
 import { CommonModule } from '@angular/common';
-import { attributes, getEmptyStateMessage } from '../../utils/doc/utils';
+import {
+  attributes,
+  getArchitectureSection,
+  getBasicExampleBlock,
+  getEmptyStateMessage,
+  getGeneralComponentDescription,
+  getGeneralDescription,
+  getSpecialSpecifications,
+} from '../../utils/doc/utils';
 
 const meta: Meta<BmbCardComponent> = {
   title: 'Components/Containers/Generic card',
@@ -31,26 +39,13 @@ const meta: Meta<BmbCardComponent> = {
   ],
   parameters: {
     docs: {
+      controls: {
+        exclude: ['alternative', 'state', 'getStyles', 'getClasses'],
+      },
       description: {
         component: `
-${getEmptyStateMessage()}
-Below is an example of how you can use this component in TypeScript:
-
-\`\`\`typescript
-import { BmbCardComponent, BmbCardFooterComponent, BmbCardHeaderComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
-@Component({
-  selector: 'component',
-  standalone: true,
-  imports: [ BmbCardComponent, BmbCardFooterComponent, BmbCardHeaderComponent ],
-  templateUrl: './component.html',
-  styleUrl: './component.scss',
-})
-\`\`\`
-
-## Architecture
-
-\`\`\`html
-<section class="bmb_card" <!-- conditional class bmb_radius-{borderRadius} bmb_margin-{this.margin} bmb_card-{type} --> >
+${getGeneralDescription(`${getGeneralComponentDescription('card')} to present any type of content in an orderly manner with card features.`, 'https://bamboo.tec.mx/latest/components/generic-card/descripcion-general-ArPVPcRB')}
+${getArchitectureSection(`<section class="bmb_card" <!-- conditional class bmb_radius-{borderRadius} bmb_margin-{this.margin} bmb_card-{type} --> >
   <header class="bmb_card-header" <!-- conditional class bmb_padding-{padding} --> >
       { header content }
   </header>
@@ -60,17 +55,15 @@ import { BmbCardComponent, BmbCardFooterComponent, BmbCardHeaderComponent } from
   <footer class="bmb_card-footer" <!-- conditional class bmb_padding-{padding} --> >
     <ng-content></ng-content>
   </footer>
-</section>
-\`\`\`
-
-Below is an example of how you can use this component in HTML:
+</section>`)}
+${getSpecialSpecifications(getEmptyStateMessage())}
+${getBasicExampleBlock('BmbCardComponent')}
         `,
       },
     },
   },
   argTypes: {
     borderRadius: {
-      name: 'Border radius',
       control: {
         type: 'select',
       },
@@ -83,7 +76,6 @@ Below is an example of how you can use this component in HTML:
       description: 'Determines the corner radius size',
     },
     margin: {
-      name: 'Margin',
       control: {
         type: 'select',
       },
@@ -93,10 +85,9 @@ Below is an example of how you can use this component in HTML:
         category: 'Properties',
         defaultValue: { summary: 'm' },
       },
-      description: 'Set the margin size',
+      description: 'Sets the margin size',
     },
     type: {
-      name: 'Type',
       control: {
         type: 'select',
       },
@@ -114,10 +105,9 @@ Below is an example of how you can use this component in HTML:
         category: 'Properties',
         defaultValue: { summary: 'normal' },
       },
-      description: 'Set the color schema',
+      description: 'Sets the color schema',
     },
     boxShadowStyle: {
-      name: 'Box Shadow Style',
       control: {
         type: 'select',
       },
@@ -135,10 +125,9 @@ Below is an example of how you can use this component in HTML:
         category: 'Properties',
         defaultValue: { summary: 'none' },
       },
-      description: 'Set the style of the box shadow',
+      description: 'Sets the style of the box shadow',
     },
     borderColor: {
-      name: 'Border Color',
       control: {
         type: 'select',
       },
@@ -157,7 +146,7 @@ Below is an example of how you can use this component in HTML:
         category: 'Properties',
         defaultValue: { summary: 'default' },
       },
-      description: 'Set the color border of the card',
+      description: 'Sets the color border of the card',
     },
   },
   args: {

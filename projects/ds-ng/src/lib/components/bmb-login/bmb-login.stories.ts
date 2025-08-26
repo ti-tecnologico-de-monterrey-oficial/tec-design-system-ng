@@ -5,6 +5,7 @@ import {
   getGeneralComponentDescription,
   getGeneralDescription,
   getOnEvent,
+  RELEVANT_TITLE_LEVEL,
 } from '../../utils/doc/utils';
 import {
   DBmbGenericParamDesc,
@@ -86,7 +87,7 @@ ${getBasicExampleBlock('BmbLoginComponent')}
         defaultValue: {
           summary: '',
           detail: `
-Template:
+${RELEVANT_TITLE_LEVEL[4]} Template:
 
 actionHeaderLinks:IBmbActionHeaderLinks = {
   apple: {

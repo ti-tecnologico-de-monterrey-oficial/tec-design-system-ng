@@ -13,7 +13,7 @@ export default {
   component: BmbUserSummaryComponent,
   parameters: {
     docs: {
-      controls: { exclude: ['handleClick'] },
+      controls: { exclude: ['handleClick', 'getClass'] },
       description: {
         component: `
 ${getGeneralDescription(`${getGeneralComponentDescription('user-summary')} to display a summary of user information, such as name, ID, profile image, and career details.`, 'https://bamboo.tec.mx/latest/componentes/user-summary/descripcion-general-hvTgEBWT')}
