@@ -1,38 +1,46 @@
 import {
   Component,
-  Input,
   ChangeDetectionStrategy,
   ViewEncapsulation,
-  Output,
-  EventEmitter,
   HostListener,
   model,
   input,
   ViewChild,
   TemplateRef,
   output,
+  computed,
+  signal,
+  OnInit,
+  AfterViewInit,
+  effect,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { DateTime } from 'luxon';
+import { DateTime, Interval } from 'luxon';
 import { BmbCalendarTemplateWeekComponent } from './common/bmb-calendar-template-week/bmb-calendar-template-week.component';
 import { BmbCalendarTemplateDayComponent } from './common/bmb-calendar-template-day/bmb-calendar-template-day.component';
 import { BmbCalendarTemplateMonthComponent } from './common/bmb-calendar-template-month/bmb-calendar-template-month.component';
 import { BmbCalendarHeaderComponent } from './common/bmb-calendar-header/bmb-calendar-header.component';
 import { BmbCalendarTemplateMobileComponent } from './common/bmb-calendar-template-mobile/bmb-calendar-template-mobile.component';
-import { BmbCalendarTemplateEventListComponent } from './common/bmb-calendar-template-event-list/bmb-calendar-template-event-list.component';
+import { BmbLoaderComponent } from '../bmb-loader/bmb-loader.component';
 import {
   IBmbCalendarEvent,
   IBmbCalendarEventClick,
-  IBmbCalendarHourFormat,
   IBmbCalendarView,
+  IBmbParsedDates,
 } from './types';
-import { getWeekDays, getMonthDays } from './utils';
+import { getWeekDays, getMonthDays, DEFAULT_DATE_FORMAT } from './utils';
 import { BmbCalendarService } from '../../services/calendar.service';
-import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
-import { MatDialog } from '@angular/material/dialog';
+import { BmbNativeModalService } from '../../services/native-modal.service';
 import { ModalDataConfig } from '../bmb-modal/bmb-modal.interface';
-import { BmbModalComponent } from '../bmb-modal/bmb-modal.component';
 import { BmbBadgeComponent } from '../bmb-badge/bmb-badge.component';
+import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { BmbCheckboxComponent } from '../bmb-checkbox/bmb-checkbox.component';
+
+const parseFromFormat = (dateString: string, format: string): DateTime => {
+  if (format.toLowerCase() === 'iso') return DateTime.fromISO(dateString);
+
+  return DateTime.fromFormat(dateString, format);
+};
 
 export {
   IBmbCalendarEvent,
@@ -50,50 +58,149 @@ export {
     BmbCalendarTemplateMonthComponent,
     BmbCalendarHeaderComponent,
     BmbCalendarTemplateMobileComponent,
-    BmbCalendarTemplateEventListComponent,
-    BmbIconComponent,
     BmbBadgeComponent,
+    BmbLoaderComponent,
+    ReactiveFormsModule,
+    BmbCheckboxComponent,
   ],
   styleUrl: './bmb-calendar.component.scss',
   templateUrl: './bmb-calendar.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
-export class BmbCalendarComponent {
+export class BmbCalendarComponent implements OnInit, AfterViewInit {
   view = model<IBmbCalendarView>('week');
-
-  @Input() hourFormat: IBmbCalendarHourFormat = '12';
-  @Input() calendarTimezone: string =
-    Intl.DateTimeFormat().resolvedOptions().timeZone;
-  @Input() clientTimezone: string =
-    Intl.DateTimeFormat().resolvedOptions().timeZone;
-  @Input() lang: string = 'es-MX';
-  @Input() currentDate: string = '';
-  @Input() height: number | string = 700;
+  filters = model<{ [key: string]: boolean }>({});
+  calendarTimezone = input<string>(
+    Intl.DateTimeFormat().resolvedOptions().timeZone,
+  );
+  clientTimezone = input<string>(
+    Intl.DateTimeFormat().resolvedOptions().timeZone,
+  );
+  lang = input<string>('es-MX');
+  height = input<number | string>('100%');
   startBusinessHour = input<number>(8);
   calendarTitle = input<string>('Mi horario');
+  dateFormat = input<string>(DEFAULT_DATE_FORMAT);
+  events = computed<IBmbCalendarEvent[]>(() =>
+    this.eventsSignal.getEventList(),
+  );
+  showFilterButton = input<boolean>(false);
+  visibleDate = model<DateTime>(DateTime.now());
 
-  @Output() onDateChange: EventEmitter<any> = new EventEmitter<any>();
+  currentDate = input<string>(''); // Deprecated
+
+  onDateChange = output<any>();
   onClose = output<any>();
 
+  selectedWeek = computed(() => this.visibleDate().weekNumber);
+  weekNumber = computed(() => this.visibleDate().weekNumber);
+  renderWeekDays = computed(() => getWeekDays(this.visibleDate()));
+  isLoading = computed(() => this.eventsSignal.getIsLoading());
+  selectedEvent: IBmbCalendarEvent | null = null;
+  isMobileHeader: boolean = false;
+  orderedEvents = computed<IBmbParsedDates>(() => {
+    const weeks = this.events().reduce(
+      (acc: IBmbParsedDates, event) => {
+        const startDate = parseFromFormat(event.start, this.dateFormat());
+        const endDate = parseFromFormat(event.end, this.dateFormat());
+        const interval = Interval.fromDateTimes(startDate, endDate);
+        const week = startDate.weekNumber;
+        const stringDate = startDate.toFormat('yyyy-MM-dd');
+
+        if (!acc[week]) acc[week] = {};
+        if (!acc[week][stringDate]) acc[week][stringDate] = [];
+        acc[week][stringDate].push({ ...event, startDate, endDate, interval });
+
+        if (
+          event.calendar &&
+          !acc.calendars?.some((cal) => cal === event.calendar)
+        ) {
+          acc.calendars?.push(event.calendar);
+        }
+
+        return acc;
+      },
+      { calendars: [] } as IBmbParsedDates,
+    );
+
+    const orderedDates = {} as IBmbParsedDates;
+
+    for (const week in weeks) {
+      if (week === 'calendars') {
+        orderedDates[week] = weeks[week];
+      } else {
+        orderedDates[week] = {};
+
+        for (const date in weeks[week]) {
+          orderedDates[week][date] = weeks[week][date].sort((a, b) => {
+            const aDate = a.startDate ?? DateTime.invalid('Invalid Date');
+            const bDate = b.startDate ?? DateTime.invalid('Invalid Date');
+            return aDate <= bDate ? -1 : 1;
+          });
+        }
+      }
+    }
+
+    return orderedDates;
+  });
+  filteredEvents = computed<IBmbParsedDates>(() => {
+    const newEvents = {} as IBmbParsedDates;
+    for (const week in this.orderedEvents()) {
+      if (week !== 'calendars') {
+        newEvents[week] = {};
+        for (const date in this.orderedEvents()[week]) {
+          newEvents[week][date] = this.orderedEvents()[week][date].map(
+            (event) => ({
+              ...event,
+              isVisible:
+                Object.keys(this.filters()).length === 0 ||
+                this.filters()[event.calendar || 'Default'] !== false,
+            }),
+          );
+        }
+      }
+    }
+
+    newEvents.calendars = this.orderedEvents().calendars;
+
+    return newEvents;
+  });
+  filterModalId = signal<string | null>(null);
+  calendarForm: FormGroup<{ [key: string]: FormControl<any> }> = new FormGroup(
+    {},
+  );
+
   @ViewChild('detailContent', { read: TemplateRef })
-  detailContent?: TemplateRef<any>;
+    detailContent?: TemplateRef<any>;
+  @ViewChild('modalTemplate') modalTemplate!: TemplateRef<any>;
 
   @HostListener('window:resize', ['$event'])
   private resize() {
     if (window.innerWidth < 1000) {
       this.view.set('day');
+      this.isMobileHeader = true;
     } else {
-      this.isListShowing = false;
+      this.isMobileHeader = false;
     }
   }
 
   constructor(
     private eventsSignal: BmbCalendarService,
-    private matDialog: MatDialog,
-  ) {}
+    private modalService: BmbNativeModalService,
+  ) {
+    effect(() => {
+      const calendars = this.filteredEvents().calendars || [];
+      calendars.forEach((calendar) => {
+        this.calendarForm.addControl(
+          calendar,
+          new FormControl(this.filters()[calendar] || true),
+        );
+      });
+    });
+  }
 
-  currentTime: DateTime = DateTime.now();
+  currentTime = signal<DateTime>(DateTime.now());
   private timerId: any;
 
   ngOnDestroy() {
@@ -102,25 +209,23 @@ export class BmbCalendarComponent {
     }
   }
 
+  ngAfterViewInit(): void {
+    if (window.innerWidth < 1000) {
+      this.view.set('day');
+      this.isMobileHeader = true;
+    }
+  }
+
   ngOnInit() {
     this.view.update((value) => (window.innerWidth < 1000 ? 'day' : value));
-    if (this.currentDate !== '') {
-      this.now = DateTime.fromISO(this.currentDate);
-    }
 
     this.timerId = setInterval(() => {
       this.updateTime();
     }, 60000); // Actualiza cada 60000 milisegundos (1 minuto)
   }
 
-  now: DateTime = DateTime.now();
-  weekNumber = this.now.weekNumber;
-  renderWeekDays: DateTime[] = getWeekDays(this.now);
-  selectedEvent: IBmbCalendarEvent | null = null;
-  isListShowing: boolean = false;
-
   updateTime() {
-    this.currentTime = DateTime.now();
+    this.currentTime.set(DateTime.now());
   }
 
   handleDateChange(range: IBmbCalendarView, now: DateTime): void {
@@ -152,9 +257,7 @@ export class BmbCalendarComponent {
   }
 
   handleCurrentDateChange(newDate: DateTime): void {
-    this.now = newDate;
-    this.weekNumber = newDate.weekNumber;
-    this.renderWeekDays = getWeekDays(newDate);
+    this.visibleDate.set(newDate);
   }
 
   handleSelectEvent(newEvent: IBmbCalendarEventClick): void {
@@ -170,10 +273,8 @@ export class BmbCalendarComponent {
       subtitle: event.subtitle,
       content: this.detailContent,
       size: 'small',
-      type: 'informative',
-      scrollable: true,
     };
-    this.matDialog.open(BmbModalComponent, { data });
+    this.modalService.openModal(data);
   }
 
   isAnEventSelected(event: IBmbCalendarEventClick | null): boolean {
@@ -186,18 +287,6 @@ export class BmbCalendarComponent {
     return height;
   }
 
-  onViewTypeChange() {
-    this.isListShowing = !this.isListShowing;
-  }
-
-  getEvents(): IBmbCalendarEvent[] {
-    return this.eventsSignal.getEventList();
-  }
-
-  getIsLoading() {
-    return this.eventsSignal.getIsLoading();
-  }
-
   getDuration() {
     if (!this.selectedEvent) return '';
     return `${DateTime.fromISO(this.selectedEvent.start).toFormat('hh:mm a')} - ${DateTime.fromISO(this.selectedEvent.end).toFormat('hh:mm a')}`;
@@ -205,5 +294,49 @@ export class BmbCalendarComponent {
 
   handleClose() {
     this.onClose.emit('close');
+  }
+
+  handleShowModalFilter() {
+    this.filterModalId.set(
+      this.modalService.openModal({
+        title: 'Calendarios',
+        subtitle: 'Selecciona los calendarios que quieres ver',
+        content: this.modalTemplate,
+        size: 'x-small',
+        closeModalClicked: (event: unknown) => this.handleFormReset(event),
+        actions: [
+          {
+            buttonName: 'save',
+            appearance: 'primary',
+            label: 'Guardar',
+            action: () => this.handleApplyFilters(),
+          },
+        ],
+      }),
+    );
+  }
+
+  handleFormReset(_: any): void {
+    for (const calendar in this.calendarForm.controls) {
+      const value =
+        Object.keys(this.filters()).length === 0 || !!this.filters()[calendar];
+      this.calendarForm.controls[calendar].setValue(value);
+    }
+  }
+
+  handleApplyFilters(): void {
+    const selectedCalendars = Object.keys(this.calendarForm.controls).reduce<{
+      [key: string]: boolean;
+    }>((acc, calendar) => {
+      acc[calendar] = this.calendarForm.controls[calendar].value;
+      return acc;
+    }, {});
+    this.filters.set(selectedCalendars);
+    this.modalService.closeModal(this.filterModalId() as string);
+    this.filterModalId.set(null);
+  }
+
+  getFormControl(name: string): FormControl {
+    return this.calendarForm.get(name) as FormControl;
   }
 }
