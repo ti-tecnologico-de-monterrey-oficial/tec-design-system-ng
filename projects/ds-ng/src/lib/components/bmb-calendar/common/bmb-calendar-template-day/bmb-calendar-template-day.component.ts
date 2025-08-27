@@ -11,10 +11,7 @@ import { CommonModule } from '@angular/common';
 import { IBmbCalendarEvent, IBmbCalendarEventClick } from '../../types';
 import { DateTime } from 'luxon';
 import { BmbCalendarScheduleCardsComponent } from '../bmb-calendar-schedule-cards/bmb-calendar-schedule-cards.component';
-import {
-  DEFAULT_DATE_FORMAT,
-  layoutEvents,
-} from '../../utils';
+import { DEFAULT_DATE_FORMAT, layoutEvents } from '../../utils';
 import { BmbCalendarTimeIndicatorComponent } from '../bmb-calendar-time-indicator/bmb-calendar-time-indicator.component';
 
 @Component({

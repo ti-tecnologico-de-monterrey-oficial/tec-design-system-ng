@@ -39,10 +39,10 @@ export class BmbCalendarTemplateMonthComponent {
 
   weeksAndDaysList = computed<DateTime[]>(() => weeksAndDays(this.now()));
   eventsOnDate = computed<IBmbCalendarEvent[][]>(() => {
-    return this.weeksAndDaysList().map(date => {
+    return this.weeksAndDaysList().map((date) => {
       const weekNumber = date.weekNumber;
       const stringDate = date.toFormat('yyyy-MM-dd');
-      return  this.events()?.[weekNumber]?.[stringDate] ?? [];
+      return this.events()?.[weekNumber]?.[stringDate] ?? [];
     });
   });
 

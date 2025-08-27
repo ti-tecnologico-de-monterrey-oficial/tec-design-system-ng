@@ -19,7 +19,10 @@ import {
   getSpecialSpecifications,
   RELEVANT_TITLE_LEVEL,
 } from '../../utils/doc/utils';
-import { getDefaultValueControl, getOnEventParam } from '../../utils/doc/parameterDescriptions';
+import {
+  getDefaultValueControl,
+  getOnEventParam,
+} from '../../utils/doc/parameterDescriptions';
 
 // Mock del servicio
 class MockCalendarService {
@@ -267,11 +270,12 @@ ${getBasicExampleBlock('BmbCalendarComponent')}
     },
     dateFormat: {
       control: { type: 'text' },
-      description: 'Set the date format for the calendar (example: "yyyy-MM-dd")',
+      description:
+        'Set the date format for the calendar (example: "yyyy-MM-dd")',
       table: {
         category: 'Properties',
         type: { summary: 'string' },
-        defaultValue: { summary: 'iso'}
+        defaultValue: { summary: 'iso' },
       },
     },
   },

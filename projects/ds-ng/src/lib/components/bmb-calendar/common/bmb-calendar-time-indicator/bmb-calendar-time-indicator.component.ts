@@ -21,7 +21,8 @@ export class BmbCalendarTimeIndicatorComponent {
   currentTime = input<DateTime>(DateTime.now());
 
   getPosition(): string {
-    const startMin = (this.currentTime().hour * HOUR_HEIGHT) + (this.currentTime().minute * 2);
+    const startMin =
+      this.currentTime().hour * HOUR_HEIGHT + this.currentTime().minute * 2;
 
     return `top: ${startMin + 52}px`;
   }

@@ -172,7 +172,7 @@ export class BmbCalendarComponent implements OnInit, AfterViewInit {
   );
 
   @ViewChild('detailContent', { read: TemplateRef })
-    detailContent?: TemplateRef<any>;
+  detailContent?: TemplateRef<any>;
   @ViewChild('modalTemplate') modalTemplate!: TemplateRef<any>;
 
   @HostListener('window:resize', ['$event'])
