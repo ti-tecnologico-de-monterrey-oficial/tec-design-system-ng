@@ -1,7 +1,7 @@
 import { DateTime, Info, StringUnitLength } from 'luxon';
 import { IBmbCalendarEvent, IBmbCalendarRenderEvents } from './types';
 
-export const DEFAULT_DATE_FORMAT = 'yyyy-MM-dd HH:mm:ss';
+export const DEFAULT_DATE_FORMAT = 'iso';
 export const HOUR_HEIGHT = 120;
 
 export const getWeekDays = (date: DateTime): DateTime[] => {
