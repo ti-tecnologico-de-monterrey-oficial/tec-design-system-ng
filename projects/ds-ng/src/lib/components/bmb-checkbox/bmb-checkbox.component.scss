@@ -28,7 +28,7 @@
         @include mixins.input_shadow(var(--buttons-active-switch));
 
         &::after {
-          @include mixins.input_checked(12, 3);
+          @include mixins.input_checked(12, 5);
           border: solid var(--white-primary);
           border-width: rem.rem_calc(0 3 3 0);
           transform: rotate(45deg);
