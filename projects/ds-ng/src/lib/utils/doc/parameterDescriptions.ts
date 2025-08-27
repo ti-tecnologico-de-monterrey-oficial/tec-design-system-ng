@@ -27,11 +27,11 @@ export const ICON_IMAGE_DETAIL: string =
 export const SIMPLE_ICON_DESCRIPTION: string = `Sets the icon name to be displayed.
 <br/><br/>${GOOGLE_FONTS_LINK}`;
 export const ICON_DESCRIPTION: string = `${SIMPLE_ICON_DESCRIPTION}<br/><br/>${ICON_IMAGE_DETAIL}`;
-export const DEFAULT_VALUE_DESC: string =
-  'It is not necessary to explicitly set default values, the property can be omitted.';
+export const DEFAULT_VALUE_DESC: string = `It is not necessary to explicitly set default values, the property can be omitted.<br/><br/>
+  Properties can be omitted if they are not required and do not contain a default value.`;
 export const DEFAULT_VALUE_DETAIL: string = `${RELEVANT_TITLE_LEVEL[2].replace(/(<br\/>)|(\*)/g, '')}
 
-${DEFAULT_VALUE_DESC}`;
+${DEFAULT_VALUE_DESC.replace(/(<br\/>)|(\*)/g, '')}`;
 
 export const ON_BUTTON_CLICK: IBmbOnEvent = getOnEvent('', 'buttonClick');
 
@@ -183,10 +183,12 @@ export const getPropertyParamDesc = (
       (controlType === 'boolean'
         ? `Sets the ${name} when true.${additionalDescription}`
         : '') ||
-      `Sets the ${alternativePropName || 'title'} of the ${name}.${additionalDescription}`,
+      `Sets the ${alternativePropName || 'title'} of ${name}.${additionalDescription}`,
     table: {
       category: 'Properties',
-      defaultValue: controlType && getDefaultValueControl(defaultSummary),
+      defaultValue:
+        (controlType !== 'boolean' && defaultSummary === false) ||
+        (controlType && getDefaultValueControl(defaultSummary)),
       type: {
         summary:
           summaryType || (controlType === 'text' ? 'string' : controlType),
@@ -352,7 +354,7 @@ IBmbTargetLink = '_blank' | '_parent' | '_self' | '_top';
     control: {
       type: 'text',
     },
-    description: `${LINK_DESCRIPTION} If this property is empty it will emit the button event.`,
+    description: `${LINK_DESCRIPTION}`,
     table: {
       category: 'Events',
       defaultValue: getDefaultValueControl(),
@@ -381,6 +383,23 @@ IBmbTargetLink = '_blank' | '_parent' | '_self' | '_top';
       category: 'Events',
       type: { summary: 'IBmbTargetLink (option)' },
       defaultValue: getDefaultValueControl('_blank'),
+    },
+  },
+  lang: {
+    control: {
+      type: 'text',
+    },
+    description: `
+Sets the language for all text, numbers, currencies, date formats, etc.
+
+By default, the supported language are:
+- ***en***: english
+- ***es***: spanish.
+      `,
+    table: {
+      category: 'Properties',
+      type: { summary: 'string' },
+      defaultValue: { summary: 'es' },
     },
   },
   deprecated: {

@@ -1,9 +1,90 @@
 import { componentWrapperDecorator, Meta, StoryObj } from '@storybook/angular';
 import { BmbTimestreamCardComponent } from './bmb-timestream-card.component';
 import {
+  getBasicExampleBlock,
   getEmptyStateMessage,
+  getGeneralComponentDescription,
+  getGeneralDescription,
+  getSpecialSpecifications,
   RELEVANT_TITLE_LEVEL,
 } from '../../utils/doc/utils';
+import {
+  DBmbGenericParamDesc,
+  DBmbIconParamDesc,
+  getAppearanceParam,
+  getDefaultValueControl,
+  getPropertyParamDesc,
+} from '../../utils/doc/parameterDescriptions';
+import { IBmbColor } from '../../types/colors';
+
+const color_names: IBmbColor[] = [
+  'mariner-50',
+  'mariner-100',
+  'mariner-200',
+  'mariner-300',
+  'mariner-400',
+  'mariner-500',
+  'mariner-700',
+  'mariner-800',
+  'mariner-900',
+  'mariner-950',
+  'charade-50',
+  'charade-100',
+  'charade-200',
+  'charade-300',
+  'charade-500',
+  'charade-600',
+  'charade-700',
+  'charade-800',
+  'charade-900',
+  'charade-950',
+  'white-primary',
+  'blue-tec',
+  'mitec-blue',
+  'mitec-green',
+  'mitec-red',
+  'mitec-orange',
+  'black-primary',
+  'black-light',
+  'black-tint',
+  'black-min',
+  'white-light',
+  'white-tint',
+  'white-min',
+  'neon-primary',
+  'neon-light',
+  'neon-tint',
+  'blue-primary',
+  'blue-light',
+  'blue-tint',
+  'green-primary',
+  'green-light',
+  'green-tint',
+  'purple-primary',
+  'purple-light',
+  'purple-tint',
+  'red-primary',
+  'red-light',
+  'red-tint',
+  'yellow-primary',
+  'yellow-light',
+  'yellow-tint',
+  'teal-primary',
+  'teal-light',
+  'teal-tint',
+  'container-home',
+  'container-secondary',
+  'container-button',
+  'background-main',
+  'container-home-light',
+  'container-secondary-light',
+  'container-button-light',
+  'background-main-light',
+  'container-home-tec',
+  'container-secondary-tec',
+  'container-button-tec',
+  'background-main-tec',
+];
 
 export default {
   title: 'Organisms/Timestream card (full)',
@@ -17,111 +98,90 @@ export default {
   ],
   parameters: {
     docs: {
+      controls: {
+        exclude: [
+          'actionHeaders',
+          'clamp',
+          'filteredEvents',
+          'filters',
+          'isFiltersEnabled',
+          'isMobile',
+          'getClassList',
+          'handleCloseFilters',
+          'handleFiltersChange',
+          'ngOnInit',
+        ],
+      },
       description: {
         component: `
-${getEmptyStateMessage()}
-###${RELEVANT_TITLE_LEVEL[2]}
+${getGeneralDescription(`${getGeneralComponentDescription('timestream-card', 'organism')} organize the most important moments of each student's academic journey in an interactive and easy-to-follow timeline.`, 'https://bamboo.tec.mx/latest/organisms/timestream-card-full/descripcion-general-ke2oXi5N')}
+${getSpecialSpecifications(`###${RELEVANT_TITLE_LEVEL[2]}
+>
 When you click on fullscreen icon, in Storybook doesn’t look the best due to the many elements, but in your project, it should display correctly.
-
-<br/>
-Below is an example of how you can use this component in TypeScript:
-
-\`\`\`typescript
-import { BmbTimestreamCardComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
-@Component({
-  selector: 'component',
-  standalone: true,
-  imports: [ BmbTimestreamCardComponent ],
-  templateUrl: './component.html',
-  styleUrl: './component.scss',
-})
-\`\`\`
-
-Below is an example of how you can use this component in HTML:
+>
+>${getEmptyStateMessage()}
+`)}
+${getBasicExampleBlock('BmbTimestreamCardComponent')}
         `,
       },
     },
   },
   argTypes: {
-    title: {
-      name: 'Title',
-      control: { type: 'text' },
-      description: 'Sets card title.',
-      table: {
-        category: 'Properties',
-        type: { summary: 'string' },
-      },
-    },
-    subtitle: {
-      name: 'Subtitle',
-      control: { type: 'text' },
-      description: 'Sets card subtitle',
-      table: {
-        category: 'Properties',
-        type: { summary: 'string' },
-      },
-    },
+    title: getPropertyParamDesc('the card'),
+    subtitle: getPropertyParamDesc('the card', 'text', '', '', '', 'subtitle'),
     dataLocalNav: {
-      name: 'Data Local Navigation',
       control: { type: 'object' },
-      description: 'Array of breadcrumb data for Local Navigation.',
+      description: 'Sets a list of breadcrumb data for local navigation.',
       table: {
         category: 'Properties',
+        defaultValue: {summary: '[]'},
         type: {
-          summary: 'IBmbDataTopBar[], [{ text: string, link?: string, }]',
+          summary: 'IBmbDataTopBar[]',
+          detail: `
+IBmbDataTopBar {
+  text: string;
+  link?: string;
+}
+          `,
         },
       },
     },
     icon: {
-      name: 'Icon',
-      control: { type: 'text' },
-      description: 'Sets header icon.',
+      ...DBmbIconParamDesc.icon,
+      description: DBmbIconParamDesc.icon.description.replace(
+        'icon name',
+        'name of the header icon',
+      ),
       table: {
-        category: 'Properties',
-        type: { summary: 'string' },
+        ...DBmbIconParamDesc.icon.table,
+        defaultValue: getDefaultValueControl('trending_up'),
       },
     },
-    bgIconAppearance: {
-      name: 'Icon background color',
-      control: { type: 'text' },
-      description: 'Sets icon background color.',
-      table: {
-        category: 'Properties',
-        type: { summary: 'IBmbColor' },
-      },
-    },
+    bgIconAppearance: getAppearanceParam(
+      'background appearance',
+      color_names,
+      'mitec-red',
+    ),
     dateFormat: {
-      name: 'Date format',
       control: {
         type: 'text',
       },
-      description: 'Set the format for all dates.',
+      description: 'Sets the format for all dates.',
       table: {
         category: 'Properties',
         type: { summary: 'string' },
-        defaultValue: { summary: 'dd/MM/yyyy' },
+        defaultValue: getDefaultValueControl('dd/MM/yyyy'),
       },
     },
-    lang: {
-      name: 'Language',
-      control: {
-        type: 'text',
-      },
-      description: 'Set the language for the translations.',
-      table: {
-        category: 'Properties',
-        type: { summary: 'string' },
-        defaultValue: { summary: 'es' },
-      },
-    },
+    lang: DBmbGenericParamDesc.lang,
     events: {
-      name: 'Events',
       control: {
         type: 'object',
       },
       description: 'List of events to display.',
       table: {
         category: 'Properties',
+        defaultValue: {summary: '[]'},
         type: { summary: 'object' },
       },
     },
@@ -130,8 +190,8 @@ Below is an example of how you can use this component in HTML:
     title: 'Title',
     subtitle: 'Subtitle',
     dataLocalNav: [],
-    icon: 'account_balance_wallet',
-    bgIconAppearance: 'green-light',
+    icon: 'trending_up',
+    bgIconAppearance: 'mitec-red',
     dateFormat: 'yyyy-MM-dd',
     lang: 'es',
     events: [

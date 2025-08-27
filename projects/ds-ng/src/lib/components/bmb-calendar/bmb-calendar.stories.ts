@@ -9,9 +9,17 @@ import {
   IBmbCalendarEvent,
 } from './bmb-calendar.component';
 import { BmbCalendarService } from '../../services/calendar.service';
-import { BehaviorSubject } from 'rxjs';
 import { DateTime } from 'luxon';
 import { signal } from '@angular/core';
+import {
+  getBasicExampleBlock,
+  getGeneralComponentDescription,
+  getGeneralDescription,
+  getOnEvent,
+  getSpecialSpecifications,
+  RELEVANT_TITLE_LEVEL,
+} from '../../utils/doc/utils';
+import { getDefaultValueControl, getOnEventParam } from '../../utils/doc/parameterDescriptions';
 
 // Mock del servicio
 class MockCalendarService {
@@ -143,30 +151,62 @@ export default {
   ],
   parameters: {
     docs: {
+      controls: {
+        exclude: [
+          'calendarTitle',
+          'currentTime',
+          'isListShowing',
+          'now',
+          'renderWeekDays',
+          'selectedEvent',
+          'timerId',
+          'view',
+          'weekNumber',
+          'getDuration',
+          'getEvents',
+          'getHeight',
+          'getIsLoading',
+          'handleClose',
+          'handleCurrentDateChange',
+          'handleDateChange',
+          'handleSelectEvent',
+          'isAnEventSelected',
+          'onViewTypeChange',
+          'onViewTypeChange',
+          'updateTime',
+          'detailContent',
+          'ngOnDestroy',
+          'ngOnInit',
+          'resize',
+          'onClose',
+          'startBusinessHour',
+          'hourFormat',
+          'lang',
+        ],
+      },
       description: {
         component: `
-Below is an example of how you can use this component in TypeScript:
-
-##Configuration
-Add the \`BmbCalendarService\` to your App providers:
-
-\`\`\`providers: [
-  provideRouter(routes),
-  importProvidersFrom([BmbCalendarService, ...]),
-],\`\`\`
-
+${getGeneralDescription(`${getGeneralComponentDescription('calendar', 'organism')} viewing and filtering of events based on date and calendar type.`, 'https://bamboo.tec.mx/latest/organismos/calendar-standard/descripcion-general-JghdvFUm')}
+${getSpecialSpecifications(`###${RELEVANT_TITLE_LEVEL[3]}
+Add the ***BmbCalendarService*** to your App providers:
 \`\`\`typescript
-import { BmbCalendarComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
-@Component({
-  selector: 'component',
-  standalone: true,
-  imports: [ BmbCalendarComponent ],
-  templateUrl: './component.html',
-  styleUrl: './component.scss',
-})
+// src/app/app.config.ts
+import { ApplicationConfig } from '@angular/core';
+import { provideRouter } from '@angular/router';
+import { routes } from './app.routes'; // Import your routes
+>
+export const appConfig: ApplicationConfig = {
+  providers: [
+    provideRouter(routes),
+    importProvidersFrom([BmbCalendarService, ...]),
+  ]
+};
 \`\`\`
+`)}
+${getBasicExampleBlock('BmbCalendarComponent')}
 
-Below is an example of how you can use this component in HTML:
+
+
         `,
       },
     },
@@ -175,50 +215,47 @@ Below is an example of how you can use this component in HTML:
     calendarTimezone: {
       control: { type: 'text' },
       description:
-        'Set the remote timezone for the events (example: "America/Mexico_City")',
+        'Sets the remote timezone for the events (example: "America/Mexico_City")',
       table: {
         category: 'Properties',
+        defaultValue: false,
         type: { summary: 'string' },
       },
     },
     clientTimezone: {
       control: { type: 'text' },
       description:
-        'Set the client timezone for the events (example: "America/Mexico_City")',
+        'Sets the client timezone for the events (example: "America/Mexico_City")',
       table: {
         category: 'Properties',
+        defaultValue: false,
         type: { summary: 'string' },
       },
     },
     currentDate: {
       control: { type: 'text' },
       description:
-        'Set the target date to show in the calendar (example: "2024-04-23T15:00:00.715Z")',
+        'Sets the target date to show in the calendar (example: "2024-04-23T15:00:00.715Z")',
       table: {
         category: 'Deprecated',
+        defaultValue: false,
         type: { summary: 'string' },
       },
     },
     height: {
       control: { type: 'number' },
       description:
-        'Change the default height, you can also set a valid CSS value (example: 100vh).',
-      defaultValue: { summary: '100%' },
+        'Sets the default height, you can also set a valid CSS value (example: 100vh).',
       table: {
         category: 'Properties',
-        type: { summary: 'string' },
+        defaultValue: getDefaultValueControl('100%'),
+        type: { summary: 'number | string' },
       },
     },
-    onDateChange: {
-      control: {
-        type: '',
-      },
-      description: 'This handler can be used for pull new calendar events.',
-      table: {
-        category: 'Events',
-        type: { summary: 'function' },
-      },
-    },
+    onDateChange: getOnEventParam(
+      getOnEvent('date has', 'onDateChange', 'unknown'),
+      '',
+    ),
     showFilterButton: {
       control: { type: 'boolean' },
       description: 'Show or hide the filter button.',
@@ -245,7 +282,9 @@ Below is an example of how you can use this component in HTML:
     calendarTimezone: 'America/Mexico_City',
     clientTimezone: 'America/Mexico_City',
     dateFormat: 'iso',
-    // Remove onDateChange if not an @Output() or @Input()
+    onDateChange: (params: any) => {
+      console.log(params.toString());
+    },
   },
 } as Meta<typeof BmbCalendarComponent>;
 

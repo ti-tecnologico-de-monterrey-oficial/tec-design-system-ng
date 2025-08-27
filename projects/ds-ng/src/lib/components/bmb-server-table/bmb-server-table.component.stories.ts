@@ -2,10 +2,12 @@ import { BmbServerTableComponent } from './bmb-server-table.component';
 import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
 import { CommonModule } from '@angular/common';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
+import { getBasicExampleBlock, getGeneralComponentDescription, getGeneralDescription } from '../../utils/doc/utils';
 
 export default {
-  title: 'Dev tools/Server table',
+  title: 'Components/Containers/Table/Server table',
   component: BmbServerTableComponent,
+  tags: ['!autodocs'],
   decorators: [
     moduleMetadata({
       imports: [CommonModule, BmbIconComponent],
@@ -15,29 +17,14 @@ export default {
     docs: {
       description: {
         component: `
-Below is an example of how you can use this component in TypeScript:
-
-\`\`\`typescript
-import { BmbServerTableComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
-
-@Component({
-  selector: 'component',
-  standalone: true,
-  imports: [ BmbServerTableComponent ],
-  templateUrl: './component.html',
-  styleUrl: './component.scss',
-})
-
-export class AppComponent {
-}
-\`\`\`
+${getGeneralDescription(`${getGeneralComponentDescription('')} `, '')}
+${getBasicExampleBlock('server-table')}
         `,
       },
     },
   },
   argTypes: {
     data: {
-      name: 'Data',
       control: {
         type: 'object',
       },
@@ -49,7 +36,6 @@ export class AppComponent {
       },
     },
     columns: {
-      name: 'Columns',
       control: {
         type: 'IBmbServerTableColumn',
       },
@@ -61,7 +47,6 @@ export class AppComponent {
       },
     },
     totalRecords: {
-      name: 'Total Records',
       control: 'number',
       description: 'Set the total number of records.',
       table: {
@@ -71,7 +56,6 @@ export class AppComponent {
       },
     },
     pageSize: {
-      name: 'Page Size',
       control: 'number',
       description: 'Set the number of records per page.',
       table: {
@@ -81,7 +65,6 @@ export class AppComponent {
       },
     },
     pageSizeOptions: {
-      name: 'Page Size Options',
       control: 'array',
       description: 'Set the options for the page size.',
       table: {
@@ -91,7 +74,6 @@ export class AppComponent {
       },
     },
     loading: {
-      name: 'Loading',
       control: 'boolean',
       description: 'Set the loading state.',
       table: {
@@ -101,7 +83,6 @@ export class AppComponent {
       },
     },
     pageChange: {
-      name: 'Page Change',
       control: null,
       description: 'Set the function to call when the page changes.',
       table: {
@@ -110,7 +91,6 @@ export class AppComponent {
       },
     },
     dataChange: {
-      name: 'Data Change',
       control: null,
       description: 'Set the function to call when the data changes.',
       table: {
