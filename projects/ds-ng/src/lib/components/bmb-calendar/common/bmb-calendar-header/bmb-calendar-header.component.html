@@ -32,23 +32,30 @@
     <button
       type="button"
       (click)="handleRangeChange('day')"
-      [ngClass]="{ 'bmb_button-selected': view === 'day' }"
+      [ngClass]="{ 'bmb_button-selected': view() === 'day' }"
     >
       Día
     </button>
     <button
       type="button"
       (click)="handleRangeChange('week')"
-      [ngClass]="{ 'bmb_button-selected': view === 'week' }"
+      [ngClass]="{ 'bmb_button-selected': view() === 'week' }"
     >
       Semana
     </button>
     <button
       type="button"
       (click)="handleRangeChange('month')"
-      [ngClass]="{ 'bmb_button-selected': view === 'month' }"
+      [ngClass]="{ 'bmb_button-selected': view() === 'month' }"
     >
       Mes
     </button>
   </div>
+  @if (showFilterButton()) {
+      <bmb-action-icon
+        [icon]="'tune'"
+        (buttonClick)="handleShowFilters()"
+        [iconSize]="24"
+      ></bmb-action-icon>
+    }
 </section>

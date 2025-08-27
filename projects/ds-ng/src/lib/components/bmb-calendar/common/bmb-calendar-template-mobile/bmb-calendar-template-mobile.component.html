@@ -2,13 +2,13 @@
   <bmb-inner-header
     [title]="calendarTitle()"
     [showClose]="true"
-    trailingIconSecondary="calendar_month"
+    trailingIconSecondary="tune"
     (onHandleBack)="handleClose()"
     (onHandleTrailingSecondary)="handleViewTypeChange()"
   >
     <div class="bmb_calendar-month-mobile-nav">
       <bmb-chevron-title-selector
-        [title]="now.setLocale(lang).toFormat('MMM')"
+        [title]="now().setLocale(lang()).toFormat('MMM')"
         leadingIcon="chevron_left"
         trailingIcon="chevron_right"
         (onLeadingClick)="handleMonthChange('-')"
@@ -31,7 +31,7 @@
         <ul
           class="bmb_calendar-month-mobile-calendar bmb_calendar-month-mobile-calendar-small"
         >
-          @for (date of weekDays; track $index) {
+          @for (date of weekDays(); track $index) {
             <li class="bmb_calendar-month-mobile-calendar-item">
               <button
                 class="bmb_calendar-month-mobile-calendar-button"
@@ -62,7 +62,7 @@
         <ul
           class="bmb_calendar-month-mobile-calendar bmb_calendar-month-mobile-calendar-large"
         >
-          @for (date of getWeeksAndDays(); track $index) {
+          @for (date of weekAndDays(); track $index) {
             <li class="bmb_calendar-month-mobile-calendar-item">
               <button
                 type="button"
@@ -99,6 +99,6 @@
       'bmb_calendar-month-mobile-title-day-not-visible': isWedgeOpen,
     }"
   >
-    {{ now.setLocale(lang).toFormat("cccc LLLL dd, yyyy") }}
+    {{ now().setLocale(lang()).toFormat("cccc LLLL dd, yyyy") }}
   </div>
 </div>

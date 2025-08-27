@@ -55,6 +55,12 @@ export class AppComponent {
         title: 'Home',
         link: '/home',
       },
+      {
+        id: 5,
+        icon: 'calendar_today',
+        title: 'Calendar',
+        link: '/calendar',
+      },
     ],
     [
       {
@@ -68,6 +74,12 @@ export class AppComponent {
         icon: 'align_flex_center',
         title: 'Flex',
         link: '/flex',
+      },
+      {
+        id: 4,
+        icon: 'dropdown',
+        title: 'Dropdown',
+        link: '/dropdown',
       },
     ],
   ];

@@ -281,7 +281,7 @@
 @mixin input_checked($height, $width) {
   display: block;
   position: relative;
-  margin: auto;
+  margin: rem.rem_calc(2) auto 0;
   height: rem.rem_calc($height);
   width: rem.rem_calc($width);
 }
