@@ -1,17 +1,17 @@
 import {
   Component,
-  Input,
   ChangeDetectionStrategy,
   ViewEncapsulation,
-  Output,
-  EventEmitter,
   input,
   output,
+  computed,
+  model,
+  signal,
 } from '@angular/core';
 import { DateTime } from 'luxon';
-import { weeksAndDays } from '../../utils';
+import { getWeeksInMonth, weeksAndDays } from '../../utils';
 import { CommonModule } from '@angular/common';
-import { IBmbCalendarEvent } from '../../types';
+import { IBmbParsedDates } from '../../types';
 import { BmbButtonDirective } from '../../../../directives/bmb-button/button.directive';
 import { Info } from 'luxon';
 import { orderDayNames } from '../../../../utils/utils';
@@ -27,7 +27,6 @@ import { BmbPullWedgeComponent } from '../../../bmb-pull-wedge/bmb-pull-wedge.co
     BmbButtonDirective,
     BmbInnerHeaderComponent,
     BmbChevronTitleSelectorComponent,
-    BmbChevronTitleSelectorComponent,
     BmbPullWedgeComponent,
   ],
   templateUrl: './bmb-calendar-template-mobile.component.html',
@@ -36,25 +35,39 @@ import { BmbPullWedgeComponent } from '../../../bmb-pull-wedge/bmb-pull-wedge.co
   encapsulation: ViewEncapsulation.None,
 })
 export class BmbCalendarTemplateMobileComponent {
-  @Input() weekDays: DateTime[] = [];
-  @Input() now: DateTime = DateTime.now();
-  @Input() lang: string = 'es-MX';
-  @Input() events: IBmbCalendarEvent[] = [];
-  @Input() isListShowing: boolean = false;
+  weekDays = input<DateTime[]>([]);
+  now = input<DateTime>(DateTime.now());
+  lang = input<string>('es-MX');
+  events = input<IBmbParsedDates>({});
   calendarTitle = input<string>('Mi calendario');
 
-  @Output() onCurrentDateChange: EventEmitter<DateTime> =
-    new EventEmitter<DateTime>();
-  @Output() onViewTypeChange: EventEmitter<void> = new EventEmitter<void>();
   onClose = output<any>();
+  onCurrentDateChange = output<DateTime>();
+  showFilters = output<void>();
 
-  monthsNames = Info.months('long', { locale: this.lang });
-  month = this.monthsNames[this.now.month - 1];
-  year = this.now.year;
+  monthsNames = Info.months('long', { locale: this.lang() });
+  month = this.monthsNames[this.now().month - 1];
+  year = this.now().year;
   isCalendarOpen = false;
-  defaultDayOrder = Info.weekdays('narrow', { locale: this.lang });
+  defaultDayOrder = Info.weekdays('narrow', { locale: this.lang() });
   dayNames = orderDayNames(this.defaultDayOrder);
   isWedgeOpen = false;
+
+  weekAndDays = computed(() => {
+    const firstDayOfMonth = DateTime.fromObject({
+      day: 1,
+      month: this.now().month,
+      year: this.now().year,
+    });
+    return weeksAndDays(firstDayOfMonth);
+  });
+
+  weeksInMonth = computed(() => {
+    const weeks = getWeeksInMonth(this.now());
+    return weeks;
+  });
+
+  modalId = signal<string | null>(null);
 
   handleClose() {
     this.onClose.emit('close');
@@ -70,8 +83,8 @@ export class BmbCalendarTemplateMobileComponent {
     };
 
     const newDate = DateTime.fromObject({
-      month: this.now.month,
-      year: this.now.year,
+      month: this.now().month,
+      year: this.now().year,
       day: 1,
     });
 
@@ -80,16 +93,7 @@ export class BmbCalendarTemplateMobileComponent {
   }
 
   isSelectedDay(date: DateTime): boolean {
-    return date.hasSame(this.now, 'day');
-  }
-
-  getWeeksAndDays(): DateTime[] {
-    const firstDayOfMonth = DateTime.fromObject({
-      day: 1,
-      month: this.now.month,
-      year: this.now.year,
-    });
-    return weeksAndDays(firstDayOfMonth);
+    return date.hasSame(this.now(), 'day');
   }
 
   handleDayChange(date: DateTime): void {
@@ -101,15 +105,14 @@ export class BmbCalendarTemplateMobileComponent {
   }
 
   handleViewTypeChange() {
-    this.onViewTypeChange.emit();
-    this.isWedgeOpen = false;
+    this.showFilters.emit();
   }
 
   findEventsForToday(date: DateTime) {
-    const todayHasEvents = this.events.some((day) => {
-      return date.hasSame(DateTime.fromISO(day.start), 'day');
-    });
-
-    return todayHasEvents;
+    const weekNumber = date.weekNumber;
+    const stringDate = date.toFormat('yyyy-MM-dd');
+    return !!this.events()?.[weekNumber]?.[stringDate]?.some(
+      (event) => event.isVisible,
+    );
   }
 }
