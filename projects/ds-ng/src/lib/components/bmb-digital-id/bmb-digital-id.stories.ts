@@ -43,7 +43,7 @@ const getPropDesc = (name: string) => {
 };
 
 export default {
-  title: 'Particularities/mitec app/Digital id',
+  title: 'Particularities/mitec app/Digital ID',
   component: BmbDigitalIdComponent,
   decorators: [
     componentWrapperDecorator((story: string) => {

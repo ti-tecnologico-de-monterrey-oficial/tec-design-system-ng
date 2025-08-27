@@ -17,8 +17,8 @@ import {
   getFormatName,
   getLandingGeneralDesc,
   getSpecialSpecifications,
-  LAYOUT_REFERENCES_TITLE,
-  TECHNICAL_DOC_TILE,
+  TECHNICAL_DOC_REFERENCES,
+  TECHNICAL_DOC_TITLE,
 } from '../utils/doc/utils';
 import * as topBarStory from '../components/bmb-top-bar/bmb-top-bar.stories';
 import * as sideBarStory from '../components/bmb-sidebar/bmb-sidebar.stories';
@@ -205,9 +205,9 @@ export default {
       description: {
         component: `
 ${getLandingGeneralDesc('service')}
-${getSpecialSpecifications(`### ${TECHNICAL_DOC_TILE}
+${getSpecialSpecifications(`### ${TECHNICAL_DOC_TITLE}
 >
-${LAYOUT_REFERENCES_TITLE}
+${TECHNICAL_DOC_REFERENCES}
 - [${topBarStory.default.title}](/docs/${getFormatName(topBarStory.default.title!, /(\/)|( )/g, '-').toLocaleLowerCase()}--documentation)
 - [${sideBarStory.default.title}](/docs/${getFormatName(sideBarStory.default.title!, /(\/)|( )/g, '-').toLocaleLowerCase()}--documentation)
 - [${homeCardStory.default.title}](/docs/${getFormatName(homeCardStory.default.title!, /(\/)|( )/g, '-').toLocaleLowerCase()}--documentation)

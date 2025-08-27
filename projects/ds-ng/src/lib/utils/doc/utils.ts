@@ -34,8 +34,8 @@ export const RELEVANT_TITLE_LEVEL: string[] = [
 ];
 
 export const DESIGN_SYSTEM_TITLE: string = '***Bamboo***';
-export const TECHNICAL_DOC_TILE: string = `${DESIGN_SYSTEM_TITLE} ***- Technical documentation***`;
-export const LAYOUT_REFERENCES_TITLE: string = `Please remember to refer to the ${TECHNICAL_DOC_TILE} ***- Technical documentation*** for more details:`;
+export const TECHNICAL_DOC_TITLE: string = `${DESIGN_SYSTEM_TITLE} ***- Technical documentation***`;
+export const TECHNICAL_DOC_REFERENCES: string = `Please remember to refer to the ${TECHNICAL_DOC_TITLE} for more details:`;
 export const STORIES_TITLE: string = 'Variant templates';
 export const TITLE_OF_CONTROLS: string = 'Properties / Events';
 const TOC_TITLE: string = 'On this page';
@@ -86,7 +86,10 @@ export const attributesText = (object: { [key: string]: any }): string =>
     .join(' ');
 
 export const getLandingGeneralDesc = (name: string) =>
-  `${getGeneralDescription(`Template containing the ${DESIGN_SYSTEM_TITLE} elements to be used to implement the Landing - Student ${name}.`, 'https://bamboo.tec.mx/latest/particularities/mitec-web/landings-fCESn8dl-fCESn8dl')}`;
+  `${getGeneralDescription(`Template containing the ${DESIGN_SYSTEM_TITLE} elements to be used to implement the **Landing - Student ${name}**.`, 'https://bamboo.tec.mx/latest/particularities/mitec-web/landings-fCESn8dl-fCESn8dl')}`;
+
+export const getStandaloneGeneralDesc = (name: string) =>
+  `${getGeneralDescription(`Template containing the ${DESIGN_SYSTEM_TITLE} elements to implement the structure of the **Stand alone sites - ${name}**.`, 'https://bamboo.tec.mx/latest/templates/sitios-stand-alone/descripcion-general-lwpZfyMh')}`;
 
 const getProperName = (name: string): string =>
   name.replace(name.slice(0, 1), name.slice(0, 1).toLocaleUpperCase());
