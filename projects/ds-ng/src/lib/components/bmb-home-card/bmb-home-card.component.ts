@@ -33,7 +33,7 @@ export class BmbHomeCardComponent {
   isMobile = input<boolean>();
   contentPadding = input<SizeNames>('l');
   showRightButton = input<boolean>(true);
-  isExpanded = model<boolean>(false); //Internal
+  isExpanded = model<boolean>(false);
   useAutoExpand = input<boolean>(true); //Internal
 
   onClose = output();
