@@ -29,6 +29,8 @@ import {
   BmbIconComponent,
   BmbToastComponent,
   BmbNativeModalService,
+  BmbVerticalLayoutDirective,
+  BmbVerticalLayoutItemDirective,
 } from '../../public-api';
 import { CommonModule } from '@angular/common';
 import { RELEVANT_TITLE_LEVEL } from '../utils/doc/utils';
@@ -52,6 +54,8 @@ import { BmbCheckExternalLinkButtonComponent } from '../components/bmb-check-ext
     BmbCheckExternalLinkButtonComponent,
     BmbIconComponent,
     BmbToastComponent,
+    BmbVerticalLayoutDirective,
+    BmbVerticalLayoutItemDirective,
   ],
   selector: 'storybook-accordion-tabs',
   template: `
@@ -93,9 +97,14 @@ import { BmbCheckExternalLinkButtonComponent } from '../components/bmb-check-ext
           ></bmb-tabs>
           @switch (selectedTab) {
             @case (1) {
-              <section bmbLayout margin="none">
-                <div bmbLayoutItem [colSm]="4" [colLg]="6">
-                  <bmb-card margin="none">
+              <section
+                bmbLayout
+                margin="none"
+                class="bmb_template-accordion-sections"
+                bmbVerticalLayout
+              >
+                <div class="bmb_template-accordion-items">
+                  <bmb-card margin="none" bmbVerticalLayoutItem [rowGrow]="1">
                     <bmb-card-header padding="m">
                       <h3 class="font-medium-5">Características y proceso</h3>
                     </bmb-card-header>
@@ -126,8 +135,8 @@ import { BmbCheckExternalLinkButtonComponent } from '../components/bmb-check-ext
                     </bmb-card-content>
                   </bmb-card>
                 </div>
-                <div bmbLayoutItem [colSm]="4" [colLg]="6">
-                  <bmb-card margin="none">
+                <div class="bmb_template-accordion-items">
+                  <bmb-card margin="none" bmbVerticalLayoutItem [rowGrow]="1">
                     <bmb-card-header padding="m">
                       <h3 class="font-medium-5">Proceso</h3>
                     </bmb-card-header>
@@ -400,7 +409,7 @@ import { BmbCheckExternalLinkButtonComponent } from '../components/bmb-check-ext
             }
             @case (2) {
               <section bmbLayout margin="none">
-                <div bmbLayoutItem [colSm]="4">
+                <div bmbLayoutItem>
                   <h1 class="font-medium-8">
                     Lorem ipsum dolor sit amet consectetur. Nisl nibh phasellus
                     condimentum
@@ -423,7 +432,7 @@ import { BmbCheckExternalLinkButtonComponent } from '../components/bmb-check-ext
 
             @case (3) {
               <section bmbLayout margin="none">
-                <div bmbLayoutItem [colSm]="4">
+                <div bmbLayoutItem>
                   <h1 class="font-medium-8">
                     Lorem ipsum dolor sit amet consectetur. Nisl nibh phasellus
                     condimentum
@@ -535,7 +544,7 @@ class StorybookAccordionTabs {
 }
 
 export default {
-  title: 'Particularities/mitec web/Landings/Accordion Tabs',
+  title: 'Particularities/mitec web/Landings/Accordion tab',
   component: BmbTopBarComponent,
   decorators: [
     moduleMetadata({
@@ -573,6 +582,8 @@ Below is an example of how you can use the components needed for this organizati
     BmbCheckExternalLinkButtonComponent,
     BmbIconComponent,
     BmbToastComponent,
+    BmbVerticalLayoutDirective,
+    BmbVerticalLayoutItemDirective,
   ],
   selector: 'storybook-accordion-tabs',
   template: '
@@ -614,9 +625,14 @@ Below is an example of how you can use the components needed for this organizati
           ></bmb-tabs>
           @switch (selectedTab) {
             @case (1) {
-              <section bmbLayout margin="none">
-                <div bmbLayoutItem [colSm]="4" [colLg]="6">
-                  <bmb-card margin="none">
+              <section
+                bmbLayout
+                margin="none"
+                class="bmb_template-accordion-sections"
+                bmbVerticalLayout
+              >
+                <div class="bmb_template-accordion-items">
+                  <bmb-card margin="none" bmbVerticalLayoutItem [rowGrow]="1">
                     <bmb-card-header padding="m">
                       <h3 class="font-medium-5">Características y proceso</h3>
                     </bmb-card-header>
@@ -647,8 +663,8 @@ Below is an example of how you can use the components needed for this organizati
                     </bmb-card-content>
                   </bmb-card>
                 </div>
-                <div bmbLayoutItem [colSm]="4" [colLg]="6">
-                  <bmb-card margin="none">
+                <div class="bmb_template-accordion-items">
+                  <bmb-card margin="none" bmbVerticalLayoutItem [rowGrow]="1">
                     <bmb-card-header padding="m">
                       <h3 class="font-medium-5">Proceso</h3>
                     </bmb-card-header>
@@ -921,7 +937,7 @@ Below is an example of how you can use the components needed for this organizati
             }
             @case (2) {
               <section bmbLayout margin="none">
-                <div bmbLayoutItem [colSm]="4">
+                <div bmbLayoutItem>
                   <h1 class="font-medium-8">
                     Lorem ipsum dolor sit amet consectetur. Nisl nibh phasellus
                     condimentum
@@ -944,7 +960,7 @@ Below is an example of how you can use the components needed for this organizati
 
             @case (3) {
               <section bmbLayout margin="none">
-                <div bmbLayoutItem [colSm]="4">
+                <div bmbLayoutItem>
                   <h1 class="font-medium-8">
                     Lorem ipsum dolor sit amet consectetur. Nisl nibh phasellus
                     condimentum

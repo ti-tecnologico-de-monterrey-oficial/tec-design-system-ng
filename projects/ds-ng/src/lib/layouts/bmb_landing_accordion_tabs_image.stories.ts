@@ -1,17 +1,5 @@
-import {
-  Component,
-  input,
-  output,
-  signal,
-  TemplateRef,
-  ViewChild,
-} from '@angular/core';
-import {
-  Meta,
-  StoryFn,
-  applicationConfig,
-  moduleMetadata,
-} from '@storybook/angular';
+import { Component } from '@angular/core';
+import { Meta, StoryFn, moduleMetadata } from '@storybook/angular';
 import {
   BmbHomeCardComponent,
   BmbLayoutDirective,
@@ -19,13 +7,14 @@ import {
   BmbSidebarComponent,
   BmbTopBarComponent,
   BmbCardComponent,
-  IBmbTab,
   IBmbActionHeader,
   BmbCardHeaderComponent,
   BmbCardContentComponent,
   BmbAccordionComponent,
   BmbAccordionControlDirective,
   BmbTextLinkComponent,
+  BmbVerticalLayoutDirective,
+  BmbVerticalLayoutItemDirective,
 } from '../../public-api';
 import { CommonModule } from '@angular/common';
 import { RELEVANT_TITLE_LEVEL } from '../utils/doc/utils';
@@ -45,6 +34,8 @@ import { RELEVANT_TITLE_LEVEL } from '../utils/doc/utils';
     BmbAccordionComponent,
     BmbAccordionControlDirective,
     BmbTextLinkComponent,
+    BmbVerticalLayoutDirective,
+    BmbVerticalLayoutItemDirective,
   ],
   selector: 'storybook-accordion-image',
   template: `
@@ -75,16 +66,25 @@ import { RELEVANT_TITLE_LEVEL } from '../utils/doc/utils';
           (onBack)="handleBack()"
           [actionHeaders]="actionHeaders"
         >
-          <section bmbLayout margin="none">
-            <div bmbLayoutItem [colSm]="4" [colLg]="6">
+          <section
+            bmbLayout
+            margin="none"
+            class="bmb_template-accordion-gallery"
+            bmbVerticalLayout
+          >
+            <div bmbLayoutItem class="bmb_template-accordion-items">
               <div class="bmb_template-accordion-content">
-                <div class="bmb_template-accordion-image">
+                <div
+                  class="bmb_template-accordion-image"
+                  bmbVerticalLayoutItem
+                  [rowGrow]="1"
+                >
                   <img
                     src="https://farm2.staticflickr.com/1919/45579541712_f58c1fd0ed_o.jpg"
                     alt="Image description"
                   />
                 </div>
-                <bmb-card margin="none">
+                <bmb-card margin="none" bmbVerticalLayoutItem [rowGrow]="1">
                   <bmb-card-header padding="m">
                     <h3 class="font-medium-5">Descripción</h3>
                   </bmb-card-header>
@@ -116,8 +116,8 @@ import { RELEVANT_TITLE_LEVEL } from '../utils/doc/utils';
                 </bmb-card>
               </div>
             </div>
-            <div bmbLayoutItem [colSm]="4" [colLg]="6">
-              <bmb-card margin="none">
+            <div bmbLayoutItem class="bmb_template-accordion-items">
+              <bmb-card margin="none" bmbVerticalLayoutItem [rowGrow]="1">
                 <bmb-card-header padding="m">
                   <h3 class="font-medium-5">Recursos</h3>
                 </bmb-card-header>
@@ -336,7 +336,7 @@ class StorybookAccordionTabs {
 }
 
 export default {
-  title: 'Particularities/mitec web/Landings/Accordion With Image',
+  title: 'Particularities/mitec web/Landings/Accordion with image',
   component: BmbTopBarComponent,
   decorators: [
     moduleMetadata({
