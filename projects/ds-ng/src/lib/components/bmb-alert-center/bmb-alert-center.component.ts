@@ -10,6 +10,8 @@ import {
   computed,
   signal,
   model,
+  effect,
+  untracked,
 } from '@angular/core';
 import { BmbTabsComponent, IBmbTab } from '../bmb-tabs/bmb-tabs.component';
 import { CommonModule } from '@angular/common';
@@ -99,7 +101,9 @@ export class BmbAlertCenterComponent {
   ) {}
 
   alertList = computed<IBmbDataAlert[]>(() => {
-    return this.bmbAlertCenterService.getAlerts();
+    const alertsOnInput = this.alerts();
+    const alertsOnService = this.bmbAlertCenterService.getAlerts();
+    return [...alertsOnInput, ...alertsOnService];
   });
   advertisementsList = computed<IBmbDataAlert[]>(() => {
     return this.bmbAlertCenterService.getAdvertisements();
