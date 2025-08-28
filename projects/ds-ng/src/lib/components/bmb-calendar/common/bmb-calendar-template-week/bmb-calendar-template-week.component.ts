@@ -50,7 +50,8 @@ export class BmbCalendarTemplateWeekComponent {
   onSelectEvent = output<IBmbCalendarEventClick>();
   eventsOnWeek = computed<IBmbCalendarEvent[][]>(() => {
     return this.weekDays().map((day) => {
-      const eventsOnDay = this.events()?.[day.weekNumber]?.[day.toFormat('yyyy-MM-dd')] ?? [];
+      const eventsOnDay =
+        this.events()?.[day.weekNumber]?.[day.toFormat('yyyy-MM-dd')] ?? [];
       return layoutEvents(eventsOnDay);
     });
   });

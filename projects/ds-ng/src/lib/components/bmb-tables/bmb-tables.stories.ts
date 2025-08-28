@@ -423,7 +423,8 @@ ${getBasicExampleBlock(
       control: {
         type: 'boolean',
       },
-      description: 'Show or hide the filters section. This property is a Model.',
+      description:
+        'Show or hide the filters section. This property is a Model.',
       table: {
         category: 'Properties',
         type: { summary: 'boolean' },

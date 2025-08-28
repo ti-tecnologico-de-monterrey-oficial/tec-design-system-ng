@@ -19,7 +19,11 @@ import {
   getSpecialSpecifications,
   RELEVANT_TITLE_LEVEL,
 } from '../../utils/doc/utils';
-import { getDefaultValueControl, getOnEventParam } from '../../utils/doc/parameterDescriptions';
+import {
+  DBmbGenericParamDesc,
+  getDefaultValueControl,
+  getOnEventParam,
+} from '../../utils/doc/parameterDescriptions';
 
 // Mock del servicio
 class MockCalendarService {
@@ -153,35 +157,37 @@ export default {
     docs: {
       controls: {
         exclude: [
-          'calendarTitle',
-          'currentTime',
-          'isListShowing',
-          'now',
-          'renderWeekDays',
-          'selectedEvent',
-          'timerId',
-          'view',
-          'weekNumber',
           'getDuration',
-          'getEvents',
+          'getFormControl',
           'getHeight',
-          'getIsLoading',
+          'handleApplyFilters',
           'handleClose',
           'handleCurrentDateChange',
           'handleDateChange',
+          'handleFormReset',
           'handleSelectEvent',
+          'handleShowModalFilter',
           'isAnEventSelected',
-          'onViewTypeChange',
-          'onViewTypeChange',
-          'updateTime',
-          'detailContent',
+          'ngAfterViewInit',
           'ngOnDestroy',
           'ngOnInit',
           'resize',
-          'onClose',
-          'startBusinessHour',
-          'hourFormat',
-          'lang',
+          'updateTime',
+          'detailContent',
+          'onDateChange',
+          'modalTemplate',
+          'calendarForm',
+          'currentTime',
+          'events',
+          'filteredEvents',
+          'filterModalId',
+          'isLoading',
+          'isMobileHeader',
+          'orderedEvents',
+          'renderWeekDays',
+          'selectedEvent',
+          'selectedWeek',
+          'timerId',
         ],
       },
       description: {
@@ -232,16 +238,7 @@ ${getBasicExampleBlock('BmbCalendarComponent')}
         type: { summary: 'string' },
       },
     },
-    currentDate: {
-      control: { type: 'text' },
-      description:
-        'Sets the target date to show in the calendar (example: "2024-04-23T15:00:00.715Z")',
-      table: {
-        category: 'Deprecated',
-        defaultValue: false,
-        type: { summary: 'string' },
-      },
-    },
+    currentDate: DBmbGenericParamDesc.deprecated,
     height: {
       control: { type: 'number' },
       description:
@@ -258,7 +255,7 @@ ${getBasicExampleBlock('BmbCalendarComponent')}
     ),
     showFilterButton: {
       control: { type: 'boolean' },
-      description: 'Show or hide the filter button.',
+      description: 'Shows or hides the filter button. Shows the button when true.',
       table: {
         category: 'Properties',
         type: { summary: 'boolean' },
@@ -267,13 +264,15 @@ ${getBasicExampleBlock('BmbCalendarComponent')}
     },
     dateFormat: {
       control: { type: 'text' },
-      description: 'Set the date format for the calendar (example: "yyyy-MM-dd")',
+      description:
+        'Sets the date format for the calendar (example: "yyyy-MM-dd")',
       table: {
         category: 'Properties',
         type: { summary: 'string' },
-        defaultValue: { summary: 'iso'}
+        defaultValue: { summary: 'iso' },
       },
     },
+    lang: DBmbGenericParamDesc.lang,
   },
   // Remove invalid args if not defined as @Input() in BmbCalendarComponent
   args: {

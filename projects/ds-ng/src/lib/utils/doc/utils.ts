@@ -25,7 +25,17 @@ export interface IBmbOnEvent {
 }
 export type IBmbOnEventType = 'change' | 'keyDown' | 'other';
 
+export const RELEVANT_TITLE_LEVEL: string[] = [
+  '⚠️**Warning**<br/>',
+  '‼️**Important**<br/>',
+  '✳️**Note**<br/>',
+  '⚙️**Configuration**<br/>',
+  '⭐**Example**<br/>',
+];
+
 export const DESIGN_SYSTEM_TITLE: string = '***Bamboo***';
+export const TECHNICAL_DOC_TITLE: string = `${DESIGN_SYSTEM_TITLE} ***- Technical documentation***`;
+export const TECHNICAL_DOC_REFERENCES: string = `Please remember to refer to the ${TECHNICAL_DOC_TITLE} for more details:`;
 export const STORIES_TITLE: string = 'Variant templates';
 export const TITLE_OF_CONTROLS: string = 'Properties / Events';
 const TOC_TITLE: string = 'On this page';
@@ -38,19 +48,13 @@ export const SPACING_DESCRIPTION: string =
 export const TYPOGRAPHY_DESCRIPTION: string =
   'Typography refers to the design or selection of letter forms that are arranged in typo of blocks to create written content that is legible, readable, and visually appealing.<br/>';
 export const FONT_FAMILY_DESCRIPTION: string = `Explore the typographic scale with ${DESIGN_SYSTEM_TITLE} **Popping** font family`;
+export const FULLSCREEN_DESC: string = `${RELEVANT_TITLE_LEVEL[2]}
+When you click on fullscreen icon, in Storybook doesn’t look the best due to the many elements, but in your project, it should display correctly.`;
 
 export const TOC_OBJ = {
   title: TOC_TITLE,
   headingSelector: 'h2, h3',
 };
-
-export const RELEVANT_TITLE_LEVEL: string[] = [
-  '⚠️**Warning**<br/>',
-  '‼️**Important**<br/>',
-  '✳️**Note**<br/>',
-  '⚙️**Configuration**',
-  '⭐**Example**',
-];
 
 export const getPageStructureForFoundationStories = () => {
   return [Title({}), Description({}), Primary({}), Controls({})];
@@ -81,12 +85,18 @@ export const attributesText = (object: { [key: string]: any }): string =>
     .map(([_, value]) => `${value}`)
     .join(' ');
 
+export const getLandingGeneralDesc = (name: string) =>
+  `${getGeneralDescription(`Template containing the ${DESIGN_SYSTEM_TITLE} elements to be used to implement the **Landing - Student ${name}**.`, 'https://bamboo.tec.mx/latest/particularities/mitec-web/landings-fCESn8dl-fCESn8dl')}`;
+
+export const getStandaloneGeneralDesc = (name: string) =>
+  `${getGeneralDescription(`Template containing the ${DESIGN_SYSTEM_TITLE} elements to implement the structure of the **Stand alone sites - ${name}**.`, 'https://bamboo.tec.mx/latest/templates/sitios-stand-alone/descripcion-general-lwpZfyMh')}`;
+
 const getProperName = (name: string): string =>
   name.replace(name.slice(0, 1), name.slice(0, 1).toLocaleUpperCase());
 
 export const getFormatName = (
   name: string,
-  separator: string = '',
+  separator: string | RegExp = '',
   replace: string = '',
 ): string => {
   const _name: string = getProperName(name);

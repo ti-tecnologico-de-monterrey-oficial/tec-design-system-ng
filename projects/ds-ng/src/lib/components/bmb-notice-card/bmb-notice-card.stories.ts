@@ -1,67 +1,68 @@
-import { Meta, StoryFn, moduleMetadata } from '@storybook/angular';
+import { Meta, StoryObj } from '@storybook/angular';
 import { BmbNoticeCardComponent } from './bmb-notice-card.component';
-import { attributes } from '../../utils/doc/utils';
+import {
+  getBasicExampleBlock,
+  getGeneralComponentDescription,
+  getGeneralDescription,
+  getOnEvent,
+  IBmbOnEvent,
+} from '../../utils/doc/utils';
+import { getOnClickParam } from '../../utils/doc/parameterDescriptions';
+
+const onCloseEvent: IBmbOnEvent = getOnEvent('close', 'onClose', 'void');
 
 export default {
   title: 'Particularities/mitec web/Notice card',
   component: BmbNoticeCardComponent,
-  decorators: [
-    moduleMetadata({
-      imports: [BmbNoticeCardComponent],
-    }),
-  ],
   parameters: {
     docs: {
+      controls: {
+        exclude: [
+          'activeIndex',
+          'activeIndex',
+          'handleClose',
+          'handleClickBtn',
+          'onDotPress',
+          'onClickBtn',
+        ],
+      },
       description: {
         component: `
-Below is an example of how you can use this component in TypeScript:
-
-\`\`\`typescript
-import { BmbNoticeCard } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
-@Component({
-  selector: 'component',
-  standalone: true,
-  imports: [ BmbNoticeCard ],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.scss',
-})
-\`\`\`
-
-Below is an example of how you can use this component in HTML:
+${getGeneralDescription(`${getGeneralComponentDescription('notice-card')} pop-up news or information notifications to be displayed within ***mitec*** in the ***web*** version.`, 'https://bamboo.tec.mx/latest/particularities/mitec-web/notice-card-sfSif5Rk')}
+${getBasicExampleBlock('BmbNoticeCardComponent', '', onCloseEvent.handleExample)}
         `,
       },
     },
   },
   argTypes: {
     title: {
-      name: 'Title',
       control: {
         type: 'text',
       },
-      description: 'Set the notification title.',
+      description: 'Sets the notification title.',
       table: {
         category: 'Properties',
+        defaultValue: { summary: '' },
         type: { summary: 'string' },
       },
     },
     src: {
-      name: 'Src',
       control: {
         type: 'text',
       },
       table: {
         category: 'Properties',
+        defaultValue: { summary: '' },
         type: { summary: 'string' },
       },
-      description: 'Set an image at the top of the notification.',
+      description: 'Sets an image at the top of the notification.',
     },
     description: {
-      name: 'Description',
       control: {
         type: 'object',
       },
       description:
-        'Set the description of the notice card, this is an object with two pages, each page is a string.',
+        'Sets the description of the notice card, this is an object with two pages, each page is a string.',
       table: {
         category: 'Properties',
         type: { summary: 'IBmbCardNoticeDescription' },
@@ -69,11 +70,10 @@ Below is an example of how you can use this component in HTML:
       },
     },
     buttonText: {
-      name: 'Button text',
       control: {
         type: 'text',
       },
-      description: 'Set the button text of the notice card.',
+      description: 'Sets the button text of the notice card.',
       table: {
         category: 'Properties',
         type: { summary: 'string' },
@@ -81,11 +81,10 @@ Below is an example of how you can use this component in HTML:
       },
     },
     link: {
-      name: 'Link',
       control: {
         type: 'text',
       },
-      description: 'Set the link of the notice card.',
+      description: 'Sets the link of the notice card.',
       table: {
         category: 'Properties',
         type: { summary: 'string' },
@@ -93,7 +92,6 @@ Below is an example of how you can use this component in HTML:
       },
     },
     closeBtnColor: {
-      name: 'Close Button Color',
       control: {
         type: 'select',
       },
@@ -103,8 +101,9 @@ Below is an example of how you can use this component in HTML:
         type: { summary: 'select' },
         defaultValue: { summary: 'white' },
       },
-      description: 'Set the color of the close button.',
+      description: 'Sets the color of the close button.',
     },
+    onClose: getOnClickParam(onCloseEvent),
   },
   args: {
     title: 'Notification Title',
@@ -116,19 +115,15 @@ Below is an example of how you can use this component in HTML:
     },
     buttonText: 'Ir',
     link: 'https://www.youtube.com',
+    onClose: () => {
+      console.log('onClose');
+    },
+    onClickBtn: () => {
+      console.log('onClickBtn');
+    },
   },
 } as Meta<typeof BmbNoticeCardComponent>;
 
-export const Default: StoryFn<typeof BmbNoticeCardComponent> = (args) => {
-  return {
-    props: args,
-    template: `
-      <!-- Instruction to users: This component is used for internal Storybook logic and should not be copied -->
-        <bmb-notice-card
-            ${attributes(args)}
-        >
-        </bmb-notice-card>
+type Story = StoryObj<BmbNoticeCardComponent>;
 
-      `,
-  };
-};
+export const Default: Story = {};
