@@ -55,6 +55,17 @@ export class AppComponent {
         title: 'Home',
         link: '/home',
       },
+      {
+        id: 5,
+        icon: 'calendar_today',
+        title: 'Calendar',
+        link: '/calendar',
+      },
+      {
+        icon: 'dropdown',
+        title: 'Dropdown',
+        link: '/dropdown',
+      }
     ],
     [
       {

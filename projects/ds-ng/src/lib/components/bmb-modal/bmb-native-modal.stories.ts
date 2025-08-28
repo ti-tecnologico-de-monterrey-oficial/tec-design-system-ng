@@ -14,7 +14,10 @@ import {
   IBmbNativeModalSize,
   IBmbModalAlertStyle,
 } from './bmb-modal.interface';
-import { DBmbModalParamDesc } from '../../utils/doc/parameterDescriptions';
+import {
+  DBmbModalParamDesc,
+  getAppearanceParam,
+} from '../../utils/doc/parameterDescriptions';
 import {
   DESIGN_SYSTEM_TITLE,
   getGeneralDescription,
@@ -32,9 +35,6 @@ import {
     </p>
     <p>
       Modal ID: <strong>{{ myModalId() ? myModalId() : '-' }}</strong>
-    </p>
-    <p>
-      User Status: <strong>{{ userStatus() ? userStatus() : '-' }}</strong>
     </p>
     <button
       bmbButton
@@ -87,14 +87,13 @@ class BmbNativeModalStory {
         this.myModalId.set(null);
       },
     });
-    console.log(id);
-
     this.myModalId.set(id);
   }
 }
 
 export default {
-  title: 'Components/Containers/Native Modal',
+  title: 'Components/Containers/Modal',
+  tags: ['!autodocs'],
   component: BmbNativeModalStory,
   decorators: [
     applicationConfig({
@@ -179,49 +178,49 @@ Make sure you are using:
 \`\`\`typescript
 constructor(private modalService: BmbNativeModalService) {}
 \`\`\`
-
+>
 ### Detect the modal status
 To detect if a modal is open or closed, you can use the \`checkIfModalExists\` method as follows:
-
+>
 \`\`\`typescript
 myModalId = signal<string | null>(null);
-
+>
 openModalComponent() {
   const id = this.nativeModalService.openModal({
     title: this.title(),
     content: this.content(),
   });
-
+>
   // Add the modal ID to the signal < myModalId >
   this.myModalId.set(id);
 }
-
+>
 isTheModalOpen = computed(() => {
   if (!this.myModalId()) return false;
-
+>
   return this.nativeModalService.checkIfModalExists(
     this.myModalId() as string,
   );
 });
 \`\`\`
-
-
+>
+>
 ### Close specific modal
 To close a specific modal, you can use the \`closeModal\` method as follows:
-
+>
 \`\`\`typescript
 myModalId = signal<string | null>(null);
-
+>
 openModalComponent() {
   const id = this.nativeModalService.openModal({
     title: this.title(),
     content: this.content(),
   });
-
+>
   // Add the modal ID to the signal < myModalId >
   this.myModalId.set(id);
 }
-
+>
 closeModal() {
   if (this.myModalId()) {
     this.nativeModalService.closeModal(this.myModalId() as string);
@@ -229,44 +228,44 @@ closeModal() {
   }
 }
 \`\`\`
-
+>
 ### Close all modals
 To close all open modals, you can use the \`closeAllModals\` method as follows:
-
+>
 \`\`\`typescript
 closeAllModals() {
   this.nativeModalService.closeAllModals();
 }
 \`\`\`
-
+>
 ### Detect click on the close icon
 To detect the click on the close icon, you can use the following configuration:
-
+>
 \`\`\`typescript
 openModalComponent() {
   const id = this.nativeModalService.openModal({
     title: this.title(),
     content: this.content(),
-
+>
     // Once the user clicks the close icon, this method will be triggered
     closeModalClicked: this.handleCloseModal.bind(this)(event),
   });
-
+>
   handleActionsCloseClick(params: unknown): void {
     console.log('Close button clicked', params);
   }
 }
 \`\`\`
-
+>
 ### Actions
 In order to add actions to the modal, you can use the following configuration:
-
+>
 \`\`\`typescript
 openModalComponent() {
   const id = this.nativeModalService.openModal({
     title: this.title(),
     content: this.content(),
-
+>
     // You can add custom actions to the modal
     actions: [
       {
@@ -285,11 +284,11 @@ openModalComponent() {
       },
     ],
   });
-
+>
   handleReject(): void {
     // Add your rejection logic here
   }
-
+>
   handleAccept(): void {
     // Add your acceptance logic here
   }
@@ -307,7 +306,7 @@ openModalComponent() {
         type: 'text',
       },
       description:
-        'Specifies the subtitle text display. This message should be concise and direct.',
+        'Sets the subtitle text display. This message should be concise and direct.',
       table: {
         category: 'Properties',
         defaultValue: { summary: '' },
@@ -319,29 +318,21 @@ openModalComponent() {
         type: 'text',
       },
       description:
-        'Specifies the body text display. This attribute can receive a Template Reference instead of the string.',
+        'Sets the body text display. This attribute can receive a Template Reference instead of the string.',
       table: {
         category: 'Properties',
         defaultValue: { summary: '' },
         type: { summary: 'string' },
       },
     },
-    size: {
-      control: {
-        type: 'select',
-      },
-      options: ['x-small', 'small', 'medium', 'large', 'x-large'],
-      description: 'Specifies the size of the modal.',
-      table: {
-        category: 'Properties',
-        defaultValue: { summary: 'medium' },
-        type: { summary: 'IBmbNativeModalSize' },
-      },
-    },
-
+    size: getAppearanceParam(
+      'modal size',
+      ['x-small', 'small', 'medium', 'large', 'x-large'],
+      'medium',
+    ),
     modalId: {
       control: { type: 'text' },
-      description: 'Specifies the unique identifier for the modal instance.',
+      description: 'Sets the unique identifier for the modal instance.',
       table: {
         category: 'Properties',
         defaultValue: { summary: '' },
@@ -351,7 +342,7 @@ openModalComponent() {
     iconStyle: {
       control: { type: 'select' },
       options: ['warning', 'neutral', 'primary', 'event', 'success', 'error'],
-      description: 'Specifies the icon to show at the left of the modal title.',
+      description: 'Sets the icon to show at the left of the modal title.',
       table: {
         category: 'Properties',
         defaultValue: { summary: '' },
@@ -359,7 +350,7 @@ openModalComponent() {
       },
     },
     actions: {
-      description: 'Specifies the actions to show at the bottom of the modal.',
+      description: 'Sets the actions to show at the bottom of the modal.',
       table: {
         category: 'Properties',
         type: { summary: 'IBmbActionButton[]' },

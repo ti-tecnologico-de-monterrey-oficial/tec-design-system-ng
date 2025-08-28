@@ -1,7 +1,20 @@
 import type { Meta, StoryObj } from '@storybook/angular';
 import { BmbBadgeComponent } from './bmb-badge.component';
 import { IBbmBgAppearance } from '../bmb-advertisement-card/types';
-import { RELEVANT_TITLE_LEVEL } from '../../utils/doc/utils';
+import {
+  getArchitectureSection,
+  getBasicExampleBlock,
+  getGeneralComponentDescription,
+  getGeneralDescription,
+} from '../../utils/doc/utils';
+import {
+  getAppearanceParam,
+  getDefaultValueDesc,
+  getPropertyParamDesc,
+  getWidthIncreaseDesc,
+} from '../../utils/doc/parameterDescriptions';
+
+const defaultAppearanceValue: string = 'normal';
 
 const appearanceOptions: IBbmBgAppearance[] = [
   'normal',
@@ -41,81 +54,40 @@ export default {
     docs: {
       description: {
         component: `
-Below is an example of how you can use this component in TypeScript:
-
-\`\`\`typescript
-import { BmbBadgeComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
-@Component({
-  selector: 'component',
-  standalone: true,
-  imports: [ BmbBadgeComponent ],
-  templateUrl: './component.html',
-  styleUrl: './component.scss',
-})
-\`\`\`
-
-## Architecture
-
-\`\`\`html
-<section class="bmb_badge"> <!-- conditional classes bmb_badge-{appearance} bmb_badge-container ->
+${getGeneralDescription(`${getGeneralComponentDescription('badge')} to highlight information in small indicators.`, 'https://bamboo.tec.mx/latest/componentes/badge/descripcion-general-dqHBPuku')}
+${getArchitectureSection(`<section class="bmb_badge"> <!-- conditional classes bmb_badge-{appearance} bmb_badge-container ->
   <span class="bmb_badge-bullet"></span>
   <span class="bmb_badge-content"></span>
-</section>
-\`\`\`
-
-Below is an example of how you can use this component in HTML:
+</section>`)}
+${getBasicExampleBlock('BmbBadgeComponent')}
         `,
       },
     },
   },
   argTypes: {
-    text: {
-      name: 'Text',
-      control: {
-        type: 'text',
-      },
-      description:
-        'Sets the text of the badge. The width will increase depending on the length of the text.',
-      table: {
-        category: 'Properties',
-        type: { summary: 'string' },
-      },
-    },
-    appearance: {
-      name: 'Appearance',
-      control: {
-        type: 'select',
-      },
-      options: appearanceOptions,
-      table: {
-        category: 'Properties',
-        defaultValue: { summary: 'normal' },
-        type: { summary: 'IBbmBgAppearance' },
-      },
-      description: `
-Sets the appearance of the badge, affecting its visual style.
-
-  **Default appearance**: normal.
-
-  ${RELEVANT_TITLE_LEVEL[2]} background appearance is deprecated.
-      `,
-    },
-    container: {
-      name: 'Container',
-      control: { type: 'boolean' },
-      description:
-        'Sets the container flag. This displays the container when true; if false, it displays a bullet.',
-      table: {
-        category: 'Properties',
-        defaultValue: { summary: 'true' },
-        type: { summary: 'boolean' },
-      },
-    },
+    text: getPropertyParamDesc(
+      'badge',
+      'text',
+      '""',
+      '<br/><br/>'.concat(getWidthIncreaseDesc('badge')),
+    ),
+    appearance: getAppearanceParam(
+      'badge',
+      appearanceOptions,
+      defaultAppearanceValue,
+      `<br/><br/>${getDefaultValueDesc(defaultAppearanceValue)}<br/><br/>Background appearance is deprecated.`,
+    ),
+    container: getPropertyParamDesc(
+      'container',
+      'boolean',
+      true,
+      ' When false, show a bullet.',
+    ),
   },
   args: {
     text: 'Badge text',
-    appearance: 'normal',
-    container: false,
+    appearance: defaultAppearanceValue,
+    container: true,
   },
 } as Meta<typeof BmbBadgeComponent>;
 
@@ -123,8 +95,8 @@ type Story = StoryObj<BmbBadgeComponent>;
 
 export const Default: Story = {};
 
-export const Container = {
+export const Bullet = {
   args: {
-    container: true,
+    container: false,
   },
 };

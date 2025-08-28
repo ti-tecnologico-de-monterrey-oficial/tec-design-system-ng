@@ -43,7 +43,7 @@ export class BmbSwitchComponent {
   disabled = input<boolean>(false);
   name = input<string>(getUUID());
 
-  inputId = model<string>(`bmb-switch-${BmbSwitchComponent.nextId++}`);
+  inputId = model<string>(`bmb-switch-${this.name()}`);
   control = model<FormControl>(newFormControlByType('checkbox'));
 
   change = output<boolean>();

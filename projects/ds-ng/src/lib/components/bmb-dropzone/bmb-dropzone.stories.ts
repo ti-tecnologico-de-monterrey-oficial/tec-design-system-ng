@@ -7,9 +7,15 @@ import {
   getBasicExampleBlock,
   getGeneralComponentDescription,
   getGeneralDescription,
+  getOnEvent,
   RELEVANT_TITLE_LEVEL,
 } from '../../utils/doc/utils';
-import { DBmbInputParamDesc } from '../../utils/doc/parameterDescriptions';
+import {
+  DBmbInputParamDesc,
+  getAppearanceParam,
+  getDefaultValueControl,
+  getOnEventParam,
+} from '../../utils/doc/parameterDescriptions';
 
 export default {
   title: 'Components/Inputs/Dropzone',
@@ -43,6 +49,7 @@ export default {
           'validFile',
           'fileDataList',
           'ngOnChanges',
+          'getDropZoneClass',
         ],
       },
       description: {
@@ -207,17 +214,11 @@ ${getBasicExampleBlock('BmbDropzoneComponent')}
     },
   },
   argTypes: {
-    appearanceContrast: {
-      control: {
-        type: 'select',
-      },
-      options: ['default', 'primary', 'alternative'],
-      description: 'Defines the appearance style.',
-      table: {
-        category: 'Properties',
-        type: { summary: 'string' },
-      },
-    },
+    appearanceContrast: getAppearanceParam(
+      'dropzone',
+      ['default', 'primary', 'alternative'],
+      'default',
+    ),
     progress: {
       control: { type: 'number' },
       description: `
@@ -230,7 +231,7 @@ ${RELEVANT_TITLE_LEVEL[2]} For the multi option, a record must be used.
 `,
       table: {
         category: 'Properties',
-        defaultValue: { summary: '' },
+        defaultValue: getDefaultValueControl(),
         type: { summary: 'Record | number' },
       },
     },
@@ -248,7 +249,9 @@ ${RELEVANT_TITLE_LEVEL[2]} For the multi option, a record must be used.
       description: 'Label that describes the accepted file formats.',
       table: {
         category: 'Properties',
-        defaultValue: { summary: 'Especificación de formatos y peso' },
+        defaultValue: getDefaultValueControl(
+          'Especificación de formatos y peso',
+        ),
         type: { summary: 'string' },
       },
     },
@@ -257,7 +260,7 @@ ${RELEVANT_TITLE_LEVEL[2]} For the multi option, a record must be used.
       description: 'URL link to the supported file format documentation.',
       table: {
         category: 'Properties',
-        defaultValue: { summary: '' },
+        defaultValue: getDefaultValueControl(),
         type: { summary: 'string' },
       },
     },
@@ -266,9 +269,9 @@ ${RELEVANT_TITLE_LEVEL[2]} For the multi option, a record must be used.
       description: 'Text for the hyperlink to format info.',
       table: {
         category: 'Properties',
-        defaultValue: {
-          summary: 'Ver más información de formatos de archivo aceptados.',
-        },
+        defaultValue: getDefaultValueControl(
+          'Ver más información de formatos de archivo aceptados.',
+        ),
         type: { summary: 'string' },
       },
     },
@@ -277,7 +280,7 @@ ${RELEVANT_TITLE_LEVEL[2]} For the multi option, a record must be used.
       description: 'Instructional text before the file upload link.',
       table: {
         category: 'Properties',
-        defaultValue: { summary: 'Arrastra tus archivos aquí o' },
+        defaultValue: getDefaultValueControl('Arrastra tus archivos aquí o'),
         type: { summary: 'string' },
       },
     },
@@ -285,7 +288,7 @@ ${RELEVANT_TITLE_LEVEL[2]} For the multi option, a record must be used.
       ...DBmbInputParamDesc.label,
       table: {
         ...DBmbInputParamDesc.label.table,
-        defaultValue: { summary: 'selecciona tus archivos' },
+        defaultValue: getDefaultValueControl('selecciona tus archivos'),
       },
     },
     mainIcon: {
@@ -293,7 +296,7 @@ ${RELEVANT_TITLE_LEVEL[2]} For the multi option, a record must be used.
       description: 'Icon to be displayed above the instruction.',
       table: {
         category: 'Properties',
-        defaultValue: { summary: 'image' },
+        defaultValue: getDefaultValueControl('image'),
         type: { summary: 'string' },
       },
     },
@@ -301,7 +304,7 @@ ${RELEVANT_TITLE_LEVEL[2]} For the multi option, a record must be used.
       ...DBmbInputParamDesc.errorMessage,
       table: {
         ...DBmbInputParamDesc.errorMessage.table,
-        defaultValue: { summary: 'Archivo no compatible' },
+        defaultValue: getDefaultValueControl('Archivo no compatible'),
       },
     },
     errorMessageFormat: {
@@ -309,7 +312,7 @@ ${RELEVANT_TITLE_LEVEL[2]} For the multi option, a record must be used.
       description: 'Message shown when file format is invalid.',
       table: {
         category: 'Properties',
-        defaultValue: { summary: 'Formato no soportado' },
+        defaultValue: getDefaultValueControl('Formato no soportado'),
         type: { summary: 'string' },
       },
     },
@@ -318,7 +321,9 @@ ${RELEVANT_TITLE_LEVEL[2]} For the multi option, a record must be used.
       description: 'Message shown when file exceeds size limit.',
       table: {
         category: 'Properties',
-        defaultValue: { summary: 'El archivo supera el tamaño permitido' },
+        defaultValue: getDefaultValueControl(
+          'El archivo supera el tamaño permitido',
+        ),
         type: { summary: 'string' },
       },
     },
@@ -326,27 +331,31 @@ ${RELEVANT_TITLE_LEVEL[2]} For the multi option, a record must be used.
     fileSize: {
       control: { type: 'number' },
       description: 'Maximum allowed file size in MB.',
-      table: { category: 'Properties', type: { summary: 'number' } },
+      table: {
+        category: 'Properties',
+        type: { summary: 'number' },
+        defaultValue: getDefaultValueControl(2),
+      },
     },
     multiple: {
       control: { type: 'boolean' },
       description: 'Allow selecting multiple files.',
-      table: { category: 'Properties', type: { summary: 'boolean' } },
-    },
-    newFile: {
-      control: null,
-      description: 'Emits the new valid file(s).',
       table: {
-        category: 'Events',
-        defaultValue: { summary: '' },
-        type: { summary: 'File | File[]' },
+        category: 'Properties',
+        type: { summary: 'boolean' },
+        defaultValue: getDefaultValueControl(false),
       },
     },
-    fileRemoved: {
-      control: null,
-      description: 'Emits the name of the file when it is removed.',
-      table: { category: 'Events', type: { summary: 'string' } },
-    },
+    newFile: getOnEventParam(
+      getOnEvent('', 'newFile', 'File | File[]'),
+      'with the new valid file(s)',
+      'other',
+    ),
+    fileRemoved: getOnEventParam(
+      getOnEvent('', 'fileRemoved', 'string'),
+      'when a file is removed, the file name is the emitted value. ',
+      'other',
+    ),
   },
   args: {
     appearanceContrast: 'default',

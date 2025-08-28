@@ -1,4 +1,6 @@
-<bmb-overlay [active]="true" />
+@if (hasBackdrop()) {
+  <bmb-overlay [active]="true" (onClick)="handleBackdropClick()" />
+}
 <dialog class="bmb_native-modal" [open]="true">
   <div
     class="bmb_native-modal-container bmb_box-shadow-3"
@@ -52,11 +54,12 @@
             bmbButton
             [appearance]="btn.appearance || 'secondary-outlined'"
             (click)="btn.action()"
+            [ngStyle]="{ flex: actions().length === 1 ? '1 1 auto' : 'none' }"
           >
             @if (btn.icon) {
-              <i class="{{ btn.icon }}"></i>
+              <bmb-icon [icon]="btn.icon" [size]="24" />
             }
-            {{ btn.buttonName }}
+            {{ btn.label }}
           </button>
         }
       </footer>

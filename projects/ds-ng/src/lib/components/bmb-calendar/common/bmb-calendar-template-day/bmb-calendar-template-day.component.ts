@@ -1,23 +1,20 @@
 import {
   Component,
-  Input,
   ChangeDetectionStrategy,
   ViewEncapsulation,
-  Output,
-  EventEmitter,
   input,
+  computed,
+  output,
 } from '@angular/core';
 import { BmbCalendarHourViewComponent } from '../bmb-calendar-hour-view/bmb-calendar-hour-view.component';
 import { CommonModule } from '@angular/common';
-import {
-  IBmbCalendarHourFormat,
-  IBmbCalendarEvent,
-  IBmbCalendarRenderEvents,
-  IBmbCalendarEventClick,
-} from '../../types';
+import { IBmbCalendarEvent, IBmbCalendarEventClick } from '../../types';
 import { DateTime } from 'luxon';
 import { BmbCalendarScheduleCardsComponent } from '../bmb-calendar-schedule-cards/bmb-calendar-schedule-cards.component';
-import { eventsInDate } from '../../utils';
+import {
+  DEFAULT_DATE_FORMAT,
+  layoutEvents,
+} from '../../utils';
 import { BmbCalendarTimeIndicatorComponent } from '../bmb-calendar-time-indicator/bmb-calendar-time-indicator.component';
 
 @Component({
@@ -35,24 +32,22 @@ import { BmbCalendarTimeIndicatorComponent } from '../bmb-calendar-time-indicato
   encapsulation: ViewEncapsulation.None,
 })
 export class BmbCalendarTemplateDayComponent {
-  @Input() lang: string = 'es-MX';
-  @Input() hourFormat: IBmbCalendarHourFormat = '12';
-  @Input() now: DateTime = DateTime.now();
-  @Input() events: IBmbCalendarEvent[] = [];
+  lang = input<string>('es-MX');
+  now = input<DateTime>(DateTime.now());
+  events = input<IBmbCalendarEvent[]>([]);
   currentTime = input<DateTime>(DateTime.now());
   startBusinessHour = input<number>(8);
+  dateFormat = input<string>(DEFAULT_DATE_FORMAT);
 
-  @Output() onSelectEvent: EventEmitter<IBmbCalendarEventClick> =
-    new EventEmitter<IBmbCalendarEventClick>();
+  onSelectEvent = output<IBmbCalendarEventClick>();
 
+  eventsWithLayout = computed<IBmbCalendarEvent[]>(() => {
+    return layoutEvents(this.events());
+  });
   rows = new Array(24).fill(0);
 
   getNameDay(): string {
-    return this.now.toFormat('cccc', { locale: this.lang });
-  }
-
-  renderEvents(events: IBmbCalendarRenderEvents): any[] {
-    return eventsInDate(events);
+    return this.now().toFormat('cccc', { locale: this.lang() });
   }
 
   handleEventSelection(newEvent: IBmbCalendarEventClick) {

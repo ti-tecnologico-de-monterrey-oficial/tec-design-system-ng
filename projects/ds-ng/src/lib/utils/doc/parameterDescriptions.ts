@@ -12,7 +12,7 @@ type IBmbControlType = 'text' | 'boolean' | 'number' | 'object';
 export const DEPRECATED_PROPERTIES_DESCRIPTION: string =
   'This property is deprecated and will be removed in future versions.';
 const DISABLE_DESCRIPTION: string = `
-Disables the field when true, making it non-interactive and cannot be clicked.
+Disables the element when true, making it non-interactive and cannot be clicked.
 
 This is useful for conditions where user interaction should be restricted.
 `;
@@ -27,8 +27,41 @@ export const ICON_IMAGE_DETAIL: string =
 export const SIMPLE_ICON_DESCRIPTION: string = `Sets the icon name to be displayed.
 <br/><br/>${GOOGLE_FONTS_LINK}`;
 export const ICON_DESCRIPTION: string = `${SIMPLE_ICON_DESCRIPTION}<br/><br/>${ICON_IMAGE_DETAIL}`;
+export const DEFAULT_VALUE_DESC: string = `It is not necessary to explicitly set default values, the property can be omitted.<br/><br/>
+  Properties can be omitted if they are not required and do not contain a default value.`;
+export const DEFAULT_VALUE_DETAIL: string = `${RELEVANT_TITLE_LEVEL[2].replace(/(<br\/>)|(\*)/g, '')}
+
+${DEFAULT_VALUE_DESC.replace(/(<br\/>)|(\*)/g, '')}`;
 
 export const ON_BUTTON_CLICK: IBmbOnEvent = getOnEvent('', 'buttonClick');
+
+export const getWidthIncreaseDesc = (
+  name: string,
+): string => `${RELEVANT_TITLE_LEVEL[2]}
+The width of the ${name} will increase depending on the length of the text.`;
+
+export const getDefaultValueDesc = (defaultValue: any): string => `
+${RELEVANT_TITLE_LEVEL[2]}
+The default value is ${defaultValue}.${DEFAULT_VALUE_DESC}`;
+
+export const getDefaultValueControl = (summary: any = '""') => {
+  const _summary: string =
+    typeof summary === 'string'
+      ? summary === ''
+        ? '""'
+        : summary
+      : summary.toString();
+  const isLong: boolean = _summary.length > 10;
+  return {
+    summary: isLong ? _summary.substring(0, 10).concat('...') : _summary,
+    detail: (isLong
+      ? 'Default value: '.concat(_summary).concat(`
+
+`)
+      : ''
+    ).concat(DEFAULT_VALUE_DETAIL),
+  };
+};
 
 export const getLabelDescription = (
   positionDescription: string,
@@ -52,7 +85,7 @@ ${getLabelDescription('at the default \`labelPosition\` or the position specifie
     table: {
       category: 'Properties',
       type: { summary: 'string' },
-      defaultValue: { summary: '' },
+      defaultValue: getDefaultValueControl(),
     },
   };
 };
@@ -75,7 +108,7 @@ The possible positions to indicate where the label should be displayed in relati
         summary: 'IBbmSidePosition',
         detail: `IBbmSidePosition = 'before' | 'after'`,
       },
-      defaultValue: { summary: 'after' },
+      defaultValue: getDefaultValueControl('after'),
     },
   };
 };
@@ -135,9 +168,11 @@ This documentation is displayed as a tab at the top.
 export const getPropertyParamDesc = (
   name: string,
   controlType: IBmbControlType | boolean | string = 'text',
-  defaultSummary: any = '',
+  defaultSummary: any = '""',
   additionalDescription: string = '',
   alternativeDescription: string = '',
+  alternativePropName: string = '',
+  summaryType: string = '',
 ) => {
   return {
     control: !!controlType && {
@@ -148,14 +183,32 @@ export const getPropertyParamDesc = (
       (controlType === 'boolean'
         ? `Sets the ${name} when true.${additionalDescription}`
         : '') ||
-      `Sets the title of the ${name}.${additionalDescription}`,
+      `Sets the ${alternativePropName || 'title'} of ${name}.${additionalDescription}`,
     table: {
       category: 'Properties',
-      defaultValue: controlType && { summary: defaultSummary },
-      type: { summary: controlType === 'text' ? 'string' : controlType },
+      defaultValue:
+        (controlType !== 'boolean' && defaultSummary === false) ||
+        (controlType && getDefaultValueControl(defaultSummary)),
+      type: {
+        summary:
+          summaryType || (controlType === 'text' ? 'string' : controlType),
+      },
     },
   };
 };
+
+export const getLabelParamDesc = (
+  position: string = '',
+  name: string = '',
+  additionalDescription: string = '',
+) =>
+  getPropertyParamDesc(
+    '',
+    'text',
+    '',
+    '',
+    `Sets the ${name || 'label'} for the content${!!position ? ` of the ${position} section` : ''}${additionalDescription}.`,
+  );
 
 export const getAppearanceDescription = (name: string): string =>
   `Sets the appearance of ${name}, affecting its visual style.`;
@@ -163,7 +216,7 @@ export const getAppearanceDescription = (name: string): string =>
 export const getAppearanceParam = (
   name: string,
   options: unknown[],
-  defaultSummary: string = ' ',
+  defaultSummary: string = '',
   additionalDescription: string = '',
 ) => {
   const detailType: string = options.toString().replaceAll(
@@ -179,7 +232,10 @@ export const getAppearanceParam = (
     description: `${getAppearanceDescription(name)}${additionalDescription}`,
     table: {
       category: 'Properties',
-      defaultValue: { summary: defaultSummary },
+      defaultValue:
+        defaultSummary === ''
+          ? { summary: '' }
+          : getDefaultValueControl(defaultSummary),
       type: { summary: 'string', detail: detailType },
     },
   };
@@ -192,7 +248,7 @@ export const getOnEventParam = (
 ) => {
   return {
     control: false,
-    description: `Emits the event ${eventType === 'change' || eventType === 'other' ? `${eventType === 'change' ? `when the ${onEvent.name} changed.` : ''}` : 'when a key is pressed while the input is focused.'}${additionalDescription}`,
+    description: `Emits the event ${eventType === 'change' || eventType === 'other' ? `${eventType === 'change' ? `when ${onEvent.name} changed.` : ''}` : 'when a key is pressed while the input is focused.'}${additionalDescription}`,
     table: {
       category: 'Events',
       defaultValue: false,
@@ -208,7 +264,7 @@ export const getOnClickParam = (
 ) =>
   getOnEventParam(
     onEvent,
-    `triggered after the ${onEvent.name} button is ${buttonEventType}${additionalDescription}.`,
+    `triggered after ${onEvent.name} button is ${buttonEventType}${additionalDescription}.`,
     'other',
   );
 
@@ -225,7 +281,7 @@ This property is used to link the label to the field through the ***for*** attri
     `,
     table: {
       category: 'Properties',
-      defaultValue: { summary: '' },
+      defaultValue: getDefaultValueControl(),
       type: { summary: 'string' },
     },
   },
@@ -234,7 +290,7 @@ This property is used to link the label to the field through the ***for*** attri
     description: DISABLE_DESCRIPTION,
     table: {
       category: 'Properties',
-      defaultValue: { summary: 'false' },
+      defaultValue: getDefaultValueControl('false'),
       type: { summary: 'boolean' },
     },
   },
@@ -247,7 +303,33 @@ These are to implement icons as buttons or links according to the needs of the a
       `,
     table: {
       category: 'Properties',
-      defaultValue: { summary: '[]' },
+      defaultValue: {
+        summary: '[]',
+        detail: `//Example
+[
+  {
+    icon: 'home',
+    link: 'https://www.example.com/',
+  },
+  {
+    icon: 'share',
+    action: () => {
+      console.log('share');
+    },
+  },
+  {
+    icon: 'inventory_2',
+    link: 'https://www.example.com/',
+    target: '_blank',
+  },
+  {
+    icon: 'send',
+    action: () => {
+      console.log('send');
+    },
+  },
+]`,
+      },
       type: {
         summary: 'IBmbActionHeader[] (optional)',
         detail: `
@@ -272,10 +354,10 @@ IBmbTargetLink = '_blank' | '_parent' | '_self' | '_top';
     control: {
       type: 'text',
     },
-    description: `${LINK_DESCRIPTION} If this property is empty it will emit the button event.`,
+    description: `${LINK_DESCRIPTION}`,
     table: {
       category: 'Events',
-      defaultValue: { summary: '' },
+      defaultValue: getDefaultValueControl(),
       type: { summary: 'string' },
     },
   },
@@ -286,7 +368,7 @@ IBmbTargetLink = '_blank' | '_parent' | '_self' | '_top';
     description: `${LINK_DESCRIPTION} If this property is empty it will emit the button event.`,
     table: {
       category: 'Events',
-      defaultValue: { summary: '' },
+      defaultValue: getDefaultValueControl(),
       type: { summary: 'string' },
     },
   },
@@ -300,7 +382,24 @@ IBmbTargetLink = '_blank' | '_parent' | '_self' | '_top';
     table: {
       category: 'Events',
       type: { summary: 'IBmbTargetLink (option)' },
-      defaultValue: { summary: '_blank' },
+      defaultValue: getDefaultValueControl('_blank'),
+    },
+  },
+  lang: {
+    control: {
+      type: 'text',
+    },
+    description: `
+Sets the language for all text, numbers, currencies, date formats, etc.
+
+By default, the supported language are:
+- ***en***: english
+- ***es***: spanish.
+      `,
+    table: {
+      category: 'Properties',
+      type: { summary: 'string' },
+      defaultValue: { summary: 'es' },
     },
   },
   deprecated: {
@@ -308,7 +407,6 @@ IBmbTargetLink = '_blank' | '_parent' | '_self' | '_top';
     description: DEPRECATED_PROPERTIES_DESCRIPTION,
     table: {
       category: 'Deprecated',
-      type: { summary: '' },
       defaultValue: false,
     },
   },
@@ -334,7 +432,7 @@ export const DBmbImageParamDesc = {
       'Sets the source of the image to display, either from a path or a URL.',
     table: {
       category: 'Properties',
-      defaultValue: { summary: '' },
+      defaultValue: getDefaultValueControl(),
       type: { summary: 'string' },
     },
   },
@@ -346,7 +444,7 @@ export const DBmbImageParamDesc = {
     table: {
       category: 'Properties',
       type: { summary: 'string' },
-      defaultValue: { summary: '' },
+      defaultValue: getDefaultValueControl(),
     },
   },
   mobileSrc: {
@@ -357,7 +455,7 @@ export const DBmbImageParamDesc = {
     table: {
       category: 'Properties',
       type: { summary: 'string' },
-      defaultValue: { summary: '' },
+      defaultValue: getDefaultValueControl(),
     },
   },
   alt: {
@@ -372,7 +470,7 @@ Refer [here](https://www.w3.org/WAI/alt/) for more information.
     table: {
       category: 'Properties',
       type: { summary: 'string' },
-      defaultValue: { summary: '' },
+      defaultValue: getDefaultValueControl(),
     },
   },
   width: {
@@ -383,7 +481,7 @@ Refer [here](https://www.w3.org/WAI/alt/) for more information.
     table: {
       category: 'Properties',
       type: { summary: 'string' },
-      defaultValue: { summary: '100%' },
+      defaultValue: getDefaultValueControl('100%'),
     },
   },
   ratio: {
@@ -394,7 +492,7 @@ Refer [here](https://www.w3.org/WAI/alt/) for more information.
     table: {
       category: 'Properties',
       type: { summary: 'string' },
-      defaultValue: { summary: '' },
+      defaultValue: getDefaultValueControl(),
     },
   },
   borderRadius: {
@@ -405,7 +503,7 @@ Refer [here](https://www.w3.org/WAI/alt/) for more information.
     table: {
       type: { summary: 'string' },
       category: 'Properties',
-      defaultValue: { summary: 'm' },
+      defaultValue: getDefaultValueControl('m'),
     },
     description: 'Sets the corner radius size.',
   },
@@ -417,7 +515,7 @@ Refer [here](https://www.w3.org/WAI/alt/) for more information.
     table: {
       type: { summary: 'string' },
       category: 'Properties',
-      defaultValue: { summary: 'lazy' },
+      defaultValue: getDefaultValueControl('lazy'),
     },
     description: `
 Enables the loading behavior.
@@ -434,7 +532,7 @@ By default, it is false, and you do not need to explicitly set it.
 The badge should always have a parent element.`,
     table: {
       category: 'Properties',
-      defaultValue: { summary: 'false' },
+      defaultValue: getDefaultValueControl('false'),
       type: { summary: 'boolean' },
     },
   },
@@ -443,7 +541,7 @@ The badge should always have a parent element.`,
     description: 'Sets a blurred image set blurred image as box shadow.',
     table: {
       category: 'Properties',
-      defaultValue: { summary: 'false' },
+      defaultValue: getDefaultValueControl('false'),
       type: { summary: 'boolean' },
     },
   },
@@ -460,7 +558,7 @@ export const DBmbIconParamDesc = {
     table: {
       category: 'Properties',
       type: { summary: 'string' },
-      defaultValue: { summary: '' },
+      defaultValue: getDefaultValueControl(),
     },
   },
   iconSize: {
@@ -471,7 +569,7 @@ export const DBmbIconParamDesc = {
 ${RELEVANT_TITLE_LEVEL[2]} <= 0 will be inherited.`,
     table: {
       category: 'Properties',
-      defaultValue: { summary: '' },
+      defaultValue: getDefaultValueControl(),
       type: { summary: 'number' },
     },
   },
@@ -481,7 +579,7 @@ ${RELEVANT_TITLE_LEVEL[2]} <= 0 will be inherited.`,
       'Determines whether the icon is filled (***true***) or outlined (***false***).',
     table: {
       category: 'Properties',
-      defaultValue: { summary: 'true' },
+      defaultValue: getDefaultValueControl('true'),
       type: { summary: 'boolean' },
     },
   },
@@ -491,7 +589,7 @@ ${RELEVANT_TITLE_LEVEL[2]} <= 0 will be inherited.`,
       'Displays a notification dot with a number on the icon. Set to 0 to hide.',
     table: {
       category: 'Properties',
-      defaultValue: { summary: '' },
+      defaultValue: getDefaultValueControl(),
       type: { summary: 'number' },
     },
   },
@@ -517,7 +615,7 @@ export const DBmbButtonParamDesc = {
     description: getAppearanceDescription('the buttons'),
     table: {
       category: 'Properties',
-      defaultValue: { summary: 'primary' },
+      defaultValue: getDefaultValueControl('primary'),
       type: { summary: 'string' },
     },
   },
@@ -526,7 +624,7 @@ export const DBmbButtonParamDesc = {
     options: ['small', 'large'],
     table: {
       category: 'Properties',
-      defaultValue: { summary: 'small' },
+      defaultValue: getDefaultValueControl('small'),
       type: { summary: 'string' },
     },
     description: 'Sets the size of the button, affecting its visual size.',
@@ -541,7 +639,7 @@ export const DBmbButtonParamDesc = {
     table: {
       category: 'Properties',
       type: { summary: 'string' },
-      defaultValue: { summary: '' },
+      defaultValue: getDefaultValueControl(),
     },
   },
 };
@@ -555,7 +653,7 @@ export const DBmbModalParamDesc = {
       'Specifies the text display. This message should be concise and direct.',
     table: {
       category: 'Properties',
-      defaultValue: { summary: '' },
+      defaultValue: getDefaultValueControl(),
       type: { summary: 'string' },
     },
   },
@@ -566,7 +664,7 @@ export const DBmbModalParamDesc = {
     description: 'Specifies the text of the primary button.',
     table: {
       category: 'Properties',
-      defaultValue: { summary: '' },
+      defaultValue: getDefaultValueControl(),
       type: { summary: 'string' },
     },
   },
@@ -577,7 +675,7 @@ export const DBmbModalParamDesc = {
     description: 'Specifies the text of the secondary button.',
     table: {
       category: 'Properties',
-      defaultValue: { summary: '' },
+      defaultValue: getDefaultValueControl(),
       type: { summary: 'string' },
     },
   },
@@ -611,7 +709,7 @@ export const DBmbHomeCardParamDesc = {
     description: 'Sets icon background color.',
     table: {
       category: 'Properties',
-      defaultValue: { summary: '' },
+      defaultValue: getDefaultValueControl(),
       type: {
         summary: 'IBmbColor (optional)',
         detail: `IBmbColor =
@@ -690,7 +788,7 @@ export const DBmbHomeCardParamDesc = {
     description: 'Sets the title of the card.',
     table: {
       category: 'Properties',
-      defaultValue: { summary: '' },
+      defaultValue: getDefaultValueControl(),
       type: { summary: 'string (required)' },
     },
   },
@@ -699,7 +797,7 @@ export const DBmbHomeCardParamDesc = {
     description: 'Sets the card subtitle.',
     table: {
       category: 'Properties',
-      defaultValue: { summary: '' },
+      defaultValue: getDefaultValueControl(),
       type: { summary: 'string (optional)' },
     },
   },
@@ -758,7 +856,7 @@ export const DBmbTooltipParamDesc = {
     table: {
       category: 'Properties',
       type: { summary: 'string' },
-      defaultValue: { summary: '' },
+      defaultValue: getDefaultValueControl(),
     },
   },
   align: {
@@ -767,7 +865,7 @@ export const DBmbTooltipParamDesc = {
     description: 'Sets the position of the tooltip.',
     table: {
       category: 'Properties',
-      defaultValue: { summary: 'right' },
+      defaultValue: getDefaultValueControl('right'),
       type: {
         summary: 'IBmbAlignTooltip',
         detail: "IBmbAlignTooltip = 'above' | 'below' | 'left' | 'right'",
@@ -780,7 +878,7 @@ export const DBmbTooltipParamDesc = {
     description: "Sets the justification with reference to the icon's tooltip.",
     table: {
       category: 'Properties',
-      defaultValue: { summary: 'after' },
+      defaultValue: getDefaultValueControl('after'),
       type: {
         summary: 'IBmbJustifyTooltip',
         detail: "IBmbJustifyTooltip = 'centered' | 'before' | 'after'",
@@ -849,7 +947,7 @@ The configuration implemented in the \`FormControl\` object will always be prior
     table: {
       category: 'Properties',
       type: { summary: 'string' },
-      defaultValue: { summary: '' },
+      defaultValue: getDefaultValueControl(),
     },
   },
   label: {
@@ -862,7 +960,7 @@ ${getLabelDescription('above')}
     table: {
       category: 'Properties',
       type: { summary: 'string' },
-      defaultValue: { summary: '' },
+      defaultValue: getDefaultValueControl(),
     },
   },
   checkboxLabel: getCheckboxOrRadialLabel('checkbox'),
@@ -879,7 +977,7 @@ ${getLabelDescription('above')}
     table: {
       category: 'Properties',
       type: { summary: 'string' },
-      defaultValue: { summary: '' },
+      defaultValue: getDefaultValueControl(),
     },
   },
   tooltipPosition: {
@@ -895,7 +993,9 @@ Properties:
 `,
     table: {
       category: 'Properties',
-      defaultValue: { summary: `{ align:'above', justify:'before' }` },
+      defaultValue: getDefaultValueControl(
+        "{ align:'above', justify:'before' }",
+      ),
       type: {
         summary: 'IBmbInputTooltipPosition',
         detail: `
@@ -920,7 +1020,7 @@ ${DBmbTooltipParamDesc.justify.table.type.detail}
     table: {
       category: 'Properties',
       type: { summary: 'string' },
-      defaultValue: { summary: '' },
+      defaultValue: getDefaultValueControl(),
     },
   },
   icon: {
@@ -933,19 +1033,19 @@ ${DBmbTooltipParamDesc.justify.table.type.detail}
     table: {
       category: 'Properties',
       type: { summary: 'string' },
-      defaultValue: { summary: '' },
+      defaultValue: getDefaultValueControl(),
     },
   },
   disabled: {
     control: { type: 'boolean' },
     description: `
-${DISABLE_DESCRIPTION}
+${DISABLE_DESCRIPTION.replace('element', 'field')}
 
 It will not be necessary to define disabled property on the \`FormControl\` instance, as long as this properties is correctly assigned of this field .
     `,
     table: {
       category: 'Properties',
-      defaultValue: { summary: 'false' },
+      defaultValue: getDefaultValueControl('false'),
       type: { summary: 'boolean' },
     },
   },
@@ -961,7 +1061,7 @@ This is commonly used to ensure that users do not skip mandatory choices in form
     table: {
       category: 'Properties',
       type: { summary: 'boolean' },
-      defaultValue: { summary: 'false' },
+      defaultValue: getDefaultValueControl('false'),
     },
   },
   isClearable: {
@@ -970,7 +1070,7 @@ This is commonly used to ensure that users do not skip mandatory choices in form
     table: {
       category: 'Properties',
       type: { summary: 'boolean' },
-      defaultValue: { summary: 'false' },
+      defaultValue: getDefaultValueControl('false'),
     },
   },
   helperMessage: {
@@ -982,7 +1082,7 @@ This is commonly used to ensure that users do not skip mandatory choices in form
     table: {
       category: 'Properties',
       type: { summary: 'string' },
-      defaultValue: { summary: '' },
+      defaultValue: getDefaultValueControl(),
     },
   },
   errorMessage: {
@@ -1026,7 +1126,7 @@ IBmbInputError {
 }
           `,
       },
-      defaultValue: { summary: '' },
+      defaultValue: getDefaultValueControl(),
     },
   },
   ariaDescribedBy: {
@@ -1036,7 +1136,7 @@ IBmbInputError {
     table: {
       category: 'Properties',
       type: { summary: 'string' },
-      defaultValue: { summary: '' },
+      defaultValue: getDefaultValueControl(),
     },
   },
   ariaLabel: {
@@ -1046,7 +1146,7 @@ IBmbInputError {
     table: {
       category: 'Properties',
       type: { summary: 'string' },
-      defaultValue: { summary: '' },
+      defaultValue: getDefaultValueControl(),
     },
   },
   ariaLabelledBy: {
@@ -1056,7 +1156,7 @@ IBmbInputError {
     table: {
       category: 'Properties',
       type: { summary: 'string' },
-      defaultValue: { summary: '' },
+      defaultValue: getDefaultValueControl(),
     },
   },
   control: {
@@ -1069,9 +1169,7 @@ IBmbInputError {
     },
   },
   showError: {
-    control: {
-      type: 'boolean',
-    },
+    control: false,
     description: `
 ${DEPRECATED_PROPERTIES_DESCRIPTION}
 
@@ -1089,14 +1187,11 @@ Below is a snippet of the **TypeScript example** that performs automatic validat
     `,
     table: {
       category: 'Deprecated',
-      type: { summary: 'boolean' },
-      defaultValue: { summary: '-' },
+      defaultValue: false,
     },
   },
   id: {
-    control: {
-      type: '',
-    },
+    control: false,
     description: `
 ${DEPRECATED_PROPERTIES_DESCRIPTION}
 
@@ -1106,8 +1201,7 @@ Adding the id using a property with the same name affects the operation of the f
     `,
     table: {
       category: 'Deprecated',
-      type: { summary: '' },
-      defaultValue: { summary: '-' },
+      defaultValue: false,
     },
   },
   dateFormat: {
@@ -1118,7 +1212,7 @@ Adding the id using a property with the same name affects the operation of the f
     table: {
       category: 'Properties',
       type: { summary: 'string' },
-      defaultValue: { summary: 'dd/MM/yyyy' },
+      defaultValue: getDefaultValueControl('dd/MM/yyyy'),
     },
   },
   invalidFormatErrorMessage: {
@@ -1129,9 +1223,9 @@ Adding the id using a property with the same name affects the operation of the f
     table: {
       category: 'Properties',
       type: { summary: 'string' },
-      defaultValue: {
-        summary: 'Por favor ingresa la fecha con formato [dateFormat]}',
-      },
+      defaultValue: getDefaultValueControl(
+        'Por favor ingresa la fecha con formato [\`dateFormat\`]}',
+      ),
     },
   },
   requiredFieldErrorMessage: {
@@ -1142,7 +1236,9 @@ Adding the id using a property with the same name affects the operation of the f
     table: {
       category: 'Properties',
       type: { summary: 'string' },
-      defaultValue: { summary: 'Por favor ingresa la fecha de [label]' },
+      defaultValue: getDefaultValueControl(
+        'Por favor ingresa la fecha de [\`label\`]',
+      ),
     },
   },
   onKeyDown: getOnEventParam(
@@ -1164,7 +1260,7 @@ export const DBmbLayoutParamDesc = {
         detail: `SizeNames = 'xs' | 's' | 'm' | 'l' | 'xl' | 'none' | 'auto'`,
       },
       category: 'Properties',
-      defaultValue: { summary: 'm' },
+      defaultValue: getDefaultValueControl('m'),
     },
     description: 'Sets the size of the space (gap) between elements.',
   },
@@ -1194,7 +1290,7 @@ export const DBmbLayoutParamDesc = {
   | 'spaceEvenly';`,
       },
       category: 'Properties',
-      defaultValue: { summary: 'start' },
+      defaultValue: getDefaultValueControl('start'),
     },
     description: 'Sets the justification (justify-content) of elements.',
   },
@@ -1209,7 +1305,7 @@ export const DBmbLayoutParamDesc = {
         detail: `IAlignItemsOptions = 'center' | 'end' | 'start' | 'stretch'`,
       },
       category: 'Properties',
-      defaultValue: { summary: 'start' },
+      defaultValue: getDefaultValueControl('start'),
     },
     description: 'Sets the alignment (align-items) of elements.',
   },

@@ -11,6 +11,7 @@ export interface TableColum {
   type?: 'string' | 'number' | 'date';
   icon?: string;
   dateFormat?: string;
+  isFilterable?: boolean;
 }
 
 export interface TableConfig {
@@ -27,3 +28,4 @@ export interface IBmbNativeColumn extends TableColum {
   isPinned?: boolean;
   templateRef?: TemplateRef<any>;
 }
+export type IBmbFiltersPosition = 'top' | 'right' | 'bottom' | 'left';

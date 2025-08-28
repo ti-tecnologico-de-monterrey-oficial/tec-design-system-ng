@@ -14,6 +14,7 @@ import {
   DBmbButtonParamDesc,
   DBmbGenericParamDesc,
   DBmbIconParamDesc,
+  getDefaultValueControl,
 } from '../../utils/doc/parameterDescriptions';
 
 export default {
@@ -49,7 +50,7 @@ Sets size of the icon to use. <br/><br/>${RELEVANT_TITLE_LEVEL[2]} <= 0 will be 
 `,
       table: {
         category: 'Properties',
-        defaultValue: { summary: '' },
+        defaultValue: getDefaultValueControl(),
         type: { summary: 'number' },
       },
     },
@@ -59,7 +60,7 @@ Sets size of the icon to use. <br/><br/>${RELEVANT_TITLE_LEVEL[2]} <= 0 will be 
       options: ['left', 'right'],
       table: {
         category: 'Properties',
-        defaultValue: { summary: 'left' },
+        defaultValue: getDefaultValueControl('left'),
         type: { summary: 'string' },
       },
       description: 'Sets the position of the icon.',
@@ -70,7 +71,7 @@ Sets size of the icon to use. <br/><br/>${RELEVANT_TITLE_LEVEL[2]} <= 0 will be 
         'Sets the icon at the end of the button, away from the text. Only visible when the button size is large.',
       table: {
         category: 'Properties',
-        defaultValue: { summary: 'false' },
+        defaultValue: getDefaultValueControl(false),
         type: { summary: 'boolean' },
       },
     },
@@ -88,7 +89,7 @@ Sets size of the icon to use. <br/><br/>${RELEVANT_TITLE_LEVEL[2]} <= 0 will be 
         'Indicates whether the toggle state of the button is active.',
       table: {
         category: 'Properties',
-        defaultValue: { summary: 'false' },
+        defaultValue: getDefaultValueControl(false),
         type: { summary: 'boolean' },
       },
     },
@@ -97,7 +98,7 @@ Sets size of the icon to use. <br/><br/>${RELEVANT_TITLE_LEVEL[2]} <= 0 will be 
       description: 'Enables the active button state',
       table: {
         category: 'Properties',
-        defaultValue: { summary: 'false' },
+        defaultValue: getDefaultValueControl(false),
         type: { summary: 'boolean' },
       },
     },
@@ -108,7 +109,7 @@ Sets size of the icon to use. <br/><br/>${RELEVANT_TITLE_LEVEL[2]} <= 0 will be 
         'Enables the mobile button state, which is a rounded button and width is 100%.',
       table: {
         category: 'Properties',
-        defaultValue: { summary: 'false' },
+        defaultValue: getDefaultValueControl(false),
         type: { summary: 'boolean' },
       },
     },

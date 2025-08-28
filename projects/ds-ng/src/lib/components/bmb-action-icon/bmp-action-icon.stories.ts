@@ -10,6 +10,7 @@ import {
 import {
   DBmbGenericParamDesc,
   DBmbIconParamDesc,
+  getDefaultValueControl,
   getOnClickParam,
   ON_BUTTON_CLICK,
   ON_CLICK_DESCRIPTION,
@@ -61,7 +62,7 @@ The toggle needs the following properties for correct operation:
       `,
       table: {
         category: 'Properties',
-        defaultValue: { summary: 'false' },
+        defaultValue: getDefaultValueControl(false),
         type: { summary: 'boolean (optional)' },
       },
     },
@@ -72,7 +73,7 @@ The toggle needs the following properties for correct operation:
       description: 'Sets the accent color on toggle icons when true.',
       table: {
         category: 'Properties',
-        defaultValue: { summary: 'true' },
+        defaultValue: getDefaultValueControl(true),
         type: { summary: 'boolean (optional)' },
       },
     },

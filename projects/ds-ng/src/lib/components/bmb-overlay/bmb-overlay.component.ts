@@ -1,12 +1,7 @@
 import { CommonModule } from '@angular/common';
-import {
-  Component,
-  Input,
-  OnInit,
-  AfterViewInit,
-  OnChanges,
-} from '@angular/core';
+import { Component, output, input } from '@angular/core';
 import { OverlayModule } from '@angular/cdk/overlay';
+import { getUUID } from '../../utils/utils';
 
 @Component({
   selector: 'bmb-overlay',
@@ -15,24 +10,12 @@ import { OverlayModule } from '@angular/cdk/overlay';
   templateUrl: './bmb-overlay.component.html',
   styleUrl: './bmb-overlay.component.scss',
 })
-export class BmbOverlayComponent implements OnChanges, AfterViewInit {
-  displayStyle?: string;
+export class BmbOverlayComponent {
+  active = input<boolean>(false);
+  onClick = output<string>();
+  uid = input<string>(getUUID());
 
-  @Input() active: boolean = false;
-
-  ngAfterViewInit() {
-    if (this.active) {
-      this.displayStyle = 'block';
-    } else {
-      this.displayStyle = 'none';
-    }
-  }
-
-  ngOnChanges() {
-    if (this.active) {
-      this.displayStyle = 'block';
-    } else {
-      this.displayStyle = 'none';
-    }
+  handleClick() {
+    this.onClick.emit(this.uid());
   }
 }

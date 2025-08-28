@@ -3,9 +3,8 @@ import {
   Component,
   ChangeDetectionStrategy,
   ViewEncapsulation,
-  Input,
-  Output,
-  EventEmitter,
+  input,
+  output,
 } from '@angular/core';
 import { BmbIconComponent } from '../../../bmb-icon/bmb-icon.component';
 import { DateTime } from 'luxon';
@@ -13,6 +12,7 @@ import { IBmbCalendarView } from '../../types';
 import { BmbButtonGroupDirective } from '../../../../directives/bmb-button-group/bmb-button-group.directive';
 import { BmbLayoutDirective } from '../../../../directives/bmb-layout/bmb-layout.directive';
 import { BmbLayoutItemDirective } from '../../../../directives/bmb-layout/bmb-layout-item.directive';
+import { BmbActionIconComponent } from "../../../bmb-action-icon/bmb-action-icon.component";
 
 @Component({
   selector: 'bmb-calendar-header',
@@ -23,44 +23,46 @@ import { BmbLayoutItemDirective } from '../../../../directives/bmb-layout/bmb-la
     BmbButtonGroupDirective,
     BmbLayoutDirective,
     BmbLayoutItemDirective,
-  ],
+    BmbActionIconComponent
+],
   templateUrl: './bmb-calendar-header.component.html',
   styleUrl: './bmb-calendar-header.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
 export class BmbCalendarHeaderComponent {
-  @Input() weekDays: DateTime[] = [];
-  @Input() lang: string = 'es-MX';
-  @Input() view: IBmbCalendarView = 'week';
-  @Input() currentDate: DateTime = DateTime.now();
+  weekDays = input<DateTime[]>([]);
+  lang = input<string>('es-MX');
+  view = input<IBmbCalendarView>('week');
+  currentDate = input<DateTime>(DateTime.now());
+  showFilterButton = input<boolean>(false);
 
-  @Output() onRangeChange: EventEmitter<any> = new EventEmitter<any>();
-  @Output() onCurrentDateChange: EventEmitter<DateTime> =
-    new EventEmitter<DateTime>();
+  onRangeChange = output<any>();
+  onCurrentDateChange = output<DateTime>();
+  showFilters = output<void>();
 
   getTitle(): string {
-    if (this.view === 'week') {
-      return `${this.weekDays[6].setLocale(this.lang).toFormat('LLL dd')} -
-        ${this.weekDays[0].setLocale(this.lang).toFormat('LLL dd')}`;
+    if (this.view() === 'week') {
+      return `${this.weekDays()[0].setLocale(this.lang()).toFormat('LLL dd')} -
+        ${this.weekDays()[6].setLocale(this.lang()).toFormat('LLL dd')}`;
     }
 
-    if (this.view === 'day') {
-      return this.currentDate.toLocaleString({
+    if (this.view() === 'day') {
+      return this.currentDate().toLocaleString({
         month: 'long',
         day: 'numeric',
         year: 'numeric',
       });
     }
 
-    return this.currentDate.toLocaleString({ month: 'long' });
+    return this.currentDate().toLocaleString({ month: 'long' });
   }
 
   handleRangeChange(event: IBmbCalendarView): void {
     if (event === 'month') {
       const newDate = DateTime.fromObject({
-        month: this.currentDate.month,
-        year: this.currentDate.year,
+        month: this.currentDate().month,
+        year: this.currentDate().year,
         day: 1,
       });
 
@@ -78,18 +80,18 @@ export class BmbCalendarHeaderComponent {
       }
     };
 
-    switch (this.view) {
+    switch (this.view()) {
       case 'day':
-        modifyDate({ config: { days: 1 }, date: this.currentDate });
+        modifyDate({ config: { days: 1 }, date: this.currentDate() });
         break;
 
       case 'week':
-        modifyDate({ config: { days: 7 }, date: this.currentDate });
+        modifyDate({ config: { days: 7 }, date: this.currentDate() });
         break;
       case 'month':
         const newDate = DateTime.fromObject({
-          month: this.currentDate.month,
-          year: this.currentDate.year,
+          month: this.currentDate().month,
+          year: this.currentDate().year,
           day: 1,
         });
 
@@ -103,5 +105,11 @@ export class BmbCalendarHeaderComponent {
 
   goToToday(): void {
     this.onCurrentDateChange.emit(DateTime.now());
+  }
+
+  handleShowFilters() {
+    console.log('click filter');
+
+    this.showFilters.emit();
   }
 }

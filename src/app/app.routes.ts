@@ -65,5 +65,12 @@ export const routes: Routes = [
         (n) => n.NewTablesComponent,
       ),
   },
+  {
+    path: 'calendar',
+    loadComponent: () =>
+      import('./pages/calendar/calendar.component').then(
+        (c) => c.CalendarComponent,
+      ),
+  },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
 ];

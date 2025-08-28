@@ -10,6 +10,7 @@ import {
 import {
   DBmbGenericParamDesc,
   getOnClickParam,
+  getPropertyParamDesc,
 } from '../../utils/doc/parameterDescriptions';
 
 const appearanceOptions: BmbToastAppearance[] = [
@@ -78,17 +79,12 @@ ${getBasicExampleBlock(
     },
   },
   argTypes: {
-    title: {
-      control: {
-        type: 'text',
-      },
-      description:
-        'Sets the title displayed within the toast notification. This title should be concise and direct, providing the user with immediate feedback or information related to their actions.',
-      table: {
-        category: 'Properties',
-        type: { summary: 'string' },
-      },
-    },
+    title: getPropertyParamDesc(
+      'toast notification',
+      'text',
+      '',
+      `<br/><br/>This title should be concise and direct, providing the user with immediate feedback or information related to their actions.`,
+    ),
     description: {
       control: {
         type: 'text',

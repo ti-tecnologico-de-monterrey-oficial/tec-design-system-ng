@@ -12,6 +12,7 @@ import {
   GOOGLE_FONTS_LINK,
   DBmbInputParamDesc,
   getOnEventParam,
+  getDefaultValueControl,
 } from '../../utils/doc/parameterDescriptions';
 
 const getIndex = (isRightPosition: boolean): number =>
@@ -62,6 +63,7 @@ ${getBasicExampleBlock('BmbSwitchComponent', '', onChange.handleExample)}
       table: {
         category: 'Properties',
         type: { summary: 'string' },
+        defaultValue: getDefaultValueControl(),
       },
     },
     leftIcon: {
@@ -70,6 +72,7 @@ ${getBasicExampleBlock('BmbSwitchComponent', '', onChange.handleExample)}
       table: {
         category: 'Properties',
         type: { summary: 'string' },
+        defaultValue: getDefaultValueControl(),
       },
     },
     rightText: {
@@ -80,6 +83,7 @@ ${getBasicExampleBlock('BmbSwitchComponent', '', onChange.handleExample)}
       table: {
         category: 'Properties',
         type: { summary: 'string' },
+        defaultValue: getDefaultValueControl(),
       },
     },
     rightIcon: {
@@ -88,6 +92,7 @@ ${getBasicExampleBlock('BmbSwitchComponent', '', onChange.handleExample)}
       table: {
         category: 'Properties',
         type: { summary: 'string' },
+        defaultValue: getDefaultValueControl(),
       },
     },
     inputId: DBmbInputParamDesc.inputId,
@@ -98,7 +103,7 @@ ${getBasicExampleBlock('BmbSwitchComponent', '', onChange.handleExample)}
         'Determines whether the switch is in the "on" (true) or "off" (false) position.',
       table: {
         category: 'Properties',
-        defaultValue: { summary: 'false' },
+        defaultValue: getDefaultValueControl(false),
         type: { summary: 'boolean' },
       },
     },
@@ -112,8 +117,8 @@ ${getBasicExampleBlock('BmbSwitchComponent', '', onChange.handleExample)}
     control: DBmbInputParamDesc.control,
   },
   args: {
-    inputId: '',
-    name: '',
+    inputId: 'testId',
+    name: 'testName',
     leftText: 'Light',
     rightText: 'Dark',
     leftIcon: '',

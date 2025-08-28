@@ -15,8 +15,7 @@
       class="bmb_icon-figure-image"
       [src]="icon()"
       [alt]="alt()"
-      [width]="size()"
-      [height]="size()"
+      [ngStyle]="getImageStyles()"
     />
   </figure>
 } @else if (dotNotification()) {

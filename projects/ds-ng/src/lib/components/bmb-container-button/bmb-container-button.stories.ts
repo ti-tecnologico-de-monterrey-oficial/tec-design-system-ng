@@ -15,6 +15,7 @@ import {
   DBmbGenericParamDesc,
   DBmbIconParamDesc,
   getAppearanceParam,
+  getDefaultValueControl,
   getOnClickParam,
   ON_CLICK_DESCRIPTION,
 } from '../../utils/doc/parameterDescriptions';
@@ -74,7 +75,7 @@ ${getBasicExampleBlock('BmbContainerButtonComponent')}
       description: 'The title of the button container.',
       table: {
         category: 'Properties',
-        defaultValue: { summary: '' },
+        defaultValue: getDefaultValueControl(),
         type: { summary: 'string' },
       },
     },
@@ -85,7 +86,7 @@ ${getBasicExampleBlock('BmbContainerButtonComponent')}
       description: 'The subtitle of the button container.',
       table: {
         category: 'Properties',
-        defaultValue: { summary: 'optional' },
+        defaultValue: getDefaultValueControl(),
         type: { summary: 'string' },
       },
     },
@@ -98,7 +99,7 @@ ${getBasicExampleBlock('BmbContainerButtonComponent')}
         'When set to true, the container button will display a user image for the left icon.',
       table: {
         category: 'Properties',
-        defaultValue: { summary: 'false' },
+        defaultValue: getDefaultValueControl(false),
         type: { summary: 'boolean' },
       },
     },
@@ -111,7 +112,7 @@ ${getBasicExampleBlock('BmbContainerButtonComponent')}
         'The score number of the button container. Do not use the iconLeft property if you want to use score.',
       table: {
         category: 'Properties',
-        defaultValue: { summary: 'optional' },
+        defaultValue: getDefaultValueControl(),
         type: { summary: 'string' },
       },
     },
@@ -121,7 +122,7 @@ ${getBasicExampleBlock('BmbContainerButtonComponent')}
         'When set to true, the container button will change the appearance. Please not use grade property if you are using square and iconLeft properties.',
       table: {
         category: 'Properties',
-        defaultValue: { summary: 'false' },
+        defaultValue: getDefaultValueControl(false),
         type: { summary: 'boolean' },
       },
     },
@@ -131,7 +132,7 @@ ${getBasicExampleBlock('BmbContainerButtonComponent')}
         'When set to true, the container button will be small (160x80 pixels) and only show the icon/grade and title.',
       table: {
         category: 'Properties',
-        defaultValue: { summary: 'false' },
+        defaultValue: getDefaultValueControl(false),
         type: { summary: 'boolean' },
       },
     },
@@ -139,7 +140,7 @@ ${getBasicExampleBlock('BmbContainerButtonComponent')}
       control: { type: 'select' },
       table: {
         category: 'Properties',
-        defaultValue: { summary: '' },
+        defaultValue: getDefaultValueControl(),
       },
       options: ['disabled', 'error'],
       description: 'The state of the button: disabled or error.',
@@ -148,6 +149,7 @@ ${getBasicExampleBlock('BmbContainerButtonComponent')}
       control: { type: 'boolean' },
       table: {
         category: 'Properties',
+        defaultValue: getDefaultValueControl(false),
       },
       description: 'If true, applies the alternative styles to the button.',
     },
@@ -159,7 +161,7 @@ ${getBasicExampleBlock('BmbContainerButtonComponent')}
         'The text of the badge. The width will increase depending on the length of the text.',
       table: {
         category: 'Properties',
-        defaultValue: { summary: 'optional' },
+        defaultValue: getDefaultValueControl(),
         type: { summary: 'string' },
       },
     },
@@ -171,7 +173,7 @@ ${getBasicExampleBlock('BmbContainerButtonComponent')}
         'When set to true, it will enable the secondary action button. The secondary action button will be displayed on the right side of the button.',
       table: {
         category: 'Properties',
-        defaultValue: { summary: false },
+        defaultValue: getDefaultValueControl(false),
         type: { summary: 'boolean' },
       },
     },
@@ -181,7 +183,7 @@ ${getBasicExampleBlock('BmbContainerButtonComponent')}
         'When set to true, it will enable the bookmark button. The bookmark button will be displayed on the right side of the button.',
       table: {
         category: 'Properties',
-        defaultValue: { summary: false },
+        defaultValue: getDefaultValueControl(false),
         type: { summary: 'boolean' },
       },
     },
@@ -190,7 +192,7 @@ ${getBasicExampleBlock('BmbContainerButtonComponent')}
       description: 'When set to true, the bookmark button will be active.',
       table: {
         category: 'Properties',
-        defaultValue: { summary: false },
+        defaultValue: getDefaultValueControl(false),
         type: { summary: 'boolean' },
       },
     },
