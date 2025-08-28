@@ -1,17 +1,5 @@
-import {
-  Component,
-  input,
-  output,
-  signal,
-  TemplateRef,
-  ViewChild,
-} from '@angular/core';
-import {
-  Meta,
-  StoryFn,
-  applicationConfig,
-  moduleMetadata,
-} from '@storybook/angular';
+import { Component } from '@angular/core';
+import { Meta, StoryFn, moduleMetadata } from '@storybook/angular';
 import {
   BmbHomeCardComponent,
   BmbLayoutDirective,
@@ -19,7 +7,6 @@ import {
   BmbSidebarComponent,
   BmbTopBarComponent,
   BmbCardComponent,
-  IBmbTab,
   IBmbActionHeader,
   BmbCardHeaderComponent,
   BmbCardContentComponent,
@@ -28,7 +15,28 @@ import {
   BmbTextLinkComponent,
 } from '../../public-api';
 import { CommonModule } from '@angular/common';
-import { RELEVANT_TITLE_LEVEL } from '../utils/doc/utils';
+import {
+  FULLSCREEN_DESC,
+  getBasicExampleBlock,
+  getFormatName,
+  getLandingGeneralDesc,
+  getPageStructureForTemplateStories,
+  getSpecialSpecifications,
+  TECHNICAL_DOC_REFERENCES,
+  TECHNICAL_DOC_TITLE,
+} from '../utils/doc/utils';
+
+import * as topBarStory from '../components/bmb-top-bar/bmb-top-bar.stories';
+import * as sideBarStory from '../components/bmb-sidebar/bmb-sidebar.stories';
+import * as homeCardStory from '../components/bmb-home-card/bmp-home-card.stories';
+import * as layoutStory from '../directives/bmb-layout/bmb-layout.stories';
+import * as layoutItemStory from '../directives/bmb-layout/bmb-layout.stories';
+import * as cardStory from '../components/bmb-card/bmb-card.stories';
+import * as accordionStory from '../components/bmb-accordion/bmb-accordion.stories';
+import * as cardHeaderStory from '../components/bmb-card/bmb-card.stories';
+import * as cardContentStory from '../components/bmb-card/bmb-card.stories';
+import * as accordionControlStory from '../directives/bmb-accordion/bmb-accordion-control.stories';
+import * as textLinkStory from '../components/bmb-text-link/bmb-text-link.stories';
 
 @Component({
   standalone: true,
@@ -75,225 +83,221 @@ import { RELEVANT_TITLE_LEVEL } from '../utils/doc/utils';
           (onBack)="handleBack()"
           [actionHeaders]="actionHeaders"
         >
-          <section bmbLayout margin="none">
-            <div bmbLayoutItem [colSm]="4" [colLg]="6">
-              <div class="bmb_template-accordion-content">
-                <div class="bmb_template-accordion-image">
+          <section
+            bmbLayout
+            margin="none"
+            class="bmb_template-accordion-sections"
+          >
+            <bmb-card margin="none" bmbLayoutItem [colSm]="6" [colLg]="6">
+              <bmb-card-header padding="m">
+                <h3 class="font-medium-5">Descripción</h3>
+              </bmb-card-header>
+              <bmb-card-content>
+                <figure [ngStyle]="{ margin: '0 0 24px 0' }">
                   <img
-                    src="https://farm2.staticflickr.com/1919/45579541712_f58c1fd0ed_o.jpg"
-                    alt="Image description"
+                    width="100%"
+                    alt="gatito"
+                    src="https://img.freepik.com/fotos-premium/dia-internacional-gato-8-agosto-gatos-lindos-gatito-pequeno-hermosos-pequenos-animales-compania-verdadero-amigo-bonitos-divertidos-tiernos-esponjosos-juguetones-shorties-ia-generativa_887181-4265.jpg?w=2000"
                   />
-                </div>
-                <bmb-card margin="none">
-                  <bmb-card-header padding="m">
-                    <h3 class="font-medium-5">Descripción</h3>
-                  </bmb-card-header>
-                  <bmb-card-content>
-                    <p class="font-regular-4">
-                      Lorem ipsum dolor sit amet consectetur. Nisl nibh
-                      phasellus condimentum mi faucibus. In quisque justo
-                      senectus in sed adipiscing. Arcu neque feugiat aenean nam
-                      accumsan justo ut. Pulvinar urna amet proin sit sed tellus
-                      ipsum. Lorem ipsum dolor sit amet consectetur.
-                    </p>
-                    <p class="font-regular-4">
-                      Nisl nibh phasellus condimentum mi faucibus. In quisque
-                      justo senectus in sed adipiscing. Arcu neque feugiat
-                      aenean nam accumsan justo ut. Pulvinar urna amet proin sit
-                      sed tellus ipsum. Lorem ipsum dolor sit amet consectetur.
-                      Nisl nibh phasellus condimentum mi faucibus. In quisque
-                      justo senectus in sed adipiscing. Arcu neque feugiat
-                      aenean nam accumsan justo ut.
-                    </p>
-                    <p class="font-regular-4">
-                      Pulvinar urna amet proin sit sed tellus ipsum. Lorem ipsum
-                      dolor sit amet consectetur. Nisl nibh phasellus
-                      condimentum mi faucibus. In quisque justo senectus in sed
-                      adipiscing. Arcu neque feugiat aenean nam accumsan justo
-                      ut.
-                    </p>
-                  </bmb-card-content>
-                </bmb-card>
-              </div>
-            </div>
-            <div bmbLayoutItem [colSm]="4" [colLg]="6">
-              <bmb-card margin="none">
-                <bmb-card-header padding="m">
-                  <h3 class="font-medium-5">Recursos</h3>
-                </bmb-card-header>
-                <bmb-card-content>
-                  <section bmbAccordionControl>
-                    <bmb-accordion
-                      [accordionId]="1"
-                      appearanceContrast="primary"
-                      borderRadius="m"
-                      margin="m"
-                      paddingHeader="m"
-                      paddingContent="m"
-                      [hideToggle]="false"
-                      icon="keyboard_arrow_down"
-                    >
-                      <ng-template #bmbAccordionHeader>
-                        <span class="font-medium-4"> Información general </span>
-                      </ng-template>
-                      <ng-template #bmbAccordionContent>
-                        <p class="font-regular-4">
-                          Lorem ipsum dolor sit amet, consectetur adipiscing
-                          elit. Ut justo ante, mattis nec libero a, malesuada
-                          pellentesque sem. Aliquam erat volutpat.
-                        </p>
-                      </ng-template>
-                    </bmb-accordion>
-                    <bmb-accordion
-                      [accordionId]="2"
-                      appearanceContrast="primary"
-                      borderRadius="m"
-                      margin="m"
-                      paddingHeader="m"
-                      paddingContent="m"
-                      [hideToggle]="false"
-                      icon="keyboard_arrow_down"
-                    >
-                      <ng-template #bmbAccordionHeader>
-                        <span class="font-medium-4">Guías</span>
-                      </ng-template>
-                      <ng-template #bmbAccordionContent>
-                        <bmb-text-link
-                          [textLink]="
-                            'Guía para establecer y dar seguimiento a mi Plan de Desarrollo'
-                          "
-                          [textLinkStyle]="'icon'"
-                          [target]="'_blank'"
-                          [icon]="'arrow_forward'"
-                          [iconPosition]="'right'"
-                          [link]="'https://www.youtube.com'"
-                          [disabled]="false"
-                        ></bmb-text-link>
-                        <bmb-text-link
-                          [textLink]="
-                            'Guía para acompañar a tu equipo en mi Plan de Desarrollo'
-                          "
-                          [textLinkStyle]="'icon'"
-                          [target]="'_blank'"
-                          [icon]="'arrow_forward'"
-                          [iconPosition]="'right'"
-                          [link]="'https://www.youtube.com'"
-                          [disabled]="false"
-                        ></bmb-text-link>
-                        <bmb-text-link
-                          [textLink]="
-                            'Guía para reguistrar tu plan en Success Factors'
-                          "
-                          [textLinkStyle]="'icon'"
-                          [target]="'_blank'"
-                          [icon]="'arrow_forward'"
-                          [iconPosition]="'right'"
-                          [link]="'https://www.youtube.com'"
-                          [disabled]="false"
-                        ></bmb-text-link>
-                      </ng-template>
-                    </bmb-accordion>
-                    <bmb-accordion
-                      [accordionId]="3"
-                      appearanceContrast="primary"
-                      borderRadius="m"
-                      margin="m"
-                      paddingHeader="m"
-                      paddingContent="m"
-                      [hideToggle]="false"
-                      icon="keyboard_arrow_down"
-                    >
-                      <ng-template #bmbAccordionHeader>
-                        <span class="font-medium-4"
-                          >Recursos de desarrollo
-                        </span>
-                      </ng-template>
-                      <ng-template #bmbAccordionContent>
-                        <bmb-text-link
-                          [textLink]="'Oferta de desarrollo'"
-                          [textLinkStyle]="'icon'"
-                          [target]="'_blank'"
-                          [icon]="'arrow_forward'"
-                          [iconPosition]="'right'"
-                          [link]="'https://www.youtube.com'"
-                          [disabled]="false"
-                        ></bmb-text-link>
-                        <bmb-text-link
-                          [textLink]="'Oportunidades de crecimiento'"
-                          [textLinkStyle]="'icon'"
-                          [target]="'_blank'"
-                          [icon]="'arrow_forward'"
-                          [iconPosition]="'right'"
-                          [link]="'https://www.youtube.com'"
-                          [disabled]="false"
-                        ></bmb-text-link>
-                        <bmb-text-link
-                          [textLink]="'mi BiblioTECa'"
-                          [textLinkStyle]="'icon'"
-                          [target]="'_blank'"
-                          [icon]="'arrow_forward'"
-                          [iconPosition]="'right'"
-                          [link]="'https://www.youtube.com'"
-                          [disabled]="false"
-                        ></bmb-text-link>
-                      </ng-template>
-                    </bmb-accordion>
-                    <bmb-accordion
-                      [accordionId]="4"
-                      appearanceContrast="primary"
-                      borderRadius="m"
-                      margin="m"
-                      paddingHeader="m"
-                      paddingContent="m"
-                      [hideToggle]="false"
-                      icon="keyboard_arrow_down"
-                    >
-                      <ng-template #bmbAccordionHeader>
-                        <span class="font-medium-4">FAQ's </span>
-                      </ng-template>
-                      <ng-template #bmbAccordionContent>
-                        <p class="font-regular-4">
-                          Lorem ipsum dolor sit amet, consectetur adipiscing
-                          elit. Ut justo ante, mattis nec libero a, malesuada
-                          pellentesque sem. Aliquam erat volutpat. Nulla ut
-                          consequat turpis, id efficitur velit. Fusce vitae
-                          dolor leo. Praesent diam justo, consectetur in blandit
-                          ut, tincidunt vitae enim. Nulla eleifend, leo at
-                          finibus volutpat, nulla metus eleifend lacus,
-                          ullamcorper dictum augue diam id erat.
-                        </p>
-                      </ng-template>
-                    </bmb-accordion>
-                    <bmb-accordion
-                      [accordionId]="5"
-                      appearanceContrast="primary"
-                      borderRadius="m"
-                      margin="m"
-                      paddingHeader="m"
-                      paddingContent="m"
-                      [hideToggle]="false"
-                      icon="keyboard_arrow_down"
-                    >
-                      <ng-template #bmbAccordionHeader>
-                        <span class="font-medium-4">FAQ's </span>
-                      </ng-template>
-                      <ng-template #bmbAccordionContent>
-                        <p class="font-regular-4">
-                          Lorem ipsum dolor sit amet, consectetur adipiscing
-                          elit. Ut justo ante, mattis nec libero a, malesuada
-                          pellentesque sem. Aliquam erat volutpat. Nulla ut
-                          consequat turpis, id efficitur velit. Fusce vitae
-                          dolor leo. Praesent diam justo, consectetur in blandit
-                          ut, tincidunt vitae enim. Nulla eleifend, leo at
-                          finibus volutpat, nulla metus eleifend lacus,
-                          ullamcorper dictum augue diam id erat.
-                        </p>
-                      </ng-template>
-                    </bmb-accordion>
-                  </section>
-                </bmb-card-content>
-              </bmb-card>
-            </div>
+                </figure>
+                <p class="font-regular-4">
+                  Lorem ipsum dolor sit amet consectetur. Nisl nibh phasellus
+                  condimentum mi faucibus. In quisque justo senectus in sed
+                  adipiscing. Arcu neque feugiat aenean nam accumsan justo ut.
+                  Pulvinar urna amet proin sit sed tellus ipsum. Lorem ipsum
+                  dolor sit amet consectetur.
+                </p>
+                <p class="font-regular-4">
+                  Nisl nibh phasellus condimentum mi faucibus. In quisque justo
+                  senectus in sed adipiscing. Arcu neque feugiat aenean nam
+                  accumsan justo ut. Pulvinar urna amet proin sit sed tellus
+                  ipsum. Lorem ipsum dolor sit amet consectetur. Nisl nibh
+                  phasellus condimentum mi faucibus. In quisque justo senectus
+                  in sed adipiscing. Arcu neque feugiat aenean nam accumsan
+                  justo ut.
+                </p>
+                <p class="font-regular-4">
+                  Pulvinar urna amet proin sit sed tellus ipsum. Lorem ipsum
+                  dolor sit amet consectetur. Nisl nibh phasellus condimentum mi
+                  faucibus. In quisque justo senectus in sed adipiscing. Arcu
+                  neque feugiat aenean nam accumsan justo ut.
+                </p>
+              </bmb-card-content>
+            </bmb-card>
+            <bmb-card margin="none" bmbLayoutItem [colSm]="6" [colLg]="6">
+              <bmb-card-header padding="m">
+                <h3 class="font-medium-5">Recursos</h3>
+              </bmb-card-header>
+              <bmb-card-content>
+                <section bmbAccordionControl>
+                  <bmb-accordion
+                    [accordionId]="1"
+                    appearanceContrast="primary"
+                    borderRadius="m"
+                    margin="m"
+                    paddingHeader="m"
+                    paddingContent="m"
+                    [hideToggle]="false"
+                    icon="keyboard_arrow_down"
+                  >
+                    <ng-template #bmbAccordionHeader>
+                      <span class="font-medium-4"> Información general </span>
+                    </ng-template>
+                    <ng-template #bmbAccordionContent>
+                      <p class="font-regular-4">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        Ut justo ante, mattis nec libero a, malesuada
+                        pellentesque sem. Aliquam erat volutpat.
+                      </p>
+                    </ng-template>
+                  </bmb-accordion>
+                  <bmb-accordion
+                    [accordionId]="2"
+                    appearanceContrast="primary"
+                    borderRadius="m"
+                    margin="m"
+                    paddingHeader="m"
+                    paddingContent="m"
+                    [hideToggle]="false"
+                    icon="keyboard_arrow_down"
+                  >
+                    <ng-template #bmbAccordionHeader>
+                      <span class="font-medium-4">Guías</span>
+                    </ng-template>
+                    <ng-template #bmbAccordionContent>
+                      <bmb-text-link
+                        [textLink]="
+                          'Guía para establecer y dar seguimiento a mi Plan de Desarrollo'
+                        "
+                        [textLinkStyle]="'icon'"
+                        [target]="'_blank'"
+                        [icon]="'arrow_forward'"
+                        [iconPosition]="'right'"
+                        [link]="'https://www.youtube.com'"
+                        [disabled]="false"
+                      ></bmb-text-link>
+                      <bmb-text-link
+                        [textLink]="
+                          'Guía para acompañar a tu equipo en mi Plan de Desarrollo'
+                        "
+                        [textLinkStyle]="'icon'"
+                        [target]="'_blank'"
+                        [icon]="'arrow_forward'"
+                        [iconPosition]="'right'"
+                        [link]="'https://www.youtube.com'"
+                        [disabled]="false"
+                      ></bmb-text-link>
+                      <bmb-text-link
+                        [textLink]="
+                          'Guía para reguistrar tu plan en Success Factors'
+                        "
+                        [textLinkStyle]="'icon'"
+                        [target]="'_blank'"
+                        [icon]="'arrow_forward'"
+                        [iconPosition]="'right'"
+                        [link]="'https://www.youtube.com'"
+                        [disabled]="false"
+                      ></bmb-text-link>
+                    </ng-template>
+                  </bmb-accordion>
+                  <bmb-accordion
+                    [accordionId]="3"
+                    appearanceContrast="primary"
+                    borderRadius="m"
+                    margin="m"
+                    paddingHeader="m"
+                    paddingContent="m"
+                    [hideToggle]="false"
+                    icon="keyboard_arrow_down"
+                  >
+                    <ng-template #bmbAccordionHeader>
+                      <span class="font-medium-4">Recursos de desarrollo </span>
+                    </ng-template>
+                    <ng-template #bmbAccordionContent>
+                      <bmb-text-link
+                        [textLink]="'Oferta de desarrollo'"
+                        [textLinkStyle]="'icon'"
+                        [target]="'_blank'"
+                        [icon]="'arrow_forward'"
+                        [iconPosition]="'right'"
+                        [link]="'https://www.youtube.com'"
+                        [disabled]="false"
+                      ></bmb-text-link>
+                      <bmb-text-link
+                        [textLink]="'Oportunidades de crecimiento'"
+                        [textLinkStyle]="'icon'"
+                        [target]="'_blank'"
+                        [icon]="'arrow_forward'"
+                        [iconPosition]="'right'"
+                        [link]="'https://www.youtube.com'"
+                        [disabled]="false"
+                      ></bmb-text-link>
+                      <bmb-text-link
+                        [textLink]="'mi BiblioTECa'"
+                        [textLinkStyle]="'icon'"
+                        [target]="'_blank'"
+                        [icon]="'arrow_forward'"
+                        [iconPosition]="'right'"
+                        [link]="'https://www.youtube.com'"
+                        [disabled]="false"
+                      ></bmb-text-link>
+                    </ng-template>
+                  </bmb-accordion>
+                  <bmb-accordion
+                    [accordionId]="4"
+                    appearanceContrast="primary"
+                    borderRadius="m"
+                    margin="m"
+                    paddingHeader="m"
+                    paddingContent="m"
+                    [hideToggle]="false"
+                    icon="keyboard_arrow_down"
+                  >
+                    <ng-template #bmbAccordionHeader>
+                      <span class="font-medium-4">FAQ's </span>
+                    </ng-template>
+                    <ng-template #bmbAccordionContent>
+                      <p class="font-regular-4">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        Ut justo ante, mattis nec libero a, malesuada
+                        pellentesque sem. Aliquam erat volutpat. Nulla ut
+                        consequat turpis, id efficitur velit. Fusce vitae dolor
+                        leo. Praesent diam justo, consectetur in blandit ut,
+                        tincidunt vitae enim. Nulla eleifend, leo at finibus
+                        volutpat, nulla metus eleifend lacus, ullamcorper dictum
+                        augue diam id erat.
+                      </p>
+                    </ng-template>
+                  </bmb-accordion>
+                  <bmb-accordion
+                    [accordionId]="5"
+                    appearanceContrast="primary"
+                    borderRadius="m"
+                    margin="m"
+                    paddingHeader="m"
+                    paddingContent="m"
+                    [hideToggle]="false"
+                    icon="keyboard_arrow_down"
+                  >
+                    <ng-template #bmbAccordionHeader>
+                      <span class="font-medium-4">FAQ's </span>
+                    </ng-template>
+                    <ng-template #bmbAccordionContent>
+                      <p class="font-regular-4">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        Ut justo ante, mattis nec libero a, malesuada
+                        pellentesque sem. Aliquam erat volutpat. Nulla ut
+                        consequat turpis, id efficitur velit. Fusce vitae dolor
+                        leo. Praesent diam justo, consectetur in blandit ut,
+                        tincidunt vitae enim. Nulla eleifend, leo at finibus
+                        volutpat, nulla metus eleifend lacus, ullamcorper dictum
+                        augue diam id erat.
+                      </p>
+                    </ng-template>
+                  </bmb-accordion>
+                </section>
+              </bmb-card-content>
+            </bmb-card>
           </section>
         </bmb-home-card>
       </main>
@@ -336,7 +340,7 @@ class StorybookAccordionTabs {
 }
 
 export default {
-  title: 'Particularities/mitec web/Landings/Accordion With Image',
+  title: 'Particularities/mitec web/Landings/Accordion with image',
   component: BmbTopBarComponent,
   decorators: [
     moduleMetadata({
@@ -346,18 +350,29 @@ export default {
   ],
   parameters: {
     docs: {
+      page: () => getPageStructureForTemplateStories(),
       description: {
-        component: `${RELEVANT_TITLE_LEVEL[2]}When you click on fullscreen icon, in Storybook doesn’t look the best due to the many elements, but in your project, it should display correctly.
-
-Below is an example of how you can use the components needed for this organization ingit status
- TypeScript:
-
-\`\`\`typescript
-@Component({
-  standalone: true,
-  imports: [
-    CommonModule,
-    BmbTopBarComponent,
+        component: `
+${getLandingGeneralDesc('service')}
+${getSpecialSpecifications(`### ${TECHNICAL_DOC_TITLE}
+>
+${TECHNICAL_DOC_REFERENCES}
+- [${topBarStory.default.title}](/docs/${getFormatName(topBarStory.default.title!, /(\/)|( )/g, '-').toLocaleLowerCase()}--documentation)
+- [${sideBarStory.default.title}](/docs/${getFormatName(sideBarStory.default.title!, /(\/)|( )/g, '-').toLocaleLowerCase()}--documentation)
+- [${homeCardStory.default.title}](/docs/${getFormatName(homeCardStory.default.title!, /(\/)|( )/g, '-').toLocaleLowerCase()}--documentation)
+- [${layoutStory.default.title}](/docs/${getFormatName(layoutStory.default.title!, /(\/)|( )/g, '-').toLocaleLowerCase()}--documentation)
+- [${layoutItemStory.default.title}](/docs/${getFormatName(layoutItemStory.default.title!, /(\/)|( )/g, '-').toLocaleLowerCase()}--documentation)
+- [${cardStory.default.title}](/docs/${getFormatName(cardStory.default.title!, /(\/)|( )/g, '-').toLocaleLowerCase()}--documentation)
+- [${accordionStory.default.title}](/docs/${getFormatName(accordionStory.default.title!, /(\/)|( )/g, '-').toLocaleLowerCase()}--documentation)
+- [${cardHeaderStory.default.title}](/docs/${getFormatName(cardHeaderStory.default.title!, /(\/)|( )/g, '-').toLocaleLowerCase()}--documentation)
+- [${cardContentStory.default.title}](/docs/${getFormatName(cardContentStory.default.title!, /(\/)|( )/g, '-').toLocaleLowerCase()}--documentation)
+- [${accordionControlStory.default.title}](/docs/${getFormatName(accordionControlStory.default.title!, /(\/)|( )/g, '-').toLocaleLowerCase()}--documentation)
+- [${textLinkStory.default.title}](/docs/${getFormatName(textLinkStory.default.title!, /(\/)|( )/g, '-').toLocaleLowerCase()}--documentation)
+>
+${FULLSCREEN_DESC}
+`)}
+${getBasicExampleBlock(
+  ` BmbTopBarComponent,
     BmbSidebarComponent,
     BmbHomeCardComponent,
     BmbLayoutDirective,
@@ -367,10 +382,29 @@ Below is an example of how you can use the components needed for this organizati
     BmbCardContentComponent,
     BmbAccordionComponent,
     BmbAccordionControlDirective,
-    BmbTextLinkComponent,
-  ],
-  selector: 'storybook-accordion-image',
-  template: '
+    BmbTextLinkComponent`,
+  '',
+  `actionHeaders: IBmbActionHeader[] = [
+    {
+      icon: 'info',
+      alt: 'Editar',
+      action: () => console.log('Info'),
+    },
+  ];
+
+  handleBack() {
+    console.log('Back button clicked');
+  }
+
+  helpButtonClick(event: any) {
+    console.log('Help button clicked', event);
+  }
+
+  userProfileClick(event: any) {
+    console.log('User profile clicked', event);
+  }`,
+)}
+\`\`\`html
     <div class="bmb_template-single-home-card">
       <bmb-top-bar
         [userInformation]="{
@@ -398,225 +432,221 @@ Below is an example of how you can use the components needed for this organizati
           (onBack)="handleBack()"
           [actionHeaders]="actionHeaders"
         >
-          <section bmbLayout margin="none">
-            <div bmbLayoutItem [colSm]="4" [colLg]="6">
-              <div class="bmb_template-accordion-content">
-                <div class="bmb_template-accordion-image">
+          <section
+            bmbLayout
+            margin="none"
+            class="bmb_template-accordion-sections"
+          >
+            <bmb-card margin="none" bmbLayoutItem [colSm]="6" [colLg]="6">
+              <bmb-card-header padding="m">
+                <h3 class="font-medium-5">Descripción</h3>
+              </bmb-card-header>
+              <bmb-card-content>
+                <figure [ngStyle]="{ margin: '0 0 24px 0' }">
                   <img
-                    src="https://farm2.staticflickr.com/1919/45579541712_f58c1fd0ed_o.jpg"
-                    alt="Image description"
+                    width="100%"
+                    alt="gatito"
+                    src="https://img.freepik.com/fotos-premium/dia-internacional-gato-8-agosto-gatos-lindos-gatito-pequeno-hermosos-pequenos-animales-compania-verdadero-amigo-bonitos-divertidos-tiernos-esponjosos-juguetones-shorties-ia-generativa_887181-4265.jpg?w=2000"
                   />
-                </div>
-                <bmb-card margin="none">
-                  <bmb-card-header padding="m">
-                    <h3 class="font-medium-5">Descripción</h3>
-                  </bmb-card-header>
-                  <bmb-card-content>
-                    <p class="font-regular-4">
-                      Lorem ipsum dolor sit amet consectetur. Nisl nibh
-                      phasellus condimentum mi faucibus. In quisque justo
-                      senectus in sed adipiscing. Arcu neque feugiat aenean nam
-                      accumsan justo ut. Pulvinar urna amet proin sit sed tellus
-                      ipsum. Lorem ipsum dolor sit amet consectetur.
-                    </p>
-                    <p class="font-regular-4">
-                      Nisl nibh phasellus condimentum mi faucibus. In quisque
-                      justo senectus in sed adipiscing. Arcu neque feugiat
-                      aenean nam accumsan justo ut. Pulvinar urna amet proin sit
-                      sed tellus ipsum. Lorem ipsum dolor sit amet consectetur.
-                      Nisl nibh phasellus condimentum mi faucibus. In quisque
-                      justo senectus in sed adipiscing. Arcu neque feugiat
-                      aenean nam accumsan justo ut.
-                    </p>
-                    <p class="font-regular-4">
-                      Pulvinar urna amet proin sit sed tellus ipsum. Lorem ipsum
-                      dolor sit amet consectetur. Nisl nibh phasellus
-                      condimentum mi faucibus. In quisque justo senectus in sed
-                      adipiscing. Arcu neque feugiat aenean nam accumsan justo
-                      ut.
-                    </p>
-                  </bmb-card-content>
-                </bmb-card>
-              </div>
-            </div>
-            <div bmbLayoutItem [colSm]="4" [colLg]="6">
-              <bmb-card margin="none">
-                <bmb-card-header padding="m">
-                  <h3 class="font-medium-5">Recursos</h3>
-                </bmb-card-header>
-                <bmb-card-content>
-                  <section bmbAccordionControl>
-                    <bmb-accordion
-                      [accordionId]="1"
-                      appearanceContrast="primary"
-                      borderRadius="m"
-                      margin="m"
-                      paddingHeader="m"
-                      paddingContent="m"
-                      [hideToggle]="false"
-                      icon="keyboard_arrow_down"
-                    >
-                      <ng-template #bmbAccordionHeader>
-                        <span class="font-medium-4"> Información general </span>
-                      </ng-template>
-                      <ng-template #bmbAccordionContent>
-                        <p class="font-regular-4">
-                          Lorem ipsum dolor sit amet, consectetur adipiscing
-                          elit. Ut justo ante, mattis nec libero a, malesuada
-                          pellentesque sem. Aliquam erat volutpat.
-                        </p>
-                      </ng-template>
-                    </bmb-accordion>
-                    <bmb-accordion
-                      [accordionId]="2"
-                      appearanceContrast="primary"
-                      borderRadius="m"
-                      margin="m"
-                      paddingHeader="m"
-                      paddingContent="m"
-                      [hideToggle]="false"
-                      icon="keyboard_arrow_down"
-                    >
-                      <ng-template #bmbAccordionHeader>
-                        <span class="font-medium-4">Guías</span>
-                      </ng-template>
-                      <ng-template #bmbAccordionContent>
-                        <bmb-text-link
-                          [textLink]="
-                            'Guía para establecer y dar seguimiento a mi Plan de Desarrollo'
-                          "
-                          [textLinkStyle]="'icon'"
-                          [target]="'_blank'"
-                          [icon]="'arrow_forward'"
-                          [iconPosition]="'right'"
-                          [link]="'https://www.youtube.com'"
-                          [disabled]="false"
-                        ></bmb-text-link>
-                        <bmb-text-link
-                          [textLink]="
-                            'Guía para acompañar a tu equipo en mi Plan de Desarrollo'
-                          "
-                          [textLinkStyle]="'icon'"
-                          [target]="'_blank'"
-                          [icon]="'arrow_forward'"
-                          [iconPosition]="'right'"
-                          [link]="'https://www.youtube.com'"
-                          [disabled]="false"
-                        ></bmb-text-link>
-                        <bmb-text-link
-                          [textLink]="
-                            'Guía para reguistrar tu plan en Success Factors'
-                          "
-                          [textLinkStyle]="'icon'"
-                          [target]="'_blank'"
-                          [icon]="'arrow_forward'"
-                          [iconPosition]="'right'"
-                          [link]="'https://www.youtube.com'"
-                          [disabled]="false"
-                        ></bmb-text-link>
-                      </ng-template>
-                    </bmb-accordion>
-                    <bmb-accordion
-                      [accordionId]="3"
-                      appearanceContrast="primary"
-                      borderRadius="m"
-                      margin="m"
-                      paddingHeader="m"
-                      paddingContent="m"
-                      [hideToggle]="false"
-                      icon="keyboard_arrow_down"
-                    >
-                      <ng-template #bmbAccordionHeader>
-                        <span class="font-medium-4"
-                          >Recursos de desarrollo
-                        </span>
-                      </ng-template>
-                      <ng-template #bmbAccordionContent>
-                        <bmb-text-link
-                          [textLink]="'Oferta de desarrollo'"
-                          [textLinkStyle]="'icon'"
-                          [target]="'_blank'"
-                          [icon]="'arrow_forward'"
-                          [iconPosition]="'right'"
-                          [link]="'https://www.youtube.com'"
-                          [disabled]="false"
-                        ></bmb-text-link>
-                        <bmb-text-link
-                          [textLink]="'Oportunidades de crecimiento'"
-                          [textLinkStyle]="'icon'"
-                          [target]="'_blank'"
-                          [icon]="'arrow_forward'"
-                          [iconPosition]="'right'"
-                          [link]="'https://www.youtube.com'"
-                          [disabled]="false"
-                        ></bmb-text-link>
-                        <bmb-text-link
-                          [textLink]="'mi BiblioTECa'"
-                          [textLinkStyle]="'icon'"
-                          [target]="'_blank'"
-                          [icon]="'arrow_forward'"
-                          [iconPosition]="'right'"
-                          [link]="'https://www.youtube.com'"
-                          [disabled]="false"
-                        ></bmb-text-link>
-                      </ng-template>
-                    </bmb-accordion>
-                    <bmb-accordion
-                      [accordionId]="4"
-                      appearanceContrast="primary"
-                      borderRadius="m"
-                      margin="m"
-                      paddingHeader="m"
-                      paddingContent="m"
-                      [hideToggle]="false"
-                      icon="keyboard_arrow_down"
-                    >
-                      <ng-template #bmbAccordionHeader>
-                        <span class="font-medium-4">FAQ's </span>
-                      </ng-template>
-                      <ng-template #bmbAccordionContent>
-                        <p class="font-regular-4">
-                          Lorem ipsum dolor sit amet, consectetur adipiscing
-                          elit. Ut justo ante, mattis nec libero a, malesuada
-                          pellentesque sem. Aliquam erat volutpat. Nulla ut
-                          consequat turpis, id efficitur velit. Fusce vitae
-                          dolor leo. Praesent diam justo, consectetur in blandit
-                          ut, tincidunt vitae enim. Nulla eleifend, leo at
-                          finibus volutpat, nulla metus eleifend lacus,
-                          ullamcorper dictum augue diam id erat.
-                        </p>
-                      </ng-template>
-                    </bmb-accordion>
-                    <bmb-accordion
-                      [accordionId]="5"
-                      appearanceContrast="primary"
-                      borderRadius="m"
-                      margin="m"
-                      paddingHeader="m"
-                      paddingContent="m"
-                      [hideToggle]="false"
-                      icon="keyboard_arrow_down"
-                    >
-                      <ng-template #bmbAccordionHeader>
-                        <span class="font-medium-4">FAQ's </span>
-                      </ng-template>
-                      <ng-template #bmbAccordionContent>
-                        <p class="font-regular-4">
-                          Lorem ipsum dolor sit amet, consectetur adipiscing
-                          elit. Ut justo ante, mattis nec libero a, malesuada
-                          pellentesque sem. Aliquam erat volutpat. Nulla ut
-                          consequat turpis, id efficitur velit. Fusce vitae
-                          dolor leo. Praesent diam justo, consectetur in blandit
-                          ut, tincidunt vitae enim. Nulla eleifend, leo at
-                          finibus volutpat, nulla metus eleifend lacus,
-                          ullamcorper dictum augue diam id erat.
-                        </p>
-                      </ng-template>
-                    </bmb-accordion>
-                  </section>
-                </bmb-card-content>
-              </bmb-card>
-            </div>
+                </figure>
+                <p class="font-regular-4">
+                  Lorem ipsum dolor sit amet consectetur. Nisl nibh phasellus
+                  condimentum mi faucibus. In quisque justo senectus in sed
+                  adipiscing. Arcu neque feugiat aenean nam accumsan justo ut.
+                  Pulvinar urna amet proin sit sed tellus ipsum. Lorem ipsum
+                  dolor sit amet consectetur.
+                </p>
+                <p class="font-regular-4">
+                  Nisl nibh phasellus condimentum mi faucibus. In quisque justo
+                  senectus in sed adipiscing. Arcu neque feugiat aenean nam
+                  accumsan justo ut. Pulvinar urna amet proin sit sed tellus
+                  ipsum. Lorem ipsum dolor sit amet consectetur. Nisl nibh
+                  phasellus condimentum mi faucibus. In quisque justo senectus
+                  in sed adipiscing. Arcu neque feugiat aenean nam accumsan
+                  justo ut.
+                </p>
+                <p class="font-regular-4">
+                  Pulvinar urna amet proin sit sed tellus ipsum. Lorem ipsum
+                  dolor sit amet consectetur. Nisl nibh phasellus condimentum mi
+                  faucibus. In quisque justo senectus in sed adipiscing. Arcu
+                  neque feugiat aenean nam accumsan justo ut.
+                </p>
+              </bmb-card-content>
+            </bmb-card>
+            <bmb-card margin="none" bmbLayoutItem [colSm]="6" [colLg]="6">
+              <bmb-card-header padding="m">
+                <h3 class="font-medium-5">Recursos</h3>
+              </bmb-card-header>
+              <bmb-card-content>
+                <section bmbAccordionControl>
+                  <bmb-accordion
+                    [accordionId]="1"
+                    appearanceContrast="primary"
+                    borderRadius="m"
+                    margin="m"
+                    paddingHeader="m"
+                    paddingContent="m"
+                    [hideToggle]="false"
+                    icon="keyboard_arrow_down"
+                  >
+                    <ng-template #bmbAccordionHeader>
+                      <span class="font-medium-4"> Información general </span>
+                    </ng-template>
+                    <ng-template #bmbAccordionContent>
+                      <p class="font-regular-4">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        Ut justo ante, mattis nec libero a, malesuada
+                        pellentesque sem. Aliquam erat volutpat.
+                      </p>
+                    </ng-template>
+                  </bmb-accordion>
+                  <bmb-accordion
+                    [accordionId]="2"
+                    appearanceContrast="primary"
+                    borderRadius="m"
+                    margin="m"
+                    paddingHeader="m"
+                    paddingContent="m"
+                    [hideToggle]="false"
+                    icon="keyboard_arrow_down"
+                  >
+                    <ng-template #bmbAccordionHeader>
+                      <span class="font-medium-4">Guías</span>
+                    </ng-template>
+                    <ng-template #bmbAccordionContent>
+                      <bmb-text-link
+                        [textLink]="
+                          'Guía para establecer y dar seguimiento a mi Plan de Desarrollo'
+                        "
+                        [textLinkStyle]="'icon'"
+                        [target]="'_blank'"
+                        [icon]="'arrow_forward'"
+                        [iconPosition]="'right'"
+                        [link]="'https://www.youtube.com'"
+                        [disabled]="false"
+                      ></bmb-text-link>
+                      <bmb-text-link
+                        [textLink]="
+                          'Guía para acompañar a tu equipo en mi Plan de Desarrollo'
+                        "
+                        [textLinkStyle]="'icon'"
+                        [target]="'_blank'"
+                        [icon]="'arrow_forward'"
+                        [iconPosition]="'right'"
+                        [link]="'https://www.youtube.com'"
+                        [disabled]="false"
+                      ></bmb-text-link>
+                      <bmb-text-link
+                        [textLink]="
+                          'Guía para reguistrar tu plan en Success Factors'
+                        "
+                        [textLinkStyle]="'icon'"
+                        [target]="'_blank'"
+                        [icon]="'arrow_forward'"
+                        [iconPosition]="'right'"
+                        [link]="'https://www.youtube.com'"
+                        [disabled]="false"
+                      ></bmb-text-link>
+                    </ng-template>
+                  </bmb-accordion>
+                  <bmb-accordion
+                    [accordionId]="3"
+                    appearanceContrast="primary"
+                    borderRadius="m"
+                    margin="m"
+                    paddingHeader="m"
+                    paddingContent="m"
+                    [hideToggle]="false"
+                    icon="keyboard_arrow_down"
+                  >
+                    <ng-template #bmbAccordionHeader>
+                      <span class="font-medium-4">Recursos de desarrollo </span>
+                    </ng-template>
+                    <ng-template #bmbAccordionContent>
+                      <bmb-text-link
+                        [textLink]="'Oferta de desarrollo'"
+                        [textLinkStyle]="'icon'"
+                        [target]="'_blank'"
+                        [icon]="'arrow_forward'"
+                        [iconPosition]="'right'"
+                        [link]="'https://www.youtube.com'"
+                        [disabled]="false"
+                      ></bmb-text-link>
+                      <bmb-text-link
+                        [textLink]="'Oportunidades de crecimiento'"
+                        [textLinkStyle]="'icon'"
+                        [target]="'_blank'"
+                        [icon]="'arrow_forward'"
+                        [iconPosition]="'right'"
+                        [link]="'https://www.youtube.com'"
+                        [disabled]="false"
+                      ></bmb-text-link>
+                      <bmb-text-link
+                        [textLink]="'mi BiblioTECa'"
+                        [textLinkStyle]="'icon'"
+                        [target]="'_blank'"
+                        [icon]="'arrow_forward'"
+                        [iconPosition]="'right'"
+                        [link]="'https://www.youtube.com'"
+                        [disabled]="false"
+                      ></bmb-text-link>
+                    </ng-template>
+                  </bmb-accordion>
+                  <bmb-accordion
+                    [accordionId]="4"
+                    appearanceContrast="primary"
+                    borderRadius="m"
+                    margin="m"
+                    paddingHeader="m"
+                    paddingContent="m"
+                    [hideToggle]="false"
+                    icon="keyboard_arrow_down"
+                  >
+                    <ng-template #bmbAccordionHeader>
+                      <span class="font-medium-4">FAQ's </span>
+                    </ng-template>
+                    <ng-template #bmbAccordionContent>
+                      <p class="font-regular-4">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        Ut justo ante, mattis nec libero a, malesuada
+                        pellentesque sem. Aliquam erat volutpat. Nulla ut
+                        consequat turpis, id efficitur velit. Fusce vitae dolor
+                        leo. Praesent diam justo, consectetur in blandit ut,
+                        tincidunt vitae enim. Nulla eleifend, leo at finibus
+                        volutpat, nulla metus eleifend lacus, ullamcorper dictum
+                        augue diam id erat.
+                      </p>
+                    </ng-template>
+                  </bmb-accordion>
+                  <bmb-accordion
+                    [accordionId]="5"
+                    appearanceContrast="primary"
+                    borderRadius="m"
+                    margin="m"
+                    paddingHeader="m"
+                    paddingContent="m"
+                    [hideToggle]="false"
+                    icon="keyboard_arrow_down"
+                  >
+                    <ng-template #bmbAccordionHeader>
+                      <span class="font-medium-4">FAQ's </span>
+                    </ng-template>
+                    <ng-template #bmbAccordionContent>
+                      <p class="font-regular-4">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        Ut justo ante, mattis nec libero a, malesuada
+                        pellentesque sem. Aliquam erat volutpat. Nulla ut
+                        consequat turpis, id efficitur velit. Fusce vitae dolor
+                        leo. Praesent diam justo, consectetur in blandit ut,
+                        tincidunt vitae enim. Nulla eleifend, leo at finibus
+                        volutpat, nulla metus eleifend lacus, ullamcorper dictum
+                        augue diam id erat.
+                      </p>
+                    </ng-template>
+                  </bmb-accordion>
+                </section>
+              </bmb-card-content>
+            </bmb-card>
           </section>
         </bmb-home-card>
       </main>
@@ -634,33 +664,7 @@ Below is an example of how you can use the components needed for this organizati
       ]"
       [title]="'Navegacion para mobiles'"
     ></bmb-sidebar>
-  ',
-})
-class StorybookAccordionTabs {
-  actionHeaders: IBmbActionHeader[] = [
-    {
-      icon: 'info',
-      alt: 'Editar',
-      action: () => console.log('Info'),
-    },
-  ];
-
-  handleBack() {
-    console.log('Back button clicked');
-  }
-
-  helpButtonClick(event: any) {
-    console.log('Help button clicked', event);
-  }
-
-  userProfileClick(event: any) {
-    console.log('User profile clicked', event);
-  }
-}
-\`\`\`
-
-Below is an example of how you can use the components needed for this organization in HTML:
-        `,
+`,
       },
     },
   },
