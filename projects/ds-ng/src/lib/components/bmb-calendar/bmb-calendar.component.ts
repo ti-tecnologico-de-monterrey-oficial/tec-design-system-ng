@@ -260,6 +260,12 @@ export class BmbCalendarComponent implements OnInit, AfterViewInit {
     this.visibleDate.set(newDate);
   }
 
+  getDayEvents(): IBmbCalendarEvent[] {
+    const visibleDateStr = this.visibleDate().toFormat('yyyy-MM-dd')
+    const events = this.filteredEvents()[this.selectedWeek()]?.[visibleDateStr] ?? [];
+    return events;
+  }
+
   handleSelectEvent(newEvent: IBmbCalendarEventClick): void {
     const { event } = newEvent;
     const title = event.modalTitle ?? event.title;
