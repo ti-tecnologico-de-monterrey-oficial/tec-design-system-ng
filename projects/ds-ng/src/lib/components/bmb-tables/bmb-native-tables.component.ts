@@ -76,7 +76,8 @@ export class BmbNativeTablesComponent {
   onSortChange = output<{ column: string; desc: boolean }>();
   onColumnReorder = output<{ previousIndex: number; currentIndex: number }>();
 
-  @ViewChild('selectColumnTemplate') selectColumnTemplate!: TemplateRef<unknown>;
+  @ViewChild('selectColumnTemplate')
+  selectColumnTemplate!: TemplateRef<unknown>;
 
   parsedData = computed(() => {
     const pages = [];
@@ -96,12 +97,12 @@ export class BmbNativeTablesComponent {
     const visibleColumnsKeys = Object.keys(this.columnVisibility());
     const visibleColumns = !!visibleColumnsKeys.length
       ? this.columns().filter((col) => {
-        if (visibleColumnsKeys.includes(col.dataKey)) {
-          return this.columnVisibility()[col.dataKey];
-        }
+          if (visibleColumnsKeys.includes(col.dataKey)) {
+            return this.columnVisibility()[col.dataKey];
+          }
 
-        return true;
-      })
+          return true;
+        })
       : [...this.columns()];
     if (this.enableSelection()) {
       const selectColumn: IBmbNativeColumn = {
@@ -113,7 +114,7 @@ export class BmbNativeTablesComponent {
         isFilterable: false,
         isPinned: false,
         templateRef: this.selectColumnTemplate,
-      }
+      };
       visibleColumns.unshift(selectColumn);
     }
 

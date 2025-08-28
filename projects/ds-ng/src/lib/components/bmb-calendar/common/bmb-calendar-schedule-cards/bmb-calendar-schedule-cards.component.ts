@@ -67,7 +67,8 @@ export class BmbCalendarScheduleCardsComponent {
 
     if (
       this.now >= (this.event()?.startDate ?? 0) &&
-      this.now <= (this.event()?.endDate ?? 0) && this.event().status !== 'disabled'
+      this.now <= (this.event()?.endDate ?? 0) &&
+      this.event().status !== 'disabled'
     ) {
       newClasses.push('bmb_calendar-event-active');
     }

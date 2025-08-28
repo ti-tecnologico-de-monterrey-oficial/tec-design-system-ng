@@ -12,7 +12,7 @@ import { IBmbCalendarView } from '../../types';
 import { BmbButtonGroupDirective } from '../../../../directives/bmb-button-group/bmb-button-group.directive';
 import { BmbLayoutDirective } from '../../../../directives/bmb-layout/bmb-layout.directive';
 import { BmbLayoutItemDirective } from '../../../../directives/bmb-layout/bmb-layout-item.directive';
-import { BmbActionIconComponent } from "../../../bmb-action-icon/bmb-action-icon.component";
+import { BmbActionIconComponent } from '../../../bmb-action-icon/bmb-action-icon.component';
 
 @Component({
   selector: 'bmb-calendar-header',
@@ -23,8 +23,8 @@ import { BmbActionIconComponent } from "../../../bmb-action-icon/bmb-action-icon
     BmbButtonGroupDirective,
     BmbLayoutDirective,
     BmbLayoutItemDirective,
-    BmbActionIconComponent
-],
+    BmbActionIconComponent,
+  ],
   templateUrl: './bmb-calendar-header.component.html',
   styleUrl: './bmb-calendar-header.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

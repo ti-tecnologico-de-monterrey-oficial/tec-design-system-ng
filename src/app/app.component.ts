@@ -62,10 +62,11 @@ export class AppComponent {
         link: '/calendar',
       },
       {
+        id: 6,
         icon: 'dropdown',
         title: 'Dropdown',
         link: '/dropdown',
-      }
+      },
     ],
     [
       {

@@ -36,9 +36,6 @@
 
 <ng-template #selectionColumnTemplate let-row="row">
   <div class="selection-column">
-    <input
-      type="checkbox"
-      [checked]="selection().includes(row)"
-    />
+    <input type="checkbox" [checked]="selection().includes(row)" />
   </div>
 </ng-template>
