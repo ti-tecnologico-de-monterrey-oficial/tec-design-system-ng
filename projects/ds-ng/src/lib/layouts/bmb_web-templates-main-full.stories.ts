@@ -6,6 +6,7 @@ import {
   attributes,
   getBasicExampleBlock,
   getFormatName,
+  getPageStructureForTemplateStories,
   getSpecialSpecifications,
   getStandaloneGeneralDesc,
   TECHNICAL_DOC_REFERENCES,
@@ -54,9 +55,7 @@ export default {
   ],
   parameters: {
     docs: {
-      page: () => {
-        return [Title({}), Description({}), Primary({})];
-      },
+      page: () => getPageStructureForTemplateStories(),
       description: {
         component: `
 ${getStandaloneGeneralDesc('1 Column box')}

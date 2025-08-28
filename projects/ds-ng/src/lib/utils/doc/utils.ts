@@ -60,6 +60,11 @@ export const getPageStructureForFoundationStories = () => {
   return [Title({}), Description({}), Primary({}), Controls({})];
 };
 
+export const getPageStructureForTemplateStories = () => {
+  return [Title({}), Description({}), Primary({})];
+};
+
+
 const getValue = (key: string, value: undefined): any =>
   (typeof value === 'function' && `${key}($event)`) ||
   (typeof value === 'object' && `${JSON.stringify(value)}`) ||
