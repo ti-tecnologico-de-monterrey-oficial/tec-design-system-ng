@@ -58,5 +58,12 @@ export const routes: Routes = [
         (h) => h.HomeCardComponent,
       ),
   },
+  {
+    path: 'calendar',
+    loadComponent: () =>
+      import('./pages/calendar/calendar.component').then(
+        (c) => c.CalendarComponent,
+      ),
+  },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
 ];

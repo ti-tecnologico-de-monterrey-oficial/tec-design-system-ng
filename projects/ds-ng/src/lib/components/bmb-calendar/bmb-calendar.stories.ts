@@ -2,12 +2,15 @@ import {
   componentWrapperDecorator,
   Meta,
   moduleMetadata,
-  StoryFn,
   StoryObj,
 } from '@storybook/angular';
-import { BmbCalendarComponent } from './bmb-calendar.component';
-import { Component, input, OnInit } from '@angular/core';
+import {
+  BmbCalendarComponent,
+  IBmbCalendarEvent,
+} from './bmb-calendar.component';
 import { BmbCalendarService } from '../../services/calendar.service';
+import { DateTime } from 'luxon';
+import { signal } from '@angular/core';
 import {
   getBasicExampleBlock,
   getGeneralComponentDescription,
@@ -17,115 +20,121 @@ import {
   RELEVANT_TITLE_LEVEL,
 } from '../../utils/doc/utils';
 import {
+  DBmbGenericParamDesc,
   getDefaultValueControl,
   getOnEventParam,
 } from '../../utils/doc/parameterDescriptions';
 
-@Component({
-  standalone: true,
-  imports: [BmbCalendarComponent],
-  selector: 'storybook-toast-wrapper',
-  template: `
-    <div style="height: 1000px">
-      <bmb-calendar
-        [calendarTimezone]="calendarTimezone()"
-        [clientTimezone]="clientTimezone()"
-        [height]="height()"
-        (onDateChange)="onDateChange($event)"
-      ></bmb-calendar>
-    </div>
-  `,
-})
-class ToastWrapperComponent implements OnInit {
-  calendarTimezone = input<string>('America/Mexico_City');
-  clientTimezone = input<string>('America/Mexico_City');
-  height = input<number>(700);
+// Mock del servicio
+class MockCalendarService {
+  eventList = signal<IBmbCalendarEvent[]>(this.generateEvents());
 
-  constructor(private bmbCalendarService: BmbCalendarService) {}
+  getIsLoading() {
+    return false;
+  }
 
-  ngOnInit() {
-    this.bmbCalendarService.addMultipleEvents([
+  generateEvents(): IBmbCalendarEvent[] {
+    const now: DateTime = DateTime.now();
+    const today: DateTime = DateTime.now();
+
+    const events: IBmbCalendarEvent[] = [
       {
-        title: 'Event 0',
-        start: '2025-03-24T17:00:00.715Z',
-        end: '2025-03-24T18:00:00.715Z',
-        detail: 'Event 1 detail',
-        modalTitle: 'Event 1',
-        status: 'disabled',
+        title: `Event custom`,
+        start: today.toISO() as string,
+        end: today.plus({ minutes: 240 }).toISO() as string,
+        detail: `Event custom detail`,
+        modalTitle: `Event custom`,
+        subtitle: `Event custom subtitle`,
+        // status: 'disabled',
+        type: 'academic',
+        place: `Event custom place`,
+        calendar: 'Calendar A',
       },
-      {
-        title: 'Event 1',
-        start: '2025-03-25T02:00:00.715Z',
-        end: '2025-03-25T02:30:00.715Z',
-        detail: 'Event 1 detail',
-        modalTitle: 'Event 1',
-      },
-      {
-        title: 'Event 2',
-        start: '2025-02-24T15:00:00.715Z',
-        end: '2025-02-24T16:00:00.715Z',
-        detail: 'Event 2 detail',
-        modalTitle: 'Event 2',
-        tags: [
-          {
-            appearance: 'success',
-            text: 'Event 2 tag',
-          },
-        ],
-      },
-      {
-        title: 'Event 3',
-        start: '2025-02-24T15:00:00.715Z',
-        end: '2025-02-24T16:00:00.715Z',
-        detail: 'Event 2 detail',
-        modalTitle: 'Event 2',
-        tags: [
-          {
-            appearance: 'success',
-            text: 'Event 2 tag',
-          },
-        ],
-      },
-      {
-        title: 'Event 4',
-        start: '2025-02-25T15:00:00.715Z',
-        end: '2025-02-25T16:00:00.715Z',
-        detail: 'Event 2 detail',
-        modalTitle: 'Event 2',
-        tags: [
-          {
-            appearance: 'success',
-            text: 'Event 2 tag',
-          },
-        ],
-      },
-      {
-        title: 'Event 4',
-        start: '2025-02-26T15:00:00.715Z',
-        end: '2025-02-26T16:00:00.715Z',
-        detail: 'Event 2 detail',
-        modalTitle: 'Event 2',
-        tags: [
-          {
-            appearance: 'success',
-            text: 'Event 2 tag',
-          },
-        ],
-      },
-      {
-        title: 'Event 4',
-        start: '2025-02-27T15:00:00.715Z',
-        end: '2025-02-27T16:00:00.715Z',
-        detail: 'Event 2 detail',
-        modalTitle: 'Event 2',
-        tags: [
-          {
-            appearance: 'success',
-            text: 'Event 2 tag',
-          },
-        ],
-      },
-    ]);
+    ];
+    for (let i = 0; i < 183; i++) {
+      for (let e = 0; e < 8; e++) {
+        events.push({
+          title: `Event ${i}`,
+          start: today.plus({ days: i - 91, hours: e - 3 }).toISO() as string,
+          end: today.plus({ days: i - 91, hours: e - 2 }).toISO() as string,
+          detail: `Event ${i} detail`,
+          modalTitle: `Event ${i}`,
+          subtitle: `Event ${i} subtitle`,
+          // status: i % 2 === 0 ? 'active' : 'disabled',
+          type:
+            i % 4 === 0
+              ? 'academic'
+              : i % 4 === 1
+                ? 'life'
+                : i % 4 === 2
+                  ? 'events'
+                  : 'save_the_date',
+          tags: [
+            {
+              appearance:
+                i % 4 === 0
+                  ? 'mitec_blue'
+                  : i % 4 === 1
+                    ? 'mitec_red'
+                    : i % 4 === 2
+                      ? 'mitec_green'
+                      : 'mitec_orange',
+              text: `Event ${i} tag`,
+            },
+            {
+              appearance:
+                i % 4 === 0
+                  ? 'mitec_blue'
+                  : i % 4 === 1
+                    ? 'mitec_red'
+                    : i % 4 === 2
+                      ? 'mitec_green'
+                      : 'mitec_orange',
+              text: `Event ${i} tag`,
+            },
+            {
+              appearance:
+                i % 4 === 0
+                  ? 'mitec_blue'
+                  : i % 4 === 1
+                    ? 'mitec_red'
+                    : i % 4 === 2
+                      ? 'mitec_green'
+                      : 'mitec_orange',
+              text: `Event ${i} tag`,
+            },
+          ],
+          place: `Event ${i} place`,
+          calendar:
+            i % 3 === 0
+              ? 'Calendar A'
+              : i % 3 === 1
+                ? 'Calendar B'
+                : 'Calendar C',
+        });
+      }
+    }
+    return this.shuffleArray(events);
+  }
+
+  shuffleArray(array: IBmbCalendarEvent[]) {
+    const length = array.length;
+    const shuffle = array.slice(); // copy of array
+    // loop over the array
+    for (let i = length - 1; i > 0; i -= 1) {
+      const random = Math.floor(Math.random() * (i + 1)); // random card position
+      const current = shuffle[i]; // current card
+      // swap the random card and the current card
+      shuffle[i] = shuffle[random]; // move the random card to the current position
+      shuffle[random] = current; // put the current card in the random position
+    }
+    return shuffle; // return shuffled array
+  }
+
+  getEventList(): IBmbCalendarEvent[] {
+    console.log(this.eventList());
+
+    return this.eventList();
   }
 }
 
@@ -134,7 +143,9 @@ export default {
   component: BmbCalendarComponent,
   decorators: [
     moduleMetadata({
-      imports: [ToastWrapperComponent, BmbCalendarComponent],
+      providers: [
+        { provide: BmbCalendarService, useClass: MockCalendarService }, // Inyectamos el mock
+      ],
     }),
     componentWrapperDecorator((story: string) => {
       return `<div style="height: 1000px;">
@@ -146,35 +157,37 @@ export default {
     docs: {
       controls: {
         exclude: [
-          'calendarTitle',
-          'currentTime',
-          'isListShowing',
-          'now',
-          'renderWeekDays',
-          'selectedEvent',
-          'timerId',
-          'view',
-          'weekNumber',
           'getDuration',
-          'getEvents',
+          'getFormControl',
           'getHeight',
-          'getIsLoading',
+          'handleApplyFilters',
           'handleClose',
           'handleCurrentDateChange',
           'handleDateChange',
+          'handleFormReset',
           'handleSelectEvent',
+          'handleShowModalFilter',
           'isAnEventSelected',
-          'onViewTypeChange',
-          'onViewTypeChange',
-          'updateTime',
-          'detailContent',
+          'ngAfterViewInit',
           'ngOnDestroy',
           'ngOnInit',
           'resize',
-          'onClose',
-          'startBusinessHour',
-          'hourFormat',
-          'lang',
+          'updateTime',
+          'detailContent',
+          'onDateChange',
+          'modalTemplate',
+          'calendarForm',
+          'currentTime',
+          'events',
+          'filteredEvents',
+          'filterModalId',
+          'isLoading',
+          'isMobileHeader',
+          'orderedEvents',
+          'renderWeekDays',
+          'selectedEvent',
+          'selectedWeek',
+          'timerId',
         ],
       },
       description: {
@@ -225,23 +238,14 @@ ${getBasicExampleBlock('BmbCalendarComponent')}
         type: { summary: 'string' },
       },
     },
-    currentDate: {
-      control: { type: 'text' },
-      description:
-        'Sets the target date to show in the calendar (example: "2024-04-23T15:00:00.715Z")',
-      table: {
-        category: 'Properties',
-        defaultValue: false,
-        type: { summary: 'string' },
-      },
-    },
+    currentDate: DBmbGenericParamDesc.deprecated,
     height: {
       control: { type: 'number' },
       description:
         'Sets the default height, you can also set a valid CSS value (example: 100vh).',
       table: {
         category: 'Properties',
-        defaultValue: getDefaultValueControl(700),
+        defaultValue: getDefaultValueControl('100%'),
         type: { summary: 'number | string' },
       },
     },
@@ -249,17 +253,40 @@ ${getBasicExampleBlock('BmbCalendarComponent')}
       getOnEvent('date has', 'onDateChange', 'unknown'),
       '',
     ),
+    showFilterButton: {
+      control: { type: 'boolean' },
+      description: 'Shows or hides the filter button. Shows the button when true.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
+    },
+    dateFormat: {
+      control: { type: 'text' },
+      description:
+        'Sets the date format for the calendar (example: "yyyy-MM-dd")',
+      table: {
+        category: 'Properties',
+        type: { summary: 'string' },
+        defaultValue: { summary: 'iso' },
+      },
+    },
+    lang: DBmbGenericParamDesc.lang,
   },
+  // Remove invalid args if not defined as @Input() in BmbCalendarComponent
   args: {
+    height: '100%',
+    showFilterButton: false,
     calendarTimezone: 'America/Mexico_City',
     clientTimezone: 'America/Mexico_City',
-    height: 700,
+    dateFormat: 'iso',
     onDateChange: (params: any) => {
       console.log(params.toString());
     },
   },
 } as Meta<typeof BmbCalendarComponent>;
 
-type Story = StoryObj<typeof ToastWrapperComponent>;
+type Story = StoryObj<typeof BmbCalendarComponent>;
 
 export const Default: Story = {};

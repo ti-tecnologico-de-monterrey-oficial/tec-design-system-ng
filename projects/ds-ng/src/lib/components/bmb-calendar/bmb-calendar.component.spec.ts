@@ -22,16 +22,14 @@ describe('BmbCalendarComponent', () => {
   });
 
   it('should set default values for inputs', () => {
-    expect(component.hourFormat).toBe('12');
-    expect(component.calendarTimezone).toBe(
+    expect(component.calendarTimezone()).toBe(
       Intl.DateTimeFormat().resolvedOptions().timeZone,
     );
-    expect(component.clientTimezone).toBe(
+    expect(component.clientTimezone()).toBe(
       Intl.DateTimeFormat().resolvedOptions().timeZone,
     );
-    expect(component.lang).toBe('es-MX');
-    expect(component.currentDate).toBe('');
-    expect(component.height).toBe(700);
+    expect(component.lang()).toBe('es-MX');
+    expect(component.height()).toBe('100%');
   });
 
   it('should update view on window resize', () => {
@@ -39,16 +37,14 @@ describe('BmbCalendarComponent', () => {
     window.dispatchEvent(new Event('resize'));
     if (window.innerWidth < 1000) {
       expect(component.view.set).toHaveBeenCalledWith('day');
-    } else {
-      expect(component.isListShowing).toBeFalse();
     }
   });
 
   it('should update now and weekNumber on handleCurrentDateChange', () => {
     const newDate = DateTime.now().plus({ days: 1 });
     component.handleCurrentDateChange(newDate);
-    expect(component.now).toEqual(newDate);
-    expect(component.weekNumber).toBe(newDate.weekNumber);
+    expect(component.visibleDate().toISO()).toEqual(newDate.toISO());
+    expect(component.weekNumber()).toBe(newDate.weekNumber);
   });
 
   it('should emit onDateChange on handleDateChange', () => {
@@ -56,12 +52,6 @@ describe('BmbCalendarComponent', () => {
     const now = DateTime.now();
     component.handleDateChange('week', now);
     expect(component.onDateChange.emit).toHaveBeenCalled();
-  });
-
-  it('should toggle isListShowing on onViewTypeChange', () => {
-    const initial = component.isListShowing;
-    component.onViewTypeChange();
-    expect(component.isListShowing).toBe(!initial);
   });
 
   it('should return correct height string', () => {

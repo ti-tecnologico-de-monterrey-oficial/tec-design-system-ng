@@ -6,17 +6,19 @@ import {
   Output,
   EventEmitter,
   input,
+  output,
+  computed,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Info, DateTime } from 'luxon';
 import {
-  IBmbCalendarHourFormat,
   IBmbCalendarEvent,
   IBmbCalendarEventClick,
   IBmbCalendarRenderEvents,
+  IBmbParsedDates,
 } from '../../types';
 import { BmbCalendarHourViewComponent } from '../bmb-calendar-hour-view/bmb-calendar-hour-view.component';
-import { eventsInDate } from '../../utils';
+import { DEFAULT_DATE_FORMAT, eventsInDate, layoutEvents } from '../../utils';
 import { BmbCalendarScheduleCardsComponent } from '../bmb-calendar-schedule-cards/bmb-calendar-schedule-cards.component';
 import { orderDayNames } from '../../../../utils/utils';
 import { BmbCalendarTimeIndicatorComponent } from '../bmb-calendar-time-indicator/bmb-calendar-time-indicator.component';
@@ -36,18 +38,25 @@ import { BmbCalendarTimeIndicatorComponent } from '../bmb-calendar-time-indicato
   encapsulation: ViewEncapsulation.None,
 })
 export class BmbCalendarTemplateWeekComponent {
-  @Input() weekDays: any[] = [];
-  @Input() lang: string = 'es-MX';
-  @Input() hourFormat: IBmbCalendarHourFormat = '12';
-  @Input() now: DateTime = DateTime.now();
-  @Input() events: IBmbCalendarEvent[] = [];
+  weekDays = input<DateTime[]>([]);
+  lang = input<string>('es-MX');
+  now = input<DateTime>(DateTime.now());
+  dateFormat = input<string>(DEFAULT_DATE_FORMAT);
+  events = input<IBmbParsedDates>({});
   currentTime = input<DateTime>(DateTime.now());
   startBusinessHour = input<number>(8);
+  selectedWeek = input<number>(0);
 
-  @Output() onSelectEvent: EventEmitter<IBmbCalendarEventClick> =
-    new EventEmitter<IBmbCalendarEventClick>();
+  onSelectEvent = output<IBmbCalendarEventClick>();
+  eventsOnWeek = computed<IBmbCalendarEvent[][]>(() => {
+    return this.weekDays().map((day) => {
+      const eventsOnDay =
+        this.events()?.[day.weekNumber]?.[day.toFormat('yyyy-MM-dd')] ?? [];
+      return layoutEvents(eventsOnDay);
+    });
+  });
 
-  defaultDayOrder = Info.weekdays('short', { locale: this.lang });
+  defaultDayOrder = Info.weekdays('short', { locale: this.lang() });
 
   dayNames = orderDayNames(this.defaultDayOrder);
 

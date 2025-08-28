@@ -1,9 +1,5 @@
 import { CommonModule } from '@angular/common';
-import {
-  Component,
-  output,
-  input,
-} from '@angular/core';
+import { Component, output, input } from '@angular/core';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { getUUID } from '../../utils/utils';
 

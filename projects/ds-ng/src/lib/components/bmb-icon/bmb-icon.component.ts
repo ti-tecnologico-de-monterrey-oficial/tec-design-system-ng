@@ -55,8 +55,8 @@ export class BmbIconComponent implements OnInit {
 
   getImageStyles() {
     return {
-      'width': !!this.size() ? `${this.size()}px` : 'inherit',
-      'height': !!this.size() ? `${this.size()}px` : 'inherit',
+      width: !!this.size() ? `${this.size()}px` : 'inherit',
+      height: !!this.size() ? `${this.size()}px` : 'inherit',
     };
   }
 }

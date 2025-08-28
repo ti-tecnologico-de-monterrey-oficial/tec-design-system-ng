@@ -1,34 +1,62 @@
 import type { Meta, StoryObj } from '@storybook/angular';
 import { BmbMobileTemplatesComponent } from './bmb-mobile-templates.component';
+import {
+  getBasicExampleBlock,
+  getGeneralDescription,
+  getOnEvent,
+  IBmbOnEvent,
+} from '../../utils/doc/utils';
+import {
+  DBmbGenericParamDesc,
+  getOnClickParam,
+} from '../../utils/doc/parameterDescriptions';
+
+const onLeftIconEvent: IBmbOnEvent = getOnEvent(
+    'left icon',
+    'onHeaderLeftClick',
+    'unknown',
+  ),
+  onRightIconEvent: IBmbOnEvent = getOnEvent(
+    'right icon',
+    'onHeaderRightClick',
+    'unknown',
+  );
 
 export default {
   title: 'Templates/Mobile',
   component: BmbMobileTemplatesComponent,
   parameters: {
     docs: {
+      controls: {
+        exclude: [
+          'height',
+          'mainContent',
+          'getSectionClass',
+          'handleAction',
+          'handleClose',
+          'handleFooterEvent',
+          'handleLeftClick',
+          'handleLoginRequest',
+          'handleMenuEvent',
+          'handleRightClick',
+          'ngOnInit',
+        ],
+      },
       description: {
         component: `
-Below is an example of how you can use this component in TypeScript:
-
-\`\`\`typescript
-import { BmbLogoComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
-@Component({
-  selector: 'component',
-  standalone: true,
-  imports: [ BmbLogoComponent ],
-  templateUrl: './component.html',
-  styleUrl: './component.scss',
-})
-\`\`\`
-
-Below is an example of how you can use this component in HTML:
+${getGeneralDescription(`\`mobile-templates\` is the structure that visually organizes the elements of a mobile screen to ensure a coherent and functional experience. `, 'https://bamboo.tec.mx/latest/templates/mobile/descripcion-general-dUQzbIvB')}
+${getBasicExampleBlock(
+  'BmbMobileTemplatesComponent',
+  '',
+  `${onLeftIconEvent.handleExample}
+  ${onRightIconEvent.handleExample}`,
+)}
         `,
       },
     },
   },
   argTypes: {
     template: {
-      name: 'Template',
       control: {
         type: 'select',
       },
@@ -43,49 +71,48 @@ Below is an example of how you can use this component in HTML:
         'external-link',
       ],
       description:
-        'Set template layout, depending of the template, it required to send the #bmbTemplateMain template.',
+        'Sets template layout, depending of the template, it required to send the #bmbTemplateMain template.',
       table: {
         category: 'Properties',
+        defaultValue: { summary: 'single-header' },
         type: { summary: 'IBmbMobileTemplateName' },
       },
     },
     footerActions: {
-      name: 'Footer actions',
       control: {
         type: 'object',
       },
       description:
-        'Set the buttons for templates: `card-header-with-footer` and `header-with-footer`',
+        'Sets the buttons for templates: `card-header-with-footer` and `header-with-footer`',
       table: {
         category: 'Properties',
         type: { summary: 'IBmbButtonAction[]' },
       },
     },
     buttonList: {
-      name: 'Button list',
       control: {
         type: 'object',
       },
       description:
-        'Set the buttons for templates: `header-with-button-list` and `header-with-card-list`',
+        'Sets the buttons for templates: `header-with-button-list` and `header-with-card-list`',
       table: {
         category: 'Properties',
+        defaultValue: { summary: '[]' },
         type: { summary: 'IBmbMobileTemplateButton[]' },
       },
     },
     title: {
-      name: 'Title',
       control: {
         type: 'text',
       },
       description: 'Set the title for the header.',
       table: {
         category: 'Properties',
+        defaultValue: { summary: '' },
         type: { summary: 'string' },
       },
     },
     headerIconLeft: {
-      name: 'Header icon left',
       control: {
         type: 'text',
       },
@@ -94,42 +121,23 @@ Below is an example of how you can use this component in HTML:
         type: { summary: 'string' },
       },
       description:
-        'The left icon for the header, only available for templates: `single-header`, `header-with-footer`, `header-with-button-list`, and `header-with-card-list`',
+        'Sets the left icon for the header, only available for templates: `single-header`, `header-with-footer`, `header-with-button-list`, and `header-with-card-list`',
     },
     headerIconRight: {
-      name: 'Header icon right',
       control: {
         type: 'text',
       },
       table: {
         category: 'Properties',
+        defaultValue: { summary: '' },
         type: { summary: 'string' },
       },
       description:
-        'The right icon for the header, only available for templates: `single-header`, `header-with-footer`, `header-with-button-list`, and `header-with-card-list`',
+        'Sets the right icon for the header, only available for templates: `single-header`, `header-with-footer`, `header-with-button-list`, and `header-with-card-list`',
     },
-    onHeaderLeftClick: {
-      name: 'Header left click',
-      control: false,
-      description:
-        'Function that is executed when the header left icon is pressed.',
-      table: {
-        type: { summary: 'function' },
-        category: 'Events',
-      },
-    },
-    onHeaderRightClick: {
-      name: 'Header right click',
-      control: false,
-      description:
-        'Function that is executed when the header right icon is pressed.',
-      table: {
-        type: { summary: 'function' },
-        category: 'Events',
-      },
-    },
+    onHeaderLeftClick: getOnClickParam(onLeftIconEvent),
+    onHeaderRightClick: getOnClickParam(onRightIconEvent),
     loginHandleRequest: {
-      name: 'Login handle request',
       control: false,
       description:
         'This event is only available for `login` template, handle all events from Login onboarding component.',
@@ -139,49 +147,43 @@ Below is an example of how you can use this component in HTML:
       },
     },
     calendarTimezone: {
-      name: 'Calendar timezone',
       control: { type: 'text' },
       description:
-        'Set the remote timezone for the events (example: "America/Mexico_City")',
+        'Sets the remote timezone for the events (example: "America/Mexico_City")',
       table: {
         category: 'Properties',
+        defaultValue: {
+          summary: 'current time zone',
+          detail: 'Intl.DateTimeFormat().resolvedOptions().timeZone',
+        },
         type: { summary: 'string' },
       },
     },
     clientTimezone: {
-      name: 'Client timezone',
       control: { type: 'text' },
       description:
-        'Set the client timezone for the events (example: "America/Mexico_City")',
+        'Sets the client timezone for the events (example: "America/Mexico_City")',
       table: {
         category: 'Properties',
+        defaultValue: {
+          summary: 'current time zone',
+          detail: 'Intl.DateTimeFormat().resolvedOptions().timeZone',
+        },
         type: { summary: 'string' },
       },
     },
-    lang: {
-      name: 'Language',
-      control: {
-        type: 'text',
-      },
-      description: 'Set the default language.',
-      table: {
-        category: 'Properties',
-        type: { summary: 'string' },
-        defaultValue: { summary: 'es' },
-      },
-    },
+    lang: DBmbGenericParamDesc.lang,
     currentDate: {
-      name: 'Current date',
       control: { type: 'text' },
       description:
-        'Set the target date to show in the calendar (example: "2024-04-23T15:00:00.715Z")',
+        'Sets the target date to show in the calendar (example: "2024-04-23T15:00:00.715Z")',
       table: {
         category: 'Properties',
+        defaultValue: { summary: '' },
         type: { summary: 'string' },
       },
     },
     onDateChange: {
-      name: 'On date change',
       control: {
         type: '',
       },
@@ -192,18 +194,17 @@ Below is an example of how you can use this component in HTML:
       },
     },
     externalLinkSubtitle: {
-      name: 'subtitle',
       control: {
         type: 'text',
       },
-      description: 'Header subtitle/url',
+      description: 'Sets the header subtitle/url',
       table: {
         category: 'Properties',
+        defaultValue: { summary: '' },
         type: { summary: 'string' },
       },
     },
     externalLinkOnClose: {
-      name: 'Close event',
       control: false,
       description: 'Close button event.',
       table: {
@@ -212,17 +213,12 @@ Below is an example of how you can use this component in HTML:
       },
     },
     externalLinkMenuEvent: {
-      name: 'Menu events',
-      control: false,
-      description:
-        'Used for the menu option that was clicked. Options: link, openNew, info',
-      table: {
-        type: { summary: 'function' },
-        category: 'Events',
-      },
+      ...DBmbGenericParamDesc.link,
+      description: DBmbGenericParamDesc.link.description.concat(
+        '<br/><br/>Used for the menu option that was clicked. Options: link, openNew, info',
+      ),
     },
     externalLinkFooterEvent: {
-      name: 'Footer events',
       control: false,
       description:
         'Used for the icon option that was clicked. Options: back, forward, share, reload',

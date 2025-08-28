@@ -1,16 +1,18 @@
-<div
-  class="bmb_calendar-event"
-  [ngClass]="getClassNames(event, isPositionAbsolute)"
-  [style]="getPosition(event, isPositionAbsolute)"
-  (click)="handleSelectEvent(event, $event)"
-  title="{{ event.title }} - {{ event.detail }}"
->
-  <div class="bmb_calendar-event-indicator"></div>
-  <h3 class="bmb_calendar-event-title">
-    {{ event.title }}
-  </h3>
-  @if (extendedContent) {
-    <p class="bmb_calendar-event-content">{{ event.detail }}</p>
-    <span class="bmb_calendar-event-time">{{ handleTimeRange(event) }}</span>
-  }
-</div>
+@if (event().isVisible) {
+  <div
+    class="bmb_calendar-event"
+    [ngClass]="getClassNames()"
+    [style]="getPosition()"
+    (click)="handleSelectEvent($event)"
+    title="{{ event().title }} - {{ event().detail }}"
+  >
+    <div class="bmb_calendar-event-indicator"></div>
+    <h3 class="bmb_calendar-event-title">
+      {{ event().title }}
+    </h3>
+    @if (extendedContent()) {
+      <p class="bmb_calendar-event-content">{{ event().detail }}</p>
+      <span class="bmb_calendar-event-time">{{ handleTimeRange() }}</span>
+    }
+  </div>
+}

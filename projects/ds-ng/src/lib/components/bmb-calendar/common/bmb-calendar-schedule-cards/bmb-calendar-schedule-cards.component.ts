@@ -2,13 +2,12 @@ import {
   Component,
   ChangeDetectionStrategy,
   ViewEncapsulation,
-  Input,
-  Output,
-  EventEmitter,
+  input,
+  output,
 } from '@angular/core';
 import { IBmbCalendarEvent, IBmbCalendarEventClick } from '../../types';
 import { DateTime } from 'luxon';
-import { getTimeRange } from '../../utils';
+import { getTimeRange, HOUR_HEIGHT } from '../../utils';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -21,67 +20,70 @@ import { CommonModule } from '@angular/common';
   encapsulation: ViewEncapsulation.None,
 })
 export class BmbCalendarScheduleCardsComponent {
-  @Input() event: IBmbCalendarEvent = {
-    title: '',
-    detail: '',
-    start: new Date().toISOString(),
-    end: new Date().toISOString(),
-    type: 'academic',
-    modalTitle: '',
-    status: 'active',
-  };
-  @Input() isPositionAbsolute: boolean = true;
-  @Input() extendedContent: boolean = true;
+  event = input.required<IBmbCalendarEvent>();
+  isPositionAbsolute = input<boolean>(true);
+  extendedContent = input<boolean>(true);
 
-  @Output() onSelectEvent: EventEmitter<IBmbCalendarEventClick> =
-    new EventEmitter<IBmbCalendarEventClick>();
+  onSelectEvent = output<IBmbCalendarEventClick>();
 
   now = DateTime.now();
 
-  getPosition(date: IBmbCalendarEvent, isPositionAbsolute: boolean): string {
-    if (!isPositionAbsolute) return '';
+  getPosition(): string {
+    if (!this.isPositionAbsolute()) return '';
 
-    const start = DateTime.fromISO(date.start);
-    const end = DateTime.fromISO(date.end);
-    const startMin = start.hour * 60 + start.minute;
-    const endMin = end.hour * 60 + end.minute - startMin;
+    const startMin =
+      (this.event()?.startDate?.hour ?? 0) * HOUR_HEIGHT +
+      (this.event()?.startDate?.minute ?? 0) * 2;
+    const endMin =
+      (this.event()?.endDate?.hour ?? 0) * HOUR_HEIGHT +
+      (this.event()?.endDate?.minute ?? 0) * 2 -
+      startMin;
+    const column = this.event()?.column ?? 0;
+    const columnSize = this.event()?.columnCount ?? 1;
+    const left = column ? 100 / (column + 1) : 0;
+    const width = columnSize ? 100 / columnSize : 100;
 
-    return `top: ${startMin}px; height: ${endMin}px`;
+    return `top: ${startMin}px; height: ${endMin}px; left: calc(${left}% + ${8 / (column + 1)}px); width: calc(${width}% - ${8 / (column + 1)}px)`;
   }
 
-  getClassNames(
-    date: IBmbCalendarEvent,
-    isPositionAbsolute: boolean,
-  ): string[] {
-    let newClasses = [`bmb_calendar-event-type-${this.event.type}`];
-    if (isPositionAbsolute) newClasses.push('bmb_calendar-event-absolute');
-    if (this.event.status === 'disabled')
+  getClassNames(): string[] {
+    let newClasses = [`bmb_calendar-event-type-${this.event().type}`];
+    if (this.isPositionAbsolute())
+      newClasses.push('bmb_calendar-event-absolute');
+    else newClasses.push('bmb_calendar-event-micro');
+    if (this.event().status === 'disabled')
       newClasses.push('bmb_calendar-event-disabled');
-    const start = DateTime.fromISO(date.start);
-    const end = DateTime.fromISO(date.end);
-    const diff = end.hour * 60 + end.minute - (start.hour * 60 + start.minute);
+    const diff = (this.event()?.endDate ?? DateTime.now()).diff(
+      this.event()?.startDate ?? DateTime.now(),
+      ['minutes'],
+    );
 
-    if (diff < 60) {
+    // 30 represents minutes
+    if (diff.minutes < 45) {
       newClasses.push('bmb_calendar-event-grid-reduced');
     } else {
       newClasses.push('bmb_calendar-event-grid-full');
     }
 
-    if (this.now >= start && this.now <= end) {
+    if (
+      this.now >= (this.event()?.startDate ?? 0) &&
+      this.now <= (this.event()?.endDate ?? 0) &&
+      this.event().status !== 'disabled'
+    ) {
       newClasses.push('bmb_calendar-event-active');
     }
 
     return newClasses;
   }
 
-  handleSelectEvent(event: IBmbCalendarEvent, domEvent: any) {
+  handleSelectEvent(domEvent: any) {
     this.onSelectEvent.emit({
-      event: event,
+      event: this.event(),
       position: domEvent.target.getBoundingClientRect().y,
     });
   }
 
-  handleTimeRange(event: IBmbCalendarEvent): string {
-    return getTimeRange(event);
+  handleTimeRange(): string {
+    return getTimeRange(this.event());
   }
 }
