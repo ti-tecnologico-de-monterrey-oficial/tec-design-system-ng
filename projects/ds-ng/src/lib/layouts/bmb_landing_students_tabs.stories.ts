@@ -191,7 +191,7 @@ export default {
       page: () => getPageStructureForTemplateStories(),
       description: {
         component: `
-${getLandingGeneralDesc('tab')}
+${getLandingGeneralDesc('Student tab')}
 ${getSpecialSpecifications(`### ${TECHNICAL_DOC_TITLE}
 >
 ${TECHNICAL_DOC_REFERENCES}

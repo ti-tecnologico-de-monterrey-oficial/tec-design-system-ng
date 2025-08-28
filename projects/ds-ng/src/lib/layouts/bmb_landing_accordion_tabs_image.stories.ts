@@ -353,7 +353,7 @@ export default {
       page: () => getPageStructureForTemplateStories(),
       description: {
         component: `
-${getLandingGeneralDesc('service')}
+${getLandingGeneralDesc('Accordion with image')}
 ${getSpecialSpecifications(`### ${TECHNICAL_DOC_TITLE}
 >
 ${TECHNICAL_DOC_REFERENCES}

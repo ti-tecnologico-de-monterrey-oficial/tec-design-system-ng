@@ -202,7 +202,7 @@ export default {
       page: () => getPageStructureForTemplateStories(),
       description: {
         component: `
-${getLandingGeneralDesc('service')}
+${getLandingGeneralDesc('Student service')}
 ${getSpecialSpecifications(`### ${TECHNICAL_DOC_TITLE}
 >
 ${TECHNICAL_DOC_REFERENCES}

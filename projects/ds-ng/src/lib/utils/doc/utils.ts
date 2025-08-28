@@ -90,7 +90,7 @@ export const attributesText = (object: { [key: string]: any }): string =>
     .join(' ');
 
 export const getLandingGeneralDesc = (name: string) =>
-  `${getGeneralDescription(`Template containing the ${DESIGN_SYSTEM_TITLE} elements to be used to implement the **Landing - Student ${name}**.`, 'https://bamboo.tec.mx/latest/particularities/mitec-web/landings-fCESn8dl-fCESn8dl')}`;
+  `${getGeneralDescription(`Template containing the ${DESIGN_SYSTEM_TITLE} elements to be used to implement the **Landing - ${name}**.`, 'https://bamboo.tec.mx/latest/particularities/mitec-web/landings-fCESn8dl-fCESn8dl')}`;
 
 export const getStandaloneGeneralDesc = (name: string) =>
   `${getGeneralDescription(`Template containing the ${DESIGN_SYSTEM_TITLE} elements to implement the structure of the **Stand alone sites - ${name}**.`, 'https://bamboo.tec.mx/latest/templates/sitios-stand-alone/descripcion-general-lwpZfyMh')}`;

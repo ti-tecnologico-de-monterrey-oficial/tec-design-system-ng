@@ -200,7 +200,7 @@ export default {
       page: () => getPageStructureForTemplateStories(),
       description: {
         component: `
-${getLandingGeneralDesc('card')}
+${getLandingGeneralDesc('Student card')}
 ${getSpecialSpecifications(`### ${TECHNICAL_DOC_TITLE}
 >
 ${TECHNICAL_DOC_REFERENCES}
