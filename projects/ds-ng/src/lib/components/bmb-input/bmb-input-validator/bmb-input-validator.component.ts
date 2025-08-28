@@ -67,7 +67,7 @@ export class BmbInputValidatorComponent implements OnInit {
   showMaxTextLength = input<boolean | null>(true);
   helperMessage = input<string>('');
   errorMessage = input<string | IBmbInputError>('');
-  customValidation = input<ValidatorFn>();
+  customValidation = input<ValidatorFn | ValidatorFn[]>();
 
   showError = model<boolean>(false);
   control = model<FormControl>();
@@ -110,7 +110,7 @@ export class BmbInputValidatorComponent implements OnInit {
     minLength: number,
     pattern: string,
     isJsonFormat: boolean,
-    customValidation: ValidatorFn,
+    customValidation: ValidatorFn | ValidatorFn[],
   ): void {
     if (!this.control()?.value && (!!value || checked)) {
       this.addValue(this.control()!, type, value, checked);
@@ -145,7 +145,13 @@ export class BmbInputValidatorComponent implements OnInit {
     }
 
     if (!!customValidation) {
-      this.control()?.addValidators(this.validatorError(customValidation));
+      if (Array.isArray(customValidation)) {
+        customValidation.forEach((currentValidation: ValidatorFn) =>
+          this.control()?.addValidators(this.validatorError(currentValidation)),
+        );
+      } else {
+        this.control()?.addValidators(this.validatorError(customValidation));
+      }
     }
 
     if (this.isDisabled()) this.control()?.disable();
@@ -273,7 +279,7 @@ export class BmbInputValidatorComponent implements OnInit {
     if (this.control()?.hasError('invalidJson'))
       return this.getErrorType(
         errorMessages,
-        'invalidJson',
+        'jsonFormat',
         'Por favor ingresa el contenido en formato JSON válido',
       );
     if (this.control()?.hasError('customValidation'))
