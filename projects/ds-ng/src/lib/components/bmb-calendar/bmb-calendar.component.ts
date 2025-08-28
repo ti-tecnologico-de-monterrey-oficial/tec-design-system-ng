@@ -69,7 +69,7 @@ export {
   encapsulation: ViewEncapsulation.None,
 })
 export class BmbCalendarComponent implements OnInit, AfterViewInit {
-  view = model<IBmbCalendarView>('week');
+  view = model<IBmbCalendarView>('week'); // internal
   filters = model<{ [key: string]: boolean }>({});
   calendarTimezone = input<string>(
     Intl.DateTimeFormat().resolvedOptions().timeZone,
@@ -86,7 +86,7 @@ export class BmbCalendarComponent implements OnInit, AfterViewInit {
     this.eventsSignal.getEventList(),
   );
   showFilterButton = input<boolean>(false);
-  visibleDate = model<DateTime>(DateTime.now());
+  visibleDate = model<DateTime>(DateTime.now()); // internal
 
   currentDate = input<string>(''); // Deprecated
 

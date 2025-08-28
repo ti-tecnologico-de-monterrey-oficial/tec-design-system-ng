@@ -188,6 +188,10 @@ export default {
           'selectedEvent',
           'selectedWeek',
           'timerId',
+          'view',
+          'visibleDate',
+          'weekNumber',
+          'getDayEvents',
         ],
       },
       description: {
@@ -262,6 +266,15 @@ ${getBasicExampleBlock('BmbCalendarComponent')}
         defaultValue: { summary: 'false' },
       },
     },
+    calendarTitle: {
+      control: { type: 'text' },
+      description: 'Sets the title for the calendar',
+      table: {
+        category: 'Properties',
+        type: { summary: 'string' },
+        defaultValue: { summary: 'Mi horario' },
+      },
+    },
     dateFormat: {
       control: { type: 'text' },
       description:
@@ -270,6 +283,24 @@ ${getBasicExampleBlock('BmbCalendarComponent')}
         category: 'Properties',
         type: { summary: 'string' },
         defaultValue: { summary: 'iso' },
+      },
+    },
+    filters: {
+      control: { type: '{ [key: string]: boolean }' },
+      description: 'Sets the filters for calendar events, this is a model input, so you can update the filters externally',
+      table: {
+        category: 'Properties',
+        type: { summary: 'object' },
+        defaultValue: { summary: '{}' },
+      },
+    },
+    startBusinessHour: {
+      control: { type: 'number' },
+      description: 'Sets the start business hour for the calendar (example: 8)',
+      table: {
+        category: 'Properties',
+        type: { summary: 'number' },
+        defaultValue: { summary: 8 },
       },
     },
     lang: DBmbGenericParamDesc.lang,
