@@ -1,5 +1,10 @@
 import { Meta, StoryObj } from '@storybook/angular';
 import { BmbSkeletonComponent } from './bmb-skeleton.component';
+import {
+  getBasicExampleBlock,
+  getGeneralComponentDescription,
+  getGeneralDescription,
+} from '../../utils/doc/utils';
 
 export default {
   title: 'Dev tools/Skeleton',
@@ -8,37 +13,17 @@ export default {
     docs: {
       description: {
         component: `
-Below is an example of how you can use this component in TypeScript:
-
-\`\`\`typescript
-import { BmbSkeletonComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
-@Component({
-  selector: 'component',
-  standalone: true,
-  imports: [ BmbSkeletonComponent ],
-  templateUrl: './component.html',
-  styleUrl: './component.scss',
-})
-export class AppComponent {
-  type = 'header';
-}
-\`\`\`
-
-Below is an example of how you can use this component in HTML:
-
-\`\`\`html
-<bmb-skeleton [type]="'header'"></bmb-skeleton>
-\`\`\`
+${getGeneralDescription(`${getGeneralComponentDescription('skeleton', 'element')} for the implementation of simple specific structures.`, 'https://bamboo.tec.mx/latest/dev-tools/coleccion-de-componentes-uC69aq75')}
+${getBasicExampleBlock('BmbSkeletonComponent')}
         `,
       },
     },
   },
   argTypes: {
     type: {
-      name: 'Type',
       control: 'select',
       options: ['header', 'input', 'stray', 'generic1', 'generic2', 'generic3'],
-      description: 'The type of skeleton to display.',
+      description: 'Sets the type of skeleton to display.',
       table: {
         category: 'Properties',
         type: {

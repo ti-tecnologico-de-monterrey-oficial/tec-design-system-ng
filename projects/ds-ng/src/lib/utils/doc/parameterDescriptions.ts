@@ -421,7 +421,7 @@ By default, the supported language are:
     ON_CLICK_DESCRIPTION,
     'pressed',
   ),
-  buttonKeyPress: getOnClickParam(
+  onButtonKeyPress: getOnClickParam(
     getOnEvent('', 'buttonKeyPress'),
     ' with a keyboard'.concat(ON_CLICK_DESCRIPTION),
     'pressed',
