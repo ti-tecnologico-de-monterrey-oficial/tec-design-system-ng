@@ -77,7 +77,7 @@
   @if (selectedEvent) {
     <section>
       @if (selectedEvent.tags?.length) {
-        <p style="display: flex; flex-wrap: wrap; gap: .5rem;">
+        <p style="display: flex; flex-wrap: wrap; gap: 0.5rem">
           @for (item of selectedEvent.tags; track $index) {
             <bmb-badge [text]="item.text" [appearance]="item.appearance" />
           }

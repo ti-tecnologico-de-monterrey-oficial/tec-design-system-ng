@@ -1,6 +1,12 @@
 import { componentWrapperDecorator, Meta, StoryObj } from '@storybook/angular';
 import { BmbTimestreamComponent } from './bmb-timestream.component';
-import { getBasicExampleBlock, getEmptyStateMessage, getGeneralComponentDescription, getGeneralDescription, getSpecialSpecifications } from '../../utils/doc/utils';
+import {
+  getBasicExampleBlock,
+  getEmptyStateMessage,
+  getGeneralComponentDescription,
+  getGeneralDescription,
+  getSpecialSpecifications,
+} from '../../utils/doc/utils';
 import { DBmbGenericParamDesc } from '../../utils/doc/parameterDescriptions';
 
 export default {

@@ -113,7 +113,12 @@ export const layoutEvents = (events: IBmbCalendarEvent[]) => {
     group.forEach((e) => {
       let placed = false;
       for (let i = 0; i < cols.length; i++) {
-        if (!cols[i].some((ev) => ev.interval && e.interval && ev.interval.overlaps(e.interval))) {
+        if (
+          !cols[i].some(
+            (ev) =>
+              ev.interval && e.interval && ev.interval.overlaps(e.interval),
+          )
+        ) {
           cols[i].push(e);
           e.column = i;
           placed = true;

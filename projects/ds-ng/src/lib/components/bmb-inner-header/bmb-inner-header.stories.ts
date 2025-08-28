@@ -1,7 +1,33 @@
 import { Meta, moduleMetadata, StoryObj } from '@storybook/angular';
 import { BmbInnerHeaderComponent } from './bmb-inner-header.component';
-import { attributes, attributesText } from '../../utils/doc/utils';
+import {
+  attributes,
+  attributesText,
+  getBasicExampleBlock,
+  getGeneralComponentDescription,
+  getGeneralDescription,
+  getOnEvent,
+  IBmbOnEvent,
+} from '../../utils/doc/utils';
 import { BmbChevronTitleSelectorComponent } from '../bmb-chevron-title-selector/bmb-chevron-title-selector.component';
+import {
+  DBmbGenericParamDesc,
+  DBmbIconParamDesc,
+  getDefaultValueControl,
+  getOnClickParam,
+  getPropertyParamDesc,
+} from '../../utils/doc/parameterDescriptions';
+
+const onSearchEvent: IBmbOnEvent = getOnEvent('search', 'searchData', 'string');
+const getButtonDesc = (isCloseButton: boolean) => {
+  const buttons: string[] = ['back', 'close'];
+
+  return getPropertyParamDesc(
+    `***${buttons[Number(isCloseButton)]}*** button visible`,
+    'boolean',
+    false,
+  );
+};
 
 export default {
   title: 'Particularities/mitec app/Inner header',
@@ -13,198 +39,91 @@ export default {
   ],
   parameters: {
     docs: {
+      controls: {
+        exclude: [
+          'searchForm',
+          'toggleSearch',
+          'getFormControl',
+          'getLeftIcon',
+          'handleBack',
+          'handleClose',
+          'handleSearch',
+          'handleTrailingIconPrimary',
+          'handleTrailingIconSecondary',
+          'onSubmit',
+          '',
+        ],
+      },
       description: {
         component: `
-Below is an example of how you can use this component in TypeScript:
-
-\`\`\`typescript
-import { BmbInnerHeaderComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
-@Component({
-  selector: 'component',
-  standalone: true,
-  imports: [ BmbInnerHeaderComponent ],
-  templateUrl: './component.html',
-  styleUrl: './component.scss',
-})
-  export class AppComponent {
-   handleSearch(event: string): void {
-    console.log('Received search value:', event);
-  }
-}
-\`\`\`
-
-Below is an example of how you can use this component in HTML:
+${getGeneralDescription(`${getGeneralComponentDescription('inner-header')} to implement headers for different needs.`, 'https://bamboo.tec.mx/latest/particularities/mitec-app/inner-header-yqkTnjq6')}
+${getBasicExampleBlock('BmbInnerHeaderComponent')}
         `,
       },
     },
   },
   argTypes: {
     title: {
-      name: 'Title',
       control: { type: 'text' },
       description: 'Sets the main title for the header.',
       table: {
         category: 'Properties',
+        defaultValue: { summary: '' },
         type: { summary: 'string' },
       },
     },
     placeholderSearch: {
-      name: 'Placeholder Search',
       control: { type: 'text' },
-      description: 'Defines the placeholder text for the search input.',
+      description: 'Sets the placeholder text for the search input.',
       table: {
         category: 'Properties',
+        defaultValue: getDefaultValueControl(''),
         type: { summary: 'string' },
       },
     },
-    subTitle: {
-      name: 'Subtitle',
-      control: null,
-      description:
-        'This property is deprecated and will be removed in future versions.',
-      table: {
-        category: 'Deprecated',
-        deprecated: {
-          summary:
-            'This property is deprecated and will be removed in future versions.',
-        },
-      },
-    },
+    subTitle: DBmbGenericParamDesc.deprecated,
     trailingIconPrimary: {
-      name: 'Trailing Icon Primary',
-      control: { type: 'text' },
-      description: 'Specifies the icon shown as the primary trailing icon.',
-      table: {
-        category: 'Properties',
-        type: { summary: 'string' },
-      },
+      ...DBmbIconParamDesc.icon,
+      description: DBmbIconParamDesc.icon.description.replace(
+        'icon name',
+        'name of the primary icon',
+      ),
     },
     trailingIconSecondary: {
-      name: 'Trailing Icon Secondary',
-      control: { type: 'text' },
-      description: 'Specifies the icon shown as the secondary trailing icon.',
-      table: {
-        category: 'Properties',
-        type: { summary: 'string' },
-      },
+      ...DBmbIconParamDesc.icon,
+      description: DBmbIconParamDesc.icon.description.replace(
+        'icon name',
+        'name of the secondary icon',
+      ),
     },
-    showClose: {
-      name: 'Show Close',
-      control: { type: 'boolean' },
-      description: 'Toggles the visibility of the close button.',
-      table: {
-        category: 'Properties',
-        type: { summary: 'boolean' },
-      },
-    },
-    showReturn: {
-      name: 'Show Return',
-      control: { type: 'boolean' },
-      description: 'Displays the return button if true.',
-      table: {
-        category: 'Properties',
-        type: { summary: 'boolean' },
-      },
-    },
-    showSearch: {
-      name: 'Show Search',
-      control: { type: 'boolean' },
-      description: 'Toggles the visibility of the search bar.',
-      table: {
-        category: 'Properties',
-        type: { summary: 'boolean' },
-      },
-    },
-    onHandleBack: {
-      name: 'On Handle Back',
-      control: { summary: 'function' },
-      description: 'Event triggered when the back button is clicked.',
-      table: {
-        category: 'Events',
-        type: { summary: '(onHandleBack)="yourFunction()"' },
-      },
-    },
-    onHandleClose: {
-      name: 'On Handle Close',
-      control: null,
-      description: 'Event triggered when the close button is clicked.',
-      table: {
-        category: 'Events',
-        type: { summary: '(onHandleClose)="yourFunction()"' },
-      },
-    },
-    onHandleTrailingPrimary: {
-      name: 'On Handle Trailing Primary',
-      control: { summary: 'function' },
-      description: 'Event triggered when the primary trailing icon is clicked.',
-      table: {
-        category: 'Events',
-        type: { summary: '(onHandleTrailingPrimary)="yourFunction()"' },
-      },
-    },
-    onHandleTrailingSecondary: {
-      name: 'On Handle Trailing Secondary',
-      control: null,
-      description:
-        'Event triggered when the secondary trailing icon is clicked.',
-      table: {
-        category: 'Events',
-        type: { summary: '(onHandleTrailingSecondary)="yourFunction()"' },
-      },
-    },
-    searchData: {
-      name: 'Search Data',
-      control: { type: 'void' },
-      description: 'Output emitted when the user initiates a search.',
-      table: {
-        category: 'Outputs',
-        type: { summary: 'void' },
-      },
-    },
-    isLoading: {
-      name: 'Is Loading',
-      description:
-        'This property is deprecated and will be removed in future versions.',
-      table: {
-        category: 'Deprecated',
-        deprecated: {
-          summary:
-            'This property is deprecated and will be removed in future versions.',
-        },
-      },
-    },
-    data: {
-      name: 'Data',
-      description:
-        'This property is deprecated and will be removed in future versions.',
-      table: {
-        category: 'Deprecated',
-        deprecated: {
-          summary:
-            'This property is deprecated and will be removed in future versions.',
-        },
-      },
-    },
-    test_text: {
-      name: 'Text',
-      description: 'Header content example.',
-      table: {
-        category: 'Example',
-        type: { summary: 'string' },
-      },
-    },
-    onValueChange: {
-      name: 'On Value Change',
-      description:
-        'This property is deprecated and will be removed in future versions.',
-      table: {
-        category: 'Deprecated',
-        deprecated: {
-          summary:
-            'This property is deprecated and will be removed in future versions.',
-        },
-      },
-    },
+    showClose: getButtonDesc(true),
+    showReturn: getButtonDesc(false),
+    showSearch: getPropertyParamDesc(
+      `***search*** button visible`,
+      'boolean',
+      false,
+      '<br/><br/>',
+    ),
+    onHandleBack: getOnClickParam(getOnEvent('back', 'onHandleBack')),
+    onHandleClose: getOnClickParam(getOnEvent('close', 'onHandleClose')),
+    onHandleTrailingPrimary: getOnClickParam(
+      getOnEvent(
+        'the primary trailing icon',
+        'onHandleTrailingPrimary',
+        'unknown',
+      ),
+    ),
+    onHandleTrailingSecondary: getOnClickParam(
+      getOnEvent(
+        'the secondary trailing icon',
+        'onHandleTrailingSecondary',
+        'unknown',
+      ),
+    ),
+    searchData: getOnClickParam(onSearchEvent, ``),
+    isLoading: DBmbGenericParamDesc.deprecated,
+    data: DBmbGenericParamDesc.deprecated,
+    onValueChange: DBmbGenericParamDesc.deprecated,
   },
   args: {
     title: 'Inner Header',

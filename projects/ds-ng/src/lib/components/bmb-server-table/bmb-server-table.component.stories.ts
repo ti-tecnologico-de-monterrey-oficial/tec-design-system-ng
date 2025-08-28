@@ -2,7 +2,11 @@ import { BmbServerTableComponent } from './bmb-server-table.component';
 import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
 import { CommonModule } from '@angular/common';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
-import { getBasicExampleBlock, getGeneralComponentDescription, getGeneralDescription } from '../../utils/doc/utils';
+import {
+  getBasicExampleBlock,
+  getGeneralComponentDescription,
+  getGeneralDescription,
+} from '../../utils/doc/utils';
 
 export default {
   title: 'Components/Containers/Table/Server table',
