@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { Meta, StoryFn, moduleMetadata } from '@storybook/angular';
-import { Description, Primary, Title } from '@storybook/addon-docs/blocks';
 import {
   BmbHomeCardComponent,
   BmbLayoutDirective,
@@ -17,6 +16,7 @@ import {
   getBasicExampleBlock,
   getFormatName,
   getLandingGeneralDesc,
+  getPageStructureForTemplateStories,
   getSpecialSpecifications,
   TECHNICAL_DOC_REFERENCES,
   TECHNICAL_DOC_TITLE,
@@ -188,12 +188,10 @@ export default {
   ],
   parameters: {
     docs: {
-      page: () => {
-        return [Title({}), Description({}), Primary({})];
-      },
+      page: () => getPageStructureForTemplateStories(),
       description: {
         component: `
-${getLandingGeneralDesc('tab')}
+${getLandingGeneralDesc('Student tab')}
 ${getSpecialSpecifications(`### ${TECHNICAL_DOC_TITLE}
 >
 ${TECHNICAL_DOC_REFERENCES}

@@ -38,7 +38,7 @@ export const TECHNICAL_DOC_TITLE: string = `${DESIGN_SYSTEM_TITLE} ***- Technica
 export const TECHNICAL_DOC_REFERENCES: string = `Please remember to refer to the ${TECHNICAL_DOC_TITLE} for more details:`;
 export const STORIES_TITLE: string = 'Variant templates';
 export const TITLE_OF_CONTROLS: string = 'Properties / Events';
-const TOC_TITLE: string = 'On this page';
+export const TOC_TITLE: string = 'On this page';
 export const DESCRIPTION_TITLE: string = 'Description';
 export const SPECIAL_SPECIFICATIONS_TITLE: string =
   'Considerations / Restrictions';
@@ -58,6 +58,10 @@ export const TOC_OBJ = {
 
 export const getPageStructureForFoundationStories = () => {
   return [Title({}), Description({}), Primary({}), Controls({})];
+};
+
+export const getPageStructureForTemplateStories = () => {
+  return [Title({}), Description({}), Primary({})];
 };
 
 const getValue = (key: string, value: undefined): any =>
@@ -86,7 +90,7 @@ export const attributesText = (object: { [key: string]: any }): string =>
     .join(' ');
 
 export const getLandingGeneralDesc = (name: string) =>
-  `${getGeneralDescription(`Template containing the ${DESIGN_SYSTEM_TITLE} elements to be used to implement the **Landing - Student ${name}**.`, 'https://bamboo.tec.mx/latest/particularities/mitec-web/landings-fCESn8dl-fCESn8dl')}`;
+  `${getGeneralDescription(`Template containing the ${DESIGN_SYSTEM_TITLE} elements to be used to implement the **Landing - ${name}**.`, 'https://bamboo.tec.mx/latest/particularities/mitec-web/landings-fCESn8dl-fCESn8dl')}`;
 
 export const getStandaloneGeneralDesc = (name: string) =>
   `${getGeneralDescription(`Template containing the ${DESIGN_SYSTEM_TITLE} elements to implement the structure of the **Stand alone sites - ${name}**.`, 'https://bamboo.tec.mx/latest/templates/sitios-stand-alone/descripcion-general-lwpZfyMh')}`;
@@ -808,6 +812,43 @@ export const getAlertCenterServiceDocumentation = (): string => getSpecialSpecif
   > \`\`\`
 `);
 
+export const getProviderBlockExample = (bambooProviderName: string) =>
+  `providers: [
+  provideRouter(routes),
+  importProvidersFrom([${bambooProviderName}, //Add other providers...]),
+]`;
+
+export const getProviderExample = (bambooProviderName: string) =>
+  `Add the ***${bambooProviderName}*** to your App providers:
+\`\`\`typescript
+ ${getProviderBlockExample(bambooProviderName)}
+\`\`\`
+`;
+
+export const getProviderTypescriptExample = (
+  bambooProviderName: string,
+  additionalDetail: string = '',
+) => `
+###${RELEVANT_TITLE_LEVEL[3]}
+>
+>${additionalDetail}
+>
+App provider example:
+\`\`\`typescript
+// src/app/app.config.ts
+import { ApplicationConfig } from '@angular/core';
+import { provideRouter } from '@angular/router';
+import { routes } from './app.routes';
+import { ${bambooProviderName} } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
+// Import other routes
+>
+export const appConfig: ApplicationConfig = {
+ ${getProviderBlockExample(bambooProviderName)}
+};
+\`\`\`
+>
+`;
+
 /*
 Checklist:
 ON THIS PAGE (optional, TABLE OF CONTENTS) [Done, is in preview, if not so add parameters: { docs: { toc: TOC_OBJ...]
@@ -830,15 +871,6 @@ ON THIS PAGE (optional, TABLE OF CONTENTS) [Done, is in preview, if not so add p
 */
 
 /*
-RELEVANT_TITLE_LEVEL: string[] = [
-  '⚠️**Warning**<br/>',
-  '‼️**Important**<br/>',
-  '✳️**Note**<br/>',
-  '⚙️**Configuration**',
-  '⭐**Example**',
-];
-${RELEVANT_TITLE_LEVEL[_]}
-
 ${getGeneralDescription(`${getGeneralComponentDescription('')} `, '')}
 ${getBasicExampleBlock('')}
 
@@ -852,9 +884,6 @@ ${getBasicExampleBlock('')}
           '',
           'other'
         ),
-getPropertyParamDesc('')
-
-getDefaultValueControl(false)
 
 controls: { exclude: ['', ''] },
 controls: {

@@ -259,7 +259,8 @@ ${getBasicExampleBlock('BmbCalendarComponent')}
     ),
     showFilterButton: {
       control: { type: 'boolean' },
-      description: 'Shows or hides the filter button. Shows the button when true.',
+      description:
+        'Shows or hides the filter button. Shows the button when true.',
       table: {
         category: 'Properties',
         type: { summary: 'boolean' },

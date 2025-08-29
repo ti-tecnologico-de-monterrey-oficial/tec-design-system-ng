@@ -1,34 +1,40 @@
 import { Meta, StoryObj } from '@storybook/angular';
 import { BmbStatCounterComponent } from './bmb-stat-counter.component';
+import {
+  getBasicExampleBlock,
+  getFormatName,
+  getGeneralComponentDescription,
+  getGeneralDescription,
+  getOnEvent,
+  IBmbOnEvent,
+  RELEVANT_TITLE_LEVEL,
+} from '../../utils/doc/utils';
+import { getOnClickParam } from '../../utils/doc/parameterDescriptions';
+import * as stepProgressBarStory from '../bmb-step-progress-bar/bmb-step-progress-bar.stories';
 
+const onStepEvent: IBmbOnEvent = getOnEvent('step number', 'onStepPress');
 export default {
   title: 'Dev tools/Stat counter',
   component: BmbStatCounterComponent,
   parameters: {
     docs: {
+      controls: {
+        exclude: ['getStepsArray', 'onStepClicked'],
+      },
       description: {
         component: `
-Below is an example of how you can use this component in TypeScript:
-
-\`\`\`typescript
-import { BmbStatCounterComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
-@Component({
-  selector: 'component',
-  standalone: true,
-  imports: [ BmbStatCounterComponent ],
-  templateUrl: './component.html',
-  styleUrl: './component.scss',
-})
-\`\`\`
-
-Below is an example of how you can use this component in HTML:
+${getGeneralDescription(
+  `${getGeneralComponentDescription('stat-counter', 'element')} the progress of steps to be displayed.<br/><br/>
+${RELEVANT_TITLE_LEVEL[0]}This item may be discontinued, use is recommended [${stepProgressBarStory.default.title}](/docs/${getFormatName(stepProgressBarStory.default.title!, /(\/)|( )/g, '-').toLocaleLowerCase()}--documentation).`,
+  'https://bamboo.tec.mx/latest/dev-tools/coleccion-de-componentes-uC69aq75',
+)}
+${getBasicExampleBlock('BmbStatCounterComponent')}
         `,
       },
     },
   },
   argTypes: {
     activeStep: {
-      name: 'Active Step',
       control: {
         type: 'number',
       },
@@ -38,7 +44,6 @@ Below is an example of how you can use this component in HTML:
       },
     },
     totalSteps: {
-      name: 'Total Steps',
       control: {
         type: 'number',
       },
@@ -47,6 +52,7 @@ Below is an example of how you can use this component in HTML:
         type: { summary: 'number' },
       },
     },
+    onStepPress: getOnClickParam(onStepEvent, '. Emits the stat index'),
   },
   args: {
     totalSteps: 5,

@@ -65,7 +65,7 @@ ${getBasicExampleBlock('BmbUserImageComponent')}
     },
     buttonClick: DBmbGenericParamDesc.onButtonClick,
     buttonPress: DBmbGenericParamDesc.onButtonPress,
-    buttonKeyPress: DBmbGenericParamDesc.buttonKeyPress,
+    onButtonKeyPress: DBmbGenericParamDesc.onButtonKeyPress,
   },
   args: {
     image: 'https://picsum.photos/id/64/200/300',

@@ -511,6 +511,21 @@
   }
 }
 .bmb_template-accordion {
+  height: calc(100% - rem.rem_calc(32));
+
+  @media (min-width: 1000px) {
+    height: calc(100% - rem.rem_calc(140));
+  }
+
+  .bmb_home-card,
+  .bmb_home-card-wrapper {
+    height: 100%;
+  }
+
+  &-sections {
+    align-items: stretch;
+  }
+
   .bmb_tabs {
     margin-bottom: rem.rem_calc(40);
   }
@@ -527,20 +542,6 @@
           padding-left: rem.rem_calc(8);
         }
       }
-    }
-  }
-  &-content {
-    display: flex;
-    flex-direction: column;
-    gap: rem.rem_calc(32);
-  }
-
-  &-image {
-    border-radius: rem.rem_calc(20);
-    overflow: hidden;
-    img {
-      border-radius: rem.rem_calc(20);
-      width: 100%;
     }
   }
 }

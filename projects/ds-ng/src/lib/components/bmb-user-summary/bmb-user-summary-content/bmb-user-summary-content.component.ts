@@ -6,13 +6,21 @@ import {
 } from '@angular/core';
 import { BmbUserImageComponent } from '../../bmb-user-image/bmb-user-image.component';
 import { CommonModule } from '@angular/common';
+import { BmbLayoutItemDirective } from '../../../directives/bmb-layout/bmb-layout-item.directive';
+import { BmbLayoutDirective } from '../../../directives/bmb-layout/bmb-layout.directive';
+import { IBmbUserImageSize, SizeNames } from '../../../types';
 
 export type IBmbContentLayoutSummary = 'column' | 'row';
 
 @Component({
   selector: 'bmb-user-summary-content',
   standalone: true,
-  imports: [CommonModule, BmbUserImageComponent],
+  imports: [
+    CommonModule,
+    BmbUserImageComponent,
+    BmbLayoutDirective,
+    BmbLayoutItemDirective,
+  ],
   templateUrl: './bmb-user-summary-content.component.html',
   styleUrl: './bmb-user-summary-content.component.scss',
   encapsulation: ViewEncapsulation.None,
@@ -24,12 +32,29 @@ export class BmbUserSummaryContentComponent {
   userId = input<string>('');
   image = input<string>('');
   isImageBordered = input<boolean>(true);
+  altImage = input<string>('Alt image description');
+  imageSize = input<IBmbUserImageSize>('mobile-large');
   infoCareer = input<string>('');
+  campus = input<string>('');
+  role = input<string>('');
   email = input<string>('');
   salutation = input<string>('Buenas tardes');
   contentLayout = input<IBmbContentLayoutSummary>('column');
+  gapSize = input<SizeNames>('none');
 
   getClass(mainClassName: string): string {
     return `${mainClassName}-${this.contentLayout()}`;
+  }
+
+  getSalutationClasses(mainClassName: string): string[] {
+    const classes: string[] = [this.getClass(mainClassName)];
+    if (!this.isProfile()) classes.push(`${mainClassName}-salutation`);
+    return classes;
+  }
+
+  getName(): string {
+    if (!!this.salutation() && !this.isProfile())
+      return `¡${this.salutation()}${!!this.name() ? ' '.concat(this.name()) : ''}!`;
+    return this.name();
   }
 }

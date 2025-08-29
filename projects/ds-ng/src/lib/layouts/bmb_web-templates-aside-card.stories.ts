@@ -5,13 +5,13 @@ import {
   attributes,
   getBasicExampleBlock,
   getFormatName,
+  getPageStructureForTemplateStories,
   getSpecialSpecifications,
   getStandaloneGeneralDesc,
   TECHNICAL_DOC_REFERENCES,
   TECHNICAL_DOC_TITLE,
 } from '../utils/doc/utils';
 import * as topBarStory from '../components/bmb-top-bar/bmb-top-bar.stories';
-import { Description, Primary, Title } from '@storybook/addon-docs/blocks';
 
 @Component({
   standalone: true,
@@ -65,9 +65,7 @@ export default {
   ],
   parameters: {
     docs: {
-      page: () => {
-        return [Title({}), Description({}), Primary({})];
-      },
+      page: () => getPageStructureForTemplateStories(),
       description: {
         component: `
 ${getStandaloneGeneralDesc('2 Column normal screen')}

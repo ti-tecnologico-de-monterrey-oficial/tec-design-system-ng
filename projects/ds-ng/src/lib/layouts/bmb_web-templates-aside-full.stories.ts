@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 import { Meta, StoryFn, moduleMetadata } from '@storybook/angular';
-import { Description, Primary, Title } from '@storybook/addon-docs/blocks';
 import { BmbTopBarComponent } from '../../public-api';
 import {
   attributes,
   getBasicExampleBlock,
   getFormatName,
+  getPageStructureForTemplateStories,
   getSpecialSpecifications,
   getStandaloneGeneralDesc,
   TECHNICAL_DOC_REFERENCES,
@@ -61,9 +61,7 @@ export default {
   ],
   parameters: {
     docs: {
-      page: () => {
-        return [Title({}), Description({}), Primary({})];
-      },
+      page: () => getPageStructureForTemplateStories(),
       description: {
         component: `
 ${getStandaloneGeneralDesc('2 Column fullScreen')}

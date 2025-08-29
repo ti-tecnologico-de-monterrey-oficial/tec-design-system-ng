@@ -5,7 +5,13 @@ import {
 } from './bmb-layout-grid.directive';
 import { SizeNames } from '../../types';
 import { Meta, moduleMetadata, StoryFn } from '@storybook/angular';
-import { attributes } from '../../utils/doc/utils';
+import {
+  attributes,
+  getGeneralDescription,
+  getPageStructureForFoundationStories,
+  getSpecialSpecifications,
+  SANDBOX_TITLE,
+} from '../../utils/doc/utils';
 import { CommonModule } from '@angular/common';
 import { BmbAccordionComponent } from '../../components/bmb-accordion/bmb-accordion.component';
 import { BmbActionIconComponent } from '../../components/bmb-action-icon/bmb-action-icon.component';
@@ -285,20 +291,28 @@ export default {
   ],
   parameters: {
     docs: {
+      page: () => getPageStructureForFoundationStories(),
       description: {
         component: `
-Make click and drag to create a new item in the grid. The new item will be created with the same size as the selected area. The grid is responsive and will adapt to the size of the container.
-
-The grid is generated using CSS Grid Layout, which allows for a flexible and responsive layout. The grid items are created using the \`BmbLayoutGridItemDirective\`, which allows for easy customization of the grid items.
-
-You can copy the generated HTML code and use it in your own project. The generated HTML code will include the \`bmbLayoutGrid\` and \`bmbLayoutGridItem\` directives, which are required for the grid to work properly.
+${getGeneralDescription('***Grid generator*** is a tool that helps generate grids graphically, provides the code generated dynamically based on the interaction with this tool.', 'https://bamboo.tec.mx/latest/dev-tools/coleccion-de-componentes-uC69aq75')}
+${getSpecialSpecifications(`
+Make click and drag to create a new item in the grid. The new item will be created with the same size as the selected area.
+The grid is responsive and will adapt to the size of the container.<br/><br/>
+>
+The grid is generated using CSS Grid Layout, which allows for a flexible and responsive layout.
+The grid items are created using the \`BmbLayoutGridItemDirective\`, which allows for easy customization of the grid items.<br/><br/>
+>
+You can copy the generated HTML code and use it in your own project.
+The generated HTML code will include the \`bmbLayoutGrid\` and \`bmbLayoutGridItem\` directives, which are required for the grid to work properly.<br/><br/>
+>
+### ${SANDBOX_TITLE}
+`)}
 `,
       },
     },
   },
   argTypes: {
     colGapSize: {
-      name: 'Column gap size',
       control: {
         type: 'select',
       },
@@ -311,7 +325,6 @@ You can copy the generated HTML code and use it in your own project. The generat
       },
     },
     rows: {
-      name: 'Number of rows',
       control: {
         type: 'number',
       },
@@ -323,7 +336,6 @@ You can copy the generated HTML code and use it in your own project. The generat
       },
     },
     columns: {
-      name: 'Number of columns',
       control: {
         type: 'number',
       },
@@ -335,7 +347,6 @@ You can copy the generated HTML code and use it in your own project. The generat
       },
     },
     rowSize: {
-      name: 'Row size',
       control: {
         type: 'object',
       },
@@ -347,7 +358,6 @@ You can copy the generated HTML code and use it in your own project. The generat
       },
     },
     columnSize: {
-      name: 'Column size',
       control: {
         type: 'object',
       },
@@ -359,7 +369,6 @@ You can copy the generated HTML code and use it in your own project. The generat
       },
     },
     rowGapSize: {
-      name: 'Row gap size',
       control: {
         type: 'select',
       },
@@ -372,7 +381,6 @@ You can copy the generated HTML code and use it in your own project. The generat
       },
     },
     height: {
-      name: 'Height',
       control: {
         type: 'number',
       },

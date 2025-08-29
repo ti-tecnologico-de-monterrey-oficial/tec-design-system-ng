@@ -1,46 +1,47 @@
-import { Meta, StoryObj } from '@storybook/angular';
+import { componentWrapperDecorator, Meta, StoryObj } from '@storybook/angular';
 import { BmbHitoListComponent } from './bmb-hito-list.component';
 import { DateTime } from 'luxon';
+import {
+  getBasicExampleBlock,
+  getGeneralComponentDescription,
+  getGeneralDescription,
+} from '../../utils/doc/utils';
+import {
+  DBmbGenericParamDesc,
+  getDefaultValueControl,
+} from '../../utils/doc/parameterDescriptions';
 
 export default {
   title: 'Dev tools/Hito list',
   component: BmbHitoListComponent,
+  decorators: [
+    componentWrapperDecorator((story: string) => {
+      return `
+        <div style="height: 200px; background-color: #fff">${story}</div>`;
+    }),
+  ],
   parameters: {
     docs: {
+      controls: {
+        exclude: [
+          'getMonthTitle',
+          'handleDateChange',
+          'ngAfterViewInit',
+          'parseEvent',
+          'scrollToItem',
+          'monthList',
+        ],
+      },
       description: {
         component: `
-### Uso en TypeScript:
-\`\`\`typescript
-import { BmbHitoListComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
-
-@Component({
-  selector: 'app-component',
-  standalone: true,
-  imports: [BmbHitoListComponent],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.scss',
-})
-export class AppComponent {}
-\`\`\`
-
-### Uso en HTML:
-\`\`\`html
-<bmb-hito-list
-  [dateFormat]="'yyyy-MM-dd'"
-  [lang]="'es'"
-  [events]="eventos"
-  [selectedDate]="selectedDate"
-  [orderedMonths]="orderedMonths"
-  (changeSelectedDate)="onDateChange($event)">
-</bmb-hito-list>
-\`\`\`
+${getGeneralDescription(`${getGeneralComponentDescription('hito-list', 'element')} to show stages, milestones or progress of a process, useful in follow-up flows or technical onboarding.`, 'https://bamboo.tec.mx/latest/dev-tools/coleccion-de-componentes-uC69aq75')}
+${getBasicExampleBlock('BmbHitoListComponent')}
       `,
       },
     },
   },
   argTypes: {
     dateFormat: {
-      name: 'Date format',
       control: {
         type: 'text',
       },
@@ -51,42 +52,30 @@ export class AppComponent {}
         defaultValue: { summary: 'dd/MM/yyyy' },
       },
     },
-    lang: {
-      name: 'Language',
-      control: {
-        type: 'text',
-      },
-      description:
-        'The language for displaying dates and months, e.g., `en` for English or `es` for Spanish.',
-      table: {
-        category: 'Properties',
-        type: { summary: 'string' },
-        defaultValue: { summary: 'es' },
-      },
-    },
+    lang: DBmbGenericParamDesc.lang,
     events: {
-      name: 'Events',
       control: {
         type: 'object',
       },
       description: 'List of events to display.',
       table: {
         category: 'Properties',
+        defaultValue: { summary: '[]' },
         type: { summary: 'object' },
       },
     },
     now: {
-      name: 'Now',
+      description: 'Now',
       control: {
         type: 'date',
       },
       table: {
         category: 'Properties',
+        defaultValue: { summary: 'current date' },
         type: { summary: 'object' },
       },
     },
     selectedDate: {
-      name: 'Selected Date',
       control: {
         type: 'object',
       },
@@ -94,11 +83,15 @@ export class AppComponent {}
         'The currently selected date, including the day, month, and full date.',
       table: {
         category: 'Properties',
+        defaultValue: getDefaultValueControl(`{
+  day: '',
+  month: '',
+  date: DateTime.now(),
+}`),
         type: { summary: 'object' },
       },
     },
     orderedMonths: {
-      name: 'Ordered Months',
       control: {
         type: 'object',
       },
@@ -106,11 +99,11 @@ export class AppComponent {}
         'An array of month names defining the display order of the timeline.',
       table: {
         category: 'Properties',
+        defaultValue: { summary: '[]' },
         type: { summary: 'object' },
       },
     },
     changeSelectedDate: {
-      name: 'Change Selected Date',
       control: null,
       description:
         'Event emitted when the selected date changes. The event includes the new selected date object.',
@@ -182,27 +175,4 @@ export class AppComponent {}
 
 type Story = StoryObj<BmbHitoListComponent>;
 
-export const Default: Story = {
-  args: {},
-  render: (args) => ({
-    props: {
-      ...args,
-      changeSelectedDate: (event: any) => {
-        console.log('Selected date changed:', event);
-      },
-    },
-    template: `
-      <div style="height: 200px; background-color: #fff">
-        <bmb-hito-list
-          [dateFormat]="dateFormat"
-          [lang]="lang"
-          [now]="now"
-          [events]="events"
-          [selectedDate]="selectedDate"
-          [orderedMonths]="orderedMonths"
-          (changeSelectedDate)="changeSelectedDate($event)"
-        />
-      </div>
-    `,
-  }),
-};
+export const Default: Story = {};

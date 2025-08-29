@@ -1,53 +1,54 @@
 <section class="bmb_digital-id">
+  <bmb-image
+    class="bmb_digital-id-top-image"
+    [mobileSrc]="imgBackground()"
+    alt="Background Img"
+    borderRadius="none"
+  />
   <div class="bmb_digital-id-top">
-    <button
-      type="button"
-      class="bmb_digital-id-top-btn"
-      (click)="closeDigitalId($event)"
-    >
-      <bmb-icon
-        class="bmb_digital-id-top-close"
-        [icon]="'close'"
-        [isFill]="true"
-        [fontWeight]="'400'"
-        [size]="26"
-      ></bmb-icon>
-    </button>
-    <img
-      class="bmb_digital-id-top-image"
-      [src]="imgBackground()"
-      [alt]="'Background Img'"
-    />
-    <img
+    <bmb-image
       class="bmb_digital-id-top-logo"
-      [src]="logoSrc"
-      [alt]="'Background Img'"
+      [mobileSrc]="logoSrc"
+      alt="Tec de Monterrey"
+      borderRadius="none"
     />
   </div>
-  <div class="bmb_digital-id-mid">
-    <bmb-user-image
-      class="bmb_digital-id-photo"
-      [size]="'mobile-xlarge'"
-      [image]="imgProfile()"
-      [altImage]="'Alt image description'"
-      [bordered]="true"
-    />
-  </div>
-  <div class="bmb_digital-id-bottom">
-    <div class="bmb_digital-id-bottom-info">
-      <span class="bmb_digital-id-bottom-name">{{ name() }}</span>
-      <span class="bmb_digital-id-bottom-surname">{{ surname() }}</span>
-      <span class="bmb_digital-id-bottom-id">{{ registration() }}</span>
-      <span class="bmb_digital-id-bottom-campus">{{ campus() }}</span>
-      <span class="bmb_digital-id-bottom-career">{{ career() }}</span>
-      <span class="bmb_digital-id-bottom-role">{{ role() }}</span>
-    </div>
-  </div>
+  <bmb-action-icon
+    class="bmb_digital-id-top-btn"
+    icon="close"
+    [iconSize]="24"
+    (buttonClick)="closeDigitalId($event)"
+  />
 
+  <div class="bmb_digital-id-mid">
+    <bmb-user-summary-content
+      [isProfile]="true"
+      [name]="getFullName()"
+      [userId]="registration()"
+      [image]="imgProfile()"
+      imageSize="mobile-xlarge"
+      [campus]="campus()"
+      [infoCareer]="career()"
+      [role]="role()"
+    />
+  </div>
   <div
     class="bmb_digital-id-bottom-btn"
     [ngClass]="{ 'bmb_digital-id-bottom-btn-hide': hideButton() }"
   >
+    <button
+      type="button"
+      class="bmb_digital-id-btnAccess"
+      bmbButton
+      appearance="secondary-outlined"
+      [icon]="secondaryIconButton()"
+      [iconSize]="0"
+      size="large"
+      position="left"
+      (click)="handleSecondaryClick($event)"
+    >
+      {{ secondaryTextButton() }}
+    </button>
     <button
       type="button"
       class="bmb_digital-id-btnAccess"
