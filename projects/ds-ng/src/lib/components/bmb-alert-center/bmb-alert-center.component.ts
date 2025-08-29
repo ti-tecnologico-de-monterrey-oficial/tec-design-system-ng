@@ -71,6 +71,7 @@ export class BmbAlertCenterComponent {
   ]);
   hideTabs = input<boolean>(false);
   enableMultipleSelection = input<boolean>(true);
+  showMobileVersion = input<boolean>(false);
   //Empty state
   emptyStateData = input<IBmbAlertEmptyState>({
     primaryText: 'No tienes notificaciones para mostrar',
@@ -111,7 +112,7 @@ export class BmbAlertCenterComponent {
   isLoading = computed<boolean>(() => {
     return this.bmbAlertCenterService.getLoadingState();
   });
-  // tabs: IBmbTab[] = [];
+
   tabs = computed<IBmbTab[]>(() => {
     return this.tabsName().map((tab, index) => {
       const complexTab: IBmbTab = {
@@ -128,7 +129,7 @@ export class BmbAlertCenterComponent {
       return complexTab;
     });
   });
-  selectedTab = model<number>(0);
+  selectedTab = model<number>(1);
   selectedAlert: IBmbDataAlert[] = [];
   orderedEvents = computed<IBmbDataAlertsParsed[]>(() => {
     return this.orderEvents(this.alertList());

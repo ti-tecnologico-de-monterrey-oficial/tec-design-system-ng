@@ -430,6 +430,15 @@ ${getBasicExampleBlock('BmbAlertCenterComponent')}
       },
       description: 'Sets the configuration object for the empty state display.',
     },
+    showMobileVersion: {
+      control: { type: 'boolean' },
+      description: 'Shows the mobile version of the alert center.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'boolean' },
+        defaultValue: getDefaultValueControl('false'),
+      },
+    },
     enableMultipleSelection: {
       control: { type: 'boolean' },
       description: 'Enables multiple selection of alerts.',
@@ -464,6 +473,7 @@ ${getBasicExampleBlock('BmbAlertCenterComponent')}
     hideTabs: false,
     emptyStateData: '',
     enableMultipleSelection: true,
+    showMobileVersion: false,
   },
 } as Meta<typeof BmbAlertCenterComponent>;
 

@@ -1,27 +1,31 @@
-import { Component, computed, OnInit } from '@angular/core';
+import { Component, OnInit, signal } from '@angular/core';
 import {
   BmbAlertCenterComponent,
   BmbAlertCenterService,
   IBmbDataAlert,
   BmbButtonDirective,
   IBmbAlertCenterFooterEvent,
+  BmbNotificationCardComponent,
 } from '../../../../projects/ds-ng/src/public-api';
 
 @Component({
   selector: 'bmb-alerts-page',
   templateUrl: './alerts.component.html',
   standalone: true,
-  imports: [BmbAlertCenterComponent, BmbButtonDirective],
+  imports: [
+    BmbAlertCenterComponent,
+    BmbButtonDirective,
+    BmbNotificationCardComponent,
+  ],
 })
 export class AlertsPageComponent implements OnInit {
-  alerts = computed<IBmbDataAlert[]>(() => this.alertCenter.getAlerts());
+  alerts = signal<IBmbDataAlert[]>([]);
 
   constructor(private alertCenter: BmbAlertCenterService) {}
 
   ngOnInit(): void {
-    this.alertCenter.setLoadingState(true);
     setTimeout(() => {
-      this.alertCenter.setAlerts([
+      this.alerts.set([
         {
           id: 10,
           title:
@@ -177,9 +181,55 @@ export class AlertsPageComponent implements OnInit {
           isArchived: false,
         },
       ]);
-      this.alertCenter.setLoadingState(false);
-    }, 3000);
+    }, 0);
+
+    // setTimeout(() => {
+    //   this.alertCenter.addAlerts([
+    //     {
+    //       id: 100,
+    //       title:
+    //         'Alerta 100 j asndklfjnasldkjfn alksdjnfaklsjdnf klajsdn flkjasndf klajsnfdlkjnasdlkjfn askdljnf klasjdnfklasjdn fklasdjn flkajsdn flkajnsdfkljfn asldkjfnlaksjdn flkajsdnflkajsndflkjnasdlkjfn askldjfnlkasjdnfklajsdn flkajsndfkljan skldffn alksjdn fkljasnfdlkn al k  j snd  f lkajsndf lkjasnd flkjansdkljfn ',
+    //       description: [
+    //         { text: 'Descripción de la alerta 100', type: 'title' },
+    //         {
+    //           text: 'Descripción de la alerta 100 paragraph',
+    //           type: 'paragraph',
+    //         },
+    //         {
+    //           text: 'Descripción de la alerta 100',
+    //           type: 'button',
+    //           variant: 'primary',
+    //         },
+    //       ],
+    //       date: '28/08/2025',
+    //       isRead: false,
+    //       time: '12:00',
+    //       tags: [
+    //         { text: 'tag1', color: 'info' },
+    //         { text: 'tag2', color: 'brand' },
+    //         { text: 'tag1', color: 'info' },
+    //         { text: 'tag2', color: 'brand' },
+    //         { text: 'tag1', color: 'info' },
+    //         { text: 'tag2', color: 'brand' },
+    //         { text: 'tag1', color: 'info' },
+    //         { text: 'tag2', color: 'brand' },
+    //         { text: 'tag1', color: 'info' },
+    //         { text: 'tag2', color: 'brand' },
+    //         { text: 'tag1', color: 'info' },
+    //         { text: 'tag2', color: 'brand' },
+    //         { text: 'tag1', color: 'info' },
+    //         { text: 'tag2', color: 'brand' },
+    //         { text: 'tag1', color: 'info' },
+    //         { text: 'tag2', color: 'brand' },
+    //       ],
+    //       type: 'tipo 1',
+    //       isFavorite: true,
+    //       isArchived: false,
+    //     },
+    //   ]);
+    // }, 1000);
   }
+
   handleChangeAlertStatus(): void {
     console.log('Alert status changed');
   }

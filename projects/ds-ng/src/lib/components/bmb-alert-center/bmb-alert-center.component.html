@@ -2,9 +2,9 @@
   <div
     bmbLayoutItem
     [colSm]="4"
-    [colLg]="hideTabs() ? 12 : 5"
+    [colLg]="showMobileVersion() ? 12 : 5"
     class="bmb_alert-center-main"
-    [ngClass]="{ 'bmb_alert-center-main-no-border': hideTabs() }"
+    [ngClass]="{ 'bmb_alert-center-main-no-border': showMobileVersion() }"
   >
     @if (isLoading()) {
       <bmb-loader
@@ -75,7 +75,8 @@
       }
     }
   </div>
-  @if (!hideTabs() && alertList().length) {
+  @if (!showMobileVersion() && alertList().length) {
+
     <section
       class="bmb_alert-center-content"
       bmbLayoutItem
