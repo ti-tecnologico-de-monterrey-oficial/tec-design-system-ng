@@ -11,8 +11,6 @@ import { BmbAlertCenterComponent } from '../bmb-alert-center/bmb-alert-center.co
 import { IBmbDataAlert } from '../bmb-alert-center/types';
 import { IBmbTab } from '../bmb-tabs/bmb-tabs.component';
 import { BmbHomeCardComponent } from '../bmb-home-card/bmb-home-card.component';
-import { BmbButtonDirective } from '../../directives/bmb-button/button.directive';
-import { BmbImageComponent } from '../bmb-image/bmb-image.component';
 import { IBmbAlertCenterTabConfig } from '../bmb-alert-center/types';
 
 @Component({
@@ -22,8 +20,6 @@ import { IBmbAlertCenterTabConfig } from '../bmb-alert-center/types';
     CommonModule,
     BmbAlertCenterComponent,
     BmbHomeCardComponent,
-    BmbButtonDirective,
-    BmbImageComponent,
   ],
   templateUrl: './bmb-notification-card.component.html',
   styleUrl: './bmb-notification-card.component.scss',
@@ -37,6 +33,9 @@ export class BmbNotificationCardComponent {
   maxHeight = input<string>('auto');
 
   alertEvent = output<IBmbDataAlert>();
+  showAlertDetail = output<IBmbDataAlert>();
+  closeAlertDetail = output<IBmbDataAlert>();
+  onExpandClick = output<void>();
 
   expanded: boolean = false;
   activeData: any = [];

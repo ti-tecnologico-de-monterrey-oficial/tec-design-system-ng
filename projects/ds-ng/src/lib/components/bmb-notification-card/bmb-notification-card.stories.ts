@@ -11,6 +11,8 @@ import {
 import { getOnClickParam } from '../../utils/doc/parameterDescriptions';
 
 const typeDetail: string = `
+event: IBmbDataAlert
+
 IBmbDataAlert {
   id: number | string;
   title: string;
@@ -64,6 +66,7 @@ export default {
           'activeTab',
           'expanded',
           'tabs',
+          'tabsConfig',
         ],
       },
       description: {
@@ -148,9 +151,42 @@ ${getBasicExampleBlock(
         defaultValue: { summary: 'false' },
       },
     },
-    alertEvent: getOnClickParam(
-      getOnEvent('', 'alertEvent', 'IBmbDataAlert'),
-      `.<br/><br/>The event output is the alert detail (***IBmbDataAlert***)`,
+    maxHeight: {
+      control: { type: 'text' },
+      description:
+        'Sets the maximum height of the notification card. Accepts any valid CSS height value (e.g., "300px", "50vh", "auto").',
+      table: {
+        category: 'Properties',
+        type: { summary: 'string' },
+        defaultValue: { summary: 'auto' },
+      },
+    },
+    alertEvent: {
+      control: false,
+      description: 'Emits when an alert is triggered',
+      table: {
+        category: 'Events',
+        type: { summary: 'alertEvent($event)', detail: typeDetail },
+      },
+    },
+    showAlertDetail: {
+      control: false,
+      description: 'Emits when the alert detail is requested',
+      table: {
+        category: 'Events',
+        type: { summary: 'showAlertDetail($event)', detail: typeDetail },
+      },
+    },
+    closeAlertDetail: {
+      control: false,
+      description: 'Emits when the alert detail is closed',
+      table: {
+        category: 'Events',
+        type: { summary: 'closeAlertDetail($event)', detail: typeDetail },
+      },
+    },
+    onExpandClick: getOnClickParam(
+      getOnEvent('', 'onExpandClick', 'void'),
     ),
   },
   args: {
@@ -403,6 +439,16 @@ ${getBasicExampleBlock(
     alertEvent: () => {
       console.log('alertEvent');
     },
+    closeAlertDetail: () => {
+      console.log('closeAlertDetail');
+    },
+    showAlertDetail: () => {
+      console.log('showAlertDetail');
+    },
+    onExpandClick: () => {
+      console.log('onExpandClick');
+    },
+    maxHeight: 'auto',
   },
 } as Meta<typeof BmbNotificationCardComponent>;
 

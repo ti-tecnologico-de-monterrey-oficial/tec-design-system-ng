@@ -1,5 +1,5 @@
 <div class="bmb_alert-center-ads">
-  @if (!advertisements.length) {
+  @if (!advertisements().length) {
     <section bmbLayoutItem [colSm]="4" [colLg]="12">
       <bmb-alert-center-empty [data]="emptyStateData()" />
     </section>

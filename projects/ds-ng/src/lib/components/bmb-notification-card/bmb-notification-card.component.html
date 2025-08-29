@@ -7,13 +7,18 @@
     bgIconAppearance="red-primary"
     title="Mis Notificaciones"
     [isMobile]="false"
+    (onExpandClick)="onExpandClick.emit()"
   >
     <div class="bmb_home-notification-card-content">
       <bmb-alert-center
         [alerts]="data()"
+        [advertisements]="advertisements()"
         [tabsName]="tabsConfig"
         [showMobileVersion]="true"
         [enableMultipleSelection]="false"
+        (alertEvent)="alertEvent.emit($event)"
+        (showAlertDetail)="showAlertDetail.emit($event)"
+        (closeAlertDetail)="closeAlertDetail.emit($event)"
       />
     </div>
   </bmb-home-card>

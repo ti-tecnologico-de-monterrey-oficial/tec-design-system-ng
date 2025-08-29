@@ -8,10 +8,7 @@ import {
   ViewChild,
   ViewEncapsulation,
   computed,
-  signal,
   model,
-  effect,
-  untracked,
 } from '@angular/core';
 import { BmbTabsComponent, IBmbTab } from '../bmb-tabs/bmb-tabs.component';
 import { CommonModule } from '@angular/common';
@@ -83,8 +80,8 @@ export class BmbAlertCenterComponent {
   });
 
   // deprecated properties
-  alerts = input<IBmbDataAlert[]>([]); // deprecated, use bmbAlertCenterService.getAlerts() instead
-  advertisements = input<IBmbDataAlert[]>([]); // deprecated, use bmbAlertCenterService.getAdvertisements() instead
+  alerts = input<IBmbDataAlert[]>([]);
+  advertisements = input<IBmbDataAlert[]>([]);
 
   onChangeAlertStatus = output<IBmbDataAlertsOutput>();
   alertEvent = output<IBmbDataAlert>();
@@ -107,7 +104,9 @@ export class BmbAlertCenterComponent {
     return [...alertsOnInput, ...alertsOnService];
   });
   advertisementsList = computed<IBmbDataAlert[]>(() => {
-    return this.bmbAlertCenterService.getAdvertisements();
+    const advertisementsOnInput = this.advertisements();
+    const advertisementsOnService = this.bmbAlertCenterService.getAdvertisements();
+    return [...advertisementsOnInput, ...advertisementsOnService];
   });
   isLoading = computed<boolean>(() => {
     return this.bmbAlertCenterService.getLoadingState();
@@ -177,7 +176,8 @@ export class BmbAlertCenterComponent {
 
     if (
       this.container.nativeElement.clientWidth < 350 ||
-      window.innerWidth < 1000
+      window.innerWidth < 1000 ||
+      this.showMobileVersion()
     ) {
       const data: ModalDataConfig = {
         title: item.title,
