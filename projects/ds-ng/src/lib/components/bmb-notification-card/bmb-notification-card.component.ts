@@ -16,11 +16,7 @@ import { IBmbAlertCenterTabConfig } from '../bmb-alert-center/types';
 @Component({
   selector: 'bmb-notification-card',
   standalone: true,
-  imports: [
-    CommonModule,
-    BmbAlertCenterComponent,
-    BmbHomeCardComponent,
-  ],
+  imports: [CommonModule, BmbAlertCenterComponent, BmbHomeCardComponent],
   templateUrl: './bmb-notification-card.component.html',
   styleUrl: './bmb-notification-card.component.scss',
   encapsulation: ViewEncapsulation.None,

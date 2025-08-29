@@ -698,7 +698,8 @@ You should be careful when using ${element}, as they can affect ${DESIGN_SYSTEM_
 `;
 };
 
-export const getAlertCenterServiceDocumentation = (): string => getSpecialSpecifications(`
+export const getAlertCenterServiceDocumentation = (): string =>
+  getSpecialSpecifications(`
   > ###Configuration
   > Add the \`BmbAlertCenterService\` to your App providers:
   >
