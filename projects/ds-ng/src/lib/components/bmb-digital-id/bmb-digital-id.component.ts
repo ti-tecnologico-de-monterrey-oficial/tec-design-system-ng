@@ -39,7 +39,7 @@ export class BmbDigitalIdComponent {
   imgBackground = input.required<string>();
   hideButton = input<boolean>(false);
   secondaryTextButton = input<string>('Descargar ID a PDF');
-  secondaryIconButton = input<string>('download_2')
+  secondaryIconButton = input<string>('download_2');
 
   logoSrc = 'assets/images/tec-logo.svg';
 
@@ -48,7 +48,7 @@ export class BmbDigitalIdComponent {
   onSecondaryClick = output<MouseEvent>();
 
   handleSecondaryClick(event: MouseEvent) {
-    this.onSecondaryClick.emit(event)
+    this.onSecondaryClick.emit(event);
   }
 
   closeDigitalId(event?: MouseEvent) {

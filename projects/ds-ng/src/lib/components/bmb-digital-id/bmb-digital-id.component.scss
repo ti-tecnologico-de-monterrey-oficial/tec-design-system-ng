@@ -5,9 +5,9 @@
   background-color: rgb(var(--color-charade-50));
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: calc(40% - rem.rem_calc(100)) rem.rem_calc(
-      100
-    ) rem.rem_calc(100) 1fr auto;
+  grid-template-rows:
+    calc(40% - rem.rem_calc(100)) rem.rem_calc(100)
+    rem.rem_calc(100) 1fr auto;
   height: 100dvh;
 
   &-top {
