@@ -5,18 +5,20 @@ import {
   output,
   ViewEncapsulation,
 } from '@angular/core';
-import { BmbUserImageComponent } from '../bmb-user-image/bmb-user-image.component';
-import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { BmbButtonDirective } from '../../directives/bmb-button/button.directive';
 import { CommonModule } from '@angular/common';
+import { BmbUserSummaryContentComponent } from '../bmb-user-summary/bmb-user-summary-content/bmb-user-summary-content.component';
+import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
+import { BmbImageComponent } from '../bmb-image/bmb-image.component';
 
 @Component({
   selector: 'bmb-digital-id',
   standalone: true,
   imports: [
     CommonModule,
-    BmbUserImageComponent,
-    BmbIconComponent,
+    BmbUserSummaryContentComponent,
+    BmbActionIconComponent,
+    BmbImageComponent,
     BmbButtonDirective,
   ],
   templateUrl: './bmb-digital-id.component.html',
@@ -36,11 +38,18 @@ export class BmbDigitalIdComponent {
   imgProfile = input.required<string>();
   imgBackground = input.required<string>();
   hideButton = input<boolean>(false);
+  secondaryTextButton = input<string>('Descargar ID a PDF');
+  secondaryIconButton = input<string>('download_2')
 
   logoSrc = 'assets/images/tec-logo.svg';
 
   close = output<MouseEvent>();
   access = output<MouseEvent>();
+  onSecondaryClick = output<MouseEvent>();
+
+  handleSecondaryClick(event: MouseEvent) {
+    this.onSecondaryClick.emit(event)
+  }
 
   closeDigitalId(event?: MouseEvent) {
     this.close.emit(event || new MouseEvent('click'));
@@ -48,5 +57,9 @@ export class BmbDigitalIdComponent {
 
   clickAccess(event?: MouseEvent) {
     this.access.emit(event || new MouseEvent('click'));
+  }
+
+  getFullName(): string {
+    return this.name().concat(' ').concat(this.surname());
   }
 }

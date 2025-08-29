@@ -1,34 +1,28 @@
 import { Meta, StoryObj } from '@storybook/angular';
 import { BmbUserProfileComponent } from './bmb-user-profile.component';
+import {
+  getBasicExampleBlock,
+  getGeneralComponentDescription,
+  getGeneralDescription,
+} from '../../utils/doc/utils';
+import { DBmbGenericParamDesc } from '../../utils/doc/parameterDescriptions';
 
 export default {
   title: 'Dev tools/User profile',
   component: BmbUserProfileComponent,
   parameters: {
     docs: {
+      controls: { exclude: ['isLoading', 'handleContinue'] },
       description: {
         component: `
-Below is an example of how you can use this component in TypeScript:
-
-\`\`\`typescript
-import { BmbUserProfileComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
-@Component({
-  selector: 'component',
-  standalone: true,
-  imports: [ BmbUserProfileComponent ],
-  templateUrl: './component.html',
-  styleUrl: './component.scss',
-})
-\`\`\`
-
-Below is an example of how you can use this component in HTML:
+${getGeneralDescription(`${getGeneralComponentDescription('', 'element')} `, 'https://bamboo.tec.mx/latest/dev-tools/coleccion-de-componentes-uC69aq75')}
+${getBasicExampleBlock('')}
         `,
       },
     },
   },
   argTypes: {
     headerLabel: {
-      name: 'Header label',
       control: 'text',
       description: 'Sets the label to be displayed in the header.',
       table: {
@@ -38,7 +32,6 @@ Below is an example of how you can use this component in HTML:
       },
     },
     anotherAccountLabel: {
-      name: 'Another account label',
       control: 'text',
       description:
         'Sets the label for the option to log in with another account.',
@@ -48,33 +41,9 @@ Below is an example of how you can use this component in HTML:
         defaultValue: { summary: 'Ingresar con otra cuenta' },
       },
     },
-    anotherAccountLink: {
-      name: 'Another account link',
-      control: 'text',
-      description:
-        'Sets the link for the option to log in with another account.',
-      table: {
-        category: 'Events',
-        type: { summary: 'string' },
-        defaultValue: { summary: '' },
-      },
-    },
-    anotherAccountTarget: {
-      name: 'Another account target',
-      control: {
-        type: 'radio',
-      },
-      options: ['_blank', '_parent', '_self', '_top'],
-      description:
-        'Sets the target for the option to log in with another account.',
-      table: {
-        category: 'Events',
-        type: { summary: 'IBmbTargetLink' },
-        defaultValue: { summary: '_blank' },
-      },
-    },
+    anotherAccountLink: DBmbGenericParamDesc.link,
+    anotherAccountTarget: DBmbGenericParamDesc.target,
     buttonLabel: {
-      name: 'Button label',
       control: 'text',
       description: 'Sets the label for the continue button.',
       table: {
@@ -84,7 +53,6 @@ Below is an example of how you can use this component in HTML:
       },
     },
     userInfo: {
-      name: 'User info',
       control: 'object',
       description: `Sets an object containing user information, such as profile picture, full name, and user ID. This input is required.
       IBmbUserInfo = {
@@ -99,7 +67,6 @@ Below is an example of how you can use this component in HTML:
       },
     },
     actionHeaderLinks: {
-      name: 'Action header Links',
       control: { type: 'object' },
       description: `
 Sets an object of IBmbActionHeaderLinks type.
@@ -149,17 +116,7 @@ Template:
         },
       },
     },
-    actionHeaders: {
-      name: 'Action header',
-      control: { type: 'object' },
-      description: '',
-      table: {
-        category: 'Deprecated',
-        type: {
-          summary: 'IBmbActionHeader[]',
-        },
-      },
-    },
+    actionHeaders: DBmbGenericParamDesc.deprecated,
     onRequest: {
       name: 'On Request',
       control: {
