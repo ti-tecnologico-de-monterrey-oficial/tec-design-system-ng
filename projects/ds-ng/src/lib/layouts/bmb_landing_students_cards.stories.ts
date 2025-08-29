@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { Meta, StoryFn, moduleMetadata } from '@storybook/angular';
-import { Description, Primary, Title } from '@storybook/addon-docs/blocks';
 import {
   BmbButtonDirective,
   BmbCardComponent,
@@ -201,7 +200,7 @@ export default {
       page: () => getPageStructureForTemplateStories(),
       description: {
         component: `
-${getLandingGeneralDesc('card')}
+${getLandingGeneralDesc('Student card')}
 ${getSpecialSpecifications(`### ${TECHNICAL_DOC_TITLE}
 >
 ${TECHNICAL_DOC_REFERENCES}
