@@ -26,11 +26,7 @@
     @case ("day") {
       <bmb-calendar-template-day
         [now]="visibleDate()"
-        [events]="
-          filteredEvents()[selectedWeek()]?.[
-            visibleDate().toFormat('yyyy-MM-dd')
-          ] ?? []
-        "
+        [events]="getDayEvents()"
         (onSelectEvent)="handleSelectEvent($event)"
         [currentTime]="currentTime()"
         [startBusinessHour]="startBusinessHour()"

@@ -27,7 +27,6 @@ export default {
           'handleBack',
           'handleClose',
           'handleExpand',
-          'isExpanded',
           'useAutoExpand',
         ],
       },
@@ -133,6 +132,16 @@ ${getBasicExampleBlock(
         type: { summary: 'string' },
       },
     },
+    isExpanded: {
+      control: { type: 'boolean' },
+      description:
+        'Sets a flag to indicate whether the card is expanded or collapsed.',
+      table: {
+        category: 'Properties',
+        defaultValue: { summary: 'false' },
+        type: { summary: 'boolean' },
+      },
+    },
     onExpandClick: getOnClickParam(
       getOnEvent('expand or collapse icon', 'onExpandClick'),
       '. This should be used as a navigation action.',
@@ -149,6 +158,7 @@ ${getBasicExampleBlock(
     showRightButton: true,
     isMobile: false,
     test_text: 'hello world',
+    isExpanded: false,
     onExpandClick: () => {
       console.log('Expand button clicked');
     },

@@ -135,7 +135,9 @@ $alignItemsOptions: (
   > .bmb_text-editor,
   > .bmb_text-editor-container,
   > .bmb_home-card,
-  > .bmb_home-card > .bmb_home-card-wrapper {
+  > .bmb_home-card > .bmb_home-card-wrapper,
+  > bmb-container-button .bmb_container-button,
+  > bmb-container-button .bmb_container-button .bmb_check-external-link-button-element {
     height: 100%;
   }
 
@@ -148,3 +150,5 @@ $alignItemsOptions: (
     }
   }
 }
+
+

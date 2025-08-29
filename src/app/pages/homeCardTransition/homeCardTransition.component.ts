@@ -1,11 +1,21 @@
 import { Component } from '@angular/core';
-import { BmbHomeCardComponent } from '../../../../projects/ds-ng/src/public-api';
+import {
+  BmbHomeCardComponent,
+  BmbLayoutDirective,
+  BmbLayoutItemDirective,
+  BmbContainerButtonComponent,
+} from '../../../../projects/ds-ng/src/public-api';
 import { Router } from '@angular/router';
 
 @Component({
   selector: 'bmb-home-transition-card',
   standalone: true,
-  imports: [BmbHomeCardComponent],
+  imports: [
+    BmbHomeCardComponent,
+    BmbLayoutDirective,
+    BmbLayoutItemDirective,
+    BmbContainerButtonComponent,
+  ],
   templateUrl: './homeCardTransition.component.html',
 })
 export class HomeCardComponent {

@@ -7,10 +7,10 @@ import {
 import { BmbAlertCenterComponent } from './bmb-alert-center.component';
 import { BmbAlertCenterService } from './bmb-alert-center.service';
 import {
+  getAlertCenterServiceDocumentation,
   getBasicExampleBlock,
   getGeneralDescription,
   getOnEvent,
-  getSpecialSpecifications,
   RELEVANT_TITLE_LEVEL,
 } from '../../utils/doc/utils';
 import {
@@ -330,120 +330,7 @@ export default {
       description: {
         component: `
 ${getGeneralDescription('\`bmb-alert-center\` is an organism designed to centralize and display all important alerts and notifications that require users attention.', 'https://bamboo.tec.mx/latest/organismos/alert-center/descripcion-general-ws9A3oYS')}
-${getSpecialSpecifications(`
-  > ###Configuration
-  > Add the \`BmbAlertCenterService\` to your App providers:
-  >
-  > \`\`\`javascript
-  providers: [
-    provideRouter(routes),
-    importProvidersFrom([BmbAlertCenterService, ...]),
-  ],
-  > \`\`\`
-  >
-  > ---
-  >
-  > ###Alert center service methods
-  >
-  > ####Alerts
-  >
-  > #####Set notifications
-  >
-  > \`\`\`typescript
-  setAlerts(alerts: IBmbDataAlert[]);
-  > \`\`\`
-  >
-  > This method sets the alerts to be displayed in the alert center replacing any existing alerts.
-  >
-  > #####Update notifications
-  >
-  > \`\`\`typescript
-  updateAlerts(alertList: IBmbDataAlert[]);
-  > \`\`\`
-  >
-  > This method updates the existing alerts with the provided list. If an alert with the same ID exists, it will be updated; otherwise, it will remain unchanged.
-  >
-  > #####Add notifications
-  >
-  > \`\`\`typescript
-  addAlerts(alerts: IBmbDataAlert[]);
-  > \`\`\`
-  >
-  > This method adds new alerts to the existing list of alerts without replacing them.
-  >
-  > #####Get notifications
-  >
-  > \`\`\`typescript
-  getAlerts(): IBmbDataAlert[];
-  > \`\`\`
-  >
-  > This method retrieves the current list of alerts.
-  >
-  > ---
-  >
-  > ####Advertisements
-  >
-  > #####Set advertisements
-  >
-  > \`\`\`typescript
-  setAdvertisements(ads: IBmbDataAdvertisement[]);
-  > \`\`\`
-  >
-  > This method sets the advertisements to be displayed in the alert center replacing any existing advertisements.
-  >
-  > #####Update advertisements
-  >
-  > \`\`\`typescript
-  updateAdvertisements(adList: IBmbDataAdvertisement[]);
-  > \`\`\`
-  >
-  > This method updates the existing advertisements with the provided list. If an advertisement with the same ID exists, it will be updated; otherwise, it will remain unchanged.
-  >
-  > #####Add advertisements
-  >
-  > \`\`\`typescript
-  addAdvertisements(ads: IBmbDataAdvertisement[]);
-  > \`\`\`
-  >
-  > This method adds new advertisements to the existing list of advertisements without replacing them.
-  >
-  > #####Get advertisements
-  >
-  > \`\`\`typescript
-  getAdvertisements(): IBmbDataAdvertisement[];
-  > \`\`\`
-  >
-  > This method retrieves the current list of advertisements.
-  >
-  > ---
-  >
-  > ####Loading state
-  >
-  > #####Set loading state
-  >
-  > \`\`\`typescript
-  setLoadingState(loading: boolean = false);
-  > \`\`\`
-  >
-  > This method sets the loading state.
-  >
-  > #####Get loading state
-  >
-  > \`\`\`typescript
-  getLoadingState(): boolean;
-  > \`\`\`
-  >
-  > This method retrieves the current loading state.
-  > ### Scroll
-  If you want the component to handle the scroll, you should wrap it in a container with a defined height.
-  >
-  > \`\`\`html
-  <div style="height: 100dvh;">
-   <bmb-alert-center ... />
-  </div>
-  > \`\`\`
-`)}
-
+${getAlertCenterServiceDocumentation()}
 ${getBasicExampleBlock('BmbAlertCenterComponent')}
 
         `,
@@ -543,6 +430,15 @@ ${getBasicExampleBlock('BmbAlertCenterComponent')}
       },
       description: 'Sets the configuration object for the empty state display.',
     },
+    showMobileVersion: {
+      control: { type: 'boolean' },
+      description: 'Shows the mobile version of the alert center.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'boolean' },
+        defaultValue: getDefaultValueControl('false'),
+      },
+    },
     enableMultipleSelection: {
       control: { type: 'boolean' },
       description: 'Enables multiple selection of alerts.',
@@ -577,6 +473,7 @@ ${getBasicExampleBlock('BmbAlertCenterComponent')}
     hideTabs: false,
     emptyStateData: '',
     enableMultipleSelection: true,
+    showMobileVersion: false,
   },
 } as Meta<typeof BmbAlertCenterComponent>;
 
