@@ -105,6 +105,25 @@ $types: (
 
   &-badge {
     grid-area: badge;
+
+    .bmb_badge-container {
+      &.bmb_badge-mitec_green {
+        background-color: RGBA(var(--color-mitec-green));
+      }
+      &.bmb_badge-mitec_purple {
+        background-color: RGBA(var(--color-mitec-purple));
+      }
+      &.bmb_badge-mitec_orange {
+        background-color: RGBA(var(--mitec_orange-tint));
+      }
+
+      .bmb_badge-bullet {
+        background-color: RGBA(var(--color-charade-900));
+      }
+      .bmb_badge-content {
+        color: RGBA(var(--color-charade-900));
+      }
+    }
   }
 
   &-content {
