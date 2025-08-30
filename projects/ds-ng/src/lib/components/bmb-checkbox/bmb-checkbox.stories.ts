@@ -129,6 +129,7 @@ Multiple checkboxes can share the same name to create a group where multiple ite
     ariaLabel: DBmbInputParamDesc.ariaLabel,
     ariaLabelledby: DBmbInputParamDesc.ariaLabelledBy,
     labelPosition: DBmbInputParamDesc.checkboxLabelPosition,
+    customValidation: DBmbInputParamDesc.customValidation,
     control: DBmbInputParamDesc.control,
     errorMessage: DBmbInputParamDesc.errorMessage,
     helperMessage: DBmbInputParamDesc.helperMessage,

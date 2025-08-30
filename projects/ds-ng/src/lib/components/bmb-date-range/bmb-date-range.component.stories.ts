@@ -182,6 +182,8 @@ The name of the \`FormControl\` must consist of the name assigned in the \`name\
     },
     dateFormat: DBmbInputParamDesc.dateFormat,
     name: DBmbInputParamDesc.name,
+    errorMessage: DBmbInputParamDesc.errorMessage,
+    customValidation: DBmbInputParamDesc.customValidation,
     multipleRow: {
       control: { type: 'boolean' },
       description: 'Sets the mobile version when true.',

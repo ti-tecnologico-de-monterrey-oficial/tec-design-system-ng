@@ -236,6 +236,8 @@ If the data is a list of  IBmbDropdownItem type, the preferred options should be
         defaultValue: getDefaultValueControl(false),
       },
     },
+
+    customValidation: DBmbInputParamDesc.customValidation,
     inputId: DBmbInputParamDesc.inputId,
     tooltip: DBmbInputParamDesc.tooltip,
     errorMessage: DBmbInputParamDesc.errorMessage,
