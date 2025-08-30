@@ -1134,6 +1134,30 @@ IBmbInputError {
       defaultValue: getDefaultValueControl(),
     },
   },
+  customValidation: {
+    control: {
+      type: 'object',
+    },
+    description: `
+Sets custom validator function to the field.
+
+Example of a \`ValidatorFn\`
+    handleCustomValidator(): ValidatorFn {
+      return (control: AbstractControl): ValidationErrors | null => {
+        const { value } = control;
+        if (!value) return null;
+
+        if (value === 'value example') return { customValidation: true };
+
+        return null;
+      };
+    }
+`,
+    table: {
+      category: 'Properties',
+      type: { summary: 'ValidatorFn' },
+    },
+  },
   ariaDescribedBy: {
     control: { type: 'text' },
     description:
@@ -1248,7 +1272,6 @@ Adding the id using a property with the same name affects the operation of the f
   },
   onKeyDown: getOnEventParam(
     getOnEvent('', 'onKeyDown', 'KeyboardEvent'),
-    '',
     'keyDown',
   ),
 };

@@ -23,8 +23,10 @@ export default {
       page: () => getPageStructureForTemplateStories(),
       description: {
         component: `
-${getGeneralDescription(`${DESIGN_SYSTEM_TITLE} ***Table - Server side*** allows rendering highly configurable and interactive tables.`, 'https://bamboo.tec.mx/latest/componentes/table/descripcion-general-h1hRplJO',true)}
-${getBasicExampleBlock('BmbTablesComponent',`
+${getGeneralDescription(`${DESIGN_SYSTEM_TITLE} ***Table - Server side*** allows rendering highly configurable and interactive tables.`, 'https://bamboo.tec.mx/latest/componentes/table/descripcion-general-h1hRplJO', true)}
+${getBasicExampleBlock(
+  'BmbTablesComponent',
+  `
 
   const ID_STATUS = {
   SOLICITADO: 1,
@@ -32,7 +34,8 @@ ${getBasicExampleBlock('BmbTablesComponent',`
   PENDIENTE: 3,
 };
 
-`,`@ViewChild(BmbTablesComponent) tableComponent!: BmbTablesComponent;
+`,
+  `@ViewChild(BmbTablesComponent) tableComponent!: BmbTablesComponent;
   @ViewChild('actionTemplate') actionTemplate!: TemplateRef<any>;
 
   searchTerm = '';
@@ -154,7 +157,9 @@ ${getBasicExampleBlock('BmbTablesComponent',`
 
   editData(id: any): void {
     console.log('Editing row:', id);
-  }`,true)}
+  }`,
+  true,
+)}
         `,
       },
     },
@@ -164,38 +169,38 @@ ${getBasicExampleBlock('BmbTablesComponent',`
     wrap: false,
     initialTableSelection: [1],
     data: [],
-      columns: [
-        { def: 'sociedad', label: 'Sociedad', dataKey: 'sociedad' },
-        {
-          def: 'claveFuncionSSFF',
-          label: 'Función',
-          dataKey: 'claveFuncionSSFF',
-        },
-        {
-          def: 'nombreTipoContrato',
-          label: 'Tipo de contrato',
-          dataKey: 'nombreTipoContrato',
-        },
-        {
-          def: 'nombrePuestoFacultad',
-          label: 'Puesto',
-          dataKey: 'nombrePuestoFacultad',
-        },
-        { def: 'nombreRol', label: 'Rol', dataKey: 'nombreRol' },
-        { def: 'nombreEstatus', label: 'Estatus', dataKey: 'nombreEstatus' },
-      ],
-      config: {
-        isSelectable: false,
-        isExpandible: false,
-        isPaginable: true,
-        showActions: true,
+    columns: [
+      { def: 'sociedad', label: 'Sociedad', dataKey: 'sociedad' },
+      {
+        def: 'claveFuncionSSFF',
+        label: 'Función',
+        dataKey: 'claveFuncionSSFF',
       },
-      pageSize: 10,
-      totalItems: 100, // valor simulado
-      showSearch: true,
-      showFilters: false,
-      serverSide: true,
-      lang: 'es',
+      {
+        def: 'nombreTipoContrato',
+        label: 'Tipo de contrato',
+        dataKey: 'nombreTipoContrato',
+      },
+      {
+        def: 'nombrePuestoFacultad',
+        label: 'Puesto',
+        dataKey: 'nombrePuestoFacultad',
+      },
+      { def: 'nombreRol', label: 'Rol', dataKey: 'nombreRol' },
+      { def: 'nombreEstatus', label: 'Estatus', dataKey: 'nombreEstatus' },
+    ],
+    config: {
+      isSelectable: false,
+      isExpandible: false,
+      isPaginable: true,
+      showActions: true,
+    },
+    pageSize: 10,
+    totalItems: 100, // valor simulado
+    showSearch: true,
+    showFilters: false,
+    serverSide: true,
+    lang: 'es',
   },
 } as Meta<typeof BmbTablesComponent>;
 

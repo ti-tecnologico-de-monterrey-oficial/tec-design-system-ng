@@ -7,7 +7,11 @@ import {
   getAppearanceParam,
   getDefaultValueControl,
 } from '../../utils/doc/parameterDescriptions';
-import { getBasicExampleBlock, getGeneralComponentDescription, getGeneralDescription } from '../../utils/doc/utils';
+import {
+  getBasicExampleBlock,
+  getGeneralComponentDescription,
+  getGeneralDescription,
+} from '../../utils/doc/utils';
 
 export default {
   title: 'Components/Menus/Student activity selector',
@@ -25,7 +29,7 @@ export default {
   ],
   parameters: {
     docs: {
-      controls: { exclude: ['selectTab', 'tabs','ngAfterContentInit'] },
+      controls: { exclude: ['selectTab', 'tabs', 'ngAfterContentInit'] },
       description: {
         component: `
 ${getGeneralDescription(`${getGeneralComponentDescription('student-activity-selector')} to organize the information in three types of selectors (3 is the limit).`, 'https://bamboo.tec.mx/latest/components/student-activity-selector/descripcion-general-77DLiLfG')}

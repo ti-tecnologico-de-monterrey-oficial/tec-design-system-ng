@@ -119,6 +119,7 @@ ${getBasicExampleBlock('BmbInputPhoneNumberComponent')}
     disabled: DBmbInputParamDesc.disabled,
     errorMessage: DBmbInputParamDesc.errorMessage,
     showError: DBmbInputParamDesc.showError,
+    customValidation: DBmbInputParamDesc.customValidation,
     isRequired: DBmbInputParamDesc.isRequired,
     preferredCountries: {
       control: { type: 'array' },
@@ -162,10 +163,10 @@ ${getBasicExampleBlock('BmbInputPhoneNumberComponent')}
     },
   },
   args: {
-    inputId: '',
-    name: '',
+    inputId: 'phone_id',
+    name: 'phone',
     value: '',
-    label: '',
+    label: 'Phone',
     tooltip: '',
     tooltipPosition: {},
     placeholder: '',

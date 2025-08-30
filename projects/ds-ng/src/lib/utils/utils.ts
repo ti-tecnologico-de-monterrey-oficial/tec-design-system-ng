@@ -1,3 +1,6 @@
+import { FormControl, ValidationErrors, ValidatorFn } from '@angular/forms';
+import { IBmbInputError } from '../../public-api';
+
 export const isExternalLink = (link: string): boolean => {
   return (
     link.startsWith('http://') ||
@@ -62,4 +65,36 @@ export const getPositionClass = (
 
 export const getUUID = (): string => {
   return window.crypto.randomUUID();
+};
+
+export const isErrorMessageSet = (
+  errorMessage: string | IBmbInputError,
+): boolean => {
+  return !!errorMessage && typeof errorMessage !== 'string';
+};
+
+export const getCustomValidation = (
+  customValidation: ValidatorFn,
+  formControl: FormControl,
+): ValidationErrors | null => {
+  if (typeof customValidation === 'function') {
+    const functionValidation = customValidation ?? ((_: any) => null);
+    return functionValidation(formControl);
+  }
+  return null;
+};
+
+export const getCustomValidationMessage = (
+  result: ValidationErrors | null,
+  errorMessage: string | IBmbInputError,
+): string => {
+  if (!!result && typeof result === 'object' && !!result['customValidation']) {
+    const errorMessages = errorMessage as IBmbInputError;
+
+    return isErrorMessageSet(errorMessage)
+      ? errorMessages.customValidation || ''
+      : '';
+  }
+
+  return '';
 };

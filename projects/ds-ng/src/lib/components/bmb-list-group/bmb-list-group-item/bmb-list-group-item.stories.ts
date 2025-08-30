@@ -3,7 +3,12 @@ import { BmbListGroupComponent } from '../bmb-list-group.component';
 import { IBbmBgAppearance } from '../../bmb-advertisement-card/types';
 import { moduleMetadata } from '@storybook/angular';
 import { CommonModule } from '@angular/common';
-import { attributes, getBasicExampleBlock, getGeneralComponentDescription, getGeneralDescription } from '../../../utils/doc/utils';
+import {
+  attributes,
+  getBasicExampleBlock,
+  getGeneralComponentDescription,
+  getGeneralDescription,
+} from '../../../utils/doc/utils';
 import { BmbListGroupItemComponent } from './bmb-list-group-item.component';
 
 const appearanceOptions: IBbmBgAppearance[] = [
@@ -55,9 +60,9 @@ ${getGeneralDescription(
   `${getGeneralComponentDescription('bmb-list-group-item')} to organize related elements in an ordered list, optimizing navigation and displaying content clearly and efficiently.
 It helps to group information in a coherent and accessible way.`,
   'https://bamboo.tec.mx/latest/components/list-group/descripcion-general-ieYN5a5C',
-  true
+  true,
 )}
-${getBasicExampleBlock('BmbListGroupComponent, BmbListGroupItemComponent','','',true)}
+${getBasicExampleBlock('BmbListGroupComponent, BmbListGroupItemComponent', '', '', true)}
         `,
       },
     },
