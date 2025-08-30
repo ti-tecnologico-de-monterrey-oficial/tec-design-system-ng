@@ -1,8 +1,11 @@
 import { CommonModule } from '@angular/common';
 import {
+  AbstractControl,
   FormControl,
   FormGroup,
   ReactiveFormsModule,
+  ValidationErrors,
+  ValidatorFn,
   Validators,
 } from '@angular/forms';
 import {
@@ -363,5 +366,83 @@ export class FormValidatorTestComponent implements AfterViewInit {
         handleValidity(control);
       }
     });
+  }
+
+  handleCustomValidator(): ValidatorFn {
+    return (control: AbstractControl): ValidationErrors | null => {
+      const { value } = control;
+      if (!value) return null;
+
+      if (value.toString() === '07/08/2025') return { customValidation: true };
+
+      return null;
+    };
+  }
+
+  handleCustomValidatorT(): ValidatorFn {
+    return (control: AbstractControl): ValidationErrors | null => {
+      const { value } = control;
+      if (!value) return null;
+
+      if (value === 'tttt') return { customValidation: true };
+
+      return null;
+    };
+  }
+
+  handleCustomValidatorCK(): ValidatorFn {
+    return (control: AbstractControl): ValidationErrors | null => {
+      const { value } = control;
+      if (!value) return null;
+
+      if (value) return { customValidation: true };
+
+      return null;
+    };
+  }
+
+  handleCustomValidatorDPR(): ValidatorFn {
+    return (control: AbstractControl): ValidationErrors | null => {
+      const { value } = control;
+      if (!value) return null;
+
+      if (value === '07/08/2025') return { customValidation: true };
+
+      return null;
+    };
+  }
+
+  handleCustomValidatorDD(): ValidatorFn {
+    return (control: AbstractControl): ValidationErrors | null => {
+      const { value } = control;
+      if (!value) return null;
+
+      if (value === '_apple') return { customValidation: true };
+
+      return null;
+    };
+  }
+
+  handleCustomValidatorPH(): ValidatorFn {
+    return (control: AbstractControl): ValidationErrors | null => {
+      const { value } = control;
+      if (!value) return null;
+
+      if (value === '+521234567890') return { customValidation: true };
+
+      return null;
+    };
+  }
+
+  handleCustomValidatorIT(): ValidatorFn {
+    return (control: AbstractControl): ValidationErrors | null => {
+      const { value } = control;
+      if (!value.length) return null;
+      console.log('value', value);
+
+      if (value.includes('Sopes')) return { customValidation: true };
+
+      return null;
+    };
   }
 }
