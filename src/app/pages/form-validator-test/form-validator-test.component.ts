@@ -438,7 +438,6 @@ export class FormValidatorTestComponent implements AfterViewInit {
     return (control: AbstractControl): ValidationErrors | null => {
       const { value } = control;
       if (!value.length) return null;
-      console.log('value', value);
 
       if (value.includes('Sopes')) return { customValidation: true };
 
