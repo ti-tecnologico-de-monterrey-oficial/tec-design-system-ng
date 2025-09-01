@@ -13,14 +13,39 @@ export const Item = ({ children }) => (
     <GeneralTemplate>{children}</GeneralTemplate>
   </section>
 );
-
-export const ListTemplate = ({ children }) => {
+/*
+<ListTemplate>{itemStory}</ListTemplate>//Two tabs, this takes the main story of the Meta.
+<ListTemplate main={mainStory} content={[itemStory, secondItemStory]}/>
+<ListTemplate content={[mainStory,itemStory, secondItemStory]}/>
+*/
+export const ListTemplate = ({ children, main, content = [] }) => {
   return (
     <section>
-      <Tabs
-        tabs={[<Title />, <Title of={children}>{children?.title}</Title>]}
-        content={[<List />, <Item>{children}</Item>]}
-      />
+      {children && (
+        <Tabs
+          tabs={[<Title />, <Title of={children}>{children?.title}</Title>]}
+          content={[<List />, <Item>{children}</Item>]}
+        />
+      )}
+      {content && main && (
+        <Tabs
+          tabs={[
+            <Title />,
+            ...content.map((item) => <Title of={item}>{item?.title}</Title>),
+          ]}
+          content={[<List />, ...content.map((item) => <Item>{item}</Item>)]}
+        />
+      )}
+      {content && !main && (
+        <Tabs
+          tabs={content.map((item) => (
+            <Title of={item}>{item?.title}</Title>
+          ))}
+          content={content.map((item) => (
+            <Item>{item}</Item>
+          ))}
+        />
+      )}
     </section>
   );
 };

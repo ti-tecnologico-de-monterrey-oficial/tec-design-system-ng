@@ -797,13 +797,13 @@ import {
   Stories,
 } from "@storybook/addon-docs/blocks";
 
-import * as listStory from "./bmb-accordion.stories";
+import * as mainStory from "./bmb-accordion.stories";
 import * as itemStory from "../../directives/bmb-accordion/bmb-accordion-control.stories";
 import { Tabs } from "../../../DocComponents/Tabs.mdx";
 
 export const List = () => (
   <section>
-    <Meta of={listStory} />
+    <Meta of={mainStory} />
     <Title />
     <Description />
     <Canvas withToolbar={true} />
@@ -823,10 +823,10 @@ export const Item = () => (
   </section>
 );
 
-<Meta of={listStory} />
+<Meta of={mainStory} />
 <Tabs
   tabs={[
-    <Title>{listStory?.title}</Title>,
+    <Title>{mainStory?.title}</Title>,
     <Title of={itemStory}>{itemStory?.title}</Title>,
   ]}
   content={[<List />, <Item />]}
@@ -834,11 +834,11 @@ export const Item = () => (
 
 import { Meta } from "@storybook/addon-docs/blocks";
 
-import * as listStory from "./bmb-list-group.stories";
+import * as mainStory from "./bmb-list-group.stories";
 import * as itemStory from "./bmb-list-group-item/bmb-list-group-item.stories";
 import { ListTemplate } from "../../../DocComponents/ListTemplate.mdx";
 
-<Meta of={listStory} />
+<Meta of={mainStory} />
 <ListTemplate>{itemStory}</ListTemplate>
 
 
