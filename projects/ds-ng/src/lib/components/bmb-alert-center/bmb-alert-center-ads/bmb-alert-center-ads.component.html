@@ -24,9 +24,11 @@
                   [src]="item.href || ''"
                   [alt]="item.text"
                   borderRadius="none"
-                  (click)="item.event
+                  (click)="
+                    item.event
                       ? item?.event(advertisement.id)
-                      : handleAlertEvent(advertisement)"
+                      : handleAlertEvent(advertisement)
+                  "
                 />
               }
               @case ("video") {

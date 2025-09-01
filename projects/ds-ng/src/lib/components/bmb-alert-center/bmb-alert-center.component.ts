@@ -105,7 +105,8 @@ export class BmbAlertCenterComponent {
   });
   advertisementsList = computed<IBmbDataAlert[]>(() => {
     const advertisementsOnInput = this.advertisements();
-    const advertisementsOnService = this.bmbAlertCenterService.getAdvertisements();
+    const advertisementsOnService =
+      this.bmbAlertCenterService.getAdvertisements();
     return [...advertisementsOnInput, ...advertisementsOnService];
   });
   isLoading = computed<boolean>(() => {

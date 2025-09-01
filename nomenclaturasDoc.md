@@ -1,6 +1,7 @@
 Estándares para la documentación de Storybook que hemos estado intentando tener por parte de desarrollo.
 
 ### Nomenclatura:
+
 - En idioma inglés.
 - Mayúsculas para las categorías principales.
 - Solo la primera letra mayúscula con excepción de siglas o abreviaciones.
@@ -13,6 +14,7 @@ Estándares para la documentación de Storybook que hemos estado intentando tene
 - Las subcategorías estarán al fondo de las categorías
 
 ### Excepciones:
+
 Las historias mostradas en la categoría FOUNDATIONS pueden nombrarse también en plural debido a que la mayoría no son de componentes específicos.
 
 El nombre de la historia de componente Grades (mostrado en ORGANISMS), es una excepción de nombre de historia de componente.

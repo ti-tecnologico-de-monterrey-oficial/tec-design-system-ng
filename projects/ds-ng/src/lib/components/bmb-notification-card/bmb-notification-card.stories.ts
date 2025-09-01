@@ -185,9 +185,7 @@ ${getBasicExampleBlock(
         type: { summary: 'closeAlertDetail($event)', detail: typeDetail },
       },
     },
-    onExpandClick: getOnClickParam(
-      getOnEvent('', 'onExpandClick', 'void'),
-    ),
+    onExpandClick: getOnClickParam(getOnEvent('', 'onExpandClick', 'void')),
   },
   args: {
     data: [
