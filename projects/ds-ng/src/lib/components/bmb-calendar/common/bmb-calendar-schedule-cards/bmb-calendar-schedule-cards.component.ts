@@ -43,7 +43,6 @@ export class BmbCalendarScheduleCardsComponent {
     const left = column ? (100 / columnSize) * column + 1 : 0;
     const width = columnSize ? 100 / columnSize : 100;
 
-
     return `top: ${startMin}px; height: ${endMin}px; left: calc(${left}% + ${8 / (columnSize + 1)}px); width: calc(${width}% - ${8 / (columnSize + 1)}px)`;
   }
 

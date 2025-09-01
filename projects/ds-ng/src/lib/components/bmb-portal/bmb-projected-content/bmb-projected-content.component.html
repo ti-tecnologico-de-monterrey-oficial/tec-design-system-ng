@@ -1,0 +1,8 @@
+<bmb-overlay [active]="content() !== null" (click)="removeContent.emit()" />
+<dialog
+  class="bmb_projected-content"
+  [ngStyle]="getContainerStyles()"
+  [open]="content() !== null"
+>
+  <ng-container #container></ng-container>
+</dialog>

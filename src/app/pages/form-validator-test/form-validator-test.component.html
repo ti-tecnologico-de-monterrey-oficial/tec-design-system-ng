@@ -1464,7 +1464,7 @@
         (onValueChange)="onValueChange($event)"
         value="_pear"
       /> -->
-      <!-- <bmb-input-tags
+      <bmb-input-tags
         bmbLayoutItem
         [colSm]="2"
         name="input_tag1"
@@ -1475,48 +1475,11 @@
         [disabled]="false"
         label="Input Label - tag"
         [control]="getFormControlTest('')"
-        [tagOptions]="[
-          'Tacos al pastor',
-          'Enchiladas',
-          'Tamales',
-          'Quesadillas',
-          'Chiles en nogada',
-          'Mole poblano',
-          'Sopes',
-          'Gorditas',
-          'Pozole',
-          'Ceviche',
-          'Tortas',
-          'Guacamole',
-          'Tacos de pescado',
-          'Flautas',
-          'Chalupas',
-          'Huevos rancheros',
-          'Elote',
-          'Mole verde',
-          'Arroz a la mexicana',
-          'Burritos',
-        ]"
-        [value]="[
-          'Sopes',
-          'Gorditas',
-          'Pozole',
-          'Ceviche',
-          'Tortas',
-          'Guacamole',
-          'Tacos de pescado',
-          'Flautas',
-          'Chalupas',
-          'Huevos rancheros',
-          'Elote',
-          'Mole verde',
-          'Arroz a la mexicana',
-          'Burritos',
-        ]"
+        [tagOptions]="asyncOptions()"
         tooltip="tooltip del input tag"
-        (onValueChange)="onValueChange($event)"
+        (onChange)="onValueChange($event)"
       />
-      <bmb-input-tags
+      <!-- <bmb-input-tags
         bmbLayoutItem
         [colSm]="2"
         name="input_tag_async"

@@ -17,7 +17,10 @@ import {
   SidebarElement,
   BmbNativeModalService,
   IBmbNativeModal,
+  BmbProjectionContentService,
+  IBmbProjectionContent,
 } from '../../projects/ds-ng/src/public-api';
+import { HelpMenuComponent } from './components/help-menu/help-menu.component';
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
@@ -37,7 +40,10 @@ import {
 })
 export class AppComponent {
   private router = inject(Router);
-  constructor(private modalService: BmbNativeModalService) {}
+  constructor(
+    private modalService: BmbNativeModalService,
+    private contentProjected: BmbProjectionContentService,
+  ) {}
   @ViewChild('modalTemplate') modalTemplate!: TemplateRef<unknown>;
 
   modalId = signal<string | null>(null);
@@ -126,5 +132,15 @@ export class AppComponent {
 
   handleActionsCloseClick(params: unknown): void {
     console.log('Close button clicked', params);
+  }
+
+  handleHelpButtonClick(event: MouseEvent | KeyboardEvent): void {
+    const data: IBmbProjectionContent = {
+      content: HelpMenuComponent,
+      targetRef: event.target as HTMLElement,
+    };
+    console.log(event);
+
+    this.contentProjected.openContent(data);
   }
 }

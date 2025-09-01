@@ -144,7 +144,7 @@ export class FormValidatorTestComponent implements AfterViewInit {
         'Arroz a la mexicana',
         'Burritos',
       ]);
-    }, 1000);
+    }, 10000);
 
     this.asyncSetTagOptions();
   }

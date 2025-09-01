@@ -3,7 +3,7 @@
     <ng-container
       [ngTemplateOutlet]="commonTemplate"
       [ngTemplateOutletContext]="{
-        notifications: getNotifications(),
+        notifications: notificationsList(),
         position: 'top-left',
       }"
     />
@@ -12,7 +12,7 @@
     <ng-container
       [ngTemplateOutlet]="commonTemplate"
       [ngTemplateOutletContext]="{
-        notifications: getNotifications(),
+        notifications: notificationsList(),
         position: 'top-center',
       }"
     />
@@ -21,7 +21,7 @@
     <ng-container
       [ngTemplateOutlet]="commonTemplate"
       [ngTemplateOutletContext]="{
-        notifications: getNotifications(),
+        notifications: notificationsList(),
         position: 'top-right',
       }"
     />
@@ -30,7 +30,7 @@
     <ng-container
       [ngTemplateOutlet]="commonTemplate"
       [ngTemplateOutletContext]="{
-        notifications: getNotifications(),
+        notifications: notificationsList(),
         position: 'bottom-left',
       }"
     />
@@ -39,7 +39,7 @@
     <ng-container
       [ngTemplateOutlet]="commonTemplate"
       [ngTemplateOutletContext]="{
-        notifications: getNotifications(),
+        notifications: notificationsList(),
         position: 'bottom-center',
       }"
     />
@@ -48,7 +48,7 @@
     <ng-container
       [ngTemplateOutlet]="commonTemplate"
       [ngTemplateOutletContext]="{
-        notifications: getNotifications(),
+        notifications: notificationsList(),
         position: 'bottom-right',
       }"
     />
@@ -67,6 +67,12 @@
     (closeModalClicked)="handleModalClick(item, $event)"
   />
 }
+
+<bmb-projected-content
+  [content]="projectedContent()?.content ?? null"
+  [htmlRef]="projectedContent()?.targetRef ?? null"
+  (removeContent)="handleRemoveProjectedContent()"
+></bmb-projected-content>
 
 <ng-template
   #commonTemplate

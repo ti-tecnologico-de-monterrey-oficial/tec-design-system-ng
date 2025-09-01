@@ -6,16 +6,21 @@ import {
   EnvironmentInjector,
   Injectable,
   signal,
+  TemplateRef,
+  Type,
 } from '@angular/core';
-import { getUUID } from '../utils/utils';
-import { IBmbNativeModal } from '../components/bmb-modal/bmb-modal.interface';
 import { BmbPortalComponent } from '../components/bmb-portal/bmb-portal.component';
+
+export interface IBmbProjectionContent {
+  content: TemplateRef<any> | null | Type<any>;
+  targetRef?: HTMLElement;
+}
 
 @Injectable({
   providedIn: 'root',
 })
-export class BmbNativeModalService {
-  readonly modalList = signal<IBmbNativeModal[]>([]);
+export class BmbProjectionContentService {
+  readonly contentList = signal<IBmbProjectionContent | null>(null);
   private portalComponentRef: ComponentRef<BmbPortalComponent> | null = null;
 
   constructor(
@@ -48,35 +53,16 @@ export class BmbNativeModalService {
     return this.portalComponentRef.instance;
   }
 
-  openModal(newModal: IBmbNativeModal): string {
-    const id =
-      newModal.modalId && newModal.modalId !== ''
-        ? newModal.modalId
-        : getUUID();
+  openContent(content: IBmbProjectionContent) {
     this.getOrCreatePortal();
-    this.modalList.update((currentModals) => [
-      ...currentModals,
-      { ...newModal, modalId: id },
-    ]);
-
-    return id;
+    this.contentList.set(content);
   }
 
-  closeModal(id: string) {
-    this.modalList.update((currentModals) =>
-      currentModals.filter((modal) => modal.modalId !== id),
-    );
+  closeContent() {
+    this.contentList.set(null);
   }
 
-  closeAllModals() {
-    this.modalList.set([]);
-  }
-
-  getModalList() {
-    return this.modalList();
-  }
-
-  checkIfModalExists(id: string): boolean {
-    return this.modalList().some((modal) => modal.modalId === id);
+  getProjectedContent() {
+    return this.contentList();
   }
 }

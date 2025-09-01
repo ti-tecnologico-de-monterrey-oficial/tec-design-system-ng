@@ -7,6 +7,7 @@ import {
   BmbLoginOnboardingService,
   BmbAlertCenterService,
   BmbNativeModalService,
+  BmbProjectionContentService,
 } from '../../projects/ds-ng/src/public-api';
 
 import { routes } from './app.routes';
@@ -24,6 +25,7 @@ export const appConfig: ApplicationConfig = {
       BmbLoginOnboardingService,
       BmbAlertCenterService,
       BmbNativeModalService,
+      BmbProjectionContentService,
     ]),
   ],
 };
