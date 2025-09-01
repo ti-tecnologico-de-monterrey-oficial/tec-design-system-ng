@@ -1,5 +1,6 @@
 <bmb-input-validator
   class="bmb_dropdown"
+  [inputId]="inputId()"
   [name]="name()"
   [value]="getValidInitialValues()"
   [label]="label()!"
@@ -11,9 +12,9 @@
   [showError]="shouldShowError"
   [tooltip]="tooltip()"
   [tooltipPosition]="tooltipPosition()"
+  [customValidation]="customValidation()"
   clickOutside
   (clickOutside)="closeList()"
-  [inputId]="inputId()"
 >
   <bmb-input-content
     class="bmb_dropdown-field"

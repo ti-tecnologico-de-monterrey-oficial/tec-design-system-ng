@@ -9,7 +9,7 @@ import {
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IBbmSidePosition } from '../../types';
-import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, ReactiveFormsModule, ValidatorFn } from '@angular/forms';
 import { BmbInputValidatorComponent } from '../bmb-input/bmb-input-validator/bmb-input-validator.component';
 import { getUUID } from '../../utils/utils';
 import { IBmbInputError } from '../bmb-input/bmb-input.component';
@@ -41,6 +41,7 @@ export class BmbCheckboxComponent implements OnInit {
   ariaLabelledby = input<string>('');
   errorMessage = input<string | IBmbInputError>('');
   helperMessage = input<string>('');
+  customValidation = input<ValidatorFn>();
 
   control = model<FormControl>(newFormControlByType('checkbox'));
   checked = model<boolean>();

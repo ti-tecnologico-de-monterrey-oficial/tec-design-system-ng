@@ -72,6 +72,30 @@
       width: auto;
       max-width: rem.rem_calc(240);
     }
+
+    &-mobile {
+      @include mixins.media-query(999, "max") {
+        display: block;
+      }
+
+      &-remove {
+        @include mixins.media-query(1000, "min") {
+          display: none;
+        }
+      }
+    }
+
+    &-desktop {
+      @include mixins.media-query(1000, "min") {
+        display: block;
+      }
+
+      &-remove {
+        @include mixins.media-query(999, "max") {
+          display: none;
+        }
+      }
+    }
   }
 
   &-badge {

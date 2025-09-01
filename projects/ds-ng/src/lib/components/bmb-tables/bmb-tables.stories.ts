@@ -259,7 +259,6 @@ export default {
         'dataSource',
         'expandedElement',
         'filterForm',
-        'filtersVisible',
         'isResizingRight',
         'originalData',
         'resizableMousemove',
@@ -414,6 +413,18 @@ ${getBasicExampleBlock(
       },
       description:
         'Determine if the text in all table cells will be truncated or not.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
+    },
+    filtersVisible: {
+      control: {
+        type: 'boolean',
+      },
+      description:
+        'Show or hide the filters section. This property is a Model.',
       table: {
         category: 'Properties',
         type: { summary: 'boolean' },

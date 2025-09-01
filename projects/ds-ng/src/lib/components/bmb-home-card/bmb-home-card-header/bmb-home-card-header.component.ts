@@ -5,6 +5,7 @@ import {
   output,
   ViewEncapsulation,
   model,
+  computed,
 } from '@angular/core';
 import { IBmbDataTopBar } from '../../bmb-breadcrumb/bmb-breadcrumb.component';
 import { IBmbColor } from '../../../types/colors';
@@ -41,32 +42,32 @@ export class BmbHomeCardHeaderComponent {
   actionHeaders = input<IBmbActionHeader[]>([]);
   isMobile = input<boolean>();
   showRightButton = input<boolean>(true);
-  isExpanded = model<boolean>(false); //Internal
+  isExpanded = model<boolean>(false);
   useAutoExpand = input<boolean>(true); //Internal
 
   onClose = output();
   onBack = output();
   onExpandClick = output();
 
-  actionHeaderList: IBmbActionHeader[] = [];
-
-  ngOnInit(): void {
+  actionHeaderList = computed<IBmbActionHeader[]>(() => {
     if (this.showRightButton()) {
-      const mainIcon: string = this.isMobile() ? 'close' : 'fit_screen';
-      const iconActiveToggle: string = this.isMobile()
-        ? ''
-        : 'close_fullscreen';
-      this.actionHeaderList = [
+      const webIcon: string = this.isExpanded()
+        ? 'close_fullscreen'
+        : 'fit_screen';
+      const mainIcon: string = this.isMobile() ? 'close' : webIcon;
+      return [
         ...this.actionHeaders(),
         {
           icon: mainIcon,
-          iconActiveToggle: iconActiveToggle,
           isToggleActive: false,
+          iconActiveToggle: mainIcon,
           action: () => this.handleExpandChange(),
         },
       ];
     }
-  }
+
+    return [];
+  });
 
   getIconName(): string {
     return (!this.isMobile() && this.icon()) || '';

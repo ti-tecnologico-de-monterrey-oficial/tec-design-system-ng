@@ -10,7 +10,7 @@ import {
   SimpleChanges,
   OnChanges,
 } from '@angular/core';
-import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, ReactiveFormsModule, ValidatorFn } from '@angular/forms';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { ClickOutsideDirective } from '../../directives/utils/clickoutside.directive';
 import {
@@ -81,6 +81,7 @@ export class BmbDropdownComponent implements OnInit, OnChanges {
   value = input<string | string[]>('');
   isFilterable = input<boolean>(false);
   inputId = input<string>(this.name());
+  customValidation = input<ValidatorFn>();
 
   control = model<FormControl>(newFormControlByType());
 

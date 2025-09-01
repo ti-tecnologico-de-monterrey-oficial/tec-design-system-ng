@@ -27,7 +27,13 @@ import {
   IBmbInputTooltipPosition,
 } from '../bmb-input/bmb-input.component';
 import { BmbInputValidatorComponent } from '../bmb-input/bmb-input-validator/bmb-input-validator.component';
-import { buildErrorMessage, getUUID } from '../../utils/utils';
+import {
+  buildErrorMessage,
+  getCustomValidation,
+  getCustomValidationMessage,
+  getUUID,
+  isErrorMessageSet,
+} from '../../utils/utils';
 import { BmbInputContentComponent } from '../bmb-input/bmb-input-content/bmb-input-content.component';
 import {
   assignNewFormControl,
@@ -71,6 +77,7 @@ export class BmbInputPhoneNumberComponent implements OnInit {
   helperMessage = input<string>('');
   preferredCountries = input<string[]>(['mx']);
   onlyCountries = input<string[]>([]);
+  customValidation = input<ValidatorFn>();
 
   control = model<FormControl>(new FormControl());
   showError = model<boolean>(false); // deprecated
@@ -85,6 +92,7 @@ export class BmbInputPhoneNumberComponent implements OnInit {
   });
   countryFiltering: IBmbDropdownItem[] = [];
   isControlNull: boolean = false;
+  customValidationMessage: string = '';
 
   ngOnInit(): void {
     if (!this.control()) {
@@ -146,7 +154,7 @@ export class BmbInputPhoneNumberComponent implements OnInit {
     this.isFocused.set(value);
   }
 
-  customValidatorPhone(): ValidatorFn {
+  handleCustomValidator(): ValidatorFn {
     return (control: AbstractControl): ValidationErrors | null => {
       const { value } = control;
 
@@ -164,7 +172,23 @@ export class BmbInputPhoneNumberComponent implements OnInit {
           this.ladaControl.value,
         )}\\d{${this.getSelectedCountryLength(this.ladaControl.value)}}$`,
       );
-      return !regExp.test(control.value) ? { customValidation: true } : null;
+
+      if (!regExp.test(control.value)) {
+        this.customValidationMessage =
+          'Por favor ingresa un número de teléfono válido, verifica si la lada es correcta.';
+        return { customValidation: true };
+      }
+
+      const result = getCustomValidation(
+        this.customValidation()!,
+        this.control(),
+      );
+      this.customValidationMessage = getCustomValidationMessage(
+        result,
+        this.errorMessage(),
+      );
+
+      return result;
     };
   }
 
@@ -264,8 +288,6 @@ export class BmbInputPhoneNumberComponent implements OnInit {
   }
 
   getErrorMessage(): IBmbInputError {
-    const customValidation =
-      'Por favor ingresa un número de teléfono válido, verifica si la lada es correcta.';
     const pattern = 'Por favor ingresa sólo caracteres numéricos';
     const minLength = `Por favor ingresa ${this.getSelectedCountryLength(
       this.ladaControl.value,
@@ -276,21 +298,21 @@ export class BmbInputPhoneNumberComponent implements OnInit {
           required: this.errorMessage().toString(),
           pattern,
           minLength,
-          customValidation,
+          customValidation: this.customValidationMessage,
         };
 
       return {
         pattern,
         minLength,
         ...(this.errorMessage() as IBmbInputError),
-        customValidation,
+        customValidation: this.customValidationMessage,
       };
     }
 
     return {
       pattern,
       minLength,
-      customValidation,
+      customValidation: this.customValidationMessage,
     };
   }
 

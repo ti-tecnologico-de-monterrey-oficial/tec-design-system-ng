@@ -134,7 +134,7 @@ ${getBasicExampleBlock('BmbTimestreamCardComponent')}
       description: 'Sets a list of breadcrumb data for local navigation.',
       table: {
         category: 'Properties',
-        defaultValue: {summary: '[]'},
+        defaultValue: { summary: '[]' },
         type: {
           summary: 'IBmbDataTopBar[]',
           detail: `
@@ -181,7 +181,7 @@ IBmbDataTopBar {
       description: 'List of events to display.',
       table: {
         category: 'Properties',
-        defaultValue: {summary: '[]'},
+        defaultValue: { summary: '[]' },
         type: { summary: 'object' },
       },
     },

@@ -92,7 +92,7 @@ ${getBasicExampleBlock('BmbStudentActivityCardComponent')}
     detail: DBmbGenericParamDesc.deprecated,
     type: {
       control: 'select',
-      options: ['academic', 'life', 'events'],
+      options: ['academic', 'life', 'events', 'save_the_date'],
       description: 'Sets the color schema for the modal.',
       table: {
         category: 'Properties',

@@ -1,34 +1,58 @@
 import { Meta, StoryObj } from '@storybook/angular';
 import { BmbSoundsCardComponent } from './bmb-sounds-card.component';
+import {
+  getBasicExampleBlock,
+  getGeneralComponentDescription,
+  getGeneralDescription,
+  getOnEvent,
+  IBmbOnEvent,
+} from '../../utils/doc/utils';
+import { getOnEventParam } from '../../utils/doc/parameterDescriptions';
+
+const onVolumeEvent: IBmbOnEvent = getOnEvent(
+    'the level of volume of the card',
+    'handleVolume',
+    'number',
+  ),
+  onPlayEvent: IBmbOnEvent = getOnEvent('', 'handlePlay', 'boolean'),
+  onMuteEvent: IBmbOnEvent = getOnEvent('', 'handleMute', 'boolean');
 
 export default {
   title: 'Particularities/mitec web/Tec sound card',
   component: BmbSoundsCardComponent,
   parameters: {
     docs: {
+      controls: {
+        exclude: [
+          'internalVolume',
+          'isMuted',
+          'isPlaying',
+          'percentage',
+          'saveVolume',
+          'trackInput',
+          'handleMuteVolume',
+          'handlePlayPause',
+          'onVolumeChange',
+          'rangeVolume',
+          'ngAfterViewInit',
+        ],
+      },
       description: {
         component: `
-Below is an example of how you can use this component in TypeScript:
-
-\`\`\`typescript
-import { BmbSoundsCardComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
-@Component({
-  selector: 'component',
-  standalone: true,
-  imports: [ BmbSoundsCardComponent ],
-  templateUrl: './component.html',
-  styleUrl: './component.scss',
-})
-\`\`\`
-
-Below is an example of how you can use this component in HTML:
+${getGeneralDescription(`${getGeneralComponentDescription('sounds-card', 'element')} a graphical interface to be displayed for use in audio playback.`, 'https://bamboo.tec.mx/latest/particularities/mitec-web/tec-sound-card-AssAgA82')}
+${getBasicExampleBlock(
+  'BmbSoundsCardComponent',
+  '',
+  `${onVolumeEvent.handleExample}
+  ${onPlayEvent.handleExample}
+  ${onMuteEvent.handleExample}`,
+)}
         `,
       },
     },
   },
   argTypes: {
     title: {
-      name: 'Title',
       control: {
         type: 'text',
       },
@@ -40,7 +64,6 @@ Below is an example of how you can use this component in HTML:
       },
     },
     subtitle: {
-      name: 'Subtitle',
       control: {
         type: 'text',
       },
@@ -52,11 +75,10 @@ Below is an example of how you can use this component in HTML:
       },
     },
     width: {
-      name: 'Width',
       control: {
         type: 'text',
       },
-      description: 'You can set any CSS valid value for the width style',
+      description: 'Sets the width style.',
       table: {
         category: 'Properties',
         type: { summary: 'string' },
@@ -64,48 +86,27 @@ Below is an example of how you can use this component in HTML:
       },
     },
     ratio: {
-      name: 'Ratio',
       control: {
         type: 'text',
       },
-      description:
-        'Allow to the developer change the aspect ratio of the image',
+      description: 'Sets the ratio of the image.',
       table: {
         category: 'Properties',
         type: { summary: 'string' },
         defaultValue: { summary: '8/9' },
       },
     },
-    handleVolume: {
-      name: 'Handle Volume',
-      control: null,
-      description:
-        'Emmit the send event, export the level of volume of the card',
-      table: {
-        category: 'Events',
-        type: { summary: 'function' },
-      },
-    },
-    handlePlay: {
-      name: 'Handle Play',
-      control: null,
-      description:
-        'Emmit the Play event, returns a true value when the user clicks the play button and returns a false value when the pause icon is clicked.',
-      table: {
-        category: 'Events',
-        type: { summary: 'function' },
-      },
-    },
-    handleMute: {
-      name: 'Handle Mute',
-      control: null,
-      description:
-        'Emmit the Mute event, returns a true value when the user clicks the sound button and returns a false value when the mute icon is clicked.',
-      table: {
-        category: 'Events',
-        type: { summary: 'function' },
-      },
-    },
+    handlevolume: getOnEventParam(onVolumeEvent),
+    handlePlay: getOnEventParam(
+      onPlayEvent,
+      `of the play, returns a true value when the user clicks the play button and returns a false value when the pause icon is clicked.`,
+      'other',
+    ),
+    handleMute: getOnEventParam(
+      onMuteEvent,
+      'of the mute, returns a true value when the user clicks the sound button and returns a false value when the mute icon is clicked.',
+      'other',
+    ),
   },
   args: {
     title: 'Tec Sounds Radio',

@@ -1,6 +1,9 @@
 import { DateTime, Info, StringUnitLength } from 'luxon';
 import { IBmbCalendarEvent, IBmbCalendarRenderEvents } from './types';
 
+export const DEFAULT_DATE_FORMAT = 'iso';
+export const HOUR_HEIGHT = 120;
+
 export const getWeekDays = (date: DateTime): DateTime[] => {
   const currentWeek = DateTime.fromObject({
     weekYear: date.weekYear,
@@ -40,6 +43,7 @@ export const getTimeRange = (event: IBmbCalendarEvent): string => {
   return `${start.toFormat('hh:mm')} - ${end.toFormat('hh:mm')}`;
 };
 
+// remove this
 export const eventsInDate = ({
   date,
   events,
@@ -70,4 +74,65 @@ export const weeksAndDays = (date: DateTime): DateTime[] => {
   }
 
   return weekDays;
+};
+
+export const getWeeksInMonth = (date: DateTime): number[] => {
+  const startOfMonth = date.startOf('month').weekNumber;
+  const endOfMonth = date.endOf('month').weekNumber;
+
+  return [startOfMonth, endOfMonth];
+};
+
+export const layoutEvents = (events: IBmbCalendarEvent[]) => {
+  let processed: IBmbCalendarEvent[] = [];
+  let groups: IBmbCalendarEvent[][] = [];
+
+  // Group events by collisions
+  events.forEach((event) => {
+    let added = false;
+    for (let g of groups) {
+      if (
+        g.some(
+          (ev) =>
+            ev?.interval &&
+            event?.interval &&
+            ev.interval.overlaps(event.interval),
+        )
+      ) {
+        g.push(event);
+        added = true;
+        break;
+      }
+    }
+    if (!added) groups.push([event]);
+  });
+
+  // For each group, assign columns
+  groups.forEach((group) => {
+    const cols: IBmbCalendarEvent[][] = [];
+    group.forEach((e) => {
+      let placed = false;
+      for (let i = 0; i < cols.length; i++) {
+        if (
+          !cols[i].some(
+            (ev) =>
+              ev.interval && e.interval && ev.interval.overlaps(e.interval),
+          )
+        ) {
+          cols[i].push(e);
+          e.column = i;
+          placed = true;
+          break;
+        }
+      }
+      if (!placed) {
+        cols.push([e]);
+        e.column = cols.length - 1;
+      }
+    });
+    group.forEach((e) => (e.columnCount = cols.length));
+    processed = processed.concat(group);
+  });
+
+  return processed;
 };

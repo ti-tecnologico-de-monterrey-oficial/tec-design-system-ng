@@ -8,6 +8,7 @@
             [options]="dropdownOptions()"
             [control]="getFormControl('search')"
             (onValueChange)="onValueChange($event)"
+            [isFilterable]="true"
           />
         } @else {
           <bmb-input

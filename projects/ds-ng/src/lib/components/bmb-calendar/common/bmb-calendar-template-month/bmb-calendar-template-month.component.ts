@@ -5,12 +5,15 @@ import {
   ViewEncapsulation,
   Output,
   EventEmitter,
+  input,
+  computed,
 } from '@angular/core';
 import {
   IBmbCalendarHourFormat,
   IBmbCalendarEvent,
   IBmbCalendarEventClick,
   IBmbCalendarRenderEvents,
+  IBmbParsedDates,
 } from '../../types';
 import { DateTime } from 'luxon';
 import { eventsInDate, dayName, weeksAndDays } from '../../utils';
@@ -27,17 +30,21 @@ import { BmbCalendarScheduleCardsComponent } from '../bmb-calendar-schedule-card
   encapsulation: ViewEncapsulation.None,
 })
 export class BmbCalendarTemplateMonthComponent {
-  @Input() hourFormat: IBmbCalendarHourFormat = '12';
-  @Input() now: DateTime = DateTime.now();
-  @Input() lang: string = '';
-  @Input() events: IBmbCalendarEvent[] = [];
+  lang = input<string>('es-MX');
+  now = input<DateTime>(DateTime.now());
+  events = input<IBmbParsedDates>({});
 
   @Output() onSelectEvent: EventEmitter<IBmbCalendarEventClick> =
     new EventEmitter<IBmbCalendarEventClick>();
 
-  getWeeksAndDays(date: DateTime): DateTime[] {
-    return weeksAndDays(date);
-  }
+  weeksAndDaysList = computed<DateTime[]>(() => weeksAndDays(this.now()));
+  eventsOnDate = computed<IBmbCalendarEvent[][]>(() => {
+    return this.weeksAndDaysList().map((date) => {
+      const weekNumber = date.weekNumber;
+      const stringDate = date.toFormat('yyyy-MM-dd');
+      return this.events()?.[weekNumber]?.[stringDate] ?? [];
+    });
+  });
 
   getDayName(date: DateTime, lang: string) {
     return dayName(date, lang);

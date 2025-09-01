@@ -24,15 +24,8 @@
       [control]="control()"
       [isRequired]="isRequired()"
       [helperMessage]="helperMessage()"
-      [errorMessage]="{
-        required:
-          requiredFieldErrorMessage() ||
-          'Por favor ingresa la fecha de ' + label(),
-        customValidation:
-          invalidFormatErrorMessage() ||
-          'Por favor ingresa la fecha con formato ' + dateFormat(),
-      }"
-      [customValidation]="customValidatorDate()"
+      [errorMessage]="getErrorMessage()"
+      [customValidation]="handleCustomValidator()"
       [name]="name()"
       [isClearable]="isClearable()"
       [value]="value()"

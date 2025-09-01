@@ -22,9 +22,14 @@ const LINK_DESCRIPTION: string =
 export const ON_CLICK_DESCRIPTION: string =
   ', this event is only emitted if the *link* property is empty';
 export const GOOGLE_FONTS_LINK: string = `Please refer to [Google Fonts](https://fonts.google.com/icons?icon.size=24&icon.color=%23e8eaed&selected=Material+Symbols+Outlined:more_vert:FILL@0;wght@400;GRAD@0;opsz@24) for more icons.`;
-export const ICON_IMAGE_DETAIL: string =
-  'Supports images; instead of the icon name, enter the URL or path of the image to use.';
-export const SIMPLE_ICON_DESCRIPTION: string = `Sets the icon name to be displayed.
+export const ICON_IMAGE_DETAIL: string = `
+${RELEVANT_TITLE_LEVEL[2]}
+Images are also supported; instead of the icon name, enter the URL or path of the image to use.<br/><br/>
+${RELEVANT_TITLE_LEVEL[0]}
+Please remember that images need an *alt* to be accessible.
+Look for the property to set the alt, if it does not exist in the component it is because the component implements it internally.
+`;
+export const SIMPLE_ICON_DESCRIPTION: string = `Sets the icon name that will be shown.
 <br/><br/>${GOOGLE_FONTS_LINK}`;
 export const ICON_DESCRIPTION: string = `${SIMPLE_ICON_DESCRIPTION}<br/><br/>${ICON_IMAGE_DETAIL}`;
 export const DEFAULT_VALUE_DESC: string = `It is not necessary to explicitly set default values, the property can be omitted.<br/><br/>
@@ -416,7 +421,7 @@ By default, the supported language are:
     ON_CLICK_DESCRIPTION,
     'pressed',
   ),
-  buttonKeyPress: getOnClickParam(
+  onButtonKeyPress: getOnClickParam(
     getOnEvent('', 'buttonKeyPress'),
     ' with a keyboard'.concat(ON_CLICK_DESCRIPTION),
     'pressed',
@@ -1129,6 +1134,30 @@ IBmbInputError {
       defaultValue: getDefaultValueControl(),
     },
   },
+  customValidation: {
+    control: {
+      type: 'object',
+    },
+    description: `
+Sets custom validator function to the field.
+
+Example of a \`ValidatorFn\`
+    handleCustomValidator(): ValidatorFn {
+      return (control: AbstractControl): ValidationErrors | null => {
+        const { value } = control;
+        if (!value) return null;
+
+        if (value === 'value example') return { customValidation: true };
+
+        return null;
+      };
+    }
+`,
+    table: {
+      category: 'Properties',
+      type: { summary: 'ValidatorFn' },
+    },
+  },
   ariaDescribedBy: {
     control: { type: 'text' },
     description:
@@ -1243,7 +1272,6 @@ Adding the id using a property with the same name affects the operation of the f
   },
   onKeyDown: getOnEventParam(
     getOnEvent('', 'onKeyDown', 'KeyboardEvent'),
-    '',
     'keyDown',
   ),
 };

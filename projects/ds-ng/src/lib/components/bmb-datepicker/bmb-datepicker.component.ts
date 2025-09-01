@@ -19,10 +19,16 @@ import { DateTime } from 'luxon';
 import {
   BmbInputComponent,
   IBmbInputAppearance,
+  IBmbInputError,
 } from '../bmb-input/bmb-input.component';
 import { BmbDatepickerModalComponent } from './bmb-datepicker-modal/bmb-datepicker-modal.component';
 import { ClickOutsideDirective } from '../../directives/utils/clickoutside.directive';
-import { getUUID } from '../../utils/utils';
+import {
+  getCustomValidation,
+  getCustomValidationMessage,
+  getUUID,
+  isErrorMessageSet,
+} from '../../utils/utils';
 import {
   assignNewFormControl,
   newFormControlByType,
@@ -63,6 +69,8 @@ export class BmbDatepickerComponent implements OnInit {
   lang = input<string>('es-MX');
   helperMessage = input<string>(this.dateFormat());
   value = input<string>();
+  customValidation = input<ValidatorFn>();
+  errorMessage = input<string | IBmbInputError>('');
 
   control = model<FormControl>(newFormControlByType());
 
@@ -72,6 +80,7 @@ export class BmbDatepickerComponent implements OnInit {
   defaultDate = new Date();
   isWindowOpen = false;
   isControlNull: boolean = false;
+  customValidationMessage: string = '';
 
   ngOnInit(): void {
     if (!this.control()) {
@@ -80,7 +89,7 @@ export class BmbDatepickerComponent implements OnInit {
     }
   }
 
-  customValidatorDate(): ValidatorFn {
+  handleCustomValidator(): ValidatorFn {
     return (control: AbstractControl): ValidationErrors | null => {
       const { value } = control;
       if (!value) return null;
@@ -90,8 +99,43 @@ export class BmbDatepickerComponent implements OnInit {
         this.dateFormat(),
       ).isValid;
 
-      return !isValidDate ? { customValidation: true } : null;
+      if (!isValidDate) {
+        this.customValidationMessage = `Por favor ingresa la fecha con formato ${this.dateFormat()}`;
+        return {
+          customValidation: true,
+        };
+      }
+
+      const result = getCustomValidation(
+        this.customValidation()!,
+        this.control(),
+      );
+      this.customValidationMessage = getCustomValidationMessage(
+        result,
+        this.errorMessage(),
+      );
+
+      return result;
     };
+  }
+
+  getErrorMessage(): IBmbInputError {
+    const defaultErrorMessages: IBmbInputError = {
+      required:
+        this.requiredFieldErrorMessage() ||
+        `Por favor ingresa la fecha de ${this.label()}`,
+      customValidation: this.customValidationMessage,
+    };
+
+    if (isErrorMessageSet(this.errorMessage())) {
+      const errorMessages = this.errorMessage() as IBmbInputError;
+      return {
+        ...defaultErrorMessages,
+        required: errorMessages.required || defaultErrorMessages.required,
+      };
+    }
+
+    return defaultErrorMessages;
   }
 
   handleFocusedEvent(event: KeyboardEvent | MouseEvent) {

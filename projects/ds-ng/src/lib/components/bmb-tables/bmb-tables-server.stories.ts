@@ -3,13 +3,14 @@ import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
 import { CommonModule } from '@angular/common';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import {
+  DESIGN_SYSTEM_TITLE,
   getBasicExampleBlock,
-  getGeneralComponentDescription,
   getGeneralDescription,
+  getPageStructureForTemplateStories,
 } from '../../utils/doc/utils';
 
 export default {
-  title: 'Components/Containers/Table/ServerSide',
+  title: 'Components/Containers/Table/Table - Server side',
   component: BmbTablesComponent,
   tags: ['!autodocs'],
   decorators: [
@@ -19,49 +20,22 @@ export default {
   ],
   parameters: {
     docs: {
+      page: () => getPageStructureForTemplateStories(),
       description: {
         component: `
-${getGeneralDescription(`${getGeneralComponentDescription('', 'service')} `, 'https://bamboo.tec.mx/latest/componentes/table/descripcion-general-h1hRplJO')}
-${getBasicExampleBlock('BmbTablesComponent')}
-Below is an example of how you can use this component in TypeScript:
+${getGeneralDescription(`${DESIGN_SYSTEM_TITLE} ***Table - Server side*** allows rendering highly configurable and interactive tables.`, 'https://bamboo.tec.mx/latest/componentes/table/descripcion-general-h1hRplJO', true)}
+${getBasicExampleBlock(
+  'BmbTablesComponent',
+  `
 
-\`\`\`typescript
-import { CommonModule } from '@angular/common';
-import {
-  ChangeDetectionStrategy,
-  ChangeDetectorRef,
-  Component,
-  TemplateRef,
-  ViewChild,
-} from '@angular/core';
-import {
-  BmbIconComponent,
-  BmbLayoutItemDirective,
-  BmbTablesComponent,
-} from '../../projects/ds-ng/src/public-api';
-import { HttpClient, HttpParams } from '@angular/common/http';
-
-const ID_STATUS = {
+  const ID_STATUS = {
   SOLICITADO: 1,
   AUTORIZADO: 2,
   PENDIENTE: 3,
 };
 
-@Component({
-  selector: 'app-root',
-  standalone: true,
-  imports: [
-    CommonModule,
-    BmbTablesComponent,
-    BmbIconComponent,
-    BmbLayoutItemDirective,
-  ],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
-})
-export class AppComponent {
-  @ViewChild(BmbTablesComponent) tableComponent!: BmbTablesComponent;
+`,
+  `@ViewChild(BmbTablesComponent) tableComponent!: BmbTablesComponent;
   @ViewChild('actionTemplate') actionTemplate!: TemplateRef<any>;
 
   searchTerm = '';
@@ -183,57 +157,37 @@ export class AppComponent {
 
   editData(id: any): void {
     console.log('Editing row:', id);
-  }
-}
-
-\`\`\`
-
-Below is an example of how to use this component in HTML:
-
-\`\`\`
+  }`,
+  true,
+)}
         `,
       },
     },
   },
   args: {
-    data: [
-      {
-        lastName: 'Lorem Ipsum Lorem Ipsum Lorem Ipsum',
-        name: 'Lorem Ipsum Lorem Ipsum Lorem Ipsum',
-        birthday: '02/02/2000',
-        country: 'Mexico',
-      },
-      {
-        lastName: 'Nava',
-        name: 'Jesus',
-        birthday: '03/04/1998',
-        country: 'Mexico',
-        detail: 'Detail text',
-      },
-    ],
+    truncate: false,
+    wrap: false,
+    initialTableSelection: [1],
+    data: [],
     columns: [
+      { def: 'sociedad', label: 'Sociedad', dataKey: 'sociedad' },
       {
-        def: 'name',
-        label: 'Nombre',
-        dataKey: 'name',
-        icon: 'face',
-        labelEn: 'Name',
+        def: 'claveFuncionSSFF',
+        label: 'Función',
+        dataKey: 'claveFuncionSSFF',
       },
       {
-        def: 'lastName',
-        label: 'Apellido',
-        dataKey: 'lastName',
-        cellTemplate: 'dynamicCell',
-        icon: 'face',
-        labelEn: 'Last Name',
+        def: 'nombreTipoContrato',
+        label: 'Tipo de contrato',
+        dataKey: 'nombreTipoContrato',
       },
       {
-        def: 'birthday',
-        label: 'Cumpleaños',
-        dataKey: 'birthday',
-        labelEn: 'Birthday',
+        def: 'nombrePuestoFacultad',
+        label: 'Puesto',
+        dataKey: 'nombrePuestoFacultad',
       },
-      { def: 'country', label: 'País', dataKey: 'country', labelEn: 'Country' },
+      { def: 'nombreRol', label: 'Rol', dataKey: 'nombreRol' },
+      { def: 'nombreEstatus', label: 'Estatus', dataKey: 'nombreEstatus' },
     ],
     config: {
       isSelectable: false,
@@ -241,9 +195,11 @@ Below is an example of how to use this component in HTML:
       isPaginable: true,
       showActions: true,
     },
-    truncate: false,
-    wrap: false,
-    initialTableSelection: [1],
+    pageSize: 10,
+    totalItems: 100, // valor simulado
+    showSearch: true,
+    showFilters: false,
+    serverSide: true,
     lang: 'es',
   },
 } as Meta<typeof BmbTablesComponent>;

@@ -8,7 +8,6 @@ import {
   ViewChild,
   ViewEncapsulation,
   computed,
-  signal,
   model,
 } from '@angular/core';
 import { BmbTabsComponent, IBmbTab } from '../bmb-tabs/bmb-tabs.component';
@@ -69,6 +68,7 @@ export class BmbAlertCenterComponent {
   ]);
   hideTabs = input<boolean>(false);
   enableMultipleSelection = input<boolean>(true);
+  showMobileVersion = input<boolean>(false);
   //Empty state
   emptyStateData = input<IBmbAlertEmptyState>({
     primaryText: 'No tienes notificaciones para mostrar',
@@ -80,8 +80,8 @@ export class BmbAlertCenterComponent {
   });
 
   // deprecated properties
-  alerts = input<IBmbDataAlert[]>([]); // deprecated, use bmbAlertCenterService.getAlerts() instead
-  advertisements = input<IBmbDataAlert[]>([]); // deprecated, use bmbAlertCenterService.getAdvertisements() instead
+  alerts = input<IBmbDataAlert[]>([]);
+  advertisements = input<IBmbDataAlert[]>([]);
 
   onChangeAlertStatus = output<IBmbDataAlertsOutput>();
   alertEvent = output<IBmbDataAlert>();
@@ -99,15 +99,20 @@ export class BmbAlertCenterComponent {
   ) {}
 
   alertList = computed<IBmbDataAlert[]>(() => {
-    return this.bmbAlertCenterService.getAlerts();
+    const alertsOnInput = this.alerts();
+    const alertsOnService = this.bmbAlertCenterService.getAlerts();
+    return [...alertsOnInput, ...alertsOnService];
   });
   advertisementsList = computed<IBmbDataAlert[]>(() => {
-    return this.bmbAlertCenterService.getAdvertisements();
+    const advertisementsOnInput = this.advertisements();
+    const advertisementsOnService =
+      this.bmbAlertCenterService.getAdvertisements();
+    return [...advertisementsOnInput, ...advertisementsOnService];
   });
   isLoading = computed<boolean>(() => {
     return this.bmbAlertCenterService.getLoadingState();
   });
-  // tabs: IBmbTab[] = [];
+
   tabs = computed<IBmbTab[]>(() => {
     return this.tabsName().map((tab, index) => {
       const complexTab: IBmbTab = {
@@ -124,7 +129,7 @@ export class BmbAlertCenterComponent {
       return complexTab;
     });
   });
-  selectedTab = model<number>(0);
+  selectedTab = model<number>(1);
   selectedAlert: IBmbDataAlert[] = [];
   orderedEvents = computed<IBmbDataAlertsParsed[]>(() => {
     return this.orderEvents(this.alertList());
@@ -172,7 +177,8 @@ export class BmbAlertCenterComponent {
 
     if (
       this.container.nativeElement.clientWidth < 350 ||
-      window.innerWidth < 1000
+      window.innerWidth < 1000 ||
+      this.showMobileVersion()
     ) {
       const data: ModalDataConfig = {
         title: item.title,

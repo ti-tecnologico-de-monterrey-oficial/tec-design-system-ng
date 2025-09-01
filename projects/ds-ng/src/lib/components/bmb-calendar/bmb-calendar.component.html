@@ -1,81 +1,75 @@
-<div class="bmb_calendar" [ngStyle]="{ height: getHeight(height) }">
-  <bmb-calendar-template-mobile
-    [now]="now"
-    [lang]="lang"
-    [events]="getEvents()"
-    (onCurrentDateChange)="handleCurrentDateChange($event)"
-    [weekDays]="renderWeekDays"
-    [isListShowing]="isListShowing"
-    (onViewTypeChange)="onViewTypeChange()"
-    [calendarTitle]="calendarTitle()"
-    (onClose)="handleClose()"
-  />
-  <bmb-calendar-header
-    [weekDays]="renderWeekDays"
-    [lang]="lang"
-    [view]="view()"
-    [currentDate]="now"
-    (onRangeChange)="handleDateChange($event, now)"
-    (onCurrentDateChange)="handleCurrentDateChange($event)"
-  />
-  @if (isListShowing) {
-    <bmb-calendar-template-event-list
-      [events]="getEvents()"
+<div class="bmb_calendar" [ngStyle]="{ height: getHeight(height()) }">
+  @if (isMobileHeader) {
+    <bmb-calendar-template-mobile
+      [now]="visibleDate()"
+      [lang]="lang()"
+      [events]="filteredEvents()"
       (onCurrentDateChange)="handleCurrentDateChange($event)"
-      class="bmb_calendar-content"
+      [weekDays]="renderWeekDays()"
+      [calendarTitle]="calendarTitle()"
+      (onClose)="handleClose()"
+      (showFilters)="handleShowModalFilter()"
     />
   } @else {
-    @switch (view()) {
-      @case ("day") {
-        <bmb-calendar-template-day
-          [now]="now"
-          [events]="getEvents()"
-          (onSelectEvent)="handleSelectEvent($event)"
-          [currentTime]="currentTime"
-          [startBusinessHour]="startBusinessHour()"
-          class="bmb_calendar-content"
-        />
-      }
-      @case ("week") {
-        <bmb-calendar-template-week
-          [weekDays]="renderWeekDays"
-          [lang]="lang"
-          [hourFormat]="hourFormat"
-          [now]="now"
-          [events]="getEvents()"
-          (onSelectEvent)="handleSelectEvent($event)"
-          [currentTime]="currentTime"
-          [startBusinessHour]="startBusinessHour()"
-          class="bmb_calendar-content"
-        />
-      }
-      @case ("month") {
-        <bmb-calendar-template-month
-          [now]="now"
-          [events]="getEvents()"
-          (onSelectEvent)="handleSelectEvent($event)"
-          class="bmb_calendar-content"
-        />
-      }
-      @default {
-        <bmb-calendar-template-week
-          [weekDays]="renderWeekDays"
-          [lang]="lang"
-          [hourFormat]="hourFormat"
-          [now]="now"
-          [events]="getEvents()"
-          class="bmb_calendar-content"
-        />
-      }
+    <bmb-calendar-header
+      [weekDays]="renderWeekDays()"
+      [lang]="lang()"
+      [view]="view()"
+      [currentDate]="visibleDate()"
+      (onRangeChange)="handleDateChange($event, visibleDate())"
+      (onCurrentDateChange)="handleCurrentDateChange($event)"
+      [showFilterButton]="showFilterButton()"
+      (showFilters)="handleShowModalFilter()"
+    />
+  }
+  @switch (view()) {
+    @case ("day") {
+      <bmb-calendar-template-day
+        [now]="visibleDate()"
+        [events]="getDayEvents()"
+        (onSelectEvent)="handleSelectEvent($event)"
+        [currentTime]="currentTime()"
+        [startBusinessHour]="startBusinessHour()"
+        [dateFormat]="dateFormat()"
+        class="bmb_calendar-content"
+      />
+    }
+    @case ("week") {
+      <bmb-calendar-template-week
+        [weekDays]="renderWeekDays()"
+        [lang]="lang()"
+        [now]="visibleDate()"
+        [events]="filteredEvents()"
+        (onSelectEvent)="handleSelectEvent($event)"
+        [currentTime]="currentTime()"
+        [startBusinessHour]="startBusinessHour()"
+        [selectedWeek]="selectedWeek()"
+        class="bmb_calendar-content"
+      />
+    }
+    @case ("month") {
+      <bmb-calendar-template-month
+        [now]="visibleDate()"
+        [events]="filteredEvents()"
+        (onSelectEvent)="handleSelectEvent($event)"
+        class="bmb_calendar-content"
+      />
+    }
+    @default {
+      <bmb-calendar-template-week
+        [weekDays]="renderWeekDays()"
+        [lang]="lang()"
+        [now]="visibleDate()"
+        [events]="filteredEvents()"
+        class="bmb_calendar-content"
+      />
     }
   }
 
-  @if (getIsLoading()) {
-    <section class="bmb_calendar-loader">
-      <div class="bmb_loader-loading">
-        <bmb-icon icon="progress_activity" class="bmb_loader-icon" />
-      </div>
-    </section>
+  @if (isLoading()) {
+    <div class="bmb_calendar-loader">
+      <bmb-loader [showInline]="true" />
+    </div>
   }
 </div>
 
@@ -83,7 +77,7 @@
   @if (selectedEvent) {
     <section>
       @if (selectedEvent.tags?.length) {
-        <p>
+        <p style="display: flex; flex-wrap: wrap; gap: 0.5rem">
           @for (item of selectedEvent.tags; track $index) {
             <bmb-badge [text]="item.text" [appearance]="item.appearance" />
           }
@@ -98,4 +92,17 @@
       <div class="bmb_calendar-event-modal-duration">{{ getDuration() }}</div>
     </section>
   }
+</ng-template>
+
+<ng-template #modalTemplate>
+  <form [formGroup]="calendarForm">
+    @for (item of filteredEvents().calendars; track $index) {
+      <bmb-checkbox
+        [inputId]="'checkbox_' + item"
+        [name]="'checkbox_' + item"
+        [label]="item"
+        [control]="getFormControl(item)"
+      />
+    }
+  </form>
 </ng-template>

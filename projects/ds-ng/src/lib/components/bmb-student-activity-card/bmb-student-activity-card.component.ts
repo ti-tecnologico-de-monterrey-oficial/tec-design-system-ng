@@ -59,6 +59,8 @@ export class BmbStudentActivityCardComponent {
         return 'mitec_green';
       case 'events':
         return 'mitec_purple';
+      case 'save_the_date':
+        return 'mitec_orange';
     }
   }
 }

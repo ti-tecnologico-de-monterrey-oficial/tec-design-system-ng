@@ -1,5 +1,17 @@
 import { componentWrapperDecorator, Meta, StoryObj } from '@storybook/angular';
 import { BmbDrawerOverlayComponent } from './bmb-drawer-overlay.component';
+import {
+  getBasicExampleBlock,
+  getGeneralComponentDescription,
+  getGeneralDescription,
+  getOnEvent,
+  RELEVANT_TITLE_LEVEL,
+} from '../../utils/doc/utils';
+import {
+  getOnClickParam,
+  getOnEventParam,
+  getPropertyParamDesc,
+} from '../../utils/doc/parameterDescriptions';
 
 export default {
   title: 'Particularities/mitec app/FAB Overlay drawer',
@@ -14,70 +26,234 @@ export default {
   ],
   parameters: {
     docs: {
+      controls: {
+        exclude: [
+          'activeNavItemIndex',
+          'isFull',
+          'isOpen',
+          'handleValueChange',
+          'selectNavItem',
+          'toggleDrawer',
+          'toggleFullDrawer',
+          '',
+          '',
+        ],
+      },
       description: {
         component: `
-The \`BmbDrawerOverlayComponent\` is an interactive overlay that includes an app menu and a header. Here is an example of how to use it in TypeScript:
-
-\`\`\`typescript
-import { BmbDrawerOverlayComponent } from '@your-library';
-@Component({
-  selector: 'component',
-  standalone: true,
-  imports: [ BmbDrawerOverlayComponent ],
-  templateUrl: './component.html',
-  styleUrl: './component.scss',
-})
-\`\`\`
+${getGeneralDescription(`${getGeneralComponentDescription('drawer-overlay', 'element')} to implement an interactive overlay in addition to an application menu and header.`, 'https://bamboo.tec.mx/latest/particularities/mitec-app/fab-overlay-drawer-11JEvoAR')}
+${getBasicExampleBlock('BmbDrawerOverlayComponent')}
 `,
       },
     },
   },
   argTypes: {
     menu: {
-      name: 'Menu Items',
       control: { type: 'object' },
-      description: 'Array of objects representing the menu items.',
+      description: 'Sets the data of the menu items.',
       table: {
         category: 'Properties',
-        type: { summary: 'Array' },
+        defaultValue: {
+          summary: '[]',
+          detail: `
+${RELEVANT_TITLE_LEVEL[4]}
+[
+  {
+    appearance: 'red',
+    title: 'App 1',
+    icon: 'https://img.freepik.com/premium-vector/approved-icon-with-thumb-up-approved-label-quality-control_349999-1321.jpg?w=2000',
+    target: '_blank',
+    link: 'https://www.example.com/',
+  },
+  {
+    appearance: 'blue',
+    title: 'App 2',
+    icon: 'face',
+    target: '_blank',
+    link: 'https://www.example.com/',
+  },
+  {
+    appearance: 'green',
+    title: 'App 3',
+    icon: 'face',
+    target: '_blank',
+    link: 'https://www.example.com/',
+  },
+  {
+    appearance: 'blue',
+    title: 'Menú de servicios',
+    icon: 'lists',
+    buttonClick: () => {
+      console.log('Button clicked!');
+    },
+  },
+]
+        `,
+        },
+        type: { summary: 'any - []' },
       },
     },
-    title: {
-      name: 'Title',
-      control: { type: 'text' },
-      description: 'Title displayed in the inner header.',
-      table: {
-        category: 'Properties',
-        type: { summary: 'string' },
-      },
-    },
+    title: getPropertyParamDesc(
+      'inner header. This will be shown on any of the menu item (\`menu\` property)',
+    ),
     dataSearch: {
-      name: 'Data Search',
       control: { type: 'array' },
-      description: 'Array of strings for search data in the inner header.',
+      description: 'Sets the value list for search data in the inner header.',
       table: {
         category: 'Properties',
-        type: { summary: 'Array' },
+        defaultValue: { summary: '[]' },
+        type: { summary: 'string[]' },
       },
     },
     tabs: {
-      name: 'Tabs',
-      control: { type: 'array' },
-      description: 'Array of objects representing the tabs.',
+      control: { type: 'object' },
+      description: 'Sets the data of the tabs.',
       table: {
         category: 'Properties',
-        type: { summary: 'Array' },
+        defaultValue: {
+          summary: '[]',
+          detail: `
+${RELEVANT_TITLE_LEVEL[4]}
+[
+  { title: 'Tab 1', id: 0 },
+  { title: 'Tab 2', id: 1 },
+  { title: 'Tab 3', id: 2 },
+],
+        `,
+        },
+        type: {
+          summary: 'IBmbTab[]',
+          detail: `
+IBmbTab {
+  id: number;
+  title: string;
+  isActive?: boolean;
+  badge?: number;
+  isMobile?: boolean;
+  isDesktop?: boolean;
+}
+          `,
+        },
       },
     },
     appServices: {
-      name: 'App Services',
       control: { type: 'object' },
-      description: 'Map of arrays of apps organized by index.',
+      description: 'Sets the data of apps, must be organized by index.',
       table: {
         category: 'Properties',
-        type: { summary: 'Object' },
+        defaultValue: {
+          summary: '{}',
+          detail: `
+${RELEVANT_TITLE_LEVEL[4]}
+{
+  '0': [
+    {
+      appearance: 'red',
+      title: 'App 1',
+      icon: 'face',
+      target: '_blank',
+      link: 'https://www.example.com/',
+    },
+    {
+      appearance: 'blue',
+      title: 'App 2',
+      icon: 'face',
+      target: '_blank',
+      link: 'https://www.example.com/',
+    },
+  ],
+  '1': [
+    {
+      appearance: 'green',
+      title: 'App 3',
+      icon: 'face',
+      target: '_blank',
+      link: 'https://www.example.com/',
+    },
+    {
+      appearance: 'yellow',
+      title: 'App 4',
+      icon: 'face',
+      target: '_blank',
+      link: 'https://www.example.com/',
+    },
+  ],
+  '2': [
+    {
+      appearance: 'green',
+      title: 'App 5',
+      icon: 'face',
+      target: '_blank',
+      link: 'https://www.example.com/',
+    },
+    {
+      appearance: 'yellow',
+      title: 'App 6',
+      icon: 'face',
+      target: '_blank',
+      link: 'https://www.example.com/',
+    },
+  ],
+}
+          `,
+        },
+        type: {
+          summary: '{ index: IBmbApp[] }',
+          detail: `
+{ [key: number]: IBmbApp[] }
+
+IBmbApp {
+  icon: string;
+  title: string;
+  link?: string;
+  target?: IBmbTargetLink;
+  appearance: IBmbInteractiveIconAppearance;
+  callbackParam?: any;
+}
+
+IBmbTargetLink = '_blank' | '_parent' | '_self' | '_top';
+
+IBmbInteractiveIconAppearance =
+  | 'red'
+  | 'blue'
+  | 'green'
+  | 'yellow'
+  | 'purple'
+  | 'none'
+  | 'mitec_blue'
+  | 'mitec_red'
+  | 'mitec_green'
+  | 'mitec_orange'
+  | 'mitec_light_green'
+  | 'mitec_purple'
+  | 'creative_violet'
+  | 'creative_indigo'
+  | 'creative_emerald'
+  | 'creative_licorice'
+  | 'creative_darkteal'
+  | 'creative_peach'
+  | 'creative_sepia'
+  | 'creative_softred'
+  | 'creative_wattle'
+  | 'creative_shipcove'
+  | 'creative_plantation'
+  | 'creative_rum'
+  | 'creative_hibiscus'
+  | 'creative_ripelemon'
+  | 'buttons-primary-normal'
+  | 'purple-primary'
+  | 'general_contrasts-main-selection'
+  | 'general_contrasts-main-selection-alternative';
+        `,
+        },
       },
     },
+    buttonClick: getOnClickParam(
+      getOnEvent('***interactive menu icon***', 'buttonClick'),
+    ),
+    onValueChange: getOnEventParam(
+      getOnEvent('the value of the search field', 'onValueChange', 'string'),
+    ),
   },
   args: {
     menu: [
