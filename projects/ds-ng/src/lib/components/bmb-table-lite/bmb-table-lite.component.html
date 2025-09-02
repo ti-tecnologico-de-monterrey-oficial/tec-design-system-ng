@@ -1,0 +1,290 @@
+<div [ngClass]="getTableClasses()">
+  @if (showSearch() || filtersVisible()) {
+    <header class="bmb_table_lite-header">
+      @if (showSearch()) {
+        <section class="bmb_table_lite-search">
+          <bmb-input
+            class="bmb_table_lite-input"
+            [type]="'text'"
+            [placeholder]="'Buscar'"
+            [disabled]="false"
+            [icon]="'search'"
+            [appearance]="'normal'"
+            [control]="searchControl"
+          ></bmb-input>
+          <bmb-action-icon
+            [idElement]="''"
+            [icon]="'filter_list'"
+            [iconSize]="24"
+            (buttonClick)="toggleFilters()"
+          ></bmb-action-icon>
+        </section>
+      }
+      <div class="bmb_table_lite-filter">
+        @if (filtersVisible()) {
+          @for (column of parsedFiltersColumns(); track $index) {
+            <section class="bmb_table_lite-filter-item">
+              @switch (column.type) {
+                @case ("number") {
+                  <div class="bmb_table_lite-filter-item-number">
+                    <bmb-input
+                      [label]="column.label + ' mínimo'"
+                      [type]="'number'"
+                      [placeholder]="'Mín'"
+                      [appearance]="'normal'"
+                      [control]="getFormControl(column.dataKey + '_min')"
+                    />
+                    <bmb-input
+                      [label]="column.label + ' máximo'"
+                      [type]="'number'"
+                      [placeholder]="'Máx'"
+                      [appearance]="'normal'"
+                      [control]="getFormControl(column.dataKey + '_max')"
+                    />
+                  </div>
+                }
+                @case ("date") {
+                  <bmb-date-range
+                    [label]="column.label"
+                    [placeholderStartDate]="'Desde'"
+                    [placeholderEndDate]="'Hasta'"
+                    [icon]="'calendar_month'"
+                    [appearance]="'normal'"
+                    [dateFormat]="'dd/MM/yyyy'"
+                    [controlStart]="getFormControl(column.dataKey + '_from')"
+                    [controlEnd]="getFormControl(column.dataKey + '_to')"
+                    (startDateChange)="
+                      getFormControl(column.dataKey + '_from').setValue($event)
+                    "
+                    (endDateChange)="
+                      getFormControl(column.dataKey + '_to').setValue($event)
+                    "
+                  />
+                }
+                @default {
+                  <bmb-input
+                    [label]="column.label"
+                    [placeholder]="'Filtrar'"
+                    [control]="getFormControl(column.dataKey + '_contains')"
+                  />
+                }
+              }
+            </section>
+          }
+        }
+      </div>
+    </header>
+  }
+
+  <div class="bmb_table_lite-container">
+    <section class="bmb_table_lite-container-table" #tableRef>
+      <div class="bmb_table_lite-row bmb_table_lite-row--header">
+        @if (tableConfig?.isSelectable) {
+          <div class="bmb_table_lite-th bmb_table_lite-checkbox">
+            <bmb-checkbox
+              (change)="$event ? toggleAllRows() : null"
+              [checked]="isAllSelected()"
+              [indeterminate]="selection.hasValue() && !isAllSelected()"
+              [ariaLabel]="checkboxLabel()"
+              [disabled]="false"
+            />
+            <span
+              class="bmb_table_lite-resize"
+              (mousedown)="onResizeColumn($event, 0)"
+            ></span>
+          </div>
+        }
+
+        @if (tableConfig?.isExpandible) {
+          <div class="bmb_table_lite-th bmb_table_lite-expand">&nbsp;</div>
+        }
+
+        @for (column of tableColumns; track column; let i = $index) {
+          <div
+            class="bmb_table_lite-th"
+            [style.width.px]="column.width || 150"
+            [ngClass]="{
+              'bmb_table_lite-sticky': i === 0,
+              truncated: truncate(),
+              wrapped: wrap(),
+            }"
+            [title]="
+              lang() === 'es' ? column.label : column.labelEn || column.label
+            "
+          >
+            <ng-container *ngIf="column.icon">
+              <bmb-icon [icon]="column.icon"></bmb-icon>
+            </ng-container>
+
+            @if (column.htmlLabel) {
+              <ng-template
+                [ngTemplateOutlet]="column.htmlLabel"
+                [ngTemplateOutletContext]="{ column: column, index: i }"
+              ></ng-template>
+            } @else {
+              {{
+                lang() === "es" ? column.label : column.labelEn || column.label
+              }}
+            }
+
+            <span
+              class="bmb_table_lite-resize"
+              (mousedown)="onResizeColumn($event, i)"
+            ></span>
+          </div>
+        }
+
+        @if (tableConfig?.showActions) {
+          <div class="bmb_table_lite-th bmb_table_lite-actions"></div>
+        }
+      </div>
+
+      @for (row of pageSlice; track row; let rIndex = $index) {
+        <div
+          class="bmb_table_lite-row"
+          (click)="onSelectRow(row)"
+          [ngClass]="{
+            'bmb_table_lite-even': isEven(rIndex),
+            'bmb_table_lite-odd': isOdd(rIndex),
+            'bmb_table_lite-expandible': expandedElement === row,
+          }"
+        >
+          @if (tableConfig?.isSelectable) {
+            <div class="bmb_table_lite-td bmb_table_lite-checkbox">
+              <bmb-checkbox
+                (change)="$event ? selection.toggle(row) : null; onSelect()"
+                [checked]="selection.isSelected(row)"
+                [ariaLabel]="checkboxLabel(row)"
+                [disabled]="false"
+                onkeypress="$event.stopPropagation()"
+              />
+            </div>
+          }
+
+          @if (tableConfig?.isExpandible) {
+            <div class="bmb_table_lite-td bmb_table_lite-expand">
+              <ng-container *ngIf="row.detail">
+                <button
+                  type="button"
+                  class="bmb_btn-icon"
+                  aria-label="expand row"
+                  (click)="
+                    expandedElement = expandedElement === row ? null : row;
+                    $event.stopPropagation()
+                  "
+                >
+                  <bmb-icon
+                    [icon]="
+                      expandedElement === row ? 'expand_less' : 'expand_more'
+                    "
+                  ></bmb-icon>
+                </button>
+              </ng-container>
+            </div>
+          }
+
+          @for (column of tableColumns; track column; let i = $index) {
+            <div
+              class="bmb_table_lite-td"
+              [style.width.px]="column.width || 150"
+              [ngClass]="getCellClasses(row, column.dataKey, i)"
+              [title]="row[column.dataKey]?.propertyName || row[column.dataKey]"
+            >
+              @if (isTemplateRef(row[column.dataKey + "Template"])) {
+                <ng-template
+                  [ngTemplateOutlet]="row[column.dataKey + 'Template']"
+                  [ngTemplateOutletContext]="{ row: row }"
+                ></ng-template>
+              } @else {
+                {{ row[column.dataKey]?.propertyName || row[column.dataKey] }}
+              }
+            </div>
+          }
+
+          @if (tableConfig?.showActions) {
+            <div class="bmb_table_lite-td bmb_table_lite-actions">
+              @if (
+                tableColumns?.length &&
+                tableColumns[tableColumns.length - 1]?.templateActions
+              ) {
+                <ng-template
+                  [ngTemplateOutlet]="
+                    tableColumns[tableColumns.length - 1].templateActions!
+                  "
+                  [ngTemplateOutletContext]="{ row: row }"
+                ></ng-template>
+              } @else {
+                <ng-template
+                  [ngTemplateOutlet]="actionTemplate()!"
+                  [ngTemplateOutletContext]="{ row: row }"
+                ></ng-template>
+              }
+            </div>
+          }
+        </div>
+
+        @if (tableConfig?.isExpandible) {
+          <div
+            class="bmb_table_lite-row bmb_table_lite-details"
+            [class.bmb_table_lite-expanded]="expandedElement === row"
+          >
+            <div class="bmb_table_lite-detail" *ngIf="expandedElement === row">
+              <ng-container
+                *ngTemplateOutlet="detailTemplate(); context: { row: row }"
+              ></ng-container>
+            </div>
+          </div>
+        }
+      }
+    </section>
+
+    @if (tableConfig?.isPaginable) {
+      <div class="bmb_table_lite-paginator">
+        <span class="bmb_table_lite-paginator-text">{{
+          getPaginationText()
+        }}</span>
+
+        <button
+          class="bmb_table_lite-paginator-btn"
+          [disabled]="currentPage() === 0"
+          (click)="goToFirstPage()"
+        >
+          <bmb-icon
+            icon="keyboard_double_arrow_left"
+            class="bmb_table_lite-paginator-icon"
+          />
+        </button>
+        <button
+          class="bmb_table_lite-paginator-btn"
+          [disabled]="currentPage() === 0"
+          (click)="goToPreviousPage()"
+        >
+          <bmb-icon
+            icon="keyboard_arrow_left"
+            class="bmb_table_lite-paginator-icon"
+          />
+        </button>
+        <button
+          class="bmb_table_lite-paginator-btn"
+          [disabled]="currentPage() >= lastPage()"
+          (click)="goToNextPage()"
+        >
+          <bmb-icon
+            icon="keyboard_arrow_right"
+            class="bmb_table_lite-paginator-icon"
+          />
+        </button>
+        <button
+          class="bmb_table_lite-paginator-btn"
+          [disabled]="currentPage() >= lastPage()"
+          (click)="goToLastPage()"
+        >
+          <bmb-icon
+            icon="keyboard_double_arrow_right"
+            class="bmb_table_lite-paginator-icon"
+          />
+        </button>
+      </div>
+    }
+  </div>
+</div>
