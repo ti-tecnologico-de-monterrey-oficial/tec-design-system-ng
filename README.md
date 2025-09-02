@@ -11,6 +11,7 @@ Descubre cómo nuestro Design System no solo da forma a la estética, sino que t
 En esta versión, hemos trabajado en nuevas funcionalidades, correcciones y optimizaciones para mejorar la experiencia de las personas que utilizan nuestro sistema. Agradecemos la colaboración de todas las personas involucradas en este esfuerzo.
 
 ### 🆕 Nuevas Funcionalidades
+
 - Implementación del componente "Template Accordion" para mejorar la organización de contenido. ([#649](https://github.com/ti-tecnologico-de-monterrey-oficial/tec-design-system-ng/pull/649))
 - Se agregó la capacidad de determinar la posición de los filtros en las tablas. ([#631](https://github.com/ti-tecnologico-de-monterrey-oficial/tec-design-system-ng/pull/631))
 - Nuevo componente de modal nativo para una experiencia más fluida. ([#628](https://github.com/ti-tecnologico-de-monterrey-oficial/tec-design-system-ng/pull/628))
@@ -18,6 +19,7 @@ En esta versión, hemos trabajado en nuevas funcionalidades, correcciones y opti
 - Mejora en la accesibilidad del componente "Tag". ([ff185bb](https://github.com/ti-tecnologico-de-monterrey-oficial/tec-design-system-ng/commit/ff185bb7a85cf014a65f214c71ba7de01d5ff9d3))
 
 ### ✅ Problemas Resueltos
+
 - Corrección en el funcionamiento de los filtros para las tablas. ([d884bda](https://github.com/ti-tecnologico-de-monterrey-oficial/tec-design-system-ng/commit/d884bdaa9cf41d70312afb6eaf5f98e85ad67c93))
 - Solución al problema de emisión de eventos en el componente "Alert Center". ([99f3560](https://github.com/ti-tecnologico-de-monterrey-oficial/tec-design-system-ng/commit/99f35607dd842562ea45e0faf9d91b1ffc8682cd))
 - Actualización de estilos en el componente "Tabs". ([28eac2a](https://github.com/ti-tecnologico-de-monterrey-oficial/tec-design-system-ng/commit/28eac2a4fe7edb501340c51f0257617cd9e7a767))
@@ -25,6 +27,7 @@ En esta versión, hemos trabajado en nuevas funcionalidades, correcciones y opti
 - Solución al comportamiento errático de las tabs en el "Alert Center". ([8ca6a9a](https://github.com/ti-tecnologico-de-monterrey-oficial/tec-design-system-ng/commit/8ca6a9a2d8bc34c0fd6cda9241725ad07e773253))
 
 ### ⚡ Optimizaciones
+
 - Homologación de títulos en la documentación de Storybook. ([02741fc](https://github.com/ti-tecnologico-de-monterrey-oficial/tec-design-system-ng/commit/02741fcdd8cf12876e3e87230350d5cced4a9166))
 - Restauración de cambios para mejorar el contraste en los componentes. ([4db478e](https://github.com/ti-tecnologico-de-monterrey-oficial/tec-design-system-ng/commit/4db478ec701759eb456dbe1318ac3b8ead76953c))
 - Optimización de la estructura de documentación en Storybook. ([770bb7a](https://github.com/ti-tecnologico-de-monterrey-oficial/tec-design-system-ng/commit/770bb7ac0e24f89ed648f9f4b045584606c66023))
