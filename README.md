@@ -6,29 +6,31 @@ Descubre cómo nuestro Design System no solo da forma a la estética, sino que t
 
 ---
 
-## 🚀 Versión 1.5.10 🎉 - 25 de julio de 2025
+## 🚀 Versión v1.5.11 🎉 - 01 de septiembre de 2025
 
-Esta versión introduce mejoras significativas en la experiencia de notificaciones y documentación, gracias al esfuerzo colaborativo del equipo. Las personas ahora pueden disfrutar de una interfaz más optimizada y funcionalidades mejoradas.
+En esta versión, hemos trabajado en nuevas funcionalidades, correcciones y optimizaciones para mejorar la experiencia de las personas que utilizan nuestro sistema. Agradecemos la colaboración de todas las personas involucradas en este esfuerzo.
 
 ### 🆕 Nuevas Funcionalidades
 
-- Refactorización del componente Alert Center para utilizar su propio servicio, mejorando la gestión de estado y la modularidad.
-- Compatibilidad añadida con Angular 20, asegurando integraciones modernas y robustas.
+- Implementación del componente "Template Accordion" para mejorar la organización de contenido. ([#649](https://github.com/ti-tecnologico-de-monterrey-oficial/tec-design-system-ng/pull/649))
+- Se agregó la capacidad de determinar la posición de los filtros en las tablas. ([#631](https://github.com/ti-tecnologico-de-monterrey-oficial/tec-design-system-ng/pull/631))
+- Nuevo componente de modal nativo para una experiencia más fluida. ([#628](https://github.com/ti-tecnologico-de-monterrey-oficial/tec-design-system-ng/pull/628))
+- Validaciones personalizadas para controles de tipo input en formularios. ([4f6615a](https://github.com/ti-tecnologico-de-monterrey-oficial/tec-design-system-ng/commit/4f6615a8828f2ccf1e6eb58666e78350e897933b))
+- Mejora en la accesibilidad del componente "Tag". ([ff185bb](https://github.com/ti-tecnologico-de-monterrey-oficial/tec-design-system-ng/commit/ff185bb7a85cf014a65f214c71ba7de01d5ff9d3))
 
 ### ✅ Problemas Resueltos
 
-- Corrección de parámetros opcionales en el componente Grades, mejorando la precisión de los datos.
-- Solución al problema de la semana 53 en años bisiestos en el componente Date Picker.
-- Resolución de incompatibilidades en las opciones asíncronas del componente Dropdown.
+- Corrección en el funcionamiento de los filtros para las tablas. ([d884bda](https://github.com/ti-tecnologico-de-monterrey-oficial/tec-design-system-ng/commit/d884bdaa9cf41d70312afb6eaf5f98e85ad67c93))
+- Solución al problema de emisión de eventos en el componente "Alert Center". ([99f3560](https://github.com/ti-tecnologico-de-monterrey-oficial/tec-design-system-ng/commit/99f35607dd842562ea45e0faf9d91b1ffc8682cd))
+- Actualización de estilos en el componente "Tabs". ([28eac2a](https://github.com/ti-tecnologico-de-monterrey-oficial/tec-design-system-ng/commit/28eac2a4fe7edb501340c51f0257617cd9e7a767))
+- Corrección de errores en el componente "Notification Card". ([98f5d6f](https://github.com/ti-tecnologico-de-monterrey-oficial/tec-design-system-ng/commit/98f5d6faebeda1ce449801cec9582c73fa4f051a))
+- Solución al comportamiento errático de las tabs en el "Alert Center". ([8ca6a9a](https://github.com/ti-tecnologico-de-monterrey-oficial/tec-design-system-ng/commit/8ca6a9a2d8bc34c0fd6cda9241725ad07e773253))
 
 ### ⚡ Optimizaciones
 
-- Optimización de la documentación y pruebas unitarias, facilitando la comprensión y el mantenimiento.
-- Creación de funciones reutilizables para la generación de documentación, promoviendo la consistencia.
-
-### 📘 Mejoras Documentación
-
-- Actualización de la documentación del componente Alert Center, proporcionando mayor claridad y detalle.
+- Homologación de títulos en la documentación de Storybook. ([02741fc](https://github.com/ti-tecnologico-de-monterrey-oficial/tec-design-system-ng/commit/02741fcdd8cf12876e3e87230350d5cced4a9166))
+- Restauración de cambios para mejorar el contraste en los componentes. ([4db478e](https://github.com/ti-tecnologico-de-monterrey-oficial/tec-design-system-ng/commit/4db478ec701759eb456dbe1318ac3b8ead76953c))
+- Optimización de la estructura de documentación en Storybook. ([770bb7a](https://github.com/ti-tecnologico-de-monterrey-oficial/tec-design-system-ng/commit/770bb7ac0e24f89ed648f9f4b045584606c66023))
 
 ---
 

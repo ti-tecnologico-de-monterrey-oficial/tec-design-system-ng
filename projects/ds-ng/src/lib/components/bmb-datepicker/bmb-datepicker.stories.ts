@@ -58,6 +58,11 @@ export default {
         'handleFocusedEvent',
         'handleValueChange',
         'handleWindowOpen',
+        'customValidationMessage',
+        '',
+        '',
+        '',
+        '',
       ],
     },
     docs: {
@@ -167,6 +172,7 @@ This date must have the same format as \`dateFormat\`.
         defaultValue: getDefaultValueControl('es-MX'),
       },
     },
+
     helperMessage: {
       ...DBmbInputParamDesc.helperMessage,
       table: {
@@ -177,6 +183,8 @@ This date must have the same format as \`dateFormat\`.
     value: DBmbInputParamDesc.value,
     inputId: DBmbInputParamDesc.inputId,
     onChange: getOnEventParam(onChange),
+    errorMessage: DBmbInputParamDesc.errorMessage,
+    customValidation: DBmbInputParamDesc.customValidation,
   },
   args: {
     inputId: '',

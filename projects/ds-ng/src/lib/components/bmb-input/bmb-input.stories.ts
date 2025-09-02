@@ -248,33 +248,7 @@ Example: 10/20 or 10/-
         defaultValue: getDefaultValueControl(3),
       },
     },
-    customValidation: {
-      control: {
-        type: 'object',
-      },
-      description: `
-Sets custom validator function to the field.
-
-Example of a \`ValidatorFn\`
-    customValidatorDate(): ValidatorFn {
-      return (control: AbstractControl): ValidationErrors | null => {
-        const { value } = control;
-        if (!value) return null;
-
-        const isValidDate = DateTime.fromFormat(
-          control.value,
-          this.dateFormat(),
-        ).isValid;
-
-        return !isValidDate ? { customValidation: true } : null;
-      };
-    }
-`,
-      table: {
-        category: 'Properties',
-        type: { summary: 'ValidatorFn' },
-      },
-    },
+    customValidation: DBmbInputParamDesc.customValidation,
     jsonFormat: {
       control: { type: 'boolean' },
       description: `
