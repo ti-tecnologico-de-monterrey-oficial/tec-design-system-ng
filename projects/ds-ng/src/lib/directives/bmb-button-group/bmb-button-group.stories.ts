@@ -36,7 +36,6 @@ type Story = StoryObj<typeof BmbButtonGroupDirective>;
 
 export const Default: Story = {
   name: 'Default',
-  storyName: 'Test',
   render: (args) => ({
     props: args,
     template: `

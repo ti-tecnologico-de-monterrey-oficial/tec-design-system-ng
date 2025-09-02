@@ -13,6 +13,12 @@ import {
   Validators,
   ReactiveFormsModule,
 } from '@angular/forms';
+import * as mainStory from './bmb-step-progress-bar.stories';
+import {
+  getBasicExampleBlock,
+  getGeneralDescription,
+} from '../../utils/doc/utils';
+import { DBmbStepProgressBar } from '../../utils/doc/parameterDescriptions';
 
 const example = `
 <ng-template #step0>
@@ -148,7 +154,7 @@ class StorybookStepPanelWrapperComponent implements AfterViewInit {
   }
 }
 
-const meta: Meta<typeof StorybookStepPanelWrapperComponent> = {
+export default {
   title: 'Components/Status indicators/Step progress bar/Wizard',
   component: StorybookStepPanelWrapperComponent,
   tags: ['!autodocs'],
@@ -156,34 +162,20 @@ const meta: Meta<typeof StorybookStepPanelWrapperComponent> = {
     docs: {
       description: {
         component: `
-Below is an example of how you can use this component in TypeScript:
-
-\`\`\`typescript
-import {
-  Component,
-  ChangeDetectionStrategy,
-  ViewChild,
-  TemplateRef,
-} from '@angular/core';
-import {
+${getGeneralDescription(
+  `**${mainStory.default.title} - Wizard** variant allows to display custom content vertically, making it easier to navigate flows with greater complexity than just indicating the progress of a process.`,
+  'https://bamboo.tec.mx/latest/components/step-progress-bar/descripcion-general-xebEHoek',
+  true,
+)}
+${getBasicExampleBlock(
+  'BmbStepProgressBarComponent',
+  `import {
   FormBuilder,
   FormGroup,
   Validators,
   ReactiveFormsModule,
-} from '@angular/forms';
-import { BmbStepProgressBarComponent } from '../../projects/ds-ng/src/public-api';
-import { CommonModule } from '@angular/common';
-
-@Component({
-  selector: 'app-root',
-  standalone: true,
-  imports: [BmbStepProgressBarComponent, CommonModule, ReactiveFormsModule],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
-})
-export class AppComponent {
-  @ViewChild('step0') step0!: TemplateRef<any>;
+} from '@angular/forms';`,
+  `@ViewChild('step0') step0!: TemplateRef<any>;
   @ViewChild('step1') step1!: TemplateRef<any>;
   @ViewChild('step2') step2!: TemplateRef<any>;
 
@@ -240,12 +232,9 @@ export class AppComponent {
       return;
     }
     alert('¡Formulario finalizado!');
-  }
-}
-
-\`\`\`
-
-Below is an example of how you can use this component in HTML:
+  }`,
+  true,
+)}
 \`\`\`html
 ${example}
 \`\`\`
@@ -254,13 +243,31 @@ ${example}
       transformSource: () => `${example}`.trim(),
     },
   },
-};
-
-export default meta;
+  argTypes: {
+    activeStep: DBmbStepProgressBar.activeStep,
+    totalSteps: DBmbStepProgressBar.totalSteps,
+    size: DBmbStepProgressBar.size,
+    freeze: DBmbStepProgressBar.freeze,
+    type: DBmbStepProgressBar.type,
+    labelSteps: DBmbStepProgressBar.labelSteps,
+    labelComplete: DBmbStepProgressBar.labelComplete,
+    labelIncomplete: DBmbStepProgressBar.labelIncomplete,
+    stepTemplates: {
+      control: {
+        type: 'object',
+      },
+      description: '',
+      table: {
+        category: 'Properties',
+        defaultValue: false,
+        type: { summary: 'TemplateRef<any>' },
+      },
+    },
+  },
+} as Meta<typeof BmbStepProgressBarComponent>;
 
 type Story = StoryObj<typeof StorybookStepPanelWrapperComponent>;
 
-// ✅ Solo necesitas esto
-export const StepPanel: Story = {
+export const Default: Story = {
   name: 'Wizard',
 };

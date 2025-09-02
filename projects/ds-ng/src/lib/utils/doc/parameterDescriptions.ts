@@ -1338,3 +1338,99 @@ export const DBmbLayoutParamDesc = {
     description: 'Sets the alignment (align-items) of elements.',
   },
 };
+
+export const DBmbStepProgressBar = {
+  activeStep: {
+    control: {
+      type: 'number',
+    },
+    description: 'Sets the step that is active.',
+    table: {
+      category: 'Properties',
+      type: { summary: 'number' },
+    },
+  },
+  totalSteps: {
+    control: {
+      type: 'number',
+    },
+    description: 'Sets the number of steps that the counter will show.',
+    table: {
+      category: 'Properties',
+      type: { summary: 'number' },
+    },
+  },
+  size: {
+    control: {
+      type: 'radio',
+    },
+    options: ['small', 'medium', 'default'],
+    description: `Sets the size of the steps.<br/><br/> ${RELEVANT_TITLE_LEVEL[0]} This property only works when the ***type*** is ***horizontal***.`,
+    table: {
+      category: 'Properties',
+      type: { summary: 'select' },
+      defaultValue: { summary: 'default' },
+    },
+  },
+  freeze: {
+    control: {
+      type: 'boolean',
+    },
+    description: 'Freezes the state of progress steps.',
+    table: {
+      category: 'Properties',
+      type: { summary: 'boolean' },
+      defaultValue: { summary: 'false' },
+    },
+  },
+  type: {
+    control: {
+      type: 'radio',
+    },
+    options: ['horizontal', 'vertical'],
+    description:
+      'Changes the direction of the step progress bar, could be horizontal or vertical',
+    table: {
+      category: 'Properties',
+      type: { summary: 'string' },
+      defaultValue: { summary: 'horizontal' },
+    },
+  },
+  labelSteps: {
+    control: {
+      type: 'array',
+    },
+    description: 'Sets the label for each step',
+    table: {
+      category: 'Properties',
+      type: { summary: 'string[]' },
+    },
+  },
+  labelComplete: {
+    control: {
+      type: 'text',
+    },
+    description: 'Sets the label for complete steps',
+    table: {
+      category: 'Properties',
+      type: { summary: 'string' },
+      defaultValue: { summary: 'Completo' },
+    },
+  },
+  labelIncomplete: {
+    control: {
+      type: 'text',
+    },
+    description: 'Sets the label for incomplete steps',
+    table: {
+      category: 'Properties',
+      type: { summary: 'string' },
+      defaultValue: { summary: 'Pendiente' },
+    },
+  },
+  onStepPress: getOnEventParam(
+    getOnEvent('', 'onStepPress', 'number'),
+    `Emits the index of the step when a step is pressed`,
+    'other',
+  ),
+};

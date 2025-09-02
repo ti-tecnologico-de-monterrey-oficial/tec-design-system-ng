@@ -50,14 +50,15 @@ export class BmbTotpComponent {
   helperText = input<string>('');
   showButton = input<boolean>(false);
   buttonText = input<string>('');
-  maxCode = input<number>(6);
+  maxCode = input<number>(6); //Deprecated
   disableButton = input<boolean>(false);
 
   handleSubmit = output<string>();
 
   codeForm!: FormGroup;
+  _maxCode: number = 6;
   codesArray = computed(() => {
-    return Array.from({ length: this.maxCode() }, (_, i) => i);
+    return Array.from({ length: this._maxCode }, (_, i) => i);
   });
 
   constructor(private formBuilder: FormBuilder) {}
@@ -68,7 +69,7 @@ export class BmbTotpComponent {
 
   buildForm() {
     let group: { [key: string]: FormControl } = {};
-    for (let i = 0; i < this.maxCode(); i++) {
+    for (let i = 0; i < this._maxCode; i++) {
       group[`name_${this.instanceId()}_${i}`] = new FormControl('', [
         Validators.required,
         Validators.pattern('[0-9a-zA-Z]'),
@@ -99,7 +100,7 @@ export class BmbTotpComponent {
     }
 
     if (value && value.length === input.maxLength) {
-      if (idx < this.maxCode() - 1) {
+      if (idx < this._maxCode - 1) {
         const nextInput = document.getElementById(
           `code_${this.instanceId()}_${idx + 1}`,
         ) as HTMLInputElement;
@@ -107,7 +108,7 @@ export class BmbTotpComponent {
           nextInput.focus();
           nextInput.select();
         }
-      } else if (idx === this.maxCode() - 1 && !this.showButton()) {
+      } else if (idx === this._maxCode - 1 && !this.showButton()) {
         this.onSubmit();
       }
     }
@@ -131,8 +132,8 @@ export class BmbTotpComponent {
   @HostListener('paste', ['$event'])
   handlePaste(event: ClipboardEvent) {
     let pasteData = event.clipboardData?.getData('text/plain');
-    if (pasteData && pasteData.length === this.maxCode()) {
-      for (let i = 0; i < this.maxCode(); i++) {
+    if (pasteData && pasteData.length === this._maxCode) {
+      for (let i = 0; i < this._maxCode; i++) {
         const control = this.getFormControl(`name_${this.instanceId()}_${i}`);
         if (control) {
           control.setValue(pasteData[i]);
@@ -140,7 +141,7 @@ export class BmbTotpComponent {
       }
 
       const lastInput = document.getElementById(
-        `code_${this.instanceId()}_${this.maxCode() - 1}`,
+        `code_${this.instanceId()}_${this._maxCode - 1}`,
       ) as HTMLInputElement;
       if (lastInput) {
         lastInput.focus();
