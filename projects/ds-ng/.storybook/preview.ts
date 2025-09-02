@@ -16,11 +16,15 @@ import {
   TITLE_OF_CONTROLS,
   TOC_OBJ,
 } from '../src/lib/utils/doc/utils';
+import { INITIAL_VIEWPORTS, MINIMAL_VIEWPORTS } from 'storybook/viewport';
 
 setCompodocJson(docJson);
 
 const preview: Preview = {
   parameters: {
+    viewport: {
+      options: { ...MINIMAL_VIEWPORTS, ...INITIAL_VIEWPORTS },
+    },
     ally: {
       context: 'body',
       config: {},
@@ -111,6 +115,7 @@ const preview: Preview = {
   },
   initialGlobals: {
     layout: 'vertical',
+    viewport: { value: 'tablet', isRotated: false },
   },
   decorators: [
     withThemeByClassName({
