@@ -1430,7 +1430,12 @@ export const DBmbStepProgressBar = {
   },
   onStepPress: getOnEventParam(
     getOnEvent('', 'onStepPress', 'number'),
-    `Emits the index of the step when a step is pressed`,
+    `with the index of the step when a step is pressed.`,
+    'other',
+  ),
+  onStepPanelPress: getOnEventParam(
+    getOnEvent('', 'onStepPanelPress', 'number'),
+    `with the index when a step panel is pressed.`,
     'other',
   ),
 };
