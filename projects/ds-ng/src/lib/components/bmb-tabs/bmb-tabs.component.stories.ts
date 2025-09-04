@@ -146,7 +146,7 @@ export class AppComponent implements OnInit {
   - The "Continuar" button uses the \`goToNextTab\` method to move to the next tab programmatically.
   - The "Regresar" button uses the \`goToPreviousTab\` method to move to the previous tab programmatically.
 - **Selected Event:** The \`selected\` event emits the selected tab object whenever a tab is clicked.
-- **Boundaries:** The buttons will not perform any action if the user is already on the first or last tab, preventing out-of-bounds errors.
+- **Boundaries:** The buttons will not perform whether action if the user is already on the first or last tab, preventing out-of-bounds errors.
 
 ---
 

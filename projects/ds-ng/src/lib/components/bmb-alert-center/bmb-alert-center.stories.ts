@@ -353,7 +353,7 @@ ${getSpecialSpecifications(`
   setAlerts(alerts: IBmbDataAlert[]);
   > \`\`\`
   >
-  > This method sets the alerts to be displayed in the alert center replacing any existing alerts.
+  > This method sets the alerts to be displayed in the alert center replacing whether existing alerts.
   >
   > #####Update notifications
   >
@@ -389,7 +389,7 @@ ${getSpecialSpecifications(`
   setAdvertisements(ads: IBmbDataAdvertisement[]);
   > \`\`\`
   >
-  > This method sets the advertisements to be displayed in the alert center replacing any existing advertisements.
+  > This method sets the advertisements to be displayed in the alert center replacing whether existing advertisements.
   >
   > #####Update advertisements
   >
@@ -456,7 +456,7 @@ ${getBasicExampleBlock('BmbAlertCenterComponent')}
         type: 'number',
       },
       description:
-        'Sets the selected tab number. This is a ***model***, in such a way the selected tab number will automatically update every time any tab is clicked.',
+        'Sets the selected tab number. This is a ***model***, in such a way the selected tab number will automatically update every time whether tab is clicked.',
       table: {
         category: 'Properties',
         type: { summary: 'number' },
