@@ -81,12 +81,12 @@
   }
 
   .sbdocs {
-    &-title,
-    h1,
-    h2,
-    h3,
-    h4,
-    h5 {
+    &-title:not([class^="bmb"]),
+    h1:not([class^="bmb"]),
+    h2:not([class^="bmb"]),
+    h3:not([class^="bmb"]),
+    h4:not([class^="bmb"]),
+    h5:not([class^="bmb"]) {
       color: var(--general_contrasts-100);
     }
 

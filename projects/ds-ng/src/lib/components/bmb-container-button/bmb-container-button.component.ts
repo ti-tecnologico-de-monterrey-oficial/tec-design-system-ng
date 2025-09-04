@@ -5,6 +5,10 @@ import {
   input,
   output,
   model,
+  signal,
+  computed,
+  inject,
+  DestroyRef,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
@@ -19,6 +23,7 @@ import { BmbBookmarkComponent } from '../bmb-bookmark/bmb-bookmark.component';
 import { BmbUserImageComponent } from '../bmb-user-image/bmb-user-image.component';
 import { BmbDropdownMenuComponent } from '../bmb-dropdown-menu/bmb-dropdown-menu.component';
 
+const MOBILE_TABLET_QUERY = '(max-width: 992px)';
 @Component({
   selector: 'bmb-container-button',
   standalone: true,
@@ -63,6 +68,36 @@ export class BmbContainerButtonComponent {
 
   onButton = output<MouseEvent>();
   secondaryAction = output<MouseEvent>();
+
+  private destroyRef = inject(DestroyRef);
+  private mql =
+    typeof window !== 'undefined'
+      ? window.matchMedia(MOBILE_TABLET_QUERY)
+      : null;
+  private abort = new AbortController();
+
+  readonly isMobileOrTablet = signal<boolean>(!!this.mql?.matches);
+
+  constructor() {
+    this.mql?.addEventListener(
+      'change',
+      (e) => this.isMobileOrTablet.set((e as MediaQueryListEvent).matches),
+      { signal: this.abort.signal },
+    );
+    this.destroyRef.onDestroy(() => this.abort.abort());
+  }
+
+  readonly maxChars = computed(() => (this.isMobileOrTablet() ? 70 : 90));
+
+  private t = (s?: string, n = 90) =>
+    s ? (s.length > n ? s.slice(0, n).trimEnd() + '…' : s) : '';
+
+  readonly titleTruncated = computed(() =>
+    this.t(this.title(), this.maxChars()),
+  );
+  readonly subtitleTruncated = computed(() =>
+    this.t(this.subtitle(), this.maxChars()),
+  );
 
   getClassList(): string[] {
     const classList = ['bmb_container-button'];

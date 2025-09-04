@@ -40,10 +40,10 @@ export class BmbCalendarScheduleCardsComponent {
       startMin;
     const column = this.event()?.column ?? 0;
     const columnSize = this.event()?.columnCount ?? 1;
-    const left = column ? 100 / (column + 1) : 0;
+    const left = column ? (100 / columnSize) * column + 1 : 0;
     const width = columnSize ? 100 / columnSize : 100;
 
-    return `top: ${startMin}px; height: ${endMin}px; left: calc(${left}% + ${8 / (column + 1)}px); width: calc(${width}% - ${8 / (column + 1)}px)`;
+    return `top: ${startMin}px; height: ${endMin}px; left: calc(${left}% + ${8 / (columnSize + 1)}px); width: calc(${width}% - ${8 / (columnSize + 1)}px)`;
   }
 
   getClassNames(): string[] {

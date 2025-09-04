@@ -1,6 +1,7 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  computed,
   input,
   ViewEncapsulation,
 } from '@angular/core';
@@ -27,6 +28,9 @@ export class BmbImageComponent {
   loading = input<IBmbMediaCardLoading>('lazy');
   enableZoom = input<boolean>(false);
   isBlurredBackdrop = input<boolean>(false);
+
+  encodedURL = computed(() => encodeURI(this.src()));
+  encodedMobileURL = computed(() => encodeURI(this.mobileSrc() || ''));
 
   getClasses(): string[] {
     const classes = [];

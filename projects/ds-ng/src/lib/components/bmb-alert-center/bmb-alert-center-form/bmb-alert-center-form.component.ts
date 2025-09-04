@@ -2,8 +2,10 @@ import {
   ChangeDetectionStrategy,
   Component,
   computed,
+  effect,
   input,
   output,
+  untracked,
   ViewEncapsulation,
 } from '@angular/core';
 import {
@@ -117,16 +119,21 @@ export class BmbAlertCenterFormComponent {
   };
   hasSelectedAlerts = false;
 
-  ngOnInit(): void {
-    const categoriesKeys = Object.keys(this.eventsInCategories()) as Array<
-      keyof IBmbAlertCenterCategories
-    >;
-    categoriesKeys.forEach((key) => {
-      this.eventsInCategories()[key].forEach((alert: any) => {
-        this.alertSelectionForm.addControl(
-          `${alert.id}`,
-          new FormControl(false),
-        );
+  constructor() {
+    effect(() => {
+      const categoriesKeys = Object.keys(this.eventsInCategories()) as Array<
+        keyof IBmbAlertCenterCategories
+      >;
+
+      untracked(() => {
+        categoriesKeys.forEach((key) => {
+          this.eventsInCategories()[key].forEach((alert: any) => {
+            this.alertSelectionForm.addControl(
+              `${alert.id}`,
+              new FormControl(false),
+            );
+          });
+        });
       });
     });
   }

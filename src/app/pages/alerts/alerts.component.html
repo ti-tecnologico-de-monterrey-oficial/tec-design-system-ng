@@ -2,7 +2,10 @@
   <h3>Home</h3>
   <h5>Welcome to BambooPress</h5>
 </header>
-<div style="height: calc(100% - 230px)" class="bmb_template-margin-for-sidebar">
+<div
+  style="height: calc(100% - 230px)"
+  class="bmb_template-margin-for-sidebar;"
+>
   <bmb-alert-center
     [alerts]="alerts()"
     [dateFormat]="'dd/MM/yyyy'"
@@ -24,3 +27,22 @@
     Change alert status
   </button>
 </footer>
+<dialog
+  style="
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border: none;
+    background: rgba(0, 0, 0, 0.5);
+    width: 100%;
+  "
+  open
+>
+  <bmb-notification-card
+    [data]="alerts()"
+    maxHeight="500px"
+    [advertisements]="[]"
+  ></bmb-notification-card>
+</dialog>
