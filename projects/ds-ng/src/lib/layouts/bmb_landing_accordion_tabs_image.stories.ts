@@ -12,7 +12,7 @@ import {
   BmbCardContentComponent,
   BmbAccordionComponent,
   BmbAccordionControlDirective,
-  BmbTextLinkComponent,
+  BmbIconComponent,
 } from '../../public-api';
 import { CommonModule } from '@angular/common';
 import {
@@ -36,7 +36,7 @@ import * as accordionStory from '../components/bmb-accordion/bmb-accordion.stori
 import * as cardHeaderStory from '../components/bmb-card/bmb-card.stories';
 import * as cardContentStory from '../components/bmb-card/bmb-card.stories';
 import * as accordionControlStory from '../directives/bmb-accordion/bmb-accordion-control.stories';
-import * as textLinkStory from '../components/bmb-text-link/bmb-text-link.stories';
+import * as iconStory from '../components/bmb-icon/bmb-icon.stories';
 
 @Component({
   standalone: true,
@@ -52,7 +52,7 @@ import * as textLinkStory from '../components/bmb-text-link/bmb-text-link.storie
     BmbCardContentComponent,
     BmbAccordionComponent,
     BmbAccordionControlDirective,
-    BmbTextLinkComponent,
+    BmbIconComponent,
   ],
   selector: 'storybook-accordion-image',
   template: `
@@ -165,39 +165,42 @@ import * as textLinkStory from '../components/bmb-text-link/bmb-text-link.storie
                       <span class="font-medium-4">Guías</span>
                     </ng-template>
                     <ng-template #bmbAccordionContent>
-                      <bmb-text-link
-                        [textLink]="
-                          'Guía para establecer y dar seguimiento a mi Plan de Desarrollo'
-                        "
-                        [textLinkStyle]="'icon'"
-                        [target]="'_blank'"
-                        [icon]="'arrow_forward'"
-                        [iconPosition]="'right'"
-                        [link]="'https://www.youtube.com'"
-                        [disabled]="false"
-                      ></bmb-text-link>
-                      <bmb-text-link
-                        [textLink]="
-                          'Guía para acompañar a tu equipo en mi Plan de Desarrollo'
-                        "
-                        [textLinkStyle]="'icon'"
-                        [target]="'_blank'"
-                        [icon]="'arrow_forward'"
-                        [iconPosition]="'right'"
-                        [link]="'https://www.youtube.com'"
-                        [disabled]="false"
-                      ></bmb-text-link>
-                      <bmb-text-link
-                        [textLink]="
-                          'Guía para reguistrar tu plan en Success Factors'
-                        "
-                        [textLinkStyle]="'icon'"
-                        [target]="'_blank'"
-                        [icon]="'arrow_forward'"
-                        [iconPosition]="'right'"
-                        [link]="'https://www.youtube.com'"
-                        [disabled]="false"
-                      ></bmb-text-link>
+                      <div class="bmb_template-accordion-links">
+                        <a
+                          class="bmb_template-accordion-cta"
+                          href="https://www.youtube.com"
+                          target="'_blank'"
+                        >
+                          <span class="font-medium-4"
+                            >Guía para establecer y dar seguimiento a mi Plan de
+                            Desarrollo</span
+                          >
+                          <bmb-icon icon="arrow_forward" [size]="20" />
+                        </a>
+                        <a
+                          class="bmb_template-accordion-cta"
+                          href="https://www.youtube.com"
+                          target="'_blank'"
+                        >
+                          <span class="font-medium-4"
+                            >Guía para acompañar a tu equipo en mi Plan de
+                            Desarrollo</span
+                          >
+                          <bmb-icon icon="arrow_forward" [size]="20" />
+                        </a>
+
+                        <a
+                          class="bmb_template-accordion-cta"
+                          href="https://www.youtube.com"
+                          target="'_blank'"
+                        >
+                          <span class="font-medium-4"
+                            >Guía para reguistrar tu plan en Success
+                            Factors</span
+                          >
+                          <bmb-icon icon="arrow_forward" [size]="20" />
+                        </a>
+                      </div>
                     </ng-template>
                   </bmb-accordion>
                   <bmb-accordion
@@ -214,33 +217,36 @@ import * as textLinkStory from '../components/bmb-text-link/bmb-text-link.storie
                       <span class="font-medium-4">Recursos de desarrollo </span>
                     </ng-template>
                     <ng-template #bmbAccordionContent>
-                      <bmb-text-link
-                        [textLink]="'Oferta de desarrollo'"
-                        [textLinkStyle]="'icon'"
-                        [target]="'_blank'"
-                        [icon]="'arrow_forward'"
-                        [iconPosition]="'right'"
-                        [link]="'https://www.youtube.com'"
-                        [disabled]="false"
-                      ></bmb-text-link>
-                      <bmb-text-link
-                        [textLink]="'Oportunidades de crecimiento'"
-                        [textLinkStyle]="'icon'"
-                        [target]="'_blank'"
-                        [icon]="'arrow_forward'"
-                        [iconPosition]="'right'"
-                        [link]="'https://www.youtube.com'"
-                        [disabled]="false"
-                      ></bmb-text-link>
-                      <bmb-text-link
-                        [textLink]="'mi BiblioTECa'"
-                        [textLinkStyle]="'icon'"
-                        [target]="'_blank'"
-                        [icon]="'arrow_forward'"
-                        [iconPosition]="'right'"
-                        [link]="'https://www.youtube.com'"
-                        [disabled]="false"
-                      ></bmb-text-link>
+                      <div class="bmb_template-accordion-links">
+                        <a
+                          class="bmb_template-accordion-cta"
+                          href="https://www.youtube.com"
+                          target="'_blank'"
+                        >
+                          <span class="font-medium-4"
+                            >Oferta de desarrollo</span
+                          >
+                          <bmb-icon icon="arrow_forward" [size]="20" />
+                        </a>
+                        <a
+                          class="bmb_template-accordion-cta"
+                          href="https://www.youtube.com"
+                          target="'_blank'"
+                        >
+                          <span class="font-medium-4"
+                            >Oportunidades de crecimiento</span
+                          >
+                          <bmb-icon icon="arrow_forward" [size]="20" />
+                        </a>
+                        <a
+                          class="bmb_template-accordion-cta"
+                          href="https://www.youtube.com"
+                          target="'_blank'"
+                        >
+                          <span class="font-medium-4">mi BiblioTECa</span>
+                          <bmb-icon icon="arrow_forward" [size]="20" />
+                        </a>
+                      </div>
                     </ng-template>
                   </bmb-accordion>
                   <bmb-accordion
@@ -367,7 +373,7 @@ ${TECHNICAL_DOC_REFERENCES}
 - [${cardHeaderStory.default.title}](/docs/${getFormatName(cardHeaderStory.default.title!, /(\/)|( )/g, '-').toLocaleLowerCase()}--documentation)
 - [${cardContentStory.default.title}](/docs/${getFormatName(cardContentStory.default.title!, /(\/)|( )/g, '-').toLocaleLowerCase()}--documentation)
 - [${accordionControlStory.default.title}](/docs/${getFormatName(accordionControlStory.default.title!, /(\/)|( )/g, '-').toLocaleLowerCase()}--documentation)
-- [${textLinkStory.default.title}](/docs/${getFormatName(textLinkStory.default.title!, /(\/)|( )/g, '-').toLocaleLowerCase()}--documentation)
+- [${iconStory.default.title}](/docs/${getFormatName(iconStory.default.title!, /(\/)|( )/g, '-').toLocaleLowerCase()}--documentation)
 >
 ${FULLSCREEN_DESC}
 `)}
@@ -381,8 +387,7 @@ ${getBasicExampleBlock(
     BmbCardHeaderComponent,
     BmbCardContentComponent,
     BmbAccordionComponent,
-    BmbAccordionControlDirective,
-    BmbTextLinkComponent`,
+    BmbAccordionControlDirective, BmbIconComponent`,
   '',
   `actionHeaders: IBmbActionHeader[] = [
     {
@@ -405,7 +410,7 @@ ${getBasicExampleBlock(
   }`,
 )}
 \`\`\`html
-    <div class="bmb_template-single-home-card">
+        <div class="bmb_template-single-home-card">
       <bmb-top-bar
         [userInformation]="{
           name: 'Santiago Hernández',
@@ -514,39 +519,42 @@ ${getBasicExampleBlock(
                       <span class="font-medium-4">Guías</span>
                     </ng-template>
                     <ng-template #bmbAccordionContent>
-                      <bmb-text-link
-                        [textLink]="
-                          'Guía para establecer y dar seguimiento a mi Plan de Desarrollo'
-                        "
-                        [textLinkStyle]="'icon'"
-                        [target]="'_blank'"
-                        [icon]="'arrow_forward'"
-                        [iconPosition]="'right'"
-                        [link]="'https://www.youtube.com'"
-                        [disabled]="false"
-                      ></bmb-text-link>
-                      <bmb-text-link
-                        [textLink]="
-                          'Guía para acompañar a tu equipo en mi Plan de Desarrollo'
-                        "
-                        [textLinkStyle]="'icon'"
-                        [target]="'_blank'"
-                        [icon]="'arrow_forward'"
-                        [iconPosition]="'right'"
-                        [link]="'https://www.youtube.com'"
-                        [disabled]="false"
-                      ></bmb-text-link>
-                      <bmb-text-link
-                        [textLink]="
-                          'Guía para reguistrar tu plan en Success Factors'
-                        "
-                        [textLinkStyle]="'icon'"
-                        [target]="'_blank'"
-                        [icon]="'arrow_forward'"
-                        [iconPosition]="'right'"
-                        [link]="'https://www.youtube.com'"
-                        [disabled]="false"
-                      ></bmb-text-link>
+                      <div class="bmb_template-accordion-links">
+                        <a
+                          class="bmb_template-accordion-cta"
+                          href="https://www.youtube.com"
+                          target="'_blank'"
+                        >
+                          <span class="font-medium-4"
+                            >Guía para establecer y dar seguimiento a mi Plan de
+                            Desarrollo</span
+                          >
+                          <bmb-icon icon="arrow_forward" [size]="20" />
+                        </a>
+                        <a
+                          class="bmb_template-accordion-cta"
+                          href="https://www.youtube.com"
+                          target="'_blank'"
+                        >
+                          <span class="font-medium-4"
+                            >Guía para acompañar a tu equipo en mi Plan de
+                            Desarrollo</span
+                          >
+                          <bmb-icon icon="arrow_forward" [size]="20" />
+                        </a>
+
+                        <a
+                          class="bmb_template-accordion-cta"
+                          href="https://www.youtube.com"
+                          target="'_blank'"
+                        >
+                          <span class="font-medium-4"
+                            >Guía para reguistrar tu plan en Success
+                            Factors</span
+                          >
+                          <bmb-icon icon="arrow_forward" [size]="20" />
+                        </a>
+                      </div>
                     </ng-template>
                   </bmb-accordion>
                   <bmb-accordion
@@ -563,33 +571,36 @@ ${getBasicExampleBlock(
                       <span class="font-medium-4">Recursos de desarrollo </span>
                     </ng-template>
                     <ng-template #bmbAccordionContent>
-                      <bmb-text-link
-                        [textLink]="'Oferta de desarrollo'"
-                        [textLinkStyle]="'icon'"
-                        [target]="'_blank'"
-                        [icon]="'arrow_forward'"
-                        [iconPosition]="'right'"
-                        [link]="'https://www.youtube.com'"
-                        [disabled]="false"
-                      ></bmb-text-link>
-                      <bmb-text-link
-                        [textLink]="'Oportunidades de crecimiento'"
-                        [textLinkStyle]="'icon'"
-                        [target]="'_blank'"
-                        [icon]="'arrow_forward'"
-                        [iconPosition]="'right'"
-                        [link]="'https://www.youtube.com'"
-                        [disabled]="false"
-                      ></bmb-text-link>
-                      <bmb-text-link
-                        [textLink]="'mi BiblioTECa'"
-                        [textLinkStyle]="'icon'"
-                        [target]="'_blank'"
-                        [icon]="'arrow_forward'"
-                        [iconPosition]="'right'"
-                        [link]="'https://www.youtube.com'"
-                        [disabled]="false"
-                      ></bmb-text-link>
+                      <div class="bmb_template-accordion-links">
+                        <a
+                          class="bmb_template-accordion-cta"
+                          href="https://www.youtube.com"
+                          target="'_blank'"
+                        >
+                          <span class="font-medium-4"
+                            >Oferta de desarrollo</span
+                          >
+                          <bmb-icon icon="arrow_forward" [size]="20" />
+                        </a>
+                        <a
+                          class="bmb_template-accordion-cta"
+                          href="https://www.youtube.com"
+                          target="'_blank'"
+                        >
+                          <span class="font-medium-4"
+                            >Oportunidades de crecimiento</span
+                          >
+                          <bmb-icon icon="arrow_forward" [size]="20" />
+                        </a>
+                        <a
+                          class="bmb_template-accordion-cta"
+                          href="https://www.youtube.com"
+                          target="'_blank'"
+                        >
+                          <span class="font-medium-4">mi BiblioTECa</span>
+                          <bmb-icon icon="arrow_forward" [size]="20" />
+                        </a>
+                      </div>
                     </ng-template>
                   </bmb-accordion>
                   <bmb-accordion
