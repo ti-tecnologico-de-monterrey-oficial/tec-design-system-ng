@@ -1,53 +1,112 @@
 import { Meta, StoryObj } from '@storybook/angular';
 import { BmbTabsComponent } from './bmb-tabs.component';
-import { RELEVANT_TITLE_LEVEL } from '../../utils/doc/utils';
+import {
+  getBasicExampleBlock,
+  getGeneralComponentDescription,
+  getGeneralDescription,
+  getOnEvent,
+  getSpecialSpecifications,
+  RELEVANT_TITLE_LEVEL,
+} from '../../utils/doc/utils';
+import {
+  DBmbGenericParamDesc,
+  getAppearanceParam,
+  getOnEventParam,
+} from '../../utils/doc/parameterDescriptions';
+
+const getSelectedPropDesc = () => {
+  const onSelect = getOnEventParam(
+    getOnEvent('', 'selected', 'IBmbTab'),
+    'when a tab is selected. Provides the selected tab object.',
+    'other',
+  );
+
+  return {
+    ...onSelect,
+    table: {
+      ...onSelect.table,
+      type: {
+        ...onSelect.table.type,
+        detail: onSelect.table.type.detail?.concat(`
+
+IBmbTab {
+  id: number;
+  title: string;
+  isActive?: boolean;
+  badge?: number;
+  isMobile?: boolean;
+  isDesktop?: boolean;
+}
+        `),
+      },
+    },
+  };
+};
 
 export default {
   title: 'Components/Visual labels/Tab',
   component: BmbTabsComponent,
   parameters: {
     docs: {
+      controls: {
+        exclude: [
+          'getTabsClasses',
+          'goToNextTab',
+          'goToPreviousTab',
+          'scrollEvent',
+          'scrollTo',
+          'selectTab',
+          'showActiveTab',
+          'updateActiveTab',
+          'tabsItems',
+          'ngAfterViewInit',
+          'ngOnDestroy',
+          'ngOnInit',
+          'selectedTabId',
+          'activeTabIndex',
+          'hasScroll',
+          'observer',
+          'scrollLeft',
+          'scrollRight',
+          '',
+          '',
+          '',
+        ],
+      },
       description: {
         component: `
-### Example Usage with "Next", "Back" Buttons and TabService
-
-Below is an example of how you can use the **BmbTabsComponent** and control the active tab programmatically with "Continue" and "Back" buttons:
-
-#### TypeScript Code
-\`\`\`typescript
-import { CommonModule } from '@angular/common';
-import {
-  ChangeDetectionStrategy,
-  Component,
-  ViewChild,
-  OnInit,
-  inject,
-  DestroyRef,
-} from '@angular/core';
-import {
+${getGeneralDescription(`${getGeneralComponentDescription('tabs')} the division of information into defined sections, improving navigation and facilitating the presentation of specific categories or sets of information.`, 'https://bamboo.tec.mx/latest/components/tab/descripcion-general-eJumojIF')}
+${getSpecialSpecifications(` ### ${RELEVANT_TITLE_LEVEL[4]}
+Usage with "Next", "Back" Buttons and TabService.
+>
+###${RELEVANT_TITLE_LEVEL[2]}
+- **Tabs Data:** You can define the tabs data dynamically, as shown in the example.
+- **Button Actions:**
+  - The "Continuar" button uses the \`goToNextTab\` method to move to the next tab programmatically.
+  - The "Regresar" button uses the \`goToPreviousTab\` method to move to the previous tab programmatically.
+- **Selected Event:** The \`selected\` event emits the selected tab object whenever a tab is clicked.
+- **Boundaries:** The buttons will not perform whether action if the user is already on the first or last tab, preventing out-of-bounds errors.
+>
+---
+>
+### 🧠 Integration with TabsService
+>
+The \`BmbTabsComponent\` optionally integrates with the \`TabsService\`, which allows:
+>
+- Controlling the active tab externally.
+- Syncing the selected tab across different views/components.
+- Programmatically switching tabs.
+- Make sure to **avoid re-emitting the already active tab**, as it could cause infinite loops.
+`)}
+${getBasicExampleBlock(
+  `BmbTabsComponent,
   BmbLegendComponent,
-  BmbTabsComponent,
-  IBmbTab,
   BmbContainerComponent,
-  TabsService,
-} from '../../projects/ds-ng/src/public-api';
+`,
+  `import { ViewChild, inject, DestroyRef } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-
-@Component({
-  selector: 'app-root',
-  standalone: true,
-  imports: [
-    CommonModule,
-    BmbTabsComponent,
-    BmbLegendComponent,
-    BmbContainerComponent,
-  ],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
-})
-export class AppComponent implements OnInit {
-  @ViewChild(BmbTabsComponent) bmbTabsComponent!: BmbTabsComponent;
+ `,
+  `@ViewChild(BmbTabsComponent) bmbTabsComponent!: BmbTabsComponent;
   private destroyRef = inject(DestroyRef);
   activeTabId = 1;
 
@@ -92,11 +151,8 @@ export class AppComponent implements OnInit {
   setFirstTabFromOutside() {
     const firstTab = this.tabsData[0];
     this.tabsService.selectTab(firstTab);
-  }
-}
-\`\`\`
-
-#### HTML Template
+  }`,
+)}
 \`\`\`html
 <bmb-tabs [tabs]="tabsData" (selected)="onTabSelected($event)">
   <bmb-container *ngIf="activeTabId === 1" [appearance]="'primary-home'">
@@ -139,67 +195,47 @@ export class AppComponent implements OnInit {
 
 <button (click)="setFirstTabFromOutside()">Set first tab</button>
 \`\`\`
-
-####${RELEVANT_TITLE_LEVEL[2]}
-- **Tabs Data:** You can define the tabs data dynamically, as shown in the example.
-- **Button Actions:**
-  - The "Continuar" button uses the \`goToNextTab\` method to move to the next tab programmatically.
-  - The "Regresar" button uses the \`goToPreviousTab\` method to move to the previous tab programmatically.
-- **Selected Event:** The \`selected\` event emits the selected tab object whenever a tab is clicked.
-- **Boundaries:** The buttons will not perform whether action if the user is already on the first or last tab, preventing out-of-bounds errors.
-
----
-
-### 🧠 Integration with TabsService
-
-The \`BmbTabsComponent\` optionally integrates with the \`TabsService\`, which allows:
-
-- Controlling the active tab externally.
-- Syncing the selected tab across different views/components.
-- Programmatically switching tabs.
-- Make sure to **avoid re-emitting the already active tab**, as it could cause infinite loops.
         `,
       },
     },
   },
   argTypes: {
-    appearanceContrast: {
-      control: {
-        type: 'select',
-      },
-      options: ['default', 'primary', 'alternative'],
-      description: 'Defines the appearance style.',
-      table: {
-        category: 'Properties',
-        type: { summary: 'string' },
-      },
-    },
+    appearanceContrast: getAppearanceParam(
+      'tabs',
+      ['default', 'primary', 'alternative'],
+      'default',
+    ),
     tabs: {
       control: { type: 'object' },
-      description:
-        'An array of objects representing each tab. Each object should have an id, title, and optionally isActive and badge.',
+      description: `
+Sets the data of the tabs.
+
+Data:
+- ***id***: Unique identifier for the tab.
+- ***title***: Display title of the tab.
+- ***isActive***: Indicates if the tab is currently active.
+- ***badge***: Optional badge number to display on the tab.
+- ***isMobile***: Indicates if the tab is visible on mobile devices.
+- ***isDesktop***: Indicates if the tab is visible on desktop devices.
+      `,
       table: {
         category: 'Properties',
-        type: { summary: 'Array<IBmbTab>' },
+        defaultValue: { summary: '[]' },
+        type: {
+          summary: 'IBmbTab[]',
+          detail: `IBmbTab {
+  id: number;
+  title: string;
+  isActive?: boolean;
+  badge?: number;
+  isMobile?: boolean;
+  isDesktop?: boolean;
+}`,
+        },
       },
     },
-    selected: {
-      table: {
-        category: 'Events',
-        type: { summary: 'EventEmitter<IBmbTab>' },
-      },
-      description:
-        'Event emitted when a tab is selected. Provides the selected tab object.',
-    },
-    format: {
-      control: null,
-      description:
-        'The format of the tab title. Use "uppercase" to capitalize the titles.',
-      table: {
-        category: 'Deprecated',
-        type: { summary: 'string' },
-      },
-    },
+    selected: getSelectedPropDesc(),
+    format: DBmbGenericParamDesc.deprecated,
   },
   args: {
     appearanceContrast: 'default',
