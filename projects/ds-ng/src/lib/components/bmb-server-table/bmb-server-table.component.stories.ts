@@ -19,10 +19,23 @@ export default {
   ],
   parameters: {
     docs: {
+      controls: {
+        exclude: [
+          'displayedColumns',
+          'selectedRow',
+          'isSelected',
+          'ngOnChanges',
+          'onPageChange',
+          'onRowClick',
+          'validateColumns',
+          '',
+          '',
+        ],
+      },
       description: {
         component: `
-${getGeneralDescription(`${getGeneralComponentDescription('')} `, '')}
-${getBasicExampleBlock('server-table')}
+${getGeneralDescription(`${getGeneralComponentDescription('server-table')} to display a server-driven table with pagination, loading state, and row selection capabilities.`, 'https://bamboo.tec.mx/latest/componentes/table/descripcion-general-h1hRplJO', true, '=')}
+${getBasicExampleBlock('BmbServerTableComponent', '', '', true, '', '', '', '.')}
         `,
       },
     },
@@ -32,7 +45,7 @@ ${getBasicExampleBlock('server-table')}
       control: {
         type: 'object',
       },
-      description: 'Set the data to show in the table.',
+      description: 'Sets the data to show in the table.',
       table: {
         category: 'Properties',
         type: { summary: 'object[]' },
@@ -43,7 +56,7 @@ ${getBasicExampleBlock('server-table')}
       control: {
         type: 'IBmbServerTableColumn',
       },
-      description: 'Set the columns to show in the table.',
+      description: 'Sets the columns to show in the table.',
       table: {
         category: 'Properties',
         type: { summary: 'IBmbServerTableColumn[]' },
@@ -52,7 +65,7 @@ ${getBasicExampleBlock('server-table')}
     },
     totalRecords: {
       control: 'number',
-      description: 'Set the total number of records.',
+      description: 'Sets the total number of records.',
       table: {
         category: 'Properties',
         type: { summary: 'number' },
@@ -61,7 +74,7 @@ ${getBasicExampleBlock('server-table')}
     },
     pageSize: {
       control: 'number',
-      description: 'Set the number of records per page.',
+      description: 'Sets the number of records per page.',
       table: {
         category: 'Properties',
         type: { summary: 'number' },
@@ -70,7 +83,7 @@ ${getBasicExampleBlock('server-table')}
     },
     pageSizeOptions: {
       control: 'array',
-      description: 'Set the options for the page size.',
+      description: 'Sets the options for the page size.',
       table: {
         category: 'Properties',
         type: { summary: 'number[]' },
@@ -79,7 +92,7 @@ ${getBasicExampleBlock('server-table')}
     },
     loading: {
       control: 'boolean',
-      description: 'Set the loading state.',
+      description: 'Sets the loading state.',
       table: {
         category: 'Properties',
         type: { summary: 'boolean' },
@@ -87,15 +100,15 @@ ${getBasicExampleBlock('server-table')}
       },
     },
     pageChange: {
-      control: null,
-      description: 'Set the function to call when the page changes.',
+      control: false,
+      description: 'Sets the function to call when the page changes.',
       table: {
         category: 'Events',
         type: { summary: 'function' },
       },
     },
     dataChange: {
-      control: null,
+      control: false,
       description: 'Set the function to call when the data changes.',
       table: {
         category: 'Events',
@@ -103,8 +116,7 @@ ${getBasicExampleBlock('server-table')}
       },
     },
     onClickRow: {
-      name: 'Click Row',
-      control: null,
+      control: false,
       description: 'Set the function to call when a row is clicked.',
       table: {
         category: 'Events',
