@@ -4,6 +4,11 @@ import * as mainStory from "./bmb-tables.stories";
 import * as subStory from "./bmb-tables-server.stories";
 import * as secondSubStory from "../bmb-server-table/bmb-server-table.component.stories";
 import { ListTemplate } from "../../../DocComponents/ListTemplate.mdx";
+import { getFormatName } from "../../utils/doc/utils";
 
 <Meta of={mainStory} />
-<ListTemplate main={mainStory} content={[subStory, secondSubStory]} />
+<ListTemplate
+  main={mainStory}
+  content={[subStory,secondSubStory]}
+  context={{[getFormatName(subStory.default.title, /(\/)|( )/g, '_').toLocaleLowerCase()]:{showControls:false, showStories: false}}}
+/>

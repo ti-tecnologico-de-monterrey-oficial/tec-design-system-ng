@@ -1,16 +1,36 @@
 import { Title } from "@storybook/addon-docs/blocks";
 import { GeneralTemplate } from "./GeneralTemplate.mdx";
 import { Tabs } from "./Tabs.mdx";
+import { getFormatName } from "../lib/utils/doc/utils";
 
-export const List = () => (
+export const getPropertyValue = ({item, context, name}) => {
+  if(!!item?.default?.title) {
+    const contextElement = context[
+        getFormatName(
+          item?.default.title,
+          /(\/)|( )/g,
+          "_",
+        ).toLocaleLowerCase()
+      ];
+    if( name === 'showControls')  return  contextElement?.showControls;
+     else if( name === 'showStories') return  contextElement?.showStories;
+     return true;
+  }
+
+  return true;
+};
+
+export const Main = ({ showControls, showStories }) => (
   <section>
-    <GeneralTemplate />
+    <GeneralTemplate showControls={showControls} showStories={showStories} />
   </section>
 );
 
-export const Item = ({ children }) => (
+export const Item = ({ children, showControls, showStories }) => (
   <section>
-    <GeneralTemplate>{children}</GeneralTemplate>
+    <GeneralTemplate showControls={showControls} showStories={showStories}>
+      {children}
+    </GeneralTemplate>
   </section>
 );
 /*
@@ -18,13 +38,45 @@ export const Item = ({ children }) => (
 <ListTemplate main={mainStory} content={[itemStory, secondItemStory]}/>
 <ListTemplate content={[mainStory,itemStory, secondItemStory]}/>
 */
-export const ListTemplate = ({ children, main, content = [] }) => {
+export const ListTemplate = ({
+  children,
+  main,
+  content = [],
+  context = { [key]: { showControls, showStories } },
+}) => {
   return (
     <section>
       {children && (
         <Tabs
           tabs={[<Title />, <Title of={children}>{children?.title}</Title>]}
-          content={[<List />, <Item>{children}</Item>]}
+          content={[
+            <Main
+              showControls={getPropertyValue({
+                item: children,
+                context,
+                name: "showControls",
+              })}
+              showStories={getPropertyValue({
+                item: children,
+                context,
+                name: "showStories",
+              })}
+            />,
+            <Item
+              showControls={getPropertyValue({
+                item: children,
+                context,
+                name: "showControls",
+              })}
+              showStories={getPropertyValue({
+                item: children,
+                context,
+                name: "showStories",
+              })}
+            >
+              {children}
+            </Item>,
+          ]}
         />
       )}
       {content && main && (
@@ -33,7 +85,36 @@ export const ListTemplate = ({ children, main, content = [] }) => {
             <Title />,
             ...content.map((item) => <Title of={item}>{item?.title}</Title>),
           ]}
-          content={[<List />, ...content.map((item) => <Item>{item}</Item>)]}
+          content={[
+            <Main
+              showControls={getPropertyValue({
+                item: children,
+                context,
+                name: "showControls",
+              })}
+              showStories={getPropertyValue({
+                item: children,
+                context,
+                name: "showStories",
+              })}
+            />,
+            ...content.map((item) => (
+              <Item
+                showControls={getPropertyValue({
+                  item,
+                  context,
+                  name: "showControls",
+                })}
+                showStories={getPropertyValue({
+                  item: children,
+                  context,
+                  name: "showStories",
+                })}
+              >
+                {item}
+              </Item>
+            )),
+          ]}
         />
       )}
       {content && !main && (
@@ -42,7 +123,20 @@ export const ListTemplate = ({ children, main, content = [] }) => {
             <Title of={item}>{item?.title}</Title>
           ))}
           content={content.map((item) => (
-            <Item>{item}</Item>
+            <Item
+              showControls={getPropertyValue({
+                item,
+                context,
+                name: "showControls",
+              })}
+              showStories={getPropertyValue({
+                item: children,
+                context,
+                name: "showStories",
+              })}
+            >
+              {item}
+            </Item>
           ))}
         />
       )}
