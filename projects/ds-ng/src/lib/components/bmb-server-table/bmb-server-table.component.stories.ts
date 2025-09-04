@@ -19,10 +19,23 @@ export default {
   ],
   parameters: {
     docs: {
+      controls: {
+        exclude: [
+          'displayedColumns',
+          'selectedRow',
+          'isSelected',
+          'ngOnChanges',
+          'onPageChange',
+          'onRowClick',
+          'validateColumns',
+          '',
+          '',
+        ],
+      },
       description: {
         component: `
-${getGeneralDescription(`${getGeneralComponentDescription('')} `, '')}
-${getBasicExampleBlock('server-table')}
+${getGeneralDescription(`${getGeneralComponentDescription('server-table')} to display a server-driven table with pagination, loading state, and row selection capabilities.`, 'https://bamboo.tec.mx/latest/componentes/table/descripcion-general-h1hRplJO', true, '=')}
+${getBasicExampleBlock('BmbServerTableComponent', '', '', true, '', '', '', '.')}
         `,
       },
     },

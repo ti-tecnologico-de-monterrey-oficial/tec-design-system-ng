@@ -511,7 +511,8 @@ ${getBasicExampleBlock(
       control: {
         type: 'boolean',
       },
-      description: 'Enables server-side mode. <br/>The data handling:<br/> Pagination, filtering, and sorting.',
+      description:
+        'Enables server-side mode. <br/>The data handling:<br/> Pagination, filtering, and sorting.',
       table: {
         category: 'Properties',
         type: { summary: 'boolean' },

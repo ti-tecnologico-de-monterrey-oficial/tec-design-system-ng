@@ -9,6 +9,12 @@ import { getFormatName } from "../../utils/doc/utils";
 <Meta of={mainStory} />
 <ListTemplate
   main={mainStory}
-  content={[subStory,secondSubStory]}
-  context={{[getFormatName(subStory.default.title, /(\/)|( )/g, '_').toLocaleLowerCase()]:{showControls:false, showStories: false}}}
+  content={[subStory, secondSubStory]}
+  context={{
+    [getFormatName(
+      subStory.default.title,
+      /(\/)|( )/g,
+      "_",
+    ).toLocaleLowerCase()]: { showStories: false, showControls: false },
+  }}
 />
