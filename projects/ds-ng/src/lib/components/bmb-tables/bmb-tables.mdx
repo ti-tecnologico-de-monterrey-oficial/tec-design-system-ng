@@ -2,7 +2,8 @@ import { Meta } from "@storybook/addon-docs/blocks";
 
 import * as mainStory from "./bmb-tables.stories";
 import * as subStory from "./bmb-tables-server.stories";
+import * as secondSubStory from "../bmb-server-table/bmb-server-table.component.stories";
 import { ListTemplate } from "../../../DocComponents/ListTemplate.mdx";
 
 <Meta of={mainStory} />
-<ListTemplate>{subStory}</ListTemplate>
+<ListTemplate main={mainStory} content={[subStory, secondSubStory]} />
