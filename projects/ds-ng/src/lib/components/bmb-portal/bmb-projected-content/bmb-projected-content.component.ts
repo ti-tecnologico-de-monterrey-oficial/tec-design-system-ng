@@ -30,8 +30,9 @@ export class BmbProjectedContentComponent {
   htmlRef = input<HTMLElement | null>(null);
   mode = input<IBmbProjectedContentMode>('outside');
   fixSizeToRef = input<boolean>(false);
-  context = input<{ [key: string]: any }>({});
+  inputContext = input<{ [key: string]: any }>({});
   showBackdrop = input<boolean>(true);
+  outputContext = input<{ [key: string]: (value: any) => void }>({});
 
   removeContent = output<void>();
 
@@ -46,7 +47,7 @@ export class BmbProjectedContentComponent {
     effect(() => {
       if (this.content() !== null) {
         this.renderContent();
-        this.projectedContentDialogRef.focus();
+        // this.projectedContentDialogRef.focus();
       } else {
         this.componentRef?.destroy();
         this.componentRef = null;
@@ -55,8 +56,6 @@ export class BmbProjectedContentComponent {
   }
 
   getPosition() {
-    console.log(this.showBackdrop());
-
     const width = window.innerWidth;
     const height = window.innerHeight;
 
@@ -138,8 +137,18 @@ export class BmbProjectedContentComponent {
       );
 
       if (this.componentRef.instance) {
-        Object.keys(this.context()).forEach((key) => {
-          this.componentRef?.setInput(key, this.context()[key]);
+        const instance = this.componentRef.instance as any;
+
+        Object.keys(this.inputContext()).forEach((key) => {
+          this.componentRef?.setInput(key, this.inputContext()[key]);
+        });
+
+        Object.keys(this.outputContext()).forEach((key) => {
+          if (instance[key] && instance[key].subscribe) {
+            instance[key].subscribe(() => {
+              this.outputContext()[key](event);
+            });
+          }
         });
       }
     }

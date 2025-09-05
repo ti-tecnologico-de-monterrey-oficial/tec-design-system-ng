@@ -142,9 +142,15 @@ export class AppComponent {
     const data: IBmbProjectionContent = {
       content: HelpMenuComponent,
       targetRef: event.target as HTMLElement,
-      context: {
+      inputContext: {
         title: 'Some title',
         subtitle: 'Get assistance with your account and settings',
+      },
+      outputContext: {
+        helpClicked: (value: string) => {
+          console.log('Help clicked', value);
+          //this.contentProjected.closeContent();
+        },
       },
     };
 

@@ -74,8 +74,9 @@
   [htmlRef]="projectedContent()?.targetRef ?? null"
   [mode]="projectedContent()?.mode ?? 'outside'"
   [fixSizeToRef]="projectedContent()?.fixSizeToRef ?? false"
-  [context]="projectedContent()?.context ?? {}"
+  [inputContext]="projectedContent()?.inputContext ?? {}"
   [showBackdrop]="projectedContent()?.showBackdrop ?? true"
+  [outputContext]="projectedContent()?.outputContext ?? {}"
   (removeContent)="handleRemoveProjectedContent()"
 ></bmb-projected-content>
 

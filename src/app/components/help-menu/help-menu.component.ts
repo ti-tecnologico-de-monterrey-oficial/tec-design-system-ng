@@ -1,4 +1,4 @@
-import { Component, input, Input } from '@angular/core';
+import { Component, input, Input, output } from '@angular/core';
 import {
   BmbActionMenuComponent,
   BmbItemComponent,
@@ -14,4 +14,6 @@ import {
 export class HelpMenuComponent {
   title = input<string>('');
   @Input() subtitle: string = '';
+
+  helpClicked = output<string>();
 }

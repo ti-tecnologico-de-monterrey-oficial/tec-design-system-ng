@@ -5,6 +5,7 @@ import {
   EmbeddedViewRef,
   EnvironmentInjector,
   Injectable,
+  output,
   signal,
   TemplateRef,
   Type,
@@ -18,8 +19,9 @@ export interface IBmbProjectionContent {
   targetRef?: HTMLElement | null;
   mode?: IBmbProjectedContentMode;
   fixSizeToRef?: boolean;
-  context?: { [key: string]: any };
+  inputContext?: { [key: string]: any };
   showBackdrop?: boolean;
+  outputContext?: { [key: string]: (value: any) => void };
 }
 
 @Injectable({
