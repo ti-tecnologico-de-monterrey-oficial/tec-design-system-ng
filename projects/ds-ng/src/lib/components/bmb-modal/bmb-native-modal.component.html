@@ -41,11 +41,13 @@
           <ng-container *ngTemplateOutlet="getContent()"></ng-container>
         </ng-template>
         <ng-container *ngTemplateOutlet="templateContent"></ng-container>
-      } @else {
+      }
+      @if (isStringContent()) {
         <p>
           {{ content() }}
         </p>
       }
+      <ng-container #container></ng-container>
     </section>
     @if (actions().length) {
       <footer class="bmb_native-modal-footer">
