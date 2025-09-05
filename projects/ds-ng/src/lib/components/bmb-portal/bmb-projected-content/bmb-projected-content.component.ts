@@ -96,14 +96,28 @@ export class BmbProjectedContentComponent {
       mode = targetPosition.height + 8;
     }
 
-    const left = targetPosition.left <= width / 2 ? targetPosition.left.toFixed(0) + 'px' : 'auto';
-    const right = targetPosition.left > width / 2 ? (width - targetPosition.right).toFixed(0) + 'px' : 'auto';
-    const top = targetPosition.top <= height / 2 ? (targetPosition.top + mode).toFixed(0) + 'px' : 'auto';
-    const bottom = targetPosition.top > height / 2 ? (height - (targetPosition.bottom - mode)).toFixed(0) + 'px' : 'auto';
+    const left =
+      targetPosition.left <= width / 2
+        ? targetPosition.left.toFixed(0) + 'px'
+        : 'auto';
+    const right =
+      targetPosition.left > width / 2
+        ? (width - targetPosition.right).toFixed(0) + 'px'
+        : 'auto';
+    const top =
+      targetPosition.top <= height / 2
+        ? (targetPosition.top + mode).toFixed(0) + 'px'
+        : 'auto';
+    const bottom =
+      targetPosition.top > height / 2
+        ? (height - (targetPosition.bottom - mode)).toFixed(0) + 'px'
+        : 'auto';
 
     return {
       inset: `${top} ${right} ${bottom} ${left}`,
-      width: this.fixSizeToRef() ? targetPosition.width.toFixed(0) + 'px' : 'auto',
+      width: this.fixSizeToRef()
+        ? targetPosition.width.toFixed(0) + 'px'
+        : 'auto',
     };
   }
 
@@ -124,7 +138,7 @@ export class BmbProjectedContentComponent {
       );
 
       if (this.componentRef.instance) {
-        Object.keys(this.context()).forEach(key => {
+        Object.keys(this.context()).forEach((key) => {
           this.componentRef?.setInput(key, this.context()[key]);
         });
       }
@@ -132,7 +146,6 @@ export class BmbProjectedContentComponent {
   }
 
   private isTemplateRef(obj: any): obj is TemplateRef<any> {
-
     return obj && obj.createEmbeddedView;
   }
 

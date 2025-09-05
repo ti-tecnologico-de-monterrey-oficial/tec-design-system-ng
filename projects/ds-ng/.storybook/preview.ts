@@ -23,8 +23,8 @@ const preview: Preview = {
   parameters: {
     viewport: {
       options: {
-        small: { name: "Small", styles: { width: "375px", height: "568px" } },
-        large: { name: "Large", styles: { width: "1000px", height: "1024px" } },
+        small: { name: 'Small', styles: { width: '375px', height: '568px' } },
+        large: { name: 'Large', styles: { width: '1000px', height: '1024px' } },
       },
     },
     ally: {

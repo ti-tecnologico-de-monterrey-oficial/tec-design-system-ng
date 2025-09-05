@@ -68,7 +68,7 @@ export class BmbNativeModalComponent {
   }
 
   @ViewChild('container', { read: ViewContainerRef })
-    container!: ViewContainerRef;
+  container!: ViewContainerRef;
 
   private componentRef: ComponentRef<any> | null = null;
 
@@ -143,7 +143,7 @@ export class BmbNativeModalComponent {
     );
 
     if (this.componentRef.instance) {
-      Object.keys(this.context()).forEach(key => {
+      Object.keys(this.context()).forEach((key) => {
         this.componentRef?.setInput(key, this.context()[key]);
       });
     }
