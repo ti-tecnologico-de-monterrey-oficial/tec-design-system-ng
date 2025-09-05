@@ -122,7 +122,7 @@ The function receives two parameters: the current value and the total value, and
 
 If not set, it defaults to showing the value as *"value/total"*.
 
-${RELEVANT_TITLE_LEVEL[2]} Avoid return HTML code, any HTML code will be parsed.`,
+${RELEVANT_TITLE_LEVEL[2]} Avoid return HTML code, whether HTML code will be parsed.`,
       table: {
         category: 'Properties',
         type: {

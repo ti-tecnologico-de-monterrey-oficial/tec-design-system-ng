@@ -10,7 +10,7 @@ import {
 } from '../../utils/doc/utils';
 
 export default {
-  title: 'Components/Containers/Table/Table - Server side',
+  title: 'Components/Containers/Table/Server side table',
   component: BmbTablesComponent,
   tags: ['!autodocs'],
   decorators: [

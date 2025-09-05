@@ -153,8 +153,11 @@ export const getAccordionDetail = (title: string, content: string) => `
 export const generateLabel = (inputName: string): string =>
   getFormatName(inputName, '_', ' ');
 
-export const getEmptyStateMessage = (isSubStory: boolean = false): string => `
-###${getSubStoryIdentifier(isSubStory)}${RELEVANT_TITLE_LEVEL[1]}
+export const getEmptyStateMessage = (
+  isSubStory: boolean = false,
+  subStoryChart: string = '-',
+): string => `
+###${getSubStoryIdentifier(isSubStory, subStoryChart)}${RELEVANT_TITLE_LEVEL[1]}
 Remember to use the \`empty state\` for the cases that apply to this. Related documentation is available [here](https://bamboo.tec.mx/latest/guia-ux-writing/mensajes-del-producto/empty-states-OQYyq6h8-OQYyq6h8).
 `;
 
@@ -173,8 +176,9 @@ export const getArchitectureSection = (
   isSubStory: boolean = false,
   bmbNameLink: string = '',
   documentationLink: string = '',
+  subStoryChart: string = '-',
 ): string => `
-## ${getSubStoryIdentifier(isSubStory)}DOM Architecture
+## ${getSubStoryIdentifier(isSubStory, subStoryChart)}DOM Architecture
 Represents the structure of the component.
 \`\`\`html
 ${architectureBlock}
@@ -201,8 +205,9 @@ export const getDescribeTypeTextBlock = (
   isLevel3: boolean = false,
   additionalText: string = '',
   isSubStory: boolean = false,
+  subStoryChart: string = '-',
 ): string => `
-##${isLevel3 ? '#' : ''} ${getSubStoryIdentifier(isSubStory)}${typeExampleName} example ${additionalTitle}
+##${isLevel3 ? '#' : ''} ${getSubStoryIdentifier(isSubStory, subStoryChart)}${typeExampleName} example ${additionalTitle}
 Below is a *${typeExampleName}* example with the basic code to use this component ${additionalText}:`;
 
 const getTypescriptExampleBlock = (
@@ -264,17 +269,19 @@ export const getTypescriptExampleTextBlock = (
   additionalBlock: string = '',
   replaceChar: string = '',
   isSubStory: boolean = false,
+  subStoryChart: string = '-',
 ): string =>
   `
-__${getDescribeTypeTextBlock('TypeScript', additionalTitle, isLevel3, additionalText, isSubStory)}
+__${getDescribeTypeTextBlock('TypeScript', additionalTitle, isLevel3, additionalText, isSubStory, subStoryChart)}
 __${getTypescriptExampleBlock(inputName, additionalAngularCommonImportName, additionalImportName, additionalImportFrom, importComments, additionalBlock, replaceChar)}
 __`.replaceAll('__', replaceChar);
 
 export const getReactiveFormTitle = (
   bmbInputName: string,
   isSubStory: boolean = false,
+  subStoryChart: string = '-',
 ): string => `
-##${getSubStoryIdentifier(isSubStory)}Reactive form example
+##${getSubStoryIdentifier(isSubStory, subStoryChart)}Reactive form example
 >This example demonstrates how to use **${bmbInputName}** within an Angular reactive form, ensuring validation and handling the field and its value correctly.
 >`;
 
@@ -284,8 +291,9 @@ export const getFormExampleBlock = (
   additionalBlock: string = '',
   inputExample: string,
   isSubStory: boolean = false,
+  subStoryChart: string = '-',
 ): string => `
-${getReactiveFormTitle(bmbInputName, isSubStory)}
+${getReactiveFormTitle(bmbInputName, isSubStory, subStoryChart)}
 >
 ><br/>
 >${getTypescriptExampleTextBlock(
@@ -334,8 +342,9 @@ ${getReactiveFormTitle(bmbInputName, isSubStory)}
 export const getHTMLFormExampleTextBlock = (
   inputExample: string,
   isSubStory: boolean = false,
+  subStoryChart: string = '-',
 ): string => `>
->${getDescribeTypeTextBlock('HTML', 'for reactive form', true, 'in a reactive form', isSubStory)}
+>${getDescribeTypeTextBlock('HTML', 'for reactive form', true, 'in a reactive form', isSubStory, subStoryChart)}
 >\`\`\`html
 ><form [formGroup]="userForm" (ngSubmit)="onSubmit()">
 >  ${inputExample}
@@ -344,8 +353,10 @@ export const getHTMLFormExampleTextBlock = (
 >\`\`\`
 `;
 
-export const getSubStoryIdentifier = (isSubStory: boolean = false): string =>
-  isSubStory ? '-' : '';
+export const getSubStoryIdentifier = (
+  isSubStory: boolean = false,
+  subStoryChart: string = '-',
+): string => (isSubStory ? subStoryChart : '');
 
 export const getGeneralDocDescription = (generalDocLink: string): string =>
   `Please remember to refer to the [Bamboo - General documentation](${generalDocLink}) for more details about it.`;
@@ -362,9 +373,10 @@ export const getGeneralDescription = (
   content: string,
   generalDocLink: string = '',
   isSubStory: boolean = false,
+  subStoryChart: string = '-',
 ): string => `
 <br/>
-## ${getSubStoryIdentifier(isSubStory)}${DESCRIPTION_TITLE}
+## ${getSubStoryIdentifier(isSubStory, subStoryChart)}${DESCRIPTION_TITLE}
 >${content}
 >
 ${!!generalDocLink ? `>${getGeneralDocDescription(generalDocLink)}` : '>'}
@@ -402,8 +414,9 @@ ${getGeneralDescription(
 export const getSpecialSpecifications = (
   content: string,
   isSubStory: boolean = false,
+  subStoryChart: string = '-',
 ): string => `
-## ${getSubStoryIdentifier(isSubStory)}${SPECIAL_SPECIFICATIONS_TITLE}
+## ${getSubStoryIdentifier(isSubStory, subStoryChart)}${SPECIAL_SPECIFICATIONS_TITLE}
 >${content}
 <br/>
 `;
@@ -416,9 +429,10 @@ export const getBasicExampleBlock = (
   additionalAngularCommonImportName: string = '',
   additionalImportName: string = '',
   additionalImportFrom: string = '',
+  subStoryChart: string = '-',
 ): string => `
-${getTypescriptExampleTextBlock(inputName, additionalAngularCommonImportName, additionalImportName, additionalImportFrom, importComments, '', false, '', additionalBlock, '', isSubStory)}
-${getDescribeTypeTextBlock('HTML', '', false, '', isSubStory)}
+${getTypescriptExampleTextBlock(inputName, additionalAngularCommonImportName, additionalImportName, additionalImportFrom, importComments, '', false, '', additionalBlock, '', isSubStory, subStoryChart)}
+${getDescribeTypeTextBlock('HTML', '', false, '', isSubStory, subStoryChart)}
 `;
 
 export const getFoundationDescriptions = (
@@ -875,16 +889,16 @@ ON THIS PAGE (optional, TABLE OF CONTENTS) [Done, is in preview, if not so add p
 ${getGeneralDescription(`${getGeneralComponentDescription('')} `, '')}
 ${getBasicExampleBlock('')}
 
- getOnClickParam(
-      getOnEvent('', ''),
-      ``,
-    )
+getOnClickParam(
+    getOnEvent('', ''),
+    ``,
+  )
 
-    getOnEventParam(
-          getOnEvent('', '','void'),
-          '',
-          'other'
-        ),
+getOnEventParam(
+      getOnEvent('', '','void'),
+      '',
+      'other'
+    ),
 
 controls: { exclude: ['', ''] },
 controls: {
@@ -902,61 +916,4 @@ controls: {
       },
 
 tags: ['!autodocs'],
-
-import {
-  Canvas,
-  Controls,
-  Description,
-  Meta,
-  Title,
-  Stories,
-} from "@storybook/addon-docs/blocks";
-
-import * as mainStory from "./bmb-accordion.stories";
-import * as itemStory from "../../directives/bmb-accordion/bmb-accordion-control.stories";
-import { Tabs } from "../../../DocComponents/Tabs.mdx";
-
-export const List = () => (
-  <section>
-    <Meta of={mainStory} />
-    <Title />
-    <Description />
-    <Canvas withToolbar={true} />
-    <Controls />
-    <Stories />
-  </section>
-);
-
-export const Item = () => (
-  <section>
-    <Meta of={itemStory} />
-    <Title of={itemStory}>{itemStory?.title}</Title>
-    <Description of={itemStory}>{itemStory}</Description>
-    <Canvas of={itemStory.Default} withToolbar={true} />
-    <Controls of={itemStory.Default} />
-    <Stories of={itemStory.Default} />
-  </section>
-);
-
-<Meta of={mainStory} />
-<Tabs
-  tabs={[
-    <Title>{mainStory?.title}</Title>,
-    <Title of={itemStory}>{itemStory?.title}</Title>,
-  ]}
-  content={[<List />, <Item />]}
-/>
-
-import { Meta } from "@storybook/addon-docs/blocks";
-
-import * as mainStory from "./bmb-list-group.stories";
-import * as itemStory from "./bmb-list-group-item/bmb-list-group-item.stories";
-import { ListTemplate } from "../../../DocComponents/ListTemplate.mdx";
-
-<Meta of={mainStory} />
-<ListTemplate>{itemStory}</ListTemplate>
-
-
-  isSubStory: boolean = false,
-  ${getSubStoryIdentifier(isSubStory)}
 */

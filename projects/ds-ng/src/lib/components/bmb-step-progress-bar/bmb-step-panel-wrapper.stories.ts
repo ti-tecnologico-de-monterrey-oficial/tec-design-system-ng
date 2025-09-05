@@ -18,7 +18,6 @@ import {
   getBasicExampleBlock,
   getGeneralDescription,
 } from '../../utils/doc/utils';
-import { DBmbStepProgressBar } from '../../utils/doc/parameterDescriptions';
 
 const example = `
 <ng-template #step0>
@@ -150,7 +149,7 @@ class StorybookStepPanelWrapperComponent implements AfterViewInit {
       currentForm.markAllAsTouched();
       return;
     }
-    alert('¡Formulario finalizado!');
+    console.log('¡Formulario finalizado!');
   }
 }
 
@@ -231,7 +230,7 @@ ${getBasicExampleBlock(
       currentForm.markAllAsTouched();
       return;
     }
-    alert('¡Formulario finalizado!');
+    console.log('¡Formulario finalizado!');
   }`,
   true,
 )}
@@ -244,14 +243,7 @@ ${example}
     },
   },
   argTypes: {
-    activeStep: DBmbStepProgressBar.activeStep,
-    totalSteps: DBmbStepProgressBar.totalSteps,
-    size: DBmbStepProgressBar.size,
-    freeze: DBmbStepProgressBar.freeze,
-    type: DBmbStepProgressBar.type,
-    labelSteps: DBmbStepProgressBar.labelSteps,
-    labelComplete: DBmbStepProgressBar.labelComplete,
-    labelIncomplete: DBmbStepProgressBar.labelIncomplete,
+    ...mainStory.default.argTypes,
     stepTemplates: {
       control: {
         type: 'object',
