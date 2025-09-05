@@ -3,7 +3,6 @@ import {
   ViewEncapsulation,
   ChangeDetectionStrategy,
   TemplateRef,
-  signal,
   output,
   model,
   input,
@@ -33,9 +32,6 @@ export class BmbStepProgressBarComponent {
 
   onStepPress = output<number>();
   onStepPanelPress = output<number>();
-  next = output<void>();
-  back = output<void>();
-  finish = output<void>();
 
   getStepsArray(): number[] {
     return new Array(this.totalSteps() || 0).fill(0).map((_, i) => i);
@@ -52,17 +48,5 @@ export class BmbStepProgressBarComponent {
       this.activeStep.set(index);
       this.onStepPress.emit(index);
     }
-  }
-
-  goNext() {
-    this.next.emit();
-  }
-
-  goBack() {
-    this.back.emit();
-  }
-
-  complete() {
-    this.finish.emit();
   }
 }

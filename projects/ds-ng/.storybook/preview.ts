@@ -23,7 +23,7 @@ const preview: Preview = {
   parameters: {
     viewport: {
       options: {
-        small: { name: "Small", styles: { width: "320px", height: "568px" } },
+        small: { name: "Small", styles: { width: "375px", height: "568px" } },
         large: { name: "Large", styles: { width: "1000px", height: "1024px" } },
       },
     },
@@ -117,6 +117,7 @@ const preview: Preview = {
   },
   initialGlobals: {
     layout: 'vertical',
+    viewport: { value: 'tablet', isRotated: false },
   },
   decorators: [
     withThemeByClassName({
