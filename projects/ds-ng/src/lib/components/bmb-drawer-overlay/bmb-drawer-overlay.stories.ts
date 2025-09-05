@@ -35,8 +35,6 @@ export default {
           'selectNavItem',
           'toggleDrawer',
           'toggleFullDrawer',
-          '',
-          '',
         ],
       },
       description: {
@@ -94,7 +92,7 @@ ${RELEVANT_TITLE_LEVEL[4]}
       },
     },
     title: getPropertyParamDesc(
-      'inner header. This will be shown on any of the menu item (\`menu\` property)',
+      'inner header. This will be shown on whether of the menu item (\`menu\` property)',
     ),
     dataSearch: {
       control: { type: 'array' },
