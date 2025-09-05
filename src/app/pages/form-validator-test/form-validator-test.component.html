@@ -112,22 +112,7 @@
     </p>
   </ng-template>
 </bmb-accordion>
-<bmb-dropdown
-      name="input_dropdown_string"
-      [isMultiSelect]="false"
-      icon="bolt"
-      placeholder="Set Fruit"
-      tooltip="Tooltip dropdown"
-      [required]="true"
-      label="Fruit string"
-      [showIcon]="true"
-      [options]="['apple-', 'banana-', 'orange-', 'pear-', 'grape-']"
-      [disabled]="false"
-      helperText="Select a fruit"
-      errorMessage="Error input dropdown string"
-      (onValueChange)="onValueChange($event)"
-      value="banana-"
-    />
+
     <bmb-dropdown
       name="input_dropdown_string_multi"
       [isMultiSelect]="true"
@@ -1107,7 +1092,77 @@
         [pattern]="'[A-Za-z]+'"
         [showMaxTextLength]="true"
       /> -->
+      <bmb-dropdown
+        name="input_dropdown_string"
+        [isMultiSelect]="false"
+        icon="bolt"
+        placeholder="Set Fruit"
+        tooltip="Tooltip dropdown"
+        [required]="true"
+        label="Fruit string"
+        [showIcon]="true"
+        [options]="['apple-', 'banana-', 'orange-', 'pear-', 'grape-']"
+        [disabled]="false"
+        [isFilterable]="true"
+        helperText="Select a fruit"
+        errorMessage="Error input dropdown string"
+        (onValueChange)="onValueChange($event)"
+        value="banana-"
+      />
+      <bmb-dropdown
+        name="input_dropdown_string"
+        [isMultiSelect]="false"
+        icon="bolt"
+        placeholder="Set Fruit"
+        tooltip="Tooltip dropdown"
+        [required]="true"
+        label="Fruit string"
+        [showIcon]="true"
+        [options]="['apple-', 'banana-', 'orange-', 'pear-', 'grape-']"
+        [disabled]="false"
+        [isFilterable]="true"
+        helperText="Select a fruit"
+        errorMessage="Error input dropdown string"
+        (onValueChange)="onValueChange($event)"
+        value="banana-"
+      />
+      <bmb-dropdown
+        name="input_dropdown_string"
+        [isMultiSelect]="false"
+        icon="bolt"
+        placeholder="Set Fruit"
+        tooltip="Tooltip dropdown"
+        [required]="true"
+        label="Fruit string"
+        [showIcon]="true"
+        [options]="['apple-', 'banana-', 'orange-', 'pear-', 'grape-']"
+        [disabled]="false"
+        [isFilterable]="true"
+        helperText="Select a fruit"
+        errorMessage="Error input dropdown string"
+        (onValueChange)="onValueChange($event)"
+        value="banana-"
+      />
+      <bmb-dropdown
+        name="input_dropdown_string"
+        [isMultiSelect]="false"
+        icon="bolt"
+        placeholder="Set Fruit"
+        tooltip="Tooltip dropdown"
+        [required]="true"
+        label="Fruit string"
+        [showIcon]="true"
+        [options]="['apple-', 'banana-', 'orange-', 'pear-', 'grape-']"
+        [disabled]="false"
+        [isFilterable]="true"
+        helperText="Select a fruit"
+        errorMessage="Error input dropdown string"
+        (onValueChange)="onValueChange($event)"
+        value="banana-"
+      />
       <bmb-datepicker
+        bmbLayoutItem
+        [colSm]="1"
         name="datepicker1"
         label="Date"
         invalidFormatErrorMessage="Please enter a date in a valid format."

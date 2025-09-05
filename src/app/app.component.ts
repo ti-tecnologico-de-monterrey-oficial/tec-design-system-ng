@@ -94,9 +94,13 @@ export class AppComponent {
     const data: IBmbNativeModal = {
       title: 'User Profile',
       subtitle: 'This is your user profile modal',
-      content: this.modalTemplate,
+      content: HelpMenuComponent,
       size: 'medium',
       iconStyle: 'primary',
+      context: {
+        title: 'User title',
+        subtitle: 'User name',
+      },
       actions: [
         {
           buttonName: 'Close',
@@ -113,7 +117,7 @@ export class AppComponent {
 
   handleCloseModal(): void {
     const randomBoolean = Math.random() > 0.5;
-    console.log('Modal closed', randomBoolean);
+
     if (randomBoolean) {
       this.modalService.closeModal(this.modalId() as string);
     } else {
@@ -138,8 +142,11 @@ export class AppComponent {
     const data: IBmbProjectionContent = {
       content: HelpMenuComponent,
       targetRef: event.target as HTMLElement,
+      context: {
+        title: 'Some title',
+        subtitle: 'Get assistance with your account and settings',
+      },
     };
-    console.log(event);
 
     this.contentProjected.openContent(data);
   }

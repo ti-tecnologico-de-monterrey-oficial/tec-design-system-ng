@@ -1,11 +1,15 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  ComponentRef,
   computed,
+  effect,
   input,
   output,
   TemplateRef,
   Type,
+  ViewChild,
+  ViewContainerRef,
   ViewEncapsulation,
 } from '@angular/core';
 import { BmbOverlayComponent } from '../bmb-overlay/bmb-overlay.component';
@@ -43,7 +47,7 @@ import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 export class BmbNativeModalComponent {
   title = input<string>('');
   subtitle = input<string>('');
-  content = input<TemplateRef<any> | string>('');
+  content = input<TemplateRef<any> | null | Type<any> | string>('');
   actions = input<IBmbActionButton[]>([]);
   alertIcon = input<IBmbModalAlertStyle>();
   modalId = input.required<string>();
@@ -52,11 +56,21 @@ export class BmbNativeModalComponent {
   autoFocus = input<boolean>(false);
   disableClose = input<boolean>(true);
   hasBackdrop = input<boolean>(true);
+  context = input<{ [key: string]: any }>({});
 
   actionsClicked = output<{ buttonName: string; event: MouseEvent }>();
   closeModalClicked = output<{ modalId: string; event: MouseEvent }>();
 
-  constructor(private modalService: BmbNativeModalService) {}
+  constructor(private modalService: BmbNativeModalService) {
+    effect(() => {
+      this.renderContent();
+    });
+  }
+
+  @ViewChild('container', { read: ViewContainerRef })
+    container!: ViewContainerRef;
+
+  private componentRef: ComponentRef<any> | null = null;
 
   svgUrl: string = 'assets/svg/';
   modalIcon = computed(() => {
@@ -88,6 +102,10 @@ export class BmbNativeModalComponent {
     );
   }
 
+  isStringContent(): boolean {
+    return typeof this.content() === 'string';
+  }
+
   getContent(): any {
     return this.content() instanceof TemplateRef ? this.content() : null;
   }
@@ -104,6 +122,30 @@ export class BmbNativeModalComponent {
   handleBackdropClick(): void {
     if (!this.disableClose()) {
       this.handleCloseModal(new MouseEvent('click'));
+    }
+  }
+
+  renderContent() {
+    if (!(this.content() instanceof Type)) {
+      return;
+    }
+
+    this.container.clear();
+    if (this.componentRef) {
+      this.componentRef?.destroy();
+      this.componentRef = null;
+    }
+
+    if (!this.content() || !this.container) return;
+
+    this.componentRef = this.container.createComponent(
+      this.content() as Type<any>,
+    );
+
+    if (this.componentRef.instance) {
+      Object.keys(this.context()).forEach(key => {
+        this.componentRef?.setInput(key, this.context()[key]);
+      });
     }
   }
 }

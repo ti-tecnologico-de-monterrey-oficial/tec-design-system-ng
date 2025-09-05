@@ -1,13 +1,11 @@
 .bmb_projected-content {
   position: fixed;
   border: 0 none;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
   z-index: 99;
   padding: 0;
   background-color: transparent;
+  margin: 0;
+  color: var(--general_contrasts-100);
 
   &[open] {
     animation: fadein 0.3s ease-in forwards;

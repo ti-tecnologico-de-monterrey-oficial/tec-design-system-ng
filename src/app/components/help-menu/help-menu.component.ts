@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, input, Input } from '@angular/core';
 import {
   BmbActionMenuComponent,
   BmbItemComponent,
@@ -11,4 +11,7 @@ import {
   templateUrl: './help-menu.component.html',
   styleUrl: './help-menu.component.scss',
 })
-export class HelpMenuComponent {}
+export class HelpMenuComponent {
+  title = input<string>('');
+  @Input() subtitle: string = '';
+}

@@ -11,9 +11,15 @@ import {
 } from '@angular/core';
 import { BmbPortalComponent } from '../components/bmb-portal/bmb-portal.component';
 
+export type IBmbProjectedContentMode = 'over' | 'partial' | 'outside';
+
 export interface IBmbProjectionContent {
   content: TemplateRef<any> | null | Type<any>;
-  targetRef?: HTMLElement;
+  targetRef?: HTMLElement | null;
+  mode?: IBmbProjectedContentMode;
+  fixSizeToRef?: boolean;
+  context?: { [key: string]: any };
+  showBackdrop?: boolean;
 }
 
 @Injectable({
@@ -64,5 +70,9 @@ export class BmbProjectionContentService {
 
   getProjectedContent() {
     return this.contentList();
+  }
+
+  isThereContentProjected() {
+    return this.contentList() !== null;
   }
 }

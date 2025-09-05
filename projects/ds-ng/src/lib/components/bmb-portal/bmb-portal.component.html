@@ -64,6 +64,7 @@
     [size]="item.size || 'medium'"
     [iconStyle]="item.iconStyle"
     [actions]="item.actions || []"
+    [context]="item.context || {}"
     (closeModalClicked)="handleModalClick(item, $event)"
   />
 }
@@ -71,6 +72,10 @@
 <bmb-projected-content
   [content]="projectedContent()?.content ?? null"
   [htmlRef]="projectedContent()?.targetRef ?? null"
+  [mode]="projectedContent()?.mode ?? 'outside'"
+  [fixSizeToRef]="projectedContent()?.fixSizeToRef ?? false"
+  [context]="projectedContent()?.context ?? {}"
+  [showBackdrop]="projectedContent()?.showBackdrop ?? true"
   (removeContent)="handleRemoveProjectedContent()"
 ></bmb-projected-content>
 
