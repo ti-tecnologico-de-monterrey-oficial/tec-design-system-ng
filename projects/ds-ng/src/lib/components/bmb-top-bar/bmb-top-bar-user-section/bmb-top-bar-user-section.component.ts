@@ -23,9 +23,9 @@ import { BmbActionIconComponent } from '../../bmb-action-icon/bmb-action-icon.co
 })
 export class BmbTopBarUserSectionComponent {
   userInformation = input<IUserInformation>({
-    image:'',
-    name:'',
-    role:'',
+    image: '',
+    name: '',
+    role: '',
   });
   mitec = input<boolean>(false);
   assignmentNotification = input<string[]>([]);

@@ -42,7 +42,6 @@ export class BmbTopBarComponent implements OnInit {
   image = model<string>('');
   mobileImage = model<string>('');
 
-
   helpButtonClick = output<MouseEvent>();
   userProfileClick = output<MouseEvent>();
   alertButtonClick = output<MouseEvent>();
@@ -60,13 +59,13 @@ export class BmbTopBarComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.image() === '') {
-       this.image.set(this.mitec() ? this.imageMitecDefault : this.imageDefault);
+      this.image.set(this.mitec() ? this.imageMitecDefault : this.imageDefault);
     }
 
     if (this.mobileImage() === '') {
-      this.mobileImage.set(this.mitec()
-        ? this.mobileImageMitecDefault
-        : this.mobileImageDefault);
+      this.mobileImage.set(
+        this.mitec() ? this.mobileImageMitecDefault : this.mobileImageDefault,
+      );
     }
 
     const hasBeenViewed = localStorage.getItem('bmbTopBarViewed');
