@@ -44,30 +44,14 @@ export const ListTemplate = ({
   children,
   main,
   content = [],
-  context = { [key]: { showControls, showStories } },
+  context = {},
 }) => {
   return (
     <section>
-      {children && !content && (
+      {children && (
         <Tabs
           tabs={[<Title />, <Title of={children}>{children?.title}</Title>]}
-          content={[
-            <Main />,
-            <Item
-              showStories={getPropertyValue({
-                item: children,
-                context,
-                name: "showStories",
-              })}
-              showControls={getPropertyValue({
-                item: children,
-                context,
-                name: "showControls",
-              })}
-            >
-              {children}
-            </Item>,
-          ]}
+          content={[<Main />, <Item>{children}</Item>]}
         />
       )}
       {content && main && (

@@ -16,14 +16,16 @@ import {
   TITLE_OF_CONTROLS,
   TOC_OBJ,
 } from '../src/lib/utils/doc/utils';
-import { INITIAL_VIEWPORTS, MINIMAL_VIEWPORTS } from 'storybook/viewport';
 
 setCompodocJson(docJson);
 
 const preview: Preview = {
   parameters: {
     viewport: {
-      options: { ...MINIMAL_VIEWPORTS, ...INITIAL_VIEWPORTS },
+      options: {
+        small: { name: 'Small', styles: { width: '375px', height: '568px' } },
+        large: { name: 'Large', styles: { width: '1000px', height: '1024px' } },
+      },
     },
     ally: {
       context: 'body',
