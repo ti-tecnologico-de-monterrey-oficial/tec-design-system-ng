@@ -2,7 +2,7 @@
   class="bmb_top-bar-user-section"
   [ngClass]="{ 'bmb_top-bar-user-section-mitec': mitec }"
 >
-  @if (mitec && showRoleButton) {
+  @if (mitec() && showRoleButton()) {
     <bmb-action-icon
       class="bmb_top-bar-user-section-no-mobile"
       icon="compare_arrows"
@@ -10,7 +10,7 @@
       (buttonClick)="handleRoleChange($event)"
     />
   }
-  @if (showNotifications && mitec) {
+  @if (showNotifications() && mitec()) {
     <span class="bmb_top-bar-user-section-notification">
       <bmb-action-icon
         icon="notifications"
@@ -20,7 +20,7 @@
       />
     </span>
   }
-  @if (showHelpButton || mitec) {
+  @if (showHelpButton() || mitec()) {
     <bmb-action-icon
       [ngClass]="{ 'bmb_top-bar-user-section-no-mobile': mitec }"
       icon="help"
@@ -29,18 +29,20 @@
     />
   }
   <bmb-user-image
-    [image]="userInformation.image"
+    [image]="userInformation().image"
     size="mobile-small"
     [altImage]="userInformation.name"
     (buttonClick)="handleUserClick($event)"
   />
-  @if (mitec && (userInformation.name || userInformation.role)) {
+  @if (mitec() && (userInformation().name || userInformation().role)) {
     <div
       class="bmb_top-bar-user-section-name bmb_top-bar-user-section-no-mobile"
     >
-      <h3 class="bmb_top-bar-user-section-title">{{ userInformation.name }}</h3>
+      <h3 class="bmb_top-bar-user-section-title">
+        {{ userInformation().name }}
+      </h3>
       <h4 class="bmb_top-bar-user-section-role">
-        {{ userInformation.role }}
+        {{ userInformation().role }}
       </h4>
     </div>
   }

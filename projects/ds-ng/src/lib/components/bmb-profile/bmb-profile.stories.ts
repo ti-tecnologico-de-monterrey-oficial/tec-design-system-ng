@@ -61,7 +61,7 @@ export default {
 ${getGeneralDescription(`${getGeneralComponentDescription('profile')} to display a profile for students or collaborators, supporting both mobile and desktop views.`, 'https://bamboo.tec.mx/latest/componentes/profile-card/descripcion-general-Ka3x81s0')}
 ${getSpecialSpecifications(` ###${RELEVANT_TITLE_LEVEL[2]}
 >
-The theme toggle does not work correctly in Storybook. However, if you use it in the project, it functions without any issues.
+The theme toggle does not work correctly in Storybook. However, if you use it in the project, it functions without whether issues.
 `)}
 ${getBasicExampleBlock(
   'BmbProfileComponent',

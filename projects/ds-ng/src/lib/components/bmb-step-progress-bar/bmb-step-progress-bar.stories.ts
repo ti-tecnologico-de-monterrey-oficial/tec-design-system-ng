@@ -6,7 +6,6 @@ import {
   getBasicExampleBlock,
   getGeneralComponentDescription,
   getGeneralDescription,
-  RELEVANT_TITLE_LEVEL,
 } from '../../utils/doc/utils';
 import { DBmbStepProgressBar } from '../../utils/doc/parameterDescriptions';
 
@@ -33,8 +32,6 @@ export default {
           'back',
           'finish',
           'next',
-          'onStepPanelPress',
-          'onStepPress',
         ],
       },
       description: {
@@ -55,6 +52,7 @@ ${getBasicExampleBlock('BmbStepProgressBarComponent')}
     labelComplete: DBmbStepProgressBar.labelComplete,
     labelIncomplete: DBmbStepProgressBar.labelIncomplete,
     onStepPress: DBmbStepProgressBar.onStepPress,
+    onStepPanelPress: DBmbStepProgressBar.onStepPanelPress,
   },
   args: {
     totalSteps: 5,
