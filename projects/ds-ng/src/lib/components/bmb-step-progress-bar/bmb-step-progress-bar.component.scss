@@ -213,6 +213,7 @@
 
     &-text {
       margin-left: rem.rem_calc(20);
+      flex: 1;
 
       &-title {
         color: var(--general_contrasts-100);

@@ -48,6 +48,7 @@
               bmbLayoutItem
               [colSm]="4"
               [colLg]="6"
+              (onButton)="handleHelpButtonClick($event)"
             />
             <bmb-container-button
               title="1 page"
@@ -55,6 +56,7 @@
               bmbLayoutItem
               [colSm]="4"
               [colLg]="6"
+              (onButton)="handleHelpButtonClick($event)"
             />
             <bmb-container-button
               title="29 comments"
@@ -62,6 +64,7 @@
               bmbLayoutItem
               [colSm]="4"
               [colLg]="6"
+              (onButton)="templateClick($event)"
             />
             <p bmbLayoutItem [colSm]="4" [colLg]="12">Bamboo v1.5</p>
           </div>
@@ -108,6 +111,7 @@
         [style.view-transition-name]="'homeCardTransition2'"
       >
         <p>Content 2</p>
+        <button bmbButton (click)="handleHelpButtonClick($event)">Help</button>
       </bmb-home-card>
     </div>
     <div bmbVerticalLayout bmbLayoutItem [colSm]="4" [colLg]="6" gapSize="m">
@@ -179,8 +183,54 @@
         </ng-template>
         <ng-template #bmbAccordionContent>
           <p>Coming soon! Bamboo events and news will be displayed here.</p>
+          <p>Coming soon! Bamboo events and news will be displayed here.</p>
+          <p>Coming soon! Bamboo events and news will be displayed here.</p>
+          <p>Coming soon! Bamboo events and news will be displayed here.</p>
+          <p>Coming soon! Bamboo events and news will be displayed here.</p>
+          <p>Coming soon! Bamboo events and news will be displayed here.</p>
+          <p>Coming soon! Bamboo events and news will be displayed here.</p>
+          <p>Coming soon! Bamboo events and news will be displayed here.</p>
+          <p>Coming soon! Bamboo events and news will be displayed here.</p>
+          <p>Coming soon! Bamboo events and news will be displayed here.</p>
+          <p>Coming soon! Bamboo events and news will be displayed here.</p>
+          <button bmbButton (click)="handleHelpButtonClick($event)">
+            Help
+          </button>
         </ng-template>
       </bmb-accordion>
     </div>
   </section>
 </div>
+
+<ng-template #modalTemplate>
+  <div class="bmb_template-modal-content">
+    <p>Some content for the modal</p>
+    <p>
+      Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus
+      ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus
+      duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar
+      vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl
+      malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class
+      aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos
+      himenaeos.
+    </p>
+    <p>
+      Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus
+      ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus
+      duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar
+      vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl
+      malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class
+      aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos
+      himenaeos.
+    </p>
+    <p>
+      Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus
+      ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus
+      duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar
+      vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl
+      malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class
+      aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos
+      himenaeos.
+    </p>
+  </div>
+</ng-template>

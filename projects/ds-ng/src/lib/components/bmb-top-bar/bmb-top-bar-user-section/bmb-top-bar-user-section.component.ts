@@ -4,6 +4,7 @@ import {
   ViewEncapsulation,
   ChangeDetectionStrategy,
   output,
+  input,
 } from '@angular/core';
 import { BmbUserImageComponent } from '../../bmb-user-image/bmb-user-image.component';
 import { IUserInformation } from '../types';
@@ -21,17 +22,17 @@ import { BmbActionIconComponent } from '../../bmb-action-icon/bmb-action-icon.co
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BmbTopBarUserSectionComponent {
-  @Input() userInformation: IUserInformation = {
+  userInformation = input<IUserInformation>({
     image: '',
     name: '',
     role: '',
-  };
-  @Input() mitec: boolean = false;
-  @Input() assignmentNotification: string[] = [];
-  @Input() showNotifications: boolean = true;
-  @Input() notificationNotification: IBmbDataAlert[] = [];
-  @Input() showRoleButton: boolean = false;
-  @Input() showHelpButton: boolean = false;
+  });
+  mitec = input<boolean>(false);
+  assignmentNotification = input<string[]>([]);
+  showNotifications = input<boolean>(true);
+  notificationNotification = input<IBmbDataAlert[]>([]);
+  showRoleButton = input<boolean>(false);
+  showHelpButton = input<boolean>(false);
 
   helpButtonClick = output<MouseEvent>();
   userClick = output<MouseEvent>();

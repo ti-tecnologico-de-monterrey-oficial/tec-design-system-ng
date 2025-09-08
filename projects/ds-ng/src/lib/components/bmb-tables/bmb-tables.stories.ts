@@ -7,9 +7,11 @@ import {
   getEmptyStateMessage,
   getGeneralComponentDescription,
   getGeneralDescription,
+  getOnEvent,
   getSpecialSpecifications,
   RELEVANT_TITLE_LEVEL,
 } from '../../utils/doc/utils';
+import { getOnEventParam } from '../../utils/doc/parameterDescriptions';
 
 const additionalBlock: string = `
     @ViewChild('infoTemplate') infoTemplate!: TemplateRef<any>;
@@ -212,6 +214,9 @@ const additionalBlock: string = `
     }
 `;
 
+const SELECTED_ROW_DESCRIPTION: string =
+  '<br/><br/>This can be used to save the row selected.';
+
 export default {
   title: 'Components/Containers/Table',
   tags: ['!autodocs'],
@@ -272,6 +277,18 @@ export default {
         'pressed',
         'startX',
         'tableConfig',
+        'getTableClasses',
+        'goToFirstPage',
+        'goToLastPage',
+        'goToNextPage',
+        'goToPreviousPage',
+        'lastPage',
+        'onPageEvent',
+        'parsedFiltersColumns',
+        'cellRef',
+        'headerCellRef',
+        'matTableRef',
+        'paginator',
       ],
     },
     docs: {
@@ -380,7 +397,7 @@ ${getBasicExampleBlock(
       control: {
         type: 'object',
       },
-      description: 'Set the data to show in the table.',
+      description: 'Sets the data to show in the table.',
       table: {
         category: 'Properties',
         defaultValue: { summary: '' },
@@ -391,7 +408,7 @@ ${getBasicExampleBlock(
       control: {
         type: 'object',
       },
-      description: 'Set the columns to show in the table.',
+      description: 'Sets the columns to show in the table.',
       table: {
         category: 'Properties',
         defaultValue: { summary: '' },
@@ -400,7 +417,7 @@ ${getBasicExampleBlock(
     },
     config: {
       control: { type: 'object' },
-      description: 'Set the main config for the table',
+      description: 'Sets the main config for the table',
       table: {
         category: 'Properties',
         defaultValue: { summary: '' },
@@ -412,7 +429,7 @@ ${getBasicExampleBlock(
         type: 'boolean',
       },
       description:
-        'Determine if the text in all table cells will be truncated or not.',
+        'Determines if the text in all table cells will be truncated or not.',
       table: {
         category: 'Properties',
         type: { summary: 'boolean' },
@@ -424,7 +441,7 @@ ${getBasicExampleBlock(
         type: 'boolean',
       },
       description:
-        'Show or hide the filters section. This property is a Model.',
+        'Shows or hide the filters section. This property is a Model.',
       table: {
         category: 'Properties',
         type: { summary: 'boolean' },
@@ -436,7 +453,7 @@ ${getBasicExampleBlock(
         type: 'boolean',
       },
       description:
-        'Determine if the text in all table cells will be wrapped or not.',
+        'Determines if the text in all table cells will be wrapped or not.',
       table: {
         category: 'Properties',
         type: { summary: 'boolean' },
@@ -445,7 +462,7 @@ ${getBasicExampleBlock(
     },
     actionTemplate: {
       control: { type: 'template' },
-      description: 'Set the action buttons to show in the Action column',
+      description: 'Sets the action buttons to show in the Action column',
       table: {
         category: 'Properties',
         defaultValue: { summary: '' },
@@ -454,7 +471,7 @@ ${getBasicExampleBlock(
     },
     detailTemplate: {
       control: { type: 'template' },
-      description: 'Set the template to show the detail row',
+      description: 'Sets the template to show the detail row',
       table: {
         category: 'Properties',
         defaultValue: { summary: '' },
@@ -464,39 +481,89 @@ ${getBasicExampleBlock(
     pageSize: {
       control: { type: 'number' },
       description:
-        'Set the number of elements to show in the table when the pagination is activated',
+        'Sets the number of elements to show in the table when the pagination is activated',
       table: {
         category: 'Properties',
         defaultValue: { summary: '' },
         type: { summary: 'number' },
       },
     },
-    select: {
-      control: false,
-      description:
-        'This output can be used to save the row selected by the checkbox configuration.',
+    currentPage: {
+      control: { type: 'number' },
+      description: 'Sets the current page index.',
       table: {
-        category: 'Events',
-        defaultValue: { summary: '-' },
-        type: { summary: 'onSelect($event)' },
+        category: 'Properties',
+        defaultValue: { summary: 0 },
+        type: { summary: 'number' },
       },
     },
-    clickedRow: {
-      control: false,
+    totalItems: {
+      control: { type: 'number' },
       description:
-        'This output can be used to save the row selected by the interaction of a click.',
+        'Sets the total number of items in the table for pagination (used for server-side pagination).',
       table: {
-        category: 'Events',
-        defaultValue: { summary: '-' },
-        type: { summary: 'clickedRow($event)' },
+        category: 'Properties',
+        defaultValue: { summary: 0 },
+        type: { summary: 'number' },
       },
     },
+    serverSide: {
+      control: {
+        type: 'boolean',
+      },
+      description:
+        'Enables server-side mode. <br/>The data handling:<br/> Pagination, filtering, and sorting.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
+    },
+    select: getOnEventParam(
+      getOnEvent('', 'select', 'unknown'),
+      `when a row is selected by its checkbox.${SELECTED_ROW_DESCRIPTION}`,
+      'other',
+    ),
+    clickedRow: getOnEventParam(
+      getOnEvent('', 'clickedRow', 'unknown'),
+      `when a row is selected by the interaction of a click.${SELECTED_ROW_DESCRIPTION}`,
+      'other',
+    ),
+    searchChange: getOnEventParam(
+      getOnEvent('the search value', 'searchChange', 'string'),
+    ),
+    filtersChange: getOnEventParam(
+      getOnEvent(
+        'whether of the filters',
+        'filtersChange',
+        'Record<string, any>',
+      ),
+    ),
+    searchModeChange: getOnEventParam(
+      getOnEvent(
+        "whether search is in 'client' or 'server' mode",
+        'searchModeChange',
+        "string ('client' | 'server')",
+      ),
+    ),
+    pageChange: getOnEventParam(
+      getOnEvent(
+        '',
+        'searchModeChange',
+        `{
+  pageIndex: number;
+  pageSize: number;
+}`,
+      ),
+      'with the pagination page: index and size',
+      'other',
+    ),
     initialTableSelection: {
       control: {
         type: 'object',
       },
       description: `
-Set the initial selection of the table.
+Sets the initial selection of the table.
 
 This is an array of indexes that will be selected when the table is initialized.
 
@@ -511,7 +578,7 @@ ${RELEVANT_TITLE_LEVEL[0]} If the data is asynchronous, this property must also 
       control: {
         type: 'boolean',
       },
-      description: 'Show or hide the search input at the top of the table.',
+      description: 'Shows or hide the search input at the top of the table.',
       table: {
         category: 'Properties',
         type: { summary: 'boolean' },
@@ -522,7 +589,7 @@ ${RELEVANT_TITLE_LEVEL[0]} If the data is asynchronous, this property must also 
       control: {
         type: 'boolean',
       },
-      description: 'Show or hide the column filters section.',
+      description: 'Shows or hide the column filters section.',
       table: {
         category: 'Properties',
         type: { summary: 'boolean' },
@@ -535,7 +602,7 @@ ${RELEVANT_TITLE_LEVEL[0]} If the data is asynchronous, this property must also 
       },
       options: ['es', 'en'],
       description:
-        'Set the language of the table. This will change the text of the headers table.',
+        'Sets the language of the table. This will change the text of the headers table.',
       table: {
         category: 'Properties',
         type: { summary: 'BmbTableLang' },
@@ -547,7 +614,7 @@ ${RELEVANT_TITLE_LEVEL[0]} If the data is asynchronous, this property must also 
         type: 'select',
       },
       options: ['top', 'right', 'bottom', 'left'],
-      description: 'Set the position of the filters section.',
+      description: 'Sets the position of the filters section.',
       table: {
         category: 'Properties',
         type: { summary: 'IBmbFiltersPosition' },

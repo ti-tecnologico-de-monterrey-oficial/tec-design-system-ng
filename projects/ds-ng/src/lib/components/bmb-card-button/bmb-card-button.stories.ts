@@ -436,7 +436,7 @@ export const CustomContentImageExample = {
   render: (args: any) => ({
     template: `
     <bmb-card-button ${attributes(args)}>
-      <!-- Custom content can be used with any combination of full interactive -->
+      <!-- Custom content can be used with whether combination of full interactive -->
       <ng-template #customContent>
         <p>
           <strong>14 de abril de 2025, 3:00 p. m. - 3:30 p. m.</strong> <br/>

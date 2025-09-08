@@ -1,0 +1,13 @@
+<bmb-overlay
+  [active]="content() !== null && showBackdrop()"
+  (click)="removeContent.emit()"
+/>
+<dialog
+  class="bmb_projected-content"
+  [ngStyle]="getPosition()"
+  [open]="content() !== null"
+  #projectedContentDialogRef
+  tabindex="0"
+>
+  <ng-container #container></ng-container>
+</dialog>

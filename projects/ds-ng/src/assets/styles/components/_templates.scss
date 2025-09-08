@@ -2,11 +2,11 @@
 @use "../base/rem" as rem;
 
 .bmb_template-header {
-  width: 100%;
-  height: rem.rem_calc(100);
   background-color: var(--general_contrasts-15);
   gap: var(--bmb-spacing-s);
+  height: rem.rem_calc(100);
   padding: rem.rem_calc(24) rem.rem_calc(24) rem.rem_calc(24) rem.rem_calc(100);
+  width: 100%;
 
   @media (max-width: 1000px) {
     padding: rem.rem_calc(24) rem.rem_calc(24) rem.rem_calc(24) rem.rem_calc(40);
@@ -15,30 +15,30 @@
 
 .bmb_template-aside-full {
   display: grid;
+  gap: 1rem;
+  grid-template-areas: "main aside";
   grid-template-columns: 2fr 1fr;
   grid-template-rows: max-content max-content max-content max-content;
-  grid-template-areas: "main aside";
-  gap: 1rem;
-  margin-top: var(--bmb-spacing-m);
   margin-bottom: var(--bmb-spacing-m);
+  margin-top: var(--bmb-spacing-m);
 
   @media (max-width: 630px) {
-    grid-template-columns: 1fr;
-    grid-template-rows: max-content max-content max-content max-content;
     grid-template-areas:
       "main"
       "aside";
+    grid-template-columns: 1fr;
+    grid-template-rows: max-content max-content max-content max-content;
     height: fit-content;
   }
 
   &-main {
     background-color: var(--general_contrasts-15);
-    height: 100%;
-    grid-area: main;
-    padding: var(--bmb-spacing-l);
-    padding-left: rem.rem_calc(100);
     border-radius: rem.rem_calc(20);
     box-shadow: rem.rem_calc(10 5 10 0) RGBA(var(--color-black-primary), 0.5);
+    grid-area: main;
+    height: 100%;
+    padding: var(--bmb-spacing-l);
+    padding-left: rem.rem_calc(100);
 
     @media (max-width: 630px) {
       height: max-content;
@@ -52,11 +52,11 @@
 
   &-aside {
     background-color: var(--general_contrasts-15);
-    height: 100%;
-    grid-area: aside;
-    padding: var(--bmb-spacing-l);
     border-radius: rem.rem_calc(20);
     box-shadow: rem.rem_calc(10 5 10 0) RGBA(var(--color-black-primary), 0.5);
+    grid-area: aside;
+    height: 100%;
+    padding: var(--bmb-spacing-l);
 
     @media (max-width: 630px) {
       height: max-content;
@@ -71,31 +71,31 @@
 
 .bmb_template-aside {
   display: grid;
+  gap: 1rem;
+  grid-template-areas: "main aside";
   grid-template-columns: 2fr 1fr;
   grid-template-rows: max-content max-content max-content max-content;
-  grid-template-areas: "main aside";
-  gap: 1rem;
   margin-top: var(--bmb-spacing-xs);
-  padding: var(--bmb-spacing-l);
   overflow: hidden;
+  padding: var(--bmb-spacing-l);
 
   @media (max-width: 630px) {
-    grid-template-columns: 1fr;
-    grid-template-rows: max-content max-content max-content max-content;
     grid-template-areas:
       "main"
       "aside";
+    grid-template-columns: 1fr;
+    grid-template-rows: max-content max-content max-content max-content;
     height: fit-content;
   }
 
   &-main {
     background-color: var(--general_contrasts-15);
-    height: 100%;
-    grid-area: main;
-    padding: var(--bmb-spacing-l);
     border-radius: rem.rem_calc(20);
-    margin-left: rem.rem_calc(80);
     box-shadow: rem.rem_calc(10 5 10 0) RGBA(var(--color-black-primary), 0.5);
+    grid-area: main;
+    height: 100%;
+    margin-left: rem.rem_calc(80);
+    padding: var(--bmb-spacing-l);
 
     @media (max-width: 630px) {
       height: max-content;
@@ -108,15 +108,15 @@
 
   &-aside {
     background-color: var(--general_contrasts-15);
-    height: 100%;
-    grid-area: aside;
-    padding: var(--bmb-spacing-l);
     border-radius: rem.rem_calc(20);
     box-shadow: rem.rem_calc(10 5 10 0) RGBA(var(--color-black-primary), 0.5);
+    grid-area: aside;
+    height: 100%;
+    padding: var(--bmb-spacing-l);
 
     @media (max-width: 630px) {
-      margin: var(--bmb-spacing-xxs);
       height: max-content;
+      margin: var(--bmb-spacing-xxs);
     }
   }
 
@@ -127,35 +127,35 @@
 
 .bmb_template-aside-first {
   display: grid;
+  gap: 1rem;
+  grid-template-areas: "aside main";
   grid-template-columns: 1fr 2fr;
   grid-template-rows: max-content max-content max-content max-content;
-  grid-template-areas: "aside main";
-  gap: 1rem;
   margin-top: var(--bmb-spacing-xs);
   padding: var(--bmb-spacing-l);
 
   @media (max-width: 630px) {
-    grid-template-columns: 1fr;
-    grid-template-rows: max-content max-content max-content max-content;
     grid-template-areas:
       "aside"
       "main";
+    grid-template-columns: 1fr;
+    grid-template-rows: max-content max-content max-content max-content;
     height: fit-content;
   }
 
   &-aside {
     background-color: var(--general_contrasts-15);
-    height: 100%;
-    grid-area: aside;
-    padding: var(--bmb-spacing-l);
     border-radius: rem.rem_calc(20);
+    box-shadow: rem.rem_calc(10 5 10 0) RGBA(var(--color-black-primary), 0.5);
+    grid-area: aside;
+    height: 100%;
     margin-left: rem.rem_calc(80);
     overflow: hidden;
-    box-shadow: rem.rem_calc(10 5 10 0) RGBA(var(--color-black-primary), 0.5);
+    padding: var(--bmb-spacing-l);
 
     @media (max-width: 630px) {
-      margin: var(--bmb-spacing-xxs);
       height: max-content;
+      margin: var(--bmb-spacing-xxs);
     }
 
     @media (width <= 1000px) and (width >= 630px) {
@@ -165,16 +165,16 @@
 
   &-main {
     background-color: var(--general_contrasts-15);
-    height: 100%;
-    grid-area: main;
-    padding: var(--bmb-spacing-l);
     border-radius: rem.rem_calc(20);
-    overflow: hidden;
     box-shadow: rem.rem_calc(10 5 10 0) RGBA(var(--color-black-primary), 0.5);
+    grid-area: main;
+    height: 100%;
+    overflow: hidden;
+    padding: var(--bmb-spacing-l);
 
     @media (max-width: 630px) {
-      margin: var(--bmb-spacing-xxs);
       height: max-content;
+      margin: var(--bmb-spacing-xxs);
     }
   }
 
@@ -185,26 +185,26 @@
 
 .bmb_template-main-full {
   display: grid;
+  gap: 1rem;
+  grid-template-areas: "main";
   grid-template-columns: 1fr;
   grid-template-rows: max-content max-content max-content max-content;
-  grid-template-areas: "main";
-  gap: 1rem;
   margin-top: var(--bmb-spacing-m);
-  padding: var(--bmb-spacing-m);
   overflow: hidden;
+  padding: var(--bmb-spacing-m);
 
   @media (max-width: 630px) {
     height: fit-content;
   }
 
   &-card {
-    height: 100%;
-    border-radius: rem.rem_calc(20);
-    padding: var(--bmb-spacing-l);
-    margin-left: rem.rem_calc(80);
     background-color: var(--general_contrasts-15);
-    grid-area: main;
+    border-radius: rem.rem_calc(20);
     box-shadow: rem.rem_calc(10 5 10 0) RGBA(var(--color-black-primary), 0.5);
+    grid-area: main;
+    height: 100%;
+    margin-left: rem.rem_calc(80);
+    padding: var(--bmb-spacing-l);
 
     @media (max-width: 630px) {
       height: max-content;
@@ -223,31 +223,31 @@
 
 .bmb_template-twice-full {
   display: grid;
+  gap: 1rem;
+  grid-template-areas: "main secondary";
   grid-template-columns: 2fr 2fr;
   grid-template-rows: max-content max-content max-content max-content;
-  grid-template-areas: "main secondary";
-  gap: 1rem;
   margin-top: var(--bmb-spacing-m);
-  padding: var(--bmb-spacing-l);
   overflow: hidden;
+  padding: var(--bmb-spacing-l);
 
   @media (max-width: 630px) {
-    grid-template-columns: 1fr;
-    grid-template-rows: max-content max-content max-content max-content;
     grid-template-areas:
       "main"
       "secondary";
+    grid-template-columns: 1fr;
+    grid-template-rows: max-content max-content max-content max-content;
     height: fit-content;
   }
 
   &-main {
     background-color: var(--general_contrasts-15);
-    height: 100%;
-    grid-area: main;
-    padding: var(--bmb-spacing-l);
-    padding-left: rem.rem_calc(80);
     border-radius: rem.rem_calc(20);
     box-shadow: rem.rem_calc(10 5 10 0) RGBA(var(--color-black-primary), 0.5);
+    grid-area: main;
+    height: 100%;
+    padding: var(--bmb-spacing-l);
+    padding-left: rem.rem_calc(80);
 
     @media (max-width: 630px) {
       height: max-content;
@@ -260,11 +260,11 @@
 
   &-secondary {
     background-color: var(--general_contrasts-15);
-    height: 100%;
-    grid-area: secondary;
-    padding: var(--bmb-spacing-l);
     border-radius: rem.rem_calc(20);
     box-shadow: rem.rem_calc(10 5 10 0) RGBA(var(--color-black-primary), 0.5);
+    grid-area: secondary;
+    height: 100%;
+    padding: var(--bmb-spacing-l);
 
     @media (max-width: 630px) {
       height: max-content;
@@ -279,31 +279,31 @@
 
 .bmb_template-twice {
   display: grid;
+  gap: 1rem;
+  grid-template-areas: "main secondary";
   grid-template-columns: 2fr 2fr;
   grid-template-rows: max-content max-content max-content max-content;
-  grid-template-areas: "main secondary";
-  gap: 1rem;
   margin-top: var(--bmb-spacing-m);
-  padding: var(--bmb-spacing-l);
   overflow: hidden;
+  padding: var(--bmb-spacing-l);
 
   @media (max-width: 630px) {
-    grid-template-columns: 1fr;
-    grid-template-rows: max-content max-content max-content max-content;
     grid-template-areas:
       "main"
       "secondary";
+    grid-template-columns: 1fr;
+    grid-template-rows: max-content max-content max-content max-content;
     height: fit-content;
   }
 
   &-main {
     background-color: var(--general_contrasts-15);
-    height: 100%;
-    grid-area: main;
-    padding: var(--bmb-spacing-l);
-    margin-left: rem.rem_calc(80);
     border-radius: rem.rem_calc(20);
     box-shadow: rem.rem_calc(10 5 10 0) RGBA(var(--color-black-primary), 0.5);
+    grid-area: main;
+    height: 100%;
+    margin-left: rem.rem_calc(80);
+    padding: var(--bmb-spacing-l);
 
     @media (max-width: 630px) {
       height: max-content;
@@ -316,11 +316,11 @@
 
   &-secondary {
     background-color: var(--general_contrasts-15);
-    height: 100%;
-    grid-area: secondary;
-    padding: var(--bmb-spacing-l);
     border-radius: rem.rem_calc(20);
     box-shadow: rem.rem_calc(10 5 10 0) RGBA(var(--color-black-primary), 0.5);
+    grid-area: secondary;
+    height: 100%;
+    padding: var(--bmb-spacing-l);
 
     @media (max-width: 630px) {
       height: max-content;
@@ -335,33 +335,33 @@
 
 .bmb_template-list {
   display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: 2fr 5fr;
+  gap: 1rem;
   grid-template-areas:
     "main"
     "secondary";
-  gap: 1rem;
+  grid-template-columns: 1fr;
+  grid-template-rows: 2fr 5fr;
   margin-top: var(--bmb-spacing-m);
-  padding: var(--bmb-spacing-l);
   overflow: hidden;
+  padding: var(--bmb-spacing-l);
 
   @media (max-width: 630px) {
-    grid-template-columns: 1fr;
-    grid-template-rows: max-content max-content max-content max-content;
     grid-template-areas:
       "main"
       "secondary";
+    grid-template-columns: 1fr;
+    grid-template-rows: max-content max-content max-content max-content;
     height: fit-content;
   }
 
   &-main {
-    height: 100%;
     background-color: var(--general_contrasts-15);
-    grid-area: main;
-    padding: var(--bmb-spacing-l);
-    margin-left: rem.rem_calc(80);
     border-radius: rem.rem_calc(20);
     box-shadow: rem.rem_calc(10 5 10 0) RGBA(var(--color-black-primary), 0.5);
+    grid-area: main;
+    height: 100%;
+    margin-left: rem.rem_calc(80);
+    padding: var(--bmb-spacing-l);
 
     @media (max-width: 630px) {
       height: max-content;
@@ -374,12 +374,12 @@
 
   &-secondary {
     background-color: var(--general_contrasts-15);
-    height: 100%;
-    grid-area: secondary;
-    padding: var(--bmb-spacing-l);
     border-radius: rem.rem_calc(20);
-    margin-left: rem.rem_calc(80);
     box-shadow: rem.rem_calc(10 5 10 0) RGBA(var(--color-black-primary), 0.5);
+    grid-area: secondary;
+    height: 100%;
+    margin-left: rem.rem_calc(80);
+    padding: var(--bmb-spacing-l);
 
     @media (max-width: 630px) {
       height: max-content;
@@ -398,38 +398,38 @@
 
 .bmb_template-article {
   display: grid;
+  grid-template-areas: "aside main";
   grid-template-columns: 2fr 6fr;
   grid-template-rows: max-content max-content max-content max-content;
-  grid-template-areas: "aside main";
   margin-top: var(--bmb-spacing-xs);
   padding: var(--bmb-spacing-l);
 
   @media (max-width: 630px) {
-    grid-template-columns: 1fr;
-    grid-template-rows: max-content max-content max-content max-content;
     grid-template-areas:
       "aside"
       "main";
+    grid-template-columns: 1fr;
+    grid-template-rows: max-content max-content max-content max-content;
     height: fit-content;
   }
 
   &-aside {
     background-color: var(--general_contrasts-15);
-    height: 100%;
-    grid-area: aside;
-    padding: var(--bmb-spacing-l);
-    border-top-left-radius: rem.rem_calc(20);
     border-bottom-left-radius: rem.rem_calc(20);
+    border-top-left-radius: rem.rem_calc(20);
+    box-shadow: rem.rem_calc(10 5 10 0) RGBA(var(--color-black-primary), 0.5);
+    grid-area: aside;
+    height: 100%;
     margin-left: rem.rem_calc(80);
     overflow: hidden;
-    box-shadow: rem.rem_calc(10 5 10 0) RGBA(var(--color-black-primary), 0.5);
+    padding: var(--bmb-spacing-l);
 
     @media (max-width: 630px) {
-      margin: var(--bmb-spacing-xxs);
-      height: max-content;
       border-radius: 0;
       border-top-left-radius: rem.rem_calc(20);
       border-top-right-radius: rem.rem_calc(20);
+      height: max-content;
+      margin: var(--bmb-spacing-xxs);
     }
 
     @media (width <= 1000px) and (width >= 630px) {
@@ -439,20 +439,20 @@
 
   &-main {
     background-color: var(--general_contrasts-5);
-    height: 100%;
-    grid-area: main;
-    padding: var(--bmb-spacing-l);
-    border-top-right-radius: rem.rem_calc(20);
     border-bottom-right-radius: rem.rem_calc(20);
-    overflow: hidden;
+    border-top-right-radius: rem.rem_calc(20);
     box-shadow: rem.rem_calc(10 5 5.6 0) RGBA(var(--color-black-primary), 0.5);
+    grid-area: main;
+    height: 100%;
+    overflow: hidden;
+    padding: var(--bmb-spacing-l);
 
     @media (max-width: 630px) {
-      margin: var(--bmb-spacing-xxs);
-      height: max-content;
-      border-radius: 0;
       border-bottom-left-radius: rem.rem_calc(20);
       border-bottom-right-radius: rem.rem_calc(20);
+      border-radius: 0;
+      height: max-content;
+      margin: var(--bmb-spacing-xxs);
     }
   }
 
@@ -462,11 +462,11 @@
 }
 
 .bmb_horizontal-scroll {
-  overflow-x: auto;
   display: flex;
-  white-space: nowrap;
-  padding: rem.rem_calc(10);
   margin: rem.rem_calc(16);
+  overflow-x: auto;
+  padding: rem.rem_calc(10);
+  white-space: nowrap;
 
   &-wrapper {
     display: flex;
@@ -480,9 +480,9 @@
   height: 100dvh;
 
   &-main {
+    background-color: var(--containers-background);
     flex: 1;
     padding: rem.rem_calc(32);
-    background-color: var(--containers-background);
 
     @media (min-width: 1000px) {
       padding: rem.rem_calc(96 140);
@@ -510,6 +510,7 @@
     margin-right: 0;
   }
 }
+
 .bmb_template-accordion {
   height: calc(100% - rem.rem_calc(32));
 
@@ -544,15 +545,50 @@
       }
     }
   }
+
+  &-links {
+    display: flex;
+    align-items: flex-start;
+    flex-flow: column;
+  }
+
+  &-cta {
+    align-items: center;
+    color: var(--general_contrasts-main-selection);
+    cursor: pointer;
+    display: inline-flex;
+    gap: rem.rem_calc(2);
+    line-height: 2;
+    padding: rem.rem_calc(2 0);
+    position: relative;
+    text-align: left;
+    text-decoration: none;
+
+    &::after {
+      background: var(--general_contrasts-main-selection);
+      bottom: rem.rem_calc(5);
+      content: "";
+      height: rem.rem_calc(1);
+      left: 0;
+      position: absolute;
+      right: 0;
+      transform: scaleX(0);
+      transition: transform 0.2s ease;
+    }
+
+    &:hover::after {
+      transform: scaleX(1);
+    }
+  }
 }
 
 .bmb_template-stand-alone-tags {
-  display: flex;
   background-color: var(--containers-main);
-  flex-flow: column nowrap;
-  margin: rem.rem_calc(24 24 24 100);
   border-radius: rem.rem_calc(20);
   box-shadow: rem.rem_calc(10 5 10 0) RGBA(var(--color-black-primary), 0.5);
+  display: flex;
+  flex-flow: column nowrap;
+  margin: rem.rem_calc(24 24 24 100);
 
   @media (max-width: 1000px) {
     margin-left: rem.rem_calc(40);
@@ -583,30 +619,30 @@
 
   &-footer {
     display: flex;
-    padding: rem.rem_calc(24);
-    justify-content: flex-end;
     gap: rem.rem_calc(16);
+    justify-content: flex-end;
+    padding: rem.rem_calc(24);
   }
 
   @media (max-width: 630px) {
-    margin: var(--bmb-spacing-xxs);
     height: max-content;
+    margin: var(--bmb-spacing-xxs);
   }
 }
 
 .bmb_template-subheader {
-  padding: rem.rem_calc(24);
   border-bottom: rem.rem_calc(1) solid var(--general_contrasts-15);
+  padding: rem.rem_calc(24);
 
   ul {
     align-items: center;
-    list-style: none;
-    margin: 0;
-    padding: 0;
     display: flex;
     flex-wrap: nowrap;
     gap: rem.rem_calc(16);
     justify-content: space-between;
+    list-style: none;
+    margin: 0;
+    padding: 0;
 
     @media (max-width: 630px) {
       flex-flow: column nowrap;
@@ -617,15 +653,15 @@
 
       &::after,
       &:before {
+        background-color: var(--general_contrasts-text-sidebar);
+        bottom: 0;
         content: "";
         display: none;
-        position: absolute;
-        width: rem.rem_calc(1);
         height: rem.rem_calc(44);
-        top: 0;
-        bottom: 0;
-        background-color: var(--general_contrasts-text-sidebar);
         margin: auto;
+        position: absolute;
+        top: 0;
+        width: rem.rem_calc(1);
       }
 
       &:first-child {
@@ -657,12 +693,12 @@
       }
 
       &:nth-child(2) {
-        flex: 1;
-        display: flex;
         align-items: center;
-        justify-content: center;
+        display: flex;
+        flex: 1;
         flex-flow: row wrap;
         gap: rem.rem_calc(8);
+        justify-content: center;
       }
     }
   }

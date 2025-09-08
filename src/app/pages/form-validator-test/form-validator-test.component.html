@@ -112,22 +112,7 @@
     </p>
   </ng-template>
 </bmb-accordion>
-<bmb-dropdown
-      name="input_dropdown_string"
-      [isMultiSelect]="false"
-      icon="bolt"
-      placeholder="Set Fruit"
-      tooltip="Tooltip dropdown"
-      [required]="true"
-      label="Fruit string"
-      [showIcon]="true"
-      [options]="['apple-', 'banana-', 'orange-', 'pear-', 'grape-']"
-      [disabled]="false"
-      helperText="Select a fruit"
-      errorMessage="Error input dropdown string"
-      (onValueChange)="onValueChange($event)"
-      value="banana-"
-    />
+
     <bmb-dropdown
       name="input_dropdown_string_multi"
       [isMultiSelect]="true"
@@ -792,8 +777,9 @@
   [codeError]="errorControl.value"
   (handleSubmit)="verifyCode($event)"
 /> -->
-<section style="margin: 2rem">
-  <!-- <bmb-search-input
+<div class="bmb_template-stand-alone-tags-content">
+  <aside class="bmb_template-aside-first-aside">
+    <!-- <bmb-search-input
     name="search_input"
     placeholder="Placeholder - search"
     [data]="[
@@ -816,12 +802,12 @@
     (onValueChange)="onValueChange($event)"
     (onServerSideFilterEvent)="onServerSideFilterEvent($event)"
   /> -->
-  <bmb-form-validator
-    [(formGroup)]="formGroupTest"
-    (formGroupState)="handleFormGroupState($event)"
-  >
-    <section bmbLayout>
-      <!-- <bmb-switch
+    <bmb-form-validator
+      [(formGroup)]="formGroupTest"
+      (formGroupState)="handleFormGroupState($event)"
+    >
+      <section bmbLayout>
+        <!-- <bmb-switch
         bmbLayoutItem
         [colSm]="2"
         [leftText]="''"
@@ -877,7 +863,7 @@
         [disabled]="false"
         (change)="onValueChange($event)"
       /> -->
-      <!-- <bmb-input
+        <!-- <bmb-input
         bmbLayoutItem
         [colSm]="2"
         id="input1"
@@ -1062,52 +1048,203 @@
         [maxlength]="20"
         [minlength]="4"
         [pattern]="'[A-Za-z]+'"
-      />
-      <bmb-input
-        bmbLayoutItem
-        [colSm]="2"
-        id="input56"
-        name="input56"
-        tooltip="Tooltip test"
-        [label]="'Label (Optional)'"
-        [placeholder]="'Placeholder'"
-        [icon]="'apps'"
-        [appearance]="'normal'"
-        [errorMessage]="{
-          required: 'Please enter the required data',
-          minLength: 'Please enter at least 4 characters',
-          pattern: 'Please enter only letters',
-        }"
-        [helperMessage]="'Helper Message'"
-        [disabled]="false"
-        [isRequired]="true"
-        [maxlength]="100"
-        [minlength]="4"
-        [pattern]="'[A-Za-z]+'"
-        [isClearable]="true"
-      />
-      <bmb-input
-        bmbLayoutItem
-        [colSm]="2"
-        id="textarea1"
-        name="textarea1"
-        type="text-area"
-        value="asd"
-        [placeholder]="'Placeholder'"
-        [errorMessage]="{
-          required: 'Please enter the required data',
-          minLength: 'Please enter at least 4 characters',
-          pattern: 'Please enter only letters',
-        }"
-        [helperMessage]="'Helper Message'"
-        [disabled]="false"
-        [isRequired]="true"
-        [maxlength]="20"
-        [minlength]="4"
-        [pattern]="'[A-Za-z]+'"
-        [showMaxTextLength]="true"
-      /> -->
-      <bmb-datepicker
+      />-->
+        <bmb-input
+          bmbLayoutItem
+          [colSm]="2"
+          id="input56"
+          name="input56"
+          tooltip="Tooltip test"
+          [label]="'Label (Optional)'"
+          [placeholder]="'Placeholder'"
+          [icon]="'apps'"
+          [appearance]="'normal'"
+          [errorMessage]="{
+            required: 'Please enter the required data',
+            minLength: 'Please enter at least 4 characters',
+            pattern: 'Please enter only letters',
+            customValidation: 'Custom validation input',
+          }"
+          [customValidation]="handleCustomValidatorT()"
+          [helperMessage]="'Helper Message'"
+          [disabled]="false"
+          [isRequired]="true"
+          [maxlength]="100"
+          [minlength]="4"
+          [pattern]="'[A-Za-z]+'"
+          [isClearable]="true"
+        />
+        <bmb-input
+          bmbLayoutItem
+          [colSm]="2"
+          id="textarea1"
+          name="textarea1"
+          type="text-area"
+          value="asd"
+          [placeholder]="'Placeholder'"
+          [errorMessage]="{
+            required: 'Please enter the required data',
+            minLength: 'Please enter at least 4 characters',
+            jsonFormat: 'Please enter only letters json',
+          }"
+          [helperMessage]="'Helper Message'"
+          [disabled]="false"
+          [isRequired]="true"
+          [maxlength]="20"
+          [minlength]="4"
+          [showMaxTextLength]="true"
+          [jsonFormat]="true"
+        />
+        <bmb-datepicker
+          bmbLayoutItem
+          [colSm]="2"
+          icon="calendar_month"
+          [isRequired]="true"
+          placeholder="dd/MM/yyyy"
+          [disabled]="false"
+          label="Calendar"
+          appearance="normal"
+          [isClearable]="false"
+          dateFormat="dd/MM/yyyy"
+          name="input_cal1"
+          disableDatesBefore=""
+          disableDatesAfter=""
+          lang="es-MX"
+          [customValidation]="handleCustomValidator()"
+          [errorMessage]="{
+            customValidation: 'Custom validation calendar',
+          }"
+        />
+        <bmb-dropdown
+          bmbLayoutItem
+          [colSm]="2"
+          name="inputDropdown1"
+          icon="bolt"
+          placeholder="Set Fruit"
+          tooltip="Tooltip dropdown"
+          [required]="true"
+          label="Fruit prefered inputDropdown1"
+          [showIcon]="true"
+          [options]="[
+            { name: 'Apple name', value: '_apple', icon: 'home', id: 'apple_' },
+            {
+              name: 'Banana name',
+              value: '_banana',
+              icon: 'bolt',
+              id: 'banana_',
+            },
+            {
+              name: 'Orange name',
+              value: '_orange',
+              icon: 'bolt',
+              id: 'orange_',
+            },
+            { name: 'Pear name', value: '_pear', icon: 'info', id: 'pear_' },
+            { name: 'Grape name', value: '_grape', icon: 'bolt', id: 'grape_' },
+          ]"
+          [preferredOptions]="['_orange']"
+          [disabled]="false"
+          helperText="Select a fruit"
+          errorMessage="Error input dropdown"
+          (onValueChange)="onValueChange($event)"
+          [isMultiSelect]="false"
+          [customValidation]="handleCustomValidatorDD()"
+          [errorMessage]="{
+            customValidation: 'Custom validation',
+          }"
+        />
+        <bmb-checkbox
+          bmbLayoutItem
+          [colSm]="2"
+          [id]="'checkbox2'"
+          [checked]="false"
+          [disabled]="false"
+          [required]="true"
+          name="checkboxCCB"
+          [label]="'checkboxCCB'"
+          [ariaDescribedby]="''"
+          [ariaLabel]="''"
+          [ariaLabelledby]="''"
+          [errorMessage]="{
+            customValidation: 'Custom validation',
+          }"
+          helperMessage="Helper message CCM"
+          [customValidation]="handleCustomValidatorCK()"
+          (change)="onValueChange($event)"
+        />
+        <bmb-date-range
+          bmbLayoutItem
+          [colSm]="2"
+          [placeholderStartDate]="'Start date'"
+          [placeholderEndDate]="'End date'"
+          [icon]="'calendar_month'"
+          [invalidFormatErrorMessage]="'Formato invalido'"
+          [requiredFieldErrorMessage]="'Campo requerido'"
+          [appearance]="'normal'"
+          [disabled]="false"
+          [isRequired]="true"
+          [isClearable]="false"
+          [dateFormat]="'dd/MM/yyyy'"
+          [name]="'date_range_picker'"
+          [multipleRow]="true"
+          [customValidation]="handleCustomValidatorDPR()"
+          [errorMessage]="{
+            customValidation: 'Custom validation',
+          }"
+        />
+        <bmb-input-phone-number
+          bmbLayoutItem
+          [colSm]="2"
+          name="input_phone3"
+          label="Input phone 2"
+          tooltip="Tooltip test"
+          placeholder="Placeholder"
+          [disabled]="false"
+          [isRequired]="true"
+          [helperMessage]="'Helper Message phone'"
+          [errorMessage]="{
+            customValidation: 'Custom validation',
+          }"
+          [customValidation]="handleCustomValidatorPH()"
+          [preferredCountries]="['mx', 'us']"
+          [onlyCountries]="['mx', 'us', 'ca', 'al']"
+        />
+        <bmb-input-tags
+          bmbLayoutItem
+          [colSm]="2"
+          inputId="tag_id"
+          name="tag"
+          helperMessage="Helper Message"
+          [isRequired]="true"
+          label="Tags"
+          [tagOptions]="[
+            'Tacos al pastor',
+            'Enchiladas',
+            'Tamales',
+            'Quesadillas',
+            'Chiles en nogada',
+            'Mole poblano',
+            'Sopes',
+            'Gorditas',
+            'Pozole',
+            'Ceviche',
+            'Tortas',
+            'Guacamole',
+            'Tacos de pescado',
+            'Flautas',
+            'Chalupas',
+            'Huevos rancheros',
+            'Elote',
+            'Mole verde',
+            'Arroz a la mexicana',
+            'Burritos',
+          ]"
+          [errorMessage]="{
+            customValidation: 'Custom validation tag',
+          }"
+          [customValidation]="handleCustomValidatorIT()"
+        />
+        <!-- <bmb-datepicker
         name="datepicker1"
         label="Date"
         invalidFormatErrorMessage="Please enter a date in a valid format."
@@ -1184,8 +1321,8 @@
         [dateFormat]="'dd/MM/yyyy'"
         [name]="'date_range_picker'"
         [multipleRow]="true"
-      />
-      <!-- <bmb-dropdown
+      /> -->
+        <!-- <bmb-dropdown
         bmbLayoutItem
         [colSm]="2"
         name="input_dropdown_async"
@@ -1464,7 +1601,7 @@
         (onValueChange)="onValueChange($event)"
         value="_pear"
       /> -->
-      <!-- <bmb-input-tags
+        <!-- <bmb-input-tags
         bmbLayoutItem
         [colSm]="2"
         name="input_tag1"
@@ -1475,48 +1612,11 @@
         [disabled]="false"
         label="Input Label - tag"
         [control]="getFormControlTest('')"
-        [tagOptions]="[
-          'Tacos al pastor',
-          'Enchiladas',
-          'Tamales',
-          'Quesadillas',
-          'Chiles en nogada',
-          'Mole poblano',
-          'Sopes',
-          'Gorditas',
-          'Pozole',
-          'Ceviche',
-          'Tortas',
-          'Guacamole',
-          'Tacos de pescado',
-          'Flautas',
-          'Chalupas',
-          'Huevos rancheros',
-          'Elote',
-          'Mole verde',
-          'Arroz a la mexicana',
-          'Burritos',
-        ]"
-        [value]="[
-          'Sopes',
-          'Gorditas',
-          'Pozole',
-          'Ceviche',
-          'Tortas',
-          'Guacamole',
-          'Tacos de pescado',
-          'Flautas',
-          'Chalupas',
-          'Huevos rancheros',
-          'Elote',
-          'Mole verde',
-          'Arroz a la mexicana',
-          'Burritos',
-        ]"
+        [tagOptions]="asyncOptions()"
         tooltip="tooltip del input tag"
-        (onValueChange)="onValueChange($event)"
+        (onChange)="onValueChange($event)"
       />
-      <bmb-input-tags
+      <!-- <bmb-input-tags
         bmbLayoutItem
         [colSm]="2"
         name="input_tag_async"
@@ -1553,7 +1653,7 @@
         tooltip="tooltip del input tag"
         (onValueChange)="onValueChange($event)"
       />-->
-      <!-- <bmb-input-phone-number
+        <!-- <bmb-input-phone-number
         bmbLayoutItem
         [colSm]="2"
         name="input_phone1"
@@ -1596,7 +1696,7 @@
         [onlyCountries]="['mx', 'us', 'ca', 'al']"
         value="+521234567890"
       /> -->
-      <!-- <bmb-radial
+        <!-- <bmb-radial
         bmbLayoutItem
         [colSm]="2"
         id="radio1"
@@ -1726,7 +1826,7 @@
         helperMessage="Helper message Disable"
         (change)="onValueChange($event)"
       /> -->
-      <!-- <bmb-dropzone
+        <!-- <bmb-dropzone
         bmbLayoutItem
         [colSm]="2"
         [acceptedExtensions]="['png', 'jpeg', 'jpg']"
@@ -1760,29 +1860,30 @@
         [id]="'1'"
         [disabled]="false"
       /> -->
-      <section bmbLayout style="width: 100%" justify="spaceBetween">
-        <button
-          bmbButton
-          appearance="secondary-outlined"
-          bmbLayoutItem
-          type="reset"
-        >
-          Reset form
-        </button>
-        <button
-          bmbButton
-          appearance="secondary-filled"
-          bmbLayoutItem
-          type="button"
-          (click)="clearForm(formGroupTest)"
-        >
-          Clear form
-        </button>
-        <button bmbButton bmbLayoutItem type="submit">Submit form</button>
+        <section bmbLayout style="width: 100%" justify="spaceBetween">
+          <button
+            bmbButton
+            appearance="secondary-outlined"
+            bmbLayoutItem
+            type="reset"
+          >
+            Reset form
+          </button>
+          <button
+            bmbButton
+            appearance="secondary-filled"
+            bmbLayoutItem
+            type="button"
+            (click)="clearForm(formGroupTest)"
+          >
+            Clear form
+          </button>
+          <button bmbButton bmbLayoutItem type="submit">Submit form</button>
+        </section>
       </section>
-    </section>
-  </bmb-form-validator>
-</section>
+    </bmb-form-validator>
+  </aside>
+</div>
 
 <!-- <form bmbLayout (ngSubmit)="handleSubmitForm($event)" [formGroup]="testForm">
   <section bmbLayoutItem [colLg]="4">
