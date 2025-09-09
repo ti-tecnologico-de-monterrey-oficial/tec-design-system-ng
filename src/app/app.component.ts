@@ -149,7 +149,7 @@ export class AppComponent {
       outputContext: {
         helpClicked: (value: string) => {
           console.log('Help clicked', value);
-          //this.contentProjected.closeContent();
+          this.contentProjected.closeContent();
         },
       },
     };
