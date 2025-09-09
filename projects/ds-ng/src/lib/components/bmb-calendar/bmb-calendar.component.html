@@ -97,12 +97,24 @@
 <ng-template #modalTemplate>
   <form [formGroup]="calendarForm">
     @for (item of filteredEvents().calendars; track $index) {
-      <bmb-checkbox
-        [inputId]="'checkbox_' + item"
-        [name]="'checkbox_' + item"
-        [label]="item"
-        [control]="getFormControl(item)"
-      />
+      <div bmbLayout gapSize="s" alignItems="center">
+        <bmb-checkbox
+          bmbLayoutItem
+          [isDynamicItem]="true"
+          [inputId]="'checkbox_' + item"
+          [name]="'checkbox_' + item"
+          [control]="getFormControl(item)"
+        />
+        <div bmbLayoutItem [isDynamicItem]="true" [ngClass]="getBulletClass(item)"></div>
+        <label
+          bmbLayoutItem
+          [isDynamicItem]="true"
+          [colGrow]="1"
+          [htmlFor]="'checkbox_' + item"
+          >{{ getCalendarName(item) }}</label
+        >
+      </div>
+      <bmb-divider type="dashed"></bmb-divider>
     }
   </form>
 </ng-template>

@@ -35,6 +35,9 @@ import { ModalDataConfig } from '../bmb-modal/bmb-modal.interface';
 import { BmbBadgeComponent } from '../bmb-badge/bmb-badge.component';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { BmbCheckboxComponent } from '../bmb-checkbox/bmb-checkbox.component';
+import { BmbDividerComponent } from '../bmb-divider/bmb-divider.component';
+import { BmbLayoutDirective } from '../../directives/bmb-layout/bmb-layout.directive';
+import { BmbLayoutItemDirective } from '../../directives/bmb-layout/bmb-layout-item.directive';
 
 const parseFromFormat = (dateString: string, format: string): DateTime => {
   if (format.toLowerCase() === 'iso') return DateTime.fromISO(dateString);
@@ -62,6 +65,9 @@ export {
     BmbLoaderComponent,
     ReactiveFormsModule,
     BmbCheckboxComponent,
+    BmbDividerComponent,
+    BmbLayoutDirective,
+    BmbLayoutItemDirective,
   ],
   styleUrl: './bmb-calendar.component.scss',
   templateUrl: './bmb-calendar.component.html',
@@ -345,5 +351,24 @@ export class BmbCalendarComponent implements OnInit, AfterViewInit {
 
   getFormControl(name: string): FormControl {
     return this.calendarForm.get(name) as FormControl;
+  }
+
+  getCalendarName(name: string): string {
+    switch (name) {
+      case 'academic':
+        return 'Horario de clases';
+      case 'life':
+        return 'Vida';
+      case 'events':
+        return 'Eventos';
+      case 'save_the_date':
+        return 'Save the date';
+      default:
+        return name;
+    }
+  }
+
+  getBulletClass(name: string): string[] {
+    return ['bmb_calendar-event-bullet', `bmb_calendar-event-bullet-${name}`];
   }
 }
