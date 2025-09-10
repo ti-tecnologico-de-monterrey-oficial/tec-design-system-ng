@@ -64,7 +64,8 @@
     [size]="item.size || 'medium'"
     [iconStyle]="item.iconStyle"
     [actions]="item.actions || []"
-    [context]="item.context || {}"
+    [inputContext]="item.inputContext || {}"
+    [outputContext]="item.outputContext || {}"
     (closeModalClicked)="handleModalClick(item, $event)"
   />
 }
