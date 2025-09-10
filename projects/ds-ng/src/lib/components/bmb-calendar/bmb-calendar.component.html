@@ -105,7 +105,11 @@
           [name]="'checkbox_' + item"
           [control]="getFormControl(item)"
         />
-        <div bmbLayoutItem [isDynamicItem]="true" [ngClass]="getBulletClass(item)"></div>
+        <div
+          bmbLayoutItem
+          [isDynamicItem]="true"
+          [ngClass]="getBulletClass(item)"
+        ></div>
         <label
           bmbLayoutItem
           [isDynamicItem]="true"
