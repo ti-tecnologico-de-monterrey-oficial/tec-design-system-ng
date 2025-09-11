@@ -29,13 +29,12 @@ import {
 } from './types';
 import { BmbButtonDirective } from '../../directives/bmb-button/button.directive';
 import { BmbImageComponent } from '../bmb-image/bmb-image.component';
-import { BmbModalComponent } from '../bmb-modal/bmb-modal.component';
-import { ModalDataConfig } from '../bmb-modal/bmb-modal.interface';
-import { MatDialog } from '@angular/material/dialog';
 import { BmbAlertCenterAdsComponent } from './bmb-alert-center-ads/bmb-alert-center-ads.component';
 import { BmbAlertCenterEmptyComponent } from './bmb-alert-center-empty/bmb-alert-center-empty.component';
 import { BmbAlertCenterService } from './bmb-alert-center.service';
 import { BmbLoaderComponent } from '../bmb-loader/bmb-loader.component';
+import { BmbNativeModalService } from '../../services/native-modal.service';
+import { IBmbNativeModal } from '../bmb-modal/bmb-modal.interface';
 
 @Component({
   selector: 'bmb-alert-center',
@@ -94,7 +93,7 @@ export class BmbAlertCenterComponent {
   @ViewChild('container') container!: ElementRef;
 
   constructor(
-    private matDialog: MatDialog,
+    private nativeModalService: BmbNativeModalService,
     private bmbAlertCenterService: BmbAlertCenterService,
   ) {}
 
@@ -180,15 +179,20 @@ export class BmbAlertCenterComponent {
       window.innerWidth < 1000 ||
       this.showMobileVersion()
     ) {
-      const data: ModalDataConfig = {
+      const data: IBmbNativeModal = {
         title: item.title,
         content: this.detailContent,
         size: 'small',
-        type: 'informative',
         scrollable: true,
-        closeAction: this.handleCloseDetail.bind(this, item),
+        actions: [{
+          buttonName: 'close',
+          label: 'Cerrar',
+          appearance: 'secondary-outlined',
+          action: this.handleCloseDetail.bind(this, item),
+        }],
+        closeModalClicked: this.handleCloseDetail.bind(this, item),
       };
-      this.matDialog.open(BmbModalComponent, { data });
+      this.nativeModalService.openModal(data);
     }
 
     this.showAlertDetail.emit(alertData);
@@ -197,6 +201,7 @@ export class BmbAlertCenterComponent {
   handleCloseDetail(alert: IBmbDataAlertsParsed): void {
     const { pDate, ...alertData } = alert;
     this.closeAlertDetail.emit(alertData);
+    this.nativeModalService.closeAllModals();
   }
 
   handleAlertEvent(alert: IBmbDataAlert): void {

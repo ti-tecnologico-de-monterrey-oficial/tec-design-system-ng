@@ -49,12 +49,11 @@ export class BmbNativeModalComponent {
   subtitle = input<string>('');
   content = input<TemplateRef<any> | null | Type<any> | string>('');
   actions = input<IBmbActionButton[]>([]);
-  alertIcon = input<IBmbModalAlertStyle>();
   modalId = input.required<string>();
   size = input<IBmbNativeModalSize>('medium');
   iconStyle = input<IBmbModalAlertStyle>();
-  autoFocus = input<boolean>(false);
-  disableClose = input<boolean>(true);
+  // autoFocus = input<boolean>(false);
+  disableBackdropClose = input<boolean>(true);
   hasBackdrop = input<boolean>(true);
   inputContext = input<{ [key: string]: any }>({});
   outputContext = input<{ [key: string]: (value: any) => void }>({});
@@ -121,7 +120,7 @@ export class BmbNativeModalComponent {
   }
 
   handleBackdropClick(): void {
-    if (!this.disableClose()) {
+    if (!this.disableBackdropClose()) {
       this.handleCloseModal(new MouseEvent('click'));
     }
   }

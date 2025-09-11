@@ -392,6 +392,43 @@ openModalComponent() {
         type: { summary: 'void' },
       },
     },
+    disableBackdropClose: {
+      control: { type: 'boolean' },
+      description:
+        'Disables the ability to close the modal by clicking outside or pressing the escape key.',
+      table: {
+        category: 'Properties',
+        defaultValue: { summary: 'true' },
+        type: { summary: 'boolean' },
+      },
+    },
+    inputContext: {
+      description:
+        'Context object to pass data to the component used as content.',
+      table: {
+        category: 'Properties',
+        type: { summary: '{ [key: string]: any }' },
+        defaultValue: { summary: '{}' },
+      },
+    },
+    outputContext: {
+      description:
+        'Context object to pass output events to the component used as content.',
+      table: {
+        category: 'Events',
+        type: { summary: '{ [key: string]: (value: any) => void }' },
+        defaultValue: { summary: '{}' },
+      },
+    },
+    actionsClicked: {
+      description:
+        'Event emitted when any action button is clicked, providing the button name and the click event.',
+      table: {
+        category: 'Events',
+        type: { summary: '{ buttonName: string; event: MouseEvent }' },
+        defaultValue: { summary: '{}' },
+      },
+    },
   },
   args: {
     title: '',
@@ -421,6 +458,9 @@ openModalComponent() {
     ],
     closeModalClicked: () => {
       console.log('Close modal clicked');
+    },
+    actionsClicked: () => {
+      console.log('Action button clicked');
     },
   },
 } as Meta<BmbNativeModalStory>;

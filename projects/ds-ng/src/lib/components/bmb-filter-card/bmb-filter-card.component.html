@@ -35,11 +35,13 @@
                 @case ("radial") {
                   <bmb-radial
                     [name]="control.name"
+                    [inputId]="control.id ?? control.name + '-' + $index"
                     [checked]="
                       filterForm.get(control.name)?.value === control.label
                     "
                     [label]="control.label"
                     (change)="onControlChange(control, $event)"
+                    [value]="control.value ?? control.name"
                   />
                 }
                 @case ("checkbox") {
@@ -48,6 +50,8 @@
                     [checked]="filterForm.get(control.name)?.value"
                     [label]="control.label"
                     (change)="onControlChange(control, $event)"
+                    [inputId]="control.id ?? control.name + '-' + $index"
+                    [value]="control.value ?? control.name"
                   />
                 }
                 @case ("switch") {
