@@ -32,8 +32,6 @@ $types: "academic", "life", "event", "save_the_date";
   }
 
   &-type {
-    &-academic,
-    &-life,
     &-academic {
       &.bmb_calendar-event-active:not(.bmb_calendar-event-disabled) {
         border-color: RGBA(var(--color-mariner-700));
@@ -41,6 +39,26 @@ $types: "academic", "life", "event", "save_the_date";
 
       .bmb_calendar-event-indicator {
         background-color: RGBA(var(--color-mariner-700));
+      }
+    }
+
+    &-events {
+      &.bmb_calendar-event-active:not(.bmb_calendar-event-disabled) {
+        border-color: RGBA(var(--color-purple-light));
+      }
+
+      .bmb_calendar-event-indicator {
+        background-color: RGBA(var(--color-purple-light));
+      }
+    }
+
+    &-life {
+      &.bmb_calendar-event-active:not(.bmb_calendar-event-disabled) {
+        border-color: RGB(var(--color-green-light));
+      }
+
+      .bmb_calendar-event-indicator {
+        background-color: RGB(var(--color-green-light));
       }
     }
 

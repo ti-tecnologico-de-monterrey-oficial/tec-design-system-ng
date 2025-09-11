@@ -97,7 +97,7 @@ export class AppComponent {
       content: HelpMenuComponent,
       size: 'medium',
       iconStyle: 'primary',
-      context: {
+      inputContext: {
         title: 'User title',
         subtitle: 'User name',
       },
@@ -149,7 +149,7 @@ export class AppComponent {
       outputContext: {
         helpClicked: (value: string) => {
           console.log('Help clicked', value);
-          //this.contentProjected.closeContent();
+          this.contentProjected.closeContent();
         },
       },
     };

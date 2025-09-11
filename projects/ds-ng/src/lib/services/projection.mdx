@@ -71,7 +71,7 @@ import {
           This is the simplest way to use the Content Projection Service. You can project a string content using the <code>setProjectedContent</code> method.
         </p>
         <Source code={`
-        constructor(private modalService: BmbNativeModalService) {}
+        constructor(private contentProjected: BmbProjectionContentService) {}
 
         openContent() {
           const data: IBmbProjectionContent = {
@@ -97,7 +97,7 @@ import {
         <Source code={`
         @ViewChild('contentTemplate') contentTemplate!: TemplateRef<any>;
 
-        constructor(private modalService: BmbNativeModalService) {}
+        constructor(private contentProjected: BmbProjectionContentService) {}
 
         openContent() {
           const data: IBmbProjectionContent = {
@@ -110,16 +110,16 @@ import {
 
         <Source code={`
           <!-- Inside your component -->
-          <ng-template #modalTemplate>
+          <ng-template #contentTemplate>
             <div>
-              <p>Filter Modal Example</p>
+              <p>Custom content</p>
               <bmb-input [placeholder]="'Search'"></bmb-input>
               <bmb-switch [rightText]="'Enable Option'"></bmb-switch>
               <bmb-checkbox [label]="'Accept Terms'"></bmb-checkbox>
             </div>
           </ng-template>
 
-          <button (click)="openContent()">Open Modal</button>
+          <button (click)="openContent()">Open content</button>
         `} />
 
         <hr />
@@ -135,9 +135,11 @@ import {
         </p>
 
         <Source code={`
+          // Make sure to import your custom component
           import { YourCustomComponent } from 'path-to-your-component';
 
-          constructor(private modalService: BmbNativeModalService) {}
+          // Add the content projection service in the constructor
+          constructor(private contentProjected: BmbProjectionContentService) {}
 
           openContent() {
             const data: IBmbProjectionContent = {
@@ -151,15 +153,17 @@ import {
         `} />
 
         <Source code={`
-          <button (click)="openContent()">Open Modal</button>
+          <button (click)="openContent()">Open content</button>
         `} />
 
         #### 🍸 All features combined example
 
         <Source code={`
+          // Make sure to import your custom component
           import { YourCustomComponent } from 'path-to-your-component';
 
-          constructor(private modalService: BmbNativeModalService) {}
+          // Add the content projection service in the constructor
+          constructor(private contentProjected: BmbProjectionContentService) {}
 
           openContent(event: MouseEvent) {
             const data: IBmbProjectionContent = {
@@ -177,7 +181,7 @@ import {
         `} />
 
 <Source code={`
-          <button (click)="openContent()">Open Modal</button>
+          <button (click)="openContent()">Open content</button>
         `} />
       </div>
     </blockquote>

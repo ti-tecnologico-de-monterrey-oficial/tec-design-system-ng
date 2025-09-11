@@ -17,9 +17,7 @@ import { DateTime } from 'luxon';
 export class CalendarComponent implements OnInit {
   constructor(private bmbCalendarService: BmbCalendarService) {}
 
-  calendarFilters = model<{ [key: string]: boolean }>({
-    // calendar: 'Calendar A',
-  });
+  calendarFilters = model<{ [key: string]: boolean }>({});
 
   generateEvents(): IBmbCalendarEvent[] {
     const today: DateTime = DateTime.fromISO('2025-08-26T13:00:00-06:00');
@@ -35,7 +33,7 @@ export class CalendarComponent implements OnInit {
         // status: 'disabled',
         type: 'academic',
         place: `Event custom place`,
-        calendar: 'Calendar A',
+        calendar: 'academic',
       },
     ];
     for (let i = 0; i < 183; i++) {
@@ -93,11 +91,13 @@ export class CalendarComponent implements OnInit {
           ],
           place: `Event ${i} place`,
           calendar:
-            i % 3 === 0
-              ? 'Calendar A'
-              : i % 3 === 1
-                ? 'Calendar B'
-                : 'Calendar C',
+            i % 4 === 0
+              ? 'academic'
+              : i % 4 === 1
+                ? 'life'
+                : i % 4 === 2
+                  ? 'events'
+                  : 'save_the_date',
         });
       }
     }

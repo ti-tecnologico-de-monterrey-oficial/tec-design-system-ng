@@ -122,8 +122,8 @@ Multiple radials can share the same name to create a group where one item can be
   },
   args: {
     inputId: 'radio1',
-    name: '',
-    value: '',
+    name: 'radio1',
+    value: 'radio1',
     checked: false,
     disabled: false,
     required: false,
