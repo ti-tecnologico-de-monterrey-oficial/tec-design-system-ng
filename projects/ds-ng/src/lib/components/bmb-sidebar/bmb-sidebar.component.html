@@ -1,20 +1,43 @@
 <!-- Template for element -->
-<ng-template #elementTemplate let-element="element">
-  <bmb-icon
-    class="bmb_sidebar-icon"
-    [icon]="element?.icon!"
-    [alt]="element.title"
-    [size]="24"
-  />
-  <span class="bmb_sidebar-text">{{ element!.title }}</span>
+<ng-template
+  #elementTemplate
+  let-element="element"
+  let-isTitle="isTitle"
+  let-isFixed="isFixed"
+>
+  @if (!!element.icon) {
+    <bmb-icon
+      class="bmb_sidebar-icon"
+      [icon]="element.icon"
+      [alt]="element.title"
+      [size]="24"
+    />
+  }
+  <span
+    [ngClass]="{
+      'bmb_sidebar-text': !isTitle,
+      'bmb_sidebar-header-text': isTitle,
+    }"
+    >{{ element!.title }}</span
+  >
+  @if (isFixed) {
+    <bmb-action-icon
+      class="bmb_sidebar-header-icon"
+      idElement="sidebar_close"
+      icon="close"
+      [iconSize]="24"
+      [isAccentColor]="false"
+      (buttonClick)="closeSidebar()"
+    />
+  }
 </ng-template>
 
 <!-- Template for menu items -->
 <ng-template #itemsTemplate let-item="item" let-isMobile="isMobile">
   <bmb-check-external-link-button
     class="bmb_sidebar-link"
-    [idElement]="item.id.toString()"
-    [link]="getLink(item.link, !!item.children)"
+    [idElement]="'element' + item.id!"
+    [link]="getLink(item.link!, !!item.children)"
     [target]="item.target!"
     (buttonClick)="toggleChildren(item)"
   >
@@ -22,17 +45,19 @@
       *ngTemplateOutlet="elementTemplate; context: { element: item }"
     />
     @if (!!item.children) {
-      @if (position() === "right") {
-        <bmb-icon class="bmb_sidebar-arrow" icon="chevron_left" />
-      } @else {
-        <bmb-icon class="bmb_sidebar-arrow" icon="chevron_right" />
-      }
+      <bmb-icon
+        class="bmb_sidebar-arrow"
+        [icon]="
+          !isMobile && position() === 'right' ? 'chevron_left' : 'chevron_right'
+        "
+        [size]="24"
+      />
     }
   </bmb-check-external-link-button>
 </ng-template>
 
 <!-- Template for navigation -->
-<ng-template #sidebarTemplate let-isMobile="isMobile">
+<ng-template #sidebarTemplate let-level="level" let-isMobile="isMobile">
   @for (group of elements().slice(0, 2); track $index) {
     <ul class="bmb_sidebar-list">
       @for (element of group.slice(0, 5); track $index) {
@@ -47,68 +72,159 @@
           <ng-container
             *ngTemplateOutlet="
               itemsTemplate;
-              context: { item: element, isMobile: isMobile }
+              context: { item: element, isMobile }
             "
           />
           @if (!!element.children) {
-            <section
-              class="bmb_sidebar-children"
-              [ngClass]="{
-                'bmb_sidebar-children-open': selectedElement === element,
-              }"
-            >
-              @if (!!selectedElement && isOpen) {
-                <section class="bmb_sidebar-title">
-                  <button
-                    class="bmb_sidebar-title-button"
-                    [id]="element.id"
-                    bmbButton
-                    appearance="transparent"
-                    icon="chevron_left"
-                    [iconSize]="24"
-                    size="micro"
-                    (click)="toggleChildren(element)"
-                  ></button>
-
-                  <ng-container
-                    *ngTemplateOutlet="
-                      elementTemplate;
-                      context: { element: selectedElement }
-                    "
-                  />
-                  <button
-                    class="bmb_sidebar-title-button"
-                    [id]="element.id"
-                    bmbButton
-                    appearance="transparent"
-                    icon="close"
-                    [iconSize]="24"
-                    size="micro"
-                    (click)="toggleSidebar()"
-                  ></button>
-                </section>
-              }
-              <ul class="bmb_sidebar-list">
-                @for (child of element?.children?.slice(0, 6); track $index) {
-                  <li
-                    class="bmb_sidebar-item"
-                    (click)="checkToCloseSidebar(child)"
-                  >
-                    <ng-container
-                      *ngTemplateOutlet="
-                        itemsTemplate;
-                        context: { item: child }
-                      "
-                    />
-                  </li>
+            <ng-container
+              *ngTemplateOutlet="
+                sidebarElementTemplate;
+                context: {
+                  element: element,
+                  iconSize: 24,
+                  isFixed: true,
+                  level: 2,
+                  selectedElement,
+                  isMobile,
                 }
-              </ul>
-            </section>
+              "
+            />
           }
         </li>
       }
     </ul>
   }
+</ng-template>
+
+<!-- Template for navigation (menu) -->
+<ng-template #sidebarMenuTemplate let-level="level" let-isMobile="isMobile">
+  @for (group of elements().slice(0, 2); track $index) {
+    <ul class="bmb_sidebar-list">
+      @for (element of group.slice(0, 5); track $index) {
+        <li
+          class="bmb_sidebar-item"
+          [ngClass]="{
+            'bmb_sidebar-item-left-space':
+              position() === 'right' && hasSubmenu && !element.children?.length,
+          }"
+          (click)="checkToCloseSidebar(element)"
+        >
+          <ng-container
+            *ngTemplateOutlet="
+              itemsTemplate;
+              context: { item: element, isMobile }
+            "
+          />
+          @if (!!element.children) {
+            <ng-container
+              *ngTemplateOutlet="
+                sidebarElementTemplate;
+                context: {
+                  element: element,
+                  iconSize: 24,
+                  isFixed: true,
+                  level: 2,
+                  selectedElement,
+                  isMobile,
+                }
+              "
+            />
+          }
+        </li>
+      }
+    </ul>
+  }
+</ng-template>
+
+<ng-template
+  #sidebarElementTemplate
+  let-element="element"
+  let-iconSize="iconSize"
+  let-level="level"
+  let-isTitle="isTitle"
+  let-isFixed="isFixed"
+  let-selectedElement="selectedElement"
+  let-isMobile="isMobile"
+>
+  @if (level == 1) {
+    <bmb-action-icon
+      class="bmb_sidebar-mobile-button"
+      [idElement]="'sidebar_main' + element.id!"
+      icon="chevron_right"
+      [iconSize]="iconSize"
+      toggleIconActive="chevron_left"
+      [isAccentColor]="false"
+      [(isToggleActive)]="isOpen"
+      (buttonClick)="clearSelectElement()"
+    />
+  }
+  <section
+    [ngClass]="{
+      'bmb_sidebar-children': level >= 2 && !!element.children,
+      'bmb_sidebar-children-open':
+        level >= 2 && !!element.children && selectedElement === element,
+      'bmb_sidebar-open': isMobile && level == 1 && isOpen,
+      bmb_sidebar: isMobile && level == 1,
+      'bmb_sidebar-mobile': isMobile && level == 1,
+    }"
+  >
+    @if (isOpen) {
+      <section
+        [ngClass]="{
+          'bmb_sidebar-header': level == 1,
+          'bmb_sidebar-title': level >= 2,
+        }"
+      >
+        @if (level >= 2 && !!selectedElement) {
+          <bmb-action-icon
+            class="bmb_sidebar-title-button"
+            [idElement]="element.id.toString()"
+            icon="chevron_left"
+            [iconSize]="24"
+            (buttonClick)="toggleChildren(element)"
+          />
+        }
+        <!-- Header -->
+        <ng-container
+          *ngTemplateOutlet="
+            elementTemplate;
+            context: {
+              element: {
+                title: element.title,
+                icon: element.icon!,
+              },
+              isTitle,
+              isFixed,
+            }
+          "
+        />
+      </section>
+
+      @if (level == 1) {
+        <!-- Menu -->
+        <ng-container
+          *ngTemplateOutlet="
+            sidebarTemplate;
+            context: { level: level, isMobile }
+          "
+        />
+      }
+    }
+    @if (level >= 2 && !!element.children) {
+      <ul class="bmb_sidebar-list">
+        @for (child of element?.children?.slice(0, 6); track $index) {
+          <li class="bmb_sidebar-item" (click)="checkToCloseSidebar(child)">
+            <ng-container
+              *ngTemplateOutlet="
+                itemsTemplate;
+                context: { item: child, isMobile }
+              "
+            />
+          </li>
+        }
+      </ul>
+    }
+  </section>
 </ng-template>
 
 <!-- Web -->
@@ -120,33 +236,33 @@
     'bmb-active': isActive,
     'bmb_sidebar-desktop-right': position() === 'right',
   }"
-  (mouseleave)="closeSideBar()"
+  (mouseleave)="clearSelectElement()"
 >
   <div class="bmb_sidebar-content">
     <ng-container
-      *ngTemplateOutlet="sidebarTemplate; context: { isMobile: false }"
+      *ngTemplateOutlet="
+        sidebarTemplate;
+        context: { level: 1, isMobile: false }
+      "
     />
   </div>
 </nav>
 
 <!-- Mobile -->
-<nav
-  class="bmb_sidebar bmb_sidebar-mobile"
-  [ngClass]="{
-    'bmb_sidebar-open': isOpen,
-    'bmb_sidebar-mobile-right': position() === 'right',
-  }"
-  aria-label="Sidebar Navigation"
->
-  <button class="bmb_sidebar-button" type="button" (click)="toggleSidebar()">
-    @if (isOpen) {
-      <span class="bmb_sidebar-button-text">{{ title() }}</span>
-    }
-    <bmb-icon class="bmb_sidebar-button-icon" [icon]="getMobileIcon()" />
-  </button>
-  @if (isOpen) {
-    <ng-container
-      *ngTemplateOutlet="sidebarTemplate; context: { isMobile: true }"
-    />
-  }
+<nav aria-label="Sidebar Navigation">
+  <ng-container
+    *ngTemplateOutlet="
+      sidebarElementTemplate;
+      context: {
+        element: {
+          title: title(),
+        },
+        iconSize: 32,
+        isTitle: true,
+        isFixed: true,
+        level: 1,
+        isMobile: true,
+      }
+    "
+  />
 </nav>

@@ -361,6 +361,12 @@
   text-overflow: ellipsis;
 }
 
+@mixin truncated_string_line() {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 @mixin dropdown_menu_left($max-width) {
   .bmb_dropdown-content-modal {
     right: 0;
