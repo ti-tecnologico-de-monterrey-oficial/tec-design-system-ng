@@ -151,9 +151,8 @@
 
     &-button {
       display: inline-flex;
-      // top: 0;
-      // left: 0;
       background-color: rgb(var(--color-black-primary));
+      color: rgb(var(--color-white-primary));
 
       @media (min-width: 1000px) {
         display: none;
