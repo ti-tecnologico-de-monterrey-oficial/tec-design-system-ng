@@ -184,12 +184,14 @@ export class BmbAlertCenterComponent {
         content: this.detailContent,
         size: 'small',
         scrollable: true,
-        actions: [{
-          buttonName: 'close',
-          label: 'Cerrar',
-          appearance: 'secondary-outlined',
-          action: this.handleCloseDetail.bind(this, item),
-        }],
+        actions: [
+          {
+            buttonName: 'close',
+            label: 'Cerrar',
+            appearance: 'secondary-outlined',
+            action: this.handleCloseDetail.bind(this, item),
+          },
+        ],
         closeModalClicked: this.handleCloseDetail.bind(this, item),
       };
       this.nativeModalService.openModal(data);
