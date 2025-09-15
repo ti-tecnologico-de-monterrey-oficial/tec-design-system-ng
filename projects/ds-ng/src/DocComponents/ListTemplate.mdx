@@ -51,12 +51,7 @@ export const ListTemplate = ({
       {children && (
         <Tabs
           tabs={[<Title />, <Title of={children}>{children?.title}</Title>]}
-          content={[
-            <Main />,
-            <Item>
-              {children}
-            </Item>,
-          ]}
+          content={[<Main />, <Item>{children}</Item>]}
         />
       )}
       {content && main && (
