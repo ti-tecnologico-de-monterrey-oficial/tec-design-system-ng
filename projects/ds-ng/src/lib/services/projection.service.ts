@@ -5,17 +5,30 @@ import {
   EmbeddedViewRef,
   EnvironmentInjector,
   Injectable,
+  output,
   signal,
+  TemplateRef,
+  Type,
 } from '@angular/core';
-import { getUUID } from '../utils/utils';
-import { IBmbNativeModal } from '../components/bmb-modal/bmb-modal.interface';
 import { BmbPortalComponent } from '../components/bmb-portal/bmb-portal.component';
+
+export type IBmbProjectedContentMode = 'over' | 'partial' | 'outside';
+
+export interface IBmbProjectionContent {
+  content: TemplateRef<any> | null | Type<any>;
+  targetRef?: HTMLElement | null;
+  mode?: IBmbProjectedContentMode;
+  fixSizeToRef?: boolean;
+  inputContext?: { [key: string]: any };
+  showBackdrop?: boolean;
+  outputContext?: { [key: string]: (value: any) => void };
+}
 
 @Injectable({
   providedIn: 'root',
 })
-export class BmbNativeModalService {
-  readonly modalList = signal<IBmbNativeModal[]>([]);
+export class BmbProjectionContentService {
+  readonly contentList = signal<IBmbProjectionContent | null>(null);
   private portalComponentRef: ComponentRef<BmbPortalComponent> | null = null;
 
   constructor(
@@ -48,35 +61,20 @@ export class BmbNativeModalService {
     return this.portalComponentRef.instance;
   }
 
-  openModal(newModal: IBmbNativeModal): string {
-    const id =
-      newModal.modalId && newModal.modalId !== ''
-        ? newModal.modalId
-        : getUUID();
+  openContent(content: IBmbProjectionContent) {
     this.getOrCreatePortal();
-    this.modalList.update((currentModals) => [
-      ...currentModals,
-      { ...newModal, modalId: id },
-    ]);
-
-    return id;
+    this.contentList.set(content);
   }
 
-  closeModal(id: string) {
-    this.modalList.update((currentModals) =>
-      currentModals.filter((modal) => modal.modalId !== id),
-    );
+  closeContent() {
+    this.contentList.set(null);
   }
 
-  closeAllModals() {
-    this.modalList.set([]);
+  getProjectedContent() {
+    return this.contentList();
   }
 
-  getModalList() {
-    return this.modalList();
-  }
-
-  checkIfModalExists(id: string): boolean {
-    return this.modalList().some((modal) => modal.modalId === id);
+  isThereContentProjected() {
+    return this.contentList() !== null;
   }
 }

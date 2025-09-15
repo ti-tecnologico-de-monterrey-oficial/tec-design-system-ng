@@ -1,0 +1,189 @@
+import { CustomTOC } from "../../DocComponents/CustomTOC.mdx";
+import { Meta, Source } from "@storybook/addon-docs/blocks";
+import {
+  SPECIAL_SPECIFICATIONS_TITLE,
+  DESCRIPTION_TITLE,
+  DESIGN_SYSTEM_TITLE,
+  RELEVANT_TITLE_LEVEL,
+} from "../utils/doc/utils";
+
+<Meta title="Dev tools/Content projection service" />
+
+<CustomTOC headingSelector="h2, h3, h4">
+  <div className="sb-container">
+    <div className='sb-section-title'>
+      # Content projection service
+    </div>
+    <br />
+
+    ## {DESCRIPTION_TITLE}
+
+    <blockquote>
+      <p>
+        This service is used to manage the content projection in ***Bamboo***.
+      </p>
+      <p>
+        This service is designed to display non-blocking contingent elements to the user, such as menus or selection options, etc.
+      </p>
+    </blockquote>
+    <br />
+    ## {SPECIAL_SPECIFICATIONS_TITLE}
+
+    <blockquote>
+      ### {RELEVANT_TITLE_LEVEL[0].replaceAll('*', '').replaceAll('<br/>', '')}
+
+      <p>
+        Content projection service should not be used to display Modals; for this purpose, we recommend using NativeModal service.
+      </p>
+
+      ### ⚙️ Service methods
+
+      <ul>
+        <li>***openContent(content: IBmbProjectionContent): void***: This method is used to open the projected content.</li>
+        <li>***closeContent(): void***: This method is used to close the projected content.</li>
+        <li>***getProjectedContent(): Observable\<IBmbProjectionContent | null\>***: This method is used to get the current projected content as an observable.</li>
+        <li>***isThereContentProjected(): boolean***: This method is used to check if there is any content projected.</li>
+      </ul>
+
+      ### ⚙️ Usage
+
+      <p>
+        There are three ways to use the Content Projection Service:
+      </p>
+      <br />
+
+      #### ☑️ Content Projection options
+
+      <ul>
+        <li>***content***: This is the content to be projected. It can be a string, a TemplateRef, or a component.</li>
+        <li>***targetRef***: This is the reference element to which the content will be anchored. It is optional.</li>
+        <li>***mode***: This prop define the position of the content projection. It can be 'inside', 'outside' or 'partial'. The default is 'outside'.</li>
+        <li>***fixSizeToRef***: This is a boolean that indicates whether the projected content should match the size of the reference element. The default is false.</li>
+        <li>***showBackdrop***: This is a boolean that indicates whether to show a backdrop behind the projected content. The default is true.</li>
+        <li>***inputContext***: This is an object that contains the inputs to be passed to the projected component. It is optional.</li>
+        <li>***outputContext***: This is an object that contains the outputs to be passed to the projected component. It is optional.</li>
+      </ul>
+
+      <div className="sb-container">
+        #### 🟣 Usage with String Content
+
+        <p>
+          This is the simplest way to use the Content Projection Service. You can project a string content using the <code>setProjectedContent</code> method.
+        </p>
+        <Source code={`
+        constructor(private contentProjected: BmbProjectionContentService) {}
+
+        openContent() {
+          const data: IBmbProjectionContent = {
+            content: 'This is a string content',
+          };
+
+          this.contentProjected.openContent(data);
+        }
+        `} />
+
+        <Source code={`
+          <!-- Inside your component -->
+          <button bmbButton (click)="openContent()">Show content</button>
+        `} />
+
+        <hr />
+
+        #### 🟢 Usage with TemplateRef content
+        <p>
+          This is a more advanced way to use the Content Projection Service, you can project a TemplateRef content using the <code>setProjectedContent</code> method.
+        </p>
+
+        <Source code={`
+        @ViewChild('contentTemplate') contentTemplate!: TemplateRef<any>;
+
+        constructor(private contentProjected: BmbProjectionContentService) {}
+
+        openContent() {
+          const data: IBmbProjectionContent = {
+            content: this.contentTemplate,
+          };
+
+          this.contentProjected.openContent(data);
+        }
+        `} />
+
+        <Source code={`
+          <!-- Inside your component -->
+          <ng-template #contentTemplate>
+            <div>
+              <p>Custom content</p>
+              <bmb-input [placeholder]="'Search'"></bmb-input>
+              <bmb-switch [rightText]="'Enable Option'"></bmb-switch>
+              <bmb-checkbox [label]="'Accept Terms'"></bmb-checkbox>
+            </div>
+          </ng-template>
+
+          <button (click)="openContent()">Open content</button>
+        `} />
+
+        <hr />
+
+        #### 🔵 Usage with a custom component
+
+        <p>
+          This is the most advanced way to use the Content Projection Service, you can project a custom component using the <code>setProjectedContent</code> method.
+        </p>
+
+        <p>
+          You can send inputs or outputs to the custom component by sending the inputContext or outputContext properties when creating the content.
+        </p>
+
+        <Source code={`
+          // Make sure to import your custom component
+          import { YourCustomComponent } from 'path-to-your-component';
+
+          // Add the content projection service in the constructor
+          constructor(private contentProjected: BmbProjectionContentService) {}
+
+          openContent() {
+            const data: IBmbProjectionContent = {
+              content: YourCustomComponent,
+              inputContext: { yourProperty: 'yourValue' },
+              outputContext: { yourEvent: (value: any) => console.log(value) },
+            };
+
+            this.contentProjected.openContent(data);
+          }
+        `} />
+
+        <Source code={`
+          <button (click)="openContent()">Open content</button>
+        `} />
+
+        #### 🍸 All features combined example
+
+        <Source code={`
+          // Make sure to import your custom component
+          import { YourCustomComponent } from 'path-to-your-component';
+
+          // Add the content projection service in the constructor
+          constructor(private contentProjected: BmbProjectionContentService) {}
+
+          openContent(event: MouseEvent) {
+            const data: IBmbProjectionContent = {
+              content: YourCustomComponent,
+              inputContext: { yourProperty: 'yourValue' },
+              outputContext: { yourEvent: (value: any) => console.log(value) },
+              targetRef: event.target as HTMLElement,
+              mode: 'partial',
+              fixSizeToRef: false,
+              showBackdrop: true,
+            };
+
+            this.contentProjected.openContent(data);
+          }
+        `} />
+
+<Source code={`
+          <button (click)="openContent()">Open content</button>
+        `} />
+      </div>
+    </blockquote>
+  </div>
+</CustomTOC>

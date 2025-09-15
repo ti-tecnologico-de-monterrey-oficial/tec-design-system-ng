@@ -14,6 +14,30 @@
     background-color: var(--containers-main);
   }
 
+  &-event-bullet {
+    width: rem.rem_calc(8);
+    height: rem.rem_calc(8);
+    border-radius: 50%;
+    margin-left: rem.rem_calc(8);
+    background-color: var(--general_contrasts-50);
+
+    &-academic {
+      background-color: var(--general_contrasts-main-selection);
+    }
+
+    &-life {
+      background-color: rgb(var(--color-green-light));
+    }
+
+    &-events {
+      background-color: rgb(var(--color-purple-light));
+    }
+
+    &-save_the_date {
+      background-color: rgb(var(--color-yellow-primary));
+    }
+  }
+
   &-detail-header {
     display: flex;
     align-items: center;

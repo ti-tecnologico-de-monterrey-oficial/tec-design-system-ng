@@ -39,43 +39,43 @@ class MockCalendarService {
 
     const events: IBmbCalendarEvent[] = [
       {
-        title: `Event custom`,
+        title: `Event custom 4`,
         start: today.toISO() as string,
         end: today.plus({ minutes: 120 }).toISO() as string,
         detail: `Event custom detail`,
         modalTitle: `Event custom`,
         subtitle: `Event custom subtitle`,
         // status: 'disabled',
-        type: 'academic',
+        type: 'events',
         place: `Event custom place`,
-        calendar: 'Calendar A',
+        calendar: 'events',
       },
       {
-        title: `Event custom`,
+        title: `Event custom 3`,
         start: today.toISO() as string,
         end: today.plus({ minutes: 120 }).toISO() as string,
         detail: `Event custom detail`,
         modalTitle: `Event custom`,
         subtitle: `Event custom subtitle`,
         // status: 'disabled',
-        type: 'academic',
+        type: 'life',
         place: `Event custom place`,
-        calendar: 'Calendar A',
+        calendar: 'life',
       },
       {
-        title: `Event custom`,
+        title: `Event custom 2`,
         start: today.plus({ minutes: 30 }).toISO() as string,
         end: today.plus({ minutes: 150 }).toISO() as string,
         detail: `Event custom detail`,
         modalTitle: `Event custom`,
         subtitle: `Event custom subtitle`,
         // status: 'disabled',
-        type: 'academic',
+        type: 'save_the_date',
         place: `Event custom place`,
-        calendar: 'Calendar A',
+        calendar: 'save_the_date',
       },
       {
-        title: `Event custom`,
+        title: `Event custom 1`,
         start: today.toISO() as string,
         end: today.plus({ minutes: 120 }).toISO() as string,
         detail: `Event custom detail`,
@@ -84,7 +84,7 @@ class MockCalendarService {
         // status: 'disabled',
         type: 'academic',
         place: `Event custom place`,
-        calendar: 'Calendar A',
+        calendar: 'academic',
       },
     ];
     for (let i = 0; i < 183; i++) {
@@ -142,11 +142,13 @@ class MockCalendarService {
           ],
           place: `Event ${i} place`,
           calendar:
-            i % 3 === 0
-              ? 'Calendar A'
-              : i % 3 === 1
-                ? 'Calendar B'
-                : 'Calendar C',
+            i % 4 === 0
+              ? 'academic'
+              : i % 4 === 1
+                ? 'life'
+                : i % 4 === 2
+                  ? 'events'
+                  : 'save_the_date',
         });
       }
     }

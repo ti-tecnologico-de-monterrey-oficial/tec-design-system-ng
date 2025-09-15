@@ -108,8 +108,6 @@ export class BmbCalendarHeaderComponent {
   }
 
   handleShowFilters() {
-    console.log('click filter');
-
     this.showFilters.emit();
   }
 }

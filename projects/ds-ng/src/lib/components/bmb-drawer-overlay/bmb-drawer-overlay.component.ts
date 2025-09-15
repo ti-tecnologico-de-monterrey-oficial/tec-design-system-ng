@@ -1,6 +1,7 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  HostListener,
   ViewEncapsulation,
   input,
   output,
@@ -45,6 +46,16 @@ export class BmbDrawerOverlayComponent {
     if (!this.isOpen) {
       this.isFull = false;
     }
+  }
+
+  closeDrawer(_: MouseEvent | KeyboardEvent): void {
+    this.isOpen = false;
+    this.isFull = false;
+  }
+
+  @HostListener('document:keydown.escape')
+  onEsc(): void {
+    if (this.isOpen) this.closeDrawer(new KeyboardEvent('keydown'));
   }
 
   toggleFullDrawer(event: MouseEvent, item?: any) {
