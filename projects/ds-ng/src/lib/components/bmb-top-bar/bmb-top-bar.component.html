@@ -21,7 +21,7 @@
       @if (appName() && !mitec()) {
         <h1>{{ appName() }}</h1>
       }
-      <span class="bmb_top-bar-app-name-powered">Powered x Bamboo Design</span>
+      <span class="bmb_top-bar-app-name-powered">{{ appPowered() }}</span>
     </section>
     @if (userInformation()) {
       <section>

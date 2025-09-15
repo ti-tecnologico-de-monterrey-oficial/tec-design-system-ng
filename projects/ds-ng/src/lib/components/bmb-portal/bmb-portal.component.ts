@@ -70,4 +70,8 @@ export class BmbPortalComponent {
   handleRemoveProjectedContent() {
     this.projectionService.closeContent();
   }
+
+  hasToast(): boolean {
+    return this.notificationsList().some((n) => n.component === 'toast');
+  }
 }

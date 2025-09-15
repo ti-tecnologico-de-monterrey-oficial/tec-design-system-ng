@@ -26,6 +26,7 @@ export { IPositionButtonMenu, IUserInformation } from './types';
 export class BmbTopBarComponent implements OnInit {
   userInformation = input<IUserInformation | null>(null);
   appName = input<string>('');
+  appPowered = input<string>('');
   appSubTitle = input<string>('');
   lang = input<string>('es');
   mitec = input<boolean>(false);
