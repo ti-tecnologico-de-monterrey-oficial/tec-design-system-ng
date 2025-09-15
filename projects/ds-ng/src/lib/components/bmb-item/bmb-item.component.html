@@ -40,11 +40,19 @@
     </div>
 
     @if (valueLink()) {
-      <a class="bmb_item-link" [href]="valueLink()" [target]="valueTarget">
+      <a
+        class="bmb_item-link"
+        [href]="valueLink()"
+        [target]="valueTarget() === '_blank' ? 'noopener noreferrer' : null"
+        [ngClass]="{ 'bmb_item-link-only-link': icon() }"
+      >
         {{ value() }}
       </a>
     } @else {
-      <span class="bmb_item-value">
+      <span
+        class="bmb_item-value"
+        [ngClass]="{ 'bmb_item-link-only-link': icon() }"
+      >
         {{ value() }}
       </span>
     }

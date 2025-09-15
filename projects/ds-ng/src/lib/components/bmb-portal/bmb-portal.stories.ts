@@ -38,7 +38,7 @@ import {
         icon="home"
         (click)="addNotificationFnc()"
       >
-        Add notification
+        Notification
       </button>
       <p>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia
@@ -579,7 +579,6 @@ If you need to reproduce sticky behavior on your notifications, you can add the 
     userAvatar:
       'https://www.yugatech.com/wp-content/uploads/2020/09/Facebook-Avatar.jpg',
     userMail: 'some.placeholder.name@domian.com',
-    component: 'notification',
     appearance: 'neutral',
     position: 'top-right',
     buttonText: 'Ir',
@@ -591,10 +590,31 @@ export const Default: StoryFn<typeof StorybookToastWrapperComponent> = (
   args,
 ) => {
   return {
-    props: args,
+    ...args,
     template: `
       <!-- Instruction to users: This component is used for internal Storybook logic and should not be copied -->
       <storybook-toast-wrapper
+        ${attributes(args)}
+      ></storybook-toast-wrapper>
+      <!-- Start copying from here -->
+      <div class="actions">
+        <button
+          bmbButton
+          appearance="primary"
+          icon="home"
+          (click)="openModalComponent()"
+        >Add notification</button>
+        <bmb-portal />
+      </div>
+      `,
+  };
+};
+export const Toast: StoryFn<typeof StorybookToastWrapperComponent> = (args) => {
+  return {
+    ...args,
+    template: `
+      <!-- Instruction to users: This component is used for internal Storybook logic and should not be copied -->
+      <storybook-toast-wrapper component="toast"
         ${attributes(args)}
       ></storybook-toast-wrapper>
       <!-- Start copying from here -->

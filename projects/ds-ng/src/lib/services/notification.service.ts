@@ -34,12 +34,10 @@ export class BmbNotificationService {
   }
 
   private getOrCreatePortal(): BmbPortalComponent {
-    // Si ya tenemos referencia, devolver instancia
     if (this.portalComponentRef) {
       return this.portalComponentRef.instance;
     }
 
-    // Buscar si ya existe en el DOM
     const existingHost = document.querySelector('app-modal-host');
     if (existingHost) {
       const componentRef = this.appRef.components.find(
@@ -51,20 +49,16 @@ export class BmbNotificationService {
       }
     }
 
-    // Crear host dinámicamente
     this.portalComponentRef = createComponent(BmbPortalComponent, {
       environmentInjector: this.environmentInjector,
     });
 
-    // Adjuntar al árbol de aplicaciones
     this.appRef.attachView(this.portalComponentRef.hostView);
 
-    // Insertar en el DOM
     const hostDomElem = (
       this.portalComponentRef.hostView as EmbeddedViewRef<any>
     ).rootNodes[0] as HTMLElement;
     document.body.appendChild(hostDomElem);
-
     return this.portalComponentRef.instance;
   }
 
@@ -83,10 +77,22 @@ export class BmbNotificationService {
     }, notification.delay || 5000);
   }
 
-  deleteNotification(id: string) {
-    this.notificationList.update((currentNotifications) =>
-      currentNotifications.filter((notification) => notification.id !== id),
-    );
+  deleteNotification(id: string, delay = 500) {
+    const current = this.notificationList();
+    const notification = current.find((n) => n.id === id);
+    if (!notification) return;
+
+    if (notification.component === 'toast') {
+      this.notificationList.update((list) =>
+        list.map((n) => (n.id === id ? { ...n, closing: true } : n)),
+      );
+
+      setTimeout(() => {
+        this.notificationList.update((list) => list.filter((n) => n.id !== id));
+      }, delay);
+    } else {
+      this.notificationList.update((list) => list.filter((n) => n.id !== id));
+    }
   }
 
   getNotificationList() {

@@ -24,7 +24,7 @@ export class BmbItemComponent {
   label = input<string>('');
   value = input<string>('');
   valueLink = input<string>('');
-  valueTarget? = input<IBmbTargetLink>('_blank');
+  valueTarget = input<IBmbTargetLink>('_blank');
   supportText = input<string>('');
   isButton = input<boolean>(false);
 

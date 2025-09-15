@@ -1,7 +1,7 @@
 <section class="bmb_drawer" [class.open]="isOpen">
   @if (isOpen) {
-    <div class="bmb_drawer-overlay"></div>
-    <section class="bmb_drawer-menu">
+    <div class="bmb_drawer-overlay" (click)="closeDrawer($event)"></div>
+    <section class="bmb_drawer-menu" (click)="$event.stopPropagation()">
       @for (item of menu().slice(0, 4); track $index) {
         <bmb-interactive-icon
           [appearance]="item.appearance"

@@ -63,15 +63,15 @@
       @if (labelSteps().length > 0) {
         <div class="bmb_step-progress-bar-vertical-text">
           <h2 class="bmb_step-progress-bar-vertical-text-title">
-            {{ labelSteps()[i] }}
+            {{ labelStepsTruncated()[i] }}
           </h2>
           @if (activeStep() > i) {
             <span class="bmb_step-progress-bar-vertical-text-subtitle">{{
-              labelComplete()
+              labelCompleteTruncated()
             }}</span>
           } @else {
             <span class="bmb_step-progress-bar-vertical-text-subtitle">{{
-              labelIncomplete()
+              labelIncompleteTruncated()
             }}</span>
           }
         </div>
@@ -115,7 +115,7 @@
               active: activeStep() === i,
               completed: activeStep() > i,
             }"
-            >{{ labelSteps()[i] }}</span
+            >{{ labelStepsTruncated()[i] }}</span
           >
         </div>
 
