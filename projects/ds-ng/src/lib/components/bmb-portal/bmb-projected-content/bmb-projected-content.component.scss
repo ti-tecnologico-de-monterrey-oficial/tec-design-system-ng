@@ -12,6 +12,16 @@
   }
 }
 
+.bmb_projected-backdrop {
+  position: fixed;
+  z-index: 98;
+  background-color: transparent;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  top: 0;
+}
+
 @keyframes fadein {
   0% {
     opacity: 0;
