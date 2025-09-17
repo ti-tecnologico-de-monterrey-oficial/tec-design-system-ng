@@ -143,10 +143,6 @@ export class BmbProjectedContentComponent {
     }
   }
 
-  handleClose() {
-    this.removeContent.emit();
-  }
-
   private isTemplateRef(obj: any): obj is TemplateRef<any> {
     return obj && obj.createEmbeddedView;
   }
