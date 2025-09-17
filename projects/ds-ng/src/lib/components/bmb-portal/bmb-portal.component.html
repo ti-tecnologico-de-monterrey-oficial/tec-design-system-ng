@@ -1,5 +1,5 @@
 <section class="bmb_portal">
-  <div class="bmb_portal-top-left">
+  <div class="bmb_portal-top-left" [class.has-toast]="hasToast()">
     <ng-container
       [ngTemplateOutlet]="commonTemplate"
       [ngTemplateOutletContext]="{
@@ -8,7 +8,7 @@
       }"
     />
   </div>
-  <div class="bmb_portal-top-center">
+  <div class="bmb_portal-top-center" [class.has-toast]="hasToast()">
     <ng-container
       [ngTemplateOutlet]="commonTemplate"
       [ngTemplateOutletContext]="{
@@ -17,7 +17,7 @@
       }"
     />
   </div>
-  <div class="bmb_portal-top-right">
+  <div class="bmb_portal-top-right" [class.has-toast]="hasToast()">
     <ng-container
       [ngTemplateOutlet]="commonTemplate"
       [ngTemplateOutletContext]="{
@@ -26,7 +26,7 @@
       }"
     />
   </div>
-  <div class="bmb_portal-bottom-left">
+  <div class="bmb_portal-bottom-left" [class.has-toast]="hasToast()">
     <ng-container
       [ngTemplateOutlet]="commonTemplate"
       [ngTemplateOutletContext]="{
@@ -35,7 +35,7 @@
       }"
     />
   </div>
-  <div class="bmb_portal-bottom-center">
+  <div class="bmb_portal-bottom-center" [class.has-toast]="hasToast()">
     <ng-container
       [ngTemplateOutlet]="commonTemplate"
       [ngTemplateOutletContext]="{
@@ -44,7 +44,7 @@
       }"
     />
   </div>
-  <div class="bmb_portal-bottom-right">
+  <div class="bmb_portal-bottom-right" [class.has-toast]="hasToast()">
     <ng-container
       [ngTemplateOutlet]="commonTemplate"
       [ngTemplateOutletContext]="{
@@ -90,6 +90,7 @@
     @if (notification.position === position) {
       @if (notification.component === "toast") {
         <bmb-toast
+          [class.is-closing]="notification.closing"
           [title]="notification.title"
           [description]="notification.content"
           [appearance]="notification.appearance || 'neutral'"

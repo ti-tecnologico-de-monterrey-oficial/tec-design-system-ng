@@ -1,7 +1,11 @@
-<bmb-overlay
-  [active]="content() !== null && showBackdrop()"
-  (click)="handleClose()"
-/>
+@if (content() !== null && !showBackdrop()) {
+  <div class="bmb_projected-backdrop" (click)="removeContent.emit()"></div>
+} @else {
+  <bmb-overlay
+    [active]="content() !== null && showBackdrop()"
+    (click)="removeContent.emit()"
+  />
+}
 <dialog
   class="bmb_projected-content"
   [ngStyle]="getPosition()"

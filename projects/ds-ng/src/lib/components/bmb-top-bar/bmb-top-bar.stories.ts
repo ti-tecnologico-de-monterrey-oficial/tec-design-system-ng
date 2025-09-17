@@ -105,6 +105,18 @@ ${getBasicExampleBlock('BmbTopBarComponent')}
         defaultValue: getDefaultValueControl(),
       },
     },
+    appPowered: {
+      name: 'App Powered',
+      control: {
+        type: 'text',
+      },
+      description: 'Sets the Powered x Bamboo Design text (is optional).',
+      table: {
+        category: 'Properties',
+        type: { summary: 'string' },
+        defaultValue: getDefaultValueControl(),
+      },
+    },
     lang: {
       control: {
         type: 'text',
@@ -171,6 +183,7 @@ ${getBasicExampleBlock('BmbTopBarComponent')}
     showLang: DBmbGenericParamDesc.deprecated,
   },
   args: {
+    appPowered: 'Powered x Bamboo Design',
     userInformation: null,
     lang: 'es',
     mitec: false,
@@ -190,6 +203,7 @@ export const StandaloneWithTitle: Story = {
   name: 'Standalone with title',
   args: {
     appName: 'TecTest',
+    appPowered: 'Powered x Bamboo Design',
   },
 };
 
@@ -197,6 +211,7 @@ export const StandaloneWithUserInformation: Story = {
   name: 'Standalone with user information',
   args: {
     appName: 'TecTest',
+    appPowered: 'Powered x Bamboo Design',
     userInformation: {
       name: 'Santiago Hernández',
       image: 'https://picsum.photos/id/64/200/300',
@@ -214,6 +229,7 @@ export const StandAloneWHelpButton: Story = {
     },
     showHelpButton: true,
     appName: 'TecTest',
+    appPowered: 'Powered x Bamboo Design',
   },
 
   name: 'Standalone with user information and help button',

@@ -74,6 +74,12 @@ ${getBasicExampleBlock(
 
 //This block of code is only needed if the close button is displayed${onEventBlock.handleExample}`,
 )}
+---
+
+**ℹ️ Note:**  
+If you want to see how it works with the **Notification Service** and animations, go to:  
+- [Portal → Toast](?path=/docs/dev-tools-portal--toast--documentation)  
+
         `,
       },
     },

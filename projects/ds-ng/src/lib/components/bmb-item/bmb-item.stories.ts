@@ -3,7 +3,7 @@ import { BmbItemComponent } from './bmb-item.component';
 import { CommonModule } from '@angular/common';
 import { attributes } from '../../utils/doc/utils';
 
-import { CUSTOM_ELEMENTS_SCHEMA, InputSignal } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 export type IBmbTargetLink = '_blank' | '_parent' | '_self' | '_top';
 
@@ -142,7 +142,7 @@ export const WithValueLink: Story = {
     label: 'Correo',
     value: 'tecservices@servicios.tec.mx',
     valueLink: 'mailto:tecservices@servicios.tec.mx',
-    valueTarget: '_self' as unknown as InputSignal<IBmbTargetLink>,
+    valueTarget: '_self',
   },
   render: (args) => ({
     props: args,
@@ -162,7 +162,7 @@ export const WithValueLinkAndIcon: Story = {
     icon: 'mail',
     value: 'tecservices@servicios.tec.mx',
     valueLink: 'mailto:tecservices@servicios.tec.mx',
-    valueTarget: '_self' as unknown as InputSignal<IBmbTargetLink>,
+    valueTarget: '_self',
   },
   render: (args) => ({
     props: args,
