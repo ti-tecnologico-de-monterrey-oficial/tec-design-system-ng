@@ -7,6 +7,8 @@ import {
   input,
   model,
   output,
+  signal,
+  TemplateRef,
   ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
@@ -18,6 +20,11 @@ import { CommonModule } from '@angular/common';
 import { BmbDotPaginatorComponent } from '../bmb-dot-paginator/bmb-dot-paginator.component';
 import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
 import { ClickOutsideDirective } from '../../directives/utils/clickoutside.directive';
+import { BmbActionMenuComponent } from '../bmb-action-menu/bmb-action-menu.component';
+import { BmbItemComponent } from '../bmb-item/bmb-item.component';
+import { BmbNativeModalService } from '../../services/native-modal.service';
+import { BmbProjectionContentService, IBmbProjectionContent } from '../../services/projection.service';
+import { IBmbNativeModal } from '../bmb-modal/bmb-modal.interface';
 
 export { defaultBotList, defaultActionList } from './bot_list';
 export { IBotType, IChatBarActions } from './types';
@@ -32,17 +39,20 @@ export { IBotType, IChatBarActions } from './types';
     BmbDotPaginatorComponent,
     BmbActionIconComponent,
     ClickOutsideDirective,
-  ],
+    BmbActionMenuComponent,
+    BmbItemComponent,
+],
   templateUrl: './bmb-chat-bar.component.html',
   styleUrl: './bmb-chat-bar.component.scss',
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BmbChatBarComponent {
-  placeholder = input<string>();
-  botList = input<IBotType[]>();
-  actionsList = input<IChatBarActions[]>();
+  placeholder = input<string>('');
+  botList = input<IBotType[]>(defaultBotList);
+  actionsList = input<IChatBarActions[]>([]);
   showEmoji = input<boolean>(false);
+  enableMicInput = input<boolean>(false);
 
   currentBot = model<IBotType>();
   isLoading = model<boolean>(false);
@@ -54,37 +64,38 @@ export class BmbChatBarComponent {
 
   files: File[] = [];
   control = new FormControl();
-  isDialogOpen: boolean = false;
-  openAddDialog: boolean = false;
+  isDialogOpen = signal<boolean>(false);
   defaultPlaceholder = computed(
     () => this.placeholder() ?? '¿Qué deseas encontrar hoy?',
-  );
-  dBotList = computed(() => this.botList() ?? defaultBotList);
-  dActionsList = computed(() =>
-    this.actionsList()
-      ? defaultActionList.concat(this.actionsList()!)
-      : defaultActionList,
   );
   showMicControls: boolean = false;
   onDragFiles: boolean = false;
   arrayThumbnail: string[] = [];
-  totalDots = computed(() => Math.round(this.dActionsList().length / 6));
+  botChunks = computed(() => {
+    const chunks: IBotType[][] = [];
+    for (let i = 0; i < (this.botList()?.length ?? 0); i += 6) {
+      chunks.push(this.botList()?.slice(i, i + 6) ?? []);
+    }
+    return chunks;
+  });
+  totalDots = computed(() => this.botChunks()?.length ?? 0);
   activeDot: number = 0;
   actionListPagination: any[] = [];
-  versionAddDialog: 'mobile' | 'web' = 'web';
+  modalID = signal<string | null>(null);
 
   windowWidth: number = window.innerWidth;
   windowHeight: number = window.innerHeight;
 
   @ViewChild('textareaRef') textareaRef!: ElementRef<HTMLTextAreaElement>;
+  @ViewChild('chatBarTemplate') chatBarTemplate!: TemplateRef<unknown>;
+  @ViewChild('mobileBotSelectorTemplate') mobileBotSelectorTemplate!: TemplateRef<unknown>;
 
-  @HostListener('window:resize', ['$event'])
-  onResize(event: Event): void {
-    this.versionAddDialog = window.innerWidth < 480 ? 'mobile' : 'web';
-  }
+  constructor(
+    private contentProjected: BmbProjectionContentService,
+    private nativeModalService: BmbNativeModalService,
+  ) {}
 
   ngOnInit(): void {
-    this.versionAddDialog = window.innerWidth < 480 ? 'mobile' : 'web';
     this.currentBot.update(
       (
         bot: IBotType = {
@@ -93,7 +104,6 @@ export class BmbChatBarComponent {
         },
       ): IBotType => bot,
     );
-    this.handlePaginate(this.dActionsList(), this.activeDot);
   }
 
   handleSend(): void {
@@ -104,15 +114,35 @@ export class BmbChatBarComponent {
     this.isLoading.update((value) => !value);
     this.control.reset();
     this.files = [];
+    this.textareaRef.nativeElement.style.height = 'calc(1lh + 2rem)';
   }
 
   handleChangeBot(bot: IBotType): void {
-    this.isDialogOpen = false;
+    this.isDialogOpen.set(false);
+    this.currentBot.set(bot);
+  }
+
+  handleMobileChangeBot(bot: IBotType): void {
+    this.nativeModalService.closeModal(this.modalID() as string);
+    this.modalID.set(null);
     this.currentBot.set(bot);
   }
 
   handleDialog(): void {
-    this.isDialogOpen = !this.isDialogOpen;
+    if ((this.botList()?.length ?? 0) > 0) {
+      if (window.innerWidth > 1000) {
+        this.isDialogOpen.update((value) => !value);
+      } else {
+        const data: IBmbNativeModal = {
+          content: this.mobileBotSelectorTemplate,
+          size: 'small',
+          title: 'Selecciona un bot',
+        };
+
+        this.modalID.set(this.nativeModalService.openModal(data));
+      }
+    }
+
   }
 
   handleMic(): void {
@@ -125,8 +155,13 @@ export class BmbChatBarComponent {
     this.onRecord.emit(false);
   }
 
-  handleAddDialog(): void {
-    this.openAddDialog = !this.openAddDialog;
+  handleAddDialog(event: MouseEvent | KeyboardEvent): void {
+    const data: IBmbProjectionContent = {
+      content: this.chatBarTemplate,
+      targetRef: event.target as HTMLElement,
+    };
+
+    this.contentProjected.openContent(data);
   }
 
   onDrop(event: any): void {
@@ -154,7 +189,7 @@ export class BmbChatBarComponent {
       }
       this.files.push(selectedFiles[i]);
     }
-    this.openAddDialog = false;
+    this.contentProjected.closeContent();
   }
 
   onDragOver(event: any): void {
@@ -178,17 +213,8 @@ export class BmbChatBarComponent {
     this.arrayThumbnail.splice(index, 1);
   }
 
-  handlePaginate(items: any[], page: number): void {
-    const startIndex = page * 6;
-    this.actionListPagination = items.slice(startIndex, startIndex + 6);
-  }
-
   handleDotPress(index: number): void {
-    this.handlePaginate(this.dActionsList(), index);
-  }
-
-  close(): void {
-    this.openAddDialog = false;
+    this.activeDot = index;
   }
 
   handleEmoji(): void {
@@ -199,8 +225,8 @@ export class BmbChatBarComponent {
     this.onRecord.emit(true);
   }
 
-  clickOutside(): void {
-    this.openAddDialog = false;
+  handleClickOutside(): void {
+    this.isDialogOpen.set(false);
   }
 
   handleKeyDown(event: KeyboardEvent): void {

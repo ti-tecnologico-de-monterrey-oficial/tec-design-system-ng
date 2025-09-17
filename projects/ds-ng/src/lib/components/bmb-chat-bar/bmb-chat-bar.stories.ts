@@ -176,10 +176,32 @@ This is a model signal, so it is possible to use it as:
         type: { summary: 'function' },
       },
     },
+    enableMicInput: {
+      control: { type: 'boolean' },
+      description: 'Enables the microphone input feature.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
+    },
   },
   args: {
     placeholder: 'Custom placeholder',
     isLoading: false,
+    enableMicInput: false,
+    actionsList: [
+      {
+        name: 'Adjuntar Archivo',
+        icon: 'upload_file',
+        action: () => {
+          const input = document.getElementById(
+            'inputFile',
+          ) as HTMLInputElement;
+          input?.click();
+        },
+      },
+    ],
     botList: [
       {
         name: 'TecBot',

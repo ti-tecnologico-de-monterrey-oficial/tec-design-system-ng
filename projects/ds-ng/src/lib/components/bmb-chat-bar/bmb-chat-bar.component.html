@@ -1,12 +1,16 @@
-<section class="bmb_chat-bar" clickOutside (clickOutside)="clickOutside()">
+<section
+  class="bmb_chat-bar"
+  clickOutside
+  (clickOutside)="handleClickOutside()"
+>
   <div
     class="bmb_chat-bar-container"
     (drop)="onDrop($event)"
     (dragover)="onDragOver($event)"
     (dragleave)="onDragLeave($event)"
     [ngClass]="{
-      'bmb_chat-bar-drag': onDragFiles,
       'bmb_chat-bar-container-files': files.length > 0,
+      'bmb_chat-bar-drag': onDragFiles
     }"
     tabindex="0"
   >
@@ -15,41 +19,25 @@
       [ngClass]="{ 'bmb_chat-bar-files-list-active': files.length > 0 }"
     >
       @for (file of files; track $index) {
-        @if (file.type.includes("image")) {
-          <div class="bmb_chat-bar-files-list-image">
-            <img
-              class="bmb_chat-bar-files-list-thumbnail"
-              [src]="arrayThumbnail[$index]"
-              [alt]="file.name"
-            />
-            <bmb-action-icon
-              class="bmb_chat-bar-files-list-image-delete"
-              icon="delete"
-              [iconSize]="24"
-              (buttonClick)="deleteFile($index)"
-            />
-          </div>
-        } @else {
-          <div class="bmb_chat-bar-files-list-option">
-            <bmb-icon
-              class="bmb_chat-bar-files-list-option-icon"
-              icon="upload_file"
-              [size]="24"
-            />
-            <span class="bmb_chat-bar-files-list-option-text">
-              {{ file.name }}
-            </span>
-            <bmb-action-icon
-              class="bmb_chat-bar-files-list-option-delete"
-              icon="delete"
-              [iconSize]="24"
-              (buttonClick)="deleteFile($index)"
-            />
-          </div>
-        }
+        <div class="bmb_chat-bar-files-list-option">
+          <bmb-icon
+            class="bmb_chat-bar-files-list-option-icon"
+            icon="upload_file"
+            [size]="24"
+          />
+          <span class="bmb_chat-bar-files-list-option-text">
+            {{ file.name }}
+          </span>
+          <bmb-action-icon
+            class="bmb_chat-bar-files-list-option-delete"
+            icon="close"
+            [iconSize]="24"
+            (buttonClick)="deleteFile($index)"
+          />
+        </div>
       }
     </div>
-    <div class="bmb_chat-bar-main">
+    <div class="bmb_chat-bar-main" #containerRef>
       <bmb-action-icon
         class="bmb_chat-bar-bot"
         [icon]="currentBot()?.icon!"
@@ -58,15 +46,6 @@
         (buttonClick)="handleDialog()"
       />
       @if (!onDragFiles) {
-        <!-- <input
-          id="bmbChatBarBot"
-          name="bmbChatBarBot"
-          class="bmb_chat-bar-input"
-          type="text"
-          [placeholder]="defaultPlaceholder()"
-          [formControl]="control"
-          autocomplete="off"
-        /> -->
         <textarea
           rows="2"
           (input)="autoResize()"
@@ -79,8 +58,7 @@
           (keydown)="handleKeyDown($event)"
           autocomplete="off"
         ></textarea>
-        <section class="bmb_chat-bar-container-btns">
-          @if (showMicControls) {
+        @if (showMicControls) {
             <bmb-action-icon
               class="bmb_chat-bar-pause"
               icon="pause"
@@ -102,49 +80,23 @@
                 (buttonClick)="handleEmoji()"
               />
             }
-            <section
-              class="bmb_chat-bar-add-dialog"
-              [ngClass]="{
-                'bmb_chat-bar-add-dialog-active':
-                  openAddDialog && versionAddDialog == 'web',
-              }"
-            >
-              <ul class="bmb_chat-bar-add-dialog-list">
-                @for (bot of dActionsList(); track $index) {
-                  <li class="bmb_chat-bar-add-dialog-option">
-                    <button
-                      type="button"
-                      (click)="bot.action()"
-                      class="bmb_chat-bar-add-dialog-option-button"
-                    >
-                      <bmb-icon
-                        class="bmb_chat-bar-add-dialog-option-button-icon"
-                        [icon]="bot.icon"
-                        [size]="24"
-                        alt="Bot icon"
-                      />
-                      <p class="bmb_chat-bar-add-dialog-option-button-text">
-                        {{ bot.name }}
-                      </p>
-                    </button>
-                  </li>
-                }
-              </ul>
-            </section>
-            <bmb-action-icon
-              class="bmb_chat-bar-add"
-              icon="add"
-              [iconSize]="32"
-              (buttonClick)="handleAddDialog()"
-            />
-            <bmb-action-icon
-              class="bmb_chat-bar-mic"
-              icon="mic"
-              [iconSize]="32"
-              (buttonClick)="handleMic()"
-            />
+            @if (actionsList().length) {
+              <bmb-action-icon
+                class="bmb_chat-bar-add"
+                icon="add"
+                [iconSize]="32"
+                (buttonClick)="handleAddDialog($event)"
+              />
+            }
+            @if (enableMicInput()) {
+              <bmb-action-icon
+                class="bmb_chat-bar-mic"
+                icon="mic"
+                [iconSize]="32"
+                (buttonClick)="handleMic()"
+              />
+            }
           }
-        </section>
         <bmb-action-icon
           class="bmb_chat-bar-send"
           [ngClass]="{ 'bmb_chat-bar-send-animated': isLoading() }"
@@ -156,9 +108,7 @@
           "
           (buttonClick)="handleSend()"
         />
-      }
-
-      @if (onDragFiles) {
+      } @else {
         <div class="bmb_chat-bar-container-drag">
           <p class="bmb_chat-bar-container-drag-text">
             Arrastra tus archivos aquí
@@ -169,66 +119,26 @@
   </div>
   <div
     class="bmb_chat-bar-dialog"
-    [ngClass]="{ 'bmb_chat-bar-dialog-active': isDialogOpen }"
+    [ngClass]="{ 'bmb_chat-bar-dialog-active': isDialogOpen() }"
     [ngStyle]="{ bottom: files.length > 0 ? '70%' : '50%' }"
   >
     <ul class="bmb_chat-bar-dialog-list">
-      @if (isDialogOpen) {
-        @for (bot of dBotList(); track $index) {
-          <li class="bmb_chat-bar-dialog-option">
-            <bmb-action-icon
-              class="bmb_chat-bar-dialog-button"
-              [ngClass]="{
-                'bmb_chat-bar-dialog-button-active':
-                  bot.name === currentBot()?.name,
-              }"
-              [icon]="bot.icon"
-              [alt]="bot.name"
-              [iconSize]="40"
-              (buttonClick)="handleChangeBot(bot)"
-            />
-          </li>
-        }
+      @for (bot of botList(); track $index) {
+        <li class="bmb_chat-bar-dialog-option">
+          <bmb-action-icon
+            class="bmb_chat-bar-dialog-button"
+            [ngClass]="{
+              'bmb_chat-bar-dialog-button-active':
+                bot.name === currentBot()?.name
+            }"
+            [icon]="bot.icon"
+            [alt]="bot.name"
+            [iconSize]="40"
+            (buttonClick)="handleChangeBot(bot)"
+          />
+        </li>
       }
     </ul>
-  </div>
-  <div
-    class="bmb_chat-bar-mb-add-dialog"
-    [ngClass]="{
-      'bmb_chat-bar-mb-add-dialog-active':
-        openAddDialog && versionAddDialog == 'mobile',
-    }"
-  >
-    <div class="bmb_chat-bar-mb-add-dialog-header">
-      <span class="bmb_chat-bar-mb-add-dialog-title"> Opciones Chatbar </span>
-      <bmb-action-icon
-        class="bmb_chat-bar-mb-add-dialog-close"
-        icon="close"
-        [iconSize]="24"
-        (buttonClick)="close()"
-      />
-    </div>
-    <div class="bmb_chat-bar-mb-add-dialog-body">
-      @for (bot of actionListPagination; track $index) {
-        <div class="bmb_chat-bar-mb-add-dialog-item">
-          <div class="bmb_chat-bar-mb-add-dialog-icon">
-            <bmb-action-icon
-              class="bmb_chat-bar-mb-add-dialog-button"
-              [icon]="bot.icon"
-              [iconSize]="40"
-              (buttonClick)="bot.action()"
-            />
-          </div>
-          <p class="bmb_chat-bar-mb-add-dialog-label">{{ bot.name }}</p>
-        </div>
-      }
-    </div>
-
-    <bmb-dot-paginator
-      [activeDotIndex]="activeDot"
-      [totalDots]="totalDots()"
-      (onDotPress)="handleDotPress($event)"
-    />
   </div>
   <input
     multiple
@@ -238,3 +148,53 @@
     style="display: none"
   />
 </section>
+
+<ng-template #chatBarTemplate>
+  <section class="bmb_chat-bar-add-dialog">
+    <bmb-action-menu [showHeader]="false" title="Selecciona una opción">
+      @for (bot of actionsList(); track $index) {
+        <ng-template>
+          <bmb-item
+            [icon]="bot.icon"
+            [label]="bot.name"
+            [isButton]="true"
+            (action)="bot.action()"
+          />
+        </ng-template>
+      }
+    </bmb-action-menu>
+  </section>
+</ng-template>
+
+<ng-template #mobileBotSelectorTemplate>
+  <div
+    class="bmb_chat-bar-mobile-bot-dialog"
+  >
+    <ul class="bmb_chat-bar-mobile-bot-dialog-body">
+      @for (bot of botChunks()[activeDot]; track $index) {
+        <li class="bmb_chat-bar-mobile-bot-dialog-option">
+          <bmb-action-icon
+            class="bmb_chat-bar-dialog-button"
+            [ngClass]="{
+              'bmb_chat-bar-dialog-button-active':
+                bot.name === currentBot()?.name
+            }"
+            [icon]="bot.icon"
+            [alt]="bot.name"
+            [iconSize]="40"
+            (buttonClick)="handleMobileChangeBot(bot)"
+          />
+          <span class="bmb_chat-bar-mobile-bot-dialog-button-text">
+            {{ bot.name }}
+          </span>
+        </li>
+      }
+    </ul>
+
+    <bmb-dot-paginator
+      [activeDotIndex]="activeDot"
+      [totalDots]="totalDots()"
+      (onDotPress)="handleDotPress($event)"
+    />
+  </div>
+</ng-template>

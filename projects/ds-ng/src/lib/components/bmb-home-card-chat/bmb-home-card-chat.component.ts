@@ -29,9 +29,9 @@ export class BmbHomeCardChatComponent {
   title = input<string>('Asistente TecBot');
   subtitle = input<string>('Chat');
   icon = input<string>('smart_toy');
-  isMobile = input<boolean>();
-  placeholder = input<string>();
-  botList = input<IBotType[]>();
+  isMobile = input<boolean>(false);
+  placeholder = input<string>('');
+  botList = input<IBotType[]>([]);
   leftIcon = input<string>('chevron_left');
   bgIconAppearance = input<IBmbColor>('charade-500');
   messagesHistory = input.required<IBmbChatMessage[]>();
