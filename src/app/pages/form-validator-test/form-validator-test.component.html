@@ -1063,7 +1063,7 @@
             required: 'Please enter the required data',
             minLength: 'Please enter at least 4 characters',
             pattern: 'Please enter only letters',
-            customValidation: 'Custom validation input',
+            customValidation: 'Custom validation input'
           }"
           [customValidation]="handleCustomValidatorT()"
           [helperMessage]="'Helper Message'"
@@ -1085,7 +1085,7 @@
           [errorMessage]="{
             required: 'Please enter the required data',
             minLength: 'Please enter at least 4 characters',
-            jsonFormat: 'Please enter only letters json',
+            jsonFormat: 'Please enter only letters json'
           }"
           [helperMessage]="'Helper Message'"
           [disabled]="false"
@@ -1112,7 +1112,7 @@
           lang="es-MX"
           [customValidation]="handleCustomValidator()"
           [errorMessage]="{
-            customValidation: 'Custom validation calendar',
+            customValidation: 'Custom validation calendar'
           }"
         />
         <bmb-dropdown
@@ -1131,16 +1131,16 @@
               name: 'Banana name',
               value: '_banana',
               icon: 'bolt',
-              id: 'banana_',
+              id: 'banana_'
             },
             {
               name: 'Orange name',
               value: '_orange',
               icon: 'bolt',
-              id: 'orange_',
+              id: 'orange_'
             },
             { name: 'Pear name', value: '_pear', icon: 'info', id: 'pear_' },
-            { name: 'Grape name', value: '_grape', icon: 'bolt', id: 'grape_' },
+            { name: 'Grape name', value: '_grape', icon: 'bolt', id: 'grape_' }
           ]"
           [preferredOptions]="['_orange']"
           [disabled]="false"
@@ -1150,7 +1150,7 @@
           [isMultiSelect]="false"
           [customValidation]="handleCustomValidatorDD()"
           [errorMessage]="{
-            customValidation: 'Custom validation',
+            customValidation: 'Custom validation'
           }"
         />
         <bmb-checkbox
@@ -1166,7 +1166,7 @@
           [ariaLabel]="''"
           [ariaLabelledby]="''"
           [errorMessage]="{
-            customValidation: 'Custom validation',
+            customValidation: 'Custom validation'
           }"
           helperMessage="Helper message CCM"
           [customValidation]="handleCustomValidatorCK()"
@@ -1189,7 +1189,7 @@
           [multipleRow]="true"
           [customValidation]="handleCustomValidatorDPR()"
           [errorMessage]="{
-            customValidation: 'Custom validation',
+            customValidation: 'Custom validation'
           }"
         />
         <bmb-input-phone-number
@@ -1203,7 +1203,7 @@
           [isRequired]="true"
           [helperMessage]="'Helper Message phone'"
           [errorMessage]="{
-            customValidation: 'Custom validation',
+            customValidation: 'Custom validation'
           }"
           [customValidation]="handleCustomValidatorPH()"
           [preferredCountries]="['mx', 'us']"
@@ -1237,10 +1237,10 @@
             'Elote',
             'Mole verde',
             'Arroz a la mexicana',
-            'Burritos',
+            'Burritos'
           ]"
           [errorMessage]="{
-            customValidation: 'Custom validation tag',
+            customValidation: 'Custom validation tag'
           }"
           [customValidation]="handleCustomValidatorIT()"
         />

@@ -23,7 +23,10 @@ import { ClickOutsideDirective } from '../../directives/utils/clickoutside.direc
 import { BmbActionMenuComponent } from '../bmb-action-menu/bmb-action-menu.component';
 import { BmbItemComponent } from '../bmb-item/bmb-item.component';
 import { BmbNativeModalService } from '../../services/native-modal.service';
-import { BmbProjectionContentService, IBmbProjectionContent } from '../../services/projection.service';
+import {
+  BmbProjectionContentService,
+  IBmbProjectionContent,
+} from '../../services/projection.service';
 import { IBmbNativeModal } from '../bmb-modal/bmb-modal.interface';
 
 export { defaultBotList, defaultActionList } from './bot_list';
@@ -41,7 +44,7 @@ export { IBotType, IChatBarActions } from './types';
     ClickOutsideDirective,
     BmbActionMenuComponent,
     BmbItemComponent,
-],
+  ],
   templateUrl: './bmb-chat-bar.component.html',
   styleUrl: './bmb-chat-bar.component.scss',
   encapsulation: ViewEncapsulation.None,
@@ -88,7 +91,8 @@ export class BmbChatBarComponent {
 
   @ViewChild('textareaRef') textareaRef!: ElementRef<HTMLTextAreaElement>;
   @ViewChild('chatBarTemplate') chatBarTemplate!: TemplateRef<unknown>;
-  @ViewChild('mobileBotSelectorTemplate') mobileBotSelectorTemplate!: TemplateRef<unknown>;
+  @ViewChild('mobileBotSelectorTemplate')
+  mobileBotSelectorTemplate!: TemplateRef<unknown>;
 
   constructor(
     private contentProjected: BmbProjectionContentService,
@@ -142,7 +146,6 @@ export class BmbChatBarComponent {
         this.modalID.set(this.nativeModalService.openModal(data));
       }
     }
-
   }
 
   handleMic(): void {

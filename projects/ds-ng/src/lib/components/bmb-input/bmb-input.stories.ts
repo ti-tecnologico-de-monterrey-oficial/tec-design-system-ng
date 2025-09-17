@@ -60,7 +60,7 @@ This \`${propertyName}\` property should only be used for input fields of the ty
 
 - **text**
 - **password**
-- **textarea**: ${isPatternProperty ? 'In case \`jsonFormat\` property is assigned, the \`pattern\` property should be omitted' : ''}
+- **textarea**: ${isPatternProperty ? 'In case `jsonFormat` property is assigned, the `pattern` property should be omitted' : ''}
 
 If the recommendation is omitted, it will cause erroneous behavior when performing the validations.
 `;

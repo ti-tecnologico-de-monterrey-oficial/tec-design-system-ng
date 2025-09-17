@@ -77,7 +77,7 @@ For profile content the ***ID Digital*** button will be displayed
     salutation: {
       control: 'text',
       description:
-        'Sets the salutation for the user. This is added only when the \`isProfile\` is false.',
+        'Sets the salutation for the user. This is added only when the `isProfile` is false.',
       table: {
         type: { summary: 'string' },
         category: 'Properties',
