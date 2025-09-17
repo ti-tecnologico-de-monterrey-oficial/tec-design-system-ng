@@ -1,6 +1,6 @@
 <bmb-overlay
   [active]="content() !== null && showBackdrop()"
-  (click)="removeContent.emit()"
+  (click)="handleClose()"
 />
 <dialog
   class="bmb_projected-content"
@@ -9,5 +9,7 @@
   #projectedContentDialogRef
   tabindex="0"
 >
-  <ng-container #container></ng-container>
+  @if (content() !== null) {
+    <ng-container #container></ng-container>
+  }
 </dialog>

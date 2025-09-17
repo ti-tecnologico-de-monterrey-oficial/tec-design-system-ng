@@ -59,19 +59,8 @@ export class BmbProjectedContentComponent {
     const width = window.innerWidth;
     const height = window.innerHeight;
 
-    if (width < 1000) {
-      return {
-        inset: `0 0 0 0`,
-        margin: '16px',
-        width: 'calc(100% - 32px)',
-        height: 'calc(100% - 32px) ',
-      };
-    }
-
-    if (this.htmlRef() === null) {
-      return {
-        inset: `0 0 0 0`,
-      };
+    if (width < 1001 || this.htmlRef() === null) {
+      return {};
     }
 
     const targetPosition = this.htmlRef()?.getBoundingClientRect() ?? {
@@ -152,6 +141,10 @@ export class BmbProjectedContentComponent {
         });
       }
     }
+  }
+
+  handleClose() {
+    this.removeContent.emit();
   }
 
   private isTemplateRef(obj: any): obj is TemplateRef<any> {
