@@ -84,6 +84,7 @@ $circleTypes: (
     &-title {
       @include fonts.font(3, regular);
       font-weight: 400;
+      word-break: break-word;
       grid-area: title;
     }
 
@@ -100,6 +101,7 @@ $circleTypes: (
       flex-direction: column;
       gap: 0.5rem;
       text-align: right;
+      flex: 1;
     }
 
     &-description {
@@ -107,6 +109,7 @@ $circleTypes: (
       grid-area: description;
       margin: 0;
       display: none;
+      word-break: break-word;
 
       @include mixins.container-query(780, "min") {
         display: block;
@@ -126,6 +129,8 @@ $circleTypes: (
       display: none;
       grid-area: date;
       margin: 0;
+      word-break: break-word;
+
       @include mixins.container-query(780, "min") {
         display: block;
       }

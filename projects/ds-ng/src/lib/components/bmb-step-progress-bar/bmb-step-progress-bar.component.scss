@@ -217,11 +217,13 @@
 
       &-title {
         color: var(--general_contrasts-100);
+        word-break: break-word;
         @include fonts.font(5, regular);
       }
 
       &-subtitle {
         color: var(--vertical-step-subtitle);
+        word-break: break-word;
         @include fonts.font(4, regular);
       }
     }
