@@ -1,7 +1,11 @@
-<bmb-overlay
-  [active]="content() !== null && showBackdrop()"
-  (click)="removeContent.emit()"
-/>
+@if (content() !== null && !showBackdrop()) {
+  <div class="bmb_projected-backdrop" (click)="removeContent.emit()"></div>
+} @else {
+  <bmb-overlay
+    [active]="content() !== null && showBackdrop()"
+    (click)="removeContent.emit()"
+  />
+}
 <dialog
   class="bmb_projected-content"
   [ngStyle]="getPosition()"
@@ -9,5 +13,7 @@
   #projectedContentDialogRef
   tabindex="0"
 >
-  <ng-container #container></ng-container>
+  @if (content() !== null) {
+    <ng-container #container></ng-container>
+  }
 </dialog>

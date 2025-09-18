@@ -15,9 +15,18 @@
     background-color: var(--containers-main);
   }
 
-  &-content-container {
-    flex: 1;
-    overflow: auto;
+  &-content {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    width: 100%;
+    max-width: 15rem;
+    display: inline-block;
+
+    &-container {
+      flex: 1;
+      overflow: auto;
+    }
   }
 
   &-container {

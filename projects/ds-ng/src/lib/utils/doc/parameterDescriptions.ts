@@ -85,7 +85,7 @@ const getCheckboxOrRadialLabel = (type: string) => {
       type: 'text',
     },
     description: `
-${getLabelDescription('at the default \`labelPosition\` or the position specified in \`labelPosition\` relative to', type)}
+${getLabelDescription('at the default `labelPosition` or the position specified in `labelPosition` relative to', type)}
     `,
     table: {
       category: 'Properties',
@@ -1253,7 +1253,7 @@ Adding the id using a property with the same name affects the operation of the f
       category: 'Properties',
       type: { summary: 'string' },
       defaultValue: getDefaultValueControl(
-        'Por favor ingresa la fecha con formato [\`dateFormat\`]}',
+        'Por favor ingresa la fecha con formato [`dateFormat`]}',
       ),
     },
   },
@@ -1266,7 +1266,7 @@ Adding the id using a property with the same name affects the operation of the f
       category: 'Properties',
       type: { summary: 'string' },
       defaultValue: getDefaultValueControl(
-        'Por favor ingresa la fecha de [\`label\`]',
+        'Por favor ingresa la fecha de [`label`]',
       ),
     },
   },

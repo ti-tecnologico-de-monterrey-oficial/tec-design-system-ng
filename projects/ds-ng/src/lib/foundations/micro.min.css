@@ -489,41 +489,31 @@
   --branding-primary: var(--color-mariner-700);
   --alert_primary-alert-primary: 26, 118, 132;
   --alert_primary-alert-light: 27, 192, 203;
-  --color-button-gradient:
-    rgba(var(--color-teal-primary), 1) 0%,
+  --color-button-gradient: rgba(var(--color-teal-primary), 1) 0%,
     rgba(var(--color-blue-primary), 1) 100%;
-  --color-blue-gradient:
-    rgba(var(--color-teal-primary), 1) 0%,
+  --color-blue-gradient: rgba(var(--color-teal-primary), 1) 0%,
     rgba(var(--color-blue-pigment), 1) 100%;
-  --color-green-gradient:
-    rgba(var(--color-neon-primary), 1) 0%,
+  --color-green-gradient: rgba(var(--color-neon-primary), 1) 0%,
     rgba(var(--color-green-light), 1) 100%;
-  --color-purple-gradient:
-    rgba(var(--color-purple-primary), 1) 0%,
+  --color-purple-gradient: rgba(var(--color-purple-primary), 1) 0%,
     rgba(var(--color-purple-light), 1) 100%;
-  --color-bg-gradient:
-    rgba(var(--color-japanese-indigo), 1) 0%,
+  --color-bg-gradient: rgba(var(--color-japanese-indigo), 1) 0%,
     rgba(var(--color-background-main), 1) 100%;
-  --color-bg-wheel:
-    rgba(var(--color-eerie-black), 1) 0%,
+  --color-bg-wheel: rgba(var(--color-eerie-black), 1) 0%,
     rgba(var(--color-background-main), 1) 100%;
-  --color-bg-gradient-light:
-    rgba(var(--color-white-primary), 1) 0%, rgba(var(--color-blue-tint), 1) 100%;
-  --color-bg-wheel-light:
-    rgba(var(--color-white-primary), 1) 0%, rgba(var(--color-blue-tint), 1) 100%;
-  --color-bg-gradient-tec:
-    rgba(var(--color-container-home-tec), 1) 0%,
+  --color-bg-gradient-light: rgba(var(--color-white-primary), 1) 0%,
+    rgba(var(--color-blue-tint), 1) 100%;
+  --color-bg-wheel-light: rgba(var(--color-white-primary), 1) 0%,
+    rgba(var(--color-blue-tint), 1) 100%;
+  --color-bg-gradient-tec: rgba(var(--color-container-home-tec), 1) 0%,
     rgba(var(--color-blue-tec), 1) 100%;
-  --color-bg-wheel-tec:
-    rgba(var(--color-container-home-tec), 1) 0%,
+  --color-bg-wheel-tec: rgba(var(--color-container-home-tec), 1) 0%,
     rgba(var(--color-blue-tec), 1) 100%;
-  --color-academic-gradient:
-    RGBA(var(--color-mariner-700)) 0%, RGBA(var(--color-blue-light)) 100%;
-  --color-life-gradient:
-    rgba(var(--color-green-primary), 1) 0%,
+  --color-academic-gradient: RGBA(var(--color-mariner-700)) 0%,
+    RGBA(var(--color-blue-light)) 100%;
+  --color-life-gradient: rgba(var(--color-green-primary), 1) 0%,
     rgba(var(--color-green-light), 1) 100%;
-  --color-event-gradient:
-    rgba(var(--color-purple-primary), 1) 0%,
+  --color-event-gradient: rgba(var(--color-purple-primary), 1) 0%,
     rgba(var(--color-purple-light), 1) 100%;
   --white-primary: RGBA(var(--color-white-primary), 1);
   --purple-primary: RGBA(var(--color-purple-primary), 1);
