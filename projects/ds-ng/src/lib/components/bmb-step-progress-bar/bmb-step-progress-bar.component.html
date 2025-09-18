@@ -2,7 +2,7 @@
   class="bmb_step-progress-bar"
   [ngClass]="{
     'bmb_step-progress-bar-vertical': type() === 'vertical',
-    'bmb_step-progress-bar-step-panel': type() === 'step-panel',
+    'bmb_step-progress-bar-step-panel': type() === 'step-panel'
   }"
 >
   @if (type() == "horizontal") {
@@ -22,7 +22,7 @@
           'bmb_step-progress-bar-step-normal':
             size() == 'normal' || size() == 'default',
           'bmb_step-progress-bar-step-small': size() == 'small',
-          'bmb_step-progress-bar-step-medium': size() == 'medium',
+          'bmb_step-progress-bar-step-medium': size() == 'medium'
         }"
       >
         <span *ngIf="activeStep() == i || activeStep() < i">{{ i + 1 }}</span>
@@ -38,7 +38,7 @@
       [attr.data-bs-slide-to]="i"
       [ngClass]="{
         completed: activeStep() > i,
-        'bmb_step-progress-bar-vertical-content': labelSteps().length > 0,
+        'bmb_step-progress-bar-vertical-content': labelSteps().length > 0
       }"
       (click)="onStepClicked(i)"
       onkeypress=""
@@ -47,7 +47,7 @@
         class="bmb_step-progress-bar-vertical-step bmb_step-progress-bar-vertical-step-small"
         [ngClass]="{
           active: activeStep() === i,
-          completed: activeStep() > i,
+          completed: activeStep() > i
         }"
       >
         @if (activeStep() <= i) {
@@ -83,7 +83,7 @@
         class="bmb_step-progress-bar-step-panel-wrapper"
         [ngClass]="{
           active: activeStep() === i,
-          completed: activeStep() > i,
+          completed: activeStep() > i
         }"
         *ngFor="let step of getStepsArray(); let i = index"
       >
@@ -95,7 +95,7 @@
             class="bmb_step-progress-bar-step-panel-step"
             [ngClass]="{
               active: activeStep() === i,
-              completed: activeStep() > i,
+              completed: activeStep() > i
             }"
           >
             @if (activeStep() > i) {
@@ -113,7 +113,7 @@
             class="bmb_step-progress-bar-step-panel-label"
             [ngClass]="{
               active: activeStep() === i,
-              completed: activeStep() > i,
+              completed: activeStep() > i
             }"
             >{{ labelStepsTruncated()[i] }}</span
           >

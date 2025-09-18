@@ -47,8 +47,7 @@
         <li
           class="bmb_multi-dot-paginator-list-item"
           [ngClass]="{
-            'bmb_multi-dot-paginator-list-item-active':
-              selectedIndex === $index,
+            'bmb_multi-dot-paginator-list-item-active': selectedIndex === $index
           }"
         >
           <button
@@ -56,7 +55,7 @@
             (click)="selectItem($index)"
             [title]="$index"
             [ngClass]="{
-              'bmb_multi-dot-paginator-dot-active': selectedIndex === $index,
+              'bmb_multi-dot-paginator-dot-active': selectedIndex === $index
             }"
           ></button>
         </li>

@@ -43,6 +43,10 @@ $modalSize: (
         max-width: $value;
       }
     }
+
+    &-header-icon_close {
+      padding-top: rem.rem_calc(7);
+    }
   }
 
   &-content {

@@ -122,7 +122,7 @@ ${getBasicExampleBlock('BmbTagComponent')}
     isDisabled: {
       ...DBmbGenericParamDesc.disabled,
       description: DBmbGenericParamDesc.disabled.description.concat(
-        '<br/><br/>Disabled state will only be applied when \`dismissible\` property is true.',
+        '<br/><br/>Disabled state will only be applied when `dismissible` property is true.',
       ),
     },
     clickedTag: getOnClickParam(onClickedTagEvent, ``),

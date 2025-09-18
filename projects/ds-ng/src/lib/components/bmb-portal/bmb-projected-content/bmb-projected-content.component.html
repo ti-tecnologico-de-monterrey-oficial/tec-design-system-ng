@@ -13,5 +13,7 @@
   #projectedContentDialogRef
   tabindex="0"
 >
-  <ng-container #container></ng-container>
+  @if (content() !== null) {
+    <ng-container #container></ng-container>
+  }
 </dialog>

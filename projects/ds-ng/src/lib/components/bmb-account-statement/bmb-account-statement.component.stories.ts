@@ -95,7 +95,7 @@ ${getBasicExampleBlock('BmbAccountStatementComponent')}
       'progress title',
     ),
     formatDates: getPropertyParamDesc(
-      '\`cutOffDate\` and \`paymentDeadline\`',
+      '`cutOffDate` and `paymentDeadline`',
       'text',
       'yyyy-MM-dd',
       '',

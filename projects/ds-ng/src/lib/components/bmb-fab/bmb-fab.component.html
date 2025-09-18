@@ -6,7 +6,7 @@
     <bmb-icon
       [ngClass]="{
         'bmb_fab-close': !mitec() && type() === 'normal',
-        'bmb_fab-close-rotate': !mitec() && type() === 'normal' && active,
+        'bmb_fab-close-rotate': !mitec() && type() === 'normal' && active
       }"
       [icon]="(!mitec() && type() === 'normal' && active && 'close') || icon()"
       [size]="24"

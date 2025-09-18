@@ -22,7 +22,7 @@ import {
   DESIGN_SYSTEM_TITLE,
   getGeneralDescription,
   getSpecialSpecifications,
-  RELEVANT_TITLE_LEVEL
+  RELEVANT_TITLE_LEVEL,
 } from '../../utils/doc/utils';
 
 @Component({
