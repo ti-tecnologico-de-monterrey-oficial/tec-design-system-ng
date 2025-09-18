@@ -54,33 +54,41 @@ export class BmbTopBarUserSectionComponent {
     left: '0px',
   };
   windowWidth = window.innerWidth;
-  menu: IDropdownItem[] = [
-    {
+
+  getMenu(): IDropdownItem[] {
+    const menu: IDropdownItem[] = [
+      {
+        idItem: 'help',
+        icon: 'help',
+        text: 'TECServices',
+        action: (event) => this.handleHelpButtonClick(event as MouseEvent),
+      },
+    ];
+    const notification: IDropdownItem = {
       idItem: 'notifications',
       icon: 'notifications',
       dotNotification: this.notificationNotification().length,
       text: 'Notificaciones',
       action: (event) => this.openNotifications(event as MouseEvent),
-    },
-    {
+    };
+    const changeUser: IDropdownItem = {
       idItem: 'change_user',
       icon: 'compare_arrows',
       text: 'Cambio de usuario',
       action: (event) => this.handleRoleChange(event as MouseEvent),
-    },
-    {
-      idItem: 'help',
-      icon: 'help',
-      text: 'TECServices',
-      action: (event) => this.handleHelpButtonClick(event as MouseEvent),
-    },
-  ];
+    };
 
-  openNotifications(event: MouseEvent) {
+    if (this.showRoleButton()) menu.unshift(changeUser);
+    if (this.showNotifications()) menu.unshift(notification);
+
+    return menu;
+  }
+
+  openNotifications(event: MouseEvent): void {
     this.alertClick.emit(event);
   }
 
-  closeNotifications() {
+  closeNotifications(): void {
     this.isOpenNotifications = false;
   }
 
@@ -88,15 +96,15 @@ export class BmbTopBarUserSectionComponent {
     return this.notificationNotification().length;
   }
 
-  handleHelpButtonClick(event: MouseEvent) {
+  handleHelpButtonClick(event: MouseEvent): void {
     this.helpButtonClick.emit(event);
   }
 
-  handleUserClick(event: MouseEvent) {
+  handleUserClick(event: MouseEvent): void {
     this.userClick.emit(event);
   }
 
-  handleRoleChange(event: MouseEvent) {
+  handleRoleChange(event: MouseEvent): void {
     this.roleButtonClick.emit(event);
   }
 }

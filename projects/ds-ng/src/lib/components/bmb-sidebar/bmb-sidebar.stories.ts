@@ -50,6 +50,10 @@ export default {
           'isActive',
           'isOpen',
           'selectedElement',
+          'maxChildrenLevel',
+          'clearSelectElement',
+          'closeSidebar',
+          'sideNav',
         ],
       },
       description: {

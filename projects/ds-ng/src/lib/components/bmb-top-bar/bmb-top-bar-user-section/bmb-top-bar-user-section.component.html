@@ -8,12 +8,14 @@
   class="bmb_top-bar-user-section"
   [ngClass]="{ 'bmb_top-bar-user-section-mitec': mitec() }"
 >
-  <bmb-dropdown-menu
-    bmbLayoutItem
-    class="bmb_top-bar-user-section bmb_top-bar-user-section-menu bmb_top-bar-user-section-mobile"
-    [items]="menu"
-  />
   @if (mitec()) {
+    @if (showRoleButton() || showNotifications()) {
+      <bmb-dropdown-menu
+        bmbLayoutItem
+        class="bmb_top-bar-user-section bmb_top-bar-user-section-menu bmb_top-bar-user-section-mobile"
+        [items]="getMenu()"
+      />
+    }
     @if (showRoleButton()) {
       <bmb-action-icon
         bmbLayoutItem
@@ -37,21 +39,27 @@
   @if (showHelpButton() || mitec()) {
     <bmb-action-icon
       bmbLayoutItem
-      [ngClass]="{ 'bmb_top-bar-user-section-no-mobile': mitec() }"
+      [ngClass]="{
+        'bmb_top-bar-user-section-no-mobile':
+          mitec() && (showRoleButton() || showNotifications()),
+      }"
       icon="help"
       [iconSize]="32"
       (buttonClick)="handleHelpButtonClick($event)"
     />
   }
-  <bmb-user-summary-content
-    bmbLayoutItem
-    [image]="userInformation().image"
-    [altImage]="userInformation.name"
-    [name]="userInformation().name"
-    imageSize="mobile-small"
-    [isImageBordered]="false"
-    [role]="userInformation().role"
-    contentLayout="row"
-    salutation=""
-  />
+  @if (!!userInformation()) {
+    <bmb-user-summary-content
+      bmbLayoutItem
+      [image]="userInformation().image"
+      [altImage]="userInformation.name"
+      [name]="mitec() ? userInformation().name : ''"
+      imageSize="mobile-small"
+      [isImageBordered]="false"
+      [role]="mitec() ? userInformation().role : ''"
+      contentLayout="row"
+      salutation=""
+      (onUserClick)="handleUserClick($event)"
+    />
+  }
 </section>

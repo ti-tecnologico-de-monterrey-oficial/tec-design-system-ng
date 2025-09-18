@@ -2,6 +2,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   input,
+  output,
   ViewEncapsulation,
 } from '@angular/core';
 import { BmbUserImageComponent } from '../../bmb-user-image/bmb-user-image.component';
@@ -42,8 +43,12 @@ export class BmbUserSummaryContentComponent {
   contentLayout = input<IBmbContentLayoutSummary>('column');
   gapSize = input<SizeNames>('none');
 
+  onUserClick = output<MouseEvent>();
+
   getClass(mainClassName: string): string {
-    return `${mainClassName}-${this.contentLayout()}`;
+    if (!!this.name()) return `${mainClassName}-${this.contentLayout()}`;
+
+    return '';
   }
 
   getSalutationClasses(
@@ -65,5 +70,9 @@ export class BmbUserSummaryContentComponent {
     if (!!this.salutation() && !this.isProfile())
       return `¡${this.salutation()}${!!this.name() ? ' '.concat(this.name()) : ''}!`;
     return this.name();
+  }
+
+  handleUserClick(event: MouseEvent) {
+    this.onUserClick.emit(event);
   }
 }

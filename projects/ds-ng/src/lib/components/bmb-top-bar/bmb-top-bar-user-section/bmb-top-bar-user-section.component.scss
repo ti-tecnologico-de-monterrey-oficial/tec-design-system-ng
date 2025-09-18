@@ -1,9 +1,12 @@
-@use "../../../../assets/styles/base/rem" as rem;
 @use "../../../../assets/styles/base/fonts" as fonts;
 @use "../../../../assets/styles/base/mixins" as mixins;
 
 .bmb_top-bar-user-section {
   color: rgb(var(--color-white-primary));
+
+  @include mixins.checkForMobile() {
+    gap: var(--bmb-spacing-s);
+  }
 
   &-menu {
     .bmb_dropdown-content-item {
