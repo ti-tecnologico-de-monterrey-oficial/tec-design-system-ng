@@ -174,13 +174,15 @@ ${getBasicExampleBlock('BmbTopBarComponent')}
       description: `
 Adjusts the contents of the **Top bar** when true.
 
-${RELEVANT_TITLE_LEVEL[1]}
+The Top bar header content shifts to the left, this allows the sidebar to be displayed in the mobile header.
+
+${RELEVANT_TITLE_LEVEL[2]}
 The setting applies only to mobile.
       `,
       table: {
         type: { summary: 'boolean' },
         category: 'Properties',
-        defaultValue: getDefaultValueControl(false),
+        defaultValue: getDefaultValueControl(true),
       },
     },
     helpButtonClick: getOnClickParam(getOnEvent('help', 'helpButtonClick')),

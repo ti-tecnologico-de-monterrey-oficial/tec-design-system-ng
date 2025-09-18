@@ -34,7 +34,7 @@ export class BmbTopBarComponent implements OnInit {
   alertNotification = input<IBmbDataAlert[]>([]);
   showRoleButton = input<boolean>(false);
   showHelpButton = input<boolean>(false);
-  allowSidebarForMobile = input<boolean>(false);
+  allowSidebarForMobile = input<boolean>(true);
 
   positionButtonMenu = input<IPositionButtonMenu>('left'); // Deprecated
   hasLogoutButton = input<boolean>(true); // Deprecated
