@@ -67,6 +67,8 @@ $dark: (
   border-style: solid;
   @include fonts.font(3, regular);
   overflow: visible;
+  display: flex;
+  flex-direction: column;
 
   @each $name, $type in $types {
     &.bmb_card-type-#{$name} {
@@ -95,6 +97,21 @@ $dark: (
     border-top: rem.rem_calc(1) solid var(--border-color);
     overflow: hidden;
     border-radius: 0 0 var(--bmb-border-radius) var(--bmb-border-radius);
+  }
+
+  bmb-card-content {
+    display: block;
+    flex: 1;
+  }
+
+  &-content {
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+
+    &-with-radius {
+      border-radius: var(--bmb-border-radius);
+    }
   }
 }
 
