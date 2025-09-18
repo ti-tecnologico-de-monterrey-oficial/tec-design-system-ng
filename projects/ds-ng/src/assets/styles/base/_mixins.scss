@@ -387,14 +387,26 @@
   color: var(--input-error);
 }
 
+@mixin checkForMobile($condition: true) {
+  @if $condition == true {
+    @include media-query(1000, "max") {
+      @content;
+    }
+  } @else {
+    @include media-query(1001, "min") {
+      @content;
+    }
+  }
+}
+
 @mixin hiddenForMobile() {
-  @include media-query(1000, "max") {
+  @include checkForMobile() {
     display: none;
   }
 }
 
 @mixin hiddenForNoMobile() {
-  @include media-query(1001, "min") {
+  @include checkForMobile(false) {
     display: none;
   }
 }
