@@ -89,6 +89,7 @@ import * as toastStory from '../components/bmb-toast/bmb-toast.stories';
         [appSubTitle]="'Sub title'"
         [showLang]="false"
         [lang]="'es'"
+        appPowered="Powered by Bamboo Design"
         (helpButtonClick)="helpButtonClick($event)"
         (userProfileClick)="userProfileClick($event)"
       />
