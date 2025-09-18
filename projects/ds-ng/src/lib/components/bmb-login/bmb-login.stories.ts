@@ -67,7 +67,7 @@ ${getBasicExampleBlock('BmbLoginComponent')}
     forgottenPasswordTarget: {
       ...DBmbGenericParamDesc.target,
       description: DBmbGenericParamDesc.target.description.concat(
-        '<br/><br/>Corresponds to the \`forgottenPasswordLink\` link property.',
+        '<br/><br/>Corresponds to the `forgottenPasswordLink` link property.',
       ),
     },
     buttonLabel: {
@@ -193,7 +193,7 @@ IBmbTargetLink = '_blank' | '_parent' | '_self' | '_top'
     loginAsGuestTarget: {
       ...DBmbGenericParamDesc.target,
       description: DBmbGenericParamDesc.target.description.concat(
-        '<br/><br/>Corresponds to the \`loginAsGuestLink\` link property.',
+        '<br/><br/>Corresponds to the `loginAsGuestLink` link property.',
       ),
     },
     onRememberMeChecked: getOnEventParam(

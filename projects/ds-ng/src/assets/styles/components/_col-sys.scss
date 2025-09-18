@@ -74,12 +74,11 @@ $alignItemsOptions: (
     @include mixins.media-query(1000, "min") {
       flex: 0 0
         calc(
-          #{math.percentage(math.div($i, 12))} -
-            (var(--bmb-gap) / 12 * #{12 - $i})
+          #{math.percentage(math.div($i, 12))} - (var(--bmb-gap) / 12 * #{12 -
+                $i})
         );
       max-width: calc(
-        #{math.percentage(math.div($i, 12))} -
-          (var(--bmb-gap) / 12 * #{12 - $i})
+        #{math.percentage(math.div($i, 12))} - (var(--bmb-gap) / 12 * #{12 - $i})
       );
     }
   }
@@ -94,8 +93,9 @@ $alignItemsOptions: (
           if($margin == "sm", "max", "min")
         ) {
           margin-#{$side}: calc(
-            #{math.percentage(math.div($i, $size))} + var(--bmb-gap) -
-              (var(--bmb-gap) / $size * #{$size - $i})
+            #{math.percentage(math.div($i, $size))} + var(--bmb-gap) - (var(
+                    --bmb-gap
+                  ) / $size * #{$size - $i})
           );
         }
       }

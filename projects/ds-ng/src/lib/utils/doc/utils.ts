@@ -533,7 +533,7 @@ ${
 \`\`\`html
 <div ${_style}class="${classes}">
   <div style="${stylesVar}">
-    The child element has access to the ${list} of the parent element's size through the ${variableDescription.replaceAll('\`', '')}.
+    The child element has access to the ${list} of the parent element's size through the ${variableDescription.replaceAll('`', '')}.
   </div>
 </div>
 \`\`\`
@@ -630,12 +630,12 @@ export const getSandboxConsiderationsDocumentation = (
     const varList: string[] = getSubList(implementationDetails, 'name');
     const definition: string = getListingOnOneLine(
       elementList as string[],
-      '\`--bmb_[__]-{[__]}\`',
+      '`--bmb_[__]-{[__]}`',
     );
     const definitionClass: string = definition.replaceAll('--', '');
     const _definition: string = getListingOnOneLine(
       varList as string[],
-      '\`--bmb_[__]-4\`',
+      '`--bmb_[__]-4`',
     );
     const definitionVar: string = _definition.replaceAll('_', '-');
     const size: string = getListingOnOneLine(elementList as string[], '{[__]}');

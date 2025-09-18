@@ -6,6 +6,7 @@ import {
   signal,
   TemplateRef,
   ViewChild,
+  ViewEncapsulation,
 } from '@angular/core';
 import { RouterModule, Router } from '@angular/router';
 import {
@@ -36,6 +37,7 @@ import { HelpMenuComponent } from './components/help-menu/help-menu.component';
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None,
   standalone: true,
 })
 export class AppComponent {
@@ -66,6 +68,12 @@ export class AppComponent {
         icon: 'calendar_today',
         title: 'Calendar',
         link: '/calendar',
+      },
+      {
+        id: 6,
+        icon: 'smart_toy',
+        title: 'IA',
+        link: '/ia',
       },
     ],
     [

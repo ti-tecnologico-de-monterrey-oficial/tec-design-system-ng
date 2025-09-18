@@ -81,7 +81,6 @@ export const WithIcon: Story = {
         <ng-template>
           <bmb-item
             label="Correo"
-            icon="mail"
             value="tecservices@servicios.tec.mx"
             valueLink="mailto:tecservices@servicios.tec.mx"
             valueTarget="_self"
