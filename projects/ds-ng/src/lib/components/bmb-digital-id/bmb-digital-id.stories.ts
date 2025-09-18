@@ -21,7 +21,11 @@ import {
 } from '../../utils/doc/parameterDescriptions';
 
 const onCloseEvent: IBmbOnEvent = getOnEvent('close', 'close'),
-  onAccessEvent: IBmbOnEvent = getOnEvent('access', 'access'), onSecondaryClickEvent: IBmbOnEvent = getOnEvent('***ID to PDF***', 'onSecondaryClick') ;
+  onAccessEvent: IBmbOnEvent = getOnEvent('access', 'access'),
+  onSecondaryClickEvent: IBmbOnEvent = getOnEvent(
+    '***ID to PDF***',
+    'onSecondaryClick',
+  );
 const getPropDesc = (name: string) => {
   const propDesc = getPropertyParamDesc(
     '',
@@ -141,7 +145,7 @@ ${getBasicExampleBlock(
     },
     close: () => {
       console.log('Close Button');
-    }
+    },
   },
 } as Meta<typeof BmbDigitalIdComponent>;
 

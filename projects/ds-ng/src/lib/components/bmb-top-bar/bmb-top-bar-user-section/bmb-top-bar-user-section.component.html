@@ -1,49 +1,57 @@
 <section
+  bmbLayout
+  margin="none"
+  gapSize="m"
+  justify="center"
+  alignItems="center"
+  [dynamicCols]="true"
   class="bmb_top-bar-user-section"
-  [ngClass]="{ 'bmb_top-bar-user-section-mitec': mitec }"
+  [ngClass]="{ 'bmb_top-bar-user-section-mitec': mitec() }"
 >
-  @if (mitec() && showRoleButton()) {
-    <bmb-action-icon
-      class="bmb_top-bar-user-section-no-mobile"
-      icon="compare_arrows"
-      [iconSize]="32"
-      (buttonClick)="handleRoleChange($event)"
-    />
-  }
-  @if (showNotifications() && mitec()) {
-    <span class="bmb_top-bar-user-section-notification">
+  <bmb-dropdown-menu
+    bmbLayoutItem
+    class="bmb_top-bar-user-section bmb_top-bar-user-section-menu bmb_top-bar-user-section-mobile"
+    [items]="menu"
+  />
+  @if (mitec()) {
+    @if (showRoleButton()) {
       <bmb-action-icon
+        bmbLayoutItem
+        class="bmb_top-bar-user-section-no-mobile"
+        icon="compare_arrows"
+        [iconSize]="32"
+        (buttonClick)="handleRoleChange($event)"
+      />
+    }
+    @if (showNotifications()) {
+      <bmb-action-icon
+        bmbLayoutItem
+        class="bmb_top-bar-user-section-no-mobile"
         icon="notifications"
         [iconSize]="32"
         (buttonClick)="openNotifications($event)"
         [dotNotification]="totalNotifications()"
       />
-    </span>
+    }
   }
   @if (showHelpButton() || mitec()) {
     <bmb-action-icon
-      [ngClass]="{ 'bmb_top-bar-user-section-no-mobile': mitec }"
+      bmbLayoutItem
+      [ngClass]="{ 'bmb_top-bar-user-section-no-mobile': mitec() }"
       icon="help"
       [iconSize]="32"
       (buttonClick)="handleHelpButtonClick($event)"
     />
   }
-  <bmb-user-image
+  <bmb-user-summary-content
+    bmbLayoutItem
     [image]="userInformation().image"
-    size="mobile-small"
     [altImage]="userInformation.name"
-    (buttonClick)="handleUserClick($event)"
+    [name]="userInformation().name"
+    imageSize="mobile-small"
+    [isImageBordered]="false"
+    [role]="userInformation().role"
+    contentLayout="row"
+    salutation=""
   />
-  @if (mitec() && (userInformation().name || userInformation().role)) {
-    <div
-      class="bmb_top-bar-user-section-name bmb_top-bar-user-section-no-mobile"
-    >
-      <h3 class="bmb_top-bar-user-section-title">
-        {{ userInformation().name }}
-      </h3>
-      <h4 class="bmb_top-bar-user-section-role">
-        {{ userInformation().role }}
-      </h4>
-    </div>
-  }
 </section>

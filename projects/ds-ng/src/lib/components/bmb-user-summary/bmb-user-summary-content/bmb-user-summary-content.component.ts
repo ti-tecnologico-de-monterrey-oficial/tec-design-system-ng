@@ -46,9 +46,18 @@ export class BmbUserSummaryContentComponent {
     return `${mainClassName}-${this.contentLayout()}`;
   }
 
-  getSalutationClasses(mainClassName: string): string[] {
+  getSalutationClasses(
+    mainClassName: string,
+    isRole: boolean = false,
+  ): string[] {
     const classes: string[] = [this.getClass(mainClassName)];
-    if (!this.isProfile()) classes.push(`${mainClassName}-salutation`);
+
+    if (!this.isProfile() && this.contentLayout() === 'column')
+      classes.push(`${mainClassName}-salutation`);
+    if (isRole && this.contentLayout() === 'row') {
+      classes.push('bmb_top-bar-user-section-role');
+      classes.push('bmb_user-summary_content-wrapper-role');
+    }
     return classes;
   }
 

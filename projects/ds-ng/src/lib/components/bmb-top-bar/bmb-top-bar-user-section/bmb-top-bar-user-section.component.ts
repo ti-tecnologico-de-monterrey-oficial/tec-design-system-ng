@@ -1,21 +1,30 @@
 import {
   Component,
-  Input,
   ViewEncapsulation,
   ChangeDetectionStrategy,
   output,
   input,
 } from '@angular/core';
-import { BmbUserImageComponent } from '../../bmb-user-image/bmb-user-image.component';
 import { IUserInformation } from '../types';
 import { CommonModule } from '@angular/common';
 import { IBmbDataAlert } from '../../bmb-alert-center/types';
 import { BmbActionIconComponent } from '../../bmb-action-icon/bmb-action-icon.component';
+import { BmbLayoutDirective, BmbLayoutItemDirective } from 'ds-ng';
+import { BmbUserSummaryContentComponent } from '../../bmb-user-summary/bmb-user-summary-content/bmb-user-summary-content.component';
+import { BmbDropdownMenuComponent } from '../../bmb-dropdown-menu/bmb-dropdown-menu.component';
+import { IDropdownItem } from '../../../types';
 
 @Component({
   selector: 'bmb-top-bar-user-section',
   standalone: true,
-  imports: [CommonModule, BmbUserImageComponent, BmbActionIconComponent],
+  imports: [
+    CommonModule,
+    BmbDropdownMenuComponent,
+    BmbActionIconComponent,
+    BmbUserSummaryContentComponent,
+    BmbLayoutDirective,
+    BmbLayoutItemDirective,
+  ],
   templateUrl: './bmb-top-bar-user-section.component.html',
   styleUrl: './bmb-top-bar-user-section.component.scss',
   encapsulation: ViewEncapsulation.None,
@@ -45,6 +54,27 @@ export class BmbTopBarUserSectionComponent {
     left: '0px',
   };
   windowWidth = window.innerWidth;
+  menu: IDropdownItem[] = [
+    {
+      idItem: 'notifications',
+      icon: 'notifications',
+      dotNotification: this.notificationNotification().length,
+      text: 'Notificaciones',
+      action: (event) => this.openNotifications(event as MouseEvent),
+    },
+    {
+      idItem: 'change_user',
+      icon: 'compare_arrows',
+      text: 'Cambio de usuario',
+      action: (event) => this.handleRoleChange(event as MouseEvent),
+    },
+    {
+      idItem: 'help',
+      icon: 'help',
+      text: 'TECServices',
+      action: (event) => this.handleHelpButtonClick(event as MouseEvent),
+    },
+  ];
 
   openNotifications(event: MouseEvent) {
     this.alertClick.emit(event);
@@ -55,7 +85,7 @@ export class BmbTopBarUserSectionComponent {
   }
 
   totalNotifications(): number {
-    return this.notificationNotification.length;
+    return this.notificationNotification().length;
   }
 
   handleHelpButtonClick(event: MouseEvent) {
