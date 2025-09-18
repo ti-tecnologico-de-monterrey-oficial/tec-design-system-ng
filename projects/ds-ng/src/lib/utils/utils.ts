@@ -98,3 +98,8 @@ export const getCustomValidationMessage = (
 
   return '';
 };
+
+export const getMobileResolutionSize = (isMobile: boolean = true): string => {
+  if (isMobile) return '(max-width: 1000px)';
+  return '(min-width: 1001px)';
+};

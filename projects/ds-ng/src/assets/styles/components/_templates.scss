@@ -482,9 +482,9 @@
   &-main {
     background-color: var(--containers-background);
     flex: 1;
-    padding: rem.rem_calc(32);
+    padding: rem.rem_calc(16);
 
-    @media (min-width: 1000px) {
+    @include mixins.checkForMobile(false) {
       padding: rem.rem_calc(96 140);
     }
   }
@@ -514,7 +514,7 @@
 .bmb_template-accordion {
   height: calc(100% - rem.rem_calc(32));
 
-  @media (min-width: 1000px) {
+  @include mixins.checkForMobile(false) {
     height: calc(100% - rem.rem_calc(140));
   }
 
@@ -705,9 +705,9 @@
 }
 
 .bmb_template-margin-for-sidebar {
-  margin: rem.rem_calc(24 24 24 100);
+  margin: rem.rem_calc(16);
 
-  @media (max-width: 1000px) {
-    margin-left: rem.rem_calc(40);
+  @media (min-width: 1000px) {
+    margin-left: rem.rem_calc(100);
   }
 }

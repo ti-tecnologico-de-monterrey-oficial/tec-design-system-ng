@@ -88,13 +88,14 @@
 }
 
 @mixin isOpenMobile() {
-  $_position: rem.rem_calc(80);
+  $_position: rem.rem_calc(64);
   animation: bounceRightMobile 0.6s ease-out forwards;
   height: calc(100vh - $_position);
   overflow-y: auto;
   overflow-x: hidden;
   padding: rem.rem_calc(24);
   top: $_position;
+  left: 0;
   width: 100%;
 
   .bmb_sidebar-header {
@@ -124,7 +125,7 @@
 
 .bmb_sidebar {
   background-color: rgb(var(--color-black-primary));
-  border-radius: rem.rem_calc(0 8 8 0);
+  border-radius: rem.rem_calc(0 24 24 0);
   left: 0;
   position: fixed;
   transition: width 0.3s ease;
@@ -143,6 +144,10 @@
 
   &-mobile {
     border-radius: 0;
+    position: fixed;
+    left: rem.rem_calc(8);
+    top: rem.rem_calc(16);
+    z-index: 999;
 
     &-content {
       width: 100%;
@@ -154,17 +159,11 @@
       background-color: rgb(var(--color-black-primary));
       color: rgb(var(--color-white-primary));
 
-      @media (min-width: 1000px) {
-        display: none;
-      }
+      @include mixins.hiddenForNoMobile();
     }
 
     &.bmb_sidebar-open {
       @include isOpenMobile();
-
-      @media (max-height: 629px) and (min-width: 1000px) {
-        @include isOpen();
-      }
     }
 
     .bmb_sidebar-header {
@@ -239,9 +238,7 @@
       right: 0;
       left: auto;
 
-      @media (min-width: 1000px) {
-        border-radius: rem.rem_calc(24 0 0 24);
-      }
+      border-radius: rem.rem_calc(24 0 0 24);
 
       .bmb_sidebar-children {
         left: auto;
@@ -262,7 +259,7 @@
       }
     }
 
-    @media (min-height: 631px) and (min-width: 1001px) {
+    @include mixins.checkForMobile(false) {
       display: block;
     }
 
@@ -378,7 +375,6 @@
     color: rgb(var(--color-white-primary));
     display: flex;
     justify-content: space-between;
-    margin-bottom: rem.rem_calc(16);
     padding: rem.rem_calc(16 8);
 
     &-button {
@@ -390,15 +386,5 @@
         padding: 0;
       }
     }
-  }
-
-  .bmb-active-link {
-    display: flex;
-    align-items: center;
-    height: 100%;
-    width: 100%;
-    background-color: rgb(var(--color-white-primary));
-    border-radius: rem.rem_calc(24);
-    color: rgb(var(--color-black-primary));
   }
 }
