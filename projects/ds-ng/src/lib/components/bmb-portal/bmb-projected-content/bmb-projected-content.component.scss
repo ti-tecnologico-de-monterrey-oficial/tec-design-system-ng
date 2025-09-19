@@ -10,21 +10,8 @@
   color: var(--general_contrasts-100);
 
   @include mixins.media-query(1000, "max") {
-    margin: 16px;
-    max-width: calc(100% - 32px);
-    max-height: calc(100% - 32px);
-    width: max-content;
-    height: max-content;
-    position: fixed;
-    left: 50%;
-    top: 50%;
-    translate: calc(-50% - 16px) calc(-50% - 16px);
-
-    &[open] {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
+    left: 1rem !important;
+    right: 1rem !important;
   }
 
   &[open] {
