@@ -33,6 +33,14 @@ export const RELEVANT_TITLE_LEVEL: string[] = [
   '⭐**Example**<br/>',
 ];
 
+export const RelevantTitle = {
+  warning: '⚠️**Warning**<br/>',
+  important: '‼️**Important**<br/>',
+  note: '✳️**Note**<br/>',
+  configuration: '⚙️**Configuration**<br/>',
+  example: '⭐**Example**<br/>',
+};
+
 export const DESIGN_SYSTEM_TITLE: string = '***Bamboo***';
 export const TECHNICAL_DOC_TITLE: string = `${DESIGN_SYSTEM_TITLE} ***- Technical documentation***`;
 export const TECHNICAL_DOC_REFERENCES: string = `Please remember to refer to the ${TECHNICAL_DOC_TITLE} for more details:`;
