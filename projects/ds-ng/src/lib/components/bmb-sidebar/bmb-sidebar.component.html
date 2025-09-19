@@ -39,7 +39,7 @@
   <bmb-check-external-link-button
     class="bmb_sidebar-link"
     [idElement]="'element' + item.id!"
-    [link]="getLink(item.link!, !!item.children)"
+    [link]="getLink(item.link!)"
     [target]="item.target!"
     (buttonClick)="toggleChildren(item)"
   >
