@@ -90,7 +90,7 @@ import * as buttonStory from '../directives/bmb-button/button.stories';
                 '¡Orden de compra aprobada!',
                 '¡Orden de compra aprobada!',
                 '¡Orden de compra aprobada!',
-                '¡Orden de compra aprobada!'
+                '¡Orden de compra aprobada!',
               ]"
               labelComplete="Completo"
               labelIncomplete="Pendiente"
@@ -122,12 +122,12 @@ import * as buttonStory from '../directives/bmb-button/button.stories';
                   badge: {
                     label: 'Discount',
                     appearance: 'success',
-                    container: true
-                  }
+                    container: true,
+                  },
                 },
                 {
                   concept: 'Tipo de cambio al día de hoy *',
-                  quantity: '-$0, 000 USD'
+                  quantity: '-$0, 000 USD',
                 },
                 {
                   concept: 'Fecha de solicitud',
@@ -135,18 +135,18 @@ import * as buttonStory from '../directives/bmb-button/button.stories';
                   badge: {
                     label: 'Discount',
                     appearance: 'success',
-                    container: false
-                  }
-                }
+                    container: false,
+                  },
+                },
               ],
               total: {
                 label: 'Total',
                 value: '$0, 000 USD',
                 equivalence: [
                   '3, 828 créditos • 12 meses',
-                  '319 créditos • al mes'
-                ]
-              }
+                  '319 créditos • al mes',
+                ],
+              },
             }"
           />
         </aside>
@@ -162,9 +162,9 @@ import * as buttonStory from '../directives/bmb-button/button.stories';
               id: 2,
               icon: 'task',
               title: 'Agregar firmantes',
-              link: 'https://www.youtube.com/watch?v=beh56CrNRsQ'
-            }
-          ]
+              link: 'https://www.youtube.com/watch?v=beh56CrNRsQ',
+            },
+          ],
         ]"
         title="Navegacion para mobiles"
       />

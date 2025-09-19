@@ -67,7 +67,7 @@
           class="bmb_sidebar-item"
           [ngClass]="{
             'bmb_sidebar-item-left-space':
-              position() === 'right' && hasSubmenu && !element.children?.length
+              position() === 'right' && hasSubmenu && !element.children?.length,
           }"
           (click)="checkToCloseSidebar(element)"
         >
@@ -194,7 +194,7 @@
   aria-label="Sidebar Navigation"
   [ngClass]="{
     'bmb-active': isActive,
-    'bmb_sidebar-desktop-right': position() === 'right'
+    'bmb_sidebar-desktop-right': position() === 'right',
   }"
   (mouseleave)="clearSelectElement()"
 >
