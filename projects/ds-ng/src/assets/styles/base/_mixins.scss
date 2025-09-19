@@ -49,13 +49,11 @@
     &:hover:not(:disabled),
     &:focus-visible:not(:disabled) {
       background-color: var(--buttons-primary-hover);
-      // box-shadow: 0 0 rem.rem_calc(2) var(--azul-mariner-500);
     }
 
     &:active:not(:disabled),
     &.bmb_btn-toggle-active {
       background-color: var(--buttons-primary-select);
-      // box-shadow: 0 0 rem.rem_calc(20) var(--azul-mariner-500);
     }
 
     bmb-icon {
@@ -152,7 +150,6 @@
 
     &:active:not(:disabled),
     &.bmb_btn-toggle-active {
-      // box-shadow: 0 0 rem.rem_calc(20) var(--red-primary);
       background-color: var(--red-primary);
       color: var(--white-primary);
       padding: rem.rem_calc(10 14);
@@ -360,6 +357,12 @@
   text-overflow: ellipsis;
 }
 
+@mixin truncated_string_line() {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 @mixin dropdown_menu_left($max-width) {
   .bmb_dropdown-content-modal {
     right: 0;
@@ -382,4 +385,28 @@
 @mixin error_helper_text() {
   @include helper_text();
   color: var(--input-error);
+}
+
+@mixin checkForMobile($condition: true) {
+  @if $condition == true {
+    @include media-query(1000, "max") {
+      @content;
+    }
+  } @else {
+    @include media-query(1001, "min") {
+      @content;
+    }
+  }
+}
+
+@mixin hiddenForMobile() {
+  @include checkForMobile() {
+    display: none;
+  }
+}
+
+@mixin hiddenForNoMobile() {
+  @include checkForMobile(false) {
+    display: none;
+  }
 }

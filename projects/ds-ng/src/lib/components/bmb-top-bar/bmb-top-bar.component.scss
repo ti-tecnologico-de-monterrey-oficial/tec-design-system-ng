@@ -39,8 +39,10 @@
   z-index: 2;
   height: 64px;
 
-  @include mixins.media-query(1000, "min") {
-    padding: rem.rem_calc(8 32);
+  &-sidebar {
+    @include mixins.checkForMobile() {
+      padding-left: rem.rem_calc(48);
+    }
   }
 
   &-open {
@@ -48,7 +50,7 @@
   }
 
   &-animated {
-    @include mixins.media-query(768, "min") {
+    @include mixins.checkForMobile(false) {
       width: rem.rem_calc(416);
       animation: expandWidthSmooth 2s ease-out 1s forwards;
       margin: auto;
@@ -66,9 +68,7 @@
     display: flex;
     align-items: center;
     gap: rem.rem_calc(4);
-    @include mixins.media-query(1000, "min") {
-      display: none;
-    }
+    @include mixins.hiddenForMobile();
   }
 
   &-button-menu {
@@ -125,7 +125,7 @@
     width: auto;
     line-height: 0;
 
-    @include mixins.media-query(1000, "min") {
+    @include mixins.checkForMobile(false) {
       width: max-content;
     }
 
@@ -154,14 +154,14 @@
     flex: 1;
     justify-content: center;
 
-    @include mixins.media-query(1000, "min") {
+    @include mixins.checkForMobile(false) {
       justify-content: start;
     }
 
     h1 {
       @include fonts.font(6, regular);
 
-      @include mixins.media-query(1000, "min") {
+      @include mixins.checkForMobile(false) {
         display: flex;
       }
     }
@@ -171,7 +171,7 @@
       border-left: rem.rem_calc(1) solid RGBA(var(--color-white-primary));
       display: none;
 
-      @include mixins.media-query(1000, "min") {
+      @include mixins.checkForMobile(false) {
         display: inline-block;
         max-width: max-content;
         padding-left: rem.rem_calc(16);
@@ -185,7 +185,7 @@
     display: flex;
     gap: rem.rem_calc(10);
 
-    @include mixins.media-query(1000, "min") {
+    @include mixins.checkForMobile(false) {
       flex: auto;
       max-width: max-content;
     }
@@ -199,7 +199,7 @@
     align-items: center;
 
     &-open {
-      @include mixins.media-query(999, "max") {
+      @include mixins.checkForMobile() {
         transition: opacity 0.3s ease;
         position: absolute;
         top: 100%;
@@ -231,7 +231,7 @@
       }
     }
 
-    @include mixins.media-query(1000, "min") {
+    @include mixins.checkForMobile(false) {
       display: flex;
       justify-content: inherit;
     }

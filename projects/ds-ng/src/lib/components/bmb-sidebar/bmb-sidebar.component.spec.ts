@@ -16,4 +16,12 @@ describe('BmbSidebarComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  describe('onFocusIn', () => {
+    it('should call checkIfFocusInsideSidebar', () => {
+      spyOn(component, 'checkIfFocusInsideSidebar');
+      component.onFocusIn();
+      expect(component.checkIfFocusInsideSidebar).toHaveBeenCalled();
+    });
+  });
 });

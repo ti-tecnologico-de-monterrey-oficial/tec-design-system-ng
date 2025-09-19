@@ -50,6 +50,10 @@ export default {
           'isActive',
           'isOpen',
           'selectedElement',
+          'maxChildrenLevel',
+          'clearSelectElement',
+          'closeSidebar',
+          'sideNav',
         ],
       },
       description: {
@@ -313,7 +317,11 @@ ${LEVEL_DESCRIPTION}
         type: 'select',
       },
       options: ['left', 'right'],
-      description: 'Sets the position of the sidebar.',
+      description: `
+Sets the position of the sidebar.
+${RELEVANT_TITLE_LEVEL[0]}
+This property affected to web resolution only.
+      `,
       table: {
         category: 'Properties',
         type: {

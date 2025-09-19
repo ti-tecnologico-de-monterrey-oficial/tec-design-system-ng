@@ -405,6 +405,7 @@
   --color-mitec-orange: 255, 153, 1;
   --mitec_orange-light: var(--color-mitec-orange);
   --mitec_orange-primary: 187, 76, 2;
+  --mitec_orange-tint: 255, 209, 70;
   --color-mitec-purple: 239, 131, 214;
   --mitec_purple-tint: var(--color-mitec-purple);
   --mitec_purple-primary: var(--color-purple-light);
@@ -789,12 +790,12 @@
   background-color: var(--general_contrasts-25);
   color: var(--general_contrasts-100);
 }
-#storybook-docs .sbdocs-title,
-#storybook-docs .sbdocs h1,
-#storybook-docs .sbdocs h2,
-#storybook-docs .sbdocs h3,
-#storybook-docs .sbdocs h4,
-#storybook-docs .sbdocs h5 {
+#storybook-docs .sbdocs-title:not([class^="bmb"]),
+#storybook-docs .sbdocs h1:not([class^="bmb"]),
+#storybook-docs .sbdocs h2:not([class^="bmb"]),
+#storybook-docs .sbdocs h3:not([class^="bmb"]),
+#storybook-docs .sbdocs h4:not([class^="bmb"]),
+#storybook-docs .sbdocs h5:not([class^="bmb"]) {
   color: var(--general_contrasts-100);
 }
 #storybook-docs
@@ -2292,6 +2293,11 @@ ion-content {
 .bmb_layout-grid-item > .bmb_text-editor-container,
 .bmb_layout-grid-item > .bmb_home-card,
 .bmb_layout-grid-item > .bmb_home-card > .bmb_home-card-wrapper,
+.bmb_layout-grid-item > bmb-container-button .bmb_container-button,
+.bmb_layout-grid-item
+  > bmb-container-button
+  .bmb_container-button
+  .bmb_check-external-link-button-element,
 .bmb_layout-item > .bmb_card,
 .bmb_layout-item > .bmb-drop-zone,
 .bmb_layout-item > .bmb_container-primary-container,
@@ -2304,6 +2310,11 @@ ion-content {
 .bmb_layout-item > .bmb_text-editor-container,
 .bmb_layout-item > .bmb_home-card,
 .bmb_layout-item > .bmb_home-card > .bmb_home-card-wrapper,
+.bmb_layout-item > bmb-container-button .bmb_container-button,
+.bmb_layout-item
+  > bmb-container-button
+  .bmb_container-button
+  .bmb_check-external-link-button-element,
 .bmb_vertical-layout-item > .bmb_card,
 .bmb_vertical-layout-item > .bmb-drop-zone,
 .bmb_vertical-layout-item > .bmb_container-primary-container,
@@ -2315,7 +2326,12 @@ ion-content {
 .bmb_vertical-layout-item > .bmb_text-editor,
 .bmb_vertical-layout-item > .bmb_text-editor-container,
 .bmb_vertical-layout-item > .bmb_home-card,
-.bmb_vertical-layout-item > .bmb_home-card > .bmb_home-card-wrapper {
+.bmb_vertical-layout-item > .bmb_home-card > .bmb_home-card-wrapper,
+.bmb_vertical-layout-item > bmb-container-button .bmb_container-button,
+.bmb_vertical-layout-item
+  > bmb-container-button
+  .bmb_container-button
+  .bmb_check-external-link-button-element {
   height: 100%;
 }
 .bmb_layout-grid-item > .bmb_home-card > .bmb_home-card-wrapper,
@@ -3697,9 +3713,9 @@ ion-content {
 .bmb_checkbox-input:is(:checked) + .bmb_checkbox-mark::after {
   display: block;
   position: relative;
-  margin: auto;
+  margin: 0.125rem auto 0;
   height: 0.75rem;
-  width: 0.1875rem;
+  width: 0.3125rem;
   border: solid var(--white-primary);
   border-width: 0 0.1875rem 0.1875rem 0;
   transform: rotate(45deg);
@@ -3765,7 +3781,7 @@ ion-content {
 .bmb_checkbox-input-indeterminate + .bmb_checkbox-mark::after {
   display: block;
   position: relative;
-  margin: auto;
+  margin: 0.125rem auto 0;
   height: 0.1875rem;
   width: 0.75rem;
   background-color: var(--white-primary);

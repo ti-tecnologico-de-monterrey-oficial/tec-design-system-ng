@@ -9,7 +9,7 @@
   overflow: hidden;
   text-overflow: ellipsis;
 
-  @include mixins.media-query(999, "max") {
+  @include mixins.checkForMobile() {
     padding: rem.rem_calc(8) rem.rem_calc(16);
     width: 100vw;
     box-sizing: border-box;
@@ -29,7 +29,7 @@
     color: RGBA(var(--color-charade-500));
     text-decoration: none;
 
-    @include mixins.media-query(999, "max") {
+    @include mixins.checkForMobile() {
       color: RGBA(var(--color-white-primary));
     }
   }

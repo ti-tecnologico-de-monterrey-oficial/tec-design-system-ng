@@ -1,12 +1,27 @@
 <bmb-theme />
+<bmb-top-bar
+  [userInformation]="{
+    name: 'Santiago Hernández',
+    image: 'https://picsum.photos/id/64/200/300',
+    role: 'Alumno',
+  }"
+  [showHelpButton]="true"
+  [hasLogoutButton]="false"
+  [appName]="'TecTest'"
+  [appSubTitle]="'Sub title'"
+  [showLang]="false"
+  [allowSidebarForMobile]="true"
+  [lang]="'es'"
+/>
 <main
   bmbVerticalLayout
   gapSize="none"
   justify="center"
   alignItems="center"
-  height="100vh"
+  [style]="{ height: 'calc(100vh - 64px)' }"
 >
-  <bmb-top-bar
+  <!-- <bmb-top-bar
+    [allowSidebarForMobile]="true"
     [userInformation]="{
       name: 'Santiago Hernández',
       image: 'https://picsum.photos/id/64/200/300',
@@ -141,7 +156,8 @@
     (alertButtonClick)="handleAlertButtonClick()"
     (helpButtonClick)="handleHelpButtonClick($event)"
     bmbVerticalLayoutItem
-  ></bmb-top-bar>
+  ></bmb-top-bar> -->
+
   <section bmbVerticalLayoutItem [rowGrow]="1">
     <router-outlet></router-outlet>
   </section>
