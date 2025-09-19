@@ -112,7 +112,7 @@ export class BmbDropdownComponent implements OnInit, OnChanges {
     }
 
     this.control()
-      .valueChanges.pipe(startWith(this.getValidInitialValues()))
+      ?.valueChanges.pipe(startWith(this.getValidInitialValues()))
       .subscribe((value) => {
         this.setSelectionControl(value);
       });
@@ -121,7 +121,7 @@ export class BmbDropdownComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (!this.control()) {
+    if (this.control() !== null) {
       if (changes['options']) {
         this.initOptions(changes['options'].currentValue);
         this.control().setValue(this.getValidInitialValues());
