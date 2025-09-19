@@ -1,13 +1,15 @@
 .bmb_action_icon {
-  display: flex;
+  display: inline-flex;
   align-items: center;
+  color: currentColor;
 
   &-icon {
-    display: flex;
+    display: inline-flex;
     align-items: center;
+    color: currentColor;
 
     &-toggle_icon {
-      color: RGBA(var(--color-mariner-500));
+      color: rgb(var(--color-mariner-500));
     }
 
     &-social {
@@ -23,16 +25,13 @@
   .bmb_check-external-link-button {
     display: flex;
     align-items: center;
+    color: currentColor;
 
     &-element {
       &:focus,
       &:focus-visible,
       &:hover:not(:disabled) {
-        color: var(--general_contrasts-75);
-      }
-
-      &:active:not(:disabled) {
-        color: var(--general_contrasts-75);
+        opacity: 75%;
       }
     }
   }

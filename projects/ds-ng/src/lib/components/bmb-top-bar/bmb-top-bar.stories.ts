@@ -5,6 +5,7 @@ import {
   getGeneralComponentDescription,
   getGeneralDescription,
   getOnEvent,
+  RELEVANT_TITLE_LEVEL,
 } from '../../utils/doc/utils';
 import {
   DBmbGenericParamDesc,
@@ -82,6 +83,7 @@ ${getBasicExampleBlock('BmbTopBarComponent')}
       table: {
         category: 'Properties',
         type: { summary: 'string' },
+        defaultValue: getDefaultValueControl(),
       },
     },
     mobileImage: {
@@ -92,6 +94,7 @@ ${getBasicExampleBlock('BmbTopBarComponent')}
       table: {
         category: 'Properties',
         type: { summary: 'string' },
+        defaultValue: getDefaultValueControl(),
       },
     },
     appName: {
@@ -161,6 +164,25 @@ ${getBasicExampleBlock('BmbTopBarComponent')}
         }`,
         },
         category: 'Properties',
+        defaultValue: getDefaultValueControl(),
+      },
+    },
+    allowSidebarForMobile: {
+      control: {
+        type: 'boolean',
+      },
+      description: `
+Adjusts the contents of the **Top bar** when true.
+
+The Top bar header content shifts to the left, this allows the sidebar to be displayed in the mobile header.
+
+${RELEVANT_TITLE_LEVEL[2]}
+The setting applies only to mobile.
+      `,
+      table: {
+        type: { summary: 'boolean' },
+        category: 'Properties',
+        defaultValue: getDefaultValueControl(true),
       },
     },
     helpButtonClick: getOnClickParam(getOnEvent('help', 'helpButtonClick')),
@@ -191,6 +213,18 @@ ${getBasicExampleBlock('BmbTopBarComponent')}
     showHelpButton: false,
     backToHomeClick: () => {
       console.log('Back to home clicked');
+    },
+    helpButtonClick: () => {
+      console.log('helpButtonClick clicked');
+    },
+    alertButtonClick: () => {
+      console.log('alertButtonClick clicked');
+    },
+    roleButtonClick: () => {
+      console.log('roleButtonClick clicked');
+    },
+    userProfileClick: () => {
+      console.log('userProfileClick clicked');
     },
   },
 } as Meta<typeof BmbTopBarComponent>;
@@ -243,6 +277,7 @@ export const Mitec: Story = {
 };
 
 export const MitecWithUserInformation: Story = {
+  name: 'Mitec with user information',
   args: {
     mitec: true,
     userInformation: {
@@ -250,10 +285,12 @@ export const MitecWithUserInformation: Story = {
       image: 'https://picsum.photos/id/64/200/300',
       role: 'Alumno',
     },
+    alertNotification: undefined,
   },
 };
 
 export const MitecWithUserInformationWithRoleChange: Story = {
+  name: 'Mitec with user information with role change',
   args: {
     mitec: true,
     userInformation: {

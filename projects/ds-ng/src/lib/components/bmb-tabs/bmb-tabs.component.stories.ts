@@ -68,9 +68,6 @@ export default {
           'observer',
           'scrollLeft',
           'scrollRight',
-          '',
-          '',
-          '',
         ],
       },
       description: {
@@ -99,9 +96,10 @@ The \`BmbTabsComponent\` optionally integrates with the \`TabsService\`, which a
 - Make sure to **avoid re-emitting the already active tab**, as it could cause infinite loops.
 `)}
 ${getBasicExampleBlock(
-  `BmbTabsComponent,
-  BmbLegendComponent,
-  BmbContainerComponent,
+  `
+    BmbTabsComponent,
+    BmbLegendComponent,
+    BmbContainerComponent,
 `,
   `import { ViewChild, inject, DestroyRef } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';

@@ -153,7 +153,7 @@
               [ngClass]="{
                 'bmb_table-sticky': i === 0,
                 truncated: truncate(),
-                wrapped: wrap()
+                wrapped: wrap(),
               }"
             >
               <!-- Título -->
@@ -240,7 +240,7 @@
           [class.bmb_table-expandible]="expandedElement === row"
           [ngClass]="{
             'bmb_table-even': isEven(i),
-            'bmb_table-odd': isOdd(i)
+            'bmb_table-odd': isOdd(i),
           }"
         ></tr>
 
@@ -275,7 +275,7 @@
           [ngClass]="{
             'bmb_table-paginator-btn-disabled': serverSide()
               ? currentPage() === 0
-              : !paginator?.hasPreviousPage()
+              : !paginator?.hasPreviousPage(),
           }"
           (click)="serverSide() ? goToFirstPage() : paginator.firstPage()"
           class="bmb_table-paginator-btn"
@@ -292,7 +292,7 @@
           [ngClass]="{
             'bmb_table-paginator-btn-disabled': serverSide()
               ? currentPage() === 0
-              : !paginator?.hasPreviousPage()
+              : !paginator?.hasPreviousPage(),
           }"
           (click)="serverSide() ? goToPreviousPage() : paginator.previousPage()"
           class="bmb_table-paginator-btn"
@@ -311,7 +311,7 @@
           [ngClass]="{
             'bmb_table-paginator-btn-disabled': serverSide()
               ? currentPage() >= lastPage()
-              : !paginator?.hasNextPage()
+              : !paginator?.hasNextPage(),
           }"
           (click)="serverSide() ? goToNextPage() : paginator.nextPage()"
           class="bmb_table-paginator-btn"
@@ -330,7 +330,7 @@
           [ngClass]="{
             'bmb_table-paginator-btn-disabled': serverSide()
               ? currentPage() >= lastPage()
-              : !paginator?.hasNextPage()
+              : !paginator?.hasNextPage(),
           }"
           (click)="serverSide() ? goToLastPage() : paginator.lastPage()"
           class="bmb_table-paginator-btn"

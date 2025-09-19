@@ -82,18 +82,20 @@ export class AppComponent {
         icon: 'list_alt_check',
         title: 'Forms',
         link: '/form-validator',
-      },
-      {
-        id: 3,
-        icon: 'align_flex_center',
-        title: 'Flex',
-        link: '/flex',
-      },
-      {
-        id: 4,
-        icon: 'dropdown',
-        title: 'Dropdown',
-        link: '/dropdown',
+        children: [
+          {
+            id: 3,
+            icon: 'align_flex_center',
+            title: 'Flex',
+            link: '/flex',
+          },
+          {
+            id: 4,
+            icon: 'dropdown',
+            title: 'Dropdown',
+            link: '/dropdown',
+          },
+        ],
       },
     ],
   ];

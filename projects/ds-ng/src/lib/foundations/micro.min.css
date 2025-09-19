@@ -405,6 +405,7 @@
   --color-mitec-orange: 255, 153, 1;
   --mitec_orange-light: var(--color-mitec-orange);
   --mitec_orange-primary: 187, 76, 2;
+  --mitec_orange-tint: 255, 209, 70;
   --color-mitec-purple: 239, 131, 214;
   --mitec_purple-tint: var(--color-mitec-purple);
   --mitec_purple-primary: var(--color-purple-light);
@@ -488,31 +489,41 @@
   --branding-primary: var(--color-mariner-700);
   --alert_primary-alert-primary: 26, 118, 132;
   --alert_primary-alert-light: 27, 192, 203;
-  --color-button-gradient: rgba(var(--color-teal-primary), 1) 0%,
+  --color-button-gradient:
+    rgba(var(--color-teal-primary), 1) 0%,
     rgba(var(--color-blue-primary), 1) 100%;
-  --color-blue-gradient: rgba(var(--color-teal-primary), 1) 0%,
+  --color-blue-gradient:
+    rgba(var(--color-teal-primary), 1) 0%,
     rgba(var(--color-blue-pigment), 1) 100%;
-  --color-green-gradient: rgba(var(--color-neon-primary), 1) 0%,
+  --color-green-gradient:
+    rgba(var(--color-neon-primary), 1) 0%,
     rgba(var(--color-green-light), 1) 100%;
-  --color-purple-gradient: rgba(var(--color-purple-primary), 1) 0%,
+  --color-purple-gradient:
+    rgba(var(--color-purple-primary), 1) 0%,
     rgba(var(--color-purple-light), 1) 100%;
-  --color-bg-gradient: rgba(var(--color-japanese-indigo), 1) 0%,
+  --color-bg-gradient:
+    rgba(var(--color-japanese-indigo), 1) 0%,
     rgba(var(--color-background-main), 1) 100%;
-  --color-bg-wheel: rgba(var(--color-eerie-black), 1) 0%,
+  --color-bg-wheel:
+    rgba(var(--color-eerie-black), 1) 0%,
     rgba(var(--color-background-main), 1) 100%;
-  --color-bg-gradient-light: rgba(var(--color-white-primary), 1) 0%,
-    rgba(var(--color-blue-tint), 1) 100%;
-  --color-bg-wheel-light: rgba(var(--color-white-primary), 1) 0%,
-    rgba(var(--color-blue-tint), 1) 100%;
-  --color-bg-gradient-tec: rgba(var(--color-container-home-tec), 1) 0%,
+  --color-bg-gradient-light:
+    rgba(var(--color-white-primary), 1) 0%, rgba(var(--color-blue-tint), 1) 100%;
+  --color-bg-wheel-light:
+    rgba(var(--color-white-primary), 1) 0%, rgba(var(--color-blue-tint), 1) 100%;
+  --color-bg-gradient-tec:
+    rgba(var(--color-container-home-tec), 1) 0%,
     rgba(var(--color-blue-tec), 1) 100%;
-  --color-bg-wheel-tec: rgba(var(--color-container-home-tec), 1) 0%,
+  --color-bg-wheel-tec:
+    rgba(var(--color-container-home-tec), 1) 0%,
     rgba(var(--color-blue-tec), 1) 100%;
-  --color-academic-gradient: RGBA(var(--color-mariner-700)) 0%,
-    RGBA(var(--color-blue-light)) 100%;
-  --color-life-gradient: rgba(var(--color-green-primary), 1) 0%,
+  --color-academic-gradient:
+    RGBA(var(--color-mariner-700)) 0%, RGBA(var(--color-blue-light)) 100%;
+  --color-life-gradient:
+    rgba(var(--color-green-primary), 1) 0%,
     rgba(var(--color-green-light), 1) 100%;
-  --color-event-gradient: rgba(var(--color-purple-primary), 1) 0%,
+  --color-event-gradient:
+    rgba(var(--color-purple-primary), 1) 0%,
     rgba(var(--color-purple-light), 1) 100%;
   --white-primary: RGBA(var(--color-white-primary), 1);
   --purple-primary: RGBA(var(--color-purple-primary), 1);
@@ -779,12 +790,12 @@
   background-color: var(--general_contrasts-25);
   color: var(--general_contrasts-100);
 }
-#storybook-docs .sbdocs-title,
-#storybook-docs .sbdocs h1,
-#storybook-docs .sbdocs h2,
-#storybook-docs .sbdocs h3,
-#storybook-docs .sbdocs h4,
-#storybook-docs .sbdocs h5 {
+#storybook-docs .sbdocs-title:not([class^="bmb"]),
+#storybook-docs .sbdocs h1:not([class^="bmb"]),
+#storybook-docs .sbdocs h2:not([class^="bmb"]),
+#storybook-docs .sbdocs h3:not([class^="bmb"]),
+#storybook-docs .sbdocs h4:not([class^="bmb"]),
+#storybook-docs .sbdocs h5:not([class^="bmb"]) {
   color: var(--general_contrasts-100);
 }
 #storybook-docs
@@ -2282,6 +2293,11 @@ ion-content {
 .bmb_layout-grid-item > .bmb_text-editor-container,
 .bmb_layout-grid-item > .bmb_home-card,
 .bmb_layout-grid-item > .bmb_home-card > .bmb_home-card-wrapper,
+.bmb_layout-grid-item > bmb-container-button .bmb_container-button,
+.bmb_layout-grid-item
+  > bmb-container-button
+  .bmb_container-button
+  .bmb_check-external-link-button-element,
 .bmb_layout-item > .bmb_card,
 .bmb_layout-item > .bmb-drop-zone,
 .bmb_layout-item > .bmb_container-primary-container,
@@ -2294,6 +2310,11 @@ ion-content {
 .bmb_layout-item > .bmb_text-editor-container,
 .bmb_layout-item > .bmb_home-card,
 .bmb_layout-item > .bmb_home-card > .bmb_home-card-wrapper,
+.bmb_layout-item > bmb-container-button .bmb_container-button,
+.bmb_layout-item
+  > bmb-container-button
+  .bmb_container-button
+  .bmb_check-external-link-button-element,
 .bmb_vertical-layout-item > .bmb_card,
 .bmb_vertical-layout-item > .bmb-drop-zone,
 .bmb_vertical-layout-item > .bmb_container-primary-container,
@@ -2305,7 +2326,12 @@ ion-content {
 .bmb_vertical-layout-item > .bmb_text-editor,
 .bmb_vertical-layout-item > .bmb_text-editor-container,
 .bmb_vertical-layout-item > .bmb_home-card,
-.bmb_vertical-layout-item > .bmb_home-card > .bmb_home-card-wrapper {
+.bmb_vertical-layout-item > .bmb_home-card > .bmb_home-card-wrapper,
+.bmb_vertical-layout-item > bmb-container-button .bmb_container-button,
+.bmb_vertical-layout-item
+  > bmb-container-button
+  .bmb_container-button
+  .bmb_check-external-link-button-element {
   height: 100%;
 }
 .bmb_layout-grid-item > .bmb_home-card > .bmb_home-card-wrapper,
@@ -3687,9 +3713,9 @@ ion-content {
 .bmb_checkbox-input:is(:checked) + .bmb_checkbox-mark::after {
   display: block;
   position: relative;
-  margin: auto;
+  margin: 0.125rem auto 0;
   height: 0.75rem;
-  width: 0.1875rem;
+  width: 0.3125rem;
   border: solid var(--white-primary);
   border-width: 0 0.1875rem 0.1875rem 0;
   transform: rotate(45deg);
@@ -3755,7 +3781,7 @@ ion-content {
 .bmb_checkbox-input-indeterminate + .bmb_checkbox-mark::after {
   display: block;
   position: relative;
-  margin: auto;
+  margin: 0.125rem auto 0;
   height: 0.1875rem;
   width: 0.75rem;
   background-color: var(--white-primary);

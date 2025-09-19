@@ -2,6 +2,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   input,
+  output,
   ViewEncapsulation,
 } from '@angular/core';
 import { BmbUserImageComponent } from '../../bmb-user-image/bmb-user-image.component';
@@ -42,13 +43,26 @@ export class BmbUserSummaryContentComponent {
   contentLayout = input<IBmbContentLayoutSummary>('column');
   gapSize = input<SizeNames>('none');
 
+  onUserClick = output<MouseEvent>();
+
   getClass(mainClassName: string): string {
-    return `${mainClassName}-${this.contentLayout()}`;
+    if (!!this.name()) return `${mainClassName}-${this.contentLayout()}`;
+
+    return '';
   }
 
-  getSalutationClasses(mainClassName: string): string[] {
+  getSalutationClasses(
+    mainClassName: string,
+    isRole: boolean = false,
+  ): string[] {
     const classes: string[] = [this.getClass(mainClassName)];
-    if (!this.isProfile()) classes.push(`${mainClassName}-salutation`);
+
+    if (!this.isProfile() && this.contentLayout() === 'column')
+      classes.push(`${mainClassName}-salutation`);
+    if (isRole && this.contentLayout() === 'row') {
+      classes.push('bmb_top-bar-user-section-role');
+      classes.push('bmb_user-summary_content-wrapper-role');
+    }
     return classes;
   }
 
@@ -56,5 +70,9 @@ export class BmbUserSummaryContentComponent {
     if (!!this.salutation() && !this.isProfile())
       return `¡${this.salutation()}${!!this.name() ? ' '.concat(this.name()) : ''}!`;
     return this.name();
+  }
+
+  handleUserClick(event: MouseEvent) {
+    this.onUserClick.emit(event);
   }
 }
