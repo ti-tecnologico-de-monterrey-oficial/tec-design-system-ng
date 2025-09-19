@@ -121,9 +121,11 @@ export class BmbDropdownComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes['options']) {
-      this.initOptions(changes['options'].currentValue);
-      this.control().setValue(this.getValidInitialValues());
+    if (!this.control()) {
+      if (changes['options']) {
+        this.initOptions(changes['options'].currentValue);
+        this.control().setValue(this.getValidInitialValues());
+      }
     }
   }
 
