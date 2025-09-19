@@ -40,7 +40,7 @@
           class="bmb_sidebar-item"
           [ngClass]="{
             'bmb_sidebar-item-left-space':
-              position() === 'right' && hasSubmenu && !element.children?.length
+              position() === 'right' && hasSubmenu && !element.children?.length,
           }"
           (click)="checkToCloseSidebar(element)"
         >
@@ -54,7 +54,7 @@
             <section
               class="bmb_sidebar-children"
               [ngClass]="{
-                'bmb_sidebar-children-open': selectedElement === element
+                'bmb_sidebar-children-open': selectedElement === element,
               }"
             >
               @if (!!selectedElement && isOpen) {
@@ -118,7 +118,7 @@
   aria-label="Sidebar Navigation"
   [ngClass]="{
     'bmb-active': isActive,
-    'bmb_sidebar-desktop-right': position() === 'right'
+    'bmb_sidebar-desktop-right': position() === 'right',
   }"
   (mouseleave)="closeSideBar()"
 >
@@ -134,7 +134,7 @@
   class="bmb_sidebar bmb_sidebar-mobile"
   [ngClass]="{
     'bmb_sidebar-open': isOpen,
-    'bmb_sidebar-mobile-right': position() === 'right'
+    'bmb_sidebar-mobile-right': position() === 'right',
   }"
   aria-label="Sidebar Navigation"
 >

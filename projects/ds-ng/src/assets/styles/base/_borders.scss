@@ -1,6 +1,7 @@
 @use "rem" as rem;
 
-$colors: general_contrasts-150, general_contrasts-100, general_contrasts-75,
+$colors:
+  general_contrasts-150, general_contrasts-100, general_contrasts-75,
   general_contrasts-50, general_contrasts-25, general_contrasts-20,
   general_contrasts-15, general_contrasts-5, inherit;
 $size: 1, 2;

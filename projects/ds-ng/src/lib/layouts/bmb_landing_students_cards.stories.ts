@@ -49,7 +49,7 @@ import * as layoutStory from '../directives/bmb-layout/bmb-layout.stories';
         [userInformation]="{
           name: 'Santiago Hernández',
           image: 'https://picsum.photos/id/64/200/300',
-          role: 'Alumno'
+          role: 'Alumno',
         }"
         [hasLogoutButton]="false"
         [appName]="'TecTest'"
@@ -62,18 +62,18 @@ import * as layoutStory from '../directives/bmb-layout/bmb-layout.stories';
             { description: 'Descripcion Corta ', time: '4d 12h' },
             {
               description: 'Descripcion Corta Larga asdasd adasdaw',
-              time: '4d 12h'
-            }
+              time: '4d 12h',
+            },
           ],
           all: [
             { description: 'Descripcion Corta All', time: '4d 12h' },
-            { description: 'Descripcion Corta all 1', time: '4d 12h' }
+            { description: 'Descripcion Corta all 1', time: '4d 12h' },
           ],
           seen: [
             { description: 'Descripcion Corta seen 1', time: '4d 12h' },
             { description: 'Descripcion Corta seen 2', time: '4d 12h' },
-            { description: 'Descripcion Corta seen 3', time: '4d 12h' }
-          ]
+            { description: 'Descripcion Corta seen 3', time: '4d 12h' },
+          ],
         }"
       />
       <main class="bmb_template-single-home-card-main">
@@ -177,9 +177,9 @@ import * as layoutStory from '../directives/bmb-layout/bmb-layout.stories';
             id: 2,
             icon: 'task',
             title: 'Agregar firmantes',
-            link: 'https://www.youtube.com/watch?v=beh56CrNRsQ'
-          }
-        ]
+            link: 'https://www.youtube.com/watch?v=beh56CrNRsQ',
+          },
+        ],
       ]"
       [title]="'Navegacion para mobiles'"
     ></bmb-sidebar>

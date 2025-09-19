@@ -266,7 +266,7 @@ export class AppComponent {
     const updated = files.filter((f) => f.name !== fileName);
 
     this.form.patchValue({
-      file: updated.length > 1 ? updated : updated[0] ?? null,
+      file: updated.length > 1 ? updated : (updated[0] ?? null),
     });
 
     const progressMap = { ...this.progress() };

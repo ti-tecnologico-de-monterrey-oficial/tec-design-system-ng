@@ -22,7 +22,7 @@
             'bmb_tabs-item-mobile': tab.isMobile,
             'bmb_tabs-item-desktop': tab.isDesktop,
             'bmb_tabs-item-mobile-remove': tab.isMobile === false,
-            'bmb_tabs-item-desktop-remove': tab.isDesktop === false
+            'bmb_tabs-item-desktop-remove': tab.isDesktop === false,
           }"
         >
           <button
@@ -33,7 +33,7 @@
             (click)="selectTab(tab.id)"
             [ngClass]="{
               'bmb_tabs-item-active': $index === selectedTabId() - 1,
-              'bmb_tabs-item-uppercase': format() === 'uppercase'
+              'bmb_tabs-item-uppercase': format() === 'uppercase',
             }"
           >
             <span class="bmb_tabs-content">

@@ -30,7 +30,7 @@
     <section
       [class]="getClassesContent()"
       [ngClass]="{
-        'bmb_accordion-content-open': this._expanded()
+        'bmb_accordion-content-open': this._expanded(),
       }"
     >
       <ng-container [ngTemplateOutlet]="bmbAccordionContent" />
