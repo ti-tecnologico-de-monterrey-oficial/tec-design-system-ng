@@ -229,6 +229,9 @@ ${getBasicExampleBlock('BmbAccountStatementComponent')}
     closeEvent: () => {
       console.log('closeEvent');
     },
+    payEvent: (amount: number) => {
+      console.log('payEvent', amount);
+    }
   },
 } as Meta<typeof BmbAccountStatementComponent>;
 

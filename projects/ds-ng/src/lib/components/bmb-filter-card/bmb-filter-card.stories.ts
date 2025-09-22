@@ -120,7 +120,9 @@ ${getBasicExampleBlock('BmbFilterCardComponent')}
     secondaryBtnLabel: 'Limpiar Filtros',
     icon: 'tune',
     placeholderSearch: 'Search',
-    applyFilters: '',
+    applyFilters: (filters: any) => {
+      console.log('Filters applied', filters);
+    },
     controlTypes: [
       {
         title: 'Filter - tags',

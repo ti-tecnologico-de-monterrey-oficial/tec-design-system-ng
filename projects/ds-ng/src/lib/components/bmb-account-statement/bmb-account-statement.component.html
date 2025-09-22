@@ -60,7 +60,7 @@
 
 <ng-template #modalTemplate>
   <section class="bmb_account-statement-modal">
-    <form [formGroup]="amountForm" (ngSubmit)="onSubmit()">
+    <form [formGroup]="amountForm" (ngSubmit)="handleSubmit()">
       <bmb-progress-bar
         appearance="info"
         type="container"
@@ -109,7 +109,7 @@
         <bmb-input
           type="number"
           [max]="totalCount() - counter()"
-          [min]="0"
+          [min]="1"
           pattern="\d*"
           [errorMessage]="errorMessage()"
           [isRequired]="true"

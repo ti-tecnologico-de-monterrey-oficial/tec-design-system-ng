@@ -3,9 +3,8 @@ import { BmbFilterCardComponent } from './bmb-filter-card.component';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
-import { BmbModalComponent } from '../bmb-modal/bmb-modal.component';
-import { MatDialog } from '@angular/material/dialog';
 import { IBmbControlType } from './bmb-filter-card.interface';
+import { BmbNativeModalService } from '../../services/native-modal.service';
 
 describe('BmbFilterCardComponent', () => {
   beforeEach(async () => {
@@ -14,11 +13,10 @@ describe('BmbFilterCardComponent', () => {
         CommonModule,
         ReactiveFormsModule,
         BmbIconComponent,
-        BmbModalComponent,
       ],
       providers: [
         {
-          provide: MatDialog,
+          provide: BmbNativeModalService,
           useValue: {
             open: () => {},
           },

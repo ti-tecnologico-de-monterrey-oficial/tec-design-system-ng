@@ -31,13 +31,13 @@ import {
 import { getWeekDays, getMonthDays, DEFAULT_DATE_FORMAT } from './utils';
 import { BmbCalendarService } from '../../services/calendar.service';
 import { BmbNativeModalService } from '../../services/native-modal.service';
-import { ModalDataConfig } from '../bmb-modal/bmb-modal.interface';
 import { BmbBadgeComponent } from '../bmb-badge/bmb-badge.component';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { BmbCheckboxComponent } from '../bmb-checkbox/bmb-checkbox.component';
 import { BmbDividerComponent } from '../bmb-divider/bmb-divider.component';
 import { BmbLayoutDirective } from '../../directives/bmb-layout/bmb-layout.directive';
 import { BmbLayoutItemDirective } from '../../directives/bmb-layout/bmb-layout-item.directive';
+import { IBmbNativeModal } from '../bmb-modal/bmb-modal.interface';
 
 const parseFromFormat = (dateString: string, format: string): DateTime => {
   if (format.toLowerCase() === 'iso') return DateTime.fromISO(dateString);
@@ -281,7 +281,7 @@ export class BmbCalendarComponent implements OnInit, AfterViewInit {
 
     this.selectedEvent = event;
 
-    const data: ModalDataConfig = {
+    const data: IBmbNativeModal = {
       title: modalTitle,
       subtitle: event.subtitle,
       content: this.detailContent,
