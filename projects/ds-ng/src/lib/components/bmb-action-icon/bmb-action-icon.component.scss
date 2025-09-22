@@ -26,12 +26,18 @@
     display: flex;
     align-items: center;
     color: currentColor;
+    opacity: 1;
 
     &-element {
       &:focus,
       &:focus-visible,
       &:hover:not(:disabled) {
         opacity: 75%;
+      }
+
+      &:active:not(:disabled) {
+        color: var(--buttons-primary-select);
+        opacity: 90%;
       }
     }
   }
