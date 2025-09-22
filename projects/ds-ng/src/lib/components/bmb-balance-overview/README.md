@@ -44,7 +44,18 @@ The component accepts the following inputs to customize its behavior and appeara
 The component's template is structured as follows:
 
 ```html
-<bmb-balance-overview [progressCirclePercent]="75" [progressCircleValue]="'75%'" [showProgressCircleValue]="true" [progressCircleTitle]="'Progress Overview'" [showProgressCircleTitle]="true" [showProgressCircleBackground]="true" [labelPrimary]="'Total Balance'" [valuePrimary]="'$1,000'" [labelSecondary]="'Remaining Balance'" [valueSecondary]="'$250'"></bmb-balance-overview>
+<bmb-balance-overview
+  [progressCirclePercent]="75"
+  [progressCircleValue]="'75%'"
+  [showProgressCircleValue]="true"
+  [progressCircleTitle]="'Progress Overview'"
+  [showProgressCircleTitle]="true"
+  [showProgressCircleBackground]="true"
+  [labelPrimary]="'Total Balance'"
+  [valuePrimary]="'$1,000'"
+  [labelSecondary]="'Remaining Balance'"
+  [valueSecondary]="'$250'"
+></bmb-balance-overview>
 ```
 
 ---
@@ -64,7 +75,18 @@ Ensure the styles are defined in the corresponding SCSS file to maintain visual 
 ## Usage Example
 
 ```html
-<bmb-balance-overview [progressCirclePercent]="50" [progressCircleValue]="'50%'" [showProgressCircleValue]="true" [progressCircleTitle]="['Total Progress', 'This Month']" [showProgressCircleTitle]="true" [showProgressCircleBackground]="false" [labelPrimary]="'Paid Amount'" [valuePrimary]="'$500'" [labelSecondary]="'Due Amount'" [valueSecondary]="'$500'"></bmb-balance-overview>
+<bmb-balance-overview
+  [progressCirclePercent]="50"
+  [progressCircleValue]="'50%'"
+  [showProgressCircleValue]="true"
+  [progressCircleTitle]="['Total Progress', 'This Month']"
+  [showProgressCircleTitle]="true"
+  [showProgressCircleBackground]="false"
+  [labelPrimary]="'Paid Amount'"
+  [valuePrimary]="'$500'"
+  [labelSecondary]="'Due Amount'"
+  [valueSecondary]="'$500'"
+></bmb-balance-overview>
 ```
 
 ---

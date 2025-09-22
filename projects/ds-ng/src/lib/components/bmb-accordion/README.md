@@ -59,7 +59,21 @@ The component supports content projection for the header and content sections us
 The component's template is structured as follows:
 
 ```html
-<bmb-accordion [borderRadius]="'m'" [margin]="'m'" [paddingHeader]="'m'" [paddingContent]="'m'" [icon]="'expand_more'" [accordionId]="1" [hideToggle]="false" [active]="false" [disabled]="false" [expanded]="true" (closed)="onAccordionClosed()" (opened)="onAccordionOpened()" (onClick)="onAccordionClicked()">
+<bmb-accordion
+  [borderRadius]="'m'"
+  [margin]="'m'"
+  [paddingHeader]="'m'"
+  [paddingContent]="'m'"
+  [icon]="'expand_more'"
+  [accordionId]="1"
+  [hideToggle]="false"
+  [active]="false"
+  [disabled]="false"
+  [expanded]="true"
+  (closed)="onAccordionClosed()"
+  (opened)="onAccordionOpened()"
+  (onClick)="onAccordionClicked()"
+>
   <ng-template #bmbAccordionHeader>
     <h3>Accordion Header</h3>
   </ng-template>
@@ -90,7 +104,21 @@ Handles keyboard interactions (`Enter` or `Space`) to toggle the accordion.
 ## Usage Example
 
 ```html
-<bmb-accordion [borderRadius]="'l'" [margin]="'s'" [paddingHeader]="'m'" [paddingContent]="'l'" [icon]="'expand_more'" [accordionId]="2" [hideToggle]="false" [active]="true" [disabled]="false" [expanded]="false" (closed)="onAccordionClosed()" (opened)="onAccordionOpened()" (onClick)="onAccordionClicked()">
+<bmb-accordion
+  [borderRadius]="'l'"
+  [margin]="'s'"
+  [paddingHeader]="'m'"
+  [paddingContent]="'l'"
+  [icon]="'expand_more'"
+  [accordionId]="2"
+  [hideToggle]="false"
+  [active]="true"
+  [disabled]="false"
+  [expanded]="false"
+  (closed)="onAccordionClosed()"
+  (opened)="onAccordionOpened()"
+  (onClick)="onAccordionClicked()"
+>
   <ng-template #bmbAccordionHeader>
     <h3>Custom Header</h3>
   </ng-template>

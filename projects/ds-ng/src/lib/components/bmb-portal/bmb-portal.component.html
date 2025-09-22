@@ -88,7 +88,7 @@
 >
   @for (notification of notifications; track $index) {
     @if (notification.position === position) {
-      @if (notification.component === "toast") {
+      @if (notification.component === 'toast') {
         <bmb-toast
           [class.is-closing]="notification.closing"
           [title]="notification.title"
@@ -98,7 +98,7 @@
           [id]="notification.id || $index"
           (onClose)="closeNotification(notification)"
         />
-      } @else if (notification.component === "notice-card") {
+      } @else if (notification.component === 'notice-card') {
         <bmb-notice-card
           [src]="notification.media"
           [title]="notification.title"

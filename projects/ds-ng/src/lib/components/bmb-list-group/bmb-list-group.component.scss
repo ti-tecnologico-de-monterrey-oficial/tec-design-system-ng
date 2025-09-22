@@ -1,7 +1,7 @@
-@use "sass:map";
-@use "../../../assets/styles/base/fonts" as fonts;
-@use "../../../assets/styles/base/rem" as rem;
-@use "../../../assets/styles/base/mixins" as mixins;
+@use 'sass:map';
+@use '../../../assets/styles/base/fonts' as fonts;
+@use '../../../assets/styles/base/rem' as rem;
+@use '../../../assets/styles/base/mixins' as mixins;
 
 .bmb_list-group {
   @include fonts.font(3, regular);
@@ -15,15 +15,15 @@
     display: grid;
     grid-template-columns: repeat(1, 1fr);
 
-    @include mixins.media-query(768, "min") {
+    @include mixins.media-query(768, 'min') {
       grid-template-columns: repeat(2, 1fr);
     }
 
-    @include mixins.media-query(992, "min") {
+    @include mixins.media-query(992, 'min') {
       grid-template-columns: repeat(3, 1fr);
     }
 
-    @include mixins.media-query(1200, "min") {
+    @include mixins.media-query(1200, 'min') {
       grid-template-columns: repeat(4, 1fr);
     }
   }

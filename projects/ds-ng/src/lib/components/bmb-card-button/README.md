@@ -76,7 +76,25 @@ Handles the "Add Content" action and emits the `onAddContentClick` event based o
 The component's template is structured as follows:
 
 ```html
-<bmb-card-button [isFullInteractive]="true" [title]="'Card Title'" [body]="'This is the body text of the card.'" [badge]="{ text: 'New', appearance: 'primary' }" [icon]="'home'" [leftContentIcon]="'menu'" [leftContentImage]="{ src: 'image.jpg', alt: 'Image' }" [leftContent]="true" [hasMenu]="true" [menuItems]="[{ label: 'Option 1', action: 'action1' }, { label: 'Option 2', action: 'action2' }]" [isSmall]="false" [botIcon]="'settings'" [smallTitle]="'Small Card Title'" [smallDescription]="'Small card description.'" (onAddContentClick)="handleAddContent($event)" (onTitleClick)="handleTitleClick($event)" (onSmallClick)="handleSmallClick($event)">
+<bmb-card-button
+  [isFullInteractive]="true"
+  [title]="'Card Title'"
+  [body]="'This is the body text of the card.'"
+  [badge]="{ text: 'New', appearance: 'primary' }"
+  [icon]="'home'"
+  [leftContentIcon]="'menu'"
+  [leftContentImage]="{ src: 'image.jpg', alt: 'Image' }"
+  [leftContent]="true"
+  [hasMenu]="true"
+  [menuItems]="[{ label: 'Option 1', action: 'action1' }, { label: 'Option 2', action: 'action2' }]"
+  [isSmall]="false"
+  [botIcon]="'settings'"
+  [smallTitle]="'Small Card Title'"
+  [smallDescription]="'Small card description.'"
+  (onAddContentClick)="handleAddContent($event)"
+  (onTitleClick)="handleTitleClick($event)"
+  (onSmallClick)="handleSmallClick($event)"
+>
   <ng-template #customContent>
     <p>Custom content goes here.</p>
   </ng-template>
@@ -88,7 +106,19 @@ The component's template is structured as follows:
 ## Usage Example
 
 ```html
-<bmb-card-button [isFullInteractive]="true" [title]="'Interactive Card'" [body]="'This card has interactive features.'" [badge]="{ text: 'Hot', appearance: 'warning' }" [icon]="'star'" [leftContent]="true" [hasMenu]="true" [menuItems]="[{ label: 'Edit', action: 'edit' }, { label: 'Delete', action: 'delete' }]" (onAddContentClick)="onAddContent($event)" (onTitleClick)="onTitleClick($event)" (onSmallClick)="onSmallClick($event)">
+<bmb-card-button
+  [isFullInteractive]="true"
+  [title]="'Interactive Card'"
+  [body]="'This card has interactive features.'"
+  [badge]="{ text: 'Hot', appearance: 'warning' }"
+  [icon]="'star'"
+  [leftContent]="true"
+  [hasMenu]="true"
+  [menuItems]="[{ label: 'Edit', action: 'edit' }, { label: 'Delete', action: 'delete' }]"
+  (onAddContentClick)="onAddContent($event)"
+  (onTitleClick)="onTitleClick($event)"
+  (onSmallClick)="onSmallClick($event)"
+>
   <ng-template #customContent>
     <p>Custom content for the card.</p>
   </ng-template>

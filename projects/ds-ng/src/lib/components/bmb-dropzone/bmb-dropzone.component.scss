@@ -1,6 +1,6 @@
-@use "../../../assets/styles/base/rem" as rem;
-@use "../../../assets/styles/base/fonts" as fonts;
-@use "../../../assets/styles/base/mixins" as mixins;
+@use '../../../assets/styles/base/rem' as rem;
+@use '../../../assets/styles/base/fonts' as fonts;
+@use '../../../assets/styles/base/mixins' as mixins;
 
 .bmb-drop-zone {
   color: RGBA(var(--color-charade-500));
@@ -74,14 +74,14 @@
       display: grid;
       gap: 0.5rem;
       grid-template-areas:
-        "icon name"
-        "icon progress";
+        'icon name'
+        'icon progress';
       grid-template-columns: rem.rem_calc(24) 1fr;
       margin: 0;
 
       &-error {
         color: var(--red-primary);
-        grid-template-areas: "icon name";
+        grid-template-areas: 'icon name';
       }
 
       &-loading .bmb-drop-zone-list-files-icon {
@@ -89,7 +89,7 @@
       }
 
       &-valid {
-        grid-template-areas: "icon name";
+        grid-template-areas: 'icon name';
       }
 
       &-icon {

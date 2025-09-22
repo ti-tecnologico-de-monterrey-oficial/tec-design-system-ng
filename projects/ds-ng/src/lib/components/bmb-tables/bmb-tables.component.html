@@ -20,7 +20,7 @@
           @for (column of parsedFiltersColumns(); track $index) {
             <section class="bmb_table-filter-item">
               @switch (column.type) {
-                @case ("number") {
+                @case ('number') {
                   <div class="bmb_table-filter-item-number" margin="none">
                     <bmb-input
                       [label]="column.label + ' mínimo'"
@@ -39,7 +39,7 @@
                   </div>
                 }
 
-                @case ("date") {
+                @case ('date') {
                   <bmb-date-range
                     [label]="column.label"
                     [placeholderStartDate]="'Desde'"
@@ -163,7 +163,7 @@
                   [ngTemplateOutletContext]="{ column: column, index: i }"
                 ></ng-template>
               } @else {
-                {{ this.lang() === "es" ? column.label : column.labelEn }}
+                {{ this.lang() === 'es' ? column.label : column.labelEn }}
               }
 
               <!-- Resize Handle -->
@@ -181,7 +181,7 @@
               tooltipClass="bmb_tooltip"
               [ngClass]="getCellClasses(row, column.dataKey, i)"
             >
-              @if (isTemplateRef(row[column.dataKey + "Template"])) {
+              @if (isTemplateRef(row[column.dataKey + 'Template'])) {
                 <ng-template
                   [ngTemplateOutlet]="row[column.dataKey + 'Template']"
                   [ngTemplateOutletContext]="{ row: row }"

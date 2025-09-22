@@ -1,27 +1,27 @@
 <section [ngClass]="getSectionClass()">
   @switch (template()) {
-    @case ("single-header") {
+    @case ('single-header') {
       <ng-container [ngTemplateOutlet]="singleHeader" />
     }
-    @case ("header-with-footer") {
+    @case ('header-with-footer') {
       <ng-container [ngTemplateOutlet]="headerWithFooter" />
     }
-    @case ("card-header-with-footer") {
+    @case ('card-header-with-footer') {
       <ng-container [ngTemplateOutlet]="cardHeaderWithFooter" />
     }
-    @case ("header-with-button-list") {
+    @case ('header-with-button-list') {
       <ng-container [ngTemplateOutlet]="headerWithButtonList" />
     }
-    @case ("header-with-card-list") {
+    @case ('header-with-card-list') {
       <ng-container [ngTemplateOutlet]="headerWithButtonList" />
     }
-    @case ("login") {
+    @case ('login') {
       <ng-container [ngTemplateOutlet]="login" />
     }
-    @case ("calendar") {
+    @case ('calendar') {
       <ng-container [ngTemplateOutlet]="calendar" />
     }
-    @case ("external-link") {
+    @case ('external-link') {
       <ng-container [ngTemplateOutlet]="externalLink" />
     }
   }

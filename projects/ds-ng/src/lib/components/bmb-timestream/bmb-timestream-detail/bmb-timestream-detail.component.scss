@@ -1,6 +1,6 @@
-@use "../../../../assets/styles/base/rem" as rem;
-@use "../../../../assets/styles/base/fonts" as fonts;
-@use "../../../../assets/styles/base/mixins" as mixins;
+@use '../../../../assets/styles/base/rem' as rem;
+@use '../../../../assets/styles/base/fonts' as fonts;
+@use '../../../../assets/styles/base/mixins' as mixins;
 
 .bmb_timestream-detail {
   padding: 0 0 0 var(--bmb-spacing-m);
@@ -10,7 +10,7 @@
   overflow: auto;
 
   &:is(:empty)::before {
-    content: "no hay eventos que mostrar";
+    content: 'no hay eventos que mostrar';
   }
 
   &-content {
@@ -52,7 +52,7 @@
         @include fonts.font(3, regular);
         display: none;
 
-        @include mixins.container-query(500, "min") {
+        @include mixins.container-query(500, 'min') {
           display: block;
         }
       }

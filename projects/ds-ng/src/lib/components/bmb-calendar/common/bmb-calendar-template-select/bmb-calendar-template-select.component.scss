@@ -1,4 +1,4 @@
-@use "../../../../../assets/styles/base/rem" as rem;
+@use '../../../../../assets/styles/base/rem' as rem;
 
 @mixin buttonReset() {
   background-color: transparent;
@@ -72,7 +72,7 @@
   }
 }
 
-[data-theme="dark"],
+[data-theme='dark'],
 .storybook-dark-theme {
   .bmb-calendar-template-select {
     button {

@@ -1,37 +1,37 @@
-@use "../base/rem" as rem;
-@use "../base/mixins" as mixins;
-@use "sass:math";
+@use '../base/rem' as rem;
+@use '../base/mixins' as mixins;
+@use 'sass:math';
 
 $sizes: (
-  "xs": rem.rem_calc(4),
-  "s": rem.rem_calc(8),
-  "m": rem.rem_calc(16),
-  "l": rem.rem_calc(24),
-  "xl": rem.rem_calc(32),
+  'xs': rem.rem_calc(4),
+  's': rem.rem_calc(8),
+  'm': rem.rem_calc(16),
+  'l': rem.rem_calc(24),
+  'xl': rem.rem_calc(32),
 );
 
 $marginSizes: (
-  "sm": 4,
-  "lg": 12,
+  'sm': 4,
+  'lg': 12,
 );
 
-$namesOfSides: "left", "right";
+$namesOfSides: 'left', 'right';
 
 $justifyOptions: (
-  "center": center,
-  "end": end,
-  "start": start,
-  "stretch": stretch,
-  "spaceAround": space-around,
-  "spaceBetween": space-between,
-  "spaceEvenly": space-evenly,
+  'center': center,
+  'end': end,
+  'start': start,
+  'stretch': stretch,
+  'spaceAround': space-around,
+  'spaceBetween': space-between,
+  'spaceEvenly': space-evenly,
 );
 
 $alignItemsOptions: (
-  "center": center,
-  "end": end,
-  "start": start,
-  "stretch": stretch,
+  'center': center,
+  'end': end,
+  'start': start,
+  'stretch': stretch,
 );
 
 .bmb_layout {
@@ -62,7 +62,7 @@ $alignItemsOptions: (
   .bmb_col-lg-#{$i} {
     overflow: visible;
 
-    @include mixins.media-query(999, "max") {
+    @include mixins.media-query(999, 'max') {
       &:not(.bmb_col-sm-1):not(.bmb_col-sm-2):not(.bmb_col-sm-3):not(
           .bmb_col-sm-4
         ) {
@@ -71,7 +71,7 @@ $alignItemsOptions: (
       }
     }
 
-    @include mixins.media-query(1000, "min") {
+    @include mixins.media-query(1000, 'min') {
       flex: 0 0
         calc(
           #{math.percentage(math.div($i, 12))} -
@@ -90,8 +90,8 @@ $alignItemsOptions: (
     @for $i from 1 through $size {
       .bmb_space-#{$margin}-#{$side}-#{$i} {
         @include mixins.media-query(
-          if($margin == "sm", 999, 1000),
-          if($margin == "sm", "max", "min")
+          if($margin == 'sm', 999, 1000),
+          if($margin == 'sm', 'max', 'min')
         ) {
           margin-#{$side}: calc(
             #{math.percentage(math.div($i, $size))} + var(--bmb-gap) -

@@ -1,4 +1,4 @@
-@use "../../../../assets/styles/base/mixins" as mixins;
+@use '../../../../assets/styles/base/mixins' as mixins;
 
 .bmb_projected-content {
   position: fixed;
@@ -9,7 +9,7 @@
   margin: 0;
   color: var(--general_contrasts-100);
 
-  @include mixins.media-query(1000, "max") {
+  @include mixins.media-query(1000, 'max') {
     left: 1rem !important;
     right: 1rem !important;
   }

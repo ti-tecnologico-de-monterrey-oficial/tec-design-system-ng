@@ -124,7 +124,12 @@ The component's template is structured as follows:
 ## Usage Example
 
 ```html
-<bmb-card [type]="'success'" [borderRadius]="'xl'" [margin]="'l'" [alternative]="true">
+<bmb-card
+  [type]="'success'"
+  [borderRadius]="'xl'"
+  [margin]="'l'"
+  [alternative]="true"
+>
   <bmb-card-header [padding]="'s'">
     <h3>Success Card</h3>
   </bmb-card-header>

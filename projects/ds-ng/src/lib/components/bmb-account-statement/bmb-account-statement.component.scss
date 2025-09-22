@@ -1,5 +1,5 @@
-@use "../../../assets/styles/base/rem" as rem;
-@use "../../../assets/styles/base/fonts" as fonts;
+@use '../../../assets/styles/base/rem' as rem;
+@use '../../../assets/styles/base/fonts' as fonts;
 
 .bmb_account-statement {
   height: 100dvh;
@@ -38,7 +38,7 @@
   }
 }
 
-[data-theme="dark"],
+[data-theme='dark'],
 .storybook-dark-theme {
   .bmb_account-statement {
     &-modal {

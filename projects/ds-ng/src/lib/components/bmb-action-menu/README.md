@@ -43,7 +43,15 @@ The component supports content projection for flexible customization of menu ite
 The component's template is structured as follows:
 
 ```html
-<bmb-action-menu [title]="'Menu Title'" [subtitle]="'Menu Subtitle'" [icon]="'menu'" [iconSize]="32" [bgIconAppearance]="'primary'" [showHeader]="true" [isAList]="true">
+<bmb-action-menu
+  [title]="'Menu Title'"
+  [subtitle]="'Menu Subtitle'"
+  [icon]="'menu'"
+  [iconSize]="32"
+  [bgIconAppearance]="'primary'"
+  [showHeader]="true"
+  [isAList]="true"
+>
   <ng-template>
     <p>Menu Item 1</p>
   </ng-template>
@@ -66,7 +74,15 @@ This lifecycle hook initializes the projected content by converting the `Content
 ## Usage Example
 
 ```html
-<bmb-action-menu [title]="'Actions'" [subtitle]="'Choose an option'" [icon]="'settings'" [iconSize]="24" [bgIconAppearance]="'secondary'" [showHeader]="true" [isAList]="false">
+<bmb-action-menu
+  [title]="'Actions'"
+  [subtitle]="'Choose an option'"
+  [icon]="'settings'"
+  [iconSize]="24"
+  [bgIconAppearance]="'secondary'"
+  [showHeader]="true"
+  [isAList]="false"
+>
   <ng-template>
     <button>Option 1</button>
   </ng-template>

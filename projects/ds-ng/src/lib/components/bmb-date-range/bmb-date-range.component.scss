@@ -1,6 +1,6 @@
-@use "../../../assets/styles/base/fonts" as fonts;
-@use "../../../assets/styles/base/mixins" as mixins;
-@use "../../../assets/styles/base/rem" as rem;
+@use '../../../assets/styles/base/fonts' as fonts;
+@use '../../../assets/styles/base/mixins' as mixins;
+@use '../../../assets/styles/base/rem' as rem;
 
 .bmb_date-range {
   display: flex;
@@ -12,7 +12,7 @@
 
   &-column {
     flex-flow: row;
-    @include mixins.media-query(699, "max") {
+    @include mixins.media-query(699, 'max') {
       flex-flow: column;
     }
 
@@ -21,14 +21,14 @@
         right: rem.rem_calc(40);
       }
       .bmb_field-wrapper::after {
-        content: "";
+        content: '';
         width: rem.rem_calc(16);
         height: 0;
         border-top: rem.rem_calc(2) solid;
         margin: rem.rem_calc(0 10);
         display: inline-block;
 
-        @include mixins.media-query(699, "max") {
+        @include mixins.media-query(699, 'max') {
           display: none;
         }
       }

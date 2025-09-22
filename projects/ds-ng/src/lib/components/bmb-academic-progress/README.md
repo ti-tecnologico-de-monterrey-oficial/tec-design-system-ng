@@ -39,10 +39,33 @@ The component's template is structured as follows:
 
 ```html
 <bmb-container class="bmb_academic-progress-summary">
-  <section class="bmb_academic-progress-summary-container" bmbLayout margin="none" justify="spaceAround" [dynamicCols]="true">
-    <bmb-focus-element bmbLayoutItem [title]="getName(accredited())" [number]="getValue(accredited())" [isNormal]="true" [isNonFocused]="true"></bmb-focus-element>
-    <bmb-focus-element bmbLayoutItem [title]="getName(average())" [number]="getValue(average())" [isNonFocused]="true"></bmb-focus-element>
-    <bmb-focus-element bmbLayoutItem [title]="getName(summary())" [number]="getValue(summary())" [isNormal]="true" [isNonFocused]="true"></bmb-focus-element>
+  <section
+    class="bmb_academic-progress-summary-container"
+    bmbLayout
+    margin="none"
+    justify="spaceAround"
+    [dynamicCols]="true"
+  >
+    <bmb-focus-element
+      bmbLayoutItem
+      [title]="getName(accredited())"
+      [number]="getValue(accredited())"
+      [isNormal]="true"
+      [isNonFocused]="true"
+    ></bmb-focus-element>
+    <bmb-focus-element
+      bmbLayoutItem
+      [title]="getName(average())"
+      [number]="getValue(average())"
+      [isNonFocused]="true"
+    ></bmb-focus-element>
+    <bmb-focus-element
+      bmbLayoutItem
+      [title]="getName(summary())"
+      [number]="getValue(summary())"
+      [isNormal]="true"
+      [isNonFocused]="true"
+    ></bmb-focus-element>
   </section>
 </bmb-container>
 ```
@@ -70,7 +93,11 @@ Returns the `value` property of the provided `IBmbNameValuePair` object as a num
 ## Usage Example
 
 ```html
-<bmb-academic-progress [accredited]="{ name: 'Accredited Courses', value: 25 }" [average]="{ name: 'Average Grade', value: 85 }" [summary]="{ name: 'Total Credits', value: 120 }"></bmb-academic-progress>
+<bmb-academic-progress
+  [accredited]="{ name: 'Accredited Courses', value: 25 }"
+  [average]="{ name: 'Average Grade', value: 85 }"
+  [summary]="{ name: 'Total Credits', value: 120 }"
+></bmb-academic-progress>
 ```
 
 This example will render the component with the provided data for `accredited`, `average`, and `summary`.

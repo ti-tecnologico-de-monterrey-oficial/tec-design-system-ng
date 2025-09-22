@@ -45,7 +45,7 @@
               <span class="bmb_chat-bubble-msg-thinking-dot"></span>
             </div>
           } @else {
-            @if (message().type === "mixed") {
+            @if (message().type === 'mixed') {
               <p>{{ message().content.text }}</p>
               <img
                 class="bmb_chat-bubble-msg-image"
@@ -54,11 +54,11 @@
               />
             }
 
-            @if (message().type === "text") {
+            @if (message().type === 'text') {
               <p>{{ message().content.text }}</p>
             }
 
-            @if (message().type === "link") {
+            @if (message().type === 'link') {
               <bmb-text-link
                 [textLink]="message().content.text!"
                 [textLinkStyle]="'underlined'"
@@ -68,7 +68,7 @@
               ></bmb-text-link>
             }
 
-            @if (message().type === "template") {
+            @if (message().type === 'template') {
               <ng-container
                 *ngTemplateOutlet="message().content.template!"
               ></ng-container>
@@ -83,7 +83,7 @@
         >
           @if (message().isUserMessage) {
             <p class="bmb_chat-bubble-extra-time">
-              {{ message().time | date: "hh:mm a" }}
+              {{ message().time | date: 'hh:mm a' }}
             </p>
           } @else {
             <div class="bmb_chat-bubble-extra-container">
@@ -126,7 +126,7 @@
               }
             </div>
             <p class="bmb_chat-bubble-extra-time">
-              {{ message().time | date: "hh:mm a" }}
+              {{ message().time | date: 'hh:mm a' }}
             </p>
           }
         </div>

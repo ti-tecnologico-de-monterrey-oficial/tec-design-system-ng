@@ -102,7 +102,31 @@ Calculates the progress percentage based on the `counter` and `totalCount`.
 The component's template is structured as follows:
 
 ```html
-<bmb-account-statement [title]="'Estado de cuenta'" [progressCircleTitle]="['Total a pagar', 'este mes']" [labelPrimary]="'Cuota Mensual'" [labelSecondary]="'Pendiente'" [totalCount]="1000" [counter]="500" [progressTitle]="'Total pagado'" [formatDates]="'yyyy-MM-dd'" [paymentDeadline]="'2025-04-30'" [cutOffDate]="'2025-04-15'" [paymentDeadlineLabel]="'Fecha límite de pago:'" [cutOffDateLabel]="'Fecha de corte:'" [payButtonLabel]="'Pagar'" [backButtonLabel]="'Regresar'" [modalTitle]="'Confirmar Pago'" [modalSubtitle]="'Seleccione una opción para continuar'" [modalRestLabel]="'Pagar restante'" [modalOtherAmountLabel]="'Otra cantidad'" [modalPrimaryButtonLabel]="'Pagar'" [errorMessage]="'Error, Este campo es requerido y debe ser una cantidad válida.'" (closeEvent)="onClose()" (backEvent)="onBack()" (payEvent)="onPay($event)"></bmb-account-statement>
+<bmb-account-statement
+  [title]="'Estado de cuenta'"
+  [progressCircleTitle]="['Total a pagar', 'este mes']"
+  [labelPrimary]="'Cuota Mensual'"
+  [labelSecondary]="'Pendiente'"
+  [totalCount]="1000"
+  [counter]="500"
+  [progressTitle]="'Total pagado'"
+  [formatDates]="'yyyy-MM-dd'"
+  [paymentDeadline]="'2025-04-30'"
+  [cutOffDate]="'2025-04-15'"
+  [paymentDeadlineLabel]="'Fecha límite de pago:'"
+  [cutOffDateLabel]="'Fecha de corte:'"
+  [payButtonLabel]="'Pagar'"
+  [backButtonLabel]="'Regresar'"
+  [modalTitle]="'Confirmar Pago'"
+  [modalSubtitle]="'Seleccione una opción para continuar'"
+  [modalRestLabel]="'Pagar restante'"
+  [modalOtherAmountLabel]="'Otra cantidad'"
+  [modalPrimaryButtonLabel]="'Pagar'"
+  [errorMessage]="'Error, Este campo es requerido y debe ser una cantidad válida.'"
+  (closeEvent)="onClose()"
+  (backEvent)="onBack()"
+  (payEvent)="onPay($event)"
+></bmb-account-statement>
 ```
 
 ---

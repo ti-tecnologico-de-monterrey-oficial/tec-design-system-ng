@@ -1,7 +1,7 @@
-@use "../../../assets/styles/base/fonts" as fonts;
-@use "../../../assets/styles/base/rem" as rem;
-@use "../../../assets/styles/base/mixins" as mixins;
-@use "../../../assets/styles/tokens/bgAppearance" as appearance;
+@use '../../../assets/styles/base/fonts' as fonts;
+@use '../../../assets/styles/base/rem' as rem;
+@use '../../../assets/styles/base/mixins' as mixins;
+@use '../../../assets/styles/tokens/bgAppearance' as appearance;
 
 @mixin icon($name, $color) {
   .bmb_loader-icon {
@@ -58,7 +58,7 @@
       margin-top: rem.rem_calc(80);
       width: 100%;
 
-      [appearance="primary"] {
+      [appearance='primary'] {
         margin-bottom: rem.rem_calc(16);
       }
     }
@@ -147,7 +147,7 @@
   }
 }
 
-[data-theme="dark"],
+[data-theme='dark'],
 .storybook-dark-theme {
   .bmb_loader {
     &-modal {

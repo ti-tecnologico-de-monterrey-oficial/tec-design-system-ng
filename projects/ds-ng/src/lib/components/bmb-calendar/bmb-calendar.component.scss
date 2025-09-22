@@ -1,6 +1,6 @@
-@use "../../../assets/styles/base/rem" as rem;
-@use "../../../assets/styles/base/fonts" as fonts;
-@use "../../../assets/styles/base/mixins" as mixins;
+@use '../../../assets/styles/base/rem' as rem;
+@use '../../../assets/styles/base/fonts' as fonts;
+@use '../../../assets/styles/base/mixins' as mixins;
 
 .bmb_calendar {
   background-color: var(--containers-background);
@@ -9,7 +9,7 @@
   display: flex;
   flex-flow: column;
 
-  @include mixins.media-query(1001, "min") {
+  @include mixins.media-query(1001, 'min') {
     padding: var(--bmb-spacing-xl);
     background-color: var(--containers-main);
   }
@@ -49,7 +49,7 @@
     top: 0;
     z-index: 1;
     background-color: var(--containers-main);
-    @include mixins.media-query(999, "max") {
+    @include mixins.media-query(999, 'max') {
       display: none;
     }
 
@@ -76,7 +76,7 @@
     height: fit-content;
     border-left: rem.rem_calc(1) solid var(--containers-main);
 
-    @include mixins.media-query(1001, "min") {
+    @include mixins.media-query(1001, 'min') {
       border-left: rem.rem_calc(1) solid var(--general_contrasts-25);
     }
 
@@ -90,19 +90,19 @@
     border-bottom: rem.rem_calc(1) solid var(--containers-main);
     position: relative;
 
-    @include mixins.media-query(1001, "min") {
+    @include mixins.media-query(1001, 'min') {
       border-bottom: rem.rem_calc(1) solid var(--general_contrasts-25);
     }
 
     &::before {
-      content: "";
+      content: '';
       position: absolute;
       top: 50%;
       left: 0;
       width: 100%;
       border-bottom: rem.rem_calc(1) dashed var(--containers-main);
 
-      @include mixins.media-query(1001, "min") {
+      @include mixins.media-query(1001, 'min') {
         display: none;
       }
     }

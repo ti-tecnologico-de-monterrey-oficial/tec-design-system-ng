@@ -105,9 +105,9 @@
 
                 @if (file.error) {
                   <span>
-                    @if (file.errorType === "format") {
+                    @if (file.errorType === 'format') {
                       {{ errorMessageFormat() }}
-                    } @else if (file.errorType === "size") {
+                    } @else if (file.errorType === 'size') {
                       {{ errorMessageSize() }} ({{ file.size.toFixed(2) }} MB)
                     }
                   </span>

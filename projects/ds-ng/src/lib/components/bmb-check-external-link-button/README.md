@@ -67,7 +67,14 @@ The component supports content projection using the `commonTemplate` template re
 The component's template is structured as follows:
 
 ```html
-<bmb-check-external-link-button [idElement]="'unique-id'" [link]="'https://example.com'" [target]="'_blank'" [disabled]="false" (buttonPress)="onButtonPress()" (buttonClick)="onButtonClick()">
+<bmb-check-external-link-button
+  [idElement]="'unique-id'"
+  [link]="'https://example.com'"
+  [target]="'_blank'"
+  [disabled]="false"
+  (buttonPress)="onButtonPress()"
+  (buttonClick)="onButtonClick()"
+>
   <ng-template #commonTemplate>
     <span>Custom Button Content</span>
   </ng-template>
@@ -93,7 +100,12 @@ Ensure the styles are defined in the corresponding SCSS file to maintain visual 
 ### Example 1: External Link Button
 
 ```html
-<bmb-check-external-link-button [idElement]="'external-link-button'" [link]="'https://example.com'" [target]="'_blank'" (buttonClick)="handleExternalClick()">
+<bmb-check-external-link-button
+  [idElement]="'external-link-button'"
+  [link]="'https://example.com'"
+  [target]="'_blank'"
+  (buttonClick)="handleExternalClick()"
+>
   <ng-template #commonTemplate>
     <span>Go to Example</span>
   </ng-template>
@@ -103,7 +115,12 @@ Ensure the styles are defined in the corresponding SCSS file to maintain visual 
 ### Example 2: Internal Navigation Button
 
 ```html
-<bmb-check-external-link-button [idElement]="'internal-link-button'" [link]="'/dashboard'" [target]="'_self'" (buttonClick)="handleInternalClick()">
+<bmb-check-external-link-button
+  [idElement]="'internal-link-button'"
+  [link]="'/dashboard'"
+  [target]="'_self'"
+  (buttonClick)="handleInternalClick()"
+>
   <ng-template #commonTemplate>
     <span>Go to Dashboard</span>
   </ng-template>
@@ -113,7 +130,11 @@ Ensure the styles are defined in the corresponding SCSS file to maintain visual 
 ### Example 3: Disabled Button
 
 ```html
-<bmb-check-external-link-button [idElement]="'disabled-button'" [disabled]="true" (buttonPress)="handleDisabledPress()">
+<bmb-check-external-link-button
+  [idElement]="'disabled-button'"
+  [disabled]="true"
+  (buttonPress)="handleDisabledPress()"
+>
   <ng-template #commonTemplate>
     <span>Disabled Button</span>
   </ng-template>

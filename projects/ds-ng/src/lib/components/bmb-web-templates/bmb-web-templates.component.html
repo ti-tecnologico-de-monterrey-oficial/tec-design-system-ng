@@ -25,22 +25,22 @@
     </div>
   </header>
   @switch (template()) {
-    @case ("full-width-card") {
+    @case ('full-width-card') {
       <ng-container [ngTemplateOutlet]="fullWidthCard" />
     }
-    @case ("justify-width-card") {
+    @case ('justify-width-card') {
       <ng-container [ngTemplateOutlet]="justifyWidthCard" />
     }
-    @case ("single-column-card") {
+    @case ('single-column-card') {
       <ng-container [ngTemplateOutlet]="singleColumnCard" />
     }
-    @case ("aside-first-card") {
+    @case ('aside-first-card') {
       <ng-container [ngTemplateOutlet]="asideFirstCard" />
     }
-    @case ("aside-light-card") {
+    @case ('aside-light-card') {
       <ng-container [ngTemplateOutlet]="asideLightCard" />
     }
-    @case ("two-aside-card") {
+    @case ('two-aside-card') {
       <ng-container [ngTemplateOutlet]="twoAsideCard" />
     }
   }

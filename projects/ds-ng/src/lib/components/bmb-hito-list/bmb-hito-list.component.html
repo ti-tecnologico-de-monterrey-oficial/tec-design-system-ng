@@ -1,6 +1,6 @@
 <ul #monthList class="bmb_hito_list">
   @for (month of orderedMonths(); track $index) {
-    @if (month !== "orderedEvents") {
+    @if (month !== 'orderedEvents') {
       <li
         class="bmb_hito_list-item"
         [ngClass]="{
