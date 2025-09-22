@@ -59,7 +59,7 @@ export class BmbProjectedContentComponent {
     const width = window.innerWidth;
     const height = window.innerHeight;
 
-    if (width < 1001 || this.htmlRef() === null) {
+    if (this.htmlRef() === null) {
       return {};
     }
 
