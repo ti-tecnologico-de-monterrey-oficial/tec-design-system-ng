@@ -1,7 +1,7 @@
 <section
   #inputValidation
   class="bmb_input-validator"
-  [ngClass]="{ disabled: isDisabled() }"
+  [ngClass]="{ disabled: control()?.disabled }"
 >
   <span
     class="bmb_input-validator-wrapper"

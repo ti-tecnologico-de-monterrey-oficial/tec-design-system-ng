@@ -104,8 +104,8 @@ export class BmbDropdownComponent implements OnInit, OnChanges {
       this.isControlNull = true;
     }
 
-    if (this.disabled()) this.selectionControl.disable();
-    else this.selectionControl.enable();
+    // if (this.disabled()) this.selectionControl.disable();
+    // else this.selectionControl.enable();
 
     if (!this.isMultiSelect() && Array.isArray(this.control()?.value)) {
       this.control().setValue('');

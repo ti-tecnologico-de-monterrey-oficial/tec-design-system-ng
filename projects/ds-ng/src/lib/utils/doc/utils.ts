@@ -26,11 +26,16 @@ export interface IBmbOnEvent {
 export type IBmbOnEventType = 'change' | 'keyDown' | 'other';
 
 export const RELEVANT_TITLE_LEVEL: string[] = [
-  '⚠️**Warning**<br/>',
-  '‼️**Important**<br/>',
-  '✳️**Note**<br/>',
-  '⚙️**Configuration**<br/>',
-  '⭐**Example**<br/>',
+  `⚠️**Warning**
+`,
+  `‼️**Important**
+`,
+  `✳️**Note**
+`,
+  `⚙️**Configuration**
+`,
+  `⭐**Example**
+`,
 ];
 
 export const RelevantTitle = {
@@ -147,6 +152,18 @@ export const getOnEvent = (
   };
 
   return onEvent;
+};
+
+export const getStoryLink = ({
+  title,
+  showFullLinkName,
+}: {
+  title: string;
+  showFullLinkName?: boolean;
+}): string => {
+  if (showFullLinkName)
+    return `[${title}](/docs/${getFormatName(title!, /(\/)|( )/g, '-').toLocaleLowerCase()}--documentation)`;
+  return `[${getFormatName(title!, title?.substring(0, title?.lastIndexOf('/') + 1), '')}](/docs/${getFormatName(title!, /(\/)|( )/g, '-').toLocaleLowerCase()}--documentation)`;
 };
 
 export const getAccordionDetail = (title: string, content: string) => `
