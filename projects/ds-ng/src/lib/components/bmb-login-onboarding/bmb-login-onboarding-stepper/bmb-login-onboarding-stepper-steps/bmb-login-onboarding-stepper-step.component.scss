@@ -1,5 +1,5 @@
-@use "../../bmb-login-onboarding.component.scss" as page;
-@use "../../../../../assets/styles/base/fonts" as fonts;
+@use '../../bmb-login-onboarding.component.scss' as page;
+@use '../../../../../assets/styles/base/fonts' as fonts;
 
 .bmb_login-onboarding-stepper-step {
   @include page.page-flex;

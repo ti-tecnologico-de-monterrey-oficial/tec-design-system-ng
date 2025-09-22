@@ -252,9 +252,6 @@ export const appConfig: ApplicationConfig = {
 \`\`\`
 `)}
 ${getBasicExampleBlock('BmbCalendarComponent')}
-
-
-
         `,
       },
     },
@@ -345,7 +342,6 @@ ${getBasicExampleBlock('BmbCalendarComponent')}
     },
     lang: DBmbGenericParamDesc.lang,
   },
-  // Remove invalid args if not defined as @Input() in BmbCalendarComponent
   args: {
     height: '100%',
     showFilterButton: false,

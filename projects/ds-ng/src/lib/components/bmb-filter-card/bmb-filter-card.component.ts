@@ -8,6 +8,7 @@ import {
   ViewChild,
   output,
   effect,
+  signal,
 } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
@@ -15,14 +16,16 @@ import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { BmbSwitchComponent } from '../bmb-switch/bmb-switch.component';
 import { BmbRadialComponent } from '../bmb-radial/bmb-radial.component';
 import { BmbCheckboxComponent } from '../bmb-checkbox/bmb-checkbox.component';
-import { BmbModalComponent } from '../bmb-modal/bmb-modal.component';
-import { MatDialog } from '@angular/material/dialog';
-import { ModalDataConfig } from '../bmb-modal/bmb-modal.interface';
+import {
+  IBmbNativeModal,
+  ModalDataConfig,
+} from '../bmb-modal/bmb-modal.interface';
 import { BmbInputComponent } from '../bmb-input/bmb-input.component';
 import { IBmbControlType } from './bmb-filter-card.interface';
 import { BmbButtonDirective } from '../../directives/bmb-button/button.directive';
 import { BmbDropdownComponent } from '../bmb-dropdown/bmb-dropdown.component';
 import { BmbTagComponent } from '../bmb-tags/bmb-tags.component';
+import { BmbNativeModalService } from '../../services/native-modal.service';
 
 @Component({
   selector: 'bmb-filter-card',
@@ -56,7 +59,7 @@ export class BmbFilterCardComponent {
   showDropdown = input<boolean>(false);
   dropdownOptions = input<string[]>([]);
 
-  applyFilters = output<void>();
+  applyFilters = output<any>();
   resetFilters = output<void>();
 
   filterForm: FormGroup = new FormGroup({
@@ -64,9 +67,11 @@ export class BmbFilterCardComponent {
     selectedDropdown: new FormControl<string>(''),
   });
 
+  modalId = signal<string | null>(null);
+
   @ViewChild('modalTemplate') modalTemplate!: TemplateRef<any>;
 
-  constructor(private matDialog: MatDialog) {
+  constructor(private modalService: BmbNativeModalService) {
     effect(() => {
       this.controlTypes().forEach((controlType) => {
         controlType.control.forEach((control) => {
@@ -94,18 +99,28 @@ export class BmbFilterCardComponent {
   }
 
   openModalComponent() {
-    const data: ModalDataConfig = {
+    const data: IBmbNativeModal = {
       title: this.modalTitle(),
       size: 'small',
-      primaryBtnLabel: this.primaryBtnLabel(),
-      secondaryBtnLabel: this.secondaryBtnLabel(),
       content: this.modalTemplate,
-      primaryAction: this.onSubmit.bind(this),
-      secondaryAction: this.onReset.bind(this),
+      actions: [
+        {
+          label: this.primaryBtnLabel(),
+          action: this.handleSubmit.bind(this),
+          appearance: 'primary',
+          buttonName: this.primaryBtnLabel(),
+        },
+        {
+          label: this.secondaryBtnLabel(),
+          action: this.onReset.bind(this),
+          appearance: 'secondary-outlined',
+          buttonName: this.secondaryBtnLabel(),
+        },
+      ],
       scrollable: true,
     };
 
-    this.matDialog.open(BmbModalComponent, { data });
+    this.modalId.set(this.modalService.openModal(data));
   }
 
   onControlChange(control: any, event: any) {
@@ -156,12 +171,14 @@ export class BmbFilterCardComponent {
     }
   }
 
-  onSubmit() {
+  handleSubmit() {
+    debugger;
     const formData: any = {};
     Object.keys(this.storedValues).forEach((key) => {
       formData[key] = this.storedValues[key];
     });
     formData.search = this.filterForm.get('search')?.value;
+    this.modalService.closeModal(this.modalId() as string);
     this.applyFilters.emit(formData);
   }
 

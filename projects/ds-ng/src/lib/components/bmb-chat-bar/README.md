@@ -87,7 +87,16 @@ Navigates to a specific page in the actions list.
 The component's template is structured as follows:
 
 ```html
-<bmb-chat-bar [placeholder]="'Escribe un mensaje...'" [botList]="[{ name: 'TecBot', icon: '/assets/images/bot-icons/bot_tecStandar.svg' }]" [actionsList]="[{ name: 'Action 1', icon: 'icon1' }, { name: 'Action 2', icon: 'icon2' }]" [showEmoji]="true" (onSendMessage)="handleSendMessage($event)" (onSendFiles)="handleSendFiles($event)" (onRecord)="handleRecord($event)" (onEmoji)="handleEmoji($event)"></bmb-chat-bar>
+<bmb-chat-bar
+  [placeholder]="'Escribe un mensaje...'"
+  [botList]="[{ name: 'TecBot', icon: '/assets/images/bot-icons/bot_tecStandar.svg' }]"
+  [actionsList]="[{ name: 'Action 1', icon: 'icon1' }, { name: 'Action 2', icon: 'icon2' }]"
+  [showEmoji]="true"
+  (onSendMessage)="handleSendMessage($event)"
+  (onSendFiles)="handleSendFiles($event)"
+  (onRecord)="handleRecord($event)"
+  (onEmoji)="handleEmoji($event)"
+></bmb-chat-bar>
 ```
 
 ---

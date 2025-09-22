@@ -38,7 +38,7 @@
         <span
           class="bmb_breadcrumb-text"
           [ngClass]="{
-            'bmb_breadcrumb-text-active': isInactive(),
+            'bmb_breadcrumb-text-active': isInactive()
           }"
           >{{ item.text }}</span
         >
@@ -65,7 +65,7 @@
             type="button"
             class="bmb_breadcrumb-dropdown-button"
             [ngClass]="{
-              'bmb_breadcrumb-dropdown-button-inactive': isInactive(),
+              'bmb_breadcrumb-dropdown-button-inactive': isInactive()
             }"
             (click)="toggleDropdown()"
           >
@@ -100,13 +100,13 @@
                   <span
                     class="bmb_breadcrumb-text"
                     [ngClass]="{
-                      'bmb_breadcrumb-text-active': isInactive(),
+                      'bmb_breadcrumb-text-active': isInactive()
                     }"
                     >{{ item.text }}</span
                   >
                   <a
                     [ngClass]="{
-                      'bmb_breadcrumb-link-inactive': isInactive(),
+                      'bmb_breadcrumb-link-inactive': isInactive()
                     }"
                     class="bmb_breadcrumb-link"
                     [routerLink]="dropdownItem.link"

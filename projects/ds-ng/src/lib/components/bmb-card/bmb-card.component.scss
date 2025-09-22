@@ -1,64 +1,64 @@
-@use "sass:map";
-@use "../../../assets/styles/base/fonts" as fonts;
-@use "../../../assets/styles/base/rem" as rem;
+@use 'sass:map';
+@use '../../../assets/styles/base/fonts' as fonts;
+@use '../../../assets/styles/base/rem' as rem;
 
 $types: (
-  "primary": (
-    "border": RGBA(var(--color-mariner-900)),
-    "background": RGBA(var(--color-mariner-700)),
-    "color": RGBA(var(--color-charade-50)),
+  'primary': (
+    'border': RGBA(var(--color-mariner-900)),
+    'background': RGBA(var(--color-mariner-700)),
+    'color': RGBA(var(--color-charade-50)),
   ),
-  "secondary": (
-    "border": RGBA(var(--color-charade-300)),
-    "background": RGBA(var(--color-white-primary)),
-    "color": RGBA(var(--color-charade-950)),
+  'secondary': (
+    'border': RGBA(var(--color-charade-300)),
+    'background': RGBA(var(--color-white-primary)),
+    'color': RGBA(var(--color-charade-950)),
   ),
-  "succes": (
-    "border": RGBA(var(--color-green-primary)),
-    "background": RGBA(var(--color-green-light)),
-    "color": RGBA(var(--color-charade-50)),
+  'succes': (
+    'border': RGBA(var(--color-green-primary)),
+    'background': RGBA(var(--color-green-light)),
+    'color': RGBA(var(--color-charade-50)),
   ),
-  "info": (
-    "border": RGBA(var(--color-purple-light)),
-    "background": RGBA(var(--color-purple-primary)),
-    "color": RGBA(var(--color-charade-50)),
+  'info': (
+    'border': RGBA(var(--color-purple-light)),
+    'background': RGBA(var(--color-purple-primary)),
+    'color': RGBA(var(--color-charade-50)),
   ),
-  "warning": (
-    "border": RGBA(var(--color-yellow-primary)),
-    "background": RGBA(var(--color-yellow-tint)),
-    "color": RGBA(var(--color-charade-950)),
+  'warning': (
+    'border': RGBA(var(--color-yellow-primary)),
+    'background': RGBA(var(--color-yellow-tint)),
+    'color': RGBA(var(--color-charade-950)),
   ),
-  "error": (
-    "border": RGBA(var(--color-red-primary)),
-    "background": RGBA(var(--color-red-light)),
-    "color": RGBA(var(--color-charade-950)),
+  'error': (
+    'border': RGBA(var(--color-red-primary)),
+    'background': RGBA(var(--color-red-light)),
+    'color': RGBA(var(--color-charade-950)),
   ),
-  "normal": (
-    "border": RGBA(var(--color-charade-300)),
-    "background": RGBA(var(--color-charade-100)),
-    "color": RGBA(var(--color-charade-950)),
+  'normal': (
+    'border': RGBA(var(--color-charade-300)),
+    'background': RGBA(var(--color-charade-100)),
+    'color': RGBA(var(--color-charade-950)),
   ),
-  "transparent": (
-    "border": RGBA(var(--color-charade-300)),
-    "background": transparent,
-    "color": RGBA(var(--color-charade-950)),
+  'transparent': (
+    'border': RGBA(var(--color-charade-300)),
+    'background': transparent,
+    'color': RGBA(var(--color-charade-950)),
   ),
 );
 
 $dark: (
-  "secondary": (
-    "border": RGBA(var(--color-charade-800)),
-    "background": RGBA(var(--color-charade-950)),
-    "color": RGBA(var(--color-charade-50)),
+  'secondary': (
+    'border': RGBA(var(--color-charade-800)),
+    'background': RGBA(var(--color-charade-950)),
+    'color': RGBA(var(--color-charade-50)),
   ),
-  "normal": (
-    "border": RGBA(var(--color-charade-800)),
-    "background": RGBA(var(--color-charade-900)),
-    "color": RGBA(var(--color-charade-50)),
+  'normal': (
+    'border': RGBA(var(--color-charade-800)),
+    'background': RGBA(var(--color-charade-900)),
+    'color': RGBA(var(--color-charade-50)),
   ),
-  "transparent": (
-    "border": RGBA(var(--color-charade-800)),
-    "color": RGBA(var(--color-charade-50)),
+  'transparent': (
+    'border': RGBA(var(--color-charade-800)),
+    'color': RGBA(var(--color-charade-50)),
   ),
 );
 
@@ -72,10 +72,10 @@ $dark: (
 
   @each $name, $type in $types {
     &.bmb_card-type-#{$name} {
-      --border-color: #{map.get($type, "border")};
-      background-color: map.get($type, "background");
+      --border-color: #{map.get($type, 'border')};
+      background-color: map.get($type, 'background');
       border-color: var(--border-color);
-      color: map.get($type, "color");
+      color: map.get($type, 'color');
     }
   }
 
@@ -115,14 +115,14 @@ $dark: (
   }
 }
 
-[data-theme="dark"],
+[data-theme='dark'],
 .storybook-dark-theme {
   .bmb_card {
     @each $name, $type in $dark {
       &.bmb_card-type-#{$name} {
-        background-color: map.get($type, "background");
-        border-color: map.get($type, "border");
-        color: map.get($type, "color");
+        background-color: map.get($type, 'background');
+        border-color: map.get($type, 'border');
+        color: map.get($type, 'color');
       }
     }
 

@@ -1,6 +1,6 @@
-@use "sass:list";
-@use "sass:math";
-@use "sass:meta";
+@use 'sass:list';
+@use 'sass:math';
+@use 'sass:meta';
 $global-font-size: 16px;
 
 @function strip-unit($num) {
@@ -10,13 +10,13 @@ $global-font-size: 16px;
 }
 
 @function -btsp-to-rem($value, $base: null) {
-  @if meta.type-of($value) != "number" {
+  @if meta.type-of($value) != 'number' {
     @warn meta.inspect($value) + ' was passed to rem_calc(), which is not a number.';
 
     @return $value;
   }
 
-  @if math.unit($value) != "rem" {
+  @if math.unit($value) != 'rem' {
     $value: calc(strip-unit($value) / strip-unit($base)) * 1rem;
   }
 
@@ -35,7 +35,7 @@ $global-font-size: 16px;
     $base: $global-font-size;
   }
 
-  @if math.unit($base) == "%" {
+  @if math.unit($base) == '%' {
     $base: ($base / 100%) * 10px;
   }
 

@@ -1,10 +1,10 @@
-@use "../../../assets/styles/base/fonts" as fonts;
+@use '../../../assets/styles/base/fonts' as fonts;
 
 $status: (
-  "gray": var(--general_contrasts-5),
-  "success": var(--general_contrasts-main-selection-alternative),
-  "error": var(--semantic-error),
-  "warning": var(--semantic-warning),
+  'gray': var(--general_contrasts-5),
+  'success': var(--general_contrasts-main-selection-alternative),
+  'error': var(--semantic-error),
+  'warning': var(--semantic-warning),
 );
 
 .bmb_progress-circle {

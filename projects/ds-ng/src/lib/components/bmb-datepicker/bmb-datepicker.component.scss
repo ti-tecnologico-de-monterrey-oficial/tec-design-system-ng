@@ -1,6 +1,6 @@
-@use "sass:map";
-@use "../../../assets/styles/base/fonts" as fonts;
-@use "../../../assets/styles/base/rem" as rem;
+@use 'sass:map';
+@use '../../../assets/styles/base/fonts' as fonts;
+@use '../../../assets/styles/base/rem' as rem;
 
 .bmb_datepicker {
   display: inline-flex;

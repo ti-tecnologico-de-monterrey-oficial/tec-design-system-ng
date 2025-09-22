@@ -40,7 +40,7 @@
           leftContent() &&
           !leftContentIcon() &&
           leftContentImage() &&
-          !textLink(),
+          !textLink()
       }"
       (click)="handleAddContent($event)"
     >
@@ -52,7 +52,7 @@
               [ngClass]="{
                 'bmb_card_button-top-header': !leftContentIcon(),
                 'bmb_card_button-top-header-start':
-                  !leftContentIcon() && !!badge(),
+                  !leftContentIcon() && !!badge()
               }"
             >
               @if (!!leftContentIcon()) {

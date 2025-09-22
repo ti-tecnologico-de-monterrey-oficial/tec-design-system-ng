@@ -1,6 +1,6 @@
-@use "../../../assets/styles/base/rem" as rem;
-@use "../../../assets/styles/base/fonts" as fonts;
-@use "../../../assets/styles/base/mixins" as mixins;
+@use '../../../assets/styles/base/rem' as rem;
+@use '../../../assets/styles/base/fonts' as fonts;
+@use '../../../assets/styles/base/mixins' as mixins;
 
 .bmb_chat-bar {
   position: relative;
@@ -96,7 +96,7 @@
     position: relative;
     padding: rem.rem_calc(10 16);
 
-    @include mixins.media-query(1001, "min") {
+    @include mixins.media-query(1001, 'min') {
       padding: rem.rem_calc(16);
     }
   }

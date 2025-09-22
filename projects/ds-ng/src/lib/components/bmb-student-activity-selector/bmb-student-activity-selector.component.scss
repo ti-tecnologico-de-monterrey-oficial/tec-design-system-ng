@@ -1,5 +1,5 @@
-@use "../../../assets/styles/base/rem" as rem;
-@use "../../../assets/styles/base/fonts" as fonts;
+@use '../../../assets/styles/base/rem' as rem;
+@use '../../../assets/styles/base/fonts' as fonts;
 
 .bmb_student_activity {
   @include fonts.font(3, medium);

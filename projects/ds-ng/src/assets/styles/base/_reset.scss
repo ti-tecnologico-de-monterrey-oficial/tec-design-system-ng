@@ -1,6 +1,6 @@
-@use "../base/mixins" as mixins;
-@use "../base/fonts" as fonts;
-@use "./rem" as rem;
+@use '../base/mixins' as mixins;
+@use '../base/fonts' as fonts;
+@use './rem' as rem;
 
 * {
   box-sizing: border-box;

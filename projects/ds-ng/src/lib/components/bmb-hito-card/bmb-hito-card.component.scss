@@ -1,14 +1,14 @@
-@use "../../../assets/styles/base/fonts" as fonts;
-@use "../../../assets/styles/base/rem" as rem;
-@use "../../../assets/styles/base/mixins" as mixins;
-@use "../../../assets/styles/tokens/bgAppearance" as appearance;
+@use '../../../assets/styles/base/fonts' as fonts;
+@use '../../../assets/styles/base/rem' as rem;
+@use '../../../assets/styles/base/mixins' as mixins;
+@use '../../../assets/styles/tokens/bgAppearance' as appearance;
 
 $circleTypes: (
-  "under_review": rgb(var(--color-yellow-primary)),
-  "active": rgb(var(--color-mariner-500)),
-  "done": rgb(var(--color-green-primary)),
-  "pending": var(--general_contrasts-100),
-  "canceled": rgb(var(--color-red-primary)),
+  'under_review': rgb(var(--color-yellow-primary)),
+  'active': rgb(var(--color-mariner-500)),
+  'done': rgb(var(--color-green-primary)),
+  'pending': var(--general_contrasts-100),
+  'canceled': rgb(var(--color-red-primary)),
 );
 
 .bmb_hito-card {
@@ -20,7 +20,7 @@ $circleTypes: (
     background-color: rgb(var(--color-charade-500));
     border: rem.rem_calc(2) solid var(--containers-background);
     border-radius: 50%;
-    content: "";
+    content: '';
     height: rem.rem_calc(9);
     left: rem.rem_calc(-23);
     margin-top: rem.rem_calc(-7);
@@ -68,7 +68,7 @@ $circleTypes: (
       @each $type, $value in $circleTypes {
         &-#{$type} {
           background-color: $value;
-          @if ($type == "pending") {
+          @if ($type == 'pending') {
             color: var(--general_contrasts-5);
           }
         }
@@ -111,7 +111,7 @@ $circleTypes: (
       display: none;
       word-break: break-word;
 
-      @include mixins.container-query(780, "min") {
+      @include mixins.container-query(780, 'min') {
         display: block;
       }
     }
@@ -131,7 +131,7 @@ $circleTypes: (
       margin: 0;
       word-break: break-word;
 
-      @include mixins.container-query(780, "min") {
+      @include mixins.container-query(780, 'min') {
         display: block;
       }
     }
@@ -147,7 +147,7 @@ $circleTypes: (
     }
 
     .bmb_hito-card-content {
-      grid-template-areas: "icon title";
+      grid-template-areas: 'icon title';
 
       &-type {
         display: none;
@@ -172,7 +172,7 @@ $circleTypes: (
       width: rem.rem_calc(16);
       @include fonts.font(1, regular);
 
-      @include mixins.container-query(780, "min") {
+      @include mixins.container-query(780, 'min') {
         height: rem.rem_calc(32);
         width: rem.rem_calc(32);
         @include fonts.font(5, regular);
@@ -180,16 +180,16 @@ $circleTypes: (
     }
 
     .bmb_card-content {
-      @include mixins.container-query(779, "max") {
+      @include mixins.container-query(779, 'max') {
         padding: var(--bmb-spacing-s) var(--bmb-spacing-m);
       }
     }
 
     .bmb_hito-card-content {
       grid-template-areas:
-        "icon title type"
-        "icon description date";
-      @include mixins.container-query(779, "max") {
+        'icon title type'
+        'icon description date';
+      @include mixins.container-query(779, 'max') {
         grid-template-columns: 1rem 1fr auto;
       }
     }

@@ -1,8 +1,8 @@
-const { exec } = require("child_process");
-const { argv } = require("node:process");
+const { exec } = require('child_process');
+const { argv } = require('node:process');
 
-const beta = argv.includes("--beta") ? "--tag beta" : "";
-const supportedVersions = ["17", "18", "19"];
+const beta = argv.includes('--beta') ? '--tag beta' : '';
+const supportedVersions = ['17', '18', '19'];
 
 async function publishLib(version) {
   exec(

@@ -1,5 +1,5 @@
-@use "../base/mixins" as mixins;
-@use "../base/rem" as rem;
+@use '../base/mixins' as mixins;
+@use '../base/rem' as rem;
 
 @mixin first_child($padding) {
   & {

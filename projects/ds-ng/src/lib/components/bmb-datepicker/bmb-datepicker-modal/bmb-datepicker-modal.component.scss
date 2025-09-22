@@ -1,6 +1,6 @@
-@use "../../../../assets/styles/base/fonts" as fonts;
-@use "../../../../assets/styles/base/rem" as rem;
-@use "../../../../assets/styles/base/mixins" as mixins;
+@use '../../../../assets/styles/base/fonts' as fonts;
+@use '../../../../assets/styles/base/rem' as rem;
+@use '../../../../assets/styles/base/mixins' as mixins;
 
 .bmb_datepicker-modal {
   position: absolute;
@@ -22,7 +22,7 @@
     padding: var(--bmb-spacing-m);
     flex-wrap: nowrap;
 
-    @include mixins.container-query(310, "min") {
+    @include mixins.container-query(310, 'min') {
       gap: rem.rem_calc(20);
     }
 

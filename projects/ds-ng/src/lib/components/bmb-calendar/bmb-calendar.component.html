@@ -23,7 +23,7 @@
     />
   }
   @switch (view()) {
-    @case ("day") {
+    @case ('day') {
       <bmb-calendar-template-day
         [now]="visibleDate()"
         [events]="getDayEvents()"
@@ -34,7 +34,7 @@
         class="bmb_calendar-content"
       />
     }
-    @case ("week") {
+    @case ('week') {
       <bmb-calendar-template-week
         [weekDays]="renderWeekDays()"
         [lang]="lang()"
@@ -47,7 +47,7 @@
         class="bmb_calendar-content"
       />
     }
-    @case ("month") {
+    @case ('month') {
       <bmb-calendar-template-month
         [now]="visibleDate()"
         [events]="filteredEvents()"

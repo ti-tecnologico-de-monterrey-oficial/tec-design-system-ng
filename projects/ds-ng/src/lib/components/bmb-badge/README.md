@@ -37,7 +37,11 @@ Returns an array of CSS classes based on the `appearance` and `container` inputs
 The component's template is structured as follows:
 
 ```html
-<bmb-badge [appearance]="'primary'" [text]="'New'" [container]="true"></bmb-badge>
+<bmb-badge
+  [appearance]="'primary'"
+  [text]="'New'"
+  [container]="true"
+></bmb-badge>
 ```
 
 ---
@@ -45,9 +49,17 @@ The component's template is structured as follows:
 ## Usage Example
 
 ```html
-<bmb-badge [appearance]="'success'" [text]="'Active'" [container]="true"></bmb-badge>
+<bmb-badge
+  [appearance]="'success'"
+  [text]="'Active'"
+  [container]="true"
+></bmb-badge>
 
-<bmb-badge [appearance]="'warning'" [text]="'Pending'" [container]="false"></bmb-badge>
+<bmb-badge
+  [appearance]="'warning'"
+  [text]="'Pending'"
+  [container]="false"
+></bmb-badge>
 ```
 
 ---

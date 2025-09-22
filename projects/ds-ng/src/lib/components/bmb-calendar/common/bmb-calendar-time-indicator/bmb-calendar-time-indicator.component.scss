@@ -1,5 +1,5 @@
-@use "../../../../../assets/styles/base/rem";
-@use "../../../../../assets/styles/base/mixins";
+@use '../../../../../assets/styles/base/rem';
+@use '../../../../../assets/styles/base/mixins';
 
 .bmb_calendar-time-indicator {
   position: absolute;
@@ -11,7 +11,7 @@
   background-color: var(--general_contrasts-main-selection);
   transform: translateY(rem.rem_calc(-50));
 
-  @include mixins.media-query(1001, "min") {
+  @include mixins.media-query(1001, 'min') {
     transform: translateY(rem.rem_calc(0));
   }
 

@@ -6,38 +6,38 @@
       lastName: templateForThisCell,
       name: 'Atenea',
       birthday: '02/02/2000',
-      country: 'Mexico',
+      country: 'Mexico'
     },
     {
       lastName: 'Nava',
       name: 'Jesus',
       birthday: '03/04/1998',
       country: 'Mexico',
-      detail: 'Detail text',
-    },
+      detail: 'Detail text'
+    }
   ]"
   [columns]="[
     {
       def: 'name',
       label: 'Name',
       dataKey: 'name',
-      htmlLabel: dynamicLabel,
+      htmlLabel: dynamicLabel
     },
     {
       def: 'lastName',
       label: 'Last Name',
-      dataKey: 'lastName',
+      dataKey: 'lastName'
     },
     {
       def: 'birthday',
       label: 'Birthday',
-      dataKey: 'birthday',
+      dataKey: 'birthday'
     },
     {
       def: 'country',
       label: 'Country',
-      dataKey: 'country',
-    },
+      dataKey: 'country'
+    }
   ]"
   [config]="config"
   (select)="onSelect($event)"

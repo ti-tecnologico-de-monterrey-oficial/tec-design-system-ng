@@ -64,7 +64,21 @@ Toggles the `isToggleActive` state (if `toggleIconActive` is defined) and emits 
 The component's template is structured as follows:
 
 ```html
-<bmb-action-icon [idElement]="'unique-id'" [icon]="'home'" [alt]="'Home Icon'" [iconSize]="24" [toggleIconActive]="'home-filled'" [isToggleActive]="false" [isAccentColor]="true" [dotNotification]="3" [target]="{ href: 'https://example.com', target: '_blank' }" [link]="'https://example.com'" [disabled]="false" (buttonPress)="onIconPressed()" (buttonClick)="onIconClicked()"></bmb-action-icon>
+<bmb-action-icon
+  [idElement]="'unique-id'"
+  [icon]="'home'"
+  [alt]="'Home Icon'"
+  [iconSize]="24"
+  [toggleIconActive]="'home-filled'"
+  [isToggleActive]="false"
+  [isAccentColor]="true"
+  [dotNotification]="3"
+  [target]="{ href: 'https://example.com', target: '_blank' }"
+  [link]="'https://example.com'"
+  [disabled]="false"
+  (buttonPress)="onIconPressed()"
+  (buttonClick)="onIconClicked()"
+></bmb-action-icon>
 ```
 
 ---
@@ -72,7 +86,21 @@ The component's template is structured as follows:
 ## Usage Example
 
 ```html
-<bmb-action-icon [idElement]="'action-icon-1'" [icon]="'settings'" [alt]="'Settings Icon'" [iconSize]="32" [toggleIconActive]="'settings-filled'" [isToggleActive]="true" [isAccentColor]="false" [dotNotification]="5" [target]="{ href: 'https://example.com/settings', target: '_self' }" [link]="'https://example.com/settings'" [disabled]="false" (buttonPress)="onSettingsPressed()" (buttonClick)="onSettingsClicked()"></bmb-action-icon>
+<bmb-action-icon
+  [idElement]="'action-icon-1'"
+  [icon]="'settings'"
+  [alt]="'Settings Icon'"
+  [iconSize]="32"
+  [toggleIconActive]="'settings-filled'"
+  [isToggleActive]="true"
+  [isAccentColor]="false"
+  [dotNotification]="5"
+  [target]="{ href: 'https://example.com/settings', target: '_self' }"
+  [link]="'https://example.com/settings'"
+  [disabled]="false"
+  (buttonPress)="onSettingsPressed()"
+  (buttonClick)="onSettingsClicked()"
+></bmb-action-icon>
 ```
 
 ---

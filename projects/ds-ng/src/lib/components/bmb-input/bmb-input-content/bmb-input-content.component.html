@@ -1,19 +1,19 @@
 <section class="bmb_field">
   <section class="bmb_field-wrapper">
-    @if (!!icon() && type() !== "text-area") {
+    @if (!!icon() && type() !== 'text-area') {
       <bmb-icon
         class="bmb_field-icon"
         [ngClass]="{
           'bmb_field-icon-simple': appearance() === 'simple',
           'bmb_field-icon-simple-focused': appearance() === 'simple' && isFocus,
-          'bmb_field-icon-simple-error': appearance() === 'simple' && isError(),
+          'bmb_field-icon-simple-error': appearance() === 'simple' && isError()
         }"
         [icon]="icon()"
         [size]="24"
         [alt]="name()"
       />
     }
-    @if (type() === "text-area") {
+    @if (type() === 'text-area') {
       <textarea
         class="bmb_field-text-area"
         [ngClass]="inputClasses"

@@ -5,6 +5,7 @@ import {
   input,
   OnInit,
   output,
+  signal,
   TemplateRef,
   ViewChild,
   ViewEncapsulation,
@@ -18,21 +19,21 @@ import { BmbProgressBarComponent } from '../bmb-progress-bar/bmb-progress-bar.co
 import { DateTime } from 'luxon';
 import { BmbDividerComponent } from '../bmb-divider/bmb-divider.component';
 import { BmbButtonDirective } from '../../directives/bmb-button/button.directive';
-import { MatDialog } from '@angular/material/dialog';
-import { BmbModalComponent } from '../bmb-modal/bmb-modal.component';
-import { ModalDataConfig } from '../bmb-modal/bmb-modal.interface';
 import { BmbRadialComponent } from '../bmb-radial/bmb-radial.component';
 import { currencyFormat } from '../../utils/currencyFormat';
 import { BmbLayoutDirective } from '../../directives/bmb-layout/bmb-layout.directive';
 import { BmbLayoutItemDirective } from '../../directives/bmb-layout/bmb-layout-item.directive';
 import { BmbInputComponent } from '../bmb-input/bmb-input.component';
 import { BmbInnerHeaderComponent } from '../bmb-inner-header/bmb-inner-header.component';
+import { BmbNativeModalService } from '../../services/native-modal.service';
 import {
   FormControl,
   FormGroup,
   Validators,
   ReactiveFormsModule,
 } from '@angular/forms';
+import { IBmbNativeModal } from '../bmb-modal/bmb-modal.interface';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'bmb-account-statement',
@@ -50,6 +51,7 @@ import {
     BmbInputComponent,
     ReactiveFormsModule,
     BmbInnerHeaderComponent,
+    CommonModule,
   ],
   templateUrl: './bmb-account-statement.component.html',
   styleUrl: './bmb-account-statement.component.scss',
@@ -91,13 +93,14 @@ export class BmbAccountStatementComponent implements AfterViewInit, OnInit {
   customAmount: number = 0;
   isEnableCustomAmount: boolean = false;
   maxAmount: number = 0;
+  modalID = signal<string | null>(null);
 
   amountForm: FormGroup = new FormGroup({
     amount: new FormControl<number>(0, [Validators.required]),
   });
   showErrors: { [key: string]: boolean } = {};
 
-  constructor(private matDialog: MatDialog) {}
+  constructor(private modalService: BmbNativeModalService) {}
 
   ngOnInit(): void {
     this.maxAmount = this.totalCount() - this.counter();
@@ -118,16 +121,14 @@ export class BmbAccountStatementComponent implements AfterViewInit, OnInit {
   }
 
   handlePay() {
-    const data: ModalDataConfig = {
+    const data: IBmbNativeModal = {
       title: this.modalTitle(),
       subtitle: this.modalSubtitle(),
       content: this.newModal,
       size: 'large',
-      hidePrimaryButton: true,
-      hideSecondaryButton: true,
     };
 
-    this.matDialog.open(BmbModalComponent, { data });
+    this.modalID.set(this.modalService.openModal(data));
   }
 
   getFormattedDate(date?: string): string {
@@ -148,13 +149,17 @@ export class BmbAccountStatementComponent implements AfterViewInit, OnInit {
     this.isEnableCustomAmount = event.value === 'modalOtherAmountInput';
   }
 
-  onSubmit() {
+  handleSubmit() {
     if (!this.isEnableCustomAmount) {
       this.payEvent.emit(this.totalCount() - this.counter());
+      this.modalService.closeModal(this.modalID() as string);
+      this.modalID.set(null);
     } else if (this.amountForm.valid) {
       const amount = Number(this.amountForm.controls['amount'].value);
       if (amount > 0 && amount <= this.maxAmount) {
         this.payEvent.emit(amount);
+        this.modalService.closeModal(this.modalID() as string);
+        this.modalID.set(null);
       } else {
         this.showErrors['amount'] = true;
       }
@@ -179,5 +184,22 @@ export class BmbAccountStatementComponent implements AfterViewInit, OnInit {
 
   getProgressPercent(): number {
     return (100 * this.counter()) / this.totalCount();
+  }
+
+  customHandleClick() {
+    console.log('customHandleClick');
+
+    if (!this.isEnableCustomAmount) {
+      this.payEvent.emit(this.totalCount() - this.counter());
+    } else if (this.amountForm.valid) {
+      const amount = Number(this.amountForm.controls['amount'].value);
+      if (amount > 0 && amount <= this.maxAmount) {
+        this.payEvent.emit(amount);
+      } else {
+        this.showErrors['amount'] = true;
+      }
+    } else {
+      this.showErrors['amount'] = true;
+    }
   }
 }

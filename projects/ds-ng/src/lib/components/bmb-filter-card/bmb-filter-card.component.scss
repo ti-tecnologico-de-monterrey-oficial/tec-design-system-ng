@@ -1,6 +1,6 @@
-@use "../../../assets/styles/base/rem" as rem;
-@use "../../../assets/styles/base/fonts" as fonts;
-@use "../../../assets/styles/base/mixins" as mixins;
+@use '../../../assets/styles/base/rem' as rem;
+@use '../../../assets/styles/base/fonts' as fonts;
+@use '../../../assets/styles/base/mixins' as mixins;
 
 .bmb_filter_card {
   &-button {
@@ -20,7 +20,7 @@
     border-bottom: rem.rem_calc(1) solid RGBA(var(--color-charade-500));
     padding-bottom: rem.rem_calc(10);
 
-    @include mixins.media-query(768, "min") {
+    @include mixins.media-query(768, 'min') {
       display: flex;
       flex-wrap: wrap;
       gap: var(--bmb-spacing-s);
@@ -35,7 +35,7 @@
     justify-content: center;
     gap: 1rem;
 
-    @include mixins.media-query(768, "min") {
+    @include mixins.media-query(768, 'min') {
       flex-flow: row;
 
       .bmb_btn-rounded {
@@ -45,7 +45,7 @@
   }
 }
 
-[data-theme="dark"],
+[data-theme='dark'],
 .storybook-dark-theme {
   .bmb_filter_card {
     &-button {

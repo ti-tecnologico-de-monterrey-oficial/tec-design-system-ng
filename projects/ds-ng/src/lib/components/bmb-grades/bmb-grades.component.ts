@@ -12,9 +12,6 @@ import {
 import { BmbChevronTitleSelectorComponent } from '../bmb-chevron-title-selector/bmb-chevron-title-selector.component';
 import { BmbContainerButtonComponent } from '../bmb-container-button/bmb-container-button.component';
 import { BmbDividerComponent } from '../bmb-divider/bmb-divider.component';
-import { BmbModalComponent } from '../bmb-modal/bmb-modal.component';
-import { ModalDataConfig } from '../bmb-modal/bmb-modal.interface';
-import { MatDialog } from '@angular/material/dialog';
 import { BmbLayoutItemDirective } from '../../directives/bmb-layout/bmb-layout-item.directive';
 import { BmbLayoutDirective } from '../../directives/bmb-layout/bmb-layout.directive';
 import { IBmbGrades, IBmbPartial } from './types';
@@ -26,6 +23,8 @@ import { IBmbNameValuePair } from '../../types';
 import { BmbContainerComponent } from '../bmb-container/bmb-container.component';
 import { buildErrorMessage } from '../../utils/utils';
 import { BmbTitleContentComponent } from '../bmb-title-content/bmb-title-content.component';
+import { IBmbNativeModal } from '../bmb-modal/bmb-modal.interface';
+import { BmbNativeModalService } from '../../services/native-modal.service';
 
 @Component({
   selector: 'bmb-grades',
@@ -94,19 +93,17 @@ export class BmbGradesComponent implements OnInit {
     }
   }
 
-  constructor(private matDialog: MatDialog) {}
+  constructor(private modalService: BmbNativeModalService) {}
 
   openModalComponent(element: any): void {
     this.partials = element.partials;
-    const data: ModalDataConfig = {
+    const data: IBmbNativeModal = {
       title: element.detail.title,
       subtitle: element.detail.subtitle,
       content: this.modalContent,
       size: 'small',
-      type: 'informative',
-      scrollable: true,
     };
-    this.matDialog.open(BmbModalComponent, { data });
+    this.modalService.openModal(data);
   }
 
   getGradesTitle(): string {

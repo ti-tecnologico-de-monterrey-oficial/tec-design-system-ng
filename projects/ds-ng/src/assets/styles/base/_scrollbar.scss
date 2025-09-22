@@ -1,4 +1,4 @@
-@use "./rem" as rem;
+@use './rem' as rem;
 
 ::-webkit-scrollbar {
   -webkit-appearance: none;
@@ -24,7 +24,7 @@
   background: transparent;
 }
 
-[data-theme="dark"],
+[data-theme='dark'],
 .storybook-dark-theme {
   ::-webkit-scrollbar-thumb {
     background-color: RGBA(var(--color-charade-700));

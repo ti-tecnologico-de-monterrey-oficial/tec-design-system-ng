@@ -1,6 +1,6 @@
-@use "../../../assets/styles/base/fonts" as fonts;
-@use "../../../assets/styles/base/mixins" as mixins;
-@use "../../../assets/styles/base/rem" as rem;
+@use '../../../assets/styles/base/fonts' as fonts;
+@use '../../../assets/styles/base/mixins' as mixins;
+@use '../../../assets/styles/base/rem' as rem;
 
 .bmb_tabs {
   display: flex;
@@ -83,24 +83,24 @@
     }
 
     &-mobile {
-      @include mixins.media-query(999, "max") {
+      @include mixins.media-query(999, 'max') {
         display: block;
       }
 
       &-remove {
-        @include mixins.media-query(1000, "min") {
+        @include mixins.media-query(1000, 'min') {
           display: none;
         }
       }
     }
 
     &-desktop {
-      @include mixins.media-query(1000, "min") {
+      @include mixins.media-query(1000, 'min') {
         display: block;
       }
 
       &-remove {
-        @include mixins.media-query(999, "max") {
+        @include mixins.media-query(999, 'max') {
           display: none;
         }
       }

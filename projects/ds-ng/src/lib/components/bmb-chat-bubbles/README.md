@@ -70,7 +70,19 @@ Emits the `onDislike` event when the "dislike" icon is clicked.
 The component's template is structured as follows:
 
 ```html
-<bmb-chat-bubble [iconBot]="'/assets/images/bot-icons/custom_bot.svg'" [message]="{ text: 'Hello, how can I help you?', sender: 'bot' }" [gptBot]="true" [gptIcons]="true" [isThinking]="false" [gptActiveIcons]="{ repeat: true, voice: true, copy: true, like: true, dislike: true }" (onRepeatRequest)="handleRepeat()" (onVoice)="handleVoice()" (onCopy)="handleCopy()" (onLike)="handleLike()" (onDislike)="handleDislike()"></bmb-chat-bubble>
+<bmb-chat-bubble
+  [iconBot]="'/assets/images/bot-icons/custom_bot.svg'"
+  [message]="{ text: 'Hello, how can I help you?', sender: 'bot' }"
+  [gptBot]="true"
+  [gptIcons]="true"
+  [isThinking]="false"
+  [gptActiveIcons]="{ repeat: true, voice: true, copy: true, like: true, dislike: true }"
+  (onRepeatRequest)="handleRepeat()"
+  (onVoice)="handleVoice()"
+  (onCopy)="handleCopy()"
+  (onLike)="handleLike()"
+  (onDislike)="handleDislike()"
+></bmb-chat-bubble>
 ```
 
 ---
@@ -78,7 +90,19 @@ The component's template is structured as follows:
 ## Usage Example
 
 ```html
-<bmb-chat-bubble [iconBot]="'/assets/images/bot-icons/chat_gpt.svg'" [message]="{ text: 'This is a GPT bot message.', sender: 'bot' }" [gptBot]="true" [gptIcons]="true" [isThinking]="true" [gptActiveIcons]="{ repeat: true, voice: false, copy: true, like: true, dislike: false }" (onRepeatRequest)="onRepeat()" (onVoice)="onVoice()" (onCopy)="onCopy()" (onLike)="onLike()" (onDislike)="onDislike()"></bmb-chat-bubble>
+<bmb-chat-bubble
+  [iconBot]="'/assets/images/bot-icons/chat_gpt.svg'"
+  [message]="{ text: 'This is a GPT bot message.', sender: 'bot' }"
+  [gptBot]="true"
+  [gptIcons]="true"
+  [isThinking]="true"
+  [gptActiveIcons]="{ repeat: true, voice: false, copy: true, like: true, dislike: false }"
+  (onRepeatRequest)="onRepeat()"
+  (onVoice)="onVoice()"
+  (onCopy)="onCopy()"
+  (onLike)="onLike()"
+  (onDislike)="onDislike()"
+></bmb-chat-bubble>
 ```
 
 ---
