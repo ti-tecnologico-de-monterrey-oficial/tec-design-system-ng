@@ -85,7 +85,18 @@ Emits the `onClose` event when the calendar is closed.
 The component's template is structured as follows:
 
 ```html
-<bmb-calendar [hourFormat]="'24'" [calendarTimezone]="'America/Mexico_City'" [clientTimezone]="'America/Mexico_City'" [lang]="'es-MX'" [currentDate]="'2025-04-30'" [height]="700" [startBusinessHour]="8" [calendarTitle]="'Mi horario'" (onDateChange)="onDateChange($event)" (onClose)="onCalendarClose()"></bmb-calendar>
+<bmb-calendar
+  [hourFormat]="'24'"
+  [calendarTimezone]="'America/Mexico_City'"
+  [clientTimezone]="'America/Mexico_City'"
+  [lang]="'es-MX'"
+  [currentDate]="'2025-04-30'"
+  [height]="700"
+  [startBusinessHour]="8"
+  [calendarTitle]="'Mi horario'"
+  (onDateChange)="onDateChange($event)"
+  (onClose)="onCalendarClose()"
+></bmb-calendar>
 ```
 
 ---
@@ -93,7 +104,18 @@ The component's template is structured as follows:
 ## Usage Example
 
 ```html
-<bmb-calendar [hourFormat]="'12'" [calendarTimezone]="'America/New_York'" [clientTimezone]="'America/New_York'" [lang]="'en-US'" [currentDate]="'2025-05-01'" [height]="'600px'" [startBusinessHour]="9" [calendarTitle]="'My Schedule'" (onDateChange)="handleDateChange($event)" (onClose)="handleCalendarClose()"></bmb-calendar>
+<bmb-calendar
+  [hourFormat]="'12'"
+  [calendarTimezone]="'America/New_York'"
+  [clientTimezone]="'America/New_York'"
+  [lang]="'en-US'"
+  [currentDate]="'2025-05-01'"
+  [height]="'600px'"
+  [startBusinessHour]="9"
+  [calendarTitle]="'My Schedule'"
+  (onDateChange)="handleDateChange($event)"
+  (onClose)="handleCalendarClose()"
+></bmb-calendar>
 ```
 
 ---

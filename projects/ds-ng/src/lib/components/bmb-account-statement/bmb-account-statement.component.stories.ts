@@ -95,7 +95,7 @@ ${getBasicExampleBlock('BmbAccountStatementComponent')}
       'progress title',
     ),
     formatDates: getPropertyParamDesc(
-      '\`cutOffDate\` and \`paymentDeadline\`',
+      '`cutOffDate` and `paymentDeadline`',
       'text',
       'yyyy-MM-dd',
       '',
@@ -228,6 +228,9 @@ ${getBasicExampleBlock('BmbAccountStatementComponent')}
     progressCircleTitle: ['Total a pagar', 'este mes'],
     closeEvent: () => {
       console.log('closeEvent');
+    },
+    payEvent: (amount: number) => {
+      console.log('payEvent', amount);
     },
   },
 } as Meta<typeof BmbAccountStatementComponent>;

@@ -1,5 +1,6 @@
-@use "../../../assets/styles/base/fonts" as fonts;
-@use "../../../assets/styles/base/rem" as rem;
+@use '../../../assets/styles/base/fonts' as fonts;
+@use '../../../assets/styles/base/rem' as rem;
+@use '../../../assets/styles/base/mixins' as mixins;
 
 .bmb_item {
   align-items: center;
@@ -8,15 +9,24 @@
 
   &-default {
     border-bottom: rem.rem_calc(1) solid var(--general_contrasts-50);
-    padding: rem.rem_calc(16);
-    flex-direction: row;
+    flex-flow: row wrap;
     justify-content: space-between;
+    padding: rem.rem_calc(6);
+
+    @include mixins.media-query(768, 'min') {
+      flex-flow: row nowrap;
+    }
   }
 
   &-wrapper {
     align-items: center;
     display: flex;
     gap: rem.rem_calc(16);
+    width: 100%;
+
+    @include mixins.media-query(768, 'min') {
+      width: auto;
+    }
   }
 
   &-text {
@@ -29,6 +39,7 @@
   &-icon,
   &-support {
     color: var(--general_contrasts-100);
+    text-align: left;
   }
 
   &-label {
@@ -53,10 +64,21 @@
   &-link {
     @include fonts.font(4, semibold);
     color: RGBA(var(--color-mariner-500), 1);
+
+    &-only-link {
+      padding-left: rem.rem_calc(36);
+
+      @include mixins.media-query(768, 'min') {
+        padding-left: 0;
+      }
+    }
   }
 
   &-link {
+    overflow: hidden;
     text-decoration: none;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 
     &:hover,
     &:focus-visible {
@@ -65,12 +87,12 @@
   }
 
   &-button {
-    padding: rem.rem_calc(16);
-    width: 100%;
+    align-items: center;
     border-radius: rem.rem-calc(8);
     display: flex;
-    align-items: center;
     gap: rem.rem_calc(16);
+    padding: rem.rem_calc(16);
+    width: 100%;
 
     &:hover,
     &:focus-visible {

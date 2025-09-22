@@ -81,7 +81,6 @@ export const WithIcon: Story = {
         <ng-template>
           <bmb-item
             label="Correo"
-            icon="mail"
             value="tecservices@servicios.tec.mx"
             valueLink="mailto:tecservices@servicios.tec.mx"
             valueTarget="_self"
@@ -169,13 +168,11 @@ export const InformativeTextWithoutIcon: Story = {
         <ng-template>
           <bmb-item
             label="Informative text. Non actionable"
-            icon="mail"
             supportText="Support text. <a href='https://www.google.com.mx' target='_blank'>Optional hyperlink text</a>"
           />
         </ng-template>
         <ng-template>
           <bmb-item
-            icon="smartphone"
             label="Informative text. Non actionable"
             supportText="Here is some support text for your soul."
           />

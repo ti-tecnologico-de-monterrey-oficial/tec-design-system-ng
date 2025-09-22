@@ -1,5 +1,5 @@
-@use "../base/mixins" as mixins;
-@use "../base/rem" as rem;
+@use '../base/mixins' as mixins;
+@use '../base/rem' as rem;
 
 .bmb_template-header {
   background-color: var(--general_contrasts-15);
@@ -16,7 +16,7 @@
 .bmb_template-aside-full {
   display: grid;
   gap: 1rem;
-  grid-template-areas: "main aside";
+  grid-template-areas: 'main aside';
   grid-template-columns: 2fr 1fr;
   grid-template-rows: max-content max-content max-content max-content;
   margin-bottom: var(--bmb-spacing-m);
@@ -24,8 +24,8 @@
 
   @media (max-width: 630px) {
     grid-template-areas:
-      "main"
-      "aside";
+      'main'
+      'aside';
     grid-template-columns: 1fr;
     grid-template-rows: max-content max-content max-content max-content;
     height: fit-content;
@@ -72,7 +72,7 @@
 .bmb_template-aside {
   display: grid;
   gap: 1rem;
-  grid-template-areas: "main aside";
+  grid-template-areas: 'main aside';
   grid-template-columns: 2fr 1fr;
   grid-template-rows: max-content max-content max-content max-content;
   margin-top: var(--bmb-spacing-xs);
@@ -81,8 +81,8 @@
 
   @media (max-width: 630px) {
     grid-template-areas:
-      "main"
-      "aside";
+      'main'
+      'aside';
     grid-template-columns: 1fr;
     grid-template-rows: max-content max-content max-content max-content;
     height: fit-content;
@@ -128,7 +128,7 @@
 .bmb_template-aside-first {
   display: grid;
   gap: 1rem;
-  grid-template-areas: "aside main";
+  grid-template-areas: 'aside main';
   grid-template-columns: 1fr 2fr;
   grid-template-rows: max-content max-content max-content max-content;
   margin-top: var(--bmb-spacing-xs);
@@ -136,8 +136,8 @@
 
   @media (max-width: 630px) {
     grid-template-areas:
-      "aside"
-      "main";
+      'aside'
+      'main';
     grid-template-columns: 1fr;
     grid-template-rows: max-content max-content max-content max-content;
     height: fit-content;
@@ -186,7 +186,7 @@
 .bmb_template-main-full {
   display: grid;
   gap: 1rem;
-  grid-template-areas: "main";
+  grid-template-areas: 'main';
   grid-template-columns: 1fr;
   grid-template-rows: max-content max-content max-content max-content;
   margin-top: var(--bmb-spacing-m);
@@ -224,7 +224,7 @@
 .bmb_template-twice-full {
   display: grid;
   gap: 1rem;
-  grid-template-areas: "main secondary";
+  grid-template-areas: 'main secondary';
   grid-template-columns: 2fr 2fr;
   grid-template-rows: max-content max-content max-content max-content;
   margin-top: var(--bmb-spacing-m);
@@ -233,8 +233,8 @@
 
   @media (max-width: 630px) {
     grid-template-areas:
-      "main"
-      "secondary";
+      'main'
+      'secondary';
     grid-template-columns: 1fr;
     grid-template-rows: max-content max-content max-content max-content;
     height: fit-content;
@@ -280,7 +280,7 @@
 .bmb_template-twice {
   display: grid;
   gap: 1rem;
-  grid-template-areas: "main secondary";
+  grid-template-areas: 'main secondary';
   grid-template-columns: 2fr 2fr;
   grid-template-rows: max-content max-content max-content max-content;
   margin-top: var(--bmb-spacing-m);
@@ -289,8 +289,8 @@
 
   @media (max-width: 630px) {
     grid-template-areas:
-      "main"
-      "secondary";
+      'main'
+      'secondary';
     grid-template-columns: 1fr;
     grid-template-rows: max-content max-content max-content max-content;
     height: fit-content;
@@ -337,8 +337,8 @@
   display: grid;
   gap: 1rem;
   grid-template-areas:
-    "main"
-    "secondary";
+    'main'
+    'secondary';
   grid-template-columns: 1fr;
   grid-template-rows: 2fr 5fr;
   margin-top: var(--bmb-spacing-m);
@@ -347,8 +347,8 @@
 
   @media (max-width: 630px) {
     grid-template-areas:
-      "main"
-      "secondary";
+      'main'
+      'secondary';
     grid-template-columns: 1fr;
     grid-template-rows: max-content max-content max-content max-content;
     height: fit-content;
@@ -398,7 +398,7 @@
 
 .bmb_template-article {
   display: grid;
-  grid-template-areas: "aside main";
+  grid-template-areas: 'aside main';
   grid-template-columns: 2fr 6fr;
   grid-template-rows: max-content max-content max-content max-content;
   margin-top: var(--bmb-spacing-xs);
@@ -406,8 +406,8 @@
 
   @media (max-width: 630px) {
     grid-template-areas:
-      "aside"
-      "main";
+      'aside'
+      'main';
     grid-template-columns: 1fr;
     grid-template-rows: max-content max-content max-content max-content;
     height: fit-content;
@@ -482,9 +482,9 @@
   &-main {
     background-color: var(--containers-background);
     flex: 1;
-    padding: rem.rem_calc(32);
+    padding: rem.rem_calc(16);
 
-    @media (min-width: 1000px) {
+    @include mixins.checkForMobile(false) {
       padding: rem.rem_calc(96 140);
     }
   }
@@ -514,7 +514,7 @@
 .bmb_template-accordion {
   height: calc(100% - rem.rem_calc(32));
 
-  @media (min-width: 1000px) {
+  @include mixins.checkForMobile(false) {
     height: calc(100% - rem.rem_calc(140));
   }
 
@@ -537,7 +537,7 @@
 
       button {
         font-size: rem.rem_calc(14);
-        font-weight: 600;
+        font-family: 'Poppins-bold', sans-serif;
 
         bmb-icon {
           padding-left: rem.rem_calc(8);
@@ -567,7 +567,7 @@
     &::after {
       background: var(--general_contrasts-main-selection);
       bottom: rem.rem_calc(5);
-      content: "";
+      content: '';
       height: rem.rem_calc(1);
       left: 0;
       position: absolute;
@@ -655,7 +655,7 @@
       &:before {
         background-color: var(--general_contrasts-text-sidebar);
         bottom: 0;
-        content: "";
+        content: '';
         display: none;
         height: rem.rem_calc(44);
         margin: auto;
@@ -705,9 +705,14 @@
 }
 
 .bmb_template-margin-for-sidebar {
-  margin: rem.rem_calc(24 24 24 100);
+  margin: rem.rem_calc(16);
 
-  @media (max-width: 1000px) {
-    margin-left: rem.rem_calc(40);
+  @media (min-width: 1000px) {
+    margin-left: rem.rem_calc(100);
   }
+}
+
+.bmb_template-weeks-tec-cards {
+  max-width: rem.rem_calc(1000);
+  margin: 0 auto !important;
 }

@@ -1,5 +1,5 @@
 <section class="bmb_progress-bar">
-  @if (type() !== "container") {
+  @if (type() !== 'container') {
     <div class="bmb_progress-bar-counter-container">
       <div class="bmb_progress-bar-track">
         <div
@@ -9,7 +9,7 @@
           [style.width.%]="progressValue()"
         ></div>
       </div>
-      @if (type() !== "simple") {
+      @if (type() !== 'simple') {
         <span class="bmb_progress-bar-counter-text">
           {{ getFormattedText() }}
         </span>
@@ -38,7 +38,7 @@
               ></div>
             </div>
             <span class="bmb_progress-bar-counter-text">
-              {{ progressValue() + "%" }}
+              {{ progressValue() + '%' }}
             </span>
           </div>
         </div>

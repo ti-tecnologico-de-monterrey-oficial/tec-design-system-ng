@@ -21,7 +21,11 @@ import {
 } from '../../utils/doc/parameterDescriptions';
 
 const onCloseEvent: IBmbOnEvent = getOnEvent('close', 'close'),
-  onAccessEvent: IBmbOnEvent = getOnEvent('access', 'access');
+  onAccessEvent: IBmbOnEvent = getOnEvent('access', 'access'),
+  onSecondaryClickEvent: IBmbOnEvent = getOnEvent(
+    '***ID to PDF***',
+    'onSecondaryClick',
+  );
 const getPropDesc = (name: string) => {
   const propDesc = getPropertyParamDesc(
     '',
@@ -55,7 +59,15 @@ export default {
   parameters: {
     docs: {
       controls: {
-        exclude: ['logoSrc', 'clickAccess', 'closeDigitalId'],
+        exclude: [
+          'logoSrc',
+          'clickAccess',
+          'closeDigitalId',
+          'secondaryIconButton',
+          'secondaryTextButton',
+          'getFullName',
+          'handleSecondaryClick',
+        ],
       },
       description: {
         component: `
@@ -64,7 +76,8 @@ ${getBasicExampleBlock(
   'BmbDigitalIdComponent',
   '',
   `${onCloseEvent.handleExample}
-  ${onAccessEvent.handleExample}`,
+  ${onAccessEvent.handleExample}
+  ${onSecondaryClickEvent.handleExample}`,
 )}
         `,
       },
@@ -112,6 +125,7 @@ ${getBasicExampleBlock(
     hideButton: getPropertyParamDesc('button to hidden', 'boolean', false),
     close: getOnClickParam(onCloseEvent),
     access: getOnClickParam(onAccessEvent),
+    onSecondaryClick: getOnClickParam(onSecondaryClickEvent),
   },
   args: {
     name: 'Paola',

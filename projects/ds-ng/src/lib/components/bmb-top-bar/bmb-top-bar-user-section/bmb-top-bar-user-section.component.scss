@@ -1,81 +1,59 @@
-@use "../../../../assets/styles/base/rem" as rem;
-@use "../../../../assets/styles/base/fonts" as fonts;
-@use "../../../../assets/styles/base/mixins" as mixins;
+@use '../../../../assets/styles/base/fonts' as fonts;
+@use '../../../../assets/styles/base/mixins' as mixins;
 
 .bmb_top-bar-user-section {
-  @include fonts.font(3, regular);
-  width: 100vw;
-  align-items: center;
-  display: flex;
-  justify-content: center;
-  gap: rem.rem_calc(8);
+  color: rgb(var(--color-white-primary));
 
-  @include mixins.media-query(1000, "min") {
-    max-width: max-content;
-    gap: rem.rem_calc(16);
+  @include mixins.checkForMobile() {
+    gap: var(--bmb-spacing-s);
   }
 
-  &-icon {
-    &-qualtrics {
-      display: none;
-
-      @include mixins.media-query(1000, "min") {
-        display: inline-flex;
+  &-menu {
+    .bmb_dropdown-content-item {
+      color: rgb(var(--color-white-primary));
+      .bmb_check-external-link-button-element {
+        &:hover,
+        &:focus,
+        &:focus-visible {
+          background-color: rgb(var(--color-charade-500));
+          outline: 0 none;
+        }
       }
     }
-  }
 
-  &-user-image {
-    padding: 0;
-  }
+    .bmb_dropdown-content-modal {
+      background-color: rgb(var(--color-charade-900));
+    }
 
-  &-title {
-    @include fonts.font(4, regular);
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    font-weight: 500;
-  }
-
-  &-role {
-    @include fonts.font(3, regular);
-    font-weight: 300;
-  }
-
-  &-notification {
-    position: relative;
+    .bmb_dropdown_menu {
+      @include mixins.dropdown_menu_left(250);
+    }
   }
 
   &-no-mobile {
-    display: none;
+    display: block;
+    line-height: 0;
 
-    @include mixins.media-query(1000, "min") {
-      display: block;
+    @include mixins.hiddenForMobile();
+  }
+
+  &-mobile {
+    display: block;
+    line-height: 0;
+
+    @include mixins.hiddenForNoMobile();
+  }
+
+  .bmb_user-summary_content-wrapper {
+    @include mixins.hiddenForMobile();
+
+    &-title {
+      @include fonts.font(3, regular);
+      color: currentColor;
     }
   }
 
-  &-dialog {
-    display: none;
-    padding: 0;
-    background-color: transparent;
-    border: 0;
-    border-radius: rem.rem_calc(4);
-    height: max-content;
-    max-height: rem.rem_calc(160);
-    top: 0;
-    left: 40%;
-    transform: translateX(-95%);
-    justify-content: center;
-    margin-top: rem.rem_calc(8);
-    box-shadow: rem.rem_calc(10 10 26 -12)
-      RGBA(var(--color-black-primary), 0.75);
-
-    &-open {
-      display: flex;
-
-      @include mixins.media-query(1000, "max") {
-        position: fixed;
-      }
-    }
+  .bmb_action_icon {
+    display: flex;
   }
 }

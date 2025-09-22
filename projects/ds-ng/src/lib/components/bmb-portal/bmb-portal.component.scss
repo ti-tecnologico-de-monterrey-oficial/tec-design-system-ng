@@ -1,4 +1,7 @@
-@use "../../../assets/styles/base/rem" as rem;
+@use '../../../assets/styles/base/rem' as rem;
+
+$toast-in-duration: 0.5s;
+$toast-out-duration: 0.5s;
 
 @mixin base() {
   position: absolute;
@@ -23,15 +26,108 @@
   bottom: rem.rem_calc(16);
 }
 
+@keyframes slideBounceRightToLeft {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideBounceLeftToRight {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideBounceTopToCenter {
+  0% {
+    transform: translate(-50%, -100%);
+  }
+  100% {
+    transform: translate(-50%, 0);
+  }
+}
+
+@keyframes slideBounceBottomToCenter {
+  0% {
+    transform: translate(-50%, 100%);
+  }
+  100% {
+    transform: translate(-50%, 0);
+  }
+}
+
+@keyframes slideOutLeftToRight {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes slideOutRightToLeft {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes slideOutCenterToTop {
+  0% {
+    transform: translate(-50%, 0);
+  }
+  100% {
+    transform: translate(-50%, -100%);
+  }
+}
+
+@keyframes slideOutCenterToBottom {
+  0% {
+    transform: translate(-50%, 0);
+  }
+  100% {
+    transform: translate(-50%, 100%);
+  }
+}
+
 .bmb_portal {
   &-top-right {
     right: rem.rem_calc(16);
     @include topMixin();
+
+    &.has-toast {
+      overflow: hidden;
+    }
+
+    bmb-toast {
+      animation: slideBounceRightToLeft $toast-in-duration ease-out forwards;
+      will-change: transform;
+
+      &.is-closing {
+        animation: slideOutLeftToRight $toast-out-duration ease-in forwards;
+      }
+    }
   }
 
   &-top-left {
     left: rem.rem_calc(16);
     @include topMixin();
+
+    bmb-toast {
+      animation: slideBounceLeftToRight $toast-in-duration ease-out forwards;
+
+      &.is-closing {
+        animation: slideOutRightToLeft $toast-out-duration ease-in forwards;
+      }
+    }
   }
 
   &-top-center {
@@ -41,16 +137,44 @@
     > * {
       transform: translateX(-50%);
     }
+
+    bmb-toast {
+      animation: slideBounceTopToCenter $toast-in-duration ease-out forwards;
+
+      &.is-closing {
+        animation: slideOutCenterToTop $toast-out-duration ease-in forwards;
+      }
+    }
   }
 
   &-bottom-right {
     right: rem.rem_calc(16);
     @include bottomMixin();
+
+    &.has-toast {
+      overflow: hidden;
+    }
+
+    bmb-toast {
+      animation: slideBounceRightToLeft $toast-in-duration ease-out forwards;
+
+      &.is-closing {
+        animation: slideOutLeftToRight $toast-out-duration ease-in forwards;
+      }
+    }
   }
 
   &-bottom-left {
     left: rem.rem_calc(16);
     @include bottomMixin();
+
+    bmb-toast {
+      animation: slideBounceLeftToRight $toast-in-duration ease-out forwards;
+
+      &.is-closing {
+        animation: slideOutRightToLeft $toast-out-duration ease-in forwards;
+      }
+    }
   }
 
   &-bottom-center {
@@ -60,5 +184,20 @@
     > * {
       transform: translateX(-50%);
     }
+
+    bmb-toast {
+      animation: slideBounceBottomToCenter $toast-in-duration ease-out forwards;
+
+      &.is-closing {
+        animation: slideOutCenterToBottom $toast-out-duration ease-in forwards;
+      }
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  bmb-toast {
+    animation: none !important;
+    transform: none !important;
   }
 }

@@ -1,7 +1,7 @@
-import { Title } from "@storybook/addon-docs/blocks";
-import { GeneralTemplate } from "./GeneralTemplate.mdx";
-import { Tabs } from "./Tabs.mdx";
-import { getFormatName } from "../lib/utils/doc/utils";
+import { Title } from '@storybook/addon-docs/blocks';
+import { GeneralTemplate } from './GeneralTemplate.mdx';
+import { Tabs } from './Tabs.mdx';
+import { getFormatName } from '../lib/utils/doc/utils';
 
 export const getPropertyValue = ({item, context, name}) => {
   if(!!item?.default?.title) {
@@ -65,12 +65,12 @@ export const ListTemplate = ({
               showStories={getPropertyValue({
                 item: main,
                 context,
-                name: "showStories",
+                name: 'showStories',
               })}
               showControls={getPropertyValue({
                 item: main,
                 context,
-                name: "showControls",
+                name: 'showControls',
               })}
             />,
             ...content.map((item) => (
@@ -78,12 +78,12 @@ export const ListTemplate = ({
                 showStories={getPropertyValue({
                   item,
                   context,
-                  name: "showStories",
+                  name: 'showStories',
                 })}
                 showControls={getPropertyValue({
                   item,
                   context,
-                  name: "showControls",
+                  name: 'showControls',
                 })}
               >
                 {item}
@@ -102,12 +102,12 @@ export const ListTemplate = ({
               showStories={getPropertyValue({
                 item,
                 context,
-                name: "showStories",
+                name: 'showStories',
               })}
               showControls={getPropertyValue({
                 item,
                 context,
-                name: "showControls",
+                name: 'showControls',
               })}
             >
               {item}

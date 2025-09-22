@@ -20,7 +20,7 @@
     class="bmb_input-tags-container"
     [ngClass]="{
       'bmb_input-tags-container-error': shouldShowError,
-      'bmb_input-tags-container-focus': isFocused(),
+      'bmb_input-tags-container-focus': isFocused()
     }"
   >
     <bmb-input-content
@@ -30,7 +30,6 @@
       [name]="getUUID('filter')"
       [control]="filterControl"
       [placeholder]="placeholder()"
-      [isDisabled]="disabled()"
       (click)="openList()"
       (onBlur)="handleValidity()"
       (keydown)="handleKeyDown($event)"

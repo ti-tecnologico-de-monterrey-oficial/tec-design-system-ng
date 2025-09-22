@@ -26,12 +26,25 @@ export interface IBmbOnEvent {
 export type IBmbOnEventType = 'change' | 'keyDown' | 'other';
 
 export const RELEVANT_TITLE_LEVEL: string[] = [
-  '⚠️**Warning**<br/>',
-  '‼️**Important**<br/>',
-  '✳️**Note**<br/>',
-  '⚙️**Configuration**<br/>',
-  '⭐**Example**<br/>',
+  `⚠️**Warning**
+`,
+  `‼️**Important**
+`,
+  `✳️**Note**
+`,
+  `⚙️**Configuration**
+`,
+  `⭐**Example**
+`,
 ];
+
+export const RelevantTitle = {
+  warning: '⚠️**Warning**<br/>',
+  important: '‼️**Important**<br/>',
+  note: '✳️**Note**<br/>',
+  configuration: '⚙️**Configuration**<br/>',
+  example: '⭐**Example**<br/>',
+};
 
 export const DESIGN_SYSTEM_TITLE: string = '***Bamboo***';
 export const TECHNICAL_DOC_TITLE: string = `${DESIGN_SYSTEM_TITLE} ***- Technical documentation***`;
@@ -139,6 +152,18 @@ export const getOnEvent = (
   };
 
   return onEvent;
+};
+
+export const getStoryLink = ({
+  title,
+  showFullLinkName,
+}: {
+  title: string;
+  showFullLinkName?: boolean;
+}): string => {
+  if (showFullLinkName)
+    return `[${title}](/docs/${getFormatName(title!, /(\/)|( )/g, '-').toLocaleLowerCase()}--documentation)`;
+  return `[${getFormatName(title!, title?.substring(0, title?.lastIndexOf('/') + 1), '')}](/docs/${getFormatName(title!, /(\/)|( )/g, '-').toLocaleLowerCase()}--documentation)`;
 };
 
 export const getAccordionDetail = (title: string, content: string) => `
@@ -533,7 +558,7 @@ ${
 \`\`\`html
 <div ${_style}class="${classes}">
   <div style="${stylesVar}">
-    The child element has access to the ${list} of the parent element's size through the ${variableDescription.replaceAll('\`', '')}.
+    The child element has access to the ${list} of the parent element's size through the ${variableDescription.replaceAll('`', '')}.
   </div>
 </div>
 \`\`\`
@@ -630,12 +655,12 @@ export const getSandboxConsiderationsDocumentation = (
     const varList: string[] = getSubList(implementationDetails, 'name');
     const definition: string = getListingOnOneLine(
       elementList as string[],
-      '\`--bmb_[__]-{[__]}\`',
+      '`--bmb_[__]-{[__]}`',
     );
     const definitionClass: string = definition.replaceAll('--', '');
     const _definition: string = getListingOnOneLine(
       varList as string[],
-      '\`--bmb_[__]-4\`',
+      '`--bmb_[__]-4`',
     );
     const definitionVar: string = _definition.replaceAll('_', '-');
     const size: string = getListingOnOneLine(elementList as string[], '{[__]}');

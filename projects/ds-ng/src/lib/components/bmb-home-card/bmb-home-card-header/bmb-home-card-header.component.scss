@@ -1,5 +1,5 @@
-@use "../../../../assets/styles/base/rem" as rem;
-@use "../../../../assets/styles/base/mixins" as mixins;
+@use '../../../../assets/styles/base/rem' as rem;
+@use '../../../../assets/styles/base/mixins' as mixins;
 
 .bmb_home-card-header {
   container-type: inline-size;
@@ -22,7 +22,7 @@
   .bmb_title-content-container-icon,
   .bmb_title-content-container-wrapper-subtitle,
   .bmb_title-content-container-wrapper-breadcrumb {
-    @include mixins.container-query(559, "max") {
+    @include mixins.container-query(559, 'max') {
       display: none;
     }
   }

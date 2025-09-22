@@ -345,7 +345,7 @@ export const ActiveExample = {
   },
   render: (args: any) => ({
     template: `
-      <div style="padding: 1.5rem">
+      <div>
         <bmb-hito-card
           ${attributes(args)}
         />

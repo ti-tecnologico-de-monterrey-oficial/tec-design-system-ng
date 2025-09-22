@@ -7,13 +7,13 @@
       <li
         class="bmb_timestream-detail-item"
         [ngClass]="{
-          'bmb_timestream-detail-item-current': dayEvent.selected,
+          'bmb_timestream-detail-item-current': dayEvent.selected
         }"
       >
         <header
           class="bmb_timestream-detail-item-header"
           [ngClass]="{
-            'bmb_timestream-detail-item-header-micro': isMicro(),
+            'bmb_timestream-detail-item-header-micro': isMicro()
           }"
         >
           <h3 class="bmb_timestream-detail-item-header-title">
@@ -21,13 +21,13 @@
           </h3>
           <span class="bmb_timestream-detail-item-header-subtitle"
             >{{ dayEvent.events.length }}
-            {{ dayEvent.events.length > 1 ? "HITOS" : "HITO" }}</span
+            {{ dayEvent.events.length > 1 ? 'HITOS' : 'HITO' }}</span
           >
         </header>
         <section
           class="bmb_timestream-detail-content"
           [ngClass]="{
-            'bmb_timestream-detail-content-micro': isMicro(),
+            'bmb_timestream-detail-content-micro': isMicro()
           }"
         >
           @for (event of dayEvent.events; track $index) {

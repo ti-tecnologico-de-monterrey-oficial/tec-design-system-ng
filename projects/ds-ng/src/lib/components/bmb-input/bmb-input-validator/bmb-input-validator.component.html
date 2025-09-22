@@ -1,7 +1,7 @@
 <section
   #inputValidation
   class="bmb_input-validator"
-  [ngClass]="{ disabled: isDisabled() }"
+  [ngClass]="{ disabled: control()?.disabled }"
 >
   <span
     class="bmb_input-validator-wrapper"
@@ -11,7 +11,7 @@
       !!label() ||
       isRequired() ||
       !!tooltip() ||
-      (type() === "text-area" && showMaxTextLength())
+      (type() === 'text-area' && showMaxTextLength())
     ) {
       <label class="bmb_input-validator-label" [htmlFor]="inputId()">
         {{ label() }}
@@ -28,9 +28,9 @@
             [size]="20"
           />
         }
-        @if (type() === "text-area" && showMaxTextLength()) {
+        @if (type() === 'text-area' && showMaxTextLength()) {
           <span class="bmb_input-validator-label-max">
-            {{ control()?.value?.toString().length }}/{{ maxLength() || "-" }}
+            {{ control()?.value?.toString().length }}/{{ maxLength() || '-' }}
           </span>
         }
       </label>

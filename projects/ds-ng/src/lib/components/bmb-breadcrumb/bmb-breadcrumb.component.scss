@@ -1,6 +1,6 @@
-@use "../../../assets/styles/base/rem" as rem;
-@use "../../../assets/styles/base/fonts" as fonts;
-@use "../../../assets/styles/base/mixins" as mixins;
+@use '../../../assets/styles/base/rem' as rem;
+@use '../../../assets/styles/base/fonts' as fonts;
+@use '../../../assets/styles/base/mixins' as mixins;
 
 .bmb_breadcrumb {
   align-items: center;
@@ -19,7 +19,7 @@
       font-size: rem.rem_calc(20);
       margin: rem.rem_calc(0 8);
 
-      @include mixins.media-query(768, "min") {
+      @include mixins.media-query(768, 'min') {
         display: block;
       }
     }
@@ -40,7 +40,7 @@
       text-overflow: ellipsis;
       white-space: nowrap;
 
-      @include mixins.media-query(768, "min") {
+      @include mixins.media-query(768, 'min') {
         display: block;
       }
     }
@@ -56,7 +56,7 @@
       color: var(--general_contrasts-100);
     }
 
-    @include mixins.media-query(768, "max") {
+    @include mixins.media-query(768, 'max') {
       display: none;
     }
   }
@@ -93,7 +93,7 @@
       display: none;
     }
 
-    @include mixins.media-query(768, "max") {
+    @include mixins.media-query(768, 'max') {
       display: none;
 
       &:last-child {
@@ -107,7 +107,7 @@
     color: var(--general_contrasts-100);
     display: none;
 
-    @include mixins.media-query(769, "min") {
+    @include mixins.media-query(769, 'min') {
       &-active {
         display: block;
       }
@@ -161,7 +161,7 @@
       width: rem.rem_calc(24);
     }
 
-    @include mixins.media-query(768, "max") {
+    @include mixins.media-query(768, 'max') {
       display: none;
     }
   }
@@ -175,7 +175,7 @@
     text-decoration: none;
     width: rem.rem_calc(20);
 
-    @include mixins.media-query(768, "max") {
+    @include mixins.media-query(768, 'max') {
       display: flex;
     }
   }

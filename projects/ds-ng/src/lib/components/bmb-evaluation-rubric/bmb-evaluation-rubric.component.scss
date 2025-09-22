@@ -1,6 +1,6 @@
-@use "../../../assets/styles/base/fonts" as fonts;
-@use "../../../assets/styles/base/mixins" as mixins;
-@use "../../../assets/styles/base/rem" as rem;
+@use '../../../assets/styles/base/fonts' as fonts;
+@use '../../../assets/styles/base/mixins' as mixins;
+@use '../../../assets/styles/base/rem' as rem;
 
 .bmb_evaluation-rubric {
   &-header {
@@ -78,7 +78,7 @@
       display: flex;
       gap: var(--bmb-spacing-s);
 
-      @include mixins.media-query(750, "max") {
+      @include mixins.media-query(750, 'max') {
         flex-direction: column;
       }
     }

@@ -1,5 +1,5 @@
-@use "../../../assets/styles/base/rem" as rem;
-@use "../../../assets/styles/base/fonts" as fonts;
+@use '../../../assets/styles/base/rem' as rem;
+@use '../../../assets/styles/base/fonts' as fonts;
 
 @mixin translate_element() {
   transform: translate(rem.rem_calc(32), rem.rem_calc(0));
@@ -93,7 +93,7 @@
       background-color: rgb(var(--color-white-primary));
       border-radius: 50%;
       bottom: 0;
-      content: "";
+      content: '';
       height: rem.rem_calc(32);
       left: rem.rem_calc(-12);
       margin: auto;

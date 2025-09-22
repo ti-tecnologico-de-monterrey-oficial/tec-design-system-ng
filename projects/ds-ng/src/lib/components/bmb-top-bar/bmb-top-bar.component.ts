@@ -11,6 +11,7 @@ import { CommonModule } from '@angular/common';
 import { IPositionButtonMenu, IUserInformation } from './types';
 import { BmbTopBarUserSectionComponent } from './bmb-top-bar-user-section/bmb-top-bar-user-section.component';
 import { IBmbDataAlert } from '../bmb-alert-center/types';
+import { getMobileResolutionSize } from '../../utils/utils';
 
 export { IPositionButtonMenu, IUserInformation } from './types';
 
@@ -26,12 +27,14 @@ export { IPositionButtonMenu, IUserInformation } from './types';
 export class BmbTopBarComponent implements OnInit {
   userInformation = input<IUserInformation | null>(null);
   appName = input<string>('');
+  appPowered = input<string>('');
   appSubTitle = input<string>('');
   lang = input<string>('es');
   mitec = input<boolean>(false);
   alertNotification = input<IBmbDataAlert[]>([]);
   showRoleButton = input<boolean>(false);
   showHelpButton = input<boolean>(false);
+  allowSidebarForMobile = input<boolean>(true);
 
   positionButtonMenu = input<IPositionButtonMenu>('left'); // Deprecated
   hasLogoutButton = input<boolean>(true); // Deprecated
@@ -75,6 +78,10 @@ export class BmbTopBarComponent implements OnInit {
       this.showAnimation = true;
       localStorage.setItem('bmbTopBarViewed', 'true');
     }
+  }
+
+  getNoMobileResolutionSize(): string {
+    return getMobileResolutionSize(false);
   }
 
   handleLogOutClick(event: Event) {

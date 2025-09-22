@@ -1,6 +1,6 @@
-@use "../../../assets/styles/base/fonts" as fonts;
-@use "../../../assets/styles/base/rem" as rem;
-@use "../../../assets/styles/base/mixins" as mixins;
+@use '../../../assets/styles/base/fonts' as fonts;
+@use '../../../assets/styles/base/rem' as rem;
+@use '../../../assets/styles/base/mixins' as mixins;
 
 @keyframes bounce {
   0% {
@@ -57,11 +57,11 @@
         0px
       );
 
-      @include mixins.media-query(1000, "min") {
+      @include mixins.media-query(1000, 'min') {
         --child-size: calc(50% / var(--numberOfElements) - 3rem);
       }
 
-      @include mixins.media-query(2000, "min") {
+      @include mixins.media-query(2000, 'min') {
         --child-size: calc(33.333% / var(--numberOfElements) - 2rem);
       }
 
@@ -86,19 +86,19 @@
 
     &-item {
       &:nth-last-child(2) .bmb_multi-dot-paginator-dot::after {
-        @include mixins.media-query(2000, "min") {
+        @include mixins.media-query(2000, 'min') {
           width: rem.rem_calc(30);
         }
       }
 
       &:last-child .bmb_multi-dot-paginator-dot::after {
-        @include mixins.media-query(1000, "min") {
+        @include mixins.media-query(1000, 'min') {
           width: rem.rem_calc(14);
         }
       }
 
       &-active {
-        @include mixins.media-query(1000, "min") {
+        @include mixins.media-query(1000, 'min') {
           + .bmb_multi-dot-paginator-list-item {
             .bmb_multi-dot-paginator-dot {
               background-color: var(--general_contrasts-main-selection);
@@ -106,7 +106,7 @@
           }
         }
 
-        @include mixins.media-query(2000, "min") {
+        @include mixins.media-query(2000, 'min') {
           + .bmb_multi-dot-paginator-list-item
             + .bmb_multi-dot-paginator-list-item {
             .bmb_multi-dot-paginator-dot {
@@ -156,7 +156,7 @@
       box-shadow: rem.rem_calc(0 0 4 0) var(--general_contrasts-main-selection);
 
       &::after {
-        content: "";
+        content: '';
         position: absolute;
         width: rem.rem_calc(14);
         border: rem.rem_calc(1) solid var(--general_contrasts-main-selection);
@@ -169,11 +169,11 @@
           rem.rem_calc(0 0 4 0) var(--general_contrasts-main-selection);
         z-index: -1;
 
-        @include mixins.media-query(1000, "min") {
+        @include mixins.media-query(1000, 'min') {
           width: rem.rem_calc(30);
         }
 
-        @include mixins.media-query(2000, "min") {
+        @include mixins.media-query(2000, 'min') {
           width: rem.rem_calc(46);
         }
       }

@@ -3,24 +3,24 @@
 
 ### 🚀 Novedades
 {{#commit-list
-  commits heading="#### " message="* %s" filter="feat"
+  commits heading='#### ' message='* %s' filter='feat'
 }}{{/commit-list}}
 
 ### 🆕 Nuevos Componentes
-{{#commit-list commits heading="#### "}}
+{{#commit-list commits heading='#### '}}
   - **{{subject}}**:
   {{message}}
 {{/commit-list}}
 
 ### 🔄 Componentes Actualizados
-{{#commit-list commits heading="#### " filter="fix"}}
+{{#commit-list commits heading='#### ' filter='fix'}}
   - **{{subject}}**:
   {{message}}
 {{/commit-list}}
 
 ### 🗑️ Eliminaciones y Deprecaciones
 {{#commit-list
-  commits heading="#### " filter="chore" subject="(remove|delete|deprecated)"
+  commits heading='#### ' filter='chore' subject='(remove|delete|deprecated)'
 }}
   - **{{subject}}**:
   {{message}}

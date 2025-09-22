@@ -19,355 +19,337 @@
   --bmb-radius-full: 50%;
 }
 @font-face {
-  font-family: "Poppins-Thin";
-  font-style: normal;
-  font-weight: 100;
-  src: url("/assets/fonts/Poppins/Poppins-Thin.ttf") format("truetype");
-}
-@font-face {
-  font-family: "Poppins-Light";
+  font-family: 'Poppins-Light';
   font-style: normal;
   font-weight: 300;
-  src: url("/assets/fonts/Poppins/Poppins-ExtraLight.ttf") format("truetype");
+  src: url('/assets/fonts/Poppins/Poppins-ExtraLight.ttf') format('truetype');
 }
 @font-face {
-  font-family: "Poppins-Regular";
+  font-family: 'Poppins-Regular';
   font-style: normal;
   font-weight: 400;
-  src: url("/assets/fonts/Poppins/Poppins-Regular.ttf") format("truetype");
+  src: url('/assets/fonts/Poppins/Poppins-Regular.ttf') format('truetype');
 }
 @font-face {
-  font-family: "Poppins-Medium";
-  font-style: normal;
-  font-weight: 500;
-  src: url("/assets/fonts/Poppins/Poppins-Medium.ttf") format("truetype");
-}
-@font-face {
-  font-family: "Poppins-Semibold";
-  font-style: normal;
-  font-weight: 600;
-  src: url("/assets/fonts/Poppins/Poppins-SemiBold.ttf") format("truetype");
-}
-@font-face {
-  font-family: "Poppins-Bold";
+  font-family: 'Poppins-Bold';
   font-style: normal;
   font-weight: 700;
-  src: url("/assets/fonts/Poppins/Poppins-Bold.ttf") format("truetype");
+  src: url('/assets/fonts/Poppins/Poppins-Bold.ttf') format('truetype');
 }
 :root,
 :host {
-  --font-display: "Poppins-Regular", sans-serif;
+  --font-display: 'Poppins-Regular', sans-serif;
 }
 .font-thin-1 {
-  font-family: "Poppins-Thin", sans-serif;
+  font-family: 'Poppins-Thin', sans-serif;
   font-size: 0.625rem;
 }
 .font-light-1 {
-  font-family: "Poppins-Light", sans-serif;
+  font-family: 'Poppins-Light', sans-serif;
   font-size: 0.625rem;
 }
 .font-regular-1 {
-  font-family: "Poppins-Regular", sans-serif;
+  font-family: 'Poppins-Regular', sans-serif;
   font-size: 0.625rem;
 }
 .font-medium-1 {
-  font-family: "Poppins-Medium", sans-serif;
+  font-family: 'Poppins-Medium', sans-serif;
   font-size: 0.625rem;
 }
 .font-semibold-1 {
-  font-family: "Poppins-Semibold", sans-serif;
+  font-family: 'Poppins-Semibold', sans-serif;
   font-size: 0.625rem;
 }
 .font-bold-1 {
-  font-family: "Poppins-Bold", sans-serif;
+  font-family: 'Poppins-Bold', sans-serif;
   font-size: 0.625rem;
 }
 .font-thin-2 {
-  font-family: "Poppins-Thin", sans-serif;
+  font-family: 'Poppins-Thin', sans-serif;
   font-size: 0.6875rem;
 }
 .font-light-2 {
-  font-family: "Poppins-Light", sans-serif;
+  font-family: 'Poppins-Light', sans-serif;
   font-size: 0.6875rem;
 }
 .font-regular-2 {
-  font-family: "Poppins-Regular", sans-serif;
+  font-family: 'Poppins-Regular', sans-serif;
   font-size: 0.6875rem;
 }
 .font-medium-2 {
-  font-family: "Poppins-Medium", sans-serif;
+  font-family: 'Poppins-Medium', sans-serif;
   font-size: 0.6875rem;
 }
 .font-semibold-2 {
-  font-family: "Poppins-Semibold", sans-serif;
+  font-family: 'Poppins-Semibold', sans-serif;
   font-size: 0.6875rem;
 }
 .font-bold-2 {
-  font-family: "Poppins-Bold", sans-serif;
+  font-family: 'Poppins-Bold', sans-serif;
   font-size: 0.6875rem;
 }
 .font-thin-3 {
-  font-family: "Poppins-Thin", sans-serif;
+  font-family: 'Poppins-Thin', sans-serif;
   font-size: 0.75rem;
 }
 .font-light-3 {
-  font-family: "Poppins-Light", sans-serif;
+  font-family: 'Poppins-Light', sans-serif;
   font-size: 0.75rem;
 }
 .font-regular-3 {
-  font-family: "Poppins-Regular", sans-serif;
+  font-family: 'Poppins-Regular', sans-serif;
   font-size: 0.75rem;
 }
 .font-medium-3 {
-  font-family: "Poppins-Medium", sans-serif;
+  font-family: 'Poppins-Medium', sans-serif;
   font-size: 0.75rem;
 }
 .font-semibold-3 {
-  font-family: "Poppins-Semibold", sans-serif;
+  font-family: 'Poppins-Semibold', sans-serif;
   font-size: 0.75rem;
 }
 .font-bold-3 {
-  font-family: "Poppins-Bold", sans-serif;
+  font-family: 'Poppins-Bold', sans-serif;
   font-size: 0.75rem;
 }
 .font-thin-4 {
-  font-family: "Poppins-Thin", sans-serif;
+  font-family: 'Poppins-Thin', sans-serif;
   font-size: 0.875rem;
 }
 .font-light-4 {
-  font-family: "Poppins-Light", sans-serif;
+  font-family: 'Poppins-Light', sans-serif;
   font-size: 0.875rem;
 }
 .font-regular-4 {
-  font-family: "Poppins-Regular", sans-serif;
+  font-family: 'Poppins-Regular', sans-serif;
   font-size: 0.875rem;
 }
 .font-medium-4 {
-  font-family: "Poppins-Medium", sans-serif;
+  font-family: 'Poppins-Medium', sans-serif;
   font-size: 0.875rem;
 }
 .font-semibold-4 {
-  font-family: "Poppins-Semibold", sans-serif;
+  font-family: 'Poppins-Semibold', sans-serif;
   font-size: 0.875rem;
 }
 .font-bold-4 {
-  font-family: "Poppins-Bold", sans-serif;
+  font-family: 'Poppins-Bold', sans-serif;
   font-size: 0.875rem;
 }
 .font-thin-4_5 {
-  font-family: "Poppins-Thin", sans-serif;
+  font-family: 'Poppins-Thin', sans-serif;
   font-size: 0.9375rem;
 }
 .font-light-4_5 {
-  font-family: "Poppins-Light", sans-serif;
+  font-family: 'Poppins-Light', sans-serif;
   font-size: 0.9375rem;
 }
 .font-regular-4_5 {
-  font-family: "Poppins-Regular", sans-serif;
+  font-family: 'Poppins-Regular', sans-serif;
   font-size: 0.9375rem;
 }
 .font-medium-4_5 {
-  font-family: "Poppins-Medium", sans-serif;
+  font-family: 'Poppins-Medium', sans-serif;
   font-size: 0.9375rem;
 }
 .font-semibold-4_5 {
-  font-family: "Poppins-Semibold", sans-serif;
+  font-family: 'Poppins-Semibold', sans-serif;
   font-size: 0.9375rem;
 }
 .font-bold-4_5 {
-  font-family: "Poppins-Bold", sans-serif;
+  font-family: 'Poppins-Bold', sans-serif;
   font-size: 0.9375rem;
 }
 .font-thin-5 {
-  font-family: "Poppins-Thin", sans-serif;
+  font-family: 'Poppins-Thin', sans-serif;
   font-size: 1rem;
 }
 .font-light-5 {
-  font-family: "Poppins-Light", sans-serif;
+  font-family: 'Poppins-Light', sans-serif;
   font-size: 1rem;
 }
 .font-regular-5 {
-  font-family: "Poppins-Regular", sans-serif;
+  font-family: 'Poppins-Regular', sans-serif;
   font-size: 1rem;
 }
 .font-medium-5 {
-  font-family: "Poppins-Medium", sans-serif;
+  font-family: 'Poppins-Medium', sans-serif;
   font-size: 1rem;
 }
 .font-semibold-5 {
-  font-family: "Poppins-Semibold", sans-serif;
+  font-family: 'Poppins-Semibold', sans-serif;
   font-size: 1rem;
 }
 .font-bold-5 {
-  font-family: "Poppins-Bold", sans-serif;
+  font-family: 'Poppins-Bold', sans-serif;
   font-size: 1rem;
 }
 .font-thin-6 {
-  font-family: "Poppins-Thin", sans-serif;
+  font-family: 'Poppins-Thin', sans-serif;
   font-size: 1.125rem;
 }
 .font-light-6 {
-  font-family: "Poppins-Light", sans-serif;
+  font-family: 'Poppins-Light', sans-serif;
   font-size: 1.125rem;
 }
 .font-regular-6 {
-  font-family: "Poppins-Regular", sans-serif;
+  font-family: 'Poppins-Regular', sans-serif;
   font-size: 1.125rem;
 }
 .font-medium-6 {
-  font-family: "Poppins-Medium", sans-serif;
+  font-family: 'Poppins-Medium', sans-serif;
   font-size: 1.125rem;
 }
 .font-semibold-6 {
-  font-family: "Poppins-Semibold", sans-serif;
+  font-family: 'Poppins-Semibold', sans-serif;
   font-size: 1.125rem;
 }
 .font-bold-6 {
-  font-family: "Poppins-Bold", sans-serif;
+  font-family: 'Poppins-Bold', sans-serif;
   font-size: 1.125rem;
 }
 .font-thin-7 {
-  font-family: "Poppins-Thin", sans-serif;
+  font-family: 'Poppins-Thin', sans-serif;
   font-size: 1.25rem;
 }
 .font-light-7 {
-  font-family: "Poppins-Light", sans-serif;
+  font-family: 'Poppins-Light', sans-serif;
   font-size: 1.25rem;
 }
 .font-regular-7 {
-  font-family: "Poppins-Regular", sans-serif;
+  font-family: 'Poppins-Regular', sans-serif;
   font-size: 1.25rem;
 }
 .font-medium-7 {
-  font-family: "Poppins-Medium", sans-serif;
+  font-family: 'Poppins-Medium', sans-serif;
   font-size: 1.25rem;
 }
 .font-semibold-7 {
-  font-family: "Poppins-Semibold", sans-serif;
+  font-family: 'Poppins-Semibold', sans-serif;
   font-size: 1.25rem;
 }
 .font-bold-7 {
-  font-family: "Poppins-Bold", sans-serif;
+  font-family: 'Poppins-Bold', sans-serif;
   font-size: 1.25rem;
 }
 .font-thin-8 {
-  font-family: "Poppins-Thin", sans-serif;
+  font-family: 'Poppins-Thin', sans-serif;
   font-size: 1.375rem;
 }
 .font-light-8 {
-  font-family: "Poppins-Light", sans-serif;
+  font-family: 'Poppins-Light', sans-serif;
   font-size: 1.375rem;
 }
 .font-regular-8 {
-  font-family: "Poppins-Regular", sans-serif;
+  font-family: 'Poppins-Regular', sans-serif;
   font-size: 1.375rem;
 }
 .font-medium-8 {
-  font-family: "Poppins-Medium", sans-serif;
+  font-family: 'Poppins-Medium', sans-serif;
   font-size: 1.375rem;
 }
 .font-semibold-8 {
-  font-family: "Poppins-Semibold", sans-serif;
+  font-family: 'Poppins-Semibold', sans-serif;
   font-size: 1.375rem;
 }
 .font-bold-8 {
-  font-family: "Poppins-Bold", sans-serif;
+  font-family: 'Poppins-Bold', sans-serif;
   font-size: 1.375rem;
 }
 .font-thin-9 {
-  font-family: "Poppins-Thin", sans-serif;
+  font-family: 'Poppins-Thin', sans-serif;
   font-size: 1.5rem;
 }
 .font-light-9 {
-  font-family: "Poppins-Light", sans-serif;
+  font-family: 'Poppins-Light', sans-serif;
   font-size: 1.5rem;
 }
 .font-regular-9 {
-  font-family: "Poppins-Regular", sans-serif;
+  font-family: 'Poppins-Regular', sans-serif;
   font-size: 1.5rem;
 }
 .font-medium-9 {
-  font-family: "Poppins-Medium", sans-serif;
+  font-family: 'Poppins-Medium', sans-serif;
   font-size: 1.5rem;
 }
 .font-semibold-9 {
-  font-family: "Poppins-Semibold", sans-serif;
+  font-family: 'Poppins-Semibold', sans-serif;
   font-size: 1.5rem;
 }
 .font-bold-9 {
-  font-family: "Poppins-Bold", sans-serif;
+  font-family: 'Poppins-Bold', sans-serif;
   font-size: 1.5rem;
 }
 .font-thin-10 {
-  font-family: "Poppins-Thin", sans-serif;
+  font-family: 'Poppins-Thin', sans-serif;
   font-size: 1.625rem;
 }
 .font-light-10 {
-  font-family: "Poppins-Light", sans-serif;
+  font-family: 'Poppins-Light', sans-serif;
   font-size: 1.625rem;
 }
 .font-regular-10 {
-  font-family: "Poppins-Regular", sans-serif;
+  font-family: 'Poppins-Regular', sans-serif;
   font-size: 1.625rem;
 }
 .font-medium-10 {
-  font-family: "Poppins-Medium", sans-serif;
+  font-family: 'Poppins-Medium', sans-serif;
   font-size: 1.625rem;
 }
 .font-semibold-10 {
-  font-family: "Poppins-Semibold", sans-serif;
+  font-family: 'Poppins-Semibold', sans-serif;
   font-size: 1.625rem;
 }
 .font-bold-10 {
-  font-family: "Poppins-Bold", sans-serif;
+  font-family: 'Poppins-Bold', sans-serif;
   font-size: 1.625rem;
 }
 .font-thin-11 {
-  font-family: "Poppins-Thin", sans-serif;
+  font-family: 'Poppins-Thin', sans-serif;
   font-size: 2.25rem;
 }
 .font-light-11 {
-  font-family: "Poppins-Light", sans-serif;
+  font-family: 'Poppins-Light', sans-serif;
   font-size: 2.25rem;
 }
 .font-regular-11 {
-  font-family: "Poppins-Regular", sans-serif;
+  font-family: 'Poppins-Regular', sans-serif;
   font-size: 2.25rem;
 }
 .font-medium-11 {
-  font-family: "Poppins-Medium", sans-serif;
+  font-family: 'Poppins-Medium', sans-serif;
   font-size: 2.25rem;
 }
 .font-semibold-11 {
-  font-family: "Poppins-Semibold", sans-serif;
+  font-family: 'Poppins-Semibold', sans-serif;
   font-size: 2.25rem;
 }
 .font-bold-11 {
-  font-family: "Poppins-Bold", sans-serif;
+  font-family: 'Poppins-Bold', sans-serif;
   font-size: 2.25rem;
 }
 .font-thin-12 {
-  font-family: "Poppins-Thin", sans-serif;
+  font-family: 'Poppins-Thin', sans-serif;
   font-size: 3rem;
 }
 .font-light-12 {
-  font-family: "Poppins-Light", sans-serif;
+  font-family: 'Poppins-Light', sans-serif;
   font-size: 3rem;
 }
 .font-regular-12 {
-  font-family: "Poppins-Regular", sans-serif;
+  font-family: 'Poppins-Regular', sans-serif;
   font-size: 3rem;
 }
 .font-medium-12 {
-  font-family: "Poppins-Medium", sans-serif;
+  font-family: 'Poppins-Medium', sans-serif;
   font-size: 3rem;
 }
 .font-semibold-12 {
-  font-family: "Poppins-Semibold", sans-serif;
+  font-family: 'Poppins-Semibold', sans-serif;
   font-size: 3rem;
 }
 .font-bold-12 {
-  font-family: "Poppins-Bold", sans-serif;
+  font-family: 'Poppins-Bold', sans-serif;
   font-size: 3rem;
 }
 :root {
@@ -405,6 +387,7 @@
   --color-mitec-orange: 255, 153, 1;
   --mitec_orange-light: var(--color-mitec-orange);
   --mitec_orange-primary: 187, 76, 2;
+  --mitec_orange-tint: 255, 209, 70;
   --color-mitec-purple: 239, 131, 214;
   --mitec_purple-tint: var(--color-mitec-purple);
   --mitec_purple-primary: var(--color-purple-light);
@@ -488,41 +471,31 @@
   --branding-primary: var(--color-mariner-700);
   --alert_primary-alert-primary: 26, 118, 132;
   --alert_primary-alert-light: 27, 192, 203;
-  --color-button-gradient:
-    rgba(var(--color-teal-primary), 1) 0%,
+  --color-button-gradient: rgba(var(--color-teal-primary), 1) 0%,
     rgba(var(--color-blue-primary), 1) 100%;
-  --color-blue-gradient:
-    rgba(var(--color-teal-primary), 1) 0%,
+  --color-blue-gradient: rgba(var(--color-teal-primary), 1) 0%,
     rgba(var(--color-blue-pigment), 1) 100%;
-  --color-green-gradient:
-    rgba(var(--color-neon-primary), 1) 0%,
+  --color-green-gradient: rgba(var(--color-neon-primary), 1) 0%,
     rgba(var(--color-green-light), 1) 100%;
-  --color-purple-gradient:
-    rgba(var(--color-purple-primary), 1) 0%,
+  --color-purple-gradient: rgba(var(--color-purple-primary), 1) 0%,
     rgba(var(--color-purple-light), 1) 100%;
-  --color-bg-gradient:
-    rgba(var(--color-japanese-indigo), 1) 0%,
+  --color-bg-gradient: rgba(var(--color-japanese-indigo), 1) 0%,
     rgba(var(--color-background-main), 1) 100%;
-  --color-bg-wheel:
-    rgba(var(--color-eerie-black), 1) 0%,
+  --color-bg-wheel: rgba(var(--color-eerie-black), 1) 0%,
     rgba(var(--color-background-main), 1) 100%;
-  --color-bg-gradient-light:
-    rgba(var(--color-white-primary), 1) 0%, rgba(var(--color-blue-tint), 1) 100%;
-  --color-bg-wheel-light:
-    rgba(var(--color-white-primary), 1) 0%, rgba(var(--color-blue-tint), 1) 100%;
-  --color-bg-gradient-tec:
-    rgba(var(--color-container-home-tec), 1) 0%,
+  --color-bg-gradient-light: rgba(var(--color-white-primary), 1) 0%,
+    rgba(var(--color-blue-tint), 1) 100%;
+  --color-bg-wheel-light: rgba(var(--color-white-primary), 1) 0%,
+    rgba(var(--color-blue-tint), 1) 100%;
+  --color-bg-gradient-tec: rgba(var(--color-container-home-tec), 1) 0%,
     rgba(var(--color-blue-tec), 1) 100%;
-  --color-bg-wheel-tec:
-    rgba(var(--color-container-home-tec), 1) 0%,
+  --color-bg-wheel-tec: rgba(var(--color-container-home-tec), 1) 0%,
     rgba(var(--color-blue-tec), 1) 100%;
-  --color-academic-gradient:
-    RGBA(var(--color-mariner-700)) 0%, RGBA(var(--color-blue-light)) 100%;
-  --color-life-gradient:
-    rgba(var(--color-green-primary), 1) 0%,
+  --color-academic-gradient: RGBA(var(--color-mariner-700)) 0%,
+    RGBA(var(--color-blue-light)) 100%;
+  --color-life-gradient: rgba(var(--color-green-primary), 1) 0%,
     rgba(var(--color-green-light), 1) 100%;
-  --color-event-gradient:
-    rgba(var(--color-purple-primary), 1) 0%,
+  --color-event-gradient: rgba(var(--color-purple-primary), 1) 0%,
     rgba(var(--color-purple-light), 1) 100%;
   --white-primary: RGBA(var(--color-white-primary), 1);
   --purple-primary: RGBA(var(--color-purple-primary), 1);
@@ -639,7 +612,7 @@
   --color-table-900: RGBA(var(--color-charade-900), 1);
   --color-table-btn-900: RGBA(var(--color-charade-900), 1);
 }
-[data-theme="dark"],
+[data-theme='dark'],
 .storybook-dark-theme,
 .storybook-dark-theme .docs-story {
   --general_contrasts-100: RGBA(var(--color-charade-50), 1);
@@ -789,12 +762,12 @@
   background-color: var(--general_contrasts-25);
   color: var(--general_contrasts-100);
 }
-#storybook-docs .sbdocs-title,
-#storybook-docs .sbdocs h1,
-#storybook-docs .sbdocs h2,
-#storybook-docs .sbdocs h3,
-#storybook-docs .sbdocs h4,
-#storybook-docs .sbdocs h5 {
+#storybook-docs .sbdocs-title:not([class^='bmb']),
+#storybook-docs .sbdocs h1:not([class^='bmb']),
+#storybook-docs .sbdocs h2:not([class^='bmb']),
+#storybook-docs .sbdocs h3:not([class^='bmb']),
+#storybook-docs .sbdocs h4:not([class^='bmb']),
+#storybook-docs .sbdocs h5:not([class^='bmb']) {
   color: var(--general_contrasts-100);
 }
 #storybook-docs
@@ -909,7 +882,7 @@
   border-radius: 12px;
 }
 #storybook-docs .docblock-argstable-body td select,
-#storybook-docs .docblock-argstable-body td input:not([role="switch"]),
+#storybook-docs .docblock-argstable-body td input:not([role='switch']),
 #storybook-docs .docblock-argstable-body td textarea {
   background-color: var(--general_contrasts-20);
   color: var(--general_contrasts-100);
@@ -919,7 +892,7 @@
 #storybook-docs
   .docblock-argstable-body
   td
-  input:not([role="switch"])::placeholder,
+  input:not([role='switch'])::placeholder,
 #storybook-docs .docblock-argstable-body td textarea::placeholder {
   color: var(--general_contrasts-75);
 }
@@ -1180,6 +1153,9 @@ img {
 .css-14m39zm {
   overflow: auto;
 }
+.sb-show-main.sb-main-padded {
+  padding: 0;
+}
 * {
   box-sizing: border-box;
   font-family: var(--font-display);
@@ -1221,6 +1197,11 @@ h4,
 h5,
 h6 {
   margin: 0;
+  font-family: Poppins-Bold, sans-serif;
+}
+b,
+strong {
+  font-family: Poppins-Bold, sans-serif;
 }
 bmb-icon {
   display: inline-flex;
@@ -1562,7 +1543,7 @@ ion-content {
   position: absolute;
   z-index: 1000;
 }
-[dir="rtl"] .cdk-visually-hidden {
+[dir='rtl'] .cdk-visually-hidden {
   left: auto;
   right: 0;
 }
@@ -1570,11 +1551,11 @@ ion-content {
   background-color: var(--general_contrasts-100);
   border-radius: 0.3125rem;
   color: var(--general_contrasts-5);
-  font-family: "Poppins-Regular", sans-serif;
+  font-family: 'Poppins-Regular', sans-serif;
   font-size: 0.75rem;
 }
 .bmb_btn {
-  font-family: "Poppins-Regular", sans-serif;
+  font-family: 'Poppins-Regular', sans-serif;
   font-size: 1rem;
   padding: 0.75rem 1rem;
   align-items: center;
@@ -1606,28 +1587,28 @@ ion-content {
 .bmb_btn:focus:hover {
   outline: 0;
 }
-.bmb_btn[size="micro"] {
+.bmb_btn[size='micro'] {
   padding: var(--bmb-spacing-s) 0.625rem;
   text-align: center;
 }
 .bmb_btn-case {
   text-transform: uppercase;
 }
-.bmb_btn-secondary-outlined[size="micro"],
-.bmb_btn-destructive[size="micro"] {
+.bmb_btn-secondary-outlined[size='micro'],
+.bmb_btn-destructive[size='micro'] {
   padding: 0.4375rem 0.5625rem;
 }
-.bmb_btn-secondary-outlined[size="micro"]:hover:not(:disabled),
-.bmb_btn-secondary-outlined[size="micro"]:focus-visible:not(:disabled),
-.bmb_btn-secondary-outlined[size="micro"]:active:not(:disabled)[size="micro"],
-.bmb_btn-secondary-outlined[size="micro"].bmb_btn-toggle-active[size="micro"],
-.bmb_btn-destructive[size="micro"]:hover:not(:disabled),
-.bmb_btn-destructive[size="micro"]:focus-visible:not(:disabled),
-.bmb_btn-destructive[size="micro"]:active:not(:disabled)[size="micro"],
-.bmb_btn-destructive[size="micro"].bmb_btn-toggle-active[size="micro"] {
+.bmb_btn-secondary-outlined[size='micro']:hover:not(:disabled),
+.bmb_btn-secondary-outlined[size='micro']:focus-visible:not(:disabled),
+.bmb_btn-secondary-outlined[size='micro']:active:not(:disabled)[size='micro'],
+.bmb_btn-secondary-outlined[size='micro'].bmb_btn-toggle-active[size='micro'],
+.bmb_btn-destructive[size='micro']:hover:not(:disabled),
+.bmb_btn-destructive[size='micro']:focus-visible:not(:disabled),
+.bmb_btn-destructive[size='micro']:active:not(:disabled)[size='micro'],
+.bmb_btn-destructive[size='micro'].bmb_btn-toggle-active[size='micro'] {
   padding: 0.375rem 0.5rem;
 }
-.bmb_btn[size="large"] {
+.bmb_btn[size='large'] {
   width: 100%;
 }
 @media (max-width: 1000px) {
@@ -1635,18 +1616,18 @@ ion-content {
     width: 100%;
   }
 }
-.bmb_btn-secondary-outlined[size="large"],
-.bmb_btn-destructive[size="large"] {
+.bmb_btn-secondary-outlined[size='large'],
+.bmb_btn-destructive[size='large'] {
   width: calc(100% - 0.0625rem);
 }
-.bmb_btn-secondary-outlined[size="large"]:hover:not(:disabled),
-.bmb_btn-secondary-outlined[size="large"]:focus-visible:not(:disabled),
-.bmb_btn-secondary-outlined[size="large"]:active:not(:disabled)[size="large"],
-.bmb_btn-secondary-outlined[size="large"].bmb_btn-toggle-active[size="large"],
-.bmb_btn-destructive[size="large"]:hover:not(:disabled),
-.bmb_btn-destructive[size="large"]:focus-visible:not(:disabled),
-.bmb_btn-destructive[size="large"]:active:not(:disabled)[size="large"],
-.bmb_btn-destructive[size="large"].bmb_btn-toggle-active[size="large"] {
+.bmb_btn-secondary-outlined[size='large']:hover:not(:disabled),
+.bmb_btn-secondary-outlined[size='large']:focus-visible:not(:disabled),
+.bmb_btn-secondary-outlined[size='large']:active:not(:disabled)[size='large'],
+.bmb_btn-secondary-outlined[size='large'].bmb_btn-toggle-active[size='large'],
+.bmb_btn-destructive[size='large']:hover:not(:disabled),
+.bmb_btn-destructive[size='large']:focus-visible:not(:disabled),
+.bmb_btn-destructive[size='large']:active:not(:disabled)[size='large'],
+.bmb_btn-destructive[size='large'].bmb_btn-toggle-active[size='large'] {
   width: calc(100% - 0.0625rem);
 }
 @media (max-width: 1000px) {
@@ -1665,15 +1646,15 @@ ion-content {
     width: calc(100% - 0.0625rem);
   }
 }
-.bmb_btn[case="true"] {
+.bmb_btn[case='true'] {
   align-items: center;
   display: grid;
   grid-template-columns: auto 1fr;
   padding-bottom: 0;
   padding-top: 0;
 }
-.bmb_btn[case="true"][position="right"],
-.bmb_btn[case="true"][ng-reflect-position="right"] {
+.bmb_btn[case='true'][position='right'],
+.bmb_btn[case='true'][ng-reflect-position='right'] {
   grid-template-columns: 1fr auto;
 }
 .bmb_btn bmb-icon {
@@ -2292,6 +2273,11 @@ ion-content {
 .bmb_layout-grid-item > .bmb_text-editor-container,
 .bmb_layout-grid-item > .bmb_home-card,
 .bmb_layout-grid-item > .bmb_home-card > .bmb_home-card-wrapper,
+.bmb_layout-grid-item > bmb-container-button .bmb_container-button,
+.bmb_layout-grid-item
+  > bmb-container-button
+  .bmb_container-button
+  .bmb_check-external-link-button-element,
 .bmb_layout-item > .bmb_card,
 .bmb_layout-item > .bmb-drop-zone,
 .bmb_layout-item > .bmb_container-primary-container,
@@ -2304,6 +2290,11 @@ ion-content {
 .bmb_layout-item > .bmb_text-editor-container,
 .bmb_layout-item > .bmb_home-card,
 .bmb_layout-item > .bmb_home-card > .bmb_home-card-wrapper,
+.bmb_layout-item > bmb-container-button .bmb_container-button,
+.bmb_layout-item
+  > bmb-container-button
+  .bmb_container-button
+  .bmb_check-external-link-button-element,
 .bmb_vertical-layout-item > .bmb_card,
 .bmb_vertical-layout-item > .bmb-drop-zone,
 .bmb_vertical-layout-item > .bmb_container-primary-container,
@@ -2315,7 +2306,12 @@ ion-content {
 .bmb_vertical-layout-item > .bmb_text-editor,
 .bmb_vertical-layout-item > .bmb_text-editor-container,
 .bmb_vertical-layout-item > .bmb_home-card,
-.bmb_vertical-layout-item > .bmb_home-card > .bmb_home-card-wrapper {
+.bmb_vertical-layout-item > .bmb_home-card > .bmb_home-card-wrapper,
+.bmb_vertical-layout-item > bmb-container-button .bmb_container-button,
+.bmb_vertical-layout-item
+  > bmb-container-button
+  .bmb_container-button
+  .bmb_check-external-link-button-element {
   height: 100%;
 }
 .bmb_layout-grid-item > .bmb_home-card > .bmb_home-card-wrapper,
@@ -3077,19 +3073,19 @@ ion-content {
 ::-webkit-scrollbar-corner {
   background: rgba(0, 0, 0, 0);
 }
-[data-theme="dark"] ::-webkit-scrollbar-thumb,
+[data-theme='dark'] ::-webkit-scrollbar-thumb,
 .storybook-dark-theme ::-webkit-scrollbar-thumb {
   background-color: RGBA(var(--color-charade-700));
   border-radius: 1.25rem;
   border: var(--bmb-border-inherit-1-solid);
   border-color: RGBA(var(--color-charade-700));
 }
-[data-theme="dark"] ::-webkit-scrollbar-track,
+[data-theme='dark'] ::-webkit-scrollbar-track,
 .storybook-dark-theme ::-webkit-scrollbar-track {
   border-radius: 1.25rem;
 }
 .bmb_accordion {
-  font-family: "Poppins-Regular", sans-serif;
+  font-family: 'Poppins-Regular', sans-serif;
   font-size: 0.75rem;
   background-color: rgba(0, 0, 0, 0);
   border: 0.0625rem solid var(--general_contrasts-container-outline);
@@ -3097,14 +3093,14 @@ ion-content {
   position: relative;
 }
 .bmb_accordion-header {
-  font-family: "Poppins-Regular", sans-serif;
+  font-family: 'Poppins-Regular', sans-serif;
   font-size: 0.75rem;
   background-color: rgba(0, 0, 0, 0);
   border-radius: 1rem;
   cursor: pointer;
 }
 .bmb_accordion-header-icon {
-  font-family: "Poppins-Regular", sans-serif;
+  font-family: 'Poppins-Regular', sans-serif;
   font-size: 0.75rem;
   background-color: rgba(0, 0, 0, 0);
   border-radius: 1rem;
@@ -3119,7 +3115,7 @@ ion-content {
   color: var(--general_contrasts-100);
 }
 .bmb_accordion-content {
-  font-family: "Poppins-Regular", sans-serif;
+  font-family: 'Poppins-Regular', sans-serif;
   font-size: 0.75rem;
   border-top: 0.0625rem solid var(--buttons-inactive-step);
   display: none;
@@ -3236,12 +3232,12 @@ ion-content {
   display: none;
 }
 .bmb_advertisement-card-content-description-title {
-  font-family: "Poppins-Medium", sans-serif;
+  font-family: 'Poppins-Medium', sans-serif;
   font-size: 1rem;
   padding-bottom: 0.625rem;
 }
 .bmb_advertisement-card-content-description-text {
-  font-family: "Poppins-Regular", sans-serif;
+  font-family: 'Poppins-Regular', sans-serif;
   font-size: 0.875rem;
   height: 100%;
 }
@@ -3299,7 +3295,7 @@ ion-content {
   min-width: auto;
 }
 .bmb_badge {
-  font-family: "Poppins-Regular", sans-serif;
+  font-family: 'Poppins-Regular', sans-serif;
   font-size: 0.75rem;
   align-items: center;
   display: inline-flex;
@@ -3542,9 +3538,11 @@ ion-content {
 .bmb_card {
   border-width: 0.0625rem;
   border-style: solid;
-  font-family: "Poppins-Regular", sans-serif;
+  font-family: 'Poppins-Regular', sans-serif;
   font-size: 0.75rem;
   overflow: visible;
+  display: flex;
+  flex-direction: column;
 }
 .bmb_card.bmb_card-type-primary {
   --border-color: RGBA(var(--color-mariner-900));
@@ -3613,41 +3611,53 @@ ion-content {
   box-shadow: var(--bmb-box-shadow-6);
 }
 .bmb_card-header {
-  font-family: "Poppins-Regular", sans-serif;
+  font-family: 'Poppins-Regular', sans-serif;
   font-size: 0.75rem;
   border-bottom: 0.0625rem solid var(--border-color);
   overflow: hidden;
   border-radius: var(--bmb-border-radius) var(--bmb-border-radius) 0 0;
 }
 .bmb_card-footer {
-  font-family: "Poppins-Regular", sans-serif;
+  font-family: 'Poppins-Regular', sans-serif;
   font-size: 0.75rem;
   border-top: 0.0625rem solid var(--border-color);
   overflow: hidden;
   border-radius: 0 0 var(--bmb-border-radius) var(--bmb-border-radius);
 }
-[data-theme="dark"] .bmb_card.bmb_card-type-secondary,
+.bmb_card bmb-card-content {
+  display: block;
+  flex: 1;
+}
+.bmb_card-content {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.bmb_card-content-with-radius {
+  border-radius: var(--bmb-border-radius);
+}
+[data-theme='dark'] .bmb_card.bmb_card-type-secondary,
 .storybook-dark-theme .bmb_card.bmb_card-type-secondary {
   background-color: RGBA(var(--color-charade-950));
   border-color: RGBA(var(--color-charade-800));
   color: RGBA(var(--color-charade-50));
 }
-[data-theme="dark"] .bmb_card.bmb_card-type-normal,
+[data-theme='dark'] .bmb_card.bmb_card-type-normal,
 .storybook-dark-theme .bmb_card.bmb_card-type-normal {
   background-color: RGBA(var(--color-charade-900));
   border-color: RGBA(var(--color-charade-800));
   color: RGBA(var(--color-charade-50));
 }
-[data-theme="dark"] .bmb_card.bmb_card-type-transparent,
+[data-theme='dark'] .bmb_card.bmb_card-type-transparent,
 .storybook-dark-theme .bmb_card.bmb_card-type-transparent {
   border-color: RGBA(var(--color-charade-800));
   color: RGBA(var(--color-charade-50));
 }
-[data-theme="dark"] .bmb_card-header,
+[data-theme='dark'] .bmb_card-header,
 .storybook-dark-theme .bmb_card-header {
   border-bottom-color: RGBA(var(--color-charade-800));
 }
-[data-theme="dark"] .bmb_card-footer,
+[data-theme='dark'] .bmb_card-footer,
 .storybook-dark-theme .bmb_card-footer {
   border-top-color: RGBA(var(--color-charade-800));
 }
@@ -3659,14 +3669,13 @@ ion-content {
 }
 .bmb_checkbox-input:is(:checked):focus + .bmb_checkbox-mark::before,
 .bmb_checkbox-input:is(:checked):focus-visible + .bmb_checkbox-mark::before {
-  content: "";
+  content: '';
   height: 3rem;
   width: 3rem;
   border-radius: 50%;
   opacity: 0.1;
   background-color: var(--buttons-active-switch);
   position: absolute;
-  z-index: -1;
   display: block;
   margin: auto;
   top: 0;
@@ -3679,14 +3688,13 @@ ion-content {
   border-color: var(--buttons-active-switch);
 }
 .bmb_checkbox-input:is(:checked) + .bmb_checkbox-mark:hover::before {
-  content: "";
+  content: '';
   height: 3rem;
   width: 3rem;
   border-radius: 50%;
   opacity: 0.1;
   background-color: var(--buttons-active-switch);
   position: absolute;
-  z-index: -1;
   display: block;
   margin: auto;
   top: 0;
@@ -3697,9 +3705,9 @@ ion-content {
 .bmb_checkbox-input:is(:checked) + .bmb_checkbox-mark::after {
   display: block;
   position: relative;
-  margin: auto;
+  margin: 0.125rem auto 0;
   height: 0.75rem;
-  width: 0.1875rem;
+  width: 0.3125rem;
   border: solid var(--white-primary);
   border-width: 0 0.1875rem 0.1875rem 0;
   transform: rotate(45deg);
@@ -3710,14 +3718,13 @@ ion-content {
     .bmb_checkbox-input-indeterminate
   ):focus-visible
   + .bmb_checkbox-mark::before {
-  content: "";
+  content: '';
   height: 3rem;
   width: 3rem;
   border-radius: 50%;
   opacity: 0.1;
   background-color: rgb(var(--color-charade-900));
   position: absolute;
-  z-index: -1;
   display: block;
   margin: auto;
   top: 0;
@@ -3727,14 +3734,13 @@ ion-content {
 }
 .bmb_checkbox-input:not(:checked):not(.bmb_checkbox-input-indeterminate)
   + .bmb_checkbox-mark:hover::before {
-  content: "";
+  content: '';
   height: 3rem;
   width: 3rem;
   border-radius: 50%;
   opacity: 0.1;
   background-color: rgb(var(--color-charade-900));
   position: absolute;
-  z-index: -1;
   display: block;
   margin: auto;
   top: 0;
@@ -3743,14 +3749,13 @@ ion-content {
   left: -0.875rem;
 }
 .bmb_checkbox-input-indeterminate:hover::before {
-  content: "";
+  content: '';
   height: 3rem;
   width: 3rem;
   border-radius: 50%;
   opacity: 0.1;
   background-color: var(--buttons-active-switch);
   position: absolute;
-  z-index: -1;
   display: block;
   margin: auto;
   top: 0;
@@ -3765,20 +3770,19 @@ ion-content {
 .bmb_checkbox-input-indeterminate + .bmb_checkbox-mark::after {
   display: block;
   position: relative;
-  margin: auto;
+  margin: 0.125rem auto 0;
   height: 0.1875rem;
   width: 0.75rem;
   background-color: var(--white-primary);
 }
 .bmb_checkbox-input-indeterminate + .bmb_checkbox-mark:hover::before {
-  content: "";
+  content: '';
   height: 3rem;
   width: 3rem;
   border-radius: 50%;
   opacity: 0.1;
   background-color: var(--buttons-active-switch);
   position: absolute;
-  z-index: -1;
   display: block;
   margin: auto;
   top: 0;
@@ -3790,14 +3794,13 @@ ion-content {
   + .bmb_checkbox-mark::before,
 .bmb_checkbox-input-indeterminate:not(:checked):focus-visible
   + .bmb_checkbox-mark::before {
-  content: "";
+  content: '';
   height: 3rem;
   width: 3rem;
   border-radius: 50%;
   opacity: 0.1;
   background-color: var(--buttons-active-switch);
   position: absolute;
-  z-index: -1;
   display: block;
   margin: auto;
   top: 0;
@@ -3817,7 +3820,7 @@ ion-content {
   border-radius: var(--bmb-radius-xs);
 }
 .bmb_checkbox-mark::after {
-  content: "";
+  content: '';
   display: none;
   position: absolute;
 }
@@ -3891,12 +3894,12 @@ ion-content {
   width: 100%;
 }
 .bmb_toast-content-with-description .bmb_toast-title {
-  font-family: "Poppins-Medium", sans-serif;
+  font-family: 'Poppins-Medium', sans-serif;
   font-size: 0.875rem;
 }
 .bmb_toast-title {
   display: block;
-  font-family: "Poppins-Regular", sans-serif;
+  font-family: 'Poppins-Regular', sans-serif;
   font-size: 0.875rem;
   font-weight: 500;
 }
@@ -3906,7 +3909,7 @@ ion-content {
   margin: 0.125rem 0 0;
   white-space: normal;
   word-wrap: break-word;
-  font-family: "Poppins-Regular", sans-serif;
+  font-family: 'Poppins-Regular', sans-serif;
   font-size: 0.875rem;
 }
 .bmb_toast-icon {

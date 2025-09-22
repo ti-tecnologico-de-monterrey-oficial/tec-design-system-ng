@@ -1,4 +1,4 @@
-@use "../../../../assets/styles/base/mixins" as mixins;
+@use '../../../../assets/styles/base/mixins' as mixins;
 
 @mixin previewBlock() {
   opacity: 0.5;
@@ -31,11 +31,11 @@ bmb-multi-dot-paginator-item {
     }
   }
 
-  @include mixins.media-query(1000, "min") {
+  @include mixins.media-query(1000, 'min') {
     width: calc((50% / var(--numberOfElements)) - 3rem);
   }
 
-  @include mixins.media-query(2000, "min") {
+  @include mixins.media-query(2000, 'min') {
     width: calc((33.333% / var(--numberOfElements)) - 2rem);
   }
 }

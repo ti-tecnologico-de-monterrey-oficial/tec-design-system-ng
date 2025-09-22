@@ -1,5 +1,5 @@
-@use "../../../../assets/styles/base/fonts" as fonts;
-@use "../../../../assets/styles/base/rem" as rem;
+@use '../../../../assets/styles/base/fonts' as fonts;
+@use '../../../../assets/styles/base/rem' as rem;
 
 .bmb_user-summary_content {
   align-items: center;
@@ -39,7 +39,6 @@
 
       &-row {
         @include fonts.font(7, regular);
-        margin-bottom: rem.rem_calc(5);
         text-align: start;
       }
 
@@ -55,6 +54,11 @@
     }
 
     &-campus {
+      color: var(--general_contrasts-75);
+      @include fonts.font(4, regular);
+    }
+
+    &-role {
       color: var(--general_contrasts-75);
       @include fonts.font(4, regular);
     }

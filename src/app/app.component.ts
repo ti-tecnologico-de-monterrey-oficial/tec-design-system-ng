@@ -6,6 +6,7 @@ import {
   signal,
   TemplateRef,
   ViewChild,
+  ViewEncapsulation,
 } from '@angular/core';
 import { RouterModule, Router } from '@angular/router';
 import {
@@ -36,6 +37,7 @@ import { HelpMenuComponent } from './components/help-menu/help-menu.component';
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None,
   standalone: true,
 })
 export class AppComponent {
@@ -67,6 +69,12 @@ export class AppComponent {
         title: 'Calendar',
         link: '/calendar',
       },
+      {
+        id: 6,
+        icon: 'smart_toy',
+        title: 'IA',
+        link: '/ia',
+      },
     ],
     [
       {
@@ -74,18 +82,20 @@ export class AppComponent {
         icon: 'list_alt_check',
         title: 'Forms',
         link: '/form-validator',
-      },
-      {
-        id: 3,
-        icon: 'align_flex_center',
-        title: 'Flex',
-        link: '/flex',
-      },
-      {
-        id: 4,
-        icon: 'dropdown',
-        title: 'Dropdown',
-        link: '/dropdown',
+        children: [
+          {
+            id: 3,
+            icon: 'align_flex_center',
+            title: 'Flex',
+            link: '/flex',
+          },
+          {
+            id: 4,
+            icon: 'dropdown',
+            title: 'Dropdown',
+            link: '/dropdown',
+          },
+        ],
       },
     ],
   ];

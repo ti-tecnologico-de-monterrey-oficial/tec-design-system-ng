@@ -1,41 +1,41 @@
-@use "../../../../assets/styles/base/rem" as rem;
-@use "../../../../assets/styles/base/fonts" as fonts;
-@use "../../../../assets/styles/base/mixins" as mixins;
+@use '../../../../assets/styles/base/rem' as rem;
+@use '../../../../assets/styles/base/fonts' as fonts;
+@use '../../../../assets/styles/base/mixins' as mixins;
 
 @mixin textEllipsis() {
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
 
-  @include mixins.media-query(1000, "min") {
+  @include mixins.media-query(1000, 'min') {
     white-space: initial;
     text-overflow: initial;
   }
 }
 
 $types: (
-  "tec": RGBA(var(--color-blue-primary)),
-  "success": RGBA(var(--color-green-primary)),
-  "info": RGBA(var(--color-neon-primary)),
-  "neutral": RGBA(var(--color-charade-300)),
-  "event": RGBA(var(--color-purple-light)),
-  "error": RGBA(var(--color-red-primary)),
-  "warning": RGBA(var(--color-mitec-orange)),
-  "black": RGBA(var(--color-black-primary)),
-  "creative_violet": var(--creative-use-violet),
-  "creative_indigo": var(--creative-use-indigo),
-  "creative_emerald": var(--creative-use-emerald),
-  "creative_licorice": var(--creative-use-licorice),
-  "creative_darkteal": var(--creative-use-darkteal),
-  "creative_peach": var(--creative-use-peach),
-  "creative_sepia": var(--creative-use-sepia),
-  "creative_softred": var(--creative-use-softred),
-  "creative_wattle": var(--creative-use-wattle),
-  "creative_shipcove": var(--creative-use-shipcove),
-  "creative_plantation": var(--creative-use-plantation),
-  "creative_rum": var(--creative-use-rum),
-  "creative_hibiscus": var(--creative-use-hibiscus),
-  "creative_ripelemon": var(--creative-use-ripelemon),
+  'tec': RGBA(var(--color-blue-primary)),
+  'success': RGBA(var(--color-green-primary)),
+  'info': RGBA(var(--color-neon-primary)),
+  'neutral': RGBA(var(--color-charade-300)),
+  'event': RGBA(var(--color-purple-light)),
+  'error': RGBA(var(--color-red-primary)),
+  'warning': RGBA(var(--color-mitec-orange)),
+  'black': RGBA(var(--color-black-primary)),
+  'creative_violet': var(--creative-use-violet),
+  'creative_indigo': var(--creative-use-indigo),
+  'creative_emerald': var(--creative-use-emerald),
+  'creative_licorice': var(--creative-use-licorice),
+  'creative_darkteal': var(--creative-use-darkteal),
+  'creative_peach': var(--creative-use-peach),
+  'creative_sepia': var(--creative-use-sepia),
+  'creative_softred': var(--creative-use-softred),
+  'creative_wattle': var(--creative-use-wattle),
+  'creative_shipcove': var(--creative-use-shipcove),
+  'creative_plantation': var(--creative-use-plantation),
+  'creative_rum': var(--creative-use-rum),
+  'creative_hibiscus': var(--creative-use-hibiscus),
+  'creative_ripelemon': var(--creative-use-ripelemon),
 );
 
 .bmb_push-notification-item {
@@ -52,7 +52,7 @@ $types: (
   &-full-color {
     border-radius: rem.rem_calc(50);
 
-    @include mixins.media-query(1000, "min") {
+    @include mixins.media-query(1000, 'min') {
       border-radius: var(--bmb-radius-s);
     }
 
@@ -198,7 +198,7 @@ $types: (
       line-height: 0;
       white-space: nowrap;
 
-      @include mixins.media-query(1000, "min") {
+      @include mixins.media-query(1000, 'min') {
         line-height: inherit;
         opacity: 1;
         white-space: initial;
@@ -231,8 +231,8 @@ $types: (
     grid-template-rows: 1fr 1fr;
     gap: 0;
     grid-template-areas:
-      "avatar name"
-      "avatar mail";
+      'avatar name'
+      'avatar mail';
     align-items: center;
 
     &-avatar {

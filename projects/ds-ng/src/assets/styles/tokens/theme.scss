@@ -81,12 +81,12 @@
   }
 
   .sbdocs {
-    &-title:not([class^="bmb"]),
-    h1:not([class^="bmb"]),
-    h2:not([class^="bmb"]),
-    h3:not([class^="bmb"]),
-    h4:not([class^="bmb"]),
-    h5:not([class^="bmb"]) {
+    &-title:not([class^='bmb']),
+    h1:not([class^='bmb']),
+    h2:not([class^='bmb']),
+    h3:not([class^='bmb']),
+    h4:not([class^='bmb']),
+    h5:not([class^='bmb']) {
       color: var(--general_contrasts-100);
     }
 
@@ -214,7 +214,7 @@
       }
 
       select,
-      input:not([role="switch"]),
+      input:not([role='switch']),
       textarea {
         background-color: var(--general_contrasts-20);
         color: var(--general_contrasts-100);
@@ -529,4 +529,8 @@ img {
 
 .css-14m39zm {
   overflow: auto;
+}
+
+.sb-show-main.sb-main-padded {
+  padding: 0;
 }

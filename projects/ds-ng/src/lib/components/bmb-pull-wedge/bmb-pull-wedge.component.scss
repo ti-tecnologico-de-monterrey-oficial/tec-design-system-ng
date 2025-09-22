@@ -1,5 +1,5 @@
-@use "../../../assets/styles/base/fonts" as fonts;
-@use "../../../assets/styles/base/rem" as rem;
+@use '../../../assets/styles/base/fonts' as fonts;
+@use '../../../assets/styles/base/rem' as rem;
 
 .bmb_pull_wedge {
   overflow: hidden;
@@ -45,7 +45,7 @@
   }
 }
 
-[data-theme="dark"],
+[data-theme='dark'],
 .storybook-dark-theme {
   .bmb_pull_wedge {
     &-button {

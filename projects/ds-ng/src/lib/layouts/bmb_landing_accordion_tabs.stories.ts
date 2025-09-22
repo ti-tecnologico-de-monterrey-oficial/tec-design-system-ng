@@ -81,14 +81,16 @@ import * as toastStory from '../components/bmb-toast/bmb-toast.stories';
         [userInformation]="{
           name: 'Santiago Hernández',
           image: 'https://picsum.photos/id/64/200/300',
-          role: 'Alumno',
+          role: 'Alumno'
         }"
         [showHelpButton]="true"
         [hasLogoutButton]="false"
         [appName]="'TecTest'"
         [appSubTitle]="'Sub title'"
         [showLang]="false"
+        [allowSidebarForMobile]="true"
         [lang]="'es'"
+        appPowered="Powered by Bamboo Design"
         (helpButtonClick)="helpButtonClick($event)"
         (userProfileClick)="userProfileClick($event)"
       />
@@ -108,7 +110,7 @@ import * as toastStory from '../components/bmb-toast/bmb-toast.stories';
             [tabs]="[
               { id: 1, title: 'Fechas Importantes', isActive: true },
               { id: 2, title: 'Caracteristicas y requisitos', isActive: false },
-              { id: 3, title: 'Additional Tab Label', isActive: false },
+              { id: 3, title: 'Additional Tab Label', isActive: false }
             ]"
             (selected)="handleSelectedTab($event)"
           ></bmb-tabs>
@@ -475,9 +477,9 @@ import * as toastStory from '../components/bmb-toast/bmb-toast.stories';
             id: 2,
             icon: 'task',
             title: 'Agregar firmantes',
-            link: 'https://www.youtube.com/watch?v=beh56CrNRsQ',
-          },
-        ],
+            link: 'https://www.youtube.com/watch?v=beh56CrNRsQ'
+          }
+        ]
       ]"
       [title]="'Navegacion para mobiles'"
     ></bmb-sidebar>
@@ -691,6 +693,7 @@ ${getBasicExampleBlock(
         [appName]="'TecTest'"
         [appSubTitle]="'Sub title'"
         [showLang]="false"
+        [allowSidebarForMobile]="true"
         [lang]="'es'"
         (helpButtonClick)="helpButtonClick($event)"
         (userProfileClick)="userProfileClick($event)"

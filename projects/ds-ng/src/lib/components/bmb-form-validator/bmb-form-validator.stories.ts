@@ -14,6 +14,9 @@ import {
   getGeneralDescription,
   RELEVANT_TITLE_LEVEL,
   getBasicExampleBlock,
+  getOnEvent,
+  getFormatName,
+  getStoryLink,
 } from '../../utils/doc/utils';
 import {
   BmbButtonDirective,
@@ -28,7 +31,15 @@ import {
 import {
   getFormControlConsiderations,
   getFormControlDescription,
+  getOnEventParam,
 } from '../../utils/doc/parameterDescriptions';
+import * as calendarDatePicker from '../bmb-datepicker/bmb-datepicker.stories';
+import * as checkbox from '../bmb-checkbox/bmb-checkbox.stories';
+import * as datepickerRange from '../bmb-date-range/bmb-date-range.component.stories';
+import * as dropdown from '../bmb-dropdown/bmb-dropdown.stories';
+import * as phoneNumber from '../bmb-input-phone-number/bmb-input-phone-number.stories';
+import * as textInput from '../bmb-input/bmb-input.stories';
+import * as textInputWithTags from '../bmb-input-tags/bmb_input-tags.stories';
 
 export default {
   title: 'Components/Inputs/Form validator',
@@ -84,13 +95,13 @@ ${getFormControlDescription('>').replace('<br/>', '')}
 >
 >The supported **Bamboo inputs** are:
 >
->- [Calendar date picker](/docs/components-inputs-calendar-date-picker--documentation)
->- [Checkbox](/docs/components-inputs-checkbox--documentation)
->- [Date picker range](/docs/components-inputs-date-picker-range--documentation)
->- [Dropdown](/docs/components-inputs-dropdown--documentation)
->- [Phone number](/docs/components-inputs-phone-number--documentation)
->- [Text input](/docs/components-inputs-text-input--documentation)
->- [Text input with tags](/docs/components-inputs-text-input-with-tags--documentation)
+>- ${getStoryLink({ title: calendarDatePicker.default.title! })}
+>- ${getStoryLink({ title: checkbox.default.title! })}
+>- ${getStoryLink({ title: datepickerRange.default.title! })}
+>- ${getStoryLink({ title: dropdown.default.title! })}
+>- ${getStoryLink({ title: phoneNumber.default.title! })}
+>- ${getStoryLink({ title: textInput.default.title! })}
+>- ${getStoryLink({ title: textInputWithTags.default.title! })}
   `,
   'https://bamboo.tec.mx/latest/patterns/forms/descripcion-general-FDqTdYSy',
   true,
@@ -157,12 +168,13 @@ ${getBasicExampleBlock('BmbButtonDirective, BmbFormValidatorComponent', '', 'for
       description: `
 Sets the \`FormGroup\` instance defined for cases where the validations are different from those already natively supported by **Bamboo inputs**.
 
-<br/>
-${RELEVANT_TITLE_LEVEL[1]}
 
+
+${RELEVANT_TITLE_LEVEL[0]}
 It is essential to assign the property \`name\` for correct behavior of the field.
 
-<br/>
+
+
 **Bamboo inputs** automatically implements the \`Validators\` on the following properties:
 
 - isRequired: adds \`Validators.required\` to the \`FormControl\`
@@ -172,11 +184,9 @@ It is essential to assign the property \`name\` for correct behavior of the fiel
 - min: adds \`Validators.min\` to the \`FormControl\`
 - pattern: adds \`Validators.pattern\` to the \`FormControl\`
 
-<br/>
-This property is a \`model\` input, and for this reason can be used as: [(formGroup)]="formGroup"
-
-<br/>
-This property can be optional for the \`formGroupState\` event.
+${RELEVANT_TITLE_LEVEL[2]}
+This property is a \`model\` input, and for this reason can be used as:
+    [(formGroup)]="formGroup"
       `,
       table: {
         category: 'Properties',
@@ -186,18 +196,15 @@ This property can be optional for the \`formGroupState\` event.
         defaultValue: { summary: '{}' },
       },
     },
-    formGroupState: {
-      control: {
-        type: null,
-      },
-      description: `
-Emits the state of the \`FormGroup\`, this output can be optional for the \`formGroup\` property.
-      `,
-      table: {
-        category: 'Events',
-        type: { summary: 'FormGroup' },
-      },
-    },
+    formGroupState: getOnEventParam(
+      getOnEvent('', 'formGroupState', 'FormGroup'),
+      ` when ***Submit*** button is clicked.
+
+${RELEVANT_TITLE_LEVEL[2]}
+Emits the state of the \`FormGroup\` after execute the validation and change the state of the form.
+    `,
+      'other',
+    ),
   },
 } as Meta<typeof BmbFormValidatorComponent>;
 

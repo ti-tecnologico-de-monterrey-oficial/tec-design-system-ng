@@ -1,5 +1,5 @@
-@use "./fonts" as fonts;
-@use "./rem" as rem;
+@use './fonts' as fonts;
+@use './rem' as rem;
 
 .cdk {
   &-visually-hidden {
@@ -54,7 +54,7 @@
   }
 }
 
-[dir="rtl"] .cdk-visually-hidden {
+[dir='rtl'] .cdk-visually-hidden {
   left: auto;
   right: 0;
 }

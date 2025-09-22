@@ -1,12 +1,8 @@
-@use "../../../assets/styles/base/rem" as rem;
+@use '../../../assets/styles/base/rem' as rem;
 
 .bmb_dropdown_menu {
   position: relative;
-  &-button {
-    .bmb_check-external-link-button-element {
-      color: var(--general_contrasts-50);
-    }
-  }
+  color: currentColor;
 
   &-list {
     .bmb_dropdown-content-modal {

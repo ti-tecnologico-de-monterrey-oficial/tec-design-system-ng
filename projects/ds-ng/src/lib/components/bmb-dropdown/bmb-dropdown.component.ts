@@ -104,15 +104,17 @@ export class BmbDropdownComponent implements OnInit, OnChanges {
       this.isControlNull = true;
     }
 
-    if (this.disabled()) this.selectionControl.disable();
-    else this.selectionControl.enable();
+    this.initOptions(this.options());
+
+    // if (this.disabled()) this.selectionControl.disable();
+    // else this.selectionControl.enable();
 
     if (!this.isMultiSelect() && Array.isArray(this.control()?.value)) {
       this.control().setValue('');
     }
 
     this.control()
-      .valueChanges.pipe(startWith(this.getValidInitialValues()))
+      ?.valueChanges.pipe(startWith(this.getValidInitialValues()))
       .subscribe((value) => {
         this.setSelectionControl(value);
       });
@@ -121,9 +123,11 @@ export class BmbDropdownComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes['options']) {
-      this.initOptions(changes['options'].currentValue);
-      this.control().setValue(this.getValidInitialValues());
+    if (this.control() !== null) {
+      if (changes['options']) {
+        this.initOptions(changes['options'].currentValue);
+        this.control().setValue(this.getValidInitialValues());
+      }
     }
   }
 

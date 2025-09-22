@@ -3,14 +3,14 @@
     <div
       class="bmb_chat-bubble-main-info"
       [ngClass]="{
-        'bmb_chat-bubble-user': message().isUserMessage,
+        'bmb_chat-bubble-user': message().isUserMessage
       }"
     >
       <div
         class="bmb_chat-bubble-profile"
         [ngClass]="{
           'bmb_chat-bubble-profile-top': !message().isUserMessage,
-          'bmb_chat-bubble-profile-bottom': message().isUserMessage,
+          'bmb_chat-bubble-profile-bottom': message().isUserMessage
         }"
       >
         @if (message().isUserMessage) {
@@ -35,7 +35,7 @@
           class="bmb_chat-bubble-msg"
           [ngClass]="{
             'bmb_chat-bubble-msg-userProfile-bottom': message().isUserMessage,
-            'bmb_chat-bubble-msg-top': !message().isUserMessage,
+            'bmb_chat-bubble-msg-top': !message().isUserMessage
           }"
         >
           @if (isThinking()) {
@@ -45,7 +45,7 @@
               <span class="bmb_chat-bubble-msg-thinking-dot"></span>
             </div>
           } @else {
-            @if (message().type === "mixed") {
+            @if (message().type === 'mixed') {
               <p>{{ message().content.text }}</p>
               <img
                 class="bmb_chat-bubble-msg-image"
@@ -54,11 +54,11 @@
               />
             }
 
-            @if (message().type === "text") {
+            @if (message().type === 'text') {
               <p>{{ message().content.text }}</p>
             }
 
-            @if (message().type === "link") {
+            @if (message().type === 'link') {
               <bmb-text-link
                 [textLink]="message().content.text!"
                 [textLinkStyle]="'underlined'"
@@ -68,7 +68,7 @@
               ></bmb-text-link>
             }
 
-            @if (message().type === "template") {
+            @if (message().type === 'template') {
               <ng-container
                 *ngTemplateOutlet="message().content.template!"
               ></ng-container>
@@ -78,12 +78,12 @@
         <div
           class="bmb_chat-bubble-extra"
           [ngClass]="{
-            'bmb_chat-bubble-extra-user': message().isUserMessage,
+            'bmb_chat-bubble-extra-user': message().isUserMessage
           }"
         >
           @if (message().isUserMessage) {
             <p class="bmb_chat-bubble-extra-time">
-              {{ message().time | date: "hh:mm a" }}
+              {{ message().time | date: 'hh:mm a' }}
             </p>
           } @else {
             <div class="bmb_chat-bubble-extra-container">
@@ -126,7 +126,7 @@
               }
             </div>
             <p class="bmb_chat-bubble-extra-time">
-              {{ message().time | date: "hh:mm a" }}
+              {{ message().time | date: 'hh:mm a' }}
             </p>
           }
         </div>

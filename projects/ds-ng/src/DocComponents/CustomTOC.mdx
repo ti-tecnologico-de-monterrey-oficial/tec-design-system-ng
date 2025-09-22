@@ -1,7 +1,7 @@
-import { useEffect } from "react";
-import { TableOfContents } from "@storybook/addon-docs/blocks";
-import { TOC_OBJ } from "../lib/utils/doc/utils";
-import { query } from "@angular/animations";
+import { useEffect } from 'react';
+import { TableOfContents } from '@storybook/addon-docs/blocks';
+import { TOC_OBJ } from '../lib/utils/doc/utils';
+import { query } from '@angular/animations';
 
 export const CustomTOC = ({
   children,
@@ -24,7 +24,7 @@ export const CustomTOC = ({
 return (
 
 <div className="sbdocs-wrapper css-3rewwu">
-  {status === "active" && (
+  {status === 'active' && (
     <TableOfContents
       headingSelector={headingSelector}
       contentsSelector={contentsSelector}

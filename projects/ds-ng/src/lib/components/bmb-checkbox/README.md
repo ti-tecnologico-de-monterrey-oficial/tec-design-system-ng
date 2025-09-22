@@ -60,7 +60,21 @@ Handles the `Enter` key press for the checkbox. Toggles the `checked` state or c
 The component's template is structured as follows:
 
 ```html
-<bmb-checkbox [id]="'checkbox-1'" [checked]="true" [disabled]="false" [indeterminate]="false" [required]="true" [value]="'option1'" [name]="'exampleCheckbox'" [label]="'Accept Terms and Conditions'" [labelPosition]="'after'" [ariaDescribedby]="'description-id'" [ariaLabel]="'Accept Terms'" [ariaLabelledby]="'label-id'" (change)="onCheckboxChange($event)"></bmb-checkbox>
+<bmb-checkbox
+  [id]="'checkbox-1'"
+  [checked]="true"
+  [disabled]="false"
+  [indeterminate]="false"
+  [required]="true"
+  [value]="'option1'"
+  [name]="'exampleCheckbox'"
+  [label]="'Accept Terms and Conditions'"
+  [labelPosition]="'after'"
+  [ariaDescribedby]="'description-id'"
+  [ariaLabel]="'Accept Terms'"
+  [ariaLabelledby]="'label-id'"
+  (change)="onCheckboxChange($event)"
+></bmb-checkbox>
 ```
 
 ---
@@ -70,19 +84,33 @@ The component's template is structured as follows:
 ### Example 1: Basic Checkbox
 
 ```html
-<bmb-checkbox [id]="'basic-checkbox'" [label]="'I agree to the terms and conditions'" [checked]="false" (change)="onCheckboxChange($event)"></bmb-checkbox>
+<bmb-checkbox
+  [id]="'basic-checkbox'"
+  [label]="'I agree to the terms and conditions'"
+  [checked]="false"
+  (change)="onCheckboxChange($event)"
+></bmb-checkbox>
 ```
 
 ### Example 2: Indeterminate Checkbox
 
 ```html
-<bmb-checkbox [id]="'indeterminate-checkbox'" [label]="'Select All'" [indeterminate]="true" (change)="onCheckboxChange($event)"></bmb-checkbox>
+<bmb-checkbox
+  [id]="'indeterminate-checkbox'"
+  [label]="'Select All'"
+  [indeterminate]="true"
+  (change)="onCheckboxChange($event)"
+></bmb-checkbox>
 ```
 
 ### Example 3: Disabled Checkbox
 
 ```html
-<bmb-checkbox [id]="'disabled-checkbox'" [label]="'Disabled Option'" [disabled]="true"></bmb-checkbox>
+<bmb-checkbox
+  [id]="'disabled-checkbox'"
+  [label]="'Disabled Option'"
+  [disabled]="true"
+></bmb-checkbox>
 ```
 
 ---

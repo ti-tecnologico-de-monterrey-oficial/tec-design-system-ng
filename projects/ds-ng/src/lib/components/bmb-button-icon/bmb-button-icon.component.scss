@@ -1,4 +1,4 @@
-@use "../../../assets/styles/base/rem" as rem;
+@use '../../../assets/styles/base/rem' as rem;
 
 @mixin container($border-width, $border-color, $background-color, $icon-color) {
   border: rem.rem_calc($border-width) solid $border-color;

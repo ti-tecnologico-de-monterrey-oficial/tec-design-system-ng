@@ -1,6 +1,6 @@
-@use "../../../../../assets/styles/base/rem" as rem;
-@use "../../../../../assets/styles/base/fonts" as fonts;
-@use "../../../../../assets/styles/base/mixins" as mixins;
+@use '../../../../../assets/styles/base/rem' as rem;
+@use '../../../../../assets/styles/base/fonts' as fonts;
+@use '../../../../../assets/styles/base/mixins' as mixins;
 
 @mixin buttonNavDark() {
   color: RGBA(var(--color-charade-200), 0.5);
@@ -16,7 +16,7 @@
 }
 
 .bmb_calendar-month-mobile {
-  @include mixins.media-query(1001, "min") {
+  @include mixins.media-query(1001, 'min') {
     display: none;
   }
 
