@@ -35,7 +35,7 @@ import {
       [ngStyle]="{
         padding: 'var(--bmb-padding-' + padding() + ')',
         margin: 'var(--bmb-margin-' + margin() + ')',
-        gap: 'var(--bmb-gap-' + gap() + ')',
+        gap: 'var(--bmb-gap-' + gap() + ')'
       }"
       style="border: var(--bmb-border-general_contrasts-50-1-solid); text-align: center; display: flex; flex-wrap: wrap;"
     >

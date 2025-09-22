@@ -16,7 +16,10 @@ import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { BmbSwitchComponent } from '../bmb-switch/bmb-switch.component';
 import { BmbRadialComponent } from '../bmb-radial/bmb-radial.component';
 import { BmbCheckboxComponent } from '../bmb-checkbox/bmb-checkbox.component';
-import { IBmbNativeModal, ModalDataConfig } from '../bmb-modal/bmb-modal.interface';
+import {
+  IBmbNativeModal,
+  ModalDataConfig,
+} from '../bmb-modal/bmb-modal.interface';
 import { BmbInputComponent } from '../bmb-input/bmb-input.component';
 import { IBmbControlType } from './bmb-filter-card.interface';
 import { BmbButtonDirective } from '../../directives/bmb-button/button.directive';
@@ -169,7 +172,7 @@ export class BmbFilterCardComponent {
   }
 
   handleSubmit() {
-    debugger
+    debugger;
     const formData: any = {};
     Object.keys(this.storedValues).forEach((key) => {
       formData[key] = this.storedValues[key];

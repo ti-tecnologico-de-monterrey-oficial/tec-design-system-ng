@@ -93,7 +93,7 @@ export class BmbAccountStatementComponent implements AfterViewInit, OnInit {
   customAmount: number = 0;
   isEnableCustomAmount: boolean = false;
   maxAmount: number = 0;
-  modalID = signal<string | null>(null)
+  modalID = signal<string | null>(null);
 
   amountForm: FormGroup = new FormGroup({
     amount: new FormControl<number>(0, [Validators.required]),

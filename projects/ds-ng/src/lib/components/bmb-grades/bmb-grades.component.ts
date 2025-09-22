@@ -103,7 +103,7 @@ export class BmbGradesComponent implements OnInit {
       content: this.modalContent,
       size: 'small',
     };
-    this.modalService.openModal(data)
+    this.modalService.openModal(data);
   }
 
   getGradesTitle(): string {

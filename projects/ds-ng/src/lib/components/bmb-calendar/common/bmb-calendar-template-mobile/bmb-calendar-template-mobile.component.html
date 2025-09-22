@@ -40,7 +40,7 @@
                 appearance="transparent"
                 [ngClass]="{
                   'bmb_calendar-month-mobile-calendar-button-selected':
-                    isSelectedDay(date),
+                    isSelectedDay(date)
                 }"
                 [disabled]="isSelectedDay(date)"
                 type="button"
@@ -52,7 +52,7 @@
                   class="bmb_calendar-month-mobile-calendar-item-indicator"
                   [ngClass]="{
                     'bmb_calendar-month-mobile-calendar-item-indicator-selected':
-                      isSelectedDay(date),
+                      isSelectedDay(date)
                   }"
                 ></span>
               }
@@ -72,7 +72,7 @@
                 appearance="transparent"
                 [ngClass]="{
                   'bmb_calendar-month-mobile-calendar-button-selected':
-                    isSelectedDay(date),
+                    isSelectedDay(date)
                 }"
                 [disabled]="isSelectedDay(date)"
               >
@@ -83,7 +83,7 @@
                   class="bmb_calendar-month-mobile-calendar-item-indicator"
                   [ngClass]="{
                     'bmb_calendar-month-mobile-calendar-item-indicator-selected':
-                      isSelectedDay(date),
+                      isSelectedDay(date)
                   }"
                 ></span>
               }
@@ -96,7 +96,7 @@
   <div
     class="bmb_calendar-month-mobile-title-day"
     [ngClass]="{
-      'bmb_calendar-month-mobile-title-day-not-visible': isWedgeOpen,
+      'bmb_calendar-month-mobile-title-day-not-visible': isWedgeOpen
     }"
   >
     {{ now().setLocale(lang()).toFormat('cccc LLLL dd, yyyy') }}

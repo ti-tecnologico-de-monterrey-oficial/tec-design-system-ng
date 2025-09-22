@@ -61,7 +61,7 @@ import * as iconStory from '../components/bmb-icon/bmb-icon.stories';
         [userInformation]="{
           name: 'Santiago Hernández',
           image: 'https://picsum.photos/id/64/200/300',
-          role: 'Alumno',
+          role: 'Alumno'
         }"
         [showHelpButton]="true"
         [hasLogoutButton]="false"
@@ -316,9 +316,9 @@ import * as iconStory from '../components/bmb-icon/bmb-icon.stories';
             id: 2,
             icon: 'task',
             title: 'Agregar firmantes',
-            link: 'https://www.youtube.com/watch?v=beh56CrNRsQ',
-          },
-        ],
+            link: 'https://www.youtube.com/watch?v=beh56CrNRsQ'
+          }
+        ]
       ]"
       [title]="'Navegacion para mobiles'"
     ></bmb-sidebar>

@@ -9,11 +9,7 @@ import { BmbNativeModalService } from '../../services/native-modal.service';
 describe('BmbFilterCardComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [
-        CommonModule,
-        ReactiveFormsModule,
-        BmbIconComponent,
-      ],
+      imports: [CommonModule, ReactiveFormsModule, BmbIconComponent],
       providers: [
         {
           provide: BmbNativeModalService,
