@@ -39,8 +39,8 @@
   <bmb-check-external-link-button
     class="bmb_sidebar-link"
     [idElement]="'element' + item.id!"
-    [link]="getLink(item.link!, !!item.children)"
-    [target]="item.target!"
+    [link]="!isMobile ? getLink(item.link!) : ''"
+    [target]="!isMobile ? item.target! : ''"
     (buttonClick)="toggleChildren(item)"
   >
     <ng-container

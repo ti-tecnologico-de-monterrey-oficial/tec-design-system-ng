@@ -12,10 +12,10 @@ import {
 import {
   attributes,
   getBasicExampleBlock,
-  getFormatName,
   getPageStructureForTemplateStories,
   getSpecialSpecifications,
   getStandaloneGeneralDesc,
+  getStoryLink,
   TECHNICAL_DOC_REFERENCES,
   TECHNICAL_DOC_TITLE,
 } from '../utils/doc/utils';
@@ -190,13 +190,13 @@ ${getStandaloneGeneralDesc('2 Column info bar')}
 ${getSpecialSpecifications(`### ${TECHNICAL_DOC_TITLE}
 >
 ${TECHNICAL_DOC_REFERENCES}
-- [${topBarStory.default.title}](/docs/${getFormatName(topBarStory.default.title!, /(\/)|( )/g, '-').toLocaleLowerCase()}--documentation)
-- [${sideBarStory.default.title}](/docs/${getFormatName(sideBarStory.default.title!, /(\/)|( )/g, '-').toLocaleLowerCase()}--documentation)
-- [${badgeStory.default.title}](/docs/${getFormatName(badgeStory.default.title!, /(\/)|( )/g, '-').toLocaleLowerCase()}--documentation)
-- [${stepProgressBarStory.default.title}](/docs/${getFormatName(stepProgressBarStory.default.title!, /(\/)|( )/g, '-').toLocaleLowerCase()}--documentation)
-- [${userSummaryStory.default.title}](/docs/${getFormatName(userSummaryStory.default.title!, /(\/)|( )/g, '-').toLocaleLowerCase()}--documentation)
-- [${invoiceStory.default.title}](/docs/${getFormatName(sideBarStory.default.title!, /(\/)|( )/g, '-').toLocaleLowerCase()}--documentation)
-- [${buttonStory.default.title}](/docs/${getFormatName(buttonStory.default.title!, /(\/)|( )/g, '-').toLocaleLowerCase()}--documentation)
+- ${getStoryLink({ title: topBarStory.default.title!, showFullLinkName: true })}
+- ${getStoryLink({ title: sideBarStory.default.title!, showFullLinkName: true })}
+- ${getStoryLink({ title: badgeStory.default.title!, showFullLinkName: true })}
+- ${getStoryLink({ title: stepProgressBarStory.default.title!, showFullLinkName: true })}
+- ${getStoryLink({ title: userSummaryStory.default.title!, showFullLinkName: true })}
+- ${getStoryLink({ title: invoiceStory.default.title!, showFullLinkName: true })}
+- ${getStoryLink({ title: buttonStory.default.title!, showFullLinkName: true })}
 `)}
 ${getBasicExampleBlock(`BmbTopBarComponent,
     BmbSidebarComponent,

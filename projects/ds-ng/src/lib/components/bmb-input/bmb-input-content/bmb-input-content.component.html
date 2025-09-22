@@ -29,7 +29,7 @@
         [name]="name()"
         [id]="inputId()"
         [pattern]="pattern()!"
-        [tabindex]="isDisabled() ? -1 : 0"
+        [tabindex]="control().disabled ? -1 : 0"
         (keydown)="handleKeyPress($event)"
         (change)="handleChange($event)"
         (focus)="handleFocus()"
@@ -44,7 +44,6 @@
         [type]="getType()"
         [ngClass]="inputClasses"
         [autocomplete]="autoComplete()"
-        [required]="isRequired()"
         [readOnly]="isReadOnly()"
         [placeholder]="placeholder()"
         [formControl]="control()"
@@ -56,7 +55,7 @@
         [pattern]="pattern()!"
         [max]="max()"
         [min]="min()"
-        [tabindex]="isDisabled() ? -1 : 0"
+        [tabindex]="control().disabled ? -1 : 0"
         (keydown)="handleKeyPress($event)"
         (change)="handleChange($event)"
         (focus)="handleFocus()"
@@ -70,7 +69,7 @@
               class="bmb_field-additional_action"
               [icon]="getAdditionalActionIcon()"
               [iconSize]="24"
-              [disabled]="isDisabled()"
+              [disabled]="control().disabled"
               (buttonClick)="actionToExecute()"
             />
           }
@@ -79,7 +78,7 @@
               class="bmb_field-clear"
               icon="close"
               [iconSize]="24"
-              [disabled]="isDisabled()"
+              [disabled]="control().disabled"
               (buttonClick)="handleClearValue()"
             />
           }

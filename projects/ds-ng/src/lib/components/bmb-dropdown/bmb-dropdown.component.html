@@ -26,7 +26,6 @@
     [isReadOnly]="!isFilterable() || isMultiSelect()"
     [placeholder]="placeholder()"
     [isError]="shouldShowError"
-    [isDisabled]="disabled()"
     (click)="openList()"
     (onKeyDown)="onKeyDown($event)"
     (onBlur)="handleValidity()"

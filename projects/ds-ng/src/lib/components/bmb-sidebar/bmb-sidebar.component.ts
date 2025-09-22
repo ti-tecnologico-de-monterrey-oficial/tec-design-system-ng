@@ -77,8 +77,8 @@ export class BmbSidebarComponent implements OnInit {
     );
   }
 
-  getLink(link: string, hasChildren: boolean): string {
-    if (!hasChildren && !!link) return link;
+  getLink(link: string): string {
+    if (!!link) return link;
     return '';
   }
 
