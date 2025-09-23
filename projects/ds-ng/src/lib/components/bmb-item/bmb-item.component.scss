@@ -11,7 +11,7 @@
     border-bottom: rem.rem_calc(1) solid var(--general_contrasts-50);
     flex-flow: row wrap;
     justify-content: space-between;
-    padding: rem.rem_calc(6);
+    padding: rem.rem_calc(16);
 
     @include mixins.media-query(768, 'min') {
       flex-flow: row nowrap;
