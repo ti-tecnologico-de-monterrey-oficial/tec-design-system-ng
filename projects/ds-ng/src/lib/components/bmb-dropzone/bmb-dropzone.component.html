@@ -11,7 +11,7 @@
       [ngClass]="{
         'bmb-drop-zone-icon-valid':
           validFile && fileDataList.length > 0 && !!fileDataList[0].name,
-        'bmb-drop-zone-icon-error': isInvalidFileOnly()
+        'bmb-drop-zone-icon-error': isInvalidFileOnly(),
       }"
     >
       <bmb-icon [icon]="mainIcon()" [size]="48" alt="Drop zone icon" />
@@ -55,14 +55,14 @@
               'bmb-drop-zone-list-files-loading':
                 !file.error && getProgress(file.name) < 100,
               'bmb-drop-zone-list-files-error': file.error,
-              'bmb-drop-zone-list-files-valid': getProgress(file.name) === 100
+              'bmb-drop-zone-list-files-valid': getProgress(file.name) === 100,
             }"
           >
             <span
               class="bmb-drop-zone-list-files-icon"
               [ngClass]="{
                 'bmb-drop-zone-list-files-icon-spin':
-                  !file.error && getProgress(file.name) < 100
+                  !file.error && getProgress(file.name) < 100,
               }"
             >
               @if (!validFile) {
@@ -81,7 +81,7 @@
                 class="bmb-drop-zone-list-status"
                 [ngClass]="{
                   'bmb-drop-zone-list-status-success':
-                    getProgress(file.name) === 100
+                    getProgress(file.name) === 100,
                 }"
               >
                 @if (validFile && getProgress(file.name) < 100) {

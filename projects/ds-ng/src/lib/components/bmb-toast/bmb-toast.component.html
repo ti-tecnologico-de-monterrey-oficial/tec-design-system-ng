@@ -4,7 +4,8 @@
   <div
     class="bmb_toast-content"
     [ngClass]="{
-      'bmb_toast-with-description': description() && appearance() !== 'reminder'
+      'bmb_toast-with-description':
+        description() && appearance() !== 'reminder',
     }"
   >
     <h4 class="bmb_toast-title">

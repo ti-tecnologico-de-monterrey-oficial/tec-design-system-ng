@@ -2,26 +2,22 @@
 @use '../../../assets/styles/base/fonts' as fonts;
 
 $types: (
-  'academic':
-    linear-gradient(
+  'academic': linear-gradient(
       139deg,
       RGBA(var(--color-mariner-950)) -47.21%,
       RGBA(var(--color-mariner-900)) 93.52%
     ),
-  'life':
-    linear-gradient(
+  'life': linear-gradient(
       325deg,
       RGBA(var(--color-green-primary)) 18.73%,
       RGBA(var(--color-green-light)) 103.37%
     ),
-  'events':
-    linear-gradient(
+  'events': linear-gradient(
       132deg,
       RGBA(var(--color-purple-primary)) -7.51%,
       RGBA(var(--color-purple-light)) 98.98%
     ),
-  'save_the_date':
-    linear-gradient(
+  'save_the_date': linear-gradient(
       132deg,
       RGBA(var(--color-yellow-primary)) -7.51%,
       RGBA(var(--mitec_orange-primary)) 98.98%

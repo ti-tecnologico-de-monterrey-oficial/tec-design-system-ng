@@ -101,7 +101,7 @@ import {
         [errorMessage]="{
           required: 'Please enter the required data',
           minLength: 'Please enter at least 4 characters',
-          pattern: 'Please enter only letters'
+          pattern: 'Please enter only letters',
         }"
       />
       <div style="padding: 1rem">

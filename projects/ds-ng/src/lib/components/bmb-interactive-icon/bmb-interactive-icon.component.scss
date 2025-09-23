@@ -31,8 +31,9 @@ $backgrounds: (
   'buttons-primary-normal': var(--buttons-primary-normal),
   'purple-primary': var(--purple-primary),
   'general_contrasts-main-selection': var(--general_contrasts-main-selection),
-  'general_contrasts-main-selection-alternative':
-    var(--general_contrasts-main-selection-alternative),
+  'general_contrasts-main-selection-alternative': var(
+      --general_contrasts-main-selection-alternative
+    ),
 );
 
 .bmb_interactive_icon {

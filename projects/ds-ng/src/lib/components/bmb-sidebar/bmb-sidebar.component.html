@@ -18,7 +18,7 @@
   <span
     [ngClass]="{
       'bmb_sidebar-text': !isTitle,
-      'bmb_sidebar-header-text': isTitle
+      'bmb_sidebar-header-text': isTitle,
     }"
     >{{ element!.title }}</span
   >
@@ -67,7 +67,7 @@
           class="bmb_sidebar-item"
           [ngClass]="{
             'bmb_sidebar-item-left-space':
-              position() === 'right' && hasSubmenu && !element.children?.length
+              position() === 'right' && hasSubmenu && !element.children?.length,
           }"
           (click)="checkToCloseSidebar(element)"
         >
@@ -87,7 +87,7 @@
                   isFixed: true,
                   level: 2,
                   selectedElement,
-                  isMobile
+                  isMobile,
                 }
               "
             />
@@ -128,14 +128,14 @@
         level >= 2 && !!element.children && selectedElement === element,
       'bmb_sidebar-open': isMobile && level == 1 && isOpen,
       bmb_sidebar: isMobile && level == 1,
-      'bmb_sidebar-mobile': isMobile && level == 1
+      'bmb_sidebar-mobile': isMobile && level == 1,
     }"
   >
     @if (isOpen) {
       <section
         [ngClass]="{
           'bmb_sidebar-header': level == 1,
-          'bmb_sidebar-title': level >= 2
+          'bmb_sidebar-title': level >= 2,
         }"
       >
         @if (level >= 2 && !!selectedElement) {
@@ -154,10 +154,10 @@
             context: {
               element: {
                 title: element.title,
-                icon: element.icon!
+                icon: element.icon!,
               },
               isTitle,
-              isFixed
+              isFixed,
             }
           "
         />
@@ -194,7 +194,7 @@
   aria-label="Sidebar Navigation"
   [ngClass]="{
     'bmb-active': isActive,
-    'bmb_sidebar-desktop-right': position() === 'right'
+    'bmb_sidebar-desktop-right': position() === 'right',
   }"
   (mouseleave)="clearSelectElement()"
 >
@@ -215,13 +215,13 @@
       sidebarElementTemplate;
       context: {
         element: {
-          title: title()
+          title: title(),
         },
         iconSize: 32,
         isTitle: true,
         isFixed: true,
         level: 1,
-        isMobile: true
+        isMobile: true,
       }
     "
   />

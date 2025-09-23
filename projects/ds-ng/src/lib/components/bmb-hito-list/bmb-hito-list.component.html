@@ -4,7 +4,7 @@
       <li
         class="bmb_hito_list-item"
         [ngClass]="{
-          'bmb_hito_list-item-current': events()[month].selected
+          'bmb_hito_list-item-current': events()[month].selected,
         }"
       >
         <header class="bmb_hito_list-header">
@@ -16,7 +16,7 @@
               class="bmb_hito_list-content-item"
               [ngClass]="{
                 'bmb_hito_list-content-item-current':
-                  events()[month].events[event].selected
+                  events()[month].events[event].selected,
               }"
             >
               <h3
