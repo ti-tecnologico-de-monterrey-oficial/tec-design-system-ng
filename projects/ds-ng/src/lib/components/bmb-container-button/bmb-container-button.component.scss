@@ -80,8 +80,8 @@
   }
 
   &-left {
-    @include button_container();
     flex: 1;
+    @include button_container();
 
     .bmb_icon-figure {
       width: 100%;
