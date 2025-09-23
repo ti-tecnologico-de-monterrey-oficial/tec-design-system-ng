@@ -127,14 +127,14 @@ $types: (
     @include fonts.font(3, regular);
     font-weight: 400;
     color: RGBA(var(--color-white-primary), 0.5);
-    @include textEllipsis();
     margin-bottom: var(--bmb-spacing-xs);
+    @include textEllipsis();
   }
 
   &-content {
     @include fonts.font(3, regular);
-    @include textEllipsis();
     margin-bottom: 0;
+    @include textEllipsis();
   }
 
   &-icon {
