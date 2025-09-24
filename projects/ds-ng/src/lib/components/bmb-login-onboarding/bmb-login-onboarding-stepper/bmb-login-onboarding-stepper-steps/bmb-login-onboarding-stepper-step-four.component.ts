@@ -2,13 +2,13 @@ import {
   ChangeDetectionStrategy,
   Component,
   output,
+  signal,
   ViewEncapsulation,
 } from '@angular/core';
 import { BmbLoginOnboardingStepperStepComponent } from './bmb-login-onboarding-stepper-step.component';
 import { BmbLoginOnboardingService } from '../../bmb-login-onboarding.service';
-import { ModalDataConfig } from '../../../bmb-modal/bmb-modal.interface';
-import { MatDialog } from '@angular/material/dialog';
-import { BmbModalComponent } from '../../../bmb-modal/bmb-modal.component';
+import { BmbNativeModalService } from '../../../../services/native-modal.service';
+import { IBmbNativeModal } from '../../../bmb-modal/bmb-modal.interface';
 
 @Component({
   selector: 'bmb-login-onboarding-stepper-step-four',
@@ -36,27 +36,33 @@ export class BmbLoginOnboardingStepperStepFourComponent {
   handleRequest = output<any>();
   handleContinuePage = output();
 
+  modalId = signal<string | null>(null);
+
   credentialExample: string = '../assets/images/placeholders/credential.svg';
-  data: ModalDataConfig = {
+  data: IBmbNativeModal = {
     title: 'Entrada a campus',
     content: 'Podrás cambiar esta configuración en cualquier momento',
     size: 'large',
-    type: 'action',
-    alertStyle: 'success',
-    primaryBtnLabel: 'Aceptar',
-    hideSecondaryButton: true,
+    actions: [
+      {
+        buttonName: 'aceptar',
+        label: 'Aceptar',
+        appearance: 'primary',
+        action: () => {
+          this._handleContinueStep();
+          this.modalService.closeModal(this.modalId() as string);
+        },
+      },
+    ],
   };
 
   constructor(
     private loginOnboardingService: BmbLoginOnboardingService,
-    private matDialog: MatDialog,
+    private modalService: BmbNativeModalService,
   ) {}
 
   openModalComponent(): void {
-    this.matDialog.open(BmbModalComponent, { data: this.data });
-    this.matDialog.afterAllClosed.subscribe(() => {
-      this._handleContinueStep();
-    });
+    this.modalId.set(this.modalService.openModal(this.data));
   }
 
   handleContinue(): void {
