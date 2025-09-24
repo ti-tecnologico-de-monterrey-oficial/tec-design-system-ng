@@ -292,9 +292,9 @@
     rgba(var(--color-purple-light), 1) 100%;
 
   //Named base colors
-  --white-primary: RGBA(var(--color-white-primary), 1);
-  --purple-primary: RGBA(var(--color-purple-primary), 1);
-  --red-primary: RGBA(var(--color-red-primary), 1);
-  --black-primary: RGBA(var(--color-white-primary), 1);
-  --green-primary: RGBA(var(--color-green-primary), 1);
+  --white-primary: rgb(var(--color-white-primary));
+  --purple-primary: rgb(var(--color-purple-primary));
+  --red-primary: rgb(var(--color-red-primary));
+  --black-primary: rgb(var(--color-white-primary));
+  --green-primary: rgb(var(--color-green-primary));
 }
