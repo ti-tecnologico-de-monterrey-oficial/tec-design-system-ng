@@ -10,7 +10,7 @@
     (dragleave)="onDragLeave($event)"
     [ngClass]="{
       'bmb_chat-bar-container-files': files.length > 0,
-      'bmb_chat-bar-drag': onDragFiles,
+      'bmb_chat-bar-drag': onDragFiles
     }"
     tabindex="0"
   >
@@ -129,7 +129,7 @@
             class="bmb_chat-bar-dialog-button"
             [ngClass]="{
               'bmb_chat-bar-dialog-button-active':
-                bot.name === currentBot()?.name,
+                bot.name === currentBot()?.name
             }"
             [icon]="bot.icon"
             [alt]="bot.name"
@@ -175,7 +175,7 @@
             class="bmb_chat-bar-dialog-button"
             [ngClass]="{
               'bmb_chat-bar-dialog-button-active':
-                bot.name === currentBot()?.name,
+                bot.name === currentBot()?.name
             }"
             [icon]="bot.icon"
             [alt]="bot.name"
