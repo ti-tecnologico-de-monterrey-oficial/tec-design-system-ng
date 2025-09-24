@@ -154,7 +154,12 @@ export const getOnEvent = (
   return onEvent;
 };
 
-export const getStoryTitle = (fullTitle: string): string => getFormatName(fullTitle!, fullTitle?.substring(0, fullTitle?.lastIndexOf('/') + 1), '');
+export const getStoryTitle = (fullTitle: string): string =>
+  getFormatName(
+    fullTitle!,
+    fullTitle?.substring(0, fullTitle?.lastIndexOf('/') + 1),
+    '',
+  );
 
 export const getStoryLink = ({
   title,
