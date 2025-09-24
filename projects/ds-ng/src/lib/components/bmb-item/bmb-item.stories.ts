@@ -1,4 +1,4 @@
-import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
+import { Meta, StoryObj, componentWrapperDecorator, moduleMetadata } from '@storybook/angular';
 import { BmbItemComponent } from './bmb-item.component';
 import { CommonModule } from '@angular/common';
 import { attributes } from '../../utils/doc/utils';
@@ -15,6 +15,11 @@ const meta: Meta<BmbItemComponent> = {
       declarations: [],
       imports: [CommonModule],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
+    }),
+    componentWrapperDecorator((story: string) => {
+      return `<div style="max-width: 560px; margin: 0 auto">
+        ${story}
+      </div>`;
     }),
   ],
   parameters: {
@@ -110,11 +115,7 @@ export const Default: Story = {
   render: (args) => ({
     props: args,
     template: `
-      <!-- Instruction to users: This html is used for internal Storybook logic and should not be copied -->
-      <div style="max-width: 560px; margin: 0 auto">
-        <!-- Example of how you can use this component -->
-        <bmb-item ${attributes(args)}/>
-      </div>
+      <bmb-item ${attributes(args)}/>
     `,
   }),
 };
@@ -125,16 +126,6 @@ export const WithIcon: Story = {
     iconSize: 24,
     value: '+52 81 1625 5123 (solo texto)',
   },
-  render: (args) => ({
-    props: args,
-    template: `
-      <!-- Instruction to users: This html is used for internal Storybook logic and should not be copied -->
-      <div style="max-width: 560px; margin: 0 auto">
-        <!-- Example of how you can use this component -->
-        <bmb-item ${attributes(args)}/>
-      </div>
-    `,
-  }),
 };
 
 export const WithValueLink: Story = {
@@ -144,16 +135,6 @@ export const WithValueLink: Story = {
     valueLink: 'mailto:tecservices@servicios.tec.mx',
     valueTarget: '_self',
   },
-  render: (args) => ({
-    props: args,
-    template: `
-      <!-- Instruction to users: This html is used for internal Storybook logic and should not be copied -->
-      <div style="max-width: 560px; margin: 0 auto">
-        <!-- Example of how you can use this component -->
-        <bmb-item ${attributes(args)}/>
-      </div>
-    `,
-  }),
 };
 
 export const WithValueLinkAndIcon: Story = {
@@ -164,16 +145,6 @@ export const WithValueLinkAndIcon: Story = {
     valueLink: 'mailto:tecservices@servicios.tec.mx',
     valueTarget: '_self',
   },
-  render: (args) => ({
-    props: args,
-    template: `
-      <!-- Instruction to users: This html is used for internal Storybook logic and should not be copied -->
-      <div style="max-width: 560px; margin: 0 auto">
-        <!-- Example of how you can use this component -->
-        <bmb-item ${attributes(args)}/>
-      </div>
-    `,
-  }),
 };
 
 export const WithSupportText: Story = {
@@ -181,16 +152,6 @@ export const WithSupportText: Story = {
     label: 'Informative text. Non actionable',
     supportText: 'Here is some support text for your soul.',
   },
-  render: (args) => ({
-    props: args,
-    template: `
-      <!-- Instruction to users: This html is used for internal Storybook logic and should not be copied -->
-      <div style="max-width: 560px; margin: 0 auto">
-        <!-- Example of how you can use this component -->
-        <bmb-item ${attributes(args)}/>
-      </div>
-    `,
-  }),
 };
 
 export const WithSupportTextWithLink: Story = {
@@ -199,16 +160,6 @@ export const WithSupportTextWithLink: Story = {
     supportText:
       "Support text. <a href='https://www.google.com.mx' target='_blank'>Optional hyperlink text</a>",
   },
-  render: (args) => ({
-    props: args,
-    template: `
-      <!-- Instruction to users: This html is used for internal Storybook logic and should not be copied -->
-      <div style="max-width: 560px; margin: 0 auto">
-        <!-- Example of how you can use this component -->
-        <bmb-item ${attributes(args)}/>
-      </div>
-    `,
-  }),
 };
 
 export const WithSupportTextWithLinkAnIcon: Story = {
@@ -218,16 +169,6 @@ export const WithSupportTextWithLinkAnIcon: Story = {
     supportText:
       "Support text. <a href='https://www.google.com.mx' target='_blank'>Optional hyperlink text</a>",
   },
-  render: (args) => ({
-    props: args,
-    template: `
-      <!-- Instruction to users: This html is used for internal Storybook logic and should not be copied -->
-      <div style="max-width: 560px; margin: 0 auto">
-        <!-- Example of how you can use this component -->
-        <bmb-item ${attributes(args)}/>
-      </div>
-    `,
-  }),
 };
 
 export const IsAButton: Story = {
@@ -241,13 +182,7 @@ export const IsAButton: Story = {
         alert('In this method you can define the action to be executed');
       },
     },
-    template: `
-       <!-- Instruction to users: This html is used for internal Storybook logic and should not be copied -->
-      <div style="max-width: 560px; margin: 0 auto">
-        <!-- Example of how you can use this component -->
-        <bmb-item ${attributes(args)}/>
-      </div>
-    `,
+    template: `<bmb-item ${attributes(args)}/>`,
   }),
 };
 
@@ -263,12 +198,6 @@ export const IsAButtonWithIcon: Story = {
         alert('In this method you can define the action to be executed');
       },
     },
-    template: `
-      <!-- Instruction to users: This html is used for internal Storybook logic and should not be copied -->
-      <div style="max-width: 560px; margin: 0 auto">
-        <!-- Example of how you can use this component -->
-        <bmb-item ${attributes(args)}/>
-      </div>
-    `,
+    template: `<bmb-item ${attributes(args)}/>`,
   }),
 };
