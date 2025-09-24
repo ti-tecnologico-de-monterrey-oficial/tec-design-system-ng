@@ -36,7 +36,7 @@ export class BmbProjectedContentComponent {
 
   removeContent = output<void>();
 
-  @ViewChild('container', { read: ViewContainerRef })
+  @ViewChild('container', { read: ViewContainerRef, static: true })
   container!: ViewContainerRef;
   @ViewChild('projectedContentDialogRef')
   projectedContentDialogRef!: HTMLElement;
@@ -110,7 +110,7 @@ export class BmbProjectedContentComponent {
   }
 
   renderContent() {
-    this.container.clear();
+    this.container?.clear();
     if (this.componentRef) {
       this.componentRef.destroy();
       this.componentRef = null;
