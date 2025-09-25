@@ -1,6 +1,12 @@
 @if (!!counter()) {
   <section class="bmb_notification-counter">
     <ng-content />
-    <span class="bmb_notification-counter-number">{{ counter() }}</span>
+    <span
+      class="bmb_notification-counter-number"
+      [ngClass]="{
+        'bmb_notification-counter-bullet': appearance() === 'notification'
+      }"
+      >{{ getCounter() }}</span
+    >
   </section>
 }
