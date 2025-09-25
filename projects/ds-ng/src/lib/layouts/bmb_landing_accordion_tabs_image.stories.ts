@@ -91,7 +91,10 @@ import * as iconStory from '../components/bmb-icon/bmb-icon.stories';
           >
             <bmb-card margin="none" bmbLayoutItem [colSm]="6" [colLg]="6">
               <bmb-card-header padding="m">
-                <h3 class="font-medium-5">Descripción</h3>
+                <h3 class="font-medium-5 truncate-title">
+                  Lorem ipsum dolor sit amet consectetur. Nisl nibh phasellus
+                  condimentum mi faucibus.
+                </h3>
               </bmb-card-header>
               <bmb-card-content>
                 <figure [ngStyle]="{ margin: '0 0 24px 0' }">
@@ -101,33 +104,38 @@ import * as iconStory from '../components/bmb-icon/bmb-icon.stories';
                     src="https://img.freepik.com/fotos-premium/dia-internacional-gato-8-agosto-gatos-lindos-gatito-pequeno-hermosos-pequenos-animales-compania-verdadero-amigo-bonitos-divertidos-tiernos-esponjosos-juguetones-shorties-ia-generativa_887181-4265.jpg?w=2000"
                   />
                 </figure>
-                <p class="font-regular-4">
-                  Lorem ipsum dolor sit amet consectetur. Nisl nibh phasellus
-                  condimentum mi faucibus. In quisque justo senectus in sed
-                  adipiscing. Arcu neque feugiat aenean nam accumsan justo ut.
-                  Pulvinar urna amet proin sit sed tellus ipsum. Lorem ipsum
-                  dolor sit amet consectetur.
-                </p>
-                <p class="font-regular-4">
-                  Nisl nibh phasellus condimentum mi faucibus. In quisque justo
-                  senectus in sed adipiscing. Arcu neque feugiat aenean nam
-                  accumsan justo ut. Pulvinar urna amet proin sit sed tellus
-                  ipsum. Lorem ipsum dolor sit amet consectetur. Nisl nibh
-                  phasellus condimentum mi faucibus. In quisque justo senectus
-                  in sed adipiscing. Arcu neque feugiat aenean nam accumsan
-                  justo ut.
-                </p>
-                <p class="font-regular-4">
-                  Pulvinar urna amet proin sit sed tellus ipsum. Lorem ipsum
-                  dolor sit amet consectetur. Nisl nibh phasellus condimentum mi
-                  faucibus. In quisque justo senectus in sed adipiscing. Arcu
-                  neque feugiat aenean nam accumsan justo ut.
-                </p>
+                <div class="truncate-350">
+                  <p class="font-regular-4">
+                    Lorem ipsum dolor sit amet consectetur. Nisl nibh phasellus
+                    condimentum mi faucibus. In quisque justo senectus in sed
+                    adipiscing. Arcu neque feugiat aenean nam accumsan justo ut.
+                    Pulvinar urna amet proin sit sed tellus ipsum. Lorem ipsum
+                    dolor sit amet consectetur.
+                  </p>
+                  <p class="font-regular-4">
+                    Nisl nibh phasellus condimentum mi faucibus. In quisque
+                    justo senectus in sed adipiscing. Arcu neque feugiat aenean
+                    nam accumsan justo ut. Pulvinar urna amet proin sit sed
+                    tellus ipsum. Lorem ipsum dolor sit amet consectetur. Nisl
+                    nibh phasellus condimentum mi faucibus. In quisque justo
+                    senectus in sed adipiscing. Arcu neque feugiat aenean nam
+                    accumsan justo ut.
+                  </p>
+                  <p class="font-regular-4">
+                    Pulvinar urna amet proin sit sed tellus ipsum. Lorem ipsum
+                    dolor sit amet consectetur. Nisl nibh phasellus condimentum
+                    mi faucibus. In quisque justo senectus in sed adipiscing.
+                    Arcu neque feugiat aenean nam accumsan justo ut.
+                  </p>
+                </div>
               </bmb-card-content>
             </bmb-card>
             <bmb-card margin="none" bmbLayoutItem [colSm]="6" [colLg]="6">
               <bmb-card-header padding="m">
-                <h3 class="font-medium-5">Recursos</h3>
+                <h3 class="font-medium-5 truncate-title">
+                  Lorem ipsum dolor sit amet consectetur. Nisl nibh phasellus
+                  condimentum mi faucibus.
+                </h3>
               </bmb-card-header>
               <bmb-card-content>
                 <section bmbAccordionControl>
@@ -145,11 +153,13 @@ import * as iconStory from '../components/bmb-icon/bmb-icon.stories';
                       <span class="font-medium-4"> Información general </span>
                     </ng-template>
                     <ng-template #bmbAccordionContent>
-                      <p class="font-regular-4">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                        Ut justo ante, mattis nec libero a, malesuada
-                        pellentesque sem. Aliquam erat volutpat.
-                      </p>
+                      <div class="truncate-170">
+                        <p class="font-regular-4">
+                          Lorem ipsum dolor sit amet, consectetur adipiscing
+                          elit. Ut justo ante, mattis nec libero a, malesuada
+                          pellentesque sem. Aliquam erat volutpat.
+                        </p>
+                      </div>
                     </ng-template>
                   </bmb-accordion>
                   <bmb-accordion
@@ -264,16 +274,18 @@ import * as iconStory from '../components/bmb-icon/bmb-icon.stories';
                       <span class="font-medium-4">FAQ's </span>
                     </ng-template>
                     <ng-template #bmbAccordionContent>
-                      <p class="font-regular-4">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                        Ut justo ante, mattis nec libero a, malesuada
-                        pellentesque sem. Aliquam erat volutpat. Nulla ut
-                        consequat turpis, id efficitur velit. Fusce vitae dolor
-                        leo. Praesent diam justo, consectetur in blandit ut,
-                        tincidunt vitae enim. Nulla eleifend, leo at finibus
-                        volutpat, nulla metus eleifend lacus, ullamcorper dictum
-                        augue diam id erat.
-                      </p>
+                      <div class="truncate-170">
+                        <p class="font-regular-4">
+                          Lorem ipsum dolor sit amet, consectetur adipiscing
+                          elit. Ut justo ante, mattis nec libero a, malesuada
+                          pellentesque sem. Aliquam erat volutpat. Nulla ut
+                          consequat turpis, id efficitur velit. Fusce vitae
+                          dolor leo. Praesent diam justo, consectetur in blandit
+                          ut, tincidunt vitae enim. Nulla eleifend, leo at
+                          finibus volutpat, nulla metus eleifend lacus,
+                          ullamcorper dictum augue diam id erat.
+                        </p>
+                      </div>
                     </ng-template>
                   </bmb-accordion>
                   <bmb-accordion
@@ -290,16 +302,18 @@ import * as iconStory from '../components/bmb-icon/bmb-icon.stories';
                       <span class="font-medium-4">FAQ's </span>
                     </ng-template>
                     <ng-template #bmbAccordionContent>
-                      <p class="font-regular-4">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                        Ut justo ante, mattis nec libero a, malesuada
-                        pellentesque sem. Aliquam erat volutpat. Nulla ut
-                        consequat turpis, id efficitur velit. Fusce vitae dolor
-                        leo. Praesent diam justo, consectetur in blandit ut,
-                        tincidunt vitae enim. Nulla eleifend, leo at finibus
-                        volutpat, nulla metus eleifend lacus, ullamcorper dictum
-                        augue diam id erat.
-                      </p>
+                      <div class="truncate-170">
+                        <p class="font-regular-4">
+                          Lorem ipsum dolor sit amet, consectetur adipiscing
+                          elit. Ut justo ante, mattis nec libero a, malesuada
+                          pellentesque sem. Aliquam erat volutpat. Nulla ut
+                          consequat turpis, id efficitur velit. Fusce vitae
+                          dolor leo. Praesent diam justo, consectetur in blandit
+                          ut, tincidunt vitae enim. Nulla eleifend, leo at
+                          finibus volutpat, nulla metus eleifend lacus,
+                          ullamcorper dictum augue diam id erat.
+                        </p>
+                      </div>
                     </ng-template>
                   </bmb-accordion>
                 </section>
@@ -332,6 +346,51 @@ class StorybookAccordionTabs {
       action: () => console.log('Info'),
     },
   ];
+
+  private mq = window.matchMedia('(max-width: 767px)');
+  private originals = new Map<HTMLElement, string>();
+
+  ngOnInit() {
+    setTimeout(() => this.applyTruncate(), 0);
+    this.mq.addEventListener('change', () => this.applyTruncate());
+  }
+
+  private applyTruncate() {
+    document.querySelectorAll<HTMLElement>('.truncate-350').forEach((el) => {
+      if (!this.originals.has(el)) this.originals.set(el, el.innerHTML);
+      if (this.mq.matches) {
+        const text = el.innerText.trim().replace(/\s+/g, ' ');
+        el.innerHTML = `<p>${
+          text.length > 350 ? text.slice(0, 350).trimEnd() + '…' : text
+        }</p>`;
+      } else {
+        el.innerHTML = this.originals.get(el)!;
+      }
+    });
+
+    document.querySelectorAll<HTMLElement>('.truncate-170').forEach((el) => {
+      if (!this.originals.has(el)) this.originals.set(el, el.innerHTML);
+      if (this.mq.matches) {
+        const text = el.innerText.trim().replace(/\s+/g, ' ');
+        el.innerHTML = `<p>${
+          text.length > 170 ? text.slice(0, 170).trimEnd() + '…' : text
+        }</p>`;
+      } else {
+        el.innerHTML = this.originals.get(el)!;
+      }
+    });
+
+    document.querySelectorAll<HTMLElement>('.truncate-title').forEach((el) => {
+      if (!this.originals.has(el)) this.originals.set(el, el.innerText);
+      if (this.mq.matches) {
+        const text = (this.originals.get(el) ?? el.innerText).trim();
+        el.innerText =
+          text.length > 18 ? text.slice(0, 18).trimEnd() + '…' : text;
+      } else {
+        el.innerText = this.originals.get(el)!;
+      }
+    });
+  }
 
   handleBack() {
     console.log('Back button clicked');
@@ -398,6 +457,47 @@ ${getBasicExampleBlock(
     },
   ];
 
+  private mq = window.matchMedia('(max-width: 767px)');
+  private originals = new Map<HTMLElement, string>();
+
+  ngOnInit() {
+    setTimeout(() => this.applyTruncate(), 0);
+    this.mq.addEventListener('change', () => this.applyTruncate());
+  }
+
+  private applyTruncate() {
+    document.querySelectorAll<HTMLElement>('.truncate-350').forEach((el) => {
+      if (!this.originals.has(el)) this.originals.set(el, el.innerHTML);
+      if (this.mq.matches) {
+        const text = el.innerText.trim().replace(/\s+/g, ' ');
+        el.innerHTML = \`<p>\${text.length > 350 ? text.slice(0, 350).trimEnd() + '…' : text}\</p>\`;
+      } else {
+        el.innerHTML = this.originals.get(el)!;
+      }
+    });
+
+    document.querySelectorAll<HTMLElement>('.truncate-170').forEach((el) => {
+      if (!this.originals.has(el)) this.originals.set(el, el.innerHTML);
+      if (this.mq.matches) {
+        const text = el.innerText.trim().replace(/\s+/g, ' ');
+        el.innerHTML = \`<p>\${text.length > 170 ? text.slice(0, 170).trimEnd() + '…' : text}\</p>\`;
+      } else {
+        el.innerHTML = this.originals.get(el)!;
+      }
+    });
+
+    document.querySelectorAll<HTMLElement>('.truncate-title').forEach((el) => {
+      if (!this.originals.has(el)) this.originals.set(el, el.innerText);
+      if (this.mq.matches) {
+        const text = (this.originals.get(el) ?? el.innerText).trim();
+        el.innerText =
+          text.length > 18 ? text.slice(0, 18).trimEnd() + '…' : text;
+      } else {
+        el.innerText = this.originals.get(el)!;
+      }
+    });
+  }
+
   handleBack() {
     console.log('Back button clicked');
   }
@@ -411,12 +511,12 @@ ${getBasicExampleBlock(
   }`,
 )}
 \`\`\`html
-        <div class="bmb_template-single-home-card">
+    <div class="bmb_template-single-home-card">
       <bmb-top-bar
         [userInformation]="{
           name: 'Santiago Hernández',
           image: 'https://picsum.photos/id/64/200/300',
-          role: 'Alumno',
+          role: 'Alumno'
         }"
         [showHelpButton]="true"
         [hasLogoutButton]="false"
@@ -446,7 +546,10 @@ ${getBasicExampleBlock(
           >
             <bmb-card margin="none" bmbLayoutItem [colSm]="6" [colLg]="6">
               <bmb-card-header padding="m">
-                <h3 class="font-medium-5">Descripción</h3>
+                <h3 class="font-medium-5 truncate-title">
+                  Lorem ipsum dolor sit amet consectetur. Nisl nibh phasellus
+                  condimentum mi faucibus.
+                </h3>
               </bmb-card-header>
               <bmb-card-content>
                 <figure [ngStyle]="{ margin: '0 0 24px 0' }">
@@ -456,33 +559,38 @@ ${getBasicExampleBlock(
                     src="https://img.freepik.com/fotos-premium/dia-internacional-gato-8-agosto-gatos-lindos-gatito-pequeno-hermosos-pequenos-animales-compania-verdadero-amigo-bonitos-divertidos-tiernos-esponjosos-juguetones-shorties-ia-generativa_887181-4265.jpg?w=2000"
                   />
                 </figure>
-                <p class="font-regular-4">
-                  Lorem ipsum dolor sit amet consectetur. Nisl nibh phasellus
-                  condimentum mi faucibus. In quisque justo senectus in sed
-                  adipiscing. Arcu neque feugiat aenean nam accumsan justo ut.
-                  Pulvinar urna amet proin sit sed tellus ipsum. Lorem ipsum
-                  dolor sit amet consectetur.
-                </p>
-                <p class="font-regular-4">
-                  Nisl nibh phasellus condimentum mi faucibus. In quisque justo
-                  senectus in sed adipiscing. Arcu neque feugiat aenean nam
-                  accumsan justo ut. Pulvinar urna amet proin sit sed tellus
-                  ipsum. Lorem ipsum dolor sit amet consectetur. Nisl nibh
-                  phasellus condimentum mi faucibus. In quisque justo senectus
-                  in sed adipiscing. Arcu neque feugiat aenean nam accumsan
-                  justo ut.
-                </p>
-                <p class="font-regular-4">
-                  Pulvinar urna amet proin sit sed tellus ipsum. Lorem ipsum
-                  dolor sit amet consectetur. Nisl nibh phasellus condimentum mi
-                  faucibus. In quisque justo senectus in sed adipiscing. Arcu
-                  neque feugiat aenean nam accumsan justo ut.
-                </p>
+                <div class="truncate-350">
+                  <p class="font-regular-4">
+                    Lorem ipsum dolor sit amet consectetur. Nisl nibh phasellus
+                    condimentum mi faucibus. In quisque justo senectus in sed
+                    adipiscing. Arcu neque feugiat aenean nam accumsan justo ut.
+                    Pulvinar urna amet proin sit sed tellus ipsum. Lorem ipsum
+                    dolor sit amet consectetur.
+                  </p>
+                  <p class="font-regular-4">
+                    Nisl nibh phasellus condimentum mi faucibus. In quisque
+                    justo senectus in sed adipiscing. Arcu neque feugiat aenean
+                    nam accumsan justo ut. Pulvinar urna amet proin sit sed
+                    tellus ipsum. Lorem ipsum dolor sit amet consectetur. Nisl
+                    nibh phasellus condimentum mi faucibus. In quisque justo
+                    senectus in sed adipiscing. Arcu neque feugiat aenean nam
+                    accumsan justo ut.
+                  </p>
+                  <p class="font-regular-4">
+                    Pulvinar urna amet proin sit sed tellus ipsum. Lorem ipsum
+                    dolor sit amet consectetur. Nisl nibh phasellus condimentum
+                    mi faucibus. In quisque justo senectus in sed adipiscing.
+                    Arcu neque feugiat aenean nam accumsan justo ut.
+                  </p>
+                </div>
               </bmb-card-content>
             </bmb-card>
             <bmb-card margin="none" bmbLayoutItem [colSm]="6" [colLg]="6">
               <bmb-card-header padding="m">
-                <h3 class="font-medium-5">Recursos</h3>
+                <h3 class="font-medium-5 truncate-title">
+                  Lorem ipsum dolor sit amet consectetur. Nisl nibh phasellus
+                  condimentum mi faucibus.
+                </h3>
               </bmb-card-header>
               <bmb-card-content>
                 <section bmbAccordionControl>
@@ -500,11 +608,13 @@ ${getBasicExampleBlock(
                       <span class="font-medium-4"> Información general </span>
                     </ng-template>
                     <ng-template #bmbAccordionContent>
-                      <p class="font-regular-4">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                        Ut justo ante, mattis nec libero a, malesuada
-                        pellentesque sem. Aliquam erat volutpat.
-                      </p>
+                      <div class="truncate-170">
+                        <p class="font-regular-4">
+                          Lorem ipsum dolor sit amet, consectetur adipiscing
+                          elit. Ut justo ante, mattis nec libero a, malesuada
+                          pellentesque sem. Aliquam erat volutpat.
+                        </p>
+                      </div>
                     </ng-template>
                   </bmb-accordion>
                   <bmb-accordion
@@ -619,16 +729,18 @@ ${getBasicExampleBlock(
                       <span class="font-medium-4">FAQ's </span>
                     </ng-template>
                     <ng-template #bmbAccordionContent>
-                      <p class="font-regular-4">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                        Ut justo ante, mattis nec libero a, malesuada
-                        pellentesque sem. Aliquam erat volutpat. Nulla ut
-                        consequat turpis, id efficitur velit. Fusce vitae dolor
-                        leo. Praesent diam justo, consectetur in blandit ut,
-                        tincidunt vitae enim. Nulla eleifend, leo at finibus
-                        volutpat, nulla metus eleifend lacus, ullamcorper dictum
-                        augue diam id erat.
-                      </p>
+                      <div class="truncate-170">
+                        <p class="font-regular-4">
+                          Lorem ipsum dolor sit amet, consectetur adipiscing
+                          elit. Ut justo ante, mattis nec libero a, malesuada
+                          pellentesque sem. Aliquam erat volutpat. Nulla ut
+                          consequat turpis, id efficitur velit. Fusce vitae
+                          dolor leo. Praesent diam justo, consectetur in blandit
+                          ut, tincidunt vitae enim. Nulla eleifend, leo at
+                          finibus volutpat, nulla metus eleifend lacus,
+                          ullamcorper dictum augue diam id erat.
+                        </p>
+                      </div>
                     </ng-template>
                   </bmb-accordion>
                   <bmb-accordion
@@ -645,16 +757,18 @@ ${getBasicExampleBlock(
                       <span class="font-medium-4">FAQ's </span>
                     </ng-template>
                     <ng-template #bmbAccordionContent>
-                      <p class="font-regular-4">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                        Ut justo ante, mattis nec libero a, malesuada
-                        pellentesque sem. Aliquam erat volutpat. Nulla ut
-                        consequat turpis, id efficitur velit. Fusce vitae dolor
-                        leo. Praesent diam justo, consectetur in blandit ut,
-                        tincidunt vitae enim. Nulla eleifend, leo at finibus
-                        volutpat, nulla metus eleifend lacus, ullamcorper dictum
-                        augue diam id erat.
-                      </p>
+                      <div class="truncate-170">
+                        <p class="font-regular-4">
+                          Lorem ipsum dolor sit amet, consectetur adipiscing
+                          elit. Ut justo ante, mattis nec libero a, malesuada
+                          pellentesque sem. Aliquam erat volutpat. Nulla ut
+                          consequat turpis, id efficitur velit. Fusce vitae
+                          dolor leo. Praesent diam justo, consectetur in blandit
+                          ut, tincidunt vitae enim. Nulla eleifend, leo at
+                          finibus volutpat, nulla metus eleifend lacus,
+                          ullamcorper dictum augue diam id erat.
+                        </p>
+                      </div>
                     </ng-template>
                   </bmb-accordion>
                 </section>
