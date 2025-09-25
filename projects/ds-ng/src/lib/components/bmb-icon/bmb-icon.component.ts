@@ -8,11 +8,12 @@ import {
 import { CommonModule } from '@angular/common';
 import { buildErrorMessage, isImage } from '../../utils/utils';
 import { StyleIconType } from './types';
+import { BmbNotificationCounterComponent } from '../bmb-notification-counter/bmb-notification-counter.component';
 
 @Component({
   selector: 'bmb-icon',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, BmbNotificationCounterComponent],
   templateUrl: './bmb-icon.component.html',
   styleUrl: './bmb-icon.component.scss',
   encapsulation: ViewEncapsulation.None,

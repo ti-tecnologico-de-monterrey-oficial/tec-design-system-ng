@@ -12,12 +12,12 @@ import {
   DBmbGenericParamDesc,
   DBmbIconParamDesc,
   ICON_IMAGE_DETAIL,
-  DBmbImageParamDesc,
 } from '../../utils/doc/parameterDescriptions';
 
 export default {
   title: 'Foundations/Icon',
   component: BmbIconComponent,
+  tags: ['!autodocs'],
   parameters: {
     controls: {
       exclude: ['styleIconGoogle', 'getFontVariationSettings', 'isImage'],
