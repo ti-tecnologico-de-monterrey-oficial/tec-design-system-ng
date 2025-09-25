@@ -1,4 +1,9 @@
-import { Meta, StoryObj, componentWrapperDecorator, moduleMetadata } from '@storybook/angular';
+import {
+  Meta,
+  StoryObj,
+  componentWrapperDecorator,
+  moduleMetadata,
+} from '@storybook/angular';
 import { BmbItemComponent } from './bmb-item.component';
 import { CommonModule } from '@angular/common';
 import { attributes } from '../../utils/doc/utils';
