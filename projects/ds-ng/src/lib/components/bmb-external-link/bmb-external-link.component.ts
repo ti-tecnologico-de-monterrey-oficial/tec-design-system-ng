@@ -1,8 +1,10 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  ElementRef,
   input,
   output,
+  ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
 import {
@@ -17,7 +19,7 @@ import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.compo
 import { isExternalLink } from '../../utils/utils';
 import { BmbContainerComponent } from '../bmb-container/bmb-container.component';
 import { IDropdownItem } from '../../types';
-import { ClickOutsideDirective } from '../../directives/utils/clickoutside.directive';
+import { BmbProjectionContentService } from '../../services/projection.service';
 
 export type IBmbMenuEvent = 'link' | 'openNew' | 'info';
 
@@ -26,12 +28,10 @@ export type IBmbMenuEvent = 'link' | 'openNew' | 'info';
   standalone: true,
   imports: [
     BmbContainerComponent,
-    BmbDropdownContentComponent,
     BmbBottomNavigationBarComponent,
     BmbThreeColsComponent,
     BmbActionIconComponent,
     BmbTitleContentComponent,
-    ClickOutsideDirective,
   ],
   templateUrl: './bmb-external-link.component.html',
   styleUrl: './bmb-external-link.component.scss',
@@ -48,11 +48,13 @@ export class BmbExternalLinkComponent {
     four: { name: 'refresh', label: '' },
   });
 
+  constructor(private projectionService: BmbProjectionContentService) {}
+
   onClose = output<unknown>();
   menuEvent = output<IBmbMenuEvent>();
   footerEvent = output<IBmbFooterEvent>();
 
-  showMenu: boolean = false;
+  @ViewChild('contentDiv') contentRef!: ElementRef<any>;
 
   getSubtitleIcon(): string {
     return (
@@ -60,36 +62,37 @@ export class BmbExternalLinkComponent {
     );
   }
 
-  getMenuItems(): IDropdownItem[] {
-    return [
-      {
-        icon: 'link',
-        text: 'Copiar enlace',
-        action: () => this.onMenuOptionClick('link'),
-      },
-      {
-        icon: 'open_in_new',
-        text: 'Abrir en navegador',
-        action: () => this.onMenuOptionClick('openNew'),
-      },
-      {
-        icon: 'info',
-        text: 'Más información',
-        action: () => this.onMenuOptionClick('info'),
-      },
-    ];
-  }
+  menuItems: IDropdownItem[] = [
+    {
+      icon: 'link',
+      text: 'Copiar enlace',
+      action: () => this.onMenuOptionClick('link'),
+    },
+    {
+      icon: 'open_in_new',
+      text: 'Abrir en navegador',
+      action: () => this.onMenuOptionClick('openNew'),
+    },
+    {
+      icon: 'info',
+      text: 'Más información',
+      action: () => this.onMenuOptionClick('info'),
+    },
+  ];
 
   handleClose(event: any): void {
     this.onClose.emit(event);
   }
 
-  handleCloseMenu(): void {
-    this.showMenu = false;
-  }
-
   handleOpenMenu(): void {
-    this.showMenu = !this.showMenu;
+    console.log('Opening menu', this.contentRef?.nativeElement);
+
+    this.projectionService.openContent({
+      content: BmbDropdownContentComponent,
+      targetRef: this.contentRef?.nativeElement,
+      inputContext: { items: this.menuItems },
+      showBackdrop: false,
+    });
   }
 
   onMenuOptionClick(event: IBmbMenuEvent): void {
