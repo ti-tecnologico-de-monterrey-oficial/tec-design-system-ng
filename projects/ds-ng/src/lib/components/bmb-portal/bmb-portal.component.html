@@ -79,6 +79,7 @@
   [showBackdrop]="projectedContent()?.showBackdrop ?? true"
   [outputContext]="projectedContent()?.outputContext ?? {}"
   (removeContent)="handleRemoveProjectedContent()"
+  [focusOnOpen]="projectedContent()?.focusOnOpen ?? true"
 ></bmb-projected-content>
 
 <ng-template

@@ -22,6 +22,7 @@ export interface IBmbProjectionContent {
   inputContext?: { [key: string]: any };
   showBackdrop?: boolean;
   outputContext?: { [key: string]: (value: any) => void };
+  focusOnOpen?: boolean;
 }
 
 @Injectable({

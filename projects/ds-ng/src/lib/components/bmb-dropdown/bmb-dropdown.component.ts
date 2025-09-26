@@ -9,6 +9,9 @@ import {
   model,
   SimpleChanges,
   OnChanges,
+  computed,
+  ViewChild,
+  ElementRef,
 } from '@angular/core';
 import { FormControl, ReactiveFormsModule, ValidatorFn } from '@angular/forms';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
@@ -34,6 +37,7 @@ import {
   showError,
 } from '../../utils/formControl';
 import { BmbInputValidatorComponent } from '../bmb-input/bmb-input-validator/bmb-input-validator.component';
+import { BmbProjectionContentService } from '../../services/projection.service';
 
 export interface IBmbDropdownItem {
   name: string;
@@ -53,7 +57,6 @@ export interface IBmbDropdownItem {
     ClickOutsideDirective,
     BmbInputValidatorComponent,
     BmbInputContentComponent,
-    BmbDropdownContentComponent,
   ],
   templateUrl: './bmb-dropdown.component.html',
   styleUrl: './bmb-dropdown.component.scss',
@@ -89,14 +92,18 @@ export class BmbDropdownComponent implements OnInit, OnChanges {
   onFocus = output<boolean>();
 
   uuid: string = getUUID();
-  isOpen: boolean = false;
+  isModalOpen = model<boolean>(false);
   items: IDropdownItem[] = [];
   selectionControl: FormControl = new FormControl(new FormControl());
   selectedIcon: string = '';
   isKeyboardEvent: boolean = false;
   isControlNull: boolean = false;
-  filteredOptions: IDropdownItem[] = [];
+  parsedOptions = computed(() => this.initOptions(this.options()));
   selectedItem: IDropdownItem | null = null;
+
+  @ViewChild('contentDiv', { static: true }) contentRef!: ElementRef<any>;
+
+  constructor(private projectionService: BmbProjectionContentService) {}
 
   ngOnInit() {
     if (!this.control()) {
@@ -104,10 +111,7 @@ export class BmbDropdownComponent implements OnInit, OnChanges {
       this.isControlNull = true;
     }
 
-    this.initOptions(this.options());
-
-    // if (this.disabled()) this.selectionControl.disable();
-    // else this.selectionControl.enable();
+    // this.initOptions(this.options());
 
     if (!this.isMultiSelect() && Array.isArray(this.control()?.value)) {
       this.control().setValue('');
@@ -118,20 +122,18 @@ export class BmbDropdownComponent implements OnInit, OnChanges {
       .subscribe((value) => {
         this.setSelectionControl(value);
       });
-
-    this.filteredOptions = [...this.items];
   }
 
   ngOnChanges(changes: SimpleChanges): void {
     if (this.control() !== null) {
       if (changes['options']) {
-        this.initOptions(changes['options'].currentValue);
+        // this.initOptions(changes['options'].currentValue);
         this.control().setValue(this.getValidInitialValues());
       }
     }
   }
 
-  initOptions(list: string[] | IBmbDropdownItem[]): void {
+  initOptions(list: string[] | IBmbDropdownItem[]): IDropdownItem[] {
     const newItems = convertListToSelectList(
       list,
       this.icon(),
@@ -144,6 +146,7 @@ export class BmbDropdownComponent implements OnInit, OnChanges {
         icon: !this.isMultiSelect() && this.showIcon() ? element.icon! : '',
         action: () => {
           this.setSelectedValue(element);
+          this.projectionService.closeContent();
         },
       } as IDropdownItem;
     });
@@ -156,7 +159,7 @@ export class BmbDropdownComponent implements OnInit, OnChanges {
       this.items = [...new Set([...preferredItems, ...this.items])];
     }
 
-    this.filteredOptions = [...this.items];
+    return this.items;
   }
 
   handleFocus(value: boolean): void {
@@ -227,16 +230,27 @@ export class BmbDropdownComponent implements OnInit, OnChanges {
   }
 
   openList(): void {
-    this.isOpen = !this.isOpen;
-    if (!this.isOpen) this.isKeyboardEvent = false;
+    const data = {
+      content: BmbDropdownContentComponent,
+      targetRef: this.contentRef?.nativeElement,
+      fixSizeToRef: true,
+      showBackdrop: false,
+      inputContext: {
+        selectedOption: this.control().value,
+        items: this.parsedOptions(),
+        isKeyboardEvent: this.isKeyboardEvent,
+      },
+      focusOnOpen: true,
+    };
+    this.projectionService.openContent(data);
   }
 
   closeList(): void {
-    this.isOpen = false;
-    this.isKeyboardEvent = false;
-    if (this.isFilterable() && !this.isMultiSelect()) {
-      this.selectionControl.setValue(this.selectedItem?.selectedText || '');
-    }
+    // this.isOpen = false;
+    // this.isKeyboardEvent = false;
+    // if (this.isFilterable() && !this.isMultiSelect()) {
+    //   this.selectionControl.setValue(this.selectedItem?.selectedText || '');
+    // }
   }
 
   // Keyboards events
@@ -245,30 +259,31 @@ export class BmbDropdownComponent implements OnInit, OnChanges {
     const regexCode = /^[a-zA-Z0-9\-\.\, ]{1}$/gm;
 
     if (keyboards.includes(event.key)) {
-      if (!this.isOpen) {
-        this.isKeyboardEvent = true;
-        this.openList();
-      }
+      this.openList();
+      // if (!this.isOpen) {
+      //   this.isKeyboardEvent = true;
+      //   this.openList();
+      // }
 
-      if (!this.options().length && !this.isFilterable()) {
-        event.preventDefault();
-        return;
-      }
+      // if (!this.options().length && !this.isFilterable()) {
+      //   event.preventDefault();
+      //   return;
+      // }
     }
 
-    if (this.isFilterable() && !this.isMultiSelect()) {
-      let value = this.selectionControl.value || '';
+    // if (this.isFilterable() && !this.isMultiSelect()) {
+    //   let value = this.selectionControl.value || '';
 
-      if (!this.isOpen) this.openList();
-      if (regexCode.test(event.key)) {
-        value += event.key;
-      }
-      if (event.key === 'Backspace') {
-        value = value.slice(0, -1);
-      }
+    //   if (!this.isOpen) this.openList();
+    //   if (regexCode.test(event.key)) {
+    //     value += event.key;
+    //   }
+    //   if (event.key === 'Backspace') {
+    //     value = value.slice(0, -1);
+    //   }
 
-      this.filteredOptions = this.selectOptionWithKey(value);
-    }
+    //   this.filteredOptions = this.selectOptionWithKey(value);
+    // }
   }
 
   handleValidity(): void {

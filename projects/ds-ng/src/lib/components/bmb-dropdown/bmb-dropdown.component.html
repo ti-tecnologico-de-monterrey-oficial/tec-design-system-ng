@@ -16,39 +16,34 @@
   clickOutside
   (clickOutside)="closeList()"
 >
-  <bmb-input-content
-    class="bmb_dropdown-field"
-    type="text"
-    [inputId]="inputId()"
-    [name]="name()"
-    [icon]="getIcon()"
-    [control]="selectionControl"
-    [isReadOnly]="!isFilterable() || isMultiSelect()"
-    [placeholder]="placeholder()"
-    [isError]="shouldShowError"
-    (click)="openList()"
-    (onKeyDown)="onKeyDown($event)"
-    (onBlur)="handleValidity()"
-    (onFocus)="handleFocus($event)"
-  >
-    <ng-template #customContent>
-      <label [htmlFor]="inputId()">
-        <bmb-icon
-          class="bmb_field-actions"
-          icon="keyboard_arrow_down"
-          (click)="openList()"
-          [size]="24"
-        />
-      </label>
-    </ng-template>
-  </bmb-input-content>
-  <bmb-dropdown-content
-    class="bmb_dropdown-list"
-    [selectedOption]="control().value"
-    [isKeyboardEvent]="isKeyboardEvent"
-    [(items)]="filteredOptions"
-    [(isOpen)]="isOpen"
-  />
+  <div #contentDiv>
+    <bmb-input-content
+      class="bmb_dropdown-field"
+      type="text"
+      [inputId]="inputId()"
+      [name]="name()"
+      [icon]="getIcon()"
+      [control]="selectionControl"
+      [isReadOnly]="true"
+      [placeholder]="placeholder()"
+      [isError]="shouldShowError"
+      (click)="openList()"
+      (onKeyDown)="onKeyDown($event)"
+      (onBlur)="handleValidity()"
+      (onFocus)="handleFocus($event)"
+    >
+      <ng-template #customContent>
+        <label [htmlFor]="inputId()">
+          <bmb-icon
+            class="bmb_field-actions"
+            icon="keyboard_arrow_down"
+            (click)="openList()"
+            [size]="24"
+          />
+        </label>
+      </ng-template>
+    </bmb-input-content>
+  </div>
   <input
     hidden
     type="text"
