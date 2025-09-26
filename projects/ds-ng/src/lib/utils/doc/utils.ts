@@ -131,6 +131,11 @@ export const getFormatName = (
     : _name;
 };
 
+export const getModelDescription = (
+  propertyName: string,
+): string => `This is a model signal, so it is possible to use it as:
+    [(${propertyName})]="${propertyName}"`;
+
 export const getOnEvent = (
   name: string,
   paramName: string,

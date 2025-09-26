@@ -81,8 +81,6 @@ export type BmbTableLang = 'en' | 'es';
     ReactiveFormsModule,
     BmbDateRangeComponent,
     BmbActionIconComponent,
-    BmbLayoutDirective,
-    BmbLayoutItemDirective,
   ],
   templateUrl: './bmb-tables.component.html',
   styleUrl: './bmb-tables.component.scss',

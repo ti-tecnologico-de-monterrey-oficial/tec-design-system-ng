@@ -7,6 +7,7 @@ import {
   getEmptyStateMessage,
   getGeneralComponentDescription,
   getGeneralDescription,
+  getModelDescription,
   getOnEvent,
   getSpecialSpecifications,
   RELEVANT_TITLE_LEVEL,
@@ -440,8 +441,7 @@ ${getBasicExampleBlock(
       control: {
         type: 'boolean',
       },
-      description:
-        'Shows or hide the filters section. This property is a Model.',
+      description: `Shows or hide the filters section. This property is a Model.<br/><br/>${getModelDescription('filtersVisible')}`,
       table: {
         category: 'Properties',
         type: { summary: 'boolean' },
