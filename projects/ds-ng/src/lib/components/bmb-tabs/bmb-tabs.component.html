@@ -36,11 +36,19 @@
               'bmb_tabs-item-uppercase': format() === 'uppercase'
             }"
           >
-            <span class="bmb_tabs-content">
-              {{ tab.title }}
-            </span>
             @if (!!tab.badge) {
-              <span class="bmb_tabs-badge">{{ tab.badge }}</span>
+              <bmb-notification-counter
+                [counter]="tab.badge"
+                appearance="plain"
+              >
+                <span class="bmb_tabs-content">
+                  {{ tab.title }}
+                </span>
+              </bmb-notification-counter>
+            } @else {
+              <span class="bmb_tabs-content">
+                {{ tab.title }}
+              </span>
             }
           </button>
         </li>

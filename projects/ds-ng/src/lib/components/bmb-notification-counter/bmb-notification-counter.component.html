@@ -4,9 +4,12 @@
     <span
       class="bmb_notification-counter-number"
       [ngClass]="{
-        'bmb_notification-counter-bullet': appearance() === 'notification'
+        'bmb_notification-counter-bullet bmb_notification-counter-position-bullet':
+          appearance() === 'notification',
+        'bmb_notification-counter-plain': appearance() === 'plain'
       }"
-      >{{ getCounter() }}</span
     >
+      {{ getCounter() }}
+    </span>
   </section>
 }
