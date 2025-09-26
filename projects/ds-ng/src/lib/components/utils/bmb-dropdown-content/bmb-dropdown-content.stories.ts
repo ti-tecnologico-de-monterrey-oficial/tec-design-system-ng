@@ -97,14 +97,9 @@ Sets the list of items for the dropdown.
 const customizable = (): StoryFn => (args) => ({
   props: args,
   template: `
-    <!-- Instruction to users: This html is used for internal Storybook logic and should not be copied -->
-    <div style="height: 150px">
-      <!-- Example of how you can use this component -->
-      <bmb-dropdown-content
-        ${attributes(args)}
-      />
-      <!-- End of the example -->
-    </div>
+    <bmb-dropdown-content
+      ${attributes(args)}
+    />
   `,
 });
 
