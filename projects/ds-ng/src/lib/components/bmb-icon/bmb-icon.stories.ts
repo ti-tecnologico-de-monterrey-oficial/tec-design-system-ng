@@ -12,15 +12,20 @@ import {
   DBmbGenericParamDesc,
   DBmbIconParamDesc,
   ICON_IMAGE_DETAIL,
-  DBmbImageParamDesc,
 } from '../../utils/doc/parameterDescriptions';
 
 export default {
   title: 'Foundations/Icon',
   component: BmbIconComponent,
+  tags: ['!autodocs'],
   parameters: {
     controls: {
-      exclude: ['styleIconGoogle', 'getFontVariationSettings', 'isImage'],
+      exclude: [
+        'styleIconGoogle',
+        'getFontVariationSettings',
+        'isImage',
+        'getImageStyles',
+      ],
     },
     docs: {
       description: {
@@ -50,13 +55,14 @@ ${getBasicExampleBlock('BmbIconComponent')}
     icon: DBmbIconParamDesc.icon,
     styleIcon: {
       ...DBmbGenericParamDesc.deprecated,
-      description: DBmbGenericParamDesc.deprecated.description.concat(`
-### Available Icon Styles
+      description: DBmbGenericParamDesc.deprecated.description
+        .concat(`<br/><br/>
+Available Icon Styles
 
-- **Rounded**
-  - **Description:** Icons with rounded edges. They feel softer and more friendly.
-  - **Visual Features:** Rounded corners. The design is more approachable and less technical.
-  - **Class Name:** \`material-symbols-rounded\`
+**Rounded**
+- **Description:** Icons with rounded edges. They feel softer and more friendly.
+- **Visual Features:** Rounded corners. The design is more approachable and less technical.
+- **Class Name:** \`material-symbols-rounded\`
     `),
     },
     isFill: DBmbIconParamDesc.isIconFill,
@@ -80,7 +86,6 @@ ${getBasicExampleBlock('BmbIconComponent')}
     isFill: true,
     fontWeight: '400',
     size: 24,
-    dotNotification: 0,
     alt: 'Default alt text for image',
   },
 } as Meta<typeof BmbIconComponent>;

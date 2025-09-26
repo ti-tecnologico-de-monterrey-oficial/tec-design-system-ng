@@ -17,6 +17,7 @@ import { CommonModule } from '@angular/common';
 import { TabsService } from '../../services/tabs.service';
 import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
 import { IBmbContrast } from '../../types/colors';
+import { BmbNotificationCounterComponent } from '../bmb-notification-counter/bmb-notification-counter.component';
 
 export interface IBmbTab {
   id: number;
@@ -32,7 +33,11 @@ export interface IBmbTab {
   templateUrl: './bmb-tabs.component.html',
   styleUrl: './bmb-tabs.component.scss',
   standalone: true,
-  imports: [CommonModule, BmbActionIconComponent],
+  imports: [
+    CommonModule,
+    BmbActionIconComponent,
+    BmbNotificationCounterComponent,
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })

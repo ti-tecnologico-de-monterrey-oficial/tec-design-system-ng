@@ -590,11 +590,10 @@ ${RELEVANT_TITLE_LEVEL[2]} <= 0 will be inherited.`,
   },
   iconDotNotification: {
     control: { type: 'number' },
-    description:
-      'Displays a notification dot with a number on the icon. Set to 0 to hide.',
+    description: 'Sets the notification counter number (0 to hide).',
     table: {
       category: 'Properties',
-      defaultValue: getDefaultValueControl(),
+      defaultValue: false,
       type: { summary: 'number' },
     },
   },

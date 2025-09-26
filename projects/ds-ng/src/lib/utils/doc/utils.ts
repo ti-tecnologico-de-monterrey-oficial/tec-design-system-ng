@@ -26,18 +26,18 @@ export interface IBmbOnEvent {
 export type IBmbOnEventType = 'change' | 'keyDown' | 'other';
 
 export const RELEVANT_TITLE_LEVEL: string[] = [
-  `⚠️**Warning**
-`,
-  `‼️**Important**
-`,
-  `✳️**Note**
-`,
-  `⚙️**Configuration**
-`,
-  `⭐**Example**
-`,
+  `⚠️**Warning**<br/>`,
+  `‼️**Important**<br/>`,
+  `✳️**Note**<br/>`,
+  `⚙️**Configuration**<br/>`,
+  `⭐**Example**<br/>`,
 ];
+/*
+\r\n
+<br/>
 
+
+*/
 export const RelevantTitle = {
   warning: '⚠️**Warning**<br/>',
   important: '‼️**Important**<br/>',
@@ -131,6 +131,11 @@ export const getFormatName = (
     : _name;
 };
 
+export const getModelDescription = (
+  propertyName: string,
+): string => `This is a model signal, so it is possible to use it as:
+    [(${propertyName})]="${propertyName}"`;
+
 export const getOnEvent = (
   name: string,
   paramName: string,
@@ -154,6 +159,13 @@ export const getOnEvent = (
   return onEvent;
 };
 
+export const getStoryTitle = (fullTitle: string): string =>
+  getFormatName(
+    fullTitle!,
+    fullTitle?.substring(0, fullTitle?.lastIndexOf('/') + 1),
+    '',
+  );
+
 export const getStoryLink = ({
   title,
   showFullLinkName,
@@ -163,7 +175,7 @@ export const getStoryLink = ({
 }): string => {
   if (showFullLinkName)
     return `[${title}](/docs/${getFormatName(title!, /(\/)|( )/g, '-').toLocaleLowerCase()}--documentation)`;
-  return `[${getFormatName(title!, title?.substring(0, title?.lastIndexOf('/') + 1), '')}](/docs/${getFormatName(title!, /(\/)|( )/g, '-').toLocaleLowerCase()}--documentation)`;
+  return `[${getStoryTitle(title!)}](/docs/${getFormatName(title!, /(\/)|( )/g, '-').toLocaleLowerCase()}--documentation)`;
 };
 
 export const getAccordionDetail = (title: string, content: string) => `

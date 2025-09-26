@@ -18,11 +18,10 @@
       [ngStyle]="getImageStyles()"
     />
   </figure>
-} @else if (dotNotification()) {
-  <section class="bmb_icon-container">
+} @else if (!!dotNotification()) {
+  <bmb-notification-counter [counter]="dotNotification()">
     <ng-container [ngTemplateOutlet]="commonIcon" />
-    <span class="bmb_icon-container-number">{{ dotNotification() }}</span>
-  </section>
+  </bmb-notification-counter>
 } @else {
   <ng-container [ngTemplateOutlet]="commonIcon" />
 }
