@@ -15,7 +15,6 @@ import {
 } from '@angular/core';
 import { FormControl, ReactiveFormsModule, ValidatorFn } from '@angular/forms';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
-import { ClickOutsideDirective } from '../../directives/utils/clickoutside.directive';
 import {
   convertListToSelectList,
   getSelectedValues,
@@ -54,7 +53,6 @@ export interface IBmbDropdownItem {
     CommonModule,
     BmbIconComponent,
     ReactiveFormsModule,
-    ClickOutsideDirective,
     BmbInputValidatorComponent,
     BmbInputContentComponent,
   ],
@@ -243,14 +241,6 @@ export class BmbDropdownComponent implements OnInit, OnChanges {
       focusOnOpen: true,
     };
     this.projectionService.openContent(data);
-  }
-
-  closeList(): void {
-    // this.isOpen = false;
-    // this.isKeyboardEvent = false;
-    // if (this.isFilterable() && !this.isMultiSelect()) {
-    //   this.selectionControl.setValue(this.selectedItem?.selectedText || '');
-    // }
   }
 
   // Keyboards events
