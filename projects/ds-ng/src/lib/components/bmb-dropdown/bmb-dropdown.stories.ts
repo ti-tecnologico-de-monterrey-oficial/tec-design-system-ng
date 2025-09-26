@@ -1,5 +1,4 @@
 import {
-  componentWrapperDecorator,
   moduleMetadata,
   StoryObj,
   type Meta,
@@ -53,12 +52,6 @@ export default {
   decorators: [
     moduleMetadata({
       imports: [BmbFormValidatorComponent],
-    }),
-    componentWrapperDecorator((story: string) => {
-      return `
-        <div style="height: 25rem">
-          ${story}
-        </div>`;
     }),
   ],
   parameters: {

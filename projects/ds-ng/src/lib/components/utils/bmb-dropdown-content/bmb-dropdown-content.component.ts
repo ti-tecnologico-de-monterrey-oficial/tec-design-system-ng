@@ -1,11 +1,15 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  computed,
+  effect,
   ElementRef,
   input,
   model,
   OnChanges,
   SimpleChanges,
+  TemplateRef,
+  untracked,
   ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
@@ -13,6 +17,7 @@ import { BmbCheckExternalLinkButtonComponent } from '../../bmb-check-external-li
 import { BmbIconComponent } from '../../bmb-icon/bmb-icon.component';
 import { IDropdownItem } from '../../../types';
 import { CommonModule } from '@angular/common';
+import { BmbProjectionContentService } from '../../../services/projection.service';
 
 @Component({
   selector: 'bmb-dropdown-content',
@@ -29,31 +34,19 @@ import { CommonModule } from '@angular/common';
 })
 export class BmbDropdownContentComponent implements OnChanges {
   selectedOption = input<string | string[]>(); //Internal
-
   items = model<IDropdownItem[]>([]);
-  isOpen = model<boolean>(false);
   isKeyboardEvent = model<boolean>(false); //Internal
 
-  @ViewChild('modalContainer') modalContainer!: ElementRef;
+  isOpen = model<boolean>(false); //remove this
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (
-      changes['isOpen'] &&
-      changes['isOpen'].currentValue &&
-      this.modalContainer
-    ) {
-      this.addFocusToFirstElement();
-    }
-  }
-
-  addFocusToFirstElement(): void {
-    setTimeout(() => {
-      const buttonList =
-        this.modalContainer.nativeElement.querySelectorAll('button');
-      if (this.isKeyboardEvent() && buttonList.length > 0) {
-        (buttonList[0] as HTMLElement).focus();
-      }
-    });
+    // if (
+    //   changes['isOpen'] &&
+    //   changes['isOpen'].currentValue &&
+    //   this.modalContainer
+    // ) {
+    //   this.addFocusToFirstElement();
+    // }
   }
 
   isSelected(item: string): boolean {
@@ -64,8 +57,6 @@ export class BmbDropdownContentComponent implements OnChanges {
   }
 
   handleDropdown(item: IDropdownItem) {
-    this.isOpen.update((value) => !value);
-    if (!this.isOpen()) this.isKeyboardEvent.set(false);
     if (item?.action) item.action();
   }
 }

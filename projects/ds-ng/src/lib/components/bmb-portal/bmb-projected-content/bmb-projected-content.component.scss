@@ -12,6 +12,7 @@
   @include mixins.media-query(1000, 'max') {
     left: 1rem !important;
     right: 1rem !important;
+    width: calc(100% - 2rem) !important;
   }
 
   &[open] {
