@@ -109,8 +109,6 @@ export class BmbDropdownComponent implements OnInit, OnChanges {
       this.isControlNull = true;
     }
 
-    // this.initOptions(this.options());
-
     if (!this.isMultiSelect() && Array.isArray(this.control()?.value)) {
       this.control().setValue('');
     }
@@ -125,7 +123,6 @@ export class BmbDropdownComponent implements OnInit, OnChanges {
   ngOnChanges(changes: SimpleChanges): void {
     if (this.control() !== null) {
       if (changes['options']) {
-        // this.initOptions(changes['options'].currentValue);
         this.control().setValue(this.getValidInitialValues());
       }
     }
@@ -209,14 +206,6 @@ export class BmbDropdownComponent implements OnInit, OnChanges {
     if (this.showIcon()) this.selectedIcon = this.icon();
   }
 
-  selectOptionWithKey(value: string): IDropdownItem[] {
-    if (!value) return this.items;
-
-    return this.items.filter((item) =>
-      item?.selectedText?.toLowerCase().includes(value.toLowerCase()),
-    );
-  }
-
   setSelectedValue(element: IDropdownItem): void {
     if (this.isMultiSelect()) {
       this.control().setValue(
@@ -237,6 +226,7 @@ export class BmbDropdownComponent implements OnInit, OnChanges {
         selectedOption: this.control().value,
         items: this.parsedOptions(),
         isKeyboardEvent: this.isKeyboardEvent,
+        enableFilter: this.isFilterable(),
       },
       focusOnOpen: true,
     };
@@ -246,34 +236,10 @@ export class BmbDropdownComponent implements OnInit, OnChanges {
   // Keyboards events
   onKeyDown(event: KeyboardEvent) {
     const keyboards = [' ', 'ArrowDown', 'Down'];
-    const regexCode = /^[a-zA-Z0-9\-\.\, ]{1}$/gm;
 
     if (keyboards.includes(event.key)) {
       this.openList();
-      // if (!this.isOpen) {
-      //   this.isKeyboardEvent = true;
-      //   this.openList();
-      // }
-
-      // if (!this.options().length && !this.isFilterable()) {
-      //   event.preventDefault();
-      //   return;
-      // }
     }
-
-    // if (this.isFilterable() && !this.isMultiSelect()) {
-    //   let value = this.selectionControl.value || '';
-
-    //   if (!this.isOpen) this.openList();
-    //   if (regexCode.test(event.key)) {
-    //     value += event.key;
-    //   }
-    //   if (event.key === 'Backspace') {
-    //     value = value.slice(0, -1);
-    //   }
-
-    //   this.filteredOptions = this.selectOptionWithKey(value);
-    // }
   }
 
   handleValidity(): void {

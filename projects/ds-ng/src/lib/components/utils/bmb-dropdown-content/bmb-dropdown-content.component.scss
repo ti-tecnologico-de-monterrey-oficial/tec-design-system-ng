@@ -23,6 +23,7 @@
 
   &-item {
     color: var(--menu_select-label-menu-inactive);
+
     .bmb_check-external-link-button-element {
       display: flex;
       align-items: center;
@@ -60,6 +61,12 @@
       text-overflow: ellipsis;
       white-space: nowrap;
       @include fonts.font(4, regular);
+    }
+
+    &-filter {
+      position: sticky;
+      top: 0;
+      left: 0;
     }
   }
 }
