@@ -1,6 +1,7 @@
 @use 'sass:map';
 @use '../../../assets/styles/base/fonts' as fonts;
 @use '../../../assets/styles/base/rem' as rem;
+@use '../../../assets/styles/base/mixins' as mixins;
 
 .bmb_image {
   position: relative;
@@ -22,7 +23,9 @@
     &.bmb-hover {
       .bmb_image-figure-zoom {
         .bmb_image-figure-image {
-          transform: scale(1.1);
+          @include mixins.media-query(768, 'min') {
+            transform: scale(1.1);
+          }
         }
       }
     }
@@ -35,30 +38,38 @@
     overflow: hidden;
 
     &-backdrop {
-      filter: blur(10px);
-      z-index: -1;
-      opacity: 0.75;
-      padding: var(--bmb-spacing-m);
+      @include mixins.media-query(768, 'min') {
+        filter: blur(10px);
+        z-index: -1;
+        opacity: 0.75;
+        padding: var(--bmb-spacing-m);
+      }
 
       &:has(+ .bmb_image-figure-zoom) {
         .bmb_image-figure-image {
-          transition: all 0.3s ease;
+          @include mixins.media-query(768, 'min') {
+            transition: all 0.3s ease;
+          }
         }
       }
 
       & + .bmb_image-figure {
-        margin: var(--bmb-spacing-m);
-        overflow: hidden;
+        @include mixins.media-query(768, 'min') {
+          margin: var(--bmb-spacing-m);
+          overflow: hidden;
+        }
       }
     }
 
     &-zoom {
       .bmb_image-figure-image {
-        transition: all 0.3s ease;
+        @include mixins.media-query(768, 'min') {
+          transition: all 0.3s ease;
 
-        &:hover,
-        &.bmb-hover {
-          transform: scale(1.3);
+          &:hover,
+          &.bmb-hover {
+            transform: scale(1.3);
+          }
         }
       }
     }
