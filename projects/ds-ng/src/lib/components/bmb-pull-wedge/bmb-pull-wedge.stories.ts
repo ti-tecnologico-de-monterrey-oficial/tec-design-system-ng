@@ -32,7 +32,7 @@ export default {
       },
       description: {
         component: `
-${getGeneralDescription(`${getGeneralComponentDescription('pull-wedge')} to enhance the experience of a collapsible menu or panel.`, 'https://bamboo.tec.mx/latest/componentes/header-pull-wedge/descripcion-general-rOxNlcIw')}
+${getGeneralDescription(`${getGeneralComponentDescription({ name: 'pull-wedge' })} to enhance the experience of a collapsible menu or panel.`, 'https://bamboo.tec.mx/latest/componentes/header-pull-wedge/descripcion-general-rOxNlcIw')}
 ${getBasicExampleBlock('BmbPullWedgeComponent')}
 \`\`\`html
 <bmb-pull-wedge initialHeight="200">

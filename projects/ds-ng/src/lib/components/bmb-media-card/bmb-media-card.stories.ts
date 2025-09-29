@@ -29,7 +29,7 @@ export default {
     docs: {
       description: {
         component: `
-${getGeneralDescription(`${getGeneralComponentDescription('media-card')} visual information to be presented with customizable properties such as image, title, subtitle, user information, and more.`, 'https://bamboo.tec.mx/latest/componentes/media-card/descripcion-general-MwpzDjrj')}
+${getGeneralDescription(`${getGeneralComponentDescription({ name: 'media-card' })} visual information to be presented with customizable properties such as image, title, subtitle, user information, and more.`, 'https://bamboo.tec.mx/latest/componentes/media-card/descripcion-general-MwpzDjrj')}
 ${getBasicExampleBlock('BmbMediaCardComponent')}
         `,
       },

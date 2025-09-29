@@ -15,7 +15,7 @@ export default {
       controls: { exclude: ['isLoading', 'handleContinue'] },
       description: {
         component: `
-${getGeneralDescription(`${getGeneralComponentDescription('', 'element')} `, 'https://bamboo.tec.mx/latest/dev-tools/coleccion-de-componentes-uC69aq75')}
+${getGeneralDescription(`${getGeneralComponentDescription({ type: 'element' })} `, 'https://bamboo.tec.mx/latest/dev-tools/coleccion-de-componentes-uC69aq75')}
 ${getBasicExampleBlock('')}
         `,
       },

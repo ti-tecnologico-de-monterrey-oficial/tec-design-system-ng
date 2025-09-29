@@ -51,7 +51,7 @@ export default {
     docs: {
       description: {
         component: `
-${getGeneralDescription(`${getGeneralComponentDescription('search-input')} to enter text and run a search.`, 'https://bamboo.tec.mx/latest/componentes/search/descripcion-general-EAreKqon')}
+${getGeneralDescription(`${getGeneralComponentDescription({ name: 'search-input' })} to enter text and run a search.`, 'https://bamboo.tec.mx/latest/componentes/search/descripcion-general-EAreKqon')}
 ${getSpecialSpecifications(getEmptyStateMessage())}
 ${getBasicExampleBlock('BmbSearchInputComponent', '', onChange.handleExample)}
         `,

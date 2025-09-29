@@ -398,12 +398,17 @@ export const getSubStoryIdentifier = (
 export const getGeneralDocDescription = (generalDocLink: string): string =>
   `Please remember to refer to the [Bamboo - General documentation](${generalDocLink}) for more details about it.`;
 
-export const getGeneralComponentDescription = (
-  name: string,
-  type: IBmbStoryType = 'component',
-  additional: string = '',
-  alternativeDescription: string = '',
-): string =>
+export const getGeneralComponentDescription = ({
+  name,
+  type = 'component',
+  additional,
+  alternativeDescription,
+}: {
+  name?: string;
+  type?: IBmbStoryType;
+  additional?: string;
+  alternativeDescription?: string;
+}): string =>
   `\`bmb${type === 'directive' ? '' : '-'}${name}\` is a ${DESIGN_SYSTEM_TITLE} ${additional} ${type} ${alternativeDescription || 'that allows'}`;
 
 export const getGeneralDescription = (

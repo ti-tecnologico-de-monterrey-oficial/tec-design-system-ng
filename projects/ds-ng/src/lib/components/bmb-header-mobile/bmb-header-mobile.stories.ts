@@ -35,7 +35,7 @@ export default {
     docs: {
       description: {
         component: `
-${getGeneralDescription(`${getGeneralComponentDescription('header-mobile')} to provides context, navigation, and tools. This component is displayed at the top of the application.`, 'https://bamboo.tec.mx/latest/componentes/header-mobile/descripcion-general-wX6ovjqc')}
+${getGeneralDescription(`${getGeneralComponentDescription({ name: 'header-mobile' })} to provides context, navigation, and tools. This component is displayed at the top of the application.`, 'https://bamboo.tec.mx/latest/componentes/header-mobile/descripcion-general-wX6ovjqc')}
 ${getBasicExampleBlock('BmbHeaderMobileComponent')}
         `,
       },

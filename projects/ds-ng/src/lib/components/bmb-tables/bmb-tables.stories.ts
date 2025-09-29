@@ -296,7 +296,7 @@ export default {
       description: {
         component: `
 ${getGeneralDescription(
-  `${getGeneralComponentDescription('table')} rendering highly configurable and interactive tables.
+  `${getGeneralComponentDescription({ name: 'table' })} rendering highly configurable and interactive tables.
 >
 It supports features such as selection, expansion, pagination, dynamic filtering, column resizing,
 custom actions, and templating for both actions and detail rows.

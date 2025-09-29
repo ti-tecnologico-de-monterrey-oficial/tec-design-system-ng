@@ -34,7 +34,7 @@ export default {
       },
       description: {
         component: `
-${getGeneralDescription(`${getGeneralComponentDescription('login', 'organism')} to log in to the web platform. It includes fields for credentials and password recovery.`, 'https://bamboo.tec.mx/latest/organisms/login-layout-web/descripcion-general-uYEtF9vq')}
+${getGeneralDescription(`${getGeneralComponentDescription({ name: 'login', type: 'organism' })} to log in to the web platform. It includes fields for credentials and password recovery.`, 'https://bamboo.tec.mx/latest/organisms/login-layout-web/descripcion-general-uYEtF9vq')}
 ${getBasicExampleBlock('BmbLoginComponent')}
         `,
       },

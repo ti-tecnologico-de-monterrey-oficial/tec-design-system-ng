@@ -48,7 +48,7 @@ export default {
     docs: {
       description: {
         component: `
-${getGeneralDescription(`${getGeneralComponentDescription('switch')} to represent in a simple way whether a configuration is active or not.`, 'https://bamboo.tec.mx/latest/componentes/switch/descripcion-general-6aOUHs0C')}
+${getGeneralDescription(`${getGeneralComponentDescription({ name: 'switch' })} to represent in a simple way whether a configuration is active or not.`, 'https://bamboo.tec.mx/latest/componentes/switch/descripcion-general-6aOUHs0C')}
 ${getBasicExampleBlock('BmbSwitchComponent', '', onChange.handleExample)}
         `,
       },

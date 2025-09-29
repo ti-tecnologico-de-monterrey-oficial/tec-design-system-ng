@@ -49,7 +49,7 @@ export default {
       },
       description: {
         component: `
-${getGeneralDescription(`${getGeneralComponentDescription('card-button')} to use a button with card features and appearance.`, 'https://bamboo.tec.mx/latest/componentes/card-button/descripcion-general-q9ZEljiw')}
+${getGeneralDescription(`${getGeneralComponentDescription({ name: 'card-button' })} to use a button with card features and appearance.`, 'https://bamboo.tec.mx/latest/componentes/card-button/descripcion-general-q9ZEljiw')}
 ${getSpecialSpecifications(getEmptyStateMessage())}
 ${getBasicExampleBlock('BmbCardButtonComponent')}
         `,

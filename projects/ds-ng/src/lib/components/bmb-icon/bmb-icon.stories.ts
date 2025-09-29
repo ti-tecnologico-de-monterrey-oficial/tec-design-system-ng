@@ -32,7 +32,7 @@ export default {
         component: `
 ${getGeneralDescription(
   `
-${getGeneralComponentDescription('icon', 'element', 'visual')} to represent actions, concepts or functions in a quick and easily recognizable way.`,
+${getGeneralComponentDescription({ name: 'icon', type: 'element', additional: 'visual' })} to represent actions, concepts or functions in a quick and easily recognizable way.`,
   'https://bamboo.tec.mx/latest/foundations/iconos/iconos-wukxE19q',
 )}
 ${getArchitectureSection(

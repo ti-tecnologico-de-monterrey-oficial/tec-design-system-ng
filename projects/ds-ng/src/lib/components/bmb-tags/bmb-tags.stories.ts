@@ -71,7 +71,7 @@ export default {
       description: {
         component: `
 ${getGeneralDescription(
-  `${getGeneralComponentDescription('tag')} to create content such as keywords, categories, organizations, or searches.`,
+  `${getGeneralComponentDescription({ name: 'tag' })} to create content such as keywords, categories, organizations, or searches.`,
   GENERAL_DOCUMENTATION_LINK,
 )}
 ${getBasicExampleBlock('BmbTagComponent')}

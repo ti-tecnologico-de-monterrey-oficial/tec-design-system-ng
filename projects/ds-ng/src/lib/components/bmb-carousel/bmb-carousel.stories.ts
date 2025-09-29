@@ -40,7 +40,7 @@ export default {
       },
       description: {
         component: `
-${getGeneralDescription(`${getGeneralComponentDescription('carousel')} to present a series of sequentially rotating content by clicking or swiping to view the next or previous item.`, 'https://bamboo.tec.mx/latest/componentes/carousel/descripcion-general-5KuPHrn1')}
+${getGeneralDescription(`${getGeneralComponentDescription({ name: 'carousel' })} to present a series of sequentially rotating content by clicking or swiping to view the next or previous item.`, 'https://bamboo.tec.mx/latest/componentes/carousel/descripcion-general-5KuPHrn1')}
 ${getSpecialSpecifications(`Any ${DESIGN_SYSTEM_TITLE} component or html element can be easily added to \`bmb-carousel\`.
 ><br/><br/>
 ###${RELEVANT_TITLE_LEVEL[1]}

@@ -31,7 +31,7 @@ const meta: Meta<BmbAccordionControlDirective> = {
     docs: {
       description: {
         component: `
-${getGeneralDescription(`${getGeneralComponentDescription('AccordionControl', 'directive')} to bmb-accordion components to be presented in collapsible and vertically stacked elements.`, 'https://bamboo.tec.mx/latest/componentes/accordion/descripcion-general-yABR8pUx', true)}
+${getGeneralDescription(`${getGeneralComponentDescription({ name: 'AccordionControl', type: 'directive' })} to bmb-accordion components to be presented in collapsible and vertically stacked elements.`, 'https://bamboo.tec.mx/latest/componentes/accordion/descripcion-general-yABR8pUx', true)}
 ${getSpecialSpecifications(
   `${getEmptyStateMessage(true)}<br/><br/>
 ###${getSubStoryIdentifier(true)}${RELEVANT_TITLE_LEVEL[0]}

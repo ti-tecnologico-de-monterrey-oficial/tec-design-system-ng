@@ -15,7 +15,7 @@ export default {
       controls: { exclude: ['truncatedScore', ''] },
       description: {
         component: `
-${getGeneralDescription(`${getGeneralComponentDescription('grade-value')} to display grades in a simple way.`, 'https://bamboo.tec.mx/latest/componentes/grade-value/descripcion-general-3uKxUiLU')}
+${getGeneralDescription(`${getGeneralComponentDescription({ name: 'grade-value' })} to display grades in a simple way.`, 'https://bamboo.tec.mx/latest/componentes/grade-value/descripcion-general-3uKxUiLU')}
 ${getBasicExampleBlock('BmbGradeValueComponent')}
 
         `,

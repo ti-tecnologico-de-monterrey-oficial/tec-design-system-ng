@@ -14,7 +14,7 @@ export default {
       controls: { exclude: ['expanded', 'selectedTabId', 'tabsData'] },
       description: {
         component: `
-${getGeneralDescription(`${getGeneralComponentDescription('advertisement-card')} displays a card with a title, subtitle, and tabbed content.`, 'https://bamboo.tec.mx/latest/componentes/advertisement-card/descripcion-general-pXicwP8b')}
+${getGeneralDescription(`${getGeneralComponentDescription({ name: 'advertisement-card' })} displays a card with a title, subtitle, and tabbed content.`, 'https://bamboo.tec.mx/latest/componentes/advertisement-card/descripcion-general-pXicwP8b')}
 ${getBasicExampleBlock('BmbAdvertisementCardComponent')}
         `,
       },

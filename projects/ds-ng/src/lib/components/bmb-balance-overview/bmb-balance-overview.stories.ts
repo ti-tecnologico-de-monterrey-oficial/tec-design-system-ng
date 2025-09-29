@@ -13,7 +13,7 @@ export default {
     docs: {
       description: {
         component: `
-${getGeneralDescription(`${getGeneralComponentDescription('balance-overview')} to display a balance overview with progress circle and labels.`, 'https://bamboo.tec.mx/latest/componentes/balance-overview/descripcion-general-x52Nsnq2')}
+${getGeneralDescription(`${getGeneralComponentDescription({ name: 'balance-overview' })} to display a balance overview with progress circle and labels.`, 'https://bamboo.tec.mx/latest/componentes/balance-overview/descripcion-general-x52Nsnq2')}
 ${getBasicExampleBlock('BmbBalanceOverviewComponent')}
         `,
       },

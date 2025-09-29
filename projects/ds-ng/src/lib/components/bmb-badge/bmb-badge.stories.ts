@@ -54,7 +54,7 @@ export default {
     docs: {
       description: {
         component: `
-${getGeneralDescription(`${getGeneralComponentDescription('badge')} to highlight information in small indicators.`, 'https://bamboo.tec.mx/latest/componentes/badge/descripcion-general-dqHBPuku')}
+${getGeneralDescription(`${getGeneralComponentDescription({ name: 'badge' })} to highlight information in small indicators.`, 'https://bamboo.tec.mx/latest/componentes/badge/descripcion-general-dqHBPuku')}
 ${getArchitectureSection(`<section class="bmb_badge"> <!-- conditional classes bmb_badge-{appearance} bmb_badge-container ->
   <span class="bmb_badge-bullet"></span>
   <span class="bmb_badge-content"></span>

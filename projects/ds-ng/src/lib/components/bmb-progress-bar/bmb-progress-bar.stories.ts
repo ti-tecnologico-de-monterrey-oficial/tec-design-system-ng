@@ -31,7 +31,7 @@ export default {
       controls: { exclude: ['getFormattedText', 'progressValue'] },
       description: {
         component: `
-${getGeneralDescription(`${getGeneralComponentDescription('progress-bar')} to show how complete a process is, visually indicating the progression gradually.`, 'https://bamboo.tec.mx/latest/componentes/progress-bar/descripcion-general-EZrYlLVQ')}
+${getGeneralDescription(`${getGeneralComponentDescription({ name: 'progress-bar' })} to show how complete a process is, visually indicating the progression gradually.`, 'https://bamboo.tec.mx/latest/componentes/progress-bar/descripcion-general-EZrYlLVQ')}
 ${getBasicExampleBlock('BmbProgressBarComponent')}
         `,
       },

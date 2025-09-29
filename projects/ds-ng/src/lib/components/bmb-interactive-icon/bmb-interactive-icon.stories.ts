@@ -57,12 +57,12 @@ export default {
       description: {
         component: `
 ${getGeneralDescription(
-  getGeneralComponentDescription(
-    'interactive-icon',
-    'component',
-    '',
-    'that provides the functionality to be used as a shortcut to other applications in an orderly and intuitive manner.',
-  ),
+  getGeneralComponentDescription({
+    name: 'interactive-icon',
+    type: 'component',
+    alternativeDescription:
+      'that provides the functionality to be used as a shortcut to other applications in an orderly and intuitive manner.',
+  }),
   'https://bamboo.tec.mx/latest/componentes/interactive-icon/descripcion-general-wYrX6Nhj',
 )}
 ${getBasicExampleBlock('BmbInteractiveIconComponent', ON_BUTTON_CLICK.handleExample)}

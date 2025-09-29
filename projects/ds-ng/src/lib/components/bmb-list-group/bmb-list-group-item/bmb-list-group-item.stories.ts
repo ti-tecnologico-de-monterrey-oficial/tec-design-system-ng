@@ -57,7 +57,7 @@ export default {
       description: {
         component: `
 ${getGeneralDescription(
-  `${getGeneralComponentDescription('bmb-list-group-item')} to organize related elements in an ordered list, optimizing navigation and displaying content clearly and efficiently.
+  `${getGeneralComponentDescription({ name: 'bmb-list-group-item' })} to organize related elements in an ordered list, optimizing navigation and displaying content clearly and efficiently.
 It helps to group information in a coherent and accessible way.`,
   'https://bamboo.tec.mx/latest/components/list-group/descripcion-general-ieYN5a5C',
   true,

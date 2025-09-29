@@ -25,7 +25,7 @@ export default {
       controls: { exclude: ['handleClick'] },
       description: {
         component: `
-${getGeneralDescription(`${getGeneralComponentDescription('navigation-bar')} for quick access to key navigation functions and common actions.`, 'https://bamboo.tec.mx/latest/componentes/navigation-bar/descripcion-general-vOGTleaR')}
+${getGeneralDescription(`${getGeneralComponentDescription({ name: 'navigation-bar' })} for quick access to key navigation functions and common actions.`, 'https://bamboo.tec.mx/latest/componentes/navigation-bar/descripcion-general-vOGTleaR')}
 ${getBasicExampleBlock('BmbNavigationBarComponent')}
         `,
       },

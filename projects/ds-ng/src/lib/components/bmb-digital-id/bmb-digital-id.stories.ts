@@ -71,7 +71,7 @@ export default {
       },
       description: {
         component: `
-${getGeneralDescription(`${getGeneralComponentDescription('digital-id')} the digital identification to be displayed, adapting to the profile within the institution.`, 'https://bamboo.tec.mx/latest/particularities/mitec-app/digital-id-OGcI0rQ5')}
+${getGeneralDescription(`${getGeneralComponentDescription({ name: 'digital-id' })} the digital identification to be displayed, adapting to the profile within the institution.`, 'https://bamboo.tec.mx/latest/particularities/mitec-app/digital-id-OGcI0rQ5')}
 ${getBasicExampleBlock(
   'BmbDigitalIdComponent',
   '',

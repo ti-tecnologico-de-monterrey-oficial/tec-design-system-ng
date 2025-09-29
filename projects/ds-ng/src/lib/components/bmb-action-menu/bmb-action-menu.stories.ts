@@ -26,7 +26,7 @@ export default {
       description: {
         component: `
 ${getGeneralDescription(
-  `${getGeneralComponentDescription('action-menu')} o group and display action options in a context menu. It is triggered by a specific button or event.
+  `${getGeneralComponentDescription({ name: 'action-menu' })} o group and display action options in a context menu. It is triggered by a specific button or event.
 `,
   'https://bamboo.tec.mx/latest/componentes/action-menu/descripcion-general-gXdipbgD',
 )}

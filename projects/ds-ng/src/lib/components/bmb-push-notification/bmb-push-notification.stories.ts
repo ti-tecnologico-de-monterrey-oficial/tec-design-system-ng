@@ -104,7 +104,7 @@ export default {
       controls: { exclude: ['closeNotification', 'getNotifications'] },
       description: {
         component: `
-${getGeneralDescription(`${getGeneralComponentDescription('push-notification')} to easily configure notifications to display in the apps.`, 'https://bamboo.tec.mx/latest/componentes/push-notification/descripcion-general-neloJm9o')}
+${getGeneralDescription(`${getGeneralComponentDescription({ name: 'push-notification' })} to easily configure notifications to display in the apps.`, 'https://bamboo.tec.mx/latest/componentes/push-notification/descripcion-general-neloJm9o')}
 ${getSpecialSpecifications(` ### Configuration
 Add the **BmbNotificationService** to your App providers:
 \`\`\`typescript

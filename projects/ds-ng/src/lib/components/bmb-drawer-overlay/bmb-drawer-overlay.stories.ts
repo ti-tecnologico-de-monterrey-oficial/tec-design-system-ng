@@ -39,7 +39,7 @@ export default {
       },
       description: {
         component: `
-${getGeneralDescription(`${getGeneralComponentDescription('drawer-overlay', 'element')} to implement an interactive overlay in addition to an application menu and header.`, 'https://bamboo.tec.mx/latest/particularities/mitec-app/fab-overlay-drawer-11JEvoAR')}
+${getGeneralDescription(`${getGeneralComponentDescription({ name: 'drawer-overlay', type: 'element' })} to implement an interactive overlay in addition to an application menu and header.`, 'https://bamboo.tec.mx/latest/particularities/mitec-app/fab-overlay-drawer-11JEvoAR')}
 ${getBasicExampleBlock('BmbDrawerOverlayComponent')}
 `,
       },

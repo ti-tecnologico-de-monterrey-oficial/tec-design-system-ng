@@ -30,7 +30,7 @@ export default {
       controls: { exclude: ['handleClick', 'handlePress'] },
       description: {
         component: `
-${getGeneralDescription(`${getGeneralComponentDescription('button-icon')} to add compact buttons using icons without text.`, 'https://bamboo.tec.mx/latest/componentes/button-icon/descripcion-general-6GKyDzWU')}
+${getGeneralDescription(`${getGeneralComponentDescription({ name: 'button-icon' })} to add compact buttons using icons without text.`, 'https://bamboo.tec.mx/latest/componentes/button-icon/descripcion-general-6GKyDzWU')}
 ${getSpecialSpecifications(`Recommended for representing quick and intuitive actions within limited spaces, such as toolbars, headers, cards.`)}
 <br/>
 ${getBasicExampleBlock('BmbButtonIconComponent', '', onEvent.handleExample)}
