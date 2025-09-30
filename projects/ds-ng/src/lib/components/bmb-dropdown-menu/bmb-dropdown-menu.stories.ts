@@ -48,7 +48,7 @@ export default {
       controls: { exclude: ['closeDropdown', 'openDropdown'] },
       description: {
         component: `
-${getGeneralDescription(`${getGeneralComponentDescription({ name: 'dropdown-menu' })} navigation through the options displayed in the menu listing.`, 'https://bamboo.tec.mx/latest/componentes/dropdown-menu/descripcion-general-kEoPUKDr')}
+${getGeneralDescription({ content: `${getGeneralComponentDescription({ name: 'dropdown-menu' })} navigation through the options displayed in the menu listing.`, generalDocLink: 'https://bamboo.tec.mx/latest/componentes/dropdown-menu/descripcion-general-kEoPUKDr' })}
 ${getSpecialSpecifications(getEmptyStateMessage())}
 ${getBasicExampleBlock('BmbDropdownMenuComponent', '', '', false, '', 'ActivatedRoute', '@angular/router')}
         `,

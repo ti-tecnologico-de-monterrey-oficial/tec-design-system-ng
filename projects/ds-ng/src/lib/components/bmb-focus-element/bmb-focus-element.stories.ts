@@ -22,7 +22,7 @@ export default {
       },
       description: {
         component: `
-${getGeneralDescription(`${getGeneralComponentDescription({ name: 'focus-element' })} to highlight an element.`, 'https://bamboo.tec.mx/latest/componentes/focus-element/descripcion-general-kMjMy40y')}
+${getGeneralDescription({ content: `${getGeneralComponentDescription({ name: 'focus-element' })} to highlight an element.`, generalDocLink: 'https://bamboo.tec.mx/latest/componentes/focus-element/descripcion-general-kMjMy40y' })}
 ${getBasicExampleBlock('BmbFocusElementComponent')}
         `,
       },

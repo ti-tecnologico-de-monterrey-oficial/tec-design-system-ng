@@ -52,7 +52,7 @@ export default {
       controls: { exclude: ['getIcon', 'handleClose', 'getClasses'] },
       description: {
         component: `
-${getGeneralDescription(`${getGeneralComponentDescription({ name: 'toast' })} to display a short, non-critical message without interrupting browsing or the task at hand.`, 'https://bamboo.tec.mx/latest/componentes/toast/descripcion-general-1yUMwDNA')}
+${getGeneralDescription({ content: `${getGeneralComponentDescription({ name: 'toast' })} to display a short, non-critical message without interrupting browsing or the task at hand.`, generalDocLink: 'https://bamboo.tec.mx/latest/componentes/toast/descripcion-general-1yUMwDNA' })}
 ${getArchitectureSection(`<div class="bmb_toast" <!-- conditional classes bmb_toast bmb_toast-{this.appearance} >
   < icon />
   <div class="bmb_toast-content" <!-- conditional classes bmb_toast-content bmb_toast-content-{appearance} --> >

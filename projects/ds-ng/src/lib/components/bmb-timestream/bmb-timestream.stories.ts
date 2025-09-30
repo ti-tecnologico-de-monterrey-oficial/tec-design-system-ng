@@ -23,7 +23,7 @@ export default {
     docs: {
       description: {
         component: `
-${getGeneralDescription(`${getGeneralComponentDescription({ name: 'timestream' })} to implement the timestream without card.`)}
+${getGeneralDescription({ content: `${getGeneralComponentDescription({ name: 'timestream' })} to implement the timestream without card.` })}
 ${getSpecialSpecifications(getEmptyStateMessage())}
 ${getBasicExampleBlock('BmbTimestreamComponent')}
         `,

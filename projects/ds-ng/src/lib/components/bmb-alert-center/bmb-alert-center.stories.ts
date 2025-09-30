@@ -330,7 +330,7 @@ export default {
       },
       description: {
         component: `
-${getGeneralDescription('`bmb-alert-center` is an organism designed to centralize and display all important alerts and notifications that require users attention.', 'https://bamboo.tec.mx/latest/organismos/alert-center/descripcion-general-ws9A3oYS')}
+${getGeneralDescription({ content: '`bmb-alert-center` is an organism designed to centralize and display all important alerts and notifications that require users attention.', generalDocLink: 'https://bamboo.tec.mx/latest/organismos/alert-center/descripcion-general-ws9A3oYS' })}
 ${getSpecialSpecifications(`
   > ###Configuration
   > Add the \`BmbAlertCenterService\` to your App providers:

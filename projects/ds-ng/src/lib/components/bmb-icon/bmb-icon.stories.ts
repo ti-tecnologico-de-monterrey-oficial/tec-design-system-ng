@@ -30,11 +30,12 @@ export default {
     docs: {
       description: {
         component: `
-${getGeneralDescription(
-  `
+${getGeneralDescription({
+  content: `
 ${getGeneralComponentDescription({ name: 'icon', type: 'element', additional: 'visual' })} to represent actions, concepts or functions in a quick and easily recognizable way.`,
-  'https://bamboo.tec.mx/latest/foundations/iconos/iconos-wukxE19q',
-)}
+  generalDocLink:
+    'https://bamboo.tec.mx/latest/foundations/iconos/iconos-wukxE19q',
+})}
 ${getArchitectureSection(
   `<i class="bmb_icon-container-i material-symbols-rounded">
   < icon />

@@ -58,7 +58,11 @@ export default {
       },
       description: {
         component: `
-${getGeneralDescription(`${getGeneralComponentDescription({ name: 'breadcrumb' })} to navigate, providing a trail of clickable links leading to different pages.`, 'https://bamboo.tec.mx/latest/componentes/breadcrumb/descripcion-general-w8BsNT9r')}
+${getGeneralDescription({
+  content: `${getGeneralComponentDescription({ name: 'breadcrumb' })} to navigate, providing a trail of clickable links leading to different pages.`,
+  generalDocLink:
+    'https://bamboo.tec.mx/latest/componentes/breadcrumb/descripcion-general-w8BsNT9r',
+})}
 ${getBasicExampleBlock('BmbBreadcrumbComponent')}
         `,
       },

@@ -103,10 +103,10 @@ export const attributesText = (object: { [key: string]: any }): string =>
     .join(' ');
 
 export const getLandingGeneralDesc = (name: string) =>
-  `${getGeneralDescription(`Template containing the ${DESIGN_SYSTEM_TITLE} elements to be used to implement the **Landing - ${name}**.`, 'https://bamboo.tec.mx/latest/particularities/mitec-web/landings-fCESn8dl-fCESn8dl')}`;
+  `${getGeneralDescription({ content: `Template containing the ${DESIGN_SYSTEM_TITLE} elements to be used to implement the **Landing - ${name}**.`, generalDocLink: 'https://bamboo.tec.mx/latest/particularities/mitec-web/landings-fCESn8dl-fCESn8dl' })}`;
 
 export const getStandaloneGeneralDesc = (name: string) =>
-  `${getGeneralDescription(`Template containing the ${DESIGN_SYSTEM_TITLE} elements to implement the structure of the **Stand alone sites - ${name}**.`, 'https://bamboo.tec.mx/latest/templates/sitios-stand-alone/descripcion-general-lwpZfyMh')}`;
+  `${getGeneralDescription({ content: `Template containing the ${DESIGN_SYSTEM_TITLE} elements to implement the structure of the **Stand alone sites - ${name}**.`, generalDocLink: 'https://bamboo.tec.mx/latest/templates/sitios-stand-alone/descripcion-general-lwpZfyMh' })}`;
 
 const getProperName = (name: string): string =>
   name.replace(name.slice(0, 1), name.slice(0, 1).toLocaleUpperCase());
@@ -411,12 +411,17 @@ export const getGeneralComponentDescription = ({
 }): string =>
   `\`bmb${type === 'directive' ? '' : '-'}${name}\` is a ${DESIGN_SYSTEM_TITLE} ${additional} ${type} ${alternativeDescription || 'that allows'}`;
 
-export const getGeneralDescription = (
-  content: string,
-  generalDocLink: string = '',
-  isSubStory: boolean = false,
-  subStoryChart: string = '-',
-): string => `
+export const getGeneralDescription = ({
+  content,
+  generalDocLink = '',
+  isSubStory = false,
+  subStoryChart = '-',
+}: {
+  content: string;
+  generalDocLink?: string;
+  isSubStory?: boolean;
+  subStoryChart?: string;
+}): string => `
 <br/>
 ## ${getSubStoryIdentifier(isSubStory, subStoryChart)}${DESCRIPTION_TITLE}
 >${content}
@@ -440,8 +445,8 @@ export const getFieldDescription = (
   additionalDescription: string,
   generalDocLink: string,
 ): string => `
-${getGeneralDescription(
-  `
+${getGeneralDescription({
+  content: `
 >\`bmb-${componentName}\` is a customizable ${DESIGN_SYSTEM_TITLE} input component that allows users to ${additionalDescription}
 >
 >This component includes validations, error messages, and support for tooltips to provide additional information.
@@ -450,7 +455,7 @@ ${getGeneralDescription(
 >- The field border color changes to red.
 >- Support text is displayed with the error message (default or assigned).`,
   generalDocLink,
-)}
+})}
 `;
 
 export const getSpecialSpecifications = (
@@ -928,8 +933,8 @@ ON THIS PAGE (optional, TABLE OF CONTENTS) [Done, is in preview, if not so add p
 */
 
 /*
-${getGeneralDescription(`${getGeneralComponentDescription('')} `, '')}
-${getBasicExampleBlock('')}
+${getGeneralDescription({content: `${getGeneralComponentDescription({name: ''})} `, generalDocLink:'')}}
+${getBasicExampleBlock({content: ''})}
 
 getOnClickParam(
     getOnEvent('', ''),

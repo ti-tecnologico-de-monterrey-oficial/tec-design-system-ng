@@ -78,7 +78,7 @@ export default {
       },
       description: {
         component: `
-${getGeneralDescription(`${getGeneralComponentDescription({ name: 'totp' })} to be used in two-factor authentication flows.`, 'https://bamboo.tec.mx/latest/componentes/to-tp-prompt/descripcion-general-ldU6LSaF')}
+${getGeneralDescription({ content: `${getGeneralComponentDescription({ name: 'totp' })} to be used in two-factor authentication flows.`, generalDocLink: 'https://bamboo.tec.mx/latest/componentes/to-tp-prompt/descripcion-general-ldU6LSaF' })}
 ${getBasicExampleBlock('BmbTotpComponent', '', additionalBlock)}
 \`\`\`html
 <bmb-totp

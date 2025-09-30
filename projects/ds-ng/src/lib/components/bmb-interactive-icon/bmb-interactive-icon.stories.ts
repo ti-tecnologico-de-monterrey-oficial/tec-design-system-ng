@@ -56,15 +56,16 @@ export default {
       controls: { exclude: ['handleClick', 'getClasses'] },
       description: {
         component: `
-${getGeneralDescription(
-  getGeneralComponentDescription({
+${getGeneralDescription({
+  content: getGeneralComponentDescription({
     name: 'interactive-icon',
     type: 'component',
     alternativeDescription:
       'that provides the functionality to be used as a shortcut to other applications in an orderly and intuitive manner.',
   }),
-  'https://bamboo.tec.mx/latest/componentes/interactive-icon/descripcion-general-wYrX6Nhj',
-)}
+  generalDocLink:
+    'https://bamboo.tec.mx/latest/componentes/interactive-icon/descripcion-general-wYrX6Nhj',
+})}
 ${getBasicExampleBlock('BmbInteractiveIconComponent', ON_BUTTON_CLICK.handleExample)}
         `,
       },

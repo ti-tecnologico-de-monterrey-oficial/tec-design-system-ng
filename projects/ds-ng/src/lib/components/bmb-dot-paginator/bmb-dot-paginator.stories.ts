@@ -26,7 +26,7 @@ export default {
       controls: { exclude: ['getDotsArray', 'onDotClicked', 'getClasses'] },
       description: {
         component: `
-${getGeneralDescription(`${getGeneralComponentDescription({ name: 'dot-paginator' })} to create a pager using dots to select elements.`, 'https://bamboo.tec.mx/latest/componentes/dot-paginator/descripcion-general-gKwavF4A')}
+${getGeneralDescription({ content: `${getGeneralComponentDescription({ name: 'dot-paginator' })} to create a pager using dots to select elements.`, generalDocLink: 'https://bamboo.tec.mx/latest/componentes/dot-paginator/descripcion-general-gKwavF4A' })}
 ${getBasicExampleBlock(
   'BmbDotPaginatorComponent',
   '',

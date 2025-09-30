@@ -13,7 +13,7 @@ export default {
     docs: {
       description: {
         component: `
-${getGeneralDescription(`${getGeneralComponentDescription({ name: 'container' })} to define specific sections of content, this component encloses and groups other HTML elements.`, 'https://bamboo.tec.mx/latest/componentes/global-container/descripcion-general-MJF3dmwC')}
+${getGeneralDescription({ content: `${getGeneralComponentDescription({ name: 'container' })} to define specific sections of content, this component encloses and groups other HTML elements.`, generalDocLink: 'https://bamboo.tec.mx/latest/componentes/global-container/descripcion-general-MJF3dmwC' })}
 ${getBasicExampleBlock('BmbContainerComponent')}
         `,
       },

@@ -294,7 +294,7 @@ export default {
       page: () => getPageStructureForFoundationStories(),
       description: {
         component: `
-${getGeneralDescription('***Grid generator*** is a tool that helps generate grids graphically, provides the code generated dynamically based on the interaction with this tool.', 'https://bamboo.tec.mx/latest/dev-tools/coleccion-de-componentes-uC69aq75')}
+${getGeneralDescription({ content: '***Grid generator*** is a tool that helps generate grids graphically, provides the code generated dynamically based on the interaction with this tool.', generalDocLink: 'https://bamboo.tec.mx/latest/dev-tools/coleccion-de-componentes-uC69aq75' })}
 ${getSpecialSpecifications(`
 Make click and drag to create a new item in the grid. The new item will be created with the same size as the selected area.
 The grid is responsive and will adapt to the size of the container.<br/><br/>

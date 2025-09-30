@@ -22,7 +22,7 @@ export default {
       },
       description: {
         component: `
-${getGeneralDescription(`${getGeneralComponentDescription({ name: 'academic-progress' })} to be provided clearly and quickly, with a focus on readability and visual hierarchy.`, 'https://bamboo.tec.mx/latest/componentes/academic-progress/descripcion-general-f8fNoijD')}
+${getGeneralDescription({ content: `${getGeneralComponentDescription({ name: 'academic-progress' })} to be provided clearly and quickly, with a focus on readability and visual hierarchy.`, generalDocLink: 'https://bamboo.tec.mx/latest/componentes/academic-progress/descripcion-general-f8fNoijD' })}
 ${getBasicExampleBlock('BmbAcademicProgressComponent')}
         `,
       },

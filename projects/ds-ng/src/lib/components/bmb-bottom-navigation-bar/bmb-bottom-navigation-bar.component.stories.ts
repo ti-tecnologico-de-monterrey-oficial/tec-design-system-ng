@@ -18,7 +18,11 @@ export default {
     docs: {
       description: {
         component: `
-${getGeneralDescription(`${getGeneralComponentDescription({ name: 'bottom-navigation-bar' })} for a bottom navigation bar with four customizable icons.`, 'https://bamboo.tec.mx/latest/componentes/bottom-navigation-bar/descripcion-general-eeQGlgdA')}
+${getGeneralDescription({
+  content: `${getGeneralComponentDescription({ name: 'bottom-navigation-bar' })} for a bottom navigation bar with four customizable icons.`,
+  generalDocLink:
+    'https://bamboo.tec.mx/latest/componentes/bottom-navigation-bar/descripcion-general-eeQGlgdA',
+})}
 ${getBasicExampleBlock('BmbBottomNavigationBarComponent')}
         `,
       },

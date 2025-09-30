@@ -234,7 +234,11 @@ export default {
       },
       description: {
         component: `
-${getGeneralDescription(`${getGeneralComponentDescription({ name: 'calendar', type: 'organism' })} viewing and filtering of events based on date and calendar type.`, 'https://bamboo.tec.mx/latest/organismos/calendar-standard/descripcion-general-JghdvFUm')}
+${getGeneralDescription({
+  content: `${getGeneralComponentDescription({ name: 'calendar', type: 'organism' })} viewing and filtering of events based on date and calendar type.`,
+  generalDocLink:
+    'https://bamboo.tec.mx/latest/organismos/calendar-standard/descripcion-general-JghdvFUm',
+})}
 ${getSpecialSpecifications(`###${RELEVANT_TITLE_LEVEL[3]}
 Add the ***BmbCalendarService*** to your App providers:
 \`\`\`typescript

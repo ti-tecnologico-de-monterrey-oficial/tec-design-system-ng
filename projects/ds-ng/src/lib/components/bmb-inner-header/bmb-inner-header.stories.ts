@@ -56,7 +56,7 @@ export default {
       },
       description: {
         component: `
-${getGeneralDescription(`${getGeneralComponentDescription({ name: 'inner-header' })} to implement headers for different needs.`, 'https://bamboo.tec.mx/latest/particularities/mitec-app/inner-header-yqkTnjq6')}
+${getGeneralDescription({ content: `${getGeneralComponentDescription({ name: 'inner-header' })} to implement headers for different needs.`, generalDocLink: 'https://bamboo.tec.mx/latest/particularities/mitec-app/inner-header-yqkTnjq6' })}
 ${getBasicExampleBlock('BmbInnerHeaderComponent')}
         `,
       },

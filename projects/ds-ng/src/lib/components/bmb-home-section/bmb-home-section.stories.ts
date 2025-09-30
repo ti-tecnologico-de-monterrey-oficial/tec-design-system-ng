@@ -25,7 +25,7 @@ export default {
     docs: {
       description: {
         component: `
-${getGeneralDescription(`${getGeneralComponentDescription({ name: 'home-section' })} for easy grouping of header content.`, 'https://bamboo.tec.mx/latest/components/home-section/descripcion-general-m2zcAnWW')}
+${getGeneralDescription({ content: `${getGeneralComponentDescription({ name: 'home-section' })} for easy grouping of header content.`, generalDocLink: 'https://bamboo.tec.mx/latest/components/home-section/descripcion-general-m2zcAnWW' })}
 ${getBasicExampleBlock('BmbHomeSectionComponent')}
 \`\`\`html
 <bmb-home-section>

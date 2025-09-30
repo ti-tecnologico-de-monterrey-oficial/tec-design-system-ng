@@ -114,7 +114,7 @@ export default {
       },
       description: {
         component: `
-${getGeneralDescription(`${getGeneralComponentDescription({ name: 'timestream-card', type: 'organism' })} organize the most important moments of each student's academic journey in an interactive and easy-to-follow timeline.`, 'https://bamboo.tec.mx/latest/organisms/timestream-card-full/descripcion-general-ke2oXi5N')}
+${getGeneralDescription({ content: `${getGeneralComponentDescription({ name: 'timestream-card', type: 'organism' })} organize the most important moments of each student's academic journey in an interactive and easy-to-follow timeline.`, generalDocLink: 'https://bamboo.tec.mx/latest/organisms/timestream-card-full/descripcion-general-ke2oXi5N' })}
 ${getSpecialSpecifications(`###${RELEVANT_TITLE_LEVEL[2]}
 >
 When you click on fullscreen icon, in Storybook doesn’t look the best due to the many elements, but in your project, it should display correctly.

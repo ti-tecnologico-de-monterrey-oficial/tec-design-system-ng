@@ -34,7 +34,7 @@ export default {
       },
       description: {
         component: `
-${getGeneralDescription(`${getGeneralComponentDescription({ name: 'hito-list', type: 'element' })} to show stages, milestones or progress of a process, useful in follow-up flows or technical onboarding.`, 'https://bamboo.tec.mx/latest/dev-tools/coleccion-de-componentes-uC69aq75')}
+${getGeneralDescription({ content: `${getGeneralComponentDescription({ name: 'hito-list', type: 'element' })} to show stages, milestones or progress of a process, useful in follow-up flows or technical onboarding.`, generalDocLink: 'https://bamboo.tec.mx/latest/dev-tools/coleccion-de-componentes-uC69aq75' })}
 ${getBasicExampleBlock('BmbHitoListComponent')}
       `,
       },

@@ -40,7 +40,7 @@ export default {
       },
       description: {
         component: `
-${getGeneralDescription(`${getGeneralComponentDescription({ name: 'progress-circle' })} visually indicates the status of a definite amount of work completed.`, 'https://bamboo.tec.mx/latest/componentes/progress-circle/descripcion-general-M5Xm37iL')}
+${getGeneralDescription({ content: `${getGeneralComponentDescription({ name: 'progress-circle' })} visually indicates the status of a definite amount of work completed.`, generalDocLink: 'https://bamboo.tec.mx/latest/componentes/progress-circle/descripcion-general-M5Xm37iL' })}
 ${getBasicExampleBlock('BmbProgressCircleComponent')}
         `,
       },

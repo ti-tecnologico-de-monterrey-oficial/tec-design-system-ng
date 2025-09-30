@@ -15,7 +15,7 @@ export default {
     docs: {
       description: {
         component: `
-${getGeneralDescription(`${getGeneralComponentDescription({ name: 'bookmark' })} to mark relevant or favorite content for easier access later.`, 'https://bamboo.tec.mx/latest/componentes/bookmark/descripcion-general-fXWKYHH5')}
+${getGeneralDescription({ content: `${getGeneralComponentDescription({ name: 'bookmark' })} to mark relevant or favorite content for easier access later.`, generalDocLink: 'https://bamboo.tec.mx/latest/componentes/bookmark/descripcion-general-fXWKYHH5' })}
 ${getBasicExampleBlock('BmbBookmarkComponent')}
 `,
       },

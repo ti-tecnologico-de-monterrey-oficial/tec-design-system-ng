@@ -89,8 +89,8 @@ export default {
     docs: {
       description: {
         component: `
-${getGeneralDescription(
-  `
+${getGeneralDescription({
+  content: `
 ${getFormControlDescription('>').replace('<br/>', '')}
 >
 >The supported **Bamboo inputs** are:
@@ -103,9 +103,10 @@ ${getFormControlDescription('>').replace('<br/>', '')}
 >- ${getStoryLink({ title: textInput.default.title! })}
 >- ${getStoryLink({ title: textInputWithTags.default.title! })}
   `,
-  'https://bamboo.tec.mx/latest/patterns/forms/descripcion-general-FDqTdYSy',
-  true,
-)}
+  generalDocLink:
+    'https://bamboo.tec.mx/latest/patterns/forms/descripcion-general-FDqTdYSy',
+  isSubStory: true,
+})}
 ${getArchitectureSection(
   `
 <form (ngSubmit)="onSubmit()">

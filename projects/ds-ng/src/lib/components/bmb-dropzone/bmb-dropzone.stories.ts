@@ -54,7 +54,7 @@ export default {
       },
       description: {
         component: `
-${getGeneralDescription(`${getGeneralComponentDescription({ name: 'dropzone' })} to provide an area where files can be dragged and dropped onto it to be uploaded or to be used later`, 'https://bamboo.tec.mx/latest/componentes/dropzone/descripcion-general-pPg1gmxU')}
+${getGeneralDescription({ content: `${getGeneralComponentDescription({ name: 'dropzone' })} to provide an area where files can be dragged and dropped onto it to be uploaded or to be used later`, generalDocLink: 'https://bamboo.tec.mx/latest/componentes/dropzone/descripcion-general-pPg1gmxU' })}
 ##Reactive form example
 >This example demonstrates how to use BmbDropdownComponent within an Angular reactive form, ensuring validation and handling the field and its value correctly.
 >

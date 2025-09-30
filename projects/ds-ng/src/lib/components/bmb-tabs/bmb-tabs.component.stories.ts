@@ -72,7 +72,7 @@ export default {
       },
       description: {
         component: `
-${getGeneralDescription(`${getGeneralComponentDescription({ name: 'tabs' })} the division of information into defined sections, improving navigation and facilitating the presentation of specific categories or sets of information.`, 'https://bamboo.tec.mx/latest/components/tab/descripcion-general-eJumojIF')}
+${getGeneralDescription({ content: `${getGeneralComponentDescription({ name: 'tabs' })} the division of information into defined sections, improving navigation and facilitating the presentation of specific categories or sets of information.`, generalDocLink: 'https://bamboo.tec.mx/latest/components/tab/descripcion-general-eJumojIF' })}
 ${getSpecialSpecifications(` ### ${RELEVANT_TITLE_LEVEL[4]}
 Usage with "Next", "Back" Buttons and TabService.
 >
