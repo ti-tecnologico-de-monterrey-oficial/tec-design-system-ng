@@ -25,19 +25,13 @@
         <ng-template #bmbRightContent>
           <section
             class="bmb_external-link-menu"
-            clickOutside
-            (clickOutside)="handleCloseMenu()"
+            #contentDiv
           >
             <bmb-action-icon
               class="bmb_external-link-menu-button"
               icon="more_horiz"
               [iconSize]="24"
               (buttonClick)="handleOpenMenu()"
-            />
-            <bmb-dropdown-content
-              class="bmb_external-link-menu-list"
-              [items]="getMenuItems()"
-              [(isOpen)]="showMenu"
             />
           </section>
         </ng-template>

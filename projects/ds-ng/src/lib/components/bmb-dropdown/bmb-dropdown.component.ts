@@ -91,7 +91,6 @@ export class BmbDropdownComponent implements OnInit, OnChanges {
 
   uuid: string = getUUID();
   isModalOpen = model<boolean>(false);
-  items: IDropdownItem[] = [];
   selectionControl: FormControl = new FormControl(new FormControl());
   selectedIcon: string = '';
   isKeyboardEvent: boolean = false;
@@ -135,7 +134,7 @@ export class BmbDropdownComponent implements OnInit, OnChanges {
       this.showIcon(),
     );
 
-    this.items = newItems.map((element: IDropdownItem) => {
+    let parsedItems = newItems.map((element: IDropdownItem) => {
       return {
         ...element,
         icon: !this.isMultiSelect() && this.showIcon() ? element.icon! : '',
@@ -147,14 +146,14 @@ export class BmbDropdownComponent implements OnInit, OnChanges {
     });
 
     if (!!this.preferredOptions().length) {
-      const preferredItems: IDropdownItem[] = this.items.filter((element) =>
+      const preferredItems: IDropdownItem[] = parsedItems.filter((element) =>
         this.preferredOptions().includes(element.value!),
       );
 
-      this.items = [...new Set([...preferredItems, ...this.items])];
+      parsedItems = [...new Set([...preferredItems, ...parsedItems])];
     }
 
-    return this.items;
+    return parsedItems;
   }
 
   handleFocus(value: boolean): void {
@@ -183,7 +182,7 @@ export class BmbDropdownComponent implements OnInit, OnChanges {
   setSelectionControl(controlValue: string | string[]): void {
     if (!!controlValue) {
       if (this.isMultiSelect()) {
-        const selectedItems = this.items.filter(({ value }) =>
+        const selectedItems = this.parsedOptions().filter(({ value }) =>
           controlValue.includes(value!),
         );
 
@@ -193,7 +192,7 @@ export class BmbDropdownComponent implements OnInit, OnChanges {
         return;
       }
 
-      const item = this.items.find(({ value }) => value === controlValue);
+      const item = this.parsedOptions().find(({ value }) => value === controlValue);
       if (!!item) {
         this.selectionControl.setValue(item?.selectedText);
         if (this.showIcon()) this.selectedIcon = item.icon;
