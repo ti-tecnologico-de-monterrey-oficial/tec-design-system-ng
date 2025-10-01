@@ -17,9 +17,7 @@ import { BmbProjectionContentService } from '../../services/projection.service';
   standalone: true,
   templateUrl: './bmb-dropdown-menu.component.html',
   styleUrl: './bmb-dropdown-menu.component.scss',
-  imports: [
-    BmbActionIconComponent,
-  ],
+  imports: [BmbActionIconComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
@@ -36,8 +34,8 @@ export class BmbDropdownMenuComponent {
       targetRef: this.contentRef?.nativeElement,
       inputContext: { items: this.items() },
       focusOnOpen: true,
-      showBackdrop: false
-    }
+      showBackdrop: false,
+    };
     this.projectionService.openContent(data);
   }
 }
