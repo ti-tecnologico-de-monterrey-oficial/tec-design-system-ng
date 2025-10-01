@@ -409,7 +409,7 @@ export const getDeprecatedDesc = ({
   const _title: string = isHeaderL2
     ? `##${RelevantTitle.deprecated.replaceAll('*', '')} `
     : RelevantTitle.deprecated;
-  return `${isBlockquote ? BlockquoteType.important : ''}
+  return `${isBlockquote ? BlockquoteType.warning : ''}
   ${_title}${!!type ? `This ${type} is deprecated. ` : ''}
   It will be removed in future versions.<br/>
 `;
