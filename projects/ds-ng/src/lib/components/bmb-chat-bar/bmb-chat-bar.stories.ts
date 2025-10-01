@@ -70,6 +70,13 @@ ${getBasicExampleBlock('BmbChatBarComponent', importComments)}
         'onResize',
         'autoResize',
         'handleKeyDown',
+        'botChunks',
+        'modalID',
+        'handleClickOutside',
+        'handleMobileChangeBot',
+        'chatBarTemplate',
+        'mobileBotSelectorTemplate',
+        'textareaRef',
       ],
     },
   },
@@ -186,6 +193,15 @@ This is a model signal, so it is possible to use it as:
       },
     },
   },
+  enableAttachments: {
+    control: { type: 'boolean' },
+    description: 'Enables the attachments feature.',
+    table: {
+      category: 'Properties',
+      type: { summary: 'boolean' },
+      defaultValue: { summary: 'true' },
+    },
+  },
   args: {
     placeholder: 'Custom placeholder',
     isLoading: false,
@@ -253,6 +269,7 @@ This is a model signal, so it is possible to use it as:
       icon: '/assets/images/bot-icons/bot_tecStandar.svg',
     },
     showEmoji: false,
+    enableAttachments: true,
   },
 } as Meta<typeof BmbChatBarComponent>;
 

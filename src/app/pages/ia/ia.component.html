@@ -11,7 +11,20 @@
       bmbVerticalLayoutItem
       [rowGrow]="1"
       [style]="{ flex: '1 0 0%', overflow: 'auto' }"
-    ></div>
+    >
+      @for (message of messageList(); track $index) {
+        <bmb-chat-bubble
+          [message]="message.message"
+          [gptIcons]="message.gptIcons"
+        ></bmb-chat-bubble>
+      }
+      @if (isThinking()) {
+        <bmb-chat-bubble
+          [message]="placeholderMessage"
+          [isThinking]="true"
+        ></bmb-chat-bubble>
+      }
+    </div>
     <bmb-chat-bar
       [placeholder]="'Custom placeholder'"
       [botList]="botList"
@@ -19,11 +32,14 @@
         name: 'TecBot',
         icon: '/assets/images/bot-icons/bot_tecStandar.svg'
       }"
-      [isLoading]="false"
+      [(isLoading)]="isLoading"
       [showEmoji]="true"
-      [enableMicInput]="true"
-      [actionsList]="actionsList"
+      [actionsList]="[]"
       bmbVerticalLayoutItem
+      (onSendMessage)="handleSendMessage($event)"
+      (onSendFiles)="handleSendFiles($event)"
+      (onRecord)="handleRecord($event)"
+      (onEmoji)="handleEmoji($event)"
     ></bmb-chat-bar>
   </section>
 </div>

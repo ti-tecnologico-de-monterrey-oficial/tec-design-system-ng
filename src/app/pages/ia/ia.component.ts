@@ -1,6 +1,8 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  model,
+  signal,
   ViewEncapsulation,
 } from '@angular/core';
 import {
@@ -10,8 +12,18 @@ import {
   BmbCardComponent,
   BmbCardContentComponent,
   IChatBarActions,
+  IBmbChatMessage,
+  BmbChatBubblesComponent,
 } from '../../../../projects/ds-ng/src/public-api';
 import { CommonModule } from '@angular/common';
+
+interface ImessageList {
+  iconBot: string;
+  message: IBmbChatMessage;
+  gptBot: boolean;
+  gptIcons: boolean;
+  isThinking: boolean;
+}
 
 @Component({
   selector: 'bmb-ia',
@@ -23,6 +35,7 @@ import { CommonModule } from '@angular/common';
     CommonModule,
     BmbCardComponent,
     BmbCardContentComponent,
+    BmbChatBubblesComponent,
   ],
   templateUrl: './ia.component.html',
   styleUrl: './ia.component.scss',
@@ -86,4 +99,86 @@ export class IaComponent {
       },
     },
   ];
+
+  isLoading = model<boolean>(false);
+  isThinking = signal<boolean>(false);
+
+  messageList = signal<ImessageList[]>([]);
+
+  placeholderMessage: IBmbChatMessage = {
+    isUserMessage: false,
+    type: 'text',
+    content: { text: '' },
+    time: new Date(),
+  };
+
+  botMessageTemplates: { text: ImessageList } = {
+    text: {
+      iconBot: '/assets/images/bot-icons/chat_gpt.svg',
+      message: {
+        isUserMessage: false,
+        type: 'text',
+        content: {
+          text: 'Hola, soy ChatGPT. ¿En qué puedo ayudarte hoy?',
+        },
+        time: new Date(),
+        userProfile: 'https://picsum.photos/id/64/200/300',
+      },
+      gptBot: true,
+      gptIcons: true,
+      isThinking: false,
+    },
+  };
+
+  handleSendMessage(event: string) {
+    console.log('Mensaje enviado:', event);
+
+    this.buildChatBubble(event);
+  }
+
+  handleSendFiles(event: File[]) {
+    console.log('Archivos enviados:', event);
+    this.isLoading.set(false);
+  }
+
+  handleRecord(event: boolean) {
+    console.log('Grabando:', event);
+    this.isLoading.set(false);
+  }
+
+  handleEmoji(event: boolean) {
+    console.log('Emoji seleccionado:', event);
+    this.isLoading.set(false);
+  }
+
+  buildChatBubble(event: string) {
+    this.isThinking.set(true);
+    this.messageList.update((messages) => [
+      ...messages,
+      {
+        iconBot: '/assets/images/bot-icons/chat_gpt.svg',
+        message: {
+          isUserMessage: true,
+          type: 'text',
+          content: {
+            text: event,
+          },
+          time: new Date(),
+          userProfile: 'https://picsum.photos/id/64/200/300',
+        },
+        gptBot: true,
+        gptIcons: false,
+        isThinking: false,
+      },
+    ]);
+
+    setTimeout(() => {
+      this.isLoading.set(false);
+      this.isThinking.set(false);
+      this.messageList.update((messages) => [
+        ...messages,
+        this.botMessageTemplates.text,
+      ]);
+    }, 2000);
+  }
 }

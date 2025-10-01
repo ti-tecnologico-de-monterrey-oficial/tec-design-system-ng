@@ -2,8 +2,8 @@ import {
   ChangeDetectionStrategy,
   Component,
   computed,
+  effect,
   ElementRef,
-  HostListener,
   input,
   model,
   output,
@@ -55,8 +55,8 @@ export class BmbChatBarComponent {
   botList = input<IBotType[]>(defaultBotList);
   actionsList = input<IChatBarActions[]>([]);
   showEmoji = input<boolean>(false);
+  enableAttachments = input<boolean>(true);
   enableMicInput = input<boolean>(false);
-
   currentBot = model<IBotType>();
   isLoading = model<boolean>(false);
 
@@ -71,6 +71,12 @@ export class BmbChatBarComponent {
   defaultPlaceholder = computed(
     () => this.placeholder() ?? '¿Qué deseas encontrar hoy?',
   );
+  botActionList = computed(() => {
+    if(this.enableAttachments()) {
+      return [...this.actionsList(), ...defaultActionList];
+    }
+    return this.actionsList();
+  });
   showMicControls: boolean = false;
   onDragFiles: boolean = false;
   arrayThumbnail: string[] = [];
@@ -97,7 +103,15 @@ export class BmbChatBarComponent {
   constructor(
     private contentProjected: BmbProjectionContentService,
     private nativeModalService: BmbNativeModalService,
-  ) {}
+  ) {
+    effect(() => {
+      if (this.isLoading()) {
+        console.log('Loading...');
+      } else {
+        console.log('Not loading');
+      }
+    });
+  }
 
   ngOnInit(): void {
     this.currentBot.update(
@@ -111,11 +125,11 @@ export class BmbChatBarComponent {
   }
 
   handleSend(): void {
+    this.isLoading.update((value) => !value);
     this.onSendMessage.emit(this.control.value);
     if (this.files.length > 0) {
       this.onSendFiles.emit(this.files);
     }
-    this.isLoading.update((value) => !value);
     this.control.reset();
     this.files = [];
     this.textareaRef.nativeElement.style.height = 'calc(1lh + 2rem)';
@@ -162,6 +176,7 @@ export class BmbChatBarComponent {
     const data: IBmbProjectionContent = {
       content: this.chatBarTemplate,
       targetRef: event.target as HTMLElement,
+      showBackdrop: false,
     };
 
     this.contentProjected.openContent(data);

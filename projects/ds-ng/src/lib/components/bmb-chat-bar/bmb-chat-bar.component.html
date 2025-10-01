@@ -80,7 +80,7 @@
               (buttonClick)="handleEmoji()"
             />
           }
-          @if (actionsList().length) {
+          @if (botActionList().length) {
             <bmb-action-icon
               class="bmb_chat-bar-add"
               icon="add"
@@ -152,7 +152,7 @@
 <ng-template #chatBarTemplate>
   <section class="bmb_chat-bar-add-dialog">
     <bmb-action-menu [showHeader]="false" title="Selecciona una opción">
-      @for (bot of actionsList(); track $index) {
+      @for (bot of botActionList(); track $index) {
         <ng-template>
           <bmb-item
             [icon]="bot.icon"
