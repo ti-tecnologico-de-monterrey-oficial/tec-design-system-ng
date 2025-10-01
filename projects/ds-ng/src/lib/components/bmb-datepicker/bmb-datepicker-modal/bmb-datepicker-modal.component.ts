@@ -43,7 +43,6 @@ export class BmbDatepickerModalComponent implements OnInit {
   disableDatesBefore = input<DateTime | null>();
   disableDatesAfter = input<DateTime | null>();
 
-  closeWindow = output<boolean>();
   onValueChange = output<string>();
 
   selectedMonth = 0;
@@ -97,7 +96,6 @@ export class BmbDatepickerModalComponent implements OnInit {
   handleDayChange(date: DateTime): void {
     const newValue = date.toFormat(this.dateFormat());
     this.onValueChange.emit(newValue);
-    this.closeWindow.emit(false);
   }
 
   getWeeksAndDays(): DateTime[][] {
@@ -235,8 +233,6 @@ export class BmbDatepickerModalComponent implements OnInit {
       event.preventDefault();
       const newValue = date?.toFormat(this.dateFormat());
       this.onValueChange.emit(newValue || '');
-    } else if (event.key === 'Escape') {
-      this.closeWindow.emit(false);
     }
   }
 }

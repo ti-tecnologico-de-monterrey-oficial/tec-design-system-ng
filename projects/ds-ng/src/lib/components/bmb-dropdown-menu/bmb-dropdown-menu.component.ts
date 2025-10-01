@@ -4,11 +4,13 @@ import {
   signal,
   ChangeDetectionStrategy,
   ViewEncapsulation,
+  ViewChild,
+  ElementRef,
 } from '@angular/core';
 import { BmbDropdownContentComponent } from '../utils/bmb-dropdown-content/bmb-dropdown-content.component';
 import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
-import { ClickOutsideDirective } from '../../directives/utils/clickoutside.directive';
 import { IDropdownItem } from '../../types';
+import { BmbProjectionContentService } from '../../services/projection.service';
 
 @Component({
   selector: 'bmb-dropdown-menu',
@@ -16,9 +18,7 @@ import { IDropdownItem } from '../../types';
   templateUrl: './bmb-dropdown-menu.component.html',
   styleUrl: './bmb-dropdown-menu.component.scss',
   imports: [
-    BmbDropdownContentComponent,
     BmbActionIconComponent,
-    ClickOutsideDirective,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
@@ -26,13 +26,18 @@ import { IDropdownItem } from '../../types';
 export class BmbDropdownMenuComponent {
   items = input<IDropdownItem[]>([]);
 
-  isOpen = signal<boolean>(false);
+  @ViewChild('contentDiv', { static: true }) contentRef!: ElementRef<any>;
+
+  constructor(private projectionService: BmbProjectionContentService) {}
 
   openDropdown() {
-    this.isOpen.set(true);
-  }
-
-  closeDropdown() {
-    this.isOpen.set(false);
+    const data = {
+      content: BmbDropdownContentComponent,
+      targetRef: this.contentRef?.nativeElement,
+      inputContext: { items: this.items() },
+      focusOnOpen: true,
+      showBackdrop: false
+    }
+    this.projectionService.openContent(data);
   }
 }

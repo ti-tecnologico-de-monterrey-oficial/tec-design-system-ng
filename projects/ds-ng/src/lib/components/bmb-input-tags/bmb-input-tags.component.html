@@ -56,12 +56,14 @@
     [name]="name()"
     [formControl]="control()"
   />
-  <bmb-dropdown-content
-    class="bmb_input-tags-dialog"
-    name="list"
-    [selectedOption]="control().value"
-    [isKeyboardEvent]="isKeyboardEvent"
-    [(items)]="filteredOptions"
-    [(isOpen)]="showDropdown"
-  />
+  <dialog [open]="showDropdown" class="bmb_generic-dialog">
+    <bmb-dropdown-content
+      class="bmb_input-tags-dialog"
+      name="list"
+      [selectedOption]="control().value"
+      [isKeyboardEvent]="isKeyboardEvent"
+      [(items)]="filteredOptions"
+      [(isOpen)]="showDropdown"
+    />
+  </dialog>
 </bmb-input-validator>

@@ -1,10 +1,13 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  ElementRef,
   input,
   model,
   OnInit,
   output,
+  TemplateRef,
+  ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
 import {
@@ -17,12 +20,12 @@ import {
 } from '@angular/forms';
 import { DateTime } from 'luxon';
 import {
-  BmbInputComponent,
   IBmbInputAppearance,
   IBmbInputError,
+  IBmbInputTooltipPosition,
 } from '../bmb-input/bmb-input.component';
+import { BmbProjectionContentService } from '../../services/projection.service';
 import { BmbDatepickerModalComponent } from './bmb-datepicker-modal/bmb-datepicker-modal.component';
-import { ClickOutsideDirective } from '../../directives/utils/clickoutside.directive';
 import {
   getCustomValidation,
   getCustomValidationMessage,
@@ -32,17 +35,20 @@ import {
 import {
   assignNewFormControl,
   newFormControlByType,
+  showError,
 } from '../../utils/formControl';
+import { BmbInputContentComponent } from '../bmb-input/bmb-input-content/bmb-input-content.component';
+import { BmbInputValidatorComponent } from '../bmb-input/bmb-input-validator/bmb-input-validator.component';
 
 @Component({
   selector: 'bmb-datepicker',
   standalone: true,
   imports: [
     FormsModule,
-    BmbInputComponent,
     ReactiveFormsModule,
+    BmbInputContentComponent,
+    BmbInputValidatorComponent,
     BmbDatepickerModalComponent,
-    ClickOutsideDirective,
   ],
   templateUrl: './bmb-datepicker.component.html',
   styleUrl: './bmb-datepicker.component.scss',
@@ -50,7 +56,6 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BmbDatepickerComponent implements OnInit {
-  inputId = input<string>(getUUID());
   label = input<string>('');
   icon = input<string>('calendar_month');
   dateFormat = input<string>('dd/MM/yyyy');
@@ -71,7 +76,12 @@ export class BmbDatepickerComponent implements OnInit {
   value = input<string>();
   customValidation = input<ValidatorFn>();
   errorMessage = input<string | IBmbInputError>('');
-
+  inputId = input<string>(this.name());
+  tooltip = input<string>('');
+  tooltipPosition = input<IBmbInputTooltipPosition>({
+    align: 'above',
+    justify: 'before',
+  });
   control = model<FormControl>(newFormControlByType());
 
   onChange = output<string>();
@@ -81,6 +91,12 @@ export class BmbDatepickerComponent implements OnInit {
   isWindowOpen = false;
   isControlNull: boolean = false;
   customValidationMessage: string = '';
+  uuid: string = getUUID();
+
+  @ViewChild('contentDiv', { static: true }) contentRef!: ElementRef<any>;
+  @ViewChild('modalTemplate', { static: true }) modalTemplateRef!: TemplateRef<any>;
+
+  constructor(private projectionService: BmbProjectionContentService) {}
 
   ngOnInit(): void {
     if (!this.control()) {
@@ -141,17 +157,25 @@ export class BmbDatepickerComponent implements OnInit {
   handleFocusedEvent(event: KeyboardEvent | MouseEvent) {
     if (this.disabled()) return;
 
+    const data = {
+      content: this.modalTemplateRef,
+      targetRef: this.contentRef?.nativeElement,
+      fixSizeToRef: true,
+      showBackdrop: false,
+      focusOnOpen: true,
+    }
+
     if (event instanceof KeyboardEvent) {
       if (event.key === 'Enter' || event.key === ' ') {
         if (!this.isWindowOpen) {
           event.preventDefault();
-          this.isWindowOpen = true;
+          this.projectionService.openContent(data);
         }
       }
     }
 
     if (event instanceof MouseEvent) {
-      if (!this.isWindowOpen) this.isWindowOpen = true;
+      if (!this.isWindowOpen) this.projectionService.openContent(data);
     }
   }
 
@@ -161,16 +185,16 @@ export class BmbDatepickerComponent implements OnInit {
 
   handleValueChange(event: string) {
     this.control().setValue(event);
-    this.isWindowOpen = false;
+    this.projectionService.closeContent();
     this.onChange.emit(event);
-  }
-
-  clickOutside(): void {
-    this.isWindowOpen = false;
   }
 
   convertToDate(date: string): DateTime | null {
     const dateTime = DateTime.fromFormat(date, this.dateFormat());
     return dateTime.isValid ? dateTime : null;
+  }
+
+  get shouldShowError(): boolean {
+    return showError(this.control());
   }
 }

@@ -34,13 +34,15 @@ export class BmbDropdownContentComponent {
   isOpen = model<boolean>(false); //remove this
 
   filteredItems = computed<IDropdownItem[]>(() => {
-    return this.items().filter((item) => {
-      return (
-        item.text.toLocaleLowerCase().includes(this.filterString()) ||
-        item.value?.toLocaleLowerCase().includes(this.filterString()) ||
-        item.selectedText?.toLocaleLowerCase().includes(this.filterString())
-      );
-    });
+    if (this.enableFilter() && this.filterString() !== '') {
+      return this.items().filter((item) => {
+        return item.text.toLocaleLowerCase().includes(this.filterString()) ||
+          item.value?.toLocaleLowerCase().includes(this.filterString()) ||
+          item.selectedText?.toLocaleLowerCase().includes(this.filterString());
+      });
+    }
+
+    return this.items();
   });
   filterString = signal<string>('');
 
