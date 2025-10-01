@@ -32,18 +32,20 @@ export const RELEVANT_TITLE_LEVEL: string[] = [
   `⚙️**Configuration**<br/>`,
   `⭐**Example**<br/>`,
 ];
-/*
-\r\n
-<br/>
 
-
-*/
 export const RelevantTitle = {
   warning: '⚠️**Warning**<br/>',
   important: '‼️**Important**<br/>',
   note: '✳️**Note**<br/>',
   configuration: '⚙️**Configuration**<br/>',
   example: '⭐**Example**<br/>',
+  deprecated: '⛔**Deprecated**<br/>',
+};
+
+export const BlockquoteType = {
+  warning: '> [!WARNING]',
+  note: '> [!NOTE]',
+  important: '> [!CALLOUT]',
 };
 
 export const DESIGN_SYSTEM_TITLE: string = '***Bamboo***';
@@ -395,6 +397,23 @@ export const getSubStoryIdentifier = (
   subStoryChart: string = '-',
 ): string => (isSubStory ? subStoryChart : '');
 
+export const getDeprecatedDesc = ({
+  type,
+  isHeaderL2,
+  isBlockquote,
+}: {
+  type?: string | IBmbStoryType;
+  isHeaderL2?: boolean;
+  isBlockquote?: boolean;
+}): string => {
+  const _title: string = isHeaderL2
+    ? `##${RelevantTitle.deprecated.replaceAll('*', '')} `
+    : RelevantTitle.deprecated;
+  return `${isBlockquote ? BlockquoteType.important : ''}
+  ${_title}${!!type ? `This ${type} is deprecated. ` : ''}
+  It will be removed in future versions.<br/>
+`;
+};
 export const getGeneralDocDescription = (generalDocLink: string): string =>
   `Please remember to refer to the [Bamboo - General documentation](${generalDocLink}) for more details about it.`;
 
@@ -413,15 +432,24 @@ export const getGeneralComponentDescription = ({
 
 export const getGeneralDescription = ({
   content,
-  generalDocLink = '',
-  isSubStory = false,
+  generalDocLink,
+  isSubStory,
   subStoryChart = '-',
+  isDeprecated,
 }: {
   content: string;
   generalDocLink?: string;
   isSubStory?: boolean;
   subStoryChart?: string;
-}): string => `
+  isDeprecated?: boolean;
+}): string => `<br/>
+${
+  isDeprecated
+    ? `
+${getDeprecatedDesc({ isHeaderL2: true, isBlockquote: true })}`
+    : ''
+}
+
 <br/>
 ## ${getSubStoryIdentifier(isSubStory, subStoryChart)}${DESCRIPTION_TITLE}
 >${content}
@@ -963,4 +991,25 @@ controls: {
       },
 
 tags: ['!autodocs'],
+
+📺
+📉
+🚫
+❌
+🔚
+⚒️
+🔒
+🔒
+📈
+📉
+✳️
+ℹ️
+⛔
+🧮
+
+.markdown-alert-note
+
+.markdown-alert-callout
+
+.markdown-alert-warning
 */

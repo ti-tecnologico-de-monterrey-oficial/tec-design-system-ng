@@ -534,3 +534,32 @@ img {
 .sb-show-main.sb-main-padded {
   padding: 0;
 }
+
+//Storybook alert blockquote
+@mixin markdown_alert_text() {
+  border-radius: 0.5rem 0.5rem 0.5rem 0;
+  > header {
+    display: none;
+  }
+
+  > h2 {
+    border-bottom: 0;
+  }
+}
+
+.markdown-alert {
+  &-note {
+    @include markdown_alert_text();
+    background-color: rgba(var(--color-blue-light), 0.15);
+  }
+
+  &-callout {
+    @include markdown_alert_text();
+    background-color: rgba(var(--color-mitec-green), 0.15);
+  }
+
+  &-warning {
+    @include markdown_alert_text();
+    background-color: rgba(var(--color-red-light), 0.15);
+  }
+}
