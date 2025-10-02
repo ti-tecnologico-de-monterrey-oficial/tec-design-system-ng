@@ -12,7 +12,7 @@ import {
   ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
-import { IBotType, IChatBarActions } from './types';
+import { IBotType, IChatBarActions, IChatBarEvent } from './types';
 import { defaultActionList, defaultBotList } from './bot_list';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
@@ -59,11 +59,14 @@ export class BmbChatBarComponent {
   enableMicInput = input<boolean>(false);
   currentBot = model<IBotType>();
   isLoading = model<boolean>(false);
+  maxAudioDuration = input<number>(300);
 
-  onSendMessage = output<string>();
-  onSendFiles = output<File[]>();
-  onRecord = output<boolean>();
-  onEmoji = output<boolean>();
+  onSendMessage = output<string>(); // deprecated
+  onSendFiles = output<File[]>(); // deprecated
+  onRecord = output<boolean>(); // deprecated
+  onEmoji = output<boolean>(); // deprecated
+
+  onSubmitMessage = output<IChatBarEvent>();
 
   files: File[] = [];
   control = new FormControl();
@@ -94,6 +97,13 @@ export class BmbChatBarComponent {
 
   windowWidth: number = window.innerWidth;
   windowHeight: number = window.innerHeight;
+  mediaRecorder: MediaRecorder | null = null;
+  chunks: Blob[] = [];
+  stream: MediaStream | null = null;
+  isRecording = signal<boolean>(false);
+  isPaused = false;
+  timeElapsed = 0;
+  timer: any = null;
 
   @ViewChild('textareaRef') textareaRef!: ElementRef<HTMLTextAreaElement>;
   @ViewChild('chatBarTemplate') chatBarTemplate!: TemplateRef<unknown>;
@@ -125,14 +135,14 @@ export class BmbChatBarComponent {
   }
 
   handleSend(): void {
-    this.isLoading.update((value) => !value);
-    this.onSendMessage.emit(this.control.value);
-    if (this.files.length > 0) {
-      this.onSendFiles.emit(this.files);
-    }
-    this.control.reset();
-    this.files = [];
-    this.textareaRef.nativeElement.style.height = 'calc(1lh + 2rem)';
+    // this.isLoading.update((value) => !value);
+    // this.onSendMessage.emit(this.control.value);
+    // if (this.files.length > 0) {
+    //   this.onSendFiles.emit(this.files);
+    // }
+    // this.control.reset();
+    // this.files = [];
+    // this.textareaRef.nativeElement.style.height = 'calc(1lh + 2rem)';
   }
 
   handleChangeBot(bot: IBotType): void {
@@ -160,16 +170,6 @@ export class BmbChatBarComponent {
         this.modalID.set(this.nativeModalService.openModal(data));
       }
     }
-  }
-
-  handleMic(): void {
-    this.showMicControls = !this.showMicControls;
-    this.onRecord.emit(true);
-  }
-
-  handleStopMic(): void {
-    this.showMicControls = !this.showMicControls;
-    this.onRecord.emit(false);
   }
 
   handleAddDialog(event: MouseEvent | KeyboardEvent): void {
@@ -236,11 +236,11 @@ export class BmbChatBarComponent {
   }
 
   handleEmoji(): void {
-    this.onEmoji.emit(true);
+    // this.onEmoji.emit(true);
   }
 
   handleRecord(): void {
-    this.onRecord.emit(true);
+    // this.onRecord.emit(true);
   }
 
   handleClickOutside(): void {
@@ -257,5 +257,90 @@ export class BmbChatBarComponent {
   autoResize(): void {
     const textarea = this.textareaRef.nativeElement;
     textarea.style.height = textarea.scrollHeight + 'px';
+  }
+
+  async startRecording(): Promise<void> {
+    if (this.isRecording()) return;
+
+    try {
+      this.stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      this.mediaRecorder = new MediaRecorder(this.stream);
+      this.chunks = [];
+
+      this.mediaRecorder.ondataavailable = (event) => {
+        if (event.data.size > 0) {
+          this.chunks.push(event.data);
+        }
+      };
+
+      this.mediaRecorder.onstop = () => {
+        this.stopTimer();
+        const blob = new Blob(this.chunks, { type: 'audio/webm' });
+        const tempUrl = URL.createObjectURL(blob);
+
+        console.log('Audio grabado:', blob, tempUrl);
+
+        this.onSubmitMessage.emit({
+          recording: blob,
+          recordingUrl: tempUrl,
+          hasEmojiReaction: false,
+         });
+
+        this.cleanup();
+      };
+
+      // Iniciar grabación
+      this.mediaRecorder.start();
+      this.isRecording.set(true);
+      this.startTimer();
+    } catch (error) {
+      console.error('Error al acceder al micrófono:', error);
+      alert('No se pudo acceder al micrófono. Verifica los permisos.');
+    }
+  }
+
+  stopRecording(): void {
+    if (!this.isRecording || !this.mediaRecorder) return;
+
+    this.mediaRecorder.stop();
+    this.isRecording.set(false);
+    this.isPaused = false;
+  }
+
+  private startTimer(): void {
+    this.timeElapsed = 0;
+    this.timer = setInterval(() => {
+      this.timeElapsed += 1000;
+      if (this.timeElapsed >= this.maxAudioDuration() * 1000) {
+        this.stopRecording();
+      }
+    }, 1000);
+  }
+
+  private stopTimer(): void {
+    if (this.timer) {
+      clearInterval(this.timer);
+      this.timer = null;
+    }
+  }
+
+  private cleanup(): void {
+    if (this.stream) {
+      this.stream.getTracks().forEach(track => track.stop());
+      this.stream = null;
+    }
+    this.mediaRecorder = null;
+    this.chunks = [];
+  }
+
+  ngOnDestroy(): void {
+    this.stopTimer();
+    this.cleanup();
+  }
+
+  get formattedTime(): string {
+    const minutes = Math.floor(this.timeElapsed / 60000);
+    const seconds = Math.floor((this.timeElapsed % 60000) / 1000);
+    return `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
   }
 }

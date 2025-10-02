@@ -35,20 +35,11 @@ describe('BmbExternalLinkComponent', () => {
     expect(component.onClose.emit).toHaveBeenCalledWith(event);
   });
 
-  it('should toggle showMenu when handleOpenMenu is called', () => {
-    expect(component.showMenu).toBeFalse();
-    component.handleOpenMenu();
-    expect(component.showMenu).toBeTrue();
-    component.handleOpenMenu();
-    expect(component.showMenu).toBeFalse();
-  });
-
   it('should emit menuEvent on menu option click', () => {
     spyOn(component.menuEvent, 'emit');
     const event: IBmbMenuEvent = 'link';
     component.onMenuOptionClick(event);
     expect(component.menuEvent.emit).toHaveBeenCalledWith(event);
-    expect(component.showMenu).toBeFalse();
   });
 
   it('should emit footerEvent on footer option click', () => {

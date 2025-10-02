@@ -138,7 +138,7 @@ export class IaComponent {
 
   handleSendFiles(event: File[]) {
     console.log('Archivos enviados:', event);
-    this.isLoading.set(false);
+    this.buildFileChatBubble(event);
   }
 
   handleRecord(event: boolean) {
@@ -149,6 +149,29 @@ export class IaComponent {
   handleEmoji(event: boolean) {
     console.log('Emoji seleccionado:', event);
     this.isLoading.set(false);
+  }
+
+  buildFileChatBubble(files: File[]) {
+    console.log(files);
+
+    // this.messageList.update((messages) => [
+    //   ...messages,
+    //   {
+    //     iconBot: '/assets/images/bot-icons/chat_gpt.svg',
+    //     message: {
+    //       isUserMessage: true,
+    //       type: 'mixed',
+    //       content: {
+    //         text: event,
+    //       },
+    //       time: new Date(),
+    //       userProfile: 'https://picsum.photos/id/64/200/300',
+    //     },
+    //     gptBot: true,
+    //     gptIcons: false,
+    //     isThinking: false,
+    //   },
+    // ]);
   }
 
   buildChatBubble(event: string) {

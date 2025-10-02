@@ -33,13 +33,10 @@
         icon: '/assets/images/bot-icons/bot_tecStandar.svg'
       }"
       [(isLoading)]="isLoading"
-      [showEmoji]="true"
+      [showEmoji]="false"
       [actionsList]="[]"
+      [enableMicInput]="true"
       bmbVerticalLayoutItem
-      (onSendMessage)="handleSendMessage($event)"
-      (onSendFiles)="handleSendFiles($event)"
-      (onRecord)="handleRecord($event)"
-      (onEmoji)="handleEmoji($event)"
     ></bmb-chat-bar>
   </section>
 </div>

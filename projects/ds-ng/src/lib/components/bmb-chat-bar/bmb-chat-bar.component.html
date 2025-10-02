@@ -58,12 +58,12 @@
           (keydown)="handleKeyDown($event)"
           autocomplete="off"
         ></textarea>
-        @if (showMicControls) {
+        @if (isRecording()) {
           <bmb-action-icon
             class="bmb_chat-bar-pause"
             icon="pause"
             [iconSize]="40"
-            (buttonClick)="handleStopMic()"
+            (buttonClick)="stopRecording()"
           />
           <bmb-action-icon
             class="bmb_chat-bar-record bmb_chat-bar-record-animated"
@@ -93,7 +93,7 @@
               class="bmb_chat-bar-mic"
               icon="mic"
               [iconSize]="32"
-              (buttonClick)="handleMic()"
+              (buttonClick)="startRecording()"
             />
           }
         }

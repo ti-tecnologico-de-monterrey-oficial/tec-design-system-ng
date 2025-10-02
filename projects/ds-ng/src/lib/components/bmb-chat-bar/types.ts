@@ -8,3 +8,11 @@ export interface IChatBarActions {
   icon: string;
   action: () => void;
 }
+
+export interface IChatBarEvent {
+  message?: string;
+  files?: File[];
+  recording?: Blob | undefined;
+  recordingUrl?: string;
+  hasEmojiReaction?: boolean;
+}
