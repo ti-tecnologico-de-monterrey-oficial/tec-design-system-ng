@@ -27,7 +27,7 @@ export type IBmbOnEventType = 'change' | 'keyDown' | 'other';
 
 export const RELEVANT_TITLE_LEVEL: string[] = [
   `⚠️**Warning**<br/>`,
-  `‼️**Important**<br/>`,
+  `ℹ️**Important**<br/>`,
   `✳️**Note**<br/>`,
   `⚙️**Configuration**<br/>`,
   `⭐**Example**<br/>`,
@@ -402,7 +402,7 @@ export const getDeprecatedDesc = ({
   isHeaderL2,
   isBlockquote,
 }: {
-  type?: string | IBmbStoryType;
+  type?: 'property' | IBmbStoryType;
   isHeaderL2?: boolean;
   isBlockquote?: boolean;
 }): string => {
@@ -410,10 +410,12 @@ export const getDeprecatedDesc = ({
     ? `##${RelevantTitle.deprecated.replaceAll('*', '')} `
     : RelevantTitle.deprecated;
   return `${isBlockquote ? BlockquoteType.warning : ''}
-  ${_title}${!!type ? `This ${type} is deprecated. ` : ''}
-  It will be removed in future versions.<br/>
+  ${_title}
+  This ${type} will not be maintainable.
+  ${type === 'property' ? 'This will be removed in future versions.' : ''}
 `;
 };
+
 export const getGeneralDocDescription = (generalDocLink: string): string =>
   `Please remember to refer to the [Bamboo - General documentation](${generalDocLink}) for more details about it.`;
 
@@ -446,7 +448,7 @@ export const getGeneralDescription = ({
 ${
   isDeprecated
     ? `
-${getDeprecatedDesc({ isHeaderL2: true, isBlockquote: true })}`
+${getDeprecatedDesc({ type: 'component', isHeaderL2: true, isBlockquote: true })}`
     : ''
 }
 
@@ -992,24 +994,6 @@ controls: {
 
 tags: ['!autodocs'],
 
-📺
-📉
-🚫
+
 ❌
-🔚
-⚒️
-🔒
-🔒
-📈
-📉
-✳️
-ℹ️
-⛔
-🧮
-
-.markdown-alert-note
-
-.markdown-alert-callout
-
-.markdown-alert-warning
 */
