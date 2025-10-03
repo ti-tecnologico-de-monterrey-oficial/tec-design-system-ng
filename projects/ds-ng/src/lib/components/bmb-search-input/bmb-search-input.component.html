@@ -15,12 +15,14 @@
       (keydown)="handleKeyDown($event)"
       (click)="handleItemClick()"
     />
-    <bmb-dropdown-content
-      class="bmb_search-input-dialog"
-      name="list"
-      [selectedOption]="filterControl.value"
-      [(items)]="filteredData"
-      [(isOpen)]="isDialogOpen"
-    />
+    <dialog [open]="isDialogOpen" class="bmb_generic-dialog">
+      <bmb-dropdown-content
+        class="bmb_search-input-dialog"
+        name="list"
+        [selectedOption]="filterControl.value"
+        [(items)]="filteredData"
+        [(isOpen)]="isDialogOpen"
+      />
+    </dialog>
   </section>
 </section>

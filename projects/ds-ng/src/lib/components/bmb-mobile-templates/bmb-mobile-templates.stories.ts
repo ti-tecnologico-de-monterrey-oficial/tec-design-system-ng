@@ -44,7 +44,7 @@ export default {
       },
       description: {
         component: `
-${getGeneralDescription(`\`mobile-templates\` is the structure that visually organizes the elements of a mobile screen to ensure a coherent and functional experience. `, 'https://bamboo.tec.mx/latest/templates/mobile/descripcion-general-dUQzbIvB')}
+${getGeneralDescription({ content: `\`mobile-templates\` is the structure that visually organizes the elements of a mobile screen to ensure a coherent and functional experience. `, generalDocLink: 'https://bamboo.tec.mx/latest/templates/mobile/descripcion-general-dUQzbIvB' })}
 ${getBasicExampleBlock(
   'BmbMobileTemplatesComponent',
   '',

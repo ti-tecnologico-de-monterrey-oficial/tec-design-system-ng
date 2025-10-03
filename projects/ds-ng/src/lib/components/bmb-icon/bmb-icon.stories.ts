@@ -12,24 +12,30 @@ import {
   DBmbGenericParamDesc,
   DBmbIconParamDesc,
   ICON_IMAGE_DETAIL,
-  DBmbImageParamDesc,
 } from '../../utils/doc/parameterDescriptions';
 
 export default {
   title: 'Foundations/Icon',
   component: BmbIconComponent,
+  tags: ['!autodocs'],
   parameters: {
     controls: {
-      exclude: ['styleIconGoogle', 'getFontVariationSettings', 'isImage'],
+      exclude: [
+        'styleIconGoogle',
+        'getFontVariationSettings',
+        'isImage',
+        'getImageStyles',
+      ],
     },
     docs: {
       description: {
         component: `
-${getGeneralDescription(
-  `
-${getGeneralComponentDescription('icon', 'element', 'visual')} to represent actions, concepts or functions in a quick and easily recognizable way.`,
-  'https://bamboo.tec.mx/latest/foundations/iconos/iconos-wukxE19q',
-)}
+${getGeneralDescription({
+  content: `
+${getGeneralComponentDescription({ name: 'icon', type: 'element', additional: 'visual' })} to represent actions, concepts or functions in a quick and easily recognizable way.`,
+  generalDocLink:
+    'https://bamboo.tec.mx/latest/foundations/iconos/iconos-wukxE19q',
+})}
 ${getArchitectureSection(
   `<i class="bmb_icon-container-i material-symbols-rounded">
   < icon />
@@ -50,13 +56,14 @@ ${getBasicExampleBlock('BmbIconComponent')}
     icon: DBmbIconParamDesc.icon,
     styleIcon: {
       ...DBmbGenericParamDesc.deprecated,
-      description: DBmbGenericParamDesc.deprecated.description.concat(`
-### Available Icon Styles
+      description: DBmbGenericParamDesc.deprecated.description
+        .concat(`<br/><br/>
+Available Icon Styles
 
-- **Rounded**
-  - **Description:** Icons with rounded edges. They feel softer and more friendly.
-  - **Visual Features:** Rounded corners. The design is more approachable and less technical.
-  - **Class Name:** \`material-symbols-rounded\`
+**Rounded**
+- **Description:** Icons with rounded edges. They feel softer and more friendly.
+- **Visual Features:** Rounded corners. The design is more approachable and less technical.
+- **Class Name:** \`material-symbols-rounded\`
     `),
     },
     isFill: DBmbIconParamDesc.isIconFill,
@@ -80,7 +87,6 @@ ${getBasicExampleBlock('BmbIconComponent')}
     isFill: true,
     fontWeight: '400',
     size: 24,
-    dotNotification: 0,
     alt: 'Default alt text for image',
   },
 } as Meta<typeof BmbIconComponent>;

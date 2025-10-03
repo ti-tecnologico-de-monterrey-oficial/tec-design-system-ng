@@ -26,7 +26,7 @@ export default {
       page: () => getPageStructureForFoundationStories(),
       description: {
         component: `
-${getGeneralDescription(getFoundationDescriptions('fonts and sizes', TYPOGRAPHY_DESCRIPTION.concat('<br/>')), 'https://bamboo.tec.mx/latest/foundations/tipografia/descripcion-general-cJHuMZaF')}
+${getGeneralDescription({ content: getFoundationDescriptions('fonts and sizes', TYPOGRAPHY_DESCRIPTION.concat('<br/>')), generalDocLink: 'https://bamboo.tec.mx/latest/foundations/tipografia/descripcion-general-cJHuMZaF' })}
 ${getSpecialSpecifications(
   getSandboxConsiderationsDocumentation(
     'font family and size reference',

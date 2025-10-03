@@ -72,7 +72,7 @@ export default {
       },
       description: {
         component: `
-${getGeneralDescription(`${getGeneralComponentDescription('tabs')} the division of information into defined sections, improving navigation and facilitating the presentation of specific categories or sets of information.`, 'https://bamboo.tec.mx/latest/components/tab/descripcion-general-eJumojIF')}
+${getGeneralDescription({ content: `${getGeneralComponentDescription({ name: 'tabs' })} the division of information into defined sections, improving navigation and facilitating the presentation of specific categories or sets of information.`, generalDocLink: 'https://bamboo.tec.mx/latest/components/tab/descripcion-general-eJumojIF' })}
 ${getSpecialSpecifications(` ### ${RELEVANT_TITLE_LEVEL[4]}
 Usage with "Next", "Back" Buttons and TabService.
 >
@@ -240,7 +240,7 @@ Data:
     tabs: [
       { id: 1, title: 'Tec de Monterrey', badge: 13, isActive: true },
       { id: 2, title: 'Label demasiado grande para una tab' },
-      { id: 3, title: 'Mas usado' },
+      { id: 3, title: 'Mas usado', badge: 100 },
       { id: 4, title: 'Textuales' },
       { id: 5, title: 'Text' },
       { id: 6, title: 'Mas usado' },

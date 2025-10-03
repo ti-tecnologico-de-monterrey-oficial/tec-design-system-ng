@@ -106,14 +106,6 @@
     }
   }
 
-  &-badge {
-    align-items: center;
-    color: var(--general_contrasts-50);
-    display: flex;
-    @include fonts.font(1, medium);
-    font-weight: 600;
-  }
-
   &-scroll {
     &-left {
       display: flex;

@@ -1,9 +1,4 @@
-import {
-  componentWrapperDecorator,
-  moduleMetadata,
-  StoryObj,
-  type Meta,
-} from '@storybook/angular';
+import { moduleMetadata, StoryObj, type Meta } from '@storybook/angular';
 import { BmbDropdownComponent } from './bmb-dropdown.component';
 import {
   getArchitectureSection,
@@ -53,12 +48,6 @@ export default {
   decorators: [
     moduleMetadata({
       imports: [BmbFormValidatorComponent],
-    }),
-    componentWrapperDecorator((story: string) => {
-      return `
-        <div style="height: 25rem">
-          ${story}
-        </div>`;
     }),
   ],
   parameters: {

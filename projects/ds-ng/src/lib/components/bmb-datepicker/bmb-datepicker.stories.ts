@@ -37,14 +37,6 @@ export default {
   title: 'Components/Inputs/Calendar date picker',
   component: BmbDatepickerComponent,
   tags: ['!autodocs'],
-  decorators: [
-    componentWrapperDecorator((story: string) => {
-      return `
-        <div style="height: 35rem">
-          ${story}
-        </div>`;
-    }),
-  ],
   parameters: {
     controls: {
       exclude: [
@@ -187,8 +179,8 @@ This date must have the same format as \`dateFormat\`.
     customValidation: DBmbInputParamDesc.customValidation,
   },
   args: {
-    inputId: '',
-    name: '',
+    inputId: 'test_id',
+    name: 'test_id',
     value: '',
     label: 'Date',
     icon: 'calendar_month',

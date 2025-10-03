@@ -39,19 +39,28 @@ export const Item = ({ children, showControls, showStories }) => (
 <ListTemplate>{itemStory}</ListTemplate>//Two tabs, this takes the main story of the Meta.
 <ListTemplate main={mainStory} content={[itemStory, secondItemStory]}/>
 <ListTemplate content={[mainStory,itemStory, secondItemStory]}/>
+showStories for children
+showControls for children
 */
 export const ListTemplate = ({
   children,
   main,
   content = [],
   context = {},
+  showStories,
+  showControls,
 }) => {
   return (
     <section>
       {children && (
         <Tabs
           tabs={[<Title />, <Title of={children}>{children?.title}</Title>]}
-          content={[<Main />, <Item>{children}</Item>]}
+          content={[
+            <Main />,
+            <Item showStories={showStories} showControls={showControls}>
+              {children}
+            </Item>,
+          ]}
         />
       )}
       {content && main && (

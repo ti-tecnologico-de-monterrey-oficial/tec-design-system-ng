@@ -42,7 +42,7 @@ export default {
       },
       description: {
         component: `
-${getGeneralDescription(`${getGeneralComponentDescription('account-statement', 'organism')} the display of student payment information within Tec de Monterrey.`, 'https://bamboo.tec.mx/latest/organismos/account-statement/descripcion-general-yMI2rj1D')}
+${getGeneralDescription({ content: `${getGeneralComponentDescription({ name: 'account-statement', type: 'organism' })} the display of student payment information within Tec de Monterrey.`, generalDocLink: 'https://bamboo.tec.mx/latest/organismos/account-statement/descripcion-general-yMI2rj1D' })}
 ${getBasicExampleBlock('BmbAccountStatementComponent')}
         `,
       },

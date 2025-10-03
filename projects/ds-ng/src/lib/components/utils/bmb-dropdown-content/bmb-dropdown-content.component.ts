@@ -1,12 +1,10 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  ElementRef,
+  computed,
   input,
   model,
-  OnChanges,
-  SimpleChanges,
-  ViewChild,
+  signal,
   ViewEncapsulation,
 } from '@angular/core';
 import { BmbCheckExternalLinkButtonComponent } from '../../bmb-check-external-link-button/bmb-check-external-link-button.component';
@@ -27,33 +25,33 @@ import { CommonModule } from '@angular/common';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class BmbDropdownContentComponent implements OnChanges {
+export class BmbDropdownContentComponent {
   selectedOption = input<string | string[]>(); //Internal
-
   items = model<IDropdownItem[]>([]);
-  isOpen = model<boolean>(false);
   isKeyboardEvent = model<boolean>(false); //Internal
+  enableFilter = input<boolean>(false);
 
-  @ViewChild('modalContainer') modalContainer!: ElementRef;
+  isOpen = model<boolean>(false); //remove this
 
-  ngOnChanges(changes: SimpleChanges): void {
-    if (
-      changes['isOpen'] &&
-      changes['isOpen'].currentValue &&
-      this.modalContainer
-    ) {
-      this.addFocusToFirstElement();
+  filteredItems = computed<IDropdownItem[]>(() => {
+    if (this.enableFilter() && this.filterString() !== '') {
+      return this.items().filter((item) => {
+        return (
+          item.text.toLocaleLowerCase().includes(this.filterString()) ||
+          item.value?.toLocaleLowerCase().includes(this.filterString()) ||
+          item.selectedText?.toLocaleLowerCase().includes(this.filterString())
+        );
+      });
     }
-  }
 
-  addFocusToFirstElement(): void {
-    setTimeout(() => {
-      const buttonList =
-        this.modalContainer.nativeElement.querySelectorAll('button');
-      if (this.isKeyboardEvent() && buttonList.length > 0) {
-        (buttonList[0] as HTMLElement).focus();
-      }
-    });
+    return this.items();
+  });
+  filterString = signal<string>('');
+
+  filterList(event: Event) {
+    const input = event.target as HTMLInputElement;
+    const filterValue = input.value.toLowerCase();
+    this.filterString.set(filterValue);
   }
 
   isSelected(item: string): boolean {
@@ -64,8 +62,6 @@ export class BmbDropdownContentComponent implements OnChanges {
   }
 
   handleDropdown(item: IDropdownItem) {
-    this.isOpen.update((value) => !value);
-    if (!this.isOpen()) this.isKeyboardEvent.set(false);
     if (item?.action) item.action();
   }
 }

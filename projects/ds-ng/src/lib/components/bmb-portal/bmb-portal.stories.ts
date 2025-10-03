@@ -209,7 +209,7 @@ export default {
       },
       description: {
         component: `
-${getGeneralDescription(`***Portal*** offer a single point of access, customization options, simplifying navigation and providing specialized content.`, 'https://bamboo.tec.mx/latest/dev-tools/coleccion-de-componentes-uC69aq75')}
+${getGeneralDescription({ content: `***Portal*** offer a single point of access, customization options, simplifying navigation and providing specialized content.`, generalDocLink: 'https://bamboo.tec.mx/latest/dev-tools/coleccion-de-componentes-uC69aq75' })}
 ${getSpecialSpecifications(
   `${getProviderTypescriptExample(
     'BmbNotificationService',

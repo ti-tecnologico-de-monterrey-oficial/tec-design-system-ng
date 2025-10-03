@@ -55,7 +55,7 @@ export default {
       controls: { exclude: ['displayStyle', 'ngAfterViewInit', 'ngOnChanges'] },
       description: {
         component: `
-${getGeneralDescription(`${getGeneralComponentDescription('overlay')} to display an overlay element.`, 'https://bamboo.tec.mx/latest/componentes/overlay/descripcion-general-20iCzyFB')}
+${getGeneralDescription({ content: `${getGeneralComponentDescription({ name: 'overlay' })} to display an overlay element.`, generalDocLink: 'https://bamboo.tec.mx/latest/componentes/overlay/descripcion-general-20iCzyFB' })}
 ${getBasicExampleBlock(
   'BmbOverlayComponent',
   '',

@@ -42,11 +42,12 @@ export default {
     docs: {
       description: {
         component: `
-${getGeneralDescription(
-  `The \`Vertical layout container\` is a vertical structure that allows for customization of its content, allowing for the integration of different types of components, making it highly flexible and adaptable to diverse needs.<br/><br/>
+${getGeneralDescription({
+  content: `The \`Vertical layout container\` is a vertical structure that allows for customization of its content, allowing for the integration of different types of components, making it highly flexible and adaptable to diverse needs.<br/><br/>
 ${getAuxiliaryDescription('Vertical layout container', 'Vertical layout container item')}`,
-  'https://bamboo.tec.mx/latest/foundations/vertical-layout-container/descripcion-general-Crf8ymYZ',
-)}
+  generalDocLink:
+    'https://bamboo.tec.mx/latest/foundations/vertical-layout-container/descripcion-general-Crf8ymYZ',
+})}
 ${getBasicExampleBlock('BmbVerticalLayoutDirective, BmbVerticalLayoutItemDirective')}
         `,
       },

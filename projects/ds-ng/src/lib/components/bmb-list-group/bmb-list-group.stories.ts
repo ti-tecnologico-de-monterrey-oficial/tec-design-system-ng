@@ -38,11 +38,12 @@ export default {
       },
       description: {
         component: `
-${getGeneralDescription(
-  `${getGeneralComponentDescription('list-group')} to organize related elements in an ordered list, optimizing navigation and displaying content clearly and efficiently.
+${getGeneralDescription({
+  content: `${getGeneralComponentDescription({ name: 'list-group' })} to organize related elements in an ordered list, optimizing navigation and displaying content clearly and efficiently.
 It helps to group information in a coherent and accessible way.`,
-  'https://bamboo.tec.mx/latest/components/list-group/descripcion-general-ieYN5a5C',
-)}
+  generalDocLink:
+    'https://bamboo.tec.mx/latest/components/list-group/descripcion-general-ieYN5a5C',
+})}
 ${getBasicExampleBlock('BmbListGroupComponent, BmbListGroupItemComponent')}
         `,
       },

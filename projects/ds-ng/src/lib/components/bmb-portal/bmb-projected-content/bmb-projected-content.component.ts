@@ -4,6 +4,7 @@ import {
   Component,
   ComponentRef,
   effect,
+  ElementRef,
   input,
   output,
   TemplateRef,
@@ -33,13 +34,14 @@ export class BmbProjectedContentComponent {
   inputContext = input<{ [key: string]: any }>({});
   showBackdrop = input<boolean>(true);
   outputContext = input<{ [key: string]: (value: any) => void }>({});
+  focusOnOpen = input<boolean>(true);
 
   removeContent = output<void>();
 
   @ViewChild('container', { read: ViewContainerRef, static: true })
   container!: ViewContainerRef;
-  @ViewChild('projectedContentDialogRef')
-  projectedContentDialogRef!: HTMLElement;
+  @ViewChild('projectedContentDialogRef', { static: true })
+  projectedContentDialogRef!: ElementRef<HTMLElement>;
 
   private componentRef: ComponentRef<any> | null = null;
 
@@ -47,7 +49,7 @@ export class BmbProjectedContentComponent {
     effect(() => {
       if (this.content() !== null) {
         this.renderContent();
-        // this.projectedContentDialogRef.focus();
+        this.projectedContentDialogRef?.nativeElement?.focus();
       } else {
         this.componentRef?.destroy();
         this.componentRef = null;

@@ -1,11 +1,21 @@
-<dialog
-  class="bmb_dropdown-content-modal"
-  [tabindex]="-1"
-  [open]="isOpen()"
-  #modalContainer
->
+<div class="bmb_dropdown-content-modal" [tabindex]="1">
   <ul class="bmb_dropdown-content-container" [tabindex]="-1">
-    @for (item of items(); track $index) {
+    @if (enableFilter()) {
+      <li class="bmb_dropdown-content-item bmb_dropdown-content-item-filter">
+        <input
+          type="text"
+          class="bmb_dropdown-content-item-filter-input"
+          placeholder="Select an option"
+          (input)="filterList($event)"
+        />
+        <bmb-icon
+          class="bmb_dropdown-content-item-filter-icon"
+          icon="search"
+          [size]="24"
+        />
+      </li>
+    }
+    @for (item of filteredItems(); track $index) {
       <li
         class="bmb_dropdown-content-item"
         [ngClass]="{
@@ -33,4 +43,4 @@
       </li>
     }
   </ul>
-</dialog>
+</div>

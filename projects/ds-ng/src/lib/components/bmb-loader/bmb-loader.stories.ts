@@ -64,7 +64,7 @@ export default {
       },
       description: {
         component: `
-${getGeneralDescription(`${getGeneralComponentDescription('loader')} to indicate that a process is running.`, 'https://bamboo.tec.mx/latest/componentes/loading-screens/descripcion-general-TzvjIs5D')}
+${getGeneralDescription({ content: `${getGeneralComponentDescription({ name: 'loader' })} to indicate that a process is running.`, generalDocLink: 'https://bamboo.tec.mx/latest/componentes/loading-screens/descripcion-general-TzvjIs5D' })}
 ${getBasicExampleBlock('BmbLoaderComponent')}
         `,
       },

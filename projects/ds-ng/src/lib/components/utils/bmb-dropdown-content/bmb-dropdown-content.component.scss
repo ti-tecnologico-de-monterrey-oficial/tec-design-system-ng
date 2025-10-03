@@ -5,7 +5,6 @@
   &-modal {
     background-color: var(--containers-main);
     border: 0;
-    position: absolute;
     z-index: 1;
     box-shadow: var(--bmb-box-shadow-3);
     max-height: rem.rem_calc(48 * 6);
@@ -14,8 +13,6 @@
     border-radius: rem.rem_calc(8);
     padding: 0;
     margin: rem.rem_calc(8 0 0);
-    left: 0;
-    top: 100%;
   }
 
   &-container {
@@ -26,6 +23,7 @@
 
   &-item {
     color: var(--menu_select-label-menu-inactive);
+
     .bmb_check-external-link-button-element {
       display: flex;
       align-items: center;
@@ -63,6 +61,33 @@
       text-overflow: ellipsis;
       white-space: nowrap;
       @include fonts.font(4, regular);
+    }
+
+    &-filter {
+      position: sticky;
+      top: 0;
+      left: 0;
+
+      &-icon {
+        position: absolute;
+        left: rem.rem_calc(8);
+        top: rem.rem_calc(8);
+      }
+
+      &-input {
+        border-radius: rem.rem_calc(8 8 0 0);
+        border: rem.rem_calc(1) solid var(--general_contrasts-50);
+        background-color: var(--general_contrasts-input-background);
+        padding: rem.rem_calc(8 8 8 48);
+        color: var(--menu_select-label-menu-inactive);
+        width: 100%;
+
+        &:hover,
+        &:focus,
+        &:focus-visible {
+          outline: none;
+        }
+      }
     }
   }
 }

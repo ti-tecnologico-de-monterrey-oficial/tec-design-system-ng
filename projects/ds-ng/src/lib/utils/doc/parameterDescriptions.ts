@@ -4,13 +4,12 @@ import {
   IBmbOnEventType,
   IBmbOnEvent,
   RELEVANT_TITLE_LEVEL,
+  getDeprecatedDesc,
 } from './utils';
 
 type IBmbButtonEventType = 'clicked' | 'pressed';
 type IBmbControlType = 'text' | 'boolean' | 'number' | 'object';
 
-export const DEPRECATED_PROPERTIES_DESCRIPTION: string =
-  'This property is deprecated and will be removed in future versions.';
 const DISABLE_DESCRIPTION: string = `
 Disables the element when true, making it non-interactive and cannot be clicked.
 
@@ -409,7 +408,7 @@ By default, the supported language are:
   },
   deprecated: {
     control: false,
-    description: DEPRECATED_PROPERTIES_DESCRIPTION,
+    description: getDeprecatedDesc({ type: 'property' }),
     table: {
       category: 'Deprecated',
       defaultValue: false,
@@ -590,11 +589,10 @@ ${RELEVANT_TITLE_LEVEL[2]} <= 0 will be inherited.`,
   },
   iconDotNotification: {
     control: { type: 'number' },
-    description:
-      'Displays a notification dot with a number on the icon. Set to 0 to hide.',
+    description: 'Sets the notification counter number (0 to hide).',
     table: {
       category: 'Properties',
-      defaultValue: getDefaultValueControl(),
+      defaultValue: false,
       type: { summary: 'number' },
     },
   },
@@ -1200,7 +1198,7 @@ Example of a \`ValidatorFn\`
   showError: {
     control: false,
     description: `
-${DEPRECATED_PROPERTIES_DESCRIPTION}
+${getDeprecatedDesc({ type: 'property' })}
 
 **Clarification:**
 
@@ -1222,7 +1220,7 @@ Below is a snippet of the **TypeScript example** that performs automatic validat
   id: {
     control: false,
     description: `
-${DEPRECATED_PROPERTIES_DESCRIPTION}
+${getDeprecatedDesc({ type: 'property' })}
 
 **Clarification:**
 

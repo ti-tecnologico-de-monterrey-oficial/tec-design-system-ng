@@ -43,13 +43,14 @@ export default {
       },
       description: {
         component: `
-${getGeneralDescription(
-  `${getGeneralComponentDescription('multi-dot-paginator')} to view up to three elements, such as images (JPG), videos, or cards, simultaneously, offering agile and simplified navigation. This design minimizes clicks and improves interaction efficiency, allowing users to explore and select content quickly and effortlessly.`,
-  'https://bamboo.tec.mx/latest/components/multi-dot-paginator/descripcion-general-QaYRw63C',
-)}
+${getGeneralDescription({
+  content: `${getGeneralComponentDescription({ name: 'multi-dot-paginator' })} to view up to three elements, such as images (JPG), videos, or cards, simultaneously, offering agile and simplified navigation. This design minimizes clicks and improves interaction efficiency, allowing users to explore and select content quickly and effortlessly.`,
+  generalDocLink:
+    'https://bamboo.tec.mx/latest/components/multi-dot-paginator/descripcion-general-QaYRw63C',
+})}
 ${getSpecialSpecifications(`
 ${RELEVANT_TITLE_LEVEL[3]}
-${getGeneralComponentDescription('bmb-multi-dot-paginator-item')} to add whether HTML content or ${DESIGN_SYSTEM_TITLE} component to ***Multi dot paginator***.<br/><br/>
+${getGeneralComponentDescription({ name: 'bmb-multi-dot-paginator-item' })} to add whether HTML content or ${DESIGN_SYSTEM_TITLE} component to ***Multi dot paginator***.<br/><br/>
   ${RELEVANT_TITLE_LEVEL[2]}When you click on fullscreen icon, in Storybook doesn’t look the best due to the many elements, but in your project, it should display correctly.
 `)}
 ${getBasicExampleBlock('BmbMultiDotPaginatorItemComponent, BmbMultiDotPaginatorItemComponent')}

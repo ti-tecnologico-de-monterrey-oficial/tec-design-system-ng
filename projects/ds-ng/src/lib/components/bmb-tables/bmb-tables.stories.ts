@@ -7,6 +7,7 @@ import {
   getEmptyStateMessage,
   getGeneralComponentDescription,
   getGeneralDescription,
+  getModelDescription,
   getOnEvent,
   getSpecialSpecifications,
   RELEVANT_TITLE_LEVEL,
@@ -294,14 +295,15 @@ export default {
     docs: {
       description: {
         component: `
-${getGeneralDescription(
-  `${getGeneralComponentDescription('table')} rendering highly configurable and interactive tables.
+${getGeneralDescription({
+  content: `${getGeneralComponentDescription({ name: 'table' })} rendering highly configurable and interactive tables.
 >
 It supports features such as selection, expansion, pagination, dynamic filtering, column resizing,
 custom actions, and templating for both actions and detail rows.
  `,
-  'https://bamboo.tec.mx/latest/componentes/table/descripcion-general-h1hRplJO',
-)}
+  generalDocLink:
+    'https://bamboo.tec.mx/latest/componentes/table/descripcion-general-h1hRplJO',
+})}
 ${getSpecialSpecifications(getEmptyStateMessage())}
 ${getBasicExampleBlock(
   `
@@ -440,8 +442,7 @@ ${getBasicExampleBlock(
       control: {
         type: 'boolean',
       },
-      description:
-        'Shows or hide the filters section. This property is a Model.',
+      description: `Shows or hide the filters section. This property is a Model.<br/><br/>${getModelDescription('filtersVisible')}`,
       table: {
         category: 'Properties',
         type: { summary: 'boolean' },
