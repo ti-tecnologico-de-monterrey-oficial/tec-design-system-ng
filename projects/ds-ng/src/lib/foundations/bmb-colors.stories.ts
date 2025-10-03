@@ -767,13 +767,14 @@ export default {
       page: () => getPageStructureForFoundationStories(),
       description: {
         component: `
-${getGeneralDescription(
-  getFoundationDescriptions(
+${getGeneralDescription({
+  content: getFoundationDescriptions(
     'color',
     `${DESIGN_SYSTEM_TITLE} set of colors to create visually elements.<br/><br/>`,
   ),
-  'https://bamboo.tec.mx/latest/foundations/colores/descripcion-general-qsn1aZgM',
-)}
+  generalDocLink:
+    'https://bamboo.tec.mx/latest/foundations/colores/descripcion-general-qsn1aZgM',
+})}
 ${getSpecialSpecifications(
   getSandboxConsiderationsDocumentation(
     'colors',

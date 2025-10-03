@@ -23,11 +23,12 @@ export default {
       },
       description: {
         component: `
-${getGeneralDescription(
-  `${getGeneralComponentDescription('stat-counter', 'element')} the progress of steps to be displayed.<br/><br/>
+${getGeneralDescription({
+  content: `${getGeneralComponentDescription({ name: 'stat-counter', type: 'element' })} the progress of steps to be displayed.<br/><br/>
 ${RELEVANT_TITLE_LEVEL[0]}This item may be discontinued, use is recommended [${stepProgressBarStory.default.title}](/docs/${getFormatName(stepProgressBarStory.default.title!, /(\/)|( )/g, '-').toLocaleLowerCase()}--documentation).`,
-  'https://bamboo.tec.mx/latest/dev-tools/coleccion-de-componentes-uC69aq75',
-)}
+  generalDocLink:
+    'https://bamboo.tec.mx/latest/dev-tools/coleccion-de-componentes-uC69aq75',
+})}
 ${getBasicExampleBlock('BmbStatCounterComponent')}
         `,
       },

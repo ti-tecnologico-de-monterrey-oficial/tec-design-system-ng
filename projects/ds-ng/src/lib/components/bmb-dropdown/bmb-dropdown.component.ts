@@ -192,7 +192,9 @@ export class BmbDropdownComponent implements OnInit, OnChanges {
         return;
       }
 
-      const item = this.parsedOptions().find(({ value }) => value === controlValue);
+      const item = this.parsedOptions().find(
+        ({ value }) => value === controlValue,
+      );
       if (!!item) {
         this.selectionControl.setValue(item?.selectedText);
         if (this.showIcon()) this.selectedIcon = item.icon;

@@ -36,9 +36,11 @@ export class BmbDropdownContentComponent {
   filteredItems = computed<IDropdownItem[]>(() => {
     if (this.enableFilter() && this.filterString() !== '') {
       return this.items().filter((item) => {
-        return item.text.toLocaleLowerCase().includes(this.filterString()) ||
+        return (
+          item.text.toLocaleLowerCase().includes(this.filterString()) ||
           item.value?.toLocaleLowerCase().includes(this.filterString()) ||
-          item.selectedText?.toLocaleLowerCase().includes(this.filterString());
+          item.selectedText?.toLocaleLowerCase().includes(this.filterString())
+        );
       });
     }
 

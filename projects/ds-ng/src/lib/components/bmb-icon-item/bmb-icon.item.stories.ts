@@ -31,7 +31,7 @@ export default {
     docs: {
       description: {
         component: `
-${getGeneralDescription(`${getGeneralComponentDescription('icon-item')} o create elements to display information in two columns.`, 'https://bamboo.tec.mx/latest/componentes/icon-item/descripcion-general-F7c7dOy7')}
+${getGeneralDescription({ content: `${getGeneralComponentDescription({ name: 'icon-item' })} o create elements to display information in two columns.`, generalDocLink: 'https://bamboo.tec.mx/latest/componentes/icon-item/descripcion-general-F7c7dOy7' })}
 ${getBasicExampleBlock('BmbIconItemComponent')}
         `,
       },

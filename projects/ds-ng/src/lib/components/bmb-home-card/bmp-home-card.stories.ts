@@ -27,7 +27,7 @@ export default {
       },
       description: {
         component: `
-${getGeneralDescription(`${getGeneralComponentDescription('home-card')} to display a card with customizable title, subtitle, icons, navigation data, and action headers.`, 'https://bamboo.tec.mx/latest/componentes/home-card/descripcion-general-SzSShX4e')}
+${getGeneralDescription({ content: `${getGeneralComponentDescription({ name: 'home-card' })} to display a card with customizable title, subtitle, icons, navigation data, and action headers.`, generalDocLink: 'https://bamboo.tec.mx/latest/componentes/home-card/descripcion-general-SzSShX4e' })}
 ${getSpecialSpecifications(` ### ${RELEVANT_TITLE_LEVEL[1]}
 ***Home card*** component **is not a modal**, therefore it should not be used as such.
 `)}

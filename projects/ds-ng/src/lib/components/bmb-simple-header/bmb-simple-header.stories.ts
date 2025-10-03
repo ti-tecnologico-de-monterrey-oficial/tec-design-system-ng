@@ -26,7 +26,7 @@ export default {
       controls: { exclude: ['handleClick', ''] },
       description: {
         component: `
-${getGeneralDescription(`${getGeneralComponentDescription('simple-header')} to create a simple header with concise main information.`, 'https://bamboo.tec.mx/latest/componentes/simple-header/descripcion-general-1lYtBgiQ')}
+${getGeneralDescription({ content: `${getGeneralComponentDescription({ name: 'simple-header' })} to create a simple header with concise main information.`, generalDocLink: 'https://bamboo.tec.mx/latest/componentes/simple-header/descripcion-general-1lYtBgiQ' })}
 ${getBasicExampleBlock('BmbSimpleHeaderComponent', '', onIconClickEvent.handleExample)}
         `,
       },

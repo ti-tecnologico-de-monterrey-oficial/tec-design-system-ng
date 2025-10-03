@@ -21,7 +21,7 @@ export default {
       },
       description: {
         component: `
-${getGeneralDescription(`${getGeneralComponentDescription('logo', 'element')} the institutional logo to be displayed`, 'https://bamboo.tec.mx/latest/dev-tools/coleccion-de-componentes-uC69aq75')}
+${getGeneralDescription({ content: `${getGeneralComponentDescription({ name: 'logo', type: 'element' })} the institutional logo to be displayed`, generalDocLink: 'https://bamboo.tec.mx/latest/dev-tools/coleccion-de-componentes-uC69aq75' })}
 ${getBasicExampleBlock('BmbLogoComponent')}
         `,
       },

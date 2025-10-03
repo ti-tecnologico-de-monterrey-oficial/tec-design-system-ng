@@ -64,13 +64,14 @@ export default {
       page: () => getPageStructureForFoundationStories(),
       description: {
         component: `
-${getGeneralDescription(
-  getFoundationDescriptions(
+${getGeneralDescription({
+  content: getFoundationDescriptions(
     'border',
     '***Borders*** are lines that separate one area, surface or container from another.<br/><br/>',
   ),
-  'https://bamboo.tec.mx/latest/foundations/borders/descripcion-general-U27GpidU',
-)}
+  generalDocLink:
+    'https://bamboo.tec.mx/latest/foundations/borders/descripcion-general-U27GpidU',
+})}
 ${getSpecialSpecifications(getSandboxConsiderationsDocumentation('borders'))}
         `,
       },

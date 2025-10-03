@@ -28,11 +28,12 @@ export default {
       page: () => getPageStructureForFoundationStories(),
       description: {
         component: `
-${getGeneralDescription(
-  `***Notification counter*** is a visual indicator that reports the accumulated notifications.`,
-  'https://bamboo.tec.mx/latest/foundations/icon/notification-counter-iKqGw1Ww-iKqGw1Ww',
-  true,
-)}
+${getGeneralDescription({
+  content: `***Notification counter*** is a visual indicator that reports the accumulated notifications.`,
+  generalDocLink:
+    'https://bamboo.tec.mx/latest/foundations/icon/notification-counter-iKqGw1Ww-iKqGw1Ww',
+  isSubStory: true,
+})}
 ${getSpecialSpecifications(
   `###${RELEVANT_TITLE_LEVEL[0]}
 >

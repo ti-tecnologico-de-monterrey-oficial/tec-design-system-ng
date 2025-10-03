@@ -94,7 +94,8 @@ export class BmbDatepickerComponent implements OnInit {
   uuid: string = getUUID();
 
   @ViewChild('contentDiv', { static: true }) contentRef!: ElementRef<any>;
-  @ViewChild('modalTemplate', { static: true }) modalTemplateRef!: TemplateRef<any>;
+  @ViewChild('modalTemplate', { static: true })
+  modalTemplateRef!: TemplateRef<any>;
 
   constructor(private projectionService: BmbProjectionContentService) {}
 
@@ -163,7 +164,7 @@ export class BmbDatepickerComponent implements OnInit {
       fixSizeToRef: true,
       showBackdrop: false,
       focusOnOpen: true,
-    }
+    };
 
     if (event instanceof KeyboardEvent) {
       if (event.key === 'Enter' || event.key === ' ') {

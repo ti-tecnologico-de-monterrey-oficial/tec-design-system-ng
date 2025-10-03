@@ -38,12 +38,11 @@ const meta: Meta<BmbLayoutGridDirective> = {
     docs: {
       description: {
         component: `
-${getGeneralDescription(
-  `
+${getGeneralDescription({
+  content: `
 The ***Layout grid*** is a powerful tool for creating complex layouts in your application.<br/><br/>
 ${getAuxiliaryDescription('Layout grid', 'Layout grid item')}`,
-  '',
-)}
+})}
 ${getSpecialSpecifications(`
 ***Layout grid*** allows you to define a grid structure and place items within that grid.
 ><br/><br/>

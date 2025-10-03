@@ -26,7 +26,7 @@ export default {
     docs: {
       description: {
         component: `
-${getGeneralDescription(`${getGeneralComponentDescription('Button', 'directive', '', 'that provides styles for buttons.')} to add the look and feel to buttons.`, 'https://bamboo.tec.mx/latest/componentes/button/descripcion-general-zJtdNHZZ')}
+${getGeneralDescription({ content: `${getGeneralComponentDescription({ name: 'Button', type: 'directive', alternativeDescription: 'that provides styles for buttons.' })} to add the look and feel to buttons.`, generalDocLink: 'https://bamboo.tec.mx/latest/componentes/button/descripcion-general-zJtdNHZZ' })}
 ${getArchitectureSection(`
 <button class="bmb_btn-{appearance} bmb_btn-rounded">
   <!-- if icon is defined -->

@@ -1,8 +1,4 @@
-import {
-  moduleMetadata,
-  StoryObj,
-  type Meta,
-} from '@storybook/angular';
+import { moduleMetadata, StoryObj, type Meta } from '@storybook/angular';
 import { BmbDropdownComponent } from './bmb-dropdown.component';
 import {
   getArchitectureSection,

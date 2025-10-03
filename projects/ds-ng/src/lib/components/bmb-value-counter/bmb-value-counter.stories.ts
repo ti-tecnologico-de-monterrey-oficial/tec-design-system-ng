@@ -14,7 +14,7 @@ export default {
     docs: {
       description: {
         component: `
-${getGeneralDescription(`${getGeneralComponentDescription('value-counter')} to display progress considering a fraction of a total value.`, 'https://bamboo.tec.mx/latest/componentes/value-counter/descripcion-general-9QAWIHwf')}
+${getGeneralDescription({ content: `${getGeneralComponentDescription({ name: 'value-counter' })} to display progress considering a fraction of a total value.`, generalDocLink: 'https://bamboo.tec.mx/latest/componentes/value-counter/descripcion-general-9QAWIHwf' })}
 ${getBasicExampleBlock('BmbValueCounterComponent')}
 
         `,

@@ -28,7 +28,7 @@ export default {
       },
       description: {
         component: `
-${getGeneralDescription(`${getGeneralComponentDescription('notice-card')} pop-up news or information notifications to be displayed within ***mitec*** in the ***web*** version.`, 'https://bamboo.tec.mx/latest/particularities/mitec-web/notice-card-sfSif5Rk')}
+${getGeneralDescription({ content: `${getGeneralComponentDescription({ name: 'notice-card' })} pop-up news or information notifications to be displayed within ***mitec*** in the ***web*** version.`, generalDocLink: 'https://bamboo.tec.mx/latest/particularities/mitec-web/notice-card-sfSif5Rk' })}
 ${getBasicExampleBlock('BmbNoticeCardComponent', '', onCloseEvent.handleExample)}
         `,
       },

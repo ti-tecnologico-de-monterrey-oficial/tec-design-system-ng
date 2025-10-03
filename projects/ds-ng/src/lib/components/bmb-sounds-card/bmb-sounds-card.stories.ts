@@ -39,7 +39,7 @@ export default {
       },
       description: {
         component: `
-${getGeneralDescription(`${getGeneralComponentDescription('sounds-card', 'element')} a graphical interface to be displayed for use in audio playback.`, 'https://bamboo.tec.mx/latest/particularities/mitec-web/tec-sound-card-AssAgA82')}
+${getGeneralDescription({ content: `${getGeneralComponentDescription({ name: 'sounds-card', type: 'element' })} a graphical interface to be displayed for use in audio playback.`, generalDocLink: 'https://bamboo.tec.mx/latest/particularities/mitec-web/tec-sound-card-AssAgA82' })}
 ${getBasicExampleBlock(
   'BmbSoundsCardComponent',
   '',

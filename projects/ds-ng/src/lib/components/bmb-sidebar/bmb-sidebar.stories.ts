@@ -58,7 +58,7 @@ export default {
       },
       description: {
         component: `
-${getGeneralDescription(`${getGeneralComponentDescription('sidebar')} to implement a vertical menu with links to navigate through the application.`, 'https://bamboo.tec.mx/latest/componentes/sidebar/descripcion-general-5sco6X1N')}
+${getGeneralDescription({ content: `${getGeneralComponentDescription({ name: 'sidebar' })} to implement a vertical menu with links to navigate through the application.`, generalDocLink: 'https://bamboo.tec.mx/latest/componentes/sidebar/descripcion-general-5sco6X1N' })}
 ${getSpecialSpecifications(` ###${LEVEL_DESCRIPTION}`)}
 ${getBasicExampleBlock(
   'BmbSidebarComponent',

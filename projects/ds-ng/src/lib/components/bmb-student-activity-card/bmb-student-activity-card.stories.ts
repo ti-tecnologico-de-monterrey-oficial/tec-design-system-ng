@@ -31,8 +31,10 @@ export default {
       },
       description: {
         component: `
-${getGeneralDescription(`${getGeneralComponentDescription('student-activity-card')} to display information about a student activity, such as title, location, responsible person, type, and date range.
-<br/><br/>Supports different visual styles based on the activity type and whether it is displayed as a list item.`)}
+${getGeneralDescription({
+  content: `${getGeneralComponentDescription({ name: 'student-activity-card' })} to display information about a student activity, such as title, location, responsible person, type, and date range.
+<br/><br/>Supports different visual styles based on the activity type and whether it is displayed as a list item.`,
+})}
 ${getBasicExampleBlock('BmbStudentActivityCardComponent')}
         `,
       },
