@@ -51,10 +51,10 @@ $alignItemsOptions: (
       0
       calc(
         #{math.percentage(math.div($i, 4))} - var(--bmb-gap) / 4 * #{4 - $i}
-      );
+      ) !important;
     max-width: calc(
       #{math.percentage(math.div($i, 4))} - var(--bmb-gap) / 4 * #{4 - $i}
-    );
+    ) !important;
   }
 }
 
@@ -76,10 +76,10 @@ $alignItemsOptions: (
         calc(
           #{math.percentage(math.div($i, 12))} - (var(--bmb-gap) / 12 * #{12 -
                 $i})
-        );
+        ) !important;
       max-width: calc(
         #{math.percentage(math.div($i, 12))} - (var(--bmb-gap) / 12 * #{12 - $i})
-      );
+      ) !important;
     }
   }
 }
