@@ -43,6 +43,7 @@
               @if (trailingIconSecondary()) {
                 <bmb-action-icon
                   [icon]="trailingIconSecondary()"
+                  [disabled]="disableTrailingIconSecondary()"
                   [iconSize]="24"
                   (buttonClick)="handleTrailingIconSecondary($event)"
                 />
@@ -58,6 +59,7 @@
                   <bmb-action-icon
                     [icon]="trailingIconPrimary()"
                     [iconSize]="24"
+                    [disabled]="disableTrailingIconPrimary()"
                     (buttonClick)="handleTrailingIconPrimary($event)"
                   />
                 }

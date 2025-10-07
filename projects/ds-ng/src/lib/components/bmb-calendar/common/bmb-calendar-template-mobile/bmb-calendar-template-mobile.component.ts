@@ -40,6 +40,7 @@ export class BmbCalendarTemplateMobileComponent {
   lang = input<string>('es-MX');
   events = input<IBmbParsedDates>({});
   calendarTitle = input<string>('Mi calendario');
+  disableMobileFilter = input<boolean>(false);
 
   onClose = output<any>();
   onCurrentDateChange = output<DateTime>();
