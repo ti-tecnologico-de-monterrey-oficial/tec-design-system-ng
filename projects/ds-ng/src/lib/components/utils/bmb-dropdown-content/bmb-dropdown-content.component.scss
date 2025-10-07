@@ -67,6 +67,27 @@
       position: sticky;
       top: 0;
       left: 0;
+
+      &-icon {
+        position: absolute;
+        left: rem.rem_calc(8);
+        top: rem.rem_calc(8);
+      }
+
+      &-input {
+        border-radius: rem.rem_calc(8 8 0 0);
+        border: rem.rem_calc(1) solid var(--general_contrasts-50);
+        background-color: var(--general_contrasts-input-background);
+        padding: rem.rem_calc(8 8 8 48);
+        color: var(--menu_select-label-menu-inactive);
+        width: 100%;
+
+        &:hover,
+        &:focus,
+        &:focus-visible {
+          outline: none;
+        }
+      }
     }
   }
 }
