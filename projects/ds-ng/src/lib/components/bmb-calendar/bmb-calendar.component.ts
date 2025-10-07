@@ -31,10 +31,13 @@ import {
 import { getWeekDays, getMonthDays, DEFAULT_DATE_FORMAT } from './utils';
 import { BmbCalendarService } from '../../services/calendar.service';
 import { BmbNativeModalService } from '../../services/native-modal.service';
-import { ModalDataConfig } from '../bmb-modal/bmb-modal.interface';
 import { BmbBadgeComponent } from '../bmb-badge/bmb-badge.component';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { BmbCheckboxComponent } from '../bmb-checkbox/bmb-checkbox.component';
+import { BmbDividerComponent } from '../bmb-divider/bmb-divider.component';
+import { BmbLayoutDirective } from '../../directives/bmb-layout/bmb-layout.directive';
+import { BmbLayoutItemDirective } from '../../directives/bmb-layout/bmb-layout-item.directive';
+import { IBmbNativeModal } from '../bmb-modal/bmb-modal.interface';
 
 const parseFromFormat = (dateString: string, format: string): DateTime => {
   if (format.toLowerCase() === 'iso') return DateTime.fromISO(dateString);
@@ -62,6 +65,9 @@ export {
     BmbLoaderComponent,
     ReactiveFormsModule,
     BmbCheckboxComponent,
+    BmbDividerComponent,
+    BmbLayoutDirective,
+    BmbLayoutItemDirective,
   ],
   styleUrl: './bmb-calendar.component.scss',
   templateUrl: './bmb-calendar.component.html',
@@ -69,7 +75,7 @@ export {
   encapsulation: ViewEncapsulation.None,
 })
 export class BmbCalendarComponent implements OnInit, AfterViewInit {
-  view = model<IBmbCalendarView>('week');
+  view = model<IBmbCalendarView>('week'); // internal
   filters = model<{ [key: string]: boolean }>({});
   calendarTimezone = input<string>(
     Intl.DateTimeFormat().resolvedOptions().timeZone,
@@ -86,7 +92,7 @@ export class BmbCalendarComponent implements OnInit, AfterViewInit {
     this.eventsSignal.getEventList(),
   );
   showFilterButton = input<boolean>(false);
-  visibleDate = model<DateTime>(DateTime.now());
+  visibleDate = model<DateTime>(DateTime.now()); // internal
 
   currentDate = input<string>(''); // Deprecated
 
@@ -260,6 +266,13 @@ export class BmbCalendarComponent implements OnInit, AfterViewInit {
     this.visibleDate.set(newDate);
   }
 
+  getDayEvents(): IBmbCalendarEvent[] {
+    const visibleDateStr = this.visibleDate().toFormat('yyyy-MM-dd');
+    const events =
+      this.filteredEvents()[this.selectedWeek()]?.[visibleDateStr] ?? [];
+    return events;
+  }
+
   handleSelectEvent(newEvent: IBmbCalendarEventClick): void {
     const { event } = newEvent;
     const title = event.modalTitle ?? event.title;
@@ -268,7 +281,7 @@ export class BmbCalendarComponent implements OnInit, AfterViewInit {
 
     this.selectedEvent = event;
 
-    const data: ModalDataConfig = {
+    const data: IBmbNativeModal = {
       title: modalTitle,
       subtitle: event.subtitle,
       content: this.detailContent,
@@ -338,5 +351,24 @@ export class BmbCalendarComponent implements OnInit, AfterViewInit {
 
   getFormControl(name: string): FormControl {
     return this.calendarForm.get(name) as FormControl;
+  }
+
+  getCalendarName(name: string): string {
+    switch (name) {
+      case 'academic':
+        return 'Horario de clases';
+      case 'life':
+        return 'Vida';
+      case 'events':
+        return 'Eventos';
+      case 'save_the_date':
+        return 'Save the date';
+      default:
+        return name;
+    }
+  }
+
+  getBulletClass(name: string): string[] {
+    return ['bmb_calendar-event-bullet', `bmb_calendar-event-bullet-${name}`];
   }
 }

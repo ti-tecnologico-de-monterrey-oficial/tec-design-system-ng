@@ -1,4 +1,4 @@
-@use "./rem" as rem;
+@use './rem' as rem;
 
 :root {
   @for $i from 1 through 6 {

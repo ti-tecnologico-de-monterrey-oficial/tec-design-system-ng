@@ -25,7 +25,7 @@ export default {
     docs: {
       description: {
         component: `
-${getGeneralDescription(`${getGeneralComponentDescription('evaluation-rubric')} `, 'https://bamboo.tec.mx/latest/componentes/evaluation-rubric/descripcion-general-hckFQwLB')}
+${getGeneralDescription({ content: `${getGeneralComponentDescription({ name: 'evaluation-rubric' })} `, generalDocLink: 'https://bamboo.tec.mx/latest/componentes/evaluation-rubric/descripcion-general-hckFQwLB' })}
 ${getBasicExampleBlock('BmbEvaluationRubricComponent')}
         `,
       },

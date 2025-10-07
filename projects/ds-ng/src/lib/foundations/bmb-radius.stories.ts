@@ -57,15 +57,16 @@ export default {
       page: () => getPageStructureForFoundationStories(),
       description: {
         component: `
-${getGeneralDescription(
-  getFoundationDescriptions(
+${getGeneralDescription({
+  content: getFoundationDescriptions(
     'radius',
     `
 \`border-radius\` rounds the outer corners of an HTML element.
 This property is a tool for creating visually appealing and modern user interfaces because it allows for rounded or circular shapes instead of rectangular corners.<br/><br/>`,
   ),
-  'https://bamboo.tec.mx/latest/foundations/radius/descripcion-general-jC3HBIda',
-)}
+  generalDocLink:
+    'https://bamboo.tec.mx/latest/foundations/radius/descripcion-general-jC3HBIda',
+})}
 ${getSpecialSpecifications(
   getSandboxConsiderationsDocumentation(
     'radius',

@@ -3,13 +3,18 @@ import {
   ViewEncapsulation,
   ChangeDetectionStrategy,
   TemplateRef,
-  signal,
   output,
   model,
   input,
+  inject,
+  DestroyRef,
+  signal,
+  computed,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
+
+const MOBILE_TABLET_QUERY = '(max-width: 992px)';
 
 @Component({
   selector: 'bmb-step-progress-bar',
@@ -33,9 +38,41 @@ export class BmbStepProgressBarComponent {
 
   onStepPress = output<number>();
   onStepPanelPress = output<number>();
-  next = output<void>();
-  back = output<void>();
-  finish = output<void>();
+
+  private destroyRef = inject(DestroyRef);
+  private mql =
+    typeof window !== 'undefined'
+      ? window.matchMedia(MOBILE_TABLET_QUERY)
+      : null;
+  private abort = new AbortController();
+
+  readonly isMobileOrTablet = signal<boolean>(!!this.mql?.matches);
+
+  constructor() {
+    this.mql?.addEventListener(
+      'change',
+      (e) => this.isMobileOrTablet.set((e as MediaQueryListEvent).matches),
+      { signal: this.abort.signal },
+    );
+    this.destroyRef.onDestroy(() => this.abort.abort());
+  }
+
+  private truncate = (s?: string, n = 90) =>
+    s ? (s.length > n ? s.slice(0, n).trimEnd() + '…' : s) : '';
+
+  readonly maxChars = computed(() => (this.isMobileOrTablet() ? 70 : 90));
+
+  readonly labelStepsTruncated = computed(() =>
+    (this.labelSteps() || []).map((txt) => this.truncate(txt, this.maxChars())),
+  );
+
+  readonly labelCompleteTruncated = computed(() =>
+    this.truncate(this.labelComplete(), this.maxChars()),
+  );
+
+  readonly labelIncompleteTruncated = computed(() =>
+    this.truncate(this.labelIncomplete(), this.maxChars()),
+  );
 
   getStepsArray(): number[] {
     return new Array(this.totalSteps() || 0).fill(0).map((_, i) => i);
@@ -52,17 +89,5 @@ export class BmbStepProgressBarComponent {
       this.activeStep.set(index);
       this.onStepPress.emit(index);
     }
-  }
-
-  goNext() {
-    this.next.emit();
-  }
-
-  goBack() {
-    this.back.emit();
-  }
-
-  complete() {
-    this.finish.emit();
   }
 }

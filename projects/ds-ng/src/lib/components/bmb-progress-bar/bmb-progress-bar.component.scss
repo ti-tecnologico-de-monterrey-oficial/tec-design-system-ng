@@ -1,10 +1,10 @@
-@use "../../../assets/styles/base/rem" as rem;
-@use "../../../assets/styles/base/fonts" as fonts;
+@use '../../../assets/styles/base/rem' as rem;
+@use '../../../assets/styles/base/fonts' as fonts;
 
 $variants: (
-  "info": RGBA(var(--color-blue-primary)),
-  "warning": RGBA(var(--color-yellow-primary)),
-  "error": RGBA(var(--color-red-primary)),
+  'info': RGBA(var(--color-blue-primary)),
+  'warning': RGBA(var(--color-yellow-primary)),
+  'error': RGBA(var(--color-red-primary)),
 );
 
 .bmb_progress-bar {
@@ -86,7 +86,7 @@ $variants: (
   }
 }
 
-[data-theme="dark"],
+[data-theme='dark'],
 .storybook-dark-theme {
   .bmb_progress-bar {
     &-active-info {

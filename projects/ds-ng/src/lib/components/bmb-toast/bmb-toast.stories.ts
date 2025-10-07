@@ -52,7 +52,7 @@ export default {
       controls: { exclude: ['getIcon', 'handleClose', 'getClasses'] },
       description: {
         component: `
-${getGeneralDescription(`${getGeneralComponentDescription('toast')} to display a short, non-critical message without interrupting browsing or the task at hand.`, 'https://bamboo.tec.mx/latest/componentes/toast/descripcion-general-1yUMwDNA')}
+${getGeneralDescription({ content: `${getGeneralComponentDescription({ name: 'toast' })} to display a short, non-critical message without interrupting browsing or the task at hand.`, generalDocLink: 'https://bamboo.tec.mx/latest/componentes/toast/descripcion-general-1yUMwDNA' })}
 ${getArchitectureSection(`<div class="bmb_toast" <!-- conditional classes bmb_toast bmb_toast-{this.appearance} >
   < icon />
   <div class="bmb_toast-content" <!-- conditional classes bmb_toast-content bmb_toast-content-{appearance} --> >
@@ -74,6 +74,12 @@ ${getBasicExampleBlock(
 
 //This block of code is only needed if the close button is displayed${onEventBlock.handleExample}`,
 )}
+---
+
+**ℹ️ Note:**
+If you want to see how it works with the **Notification Service** and animations, go to:
+- [Portal → Toast](?path=/docs/dev-tools-portal--toast--documentation)
+
         `,
       },
     },

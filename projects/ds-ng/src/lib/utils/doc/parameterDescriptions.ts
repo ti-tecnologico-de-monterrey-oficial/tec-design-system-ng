@@ -4,13 +4,12 @@ import {
   IBmbOnEventType,
   IBmbOnEvent,
   RELEVANT_TITLE_LEVEL,
+  getDeprecatedDesc,
 } from './utils';
 
 type IBmbButtonEventType = 'clicked' | 'pressed';
 type IBmbControlType = 'text' | 'boolean' | 'number' | 'object';
 
-export const DEPRECATED_PROPERTIES_DESCRIPTION: string =
-  'This property is deprecated and will be removed in future versions.';
 const DISABLE_DESCRIPTION: string = `
 Disables the element when true, making it non-interactive and cannot be clicked.
 
@@ -85,7 +84,7 @@ const getCheckboxOrRadialLabel = (type: string) => {
       type: 'text',
     },
     description: `
-${getLabelDescription('at the default \`labelPosition\` or the position specified in \`labelPosition\` relative to', type)}
+${getLabelDescription('at the default `labelPosition` or the position specified in `labelPosition` relative to', type)}
     `,
     table: {
       category: 'Properties',
@@ -409,7 +408,7 @@ By default, the supported language are:
   },
   deprecated: {
     control: false,
-    description: DEPRECATED_PROPERTIES_DESCRIPTION,
+    description: getDeprecatedDesc({ type: 'property' }),
     table: {
       category: 'Deprecated',
       defaultValue: false,
@@ -421,7 +420,7 @@ By default, the supported language are:
     ON_CLICK_DESCRIPTION,
     'pressed',
   ),
-  buttonKeyPress: getOnClickParam(
+  onButtonKeyPress: getOnClickParam(
     getOnEvent('', 'buttonKeyPress'),
     ' with a keyboard'.concat(ON_CLICK_DESCRIPTION),
     'pressed',
@@ -590,11 +589,10 @@ ${RELEVANT_TITLE_LEVEL[2]} <= 0 will be inherited.`,
   },
   iconDotNotification: {
     control: { type: 'number' },
-    description:
-      'Displays a notification dot with a number on the icon. Set to 0 to hide.',
+    description: 'Sets the notification counter number (0 to hide).',
     table: {
       category: 'Properties',
-      defaultValue: getDefaultValueControl(),
+      defaultValue: false,
       type: { summary: 'number' },
     },
   },
@@ -1134,6 +1132,30 @@ IBmbInputError {
       defaultValue: getDefaultValueControl(),
     },
   },
+  customValidation: {
+    control: {
+      type: 'object',
+    },
+    description: `
+Sets custom validator function to the field.
+
+Example of a \`ValidatorFn\`
+    handleCustomValidator(): ValidatorFn {
+      return (control: AbstractControl): ValidationErrors | null => {
+        const { value } = control;
+        if (!value) return null;
+
+        if (value === 'value example') return { customValidation: true };
+
+        return null;
+      };
+    }
+`,
+    table: {
+      category: 'Properties',
+      type: { summary: 'ValidatorFn' },
+    },
+  },
   ariaDescribedBy: {
     control: { type: 'text' },
     description:
@@ -1176,7 +1198,7 @@ IBmbInputError {
   showError: {
     control: false,
     description: `
-${DEPRECATED_PROPERTIES_DESCRIPTION}
+${getDeprecatedDesc({ type: 'property' })}
 
 **Clarification:**
 
@@ -1198,7 +1220,7 @@ Below is a snippet of the **TypeScript example** that performs automatic validat
   id: {
     control: false,
     description: `
-${DEPRECATED_PROPERTIES_DESCRIPTION}
+${getDeprecatedDesc({ type: 'property' })}
 
 **Clarification:**
 
@@ -1229,7 +1251,7 @@ Adding the id using a property with the same name affects the operation of the f
       category: 'Properties',
       type: { summary: 'string' },
       defaultValue: getDefaultValueControl(
-        'Por favor ingresa la fecha con formato [\`dateFormat\`]}',
+        'Por favor ingresa la fecha con formato [`dateFormat`]}',
       ),
     },
   },
@@ -1242,13 +1264,12 @@ Adding the id using a property with the same name affects the operation of the f
       category: 'Properties',
       type: { summary: 'string' },
       defaultValue: getDefaultValueControl(
-        'Por favor ingresa la fecha de [\`label\`]',
+        'Por favor ingresa la fecha de [`label`]',
       ),
     },
   },
   onKeyDown: getOnEventParam(
     getOnEvent('', 'onKeyDown', 'KeyboardEvent'),
-    '',
     'keyDown',
   ),
 };
@@ -1314,4 +1335,105 @@ export const DBmbLayoutParamDesc = {
     },
     description: 'Sets the alignment (align-items) of elements.',
   },
+};
+
+export const DBmbStepProgressBar = {
+  activeStep: {
+    control: {
+      type: 'number',
+    },
+    description: 'Sets the step that is active.',
+    table: {
+      category: 'Properties',
+      type: { summary: 'number' },
+    },
+  },
+  totalSteps: {
+    control: {
+      type: 'number',
+    },
+    description: 'Sets the number of steps that the counter will show.',
+    table: {
+      category: 'Properties',
+      type: { summary: 'number' },
+    },
+  },
+  size: {
+    control: {
+      type: 'radio',
+    },
+    options: ['small', 'medium', 'default'],
+    description: `Sets the size of the steps.<br/><br/> ${RELEVANT_TITLE_LEVEL[0]} This property only works when the ***type*** is ***horizontal***.`,
+    table: {
+      category: 'Properties',
+      type: { summary: 'select' },
+      defaultValue: { summary: 'default' },
+    },
+  },
+  freeze: {
+    control: {
+      type: 'boolean',
+    },
+    description: 'Freezes the state of progress steps.',
+    table: {
+      category: 'Properties',
+      type: { summary: 'boolean' },
+      defaultValue: { summary: 'false' },
+    },
+  },
+  type: {
+    control: {
+      type: 'radio',
+    },
+    options: ['horizontal', 'vertical'],
+    description:
+      'Changes the direction of the step progress bar, could be horizontal or vertical',
+    table: {
+      category: 'Properties',
+      type: { summary: 'string' },
+      defaultValue: { summary: 'horizontal' },
+    },
+  },
+  labelSteps: {
+    control: {
+      type: 'array',
+    },
+    description: 'Sets the label for each step',
+    table: {
+      category: 'Properties',
+      type: { summary: 'string[]' },
+    },
+  },
+  labelComplete: {
+    control: {
+      type: 'text',
+    },
+    description: 'Sets the label for complete steps',
+    table: {
+      category: 'Properties',
+      type: { summary: 'string' },
+      defaultValue: { summary: 'Completo' },
+    },
+  },
+  labelIncomplete: {
+    control: {
+      type: 'text',
+    },
+    description: 'Sets the label for incomplete steps',
+    table: {
+      category: 'Properties',
+      type: { summary: 'string' },
+      defaultValue: { summary: 'Pendiente' },
+    },
+  },
+  onStepPress: getOnEventParam(
+    getOnEvent('', 'onStepPress', 'number'),
+    `with the index of the step when a step is pressed.`,
+    'other',
+  ),
+  onStepPanelPress: getOnEventParam(
+    getOnEvent('', 'onStepPanelPress', 'number'),
+    `with the index when a step panel is pressed.`,
+    'other',
+  ),
 };

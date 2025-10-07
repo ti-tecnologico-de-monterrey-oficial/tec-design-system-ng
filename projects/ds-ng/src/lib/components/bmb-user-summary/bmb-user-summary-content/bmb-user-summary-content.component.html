@@ -3,42 +3,74 @@
   [ngClass]="getClass('bmb_user-summary_content')"
 >
   <bmb-user-image
-    size="mobile-large"
+    [size]="imageSize()"
     [image]="image()"
     [altImage]="name()"
     [bordered]="isImageBordered()"
+    (buttonClick)="handleUserClick($event)"
   />
   <section
     class="bmb_user-summary_content-wrapper"
     [ngClass]="getClass('bmb_user-summary_content-wrapper')"
+    bmbLayout
+    [alignItems]="contentLayout() === 'column' ? 'center' : 'start'"
+    [gapSize]="gapSize()"
+    margin="none"
+    [dynamicCols]="true"
   >
-    @if (isProfile()) {
-      <h3
-        class="bmb_user-summary_content-wrapper-title"
-        [ngClass]="getClass('bmb_user-summary_content-wrapper-title')"
+    <h3
+      class="bmb_user-summary_content-wrapper-title"
+      [ngClass]="getSalutationClasses('bmb_user-summary_content-wrapper-title')"
+      bmbLayoutItem
+      [isDynamicItem]="true"
+    >
+      {{ getName() }}
+    </h3>
+    <span
+      class="bmb_user-summary_content-wrapper-id"
+      bmbLayoutItem
+      [isDynamicItem]="true"
+    >
+      {{ userId() }}
+    </span>
+    @if (!!campus()) {
+      <span
+        class="bmb_user-summary_content-wrapper-campus"
+        bmbLayoutItem
+        [isDynamicItem]="true"
       >
-        {{ name() }}
-      </h3>
-    } @else {
-      <h3
-        class="bmb_user-summary_content-wrapper-title bmb_user-summary_content-wrapper-title-salutation"
-        [ngClass]="getClass('bmb_user-summary_content-wrapper-title')"
-      >
-        @if (!!salutation()) {
-          ¡{{ salutation() }} {{ name() }}!
-        } @else {
-          {{ name() }}
-        }
-      </h3>
+        {{ campus() }}
+      </span>
     }
-    <span class="bmb_user-summary_content-wrapper-id">{{ userId() }}</span>
     @if (!!infoCareer()) {
-      <span class="bmb_user-summary_content-wrapper-id">{{
-        infoCareer()
-      }}</span>
+      <span
+        class="bmb_user-summary_content-wrapper-id"
+        bmbLayoutItem
+        [isDynamicItem]="true"
+      >
+        {{ infoCareer() }}
+      </span>
     }
     @if (!!email()) {
-      <span class="bmb_user-summary_content-wrapper-email">{{ email() }}</span>
+      <span
+        class="bmb_user-summary_content-wrapper-email"
+        bmbLayoutItem
+        [isDynamicItem]="true"
+      >
+        {{ email() }}
+      </span>
+    }
+    @if (!!role()) {
+      <span
+        class="bmb_user-summary_content-wrapper-title"
+        [ngClass]="
+          getSalutationClasses('bmb_user-summary_content-wrapper-title', true)
+        "
+        bmbLayoutItem
+        [isDynamicItem]="true"
+      >
+        {{ contentLayout() === 'column' ? role().toLocaleUpperCase() : role() }}
+      </span>
     }
   </section>
 </section>

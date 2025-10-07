@@ -2,6 +2,7 @@ import { BmbTableLiteComponent } from './bmb-table-lite.component';
 import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
 import { CommonModule } from '@angular/common';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
+import { BmbBadgeComponent } from '../bmb-badge/bmb-badge.component';
 import {
   getBasicExampleBlock,
   getEmptyStateMessage,
@@ -12,204 +13,283 @@ import {
 } from '../../utils/doc/utils';
 
 const additionalBlock: string = `
-    @ViewChild('infoTemplate') infoTemplate!: TemplateRef<any>;
-    @ViewChild('lastNameTemplate') lastNameTemplate!: TemplateRef<any>;
-    @ViewChild('actionTemplate') actionTemplate!: TemplateRef<any>;
-    @ViewChild('detailTemplate') detailTemplate!: TemplateRef<any>;
-    @ViewChild('headerNameTemplate') headerNameTemplate!: TemplateRef<any>;
+  @ViewChild('infoTemplate') infoTemplate!: TemplateRef<any>;
+  @ViewChild('lastNameTemplate') lastNameTemplate!: TemplateRef<any>;
+  @ViewChild('actionTemplate') actionTemplate!: TemplateRef<any>;
+  @ViewChild('detailTemplate') detailTemplate!: TemplateRef<any>;
+  @ViewChild('headerNameTemplate') headerNameTemplate!: TemplateRef<any>;
 
-    constructor(private cdr: ChangeDetectorRef) {}
+  clearSelectionFlag = false;
 
-    config = {
-      isSelectable: true,
-      isExpandible: true,
-      isPaginable: true,
-      showActions: true,
-    };
+  constructor(private cdr: ChangeDetectorRef) {}
 
-    data: any[] = [];
-    columns: any[] = [];
+  config = {
+    isSelectable: true,
+    isExpandible: true,
+    isPaginable: true,
+    showActions: true,
+  };
 
-    ngOnInit(): void {
-      this.data = [
-        {
-          lastName: 'Benitez',
-          name: 'Romina',
-          birthday: '02/02/2000',
-          info: 'buscar',
-          gorem: 'Gorem Ipsum',
-          goremType: 'success',
-          country: 'Mexico',
-        },
-        {
-          lastName: 'Rodriguez',
-          name: 'Edgar',
-          birthday: '02/23/2020',
-          info: 'Info text',
-          gorem: 'Gorem Ipsum',
-          goremType: 'success',
-          country: 'Francia',
-          detail: 'Detalle A',
-        },
-        {
-          lastName: 'Benitez',
-          name: 'Atenea',
-          birthday: '02/02/2010',
-          info: 'Info text',
-          gorem: 'Gorem Ipsum',
-          goremType: 'success',
-          country: 'Mexico',
-          detail: 'Detalle A',
-        },
-        {
-          lastName: 'Benitez',
-          name: 'Atenea',
-          birthday: '02/02/2005',
-          info: 'Info text',
-          gorem: 'Gorem Ipsum',
-          goremType: 'success',
-          country: 'Mexico',
-          detail: 'Detalle A',
-        },
-        {
-          lastName: 'Benitez',
-          name: 'Atenea',
-          birthday: '02/02/2000',
-          info: 'Info text',
-          gorem: 'Gorem Ipsum',
-          goremType: 'success',
-          country: 'Mexico',
-          detail: 'Detalle A',
-        },
-        {
-          lastName: 'Benitez',
-          name: 'Atenea',
-          birthday: '02/02/2000',
-          info: 'Info text',
-          gorem: 'Gorem Ipsum',
-          goremType: 'success',
-          country: 'Mexico',
-          detail: 'Detalle A',
-        },
-        {
-          lastName: 'Benitez',
-          name: 'Atenea',
-          birthday: '02/02/2000',
-          info: 'Info text',
-          gorem: 'Gorem Ipsum',
-          goremType: 'success',
-          country: 'Mexico',
-          detail: 'Detalle A',
-        },
+  data: any[] = [];
+  columns: any[] = [];
 
-        {
-          lastName: 'Nava',
-          name: 'Jesus',
-          birthday: '03/04/1998',
-          country: 'Mexico',
-          info: 'Info text',
-          gorem: 'Gorem Ipsum',
-          goremType: 'error',
-          detail: {
-            columns: [
-              { def: 'id', label: 'ID', dataKey: 'id' },
-              {
-                def: 'description',
-                label: 'Description',
-                dataKey: 'description',
-              },
-            ],
-            data: [
-              { id: 1, description: 'Detalle A' },
-              { id: 2, description: 'Detalle B' },
-            ],
-            config: {
-              isSelectable: false,
-              isExpandible: false,
-              isPaginable: false,
-              showActions: false,
+  ngOnInit(): void {
+    this.data = [
+      {
+        lastName: 'Benitez',
+        name: 'Romina',
+        birthday: '02/02/2000',
+        info: 'buscar',
+        gorem: 'Gorem Ipsum',
+        goremType: 'success',
+        country: 'Mexico',
+      },
+      {
+        lastName: 'Rodriguez',
+        name: 'Edgar',
+        birthday: '02/23/2020',
+        info: 'Info text',
+        gorem: 'Gorem Ipsum Gorem Ipsum Gorem Ipsum',
+        goremType: 'success',
+        country: 'Francia',
+        detail: 'Detalle A',
+      },
+      {
+        lastName: 'Benitez',
+        name: 'Atenea',
+        birthday: '02/02/2010',
+        info: 'Info text',
+        gorem: 'Gorem Ipsum',
+        goremType: 'success',
+        country: 'Mexico',
+        detail: {
+          columns: [
+            { def: 'id', label: 'ID', dataKey: 'id' },
+            {
+              def: 'description',
+              label: 'Description',
+              dataKey: 'description',
             },
+          ],
+          data: [
+            { id: 1, description: 'Detalle A' },
+            { id: 2, description: 'Detalle B' },
+          ],
+          config: {
+            isSelectable: false,
+            isExpandible: false,
+            isPaginable: false,
+            showActions: false,
           },
         },
-      ];
-
-      this.columns = [
-        {
-          def: 'name',
-          label: 'Name',
-          dataKey: 'name',
-          type: 'string',
+      },
+      {
+        lastName: 'Benitez',
+        name: 'Atenea',
+        birthday: '02/02/2005',
+        info: 'Info text',
+        gorem: 'Gorem Ipsum',
+        goremType: 'success',
+        country: 'Mexico',
+        detail: 'Detalle A',
+      },
+      {
+        lastName: 'Benitez',
+        name: 'Atenea',
+        birthday: '02/02/2000',
+        info: 'Info text',
+        gorem: 'Gorem Ipsum',
+        goremType: 'success',
+        country: 'Mexico',
+        detail: 'Detalle A',
+      },
+      {
+        lastName: 'Benitez',
+        name: 'Atenea',
+        birthday: '02/02/2000',
+        info: 'Info text',
+        gorem: 'Gorem Ipsum',
+        goremType: 'success',
+        country: 'Mexico',
+        detail: 'Detalle A',
+      },
+      {
+        lastName: 'Benitez',
+        name: 'Atenea',
+        birthday: '02/02/2000',
+        info: 'Info text',
+        gorem: 'Gorem Ipsum',
+        goremType: 'success',
+        country: 'Mexico',
+        detail: 'Detalle A',
+      },
+      {
+        lastName: 'Nava',
+        name: 'Jesus',
+        birthday: '03/04/1998',
+        country: 'Mexico',
+        info: 'Info text',
+        gorem: 'Gorem Ipsum',
+        goremType: 'error',
+        detail: {
+          columns: [
+            { def: 'id', label: 'ID', dataKey: 'id' },
+            {
+              def: 'description',
+              label: 'Description',
+              dataKey: 'description',
+            },
+          ],
+          data: [
+            { id: 1, description: 'Detalle A' },
+            { id: 2, description: 'Detalle B' },
+          ],
+          config: {
+            isSelectable: false,
+            isExpandible: false,
+            isPaginable: false,
+            showActions: false,
+          },
         },
-        {
-          def: 'lastName',
-          label: 'Last Name',
-          dataKey: 'lastName',
-          type: 'string',
-        },
-        {
-          def: 'birthday',
-          label: 'Birthday',
-          dataKey: 'birthday',
-          type: 'date',
-        },
-        {
-          def: 'info',
-          label: 'Info',
-          dataKey: 'info',
-          type: 'string',
-        },
-        {
-          def: 'gorem',
-          label: 'Gorem Ipsum',
-          dataKey: 'gorem',
-          type: 'string',
-        },
-        {
-          def: 'country',
-          label: 'Country',
-          dataKey: 'country',
-          type: 'string',
-        },
-      ];
-    }
+      },
+      {
+        lastName: 'Benitez',
+        name: 'Romina',
+        birthday: '02/02/2000',
+        info: 'buscar',
+        gorem: 'Gorem Ipsum',
+        goremType: 'success',
+        country: 'Mexico',
+      },
+      {
+        lastName: 'Benitez',
+        name: 'Romina',
+        birthday: '02/02/2000',
+        info: 'buscar',
+        gorem: 'Gorem Ipsum',
+        goremType: 'success',
+        country: 'Mexico',
+      },
+      {
+        lastName: 'Benitez',
+        name: 'Romina',
+        birthday: '02/02/2000',
+        info: 'buscar',
+        gorem: 'Gorem Ipsum',
+        goremType: 'success',
+        country: 'Mexico',
+      },
+      {
+        lastName: 'Benitez',
+        name: 'Romina',
+        birthday: '02/02/2000',
+        info: 'buscar',
+        gorem: 'Gorem Ipsum',
+        goremType: 'success',
+        country: 'Mexico',
+      },
+      {
+        lastName: 'Benitez',
+        name: 'Romina',
+        birthday: '02/02/2000',
+        info: 'buscar',
+        gorem: 'Gorem Ipsum',
+        goremType: 'success',
+        country: 'Mexico',
+      },
+      {
+        lastName: 'Benitez',
+        name: 'Romina',
+        birthday: '02/02/2000',
+        info: 'buscar',
+        gorem: 'Gorem Ipsum',
+        goremType: 'success',
+        country: 'Mexico',
+      },
+    ];
 
-    ngAfterViewInit(): void {
-      // Asignar templates a columnas
-      this.columns = this.columns.map((col) => {
-        if (col.def === 'name') {
-          return { ...col, htmlLabel: this.headerNameTemplate };
-        }
-        return col;
-      });
+    this.columns = [
+      {
+        def: 'name',
+        label: 'Name',
+        dataKey: 'name',
+        type: 'string',
+      },
+      {
+        def: 'lastName',
+        label: 'Last Name',
+        dataKey: 'lastName',
+        type: 'string',
+      },
+      {
+        def: 'birthday',
+        label: 'Birthday',
+        dataKey: 'birthday',
+        type: 'date',
+      },
+      {
+        def: 'info',
+        label: 'Info',
+        dataKey: 'info',
+        type: 'string',
+      },
+      {
+        def: 'gorem',
+        label: 'Gorem Ipsum',
+        dataKey: 'gorem',
+        type: 'string',
+      },
+      {
+        def: 'country',
+        label: 'Country',
+        dataKey: 'country',
+        type: 'string',
+      },
+    ];
+  }
 
-      // Asignar templates a datos
-      this.data = this.data.map((row) => {
-        return {
-          ...row,
-          lastNameTemplate: this.lastNameTemplate,
-          infoTemplate: this.infoTemplate,
-        };
-      });
+  ngAfterViewInit(): void {
+    this.columns = this.columns.map((col) => {
+      if (col.def === 'name') {
+        return { ...col, htmlLabel: this.headerNameTemplate };
+      }
+      return col;
+    });
 
-      // Forzar renderizado porque los ViewChild no están disponibles en ngOnInit
-      this.cdr.detectChanges();
-    }
+    this.data = this.data.map((row) => {
+      return {
+        ...row,
+        lastNameTemplate: this.lastNameTemplate,
+        infoTemplate: this.infoTemplate,
+      };
+    });
 
-    onSelect(selected: any) {
-      // Maneja la selección
-    }
+    this.cdr.detectChanges();
+  }
 
-    clickButton(event: any) {
-      // Maneja el click del botón
-    }
+  onSelect(selected: any) {
+    console.log('Selected rows', selected);
+  }
 
-    isString(value: any): value is string {
-      return typeof value === 'string';
-    }
+  clickButton(event: any) {
+    console.log('Button clicked', event);
+  }
 
-    isObject(value: any): value is object {
-      return typeof value === 'object' && value !== null;
-    }
+  isString(value: any): value is string {
+    return typeof value === 'string';
+  }
+
+  isObject(value: any): value is object {
+    return typeof value === 'object' && value !== null;
+  }
+
+  onClickRow(event: any) {
+    console.log('Button clicked', event);
+  }
+
+  resetSelection() {
+    this.clearSelectionFlag = true;
+  }
 `;
 
 export default {
@@ -217,7 +297,12 @@ export default {
   component: BmbTableLiteComponent,
   decorators: [
     moduleMetadata({
-      imports: [CommonModule, BmbIconComponent],
+      imports: [
+        BmbIconComponent,
+        BmbTableLiteComponent,
+        BmbBadgeComponent,
+        CommonModule,
+      ],
     }),
   ],
   parameters: {
@@ -276,20 +361,22 @@ export default {
     docs: {
       description: {
         component: `
-${getGeneralDescription(
-  `${getGeneralComponentDescription('table-lite')} rendering highly configurable and interactive tables.
+${getGeneralDescription({
+  content: `${getGeneralComponentDescription({ name: 'table-lite' })} rendering highly configurable and interactive tables.
 >
 It supports features such as selection, expansion, pagination, dynamic filtering, column resizing,
 custom actions, and templating for both actions and detail rows.
- `,
-  'https://bamboo.tec.mx/latest/componentes/table/descripcion-general-h1hRplJO',
-)}
+  `,
+  generalDocLink:
+    'https://bamboo.tec.mx/latest/componentes/table/descripcion-general-h1hRplJO',
+})}
 ${getSpecialSpecifications(getEmptyStateMessage())}
 ${getBasicExampleBlock(
   `
-  BmbBadgeComponent,
   BmbIconComponent,
   BmbTableLiteComponent,
+  BmbBadgeComponent,
+  CommonModule,
   BmbThemeComponent,
 `,
   '',
@@ -299,39 +386,42 @@ ${getBasicExampleBlock(
 
 <bmb-table-lite
   [truncate]="true"
-  [wrap]="true"
   [data]="data"
   [columns]="columns"
   [config]="config"
-  (select)="onSelect($event)"
+  [pageSize]="5"
+  [truncate]="true"
+  [showSearch]="true"
+  [filtersVisible]="false"
+  [filtersPosition]="'bottom'"
+  [lang]="'es'"
+  [serverSide]="false"
   [actionTemplate]="actionTemplate"
   [detailTemplate]="detailTemplate"
-  [pageSize]="5"
-  [showSearch]="true"
-  [showFilters]="true"
+  (select)="onSelect($event)"
+  (clickedRow)="onClickRow($event)"
+  [(clearSelection)]="clearSelectionFlag"
 >
 </bmb-table-lite>
+
+<button (click)="resetSelection()">Limpiar selección</button>
 
 <!-- Templates -->
 
 <ng-template #lastNameTemplate let-row="row">
-  <div style="display: flex; align-items: center; gap: 4px">
-    <bmb-icon icon="face" [size]="20"></bmb-icon>
-    <span> {{ row.lastName }}</span>
-    <button (click)="clickButton($event)" size="small">
-      <bmb-icon icon="edit" [size]="20" color="white" />
-    </button>
-  </div>
+  <bmb-icon icon="face" [size]="20"></bmb-icon>
+  <span> {{ row.lastName }}</span>
+  <button (click)="clickButton($event)" size="small">
+    <bmb-icon icon="edit" [size]="20" color="white" />
+  </button>
 </ng-template>
 
 <ng-template #infoTemplate let-row="row">
-  <div style="display: flex; align-items: center; gap: 4px">
-    <bmb-badge
-      [appearance]="'info'"
-      [text]="row.info"
-      [container]="false"
-    ></bmb-badge>
-  </div>
+  <bmb-badge
+    [appearance]="'info'"
+    [text]="row.info"
+    [container]="false"
+  ></bmb-badge>
 </ng-template>
 
 <ng-template #actionTemplate>
@@ -346,26 +436,21 @@ ${getBasicExampleBlock(
 </ng-template>
 
 <ng-template #headerNameTemplate let-column="column" let-i="index">
-  <div style="display: flex; align-items: center; gap: 4px">
-    <span>{{ column.label }} Title</span>
-    <bmb-icon icon="face" class="bmb_table-data-icon" />
-  </div>
+  <span>{{ column.label }} Title</span>
+  <bmb-icon icon="face" class="bmb_table-data-icon" />
 </ng-template>
 
 <ng-template #detailTemplate let-row="row">
-  <!-- Caso 1: solo texto -->
   <div *ngIf="isString(row.detail)">
     {{ row.detail }}
   </div>
 
-  <!-- Caso 2: es un objeto con tabla -->
   <bmb-table-lite
     *ngIf="isObject(row.detail)"
     [data]="row.detail.data"
     [columns]="row.detail.columns"
     [config]="row.detail.config"
     [truncate]="false"
-    [wrap]="false"
   ></bmb-table-lite>
 </ng-template>
 
@@ -375,37 +460,57 @@ ${getBasicExampleBlock(
     },
   },
   argTypes: {
+    // ──────────────────────────────────────────────────────────────
+    // 🧩 DATA & STRUCTURE
+    // ──────────────────────────────────────────────────────────────
     data: {
       control: { type: 'object' },
-      description: 'Set the data to show in the table.',
+      description:
+        'Defines the data source for the table. Each object represents one row.',
       table: {
         category: 'Properties',
-        defaultValue: { summary: '' },
-        type: { summary: 'object' },
+        defaultValue: { summary: '[]' },
+        type: { summary: 'any[]' },
       },
     },
     columns: {
       control: { type: 'object' },
-      description: 'Set the columns to show in the table.',
+      description:
+        'Defines the structure of the table columns, including labels, data keys, and optional templates.',
       table: {
         category: 'Properties',
-        defaultValue: { summary: '' },
-        type: { summary: 'object' },
+        defaultValue: { summary: '[]' },
+        type: { summary: 'TableColum[]' },
       },
     },
     config: {
       control: { type: 'object' },
-      description: 'Set the main config for the table',
+      description:
+        'Sets the general configuration of the table, including options like selectability, expandability, pagination, and actions.',
       table: {
         category: 'Properties',
-        defaultValue: { summary: '' },
-        type: { summary: 'object' },
+        defaultValue: { summary: '{}' },
+        type: { summary: 'TableConfig' },
       },
     },
+
+    // ──────────────────────────────────────────────────────────────
+    // ⚙️ DISPLAY & BEHAVIOR
+    // ──────────────────────────────────────────────────────────────
     truncate: {
       control: { type: 'boolean' },
       description:
-        'Determine if the text in all table cells will be truncated or not.',
+        'Determines whether long text inside cells should be truncated (with ellipsis).',
+      table: {
+        category: 'Properties',
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
+    },
+    showSearch: {
+      control: { type: 'boolean' },
+      description:
+        'Displays the search bar above the table. When `true`, users can filter data using keywords.',
       table: {
         category: 'Properties',
         type: { summary: 'boolean' },
@@ -415,97 +520,48 @@ ${getBasicExampleBlock(
     filtersVisible: {
       control: { type: 'boolean' },
       description:
-        'Show or hide the filters section. This property is a Model.',
+        'Controls the visibility of the filters panel. This property is a **Model**, meaning it can be two-way bound.',
       table: {
         category: 'Properties',
-        type: { summary: 'boolean' },
+        type: { summary: 'boolean (model)' },
         defaultValue: { summary: 'false' },
       },
     },
-    wrap: {
-      control: { type: 'boolean' },
+    filtersPosition: {
+      control: { type: 'select' },
+      options: ['top', 'right', 'bottom', 'left'],
       description:
-        'Determine if the text in all table cells will be wrapped or not.',
+        'Defines the position where the filters section will appear around the table.',
       table: {
         category: 'Properties',
-        type: { summary: 'boolean' },
-        defaultValue: { summary: 'false' },
-      },
-    },
-    actionTemplate: {
-      control: { type: 'none' },
-      description: 'Set the action buttons to show in the Action column',
-      table: {
-        category: 'Properties',
-        defaultValue: { summary: '' },
-        type: { summary: 'template' },
-      },
-    },
-    detailTemplate: {
-      control: { type: 'none' },
-      description: 'Set the template to show the detail row',
-      table: {
-        category: 'Properties',
-        defaultValue: { summary: '' },
-        type: { summary: 'template' },
+        type: { summary: `'top' | 'right' | 'bottom' | 'left'` },
+        defaultValue: { summary: `'top'` },
       },
     },
     pageSize: {
       control: { type: 'number' },
       description:
-        'Set the number of elements to show in the table when the pagination is activated',
+        'Sets the number of rows displayed per page when pagination is enabled.',
       table: {
         category: 'Properties',
-        defaultValue: { summary: '' },
+        defaultValue: { summary: '10' },
         type: { summary: 'number' },
       },
     },
-    select: {
-      control: false,
+    totalItems: {
+      control: { type: 'number' },
       description:
-        'This output can be used to save the row selected by the checkbox configuration.',
-      table: {
-        category: 'Events',
-        defaultValue: { summary: '-' },
-        type: { summary: 'onSelect($event)' },
-      },
-    },
-    clickedRow: {
-      control: false,
-      description:
-        'This output can be used to save the row selected by the interaction of a click.',
-      table: {
-        category: 'Events',
-        defaultValue: { summary: '-' },
-        type: { summary: 'clickedRow($event)' },
-      },
-    },
-    initialTableSelection: {
-      control: { type: 'object' },
-      description: `
-Set the initial selection of the table.
-
-This is an array of indexes that will be selected when the table is initialized.
-
-${RELEVANT_TITLE_LEVEL[0]} If the data is asynchronous, this property must also be asynchronous.`,
+        'Defines the total number of items when working with **server-side pagination**.',
       table: {
         category: 'Properties',
-        type: { summary: 'number[]' },
-        defaultValue: { summary: '[]' },
+        defaultValue: { summary: '0' },
+        type: { summary: 'number' },
       },
     },
-    showSearch: {
+    serverSide: {
       control: { type: 'boolean' },
-      description: 'Show or hide the search input at the top of the table.',
-      table: {
-        category: 'Properties',
-        type: { summary: 'boolean' },
-        defaultValue: { summary: 'false' },
-      },
-    },
-    showFilters: {
-      control: { type: 'boolean' },
-      description: 'Show or hide the column filters section.',
+      description:
+        'Enables server-side mode. When `true`, pagination, search, and filters emit events for remote data handling.',
       table: {
         category: 'Properties',
         type: { summary: 'boolean' },
@@ -516,25 +572,146 @@ ${RELEVANT_TITLE_LEVEL[0]} If the data is asynchronous, this property must also 
       control: { type: 'select' },
       options: ['es', 'en'],
       description:
-        'Set the language of the table. This will change the text of the headers table.',
+        'Sets the language of the table labels (headers, filters, etc).',
       table: {
         category: 'Properties',
-        type: { summary: 'BmbTableLang' },
-        defaultValue: { summary: 'es' },
+        type: { summary: `'es' | 'en'` },
+        defaultValue: { summary: `'es'` },
       },
     },
-    filtersPosition: {
-      control: { type: 'select' },
-      options: ['top', 'right', 'bottom', 'left'],
-      description: 'Set the position of the filters section.',
+
+    // ──────────────────────────────────────────────────────────────
+    // 🧠 SELECTION & INTERACTION
+    // ──────────────────────────────────────────────────────────────
+    initialTableSelection: {
+      control: { type: 'object' },
+      description: `
+Defines the initial row selection of the table.
+
+This is an array of row indexes that will be automatically selected when the table loads.
+
+If the data is loaded asynchronously, make sure to update this property after data is available.`,
       table: {
         category: 'Properties',
-        type: { summary: 'IBmbFiltersPosition' },
-        defaultValue: { summary: 'top' },
+        type: { summary: 'number[]' },
+        defaultValue: { summary: '[]' },
+      },
+    },
+    clearSelection: {
+      control: { type: 'boolean' },
+      description:
+        'Clears all selected rows when set to `true`. This property is a **Model**, allowing reactive control from outside the component.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'boolean (model)' },
+        defaultValue: { summary: 'false' },
+      },
+    },
+    currentPage: {
+      control: { type: 'number' },
+      description:
+        'Represents the current page index. It can be **controlled externally** when using server-side pagination. This property is a **Model**.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'number (model)' },
+        defaultValue: { summary: '0' },
+      },
+    },
+
+    // ──────────────────────────────────────────────────────────────
+    // 🎨 CUSTOM TEMPLATES
+    // ──────────────────────────────────────────────────────────────
+    actionTemplate: {
+      control: { type: 'none' },
+      description:
+        'Provides a custom Angular template to render buttons or elements inside the "Actions" column.',
+      table: {
+        category: 'Slots / Templates',
+        defaultValue: { summary: '-' },
+        type: { summary: 'TemplateRef<any>' },
+      },
+    },
+    detailTemplate: {
+      control: { type: 'none' },
+      description:
+        'Defines the custom template to display below a row when it is expanded.',
+      table: {
+        category: 'Slots / Templates',
+        defaultValue: { summary: '-' },
+        type: { summary: 'TemplateRef<any>' },
+      },
+    },
+
+    // ──────────────────────────────────────────────────────────────
+    // 📤 OUTPUT EVENTS
+    // ──────────────────────────────────────────────────────────────
+    select: {
+      control: false,
+      description:
+        'Emitted when the user selects or deselects one or more rows using checkboxes.',
+      table: {
+        category: 'Events',
+        defaultValue: { summary: '-' },
+        type: { summary: 'EventEmitter<any[]>' },
+      },
+    },
+    clickedRow: {
+      control: false,
+      description:
+        'Emitted when the user clicks on a row. Useful for triggering actions like detail views.',
+      table: {
+        category: 'Events',
+        defaultValue: { summary: '-' },
+        type: { summary: 'EventEmitter<any>' },
+      },
+    },
+    pageChange: {
+      control: false,
+      description:
+        'Emitted when the user changes the page. Useful in **server-side pagination** to fetch new data remotely.',
+      table: {
+        category: 'Events',
+        defaultValue: { summary: '-' },
+        type: {
+          summary: 'EventEmitter<{ pageIndex: number; pageSize: number }>',
+        },
+      },
+    },
+    filtersChange: {
+      control: false,
+      description:
+        'Emitted when filters are modified in **server-side mode**. Contains the full set of current filter values.',
+      table: {
+        category: 'Events',
+        defaultValue: { summary: '-' },
+        type: { summary: 'EventEmitter<Record<string, any>>' },
+      },
+    },
+    searchChange: {
+      control: false,
+      description:
+        'Emitted when the user types in the search bar in **server-side mode**.',
+      table: {
+        category: 'Events',
+        defaultValue: { summary: '-' },
+        type: { summary: 'EventEmitter<string>' },
+      },
+    },
+    searchModeChange: {
+      control: false,
+      description:
+        'Emitted when the search mode changes between **client-side** and **server-side**.',
+      table: {
+        category: 'Events',
+        defaultValue: { summary: '-' },
+        type: { summary: `EventEmitter<'client' | 'server'>` },
       },
     },
   },
   args: {
+    // ──────────────────────────────────────────────────────────────
+    // 🧩 DATA & COLUMNS
+    // ──────────────────────────────────────────────────────────────
     data: [
       {
         id: 1,
@@ -563,8 +740,8 @@ ${RELEVANT_TITLE_LEVEL[0]} If the data is asynchronous, this property must also 
         birthday: '14/07/1981',
         balance: 9064,
       },
-      // ...puedes dejar todo el dataset largo que ya tienes
     ],
+
     columns: [
       {
         def: 'first_name',
@@ -608,112 +785,45 @@ ${RELEVANT_TITLE_LEVEL[0]} If the data is asynchronous, this property must also 
         type: 'number',
       },
     ],
+
+    // ──────────────────────────────────────────────────────────────
+    // ⚙️ CONFIGURATION
+    // ──────────────────────────────────────────────────────────────
     config: {
       isSelectable: true,
       isExpandible: true,
       isPaginable: true,
       showActions: true,
     },
+
     truncate: false,
-    wrap: false,
-    initialTableSelection: [1],
+    serverSide: false,
     lang: 'es',
-    pageSize: 10,
     filtersPosition: 'top',
-    showFilters: false,
+
+    // ──────────────────────────────────────────────────────────────
+    // 📊 PAGINATION & FILTERS
+    // ──────────────────────────────────────────────────────────────
+    pageSize: 10,
+    totalItems: 3,
+    currentPage: 0,
     filtersVisible: false,
+
+    // ──────────────────────────────────────────────────────────────
+    // 🧠 SELECTION & SEARCH
+    // ──────────────────────────────────────────────────────────────
+    initialTableSelection: [1], // selects the second row
+    clearSelection: false,
     showSearch: false,
+
+    // ──────────────────────────────────────────────────────────────
+    // 🎨 CUSTOM TEMPLATES (placeholders)
+    // ──────────────────────────────────────────────────────────────
+    actionTemplate: null,
+    detailTemplate: null,
   },
 } as Meta<typeof BmbTableLiteComponent>;
 
 type Story = StoryObj<BmbTableLiteComponent>;
 
-/** Story con templates y wiring básico */
-export const Default: Story = {
-  render: (args: any) => ({
-    props: {
-      ...args,
-      // helpers para el detailTemplate
-      isString: (v: any): v is string => typeof v === 'string',
-      isObject: (v: any): v is object => typeof v === 'object' && v !== null,
-      clickButton: (e: Event) => {
-        e.stopPropagation();
-      },
-      // (Opcional) Si quieres remapear columnas/filas para usar templates del header/celda
-      columns: args.columns,
-      data: args.data,
-    },
-    template: `
-      <bmb-table-lite
-        [truncate]="truncate"
-        [wrap]="wrap"
-        [data]="data"
-        [columns]="columns"
-        [config]="config"
-        (select)="select($event)"
-        (clickedRow)="clickedRow($event)"
-        [actionTemplate]="actionTemplate"
-        [detailTemplate]="detailTemplate"
-        [pageSize]="pageSize"
-        [showSearch]="showSearch"
-        [showFilters]="showFilters"
-        [filtersVisible]="filtersVisible"
-        [lang]="lang"
-        [filtersPosition]="filtersPosition"
-        [initialTableSelection]="initialTableSelection"
-      ></bmb-table-lite>
-
-      <!-- Templates -->
-      <ng-template #lastNameTemplate let-row="row">
-        <div style="display: flex; align-items: center; gap: 4px">
-          <bmb-icon icon="face" [size]="20"></bmb-icon>
-          <span>{{ row.last_name || row.lastName }}</span>
-          <button (click)="clickButton($event)">
-            <bmb-icon icon="edit" [size]="20" />
-          </button>
-        </div>
-      </ng-template>
-
-      <ng-template #infoTemplate let-row="row">
-        <div style="display: flex; align-items: center; gap: 4px">
-          <span>{{ row.email || row.info }}</span>
-        </div>
-      </ng-template>
-
-      <ng-template #actionTemplate>
-        <div class="action-container">
-          <button (click)="clickButton($event)">
-            <bmb-icon icon="apps" />
-          </button>
-          <button (click)="clickButton($event)">
-            <bmb-icon icon="add" />
-          </button>
-        </div>
-      </ng-template>
-
-      <ng-template #headerNameTemplate let-column="column" let-i="index">
-        <div style="display: flex; align-items: center; gap: 4px">
-          <span>{{ column.label }} Title</span>
-          <bmb-icon icon="face" class="bmb_table-data-icon" />
-        </div>
-      </ng-template>
-
-      <ng-template #detailTemplate let-row="row">
-        <!-- Caso 1: solo texto -->
-        <div *ngIf="isString(row.detail)">
-          {{ row.detail }}
-        </div>
-
-        <!-- Caso 2: objeto con tabla anidada -->
-        <bmb-table-lite
-          *ngIf="isObject(row.detail)"
-          [data]="row.detail.data"
-          [columns]="row.detail.columns"
-          [config]="row.detail.config"
-          [truncate]="false"
-          [wrap]="false"
-        ></bmb-table-lite>
-      </ng-template>
-    `,
-  }),
-};
+export const Default: Story = {};

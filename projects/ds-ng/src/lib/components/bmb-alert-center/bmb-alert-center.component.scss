@@ -1,6 +1,6 @@
-@use "../../../assets/styles/base/fonts" as fonts;
-@use "../../../assets/styles/base/rem" as rem;
-@use "../../../assets/styles/base/mixins" as mixins;
+@use '../../../assets/styles/base/fonts' as fonts;
+@use '../../../assets/styles/base/rem' as rem;
+@use '../../../assets/styles/base/mixins' as mixins;
 
 .bmb_alert-center {
   height: 100%;
@@ -14,7 +14,7 @@
   &-main {
     position: relative;
 
-    @include mixins.media-query(1000, "min") {
+    @include mixins.media-query(1000, 'min') {
       border-right: rem.rem_calc(1) solid var(--general_contrasts-15);
     }
 
@@ -39,11 +39,11 @@
     padding: var(--bmb-spacing-m);
     overflow: auto;
 
-    @include mixins.container-query(350, "max") {
+    @include mixins.container-query(350, 'max') {
       display: none;
     }
 
-    @include mixins.media-query(1000, "max") {
+    @include mixins.media-query(1000, 'max') {
       display: none;
     }
 
@@ -54,7 +54,7 @@
       padding: var(--bmb-spacing-m);
 
       &-title {
-        @include mixins.media-query(1001, "max") {
+        @include mixins.media-query(1001, 'max') {
           display: none;
         }
       }

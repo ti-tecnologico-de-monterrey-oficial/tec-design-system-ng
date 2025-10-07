@@ -7,6 +7,11 @@ import {
   getAppearanceParam,
   getDefaultValueControl,
 } from '../../utils/doc/parameterDescriptions';
+import {
+  getBasicExampleBlock,
+  getGeneralComponentDescription,
+  getGeneralDescription,
+} from '../../utils/doc/utils';
 
 export default {
   title: 'Components/Menus/Student activity selector',
@@ -24,32 +29,16 @@ export default {
   ],
   parameters: {
     docs: {
+      controls: { exclude: ['selectTab', 'tabs', 'ngAfterContentInit'] },
       description: {
         component: `
-Below is an example of how you can use this component in TypeScript:
-
-\`\`\`typescript
-import { Component, ChangeDetectorRef } from '@angular/core';
-import { BmbStudentActivitySelectorComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
-import { CommonModule } from '@angular/common';
-
-@Component({
-  selector: 'app-component',
-  standalone: true,
-  imports: [
-    CommonModule,
-    BmbStudentActivitySelectorComponent,
-  ],
-  templateUrl: './component.html',
-  styleUrl: './component.scss',
-})
-
-\`\`\`
-
-### Example in HTML
-
-Below is an example of how to use this component in HTML:
-
+${getGeneralDescription({
+  content: `${getGeneralComponentDescription({ name: 'student-activity-selector' })} to organize the information in three types of selectors (3 is the limit).`,
+  generalDocLink:
+    'https://bamboo.tec.mx/latest/components/student-activity-selector/descripcion-general-77DLiLfG',
+  isDeprecated: true,
+})}
+${getBasicExampleBlock('BmbStudentActivitySelectorComponent, BmbTabStudentActivityComponent')}
 \`\`\`html
 <bmb-student-activity-selector>
   <bmb-student-activity-tab title="1"
@@ -76,7 +65,7 @@ Below is an example of how to use this component in HTML:
     ),
     title: {
       control: { type: 'text' },
-      description: 'Tab name.',
+      description: 'Sets the tab name.',
       table: {
         category: 'Properties',
         type: { summary: 'string' },
@@ -87,7 +76,7 @@ Below is an example of how to use this component in HTML:
       control: {
         type: 'text',
       },
-      description: 'Tab subtitle.',
+      description: 'Sets the tab subtitle.',
       table: {
         category: 'Properties',
         type: { summary: 'string' },

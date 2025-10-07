@@ -81,8 +81,6 @@ export type BmbTableLang = 'en' | 'es';
     ReactiveFormsModule,
     BmbDateRangeComponent,
     BmbActionIconComponent,
-    BmbLayoutDirective,
-    BmbLayoutItemDirective,
   ],
   templateUrl: './bmb-tables.component.html',
   styleUrl: './bmb-tables.component.scss',
@@ -456,16 +454,16 @@ export class BmbTablesComponent implements AfterViewInit, OnInit, OnChanges {
 
   getPaginationText(): string {
     const total = this.serverSide()
-      ? (this.totalItems?.() ?? 0)
-      : (this.paginator?.length ?? 0);
+      ? this.totalItems?.() ?? 0
+      : this.paginator?.length ?? 0;
 
     const pageIndex = this.serverSide()
-      ? (this.currentPage?.() ?? 0)
-      : (this.paginator?.pageIndex ?? 0);
+      ? this.currentPage?.() ?? 0
+      : this.paginator?.pageIndex ?? 0;
 
     const pageSize = this.serverSide()
-      ? (this.pageSize?.() ?? 10)
-      : (this.paginator?.pageSize ?? 10);
+      ? this.pageSize?.() ?? 10
+      : this.paginator?.pageSize ?? 10;
 
     if (total === 0 || pageSize === 0) {
       return `0 de ${total}`;

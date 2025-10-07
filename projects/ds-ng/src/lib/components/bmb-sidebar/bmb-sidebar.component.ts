@@ -12,17 +12,17 @@ import { CommonModule } from '@angular/common';
 import { SidebarElement } from './bmb-sidebar.interface';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { BmbCheckExternalLinkButtonComponent } from '../bmb-check-external-link-button/bmb-check-external-link-button.component';
-import { BmbButtonDirective } from '../../directives/bmb-button/button.directive';
 import { IPositionButtonMenu } from '../bmb-top-bar/types';
+import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
 
 @Component({
   selector: 'bmb-sidebar',
   standalone: true,
   imports: [
     CommonModule,
-    BmbButtonDirective,
     BmbIconComponent,
     BmbCheckExternalLinkButtonComponent,
+    BmbActionIconComponent,
   ],
   templateUrl: './bmb-sidebar.component.html',
   styleUrl: './bmb-sidebar.component.scss',
@@ -32,13 +32,14 @@ import { IPositionButtonMenu } from '../bmb-top-bar/types';
 export class BmbSidebarComponent implements OnInit {
   elements = input<SidebarElement[][]>([]);
   title = input<string>('Navigation');
-  position = input<IPositionButtonMenu>('left');
+  position = input<IPositionButtonMenu>('left'); //Only for web
 
   currentUrl: string = '';
   isOpen: boolean = false;
   selectedElement: SidebarElement | null = null;
   isActive: boolean = false;
   hasSubmenu: boolean = false;
+  maxChildrenLevel: number = 2;
 
   @ViewChild('sideNav') sideNav!: ElementRef;
 
@@ -71,24 +72,28 @@ export class BmbSidebarComponent implements OnInit {
       );
     }
 
-    this.hasSubmenu = this.elements().some((element) =>
-      element.some((el) => el.children),
+    this.hasSubmenu = this.elements()?.some((element) =>
+      element?.some((el) => el.children),
     );
   }
 
-  getLink(link: string, hasChildren: boolean): string {
-    if (!hasChildren) return link;
+  getLink(link: string): string {
+    if (!!link) return link;
     return '';
   }
 
-  toggleSidebar() {
-    this.isOpen = !this.isOpen;
+  closeSidebar() {
+    this.isOpen = false;
+    this.clearSelectElement();
+  }
+
+  clearSelectElement() {
     this.selectedElement = null;
   }
 
   toggleChildren(element: SidebarElement) {
     if (this.selectedElement === element) {
-      this.selectedElement = null;
+      this.clearSelectElement();
       return;
     }
 
@@ -97,10 +102,6 @@ export class BmbSidebarComponent implements OnInit {
     if (element.children) {
       element.isOpen = !element.isOpen;
     }
-  }
-
-  closeSideBar() {
-    this.selectedElement = null;
   }
 
   checkIfFocusInsideSidebar() {
@@ -112,7 +113,7 @@ export class BmbSidebarComponent implements OnInit {
 
   checkToCloseSidebar(event: any) {
     if (event.link && !event.children) {
-      this.toggleSidebar();
+      this.closeSidebar();
       this.sideNav.nativeElement.classList.add('bmb_sidebar-desktop-close');
 
       setTimeout(() => {
@@ -122,11 +123,5 @@ export class BmbSidebarComponent implements OnInit {
         this.sideNav.nativeElement.classList.remove('bmb-active');
       }, 500);
     }
-  }
-
-  getMobileIcon(): string {
-    if (this.isOpen) return 'close';
-    if (this.position() === 'left') return 'arrow_forward_ios';
-    return 'arrow_back_ios_new';
   }
 }

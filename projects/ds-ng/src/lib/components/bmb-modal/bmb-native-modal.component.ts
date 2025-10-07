@@ -1,11 +1,15 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  ComponentRef,
   computed,
+  effect,
   input,
   output,
   TemplateRef,
   Type,
+  ViewChild,
+  ViewContainerRef,
   ViewEncapsulation,
 } from '@angular/core';
 import { BmbOverlayComponent } from '../bmb-overlay/bmb-overlay.component';
@@ -43,20 +47,30 @@ import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 export class BmbNativeModalComponent {
   title = input<string>('');
   subtitle = input<string>('');
-  content = input<TemplateRef<any> | string>('');
+  content = input<TemplateRef<any> | null | Type<any> | string>('');
   actions = input<IBmbActionButton[]>([]);
-  alertIcon = input<IBmbModalAlertStyle>();
   modalId = input.required<string>();
   size = input<IBmbNativeModalSize>('medium');
   iconStyle = input<IBmbModalAlertStyle>();
-  autoFocus = input<boolean>(false);
-  disableClose = input<boolean>(true);
+  // autoFocus = input<boolean>(false);
+  disableBackdropClose = input<boolean>(true);
   hasBackdrop = input<boolean>(true);
+  inputContext = input<{ [key: string]: any }>({});
+  outputContext = input<{ [key: string]: (value: any) => void }>({});
 
   actionsClicked = output<{ buttonName: string; event: MouseEvent }>();
   closeModalClicked = output<{ modalId: string; event: MouseEvent }>();
 
-  constructor(private modalService: BmbNativeModalService) {}
+  constructor(private modalService: BmbNativeModalService) {
+    effect(() => {
+      this.renderContent();
+    });
+  }
+
+  @ViewChild('container', { read: ViewContainerRef })
+  container!: ViewContainerRef;
+
+  private componentRef: ComponentRef<any> | null = null;
 
   svgUrl: string = 'assets/svg/';
   modalIcon = computed(() => {
@@ -88,6 +102,10 @@ export class BmbNativeModalComponent {
     );
   }
 
+  isStringContent(): boolean {
+    return typeof this.content() === 'string';
+  }
+
   getContent(): any {
     return this.content() instanceof TemplateRef ? this.content() : null;
   }
@@ -102,8 +120,42 @@ export class BmbNativeModalComponent {
   }
 
   handleBackdropClick(): void {
-    if (!this.disableClose()) {
+    if (!this.disableBackdropClose()) {
       this.handleCloseModal(new MouseEvent('click'));
+    }
+  }
+
+  renderContent() {
+    if (!(this.content() instanceof Type)) {
+      return;
+    }
+
+    this.container.clear();
+    if (this.componentRef) {
+      this.componentRef?.destroy();
+      this.componentRef = null;
+    }
+
+    if (!this.content() || !this.container) return;
+
+    this.componentRef = this.container.createComponent(
+      this.content() as Type<any>,
+    );
+
+    if (this.componentRef.instance) {
+      const instance = this.componentRef.instance as any;
+
+      Object.keys(this.inputContext()).forEach((key) => {
+        this.componentRef?.setInput(key, this.inputContext()[key]);
+      });
+
+      Object.keys(this.outputContext()).forEach((key) => {
+        if (instance[key] && instance[key].subscribe) {
+          instance[key].subscribe(() => {
+            this.outputContext()[key](event);
+          });
+        }
+      });
     }
   }
 }

@@ -34,7 +34,7 @@ export default {
       },
       description: {
         component: `
-${getGeneralDescription(`${getGeneralComponentDescription('login', 'organism')} to log in to the web platform. It includes fields for credentials and password recovery.`, 'https://bamboo.tec.mx/latest/organisms/login-layout-web/descripcion-general-uYEtF9vq')}
+${getGeneralDescription({ content: `${getGeneralComponentDescription({ name: 'login', type: 'organism' })} to log in to the web platform. It includes fields for credentials and password recovery.`, generalDocLink: 'https://bamboo.tec.mx/latest/organisms/login-layout-web/descripcion-general-uYEtF9vq' })}
 ${getBasicExampleBlock('BmbLoginComponent')}
         `,
       },
@@ -67,7 +67,7 @@ ${getBasicExampleBlock('BmbLoginComponent')}
     forgottenPasswordTarget: {
       ...DBmbGenericParamDesc.target,
       description: DBmbGenericParamDesc.target.description.concat(
-        '<br/><br/>Corresponds to the \`forgottenPasswordLink\` link property.',
+        '<br/><br/>Corresponds to the `forgottenPasswordLink` link property.',
       ),
     },
     buttonLabel: {
@@ -193,7 +193,7 @@ IBmbTargetLink = '_blank' | '_parent' | '_self' | '_top'
     loginAsGuestTarget: {
       ...DBmbGenericParamDesc.target,
       description: DBmbGenericParamDesc.target.description.concat(
-        '<br/><br/>Corresponds to the \`loginAsGuestLink\` link property.',
+        '<br/><br/>Corresponds to the `loginAsGuestLink` link property.',
       ),
     },
     onRememberMeChecked: getOnEventParam(

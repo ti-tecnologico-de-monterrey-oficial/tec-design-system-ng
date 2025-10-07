@@ -1,7 +1,7 @@
-@use "../../../../../assets/styles/base/rem" as rem;
-@use "../../../../../assets/styles/base/fonts" as fonts;
+@use '../../../../../assets/styles/base/rem' as rem;
+@use '../../../../../assets/styles/base/fonts' as fonts;
 
-$types: "academic", "life", "event", "save_the_date";
+$types: 'academic', 'life', 'event', 'save_the_date';
 
 .bmb_calendar-event {
   box-sizing: border-box;
@@ -13,7 +13,7 @@ $types: "academic", "life", "event", "save_the_date";
   @include fonts.font(3, medium);
   display: grid;
   gap: 0 0;
-  grid-template-areas: "indicator title";
+  grid-template-areas: 'indicator title';
   grid-template-rows: 1fr;
 
   &-absolute {
@@ -32,8 +32,6 @@ $types: "academic", "life", "event", "save_the_date";
   }
 
   &-type {
-    &-academic,
-    &-life,
     &-academic {
       &.bmb_calendar-event-active:not(.bmb_calendar-event-disabled) {
         border-color: RGBA(var(--color-mariner-700));
@@ -41,6 +39,26 @@ $types: "academic", "life", "event", "save_the_date";
 
       .bmb_calendar-event-indicator {
         background-color: RGBA(var(--color-mariner-700));
+      }
+    }
+
+    &-events {
+      &.bmb_calendar-event-active:not(.bmb_calendar-event-disabled) {
+        border-color: RGBA(var(--color-purple-light));
+      }
+
+      .bmb_calendar-event-indicator {
+        background-color: RGBA(var(--color-purple-light));
+      }
+    }
+
+    &-life {
+      &.bmb_calendar-event-active:not(.bmb_calendar-event-disabled) {
+        border-color: RGB(var(--color-green-light));
+      }
+
+      .bmb_calendar-event-indicator {
+        background-color: RGB(var(--color-green-light));
       }
     }
 
@@ -60,9 +78,9 @@ $types: "academic", "life", "event", "save_the_date";
       grid-template-columns: rem.rem_calc(16) 1fr;
       grid-template-rows: auto auto 1fr;
       grid-template-areas:
-        "indicator title"
-        "indicator content"
-        "indicator time";
+        'indicator title'
+        'indicator content'
+        'indicator time';
     }
 
     &-reduced {

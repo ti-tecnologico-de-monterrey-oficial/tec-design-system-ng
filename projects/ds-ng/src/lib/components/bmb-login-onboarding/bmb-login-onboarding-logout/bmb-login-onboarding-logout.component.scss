@@ -1,6 +1,6 @@
-@use "../bmb-login-onboarding.component.scss" as page;
-@use "../../../../assets/styles/base/fonts" as fonts;
-@use "../../../../assets/styles/base/rem" as rem;
+@use '../bmb-login-onboarding.component.scss' as page;
+@use '../../../../assets/styles/base/fonts' as fonts;
+@use '../../../../assets/styles/base/rem' as rem;
 
 .bmb_login-onboarding-logout {
   @include page.page-flex;

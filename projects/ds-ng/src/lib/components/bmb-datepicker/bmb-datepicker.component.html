@@ -1,61 +1,50 @@
-<div class="bmb_datepicker" clickOutside (clickOutside)="clickOutside()">
+<div class="bmb_datepicker">
   <section class="bmb-datepicker-container">
-    <!-- @if (inline()) {
+    <bmb-input-validator
+      class="bmb_datepicker_validator"
+      [inputId]="inputId()"
+      [name]="name()"
+      [value]="control().value"
+      [label]="label()!"
+      [errorMessage]="errorMessage()"
+      [helperMessage]="helperMessage()"
+      [isRequired]="isRequired()"
+      [isDisabled]="disabled()"
+      [control]="control()"
+      [showError]="shouldShowError"
+      [tooltip]="tooltip()"
+      [tooltipPosition]="tooltipPosition()"
+      [customValidation]="customValidation()"
+    >
+      <div #contentDiv>
+        <bmb-input-content
+          class="bmb_dropdown-field"
+          type="text"
+          [inputId]="inputId()"
+          [name]="name()"
+          [icon]="icon()"
+          [control]="control()"
+          [isReadOnly]="true"
+          [placeholder]="placeholder()"
+          [isError]="shouldShowError"
+          (click)="handleFocusedEvent($event)"
+          (onKeyDown)="handleFocusedEvent($event)"
+        >
+        </bmb-input-content>
+      </div>
+    </bmb-input-validator>
+    <ng-template #modalTemplate>
       <bmb-datepicker-modal
         [now]="now"
         [isWindowOpen]="isWindowOpen"
-        (closeWindow)="handleWindowOpen($event)"
         (onValueChange)="handleValueChange($event)"
-        [value]="control().value"
+        [value]="control().valid && control().value"
         [dateFormat]="dateFormat()"
         [stepYearPicker]="stepYearPicker()"
-        [disableDatesBefore]="disableDatesBefore()"
-        [disableDatesAfter]="disableDatesAfter()"
+        [disableDatesBefore]="convertToDate(disableDatesBefore())"
+        [disableDatesAfter]="convertToDate(disableDatesAfter())"
         [lang]="lang()"
       />
-    } @else { -->
-    <bmb-input
-      [id]="inputId()"
-      [placeholder]="placeholder()"
-      [label]="label()"
-      [icon]="icon()"
-      [isRequired]="isRequired()"
-      [disabled]="disabled()"
-      [control]="control()"
-      [isRequired]="isRequired()"
-      [helperMessage]="helperMessage()"
-      [errorMessage]="{
-        required:
-          requiredFieldErrorMessage() ||
-          'Por favor ingresa la fecha de ' + label(),
-        customValidation:
-          invalidFormatErrorMessage() ||
-          'Por favor ingresa la fecha con formato ' + dateFormat(),
-      }"
-      [customValidation]="customValidatorDate()"
-      [name]="name()"
-      [isClearable]="isClearable()"
-      [value]="value()"
-      (onKeyDown)="handleFocusedEvent($event)"
-      (click)="handleFocusedEvent($event)"
-    >
-      @if (isWindowOpen) {
-        <ng-template #customInputContent>
-          <bmb-datepicker-modal
-            [now]="now"
-            [isWindowOpen]="isWindowOpen"
-            (closeWindow)="handleWindowOpen($event)"
-            (onValueChange)="handleValueChange($event)"
-            [value]="control().valid && control().value"
-            [dateFormat]="dateFormat()"
-            [stepYearPicker]="stepYearPicker()"
-            [disableDatesBefore]="convertToDate(disableDatesBefore())"
-            [disableDatesAfter]="convertToDate(disableDatesAfter())"
-            [lang]="lang()"
-          />
-        </ng-template>
-      }
-    </bmb-input>
-    <!-- } -->
+    </ng-template>
   </section>
 </div>

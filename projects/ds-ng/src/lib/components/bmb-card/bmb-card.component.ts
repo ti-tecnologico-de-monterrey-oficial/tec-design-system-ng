@@ -161,11 +161,13 @@ export class BmbCardFooterComponent {
 export class BmbCardContentComponent {
   @Input() padding: SizeNames | SizeNames[] = 'm';
   @Input() colorBackground: IBmbBgColor | null = null;
+  @Input() setBorderRadius: boolean = false;
 
   getClasses() {
     const classNames = [];
     if (typeof this.padding === 'string')
       classNames.push(`bmb_padding-${this.padding}`);
+    if (this.setBorderRadius) classNames.push('bmb_card-content-with-radius');
 
     return classNames;
   }

@@ -6,10 +6,13 @@ import {
   OnInit,
   ViewEncapsulation,
 } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormControl, ValidatorFn } from '@angular/forms';
 import { BmbDatepickerComponent } from '../bmb-datepicker/bmb-datepicker.component';
 import { CommonModule } from '@angular/common';
-import { IBmbInputAppearance } from '../bmb-input/bmb-input.component';
+import {
+  IBmbInputAppearance,
+  IBmbInputError,
+} from '../bmb-input/bmb-input.component';
 import {
   assignNewFormControl,
   newFormControlByType,
@@ -45,6 +48,8 @@ export class BmbDateRangeComponent implements OnInit {
   stepYearPicker = input<number>(12);
   name = input<string>(getUUID());
   multipleRow = input<boolean>(false);
+  customValidation = input<ValidatorFn>();
+  errorMessage = input<string | IBmbInputError>('');
 
   disableDatesBefore: string = '';
   disableDatesAfter: string = '';

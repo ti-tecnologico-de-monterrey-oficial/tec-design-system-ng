@@ -1,8 +1,27 @@
-@use "../../../assets/styles/base/fonts" as fonts;
-@use "../../../assets/styles/base/mixins" as mixins;
-@use "../../../assets/styles/base/rem" as rem;
+@use '../../../assets/styles/base/fonts' as fonts;
+@use '../../../assets/styles/base/mixins' as mixins;
+@use '../../../assets/styles/base/rem' as rem;
 
 .bmb_home-notification-card {
   width: 100%;
   max-width: rem.rem_calc(560);
+
+  .bmb_home-card-wrapper {
+    max-height: var(--maxHeight);
+    overflow: hidden;
+    display: flex;
+    flex-flow: column;
+
+    .bmb_home-card-container {
+      flex: 1;
+      overflow: auto;
+      display: flex;
+      flex-flow: column;
+
+      .bmb_home-notification-card-content {
+        flex: 1;
+        overflow: auto;
+      }
+    }
+  }
 }

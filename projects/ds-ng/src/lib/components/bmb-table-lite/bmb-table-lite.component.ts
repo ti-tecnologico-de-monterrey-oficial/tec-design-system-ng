@@ -1,15 +1,10 @@
 import { CommonModule } from '@angular/common';
 import {
   Component,
-  AfterViewInit,
-  ViewChild,
   OnInit,
   Output,
   EventEmitter,
-  ElementRef,
   TemplateRef,
-  HostListener,
-  Renderer2,
   ViewEncapsulation,
   ChangeDetectionStrategy,
   input,
@@ -19,8 +14,8 @@ import {
   model,
   ChangeDetectorRef,
   computed,
+  HostBinding,
 } from '@angular/core';
-import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { ReactiveFormsModule, FormControl, FormGroup } from '@angular/forms';
 import { DateTime } from 'luxon';
 import { SelectionModel } from '@angular/cdk/collections';
@@ -55,7 +50,10 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
-export class BmbTableLiteComponent implements AfterViewInit, OnInit, OnChanges {
+export class BmbTableLiteComponent implements OnInit, OnChanges {
+  // -----------------------------------------------------------------------------
+  // 🔧 CONFIGURACIÓN INTERNA (no visible desde el template)
+  // -----------------------------------------------------------------------------
   private _rawColumns: TableColum[] = [];
   private _rawConfig: TableConfig = {
     isSelectable: false,
@@ -63,71 +61,81 @@ export class BmbTableLiteComponent implements AfterViewInit, OnInit, OnChanges {
     isPaginable: false,
     showActions: false,
   };
-  originalData: any[] = [];
-  filteredData: any[] = [];
-  pageSlice: any[] = [];
 
-  filterForm = new FormGroup({});
-  tableDisplayColumns: string[] = [];
-  tableColumns: TableColum[] = [];
-  expandedElement: any;
-  selection = new SelectionModel<any>(true, []);
-  tableConfig: TableConfig | undefined;
+  // -----------------------------------------------------------------------------
+  // 📊 DATOS Y ESTADO DE LA TABLA
+  // -----------------------------------------------------------------------------
+  originalData: any[] = []; // Datos originales sin filtros
+  filteredData: any[] = []; // Datos tras aplicar filtros
+  pageSlice: any[] = []; // Página actual que se muestra
 
-  pressed = false;
-  currentResizeIndex?: number;
-  startX?: number;
-  startWidth?: number;
-  resizableMousemove?: () => void;
-  resizableMouseup?: () => void;
+  expandedElement: any; // Fila expandida actual
+  selection = new SelectionModel<any>(true, []); // Selección de filas
+  tableConfig: TableConfig | undefined; // Configuración activa de la tabla
 
-  searchControl = new FormControl('');
+  // -----------------------------------------------------------------------------
+  // 🔍 FORMULARIO DE FILTROS Y BÚSQUEDA
+  // -----------------------------------------------------------------------------
+  filterForm = new FormGroup({}); // Controles dinámicos de filtros
+  searchControl = new FormControl(''); // Control de búsqueda (texto)
 
-  showSearch = input<boolean>(false);
-  showFilters = input<boolean>(false);
-  pageSize = input<number>();
-  totalItems = input<number>(0);
-  data = input<any[]>([]);
-  columns = input<TableColum[]>([]);
-  actionTemplate = input<TemplateRef<any> | null>(null);
-  config = input<TableConfig>();
-  detailTemplate = input<TemplateRef<any> | null>(null);
-  truncate = input<boolean>(false);
-  wrap = input<boolean>(true);
-  initialTableSelection = input<number[]>([]);
-  lang = input<IBmbTableLang>('es');
-  clearSelection = model<boolean>(false);
-  serverSide = input<boolean>(false);
-  currentPage = model<number>(0);
-  filtersVisible = model<boolean>(false);
-  filtersPosition = input<IBmbFiltersPosition>('top');
+  // -----------------------------------------------------------------------------
+  // 🧩 COLUMNAS Y ESTRUCTURA DE LA TABLA
+  // -----------------------------------------------------------------------------
+  tableColumns: TableColum[] = []; // Columnas renderizadas en la tabla
 
-  @Output() select: EventEmitter<any> = new EventEmitter();
-  @Output() clickedRow: EventEmitter<any> = new EventEmitter();
-  @Output() searchChange = new EventEmitter<string>();
-  @Output() filtersChange = new EventEmitter<Record<string, any>>();
-  @Output() searchModeChange = new EventEmitter<'client' | 'server'>();
+  // -----------------------------------------------------------------------------
+  // ⚙️ INPUTS (configuración externa del componente)
+  // -----------------------------------------------------------------------------
+  showSearch = input<boolean>(false); // Muestra u oculta el buscador
+  pageSize = input<number>(); // Tamaño de página
+  totalItems = input<number>(0); // Total de elementos (server)
+  data = input<any[]>([]); // Data recibida
+  columns = input<TableColum[]>([]); // Definición de columnas
+  config = input<TableConfig>(); // Configuración general
+
+  truncate = input<boolean>(false); // Activa truncado de texto
+  lang = input<IBmbTableLang>('es'); // Idioma ('es' | 'en')
+  serverSide = input<boolean>(false); // Modo servidor o cliente
+  filtersPosition = input<IBmbFiltersPosition>('top'); // Posición filtros
+  initialTableSelection = input<number[]>([]); // Selección inicial de filas
+  actionTemplate = input<TemplateRef<any> | null>(null); // Template de acciones
+  detailTemplate = input<TemplateRef<any> | null>(null); // Template de detalle
+
+  // -----------------------------------------------------------------------------
+  // ⚡ MODELOS REACTIVOS (usando signals)
+  // -----------------------------------------------------------------------------
+  clearSelection = model<boolean>(false); // Limpia selección desde fuera
+  currentPage = model<number>(0); // Página actual
+  filtersVisible = model<boolean>(false); // Estado visible/oculto de filtros
+
+  // -----------------------------------------------------------------------------
+  // 📤 OUTPUTS (eventos que emite la tabla)
+  // -----------------------------------------------------------------------------
+  @Output() select = new EventEmitter<any>(); // Cambio de selección
+  @Output() clickedRow = new EventEmitter<any>(); // Click en una fila
+  @Output() searchChange = new EventEmitter<string>(); // Texto del buscador
+  @Output() filtersChange = new EventEmitter<Record<string, any>>(); // Filtros aplicados
+  @Output() searchModeChange = new EventEmitter<'client' | 'server'>(); // Modo de búsqueda
   @Output() pageChange = new EventEmitter<{
     pageIndex: number;
     pageSize: number;
-  }>();
+  }>(); // Cambio de página
 
-  @ViewChild('tableRef', { read: ElementRef }) private tableRef?: ElementRef;
-
-  @HostListener('window:resize')
-  onResize() {
-    this.setTableResize(this.tableRef?.nativeElement.clientWidth ?? 0);
-  }
-
+  // -----------------------------------------------------------------------------
+  // 🧮 PROPIEDADES COMPUTADAS
+  // -----------------------------------------------------------------------------
   parsedFiltersColumns = computed(() =>
     this.columns().filter((column) => column.isFilterable !== false),
   );
 
-  constructor(
-    private renderer: Renderer2,
-    private sanitizer: DomSanitizer,
-    private cdr: ChangeDetectorRef,
-  ) {
+  // -----------------------------------------------------------------------------
+  // 🧠 CICLO DE VIDA Y EFECTOS REACTIVOS
+  // -----------------------------------------------------------------------------
+
+  constructor(private cdr: ChangeDetectorRef) {
+    // 🧩 Efecto: controla la página actual en modo servidor, asegurando que
+    // no exceda los límites (0 → lastPage)
     effect(() => {
       if (!this.serverSide()) return;
       const last = this.lastPage();
@@ -140,28 +148,20 @@ export class BmbTableLiteComponent implements AfterViewInit, OnInit, OnChanges {
       }
     });
 
-    effect(() => {
-      const selectedRows = this.initialTableSelection() ?? [];
-      if (selectedRows.length && this.filteredData.length) {
-        this.selection.clear();
-        selectedRows.forEach((idx) => {
-          if (this.filteredData[idx])
-            this.selection.select(this.filteredData[idx]);
-        });
-      } else {
-        this.selection.clear();
-      }
-    });
-
-    effect(() => {
-      if (this.clearSelection()) {
-        this.selection.clear();
-        this.clearSelection.set(false);
-        this.select.emit(this.selection.selected);
-      }
-    });
+    // 🧩 Efecto: limpia la selección de filas si se activa `clearSelection`
+    effect(
+      () => {
+        if (this.clearSelection()) {
+          this.selection.clear();
+          this.clearSelection.set(false);
+          this.select.emit(this.selection.selected);
+        }
+      },
+      { allowSignalWrites: true },
+    );
   }
 
+  // 🧩 Detecta cambios en inputs reactivos (data, columns, config)
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['data']) this.parseData(changes['data'].currentValue || []);
     if (changes['columns'])
@@ -169,6 +169,7 @@ export class BmbTableLiteComponent implements AfterViewInit, OnInit, OnChanges {
     if (changes['config']) this.setConfig(changes['config'].currentValue || {});
   }
 
+  // 🧩 Inicializa filtros y suscripciones del buscador
   ngOnInit(): void {
     this.searchControl.valueChanges.subscribe((value) => {
       const search = (value || '').trim().toLowerCase();
@@ -186,10 +187,11 @@ export class BmbTableLiteComponent implements AfterViewInit, OnInit, OnChanges {
     this.parseColumns(this.columns());
   }
 
-  ngAfterViewInit() {
-    this.setTableResize(this.tableRef?.nativeElement.clientWidth ?? 0);
-  }
+  // -----------------------------------------------------------------------------
+  // 🧩 MANEJO DE DATOS Y COLUMNAS
+  // -----------------------------------------------------------------------------
 
+  // 🔹 Normaliza y aplica los datos iniciales según el modo (server/client)
   parseData(data: any[]) {
     this.originalData = Array.isArray(data) ? data : [];
     if (!this.serverSide()) {
@@ -199,8 +201,20 @@ export class BmbTableLiteComponent implements AfterViewInit, OnInit, OnChanges {
       this.filteredData = [...this.originalData];
       this.pageSlice = [...this.filteredData];
     }
+
+    // 🧩 Aplica selección inicial si está configurada
+    const selectedRows = this.initialTableSelection() ?? [];
+    if (selectedRows.length && this.filteredData.length) {
+      this.selection.clear();
+      selectedRows.forEach((idx) => {
+        if (this.filteredData[idx]) {
+          this.selection.select(this.filteredData[idx]);
+        }
+      });
+    }
   }
 
+  // 🔹 Estandariza las columnas y genera sus filtros dinámicos
   parseColumns(columns: TableColum[]) {
     const normalized = (columns || []).map((col) => ({
       type: 'string' as const,
@@ -214,11 +228,13 @@ export class BmbTableLiteComponent implements AfterViewInit, OnInit, OnChanges {
     this.applyClientPagination();
   }
 
+  // 🔹 Fusiona la configuración por defecto con la recibida vía input
   setConfig(cfg: TableConfig) {
     this.tableConfig = { ...this._rawConfig, ...cfg };
     this.applyColumnsAndConfig(this._rawColumns);
   }
 
+  // 🔹 Aplica columnas visibles y configura las especiales (select/expand/actions)
   private applyColumnsAndConfig(newColumns: TableColum[] = []) {
     if (!newColumns.length) return;
 
@@ -228,10 +244,14 @@ export class BmbTableLiteComponent implements AfterViewInit, OnInit, OnChanges {
     if (this._rawConfig.showActions) displayColumns.push('actions');
 
     this.tableColumns = newColumns;
-    this.tableDisplayColumns = displayColumns;
     this.tableConfig = this._rawConfig;
   }
 
+  // -----------------------------------------------------------------------------
+  // 🎛️ FILTROS Y BÚSQUEDA
+  // -----------------------------------------------------------------------------
+
+  // 🔹 Crea dinámicamente los controles del formulario de filtros
   setupDynamicFilters() {
     Object.keys(this.filterForm.controls).forEach((k) =>
       this.filterForm.removeControl(k),
@@ -256,6 +276,7 @@ export class BmbTableLiteComponent implements AfterViewInit, OnInit, OnChanges {
     this.filterForm.valueChanges.subscribe(() => this.applyFilters());
   }
 
+  // 🔹 Aplica los filtros, búsqueda y paginación según el modo activo
   applyFilters(): void {
     const values = this.filterForm.value as any;
 
@@ -274,6 +295,7 @@ export class BmbTableLiteComponent implements AfterViewInit, OnInit, OnChanges {
     const searchText = (this.searchControl.value || '').toLowerCase().trim();
     let filtered = [...this.originalData];
 
+    // 🔹 Aplica filtros numéricos, de fecha y texto
     this._rawColumns.forEach((column) => {
       const key = column.dataKey;
       const type = column.type || 'string';
@@ -281,7 +303,6 @@ export class BmbTableLiteComponent implements AfterViewInit, OnInit, OnChanges {
       if (type === 'number') {
         const rawMin = values[`${key}_min`];
         const rawMax = values[`${key}_max`];
-
         const min =
           rawMin === null || rawMin === undefined || rawMin === ''
             ? null
@@ -290,7 +311,6 @@ export class BmbTableLiteComponent implements AfterViewInit, OnInit, OnChanges {
           rawMax === null || rawMax === undefined || rawMax === ''
             ? null
             : Number(rawMax);
-
         filtered = filtered.filter((row) => {
           const v = Number(row[key]);
           if (Number.isNaN(v)) return false;
@@ -302,7 +322,6 @@ export class BmbTableLiteComponent implements AfterViewInit, OnInit, OnChanges {
         const dateFormat = column.dateFormat || 'yyyy-MM-dd';
         const rawFrom = values[`${key}_from`];
         const rawTo = values[`${key}_to`];
-
         const from = rawFrom
           ? DateTime.fromFormat(String(rawFrom), dateFormat)
           : null;
@@ -331,6 +350,7 @@ export class BmbTableLiteComponent implements AfterViewInit, OnInit, OnChanges {
       }
     });
 
+    // 🔹 Aplica búsqueda global
     if (searchText) {
       filtered = filtered.filter((row) =>
         this._rawColumns.some((col) =>
@@ -344,10 +364,16 @@ export class BmbTableLiteComponent implements AfterViewInit, OnInit, OnChanges {
     this.cdr.markForCheck();
   }
 
+  // -----------------------------------------------------------------------------
+  // 📄 PAGINACIÓN (CLIENTE Y SERVIDOR)
+  // -----------------------------------------------------------------------------
+
+  // 🔹 Determina el tamaño actual de página
   get resolvedPageSize(): number {
     return this.pageSize() ?? 10;
   }
 
+  // 🔹 Aplica la paginación del lado del cliente
   private applyClientPagination() {
     if (this.serverSide() || !this.tableConfig?.isPaginable) {
       this.pageSlice = [...this.filteredData];
@@ -358,6 +384,7 @@ export class BmbTableLiteComponent implements AfterViewInit, OnInit, OnChanges {
     this.pageSlice = this.filteredData.slice(start, end);
   }
 
+  // 🔹 Evento de cambio de página (client/server)
   onPageEvent(pageIndex: number) {
     this.currentPage.set(pageIndex);
     if (this.serverSide()) {
@@ -370,63 +397,80 @@ export class BmbTableLiteComponent implements AfterViewInit, OnInit, OnChanges {
     }
   }
 
+  // 🔹 Helpers de control de página
+  isFirstPage(): boolean {
+    return this.currentPage() <= 0;
+  }
+  isLastPage(): boolean {
+    return this.currentPage() >= this.lastPage();
+  }
+  isSinglePage(): boolean {
+    const totalItems = this.serverSide()
+      ? this.totalItems() ?? 0
+      : this.filteredData.length;
+    return totalItems <= this.resolvedPageSize;
+  }
+
+  // 🔹 Calcula la última página disponible
   lastPage(): number {
     const total = this.serverSide()
-      ? (this.totalItems() ?? 0)
+      ? this.totalItems() ?? 0
       : this.filteredData.length;
     const size = this.resolvedPageSize;
     const result = size === 0 ? 0 : Math.ceil(total / size) - 1;
     return Math.max(0, result);
   }
 
+  // 🔹 Navegación entre páginas
   goToFirstPage() {
     if (this.currentPage() > 0) this.onPageEvent(0);
   }
-
   goToPreviousPage() {
     if (this.currentPage() > 0) this.onPageEvent(this.currentPage() - 1);
   }
-
   goToNextPage() {
     if (this.currentPage() < this.lastPage())
       this.onPageEvent(this.currentPage() + 1);
   }
-
   goToLastPage() {
     this.onPageEvent(this.lastPage());
   }
 
+  // 🔹 Texto descriptivo del rango paginado (ej. "1 - 5 de 20")
   getPaginationText(): string {
     const total = this.serverSide()
-      ? (this.totalItems?.() ?? 0)
+      ? this.totalItems?.() ?? 0
       : this.filteredData.length;
     const pageIndex = this.currentPage?.() ?? 0;
     const pageSize = this.resolvedPageSize;
-
     if (total === 0 || pageSize === 0) return `0 de ${total}`;
     const startIndex = pageIndex * pageSize + 1;
     const endIndex = Math.min((pageIndex + 1) * pageSize, total);
     return `${startIndex} - ${endIndex} de ${total}`;
   }
 
-  sanitizeHTML(label: string): SafeHtml {
-    return this.sanitizer.bypassSecurityTrustHtml(label);
-  }
+  // -----------------------------------------------------------------------------
+  // 🖱️ INTERACCIÓN DE FILAS Y SELECCIÓN
+  // -----------------------------------------------------------------------------
 
+  // 🔹 Emite el evento de click en fila
   onSelectRow(row: any): void {
     this.clickedRow.emit(row);
   }
 
+  // 🔹 Emite el evento cuando cambia la selección
   onSelect() {
     this.select.emit(this.selection.selected);
   }
 
+  // 🔹 Comprueba si todas las filas visibles están seleccionadas
   isAllSelected(): boolean {
     const numSelected = this.selection.selected.length;
     const numRows = this.pageSlice.length;
     return numRows > 0 && numSelected === numRows;
   }
 
+  // 🔹 Alterna la selección de todas las filas visibles
   toggleAllRows() {
     if (this.isAllSelected()) {
       this.selection.clear();
@@ -437,11 +481,16 @@ export class BmbTableLiteComponent implements AfterViewInit, OnInit, OnChanges {
     this.onSelect();
   }
 
+  // 🔹 Etiqueta accesible del checkbox (usada por ARIA)
   checkboxLabel(row?: any): string {
     if (!row) return `${this.isAllSelected() ? 'deselect' : 'select'} all`;
     const idx = this.pageSlice.indexOf(row);
     return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${idx + 1}`;
   }
+
+  // -----------------------------------------------------------------------------
+  // 🎨 UTILIDADES DE RENDERIZADO Y CLASES
+  // -----------------------------------------------------------------------------
 
   isEven(rowIndex: number): boolean {
     return rowIndex % 2 === 0;
@@ -449,68 +498,29 @@ export class BmbTableLiteComponent implements AfterViewInit, OnInit, OnChanges {
   isOdd(rowIndex: number): boolean {
     return !this.isEven(rowIndex);
   }
-
   isTemplateRef(value: any): boolean {
     return value instanceof TemplateRef;
   }
 
+  // 🔹 Define clases dinámicas para celdas de datos
   getCellClasses(row: any, columnKey: string, index: number): any {
     const semanticType = row[columnKey + 'Type'];
     return {
       'bmb_table_lite-sticky': index === 0,
       truncated: this.truncate(),
-      wrapped: this.wrap(),
       ['bmb_table_lite-' + semanticType]: !!semanticType,
     };
   }
 
-  setTableResize(_tableWidth: number) {}
-
-  onResizeColumn(event: MouseEvent, index: number) {
-    this.currentResizeIndex = index;
-    this.pressed = true;
-    this.startX = event.pageX;
-
-    const th = (event.target as HTMLElement).closest(
-      '.bmb_table_lite-th',
-    ) as HTMLElement | null;
-    this.startWidth = th?.offsetWidth ?? 0;
-
-    event.preventDefault();
-    this.mouseMove(index);
+  // 🔹 Define clases dinámicas para encabezados
+  getHeaderCellClasses(i: number): any {
+    return {
+      'bmb_table_lite-sticky': i === 0,
+      truncated: this.truncate(),
+    };
   }
 
-  mouseMove(index: number) {
-    const cleanMove = this.renderer.listen(
-      'document',
-      'mousemove',
-      (event: MouseEvent) => {
-        if (!this.pressed) return;
-        const dx = event.pageX - (this.startX ?? 0);
-        const newW = Math.max(50, (this.startWidth ?? 0) + dx);
-        const col = this.tableColumns[index];
-        if (col) col.width = newW;
-        this.cdr.markForCheck();
-      },
-    );
-    const cleanUp = this.renderer.listen('document', 'mouseup', () => {
-      if (this.pressed) {
-        this.pressed = false;
-        this.currentResizeIndex = -1;
-        cleanMove();
-        cleanUp();
-      }
-    });
-  }
-
-  getFormControl(name: string): FormControl {
-    return this.filterForm.get(name) as FormControl;
-  }
-
-  toggleFilters(): void {
-    this.filtersVisible.set(!this.filtersVisible());
-  }
-
+  // 🔹 Determina clases principales del contenedor según posición de filtros
   getTableClasses(): string[] {
     const classList = ['bmb_table_lite'];
     switch (this.filtersPosition()) {
@@ -527,5 +537,57 @@ export class BmbTableLiteComponent implements AfterViewInit, OnInit, OnChanges {
         classList.push('bmb_table_lite-filters-top');
     }
     return classList;
+  }
+
+  // 🔹 Obtiene un control del formulario de filtros
+  getFormControl(name: string): FormControl {
+    return this.filterForm.get(name) as FormControl;
+  }
+
+  // 🔹 Alterna la visibilidad del panel de filtros
+  toggleFilters(): void {
+    this.filtersVisible.set(!this.filtersVisible());
+  }
+
+  // -----------------------------------------------------------------------------
+  // 🧮 VARIABLES CSS Y BINDINGS DINÁMICOS
+  // -----------------------------------------------------------------------------
+
+  @HostBinding('style.--col-count')
+  get colCount() {
+    return this.tableColumns.length;
+  }
+
+  @HostBinding('style.--col-checkbox')
+  get colCheckbox() {
+    return this.tableConfig?.isSelectable ? '62px' : '0px';
+  }
+
+  @HostBinding('style.--col-expand')
+  get colExpand() {
+    return this.tableConfig?.isExpandible ? '40px' : '0px';
+  }
+
+  @HostBinding('style.--col-actions')
+  get colActions() {
+    return this.tableConfig?.showActions ? '80px' : '0px';
+  }
+
+  // 🔹 Expone las variables CSS usadas para el grid dinámico
+  get cssVars() {
+    return {
+      '--col-count': this.tableColumns.length,
+      '--col-checkbox': this.tableConfig?.isSelectable ? '62px' : '0px',
+      '--col-expand': this.tableConfig?.isExpandible ? '40px' : '0px',
+      '--col-actions': this.tableConfig?.showActions ? '80px' : '0px',
+    };
+  }
+
+  trackByColumn(index: number, column: any): string | number {
+    return column.def || column.label || index;
+  }
+
+  trackByRow(index: number, row: any): string | number {
+    return row.id ?? row.sociedad ?? index;
   }
 }

@@ -9,10 +9,12 @@ import {
   model,
   SimpleChanges,
   OnChanges,
+  computed,
+  ViewChild,
+  ElementRef,
 } from '@angular/core';
-import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, ReactiveFormsModule, ValidatorFn } from '@angular/forms';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
-import { ClickOutsideDirective } from '../../directives/utils/clickoutside.directive';
 import {
   convertListToSelectList,
   getSelectedValues,
@@ -34,6 +36,7 @@ import {
   showError,
 } from '../../utils/formControl';
 import { BmbInputValidatorComponent } from '../bmb-input/bmb-input-validator/bmb-input-validator.component';
+import { BmbProjectionContentService } from '../../services/projection.service';
 
 export interface IBmbDropdownItem {
   name: string;
@@ -50,10 +53,8 @@ export interface IBmbDropdownItem {
     CommonModule,
     BmbIconComponent,
     ReactiveFormsModule,
-    ClickOutsideDirective,
     BmbInputValidatorComponent,
     BmbInputContentComponent,
-    BmbDropdownContentComponent,
   ],
   templateUrl: './bmb-dropdown.component.html',
   styleUrl: './bmb-dropdown.component.scss',
@@ -81,6 +82,7 @@ export class BmbDropdownComponent implements OnInit, OnChanges {
   value = input<string | string[]>('');
   isFilterable = input<boolean>(false);
   inputId = input<string>(this.name());
+  customValidation = input<ValidatorFn>();
 
   control = model<FormControl>(newFormControlByType());
 
@@ -88,14 +90,17 @@ export class BmbDropdownComponent implements OnInit, OnChanges {
   onFocus = output<boolean>();
 
   uuid: string = getUUID();
-  isOpen: boolean = false;
-  items: IDropdownItem[] = [];
+  isModalOpen = model<boolean>(false);
   selectionControl: FormControl = new FormControl(new FormControl());
   selectedIcon: string = '';
   isKeyboardEvent: boolean = false;
   isControlNull: boolean = false;
-  filteredOptions: IDropdownItem[] = [];
+  parsedOptions = computed(() => this.initOptions(this.options()));
   selectedItem: IDropdownItem | null = null;
+
+  @ViewChild('contentDiv', { static: true }) contentRef!: ElementRef<any>;
+
+  constructor(private projectionService: BmbProjectionContentService) {}
 
   ngOnInit() {
     if (!this.control()) {
@@ -103,55 +108,52 @@ export class BmbDropdownComponent implements OnInit, OnChanges {
       this.isControlNull = true;
     }
 
-    if (this.disabled()) this.selectionControl.disable();
-    else this.selectionControl.enable();
-
     if (!this.isMultiSelect() && Array.isArray(this.control()?.value)) {
       this.control().setValue('');
     }
 
     this.control()
-      .valueChanges.pipe(startWith(this.getValidInitialValues()))
+      ?.valueChanges.pipe(startWith(this.getValidInitialValues()))
       .subscribe((value) => {
         this.setSelectionControl(value);
       });
-
-    this.filteredOptions = [...this.items];
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes['options']) {
-      this.initOptions(changes['options'].currentValue);
-      this.control().setValue(this.getValidInitialValues());
+    if (this.control() !== null) {
+      if (changes['options']) {
+        this.control().setValue(this.getValidInitialValues());
+      }
     }
   }
 
-  initOptions(list: string[] | IBmbDropdownItem[]): void {
+  initOptions(list: string[] | IBmbDropdownItem[]): IDropdownItem[] {
     const newItems = convertListToSelectList(
       list,
       this.icon(),
       this.showIcon(),
     );
 
-    this.items = newItems.map((element: IDropdownItem) => {
+    let parsedItems = newItems.map((element: IDropdownItem) => {
       return {
         ...element,
         icon: !this.isMultiSelect() && this.showIcon() ? element.icon! : '',
         action: () => {
           this.setSelectedValue(element);
+          this.projectionService.closeContent();
         },
       } as IDropdownItem;
     });
 
     if (!!this.preferredOptions().length) {
-      const preferredItems: IDropdownItem[] = this.items.filter((element) =>
+      const preferredItems: IDropdownItem[] = parsedItems.filter((element) =>
         this.preferredOptions().includes(element.value!),
       );
 
-      this.items = [...new Set([...preferredItems, ...this.items])];
+      parsedItems = [...new Set([...preferredItems, ...parsedItems])];
     }
 
-    this.filteredOptions = [...this.items];
+    return parsedItems;
   }
 
   handleFocus(value: boolean): void {
@@ -180,7 +182,7 @@ export class BmbDropdownComponent implements OnInit, OnChanges {
   setSelectionControl(controlValue: string | string[]): void {
     if (!!controlValue) {
       if (this.isMultiSelect()) {
-        const selectedItems = this.items.filter(({ value }) =>
+        const selectedItems = this.parsedOptions().filter(({ value }) =>
           controlValue.includes(value!),
         );
 
@@ -190,7 +192,9 @@ export class BmbDropdownComponent implements OnInit, OnChanges {
         return;
       }
 
-      const item = this.items.find(({ value }) => value === controlValue);
+      const item = this.parsedOptions().find(
+        ({ value }) => value === controlValue,
+      );
       if (!!item) {
         this.selectionControl.setValue(item?.selectedText);
         if (this.showIcon()) this.selectedIcon = item.icon;
@@ -201,14 +205,6 @@ export class BmbDropdownComponent implements OnInit, OnChanges {
 
     this.selectionControl.setValue('');
     if (this.showIcon()) this.selectedIcon = this.icon();
-  }
-
-  selectOptionWithKey(value: string): IDropdownItem[] {
-    if (!value) return this.items;
-
-    return this.items.filter((item) =>
-      item?.selectedText?.toLowerCase().includes(value.toLowerCase()),
-    );
   }
 
   setSelectedValue(element: IDropdownItem): void {
@@ -222,47 +218,28 @@ export class BmbDropdownComponent implements OnInit, OnChanges {
   }
 
   openList(): void {
-    this.isOpen = !this.isOpen;
-    if (!this.isOpen) this.isKeyboardEvent = false;
-  }
-
-  closeList(): void {
-    this.isOpen = false;
-    this.isKeyboardEvent = false;
-    if (this.isFilterable() && !this.isMultiSelect()) {
-      this.selectionControl.setValue(this.selectedItem?.selectedText || '');
-    }
+    const data = {
+      content: BmbDropdownContentComponent,
+      targetRef: this.contentRef?.nativeElement,
+      fixSizeToRef: true,
+      showBackdrop: false,
+      inputContext: {
+        selectedOption: this.control().value,
+        items: this.parsedOptions(),
+        isKeyboardEvent: this.isKeyboardEvent,
+        enableFilter: this.isFilterable(),
+      },
+      focusOnOpen: true,
+    };
+    this.projectionService.openContent(data);
   }
 
   // Keyboards events
   onKeyDown(event: KeyboardEvent) {
     const keyboards = [' ', 'ArrowDown', 'Down'];
-    const regexCode = /^[a-zA-Z0-9\-\.\, ]{1}$/gm;
 
     if (keyboards.includes(event.key)) {
-      if (!this.isOpen) {
-        this.isKeyboardEvent = true;
-        this.openList();
-      }
-
-      if (!this.options().length && !this.isFilterable()) {
-        event.preventDefault();
-        return;
-      }
-    }
-
-    if (this.isFilterable() && !this.isMultiSelect()) {
-      let value = this.selectionControl.value || '';
-
-      if (!this.isOpen) this.openList();
-      if (regexCode.test(event.key)) {
-        value += event.key;
-      }
-      if (event.key === 'Backspace') {
-        value = value.slice(0, -1);
-      }
-
-      this.filteredOptions = this.selectOptionWithKey(value);
+      this.openList();
     }
   }
 

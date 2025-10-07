@@ -3,7 +3,12 @@ import { BmbListGroupComponent } from '../bmb-list-group.component';
 import { IBbmBgAppearance } from '../../bmb-advertisement-card/types';
 import { moduleMetadata } from '@storybook/angular';
 import { CommonModule } from '@angular/common';
-import { attributes } from '../../../utils/doc/utils';
+import {
+  attributes,
+  getBasicExampleBlock,
+  getGeneralComponentDescription,
+  getGeneralDescription,
+} from '../../../utils/doc/utils';
 import { BmbListGroupItemComponent } from './bmb-list-group-item.component';
 
 const appearanceOptions: IBbmBgAppearance[] = [
@@ -51,20 +56,14 @@ export default {
     docs: {
       description: {
         component: `
-Below is an example of how you can use this component in TypeScript:
-
-\`\`\`typescript
-import { BmbListGroupComponent, BmbListGroupItemComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
-@Component({
-  selector: 'component',
-  standalone: true,
-  imports: [ BmbListGroupComponent, BmbListGroupItemComponent ],
-  templateUrl: './component.html',
-  styleUrl: './component.scss',
-})
-\`\`\`
-
-Below is an example of how you can use this component in HTML:
+${getGeneralDescription({
+  content: `${getGeneralComponentDescription({ name: 'bmb-list-group-item' })} to organize related elements in an ordered list, optimizing navigation and displaying content clearly and efficiently.
+It helps to group information in a coherent and accessible way.`,
+  generalDocLink:
+    'https://bamboo.tec.mx/latest/components/list-group/descripcion-general-ieYN5a5C',
+  isSubStory: true,
+})}
+${getBasicExampleBlock('BmbListGroupComponent, BmbListGroupItemComponent', '', '', true)}
         `,
       },
     },

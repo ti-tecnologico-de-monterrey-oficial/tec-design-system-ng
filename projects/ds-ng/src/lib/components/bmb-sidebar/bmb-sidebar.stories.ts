@@ -50,11 +50,15 @@ export default {
           'isActive',
           'isOpen',
           'selectedElement',
+          'maxChildrenLevel',
+          'clearSelectElement',
+          'closeSidebar',
+          'sideNav',
         ],
       },
       description: {
         component: `
-${getGeneralDescription(`${getGeneralComponentDescription('sidebar')} to implement a vertical menu with links to navigate through the application.`, 'https://bamboo.tec.mx/latest/componentes/sidebar/descripcion-general-5sco6X1N')}
+${getGeneralDescription({ content: `${getGeneralComponentDescription({ name: 'sidebar' })} to implement a vertical menu with links to navigate through the application.`, generalDocLink: 'https://bamboo.tec.mx/latest/componentes/sidebar/descripcion-general-5sco6X1N' })}
 ${getSpecialSpecifications(` ###${LEVEL_DESCRIPTION}`)}
 ${getBasicExampleBlock(
   'BmbSidebarComponent',
@@ -313,7 +317,11 @@ ${LEVEL_DESCRIPTION}
         type: 'select',
       },
       options: ['left', 'right'],
-      description: 'Sets the position of the sidebar.',
+      description: `
+Sets the position of the sidebar.
+${RELEVANT_TITLE_LEVEL[0]}
+This property affected to web resolution only.
+      `,
       table: {
         category: 'Properties',
         type: {

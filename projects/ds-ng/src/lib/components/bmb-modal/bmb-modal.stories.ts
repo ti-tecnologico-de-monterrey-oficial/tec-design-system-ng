@@ -145,12 +145,13 @@ export default {
       },
       description: {
         component: `
-${getGeneralDescription(
-  `***Modal*** is a pop-up window that helps display additional information or perform actions without changing the main page. ${DESIGN_SYSTEM_TITLE} ***Modal*** supports various configurations such as alert styles, custom content (string or template),
+${getGeneralDescription({
+  content: `***Modal*** is a pop-up window that helps display additional information or perform actions without changing the main page. ${DESIGN_SYSTEM_TITLE} ***Modal*** supports various configurations such as alert styles, custom content (string or template),
  and primary/secondary actions.`,
-  'https://bamboo.tec.mx/latest/componentes/modal/descripcion-general-sLOq8HIt',
-  true,
-)}
+  generalDocLink:
+    'https://bamboo.tec.mx/latest/componentes/modal/descripcion-general-sLOq8HIt',
+  isSubStory: true,
+})}
 ${getSpecialSpecifications(
   `
 ### 🟣 -Modal Usage with String Content

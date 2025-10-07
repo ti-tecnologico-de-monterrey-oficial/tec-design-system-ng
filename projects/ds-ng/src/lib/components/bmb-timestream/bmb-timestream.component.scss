@@ -1,6 +1,6 @@
-@use "../../../assets/styles/base/fonts" as fonts;
-@use "../../../assets/styles/base/rem" as rem;
-@use "../../../assets/styles/base/mixins" as mixins;
+@use '../../../assets/styles/base/fonts' as fonts;
+@use '../../../assets/styles/base/rem' as rem;
+@use '../../../assets/styles/base/mixins' as mixins;
 
 .bmb_timestream {
   display: flex;
@@ -15,7 +15,7 @@
     display: none;
     background-color: var(--containers-main);
 
-    @include mixins.container-query(560, "min") {
+    @include mixins.container-query(560, 'min') {
       width: 50%;
       max-width: 250px;
       display: block;
@@ -25,7 +25,7 @@
   &-main {
     width: 100%;
 
-    @include mixins.container-query(560, "min") {
+    @include mixins.container-query(560, 'min') {
       flex: 1;
     }
   }

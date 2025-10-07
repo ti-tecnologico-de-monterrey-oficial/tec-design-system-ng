@@ -1,42 +1,37 @@
-@use "../../../assets/styles/base/fonts" as fonts;
-@use "../../../assets/styles/base/rem" as rem;
-@use "../../../assets/styles/base/mixins" as mixins;
+@use '../../../assets/styles/base/fonts' as fonts;
+@use '../../../assets/styles/base/rem' as rem;
+@use '../../../assets/styles/base/mixins' as mixins;
 
 .bmb_table_lite {
   background: var(--containers-modal);
   box-shadow: var(--bmb-box-shadow-3);
-  padding: rem.rem_calc(24 16);
-  width: 100%;
-  height: auto;
   box-sizing: border-box;
   container-type: inline-size;
-
-  @include mixins.media-query(1000, "min") {
-    height: 100%;
-  }
+  padding: rem.rem_calc(24 16);
+  width: 100%;
 
   &-filters {
     &-top,
     &-left {
       display: flex;
+      flex-flow: column;
       gap: rem.rem_calc(16);
       overflow: auto;
-      flex-flow: column;
     }
 
     &-bottom,
     &-right {
+      align-items: flex-start;
       display: flex;
+      flex-flow: column;
       gap: rem.rem_calc(16);
       overflow: auto;
-      flex-flow: column;
       flex-direction: column-reverse;
-      align-items: flex-start;
     }
 
     &-top,
     &-bottom {
-      @include mixins.media-query(1000, "min") {
+      @include mixins.media-query(1000, 'min') {
         .bmb_table_lite-header {
           height: 30%;
           width: 100%;
@@ -49,7 +44,7 @@
 
     &-left,
     &-right {
-      @include mixins.media-query(1000, "min") {
+      @include mixins.media-query(1000, 'min') {
         flex-flow: row;
 
         .bmb_table_lite-header {
@@ -62,24 +57,25 @@
     }
 
     &-right {
-      @include mixins.media-query(1000, "min") {
+      @include mixins.media-query(1000, 'min') {
         flex-flow: row-reverse;
       }
     }
   }
+
   &-header {
     container-type: inline-size;
-    overflow: auto;
     max-height: 100%;
+    overflow: auto;
 
     .bmb_table_lite-filter {
       display: flex;
-      gap: rem.rem_calc(16);
       flex-flow: column;
+      gap: rem.rem_calc(16);
       overflow: auto;
       width: 100%;
 
-      @include mixins.container-query(600, "min") {
+      @include mixins.container-query(600, 'min') {
         flex-flow: row;
         flex-wrap: wrap;
       }
@@ -89,7 +85,7 @@
   &-filter-item {
     width: 100%;
 
-    @include mixins.container-query(600, "min") {
+    @include mixins.container-query(600, 'min') {
       width: calc(50% - rem.rem_calc(8));
     }
 
@@ -97,7 +93,7 @@
       display: flex;
       flex-flow: row;
 
-      @include mixins.media-query(699, "max") {
+      @include mixins.media-query(699, 'max') {
         flex-flow: column;
       }
 
@@ -111,14 +107,14 @@
         }
 
         .bmb_field-wrapper::after {
-          content: "";
-          width: rem.rem_calc(16);
-          height: 0;
           border-top: rem.rem_calc(2) solid;
-          margin: rem.rem_calc(0 10);
+          content: '';
           display: inline-block;
+          height: 0;
+          margin: rem.rem_calc(0 10);
+          width: rem.rem_calc(16);
 
-          @include mixins.media-query(699, "max") {
+          @include mixins.media-query(699, 'max') {
             display: none;
           }
         }
@@ -127,8 +123,8 @@
   }
 
   &-search {
-    display: flex;
     align-items: center;
+    display: flex;
     gap: rem.rem_calc(16);
   }
 
@@ -140,22 +136,20 @@
     width: 100%;
   }
 
-  /* ====== Contenedor tabla / scroll ====== */
   &-container {
-    flex: 1 0 auto;
-    max-width: 100%;
-    overflow: auto;
-    width: 100%;
-    max-height: 100%;
     display: flex;
-    flex-flow: column;
-    gap: 1rem;
+    flex-direction: column;
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
 
     &-table {
-      overflow: auto;
-      flex: 1;
-      border: rem.rem_calc(1) solid var(--general_contrasts-25);
-      border-radius: rem.rem_calc(8);
+      display: block;
+      overflow-x: auto;
+      overflow-y: visible;
+      position: relative;
+      width: 100%;
     }
   }
 
@@ -163,101 +157,113 @@
     width: 100%;
   }
 
-  /* ====== Filas y celdas (div-based) ====== */
   &-row {
-    display: grid;
-    grid-auto-flow: column;
-    align-items: center;
-    min-height: rem.rem_calc(46);
+    align-items: stretch;
     border-bottom: 1px dashed var(--general_contrasts-25);
+    display: grid;
+    grid-template-columns:
+      var(--col-checkbox, 62px)
+      var(--col-expand, 40px)
+      repeat(var(--col-count), minmax(120px, 1fr))
+      var(--col-actions, 80px);
+    min-height: rem.rem_calc(46);
     padding-inline: rem.rem_calc(8);
+    position: relative;
+    width: 100%;
 
     &--header {
       background-color: var(--containers-modal);
       border-bottom: 0;
-      text-transform: uppercase;
       color: RGBA(var(--color-charade-500));
+      text-transform: uppercase;
       @include fonts.font(4, medium);
+    }
+
+    @include mixins.media-query(767, 'max') {
+      min-width: 100%;
+      width: max-content;
     }
   }
 
   &-th,
   &-td {
-    height: 100%;
+    align-items: center;
+    display: flex;
+    gap: rem.rem_calc(6);
+    min-width: 0;
     overflow: hidden;
     padding: rem.rem_calc(0 8);
     position: relative;
-    display: flex;
-    align-items: center;
-    gap: rem.rem_calc(6);
 
     &.truncated {
-      max-width: rem.rem_calc(100);
-      min-width: rem.rem_calc(70);
-      text-overflow: ellipsis;
-      white-space: nowrap;
-    }
+      @include mixins.media-query(767, 'max') {
+        max-width: rem.rem_calc(100);
+        min-width: rem.rem_calc(80);
+        text-overflow: ellipsis;
+        white-space: nowrap;
 
-    &.wrapped {
-      white-space: nowrap;
-    }
+        > * {
+          flex: 1 1 auto;
+          min-width: 0;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+        }
 
-    @include mixins.media-query(768, "min") {
-      max-width: fit-content;
+        bmb-icon,
+        button {
+          flex: 0 0 auto;
+          margin-right: 0.25rem;
+        }
+      }
     }
 
     &.bmb_table_lite-checkbox {
-      min-width: rem.rem_calc(62);
-      width: rem.rem_calc(62);
+      background: inherit;
+      left: 0;
       padding-right: 0;
+      position: sticky;
       text-align: center;
-
-      /* Cuando existe checkbox, la 1ª data sticky corre a la derecha */
-      + .bmb_table_lite-sticky {
-        left: rem.rem_calc(58) !important;
-      }
+      width: rem.rem_calc(62);
+      z-index: 2;
     }
 
     &.bmb_table_lite-expand {
-      min-width: rem.rem_calc(40);
+      background: inherit;
+      left: var(--col-checkbox, 0px);
+      position: sticky;
       width: rem.rem_calc(40);
-
-      /* Si hay expand + sticky, compensar el offset adicional */
-      + .bmb_table_lite-sticky {
-        left: rem.rem_calc(98) !important;
-      }
+      z-index: 2;
     }
 
     &.bmb_table_lite-sticky {
-      position: sticky;
-      left: 0;
-      z-index: 2;
+      background: inherit;
       border-right: rem.rem_calc(1) solid var(--buttons-inactive-step);
-      max-width: rem.rem_calc(144);
-
-      @include mixins.media-query(1200, "min") {
-        max-width: fit-content;
-      }
-      background: inherit; /* mantiene fondo cuando hace sticky */
+      left: calc(var(--col-checkbox, 0px) + var(--col-expand, 0px));
+      position: sticky;
+      z-index: 2;
     }
 
     &.bmb_table_lite-actions {
+      background: inherit;
       border-left: rem.rem_calc(1) solid var(--buttons-inactive-step);
       color: var(--color-table-90);
+      position: sticky;
+      right: 0;
+      z-index: 2;
     }
 
     button {
       align-items: center;
-      color: var(--color-table-90);
-      display: flex;
       background: transparent;
       border: 0;
-      padding: 0;
+      color: var(--color-table-90);
       cursor: pointer;
+      display: flex;
+      padding: 0;
     }
   }
 
-  /* Tipografía de celdas de datos */
   &-row > .bmb_table_lite-td {
     @include fonts.font(4, medium);
 
@@ -276,7 +282,6 @@
     }
   }
 
-  /* Zebra + estados expandibles */
   &-even {
     background-color: var(--containers-modal);
     color: var(--menu_select-label-menu-inactive);
@@ -295,14 +300,16 @@
     }
   }
 
-  /* Fila de detalles expandida (divs) */
   &-details {
     background-color: var(--menu_select-on-surface-hovered-w-checkbox);
     height: auto;
 
-    /* El contenedor que aparece cuando está expandido */
+    &:empty {
+      display: none;
+    }
+
     &.bmb_table_lite-expanded {
-      /* marcador por si quisieras transiciones */
+      border-bottom: rem.rem_calc(1) dashed var(--general_contrasts-25);
     }
 
     > .bmb_table_lite-td {
@@ -355,18 +362,18 @@
     }
 
     &-btn {
-      color: var(--color-table-btn-900);
-      height: rem.rem_calc(48);
-      width: rem.rem_calc(48);
-      padding: 0;
-      display: inline-flex;
       align-items: center;
-      justify-content: center;
       background: transparent;
       border: 0;
+      color: var(--color-table-btn-900);
       cursor: pointer;
+      display: inline-flex;
+      height: rem.rem_calc(48);
+      justify-content: center;
+      padding: 0;
+      width: rem.rem_calc(48);
 
-      &-disabled {
+      &[disabled] {
         color: var(--buttons-inactive-step);
         cursor: not-allowed;
       }
@@ -387,7 +394,6 @@
     }
   }
 
-  /* Semánticos */
   &-success {
     color: var(--semantic-success);
   }

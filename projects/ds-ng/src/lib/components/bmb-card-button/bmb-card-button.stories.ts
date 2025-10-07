@@ -49,7 +49,11 @@ export default {
       },
       description: {
         component: `
-${getGeneralDescription(`${getGeneralComponentDescription('card-button')} to use a button with card features and appearance.`, 'https://bamboo.tec.mx/latest/componentes/card-button/descripcion-general-q9ZEljiw')}
+${getGeneralDescription({
+  content: `${getGeneralComponentDescription({ name: 'card-button' })} to use a button with card features and appearance.`,
+  generalDocLink:
+    'https://bamboo.tec.mx/latest/componentes/card-button/descripcion-general-q9ZEljiw',
+})}
 ${getSpecialSpecifications(getEmptyStateMessage())}
 ${getBasicExampleBlock('BmbCardButtonComponent')}
         `,
@@ -436,7 +440,7 @@ export const CustomContentImageExample = {
   render: (args: any) => ({
     template: `
     <bmb-card-button ${attributes(args)}>
-      <!-- Custom content can be used with any combination of full interactive -->
+      <!-- Custom content can be used with whether combination of full interactive -->
       <ng-template #customContent>
         <p>
           <strong>14 de abril de 2025, 3:00 p. m. - 3:30 p. m.</strong> <br/>

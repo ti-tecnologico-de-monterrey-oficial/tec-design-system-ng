@@ -1,92 +1,61 @@
 import type { Meta, StoryObj } from '@storybook/angular';
 import { BmbLogoComponent } from './bmb-logo.component';
+import {
+  getBasicExampleBlock,
+  getGeneralComponentDescription,
+  getGeneralDescription,
+} from '../../utils/doc/utils';
+import {
+  DBmbGenericParamDesc,
+  DBmbImageParamDesc,
+  getPropertyParamDesc,
+} from '../../utils/doc/parameterDescriptions';
 
 export default {
   title: 'Dev tools/Logo',
   component: BmbLogoComponent,
   parameters: {
     docs: {
+      controls: {
+        exclude: ['handleClick', 'getClasses', 'handleKeyPress', 'handlePress'],
+      },
       description: {
         component: `
-Below is an example of how you can use this component in TypeScript:
-
-\`\`\`typescript
-import { BmbLogoComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
-@Component({
-  selector: 'component',
-  standalone: true,
-  imports: [ BmbLogoComponent ],
-  templateUrl: './component.html',
-  styleUrl: './component.scss',
-})
-\`\`\`
-
-Below is an example of how you can use this component in HTML:
+${getGeneralDescription({ content: `${getGeneralComponentDescription({ name: 'logo', type: 'element' })} the institutional logo to be displayed`, generalDocLink: 'https://bamboo.tec.mx/latest/dev-tools/coleccion-de-componentes-uC69aq75' })}
+${getBasicExampleBlock('BmbLogoComponent')}
         `,
       },
     },
   },
   argTypes: {
-    image: {
-      name: 'Image Source',
-      control: {
-        type: 'text',
-      },
-      description:
-        'The source of the image to display, either from your application or a URL.',
-      table: {
-        category: 'Properties',
-        type: { summary: 'string' },
-      },
-    },
-    altImage: {
-      name: 'Image Alt Text',
-      control: {
-        type: 'text',
-      },
-      description:
-        'The alternative text for the image. Refer to https://www.w3.org/WAI/alt/ for more information.',
-      table: {
-        category: 'Properties',
-        type: { summary: 'string' },
-      },
-    },
+    image: DBmbImageParamDesc.image,
+    altImage: DBmbImageParamDesc.alt,
     size: {
-      name: 'Size',
       control: {
         type: 'select',
       },
       options: ['small', 'medium', 'large'],
       table: {
         category: 'Properties',
+        defaultValue: { summary: '' },
         type: { summary: 'string' },
       },
-      description: 'The size of the user image, affecting its visual size.',
-    },
-    link: {
-      name: 'Link',
-      control: {
-        type: 'text',
-      },
-      description: 'The link for redirection to another page.',
-      table: {
-        category: 'Events',
-        type: { summary: 'string' },
-      },
-    },
-    target: {
-      name: 'Target',
-      control: {
-        type: 'radio',
-      },
-      options: ['_blank', '_self', '_parent', '_top'],
       description:
-        'The target attribute for the link. Refer to https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a for more information.',
-      table: {
-        category: 'Events',
-        type: { summary: 'string' },
-      },
+        'Sets the size of the user image, affecting its visual size.',
     },
+    buttonName: getPropertyParamDesc(
+      'logo',
+      'text',
+      'logo_button',
+      '',
+      '',
+      'name',
+    ),
+    link: DBmbGenericParamDesc.linkOrButton,
+    target: DBmbGenericParamDesc.target,
+    buttonClick: DBmbGenericParamDesc.onButtonClick,
+    buttonKeyPress: DBmbGenericParamDesc.onButtonClick,
+    buttonPress: DBmbGenericParamDesc.onButtonPress,
   },
   args: {
     image:

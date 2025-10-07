@@ -1,4 +1,4 @@
-@use "../../../assets/styles/base/fonts" as fonts;
+@use '../../../assets/styles/base/fonts' as fonts;
 
 @mixin base($width, $height, $radius) {
   width: $width;

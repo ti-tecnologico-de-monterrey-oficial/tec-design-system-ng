@@ -1,6 +1,6 @@
-@use "../../../assets/styles/base/fonts" as fonts;
-@use "../../../assets/styles/base/mixins" as mixins;
-@use "../../../assets/styles/base/rem" as rem;
+@use '../../../assets/styles/base/fonts' as fonts;
+@use '../../../assets/styles/base/mixins' as mixins;
+@use '../../../assets/styles/base/rem' as rem;
 
 .bmb_text-link {
   &-disabled {
@@ -18,7 +18,7 @@
     line-height: 2;
 
     &::after {
-      content: "";
+      content: '';
       position: absolute;
       left: 0;
       right: 0;
@@ -70,7 +70,7 @@
       text-decoration: underline;
 
       &::after {
-        content: "";
+        content: '';
         left: 0;
         right: 0;
         transform: scaleX(0);

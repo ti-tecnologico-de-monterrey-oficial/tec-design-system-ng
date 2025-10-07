@@ -1,11 +1,10 @@
-@use "../../../../assets/styles/base/rem" as rem;
-@use "../../../../assets/styles/base/fonts" as fonts;
+@use '../../../../assets/styles/base/rem' as rem;
+@use '../../../../assets/styles/base/fonts' as fonts;
 
 .bmb_dropdown-content {
   &-modal {
     background-color: var(--containers-main);
     border: 0;
-    position: absolute;
     z-index: 1;
     box-shadow: var(--bmb-box-shadow-3);
     max-height: rem.rem_calc(48 * 6);
@@ -14,8 +13,6 @@
     border-radius: rem.rem_calc(8);
     padding: 0;
     margin: rem.rem_calc(8 0 0);
-    left: 0;
-    top: 100%;
   }
 
   &-container {
@@ -25,12 +22,13 @@
   }
 
   &-item {
+    color: var(--menu_select-label-menu-inactive);
+
     .bmb_check-external-link-button-element {
       display: flex;
       align-items: center;
       background-color: transparent;
       border: none;
-      color: var(--menu_select-label-menu-inactive);
       padding: rem.rem_calc(8 16);
       text-decoration: none;
       width: 100%;
@@ -46,8 +44,8 @@
     }
 
     &-selected {
+      color: var(--menu_select-label-menu-active);
       .bmb_check-external-link-button-element {
-        color: var(--menu_select-label-menu-active);
         background-color: var(--menu_select-surface-activated);
         &:hover,
         &:focus,
@@ -63,6 +61,12 @@
       text-overflow: ellipsis;
       white-space: nowrap;
       @include fonts.font(4, regular);
+    }
+
+    &-filter {
+      position: sticky;
+      top: 0;
+      left: 0;
     }
   }
 }

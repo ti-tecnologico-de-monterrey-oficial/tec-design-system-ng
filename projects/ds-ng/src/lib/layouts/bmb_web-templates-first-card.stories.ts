@@ -12,7 +12,6 @@ import {
   TECHNICAL_DOC_TITLE,
 } from '../utils/doc/utils';
 import * as topBarStory from '../components/bmb-top-bar/bmb-top-bar.stories';
-import { Description, Primary, Title } from '@storybook/addon-docs/blocks';
 
 @Component({
   standalone: true,

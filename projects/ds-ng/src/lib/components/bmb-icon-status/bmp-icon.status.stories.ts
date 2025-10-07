@@ -20,7 +20,7 @@ export default {
       controls: { exclude: ['getClassName', 'getIconSize'] },
       description: {
         component: `
-${getGeneralDescription(`${getGeneralComponentDescription('icon-status')} a graphical message to be displayed after executing an action.`, 'https://bamboo.tec.mx/latest/componentes/status-icon/descripcion-general-pht26G2A')}
+${getGeneralDescription({ content: `${getGeneralComponentDescription({ name: 'icon-status' })} a graphical message to be displayed after executing an action.`, generalDocLink: 'https://bamboo.tec.mx/latest/componentes/status-icon/descripcion-general-pht26G2A' })}
 ${getBasicExampleBlock('BmbIconStatusComponent')}
         `,
       },

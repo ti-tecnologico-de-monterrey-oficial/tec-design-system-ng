@@ -35,13 +35,11 @@ export default {
           'selectNavItem',
           'toggleDrawer',
           'toggleFullDrawer',
-          '',
-          '',
         ],
       },
       description: {
         component: `
-${getGeneralDescription(`${getGeneralComponentDescription('drawer-overlay', 'element')} to implement an interactive overlay in addition to an application menu and header.`, 'https://bamboo.tec.mx/latest/particularities/mitec-app/fab-overlay-drawer-11JEvoAR')}
+${getGeneralDescription({ content: `${getGeneralComponentDescription({ name: 'drawer-overlay', type: 'element' })} to implement an interactive overlay in addition to an application menu and header.`, generalDocLink: 'https://bamboo.tec.mx/latest/particularities/mitec-app/fab-overlay-drawer-11JEvoAR' })}
 ${getBasicExampleBlock('BmbDrawerOverlayComponent')}
 `,
       },
@@ -94,7 +92,7 @@ ${RELEVANT_TITLE_LEVEL[4]}
       },
     },
     title: getPropertyParamDesc(
-      'inner header. This will be shown on any of the menu item (\`menu\` property)',
+      'inner header. This will be shown on whether of the menu item (`menu` property)',
     ),
     dataSearch: {
       control: { type: 'array' },

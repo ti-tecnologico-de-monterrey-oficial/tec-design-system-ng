@@ -9,7 +9,7 @@ The `BmbAlertCenter` component is a notification center that allows people to ef
 ### Import
 
 ```typescript
-import { BmbAlertCenterComponent } from "./bmb-alert-center.component";
+import { BmbAlertCenterComponent } from './bmb-alert-center.component';
 ```
 
 ### Selector
@@ -83,7 +83,16 @@ Emits an event when an alert's status changes.
 ## Example Usage
 
 ```html
-<bmb-alert-center [dateFormat]="'dd/MM/yyyy'" [tabsName]="[{title: 'Notificaciones', isMobile: true, isDesktop: true}, {title: 'No leídos', isMobile: false, isDesktop: true}, {title: 'Favoritos', isMobile: false, isDesktop: true}, {title: 'Archivados', isMobile: false, isDesktop: true}, {title: 'Anuncios', isMobile: true, isDesktop: true}]" [hideTabs]="false" [enableMultipleSelection]="true" (onChangeAlertStatus)="onChangeAlertStatus($event)" (alertEvent)="alertEvent($event)" (showAlertDetail)="showAlertDetail($event)" (closeAlertDetail)="closeAlertDetail($event)" />
+<bmb-alert-center
+  [dateFormat]="'dd/MM/yyyy'"
+  [tabsName]="[{title: 'Notificaciones', isMobile: true, isDesktop: true}, {title: 'No leídos', isMobile: false, isDesktop: true}, {title: 'Favoritos', isMobile: false, isDesktop: true}, {title: 'Archivados', isMobile: false, isDesktop: true}, {title: 'Anuncios', isMobile: true, isDesktop: true}]"
+  [hideTabs]="false"
+  [enableMultipleSelection]="true"
+  (onChangeAlertStatus)="onChangeAlertStatus($event)"
+  (alertEvent)="alertEvent($event)"
+  (showAlertDetail)="showAlertDetail($event)"
+  (closeAlertDetail)="closeAlertDetail($event)"
+/>
 ```
 
 ## BmbAlertCenterService

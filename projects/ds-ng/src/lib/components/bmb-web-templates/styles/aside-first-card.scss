@@ -1,17 +1,21 @@
+@use '../../../../assets/styles/base/fonts' as fonts;
+@use '../../../../assets/styles/base/rem' as rem;
+@use '../../../../assets/styles/base/mixins' as mixins;
+
 .bmb_web-template-aside-first-card {
   grid-template-columns: 1fr;
   grid-template-rows: 71px max-content max-content;
   grid-template-areas:
-    "topBar"
-    "header"
-    "content";
+    'topBar'
+    'header'
+    'content';
   @include fonts.font(3, regular);
-  @include mixins.media-query(1000, "min") {
+  @include mixins.media-query(1000, 'min') {
     gap: 0;
   }
 
   &.bmb_web-template {
-    @include mixins.media-query(1000, "min") {
+    @include mixins.media-query(1000, 'min') {
       height: auto;
       overflow: auto;
     }
@@ -30,7 +34,7 @@
       padding: var(--bmb-spacing-l);
       grid-area: header;
 
-      @include mixins.media-query(1000, "min") {
+      @include mixins.media-query(1000, 'min') {
         margin-bottom: var(--bmb-spacing-m);
       }
 
@@ -40,7 +44,7 @@
         box-sizing: border-box;
         max-width: rem.rem_calc(1600);
 
-        @include mixins.media-query(999, "max") {
+        @include mixins.media-query(999, 'max') {
           padding-left: rem.rem_calc(16);
         }
 
@@ -68,16 +72,16 @@
       margin: 0 auto;
       overflow: auto;
 
-      @include mixins.media-query(999, "max") {
+      @include mixins.media-query(999, 'max') {
         padding-left: rem.rem_calc(16);
         height: max-content;
       }
 
-      @include mixins.media-query(1000, "min") {
+      @include mixins.media-query(1000, 'min') {
         padding: 0 rem.rem_calc(16) rem.rem_calc(16);
       }
 
-      @include mixins.media-query(1800, "min") {
+      @include mixins.media-query(1800, 'min') {
         padding: 0;
       }
 
@@ -102,7 +106,7 @@
   }
 }
 
-[data-theme="dark"],
+[data-theme='dark'],
 .storybook-dark-theme {
   .bmb_web-template-aside-first-card {
     .bmb_web-template {

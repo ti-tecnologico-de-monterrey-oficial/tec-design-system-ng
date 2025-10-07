@@ -19,9 +19,8 @@ import {
   IBmbTimelineCustomEvent,
 } from './types';
 import { CommonModule } from '@angular/common';
-import { ModalDataConfig } from '../bmb-modal/bmb-modal.interface';
-import { BmbModalComponent } from '../bmb-modal/bmb-modal.component';
-import { MatDialog } from '@angular/material/dialog';
+import { BmbNativeModalService } from '../../services/native-modal.service';
+import { IBmbNativeModal } from '../bmb-modal/bmb-modal.interface';
 import { BmbUserImageComponent } from '../bmb-user-image/bmb-user-image.component';
 import { BmbTabsComponent } from '../bmb-tabs/bmb-tabs.component';
 import { BmbButtonDirective } from '../../directives/bmb-button/button.directive';
@@ -98,7 +97,7 @@ export class BmbTimestreamComponent {
   ];
   tabSelected = 1;
 
-  constructor(private matDialog: MatDialog) {}
+  constructor(private modalService: BmbNativeModalService) {}
 
   ngOnChanges(changes: SimpleChanges) {
     this.parsedEvents = this.prepareEvents(changes['events'].currentValue);
@@ -266,14 +265,12 @@ export class BmbTimestreamComponent {
   handleSelectedEventChange(event: ITimelineEvent) {
     this.selectedEvent = event;
 
-    const data: ModalDataConfig = {
+    const data: IBmbNativeModal = {
       title: event.title,
       content: this.newModal,
       size: 'large',
-      hidePrimaryButton: true,
     };
-
-    this.matDialog.open(BmbModalComponent, { data });
+    this.modalService.openModal(data);
   }
 
   getMonthTitle(date: DateTime) {

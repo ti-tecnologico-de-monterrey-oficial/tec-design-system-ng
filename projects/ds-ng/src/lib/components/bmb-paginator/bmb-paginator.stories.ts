@@ -16,7 +16,7 @@ export default {
       controls: { exclude: ['getPaginationText', 'onPageChange', ''] },
       description: {
         component: `
-${getGeneralDescription(`${getGeneralComponentDescription('paginator')} to add controls to navigate between pages, using "next" and "previous" buttons, even displays a specific subset of the total pages at a time.`, 'https://bamboo.tec.mx/latest/componentes/paginator/descripcion-general-ermvHDlX')}
+${getGeneralDescription({ content: `${getGeneralComponentDescription({ name: 'paginator' })} to add controls to navigate between pages, using "next" and "previous" buttons, even displays a specific subset of the total pages at a time.`, generalDocLink: 'https://bamboo.tec.mx/latest/componentes/paginator/descripcion-general-ermvHDlX' })}
 ${getBasicExampleBlock(
   'BmbPaginatorComponent',
   '',

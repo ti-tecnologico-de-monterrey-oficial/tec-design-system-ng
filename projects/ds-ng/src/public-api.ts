@@ -11,6 +11,7 @@ export * from './lib/services/user/profile.service';
 export * from './lib/components/bmb-login-onboarding/bmb-login-onboarding.service';
 export * from './lib/components/bmb-alert-center/bmb-alert-center.service';
 export * from './lib/services/native-modal.service';
+export * from './lib/services/projection.service';
 
 // Directives
 export * from './lib/ds-ng.component';

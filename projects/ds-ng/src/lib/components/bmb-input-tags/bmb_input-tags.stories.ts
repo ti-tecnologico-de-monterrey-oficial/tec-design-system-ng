@@ -120,6 +120,7 @@ ${getBasicExampleBlock('BmbInputTagsComponent', '', additionalBlock)}
   argTypes: {
     control: DBmbInputParamDesc.control,
     errorMessage: DBmbInputParamDesc.errorMessage,
+    customValidation: DBmbInputParamDesc.customValidation,
     helperMessage: DBmbInputParamDesc.helperMessage,
     isRequired: DBmbInputParamDesc.isRequired,
     placeholder: DBmbInputParamDesc.placeholder,

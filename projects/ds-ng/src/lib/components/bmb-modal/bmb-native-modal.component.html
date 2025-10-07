@@ -25,7 +25,7 @@
           </span>
         </ng-template>
         <ng-template #bmbRightContent>
-          <span class="bmb_modal-container-header-icon_close">
+          <span class="bmb_native-modal-container-header-icon_close">
             <bmb-action-icon
               icon="close"
               [iconSize]="24"
@@ -41,11 +41,13 @@
           <ng-container *ngTemplateOutlet="getContent()"></ng-container>
         </ng-template>
         <ng-container *ngTemplateOutlet="templateContent"></ng-container>
-      } @else {
+      }
+      @if (isStringContent()) {
         <p>
           {{ content() }}
         </p>
       }
+      <ng-container #container></ng-container>
     </section>
     @if (actions().length) {
       <footer class="bmb_native-modal-footer">

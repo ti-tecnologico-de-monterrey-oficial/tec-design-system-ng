@@ -16,7 +16,7 @@ export default {
       controls: { exclude: ['handleClick', 'getClass'] },
       description: {
         component: `
-${getGeneralDescription(`${getGeneralComponentDescription('user-summary')} to display a summary of user information, such as name, ID, profile image, and career details.`, 'https://bamboo.tec.mx/latest/componentes/user-summary/descripcion-general-hvTgEBWT')}
+${getGeneralDescription({ content: `${getGeneralComponentDescription({ name: 'user-summary' })} to display a summary of user information, such as name, ID, profile image, and career details.`, generalDocLink: 'https://bamboo.tec.mx/latest/componentes/user-summary/descripcion-general-hvTgEBWT' })}
 ${getBasicExampleBlock('BmbUserSummaryComponent')}
         `,
       },
@@ -77,7 +77,7 @@ For profile content the ***ID Digital*** button will be displayed
     salutation: {
       control: 'text',
       description:
-        'Sets the salutation for the user. This is added only when the \`isProfile\` is false.',
+        'Sets the salutation for the user. This is added only when the `isProfile` is false.',
       table: {
         type: { summary: 'string' },
         category: 'Properties',

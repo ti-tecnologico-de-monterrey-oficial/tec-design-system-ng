@@ -2,8 +2,6 @@ import {
   ChangeDetectionStrategy,
   Component,
   computed,
-  effect,
-  signal,
   ViewEncapsulation,
 } from '@angular/core';
 import { BmbNotificationService } from '../../services/notification.service';
@@ -15,6 +13,8 @@ import { BmbNoticeCardComponent } from '../bmb-notice-card/bmb-notice-card.compo
 import { BmbNativeModalService } from '../../services/native-modal.service';
 import { BmbNativeModalComponent } from '../bmb-modal/bmb-native-modal.component';
 import { IBmbNativeModal } from '../bmb-modal/bmb-modal.interface';
+import { BmbProjectionContentService } from '../../services/projection.service';
+import { BmbProjectedContentComponent } from './bmb-projected-content/bmb-projected-content.component';
 
 @Component({
   selector: 'bmb-portal',
@@ -25,6 +25,7 @@ import { IBmbNativeModal } from '../bmb-modal/bmb-modal.interface';
     BmbNoticeCardComponent,
     CommonModule,
     BmbNativeModalComponent,
+    BmbProjectedContentComponent,
   ],
   templateUrl: './bmb-portal.component.html',
   styleUrl: './bmb-portal.component.scss',
@@ -35,13 +36,16 @@ export class BmbPortalComponent {
   constructor(
     private notificationSignal: BmbNotificationService,
     private modalService: BmbNativeModalService,
+    private projectionService: BmbProjectionContentService,
   ) {}
 
   modalSignal = computed(() => this.modalService.getModalList());
-
-  getNotifications() {
-    return this.notificationSignal.getNotificationList();
-  }
+  projectedContent = computed(() =>
+    this.projectionService.getProjectedContent(),
+  );
+  notificationsList = computed(() =>
+    this.notificationSignal.getNotificationList(),
+  );
 
   closeNotification(notification: INotification) {
     if (notification.id) {
@@ -53,10 +57,6 @@ export class BmbPortalComponent {
     return this.notificationSignal.positionX;
   }
 
-  // getModals() {
-  //   return this.modalService.getModalList();
-  // }
-
   handleCloseModal(id: string) {
     this.modalService.closeModal(id);
   }
@@ -65,5 +65,13 @@ export class BmbPortalComponent {
     if (item.closeModalClicked) {
       item.closeModalClicked({ item, event });
     }
+  }
+
+  handleRemoveProjectedContent() {
+    this.projectionService.closeContent();
+  }
+
+  hasToast(): boolean {
+    return this.notificationsList().some((n) => n.component === 'toast');
   }
 }

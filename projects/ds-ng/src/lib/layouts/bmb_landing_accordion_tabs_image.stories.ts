@@ -12,7 +12,7 @@ import {
   BmbCardContentComponent,
   BmbAccordionComponent,
   BmbAccordionControlDirective,
-  BmbTextLinkComponent,
+  BmbIconComponent,
 } from '../../public-api';
 import { CommonModule } from '@angular/common';
 import {
@@ -36,7 +36,7 @@ import * as accordionStory from '../components/bmb-accordion/bmb-accordion.stori
 import * as cardHeaderStory from '../components/bmb-card/bmb-card.stories';
 import * as cardContentStory from '../components/bmb-card/bmb-card.stories';
 import * as accordionControlStory from '../directives/bmb-accordion/bmb-accordion-control.stories';
-import * as textLinkStory from '../components/bmb-text-link/bmb-text-link.stories';
+import * as iconStory from '../components/bmb-icon/bmb-icon.stories';
 
 @Component({
   standalone: true,
@@ -52,7 +52,7 @@ import * as textLinkStory from '../components/bmb-text-link/bmb-text-link.storie
     BmbCardContentComponent,
     BmbAccordionComponent,
     BmbAccordionControlDirective,
-    BmbTextLinkComponent,
+    BmbIconComponent,
   ],
   selector: 'storybook-accordion-image',
   template: `
@@ -61,13 +61,14 @@ import * as textLinkStory from '../components/bmb-text-link/bmb-text-link.storie
         [userInformation]="{
           name: 'Santiago Hernández',
           image: 'https://picsum.photos/id/64/200/300',
-          role: 'Alumno',
+          role: 'Alumno'
         }"
         [showHelpButton]="true"
         [hasLogoutButton]="false"
         [appName]="'TecTest'"
         [appSubTitle]="'Sub title'"
         [showLang]="false"
+        [allowSidebarForMobile]="true"
         [lang]="'es'"
         (helpButtonClick)="helpButtonClick($event)"
         (userProfileClick)="userProfileClick($event)"
@@ -90,7 +91,10 @@ import * as textLinkStory from '../components/bmb-text-link/bmb-text-link.storie
           >
             <bmb-card margin="none" bmbLayoutItem [colSm]="6" [colLg]="6">
               <bmb-card-header padding="m">
-                <h3 class="font-medium-5">Descripción</h3>
+                <h3 class="font-medium-5 truncate-title">
+                  Lorem ipsum dolor sit amet consectetur. Nisl nibh phasellus
+                  condimentum mi faucibus.
+                </h3>
               </bmb-card-header>
               <bmb-card-content>
                 <figure [ngStyle]="{ margin: '0 0 24px 0' }">
@@ -100,33 +104,38 @@ import * as textLinkStory from '../components/bmb-text-link/bmb-text-link.storie
                     src="https://img.freepik.com/fotos-premium/dia-internacional-gato-8-agosto-gatos-lindos-gatito-pequeno-hermosos-pequenos-animales-compania-verdadero-amigo-bonitos-divertidos-tiernos-esponjosos-juguetones-shorties-ia-generativa_887181-4265.jpg?w=2000"
                   />
                 </figure>
-                <p class="font-regular-4">
-                  Lorem ipsum dolor sit amet consectetur. Nisl nibh phasellus
-                  condimentum mi faucibus. In quisque justo senectus in sed
-                  adipiscing. Arcu neque feugiat aenean nam accumsan justo ut.
-                  Pulvinar urna amet proin sit sed tellus ipsum. Lorem ipsum
-                  dolor sit amet consectetur.
-                </p>
-                <p class="font-regular-4">
-                  Nisl nibh phasellus condimentum mi faucibus. In quisque justo
-                  senectus in sed adipiscing. Arcu neque feugiat aenean nam
-                  accumsan justo ut. Pulvinar urna amet proin sit sed tellus
-                  ipsum. Lorem ipsum dolor sit amet consectetur. Nisl nibh
-                  phasellus condimentum mi faucibus. In quisque justo senectus
-                  in sed adipiscing. Arcu neque feugiat aenean nam accumsan
-                  justo ut.
-                </p>
-                <p class="font-regular-4">
-                  Pulvinar urna amet proin sit sed tellus ipsum. Lorem ipsum
-                  dolor sit amet consectetur. Nisl nibh phasellus condimentum mi
-                  faucibus. In quisque justo senectus in sed adipiscing. Arcu
-                  neque feugiat aenean nam accumsan justo ut.
-                </p>
+                <div class="truncate-350">
+                  <p class="font-regular-4">
+                    Lorem ipsum dolor sit amet consectetur. Nisl nibh phasellus
+                    condimentum mi faucibus. In quisque justo senectus in sed
+                    adipiscing. Arcu neque feugiat aenean nam accumsan justo ut.
+                    Pulvinar urna amet proin sit sed tellus ipsum. Lorem ipsum
+                    dolor sit amet consectetur.
+                  </p>
+                  <p class="font-regular-4">
+                    Nisl nibh phasellus condimentum mi faucibus. In quisque
+                    justo senectus in sed adipiscing. Arcu neque feugiat aenean
+                    nam accumsan justo ut. Pulvinar urna amet proin sit sed
+                    tellus ipsum. Lorem ipsum dolor sit amet consectetur. Nisl
+                    nibh phasellus condimentum mi faucibus. In quisque justo
+                    senectus in sed adipiscing. Arcu neque feugiat aenean nam
+                    accumsan justo ut.
+                  </p>
+                  <p class="font-regular-4">
+                    Pulvinar urna amet proin sit sed tellus ipsum. Lorem ipsum
+                    dolor sit amet consectetur. Nisl nibh phasellus condimentum
+                    mi faucibus. In quisque justo senectus in sed adipiscing.
+                    Arcu neque feugiat aenean nam accumsan justo ut.
+                  </p>
+                </div>
               </bmb-card-content>
             </bmb-card>
             <bmb-card margin="none" bmbLayoutItem [colSm]="6" [colLg]="6">
               <bmb-card-header padding="m">
-                <h3 class="font-medium-5">Recursos</h3>
+                <h3 class="font-medium-5 truncate-title">
+                  Lorem ipsum dolor sit amet consectetur. Nisl nibh phasellus
+                  condimentum mi faucibus.
+                </h3>
               </bmb-card-header>
               <bmb-card-content>
                 <section bmbAccordionControl>
@@ -144,11 +153,13 @@ import * as textLinkStory from '../components/bmb-text-link/bmb-text-link.storie
                       <span class="font-medium-4"> Información general </span>
                     </ng-template>
                     <ng-template #bmbAccordionContent>
-                      <p class="font-regular-4">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                        Ut justo ante, mattis nec libero a, malesuada
-                        pellentesque sem. Aliquam erat volutpat.
-                      </p>
+                      <div class="truncate-170">
+                        <p class="font-regular-4">
+                          Lorem ipsum dolor sit amet, consectetur adipiscing
+                          elit. Ut justo ante, mattis nec libero a, malesuada
+                          pellentesque sem. Aliquam erat volutpat.
+                        </p>
+                      </div>
                     </ng-template>
                   </bmb-accordion>
                   <bmb-accordion
@@ -165,39 +176,42 @@ import * as textLinkStory from '../components/bmb-text-link/bmb-text-link.storie
                       <span class="font-medium-4">Guías</span>
                     </ng-template>
                     <ng-template #bmbAccordionContent>
-                      <bmb-text-link
-                        [textLink]="
-                          'Guía para establecer y dar seguimiento a mi Plan de Desarrollo'
-                        "
-                        [textLinkStyle]="'icon'"
-                        [target]="'_blank'"
-                        [icon]="'arrow_forward'"
-                        [iconPosition]="'right'"
-                        [link]="'https://www.youtube.com'"
-                        [disabled]="false"
-                      ></bmb-text-link>
-                      <bmb-text-link
-                        [textLink]="
-                          'Guía para acompañar a tu equipo en mi Plan de Desarrollo'
-                        "
-                        [textLinkStyle]="'icon'"
-                        [target]="'_blank'"
-                        [icon]="'arrow_forward'"
-                        [iconPosition]="'right'"
-                        [link]="'https://www.youtube.com'"
-                        [disabled]="false"
-                      ></bmb-text-link>
-                      <bmb-text-link
-                        [textLink]="
-                          'Guía para reguistrar tu plan en Success Factors'
-                        "
-                        [textLinkStyle]="'icon'"
-                        [target]="'_blank'"
-                        [icon]="'arrow_forward'"
-                        [iconPosition]="'right'"
-                        [link]="'https://www.youtube.com'"
-                        [disabled]="false"
-                      ></bmb-text-link>
+                      <div class="bmb_template-accordion-links">
+                        <a
+                          class="bmb_template-accordion-cta"
+                          href="https://www.youtube.com"
+                          target="'_blank'"
+                        >
+                          <span class="font-medium-4"
+                            >Guía para establecer y dar seguimiento a mi Plan de
+                            Desarrollo</span
+                          >
+                          <bmb-icon icon="arrow_forward" [size]="20" />
+                        </a>
+                        <a
+                          class="bmb_template-accordion-cta"
+                          href="https://www.youtube.com"
+                          target="'_blank'"
+                        >
+                          <span class="font-medium-4"
+                            >Guía para acompañar a tu equipo en mi Plan de
+                            Desarrollo</span
+                          >
+                          <bmb-icon icon="arrow_forward" [size]="20" />
+                        </a>
+
+                        <a
+                          class="bmb_template-accordion-cta"
+                          href="https://www.youtube.com"
+                          target="'_blank'"
+                        >
+                          <span class="font-medium-4"
+                            >Guía para reguistrar tu plan en Success
+                            Factors</span
+                          >
+                          <bmb-icon icon="arrow_forward" [size]="20" />
+                        </a>
+                      </div>
                     </ng-template>
                   </bmb-accordion>
                   <bmb-accordion
@@ -214,33 +228,36 @@ import * as textLinkStory from '../components/bmb-text-link/bmb-text-link.storie
                       <span class="font-medium-4">Recursos de desarrollo </span>
                     </ng-template>
                     <ng-template #bmbAccordionContent>
-                      <bmb-text-link
-                        [textLink]="'Oferta de desarrollo'"
-                        [textLinkStyle]="'icon'"
-                        [target]="'_blank'"
-                        [icon]="'arrow_forward'"
-                        [iconPosition]="'right'"
-                        [link]="'https://www.youtube.com'"
-                        [disabled]="false"
-                      ></bmb-text-link>
-                      <bmb-text-link
-                        [textLink]="'Oportunidades de crecimiento'"
-                        [textLinkStyle]="'icon'"
-                        [target]="'_blank'"
-                        [icon]="'arrow_forward'"
-                        [iconPosition]="'right'"
-                        [link]="'https://www.youtube.com'"
-                        [disabled]="false"
-                      ></bmb-text-link>
-                      <bmb-text-link
-                        [textLink]="'mi BiblioTECa'"
-                        [textLinkStyle]="'icon'"
-                        [target]="'_blank'"
-                        [icon]="'arrow_forward'"
-                        [iconPosition]="'right'"
-                        [link]="'https://www.youtube.com'"
-                        [disabled]="false"
-                      ></bmb-text-link>
+                      <div class="bmb_template-accordion-links">
+                        <a
+                          class="bmb_template-accordion-cta"
+                          href="https://www.youtube.com"
+                          target="'_blank'"
+                        >
+                          <span class="font-medium-4"
+                            >Oferta de desarrollo</span
+                          >
+                          <bmb-icon icon="arrow_forward" [size]="20" />
+                        </a>
+                        <a
+                          class="bmb_template-accordion-cta"
+                          href="https://www.youtube.com"
+                          target="'_blank'"
+                        >
+                          <span class="font-medium-4"
+                            >Oportunidades de crecimiento</span
+                          >
+                          <bmb-icon icon="arrow_forward" [size]="20" />
+                        </a>
+                        <a
+                          class="bmb_template-accordion-cta"
+                          href="https://www.youtube.com"
+                          target="'_blank'"
+                        >
+                          <span class="font-medium-4">mi BiblioTECa</span>
+                          <bmb-icon icon="arrow_forward" [size]="20" />
+                        </a>
+                      </div>
                     </ng-template>
                   </bmb-accordion>
                   <bmb-accordion
@@ -257,16 +274,18 @@ import * as textLinkStory from '../components/bmb-text-link/bmb-text-link.storie
                       <span class="font-medium-4">FAQ's </span>
                     </ng-template>
                     <ng-template #bmbAccordionContent>
-                      <p class="font-regular-4">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                        Ut justo ante, mattis nec libero a, malesuada
-                        pellentesque sem. Aliquam erat volutpat. Nulla ut
-                        consequat turpis, id efficitur velit. Fusce vitae dolor
-                        leo. Praesent diam justo, consectetur in blandit ut,
-                        tincidunt vitae enim. Nulla eleifend, leo at finibus
-                        volutpat, nulla metus eleifend lacus, ullamcorper dictum
-                        augue diam id erat.
-                      </p>
+                      <div class="truncate-170">
+                        <p class="font-regular-4">
+                          Lorem ipsum dolor sit amet, consectetur adipiscing
+                          elit. Ut justo ante, mattis nec libero a, malesuada
+                          pellentesque sem. Aliquam erat volutpat. Nulla ut
+                          consequat turpis, id efficitur velit. Fusce vitae
+                          dolor leo. Praesent diam justo, consectetur in blandit
+                          ut, tincidunt vitae enim. Nulla eleifend, leo at
+                          finibus volutpat, nulla metus eleifend lacus,
+                          ullamcorper dictum augue diam id erat.
+                        </p>
+                      </div>
                     </ng-template>
                   </bmb-accordion>
                   <bmb-accordion
@@ -283,16 +302,18 @@ import * as textLinkStory from '../components/bmb-text-link/bmb-text-link.storie
                       <span class="font-medium-4">FAQ's </span>
                     </ng-template>
                     <ng-template #bmbAccordionContent>
-                      <p class="font-regular-4">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                        Ut justo ante, mattis nec libero a, malesuada
-                        pellentesque sem. Aliquam erat volutpat. Nulla ut
-                        consequat turpis, id efficitur velit. Fusce vitae dolor
-                        leo. Praesent diam justo, consectetur in blandit ut,
-                        tincidunt vitae enim. Nulla eleifend, leo at finibus
-                        volutpat, nulla metus eleifend lacus, ullamcorper dictum
-                        augue diam id erat.
-                      </p>
+                      <div class="truncate-170">
+                        <p class="font-regular-4">
+                          Lorem ipsum dolor sit amet, consectetur adipiscing
+                          elit. Ut justo ante, mattis nec libero a, malesuada
+                          pellentesque sem. Aliquam erat volutpat. Nulla ut
+                          consequat turpis, id efficitur velit. Fusce vitae
+                          dolor leo. Praesent diam justo, consectetur in blandit
+                          ut, tincidunt vitae enim. Nulla eleifend, leo at
+                          finibus volutpat, nulla metus eleifend lacus,
+                          ullamcorper dictum augue diam id erat.
+                        </p>
+                      </div>
                     </ng-template>
                   </bmb-accordion>
                 </section>
@@ -309,9 +330,9 @@ import * as textLinkStory from '../components/bmb-text-link/bmb-text-link.storie
             id: 2,
             icon: 'task',
             title: 'Agregar firmantes',
-            link: 'https://www.youtube.com/watch?v=beh56CrNRsQ',
-          },
-        ],
+            link: 'https://www.youtube.com/watch?v=beh56CrNRsQ'
+          }
+        ]
       ]"
       [title]="'Navegacion para mobiles'"
     ></bmb-sidebar>
@@ -325,6 +346,51 @@ class StorybookAccordionTabs {
       action: () => console.log('Info'),
     },
   ];
+
+  private mq = window.matchMedia('(max-width: 767px)');
+  private originals = new Map<HTMLElement, string>();
+
+  ngOnInit() {
+    setTimeout(() => this.applyTruncate(), 0);
+    this.mq.addEventListener('change', () => this.applyTruncate());
+  }
+
+  private applyTruncate() {
+    document.querySelectorAll<HTMLElement>('.truncate-350').forEach((el) => {
+      if (!this.originals.has(el)) this.originals.set(el, el.innerHTML);
+      if (this.mq.matches) {
+        const text = el.innerText.trim().replace(/\s+/g, ' ');
+        el.innerHTML = `<p>${
+          text.length > 350 ? text.slice(0, 350).trimEnd() + '…' : text
+        }</p>`;
+      } else {
+        el.innerHTML = this.originals.get(el)!;
+      }
+    });
+
+    document.querySelectorAll<HTMLElement>('.truncate-170').forEach((el) => {
+      if (!this.originals.has(el)) this.originals.set(el, el.innerHTML);
+      if (this.mq.matches) {
+        const text = el.innerText.trim().replace(/\s+/g, ' ');
+        el.innerHTML = `<p>${
+          text.length > 170 ? text.slice(0, 170).trimEnd() + '…' : text
+        }</p>`;
+      } else {
+        el.innerHTML = this.originals.get(el)!;
+      }
+    });
+
+    document.querySelectorAll<HTMLElement>('.truncate-title').forEach((el) => {
+      if (!this.originals.has(el)) this.originals.set(el, el.innerText);
+      if (this.mq.matches) {
+        const text = (this.originals.get(el) ?? el.innerText).trim();
+        el.innerText =
+          text.length > 18 ? text.slice(0, 18).trimEnd() + '…' : text;
+      } else {
+        el.innerText = this.originals.get(el)!;
+      }
+    });
+  }
 
   handleBack() {
     console.log('Back button clicked');
@@ -353,7 +419,7 @@ export default {
       page: () => getPageStructureForTemplateStories(),
       description: {
         component: `
-${getLandingGeneralDesc('service')}
+${getLandingGeneralDesc('Accordion with image')}
 ${getSpecialSpecifications(`### ${TECHNICAL_DOC_TITLE}
 >
 ${TECHNICAL_DOC_REFERENCES}
@@ -367,7 +433,7 @@ ${TECHNICAL_DOC_REFERENCES}
 - [${cardHeaderStory.default.title}](/docs/${getFormatName(cardHeaderStory.default.title!, /(\/)|( )/g, '-').toLocaleLowerCase()}--documentation)
 - [${cardContentStory.default.title}](/docs/${getFormatName(cardContentStory.default.title!, /(\/)|( )/g, '-').toLocaleLowerCase()}--documentation)
 - [${accordionControlStory.default.title}](/docs/${getFormatName(accordionControlStory.default.title!, /(\/)|( )/g, '-').toLocaleLowerCase()}--documentation)
-- [${textLinkStory.default.title}](/docs/${getFormatName(textLinkStory.default.title!, /(\/)|( )/g, '-').toLocaleLowerCase()}--documentation)
+- [${iconStory.default.title}](/docs/${getFormatName(iconStory.default.title!, /(\/)|( )/g, '-').toLocaleLowerCase()}--documentation)
 >
 ${FULLSCREEN_DESC}
 `)}
@@ -381,8 +447,7 @@ ${getBasicExampleBlock(
     BmbCardHeaderComponent,
     BmbCardContentComponent,
     BmbAccordionComponent,
-    BmbAccordionControlDirective,
-    BmbTextLinkComponent`,
+    BmbAccordionControlDirective, BmbIconComponent`,
   '',
   `actionHeaders: IBmbActionHeader[] = [
     {
@@ -391,6 +456,47 @@ ${getBasicExampleBlock(
       action: () => console.log('Info'),
     },
   ];
+
+  private mq = window.matchMedia('(max-width: 767px)');
+  private originals = new Map<HTMLElement, string>();
+
+  ngOnInit() {
+    setTimeout(() => this.applyTruncate(), 0);
+    this.mq.addEventListener('change', () => this.applyTruncate());
+  }
+
+  private applyTruncate() {
+    document.querySelectorAll<HTMLElement>('.truncate-350').forEach((el) => {
+      if (!this.originals.has(el)) this.originals.set(el, el.innerHTML);
+      if (this.mq.matches) {
+        const text = el.innerText.trim().replace(/\s+/g, ' ');
+        el.innerHTML = \`<p>\${text.length > 350 ? text.slice(0, 350).trimEnd() + '…' : text}\</p>\`;
+      } else {
+        el.innerHTML = this.originals.get(el)!;
+      }
+    });
+
+    document.querySelectorAll<HTMLElement>('.truncate-170').forEach((el) => {
+      if (!this.originals.has(el)) this.originals.set(el, el.innerHTML);
+      if (this.mq.matches) {
+        const text = el.innerText.trim().replace(/\s+/g, ' ');
+        el.innerHTML = \`<p>\${text.length > 170 ? text.slice(0, 170).trimEnd() + '…' : text}\</p>\`;
+      } else {
+        el.innerHTML = this.originals.get(el)!;
+      }
+    });
+
+    document.querySelectorAll<HTMLElement>('.truncate-title').forEach((el) => {
+      if (!this.originals.has(el)) this.originals.set(el, el.innerText);
+      if (this.mq.matches) {
+        const text = (this.originals.get(el) ?? el.innerText).trim();
+        el.innerText =
+          text.length > 18 ? text.slice(0, 18).trimEnd() + '…' : text;
+      } else {
+        el.innerText = this.originals.get(el)!;
+      }
+    });
+  }
 
   handleBack() {
     console.log('Back button clicked');
@@ -410,13 +516,14 @@ ${getBasicExampleBlock(
         [userInformation]="{
           name: 'Santiago Hernández',
           image: 'https://picsum.photos/id/64/200/300',
-          role: 'Alumno',
+          role: 'Alumno'
         }"
         [showHelpButton]="true"
         [hasLogoutButton]="false"
         [appName]="'TecTest'"
         [appSubTitle]="'Sub title'"
         [showLang]="false"
+        [allowSidebarForMobile]="true"
         [lang]="'es'"
         (helpButtonClick)="helpButtonClick($event)"
         (userProfileClick)="userProfileClick($event)"
@@ -439,7 +546,10 @@ ${getBasicExampleBlock(
           >
             <bmb-card margin="none" bmbLayoutItem [colSm]="6" [colLg]="6">
               <bmb-card-header padding="m">
-                <h3 class="font-medium-5">Descripción</h3>
+                <h3 class="font-medium-5 truncate-title">
+                  Lorem ipsum dolor sit amet consectetur. Nisl nibh phasellus
+                  condimentum mi faucibus.
+                </h3>
               </bmb-card-header>
               <bmb-card-content>
                 <figure [ngStyle]="{ margin: '0 0 24px 0' }">
@@ -449,33 +559,38 @@ ${getBasicExampleBlock(
                     src="https://img.freepik.com/fotos-premium/dia-internacional-gato-8-agosto-gatos-lindos-gatito-pequeno-hermosos-pequenos-animales-compania-verdadero-amigo-bonitos-divertidos-tiernos-esponjosos-juguetones-shorties-ia-generativa_887181-4265.jpg?w=2000"
                   />
                 </figure>
-                <p class="font-regular-4">
-                  Lorem ipsum dolor sit amet consectetur. Nisl nibh phasellus
-                  condimentum mi faucibus. In quisque justo senectus in sed
-                  adipiscing. Arcu neque feugiat aenean nam accumsan justo ut.
-                  Pulvinar urna amet proin sit sed tellus ipsum. Lorem ipsum
-                  dolor sit amet consectetur.
-                </p>
-                <p class="font-regular-4">
-                  Nisl nibh phasellus condimentum mi faucibus. In quisque justo
-                  senectus in sed adipiscing. Arcu neque feugiat aenean nam
-                  accumsan justo ut. Pulvinar urna amet proin sit sed tellus
-                  ipsum. Lorem ipsum dolor sit amet consectetur. Nisl nibh
-                  phasellus condimentum mi faucibus. In quisque justo senectus
-                  in sed adipiscing. Arcu neque feugiat aenean nam accumsan
-                  justo ut.
-                </p>
-                <p class="font-regular-4">
-                  Pulvinar urna amet proin sit sed tellus ipsum. Lorem ipsum
-                  dolor sit amet consectetur. Nisl nibh phasellus condimentum mi
-                  faucibus. In quisque justo senectus in sed adipiscing. Arcu
-                  neque feugiat aenean nam accumsan justo ut.
-                </p>
+                <div class="truncate-350">
+                  <p class="font-regular-4">
+                    Lorem ipsum dolor sit amet consectetur. Nisl nibh phasellus
+                    condimentum mi faucibus. In quisque justo senectus in sed
+                    adipiscing. Arcu neque feugiat aenean nam accumsan justo ut.
+                    Pulvinar urna amet proin sit sed tellus ipsum. Lorem ipsum
+                    dolor sit amet consectetur.
+                  </p>
+                  <p class="font-regular-4">
+                    Nisl nibh phasellus condimentum mi faucibus. In quisque
+                    justo senectus in sed adipiscing. Arcu neque feugiat aenean
+                    nam accumsan justo ut. Pulvinar urna amet proin sit sed
+                    tellus ipsum. Lorem ipsum dolor sit amet consectetur. Nisl
+                    nibh phasellus condimentum mi faucibus. In quisque justo
+                    senectus in sed adipiscing. Arcu neque feugiat aenean nam
+                    accumsan justo ut.
+                  </p>
+                  <p class="font-regular-4">
+                    Pulvinar urna amet proin sit sed tellus ipsum. Lorem ipsum
+                    dolor sit amet consectetur. Nisl nibh phasellus condimentum
+                    mi faucibus. In quisque justo senectus in sed adipiscing.
+                    Arcu neque feugiat aenean nam accumsan justo ut.
+                  </p>
+                </div>
               </bmb-card-content>
             </bmb-card>
             <bmb-card margin="none" bmbLayoutItem [colSm]="6" [colLg]="6">
               <bmb-card-header padding="m">
-                <h3 class="font-medium-5">Recursos</h3>
+                <h3 class="font-medium-5 truncate-title">
+                  Lorem ipsum dolor sit amet consectetur. Nisl nibh phasellus
+                  condimentum mi faucibus.
+                </h3>
               </bmb-card-header>
               <bmb-card-content>
                 <section bmbAccordionControl>
@@ -493,11 +608,13 @@ ${getBasicExampleBlock(
                       <span class="font-medium-4"> Información general </span>
                     </ng-template>
                     <ng-template #bmbAccordionContent>
-                      <p class="font-regular-4">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                        Ut justo ante, mattis nec libero a, malesuada
-                        pellentesque sem. Aliquam erat volutpat.
-                      </p>
+                      <div class="truncate-170">
+                        <p class="font-regular-4">
+                          Lorem ipsum dolor sit amet, consectetur adipiscing
+                          elit. Ut justo ante, mattis nec libero a, malesuada
+                          pellentesque sem. Aliquam erat volutpat.
+                        </p>
+                      </div>
                     </ng-template>
                   </bmb-accordion>
                   <bmb-accordion
@@ -514,39 +631,42 @@ ${getBasicExampleBlock(
                       <span class="font-medium-4">Guías</span>
                     </ng-template>
                     <ng-template #bmbAccordionContent>
-                      <bmb-text-link
-                        [textLink]="
-                          'Guía para establecer y dar seguimiento a mi Plan de Desarrollo'
-                        "
-                        [textLinkStyle]="'icon'"
-                        [target]="'_blank'"
-                        [icon]="'arrow_forward'"
-                        [iconPosition]="'right'"
-                        [link]="'https://www.youtube.com'"
-                        [disabled]="false"
-                      ></bmb-text-link>
-                      <bmb-text-link
-                        [textLink]="
-                          'Guía para acompañar a tu equipo en mi Plan de Desarrollo'
-                        "
-                        [textLinkStyle]="'icon'"
-                        [target]="'_blank'"
-                        [icon]="'arrow_forward'"
-                        [iconPosition]="'right'"
-                        [link]="'https://www.youtube.com'"
-                        [disabled]="false"
-                      ></bmb-text-link>
-                      <bmb-text-link
-                        [textLink]="
-                          'Guía para reguistrar tu plan en Success Factors'
-                        "
-                        [textLinkStyle]="'icon'"
-                        [target]="'_blank'"
-                        [icon]="'arrow_forward'"
-                        [iconPosition]="'right'"
-                        [link]="'https://www.youtube.com'"
-                        [disabled]="false"
-                      ></bmb-text-link>
+                      <div class="bmb_template-accordion-links">
+                        <a
+                          class="bmb_template-accordion-cta"
+                          href="https://www.youtube.com"
+                          target="'_blank'"
+                        >
+                          <span class="font-medium-4"
+                            >Guía para establecer y dar seguimiento a mi Plan de
+                            Desarrollo</span
+                          >
+                          <bmb-icon icon="arrow_forward" [size]="20" />
+                        </a>
+                        <a
+                          class="bmb_template-accordion-cta"
+                          href="https://www.youtube.com"
+                          target="'_blank'"
+                        >
+                          <span class="font-medium-4"
+                            >Guía para acompañar a tu equipo en mi Plan de
+                            Desarrollo</span
+                          >
+                          <bmb-icon icon="arrow_forward" [size]="20" />
+                        </a>
+
+                        <a
+                          class="bmb_template-accordion-cta"
+                          href="https://www.youtube.com"
+                          target="'_blank'"
+                        >
+                          <span class="font-medium-4"
+                            >Guía para reguistrar tu plan en Success
+                            Factors</span
+                          >
+                          <bmb-icon icon="arrow_forward" [size]="20" />
+                        </a>
+                      </div>
                     </ng-template>
                   </bmb-accordion>
                   <bmb-accordion
@@ -563,33 +683,36 @@ ${getBasicExampleBlock(
                       <span class="font-medium-4">Recursos de desarrollo </span>
                     </ng-template>
                     <ng-template #bmbAccordionContent>
-                      <bmb-text-link
-                        [textLink]="'Oferta de desarrollo'"
-                        [textLinkStyle]="'icon'"
-                        [target]="'_blank'"
-                        [icon]="'arrow_forward'"
-                        [iconPosition]="'right'"
-                        [link]="'https://www.youtube.com'"
-                        [disabled]="false"
-                      ></bmb-text-link>
-                      <bmb-text-link
-                        [textLink]="'Oportunidades de crecimiento'"
-                        [textLinkStyle]="'icon'"
-                        [target]="'_blank'"
-                        [icon]="'arrow_forward'"
-                        [iconPosition]="'right'"
-                        [link]="'https://www.youtube.com'"
-                        [disabled]="false"
-                      ></bmb-text-link>
-                      <bmb-text-link
-                        [textLink]="'mi BiblioTECa'"
-                        [textLinkStyle]="'icon'"
-                        [target]="'_blank'"
-                        [icon]="'arrow_forward'"
-                        [iconPosition]="'right'"
-                        [link]="'https://www.youtube.com'"
-                        [disabled]="false"
-                      ></bmb-text-link>
+                      <div class="bmb_template-accordion-links">
+                        <a
+                          class="bmb_template-accordion-cta"
+                          href="https://www.youtube.com"
+                          target="'_blank'"
+                        >
+                          <span class="font-medium-4"
+                            >Oferta de desarrollo</span
+                          >
+                          <bmb-icon icon="arrow_forward" [size]="20" />
+                        </a>
+                        <a
+                          class="bmb_template-accordion-cta"
+                          href="https://www.youtube.com"
+                          target="'_blank'"
+                        >
+                          <span class="font-medium-4"
+                            >Oportunidades de crecimiento</span
+                          >
+                          <bmb-icon icon="arrow_forward" [size]="20" />
+                        </a>
+                        <a
+                          class="bmb_template-accordion-cta"
+                          href="https://www.youtube.com"
+                          target="'_blank'"
+                        >
+                          <span class="font-medium-4">mi BiblioTECa</span>
+                          <bmb-icon icon="arrow_forward" [size]="20" />
+                        </a>
+                      </div>
                     </ng-template>
                   </bmb-accordion>
                   <bmb-accordion
@@ -606,16 +729,18 @@ ${getBasicExampleBlock(
                       <span class="font-medium-4">FAQ's </span>
                     </ng-template>
                     <ng-template #bmbAccordionContent>
-                      <p class="font-regular-4">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                        Ut justo ante, mattis nec libero a, malesuada
-                        pellentesque sem. Aliquam erat volutpat. Nulla ut
-                        consequat turpis, id efficitur velit. Fusce vitae dolor
-                        leo. Praesent diam justo, consectetur in blandit ut,
-                        tincidunt vitae enim. Nulla eleifend, leo at finibus
-                        volutpat, nulla metus eleifend lacus, ullamcorper dictum
-                        augue diam id erat.
-                      </p>
+                      <div class="truncate-170">
+                        <p class="font-regular-4">
+                          Lorem ipsum dolor sit amet, consectetur adipiscing
+                          elit. Ut justo ante, mattis nec libero a, malesuada
+                          pellentesque sem. Aliquam erat volutpat. Nulla ut
+                          consequat turpis, id efficitur velit. Fusce vitae
+                          dolor leo. Praesent diam justo, consectetur in blandit
+                          ut, tincidunt vitae enim. Nulla eleifend, leo at
+                          finibus volutpat, nulla metus eleifend lacus,
+                          ullamcorper dictum augue diam id erat.
+                        </p>
+                      </div>
                     </ng-template>
                   </bmb-accordion>
                   <bmb-accordion
@@ -632,16 +757,18 @@ ${getBasicExampleBlock(
                       <span class="font-medium-4">FAQ's </span>
                     </ng-template>
                     <ng-template #bmbAccordionContent>
-                      <p class="font-regular-4">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                        Ut justo ante, mattis nec libero a, malesuada
-                        pellentesque sem. Aliquam erat volutpat. Nulla ut
-                        consequat turpis, id efficitur velit. Fusce vitae dolor
-                        leo. Praesent diam justo, consectetur in blandit ut,
-                        tincidunt vitae enim. Nulla eleifend, leo at finibus
-                        volutpat, nulla metus eleifend lacus, ullamcorper dictum
-                        augue diam id erat.
-                      </p>
+                      <div class="truncate-170">
+                        <p class="font-regular-4">
+                          Lorem ipsum dolor sit amet, consectetur adipiscing
+                          elit. Ut justo ante, mattis nec libero a, malesuada
+                          pellentesque sem. Aliquam erat volutpat. Nulla ut
+                          consequat turpis, id efficitur velit. Fusce vitae
+                          dolor leo. Praesent diam justo, consectetur in blandit
+                          ut, tincidunt vitae enim. Nulla eleifend, leo at
+                          finibus volutpat, nulla metus eleifend lacus,
+                          ullamcorper dictum augue diam id erat.
+                        </p>
+                      </div>
                     </ng-template>
                   </bmb-accordion>
                 </section>

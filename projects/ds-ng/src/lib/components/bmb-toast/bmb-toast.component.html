@@ -4,19 +4,18 @@
   <div
     class="bmb_toast-content"
     [ngClass]="{
-      'bmb_toast-with-description':
-        description() && appearance() !== 'reminder',
+      'bmb_toast-with-description': description() && appearance() !== 'reminder'
     }"
   >
     <h4 class="bmb_toast-title">
       {{ title() }}
     </h4>
-    @if (description() && appearance() !== "reminder") {
+    @if (description() && appearance() !== 'reminder') {
       <p class="bmb_toast-description">{{ description() }}</p>
     }
   </div>
 
-  @if (appearance() !== "reminder" && isClosable()) {
+  @if (appearance() !== 'reminder' && isClosable()) {
     <button class="bmb_toast-button" (click)="handleClose($event)">
       <bmb-icon icon="close" class="bmb_toast-close" />
     </button>

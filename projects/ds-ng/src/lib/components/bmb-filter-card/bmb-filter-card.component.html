@@ -24,7 +24,7 @@
           <div class="bmb_filter_card-control">
             @for (control of controlType.control; track $index) {
               @switch (control.type) {
-                @case ("tag") {
+                @case ('tag') {
                   <bmb-tag
                     [text]="control.label"
                     [dismissible]="false"
@@ -32,25 +32,29 @@
                     (clickedTag)="onControlChange(control, $event)"
                   />
                 }
-                @case ("radial") {
+                @case ('radial') {
                   <bmb-radial
                     [name]="control.name"
+                    [inputId]="control.id ?? control.name + '-' + $index"
                     [checked]="
                       filterForm.get(control.name)?.value === control.label
                     "
                     [label]="control.label"
                     (change)="onControlChange(control, $event)"
+                    [value]="control.value ?? control.name"
                   />
                 }
-                @case ("checkbox") {
+                @case ('checkbox') {
                   <bmb-checkbox
                     [name]="control.name"
                     [checked]="filterForm.get(control.name)?.value"
                     [label]="control.label"
                     (change)="onControlChange(control, $event)"
+                    [inputId]="control.id ?? control.name + '-' + $index"
+                    [value]="control.value ?? control.name"
                   />
                 }
-                @case ("switch") {
+                @case ('switch') {
                   <bmb-switch
                     [rightText]="control.rightText ?? ''"
                     [isChecked]="filterForm.get(control.name)?.value === true"
@@ -66,7 +70,7 @@
             <button bmbButton appearance="secondary-outlined" type="reset">
               {{ secondaryBtnLabel() }}
             </button>
-            <button bmbButton (click)="onSubmit()" type="submit">
+            <button bmbButton (click)="handleSubmit()" type="submit">
               {{ primaryBtnLabel() }}
             </button>
           </footer>

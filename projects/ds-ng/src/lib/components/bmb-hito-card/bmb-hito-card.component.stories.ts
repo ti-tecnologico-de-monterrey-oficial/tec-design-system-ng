@@ -40,7 +40,7 @@ export default {
       },
       description: {
         component: `
-${getGeneralDescription(`${getGeneralComponentDescription('hito-card')} to highlight an important stage in a project, process or timeline in a content card.`, 'https://bamboo.tec.mx/latest/componentes/hito-card/descripcion-general-rau61m3C')}
+${getGeneralDescription({ content: `${getGeneralComponentDescription({ name: 'hito-card' })} to highlight an important stage in a project, process or timeline in a content card.`, generalDocLink: 'https://bamboo.tec.mx/latest/componentes/hito-card/descripcion-general-rau61m3C' })}
 ${getBasicExampleBlock('BmbHitoCardComponent')}
         `,
       },
@@ -345,7 +345,7 @@ export const ActiveExample = {
   },
   render: (args: any) => ({
     template: `
-      <div style="padding: 1.5rem">
+      <div>
         <bmb-hito-card
           ${attributes(args)}
         />

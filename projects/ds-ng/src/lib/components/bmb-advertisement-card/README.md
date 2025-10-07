@@ -30,7 +30,12 @@ The component uses the following data structure for its content:
 interface IBmbAdvertisementData {
   promociones: Array<{
     imgData: { url: string; alt: string };
-    content: { title: string; description: string; linkBtn: string; labelBtn: string };
+    content: {
+      title: string;
+      description: string;
+      linkBtn: string;
+      labelBtn: string;
+    };
   }>;
   avisos: Array<{
     imgData: { url: string; alt: string };
@@ -79,12 +84,17 @@ The component's template is structured as follows:
         <img [src]="item.imgData.url" [alt]="item.imgData.alt" />
         <h3>{{ item.content.title }}</h3>
         <p>{{ item.content.description }}</p>
-        <button *ngIf="item.content.linkBtn" [href]="item.content.linkBtn">{{ item.content.labelBtn }}</button>
+        <button *ngIf="item.content.linkBtn" [href]="item.content.linkBtn">
+          {{ item.content.labelBtn }}
+        </button>
       </div>
     </ng-container>
   </div>
 
-  <bmb-dot-paginator [dots]="activeData.length" (dotPress)="onDotPress($event)"></bmb-dot-paginator>
+  <bmb-dot-paginator
+    [dots]="activeData.length"
+    (dotPress)="onDotPress($event)"
+  ></bmb-dot-paginator>
 </bmb-advertisement-card>
 ```
 
@@ -93,7 +103,8 @@ The component's template is structured as follows:
 ## Usage Example
 
 ```html
-<bmb-advertisement-card [subtitle]="'Latest Promotions'"> </bmb-advertisement-card>
+<bmb-advertisement-card [subtitle]="'Latest Promotions'">
+</bmb-advertisement-card>
 ```
 
 ---

@@ -66,15 +66,14 @@ export default {
           'closeTag',
           'getClasses',
           'ngAfterViewInit',
-          'isActive',
         ],
       },
       description: {
         component: `
-${getGeneralDescription(
-  `${getGeneralComponentDescription('tag')} to create content such as keywords, categories, organizations, or searches.`,
-  GENERAL_DOCUMENTATION_LINK,
-)}
+${getGeneralDescription({
+  content: `${getGeneralComponentDescription({ name: 'tag' })} to create content such as keywords, categories, organizations, or searches.`,
+  generalDocLink: GENERAL_DOCUMENTATION_LINK,
+})}
 ${getBasicExampleBlock('BmbTagComponent')}
         `,
       },
@@ -116,14 +115,14 @@ ${getBasicExampleBlock('BmbTagComponent')}
       `<br/><br/>Whenever the tag is dismissible, the different states of the tag will be added to its behavior.<br/><br/>${getGeneralDocDescription(GENERAL_DOCUMENTATION_LINK)}`,
     ),
     isActive: getPropertyParamDesc(
-      'appearance of the focused state',
+      'appearance of the active or selected state, only applies when `dismissible` is true',
       'boolean',
       false,
     ),
     isDisabled: {
       ...DBmbGenericParamDesc.disabled,
       description: DBmbGenericParamDesc.disabled.description.concat(
-        '<br/><br/>Disabled state will only be applied when \`dismissible\` property is true.',
+        '<br/><br/>Disabled state will only be applied when `dismissible` property is true.',
       ),
     },
     clickedTag: getOnClickParam(onClickedTagEvent, ``),
@@ -135,6 +134,7 @@ ${getBasicExampleBlock('BmbTagComponent')}
     dismissible: false,
     activityTag: false,
     appearance: 'normal',
+    isActive: false,
     clickedTag: () => {
       console.log('On clicked');
     },

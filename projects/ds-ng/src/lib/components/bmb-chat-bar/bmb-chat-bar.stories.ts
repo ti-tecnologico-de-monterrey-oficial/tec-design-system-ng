@@ -24,10 +24,12 @@ export default {
     docs: {
       description: {
         component: `
-${getGeneralDescription(
-  'This is an advanced tool designed to enhance the digital interaction experience powered by artificial intelligence.',
-  'https://bamboo.tec.mx/latest/componentes/ai-chat-bar/descripcion-general-wixYrkmT',
-)}
+${getGeneralDescription({
+  content:
+    'This is an advanced tool designed to enhance the digital interaction experience powered by artificial intelligence.',
+  generalDocLink:
+    'https://bamboo.tec.mx/latest/componentes/ai-chat-bar/descripcion-general-wixYrkmT',
+})}
 ${getBasicExampleBlock('BmbChatBarComponent', importComments)}
         `,
       },
@@ -70,6 +72,13 @@ ${getBasicExampleBlock('BmbChatBarComponent', importComments)}
         'onResize',
         'autoResize',
         'handleKeyDown',
+        'botChunks',
+        'modalID',
+        'handleClickOutside',
+        'handleMobileChangeBot',
+        'chatBarTemplate',
+        'mobileBotSelectorTemplate',
+        'textareaRef',
       ],
     },
   },
@@ -176,10 +185,32 @@ This is a model signal, so it is possible to use it as:
         type: { summary: 'function' },
       },
     },
+    enableMicInput: {
+      control: { type: 'boolean' },
+      description: 'Enables the microphone input feature.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
+    },
   },
   args: {
     placeholder: 'Custom placeholder',
     isLoading: false,
+    enableMicInput: false,
+    actionsList: [
+      {
+        name: 'Adjuntar Archivo',
+        icon: 'upload_file',
+        action: () => {
+          const input = document.getElementById(
+            'inputFile',
+          ) as HTMLInputElement;
+          input?.click();
+        },
+      },
+    ],
     botList: [
       {
         name: 'TecBot',

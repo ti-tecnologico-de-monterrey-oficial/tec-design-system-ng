@@ -55,7 +55,16 @@ Handles the click event for the trailing icon and emits the `onTrailingClick` ou
 The component's template is structured as follows:
 
 ```html
-<bmb-chevron-title-selector [title]="'Main Title'" [subtitle]="'Subtitle Text'" [isIconSubtitle]="false" [iconSubtitle]="'info'" [leadingIcon]="'menu'" [trailingIcon]="'chevron-right'" (onLeadingClick)="handleLeadingIconClick($event)" (onTrailingClick)="handleTrailingIconClick($event)"></bmb-chevron-title-selector>
+<bmb-chevron-title-selector
+  [title]="'Main Title'"
+  [subtitle]="'Subtitle Text'"
+  [isIconSubtitle]="false"
+  [iconSubtitle]="'info'"
+  [leadingIcon]="'menu'"
+  [trailingIcon]="'chevron-right'"
+  (onLeadingClick)="handleLeadingIconClick($event)"
+  (onTrailingClick)="handleTrailingIconClick($event)"
+></bmb-chevron-title-selector>
 ```
 
 ---
@@ -65,13 +74,26 @@ The component's template is structured as follows:
 ### Example 1: Basic Title with Subtitle
 
 ```html
-<bmb-chevron-title-selector [title]="'Settings'" [subtitle]="'Manage your preferences'" [leadingIcon]="'settings'" [trailingIcon]="'chevron-right'" (onTrailingClick)="navigateToSettings()"></bmb-chevron-title-selector>
+<bmb-chevron-title-selector
+  [title]="'Settings'"
+  [subtitle]="'Manage your preferences'"
+  [leadingIcon]="'settings'"
+  [trailingIcon]="'chevron-right'"
+  (onTrailingClick)="navigateToSettings()"
+></bmb-chevron-title-selector>
 ```
 
 ### Example 2: Icon Subtitle
 
 ```html
-<bmb-chevron-title-selector [title]="'Notifications'" [isIconSubtitle]="true" [iconSubtitle]="'bell'" [leadingIcon]="'notifications'" [trailingIcon]="'chevron-right'" (onTrailingClick)="openNotifications()"></bmb-chevron-title-selector>
+<bmb-chevron-title-selector
+  [title]="'Notifications'"
+  [isIconSubtitle]="true"
+  [iconSubtitle]="'bell'"
+  [leadingIcon]="'notifications'"
+  [trailingIcon]="'chevron-right'"
+  (onTrailingClick)="openNotifications()"
+></bmb-chevron-title-selector>
 ```
 
 ---

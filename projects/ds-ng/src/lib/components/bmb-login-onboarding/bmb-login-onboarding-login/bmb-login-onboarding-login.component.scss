@@ -1,5 +1,5 @@
-@use "../bmb-login-onboarding.component.scss" as page;
-@use "../../../../assets/styles/base/rem" as rem;
+@use '../bmb-login-onboarding.component.scss' as page;
+@use '../../../../assets/styles/base/rem' as rem;
 
 .bmb_login-onboarding-login {
   @include page.page-flex;

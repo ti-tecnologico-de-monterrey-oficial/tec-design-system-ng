@@ -1,17 +1,8 @@
-<section
-  class="bmb_dropdown_menu"
-  clickOutside
-  (clickOutside)="closeDropdown()"
->
+<section class="bmb_dropdown_menu" #contentDiv>
   <bmb-action-icon
     class="bmb_dropdown_menu-button"
     icon="more_vert"
     [iconSize]="24"
     (buttonClick)="openDropdown()"
-  />
-  <bmb-dropdown-content
-    class="bmb_dropdown_menu-list"
-    [items]="items()"
-    [(isOpen)]="isOpen"
   />
 </section>

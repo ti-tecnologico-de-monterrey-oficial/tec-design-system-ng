@@ -43,11 +43,11 @@ closeNotification(notification: INotification) {
 ## Usage Example
 
 ```typescript
-import { Component } from "@angular/core";
-import { BmbPushNotificationComponent } from "./bmb-push-notification.component";
+import { Component } from '@angular/core';
+import { BmbPushNotificationComponent } from './bmb-push-notification.component';
 
 @Component({
-  selector: "app-root",
+  selector: 'app-root',
   template: ` <bmb-push-notification></bmb-push-notification> `,
 })
 export class AppComponent {}

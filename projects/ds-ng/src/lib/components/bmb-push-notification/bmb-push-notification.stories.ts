@@ -104,7 +104,7 @@ export default {
       controls: { exclude: ['closeNotification', 'getNotifications'] },
       description: {
         component: `
-${getGeneralDescription(`${getGeneralComponentDescription('push-notification')} to easily configure notifications to display in the apps.`, 'https://bamboo.tec.mx/latest/componentes/push-notification/descripcion-general-neloJm9o')}
+${getGeneralDescription({ content: `${getGeneralComponentDescription({ name: 'push-notification' })} to easily configure notifications to display in the apps.`, generalDocLink: 'https://bamboo.tec.mx/latest/componentes/push-notification/descripcion-general-neloJm9o' })}
 ${getSpecialSpecifications(` ### Configuration
 Add the **BmbNotificationService** to your App providers:
 \`\`\`typescript
@@ -270,7 +270,7 @@ ${getBasicExampleBlock('BmbPushNotificationComponent')}
         type: { summary: 'string' },
       },
       description:
-        'Sets the user name label, in order to enable the user section this field is required as \`userAvatar\`.',
+        'Sets the user name label, in order to enable the user section this field is required as `userAvatar`.',
     },
     userAvatar: {
       control: {
@@ -282,7 +282,7 @@ ${getBasicExampleBlock('BmbPushNotificationComponent')}
         type: { summary: 'string' },
       },
       description:
-        'Sets the user avatar, and in order to enable the user section this filed is required as \`userName\`.',
+        'Sets the user avatar, and in order to enable the user section this filed is required as `userName`.',
     },
     userMail: {
       control: {
@@ -294,7 +294,7 @@ ${getBasicExampleBlock('BmbPushNotificationComponent')}
         type: { summary: 'string' },
       },
       description:
-        'Sets the user email for the user section, and in order to enable the user section this filed is required as \`userName\` and \`userName\`.',
+        'Sets the user email for the user section, and in order to enable the user section this filed is required as `userName` and `userName`.',
     },
   },
   args: {

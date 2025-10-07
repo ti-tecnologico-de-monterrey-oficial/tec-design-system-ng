@@ -1,6 +1,7 @@
-import { Meta, StoryObj } from '@storybook/angular';
+import { componentWrapperDecorator, Meta, StoryObj } from '@storybook/angular';
 import { BmbTotpComponent } from './bmb-totp.component';
 import {
+  DBmbGenericParamDesc,
   DBmbInputParamDesc,
   getOnClickParam,
 } from '../../utils/doc/parameterDescriptions';
@@ -72,11 +73,12 @@ export default {
           'codeForm',
           'codesArray',
           'destroy$',
+          '_maxCode',
         ],
       },
       description: {
         component: `
-${getGeneralDescription(`${getGeneralComponentDescription('totp')} to be used in two-factor authentication flows.`, 'https://bamboo.tec.mx/latest/componentes/to-tp-prompt/descripcion-general-ldU6LSaF')}
+${getGeneralDescription({ content: `${getGeneralComponentDescription({ name: 'totp' })} to be used in two-factor authentication flows.`, generalDocLink: 'https://bamboo.tec.mx/latest/componentes/to-tp-prompt/descripcion-general-ldU6LSaF' })}
 ${getBasicExampleBlock('BmbTotpComponent', '', additionalBlock)}
 \`\`\`html
 <bmb-totp
@@ -88,14 +90,6 @@ ${getBasicExampleBlock('BmbTotpComponent', '', additionalBlock)}
   [showButton]="true"
   buttonText="Verify"
   helperText="Helper text"
-/>
-
-<bmb-totp
-  instanceId="second"
-  [maxCode]="4"
-  (handleSubmit)="verifyCode($event, 'second')"
-  [codeError]="errors['second'] ? errors['second'].codeError : false"
-  [errorMessage]="errors['second'] ? errors['second'].errorMessage : ''"
 />
 \`\`\`
         `,
@@ -175,14 +169,7 @@ ${getBasicExampleBlock('BmbTotpComponent', '', additionalBlock)}
         type: { summary: 'boolean' },
       },
     },
-    maxCode: {
-      control: { type: 'number' },
-      description: 'Sets the maximum number of code fields',
-      table: {
-        category: 'Properties',
-        type: { summary: 'number' },
-      },
-    },
+    maxCode: DBmbGenericParamDesc.deprecated,
     handleSubmit: getOnClickParam(
       getOnEvent('', 'handleSubmit'),
       `.<br/><br/> The button is displayed when \`showButton\` is true`,

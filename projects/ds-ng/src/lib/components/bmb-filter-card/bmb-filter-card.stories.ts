@@ -32,11 +32,12 @@ export default {
           'ngOnInit',
           'filterForm',
           'storedValues',
+          'modalTemplate',
         ],
       },
       description: {
         component: `
-${getGeneralDescription(`${getGeneralComponentDescription('filter-card')} to display and managing filter controls in a modal dialog.`, 'https://bamboo.tec.mx/latest/componentes/filter-card/descripcion-general-Be01z0Al')}
+${getGeneralDescription({ content: `${getGeneralComponentDescription({ name: 'filter-card' })} to display and managing filter controls in a modal dialog.`, generalDocLink: 'https://bamboo.tec.mx/latest/componentes/filter-card/descripcion-general-Be01z0Al' })}
 ${getSpecialSpecifications(getEmptyStateMessage())}
 ${getBasicExampleBlock('BmbFilterCardComponent')}
         `,
@@ -119,7 +120,9 @@ ${getBasicExampleBlock('BmbFilterCardComponent')}
     secondaryBtnLabel: 'Limpiar Filtros',
     icon: 'tune',
     placeholderSearch: 'Search',
-    applyFilters: '',
+    applyFilters: (filters: any) => {
+      console.log('Filters applied', filters);
+    },
     controlTypes: [
       {
         title: 'Filter - tags',
@@ -145,12 +148,16 @@ ${getBasicExampleBlock('BmbFilterCardComponent')}
             name: 'radial-1',
             type: 'radial',
             label: 'Radial 1',
+            id: 'radial-1',
+            value: '1',
             checked: false,
           },
           {
             name: 'radial-1',
             type: 'radial',
             label: 'Radial 2',
+            id: 'radial-2',
+            value: '2',
             checked: false,
           },
         ],

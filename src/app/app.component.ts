@@ -1,130 +1,157 @@
 import {
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
-  computed,
-  inject,
-  signal,
   TemplateRef,
   ViewChild,
+  ViewEncapsulation,
 } from '@angular/core';
-import { RouterModule, Router } from '@angular/router';
 import {
-  BmbThemeComponent,
-  BmbTopBarComponent,
-  BmbVerticalLayoutDirective,
-  BmbVerticalLayoutItemDirective,
-  BmbSidebarComponent,
-  SidebarElement,
-  BmbNativeModalService,
-  IBmbNativeModal,
+  BmbTableLiteComponent,
+  BmbIconComponent,
 } from '../../projects/ds-ng/src/public-api';
+import { CommonModule } from '@angular/common';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
-  // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'app-root',
-  imports: [
-    RouterModule,
-    BmbThemeComponent,
-    BmbTopBarComponent,
-    BmbVerticalLayoutDirective,
-    BmbVerticalLayoutItemDirective,
-    BmbSidebarComponent,
-  ],
+  imports: [BmbIconComponent, BmbTableLiteComponent, CommonModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None,
   standalone: true,
 })
 export class AppComponent {
-  private router = inject(Router);
-  constructor(private modalService: BmbNativeModalService) {}
-  @ViewChild('modalTemplate') modalTemplate!: TemplateRef<unknown>;
+  @ViewChild('actionTemplate') actionTemplate!: TemplateRef<any>;
 
-  modalId = signal<string | null>(null);
-  isTheModalOpen = computed(() => {
-    if (!this.modalId()) return false;
+  displayedItems: any[] = [];
+  totalItems = 0;
+  itemsPerPage = 10;
+  pageIndex = 0;
+  searchTerm = '';
+  searchMode: 'client' | 'server' = 'server';
+  filters: Record<string, any> = {};
 
-    return this.modalService.checkIfModalExists(this.modalId() as string);
-  });
-
-  routes: SidebarElement[][] = [
-    [
-      {
-        id: 1,
-        icon: 'home',
-        title: 'Home',
-        link: '/home',
-      },
-      {
-        id: 5,
-        icon: 'calendar_today',
-        title: 'Calendar',
-        link: '/calendar',
-      },
-    ],
-    [
-      {
-        id: 2,
-        icon: 'list_alt_check',
-        title: 'Forms',
-        link: '/form-validator',
-      },
-      {
-        id: 3,
-        icon: 'align_flex_center',
-        title: 'Flex',
-        link: '/flex',
-      },
-      {
-        id: 4,
-        icon: 'dropdown',
-        title: 'Dropdown',
-        link: '/dropdown',
-      },
-    ],
+  // ---------------------------------------------------------------------------
+  // 📑 CONFIGURACIÓN DE COLUMNAS Y TABLA
+  // ---------------------------------------------------------------------------
+  columns: any[] = [
+    { def: 'sociedad', label: 'SOCIETY', dataKey: 'sociedad', type: 'number' },
+    {
+      def: 'claveFuncionSSFF',
+      label: 'FUNCTION',
+      dataKey: 'claveFuncionSSFF',
+      type: 'string',
+    },
+    {
+      def: 'nombreTipoContrato',
+      label: 'CONTRACT_TYPE',
+      dataKey: 'nombreTipoContrato',
+      type: 'string',
+    },
+    {
+      def: 'nombrePuestoFacultad',
+      label: 'POSITION_FACULTY',
+      dataKey: 'nombrePuestoFacultad',
+      type: 'string',
+    },
+    {
+      def: 'nombreRol',
+      label: 'TEACHER_ROLE',
+      dataKey: 'nombreRol',
+      type: 'string',
+    },
+    {
+      def: 'nombreEstatus',
+      label: 'STATUS',
+      dataKey: 'nombreEstatus',
+      type: 'string',
+    },
   ];
 
-  handleUserProfileClick(): void {
-    const data: IBmbNativeModal = {
-      title: 'User Profile',
-      subtitle: 'This is your user profile modal',
-      content: this.modalTemplate,
-      size: 'medium',
-      iconStyle: 'primary',
-      actions: [
-        {
-          buttonName: 'Close',
-          appearance: 'secondary-outlined',
-          label: 'Close',
-          icon: 'close',
-          action: () => this.handleCloseModal.bind(this)(),
-        },
-      ],
-      closeModalClicked: () => this.handleActionsCloseClick.bind(this)(event),
+  config = {
+    isSelectable: false,
+    isExpandible: false,
+    isPaginable: true,
+    showActions: true,
+  };
+
+  constructor(
+    private http: HttpClient,
+    private cdr: ChangeDetectorRef,
+  ) {}
+
+  // ---------------------------------------------------------------------------
+  // 🚀 CARGA INICIAL
+  // ---------------------------------------------------------------------------
+  ngOnInit(): void {
+    this.fetchData();
+  }
+
+  // ---------------------------------------------------------------------------
+  // 🌐 MÉTODO PRINCIPAL DE CARGA SERVER-SIDE
+  // ---------------------------------------------------------------------------
+  fetchData(): void {
+    const payload = {
+      ...this.filters,
+      search: this.searchTerm,
+      page: this.pageIndex + 1,
+      perPage: this.itemsPerPage,
     };
-    this.modalId.set(this.modalService.openModal(data));
-  }
 
-  handleCloseModal(): void {
-    const randomBoolean = Math.random() > 0.5;
-    console.log('Modal closed', randomBoolean);
-    if (randomBoolean) {
-      this.modalService.closeModal(this.modalId() as string);
-    } else {
-      this.modalService.openModal({
-        title: 'The random is false',
-        content: "This why the modal wasn't closed",
-        size: 'x-small',
-        iconStyle: 'warning',
+    this.http
+      .post<{
+        body: any[];
+        pagination: { totalRegistros: number; totalPaginas: number };
+      }>('http://localhost:3000/GetAsignacionesTaxonomia', payload)
+      .subscribe({
+        next: (res) => {
+          this.displayedItems = res.body || [];
+          this.totalItems = res.pagination?.totalRegistros || 0;
+          this.cdr.markForCheck();
+        },
+        error: (err) => {
+          console.error('❌ Error fetching data:', err);
+        },
       });
-    }
   }
 
-  handleAlertButtonClick(): void {
-    this.router.navigate(['/alerts']);
+  // ---------------------------------------------------------------------------
+  // 🔎 EVENTOS DEL MODO SERVER-SIDE
+  // ---------------------------------------------------------------------------
+
+  onSearch(term: string): void {
+    this.searchTerm = term;
+    this.pageIndex = 0;
+    this.fetchData();
   }
 
-  handleActionsCloseClick(params: unknown): void {
-    console.log('Close button clicked', params);
+  onFilters(newFilters: Record<string, any>): void {
+    this.filters = newFilters;
+    this.pageIndex = 0;
+    this.fetchData();
+  }
+
+  onPageRequest(event: { pageIndex: number; pageSize: number }): void {
+    this.pageIndex = Math.max(0, event.pageIndex - 1);
+    this.itemsPerPage = event.pageSize;
+    this.fetchData();
+  }
+
+  onSearchMode(mode: 'client' | 'server'): void {
+    this.searchMode = mode;
+  }
+
+  // ---------------------------------------------------------------------------
+  // 🧩 ACCIONES Y UTILIDADES
+  // ---------------------------------------------------------------------------
+
+  editData(row: any): void {
+    console.log('Button clicked', row);
+  }
+
+  resetSelection(): void {
+    console.log('🧹 Clear selection clicked');
   }
 }

@@ -8,7 +8,6 @@ import {
   ViewChild,
   ViewEncapsulation,
   computed,
-  signal,
   model,
 } from '@angular/core';
 import { BmbTabsComponent, IBmbTab } from '../bmb-tabs/bmb-tabs.component';
@@ -30,13 +29,12 @@ import {
 } from './types';
 import { BmbButtonDirective } from '../../directives/bmb-button/button.directive';
 import { BmbImageComponent } from '../bmb-image/bmb-image.component';
-import { BmbModalComponent } from '../bmb-modal/bmb-modal.component';
-import { ModalDataConfig } from '../bmb-modal/bmb-modal.interface';
-import { MatDialog } from '@angular/material/dialog';
 import { BmbAlertCenterAdsComponent } from './bmb-alert-center-ads/bmb-alert-center-ads.component';
 import { BmbAlertCenterEmptyComponent } from './bmb-alert-center-empty/bmb-alert-center-empty.component';
 import { BmbAlertCenterService } from './bmb-alert-center.service';
 import { BmbLoaderComponent } from '../bmb-loader/bmb-loader.component';
+import { BmbNativeModalService } from '../../services/native-modal.service';
+import { IBmbNativeModal } from '../bmb-modal/bmb-modal.interface';
 
 @Component({
   selector: 'bmb-alert-center',
@@ -69,6 +67,7 @@ export class BmbAlertCenterComponent {
   ]);
   hideTabs = input<boolean>(false);
   enableMultipleSelection = input<boolean>(true);
+  showMobileVersion = input<boolean>(false);
   //Empty state
   emptyStateData = input<IBmbAlertEmptyState>({
     primaryText: 'No tienes notificaciones para mostrar',
@@ -80,8 +79,8 @@ export class BmbAlertCenterComponent {
   });
 
   // deprecated properties
-  alerts = input<IBmbDataAlert[]>([]); // deprecated, use bmbAlertCenterService.getAlerts() instead
-  advertisements = input<IBmbDataAlert[]>([]); // deprecated, use bmbAlertCenterService.getAdvertisements() instead
+  alerts = input<IBmbDataAlert[]>([]);
+  advertisements = input<IBmbDataAlert[]>([]);
 
   onChangeAlertStatus = output<IBmbDataAlertsOutput>();
   alertEvent = output<IBmbDataAlert>();
@@ -94,20 +93,25 @@ export class BmbAlertCenterComponent {
   @ViewChild('container') container!: ElementRef;
 
   constructor(
-    private matDialog: MatDialog,
+    private nativeModalService: BmbNativeModalService,
     private bmbAlertCenterService: BmbAlertCenterService,
   ) {}
 
   alertList = computed<IBmbDataAlert[]>(() => {
-    return this.bmbAlertCenterService.getAlerts();
+    const alertsOnInput = this.alerts();
+    const alertsOnService = this.bmbAlertCenterService.getAlerts();
+    return [...alertsOnInput, ...alertsOnService];
   });
   advertisementsList = computed<IBmbDataAlert[]>(() => {
-    return this.bmbAlertCenterService.getAdvertisements();
+    const advertisementsOnInput = this.advertisements();
+    const advertisementsOnService =
+      this.bmbAlertCenterService.getAdvertisements();
+    return [...advertisementsOnInput, ...advertisementsOnService];
   });
   isLoading = computed<boolean>(() => {
     return this.bmbAlertCenterService.getLoadingState();
   });
-  // tabs: IBmbTab[] = [];
+
   tabs = computed<IBmbTab[]>(() => {
     return this.tabsName().map((tab, index) => {
       const complexTab: IBmbTab = {
@@ -124,7 +128,7 @@ export class BmbAlertCenterComponent {
       return complexTab;
     });
   });
-  selectedTab = model<number>(0);
+  selectedTab = model<number>(1);
   selectedAlert: IBmbDataAlert[] = [];
   orderedEvents = computed<IBmbDataAlertsParsed[]>(() => {
     return this.orderEvents(this.alertList());
@@ -172,17 +176,25 @@ export class BmbAlertCenterComponent {
 
     if (
       this.container.nativeElement.clientWidth < 350 ||
-      window.innerWidth < 1000
+      window.innerWidth < 1000 ||
+      this.showMobileVersion()
     ) {
-      const data: ModalDataConfig = {
+      const data: IBmbNativeModal = {
         title: item.title,
         content: this.detailContent,
         size: 'small',
-        type: 'informative',
         scrollable: true,
-        closeAction: this.handleCloseDetail.bind(this, item),
+        actions: [
+          {
+            buttonName: 'close',
+            label: 'Cerrar',
+            appearance: 'secondary-outlined',
+            action: this.handleCloseDetail.bind(this, item),
+          },
+        ],
+        closeModalClicked: this.handleCloseDetail.bind(this, item),
       };
-      this.matDialog.open(BmbModalComponent, { data });
+      this.nativeModalService.openModal(data);
     }
 
     this.showAlertDetail.emit(alertData);
@@ -191,6 +203,7 @@ export class BmbAlertCenterComponent {
   handleCloseDetail(alert: IBmbDataAlertsParsed): void {
     const { pDate, ...alertData } = alert;
     this.closeAlertDetail.emit(alertData);
+    this.nativeModalService.closeAllModals();
   }
 
   handleAlertEvent(alert: IBmbDataAlert): void {

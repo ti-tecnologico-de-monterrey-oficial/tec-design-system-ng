@@ -23,33 +23,23 @@ export class BmbNativeModalService {
     private environmentInjector: EnvironmentInjector,
   ) {}
 
-  private getOrCreatePortal(): BmbPortalComponent {
-    // Si ya tenemos referencia, devolver instancia
+  private getOrCreatePortal() {
     if (this.portalComponentRef) {
       return this.portalComponentRef.instance;
     }
 
-    // Buscar si ya existe en el DOM
-    const existingHost = document.querySelector('bmb_native-modal');
+    const existingHost = document.querySelector('bmb-portal');
+
     if (existingHost) {
-      const componentRef = this.appRef.components.find(
-        (ref) => ref.instance instanceof BmbPortalComponent,
-      );
-      if (componentRef) {
-        this.portalComponentRef = componentRef;
-        return componentRef.instance;
-      }
+      return null;
     }
 
-    // Crear host dinámicamente
     this.portalComponentRef = createComponent(BmbPortalComponent, {
       environmentInjector: this.environmentInjector,
     });
 
-    // Adjuntar al árbol de aplicaciones
     this.appRef.attachView(this.portalComponentRef.hostView);
 
-    // Insertar en el DOM
     const hostDomElem = (
       this.portalComponentRef.hostView as EmbeddedViewRef<any>
     ).rootNodes[0] as HTMLElement;

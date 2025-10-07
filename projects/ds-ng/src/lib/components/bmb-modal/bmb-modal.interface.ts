@@ -1,4 +1,4 @@
-import { TemplateRef } from '@angular/core';
+import { TemplateRef, Type } from '@angular/core';
 import { IButtonAppearance } from '../../types';
 
 export type IBmbModalSize = 'small' | 'medium' | 'large';
@@ -46,10 +46,14 @@ export interface IBmbNativeModal
     | 'alertStyle'
     | 'size'
     | 'type'
+    | 'content'
   > {
   modalId?: string;
   size?: IBmbNativeModalSize;
   iconStyle?: IBmbModalAlertStyle;
   actions?: IBmbActionButton[];
   closeModalClicked?: (event: unknown) => void;
+  inputContext?: { [key: string]: any };
+  outputContext?: { [key: string]: (value: any) => void };
+  content?: string | TemplateRef<any> | null | Type<any>;
 }

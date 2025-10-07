@@ -10,7 +10,7 @@
   [showError]="shouldShowError"
   [tooltip]="tooltip()"
   [tooltipPosition]="tooltipPosition()"
-  [customValidation]="customValidatorPhone()"
+  [customValidation]="handleCustomValidator()"
   [inputId]="inputId()"
 >
   <section class="bmb_input-phone">
@@ -18,7 +18,7 @@
       class="bmb_input-phone-container"
       [ngClass]="{
         'bmb_input-phone-container-error': shouldShowError,
-        'bmb_input-phone-container-focus': isFocused(),
+        'bmb_input-phone-container-focus': isFocused()
       }"
     >
       <bmb-dropdown
@@ -38,7 +38,6 @@
         class="bmb_input-phone-number"
         [name]="getUUID('phone')"
         pattern="^\d+$"
-        [isDisabled]="disabled()"
         [control]="phoneControl"
         [inputId]="inputId()"
         [placeholder]="placeholder()"

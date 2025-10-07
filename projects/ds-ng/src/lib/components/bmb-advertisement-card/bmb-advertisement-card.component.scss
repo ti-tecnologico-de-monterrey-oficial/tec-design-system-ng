@@ -1,6 +1,6 @@
-@use "../../../assets/styles/base/fonts" as fonts;
-@use "../../../assets/styles/base/mixins" as mixins;
-@use "../../../assets/styles/base/rem" as rem;
+@use '../../../assets/styles/base/fonts' as fonts;
+@use '../../../assets/styles/base/mixins' as mixins;
+@use '../../../assets/styles/base/rem' as rem;
 
 .bmb_advertisement-card {
   container-type: inline-size;
@@ -17,7 +17,7 @@
       width: 100%;
     }
 
-    @include mixins.media-query(500, "max") {
+    @include mixins.media-query(500, 'max') {
       min-height: rem.rem_calc(1200);
     }
   }
@@ -43,7 +43,7 @@
       &-full {
         width: 50%;
 
-        @include mixins.media-query(500, "max") {
+        @include mixins.media-query(500, 'max') {
           width: 100%;
           height: rem.rem_calc(500);
         }
@@ -55,7 +55,7 @@
       flex-direction: column;
       padding: rem.rem_calc(0 16 25) rem.rem_calc(16);
       width: 50%;
-      @include mixins.media-query(500, "max") {
+      @include mixins.media-query(500, 'max') {
         width: 100%;
         height: rem.rem_calc(500);
       }
@@ -92,7 +92,7 @@
     flex-direction: row;
     width: 100%;
 
-    @include mixins.media-query(500, "max") {
+    @include mixins.media-query(500, 'max') {
       flex-direction: column;
     }
   }
@@ -119,7 +119,7 @@
   }
 
   .bmb_home-card-header .bmb_title-content-container-icon {
-    @include mixins.container-query(559, "max") {
+    @include mixins.container-query(559, 'max') {
       display: flex;
     }
   }

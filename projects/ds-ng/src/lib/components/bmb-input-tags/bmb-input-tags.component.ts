@@ -13,7 +13,7 @@ import {
   SimpleChanges,
   OnChanges,
 } from '@angular/core';
-import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, ReactiveFormsModule, ValidatorFn } from '@angular/forms';
 import { IBmbDropdownItem } from '../bmb-dropdown/bmb-dropdown.component';
 import {
   IBmbInputError,
@@ -74,6 +74,7 @@ export class BmbInputTagsComponent implements OnInit, OnChanges {
   value = input<string | string[]>('');
   showError = input<boolean>(false);
   inputId = input<string>(this.name());
+  customValidation = input<ValidatorFn>();
 
   tagOptions = model<string[] | IBmbDropdownItem[]>([]);
   control = model<FormControl>(newFormControlByType());

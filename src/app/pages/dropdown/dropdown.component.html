@@ -1,6 +1,7 @@
 <div bmbLayout>
   <section bmbLayoutItem [colSm]="2">
     <bmb-dropdown [options]="options()" [isFilterable]="true" />
+    <bmb-input [placeholder]="'Search...'" [isClearable]="true" />
   </section>
   <!-- <ul bmbLayoutItem [colSm]="4">
     @for (item of options(); track $index) {
@@ -51,55 +52,55 @@
       icon: 'https://www.enago.com/academy/wp-content/uploads/2017/12/ImageJ3.png',
       title: 'Home',
       appearance: 'red',
-      callbackParam: { customData: 'Home Data' },
+      callbackParam: { customData: 'Home Data' }
     },
     {
       icon: 'settings',
       title: 'My Page',
       link: '/my-page',
-      appearance: 'yellow',
+      appearance: 'yellow'
     },
     {
       icon: 'settings',
       title: 'School Calendar',
       link: 'https://configuration.com',
       target: '_blank',
-      appearance: 'yellow',
+      appearance: 'yellow'
     },
     {
       icon: 'settings',
       title: 'Configuration',
       link: 'https://configuration.com',
       target: '_blank',
-      appearance: 'yellow',
+      appearance: 'yellow'
     },
     {
       icon: 'home',
       title: 'Home',
       link: '/home',
       target: '_blank',
-      appearance: 'red',
+      appearance: 'red'
     },
     {
       icon: 'settings',
       title: 'My Page',
       link: '/my-page',
-      appearance: 'yellow',
+      appearance: 'yellow'
     },
     {
       icon: 'settings',
       title: 'School Calendar',
       link: 'https://configuration.com',
       target: '_blank',
-      appearance: 'yellow',
+      appearance: 'yellow'
     },
     {
       icon: 'settings',
       title: 'Configuration',
       link: 'https://configuration.com',
       target: '_blank',
-      appearance: 'yellow',
-    },
+      appearance: 'yellow'
+    }
   ]"
   [layout]="'button'"
 ></bmb-frequent-apps-selector>

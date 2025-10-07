@@ -1,4 +1,4 @@
-<div [ngClass]="getTableClasses()">
+<div [ngClass]="getTableClasses()" [ngStyle]="cssVars">
   @if (showSearch() || filtersVisible()) {
     <header class="bmb_table_lite-header">
       @if (showSearch()) {
@@ -25,7 +25,7 @@
           @for (column of parsedFiltersColumns(); track $index) {
             <section class="bmb_table_lite-filter-item">
               @switch (column.type) {
-                @case ("number") {
+                @case ('number') {
                   <div class="bmb_table_lite-filter-item-number">
                     <bmb-input
                       [label]="column.label + ' mínimo'"
@@ -43,7 +43,7 @@
                     />
                   </div>
                 }
-                @case ("date") {
+                @case ('date') {
                   <bmb-date-range
                     [label]="column.label"
                     [placeholderStartDate]="'Desde'"
@@ -77,7 +77,7 @@
   }
 
   <div class="bmb_table_lite-container">
-    <section class="bmb_table_lite-container-table" #tableRef>
+    <section class="bmb_table_lite-container-table">
       <div class="bmb_table_lite-row bmb_table_lite-row--header">
         @if (tableConfig?.isSelectable) {
           <div class="bmb_table_lite-th bmb_table_lite-checkbox">
@@ -88,10 +88,6 @@
               [ariaLabel]="checkboxLabel()"
               [disabled]="false"
             />
-            <span
-              class="bmb_table_lite-resize"
-              (mousedown)="onResizeColumn($event, 0)"
-            ></span>
           </div>
         }
 
@@ -99,15 +95,14 @@
           <div class="bmb_table_lite-th bmb_table_lite-expand">&nbsp;</div>
         }
 
-        @for (column of tableColumns; track column; let i = $index) {
+        @for (
+          column of tableColumns;
+          track trackByColumn($index, column);
+          let i = $index
+        ) {
           <div
             class="bmb_table_lite-th"
-            [style.width.px]="column.width || 150"
-            [ngClass]="{
-              'bmb_table_lite-sticky': i === 0,
-              truncated: truncate(),
-              wrapped: wrap(),
-            }"
+            [ngClass]="getHeaderCellClasses(i)"
             [title]="
               lang() === 'es' ? column.label : column.labelEn || column.label
             "
@@ -122,15 +117,14 @@
                 [ngTemplateOutletContext]="{ column: column, index: i }"
               ></ng-template>
             } @else {
-              {{
-                lang() === "es" ? column.label : column.labelEn || column.label
-              }}
+              <span class="bmb_table_lite-th-text">
+                {{
+                  lang() === 'es'
+                    ? column.label
+                    : column.labelEn || column.label
+                }}
+              </span>
             }
-
-            <span
-              class="bmb_table_lite-resize"
-              (mousedown)="onResizeColumn($event, i)"
-            ></span>
           </div>
         }
 
@@ -139,14 +133,18 @@
         }
       </div>
 
-      @for (row of pageSlice; track row; let rIndex = $index) {
+      @for (
+        row of pageSlice;
+        track trackByRow($index, row);
+        let rIndex = $index
+      ) {
         <div
           class="bmb_table_lite-row"
           (click)="onSelectRow(row)"
           [ngClass]="{
             'bmb_table_lite-even': isEven(rIndex),
             'bmb_table_lite-odd': isOdd(rIndex),
-            'bmb_table_lite-expandible': expandedElement === row,
+            'bmb_table_lite-expandible': expandedElement === row
           }"
         >
           @if (tableConfig?.isSelectable) {
@@ -183,20 +181,25 @@
             </div>
           }
 
-          @for (column of tableColumns; track column; let i = $index) {
+          @for (
+            column of tableColumns;
+            track trackByColumn($index, column);
+            let i = $index
+          ) {
             <div
               class="bmb_table_lite-td"
-              [style.width.px]="column.width || 150"
               [ngClass]="getCellClasses(row, column.dataKey, i)"
               [title]="row[column.dataKey]?.propertyName || row[column.dataKey]"
             >
-              @if (isTemplateRef(row[column.dataKey + "Template"])) {
+              @if (isTemplateRef(row[column.dataKey + 'Template'])) {
                 <ng-template
                   [ngTemplateOutlet]="row[column.dataKey + 'Template']"
                   [ngTemplateOutletContext]="{ row: row }"
                 ></ng-template>
               } @else {
-                {{ row[column.dataKey]?.propertyName || row[column.dataKey] }}
+                <span>
+                  {{ row[column.dataKey]?.propertyName || row[column.dataKey] }}
+                </span>
               }
             </div>
           }
@@ -204,8 +207,8 @@
           @if (tableConfig?.showActions) {
             <div class="bmb_table_lite-td bmb_table_lite-actions">
               @if (
-                tableColumns?.length &&
-                tableColumns[tableColumns.length - 1]?.templateActions
+                tableColumns.length &&
+                tableColumns[tableColumns.length - 1].templateActions
               ) {
                 <ng-template
                   [ngTemplateOutlet]="
@@ -240,13 +243,13 @@
 
     @if (tableConfig?.isPaginable) {
       <div class="bmb_table_lite-paginator">
-        <span class="bmb_table_lite-paginator-text">{{
-          getPaginationText()
-        }}</span>
+        <span class="bmb_table_lite-paginator-text">
+          {{ getPaginationText() }}
+        </span>
 
         <button
           class="bmb_table_lite-paginator-btn"
-          [disabled]="currentPage() === 0"
+          [disabled]="isFirstPage() || isSinglePage()"
           (click)="goToFirstPage()"
         >
           <bmb-icon
@@ -254,9 +257,10 @@
             class="bmb_table_lite-paginator-icon"
           />
         </button>
+
         <button
           class="bmb_table_lite-paginator-btn"
-          [disabled]="currentPage() === 0"
+          [disabled]="isFirstPage() || isSinglePage()"
           (click)="goToPreviousPage()"
         >
           <bmb-icon
@@ -264,9 +268,10 @@
             class="bmb_table_lite-paginator-icon"
           />
         </button>
+
         <button
           class="bmb_table_lite-paginator-btn"
-          [disabled]="currentPage() >= lastPage()"
+          [disabled]="isLastPage() || isSinglePage()"
           (click)="goToNextPage()"
         >
           <bmb-icon
@@ -274,9 +279,10 @@
             class="bmb_table_lite-paginator-icon"
           />
         </button>
+
         <button
           class="bmb_table_lite-paginator-btn"
-          [disabled]="currentPage() >= lastPage()"
+          [disabled]="isLastPage() || isSinglePage()"
           (click)="goToLastPage()"
         >
           <bmb-icon

@@ -1,11 +1,10 @@
 import {
   Meta,
   StoryObj,
-  componentWrapperDecorator,
+  applicationConfig,
   moduleMetadata,
 } from '@storybook/angular';
 import { BmbDropdownMenuComponent } from './bmb-dropdown-menu.component';
-import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import {
   getBasicExampleBlock,
@@ -18,29 +17,29 @@ import {
   DBmbDropdownMenuParamDesc,
   getPropertyParamDesc,
 } from '../../utils/doc/parameterDescriptions';
+import { provideHttpClient } from '@angular/common/http';
 
 export default {
   title: 'Components/Menus/Dropdown menu',
   component: BmbDropdownMenuComponent,
   decorators: [
-    moduleMetadata({
-      imports: [CommonModule],
+    applicationConfig({
       providers: [
+        provideHttpClient(),
         {
           provide: ActivatedRoute,
           useValue: {
             snapshot: {
-              url: [],
+              paramMap: {
+                get: () => null,
+              },
+              queryParamMap: {
+                get: () => null,
+              },
             },
           },
         },
       ],
-    }),
-    componentWrapperDecorator((story: string) => {
-      return `
-        <div style="height: 15rem">
-          ${story}
-        </div>`;
     }),
   ],
   parameters: {
@@ -48,7 +47,7 @@ export default {
       controls: { exclude: ['closeDropdown', 'openDropdown'] },
       description: {
         component: `
-${getGeneralDescription(`${getGeneralComponentDescription('dropdown-menu')} navigation through the options displayed in the menu listing.`, 'https://bamboo.tec.mx/latest/componentes/dropdown-menu/descripcion-general-kEoPUKDr')}
+${getGeneralDescription({ content: `${getGeneralComponentDescription({ name: 'dropdown-menu' })} navigation through the options displayed in the menu listing.`, generalDocLink: 'https://bamboo.tec.mx/latest/componentes/dropdown-menu/descripcion-general-kEoPUKDr' })}
 ${getSpecialSpecifications(getEmptyStateMessage())}
 ${getBasicExampleBlock('BmbDropdownMenuComponent', '', '', false, '', 'ActivatedRoute', '@angular/router')}
         `,

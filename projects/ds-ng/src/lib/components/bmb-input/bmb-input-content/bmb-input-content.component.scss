@@ -1,6 +1,6 @@
-@use "../../../../assets/styles/base/fonts" as fonts;
-@use "../../../../assets/styles/base/mixins" as mixins;
-@use "../../../../assets/styles/base/rem" as rem;
+@use '../../../../assets/styles/base/fonts' as fonts;
+@use '../../../../assets/styles/base/mixins' as mixins;
+@use '../../../../assets/styles/base/rem' as rem;
 
 @mixin placeholder_padding($padding) {
   padding-left: $padding;
@@ -17,7 +17,7 @@
     @include mixins.focusElement();
   }
 
-  @if $type == "simple" {
+  @if $type == 'simple' {
     box-sizing: border-box;
     height: rem.rem_calc(48);
     width: 100%;
@@ -117,11 +117,11 @@
     }
 
     &-normal {
-      @include input("normal");
+      @include input('normal');
     }
 
     &-simple {
-      @include input("simple");
+      @include input('simple');
     }
   }
 

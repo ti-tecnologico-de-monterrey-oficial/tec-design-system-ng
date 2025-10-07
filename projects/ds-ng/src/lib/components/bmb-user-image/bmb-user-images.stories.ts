@@ -21,7 +21,7 @@ export default {
       },
       description: {
         component: `
-${getGeneralDescription(`${getGeneralComponentDescription('user-image')} an online identity to be established.`, 'https://bamboo.tec.mx/latest/componentes/user-image/descripcion-general-nwfVZScf')}
+${getGeneralDescription({ content: `${getGeneralComponentDescription({ name: 'user-image' })} an online identity to be established.`, generalDocLink: 'https://bamboo.tec.mx/latest/componentes/user-image/descripcion-general-nwfVZScf' })}
 ${getBasicExampleBlock('BmbUserImageComponent')}
         `,
       },
@@ -65,7 +65,7 @@ ${getBasicExampleBlock('BmbUserImageComponent')}
     },
     buttonClick: DBmbGenericParamDesc.onButtonClick,
     buttonPress: DBmbGenericParamDesc.onButtonPress,
-    buttonKeyPress: DBmbGenericParamDesc.buttonKeyPress,
+    onButtonKeyPress: DBmbGenericParamDesc.onButtonKeyPress,
   },
   args: {
     image: 'https://picsum.photos/id/64/200/300',

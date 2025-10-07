@@ -20,7 +20,7 @@
           @for (column of parsedFiltersColumns(); track $index) {
             <section class="bmb_table-filter-item">
               @switch (column.type) {
-                @case ("number") {
+                @case ('number') {
                   <div class="bmb_table-filter-item-number" margin="none">
                     <bmb-input
                       [label]="column.label + ' mínimo'"
@@ -39,7 +39,7 @@
                   </div>
                 }
 
-                @case ("date") {
+                @case ('date') {
                   <bmb-date-range
                     [label]="column.label"
                     [placeholderStartDate]="'Desde'"
@@ -153,7 +153,7 @@
               [ngClass]="{
                 'bmb_table-sticky': i === 0,
                 truncated: truncate(),
-                wrapped: wrap(),
+                wrapped: wrap()
               }"
             >
               <!-- Título -->
@@ -163,7 +163,7 @@
                   [ngTemplateOutletContext]="{ column: column, index: i }"
                 ></ng-template>
               } @else {
-                {{ this.lang() === "es" ? column.label : column.labelEn }}
+                {{ this.lang() === 'es' ? column.label : column.labelEn }}
               }
 
               <!-- Resize Handle -->
@@ -181,7 +181,7 @@
               tooltipClass="bmb_tooltip"
               [ngClass]="getCellClasses(row, column.dataKey, i)"
             >
-              @if (isTemplateRef(row[column.dataKey + "Template"])) {
+              @if (isTemplateRef(row[column.dataKey + 'Template'])) {
                 <ng-template
                   [ngTemplateOutlet]="row[column.dataKey + 'Template']"
                   [ngTemplateOutletContext]="{ row: row }"
@@ -240,7 +240,7 @@
           [class.bmb_table-expandible]="expandedElement === row"
           [ngClass]="{
             'bmb_table-even': isEven(i),
-            'bmb_table-odd': isOdd(i),
+            'bmb_table-odd': isOdd(i)
           }"
         ></tr>
 
@@ -275,7 +275,7 @@
           [ngClass]="{
             'bmb_table-paginator-btn-disabled': serverSide()
               ? currentPage() === 0
-              : !paginator?.hasPreviousPage(),
+              : !paginator?.hasPreviousPage()
           }"
           (click)="serverSide() ? goToFirstPage() : paginator.firstPage()"
           class="bmb_table-paginator-btn"
@@ -292,7 +292,7 @@
           [ngClass]="{
             'bmb_table-paginator-btn-disabled': serverSide()
               ? currentPage() === 0
-              : !paginator?.hasPreviousPage(),
+              : !paginator?.hasPreviousPage()
           }"
           (click)="serverSide() ? goToPreviousPage() : paginator.previousPage()"
           class="bmb_table-paginator-btn"
@@ -311,7 +311,7 @@
           [ngClass]="{
             'bmb_table-paginator-btn-disabled': serverSide()
               ? currentPage() >= lastPage()
-              : !paginator?.hasNextPage(),
+              : !paginator?.hasNextPage()
           }"
           (click)="serverSide() ? goToNextPage() : paginator.nextPage()"
           class="bmb_table-paginator-btn"
@@ -330,7 +330,7 @@
           [ngClass]="{
             'bmb_table-paginator-btn-disabled': serverSide()
               ? currentPage() >= lastPage()
-              : !paginator?.hasNextPage(),
+              : !paginator?.hasNextPage()
           }"
           (click)="serverSide() ? goToLastPage() : paginator.lastPage()"
           class="bmb_table-paginator-btn"

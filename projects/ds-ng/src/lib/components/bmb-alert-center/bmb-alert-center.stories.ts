@@ -7,6 +7,7 @@ import {
 import { BmbAlertCenterComponent } from './bmb-alert-center.component';
 import { BmbAlertCenterService } from './bmb-alert-center.service';
 import {
+  getAlertCenterServiceDocumentation,
   getBasicExampleBlock,
   getGeneralDescription,
   getOnEvent,
@@ -329,7 +330,7 @@ export default {
       },
       description: {
         component: `
-${getGeneralDescription('\`bmb-alert-center\` is an organism designed to centralize and display all important alerts and notifications that require users attention.', 'https://bamboo.tec.mx/latest/organismos/alert-center/descripcion-general-ws9A3oYS')}
+${getGeneralDescription({ content: '`bmb-alert-center` is an organism designed to centralize and display all important alerts and notifications that require users attention.', generalDocLink: 'https://bamboo.tec.mx/latest/organismos/alert-center/descripcion-general-ws9A3oYS' })}
 ${getSpecialSpecifications(`
   > ###Configuration
   > Add the \`BmbAlertCenterService\` to your App providers:
@@ -353,7 +354,7 @@ ${getSpecialSpecifications(`
   setAlerts(alerts: IBmbDataAlert[]);
   > \`\`\`
   >
-  > This method sets the alerts to be displayed in the alert center replacing any existing alerts.
+  > This method sets the alerts to be displayed in the alert center replacing whether existing alerts.
   >
   > #####Update notifications
   >
@@ -389,7 +390,7 @@ ${getSpecialSpecifications(`
   setAdvertisements(ads: IBmbDataAdvertisement[]);
   > \`\`\`
   >
-  > This method sets the advertisements to be displayed in the alert center replacing any existing advertisements.
+  > This method sets the advertisements to be displayed in the alert center replacing whether existing advertisements.
   >
   > #####Update advertisements
   >
@@ -444,6 +445,7 @@ ${getSpecialSpecifications(`
   > \`\`\`
 `)}
 
+${getAlertCenterServiceDocumentation()}
 ${getBasicExampleBlock('BmbAlertCenterComponent')}
 
         `,
@@ -456,7 +458,7 @@ ${getBasicExampleBlock('BmbAlertCenterComponent')}
         type: 'number',
       },
       description:
-        'Sets the selected tab number. This is a ***model***, in such a way the selected tab number will automatically update every time any tab is clicked.',
+        'Sets the selected tab number. This is a ***model***, in such a way the selected tab number will automatically update every time whether tab is clicked.',
       table: {
         category: 'Properties',
         type: { summary: 'number' },
@@ -543,6 +545,15 @@ ${getBasicExampleBlock('BmbAlertCenterComponent')}
       },
       description: 'Sets the configuration object for the empty state display.',
     },
+    showMobileVersion: {
+      control: { type: 'boolean' },
+      description: 'Shows the mobile version of the alert center.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'boolean' },
+        defaultValue: getDefaultValueControl('false'),
+      },
+    },
     enableMultipleSelection: {
       control: { type: 'boolean' },
       description: 'Enables multiple selection of alerts.',
@@ -577,6 +588,7 @@ ${getBasicExampleBlock('BmbAlertCenterComponent')}
     hideTabs: false,
     emptyStateData: '',
     enableMultipleSelection: true,
+    showMobileVersion: false,
   },
 } as Meta<typeof BmbAlertCenterComponent>;
 

@@ -5,9 +5,11 @@ export const routes: Routes = [
     path: 'emprendedor',
     loadChildren: () =>
       import('./emprendedor/emprendedor.routes').then((r) => r.routes),
+    title: 'Emprendedor',
   },
   {
     path: 'my-page',
+    title: 'My Page',
     loadComponent: () =>
       import('./pages/my-page/my-page.component').then(
         (m) => m.MyPageComponent,
@@ -15,6 +17,7 @@ export const routes: Routes = [
   },
   {
     path: 'home',
+    title: 'Home',
     loadComponent: () =>
       import('./pages/home/home.component').then((m) => m.HomeComponent),
   },
@@ -27,6 +30,7 @@ export const routes: Routes = [
   },
   {
     path: 'form-validator',
+    title: 'Form Validator Test',
     loadComponent: () =>
       import('./pages/form-validator-test/form-validator-test.component').then(
         (f) => f.FormValidatorTestComponent,
@@ -34,6 +38,7 @@ export const routes: Routes = [
   },
   {
     path: 'dropdown',
+    title: 'Dropdown Test',
     loadComponent: () =>
       import('./pages/dropdown/dropdown.component').then(
         (d) => d.DropdownPageComponent,
@@ -41,6 +46,7 @@ export const routes: Routes = [
   },
   {
     path: 'alerts',
+    title: 'Alerts Test',
     loadComponent: () =>
       import('./pages/alerts/alerts.component').then(
         (a) => a.AlertsPageComponent,
@@ -48,6 +54,7 @@ export const routes: Routes = [
   },
   {
     path: 'flex',
+    title: 'Flex Test',
     loadComponent: () =>
       import('./pages/flex/flex.component').then((f) => f.FlexComponent),
   },
@@ -60,10 +67,17 @@ export const routes: Routes = [
   },
   {
     path: 'calendar',
+    title: 'Calendar Test',
     loadComponent: () =>
       import('./pages/calendar/calendar.component').then(
         (c) => c.CalendarComponent,
       ),
+  },
+  {
+    path: 'ia',
+    title: 'Inteligencia Artificial',
+    loadComponent: () =>
+      import('./pages/ia/ia.component').then((c) => c.IaComponent),
   },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
 ];

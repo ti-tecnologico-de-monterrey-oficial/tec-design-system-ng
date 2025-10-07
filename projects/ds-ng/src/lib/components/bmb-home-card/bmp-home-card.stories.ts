@@ -23,17 +23,11 @@ export default {
   parameters: {
     docs: {
       controls: {
-        exclude: [
-          'handleBack',
-          'handleClose',
-          'handleExpand',
-          'isExpanded',
-          'useAutoExpand',
-        ],
+        exclude: ['handleBack', 'handleClose', 'handleExpand', 'useAutoExpand'],
       },
       description: {
         component: `
-${getGeneralDescription(`${getGeneralComponentDescription('home-card')} to display a card with customizable title, subtitle, icons, navigation data, and action headers.`, 'https://bamboo.tec.mx/latest/componentes/home-card/descripcion-general-SzSShX4e')}
+${getGeneralDescription({ content: `${getGeneralComponentDescription({ name: 'home-card' })} to display a card with customizable title, subtitle, icons, navigation data, and action headers.`, generalDocLink: 'https://bamboo.tec.mx/latest/componentes/home-card/descripcion-general-SzSShX4e' })}
 ${getSpecialSpecifications(` ### ${RELEVANT_TITLE_LEVEL[1]}
 ***Home card*** component **is not a modal**, therefore it should not be used as such.
 `)}
@@ -133,6 +127,16 @@ ${getBasicExampleBlock(
         type: { summary: 'string' },
       },
     },
+    isExpanded: {
+      control: { type: 'boolean' },
+      description:
+        'Sets a flag to indicate whether the card is expanded or collapsed.',
+      table: {
+        category: 'Properties',
+        defaultValue: { summary: 'false' },
+        type: { summary: 'boolean' },
+      },
+    },
     onExpandClick: getOnClickParam(
       getOnEvent('expand or collapse icon', 'onExpandClick'),
       '. This should be used as a navigation action.',
@@ -149,6 +153,7 @@ ${getBasicExampleBlock(
     showRightButton: true,
     isMobile: false,
     test_text: 'hello world',
+    isExpanded: false,
     onExpandClick: () => {
       console.log('Expand button clicked');
     },

@@ -1,6 +1,6 @@
-@use "../../../assets/styles/base/fonts" as fonts;
-@use "../../../assets/styles/base/rem" as rem;
-@use "../../../assets/styles/base/mixins" as mixins;
+@use '../../../assets/styles/base/fonts' as fonts;
+@use '../../../assets/styles/base/rem' as rem;
+@use '../../../assets/styles/base/mixins' as mixins;
 
 @mixin buttonClass() {
   > .bmb_check-external-link-button > .bmb_check-external-link-button-element {
@@ -48,6 +48,7 @@
   }
 
   &-content {
+    flex-flow: row nowrap;
     width: 100%;
   }
 
@@ -58,9 +59,10 @@
   }
 
   &-title {
-    text-align: left;
-    @include fonts.font(5, medium);
     font-weight: 300;
+    text-align: left;
+    word-break: break-word;
+    @include fonts.font(5, medium);
   }
 
   &-text {
@@ -70,22 +72,23 @@
   }
 
   &-subtitle {
-    text-align: left;
-    @include fonts.font(3, regular);
     color: var(--general_contrasts-75);
     font-weight: 300;
+    text-align: left;
+    word-break: break-word;
+    @include fonts.font(3, regular);
   }
 
   &-left {
-    @include button_container();
     flex: 1;
+    @include button_container();
 
     .bmb_icon-figure {
       width: 100%;
 
       img {
-        width: 100%;
         height: 100%;
+        width: 100%;
       }
     }
   }
@@ -102,19 +105,19 @@
 
   &-square.bmb_container-button-wrapper {
     @include buttonClass() {
-      padding: rem.rem_calc(32 48);
-      min-width: rem.rem_calc(148);
-      min-height: rem.rem_calc(148);
-      width: auto;
       flex-flow: column;
       justify-content: center;
+      min-height: rem.rem_calc(148);
+      min-width: rem.rem_calc(148);
+      padding: rem.rem_calc(32 48);
+      width: auto;
     }
 
     .bmb_layout {
       flex-direction: column;
-      justify-content: center;
-      height: 100%;
       gap: 0;
+      height: 100%;
+      justify-content: center;
 
       .bmb_container-button-left {
         flex-flow: column;

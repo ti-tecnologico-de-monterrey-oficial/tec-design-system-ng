@@ -1,7 +1,7 @@
-@use "../../../assets/styles/base/fonts" as fonts;
-@use "../../../assets/styles/base/rem" as rem;
+@use '../../../assets/styles/base/fonts' as fonts;
+@use '../../../assets/styles/base/rem' as rem;
 
-$tooltip_justify: "centered", "before", "after";
+$tooltip_justify: 'centered', 'before', 'after';
 
 .bmb_tooltip {
   position: relative;

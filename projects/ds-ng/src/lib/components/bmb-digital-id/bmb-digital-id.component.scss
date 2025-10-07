@@ -1,111 +1,83 @@
-@use "../../../assets/styles/base/fonts" as fonts;
-@use "../../../assets/styles/base/rem" as rem;
+@use '../../../assets/styles/base/fonts' as fonts;
+@use '../../../assets/styles/base/rem' as rem;
 
 .bmb_digital-id {
-  background-color: RGBA(var(--color-charade-50));
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-  justify-content: center;
-  position: relative;
+  background-color: rgb(var(--color-charade-50));
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows:
+    calc(40% - rem.rem_calc(100)) rem.rem_calc(100)
+    rem.rem_calc(100) 1fr auto;
+  height: 100dvh;
 
   &-top {
-    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    grid-row: 1/2;
+    grid-column: 1/2;
+    z-index: 1;
 
     &-btn {
-      position: absolute;
-      top: 5%;
-      left: 5%;
-      z-index: 1;
-      color: RGBA(var(--color-charade-50));
+      margin-top: rem.rem_calc(16);
+      margin-left: rem.rem_calc(16);
+      grid-row: 1/2;
+      grid-column: 1/2;
+      z-index: 2;
+      color: rgb(var(--color-white-primary));
     }
 
     &-image {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
+      grid-row: 1/3;
+      grid-column: 1/2;
+
+      .bmb_image {
+        height: 100%;
+      }
     }
 
     &-logo {
-      position: relative;
-      bottom: 70%;
-      margin: rem.rem_calc(0 90);
-      z-index: 1;
+      width: rem.rem_calc(245);
     }
   }
 
   &-mid {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    grid-row: 2/5;
+    grid-column: 1/2;
     z-index: 1;
-    border-radius: 50%;
-    background-color: RGBA(var(--color-charade-50));
+
+    .bmb_user-summary_content-wrapper-title-column {
+      @include fonts.font(9, semibold);
+      color: rgb(var(--color-black-primary)) !important;
+      padding-top: var(--bmb-spacing-l);
+    }
+
+    .bmb_user_image-bordered {
+      background-color: rgb(var(--color-white-primary));
+    }
+
+    .bmb_user-summary_content-wrapper-id {
+      @include fonts.font(7, regular);
+      color: rgba(var(--color-black-primary), 0.75);
+    }
+
+    .bmb_user-summary_content-wrapper-campus {
+      @include fonts.font(5, regular);
+      color: rgba(var(--color-black-primary), 0.75);
+    }
   }
 
-  &-bottom {
-    flex: 1;
+  &-bottom-btn {
+    grid-row: 5/6;
+    grid-column: 1/2;
+    padding: rem.rem_calc(16);
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    flex-flow: column;
+    gap: var(--bmb-spacing-m);
 
-    &-info {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      padding: rem.rem_calc(0 20);
-    }
-
-    &-name {
-      @include fonts.font(9, semibold);
-      text-align: center;
-      padding-top: rem.rem_calc(10);
-    }
-
-    &-surname {
-      @include fonts.font(9, semibold);
-      text-align: center;
-      padding-bottom: rem.rem_calc(10);
-    }
-
-    &-id {
-      @include fonts.font(7, regular);
-      text-align: center;
-      padding-bottom: rem.rem_calc(5);
-    }
-
-    &-campus {
-      @include fonts.font(5, regular);
-      text-align: center;
-    }
-
-    &-career {
-      @include fonts.font(5, regular);
-      text-align: center;
-      padding-bottom: rem.rem_calc(5);
-    }
-
-    &-role {
-      @include fonts.font(9, semibold);
-      text-align: center;
-      text-transform: uppercase;
-    }
-
-    &-btn {
-      position: absolute;
-      top: 95%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      z-index: 1;
-      width: 100%;
-      padding: rem.rem_calc(0 20);
-
-      &-hide {
-        display: none;
-      }
+    .bmb_btn-secondary-outlined {
+      border-color: rgb(var(--color-charade-950));
+      color: rgb(var(--color-charade-950));
     }
   }
 }

@@ -149,9 +149,10 @@ export interface IDropdownItem {
   idItem?: string;
   icon: string;
   text: string;
+  dotNotification?: number; //for icon
   selectedText?: string;
   value?: string;
   url?: string;
   target?: IBmbTargetLink;
-  action?: () => void;
+  action?: (event?: unknown) => void;
 }

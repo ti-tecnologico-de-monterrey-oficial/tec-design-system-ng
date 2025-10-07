@@ -10,7 +10,16 @@ import {
 } from '../bmb-toast/bmb-toast.component';
 import { NotificationType } from '../bmb-push-notification/types';
 import { BmbPortalComponent } from './bmb-portal.component';
-import { attributes, RELEVANT_TITLE_LEVEL } from '../../utils/doc/utils';
+import {
+  attributes,
+  getBasicExampleBlock,
+  getGeneralDescription,
+  getProviderExample,
+  getProviderTypescriptExample,
+  getSpecialSpecifications,
+  RELEVANT_TITLE_LEVEL,
+  TOC_TITLE,
+} from '../../utils/doc/utils';
 
 @Component({
   standalone: true,
@@ -29,7 +38,7 @@ import { attributes, RELEVANT_TITLE_LEVEL } from '../../utils/doc/utils';
         icon="home"
         (click)="addNotificationFnc()"
       >
-        Add notification
+        Notification
       </button>
       <p>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia
@@ -174,87 +183,94 @@ export default {
         BmbIconComponent,
         BmbButtonDirective,
       ],
-      providers: [],
     }),
   ],
   parameters: {
     docs: {
+      toc: {
+        title: TOC_TITLE,
+        headingSelector: 'h2, h3, h4',
+      },
+      controls: {
+        exclude: [
+          'dontAskAgain',
+          'isExpanded',
+          'notification',
+          'onClose',
+          'getAppIcon',
+          'getAppName',
+          'getIconClasses',
+          'getNotificationClasses',
+          'handleAction',
+          'handleClose',
+          'handleDontAskAgain',
+          'handleExpandEvent',
+        ],
+      },
       description: {
         component: `
-Below is an example of how you can use this component in TypeScript:
-
-##Configuration
-Add the \`BmbNotificationService\` to your App providers:
-
-\`\`\`javascript
-providers: [
-  provideRouter(routes),
-  importProvidersFrom([BmbNotificationService, ...]),
-],
-\`\`\`
-
-##Notification service methods
-
-###Add notification
-
+${getGeneralDescription({ content: `***Portal*** offer a single point of access, customization options, simplifying navigation and providing specialized content.`, generalDocLink: 'https://bamboo.tec.mx/latest/dev-tools/coleccion-de-componentes-uC69aq75' })}
+${getSpecialSpecifications(
+  `${getProviderTypescriptExample(
+    'BmbNotificationService',
+    `<br/>
+**Detailed description:**
+>
+${getProviderExample('BmbNotificationService')}>
+>
+###Notification service methods
+>
+####Add notification
 \`\`\`typescript
 addNotification(notification: INotification);
 \`\`\`
-
-This function returns an ID which can be used to delete the notification or check the notification state.
-
-###Delete notification
-
+>
+This function returns an ID which can be used to delete the notification or check the notification state.<br/><br/>
+####Delete notification
+>
 \`\`\`typescript
 deleteNotification(id: string);
 \`\`\`
-
-This function deletes a notification by its ID.
-
-###Get notification list
-
+This function deletes a notification by its ID.<br/><br/>
+>
+####Get notification list
+>
 \`\`\`typescript
 getNotificationList(): INotification[];
 \`\`\`
-
-This function returns the current notification list.
-
-##Show notifications
-Add the \`BmbPortalComponent\` at the bottom of your **app.component.html**.
-
-If you need to reproduce sticky behavior on your notifications, you can add the bmb_main-container class to your app container in the **app.component.html** file as shown below.
-
-> ${RELEVANT_TITLE_LEVEL[1]} If you show many notifications at the same time, the browser may display two scrolls bars.
-
-\`\`\`html
-<div class="bmb_main-container">
-  <my-app></my-app>
-</div>
-<bmb-portal></bmb-portal>
-\`\`\`
-
-\`\`\`typescript
-import { BmbPortalComponent, NotificationType, INotificationAction, NotificationType } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
-@Component({
-  selector: 'component',
-  standalone: true,
-  imports: [ BmbPortalComponent ],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.scss',
-})
-class MyComponent {
-
+This function returns the current notification list.<br/><br/>
+>
+####Show notifications
+>
+Add the \`BmbPortalComponent\` at the bottom of your **app.component.html**.<br/><br/>
+>
+>`,
+  )}`,
+)}
+${getBasicExampleBlock(
+  'BmbNotificationService',
+  '',
+  `
   constructor(private notificationSignal: BmbNotificationService) {}
 
   addNotificationFnc() {
     this.notificationSignal.addNotification({
       // Notification properties
     });
-  }
-}
+  }`,
+)}
+>
+${RELEVANT_TITLE_LEVEL[1]}
+If you show many notifications at the same time, the browser may display two scrolls bars.
+>
+If you need to reproduce sticky behavior on your notifications, you can add the bmb_main-container class to your app container in the **app.component.html** file as shown below.
+>
+\`\`\`html
+<div class="bmb_main-container">
+  <my-app></my-app>
+</div>
+<bmb-portal/>
 \`\`\`
-
-Below is an example of how you can use this component in HTML:
         `,
       },
     },
@@ -563,7 +579,6 @@ Below is an example of how you can use this component in HTML:
     userAvatar:
       'https://www.yugatech.com/wp-content/uploads/2020/09/Facebook-Avatar.jpg',
     userMail: 'some.placeholder.name@domian.com',
-    component: 'notification',
     appearance: 'neutral',
     position: 'top-right',
     buttonText: 'Ir',
@@ -575,10 +590,31 @@ export const Default: StoryFn<typeof StorybookToastWrapperComponent> = (
   args,
 ) => {
   return {
-    props: args,
+    ...args,
     template: `
       <!-- Instruction to users: This component is used for internal Storybook logic and should not be copied -->
       <storybook-toast-wrapper
+        ${attributes(args)}
+      ></storybook-toast-wrapper>
+      <!-- Start copying from here -->
+      <div class="actions">
+        <button
+          bmbButton
+          appearance="primary"
+          icon="home"
+          (click)="openModalComponent()"
+        >Add notification</button>
+        <bmb-portal />
+      </div>
+      `,
+  };
+};
+export const Toast: StoryFn<typeof StorybookToastWrapperComponent> = (args) => {
+  return {
+    ...args,
+    template: `
+      <!-- Instruction to users: This component is used for internal Storybook logic and should not be copied -->
+      <storybook-toast-wrapper component="toast"
         ${attributes(args)}
       ></storybook-toast-wrapper>
       <!-- Start copying from here -->

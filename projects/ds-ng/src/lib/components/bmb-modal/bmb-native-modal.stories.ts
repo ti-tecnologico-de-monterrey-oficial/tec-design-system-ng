@@ -22,6 +22,7 @@ import {
   DESIGN_SYSTEM_TITLE,
   getGeneralDescription,
   getSpecialSpecifications,
+  RELEVANT_TITLE_LEVEL,
 } from '../../utils/doc/utils';
 
 @Component({
@@ -104,12 +105,22 @@ export default {
     docs: {
       description: {
         component: `
-${getGeneralDescription(
-  `***Modal*** is a pop-up window that helps display additional information or perform actions without changing the main page. ${DESIGN_SYSTEM_TITLE} ***Modal*** supports various configurations such as alert styles, custom content (string or template),
+${getGeneralDescription({
+  content: `***Modal*** is a pop-up window that helps display additional information or perform actions without changing the main page. ${DESIGN_SYSTEM_TITLE} ***Modal*** supports various configurations such as alert styles, custom content (string or template),
  and primary/secondary actions.`,
-  'https://bamboo.tec.mx/latest/componentes/modal/descripcion-general-sLOq8HIt',
-)}
+  generalDocLink:
+    'https://bamboo.tec.mx/latest/componentes/modal/descripcion-general-sLOq8HIt',
+})}
 ${getSpecialSpecifications(`
+  >
+### ${RELEVANT_TITLE_LEVEL[0]}
+>
+Make sure you are using:
+>
+\`\`\`typescript
+constructor(private modalService: BmbNativeModalService) {}
+\`\`\`
+>
 ### 🟣 Modal Usage with String Content
 >
 The simplest way to use the \`BmbNativeModalComponent\` is by providing a plain text as content:
@@ -127,7 +138,7 @@ openModal() {
 }
 \`\`\`
 \`\`\`html
-  <!-- Inside your component -->
+  <!-- Inside your component template -->
   <button bmbButton (click)="openModal()">Open Modal</button>
 \`\`\`
 >
@@ -135,30 +146,28 @@ openModal() {
 >
 ### 🟢 Modal Usage with TemplateRef Content (Recommended for complex content)
 >
-If you need to render custom components, inputs, or forms inside the modal, you can pass a \`TemplateRef\` instead of a plain string.
+If you need to render custom templates, inputs, or forms, you can pass a \`TemplateRef\` instead of a plain string.
 >
 This behavior is automatically detected internally using the \`isTemplateRef()\` method.
 >
----
->
-### Example Template:
 \`\`\`typescript
+// Define your template in the component
 @ViewChild('modalTemplate') modalTemplate!: TemplateRef<any>;
 >
+// Add the modal service in the constructor
 constructor(private modalService: BmbNativeModalService) {}
 >
-dataModal: IBmbNativeModal = {
-  title: 'My Modal',
-  content: this.modalTemplate,
-}
->
 openModal() {
+  const dataModal: IBmbNativeModal = {
+    title: 'My Modal',
+    content: this.modalTemplate,
+  }
   this.modalService.openModal(dataModal);
 }
 \`\`\`
 >
 \`\`\`html
-<!-- Inside your component -->
+<!-- Inside your component template -->
 <ng-template #modalTemplate>
   <div>
     <p>Filter Modal Example</p>
@@ -171,12 +180,33 @@ openModal() {
 <button (click)="openModal()">Open Modal</button>
 \`\`\`
 >
-### ⚠ Note:
+### 🔵 Modal Usage with Component as content
 >
-Make sure you are using:
+If you need to render custom components, inputs, or forms inside the modal, you can pass a \`Component\` instead of a plain string.
+>
+This behavior is automatically detected internally using the \`isTemplateRef()\` method.
 >
 \`\`\`typescript
+// Make sure to import your custom component
+import { YourCustomComponent } from 'path-to-your-component';
+>
+// Add the modal service in the constructor
 constructor(private modalService: BmbNativeModalService) {}
+>
+openContent() {
+  const data: IBmbNativeModal = {
+    title: 'My Modal',
+    content: YourCustomComponent,
+    inputContext: { yourProperty: 'yourValue' },
+    outputContext: { yourEvent: (value: any) => console.log(value) },
+  };
+>
+  this.modalService.openModal(dataModal);
+}
+\`\`\`
+\`\`\`html
+  <!-- Inside your component template -->
+  <button bmbButton (click)="openModal()">Open Modal</button>
 \`\`\`
 >
 ### Detect the modal status
@@ -318,11 +348,11 @@ openModalComponent() {
         type: 'text',
       },
       description:
-        'Sets the body text display. This attribute can receive a Template Reference instead of the string.',
+        'Sets the body text display. This attribute can receive a Template Reference or a Component instead of the string.',
       table: {
         category: 'Properties',
         defaultValue: { summary: '' },
-        type: { summary: 'string' },
+        type: { summary: 'string | TemplateRef | Component (Type<any>)' },
       },
     },
     size: getAppearanceParam(
@@ -363,6 +393,43 @@ openModalComponent() {
         type: { summary: 'void' },
       },
     },
+    disableBackdropClose: {
+      control: { type: 'boolean' },
+      description:
+        'Disables the ability to close the modal by clicking outside or pressing the escape key.',
+      table: {
+        category: 'Properties',
+        defaultValue: { summary: 'true' },
+        type: { summary: 'boolean' },
+      },
+    },
+    inputContext: {
+      description:
+        'Context object to pass data to the component used as content.',
+      table: {
+        category: 'Properties',
+        type: { summary: '{ [key: string]: any }' },
+        defaultValue: { summary: '{}' },
+      },
+    },
+    outputContext: {
+      description:
+        'Context object to pass output events to the component used as content.',
+      table: {
+        category: 'Events',
+        type: { summary: '{ [key: string]: (value: any) => void }' },
+        defaultValue: { summary: '{}' },
+      },
+    },
+    actionsClicked: {
+      description:
+        'Event emitted when any action button is clicked, providing the button name and the click event.',
+      table: {
+        category: 'Events',
+        type: { summary: '{ buttonName: string; event: MouseEvent }' },
+        defaultValue: { summary: '{}' },
+      },
+    },
   },
   args: {
     title: '',
@@ -392,6 +459,9 @@ openModalComponent() {
     ],
     closeModalClicked: () => {
       console.log('Close modal clicked');
+    },
+    actionsClicked: () => {
+      console.log('Action button clicked');
     },
   },
 } as Meta<BmbNativeModalStory>;

@@ -11,13 +11,14 @@
   [helperMessage]="helperMessage()"
   [isRequired]="required()"
   [isDisabled]="disabled()"
+  [customValidation]="customValidation()"
   [control]="control()"
 >
   <span class="bmb_checkbox">
     <input
       class="bmb_checkbox-input"
       [ngClass]="{
-        'bmb_checkbox-input-indeterminate': indeterminate(),
+        'bmb_checkbox-input-indeterminate': indeterminate()
       }"
       type="checkbox"
       [id]="inputId()"

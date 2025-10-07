@@ -37,14 +37,6 @@ export default {
   title: 'Components/Inputs/Calendar date picker',
   component: BmbDatepickerComponent,
   tags: ['!autodocs'],
-  decorators: [
-    componentWrapperDecorator((story: string) => {
-      return `
-        <div style="height: 35rem">
-          ${story}
-        </div>`;
-    }),
-  ],
   parameters: {
     controls: {
       exclude: [
@@ -58,6 +50,11 @@ export default {
         'handleFocusedEvent',
         'handleValueChange',
         'handleWindowOpen',
+        'customValidationMessage',
+        '',
+        '',
+        '',
+        '',
       ],
     },
     docs: {
@@ -167,6 +164,7 @@ This date must have the same format as \`dateFormat\`.
         defaultValue: getDefaultValueControl('es-MX'),
       },
     },
+
     helperMessage: {
       ...DBmbInputParamDesc.helperMessage,
       table: {
@@ -177,10 +175,12 @@ This date must have the same format as \`dateFormat\`.
     value: DBmbInputParamDesc.value,
     inputId: DBmbInputParamDesc.inputId,
     onChange: getOnEventParam(onChange),
+    errorMessage: DBmbInputParamDesc.errorMessage,
+    customValidation: DBmbInputParamDesc.customValidation,
   },
   args: {
-    inputId: '',
-    name: '',
+    inputId: 'test_id',
+    name: 'test_id',
     value: '',
     label: 'Date',
     icon: 'calendar_month',

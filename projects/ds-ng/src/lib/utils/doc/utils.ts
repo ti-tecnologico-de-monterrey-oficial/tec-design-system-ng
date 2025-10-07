@@ -26,19 +26,34 @@ export interface IBmbOnEvent {
 export type IBmbOnEventType = 'change' | 'keyDown' | 'other';
 
 export const RELEVANT_TITLE_LEVEL: string[] = [
-  '⚠️**Warning**<br/>',
-  '‼️**Important**<br/>',
-  '✳️**Note**<br/>',
-  '⚙️**Configuration**<br/>',
-  '⭐**Example**<br/>',
+  `⚠️**Warning**<br/>`,
+  `ℹ️**Important**<br/>`,
+  `✳️**Note**<br/>`,
+  `⚙️**Configuration**<br/>`,
+  `⭐**Example**<br/>`,
 ];
+
+export const RelevantTitle = {
+  warning: '⚠️**Warning**<br/>',
+  important: '‼️**Important**<br/>',
+  note: '✳️**Note**<br/>',
+  configuration: '⚙️**Configuration**<br/>',
+  example: '⭐**Example**<br/>',
+  deprecated: '⛔**Deprecated**<br/>',
+};
+
+export const BlockquoteType = {
+  warning: '> [!WARNING]',
+  note: '> [!NOTE]',
+  important: '> [!CALLOUT]',
+};
 
 export const DESIGN_SYSTEM_TITLE: string = '***Bamboo***';
 export const TECHNICAL_DOC_TITLE: string = `${DESIGN_SYSTEM_TITLE} ***- Technical documentation***`;
 export const TECHNICAL_DOC_REFERENCES: string = `Please remember to refer to the ${TECHNICAL_DOC_TITLE} for more details:`;
 export const STORIES_TITLE: string = 'Variant templates';
 export const TITLE_OF_CONTROLS: string = 'Properties / Events';
-const TOC_TITLE: string = 'On this page';
+export const TOC_TITLE: string = 'On this page';
 export const DESCRIPTION_TITLE: string = 'Description';
 export const SPECIAL_SPECIFICATIONS_TITLE: string =
   'Considerations / Restrictions';
@@ -63,7 +78,6 @@ export const getPageStructureForFoundationStories = () => {
 export const getPageStructureForTemplateStories = () => {
   return [Title({}), Description({}), Primary({})];
 };
-
 
 const getValue = (key: string, value: undefined): any =>
   (typeof value === 'function' && `${key}($event)`) ||
@@ -91,10 +105,10 @@ export const attributesText = (object: { [key: string]: any }): string =>
     .join(' ');
 
 export const getLandingGeneralDesc = (name: string) =>
-  `${getGeneralDescription(`Template containing the ${DESIGN_SYSTEM_TITLE} elements to be used to implement the **Landing - Student ${name}**.`, 'https://bamboo.tec.mx/latest/particularities/mitec-web/landings-fCESn8dl-fCESn8dl')}`;
+  `${getGeneralDescription({ content: `Template containing the ${DESIGN_SYSTEM_TITLE} elements to be used to implement the **Landing - ${name}**.`, generalDocLink: 'https://bamboo.tec.mx/latest/particularities/mitec-web/landings-fCESn8dl-fCESn8dl' })}`;
 
 export const getStandaloneGeneralDesc = (name: string) =>
-  `${getGeneralDescription(`Template containing the ${DESIGN_SYSTEM_TITLE} elements to implement the structure of the **Stand alone sites - ${name}**.`, 'https://bamboo.tec.mx/latest/templates/sitios-stand-alone/descripcion-general-lwpZfyMh')}`;
+  `${getGeneralDescription({ content: `Template containing the ${DESIGN_SYSTEM_TITLE} elements to implement the structure of the **Stand alone sites - ${name}**.`, generalDocLink: 'https://bamboo.tec.mx/latest/templates/sitios-stand-alone/descripcion-general-lwpZfyMh' })}`;
 
 const getProperName = (name: string): string =>
   name.replace(name.slice(0, 1), name.slice(0, 1).toLocaleUpperCase());
@@ -119,6 +133,11 @@ export const getFormatName = (
     : _name;
 };
 
+export const getModelDescription = (
+  propertyName: string,
+): string => `This is a model signal, so it is possible to use it as:
+    [(${propertyName})]="${propertyName}"`;
+
 export const getOnEvent = (
   name: string,
   paramName: string,
@@ -142,6 +161,25 @@ export const getOnEvent = (
   return onEvent;
 };
 
+export const getStoryTitle = (fullTitle: string): string =>
+  getFormatName(
+    fullTitle!,
+    fullTitle?.substring(0, fullTitle?.lastIndexOf('/') + 1),
+    '',
+  );
+
+export const getStoryLink = ({
+  title,
+  showFullLinkName,
+}: {
+  title: string;
+  showFullLinkName?: boolean;
+}): string => {
+  if (showFullLinkName)
+    return `[${title}](/docs/${getFormatName(title!, /(\/)|( )/g, '-').toLocaleLowerCase()}--documentation)`;
+  return `[${getStoryTitle(title!)}](/docs/${getFormatName(title!, /(\/)|( )/g, '-').toLocaleLowerCase()}--documentation)`;
+};
+
 export const getAccordionDetail = (title: string, content: string) => `
 <section className="bmb_doc-accordion--container">
   <details className="bmb_doc-accordion--item">
@@ -154,8 +192,11 @@ export const getAccordionDetail = (title: string, content: string) => `
 export const generateLabel = (inputName: string): string =>
   getFormatName(inputName, '_', ' ');
 
-export const getEmptyStateMessage = (isSubStory: boolean = false): string => `
-###${getSubStoryIdentifier(isSubStory)}${RELEVANT_TITLE_LEVEL[1]}
+export const getEmptyStateMessage = (
+  isSubStory: boolean = false,
+  subStoryChart: string = '-',
+): string => `
+###${getSubStoryIdentifier(isSubStory, subStoryChart)}${RELEVANT_TITLE_LEVEL[1]}
 Remember to use the \`empty state\` for the cases that apply to this. Related documentation is available [here](https://bamboo.tec.mx/latest/guia-ux-writing/mensajes-del-producto/empty-states-OQYyq6h8-OQYyq6h8).
 `;
 
@@ -174,8 +215,9 @@ export const getArchitectureSection = (
   isSubStory: boolean = false,
   bmbNameLink: string = '',
   documentationLink: string = '',
+  subStoryChart: string = '-',
 ): string => `
-## ${getSubStoryIdentifier(isSubStory)}DOM Architecture
+## ${getSubStoryIdentifier(isSubStory, subStoryChart)}DOM Architecture
 Represents the structure of the component.
 \`\`\`html
 ${architectureBlock}
@@ -202,8 +244,9 @@ export const getDescribeTypeTextBlock = (
   isLevel3: boolean = false,
   additionalText: string = '',
   isSubStory: boolean = false,
+  subStoryChart: string = '-',
 ): string => `
-##${isLevel3 ? '#' : ''} ${getSubStoryIdentifier(isSubStory)}${typeExampleName} example ${additionalTitle}
+##${isLevel3 ? '#' : ''} ${getSubStoryIdentifier(isSubStory, subStoryChart)}${typeExampleName} example ${additionalTitle}
 Below is a *${typeExampleName}* example with the basic code to use this component ${additionalText}:`;
 
 const getTypescriptExampleBlock = (
@@ -265,17 +308,19 @@ export const getTypescriptExampleTextBlock = (
   additionalBlock: string = '',
   replaceChar: string = '',
   isSubStory: boolean = false,
+  subStoryChart: string = '-',
 ): string =>
   `
-__${getDescribeTypeTextBlock('TypeScript', additionalTitle, isLevel3, additionalText, isSubStory)}
+__${getDescribeTypeTextBlock('TypeScript', additionalTitle, isLevel3, additionalText, isSubStory, subStoryChart)}
 __${getTypescriptExampleBlock(inputName, additionalAngularCommonImportName, additionalImportName, additionalImportFrom, importComments, additionalBlock, replaceChar)}
 __`.replaceAll('__', replaceChar);
 
 export const getReactiveFormTitle = (
   bmbInputName: string,
   isSubStory: boolean = false,
+  subStoryChart: string = '-',
 ): string => `
-##${getSubStoryIdentifier(isSubStory)}Reactive form example
+##${getSubStoryIdentifier(isSubStory, subStoryChart)}Reactive form example
 >This example demonstrates how to use **${bmbInputName}** within an Angular reactive form, ensuring validation and handling the field and its value correctly.
 >`;
 
@@ -285,8 +330,9 @@ export const getFormExampleBlock = (
   additionalBlock: string = '',
   inputExample: string,
   isSubStory: boolean = false,
+  subStoryChart: string = '-',
 ): string => `
-${getReactiveFormTitle(bmbInputName, isSubStory)}
+${getReactiveFormTitle(bmbInputName, isSubStory, subStoryChart)}
 >
 ><br/>
 >${getTypescriptExampleTextBlock(
@@ -335,8 +381,9 @@ ${getReactiveFormTitle(bmbInputName, isSubStory)}
 export const getHTMLFormExampleTextBlock = (
   inputExample: string,
   isSubStory: boolean = false,
+  subStoryChart: string = '-',
 ): string => `>
->${getDescribeTypeTextBlock('HTML', 'for reactive form', true, 'in a reactive form', isSubStory)}
+>${getDescribeTypeTextBlock('HTML', 'for reactive form', true, 'in a reactive form', isSubStory, subStoryChart)}
 >\`\`\`html
 ><form [formGroup]="userForm" (ngSubmit)="onSubmit()">
 >  ${inputExample}
@@ -345,27 +392,68 @@ export const getHTMLFormExampleTextBlock = (
 >\`\`\`
 `;
 
-export const getSubStoryIdentifier = (isSubStory: boolean = false): string =>
-  isSubStory ? '-' : '';
+export const getSubStoryIdentifier = (
+  isSubStory: boolean = false,
+  subStoryChart: string = '-',
+): string => (isSubStory ? subStoryChart : '');
+
+export const getDeprecatedDesc = ({
+  type,
+  isHeaderL2,
+  isBlockquote,
+}: {
+  type?: 'property' | IBmbStoryType;
+  isHeaderL2?: boolean;
+  isBlockquote?: boolean;
+}): string => {
+  const _title: string = isHeaderL2
+    ? `##${RelevantTitle.deprecated.replaceAll('*', '')} `
+    : RelevantTitle.deprecated;
+  return `${isBlockquote ? BlockquoteType.warning : ''}
+  ${_title}
+  This ${type} will not be maintainable.
+  ${type === 'property' ? 'This will be removed in future versions.' : ''}
+`;
+};
 
 export const getGeneralDocDescription = (generalDocLink: string): string =>
   `Please remember to refer to the [Bamboo - General documentation](${generalDocLink}) for more details about it.`;
 
-export const getGeneralComponentDescription = (
-  name: string,
-  type: IBmbStoryType = 'component',
-  additional: string = '',
-  alternativeDescription: string = '',
-): string =>
+export const getGeneralComponentDescription = ({
+  name,
+  type = 'component',
+  additional,
+  alternativeDescription,
+}: {
+  name?: string;
+  type?: IBmbStoryType;
+  additional?: string;
+  alternativeDescription?: string;
+}): string =>
   `\`bmb${type === 'directive' ? '' : '-'}${name}\` is a ${DESIGN_SYSTEM_TITLE} ${additional} ${type} ${alternativeDescription || 'that allows'}`;
 
-export const getGeneralDescription = (
-  content: string,
-  generalDocLink: string = '',
-  isSubStory: boolean = false,
-): string => `
+export const getGeneralDescription = ({
+  content,
+  generalDocLink,
+  isSubStory,
+  subStoryChart = '-',
+  isDeprecated,
+}: {
+  content: string;
+  generalDocLink?: string;
+  isSubStory?: boolean;
+  subStoryChart?: string;
+  isDeprecated?: boolean;
+}): string => `<br/>
+${
+  isDeprecated
+    ? `
+${getDeprecatedDesc({ type: 'component', isHeaderL2: true, isBlockquote: true })}`
+    : ''
+}
+
 <br/>
-## ${getSubStoryIdentifier(isSubStory)}${DESCRIPTION_TITLE}
+## ${getSubStoryIdentifier(isSubStory, subStoryChart)}${DESCRIPTION_TITLE}
 >${content}
 >
 ${!!generalDocLink ? `>${getGeneralDocDescription(generalDocLink)}` : '>'}
@@ -387,8 +475,8 @@ export const getFieldDescription = (
   additionalDescription: string,
   generalDocLink: string,
 ): string => `
-${getGeneralDescription(
-  `
+${getGeneralDescription({
+  content: `
 >\`bmb-${componentName}\` is a customizable ${DESIGN_SYSTEM_TITLE} input component that allows users to ${additionalDescription}
 >
 >This component includes validations, error messages, and support for tooltips to provide additional information.
@@ -397,14 +485,15 @@ ${getGeneralDescription(
 >- The field border color changes to red.
 >- Support text is displayed with the error message (default or assigned).`,
   generalDocLink,
-)}
+})}
 `;
 
 export const getSpecialSpecifications = (
   content: string,
   isSubStory: boolean = false,
+  subStoryChart: string = '-',
 ): string => `
-## ${getSubStoryIdentifier(isSubStory)}${SPECIAL_SPECIFICATIONS_TITLE}
+## ${getSubStoryIdentifier(isSubStory, subStoryChart)}${SPECIAL_SPECIFICATIONS_TITLE}
 >${content}
 <br/>
 `;
@@ -417,9 +506,10 @@ export const getBasicExampleBlock = (
   additionalAngularCommonImportName: string = '',
   additionalImportName: string = '',
   additionalImportFrom: string = '',
+  subStoryChart: string = '-',
 ): string => `
-${getTypescriptExampleTextBlock(inputName, additionalAngularCommonImportName, additionalImportName, additionalImportFrom, importComments, '', false, '', additionalBlock, '', isSubStory)}
-${getDescribeTypeTextBlock('HTML', '', false, '', isSubStory)}
+${getTypescriptExampleTextBlock(inputName, additionalAngularCommonImportName, additionalImportName, additionalImportFrom, importComments, '', false, '', additionalBlock, '', isSubStory, subStoryChart)}
+${getDescribeTypeTextBlock('HTML', '', false, '', isSubStory, subStoryChart)}
 `;
 
 export const getFoundationDescriptions = (
@@ -520,7 +610,7 @@ ${
 \`\`\`html
 <div ${_style}class="${classes}">
   <div style="${stylesVar}">
-    The child element has access to the ${list} of the parent element's size through the ${variableDescription.replaceAll('\`', '')}.
+    The child element has access to the ${list} of the parent element's size through the ${variableDescription.replaceAll('`', '')}.
   </div>
 </div>
 \`\`\`
@@ -617,12 +707,12 @@ export const getSandboxConsiderationsDocumentation = (
     const varList: string[] = getSubList(implementationDetails, 'name');
     const definition: string = getListingOnOneLine(
       elementList as string[],
-      '\`--bmb_[__]-{[__]}\`',
+      '`--bmb_[__]-{[__]}`',
     );
     const definitionClass: string = definition.replaceAll('--', '');
     const _definition: string = getListingOnOneLine(
       varList as string[],
-      '\`--bmb_[__]-4\`',
+      '`--bmb_[__]-4`',
     );
     const definitionVar: string = _definition.replaceAll('_', '-');
     const size: string = getListingOnOneLine(elementList as string[], '{[__]}');
@@ -699,6 +789,158 @@ You should be careful when using ${element}, as they can affect ${DESIGN_SYSTEM_
 `;
 };
 
+export const getAlertCenterServiceDocumentation = (): string =>
+  getSpecialSpecifications(`
+  > ###Configuration
+  > Add the \`BmbAlertCenterService\` to your App providers:
+  >
+  > \`\`\`javascript
+  providers: [
+    provideRouter(routes),
+    importProvidersFrom([BmbAlertCenterService, ...]),
+  ],
+  > \`\`\`
+  >
+  > ---
+  >
+  > ###Alert center service methods
+  >
+  > ####Alerts
+  >
+  > #####Set notifications
+  >
+  > \`\`\`typescript
+  setAlerts(alerts: IBmbDataAlert[]);
+  > \`\`\`
+  >
+  > This method sets the alerts to be displayed in the alert center replacing any existing alerts.
+  >
+  > #####Update notifications
+  >
+  > \`\`\`typescript
+  updateAlerts(alertList: IBmbDataAlert[]);
+  > \`\`\`
+  >
+  > This method updates the existing alerts with the provided list. If an alert with the same ID exists, it will be updated; otherwise, it will remain unchanged.
+  >
+  > #####Add notifications
+  >
+  > \`\`\`typescript
+  addAlerts(alerts: IBmbDataAlert[]);
+  > \`\`\`
+  >
+  > This method adds new alerts to the existing list of alerts without replacing them.
+  >
+  > #####Get notifications
+  >
+  > \`\`\`typescript
+  getAlerts(): IBmbDataAlert[];
+  > \`\`\`
+  >
+  > This method retrieves the current list of alerts.
+  >
+  > ---
+  >
+  > ####Advertisements
+  >
+  > #####Set advertisements
+  >
+  > \`\`\`typescript
+  setAdvertisements(ads: IBmbDataAdvertisement[]);
+  > \`\`\`
+  >
+  > This method sets the advertisements to be displayed in the alert center replacing any existing advertisements.
+  >
+  > #####Update advertisements
+  >
+  > \`\`\`typescript
+  updateAdvertisements(adList: IBmbDataAdvertisement[]);
+  > \`\`\`
+  >
+  > This method updates the existing advertisements with the provided list. If an advertisement with the same ID exists, it will be updated; otherwise, it will remain unchanged.
+  >
+  > #####Add advertisements
+  >
+  > \`\`\`typescript
+  addAdvertisements(ads: IBmbDataAdvertisement[]);
+  > \`\`\`
+  >
+  > This method adds new advertisements to the existing list of advertisements without replacing them.
+  >
+  > #####Get advertisements
+  >
+  > \`\`\`typescript
+  getAdvertisements(): IBmbDataAdvertisement[];
+  > \`\`\`
+  >
+  > This method retrieves the current list of advertisements.
+  >
+  > ---
+  >
+  > ####Loading state
+  >
+  > #####Set loading state
+  >
+  > \`\`\`typescript
+  setLoadingState(loading: boolean = false);
+  > \`\`\`
+  >
+  > This method sets the loading state.
+  >
+  > #####Get loading state
+  >
+  > \`\`\`typescript
+  getLoadingState(): boolean;
+  > \`\`\`
+  >
+  > This method retrieves the current loading state.
+  > ### Scroll
+  If you want the component to handle the scroll, you should wrap it in a container with a defined height.
+  >
+  > \`\`\`html
+  <div style="height: 100dvh;">
+   <bmb-alert-center ... />
+  </div>
+  > \`\`\`
+`);
+
+export const getProviderBlockExample = (bambooProviderName: string) =>
+  `providers: [
+  provideRouter(routes),
+  importProvidersFrom([${bambooProviderName}, //Add other providers...]),
+]`;
+
+export const getProviderExample = (bambooProviderName: string) =>
+  `Add the ***${bambooProviderName}*** to your App providers:
+\`\`\`typescript
+ ${getProviderBlockExample(bambooProviderName)}
+\`\`\`
+`;
+
+export const getProviderTypescriptExample = (
+  bambooProviderName: string,
+  additionalDetail: string = '',
+) => `
+###${RELEVANT_TITLE_LEVEL[3]}
+>
+>${additionalDetail}
+>
+App provider example:
+\`\`\`typescript
+// src/app/app.config.ts
+import { ApplicationConfig } from '@angular/core';
+import { provideRouter } from '@angular/router';
+import { routes } from './app.routes';
+import { ${bambooProviderName} } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
+// Import other routes
+>
+export const appConfig: ApplicationConfig = {
+ ${getProviderBlockExample(bambooProviderName)}
+};
+\`\`\`
+>
+`;
+
 /*
 Checklist:
 ON THIS PAGE (optional, TABLE OF CONTENTS) [Done, is in preview, if not so add parameters: { docs: { toc: TOC_OBJ...]
@@ -721,31 +963,19 @@ ON THIS PAGE (optional, TABLE OF CONTENTS) [Done, is in preview, if not so add p
 */
 
 /*
-RELEVANT_TITLE_LEVEL: string[] = [
-  '⚠️**Warning**<br/>',
-  '‼️**Important**<br/>',
-  '✳️**Note**<br/>',
-  '⚙️**Configuration**',
-  '⭐**Example**',
-];
-${RELEVANT_TITLE_LEVEL[_]}
+${getGeneralDescription({content: `${getGeneralComponentDescription({name: ''})} `, generalDocLink:'')}}
+${getBasicExampleBlock({content: ''})}
 
-${getGeneralDescription(`${getGeneralComponentDescription('')} `, '')}
-${getBasicExampleBlock('')}
+getOnClickParam(
+    getOnEvent('', ''),
+    ``,
+  )
 
- getOnClickParam(
-      getOnEvent('', ''),
-      ``,
-    )
-
-    getOnEventParam(
-          getOnEvent('', '','void'),
-          '',
-          'other'
-        ),
-getPropertyParamDesc('')
-
-getDefaultValueControl(false)
+getOnEventParam(
+      getOnEvent('', '','void'),
+      '',
+      'other'
+    ),
 
 controls: { exclude: ['', ''] },
 controls: {
@@ -764,60 +994,6 @@ controls: {
 
 tags: ['!autodocs'],
 
-import {
-  Canvas,
-  Controls,
-  Description,
-  Meta,
-  Title,
-  Stories,
-} from "@storybook/addon-docs/blocks";
 
-import * as listStory from "./bmb-accordion.stories";
-import * as itemStory from "../../directives/bmb-accordion/bmb-accordion-control.stories";
-import { Tabs } from "../../../DocComponents/Tabs.mdx";
-
-export const List = () => (
-  <section>
-    <Meta of={listStory} />
-    <Title />
-    <Description />
-    <Canvas withToolbar={true} />
-    <Controls />
-    <Stories />
-  </section>
-);
-
-export const Item = () => (
-  <section>
-    <Meta of={itemStory} />
-    <Title of={itemStory}>{itemStory?.title}</Title>
-    <Description of={itemStory}>{itemStory}</Description>
-    <Canvas of={itemStory.Default} withToolbar={true} />
-    <Controls of={itemStory.Default} />
-    <Stories of={itemStory.Default} />
-  </section>
-);
-
-<Meta of={listStory} />
-<Tabs
-  tabs={[
-    <Title>{listStory?.title}</Title>,
-    <Title of={itemStory}>{itemStory?.title}</Title>,
-  ]}
-  content={[<List />, <Item />]}
-/>
-
-import { Meta } from "@storybook/addon-docs/blocks";
-
-import * as listStory from "./bmb-list-group.stories";
-import * as itemStory from "./bmb-list-group-item/bmb-list-group-item.stories";
-import { ListTemplate } from "../../../DocComponents/ListTemplate.mdx";
-
-<Meta of={listStory} />
-<ListTemplate>{itemStory}</ListTemplate>
-
-
-  isSubStory: boolean = false,
-  ${getSubStoryIdentifier(isSubStory)}
+❌
 */

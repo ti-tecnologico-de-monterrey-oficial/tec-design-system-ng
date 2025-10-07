@@ -3,7 +3,7 @@
   <button
     [disabled]="currentPage === 1"
     [ngClass]="{
-      'bmb_paginator-btn-disabled': currentPage == 1,
+      'bmb_paginator-btn-disabled': currentPage == 1
     }"
     (click)="onPageChange(1)"
     class="bmb_paginator-btn"
@@ -13,7 +13,7 @@
   <button
     [disabled]="currentPage === 1"
     [ngClass]="{
-      'bmb_paginator-btn-disabled': currentPage == 1,
+      'bmb_paginator-btn-disabled': currentPage == 1
     }"
     (click)="onPageChange(currentPage - 1)"
     class="bmb_paginator-btn"
@@ -23,7 +23,7 @@
   <button
     [disabled]="currentPage === totalPages"
     [ngClass]="{
-      'bmb_paginator-btn-disabled': currentPage === totalPages,
+      'bmb_paginator-btn-disabled': currentPage === totalPages
     }"
     (click)="onPageChange(currentPage + 1)"
     class="bmb_paginator-btn"
@@ -33,7 +33,7 @@
   <button
     [disabled]="currentPage === totalPages"
     [ngClass]="{
-      'bmb_paginator-btn-disabled': currentPage === totalPages,
+      'bmb_paginator-btn-disabled': currentPage === totalPages
     }"
     (click)="onPageChange(totalPages)"
     class="bmb_paginator-btn"

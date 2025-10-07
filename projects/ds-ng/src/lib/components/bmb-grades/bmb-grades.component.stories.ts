@@ -75,7 +75,7 @@ export default {
       },
       description: {
         component: `
-${getGeneralDescription(`${getGeneralComponentDescription('grades', 'organism')} to display students' grades for a school period.`, 'https://bamboo.tec.mx/latest/organismos/grades/descripcion-general-F5HIJ8av')}
+${getGeneralDescription({ content: `${getGeneralComponentDescription({ name: 'grades', type: 'organism' })} to display students' grades for a school period.`, generalDocLink: 'https://bamboo.tec.mx/latest/organismos/grades/descripcion-general-F5HIJ8av' })}
 ${getSpecialSpecifications(` ###${RELEVANT_TITLE_LEVEL[3]}
 >
 If you want the component to handle the scroll, you should wrap it in a container with a defined height.

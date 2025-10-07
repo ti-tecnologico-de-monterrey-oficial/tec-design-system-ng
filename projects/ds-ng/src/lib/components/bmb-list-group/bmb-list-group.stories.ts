@@ -2,8 +2,15 @@ import { Meta, StoryObj } from '@storybook/angular';
 import { BmbListGroupComponent } from './bmb-list-group.component';
 import { moduleMetadata } from '@storybook/angular';
 import { CommonModule } from '@angular/common';
-import { attributes } from '../../utils/doc/utils';
+import {
+  attributes,
+  getBasicExampleBlock,
+  getGeneralComponentDescription,
+  getGeneralDescription,
+  getOnEvent,
+} from '../../utils/doc/utils';
 import { BmbListGroupItemComponent } from './bmb-list-group-item/bmb-list-group-item.component';
+import { getOnEventParam } from '../../utils/doc/parameterDescriptions';
 
 export default {
   title: 'Components/Containers/List group',
@@ -16,29 +23,34 @@ export default {
   ],
   parameters: {
     docs: {
+      controls: {
+        exclude: [
+          'getClassNames',
+          'getStyles',
+          'getVarStyles',
+          'ngOnInit',
+          '',
+          '',
+          '',
+          '',
+          '',
+        ],
+      },
       description: {
         component: `
-Below is an example of how you can use this component in TypeScript:
-
-\`\`\`typescript
-import { BmbListGroupComponent, BmbListGroupItemComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
-@Component({
-  selector: 'component',
-  standalone: true,
-  imports: [ BmbListGroupComponent, BmbListGroupItemComponent ],
-  templateUrl: './component.html',
-  styleUrl: './component.scss',
-})
-\`\`\`
-
-Below is an example of how you can use this component in HTML:
+${getGeneralDescription({
+  content: `${getGeneralComponentDescription({ name: 'list-group' })} to organize related elements in an ordered list, optimizing navigation and displaying content clearly and efficiently.
+It helps to group information in a coherent and accessible way.`,
+  generalDocLink:
+    'https://bamboo.tec.mx/latest/components/list-group/descripcion-general-ieYN5a5C',
+})}
+${getBasicExampleBlock('BmbListGroupComponent, BmbListGroupItemComponent')}
         `,
       },
     },
   },
   argTypes: {
     borderRadius: {
-      name: 'Border radius',
       control: { type: 'select' },
       options: ['xs', 's', 'm', 'l', 'xl', 'none', 'auto'],
       table: {
@@ -49,7 +61,6 @@ Below is an example of how you can use this component in HTML:
       description: 'Determines the corner radius size',
     },
     borderType: {
-      name: 'Border type',
       control: { type: 'select' },
       options: ['rounded', 'flush'],
       table: {
@@ -60,7 +71,6 @@ Below is an example of how you can use this component in HTML:
       description: 'Determines the border type',
     },
     margin: {
-      name: 'Margin',
       description: 'Determines the separation between the list group items',
       control: { type: 'select' },
       options: ['xs', 's', 'm', 'l', 'xl', 'none', 'auto'],
@@ -71,7 +81,6 @@ Below is an example of how you can use this component in HTML:
       },
     },
     padding: {
-      name: 'Padding',
       description:
         'Determines the space between the list group items and the border',
       control: { type: 'select' },
@@ -83,7 +92,6 @@ Below is an example of how you can use this component in HTML:
       },
     },
     isMultipleSelection: {
-      name: 'Is multiple selection',
       description: 'Allows multiple items to be selected',
       control: { type: 'boolean' },
       table: {
@@ -93,7 +101,6 @@ Below is an example of how you can use this component in HTML:
       },
     },
     showControls: {
-      name: 'Show controls',
       description: 'Shows the control buttons',
       control: { type: 'boolean' },
       table: {
@@ -103,7 +110,6 @@ Below is an example of how you can use this component in HTML:
       },
     },
     isRowView: {
-      name: 'Is row view',
       description:
         'Determines if the list items should be displayed in a horizontal row with wrapping. When set to true, items will be arranged in a flex container with a row direction and wrap behavior.',
       control: { type: 'boolean' },
@@ -114,7 +120,6 @@ Below is an example of how you can use this component in HTML:
       },
     },
     listGroupId: {
-      name: 'List Group Id',
       description:
         'This property is used when you have multiple List Group, each instance of the component must have different ID, which will be defined with this property.',
       control: { type: 'text' },
@@ -123,18 +128,11 @@ Below is an example of how you can use this component in HTML:
         category: 'Properties',
       },
     },
-    selectionChange: {
-      name: 'Selection Change',
-      control: {
-        type: undefined,
-      },
-      description:
-        'Emitted when an option is selected. Contains the id of the selected option.',
-      table: {
-        category: 'Events',
-        type: { summary: 'function' },
-      },
-    },
+    selectionChange: getOnEventParam(
+      getOnEvent('', 'selectionChange', 'string[]'),
+      'when an option is selected. Contains the id of the selected option.',
+      'other',
+    ),
   },
   args: {
     borderRadius: 'm',

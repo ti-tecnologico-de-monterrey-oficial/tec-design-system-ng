@@ -1,21 +1,25 @@
+@use '../../../../assets/styles/base/fonts' as fonts;
+@use '../../../../assets/styles/base/rem' as rem;
+@use '../../../../assets/styles/base/mixins' as mixins;
+
 .bmb_web-template-full-width-card {
   grid-template-columns: 1fr;
   grid-template-rows: 71px max-content max-content max-content;
   grid-template-areas:
-    "topBar"
-    "header"
-    "main"
-    "aside";
+    'topBar'
+    'header'
+    'main'
+    'aside';
   gap: 1rem;
   @include fonts.font(3, regular);
-  @include mixins.media-query(1000, "min") {
+  @include mixins.media-query(1000, 'min') {
     grid-template-columns: 2fr 1fr;
     grid-template-rows: 71px max-content 1fr;
     gap: 0;
     grid-template-areas:
-      "topBar topBar"
-      "header header"
-      "main aside";
+      'topBar topBar'
+      'header header'
+      'main aside';
   }
 
   .bmb_web-template {
@@ -31,7 +35,7 @@
       padding: var(--bmb-spacing-l);
       grid-area: header;
 
-      @include mixins.media-query(1000, "min") {
+      @include mixins.media-query(1000, 'min') {
         margin-bottom: var(--bmb-spacing-m);
       }
 
@@ -40,11 +44,11 @@
         width: 100%;
         box-sizing: border-box;
 
-        @include mixins.media-query(999, "max") {
+        @include mixins.media-query(999, 'max') {
           padding-left: rem.rem_calc(16);
         }
 
-        @include mixins.media-query(1000, "min") {
+        @include mixins.media-query(1000, 'min') {
           padding-left: rem.rem_calc(80);
         }
       }
@@ -69,7 +73,7 @@
       overflow: auto;
       border: rem.rem_calc(1) solid RGBA(var(--color-charade-300));
 
-      @include mixins.media-query(1000, "min") {
+      @include mixins.media-query(1000, 'min') {
         margin-left: 0;
         border-radius: 0 var(--bmb-radius-m) var(--bmb-radius-m) 0;
         margin-bottom: 0;
@@ -78,7 +82,7 @@
 
       &-container {
         overflow: auto;
-        @include mixins.media-query(1000, "min") {
+        @include mixins.media-query(1000, 'min') {
           padding-left: rem.rem_calc(88);
         }
       }
@@ -93,7 +97,7 @@
       overflow: auto;
       border: rem.rem_calc(1) solid RGBA(var(--color-charade-300));
 
-      @include mixins.media-query(1000, "min") {
+      @include mixins.media-query(1000, 'min') {
         margin: 0;
         border-radius: var(--bmb-radius-m) 0 0 var(--bmb-radius-m);
         border-width: rem.rem_calc(1) 0 0 rem.rem_calc(1);
@@ -102,7 +106,7 @@
   }
 }
 
-[data-theme="dark"],
+[data-theme='dark'],
 .storybook-dark-theme {
   .bmb_web-template-full-width-card {
     .bmb_web-template {

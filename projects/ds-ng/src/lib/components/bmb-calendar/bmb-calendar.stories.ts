@@ -39,16 +39,52 @@ class MockCalendarService {
 
     const events: IBmbCalendarEvent[] = [
       {
-        title: `Event custom`,
+        title: `Event custom 4`,
         start: today.toISO() as string,
-        end: today.plus({ minutes: 240 }).toISO() as string,
+        end: today.plus({ minutes: 120 }).toISO() as string,
+        detail: `Event custom detail`,
+        modalTitle: `Event custom`,
+        subtitle: `Event custom subtitle`,
+        // status: 'disabled',
+        type: 'events',
+        place: `Event custom place`,
+        calendar: 'events',
+      },
+      {
+        title: `Event custom 3`,
+        start: today.toISO() as string,
+        end: today.plus({ minutes: 120 }).toISO() as string,
+        detail: `Event custom detail`,
+        modalTitle: `Event custom`,
+        subtitle: `Event custom subtitle`,
+        // status: 'disabled',
+        type: 'life',
+        place: `Event custom place`,
+        calendar: 'life',
+      },
+      {
+        title: `Event custom 2`,
+        start: today.plus({ minutes: 30 }).toISO() as string,
+        end: today.plus({ minutes: 150 }).toISO() as string,
+        detail: `Event custom detail`,
+        modalTitle: `Event custom`,
+        subtitle: `Event custom subtitle`,
+        // status: 'disabled',
+        type: 'save_the_date',
+        place: `Event custom place`,
+        calendar: 'save_the_date',
+      },
+      {
+        title: `Event custom 1`,
+        start: today.toISO() as string,
+        end: today.plus({ minutes: 120 }).toISO() as string,
         detail: `Event custom detail`,
         modalTitle: `Event custom`,
         subtitle: `Event custom subtitle`,
         // status: 'disabled',
         type: 'academic',
         place: `Event custom place`,
-        calendar: 'Calendar A',
+        calendar: 'academic',
       },
     ];
     for (let i = 0; i < 183; i++) {
@@ -106,11 +142,13 @@ class MockCalendarService {
           ],
           place: `Event ${i} place`,
           calendar:
-            i % 3 === 0
-              ? 'Calendar A'
-              : i % 3 === 1
-                ? 'Calendar B'
-                : 'Calendar C',
+            i % 4 === 0
+              ? 'academic'
+              : i % 4 === 1
+                ? 'life'
+                : i % 4 === 2
+                  ? 'events'
+                  : 'save_the_date',
         });
       }
     }
@@ -188,11 +226,19 @@ export default {
           'selectedEvent',
           'selectedWeek',
           'timerId',
+          'view',
+          'visibleDate',
+          'weekNumber',
+          'getDayEvents',
         ],
       },
       description: {
         component: `
-${getGeneralDescription(`${getGeneralComponentDescription('calendar', 'organism')} viewing and filtering of events based on date and calendar type.`, 'https://bamboo.tec.mx/latest/organismos/calendar-standard/descripcion-general-JghdvFUm')}
+${getGeneralDescription({
+  content: `${getGeneralComponentDescription({ name: 'calendar', type: 'organism' })} viewing and filtering of events based on date and calendar type.`,
+  generalDocLink:
+    'https://bamboo.tec.mx/latest/organismos/calendar-standard/descripcion-general-JghdvFUm',
+})}
 ${getSpecialSpecifications(`###${RELEVANT_TITLE_LEVEL[3]}
 Add the ***BmbCalendarService*** to your App providers:
 \`\`\`typescript
@@ -210,9 +256,6 @@ export const appConfig: ApplicationConfig = {
 \`\`\`
 `)}
 ${getBasicExampleBlock('BmbCalendarComponent')}
-
-
-
         `,
       },
     },
@@ -255,11 +298,21 @@ ${getBasicExampleBlock('BmbCalendarComponent')}
     ),
     showFilterButton: {
       control: { type: 'boolean' },
-      description: 'Shows or hides the filter button. Shows the button when true.',
+      description:
+        'Shows or hides the filter button. Shows the button when true.',
       table: {
         category: 'Properties',
         type: { summary: 'boolean' },
         defaultValue: { summary: 'false' },
+      },
+    },
+    calendarTitle: {
+      control: { type: 'text' },
+      description: 'Sets the title for the calendar',
+      table: {
+        category: 'Properties',
+        type: { summary: 'string' },
+        defaultValue: { summary: 'Mi horario' },
       },
     },
     dateFormat: {
@@ -272,9 +325,27 @@ ${getBasicExampleBlock('BmbCalendarComponent')}
         defaultValue: { summary: 'iso' },
       },
     },
+    filters: {
+      control: { type: '{ [key: string]: boolean }' },
+      description:
+        'Sets the filters for calendar events, this is a model input, so you can update the filters externally',
+      table: {
+        category: 'Properties',
+        type: { summary: 'object' },
+        defaultValue: { summary: '{}' },
+      },
+    },
+    startBusinessHour: {
+      control: { type: 'number' },
+      description: 'Sets the start business hour for the calendar (example: 8)',
+      table: {
+        category: 'Properties',
+        type: { summary: 'number' },
+        defaultValue: { summary: 8 },
+      },
+    },
     lang: DBmbGenericParamDesc.lang,
   },
-  // Remove invalid args if not defined as @Input() in BmbCalendarComponent
   args: {
     height: '100%',
     showFilterButton: false,

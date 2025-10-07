@@ -16,7 +16,7 @@ export default {
     docs: {
       description: {
         component: `
-${getGeneralDescription(`${getGeneralComponentDescription('ButtonGroup', 'directive')} to add the same property to buttons that are inside the element that groups them.`, 'https://bamboo.tec.mx/latest/componentes/button-group/descripcion-general-39ELIbCW')}
+${getGeneralDescription({ content: `${getGeneralComponentDescription({ name: 'ButtonGroup', type: 'directive' })} to add the same property to buttons that are inside the element that groups them.`, generalDocLink: 'https://bamboo.tec.mx/latest/componentes/button-group/descripcion-general-39ELIbCW' })}
 ${getBasicExampleBlock('BmbButtonGroupDirective')}
         `,
       },
@@ -36,7 +36,6 @@ type Story = StoryObj<typeof BmbButtonGroupDirective>;
 
 export const Default: Story = {
   name: 'Default',
-  storyName: 'Test',
   render: (args) => ({
     props: args,
     template: `

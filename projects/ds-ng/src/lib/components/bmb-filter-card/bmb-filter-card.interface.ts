@@ -6,5 +6,7 @@ export interface IBmbControlType {
     label: string;
     checked: boolean;
     rightText?: string;
+    value?: string;
+    id?: string;
   }[];
 }

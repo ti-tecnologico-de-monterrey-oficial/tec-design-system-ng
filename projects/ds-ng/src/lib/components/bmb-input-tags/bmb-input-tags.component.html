@@ -11,6 +11,7 @@
   [showError]="shouldShowError"
   [tooltip]="tooltip()"
   [tooltipPosition]="tooltipPosition()"
+  [customValidation]="customValidation()"
   clickOutside
   (clickOutside)="closeList()"
   [inputId]="inputId()"
@@ -19,7 +20,7 @@
     class="bmb_input-tags-container"
     [ngClass]="{
       'bmb_input-tags-container-error': shouldShowError,
-      'bmb_input-tags-container-focus': isFocused(),
+      'bmb_input-tags-container-focus': isFocused()
     }"
   >
     <bmb-input-content
@@ -29,7 +30,6 @@
       [name]="getUUID('filter')"
       [control]="filterControl"
       [placeholder]="placeholder()"
-      [isDisabled]="disabled()"
       (click)="openList()"
       (onBlur)="handleValidity()"
       (keydown)="handleKeyDown($event)"
@@ -56,12 +56,14 @@
     [name]="name()"
     [formControl]="control()"
   />
-  <bmb-dropdown-content
-    class="bmb_input-tags-dialog"
-    name="list"
-    [selectedOption]="control().value"
-    [isKeyboardEvent]="isKeyboardEvent"
-    [(items)]="filteredOptions"
-    [(isOpen)]="showDropdown"
-  />
+  <dialog [open]="showDropdown" class="bmb_generic-dialog">
+    <bmb-dropdown-content
+      class="bmb_input-tags-dialog"
+      name="list"
+      [selectedOption]="control().value"
+      [isKeyboardEvent]="isKeyboardEvent"
+      [(items)]="filteredOptions"
+      [(isOpen)]="showDropdown"
+    />
+  </dialog>
 </bmb-input-validator>

@@ -37,7 +37,6 @@ export class BmbInputContentComponent {
   placeholder = input<string>('');
   icon = input<string>('');
   appearance = input<IBmbInputAppearance | string>('normal');
-  isDisabled = input<boolean>(false);
   isRequired = input<boolean>(false);
   name = input.required<string>();
   spellcheck = input<boolean>(false);

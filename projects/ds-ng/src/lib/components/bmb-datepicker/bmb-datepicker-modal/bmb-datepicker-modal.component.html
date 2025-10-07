@@ -58,7 +58,7 @@
     </li>
   </nav>
   @switch (view) {
-    @case ("calendar") {
+    @case ('calendar') {
       <div class="bmb_datepicker-modal-calendar">
         <table class="bmb_datepicker-modal-calendar-table">
           <thead>
@@ -96,7 +96,7 @@
         </table>
       </div>
     }
-    @case ("month") {
+    @case ('month') {
       <ul
         class="bmb_datepicker-modal-calendar-list bmb_datepicker-modal-calendar-list-months bmb_datepicker-modal-calendar"
       >
@@ -107,7 +107,7 @@
               type="button"
               [ngClass]="{
                 'bmb_datepicker-modal-calendar-list-item-selected':
-                  selectedMonth - 1 === $index,
+                  selectedMonth - 1 === $index
               }"
               bmbButton
               appearance="transparent"
@@ -119,7 +119,7 @@
         }
       </ul>
     }
-    @case ("year") {
+    @case ('year') {
       <ul
         class="bmb_datepicker-modal-calendar-list bmb_datepicker-modal-calendar-list-years bmb_datepicker-modal-calendar"
       >
@@ -130,7 +130,7 @@
               type="button"
               [ngClass]="{
                 'bmb_datepicker-modal-calendar-list-item-selected':
-                  isSelectedYear(year),
+                  isSelectedYear(year)
               }"
               bmbButton
               appearance="transparent"

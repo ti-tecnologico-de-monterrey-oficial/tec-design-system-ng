@@ -79,6 +79,11 @@ export class BmbSearchInputComponent implements AfterViewInit, OnChanges {
         changes['serverSideFilteredData']?.currentValue?.length ||
         changes['isLoading']?.currentValue;
     }
+
+    if (changes['isLoading']) {
+      if (changes['isLoading']?.currentValue) this.filterControl.disable();
+      this.filterControl.enable();
+    }
   }
 
   initOptions(list: string[]): void {

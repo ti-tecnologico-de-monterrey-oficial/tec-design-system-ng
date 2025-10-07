@@ -63,7 +63,13 @@ Emits the `onButtonClick` event when the button is clicked.
 The component's template is structured as follows:
 
 ```html
-<bmb-button-icon [idElement]="'unique-id'" [icon]="'home'" [showContainer]="true" [disabled]="false" (onButtonClick)="onButtonClicked()"></bmb-button-icon>
+<bmb-button-icon
+  [idElement]="'unique-id'"
+  [icon]="'home'"
+  [showContainer]="true"
+  [disabled]="false"
+  (onButtonClick)="onButtonClicked()"
+></bmb-button-icon>
 ```
 
 ---
@@ -71,7 +77,13 @@ The component's template is structured as follows:
 ## Usage Example
 
 ```html
-<bmb-button-icon [idElement]="'button-1'" [icon]="'settings'" [showContainer]="true" [disabled]="false" (onButtonClick)="handleButtonClick()"></bmb-button-icon>
+<bmb-button-icon
+  [idElement]="'button-1'"
+  [icon]="'settings'"
+  [showContainer]="true"
+  [disabled]="false"
+  (onButtonClick)="handleButtonClick()"
+></bmb-button-icon>
 ```
 
 ---

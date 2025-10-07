@@ -1,56 +1,81 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  computed,
   input,
-  OnInit,
   output,
   ViewEncapsulation,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BmbAlertCenterComponent } from '../bmb-alert-center/bmb-alert-center.component';
 import { IBmbDataAlert } from '../bmb-alert-center/types';
-import { BmbTabsComponent, IBmbTab } from '../bmb-tabs/bmb-tabs.component';
+import { IBmbTab } from '../bmb-tabs/bmb-tabs.component';
 import { BmbHomeCardComponent } from '../bmb-home-card/bmb-home-card.component';
-import { BmbCarouselComponent } from '../bmb-carousel/bmb-carousel.component';
-import { BmbButtonDirective } from '../../directives/bmb-button/button.directive';
-import { BmbImageComponent } from '../bmb-image/bmb-image.component';
+import { IBmbAlertCenterTabConfig } from '../bmb-alert-center/types';
 
 @Component({
   selector: 'bmb-notification-card',
   standalone: true,
-  imports: [
-    CommonModule,
-    BmbAlertCenterComponent,
-    BmbTabsComponent,
-    BmbHomeCardComponent,
-    BmbCarouselComponent,
-    BmbButtonDirective,
-    BmbImageComponent,
-  ],
+  imports: [CommonModule, BmbAlertCenterComponent, BmbHomeCardComponent],
   templateUrl: './bmb-notification-card.component.html',
   styleUrl: './bmb-notification-card.component.scss',
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class BmbNotificationCardComponent implements OnInit {
+export class BmbNotificationCardComponent {
   data = input<IBmbDataAlert[]>([]);
   advertisements = input<IBmbDataAlert[]>([]);
   hideExpandBtn = input<boolean>(false);
+  maxHeight = input<string>('auto');
 
   alertEvent = output<IBmbDataAlert>();
+  showAlertDetail = output<IBmbDataAlert>();
+  closeAlertDetail = output<IBmbDataAlert>();
+  onExpandClick = output<void>();
 
   expanded: boolean = false;
   activeData: any = [];
   activeTab: number = 1;
   activeDot: number = 0;
-  tabs = [
-    { id: 1, title: 'Notificaciones', badge: 0, isActive: true },
-    { id: 2, title: 'Anuncios' },
-  ];
+  tabs = computed<IBmbTab[]>(() => {
+    return [
+      {
+        id: 1,
+        title: 'Notificaciones',
+        badge: this.newAlerts(),
+        isActive: true,
+      },
+      { id: 2, title: 'Anuncios' },
+    ];
+  });
 
-  ngOnInit(): void {
-    this.tabs[0].badge = this.newAlerts();
-  }
+  tabsConfig: IBmbAlertCenterTabConfig[] = [
+    {
+      title: 'Notificaciones',
+      isMobile: true,
+      isDesktop: true,
+    },
+    {
+      title: 'No leídos',
+      isMobile: false,
+      isDesktop: false,
+    },
+    {
+      title: 'Favoritos',
+      isMobile: false,
+      isDesktop: false,
+    },
+    {
+      title: 'Archivados',
+      isMobile: false,
+      isDesktop: false,
+    },
+    {
+      title: 'Anuncios',
+      isMobile: true,
+      isDesktop: true,
+    },
+  ];
 
   setActiveTab(tab: IBmbTab) {
     this.activeTab = tab.id;

@@ -1,7 +1,13 @@
 import { Meta, moduleMetadata, StoryObj } from '@storybook/angular';
 import { BmbStepProgressBarComponent } from './bmb-step-progress-bar.component';
 import { CommonModule } from '@angular/common';
-import { RELEVANT_TITLE_LEVEL } from '../../utils/doc/utils';
+import {
+  attributes,
+  getBasicExampleBlock,
+  getGeneralComponentDescription,
+  getGeneralDescription,
+} from '../../utils/doc/utils';
+import { DBmbStepProgressBar } from '../../utils/doc/parameterDescriptions';
 
 export default {
   title: 'Components/Status indicators/Step progress bar',
@@ -14,123 +20,39 @@ export default {
   ],
   parameters: {
     docs: {
+      controls: {
+        exclude: [
+          'complete',
+          'getStepsArray',
+          'goBack',
+          'goNext',
+          'onStepClicked',
+          'onStepPanelClicked',
+          'stepTemplates',
+          'back',
+          'finish',
+          'next',
+        ],
+      },
       description: {
         component: `
-Below is an example of how you can use this component in TypeScript:
-
-\`\`\`typescript
-import { BmbStepProgressBarComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
-@Component({
-  selector: 'component',
-  standalone: true,
-  imports: [ BmbStepProgressBarComponent ],
-  templateUrl: './component.html',
-  styleUrl: './component.scss',
-})
-\`\`\`
-
-Below is an example of how you can use this component in HTML:
+${getGeneralDescription({ content: `${getGeneralComponentDescription({ name: 'step-progress-bar' })} implement an indicator of the current step in a sequence of steps that represent a process.`, generalDocLink: 'https://bamboo.tec.mx/latest/components/step-progress-bar/descripcion-general-xebEHoek' })}
+${getBasicExampleBlock('BmbStepProgressBarComponent')}
         `,
       },
     },
   },
   argTypes: {
-    activeStep: {
-      name: 'Active Step',
-      control: {
-        type: 'number',
-      },
-      description: 'Refers to the step that is active.',
-      table: {
-        category: 'Properties',
-        type: { summary: 'number' },
-      },
-    },
-    totalSteps: {
-      name: 'Total Steps',
-      control: {
-        type: 'number',
-      },
-      description: 'Number of steps that the counter will show.',
-      table: {
-        category: 'Properties',
-        type: { summary: 'number' },
-      },
-    },
-    size: {
-      name: 'Size',
-      control: {
-        type: 'radio',
-      },
-      options: ['small', 'medium', 'default'],
-      description: `Set the size of the steps. ${RELEVANT_TITLE_LEVEL[0]} This property only works when the ***type*** is ***horizontal***.`,
-      table: {
-        category: 'Properties',
-        type: { summary: 'select' },
-        defaultValue: { summary: 'default' },
-      },
-    },
-    freeze: {
-      name: 'Freeze',
-      control: {
-        type: 'boolean',
-      },
-      description: 'Freezes the state of progress steps.',
-      table: {
-        category: 'Properties',
-        type: { summary: 'boolean' },
-        defaultValue: { summary: 'false' },
-      },
-    },
-    type: {
-      name: 'Type',
-      control: {
-        type: 'radio',
-      },
-      options: ['horizontal', 'vertical'],
-      description:
-        'Changes the direction of the step progress bar, could be horizontal or vertical',
-      table: {
-        category: 'Properties',
-        type: { summary: 'string' },
-        defaultValue: { summary: 'horizontal' },
-      },
-    },
-    labelSteps: {
-      name: 'Label Steps',
-      control: {
-        type: 'array',
-      },
-      description: 'Set the label for each step',
-      table: {
-        category: 'Properties',
-        type: { summary: 'string[]' },
-      },
-    },
-    labelComplete: {
-      name: 'Label complete',
-      control: {
-        type: 'text',
-      },
-      description: 'Set the label for complete steps',
-      table: {
-        category: 'Properties',
-        type: { summary: 'string' },
-        defaultValue: { summary: 'Completo' },
-      },
-    },
-    labelIncomplete: {
-      name: 'Label incomplete',
-      control: {
-        type: 'text',
-      },
-      description: 'Set the label for incomplete steps',
-      table: {
-        category: 'Properties',
-        type: { summary: 'string' },
-        defaultValue: { summary: 'Pendiente' },
-      },
-    },
+    activeStep: DBmbStepProgressBar.activeStep,
+    totalSteps: DBmbStepProgressBar.totalSteps,
+    size: DBmbStepProgressBar.size,
+    freeze: DBmbStepProgressBar.freeze,
+    type: DBmbStepProgressBar.type,
+    labelSteps: DBmbStepProgressBar.labelSteps,
+    labelComplete: DBmbStepProgressBar.labelComplete,
+    labelIncomplete: DBmbStepProgressBar.labelIncomplete,
+    onStepPress: DBmbStepProgressBar.onStepPress,
+    onStepPanelPress: DBmbStepProgressBar.onStepPanelPress,
   },
   args: {
     totalSteps: 5,
@@ -156,6 +78,11 @@ export const Default: Story = {};
 
 export const Vertical: Story = {
   name: 'Vertical',
+  render: (args: any) => ({
+    template: `
+        <bmb-step-progress-bar ${attributes(args)} />
+    `,
+  }),
 };
 
 export const Horizontal: Story = {
@@ -163,4 +90,9 @@ export const Horizontal: Story = {
   args: {
     type: 'horizontal',
   },
+  render: (args: any) => ({
+    template: `
+        <bmb-step-progress-bar ${attributes(args)} />
+    `,
+  }),
 };

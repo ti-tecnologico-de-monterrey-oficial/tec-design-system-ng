@@ -1,6 +1,6 @@
-@use "../../../assets/styles/base/fonts" as fonts;
-@use "../../../assets/styles/base/mixins" as mixins;
-@use "../../../assets/styles/base/rem" as rem;
+@use '../../../assets/styles/base/fonts' as fonts;
+@use '../../../assets/styles/base/mixins' as mixins;
+@use '../../../assets/styles/base/rem' as rem;
 
 .bmb_tabs {
   display: flex;
@@ -15,9 +15,17 @@
     background-color: var(--containers-main);
   }
 
-  &-content-container {
-    flex: 1;
-    overflow: auto;
+  &-content {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    max-width: 15rem;
+    display: inline-block;
+
+    &-container {
+      flex: 1;
+      overflow: auto;
+    }
   }
 
   &-container {
@@ -72,14 +80,30 @@
       width: auto;
       max-width: rem.rem_calc(240);
     }
-  }
 
-  &-badge {
-    align-items: center;
-    color: var(--general_contrasts-50);
-    display: flex;
-    @include fonts.font(1, medium);
-    font-weight: 600;
+    &-mobile {
+      @include mixins.media-query(999, 'max') {
+        display: block;
+      }
+
+      &-remove {
+        @include mixins.media-query(1000, 'min') {
+          display: none;
+        }
+      }
+    }
+
+    &-desktop {
+      @include mixins.media-query(1000, 'min') {
+        display: block;
+      }
+
+      &-remove {
+        @include mixins.media-query(999, 'max') {
+          display: none;
+        }
+      }
+    }
   }
 
   &-scroll {

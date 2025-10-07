@@ -2,14 +2,16 @@ import {
   Component,
   ViewEncapsulation,
   ChangeDetectionStrategy,
-  Input,
   OnInit,
   output,
+  input,
+  model,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IPositionButtonMenu, IUserInformation } from './types';
 import { BmbTopBarUserSectionComponent } from './bmb-top-bar-user-section/bmb-top-bar-user-section.component';
 import { IBmbDataAlert } from '../bmb-alert-center/types';
+import { getMobileResolutionSize } from '../../utils/utils';
 
 export { IPositionButtonMenu, IUserInformation } from './types';
 
@@ -23,22 +25,25 @@ export { IPositionButtonMenu, IUserInformation } from './types';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BmbTopBarComponent implements OnInit {
-  @Input() userInformation: IUserInformation | null = null;
-  @Input() image: string = '';
-  @Input() mobileImage: string = '';
-  @Input() appName: string = '';
-  @Input() appSubTitle: string = '';
-  @Input() lang: string = 'es';
-  @Input() mitec: boolean = false;
-  @Input() alertNotification: IBmbDataAlert[] = [];
-  @Input() showRoleButton: boolean = false;
-  @Input() showHelpButton: boolean = false;
+  userInformation = input<IUserInformation | null>(null);
+  appName = input<string>('');
+  appPowered = input<string>('');
+  appSubTitle = input<string>('');
+  lang = input<string>('es');
+  mitec = input<boolean>(false);
+  alertNotification = input<IBmbDataAlert[]>([]);
+  showRoleButton = input<boolean>(false);
+  showHelpButton = input<boolean>(false);
+  allowSidebarForMobile = input<boolean>(true);
 
-  @Input() positionButtonMenu: IPositionButtonMenu = 'left'; // Deprecated
-  @Input() hasLogoutButton: boolean = true; // Deprecated
-  @Input() showLang: boolean = false; // Deprecated
-  @Input() showUserName: boolean = true; // Deprecated
-  @Input() assignmentNotification: string[] = []; // Deprecated
+  positionButtonMenu = input<IPositionButtonMenu>('left'); // Deprecated
+  hasLogoutButton = input<boolean>(true); // Deprecated
+  showLang = input<boolean>(false); // Deprecated
+  showUserName = input<boolean>(true); // Deprecated
+  assignmentNotification = input<string[]>([]); // Deprecated
+
+  image = model<string>('');
+  mobileImage = model<string>('');
 
   helpButtonClick = output<MouseEvent>();
   userProfileClick = output<MouseEvent>();
@@ -56,14 +61,14 @@ export class BmbTopBarComponent implements OnInit {
   imageMitecDefault = 'assets/images/logos-mitec/logo_mitec-mob.svg';
 
   ngOnInit(): void {
-    if (this.image == '') {
-      this.image = this.mitec ? this.imageMitecDefault : this.imageDefault;
+    if (this.image() === '') {
+      this.image.set(this.mitec() ? this.imageMitecDefault : this.imageDefault);
     }
 
-    if (this.mobileImage == '') {
-      this.mobileImage = this.mitec
-        ? this.mobileImageMitecDefault
-        : this.mobileImageDefault;
+    if (this.mobileImage() === '') {
+      this.mobileImage.set(
+        this.mitec() ? this.mobileImageMitecDefault : this.mobileImageDefault,
+      );
     }
 
     const hasBeenViewed = localStorage.getItem('bmbTopBarViewed');
@@ -75,23 +80,16 @@ export class BmbTopBarComponent implements OnInit {
     }
   }
 
+  getNoMobileResolutionSize(): string {
+    return getMobileResolutionSize(false);
+  }
+
   handleLogOutClick(event: Event) {
     this.logOut.emit(event);
   }
 
   handleAlertClick(event: MouseEvent) {
     this.alertButtonClick.emit(event);
-  }
-
-  getCountryName(lang: string): string {
-    switch (lang) {
-      case 'es':
-        return 'Español';
-      case 'en':
-        return 'English';
-      default:
-        return '';
-    }
   }
 
   handleLangChange(lang: string): void {
