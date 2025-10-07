@@ -136,7 +136,7 @@ export default {
       page: () => getPageStructureForFoundationStories(),
       description: {
         component: `
-${getGeneralDescription({ content: getFoundationDescriptions('spacing', SPACING_DESCRIPTION.concat('<br/><br/>')), generalDocLink: 'https://bamboo.tec.mx/latest/foundations/spacing/descripcion-general-Mg3ksz2Z' })}
+${getGeneralDescription(getFoundationDescriptions('spacing', SPACING_DESCRIPTION.concat('<br/><br/>')), { generalDocLink: 'https://bamboo.tec.mx/latest/foundations/spacing/descripcion-general-Mg3ksz2Z' })}
 ${getSpecialSpecifications(
   getSandboxConsiderationsDocumentation(
     'spacing',

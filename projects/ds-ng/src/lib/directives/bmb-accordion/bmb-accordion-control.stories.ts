@@ -3,13 +3,15 @@ import { BmbAccordionControlDirective } from './bmb-accordion-control.directive'
 import { CommonModule } from '@angular/common';
 import { BmbAccordionComponent } from '../../../public-api';
 import {
+  BlockquoteType,
+  getAlertBlockquote,
   getBasicExampleBlock,
   getEmptyStateMessage,
   getGeneralComponentDescription,
   getGeneralDescription,
   getSpecialSpecifications,
   getSubStoryIdentifier,
-  RELEVANT_TITLE_LEVEL,
+  RELEVANT_TITLE,
 } from '../../utils/doc/utils';
 
 const meta: Meta<BmbAccordionControlDirective> = {
@@ -31,16 +33,19 @@ const meta: Meta<BmbAccordionControlDirective> = {
     docs: {
       description: {
         component: `
-${getGeneralDescription({ content: `${getGeneralComponentDescription({ name: 'AccordionControl', type: 'directive' })} to bmb-accordion components to be presented in collapsible and vertically stacked elements.`, generalDocLink: 'https://bamboo.tec.mx/latest/componentes/accordion/descripcion-general-yABR8pUx', isSubStory: true })}
+${getGeneralDescription(`${getGeneralComponentDescription({ name: 'AccordionControl', type: 'directive' })} to bmb-accordion components to be presented in collapsible and vertically stacked elements.`, { generalDocLink: 'https://bamboo.tec.mx/latest/componentes/accordion/descripcion-general-yABR8pUx', isSubStory: true })}
 ${getSpecialSpecifications(
-  `${getEmptyStateMessage(true)}<br/><br/>
-###${getSubStoryIdentifier(true)}${RELEVANT_TITLE_LEVEL[0]}
->
-For the correct operation of the Accordion control directive the Accordion component must have
-\`accordionId\` attribute
-and must not have \`lockToogle\` attribute
+  `${getEmptyStateMessage({ isSubStory: true })}
+${getAlertBlockquote(
+  `For the correct operation of the ***Accordion control*** directive: the ***Accordion component*** must have \`accordionId\` attribute and must not have \`lockToogle\` attribute`,
+  {
+    title: `###${RELEVANT_TITLE.warning}`,
+    blockquoteType: BlockquoteType.warning,
+    isSubStory: true,
+  },
+)}
 `,
-  true,
+  { isSubStory: true },
 )}
 ${getBasicExampleBlock('BmbAccordionComponent', '', '', true)}
         `,

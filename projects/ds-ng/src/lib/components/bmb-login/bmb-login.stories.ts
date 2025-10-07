@@ -5,7 +5,7 @@ import {
   getGeneralComponentDescription,
   getGeneralDescription,
   getOnEvent,
-  RELEVANT_TITLE_LEVEL,
+  RELEVANT_TITLE,
 } from '../../utils/doc/utils';
 import {
   DBmbGenericParamDesc,
@@ -34,7 +34,7 @@ export default {
       },
       description: {
         component: `
-${getGeneralDescription({ content: `${getGeneralComponentDescription({ name: 'login', type: 'organism' })} to log in to the web platform. It includes fields for credentials and password recovery.`, generalDocLink: 'https://bamboo.tec.mx/latest/organisms/login-layout-web/descripcion-general-uYEtF9vq' })}
+${getGeneralDescription(`${getGeneralComponentDescription({ name: 'login', type: 'organism' })} to log in to the web platform. It includes fields for credentials and password recovery.`, { generalDocLink: 'https://bamboo.tec.mx/latest/organisms/login-layout-web/descripcion-general-uYEtF9vq' })}
 ${getBasicExampleBlock('BmbLoginComponent')}
         `,
       },
@@ -87,7 +87,7 @@ ${getBasicExampleBlock('BmbLoginComponent')}
         defaultValue: {
           summary: '',
           detail: `
-${RELEVANT_TITLE_LEVEL[4]} Template:
+${RELEVANT_TITLE.example} Template:
 
 actionHeaderLinks:IBmbActionHeaderLinks = {
   apple: {

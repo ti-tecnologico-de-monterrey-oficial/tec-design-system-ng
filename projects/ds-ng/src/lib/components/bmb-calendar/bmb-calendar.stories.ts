@@ -17,7 +17,7 @@ import {
   getGeneralDescription,
   getOnEvent,
   getSpecialSpecifications,
-  RELEVANT_TITLE_LEVEL,
+  RELEVANT_TITLE,
 } from '../../utils/doc/utils';
 import {
   DBmbGenericParamDesc,
@@ -234,12 +234,14 @@ export default {
       },
       description: {
         component: `
-${getGeneralDescription({
-  content: `${getGeneralComponentDescription({ name: 'calendar', type: 'organism' })} viewing and filtering of events based on date and calendar type.`,
-  generalDocLink:
-    'https://bamboo.tec.mx/latest/organismos/calendar-standard/descripcion-general-JghdvFUm',
-})}
-${getSpecialSpecifications(`###${RELEVANT_TITLE_LEVEL[3]}
+${getGeneralDescription(
+  `${getGeneralComponentDescription({ name: 'calendar', type: 'organism' })} viewing and filtering of events based on date and calendar type.`,
+  {
+    generalDocLink:
+      'https://bamboo.tec.mx/latest/organismos/calendar-standard/descripcion-general-JghdvFUm',
+  },
+)}
+${getSpecialSpecifications(`###${RELEVANT_TITLE.configuration}
 Add the ***BmbCalendarService*** to your App providers:
 \`\`\`typescript
 // src/app/app.config.ts

@@ -27,7 +27,7 @@ export default {
       page: () => getPageStructureForFoundationStories(),
       description: {
         component: `
-${getGeneralDescription({ content: getFoundationDescriptions('CSS') })}
+${getGeneralDescription(getFoundationDescriptions('CSS'))}
 ${getSpecialSpecifications(
   getSandboxConsiderationsDocumentation(
     'spacing, border radius, fonts, and size',

@@ -28,7 +28,7 @@ export default {
     docs: {
       description: {
         component: `
-${getGeneralDescription({ content: `${getGeneralComponentDescription({ name: 'action-icon', type: 'component', additional: 'interactive' })} to use icons as buttons to execute actions`, generalDocLink: 'https://bamboo.tec.mx/latest/componentes/action-icon/descripcion-general-FzB28S1H' })}
+${getGeneralDescription(`${getGeneralComponentDescription({ name: 'action-icon', type: 'component', additional: 'interactive' })} to use icons as buttons to execute actions`, { generalDocLink: 'https://bamboo.tec.mx/latest/componentes/action-icon/descripcion-general-FzB28S1H' })}
 ${getBasicExampleBlock(
   'BmbActionIconComponent',
   '',

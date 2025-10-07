@@ -5,7 +5,7 @@ import {
   getGeneralComponentDescription,
   getGeneralDescription,
   getOnEvent,
-  RELEVANT_TITLE_LEVEL,
+  RELEVANT_TITLE,
 } from '../../utils/doc/utils';
 import {
   DBmbGenericParamDesc,
@@ -52,7 +52,7 @@ export default {
       },
       description: {
         component: `
-${getGeneralDescription({ content: `${getGeneralComponentDescription({ name: 'top-bar' })} to display user information, notifications, and various action buttons.`, generalDocLink: 'https://bamboo.tec.mx/latest/componentes/top-bar/descripcion-general-WczOiPOw' })}
+${getGeneralDescription(`${getGeneralComponentDescription({ name: 'top-bar' })} to display user information, notifications, and various action buttons.`, { generalDocLink: 'https://bamboo.tec.mx/latest/componentes/top-bar/descripcion-general-WczOiPOw' })}
 ${getBasicExampleBlock('BmbTopBarComponent')}
         `,
       },
@@ -176,7 +176,7 @@ Adjusts the contents of the **Top bar** when true.
 
 The Top bar header content shifts to the left, this allows the sidebar to be displayed in the mobile header.
 
-${RELEVANT_TITLE_LEVEL[2]}
+${RELEVANT_TITLE.note}
 The setting applies only to mobile.
       `,
       table: {

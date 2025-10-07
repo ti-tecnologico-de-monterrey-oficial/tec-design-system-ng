@@ -34,7 +34,7 @@ export default {
       },
       description: {
         component: `
-${getGeneralDescription({ content: `${getGeneralComponentDescription({ name: 'accordion' })} to present content on vertically stacked, collapsible elements.`, generalDocLink: 'https://bamboo.tec.mx/latest/componentes/accordion/descripcion-general-yABR8pUx' })}
+${getGeneralDescription(`${getGeneralComponentDescription({ name: 'accordion' })} to present content on vertically stacked, collapsible elements.`, { generalDocLink: 'https://bamboo.tec.mx/latest/componentes/accordion/descripcion-general-yABR8pUx' })}
 ${getArchitectureSection(`<section class="bmb_accordion"
 <!-- conditional class bmb_radius-{borderRadius} bmb_margin-{this.margin} -> >
   <!-- if Accordion is disabled -->

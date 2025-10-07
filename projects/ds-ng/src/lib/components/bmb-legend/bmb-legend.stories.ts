@@ -17,7 +17,7 @@ export default {
     docs: {
       description: {
         component: `
-${getGeneralDescription({ content: `${getGeneralComponentDescription({ name: 'legend' })} to show a correlation between data or values and their representation.`, generalDocLink: 'https://bamboo.tec.mx/latest/componentes/legend/descripcion-general-23itzHxE' })}
+${getGeneralDescription(`${getGeneralComponentDescription({ name: 'legend' })} to show a correlation between data or values and their representation.`, { generalDocLink: 'https://bamboo.tec.mx/latest/componentes/legend/descripcion-general-23itzHxE' })}
 ${getBasicExampleBlock('BmbLegendComponent')}
         `,
       },

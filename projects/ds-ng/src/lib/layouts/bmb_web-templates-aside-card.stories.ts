@@ -7,9 +7,7 @@ import {
   getPageStructureForTemplateStories,
   getSpecialSpecifications,
   getStandaloneGeneralDesc,
-  getStoryLink,
-  TECHNICAL_DOC_REFERENCES,
-  TECHNICAL_DOC_TITLE,
+  getTechnicalDocReferences,
 } from '../utils/doc/utils';
 import * as topBarStory from '../components/bmb-top-bar/bmb-top-bar.stories';
 
@@ -69,11 +67,11 @@ export default {
       description: {
         component: `
 ${getStandaloneGeneralDesc('2 Column normal screen')}
-${getSpecialSpecifications(`### ${TECHNICAL_DOC_TITLE}
->
-${TECHNICAL_DOC_REFERENCES}
-- ${getStoryLink({ title: topBarStory.default.title!, showFullLinkName: true })}
-`)}
+${getSpecialSpecifications(
+  getTechnicalDocReferences({
+    references: [{ title: topBarStory.default.title! }],
+  }),
+)}
 ${getBasicExampleBlock('BmbTopBarComponent')}
 \`\`\`html
 <bmb-top-bar/>

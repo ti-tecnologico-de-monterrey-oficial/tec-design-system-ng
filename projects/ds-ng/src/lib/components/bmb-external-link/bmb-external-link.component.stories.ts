@@ -36,11 +36,13 @@ export default {
       },
       description: {
         component: `
-${getGeneralDescription({
-  content: `${getGeneralComponentDescription({ name: 'external-link', type: 'organism' })} to integrate links that lead to resources or pages outside of the main website or application.`,
-  generalDocLink:
-    'https://bamboo.tec.mx/latest/organismos/access-to-external-link/descripcion-general-JFCWgYI5',
-})}
+${getGeneralDescription(
+  `${getGeneralComponentDescription({ name: 'external-link', type: 'organism' })} to integrate links that lead to resources or pages outside of the main website or application.`,
+  {
+    generalDocLink:
+      'https://bamboo.tec.mx/latest/organismos/access-to-external-link/descripcion-general-JFCWgYI5',
+  },
+)}
 ${getSpecialSpecifications(getEmptyStateMessage())}
 ${getBasicExampleBlock('BmbExternalLinkComponent')}
         `,

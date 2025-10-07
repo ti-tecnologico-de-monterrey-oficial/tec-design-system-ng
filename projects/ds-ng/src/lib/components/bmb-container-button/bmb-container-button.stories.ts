@@ -60,7 +60,7 @@ export default {
       },
       description: {
         component: `
-${getGeneralDescription({ content: `${getGeneralComponentDescription({ name: 'BmbContainerButtonComponent' })} to use the container as a button`, generalDocLink: 'https://bamboo.tec.mx/latest/componentes/container-button/descripcion-general-dzTxNX36' })}
+${getGeneralDescription(`${getGeneralComponentDescription({ name: 'BmbContainerButtonComponent' })} to use the container as a button`, { generalDocLink: 'https://bamboo.tec.mx/latest/componentes/container-button/descripcion-general-dzTxNX36' })}
 ${getSpecialSpecifications(getEmptyStateMessage())}
 ${getBasicExampleBlock('BmbContainerButtonComponent')}
         `,

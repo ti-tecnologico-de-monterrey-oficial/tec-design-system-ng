@@ -14,13 +14,15 @@ export default {
     docs: {
       description: {
         component: `
-${getGeneralDescription({
-  content: `
+${getGeneralDescription(
+  `
 ${getGeneralComponentDescription({ name: 'iframe', type: 'element' })} to embed another webpage within the current, acting as a *window* within the main page to display external content.
   `,
-  generalDocLink:
-    'https://bamboo.tec.mx/latest/foundations/i-frame/descripcion-general-gxUE3JoE',
-})}
+  {
+    generalDocLink:
+      'https://bamboo.tec.mx/latest/foundations/i-frame/descripcion-general-gxUE3JoE',
+  },
+)}
 ${getArchitectureSection(`
 <section class="bmb_iframe">
   <iframe { configuration } ></iframe>

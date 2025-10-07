@@ -33,9 +33,9 @@ import {
 } from '../../public-api';
 
 import {
-  FULLSCREEN_DESC,
   getBasicExampleBlock,
   getFormatName,
+  getFullScreenDesc,
   getLandingGeneralDesc,
   getPageStructureForTemplateStories,
   getSpecialSpecifications,
@@ -680,7 +680,10 @@ export default {
       description: {
         component: `
 ${getLandingGeneralDesc('Accordion tab')}
-${getSpecialSpecifications(`### ${TECHNICAL_DOC_TITLE}
+${getSpecialSpecifications(`
+${getFullScreenDesc()}
+>
+### ${TECHNICAL_DOC_TITLE}
 >
 ${TECHNICAL_DOC_REFERENCES}
 - [${topBarStory.default.title}](/docs/${getFormatName(topBarStory.default.title!, /(\/)|( )/g, '-').toLocaleLowerCase()}--documentation)
@@ -696,8 +699,6 @@ ${TECHNICAL_DOC_REFERENCES}
 - [${accordionControlStory.default.title}](/docs/${getFormatName(accordionControlStory.default.title!, /(\/)|( )/g, '-').toLocaleLowerCase()}--documentation)
 - [${iconStory.default.title}](/docs/${getFormatName(iconStory.default.title!, /(\/)|( )/g, '-').toLocaleLowerCase()}--documentation)
 - [${toastStory.default.title}](/docs/${getFormatName(toastStory.default.title!, /(\/)|( )/g, '-').toLocaleLowerCase()}--documentation)
->
-${FULLSCREEN_DESC}
 `)}
 ${getBasicExampleBlock(
   `

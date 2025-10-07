@@ -1,6 +1,6 @@
 import { Meta, StoryObj } from '@storybook/angular';
 import { BmbTitleContentComponent } from './bmb-title-content.component';
-import { RELEVANT_TITLE_LEVEL } from '../../utils/doc/utils';
+import { RELEVANT_TITLE } from '../../utils/doc/utils';
 import { DBmbIconParamDesc } from '../../utils/doc/parameterDescriptions';
 
 export default {
@@ -175,7 +175,7 @@ Below is an example of how you can use this component in HTML:
       name: 'Subtitle icon size',
       control: { type: 'number' },
       description: `Size of the subtitle icon or width of the image to use.<br/><br/>
-${RELEVANT_TITLE_LEVEL[2]}<= 0 will be inherited.`,
+${RELEVANT_TITLE.note}<= 0 will be inherited.`,
       table: {
         category: 'Properties',
         defaultValue: { summary: '0' },

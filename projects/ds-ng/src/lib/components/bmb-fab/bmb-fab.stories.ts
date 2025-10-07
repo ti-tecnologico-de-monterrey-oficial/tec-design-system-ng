@@ -31,7 +31,7 @@ export default {
       controls: { exclude: ['active', 'getClassName', 'onFabClick'] },
       description: {
         component: `
-${getGeneralDescription({ content: `${getGeneralComponentDescription({ name: 'fab', type: 'component', alternativeDescription: 'that provides a floating button that will help deploy various tools, libraries, or frameworks when activated.' })} `, generalDocLink: 'https://bamboo.tec.mx/latest/componentes/main-fab/descripcion-general-Hm3R2zPj' })}
+${getGeneralDescription(`${getGeneralComponentDescription({ name: 'fab', type: 'component', alternativeDescription: 'that provides a floating button that will help deploy various tools, libraries, or frameworks when activated.' })} `, { generalDocLink: 'https://bamboo.tec.mx/latest/componentes/main-fab/descripcion-general-Hm3R2zPj' })}
 ${getBasicExampleBlock('BmbFabComponent', '', onEvent.handleExample)}
         `,
       },

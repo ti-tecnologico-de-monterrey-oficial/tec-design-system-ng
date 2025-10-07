@@ -67,14 +67,16 @@ export default {
       page: () => getPageStructureForFoundationStories(),
       description: {
         component: `
-${getGeneralDescription({
-  content: getFoundationDescriptions(
+${getGeneralDescription(
+  getFoundationDescriptions(
     'shadow boxes',
     '***Shadow boxes*** are deep frames create a sense of depth and dimension.<br/><br/>',
   ),
-  generalDocLink:
-    'https://bamboo.tec.mx/latest/foundations/shadow-boxes-kRa1Gtdt',
-})}
+  {
+    generalDocLink:
+      'https://bamboo.tec.mx/latest/foundations/shadow-boxes-kRa1Gtdt',
+  },
+)}
 ${getSpecialSpecifications(
   getSandboxConsiderationsDocumentation(
     'shadow boxes',

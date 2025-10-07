@@ -4,12 +4,10 @@ import { BmbTopBarComponent } from '../../public-api';
 import {
   attributes,
   getBasicExampleBlock,
-  getFormatName,
   getPageStructureForTemplateStories,
   getSpecialSpecifications,
   getStandaloneGeneralDesc,
-  TECHNICAL_DOC_REFERENCES,
-  TECHNICAL_DOC_TITLE,
+  getTechnicalDocReferences,
 } from '../utils/doc/utils';
 import * as topBarStory from '../components/bmb-top-bar/bmb-top-bar.stories';
 
@@ -58,11 +56,13 @@ export default {
       description: {
         component: `
 ${getStandaloneGeneralDesc('1 Column box')}
-${getSpecialSpecifications(`### ${TECHNICAL_DOC_TITLE}
->
-${TECHNICAL_DOC_REFERENCES}
-- [${topBarStory.default.title}](/docs/${getFormatName(topBarStory.default.title!, /(\/)|( )/g, '-').toLocaleLowerCase()}--documentation)
-`)}
+${getSpecialSpecifications(
+  getTechnicalDocReferences({
+    references: [
+      { title: topBarStory.default.title!},
+    ],
+  }),
+)}
 ${getBasicExampleBlock('BmbTopBarComponent')}
 \`\`\`html
 <bmb-top-bar/>

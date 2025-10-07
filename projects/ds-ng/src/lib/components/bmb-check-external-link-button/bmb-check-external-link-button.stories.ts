@@ -20,7 +20,7 @@ export default {
     docs: {
       description: {
         component: `
-${getGeneralDescription({ content: 'Internal component for rendering a button or link, it checks if it is internal or external link or handle the button events.' })}
+${getGeneralDescription('Internal component for rendering a button or link, it checks if it is internal or external link or handle the button events.')}
 ${getBasicExampleBlock('BmbCheckExternalLinkButtonComponent')}
         `,
       },

@@ -16,11 +16,13 @@ export default {
       controls: { exclude: ['getClasses'] },
       description: {
         component: `
-${getGeneralDescription({
-  content: `\`bmb-media-card\` is a ${DESIGN_SYSTEM_TITLE} component that displays an image with configurable properties.`,
-  generalDocLink:
-    'https://bamboo.tec.mx/latest/componentes/image/descripcion-general-1o8OTusS',
-})}
+${getGeneralDescription(
+  `\`bmb-media-card\` is a ${DESIGN_SYSTEM_TITLE} component that displays an image with configurable properties.`,
+  {
+    generalDocLink:
+      'https://bamboo.tec.mx/latest/componentes/image/descripcion-general-1o8OTusS',
+  },
+)}
 ${getArchitectureSection(`<section class="bmb_image"> <!-- Conditional classes and tyles based on radius and width inputs ->
   <figure class="bmb_image-figure">
     <picture>

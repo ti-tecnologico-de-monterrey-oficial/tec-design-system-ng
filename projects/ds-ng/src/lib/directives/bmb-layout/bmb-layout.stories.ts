@@ -36,13 +36,15 @@ const meta: Meta<BmbLayoutDirective> = {
     docs: {
       description: {
         component: `
-${getGeneralDescription({
-  content: `
+${getGeneralDescription(
+  `
 The ${DESIGN_SYSTEM_TITLE} ***Layout*** component is a flexible and responsive layout system that allows you to create complex layouts with ease.<br/><br/>
 ${getAuxiliaryDescription('Layout', 'Layout item')}`,
-  generalDocLink:
-    'https://bamboo.tec.mx/latest/foundations/layout/descripcion-general-EfPFAmaP',
-})}
+  {
+    generalDocLink:
+      'https://bamboo.tec.mx/latest/foundations/layout/descripcion-general-EfPFAmaP',
+  },
+)}
 ${getSpecialSpecifications(`
 ***Layout*** provides a set of directives that can be used to define the layout structure, including the \`BmbLayout\` and \`BmbLayoutItem\` directives.
 ><br/><br/>
