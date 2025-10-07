@@ -3,6 +3,7 @@
     [title]="calendarTitle()"
     [showClose]="true"
     trailingIconSecondary="tune"
+    [disableTrailingIconSecondary]="disableMobileFilter()"
     (onHandleBack)="handleClose()"
     (onHandleTrailingSecondary)="handleViewTypeChange()"
   >
