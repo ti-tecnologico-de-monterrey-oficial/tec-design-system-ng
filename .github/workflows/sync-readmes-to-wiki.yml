@@ -1,0 +1,67 @@
+name: Sync READMEs to Wiki
+
+on:
+  push:
+    branches: [ develop ]
+    paths:
+      - 'projects/ds-ng/src/lib/**/README.md'
+
+jobs:
+  sync-readmes:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout main repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Clone wiki
+        run: |
+          git clone https://github.com/${{ github.repository }}.wiki.git wiki
+
+      - name: Configure Git for wiki
+        run: |
+          cd wiki
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Find and copy READMEs
+        run: |
+          WIKI_DIR="./wiki"
+          LIB_DIR="projects/ds-ng/src/lib"
+
+          if [ ! -d "$LIB_DIR" ]; then
+            echo "⚠️  $LIB_DIR not found. Skipping."
+            exit 0
+          fi
+
+          # find all README.md files and copy them to the wiki directory
+          while IFS= read -r -d '' readme; do
+            # Get parent directory name as component name
+            component_dir=$(dirname "$readme")
+            component_name=$(basename "$component_dir")
+
+            # define destination file path
+            dest_file="$WIKI_DIR/${component_name}.md"
+
+            echo "📄 Copy $readme → ${component_name}.md"
+
+            # Copy Readme content to the wiki directory with new name
+            cp "$readme" "$dest_file"
+          done < <(find "$LIB_DIR" -name "README.md" -type f -print0)
+
+      - name: Commit and push changes to wiki
+        env:
+          WIKI_BOT: ${{ secrets.WIKI_BOT }}
+        run: |
+          cd wiki
+
+          # Check if there are any changes
+          if git diff --quiet && git diff --staged --quiet; then
+            echo "✅ there is no changes."
+            exit 0
+          fi
+
+          git add *.md
+          git commit -m "chore(wiki): sync READMEs from components"
+          git push https://x-access-token:${WIKI_BOT}@github.com/${{ github.repository }}.wiki.git
