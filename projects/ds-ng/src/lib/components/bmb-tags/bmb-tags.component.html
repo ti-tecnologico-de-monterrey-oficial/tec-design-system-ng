@@ -10,7 +10,7 @@
   }
 </ng-template>
 
-@if (dismissible()) {
+@if (dismissible() || enableClick()) {
   <button
     type="button"
     [disabled]="isDisabled()"
