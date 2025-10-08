@@ -34,13 +34,10 @@ import {
 
 import {
   getBasicExampleBlock,
-  getFormatName,
-  getFullScreenDesc,
   getLandingGeneralDesc,
   getPageStructureForTemplateStories,
   getSpecialSpecifications,
-  TECHNICAL_DOC_REFERENCES,
-  TECHNICAL_DOC_TITLE,
+  getTechnicalDocReferences,
 } from '../utils/doc/utils';
 
 import * as topBarStory from '../components/bmb-top-bar/bmb-top-bar.stories';
@@ -680,26 +677,26 @@ export default {
       description: {
         component: `
 ${getLandingGeneralDesc('Accordion tab')}
-${getSpecialSpecifications(`
-${getFullScreenDesc()}
->
-### ${TECHNICAL_DOC_TITLE}
->
-${TECHNICAL_DOC_REFERENCES}
-- [${topBarStory.default.title}](/docs/${getFormatName(topBarStory.default.title!, /(\/)|( )/g, '-').toLocaleLowerCase()}--documentation)
-- [${sideBarStory.default.title}](/docs/${getFormatName(sideBarStory.default.title!, /(\/)|( )/g, '-').toLocaleLowerCase()}--documentation)
-- [${homeCardStory.default.title}](/docs/${getFormatName(homeCardStory.default.title!, /(\/)|( )/g, '-').toLocaleLowerCase()}--documentation)
-- [${layoutStory.default.title}](/docs/${getFormatName(layoutStory.default.title!, /(\/)|( )/g, '-').toLocaleLowerCase()}--documentation)
-- [${layoutItemStory.default.title}](/docs/${getFormatName(layoutItemStory.default.title!, /(\/)|( )/g, '-').toLocaleLowerCase()}--documentation)
-- [${cardStory.default.title}](/docs/${getFormatName(cardStory.default.title!, /(\/)|( )/g, '-').toLocaleLowerCase()}--documentation)
-- [${tabsStory.default.title}](/docs/${getFormatName(tabsStory.default.title!, /(\/)|( )/g, '-').toLocaleLowerCase()}--documentation)
-- [${accordionStory.default.title}](/docs/${getFormatName(accordionStory.default.title!, /(\/)|( )/g, '-').toLocaleLowerCase()}--documentation)
-- [${cardHeaderStory.default.title}](/docs/${getFormatName(cardHeaderStory.default.title!, /(\/)|( )/g, '-').toLocaleLowerCase()}--documentation)
-- [${cardContentStory.default.title}](/docs/${getFormatName(cardContentStory.default.title!, /(\/)|( )/g, '-').toLocaleLowerCase()}--documentation)
-- [${accordionControlStory.default.title}](/docs/${getFormatName(accordionControlStory.default.title!, /(\/)|( )/g, '-').toLocaleLowerCase()}--documentation)
-- [${iconStory.default.title}](/docs/${getFormatName(iconStory.default.title!, /(\/)|( )/g, '-').toLocaleLowerCase()}--documentation)
-- [${toastStory.default.title}](/docs/${getFormatName(toastStory.default.title!, /(\/)|( )/g, '-').toLocaleLowerCase()}--documentation)
-`)}
+${getSpecialSpecifications(
+  getTechnicalDocReferences({
+    references: [
+      { title: topBarStory.default.title! },
+      { title: sideBarStory.default.title! },
+      { title: homeCardStory.default.title! },
+      { title: layoutStory.default.title! },
+      { title: layoutItemStory.default.title! },
+      { title: cardStory.default.title! },
+      { title: tabsStory.default.title! },
+      { title: accordionStory.default.title! },
+      { title: cardHeaderStory.default.title! },
+      { title: cardContentStory.default.title! },
+      { title: accordionControlStory.default.title! },
+      { title: iconStory.default.title! },
+      { title: toastStory.default.title! },
+      ],
+    isFullScreenDesc: true,
+  }),
+)}
 ${getBasicExampleBlock(
   `
     BmbTopBarComponent,

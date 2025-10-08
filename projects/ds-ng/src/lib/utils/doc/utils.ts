@@ -49,8 +49,8 @@ export const BlockquoteType = {
 };
 
 export const DESIGN_SYSTEM_TITLE: string = '***Bamboo***';
-export const TECHNICAL_DOC_TITLE: string = `${DESIGN_SYSTEM_TITLE} ***- Technical documentation***`;
-export const TECHNICAL_DOC_REFERENCES: string = `Please remember to refer to the ${TECHNICAL_DOC_TITLE} for more details:`;
+const TECHNICAL_DOC_TITLE: string = `${DESIGN_SYSTEM_TITLE} ***- Technical documentation***`;
+const TECHNICAL_DOC_REFERENCES: string = `Please remember to refer to the ${TECHNICAL_DOC_TITLE} for more details:`;
 export const STORIES_TITLE: string = 'Variant templates';
 export const TITLE_OF_CONTROLS: string = 'Properties / Events';
 export const TOC_TITLE: string = 'On this page';
@@ -71,11 +71,11 @@ export const TOC_OBJ = {
   headingSelector: 'h2, h3',
 };
 
-export const getPageStructureForFoundationStories = () => {
+export const getPageStructureForFoundationStories = (): any => {
   return [Title({}), Description({}), Primary({}), Controls({})];
 };
 
-export const getPageStructureForTemplateStories = () => {
+export const getPageStructureForTemplateStories = (): any => {
   return [Title({}), Description({}), Primary({})];
 };
 
@@ -104,10 +104,10 @@ export const attributesText = (object: { [key: string]: any }): string =>
     .map(([_, value]) => `${value}`)
     .join(' ');
 
-export const getLandingGeneralDesc = (name: string) =>
+export const getLandingGeneralDesc = (name: string): string =>
   `${getGeneralDescription(`Template containing the ${DESIGN_SYSTEM_TITLE} elements to be used to implement the **Landing - ${name}**.`, { generalDocLink: 'https://bamboo.tec.mx/latest/particularities/mitec-web/landings-fCESn8dl-fCESn8dl' })}`;
 
-export const getStandaloneGeneralDesc = (name: string) =>
+export const getStandaloneGeneralDesc = (name: string): string =>
   `${getGeneralDescription(`Template containing the ${DESIGN_SYSTEM_TITLE} elements to implement the structure of the **Stand alone sites - ${name}**.`, { generalDocLink: 'https://bamboo.tec.mx/latest/templates/sitios-stand-alone/descripcion-general-lwpZfyMh' })}`;
 
 const getProperName = (name: string): string =>
@@ -180,7 +180,7 @@ export const getStoryLink = ({
   return `[${getStoryTitle(title!)}](/docs/${getFormatName(title!, /(\/)|( )/g, '-').toLocaleLowerCase()}--documentation)`;
 };
 
-export const getAccordionDetail = (title: string, content: string) => `
+export const getAccordionDetail = (title: string, content: string): string => `
 <section className="bmb_doc-accordion--container">
   <details className="bmb_doc-accordion--item">
     <summary>${title}</summary>
@@ -423,7 +423,7 @@ export const getAlertBlockquote = (
     isSubStory?: boolean;
     subStoryChart?: string;
   },
-) => {
+): string => {
   const _title: string = isHeader
     ? `${isRelevantTitle ? title.replaceAll('*', '') : title} `
     : title;
@@ -481,8 +481,16 @@ export const getTechnicalDocReferences = ({
 ### ${TECHNICAL_DOC_TITLE}
 >
 ${TECHNICAL_DOC_REFERENCES}<br/>
-<ul>${references.map((ref) => '<li>'.concat(getStoryLink(ref).concat('</li>'))).toString().replaceAll(',',' ')}</ul>
+<ul>${references
+  .map((ref) => '<li>'.concat(getStoryLink(ref).concat('</li>')))
+  .toString()
+  .replaceAll(',', ' ')}</ul>
 `;
+
+export const getTechnicalTopBarReference = (title: string): string =>
+  getTechnicalDocReferences({
+    references: [{ title }],
+  });
 
 export const getGeneralDocDescription = (generalDocLink: string): string =>
   `Please remember to refer to the [Bamboo - General documentation](${generalDocLink}) for more details about it.`;
@@ -988,13 +996,13 @@ export const getAlertCenterServiceDocumentation = (): string =>
   > \`\`\`
 `);
 
-export const getProviderBlockExample = (bambooProviderName: string) =>
+export const getProviderBlockExample = (bambooProviderName: string): string =>
   `providers: [
   provideRouter(routes),
   importProvidersFrom([${bambooProviderName}, //Add other providers...]),
 ]`;
 
-export const getProviderExample = (bambooProviderName: string) =>
+export const getProviderExample = (bambooProviderName: string): string =>
   `Add the ***${bambooProviderName}*** to your App providers:
 \`\`\`typescript
  ${getProviderBlockExample(bambooProviderName)}
@@ -1004,7 +1012,7 @@ export const getProviderExample = (bambooProviderName: string) =>
 export const getProviderTypescriptExample = (
   bambooProviderName: string,
   additionalDetail: string = '',
-) => `
+): string => `
 ###${RELEVANT_TITLE.configuration}
 >
 >${additionalDetail}

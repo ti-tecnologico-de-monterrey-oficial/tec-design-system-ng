@@ -7,7 +7,7 @@ import {
   getPageStructureForTemplateStories,
   getSpecialSpecifications,
   getStandaloneGeneralDesc,
-  getTechnicalDocReferences,
+  getTechnicalTopBarReference,
 } from '../utils/doc/utils';
 import * as topBarStory from '../components/bmb-top-bar/bmb-top-bar.stories';
 
@@ -56,13 +56,7 @@ export default {
       description: {
         component: `
 ${getStandaloneGeneralDesc('1 Column box')}
-${getSpecialSpecifications(
-  getTechnicalDocReferences({
-    references: [
-      { title: topBarStory.default.title!},
-    ],
-  }),
-)}
+${getSpecialSpecifications(getTechnicalTopBarReference(topBarStory.default.title!))}
 ${getBasicExampleBlock('BmbTopBarComponent')}
 \`\`\`html
 <bmb-top-bar/>

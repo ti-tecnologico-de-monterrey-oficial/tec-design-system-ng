@@ -208,8 +208,8 @@ ${getSpecialSpecifications(
       { title: homeCardStory.default.title! },
       { title: imageStory.default.title! },
       { title: textLinkStory.default.title! },
-      { title: layoutStory.default.title!}
-],
+      { title: layoutStory.default.title! },
+    ],
     isFullScreenDesc: true,
   }),
 )}
