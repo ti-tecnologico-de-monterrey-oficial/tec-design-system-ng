@@ -53,6 +53,7 @@ export class BmbTagComponent implements AfterViewInit {
   activityTag = input<boolean>(false); //Disable
   isDisabled = input<boolean>(false);
   isActive = input<boolean>(false);
+  enableClick = input<boolean>(false);
 
   closedTag = output<string>();
   clickedTag = output<string>();
@@ -87,7 +88,7 @@ export class BmbTagComponent implements AfterViewInit {
       `bmb_tag-${this.appearance()}`,
     ];
 
-    if (this.dismissible()) {
+    if (this.dismissible() || this.enableClick()) {
       if (this.isActive()) classes.push('bmb_tag-active');
       if (this.isDisabled()) classes.push('bmb_tag-disabled');
     } else classes.push('bmb_tag-activity');
