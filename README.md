@@ -11,6 +11,7 @@ Descubre cómo nuestro Design System no solo da forma a la estética, sino que t
 En esta versión, el equipo colaboró para fortalecer la experiencia de la persona usuaria, mejorando la interfaz, la accesibilidad y la estabilidad de los componentes. El objetivo principal fue optimizar la interacción y asegurar que cada funcionalidad aporte valor real a quienes utilizan el sistema.
 
 ### 🆕 Nuevas Funcionalidades
+
 - Se agregó la opción de habilitar o inhabilitar el input, permitiendo mayor control y accesibilidad en formularios.
 - Nuevo template para las semanas Tec, facilitando la visualización y organización de información relevante.
 - Se implementó la posibilidad de determinar la posición de los filtros en la tabla, mejorando la personalización y usabilidad.
@@ -26,6 +27,7 @@ En esta versión, el equipo colaboró para fortalecer la experiencia de la perso
 - Se añadió la posibilidad de controlar la navegación por click en el selector de aplicaciones frecuentes, mejorando la experiencia de acceso.
 
 ### ✅ Problemas Resueltos
+
 - Se corrigió el comportamiento de selección con los radios en la Filter Card, asegurando una interacción precisa.
 - Se solucionó el problema de selección intermitente en el dropdown multiselect, garantizando una experiencia consistente.
 - Se corrigió el problema de emisión de eventos del footer en el Alert Center, mejorando la comunicación de acciones.
@@ -41,6 +43,7 @@ En esta versión, el equipo colaboró para fortalecer la experiencia de la perso
 - Se corrigió el problema de selección de filas en la tabla, permitiendo la interacción esperada.
 
 ### ⚡ Optimizaciones
+
 - Se mejoró la experiencia responsiva en múltiples componentes, asegurando una visualización óptima en todos los dispositivos.
 - Se optimizó la estructura de documentación en Storybook, facilitando el acceso a información relevante.
 - Se actualizaron las dependencias y la gestión de saltos de línea, mejorando la estabilidad del proyecto.
@@ -51,6 +54,7 @@ En esta versión, el equipo colaboró para fortalecer la experiencia de la perso
 - Se optimizó el manejo de estados y la estructura de los componentes, mejorando la mantenibilidad y escalabilidad del sistema.
 
 ### 📘 Mejoras Documentación
+
 - Se actualizó la documentación de componentes clave como Accordion, Calendar y User Summary, facilitando la adopción y el uso correcto.
 
 ---

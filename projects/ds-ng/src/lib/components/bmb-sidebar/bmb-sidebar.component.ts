@@ -83,18 +83,11 @@ export class BmbSidebarComponent implements OnInit {
     );
   }
 
-  checkForButton({
-    isMobile,
-    hasChildren
-  }: IBmbIsButton): boolean {
+  checkForButton({ isMobile, hasChildren }: IBmbIsButton): boolean {
     return isMobile && hasChildren;
   }
 
-  getLink({
-    link,
-    isMobile,
-    hasChildren,
-  }: IBmbIsButton): string {
+  getLink({ link, isMobile, hasChildren }: IBmbIsButton): string {
     if (this.checkForButton({ isMobile, hasChildren })) return '';
     return link || '';
   }
