@@ -17,7 +17,7 @@ import {
   getProviderExample,
   getProviderTypescriptExample,
   getSpecialSpecifications,
-  RELEVANT_TITLE_LEVEL,
+  RELEVANT_TITLE,
   TOC_TITLE,
 } from '../../utils/doc/utils';
 
@@ -209,7 +209,7 @@ export default {
       },
       description: {
         component: `
-${getGeneralDescription({ content: `***Portal*** offer a single point of access, customization options, simplifying navigation and providing specialized content.`, generalDocLink: 'https://bamboo.tec.mx/latest/dev-tools/coleccion-de-componentes-uC69aq75' })}
+${getGeneralDescription(`***Portal*** offer a single point of access, customization options, simplifying navigation and providing specialized content.`, { generalDocLink: 'https://bamboo.tec.mx/latest/dev-tools/coleccion-de-componentes-uC69aq75' })}
 ${getSpecialSpecifications(
   `${getProviderTypescriptExample(
     'BmbNotificationService',
@@ -260,7 +260,7 @@ ${getBasicExampleBlock(
   }`,
 )}
 >
-${RELEVANT_TITLE_LEVEL[1]}
+${RELEVANT_TITLE.important}
 If you show many notifications at the same time, the browser may display two scrolls bars.
 >
 If you need to reproduce sticky behavior on your notifications, you can add the bmb_main-container class to your app container in the **app.component.html** file as shown below.

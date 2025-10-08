@@ -14,12 +14,14 @@ export default {
       controls: { exclude: ['expanded', 'selectedTabId', 'tabsData'] },
       description: {
         component: `
-${getGeneralDescription({
-  content: `${getGeneralComponentDescription({ name: 'advertisement-card' })} displays a card with a title, subtitle, and tabbed content.`,
-  generalDocLink:
-    'https://bamboo.tec.mx/latest/componentes/advertisement-card/descripcion-general-pXicwP8b',
-  isDeprecated: true,
-})}
+${getGeneralDescription(
+  `${getGeneralComponentDescription({ name: 'advertisement-card' })} displays a card with a title, subtitle, and tabbed content.`,
+  {
+    generalDocLink:
+      'https://bamboo.tec.mx/latest/componentes/advertisement-card/descripcion-general-pXicwP8b',
+    isDeprecated: true,
+  },
+)}
 ${getBasicExampleBlock('BmbAdvertisementCardComponent')}
         `,
       },

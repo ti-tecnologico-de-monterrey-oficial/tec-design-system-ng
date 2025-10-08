@@ -1,14 +1,11 @@
 import { Component, TemplateRef, ViewChild } from '@angular/core';
 import { Meta, StoryFn } from '@storybook/angular';
 import {
-  FULLSCREEN_DESC,
   getBasicExampleBlock,
-  getFormatName,
   getLandingGeneralDesc,
   getPageStructureForTemplateStories,
   getSpecialSpecifications,
-  TECHNICAL_DOC_REFERENCES,
-  TECHNICAL_DOC_TITLE,
+  getTechnicalDocReferences,
 } from '../utils/doc/utils';
 import {
   BmbHomeCardComponent,
@@ -20,7 +17,6 @@ import {
   BmbCardComponent,
   BmbCardHeaderComponent,
   BmbCardContentComponent,
-  BmbIconComponent,
   IBmbActionHeader,
   IBmbTab,
   BmbImageComponent,
@@ -726,30 +722,32 @@ export default {
       description: {
         component: `
 ${getLandingGeneralDesc('Semanas Tec')}
-${getSpecialSpecifications(`### ${TECHNICAL_DOC_TITLE}
->
-${TECHNICAL_DOC_REFERENCES}
-- [${topBarStory.default.title}](/docs/${getFormatName(topBarStory.default.title!, /(\/)|( )/g, '-').toLocaleLowerCase()}--documentation)
-- [${sideBarStory.default.title}](/docs/${getFormatName(sideBarStory.default.title!, /(\/)|( )/g, '-').toLocaleLowerCase()}--documentation)
-- [${homeCardStory.default.title}](/docs/${getFormatName(homeCardStory.default.title!, /(\/)|( )/g, '-').toLocaleLowerCase()}--documentation)
-- [${layoutStory.default.title}](/docs/${getFormatName(layoutStory.default.title!, /(\/)|( )/g, '-').toLocaleLowerCase()}--documentation)
-- [${layoutItemStory.default.title}](/docs/${getFormatName(layoutItemStory.default.title!, /(\/)|( )/g, '-').toLocaleLowerCase()}--documentation)
-- [${cardStory.default.title}](/docs/${getFormatName(cardStory.default.title!, /(\/)|( )/g, '-').toLocaleLowerCase()}--documentation)
-- [${tabsStory.default.title}](/docs/${getFormatName(tabsStory.default.title!, /(\/)|( )/g, '-').toLocaleLowerCase()}--documentation)
-- [${accordionStory.default.title}](/docs/${getFormatName(accordionStory.default.title!, /(\/)|( )/g, '-').toLocaleLowerCase()}--documentation)
-- [${cardHeaderStory.default.title}](/docs/${getFormatName(cardHeaderStory.default.title!, /(\/)|( )/g, '-').toLocaleLowerCase()}--documentation)
-- [${cardContentStory.default.title}](/docs/${getFormatName(cardContentStory.default.title!, /(\/)|( )/g, '-').toLocaleLowerCase()}--documentation)
-- [${imageStory.default.title}](/docs/${getFormatName(imageStory.default.title!, /(\/)|( )/g, '-').toLocaleLowerCase()}--documentation)
-- [${buttonDirectiveStory.default.title}](/docs/${getFormatName(buttonDirectiveStory.default.title!, /(\/)|( )/g, '-').toLocaleLowerCase()}--documentation)
-- [${verticalLayoutStory.default.title}](/docs/${getFormatName(verticalLayoutStory.default.title!, /(\/)|( )/g, '-').toLocaleLowerCase()}--documentation)
-- [${verticalLayoutItemStory.default.title}](/docs/${getFormatName(verticalLayoutItemStory.default.title!, /(\/)|( )/g, '-').toLocaleLowerCase()}--documentation)
-- [${textLinkStory.default.title}](/docs/${getFormatName(textLinkStory.default.title!, /(\/)|( )/g, '-').toLocaleLowerCase()}--documentation)
-- [${checkboxStory.default.title}](/docs/${getFormatName(checkboxStory.default.title!, /(\/)|( )/g, '-').toLocaleLowerCase()}--documentation)
-- [${dividerStory.default.title}](/docs/${getFormatName(dividerStory.default.title!, /(\/)|( )/g, '-').toLocaleLowerCase()}--documentation)
-- [${containerButtonStory.default.title}](/docs/${getFormatName(containerButtonStory.default.title!, /(\/)|( )/g, '-').toLocaleLowerCase()}--documentation)
->
-${FULLSCREEN_DESC}
-`)}
+${getSpecialSpecifications(
+  getTechnicalDocReferences({
+    references: [
+      { title: topBarStory.default.title! },
+      { title: sideBarStory.default.title! },
+      { title: homeCardStory.default.title! },
+      { title: layoutStory.default.title! },
+      { title: layoutItemStory.default.title! },
+      { title: cardStory.default.title! },
+      { title: tabsStory.default.title! },
+      { title: accordionStory.default.title! },
+      { title: cardHeaderStory.default.title! },
+      { title: cardContentStory.default.title! },
+      { title: imageStory.default.title! },
+      { title: buttonDirectiveStory.default.title! },
+      { title: verticalLayoutStory.default.title! },
+      { title: verticalLayoutItemStory.default.title! },
+      { title: textLinkStory.default.title! },
+      { title: checkboxStory.default.title! },
+      { title: dividerStory.default.title! },
+      { title: containerButtonStory.default.title! },
+    ],
+    isFullScreenDesc: true,
+  }),
+  { showAdditionalBlockquote: true },
+)}
 ${getBasicExampleBlock(
   `
     BmbTopBarComponent,

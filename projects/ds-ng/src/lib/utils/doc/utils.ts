@@ -10,12 +10,7 @@ interface IBmbVariableDesc {
   element: string;
   name: string;
 }
-export type IBmbStoryType =
-  | 'element'
-  | 'component'
-  | 'organism'
-  | 'directive'
-  | 'service';
+
 export interface IBmbOnEvent {
   name?: string;
   handleExample?: string;
@@ -23,19 +18,24 @@ export interface IBmbOnEvent {
   type?: string;
   event_type?: string;
 }
+
+export interface IBmbStoryLink {
+  title: string;
+  showFullLinkName?: boolean | undefined;
+}
+
+export type IBmbStoryType =
+  | 'element'
+  | 'component'
+  | 'organism'
+  | 'directive'
+  | 'service';
+
 export type IBmbOnEventType = 'change' | 'keyDown' | 'other';
 
-export const RELEVANT_TITLE_LEVEL: string[] = [
-  `⚠️**Warning**<br/>`,
-  `ℹ️**Important**<br/>`,
-  `✳️**Note**<br/>`,
-  `⚙️**Configuration**<br/>`,
-  `⭐**Example**<br/>`,
-];
-
-export const RelevantTitle = {
+export const RELEVANT_TITLE = {
   warning: '⚠️**Warning**<br/>',
-  important: '‼️**Important**<br/>',
+  important: 'ℹ️**Important**<br/>',
   note: '✳️**Note**<br/>',
   configuration: '⚙️**Configuration**<br/>',
   example: '⭐**Example**<br/>',
@@ -49,8 +49,8 @@ export const BlockquoteType = {
 };
 
 export const DESIGN_SYSTEM_TITLE: string = '***Bamboo***';
-export const TECHNICAL_DOC_TITLE: string = `${DESIGN_SYSTEM_TITLE} ***- Technical documentation***`;
-export const TECHNICAL_DOC_REFERENCES: string = `Please remember to refer to the ${TECHNICAL_DOC_TITLE} for more details:`;
+const TECHNICAL_DOC_TITLE: string = `${DESIGN_SYSTEM_TITLE} ***- Technical documentation***`;
+const TECHNICAL_DOC_REFERENCES: string = `Please remember to refer to the ${TECHNICAL_DOC_TITLE} for more details:`;
 export const STORIES_TITLE: string = 'Variant templates';
 export const TITLE_OF_CONTROLS: string = 'Properties / Events';
 export const TOC_TITLE: string = 'On this page';
@@ -63,7 +63,7 @@ export const SPACING_DESCRIPTION: string =
 export const TYPOGRAPHY_DESCRIPTION: string =
   'Typography refers to the design or selection of letter forms that are arranged in typo of blocks to create written content that is legible, readable, and visually appealing.<br/>';
 export const FONT_FAMILY_DESCRIPTION: string = `Explore the typographic scale with ${DESIGN_SYSTEM_TITLE} **Popping** font family`;
-export const FULLSCREEN_DESC: string = `${RELEVANT_TITLE_LEVEL[2]}
+export const FULLSCREEN_DESC: string = `${RELEVANT_TITLE.note}
 When you click on fullscreen icon, in Storybook doesn’t look the best due to the many elements, but in your project, it should display correctly.`;
 
 export const TOC_OBJ = {
@@ -71,11 +71,11 @@ export const TOC_OBJ = {
   headingSelector: 'h2, h3',
 };
 
-export const getPageStructureForFoundationStories = () => {
+export const getPageStructureForFoundationStories = (): any => {
   return [Title({}), Description({}), Primary({}), Controls({})];
 };
 
-export const getPageStructureForTemplateStories = () => {
+export const getPageStructureForTemplateStories = (): any => {
   return [Title({}), Description({}), Primary({})];
 };
 
@@ -104,11 +104,11 @@ export const attributesText = (object: { [key: string]: any }): string =>
     .map(([_, value]) => `${value}`)
     .join(' ');
 
-export const getLandingGeneralDesc = (name: string) =>
-  `${getGeneralDescription({ content: `Template containing the ${DESIGN_SYSTEM_TITLE} elements to be used to implement the **Landing - ${name}**.`, generalDocLink: 'https://bamboo.tec.mx/latest/particularities/mitec-web/landings-fCESn8dl-fCESn8dl' })}`;
+export const getLandingGeneralDesc = (name: string): string =>
+  `${getGeneralDescription(`Template containing the ${DESIGN_SYSTEM_TITLE} elements to be used to implement the **Landing - ${name}**.`, { generalDocLink: 'https://bamboo.tec.mx/latest/particularities/mitec-web/landings-fCESn8dl-fCESn8dl' })}`;
 
-export const getStandaloneGeneralDesc = (name: string) =>
-  `${getGeneralDescription({ content: `Template containing the ${DESIGN_SYSTEM_TITLE} elements to implement the structure of the **Stand alone sites - ${name}**.`, generalDocLink: 'https://bamboo.tec.mx/latest/templates/sitios-stand-alone/descripcion-general-lwpZfyMh' })}`;
+export const getStandaloneGeneralDesc = (name: string): string =>
+  `${getGeneralDescription(`Template containing the ${DESIGN_SYSTEM_TITLE} elements to implement the structure of the **Stand alone sites - ${name}**.`, { generalDocLink: 'https://bamboo.tec.mx/latest/templates/sitios-stand-alone/descripcion-general-lwpZfyMh' })}`;
 
 const getProperName = (name: string): string =>
   name.replace(name.slice(0, 1), name.slice(0, 1).toLocaleUpperCase());
@@ -170,7 +170,7 @@ export const getStoryTitle = (fullTitle: string): string =>
 
 export const getStoryLink = ({
   title,
-  showFullLinkName,
+  showFullLinkName = true,
 }: {
   title: string;
   showFullLinkName?: boolean;
@@ -180,7 +180,7 @@ export const getStoryLink = ({
   return `[${getStoryTitle(title!)}](/docs/${getFormatName(title!, /(\/)|( )/g, '-').toLocaleLowerCase()}--documentation)`;
 };
 
-export const getAccordionDetail = (title: string, content: string) => `
+export const getAccordionDetail = (title: string, content: string): string => `
 <section className="bmb_doc-accordion--container">
   <details className="bmb_doc-accordion--item">
     <summary>${title}</summary>
@@ -192,12 +192,36 @@ export const getAccordionDetail = (title: string, content: string) => `
 export const generateLabel = (inputName: string): string =>
   getFormatName(inputName, '_', ' ');
 
-export const getEmptyStateMessage = (
-  isSubStory: boolean = false,
-  subStoryChart: string = '-',
-): string => `
-###${getSubStoryIdentifier(isSubStory, subStoryChart)}${RELEVANT_TITLE_LEVEL[1]}
-Remember to use the \`empty state\` for the cases that apply to this. Related documentation is available [here](https://bamboo.tec.mx/latest/guia-ux-writing/mensajes-del-producto/empty-states-OQYyq6h8-OQYyq6h8).
+export const getEmptyStateMessage = ({
+  isSubStory = false,
+  subStoryChart = '-',
+}: {
+  isSubStory?: boolean;
+  subStoryChart?: string;
+} = {}): string => `
+${getAlertBlockquote(
+  'Please remember to use the `empty state` for the cases that apply to this. Related documentation is available [here](https://bamboo.tec.mx/latest/guia-ux-writing/mensajes-del-producto/empty-states-OQYyq6h8-OQYyq6h8).',
+  {
+    title: `###${getSubStoryIdentifier(isSubStory, subStoryChart)}${RELEVANT_TITLE.important}`,
+    blockquoteType: BlockquoteType.important,
+  },
+)}
+`;
+
+export const getOutOfModalUseMessage = ({
+  isSubStory = false,
+  subStoryChart = '-',
+}: {
+  isSubStory?: boolean;
+  subStoryChart?: string;
+} = {}): string => `
+${getAlertBlockquote(
+  'Please remember to implement this element or component outside of ***Modal***.',
+  {
+    title: `###${getSubStoryIdentifier(isSubStory, subStoryChart)}${RELEVANT_TITLE.warning}`,
+    blockquoteType: BlockquoteType.warning,
+  },
+)}
 `;
 
 export const getGridGeneratorLink = (): string =>
@@ -222,6 +246,7 @@ Represents the structure of the component.
 \`\`\`html
 ${architectureBlock}
 \`\`\`${bmbNameLink && bmbNameLink ? getDOMArchitectureLink(bmbNameLink, documentationLink) : ''}
+<br/>
 `;
 
 export const getCheckboxOrRadialArchitecture = (type: string): string => `
@@ -397,6 +422,34 @@ export const getSubStoryIdentifier = (
   subStoryChart: string = '-',
 ): string => (isSubStory ? subStoryChart : '');
 
+export const getAlertBlockquote = (
+  content: string,
+  {
+    title,
+    blockquoteType,
+    isRelevantTitle = true,
+    isHeader = true,
+    isSubStory,
+    subStoryChart = '-',
+  }: {
+    title: string;
+    blockquoteType: string;
+    isHeader?: boolean;
+    isRelevantTitle?: boolean;
+    isSubStory?: boolean;
+    subStoryChart?: string;
+  },
+): string => {
+  const _title: string = isHeader
+    ? `${isRelevantTitle ? title.replaceAll('*', '') : title} `
+    : title;
+  return `
+${blockquoteType}
+${getSubStoryIdentifier(isSubStory, subStoryChart).concat(_title)}
+>${content}
+`;
+};
+
 export const getDeprecatedDesc = ({
   type,
   isHeaderL2,
@@ -406,15 +459,53 @@ export const getDeprecatedDesc = ({
   isHeaderL2?: boolean;
   isBlockquote?: boolean;
 }): string => {
-  const _title: string = isHeaderL2
-    ? `##${RelevantTitle.deprecated.replaceAll('*', '')} `
-    : RelevantTitle.deprecated;
-  return `${isBlockquote ? BlockquoteType.warning : ''}
-  ${_title}
-  This ${type} will not be maintainable.
-  ${type === 'property' ? 'This will be removed in future versions.' : ''}
+  const _content: string = `This ${type} will not be maintainable.
+  ${type === 'property' ? 'This will be removed in future versions.' : ''}`;
+  return `${
+    isBlockquote
+      ? getAlertBlockquote(_content, {
+          title: isHeaderL2
+            ? '##'.concat(RELEVANT_TITLE.deprecated)
+            : RELEVANT_TITLE.deprecated,
+          blockquoteType: BlockquoteType.warning,
+          isHeader: isHeaderL2,
+        })
+      : RELEVANT_TITLE.deprecated.concat(_content)
+  }
+<br/><br/>
 `;
 };
+
+export const getFullScreenDesc = (): string => `
+${getAlertBlockquote(
+  `When you click on fullscreen icon, in Storybook doesn’t look the best due to the many elements, but in your project, it should display correctly.`,
+  {
+    title: '###'.concat(RELEVANT_TITLE.note),
+    blockquoteType: BlockquoteType.note,
+  },
+)}`;
+
+export const getTechnicalDocReferences = ({
+  references,
+  isFullScreenDesc,
+}: {
+  references: IBmbStoryLink[];
+  isFullScreenDesc?: boolean;
+}): string => `${isFullScreenDesc ? getFullScreenDesc() : ''}
+>
+### ${TECHNICAL_DOC_TITLE}
+>
+${TECHNICAL_DOC_REFERENCES}<br/>
+<ul>${references
+  .map((ref) => '<li>'.concat(getStoryLink(ref).concat('</li>')))
+  .toString()
+  .replaceAll(',', ' ')}</ul>
+`;
+
+export const getTechnicalTopBarReference = (title: string): string =>
+  getTechnicalDocReferences({
+    references: [{ title }],
+  });
 
 export const getGeneralDocDescription = (generalDocLink: string): string =>
   `Please remember to refer to the [Bamboo - General documentation](${generalDocLink}) for more details about it.`;
@@ -432,31 +523,31 @@ export const getGeneralComponentDescription = ({
 }): string =>
   `\`bmb${type === 'directive' ? '' : '-'}${name}\` is a ${DESIGN_SYSTEM_TITLE} ${additional} ${type} ${alternativeDescription || 'that allows'}`;
 
-export const getGeneralDescription = ({
-  content,
-  generalDocLink,
-  isSubStory,
-  subStoryChart = '-',
-  isDeprecated,
-}: {
-  content: string;
-  generalDocLink?: string;
-  isSubStory?: boolean;
-  subStoryChart?: string;
-  isDeprecated?: boolean;
-}): string => `<br/>
+export const getGeneralDescription = (
+  content: string,
+  {
+    generalDocLink,
+    isSubStory,
+    subStoryChart = '-',
+    isDeprecated,
+  }: {
+    generalDocLink?: string;
+    isSubStory?: boolean;
+    subStoryChart?: string;
+    isDeprecated?: boolean;
+  } = {},
+): string => `
 ${
   isDeprecated
-    ? `
-${getDeprecatedDesc({ type: 'component', isHeaderL2: true, isBlockquote: true })}`
-    : ''
-}
+    ? `<br/>${getDeprecatedDesc({ type: 'component', isHeaderL2: true, isBlockquote: true })}
 
-<br/>
+`
+    : '<br/><br/>'
+}
 ## ${getSubStoryIdentifier(isSubStory, subStoryChart)}${DESCRIPTION_TITLE}
 >${content}
 >
-${!!generalDocLink ? `>${getGeneralDocDescription(generalDocLink)}` : '>'}
+${!!generalDocLink ? `>${getGeneralDocDescription(generalDocLink)}` : ''}
 
 <br/>
 `;
@@ -466,7 +557,6 @@ export const getDOMArchitectureLink = (
   documentationLink: string = '',
 ): string => `
 [bmb-${bmbNameLink} - DOM Architecture](/docs/${documentationLink}--documentation&globals=#dom-architecture)
-
 <br/>
 `;
 
@@ -475,8 +565,8 @@ export const getFieldDescription = (
   additionalDescription: string,
   generalDocLink: string,
 ): string => `
-${getGeneralDescription({
-  content: `
+${getGeneralDescription(
+  `
 >\`bmb-${componentName}\` is a customizable ${DESIGN_SYSTEM_TITLE} input component that allows users to ${additionalDescription}
 >
 >This component includes validations, error messages, and support for tooltips to provide additional information.
@@ -484,17 +574,26 @@ ${getGeneralDescription({
 >Support for error handling when errors occur:
 >- The field border color changes to red.
 >- Support text is displayed with the error message (default or assigned).`,
-  generalDocLink,
-})}
+  {
+    generalDocLink,
+  },
+)}
 `;
 
 export const getSpecialSpecifications = (
   content: string,
-  isSubStory: boolean = false,
-  subStoryChart: string = '-',
+  {
+    isSubStory = false,
+    subStoryChart = '-',
+    showAdditionalBlockquote = false,
+  }: {
+    isSubStory?: boolean;
+    subStoryChart?: string;
+    showAdditionalBlockquote?: boolean;
+  } = {},
 ): string => `
-## ${getSubStoryIdentifier(isSubStory, subStoryChart)}${SPECIAL_SPECIFICATIONS_TITLE}
->${content}
+## ${getSubStoryIdentifier(isSubStory, subStoryChart).concat(SPECIAL_SPECIFICATIONS_TITLE)}
+${showAdditionalBlockquote ? content : '>'.concat(content)}
 <br/>
 `;
 
@@ -579,7 +678,7 @@ ${
     ? `><br/>
 >###Reminder:
 Please remember to replace \`font-medium-4\` with the appropriate class based on the family and size you intend to use. The flexibility of these classes allows for a consistent typographic hierarchy and visual coherence across your digital experiences.
-><br/><br/><br/>`
+><br/><br/>`
     : '><br/>'
 }`;
 
@@ -756,32 +855,36 @@ export const getSandboxConsiderationsDocumentation = (
     `;
   }
   return `
->
-${introductionContent}
->
+${
+  isOmitImportant
+    ? ''
+    : getAlertBlockquote(
+        'Please refer to the [Variables documentation](/docs/foundations-variables--documentation&globals=#dom-architecture) for details on how to implement ${element} in CSS, where it is detailed that these can be implemented through variables.<br/>',
+        {
+          title: '###'.concat(RELEVANT_TITLE.important),
+          blockquoteType: BlockquoteType.important,
+        },
+      )
+}
+${!isOmitImportant && isWarning ? '<br/>' : ''}
+${
+  isWarning
+    ? getAlertBlockquote(
+        `You should be careful when using ${element}, as they can affect ${DESIGN_SYSTEM_TITLE} components. Some components may override this attribute, so check the component's documentation before applying the ${element} class.<br/>`,
+        {
+          title: '###'.concat(RELEVANT_TITLE.warning),
+          blockquoteType: BlockquoteType.warning,
+        },
+      )
+    : ''
+}
+>${introductionContent}
 >${
     !!implementationDetails.length
       ? `The ${element} is defined in the CSS variables and can be used in the application by using ${isClassNameVar ? 'the class name or ' : ''}the CSS variable name.
-><br/><br/><br/>`
+><br/><br/>`
       : ''
   }
->${
-    isOmitImportant
-      ? ''
-      : `
-### ${RELEVANT_TITLE_LEVEL[1]}
-Please refer to the [Variables documentation](/docs/foundations-variables--documentation&globals=#dom-architecture) for details on how to implement ${element} in CSS, where it is detailed that these can be implemented through variables.<br/><br/><br/>`
-  }
->
->${
-    isWarning
-      ? `
-### ${RELEVANT_TITLE_LEVEL[0]}
-You should be careful when using ${element}, as they can affect ${DESIGN_SYSTEM_TITLE} components. Some components may override this attribute, so check the component's documentation before applying the ${element} class.
-<br/><br/><br/>`
-      : ''
-  }
->
 >${_implementationDetails}
 >${content}
 >### ${SANDBOX_TITLE}
@@ -904,13 +1007,13 @@ export const getAlertCenterServiceDocumentation = (): string =>
   > \`\`\`
 `);
 
-export const getProviderBlockExample = (bambooProviderName: string) =>
+export const getProviderBlockExample = (bambooProviderName: string): string =>
   `providers: [
   provideRouter(routes),
   importProvidersFrom([${bambooProviderName}, //Add other providers...]),
 ]`;
 
-export const getProviderExample = (bambooProviderName: string) =>
+export const getProviderExample = (bambooProviderName: string): string =>
   `Add the ***${bambooProviderName}*** to your App providers:
 \`\`\`typescript
  ${getProviderBlockExample(bambooProviderName)}
@@ -920,8 +1023,8 @@ export const getProviderExample = (bambooProviderName: string) =>
 export const getProviderTypescriptExample = (
   bambooProviderName: string,
   additionalDetail: string = '',
-) => `
-###${RELEVANT_TITLE_LEVEL[3]}
+): string => `
+###${RELEVANT_TITLE.configuration}
 >
 >${additionalDetail}
 >

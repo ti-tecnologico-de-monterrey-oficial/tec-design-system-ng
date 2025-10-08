@@ -4,7 +4,7 @@ import {
   getBasicExampleBlock,
   getGeneralComponentDescription,
   getGeneralDescription,
-  RELEVANT_TITLE_LEVEL,
+  RELEVANT_TITLE,
 } from '../../utils/doc/utils';
 import {
   DBmbGenericParamDesc,
@@ -31,7 +31,7 @@ export default {
       controls: { exclude: ['getFormattedText', 'progressValue'] },
       description: {
         component: `
-${getGeneralDescription({ content: `${getGeneralComponentDescription({ name: 'progress-bar' })} to show how complete a process is, visually indicating the progression gradually.`, generalDocLink: 'https://bamboo.tec.mx/latest/componentes/progress-bar/descripcion-general-EZrYlLVQ' })}
+${getGeneralDescription(`${getGeneralComponentDescription({ name: 'progress-bar' })} to show how complete a process is, visually indicating the progression gradually.`, { generalDocLink: 'https://bamboo.tec.mx/latest/componentes/progress-bar/descripcion-general-EZrYlLVQ' })}
 ${getBasicExampleBlock('BmbProgressBarComponent')}
         `,
       },
@@ -122,7 +122,7 @@ The function receives two parameters: the current value and the total value, and
 
 If not set, it defaults to showing the value as *"value/total"*.
 
-${RELEVANT_TITLE_LEVEL[2]} Avoid return HTML code, whether HTML code will be parsed.`,
+${RELEVANT_TITLE.note} Avoid return HTML code, whether HTML code will be parsed.`,
       table: {
         category: 'Properties',
         type: {

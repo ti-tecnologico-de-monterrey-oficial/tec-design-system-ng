@@ -6,7 +6,7 @@ import {
   getGeneralDescription,
   getOnEvent,
   getSpecialSpecifications,
-  RELEVANT_TITLE_LEVEL,
+  RELEVANT_TITLE,
 } from '../../utils/doc/utils';
 import {
   DEFAULT_VALUE_DESC,
@@ -14,7 +14,7 @@ import {
   getPropertyParamDesc,
 } from '../../utils/doc/parameterDescriptions';
 
-const REQUIRED_MICRO_DESC: string = `<br/><br/>${RELEVANT_TITLE_LEVEL[2]}Required when \`isMicro\` property is true.`;
+const REQUIRED_MICRO_DESC: string = `<br/><br/>${RELEVANT_TITLE.note}Required when \`isMicro\` property is true.`;
 const getPropertyDescription = (name: string) => {
   const propertyDesc: any = getPropertyParamDesc(
     'grades',
@@ -75,8 +75,8 @@ export default {
       },
       description: {
         component: `
-${getGeneralDescription({ content: `${getGeneralComponentDescription({ name: 'grades', type: 'organism' })} to display students' grades for a school period.`, generalDocLink: 'https://bamboo.tec.mx/latest/organismos/grades/descripcion-general-F5HIJ8av' })}
-${getSpecialSpecifications(` ###${RELEVANT_TITLE_LEVEL[3]}
+${getGeneralDescription(`${getGeneralComponentDescription({ name: 'grades', type: 'organism' })} to display students' grades for a school period.`, { generalDocLink: 'https://bamboo.tec.mx/latest/organismos/grades/descripcion-general-F5HIJ8av' })}
+${getSpecialSpecifications(` ###${RELEVANT_TITLE.configuration}
 >
 If you want the component to handle the scroll, you should wrap it in a container with a defined height.
 >
@@ -102,7 +102,7 @@ ${getBasicExampleBlock('BmbGradesComponent')}
         defaultValue: {
           summary: '[]',
           detail: `
-${RELEVANT_TITLE_LEVEL[4]}
+${RELEVANT_TITLE.example}
 grades: [
       {
         title: 'Calificaciones 2022',

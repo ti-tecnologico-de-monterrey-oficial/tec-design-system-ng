@@ -1,12 +1,14 @@
 import { componentWrapperDecorator, Meta, StoryObj } from '@storybook/angular';
 import { BmbTimestreamCardComponent } from './bmb-timestream-card.component';
 import {
+  BlockquoteType,
+  getAlertBlockquote,
   getBasicExampleBlock,
   getEmptyStateMessage,
   getGeneralComponentDescription,
   getGeneralDescription,
   getSpecialSpecifications,
-  RELEVANT_TITLE_LEVEL,
+  RELEVANT_TITLE,
 } from '../../utils/doc/utils';
 import {
   DBmbGenericParamDesc,
@@ -114,13 +116,21 @@ export default {
       },
       description: {
         component: `
-${getGeneralDescription({ content: `${getGeneralComponentDescription({ name: 'timestream-card', type: 'organism' })} organize the most important moments of each student's academic journey in an interactive and easy-to-follow timeline.`, generalDocLink: 'https://bamboo.tec.mx/latest/organisms/timestream-card-full/descripcion-general-ke2oXi5N' })}
-${getSpecialSpecifications(`###${RELEVANT_TITLE_LEVEL[2]}
->
-When you click on fullscreen icon, in Storybook doesn’t look the best due to the many elements, but in your project, it should display correctly.
->
->${getEmptyStateMessage()}
-`)}
+${getGeneralDescription(`${getGeneralComponentDescription({ name: 'timestream-card', type: 'organism' })} organize the most important moments of each student's academic journey in an interactive and easy-to-follow timeline.`, { generalDocLink: 'https://bamboo.tec.mx/latest/organisms/timestream-card-full/descripcion-general-ke2oXi5N' })}
+${getSpecialSpecifications(
+  `
+  ${getAlertBlockquote(
+    `When you click on fullscreen icon, in Storybook doesn’t look the best due to the many elements, but in your project, it should display correctly.`,
+    {
+      title: '###'.concat(RELEVANT_TITLE.note),
+      blockquoteType: BlockquoteType.note,
+    },
+  )}
+<br/>
+${getEmptyStateMessage()}
+`,
+  { showAdditionalBlockquote: true },
+)}
 ${getBasicExampleBlock('BmbTimestreamCardComponent')}
         `,
       },

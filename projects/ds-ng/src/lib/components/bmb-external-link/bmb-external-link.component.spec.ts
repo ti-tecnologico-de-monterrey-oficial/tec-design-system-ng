@@ -102,7 +102,7 @@ describe('BmbExternalLinkComponent', () => {
 
   it('should call menu item actions', () => {
     const spy = spyOn(component, 'onMenuOptionClick');
-    component.menuItems.forEach(item => {
+    component.menuItems.forEach((item) => {
       if (item?.action) {
         item.action();
       }

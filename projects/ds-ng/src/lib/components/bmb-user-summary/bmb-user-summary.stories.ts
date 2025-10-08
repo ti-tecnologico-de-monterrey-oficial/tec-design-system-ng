@@ -16,7 +16,7 @@ export default {
       controls: { exclude: ['handleClick', 'getClass'] },
       description: {
         component: `
-${getGeneralDescription({ content: `${getGeneralComponentDescription({ name: 'user-summary' })} to display a summary of user information, such as name, ID, profile image, and career details.`, generalDocLink: 'https://bamboo.tec.mx/latest/componentes/user-summary/descripcion-general-hvTgEBWT' })}
+${getGeneralDescription(`${getGeneralComponentDescription({ name: 'user-summary' })} to display a summary of user information, such as name, ID, profile image, and career details.`, { generalDocLink: 'https://bamboo.tec.mx/latest/componentes/user-summary/descripcion-general-hvTgEBWT' })}
 ${getBasicExampleBlock('BmbUserSummaryComponent')}
         `,
       },

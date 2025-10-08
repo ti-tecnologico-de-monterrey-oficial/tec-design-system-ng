@@ -5,7 +5,7 @@ import {
   getGeneralDescription,
   getPageStructureForFoundationStories,
   getSpecialSpecifications,
-  RELEVANT_TITLE_LEVEL,
+  RELEVANT_TITLE,
 } from '../../utils/doc/utils';
 import {
   DBmbIconParamDesc,
@@ -28,20 +28,22 @@ export default {
       page: () => getPageStructureForFoundationStories(),
       description: {
         component: `
-${getGeneralDescription({
-  content: `***Notification counter*** is a visual indicator that reports the accumulated notifications.`,
-  generalDocLink:
-    'https://bamboo.tec.mx/latest/foundations/icon/notification-counter-iKqGw1Ww-iKqGw1Ww',
-  isSubStory: true,
-})}
+${getGeneralDescription(
+  `***Notification counter*** is a visual indicator that reports the accumulated notifications.`,
+  {
+    generalDocLink:
+      'https://bamboo.tec.mx/latest/foundations/icon/notification-counter-iKqGw1Ww-iKqGw1Ww',
+    isSubStory: true,
+  },
+)}
 ${getSpecialSpecifications(
-  `###${RELEVANT_TITLE_LEVEL[0]}
+  `###${RELEVANT_TITLE.warning}
 >
 Please consider that the fixed height of the ***Notification counter*** is 12 px,
 such that the sizes assigned to the elements in relation to it must be considered,
 in this way there will be visual harmony between the elements.
 `,
-  true,
+  { isSubStory: true },
 )}
 ${getBasicExampleBlock('BmbIconComponent', '', '', true)}
         `,

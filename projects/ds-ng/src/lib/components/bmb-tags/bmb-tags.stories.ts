@@ -70,10 +70,10 @@ export default {
       },
       description: {
         component: `
-${getGeneralDescription({
-  content: `${getGeneralComponentDescription({ name: 'tag' })} to create content such as keywords, categories, organizations, or searches.`,
-  generalDocLink: GENERAL_DOCUMENTATION_LINK,
-})}
+${getGeneralDescription(
+  `${getGeneralComponentDescription({ name: 'tag' })} to create content such as keywords, categories, organizations, or searches.`,
+  { generalDocLink: GENERAL_DOCUMENTATION_LINK },
+)}
 ${getBasicExampleBlock('BmbTagComponent')}
         `,
       },

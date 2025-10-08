@@ -15,9 +15,7 @@ import {
   getPageStructureForTemplateStories,
   getSpecialSpecifications,
   getStandaloneGeneralDesc,
-  getStoryLink,
-  TECHNICAL_DOC_REFERENCES,
-  TECHNICAL_DOC_TITLE,
+  getTechnicalDocReferences,
 } from '../utils/doc/utils';
 import * as topBarStory from '../components/bmb-top-bar/bmb-top-bar.stories';
 import * as sideBarStory from '../components/bmb-sidebar/bmb-sidebar.stories';
@@ -187,17 +185,19 @@ export default {
       description: {
         component: `
 ${getStandaloneGeneralDesc('2 Column info bar')}
-${getSpecialSpecifications(`### ${TECHNICAL_DOC_TITLE}
->
-${TECHNICAL_DOC_REFERENCES}
-- ${getStoryLink({ title: topBarStory.default.title!, showFullLinkName: true })}
-- ${getStoryLink({ title: sideBarStory.default.title!, showFullLinkName: true })}
-- ${getStoryLink({ title: badgeStory.default.title!, showFullLinkName: true })}
-- ${getStoryLink({ title: stepProgressBarStory.default.title!, showFullLinkName: true })}
-- ${getStoryLink({ title: userSummaryStory.default.title!, showFullLinkName: true })}
-- ${getStoryLink({ title: invoiceStory.default.title!, showFullLinkName: true })}
-- ${getStoryLink({ title: buttonStory.default.title!, showFullLinkName: true })}
-`)}
+${getSpecialSpecifications(
+  getTechnicalDocReferences({
+    references: [
+      { title: topBarStory.default.title! },
+      { title: sideBarStory.default.title! },
+      { title: badgeStory.default.title! },
+      { title: stepProgressBarStory.default.title! },
+      { title: userSummaryStory.default.title! },
+      { title: invoiceStory.default.title! },
+      { title: buttonStory.default.title! },
+    ],
+  }),
+)}
 ${getBasicExampleBlock(`BmbTopBarComponent,
     BmbSidebarComponent,
     BmbBadgeComponent,

@@ -8,7 +8,7 @@ import {
   getGeneralDescription,
   getOnEvent,
   getSpecialSpecifications,
-  RELEVANT_TITLE_LEVEL,
+  RELEVANT_TITLE,
 } from '../../utils/doc/utils';
 import {
   DBmbGenericParamDesc,
@@ -27,8 +27,8 @@ export default {
       },
       description: {
         component: `
-${getGeneralDescription({ content: `${getGeneralComponentDescription({ name: 'home-card' })} to display a card with customizable title, subtitle, icons, navigation data, and action headers.`, generalDocLink: 'https://bamboo.tec.mx/latest/componentes/home-card/descripcion-general-SzSShX4e' })}
-${getSpecialSpecifications(` ### ${RELEVANT_TITLE_LEVEL[1]}
+${getGeneralDescription(`${getGeneralComponentDescription({ name: 'home-card' })} to display a card with customizable title, subtitle, icons, navigation data, and action headers.`, { generalDocLink: 'https://bamboo.tec.mx/latest/componentes/home-card/descripcion-general-SzSShX4e' })}
+${getSpecialSpecifications(` ### ${RELEVANT_TITLE.important}
 ***Home card*** component **is not a modal**, therefore it should not be used as such.
 `)}
 ${getBasicExampleBlock(

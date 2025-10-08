@@ -6,14 +6,14 @@ import {
   getGeneralDescription,
   getOnEvent,
   getSpecialSpecifications,
-  RELEVANT_TITLE_LEVEL,
+  RELEVANT_TITLE,
 } from '../../utils/doc/utils';
 import {
   getOnClickParam,
   getOnEventParam,
 } from '../../utils/doc/parameterDescriptions';
 
-const IMPORTANT_DESCRIPTION: string = `${RELEVANT_TITLE_LEVEL[1]}
+const IMPORTANT_DESCRIPTION: string = `${RELEVANT_TITLE.important}
 The event only returns a signal to indicates the click event.
 `;
 const getOnClickAndImportantParam = (
@@ -43,12 +43,14 @@ export default {
       },
       description: {
         component: `
-${getGeneralDescription({
-  content: `${getGeneralComponentDescription({ name: 'chat-bubble' })} displays chat messages with user images, icons, and interactive actions such as repeat, voice, copy, like, and dislike.
+${getGeneralDescription(
+  `${getGeneralComponentDescription({ name: 'chat-bubble' })} displays chat messages with user images, icons, and interactive actions such as repeat, voice, copy, like, and dislike.
 It supports [AI icons](https://bamboo.tec.mx/latest/componentes/ai-chat-bar/ai-icons-PPp7SNig), and allows configuration of available [***AI Chat bar***](/docs/components-inputs-ai-chat-bar--documentation) actions.`,
-  generalDocLink:
-    'https://bamboo.tec.mx/latest/componentes/ai-chat-bubble/descripcion-general-kum7HyJA',
-})}
+  {
+    generalDocLink:
+      'https://bamboo.tec.mx/latest/componentes/ai-chat-bubble/descripcion-general-kum7HyJA',
+  },
+)}
 ${getSpecialSpecifications(`### ${IMPORTANT_DESCRIPTION}`)}
 ${getBasicExampleBlock('BmbChatBubblesComponent')}
         `,

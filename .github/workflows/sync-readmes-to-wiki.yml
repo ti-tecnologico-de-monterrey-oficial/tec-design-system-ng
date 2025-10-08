@@ -2,7 +2,7 @@ name: Sync READMEs to Wiki
 
 on:
   push:
-    branches: [ develop ]
+    branches: [develop]
     paths:
       - 'projects/ds-ng/src/lib/**/README.md'
 

@@ -13,7 +13,7 @@ import {
   getOnEvent,
   getSpecialSpecifications,
   IBmbOnEvent,
-  RELEVANT_TITLE_LEVEL,
+  RELEVANT_TITLE,
 } from '../../utils/doc/utils';
 import {
   DBmbGenericParamDesc,
@@ -58,8 +58,8 @@ export default {
       },
       description: {
         component: `
-${getGeneralDescription({ content: `${getGeneralComponentDescription({ name: 'profile' })} to display a profile for students or collaborators, supporting both mobile and desktop views.`, generalDocLink: 'https://bamboo.tec.mx/latest/componentes/profile-card/descripcion-general-Ka3x81s0' })}
-${getSpecialSpecifications(` ###${RELEVANT_TITLE_LEVEL[2]}
+${getGeneralDescription(`${getGeneralComponentDescription({ name: 'profile' })} to display a profile for students or collaborators, supporting both mobile and desktop views.`, { generalDocLink: 'https://bamboo.tec.mx/latest/componentes/profile-card/descripcion-general-Ka3x81s0' })}
+${getSpecialSpecifications(` ###${RELEVANT_TITLE.note}
 >
 The theme toggle does not work correctly in Storybook. However, if you use it in the project, it functions without whether issues.
 `)}

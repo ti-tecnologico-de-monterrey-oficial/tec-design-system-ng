@@ -12,11 +12,11 @@ import {
   getGeneralComponentDescription,
   getGeneralDescription,
   getSpecialSpecifications,
-  RELEVANT_TITLE_LEVEL,
+  RELEVANT_TITLE,
 } from '../../utils/doc/utils';
 import { getDefaultValueControl } from '../../utils/doc/parameterDescriptions';
 
-const LEVEL_DESCRIPTION = `${RELEVANT_TITLE_LEVEL[1]}
+const LEVEL_DESCRIPTION = `${RELEVANT_TITLE.important}
 There is a limit of two levels of nesting and the main list must have a maximum of two lists, the first has a limit of 5 elements and the second a limit of 3.`;
 export default {
   title: 'Components/Menus/Sidebar',
@@ -58,7 +58,7 @@ export default {
       },
       description: {
         component: `
-${getGeneralDescription({ content: `${getGeneralComponentDescription({ name: 'sidebar' })} to implement a vertical menu with links to navigate through the application.`, generalDocLink: 'https://bamboo.tec.mx/latest/componentes/sidebar/descripcion-general-5sco6X1N' })}
+${getGeneralDescription(`${getGeneralComponentDescription({ name: 'sidebar' })} to implement a vertical menu with links to navigate through the application.`, { generalDocLink: 'https://bamboo.tec.mx/latest/componentes/sidebar/descripcion-general-5sco6X1N' })}
 ${getSpecialSpecifications(` ###${LEVEL_DESCRIPTION}`)}
 ${getBasicExampleBlock(
   'BmbSidebarComponent',
@@ -319,7 +319,7 @@ ${LEVEL_DESCRIPTION}
       options: ['left', 'right'],
       description: `
 Sets the position of the sidebar.
-${RELEVANT_TITLE_LEVEL[0]}
+${RELEVANT_TITLE.warning}
 This property affected to web resolution only.
       `,
       table: {

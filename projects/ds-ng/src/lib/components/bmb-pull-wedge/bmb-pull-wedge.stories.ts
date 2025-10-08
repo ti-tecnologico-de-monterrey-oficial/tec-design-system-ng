@@ -4,7 +4,7 @@ import {
   getBasicExampleBlock,
   getGeneralComponentDescription,
   getGeneralDescription,
-  RELEVANT_TITLE_LEVEL,
+  RELEVANT_TITLE,
 } from '../../utils/doc/utils';
 import {
   getDefaultValueControl,
@@ -32,7 +32,7 @@ export default {
       },
       description: {
         component: `
-${getGeneralDescription({ content: `${getGeneralComponentDescription({ name: 'pull-wedge' })} to enhance the experience of a collapsible menu or panel.`, generalDocLink: 'https://bamboo.tec.mx/latest/componentes/header-pull-wedge/descripcion-general-rOxNlcIw' })}
+${getGeneralDescription(`${getGeneralComponentDescription({ name: 'pull-wedge' })} to enhance the experience of a collapsible menu or panel.`, { generalDocLink: 'https://bamboo.tec.mx/latest/componentes/header-pull-wedge/descripcion-general-rOxNlcIw' })}
 ${getBasicExampleBlock('BmbPullWedgeComponent')}
 \`\`\`html
 <bmb-pull-wedge initialHeight="200">
@@ -57,7 +57,7 @@ ${getBasicExampleBlock('BmbPullWedgeComponent')}
     minContentHeight: {
       control: { type: 'number' },
       description: `Sets the initial height of the pull wedge.<br/><br/>
-${RELEVANT_TITLE_LEVEL[2]} Minimum height: 50px.`,
+${RELEVANT_TITLE.note} Minimum height: 50px.`,
       table: {
         category: 'Properties',
         type: { summary: 'number' },
