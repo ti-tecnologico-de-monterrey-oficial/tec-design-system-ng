@@ -6,31 +6,52 @@ Descubre cómo nuestro Design System no solo da forma a la estética, sino que t
 
 ---
 
-## 🚀 Versión v1.5.11 🎉 - 01 de septiembre de 2025
+## 🚀 v1.5.12 🎉 - 03 de octubre de 2025
 
-En esta versión, hemos trabajado en nuevas funcionalidades, correcciones y optimizaciones para mejorar la experiencia de las personas que utilizan nuestro sistema. Agradecemos la colaboración de todas las personas involucradas en este esfuerzo.
+En esta versión, el equipo colaboró para fortalecer la experiencia de la persona usuaria, mejorando la interfaz, la accesibilidad y la estabilidad de los componentes. El objetivo principal fue optimizar la interacción y asegurar que cada funcionalidad aporte valor real a quienes utilizan el sistema.
 
 ### 🆕 Nuevas Funcionalidades
-
-- Implementación del componente "Template Accordion" para mejorar la organización de contenido. ([#649](https://github.com/ti-tecnologico-de-monterrey-oficial/tec-design-system-ng/pull/649))
-- Se agregó la capacidad de determinar la posición de los filtros en las tablas. ([#631](https://github.com/ti-tecnologico-de-monterrey-oficial/tec-design-system-ng/pull/631))
-- Nuevo componente de modal nativo para una experiencia más fluida. ([#628](https://github.com/ti-tecnologico-de-monterrey-oficial/tec-design-system-ng/pull/628))
-- Validaciones personalizadas para controles de tipo input en formularios. ([4f6615a](https://github.com/ti-tecnologico-de-monterrey-oficial/tec-design-system-ng/commit/4f6615a8828f2ccf1e6eb58666e78350e897933b))
-- Mejora en la accesibilidad del componente "Tag". ([ff185bb](https://github.com/ti-tecnologico-de-monterrey-oficial/tec-design-system-ng/commit/ff185bb7a85cf014a65f214c71ba7de01d5ff9d3))
+- Se agregó la opción de habilitar o inhabilitar el input, permitiendo mayor control y accesibilidad en formularios.
+- Nuevo template para las semanas Tec, facilitando la visualización y organización de información relevante.
+- Se implementó la posibilidad de determinar la posición de los filtros en la tabla, mejorando la personalización y usabilidad.
+- Se añadió la característica de mostrar más de un dígito en el contador de notificaciones, mostrando '99+' cuando se excede el valor de 100.
+- Se agregó soporte para componentes personalizados en el modal nativo, ampliando las posibilidades de integración.
+- Se implementó la opción de mezclar notificaciones del servicio y del input alert en el Alert Center, centralizando la gestión de alertas.
+- Se añadió la funcionalidad de limpiar el estado de selección en la tabla, facilitando la gestión de datos.
+- Se agregó la opción de filtrar listados en el dropdown, mejorando la búsqueda y selección de opciones.
+- Se implementó la funcionalidad de mostrar el foco en el checkbox en estado indeterminado, mejorando la accesibilidad.
+- Se añadió la opción de mostrar el icono de notificaciones en el header móvil, manteniendo a las personas informadas.
+- Se agregó la opción de cambiar el texto del badge en la tarjeta de actividad estudiantil, permitiendo mayor personalización.
+- Se implementó la opción de mostrar el icono expandido o contraído en la Home Card, facilitando la navegación.
+- Se añadió la posibilidad de controlar la navegación por click en el selector de aplicaciones frecuentes, mejorando la experiencia de acceso.
 
 ### ✅ Problemas Resueltos
-
-- Corrección en el funcionamiento de los filtros para las tablas. ([d884bda](https://github.com/ti-tecnologico-de-monterrey-oficial/tec-design-system-ng/commit/d884bdaa9cf41d70312afb6eaf5f98e85ad67c93))
-- Solución al problema de emisión de eventos en el componente "Alert Center". ([99f3560](https://github.com/ti-tecnologico-de-monterrey-oficial/tec-design-system-ng/commit/99f35607dd842562ea45e0faf9d91b1ffc8682cd))
-- Actualización de estilos en el componente "Tabs". ([28eac2a](https://github.com/ti-tecnologico-de-monterrey-oficial/tec-design-system-ng/commit/28eac2a4fe7edb501340c51f0257617cd9e7a767))
-- Corrección de errores en el componente "Notification Card". ([98f5d6f](https://github.com/ti-tecnologico-de-monterrey-oficial/tec-design-system-ng/commit/98f5d6faebeda1ce449801cec9582c73fa4f051a))
-- Solución al comportamiento errático de las tabs en el "Alert Center". ([8ca6a9a](https://github.com/ti-tecnologico-de-monterrey-oficial/tec-design-system-ng/commit/8ca6a9a2d8bc34c0fd6cda9241725ad07e773253))
+- Se corrigió el comportamiento de selección con los radios en la Filter Card, asegurando una interacción precisa.
+- Se solucionó el problema de selección intermitente en el dropdown multiselect, garantizando una experiencia consistente.
+- Se corrigió el problema de emisión de eventos del footer en el Alert Center, mejorando la comunicación de acciones.
+- Se resolvió el problema de actualización de datos en el componente Academic Progress, asegurando información actualizada.
+- Se corrigió el problema de visualización horizontal en bmb-list-group y bmb-list-group-item, optimizando la presentación de listas.
+- Se corrigió el funcionamiento de los filtros para la tabla, permitiendo una gestión eficiente de datos.
+- Se corrigió el funcionamiento errático de las tabs en el Alert Center, mejorando la navegación entre alertas.
+- Se corrigió el problema de emisión de eventos completos en Notification Card y Home Card, asegurando la trazabilidad de acciones.
+- Se corrigió el problema de compatibilidad con Safari en el componente Grades, garantizando acceso desde cualquier navegador.
+- Se corrigió el problema de renderizado de la tabla, asegurando la correcta visualización de datos.
+- Se corrigió el comportamiento del focus next en los inputs de TOTP, facilitando la autenticación.
+- Se corrigió el problema de la semana 53 en años bisiestos en el Date Picker, mostrando fechas correctas.
+- Se corrigió el problema de selección de filas en la tabla, permitiendo la interacción esperada.
 
 ### ⚡ Optimizaciones
+- Se mejoró la experiencia responsiva en múltiples componentes, asegurando una visualización óptima en todos los dispositivos.
+- Se optimizó la estructura de documentación en Storybook, facilitando el acceso a información relevante.
+- Se actualizaron las dependencias y la gestión de saltos de línea, mejorando la estabilidad del proyecto.
+- Se implementó la nueva estrategia para mostrar el dropdown, mejorando el rendimiento y la interacción.
+- Se mejoró la accesibilidad de los componentes de tipo Input, Checkbox y Tag, promoviendo la inclusión.
+- Se optimizó la gestión de notificaciones y alertas, centralizando la experiencia de comunicación.
+- Se mejoró la navegación por teclado en el componente Check External Link, facilitando el acceso para todas las personas.
+- Se optimizó el manejo de estados y la estructura de los componentes, mejorando la mantenibilidad y escalabilidad del sistema.
 
-- Homologación de títulos en la documentación de Storybook. ([02741fc](https://github.com/ti-tecnologico-de-monterrey-oficial/tec-design-system-ng/commit/02741fcdd8cf12876e3e87230350d5cced4a9166))
-- Restauración de cambios para mejorar el contraste en los componentes. ([4db478e](https://github.com/ti-tecnologico-de-monterrey-oficial/tec-design-system-ng/commit/4db478ec701759eb456dbe1318ac3b8ead76953c))
-- Optimización de la estructura de documentación en Storybook. ([770bb7a](https://github.com/ti-tecnologico-de-monterrey-oficial/tec-design-system-ng/commit/770bb7ac0e24f89ed648f9f4b045584606c66023))
+### 📘 Mejoras Documentación
+- Se actualizó la documentación de componentes clave como Accordion, Calendar y User Summary, facilitando la adopción y el uso correcto.
 
 ---
 

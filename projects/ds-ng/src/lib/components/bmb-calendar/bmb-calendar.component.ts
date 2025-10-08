@@ -92,6 +92,7 @@ export class BmbCalendarComponent implements OnInit, AfterViewInit {
     this.eventsSignal.getEventList(),
   );
   showFilterButton = input<boolean>(false);
+  disableMobileFilter = input<boolean>(false);
   visibleDate = model<DateTime>(DateTime.now()); // internal
 
   currentDate = input<string>(''); // Deprecated

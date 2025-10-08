@@ -2,12 +2,13 @@
 <ng-template
   #elementTemplate
   let-element="element"
-  let-isTitle="isTitle"
+  let-isHeader="isHeader"
   let-isFixed="isFixed"
   let-isChild="isChild"
   let-isMobile="isMobile"
+  let-hasChildren="hasChildren"
 >
-  @if (!!element.icon) {
+  @if (!isHeader && !!element.icon) {
     <bmb-icon
       class="bmb_sidebar-icon"
       [icon]="element.icon"
@@ -17,11 +18,12 @@
   }
   <span
     [ngClass]="{
-      'bmb_sidebar-text': !isTitle,
-      'bmb_sidebar-header-text': isTitle
+      'bmb_sidebar-text': !isHeader,
+      'bmb_sidebar-header-text': isHeader
     }"
-    >{{ element!.title }}</span
   >
+    {{ element!.title }}
+  </span>
   @if (isFixed) {
     <bmb-action-icon
       class="bmb_sidebar-header-icon"
@@ -39,8 +41,17 @@
   <bmb-check-external-link-button
     class="bmb_sidebar-link"
     [idElement]="'element' + item.id!"
-    [link]="!isMobile ? getLink(item.link!) : ''"
-    [target]="!isMobile ? item.target! : ''"
+    [link]="
+      getLink({ isMobile, hasChildren: !!item.children, link: item.link! })
+    "
+    [target]="
+      checkForButton({
+        isMobile,
+        hasChildren: !!item.children
+      })
+        ? item.target!
+        : ''
+    "
     (buttonClick)="toggleChildren(item)"
   >
     <ng-container
@@ -103,7 +114,7 @@
   let-element="element"
   let-iconSize="iconSize"
   let-level="level"
-  let-isTitle="isTitle"
+  let-isHeader="isHeader"
   let-isFixed="isFixed"
   let-selectedElement="selectedElement"
   let-isMobile="isMobile"
@@ -152,12 +163,10 @@
           *ngTemplateOutlet="
             elementTemplate;
             context: {
-              element: {
-                title: element.title,
-                icon: element.icon!
-              },
-              isTitle,
-              isFixed
+              element,
+              isHeader: true,
+              isFixed,
+              hasChildren: !!element.children
             }
           "
         />
@@ -218,7 +227,7 @@
           title: title()
         },
         iconSize: 32,
-        isTitle: true,
+        isHeader: true,
         isFixed: true,
         level: 1,
         isMobile: true
