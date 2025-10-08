@@ -150,6 +150,7 @@ For padding, margin, and gap it is also possible to use the CSS *spacing* variab
     true,
     true,
   ),
+  { showAdditionalBlockquote: true },
 )}`,
       },
     },

@@ -800,6 +800,7 @@ background: radial-gradient(circle, var(--color-gradient-blue));
 >`,
     true,
   ),
+  { showAdditionalBlockquote: true },
 )}`,
       },
     },

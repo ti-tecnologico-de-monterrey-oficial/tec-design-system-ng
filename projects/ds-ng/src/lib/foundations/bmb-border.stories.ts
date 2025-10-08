@@ -74,7 +74,7 @@ ${getGeneralDescription(
       'https://bamboo.tec.mx/latest/foundations/borders/descripcion-general-U27GpidU',
   },
 )}
-${getSpecialSpecifications(getSandboxConsiderationsDocumentation('borders'))}
+${getSpecialSpecifications(getSandboxConsiderationsDocumentation('borders'), { showAdditionalBlockquote: true })}
         `,
       },
     },

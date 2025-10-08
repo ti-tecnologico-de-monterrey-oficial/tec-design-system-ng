@@ -80,6 +80,7 @@ ${getSpecialSpecifications(
     true,
     true,
   ),
+  { showAdditionalBlockquote: true },
 )}`,
       },
     },

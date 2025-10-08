@@ -208,6 +208,22 @@ ${getAlertBlockquote(
 )}
 `;
 
+export const getOutOfModalUseMessage = ({
+  isSubStory = false,
+  subStoryChart = '-',
+}: {
+  isSubStory?: boolean;
+  subStoryChart?: string;
+} = {}): string => `
+${getAlertBlockquote(
+  'Please remember to implement this element or component outside of ***Modal***.',
+  {
+    title: `###${getSubStoryIdentifier(isSubStory, subStoryChart)}${RELEVANT_TITLE.warning}`,
+    blockquoteType: BlockquoteType.warning,
+  },
+)}
+`;
+
 export const getGridGeneratorLink = (): string =>
   `### Grid generator
 [Grid generator](/docs/dev-tools-grid-generator--documentation) is a tool that can be used to generate custom grids.`;
@@ -465,7 +481,6 @@ ${getAlertBlockquote(
   `When you click on fullscreen icon, in Storybook doesn’t look the best due to the many elements, but in your project, it should display correctly.`,
   {
     title: '###'.concat(RELEVANT_TITLE.note),
-    isRelevantTitle: true,
     blockquoteType: BlockquoteType.note,
   },
 )}`;
@@ -565,13 +580,12 @@ ${getGeneralDescription(
 )}
 `;
 
-//showAdditionalBlockquote ? content : '>'.concat(content)
 export const getSpecialSpecifications = (
   content: string,
   {
     isSubStory = false,
     subStoryChart = '-',
-    showAdditionalBlockquote = true,
+    showAdditionalBlockquote = false,
   }: {
     isSubStory?: boolean;
     subStoryChart?: string;
@@ -852,8 +866,7 @@ ${
         },
       )
 }
-
-
+${!isOmitImportant && isWarning ? '<br/>' : ''}
 ${
   isWarning
     ? getAlertBlockquote(
@@ -865,9 +878,7 @@ ${
       )
     : ''
 }
-
 >${introductionContent}
-
 >${
     !!implementationDetails.length
       ? `The ${element} is defined in the CSS variables and can be used in the application by using ${isClassNameVar ? 'the class name or ' : ''}the CSS variable name.

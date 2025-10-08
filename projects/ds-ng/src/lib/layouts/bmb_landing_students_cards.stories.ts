@@ -211,6 +211,7 @@ ${getSpecialSpecifications(
     ],
     isFullScreenDesc: true,
   }),
+  { showAdditionalBlockquote: true },
 )}
 ${getBasicExampleBlock(`BmbTopBarComponent,
     BmbSidebarComponent,

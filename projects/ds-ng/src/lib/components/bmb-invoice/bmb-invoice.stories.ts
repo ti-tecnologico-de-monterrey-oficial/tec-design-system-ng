@@ -18,7 +18,7 @@ export default {
       description: {
         component: `
 ${getGeneralDescription(`${getGeneralComponentDescription({ name: 'invoice' })} to generate electronic invoices.`, { generalDocLink: 'https://bamboo.tec.mx/latest/componentes/invoice/descripcion-general-cAzfIad4' })}
-${getSpecialSpecifications(getEmptyStateMessage())}
+${getSpecialSpecifications(getEmptyStateMessage(), { showAdditionalBlockquote: true })}
 ${getBasicExampleBlock(
   'BmbInvoiceComponent',
   '',

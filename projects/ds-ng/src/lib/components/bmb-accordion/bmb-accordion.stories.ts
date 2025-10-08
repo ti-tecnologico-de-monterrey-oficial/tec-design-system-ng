@@ -55,7 +55,7 @@ ${getArchitectureSection(`<section class="bmb_accordion"
     <div> {content} </div>
   </section>
 </section>`)}
-${getSpecialSpecifications(getEmptyStateMessage())}
+${getSpecialSpecifications(getEmptyStateMessage(), { showAdditionalBlockquote: true })}
 ${getBasicExampleBlock('BmbAccordionComponent')}
         `,
       },

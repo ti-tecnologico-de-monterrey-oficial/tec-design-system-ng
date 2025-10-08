@@ -45,7 +45,7 @@ ${getAlertBlockquote(
   },
 )}
 `,
-  { isSubStory: true },
+  { isSubStory: true, showAdditionalBlockquote: false },
 )}
 ${getBasicExampleBlock('BmbAccordionComponent', '', '', true)}
         `,

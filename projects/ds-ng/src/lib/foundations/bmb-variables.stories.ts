@@ -82,6 +82,7 @@ ${SPACING_DESCRIPTION}
     false,
     true,
   ),
+  { showAdditionalBlockquote: true },
 )}`,
       },
     },

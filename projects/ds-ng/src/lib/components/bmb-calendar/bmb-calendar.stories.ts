@@ -12,6 +12,8 @@ import { BmbCalendarService } from '../../services/calendar.service';
 import { DateTime } from 'luxon';
 import { signal } from '@angular/core';
 import {
+  BlockquoteType,
+  getAlertBlockquote,
   getBasicExampleBlock,
   getGeneralComponentDescription,
   getGeneralDescription,
@@ -241,8 +243,9 @@ ${getGeneralDescription(
       'https://bamboo.tec.mx/latest/organismos/calendar-standard/descripcion-general-JghdvFUm',
   },
 )}
-${getSpecialSpecifications(`###${RELEVANT_TITLE.configuration}
-Add the ***BmbCalendarService*** to your App providers:
+${getSpecialSpecifications(
+  `${getAlertBlockquote(
+    `Add the ***BmbCalendarService*** to your App providers:
 \`\`\`typescript
 // src/app/app.config.ts
 import { ApplicationConfig } from '@angular/core';
@@ -255,8 +258,18 @@ export const appConfig: ApplicationConfig = {
     importProvidersFrom([BmbCalendarService, ...]),
   ]
 };
-\`\`\`
-`)}
+\`\`\``,
+    {
+      title: `###${RELEVANT_TITLE.configuration}`,
+      blockquoteType: BlockquoteType.note,
+    },
+  )}
+>
+
+>
+`,
+  { showAdditionalBlockquote: true },
+)}
 ${getBasicExampleBlock('BmbCalendarComponent')}
         `,
       },

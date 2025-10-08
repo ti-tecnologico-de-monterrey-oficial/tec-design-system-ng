@@ -38,7 +38,7 @@ export default {
       description: {
         component: `
 ${getGeneralDescription(`${getGeneralComponentDescription({ name: 'filter-card' })} to display and managing filter controls in a modal dialog.`, { generalDocLink: 'https://bamboo.tec.mx/latest/componentes/filter-card/descripcion-general-Be01z0Al' })}
-${getSpecialSpecifications(getEmptyStateMessage())}
+${getSpecialSpecifications(getEmptyStateMessage(), { showAdditionalBlockquote: true })}
 ${getBasicExampleBlock('BmbFilterCardComponent')}
         `,
       },

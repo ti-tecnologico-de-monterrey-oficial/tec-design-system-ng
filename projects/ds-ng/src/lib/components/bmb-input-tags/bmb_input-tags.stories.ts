@@ -12,6 +12,7 @@ import {
   getFormatName,
   getFormExampleBlock,
   getOnEvent,
+  getOutOfModalUseMessage,
   getSpecialSpecifications,
   IBmbOnEvent,
 } from '../../utils/doc/utils';
@@ -110,7 +111,14 @@ ${getFieldDescription(
   'select multiple tags from a drop-down list.',
   'https://bamboo.tec.mx/latest/componentes/text-input-with-tags/descripcion-general-wdIzT606',
 )}
-${getSpecialSpecifications(getEmptyStateMessage())}
+${getSpecialSpecifications(
+  `
+  ${getEmptyStateMessage()}
+  <br/>
+  ${getOutOfModalUseMessage()}
+  `,
+  { showAdditionalBlockquote: true },
+)}
 ${getFormExampleBlock('BmbInputTagsComponent', inputName, additionalBlock, inputExample)}
 ${getBasicExampleBlock('BmbInputTagsComponent', '', additionalBlock)}
           `,

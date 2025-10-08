@@ -43,7 +43,7 @@ ${getGeneralDescription(
       'https://bamboo.tec.mx/latest/organismos/access-to-external-link/descripcion-general-JFCWgYI5',
   },
 )}
-${getSpecialSpecifications(getEmptyStateMessage())}
+${getSpecialSpecifications(getEmptyStateMessage(), { showAdditionalBlockquote: true })}
 ${getBasicExampleBlock('BmbExternalLinkComponent')}
         `,
       },

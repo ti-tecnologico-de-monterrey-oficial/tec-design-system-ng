@@ -88,6 +88,7 @@ ${getSpecialSpecifications(
       border: var(--bmb-border-general_contrasts-50-2-solid);
       border-radius: var(--bmb-radius-m);`,
   ),
+  { showAdditionalBlockquote: true },
 )}`,
       },
     },

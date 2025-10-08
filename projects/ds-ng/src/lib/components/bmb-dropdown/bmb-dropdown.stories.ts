@@ -12,6 +12,8 @@ import {
   getOnEvent,
   IBmbOnEvent,
   RELEVANT_TITLE,
+  getAlertBlockquote,
+  BlockquoteType,
 } from '../../utils/doc/utils';
 import { BmbFormValidatorComponent } from '../bmb-form-validator/bmb-form-validator.component';
 import {
@@ -96,11 +98,20 @@ ${getArchitectureSection(`
   <bmb-dropdown-content class="bmb_dropdown-list"/>
 </section>
 `)}
-${getSpecialSpecifications(`
-  ### ${RELEVANT_TITLE.warning}
-The \`isFilterable\` feature is not compatible with the current version of Storybook, We are working on to fix this issue. You should be able to use it in your Angular application.
->${getEmptyStateMessage()}
-`)}
+${getSpecialSpecifications(
+  `
+${getAlertBlockquote(
+  `The \`isFilterable\` feature is not compatible with the current version of Storybook, We are working on to fix this issue. You should be able to use it in your Angular application.`,
+  {
+    title: '###'.concat(RELEVANT_TITLE.warning),
+    blockquoteType: BlockquoteType.warning,
+  },
+)}
+<br/>
+${getEmptyStateMessage()}
+`,
+  { showAdditionalBlockquote: true },
+)}
 ${getFormExampleBlock(
   'BmbDropdownComponent',
   inputName,

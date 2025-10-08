@@ -62,7 +62,7 @@ ${getArchitectureSection(`<section class="bmb_card" <!-- conditional class bmb_r
     <ng-content></ng-content>
   </footer>
 </section>`)}
-${getSpecialSpecifications(getEmptyStateMessage())}
+${getSpecialSpecifications(getEmptyStateMessage(), { showAdditionalBlockquote: true })}
 ${getBasicExampleBlock('BmbCardComponent')}
         `,
       },

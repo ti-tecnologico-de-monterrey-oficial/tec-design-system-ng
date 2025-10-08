@@ -34,6 +34,7 @@ ${getSpecialSpecifications(
     getTypographyDetail(),
     true,
   ),
+  { showAdditionalBlockquote: true },
 )}`,
       },
     },

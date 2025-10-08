@@ -306,7 +306,7 @@ custom actions, and templating for both actions and detail rows.
       'https://bamboo.tec.mx/latest/componentes/table/descripcion-general-h1hRplJO',
   },
 )}
-${getSpecialSpecifications(getEmptyStateMessage())}
+${getSpecialSpecifications(getEmptyStateMessage(), { showAdditionalBlockquote: true })}
 ${getBasicExampleBlock(
   `
   BmbBadgeComponent,

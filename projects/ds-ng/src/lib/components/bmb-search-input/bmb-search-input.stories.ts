@@ -6,6 +6,7 @@ import {
   getGeneralComponentDescription,
   getGeneralDescription,
   getOnEvent,
+  getOutOfModalUseMessage,
   getSpecialSpecifications,
   IBmbOnEvent,
 } from '../../utils/doc/utils';
@@ -52,7 +53,14 @@ export default {
       description: {
         component: `
 ${getGeneralDescription(`${getGeneralComponentDescription({ name: 'search-input' })} to enter text and run a search.`, { generalDocLink: 'https://bamboo.tec.mx/latest/componentes/search/descripcion-general-EAreKqon' })}
-${getSpecialSpecifications(`${getEmptyStateMessage()}`)}
+${getSpecialSpecifications(
+  `
+  ${getEmptyStateMessage()}
+  <br/>
+  ${getOutOfModalUseMessage()}
+`,
+  { showAdditionalBlockquote: true },
+)}
 ${getBasicExampleBlock('BmbSearchInputComponent', '', onChange.handleExample)}
         `,
       },

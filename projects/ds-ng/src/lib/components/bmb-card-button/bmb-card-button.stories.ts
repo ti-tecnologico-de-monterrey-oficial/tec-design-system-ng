@@ -56,7 +56,7 @@ ${getGeneralDescription(
       'https://bamboo.tec.mx/latest/componentes/card-button/descripcion-general-q9ZEljiw',
   },
 )}
-${getSpecialSpecifications(getEmptyStateMessage())}
+${getSpecialSpecifications(getEmptyStateMessage(), { showAdditionalBlockquote: true })}
 ${getBasicExampleBlock('BmbCardButtonComponent')}
         `,
       },
