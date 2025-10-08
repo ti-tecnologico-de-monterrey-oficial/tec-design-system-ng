@@ -10,7 +10,7 @@ import {
   getOnEvent,
   getSpecialSpecifications,
   IBmbOnEvent,
-  RELEVANT_TITLE_LEVEL,
+  RELEVANT_TITLE,
 } from '../../utils/doc/utils';
 import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
 import { InputSignal } from '@angular/core';
@@ -49,12 +49,14 @@ export default {
       },
       description: {
         component: `
-${getGeneralDescription({
-  content: `${getGeneralComponentDescription({ name: 'card-button' })} to use a button with card features and appearance.`,
-  generalDocLink:
-    'https://bamboo.tec.mx/latest/componentes/card-button/descripcion-general-q9ZEljiw',
-})}
-${getSpecialSpecifications(getEmptyStateMessage())}
+${getGeneralDescription(
+  `${getGeneralComponentDescription({ name: 'card-button' })} to use a button with card features and appearance.`,
+  {
+    generalDocLink:
+      'https://bamboo.tec.mx/latest/componentes/card-button/descripcion-general-q9ZEljiw',
+  },
+)}
+${getSpecialSpecifications(getEmptyStateMessage(), { showAdditionalBlockquote: true })}
 ${getBasicExampleBlock('BmbCardButtonComponent')}
         `,
       },
@@ -155,7 +157,7 @@ Badge info properties:
 
   **Default appearance**: normal.
 
-  ${RELEVANT_TITLE_LEVEL[2]} disabled and background do not exist for container.
+  ${RELEVANT_TITLE.note} disabled and background do not exist for container.
 
 - \`container\`: (optional, boolean) Sets the container flag. This displays the container when true; if false, it displays a bullet.
       `,
@@ -247,7 +249,7 @@ Enables the use of templates so that icons appear before the drop-down menu. You
 </bmb-card-button>
 \`\`\`
 
-${RELEVANT_TITLE_LEVEL[2]} there is an example in the **Template example** the section.
+${RELEVANT_TITLE.note} there is an example in the **Template example** the section.
         `,
       table: {
         category: 'Full Interactive',

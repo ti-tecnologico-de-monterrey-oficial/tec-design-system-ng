@@ -6,7 +6,7 @@ import {
   getGeneralDescription,
   getOnEvent,
   getSpecialSpecifications,
-  RELEVANT_TITLE_LEVEL,
+  RELEVANT_TITLE,
 } from '../../utils/doc/utils';
 import {
   DBmbGenericParamDesc,
@@ -72,11 +72,11 @@ export default {
       },
       description: {
         component: `
-${getGeneralDescription({ content: `${getGeneralComponentDescription({ name: 'tabs' })} the division of information into defined sections, improving navigation and facilitating the presentation of specific categories or sets of information.`, generalDocLink: 'https://bamboo.tec.mx/latest/components/tab/descripcion-general-eJumojIF' })}
-${getSpecialSpecifications(` ### ${RELEVANT_TITLE_LEVEL[4]}
+${getGeneralDescription(`${getGeneralComponentDescription({ name: 'tabs' })} the division of information into defined sections, improving navigation and facilitating the presentation of specific categories or sets of information.`, { generalDocLink: 'https://bamboo.tec.mx/latest/components/tab/descripcion-general-eJumojIF' })}
+${getSpecialSpecifications(` ### ${RELEVANT_TITLE.example}
 Usage with "Next", "Back" Buttons and TabService.
 >
-###${RELEVANT_TITLE_LEVEL[2]}
+###${RELEVANT_TITLE.note}
 - **Tabs Data:** You can define the tabs data dynamically, as shown in the example.
 - **Button Actions:**
   - The "Continuar" button uses the \`goToNextTab\` method to move to the next tab programmatically.

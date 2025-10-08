@@ -1,13 +1,15 @@
 import { Meta, StoryObj } from '@storybook/angular';
 import { BmbStatCounterComponent } from './bmb-stat-counter.component';
 import {
+  BlockquoteType,
+  getAlertBlockquote,
   getBasicExampleBlock,
-  getFormatName,
   getGeneralComponentDescription,
   getGeneralDescription,
   getOnEvent,
+  getStoryLink,
   IBmbOnEvent,
-  RELEVANT_TITLE_LEVEL,
+  RELEVANT_TITLE,
 } from '../../utils/doc/utils';
 import { getOnClickParam } from '../../utils/doc/parameterDescriptions';
 import * as stepProgressBarStory from '../bmb-step-progress-bar/bmb-step-progress-bar.stories';
@@ -23,12 +25,22 @@ export default {
       },
       description: {
         component: `
-${getGeneralDescription({
-  content: `${getGeneralComponentDescription({ name: 'stat-counter', type: 'element' })} the progress of steps to be displayed.<br/><br/>
-${RELEVANT_TITLE_LEVEL[0]}This item may be discontinued, use is recommended [${stepProgressBarStory.default.title}](/docs/${getFormatName(stepProgressBarStory.default.title!, /(\/)|( )/g, '-').toLocaleLowerCase()}--documentation).`,
-  generalDocLink:
-    'https://bamboo.tec.mx/latest/dev-tools/coleccion-de-componentes-uC69aq75',
-})}
+<br/>
+${getAlertBlockquote(
+  `This element may will be deprecated. It is recommended to use the following element:<br/> ${getStoryLink({ title: stepProgressBarStory.default.title! })}`,
+  {
+    title: '##'.concat(RELEVANT_TITLE.warning),
+    blockquoteType: BlockquoteType.warning,
+    isHeader: true,
+  },
+)}
+${getGeneralDescription(
+  `${getGeneralComponentDescription({ name: 'stat-counter', type: 'element' })} the progress of steps to be displayed.<br/><br/>`,
+  {
+    generalDocLink:
+      'https://bamboo.tec.mx/latest/dev-tools/coleccion-de-componentes-uC69aq75',
+  },
+)}
 ${getBasicExampleBlock('BmbStatCounterComponent')}
         `,
       },

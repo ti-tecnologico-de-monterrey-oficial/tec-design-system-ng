@@ -4,12 +4,10 @@ import { BmbTopBarComponent } from '../../public-api';
 import {
   attributes,
   getBasicExampleBlock,
-  getFormatName,
   getPageStructureForTemplateStories,
   getSpecialSpecifications,
   getStandaloneGeneralDesc,
-  TECHNICAL_DOC_REFERENCES,
-  TECHNICAL_DOC_TITLE,
+  getTechnicalTopBarReference,
 } from '../utils/doc/utils';
 import * as topBarStory from '../components/bmb-top-bar/bmb-top-bar.stories';
 
@@ -65,11 +63,7 @@ export default {
       description: {
         component: `
 ${getStandaloneGeneralDesc('2 Column fullScreen')}
-${getSpecialSpecifications(`### ${TECHNICAL_DOC_TITLE}
->
-${TECHNICAL_DOC_REFERENCES}
-- [${topBarStory.default.title}](/docs/${getFormatName(topBarStory.default.title!, /(\/)|( )/g, '-').toLocaleLowerCase()}--documentation)
-`)}
+${getSpecialSpecifications(getTechnicalTopBarReference(topBarStory.default.title!))}
 ${getBasicExampleBlock('BmbTopBarComponent')}
 \`\`\`html
 <bmb-top-bar />

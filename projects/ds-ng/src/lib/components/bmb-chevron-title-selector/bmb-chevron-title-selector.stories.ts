@@ -51,11 +51,13 @@ export default {
       },
       description: {
         component: `
-${getGeneralDescription({
-  content: `${getGeneralComponentDescription({ name: 'chevron-title-selector' })} to create sections that are related to each other.`,
-  generalDocLink:
-    'https://bamboo.tec.mx/latest/componentes/chevron-title-selector/descripcion-general-n1viJn3v',
-})}
+${getGeneralDescription(
+  `${getGeneralComponentDescription({ name: 'chevron-title-selector' })} to create sections that are related to each other.`,
+  {
+    generalDocLink:
+      'https://bamboo.tec.mx/latest/componentes/chevron-title-selector/descripcion-general-n1viJn3v',
+  },
+)}
 ${getArchitectureSection(`
 <section class="bmb_chevron">
   <button class="bmb_chevron-button">

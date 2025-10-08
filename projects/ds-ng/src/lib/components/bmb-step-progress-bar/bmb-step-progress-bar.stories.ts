@@ -36,7 +36,7 @@ export default {
       },
       description: {
         component: `
-${getGeneralDescription({ content: `${getGeneralComponentDescription({ name: 'step-progress-bar' })} implement an indicator of the current step in a sequence of steps that represent a process.`, generalDocLink: 'https://bamboo.tec.mx/latest/components/step-progress-bar/descripcion-general-xebEHoek' })}
+${getGeneralDescription(`${getGeneralComponentDescription({ name: 'step-progress-bar' })} implement an indicator of the current step in a sequence of steps that represent a process.`, { generalDocLink: 'https://bamboo.tec.mx/latest/components/step-progress-bar/descripcion-general-xebEHoek' })}
 ${getBasicExampleBlock('BmbStepProgressBarComponent')}
         `,
       },

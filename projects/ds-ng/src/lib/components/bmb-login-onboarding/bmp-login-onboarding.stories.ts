@@ -2,7 +2,7 @@ import { moduleMetadata, type Meta, type StoryFn } from '@storybook/angular';
 import { BmbLoginOnboardingComponent } from './bmb-login-onboarding.component';
 import { Component } from '@angular/core';
 import { IBmbLoginOnboarding, IBmbUserInfo } from '../../types';
-import { RELEVANT_TITLE_LEVEL } from '../../utils/doc/utils';
+import { RELEVANT_TITLE } from '../../utils/doc/utils';
 
 @Component({
   standalone: true,
@@ -94,7 +94,7 @@ export default {
     docs: {
       description: {
         component: `
-${RELEVANT_TITLE_LEVEL[2]}This component **does not have support** for the \`light\` theme.
+${RELEVANT_TITLE.note}This component **does not have support** for the \`light\` theme.
 
 Below is an example of how you can use this component in TypeScript:
 

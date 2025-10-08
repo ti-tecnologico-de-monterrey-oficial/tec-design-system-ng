@@ -25,12 +25,13 @@ export default {
     docs: {
       description: {
         component: `
-${getGeneralDescription({
-  content: `${getGeneralComponentDescription({ name: 'action-menu' })} o group and display action options in a context menu. It is triggered by a specific button or event.
-`,
-  generalDocLink:
-    'https://bamboo.tec.mx/latest/componentes/action-menu/descripcion-general-gXdipbgD',
-})}
+${getGeneralDescription(
+  `${getGeneralComponentDescription({ name: 'action-menu' })} o group and display action options in a context menu. It is triggered by a specific button or event.`,
+  {
+    generalDocLink:
+      'https://bamboo.tec.mx/latest/componentes/action-menu/descripcion-general-gXdipbgD',
+  },
+)}
 ${getBasicExampleBlock('BmbActionMenuComponent')}
         `,
       },

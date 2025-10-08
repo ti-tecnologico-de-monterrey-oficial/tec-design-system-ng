@@ -33,13 +33,15 @@ export default {
     docs: {
       description: {
         component: `
-${getGeneralDescription({
-  content: `
+${getGeneralDescription(
+  `
 ***Theme*** refers to a preset set of shapes, colors, and decorations that customize the appearance of visual elements.<br/><br/>
 ${getGeneralComponentDescription({ name: 'theme', type: 'element' })} the selection of a dark or light ${DESIGN_SYSTEM_TITLE} theme.`,
-  generalDocLink:
-    'https://bamboo.tec.mx/latest/foundations/temas/descripcion-general-SdKD7j96',
-})}
+  {
+    generalDocLink:
+      'https://bamboo.tec.mx/latest/foundations/temas/descripcion-general-SdKD7j96',
+  },
+)}
 ${getSpecialSpecifications('The selected theme is saved in local storage. If you select a theme other than the initial one and refresh the page, the theme from local storage will be used.<br/><br/>The ***light*** theme is the default option')}
 <br/>
 ${getBasicExampleBlock('BmbThemeComponent')}

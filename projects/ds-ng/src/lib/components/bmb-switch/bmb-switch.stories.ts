@@ -6,7 +6,7 @@ import {
   getGeneralDescription,
   getOnEvent,
   IBmbOnEvent,
-  RELEVANT_TITLE_LEVEL,
+  RELEVANT_TITLE,
 } from '../../utils/doc/utils';
 import {
   GOOGLE_FONTS_LINK,
@@ -27,7 +27,7 @@ const getLabelIconDescription = (
   const switchDescription: string[] = ['of', 'on'];
   return `Sets the ${type[getIndex(isLabel)]} displayed on the ${position[getIndex(isRightPosition)]} side of the switch.<br/><br/>
   Useful to indicate the action or state associated with the ***${switchDescription[getIndex(isRightPosition)]}*** position.<br/><br/>
-  ${RELEVANT_TITLE_LEVEL[1]}
+  ${RELEVANT_TITLE.important}
   Do not use the \`${position[getIndex(!isRightPosition)]}Icon\` property if you want to use \`${position[getIndex(isRightPosition)]}Text.\``;
 };
 const onChange: IBmbOnEvent = getOnEvent('switch', 'change', 'boolean');
@@ -48,7 +48,7 @@ export default {
     docs: {
       description: {
         component: `
-${getGeneralDescription({ content: `${getGeneralComponentDescription({ name: 'switch' })} to represent in a simple way whether a configuration is active or not.`, generalDocLink: 'https://bamboo.tec.mx/latest/componentes/switch/descripcion-general-6aOUHs0C' })}
+${getGeneralDescription(`${getGeneralComponentDescription({ name: 'switch' })} to represent in a simple way whether a configuration is active or not.`, { generalDocLink: 'https://bamboo.tec.mx/latest/componentes/switch/descripcion-general-6aOUHs0C' })}
 ${getBasicExampleBlock('BmbSwitchComponent', '', onChange.handleExample)}
         `,
       },

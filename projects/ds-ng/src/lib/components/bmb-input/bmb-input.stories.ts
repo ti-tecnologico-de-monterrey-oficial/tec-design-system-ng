@@ -9,7 +9,7 @@ import {
   getFormExampleBlock,
   getOnEvent,
   IBmbOnEvent,
-  RELEVANT_TITLE_LEVEL,
+  RELEVANT_TITLE,
 } from '../../utils/doc/utils';
 import {
   DBmbInputParamDesc,
@@ -55,7 +55,7 @@ const getTextInputWarnings = (
   isPatternProperty: boolean = false,
 ) => `
 
-${RELEVANT_TITLE_LEVEL[1]}
+${RELEVANT_TITLE.important}
 This \`${propertyName}\` property should only be used for input fields of the type:
 
 - **text**
@@ -255,7 +255,7 @@ Example: 10/20 or 10/-
 Enables the skill to validate JSON content when true, this skill only works for the form textarea field.
 
 <br/>
-${RELEVANT_TITLE_LEVEL[1]}
+${RELEVANT_TITLE.important}
 For correct behavior, the \`pattern\` property must not be assigned to the input field.
       `,
       table: {

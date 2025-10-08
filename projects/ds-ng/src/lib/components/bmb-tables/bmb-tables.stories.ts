@@ -10,7 +10,7 @@ import {
   getModelDescription,
   getOnEvent,
   getSpecialSpecifications,
-  RELEVANT_TITLE_LEVEL,
+  RELEVANT_TITLE,
 } from '../../utils/doc/utils';
 import { getOnEventParam } from '../../utils/doc/parameterDescriptions';
 
@@ -295,16 +295,18 @@ export default {
     docs: {
       description: {
         component: `
-${getGeneralDescription({
-  content: `${getGeneralComponentDescription({ name: 'table' })} rendering highly configurable and interactive tables.
+${getGeneralDescription(
+  `${getGeneralComponentDescription({ name: 'table' })} rendering highly configurable and interactive tables.
 >
 It supports features such as selection, expansion, pagination, dynamic filtering, column resizing,
 custom actions, and templating for both actions and detail rows.
  `,
-  generalDocLink:
-    'https://bamboo.tec.mx/latest/componentes/table/descripcion-general-h1hRplJO',
-})}
-${getSpecialSpecifications(getEmptyStateMessage())}
+  {
+    generalDocLink:
+      'https://bamboo.tec.mx/latest/componentes/table/descripcion-general-h1hRplJO',
+  },
+)}
+${getSpecialSpecifications(getEmptyStateMessage(), { showAdditionalBlockquote: true })}
 ${getBasicExampleBlock(
   `
   BmbBadgeComponent,
@@ -568,7 +570,7 @@ Sets the initial selection of the table.
 
 This is an array of indexes that will be selected when the table is initialized.
 
-${RELEVANT_TITLE_LEVEL[0]} If the data is asynchronous, this property must also be asynchronous.`,
+${RELEVANT_TITLE.warning} If the data is asynchronous, this property must also be asynchronous.`,
       table: {
         category: 'Properties',
         type: { summary: 'number[]' },

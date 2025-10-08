@@ -17,8 +17,8 @@ export default {
       controls: { exclude: ['getInvoiceClasses', 'isNegative', 'ngOnInit'] },
       description: {
         component: `
-${getGeneralDescription({ content: `${getGeneralComponentDescription({ name: 'invoice' })} to generate electronic invoices.`, generalDocLink: 'https://bamboo.tec.mx/latest/componentes/invoice/descripcion-general-cAzfIad4' })}
-${getSpecialSpecifications(getEmptyStateMessage())}
+${getGeneralDescription(`${getGeneralComponentDescription({ name: 'invoice' })} to generate electronic invoices.`, { generalDocLink: 'https://bamboo.tec.mx/latest/componentes/invoice/descripcion-general-cAzfIad4' })}
+${getSpecialSpecifications(getEmptyStateMessage(), { showAdditionalBlockquote: true })}
 ${getBasicExampleBlock(
   'BmbInvoiceComponent',
   '',

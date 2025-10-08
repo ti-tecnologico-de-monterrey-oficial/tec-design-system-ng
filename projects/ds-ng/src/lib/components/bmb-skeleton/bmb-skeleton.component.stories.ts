@@ -13,7 +13,7 @@ export default {
     docs: {
       description: {
         component: `
-${getGeneralDescription({ content: `${getGeneralComponentDescription({ name: 'skeleton', type: 'element' })} for the implementation of simple specific structures.`, generalDocLink: 'https://bamboo.tec.mx/latest/dev-tools/coleccion-de-componentes-uC69aq75' })}
+${getGeneralDescription(`${getGeneralComponentDescription({ name: 'skeleton', type: 'element' })} for the implementation of simple specific structures.`, { generalDocLink: 'https://bamboo.tec.mx/latest/dev-tools/coleccion-de-componentes-uC69aq75' })}
 ${getBasicExampleBlock('BmbSkeletonComponent')}
         `,
       },

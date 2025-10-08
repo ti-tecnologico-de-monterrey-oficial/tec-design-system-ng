@@ -38,7 +38,7 @@ export default {
     docs: {
       description: {
         component: `
-${getGeneralDescription({ content: `${getGeneralComponentDescription({ name: 'tooltip' })} to provide additional, brief information about the element's purpose.`, generalDocLink: 'https://bamboo.tec.mx/latest/componentes/tooltip/descripcion-general-Y5OcIrFr' })}
+${getGeneralDescription(`${getGeneralComponentDescription({ name: 'tooltip' })} to provide additional, brief information about the element's purpose.`, { generalDocLink: 'https://bamboo.tec.mx/latest/componentes/tooltip/descripcion-general-Y5OcIrFr' })}
 ${getBasicExampleBlock('')}
         `,
       },

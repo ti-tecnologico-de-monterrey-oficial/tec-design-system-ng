@@ -46,7 +46,7 @@ export default {
     docs: {
       description: {
         component: `
-${getGeneralDescription({ content: `${getGeneralComponentDescription({ name: 'text-editor' })} to write, format, and customize text intuitively. It's ideal for creating rich content, such as posts, comments, or notes.`, generalDocLink: 'https://bamboo.tec.mx/latest/componentes/text-editor/descripcion-general-jiiQGEbd' })}
+${getGeneralDescription(`${getGeneralComponentDescription({ name: 'text-editor' })} to write, format, and customize text intuitively. It's ideal for creating rich content, such as posts, comments, or notes.`, { generalDocLink: 'https://bamboo.tec.mx/latest/componentes/text-editor/descripcion-general-jiiQGEbd' })}
 ${getFormExampleBlock('BmbTextEditorComponent', inputName, '', inputExample)}
 ${getBasicExampleBlock('BmbTextEditorComponent')}
         `,

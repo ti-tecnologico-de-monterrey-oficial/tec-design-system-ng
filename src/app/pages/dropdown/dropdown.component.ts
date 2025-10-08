@@ -6,6 +6,7 @@ import {
   BmbFrequentAppsSelectorComponent,
   BmbHomeCardComponent,
   BmbInputComponent,
+  BmbFilterCardComponent,
 } from '../../../../projects/ds-ng/src/public-api';
 import { AnimeService } from '../../services/anime.service';
 import { Router } from '@angular/router';
@@ -21,6 +22,7 @@ import { Router } from '@angular/router';
     BmbFrequentAppsSelectorComponent,
     BmbHomeCardComponent,
     BmbInputComponent,
+    BmbFilterCardComponent,
   ],
 })
 export class DropdownPageComponent implements OnInit {

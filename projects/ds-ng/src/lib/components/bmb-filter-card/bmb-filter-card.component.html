@@ -28,6 +28,7 @@
                   <bmb-tag
                     [text]="control.label"
                     [dismissible]="false"
+                    [enableClick]="true"
                     [isActive]="storedValues[control.name]?.checked ?? false"
                     (clickedTag)="onControlChange(control, $event)"
                   />

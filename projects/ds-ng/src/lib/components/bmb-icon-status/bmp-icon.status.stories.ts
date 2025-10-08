@@ -4,7 +4,7 @@ import {
   getBasicExampleBlock,
   getGeneralComponentDescription,
   getGeneralDescription,
-  RELEVANT_TITLE_LEVEL,
+  RELEVANT_TITLE,
 } from '../../utils/doc/utils';
 import {
   DBmbIconParamDesc,
@@ -20,7 +20,7 @@ export default {
       controls: { exclude: ['getClassName', 'getIconSize'] },
       description: {
         component: `
-${getGeneralDescription({ content: `${getGeneralComponentDescription({ name: 'icon-status' })} a graphical message to be displayed after executing an action.`, generalDocLink: 'https://bamboo.tec.mx/latest/componentes/status-icon/descripcion-general-pht26G2A' })}
+${getGeneralDescription(`${getGeneralComponentDescription({ name: 'icon-status' })} a graphical message to be displayed after executing an action.`, { generalDocLink: 'https://bamboo.tec.mx/latest/componentes/status-icon/descripcion-general-pht26G2A' })}
 ${getBasicExampleBlock('BmbIconStatusComponent')}
         `,
       },

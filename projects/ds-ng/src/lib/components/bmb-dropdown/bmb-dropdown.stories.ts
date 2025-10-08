@@ -11,7 +11,9 @@ import {
   getFormatName,
   getOnEvent,
   IBmbOnEvent,
-  RELEVANT_TITLE_LEVEL,
+  RELEVANT_TITLE,
+  getAlertBlockquote,
+  BlockquoteType,
 } from '../../utils/doc/utils';
 import { BmbFormValidatorComponent } from '../bmb-form-validator/bmb-form-validator.component';
 import {
@@ -96,11 +98,20 @@ ${getArchitectureSection(`
   <bmb-dropdown-content class="bmb_dropdown-list"/>
 </section>
 `)}
-${getSpecialSpecifications(`
-  ### ${RELEVANT_TITLE_LEVEL[0]}
-The \`isFilterable\` feature is not compatible with the current version of Storybook, We are working on to fix this issue. You should be able to use it in your Angular application.
->${getEmptyStateMessage()}
-`)}
+${getSpecialSpecifications(
+  `
+${getAlertBlockquote(
+  `The \`isFilterable\` feature is not compatible with the current version of Storybook, We are working on to fix this issue. You should be able to use it in your Angular application.`,
+  {
+    title: '###'.concat(RELEVANT_TITLE.warning),
+    blockquoteType: BlockquoteType.warning,
+  },
+)}
+<br/>
+${getEmptyStateMessage()}
+`,
+  { showAdditionalBlockquote: true },
+)}
 ${getFormExampleBlock(
   'BmbDropdownComponent',
   inputName,
@@ -157,7 +168,7 @@ IBmbDropdownItem = {
       description: `
 Enables the functionality to filter data when true, the user can type in order to filter the options list.
 
-${RELEVANT_TITLE_LEVEL[1]}
+${RELEVANT_TITLE.important}
 
 The \`isFilterable\` is not compatible with the \`isMultiSelect\`.
 
@@ -173,7 +184,7 @@ If you set the \`isMultiSelect\` property to true, the \`isFilterable\` property
       description: `
 Sets the list of options to display at the top of the data.
 
-${RELEVANT_TITLE_LEVEL[1]}
+${RELEVANT_TITLE.important}
 
 The order given will be the position in which it will be displayed.
 

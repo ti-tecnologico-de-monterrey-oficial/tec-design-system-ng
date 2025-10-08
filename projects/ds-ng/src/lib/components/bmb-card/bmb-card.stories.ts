@@ -44,11 +44,13 @@ const meta: Meta<BmbCardComponent> = {
       },
       description: {
         component: `
-${getGeneralDescription({
-  content: `${getGeneralComponentDescription({ name: 'card' })} to present whether type of content in an orderly manner with card features.`,
-  generalDocLink:
-    'https://bamboo.tec.mx/latest/components/generic-card/descripcion-general-ArPVPcRB',
-})}
+${getGeneralDescription(
+  `${getGeneralComponentDescription({ name: 'card' })} to present whether type of content in an orderly manner with card features.`,
+  {
+    generalDocLink:
+      'https://bamboo.tec.mx/latest/components/generic-card/descripcion-general-ArPVPcRB',
+  },
+)}
 ${getArchitectureSection(`<section class="bmb_card" <!-- conditional class bmb_radius-{borderRadius} bmb_margin-{this.margin} bmb_card-{type} --> >
   <header class="bmb_card-header" <!-- conditional class bmb_padding-{padding} --> >
       { header content }
@@ -60,7 +62,7 @@ ${getArchitectureSection(`<section class="bmb_card" <!-- conditional class bmb_r
     <ng-content></ng-content>
   </footer>
 </section>`)}
-${getSpecialSpecifications(getEmptyStateMessage())}
+${getSpecialSpecifications(getEmptyStateMessage(), { showAdditionalBlockquote: true })}
 ${getBasicExampleBlock('BmbCardComponent')}
         `,
       },
