@@ -693,7 +693,7 @@ ${getSpecialSpecifications(
       { title: accordionControlStory.default.title! },
       { title: iconStory.default.title! },
       { title: toastStory.default.title! },
-      ],
+    ],
     isFullScreenDesc: true,
   }),
 )}
