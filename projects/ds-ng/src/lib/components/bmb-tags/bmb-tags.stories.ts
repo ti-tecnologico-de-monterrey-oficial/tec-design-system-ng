@@ -125,6 +125,12 @@ ${getBasicExampleBlock('BmbTagComponent')}
         '<br/><br/>Disabled state will only be applied when `dismissible` property is true.',
       ),
     },
+    enableClick: getPropertyParamDesc(
+      'enable the tag to be clickable',
+      'boolean',
+      false,
+      `<br/><br/>${getDefaultValueDesc(false)}`,
+    ),
     clickedTag: getOnClickParam(onClickedTagEvent, ``),
     closedTag: getOnClickParam(onCloseTagEvent, ``),
   },
@@ -135,6 +141,7 @@ ${getBasicExampleBlock('BmbTagComponent')}
     activityTag: false,
     appearance: 'normal',
     isActive: false,
+    enableClick: false,
     clickedTag: () => {
       console.log('On clicked');
     },
