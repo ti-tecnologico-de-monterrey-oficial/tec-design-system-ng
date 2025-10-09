@@ -513,7 +513,7 @@ export const getGeneralDocDescription = (generalDocLink: string): string =>
 export const getGeneralComponentDescription = ({
   name,
   type = 'component',
-  additional,
+  additional = '',
   alternativeDescription,
 }: {
   name?: string;
