@@ -3,7 +3,7 @@
 @use '../../../assets/styles/base/rem' as rem;
 
 .bmb_user-summary {
-  background-color: RGBA(var(--color-charade-50));
+  background-color: var(--general_contrasts-input-background);
   border: rem.rem_calc(1) solid RGBA(var(--color-black-primary), 0.25);
   border-radius: rem.rem_calc(24);
   display: flex;
@@ -11,34 +11,19 @@
   padding: rem.rem_calc(24);
 
   &-is_profile {
-    background-color: RGBA(var(--color-charade-100));
+    background-color: var(--containers-main);
     padding-left: rem.rem_calc(6);
     padding-right: rem.rem_calc(6);
 
     &-no_box {
       background-color: transparent;
       border-color: transparent;
+      border-radius: 0;
     }
   }
 
   &-button {
     margin-top: rem.rem_calc(16);
     width: 100%;
-  }
-}
-
-[data-theme='dark'],
-.storybook-dark-theme {
-  .bmb_user-summary {
-    background-color: RGBA(var(--color-black-primary), 0.5);
-
-    &-is_profile {
-      background-color: RGBA(var(--color-charade-900));
-
-      &-no_box {
-        background-color: transparent;
-        border-color: transparent;
-      }
-    }
   }
 }
