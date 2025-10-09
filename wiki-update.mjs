@@ -4,11 +4,13 @@ import { fileURLToPath } from 'url';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
-// const parent = dirname(process.cwd());
+const parent = dirname(process.cwd());
 
 // Configuración
 const LIB_ROOT = join(process.cwd(), 'projects', 'ds-ng', 'src', 'lib');
-const WIKI_OUTPUT_DIR = join(process.cwd(), 'tec-design-system-ng.wiki');
+const WIKI_OUTPUT_DIR = join(parent, 'tec-design-system-ng.wiki');
+
+console.log(WIKI_OUTPUT_DIR);
 
 async function findReadmes(dir) {
   let readmes = [];
