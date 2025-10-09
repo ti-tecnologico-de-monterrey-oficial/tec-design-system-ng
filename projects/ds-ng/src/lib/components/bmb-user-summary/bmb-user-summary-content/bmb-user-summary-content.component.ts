@@ -42,20 +42,23 @@ export class BmbUserSummaryContentComponent {
   salutation = input<string>('Buenas tardes');
   contentLayout = input<IBmbContentLayoutSummary>('column');
   gapSize = input<SizeNames>('none');
+  showBox = input<boolean>();
 
   onUserClick = output<MouseEvent>();
 
-  getClass(mainClassName: string): string {
-    if (!!this.name()) return `${mainClassName}-${this.contentLayout()}`;
+  getClass(mainClassName: string): string[] {
+    const classes: string[]  = [];
+    if (!!this.name()) classes.push(`${mainClassName}-${this.contentLayout()}`);
+    if(this.showBox()) classes.push(`${mainClassName}-box`);
 
-    return '';
+    return classes;
   }
 
   getSalutationClasses(
     mainClassName: string,
     isRole: boolean = false,
   ): string[] {
-    const classes: string[] = [this.getClass(mainClassName)];
+    const classes: string[] = this.getClass(mainClassName);
 
     if (!this.isProfile() && this.contentLayout() === 'column')
       classes.push(`${mainClassName}-salutation`);

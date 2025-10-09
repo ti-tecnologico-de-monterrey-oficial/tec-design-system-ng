@@ -1,5 +1,6 @@
 import { Meta, StoryObj } from '@storybook/angular';
 import { BmbUserSummaryContentComponent } from './bmb-user-summary-content.component';
+import { getPropertyParamDesc } from '../../../utils/doc/parameterDescriptions';
 
 export default {
   title: 'Internals/User summary content',
@@ -104,6 +105,7 @@ Below is an example of how you can use this component in HTML:
         defaultValue: { summary: 'Buenas tardes' },
       },
     },
+    showBox: getPropertyParamDesc('content box (background)', 'boolean', false),
     contentLayout: {
       control: 'radio',
       options: ['column', 'row'],
