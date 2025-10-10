@@ -3,8 +3,8 @@ import {
   getOnEvent,
   IBmbOnEventType,
   IBmbOnEvent,
-  RELEVANT_TITLE_LEVEL,
   getDeprecatedDesc,
+  RELEVANT_TITLE,
 } from './utils';
 
 type IBmbButtonEventType = 'clicked' | 'pressed';
@@ -22,9 +22,9 @@ export const ON_CLICK_DESCRIPTION: string =
   ', this event is only emitted if the *link* property is empty';
 export const GOOGLE_FONTS_LINK: string = `Please refer to [Google Fonts](https://fonts.google.com/icons?icon.size=24&icon.color=%23e8eaed&selected=Material+Symbols+Outlined:more_vert:FILL@0;wght@400;GRAD@0;opsz@24) for more icons.`;
 export const ICON_IMAGE_DETAIL: string = `
-${RELEVANT_TITLE_LEVEL[2]}
+${RELEVANT_TITLE.note}
 Images are also supported; instead of the icon name, enter the URL or path of the image to use.<br/><br/>
-${RELEVANT_TITLE_LEVEL[0]}
+${RELEVANT_TITLE.warning}
 Please remember that images need an *alt* to be accessible.
 Look for the property to set the alt, if it does not exist in the component it is because the component implements it internally.
 `;
@@ -33,7 +33,7 @@ export const SIMPLE_ICON_DESCRIPTION: string = `Sets the icon name that will be 
 export const ICON_DESCRIPTION: string = `${SIMPLE_ICON_DESCRIPTION}<br/><br/>${ICON_IMAGE_DETAIL}`;
 export const DEFAULT_VALUE_DESC: string = `It is not necessary to explicitly set default values, the property can be omitted.<br/><br/>
   Properties can be omitted if they are not required and do not contain a default value.`;
-export const DEFAULT_VALUE_DETAIL: string = `${RELEVANT_TITLE_LEVEL[2].replace(/(<br\/>)|(\*)/g, '')}
+export const DEFAULT_VALUE_DETAIL: string = `${RELEVANT_TITLE.note.replace(/(<br\/>)|(\*)/g, '')}
 
 ${DEFAULT_VALUE_DESC.replace(/(<br\/>)|(\*)/g, '')}`;
 
@@ -41,11 +41,11 @@ export const ON_BUTTON_CLICK: IBmbOnEvent = getOnEvent('', 'buttonClick');
 
 export const getWidthIncreaseDesc = (
   name: string,
-): string => `${RELEVANT_TITLE_LEVEL[2]}
+): string => `${RELEVANT_TITLE.note}
 The width of the ${name} will increase depending on the length of the text.`;
 
 export const getDefaultValueDesc = (defaultValue: any): string => `
-${RELEVANT_TITLE_LEVEL[2]}
+${RELEVANT_TITLE.note}
 The default value is ${defaultValue}.${DEFAULT_VALUE_DESC}`;
 
 export const getDefaultValueControl = (summary: any = '""') => {
@@ -154,7 +154,7 @@ ${
     ? `
 
 <br/>
-${RELEVANT_TITLE_LEVEL[1]}
+${RELEVANT_TITLE.important}
 ${getFormControlConsiderations()}
 <br/>
 ${getFormControlDescription()}
@@ -570,7 +570,7 @@ export const DBmbIconParamDesc = {
       type: 'number',
     },
     description: `Sets the size of the icon or width of the image to use.<br/><br/>
-${RELEVANT_TITLE_LEVEL[2]} <= 0 will be inherited.`,
+${RELEVANT_TITLE.note} <= 0 will be inherited.`,
     table: {
       category: 'Properties',
       defaultValue: getDefaultValueControl(),
@@ -913,7 +913,7 @@ This property is used to link the label to the field through the ***for*** attri
 Sets the field name.
 
 <br/>
-${RELEVANT_TITLE_LEVEL[1]}
+${RELEVANT_TITLE.important}
 
 This property is essential for correct behavior of the the \`FormControl\`.
 
@@ -935,11 +935,11 @@ Sets the value of the field.
 
 This is the value that is taken when the form is submitted.
 
-${RELEVANT_TITLE_LEVEL[1]}
+${RELEVANT_TITLE.important}
 
 The value will not be necessary to define a value on the \`FormControl\` instance, as long as this properties is correctly assigned of this field .
 
-${RELEVANT_TITLE_LEVEL[2]}
+${RELEVANT_TITLE.note}
 
 The configuration implemented in the \`FormControl\` object will always be prioritized.
 
@@ -1108,7 +1108,7 @@ Validations supported in instantiation:
 - **customValidation**: corresponds to the validation assigned to the \`customValidation\` property
 
 <br/>
-${RELEVANT_TITLE_LEVEL[2]}
+${RELEVANT_TITLE.note}
 
 Default error messages will be displayed if this property is not assigned correctly.
     `,
@@ -1363,7 +1363,7 @@ export const DBmbStepProgressBar = {
       type: 'radio',
     },
     options: ['small', 'medium', 'default'],
-    description: `Sets the size of the steps.<br/><br/> ${RELEVANT_TITLE_LEVEL[0]} This property only works when the ***type*** is ***horizontal***.`,
+    description: `Sets the size of the steps.<br/><br/> ${RELEVANT_TITLE.warning} This property only works when the ***type*** is ***horizontal***.`,
     table: {
       category: 'Properties',
       type: { summary: 'select' },

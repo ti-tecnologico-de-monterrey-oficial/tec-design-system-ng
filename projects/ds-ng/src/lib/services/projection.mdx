@@ -4,7 +4,7 @@ import {
   SPECIAL_SPECIFICATIONS_TITLE,
   DESCRIPTION_TITLE,
   DESIGN_SYSTEM_TITLE,
-  RELEVANT_TITLE_LEVEL,
+  RELEVANT_TITLE,
 } from '../utils/doc/utils';
 
 <Meta title="Dev tools/Content projection service" />
@@ -29,13 +29,15 @@ import {
     <br />
     ## {SPECIAL_SPECIFICATIONS_TITLE}
 
-    <blockquote>
-      ### {RELEVANT_TITLE_LEVEL[0].replaceAll('*', '').replaceAll('<br/>', '')}
+    <blockquote class="markdown-alert-warning">
+      ### {RELEVANT_TITLE.warning.replaceAll('*', '').replaceAll('<br/>', '')}
 
       <p>
         Content projection service should not be used to display Modals; for this purpose, we recommend using NativeModal service.
       </p>
+    </blockquote>
 
+    <blockquote>
       ### ⚙️ Service methods
 
       <ul>

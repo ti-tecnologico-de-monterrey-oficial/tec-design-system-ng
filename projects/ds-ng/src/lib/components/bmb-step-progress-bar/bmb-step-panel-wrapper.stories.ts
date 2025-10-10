@@ -161,12 +161,14 @@ export default {
     docs: {
       description: {
         component: `
-${getGeneralDescription({
-  content: `**${mainStory.default.title} - Wizard** variant allows to display custom content vertically, making it easier to navigate flows with greater complexity than just indicating the progress of a process.`,
-  generalDocLink:
-    'https://bamboo.tec.mx/latest/components/step-progress-bar/descripcion-general-xebEHoek',
-  isSubStory: true,
-})}
+${getGeneralDescription(
+  `**${mainStory.default.title} - Wizard** variant allows to display custom content vertically, making it easier to navigate flows with greater complexity than just indicating the progress of a process.`,
+  {
+    generalDocLink:
+      'https://bamboo.tec.mx/latest/components/step-progress-bar/descripcion-general-xebEHoek',
+    isSubStory: true,
+  },
+)}
 ${getBasicExampleBlock(
   'BmbStepProgressBarComponent',
   `import {

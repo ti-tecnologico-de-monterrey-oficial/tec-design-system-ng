@@ -11,14 +11,11 @@ import {
 import { CommonModule } from '@angular/common';
 import { BmbImageComponent } from '../components/bmb-image/bmb-image.component';
 import {
-  FULLSCREEN_DESC,
   getBasicExampleBlock,
-  getFormatName,
   getLandingGeneralDesc,
   getPageStructureForTemplateStories,
   getSpecialSpecifications,
-  TECHNICAL_DOC_REFERENCES,
-  TECHNICAL_DOC_TITLE,
+  getTechnicalDocReferences,
 } from '../utils/doc/utils';
 import * as topBarStory from '../components/bmb-top-bar/bmb-top-bar.stories';
 import * as sideBarStory from '../components/bmb-sidebar/bmb-sidebar.stories';
@@ -203,18 +200,20 @@ export default {
       description: {
         component: `
 ${getLandingGeneralDesc('Student service')}
-${getSpecialSpecifications(`### ${TECHNICAL_DOC_TITLE}
->
-${TECHNICAL_DOC_REFERENCES}
-- [${topBarStory.default.title}](/docs/${getFormatName(topBarStory.default.title!, /(\/)|( )/g, '-').toLocaleLowerCase()}--documentation)
-- [${sideBarStory.default.title}](/docs/${getFormatName(sideBarStory.default.title!, /(\/)|( )/g, '-').toLocaleLowerCase()}--documentation)
-- [${homeCardStory.default.title}](/docs/${getFormatName(homeCardStory.default.title!, /(\/)|( )/g, '-').toLocaleLowerCase()}--documentation)
-- [${imageStory.default.title}](/docs/${getFormatName(imageStory.default.title!, /(\/)|( )/g, '-').toLocaleLowerCase()}--documentation)
-- [${textLinkStory.default.title}](/docs/${getFormatName(textLinkStory.default.title!, /(\/)|( )/g, '-').toLocaleLowerCase()}--documentation)
-- [${layoutStory.default.title}](/docs/${getFormatName(layoutStory.default.title!, /(\/)|( )/g, '-').toLocaleLowerCase()}--documentation)
->
-${FULLSCREEN_DESC}
-`)}
+${getSpecialSpecifications(
+  getTechnicalDocReferences({
+    references: [
+      { title: topBarStory.default.title! },
+      { title: sideBarStory.default.title! },
+      { title: homeCardStory.default.title! },
+      { title: imageStory.default.title! },
+      { title: textLinkStory.default.title! },
+      { title: layoutStory.default.title! },
+    ],
+    isFullScreenDesc: true,
+  }),
+  { showAdditionalBlockquote: true },
+)}
 ${getBasicExampleBlock(`BmbTopBarComponent,
     BmbSidebarComponent,
     BmbHomeCardComponent,

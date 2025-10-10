@@ -22,7 +22,7 @@ import {
   DESIGN_SYSTEM_TITLE,
   getGeneralDescription,
   getSpecialSpecifications,
-  RELEVANT_TITLE_LEVEL,
+  RELEVANT_TITLE,
 } from '../../utils/doc/utils';
 
 @Component({
@@ -105,15 +105,17 @@ export default {
     docs: {
       description: {
         component: `
-${getGeneralDescription({
-  content: `***Modal*** is a pop-up window that helps display additional information or perform actions without changing the main page. ${DESIGN_SYSTEM_TITLE} ***Modal*** supports various configurations such as alert styles, custom content (string or template),
+${getGeneralDescription(
+  `***Modal*** is a pop-up window that helps display additional information or perform actions without changing the main page. ${DESIGN_SYSTEM_TITLE} ***Modal*** supports various configurations such as alert styles, custom content (string or template),
  and primary/secondary actions.`,
-  generalDocLink:
-    'https://bamboo.tec.mx/latest/componentes/modal/descripcion-general-sLOq8HIt',
-})}
+  {
+    generalDocLink:
+      'https://bamboo.tec.mx/latest/componentes/modal/descripcion-general-sLOq8HIt',
+  },
+)}
 ${getSpecialSpecifications(`
   >
-### ${RELEVANT_TITLE_LEVEL[0]}
+### ${RELEVANT_TITLE.warning}
 >
 Make sure you are using:
 >

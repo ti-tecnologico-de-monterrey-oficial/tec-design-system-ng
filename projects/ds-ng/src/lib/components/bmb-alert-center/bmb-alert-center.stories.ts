@@ -12,7 +12,7 @@ import {
   getGeneralDescription,
   getOnEvent,
   getSpecialSpecifications,
-  RELEVANT_TITLE_LEVEL,
+  RELEVANT_TITLE,
 } from '../../utils/doc/utils';
 import {
   DBmbGenericParamDesc,
@@ -330,7 +330,7 @@ export default {
       },
       description: {
         component: `
-${getGeneralDescription({ content: '`bmb-alert-center` is an organism designed to centralize and display all important alerts and notifications that require users attention.', generalDocLink: 'https://bamboo.tec.mx/latest/organismos/alert-center/descripcion-general-ws9A3oYS' })}
+${getGeneralDescription('`bmb-alert-center` is an organism designed to centralize and display all important alerts and notifications that require users attention.', { generalDocLink: 'https://bamboo.tec.mx/latest/organismos/alert-center/descripcion-general-ws9A3oYS' })}
 ${getSpecialSpecifications(`
   > ###Configuration
   > Add the \`BmbAlertCenterService\` to your App providers:
@@ -495,7 +495,7 @@ ${getBasicExampleBlock('BmbAlertCenterComponent')}
     alerts: {
       ...DBmbGenericParamDesc.deprecated,
       description: DBmbGenericParamDesc.deprecated.description.concat(
-        `<br/><br/>${RELEVANT_TITLE_LEVEL[2]}Use bmbAlertCenterService.getAlerts() instead.`,
+        `<br/><br/>${RELEVANT_TITLE.note}Use bmbAlertCenterService.getAlerts() instead.`,
       ),
     },
     onChangeAlertStatus: getOnEventParam(
@@ -518,7 +518,7 @@ ${getBasicExampleBlock('BmbAlertCenterComponent')}
     advertisements: {
       ...DBmbGenericParamDesc.deprecated,
       description: DBmbGenericParamDesc.deprecated.description.concat(
-        `<br/><br/>${RELEVANT_TITLE_LEVEL[2]}Use bmbAlertCenterService.addAdvertisements() instead.`,
+        `<br/><br/>${RELEVANT_TITLE.note}Use bmbAlertCenterService.addAdvertisements() instead.`,
       ),
     },
     showAlertDetail: getOnEventParam(

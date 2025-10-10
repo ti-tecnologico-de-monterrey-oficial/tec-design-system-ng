@@ -12,12 +12,14 @@ import { BmbCalendarService } from '../../services/calendar.service';
 import { DateTime } from 'luxon';
 import { signal } from '@angular/core';
 import {
+  BlockquoteType,
+  getAlertBlockquote,
   getBasicExampleBlock,
   getGeneralComponentDescription,
   getGeneralDescription,
   getOnEvent,
   getSpecialSpecifications,
-  RELEVANT_TITLE_LEVEL,
+  RELEVANT_TITLE,
 } from '../../utils/doc/utils';
 import {
   DBmbGenericParamDesc,
@@ -234,13 +236,16 @@ export default {
       },
       description: {
         component: `
-${getGeneralDescription({
-  content: `${getGeneralComponentDescription({ name: 'calendar', type: 'organism' })} viewing and filtering of events based on date and calendar type.`,
-  generalDocLink:
-    'https://bamboo.tec.mx/latest/organismos/calendar-standard/descripcion-general-JghdvFUm',
-})}
-${getSpecialSpecifications(`###${RELEVANT_TITLE_LEVEL[3]}
-Add the ***BmbCalendarService*** to your App providers:
+${getGeneralDescription(
+  `${getGeneralComponentDescription({ name: 'calendar', type: 'organism' })} viewing and filtering of events based on date and calendar type.`,
+  {
+    generalDocLink:
+      'https://bamboo.tec.mx/latest/organismos/calendar-standard/descripcion-general-JghdvFUm',
+  },
+)}
+${getSpecialSpecifications(
+  `${getAlertBlockquote(
+    `Add the ***BmbCalendarService*** to your App providers:
 \`\`\`typescript
 // src/app/app.config.ts
 import { ApplicationConfig } from '@angular/core';
@@ -253,8 +258,18 @@ export const appConfig: ApplicationConfig = {
     importProvidersFrom([BmbCalendarService, ...]),
   ]
 };
-\`\`\`
-`)}
+\`\`\``,
+    {
+      title: `###${RELEVANT_TITLE.configuration}`,
+      blockquoteType: BlockquoteType.note,
+    },
+  )}
+>
+
+>
+`,
+  { showAdditionalBlockquote: true },
+)}
 ${getBasicExampleBlock('BmbCalendarComponent')}
         `,
       },
@@ -345,6 +360,15 @@ ${getBasicExampleBlock('BmbCalendarComponent')}
       },
     },
     lang: DBmbGenericParamDesc.lang,
+    disableMobileFilter: {
+      control: { type: 'boolean' },
+      description: 'Disables the filter button on mobile view when true.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
+    },
   },
   args: {
     height: '100%',
@@ -352,6 +376,7 @@ ${getBasicExampleBlock('BmbCalendarComponent')}
     calendarTimezone: 'America/Mexico_City',
     clientTimezone: 'America/Mexico_City',
     dateFormat: 'iso',
+    disableMobileFilter: false,
     onDateChange: (params: any) => {
       console.log(params.toString());
     },

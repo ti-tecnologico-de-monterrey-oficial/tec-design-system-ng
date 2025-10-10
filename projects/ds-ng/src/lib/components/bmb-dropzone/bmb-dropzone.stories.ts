@@ -8,7 +8,7 @@ import {
   getGeneralComponentDescription,
   getGeneralDescription,
   getOnEvent,
-  RELEVANT_TITLE_LEVEL,
+  RELEVANT_TITLE,
 } from '../../utils/doc/utils';
 import {
   DBmbInputParamDesc,
@@ -54,7 +54,7 @@ export default {
       },
       description: {
         component: `
-${getGeneralDescription({ content: `${getGeneralComponentDescription({ name: 'dropzone' })} to provide an area where files can be dragged and dropped onto it to be uploaded or to be used later`, generalDocLink: 'https://bamboo.tec.mx/latest/componentes/dropzone/descripcion-general-pPg1gmxU' })}
+${getGeneralDescription(`${getGeneralComponentDescription({ name: 'dropzone' })} to provide an area where files can be dragged and dropped onto it to be uploaded or to be used later`, { generalDocLink: 'https://bamboo.tec.mx/latest/componentes/dropzone/descripcion-general-pPg1gmxU' })}
 ##Reactive form example
 >This example demonstrates how to use BmbDropdownComponent within an Angular reactive form, ensuring validation and handling the field and its value correctly.
 >
@@ -224,7 +224,7 @@ ${getBasicExampleBlock('BmbDropzoneComponent')}
       description: `
 Upload progress of the file.
 
-${RELEVANT_TITLE_LEVEL[2]} For the multi option, a record must be used.
+${RELEVANT_TITLE.note} For the multi option, a record must be used.
 
   Example:
       progress = signal<Record<string, number>>({});

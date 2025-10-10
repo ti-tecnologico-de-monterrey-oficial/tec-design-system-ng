@@ -41,13 +41,14 @@ const getAllCountryList = () => {
   const content: string = allCountries
     .map(
       (element) =>
-        `**${element.country}**: code(*${element.country_code}*)  lada(*${element.lada}*)  length(*${element.length}*)<br/>`,
+        `<li>**${element.country}**: code(*${element.country_code}*)  lada(*${element.lada}*)  length(*${element.length}*)</li>`,
     )
     .toString()
-    .replaceAll('<br/>,', '<br/>');
+    .replaceAll(',', '');
   return `
+>
 ### Country references
->${getAccordionDetail('Countries', content)}
+>${getAccordionDetail('Countries', `<ul>${content}</ul>`)}
   `;
 };
 
@@ -104,10 +105,13 @@ ${getFieldDescription(
   'enter a phone number with automatic validation of the phone number length based on the selected area code.',
   'https://bamboo.tec.mx/latest/componentes/input-phone-number/descripcion-general-VhtBCJiR',
 )}
-${getSpecialSpecifications(`
->${getEmptyStateMessage()}<br/>
->${getAllCountryList()}
-`)}
+${getSpecialSpecifications(
+  `
+${getEmptyStateMessage()}
+${getAllCountryList()}
+`,
+  { showAdditionalBlockquote: true },
+)}
 ${getFormExampleBlock('BmbInputPhoneNumberComponent', inputName, '', inputExample)}
 ${getBasicExampleBlock('BmbInputPhoneNumberComponent')}
         `,

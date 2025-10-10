@@ -12,7 +12,7 @@ import {
   getSpecialSpecifications,
   getTypescriptExampleTextBlock,
   getGeneralDescription,
-  RELEVANT_TITLE_LEVEL,
+  RELEVANT_TITLE,
   getBasicExampleBlock,
   getOnEvent,
   getFormatName,
@@ -89,24 +89,26 @@ export default {
     docs: {
       description: {
         component: `
-${getGeneralDescription({
-  content: `
+${getGeneralDescription(
+  `
 ${getFormControlDescription('>').replace('<br/>', '')}
 >
 >The supported **Bamboo inputs** are:
 >
->- ${getStoryLink({ title: calendarDatePicker.default.title! })}
->- ${getStoryLink({ title: checkbox.default.title! })}
->- ${getStoryLink({ title: datepickerRange.default.title! })}
->- ${getStoryLink({ title: dropdown.default.title! })}
->- ${getStoryLink({ title: phoneNumber.default.title! })}
->- ${getStoryLink({ title: textInput.default.title! })}
->- ${getStoryLink({ title: textInputWithTags.default.title! })}
+>- ${getStoryLink({ title: calendarDatePicker.default.title!, showFullLinkName: false })}
+>- ${getStoryLink({ title: checkbox.default.title!, showFullLinkName: false })}
+>- ${getStoryLink({ title: datepickerRange.default.title!, showFullLinkName: false })}
+>- ${getStoryLink({ title: dropdown.default.title!, showFullLinkName: false })}
+>- ${getStoryLink({ title: phoneNumber.default.title!, showFullLinkName: false })}
+>- ${getStoryLink({ title: textInput.default.title!, showFullLinkName: false })}
+>- ${getStoryLink({ title: textInputWithTags.default.title!, showFullLinkName: false })}
   `,
-  generalDocLink:
-    'https://bamboo.tec.mx/latest/patterns/forms/descripcion-general-FDqTdYSy',
-  isSubStory: true,
-})}
+  {
+    generalDocLink:
+      'https://bamboo.tec.mx/latest/patterns/forms/descripcion-general-FDqTdYSy',
+    isSubStory: true,
+  },
+)}
 ${getArchitectureSection(
   `
 <form (ngSubmit)="onSubmit()">
@@ -119,7 +121,7 @@ ${getSpecialSpecifications(
   `
   ${getFormControlConsiderations('>')}
 `,
-  true,
+  { isSubStory: true },
 )}
 ${getReactiveFormTitle('BmbFormValidatorComponent', true)}
 ><br/>
@@ -171,7 +173,7 @@ Sets the \`FormGroup\` instance defined for cases where the validations are diff
 
 
 
-${RELEVANT_TITLE_LEVEL[0]}
+${RELEVANT_TITLE.warning}
 It is essential to assign the property \`name\` for correct behavior of the field.
 
 
@@ -185,7 +187,7 @@ It is essential to assign the property \`name\` for correct behavior of the fiel
 - min: adds \`Validators.min\` to the \`FormControl\`
 - pattern: adds \`Validators.pattern\` to the \`FormControl\`
 
-${RELEVANT_TITLE_LEVEL[2]}
+${RELEVANT_TITLE.note}
 This property is a \`model\` input, and for this reason can be used as:
     [(formGroup)]="formGroup"
       `,
@@ -201,7 +203,7 @@ This property is a \`model\` input, and for this reason can be used as:
       getOnEvent('', 'formGroupState', 'FormGroup'),
       ` when ***Submit*** button is clicked.
 
-${RELEVANT_TITLE_LEVEL[2]}
+${RELEVANT_TITLE.note}
 Emits the state of the \`FormGroup\` after execute the validation and change the state of the form.
     `,
       'other',

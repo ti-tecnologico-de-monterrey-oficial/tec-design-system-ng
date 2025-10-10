@@ -9,7 +9,7 @@ import {
   getFormExampleBlock,
   getOnEvent,
   IBmbOnEvent,
-  RELEVANT_TITLE_LEVEL,
+  RELEVANT_TITLE,
 } from '../../utils/doc/utils';
 import {
   DBmbInputParamDesc,
@@ -97,7 +97,7 @@ If this property is set to **true**, the checkbox is selected; if set to **false
       description: `
 Sets the checkbox to an indeterminate state, which is typically used to represent a mixed state in complex forms like tree views or nested lists.
 
-${RELEVANT_TITLE_LEVEL[2]}
+${RELEVANT_TITLE.note}
 
 This does not affect the checked property and is purely visual.
       `,
@@ -112,7 +112,7 @@ This does not affect the checked property and is purely visual.
       description: `
 ${DBmbInputParamDesc.value.description}
 
-${RELEVANT_TITLE_LEVEL[0]}
+${RELEVANT_TITLE.warning}
 For cases where this field is part of a checkbox list, this will be the value that will be sent with the form if the checkbox is checked.
       `,
     },

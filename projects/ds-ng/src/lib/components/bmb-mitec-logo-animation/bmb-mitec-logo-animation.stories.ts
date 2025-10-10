@@ -24,7 +24,7 @@ export default {
     docs: {
       description: {
         component: `
-${getGeneralDescription({ content: `${getGeneralComponentDescription({ name: 'mitec-logo-animation', type: 'element' })} the ***mitec*** logo to be displayed in different variants of size.`, generalDocLink: 'https://bamboo.tec.mx/latest/dev-tools/coleccion-de-componentes-uC69aq75' })}
+${getGeneralDescription(`${getGeneralComponentDescription({ name: 'mitec-logo-animation', type: 'element' })} the ***mitec*** logo to be displayed in different variants of size.`, { generalDocLink: 'https://bamboo.tec.mx/latest/dev-tools/coleccion-de-componentes-uC69aq75' })}
 ${getBasicExampleBlock('BmbMitecLogoAnimationComponent')}
         `,
       },

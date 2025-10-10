@@ -6,7 +6,7 @@ import {
   getGeneralDescription,
   getOnEvent,
   getSpecialSpecifications,
-  RELEVANT_TITLE_LEVEL,
+  RELEVANT_TITLE,
 } from '../../utils/doc/utils';
 import { getOnClickParam } from '../../utils/doc/parameterDescriptions';
 
@@ -71,8 +71,8 @@ export default {
       },
       description: {
         component: `
-${getGeneralDescription({ content: `${getGeneralComponentDescription({ name: 'notification-card' })} to display notifications and advertisements in a card format, supporting features like tabbed navigation, badge counts for unread alerts, and event handling for interactions.`, generalDocLink: 'https://bamboo.tec.mx/latest/componentes/notification-card/descripcion-general-8uCIey7b' })}
-${getSpecialSpecifications(` ### ${RELEVANT_TITLE_LEVEL[2]}
+${getGeneralDescription(`${getGeneralComponentDescription({ name: 'notification-card' })} to display notifications and advertisements in a card format, supporting features like tabbed navigation, badge counts for unread alerts, and event handling for interactions.`, { generalDocLink: 'https://bamboo.tec.mx/latest/componentes/notification-card/descripcion-general-8uCIey7b' })}
+${getSpecialSpecifications(` ### ${RELEVANT_TITLE.note}
 When you click on fullscreen icon, in Storybook doesn’t look the best due to the many elements, but in your project, it should display correctly.
 `)}
 ${getBasicExampleBlock(

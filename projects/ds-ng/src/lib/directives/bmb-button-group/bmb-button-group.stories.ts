@@ -16,7 +16,7 @@ export default {
     docs: {
       description: {
         component: `
-${getGeneralDescription({ content: `${getGeneralComponentDescription({ name: 'ButtonGroup', type: 'directive' })} to add the same property to buttons that are inside the element that groups them.`, generalDocLink: 'https://bamboo.tec.mx/latest/componentes/button-group/descripcion-general-39ELIbCW' })}
+${getGeneralDescription(`${getGeneralComponentDescription({ name: 'ButtonGroup', type: 'directive' })} to add the same property to buttons that are inside the element that groups them.`, { generalDocLink: 'https://bamboo.tec.mx/latest/componentes/button-group/descripcion-general-39ELIbCW' })}
 ${getBasicExampleBlock('BmbButtonGroupDirective')}
         `,
       },

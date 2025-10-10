@@ -8,7 +8,7 @@ import {
   getBasicExampleBlock,
   getGeneralComponentDescription,
   getGeneralDescription,
-  RELEVANT_TITLE_LEVEL,
+  RELEVANT_TITLE,
 } from '../../utils/doc/utils';
 import {
   DBmbButtonParamDesc,
@@ -26,7 +26,7 @@ export default {
     docs: {
       description: {
         component: `
-${getGeneralDescription({ content: `${getGeneralComponentDescription({ name: 'Button', type: 'directive', alternativeDescription: 'that provides styles for buttons.' })} to add the look and feel to buttons.`, generalDocLink: 'https://bamboo.tec.mx/latest/componentes/button/descripcion-general-zJtdNHZZ' })}
+${getGeneralDescription(`${getGeneralComponentDescription({ name: 'Button', type: 'directive', alternativeDescription: 'that provides styles for buttons.' })} to add the look and feel to buttons.`, { generalDocLink: 'https://bamboo.tec.mx/latest/componentes/button/descripcion-general-zJtdNHZZ' })}
 ${getArchitectureSection(`
 <button class="bmb_btn-{appearance} bmb_btn-rounded">
   <!-- if icon is defined -->
@@ -46,7 +46,7 @@ ${getBasicExampleBlock('BmbButtonDirective')}
     iconSize: {
       control: { type: 'number' },
       description: `
-Sets size of the icon to use. <br/><br/>${RELEVANT_TITLE_LEVEL[2]} <= 0 will be inherited.
+Sets size of the icon to use. <br/><br/>${RELEVANT_TITLE.note} <= 0 will be inherited.
 `,
       table: {
         category: 'Properties',

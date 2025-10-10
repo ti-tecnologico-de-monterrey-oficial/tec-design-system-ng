@@ -37,6 +37,8 @@ export class BmbInnerHeaderComponent {
   subTitle = input<string>(''); //Deprecated
   trailingIconPrimary = input<string>('');
   trailingIconSecondary = input<string>('');
+  disableTrailingIconPrimary = input<boolean>(false);
+  disableTrailingIconSecondary = input<boolean>(false);
   showClose = input<boolean>(false);
   showReturn = input<boolean>(false);
   showSearch = input<boolean>(false);

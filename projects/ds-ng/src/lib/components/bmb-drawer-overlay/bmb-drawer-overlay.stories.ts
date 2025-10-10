@@ -5,7 +5,7 @@ import {
   getGeneralComponentDescription,
   getGeneralDescription,
   getOnEvent,
-  RELEVANT_TITLE_LEVEL,
+  RELEVANT_TITLE,
 } from '../../utils/doc/utils';
 import {
   getOnClickParam,
@@ -39,7 +39,7 @@ export default {
       },
       description: {
         component: `
-${getGeneralDescription({ content: `${getGeneralComponentDescription({ name: 'drawer-overlay', type: 'element' })} to implement an interactive overlay in addition to an application menu and header.`, generalDocLink: 'https://bamboo.tec.mx/latest/particularities/mitec-app/fab-overlay-drawer-11JEvoAR' })}
+${getGeneralDescription(`${getGeneralComponentDescription({ name: 'drawer-overlay', type: 'element' })} to implement an interactive overlay in addition to an application menu and header.`, { generalDocLink: 'https://bamboo.tec.mx/latest/particularities/mitec-app/fab-overlay-drawer-11JEvoAR' })}
 ${getBasicExampleBlock('BmbDrawerOverlayComponent')}
 `,
       },
@@ -54,7 +54,7 @@ ${getBasicExampleBlock('BmbDrawerOverlayComponent')}
         defaultValue: {
           summary: '[]',
           detail: `
-${RELEVANT_TITLE_LEVEL[4]}
+${RELEVANT_TITLE.example}
 [
   {
     appearance: 'red',
@@ -111,7 +111,7 @@ ${RELEVANT_TITLE_LEVEL[4]}
         defaultValue: {
           summary: '[]',
           detail: `
-${RELEVANT_TITLE_LEVEL[4]}
+${RELEVANT_TITLE.example}
 [
   { title: 'Tab 1', id: 0 },
   { title: 'Tab 2', id: 1 },
@@ -142,7 +142,7 @@ IBmbTab {
         defaultValue: {
           summary: '{}',
           detail: `
-${RELEVANT_TITLE_LEVEL[4]}
+${RELEVANT_TITLE.example}
 {
   '0': [
     {

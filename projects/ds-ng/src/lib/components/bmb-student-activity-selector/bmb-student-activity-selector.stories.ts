@@ -32,12 +32,14 @@ export default {
       controls: { exclude: ['selectTab', 'tabs', 'ngAfterContentInit'] },
       description: {
         component: `
-${getGeneralDescription({
-  content: `${getGeneralComponentDescription({ name: 'student-activity-selector' })} to organize the information in three types of selectors (3 is the limit).`,
-  generalDocLink:
-    'https://bamboo.tec.mx/latest/components/student-activity-selector/descripcion-general-77DLiLfG',
-  isDeprecated: true,
-})}
+${getGeneralDescription(
+  `${getGeneralComponentDescription({ name: 'student-activity-selector' })} to organize the information in three types of selectors (3 is the limit).`,
+  {
+    generalDocLink:
+      'https://bamboo.tec.mx/latest/components/student-activity-selector/descripcion-general-77DLiLfG',
+    isDeprecated: true,
+  },
+)}
 ${getBasicExampleBlock('BmbStudentActivitySelectorComponent, BmbTabStudentActivityComponent')}
 \`\`\`html
 <bmb-student-activity-selector>

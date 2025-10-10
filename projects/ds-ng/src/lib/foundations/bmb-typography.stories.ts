@@ -26,7 +26,7 @@ export default {
       page: () => getPageStructureForFoundationStories(),
       description: {
         component: `
-${getGeneralDescription({ content: getFoundationDescriptions('fonts and sizes', TYPOGRAPHY_DESCRIPTION.concat('<br/>')), generalDocLink: 'https://bamboo.tec.mx/latest/foundations/tipografia/descripcion-general-cJHuMZaF' })}
+${getGeneralDescription(getFoundationDescriptions('fonts and sizes', TYPOGRAPHY_DESCRIPTION.concat('<br/>')), { generalDocLink: 'https://bamboo.tec.mx/latest/foundations/tipografia/descripcion-general-cJHuMZaF' })}
 ${getSpecialSpecifications(
   getSandboxConsiderationsDocumentation(
     'font family and size reference',
@@ -34,6 +34,7 @@ ${getSpecialSpecifications(
     getTypographyDetail(),
     true,
   ),
+  { showAdditionalBlockquote: true },
 )}`,
       },
     },

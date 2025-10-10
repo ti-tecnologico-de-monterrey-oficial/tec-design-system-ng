@@ -15,6 +15,12 @@ import { BmbCheckExternalLinkButtonComponent } from '../bmb-check-external-link-
 import { IPositionButtonMenu } from '../bmb-top-bar/types';
 import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
 
+interface IBmbIsButton {
+  link?: string;
+  isMobile: boolean;
+  hasChildren: boolean;
+}
+
 @Component({
   selector: 'bmb-sidebar',
   standalone: true,
@@ -77,9 +83,13 @@ export class BmbSidebarComponent implements OnInit {
     );
   }
 
-  getLink(link: string): string {
-    if (!!link) return link;
-    return '';
+  checkForButton({ isMobile, hasChildren }: IBmbIsButton): boolean {
+    return isMobile && hasChildren;
+  }
+
+  getLink({ link, isMobile, hasChildren }: IBmbIsButton): string {
+    if (this.checkForButton({ isMobile, hasChildren })) return '';
+    return link || '';
   }
 
   closeSidebar() {

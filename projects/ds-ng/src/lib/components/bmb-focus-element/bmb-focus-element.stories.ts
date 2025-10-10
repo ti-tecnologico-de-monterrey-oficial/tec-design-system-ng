@@ -4,7 +4,7 @@ import {
   getBasicExampleBlock,
   getGeneralComponentDescription,
   getGeneralDescription,
-  RELEVANT_TITLE_LEVEL,
+  RELEVANT_TITLE,
 } from '../../utils/doc/utils';
 import {
   DBmbIconParamDesc,
@@ -22,7 +22,7 @@ export default {
       },
       description: {
         component: `
-${getGeneralDescription({ content: `${getGeneralComponentDescription({ name: 'focus-element' })} to highlight an element.`, generalDocLink: 'https://bamboo.tec.mx/latest/componentes/focus-element/descripcion-general-kMjMy40y' })}
+${getGeneralDescription(`${getGeneralComponentDescription({ name: 'focus-element' })} to highlight an element.`, { generalDocLink: 'https://bamboo.tec.mx/latest/componentes/focus-element/descripcion-general-kMjMy40y' })}
 ${getBasicExampleBlock('BmbFocusElementComponent')}
         `,
       },
@@ -35,7 +35,7 @@ ${getBasicExampleBlock('BmbFocusElementComponent')}
       'number',
       0,
       `<br/><br/>
- ${RELEVANT_TITLE_LEVEL[1]}
+ ${RELEVANT_TITLE.important}
  The number is only considered if it does not have icon.`,
       '',
       'number',
@@ -43,7 +43,7 @@ ${getBasicExampleBlock('BmbFocusElementComponent')}
     icon: {
       ...DBmbIconParamDesc.icon,
       description: DBmbIconParamDesc.icon.description.concat(
-        `<br/><br/>${RELEVANT_TITLE_LEVEL[1]}Do not use the number property if you want to use an icon.`,
+        `<br/><br/>${RELEVANT_TITLE.important}Do not use the number property if you want to use an icon.`,
       ),
     },
     isNonFocused: {

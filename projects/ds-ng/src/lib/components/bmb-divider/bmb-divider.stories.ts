@@ -14,7 +14,7 @@ export default {
     docs: {
       description: {
         component: `
-${getGeneralDescription({ content: `${getGeneralComponentDescription({ name: 'divider' })} to separate sections of content, improving organization and visual clarity.`, generalDocLink: 'https://bamboo.tec.mx/latest/componentes/divider/descripcion-general-Z8NNTVA9' })}
+${getGeneralDescription(`${getGeneralComponentDescription({ name: 'divider' })} to separate sections of content, improving organization and visual clarity.`, { generalDocLink: 'https://bamboo.tec.mx/latest/componentes/divider/descripcion-general-Z8NNTVA9' })}
 ${getArchitectureSection(`
 <div class="bmb_divider" <!-- conditional classes bmb_divider bmb_divider-{this.type} >
 </div>

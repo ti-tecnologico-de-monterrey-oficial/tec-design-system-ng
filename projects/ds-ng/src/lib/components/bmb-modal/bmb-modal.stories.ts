@@ -16,7 +16,7 @@ import {
   getGeneralDescription,
   getOnEvent,
   getSpecialSpecifications,
-  RELEVANT_TITLE_LEVEL,
+  RELEVANT_TITLE,
 } from '../../utils/doc/utils';
 import {
   DBmbModalParamDesc,
@@ -145,13 +145,15 @@ export default {
       },
       description: {
         component: `
-${getGeneralDescription({
-  content: `***Modal*** is a pop-up window that helps display additional information or perform actions without changing the main page. ${DESIGN_SYSTEM_TITLE} ***Modal*** supports various configurations such as alert styles, custom content (string or template),
+${getGeneralDescription(
+  `***Modal*** is a pop-up window that helps display additional information or perform actions without changing the main page. ${DESIGN_SYSTEM_TITLE} ***Modal*** supports various configurations such as alert styles, custom content (string or template),
  and primary/secondary actions.`,
-  generalDocLink:
-    'https://bamboo.tec.mx/latest/componentes/modal/descripcion-general-sLOq8HIt',
-  isSubStory: true,
-})}
+  {
+    generalDocLink:
+      'https://bamboo.tec.mx/latest/componentes/modal/descripcion-general-sLOq8HIt',
+    isSubStory: true,
+  },
+)}
 ${getSpecialSpecifications(
   `
 ### 🟣 -Modal Usage with String Content
@@ -223,7 +225,7 @@ openModalTemplate() {
 <button (click)="openModalTemplate()">Open Modal</button>
 \`\`\`
 >
-###-${RELEVANT_TITLE_LEVEL[2]}
+###-${RELEVANT_TITLE.note}
 >
 Make sure you are using:
 >
@@ -231,7 +233,7 @@ Make sure you are using:
 constructor(private matDialog: MatDialog) {}
 \`\`\`
 `,
-  true,
+  { isSubStory: true },
 )}
 ${getBasicExampleBlock(
   'BmbModalComponent',
@@ -342,7 +344,7 @@ ${getBasicExampleBlock(
     ),
     closeAction: getOnClickParam(
       getOnEvent('secondary action', 'secondaryAction', 'void'),
-      `.<br/><br/>${RELEVANT_TITLE_LEVEL[0]}This event will not prevent the modal from closing`,
+      `.<br/><br/>${RELEVANT_TITLE.warning}This event will not prevent the modal from closing`,
     ),
     hidePrimaryButton: {
       control: { type: 'boolean' },

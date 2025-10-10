@@ -21,7 +21,7 @@ export default {
       },
       description: {
         component: `
-${getGeneralDescription({ content: `${getGeneralComponentDescription({ name: 'user-image' })} an online identity to be established.`, generalDocLink: 'https://bamboo.tec.mx/latest/componentes/user-image/descripcion-general-nwfVZScf' })}
+${getGeneralDescription(`${getGeneralComponentDescription({ name: 'user-image' })} an online identity to be established.`, { generalDocLink: 'https://bamboo.tec.mx/latest/componentes/user-image/descripcion-general-nwfVZScf' })}
 ${getBasicExampleBlock('BmbUserImageComponent')}
         `,
       },

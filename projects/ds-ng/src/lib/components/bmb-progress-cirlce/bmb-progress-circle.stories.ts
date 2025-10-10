@@ -4,7 +4,7 @@ import {
   getBasicExampleBlock,
   getGeneralComponentDescription,
   getGeneralDescription,
-  RELEVANT_TITLE_LEVEL,
+  RELEVANT_TITLE,
 } from '../../utils/doc/utils';
 import {
   DBmbGenericParamDesc,
@@ -12,7 +12,7 @@ import {
   getPropertyParamDesc,
 } from '../../utils/doc/parameterDescriptions';
 
-const IMPORTANT_DESCRIPTION = `<br/><br/>${RELEVANT_TITLE_LEVEL[1]} The gray fill path (fillPathStatus) does not work for the full state (fullFillPathStatus).`;
+const IMPORTANT_DESCRIPTION = `<br/><br/>${RELEVANT_TITLE.important} The gray fill path (fillPathStatus) does not work for the full state (fullFillPathStatus).`;
 export default {
   title: 'Components/Status indicators/Progress circle',
   component: BmbProgressCircleComponent,
@@ -40,7 +40,7 @@ export default {
       },
       description: {
         component: `
-${getGeneralDescription({ content: `${getGeneralComponentDescription({ name: 'progress-circle' })} visually indicates the status of a definite amount of work completed.`, generalDocLink: 'https://bamboo.tec.mx/latest/componentes/progress-circle/descripcion-general-M5Xm37iL' })}
+${getGeneralDescription(`${getGeneralComponentDescription({ name: 'progress-circle' })} visually indicates the status of a definite amount of work completed.`, { generalDocLink: 'https://bamboo.tec.mx/latest/componentes/progress-circle/descripcion-general-M5Xm37iL' })}
 ${getBasicExampleBlock('BmbProgressCircleComponent')}
         `,
       },

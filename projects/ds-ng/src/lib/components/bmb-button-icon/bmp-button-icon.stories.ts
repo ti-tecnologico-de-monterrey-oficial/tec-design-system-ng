@@ -9,7 +9,7 @@ import {
   getOnEvent,
   getSpecialSpecifications,
   IBmbOnEvent,
-  RELEVANT_TITLE_LEVEL,
+  RELEVANT_TITLE,
 } from '../../utils/doc/utils';
 import {
   DBmbGenericParamDesc,
@@ -30,11 +30,13 @@ export default {
       controls: { exclude: ['handleClick', 'handlePress'] },
       description: {
         component: `
-${getGeneralDescription({
-  content: `${getGeneralComponentDescription({ name: 'button-icon' })} to add compact buttons using icons without text.`,
-  generalDocLink:
-    'https://bamboo.tec.mx/latest/componentes/button-icon/descripcion-general-6GKyDzWU',
-})}
+${getGeneralDescription(
+  `${getGeneralComponentDescription({ name: 'button-icon' })} to add compact buttons using icons without text.`,
+  {
+    generalDocLink:
+      'https://bamboo.tec.mx/latest/componentes/button-icon/descripcion-general-6GKyDzWU',
+  },
+)}
 ${getSpecialSpecifications(`Recommended for representing quick and intuitive actions within limited spaces, such as toolbars, headers, cards.`)}
 <br/>
 ${getBasicExampleBlock('BmbButtonIconComponent', '', onEvent.handleExample)}
@@ -64,7 +66,7 @@ ${getBasicExampleBlock('BmbButtonIconComponent', '', onEvent.handleExample)}
       description: `
 Sets the appearance of the outline when true.
 
-${RELEVANT_TITLE_LEVEL[2]} \`showContainer\` must also be true.
+${RELEVANT_TITLE.note} \`showContainer\` must also be true.
       `,
       table: {
         category: 'Properties',
