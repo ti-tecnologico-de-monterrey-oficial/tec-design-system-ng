@@ -8,25 +8,25 @@
 
 ## Props / Parámetros
 
-| Propiedad           | Tipo                                      | Descripción                                                                 | Valor por defecto         | Obligatorio |
-|---------------------|-------------------------------------------|-----------------------------------------------------------------------------|---------------------------|-------------|
-| `appearanceContrast`| `IBmbContrast`                            | Contraste visual del ícono (`default`, `primary`, `alternative`)            | `'default'`               | No          |
-| `appearance`        | `IBmbInteractiveIconAppearance`           | Estilo visual del ícono (varios colores y temas)                            | `'red'`                   | No          |
-| `title`             | `string`                                  | Título descriptivo del ícono                                                | -                         | No          |
-| `description`       | `string`                                  | Descripción adicional                                                       | `''`                      | No          |
-| `icon`              | `string`                                  | Nombre del ícono a mostrar                                                  | `'face'`                  | No          |
-| `dotNotification`   | `number`                                  | Número de notificaciones a mostrar como punto                               | -                         | No          |
-| `horizontal`        | `boolean`                                 | Disposición horizontal del ícono                                            | `false`                   | No          |
-| `target`            | `IBmbTargetLink`                          | Objeto de destino para el enlace                                            | -                         | No          |
-| `link`              | `string`                                  | URL o ruta de navegación                                                    | -                         | No          |
-| `layout`            | `IBmbInteractiveIconType`                 | Tipo de layout (`regular`, `button`, `app_drawer`)                          | `'regular'`               | No          |
-| `setButtonTemplate` | `boolean`                                 | Si se usa plantilla de botón                                                | `false`                   | No          |
+| Propiedad            | Tipo                            | Descripción                                                      | Valor por defecto | Obligatorio |
+| -------------------- | ------------------------------- | ---------------------------------------------------------------- | ----------------- | ----------- |
+| `appearanceContrast` | `IBmbContrast`                  | Contraste visual del ícono (`default`, `primary`, `alternative`) | `'default'`       | No          |
+| `appearance`         | `IBmbInteractiveIconAppearance` | Estilo visual del ícono (varios colores y temas)                 | `'red'`           | No          |
+| `title`              | `string`                        | Título descriptivo del ícono                                     | -                 | No          |
+| `description`        | `string`                        | Descripción adicional                                            | `''`              | No          |
+| `icon`               | `string`                        | Nombre del ícono a mostrar                                       | `'face'`          | No          |
+| `dotNotification`    | `number`                        | Número de notificaciones a mostrar como punto                    | -                 | No          |
+| `horizontal`         | `boolean`                       | Disposición horizontal del ícono                                 | `false`           | No          |
+| `target`             | `IBmbTargetLink`                | Objeto de destino para el enlace                                 | -                 | No          |
+| `link`               | `string`                        | URL o ruta de navegación                                         | -                 | No          |
+| `layout`             | `IBmbInteractiveIconType`       | Tipo de layout (`regular`, `button`, `app_drawer`)               | `'regular'`       | No          |
+| `setButtonTemplate`  | `boolean`                       | Si se usa plantilla de botón                                     | `false`           | No          |
 
 ### Outputs
 
-| Output         | Tipo           | Descripción                                  |
-|----------------|----------------|----------------------------------------------|
-| `buttonClick`  | `MouseEvent`   | Se emite al hacer clic en el ícono/botón     |
+| Output        | Tipo         | Descripción                              |
+| ------------- | ------------ | ---------------------------------------- |
+| `buttonClick` | `MouseEvent` | Se emite al hacer clic en el ícono/botón |
 
 ---
 

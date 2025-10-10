@@ -8,22 +8,22 @@
 
 ## Props / Parámetros
 
-| Propiedad            | Tipo                         | Descripción                                                                 | Valor por defecto | Obligatorio |
-|----------------------|------------------------------|-----------------------------------------------------------------------------|-------------------|-------------|
-| `borderRadius`       | `SizeNames \| SizeNames[]`   | Radio de borde de los elementos de la lista                                 | `'m'`             | No          |
-| `borderType`         | `BorderType`                 | Tipo de borde (`rounded`, etc.)                                             | `'rounded'`       | No          |
-| `margin`             | `SizeNames`                  | Margen entre los elementos de la lista                                      | `'m'`             | No          |
-| `padding`            | `SizeNames \| SizeNames[]`   | Padding interno de los elementos                                            | `'m'`             | No          |
-| `isMultipleSelection`| `boolean`                    | Permite selección múltiple de elementos                                     | `false`           | No          |
-| `isRowView`          | `boolean`                    | Muestra los elementos en vista de fila horizontal                           | `false`           | No          |
-| `showControls`       | `boolean`                    | Muestra controles adicionales en los elementos                              | `false`           | No          |
-| `listGroupId`        | `string`                     | Identificador único para el grupo de lista                                  | `'listGroupStatus'`| No         |
+| Propiedad             | Tipo                       | Descripción                                       | Valor por defecto   | Obligatorio |
+| --------------------- | -------------------------- | ------------------------------------------------- | ------------------- | ----------- |
+| `borderRadius`        | `SizeNames \| SizeNames[]` | Radio de borde de los elementos de la lista       | `'m'`               | No          |
+| `borderType`          | `BorderType`               | Tipo de borde (`rounded`, etc.)                   | `'rounded'`         | No          |
+| `margin`              | `SizeNames`                | Margen entre los elementos de la lista            | `'m'`               | No          |
+| `padding`             | `SizeNames \| SizeNames[]` | Padding interno de los elementos                  | `'m'`               | No          |
+| `isMultipleSelection` | `boolean`                  | Permite selección múltiple de elementos           | `false`             | No          |
+| `isRowView`           | `boolean`                  | Muestra los elementos en vista de fila horizontal | `false`             | No          |
+| `showControls`        | `boolean`                  | Muestra controles adicionales en los elementos    | `false`             | No          |
+| `listGroupId`         | `string`                   | Identificador único para el grupo de lista        | `'listGroupStatus'` | No          |
 
 ### Outputs
 
-| Output            | Tipo           | Descripción                                  |
-|-------------------|----------------|----------------------------------------------|
-| `selectionChange` | `string[]`     | Se emite cuando cambia la selección de elementos |
+| Output            | Tipo       | Descripción                                      |
+| ----------------- | ---------- | ------------------------------------------------ |
+| `selectionChange` | `string[]` | Se emite cuando cambia la selección de elementos |
 
 ---
 

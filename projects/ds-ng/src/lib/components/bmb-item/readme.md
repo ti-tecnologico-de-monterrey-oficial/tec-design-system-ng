@@ -8,22 +8,22 @@
 
 ## Props / Parámetros
 
-| Propiedad      | Tipo              | Descripción                                                        | Valor por defecto | Obligatorio |
-|----------------|-------------------|--------------------------------------------------------------------|-------------------|-------------|
-| `icon`         | `string`          | Nombre del ícono a mostrar                                         | `''`              | No          |
-| `iconSize`     | `number`          | Tamaño del ícono en píxeles                                        | `20`              | No          |
-| `label`        | `string`          | Etiqueta principal del elemento                                    | `''`              | No          |
-| `value`        | `string`          | Valor o información principal a mostrar                            | `''`              | No          |
-| `valueLink`    | `string`          | URL o ruta para el valor (si es enlace)                            | `''`              | No          |
-| `valueTarget`  | `IBmbTargetLink`  | Destino del enlace (`_blank`, `_self`, etc.)                       | `'_blank'`        | No          |
-| `supportText`  | `string`          | Texto de soporte o información adicional                           | `''`              | No          |
-| `isButton`     | `boolean`         | Indica si el elemento actúa como botón                             | `false`           | No          |
+| Propiedad     | Tipo             | Descripción                                  | Valor por defecto | Obligatorio |
+| ------------- | ---------------- | -------------------------------------------- | ----------------- | ----------- |
+| `icon`        | `string`         | Nombre del ícono a mostrar                   | `''`              | No          |
+| `iconSize`    | `number`         | Tamaño del ícono en píxeles                  | `20`              | No          |
+| `label`       | `string`         | Etiqueta principal del elemento              | `''`              | No          |
+| `value`       | `string`         | Valor o información principal a mostrar      | `''`              | No          |
+| `valueLink`   | `string`         | URL o ruta para el valor (si es enlace)      | `''`              | No          |
+| `valueTarget` | `IBmbTargetLink` | Destino del enlace (`_blank`, `_self`, etc.) | `'_blank'`        | No          |
+| `supportText` | `string`         | Texto de soporte o información adicional     | `''`              | No          |
+| `isButton`    | `boolean`        | Indica si el elemento actúa como botón       | `false`           | No          |
 
 ### Outputs
 
-| Output   | Tipo         | Descripción                                  |
-|----------|--------------|----------------------------------------------|
-| `action` | `MouseEvent` | Se emite al hacer clic en el elemento        |
+| Output   | Tipo         | Descripción                           |
+| -------- | ------------ | ------------------------------------- |
+| `action` | `MouseEvent` | Se emite al hacer clic en el elemento |
 
 ---
 

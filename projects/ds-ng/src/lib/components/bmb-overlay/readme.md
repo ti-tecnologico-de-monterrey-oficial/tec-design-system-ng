@@ -8,16 +8,16 @@
 
 ## Props / Parámetros
 
-| Propiedad | Tipo     | Descripción                                         | Valor por defecto | Obligatorio |
-|-----------|----------|-----------------------------------------------------|-------------------|-------------|
-| `active`  | `boolean`| Controla la visibilidad del overlay                 | `false`           | No          |
-| `uid`     | `string` | Identificador único del overlay                     | `getUUID()`       | No          |
+| Propiedad | Tipo      | Descripción                         | Valor por defecto | Obligatorio |
+| --------- | --------- | ----------------------------------- | ----------------- | ----------- |
+| `active`  | `boolean` | Controla la visibilidad del overlay | `false`           | No          |
+| `uid`     | `string`  | Identificador único del overlay     | `getUUID()`       | No          |
 
 ### Outputs
 
-| Output   | Tipo     | Descripción                                  |
-|----------|----------|----------------------------------------------|
-| `onClick`| `string` | Se emite al hacer clic en el overlay, pasando el `uid` |
+| Output    | Tipo     | Descripción                                            |
+| --------- | -------- | ------------------------------------------------------ |
+| `onClick` | `string` | Se emite al hacer clic en el overlay, pasando el `uid` |
 
 ---
 

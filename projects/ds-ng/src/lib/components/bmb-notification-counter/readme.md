@@ -8,10 +8,10 @@
 
 ## Props / Parámetros
 
-| Propiedad    | Tipo                              | Descripción                                                        | Valor por defecto | Obligatorio |
-|--------------|-----------------------------------|--------------------------------------------------------------------|-------------------|-------------|
-| `counter`    | `number`                          | Número de notificaciones o elementos a mostrar                     | -                 | Sí          |
-| `appearance` | `IBmbNotificationCounterType`     | Tipo de visualización (`notification`, `plain`)                    | `'notification'`  | No          |
+| Propiedad    | Tipo                          | Descripción                                     | Valor por defecto | Obligatorio |
+| ------------ | ----------------------------- | ----------------------------------------------- | ----------------- | ----------- |
+| `counter`    | `number`                      | Número de notificaciones o elementos a mostrar  | -                 | Sí          |
+| `appearance` | `IBmbNotificationCounterType` | Tipo de visualización (`notification`, `plain`) | `'notification'`  | No          |
 
 ---
 

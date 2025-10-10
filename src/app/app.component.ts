@@ -13,6 +13,7 @@ import {
 } from '../../projects/ds-ng/src/public-api';
 import { CommonModule } from '@angular/common';
 @Component({
+  // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'app-root',
   imports: [
     BmbIconComponent,
