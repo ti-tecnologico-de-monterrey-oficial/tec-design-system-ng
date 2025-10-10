@@ -1,16 +1,15 @@
-import { BmbTableLiteComponent } from './bmb-table-lite.component';
 import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
 import { CommonModule } from '@angular/common';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
-import { BmbBadgeComponent } from '../bmb-badge/bmb-badge.component';
 import {
   getBasicExampleBlock,
   getEmptyStateMessage,
   getGeneralComponentDescription,
   getGeneralDescription,
   getSpecialSpecifications,
-  RELEVANT_TITLE_LEVEL,
 } from '../../utils/doc/utils';
+import { BmbTableLiteComponent } from './bmb-table-lite.component';
+import { BmbBadgeComponent } from '../bmb-badge/bmb-badge.component';
 
 const additionalBlock: string = `
   @ViewChild('infoTemplate') infoTemplate!: TemplateRef<any>;
@@ -294,6 +293,7 @@ const additionalBlock: string = `
 
 export default {
   title: 'Components/Containers/Table lite',
+  tags: ['!autodocs'],
   component: BmbTableLiteComponent,
   decorators: [
     moduleMetadata({
@@ -312,7 +312,7 @@ export default {
         'applyFilters',
         'checkboxLabel',
         'checkResizing',
-        'getCellClasses\t',
+        'getCellClasses	',
         'getCellData',
         'getFormControl',
         'getPaginationText',
@@ -324,7 +324,7 @@ export default {
         'mouseMove',
         'onResize',
         'onResizeColumn',
-        'onSelect\t',
+        'onSelect	',
         'onSelectRow',
         'parseColumns',
         'parseData',
@@ -356,6 +356,18 @@ export default {
         'pressed',
         'startX',
         'tableConfig',
+        'getTableClasses',
+        'goToFirstPage',
+        'goToLastPage',
+        'goToNextPage',
+        'goToPreviousPage',
+        'lastPage',
+        'onPageEvent',
+        'parsedFiltersColumns',
+        'cellRef',
+        'headerCellRef',
+        'matTableRef',
+        'paginator',
       ],
     },
     docs: {
@@ -366,7 +378,7 @@ ${getGeneralDescription({
 >
 It supports features such as selection, expansion, pagination, dynamic filtering, column resizing,
 custom actions, and templating for both actions and detail rows.
-  `,
+ `,
   generalDocLink:
     'https://bamboo.tec.mx/latest/componentes/table/descripcion-general-h1hRplJO',
 })}

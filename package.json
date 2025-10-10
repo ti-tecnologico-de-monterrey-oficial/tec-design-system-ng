@@ -8,7 +8,6 @@
     "Tecnológico de Monterrey"
   ],
   "license": "MIT",
-  "type": "module",
   "scripts": {
     "ng": "ng",
     "storybook": "ng run ds-ng:storybook",
@@ -33,8 +32,7 @@
     "build:micro": "sass projects/ds-ng/src/assets/styles/micro.scss dist/ds-ng/assets/styles/micro.min.css --style=compressed",
     "build:git-micro": "sass projects/ds-ng/src/assets/styles/micro.scss projects/ds-ng/src/lib/foundations/micro.min.css --style=compressed",
     "publish:beta": "node publish.js --beta",
-    "publish:latest": "node publish.js",
-    "mock": "node server.cjs"
+    "publish:latest": "node publish.js"
   },
   "auto-changelog": {
     "output": "CHANGELOG.md",
@@ -99,7 +97,6 @@
     "file-loader": "6.2.0",
     "husky": "9.1.7",
     "jasmine-core": "5.1.0",
-    "json-server": "^0.17.4",
     "karma": "6.4.0",
     "karma-chrome-launcher": "3.2.0",
     "karma-coverage": "2.2.0",

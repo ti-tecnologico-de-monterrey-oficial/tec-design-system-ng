@@ -1,29 +1,69 @@
 <bmb-table-lite
-  [data]="displayedItems"
+  [truncate]="true"
+  [data]="data"
   [columns]="columns"
   [config]="config"
-  [pageSize]="itemsPerPage"
-  [totalItems]="totalItems"
-  [serverSide]="true"
-  [filtersVisible]="false"
-  [filtersPosition]="'top'"
+  [pageSize]="5"
+  [truncate]="false"
   [showSearch]="true"
+  [filtersVisible]="false"
+  [filtersPosition]="'bottom'"
   [lang]="'es'"
-  [truncate]="true"
-  (pageChange)="onPageRequest($event)"
-  (filtersChange)="onFilters($event)"
-  (searchChange)="onSearch($event)"
+  [serverSide]="false"
   [actionTemplate]="actionTemplate"
-  (searchModeChange)="onSearchMode($event)"
+  [detailTemplate]="detailTemplate"
+  (select)="onSelect($event)"
+  (clickedRow)="onClickRow($event)"
+  [(clearSelection)]="clearSelectionFlag"
 >
 </bmb-table-lite>
 
+<button (click)="resetSelection()">Limpiar selección</button>
+
+<!-- Templates -->
+
+<ng-template #lastNameTemplate let-row="row">
+  <bmb-icon icon="face" [size]="20"></bmb-icon>
+  <span> {{ row.lastName }}</span>
+  <button (click)="clickButton($event)" size="small">
+    <bmb-icon icon="edit" [size]="20" color="white" />
+  </button>
+</ng-template>
+
+<ng-template #infoTemplate let-row="row">
+  <bmb-badge
+    [appearance]="'info'"
+    [text]="row.info"
+    [container]="false"
+  ></bmb-badge>
+</ng-template>
+
 <ng-template #actionTemplate>
   <div class="action-container">
-    <button (click)="editData($event)" size="small">
+    <button (click)="clickButton($event)" size="small">
       <bmb-icon [icon]="'apps'" />
+    </button>
+    <button (click)="clickButton($event)" size="small">
+      <bmb-icon [icon]="'add'" />
     </button>
   </div>
 </ng-template>
 
-<button (click)="resetSelection()">Limpiar selección</button>
+<ng-template #headerNameTemplate let-column="column" let-i="index">
+  <span>{{ column.label }} Title</span>
+  <bmb-icon icon="face" class="bmb_table-data-icon" />
+</ng-template>
+
+<ng-template #detailTemplate let-row="row">
+  <div *ngIf="isString(row.detail)">
+    {{ row.detail }}
+  </div>
+
+  <bmb-table-lite
+    *ngIf="isObject(row.detail)"
+    [data]="row.detail.data"
+    [columns]="row.detail.columns"
+    [config]="row.detail.config"
+    [truncate]="false"
+  ></bmb-table-lite>
+</ng-template>

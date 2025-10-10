@@ -173,6 +173,7 @@ export class BmbTableLiteComponent implements OnInit, OnChanges {
   ngOnInit(): void {
     this.searchControl.valueChanges.subscribe((value) => {
       const search = (value || '').trim().toLowerCase();
+
       if (this.serverSide()) {
         this.searchModeChange.emit('server');
         this.searchChange.emit(search);
@@ -180,11 +181,19 @@ export class BmbTableLiteComponent implements OnInit, OnChanges {
         this.searchModeChange.emit('client');
         this.applyFilters();
       }
+
+      this.cdr.markForCheck();
     });
 
     this._rawConfig = this.config() || {};
     this.parseData(this.data());
     this.parseColumns(this.columns());
+
+    // 👇 importante: recrear filtros una vez que todo esté listo
+    setTimeout(() => {
+      this.setupDynamicFilters();
+      this.cdr.markForCheck();
+    });
   }
 
   // -----------------------------------------------------------------------------
@@ -273,7 +282,14 @@ export class BmbTableLiteComponent implements OnInit, OnChanges {
       }
     });
 
-    this.filterForm.valueChanges.subscribe(() => this.applyFilters());
+    this.filterForm.valueChanges.subscribe(() => {
+      if (this.serverSide()) {
+        this.filtersChange.emit(this.filterForm.value);
+      } else {
+        this.applyFilters();
+      }
+      this.cdr.markForCheck();
+    });
   }
 
   // 🔹 Aplica los filtros, búsqueda y paginación según el modo activo
@@ -573,13 +589,42 @@ export class BmbTableLiteComponent implements OnInit, OnChanges {
     return this.tableConfig?.showActions ? '80px' : '0px';
   }
 
+  @HostBinding('style.--has-checkbox')
+  get hasCheckbox() {
+    return this.tableConfig?.isSelectable ? 1 : 0;
+  }
+
+  @HostBinding('style.--has-expand')
+  get hasExpand() {
+    return this.tableConfig?.isExpandible ? 1 : 0;
+  }
+
+  @HostBinding('style.--has-actions')
+  get hasActions() {
+    return this.tableConfig?.showActions ? 1 : 0;
+  }
+
   // 🔹 Expone las variables CSS usadas para el grid dinámico
   get cssVars() {
+    const hasSelect = this.tableConfig?.isSelectable;
+    const hasExpand = this.tableConfig?.isExpandible;
+    const hasActions = this.tableConfig?.showActions;
+
+    const columnTemplate = `repeat(${this.tableColumns.length}, minmax(120px, 1fr))`;
+
+    const parts = [
+      hasSelect ? 'var(--col-checkbox, 62px)' : '',
+      hasExpand ? 'var(--col-expand, 40px)' : '',
+      columnTemplate,
+      hasActions ? 'var(--col-actions, 80px)' : '',
+    ].filter(Boolean);
+
     return {
       '--col-count': this.tableColumns.length,
-      '--col-checkbox': this.tableConfig?.isSelectable ? '62px' : '0px',
-      '--col-expand': this.tableConfig?.isExpandible ? '40px' : '0px',
-      '--col-actions': this.tableConfig?.showActions ? '80px' : '0px',
+      '--col-checkbox': hasSelect ? '62px' : '0px',
+      '--col-expand': hasExpand ? '40px' : '0px',
+      '--col-actions': hasActions ? '80px' : '0px',
+      '--grid-template': parts.join(' '),
     };
   }
 

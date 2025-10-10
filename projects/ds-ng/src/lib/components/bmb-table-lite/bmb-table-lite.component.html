@@ -161,23 +161,21 @@
 
           @if (tableConfig?.isExpandible) {
             <div class="bmb_table_lite-td bmb_table_lite-expand">
-              <ng-container *ngIf="row.detail">
-                <button
-                  type="button"
-                  class="bmb_btn-icon"
-                  aria-label="expand row"
-                  (click)="
-                    expandedElement = expandedElement === row ? null : row;
-                    $event.stopPropagation()
+              <button
+                type="button"
+                class="bmb_btn-icon"
+                aria-label="expand row"
+                (click)="
+                  expandedElement = expandedElement === row ? null : row;
+                  $event.stopPropagation()
+                "
+              >
+                <bmb-icon
+                  [icon]="
+                    expandedElement === row ? 'expand_less' : 'expand_more'
                   "
-                >
-                  <bmb-icon
-                    [icon]="
-                      expandedElement === row ? 'expand_less' : 'expand_more'
-                    "
-                  ></bmb-icon>
-                </button>
-              </ng-container>
+                ></bmb-icon>
+              </button>
             </div>
           }
 

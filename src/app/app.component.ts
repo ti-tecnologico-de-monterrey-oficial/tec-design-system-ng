@@ -9,13 +9,17 @@ import {
 import {
   BmbTableLiteComponent,
   BmbIconComponent,
+  BmbBadgeComponent,
 } from '../../projects/ds-ng/src/public-api';
 import { CommonModule } from '@angular/common';
-import { HttpClient } from '@angular/common/http';
-
 @Component({
   selector: 'app-root',
-  imports: [BmbIconComponent, BmbTableLiteComponent, CommonModule],
+  imports: [
+    BmbIconComponent,
+    BmbTableLiteComponent,
+    CommonModule,
+    BmbBadgeComponent,
+  ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -23,135 +27,281 @@ import { HttpClient } from '@angular/common/http';
   standalone: true,
 })
 export class AppComponent {
+  @ViewChild('infoTemplate') infoTemplate!: TemplateRef<any>;
+  @ViewChild('lastNameTemplate') lastNameTemplate!: TemplateRef<any>;
   @ViewChild('actionTemplate') actionTemplate!: TemplateRef<any>;
+  @ViewChild('detailTemplate') detailTemplate!: TemplateRef<any>;
+  @ViewChild('headerNameTemplate') headerNameTemplate!: TemplateRef<any>;
 
-  displayedItems: any[] = [];
-  totalItems = 0;
-  itemsPerPage = 10;
-  pageIndex = 0;
-  searchTerm = '';
-  searchMode: 'client' | 'server' = 'server';
-  filters: Record<string, any> = {};
+  clearSelectionFlag = false;
 
-  // ---------------------------------------------------------------------------
-  // 📑 CONFIGURACIÓN DE COLUMNAS Y TABLA
-  // ---------------------------------------------------------------------------
-  columns: any[] = [
-    { def: 'sociedad', label: 'SOCIETY', dataKey: 'sociedad', type: 'number' },
-    {
-      def: 'claveFuncionSSFF',
-      label: 'FUNCTION',
-      dataKey: 'claveFuncionSSFF',
-      type: 'string',
-    },
-    {
-      def: 'nombreTipoContrato',
-      label: 'CONTRACT_TYPE',
-      dataKey: 'nombreTipoContrato',
-      type: 'string',
-    },
-    {
-      def: 'nombrePuestoFacultad',
-      label: 'POSITION_FACULTY',
-      dataKey: 'nombrePuestoFacultad',
-      type: 'string',
-    },
-    {
-      def: 'nombreRol',
-      label: 'TEACHER_ROLE',
-      dataKey: 'nombreRol',
-      type: 'string',
-    },
-    {
-      def: 'nombreEstatus',
-      label: 'STATUS',
-      dataKey: 'nombreEstatus',
-      type: 'string',
-    },
-  ];
+  constructor(private cdr: ChangeDetectorRef) {}
 
   config = {
-    isSelectable: false,
-    isExpandible: false,
+    isSelectable: true,
+    isExpandible: true,
     isPaginable: true,
     showActions: true,
   };
 
-  constructor(
-    private http: HttpClient,
-    private cdr: ChangeDetectorRef,
-  ) {}
+  data: any[] = [];
+  columns: any[] = [];
 
-  // ---------------------------------------------------------------------------
-  // 🚀 CARGA INICIAL
-  // ---------------------------------------------------------------------------
   ngOnInit(): void {
-    this.fetchData();
-  }
-
-  // ---------------------------------------------------------------------------
-  // 🌐 MÉTODO PRINCIPAL DE CARGA SERVER-SIDE
-  // ---------------------------------------------------------------------------
-  fetchData(): void {
-    const payload = {
-      ...this.filters,
-      search: this.searchTerm,
-      page: this.pageIndex + 1,
-      perPage: this.itemsPerPage,
-    };
-
-    this.http
-      .post<{
-        body: any[];
-        pagination: { totalRegistros: number; totalPaginas: number };
-      }>('http://localhost:3000/GetAsignacionesTaxonomia', payload)
-      .subscribe({
-        next: (res) => {
-          this.displayedItems = res.body || [];
-          this.totalItems = res.pagination?.totalRegistros || 0;
-          this.cdr.markForCheck();
+    this.data = [
+      {
+        lastName: 'Benitez',
+        name: 'Romina',
+        birthday: '02/02/2000',
+        info: 'buscar',
+        gorem: 'Gorem Ipsum',
+        goremType: 'success',
+        country: 'Mexico',
+      },
+      {
+        lastName: 'Rodriguez',
+        name: 'Edgar',
+        birthday: '02/23/2020',
+        info: 'Info text',
+        gorem: 'Gorem Ipsum Gorem Ipsum Gorem Ipsum',
+        goremType: 'success',
+        country: 'Francia',
+        detail: 'Detalle A',
+      },
+      {
+        lastName: 'Benitez',
+        name: 'Atenea',
+        birthday: '02/02/2010',
+        info: 'Info text',
+        gorem: 'Gorem Ipsum',
+        goremType: 'success',
+        country: 'Mexico',
+        detail: {
+          columns: [
+            { def: 'id', label: 'ID', dataKey: 'id' },
+            {
+              def: 'description',
+              label: 'Description',
+              dataKey: 'description',
+            },
+          ],
+          data: [
+            { id: 1, description: 'Detalle A' },
+            { id: 2, description: 'Detalle B' },
+          ],
+          config: {
+            isSelectable: false,
+            isExpandible: false,
+            isPaginable: false,
+            showActions: false,
+          },
         },
-        error: (err) => {
-          console.error('❌ Error fetching data:', err);
+      },
+      {
+        lastName: 'Benitez',
+        name: 'Atenea',
+        birthday: '02/02/2005',
+        info: 'Info text',
+        gorem: 'Gorem Ipsum',
+        goremType: 'success',
+        country: 'Mexico',
+        detail: 'Detalle A',
+      },
+      {
+        lastName: 'Benitez',
+        name: 'Atenea',
+        birthday: '02/02/2000',
+        info: 'Info text',
+        gorem: 'Gorem Ipsum',
+        goremType: 'success',
+        country: 'Mexico',
+        detail: 'Detalle A',
+      },
+      {
+        lastName: 'Benitez',
+        name: 'Atenea',
+        birthday: '02/02/2000',
+        info: 'Info text',
+        gorem: 'Gorem Ipsum',
+        goremType: 'success',
+        country: 'Mexico',
+        detail: 'Detalle A',
+      },
+      {
+        lastName: 'Benitez',
+        name: 'Atenea',
+        birthday: '02/02/2000',
+        info: 'Info text',
+        gorem: 'Gorem Ipsum',
+        goremType: 'success',
+        country: 'Mexico',
+        detail: 'Detalle A',
+      },
+      {
+        lastName: 'Nava',
+        name: 'Jesus',
+        birthday: '03/04/1998',
+        country: 'Mexico',
+        info: 'Info text',
+        gorem: 'Gorem Ipsum',
+        goremType: 'error',
+        detail: {
+          columns: [
+            { def: 'id', label: 'ID', dataKey: 'id' },
+            {
+              def: 'description',
+              label: 'Description',
+              dataKey: 'description',
+            },
+          ],
+          data: [
+            { id: 1, description: 'Detalle A' },
+            { id: 2, description: 'Detalle B' },
+          ],
+          config: {
+            isSelectable: false,
+            isExpandible: false,
+            isPaginable: false,
+            showActions: false,
+          },
         },
-      });
+      },
+      {
+        lastName: 'Benitez',
+        name: 'Romina',
+        birthday: '02/02/2000',
+        info: 'buscar',
+        gorem: 'Gorem Ipsum',
+        goremType: 'success',
+        country: 'Mexico',
+      },
+      {
+        lastName: 'Benitez',
+        name: 'Romina',
+        birthday: '02/02/2000',
+        info: 'buscar',
+        gorem: 'Gorem Ipsum',
+        goremType: 'success',
+        country: 'Mexico',
+      },
+      {
+        lastName: 'Benitez',
+        name: 'Romina',
+        birthday: '02/02/2000',
+        info: 'buscar',
+        gorem: 'Gorem Ipsum',
+        goremType: 'success',
+        country: 'Mexico',
+      },
+      {
+        lastName: 'Benitez',
+        name: 'Romina',
+        birthday: '02/02/2000',
+        info: 'buscar',
+        gorem: 'Gorem Ipsum',
+        goremType: 'success',
+        country: 'Mexico',
+      },
+      {
+        lastName: 'Benitez',
+        name: 'Romina',
+        birthday: '02/02/2000',
+        info: 'buscar',
+        gorem: 'Gorem Ipsum',
+        goremType: 'success',
+        country: 'Mexico',
+      },
+      {
+        lastName: 'Benitez',
+        name: 'Romina',
+        birthday: '02/02/2000',
+        info: 'buscar',
+        gorem: 'Gorem Ipsum',
+        goremType: 'success',
+        country: 'Mexico',
+      },
+    ];
+
+    this.columns = [
+      {
+        def: 'name',
+        label: 'Name',
+        dataKey: 'name',
+        type: 'string',
+      },
+      {
+        def: 'lastName',
+        label: 'Last Name',
+        dataKey: 'lastName',
+        type: 'string',
+      },
+      {
+        def: 'birthday',
+        label: 'Birthday',
+        dataKey: 'birthday',
+        type: 'date',
+      },
+      {
+        def: 'info',
+        label: 'Info',
+        dataKey: 'info',
+        type: 'string',
+      },
+      {
+        def: 'gorem',
+        label: 'Gorem Ipsum',
+        dataKey: 'gorem',
+        type: 'string',
+      },
+      {
+        def: 'country',
+        label: 'Country',
+        dataKey: 'country',
+        type: 'string',
+      },
+    ];
   }
 
-  // ---------------------------------------------------------------------------
-  // 🔎 EVENTOS DEL MODO SERVER-SIDE
-  // ---------------------------------------------------------------------------
+  ngAfterViewInit(): void {
+    this.columns = this.columns.map((col) => {
+      if (col.def === 'name') {
+        return { ...col, htmlLabel: this.headerNameTemplate };
+      }
+      return col;
+    });
 
-  onSearch(term: string): void {
-    this.searchTerm = term;
-    this.pageIndex = 0;
-    this.fetchData();
+    this.data = this.data.map((row) => {
+      return {
+        ...row,
+        lastNameTemplate: this.lastNameTemplate,
+        infoTemplate: this.infoTemplate,
+      };
+    });
+
+    this.cdr.detectChanges();
   }
 
-  onFilters(newFilters: Record<string, any>): void {
-    this.filters = newFilters;
-    this.pageIndex = 0;
-    this.fetchData();
+  onSelect(selected: any) {
+    console.log('Selected rows', selected);
   }
 
-  onPageRequest(event: { pageIndex: number; pageSize: number }): void {
-    this.pageIndex = Math.max(0, event.pageIndex - 1);
-    this.itemsPerPage = event.pageSize;
-    this.fetchData();
+  clickButton(event: any) {
+    console.log('Button clicked', event);
   }
 
-  onSearchMode(mode: 'client' | 'server'): void {
-    this.searchMode = mode;
+  isString(value: any): value is string {
+    return typeof value === 'string';
   }
 
-  // ---------------------------------------------------------------------------
-  // 🧩 ACCIONES Y UTILIDADES
-  // ---------------------------------------------------------------------------
-
-  editData(row: any): void {
-    console.log('Button clicked', row);
+  isObject(value: any): value is object {
+    return typeof value === 'object' && value !== null;
   }
 
-  resetSelection(): void {
-    console.log('🧹 Clear selection clicked');
+  onClickRow(event: any) {
+    console.log('Button clicked', event);
+  }
+
+  resetSelection() {
+    this.clearSelectionFlag = true;
   }
 }
