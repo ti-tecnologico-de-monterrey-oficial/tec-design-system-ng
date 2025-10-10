@@ -8,11 +8,11 @@
 
 ## Props / Parámetros
 
-| Propiedad            | Tipo                      | Descripción                                                        | Valor por defecto | Obligatorio |
-|----------------------|---------------------------|--------------------------------------------------------------------|-------------------|-------------|
-| `label`              | `string`                  | Etiqueta descriptiva de la leyenda                                 | `''`              | No          |
-| `value`              | `string`                  | Valor o información principal a mostrar                            | `''`              | No          |
-| `indicatorAppearance`| `IBmbLegendVariations`    | Variación visual del indicador (`normal`, `strong`, `success`, `info`, `warning`, `error`, `brand`) | `'normal'`        | No          |
+| Propiedad             | Tipo                   | Descripción                                                                                         | Valor por defecto | Obligatorio |
+| --------------------- | ---------------------- | --------------------------------------------------------------------------------------------------- | ----------------- | ----------- |
+| `label`               | `string`               | Etiqueta descriptiva de la leyenda                                                                  | `''`              | No          |
+| `value`               | `string`               | Valor o información principal a mostrar                                                             | `''`              | No          |
+| `indicatorAppearance` | `IBmbLegendVariations` | Variación visual del indicador (`normal`, `strong`, `success`, `info`, `warning`, `error`, `brand`) | `'normal'`        | No          |
 
 ---
 

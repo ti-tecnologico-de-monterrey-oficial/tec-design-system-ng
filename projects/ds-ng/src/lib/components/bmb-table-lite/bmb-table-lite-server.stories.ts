@@ -23,7 +23,12 @@ export default {
       page: () => getPageStructureForTemplateStories(),
       description: {
         component: `
-${getGeneralDescription({ content: `${DESIGN_SYSTEM_TITLE} ***Table Lite - Server side*** allows rendering highly configurable and interactive tables.`, generalDocLink: 'https://bamboo.tec.mx/latest/componentes/table/descripcion-general-h1hRplJO', isSubStory: true })}
+${getGeneralDescription(
+  `${DESIGN_SYSTEM_TITLE} ***Table Lite - Server side*** allows rendering highly configurable and interactive tables.`,
+  {
+    generalDocLink: 'https://bamboo.tec.mx/latest/componentes/table/descripcion-general-h1hRplJO',
+    isSubStory: true
+  })}
 ${getBasicExampleBlock(
   'BmbTableLiteComponent',
   `
@@ -37,7 +42,7 @@ ${getBasicExampleBlock(
 `,
   `@ViewChild(BmbTableLiteComponent) tableComponent!: BmbTableLiteComponent;
     @ViewChild('actionTemplate') actionTemplate!: TemplateRef<any>;
-  
+
     clearSelectionFlag = false;
     searchTerm = '';
     searchMode: 'client' | 'server' = 'server';
@@ -53,25 +58,25 @@ ${getBasicExampleBlock(
         def: 'sociedad',
         label: 'SOCIETY',
         dataKey: 'sociedad',
-        type: 'number' as const, 
+        type: 'number' as const,
       },
       {
         def: 'claveFuncionSSFF',
         label: 'FUNCTION',
         dataKey: 'claveFuncionSSFF',
-        type: 'string' as const, 
+        type: 'string' as const,
       },
       {
         def: 'nombreTipoContrato',
         label: 'CONTRACT',
         dataKey: 'nombreTipoContrato',
-        type: 'string' as const, 
+        type: 'string' as const,
       },
       {
         def: 'nombrePuestoFacultad',
         label: 'POSITION',
         dataKey: 'nombrePuestoFacultad',
-        type: 'string' as const, 
+        type: 'string' as const,
       },
       {
         def: 'nombreRol',
@@ -86,16 +91,16 @@ ${getBasicExampleBlock(
         type: 'string' as const,
       },
     ];
-  
+
     config = {
       isSelectable: true,
       isExpandible: false,
       isPaginable: true,
       showActions: true,
     };
-  
+
     ID_STATUS = ID_STATUS;
-  
+
     constructor(
       private http: HttpClient,
       private cdr: ChangeDetectorRef,
@@ -104,7 +109,7 @@ ${getBasicExampleBlock(
     ngOnInit(): void {
       this.fetchData();
     }
-  
+
     fetchData(): void {
       const payload = {
         ...this.filters,
@@ -112,7 +117,7 @@ ${getBasicExampleBlock(
         page: this.pageIndex + 1,
         perPage: this.itemsPerPage,
       };
-  
+
       this.http
         .post<{
           body: any[];
@@ -130,40 +135,40 @@ ${getBasicExampleBlock(
           },
         });
     }
-  
+
     onSearch(term: string) {
       this.searchTerm = term;
-  
+
       if (this.searchMode === 'server') {
         this.pageIndex = 0;
         this.fetchData();
       }
     }
-  
+
     onFilters(newFilters: Record<string, any>): void {
       this.filters = newFilters;
       this.pageIndex = 0;
       this.fetchData();
     }
-  
+
     onPageRequest(event: { pageIndex: number; pageSize: number }): void {
       this.pageIndex = Math.max(0, event.pageIndex - 1);
       this.itemsPerPage = event.pageSize;
       this.fetchData();
     }
-  
+
     onSearchMode(mode: 'client' | 'server') {
       this.searchMode = mode;
     }
-  
+
     editData(id: any): void {
       console.log('Editing row:', id);
     }
-  
+
     resetSelection() {
       this.clearSelectionFlag = true;
     }
-  
+
     onClickRow(event: any) {
       console.log('Button clicked', event);
     }`,

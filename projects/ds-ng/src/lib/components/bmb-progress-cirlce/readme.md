@@ -8,17 +8,17 @@
 
 ## Props / Parámetros
 
-| Propiedad            | Tipo                                         | Descripción                                                        | Valor por defecto | Obligatorio |
-|----------------------|----------------------------------------------|--------------------------------------------------------------------|-------------------|-------------|
-| `valueLabel`         | `string`                                     | Etiqueta de valor a mostrar en el centro del círculo               | -                 | No          |
-| `percent`            | `number`                                     | Porcentaje de progreso (0-100)                                     | `0`               | No          |
-| `showValueLabel`     | `boolean`                                    | Muestra la etiqueta de valor en el círculo                         | `false`           | No          |
-| `title`              | `string \| string[]`                         | Título o títulos a mostrar en el círculo                           | `''`              | No          |
-| `showTitle`          | `boolean`                                    | Muestra el título en el círculo                                    | `false`           | No          |
-| `showBackground`     | `boolean`                                    | Muestra el fondo del círculo                                       | `true`            | No          |
-| `showRestBackground` | `boolean`                                    | Muestra el fondo del resto del círculo                             | `false`           | No          |
-| `fillPathStatus`     | `'gray' \| 'success' \| 'error' \| 'warning'`| Estado visual del trazo de progreso                                | `'success'`       | No          |
-| `fullFillPathStatus` | `boolean`                                    | Si el círculo debe estar completamente coloreado                   | `false`           | No          |
+| Propiedad            | Tipo                                          | Descripción                                          | Valor por defecto | Obligatorio |
+| -------------------- | --------------------------------------------- | ---------------------------------------------------- | ----------------- | ----------- |
+| `valueLabel`         | `string`                                      | Etiqueta de valor a mostrar en el centro del círculo | -                 | No          |
+| `percent`            | `number`                                      | Porcentaje de progreso (0-100)                       | `0`               | No          |
+| `showValueLabel`     | `boolean`                                     | Muestra la etiqueta de valor en el círculo           | `false`           | No          |
+| `title`              | `string \| string[]`                          | Título o títulos a mostrar en el círculo             | `''`              | No          |
+| `showTitle`          | `boolean`                                     | Muestra el título en el círculo                      | `false`           | No          |
+| `showBackground`     | `boolean`                                     | Muestra el fondo del círculo                         | `true`            | No          |
+| `showRestBackground` | `boolean`                                     | Muestra el fondo del resto del círculo               | `false`           | No          |
+| `fillPathStatus`     | `'gray' \| 'success' \| 'error' \| 'warning'` | Estado visual del trazo de progreso                  | `'success'`       | No          |
+| `fullFillPathStatus` | `boolean`                                     | Si el círculo debe estar completamente coloreado     | `false`           | No          |
 
 ---
 

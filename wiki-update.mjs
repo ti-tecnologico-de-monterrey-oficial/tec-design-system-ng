@@ -25,7 +25,9 @@ async function findReadmes(dir) {
     }
   }
 
-  console.log(`🔍 Revisando ${dir}, encontrados hasta ahora: ${readmes.length}`);
+  console.log(
+    `🔍 Revisando ${dir}, encontrados hasta ahora: ${readmes.length}`,
+  );
 
   return readmes;
 }
@@ -72,7 +74,9 @@ async function main() {
     const readmeFiles = await findReadmes(LIB_ROOT);
 
     if (readmeFiles.length === 0) {
-      console.log('⚠️  No se encontraron archivos README.md en la carpeta lib.');
+      console.log(
+        '⚠️  No se encontraron archivos README.md en la carpeta lib.',
+      );
       return;
     }
 

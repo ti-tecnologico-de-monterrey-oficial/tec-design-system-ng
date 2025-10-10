@@ -97,7 +97,7 @@
 
         @for (
           column of tableColumns;
-          track trackByColumn($index, column);
+          track trackByColumn(column);
           let i = $index
         ) {
           <div
@@ -133,11 +133,7 @@
         }
       </div>
 
-      @for (
-        row of pageSlice;
-        track trackByRow($index, row);
-        let rIndex = $index
-      ) {
+      @for (row of pageSlice; track $index; let rIndex = $index) {
         <div
           class="bmb_table_lite-row"
           (click)="onSelectRow(row)"
@@ -181,7 +177,7 @@
 
           @for (
             column of tableColumns;
-            track trackByColumn($index, column);
+            track trackByColumn(column);
             let i = $index
           ) {
             <div

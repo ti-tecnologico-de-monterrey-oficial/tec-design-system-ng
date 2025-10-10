@@ -9,7 +9,7 @@
 ## Props / Parámetros
 
 | Propiedad | Tipo     | Descripción                                 | Valor por defecto | Obligatorio |
-|-----------|----------|---------------------------------------------|-------------------|-------------|
+| --------- | -------- | ------------------------------------------- | ----------------- | ----------- |
 | `label`   | `string` | Etiqueta que acompaña la animación del logo | `'ESTUDIANTES'`   | No          |
 
 ---
@@ -17,9 +17,7 @@
 ## Ejemplo de uso
 
 ```html
-<bmb-mitec-logo-animation
-  [label]="'Bienvenida'"
-></bmb-mitec-logo-animation>
+<bmb-mitec-logo-animation [label]="'Bienvenida'"></bmb-mitec-logo-animation>
 ```
 
 ---

@@ -8,17 +8,17 @@
 
 ## Props / Parámetros
 
-| Propiedad      | Tipo     | Descripción                                                        | Valor por defecto | Obligatorio |
-|----------------|----------|--------------------------------------------------------------------|-------------------|-------------|
-| `totalItems`   | `number` | Número total de elementos a paginar                                | `0`               | No          |
-| `itemsPerPage` | `number` | Cantidad de elementos por página                                   | `5`               | No          |
-| `currentPage`  | `number` | Página actual seleccionada                                         | `1`               | No          |
+| Propiedad      | Tipo     | Descripción                         | Valor por defecto | Obligatorio |
+| -------------- | -------- | ----------------------------------- | ----------------- | ----------- |
+| `totalItems`   | `number` | Número total de elementos a paginar | `0`               | No          |
+| `itemsPerPage` | `number` | Cantidad de elementos por página    | `5`               | No          |
+| `currentPage`  | `number` | Página actual seleccionada          | `1`               | No          |
 
 ### Outputs
 
-| Output      | Tipo     | Descripción                                  |
-|-------------|----------|----------------------------------------------|
-| `pageChange`| `number` | Se emite al cambiar la página                |
+| Output       | Tipo     | Descripción                   |
+| ------------ | -------- | ----------------------------- |
+| `pageChange` | `number` | Se emite al cambiar la página |
 
 ---
 

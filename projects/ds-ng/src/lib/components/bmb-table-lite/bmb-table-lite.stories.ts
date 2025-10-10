@@ -373,12 +373,12 @@ export default {
     docs: {
       description: {
         component: `
-${getGeneralDescription({
-  content: `${getGeneralComponentDescription({ name: 'table-lite' })} rendering highly configurable and interactive tables.
+${getGeneralDescription(
+  `${getGeneralComponentDescription({ name: 'table-lite' })} rendering highly configurable and interactive tables.
 >
 It supports features such as selection, expansion, pagination, dynamic filtering, column resizing,
 custom actions, and templating for both actions and detail rows.
- `,
+ `,{
   generalDocLink:
     'https://bamboo.tec.mx/latest/componentes/table/descripcion-general-h1hRplJO',
 })}

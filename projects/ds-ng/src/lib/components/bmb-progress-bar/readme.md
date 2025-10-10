@@ -8,17 +8,17 @@
 
 ## Props / Parámetros
 
-| Propiedad    | Tipo                                              | Descripción                                                        | Valor por defecto           | Obligatorio |
-|--------------|---------------------------------------------------|--------------------------------------------------------------------|-----------------------------|-------------|
-| `type`       | `IBmbProgressBarTypes`                            | Tipo de barra (`simple`, `counter`, `container`)                   | `'simple'`                  | No          |
-| `totalCount` | `number`                                          | Valor total para calcular el progreso                              | `0`                         | Sí          |
-| `counter`    | `number`                                          | Valor actual del progreso                                          | `0`                         | Sí          |
-| `title`      | `string`                                          | Título o etiqueta descriptiva                                      | `''`                        | No          |
-| `appearance` | `IBmbProgressBarVariations`                       | Variación visual (`info`, `warning`, `error`)                      | `'info'`                    | No          |
-| `textLink`   | `string`                                          | Texto del enlace asociado                                          | `''`                        | No          |
-| `href`       | `string`                                          | URL del enlace asociado                                            | `''`                        | No          |
-| `target`     | `IBmbTargetLink`                                  | Destino del enlace (`_blank`, `_self`, etc.)                       | `'_blank'`                  | No          |
-| `textFormat` | `(counter: string, total: string) => string`       | Función para formatear el texto del contador                       | `(c, t) => \`\${c}/\${t}\`` | No          |
+| Propiedad    | Tipo                                         | Descripción                                      | Valor por defecto           | Obligatorio |
+| ------------ | -------------------------------------------- | ------------------------------------------------ | --------------------------- | ----------- |
+| `type`       | `IBmbProgressBarTypes`                       | Tipo de barra (`simple`, `counter`, `container`) | `'simple'`                  | No          |
+| `totalCount` | `number`                                     | Valor total para calcular el progreso            | `0`                         | Sí          |
+| `counter`    | `number`                                     | Valor actual del progreso                        | `0`                         | Sí          |
+| `title`      | `string`                                     | Título o etiqueta descriptiva                    | `''`                        | No          |
+| `appearance` | `IBmbProgressBarVariations`                  | Variación visual (`info`, `warning`, `error`)    | `'info'`                    | No          |
+| `textLink`   | `string`                                     | Texto del enlace asociado                        | `''`                        | No          |
+| `href`       | `string`                                     | URL del enlace asociado                          | `''`                        | No          |
+| `target`     | `IBmbTargetLink`                             | Destino del enlace (`_blank`, `_self`, etc.)     | `'_blank'`                  | No          |
+| `textFormat` | `(counter: string, total: string) => string` | Función para formatear el texto del contador     | `(c, t) => \`\${c}/\${t}\`` | No          |
 
 ---
 

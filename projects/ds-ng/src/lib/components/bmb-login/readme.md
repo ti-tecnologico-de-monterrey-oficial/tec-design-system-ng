@@ -8,29 +8,29 @@
 
 ## Props / Parámetros
 
-| Propiedad                   | Tipo                       | Descripción                                                        | Valor por defecto                | Obligatorio |
-|-----------------------------|----------------------------|--------------------------------------------------------------------|----------------------------------|-------------|
-| `headerLabel`               | `string`                   | Etiqueta principal del encabezado                                  | `'ESTUDIANTES'`                  | No          |
-| `forgottenPasswordLabel`    | `string`                   | Texto para el enlace de recuperación de contraseña                 | `'¿Olvidaste tu contraseña?'`     | No          |
-| `forgottenPasswordLink`     | `string`                   | URL para recuperación de contraseña                                | `''`                             | No          |
-| `forgottenPasswordTarget`   | `IBmbTargetLink`           | Destino del enlace de recuperación (`_blank`, `_self`, etc.)       | `'_blank'`                       | No          |
-| `showRememberMeCheckbox`    | `boolean`                  | Muestra el checkbox "Recordarme"                                   | `false`                          | No          |
-| `rememberMeCheckboxLabel`   | `string`                   | Etiqueta para el checkbox "Recordarme"                             | `'Recordarme'`                   | No          |
-| `showLoginAsGuest`          | `boolean`                  | Muestra la opción de acceso como invitado                          | `false`                          | No          |
-| `loginAsGuestLabel`         | `string`                   | Etiqueta para el acceso como invitado                              | `'Entrar como invitado'`         | No          |
-| `loginAsGuestLink`          | `string`                   | URL para acceso como invitado                                      | `''`                             | No          |
-| `loginAsGuestTarget`        | `IBmbTargetLink`           | Destino del enlace de invitado (`_blank`, `_self`, etc.)           | `'_blank'`                       | No          |
-| `buttonLabel`               | `string`                   | Texto del botón principal de login                                 | `'Ingresar'`                     | No          |
-| `actionHeaderLinks`         | `IBmbActionHeaderLinks`    | Acciones adicionales en el encabezado                              | -                                | No          |
-| `actionHeaders`             | `IBmbActionHeader[]`       | Acciones adicionales (obsoleto)                                    | `[]`                             | No          |
+| Propiedad                 | Tipo                    | Descripción                                                  | Valor por defecto             | Obligatorio |
+| ------------------------- | ----------------------- | ------------------------------------------------------------ | ----------------------------- | ----------- |
+| `headerLabel`             | `string`                | Etiqueta principal del encabezado                            | `'ESTUDIANTES'`               | No          |
+| `forgottenPasswordLabel`  | `string`                | Texto para el enlace de recuperación de contraseña           | `'¿Olvidaste tu contraseña?'` | No          |
+| `forgottenPasswordLink`   | `string`                | URL para recuperación de contraseña                          | `''`                          | No          |
+| `forgottenPasswordTarget` | `IBmbTargetLink`        | Destino del enlace de recuperación (`_blank`, `_self`, etc.) | `'_blank'`                    | No          |
+| `showRememberMeCheckbox`  | `boolean`               | Muestra el checkbox "Recordarme"                             | `false`                       | No          |
+| `rememberMeCheckboxLabel` | `string`                | Etiqueta para el checkbox "Recordarme"                       | `'Recordarme'`                | No          |
+| `showLoginAsGuest`        | `boolean`               | Muestra la opción de acceso como invitado                    | `false`                       | No          |
+| `loginAsGuestLabel`       | `string`                | Etiqueta para el acceso como invitado                        | `'Entrar como invitado'`      | No          |
+| `loginAsGuestLink`        | `string`                | URL para acceso como invitado                                | `''`                          | No          |
+| `loginAsGuestTarget`      | `IBmbTargetLink`        | Destino del enlace de invitado (`_blank`, `_self`, etc.)     | `'_blank'`                    | No          |
+| `buttonLabel`             | `string`                | Texto del botón principal de login                           | `'Ingresar'`                  | No          |
+| `actionHeaderLinks`       | `IBmbActionHeaderLinks` | Acciones adicionales en el encabezado                        | -                             | No          |
+| `actionHeaders`           | `IBmbActionHeader[]`    | Acciones adicionales (obsoleto)                              | `[]`                          | No          |
 
 ### Outputs
 
-| Output                  | Tipo         | Descripción                                  |
-|-------------------------|--------------|----------------------------------------------|
-| `onRequest`             | `any`        | Se emite al solicitar autenticación          |
-| `onContinue`            | `void`       | Se emite al continuar después de autenticación|
-| `onRememberMeChecked`   | `any`        | Se emite al marcar/desmarcar "Recordarme"    |
+| Output                | Tipo   | Descripción                                    |
+| --------------------- | ------ | ---------------------------------------------- |
+| `onRequest`           | `any`  | Se emite al solicitar autenticación            |
+| `onContinue`          | `void` | Se emite al continuar después de autenticación |
+| `onRememberMeChecked` | `any`  | Se emite al marcar/desmarcar "Recordarme"      |
 
 ---
 

@@ -8,22 +8,22 @@
 
 ## Props / Parámetros
 
-| Propiedad     | Tipo              | Descripción                                                        | Valor por defecto | Obligatorio |
-|---------------|-------------------|--------------------------------------------------------------------|-------------------|-------------|
-| `size`        | `string`          | Tamaño del logo (clase CSS asociada)                               | `''`              | No          |
-| `image`       | `string`          | URL de la imagen del logo                                          | `''`              | No          |
-| `altImage`    | `string`          | Texto alternativo para la imagen (accesibilidad)                   | `''`              | No          |
-| `link`        | `string`          | URL o ruta de navegación al hacer clic en el logo                  | `''`              | No          |
-| `target`      | `IBmbTargetLink`  | Destino del enlace (`_self`, `_blank`, etc.)                       | `'_self'`         | No          |
-| `buttonName`  | `string`          | Nombre del botón asociado al logo                                  | `'logo_button'`   | No          |
+| Propiedad    | Tipo             | Descripción                                       | Valor por defecto | Obligatorio |
+| ------------ | ---------------- | ------------------------------------------------- | ----------------- | ----------- |
+| `size`       | `string`         | Tamaño del logo (clase CSS asociada)              | `''`              | No          |
+| `image`      | `string`         | URL de la imagen del logo                         | `''`              | No          |
+| `altImage`   | `string`         | Texto alternativo para la imagen (accesibilidad)  | `''`              | No          |
+| `link`       | `string`         | URL o ruta de navegación al hacer clic en el logo | `''`              | No          |
+| `target`     | `IBmbTargetLink` | Destino del enlace (`_self`, `_blank`, etc.)      | `'_self'`         | No          |
+| `buttonName` | `string`         | Nombre del botón asociado al logo                 | `'logo_button'`   | No          |
 
 ### Outputs
 
-| Output           | Tipo           | Descripción                                  |
-|------------------|----------------|----------------------------------------------|
-| `buttonPress`    | `MouseEvent`   | Se emite al presionar el logo                |
-| `buttonClick`    | `MouseEvent`   | Se emite al hacer clic en el logo            |
-| `buttonKeyPress` | `KeyboardEvent`| Se emite al interactuar con el teclado       |
+| Output           | Tipo            | Descripción                            |
+| ---------------- | --------------- | -------------------------------------- |
+| `buttonPress`    | `MouseEvent`    | Se emite al presionar el logo          |
+| `buttonClick`    | `MouseEvent`    | Se emite al hacer clic en el logo      |
+| `buttonKeyPress` | `KeyboardEvent` | Se emite al interactuar con el teclado |
 
 ---
 

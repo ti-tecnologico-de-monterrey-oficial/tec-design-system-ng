@@ -8,21 +8,21 @@
 
 ## Props / Parámetros
 
-| Propiedad         | Tipo                  | Descripción                                                        | Valor por defecto | Obligatorio |
-|-------------------|-----------------------|--------------------------------------------------------------------|-------------------|-------------|
-| `data`            | `IBmbDataAlert[]`     | Lista de notificaciones a mostrar                                  | `[]`              | No          |
-| `advertisements`  | `IBmbDataAlert[]`     | Lista de anuncios a mostrar                                        | `[]`              | No          |
-| `hideExpandBtn`   | `boolean`             | Oculta el botón de expandir la tarjeta                             | `false`           | No          |
-| `maxHeight`       | `string`              | Altura máxima de la tarjeta                                        | `'auto'`          | No          |
+| Propiedad        | Tipo              | Descripción                            | Valor por defecto | Obligatorio |
+| ---------------- | ----------------- | -------------------------------------- | ----------------- | ----------- |
+| `data`           | `IBmbDataAlert[]` | Lista de notificaciones a mostrar      | `[]`              | No          |
+| `advertisements` | `IBmbDataAlert[]` | Lista de anuncios a mostrar            | `[]`              | No          |
+| `hideExpandBtn`  | `boolean`         | Oculta el botón de expandir la tarjeta | `false`           | No          |
+| `maxHeight`      | `string`          | Altura máxima de la tarjeta            | `'auto'`          | No          |
 
 ### Outputs
 
-| Output            | Tipo             | Descripción                                  |
-|-------------------|------------------|----------------------------------------------|
-| `alertEvent`      | `IBmbDataAlert`  | Se emite al interactuar con una alerta       |
-| `showAlertDetail` | `IBmbDataAlert`  | Se emite al mostrar el detalle de una alerta |
-| `closeAlertDetail`| `IBmbDataAlert`  | Se emite al cerrar el detalle de una alerta  |
-| `onExpandClick`   | `void`           | Se emite al hacer clic en el botón de expandir|
+| Output             | Tipo            | Descripción                                    |
+| ------------------ | --------------- | ---------------------------------------------- |
+| `alertEvent`       | `IBmbDataAlert` | Se emite al interactuar con una alerta         |
+| `showAlertDetail`  | `IBmbDataAlert` | Se emite al mostrar el detalle de una alerta   |
+| `closeAlertDetail` | `IBmbDataAlert` | Se emite al cerrar el detalle de una alerta    |
+| `onExpandClick`    | `void`          | Se emite al hacer clic en el botón de expandir |
 
 ---
 

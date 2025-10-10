@@ -8,15 +8,15 @@
 
 ## Props / Parámetros
 
-| Propiedad                     | Tipo                               | Descripción                                                        | Valor por defecto                                                                                   | Obligatorio |
-|-------------------------------|------------------------------------|--------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------|-------------|
-| `loginOnBoardingCustomization`| `IBmbLoginOnBoardingCustomization` | Configuración de enlaces y etiquetas para acciones de onboarding    | `{ anotherAccount: { label: 'Ingresar con otra cuenta', link: '' }, forgottenPassword: { label: '¿Olvidaste tu contraseña?', link: '' } }` | No          |
+| Propiedad                      | Tipo                               | Descripción                                                      | Valor por defecto                                                                                                                          | Obligatorio |
+| ------------------------------ | ---------------------------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ | ----------- |
+| `loginOnBoardingCustomization` | `IBmbLoginOnBoardingCustomization` | Configuración de enlaces y etiquetas para acciones de onboarding | `{ anotherAccount: { label: 'Ingresar con otra cuenta', link: '' }, forgottenPassword: { label: '¿Olvidaste tu contraseña?', link: '' } }` | No          |
 
 ### Outputs
 
-| Output         | Tipo         | Descripción                                  |
-|----------------|--------------|----------------------------------------------|
-| `handleRequest`| `any`        | Se emite al realizar una solicitud de autenticación o cambio de estado |
+| Output          | Tipo  | Descripción                                                            |
+| --------------- | ----- | ---------------------------------------------------------------------- |
+| `handleRequest` | `any` | Se emite al realizar una solicitud de autenticación o cambio de estado |
 
 ### Interfaces relacionadas
 
