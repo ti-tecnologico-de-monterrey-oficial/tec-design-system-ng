@@ -8,13 +8,13 @@
 
 ## Props / Parámetros
 
-| Propiedad     | Tipo                       | Descripción                                                        | Valor por defecto | Obligatorio |
-|---------------|----------------------------|--------------------------------------------------------------------|-------------------|-------------|
-| `actionHeaders` | `IBmbActionHeader[]`     | Lista de acciones con íconos y funciones asociadas                 | `[]`              | No          |
-| `iconSize`      | `number \| undefined`    | Tamaño de los íconos en píxeles                                    | -                 | No          |
-| `gapSize`       | `SizeNames`              | Espaciado entre los elementos de la barra                          | `'m'`             | No          |
-| `justify`       | `IJustifyOptions`        | Justificación de los elementos (`spaceBetween`, `center`, etc.)    | `'spaceBetween'`  | No          |
-| `alignItems`    | `IAlignItemsOptions`     | Alineación vertical de los elementos (`start`, `center`, etc.)     | `'start'`         | No          |
+| Propiedad       | Tipo                  | Descripción                                                     | Valor por defecto | Obligatorio |
+| --------------- | --------------------- | --------------------------------------------------------------- | ----------------- | ----------- |
+| `actionHeaders` | `IBmbActionHeader[]`  | Lista de acciones con íconos y funciones asociadas              | `[]`              | No          |
+| `iconSize`      | `number \| undefined` | Tamaño de los íconos en píxeles                                 | -                 | No          |
+| `gapSize`       | `SizeNames`           | Espaciado entre los elementos de la barra                       | `'m'`             | No          |
+| `justify`       | `IJustifyOptions`     | Justificación de los elementos (`spaceBetween`, `center`, etc.) | `'spaceBetween'`  | No          |
+| `alignItems`    | `IAlignItemsOptions`  | Alineación vertical de los elementos (`start`, `center`, etc.)  | `'start'`         | No          |
 
 ---
 

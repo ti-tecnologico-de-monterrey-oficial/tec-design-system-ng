@@ -8,26 +8,26 @@
 
 ## Props / Parámetros
 
-| Propiedad            | Tipo                                         | Descripción                                                                 | Valor por defecto | Obligatorio |
-|----------------------|----------------------------------------------|-----------------------------------------------------------------------------|-------------------|-------------|
-| `title`              | `string`                                     | Título principal del modal                                                  | `''`              | No          |
-| `subtitle`           | `string`                                     | Subtítulo o descripción adicional                                           | `''`              | No          |
-| `content`            | `TemplateRef<any> \| Type<any> \| string \| null` | Contenido a proyectar en el modal (plantilla, componente o texto)           | `''`              | No          |
-| `actions`            | `IBmbActionButton[]`                         | Lista de botones de acción en el modal                                      | `[]`              | No          |
-| `modalId`            | `string`                                     | Identificador único del modal                                               | -                 | Sí          |
-| `size`               | `IBmbNativeModalSize`                        | Tamaño del modal (`x-small`, `small`, `medium`, `large`, `x-large`)         | `'medium'`        | No          |
-| `iconStyle`          | `IBmbModalAlertStyle`                        | Estilo visual del ícono del modal                                           | -                 | No          |
-| `disableBackdropClose`| `boolean`                                   | Deshabilita el cierre al hacer clic en el fondo                             | `true`            | No          |
-| `hasBackdrop`        | `boolean`                                    | Muestra fondo detrás del modal                                              | `true`            | No          |
-| `inputContext`       | `{ [key: string]: any }`                     | Contexto de entrada para el componente proyectado                           | `{}`              | No          |
-| `outputContext`      | `{ [key: string]: (value: any) => void }`    | Contexto de salida para el componente proyectado                            | `{}`              | No          |
+| Propiedad              | Tipo                                              | Descripción                                                         | Valor por defecto | Obligatorio |
+| ---------------------- | ------------------------------------------------- | ------------------------------------------------------------------- | ----------------- | ----------- |
+| `title`                | `string`                                          | Título principal del modal                                          | `''`              | No          |
+| `subtitle`             | `string`                                          | Subtítulo o descripción adicional                                   | `''`              | No          |
+| `content`              | `TemplateRef<any> \| Type<any> \| string \| null` | Contenido a proyectar en el modal (plantilla, componente o texto)   | `''`              | No          |
+| `actions`              | `IBmbActionButton[]`                              | Lista de botones de acción en el modal                              | `[]`              | No          |
+| `modalId`              | `string`                                          | Identificador único del modal                                       | -                 | Sí          |
+| `size`                 | `IBmbNativeModalSize`                             | Tamaño del modal (`x-small`, `small`, `medium`, `large`, `x-large`) | `'medium'`        | No          |
+| `iconStyle`            | `IBmbModalAlertStyle`                             | Estilo visual del ícono del modal                                   | -                 | No          |
+| `disableBackdropClose` | `boolean`                                         | Deshabilita el cierre al hacer clic en el fondo                     | `true`            | No          |
+| `hasBackdrop`          | `boolean`                                         | Muestra fondo detrás del modal                                      | `true`            | No          |
+| `inputContext`         | `{ [key: string]: any }`                          | Contexto de entrada para el componente proyectado                   | `{}`              | No          |
+| `outputContext`        | `{ [key: string]: (value: any) => void }`         | Contexto de salida para el componente proyectado                    | `{}`              | No          |
 
 ### Outputs
 
-| Output              | Tipo                                             | Descripción                                  |
-|---------------------|--------------------------------------------------|----------------------------------------------|
-| `actionsClicked`    | `{ buttonName: string; event: MouseEvent }`      | Se emite al hacer clic en un botón de acción |
-| `closeModalClicked` | `{ modalId: string; event: MouseEvent }`         | Se emite al cerrar el modal                  |
+| Output              | Tipo                                        | Descripción                                  |
+| ------------------- | ------------------------------------------- | -------------------------------------------- |
+| `actionsClicked`    | `{ buttonName: string; event: MouseEvent }` | Se emite al hacer clic en un botón de acción |
+| `closeModalClicked` | `{ modalId: string; event: MouseEvent }`    | Se emite al cerrar el modal                  |
 
 ---
 

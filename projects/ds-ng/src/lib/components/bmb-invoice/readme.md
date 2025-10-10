@@ -8,10 +8,10 @@
 
 ## Props / Parámetros
 
-| Propiedad           | Tipo                | Descripción                                                                 | Valor por defecto | Obligatorio |
-|---------------------|---------------------|-----------------------------------------------------------------------------|-------------------|-------------|
-| `appearanceContrast`| `IBmbContrast`      | Contraste visual del componente (`default`, `primary`, `alternative`)       | `'default'`       | No          |
-| `data`              | `IBmbInvoice`       | Datos de la factura: conceptos, total y equivalencias                       | -                 | Sí          |
+| Propiedad            | Tipo           | Descripción                                                           | Valor por defecto | Obligatorio |
+| -------------------- | -------------- | --------------------------------------------------------------------- | ----------------- | ----------- |
+| `appearanceContrast` | `IBmbContrast` | Contraste visual del componente (`default`, `primary`, `alternative`) | `'default'`       | No          |
+| `data`               | `IBmbInvoice`  | Datos de la factura: conceptos, total y equivalencias                 | -                 | Sí          |
 
 ### Interfaces relacionadas
 

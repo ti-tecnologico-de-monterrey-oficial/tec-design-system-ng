@@ -476,6 +476,8 @@ export class BmbTableLiteComponent implements OnInit, OnChanges {
 
   // 🔹 Emite el evento cuando cambia la selección
   onSelect() {
+    console.log(this.selection.selected);
+
     this.select.emit(this.selection.selected);
   }
 
@@ -628,11 +630,11 @@ export class BmbTableLiteComponent implements OnInit, OnChanges {
     };
   }
 
-  trackByColumn(index: number, column: any): string | number {
-    return column.def || column.label || index;
+  trackByColumn(column: any): string | number {
+    return column.def || column.label;
   }
 
-  trackByRow(index: number, row: any): string | number {
-    return row.id ?? row.sociedad ?? index;
+  trackByRow(row: any): string | number {
+    return row.id || row.sociedad;
   }
 }

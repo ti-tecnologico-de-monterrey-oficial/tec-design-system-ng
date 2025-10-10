@@ -8,26 +8,26 @@
 
 ## Props / Parámetros
 
-| Propiedad         | Tipo                | Descripción                                                        | Valor por defecto | Obligatorio |
-|-------------------|---------------------|--------------------------------------------------------------------|-------------------|-------------|
-| `appearance`      | `IBbmBgAppearance`  | Apariencia visual del loader (`normal`, variantes de fondo)        | `'normal'`        | No          |
-| `title`           | `string`            | Título principal del mensaje de carga o error                      | `''`              | No          |
-| `icon`            | `string`            | Icono a mostrar                                                    | `'wifi_off'`      | No          |
-| `subtitle`        | `string`            | Mensaje secundario o descripción                                   | `''`              | No          |
-| `overlay`         | `boolean`           | Muestra el loader como overlay bloqueando la pantalla              | `false`           | No          |
-| `isVisible`       | `boolean`           | Controla la visibilidad del loader                                 | `true`            | No          |
-| `errorState`      | `boolean`           | Indica si se muestra un estado de error                            | `false`           | No          |
-| `actions`         | `boolean`           | Muestra botones de acción                                          | `false`           | No          |
-| `buttonPrimary`   | `string`            | Texto del botón principal                                          | `''`              | No          |
-| `buttonSecondary` | `string`            | Texto del botón secundario                                         | `''`              | No          |
-| `showInline`      | `boolean`           | Muestra el loader en línea en vez de overlay                       | `false`           | No          |
+| Propiedad         | Tipo               | Descripción                                                 | Valor por defecto | Obligatorio |
+| ----------------- | ------------------ | ----------------------------------------------------------- | ----------------- | ----------- |
+| `appearance`      | `IBbmBgAppearance` | Apariencia visual del loader (`normal`, variantes de fondo) | `'normal'`        | No          |
+| `title`           | `string`           | Título principal del mensaje de carga o error               | `''`              | No          |
+| `icon`            | `string`           | Icono a mostrar                                             | `'wifi_off'`      | No          |
+| `subtitle`        | `string`           | Mensaje secundario o descripción                            | `''`              | No          |
+| `overlay`         | `boolean`          | Muestra el loader como overlay bloqueando la pantalla       | `false`           | No          |
+| `isVisible`       | `boolean`          | Controla la visibilidad del loader                          | `true`            | No          |
+| `errorState`      | `boolean`          | Indica si se muestra un estado de error                     | `false`           | No          |
+| `actions`         | `boolean`          | Muestra botones de acción                                   | `false`           | No          |
+| `buttonPrimary`   | `string`           | Texto del botón principal                                   | `''`              | No          |
+| `buttonSecondary` | `string`           | Texto del botón secundario                                  | `''`              | No          |
+| `showInline`      | `boolean`          | Muestra el loader en línea en vez de overlay                | `false`           | No          |
 
 ### Outputs
 
-| Output             | Tipo         | Descripción                                  |
-|--------------------|--------------|----------------------------------------------|
-| `onButtonPrimary`  | `MouseEvent` | Se emite al hacer clic en el botón principal |
-| `onButtonSecondary`| `MouseEvent` | Se emite al hacer clic en el botón secundario|
+| Output              | Tipo         | Descripción                                   |
+| ------------------- | ------------ | --------------------------------------------- |
+| `onButtonPrimary`   | `MouseEvent` | Se emite al hacer clic en el botón principal  |
+| `onButtonSecondary` | `MouseEvent` | Se emite al hacer clic en el botón secundario |
 
 ---
 

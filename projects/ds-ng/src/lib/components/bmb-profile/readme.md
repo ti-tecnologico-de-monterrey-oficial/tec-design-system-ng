@@ -8,30 +8,30 @@
 
 ## Props / Parámetros
 
-| Propiedad           | Tipo                           | Descripción                                                        | Valor por defecto | Obligatorio |
-|---------------------|--------------------------------|--------------------------------------------------------------------|-------------------|-------------|
-| `userData`          | `IBmbProfileData`              | Datos de perfil (obsoleto, solo para compatibilidad)               | -                 | No          |
-| `isStandAlone`      | `boolean`                      | Indica si el componente se usa en modo standalone                  | `false`           | No          |
-| `standAloneData`    | `IBmbUserData`                 | Datos de usuario para modo standalone                              | -                 | No          |
-| `isStudent`         | `boolean`                      | Indica si el perfil es de estudiante                               | `true`            | No          |
-| `studentData`       | `IBmbStudentProfileData`       | Datos de perfil de estudiante                                      | -                 | Sí (si `isStudent` es `true`) |
-| `collaboratorData`  | `IBmbCollaboratorProfileData`  | Datos de perfil de colaborador                                     | -                 | Sí (si `isStudent` es `false`)|
-| `isMobile`          | `boolean`                      | Indica si la vista es móvil                                        | `true`            | No          |
-| `idDigitalLink`     | `string`                       | Enlace a la credencial digital                                     | `''`              | Sí (si `isMobile` y no `isStandAlone`) |
-| `campusAcessLink`   | `string`                       | Enlace a acceso a campus                                           | `''`              | Sí (si `isMobile` y no `isStandAlone`) |
-| `tecServicesLink`   | `string`                       | Enlace a servicios Tec                                             | `''`              | Sí (si `isMobile` y no `isStandAlone`) |
-| `targetLinks`       | `IBmbTargetLink`               | Destino de los enlaces (`_blank`, `_self`, etc.)                   | `'_blank'`        | No          |
-| `versionLabel`      | `string`                       | Etiqueta de versión                                                | `''`              | Sí (si `isMobile` y no `isStandAlone`) |
-| `enableLangChange`  | `boolean`                      | Permite cambiar el idioma                                          | `false`           | No          |
+| Propiedad          | Tipo                          | Descripción                                          | Valor por defecto | Obligatorio                            |
+| ------------------ | ----------------------------- | ---------------------------------------------------- | ----------------- | -------------------------------------- |
+| `userData`         | `IBmbProfileData`             | Datos de perfil (obsoleto, solo para compatibilidad) | -                 | No                                     |
+| `isStandAlone`     | `boolean`                     | Indica si el componente se usa en modo standalone    | `false`           | No                                     |
+| `standAloneData`   | `IBmbUserData`                | Datos de usuario para modo standalone                | -                 | No                                     |
+| `isStudent`        | `boolean`                     | Indica si el perfil es de estudiante                 | `true`            | No                                     |
+| `studentData`      | `IBmbStudentProfileData`      | Datos de perfil de estudiante                        | -                 | Sí (si `isStudent` es `true`)          |
+| `collaboratorData` | `IBmbCollaboratorProfileData` | Datos de perfil de colaborador                       | -                 | Sí (si `isStudent` es `false`)         |
+| `isMobile`         | `boolean`                     | Indica si la vista es móvil                          | `true`            | No                                     |
+| `idDigitalLink`    | `string`                      | Enlace a la credencial digital                       | `''`              | Sí (si `isMobile` y no `isStandAlone`) |
+| `campusAcessLink`  | `string`                      | Enlace a acceso a campus                             | `''`              | Sí (si `isMobile` y no `isStandAlone`) |
+| `tecServicesLink`  | `string`                      | Enlace a servicios Tec                               | `''`              | Sí (si `isMobile` y no `isStandAlone`) |
+| `targetLinks`      | `IBmbTargetLink`              | Destino de los enlaces (`_blank`, `_self`, etc.)     | `'_blank'`        | No                                     |
+| `versionLabel`     | `string`                      | Etiqueta de versión                                  | `''`              | Sí (si `isMobile` y no `isStandAlone`) |
+| `enableLangChange` | `boolean`                     | Permite cambiar el idioma                            | `false`           | No                                     |
 
 ### Outputs
 
-| Output                   | Tipo                | Descripción                                  |
-|--------------------------|---------------------|----------------------------------------------|
-| `handleCloseSession`     | `void`              | Se emite al cerrar sesión                    |
-| `handleCloseProfile`     | `void`              | Se emite al cerrar el perfil                 |
-| `handleCollaboratorClick`| `IBmbUserData`      | Se emite al hacer clic en colaborador        |
-| `handleLangChange`       | `string` (model)    | Se emite al cambiar el idioma                |
+| Output                    | Tipo             | Descripción                           |
+| ------------------------- | ---------------- | ------------------------------------- |
+| `handleCloseSession`      | `void`           | Se emite al cerrar sesión             |
+| `handleCloseProfile`      | `void`           | Se emite al cerrar el perfil          |
+| `handleCollaboratorClick` | `IBmbUserData`   | Se emite al hacer clic en colaborador |
+| `handleLangChange`        | `string` (model) | Se emite al cambiar el idioma         |
 
 ---
 

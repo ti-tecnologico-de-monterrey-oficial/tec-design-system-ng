@@ -8,31 +8,31 @@
 
 ## Props / Parámetros
 
-| Propiedad         | Tipo                               | Descripción                                                        | Valor por defecto | Obligatorio |
-|-------------------|------------------------------------|--------------------------------------------------------------------|-------------------|-------------|
-| `id`              | `string`                           | Identificador único del radio (obsoleto, usar `inputId`)           | `''`              | No          |
-| `checked`         | `boolean`                          | Estado inicial de selección                                        | `false`           | No          |
-| `disabled`        | `boolean`                          | Deshabilita el radio                                               | `false`           | No          |
-| `value`           | `string`                           | Valor asociado al radio                                            | `''`              | No          |
-| `name`            | `string`                           | Nombre del grupo de radios                                         | `getUUID()`       | No          |
-| `label`           | `string`                           | Etiqueta descriptiva                                               | `''`              | No          |
-| `labelPosition`   | `IBbmSidePosition`                 | Posición de la etiqueta (`before`, `after`)                        | `'after'`         | No          |
-| `ariaDescribedby` | `string`                           | ID de elemento que describe el radio (accesibilidad)               | `''`              | No          |
-| `ariaLabel`       | `string`                           | Etiqueta accesible para el radio                                   | `''`              | No          |
-| `ariaLabelledby`  | `string`                           | ID de elemento que etiqueta el radio (accesibilidad)               | `''`              | No          |
-| `required`        | `boolean`                          | Indica si el radio es obligatorio                                  | `false`           | No          |
-| `errorMessage`    | `string \| IBmbInputError`         | Mensaje(s) de error personalizado                                  | `''`              | No          |
-| `helperMessage`   | `string`                           | Mensaje de ayuda adicional                                         | `''`              | No          |
+| Propiedad         | Tipo                       | Descripción                                              | Valor por defecto | Obligatorio |
+| ----------------- | -------------------------- | -------------------------------------------------------- | ----------------- | ----------- |
+| `id`              | `string`                   | Identificador único del radio (obsoleto, usar `inputId`) | `''`              | No          |
+| `checked`         | `boolean`                  | Estado inicial de selección                              | `false`           | No          |
+| `disabled`        | `boolean`                  | Deshabilita el radio                                     | `false`           | No          |
+| `value`           | `string`                   | Valor asociado al radio                                  | `''`              | No          |
+| `name`            | `string`                   | Nombre del grupo de radios                               | `getUUID()`       | No          |
+| `label`           | `string`                   | Etiqueta descriptiva                                     | `''`              | No          |
+| `labelPosition`   | `IBbmSidePosition`         | Posición de la etiqueta (`before`, `after`)              | `'after'`         | No          |
+| `ariaDescribedby` | `string`                   | ID de elemento que describe el radio (accesibilidad)     | `''`              | No          |
+| `ariaLabel`       | `string`                   | Etiqueta accesible para el radio                         | `''`              | No          |
+| `ariaLabelledby`  | `string`                   | ID de elemento que etiqueta el radio (accesibilidad)     | `''`              | No          |
+| `required`        | `boolean`                  | Indica si el radio es obligatorio                        | `false`           | No          |
+| `errorMessage`    | `string \| IBmbInputError` | Mensaje(s) de error personalizado                        | `''`              | No          |
+| `helperMessage`   | `string`                   | Mensaje de ayuda adicional                               | `''`              | No          |
 
 ### Modelos y outputs
 
-| Propiedad/Output   | Tipo                       | Descripción                                  |
-|--------------------|----------------------------|----------------------------------------------|
-| `showError`        | `boolean` (model)          | Estado visual de error                       |
-| `control`          | `FormControl` (model)      | Control reactivo asociado                    |
-| `inputId`          | `string` (model)           | Identificador único del input                |
-| `change`           | `HTMLInputElement` (output)| Se emite al cambiar el valor                 |
-| `onKeyDown`        | `KeyboardEvent` (output)   | Se emite al presionar una tecla              |
+| Propiedad/Output | Tipo                        | Descripción                     |
+| ---------------- | --------------------------- | ------------------------------- |
+| `showError`      | `boolean` (model)           | Estado visual de error          |
+| `control`        | `FormControl` (model)       | Control reactivo asociado       |
+| `inputId`        | `string` (model)            | Identificador único del input   |
+| `change`         | `HTMLInputElement` (output) | Se emite al cambiar el valor    |
+| `onKeyDown`      | `KeyboardEvent` (output)    | Se emite al presionar una tecla |
 
 ---
 

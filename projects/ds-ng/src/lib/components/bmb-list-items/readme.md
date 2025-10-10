@@ -8,19 +8,19 @@
 
 ## Props / Parámetros
 
-| Propiedad         | Tipo                        | Descripción                                                        | Valor por defecto | Obligatorio |
-|-------------------|-----------------------------|--------------------------------------------------------------------|-------------------|-------------|
-| `title`           | `string`                    | Título principal de la lista                                       | `''`              | No          |
-| `addButtonIcon`   | `string`                    | Ícono para el botón de agregar                                     | `'add_box'`       | No          |
-| `showAddButton`   | `boolean`                   | Muestra u oculta el botón de agregar                               | `true`            | No          |
-| `items`           | `IBmbListItemsElement[]`    | Lista de elementos a mostrar                                       | `[]`              | No          |
-| `dateFormat`      | `string`                    | Formato de fecha para los elementos                                | `'yyyy-MM-dd'`    | No          |
+| Propiedad       | Tipo                     | Descripción                          | Valor por defecto | Obligatorio |
+| --------------- | ------------------------ | ------------------------------------ | ----------------- | ----------- |
+| `title`         | `string`                 | Título principal de la lista         | `''`              | No          |
+| `addButtonIcon` | `string`                 | Ícono para el botón de agregar       | `'add_box'`       | No          |
+| `showAddButton` | `boolean`                | Muestra u oculta el botón de agregar | `true`            | No          |
+| `items`         | `IBmbListItemsElement[]` | Lista de elementos a mostrar         | `[]`              | No          |
+| `dateFormat`    | `string`                 | Formato de fecha para los elementos  | `'yyyy-MM-dd'`    | No          |
 
 ### Outputs
 
-| Output             | Tipo         | Descripción                                  |
-|--------------------|--------------|----------------------------------------------|
-| `addButtonAction`  | `MouseEvent` | Se emite al hacer clic en el botón de agregar|
+| Output            | Tipo         | Descripción                                   |
+| ----------------- | ------------ | --------------------------------------------- |
+| `addButtonAction` | `MouseEvent` | Se emite al hacer clic en el botón de agregar |
 
 ### Interfaces relacionadas
 

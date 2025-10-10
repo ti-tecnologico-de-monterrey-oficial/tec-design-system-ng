@@ -8,32 +8,32 @@
 
 ## Props / Parámetros
 
-| Propiedad             | Tipo                                      | Descripción                                                                 | Valor por defecto         | Obligatorio |
-|-----------------------|-------------------------------------------|-----------------------------------------------------------------------------|---------------------------|-------------|
-| `label`               | `string`                                  | Etiqueta descriptiva del campo                                              | `''`                      | No          |
-| `name`                | `string`                                  | Nombre del campo                                                            | `getUUID()`               | No          |
-| `value`               | `string`                                  | Valor inicial del campo                                                     | `''`                      | No          |
-| `isRequired`          | `boolean`                                 | Indica si el campo es obligatorio                                           | `false`                   | No          |
-| `tooltip`             | `string`                                  | Texto de ayuda adicional (tooltip)                                          | `''`                      | No          |
-| `tooltipPosition`     | `IBmbInputTooltipPosition`                | Posición del tooltip                                                        | `{ align: 'above', justify: 'before' }` | No          |
-| `defaultLada`         | `string`                                  | Lada por defecto (obsoleto)                                                 | `'+52'`                   | No          |
-| `defaultCountryCode`  | `string`                                  | Código de país por defecto                                                  | `'mx'`                    | No          |
-| `placeholder`         | `string`                                  | Texto de ayuda dentro del campo                                             | `''`                      | No          |
-| `appearance`          | `IBmbInputAppearance`                     | Apariencia visual (obsoleto)                                                | `'normal'`                | No          |
-| `errorMessage`        | `string \| IBmbInputError`                | Mensaje(s) de error personalizado                                           | `''`                      | No          |
-| `disabled`            | `boolean`                                 | Deshabilita el campo                                                        | `false`                   | No          |
-| `inputId`             | `string`                                  | Identificador único para el input                                           | `name()`                  | No          |
-| `helperMessage`       | `string`                                  | Mensaje de ayuda adicional                                                  | `''`                      | No          |
-| `preferredCountries`  | `string[]`                                | Lista de países preferidos para selección                                   | `['mx']`                  | No          |
-| `onlyCountries`       | `string[]`                                | Lista de países permitidos para selección                                   | `[]`                      | No          |
-| `customValidation`    | `ValidatorFn`                             | Función de validación personalizada                                         | -                         | No          |
+| Propiedad            | Tipo                       | Descripción                               | Valor por defecto                       | Obligatorio |
+| -------------------- | -------------------------- | ----------------------------------------- | --------------------------------------- | ----------- |
+| `label`              | `string`                   | Etiqueta descriptiva del campo            | `''`                                    | No          |
+| `name`               | `string`                   | Nombre del campo                          | `getUUID()`                             | No          |
+| `value`              | `string`                   | Valor inicial del campo                   | `''`                                    | No          |
+| `isRequired`         | `boolean`                  | Indica si el campo es obligatorio         | `false`                                 | No          |
+| `tooltip`            | `string`                   | Texto de ayuda adicional (tooltip)        | `''`                                    | No          |
+| `tooltipPosition`    | `IBmbInputTooltipPosition` | Posición del tooltip                      | `{ align: 'above', justify: 'before' }` | No          |
+| `defaultLada`        | `string`                   | Lada por defecto (obsoleto)               | `'+52'`                                 | No          |
+| `defaultCountryCode` | `string`                   | Código de país por defecto                | `'mx'`                                  | No          |
+| `placeholder`        | `string`                   | Texto de ayuda dentro del campo           | `''`                                    | No          |
+| `appearance`         | `IBmbInputAppearance`      | Apariencia visual (obsoleto)              | `'normal'`                              | No          |
+| `errorMessage`       | `string \| IBmbInputError` | Mensaje(s) de error personalizado         | `''`                                    | No          |
+| `disabled`           | `boolean`                  | Deshabilita el campo                      | `false`                                 | No          |
+| `inputId`            | `string`                   | Identificador único para el input         | `name()`                                | No          |
+| `helperMessage`      | `string`                   | Mensaje de ayuda adicional                | `''`                                    | No          |
+| `preferredCountries` | `string[]`                 | Lista de países preferidos para selección | `['mx']`                                | No          |
+| `onlyCountries`      | `string[]`                 | Lista de países permitidos para selección | `[]`                                    | No          |
+| `customValidation`   | `ValidatorFn`              | Función de validación personalizada       | -                                       | No          |
 
 ### Modelos internos
 
-| Modelo                | Tipo           | Descripción                                 | Valor por defecto |
-|-----------------------|----------------|---------------------------------------------|-------------------|
-| `control`             | `FormControl`  | Control reactivo principal                  | Nuevo FormControl |
-| `showError`           | `boolean`      | Estado de error visual (obsoleto)           | `false`           |
+| Modelo      | Tipo          | Descripción                       | Valor por defecto |
+| ----------- | ------------- | --------------------------------- | ----------------- |
+| `control`   | `FormControl` | Control reactivo principal        | Nuevo FormControl |
+| `showError` | `boolean`     | Estado de error visual (obsoleto) | `false`           |
 
 ---
 

@@ -8,21 +8,21 @@
 
 ## Props / Parámetros
 
-| Propiedad      | Tipo                           | Descripción                                                        | Valor por defecto | Obligatorio |
-|----------------|--------------------------------|--------------------------------------------------------------------|-------------------|-------------|
-| `src`          | `string`                       | URL de la imagen a mostrar en la tarjeta                           | `''`              | No          |
-| `title`        | `string`                       | Título principal del aviso                                         | `''`              | No          |
-| `description`  | `IBmbCardNoticeDescription`    | Descripción paginada del aviso (`pageOne`, `pageTwo`)              | -                 | No          |
-| `buttonText`   | `string`                       | Texto del botón de acción                                          | `'Enterado'`      | No          |
-| `link`         | `string`                       | URL o ruta asociada al aviso                                       | `''`              | No          |
-| `closeBtnColor`| `'white' \| 'black'`           | Color del botón de cierre                                          | `'white'`         | No          |
+| Propiedad       | Tipo                        | Descripción                                           | Valor por defecto | Obligatorio |
+| --------------- | --------------------------- | ----------------------------------------------------- | ----------------- | ----------- |
+| `src`           | `string`                    | URL de la imagen a mostrar en la tarjeta              | `''`              | No          |
+| `title`         | `string`                    | Título principal del aviso                            | `''`              | No          |
+| `description`   | `IBmbCardNoticeDescription` | Descripción paginada del aviso (`pageOne`, `pageTwo`) | -                 | No          |
+| `buttonText`    | `string`                    | Texto del botón de acción                             | `'Enterado'`      | No          |
+| `link`          | `string`                    | URL o ruta asociada al aviso                          | `''`              | No          |
+| `closeBtnColor` | `'white' \| 'black'`        | Color del botón de cierre                             | `'white'`         | No          |
 
 ### Outputs
 
-| Output        | Tipo         | Descripción                                  |
-|---------------|--------------|----------------------------------------------|
-| `onClose`     | `void`       | Se emite al cerrar la tarjeta                |
-| `onClickBtn`  | `void`       | Se emite al hacer clic en el botón de acción |
+| Output       | Tipo   | Descripción                                  |
+| ------------ | ------ | -------------------------------------------- |
+| `onClose`    | `void` | Se emite al cerrar la tarjeta                |
+| `onClickBtn` | `void` | Se emite al hacer clic en el botón de acción |
 
 ### Interfaces relacionadas
 
