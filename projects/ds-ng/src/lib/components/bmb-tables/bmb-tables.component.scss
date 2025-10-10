@@ -173,13 +173,6 @@
         min-width: rem.rem_calc(70);
         text-overflow: ellipsis;
         white-space: nowrap;
-
-        > * {
-          min-width: 0;
-          overflow: hidden;
-          text-overflow: ellipsis;
-          white-space: nowrap;
-        }
       }
 
       &.wrapped {
