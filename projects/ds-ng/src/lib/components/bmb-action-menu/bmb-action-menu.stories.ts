@@ -2,9 +2,16 @@ import { Meta, moduleMetadata, StoryObj } from '@storybook/angular';
 import { BmbActionMenuComponent } from './bmb-action-menu.component';
 import {
   attributes,
+  BlockquoteType,
+  DESIGN_SYSTEM_TITLE,
+  getAlertBlockquote,
   getBasicExampleBlock,
+  getElementUsesDesc,
   getGeneralComponentDescription,
   getGeneralDescription,
+  getSpecialSpecifications,
+  getTechnicalOneReference,
+  RELEVANT_TITLE,
 } from '../../utils/doc/utils';
 import { BmbItemComponent } from '../bmb-item/bmb-item.component';
 import {
@@ -12,6 +19,7 @@ import {
   DBmbHomeCardParamDesc,
   getDefaultValueControl,
 } from '../../utils/doc/parameterDescriptions';
+import * as item from '../bmb-item/bmb-item.stories';
 
 export default {
   title: 'Components/Menus/Action menu',
@@ -31,6 +39,13 @@ ${getGeneralDescription(
     generalDocLink:
       'https://bamboo.tec.mx/latest/componentes/action-menu/descripcion-general-gXdipbgD',
   },
+)}
+${getSpecialSpecifications(
+  `
+${getElementUsesDesc('item')}
+${getTechnicalOneReference(item.default.title!)}
+  `,
+  { showAdditionalBlockquote: true },
 )}
 ${getBasicExampleBlock('BmbActionMenuComponent')}
         `,

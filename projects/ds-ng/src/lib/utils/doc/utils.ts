@@ -476,6 +476,17 @@ export const getDeprecatedDesc = ({
 `;
 };
 
+export const getReferenceRecommendationForVariable = (
+  element: string,
+): string =>
+  getAlertBlockquote(
+    `Please refer to the [Variables documentation](/docs/foundations-variables--documentation&globals=#dom-architecture) for details on how to implement ${element} in CSS, where it is detailed that these can be implemented through variables.<br/>`,
+    {
+      title: '###'.concat(RELEVANT_TITLE.important),
+      blockquoteType: BlockquoteType.important,
+    },
+  );
+
 export const getFullScreenDesc = (): string => `
 ${getAlertBlockquote(
   `When you click on fullscreen icon, in Storybook doesn’t look the best due to the many elements, but in your project, it should display correctly.`,
@@ -484,6 +495,15 @@ ${getAlertBlockquote(
     blockquoteType: BlockquoteType.note,
   },
 )}`;
+
+export const getElementUsesDesc = (name: string) =>
+  getAlertBlockquote(
+    `This example uses \`bmb-${name}\`, other ${DESIGN_SYSTEM_TITLE} or html elements can also be used.`,
+    {
+      title: '###'.concat(RELEVANT_TITLE.example),
+      blockquoteType: BlockquoteType.note,
+    },
+  );
 
 export const getTechnicalDocReferences = ({
   references,
@@ -502,7 +522,7 @@ ${TECHNICAL_DOC_REFERENCES}<br/>
   .replaceAll(',', ' ')}</ul>
 `;
 
-export const getTechnicalTopBarReference = (title: string): string =>
+export const getTechnicalOneReference = (title: string): string =>
   getTechnicalDocReferences({
     references: [{ title }],
   });
@@ -855,17 +875,7 @@ export const getSandboxConsiderationsDocumentation = (
     `;
   }
   return `
-${
-  isOmitImportant
-    ? ''
-    : getAlertBlockquote(
-        'Please refer to the [Variables documentation](/docs/foundations-variables--documentation&globals=#dom-architecture) for details on how to implement ${element} in CSS, where it is detailed that these can be implemented through variables.<br/>',
-        {
-          title: '###'.concat(RELEVANT_TITLE.important),
-          blockquoteType: BlockquoteType.important,
-        },
-      )
-}
+${isOmitImportant ? '' : getReferenceRecommendationForVariable(element)}
 ${!isOmitImportant && isWarning ? '<br/>' : ''}
 ${
   isWarning
