@@ -133,7 +133,7 @@
         }
       </div>
 
-      @for (row of pageSlice; track trackByRow(row); let rIndex = $index) {
+      @for (row of pageSlice; track $index; let rIndex = $index) {
         <div
           class="bmb_table_lite-row"
           (click)="onSelectRow(row)"
