@@ -33,8 +33,9 @@ const meta: Meta<BmbAccordionControlDirective> = {
       description: {
         component: `
 ${getGeneralDescription(`${getGeneralComponentDescription({ name: 'AccordionControl', type: 'directive' })} to bmb-accordion components to be presented in collapsible and vertically stacked elements.`, { generalDocLink: 'https://bamboo.tec.mx/latest/componentes/accordion/descripcion-general-yABR8pUx', isSubStory: true })}
-${getSpecialSpecifications(`
-${getEmptyStateMessage({isSubStory: true})}
+${getSpecialSpecifications(
+  `
+${getEmptyStateMessage({ isSubStory: true })}
 <br/>
 ${getAlertBlockquote(
   `For the correct operation of the ***Accordion control*** directive: the ***Accordion component*** must have \`accordionId\` attribute and must not have \`lockToogle\` attribute`,

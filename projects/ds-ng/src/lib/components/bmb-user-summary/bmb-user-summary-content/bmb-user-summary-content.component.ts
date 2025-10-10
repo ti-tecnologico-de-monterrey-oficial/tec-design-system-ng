@@ -47,9 +47,9 @@ export class BmbUserSummaryContentComponent {
   onUserClick = output<MouseEvent>();
 
   getClass(mainClassName: string): string[] {
-    const classes: string[]  = [];
+    const classes: string[] = [];
     if (!!this.name()) classes.push(`${mainClassName}-${this.contentLayout()}`);
-    if(this.showBox()) classes.push(`${mainClassName}-box`);
+    if (this.showBox()) classes.push(`${mainClassName}-box`);
 
     return classes;
   }
