@@ -615,7 +615,7 @@ export const Toast: StoryFn<typeof StorybookToastWrapperComponent> = (args) => {
     template: `
       <!-- Instruction to users: This component is used for internal Storybook logic and should not be copied -->
       <storybook-toast-wrapper component="toast"
-        ${attributes(args)}
+        ${attributes({...args, content: 'This is a toast notification'})}
       ></storybook-toast-wrapper>
       <!-- Start copying from here -->
       <div class="actions">
