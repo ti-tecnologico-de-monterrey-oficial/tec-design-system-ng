@@ -96,6 +96,7 @@ export class BmbInputContentComponent {
 
   handleClearValue() {
     this.control().reset();
+    this.onChange.emit(this.control().value);
   }
 
   get inputClasses(): { [key: string]: boolean } {
