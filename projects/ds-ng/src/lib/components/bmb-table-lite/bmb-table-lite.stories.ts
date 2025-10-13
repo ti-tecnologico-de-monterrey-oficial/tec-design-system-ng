@@ -378,10 +378,12 @@ ${getGeneralDescription(
 >
 It supports features such as selection, expansion, pagination, dynamic filtering, column resizing,
 custom actions, and templating for both actions and detail rows.
- `,{
-  generalDocLink:
-    'https://bamboo.tec.mx/latest/componentes/table/descripcion-general-h1hRplJO',
-})}
+ `,
+  {
+    generalDocLink:
+      'https://bamboo.tec.mx/latest/componentes/table/descripcion-general-h1hRplJO',
+  },
+)}
 ${getSpecialSpecifications(getEmptyStateMessage())}
 ${getBasicExampleBlock(
   `

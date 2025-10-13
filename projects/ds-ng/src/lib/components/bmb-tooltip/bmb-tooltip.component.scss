@@ -8,7 +8,9 @@ $tooltip_justify: 'centered', 'before', 'after';
   display: inline-block;
   cursor: pointer;
 
-  &:hover .bmb_tooltip-container {
+  &-icon:hover + .bmb_tooltip-container,
+  &-icon:focus + .bmb_tooltip-container,
+  &-icon:focus-visible + .bmb_tooltip-container {
     visibility: visible;
     opacity: 1;
   }
