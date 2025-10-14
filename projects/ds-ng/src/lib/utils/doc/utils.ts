@@ -1076,7 +1076,7 @@ ON THIS PAGE (optional, TABLE OF CONTENTS) [Done, is in preview, if not so add p
 */
 
 /*
-${getGeneralDescription({content: `${getGeneralComponentDescription({name: ''})} `, generalDocLink:'')}}
+${getGeneralDescription(`${getGeneralComponentDescription({name: ''}) `, generalDocLink:'')}}
 ${getBasicExampleBlock({content: ''})}
 
 getOnClickParam(
