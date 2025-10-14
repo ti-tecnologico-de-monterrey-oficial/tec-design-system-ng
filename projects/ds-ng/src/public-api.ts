@@ -149,6 +149,7 @@ export * from './lib/components/bmb-item/bmb-item.component';
 export * from './lib/components/bmb-navigation-bar/bmb-navigation-bar.component';
 export * from './lib/components/bmb-notice-card/bmb-notice-card.component';
 export * from './lib/components/bmb-modal/bmb-native-modal.component';
+export * from './lib/directives/bmb-selector/bmb-selector.directive';
 // types
 export * from './lib/types';
 
