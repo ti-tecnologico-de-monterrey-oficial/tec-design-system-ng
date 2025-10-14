@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { BmbToastComponent } from './bmb-toast.component';
-import { ToastService } from '../../services/toast.service';
+import { ToastService } from '../../services/toast/toast.service';
 
 describe('BmbToastComponent', () => {
   let component: BmbToastComponent;
