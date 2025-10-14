@@ -3,7 +3,7 @@ import {
   BmbCalendarComponent,
   IBmbCalendarEventClick,
 } from './bmb-calendar.component';
-import { BmbCalendarService } from '../../services/calendar.service';
+import { BmbCalendarService } from '../../services/calendar/calendar.service';
 import { DateTime } from 'luxon';
 
 describe('BmbCalendarComponent', () => {

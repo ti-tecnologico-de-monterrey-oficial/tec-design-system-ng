@@ -29,7 +29,7 @@ import {
   IBmbParsedDates,
 } from './types';
 import { getWeekDays, getMonthDays, DEFAULT_DATE_FORMAT } from './utils';
-import { BmbCalendarService } from '../../services/calendar.service';
+import { BmbCalendarService } from '../../services/calendar/calendar.service';
 import { BmbNativeModalService } from '../../services/native-modal.service';
 import { BmbBadgeComponent } from '../bmb-badge/bmb-badge.component';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
