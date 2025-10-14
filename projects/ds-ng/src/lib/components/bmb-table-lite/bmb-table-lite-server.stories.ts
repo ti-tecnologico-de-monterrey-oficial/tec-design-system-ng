@@ -26,9 +26,11 @@ export default {
 ${getGeneralDescription(
   `${DESIGN_SYSTEM_TITLE} ***Table Lite - Server side*** allows rendering highly configurable and interactive tables.`,
   {
-    generalDocLink: 'https://bamboo.tec.mx/latest/componentes/table/descripcion-general-h1hRplJO',
-    isSubStory: true
-  })}
+    generalDocLink:
+      'https://bamboo.tec.mx/latest/componentes/table/descripcion-general-h1hRplJO',
+    isSubStory: true,
+  },
+)}
 ${getBasicExampleBlock(
   'BmbTableLiteComponent',
   `

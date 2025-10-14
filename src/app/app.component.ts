@@ -1,308 +1,136 @@
 import {
   ChangeDetectionStrategy,
-  ChangeDetectorRef,
   Component,
+  computed,
+  inject,
+  signal,
   TemplateRef,
   ViewChild,
-  ViewEncapsulation,
 } from '@angular/core';
+import { RouterModule, Router } from '@angular/router';
 import {
-  BmbTableLiteComponent,
-  BmbIconComponent,
-  BmbBadgeComponent,
+  BmbThemeComponent,
+  BmbTopBarComponent,
+  BmbVerticalLayoutDirective,
+  BmbVerticalLayoutItemDirective,
+  BmbSidebarComponent,
+  SidebarElement,
+  BmbNativeModalService,
+  IBmbNativeModal,
 } from '../../projects/ds-ng/src/public-api';
-import { CommonModule } from '@angular/common';
+
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'app-root',
   imports: [
-    BmbIconComponent,
-    BmbTableLiteComponent,
-    CommonModule,
-    BmbBadgeComponent,
+    RouterModule,
+    BmbThemeComponent,
+    BmbTopBarComponent,
+    BmbVerticalLayoutDirective,
+    BmbVerticalLayoutItemDirective,
+    BmbSidebarComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  encapsulation: ViewEncapsulation.None,
   standalone: true,
 })
 export class AppComponent {
-  @ViewChild('infoTemplate') infoTemplate!: TemplateRef<any>;
-  @ViewChild('lastNameTemplate') lastNameTemplate!: TemplateRef<any>;
-  @ViewChild('actionTemplate') actionTemplate!: TemplateRef<any>;
-  @ViewChild('detailTemplate') detailTemplate!: TemplateRef<any>;
-  @ViewChild('headerNameTemplate') headerNameTemplate!: TemplateRef<any>;
+  private router = inject(Router);
+  constructor(private modalService: BmbNativeModalService) {}
+  @ViewChild('modalTemplate') modalTemplate!: TemplateRef<unknown>;
 
-  clearSelectionFlag = false;
+  modalId = signal<string | null>(null);
+  isTheModalOpen = computed(() => {
+    if (!this.modalId()) return false;
 
-  constructor(private cdr: ChangeDetectorRef) {}
+    return this.modalService.checkIfModalExists(this.modalId() as string);
+  });
 
-  config = {
-    isSelectable: true,
-    isExpandible: true,
-    isPaginable: true,
-    showActions: true,
-  };
-
-  data: any[] = [];
-  columns: any[] = [];
-
-  ngOnInit(): void {
-    this.data = [
+  routes: SidebarElement[][] = [
+    [
       {
-        lastName: 'Benitez',
-        name: 'Romina',
-        birthday: '02/02/2000',
-        info: 'buscar',
-        gorem: 'Gorem Ipsum',
-        goremType: 'success',
-        country: 'Mexico',
+        id: 1,
+        icon: 'home',
+        title: 'Home',
+        link: '/home',
       },
       {
-        lastName: 'Rodriguez',
-        name: 'Edgar',
-        birthday: '02/23/2020',
-        info: 'Info text',
-        gorem: 'Gorem Ipsum Gorem Ipsum Gorem Ipsum',
-        goremType: 'success',
-        country: 'Francia',
-        detail: 'Detalle A',
+        id: 5,
+        icon: 'calendar_today',
+        title: 'Calendar',
+        link: '/calendar',
       },
       {
-        lastName: 'Benitez',
-        name: 'Atenea',
-        birthday: '02/02/2010',
-        info: 'Info text',
-        gorem: 'Gorem Ipsum',
-        goremType: 'success',
-        country: 'Mexico',
-        detail: {
-          columns: [
-            { def: 'id', label: 'ID', dataKey: 'id' },
-            {
-              def: 'description',
-              label: 'Description',
-              dataKey: 'description',
-            },
-          ],
-          data: [
-            { id: 1, description: 'Detalle A' },
-            { id: 2, description: 'Detalle B' },
-          ],
-          config: {
-            isSelectable: false,
-            isExpandible: false,
-            isPaginable: false,
-            showActions: false,
-          },
+        id: 6,
+        icon: 'table_chart',
+        title: 'Table Lite',
+        link: '/table-lite',
+      },
+    ],
+    [
+      {
+        id: 2,
+        icon: 'list_alt_check',
+        title: 'Forms',
+        link: '/form-validator',
+      },
+      {
+        id: 3,
+        icon: 'align_flex_center',
+        title: 'Flex',
+        link: '/flex',
+      },
+      {
+        id: 4,
+        icon: 'dropdown',
+        title: 'Dropdown',
+        link: '/dropdown',
+      },
+    ],
+  ];
+
+  handleUserProfileClick(): void {
+    const data: IBmbNativeModal = {
+      title: 'User Profile',
+      subtitle: 'This is your user profile modal',
+      content: this.modalTemplate,
+      size: 'medium',
+      iconStyle: 'primary',
+      actions: [
+        {
+          buttonName: 'Close',
+          appearance: 'secondary-outlined',
+          label: 'Close',
+          icon: 'close',
+          action: () => this.handleCloseModal.bind(this)(),
         },
-      },
-      {
-        lastName: 'Benitez',
-        name: 'Atenea',
-        birthday: '02/02/2005',
-        info: 'Info text',
-        gorem: 'Gorem Ipsum',
-        goremType: 'success',
-        country: 'Mexico',
-        detail: 'Detalle A',
-      },
-      {
-        lastName: 'Benitez',
-        name: 'Atenea',
-        birthday: '02/02/2000',
-        info: 'Info text',
-        gorem: 'Gorem Ipsum',
-        goremType: 'success',
-        country: 'Mexico',
-        detail: 'Detalle A',
-      },
-      {
-        lastName: 'Benitez',
-        name: 'Atenea',
-        birthday: '02/02/2000',
-        info: 'Info text',
-        gorem: 'Gorem Ipsum',
-        goremType: 'success',
-        country: 'Mexico',
-        detail: 'Detalle A',
-      },
-      {
-        lastName: 'Benitez',
-        name: 'Atenea',
-        birthday: '02/02/2000',
-        info: 'Info text',
-        gorem: 'Gorem Ipsum',
-        goremType: 'success',
-        country: 'Mexico',
-        detail: 'Detalle A',
-      },
-      {
-        lastName: 'Nava',
-        name: 'Jesus',
-        birthday: '03/04/1998',
-        country: 'Mexico',
-        info: 'Info text',
-        gorem: 'Gorem Ipsum',
-        goremType: 'error',
-        detail: {
-          columns: [
-            { def: 'id', label: 'ID', dataKey: 'id' },
-            {
-              def: 'description',
-              label: 'Description',
-              dataKey: 'description',
-            },
-          ],
-          data: [
-            { id: 1, description: 'Detalle A' },
-            { id: 2, description: 'Detalle B' },
-          ],
-          config: {
-            isSelectable: false,
-            isExpandible: false,
-            isPaginable: false,
-            showActions: false,
-          },
-        },
-      },
-      {
-        lastName: 'Benitez',
-        name: 'Romina',
-        birthday: '02/02/2000',
-        info: 'buscar',
-        gorem: 'Gorem Ipsum',
-        goremType: 'success',
-        country: 'Mexico',
-      },
-      {
-        lastName: 'Benitez',
-        name: 'Romina',
-        birthday: '02/02/2000',
-        info: 'buscar',
-        gorem: 'Gorem Ipsum',
-        goremType: 'success',
-        country: 'Mexico',
-      },
-      {
-        lastName: 'Benitez',
-        name: 'Romina',
-        birthday: '02/02/2000',
-        info: 'buscar',
-        gorem: 'Gorem Ipsum',
-        goremType: 'success',
-        country: 'Mexico',
-      },
-      {
-        lastName: 'Benitez',
-        name: 'Romina',
-        birthday: '02/02/2000',
-        info: 'buscar',
-        gorem: 'Gorem Ipsum',
-        goremType: 'success',
-        country: 'Mexico',
-      },
-      {
-        lastName: 'Benitez',
-        name: 'Romina',
-        birthday: '02/02/2000',
-        info: 'buscar',
-        gorem: 'Gorem Ipsum',
-        goremType: 'success',
-        country: 'Mexico',
-      },
-      {
-        lastName: 'Benitez',
-        name: 'Romina',
-        birthday: '02/02/2000',
-        info: 'buscar',
-        gorem: 'Gorem Ipsum',
-        goremType: 'success',
-        country: 'Mexico',
-      },
-    ];
-
-    this.columns = [
-      {
-        def: 'name',
-        label: 'Name',
-        dataKey: 'name',
-        type: 'string',
-      },
-      {
-        def: 'lastName',
-        label: 'Last Name',
-        dataKey: 'lastName',
-        type: 'string',
-      },
-      {
-        def: 'birthday',
-        label: 'Birthday',
-        dataKey: 'birthday',
-        type: 'date',
-      },
-      {
-        def: 'info',
-        label: 'Info',
-        dataKey: 'info',
-        type: 'string',
-      },
-      {
-        def: 'gorem',
-        label: 'Gorem Ipsum',
-        dataKey: 'gorem',
-        type: 'string',
-      },
-      {
-        def: 'country',
-        label: 'Country',
-        dataKey: 'country',
-        type: 'string',
-      },
-    ];
+      ],
+      closeModalClicked: () => this.handleActionsCloseClick.bind(this)(event),
+    };
+    this.modalId.set(this.modalService.openModal(data));
   }
 
-  ngAfterViewInit(): void {
-    this.columns = this.columns.map((col) => {
-      if (col.def === 'name') {
-        return { ...col, htmlLabel: this.headerNameTemplate };
-      }
-      return col;
-    });
-
-    this.data = this.data.map((row) => {
-      return {
-        ...row,
-        lastNameTemplate: this.lastNameTemplate,
-        infoTemplate: this.infoTemplate,
-      };
-    });
-
-    this.cdr.detectChanges();
+  handleCloseModal(): void {
+    const randomBoolean = Math.random() > 0.5;
+    console.log('Modal closed', randomBoolean);
+    if (randomBoolean) {
+      this.modalService.closeModal(this.modalId() as string);
+    } else {
+      this.modalService.openModal({
+        title: 'The random is false',
+        content: "This why the modal wasn't closed",
+        size: 'x-small',
+        iconStyle: 'warning',
+      });
+    }
   }
 
-  onSelect(selected: any) {
-    console.log('Selected rows', selected);
+  handleAlertButtonClick(): void {
+    this.router.navigate(['/alerts']);
   }
 
-  clickButton(event: any) {
-    console.log('Button clicked', event);
-  }
-
-  isString(value: any): value is string {
-    return typeof value === 'string';
-  }
-
-  isObject(value: any): value is object {
-    return typeof value === 'object' && value !== null;
-  }
-
-  onClickRow(event: any) {
-    console.log('Button clicked', event);
-  }
-
-  resetSelection() {
-    this.clearSelectionFlag = true;
+  handleActionsCloseClick(params: unknown): void {
+    console.log('Close button clicked', params);
   }
 }
