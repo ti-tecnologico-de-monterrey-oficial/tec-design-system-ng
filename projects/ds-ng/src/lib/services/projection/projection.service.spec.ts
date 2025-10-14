@@ -16,6 +16,9 @@ describe('BmbProjectionContentService', () => {
       appendChild: () => {},
       removeChild: () => {},
       destroy: () => {},
+      createElement: (tag: string) => document.createElement(tag),
+      createComment: (text: string) => document.createComment(text),
+      listen: () => () => {}, // Mock listen method
       // Add other methods as needed
     } as any;
 
