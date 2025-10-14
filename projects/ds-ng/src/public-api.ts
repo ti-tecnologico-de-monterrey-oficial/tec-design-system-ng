@@ -4,7 +4,7 @@
 
 // Services
 export * from './lib/ds-ng.service';
-export * from './lib/services/notification.service';
+export * from './lib/services/notification/notification.service';
 export * from './lib/services/tabs.service';
 export * from './lib/services/calendar/calendar.service';
 export * from './lib/services/user/profile.service';
