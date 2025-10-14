@@ -42,14 +42,14 @@ export class BmbUserSummaryContentComponent {
   salutation = input<string>('Buenas tardes');
   contentLayout = input<IBmbContentLayoutSummary>('column');
   gapSize = input<SizeNames>('none');
-  showBox = input<boolean>();
+  CURP = input<string>();
+  additionalInfo = input<string>();
 
   onUserClick = output<MouseEvent>();
 
   getClass(mainClassName: string): string[] {
     const classes: string[] = [];
     if (!!this.name()) classes.push(`${mainClassName}-${this.contentLayout()}`);
-    if (this.showBox()) classes.push(`${mainClassName}-box`);
 
     return classes;
   }
