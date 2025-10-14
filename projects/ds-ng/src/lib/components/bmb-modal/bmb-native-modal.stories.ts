@@ -1,5 +1,5 @@
 import { applicationConfig, Meta, StoryObj } from '@storybook/angular';
-import { BmbNativeModalService } from '../../services/native-modal.service';
+import { BmbNativeModalService } from '../../services/modal/native-modal.service';
 import {
   Component,
   computed,

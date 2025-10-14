@@ -23,7 +23,7 @@ import {
   IBmbActionButton,
 } from './bmb-modal.interface';
 import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
-import { BmbNativeModalService } from '../../services/native-modal.service';
+import { BmbNativeModalService } from '../../services/modal/native-modal.service';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 
 @Component({

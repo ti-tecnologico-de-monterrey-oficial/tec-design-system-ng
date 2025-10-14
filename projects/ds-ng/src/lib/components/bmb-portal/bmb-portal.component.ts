@@ -10,7 +10,7 @@ import { BmbPushNotificationItemComponent } from '../bmb-push-notification/bmb-p
 import { BmbToastComponent } from '../bmb-toast/bmb-toast.component';
 import { CommonModule } from '@angular/common';
 import { BmbNoticeCardComponent } from '../bmb-notice-card/bmb-notice-card.component';
-import { BmbNativeModalService } from '../../services/native-modal.service';
+import { BmbNativeModalService } from '../../services/modal/native-modal.service';
 import { BmbNativeModalComponent } from '../bmb-modal/bmb-native-modal.component';
 import { IBmbNativeModal } from '../bmb-modal/bmb-modal.interface';
 import { BmbProjectionContentService } from '../../services/projection.service';

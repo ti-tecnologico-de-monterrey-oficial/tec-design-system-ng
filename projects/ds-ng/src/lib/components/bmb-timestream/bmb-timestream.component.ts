@@ -19,7 +19,7 @@ import {
   IBmbTimelineCustomEvent,
 } from './types';
 import { CommonModule } from '@angular/common';
-import { BmbNativeModalService } from '../../services/native-modal.service';
+import { BmbNativeModalService } from '../../services/modal/native-modal.service';
 import { IBmbNativeModal } from '../bmb-modal/bmb-modal.interface';
 import { BmbUserImageComponent } from '../bmb-user-image/bmb-user-image.component';
 import { BmbTabsComponent } from '../bmb-tabs/bmb-tabs.component';

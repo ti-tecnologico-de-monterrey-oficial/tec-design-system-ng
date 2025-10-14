@@ -22,7 +22,7 @@ import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.compo
 import { ClickOutsideDirective } from '../../directives/utils/clickoutside.directive';
 import { BmbActionMenuComponent } from '../bmb-action-menu/bmb-action-menu.component';
 import { BmbItemComponent } from '../bmb-item/bmb-item.component';
-import { BmbNativeModalService } from '../../services/native-modal.service';
+import { BmbNativeModalService } from '../../services/modal/native-modal.service';
 import {
   BmbProjectionContentService,
   IBmbProjectionContent,

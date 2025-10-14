@@ -25,7 +25,7 @@ import { BmbLayoutDirective } from '../../directives/bmb-layout/bmb-layout.direc
 import { BmbLayoutItemDirective } from '../../directives/bmb-layout/bmb-layout-item.directive';
 import { BmbInputComponent } from '../bmb-input/bmb-input.component';
 import { BmbInnerHeaderComponent } from '../bmb-inner-header/bmb-inner-header.component';
-import { BmbNativeModalService } from '../../services/native-modal.service';
+import { BmbNativeModalService } from '../../services/modal/native-modal.service';
 import {
   FormControl,
   FormGroup,

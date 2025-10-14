@@ -33,7 +33,7 @@ import { BmbAlertCenterAdsComponent } from './bmb-alert-center-ads/bmb-alert-cen
 import { BmbAlertCenterEmptyComponent } from './bmb-alert-center-empty/bmb-alert-center-empty.component';
 import { BmbAlertCenterService } from './bmb-alert-center.service';
 import { BmbLoaderComponent } from '../bmb-loader/bmb-loader.component';
-import { BmbNativeModalService } from '../../services/native-modal.service';
+import { BmbNativeModalService } from '../../services/modal/native-modal.service';
 import { IBmbNativeModal } from '../bmb-modal/bmb-modal.interface';
 
 @Component({
