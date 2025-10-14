@@ -36,7 +36,7 @@ import {
   showError,
 } from '../../utils/formControl';
 import { BmbInputValidatorComponent } from '../bmb-input/bmb-input-validator/bmb-input-validator.component';
-import { BmbProjectionContentService } from '../../services/projection.service';
+import { BmbProjectionContentService } from '../../services/projection/projection.service';
 
 export interface IBmbDropdownItem {
   name: string;

@@ -24,7 +24,7 @@ import {
   IBmbInputError,
   IBmbInputTooltipPosition,
 } from '../bmb-input/bmb-input.component';
-import { BmbProjectionContentService } from '../../services/projection.service';
+import { BmbProjectionContentService } from '../../services/projection/projection.service';
 import { BmbDatepickerModalComponent } from './bmb-datepicker-modal/bmb-datepicker-modal.component';
 import {
   getCustomValidation,

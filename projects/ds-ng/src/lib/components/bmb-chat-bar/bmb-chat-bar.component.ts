@@ -26,7 +26,7 @@ import { BmbNativeModalService } from '../../services/modal/native-modal.service
 import {
   BmbProjectionContentService,
   IBmbProjectionContent,
-} from '../../services/projection.service';
+} from '../../services/projection/projection.service';
 import { IBmbNativeModal } from '../bmb-modal/bmb-modal.interface';
 
 export { defaultBotList, defaultActionList } from './bot_list';

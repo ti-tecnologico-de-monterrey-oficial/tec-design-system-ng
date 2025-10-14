@@ -13,7 +13,7 @@ import { BmbNoticeCardComponent } from '../bmb-notice-card/bmb-notice-card.compo
 import { BmbNativeModalService } from '../../services/modal/native-modal.service';
 import { BmbNativeModalComponent } from '../bmb-modal/bmb-native-modal.component';
 import { IBmbNativeModal } from '../bmb-modal/bmb-modal.interface';
-import { BmbProjectionContentService } from '../../services/projection.service';
+import { BmbProjectionContentService } from '../../services/projection/projection.service';
 import { BmbProjectedContentComponent } from './bmb-projected-content/bmb-projected-content.component';
 
 @Component({
