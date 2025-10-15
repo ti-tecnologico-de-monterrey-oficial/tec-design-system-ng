@@ -7,9 +7,9 @@ import {
   Injectable,
   signal,
 } from '@angular/core';
-import { getUUID } from '../utils/utils';
-import { IBmbNativeModal } from '../components/bmb-modal/bmb-modal.interface';
-import { BmbPortalComponent } from '../components/bmb-portal/bmb-portal.component';
+import { getUUID } from '../../utils/utils';
+import { IBmbNativeModal } from '../../components/bmb-modal/bmb-modal.interface';
+import { BmbPortalComponent } from '../../components/bmb-portal/bmb-portal.component';
 
 @Injectable({
   providedIn: 'root',

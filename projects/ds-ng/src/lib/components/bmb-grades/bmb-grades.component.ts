@@ -24,7 +24,7 @@ import { BmbContainerComponent } from '../bmb-container/bmb-container.component'
 import { buildErrorMessage } from '../../utils/utils';
 import { BmbTitleContentComponent } from '../bmb-title-content/bmb-title-content.component';
 import { IBmbNativeModal } from '../bmb-modal/bmb-modal.interface';
-import { BmbNativeModalService } from '../../services/native-modal.service';
+import { BmbNativeModalService } from '../../services/modal/native-modal.service';
 
 @Component({
   selector: 'bmb-grades',

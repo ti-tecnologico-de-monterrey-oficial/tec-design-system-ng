@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { IBmbTab } from '../components/bmb-tabs/bmb-tabs.component';
+import { IBmbTab } from '../../components/bmb-tabs/bmb-tabs.component';
 
 @Injectable({
   providedIn: 'root',

@@ -48,12 +48,12 @@ async function ensureDir(dir) {
  * Copia un README.md a la wiki con el nombre de su carpeta contenedora.
  * @param {string} readmePath
  */
-async function copyReadmeToWiki(readmePath) {
+async function copyReadmeToWiki(readmePath, type) {
   const componentDir = dirname(readmePath);
   const componentName = basename(componentDir);
-  const destPath = join(WIKI_OUTPUT_DIR, `${componentName}.md`);
+  const destPath = join(WIKI_OUTPUT_DIR, `${type}-${componentName}.md`);
 
-  console.log(`📄 Copiando ${readmePath} → ${componentName}.md`);
+  console.log(`📄 Copiando ${readmePath} → ${type}-${componentName}.md`);
 
   const content = await readFile(readmePath, 'utf8');
 
@@ -62,6 +62,49 @@ async function copyReadmeToWiki(readmePath) {
   const outputContent = content;
 
   await writeFile(destPath, outputContent, 'utf8');
+}
+
+function linkGenerator(files) {
+  return files.map((file) => {
+    const title = file.folderName
+      .replace(/^bmb-/, '')
+      .replace(/-/g, ' ')
+      .replace(/\b\w/g, (char) => char.toUpperCase());
+    return `- [${title}](${file.type}-${file.folderName})`;
+  }).join('\n');
+}
+
+async function generateSidebar(componentNames) {
+  if (componentNames.length === 0) {
+    console.log('ℹ️  No hay componentes para incluir en el sidebar.');
+    return;
+  }
+
+  const sortedNames = [...componentNames].sort((a, b) =>
+    a.folderName.toLowerCase().localeCompare(b.folderName.toLowerCase()),
+  );
+
+  const sidebarContent = `# 📋 Índice
+
+- [[Home]]
+- [[Bienvenido]]
+- [[Migración del Notification card a la versión 1.5.0]]
+- [[What's new]]
+
+## 📦 Componentes de Bamboo
+
+${linkGenerator(sortedNames.filter((item) => item.type === 'Component'))}
+
+## 📐 Directivas de Bamboo
+${linkGenerator(sortedNames.filter((item) => item.type === 'Directive'))}
+
+## 🛠️ Servicios de Bamboo
+${linkGenerator(sortedNames.filter((item) => item.type === 'Service'))}
+`;
+
+  const sidebarPath = join(WIKI_OUTPUT_DIR, '_Sidebar.md');
+  await writeFile(sidebarPath, sidebarContent, 'utf8');
+  console.log('✅ Sidebar generado: _Sidebar.md');
 }
 
 // ✅ Ejecución principal
@@ -82,9 +125,24 @@ async function main() {
 
     console.log(`✅ Encontrados ${readmeFiles.length} archivos README.md`);
 
+    const componentNames = [];
     for (const readme of readmeFiles) {
-      await copyReadmeToWiki(readme);
+      const componentDir = dirname(readme);
+      const folderName = basename(componentDir);
+      let type = 'Component';
+      if (componentDir.includes('directives')) type = 'Directive';
+      else if (componentDir.includes('services')) type = 'Service';
+
+      componentNames.push({ folderName, type });
+
+      await copyReadmeToWiki(readme, type);
     }
+
+    await generateSidebar(componentNames);
+
+    // for (const readme of readmeFiles) {
+
+    // }
 
     console.log(`🎉 Wiki actualizada en: ${WIKI_OUTPUT_DIR}`);
   } catch (err) {

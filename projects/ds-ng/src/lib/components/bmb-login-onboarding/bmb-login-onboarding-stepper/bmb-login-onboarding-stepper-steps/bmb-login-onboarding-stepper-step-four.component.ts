@@ -7,7 +7,7 @@ import {
 } from '@angular/core';
 import { BmbLoginOnboardingStepperStepComponent } from './bmb-login-onboarding-stepper-step.component';
 import { BmbLoginOnboardingService } from '../../bmb-login-onboarding.service';
-import { BmbNativeModalService } from '../../../../services/native-modal.service';
+import { BmbNativeModalService } from '../../../../services/modal/native-modal.service';
 import { IBmbNativeModal } from '../../../bmb-modal/bmb-modal.interface';
 
 @Component({
