@@ -1,6 +1,7 @@
 import {
   Controls,
   Description,
+  Heading,
   Primary,
   Title,
 } from '@storybook/addon-docs/blocks';
@@ -53,6 +54,7 @@ const TECHNICAL_DOC_TITLE: string = `${DESIGN_SYSTEM_TITLE} ***- Technical docum
 const TECHNICAL_DOC_REFERENCES: string = `Please remember to refer to the ${TECHNICAL_DOC_TITLE} for more details:`;
 export const STORIES_TITLE: string = 'Variant templates';
 export const TITLE_OF_CONTROLS: string = 'Properties / Events';
+const PREVIEW_TITLE: string = '👁 Preview';
 export const TOC_TITLE: string = 'On this page';
 export const DESCRIPTION_TITLE: string = 'Description';
 export const SPECIAL_SPECIFICATIONS_TITLE: string =
@@ -76,7 +78,12 @@ export const getPageStructureForFoundationStories = (): any => {
 };
 
 export const getPageStructureForTemplateStories = (): any => {
-  return [Title({}), Description({}), Primary({})];
+  return [
+    Title({}),
+    Description({}),
+    Heading({ children: PREVIEW_TITLE }),
+    Primary({}),
+  ];
 };
 
 const getValue = (key: string, value: undefined): any =>
@@ -513,7 +520,7 @@ export const getTechnicalDocReferences = ({
   isFullScreenDesc?: boolean;
 }): string => `${isFullScreenDesc ? getFullScreenDesc() : ''}
 >
-### ${TECHNICAL_DOC_TITLE}
+###🛠️${TECHNICAL_DOC_TITLE}
 >
 ${TECHNICAL_DOC_REFERENCES}<br/>
 <ul>${references
