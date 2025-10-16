@@ -8,22 +8,14 @@ import {
   getGeneralDescription,
   getOnEvent,
   getSpecialSpecifications,
-  getStoryLink,
   RELEVANT_TITLE,
 } from '../../../utils/doc/utils';
-import * as identitySpectrumStory from '../../bmb-identity-spectrum/bmb-identity-spectrum.stories';
 import {
   DBmbImageParamDesc,
   getAppearanceParam,
   getDefaultValueControl,
   getOnEventParam,
 } from '../../../utils/doc/parameterDescriptions';
-
-const TITLE = {
-  identitySpectrumStory: getStoryLink({
-    title: identitySpectrumStory.default.title!,
-  }),
-};
 
 export default {
   title: 'Dev tools/User summary content',
@@ -44,7 +36,7 @@ export default {
 ${getGeneralDescription(`<br/>${getGeneralComponentDescription({ name: 'user-summary-content', type: 'element' })} to display the user data in different formats.<br/><br/>`)}
 ${getSpecialSpecifications(
   `${getAlertBlockquote(
-    `This tool is useful to complement the implementation of components or organisms that show user data as ***${TITLE.identitySpectrumStory}*** among others.`,
+    `This tool is useful to complement the implementation of components or organisms that show user data as ***Identity spectrum*** among others.`,
     {
       title: '###'.concat(RELEVANT_TITLE.important),
       blockquoteType: BlockquoteType.important,

@@ -36,7 +36,9 @@
 @use 'components/button-group';
 @use 'components/templates';
 @use 'components/generic-dialog';
+@use 'components/selector';
 @use 'base/utils';
 @use 'base/scrollbar';
+@use 'components/organism';
 
 @use '../../../../../node_modules/@angular/cdk/overlay-prebuilt.css';

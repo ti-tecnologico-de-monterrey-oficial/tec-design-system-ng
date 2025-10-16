@@ -1,15 +1,15 @@
 @use '../../../assets/styles/base/fonts' as fonts;
-@use '../../../assets/styles/base/rem' as rem;
 
 .bmb_icon-item {
-  text-align: center;
   &-label {
     @include fonts.font(4, regular);
+    text-align: left;
   }
 
   &-value {
     @include fonts.font(4, regular);
     text-align: right;
+
     a {
       @include fonts.font(4, bold);
       align-items: center;
