@@ -10,6 +10,10 @@
     @include mixins.checkForMobile(false) {
       padding: rem.rem_calc(48 152);
     }
+
+    @include mixins.checkForMobile() {
+      padding: rem.rem_calc(8);
+    }
   }
 
   &-form-buttons {
@@ -17,6 +21,14 @@
   }
 
   .bmb_home-card-wrapper {
-    height: calc(100% - rem.rem_calc(100));
+    @include mixins.checkForMobile(false) {
+      //64px (top bar height) + 48px (main padding-top) =  102px
+      height: calc(100% - rem.rem_calc(102));
+    }
+
+    @include mixins.checkForMobile(false) {
+      //64px (top bar height) + 8px (main padding-top) =  102px
+      height: calc(100% - rem.rem_calc(72));
+    }
   }
 }
