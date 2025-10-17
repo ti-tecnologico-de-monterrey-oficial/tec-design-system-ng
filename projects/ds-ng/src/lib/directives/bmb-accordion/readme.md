@@ -8,9 +8,9 @@
 
 ## Props / Parámetros
 
-| Propiedad         | Tipo                         | Descripción                                                        | Valor por defecto | Obligatorio |
-|-------------------|-----------------------------|--------------------------------------------------------------------|-------------------|-------------|
-| `accordionStates` | `{ [id: string]: boolean }`  | Objeto externo para controlar el estado expandido/colapsado de cada acordeón por su ID | `undefined`       | No          |
+| Propiedad         | Tipo                        | Descripción                                                                            | Valor por defecto | Obligatorio |
+| ----------------- | --------------------------- | -------------------------------------------------------------------------------------- | ----------------- | ----------- |
+| `accordionStates` | `{ [id: string]: boolean }` | Objeto externo para controlar el estado expandido/colapsado de cada acordeón por su ID | `undefined`       | No          |
 
 ---
 

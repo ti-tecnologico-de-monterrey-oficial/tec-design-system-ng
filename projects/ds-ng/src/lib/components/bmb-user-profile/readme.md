@@ -8,23 +8,23 @@
 
 ## Props / Parámetros
 
-| Propiedad               | Tipo                      | Descripción                                                        | Valor por defecto            | Obligatorio |
-|-------------------------|---------------------------|--------------------------------------------------------------------|------------------------------|-------------|
-| `headerLabel`           | `string`                  | Etiqueta principal del encabezado                                  | `'ESTUDIANTES'`              | No          |
-| `anotherAccountLabel`   | `string`                  | Texto para el enlace de otra cuenta                                | `'Ingresar con otra cuenta'` | No          |
-| `anotherAccountLink`    | `string`                  | URL para el enlace de otra cuenta                                  | `''`                         | No          |
-| `anotherAccountTarget`  | `IBmbTargetLink`          | Destino del enlace (`_blank`, `_self`, etc.)                       | `'_blank'`                   | No          |
-| `buttonLabel`           | `string`                  | Texto del botón principal                                          | `'Ingresar'`                 | No          |
-| `userInfo`              | `IBmbUserInfo`            | Información del usuario (nombre, matrícula, imagen, etc.)          | -                            | Sí          |
-| `actionHeaderLinks`     | `IBmbActionHeaderLinks`   | Acciones adicionales en el encabezado                              | -                            | No          |
-| `actionHeaders`         | `IBmbActionHeader[]`      | Acciones (obsoleto, usar `actionHeaderLinks`)                      | `[]`                         | No          |
+| Propiedad              | Tipo                    | Descripción                                               | Valor por defecto            | Obligatorio |
+| ---------------------- | ----------------------- | --------------------------------------------------------- | ---------------------------- | ----------- |
+| `headerLabel`          | `string`                | Etiqueta principal del encabezado                         | `'ESTUDIANTES'`              | No          |
+| `anotherAccountLabel`  | `string`                | Texto para el enlace de otra cuenta                       | `'Ingresar con otra cuenta'` | No          |
+| `anotherAccountLink`   | `string`                | URL para el enlace de otra cuenta                         | `''`                         | No          |
+| `anotherAccountTarget` | `IBmbTargetLink`        | Destino del enlace (`_blank`, `_self`, etc.)              | `'_blank'`                   | No          |
+| `buttonLabel`          | `string`                | Texto del botón principal                                 | `'Ingresar'`                 | No          |
+| `userInfo`             | `IBmbUserInfo`          | Información del usuario (nombre, matrícula, imagen, etc.) | -                            | Sí          |
+| `actionHeaderLinks`    | `IBmbActionHeaderLinks` | Acciones adicionales en el encabezado                     | -                            | No          |
+| `actionHeaders`        | `IBmbActionHeader[]`    | Acciones (obsoleto, usar `actionHeaderLinks`)             | `[]`                         | No          |
 
 ### Outputs
 
-| Output        | Tipo      | Descripción                                  |
-|---------------|-----------|----------------------------------------------|
-| `onRequest`   | `any`     | Se emite al hacer clic en el botón principal, incluye callback para finalizar loading |
-| `onContinue`  | `void`    | Se emite al finalizar la acción principal    |
+| Output       | Tipo   | Descripción                                                                           |
+| ------------ | ------ | ------------------------------------------------------------------------------------- |
+| `onRequest`  | `any`  | Se emite al hacer clic en el botón principal, incluye callback para finalizar loading |
+| `onContinue` | `void` | Se emite al finalizar la acción principal                                             |
 
 ---
 

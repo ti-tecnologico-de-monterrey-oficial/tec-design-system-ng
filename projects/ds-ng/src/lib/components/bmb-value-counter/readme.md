@@ -8,11 +8,11 @@
 
 ## Props / Parámetros
 
-| Propiedad  | Tipo     | Descripción                                 | Valor por defecto | Obligatorio |
-|------------|----------|---------------------------------------------|-------------------|-------------|
-| `label`    | `string` | Etiqueta descriptiva del contador           | `''`              | No          |
-| `value`    | `string` | Valor principal a mostrar                   | `''`              | No          |
-| `progress` | `string` | Indicador de progreso (ej. porcentaje)      | `''`              | No          |
+| Propiedad  | Tipo     | Descripción                            | Valor por defecto | Obligatorio |
+| ---------- | -------- | -------------------------------------- | ----------------- | ----------- |
+| `label`    | `string` | Etiqueta descriptiva del contador      | `''`              | No          |
+| `value`    | `string` | Valor principal a mostrar              | `''`              | No          |
+| `progress` | `string` | Indicador de progreso (ej. porcentaje) | `''`              | No          |
 
 ---
 

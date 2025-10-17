@@ -8,10 +8,10 @@
 
 ## Props / Parámetros
 
-| Propiedad   | Tipo                    | Descripción                                                        | Valor por defecto | Obligatorio |
-|-------------|-------------------------|--------------------------------------------------------------------|-------------------|-------------|
-| `appearance`| `IButtonAppearance`     | Apariencia visual del grupo (`primary`, `secondary`, etc.)         | `'primary'`       | No          |
-| `size`      | `'small' \| 'large'`    | Tamaño de los botones agrupados                                    | `'small'`         | No          |
+| Propiedad    | Tipo                 | Descripción                                                | Valor por defecto | Obligatorio |
+| ------------ | -------------------- | ---------------------------------------------------------- | ----------------- | ----------- |
+| `appearance` | `IButtonAppearance`  | Apariencia visual del grupo (`primary`, `secondary`, etc.) | `'primary'`       | No          |
+| `size`       | `'small' \| 'large'` | Tamaño de los botones agrupados                            | `'small'`         | No          |
 
 ---
 

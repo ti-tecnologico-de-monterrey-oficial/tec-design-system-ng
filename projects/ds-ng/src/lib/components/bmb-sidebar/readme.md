@@ -8,11 +8,11 @@
 
 ## Props / Parámetros
 
-| Propiedad   | Tipo                    | Descripción                                                        | Valor por defecto | Obligatorio |
-|-------------|-------------------------|--------------------------------------------------------------------|-------------------|-------------|
-| `elements`  | `SidebarElement[][]`    | Matriz de elementos de navegación, hasta dos niveles               | `[]`              | Sí          |
-| `title`     | `string`                | Título principal de la barra lateral                               | `'Navigation'`    | No          |
-| `position`  | `IPositionButtonMenu`   | Posición de la barra (`left`, `right`) solo para web               | `'left'`          | No          |
+| Propiedad  | Tipo                  | Descripción                                          | Valor por defecto | Obligatorio |
+| ---------- | --------------------- | ---------------------------------------------------- | ----------------- | ----------- |
+| `elements` | `SidebarElement[][]`  | Matriz de elementos de navegación, hasta dos niveles | `[]`              | Sí          |
+| `title`    | `string`              | Título principal de la barra lateral                 | `'Navigation'`    | No          |
+| `position` | `IPositionButtonMenu` | Posición de la barra (`left`, `right`) solo para web | `'left'`          | No          |
 
 ---
 

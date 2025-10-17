@@ -8,15 +8,15 @@
 
 ## Props / Parámetros
 
-| Propiedad        | Tipo      | Descripción                                                        | Valor por defecto | Obligatorio |
-|------------------|-----------|--------------------------------------------------------------------|-------------------|-------------|
-| `value`          | `unknown` | Valor seleccionado actualmente                                     | `null`            | No          |
+| Propiedad | Tipo      | Descripción                    | Valor por defecto | Obligatorio |
+| --------- | --------- | ------------------------------ | ----------------- | ----------- |
+| `value`   | `unknown` | Valor seleccionado actualmente | `null`            | No          |
 
 ### Outputs
 
-| Output           | Tipo         | Descripción                                  |
-|------------------|--------------|----------------------------------------------|
-| `onValueChange`  | `string`     | Se emite al seleccionar un nuevo valor       |
+| Output          | Tipo     | Descripción                            |
+| --------------- | -------- | -------------------------------------- |
+| `onValueChange` | `string` | Se emite al seleccionar un nuevo valor |
 
 ---
 

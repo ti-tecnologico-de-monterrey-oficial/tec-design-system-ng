@@ -52,8 +52,8 @@ export class BmbHomeCardHeaderComponent {
   actionHeaderList = computed<IBmbActionHeader[]>(() => {
     if (this.showRightButton()) {
       const webIcon: string = this.isExpanded()
-        ? 'close_fullscreen'
-        : 'fit_screen';
+        ? 'zoom_in_map'
+        : 'zoom_out_map';
       const mainIcon: string = this.isMobile() ? 'close' : webIcon;
       return [
         ...this.actionHeaders(),

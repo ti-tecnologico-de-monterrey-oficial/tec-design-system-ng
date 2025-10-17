@@ -65,13 +65,15 @@ async function copyReadmeToWiki(readmePath, type) {
 }
 
 function linkGenerator(files) {
-  return files.map((file) => {
-    const title = file.folderName
-      .replace(/^bmb-/, '')
-      .replace(/-/g, ' ')
-      .replace(/\b\w/g, (char) => char.toUpperCase());
-    return `- [${title}](${file.type}-${file.folderName})`;
-  }).join('\n');
+  return files
+    .map((file) => {
+      const title = file.folderName
+        .replace(/^bmb-/, '')
+        .replace(/-/g, ' ')
+        .replace(/\b\w/g, (char) => char.toUpperCase());
+      return `- [${title}](${file.type}-${file.folderName})`;
+    })
+    .join('\n');
 }
 
 async function generateSidebar(componentNames) {

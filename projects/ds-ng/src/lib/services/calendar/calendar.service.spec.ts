@@ -16,7 +16,14 @@ describe('BmbCalendarService', () => {
   });
 
   it('debe agregar un evento y asignar un id si no existe', () => {
-    const event: IBmbCalendarEvent = { title: 'Evento 1', start: '2025-10-15', end: '2025-10-16', id: undefined, detail: '', modalTitle: '' };
+    const event: IBmbCalendarEvent = {
+      title: 'Evento 1',
+      start: '2025-10-15',
+      end: '2025-10-16',
+      id: undefined,
+      detail: '',
+      modalTitle: '',
+    };
     service.addEvent(event);
     const events = service.getEventList();
     expect(events.length).toBe(1);
@@ -26,8 +33,22 @@ describe('BmbCalendarService', () => {
 
   it('debe agregar múltiples eventos y asignar ids únicos si no existen', () => {
     const events: IBmbCalendarEvent[] = [
-      { title: 'Evento 1', start: '2025-10-15', end: '2025-10-16', id: undefined, detail: '', modalTitle: '' },
-      { title: 'Evento 2', start: '2025-10-15', end: '2025-10-16', id: undefined, detail: '', modalTitle: '' },
+      {
+        title: 'Evento 1',
+        start: '2025-10-15',
+        end: '2025-10-16',
+        id: undefined,
+        detail: '',
+        modalTitle: '',
+      },
+      {
+        title: 'Evento 2',
+        start: '2025-10-15',
+        end: '2025-10-16',
+        id: undefined,
+        detail: '',
+        modalTitle: '',
+      },
     ];
     service.addMultipleEvents(events);
     const result = service.getEventList();
@@ -38,7 +59,14 @@ describe('BmbCalendarService', () => {
   });
 
   it('debe eliminar un evento por id', () => {
-    const event: IBmbCalendarEvent = { title: 'Evento 1', start: '2025-10-15', end: '2025-10-16', id: 'test-id', detail: '', modalTitle: '' };
+    const event: IBmbCalendarEvent = {
+      title: 'Evento 1',
+      start: '2025-10-15',
+      end: '2025-10-16',
+      id: 'test-id',
+      detail: '',
+      modalTitle: '',
+    };
     service.addEvent(event);
     expect(service.getEventList().length).toBe(1);
     service.deleteEvent('test-id');
@@ -46,7 +74,14 @@ describe('BmbCalendarService', () => {
   });
 
   it('editEvent no debe modificar el evento (implementación actual)', () => {
-    const event: IBmbCalendarEvent = { title: 'Evento 1', start: '2025-10-15', end: '2025-10-16', id: 'edit-id', detail: '', modalTitle: '' };
+    const event: IBmbCalendarEvent = {
+      title: 'Evento 1',
+      start: '2025-10-15',
+      end: '2025-10-16',
+      id: 'edit-id',
+      detail: '',
+      modalTitle: '',
+    };
     service.addEvent(event);
     service.editEvent('edit-id');
     const events = service.getEventList();

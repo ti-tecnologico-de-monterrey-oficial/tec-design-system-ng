@@ -8,21 +8,17 @@
 
 ## Props / Parámetros
 
-| Propiedad | Tipo     | Descripción                                      | Valor por defecto | Obligatorio |
-|-----------|----------|--------------------------------------------------|-------------------|-------------|
-| `focus`   | `unknown`| Función a ejecutar cuando el elemento recibe foco| `() => {}`        | No          |
-| `blur`    | `unknown`| Función a ejecutar cuando el elemento pierde foco| `() => {}`        | No          |
+| Propiedad | Tipo      | Descripción                                       | Valor por defecto | Obligatorio |
+| --------- | --------- | ------------------------------------------------- | ----------------- | ----------- |
+| `focus`   | `unknown` | Función a ejecutar cuando el elemento recibe foco | `() => {}`        | No          |
+| `blur`    | `unknown` | Función a ejecutar cuando el elemento pierde foco | `() => {}`        | No          |
 
 ---
 
 ## Ejemplo de uso
 
 ```html
-<input
-  bmb-input-states
-  [focus]="onInputFocus"
-  [blur]="onInputBlur"
-/>
+<input bmb-input-states [focus]="onInputFocus" [blur]="onInputBlur" />
 ```
 
 ```typescript

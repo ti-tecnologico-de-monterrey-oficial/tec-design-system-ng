@@ -8,22 +8,22 @@
 
 ## Props / Parámetros
 
-| Propiedad         | Tipo                        | Descripción                                                        | Valor por defecto | Obligatorio |
-|-------------------|-----------------------------|--------------------------------------------------------------------|-------------------|-------------|
-| `contentList`     | `signal<IBmbProjectionContent \| null>` | Señal reactiva que almacena el contenido proyectado actual | `null`            | No          |
+| Propiedad     | Tipo                                    | Descripción                                                | Valor por defecto | Obligatorio |
+| ------------- | --------------------------------------- | ---------------------------------------------------------- | ----------------- | ----------- |
+| `contentList` | `signal<IBmbProjectionContent \| null>` | Señal reactiva que almacena el contenido proyectado actual | `null`            | No          |
 
 ### IBmbProjectionContent
 
-| Propiedad        | Tipo                                 | Descripción                                                        | Valor por defecto | Obligatorio |
-|------------------|--------------------------------------|--------------------------------------------------------------------|-------------------|-------------|
-| `content`        | `TemplateRef<any> \| Type<any> \| null` | Componente o template a proyectar                                 | `null`            | Sí          |
-| `targetRef`      | `HTMLElement \| null`                | Elemento de referencia para posicionar el contenido                | `null`            | No          |
-| `mode`           | `'over' \| 'partial' \| 'outside'`   | Modo de proyección visual                                          | `'over'`          | No          |
-| `fixSizeToRef`   | `boolean`                            | Fija el tamaño al elemento de referencia                           | `false`           | No          |
-| `inputContext`   | `{ [key: string]: any }`             | Contexto de entrada para el contenido proyectado                   | `{}`              | No          |
-| `showBackdrop`   | `boolean`                            | Muestra fondo (backdrop) detrás del contenido proyectado           | `false`           | No          |
-| `outputContext`  | `{ [key: string]: (value: any) => void }` | Callbacks para eventos de salida del contenido proyectado      | `{}`              | No          |
-| `focusOnOpen`    | `boolean`                            | Enfoca el contenido al abrirlo                                     | `false`           | No          |
+| Propiedad       | Tipo                                      | Descripción                                               | Valor por defecto | Obligatorio |
+| --------------- | ----------------------------------------- | --------------------------------------------------------- | ----------------- | ----------- |
+| `content`       | `TemplateRef<any> \| Type<any> \| null`   | Componente o template a proyectar                         | `null`            | Sí          |
+| `targetRef`     | `HTMLElement \| null`                     | Elemento de referencia para posicionar el contenido       | `null`            | No          |
+| `mode`          | `'over' \| 'partial' \| 'outside'`        | Modo de proyección visual                                 | `'over'`          | No          |
+| `fixSizeToRef`  | `boolean`                                 | Fija el tamaño al elemento de referencia                  | `false`           | No          |
+| `inputContext`  | `{ [key: string]: any }`                  | Contexto de entrada para el contenido proyectado          | `{}`              | No          |
+| `showBackdrop`  | `boolean`                                 | Muestra fondo (backdrop) detrás del contenido proyectado  | `false`           | No          |
+| `outputContext` | `{ [key: string]: (value: any) => void }` | Callbacks para eventos de salida del contenido proyectado | `{}`              | No          |
+| `focusOnOpen`   | `boolean`                                 | Enfoca el contenido al abrirlo                            | `false`           | No          |
 
 ---
 
@@ -31,7 +31,10 @@
 
 ```typescript
 import { Component, TemplateRef, ViewChild } from '@angular/core';
-import { BmbProjectionContentService, IBmbProjectionContent } from './services/projection/projection.service';
+import {
+  BmbProjectionContentService,
+  IBmbProjectionContent,
+} from './services/projection/projection.service';
 
 @Component({
   selector: 'app-demo-projection',

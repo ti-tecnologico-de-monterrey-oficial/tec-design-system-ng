@@ -8,47 +8,47 @@
 
 ## Props / Parámetros
 
-| Propiedad              | Tipo                        | Descripción                                                        | Valor por defecto | Obligatorio |
-|------------------------|-----------------------------|--------------------------------------------------------------------|-------------------|-------------|
-| `userInformation`      | `IUserInformation \| null`  | Información del usuario (nombre, rol, imagen, etc.)                | `null`            | No          |
-| `appName`              | `string`                    | Nombre de la aplicación                                            | `''`              | No          |
-| `appPowered`           | `string`                    | Texto de "powered by"                                              | `''`              | No          |
-| `appSubTitle`          | `string`                    | Subtítulo de la aplicación                                         | `''`              | No          |
-| `lang`                 | `string`                    | Idioma de la barra superior (`es`, `en`, etc.)                     | `'es'`            | No          |
-| `mitec`                | `boolean`                   | Modo MiTec (cambia logos y estilos)                                | `false`           | No          |
-| `alertNotification`    | `IBmbDataAlert[]`           | Lista de alertas a mostrar                                         | `[]`              | No          |
-| `showRoleButton`       | `boolean`                   | Muestra el botón de cambio de rol                                  | `false`           | No          |
-| `showHelpButton`       | `boolean`                   | Muestra el botón de ayuda                                          | `false`           | No          |
-| `allowSidebarForMobile`| `boolean`                   | Permite mostrar sidebar en móvil                                   | `true`            | No          |
+| Propiedad               | Tipo                       | Descripción                                         | Valor por defecto | Obligatorio |
+| ----------------------- | -------------------------- | --------------------------------------------------- | ----------------- | ----------- |
+| `userInformation`       | `IUserInformation \| null` | Información del usuario (nombre, rol, imagen, etc.) | `null`            | No          |
+| `appName`               | `string`                   | Nombre de la aplicación                             | `''`              | No          |
+| `appPowered`            | `string`                   | Texto de "powered by"                               | `''`              | No          |
+| `appSubTitle`           | `string`                   | Subtítulo de la aplicación                          | `''`              | No          |
+| `lang`                  | `string`                   | Idioma de la barra superior (`es`, `en`, etc.)      | `'es'`            | No          |
+| `mitec`                 | `boolean`                  | Modo MiTec (cambia logos y estilos)                 | `false`           | No          |
+| `alertNotification`     | `IBmbDataAlert[]`          | Lista de alertas a mostrar                          | `[]`              | No          |
+| `showRoleButton`        | `boolean`                  | Muestra el botón de cambio de rol                   | `false`           | No          |
+| `showHelpButton`        | `boolean`                  | Muestra el botón de ayuda                           | `false`           | No          |
+| `allowSidebarForMobile` | `boolean`                  | Permite mostrar sidebar en móvil                    | `true`            | No          |
 
 ### Props obsoletos
 
-| Propiedad              | Tipo                        | Descripción                                                        | Valor por defecto | Obligatorio |
-|------------------------|-----------------------------|--------------------------------------------------------------------|-------------------|-------------|
-| `positionButtonMenu`   | `IPositionButtonMenu`        | Posición del menú lateral                                          | `'left'`          | No          |
-| `hasLogoutButton`      | `boolean`                   | Muestra el botón de logout                                         | `true`            | No          |
-| `showLang`             | `boolean`                   | Muestra selector de idioma                                         | `false`           | No          |
-| `showUserName`         | `boolean`                   | Muestra el nombre de usuario                                       | `true`            | No          |
-| `assignmentNotification`| `string[]`                 | Notificaciones de asignación                                       | `[]`              | No          |
+| Propiedad                | Tipo                  | Descripción                  | Valor por defecto | Obligatorio |
+| ------------------------ | --------------------- | ---------------------------- | ----------------- | ----------- |
+| `positionButtonMenu`     | `IPositionButtonMenu` | Posición del menú lateral    | `'left'`          | No          |
+| `hasLogoutButton`        | `boolean`             | Muestra el botón de logout   | `true`            | No          |
+| `showLang`               | `boolean`             | Muestra selector de idioma   | `false`           | No          |
+| `showUserName`           | `boolean`             | Muestra el nombre de usuario | `true`            | No          |
+| `assignmentNotification` | `string[]`            | Notificaciones de asignación | `[]`              | No          |
 
 ### Modelos internos
 
-| Propiedad      | Tipo      | Descripción                                  | Valor por defecto |
-|----------------|-----------|----------------------------------------------|-------------------|
-| `image`        | `string`  | URL del logo principal                       | Depende de `mitec`|
-| `mobileImage`  | `string`  | URL del logo para móvil                      | Depende de `mitec`|
+| Propiedad     | Tipo     | Descripción             | Valor por defecto  |
+| ------------- | -------- | ----------------------- | ------------------ |
+| `image`       | `string` | URL del logo principal  | Depende de `mitec` |
+| `mobileImage` | `string` | URL del logo para móvil | Depende de `mitec` |
 
 ### Outputs
 
-| Output              | Tipo        | Descripción                                  |
-|---------------------|-------------|----------------------------------------------|
-| `helpButtonClick`   | `MouseEvent`| Se emite al hacer clic en el botón de ayuda  |
-| `userProfileClick`  | `MouseEvent`| Se emite al hacer clic en el perfil de usuario|
-| `alertButtonClick`  | `MouseEvent`| Se emite al hacer clic en el botón de alertas|
-| `roleButtonClick`   | `MouseEvent`| Se emite al hacer clic en el botón de rol    |
-| `backToHomeClick`   | `void`      | Se emite al hacer clic en "volver a inicio"  |
-| `logOut`            | `any`       | Se emite al hacer clic en logout (obsoleto)  |
-| `onLangChange`      | `string`    | Se emite al cambiar el idioma (obsoleto)     |
+| Output             | Tipo         | Descripción                                    |
+| ------------------ | ------------ | ---------------------------------------------- |
+| `helpButtonClick`  | `MouseEvent` | Se emite al hacer clic en el botón de ayuda    |
+| `userProfileClick` | `MouseEvent` | Se emite al hacer clic en el perfil de usuario |
+| `alertButtonClick` | `MouseEvent` | Se emite al hacer clic en el botón de alertas  |
+| `roleButtonClick`  | `MouseEvent` | Se emite al hacer clic en el botón de rol      |
+| `backToHomeClick`  | `void`       | Se emite al hacer clic en "volver a inicio"    |
+| `logOut`           | `any`        | Se emite al hacer clic en logout (obsoleto)    |
+| `onLangChange`     | `string`     | Se emite al cambiar el idioma (obsoleto)       |
 
 ---
 

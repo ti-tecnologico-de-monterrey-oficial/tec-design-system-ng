@@ -8,18 +8,18 @@
 
 ## Props / Parámetros
 
-| Propiedad         | Tipo                        | Descripción                                                        | Valor por defecto | Obligatorio |
-|-------------------|-----------------------------|--------------------------------------------------------------------|-------------------|-------------|
-| `tabs$`           | `Observable<IBmbTab[]>`     | Observable de la lista de pestañas                                 | `[]`              | No          |
-| `selectedTab$`    | `Observable<IBmbTab \| null>`| Observable de la pestaña seleccionada                              | `null`            | No          |
+| Propiedad      | Tipo                          | Descripción                           | Valor por defecto | Obligatorio |
+| -------------- | ----------------------------- | ------------------------------------- | ----------------- | ----------- |
+| `tabs$`        | `Observable<IBmbTab[]>`       | Observable de la lista de pestañas    | `[]`              | No          |
+| `selectedTab$` | `Observable<IBmbTab \| null>` | Observable de la pestaña seleccionada | `null`            | No          |
 
 ### Métodos
 
-| Método         | Tipo de retorno   | Descripción                                  |
-|----------------|-------------------|----------------------------------------------|
-| `setTabs(tabs: IBmbTab[])` | `void` | Actualiza la lista de pestañas               |
-| `selectTab(tab: IBmbTab)`  | `void` | Selecciona una pestaña específica            |
-| `resetTabs()`              | `void` | Reinicia la lista de pestañas y la selección |
+| Método                     | Tipo de retorno | Descripción                                  |
+| -------------------------- | --------------- | -------------------------------------------- |
+| `setTabs(tabs: IBmbTab[])` | `void`          | Actualiza la lista de pestañas               |
+| `selectTab(tab: IBmbTab)`  | `void`          | Selecciona una pestaña específica            |
+| `resetTabs()`              | `void`          | Reinicia la lista de pestañas y la selección |
 
 ---
 
@@ -50,7 +50,7 @@ export class DemoTabsComponent {
 
   constructor(private tabsService: TabsService) {
     this.tabsService.setTabs(this.tabs);
-    this.tabsService.selectedTab$.subscribe(tab => this.selectedTab = tab);
+    this.tabsService.selectedTab$.subscribe((tab) => (this.selectedTab = tab));
   }
 
   select(tab: IBmbTab) {

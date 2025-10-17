@@ -8,18 +8,18 @@
 
 ## Props / Parámetros
 
-| Propiedad     | Tipo                | Descripción                                                        | Valor por defecto           | Obligatorio |
-|---------------|---------------------|--------------------------------------------------------------------|-----------------------------|-------------|
-| `startDate`   | `string`            | Fecha de inicio de la actividad (formato configurable)             | -                           | Sí          |
-| `endDate`     | `string`            | Fecha de fin de la actividad (formato configurable)                | -                           | Sí          |
-| `title`       | `string`            | Título de la actividad                                             | `''`                        | No          |
-| `location`    | `string`            | Ubicación de la actividad                                          | `''`                        | No          |
-| `responsible` | `string`            | Responsable o persona encargada                                    | `''`                        | No          |
-| `type`        | `IBmbEventType`     | Tipo de evento (`academic`, `life`, `events`, `save_the_date`)     | `'academic'`                | No          |
-| `isListItem`  | `boolean`           | Indica si se muestra como elemento de lista                        | `false`                     | No          |
-| `image`       | `string`            | URL de la imagen asociada                                          | `''`                        | No          |
-| `dateFormat`  | `string`            | Formato de fecha para parseo con Luxon                             | `'yyyy-MM-dd HH:mm:ss'`     | No          |
-| `badgeText`   | `string`            | Texto de la insignia/badge                                         | `''`                        | No          |
+| Propiedad     | Tipo            | Descripción                                                    | Valor por defecto       | Obligatorio |
+| ------------- | --------------- | -------------------------------------------------------------- | ----------------------- | ----------- |
+| `startDate`   | `string`        | Fecha de inicio de la actividad (formato configurable)         | -                       | Sí          |
+| `endDate`     | `string`        | Fecha de fin de la actividad (formato configurable)            | -                       | Sí          |
+| `title`       | `string`        | Título de la actividad                                         | `''`                    | No          |
+| `location`    | `string`        | Ubicación de la actividad                                      | `''`                    | No          |
+| `responsible` | `string`        | Responsable o persona encargada                                | `''`                    | No          |
+| `type`        | `IBmbEventType` | Tipo de evento (`academic`, `life`, `events`, `save_the_date`) | `'academic'`            | No          |
+| `isListItem`  | `boolean`       | Indica si se muestra como elemento de lista                    | `false`                 | No          |
+| `image`       | `string`        | URL de la imagen asociada                                      | `''`                    | No          |
+| `dateFormat`  | `string`        | Formato de fecha para parseo con Luxon                         | `'yyyy-MM-dd HH:mm:ss'` | No          |
+| `badgeText`   | `string`        | Texto de la insignia/badge                                     | `''`                    | No          |
 
 ---
 

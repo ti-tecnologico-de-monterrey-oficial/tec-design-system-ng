@@ -1,4 +1,8 @@
-import { BmbNotificationService, NotificationPositionX, NotificationPositionY } from './notification.service';
+import {
+  BmbNotificationService,
+  NotificationPositionX,
+  NotificationPositionY,
+} from './notification.service';
 import { INotification } from '../../components/bmb-push-notification/types';
 
 import { TestBed } from '@angular/core/testing';
@@ -11,26 +15,32 @@ describe('BmbNotificationService', () => {
     TestBed.configureTestingModule({
       providers: [
         BmbNotificationService,
-        { provide: RendererFactory2, useValue: {
-          createRenderer: () => ({
-            setProperty: () => {},
-            setAttribute: () => {},
-            removeAttribute: () => {},
-            addClass: () => {},
-            removeClass: () => {},
-            setStyle: () => {},
-            removeStyle: () => {},
-            destroy: () => {},
-            createElement: (name: string) => document.createElement(name),
-            createComment: (text: string) => document.createComment(text),
-            appendChild: () => {},
-            removeChild: () => {},
-            listen: () => () => {}, // Mock listen method
-          })
-        }},
-        { provide: 'AppRef', useValue: { attachView: () => {}, components: [] } },
-        { provide: 'EnvironmentInjector', useValue: {} }
-      ]
+        {
+          provide: RendererFactory2,
+          useValue: {
+            createRenderer: () => ({
+              setProperty: () => {},
+              setAttribute: () => {},
+              removeAttribute: () => {},
+              addClass: () => {},
+              removeClass: () => {},
+              setStyle: () => {},
+              removeStyle: () => {},
+              destroy: () => {},
+              createElement: (name: string) => document.createElement(name),
+              createComment: (text: string) => document.createComment(text),
+              appendChild: () => {},
+              removeChild: () => {},
+              listen: () => () => {}, // Mock listen method
+            }),
+          },
+        },
+        {
+          provide: 'AppRef',
+          useValue: { attachView: () => {}, components: [] },
+        },
+        { provide: 'EnvironmentInjector', useValue: {} },
+      ],
     });
     service = TestBed.inject(BmbNotificationService);
     service.notificationList.set([]); // Reset state before each test
@@ -41,7 +51,13 @@ describe('BmbNotificationService', () => {
   });
 
   it('debe agregar una notificación y asignar un id si no existe', () => {
-    const notification: INotification = { content: 'Test', component: 'toast', delay: 1000, title: 'Test Title', isFullColor: false };
+    const notification: INotification = {
+      content: 'Test',
+      component: 'toast',
+      delay: 1000,
+      title: 'Test Title',
+      isFullColor: false,
+    };
     service.addNotification(notification);
     const list = service.getNotificationList();
     expect(list.length).toBe(1);
@@ -50,14 +66,28 @@ describe('BmbNotificationService', () => {
   });
 
   it('debe agregar una notificación y respetar el id proporcionado', () => {
-    const notification: INotification = { id: 'custom-id', content: 'Test', component: 'toast', delay: 1000, title: 'Test Title', isFullColor: false };
+    const notification: INotification = {
+      id: 'custom-id',
+      content: 'Test',
+      component: 'toast',
+      delay: 1000,
+      title: 'Test Title',
+      isFullColor: false,
+    };
     service.addNotification(notification);
     const list = service.getNotificationList();
     expect(list[0].id).toBe('custom-id');
   });
 
   it('should delete a notification by id (not toast)', () => {
-    const notification: INotification = { id: 'note-id', content: 'Test', component: 'notification', delay: 1000, title: 'Test Title', isFullColor: false };
+    const notification: INotification = {
+      id: 'note-id',
+      content: 'Test',
+      component: 'notification',
+      delay: 1000,
+      title: 'Test Title',
+      isFullColor: false,
+    };
     service.addNotification(notification);
     expect(service.getNotificationList().length).toBe(1);
     service.deleteNotification('note-id');
@@ -65,7 +95,14 @@ describe('BmbNotificationService', () => {
   });
 
   it('debe marcar como closing y eliminar una notificación tipo toast', (done) => {
-    const notification: INotification = { id: 'toast-id', content: 'Toast', component: 'toast', delay: 500, title: 'Toast Title', isFullColor: false };
+    const notification: INotification = {
+      id: 'toast-id',
+      content: 'Toast',
+      component: 'toast',
+      delay: 500,
+      title: 'Toast Title',
+      isFullColor: false,
+    };
     service.addNotification(notification);
     expect(service.getNotificationList().length).toBe(1);
 
@@ -73,13 +110,20 @@ describe('BmbNotificationService', () => {
     service.deleteNotification('toast-id', 100);
     setTimeout(() => {
       const list = service.getNotificationList();
-      expect(list.find(n => n.id === 'toast-id')).toBeUndefined();
+      expect(list.find((n) => n.id === 'toast-id')).toBeUndefined();
       done();
     }, 150);
   });
 
   it('debe eliminar automáticamente la notificación después del delay', (done) => {
-    const notification: INotification = { id: 'auto-id', content: 'Auto', component: 'notification', delay: 100, title: 'Auto Title', isFullColor: false };
+    const notification: INotification = {
+      id: 'auto-id',
+      content: 'Auto',
+      component: 'notification',
+      delay: 100,
+      title: 'Auto Title',
+      isFullColor: false,
+    };
     service.addNotification(notification);
     expect(service.getNotificationList().length).toBe(1);
 

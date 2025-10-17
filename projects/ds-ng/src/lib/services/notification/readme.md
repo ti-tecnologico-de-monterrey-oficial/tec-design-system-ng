@@ -8,19 +8,19 @@
 
 ## Props / Parámetros
 
-| Propiedad         | Tipo                        | Descripción                                                        | Valor por defecto | Obligatorio |
-|-------------------|-----------------------------|--------------------------------------------------------------------|-------------------|-------------|
-| `notificationList`| `signal<INotification[]>`   | Señal reactiva que almacena la lista de notificaciones             | `[]`              | No          |
-| `positionX`       | `'left' \| 'right'`         | Posición horizontal de las notificaciones                          | `'right'`         | No          |
-| `positionY`       | `'top' \| 'bottom'`         | Posición vertical de las notificaciones                            | `'top'`           | No          |
+| Propiedad          | Tipo                      | Descripción                                            | Valor por defecto | Obligatorio |
+| ------------------ | ------------------------- | ------------------------------------------------------ | ----------------- | ----------- |
+| `notificationList` | `signal<INotification[]>` | Señal reactiva que almacena la lista de notificaciones | `[]`              | No          |
+| `positionX`        | `'left' \| 'right'`       | Posición horizontal de las notificaciones              | `'right'`         | No          |
+| `positionY`        | `'top' \| 'bottom'`       | Posición vertical de las notificaciones                | `'top'`           | No          |
 
 ### Métodos
 
-| Método                | Tipo de retorno   | Descripción                                  |
-|-----------------------|-------------------|----------------------------------------------|
-| `addNotification(notification)` | `void` | Agrega una notificación y la elimina automáticamente después del delay |
-| `deleteNotification(id, delay?)`| `void` | Elimina una notificación por ID, con animación si es tipo toast        |
-| `getNotificationList()`         | `INotification[]` | Devuelve la lista actual de notificaciones |
+| Método                           | Tipo de retorno   | Descripción                                                            |
+| -------------------------------- | ----------------- | ---------------------------------------------------------------------- |
+| `addNotification(notification)`  | `void`            | Agrega una notificación y la elimina automáticamente después del delay |
+| `deleteNotification(id, delay?)` | `void`            | Elimina una notificación por ID, con animación si es tipo toast        |
+| `getNotificationList()`          | `INotification[]` | Devuelve la lista actual de notificaciones                             |
 
 ---
 
@@ -33,9 +33,7 @@ import { INotification } from './components/bmb-push-notification/types';
 
 @Component({
   selector: 'app-demo-notification',
-  template: `
-    <button (click)="notificar()">Notificar</button>
-  `,
+  template: ` <button (click)="notificar()">Notificar</button> `,
 })
 export class DemoNotificationComponent {
   constructor(private notificationService: BmbNotificationService) {}

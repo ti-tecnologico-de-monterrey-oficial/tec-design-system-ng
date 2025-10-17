@@ -10,7 +10,6 @@ import {
   getGeneralComponentDescription,
   getGeneralDescription,
   getSpecialSpecifications,
-  getSubStoryIdentifier,
   RELEVANT_TITLE,
 } from '../../utils/doc/utils';
 
@@ -35,17 +34,18 @@ const meta: Meta<BmbAccordionControlDirective> = {
         component: `
 ${getGeneralDescription(`${getGeneralComponentDescription({ name: 'AccordionControl', type: 'directive' })} to bmb-accordion components to be presented in collapsible and vertically stacked elements.`, { generalDocLink: 'https://bamboo.tec.mx/latest/componentes/accordion/descripcion-general-yABR8pUx', isSubStory: true })}
 ${getSpecialSpecifications(
-  `${getEmptyStateMessage({ isSubStory: true })}
+  `
+${getEmptyStateMessage({ isSubStory: true })}
+<br/>
 ${getAlertBlockquote(
   `For the correct operation of the ***Accordion control*** directive: the ***Accordion component*** must have \`accordionId\` attribute and must not have \`lockToogle\` attribute`,
   {
     title: `###${RELEVANT_TITLE.warning}`,
     blockquoteType: BlockquoteType.warning,
-    isSubStory: true,
   },
 )}
 `,
-  { isSubStory: true, showAdditionalBlockquote: false },
+  { showAdditionalBlockquote: true },
 )}
 ${getBasicExampleBlock('BmbAccordionComponent', '', '', true)}
         `,

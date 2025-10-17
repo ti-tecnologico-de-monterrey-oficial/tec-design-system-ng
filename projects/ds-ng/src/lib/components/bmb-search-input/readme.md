@@ -8,23 +8,23 @@
 
 ## Props / Parámetros
 
-| Propiedad                | Tipo           | Descripción                                                        | Valor por defecto | Obligatorio |
-|--------------------------|----------------|--------------------------------------------------------------------|-------------------|-------------|
-| `inputId`                | `string`       | Identificador único del input                                      | `getUUID()`       | No          |
-| `name`                   | `string`       | Nombre del campo de búsqueda                                       | `getUUID()`       | No          |
-| `data`                   | `string[]`     | Lista de opciones para filtrar localmente                          | `[]`              | No          |
-| `isLoading`              | `boolean`      | Indica si está cargando datos (deshabilita el input)               | `false`           | No          |
-| `isServerSideFilter`     | `boolean`      | Habilita el filtrado por servidor                                  | `false`           | No          |
-| `placeholder`            | `string`       | Texto de ayuda dentro del campo                                    | `''`              | No          |
-| `serverSideFilteredData` | `string[]`     | Opciones filtradas desde el servidor                               | `[]`              | No          |
+| Propiedad                | Tipo       | Descripción                                          | Valor por defecto | Obligatorio |
+| ------------------------ | ---------- | ---------------------------------------------------- | ----------------- | ----------- |
+| `inputId`                | `string`   | Identificador único del input                        | `getUUID()`       | No          |
+| `name`                   | `string`   | Nombre del campo de búsqueda                         | `getUUID()`       | No          |
+| `data`                   | `string[]` | Lista de opciones para filtrar localmente            | `[]`              | No          |
+| `isLoading`              | `boolean`  | Indica si está cargando datos (deshabilita el input) | `false`           | No          |
+| `isServerSideFilter`     | `boolean`  | Habilita el filtrado por servidor                    | `false`           | No          |
+| `placeholder`            | `string`   | Texto de ayuda dentro del campo                      | `''`              | No          |
+| `serverSideFilteredData` | `string[]` | Opciones filtradas desde el servidor                 | `[]`              | No          |
 
 ### Outputs
 
-| Output                    | Tipo         | Descripción                                  |
-|---------------------------|--------------|----------------------------------------------|
-| `onValueChange`           | `string`     | Se emite al seleccionar una opción local     |
-| `onServerSideFilterEvent` | `string`     | Se emite al seleccionar una opción remota    |
-| `onClearField`            | `boolean`    | Se emite al limpiar el campo                 |
+| Output                    | Tipo      | Descripción                               |
+| ------------------------- | --------- | ----------------------------------------- |
+| `onValueChange`           | `string`  | Se emite al seleccionar una opción local  |
+| `onServerSideFilterEvent` | `string`  | Se emite al seleccionar una opción remota |
+| `onClearField`            | `boolean` | Se emite al limpiar el campo              |
 
 ---
 

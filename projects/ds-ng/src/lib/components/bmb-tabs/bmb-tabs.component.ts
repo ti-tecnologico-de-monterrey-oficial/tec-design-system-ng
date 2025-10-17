@@ -45,7 +45,7 @@ export class BmbTabsComponent implements OnInit, AfterViewInit, OnDestroy {
   appearanceContrast = input<IBmbContrast>('default');
   format = input<string>('');
   tabs = input<IBmbTab[]>([]);
-  selectedTabId = model<number>(0); //internal
+  selectedTabId = model<number>(0);
 
   selected = output<IBmbTab>();
 
@@ -54,7 +54,7 @@ export class BmbTabsComponent implements OnInit, AfterViewInit, OnDestroy {
   hasScroll = signal<boolean>(false);
   scrollLeft = signal<number>(0);
   scrollRight = signal<number>(999999);
-  @ViewChild('tabsItems') tabsItems!: ElementRef;
+  @ViewChild('tabsItems', { static: true }) tabsItems!: ElementRef;
 
   constructor(
     private tabsService: TabsService,

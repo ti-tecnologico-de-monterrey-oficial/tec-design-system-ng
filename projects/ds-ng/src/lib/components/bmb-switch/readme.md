@@ -8,23 +8,23 @@
 
 ## Props / Parámetros
 
-| Propiedad   | Tipo      | Descripción                                                        | Valor por defecto                       | Obligatorio |
-|-------------|-----------|--------------------------------------------------------------------|-----------------------------------------|-------------|
-| `leftText`  | `string`  | Texto a mostrar en el lado izquierdo del switch                    | `''`                                    | No          |
-| `leftIcon`  | `string`  | Ícono a mostrar en el lado izquierdo del switch                    | `''`                                    | No          |
-| `rightText` | `string`  | Texto a mostrar en el lado derecho del switch                      | `''`                                    | No          |
-| `rightIcon` | `string`  | Ícono a mostrar en el lado derecho del switch                      | `''`                                    | No          |
-| `isChecked` | `boolean` (model) | Estado actual del switch (seleccionado/no seleccionado)      | `false`                                 | No          |
-| `ariaLabel` | `string`  | Etiqueta accesible para describir la función del switch            | `'Describe the button function here'`   | No          |
-| `id`        | `string`  | Identificador único del input (obsoleto, usar `inputId`)           | `''`                                    | No          |
-| `disabled`  | `boolean` | Deshabilita el switch                                              | `false`                                 | No          |
-| `name`      | `string`  | Nombre del input asociado                                          | `getUUID()`                             | No          |
+| Propiedad   | Tipo              | Descripción                                              | Valor por defecto                     | Obligatorio |
+| ----------- | ----------------- | -------------------------------------------------------- | ------------------------------------- | ----------- |
+| `leftText`  | `string`          | Texto a mostrar en el lado izquierdo del switch          | `''`                                  | No          |
+| `leftIcon`  | `string`          | Ícono a mostrar en el lado izquierdo del switch          | `''`                                  | No          |
+| `rightText` | `string`          | Texto a mostrar en el lado derecho del switch            | `''`                                  | No          |
+| `rightIcon` | `string`          | Ícono a mostrar en el lado derecho del switch            | `''`                                  | No          |
+| `isChecked` | `boolean` (model) | Estado actual del switch (seleccionado/no seleccionado)  | `false`                               | No          |
+| `ariaLabel` | `string`          | Etiqueta accesible para describir la función del switch  | `'Describe the button function here'` | No          |
+| `id`        | `string`          | Identificador único del input (obsoleto, usar `inputId`) | `''`                                  | No          |
+| `disabled`  | `boolean`         | Deshabilita el switch                                    | `false`                               | No          |
+| `name`      | `string`          | Nombre del input asociado                                | `getUUID()`                           | No          |
 
 ### Outputs
 
-| Output   | Tipo      | Descripción                                  |
-|----------|-----------|----------------------------------------------|
-| `change` | `boolean` | Se emite al cambiar el estado del switch     |
+| Output   | Tipo      | Descripción                              |
+| -------- | --------- | ---------------------------------------- |
+| `change` | `boolean` | Se emite al cambiar el estado del switch |
 
 ---
 

@@ -8,21 +8,21 @@
 
 ## Props / Parámetros
 
-| Propiedad    | Tipo      | Descripción                                                        | Valor por defecto   | Obligatorio |
-|--------------|-----------|--------------------------------------------------------------------|---------------------|-------------|
-| `isProfile`  | `boolean` | Muestra el resumen en modo perfil                                  | `false`             | No          |
-| `name`       | `string`  | Nombre completo del usuario                                        | `''`                | No          |
-| `id`         | `string`  | Matrícula o identificador del usuario                              | `''`                | No          |
-| `image`      | `string`  | URL de la imagen de usuario                                        | `''`                | No          |
-| `infoCareer` | `string`  | Carrera o información académica                                    | `''`                | No          |
-| `noBox`      | `boolean` | Oculta el contenedor visual del resumen                            | `false`             | No          |
-| `salutation` | `string`  | Saludo personalizado                                               | `'Buenas tardes'`   | No          |
+| Propiedad    | Tipo      | Descripción                             | Valor por defecto | Obligatorio |
+| ------------ | --------- | --------------------------------------- | ----------------- | ----------- |
+| `isProfile`  | `boolean` | Muestra el resumen en modo perfil       | `false`           | No          |
+| `name`       | `string`  | Nombre completo del usuario             | `''`              | No          |
+| `id`         | `string`  | Matrícula o identificador del usuario   | `''`              | No          |
+| `image`      | `string`  | URL de la imagen de usuario             | `''`              | No          |
+| `infoCareer` | `string`  | Carrera o información académica         | `''`              | No          |
+| `noBox`      | `boolean` | Oculta el contenedor visual del resumen | `false`           | No          |
+| `salutation` | `string`  | Saludo personalizado                    | `'Buenas tardes'` | No          |
 
 ### Outputs
 
-| Output    | Tipo        | Descripción                                  |
-|-----------|-------------|----------------------------------------------|
-| `onClick` | `MouseEvent`| Se emite al hacer clic en el componente      |
+| Output    | Tipo         | Descripción                             |
+| --------- | ------------ | --------------------------------------- |
+| `onClick` | `MouseEvent` | Se emite al hacer clic en el componente |
 
 ---
 

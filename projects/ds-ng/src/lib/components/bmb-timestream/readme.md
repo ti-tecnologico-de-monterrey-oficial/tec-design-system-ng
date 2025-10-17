@@ -8,13 +8,13 @@
 
 ## Props / Parámetros
 
-| Propiedad    | Tipo                | Descripción                                                        | Valor por defecto           | Obligatorio |
-|--------------|---------------------|--------------------------------------------------------------------|-----------------------------|-------------|
-| `isMicro`    | `boolean`           | Modo compacto para visualización                                   | `false`                     | No          |
-| `lang`       | `string`            | Idioma para nombres de meses y fechas (`'es'`, `'en'`, etc.)       | `'es'`                      | No          |
-| `dateFormat` | `string`            | Formato de fecha para parseo con Luxon                             | `'dd/MM/yyyy'`              | No          |
-| `events`     | `ITimelineEvent[]`  | Lista de eventos a mostrar en la línea de tiempo                   | `[]`                        | Sí          |
-| `clamp`      | `IBmbClamp`         | Restricciones visuales: min, max y tamaño del componente           | `{ min: 100, max: '100dvh', size: '100%' }` | No          |
+| Propiedad    | Tipo               | Descripción                                                  | Valor por defecto                           | Obligatorio |
+| ------------ | ------------------ | ------------------------------------------------------------ | ------------------------------------------- | ----------- |
+| `isMicro`    | `boolean`          | Modo compacto para visualización                             | `false`                                     | No          |
+| `lang`       | `string`           | Idioma para nombres de meses y fechas (`'es'`, `'en'`, etc.) | `'es'`                                      | No          |
+| `dateFormat` | `string`           | Formato de fecha para parseo con Luxon                       | `'dd/MM/yyyy'`                              | No          |
+| `events`     | `ITimelineEvent[]` | Lista de eventos a mostrar en la línea de tiempo             | `[]`                                        | Sí          |
+| `clamp`      | `IBmbClamp`        | Restricciones visuales: min, max y tamaño del componente     | `{ min: 100, max: '100dvh', size: '100%' }` | No          |
 
 ---
 
