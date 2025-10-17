@@ -8,9 +8,9 @@
 
 ## Props / Parámetros
 
-| Propiedad   | Tipo                        | Descripción                                                        | Valor por defecto | Obligatorio |
-|-------------|-----------------------------|--------------------------------------------------------------------|-------------------|-------------|
-| `appearance`| `IStudentActivityAppearance`| Apariencia visual aplicada a todas las pestañas (`academic`, etc.) | `'academic'`      | No          |
+| Propiedad    | Tipo                         | Descripción                                                        | Valor por defecto | Obligatorio |
+| ------------ | ---------------------------- | ------------------------------------------------------------------ | ----------------- | ----------- |
+| `appearance` | `IStudentActivityAppearance` | Apariencia visual aplicada a todas las pestañas (`academic`, etc.) | `'academic'`      | No          |
 
 ---
 
@@ -18,15 +18,10 @@
 
 ```html
 <bmb-student-activity-selector [appearance]="'academic'">
-  <bmb-tab-student-activity
-    [label]="'Académicas'"
-    [active]="true"
-  >
+  <bmb-tab-student-activity [label]="'Académicas'" [active]="true">
     <!-- Contenido de actividades académicas -->
   </bmb-tab-student-activity>
-  <bmb-tab-student-activity
-    [label]="'Vida universitaria'"
-  >
+  <bmb-tab-student-activity [label]="'Vida universitaria'">
     <!-- Contenido de actividades de vida universitaria -->
   </bmb-tab-student-activity>
 </bmb-student-activity-selector>

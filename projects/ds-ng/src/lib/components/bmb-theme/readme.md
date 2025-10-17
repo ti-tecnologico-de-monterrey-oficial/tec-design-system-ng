@@ -8,19 +8,19 @@
 
 ## Props / Parámetros
 
-| Propiedad     | Tipo      | Descripción                                                        | Valor por defecto | Obligatorio |
-|---------------|-----------|--------------------------------------------------------------------|-------------------|-------------|
-| `initialTheme`| `string`  | Tema inicial a aplicar (`'light'` o `'dark'`)                      | `''`              | No          |
-| `showControls`| `boolean` | Muestra controles para cambiar el tema                             | `false`           | No          |
-| `leftText`    | `string`  | Texto para el lado izquierdo del switch                            | `''`              | No          |
-| `rightText`   | `string`  | Texto para el lado derecho del switch                              | `''`              | No          |
+| Propiedad      | Tipo      | Descripción                                   | Valor por defecto | Obligatorio |
+| -------------- | --------- | --------------------------------------------- | ----------------- | ----------- |
+| `initialTheme` | `string`  | Tema inicial a aplicar (`'light'` o `'dark'`) | `''`              | No          |
+| `showControls` | `boolean` | Muestra controles para cambiar el tema        | `false`           | No          |
+| `leftText`     | `string`  | Texto para el lado izquierdo del switch       | `''`              | No          |
+| `rightText`    | `string`  | Texto para el lado derecho del switch         | `''`              | No          |
 
 ### Modelos internos
 
-| Propiedad     | Tipo      | Descripción                                                        | Valor por defecto | Obligatorio |
-|---------------|-----------|--------------------------------------------------------------------|-------------------|-------------|
-| `leftIcon`    | `string`  | Ícono para el lado izquierdo (obsoleto, solo si no hay texto)      | `'light_mode'`    | No          |
-| `rightIcon`   | `string`  | Ícono para el lado derecho (obsoleto, solo si no hay texto)        | `'dark_mode'`     | No          |
+| Propiedad   | Tipo     | Descripción                                                   | Valor por defecto | Obligatorio |
+| ----------- | -------- | ------------------------------------------------------------- | ----------------- | ----------- |
+| `leftIcon`  | `string` | Ícono para el lado izquierdo (obsoleto, solo si no hay texto) | `'light_mode'`    | No          |
+| `rightIcon` | `string` | Ícono para el lado derecho (obsoleto, solo si no hay texto)   | `'dark_mode'`     | No          |
 
 ---
 

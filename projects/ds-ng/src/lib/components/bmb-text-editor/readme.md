@@ -8,9 +8,9 @@
 
 ## Props / Parámetros
 
-| Propiedad   | Tipo         | Descripción                                                        | Valor por defecto         | Obligatorio |
-|-------------|--------------|--------------------------------------------------------------------|---------------------------|-------------|
-| `control`   | `FormControl`| Control reactivo para gestionar el valor del contenido HTML         | `new FormControl('')`     | No          |
+| Propiedad | Tipo          | Descripción                                                 | Valor por defecto     | Obligatorio |
+| --------- | ------------- | ----------------------------------------------------------- | --------------------- | ----------- |
+| `control` | `FormControl` | Control reactivo para gestionar el valor del contenido HTML | `new FormControl('')` | No          |
 
 ---
 

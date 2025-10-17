@@ -8,16 +8,16 @@
 
 ## Props / Parámetros
 
-| Propiedad    | Tipo           | Descripción                                                        | Valor por defecto                  | Obligatorio |
-|--------------|----------------|--------------------------------------------------------------------|------------------------------------|-------------|
-| `userInfo`   | `signal<IBmbUserInfo>` | Señal reactiva que almacena la información del usuario           | `{ id: '', fullName: '', profilePicture: '' }` | No          |
+| Propiedad  | Tipo                   | Descripción                                            | Valor por defecto                              | Obligatorio |
+| ---------- | ---------------------- | ------------------------------------------------------ | ---------------------------------------------- | ----------- |
+| `userInfo` | `signal<IBmbUserInfo>` | Señal reactiva que almacena la información del usuario | `{ id: '', fullName: '', profilePicture: '' }` | No          |
 
 ### Métodos
 
-| Método         | Tipo de retorno   | Descripción                                  |
-|----------------|-------------------|----------------------------------------------|
-| `getUserInfo()`| `IBmbUserInfo`    | Devuelve la información actual del usuario   |
-| `setUserInfo(state: IBmbUserInfo)` | `void`           | Actualiza la información del usuario         |
+| Método                             | Tipo de retorno | Descripción                                |
+| ---------------------------------- | --------------- | ------------------------------------------ |
+| `getUserInfo()`                    | `IBmbUserInfo`  | Devuelve la información actual del usuario |
+| `setUserInfo(state: IBmbUserInfo)` | `void`          | Actualiza la información del usuario       |
 
 ---
 
@@ -32,7 +32,7 @@ import { BmbUserProfileService } from './services/user/profile.service';
   selector: 'app-profile',
   template: `
     <div>
-      <img [src]="user.profilePicture" alt="Foto de perfil">
+      <img [src]="user.profilePicture" alt="Foto de perfil" />
       <h2>{{ user.fullName }}</h2>
       <p>ID: {{ user.id }}</p>
     </div>

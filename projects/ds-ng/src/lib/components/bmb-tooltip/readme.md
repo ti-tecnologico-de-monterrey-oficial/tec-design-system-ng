@@ -8,15 +8,15 @@
 
 ## Props / Parámetros
 
-| Propiedad   | Tipo                              | Descripción                                                        | Valor por defecto | Obligatorio |
-|-------------|-----------------------------------|--------------------------------------------------------------------|-------------------|-------------|
-| `text`      | `string`                          | Texto principal del tooltip                                        | `''`              | No          |
-| `title`     | `string`                          | Título opcional del tooltip                                        | `''`              | No          |
-| `icon`      | `string`                          | Ícono a mostrar junto al tooltip                                   | `'help'`          | No          |
-| `size`      | `number`                          | Tamaño del ícono                                                   | -                 | No          |
-| `align`     | `'above' \| 'below' \| 'left' \| 'right'` | Posición del tooltip respecto al elemento | `'below'`          | No          |
-| `justify`   | `'centered' \| 'before' \| 'after'`       | Justificación del tooltip                                          | `'after'`         | No          |
-| `isFill`    | `boolean`                         | Aplica fondo de color al tooltip                                   | `true`            | No          |
+| Propiedad | Tipo                                      | Descripción                               | Valor por defecto | Obligatorio |
+| --------- | ----------------------------------------- | ----------------------------------------- | ----------------- | ----------- |
+| `text`    | `string`                                  | Texto principal del tooltip               | `''`              | No          |
+| `title`   | `string`                                  | Título opcional del tooltip               | `''`              | No          |
+| `icon`    | `string`                                  | Ícono a mostrar junto al tooltip          | `'help'`          | No          |
+| `size`    | `number`                                  | Tamaño del ícono                          | -                 | No          |
+| `align`   | `'above' \| 'below' \| 'left' \| 'right'` | Posición del tooltip respecto al elemento | `'below'`         | No          |
+| `justify` | `'centered' \| 'before' \| 'after'`       | Justificación del tooltip                 | `'after'`         | No          |
+| `isFill`  | `boolean`                                 | Aplica fondo de color al tooltip          | `true`            | No          |
 
 ---
 

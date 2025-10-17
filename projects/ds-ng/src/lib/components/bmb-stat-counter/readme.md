@@ -8,15 +8,15 @@
 
 ## Props / Parámetros
 
-| Propiedad     | Tipo     | Descripción                                                        | Valor por defecto | Obligatorio |
-|---------------|----------|--------------------------------------------------------------------|-------------------|-------------|
-| `activeStep`  | `number` | Índice del paso actualmente activo                                 | `0`               | No          |
-| `totalSteps`  | `number` | Número total de pasos a mostrar                                    | `0`               | No          |
+| Propiedad    | Tipo     | Descripción                        | Valor por defecto | Obligatorio |
+| ------------ | -------- | ---------------------------------- | ----------------- | ----------- |
+| `activeStep` | `number` | Índice del paso actualmente activo | `0`               | No          |
+| `totalSteps` | `number` | Número total de pasos a mostrar    | `0`               | No          |
 
 ### Outputs
 
-| Output        | Tipo     | Descripción                                  |
-|---------------|----------|----------------------------------------------|
+| Output        | Tipo     | Descripción                                                        |
+| ------------- | -------- | ------------------------------------------------------------------ |
 | `onStepPress` | `number` | Se emite al hacer clic en un paso, enviando el índice seleccionado |
 
 ---

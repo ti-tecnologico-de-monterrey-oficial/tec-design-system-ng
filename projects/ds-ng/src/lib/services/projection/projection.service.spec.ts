@@ -1,4 +1,7 @@
-import { BmbProjectionContentService, IBmbProjectionContent } from './projection.service';
+import {
+  BmbProjectionContentService,
+  IBmbProjectionContent,
+} from './projection.service';
 
 import { TestBed } from '@angular/core/testing';
 import { RendererFactory2, Renderer2 } from '@angular/core';

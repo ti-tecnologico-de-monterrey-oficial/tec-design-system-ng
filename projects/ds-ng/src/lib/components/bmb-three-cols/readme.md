@@ -8,20 +8,20 @@
 
 ## Props / Parámetros
 
-| Propiedad         | Tipo                | Descripción                                                        | Valor por defecto | Obligatorio |
-|-------------------|---------------------|--------------------------------------------------------------------|-------------------|-------------|
-| `gapSize`         | `SizeNames`         | Tamaño del espacio (gap) entre columnas (`xs`, `s`, `m`, `l`, etc.)| `'m'`             | No          |
-| `justify`         | `IJustifyOptions`   | Justificación de las columnas (`spaceBetween`, `center`, etc.)     | `'spaceBetween'`  | No          |
-| `alignItems`      | `IAlignItemsOptions`| Alineación vertical de las columnas (`center`, `start`, etc.)      | `'center'`        | No          |
-| `expandMainColumn`| `boolean`           | Expande la columna principal para ocupar más espacio               | `false`           | No          |
+| Propiedad          | Tipo                 | Descripción                                                         | Valor por defecto | Obligatorio |
+| ------------------ | -------------------- | ------------------------------------------------------------------- | ----------------- | ----------- |
+| `gapSize`          | `SizeNames`          | Tamaño del espacio (gap) entre columnas (`xs`, `s`, `m`, `l`, etc.) | `'m'`             | No          |
+| `justify`          | `IJustifyOptions`    | Justificación de las columnas (`spaceBetween`, `center`, etc.)      | `'spaceBetween'`  | No          |
+| `alignItems`       | `IAlignItemsOptions` | Alineación vertical de las columnas (`center`, `start`, etc.)       | `'center'`        | No          |
+| `expandMainColumn` | `boolean`            | Expande la columna principal para ocupar más espacio                | `false`           | No          |
 
 ### ContentChild templates
 
-| Template ref         | Tipo             | Descripción                                  |
-|----------------------|------------------|----------------------------------------------|
-| `bmbLeftContent`     | `TemplateRef<any>` | Contenido proyectado en la columna izquierda |
-| `bmbMainContent`     | `TemplateRef<any>` | Contenido proyectado en la columna principal |
-| `bmbRightContent`    | `TemplateRef<any>` | Contenido proyectado en la columna derecha   |
+| Template ref      | Tipo               | Descripción                                  |
+| ----------------- | ------------------ | -------------------------------------------- |
+| `bmbLeftContent`  | `TemplateRef<any>` | Contenido proyectado en la columna izquierda |
+| `bmbMainContent`  | `TemplateRef<any>` | Contenido proyectado en la columna principal |
+| `bmbRightContent` | `TemplateRef<any>` | Contenido proyectado en la columna derecha   |
 
 ---
 

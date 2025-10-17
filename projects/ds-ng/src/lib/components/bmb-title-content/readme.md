@@ -8,22 +8,22 @@
 
 ## Props / Parámetros
 
-| Propiedad           | Tipo                       | Descripción                                                        | Valor por defecto | Obligatorio |
-|---------------------|----------------------------|--------------------------------------------------------------------|-------------------|-------------|
-| `title`             | `string`                   | Título principal                                                   | -                 | Sí          |
-| `titleSize`         | `string`                   | Tamaño de fuente del título (`1` a `6`)                            | `'5'`             | No          |
-| `titleFontWeight`   | `string`                   | Peso de fuente del título (`100` a `900`)                          | `'600'`           | No          |
-| `subtitle`          | `string \| undefined`      | Subtítulo opcional                                                 | `''`              | No          |
-| `subtitleSize`      | `string`                   | Tamaño de fuente del subtítulo                                     | `'4'`             | No          |
-| `subtitleFontWeight`| `string`                   | Peso de fuente del subtítulo                                       | `'400'`           | No          |
-| `subtitleIcon`      | `string`                   | Ícono para el subtítulo                                            | `''`              | No          |
-| `subtitleIconSize`  | `number`                   | Tamaño del ícono del subtítulo                                     | `0`               | No          |
-| `isCenterContent`   | `boolean`                  | Centra el contenido del título y subtítulo                         | `false`           | No          |
-| `dataLocalNav`      | `IBmbDataTopBar[]`         | Breadcrumbs para navegación local                                  | `[]`              | No          |
-| `transparentBgC`    | `boolean`                  | Fondo transparente para el ícono                                   | `false`           | No          |
-| `icon`              | `string`                   | Ícono o imagen para el título                                      | `''`              | No          |
-| `iconSize`          | `number`                   | Tamaño del ícono del título                                        | `24`              | No          |
-| `bgIconAppearance`  | `IBmbColor`                | Color de fondo del ícono                                           | -                 | No          |
+| Propiedad            | Tipo                  | Descripción                                | Valor por defecto | Obligatorio |
+| -------------------- | --------------------- | ------------------------------------------ | ----------------- | ----------- |
+| `title`              | `string`              | Título principal                           | -                 | Sí          |
+| `titleSize`          | `string`              | Tamaño de fuente del título (`1` a `6`)    | `'5'`             | No          |
+| `titleFontWeight`    | `string`              | Peso de fuente del título (`100` a `900`)  | `'600'`           | No          |
+| `subtitle`           | `string \| undefined` | Subtítulo opcional                         | `''`              | No          |
+| `subtitleSize`       | `string`              | Tamaño de fuente del subtítulo             | `'4'`             | No          |
+| `subtitleFontWeight` | `string`              | Peso de fuente del subtítulo               | `'400'`           | No          |
+| `subtitleIcon`       | `string`              | Ícono para el subtítulo                    | `''`              | No          |
+| `subtitleIconSize`   | `number`              | Tamaño del ícono del subtítulo             | `0`               | No          |
+| `isCenterContent`    | `boolean`             | Centra el contenido del título y subtítulo | `false`           | No          |
+| `dataLocalNav`       | `IBmbDataTopBar[]`    | Breadcrumbs para navegación local          | `[]`              | No          |
+| `transparentBgC`     | `boolean`             | Fondo transparente para el ícono           | `false`           | No          |
+| `icon`               | `string`              | Ícono o imagen para el título              | `''`              | No          |
+| `iconSize`           | `number`              | Tamaño del ícono del título                | `24`              | No          |
+| `bgIconAppearance`   | `IBmbColor`           | Color de fondo del ícono                   | -                 | No          |
 
 ---
 

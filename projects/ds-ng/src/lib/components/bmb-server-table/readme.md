@@ -8,22 +8,22 @@
 
 ## Props / Parámetros
 
-| Propiedad        | Tipo                        | Descripción                                                        | Valor por defecto | Obligatorio |
-|------------------|-----------------------------|--------------------------------------------------------------------|-------------------|-------------|
-| `columns`        | `IBmbServerTableColumn[]`   | Configuración de columnas: clave y etiqueta                        | `[]`              | Sí          |
-| `data`           | `any[]`                     | Datos a mostrar en la tabla                                        | `[]`              | Sí          |
-| `totalRecords`   | `number`                    | Número total de registros (para paginación)                        | `0`               | Sí          |
-| `pageSize`       | `number`                    | Cantidad de registros por página                                   | `10`              | No          |
-| `pageSizeOptions`| `number[]`                  | Opciones de tamaño de página para el paginador                     | `[]`              | No          |
-| `loading`        | `boolean`                   | Muestra spinner de carga mientras se obtienen los datos            | `false`           | No          |
+| Propiedad         | Tipo                      | Descripción                                             | Valor por defecto | Obligatorio |
+| ----------------- | ------------------------- | ------------------------------------------------------- | ----------------- | ----------- |
+| `columns`         | `IBmbServerTableColumn[]` | Configuración de columnas: clave y etiqueta             | `[]`              | Sí          |
+| `data`            | `any[]`                   | Datos a mostrar en la tabla                             | `[]`              | Sí          |
+| `totalRecords`    | `number`                  | Número total de registros (para paginación)             | `0`               | Sí          |
+| `pageSize`        | `number`                  | Cantidad de registros por página                        | `10`              | No          |
+| `pageSizeOptions` | `number[]`                | Opciones de tamaño de página para el paginador          | `[]`              | No          |
+| `loading`         | `boolean`                 | Muestra spinner de carga mientras se obtienen los datos | `false`           | No          |
 
 ### Outputs
 
-| Output         | Tipo           | Descripción                                  |
-|----------------|----------------|----------------------------------------------|
-| `pageChange`   | `number`       | Se emite al cambiar de página                |
-| `dataChange`   | `any[]`        | Se emite cuando cambian los datos            |
-| `onClickRow`   | `any`          | Se emite al hacer clic en una fila           |
+| Output       | Tipo     | Descripción                        |
+| ------------ | -------- | ---------------------------------- |
+| `pageChange` | `number` | Se emite al cambiar de página      |
+| `dataChange` | `any[]`  | Se emite cuando cambian los datos  |
+| `onClickRow` | `any`    | Se emite al hacer clic en una fila |
 
 ---
 

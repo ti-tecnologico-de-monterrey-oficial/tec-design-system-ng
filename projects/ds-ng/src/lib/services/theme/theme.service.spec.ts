@@ -12,7 +12,7 @@ describe('ThemeService', () => {
   it('debe inicializar con el tema de localStorage si existe', (done) => {
     localStorage.setItem('theme', 'custom');
     service = new ThemeService('light');
-    service.theme$.subscribe(theme => {
+    service.theme$.subscribe((theme) => {
       expect(theme).toBe('custom');
       done();
     });
@@ -20,7 +20,7 @@ describe('ThemeService', () => {
 
   it('debe inicializar con el tema por defecto si no hay tema en localStorage', (done) => {
     service = new ThemeService('dark');
-    service.theme$.subscribe(theme => {
+    service.theme$.subscribe((theme) => {
       expect(theme).toBe('dark');
       done();
     });
@@ -37,7 +37,7 @@ describe('ThemeService', () => {
 
   it('debe actualizar el tema con setTheme()', (done) => {
     service.setTheme('blue');
-    service.theme$.subscribe(theme => {
+    service.theme$.subscribe((theme) => {
       expect(theme).toBe('blue');
       done();
     });
