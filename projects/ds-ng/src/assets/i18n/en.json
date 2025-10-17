@@ -1,0 +1,22 @@
+{
+  "account_statement": {
+    "title": "Account Statement",
+    "progress_circle_title": "Total to pay this month",
+    "label_primary": "Monthly Fee",
+    "label_secondary": "Pending",
+    "payment_deadline_label": "Payment Deadline:",
+    "cut_off_date_label": "Cut-off Date:",
+    "pay_button_label": "Pay",
+    "back_button_label": "Back",
+    "modal_title": "Pay",
+    "modal_subtitle": "How much would you like to pay?",
+    "modal_rest_label": "Remaining Payment",
+    "modal_other_amount_label": "Other Amount",
+    "modal_primary_button_label": "Pay",
+    "error_message": "Error, This field is required",
+    "progress_title": "Total Paid"
+  },
+  "advertisement_card": {
+    "title": "My Ads"
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "account_statement": {
+    "title": "Estado de cuenta",
+    "progress_circle_title": "Total a pagar este mes",
+    "label_primary": "Cuota Mensual",
+    "label_secondary": "Pendiente",
+    "payment_deadline_label": "Fecha límite de pago:",
+    "cut_off_date_label": "Fecha de corte:",
+    "pay_button_label": "Pagar",
+    "back_button_label": "Regresar",
+    "modal_title": "Pagar",
+    "modal_subtitle": "¿Cuánto deseas pagar?",
+    "modal_rest_label": "Pagar restante",
+    "modal_other_amount_label": "Otra cantidad",
+    "modal_primary_button_label": "Pagar",
+    "error_message": "Error, Este campo es requerido",
+    "progress_title": "Total pagado"
+  },
+  "advertisement_card": {
+    "title": "Mis anuncios"
+  },
+  "alert_center": {
+    "empty_state": {
+      "primary_text": "No tienes notificaciones para mostrar"
+    },
+    "loader": {
+      "loading": "Cargando...",
+      "subtitle": "Cargando las notificaciones",
+      "primary_button": "Reintentar",
+      "secondary_button": "Salir",
+      "": ""
+    },
+    "form": {
+      "empty_state": {
+        "primary_text": "No tienes notificaciones para mostrar"
+      }
+    }
+  }
+}
