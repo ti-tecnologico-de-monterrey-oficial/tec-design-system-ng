@@ -34,6 +34,13 @@ $alignItemsOptions: (
   'stretch': stretch,
 );
 
+@mixin margin_side($side, $i, $size) {
+  margin-#{$side}: calc(
+    #{math.percentage(math.div($i, $size))} + var(--bmb-gap) - (var(--bmb-gap) /
+          $size * #{$size - $i})
+  );
+}
+
 .bmb_layout {
   display: flex;
   flex-wrap: wrap;
@@ -62,7 +69,7 @@ $alignItemsOptions: (
   .bmb_col-lg-#{$i} {
     overflow: visible;
 
-    @include mixins.media-query(999, 'max') {
+    @include mixins.checkForMobile() {
       &:not(.bmb_col-sm-1):not(.bmb_col-sm-2):not(.bmb_col-sm-3):not(
           .bmb_col-sm-4
         ) {
@@ -71,7 +78,7 @@ $alignItemsOptions: (
       }
     }
 
-    @include mixins.media-query(1000, 'min') {
+    @include mixins.checkForMobile(false) {
       flex: 0 0
         calc(
           #{math.percentage(math.div($i, 12))} - (var(--bmb-gap) / 12 * #{12 -
@@ -88,15 +95,14 @@ $alignItemsOptions: (
   @each $margin, $size in $marginSizes {
     @for $i from 1 through $size {
       .bmb_space-#{$margin}-#{$side}-#{$i} {
-        @include mixins.media-query(
-          if($margin == 'sm', 999, 1000),
-          if($margin == 'sm', 'max', 'min')
-        ) {
-          margin-#{$side}: calc(
-            #{math.percentage(math.div($i, $size))} + var(--bmb-gap) - (var(
-                    --bmb-gap
-                  ) / $size * #{$size - $i})
-          );
+        @if $margin == 'sm' {
+          @include mixins.checkForMobile() {
+            @include margin_side($side, $i, $size);
+          }
+        } @else {
+          @include mixins.checkForMobile(false) {
+            @include margin_side($side, $i, $size);
+          }
         }
       }
     }
