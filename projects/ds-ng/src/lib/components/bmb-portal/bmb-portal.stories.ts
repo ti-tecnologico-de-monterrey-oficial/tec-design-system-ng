@@ -2,7 +2,7 @@ import { Component, input } from '@angular/core';
 import { Meta, StoryFn, moduleMetadata } from '@storybook/angular';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { BmbButtonDirective } from '../../directives/bmb-button/button.directive';
-import { BmbNotificationService } from '../../services/notification.service';
+import { BmbNotificationService } from '../../services/notification/notification.service';
 import { BmbPushNotificationItemComponent } from '../bmb-push-notification/bmb-push-notification-item/bmb-push-notification-item.component';
 import {
   BmbToastComponent,
@@ -615,7 +615,7 @@ export const Toast: StoryFn<typeof StorybookToastWrapperComponent> = (args) => {
     template: `
       <!-- Instruction to users: This component is used for internal Storybook logic and should not be copied -->
       <storybook-toast-wrapper component="toast"
-        ${attributes(args)}
+        ${attributes({ ...args, content: 'This is a toast notification' })}
       ></storybook-toast-wrapper>
       <!-- Start copying from here -->
       <div class="actions">

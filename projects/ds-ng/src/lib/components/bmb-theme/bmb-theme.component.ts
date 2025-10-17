@@ -6,7 +6,7 @@ import {
   input,
   model,
 } from '@angular/core';
-import { ThemeService } from '../../services';
+import { ThemeService } from '../../services/theme/theme.service';
 import { CommonModule } from '@angular/common';
 import { BmbSwitchComponent } from '../bmb-switch/bmb-switch.component';
 

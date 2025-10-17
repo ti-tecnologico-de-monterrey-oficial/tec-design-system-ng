@@ -1,32 +1,16 @@
 <bmb-theme />
-<bmb-top-bar
-  [userInformation]="{
-    name: 'Santiago Hernández',
-    image: 'https://picsum.photos/id/64/200/300',
-    role: 'Alumno'
-  }"
-  [showHelpButton]="true"
-  [hasLogoutButton]="false"
-  [appName]="'TecTest'"
-  [appSubTitle]="'Sub title'"
-  [showLang]="false"
-  [allowSidebarForMobile]="true"
-  [lang]="'es'"
-  (helpButtonClick)="handleHelpButtonClick($event)"
-/>
 <main
   bmbVerticalLayout
   gapSize="none"
   justify="center"
   alignItems="center"
-  [style]="{ height: 'calc(100vh - 64px)' }"
+  height="100vh"
 >
-  <!-- <bmb-top-bar
-    [allowSidebarForMobile]="true"
+  <bmb-top-bar
     [userInformation]="{
       name: 'Santiago Hernández',
       image: 'https://picsum.photos/id/64/200/300',
-      role: 'Alumno',
+      role: 'Alumno'
     }"
     [lang]="'es'"
     [mitec]="true"
@@ -40,19 +24,19 @@
           {
             text: 'Descripción de la alerta 10',
             type: 'button',
-            variant: 'primary',
-          },
+            variant: 'primary'
+          }
         ],
         date: '19/11/2024',
         isRead: false,
         time: '12:00',
         tags: [
           { text: 'tag1', color: 'info' },
-          { text: 'tag2', color: 'brand' },
+          { text: 'tag2', color: 'brand' }
         ],
         type: 'tipo 1',
         isFavorite: true,
-        isArchived: false,
+        isArchived: false
       },
       {
         id: 1,
@@ -63,20 +47,20 @@
           {
             text: 'Descripción de la alerta 10 link',
             type: 'link',
-            href: 'https://www.google.com',
+            href: 'https://www.google.com'
           },
           {
             text: 'Descripción de la alerta 10',
             type: 'button',
-            variant: 'secondary-filled',
-          },
+            variant: 'secondary-filled'
+          }
         ],
         date: '01/11/2024',
         isRead: false,
         time: '12:00',
         type: 'tipo 1',
         isFavorite: true,
-        isArchived: false,
+        isArchived: false
       },
       {
         id: 2,
@@ -87,15 +71,15 @@
           {
             text: 'Descripción de la alerta 10 link',
             type: 'image',
-            href: 'https://picsum.photos/id/25/200',
-          },
+            href: 'https://picsum.photos/id/25/200'
+          }
         ],
         date: '19/11/2024',
         isRead: true,
         time: '15:00',
         type: 'tipo 2',
         isFavorite: false,
-        isArchived: true,
+        isArchived: true
       },
       {
         id: 3,
@@ -104,16 +88,16 @@
           {
             text: 'Descripción de la alerta 10',
             type: 'paragraph',
-            style: 'bold',
+            style: 'bold'
           },
-          { text: 'Descripción de la alerta 10 paragraph', type: 'paragraph' },
+          { text: 'Descripción de la alerta 10 paragraph', type: 'paragraph' }
         ],
         date: '18/11/2024',
         isRead: false,
         time: '12:00',
         type: 'tipo 1',
         isFavorite: false,
-        isArchived: false,
+        isArchived: false
       },
       {
         id: 4,
@@ -122,16 +106,16 @@
           {
             text: 'Descripción de la alerta 10',
             type: 'paragraph',
-            style: 'bold',
+            style: 'bold'
           },
-          { text: 'Descripción de la alerta 10 paragraph', type: 'paragraph' },
+          { text: 'Descripción de la alerta 10 paragraph', type: 'paragraph' }
         ],
         date: '02/11/2024',
         isRead: true,
         time: '12:00',
         type: 'tipo 3',
         isFavorite: false,
-        isArchived: false,
+        isArchived: false
       },
       {
         id: 4,
@@ -142,23 +126,21 @@
           {
             text: 'Descripción de la alerta 10 link',
             type: 'image',
-            href: 'https://picsum.photos/id/26/200',
-          },
+            href: 'https://picsum.photos/id/26/200'
+          }
         ],
         date: '02/01/2024',
         isRead: true,
         time: '12:00',
         type: 'tipo 1',
         isFavorite: false,
-        isArchived: false,
-      },
+        isArchived: false
+      }
     ]"
     (userProfileClick)="handleUserProfileClick()"
     (alertButtonClick)="handleAlertButtonClick()"
-    (helpButtonClick)="handleHelpButtonClick($event)"
     bmbVerticalLayoutItem
-  ></bmb-top-bar> -->
-
+  ></bmb-top-bar>
   <section bmbVerticalLayoutItem [rowGrow]="1">
     <router-outlet></router-outlet>
   </section>

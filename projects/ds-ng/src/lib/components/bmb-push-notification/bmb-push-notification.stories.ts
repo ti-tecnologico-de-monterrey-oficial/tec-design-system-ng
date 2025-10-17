@@ -2,7 +2,7 @@ import { Component, input } from '@angular/core';
 import { Meta, StoryFn, moduleMetadata } from '@storybook/angular';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { BmbButtonDirective } from '../../directives/bmb-button/button.directive';
-import { BmbNotificationService } from '../../services/notification.service';
+import { BmbNotificationService } from '../../services/notification/notification.service';
 import { BmbPushNotificationComponent } from './bmb-push-notification.component';
 import { NotificationType } from './types';
 import {

@@ -19,7 +19,7 @@ import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.compo
 import { isExternalLink } from '../../utils/utils';
 import { BmbContainerComponent } from '../bmb-container/bmb-container.component';
 import { IDropdownItem } from '../../types';
-import { BmbProjectionContentService } from '../../services/projection.service';
+import { BmbProjectionContentService } from '../../services/projection/projection.service';
 
 export type IBmbMenuEvent = 'link' | 'openNew' | 'info';
 

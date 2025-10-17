@@ -12,7 +12,14 @@ Crear sección y agrega una descripción de cada problema resuelto,  enlista si 
 el tono del mensaje debe ser Profesional copy ui, accesible e inclusivo (Utilizar persona en vez de usuario), enfocado en el impacto y la claridad. Fomenta la colaboración y utiliza un lenguaje directo, centrado en el valor para las personas.
 
 /* readme */
-Genera un archivo md con la documentación y estructura html del componente
+Genera un archivo en formato Markdown (.md) con la documentación completa del componente o archivo proporcionado. Incluye los siguientes apartados:
+Nombre del componente/archivo
+Descripción general: propósito y funcionalidad principal
+Props/Parámetros (si aplica): nombre, tipo, descripción, valor por defecto y si es obligatorio
+Ejemplo de uso: un fragmento de código claro y funcional
+Dependencias: librerías o módulos externos que utiliza
+Notas adicionales: consideraciones de rendimiento, accesibilidad, compatibilidad, etc.
+Usa un lenguaje claro, técnico pero accesible, y sigue buenas prácticas de documentación técnica.
 
 
 Eres un asistente especializado en generar notas de versión (release notes) para software.

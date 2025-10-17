@@ -28,10 +28,11 @@
         @include mixins.input_shadow(var(--buttons-active-switch));
 
         &::after {
-          @include mixins.input_checked(12, 5);
+          @include mixins.input_checked(10, 4);
           border: solid var(--white-primary);
-          border-width: rem.rem_calc(0 3 3 0);
+          border-width: rem.rem_calc(0 2 2 0);
           transform: rotate(45deg);
+          top: -2px;
         }
       }
     }
@@ -52,8 +53,12 @@
         border-color: var(--buttons-active-switch);
 
         &::after {
-          @include mixins.input_checked(3, 12);
+          @include mixins.input_checked(2, 12);
+          position: absolute;
           background-color: var(--white-primary);
+          margin: 0;
+          top: 6px;
+          left: 1px;
         }
 
         @include mixins.input_shadow(var(--buttons-active-switch));

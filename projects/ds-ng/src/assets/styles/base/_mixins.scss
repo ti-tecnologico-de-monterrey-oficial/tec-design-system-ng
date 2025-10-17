@@ -256,8 +256,8 @@
 
 @mixin shadow_mark($color_name, $opacity: 0.1) {
   content: '';
-  height: rem.rem_calc(48);
-  width: rem.rem_calc(48);
+  height: rem.rem_calc(42);
+  width: rem.rem_calc(42);
   border-radius: 50%;
   opacity: $opacity;
   background-color: $color_name;
@@ -294,9 +294,9 @@
   cursor: pointer;
   display: flex;
   position: relative;
-  height: rem.rem_calc(24);
-  width: rem.rem_calc(24);
-  margin: rem.rem_calc(6);
+  height: rem.rem_calc(18);
+  width: rem.rem_calc(18);
+  margin: rem.rem_calc(3);
   background-color: transparent;
   border: rem.rem_calc(2) solid $color_name;
   border-radius: $border_radius;

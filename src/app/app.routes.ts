@@ -79,5 +79,13 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./pages/ia/ia.component').then((c) => c.IaComponent),
   },
+  {
+    path: 'table-lite',
+    title: 'Table Lite',
+    loadComponent: () =>
+      import('./pages/table-lite/table-lite.component').then(
+        (t) => t.TableLiteComponent,
+      ),
+  },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
 ];

@@ -6,7 +6,6 @@ import {
   signal,
   TemplateRef,
   ViewChild,
-  ViewEncapsulation,
 } from '@angular/core';
 import { RouterModule, Router } from '@angular/router';
 import {
@@ -18,10 +17,7 @@ import {
   SidebarElement,
   BmbNativeModalService,
   IBmbNativeModal,
-  BmbProjectionContentService,
-  IBmbProjectionContent,
 } from '../../projects/ds-ng/src/public-api';
-import { HelpMenuComponent } from './components/help-menu/help-menu.component';
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
@@ -37,15 +33,11 @@ import { HelpMenuComponent } from './components/help-menu/help-menu.component';
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  encapsulation: ViewEncapsulation.None,
   standalone: true,
 })
 export class AppComponent {
   private router = inject(Router);
-  constructor(
-    private modalService: BmbNativeModalService,
-    private contentProjected: BmbProjectionContentService,
-  ) {}
+  constructor(private modalService: BmbNativeModalService) {}
   @ViewChild('modalTemplate') modalTemplate!: TemplateRef<unknown>;
 
   modalId = signal<string | null>(null);
@@ -71,9 +63,9 @@ export class AppComponent {
       },
       {
         id: 6,
-        icon: 'smart_toy',
-        title: 'IA',
-        link: '/ia',
+        icon: 'table_chart',
+        title: 'Table Lite',
+        link: '/table-lite',
       },
     ],
     [
@@ -82,20 +74,18 @@ export class AppComponent {
         icon: 'list_alt_check',
         title: 'Forms',
         link: '/form-validator',
-        children: [
-          {
-            id: 3,
-            icon: 'align_flex_center',
-            title: 'Flex',
-            link: '/flex',
-          },
-          {
-            id: 4,
-            icon: 'dropdown',
-            title: 'Dropdown',
-            link: '/dropdown',
-          },
-        ],
+      },
+      {
+        id: 3,
+        icon: 'align_flex_center',
+        title: 'Flex',
+        link: '/flex',
+      },
+      {
+        id: 4,
+        icon: 'dropdown',
+        title: 'Dropdown',
+        link: '/dropdown',
       },
     ],
   ];
@@ -104,13 +94,9 @@ export class AppComponent {
     const data: IBmbNativeModal = {
       title: 'User Profile',
       subtitle: 'This is your user profile modal',
-      content: HelpMenuComponent,
+      content: this.modalTemplate,
       size: 'medium',
       iconStyle: 'primary',
-      inputContext: {
-        title: 'User title',
-        subtitle: 'User name',
-      },
       actions: [
         {
           buttonName: 'Close',
@@ -127,7 +113,7 @@ export class AppComponent {
 
   handleCloseModal(): void {
     const randomBoolean = Math.random() > 0.5;
-
+    console.log('Modal closed', randomBoolean);
     if (randomBoolean) {
       this.modalService.closeModal(this.modalId() as string);
     } else {
@@ -146,24 +132,5 @@ export class AppComponent {
 
   handleActionsCloseClick(params: unknown): void {
     console.log('Close button clicked', params);
-  }
-
-  handleHelpButtonClick(event: MouseEvent | KeyboardEvent): void {
-    const data: IBmbProjectionContent = {
-      content: HelpMenuComponent,
-      targetRef: event.target as HTMLElement,
-      inputContext: {
-        title: 'Some title',
-        subtitle: 'Get assistance with your account and settings',
-      },
-      outputContext: {
-        helpClicked: (value: string) => {
-          console.log('Help clicked', value);
-          this.contentProjected.closeContent();
-        },
-      },
-    };
-
-    this.contentProjected.openContent(data);
   }
 }
