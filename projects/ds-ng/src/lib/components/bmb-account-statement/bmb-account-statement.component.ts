@@ -34,6 +34,7 @@ import {
 } from '@angular/forms';
 import { IBmbNativeModal } from '../bmb-modal/bmb-modal.interface';
 import { CommonModule } from '@angular/common';
+import { TranslatePipe } from '../../pipes/translations';
 
 @Component({
   selector: 'bmb-account-statement',
@@ -52,6 +53,7 @@ import { CommonModule } from '@angular/common';
     ReactiveFormsModule,
     BmbInnerHeaderComponent,
     CommonModule,
+    TranslatePipe,
   ],
   templateUrl: './bmb-account-statement.component.html',
   styleUrl: './bmb-account-statement.component.scss',
@@ -59,28 +61,26 @@ import { CommonModule } from '@angular/common';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BmbAccountStatementComponent implements AfterViewInit, OnInit {
-  title = input<string>('Estado de cuenta');
-  progressCircleTitle = input<string[]>(['Total a pagar', 'este mes']);
-  labelPrimary = input<string>('Cuota Mensual');
-  labelSecondary = input<string>('Pendiente');
+  title = input<string>();
+  progressCircleTitle = input<string[]>([]);
+  labelPrimary = input<string>();
+  labelSecondary = input<string>();
   totalCount = input<number>(0);
   counter = input<number>(0);
-  progressTitle = input<string>('Total pagado');
+  progressTitle = input<string>();
   formatDates = input<string>('yyyy-MM-dd');
   paymentDeadline = input<string>();
   cutOffDate = input<string>();
-  paymentDeadlineLabel = input<string>('Fecha límite de pago:');
-  cutOffDateLabel = input<string>('Fecha de corte:');
-  payButtonLabel = input<string>('Pagar');
-  backButtonLabel = input<string>('Regresar');
-  modalTitle = input<string>('');
-  modalSubtitle = input<string>('');
-  modalRestLabel = input<string>('Pagar restante');
-  modalOtherAmountLabel = input<string>('Otra cantidad');
-  modalPrimaryButtonLabel = input<string>('Pagar');
-  errorMessage = input<string>(
-    'Error, Este campo es requerido y debe ser una cantidad entre 1 y ',
-  );
+  paymentDeadlineLabel = input<string>();
+  cutOffDateLabel = input<string>();
+  payButtonLabel = input<string>();
+  backButtonLabel = input<string>();
+  modalTitle = input<string>();
+  modalSubtitle = input<string>();
+  modalRestLabel = input<string>();
+  modalOtherAmountLabel = input<string>();
+  modalPrimaryButtonLabel = input<string>();
+  errorMessage = input<string>();
 
   closeEvent = output<MouseEvent>();
   backEvent = output<MouseEvent>();
