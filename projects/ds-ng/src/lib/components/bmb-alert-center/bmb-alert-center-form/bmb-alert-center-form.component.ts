@@ -47,7 +47,7 @@ export class BmbAlertCenterFormComponent {
   filterBy = input<'all' | 'unread' | 'archived' | 'favorites'>('all');
   enableMultipleSelection = input<boolean>(true);
   emptyStateData = input<IBmbAlertEmptyState>({
-    primaryText: 'No tienes notificaciones para mostrar',
+    primaryText: '',
     secondaryText: '',
     tertiaryText: '',
     buttonText: '',
