@@ -17,7 +17,7 @@ import { BmbFormValidatorComponent } from '../components/bmb-form-validator/bmb-
 import { BmbInputComponent } from '../components/bmb-input/bmb-input.component';
 
 import { IBmbNativeModal } from '../components/bmb-modal/bmb-modal.interface';
-import { BmbNativeModalService } from '../services/native-modal.service';
+import { BmbNativeModalService } from '../services/modal/native-modal.service';
 import { IBmbActionHeader } from '../types';
 
 import { BmbButtonDirective } from '../directives/bmb-button/button.directive';
