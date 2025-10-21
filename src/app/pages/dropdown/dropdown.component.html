@@ -2,6 +2,7 @@
   <section bmbLayoutItem [colSm]="2">
     <bmb-dropdown [options]="options()" [isFilterable]="true" />
     <bmb-input [placeholder]="'Search...'" [isClearable]="true" />
+    <bmb-datepicker />
   </section>
   <!-- <ul bmbLayoutItem [colSm]="4">
     @for (item of options(); track $index) {
@@ -9,6 +10,15 @@
     }
   </ul> -->
 </div>
+<bmb-switch
+  leftText="ES"
+  rightText="EN"
+  ariaLabel="Change lang"
+  name="langSwitch"
+  inputId="langSwitch"
+  (change)="handleLangChange($event)"
+></bmb-switch>
+{{ lang() }}
 <bmb-home-card
   leftIcon="chevron_left"
   icon="account_balance_wallet"

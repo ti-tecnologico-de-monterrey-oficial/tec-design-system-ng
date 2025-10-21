@@ -3,7 +3,8 @@ import { BmbTranslationsService } from '../services/translations/translations.se
 
 @Pipe({
   name: 'translate',
-  standalone: true
+  standalone: true,
+  pure: false,
 })
 export class TranslatePipe implements PipeTransform {
   constructor(private translationService: BmbTranslationsService) {}

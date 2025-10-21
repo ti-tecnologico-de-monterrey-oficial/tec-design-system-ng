@@ -27,13 +27,46 @@
       "loading": "Cargando...",
       "subtitle": "Cargando las notificaciones",
       "primary_button": "Reintentar",
-      "secondary_button": "Salir",
-      "": ""
+      "secondary_button": "Salir"
     },
     "form": {
       "empty_state": {
         "primary_text": "No tienes notificaciones para mostrar"
       }
     }
+  },
+  "balance_overview": {
+    "progress_circle_value": "Valor del círculo de progreso",
+    "progress_circle_title": "Título del círculo de progreso",
+    "label_primary": "Etiqueta primaria",
+    "label_secondary": "Etiqueta secundaria",
+    "value_primary": "$0",
+    "value_secondary": "$0"
+  },
+  "calendar": {
+    "title": "Mi Calendario",
+    "today": "Hoy",
+    "month": "Mes",
+    "week": "Semana",
+    "day": "Día",
+    "calendar": "Calendario",
+    "subtitle": "Selecciona los calendarios que quieres ver",
+    "filter_save": "Guardar"
+  },
+  "chat_bar": {
+    "placeholder": "¿Qué deseas encontrar hoy?",
+    "drag_files": "Arrastra tus archivos aquí"
+  },
+  "digital_id": {
+    "secondary_button_label": "Descargar ID a PDF"
+  },
+  "dropzone": {
+    "drop_instructions": "Arrastra y suelta tus archivos aquí o",
+    "drop_label": "Selecciona archivos",
+    "error_message": "Archivo no compatible",
+    "error_message_format": "Formato no soportado",
+    "error_message_size": "El archivo supera el tamaño permitido",
+    "format_files_label": "Especificación de formatos y peso",
+    "link_label": "Ver más información de formatos de archivo aceptados."
   }
 }
