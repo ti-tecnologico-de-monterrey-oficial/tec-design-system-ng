@@ -5,13 +5,13 @@
 @use '../base/vars' as vars;
 
 // Media query
-@mixin media-query($breakpoint, $condition, $isPixel: true) {
+@mixin media-query($breakpoint, $condition, $is_px: true) {
   $breakpoint_value: if(
     meta.type-of($breakpoint) == number,
     $breakpoint,
     string.slice($breakpoint, 1, -2)
   );
-  @if $isPixel == true {
+  @if $is_px == true {
     @media (#{$condition}-width: #{$breakpoint_value}px) {
       @content;
     }
@@ -22,8 +22,8 @@
   }
 }
 
-@mixin media-range-query($breakpoint_min, $breakpoint_max, $isPixel: true) {
-  @if $isPixel == true {
+@mixin media-range-query($breakpoint_min, $breakpoint_max, $is_px: true) {
+  @if $is_px == true {
     @media (width >= #{$breakpoint_min}px) and (width <= #{$breakpoint_max}px) {
       @content;
     }
@@ -41,6 +41,22 @@
   */
   @container (#{$condition}-width: #{$breakpoint}px) {
     @content;
+  }
+}
+
+@mixin container-range-query($breakpoint_min, $breakpoint_max, $is_px: true) {
+  /*
+  Add this property to parent style:
+    container-type: inline-size;
+  */
+  @if $is_px == true {
+    @container (width >= #{$breakpoint_min}px) and (width <= #{$breakpoint_max}px) {
+      @content;
+    }
+  } @else {
+    @container (width >= $breakpoint_min) and (width <= $breakpoint_max) {
+      @content;
+    }
   }
 }
 
