@@ -57,7 +57,7 @@ ${getBasicExampleBlock('BmbBalanceOverviewComponent')}
     },
     progressCircleTitle: {
       control: {
-        type: 'string[]',
+        type: 'object',
       },
       description:
         'Sets the text of the progress circle, to show the text in one line use a simple array, if you want to show the title in more than one line, use an array string',
