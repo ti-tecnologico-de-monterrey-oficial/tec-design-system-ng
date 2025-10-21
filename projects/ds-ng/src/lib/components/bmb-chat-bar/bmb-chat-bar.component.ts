@@ -28,6 +28,7 @@ import {
   IBmbProjectionContent,
 } from '../../services/projection/projection.service';
 import { IBmbNativeModal } from '../bmb-modal/bmb-modal.interface';
+import { TranslatePipe } from '../../pipes/translations';
 
 export { defaultBotList, defaultActionList } from './bot_list';
 export { IBotType, IChatBarActions } from './types';
@@ -44,6 +45,7 @@ export { IBotType, IChatBarActions } from './types';
     ClickOutsideDirective,
     BmbActionMenuComponent,
     BmbItemComponent,
+    TranslatePipe,
   ],
   templateUrl: './bmb-chat-bar.component.html',
   styleUrl: './bmb-chat-bar.component.scss',
@@ -68,9 +70,6 @@ export class BmbChatBarComponent {
   files: File[] = [];
   control = new FormControl();
   isDialogOpen = signal<boolean>(false);
-  defaultPlaceholder = computed(
-    () => this.placeholder() ?? '¿Qué deseas encontrar hoy?',
-  );
   showMicControls: boolean = false;
   onDragFiles: boolean = false;
   arrayThumbnail: string[] = [];
