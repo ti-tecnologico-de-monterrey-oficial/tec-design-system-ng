@@ -71,7 +71,7 @@ export class BmbDatepickerComponent implements OnInit {
   name = input<string>(getUUID());
   disableDatesBefore = input<string>('');
   disableDatesAfter = input<string>('');
-  lang = input<string>('es-MX');
+  // lang = input<string>('es-MX');
   helperMessage = input<string>(this.dateFormat());
   value = input<string>();
   customValidation = input<ValidatorFn>();
