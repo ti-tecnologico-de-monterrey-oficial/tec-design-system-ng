@@ -1,6 +1,6 @@
 @use '../../../../../assets/styles/base/rem' as rem;
 
-@mixin buttonReset() {
+@mixin button-reset() {
   background-color: transparent;
 
   &:hover:not(:disabled):not(.bmb-disabled),
@@ -11,7 +11,7 @@
   }
 }
 
-@mixin buttonResetDark() {
+@mixin button-reset-dark() {
   color: RGBA(var(--color-charade-50));
 
   &:hover:not(:disabled):not(.bmb-disabled),
@@ -33,7 +33,7 @@
   button {
     width: 100%;
     text-transform: capitalize;
-    @include buttonReset();
+    @include button-reset();
   }
 
   &-menu {
@@ -76,7 +76,7 @@
 .storybook-dark-theme {
   .bmb-calendar-template-select {
     button {
-      @include buttonResetDark();
+      @include button-reset-dark();
 
       bmb-icon {
         color: RGBA(var(--color-charade-50));

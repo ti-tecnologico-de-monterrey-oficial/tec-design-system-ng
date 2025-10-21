@@ -37,7 +37,7 @@
 
     &-name {
       text-transform: capitalize;
-      @include mixins.media-query(999, 'max') {
+      @include mixins.check-for-mobile() {
         display: none;
       }
     }

@@ -4,7 +4,7 @@
 $font-sizes: 1, 2, 3, 4, 4_5, 5, 6, 7, 8, 9, 10, 11, 12;
 $font-weights: 100, 200, 300, 400, 500, 600, 700, 800, 900;
 
-@mixin fontSizes() {
+@mixin font-sizes() {
   @each $size in $font-sizes {
     &-#{$size} {
       @include fonts.font($size, regular);
@@ -12,7 +12,7 @@ $font-weights: 100, 200, 300, 400, 500, 600, 700, 800, 900;
   }
 }
 
-@mixin fontWeights() {
+@mixin font-weights() {
   @each $font-weight in $font-weights {
     &-#{$font-weight} {
       font-weight: $font-weight;
@@ -57,15 +57,15 @@ $font-weights: 100, 200, 300, 400, 500, 600, 700, 800, 900;
 
       &-title {
         color: var(--general_contrasts-100);
-        @include fontSizes();
-        @include fontWeights();
+        @include font-sizes();
+        @include font-weights();
         @include centered();
       }
 
       &-subtitle {
         color: var(--general_contrasts-75);
-        @include fontSizes();
-        @include fontWeights();
+        @include font-sizes();
+        @include font-weights();
         @include centered();
       }
     }

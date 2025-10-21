@@ -2,8 +2,8 @@
 @use '../../../assets/styles/base/rem' as rem;
 @use '../../../assets/styles/base/fonts' as fonts;
 
-@mixin fabMitec() {
-  @include mixins.fabContent();
+@mixin fab-mitec() {
+  @include mixins.fab-content();
   background-color: var(--buttons-alternative-normal);
   box-shadow: var(--bmb-box-shadow-3);
   color: var(--buttons-primary-normal);
@@ -36,8 +36,8 @@
     flex-direction: column;
 
     &-small-normal {
-      @include mixins.fabSize(small, normal);
-      @include fabMitec();
+      @include mixins.fab-size(small, normal);
+      @include fab-mitec();
 
       ~ .bmb_fab-mitec-text {
         @include fonts.font(2, medium);
@@ -46,8 +46,8 @@
     }
 
     &-large-normal {
-      @include mixins.fabSize(large, normal);
-      @include fabMitec();
+      @include mixins.fab-size(large, normal);
+      @include fab-mitec();
 
       ~ .bmb_fab-mitec-text {
         @include fonts.font(4, medium);
@@ -57,23 +57,23 @@
   }
 
   &-small-normal {
-    @include mixins.fabInput();
-    @include mixins.fabSize(small, normal);
+    @include mixins.fab-input();
+    @include mixins.fab-size(small, normal);
   }
 
   &-small-extended {
-    @include mixins.fabInput();
-    @include mixins.fabSize(small, extended);
+    @include mixins.fab-input();
+    @include mixins.fab-size(small, extended);
   }
 
   &-large-normal {
-    @include mixins.fabInput();
-    @include mixins.fabSize(large, normal);
+    @include mixins.fab-input();
+    @include mixins.fab-size(large, normal);
   }
 
   &-large-extended {
-    @include mixins.fabInput();
-    @include mixins.fabSize(large, extended);
+    @include mixins.fab-input();
+    @include mixins.fab-size(large, extended);
   }
 }
 

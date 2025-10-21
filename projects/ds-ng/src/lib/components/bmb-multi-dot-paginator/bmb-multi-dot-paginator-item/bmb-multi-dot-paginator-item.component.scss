@@ -1,6 +1,8 @@
 @use '../../../../assets/styles/base/mixins' as mixins;
+@use '../../../../assets/styles/base/vars' as vars;
+@use '../../../../assets/styles/base/rem' as rem;
 
-@mixin previewBlock() {
+@mixin preview-block() {
   opacity: 0.5;
 
   .bmb_multi-dot-paginator-item {
@@ -13,25 +15,29 @@ bmb-multi-dot-paginator-item {
   width: calc((100% / var(--numberOfElements)) - 6rem);
   display: block;
 
-  @media (width <= 999px) {
+  @include mixins.check-for-mobile() {
     &.bmb_multi-dot-paginator-item-active ~ * {
-      @include previewBlock();
+      @include preview-block();
     }
   }
 
-  @media (999px < width <= 1999px) {
+  @include mixins.media-range-query(
+    vars.$breakpoint_min_web,
+    rem.rem_calc(1999px),
+    false
+  ) {
     &.bmb_multi-dot-paginator-item-active + * ~ * {
-      @include previewBlock();
+      @include preview-block();
     }
   }
 
   @media (1999px < width) {
     &.bmb_multi-dot-paginator-item-active + * + * ~ * {
-      @include previewBlock();
+      @include preview-block();
     }
   }
 
-  @include mixins.media-query(1000, 'min') {
+  @include mixins.check-for-mobile(false) {
     width: calc((50% / var(--numberOfElements)) - 3rem);
   }
 

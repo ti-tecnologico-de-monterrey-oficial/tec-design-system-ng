@@ -16,7 +16,7 @@
   transition: all 0.1s linear;
   transition-property: color, text-shadow, box-shadow, background-color;
 
-  @include mixins.media-query(1000, 'min') {
+  @include mixins.check-for-mobile(false) {
     padding: rem.rem_calc(8 40);
   }
 
@@ -33,7 +33,7 @@
 
   &:focus,
   &:focus:hover {
-    @include mixins.focusElement();
+    @include mixins.focus-element();
   }
 
   &[size='micro'] {

@@ -54,7 +54,7 @@ const TECHNICAL_DOC_TITLE: string = `${DESIGN_SYSTEM_TITLE} ***- Technical docum
 const TECHNICAL_DOC_REFERENCES: string = `Please remember to refer to the ${TECHNICAL_DOC_TITLE} for more details:`;
 export const STORIES_TITLE: string = 'Variant templates';
 export const TITLE_OF_CONTROLS: string = 'Properties / Events';
-const PREVIEW_TITLE: string = '👁 Preview';
+export const PREVIEW_TITLE: string = '👁 Preview';
 export const TOC_TITLE: string = 'On this page';
 export const DESCRIPTION_TITLE: string = 'Description';
 export const SPECIAL_SPECIFICATIONS_TITLE: string =
@@ -74,7 +74,13 @@ export const TOC_OBJ = {
 };
 
 export const getPageStructureForFoundationStories = (): any => {
-  return [Title({}), Description({}), Primary({}), Controls({})];
+  return [
+    Title({}),
+    Description({}),
+    Heading({ children: PREVIEW_TITLE }),
+    Primary({}),
+    Controls({}),
+  ];
 };
 
 export const getPageStructureForTemplateStories = (): any => {

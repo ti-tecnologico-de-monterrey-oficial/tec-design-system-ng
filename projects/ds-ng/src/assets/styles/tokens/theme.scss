@@ -529,7 +529,7 @@ img {
 }
 
 //Storybook alert blockquote
-@mixin markdown_alert_text() {
+@mixin markdown-alert-text() {
   border-radius: 0.5rem 0.5rem 0.5rem 0;
   padding-top: 0.25rem !important;
   padding-bottom: 0.5rem !important;
@@ -546,30 +546,53 @@ img {
 
 .markdown-alert {
   &-note {
-    @include markdown_alert_text();
+    @include markdown-alert-text();
     background-color: rgba(var(--color-blue-light), 0.15);
   }
 
   &-callout {
-    @include markdown_alert_text();
+    @include markdown-alert-text();
     background-color: rgba(var(--color-mitec-green), 0.15);
   }
 
   &-warning {
-    @include markdown_alert_text();
+    @include markdown-alert-text();
     background-color: rgba(var(--color-red-light), 0.15);
   }
 }
 //Storybook alert blockquote - end
 
+//Table of contents
+.css-q7khkg {
+  width: fit-content !important;
+  padding-right: 0.25rem;
+  z-index: 999;
+
+  .toc-list-item {
+    margin-left: 0.75rem !important;
+  }
+}
+
 //Documentation width
-.css-x28zkw:has(.bmb_top-bar) {
-  max-width: 1444px !important;
+.css-x28zkw {
+  max-width: 63.125rem !important;
+
+  &:has(.bmb_top-bar) {
+    max-width: 90.25rem !important;
+  }
+}
+
+//Controls width
+.docblock-argstable,
+.css-v2ifgj.css-v2ifgj {
+  width: auto;
 }
 
 // Expanded preview
 .css-1cvjpgl:has(.bmb_top-bar),
-.css-1cvjpgl:has(.bmb_sidebar) {
+.css-1cvjpgl:has(.bmb_sidebar),
+.sb-show-main.sb-main-padded:has(.bmb_top-bar),
+.sb-show-main.sb-main-padded:has(.bmb_sidebar) {
   padding: 0 !important;
 
   .innerZoomElementWrapper {

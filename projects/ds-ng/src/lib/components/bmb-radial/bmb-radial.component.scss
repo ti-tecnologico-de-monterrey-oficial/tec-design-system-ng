@@ -1,12 +1,12 @@
 @use '../../../assets/styles/base/mixins' as mixins;
 @use '../../../assets/styles/base/rem' as rem;
 
-@mixin focus_mark($color) {
+@mixin focus-mark($color) {
   &:hover,
   &:focus,
   &:focus-visible {
     & + .bmb_radio-mark::before {
-      @include mixins.shadow_mark($color);
+      @include mixins.shadow-mark($color);
       left: rem.rem_calc(-11) !important;
     }
   }
@@ -20,15 +20,15 @@
     position: absolute;
 
     &:is(:checked) {
-      @include focus_mark(var(--buttons-active-switch));
+      @include focus-mark(var(--buttons-active-switch));
 
       + .bmb_radio-mark {
         border: rem.rem_calc(2) solid var(--buttons-active-switch);
 
-        @include mixins.input_shadow(var(--buttons-active-switch));
+        @include mixins.input-shadow(var(--buttons-active-switch));
 
         &::after {
-          @include mixins.input_checked(12, 12);
+          @include mixins.input-checked(12, 12);
           margin-top: rem.rem_calc(4);
           background-color: var(--buttons-active-switch);
           border-radius: 100%;
@@ -37,16 +37,16 @@
     }
 
     &:not(:checked) {
-      @include focus_mark(rgb(var(--color-charade-900)));
+      @include focus-mark(rgb(var(--color-charade-900)));
 
       & + .bmb_radio-mark {
-        @include mixins.input_shadow(rgb(var(--color-charade-900)));
+        @include mixins.input-shadow(rgb(var(--color-charade-900)));
       }
     }
   }
 
   &-mark {
-    @include mixins.input_mark(var(--general_contrasts-100), 100%);
+    @include mixins.input-mark(var(--general_contrasts-100), 100%);
     width: rem.rem_calc(24);
     height: rem.rem_calc(24);
     margin: 0;

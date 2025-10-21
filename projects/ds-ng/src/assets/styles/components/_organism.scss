@@ -7,11 +7,11 @@
   height: 100dvh;
 
   &-main {
-    @include mixins.checkForMobile(false) {
+    @include mixins.check-for-mobile(false) {
       padding: rem.rem_calc(48 152);
     }
 
-    @include mixins.checkForMobile() {
+    @include mixins.check-for-mobile() {
       padding: rem.rem_calc(8);
     }
   }
@@ -21,12 +21,12 @@
   }
 
   .bmb_home-card-wrapper {
-    @include mixins.checkForMobile(false) {
+    @include mixins.check-for-mobile(false) {
       //64px (top bar height) + 48px (main padding-top) =  102px
       height: calc(100% - rem.rem_calc(102));
     }
 
-    @include mixins.checkForMobile(false) {
+    @include mixins.check-for-mobile(false) {
       //64px (top bar height) + 8px (main padding-top) =  102px
       height: calc(100% - rem.rem_calc(72));
     }
