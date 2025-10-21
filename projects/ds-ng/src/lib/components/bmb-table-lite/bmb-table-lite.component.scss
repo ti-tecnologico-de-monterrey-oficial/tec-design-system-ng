@@ -31,7 +31,7 @@
 
     &-top,
     &-bottom {
-      @include mixins.media-query(1000, 'min') {
+      @include mixins.check-for-mobile(false) {
         .bmb_table_lite-header {
           height: 30%;
           width: 100%;
@@ -44,7 +44,7 @@
 
     &-left,
     &-right {
-      @include mixins.media-query(1000, 'min') {
+      @include mixins.check-for-mobile(false) {
         flex-flow: row;
 
         .bmb_table_lite-header {
@@ -57,7 +57,7 @@
     }
 
     &-right {
-      @include mixins.media-query(1000, 'min') {
+      @include mixins.check-for-mobile(false) {
         flex-flow: row-reverse;
       }
     }

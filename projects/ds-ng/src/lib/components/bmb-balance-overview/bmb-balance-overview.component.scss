@@ -6,7 +6,7 @@
   &-container {
     padding-bottom: rem.rem_calc(10);
 
-    @include mixins.media-query(1000, 'min') {
+    @include mixins.check-for-mobile(false) {
       display: flex;
       gap: var(--bmb-spacing-xl);
     }
@@ -15,7 +15,7 @@
   &-circle-container {
     padding-bottom: rem.rem_calc(24);
 
-    @include mixins.media-query(1000, 'min') {
+    @include mixins.check-for-mobile(false) {
       max-width: rem.rem_calc(500);
     }
   }
@@ -26,7 +26,7 @@
     width: 100%;
     gap: var(--bmb-spacing-m);
 
-    @include mixins.media-query(1000, 'min') {
+    @include mixins.check-for-mobile(false) {
       flex-direction: column;
       justify-content: flex-start;
     }
