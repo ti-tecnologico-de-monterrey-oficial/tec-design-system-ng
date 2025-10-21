@@ -2,7 +2,6 @@
   @if (isMobileHeader) {
     <bmb-calendar-template-mobile
       [now]="visibleDate()"
-      [lang]="lang()"
       [events]="filteredEvents()"
       (onCurrentDateChange)="handleCurrentDateChange($event)"
       [weekDays]="renderWeekDays()"
@@ -14,7 +13,6 @@
   } @else {
     <bmb-calendar-header
       [weekDays]="renderWeekDays()"
-      [lang]="lang()"
       [view]="view()"
       [currentDate]="visibleDate()"
       (onRangeChange)="handleDateChange($event, visibleDate())"
@@ -38,7 +36,6 @@
     @case ('week') {
       <bmb-calendar-template-week
         [weekDays]="renderWeekDays()"
-        [lang]="lang()"
         [now]="visibleDate()"
         [events]="filteredEvents()"
         (onSelectEvent)="handleSelectEvent($event)"
@@ -59,7 +56,6 @@
     @default {
       <bmb-calendar-template-week
         [weekDays]="renderWeekDays()"
-        [lang]="lang()"
         [now]="visibleDate()"
         [events]="filteredEvents()"
         class="bmb_calendar-content"

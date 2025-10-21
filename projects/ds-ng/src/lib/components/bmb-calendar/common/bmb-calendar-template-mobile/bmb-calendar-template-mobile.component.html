@@ -1,6 +1,6 @@
 <div class="bmb_calendar-month-mobile">
   <bmb-inner-header
-    [title]="calendarTitle()"
+    [title]="calendarTitle() || ('calendar.title' | translate)"
     [showClose]="true"
     trailingIconSecondary="tune"
     [disableTrailingIconSecondary]="disableMobileFilter()"
@@ -9,7 +9,7 @@
   >
     <div class="bmb_calendar-month-mobile-nav">
       <bmb-chevron-title-selector
-        [title]="now().setLocale(lang()).toFormat('MMM')"
+        [title]="now().setLocale(locale()).toFormat('MMM')"
         leadingIcon="chevron_left"
         trailingIcon="chevron_right"
         (onLeadingClick)="handleMonthChange('-')"
@@ -23,7 +23,7 @@
     >
       <div class="bmb_calendar-month-mobile-collapsible" collapsible>
         <ul class="bmb_calendar-month-mobile-calendar">
-          @for (day of dayNames; track $index) {
+          @for (day of dayNames(); track $index) {
             <li class="bmb_calendar-month-mobile-calendar-header">
               {{ day }}
             </li>
@@ -100,6 +100,6 @@
       'bmb_calendar-month-mobile-title-day-not-visible': isWedgeOpen
     }"
   >
-    {{ now().setLocale(lang()).toFormat('cccc LLLL dd, yyyy') }}
+    {{ now().setLocale(locale()).toFormat('cccc LLLL dd, yyyy') }}
   </div>
 </div>

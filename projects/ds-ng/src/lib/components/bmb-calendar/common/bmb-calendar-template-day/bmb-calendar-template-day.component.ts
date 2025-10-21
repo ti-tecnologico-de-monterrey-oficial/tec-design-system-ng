@@ -13,6 +13,7 @@ import { DateTime } from 'luxon';
 import { BmbCalendarScheduleCardsComponent } from '../bmb-calendar-schedule-cards/bmb-calendar-schedule-cards.component';
 import { DEFAULT_DATE_FORMAT, layoutEvents } from '../../utils';
 import { BmbCalendarTimeIndicatorComponent } from '../bmb-calendar-time-indicator/bmb-calendar-time-indicator.component';
+import { BmbTranslationsService } from '../../../../services/translations/translations.service';
 
 @Component({
   selector: 'bmb-calendar-template-day',
@@ -29,7 +30,6 @@ import { BmbCalendarTimeIndicatorComponent } from '../bmb-calendar-time-indicato
   encapsulation: ViewEncapsulation.None,
 })
 export class BmbCalendarTemplateDayComponent {
-  lang = input<string>('es-MX');
   now = input<DateTime>(DateTime.now());
   events = input<IBmbCalendarEvent[]>([]);
   currentTime = input<DateTime>(DateTime.now());
@@ -43,8 +43,12 @@ export class BmbCalendarTemplateDayComponent {
   });
   rows = new Array(24).fill(0);
 
+  constructor(private translationsService: BmbTranslationsService) {}
+
+  locale = computed(() => this.translationsService.getCurrentLanguage());
+
   getNameDay(): string {
-    return this.now().toFormat('cccc', { locale: this.lang() });
+    return this.now().toFormat('cccc', { locale: this.locale() });
   }
 
   handleEventSelection(newEvent: IBmbCalendarEventClick) {
