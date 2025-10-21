@@ -7,7 +7,7 @@ import {
   Title,
 } from '@storybook/addon-docs/blocks';
 
-import { TitleOfControls } from './Utils.mdx';
+import { PreviewTitle, TitleOfControls } from './Utils.mdx';
 import { STORIES_TITLE } from '../lib/utils/doc/utils';
 
 export const GeneralTemplate = ({
@@ -21,6 +21,7 @@ export const GeneralTemplate = ({
     {(children && <Description of={children}>{children}</Description>) || (
       <Description />
     )}
+    <PreviewTitle />
     {(children && <Primary of={children} />) || <Primary />}
     {showControls && <TitleOfControls />}
     {(children && showControls && <Controls of={children.Default} />) ||
