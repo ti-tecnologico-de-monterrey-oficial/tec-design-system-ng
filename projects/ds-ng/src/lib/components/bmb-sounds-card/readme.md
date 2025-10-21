@@ -8,20 +8,20 @@
 
 ## Props / Parámetros
 
-| Propiedad   | Tipo      | Descripción                                                        | Valor por defecto | Obligatorio |
-|-------------|-----------|--------------------------------------------------------------------|-------------------|-------------|
-| `title`     | `string`  | Título principal de la tarjeta                                     | `''`              | No          |
-| `subtitle`  | `string`  | Subtítulo o descripción breve                                      | `''`              | No          |
-| `width`     | `string`  | Ancho de la tarjeta                                                | `'250px'`         | No          |
-| `ratio`     | `string`  | Relación de aspecto de la tarjeta                                  | `'8/9'`           | No          |
+| Propiedad  | Tipo     | Descripción                       | Valor por defecto | Obligatorio |
+| ---------- | -------- | --------------------------------- | ----------------- | ----------- |
+| `title`    | `string` | Título principal de la tarjeta    | `''`              | No          |
+| `subtitle` | `string` | Subtítulo o descripción breve     | `''`              | No          |
+| `width`    | `string` | Ancho de la tarjeta               | `'250px'`         | No          |
+| `ratio`    | `string` | Relación de aspecto de la tarjeta | `'8/9'`           | No          |
 
 ### Outputs
 
-| Output         | Tipo      | Descripción                                  |
-|----------------|-----------|----------------------------------------------|
-| `handlevolume` | `number`  | Se emite al cambiar el volumen               |
-| `handlePlay`   | `boolean` | Se emite al reproducir o pausar el audio     |
-| `handleMute`   | `boolean` | Se emite al silenciar o activar el audio     |
+| Output         | Tipo      | Descripción                              |
+| -------------- | --------- | ---------------------------------------- |
+| `handlevolume` | `number`  | Se emite al cambiar el volumen           |
+| `handlePlay`   | `boolean` | Se emite al reproducir o pausar el audio |
+| `handleMute`   | `boolean` | Se emite al silenciar o activar el audio |
 
 ---
 

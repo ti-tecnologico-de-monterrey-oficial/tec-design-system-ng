@@ -14,7 +14,7 @@
   &-main {
     position: relative;
 
-    @include mixins.media-query(1000, 'min') {
+    @include mixins.check-for-mobile(false) {
       border-right: rem.rem_calc(1) solid var(--general_contrasts-15);
     }
 

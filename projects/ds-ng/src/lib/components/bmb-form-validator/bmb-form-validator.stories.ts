@@ -15,7 +15,6 @@ import {
   RELEVANT_TITLE,
   getBasicExampleBlock,
   getOnEvent,
-  getFormatName,
   getStoryLink,
 } from '../../utils/doc/utils';
 import {
@@ -112,7 +111,7 @@ ${getFormControlDescription('>').replace('<br/>', '')}
 ${getArchitectureSection(
   `
 <form (ngSubmit)="onSubmit()">
-  <custom-content />
+  <!-- Custom-content -->
 </form>
 `,
   true,

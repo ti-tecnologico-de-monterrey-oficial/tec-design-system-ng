@@ -16,12 +16,12 @@ $toast-out-duration: 0.5s;
   flex-flow: column;
 }
 
-@mixin topMixin() {
+@mixin top-mixin() {
   @include base();
   top: rem.rem_calc(16);
 }
 
-@mixin bottomMixin() {
+@mixin bottom-mixin() {
   @include base();
   bottom: rem.rem_calc(16);
 }
@@ -101,7 +101,7 @@ $toast-out-duration: 0.5s;
 .bmb_portal {
   &-top-right {
     right: rem.rem_calc(16);
-    @include topMixin();
+    @include top-mixin();
 
     &.has-toast {
       overflow: hidden;
@@ -119,7 +119,7 @@ $toast-out-duration: 0.5s;
 
   &-top-left {
     left: rem.rem_calc(16);
-    @include topMixin();
+    @include top-mixin();
 
     bmb-toast {
       animation: slideBounceLeftToRight $toast-in-duration ease-out forwards;
@@ -132,7 +132,7 @@ $toast-out-duration: 0.5s;
 
   &-top-center {
     left: 50%;
-    @include topMixin();
+    @include top-mixin();
 
     > * {
       transform: translateX(-50%);
@@ -149,7 +149,7 @@ $toast-out-duration: 0.5s;
 
   &-bottom-right {
     right: rem.rem_calc(16);
-    @include bottomMixin();
+    @include bottom-mixin();
 
     &.has-toast {
       overflow: hidden;
@@ -166,7 +166,7 @@ $toast-out-duration: 0.5s;
 
   &-bottom-left {
     left: rem.rem_calc(16);
-    @include bottomMixin();
+    @include bottom-mixin();
 
     bmb-toast {
       animation: slideBounceLeftToRight $toast-in-duration ease-out forwards;
@@ -179,7 +179,7 @@ $toast-out-duration: 0.5s;
 
   &-bottom-center {
     left: 50%;
-    @include bottomMixin();
+    @include bottom-mixin();
 
     > * {
       transform: translateX(-50%);

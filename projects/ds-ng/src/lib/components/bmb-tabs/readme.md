@@ -8,18 +8,18 @@
 
 ## Props / Parámetros
 
-| Propiedad           | Tipo                | Descripción                                                        | Valor por defecto | Obligatorio |
-|---------------------|---------------------|--------------------------------------------------------------------|-------------------|-------------|
-| `appearanceContrast`| `IBmbContrast`      | Contraste visual de las pestañas (`default`, `primary`, `alternative`) | `'default'`      | No          |
-| `format`            | `string`            | Formato visual adicional (clase personalizada)                     | `''`              | No          |
-| `tabs`              | `IBmbTab[]`         | Lista de pestañas a mostrar                                        | `[]`              | Sí          |
-| `selectedTabId`     | `number` (model)    | ID de la pestaña seleccionada (interno)                            | `0`               | No          |
+| Propiedad            | Tipo             | Descripción                                                            | Valor por defecto | Obligatorio |
+| -------------------- | ---------------- | ---------------------------------------------------------------------- | ----------------- | ----------- |
+| `appearanceContrast` | `IBmbContrast`   | Contraste visual de las pestañas (`default`, `primary`, `alternative`) | `'default'`       | No          |
+| `format`             | `string`         | Formato visual adicional (clase personalizada)                         | `''`              | No          |
+| `tabs`               | `IBmbTab[]`      | Lista de pestañas a mostrar                                            | `[]`              | Sí          |
+| `selectedTabId`      | `number` (model) | ID de la pestaña seleccionada (interno)                                | `0`               | No          |
 
 ### Outputs
 
-| Output     | Tipo         | Descripción                                  |
-|------------|--------------|----------------------------------------------|
-| `selected` | `IBmbTab`    | Se emite al seleccionar una pestaña          |
+| Output     | Tipo      | Descripción                         |
+| ---------- | --------- | ----------------------------------- |
+| `selected` | `IBmbTab` | Se emite al seleccionar una pestaña |
 
 ---
 

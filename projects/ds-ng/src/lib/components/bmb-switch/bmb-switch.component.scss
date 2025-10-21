@@ -1,7 +1,7 @@
 @use '../../../assets/styles/base/rem' as rem;
 @use '../../../assets/styles/base/fonts' as fonts;
 
-@mixin translate_element() {
+@mixin translate-element() {
   transform: translate(rem.rem_calc(32), rem.rem_calc(0));
 }
 
@@ -38,11 +38,11 @@
       background-color: var(--buttons-active-switch);
 
       &::after {
-        @include translate_element();
+        @include translate-element();
       }
 
       .material-symbols-rounded {
-        @include translate_element();
+        @include translate-element();
       }
 
       &:hover {

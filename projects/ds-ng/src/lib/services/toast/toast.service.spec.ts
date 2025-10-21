@@ -9,7 +9,7 @@ describe('ToastService', () => {
   });
 
   it('debe inicializar con el toast cerrado', (done) => {
-    service.isOpen$.subscribe(isOpen => {
+    service.isOpen$.subscribe((isOpen) => {
       expect(isOpen).toBe(false);
       done();
     });
@@ -17,7 +17,7 @@ describe('ToastService', () => {
 
   it('debe abrir el toast', (done) => {
     service.openToast();
-    service.isOpen$.subscribe(isOpen => {
+    service.isOpen$.subscribe((isOpen) => {
       expect(isOpen).toBe(true);
       done();
     });
@@ -26,7 +26,7 @@ describe('ToastService', () => {
   it('debe cerrar el toast', (done) => {
     service.openToast();
     service.closeToast();
-    service.isOpen$.subscribe(isOpen => {
+    service.isOpen$.subscribe((isOpen) => {
       expect(isOpen).toBe(false);
       done();
     });

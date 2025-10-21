@@ -1,6 +1,7 @@
 @use '../../../assets/styles/base/rem' as rem;
 @use '../../../assets/styles/base/fonts' as fonts;
 @use '../../../assets/styles/base/mixins' as mixins;
+@use '../../../assets/styles/base/vars' as vars;
 
 .bmb_chat-bar {
   position: relative;
@@ -96,7 +97,7 @@
     position: relative;
     padding: rem.rem_calc(10 16);
 
-    @include mixins.media-query(1001, 'min') {
+    @include mixins.check-for-mobile(false) {
       padding: rem.rem_calc(16);
     }
   }
@@ -192,7 +193,7 @@
       max-height: rem.rem_calc(200);
       overflow: auto;
 
-      @media (min-width: 1001px) {
+      @include mixins.check-for-mobile(false) {
         flex-direction: row;
       }
     }
@@ -206,7 +207,7 @@
       padding: rem.rem_calc(16);
       width: 100%;
 
-      @media (min-width: 1001px) {
+      @include mixins.check-for-mobile(false) {
         width: max-content;
       }
 
@@ -216,7 +217,7 @@
         white-space: nowrap;
         flex: 1;
 
-        @media (min-width: 1001px) {
+        @include mixins.check-for-mobile(false) {
           max-width: rem.rem_calc(200);
         }
       }

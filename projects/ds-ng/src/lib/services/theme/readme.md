@@ -8,17 +8,17 @@
 
 ## Props / Parámetros
 
-| Propiedad       | Tipo      | Descripción                                                        | Valor por defecto | Obligatorio |
-|-----------------|-----------|--------------------------------------------------------------------|-------------------|-------------|
-| `defaultTheme`  | `string`  | Tema por defecto inyectado al servicio                             | `'light'`         | No          |
+| Propiedad      | Tipo     | Descripción                            | Valor por defecto | Obligatorio |
+| -------------- | -------- | -------------------------------------- | ----------------- | ----------- |
+| `defaultTheme` | `string` | Tema por defecto inyectado al servicio | `'light'`         | No          |
 
 ### Observables y métodos
 
-| Propiedad/Método | Tipo                        | Descripción                                                        |
-|------------------|-----------------------------|--------------------------------------------------------------------|
-| `theme$`         | `Observable<string>`        | Observable del tema actual                                         |
-| `getDefaultTheme()` | `string`                 | Devuelve el tema por defecto                                       |
-| `setTheme(theme: string)` | `void`             | Actualiza el tema y lo emite a los suscriptores                    |
+| Propiedad/Método          | Tipo                 | Descripción                                     |
+| ------------------------- | -------------------- | ----------------------------------------------- |
+| `theme$`                  | `Observable<string>` | Observable del tema actual                      |
+| `getDefaultTheme()`       | `string`             | Devuelve el tema por defecto                    |
+| `setTheme(theme: string)` | `void`               | Actualiza el tema y lo emite a los suscriptores |
 
 ---
 
@@ -40,7 +40,7 @@ export class ThemeSwitcherComponent {
   temaActual: string = '';
 
   constructor(private themeService: ThemeService) {
-    this.themeService.theme$.subscribe(theme => this.temaActual = theme);
+    this.themeService.theme$.subscribe((theme) => (this.temaActual = theme));
   }
 
   cambiarTema(theme: string) {

@@ -89,10 +89,10 @@
   }
 
   &-helper {
-    @include mixins.normal_helper_text();
+    @include mixins.normal-helper-text();
   }
 
   &-error {
-    @include mixins.error_helper_text();
+    @include mixins.error-helper-text();
   }
 }

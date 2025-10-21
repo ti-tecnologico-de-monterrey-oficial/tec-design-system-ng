@@ -8,22 +8,22 @@
 
 ## Props / Parámetros
 
-| Propiedad     | Tipo                        | Descripción                                                        | Valor por defecto | Obligatorio |
-|---------------|-----------------------------|--------------------------------------------------------------------|-------------------|-------------|
-| `eventList`   | `signal<IBmbCalendarEvent[]>`| Señal reactiva que almacena la lista de eventos del calendario     | `[]`              | No          |
-| `isLoading`   | `signal<boolean>`           | Señal reactiva que indica si el calendario está en estado de carga | `false`           | No          |
+| Propiedad   | Tipo                          | Descripción                                                        | Valor por defecto | Obligatorio |
+| ----------- | ----------------------------- | ------------------------------------------------------------------ | ----------------- | ----------- |
+| `eventList` | `signal<IBmbCalendarEvent[]>` | Señal reactiva que almacena la lista de eventos del calendario     | `[]`              | No          |
+| `isLoading` | `signal<boolean>`             | Señal reactiva que indica si el calendario está en estado de carga | `false`           | No          |
 
 ### Métodos
 
-| Método                | Tipo de retorno           | Descripción                                  |
-|-----------------------|--------------------------|----------------------------------------------|
-| `addMultipleEvents(events: IBmbCalendarEvent[])` | `void` | Agrega múltiples eventos al calendario, asignando un ID único si no existe |
-| `addEvent(event: IBmbCalendarEvent)`             | `void` | Agrega un solo evento al calendario, asignando un ID único si no existe    |
-| `deleteEvent(id: string)`                        | `void` | Elimina un evento por su ID                                                      |
-| `editEvent(id: string)`                          | `void` | Edita un evento por su ID (actualmente no modifica propiedades)                 |
-| `getEventList()`                                 | `IBmbCalendarEvent[]` | Devuelve la lista actual de eventos del calendario           |
-| `setIsLoading(state: boolean)`                   | `void` | Actualiza el estado de carga del calendario                                     |
-| `getIsLoading()`                                 | `boolean` | Devuelve el estado actual de carga del calendario                               |
+| Método                                           | Tipo de retorno       | Descripción                                                                |
+| ------------------------------------------------ | --------------------- | -------------------------------------------------------------------------- |
+| `addMultipleEvents(events: IBmbCalendarEvent[])` | `void`                | Agrega múltiples eventos al calendario, asignando un ID único si no existe |
+| `addEvent(event: IBmbCalendarEvent)`             | `void`                | Agrega un solo evento al calendario, asignando un ID único si no existe    |
+| `deleteEvent(id: string)`                        | `void`                | Elimina un evento por su ID                                                |
+| `editEvent(id: string)`                          | `void`                | Edita un evento por su ID (actualmente no modifica propiedades)            |
+| `getEventList()`                                 | `IBmbCalendarEvent[]` | Devuelve la lista actual de eventos del calendario                         |
+| `setIsLoading(state: boolean)`                   | `void`                | Actualiza el estado de carga del calendario                                |
+| `getIsLoading()`                                 | `boolean`             | Devuelve el estado actual de carga del calendario                          |
 
 ---
 

@@ -8,24 +8,24 @@
 
 ## Props / Parámetros
 
-| Propiedad      | Tipo      | Descripción                                                        | Valor por defecto                | Obligatorio |
-|----------------|-----------|--------------------------------------------------------------------|----------------------------------|-------------|
-| `title`        | `string`  | Título principal del componente                                    | `'TOTP'`                         | No          |
-| `subtitle`     | `string`  | Subtítulo descriptivo                                              | `'(Time-based One-time Password)'`| No          |
-| `instanceId`   | `string`  | Identificador único de la instancia                                | `getUUID()`                      | No          |
-| `codeError`    | `boolean` | Indica si hay error en el código ingresado                         | `false`                          | No          |
-| `errorMessage` | `string`  | Mensaje de error personalizado                                     | `''`                             | No          |
-| `helperText`   | `string`  | Mensaje de ayuda adicional                                         | `''`                             | No          |
-| `showButton`   | `boolean` | Muestra el botón de envío                                          | `false`                          | No          |
-| `buttonText`   | `string`  | Texto del botón de envío                                           | `''`                             | No          |
-| `maxCode`      | `number`  | Cantidad de dígitos del código (obsoleto, usar `_maxCode`)         | `6`                              | No          |
-| `disableButton`| `boolean` | Deshabilita el botón de envío                                      | `false`                          | No          |
+| Propiedad       | Tipo      | Descripción                                                | Valor por defecto                  | Obligatorio |
+| --------------- | --------- | ---------------------------------------------------------- | ---------------------------------- | ----------- |
+| `title`         | `string`  | Título principal del componente                            | `'TOTP'`                           | No          |
+| `subtitle`      | `string`  | Subtítulo descriptivo                                      | `'(Time-based One-time Password)'` | No          |
+| `instanceId`    | `string`  | Identificador único de la instancia                        | `getUUID()`                        | No          |
+| `codeError`     | `boolean` | Indica si hay error en el código ingresado                 | `false`                            | No          |
+| `errorMessage`  | `string`  | Mensaje de error personalizado                             | `''`                               | No          |
+| `helperText`    | `string`  | Mensaje de ayuda adicional                                 | `''`                               | No          |
+| `showButton`    | `boolean` | Muestra el botón de envío                                  | `false`                            | No          |
+| `buttonText`    | `string`  | Texto del botón de envío                                   | `''`                               | No          |
+| `maxCode`       | `number`  | Cantidad de dígitos del código (obsoleto, usar `_maxCode`) | `6`                                | No          |
+| `disableButton` | `boolean` | Deshabilita el botón de envío                              | `false`                            | No          |
 
 ### Outputs
 
-| Output         | Tipo      | Descripción                                  |
-|----------------|-----------|----------------------------------------------|
-| `handleSubmit` | `string`  | Se emite al enviar el código TOTP            |
+| Output         | Tipo     | Descripción                       |
+| -------------- | -------- | --------------------------------- |
+| `handleSubmit` | `string` | Se emite al enviar el código TOTP |
 
 ---
 

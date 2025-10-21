@@ -233,6 +233,15 @@ Data:
       },
     },
     selected: getSelectedPropDesc(),
+    selectedTabId: {
+      control: { type: 'number' },
+      description: 'Sets the currently selected tab id.',
+      table: {
+        category: 'Properties',
+        defaultValue: { summary: null },
+        type: { summary: 'number' },
+      },
+    },
     format: DBmbGenericParamDesc.deprecated,
   },
   args: {

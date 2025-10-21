@@ -2,16 +2,35 @@
 @use 'sass:string';
 @use 'fonts' as fonts;
 @use 'rem' as rem;
+@use '../base/vars' as vars;
 
 // Media query
-@mixin media-query($breakpoint, $condition) {
-  $breakpoint-value: if(
+@mixin media-query($breakpoint, $condition, $is_px: true) {
+  $breakpoint_value: if(
     meta.type-of($breakpoint) == number,
     $breakpoint,
     string.slice($breakpoint, 1, -2)
   );
-  @media (#{$condition}-width: #{$breakpoint-value}px) {
-    @content;
+  @if $is_px == true {
+    @media (#{$condition}-width: #{$breakpoint_value}px) {
+      @content;
+    }
+  } @else {
+    @media (#{$condition}-width: #{$breakpoint_value}) {
+      @content;
+    }
+  }
+}
+
+@mixin media-range-query($breakpoint_min, $breakpoint_max, $is_px: true) {
+  @if $is_px == true {
+    @media (width >= #{$breakpoint_min}px) and (width <= #{$breakpoint_max}px) {
+      @content;
+    }
+  } @else {
+    @media (width >= $breakpoint_min) and (width <= $breakpoint_max) {
+      @content;
+    }
   }
 }
 
@@ -25,18 +44,34 @@
   }
 }
 
+@mixin container-range-query($breakpoint_min, $breakpoint_max, $is_px: true) {
+  /*
+  Add this property to parent style:
+    container-type: inline-size;
+  */
+  @if $is_px == true {
+    @container (width >= #{$breakpoint_min}px) and (width <= #{$breakpoint_max}px) {
+      @content;
+    }
+  } @else {
+    @container (width >= $breakpoint_min) and (width <= $breakpoint_max) {
+      @content;
+    }
+  }
+}
+
 // Reset Element
-@mixin resetElement() {
+@mixin reset-element() {
   box-sizing: border-box;
   line-height: 1.5;
 
   &:focus {
-    @include focusElement();
+    @include focus-element();
   }
 }
 
 // Focus for button and input
-@mixin focusElement($inset: outset) {
+@mixin focus-element($inset: outset) {
   outline: 0;
 }
 
@@ -91,7 +126,7 @@
     padding: rem.rem_calc(11 15);
     transition: none;
 
-    @include media-query(1000, 'min') {
+    @include check-for-mobile(false) {
       padding: rem.rem_calc(7 39);
     }
 
@@ -100,7 +135,7 @@
       border-width: rem.rem_calc(2);
       padding: rem.rem_calc(10 14);
 
-      @include media-query(1000, 'min') {
+      @include check-for-mobile(false) {
         padding: rem.rem_calc(6 38);
       }
     }
@@ -115,7 +150,7 @@
       color: var(--general_contrasts-5);
       background-color: var(--general_contrasts-100);
 
-      @include media-query(1000, 'min') {
+      @include check-for-mobile(false) {
         padding: rem.rem_calc(6 38);
       }
 
@@ -134,7 +169,7 @@
     color: var(--red-primary);
     padding: rem.rem_calc(11 15);
 
-    @include media-query(1000, 'min') {
+    @include check-for-mobile(false) {
       padding: rem.rem_calc(7 39);
     }
 
@@ -143,7 +178,7 @@
       border-width: rem.rem_calc(2);
       padding: rem.rem_calc(10 14);
 
-      @include media-query(1000, 'min') {
+      @include check-for-mobile(false) {
         padding: rem.rem_calc(6 38);
       }
     }
@@ -155,7 +190,7 @@
       padding: rem.rem_calc(10 14);
       border-width: rem.rem_calc(2);
 
-      @include media-query(1000, 'min') {
+      @include check-for-mobile(false) {
         padding: rem.rem_calc(6 38);
       }
 
@@ -179,7 +214,7 @@
   }
 }
 
-@mixin fabContent() {
+@mixin fab-content() {
   align-items: center;
   border: 0;
   @include fonts.font(4, regular);
@@ -190,7 +225,7 @@
   padding: var(--bmb-spacing-s) var(--bmb-spacing-m);
 }
 
-@mixin fabSize($size: small, $type: normal) {
+@mixin fab-size($size: small, $type: normal) {
   @if $size == small and $type == normal {
     border-radius: rem.rem_calc(50);
     height: rem.rem_calc(40);
@@ -216,8 +251,8 @@
   }
 }
 
-@mixin fabInput() {
-  @include fabContent();
+@mixin fab-input() {
+  @include fab-content();
   bottom: rem.rem_calc(10);
   position: fixed;
   right: rem.rem_calc(10);
@@ -254,7 +289,7 @@
   }
 }
 
-@mixin shadow_mark($color_name, $opacity: 0.1) {
+@mixin shadow-mark($color_name, $opacity: 0.1) {
   content: '';
   height: rem.rem_calc(42);
   width: rem.rem_calc(42);
@@ -270,11 +305,11 @@
   left: rem.rem_calc(-14);
 }
 
-@mixin error_input() {
+@mixin error-input() {
   border-color: var(--input-error);
 }
 
-@mixin input_checked($height, $width) {
+@mixin input-checked($height, $width) {
   display: block;
   position: relative;
   margin: rem.rem_calc(2) auto 0;
@@ -282,15 +317,15 @@
   width: rem.rem_calc($width);
 }
 
-@mixin input_shadow($color_name) {
+@mixin input-shadow($color_name) {
   &:hover {
     &::before {
-      @include shadow_mark($color_name);
+      @include shadow-mark($color_name);
     }
   }
 }
 
-@mixin input_mark($color_name, $border_radius) {
+@mixin input-mark($color_name, $border_radius) {
   cursor: pointer;
   display: flex;
   position: relative;
@@ -308,16 +343,16 @@
   }
 
   &-error {
-    @include error_input();
+    @include error-input();
   }
 }
 
-@mixin input_placeholder() {
+@mixin input-placeholder() {
   @include fonts.font(4, regular);
   color: var(--general_contrasts-50);
 }
 
-@mixin normal_input() {
+@mixin normal-input() {
   box-sizing: border-box;
   border: rem.rem_calc(1) solid var(--general_contrasts-50);
   border-radius: rem.rem_calc(8);
@@ -327,7 +362,7 @@
   transition: all 0.3s ease;
 }
 
-@mixin normal_input_focus() {
+@mixin normal-input-focus() {
   &:focus,
   &:focus-visible,
   &-focus {
@@ -346,7 +381,7 @@
   }
 }
 
-@mixin truncated_string($max-block-size, $line-clamp) {
+@mixin truncated-string($max-block-size, $line-clamp) {
   display: -webkit-box;
   max-block-size: rem.rem_calc($max-block-size);
   -webkit-box-orient: vertical;
@@ -357,13 +392,13 @@
   text-overflow: ellipsis;
 }
 
-@mixin truncated_string_line() {
+@mixin truncated-string-line() {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
-@mixin dropdown_menu_left($max-width) {
+@mixin dropdown-menu-left($max-width) {
   .bmb_dropdown-content-modal {
     right: 0;
     left: inherit;
@@ -372,41 +407,51 @@
   }
 }
 
-@mixin helper_text() {
+@mixin helper-text() {
   @include fonts.font(4, regular);
   margin: 0;
 }
 
-@mixin normal_helper_text() {
-  @include helper_text();
+@mixin normal-helper-text() {
+  @include helper-text();
   color: var(--general_contrasts-input-outline);
 }
 
-@mixin error_helper_text() {
-  @include helper_text();
+@mixin error-helper-text() {
+  @include helper-text();
   color: var(--input-error);
 }
 
-@mixin checkForMobile($condition: true) {
+@mixin media-web-templates() {
+  @include media-range-query(
+    vars.$breakpoint_min_web,
+    rem.rem_calc(1800),
+    false
+  ) {
+    @content;
+  }
+}
+
+@mixin check-for-mobile($condition: true) {
   @if $condition == true {
-    @include media-query(1000, 'max') {
+    @include media-query(vars.$breakpoint_max_mobile, 'max', false) {
       @content;
     }
   } @else {
-    @include media-query(1001, 'min') {
+    @include media-query(vars.$breakpoint_min_web, 'min', false) {
       @content;
     }
   }
 }
 
-@mixin hiddenForMobile() {
-  @include checkForMobile() {
+@mixin hidden-for-mobile() {
+  @include check-for-mobile() {
     display: none;
   }
 }
 
-@mixin hiddenForNoMobile() {
-  @include checkForMobile(false) {
+@mixin hidden-for-no-mobile() {
+  @include check-for-mobile(false) {
     display: none;
   }
 }

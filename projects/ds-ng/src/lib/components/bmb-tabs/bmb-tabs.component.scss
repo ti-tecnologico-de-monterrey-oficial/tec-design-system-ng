@@ -82,24 +82,24 @@
     }
 
     &-mobile {
-      @include mixins.media-query(999, 'max') {
+      @include mixins.check-for-mobile() {
         display: block;
       }
 
       &-remove {
-        @include mixins.media-query(1000, 'min') {
+        @include mixins.check-for-mobile(false) {
           display: none;
         }
       }
     }
 
     &-desktop {
-      @include mixins.media-query(1000, 'min') {
+      @include mixins.check-for-mobile(false) {
         display: block;
       }
 
       &-remove {
-        @include mixins.media-query(999, 'max') {
+        @include mixins.check-for-mobile() {
           display: none;
         }
       }

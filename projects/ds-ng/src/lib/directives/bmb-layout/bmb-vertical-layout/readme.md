@@ -8,12 +8,12 @@
 
 ## Props / Parámetros
 
-| Propiedad      | Tipo                | Descripción                                                        | Valor por defecto | Obligatorio |
-|----------------|---------------------|--------------------------------------------------------------------|-------------------|-------------|
-| `gapSize`      | `SizeNames`         | Espacio (gap) entre los elementos del layout vertical              | `'m'`             | No          |
-| `justify`      | `IJustifyOptions`   | Justificación de los elementos (`start`, `center`, `end`, etc.)    | `'start'`         | No          |
-| `alignItems`   | `IAlignItemsOptions`| Alineación vertical de los elementos (`start`, `center`, etc.)     | `'start'`         | No          |
-| `layoutHeight` | `string`            | Altura total del layout vertical (ej. `'100%'`, `'80vh'`)          | `'100%'`          | No          |
+| Propiedad      | Tipo                 | Descripción                                                     | Valor por defecto | Obligatorio |
+| -------------- | -------------------- | --------------------------------------------------------------- | ----------------- | ----------- |
+| `gapSize`      | `SizeNames`          | Espacio (gap) entre los elementos del layout vertical           | `'m'`             | No          |
+| `justify`      | `IJustifyOptions`    | Justificación de los elementos (`start`, `center`, `end`, etc.) | `'start'`         | No          |
+| `alignItems`   | `IAlignItemsOptions` | Alineación vertical de los elementos (`start`, `center`, etc.)  | `'start'`         | No          |
+| `layoutHeight` | `string`             | Altura total del layout vertical (ej. `'100%'`, `'80vh'`)       | `'100%'`          | No          |
 
 ---
 
@@ -62,9 +62,9 @@
 
 ## Props / Parámetros
 
-| Propiedad  | Tipo     | Descripción                                      | Valor por defecto | Obligatorio |
-|------------|----------|--------------------------------------------------|-------------------|-------------|
-| `rowGrow`  | `number` | Valor de crecimiento vertical (flex-grow)         | `0`               | No          |
+| Propiedad | Tipo     | Descripción                               | Valor por defecto | Obligatorio |
+| --------- | -------- | ----------------------------------------- | ----------------- | ----------- |
+| `rowGrow` | `number` | Valor de crecimiento vertical (flex-grow) | `0`               | No          |
 
 ---
 

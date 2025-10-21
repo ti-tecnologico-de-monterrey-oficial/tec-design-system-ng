@@ -34,6 +34,34 @@ $alignItemsOptions: (
   'stretch': stretch,
 );
 
+@mixin margin-side($side, $i, $size) {
+  margin-#{$side}: calc(
+    #{math.percentage(math.div($i, $size))} + var(--bmb-gap) - (var(--bmb-gap) /
+          $size * #{$size - $i})
+  );
+}
+
+@mixin one-column() {
+  &:not(.bmb_col-sm-1):not(.bmb_col-sm-2):not(.bmb_col-sm-3):not(
+      .bmb_col-sm-4
+    ) {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+}
+
+@mixin columns($index) {
+  flex: 0 0
+    calc(
+      #{math.percentage(math.div($index, 12))} - (var(--bmb-gap) / 12 * #{12 -
+            $index})
+    ) !important;
+  max-width: calc(
+    #{math.percentage(math.div($index, 12))} - (var(--bmb-gap) / 12 * #{12 -
+          $index})
+  ) !important;
+}
+
 .bmb_layout {
   display: flex;
   flex-wrap: wrap;
@@ -62,24 +90,12 @@ $alignItemsOptions: (
   .bmb_col-lg-#{$i} {
     overflow: visible;
 
-    @include mixins.media-query(999, 'max') {
-      &:not(.bmb_col-sm-1):not(.bmb_col-sm-2):not(.bmb_col-sm-3):not(
-          .bmb_col-sm-4
-        ) {
-        flex: 0 0 100%;
-        max-width: 100%;
-      }
+    @include mixins.check-for-mobile() {
+      @include one-column();
     }
 
-    @include mixins.media-query(1000, 'min') {
-      flex: 0 0
-        calc(
-          #{math.percentage(math.div($i, 12))} - (var(--bmb-gap) / 12 * #{12 -
-                $i})
-        ) !important;
-      max-width: calc(
-        #{math.percentage(math.div($i, 12))} - (var(--bmb-gap) / 12 * #{12 - $i})
-      ) !important;
+    @include mixins.check-for-mobile(false) {
+      @include columns($i);
     }
   }
 }
@@ -88,16 +104,7 @@ $alignItemsOptions: (
   @each $margin, $size in $marginSizes {
     @for $i from 1 through $size {
       .bmb_space-#{$margin}-#{$side}-#{$i} {
-        @include mixins.media-query(
-          if($margin == 'sm', 999, 1000),
-          if($margin == 'sm', 'max', 'min')
-        ) {
-          margin-#{$side}: calc(
-            #{math.percentage(math.div($i, $size))} + var(--bmb-gap) - (var(
-                    --bmb-gap
-                  ) / $size * #{$size - $i})
-          );
-        }
+        @include margin-side($side, $i, $size);
       }
     }
   }

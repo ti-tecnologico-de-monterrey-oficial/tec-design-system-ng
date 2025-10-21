@@ -10,11 +10,11 @@ describe('TabsService', () => {
   });
 
   it('debe inicializar con lista de pestañas vacía y pestaña seleccionada nula', (done) => {
-    service.tabs$.subscribe(tabs => {
+    service.tabs$.subscribe((tabs) => {
       expect(tabs).toEqual([]);
       done();
     });
-    service.selectedTab$.subscribe(tab => {
+    service.selectedTab$.subscribe((tab) => {
       expect(tab).toBeNull();
     });
   });
@@ -25,7 +25,7 @@ describe('TabsService', () => {
       { title: 'Perfil', id: 2 },
     ];
     service.setTabs(tabs);
-    service.tabs$.subscribe(result => {
+    service.tabs$.subscribe((result) => {
       expect(result).toEqual(tabs);
       done();
     });
@@ -34,7 +34,7 @@ describe('TabsService', () => {
   it('debe seleccionar una pestaña', (done) => {
     const tab: IBmbTab = { title: 'Inicio', id: 1 };
     service.selectTab(tab);
-    service.selectedTab$.subscribe(selected => {
+    service.selectedTab$.subscribe((selected) => {
       expect(selected).toEqual(tab);
       done();
     });
@@ -45,11 +45,11 @@ describe('TabsService', () => {
     service.setTabs(tabs);
     service.selectTab(tabs[0]);
     service.resetTabs();
-    service.tabs$.subscribe(result => {
+    service.tabs$.subscribe((result) => {
       expect(result).toEqual([]);
       done();
     });
-    service.selectedTab$.subscribe(selected => {
+    service.selectedTab$.subscribe((selected) => {
       expect(selected).toBeNull();
     });
   });

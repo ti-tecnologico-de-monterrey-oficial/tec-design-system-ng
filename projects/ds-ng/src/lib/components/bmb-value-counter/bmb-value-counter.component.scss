@@ -2,7 +2,7 @@
 @use '../../../assets/styles/base/mixins' as mixins;
 @use '../../../assets/styles/base/rem' as rem;
 
-@mixin fontStyle {
+@mixin font-style {
   @include fonts.font(4, regular);
   color: RGBA(var(--color-charade-950));
 }
@@ -13,13 +13,13 @@
   gap: rem.rem_calc(8);
 
   &-label {
-    @include fontStyle();
+    @include font-style();
     flex: 1;
   }
 
   &-progress,
   &-slash {
-    @include fontStyle();
+    @include font-style();
   }
 
   &-value {

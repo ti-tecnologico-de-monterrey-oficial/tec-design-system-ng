@@ -4,7 +4,7 @@
 
 .bmb_calendar-header {
   padding-bottom: rem.rem_calc(16);
-  @include mixins.media-query(999, 'max') {
+  @include mixins.check-for-mobile() {
     display: none;
   }
 

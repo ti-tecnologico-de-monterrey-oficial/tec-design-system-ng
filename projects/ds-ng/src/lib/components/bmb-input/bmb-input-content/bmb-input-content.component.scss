@@ -2,19 +2,19 @@
 @use '../../../../assets/styles/base/mixins' as mixins;
 @use '../../../../assets/styles/base/rem' as rem;
 
-@mixin placeholder_padding($padding) {
+@mixin placeholder-padding($padding) {
   padding-left: $padding;
 }
 
 @mixin input($type: normal) {
-  @include mixins.resetElement();
+  @include mixins.reset-element();
   @include fonts.font(4, regular);
   color: var(--general_contrasts-100);
 
   &:focus,
   &:focus,
   &:hover {
-    @include mixins.focusElement();
+    @include mixins.focus-element();
   }
 
   @if $type == 'simple' {
@@ -29,7 +29,7 @@
     transition: all 0.3s ease;
 
     &.bmb_field-input-error {
-      @include mixins.error_input();
+      @include mixins.error-input();
     }
 
     &:focus,
@@ -48,18 +48,18 @@
       border-bottom: rem.rem_calc(2) solid var(--general_contrasts-50);
     }
   } @else {
-    @include placeholder_padding(var(--bmb-spacing-s));
-    @include mixins.normal_input();
+    @include placeholder-padding(var(--bmb-spacing-s));
+    @include mixins.normal-input();
 
     &.bmb_field-input-error {
-      @include mixins.error_input();
+      @include mixins.error-input();
     }
 
-    @include mixins.normal_input_focus();
+    @include mixins.normal-input-focus();
   }
 
   &::placeholder {
-    @include mixins.input_placeholder();
+    @include mixins.input-placeholder();
   }
 }
 
@@ -83,11 +83,11 @@
     transform: translateY(-50%);
 
     ~ .bmb_field-input-normal {
-      @include placeholder_padding(rem.rem_calc(39));
+      @include placeholder-padding(rem.rem_calc(39));
     }
 
     ~ .bmb_field-input-simple {
-      @include placeholder_padding(rem.rem_calc(31));
+      @include placeholder-padding(rem.rem_calc(31));
     }
 
     &-simple {

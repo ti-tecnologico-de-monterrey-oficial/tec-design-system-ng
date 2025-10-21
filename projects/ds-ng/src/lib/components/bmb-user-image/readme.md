@@ -8,22 +8,22 @@
 
 ## Props / Parámetros
 
-| Propiedad   | Tipo                | Descripción                                                        | Valor por defecto | Obligatorio |
-|-------------|---------------------|--------------------------------------------------------------------|-------------------|-------------|
-| `size`      | `IBmbUserImageSize` | Tamaño de la imagen (`small`, `medium`, `large`, etc.)             | -                 | No          |
-| `image`     | `string`            | URL de la imagen a mostrar                                         | `''`              | No          |
-| `altImage`  | `string`            | Texto alternativo para la imagen                                   | `''`              | No          |
-| `link`      | `string`            | URL de destino al hacer clic en la imagen                          | `''`              | No          |
-| `target`    | `IBmbTargetLink`    | Destino del enlace (`_blank`, `_self`, etc.)                       | -                 | No          |
-| `bordered`  | `boolean`           | Muestra la imagen con borde                                        | `false`           | No          |
+| Propiedad  | Tipo                | Descripción                                            | Valor por defecto | Obligatorio |
+| ---------- | ------------------- | ------------------------------------------------------ | ----------------- | ----------- |
+| `size`     | `IBmbUserImageSize` | Tamaño de la imagen (`small`, `medium`, `large`, etc.) | -                 | No          |
+| `image`    | `string`            | URL de la imagen a mostrar                             | `''`              | No          |
+| `altImage` | `string`            | Texto alternativo para la imagen                       | `''`              | No          |
+| `link`     | `string`            | URL de destino al hacer clic en la imagen              | `''`              | No          |
+| `target`   | `IBmbTargetLink`    | Destino del enlace (`_blank`, `_self`, etc.)           | -                 | No          |
+| `bordered` | `boolean`           | Muestra la imagen con borde                            | `false`           | No          |
 
 ### Outputs
 
-| Output           | Tipo           | Descripción                                  |
-|------------------|----------------|----------------------------------------------|
-| `buttonPress`    | `MouseEvent`   | Se emite al presionar el botón sobre la imagen|
-| `buttonClick`    | `MouseEvent`   | Se emite al hacer clic en la imagen          |
-| `buttonKeyPress` | `KeyboardEvent`| Se emite al interactuar por teclado          |
+| Output           | Tipo            | Descripción                                    |
+| ---------------- | --------------- | ---------------------------------------------- |
+| `buttonPress`    | `MouseEvent`    | Se emite al presionar el botón sobre la imagen |
+| `buttonClick`    | `MouseEvent`    | Se emite al hacer clic en la imagen            |
+| `buttonKeyPress` | `KeyboardEvent` | Se emite al interactuar por teclado            |
 
 ---
 

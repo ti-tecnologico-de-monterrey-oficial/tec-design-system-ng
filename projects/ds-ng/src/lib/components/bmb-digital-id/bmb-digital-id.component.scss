@@ -56,7 +56,7 @@
       background-color: rgb(var(--color-white-primary));
     }
 
-    .bmb_user-summary_content-wrapper-id {
+    .bmb_user-summary_content-wrapper-general-text {
       @include fonts.font(7, regular);
       color: rgba(var(--color-black-primary), 0.75);
     }

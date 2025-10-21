@@ -8,40 +8,40 @@
 
 ## Props / Parámetros
 
-| Propiedad                | Tipo                                      | Descripción                                                        | Valor por defecto | Obligatorio |
-|--------------------------|-------------------------------------------|--------------------------------------------------------------------|-------------------|-------------|
-| `showSearch`             | `boolean`                                 | Muestra u oculta el buscador global                                | `false`           | No          |
-| `pageSize`               | `number`                                  | Tamaño de página para paginación                                   | `10`              | No          |
-| `totalItems`             | `number`                                  | Total de elementos (modo servidor)                                 | `0`               | No          |
-| `data`                   | `any[]`                                   | Datos a mostrar en la tabla                                        | `[]`              | Sí          |
-| `columns`                | `TableColum[]`                            | Definición de columnas                                             | `[]`              | Sí          |
-| `config`                 | `TableConfig`                             | Configuración general (selección, expansión, paginación, acciones) | `{}`              | No          |
-| `truncate`               | `boolean`                                 | Activa truncado de texto en celdas                                 | `false`           | No          |
-| `lang`                   | `IBmbTableLang`                           | Idioma de la tabla (`es`, `en`)                                    | `'es'`            | No          |
-| `serverSide`             | `boolean`                                 | Activa modo servidor para paginación y filtros                     | `false`           | No          |
-| `filtersPosition`        | `IBmbFiltersPosition`                     | Posición de los filtros (`top`, `right`, `bottom`, `left`)         | `'top'`           | No          |
-| `initialTableSelection`  | `number[]`                                | Índices de filas seleccionadas al iniciar                          | `[]`              | No          |
-| `actionTemplate`         | `TemplateRef<any> \| null`                | Template personalizado para acciones                               | `null`            | No          |
-| `detailTemplate`         | `TemplateRef<any> \| null`                | Template personalizado para detalles expandibles                   | `null`            | No          |
+| Propiedad               | Tipo                       | Descripción                                                        | Valor por defecto | Obligatorio |
+| ----------------------- | -------------------------- | ------------------------------------------------------------------ | ----------------- | ----------- |
+| `showSearch`            | `boolean`                  | Muestra u oculta el buscador global                                | `false`           | No          |
+| `pageSize`              | `number`                   | Tamaño de página para paginación                                   | `10`              | No          |
+| `totalItems`            | `number`                   | Total de elementos (modo servidor)                                 | `0`               | No          |
+| `data`                  | `any[]`                    | Datos a mostrar en la tabla                                        | `[]`              | Sí          |
+| `columns`               | `TableColum[]`             | Definición de columnas                                             | `[]`              | Sí          |
+| `config`                | `TableConfig`              | Configuración general (selección, expansión, paginación, acciones) | `{}`              | No          |
+| `truncate`              | `boolean`                  | Activa truncado de texto en celdas                                 | `false`           | No          |
+| `lang`                  | `IBmbTableLang`            | Idioma de la tabla (`es`, `en`)                                    | `'es'`            | No          |
+| `serverSide`            | `boolean`                  | Activa modo servidor para paginación y filtros                     | `false`           | No          |
+| `filtersPosition`       | `IBmbFiltersPosition`      | Posición de los filtros (`top`, `right`, `bottom`, `left`)         | `'top'`           | No          |
+| `initialTableSelection` | `number[]`                 | Índices de filas seleccionadas al iniciar                          | `[]`              | No          |
+| `actionTemplate`        | `TemplateRef<any> \| null` | Template personalizado para acciones                               | `null`            | No          |
+| `detailTemplate`        | `TemplateRef<any> \| null` | Template personalizado para detalles expandibles                   | `null`            | No          |
 
 ### Modelos reactivos
 
-| Propiedad        | Tipo      | Descripción                                  |
-|------------------|-----------|----------------------------------------------|
-| `clearSelection` | `boolean` | Limpia la selección de filas desde fuera     |
-| `currentPage`    | `number`  | Página actual seleccionada                   |
-| `filtersVisible` | `boolean` | Estado visible/oculto del panel de filtros   |
+| Propiedad        | Tipo      | Descripción                                |
+| ---------------- | --------- | ------------------------------------------ |
+| `clearSelection` | `boolean` | Limpia la selección de filas desde fuera   |
+| `currentPage`    | `number`  | Página actual seleccionada                 |
+| `filtersVisible` | `boolean` | Estado visible/oculto del panel de filtros |
 
 ### Outputs
 
-| Output             | Tipo                                      | Descripción                                  |
-|--------------------|-------------------------------------------|----------------------------------------------|
-| `select`           | `any[]`                                   | Se emite al cambiar la selección de filas    |
-| `clickedRow`       | `any`                                     | Se emite al hacer clic en una fila           |
-| `searchChange`     | `string`                                  | Se emite al cambiar el texto del buscador    |
-| `filtersChange`    | `Record<string, any>`                     | Se emite al aplicar filtros                  |
-| `searchModeChange` | `'client' \| 'server'`                    | Se emite al cambiar el modo de búsqueda      |
-| `pageChange`       | `{ pageIndex: number; pageSize: number }` | Se emite al cambiar de página                |
+| Output             | Tipo                                      | Descripción                               |
+| ------------------ | ----------------------------------------- | ----------------------------------------- |
+| `select`           | `any[]`                                   | Se emite al cambiar la selección de filas |
+| `clickedRow`       | `any`                                     | Se emite al hacer clic en una fila        |
+| `searchChange`     | `string`                                  | Se emite al cambiar el texto del buscador |
+| `filtersChange`    | `Record<string, any>`                     | Se emite al aplicar filtros               |
+| `searchModeChange` | `'client' \| 'server'`                    | Se emite al cambiar el modo de búsqueda   |
+| `pageChange`       | `{ pageIndex: number; pageSize: number }` | Se emite al cambiar de página             |
 
 ---
 

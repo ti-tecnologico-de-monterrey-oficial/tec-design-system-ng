@@ -12,6 +12,7 @@ import { withThemeByClassName } from '@storybook/addon-themes';
 import docJson from '../../../documentation.json';
 import { allModes } from './modes';
 import {
+  PREVIEW_TITLE,
   STORIES_TITLE,
   TITLE_OF_CONTROLS,
   TOC_OBJ,
@@ -53,6 +54,7 @@ const preview: Preview = {
         return [
           Title({}),
           Description({}),
+          Heading({ children: PREVIEW_TITLE }),
           Primary({}),
           Heading({ children: TITLE_OF_CONTROLS }),
           Controls({}),
