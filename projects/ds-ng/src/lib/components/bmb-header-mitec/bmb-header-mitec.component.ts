@@ -7,6 +7,7 @@ import {
 import { IBmbActionHeader, IBmbLinkInfo } from '../../types';
 import { BmbNavigationBarComponent } from '../bmb-navigation-bar/bmb-navigation-bar.component';
 import { BmbMitecLogoAnimationComponent } from '../bmb-mitec-logo-animation/bmb-mitec-logo-animation.component';
+import { TranslatePipe } from '../../pipes/translations';
 
 export interface IBmbActionHeaderLinks {
   apple: IBmbLinkInfo;
@@ -20,14 +21,14 @@ export interface IBmbActionHeaderLinks {
 @Component({
   selector: 'bmb-header-mitec',
   standalone: true,
-  imports: [BmbMitecLogoAnimationComponent, BmbNavigationBarComponent],
+  imports: [BmbMitecLogoAnimationComponent, BmbNavigationBarComponent, TranslatePipe],
   templateUrl: './bmb-header-mitec.component.html',
   styleUrl: './bmb-header-mitec.component.scss',
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BmbHeaderMitecComponent {
-  headerLabel = input<string>('ESTUDIANTES');
+  headerLabel = input<string>();
   actionHeaderLinks = input<IBmbActionHeaderLinks>();
 
   _actionHeaders: IBmbActionHeader[] = [
