@@ -15,19 +15,20 @@ import {
 import { IBmbColor } from '../../types/colors';
 import { IBmbChatMessage } from '../bmb-chat-bubbles/types';
 import { BmbChatBubblesComponent } from '../bmb-chat-bubbles/bmb-chat-bubbles.component';
+import { TranslatePipe } from '../../pipes/translations';
 
 @Component({
   selector: 'bmb-home-card-chat',
   standalone: true,
-  imports: [BmbHomeCardComponent, BmbChatBarComponent, BmbChatBubblesComponent],
+  imports: [BmbHomeCardComponent, BmbChatBarComponent, BmbChatBubblesComponent, TranslatePipe],
   templateUrl: './bmb-home-card-chat.component.html',
   styleUrl: './bmb-home-card-chat.component.scss',
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BmbHomeCardChatComponent {
-  title = input<string>('Asistente TecBot');
-  subtitle = input<string>('Chat');
+  title = input<string>();
+  subtitle = input<string>();
   icon = input<string>('smart_toy');
   isMobile = input<boolean>(false);
   placeholder = input<string>('');
