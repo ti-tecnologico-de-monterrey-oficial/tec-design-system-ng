@@ -68,5 +68,23 @@
     "error_message_size": "El archivo supera el tamaño permitido",
     "format_files_label": "Especificación de formatos y peso",
     "link_label": "Ver más información de formatos de archivo aceptados."
+  },
+  "home_card_chat": {
+    "title": "Asistente TecBot",
+    "subtitle": "Chat"
+  },
+  "login": {
+    "header_label": "ESTUDIANTES",
+    "forgotten_password": "¿Olvidaste tu contraseña?",
+    "remember_me": "Recuérdame",
+    "login_as_guest": "Entrar como invitado",
+    "button_label": "Iniciar sesión"
+  },
+  "login_onboarding": {
+    "another_account": "Iniciar sesión con otra cuenta",
+    "forgot_password": "¿Olvidaste tu contraseña?"
+  },
+  "notice_card": {
+    "button_text": "Enterado"
   }
 }

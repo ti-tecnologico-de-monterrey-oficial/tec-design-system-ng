@@ -70,10 +70,24 @@
     "link_label": "View more information about accepted file formats."
   },
   "header_mitec": {
-    "header_label": "ESTUDIANTES"
+    "header_label": "STUDENTS"
   },
   "home_card_chat": {
     "title": "TecBot assistant",
     "subtitle": "Chat"
+  },
+  "login": {
+    "header_label": "STUDENTS",
+    "forgotten_password": "Forgot your password?",
+    "remember_me": "Remember me",
+    "login_as_guest": "Login as Guest",
+    "button_label": "Log In"
+  },
+  "login_onboarding": {
+    "another_account": "Log in with another account",
+    "forgot_password": "Forgot your password?"
+  },
+  "notice_card": {
+    "button_text": "Understood"
   }
 }

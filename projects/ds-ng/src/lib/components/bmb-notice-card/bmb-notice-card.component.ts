@@ -11,6 +11,7 @@ import { BmbDividerComponent } from '../bmb-divider/bmb-divider.component';
 import { BmbDotPaginatorComponent } from '../bmb-dot-paginator/bmb-dot-paginator.component';
 import { BmbButtonDirective } from '../../directives/bmb-button/button.directive';
 import { CommonModule } from '@angular/common';
+import { TranslatePipe } from '../../pipes/translations';
 
 export interface IBmbCardNoticeDescription {
   pageOne?: string;
@@ -26,6 +27,7 @@ export interface IBmbCardNoticeDescription {
     BmbDividerComponent,
     BmbDotPaginatorComponent,
     BmbButtonDirective,
+    TranslatePipe
   ],
   templateUrl: './bmb-notice-card.component.html',
   styleUrl: './bmb-notice-card.component.scss',
@@ -36,7 +38,7 @@ export class BmbNoticeCardComponent {
   src = input<string>('');
   title = input<string>('');
   description = input<IBmbCardNoticeDescription>();
-  buttonText = input<string>('Enterado');
+  buttonText = input<string>();
   link = input<string>('');
   closeBtnColor = input<'white' | 'black'>('white');
 
