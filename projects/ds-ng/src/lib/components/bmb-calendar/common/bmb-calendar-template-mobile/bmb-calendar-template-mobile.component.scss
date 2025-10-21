@@ -2,7 +2,7 @@
 @use '../../../../../assets/styles/base/fonts' as fonts;
 @use '../../../../../assets/styles/base/mixins' as mixins;
 
-@mixin buttonNavDark() {
+@mixin button-nav-dark() {
   color: RGBA(var(--color-charade-200), 0.5);
 
   &:hover:not(:disabled):not(.bmb-disabled),

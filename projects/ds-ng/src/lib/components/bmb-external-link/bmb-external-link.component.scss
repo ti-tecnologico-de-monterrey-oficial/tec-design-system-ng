@@ -32,7 +32,7 @@
     position: relative;
 
     &-list {
-      @include mixins.dropdown_menu_left(250);
+      @include mixins.dropdown-menu-left(250);
     }
   }
 }

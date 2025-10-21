@@ -7,13 +7,13 @@
 
   &-container {
     display: flex;
-    @include mixins.normal_input();
+    @include mixins.normal-input();
 
     &-error {
-      @include mixins.error_input();
+      @include mixins.error-input();
     }
 
-    @include mixins.normal_input_focus();
+    @include mixins.normal-input-focus();
 
     .bmb_input-validator-label {
       display: none;

@@ -71,7 +71,7 @@
   }
 }
 
-@mixin isOpen() {
+@mixin is-open() {
   animation: bounceChildrenMobile 0.6s ease-out forwards;
   height: 100vh;
   overflow: auto;
@@ -87,7 +87,7 @@
   }
 }
 
-@mixin isOpenMobile() {
+@mixin is-open-mobile() {
   $_position: rem.rem_calc(64);
   animation: bounceRightMobile 0.6s ease-out forwards;
   height: calc(100vh - $_position);
@@ -116,7 +116,7 @@
   margin: rem.rem_calc(16 0 0 0);
 }
 
-@mixin openModal() {
+@mixin open-modal() {
   display: flex;
   width: rem.rem_calc(264);
   opacity: 1;
@@ -159,12 +159,12 @@
       background-color: rgb(var(--color-black-primary));
       color: rgb(var(--color-white-primary));
 
-      @include mixins.hiddenForNoMobile();
+      @include mixins.hidden-for-no-mobile();
     }
 
     &.bmb_sidebar-open {
       display: block;
-      @include isOpenMobile();
+      @include is-open-mobile();
     }
 
     .bmb_sidebar-header {
@@ -259,7 +259,7 @@
       }
     }
 
-    @include mixins.checkForMobile(false) {
+    @include mixins.check-for-mobile(false) {
       display: block;
     }
 
@@ -268,14 +268,14 @@
 
       &:hover {
         .bmb_sidebar-children {
-          @include openModal();
+          @include open-modal();
           animation: bounceChildren 0.5s ease-out forwards;
         }
       }
     }
 
     .bmb_sidebar-children:hover {
-      @include openModal();
+      @include open-modal();
     }
   }
 

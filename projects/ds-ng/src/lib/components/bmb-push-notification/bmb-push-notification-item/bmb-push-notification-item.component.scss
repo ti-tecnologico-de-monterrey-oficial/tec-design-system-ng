@@ -2,12 +2,12 @@
 @use '../../../../assets/styles/base/fonts' as fonts;
 @use '../../../../assets/styles/base/mixins' as mixins;
 
-@mixin textEllipsis() {
+@mixin text-ellipsis() {
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
 
-  @include mixins.media-query(1000, 'min') {
+  @include mixins.check-for-mobile(false) {
     white-space: initial;
     text-overflow: initial;
   }
@@ -52,7 +52,7 @@ $types: (
   &-full-color {
     border-radius: rem.rem_calc(50);
 
-    @include mixins.media-query(1000, 'min') {
+    @include mixins.check-for-mobile(false) {
       border-radius: var(--bmb-radius-s);
     }
 
@@ -114,7 +114,7 @@ $types: (
     &-legend {
       flex: 1;
       overflow: hidden;
-      @include textEllipsis();
+      @include text-ellipsis();
     }
 
     &-date {
@@ -128,13 +128,13 @@ $types: (
     font-weight: 400;
     color: RGBA(var(--color-white-primary), 0.5);
     margin-bottom: var(--bmb-spacing-xs);
-    @include textEllipsis();
+    @include text-ellipsis();
   }
 
   &-content {
     @include fonts.font(3, regular);
     margin-bottom: 0;
-    @include textEllipsis();
+    @include text-ellipsis();
   }
 
   &-icon {
@@ -198,7 +198,7 @@ $types: (
       line-height: 0;
       white-space: nowrap;
 
-      @include mixins.media-query(1000, 'min') {
+      @include mixins.check-for-mobile(false) {
         line-height: inherit;
         opacity: 1;
         white-space: initial;
