@@ -86,5 +86,24 @@
   },
   "notice_card": {
     "button_text": "Enterado"
+  },
+  "step_progress_bar": {
+    "label_completed": "Completo",
+    "label_pending": "Pendiente"
+  },
+  "switch": {
+    "aria_label": "Describe la acción del interruptor"
+  },
+  "totp": {
+    "title": "TOTP",
+    "subtitle": "Contraseña de un solo uso"
+  },
+  "user_profile": {
+    "header": "ESTUDIANTES",
+    "another_account": "Iniciar sesión con otra cuenta",
+    "button_label": "Iniciar sesión"
+  },
+  "user_summary": {
+    "salutation": "Buenas tardes"
   }
 }

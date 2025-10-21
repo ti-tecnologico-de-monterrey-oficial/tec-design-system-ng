@@ -18,7 +18,7 @@ import { IBmbTargetLink, IBmbUserInfo } from '../../../types';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BmbUserProfileContentComponent {
-  anotherAccountLabel = input<string>('Ingresar con otra cuenta');
+  anotherAccountLabel = input<string>('');
   anotherAccountLink = input<string>('');
   anotherAccountTarget = input<IBmbTargetLink>('_blank');
   userInfo = input.required<IBmbUserInfo>();

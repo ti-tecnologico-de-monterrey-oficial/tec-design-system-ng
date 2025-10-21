@@ -13,6 +13,7 @@ import {
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
+import { BmbTranslationsService } from '../../services/translations/translations.service';
 
 const MOBILE_TABLET_QUERY = '(max-width: 992px)';
 
@@ -32,8 +33,8 @@ export class BmbStepProgressBarComponent {
   freeze = input<boolean>(false);
   type = input<'horizontal' | 'vertical' | 'step-panel'>('vertical');
   labelSteps = input<string[]>([]);
-  labelComplete = input<string>('Completo');
-  labelIncomplete = input<string>('Pendiente');
+  labelComplete = input<string>();
+  labelIncomplete = input<string>();
   stepTemplates = input<TemplateRef<any>[]>([]);
 
   onStepPress = output<number>();
@@ -48,7 +49,7 @@ export class BmbStepProgressBarComponent {
 
   readonly isMobileOrTablet = signal<boolean>(!!this.mql?.matches);
 
-  constructor() {
+  constructor(private translateService: BmbTranslationsService) {
     this.mql?.addEventListener(
       'change',
       (e) => this.isMobileOrTablet.set((e as MediaQueryListEvent).matches),
@@ -67,11 +68,19 @@ export class BmbStepProgressBarComponent {
   );
 
   readonly labelCompleteTruncated = computed(() =>
-    this.truncate(this.labelComplete(), this.maxChars()),
+    this.truncate(
+      this.labelComplete() ||
+        this.translateService.translate('step_progress_bar.label_completed'),
+      this.maxChars(),
+    ),
   );
 
   readonly labelIncompleteTruncated = computed(() =>
-    this.truncate(this.labelIncomplete(), this.maxChars()),
+    this.truncate(
+      this.labelIncomplete() ||
+        this.translateService.translate('step_progress_bar.label_pending'),
+      this.maxChars(),
+    ),
   );
 
   getStepsArray(): number[] {

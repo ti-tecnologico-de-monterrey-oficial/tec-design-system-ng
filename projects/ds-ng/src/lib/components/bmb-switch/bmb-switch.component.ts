@@ -15,6 +15,7 @@ import {
 } from '../../utils/formControl';
 import { getUUID } from '../../utils/utils';
 import { BmbInputValidatorComponent } from '../bmb-input/bmb-input-validator/bmb-input-validator.component';
+import { TranslatePipe } from '../../pipes/translations';
 
 @Component({
   selector: 'bmb-switch',
@@ -27,6 +28,7 @@ import { BmbInputValidatorComponent } from '../bmb-input/bmb-input-validator/bmb
     BmbInputValidatorComponent,
     FormsModule,
     BmbIconComponent,
+    TranslatePipe,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
@@ -38,7 +40,7 @@ export class BmbSwitchComponent {
   rightText = input<string>('');
   rightIcon = input<string>('');
   isChecked = model<boolean>(false);
-  ariaLabel = input<string>('Describe the button function here');
+  ariaLabel = input<string>();
   id = input<string>(''); //Deprecated
   disabled = input<boolean>(false);
   name = input<string>(getUUID());

@@ -11,7 +11,7 @@
     [userId]="id()"
     [image]="image()"
     [infoCareer]="infoCareer()"
-    [salutation]="salutation()"
+    [salutation]="salutation() || ('user_summary.salutation' | translate)"
   />
   @if (isProfile()) {
     <button

@@ -89,5 +89,21 @@
   },
   "notice_card": {
     "button_text": "Understood"
+  },
+  "step_progress_bar": {
+    "label_completed": "Complete",
+    "label_pending": "Pending"
+  },
+  "switch": {
+    "aria_label": "Describe the action of the switch"
+  },
+  "totp": {
+    "title": "TOTP",
+    "subtitle": "Time-based One-Time Password"
+  },
+  "user_profile": {
+    "header": "STUDENTS",
+    "another_account": "Log in with another account",
+    "button_label": "Log In"
   }
 }
