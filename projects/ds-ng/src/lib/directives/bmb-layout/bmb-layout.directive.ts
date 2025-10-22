@@ -22,8 +22,6 @@ export class BmbLayoutDirective {
   justify = input<IJustifyOptions>('start');
   alignItems = input<IAlignItemsOptions>('start');
   isQueryContainer = input<boolean>();
-  minBreakPoint = input<number>();
-  maxBreakPoint = input<number>();
 
   @HostBinding('class') get elementClass(): string[] {
     const baseClassName: string = 'bmb_layout';
