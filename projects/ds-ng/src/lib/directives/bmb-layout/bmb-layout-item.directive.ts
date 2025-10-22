@@ -1,4 +1,11 @@
-import { Directive, HostBinding, input } from '@angular/core';
+import {
+  AfterViewInit,
+  Directive,
+  ElementRef,
+  HostBinding,
+  input,
+  OnInit,
+} from '@angular/core';
 
 export type IColumSizeMobile = 0 | 1 | 2 | 3 | 4;
 export type IColumSizeFull =
@@ -24,7 +31,7 @@ export interface IMargin {
   selector: '[bmbLayoutItem]',
   standalone: true,
 })
-export class BmbLayoutItemDirective {
+export class BmbLayoutItemDirective implements OnInit, AfterViewInit {
   colSm = input<IColumSizeMobile>(0);
   colLg = input<IColumSizeFull>(0);
   marginLeft = input<IMargin>({ sm: 0, lg: 0 });
@@ -32,8 +39,10 @@ export class BmbLayoutItemDirective {
   colGrow = input<number>(0);
   isDynamicItem = input<boolean>(false);
 
+  constructor(private el: ElementRef) {}
+
   @HostBinding('class') get elementClass(): string[] {
-    const classes = ['bmb_layout-item'];
+    const classes = [];
 
     if (this.colSm()) classes.push(`bmb_col-sm-${this.colSm()}`);
     if (this.colLg()) classes.push(`bmb_col-lg-${this.colLg()}`);
@@ -54,9 +63,26 @@ export class BmbLayoutItemDirective {
 
   @HostBinding('style.flex') flex?: string;
 
-  ngOnInit() {
+  ngOnInit(): void {
     if (this.isDynamicItem() && this.colGrow()) {
       this.flex = `${this.colGrow()} 0 0%`;
+    }
+  }
+
+  ngAfterViewInit(): void {
+    const host = this.el.nativeElement;
+    const parent = host.parentElement;
+
+    if (
+      parent.classList.contains('bmb_layout-container') &&
+      !host.classList.contains('bmb_layout-container-item')
+    ) {
+      host.classList.add('bmb_layout-container-item');
+    } else if (
+      parent.classList.contains('bmb_layout') &&
+      !host.classList.contains('bmb_layout-item')
+    ) {
+      host.classList.add('bmb_layout-item');
     }
   }
 }

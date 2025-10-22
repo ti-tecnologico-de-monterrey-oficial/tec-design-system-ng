@@ -47,11 +47,7 @@
       padding-left: rem.rem_calc(30);
     }
 
-    @include mixins.media-range-query(
-      rem.rem_calc(631),
-      vars.$breakpoint_max_mobile,
-      false
-    ) {
+    @include mixins.media-range-query(631, vars.$breakpoint_max_mobile) {
       padding-left: rem.rem_calc(40);
     }
   }
@@ -108,11 +104,7 @@
       margin: var(--bmb-spacing-xxs);
     }
 
-    @include mixins.media-range-query(
-      rem.rem_calc(630),
-      vars.$breakpoint_max_mobile,
-      false
-    ) {
+    @include mixins.media-range-query(630, vars.$breakpoint_max_mobile) {
       margin-left: rem.rem_calc(15);
     }
   }
@@ -169,11 +161,7 @@
       margin: var(--bmb-spacing-xxs);
     }
 
-    @include mixins.media-range-query(
-      rem.rem_calc(630),
-      vars.$breakpoint_max_mobile,
-      false
-    ) {
+    @include mixins.media-range-query(630, vars.$breakpoint_max_mobile) {
       margin-left: rem.rem_calc(20);
     }
   }
@@ -226,11 +214,7 @@
       margin: var(--bmb-spacing-xxs);
     }
 
-    @include mixins.media-range-query(
-      rem.rem_calc(630),
-      vars.$breakpoint_max_mobile,
-      false
-    ) {
+    @include mixins.media-range-query(630, vars.$breakpoint_max_mobile) {
       margin-left: rem.rem_calc(20);
     }
   }
@@ -329,11 +313,7 @@
       margin: var(--bmb-spacing-xxs);
     }
 
-    @include mixins.media-range-query(
-      rem.rem_calc(630),
-      vars.$breakpoint_max_mobile,
-      false
-    ) {
+    @include mixins.media-range-query(630, vars.$breakpoint_max_mobile) {
       margin-left: rem.rem_calc(15);
     }
   }
@@ -392,11 +372,7 @@
       margin: var(--bmb-spacing-xxs);
     }
 
-    @include mixins.media-range-query(
-      rem.rem_calc(630),
-      vars.$breakpoint_max_mobile,
-      false
-    ) {
+    @include mixins.media-range-query(630, vars.$breakpoint_max_mobile) {
       margin-left: rem.rem_calc(15);
     }
   }
@@ -415,11 +391,7 @@
       margin: var(--bmb-spacing-xxs);
     }
 
-    @include mixins.media-range-query(
-      rem.rem_calc(630),
-      vars.$breakpoint_max_mobile,
-      false
-    ) {
+    @include mixins.media-range-query(630, vars.$breakpoint_max_mobile) {
       margin-left: rem.rem_calc(15);
     }
   }
@@ -465,11 +437,7 @@
       margin: var(--bmb-spacing-xxs);
     }
 
-    @include mixins.media-range-query(
-      rem.rem_calc(630),
-      vars.$breakpoint_max_mobile,
-      false
-    ) {
+    @include mixins.media-range-query(630, vars.$breakpoint_max_mobile) {
       margin-left: rem.rem_calc(20);
     }
   }

@@ -215,6 +215,9 @@ const HTML_TEMPLATE: string = `
           [idSelector]="1"
           [activeSelectorID]="selectedTab"
           bmbLayout
+          [isQueryContainer]="true"
+          [maxBreakPoint]="695"
+          [minBreakPoint]="696"
           margin="l"
           gapSize="xl"
         >

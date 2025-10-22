@@ -5,58 +5,51 @@
 @use '../base/vars' as vars;
 
 // Media query
-@mixin media-query($breakpoint, $condition, $is_px: true) {
+@mixin media-query($breakpoint, $condition) {
   $breakpoint_value: if(
     meta.type-of($breakpoint) == number,
     $breakpoint,
     string.slice($breakpoint, 1, -2)
   );
-  @if $is_px == true {
-    @media (#{$condition}-width: #{$breakpoint_value}px) {
-      @content;
-    }
-  } @else {
-    @media (#{$condition}-width: #{$breakpoint_value}) {
-      @content;
-    }
-  }
-}
 
-@mixin media-range-query($breakpoint_min, $breakpoint_max, $is_px: true) {
-  @if $is_px == true {
-    @media (width >= #{$breakpoint_min}px) and (width <= #{$breakpoint_max}px) {
-      @content;
-    }
-  } @else {
-    @media (width >= $breakpoint_min) and (width <= $breakpoint_max) {
-      @content;
-    }
-  }
-}
-
-@mixin container-query($breakpoint, $condition) {
-  /*
-  Add this property to parent style:
-    container-type: inline-size;
-  */
-  @container (#{$condition}-width: #{$breakpoint}px) {
+  @media (#{$condition}-width: #{rem.rem_calc($breakpoint_value)}) {
     @content;
   }
 }
 
-@mixin container-range-query($breakpoint_min, $breakpoint_max, $is_px: true) {
+@mixin media-range-query($breakpoint_min, $breakpoint_max) {
+  @media (width >= #{rem.rem_calc($breakpoint_min)}) and (width <= #{rem.rem_calc($breakpoint_max)}) {
+    @content;
+  }
+}
+
+@mixin container-query($breakpoint, $condition, $container_name: '') {
   /*
   Add this property to parent style:
     container-type: inline-size;
   */
-  @if $is_px == true {
-    @container (width >= #{$breakpoint_min}px) and (width <= #{$breakpoint_max}px) {
+  @if $container_name != '' {
+    @container #{$container_name} (#{$condition}-width: #{rem.rem_calc($breakpoint)}) {
       @content;
     }
   } @else {
-    @container (width >= $breakpoint_min) and (width <= $breakpoint_max) {
+    @container (#{$condition}-width: #{rem.rem_calc($breakpoint)}) {
       @content;
     }
+  }
+}
+
+@mixin container-range-query($breakpoint_min, $breakpoint_max) {
+  /*
+  Add this property to parent style:
+    container-type: inline-size;
+
+    container-name: [container-name];
+
+    container: [container-name] / inline-size;
+  */
+  @container (width >= #{rem.rem_calc($breakpoint_min)}) and (width <= #{rem.rem_calc($breakpoint_max)}) {
+    @content;
   }
 }
 
@@ -423,22 +416,18 @@
 }
 
 @mixin media-web-templates() {
-  @include media-range-query(
-    vars.$breakpoint_min_web,
-    rem.rem_calc(1800),
-    false
-  ) {
+  @include media-range-query(vars.$breakpoint_min_web, 1800) {
     @content;
   }
 }
 
 @mixin check-for-mobile($condition: true) {
   @if $condition == true {
-    @include media-query(vars.$breakpoint_max_mobile, 'max', false) {
+    @include media-query(vars.$breakpoint_max_mobile, 'max') {
       @content;
     }
   } @else {
-    @include media-query(vars.$breakpoint_min_web, 'min', false) {
+    @include media-query(vars.$breakpoint_min_web, 'min') {
       @content;
     }
   }
