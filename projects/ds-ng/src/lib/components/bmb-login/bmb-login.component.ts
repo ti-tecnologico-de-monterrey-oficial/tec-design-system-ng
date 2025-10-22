@@ -23,7 +23,7 @@ import { TranslatePipe } from '../../pipes/translations';
     BmbHeaderMitecComponent,
     BmbLoginContentComponent,
     BmbButtonDirective,
-    TranslatePipe
+    TranslatePipe,
   ],
   templateUrl: './bmb-login.component.html',
   styleUrl: './bmb-login.component.scss',

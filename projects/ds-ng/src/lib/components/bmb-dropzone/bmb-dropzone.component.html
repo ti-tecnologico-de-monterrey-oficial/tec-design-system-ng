@@ -16,22 +16,24 @@
     >
       <bmb-icon [icon]="mainIcon()" [size]="48" alt="Drop zone icon" />
     </div>
-    <p class="bmb-drop-zone-label-format">{{ formatFilesLabel() || ( 'dropzone.format_files_label' | translate) }}</p>
+    <p class="bmb-drop-zone-label-format">
+      {{ formatFilesLabel() || ('dropzone.format_files_label' | translate) }}
+    </p>
     <p class="bmb-drop-zone-label-format-instruction">
-      {{ dropInstruction() || ( 'dropzone.drop_instructions' | translate) }}
+      {{ dropInstruction() || ('dropzone.drop_instructions' | translate) }}
       <label class="bmb-drop-zone-link" [htmlFor]="name()">
-        {{ dropLabel() || ( 'dropzone.drop_label' | translate)  }}
+        {{ dropLabel() || ('dropzone.drop_label' | translate) }}
       </label>
     </p>
     @if (isInvalidFileOnly()) {
       <p class="bmb-drop-zone-label-format-error bmb-drop-zone-label-format">
-        {{ errorMessage() || ( 'dropzone.error_message' | translate) }}
+        {{ errorMessage() || ('dropzone.error_message' | translate) }}
       </p>
       @if (linkFilesSupported()) {
         <bmb-text-link
           textLinkStyle="underlined"
           [link]="linkFilesSupported()"
-          [textLink]="linkLabel() || ( 'dropzone.link_label' | translate) "
+          [textLink]="linkLabel() || ('dropzone.link_label' | translate)"
         />
       }
     }
@@ -106,9 +108,16 @@
                 @if (file.error) {
                   <span>
                     @if (file.errorType === 'format') {
-                      {{ errorMessageFormat() || ( 'dropzone.error_message_format' | translate)  }}
+                      {{
+                        errorMessageFormat() ||
+                          ('dropzone.error_message_format' | translate)
+                      }}
                     } @else if (file.errorType === 'size') {
-                      {{ errorMessageSize() || ( 'dropzone.error_message_size' | translate) }} ({{ file.size.toFixed(2) }} MB)
+                      {{
+                        errorMessageSize() ||
+                          ('dropzone.error_message_size' | translate)
+                      }}
+                      ({{ file.size.toFixed(2) }} MB)
                     }
                   </span>
                   <ng-container

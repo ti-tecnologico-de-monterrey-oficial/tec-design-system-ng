@@ -12,7 +12,9 @@
     appearance="transparent"
     size="large"
   >
-    <button type="button" (click)="goToToday()">{{ 'calendar.today' | translate }}</button>
+    <button type="button" (click)="goToToday()">
+      {{ 'calendar.today' | translate }}
+    </button>
     <button type="button" (click)="handleChangeDate('-')">
       <bmb-icon [icon]="'arrow_back_ios'" />
     </button>

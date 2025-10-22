@@ -4,11 +4,15 @@ import en from '../../../assets/i18n/en.json';
 
 export interface BmbDictionaries {
   [key: string]: {
-    [key: string]: string | {
-      [key: string]: string | {
-        [key: string]: string;
-      };
-    };
+    [key: string]:
+      | string
+      | {
+          [key: string]:
+            | string
+            | {
+                [key: string]: string;
+              };
+        };
   };
 }
 
@@ -36,10 +40,7 @@ export class BmbTranslationsService {
     }
   }
 
-  updateDictionary(
-    lang: string,
-    dictionary: BmbDictionaries,
-  ) {
+  updateDictionary(lang: string, dictionary: BmbDictionaries) {
     this.dictionaries.update((dicts) => {
       dicts[lang] = {
         ...dicts[lang],
@@ -49,10 +50,7 @@ export class BmbTranslationsService {
     });
   }
 
-  addDictionary(
-    lang: string,
-    dictionary: BmbDictionaries,
-  ) {
+  addDictionary(lang: string, dictionary: BmbDictionaries) {
     this.dictionaries.update((dicts) => {
       dicts[lang] = dictionary;
       return dicts;
@@ -60,8 +58,10 @@ export class BmbTranslationsService {
   }
 
   translate(keyList: string): string {
-    return keyList.split('.').reduce((acc: any, clave: string) => {
-      return acc && acc[clave] !== undefined ? acc[clave] : undefined;
-    }, this.dictionaries()[this.currentLanguage()]) ?? keyList;
+    return (
+      keyList.split('.').reduce((acc: any, clave: string) => {
+        return acc && acc[clave] !== undefined ? acc[clave] : undefined;
+      }, this.dictionaries()[this.currentLanguage()]) ?? keyList
+    );
   }
 }
