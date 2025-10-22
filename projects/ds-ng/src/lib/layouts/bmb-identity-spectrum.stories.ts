@@ -215,7 +215,7 @@ const HTML_TEMPLATE: string = `
           [idSelector]="1"
           [activeSelectorID]="selectedTab"
           bmbLayout
-          [isQueryContainer]="true"
+          [isContainerQuery]="true"
           margin="l"
           gapSize="xl"
         >

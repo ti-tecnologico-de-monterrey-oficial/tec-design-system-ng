@@ -21,7 +21,7 @@ export class BmbLayoutDirective {
   dynamicCols = input<boolean>(false);
   justify = input<IJustifyOptions>('start');
   alignItems = input<IAlignItemsOptions>('start');
-  isQueryContainer = input<boolean>();
+  isContainerQuery = input<boolean>();
 
   @HostBinding('class') get elementClass(): string[] {
     const baseClassName: string = 'bmb_layout';
@@ -33,7 +33,7 @@ export class BmbLayoutDirective {
     ];
 
     if (this.dynamicCols()) classes.push(`${baseClassName}-smart`);
-    if (this.isQueryContainer()) classes.push(`${baseClassName}-container`);
+    if (this.isContainerQuery()) classes.push(`${baseClassName}-container`);
     else classes.push(baseClassName);
 
     return classes;

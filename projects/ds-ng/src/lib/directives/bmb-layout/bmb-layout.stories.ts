@@ -105,7 +105,7 @@ ${getBasicExampleBlock('BmbLayoutDirective, BmbLayoutItemDirective')}
     },
     justify: DBmbLayoutParamDesc.justify,
     alignItems: DBmbLayoutParamDesc.alignItems,
-    isQueryContainer: {
+    isContainerQuery: {
       control: { type: 'boolean' },
       description: `Marks the layout as a query container when true.<br/><br/>
 ${RELEVANT_TITLE.configuration}
