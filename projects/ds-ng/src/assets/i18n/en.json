@@ -105,5 +105,9 @@
     "header": "STUDENTS",
     "another_account": "Log in with another account",
     "button_label": "Log In"
+  },
+  "user_summary": {
+    "salutation": "Good afternoon",
+    "digital_id": "Digital ID"
   }
 }

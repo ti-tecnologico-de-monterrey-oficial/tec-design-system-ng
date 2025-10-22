@@ -21,13 +21,13 @@ import { TranslatePipe } from '../../pipes/translations';
 })
 export class BmbBalanceOverviewComponent {
   progressCirclePercent = input<number>(0);
-  progressCircleValue = input<string>();
+  progressCircleValue = input<string>('');
   showProgressCircleValue = input<boolean>(true);
-  progressCircleTitle = input<string | string[]>();
+  progressCircleTitle = input<string | string[]>('');
   showProgressCircleTitle = input<boolean>(true);
   showProgressCircleBackground = input<boolean>(true);
-  labelPrimary = input<string>();
-  valuePrimary = input<string>();
-  labelSecondary = input<string>();
-  valueSecondary = input<string>();
+  labelPrimary = input<string>('');
+  valuePrimary = input<string>('');
+  labelSecondary = input<string>('');
+  valueSecondary = input<string>('');
 }

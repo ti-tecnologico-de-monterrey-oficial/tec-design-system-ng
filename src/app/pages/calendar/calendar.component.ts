@@ -12,8 +12,7 @@ import { DateTime } from 'luxon';
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'app-calendar',
   standalone: true,
-  imports: [BmbCalendarComponent,
-  BmbSwitchComponent,],
+  imports: [BmbCalendarComponent, BmbSwitchComponent],
   templateUrl: './calendar.component.html',
   styleUrl: './calendar.component.scss',
 })
@@ -33,7 +32,6 @@ export class CalendarComponent implements OnInit {
 
   generateEvents(): IBmbCalendarEvent[] {
     const today: DateTime = DateTime.fromISO('2025-08-26T13:00:00-06:00');
-
 
     const events: IBmbCalendarEvent[] = [
       {

@@ -20,15 +20,15 @@ describe('BmbBalanceOverviewComponent', () => {
 
   it('should have default input values', () => {
     expect(component.progressCirclePercent()).toBe(0);
-    expect(component.progressCircleValue()).toBe('Progress Value');
+    expect(component.progressCircleValue()).toBe('');
     expect(component.showProgressCircleValue()).toBe(true);
-    expect(component.progressCircleTitle()).toBe('Title');
+    expect(component.progressCircleTitle()).toBe('');
     expect(component.showProgressCircleTitle()).toBe(true);
     expect(component.showProgressCircleBackground()).toBe(true);
-    expect(component.labelPrimary()).toBe('Primary Label');
-    expect(component.valuePrimary()).toBe('$0');
-    expect(component.labelSecondary()).toBe('Secondary Label');
-    expect(component.valueSecondary()).toBe('$0');
+    expect(component.labelPrimary()).toBe('');
+    expect(component.valuePrimary()).toBe('');
+    expect(component.labelSecondary()).toBe('');
+    expect(component.valueSecondary()).toBe('');
   });
 
   it('should update input values', () => {

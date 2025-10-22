@@ -2,7 +2,6 @@ import { computed, Injectable, signal } from '@angular/core';
 import es from '../../../assets/i18n/es.json';
 import en from '../../../assets/i18n/en.json';
 
-export type BmbSupportedLanguages = 'es' | 'en';
 export interface BmbDictionaries {
   [key: string]: {
     [key: string]: string | {
@@ -27,7 +26,7 @@ export class BmbTranslationsService {
     return this.currentLanguage();
   }
 
-  setLanguage(lang: BmbSupportedLanguages) {
+  setLanguage(lang: string) {
     if (this.dictionaries()[lang]) {
       this.currentLanguage.set(lang);
     } else {
@@ -37,9 +36,32 @@ export class BmbTranslationsService {
     }
   }
 
+  updateDictionary(
+    lang: string,
+    dictionary: BmbDictionaries,
+  ) {
+    this.dictionaries.update((dicts) => {
+      dicts[lang] = {
+        ...dicts[lang],
+        ...dictionary,
+      };
+      return dicts;
+    });
+  }
+
+  addDictionary(
+    lang: string,
+    dictionary: BmbDictionaries,
+  ) {
+    this.dictionaries.update((dicts) => {
+      dicts[lang] = dictionary;
+      return dicts;
+    });
+  }
+
   translate(keyList: string): string {
     return keyList.split('.').reduce((acc: any, clave: string) => {
       return acc && acc[clave] !== undefined ? acc[clave] : undefined;
-    }, this.selectedDictionary()) ?? keyList;
+    }, this.dictionaries()[this.currentLanguage()]) ?? keyList;
   }
 }

@@ -69,6 +69,9 @@
     "format_files_label": "Especificación de formatos y peso",
     "link_label": "Ver más información de formatos de archivo aceptados."
   },
+  "header_mitec": {
+    "header_label": "ESTUDIANTES"
+  },
   "home_card_chat": {
     "title": "Asistente TecBot",
     "subtitle": "Chat"
@@ -104,6 +107,7 @@
     "button_label": "Iniciar sesión"
   },
   "user_summary": {
-    "salutation": "Buenas tardes"
+    "salutation": "Buenas tardes",
+    "digital_id": "ID Digital"
   }
 }

@@ -11,7 +11,6 @@ import { IBmbAdvertisementData } from './types';
 import { BmbHomeCardComponent } from '../bmb-home-card/bmb-home-card.component';
 import { BmbCarouselComponent } from '../bmb-carousel/bmb-carousel.component';
 import { BmbTabsComponent, IBmbTab } from '../bmb-tabs/bmb-tabs.component';
-import es from '../../../assets/i18n/es.json';
 import { TranslatePipe } from '../../pipes/translations';
 
 @Component({
@@ -32,8 +31,8 @@ import { TranslatePipe } from '../../pipes/translations';
 })
 export class BmbAdvertisementCardComponent {
   data = model<IBmbAdvertisementData>();
-  title = input<string>();
-  subtitle = input<string>();
+  title = input<string>('');
+  subtitle = input<string>('');
 
   expanded: boolean = false;
   selectedTabId: number = 0;
