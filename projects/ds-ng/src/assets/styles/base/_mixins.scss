@@ -26,7 +26,11 @@
 @mixin container-query($breakpoint, $condition, $container_name: '') {
   /*
   Add this property to parent style:
-    container-type: inline-size;
+  container-type: inline-size;
+
+  container-name: [container-name];
+
+  container: [container-name] / inline-size;
   */
   @if $container_name != '' {
     @container #{$container_name} (#{$condition}-width: #{rem.rem_calc($breakpoint)}) {
@@ -39,17 +43,27 @@
   }
 }
 
-@mixin container-range-query($breakpoint_min, $breakpoint_max) {
+@mixin container-range-query(
+  $breakpoint_min,
+  $breakpoint_max,
+  $container_name: ''
+) {
   /*
   Add this property to parent style:
-    container-type: inline-size;
+  container-type: inline-size;
 
-    container-name: [container-name];
+  container-name: [container-name];
 
-    container: [container-name] / inline-size;
+  container: [container-name] / inline-size;
   */
-  @container (width >= #{rem.rem_calc($breakpoint_min)}) and (width <= #{rem.rem_calc($breakpoint_max)}) {
-    @content;
+  @if $container_name != '' {
+    @container #{$container_name} (width >= #{rem.rem_calc($breakpoint_min)}) and (width <= #{rem.rem_calc($breakpoint_max)}) {
+      @content;
+    }
+  } @else {
+    @container (width >= #{rem.rem_calc($breakpoint_min)}) and (width <= #{rem.rem_calc($breakpoint_max)}) {
+      @content;
+    }
   }
 }
 
