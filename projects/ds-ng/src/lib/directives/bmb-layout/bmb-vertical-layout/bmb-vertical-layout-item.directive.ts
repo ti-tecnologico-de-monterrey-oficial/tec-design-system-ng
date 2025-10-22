@@ -1,4 +1,4 @@
-import { Directive, effect, HostBinding, input, OnInit } from '@angular/core';
+import { Directive, effect, HostBinding, input } from '@angular/core';
 
 @Directive({
   selector: '[bmbVerticalLayoutItem]',
