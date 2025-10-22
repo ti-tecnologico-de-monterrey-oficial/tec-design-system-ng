@@ -28,7 +28,6 @@ describe('BmbCalendarComponent', () => {
     expect(component.clientTimezone()).toBe(
       Intl.DateTimeFormat().resolvedOptions().timeZone,
     );
-    expect(component.lang()).toBe('es-MX');
     expect(component.height()).toBe('100%');
   });
 

@@ -22,6 +22,7 @@ import {
 import { BmbInputContentComponent } from '../bmb-input/bmb-input-content/bmb-input-content.component';
 import { BmbContainerComponent } from '../bmb-container/bmb-container.component';
 import { getUUID } from '../../utils/utils';
+import { TranslatePipe } from '../../pipes/translations';
 
 @Component({
   selector: 'bmb-totp',
@@ -35,6 +36,7 @@ import { getUUID } from '../../utils/utils';
     BmbIconComponent,
     BmbInputContentComponent,
     BmbButtonDirective,
+    TranslatePipe,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
@@ -42,8 +44,8 @@ import { getUUID } from '../../utils/utils';
 export class BmbTotpComponent {
   private destroy$ = new Subject<void>();
 
-  title = input<string>('TOTP');
-  subtitle = input<string>('(Time-based One-time Password)');
+  title = input<string>();
+  subtitle = input<string>();
   instanceId = input<string>(getUUID());
   codeError = input<boolean>(false);
   errorMessage = input<string>('');

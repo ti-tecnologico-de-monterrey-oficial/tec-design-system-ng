@@ -18,6 +18,8 @@ import { orderDayNames } from '../../../../utils/utils';
 import { BmbInnerHeaderComponent } from '../../../bmb-inner-header/bmb-inner-header.component';
 import { BmbChevronTitleSelectorComponent } from '../../../bmb-chevron-title-selector/bmb-chevron-title-selector.component';
 import { BmbPullWedgeComponent } from '../../../bmb-pull-wedge/bmb-pull-wedge.component';
+import { BmbTranslationsService } from '../../../../services/translations/translations.service';
+import { TranslatePipe } from '../../../../pipes/translations';
 
 @Component({
   selector: 'bmb-calendar-template-mobile',
@@ -28,6 +30,7 @@ import { BmbPullWedgeComponent } from '../../../bmb-pull-wedge/bmb-pull-wedge.co
     BmbInnerHeaderComponent,
     BmbChevronTitleSelectorComponent,
     BmbPullWedgeComponent,
+    TranslatePipe,
   ],
   templateUrl: './bmb-calendar-template-mobile.component.html',
   styleUrl: './bmb-calendar-template-mobile.component.scss',
@@ -37,21 +40,21 @@ import { BmbPullWedgeComponent } from '../../../bmb-pull-wedge/bmb-pull-wedge.co
 export class BmbCalendarTemplateMobileComponent {
   weekDays = input<DateTime[]>([]);
   now = input<DateTime>(DateTime.now());
-  lang = input<string>('es-MX');
   events = input<IBmbParsedDates>({});
-  calendarTitle = input<string>('Mi calendario');
+  calendarTitle = input<string>();
   disableMobileFilter = input<boolean>(false);
 
   onClose = output<any>();
   onCurrentDateChange = output<DateTime>();
   showFilters = output<void>();
 
-  monthsNames = Info.months('long', { locale: this.lang() });
+  locale = computed(() => this.translationsService.getCurrentLanguage());
+  monthsNames = Info.months('long', { locale: this.locale() });
   month = this.monthsNames[this.now().month - 1];
   year = this.now().year;
   isCalendarOpen = false;
-  defaultDayOrder = Info.weekdays('narrow', { locale: this.lang() });
-  dayNames = orderDayNames(this.defaultDayOrder);
+  defaultDayOrder = computed(() => Info.weekdays('narrow', { locale: this.locale() }));
+  dayNames = computed(() => orderDayNames(this.defaultDayOrder()));
   isWedgeOpen = false;
 
   weekAndDays = computed(() => {
@@ -69,6 +72,8 @@ export class BmbCalendarTemplateMobileComponent {
   });
 
   modalId = signal<string | null>(null);
+
+  constructor(private translationsService: BmbTranslationsService) {}
 
   handleClose() {
     this.onClose.emit('close');

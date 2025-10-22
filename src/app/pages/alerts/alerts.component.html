@@ -6,43 +6,27 @@
   style="height: calc(100% - 230px)"
   class="bmb_template-margin-for-sidebar;"
 >
-  <bmb-alert-center
-    [alerts]="alerts()"
-    [dateFormat]="'dd/MM/yyyy'"
-    [hideTabs]="false"
-    (closeAlertDetail)="handleCloseDetail($event)"
-    (navigationBarEvents)="handleNavigationBarEvents($event)"
-    (showAlertDetail)="handleShowAlert($event)"
-  />
+  <bmb-account-statement
+    [progressCircleTitle]="['Total a pagar', 'este mes']"
+    [labelPrimary]="'Cuota Mensual'"
+    [labelSecondary]="'Pendiente'"
+    [totalCount]="10000"
+    [counter]="1000"
+    [progressTitle]="'Total pagado'"
+    [formatDates]="'yyyy-MM-dd'"
+    [paymentDeadline]="'2024-10-20'"
+    [cutOffDate]="'2024-10-01'"
+    [paymentDeadlineLabel]="'Fecha límite de pago:'"
+    [cutOffDateLabel]="'Fecha de corte:'"
+    [payButtonLabel]="'Pagar'"
+    [backButtonLabel]="'Regresar'"
+    [modalTitle]="'Nombre de clase'"
+    [modalSubtitle]="'TS-0001'"
+    [modalRestLabel]="'Pagar restante'"
+    [modalOtherAmountLabel]="'Otra cantidad'"
+    [modalPrimaryButtonLabel]="'Pagar'"
+    [errorMessage]="
+      'Error, Este campo es requerido y debe ser una cantidad entre 1 y 9000'
+    "
+  ></bmb-account-statement>
 </div>
-<footer style="padding: 1rem">
-  <button bmbButton appearance="destructive" (click)="handleDeleteAllAlerts()">
-    Delete all alerts
-  </button>
-  <button
-    bmbButton
-    appearance="secondary-filled"
-    (click)="handleChangeAlertStatus()"
-  >
-    Change alert status
-  </button>
-</footer>
-<dialog
-  style="
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    border: none;
-    background: rgba(0, 0, 0, 0.5);
-    width: 100%;
-  "
-  open
->
-  <bmb-notification-card
-    [data]="alerts()"
-    maxHeight="500px"
-    [advertisements]="[]"
-  ></bmb-notification-card>
-</dialog>

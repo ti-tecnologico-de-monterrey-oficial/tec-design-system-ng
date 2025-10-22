@@ -14,6 +14,10 @@ export * from './lib/services/modal/native-modal.service';
 export * from './lib/services/projection/projection.service';
 export * from './lib/services/theme/theme.service';
 export * from './lib/services/toast/toast.service';
+export * from './lib/services/translations/translations.service';
+
+// Pipes
+export * from './lib/pipes/translations';
 
 // Directives
 export * from './lib/ds-ng.component';

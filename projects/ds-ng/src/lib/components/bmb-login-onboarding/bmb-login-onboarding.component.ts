@@ -12,6 +12,7 @@ import { BmbLoginOnboardingLogoutComponent } from './bmb-login-onboarding-logout
 import { BmbLoginOnboardingLoggedComponent } from './bmb-login-onboarding-logged/bmb-login-onboarding-logged.component';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { IBmbLinkConfiguration } from '../../types';
+import { BmbTranslationsService } from '../../services/translations/translations.service';
 
 export interface IBmbLoginOnBoardingCustomization {
   anotherAccount: IBmbLinkConfiguration;
@@ -36,22 +37,37 @@ export interface IBmbLoginOnBoardingCustomization {
 export class BmbLoginOnboardingComponent {
   loginOnBoardingCustomization = input<IBmbLoginOnBoardingCustomization>({
     anotherAccount: {
-      label: 'Ingresar con otra cuenta',
+      label: '',
       link: '',
     },
     forgottenPassword: {
-      label: '¿Olvidaste tu contraseña?',
+      label: '',
       link: '',
     },
   });
   handleRequest = output<any>();
 
-  constructor(private loginOnboardingService: BmbLoginOnboardingService) {}
+  constructor(
+    private loginOnboardingService: BmbLoginOnboardingService,
+    private translationService: BmbTranslationsService,
+  ) {}
 
   ngOnInit(): void {
-    this.loginOnboardingService.setLoginOnBoardingCustomization(
-      this.loginOnBoardingCustomization(),
-    );
+    const anotherAccountLabel = this.loginOnBoardingCustomization().anotherAccount.label ||
+      this.translationService.translate('login_onboarding.another_account');
+    const forgottenPasswordLabel = this.loginOnBoardingCustomization().forgottenPassword.label ||
+      this.translationService.translate('login_onboarding.forgot_password');
+
+    this.loginOnboardingService.setLoginOnBoardingCustomization({
+      anotherAccount: {
+        ...this.loginOnBoardingCustomization().anotherAccount,
+        label: anotherAccountLabel,
+      },
+      forgottenPassword: {
+        ...this.loginOnBoardingCustomization().forgottenPassword,
+        label: forgottenPasswordLabel,
+      }
+    });
   }
 
   getIsLoading(): boolean {

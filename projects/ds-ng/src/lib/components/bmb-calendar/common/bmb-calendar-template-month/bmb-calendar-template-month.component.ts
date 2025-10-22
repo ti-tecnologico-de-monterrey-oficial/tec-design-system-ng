@@ -9,7 +9,6 @@ import {
   computed,
 } from '@angular/core';
 import {
-  IBmbCalendarHourFormat,
   IBmbCalendarEvent,
   IBmbCalendarEventClick,
   IBmbCalendarRenderEvents,
@@ -19,6 +18,7 @@ import { DateTime } from 'luxon';
 import { eventsInDate, dayName, weeksAndDays } from '../../utils';
 import { CommonModule } from '@angular/common';
 import { BmbCalendarScheduleCardsComponent } from '../bmb-calendar-schedule-cards/bmb-calendar-schedule-cards.component';
+import { BmbTranslationsService } from '../../../../services/translations/translations.service';
 
 @Component({
   selector: 'bmb-calendar-template-month',
@@ -30,12 +30,15 @@ import { BmbCalendarScheduleCardsComponent } from '../bmb-calendar-schedule-card
   encapsulation: ViewEncapsulation.None,
 })
 export class BmbCalendarTemplateMonthComponent {
-  lang = input<string>('es-MX');
   now = input<DateTime>(DateTime.now());
   events = input<IBmbParsedDates>({});
 
   @Output() onSelectEvent: EventEmitter<IBmbCalendarEventClick> =
     new EventEmitter<IBmbCalendarEventClick>();
+
+  constructor(private translationsService: BmbTranslationsService) {}
+
+  locale = computed(() => this.translationsService.getCurrentLanguage());
 
   weeksAndDaysList = computed<DateTime[]>(() => weeksAndDays(this.now()));
   eventsOnDate = computed<IBmbCalendarEvent[][]>(() => {
@@ -46,8 +49,8 @@ export class BmbCalendarTemplateMonthComponent {
     });
   });
 
-  getDayName(date: DateTime, lang: string) {
-    return dayName(date, lang);
+  getDayName(date: DateTime) {
+    return dayName(date, this.locale());
   }
 
   isNow(date: DateTime): boolean {

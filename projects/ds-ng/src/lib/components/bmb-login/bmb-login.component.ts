@@ -14,6 +14,7 @@ import {
 } from '../bmb-header-mitec/bmb-header-mitec.component';
 import { IBmbActionHeader, IBmbTargetLink } from '../../types';
 import { BmbLoginContentComponent } from './bmb-login-content/bmb-login-content.component';
+import { TranslatePipe } from '../../pipes/translations';
 
 @Component({
   selector: 'bmb-login',
@@ -22,6 +23,7 @@ import { BmbLoginContentComponent } from './bmb-login-content/bmb-login-content.
     BmbHeaderMitecComponent,
     BmbLoginContentComponent,
     BmbButtonDirective,
+    TranslatePipe
   ],
   templateUrl: './bmb-login.component.html',
   styleUrl: './bmb-login.component.scss',
@@ -29,17 +31,17 @@ import { BmbLoginContentComponent } from './bmb-login-content/bmb-login-content.
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BmbLoginComponent {
-  headerLabel = input<string>('ESTUDIANTES');
-  forgottenPasswordLabel = input<string>('¿Olvidaste tu contraseña?');
+  headerLabel = input<string>();
+  forgottenPasswordLabel = input<string>();
   forgottenPasswordLink = input<string>('');
   forgottenPasswordTarget = input<IBmbTargetLink>('_blank');
   showRememberMeCheckbox = input<boolean>(false);
-  rememberMeCheckboxLabel = input<string>('Recordarme');
+  rememberMeCheckboxLabel = input<string>();
   showLoginAsGuest = input<boolean>(false);
-  loginAsGuestLabel = input<string>('Entrar como invitado');
+  loginAsGuestLabel = input<string>();
   loginAsGuestLink = input<string>('');
   loginAsGuestTarget = input<IBmbTargetLink>('_blank');
-  buttonLabel = input<string>('Ingresar');
+  buttonLabel = input<string>();
   actionHeaderLinks = input<IBmbActionHeaderLinks>();
   actionHeaders = input<IBmbActionHeader[]>([]); //Deprecated
 

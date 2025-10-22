@@ -17,6 +17,7 @@ import {
 import { BmbProgressBarComponent } from '../bmb-progress-bar/bmb-progress-bar.component';
 import { getUUID } from '../../utils/utils';
 import { IBmbContrast } from '../../types/colors';
+import { TranslatePipe } from '../../pipes/translations';
 interface FileData {
   name: string;
   size: number;
@@ -35,6 +36,7 @@ interface FileData {
     BmbCardComponent,
     BmbCardContentComponent,
     BmbProgressBarComponent,
+    TranslatePipe,
   ],
   templateUrl: './bmb-dropzone.component.html',
   styleUrl: './bmb-dropzone.component.scss',
@@ -44,18 +46,16 @@ interface FileData {
 export class BmbDropzoneComponent {
   appearanceContrast = input<IBmbContrast>('default');
   acceptedExtensions = input.required<string[]>();
-  dropInstruction = input<string>('Arrastra tus archivos aquí o');
-  dropLabel = input<string>('selecciona tus archivos');
-  errorMessage = input<string>('Archivo no compatible');
-  errorMessageFormat = input<string>('Formato no soportado');
-  errorMessageSize = input<string>('El archivo supera el tamaño permitido');
+  dropInstruction = input<string>();
+  dropLabel = input<string>();
+  errorMessage = input<string>();
+  errorMessageFormat = input<string>();
+  errorMessageSize = input<string>();
   fileDataList: FileData[] = [];
   fileSize = input<number>(2);
-  formatFilesLabel = input<string>('Especificación de formatos y peso');
+  formatFilesLabel = input<string>();
   linkFilesSupported = input<string>('');
-  linkLabel = input<string>(
-    'Ver más información de formatos de archivo aceptados.',
-  );
+  linkLabel = input<string>();
   mainIcon = input<string>('image');
   multiple = input<boolean>(false);
   name = input<string>(getUUID());

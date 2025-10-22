@@ -1,8 +1,10 @@
-import { Component, model, OnInit } from '@angular/core';
+import { Component, computed, model, OnInit } from '@angular/core';
 import {
   BmbCalendarComponent,
   BmbCalendarService,
   IBmbCalendarEvent,
+  BmbTranslationsService,
+  BmbSwitchComponent,
 } from '../../../../projects/ds-ng/src/public-api';
 import { DateTime } from 'luxon';
 
@@ -10,14 +12,23 @@ import { DateTime } from 'luxon';
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'app-calendar',
   standalone: true,
-  imports: [BmbCalendarComponent],
+  imports: [BmbCalendarComponent, BmbSwitchComponent],
   templateUrl: './calendar.component.html',
   styleUrl: './calendar.component.scss',
 })
 export class CalendarComponent implements OnInit {
-  constructor(private bmbCalendarService: BmbCalendarService) {}
+  constructor(
+    private bmbCalendarService: BmbCalendarService,
+    private translationsService: BmbTranslationsService,
+  ) {}
 
   calendarFilters = model<{ [key: string]: boolean }>({});
+  lang = computed(() => this.translationsService.getCurrentLanguage());
+
+  handleLangChange(event: boolean) {
+    const newLang = event ? 'en' : 'es';
+    this.translationsService.setLanguage(newLang);
+  }
 
   generateEvents(): IBmbCalendarEvent[] {
     const today: DateTime = DateTime.fromISO('2025-08-26T13:00:00-06:00');
