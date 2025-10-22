@@ -1,5 +1,6 @@
 @use '../base/rem' as rem;
 @use '../base/mixins' as mixins;
+@use '../base/vars' as vars;
 @use 'sass:math';
 
 $sizes: (
@@ -66,6 +67,53 @@ $alignItemsOptions: (
   display: flex;
   flex-wrap: wrap;
 
+  @for $i from 1 through 12 {
+    .bmb_layout-item.bmb_col-lg-#{$i} {
+      overflow: visible;
+      @include mixins.check-for-mobile() {
+        @include one-column();
+      }
+
+      @include mixins.check-for-mobile(false) {
+        @include columns($i);
+      }
+    }
+  }
+
+  &-container {
+    display: flex;
+    flex-wrap: wrap;
+    container: layout / inline-size;
+
+    @for $i from 1 through 12 {
+      .bmb_layout-container-item.bmb_col-lg-#{$i} {
+        overflow: visible;
+
+        @include mixins.check-for-mobile() {
+          @include one-column();
+        }
+
+        @include mixins.check-for-mobile(false) {
+          @include mixins.container-query(
+            vars.$max_container_query_breakpoint,
+            'max',
+            'layout'
+          ) {
+            @include one-column();
+          }
+
+          @include mixins.container-query(
+            vars.$min_container_query_breakpoint,
+            'min',
+            'layout'
+          ) {
+            @include columns($i);
+          }
+        }
+      }
+    }
+  }
+
   &-smart {
     justify-content: center;
     align-items: flex-start;
@@ -86,20 +134,6 @@ $alignItemsOptions: (
   }
 }
 
-@for $i from 1 through 12 {
-  .bmb_col-lg-#{$i} {
-    overflow: visible;
-
-    @include mixins.check-for-mobile() {
-      @include one-column();
-    }
-
-    @include mixins.check-for-mobile(false) {
-      @include columns($i);
-    }
-  }
-}
-
 @each $side in $namesOfSides {
   @each $margin, $size in $marginSizes {
     @for $i from 1 through $size {
@@ -117,7 +151,7 @@ $alignItemsOptions: (
 }
 
 @each $name, $option in $alignItemsOptions {
-  .bmb_alignItems-#{$name} {
+  .bmb_align-items-#{$name} {
     align-items: $option;
   }
 }

@@ -23,7 +23,7 @@ export class BmbVerticalLayoutDirective {
       'bmb_vertical-layout',
       `bmb_gap-${this.gapSize()}`,
       `bmb_justify-${this.justify()}`,
-      `bmb_alignItems-${this.alignItems()}`,
+      `bmb_align-items-${this.alignItems()}`,
     ];
   }
 

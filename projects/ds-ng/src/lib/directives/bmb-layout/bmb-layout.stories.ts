@@ -15,6 +15,7 @@ import {
   getGeneralDescription,
   getReferenceRecommendationForVariable,
   getSpecialSpecifications,
+  RELEVANT_TITLE,
 } from '../../utils/doc/utils';
 import { DBmbLayoutParamDesc } from '../../utils/doc/parameterDescriptions';
 
@@ -91,11 +92,11 @@ ${getBasicExampleBlock('BmbLayoutDirective, BmbLayoutItemDirective')}
         category: 'Properties',
         defaultValue: { summary: 'm' },
       },
-      description: 'Set the margin size',
+      description: 'Sets the margin size',
     },
     dynamicCols: {
       control: { type: 'boolean' },
-      description: 'This property enable the dinamic size for bmbLayoutItem',
+      description: 'Enables the dinamic size for bmbLayoutItem',
       table: {
         category: 'Properties',
         defaultValue: { summary: 'false' },
@@ -104,6 +105,18 @@ ${getBasicExampleBlock('BmbLayoutDirective, BmbLayoutItemDirective')}
     },
     justify: DBmbLayoutParamDesc.justify,
     alignItems: DBmbLayoutParamDesc.alignItems,
+    isContainerQuery: {
+      control: { type: 'boolean' },
+      description: `Marks the layout as a query container when true.<br/><br/>
+${RELEVANT_TITLE.configuration}
+\`@container\` queries are useful for deep content in containers that are not favored by \`@media\` queries because it is relative to the device resolution.
+      `,
+      table: {
+        category: 'Properties',
+        defaultValue: { summary: 'false' },
+        type: { summary: 'boolean' },
+      },
+    },
   },
   args: {
     gapSize: 'm',
