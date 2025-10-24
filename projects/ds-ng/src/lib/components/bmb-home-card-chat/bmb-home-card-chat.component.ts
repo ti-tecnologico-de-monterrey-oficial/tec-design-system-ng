@@ -20,7 +20,12 @@ import { TranslatePipe } from '../../pipes/translations';
 @Component({
   selector: 'bmb-home-card-chat',
   standalone: true,
-  imports: [BmbHomeCardComponent, BmbChatBarComponent, BmbChatBubblesComponent, TranslatePipe],
+  imports: [
+    BmbHomeCardComponent,
+    BmbChatBarComponent,
+    BmbChatBubblesComponent,
+    TranslatePipe,
+  ],
   templateUrl: './bmb-home-card-chat.component.html',
   styleUrl: './bmb-home-card-chat.component.scss',
   encapsulation: ViewEncapsulation.None,

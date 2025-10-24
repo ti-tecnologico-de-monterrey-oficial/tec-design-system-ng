@@ -21,7 +21,7 @@ import { TranslatePipe } from '../../pipes/translations';
     BmbActionIconComponent,
     BmbImageComponent,
     BmbButtonDirective,
-    TranslatePipe
+    TranslatePipe,
   ],
   templateUrl: './bmb-digital-id.component.html',
   styleUrl: './bmb-digital-id.component.scss',

@@ -1,5 +1,8 @@
 import { TestBed } from '@angular/core/testing';
-import { BmbTranslationsService, BmbDictionaries } from './translations.service';
+import {
+  BmbTranslationsService,
+  BmbDictionaries,
+} from './translations.service';
 import es from '../../../assets/i18n/es.json';
 import en from '../../../assets/i18n/en.json';
 
@@ -8,7 +11,7 @@ describe('BmbTranslationsService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [BmbTranslationsService]
+      providers: [BmbTranslationsService],
     });
     service = TestBed.inject(BmbTranslationsService);
   });
@@ -42,9 +45,13 @@ describe('BmbTranslationsService', () => {
     });
 
     it('should have es and en dictionaries loaded by default', () => {
-      expect(service.translate('account_statement.title')).toBe('Estado de cuenta');
+      expect(service.translate('account_statement.title')).toBe(
+        'Estado de cuenta',
+      );
       service.setLanguage('en');
-      expect(service.translate('account_statement.title')).toBe('Account Statement');
+      expect(service.translate('account_statement.title')).toBe(
+        'Account Statement',
+      );
     });
   });
 
@@ -71,7 +78,7 @@ describe('BmbTranslationsService', () => {
 
       expect(service.getCurrentLanguage()).toBe(initialLang);
       expect(console.warn).toHaveBeenCalledWith(
-        'The selected language "fr" does not have an associated dictionary.'
+        'The selected language "fr" does not have an associated dictionary.',
       );
     });
 
@@ -81,7 +88,7 @@ describe('BmbTranslationsService', () => {
       service.setLanguage('invalid');
 
       expect(console.warn).toHaveBeenCalledWith(
-        'The selected language "invalid" does not have an associated dictionary.'
+        'The selected language "invalid" does not have an associated dictionary.',
       );
     });
   });
@@ -90,18 +97,20 @@ describe('BmbTranslationsService', () => {
     it('should add new dictionary', () => {
       const frenchDict: BmbDictionaries = {
         account_statement: {
-          title: 'État du compte'
+          title: 'État du compte',
         },
         common: {
-          save: 'Sauvegarder'
-        }
+          save: 'Sauvegarder',
+        },
       };
 
       service.addDictionary('fr', frenchDict);
       service.setLanguage('fr');
 
       expect(service.getCurrentLanguage()).toBe('fr');
-      expect(service.translate('account_statement.title')).toBe('État du compte');
+      expect(service.translate('account_statement.title')).toBe(
+        'État du compte',
+      );
       expect(service.translate('common.save')).toBe('Sauvegarder');
     });
 
@@ -110,44 +119,56 @@ describe('BmbTranslationsService', () => {
 
       const updates: BmbDictionaries = {
         account_statement: {
-          title: 'Nuevo Estado de Cuenta'
+          title: 'Nuevo Estado de Cuenta',
         },
         new_section: {
-          test: 'Prueba'
-        }
+          test: 'Prueba',
+        },
       };
 
       service.updateDictionary('es', updates);
 
-      expect(service.translate('account_statement.title')).toBe('Nuevo Estado de Cuenta');
+      expect(service.translate('account_statement.title')).toBe(
+        'Nuevo Estado de Cuenta',
+      );
       expect(service.translate('new_section.test')).toBe('Prueba');
       // Should preserve existing translations
-      expect(service.translate('advertisement_card.title')).toBe('Mis anuncios');
+      expect(service.translate('advertisement_card.title')).toBe(
+        'Mis anuncios',
+      );
     });
 
     it('should preserve existing keys when updating dictionary', () => {
-      const originalValue = service.translate('account_statement.label_primary');
+      const originalValue = service.translate(
+        'account_statement.label_primary',
+      );
 
       const partialUpdate: BmbDictionaries = {
         new_category: {
-          new_key: 'New Value'
-        }
+          new_key: 'New Value',
+        },
       };
 
       service.updateDictionary('es', partialUpdate);
 
-      expect(service.translate('account_statement.label_primary')).toBe(originalValue);
+      expect(service.translate('account_statement.label_primary')).toBe(
+        originalValue,
+      );
       expect(service.translate('new_category.new_key')).toBe('New Value');
     });
   });
 
   describe('Translation Function', () => {
     it('should translate simple keys', () => {
-      expect(service.translate('account_statement.title')).toBe('Estado de cuenta');
+      expect(service.translate('account_statement.title')).toBe(
+        'Estado de cuenta',
+      );
     });
 
     it('should translate nested keys', () => {
-      expect(service.translate('account_statement.label_primary')).toBe('Cuota Mensual');
+      expect(service.translate('account_statement.label_primary')).toBe(
+        'Cuota Mensual',
+      );
     });
 
     it('should translate deep nested keys', () => {
@@ -155,9 +176,9 @@ describe('BmbTranslationsService', () => {
       const deepDict: BmbDictionaries = {
         deep: {
           level: {
-            test: 'Deep Value'
-          }
-        }
+            test: 'Deep Value',
+          },
+        },
       };
 
       service.updateDictionary('es', deepDict);
@@ -173,24 +194,30 @@ describe('BmbTranslationsService', () => {
     });
 
     it('should handle partial path matches', () => {
-      expect(service.translate('account_statement.non_existent')).toBe('account_statement.non_existent');
+      expect(service.translate('account_statement.non_existent')).toBe(
+        'account_statement.non_existent',
+      );
     });
 
     it('should translate in different languages', () => {
       // Spanish
       service.setLanguage('es');
-      expect(service.translate('account_statement.title')).toBe('Estado de cuenta');
+      expect(service.translate('account_statement.title')).toBe(
+        'Estado de cuenta',
+      );
 
       // English
       service.setLanguage('en');
-      expect(service.translate('account_statement.title')).toBe('Account Statement');
+      expect(service.translate('account_statement.title')).toBe(
+        'Account Statement',
+      );
     });
 
     it('should handle keys with single level', () => {
       const singleLevelDict: BmbDictionaries = {
         category: {
-          simple: 'Simple Value'
-        }
+          simple: 'Simple Value',
+        },
       };
 
       service.updateDictionary('es', singleLevelDict);
@@ -200,25 +227,33 @@ describe('BmbTranslationsService', () => {
     it('should handle special characters in keys', () => {
       const specialDict: BmbDictionaries = {
         'special-key': {
-          'with_underscore': 'Special Value'
-        }
+          with_underscore: 'Special Value',
+        },
       };
 
       service.updateDictionary('es', specialDict);
-      expect(service.translate('special-key.with_underscore')).toBe('Special Value');
+      expect(service.translate('special-key.with_underscore')).toBe(
+        'Special Value',
+      );
     });
   });
 
   describe('Reactive Behavior', () => {
     it('should reflect language changes immediately', () => {
       service.setLanguage('es');
-      expect(service.translate('account_statement.title')).toBe('Estado de cuenta');
+      expect(service.translate('account_statement.title')).toBe(
+        'Estado de cuenta',
+      );
 
       service.setLanguage('en');
-      expect(service.translate('account_statement.title')).toBe('Account Statement');
+      expect(service.translate('account_statement.title')).toBe(
+        'Account Statement',
+      );
 
       service.setLanguage('es');
-      expect(service.translate('account_statement.title')).toBe('Estado de cuenta');
+      expect(service.translate('account_statement.title')).toBe(
+        'Estado de cuenta',
+      );
     });
 
     it('should reflect dictionary updates immediately', () => {
@@ -227,8 +262,8 @@ describe('BmbTranslationsService', () => {
 
       const newDict: BmbDictionaries = {
         test: {
-          immediate: 'Updated Value'
-        }
+          immediate: 'Updated Value',
+        },
       };
 
       service.updateDictionary('es', newDict);
@@ -246,7 +281,7 @@ describe('BmbTranslationsService', () => {
 
       // Create French dictionary with same structure
       const frenchDict: BmbDictionaries = {};
-      esKeys.forEach(key => {
+      esKeys.forEach((key) => {
         const keyParts = key.split('.');
         let current: any = frenchDict;
 
@@ -271,8 +306,8 @@ describe('BmbTranslationsService', () => {
       const dictWithNull: BmbDictionaries = {
         test: {
           // @ts-ignore - Testing edge case
-          nullValue: null
-        }
+          nullValue: null,
+        },
       };
 
       service.updateDictionary('es', dictWithNull);
@@ -283,12 +318,14 @@ describe('BmbTranslationsService', () => {
       const dictWithUndefined: BmbDictionaries = {
         test: {
           // @ts-ignore - Testing edge case
-          undefinedValue: undefined
-        }
+          undefinedValue: undefined,
+        },
       };
 
       service.updateDictionary('es', dictWithUndefined);
-      expect(service.translate('test.undefinedValue')).toBe('test.undefinedValue');
+      expect(service.translate('test.undefinedValue')).toBe(
+        'test.undefinedValue',
+      );
     });
 
     it('should handle empty objects', () => {
@@ -296,14 +333,16 @@ describe('BmbTranslationsService', () => {
       service.updateDictionary('es', emptyDict);
 
       // Should still work with existing translations
-      expect(service.translate('account_statement.title')).toBe('Estado de cuenta');
+      expect(service.translate('account_statement.title')).toBe(
+        'Estado de cuenta',
+      );
     });
 
     it('should handle keys with dots in the translation value', () => {
       const dottedValueDict: BmbDictionaries = {
         version: {
-          number: 'v1.0.0'
-        }
+          number: 'v1.0.0',
+        },
       };
 
       service.updateDictionary('es', dottedValueDict);

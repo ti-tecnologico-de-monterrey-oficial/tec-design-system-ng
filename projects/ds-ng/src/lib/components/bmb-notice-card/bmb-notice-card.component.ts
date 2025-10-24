@@ -27,7 +27,7 @@ export interface IBmbCardNoticeDescription {
     BmbDividerComponent,
     BmbDotPaginatorComponent,
     BmbButtonDirective,
-    TranslatePipe
+    TranslatePipe,
   ],
   templateUrl: './bmb-notice-card.component.html',
   styleUrl: './bmb-notice-card.component.scss',

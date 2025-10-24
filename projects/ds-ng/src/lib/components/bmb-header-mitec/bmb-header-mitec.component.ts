@@ -21,7 +21,11 @@ export interface IBmbActionHeaderLinks {
 @Component({
   selector: 'bmb-header-mitec',
   standalone: true,
-  imports: [BmbMitecLogoAnimationComponent, BmbNavigationBarComponent, TranslatePipe],
+  imports: [
+    BmbMitecLogoAnimationComponent,
+    BmbNavigationBarComponent,
+    TranslatePipe,
+  ],
   templateUrl: './bmb-header-mitec.component.html',
   styleUrl: './bmb-header-mitec.component.scss',
   encapsulation: ViewEncapsulation.None,

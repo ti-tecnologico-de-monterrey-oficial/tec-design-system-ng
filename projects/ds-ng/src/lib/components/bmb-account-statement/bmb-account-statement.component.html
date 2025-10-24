@@ -9,8 +9,12 @@
     <div class="bmb_account-statement-content-balance">
       <bmb-balance-overview
         [progressCircleTitle]="progressCircleTitle()"
-        [labelPrimary]="labelPrimary() || ('account_statement.label_primary' | translate)"
-        [labelSecondary]="labelSecondary() || ('account_statement.label_secondary' | translate)"
+        [labelPrimary]="
+          labelPrimary() || ('account_statement.label_primary' | translate)
+        "
+        [labelSecondary]="
+          labelSecondary() || ('account_statement.label_secondary' | translate)
+        "
         [progressCircleValue]="getFormattedAmount(totalCount() - counter())"
         [valuePrimary]="getFormattedAmount(totalCount())"
         [valueSecondary]="getFormattedAmount(counter())"
@@ -24,7 +28,9 @@
           type="container"
           [counter]="counter()"
           [totalCount]="totalCount()"
-          [title]="progressTitle() || ('account_statement.progress_title' | translate)"
+          [title]="
+            progressTitle() || ('account_statement.progress_title' | translate)
+          "
         />
       </bmb-card-content>
     </bmb-card>
@@ -66,7 +72,9 @@
         type="container"
         [counter]="counter()"
         [totalCount]="totalCount()"
-        [title]="progressTitle() || ('account_statement.progress_title' | translate)"
+        [title]="
+          progressTitle() || ('account_statement.progress_title' | translate)
+        "
       />
       <bmb-divider />
       <label
@@ -111,7 +119,9 @@
           [max]="totalCount() - counter()"
           [min]="1"
           pattern="\d*"
-          [errorMessage]="errorMessage() || ('account_statement.error_message' | translate)"
+          [errorMessage]="
+            errorMessage() || ('account_statement.error_message' | translate)
+          "
           [isRequired]="true"
           [control]="getFormControl('amount')"
           [showError]="showErrors['amount']"

@@ -230,7 +230,7 @@
       overflow: inherit;
       position: relative;
       text-transform: uppercase;
-      @include fonts.font(4, medium);
+      @include fonts.font(4, regular);
 
       &.mat-mdc-header-cell {
         background-color: var(--containers-modal);
@@ -238,7 +238,7 @@
     }
 
     > td {
-      @include fonts.font(4, medium);
+      @include fonts.font(4, regular);
       border-bottom-color: var(--general_contrasts-25);
       border-bottom-style: dashed;
 

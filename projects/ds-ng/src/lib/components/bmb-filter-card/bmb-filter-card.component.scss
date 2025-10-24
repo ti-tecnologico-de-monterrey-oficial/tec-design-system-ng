@@ -11,7 +11,7 @@
   }
 
   &-title {
-    @include fonts.font(4, medium);
+    @include fonts.font(4, regular);
     margin: rem.rem_calc(24 0 16);
     color: RGBA(var(--color-charade-700));
   }

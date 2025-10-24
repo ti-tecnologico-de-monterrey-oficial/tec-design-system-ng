@@ -67,14 +67,14 @@ export class AppComponent {
         title: 'Table Lite',
         link: '/table-lite',
       },
-    ],
-    [
       {
         id: 2,
         icon: 'list_alt_check',
         title: 'Forms',
         link: '/form-validator',
       },
+    ],
+    [
       {
         id: 3,
         icon: 'align_flex_center',
@@ -86,6 +86,18 @@ export class AppComponent {
         icon: 'dropdown',
         title: 'Dropdown',
         link: '/dropdown',
+      },
+      {
+        id: 7,
+        icon: 'page_control',
+        title: 'Multi Dot Paginator',
+        link: '/multi-dot-paginator',
+      },
+      {
+        id: 8,
+        icon: 'notifications',
+        title: 'Alerts',
+        link: '/alerts',
       },
     ],
   ];

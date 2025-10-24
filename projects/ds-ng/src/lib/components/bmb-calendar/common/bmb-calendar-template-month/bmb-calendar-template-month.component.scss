@@ -29,7 +29,7 @@
     }
 
     &-legend {
-      @include fonts.font(3, medium);
+      @include fonts.font(3, regular);
       display: inline-block;
       text-align: center;
       width: 100%;

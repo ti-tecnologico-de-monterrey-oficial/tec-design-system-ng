@@ -65,7 +65,7 @@
       }
 
       &-title {
-        @include fonts.font(5, medium);
+        @include fonts.font(5, regular);
         padding-bottom: rem.rem_calc(10);
       }
 

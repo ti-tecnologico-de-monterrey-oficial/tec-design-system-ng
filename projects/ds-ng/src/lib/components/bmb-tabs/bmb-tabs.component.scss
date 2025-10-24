@@ -61,7 +61,7 @@
     text-align: center;
     transition: all 0.3s ease;
     line-height: rem.rem_calc(18);
-    @include fonts.font(5, medium);
+    @include fonts.font(5, regular);
     font-weight: 500;
     width: 100%;
 

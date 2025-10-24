@@ -6,7 +6,7 @@ import {
   input,
   ViewChild,
   ElementRef,
-  OnInit,
+  effect,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SidebarElement } from './bmb-sidebar.interface';
@@ -35,7 +35,7 @@ interface IBmbIsButton {
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
-export class BmbSidebarComponent implements OnInit {
+export class BmbSidebarComponent {
   elements = input<SidebarElement[][]>([]);
   title = input<string>('Navigation');
   position = input<IPositionButtonMenu>('left'); //Only for web
@@ -46,6 +46,8 @@ export class BmbSidebarComponent implements OnInit {
   isActive: boolean = false;
   hasSubmenu: boolean = false;
   maxChildrenLevel: number = 2;
+
+  error = false;
 
   @ViewChild('sideNav') sideNav!: ElementRef;
 
@@ -59,28 +61,31 @@ export class BmbSidebarComponent implements OnInit {
     this.checkIfFocusInsideSidebar();
   }
 
-  ngOnInit(): void {
-    if (this.elements()?.length > 2) {
-      console.error(
-        'The sidebar component only supports two levels of navigation',
+  constructor() {
+    effect(() => {
+      const totalElements = this.elements().reduce(
+        (acc, group) => acc + group.length,
+        0,
       );
-    }
 
-    if (this.elements()[0]?.length > 5) {
-      console.error(
-        'The sidebar component only supports a maximum of 5 elements in the first level of navigation',
+      if (this.elements()?.length > 2) {
+        console.error(
+          'The sidebar component only supports two levels of navigation',
+        );
+        this.error = true;
+      }
+
+      if (totalElements > 8) {
+        console.error(
+          'The sidebar component only supports a maximum of 8 elements in the first level of navigation',
+        );
+        this.error = true;
+      }
+
+      this.hasSubmenu = this.elements()?.some((element) =>
+        element?.some((el) => el.children),
       );
-    }
-
-    if (this.elements()[1] && this.elements()[1]?.length > 3) {
-      console.error(
-        'The sidebar component only supports a maximum of 3 elements in the second level of navigation',
-      );
-    }
-
-    this.hasSubmenu = this.elements()?.some((element) =>
-      element?.some((el) => el.children),
-    );
+    });
   }
 
   checkForButton({ isMobile, hasChildren }: IBmbIsButton): boolean {

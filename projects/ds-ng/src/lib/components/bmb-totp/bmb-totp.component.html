@@ -5,8 +5,12 @@
       [appearance]="'contrast-box-container'"
     >
       <bmb-icon class="bmb_totp-icon" icon="lock" [size]="48" />
-      <h2 class="bmb_totp-title">{{ title() || ('totp.title' | translate) }}</h2>
-      <h3 class="bmb_totp-subtitle">{{ subtitle() || ('totp.subtitle' | translate) }}</h3>
+      <h2 class="bmb_totp-title">
+        {{ title() || ('totp.title' | translate) }}
+      </h2>
+      <h3 class="bmb_totp-subtitle">
+        {{ subtitle() || ('totp.subtitle' | translate) }}
+      </h3>
       <section class="bmb_totp-code">
         @for (field of codesArray(); track $index) {
           <section class="bmb_totp-separator">

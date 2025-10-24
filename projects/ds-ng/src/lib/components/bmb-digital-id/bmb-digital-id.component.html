@@ -47,7 +47,10 @@
       position="left"
       (click)="handleSecondaryClick($event)"
     >
-      {{ secondaryTextButton() || ('digital_id.secondary_button_label' | translate) }}
+      {{
+        secondaryTextButton() ||
+          ('digital_id.secondary_button_label' | translate)
+      }}
     </button>
     <button
       type="button"

@@ -1,0 +1,40 @@
+<bmb-multi-dot-paginator title="Test title" subtitle="Test subtitle">
+  <bmb-multi-dot-paginator-item>
+    <bmb-progress-circle
+      [valueLabel]="'$100000000000000'"
+      [percent]="85"
+      [showValueLabel]="true"
+      [title]="[
+        '12345678901234567890123',
+        '12345678901234567890123',
+        '12345678901234567890123'
+      ]"
+      [showTitle]="true"
+      [fillPathStatus]="'success'"
+      [fullFillPathStatus]="false"
+    ></bmb-progress-circle>
+  </bmb-multi-dot-paginator-item>
+  <bmb-multi-dot-paginator-item>
+    <bmb-home-card title="Some title">
+      <bmb-balance-overview
+        [progressCirclePercent]="75"
+        [progressCircleValue]="'$100000000000000'"
+        [showProgressCircleValue]="true"
+        [progressCircleTitle]="['Total a pagar', 'este mes']"
+        [labelPrimary]="'Cuota Mensual'"
+        [valuePrimary]="'$7,500.00'"
+        [labelSecondary]="'Pendiente'"
+        [valueSecondary]="',500.00'"
+      ></bmb-balance-overview>
+    </bmb-home-card>
+  </bmb-multi-dot-paginator-item>
+  <bmb-multi-dot-paginator-item>Custom component</bmb-multi-dot-paginator-item>
+  <bmb-multi-dot-paginator-item>
+    <bmb-home-card title="Some title">Custom content</bmb-home-card>
+  </bmb-multi-dot-paginator-item>
+  <bmb-multi-dot-paginator-item>Custom component</bmb-multi-dot-paginator-item>
+  <bmb-multi-dot-paginator-item>
+    <bmb-home-card title="Some title">Custom content</bmb-home-card>
+  </bmb-multi-dot-paginator-item>
+  <!-- Add more elements -->
+</bmb-multi-dot-paginator>

@@ -51,7 +51,9 @@ export class BmbDatepickerModalComponent implements OnInit {
   monthsNames = computed(() => Info.months('long', { locale: this.lang() }));
   month = '';
   year = this.now().year;
-  defaultDayOrder = computed(() => Info.weekdays('narrow', { locale: this.lang() }));
+  defaultDayOrder = computed(() =>
+    Info.weekdays('narrow', { locale: this.lang() }),
+  );
   dayNames = computed(() => orderDayNames(this.defaultDayOrder()));
   selectedYear = 0;
   view = 'calendar';

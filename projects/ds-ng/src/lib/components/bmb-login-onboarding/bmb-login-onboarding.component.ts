@@ -53,9 +53,11 @@ export class BmbLoginOnboardingComponent {
   ) {}
 
   ngOnInit(): void {
-    const anotherAccountLabel = this.loginOnBoardingCustomization().anotherAccount.label ||
+    const anotherAccountLabel =
+      this.loginOnBoardingCustomization().anotherAccount.label ||
       this.translationService.translate('login_onboarding.another_account');
-    const forgottenPasswordLabel = this.loginOnBoardingCustomization().forgottenPassword.label ||
+    const forgottenPasswordLabel =
+      this.loginOnBoardingCustomization().forgottenPassword.label ||
       this.translationService.translate('login_onboarding.forgot_password');
 
     this.loginOnboardingService.setLoginOnBoardingCustomization({
@@ -66,7 +68,7 @@ export class BmbLoginOnboardingComponent {
       forgottenPassword: {
         ...this.loginOnBoardingCustomization().forgottenPassword,
         label: forgottenPasswordLabel,
-      }
+      },
     });
   }
 
