@@ -92,7 +92,7 @@
 
   &-calendar {
     padding: 0 var(--bmb-spacing-m) var(--bmb-spacing-m);
-    @include fonts.font(4, medium);
+    @include fonts.font(4, regular);
 
     &-table {
       width: 100%;

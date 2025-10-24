@@ -43,7 +43,7 @@ ${getSpecialSpecifications(
     family: {
       name: 'Font family',
       control: { type: 'select' },
-      options: ['thin', 'light', 'regular', 'medium', 'semibold', 'bold'],
+      options: ['light', 'regular', 'bold'],
       description: getHelpDescriptionForGeneratingVariables(
         'font family',
         true,
@@ -79,7 +79,7 @@ ${getSpecialSpecifications(
     },
   },
   args: {
-    family: 'thin',
+    family: 'regular',
     size: '5',
   },
 } as Meta;

@@ -113,7 +113,7 @@
       overflow: hidden;
 
       &-title {
-        @include fonts.font(5, medium);
+        @include fonts.font(5, regular);
         max-width: 100%;
         overflow: hidden;
         text-overflow: ellipsis;
@@ -151,7 +151,7 @@
     cursor: pointer;
 
     &-text {
-      @include fonts.font(4, medium);
+      @include fonts.font(4, regular);
       max-width: 100%;
       overflow: hidden;
       text-overflow: ellipsis;
@@ -184,7 +184,7 @@
     @include shadow(16);
 
     &-title {
-      @include fonts.font(4, medium);
+      @include fonts.font(4, regular);
       margin-top: rem.rem_calc(10);
       max-width: 100%;
       padding: rem.rem_calc(0 16);

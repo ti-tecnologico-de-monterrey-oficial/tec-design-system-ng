@@ -8,7 +8,7 @@
   }
 
   .bmb_text-link .bmb_check-external-link-button-element {
-    @include fonts.font(5, medium);
+    @include fonts.font(5, regular);
     font-weight: 600;
   }
 }

@@ -22,7 +22,7 @@
 
   &-title {
     color: var(--general_contrasts-100);
-    @include fonts.font(9, semibold);
+    @include fonts.font(9, bold);
   }
 
   &-subtitle {

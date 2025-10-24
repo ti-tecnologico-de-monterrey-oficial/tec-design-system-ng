@@ -62,7 +62,7 @@
     font-weight: 300;
     text-align: left;
     word-break: break-word;
-    @include fonts.font(5, medium);
+    @include fonts.font(5, regular);
   }
 
   &-text {

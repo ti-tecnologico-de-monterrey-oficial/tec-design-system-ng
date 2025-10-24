@@ -52,7 +52,7 @@
   &-number {
     color: var(--general_contrasts-input-outline);
     display: block;
-    @include fonts.font(9, semibold);
+    @include fonts.font(9, bold);
   }
 
   &-title {
