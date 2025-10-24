@@ -8,6 +8,7 @@ import {
   ViewEncapsulation,
   ChangeDetectionStrategy,
   input,
+  computed,
 } from '@angular/core';
 
 export type BmbProgressCirclePathStatus =
@@ -16,22 +17,28 @@ export type BmbProgressCirclePathStatus =
   | 'error'
   | 'warning';
 
-export class CircleProgressOptions
-  implements BmbProgressCircleOptionsInterface
-{
-  valueLabel = '$10000';
-  showValueLabel = true;
-  backgroundPadding = -9;
-  percent = 50;
-  radius = 100;
-  space = -5;
-  outerStrokeWidth = 5;
-  outerStrokeLinecap = 'round';
-  innerStrokeWidth = 5;
-  title: string | Array<String> = 'Total a pagar';
-  showTitle = true;
-  showBackground = true;
-  responsive = true;
+// Add this interface at the top of your file or in a suitable place
+interface SvgConfig {
+  viewBox: string;
+  height: number | string;
+  width: number | string;
+  backgroundCircle: {
+    cx: number;
+    cy: number;
+    r: number;
+  };
+  circle: {
+    cx: number;
+    cy: number;
+    r: number;
+    strokeWidth: number;
+  };
+  path: {
+    d: string;
+    strokeWidth: number;
+    fill: string;
+    strokeLinecap: string;
+  };
 }
 
 @Component({
@@ -42,9 +49,6 @@ export class CircleProgressOptions
   styleUrl: './bmb-progress-circle.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
-  providers: [
-    { provide: CircleProgressOptions, useValue: CircleProgressOptions },
-  ],
 })
 export class BmbProgressCircleComponent implements OnChanges {
   valueLabel = input<string>();
@@ -57,14 +61,27 @@ export class BmbProgressCircleComponent implements OnChanges {
   fillPathStatus = input<BmbProgressCirclePathStatus>('success');
   fullFillPathStatus = input<boolean>(false);
 
-  responsive = true;
-  svg: any;
-  options: CircleProgressOptions = new CircleProgressOptions();
-  _lastPercent: number = 0;
+  options = computed<BmbProgressCircleOptionsInterface>(() => {
+    const opts: BmbProgressCircleOptionsInterface = {
+      responsive: true,
+      backgroundPadding: -9,
+      radius: 100,
+      space: -5,
+      outerStrokeWidth: 5,
+      outerStrokeLinecap: 'round',
+      innerStrokeWidth: 5,
+      percent: this.percent() ?? 0,
+      showTitle: this.showTitle() ?? false,
+      showValueLabel: this.showValueLabel() ?? false,
+      valueLabel: this.valueLabel() ?? '',
+      title: this.title() ?? '',
+      showBackground: this.showBackground() ?? true,
+    }
+    return opts;
+  });
 
-  constructor(defaultOptions: CircleProgressOptions) {
-    Object.assign(this.options, defaultOptions);
-  }
+  _lastPercent: number = 0;
+  svg: SvgConfig | null = null;
 
   ngOnInit() {
     this.render();
@@ -76,8 +93,12 @@ export class BmbProgressCircleComponent implements OnChanges {
 
   render() {
     this.applyOptions();
-    this.draw(this.options.percent);
-    this._lastPercent = this.options.percent;
+    this.draw(this.options().percent);
+    this._lastPercent = this.options().percent;
+  }
+
+  isTitleString(): boolean {
+    return typeof this.title() === 'string';
   }
 
   polarToCartesian(
@@ -95,13 +116,13 @@ export class BmbProgressCircleComponent implements OnChanges {
   draw(percent: number) {
     percent = Math.abs(percent);
     let circlePercent = percent > 100 ? 100 : percent;
-    let boxSize = this.options.radius! * 2 + this.options.outerStrokeWidth * 2;
+    let boxSize = this.options().radius * 2 + this.options().outerStrokeWidth * 2;
     let centre = { x: boxSize / 2, y: boxSize / 2 };
-    let startPoint = { x: centre.x, y: centre.y - this.options.radius };
+    let startPoint = { x: centre.x, y: centre.y - this.options().radius };
     let endPoint = this.polarToCartesian(
       centre.x,
       centre.y,
-      this.options.radius,
+      this.options().radius,
       (360 * circlePercent) / 100,
     );
     let largeArcFlag: any, sweepFlag: any;
@@ -110,7 +131,7 @@ export class BmbProgressCircleComponent implements OnChanges {
     } else {
       [largeArcFlag, sweepFlag] = [0, 0];
     }
-    let titlePercent = this.options.percent;
+    let titlePercent = this.options().percent;
     let titleTextPercent = titlePercent;
     let title = {
       x: centre.x,
@@ -142,9 +163,9 @@ export class BmbProgressCircleComponent implements OnChanges {
     }
     let rowCount = 0,
       rowNum = 1;
-    this.options.showTitle && (rowCount += title.texts.length);
-    this.options.showValueLabel && (rowCount += valueLabel.texts.length);
-    if (this.options.showTitle) {
+    this.options().showTitle && (rowCount += title.texts.length);
+    this.options().showValueLabel && (rowCount += valueLabel.texts.length);
+    if (this.options().showTitle) {
       for (let span of title.texts) {
         title.tspans.push({
           span: span,
@@ -153,7 +174,7 @@ export class BmbProgressCircleComponent implements OnChanges {
         rowNum++;
       }
     }
-    if (this.options.showValueLabel) {
+    if (this.options().showValueLabel) {
       for (let span of valueLabel.texts) {
         valueLabel.tspans.push({
           span: span,
@@ -164,50 +185,47 @@ export class BmbProgressCircleComponent implements OnChanges {
     }
     this.svg = {
       viewBox: `0 0 ${boxSize} ${boxSize}`,
-      width: this.options.responsive ? '100%' : boxSize,
-      height: this.options.responsive ? '100%' : boxSize,
+      width: this.options().responsive ? '100%' : boxSize,
+      height: this.options().responsive ? '100%' : boxSize,
       backgroundCircle: {
         cx: centre.x,
         cy: centre.y,
         r:
-          this.options.radius +
-          this.options.outerStrokeWidth / 2 +
-          this.options.backgroundPadding,
+          this.options().radius +
+          this.options().outerStrokeWidth / 2 +
+          this.options().backgroundPadding,
       },
       path: {
         d: `
           M ${startPoint.x} ${startPoint.y}
-          A ${this.options.radius} ${this.options.radius} 0 ${largeArcFlag} 1 ${endPoint.x} ${endPoint.y}
+          A ${this.options().radius} ${this.options().radius} 0 ${largeArcFlag} 1 ${endPoint.x} ${endPoint.y}
         `,
-        strokeWidth: this.options.outerStrokeWidth,
-        strokeLinecap: this.options.outerStrokeLinecap,
+        strokeWidth: this.options().outerStrokeWidth,
+        strokeLinecap: this.options().outerStrokeLinecap,
         fill: 'none',
       },
       circle: {
         cx: centre.x,
         cy: centre.y,
         r:
-          this.options.radius -
-          this.options.space -
-          this.options.outerStrokeWidth / 2 -
-          this.options.innerStrokeWidth / 2,
-        strokeWidth: this.options.innerStrokeWidth,
+          this.options().radius -
+          this.options().space -
+          this.options().outerStrokeWidth / 2 -
+          this.options().innerStrokeWidth / 2,
+        strokeWidth: this.options().innerStrokeWidth,
       },
-      title: title,
-      valueLabel: valueLabel,
     };
   }
 
   private applyOptions() {
-    this.options.radius = Math.abs(100);
-    this.options.space = -5;
-    this.options.percent = this.percent();
-    this.options.outerStrokeWidth = 5;
-    this.options.innerStrokeWidth = 5;
-    this.options.backgroundPadding = -9;
-    this.options.showTitle = this.showTitle();
-    this.options.showValueLabel = this.showValueLabel();
-    this.options.responsive = this.responsive!;
+    this.options().radius = Math.abs(100);
+    this.options().space = -5;
+    this.options().percent = this.percent();
+    this.options().outerStrokeWidth = 5;
+    this.options().innerStrokeWidth = 5;
+    this.options().backgroundPadding = -9;
+    this.options().showTitle = this.showTitle();
+    this.options().showValueLabel = this.showValueLabel();
   }
 
   private getRelativeY(rowNum: number, rowCount: number): string {
@@ -233,6 +251,6 @@ export class BmbProgressCircleComponent implements OnChanges {
   }
 
   shouldShowValueLabel(): boolean {
-    return this.options.showValueLabel && !this.isFullColored();
+    return this.options().showValueLabel && !this.isFullColored();
   }
 }
