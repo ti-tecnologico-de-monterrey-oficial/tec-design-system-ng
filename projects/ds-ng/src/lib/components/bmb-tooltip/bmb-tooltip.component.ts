@@ -28,6 +28,10 @@ export class BmbTooltipComponent {
   justify = input<IBmbJustifyTooltip>('after');
   isFill = input<boolean>(true);
 
+  handleFocus(event: Event) {
+    // console.log(event);
+  }
+
   getClasses() {
     return `bmb_tooltip-container-${this.align()}-${this.justify()}`;
   }
