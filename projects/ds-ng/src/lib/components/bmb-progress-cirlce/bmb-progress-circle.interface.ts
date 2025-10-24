@@ -1,7 +1,6 @@
 export interface BmbProgressCircleOptionsInterface {
   valueLabel: string;
   showValueLabel: boolean;
-  // backgroundColor: string;
   percent: number;
   radius: number;
   space: number;

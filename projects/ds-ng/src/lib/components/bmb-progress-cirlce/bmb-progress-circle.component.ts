@@ -92,7 +92,6 @@ export class BmbProgressCircleComponent implements OnChanges {
   }
 
   render() {
-    this.applyOptions();
     this.draw(this.options().percent);
     this._lastPercent = this.options().percent;
   }
@@ -216,17 +215,6 @@ export class BmbProgressCircleComponent implements OnChanges {
         strokeWidth: this.options().innerStrokeWidth,
       },
     };
-  }
-
-  private applyOptions() {
-    this.options().radius = Math.abs(100);
-    this.options().space = -5;
-    this.options().percent = this.percent();
-    this.options().outerStrokeWidth = 5;
-    this.options().innerStrokeWidth = 5;
-    this.options().backgroundPadding = -9;
-    this.options().showTitle = this.showTitle();
-    this.options().showValueLabel = this.showValueLabel();
   }
 
   private getRelativeY(rowNum: number, rowCount: number): string {
