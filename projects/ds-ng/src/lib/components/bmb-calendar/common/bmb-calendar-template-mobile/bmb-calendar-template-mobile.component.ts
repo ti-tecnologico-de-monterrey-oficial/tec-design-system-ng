@@ -53,7 +53,9 @@ export class BmbCalendarTemplateMobileComponent {
   month = this.monthsNames[this.now().month - 1];
   year = this.now().year;
   isCalendarOpen = false;
-  defaultDayOrder = computed(() => Info.weekdays('narrow', { locale: this.locale() }));
+  defaultDayOrder = computed(() =>
+    Info.weekdays('narrow', { locale: this.locale() }),
+  );
   dayNames = computed(() => orderDayNames(this.defaultDayOrder()));
   isWedgeOpen = false;
 

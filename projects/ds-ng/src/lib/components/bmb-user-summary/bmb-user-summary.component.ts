@@ -13,7 +13,12 @@ import { TranslatePipe } from '../../pipes/translations';
 @Component({
   selector: 'bmb-user-summary',
   standalone: true,
-  imports: [CommonModule, BmbUserSummaryContentComponent, BmbButtonDirective, TranslatePipe],
+  imports: [
+    CommonModule,
+    BmbUserSummaryContentComponent,
+    BmbButtonDirective,
+    TranslatePipe,
+  ],
   templateUrl: './bmb-user-summary.component.html',
   styleUrl: './bmb-user-summary.component.scss',
   encapsulation: ViewEncapsulation.None,

@@ -13,7 +13,12 @@ import { TranslatePipe } from '../../pipes/translations';
 @Component({
   selector: 'bmb-balance-overview',
   standalone: true,
-  imports: [CommonModule, BmbProgressCircleComponent, BmbLegendComponent, TranslatePipe],
+  imports: [
+    CommonModule,
+    BmbProgressCircleComponent,
+    BmbLegendComponent,
+    TranslatePipe,
+  ],
   templateUrl: './bmb-balance-overview.component.html',
   styleUrl: './bmb-balance-overview.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

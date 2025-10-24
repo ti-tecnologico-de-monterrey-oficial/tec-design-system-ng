@@ -62,7 +62,9 @@ export class BmbCalendarHeaderComponent {
       });
     }
 
-    return this.currentDate().setLocale(this.locale()).toLocaleString({ month: 'long' });
+    return this.currentDate()
+      .setLocale(this.locale())
+      .toLocaleString({ month: 'long' });
   }
 
   handleRangeChange(event: IBmbCalendarView): void {

@@ -2,9 +2,15 @@
   <div class="bmb_balance-overview-circle-container">
     <bmb-progress-circle
       [percent]="progressCirclePercent()"
-      [valueLabel]="progressCircleValue() || ('balance_overview.progress_circle_value' | translate)"
+      [valueLabel]="
+        progressCircleValue() ||
+        ('balance_overview.progress_circle_value' | translate)
+      "
       [showValueLabel]="showProgressCircleValue()"
-      [title]="progressCircleTitle() || ('balance_overview.progress_circle_title' | translate)"
+      [title]="
+        progressCircleTitle() ||
+        ('balance_overview.progress_circle_title' | translate)
+      "
       [showTitle]="showProgressCircleTitle()"
       [showBackground]="showProgressCircleBackground()"
     />
@@ -14,16 +20,24 @@
       <bmb-legend
         class="bmb_balance-overview-legend-text"
         [indicatorAppearance]="'success'"
-        [label]="labelPrimary() || ('balance_overview.label_primary' | translate)"
-        [value]="valuePrimary() || ('balance_overview.value_primary' | translate)"
+        [label]="
+          labelPrimary() || ('balance_overview.label_primary' | translate)
+        "
+        [value]="
+          valuePrimary() || ('balance_overview.value_primary' | translate)
+        "
       />
     </div>
     <div class="bmb_balance-overview-legend-strong">
       <bmb-legend
         class="bmb_balance-overview-legend-text"
         [indicatorAppearance]="'strong'"
-        [label]="labelSecondary() || ('balance_overview.label_secondary' | translate)"
-        [value]="valueSecondary() || ('balance_overview.value_secondary' | translate)"
+        [label]="
+          labelSecondary() || ('balance_overview.label_secondary' | translate)
+        "
+        [value]="
+          valueSecondary() || ('balance_overview.value_secondary' | translate)
+        "
       />
     </div>
   </div>

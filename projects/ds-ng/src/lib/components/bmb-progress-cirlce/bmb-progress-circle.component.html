@@ -38,7 +38,9 @@
   </svg>
   @if (options().showTitle || options().showValueLabel) {
     <div class="bmb_progress-circle-text-container">
-      <p class="bmb_progress-circle-text-content bmb_progress-circle-background">
+      <p
+        class="bmb_progress-circle-text-content bmb_progress-circle-background"
+      >
         @if (options().showTitle) {
           <h2 class="bmb_progress-circle-title-container">
             @if (isTitleString()) {
@@ -47,9 +49,7 @@
               </span>
             } @else {
               @for (segment of title(); track $index) {
-                <span
-                  class="bmb_progress-circle-title"
-                >
+                <span class="bmb_progress-circle-title">
                   {{ segment }}
                 </span>
               }

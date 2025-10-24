@@ -21,16 +21,18 @@ import { TranslatePipe } from '../../pipes/translations';
     BmbHeaderMitecComponent,
     BmbUserProfileContentComponent,
     BmbButtonDirective,
-    TranslatePipe
+    TranslatePipe,
   ],
   styleUrl: './bmb-user-profile.component.scss',
   template: `
     <bmb-header-mitec
-      [headerLabel]="headerLabel()  || ('user_profile.header' | translate)"
+      [headerLabel]="headerLabel() || ('user_profile.header' | translate)"
       [actionHeaderLinks]="actionHeaderLinks()"
     >
       <bmb-user-profile-content
-        [anotherAccountLabel]="anotherAccountLabel() || ('user_profile.another_account' | translate)"
+        [anotherAccountLabel]="
+          anotherAccountLabel() || ('user_profile.another_account' | translate)
+        "
         [anotherAccountLink]="anotherAccountLink()"
         [anotherAccountTarget]="anotherAccountTarget()"
         [userInfo]="userInfo()"

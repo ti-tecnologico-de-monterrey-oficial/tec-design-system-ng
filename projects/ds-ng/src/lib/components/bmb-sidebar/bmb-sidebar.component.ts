@@ -63,7 +63,10 @@ export class BmbSidebarComponent {
 
   constructor() {
     effect(() => {
-      const totalElements = this.elements().reduce((acc, group) => acc + group.length, 0);
+      const totalElements = this.elements().reduce(
+        (acc, group) => acc + group.length,
+        0,
+      );
 
       if (this.elements()?.length > 2) {
         console.error(

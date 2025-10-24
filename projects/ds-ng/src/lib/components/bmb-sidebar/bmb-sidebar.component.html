@@ -79,7 +79,9 @@
             class="bmb_sidebar-item"
             [ngClass]="{
               'bmb_sidebar-item-left-space':
-                position() === 'right' && hasSubmenu && !element.children?.length
+                position() === 'right' &&
+                hasSubmenu &&
+                !element.children?.length
             }"
             (click)="checkToCloseSidebar(element)"
           >

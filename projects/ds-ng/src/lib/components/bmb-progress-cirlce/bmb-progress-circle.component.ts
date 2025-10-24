@@ -76,7 +76,7 @@ export class BmbProgressCircleComponent implements OnChanges {
       valueLabel: this.valueLabel() ?? '',
       title: this.title() ?? '',
       showBackground: this.showBackground() ?? true,
-    }
+    };
     return opts;
   });
 
@@ -116,7 +116,8 @@ export class BmbProgressCircleComponent implements OnChanges {
   draw(percent: number) {
     percent = Math.abs(percent);
     let circlePercent = percent > 100 ? 100 : percent;
-    let boxSize = this.options().radius * 2 + this.options().outerStrokeWidth * 2;
+    let boxSize =
+      this.options().radius * 2 + this.options().outerStrokeWidth * 2;
     let centre = { x: boxSize / 2, y: boxSize / 2 };
     let startPoint = { x: centre.x, y: centre.y - this.options().radius };
     let endPoint = this.polarToCartesian(
