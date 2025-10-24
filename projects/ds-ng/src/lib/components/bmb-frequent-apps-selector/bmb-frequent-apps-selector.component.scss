@@ -53,6 +53,7 @@
       max-height: rem.rem_calc(224);
       gap: rem.rem_calc(12);
       overflow: auto;
+      align-content: flex-start;
 
       bmb-interactive-icon {
         scroll-snap-align: center;
