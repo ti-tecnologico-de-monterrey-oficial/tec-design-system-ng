@@ -222,7 +222,7 @@ ${getBasicExampleBlock('BmbDropzoneComponent')}
     progress: {
       control: { type: 'number' },
       description: `
-Upload progress of the file.
+Displays the file upload progress.
 
 ${RELEVANT_TITLE.note} For the multi option, a record must be used.
 
@@ -237,7 +237,11 @@ ${RELEVANT_TITLE.note} For the multi option, a record must be used.
     },
     acceptedExtensions: {
       control: { type: 'object' },
-      description: 'Array of accepted file extensions.',
+      description: `Sets the file extensions or MIME types accepted.<br/><br/>
+${RELEVANT_TITLE.important} ***/**** is for all extensions or subtypes.<br/><br/>
+${RELEVANT_TITLE.example} ***image/**** is for all image types:
+- type: images
+- *: all subtypes of image`,
       table: {
         category: 'Properties',
         defaultValue: { summary: '[]' },
@@ -246,7 +250,7 @@ ${RELEVANT_TITLE.note} For the multi option, a record must be used.
     },
     formatFilesLabel: {
       control: { type: 'text' },
-      description: 'Label that describes the accepted file formats.',
+      description: 'Sets the label that describes the accepted file formats.',
       table: {
         category: 'Properties',
         defaultValue: getDefaultValueControl(
@@ -257,7 +261,8 @@ ${RELEVANT_TITLE.note} For the multi option, a record must be used.
     },
     linkFilesSupported: {
       control: { type: 'text' },
-      description: 'URL link to the supported file format documentation.',
+      description:
+        'Sets the URL link to the supported file format documentation.',
       table: {
         category: 'Properties',
         defaultValue: getDefaultValueControl(),
@@ -266,7 +271,7 @@ ${RELEVANT_TITLE.note} For the multi option, a record must be used.
     },
     linkLabel: {
       control: { type: 'text' },
-      description: 'Text for the hyperlink to format info.',
+      description: 'Sets the text for the hyperlink to format info.',
       table: {
         category: 'Properties',
         defaultValue: getDefaultValueControl(
@@ -277,7 +282,7 @@ ${RELEVANT_TITLE.note} For the multi option, a record must be used.
     },
     dropInstruction: {
       control: { type: 'text' },
-      description: 'Instructional text before the file upload link.',
+      description: 'Sets the instructional text before the file upload link.',
       table: {
         category: 'Properties',
         defaultValue: getDefaultValueControl('Arrastra tus archivos aquí o'),
@@ -293,7 +298,7 @@ ${RELEVANT_TITLE.note} For the multi option, a record must be used.
     },
     mainIcon: {
       control: { type: 'text' },
-      description: 'Icon to be displayed above the instruction.',
+      description: 'Sets the icon to be displayed above the instruction.',
       table: {
         category: 'Properties',
         defaultValue: getDefaultValueControl('image'),
@@ -309,7 +314,7 @@ ${RELEVANT_TITLE.note} For the multi option, a record must be used.
     },
     errorMessageFormat: {
       control: { type: 'text' },
-      description: 'Message shown when file format is invalid.',
+      description: 'Sets the message shown when file format is invalid.',
       table: {
         category: 'Properties',
         defaultValue: getDefaultValueControl('Formato no soportado'),
@@ -318,7 +323,7 @@ ${RELEVANT_TITLE.note} For the multi option, a record must be used.
     },
     errorMessageSize: {
       control: { type: 'text' },
-      description: 'Message shown when file exceeds size limit.',
+      description: 'Sets the message shown when file exceeds size limit.',
       table: {
         category: 'Properties',
         defaultValue: getDefaultValueControl(
@@ -330,7 +335,7 @@ ${RELEVANT_TITLE.note} For the multi option, a record must be used.
     name: DBmbInputParamDesc.name,
     fileSize: {
       control: { type: 'number' },
-      description: 'Maximum allowed file size in MB.',
+      description: 'Sets the maximum allowed file size in MB.',
       table: {
         category: 'Properties',
         type: { summary: 'number' },
@@ -339,7 +344,7 @@ ${RELEVANT_TITLE.note} For the multi option, a record must be used.
     },
     multiple: {
       control: { type: 'boolean' },
-      description: 'Allow selecting multiple files.',
+      description: 'Allows selecting multiple files when true.',
       table: {
         category: 'Properties',
         type: { summary: 'boolean' },
@@ -362,7 +367,7 @@ ${RELEVANT_TITLE.note} For the multi option, a record must be used.
     name: '',
     dropLabel: 'selecciona tus archivos',
     progress: 0,
-    acceptedExtensions: ['png', 'jpeg', 'jpg'],
+    acceptedExtensions: ['png', 'image/jpeg', 'jpg'],
     formatFilesLabel: 'Ver más información de formatos de archivo aceptados.',
     linkFilesSupported: '',
     linkLabel: 'Ver más información de formatos de archivo aceptados.',

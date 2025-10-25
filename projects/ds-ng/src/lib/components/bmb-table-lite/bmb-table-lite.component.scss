@@ -31,7 +31,7 @@
 
     &-top,
     &-bottom {
-      @include mixins.media-query(1000, 'min') {
+      @include mixins.check-for-mobile(false) {
         .bmb_table_lite-header {
           height: 30%;
           width: 100%;
@@ -44,7 +44,7 @@
 
     &-left,
     &-right {
-      @include mixins.media-query(1000, 'min') {
+      @include mixins.check-for-mobile(false) {
         flex-flow: row;
 
         .bmb_table_lite-header {
@@ -57,7 +57,7 @@
     }
 
     &-right {
-      @include mixins.media-query(1000, 'min') {
+      @include mixins.check-for-mobile(false) {
         flex-flow: row-reverse;
       }
     }
@@ -178,7 +178,7 @@
       border-bottom: 0;
       color: RGBA(var(--color-charade-500));
       text-transform: uppercase;
-      @include fonts.font(4, medium);
+      @include fonts.font(4, regular);
     }
   }
 
@@ -283,7 +283,7 @@
   }
 
   &-row > .bmb_table_lite-td {
-    @include fonts.font(4, medium);
+    @include fonts.font(4, regular);
 
     &.bmb_table_lite-actions {
       .action-container {
@@ -393,7 +393,7 @@
     height: rem.rem_calc(24);
 
     .bmb_checkbox-mark {
-      margin: 0;
+      // margin: 0;
     }
   }
 

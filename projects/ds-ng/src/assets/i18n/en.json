@@ -1,0 +1,113 @@
+{
+  "account_statement": {
+    "title": "Account Statement",
+    "progress_circle_title": "Total to pay this month",
+    "label_primary": "Monthly Fee",
+    "label_secondary": "Pending",
+    "payment_deadline_label": "Payment Deadline:",
+    "cut_off_date_label": "Cut-off Date:",
+    "pay_button_label": "Pay",
+    "back_button_label": "Back",
+    "modal_title": "Pay",
+    "modal_subtitle": "How much would you like to pay?",
+    "modal_rest_label": "Remaining Payment",
+    "modal_other_amount_label": "Other Amount",
+    "modal_primary_button_label": "Pay",
+    "error_message": "Error, This field is required",
+    "progress_title": "Total Paid"
+  },
+  "advertisement_card": {
+    "title": "My Ads"
+  },
+  "alert_center": {
+    "empty_state": {
+      "primary_text": "You have no notifications to show"
+    },
+    "loader": {
+      "loading": "Loading...",
+      "subtitle": "Loading notifications",
+      "primary_button": "Retry",
+      "secondary_button": "Exit"
+    },
+    "form": {
+      "empty_state": {
+        "primary_text": "You have no notifications to show"
+      }
+    }
+  },
+  "balance_overview": {
+    "progress_circle_value": "Progress Circle Value",
+    "progress_circle_title": "Progress Circle Title",
+    "label_primary": "Primary Label",
+    "label_secondary": "Secondary Label",
+    "value_primary": "$0",
+    "value_secondary": "$0"
+  },
+  "calendar": {
+    "title": "My calendar",
+    "today": "Today",
+    "month": "Month",
+    "week": "Week",
+    "day": "Day",
+    "calendar": "Calendar",
+    "subtitle": "Select the calendars you want to view",
+    "filter_save": "Save"
+  },
+  "chat_bar": {
+    "placeholder": "What would you like to find today?",
+    "drag_files": "Drag your files here"
+  },
+  "digital_id": {
+    "secondary_button_label": "Download ID as PDF"
+  },
+  "dropzone": {
+    "drop_instructions": "Drag and drop your files here or",
+    "drop_label": "Select files",
+    "error_message": "Unsupported file",
+    "error_message_format": "Unsupported format",
+    "error_message_size": "File size exceeds the allowed limit",
+    "format_files_label": "Specification of formats and weight",
+    "link_label": "View more information about accepted file formats."
+  },
+  "header_mitec": {
+    "header_label": "STUDENTS"
+  },
+  "home_card_chat": {
+    "title": "TecBot assistant",
+    "subtitle": "Chat"
+  },
+  "login": {
+    "header_label": "STUDENTS",
+    "forgotten_password": "Forgot your password?",
+    "remember_me": "Remember me",
+    "login_as_guest": "Login as Guest",
+    "button_label": "Log In"
+  },
+  "login_onboarding": {
+    "another_account": "Log in with another account",
+    "forgot_password": "Forgot your password?"
+  },
+  "notice_card": {
+    "button_text": "Understood"
+  },
+  "step_progress_bar": {
+    "label_completed": "Complete",
+    "label_pending": "Pending"
+  },
+  "switch": {
+    "aria_label": "Describe the action of the switch"
+  },
+  "totp": {
+    "title": "TOTP",
+    "subtitle": "Time-based One-Time Password"
+  },
+  "user_profile": {
+    "header": "STUDENTS",
+    "another_account": "Log in with another account",
+    "button_label": "Log In"
+  },
+  "user_summary": {
+    "salutation": "Good afternoon",
+    "digital_id": "Digital ID"
+  }
+}

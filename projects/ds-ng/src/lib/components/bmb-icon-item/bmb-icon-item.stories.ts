@@ -1,26 +1,23 @@
 import {
   componentWrapperDecorator,
-  moduleMetadata,
   StoryObj,
   type Meta,
 } from '@storybook/angular';
 import { BmbIconItemComponent } from './bmb-icon-item.component';
-import { BmbDividerComponent } from '../bmb-divider/bmb-divider.component';
 import {
   getBasicExampleBlock,
   getGeneralComponentDescription,
   getGeneralDescription,
 } from '../../utils/doc/utils';
-import { DBmbIconParamDesc } from '../../utils/doc/parameterDescriptions';
+import {
+  DBmbIconParamDesc,
+  getPropertyParamDesc,
+} from '../../utils/doc/parameterDescriptions';
 
 export default {
   title: 'Components/Visual labels/Icon item',
   component: BmbIconItemComponent,
   decorators: [
-    moduleMetadata({
-      imports: [BmbDividerComponent],
-      providers: [],
-    }),
     componentWrapperDecorator((story: string) => {
       return `<div style="max-width: 560px; margin: 0 auto">
           ${story}
@@ -43,10 +40,6 @@ ${getBasicExampleBlock('BmbIconItemComponent')}
       description: DBmbIconParamDesc.icon.description.concat(
         '<br/><br/>Generally this icon will be displayed on the left.',
       ),
-      table: {
-        ...DBmbIconParamDesc.icon.table,
-        type: { summary: 'string (required)' },
-      },
     },
     iconSize: DBmbIconParamDesc.iconSize,
     label: {
@@ -70,12 +63,20 @@ You can pass plain text or valid HTML tags. If HTML is used, it will be safely r
         type: { summary: 'string (required)' },
       },
     },
+    showDivider: getPropertyParamDesc(
+      '',
+      'boolean',
+      true,
+      '',
+      'Shows a divider at the bottom or the element when true.',
+    ),
   },
   args: {
     icon: 'calendar_month',
     iconSize: 24,
     label: 'Semestre',
     value: `<a href="https://linkedin.com">Ir a enlace Linkedin</a>`,
+    showDivider: true,
   },
 } as Meta<typeof BmbIconItemComponent>;
 
@@ -90,8 +91,8 @@ export const Default: Story = {
         [iconSize]="iconSize"
         [label]="label"
         [value]="value"
+        [showDivider]="showDivider"
       />
-      <bmb-divider />
     `,
   }),
 };

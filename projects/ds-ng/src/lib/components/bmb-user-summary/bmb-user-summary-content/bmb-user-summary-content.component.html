@@ -27,7 +27,7 @@
       {{ getName() }}
     </h3>
     <span
-      class="bmb_user-summary_content-wrapper-id"
+      class="bmb_user-summary_content-wrapper-general-text"
       bmbLayoutItem
       [isDynamicItem]="true"
     >
@@ -44,11 +44,29 @@
     }
     @if (!!infoCareer()) {
       <span
-        class="bmb_user-summary_content-wrapper-id"
+        class="bmb_user-summary_content-wrapper-general-text"
         bmbLayoutItem
         [isDynamicItem]="true"
       >
         {{ infoCareer() }}
+      </span>
+    }
+    @if (additionalInfo()) {
+      <span
+        class="bmb_user-summary_content-wrapper-general-text"
+        bmbLayoutItem
+        [isDynamicItem]="true"
+      >
+        {{ additionalInfo() }}
+      </span>
+    }
+    @if (CURP()) {
+      <span
+        class="bmb_user-summary_content-wrapper-general-text"
+        bmbLayoutItem
+        [isDynamicItem]="true"
+      >
+        {{ 'CURP: '.concat(CURP()!) }}
       </span>
     }
     @if (!!email()) {

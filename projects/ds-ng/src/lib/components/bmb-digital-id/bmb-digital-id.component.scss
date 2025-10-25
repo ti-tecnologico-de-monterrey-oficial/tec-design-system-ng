@@ -47,7 +47,7 @@
     z-index: 1;
 
     .bmb_user-summary_content-wrapper-title-column {
-      @include fonts.font(9, semibold);
+      @include fonts.font(9, bold);
       color: rgb(var(--color-black-primary)) !important;
       padding-top: var(--bmb-spacing-l);
     }
@@ -56,7 +56,7 @@
       background-color: rgb(var(--color-white-primary));
     }
 
-    .bmb_user-summary_content-wrapper-id {
+    .bmb_user-summary_content-wrapper-general-text {
       @include fonts.font(7, regular);
       color: rgba(var(--color-black-primary), 0.75);
     }

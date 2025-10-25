@@ -13,7 +13,9 @@ import {
   getAuxiliaryDescription,
   getBasicExampleBlock,
   getGeneralDescription,
+  getReferenceRecommendationForVariable,
   getSpecialSpecifications,
+  RELEVANT_TITLE,
 } from '../../utils/doc/utils';
 import { DBmbLayoutParamDesc } from '../../utils/doc/parameterDescriptions';
 
@@ -45,7 +47,10 @@ ${getAuxiliaryDescription('Layout', 'Layout item')}`,
       'https://bamboo.tec.mx/latest/foundations/layout/descripcion-general-EfPFAmaP',
   },
 )}
-${getSpecialSpecifications(`
+${getSpecialSpecifications(
+  `
+${getReferenceRecommendationForVariable('size reference in CSS')}
+>
 ***Layout*** provides a set of directives that can be used to define the layout structure, including the \`BmbLayout\` and \`BmbLayoutItem\` directives.
 ><br/><br/>
 The \`BmbLayout\` directive is used to create a layout container, while the \`BmbLayoutItem\` directive is used to define individual items within the layout. The layout can be customized using various properties such as \`gap\`, \`size\`, \`margin\`, and \`alignment\` options.
@@ -67,7 +72,9 @@ The \`colGrow\` property can be used to specify the growth factor of the item. T
 ### Offset
 >
 The \`BmbLayoutItem\` directive also supports offsetting columns. You can use the \`marginLeft\` and \`marginRight\` properties to specify the offset for each column. This allows you to create more complex layouts with precise control over the positioning of each item.
-`)}
+`,
+  { showAdditionalBlockquote: true },
+)}
 ${getBasicExampleBlock('BmbLayoutDirective, BmbLayoutItemDirective')}
         `,
       },
@@ -85,11 +92,11 @@ ${getBasicExampleBlock('BmbLayoutDirective, BmbLayoutItemDirective')}
         category: 'Properties',
         defaultValue: { summary: 'm' },
       },
-      description: 'Set the margin size',
+      description: 'Sets the margin size',
     },
     dynamicCols: {
       control: { type: 'boolean' },
-      description: 'This property enable the dinamic size for bmbLayoutItem',
+      description: 'Enables the dinamic size for bmbLayoutItem',
       table: {
         category: 'Properties',
         defaultValue: { summary: 'false' },
@@ -98,6 +105,18 @@ ${getBasicExampleBlock('BmbLayoutDirective, BmbLayoutItemDirective')}
     },
     justify: DBmbLayoutParamDesc.justify,
     alignItems: DBmbLayoutParamDesc.alignItems,
+    isContainerQuery: {
+      control: { type: 'boolean' },
+      description: `Marks the layout as a query container when true.<br/><br/>
+${RELEVANT_TITLE.configuration}
+\`@container\` queries are useful for deep content in containers that are not favored by \`@media\` queries because it is relative to the device resolution.
+      `,
+      table: {
+        category: 'Properties',
+        defaultValue: { summary: 'false' },
+        type: { summary: 'boolean' },
+      },
+    },
   },
   args: {
     gapSize: 'm',

@@ -5,33 +5,31 @@
       label="Semestre"
       [value]="_studentData.period"
     />
-    <bmb-divider />
+
     <bmb-icon-item
       icon="location_on"
       label="Campus"
       [value]="_studentData.campus"
     />
-    <bmb-divider />
+
     <bmb-icon-item
       icon="library_books"
       label="Programa"
       [value]="_studentData.program"
     />
-    <bmb-divider />
+
     @if (_studentData.isExatec && _studentData.linkedin) {
       <bmb-icon-item
         icon="work_history"
         label="Historial Laboral"
         [value]="_studentData.linkedin"
       />
-      <bmb-divider />
     } @else if (!_studentData.isExatec && _studentData.curp) {
       <bmb-icon-item
         icon="assignment_ind"
         label="Curp"
         [value]="_studentData.curp"
       />
-      <bmb-divider />
     }
   </section>
 </ng-template>
@@ -43,11 +41,12 @@
       label="Puesto"
       [value]="collaboratorData()?.position!"
     />
-    <bmb-divider />
+
     <bmb-icon-item
       icon="location_on"
       label="Área"
       [value]="collaboratorData()?.area!"
+      [showDivider]="false"
     />
   </section>
   <section class="bmb_profile-access">

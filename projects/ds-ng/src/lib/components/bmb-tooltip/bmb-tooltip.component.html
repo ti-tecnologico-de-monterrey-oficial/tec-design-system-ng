@@ -6,6 +6,10 @@
       [icon]="icon()"
       [isFill]="isFill()"
       [alt]="title() || 'Tooltip icon'"
+      [tabIndex]="0"
+      (onKeydown)="handleFocus($event)"
+      (onKeyup)="handleFocus($event)"
+      (onKeypress)="handleFocus($event)"
     />
   } @else {
     <ng-content></ng-content>

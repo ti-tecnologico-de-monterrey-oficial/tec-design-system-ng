@@ -12,7 +12,9 @@
     appearance="transparent"
     size="large"
   >
-    <button type="button" (click)="goToToday()">Hoy</button>
+    <button type="button" (click)="goToToday()">
+      {{ 'calendar.today' | translate }}
+    </button>
     <button type="button" (click)="handleChangeDate('-')">
       <bmb-icon [icon]="'arrow_back_ios'" />
     </button>
@@ -34,21 +36,21 @@
       (click)="handleRangeChange('day')"
       [ngClass]="{ 'bmb_button-selected': view() === 'day' }"
     >
-      Día
+      {{ 'calendar.day' | translate }}
     </button>
     <button
       type="button"
       (click)="handleRangeChange('week')"
       [ngClass]="{ 'bmb_button-selected': view() === 'week' }"
     >
-      Semana
+      {{ 'calendar.week' | translate }}
     </button>
     <button
       type="button"
       (click)="handleRangeChange('month')"
       [ngClass]="{ 'bmb_button-selected': view() === 'month' }"
     >
-      Mes
+      {{ 'calendar.month' | translate }}
     </button>
   </div>
   @if (showFilterButton()) {

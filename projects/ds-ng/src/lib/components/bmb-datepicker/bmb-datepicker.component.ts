@@ -24,7 +24,7 @@ import {
   IBmbInputError,
   IBmbInputTooltipPosition,
 } from '../bmb-input/bmb-input.component';
-import { BmbProjectionContentService } from '../../services/projection.service';
+import { BmbProjectionContentService } from '../../services/projection/projection.service';
 import { BmbDatepickerModalComponent } from './bmb-datepicker-modal/bmb-datepicker-modal.component';
 import {
   getCustomValidation,
@@ -71,7 +71,7 @@ export class BmbDatepickerComponent implements OnInit {
   name = input<string>(getUUID());
   disableDatesBefore = input<string>('');
   disableDatesAfter = input<string>('');
-  lang = input<string>('es-MX');
+  // lang = input<string>('es-MX');
   helperMessage = input<string>(this.dateFormat());
   value = input<string>();
   customValidation = input<ValidatorFn>();

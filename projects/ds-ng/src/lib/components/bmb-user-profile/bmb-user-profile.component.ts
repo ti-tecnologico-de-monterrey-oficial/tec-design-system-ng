@@ -12,6 +12,7 @@ import {
   IBmbActionHeaderLinks,
 } from '../bmb-header-mitec/bmb-header-mitec.component';
 import { BmbUserProfileContentComponent } from './bmb-user-profile-content/bmb-user-profile-content.component';
+import { TranslatePipe } from '../../pipes/translations';
 
 @Component({
   selector: 'bmb-user-profile',
@@ -20,21 +21,24 @@ import { BmbUserProfileContentComponent } from './bmb-user-profile-content/bmb-u
     BmbHeaderMitecComponent,
     BmbUserProfileContentComponent,
     BmbButtonDirective,
+    TranslatePipe,
   ],
   styleUrl: './bmb-user-profile.component.scss',
   template: `
     <bmb-header-mitec
-      [headerLabel]="headerLabel()"
+      [headerLabel]="headerLabel() || ('user_profile.header' | translate)"
       [actionHeaderLinks]="actionHeaderLinks()"
     >
       <bmb-user-profile-content
-        [anotherAccountLabel]="anotherAccountLabel()"
+        [anotherAccountLabel]="
+          anotherAccountLabel() || ('user_profile.another_account' | translate)
+        "
         [anotherAccountLink]="anotherAccountLink()"
         [anotherAccountTarget]="anotherAccountTarget()"
         [userInfo]="userInfo()"
       />
       <button bmbButton size="large" (click)="handleContinue()">
-        {{ buttonLabel() }}
+        {{ buttonLabel() || ('user_profile.button_label' | translate) }}
       </button>
     </bmb-header-mitec>
   `,
@@ -42,11 +46,11 @@ import { BmbUserProfileContentComponent } from './bmb-user-profile-content/bmb-u
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BmbUserProfileComponent {
-  headerLabel = input<string>('ESTUDIANTES');
-  anotherAccountLabel = input<string>('Ingresar con otra cuenta');
+  headerLabel = input<string>();
+  anotherAccountLabel = input<string>();
   anotherAccountLink = input<string>('');
   anotherAccountTarget = input<IBmbTargetLink>('_blank');
-  buttonLabel = input<string>('Ingresar');
+  buttonLabel = input<string>();
   userInfo = input.required<IBmbUserInfo>();
   actionHeaderLinks = input<IBmbActionHeaderLinks>();
   actionHeaders = input<IBmbActionHeader[]>([]); //Deprecated

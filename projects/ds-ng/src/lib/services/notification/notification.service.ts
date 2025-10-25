@@ -9,9 +9,9 @@ import {
   Optional,
   signal,
 } from '@angular/core';
-import { INotification } from '../components/bmb-push-notification/types';
-import { getUUID } from '../utils/utils';
-import { BmbPortalComponent } from '../components/bmb-portal/bmb-portal.component';
+import { INotification } from '../../components/bmb-push-notification/types';
+import { getUUID } from '../../utils/utils';
+import { BmbPortalComponent } from '../../components/bmb-portal/bmb-portal.component';
 
 export type NotificationPositionX = 'left' | 'right';
 export type NotificationPositionY = 'top' | 'bottom';

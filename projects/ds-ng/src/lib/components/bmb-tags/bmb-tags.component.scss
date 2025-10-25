@@ -25,7 +25,7 @@ $colors: (
   'creative_ripelemon': var(--creative-use-ripelemon)
 );
 
-@mixin tagVariant($name, $color) {
+@mixin tag-variant($name, $color) {
   background-color: $color;
   border-color: $color;
   color: var(--general_contrasts-5);
@@ -70,7 +70,7 @@ $colors: (
 
   @each $name, $color in $colors {
     &-#{$name} {
-      @include tagVariant($name, $color);
+      @include tag-variant($name, $color);
     }
   }
 }

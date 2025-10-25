@@ -14,7 +14,7 @@ import {
   signal,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TabsService } from '../../services/tabs.service';
+import { TabsService } from '../../services/tabs/tabs.service';
 import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
 import { IBmbContrast } from '../../types/colors';
 import { BmbNotificationCounterComponent } from '../bmb-notification-counter/bmb-notification-counter.component';
@@ -45,7 +45,7 @@ export class BmbTabsComponent implements OnInit, AfterViewInit, OnDestroy {
   appearanceContrast = input<IBmbContrast>('default');
   format = input<string>('');
   tabs = input<IBmbTab[]>([]);
-  selectedTabId = model<number>(0); //internal
+  selectedTabId = model<number>(0);
 
   selected = output<IBmbTab>();
 
@@ -54,7 +54,7 @@ export class BmbTabsComponent implements OnInit, AfterViewInit, OnDestroy {
   hasScroll = signal<boolean>(false);
   scrollLeft = signal<number>(0);
   scrollRight = signal<number>(999999);
-  @ViewChild('tabsItems') tabsItems!: ElementRef;
+  @ViewChild('tabsItems', { static: true }) tabsItems!: ElementRef;
 
   constructor(
     private tabsService: TabsService,

@@ -1,4 +1,6 @@
 @use '../../../assets/styles/base/fonts' as fonts;
+@use '../../../assets/styles/base/rem' as rem;
+@use '../../../assets/styles/base/mixins' as mixins;
 
 $status: (
   'gray': var(--general_contrasts-5),
@@ -8,9 +10,46 @@ $status: (
 );
 
 .bmb_progress-circle {
+  grid-area: 1 / 1 / 2 / 2;
+
+  &-text {
+    &-container {
+      grid-area: 1/1/2/2;
+      margin: 0;
+      width: 100%;
+      padding: 6%;
+      box-sizing: border-box;
+      text-align: center;
+      height: 100%;
+      align-content: center;
+    }
+
+    &-content {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      height: 100%;
+      margin: 0;
+      border-radius: 50%;
+    }
+  }
+
+  &-title-container {
+    container: bmb-progress-circle-title-container / inline-size;
+    display: flex;
+    flex-flow: column;
+  }
+
+  &-container {
+    display: grid;
+    align-items: center;
+    justify-items: center;
+    grid-template-columns: 100%;
+    grid-template-rows: 100%;
+  }
+
   &-background {
-    fill: var(--containers-container-button);
-    fill-opacity: 1;
+    background-color: var(--containers-container-button);
   }
 
   &-fill {
@@ -36,11 +75,20 @@ $status: (
 
   &-title {
     @include fonts.font(4, regular);
-    fill: var(--general_contrasts-100);
+    color: var(--general_contrasts-100);
+    font-size: 7.35cqw;
+    line-height: 7.35cqw;
   }
 
   &-value-label {
-    @include fonts.font(7, medium);
-    fill: var(--general_contrasts-100);
+    container: bmb-progress-circle-value-container / inline-size;
+    margin: rem.rem_calc(16 0 0 0);
+
+    &-text {
+      @include fonts.font(7, regular);
+      fill: var(--general_contrasts-100);
+      font-size: 11.2cqw;
+      word-wrap: break-word;
+    }
   }
 }

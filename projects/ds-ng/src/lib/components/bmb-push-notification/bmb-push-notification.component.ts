@@ -4,7 +4,7 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { BmbPushNotificationItemComponent } from './bmb-push-notification-item/bmb-push-notification-item.component';
-import { BmbNotificationService } from '../../services/notification.service';
+import { BmbNotificationService } from '../../services/notification/notification.service';
 import { INotification } from './types';
 
 @Component({

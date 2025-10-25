@@ -1,6 +1,7 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  computed,
   input,
   OnInit,
   output,
@@ -14,6 +15,7 @@ import { BmbButtonDirective } from '../../../directives/bmb-button/button.direct
 import { CommonModule } from '@angular/common';
 import { orderDayNames } from '../../../utils/utils';
 import { BmbActionIconComponent } from '../../bmb-action-icon/bmb-action-icon.component';
+import { BmbTranslationsService } from '../../../services/translations/translations.service';
 
 @Component({
   selector: 'bmb-datepicker-modal',
@@ -36,7 +38,6 @@ import { BmbActionIconComponent } from '../../bmb-action-icon/bmb-action-icon.co
 export class BmbDatepickerModalComponent implements OnInit {
   isWindowOpen = input<boolean>(false);
   now = input<DateTime>(DateTime.now());
-  lang = input<string>('es-MX');
   value = input<string>('');
   dateFormat = input<string>('dd/MM/yyyy');
   stepYearPicker = input<number>(18);
@@ -45,15 +46,20 @@ export class BmbDatepickerModalComponent implements OnInit {
 
   onValueChange = output<string>();
 
+  lang = computed(() => this.translateService.getCurrentLanguage());
   selectedMonth = 0;
-  monthsNames = Info.months('long', { locale: this.lang() });
+  monthsNames = computed(() => Info.months('long', { locale: this.lang() }));
   month = '';
   year = this.now().year;
-  defaultDayOrder = Info.weekdays('narrow', { locale: this.lang() });
-  dayNames = orderDayNames(this.defaultDayOrder);
+  defaultDayOrder = computed(() =>
+    Info.weekdays('narrow', { locale: this.lang() }),
+  );
+  dayNames = computed(() => orderDayNames(this.defaultDayOrder()));
   selectedYear = 0;
   view = 'calendar';
   selectedDate: DateTime | null = null;
+
+  constructor(private translateService: BmbTranslationsService) {}
 
   ngOnInit() {
     if (!!this.value()) {
@@ -64,18 +70,18 @@ export class BmbDatepickerModalComponent implements OnInit {
       this.selectedDate = formattedDate;
       this.selectedYear = formattedDate.year;
       this.selectedMonth = formattedDate.month;
-      this.month = this.monthsNames[formattedDate.month - 1];
+      this.month = this.monthsNames()[formattedDate.month - 1];
     } else {
       this.selectedYear = this.now().year;
       this.selectedMonth = this.now().month;
       this.month =
-        this.monthsNames[(this.selectedMonth || this.now().month) - 1];
+        this.monthsNames()[(this.selectedMonth || this.now().month) - 1];
     }
   }
 
   handleMonthChange(event: number) {
     this.selectedMonth = event + 1;
-    this.month = this.monthsNames[event];
+    this.month = this.monthsNames()[event];
     this.view = 'calendar';
   }
 
@@ -155,20 +161,20 @@ export class BmbDatepickerModalComponent implements OnInit {
     if (event === 'less') {
       if (this.selectedMonth === 1) {
         this.selectedMonth = 12;
-        this.month = this.monthsNames[this.selectedMonth - 1];
+        this.month = this.monthsNames()[this.selectedMonth - 1];
         this.selectedYear = this.selectedYear - 1;
       } else {
         this.selectedMonth = this.selectedMonth - 1;
-        this.month = this.monthsNames[this.selectedMonth - 1];
+        this.month = this.monthsNames()[this.selectedMonth - 1];
       }
     } else {
       if (this.selectedMonth === 12) {
         this.selectedMonth = 1;
-        this.month = this.monthsNames[this.selectedMonth - 1];
+        this.month = this.monthsNames()[this.selectedMonth - 1];
         this.selectedYear = this.selectedYear + 1;
       } else {
         this.selectedMonth = this.selectedMonth + 1;
-        this.month = this.monthsNames[this.selectedMonth - 1];
+        this.month = this.monthsNames()[this.selectedMonth - 1];
       }
     }
   }

@@ -4,6 +4,7 @@
 .bmb_user-summary_content {
   align-items: center;
   display: flex;
+  background-color: transparent;
 
   &-column {
     flex-direction: column;
@@ -48,7 +49,7 @@
       }
     }
 
-    &-id {
+    &-general-text {
       color: var(--general_contrasts-75);
       @include fonts.font(4, regular);
     }

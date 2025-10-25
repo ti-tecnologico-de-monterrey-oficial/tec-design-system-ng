@@ -39,7 +39,7 @@
   }
 
   &-quantity {
-    @include fonts.font(4, medium);
+    @include fonts.font(4, regular);
     color: RGBA(var(--color-charade-950));
 
     &-negative {
@@ -57,7 +57,7 @@
     color: RGBA(var(--color-charade-950));
 
     &-text {
-      @include fonts.font(6, semibold);
+      @include fonts.font(6, bold);
     }
 
     &-box {
@@ -65,7 +65,7 @@
     }
 
     &-value {
-      @include fonts.font(5, medium);
+      @include fonts.font(5, regular);
     }
 
     &-list {

@@ -21,19 +21,21 @@ export class BmbLayoutDirective {
   dynamicCols = input<boolean>(false);
   justify = input<IJustifyOptions>('start');
   alignItems = input<IAlignItemsOptions>('start');
-
-  constructor() {}
+  isContainerQuery = input<boolean>();
 
   @HostBinding('class') get elementClass(): string[] {
+    const baseClassName: string = 'bmb_layout';
     const classes = [
-      'bmb_layout',
       `bmb_gap-${this.gapSize()}`,
       `bmb_margin-${this.margin()}`,
       `bmb_justify-${this.justify()}`,
-      `bmb_alignItems-${this.alignItems()}`,
+      `bmb_align-items-${this.alignItems()}`,
     ];
 
-    if (this.dynamicCols()) classes.push('bmb_layout-smart');
+    if (this.dynamicCols()) classes.push(`${baseClassName}-smart`);
+    if (this.isContainerQuery()) classes.push(`${baseClassName}-container`);
+    else classes.push(baseClassName);
+
     return classes;
   }
 }

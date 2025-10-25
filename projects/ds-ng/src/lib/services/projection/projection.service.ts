@@ -10,7 +10,7 @@ import {
   TemplateRef,
   Type,
 } from '@angular/core';
-import { BmbPortalComponent } from '../components/bmb-portal/bmb-portal.component';
+import { BmbPortalComponent } from '../../components/bmb-portal/bmb-portal.component';
 
 export type IBmbProjectedContentMode = 'over' | 'partial' | 'outside';
 

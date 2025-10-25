@@ -61,7 +61,7 @@ ${getBasicExampleBlock('BmbTopBarComponent')}
   argTypes: {
     userInformation: {
       value: null,
-      control: false,
+      control: 'object',
       table: {
         category: 'Properties',
         type: {

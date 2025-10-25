@@ -21,6 +21,7 @@ import { BmbCalendarHourViewComponent } from '../bmb-calendar-hour-view/bmb-cale
 import { DEFAULT_DATE_FORMAT, eventsInDate, layoutEvents } from '../../utils';
 import { BmbCalendarScheduleCardsComponent } from '../bmb-calendar-schedule-cards/bmb-calendar-schedule-cards.component';
 import { orderDayNames } from '../../../../utils/utils';
+import { BmbTranslationsService } from '../../../../services/translations/translations.service';
 import { BmbCalendarTimeIndicatorComponent } from '../bmb-calendar-time-indicator/bmb-calendar-time-indicator.component';
 
 @Component({
@@ -39,7 +40,6 @@ import { BmbCalendarTimeIndicatorComponent } from '../bmb-calendar-time-indicato
 })
 export class BmbCalendarTemplateWeekComponent {
   weekDays = input<DateTime[]>([]);
-  lang = input<string>('es-MX');
   now = input<DateTime>(DateTime.now());
   dateFormat = input<string>(DEFAULT_DATE_FORMAT);
   events = input<IBmbParsedDates>({});
@@ -56,10 +56,11 @@ export class BmbCalendarTemplateWeekComponent {
     });
   });
 
-  defaultDayOrder = Info.weekdays('short', { locale: this.lang() });
+  constructor(private translationsService: BmbTranslationsService) {}
 
+  locale = computed(() => this.translationsService.getCurrentLanguage());
+  defaultDayOrder = Info.weekdays('short', { locale: this.locale() });
   dayNames = orderDayNames(this.defaultDayOrder);
-
   rows = new Array(25).fill(0);
 
   isNow(date: DateTime): boolean {

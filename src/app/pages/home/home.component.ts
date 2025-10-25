@@ -1,4 +1,10 @@
-import { Component, TemplateRef, ViewChild } from '@angular/core';
+import {
+  Component,
+  effect,
+  model,
+  TemplateRef,
+  ViewChild,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import {
@@ -46,7 +52,13 @@ export class HomeComponent {
   constructor(
     private router: Router,
     private contentProjected: BmbProjectionContentService,
-  ) {}
+  ) {
+    effect(() => {
+      console.log('Bookmark active state changed:', this.bookmarkActive());
+    });
+  }
+
+  bookmarkActive = model<boolean>(false);
 
   templateClick(event: MouseEvent | KeyboardEvent) {
     const data: IBmbProjectionContent = {
@@ -56,6 +68,10 @@ export class HomeComponent {
     };
 
     this.contentProjected.openContent(data);
+  }
+
+  logBookmarkChange(event: boolean) {
+    console.log('Bookmark active state:', event);
   }
 
   onExpandClick() {

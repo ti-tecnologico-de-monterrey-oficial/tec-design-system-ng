@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { BmbThemeComponent } from './bmb-theme.component';
-import { ThemeService } from '../../services';
+import { ThemeService } from '../../services/theme/theme.service';
 import { of } from 'rxjs';
 
 describe('BmbThemeComponent', () => {

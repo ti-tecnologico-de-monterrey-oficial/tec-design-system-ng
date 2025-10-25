@@ -43,14 +43,14 @@
   }
 
   &-label {
-    @include fonts.font(5, medium);
+    @include fonts.font(5, regular);
   }
 
   &-support {
     @include fonts.font(4, regular);
 
     a {
-      @include fonts.font(4, semibold);
+      @include fonts.font(4, bold);
       color: RGBA(var(--color-mariner-500), 1);
       text-decoration: none;
 
@@ -62,7 +62,7 @@
 
   &-value,
   &-link {
-    @include fonts.font(4, semibold);
+    @include fonts.font(4, bold);
     color: RGBA(var(--color-mariner-500), 1);
 
     &-only-link {

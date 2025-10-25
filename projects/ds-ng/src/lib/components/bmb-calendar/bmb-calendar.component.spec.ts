@@ -3,7 +3,7 @@ import {
   BmbCalendarComponent,
   IBmbCalendarEventClick,
 } from './bmb-calendar.component';
-import { BmbCalendarService } from '../../services/calendar.service';
+import { BmbCalendarService } from '../../services/calendar/calendar.service';
 import { DateTime } from 'luxon';
 
 describe('BmbCalendarComponent', () => {
@@ -28,7 +28,6 @@ describe('BmbCalendarComponent', () => {
     expect(component.clientTimezone()).toBe(
       Intl.DateTimeFormat().resolvedOptions().timeZone,
     );
-    expect(component.lang()).toBe('es-MX');
     expect(component.height()).toBe('100%');
   });
 

@@ -4,14 +4,20 @@
 
 // Services
 export * from './lib/ds-ng.service';
-export * from './lib/services/notification.service';
-export * from './lib/services/tabs.service';
-export * from './lib/services/calendar.service';
+export * from './lib/services/notification/notification.service';
+export * from './lib/services/tabs/tabs.service';
+export * from './lib/services/calendar/calendar.service';
 export * from './lib/services/user/profile.service';
 export * from './lib/components/bmb-login-onboarding/bmb-login-onboarding.service';
 export * from './lib/components/bmb-alert-center/bmb-alert-center.service';
-export * from './lib/services/native-modal.service';
-export * from './lib/services/projection.service';
+export * from './lib/services/modal/native-modal.service';
+export * from './lib/services/projection/projection.service';
+export * from './lib/services/theme/theme.service';
+export * from './lib/services/toast/toast.service';
+export * from './lib/services/translations/translations.service';
+
+// Pipes
+export * from './lib/pipes/translations';
 
 // Directives
 export * from './lib/ds-ng.component';
@@ -56,6 +62,7 @@ export * from './lib/components/bmb-value-counter/bmb-value-counter.component';
 export * from './lib/components/bmb-step-progress-bar/bmb-step-progress-bar.component';
 export * from './lib/components/bmb-focus-element/bmb-focus-element.component';
 export * from './lib/components/bmb-user-summary/bmb-user-summary.component';
+export * from './lib/components/bmb-user-summary/bmb-user-summary-content/bmb-user-summary-content.component';
 export * from './lib/components/bmb-tabs/bmb-tabs.component';
 export * from './lib/components/bmb-progress-cirlce/bmb-progress-circle.component';
 export * from './lib/components/bmb-sidebar/bmb-sidebar.component';
@@ -148,6 +155,7 @@ export * from './lib/components/bmb-item/bmb-item.component';
 export * from './lib/components/bmb-navigation-bar/bmb-navigation-bar.component';
 export * from './lib/components/bmb-notice-card/bmb-notice-card.component';
 export * from './lib/components/bmb-modal/bmb-native-modal.component';
+export * from './lib/directives/bmb-selector/bmb-selector.directive';
 export * from './lib/components/bmb-table-lite/bmb-table-lite.component';
 // types
 export * from './lib/types';

@@ -34,7 +34,7 @@
     }
 
     span {
-      @include fonts.font(4, semibold);
+      @include fonts.font(4, bold);
     }
   }
 

@@ -20,6 +20,7 @@
     display: inline-flex;
     flex-direction: row-reverse;
     cursor: pointer;
+    align-items: center;
   }
 
   &-label {
@@ -51,17 +52,17 @@
 
     &-helper {
       &-normal {
-        @include mixins.normal_helper_text();
+        @include mixins.normal-helper-text();
       }
 
       &-simple {
-        @include mixins.helper_text();
+        @include mixins.helper-text();
         color: var(--general_contrasts-50);
       }
     }
 
     &-error {
-      @include mixins.error_helper_text();
+      @include mixins.error-helper-text();
     }
   }
 

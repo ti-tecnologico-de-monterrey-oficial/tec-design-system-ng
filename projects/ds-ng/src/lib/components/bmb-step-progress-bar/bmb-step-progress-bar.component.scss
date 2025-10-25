@@ -87,7 +87,7 @@
       width: rem.rem_calc(30);
 
       &.active {
-        @include fonts.font(4, medium);
+        @include fonts.font(4, regular);
       }
     }
 
@@ -96,7 +96,7 @@
       width: rem.rem_calc(48);
 
       &.active {
-        @include fonts.font(6, medium);
+        @include fonts.font(6, regular);
         height: rem.rem_calc(64);
         width: rem.rem_calc(64);
       }
@@ -107,7 +107,7 @@
       width: rem.rem_calc(42);
 
       &.active {
-        @include fonts.font(6, medium);
+        @include fonts.font(6, regular);
       }
     }
   }
@@ -190,7 +190,7 @@
         width: rem.rem_calc(42);
 
         &.active {
-          @include fonts.font(6, medium);
+          @include fonts.font(6, regular);
           background-color: var(--vertical-step-active);
           border: rem.rem_calc(1) solid var(--general_contrasts-main-selection);
           color: var(--vertical-step-active-color);
@@ -201,7 +201,7 @@
         height: rem.rem_calc(48);
         width: rem.rem_calc(48);
         &.active {
-          @include fonts.font(6, medium);
+          @include fonts.font(6, regular);
           background-color: var(--vertical-step-active);
           border: rem.rem_calc(1) solid var(--general_contrasts-main-selection);
           color: var(--vertical-step-active-color);
@@ -281,7 +281,7 @@
       @include fonts.font(6, regular);
 
       &.active {
-        @include fonts.font(6, medium);
+        @include fonts.font(6, regular);
         background-color: var(--containers-modal);
         border: rem.rem_calc(1) solid var(--general_contrasts-main-selection);
         color: var(--general_contrasts-input-outline);

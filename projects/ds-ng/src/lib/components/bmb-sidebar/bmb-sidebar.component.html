@@ -71,41 +71,49 @@
 
 <!-- Template for navigation -->
 <ng-template #sidebarTemplate let-level="level" let-isMobile="isMobile">
-  @for (group of elements().slice(0, 2); track $index) {
-    <ul class="bmb_sidebar-list">
-      @for (element of group.slice(0, 5); track $index) {
-        <li
-          class="bmb_sidebar-item"
-          [ngClass]="{
-            'bmb_sidebar-item-left-space':
-              position() === 'right' && hasSubmenu && !element.children?.length
-          }"
-          (click)="checkToCloseSidebar(element)"
-        >
-          <ng-container
-            *ngTemplateOutlet="
-              itemsTemplate;
-              context: { item: element, isMobile }
-            "
-          />
-          @if (!!element.children && level === 1) {
+  @if (!error) {
+    @for (group of elements().slice(0, 2); track $index) {
+      <ul class="bmb_sidebar-list">
+        @for (element of group; track $index) {
+          <li
+            class="bmb_sidebar-item"
+            [ngClass]="{
+              'bmb_sidebar-item-left-space':
+                position() === 'right' &&
+                hasSubmenu &&
+                !element.children?.length
+            }"
+            (click)="checkToCloseSidebar(element)"
+          >
             <ng-container
               *ngTemplateOutlet="
-                sidebarElementTemplate;
-                context: {
-                  element: element,
-                  iconSize: 24,
-                  isFixed: true,
-                  level: 2,
-                  selectedElement,
-                  isMobile
-                }
+                itemsTemplate;
+                context: { item: element, isMobile }
               "
             />
-          }
-        </li>
-      }
-    </ul>
+            @if (!!element.children && level === 1) {
+              <ng-container
+                *ngTemplateOutlet="
+                  sidebarElementTemplate;
+                  context: {
+                    element: element,
+                    iconSize: 24,
+                    isFixed: true,
+                    level: 2,
+                    selectedElement,
+                    isMobile
+                  }
+                "
+              />
+            }
+          </li>
+        }
+      </ul>
+    }
+  } @else {
+    <p class="bmb_sidebar-error">
+      Error: The sidebar component has exceeded the maximum allowed elements.
+    </p>
   }
 </ng-template>
 

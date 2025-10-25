@@ -6,6 +6,8 @@ import {
   BmbButtonDirective,
   IBmbAlertCenterFooterEvent,
   BmbNotificationCardComponent,
+  BmbAccountStatementComponent,
+  BmbTranslationsService,
 } from '../../../../projects/ds-ng/src/public-api';
 
 @Component({
@@ -16,12 +18,16 @@ import {
     BmbAlertCenterComponent,
     BmbButtonDirective,
     BmbNotificationCardComponent,
+    BmbAccountStatementComponent,
   ],
 })
 export class AlertsPageComponent implements OnInit {
   alerts = signal<IBmbDataAlert[]>([]);
 
-  constructor(private alertCenter: BmbAlertCenterService) {}
+  constructor(
+    private alertCenter: BmbAlertCenterService,
+    public translations: BmbTranslationsService,
+  ) {}
 
   ngOnInit(): void {
     setTimeout(() => {

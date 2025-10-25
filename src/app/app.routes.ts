@@ -79,5 +79,21 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./pages/ia/ia.component').then((c) => c.IaComponent),
   },
+  {
+    path: 'table-lite',
+    title: 'Table Lite',
+    loadComponent: () =>
+      import('./pages/table-lite/table-lite.component').then(
+        (t) => t.TableLiteComponent,
+      ),
+  },
+  {
+    path: 'multi-dot-paginator',
+    title: 'Multi Dot Paginator',
+    loadComponent: () =>
+      import('./pages/dot-paginator/dot-paginator.component').then(
+        (m) => m.DotPaginatorComponent,
+      ),
+  },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
 ];
