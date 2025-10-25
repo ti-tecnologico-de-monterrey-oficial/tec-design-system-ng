@@ -26,6 +26,11 @@ interface FileData {
   errorType?: 'format' | 'size' | null;
 }
 
+interface IBmbFileValidation {
+  isValidFormat: boolean;
+  isValidSize: boolean;
+}
+
 @Component({
   selector: 'bmb-dropzone',
   standalone: true,
@@ -89,6 +94,49 @@ export class BmbDropzoneComponent {
     }
   }
 
+  private isValidFileType(fileType: string, fileName: string): boolean {
+    if (
+      this.acceptedExtensions().some((element: string) => element.includes('/'))
+    ) {
+      const types = this.acceptedExtensions().filter((element: string) =>
+        element.endsWith('/*'),
+      );
+      if (
+        !!types.length &&
+        types.some(
+          (element: string) =>
+            element.substring(0, element.length - 2) ===
+            fileType.substring(0, element.length - 2),
+        )
+      ) {
+        return true;
+      } else {
+        if (this.acceptedExtensions().includes(fileType)) return true;
+      }
+    }
+
+    if (
+      this.acceptedExtensions().includes(
+        fileName.substring(fileName.lastIndexOf('.') + 1),
+      )
+    )
+      return true;
+
+    return false;
+  }
+
+  private getFileSizeInMB(fileSize: number): number {
+    return fileSize / 1048576;
+  }
+
+  private isValidFileSize(fileSize: number): boolean {
+    return this.getFileSizeInMB(fileSize) <= this.fileSize();
+  }
+
+  private isFileDuplicate(fileName: string): boolean {
+    return this.fileDataList.some((existing) => existing.name === fileName);
+  }
+
   private getFileAndValidate(file: File | File[]): void {
     const filesArray = Array.isArray(file) ? file : [file];
     const validFiles: File[] = [];
@@ -98,44 +146,27 @@ export class BmbDropzoneComponent {
     }
 
     for (const singleFile of filesArray) {
-      const fileExtension = singleFile.name.split('.').at(-1);
-      const isValidFileType = this.acceptedExtensions().includes(
-        fileExtension ?? '',
-      );
-      const fileSizeInMB = singleFile.size / 1048576;
-      const isValidSize = fileSizeInMB <= this.fileSize();
-
-      const alreadyExists = this.fileDataList.some(
-        (existing) => existing.name === singleFile.name,
-      );
-
-      if (alreadyExists) {
+      if (this.isFileDuplicate(singleFile.name)) {
         continue;
       }
 
-      if (isValidFileType && isValidSize) {
-        const fileData: FileData = {
-          name: singleFile.name,
-          size: fileSizeInMB,
-          error: false,
-          errorType: null,
-        };
+      const fileValidation: IBmbFileValidation = {
+        isValidFormat: this.isValidFileType(singleFile.type, singleFile.name),
+        isValidSize: this.isValidFileSize(singleFile.size),
+      };
+      const fileData: FileData = {
+        name: singleFile.name,
+        size: this.getFileSizeInMB(singleFile.size),
+        error: !fileValidation.isValidFormat || !fileValidation.isValidSize,
+        errorType: !fileValidation.isValidFormat ? 'format' : 'size',
+      };
 
-        this.fileDataList.push(fileData);
+      this.fileDataList.push(fileData);
+      if (fileValidation.isValidFormat && fileValidation.isValidSize)
         validFiles.push(singleFile);
-      } else {
-        this.fileDataList.push({
-          name: singleFile.name,
-          size: fileSizeInMB,
-          error: true,
-          errorType: !isValidFileType ? 'format' : 'size',
-        });
-      }
     }
 
-    this.validFile = validFiles.length > 0;
-
-    if (this.validFile) {
+    if (!!validFiles.length) {
       this.newFile.emit(this.multiple() ? validFiles : validFiles[0]);
     } else {
       this.onErrorFile();
