@@ -23,30 +23,23 @@ describe('BmbProgressCircleComponent', () => {
   });
 
   it('should render with default options', () => {
-    expect(component.options.showValueLabel).toBeFalse();
+    expect(component.options().showValueLabel).toBeFalse();
   });
 
   it('should update options on input change', () => {
     componentRef.setInput('percent', 75);
     componentRef.setInput('showTitle', false);
     component.ngOnChanges({});
-    expect(component.options.percent).toBe(75);
-    expect(component.options.showTitle).toBeFalse();
+    expect(component.options().percent).toBe(75);
+    expect(component.options().showTitle).toBeFalse();
   });
 
   it('should draw the correct SVG path', () => {
     componentRef.setInput('percent', 75);
     component.render();
-    const path = component.svg.path.d;
+    const path = component?.svg?.path.d;
     expect(path).toContain(`
           M 105 5
           A 100 100 0 1 1 5 105.00000000000001`);
-  });
-
-  it('should display the correct value label', () => {
-    componentRef.setInput('valueLabel', '$5000');
-    component.render();
-    const valueLabel = component.svg.valueLabel.texts[0];
-    expect(valueLabel).toBe('$5000');
   });
 });

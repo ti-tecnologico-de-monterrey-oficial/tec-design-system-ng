@@ -2,7 +2,7 @@
 @use '../../../assets/styles/base/fonts' as fonts;
 
 .bmb_student_activity {
-  @include fonts.font(3, medium);
+  @include fonts.font(3, regular);
 
   &-tabs {
     background-color: var(--containers-main);
@@ -41,7 +41,7 @@
 
   &-title {
     margin: 0;
-    @include fonts.font(6, semibold);
+    @include fonts.font(6, bold);
     line-height: rem.rem_calc(27);
   }
 

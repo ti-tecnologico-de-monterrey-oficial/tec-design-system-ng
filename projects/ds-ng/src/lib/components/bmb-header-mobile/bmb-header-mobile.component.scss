@@ -11,7 +11,7 @@
   }
 
   &-text {
-    @include fonts.font(6, semibold);
+    @include fonts.font(6, bold);
   }
 
   bmb-icon {

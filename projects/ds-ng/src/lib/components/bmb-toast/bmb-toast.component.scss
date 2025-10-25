@@ -83,7 +83,7 @@ $appearanceList: (
 
     &-with-description {
       .bmb_toast-title {
-        @include fonts.font(4, medium);
+        @include fonts.font(4, regular);
       }
     }
   }

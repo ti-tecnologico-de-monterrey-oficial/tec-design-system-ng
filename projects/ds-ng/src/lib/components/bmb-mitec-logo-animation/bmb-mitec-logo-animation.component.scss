@@ -86,7 +86,7 @@
   }
 
   &-subtitle > text {
-    @include fonts.font(9, semibold);
+    @include fonts.font(9, bold);
     text-align: center;
     font-size: 60%;
     fill: var(--general_contrasts-100);

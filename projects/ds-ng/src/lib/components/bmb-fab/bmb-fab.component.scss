@@ -40,7 +40,7 @@
       @include fab-mitec();
 
       ~ .bmb_fab-mitec-text {
-        @include fonts.font(2, medium);
+        @include fonts.font(2, regular);
         text-align: center;
       }
     }
@@ -50,7 +50,7 @@
       @include fab-mitec();
 
       ~ .bmb_fab-mitec-text {
-        @include fonts.font(4, medium);
+        @include fonts.font(4, regular);
         text-align: center;
       }
     }

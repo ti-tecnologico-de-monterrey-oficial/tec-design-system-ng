@@ -671,20 +671,17 @@ ${
     : '>'
 }
 >
-- **Poppins-Thin**: \`.font-thin\`
 - **Poppins-Light**: \`.font-light\`
 - **Poppins-Regular**: \`.font-regular\`
-- **Poppins-Medium**: \`.font-medium\`
-- **Poppins-Semibold**: \`.font-semibold\`
 - **Poppins-Bold**: \`.font-bold\`
 >
 ><br/>
 ${
   isCompleteDetail
     ? `>### Font Sizes
->We provide a scale of sizes from 1 to 12, where each number corresponds to a specific size. To apply a font size, append the size number to the font family class. For example, \`.font-medium-4\` applies the medium family and the 4th size in our scale.
+>We provide a scale of sizes from 1 to 12, where each number corresponds to a specific size. To apply a font size, append the size number to the font family class. For example, \`.font-regular-4\` applies the regular family and the 4th size in our scale.
 >
-To use the medium family of Poppins with the 4th size, your HTML element should look like this: \`<div class="font-medium-4">Your text here</div>\`
+To use the regular family of Poppins with the 4th size, your HTML element should look like this: \`<div class="font-regular-4">Your text here</div>\`
 >
 ><br/>
 >`
@@ -710,7 +707,7 @@ ${
   isCompleteDetail
     ? `><br/>
 >###Reminder:
-Please remember to replace \`font-medium-4\` with the appropriate class based on the family and size you intend to use. The flexibility of these classes allows for a consistent typographic hierarchy and visual coherence across your digital experiences.
+Please remember to replace \`font-regular-4\` with the appropriate class based on the family and size you intend to use. The flexibility of these classes allows for a consistent typographic hierarchy and visual coherence across your digital experiences.
 ><br/><br/>`
     : '><br/>'
 }`;

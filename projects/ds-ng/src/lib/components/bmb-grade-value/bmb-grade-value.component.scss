@@ -14,7 +14,7 @@
     transform: rotate(90deg);
 
     &-score {
-      @include fonts.font(4, medium);
+      @include fonts.font(4, regular);
       font-size: rem.rem_calc(160);
     }
   }
@@ -30,7 +30,7 @@
     align-items: center;
 
     &-score {
-      @include fonts.font(4, medium);
+      @include fonts.font(4, regular);
     }
   }
 

@@ -87,5 +87,13 @@ export const routes: Routes = [
         (t) => t.TableLiteComponent,
       ),
   },
+  {
+    path: 'multi-dot-paginator',
+    title: 'Multi Dot Paginator',
+    loadComponent: () =>
+      import('./pages/dot-paginator/dot-paginator.component').then(
+        (m) => m.DotPaginatorComponent,
+      ),
+  },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
 ];

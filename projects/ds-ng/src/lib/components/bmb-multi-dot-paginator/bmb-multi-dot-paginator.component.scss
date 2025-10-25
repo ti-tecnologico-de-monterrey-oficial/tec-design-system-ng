@@ -167,7 +167,7 @@
         box-shadow:
           rem.rem_calc(0 0 3 0) inset var(--general_contrasts-main-selection),
           rem.rem_calc(0 0 4 0) var(--general_contrasts-main-selection);
-        z-index: -1;
+        z-index: 0;
 
         @include mixins.check-for-mobile(false) {
           width: rem.rem_calc(30);

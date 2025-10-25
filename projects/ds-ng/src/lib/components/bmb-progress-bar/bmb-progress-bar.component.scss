@@ -69,7 +69,7 @@ $variants: (
     }
 
     &-link {
-      @include fonts.font(4, medium);
+      @include fonts.font(4, regular);
       padding: rem.rem_calc(3 0);
 
       &-text {

@@ -135,7 +135,7 @@ $types: (
     grid-area: location;
 
     &-time {
-      @include fonts.font(6, semibold);
+      @include fonts.font(6, bold);
       font-weight: 600;
     }
 
