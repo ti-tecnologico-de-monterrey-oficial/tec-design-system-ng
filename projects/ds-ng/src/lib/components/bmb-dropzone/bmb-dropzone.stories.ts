@@ -261,7 +261,8 @@ ${RELEVANT_TITLE.example} ***image/**** is for all image types:
     },
     linkFilesSupported: {
       control: { type: 'text' },
-      description: 'Sets the URL link to the supported file format documentation.',
+      description:
+        'Sets the URL link to the supported file format documentation.',
       table: {
         category: 'Properties',
         defaultValue: getDefaultValueControl(),
