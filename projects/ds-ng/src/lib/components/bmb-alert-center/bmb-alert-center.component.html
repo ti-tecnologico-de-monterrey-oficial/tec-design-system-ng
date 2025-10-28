@@ -8,16 +8,22 @@
   >
     @if (isLoading()) {
       <bmb-loader
-        title="Cargando..."
-        subtitle="Cargando las notificaciones"
+        [title]="translationsService.translate('alert_center.loader.loading')"
+        [subtitle]="
+          translationsService.translate('alert_center.loader.subtitle')
+        "
         [overlay]="false"
         [isVisible]="true"
         [errorState]="false"
         appearance="normal"
         icon="wifi_off"
         [actions]="false"
-        buttonPrimary="Reintentar"
-        buttonSecondary="Salir"
+        [buttonPrimary]="
+          translationsService.translate('alert_center.loader.primary_button')
+        "
+        [buttonSecondary]="
+          translationsService.translate('alert_center.loader.secondary_button')
+        "
         [showInline]="true"
       />
     } @else {

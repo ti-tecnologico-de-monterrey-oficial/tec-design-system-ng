@@ -11,6 +11,7 @@ import { IBmbAdvertisementData } from './types';
 import { BmbHomeCardComponent } from '../bmb-home-card/bmb-home-card.component';
 import { BmbCarouselComponent } from '../bmb-carousel/bmb-carousel.component';
 import { BmbTabsComponent, IBmbTab } from '../bmb-tabs/bmb-tabs.component';
+import { TranslatePipe } from '../../pipes/translations';
 
 @Component({
   selector: 'bmb-advertisement-card',
@@ -21,6 +22,7 @@ import { BmbTabsComponent, IBmbTab } from '../bmb-tabs/bmb-tabs.component';
     BmbHomeCardComponent,
     BmbCarouselComponent,
     BmbTabsComponent,
+    TranslatePipe,
   ],
   templateUrl: './bmb-advertisement-card.component.html',
   styleUrl: './bmb-advertisement-card.component.scss',
@@ -29,7 +31,7 @@ import { BmbTabsComponent, IBmbTab } from '../bmb-tabs/bmb-tabs.component';
 })
 export class BmbAdvertisementCardComponent {
   data = model<IBmbAdvertisementData>();
-  title = input<string>('Mis Anuncios');
+  title = input<string>('');
   subtitle = input<string>('');
 
   expanded: boolean = false;

@@ -56,7 +56,7 @@
           @if (enableBookmark()) {
             <bmb-bookmark
               class="bmb_container-button-right-bookmark"
-              [isActive]="isBookmarkActive()"
+              [(isActive)]="isBookmarkActive"
             />
           } @else if (enableSecondaryAction()) {
             <bmb-action-icon

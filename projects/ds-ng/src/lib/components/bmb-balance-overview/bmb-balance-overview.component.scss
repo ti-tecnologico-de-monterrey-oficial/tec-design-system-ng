@@ -6,7 +6,7 @@
   &-container {
     padding-bottom: rem.rem_calc(10);
 
-    @include mixins.media-query(1000, 'min') {
+    @include mixins.check-for-mobile(false) {
       display: flex;
       gap: var(--bmb-spacing-xl);
     }
@@ -14,19 +14,21 @@
 
   &-circle-container {
     padding-bottom: rem.rem_calc(24);
+    width: 100%;
 
-    @include mixins.media-query(1000, 'min') {
-      max-width: rem.rem_calc(500);
+    @include mixins.check-for-mobile(false) {
+      width: clamp(1px, 100%, rem.rem_calc(215));
+      padding-bottom: 0;
     }
   }
 
   &-legend-main-container {
     display: flex;
     justify-content: space-around;
-    width: 100%;
+    flex: 1 1 87%;
     gap: var(--bmb-spacing-m);
 
-    @include mixins.media-query(1000, 'min') {
+    @include mixins.check-for-mobile(false) {
       flex-direction: column;
       justify-content: flex-start;
     }

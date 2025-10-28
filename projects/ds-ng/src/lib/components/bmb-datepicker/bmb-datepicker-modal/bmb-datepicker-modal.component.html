@@ -63,7 +63,7 @@
         <table class="bmb_datepicker-modal-calendar-table">
           <thead>
             <tr>
-              @for (day of dayNames; track $index) {
+              @for (day of dayNames(); track $index) {
                 <th class="bmb_datepicker-modal-calendar-table-header">
                   {{ day }}
                 </th>
@@ -100,7 +100,7 @@
       <ul
         class="bmb_datepicker-modal-calendar-list bmb_datepicker-modal-calendar-list-months bmb_datepicker-modal-calendar"
       >
-        @for (month of monthsNames; track $index) {
+        @for (month of monthsNames(); track $index) {
           <li class="bmb_datepicker-modal-calendar-item">
             <button
               class="bmb_datepicker-modal-button bmb_datepicker-modal-calendar-list-item modal-persist"

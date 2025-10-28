@@ -8,20 +8,20 @@
 
 ## Props / Parámetros
 
-| Propiedad    | Tipo                  | Descripción                                                        | Valor por defecto | Obligatorio |
-|--------------|-----------------------|--------------------------------------------------------------------|-------------------|-------------|
-| `appearance` | `BmbToastAppearance`  | Apariencia/color del toast (`neutral`, `primary`, `warning`, etc.) | `'neutral'`       | No          |
-| `isClosable` | `boolean`             | Permite cerrar el toast manualmente                                | `false`           | No          |
-| `title`      | `string`              | Título principal del toast                                         | `''`              | No          |
-| `description`| `string`              | Descripción o mensaje adicional                                    | `''`              | No          |
-| `position`   | `string`              | Posición en pantalla (obsoleto, usar gestor externo)               | `'top'`           | No          |
-| `id`         | `string \| number`    | Identificador único del toast                                      | `''`              | No          |
+| Propiedad     | Tipo                 | Descripción                                                        | Valor por defecto | Obligatorio |
+| ------------- | -------------------- | ------------------------------------------------------------------ | ----------------- | ----------- |
+| `appearance`  | `BmbToastAppearance` | Apariencia/color del toast (`neutral`, `primary`, `warning`, etc.) | `'neutral'`       | No          |
+| `isClosable`  | `boolean`            | Permite cerrar el toast manualmente                                | `false`           | No          |
+| `title`       | `string`             | Título principal del toast                                         | `''`              | No          |
+| `description` | `string`             | Descripción o mensaje adicional                                    | `''`              | No          |
+| `position`    | `string`             | Posición en pantalla (obsoleto, usar gestor externo)               | `'top'`           | No          |
+| `id`          | `string \| number`   | Identificador único del toast                                      | `''`              | No          |
 
 ### Outputs
 
-| Output   | Tipo        | Descripción                                  |
-|----------|-------------|----------------------------------------------|
-| `onClose`| `MouseEvent`| Se emite al cerrar el toast                  |
+| Output    | Tipo         | Descripción                 |
+| --------- | ------------ | --------------------------- |
+| `onClose` | `MouseEvent` | Se emite al cerrar el toast |
 
 ---
 

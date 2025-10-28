@@ -65,6 +65,9 @@
               [colSm]="4"
               [colLg]="6"
               (onButton)="templateClick($event)"
+              [enableBookmark]="true"
+              [(isBookmarkActive)]="bookmarkActive"
+              (isBookmarkActiveChange)="logBookmarkChange($event)"
             />
             <p bmbLayoutItem [colSm]="4" [colLg]="12">Bamboo v1.5</p>
           </div>

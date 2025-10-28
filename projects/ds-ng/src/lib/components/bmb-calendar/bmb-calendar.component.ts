@@ -38,6 +38,7 @@ import { BmbDividerComponent } from '../bmb-divider/bmb-divider.component';
 import { BmbLayoutDirective } from '../../directives/bmb-layout/bmb-layout.directive';
 import { BmbLayoutItemDirective } from '../../directives/bmb-layout/bmb-layout-item.directive';
 import { IBmbNativeModal } from '../bmb-modal/bmb-modal.interface';
+import { BmbTranslationsService } from '../../services/translations/translations.service';
 
 const parseFromFormat = (dateString: string, format: string): DateTime => {
   if (format.toLowerCase() === 'iso') return DateTime.fromISO(dateString);
@@ -83,10 +84,10 @@ export class BmbCalendarComponent implements OnInit, AfterViewInit {
   clientTimezone = input<string>(
     Intl.DateTimeFormat().resolvedOptions().timeZone,
   );
-  lang = input<string>('es-MX');
+  // lang = input<string>('es-MX'); // deprecated
   height = input<number | string>('100%');
   startBusinessHour = input<number>(8);
-  calendarTitle = input<string>('Mi horario');
+  calendarTitle = input<string>();
   dateFormat = input<string>(DEFAULT_DATE_FORMAT);
   events = computed<IBmbCalendarEvent[]>(() =>
     this.eventsSignal.getEventList(),
@@ -195,6 +196,7 @@ export class BmbCalendarComponent implements OnInit, AfterViewInit {
   constructor(
     private eventsSignal: BmbCalendarService,
     private modalService: BmbNativeModalService,
+    private translationsService: BmbTranslationsService,
   ) {
     effect(() => {
       const calendars = this.filteredEvents().calendars || [];
@@ -313,8 +315,8 @@ export class BmbCalendarComponent implements OnInit, AfterViewInit {
   handleShowModalFilter() {
     this.filterModalId.set(
       this.modalService.openModal({
-        title: 'Calendarios',
-        subtitle: 'Selecciona los calendarios que quieres ver',
+        title: this.translationsService.translate('calendar.title'),
+        subtitle: this.translationsService.translate('calendar.subtitle'),
         content: this.modalTemplate,
         size: 'x-small',
         closeModalClicked: (event: unknown) => this.handleFormReset(event),
@@ -322,7 +324,7 @@ export class BmbCalendarComponent implements OnInit, AfterViewInit {
           {
             buttonName: 'save',
             appearance: 'primary',
-            label: 'Guardar',
+            label: this.translationsService.translate('calendar.filter_save'),
             action: () => this.handleApplyFilters(),
           },
         ],

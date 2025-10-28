@@ -66,7 +66,7 @@
     leftIcon="chevron_left"
     icon="assignment"
     bgIconAppearance="mitec-green"
-    [title]="title()"
+    [title]="title() || ('advertisement_card.title' | translate)"
     [subtitle]="subtitle()"
     [(isExpanded)]="expanded"
     [useAutoExpand]="false"

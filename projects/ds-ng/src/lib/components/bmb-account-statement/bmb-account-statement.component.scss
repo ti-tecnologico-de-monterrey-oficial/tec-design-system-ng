@@ -30,7 +30,7 @@
   }
 
   &-modal {
-    @include fonts.font(3, medium);
+    @include fonts.font(3, regular);
 
     .bmb_progress-bar-container-main {
       padding: 0;

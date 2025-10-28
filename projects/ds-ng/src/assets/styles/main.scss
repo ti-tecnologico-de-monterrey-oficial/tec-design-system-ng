@@ -9,6 +9,7 @@
 
 @use 'base/css-vars';
 @use 'base/rem' as rem;
+@use 'base/vars' as vars;
 
 // Import fonts
 @use 'base/fonts' as fonts;
@@ -36,7 +37,9 @@
 @use 'components/button-group';
 @use 'components/templates';
 @use 'components/generic-dialog';
+@use 'components/selector';
 @use 'base/utils';
 @use 'base/scrollbar';
+@use 'components/organism';
 
 @use '../../../../../node_modules/@angular/cdk/overlay-prebuilt.css';

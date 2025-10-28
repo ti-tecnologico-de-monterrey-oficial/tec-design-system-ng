@@ -10,24 +10,24 @@
 
 ### BmbLayoutGridDirective
 
-| Propiedad     | Tipo                   | Descripción                                                        | Valor por defecto | Obligatorio |
-|---------------|------------------------|--------------------------------------------------------------------|-------------------|-------------|
-| `colGapSize`  | `SizeNames`            | Espacio entre columnas                                             | `'m'`             | No          |
-| `rowGapSize`  | `SizeNames`            | Espacio entre filas                                                | `'m'`             | No          |
-| `columnSize`  | `string[] \| string`   | Tamaño de columnas (ej. `'auto'`, `['1fr', '2fr']`)                | `'auto'`          | No          |
-| `rowSize`     | `string[] \| string`   | Tamaño de filas (ej. `'auto'`, `['100px', '200px']`)               | `'auto'`          | No          |
-| `columns`     | `number`               | Número de columnas en la cuadrícula                                | `1`               | No          |
-| `rows`        | `number`               | Número de filas en la cuadrícula                                   | `1`               | No          |
-| `height`      | `string \| number`     | Altura total del grid                                              | `'auto'`          | No          |
+| Propiedad    | Tipo                 | Descripción                                          | Valor por defecto | Obligatorio |
+| ------------ | -------------------- | ---------------------------------------------------- | ----------------- | ----------- |
+| `colGapSize` | `SizeNames`          | Espacio entre columnas                               | `'m'`             | No          |
+| `rowGapSize` | `SizeNames`          | Espacio entre filas                                  | `'m'`             | No          |
+| `columnSize` | `string[] \| string` | Tamaño de columnas (ej. `'auto'`, `['1fr', '2fr']`)  | `'auto'`          | No          |
+| `rowSize`    | `string[] \| string` | Tamaño de filas (ej. `'auto'`, `['100px', '200px']`) | `'auto'`          | No          |
+| `columns`    | `number`             | Número de columnas en la cuadrícula                  | `1`               | No          |
+| `rows`       | `number`             | Número de filas en la cuadrícula                     | `1`               | No          |
+| `height`     | `string \| number`   | Altura total del grid                                | `'auto'`          | No          |
 
 ### BmbLayoutGridItemDirective
 
-| Propiedad         | Tipo      | Descripción                                                        | Valor por defecto | Obligatorio |
-|-------------------|-----------|--------------------------------------------------------------------|-------------------|-------------|
-| `colStart`        | `number`  | Columna inicial del elemento en el grid                            | -                 | Sí          |
-| `rowStart`        | `number`  | Fila inicial del elemento en el grid                               | -                 | Sí          |
-| `numberOfColumns` | `number`  | Número de columnas que ocupa el elemento                           | `1`               | No          |
-| `numberOfRows`    | `number`  | Número de filas que ocupa el elemento                              | `1`               | No          |
+| Propiedad         | Tipo     | Descripción                              | Valor por defecto | Obligatorio |
+| ----------------- | -------- | ---------------------------------------- | ----------------- | ----------- |
+| `colStart`        | `number` | Columna inicial del elemento en el grid  | -                 | Sí          |
+| `rowStart`        | `number` | Fila inicial del elemento en el grid     | -                 | Sí          |
+| `numberOfColumns` | `number` | Número de columnas que ocupa el elemento | `1`               | No          |
+| `numberOfRows`    | `number` | Número de filas que ocupa el elemento    | `1`               | No          |
 
 ---
 
@@ -53,13 +53,7 @@
   >
     Elemento 1
   </div>
-  <div
-    bmbLayoutGridItem
-    [colStart]="3"
-    [rowStart]="1"
-  >
-    Elemento 2
-  </div>
+  <div bmbLayoutGridItem [colStart]="3" [rowStart]="1">Elemento 2</div>
   <div
     bmbLayoutGridItem
     [colStart]="1"

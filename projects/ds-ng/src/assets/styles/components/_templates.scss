@@ -1,4 +1,5 @@
 @use '../base/mixins' as mixins;
+@use '../base/vars' as vars;
 @use '../base/rem' as rem;
 
 .bmb_template-header {
@@ -8,7 +9,7 @@
   padding: rem.rem_calc(24) rem.rem_calc(24) rem.rem_calc(24) rem.rem_calc(100);
   width: 100%;
 
-  @media (max-width: 1000px) {
+  @include mixins.check-for-mobile() {
     padding: rem.rem_calc(24) rem.rem_calc(24) rem.rem_calc(24) rem.rem_calc(40);
   }
 }
@@ -45,7 +46,8 @@
       margin: var(--bmb-spacing-xxs);
       padding-left: rem.rem_calc(30);
     }
-    @media (width <= 1000px) and (width >= 630px) {
+
+    @include mixins.media-range-query(631, vars.$breakpoint_max_mobile) {
       padding-left: rem.rem_calc(40);
     }
   }
@@ -101,7 +103,8 @@
       height: max-content;
       margin: var(--bmb-spacing-xxs);
     }
-    @media (width <= 1000px) and (width >= 630px) {
+
+    @include mixins.media-range-query(630, vars.$breakpoint_max_mobile) {
       margin-left: rem.rem_calc(15);
     }
   }
@@ -158,7 +161,7 @@
       margin: var(--bmb-spacing-xxs);
     }
 
-    @media (width <= 1000px) and (width >= 630px) {
+    @include mixins.media-range-query(630, vars.$breakpoint_max_mobile) {
       margin-left: rem.rem_calc(20);
     }
   }
@@ -211,7 +214,7 @@
       margin: var(--bmb-spacing-xxs);
     }
 
-    @media (width <= 1000px) and (width >= 630px) {
+    @include mixins.media-range-query(630, vars.$breakpoint_max_mobile) {
       margin-left: rem.rem_calc(20);
     }
   }
@@ -253,7 +256,7 @@
       height: max-content;
       margin: var(--bmb-spacing-xxs);
     }
-    @media (max-width: 1000px) {
+    @include mixins.check-for-mobile() {
       padding-left: rem.rem_calc(20);
     }
   }
@@ -309,7 +312,8 @@
       height: max-content;
       margin: var(--bmb-spacing-xxs);
     }
-    @media (width <= 1000px) and (width >= 630px) {
+
+    @include mixins.media-range-query(630, vars.$breakpoint_max_mobile) {
       margin-left: rem.rem_calc(15);
     }
   }
@@ -367,7 +371,8 @@
       height: max-content;
       margin: var(--bmb-spacing-xxs);
     }
-    @media (width <= 1000px) and (width >= 630px) {
+
+    @include mixins.media-range-query(630, vars.$breakpoint_max_mobile) {
       margin-left: rem.rem_calc(15);
     }
   }
@@ -386,7 +391,7 @@
       margin: var(--bmb-spacing-xxs);
     }
 
-    @media (width <= 1000px) and (width >= 630px) {
+    @include mixins.media-range-query(630, vars.$breakpoint_max_mobile) {
       margin-left: rem.rem_calc(15);
     }
   }
@@ -432,7 +437,7 @@
       margin: var(--bmb-spacing-xxs);
     }
 
-    @media (width <= 1000px) and (width >= 630px) {
+    @include mixins.media-range-query(630, vars.$breakpoint_max_mobile) {
       margin-left: rem.rem_calc(20);
     }
   }
@@ -484,7 +489,7 @@
     flex: 1;
     padding: rem.rem_calc(16);
 
-    @include mixins.checkForMobile(false) {
+    @include mixins.check-for-mobile(false) {
       padding: rem.rem_calc(96 140);
     }
   }
@@ -528,7 +533,7 @@
     }
   }
 
-  @include mixins.checkForMobile(false) {
+  @include mixins.check-for-mobile(false) {
     height: calc(100% - rem.rem_calc(140));
   }
 
@@ -604,7 +609,7 @@
   flex-flow: column nowrap;
   margin: rem.rem_calc(24 24 24 100);
 
-  @media (max-width: 1000px) {
+  @include mixins.check-for-mobile() {
     margin-left: rem.rem_calc(40);
   }
 
@@ -721,7 +726,7 @@
 .bmb_template-margin-for-sidebar {
   margin: rem.rem_calc(16);
 
-  @media (min-width: 1000px) {
+  @include mixins.check-for-mobile(false) {
     margin-left: rem.rem_calc(100);
   }
 }

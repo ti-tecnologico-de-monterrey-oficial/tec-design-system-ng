@@ -11,7 +11,6 @@ import {
 } from '../../../../public-api';
 import {
   attributes,
-  attributesText,
   getAuxiliaryDescription,
   getBasicExampleBlock,
   getGeneralDescription,

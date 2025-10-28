@@ -1,6 +1,7 @@
 import {
   Controls,
   Description,
+  Heading,
   Primary,
   Title,
 } from '@storybook/addon-docs/blocks';
@@ -53,6 +54,7 @@ const TECHNICAL_DOC_TITLE: string = `${DESIGN_SYSTEM_TITLE} ***- Technical docum
 const TECHNICAL_DOC_REFERENCES: string = `Please remember to refer to the ${TECHNICAL_DOC_TITLE} for more details:`;
 export const STORIES_TITLE: string = 'Variant templates';
 export const TITLE_OF_CONTROLS: string = 'Properties / Events';
+export const PREVIEW_TITLE: string = '👁 Preview';
 export const TOC_TITLE: string = 'On this page';
 export const DESCRIPTION_TITLE: string = 'Description';
 export const SPECIAL_SPECIFICATIONS_TITLE: string =
@@ -72,11 +74,22 @@ export const TOC_OBJ = {
 };
 
 export const getPageStructureForFoundationStories = (): any => {
-  return [Title({}), Description({}), Primary({}), Controls({})];
+  return [
+    Title({}),
+    Description({}),
+    Heading({ children: PREVIEW_TITLE }),
+    Primary({}),
+    Controls({}),
+  ];
 };
 
 export const getPageStructureForTemplateStories = (): any => {
-  return [Title({}), Description({}), Primary({})];
+  return [
+    Title({}),
+    Description({}),
+    Heading({ children: PREVIEW_TITLE }),
+    Primary({}),
+  ];
 };
 
 const getValue = (key: string, value: undefined): any =>
@@ -476,6 +489,17 @@ export const getDeprecatedDesc = ({
 `;
 };
 
+export const getReferenceRecommendationForVariable = (
+  element: string,
+): string =>
+  getAlertBlockquote(
+    `Please refer to the [Variables documentation](/docs/foundations-variables--documentation&globals=#dom-architecture) for details on how to implement ${element} in CSS, where it is detailed that these can be implemented through variables.<br/>`,
+    {
+      title: '###'.concat(RELEVANT_TITLE.important),
+      blockquoteType: BlockquoteType.important,
+    },
+  );
+
 export const getFullScreenDesc = (): string => `
 ${getAlertBlockquote(
   `When you click on fullscreen icon, in Storybook doesn’t look the best due to the many elements, but in your project, it should display correctly.`,
@@ -485,6 +509,15 @@ ${getAlertBlockquote(
   },
 )}`;
 
+export const getElementUsesDesc = (name: string) =>
+  getAlertBlockquote(
+    `This example uses \`bmb-${name}\`, other ${DESIGN_SYSTEM_TITLE} or html elements can also be used.`,
+    {
+      title: '###'.concat(RELEVANT_TITLE.example),
+      blockquoteType: BlockquoteType.note,
+    },
+  );
+
 export const getTechnicalDocReferences = ({
   references,
   isFullScreenDesc,
@@ -493,7 +526,7 @@ export const getTechnicalDocReferences = ({
   isFullScreenDesc?: boolean;
 }): string => `${isFullScreenDesc ? getFullScreenDesc() : ''}
 >
-### ${TECHNICAL_DOC_TITLE}
+###🛠️${TECHNICAL_DOC_TITLE}
 >
 ${TECHNICAL_DOC_REFERENCES}<br/>
 <ul>${references
@@ -502,7 +535,7 @@ ${TECHNICAL_DOC_REFERENCES}<br/>
   .replaceAll(',', ' ')}</ul>
 `;
 
-export const getTechnicalTopBarReference = (title: string): string =>
+export const getTechnicalOneReference = (title: string): string =>
   getTechnicalDocReferences({
     references: [{ title }],
   });
@@ -513,7 +546,7 @@ export const getGeneralDocDescription = (generalDocLink: string): string =>
 export const getGeneralComponentDescription = ({
   name,
   type = 'component',
-  additional,
+  additional = '',
   alternativeDescription,
 }: {
   name?: string;
@@ -638,20 +671,17 @@ ${
     : '>'
 }
 >
-- **Poppins-Thin**: \`.font-thin\`
 - **Poppins-Light**: \`.font-light\`
 - **Poppins-Regular**: \`.font-regular\`
-- **Poppins-Medium**: \`.font-medium\`
-- **Poppins-Semibold**: \`.font-semibold\`
 - **Poppins-Bold**: \`.font-bold\`
 >
 ><br/>
 ${
   isCompleteDetail
     ? `>### Font Sizes
->We provide a scale of sizes from 1 to 12, where each number corresponds to a specific size. To apply a font size, append the size number to the font family class. For example, \`.font-medium-4\` applies the medium family and the 4th size in our scale.
+>We provide a scale of sizes from 1 to 12, where each number corresponds to a specific size. To apply a font size, append the size number to the font family class. For example, \`.font-regular-4\` applies the regular family and the 4th size in our scale.
 >
-To use the medium family of Poppins with the 4th size, your HTML element should look like this: \`<div class="font-medium-4">Your text here</div>\`
+To use the regular family of Poppins with the 4th size, your HTML element should look like this: \`<div class="font-regular-4">Your text here</div>\`
 >
 ><br/>
 >`
@@ -677,7 +707,7 @@ ${
   isCompleteDetail
     ? `><br/>
 >###Reminder:
-Please remember to replace \`font-medium-4\` with the appropriate class based on the family and size you intend to use. The flexibility of these classes allows for a consistent typographic hierarchy and visual coherence across your digital experiences.
+Please remember to replace \`font-regular-4\` with the appropriate class based on the family and size you intend to use. The flexibility of these classes allows for a consistent typographic hierarchy and visual coherence across your digital experiences.
 ><br/><br/>`
     : '><br/>'
 }`;
@@ -855,17 +885,7 @@ export const getSandboxConsiderationsDocumentation = (
     `;
   }
   return `
-${
-  isOmitImportant
-    ? ''
-    : getAlertBlockquote(
-        'Please refer to the [Variables documentation](/docs/foundations-variables--documentation&globals=#dom-architecture) for details on how to implement ${element} in CSS, where it is detailed that these can be implemented through variables.<br/>',
-        {
-          title: '###'.concat(RELEVANT_TITLE.important),
-          blockquoteType: BlockquoteType.important,
-        },
-      )
-}
+${isOmitImportant ? '' : getReferenceRecommendationForVariable(element)}
 ${!isOmitImportant && isWarning ? '<br/>' : ''}
 ${
   isWarning
@@ -1066,7 +1086,7 @@ ON THIS PAGE (optional, TABLE OF CONTENTS) [Done, is in preview, if not so add p
 */
 
 /*
-${getGeneralDescription({content: `${getGeneralComponentDescription({name: ''})} `, generalDocLink:'')}}
+${getGeneralDescription(`${getGeneralComponentDescription({name: ''}) `, generalDocLink:'')}}
 ${getBasicExampleBlock({content: ''})}
 
 getOnClickParam(

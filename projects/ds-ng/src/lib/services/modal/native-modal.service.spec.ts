@@ -22,22 +22,30 @@ describe('BmbNativeModalService', () => {
         removeAttribute: jasmine.createSpy('removeAttribute'),
         listen: jasmine.createSpy('listen').and.callFake(() => () => {}),
         destroy: jasmine.createSpy('destroy'),
-        createElement: jasmine.createSpy('createElement').and.callFake((tag: string) => {
-          return document.createElement(tag);
-        }),
-        createComment: jasmine.createSpy('createComment').and.callFake((text: string) => {
-          return document.createComment(text);
-        }),
-        appendChild: jasmine.createSpy('appendChild').and.callFake((parent: any, child: any) => {
-          if (parent && child) {
-            parent.appendChild(child);
-          }
-        }),
-        removeChild: jasmine.createSpy('removeChild').and.callFake((parent: any, child: any) => {
-          if (parent && child && parent.contains(child)) {
-            parent.removeChild(child);
-          }
-        }),
+        createElement: jasmine
+          .createSpy('createElement')
+          .and.callFake((tag: string) => {
+            return document.createElement(tag);
+          }),
+        createComment: jasmine
+          .createSpy('createComment')
+          .and.callFake((text: string) => {
+            return document.createComment(text);
+          }),
+        appendChild: jasmine
+          .createSpy('appendChild')
+          .and.callFake((parent: any, child: any) => {
+            if (parent && child) {
+              parent.appendChild(child);
+            }
+          }),
+        removeChild: jasmine
+          .createSpy('removeChild')
+          .and.callFake((parent: any, child: any) => {
+            if (parent && child && parent.contains(child)) {
+              parent.removeChild(child);
+            }
+          }),
       };
     }
   }
@@ -47,8 +55,8 @@ describe('BmbNativeModalService', () => {
       providers: [
         BmbNativeModalService,
         { provide: RendererFactory2, useClass: MockRendererFactory2 },
-        { provide: 'AppRef', useValue: mockAppRef }
-      ]
+        { provide: 'AppRef', useValue: mockAppRef },
+      ],
     });
     service = TestBed.inject(BmbNativeModalService);
     service.closeAllModals(); // Reset state before each test
@@ -59,7 +67,11 @@ describe('BmbNativeModalService', () => {
   });
 
   it('debe abrir un modal y asignar un id si no existe', () => {
-    const modal: IBmbNativeModal = { modalId: '', title: 'Test', content: 'Contenido' };
+    const modal: IBmbNativeModal = {
+      modalId: '',
+      title: 'Test',
+      content: 'Contenido',
+    };
     const id = service.openModal(modal);
     const modals = service.getModalList();
     expect(modals.length).toBe(1);
@@ -69,14 +81,22 @@ describe('BmbNativeModalService', () => {
   });
 
   it('debe abrir un modal y respetar el id proporcionado', () => {
-    const modal: IBmbNativeModal = { modalId: 'custom-id', title: 'Test', content: 'Contenido' };
+    const modal: IBmbNativeModal = {
+      modalId: 'custom-id',
+      title: 'Test',
+      content: 'Contenido',
+    };
     const id = service.openModal(modal);
     expect(id).toBe('custom-id');
     expect(service.getModalList()[0].modalId).toBe('custom-id');
   });
 
   it('debe cerrar un modal por id', () => {
-    const modal: IBmbNativeModal = { modalId: '', title: 'Test', content: 'Contenido' };
+    const modal: IBmbNativeModal = {
+      modalId: '',
+      title: 'Test',
+      content: 'Contenido',
+    };
     const id = service.openModal(modal);
     expect(service.getModalList().length).toBe(1);
     service.closeModal(id);

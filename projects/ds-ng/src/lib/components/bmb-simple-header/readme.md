@@ -8,17 +8,17 @@
 
 ## Props / Parámetros
 
-| Propiedad             | Tipo      | Descripción                                                        | Valor por defecto | Obligatorio |
-|-----------------------|-----------|--------------------------------------------------------------------|-------------------|-------------|
-| `title`               | `string`  | Texto del encabezado                                               | `''`              | No          |
-| `icon`                | `string`  | Nombre del ícono a mostrar                                         | `''`              | No          |
-| `iconAlternativeColor`| `boolean` | Usa color alternativo para el ícono                                | `false`           | No          |
+| Propiedad              | Tipo      | Descripción                         | Valor por defecto | Obligatorio |
+| ---------------------- | --------- | ----------------------------------- | ----------------- | ----------- |
+| `title`                | `string`  | Texto del encabezado                | `''`              | No          |
+| `icon`                 | `string`  | Nombre del ícono a mostrar          | `''`              | No          |
+| `iconAlternativeColor` | `boolean` | Usa color alternativo para el ícono | `false`           | No          |
 
 ### Outputs
 
-| Output         | Tipo     | Descripción                                  |
-|----------------|----------|----------------------------------------------|
-| `onIconClick`  | `any`    | Se emite al hacer clic en el ícono           |
+| Output        | Tipo  | Descripción                        |
+| ------------- | ----- | ---------------------------------- |
+| `onIconClick` | `any` | Se emite al hacer clic en el ícono |
 
 ---
 

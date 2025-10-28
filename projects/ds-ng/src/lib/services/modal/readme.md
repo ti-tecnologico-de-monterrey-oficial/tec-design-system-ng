@@ -1,4 +1,4 @@
-```markdown
+````markdown
 # BmbNativeModalService
 
 ## Descripción general
@@ -9,19 +9,19 @@
 
 ## Props / Parámetros
 
-| Propiedad      | Tipo                        | Descripción                                                        | Valor por defecto | Obligatorio |
-|----------------|-----------------------------|--------------------------------------------------------------------|-------------------|-------------|
-| `modalList`    | `signal<IBmbNativeModal[]>` | Señal reactiva que almacena la lista de modales abiertos           | `[]`              | No          |
+| Propiedad   | Tipo                        | Descripción                                              | Valor por defecto | Obligatorio |
+| ----------- | --------------------------- | -------------------------------------------------------- | ----------------- | ----------- |
+| `modalList` | `signal<IBmbNativeModal[]>` | Señal reactiva que almacena la lista de modales abiertos | `[]`              | No          |
 
 ### Métodos
 
-| Método                   | Tipo de retorno | Descripción                                                                 |
-|--------------------------|-----------------|-----------------------------------------------------------------------------|
-| `openModal(newModal)`    | `string`        | Abre un nuevo modal y devuelve su ID único                                  |
-| `closeModal(id)`         | `void`          | Cierra el modal con el ID especificado                                      |
-| `closeAllModals()`       | `void`          | Cierra todos los modales abiertos                                           |
-| `getModalList()`         | `IBmbNativeModal[]` | Devuelve la lista actual de modales abiertos                           |
-| `checkIfModalExists(id)` | `boolean`       | Verifica si existe un modal con el ID especificado                          |
+| Método                   | Tipo de retorno     | Descripción                                        |
+| ------------------------ | ------------------- | -------------------------------------------------- |
+| `openModal(newModal)`    | `string`            | Abre un nuevo modal y devuelve su ID único         |
+| `closeModal(id)`         | `void`              | Cierra el modal con el ID especificado             |
+| `closeAllModals()`       | `void`              | Cierra todos los modales abiertos                  |
+| `getModalList()`         | `IBmbNativeModal[]` | Devuelve la lista actual de modales abiertos       |
+| `checkIfModalExists(id)` | `boolean`           | Verifica si existe un modal con el ID especificado |
 
 ---
 
@@ -57,6 +57,7 @@ export class DemoModalComponent {
   }
 }
 ```
+````
 
 ---
 
@@ -77,4 +78,7 @@ export class DemoModalComponent {
 - **Buenas prácticas:** Centraliza la gestión de modales, evita duplicidad y facilita el cierre individual o masivo de modales. Verifica la existencia de un modal antes de operar sobre él.
 
 ---
+
+```
+
 ```

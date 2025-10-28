@@ -1,8 +1,8 @@
 <section class="bmb_chat-card">
   <bmb-home-card
     [leftIcon]="leftIcon()"
-    [title]="title()"
-    [subtitle]="subtitle()"
+    [title]="title() || ('home_card_chat.title' | translate)"
+    [subtitle]="subtitle() || ('home_card_chat.subtitle' | translate)"
     [icon]="icon()"
     [isMobile]="isMobile()"
     (onClose)="handleClose()"

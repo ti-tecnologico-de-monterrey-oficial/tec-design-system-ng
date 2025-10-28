@@ -6,14 +6,23 @@ import {
 } from '@storybook/angular';
 import { BmbItemComponent } from './bmb-item.component';
 import { CommonModule } from '@angular/common';
-import { attributes } from '../../utils/doc/utils';
-
+import {
+  attributes,
+  getBasicExampleBlock,
+  getGeneralComponentDescription,
+  getGeneralDescription,
+  getOnEvent,
+} from '../../utils/doc/utils';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import {
+  DBmbGenericParamDesc,
+  DBmbIconParamDesc,
+  getOnClickParam,
+  getPropertyParamDesc,
+} from '../../utils/doc/parameterDescriptions';
 
-export type IBmbTargetLink = '_blank' | '_parent' | '_self' | '_top';
-
-const meta: Meta<BmbItemComponent> = {
-  title: 'Internals/Items',
+export default {
+  title: 'Dev tools/Item',
   component: BmbItemComponent,
   decorators: [
     moduleMetadata({
@@ -29,87 +38,50 @@ const meta: Meta<BmbItemComponent> = {
   ],
   parameters: {
     docs: {
+      controls: { exclude: ['handleClick', ''] },
       description: {
         component: `
-Below is an example of how you can use this component in TypeScript:
-
-\`\`\`typescript
-import { BmbItemComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
-
-@Component({
-  selector: 'component',
-  standalone: true,
-  imports: [ BmbItemComponent ],
-  templateUrl: './component.html',
-  styleUrl: './component.scss',
-})
-export class AppComponent {
-}
-...
-\`\`\`
-
-Below is an example of how you can use this component in HTML:
-        `,
+${getGeneralDescription(
+  `<br/>
+${getGeneralComponentDescription({
+  name: 'item',
+  type: 'element',
+})} to implement elements that displays an icon, label, value, and optional support text.<br/><br/>`,
+)}
+${getBasicExampleBlock('BmbItemComponent')}
+  `,
       },
     },
   },
   argTypes: {
-    icon: {
-      control: 'text',
-      description: 'Icon name to display.',
-      table: { category: 'Inputs', type: { summary: 'string (required)' } },
-    },
-    iconSize: {
-      control: 'number',
-      description: 'Size of the icon.',
-      table: {
-        category: 'Inputs',
-        defaultValue: { summary: '24' },
-        type: { summary: 'number' },
-      },
-    },
-    label: {
-      control: 'text',
-      description: 'Main label for the item.',
-      table: { category: 'Inputs', type: { summary: 'string (required)' } },
-    },
+    icon: DBmbIconParamDesc.icon,
+    iconSize: DBmbIconParamDesc.iconSize,
+    label: getPropertyParamDesc('main label'),
     value: {
       control: 'text',
-      description: 'Value displayed on the right.',
-      table: { category: 'Inputs', type: { summary: 'string (required)' } },
+      description: 'Sets the value to show on the right side.',
+      table: { category: 'Properties', type: { summary: 'string (required)' } },
     },
-    valueLink: {
-      control: 'text',
-      description: 'If present, value becomes a link.',
-      table: { category: 'Inputs', type: { summary: 'string' } },
-    },
-    valueTarget: {
-      control: 'text',
-      description: 'Target for the value link.',
-      table: { category: 'Inputs', type: { summary: 'string' } },
-    },
+    valueLink: DBmbGenericParamDesc.linkOrButton,
+    valueTarget: DBmbGenericParamDesc.target,
     supportText: {
       control: 'text',
-      description: 'Support text shown below the label.',
-      table: { category: 'Inputs', type: { summary: 'string' } },
+      description: 'Sets a support text shown below the label.',
+      table: { category: 'Properties', type: { summary: 'string' } },
     },
-    isButton: {
-      control: 'boolean',
-      description: 'If true, renders the item as a button.',
-      table: { category: 'Inputs', type: { summary: 'boolean' } },
-    },
-    action: {
-      action: 'clicked',
-      description: 'Event emitted on button click.',
-      table: { category: 'Outputs', type: { summary: 'EventEmitter<void>' } },
-    },
+    isButton: getPropertyParamDesc(
+      '',
+      'boolean',
+      false,
+      '',
+      'Renders the item as a button when true.',
+    ),
+    action: getOnClickParam(getOnEvent('item', 'action')),
   },
   args: {
     label: 'Whatsapp',
   },
-};
-
-export default meta;
+} as Meta<typeof BmbItemComponent>;
 
 type Story = StoryObj<BmbItemComponent>;
 

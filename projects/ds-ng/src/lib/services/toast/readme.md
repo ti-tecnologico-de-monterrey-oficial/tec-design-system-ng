@@ -8,16 +8,16 @@
 
 ## Props / Parámetros
 
-| Propiedad   | Tipo                | Descripción                                                        | Valor por defecto | Obligatorio |
-|-------------|---------------------|--------------------------------------------------------------------|-------------------|-------------|
-| `isOpen$`   | `Observable<boolean>` | Observable que emite el estado de visibilidad del toast           | `false`           | No          |
+| Propiedad | Tipo                  | Descripción                                             | Valor por defecto | Obligatorio |
+| --------- | --------------------- | ------------------------------------------------------- | ----------------- | ----------- |
+| `isOpen$` | `Observable<boolean>` | Observable que emite el estado de visibilidad del toast | `false`           | No          |
 
 ### Métodos
 
-| Método         | Tipo de retorno | Descripción                                  |
-|----------------|-----------------|----------------------------------------------|
-| `openToast()`  | `void`          | Cambia el estado a abierto (`true`)          |
-| `closeToast()` | `void`          | Cambia el estado a cerrado (`false`)         |
+| Método         | Tipo de retorno | Descripción                          |
+| -------------- | --------------- | ------------------------------------ |
+| `openToast()`  | `void`          | Cambia el estado a abierto (`true`)  |
+| `closeToast()` | `void`          | Cambia el estado a cerrado (`false`) |
 
 ---
 
@@ -39,7 +39,7 @@ export class DemoToastComponent {
   isOpen = false;
 
   constructor(private toastService: ToastService) {
-    this.toastService.isOpen$.subscribe(open => this.isOpen = open);
+    this.toastService.isOpen$.subscribe((open) => (this.isOpen = open));
   }
 
   mostrarToast() {

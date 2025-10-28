@@ -10,6 +10,7 @@ import { CommonModule } from '@angular/common';
 import { BmbUserSummaryContentComponent } from '../bmb-user-summary/bmb-user-summary-content/bmb-user-summary-content.component';
 import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
 import { BmbImageComponent } from '../bmb-image/bmb-image.component';
+import { TranslatePipe } from '../../pipes/translations';
 
 @Component({
   selector: 'bmb-digital-id',
@@ -20,6 +21,7 @@ import { BmbImageComponent } from '../bmb-image/bmb-image.component';
     BmbActionIconComponent,
     BmbImageComponent,
     BmbButtonDirective,
+    TranslatePipe,
   ],
   templateUrl: './bmb-digital-id.component.html',
   styleUrl: './bmb-digital-id.component.scss',
@@ -38,7 +40,7 @@ export class BmbDigitalIdComponent {
   imgProfile = input.required<string>();
   imgBackground = input.required<string>();
   hideButton = input<boolean>(false);
-  secondaryTextButton = input<string>('Descargar ID a PDF');
+  secondaryTextButton = input<string>();
   secondaryIconButton = input<string>('download_2');
 
   logoSrc = 'assets/images/tec-logo.svg';

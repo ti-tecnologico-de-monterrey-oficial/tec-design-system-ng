@@ -9,7 +9,7 @@
     box-sizing: border-box;
     min-height: rem.rem_calc(120);
     border-bottom: rem.rem_calc(1) solid var(--containers-main);
-    @include fonts.font(3, medium);
+    @include fonts.font(3, regular);
     text-align: right;
     color: var(--general_contrasts-75);
     position: relative;

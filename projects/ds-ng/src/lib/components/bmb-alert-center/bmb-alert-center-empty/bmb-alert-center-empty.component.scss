@@ -17,7 +17,7 @@
   }
 
   &_primary {
-    @include fonts.font(9, semibold);
+    @include fonts.font(9, bold);
   }
 
   &_secondary {

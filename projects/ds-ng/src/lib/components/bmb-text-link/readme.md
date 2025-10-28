@@ -8,15 +8,15 @@
 
 ## Props / Parámetros
 
-| Propiedad        | Tipo                        | Descripción                                                        | Valor por defecto | Obligatorio |
-|------------------|-----------------------------|--------------------------------------------------------------------|-------------------|-------------|
-| `textLink`       | `string`                    | Texto a mostrar en el enlace                                       | -                 | Sí          |
-| `textLinkStyle`  | `'icon' \| 'underlined'`    | Estilo visual del enlace                                           | `'icon'`          | No          |
-| `target`         | `IBmbTargetLink`            | Destino del enlace (`_blank`, `_self`, etc.)                       | `'_blank'`        | No          |
-| `icon`           | `string`                    | Nombre del ícono a mostrar                                         | `'arrow_forward'` | No          |
-| `iconPosition`   | `'left' \| 'right'`         | Posición del ícono respecto al texto                               | `'right'`         | No          |
-| `link`           | `string`                    | URL o ruta del enlace                                              | -                 | Sí          |
-| `disabled`       | `boolean`                   | Deshabilita la interacción con el enlace                           | `false`           | No          |
+| Propiedad       | Tipo                     | Descripción                                  | Valor por defecto | Obligatorio |
+| --------------- | ------------------------ | -------------------------------------------- | ----------------- | ----------- |
+| `textLink`      | `string`                 | Texto a mostrar en el enlace                 | -                 | Sí          |
+| `textLinkStyle` | `'icon' \| 'underlined'` | Estilo visual del enlace                     | `'icon'`          | No          |
+| `target`        | `IBmbTargetLink`         | Destino del enlace (`_blank`, `_self`, etc.) | `'_blank'`        | No          |
+| `icon`          | `string`                 | Nombre del ícono a mostrar                   | `'arrow_forward'` | No          |
+| `iconPosition`  | `'left' \| 'right'`      | Posición del ícono respecto al texto         | `'right'`         | No          |
+| `link`          | `string`                 | URL o ruta del enlace                        | -                 | Sí          |
+| `disabled`      | `boolean`                | Deshabilita la interacción con el enlace     | `false`           | No          |
 
 ---
 

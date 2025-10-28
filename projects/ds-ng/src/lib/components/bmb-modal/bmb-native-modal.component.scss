@@ -1,4 +1,5 @@
 @use '../../../assets/styles/base/rem' as rem;
+@use '../../../assets/styles/base/mixins' as mixins;
 
 $modalSize: (
   'x-small': rem.rem_calc(472),
@@ -60,7 +61,7 @@ $modalSize: (
     gap: var(--bmb-spacing-m);
     flex-wrap: wrap;
 
-    @media (max-width: 1000px) {
+    @include mixins.check-for-mobile() {
       .bmb_btn {
         flex: 1 1 100%;
       }

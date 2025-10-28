@@ -1,0 +1,113 @@
+{
+  "account_statement": {
+    "title": "Estado de cuenta",
+    "progress_circle_title": "Total a pagar este mes",
+    "label_primary": "Cuota Mensual",
+    "label_secondary": "Pendiente",
+    "payment_deadline_label": "Fecha límite de pago:",
+    "cut_off_date_label": "Fecha de corte:",
+    "pay_button_label": "Pagar",
+    "back_button_label": "Regresar",
+    "modal_title": "Pagar",
+    "modal_subtitle": "¿Cuánto deseas pagar?",
+    "modal_rest_label": "Pagar restante",
+    "modal_other_amount_label": "Otra cantidad",
+    "modal_primary_button_label": "Pagar",
+    "error_message": "Error, Este campo es requerido",
+    "progress_title": "Total pagado"
+  },
+  "advertisement_card": {
+    "title": "Mis anuncios"
+  },
+  "alert_center": {
+    "empty_state": {
+      "primary_text": "No tienes notificaciones para mostrar"
+    },
+    "loader": {
+      "loading": "Cargando...",
+      "subtitle": "Cargando las notificaciones",
+      "primary_button": "Reintentar",
+      "secondary_button": "Salir"
+    },
+    "form": {
+      "empty_state": {
+        "primary_text": "No tienes notificaciones para mostrar"
+      }
+    }
+  },
+  "balance_overview": {
+    "progress_circle_value": "Valor del círculo de progreso",
+    "progress_circle_title": "Título del círculo de progreso",
+    "label_primary": "Etiqueta primaria",
+    "label_secondary": "Etiqueta secundaria",
+    "value_primary": "$0",
+    "value_secondary": "$0"
+  },
+  "calendar": {
+    "title": "Mi Calendario",
+    "today": "Hoy",
+    "month": "Mes",
+    "week": "Semana",
+    "day": "Día",
+    "calendar": "Calendario",
+    "subtitle": "Selecciona los calendarios que quieres ver",
+    "filter_save": "Guardar"
+  },
+  "chat_bar": {
+    "placeholder": "¿Qué deseas encontrar hoy?",
+    "drag_files": "Arrastra tus archivos aquí"
+  },
+  "digital_id": {
+    "secondary_button_label": "Descargar ID a PDF"
+  },
+  "dropzone": {
+    "drop_instructions": "Arrastra y suelta tus archivos aquí o",
+    "drop_label": "Selecciona archivos",
+    "error_message": "Archivo no compatible",
+    "error_message_format": "Formato no soportado",
+    "error_message_size": "El archivo supera el tamaño permitido",
+    "format_files_label": "Especificación de formatos y peso",
+    "link_label": "Ver más información de formatos de archivo aceptados."
+  },
+  "header_mitec": {
+    "header_label": "ESTUDIANTES"
+  },
+  "home_card_chat": {
+    "title": "Asistente TecBot",
+    "subtitle": "Chat"
+  },
+  "login": {
+    "header_label": "ESTUDIANTES",
+    "forgotten_password": "¿Olvidaste tu contraseña?",
+    "remember_me": "Recuérdame",
+    "login_as_guest": "Entrar como invitado",
+    "button_label": "Iniciar sesión"
+  },
+  "login_onboarding": {
+    "another_account": "Iniciar sesión con otra cuenta",
+    "forgot_password": "¿Olvidaste tu contraseña?"
+  },
+  "notice_card": {
+    "button_text": "Enterado"
+  },
+  "step_progress_bar": {
+    "label_completed": "Completo",
+    "label_pending": "Pendiente"
+  },
+  "switch": {
+    "aria_label": "Describe la acción del interruptor"
+  },
+  "totp": {
+    "title": "TOTP",
+    "subtitle": "Contraseña de un solo uso"
+  },
+  "user_profile": {
+    "header": "ESTUDIANTES",
+    "another_account": "Iniciar sesión con otra cuenta",
+    "button_label": "Iniciar sesión"
+  },
+  "user_summary": {
+    "salutation": "Buenas tardes",
+    "digital_id": "ID Digital"
+  }
+}

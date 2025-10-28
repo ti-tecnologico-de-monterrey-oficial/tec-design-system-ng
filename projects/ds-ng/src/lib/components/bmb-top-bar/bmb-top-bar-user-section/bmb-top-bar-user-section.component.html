@@ -35,6 +35,13 @@
         [dotNotification]="totalNotifications()"
       />
     }
+  } @else if (showRoleButton()) {
+    <bmb-action-icon
+      bmbLayoutItem
+      icon="compare_arrows"
+      [iconSize]="32"
+      (buttonClick)="handleRoleChange($event)"
+    />
   }
   @if (showHelpButton() || mitec()) {
     <bmb-action-icon

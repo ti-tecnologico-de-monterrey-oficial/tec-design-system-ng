@@ -22,7 +22,7 @@
         [name]="name()"
         [checked]="isChecked()"
         [attr.aria-checked]="isChecked()"
-        [attr.aria-label]="ariaLabel()"
+        [attr.aria-label]="ariaLabel() || ('switch.aria_label' | translate)"
         [attr.aria-disabled]="disabled().toString()"
         [tabindex]="disabled() ? -1 : 0"
         (change)="handleChange($event)"

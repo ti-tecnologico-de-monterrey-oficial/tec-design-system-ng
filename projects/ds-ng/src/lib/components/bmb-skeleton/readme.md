@@ -8,9 +8,9 @@
 
 ## Props / Parámetros
 
-| Propiedad | Tipo             | Descripción                                                        | Valor por defecto | Obligatorio |
-|-----------|------------------|--------------------------------------------------------------------|-------------------|-------------|
-| `type`    | `BmbSkeletonType`| Tipo de skeleton a mostrar (`header`, `input`, `stray`, `generic1`, `generic2`, `generic3`) | `'header'`        | No          |
+| Propiedad | Tipo              | Descripción                                                                                 | Valor por defecto | Obligatorio |
+| --------- | ----------------- | ------------------------------------------------------------------------------------------- | ----------------- | ----------- |
+| `type`    | `BmbSkeletonType` | Tipo de skeleton a mostrar (`header`, `input`, `stray`, `generic1`, `generic2`, `generic3`) | `'header'`        | No          |
 
 ---
 

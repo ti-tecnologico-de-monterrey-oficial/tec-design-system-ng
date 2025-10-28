@@ -8,24 +8,24 @@
 
 ## Props / Parámetros
 
-| Propiedad     | Tipo                | Descripción                                                        | Valor por defecto | Obligatorio |
-|---------------|---------------------|--------------------------------------------------------------------|-------------------|-------------|
-| `appearance`  | `IBmbActivityTags`  | Apariencia/color de la etiqueta                                    | `'normal'`        | No          |
-| `text`        | `string`            | Texto a mostrar en la etiqueta                                     | `''`              | No          |
-| `grouped`     | `boolean`           | Agrupa la etiqueta con otras en el mismo contenedor                | `false`           | No          |
-| `dismissible` | `boolean`           | Permite cerrar (eliminar) la etiqueta                              | `false`           | No          |
-| `rounded`     | `boolean`           | Muestra la etiqueta con bordes redondeados                         | `false`           | No          |
-| `activityTag` | `boolean`           | (Obsoleto) Indica si es una etiqueta de actividad                  | `false`           | No          |
-| `isDisabled`  | `boolean`           | Deshabilita la interacción con la etiqueta                         | `false`           | No          |
-| `isActive`    | `boolean`           | Marca la etiqueta como activa                                      | `false`           | No          |
-| `enableClick` | `boolean`           | Permite interacción por clic en la etiqueta                        | `false`           | No          |
+| Propiedad     | Tipo               | Descripción                                         | Valor por defecto | Obligatorio |
+| ------------- | ------------------ | --------------------------------------------------- | ----------------- | ----------- |
+| `appearance`  | `IBmbActivityTags` | Apariencia/color de la etiqueta                     | `'normal'`        | No          |
+| `text`        | `string`           | Texto a mostrar en la etiqueta                      | `''`              | No          |
+| `grouped`     | `boolean`          | Agrupa la etiqueta con otras en el mismo contenedor | `false`           | No          |
+| `dismissible` | `boolean`          | Permite cerrar (eliminar) la etiqueta               | `false`           | No          |
+| `rounded`     | `boolean`          | Muestra la etiqueta con bordes redondeados          | `false`           | No          |
+| `activityTag` | `boolean`          | (Obsoleto) Indica si es una etiqueta de actividad   | `false`           | No          |
+| `isDisabled`  | `boolean`          | Deshabilita la interacción con la etiqueta          | `false`           | No          |
+| `isActive`    | `boolean`          | Marca la etiqueta como activa                       | `false`           | No          |
+| `enableClick` | `boolean`          | Permite interacción por clic en la etiqueta         | `false`           | No          |
 
 ### Outputs
 
-| Output        | Tipo     | Descripción                                  |
-|---------------|----------|----------------------------------------------|
-| `closedTag`   | `string` | Se emite al cerrar (eliminar) la etiqueta    |
-| `clickedTag`  | `string` | Se emite al hacer clic en la etiqueta        |
+| Output       | Tipo     | Descripción                               |
+| ------------ | -------- | ----------------------------------------- |
+| `closedTag`  | `string` | Se emite al cerrar (eliminar) la etiqueta |
+| `clickedTag` | `string` | Se emite al hacer clic en la etiqueta     |
 
 ---
 

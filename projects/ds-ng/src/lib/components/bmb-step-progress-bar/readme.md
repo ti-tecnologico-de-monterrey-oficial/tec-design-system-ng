@@ -8,24 +8,24 @@
 
 ## Props / Parámetros
 
-| Propiedad         | Tipo                                         | Descripción                                                        | Valor por defecto | Obligatorio |
-|-------------------|----------------------------------------------|--------------------------------------------------------------------|-------------------|-------------|
-| `activeStep`      | `number` (model)                             | Índice del paso actualmente activo                                 | `0`               | No          |
-| `totalSteps`      | `number`                                     | Número total de pasos a mostrar                                    | `0`               | Sí          |
-| `size`            | `'normal' \| 'default' \| 'small' \| 'medium'` | Tamaño visual de la barra de pasos                                 | `'normal'`        | No          |
-| `freeze`          | `boolean`                                    | Deshabilita la interacción con los pasos                           | `false`           | No          |
-| `type`            | `'horizontal' \| 'vertical' \| 'step-panel'` | Orientación o modo de visualización                                | `'vertical'`      | No          |
-| `labelSteps`      | `string[]`                                   | Etiquetas para cada paso                                           | `[]`              | No          |
-| `labelComplete`   | `string`                                     | Etiqueta para pasos completados                                    | `'Completo'`      | No          |
-| `labelIncomplete` | `string`                                     | Etiqueta para pasos pendientes                                     | `'Pendiente'`     | No          |
-| `stepTemplates`   | `TemplateRef<any>[]`                         | Plantillas personalizadas para cada paso                           | `[]`              | No          |
+| Propiedad         | Tipo                                           | Descripción                              | Valor por defecto | Obligatorio |
+| ----------------- | ---------------------------------------------- | ---------------------------------------- | ----------------- | ----------- |
+| `activeStep`      | `number` (model)                               | Índice del paso actualmente activo       | `0`               | No          |
+| `totalSteps`      | `number`                                       | Número total de pasos a mostrar          | `0`               | Sí          |
+| `size`            | `'normal' \| 'default' \| 'small' \| 'medium'` | Tamaño visual de la barra de pasos       | `'normal'`        | No          |
+| `freeze`          | `boolean`                                      | Deshabilita la interacción con los pasos | `false`           | No          |
+| `type`            | `'horizontal' \| 'vertical' \| 'step-panel'`   | Orientación o modo de visualización      | `'vertical'`      | No          |
+| `labelSteps`      | `string[]`                                     | Etiquetas para cada paso                 | `[]`              | No          |
+| `labelComplete`   | `string`                                       | Etiqueta para pasos completados          | `'Completo'`      | No          |
+| `labelIncomplete` | `string`                                       | Etiqueta para pasos pendientes           | `'Pendiente'`     | No          |
+| `stepTemplates`   | `TemplateRef<any>[]`                           | Plantillas personalizadas para cada paso | `[]`              | No          |
 
 ### Outputs
 
-| Output             | Tipo     | Descripción                                  |
-|--------------------|----------|----------------------------------------------|
-| `onStepPress`      | `number` | Se emite al seleccionar un paso              |
-| `onStepPanelPress` | `number` | Se emite al seleccionar un panel de paso     |
+| Output             | Tipo     | Descripción                              |
+| ------------------ | -------- | ---------------------------------------- |
+| `onStepPress`      | `number` | Se emite al seleccionar un paso          |
+| `onStepPanelPress` | `number` | Se emite al seleccionar un panel de paso |
 
 ---
 

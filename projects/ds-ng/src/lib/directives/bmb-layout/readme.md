@@ -8,13 +8,13 @@
 
 ## Props / Parámetros
 
-| Propiedad     | Tipo                | Descripción                                                        | Valor por defecto | Obligatorio |
-|---------------|---------------------|--------------------------------------------------------------------|-------------------|-------------|
-| `gapSize`     | `SizeNames`         | Espacio (gap) entre los elementos del layout                       | `'m'`             | No          |
-| `margin`      | `SizeNames`         | Margen externo del layout                                          | `'m'`             | No          |
-| `dynamicCols` | `boolean`           | Habilita columnas dinámicas (layout inteligente)                   | `false`           | No          |
-| `justify`     | `IJustifyOptions`   | Justificación de los elementos (`center`, `start`, `end`, etc.)    | `'start'`         | No          |
-| `alignItems`  | `IAlignItemsOptions`| Alineación vertical de los elementos (`center`, `start`, etc.)     | `'start'`         | No          |
+| Propiedad     | Tipo                 | Descripción                                                     | Valor por defecto | Obligatorio |
+| ------------- | -------------------- | --------------------------------------------------------------- | ----------------- | ----------- |
+| `gapSize`     | `SizeNames`          | Espacio (gap) entre los elementos del layout                    | `'m'`             | No          |
+| `margin`      | `SizeNames`          | Margen externo del layout                                       | `'m'`             | No          |
+| `dynamicCols` | `boolean`            | Habilita columnas dinámicas (layout inteligente)                | `false`           | No          |
+| `justify`     | `IJustifyOptions`    | Justificación de los elementos (`center`, `start`, `end`, etc.) | `'start'`         | No          |
+| `alignItems`  | `IAlignItemsOptions` | Alineación vertical de los elementos (`center`, `start`, etc.)  | `'start'`         | No          |
 
 ---
 
@@ -64,14 +64,14 @@
 
 ## Props / Parámetros
 
-| Propiedad      | Tipo                | Descripción                                                        | Valor por defecto      | Obligatorio |
-|----------------|---------------------|--------------------------------------------------------------------|------------------------|-------------|
-| `colSm`        | `IColumSizeMobile`  | Tamaño de columna en dispositivos móviles (0-4)                    | `0`                    | No          |
-| `colLg`        | `IColumSizeFull`    | Tamaño de columna en escritorio (0-12)                             | `0`                    | No          |
-| `marginLeft`   | `IMargin`           | Márgenes izquierdos para móvil y escritorio                        | `{ sm: 0, lg: 0 }`     | No          |
-| `marginRight`  | `IMargin`           | Márgenes derechos para móvil y escritorio                          | `{ sm: 0, lg: 0 }`     | No          |
-| `colGrow`      | `number`            | Valor de crecimiento dinámico (flex-grow)                          | `0`                    | No          |
-| `isDynamicItem`| `boolean`           | Habilita crecimiento dinámico del elemento                         | `false`                | No          |
+| Propiedad       | Tipo               | Descripción                                     | Valor por defecto  | Obligatorio |
+| --------------- | ------------------ | ----------------------------------------------- | ------------------ | ----------- |
+| `colSm`         | `IColumSizeMobile` | Tamaño de columna en dispositivos móviles (0-4) | `0`                | No          |
+| `colLg`         | `IColumSizeFull`   | Tamaño de columna en escritorio (0-12)          | `0`                | No          |
+| `marginLeft`    | `IMargin`          | Márgenes izquierdos para móvil y escritorio     | `{ sm: 0, lg: 0 }` | No          |
+| `marginRight`   | `IMargin`          | Márgenes derechos para móvil y escritorio       | `{ sm: 0, lg: 0 }` | No          |
+| `colGrow`       | `number`           | Valor de crecimiento dinámico (flex-grow)       | `0`                | No          |
+| `isDynamicItem` | `boolean`          | Habilita crecimiento dinámico del elemento      | `false`            | No          |
 
 ---
 

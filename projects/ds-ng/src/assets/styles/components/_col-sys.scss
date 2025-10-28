@@ -1,5 +1,6 @@
 @use '../base/rem' as rem;
 @use '../base/mixins' as mixins;
+@use '../base/vars' as vars;
 @use 'sass:math';
 
 $sizes: (
@@ -34,9 +35,84 @@ $alignItemsOptions: (
   'stretch': stretch,
 );
 
+@mixin margin-side($side, $i, $size) {
+  margin-#{$side}: calc(
+    #{math.percentage(math.div($i, $size))} + var(--bmb-gap) - (var(--bmb-gap) /
+          $size * #{$size - $i})
+  );
+}
+
+@mixin one-column() {
+  &:not(.bmb_col-sm-1):not(.bmb_col-sm-2):not(.bmb_col-sm-3):not(
+      .bmb_col-sm-4
+    ) {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+}
+
+@mixin columns($index) {
+  flex: 0 0
+    calc(
+      #{math.percentage(math.div($index, 12))} - (var(--bmb-gap) / 12 * #{12 -
+            $index})
+    ) !important;
+  max-width: calc(
+    #{math.percentage(math.div($index, 12))} - (var(--bmb-gap) / 12 * #{12 -
+          $index})
+  ) !important;
+}
+
 .bmb_layout {
   display: flex;
   flex-wrap: wrap;
+
+  @for $i from 1 through 12 {
+    .bmb_layout-item.bmb_col-lg-#{$i} {
+      overflow: visible;
+      @include mixins.check-for-mobile() {
+        @include one-column();
+      }
+
+      @include mixins.check-for-mobile(false) {
+        @include columns($i);
+      }
+    }
+  }
+
+  &-container {
+    display: flex;
+    flex-wrap: wrap;
+    container: layout / inline-size;
+
+    @for $i from 1 through 12 {
+      .bmb_layout-container-item.bmb_col-lg-#{$i} {
+        overflow: visible;
+
+        @include mixins.check-for-mobile() {
+          @include one-column();
+        }
+
+        @include mixins.check-for-mobile(false) {
+          @include mixins.container-query(
+            vars.$max_container_query_breakpoint,
+            'max',
+            'layout'
+          ) {
+            @include one-column();
+          }
+
+          @include mixins.container-query(
+            vars.$min_container_query_breakpoint,
+            'min',
+            'layout'
+          ) {
+            @include columns($i);
+          }
+        }
+      }
+    }
+  }
 
   &-smart {
     justify-content: center;
@@ -58,46 +134,11 @@ $alignItemsOptions: (
   }
 }
 
-@for $i from 1 through 12 {
-  .bmb_col-lg-#{$i} {
-    overflow: visible;
-
-    @include mixins.media-query(999, 'max') {
-      &:not(.bmb_col-sm-1):not(.bmb_col-sm-2):not(.bmb_col-sm-3):not(
-          .bmb_col-sm-4
-        ) {
-        flex: 0 0 100%;
-        max-width: 100%;
-      }
-    }
-
-    @include mixins.media-query(1000, 'min') {
-      flex: 0 0
-        calc(
-          #{math.percentage(math.div($i, 12))} - (var(--bmb-gap) / 12 * #{12 -
-                $i})
-        ) !important;
-      max-width: calc(
-        #{math.percentage(math.div($i, 12))} - (var(--bmb-gap) / 12 * #{12 - $i})
-      ) !important;
-    }
-  }
-}
-
 @each $side in $namesOfSides {
   @each $margin, $size in $marginSizes {
     @for $i from 1 through $size {
       .bmb_space-#{$margin}-#{$side}-#{$i} {
-        @include mixins.media-query(
-          if($margin == 'sm', 999, 1000),
-          if($margin == 'sm', 'max', 'min')
-        ) {
-          margin-#{$side}: calc(
-            #{math.percentage(math.div($i, $size))} + var(--bmb-gap) - (var(
-                    --bmb-gap
-                  ) / $size * #{$size - $i})
-          );
-        }
+        @include margin-side($side, $i, $size);
       }
     }
   }
@@ -110,7 +151,7 @@ $alignItemsOptions: (
 }
 
 @each $name, $option in $alignItemsOptions {
-  .bmb_alignItems-#{$name} {
+  .bmb_align-items-#{$name} {
     align-items: $option;
   }
 }

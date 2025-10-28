@@ -53,12 +53,13 @@
       max-height: rem.rem_calc(224);
       gap: rem.rem_calc(12);
       overflow: auto;
+      align-content: flex-start;
 
       bmb-interactive-icon {
         scroll-snap-align: center;
         width: clamp(rem.rem_calc(150), 45%, rem.rem_calc(250));
 
-        @media (width <= 1000px) {
+        @include mixins.check-for-mobile() {
           .bmb_interactive_icon-title {
             word-break: break-word;
             -webkit-hyphens: auto;

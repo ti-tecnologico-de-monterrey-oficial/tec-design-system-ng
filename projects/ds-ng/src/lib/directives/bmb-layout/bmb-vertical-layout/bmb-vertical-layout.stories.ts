@@ -39,6 +39,7 @@ export default {
     }),
   ],
   parameters: {
+    controls: { exclude: ['styleHeight'] },
     docs: {
       description: {
         component: `

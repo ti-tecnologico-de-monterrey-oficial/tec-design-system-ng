@@ -8,27 +8,27 @@
 
 ## Props / Parámetros
 
-| Propiedad        | Tipo                  | Descripción                                                        | Valor por defecto           | Obligatorio |
-|------------------|-----------------------|--------------------------------------------------------------------|-----------------------------|-------------|
-| `title`          | `string`              | Título principal de la tarjeta                                     | -                           | Sí          |
-| `subtitle`       | `string`              | Subtítulo o descripción breve                                      | `''`                        | No          |
-| `dataLocalNav`   | `IBmbDataTopBar[]`    | Datos para navegación local en la tarjeta                          | `[]`                        | No          |
-| `icon`           | `string`              | Ícono principal de la tarjeta                                      | `'trending_up'`             | No          |
-| `bgIconAppearance`| `IBmbColor`          | Color de fondo del ícono                                           | `'mitec-red'`               | No          |
-| `lang`           | `string`              | Idioma para nombres de meses y fechas (`'es'`, `'en'`, etc.)       | `'es'`                      | No          |
-| `dateFormat`     | `string`              | Formato de fecha para parseo con Luxon                             | `'dd/MM/yyyy'`              | No          |
-| `events`         | `ITimelineEvent[]`    | Lista de eventos a mostrar en la línea de tiempo                   | `[]`                        | Sí          |
+| Propiedad          | Tipo               | Descripción                                                  | Valor por defecto | Obligatorio |
+| ------------------ | ------------------ | ------------------------------------------------------------ | ----------------- | ----------- |
+| `title`            | `string`           | Título principal de la tarjeta                               | -                 | Sí          |
+| `subtitle`         | `string`           | Subtítulo o descripción breve                                | `''`              | No          |
+| `dataLocalNav`     | `IBmbDataTopBar[]` | Datos para navegación local en la tarjeta                    | `[]`              | No          |
+| `icon`             | `string`           | Ícono principal de la tarjeta                                | `'trending_up'`   | No          |
+| `bgIconAppearance` | `IBmbColor`        | Color de fondo del ícono                                     | `'mitec-red'`     | No          |
+| `lang`             | `string`           | Idioma para nombres de meses y fechas (`'es'`, `'en'`, etc.) | `'es'`            | No          |
+| `dateFormat`       | `string`           | Formato de fecha para parseo con Luxon                       | `'dd/MM/yyyy'`    | No          |
+| `events`           | `ITimelineEvent[]` | Lista de eventos a mostrar en la línea de tiempo             | `[]`              | Sí          |
 
 ### Propiedades internas y filtros
 
-| Propiedad           | Tipo                  | Descripción                                  | Valor por defecto           |
-|---------------------|-----------------------|----------------------------------------------|-----------------------------|
-| `clamp`             | `IBmbClamp`           | Restricciones visuales del timestream        | `{ min: 0, max: '100%', size: '100%' }` |
-| `isMobile`          | `boolean`             | Indica si la vista es móvil                  | `false`                     |
-| `actionHeaders`     | `IBmbActionHeader[]`  | Encabezados de acción para la tarjeta        | `[ { icon: 'tune', ... } ]` |
-| `isFiltersEnabled`  | `boolean`             | Estado de visibilidad del panel de filtros   | `false`                     |
-| `filteredEvents`    | `signal<ITimelineEvent[]>` | Eventos filtrados para mostrar           | `[]`                        |
-| `filters`           | `IBmbControlType[]`   | Configuración de filtros disponibles         | Ver definición en código    |
+| Propiedad          | Tipo                       | Descripción                                | Valor por defecto                       |
+| ------------------ | -------------------------- | ------------------------------------------ | --------------------------------------- |
+| `clamp`            | `IBmbClamp`                | Restricciones visuales del timestream      | `{ min: 0, max: '100%', size: '100%' }` |
+| `isMobile`         | `boolean`                  | Indica si la vista es móvil                | `false`                                 |
+| `actionHeaders`    | `IBmbActionHeader[]`       | Encabezados de acción para la tarjeta      | `[ { icon: 'tune', ... } ]`             |
+| `isFiltersEnabled` | `boolean`                  | Estado de visibilidad del panel de filtros | `false`                                 |
+| `filteredEvents`   | `signal<ITimelineEvent[]>` | Eventos filtrados para mostrar             | `[]`                                    |
+| `filters`          | `IBmbControlType[]`        | Configuración de filtros disponibles       | Ver definición en código                |
 
 ---
 
@@ -49,8 +49,18 @@
 
 ```typescript
 const eventos: ITimelineEvent[] = [
-  { title: 'Inicio de semestre', start: '20/08/2025', end: '20/08/2025', type: 'active' },
-  { title: 'Examen final', start: '10/12/2025', end: '10/12/2025', type: 'pending' }
+  {
+    title: 'Inicio de semestre',
+    start: '20/08/2025',
+    end: '20/08/2025',
+    type: 'active',
+  },
+  {
+    title: 'Examen final',
+    start: '10/12/2025',
+    end: '10/12/2025',
+    type: 'pending',
+  },
 ];
 ```
 

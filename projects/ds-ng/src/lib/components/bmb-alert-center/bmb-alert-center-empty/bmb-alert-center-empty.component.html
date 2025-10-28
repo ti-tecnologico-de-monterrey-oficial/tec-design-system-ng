@@ -12,7 +12,12 @@
     ></bmb-icon>
   </div>
 
-  <h2 class="bmb_alert-center-empty_primary">{{ data().primaryText }}</h2>
+  <h2 class="bmb_alert-center-empty_primary">
+    {{
+      data().primaryText ||
+        ('alert_center.empty_state.primary_text' | translate)
+    }}
+  </h2>
 
   @if (data().secondaryText) {
     <p class="bmb_alert-center-empty_secondary">{{ data().secondaryText }}</p>

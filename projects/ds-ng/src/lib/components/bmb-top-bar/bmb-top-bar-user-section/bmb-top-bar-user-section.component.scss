@@ -4,7 +4,7 @@
 .bmb_top-bar-user-section {
   color: rgb(var(--color-white-primary));
 
-  @include mixins.checkForMobile() {
+  @include mixins.check-for-mobile() {
     gap: var(--bmb-spacing-s);
   }
 
@@ -26,7 +26,7 @@
     }
 
     .bmb_dropdown_menu {
-      @include mixins.dropdown_menu_left(250);
+      @include mixins.dropdown-menu-left(250);
     }
   }
 
@@ -34,18 +34,18 @@
     display: block;
     line-height: 0;
 
-    @include mixins.hiddenForMobile();
+    @include mixins.hidden-for-mobile();
   }
 
   &-mobile {
     display: block;
     line-height: 0;
 
-    @include mixins.hiddenForNoMobile();
+    @include mixins.hidden-for-no-mobile();
   }
 
   .bmb_user-summary_content-wrapper {
-    @include mixins.hiddenForMobile();
+    @include mixins.hidden-for-mobile();
 
     &-title {
       @include fonts.font(3, regular);

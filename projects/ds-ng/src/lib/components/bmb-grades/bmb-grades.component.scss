@@ -9,7 +9,7 @@
   &-modal {
     &-title {
       color: var(--general_contrasts-100);
-      @include fonts.font(4, medium);
+      @include fonts.font(4, regular);
     }
   }
 

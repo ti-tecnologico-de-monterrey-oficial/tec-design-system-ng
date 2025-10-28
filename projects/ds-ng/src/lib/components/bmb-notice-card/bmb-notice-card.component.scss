@@ -44,7 +44,7 @@
     overflow: hidden;
 
     &-title {
-      @include fonts.font(5, medium);
+      @include fonts.font(5, regular);
     }
 
     &-description-one {

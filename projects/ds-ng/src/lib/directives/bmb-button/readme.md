@@ -8,26 +8,27 @@
 
 ## Props / Parámetros
 
-| Propiedad           | Tipo                        | Descripción                                                        | Valor por defecto | Obligatorio |
-|---------------------|-----------------------------|--------------------------------------------------------------------|-------------------|-------------|
-| `icon`              | `string`                    | Nombre del ícono a mostrar                                         | `''`              | No          |
-| `iconSize`          | `number \| undefined`       | Tamaño del ícono en píxeles                                        | `16`              | No          |
-| `position`          | `IBmbHorizontalPosition`    | Posición del ícono (`'left'` o `'right'`)                          | `'left'`          | No          |
-| `case`              | `boolean`                   | Aplica estilo alternativo (mayúsculas, etc.)                       | `false`           | No          |
-| `appearance`        | `IButtonAppearance`         | Apariencia visual (`'primary'`, `'secondary'`, etc.)               | `'primary'`       | No          |
-| `size`              | `IButtonSize`               | Tamaño del botón (`'small'`, `'medium'`, `'large'`)                | `'small'`         | No          |
-| `isToggleActive`    | `boolean`                   | Estado activo del botón toggle                                     | `false`           | No          |
-| `enableButtonToggle`| `boolean`                   | Habilita modo toggle                                               | `false`           | No          |
-| `isRounded`         | `boolean`                   | Aplica bordes redondeados                                          | `true`            | No          |
-| `isMobile`          | `boolean`                   | Aplica estilos para móvil                                          | `false`           | No          |
-| `iconAlt`           | `string`                    | Texto alternativo para el ícono                                    | `'icon'`          | No          |
+| Propiedad            | Tipo                     | Descripción                                          | Valor por defecto | Obligatorio |
+| -------------------- | ------------------------ | ---------------------------------------------------- | ----------------- | ----------- |
+| `icon`               | `string`                 | Nombre del ícono a mostrar                           | `''`              | No          |
+| `iconSize`           | `number \| undefined`    | Tamaño del ícono en píxeles                          | `16`              | No          |
+| `position`           | `IBmbHorizontalPosition` | Posición del ícono (`'left'` o `'right'`)            | `'left'`          | No          |
+| `case`               | `boolean`                | Aplica estilo alternativo (mayúsculas, etc.)         | `false`           | No          |
+| `appearance`         | `IButtonAppearance`      | Apariencia visual (`'primary'`, `'secondary'`, etc.) | `'primary'`       | No          |
+| `size`               | `IButtonSize`            | Tamaño del botón (`'small'`, `'medium'`, `'large'`)  | `'small'`         | No          |
+| `isToggleActive`     | `boolean`                | Estado activo del botón toggle                       | `false`           | No          |
+| `enableButtonToggle` | `boolean`                | Habilita modo toggle                                 | `false`           | No          |
+| `isRounded`          | `boolean`                | Aplica bordes redondeados                            | `true`            | No          |
+| `isMobile`           | `boolean`                | Aplica estilos para móvil                            | `false`           | No          |
+| `iconAlt`            | `string`                 | Texto alternativo para el ícono                      | `'icon'`          | No          |
 
 ---
 
 ## Ejemplo de uso
 
 ```html
-<button bmbButton
+<button
+  bmbButton
   [icon]="'check'"
   [iconSize]="20"
   [position]="'right'"

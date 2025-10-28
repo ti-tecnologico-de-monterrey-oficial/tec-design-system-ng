@@ -35,6 +35,8 @@ import { BmbAlertCenterService } from './bmb-alert-center.service';
 import { BmbLoaderComponent } from '../bmb-loader/bmb-loader.component';
 import { BmbNativeModalService } from '../../services/modal/native-modal.service';
 import { IBmbNativeModal } from '../bmb-modal/bmb-modal.interface';
+import es from '../../../assets/i18n/es.json';
+import { BmbTranslationsService } from '../../services/translations/translations.service';
 
 @Component({
   selector: 'bmb-alert-center',
@@ -68,9 +70,8 @@ export class BmbAlertCenterComponent {
   hideTabs = input<boolean>(false);
   enableMultipleSelection = input<boolean>(true);
   showMobileVersion = input<boolean>(false);
-  //Empty state
   emptyStateData = input<IBmbAlertEmptyState>({
-    primaryText: 'No tienes notificaciones para mostrar',
+    primaryText: '',
     secondaryText: '',
     tertiaryText: '',
     buttonText: '',
@@ -95,6 +96,7 @@ export class BmbAlertCenterComponent {
   constructor(
     private nativeModalService: BmbNativeModalService,
     private bmbAlertCenterService: BmbAlertCenterService,
+    public translationsService: BmbTranslationsService,
   ) {}
 
   alertList = computed<IBmbDataAlert[]>(() => {

@@ -67,7 +67,7 @@
       padding: 0 var(--bmb-spacing-s);
 
       &-header {
-        @include fonts.font(4, medium);
+        @include fonts.font(4, regular);
       }
 
       &-description {
