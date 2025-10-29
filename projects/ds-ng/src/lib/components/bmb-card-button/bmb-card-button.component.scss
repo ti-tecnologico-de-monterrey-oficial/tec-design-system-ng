@@ -177,7 +177,7 @@
 
   &-add {
     background-color: var(--buttons-primary-normal);
-    border: none;
+    outline: 0 solid transparent;
     color: rgb(var(--color-white-primary));
     width: 100%;
     height: 100%;
@@ -198,6 +198,9 @@
     &:focus:not(:disabled),
     &:active:not(:disabled) {
       background-color: var(--buttons-primary-select);
+      color: rgb(var(--color-charade-950));
+      outline-width: rem.rem_calc(1);
+      outline-color: var(--buttons-stroke-primary-selected);
     }
   }
 
