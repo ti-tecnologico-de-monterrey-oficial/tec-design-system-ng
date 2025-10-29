@@ -1,92 +1,88 @@
 :root,
 .storybook-light-theme .docs-story {
-  --general_contrasts-100: RGBA(var(--color-charade-950), 1);
-  --general_contrasts-75: RGBA(var(--color-charade-700), 1);
-  --general_contrasts-50: RGBA(var(--color-charade-500), 1);
-  --general_contrasts-25: RGBA(var(--color-charade-200), 1);
-  --general_contrasts-20: RGBA(var(--color-charade-100), 1);
-  --general_contrasts-15: RGBA(var(--color-charade-100), 1);
-  --general_contrasts-5: RGBA(var(--color-charade-50), 1);
+  --general_contrasts-100: rgb(var(--color-charade-950));
+  --general_contrasts-75: rgb(var(--color-charade-700));
+  --general_contrasts-50: rgb(var(--color-charade-500));
+  --general_contrasts-25: rgb(var(--color-charade-200));
+  --general_contrasts-20: rgb(var(--color-charade-100));
+  --general_contrasts-15: rgb(var(--color-charade-100));
+  --general_contrasts-5: rgb(var(--color-charade-50));
 
-  --general_contrasts-main-complimentary: RGBA(var(--color-charade-50), 1);
-  --general_contrasts-main-selection: RGBA(var(--color-mariner-700), 1);
-  --general_contrasts-main-selection-alternative: RGBA(
-    var(--color-green-light),
-    1
-  );
+  --general_contrasts-main-complimentary: rgb(var(--color-charade-50));
+  --general_contrasts-main-selection: rgb(var(--color-mariner-700));
+  --general_contrasts-main-selection-alternative: rgb(var(--color-green-light));
   --input-error: rgb(var(--color-red-light));
 
-  --general_contrasts-input-background: RGBA(var(--color-charade-50), 1);
-  --general_contrasts-input-outline: RGBA(var(--color-mariner-700), 1);
-  --general_contrasts-container-outline: RGBA(var(--color-charade-300), 1);
-  --general_contrasts-text-sidebar: RGBA(var(--color-black-primary), 1);
+  --general_contrasts-input-background: rgb(var(--color-charade-50));
+  --general_contrasts-input-outline: rgb(var(--color-mariner-700));
+  --general_contrasts-container-outline: rgb(var(--color-charade-300));
+  --general_contrasts-text-sidebar: rgb(var(--color-black-primary));
 
-  --containers-background: RGBA(var(--color-charade-200), 1);
-  --containers-main: RGBA(var(--color-charade-100), 1);
-  --containers-modal: RGBA(var(--color-charade-50), 1);
-  --containers-container-button: RGBA(var(--color-charade-50), 1);
-  --containers-background-fade: RGBA(var(--color-charade-200), 1);
+  --containers-background: rgb(var(--color-charade-200));
+  --containers-main: rgb(var(--color-charade-100));
+  --containers-modal: rgb(var(--color-charade-50));
+  --containers-container-button: rgb(var(--color-charade-50));
+  --containers-background-fade: rgb(var(--color-charade-200));
 
-  --buttons-primary-normal: RGBA(var(--color-mariner-700), 1);
-  --buttons-primary-hover: RGBA(var(--color-mariner-800), 1);
-  --buttons-primary-select: RGBA(var(--color-mariner-500), 1);
-  --buttons-active-normal: RGBA(var(--color-charade-50), 1);
-  --buttons-alternative-normal: RGBA(var(--color-charade-50), 1);
-  --buttons-alternative-text: RGBA(var(--color-charade-900), 1);
-  --buttons-active-switch: RGBA(var(--color-mariner-700), 1);
-  --buttons-inactive-step: RGBA(var(--color-charade-300), 1);
-  --buttons-active-switch-box-shadow-hover: RGBA(
+  --buttons-primary-normal: rgb(var(--color-mariner-700));
+  --buttons-primary-hover: rgb(var(--color-mariner-800));
+  --buttons-primary-select: rgb(var(--color-mariner-700));
+  --buttons-stroke-primary-selected: rgb(var(--color-mariner-900));
+  --buttons-destructive: rgb(var(--color-red-primary));
+  --buttons-active-normal: rgb(var(--color-charade-50));
+  --buttons-alternative-normal: rgb(var(--color-charade-50));
+  --buttons-alternative-text: rgb(var(--color-charade-900));
+  --buttons-active-switch: rgb(var(--color-mariner-700));
+  --buttons-inactive-step: rgb(var(--color-charade-300));
+  --buttons-active-switch-box-shadow-hover: rgba(
     var(--color-mariner-700),
     0.15
   );
-  --buttons-active-switch-box-shadow-focus: RGBA(
+  --buttons-active-switch-box-shadow-focus: rgba(
     var(--color-mariner-700),
     0.25
   );
-  --buttons-inactive-switch-box-shadow-hover: RGBA(
+  --buttons-inactive-switch-box-shadow-hover: rgba(
     var(--color-charade-500),
     0.15
   );
-  --buttons-inactive-switch-box-shadow-focus: RGBA(
+  --buttons-inactive-switch-box-shadow-focus: rgba(
     var(--color-charade-500),
     0.25
   );
 
   --alert-successful: rgb(var(--color-green-primary));
-  --alert-event: RGBA(var(--color-purple-light), 1);
-  --alert-event-tint: RGBA(var(--color-purple-tint), 1);
-  --alert-neutral: RGBA(var(--color-charade-300), 1);
-  --alert-primary: RGBA(var(--color-mariner-700), 1);
-  --alert-warning: RGBA(var(--color-yellow-primary), 1);
-  --alert-error: RGBA(var(--color-red-primary), 1);
-  --alert-error-blend: RGBA(var(--color-red-light), 1);
+  --alert-event: rgb(var(--color-purple-light));
+  --alert-event-tint: rgb(var(--color-purple-tint));
+  --alert-neutral: rgb(var(--color-charade-300));
+  --alert-primary: rgb(var(--color-mariner-700));
+  --alert-warning: rgb(var(--color-yellow-primary));
+  --alert-error: rgb(var(--color-red-primary));
+  --alert-error-blend: rgb(var(--color-red-light));
 
-  --menu_select-surface-activated: RGBA(var(--color-mariner-700), 1);
-  --menu_select-label-menu-active: RGBA(var(--color-charade-50), 1);
-  --menu_select-label-menu-inactive: RGBA(var(--color-charade-950), 1);
-  --menu_select-activated-w-checkbox: RGBA(var(--color-mariner-950), 1);
-  --menu_select-alternative-focus-label: RGBA(var(--color-purple-primary), 1);
-  --menu_select-on-surface-hovered-w-checkbox: RGBA(
-    var(--color-mariner-100),
-    1
-  );
-  --menu_select-on-surface-hovered: RGBA(var(--color-mariner-100), 1);
-  --menu_select-on-surface-hovered-border: RGBA(var(--color-mariner-700), 0.1);
+  --menu_select-surface-activated: rgb(var(--color-mariner-700));
+  --menu_select-label-menu-active: rgb(var(--color-charade-50));
+  --menu_select-label-menu-inactive: rgb(var(--color-charade-950));
+  --menu_select-activated-w-checkbox: rgb(var(--color-mariner-950));
+  --menu_select-alternative-focus-label: rgb(var(--color-purple-primary));
+  --menu_select-on-surface-hovered-w-checkbox: rgb(var(--color-mariner-100));
+  --menu_select-on-surface-hovered: rgb(var(--color-mariner-100));
+  --menu_select-on-surface-hovered-border: rgba(var(--color-mariner-700), 0.1);
 
-  --drop_shadow-color-test-shadow: RGBA(var(--color-black-primary), 0.2);
+  --drop_shadow-color-test-shadow: rgba(var(--color-black-primary), 0.2);
 
-  --track-progress-bar: RGBA(var(--color-green-primary), 1);
-  --vertical-step-active: RGBA(var(--color-charade-50), 1);
-  --vertical-step-active-color: RGBA(var(--color-charade-700), 1);
-  --vertical-step-subtitle: RGBA(var(--color-charade-700), 1);
+  --track-progress-bar: rgb(var(--color-green-primary));
+  --vertical-step-active: rgb(var(--color-charade-50));
+  --vertical-step-active-color: rgb(var(--color-charade-700));
+  --vertical-step-subtitle: rgb(var(--color-charade-700));
 
-  --gris-charade-50: rgba(var(--color-charade-50), 1);
-  --gris-charade-100: rgba(var(--color-charade-100), 1);
-  --gris-charade-300: rgba(var(--color-charade-300), 1);
-  --gris-charade-500: rgba(var(--color-charade-500), 1);
-  --gris-charade-700: rgba(var(--color-charade-700), 1);
+  --gris-charade-50: rgb(var(--color-charade-50));
+  --gris-charade-100: rgb(var(--color-charade-100));
+  --gris-charade-300: rgb(var(--color-charade-300));
+  --gris-charade-500: rgb(var(--color-charade-500));
+  --gris-charade-700: rgb(var(--color-charade-700));
 
-  --azul-mariner-500: rgba(var(--color-mariner-500), 1);
+  --azul-mariner-500: rgb(var(--color-mariner-500));
   --semantic-normal: rgb(var(--color-charade-500));
   --semantic-strong: rgb(var(--color-mariner-200));
   --semantic-success: rgb(var(--success-primary));
@@ -115,63 +111,59 @@
   --creative-use-ripelemon: rgb(var(--ripe-lemon-primary));
   --creative-use-hibiscus: rgb(var(--hibiscus-primary));
 
-  --color-table-900: RGBA(var(--color-charade-900), 1);
-  --color-table-btn-900: RGBA(var(--color-charade-900), 1);
+  --color-table-900: rgb(var(--color-charade-900));
+  --color-table-btn-900: rgb(var(--color-charade-900));
 }
 
 [data-theme='dark'],
 .storybook-dark-theme,
 .storybook-dark-theme .docs-story {
-  --general_contrasts-100: RGBA(var(--color-charade-50), 1);
-  --general_contrasts-75: RGBA(var(--color-charade-200), 1);
-  --general_contrasts-50: RGBA(var(--color-charade-500), 1);
-  --general_contrasts-25: RGBA(var(--color-charade-700), 1);
-  --general_contrasts-20: RGBA(var(--color-charade-700), 1);
-  --general_contrasts-15: RGBA(var(--color-charade-800), 1);
-  --general_contrasts-5: RGBA(var(--color-charade-900), 1);
+  --general_contrasts-100: rgb(var(--color-charade-50));
+  --general_contrasts-75: rgb(var(--color-charade-200));
+  --general_contrasts-50: rgb(var(--color-charade-500));
+  --general_contrasts-25: rgb(var(--color-charade-700));
+  --general_contrasts-20: rgb(var(--color-charade-700));
+  --general_contrasts-15: rgb(var(--color-charade-800));
+  --general_contrasts-5: rgb(var(--color-charade-900));
 
-  --general_contrasts-main-selection: RGBA(var(--color-mariner-700), 1);
-  --general_contrasts-main-selection-alternative: RGBA(
-    var(--color-green-light),
-    1
-  );
+  --general_contrasts-main-selection: rgb(var(--color-mariner-700));
+  --general_contrasts-main-selection-alternative: rgb(var(--color-green-light));
 
-  --general_contrasts-input-background: RGBA(var(--color-black-primary), 0.5);
-  --general_contrasts-input-outline: RGBA(var(--color-charade-50), 1);
-  --general_contrasts-container-outline: RGBA(var(--color-charade-800), 1);
-  --general_contrasts-text-sidebar: RGBA(var(--color-white-primary), 1);
+  --general_contrasts-input-background: rgba(var(--color-black-primary), 0.5);
+  --general_contrasts-input-outline: rgb(var(--color-charade-50));
+  --general_contrasts-container-outline: rgb(var(--color-charade-800));
+  --general_contrasts-text-sidebar: rgb(var(--color-white-primary));
 
-  --containers-background: RGBA(var(--color-charade-950), 1);
-  --containers-main: RGBA(var(--color-charade-900), 1);
-  --containers-modal: RGBA(var(--color-charade-950), 1);
-  --containers-container-button: RGBA(var(--color-charade-900), 1);
-  --containers-background-fade: RGBA(var(--color-charade-950), 1);
+  --containers-background: rgb(var(--color-charade-950));
+  --containers-main: rgb(var(--color-charade-900));
+  --containers-modal: rgb(var(--color-charade-950));
+  --containers-container-button: rgb(var(--color-charade-900));
+  --containers-background-fade: rgb(var(--color-charade-950));
 
-  --buttons-active-switch: RGBA(var(--color-green-light), 1);
-  --buttons-inactive-step: RGBA(var(--color-charade-700), 1);
-  --buttons-active-switch-box-shadow-hover: RGBA(
+  --buttons-stroke-primary-selected: rgb(var(--color-mariner-300));
+  --buttons-destructive: rgb(var(--color-red-light));
+  --buttons-active-switch: rgb(var(--color-green-light));
+  --buttons-inactive-step: rgb(var(--color-charade-700));
+  --buttons-active-switch-box-shadow-hover: rgba(
     var(--color-green-light),
     0.15
   );
-  --buttons-active-switch-box-shadow-focus: RGBA(
+  --buttons-active-switch-box-shadow-focus: rgba(
     var(--color-green-light),
     0.25
   );
 
-  --menu_select-label-menu-inactive: RGBA(var(--color-charade-50), 1);
-  --menu_select-activated-w-checkbox: RGBA(var(--color-mariner-700), 1);
-  --menu_select-alternative-focus-label: RGBA(var(--color-purple-tint), 1);
-  --menu_select-on-surface-hovered-w-checkbox: RGBA(
-    var(--color-mariner-950),
-    1
-  );
-  --menu_select-on-surface-hovered: RGBA(var(--color-charade-500), 1);
-  --menu_select-on-surface-hovered-border: RGBA(var(--color-charade-500), 0.1);
+  --menu_select-label-menu-inactive: rgb(var(--color-charade-50));
+  --menu_select-activated-w-checkbox: rgb(var(--color-mariner-700));
+  --menu_select-alternative-focus-label: rgb(var(--color-purple-tint));
+  --menu_select-on-surface-hovered-w-checkbox: rgb(var(--color-mariner-950));
+  --menu_select-on-surface-hovered: rgb(var(--color-charade-500));
+  --menu_select-on-surface-hovered-border: rgba(var(--color-charade-500), 0.1);
 
-  --track-progress-bar: RGBA(var(--color-green-light), 1);
-  --vertical-step-active: RGBA(var(--color-charade-700), 1);
-  --vertical-step-active-color: RGBA(var(--color-charade-50), 1);
-  --vertical-step-subtitle: RGBA(var(--color-charade-500), 1);
+  --track-progress-bar: rgb(var(--color-green-light));
+  --vertical-step-active: rgb(var(--color-charade-700));
+  --vertical-step-active-color: rgb(var(--color-charade-50));
+  --vertical-step-subtitle: rgb(var(--color-charade-500));
 
   //Semantic
   --semantic-normal: rgb(var(--color-charade-500));
@@ -201,8 +193,8 @@
   --creative-use-rum: rgb(var(--rum-tint));
   --creative-use-ripelemon: rgb(var(--ripe-lemon-tint));
   --creative-use-hibiscus: rgb(var(--hibiscus-tint));
-  --drop_shadow-color-test-shadow: RGBA(var(--color-black-primary), 0.2);
+  --drop_shadow-color-test-shadow: rgba(var(--color-black-primary), 0.2);
 
-  --color-table-900: RGBA(var(--color-charade-100), 1);
-  --color-table-btn-900: RGBA(var(--color-charade-50), 1);
+  --color-table-900: rgb(var(--color-charade-100));
+  --color-table-btn-900: rgb(var(--color-charade-50));
 }
