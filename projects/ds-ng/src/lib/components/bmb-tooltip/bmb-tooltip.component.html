@@ -7,21 +7,34 @@
       [isFill]="isFill()"
       [alt]="title() || 'Tooltip icon'"
       [tabIndex]="0"
-      (onKeydown)="handleFocus($event)"
-      (onKeyup)="handleFocus($event)"
-      (onKeypress)="handleFocus($event)"
+      role="button"
+      aria-haspopup="true"
+      [attr.aria-expanded]="isTooltipVisible()"
+      aria-describedby="tooltip-content"
+      (focus)="handleFocus($event)"
+      (blur)="handleFocus($event)"
+      (keydown)="handleFocus($event)"
     />
   } @else {
     <ng-content></ng-content>
   }
-  <section class="bmb_tooltip-container" [ngClass]="getClasses()">
-    @if (title()) {
-      <section class="bmb_tooltip-container-title">
-        <span class="bmb_tooltip-container-title-text">{{ title() }}</span>
+
+  @if (isTooltipVisible()) {
+    <section
+      id="tooltip-content"
+      role="tooltip"
+      class="bmb_tooltip-container"
+      [ngClass]="getClasses()"
+      [attr.aria-hidden]="!isTooltipVisible()"
+    >
+      @if (title()) {
+        <section class="bmb_tooltip-container-title">
+          <span class="bmb_tooltip-container-title-text">{{ title() }}</span>
+        </section>
+      }
+      <section class="bmb_tooltip-container-description">
+        <span class="bmb_tooltip-container-description-text">{{ text() }}</span>
       </section>
-    }
-    <section class="bmb_tooltip-container-description">
-      <span class="bmb_tooltip-container-description-text">{{ text() }}</span>
     </section>
-  </section>
+  }
 </section>

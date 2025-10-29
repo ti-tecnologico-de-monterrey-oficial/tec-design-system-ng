@@ -3,6 +3,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   input,
+  signal,
   ViewEncapsulation,
 } from '@angular/core';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
@@ -27,9 +28,21 @@ export class BmbTooltipComponent {
   align = input<IBmbAlignTooltip>('below');
   justify = input<IBmbJustifyTooltip>('after');
   isFill = input<boolean>(true);
+  isTooltipVisible = signal(false);
 
-  handleFocus(event: Event) {
-    // console.log(event);
+  handleFocus(event: KeyboardEvent | FocusEvent) {
+    const key = (event as KeyboardEvent).key;
+
+    if (event.type === 'focus' || key === 'Enter' || key === ' ') {
+      if (key === ' ') {
+        event.preventDefault();
+      }
+      this.isTooltipVisible.set(true);
+    }
+
+    if (event.type === 'blur' || key === 'Escape') {
+      this.isTooltipVisible.set(false);
+    }
   }
 
   getClasses() {
