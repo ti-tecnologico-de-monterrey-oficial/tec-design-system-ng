@@ -4,6 +4,15 @@
     <bmb-input [placeholder]="'Search...'" [isClearable]="true" />
     <bmb-datepicker />
   </section>
+  <div bmbLayoutItem [colSm]="2">
+    <bmb-dropzone
+      [acceptedExtensions]="['image/*']"
+      [fileSize]="2"
+      [multiple]="true"
+      (newFile)="onNewFile($event)"
+      [progress]="progressFiles()"
+    ></bmb-dropzone>
+  </div>
   <!-- <ul bmbLayoutItem [colSm]="4">
     @for (item of options(); track $index) {
       <li>{{ item }}</li>

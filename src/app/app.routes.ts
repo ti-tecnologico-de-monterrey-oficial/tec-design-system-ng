@@ -95,5 +95,13 @@ export const routes: Routes = [
         (m) => m.DotPaginatorComponent,
       ),
   },
+  {
+    path: 'identity',
+    title: 'Identity',
+    loadComponent: () =>
+      import('./pages/identity/identity.component').then(
+        (i) => i.IdentityComponent,
+      ),
+  },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
 ];

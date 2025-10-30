@@ -1,0 +1,276 @@
+<div class="bmb_organism-identity-spectrum">
+  <main class="bmb_organism-identity-spectrum-main">
+    <bmb-home-card
+      leftIcon="chevron_left"
+      icon="account_circle"
+      bgIconAppearance="mariner-700"
+      title="Mi perfil - Detalle extendido"
+      subtitle="Mi perfil - Detalle extendido"
+      contentPadding="xl"
+      [isExpanded]="true"
+      [actionHeaders]="actionHeaders"
+    >
+      <bmb-tabs
+        format="uppercase"
+        [tabs]="[
+          { id: 1, title: 'Perfil personal', isActive: true },
+          { id: 2, title: 'Perfil académico', isActive: false }
+        ]"
+        [(selectedTabId)]="selectedTab"
+      >
+        <section
+          bmbSelector
+          [idSelector]="1"
+          [activeSelectorID]="selectedTab"
+          bmbLayout
+          margin="l"
+          gapSize="xl"
+        >
+          <section bmbLayoutItem [colLg]="6">
+            <section bmbVerticalLayout gapSize="xl">
+              <bmb-card borderRadius="m" margin="none" bmbVerticalLayoutItem>
+                <bmb-card-content padding="l">
+                  <bmb-user-summary-content
+                    name="Test Name"
+                    userId="AC123123"
+                    image="https://picsum.photos/id/64/200/300"
+                    [CURP]="'ABCD12345678900'"
+                    [additionalInfo]="'20 Años - Mujer (Ella/Ella)'"
+                    contentLayout="row"
+                    [isImageBordered]="false"
+                    [isProfile]="true"
+                    bmbLayoutItem
+                    margin="none"
+                  />
+                </bmb-card-content>
+              </bmb-card>
+              <bmb-card borderRadius="m" margin="none" bmbVerticalLayoutItem>
+                <bmb-card-header margin="m">
+                  <h3>Datos de contacto</h3>
+                </bmb-card-header>
+                <bmb-card-content padding="l">
+                  <bmb-icon-item
+                    icon="mail"
+                    label="Correo personal"
+                    value="tecservices@servicios.tec.mx"
+                  />
+                  <bmb-icon-item
+                    label="Teléfono movel"
+                    icon="smartphone"
+                    value="+52 81 1625 5123 (solo texto)"
+                  />
+                  <bmb-icon-item
+                    label="Teléfono"
+                    icon="phone"
+                    value="+52 81 1234 5123"
+                  />
+                  <bmb-icon-item
+                    label="Dirección permanente"
+                    icon="location_on"
+                    value="Av. Eugenio Garza Sada 2501 Col. Tecnológico CP 64700, Monterrey Nuevo León, México"
+                    [showDivider]="false"
+                  />
+                </bmb-card-content>
+              </bmb-card>
+            </section>
+          </section>
+          <section bmbLayoutItem [colLg]="6">
+            <bmb-card borderRadius="m" margin="none">
+              <bmb-card-header margin="m">
+                <h3>Personas filiadas</h3>
+              </bmb-card-header>
+              <bmb-card-content padding="l">
+                <bmb-icon-item label="Madre" value="Paloma Reyes Araujo" />
+                <bmb-icon-item
+                  label="Correo Madre"
+                  value="Maria.Araujo@gmail.com"
+                />
+                <bmb-icon-item label="Padre" value="Arturo Araujo Reyes" />
+                <bmb-icon-item label="Correo Padre" value="Okeha67@live.com" />
+                <bmb-icon-item
+                  label="Patria Potestad"
+                  value="Arturo Araujo Reyes"
+                />
+                <bmb-icon-item
+                  label="Responsable de pago"
+                  value="Arturo Araujo Reyes"
+                />
+                <bmb-icon-item label="Hijo/Hija" value="Paloma Reyes Araujo" />
+                <bmb-icon-item
+                  label="Esposo/Esposa"
+                  value="Paloma Reyes Araujo"
+                  [showDivider]="false"
+                />
+              </bmb-card-content>
+            </bmb-card>
+          </section>
+        </section>
+        <section
+          bmbSelector
+          [idSelector]="2"
+          [activeSelectorID]="selectedTab"
+          bmbLayout
+          margin="l"
+          gapSize="xl"
+        >
+          <section bmbLayoutItem [colLg]="6">
+            <bmb-card borderRadius="m" margin="none">
+              <bmb-card-header margin="m">
+                <h3>Información académica</h3>
+              </bmb-card-header>
+              <bmb-card-content padding="l">
+                <bmb-icon-item
+                  label="Carrera"
+                  value="Ingeniero en Tecnologías Computacionales ('99)"
+                />
+                <bmb-icon-item label="Estatus académico" value="Regular" />
+                <bmb-icon-item label="Semestre actual" value="Ago-Dic 2025" />
+                <bmb-icon-item label="Campus" value="Monterrey" />
+                <bmb-icon-item label="Nivel" value="Profesional" />
+                <bmb-icon-item
+                  label="Programa"
+                  value="Alumno Prog Internacional"
+                  [showDivider]="false"
+                />
+              </bmb-card-content>
+            </bmb-card>
+          </section>
+          <section bmbLayoutItem [colLg]="6">
+            <section bmbVerticalLayout gapSize="xl">
+              <bmb-card borderRadius="m" margin="none" bmbVerticalLayoutItem>
+                <bmb-card-header margin="m">
+                  <h3>Acreditaciones</h3>
+                </bmb-card-header>
+                <bmb-card-content padding="l">
+                  <bmb-icon-item
+                    label="Unidades del plan acreditadas"
+                    value="Unidades del plan acreditadas"
+                  />
+                  <bmb-icon-item
+                    label="Unidades del plan pendientes"
+                    value="732"
+                  />
+                  <bmb-icon-item
+                    label="Materias del plan acreditadas"
+                    value="006"
+                  />
+                  <bmb-icon-item
+                    label="Materias del plan pendientes"
+                    value="075"
+                  />
+                  <bmb-icon-item
+                    label="Semestre acreditado"
+                    value="01"
+                    [showDivider]="false"
+                  />
+                </bmb-card-content>
+              </bmb-card>
+              <bmb-card borderRadius="m" margin="none" bmbVerticalLayoutItem>
+                <bmb-card-header margin="m">
+                  <h3>Examen de admisión</h3>
+                </bmb-card-header>
+                <bmb-card-content padding="l">
+                  <bmb-icon-item label="Verbal Profesional" value="747.00" />
+                  <bmb-icon-item
+                    label="Matemático Profesional"
+                    value="609.00"
+                    [showDivider]="false"
+                  />
+                </bmb-card-content>
+              </bmb-card>
+            </section>
+          </section>
+        </section>
+      </bmb-tabs>
+    </bmb-home-card>
+  </main>
+  <bmb-sidebar
+    [elements]="[
+      [
+        {
+          id: 1,
+          icon: 'home',
+          title: 'Home',
+          link: 'https://developer.mozilla.org/es/docs/Web/JavaScript',
+          target: '_blank'
+        }
+      ],
+      [
+        {
+          id: 2,
+          icon: 'build',
+          title: 'Tools',
+          link: 'https://developer.mozilla.org/es/docs/Web/JavaScript',
+          target: '_blank'
+        }
+      ]
+    ]"
+    [title]="'Navegacion para mobiles'"
+    [position]="'left'"
+  />
+  <ng-template #modalTemplate>
+    <bmb-form-validator [(formGroup)]="userForm">
+      <section bmbVerticalLayout gapSize="m">
+        <bmb-input
+          id="email_id"
+          name="email"
+          label="Correo personal"
+          value="paraujo@gmail.com"
+          bmbVerticalLayoutItem
+        />
+        <bmb-input
+          id="celphone_id"
+          name="celphone"
+          label="Teléfono móvil"
+          value="8123456789"
+          bmbVerticalLayoutItem
+        />
+        <bmb-input
+          id="phone_id"
+          name="phone"
+          label="Teléfono local"
+          value="8123456789"
+          bmbVerticalLayoutItem
+        />
+        <section bmbVerticalLayoutItem bmbLayout margin="none" gapSize="m">
+          <section bmbLayoutItem [colLg]="6">
+            <bmb-input
+              type="text-area"
+              [showMaxTextLength]="false"
+              id="permanent_address_id"
+              name="permanent_address"
+              label="Dirección permanente"
+              value="Av. Eugenio Garza Sada 2501 Col. Tecnológico CP 64700, Monterrey Nuevo León, México"
+            />
+          </section>
+          <section bmbLayoutItem [colLg]="6">
+            <bmb-input
+              type="text-area"
+              [showMaxTextLength]="false"
+              id="residential_address_id"
+              name="residential_address"
+              label="Dirección de residencia"
+              value="Av. Eugenio Garza Sada 2501 Col. Tecnológico CP 64700, Monterrey Nuevo León, México"
+            />
+          </section>
+        </section>
+
+        <section
+          bmbVerticalLayoutItem
+          bmbLayout
+          margin="none"
+          gapSize="l"
+          justify="end"
+          class="bmb_organism-identity-spectrum-form-buttons"
+        >
+          <button bmbButton appearance="secondary-outlined" type="button">
+            Cancelar
+          </button>
+          <button bmbButton appearance="primary" type="submit">
+            Guardar cambios
+          </button>
+        </section>
+      </section>
+    </bmb-form-validator>
+  </ng-template>
+</div>

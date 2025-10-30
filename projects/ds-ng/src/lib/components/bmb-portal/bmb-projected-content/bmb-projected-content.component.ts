@@ -108,6 +108,9 @@ export class BmbProjectedContentComponent {
       width: this.fixSizeToRef()
         ? targetPosition.width.toFixed(0) + 'px'
         : 'auto',
+      display: 'flex',
+      'max-height': `calc(100vh - (${top} + ${bottom} + 1rem))`,
+      'justify-content': width > 1000 && width / 2 ? 'flex-end' : 'flex-start',
     };
   }
 

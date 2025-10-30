@@ -58,7 +58,6 @@ export class BmbAlertCenterFormComponent {
   showAlertDetail = output<IBmbDataAlertsParsed>();
   changeAlertStatus = output<IBmbDataAlertsOutput>();
   navigationBarEvents = output<IBmbAlertCenterProtoEventFooter>();
-
   filteredEvents = computed<IBmbAlertCenterCategories>(() => {
     if (this.filterBy() === 'unread') {
       return {
