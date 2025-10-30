@@ -60,6 +60,10 @@
 
     &:hover:not(:disabled) {
       background-color: var(--general_contrasts-15);
+
+      .bmb_text-link .bmb_check-external-link-button-element {
+        color: rgb(var(--color-mariner-400));
+      }
     }
 
     &:focus:not(:disabled),
@@ -298,11 +302,7 @@
     color: var(--general_contrasts-container);
   }
 
-  .bmb_text-link  .bmb_check-external-link-button-element {
-      color: var(--azul-mariner-500);
-
-      &:hover {
-        color: rgb(var(--color-mariner-400));
-      }
+  .bmb_text-link .bmb_check-external-link-button-element {
+    color: var(--azul-mariner-500);
   }
 }
