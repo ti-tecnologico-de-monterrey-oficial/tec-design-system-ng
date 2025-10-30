@@ -1,4 +1,4 @@
-import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
+import { Meta, moduleMetadata } from '@storybook/angular';
 import { BmbCardButtonComponent } from './bmb-card-button.component';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import {
@@ -318,10 +318,7 @@ Usage:
   args: {},
 } as Meta<typeof BmbCardButtonComponent>;
 
-type Story = StoryObj<BmbCardButtonComponent>;
-
 export const Default = {
-  name: 'Full interactive example (no menu)',
   argTypes: {
     onTitleClick: {
       control: false,
@@ -343,7 +340,7 @@ export const Default = {
 };
 
 export const MenuExample = {
-  name: 'Full interactive example (menu)',
+  name: 'Full interactive',
   argTypes: {
     onTitleClick: {
       control: false,
@@ -378,38 +375,38 @@ export const MenuExample = {
   },
 };
 
-export const TemplateExample = {
-  name: 'Template example',
-  argTypes: {
-    onTitleClick: {
-      control: false,
-    },
-  },
-  args: {
-    ...MenuExample.args,
-    isTemplate: 'true',
-    onTitleClick: () => {
-      console.log('onTitleClick');
-    },
-  },
-  render: (args: any) => ({
-    template: `
-    <bmb-card-button ${attributes(args)}>
-    <!-- In the template you can use bmb-icon or bmb-action-icon -->
-      <bmb-icon icon="settings" [size]="24" />
-      <bmb-action-icon
-        icon="thumb_up"
-        [iconSize]="24"
-        [dotNotification]="5"
-        (buttonClick)="buttonClick($event)"
-      />
-    </bmb-card-button>
-    `,
-  }),
-};
+// export const TemplateExample = {
+//   name: 'Full interactive',
+//   argTypes: {
+//     onTitleClick: {
+//       control: false,
+//     },
+//   },
+//   args: {
+//     ...MenuExample.args,
+//     isTemplate: 'true',
+//     onTitleClick: () => {
+//       console.log('onTitleClick');
+//     },
+//   },
+//   render: (args: any) => ({
+//     template: `
+//     <bmb-card-button ${attributes(args)}>
+//     <!-- In the template you can use bmb-icon or bmb-action-icon -->
+//       <bmb-icon icon="settings" [size]="24" />
+//       <bmb-action-icon
+//         icon="thumb_up"
+//         [iconSize]="24"
+//         [dotNotification]="5"
+//         (buttonClick)="buttonClick($event)"
+//       />
+//     </bmb-card-button>
+//     `,
+//   }),
+// };
 
 export const AddContentExample = {
-  name: 'Add content example',
+  name: 'Add content',
   argTypes: {
     onAddContentClick: {
       control: false,
@@ -425,12 +422,42 @@ export const AddContentExample = {
   },
 };
 
-export const CustomContentImageExample = {
-  name: 'Example with image, badge, and custom content',
+export const BadgeContainerImageExample = {
+  name: 'Badge - Container',
   args: {
     leftContent: true,
     leftContentImage: {
-      src: 'https://letsenhance.io/static/8f5e523ee6b2479e26ecc91b9c25261e/1015f/MainAfter.jpg',
+      src: 'https://picsum.photos/id/25/200/300',
+      alt: 'Left content image',
+    },
+    title: 'Title or summary',
+    badge: { text: 'Badge 1', appearance: 'mitec_purple'},
+    body: `This is the body content of the card button.
+    Lorem upsum aovei trirangil porilnem menuandos flenzhcrunf...`,
+    textLink: {
+      label: 'More',
+      link: 'https://example.com',
+      target: '_back',
+    },
+  },
+};
+
+export const BadgeImageExample = {
+  name: 'Badge - No container',
+  args: {
+    ...BadgeContainerImageExample.args,
+    badge: { text: 'Badge 1', container: false  },
+  },
+};
+
+
+
+export const CustomContentImageExample = {
+  name: 'Badge - Not container',
+  args: {
+    leftContent: true,
+    leftContentImage: {
+      src: 'https://picsum.photos/id/25/200/300',
       alt: 'Left content image',
     },
     title: 'Title or summary',
@@ -456,7 +483,7 @@ export const CustomContentImageExample = {
 };
 
 export const ImageExample = {
-  name: 'Example of variant with image',
+  name: 'Without Badge',
   argTypes: {
     onAddContentClick: {
       control: false,
@@ -465,72 +492,19 @@ export const ImageExample = {
   args: {
     leftContent: true,
     leftContentImage: {
-      src: 'https://letsenhance.io/static/8f5e523ee6b2479e26ecc91b9c25261e/1015f/MainAfter.jpg',
+      src: 'https://picsum.photos/id/25/200/300',
       alt: 'Left content image',
     },
     title: 'Title or summary',
     body: `Test example | Test example | Test example`,
-    onAddContentClick: () => {
-      console.log('onAddContentClick');
-    },
   },
 };
 
-export const ImageTemplateExample = {
-  name: 'Image with template example',
-  argTypes: {
-    onTitleClick: {
-      control: false,
-    },
-  },
-  args: {
-    ...ImageExample.args,
-    isTemplate: 'true',
-    onTitleClick: () => {
-      console.log('onTitleClick');
-    },
-  },
-  render: (args: any) => ({
-    template: `
-    <bmb-card-button ${attributes(args)}>
-    <!-- In the template you can use bmb-icon or bmb-action-icon -->
-      <bmb-icon icon="settings" [size]="24" />
-      <bmb-action-icon
-        icon="thumb_up"
-        [iconSize]="24"
-        [dotNotification]="5"
-        (buttonClick)="buttonClick($event)"
-      />
-    </bmb-card-button>
-    `,
-  }),
-};
 
-export const BadgeImageExample = {
-  name: 'Example of variant with badge, image, and text link.',
-  args: {
-    ...ImageExample.args,
-    badge: { text: 'Badge 1', container: false },
-    body: `This is the body content of the card button.
-    Lorem upsum aovei trirangil porilnem menuandos flenzhcrunf...`,
-    textLink: {
-      label: 'More',
-      link: 'https://example.com',
-      target: '_back',
-    },
-  },
-};
-
-export const BadgeContainerImageExample = {
-  name: 'Example of variant with badge with container, image, and text link.',
-  args: {
-    ...BadgeImageExample.args,
-    badge: { text: 'Badge 1', appearance: 'mitec_purple' },
-  },
-};
+//
 
 export const SmallCardExample = {
-  name: 'Small card example',
+  name: 'Small',
   argTypes: {
     onSmallClick: {
       control: false,
