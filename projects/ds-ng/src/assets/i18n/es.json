@@ -109,5 +109,14 @@
   "user_summary": {
     "salutation": "Buenas tardes",
     "digital_id": "ID Digital"
+  },
+  "notification_card": {
+    "tabs": {
+      "notifications": "Notificaciones",
+      "advertisements": "Anuncios"
+    },
+    "empty_state": {
+      "primary_text": "No tienes elementos para mostrar"
+    }
   }
 }

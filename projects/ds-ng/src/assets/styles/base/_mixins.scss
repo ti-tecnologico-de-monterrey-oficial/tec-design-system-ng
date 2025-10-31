@@ -85,6 +85,7 @@
 // Button styles
 @mixin button($appearance: primary) {
   @if $appearance == primary {
+    outline: 0 solid transparent;
     background-color: var(--buttons-primary-normal);
     color: var(--white-primary);
 
@@ -96,6 +97,9 @@
     &:active:not(:disabled),
     &.bmb_btn-toggle-active {
       background-color: var(--buttons-primary-select);
+      outline-width: rem.rem_calc(1);
+      outline-color: var(--buttons-stroke-primary-selected);
+      box-shadow: rem.rem_calc(0 0 20) var(--azul-mariner-500);
     }
 
     bmb-icon {
@@ -104,6 +108,7 @@
   } @else if $appearance == secondary-filled {
     background-color: var(--buttons-alternative-normal);
     color: var(--buttons-alternative-text);
+    outline: 0;
 
     &:hover:not(:disabled),
     &:focus-visible:not(:disabled) {
@@ -172,8 +177,8 @@
   } @else if $appearance == destructive {
     background-color: transparent;
     border: var(--bmb-border-inherit-1-solid);
-    border-color: var(--red-primary);
-    color: var(--red-primary);
+    border-color: var(--buttons-destructive);
+    color: var(--buttons-destructive);
     padding: rem.rem_calc(11 15);
 
     @include check-for-mobile(false) {

@@ -65,7 +65,6 @@ export default {
           'activeDot',
           'activeTab',
           'expanded',
-          'tabs',
           'tabsConfig',
         ],
       },
