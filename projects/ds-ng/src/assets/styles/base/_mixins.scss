@@ -212,7 +212,7 @@
     }
 
     bmb-icon {
-      color: var(--red-primary);
+      color: var(--buttons-destructive);
     }
   } @else if $appearance == transparent {
     padding: rem.rem_calc(0 4);
