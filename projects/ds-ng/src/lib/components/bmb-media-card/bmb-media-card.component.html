@@ -17,8 +17,14 @@
 } @else {
   <section
     [class]="'bmb_media-card bmb_media-card-' + type()"
-    [ngClass]="{ 'bmb_media-card-boxShadow': boxShadow() }"
+    [ngClass]="{ 'bmb_media-card-boxShadow': boxShadow(),
+      'bmb_media-card-auto-layout': !ratio()
+     }"
     [ngStyle]="{ width: width(), 'aspect-ratio': ratio() }"
+    (click)="mediaCardClicked.emit($event)"
+    (keydown)="mediaCardClicked.emit($event)"
+    tabindex="0"
+    role="button"
   >
     <ng-container [ngTemplateOutlet]="mediaCardContent"></ng-container>
   </section>

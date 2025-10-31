@@ -22,6 +22,7 @@ import {
   BmbHomeCardComponent,
   IBmbProjectionContent,
   BmbProjectionContentService,
+  BmbMediaCardComponent,
 } from '../../../../projects/ds-ng/src/public-api';
 import { HelpMenuComponent } from '../../components/help-menu/help-menu.component';
 
@@ -42,6 +43,7 @@ import { HelpMenuComponent } from '../../components/help-menu/help-menu.componen
     BmbTextLinkComponent,
     BmbDividerComponent,
     BmbHomeCardComponent,
+    BmbMediaCardComponent,
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
