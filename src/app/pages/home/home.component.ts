@@ -97,4 +97,8 @@ export class HomeComponent {
 
     this.contentProjected.openContent(data);
   }
+
+  handleImageCard(event: MouseEvent | KeyboardEvent): void {
+    console.log('Image card clicked', event);
+  }
 }

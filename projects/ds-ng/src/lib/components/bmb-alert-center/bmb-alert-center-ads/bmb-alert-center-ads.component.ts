@@ -52,7 +52,16 @@ export class BmbAlertCenterAdsComponent {
 
   sanitizedHtml(html: string) {
     const clean = DOMPurify.sanitize(html, {
-      FORBID_TAGS: ['script', 'style', 'iframe', 'object', 'embed'],
+      FORBID_TAGS: [
+        'script',
+        'style',
+        'iframe',
+        'object',
+        'embed',
+        'base',
+        'meta',
+        'form',
+      ],
       FORBID_ATTR: [
         'style',
         'onerror',
