@@ -32,6 +32,7 @@
     "libphonenumber-js",
     "@types/luxon",
     "@angular/cdk",
-    "material-symbols"
+    "material-symbols",
+    "dompurify"
   ]
 }
