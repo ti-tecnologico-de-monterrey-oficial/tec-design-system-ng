@@ -10,7 +10,11 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { IBmbAlertEmptyState, IBmbDataAlert, IBmbDataAlertsParsed } from '../bmb-alert-center/types';
+import {
+  IBmbAlertEmptyState,
+  IBmbDataAlert,
+  IBmbDataAlertsParsed,
+} from '../bmb-alert-center/types';
 import { IBmbTab } from '../bmb-tabs/bmb-tabs.component';
 import { BmbHomeCardComponent } from '../bmb-home-card/bmb-home-card.component';
 import { BmbTranslationsService } from '../../services/translations/translations.service';
@@ -20,8 +24,7 @@ import { BmbAlertCenterListComponent } from '../bmb-alert-center/bmb-alert-cente
 import { DateTime } from 'luxon';
 import { BmbProjectionContentService } from '../../services/projection/projection.service';
 import { BmbNativeModalService } from '../../services/modal/native-modal.service';
-import { BmbNotificationCardModalComponent } from './bmb-notification-card-modal/bmb-notification-card-modal.component'
-
+import { BmbNotificationCardModalComponent } from './bmb-notification-card-modal/bmb-notification-card-modal.component';
 
 @Component({
   selector: 'bmb-notification-card',
@@ -56,7 +59,10 @@ export class BmbNotificationCardComponent {
   activeDot: number = 0;
   parsedData = computed<IBmbDataAlertsParsed[]>(() => {
     return this.data().map((alert) => {
-      const date = this.dateFormat() === 'iso' ? DateTime.fromISO(alert.date) : DateTime.fromFormat(alert.date, this.dateFormat());
+      const date =
+        this.dateFormat() === 'iso'
+          ? DateTime.fromISO(alert.date)
+          : DateTime.fromFormat(alert.date, this.dateFormat());
       return {
         ...alert,
         pDate: date,

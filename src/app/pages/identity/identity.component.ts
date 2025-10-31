@@ -48,7 +48,7 @@ import { FormGroup } from '@angular/forms';
     BmbSelectorDirective,
   ],
   templateUrl: './identity.component.html',
-  styleUrl: './identity.component.scss'
+  styleUrl: './identity.component.scss',
 })
 export class IdentityComponent {
   selectedTab = 1;

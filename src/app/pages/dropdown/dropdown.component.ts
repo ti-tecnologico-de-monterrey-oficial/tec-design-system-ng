@@ -29,7 +29,7 @@ import { Router } from '@angular/router';
     BmbFilterCardComponent,
     BmbSwitchComponent,
     BmbDatepickerComponent,
-    BmbDropzoneComponent
+    BmbDropzoneComponent,
   ],
 })
 export class DropdownPageComponent implements OnInit {

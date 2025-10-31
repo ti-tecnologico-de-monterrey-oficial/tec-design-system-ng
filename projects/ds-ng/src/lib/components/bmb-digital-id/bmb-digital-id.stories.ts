@@ -102,7 +102,8 @@ ${getBasicExampleBlock(
       control: {
         type: 'text',
       },
-      description: 'Sets the logo image source shown at the top of the digital ID.',
+      description:
+        'Sets the logo image source shown at the top of the digital ID.',
       table: {
         category: 'Properties',
         type: { summary: 'string' },
@@ -136,8 +137,16 @@ ${getBasicExampleBlock(
     close: getOnClickParam(onCloseEvent),
     access: getOnClickParam(onAccessEvent),
     onSecondaryClick: getOnClickParam(onSecondaryClickEvent),
-    disableSecondaryButton: getPropertyParamDesc('disable the secondary button', 'boolean', false),
-    disableMainButton: getPropertyParamDesc('disable the main button', 'boolean', false),
+    disableSecondaryButton: getPropertyParamDesc(
+      'disable the secondary button',
+      'boolean',
+      false,
+    ),
+    disableMainButton: getPropertyParamDesc(
+      'disable the main button',
+      'boolean',
+      false,
+    ),
   },
   args: {
     name: 'Paola',

@@ -136,7 +136,8 @@ The shadow only appears if the card is not an external link and is not \`floatin
     },
     mediaCardClicked: {
       control: null,
-      description: 'Event emitted when the media card is clicked, this property only works if the card has no link property defined.',
+      description:
+        'Event emitted when the media card is clicked, this property only works if the card has no link property defined.',
       table: {
         category: 'Events',
       },
@@ -160,7 +161,7 @@ The shadow only appears if the card is not an external link and is not \`floatin
     mediaCardClicked: () => {
       console.log('Media card clicked');
     },
-  }
+  },
 } as Meta<typeof BmbMediaCardComponent>;
 
 type Story = StoryObj<BmbMediaCardComponent>;
