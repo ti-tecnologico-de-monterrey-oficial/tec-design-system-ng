@@ -25,6 +25,7 @@
         @case (2) {
           <bmb-alert-center-ads
             [advertisements]="advertisements()"
+            (alertEvent)="handleAlertEvent($event)"
           />
         }
       }
