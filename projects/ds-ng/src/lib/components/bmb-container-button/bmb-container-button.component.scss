@@ -56,6 +56,7 @@
     display: flex;
     flex-flow: column;
     gap: rem.rem_calc(4);
+    overflow: hidden;
   }
 
   &-title {
@@ -63,6 +64,15 @@
     text-align: left;
     word-break: break-word;
     @include fonts.font(5, regular);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -moz-box;
+    display: -webkit-box;
+    display: box;
+    -webkit-box-orient: vertical;
+    box-orient: vertical;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
   }
 
   &-text {
@@ -76,11 +86,15 @@
     font-weight: 300;
     text-align: left;
     word-break: break-word;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
     @include fonts.font(3, regular);
   }
 
   &-left {
     flex: 1;
+    overflow: hidden;
     @include button-container();
 
     .bmb_icon-figure {

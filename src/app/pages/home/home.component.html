@@ -182,6 +182,63 @@
         bmbVerticalLayoutItem
       >
         <ng-template #bmbAccordionHeader>
+          <h2>Recent media</h2>
+        </ng-template>
+        <ng-template #bmbAccordionContent>
+          <div bmbLayout alignItems="stretch" margin="none">
+            <bmb-media-card
+              src="https://farm2.staticflickr.com/1919/45579541712_f58c1fd0ed_o.jpg"
+              mobileSrc="https://2.bp.blogspot.com/-YkNDZEbKt_g/TYzcbF2_tkI/AAAAAAAAalk/Vt_MHS60Xv8/s1600/www.JoseLuisAvilaHerrera.BLOGSPOT.com%2B-%2BFunny%2BCats%2B-%2BGatitos%2Bmuy%2Btiernos%2B8.jpg"
+              alt="Fruits"
+              width="100%"
+              borderRadius="m"
+              loading="lazy"
+              [enableZoom]="false"
+              [isBlurredBackdrop]="false"
+              type="inline"
+              [boxShadow]="false"
+              bmbVerticalLayoutItem
+              bmbLayoutItem
+              [colSm]="2"
+              [colLg]="4"
+              (mediaCardClicked)="handleImageCard($event)"
+            >
+              <p>Custom HTML content</p>
+            </bmb-media-card>
+            <bmb-media-card
+              mobileSrc="https://farm2.staticflickr.com/1919/45579541712_f58c1fd0ed_o.jpg"
+              src="https://2.bp.blogspot.com/-YkNDZEbKt_g/TYzcbF2_tkI/AAAAAAAAalk/Vt_MHS60Xv8/s1600/www.JoseLuisAvilaHerrera.BLOGSPOT.com%2B-%2BFunny%2BCats%2B-%2BGatitos%2Bmuy%2Btiernos%2B8.jpg"
+              alt="Fruits"
+              width="100%"
+              borderRadius="m"
+              loading="lazy"
+              ratio="1/1"
+              [enableZoom]="false"
+              [isBlurredBackdrop]="false"
+              type="inline"
+              link="https://www.youtube.com/"
+              target="_blank"
+              [boxShadow]="false"
+              bmbVerticalLayoutItem
+              bmbLayoutItem
+              [colSm]="2"
+              [colLg]="4"
+            >
+              <p>Custom HTML content</p>
+            </bmb-media-card>
+          </div>
+        </ng-template>
+      </bmb-accordion>
+      <bmb-accordion
+        borderRadius="m"
+        margin="none"
+        paddingHeader="m"
+        paddingContent="m"
+        icon="keyboard_arrow_down"
+        [expanded]="true"
+        bmbVerticalLayoutItem
+      >
+        <ng-template #bmbAccordionHeader>
           <h2>Bamboo Events and news</h2>
         </ng-template>
         <ng-template #bmbAccordionContent>

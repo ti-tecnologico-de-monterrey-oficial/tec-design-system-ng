@@ -54,11 +54,6 @@ export class BmbAlertCenterListComponent {
 
   handleRowClick(event: Event, item: IBmbDataAlertsParsed): void {
     const target = event.target as HTMLElement;
-    // if (target?.id || target.classList?.[0]?.search(/bmb_checkbox/) !== -1) {
-    //   console.log('remove this log');
-    // } else {
-    //   this.alertSelected.emit(item);
-    // }
     this.alertSelected.emit(item);
   }
 

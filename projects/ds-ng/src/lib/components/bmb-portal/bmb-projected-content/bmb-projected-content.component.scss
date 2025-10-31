@@ -13,10 +13,29 @@
     left: 1rem !important;
     right: 1rem !important;
     width: calc(100% - 2rem) !important;
+
+    &[open] {
+      > * {
+        width: 100% !important;
+      }
+    }
   }
 
   &[open] {
     animation: fadein 0.3s ease-in forwards;
+
+    > * {
+      width: max-content;
+      display: block;
+      height: 100%;
+    }
+  }
+
+  &-fix-size[open] {
+    > * {
+      width: 100%;
+      display: block;
+    }
   }
 }
 

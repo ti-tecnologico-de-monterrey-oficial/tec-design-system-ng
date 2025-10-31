@@ -87,18 +87,6 @@ export class BmbContainerButtonComponent {
     this.destroyRef.onDestroy(() => this.abort.abort());
   }
 
-  readonly maxChars = computed(() => (this.isMobileOrTablet() ? 70 : 90));
-
-  private t = (s?: string, n = 90) =>
-    s ? (s.length > n ? s.slice(0, n).trimEnd() + '…' : s) : '';
-
-  readonly titleTruncated = computed(() =>
-    this.t(this.title(), this.maxChars()),
-  );
-  readonly subtitleTruncated = computed(() =>
-    this.t(this.subtitle(), this.maxChars()),
-  );
-
   getClassList(): string[] {
     const classList = ['bmb_container-button'];
     if (this.square()) {

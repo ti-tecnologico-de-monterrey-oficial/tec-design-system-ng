@@ -1,4 +1,4 @@
-import { Component, computed, OnInit } from '@angular/core';
+import { Component, computed, OnInit, signal } from '@angular/core';
 import {
   BmbDropdownComponent,
   BmbLayoutDirective,
@@ -10,6 +10,7 @@ import {
   BmbTranslationsService,
   BmbSwitchComponent,
   BmbDatepickerComponent,
+  BmbDropzoneComponent,
 } from '../../../../projects/ds-ng/src/public-api';
 import { AnimeService } from '../../services/anime.service';
 import { Router } from '@angular/router';
@@ -28,6 +29,7 @@ import { Router } from '@angular/router';
     BmbFilterCardComponent,
     BmbSwitchComponent,
     BmbDatepickerComponent,
+    BmbDropzoneComponent,
   ],
 })
 export class DropdownPageComponent implements OnInit {
@@ -38,11 +40,24 @@ export class DropdownPageComponent implements OnInit {
   ) {}
 
   lang = computed(() => this.translationsService.getCurrentLanguage());
+  progressFiles = signal<Record<string, number>>({});
 
   onExpandClick() {
-    console.log('Expand clicked');
-
     this.router.navigate(['/home']);
+  }
+
+  onNewFile(file: File | File[]) {
+    setTimeout(() => {
+      const updatedProgress = { ...this.progressFiles() };
+      if (Array.isArray(file)) {
+        file.forEach((f) => {
+          updatedProgress[f.name] = 50;
+        });
+      } else {
+        updatedProgress[file.name] = 50;
+      }
+      this.progressFiles.set(updatedProgress);
+    }, 1000);
   }
 
   options = computed(() => {

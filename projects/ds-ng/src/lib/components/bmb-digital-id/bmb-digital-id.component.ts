@@ -42,8 +42,9 @@ export class BmbDigitalIdComponent {
   hideButton = input<boolean>(false);
   secondaryTextButton = input<string>();
   secondaryIconButton = input<string>('download_2');
-
-  logoSrc = 'assets/images/tec-logo.svg';
+  disableSecondaryButton = input<boolean>(false);
+  disableMainButton = input<boolean>(false);
+  logoSrc = input<string>('assets/images/tec-logo.svg');
 
   close = output<MouseEvent>();
   access = output<MouseEvent>();

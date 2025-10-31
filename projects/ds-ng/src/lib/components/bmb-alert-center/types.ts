@@ -11,9 +11,9 @@ export interface IBmbDataAlertDetails {
   text: string;
   style?: 'normal' | 'bold' | 'italic' | 'underline';
   href?: string;
-  type: 'paragraph' | 'image' | 'video' | 'link' | 'button' | 'title';
+  type: 'paragraph' | 'image' | 'video' | 'link' | 'button' | 'title' | 'html';
   variant?: IButtonAppearance;
-  event?: (id: string | number) => void;
+  event?: (id: string | number | undefined) => void;
 }
 
 export interface IBmbDataAlert {

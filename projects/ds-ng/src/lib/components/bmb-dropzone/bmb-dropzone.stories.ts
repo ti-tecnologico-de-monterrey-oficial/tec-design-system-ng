@@ -290,7 +290,8 @@ ${RELEVANT_TITLE.example} ***image/**** is for all image types:
       },
     },
     dropLabel: {
-      ...DBmbInputParamDesc.label,
+      control: { type: 'text' },
+      description: 'Sets the label shown inside of the dropzone area.',
       table: {
         ...DBmbInputParamDesc.label.table,
         defaultValue: getDefaultValueControl('selecciona tus archivos'),
@@ -364,7 +365,7 @@ ${RELEVANT_TITLE.example} ***image/**** is for all image types:
   },
   args: {
     appearanceContrast: 'default',
-    name: '',
+    name: 'dropzoneInput',
     dropLabel: 'selecciona tus archivos',
     progress: 0,
     acceptedExtensions: ['png', 'image/jpeg', 'jpg'],

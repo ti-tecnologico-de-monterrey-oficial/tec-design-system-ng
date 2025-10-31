@@ -60,7 +60,6 @@ export default {
     docs: {
       controls: {
         exclude: [
-          'logoSrc',
           'clickAccess',
           'closeDigitalId',
           'secondaryIconButton',
@@ -99,6 +98,18 @@ ${getBasicExampleBlock(
         category: 'Properties',
       },
     },
+    logoSrc: {
+      control: {
+        type: 'text',
+      },
+      description:
+        'Sets the logo image source shown at the top of the digital ID.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'string' },
+        defaultValue: getDefaultValueControl('assets/images/tec-logo.svg'),
+      },
+    },
     icon: {
       ...DBmbIconParamDesc.icon,
       table: {
@@ -126,6 +137,16 @@ ${getBasicExampleBlock(
     close: getOnClickParam(onCloseEvent),
     access: getOnClickParam(onAccessEvent),
     onSecondaryClick: getOnClickParam(onSecondaryClickEvent),
+    disableSecondaryButton: getPropertyParamDesc(
+      'disable the secondary button',
+      'boolean',
+      false,
+    ),
+    disableMainButton: getPropertyParamDesc(
+      'disable the main button',
+      'boolean',
+      false,
+    ),
   },
   args: {
     name: 'Paola',
@@ -138,6 +159,9 @@ ${getBasicExampleBlock(
     icon: 'qr_code_scanner',
     hideButton: false,
     imgProfile: 'https://picsum.photos/id/64/200/300',
+    logoSrc: 'assets/images/tec-logo.svg',
+    disableMainButton: false,
+    disableSecondaryButton: false,
     imgBackground:
       'https://2.bp.blogspot.com/-YkNDZEbKt_g/TYzcbF2_tkI/AAAAAAAAalk/Vt_MHS60Xv8/s1600/www.JoseLuisAvilaHerrera.BLOGSPOT.com%2B-%2BFunny%2BCats%2B-%2BGatitos%2Bmuy%2Btiernos%2B8.jpg',
     access: () => {
