@@ -57,6 +57,7 @@
     "@angular/platform-browser": "^19.1.0",
     "@angular/platform-browser-dynamic": "^19.1.0",
     "@angular/router": "^19.1.0",
+    "dompurify": "^3.3.0",
     "dotenv": "^16.4.7",
     "libphonenumber-js": "^1.11.16",
     "luxon": "^3.5.0",
