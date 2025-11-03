@@ -104,13 +104,26 @@
   }
 
   &-square.bmb_container-button-wrapper {
-    @include button-class() {
-      flex-flow: column;
-      justify-content: center;
-      min-height: rem.rem_calc(148);
-      min-width: rem.rem_calc(148);
-      padding: rem.rem_calc(32 48);
-      width: auto;
+    &:not(.bmb_container-button-disabled):not(.bmb_container-button-error) {
+      @include button-class() {
+        flex-flow: column;
+        justify-content: center;
+        min-height: rem.rem_calc(148);
+        min-width: rem.rem_calc(148);
+        padding: rem.rem_calc(32 48);
+        width: auto;
+
+        &:hover {
+          outline: 0 solid transparent;
+        }
+
+        &:focus:not(:disabled),
+        &:active:not(:disabled) {
+          background-color: var(--buttons-primary-select);
+          color: var(--white-primary);
+          outline: rem.rem_calc(1) solid var(--buttons-stroke-primary-selected);
+        }
+      }
     }
 
     .bmb_layout {
