@@ -1,5 +1,5 @@
 <ng-template #commonIcon>
-  <i
+  <!-- <i
     [ngClass]="styleIcon()"
     [ngStyle]="{
       'font-size': !!size() ? size() + 'px' : 'inherit',
@@ -7,7 +7,11 @@
     }"
   >
     {{ icon() }}
-  </i>
+  </i> -->
+  <span [innerHTML]="iconSvg()" class="bmb_icon-svg" [ngClass]="{ 'bmb_icon-svg-auto-size': !!size() }" [ngStyle]="{
+    'width': !!size() ? size() + 'px' : '1em',
+    'height': !!size() ? size() + 'px' : '1em'
+  }"></span>
 </ng-template>
 @if (isImage(icon())) {
   <figure class="bmb_icon-figure">

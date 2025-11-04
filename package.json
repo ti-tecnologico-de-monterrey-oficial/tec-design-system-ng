@@ -57,11 +57,11 @@
     "@angular/platform-browser": "18.2.13",
     "@angular/platform-browser-dynamic": "18.2.13",
     "@angular/router": "18.2.13",
+    "@material-symbols/svg-400": "^0.39.1",
     "dompurify": "^3.3.0",
     "dotenv": "16.4.7",
     "libphonenumber-js": "1.11.16",
     "luxon": "3.5.0",
-    "material-symbols": "0.27.2",
     "rxjs": "7.8.0",
     "tslib": "2.3.0",
     "zone.js": "0.14.10"
