@@ -65,8 +65,6 @@ export class BmbIconComponent implements OnInit {
     }
 
     try {
-      console.log('Loading icon:', name);
-
       const svgContent = await this.iconService.loadIconSvg(name, this.isFill());
 
       if (!svgContent) {
@@ -75,15 +73,11 @@ export class BmbIconComponent implements OnInit {
         return;
       }
 
-      let processedSvg = svgContent;
-
-      // Aplicar tamaño personalizado si se especifica
-      processedSvg = svgContent
+      const processedSvg = svgContent
           .replace(/width="[^"]*"/, `width="${this.size() || 'inherit'}"`)
           .replace(/height="[^"]*"/, `height="${this.size() || 'inherit'}"`);
 
       this.iconSvg.set(this.sanitizer.bypassSecurityTrustHtml(processedSvg));
-      console.log(`Icon "${name}" loaded successfully`);
 
     } catch (error) {
       console.error(`Error loading icon "${name}":`, error);
