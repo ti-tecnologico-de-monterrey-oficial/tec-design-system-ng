@@ -3,7 +3,6 @@ import {
   Component,
   computed,
   ElementRef,
-  HostListener,
   input,
   model,
   output,
@@ -13,7 +12,7 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { IBotType, IChatBarActions } from './types';
-import { defaultActionList, defaultBotList } from './bot_list';
+import { defaultBotList } from './bot_list';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
@@ -103,7 +102,8 @@ export class BmbChatBarComponent {
       (
         bot: IBotType = {
           name: 'TecBot',
-          icon: '/assets/images/bot-icons/bot_tecStandar.svg',
+          label: 'Tecbot Standard',
+          icon: 'bot_tecStandar',
         },
       ): IBotType => bot,
     );

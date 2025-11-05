@@ -3,6 +3,16 @@
 @use '../../../assets/styles/base/mixins' as mixins;
 @use '../../../assets/styles/base/vars' as vars;
 
+@mixin bot() {
+  border: 0 none;
+  background-color: var(--general_contrasts-80);
+  border-radius: 50%;
+  width: rem.rem_calc(60);
+  height: rem.rem_calc(60);
+  padding: rem.rem_calc(10);
+  color: var(--general_contrasts-25);
+}
+
 .bmb_chat-bar {
   position: relative;
 
@@ -37,14 +47,9 @@
     }
 
     &-button {
-      align-items: center;
-      background-color: var(--general_contrasts-80);
-      border-radius: 50%;
-      box-shadow: var(--bmb-box-shadow-3);
       display: inline-flex;
-      line-height: 0;
-      min-height: rem.rem_calc(60);
-      padding: 10px;
+      box-shadow: var(--bmb-box-shadow-3);
+      @include bot();
 
       &-active {
         background-color: var(--general_contrasts-100);
@@ -95,30 +100,11 @@
     gap: rem.rem_calc(8);
     width: 100%;
     position: relative;
-    padding: rem.rem_calc(10 16);
-
-    @include mixins.check-for-mobile(false) {
-      padding: rem.rem_calc(16);
-    }
+    padding: rem.rem_calc(16);
   }
 
   &-bot {
-    border: 0 none;
-    padding: 0;
-
-    .bmb_icon-figure {
-      align-items: center;
-      background-color: var(--general_contrasts-80);
-      border-radius: 50%;
-      display: flex;
-      line-height: 0;
-      margin: 0;
-      padding: rem.rem_calc(10);
-
-      &-image {
-        width: 100%;
-      }
-    }
+    @include bot();
   }
 
   &-input {
@@ -138,6 +124,7 @@
   }
 
   &-add {
+    color: var(--general_contrasts-80);
     &-dialog {
       width: max-content;
       max-width: rem.rem_calc(350);
@@ -145,32 +132,28 @@
   }
 
   &-mic {
+    color: var(--general_contrasts-80);
     @media screen and (max-width: 560px) {
       display: none;
     }
   }
 
   &-pause {
-    bmb-icon {
-      color: var(--red-primary) !important;
-    }
+    color: var(--red-primary);
   }
 
   &-record {
     &-animated {
-      .material-symbols-rounded {
-        animation-duration: 3s;
-        animation-iteration-count: infinite;
-        animation-name: recordColor;
-      }
+      animation-duration: 3s;
+      animation-iteration-count: infinite;
+      animation-name: recordColor;
     }
   }
 
   &-send {
+    color: var(--general_contrasts-80);
     &-animated {
-      .material-symbols-rounded {
-        animation: loading 1.5s ease infinite;
-      }
+      animation: loading 1.5s ease infinite;
     }
   }
 
@@ -223,16 +206,10 @@
       }
 
       &-icon {
-        .material-symbols-rounded {
-          color: RGBA(var(--color-mariner-500));
-          padding-right: rem.rem_calc(5);
-        }
+        color: RGBA(var(--color-mariner-500));
+        padding-right: rem.rem_calc(5);
       }
     }
-  }
-
-  bmb-icon {
-    color: var(--general_contrasts-80);
   }
 
   &-mobile-bot-dialog {

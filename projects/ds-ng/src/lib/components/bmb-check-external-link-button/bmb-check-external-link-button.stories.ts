@@ -66,9 +66,7 @@ ${getBasicExampleBlock('BmbCheckExternalLinkButtonComponent')}
     },
   },
   args: {
-    idElement: '',
-    link: 'https://www.youtube.com/',
-    target: '_blank',
+    idElement: 'test_id',
     disabled: false,
     buttonClick: () => {
       alert('hola');
@@ -78,15 +76,33 @@ ${getBasicExampleBlock('BmbCheckExternalLinkButtonComponent')}
 
 type Story = StoryObj<BmbCheckExternalLinkButtonComponent>;
 
-export const ListExample: Story = {
+export const Default: Story = {
   render: (args) => ({
     props: args,
     template: `
       <bmb-check-external-link-button
+        style="display: inline-flex;"
         ${attributes(args)}
       >
-        <bmb-icon icon="face" [size]="20"/>
-        <span>Custom</span>
+        <bmb-icon icon="face" [size]="24"/>
+      </bmb-check-external-link-button>
+    `,
+  }),
+};
+
+export const E1: Story = {
+  args: {
+    link: 'https://www.youtube.com/',
+    target: '_blank',
+  },
+  render: (args) => ({
+    props: args,
+    template: `
+      <bmb-check-external-link-button
+        style="display: inline-flex;"
+        ${attributes(args)}
+      >
+        <bmb-icon icon="https://picsum.photos/id/64/200/300" alt="Alt image description" [size]="30" />
       </bmb-check-external-link-button>
     `,
   }),

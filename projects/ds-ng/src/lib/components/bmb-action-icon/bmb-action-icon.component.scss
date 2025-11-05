@@ -3,6 +3,10 @@
   align-items: center;
   color: currentColor;
 
+  &-button-link {
+    display: inline-flex;
+  }
+
   &-icon {
     display: inline-flex;
     align-items: center;
@@ -11,19 +15,9 @@
     &-toggle_icon {
       color: rgb(var(--color-mariner-500));
     }
-
-    &-social {
-      display: inline-flex;
-      margin: 0;
-
-      &-image {
-        fill: var(--general_contrasts-100);
-      }
-    }
   }
 
   .bmb_check-external-link-button {
-    display: flex;
     align-items: center;
     color: currentColor;
     opacity: 1;

@@ -1,14 +1,17 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  ContentChild,
   input,
   OnInit,
+  TemplateRef,
   ViewEncapsulation,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { buildErrorMessage, isImage } from '../../utils/utils';
 import { StyleIconType } from './types';
 import { BmbNotificationCounterComponent } from '../bmb-notification-counter/bmb-notification-counter.component';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
 @Component({
   selector: 'bmb-icon',
@@ -28,8 +31,13 @@ export class BmbIconComponent implements OnInit {
   size = input<number | undefined>();
   alt = input<string>('');
   dotNotification = input<number>();
+  isSVGTemplate = input<boolean>();
+
+  @ContentChild('customIcon') customIcon!: TemplateRef<any>;
 
   styleIconGoogle = 'material-symbols-rounded';
+
+  constructor(private sanitizer: DomSanitizer) {}
 
   ngOnInit() {
     let inputs: string[] = [];
@@ -56,8 +64,19 @@ export class BmbIconComponent implements OnInit {
 
   getImageStyles() {
     return {
-      width: !!this.size() ? `${this.size()}px` : 'inherit',
-      height: !!this.size() ? `${this.size()}px` : 'inherit',
+      width: !!this.size() ? `${this.size()}px` : '1em',
+      height: !!this.size() ? `${this.size()}px` : '1em',
     };
+  }
+
+  get safeSVG(): SafeHtml | null {
+    if (
+      (!this.isSVGTemplate() && this.customIcon) ||
+      (this.isSVGTemplate() && this.customIcon === undefined)
+    ) {
+      return null;
+    }
+
+    return this.sanitizer.bypassSecurityTrustHtml(this.customIcon.toString());
   }
 }

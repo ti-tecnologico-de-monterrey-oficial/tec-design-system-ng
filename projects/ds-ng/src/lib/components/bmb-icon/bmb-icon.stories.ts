@@ -25,6 +25,8 @@ export default {
         'getFontVariationSettings',
         'isImage',
         'getImageStyles',
+        'customIcon',
+        'isSVGTemplate',
       ],
     },
     docs: {

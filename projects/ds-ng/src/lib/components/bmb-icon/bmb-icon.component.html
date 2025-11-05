@@ -1,6 +1,6 @@
 <ng-template #commonIcon>
   <i
-    [ngClass]="styleIcon()"
+    [ngClass]="styleIconGoogle"
     [ngStyle]="{
       'font-size': !!size() ? size() + 'px' : 'inherit',
       'font-variation-settings': getFontVariationSettings()
@@ -9,8 +9,17 @@
     {{ icon() }}
   </i>
 </ng-template>
-@if (isImage(icon())) {
-  <figure class="bmb_icon-figure">
+
+@if (isSVGTemplate() && !!safeSVG) {
+  <figure
+    class="bmb_icon-figure"
+    [ngStyle]="getImageStyles()"
+    [attr.aria-label]="alt() || icon()"
+  >
+    <ng-container [ngTemplateOutlet]="customIcon" />
+  </figure>
+} @else if (isImage(icon())) {
+  <figure class="bmb_icon-figure" [ngStyle]="getImageStyles()">
     <img
       class="bmb_icon-figure-image"
       [src]="icon()"
