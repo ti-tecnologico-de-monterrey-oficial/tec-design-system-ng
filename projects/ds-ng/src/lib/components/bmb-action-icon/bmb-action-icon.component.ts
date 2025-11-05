@@ -74,7 +74,6 @@ export class BmbActionIconComponent {
     ) {
       return null;
     }
-    console.info('TEST', this.customActionIcon);
 
     return this.sanitizer.bypassSecurityTrustHtml(
       this.customActionIcon.toString(),
