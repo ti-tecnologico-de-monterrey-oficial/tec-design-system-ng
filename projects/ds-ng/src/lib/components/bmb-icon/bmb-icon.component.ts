@@ -83,8 +83,8 @@ export class BmbIconComponent implements OnInit {
       }
 
       const processedSvg = svgContent
-          .replace(/width="[^"]*"/, `width="${this.size() || 'inherit'}"`)
-          .replace(/height="[^"]*"/, `height="${this.size() || 'inherit'}"`);
+          .replace(/width="[^"]*"/, `width="${this.size() ? this.size() + 'px' : '1em'}"`)
+          .replace(/height="[^"]*"/, `height="${this.size() ? this.size() + 'px' : '1em'}"`);
 
       return this.sanitizer.bypassSecurityTrustHtml(processedSvg);
 
