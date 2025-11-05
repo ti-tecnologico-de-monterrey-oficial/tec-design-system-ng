@@ -34,6 +34,10 @@ const config: StorybookConfig = {
             from: 'projects/ds-ng/src/assets/svg',
             to: 'assets/svg',
           },
+          {
+            from: 'node_modules/@material-symbols/svg-400/rounded',
+            to: 'assets/icons/material-rounded',
+          },
         ],
       }),
     );

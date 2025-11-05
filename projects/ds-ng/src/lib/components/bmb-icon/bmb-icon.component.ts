@@ -67,7 +67,7 @@ export class BmbIconComponent implements OnInit {
     try {
       console.log('Loading icon:', name);
 
-      const svgContent = await this.iconService.loadIconSvg(name);
+      const svgContent = await this.iconService.loadIconSvg(name, this.isFill());
 
       if (!svgContent) {
         console.warn(`Icon "${name}" not found`);
