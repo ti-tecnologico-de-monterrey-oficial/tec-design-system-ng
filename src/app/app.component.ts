@@ -117,6 +117,12 @@ export class AppComponent {
             title: 'Alerts',
             link: '/alerts',
           },
+          {
+            id: 11,
+            icon: 'dashboard_2',
+            title: 'Dashboard activity',
+            link: '/dashboard-indicators',
+          }
         ],
       },
     ],

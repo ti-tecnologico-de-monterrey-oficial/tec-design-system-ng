@@ -36,6 +36,11 @@
                 "input": "projects/ds-ng/src/assets",
                 "output": "/assets/"
               },
+              {
+                "glob": "**/*.svg",
+                "input": "node_modules/@material-symbols/svg-400/rounded/",
+                "output": "/node_modules/@material-symbols/svg-400/rounded/"
+              },
               "src/favicon.ico",
               "src/assets"
             ],
@@ -99,6 +104,11 @@
                 "glob": "**/*",
                 "input": "projects/ds-ng/src/assets",
                 "output": "/assets/"
+              },
+              {
+                "glob": "**/*.svg",
+                "input": "node_modules/@material-symbols/svg-400/rounded/",
+                "output": "/node_modules/@material-symbols/svg-400/rounded/"
               },
               {
                 "glob": "**/*",
