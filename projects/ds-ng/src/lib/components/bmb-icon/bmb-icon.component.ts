@@ -5,6 +5,7 @@ import {
   input,
   OnInit,
   signal,
+  untracked,
   ViewEncapsulation,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -24,7 +25,7 @@ import { BmbIconService } from '../../services/icon/icon.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BmbIconComponent implements OnInit {
-  icon = input<string>('face');
+  icon = input<string>('');
   materialIcon = input<boolean>(false); // Deprecated
   styleIcon = input<StyleIconType>('material-symbols-rounded'); // Deprecated
   isFill = input<boolean>(true);
@@ -41,7 +42,16 @@ export class BmbIconComponent implements OnInit {
     private iconService: BmbIconService
   ) {
     effect(() => {
-      this.loadIcon(this.icon());
+      if (this.icon()) {
+        const svgIcon = this.loadIcon(this.icon());
+        svgIcon.then(icon => {
+          if (icon !== null) {
+            untracked(() => {
+              this.iconSvg.set(icon as SafeHtml);
+            });
+          }
+        });
+      }
     });
   }
 
@@ -58,10 +68,10 @@ export class BmbIconComponent implements OnInit {
     }
   }
 
-  async loadIcon(name: string): Promise<void> {
+  async loadIcon(name: string): Promise<SafeHtml | null> {
     if (!name) {
       this.iconSvg.set(null);
-      return;
+      return null;
     }
 
     try {
@@ -69,19 +79,18 @@ export class BmbIconComponent implements OnInit {
 
       if (!svgContent) {
         console.warn(`Icon "${name}" not found`);
-        this.iconSvg.set(null);
-        return;
+        return null;
       }
 
       const processedSvg = svgContent
           .replace(/width="[^"]*"/, `width="${this.size() || 'inherit'}"`)
           .replace(/height="[^"]*"/, `height="${this.size() || 'inherit'}"`);
 
-      this.iconSvg.set(this.sanitizer.bypassSecurityTrustHtml(processedSvg));
+      return this.sanitizer.bypassSecurityTrustHtml(processedSvg);
 
     } catch (error) {
       console.error(`Error loading icon "${name}":`, error);
-      this.iconSvg.set(null);
+      return null;
     }
   }
 
