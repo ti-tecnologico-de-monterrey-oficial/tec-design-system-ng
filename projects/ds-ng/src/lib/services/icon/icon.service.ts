@@ -20,9 +20,9 @@ export class BmbIconService {
     }
 
     const isStorybook =
-      window.location.href.includes('storybook') ||
+      window.location.href.includes('chromatic') ||
       window.location.port === '6006' ||
-      document.querySelector('body[data-storybook]') !== null;
+      document.querySelector('#storybook-preview-wrapper') !== null;
 
     const url: string = isStorybook ?
       `${this.storybookPath}/${cleanName}${isFilled ? '-fill' : ''}.svg` :
