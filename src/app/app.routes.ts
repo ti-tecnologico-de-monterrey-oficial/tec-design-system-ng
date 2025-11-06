@@ -99,9 +99,9 @@ export const routes: Routes = [
     path: 'dashboard-indicators',
     title: 'Dashboard Indicators',
     loadComponent: () =>
-      import('./pages/dashboard-indicators/dashboard-indicators.component').then(
-        (d) => d.DashboardIndicatorsComponent,
-      ),
+      import(
+        './pages/dashboard-indicators/dashboard-indicators.component'
+      ).then((d) => d.DashboardIndicatorsComponent),
   },
   {
     path: 'identity',

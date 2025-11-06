@@ -122,7 +122,7 @@ export class AppComponent {
             icon: 'dashboard_2',
             title: 'Dashboard activity',
             link: '/dashboard-indicators',
-          }
+          },
         ],
       },
     ],

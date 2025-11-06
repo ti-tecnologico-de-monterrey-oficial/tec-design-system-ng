@@ -9,7 +9,10 @@ export class BmbIconService {
   private readonly angularAppPath =
     '/node_modules/@material-symbols/svg-400/rounded';
 
-  async loadIconSvg(iconName: string, isFilled: boolean): Promise<string | null> {
+  async loadIconSvg(
+    iconName: string,
+    isFilled: boolean,
+  ): Promise<string | null> {
     if (!iconName || iconName.trim() === '') {
       return null;
     }
@@ -24,9 +27,9 @@ export class BmbIconService {
       window.location.port === '6006' ||
       document.querySelector('#storybook-preview-wrapper') !== null;
 
-    const url: string = isStorybook ?
-      `${this.storybookPath}/${cleanName}${isFilled ? '-fill' : ''}.svg` :
-      `${this.angularAppPath}/${cleanName}${isFilled ? '-fill' : ''}.svg`;
+    const url: string = isStorybook
+      ? `${this.storybookPath}/${cleanName}${isFilled ? '-fill' : ''}.svg`
+      : `${this.angularAppPath}/${cleanName}${isFilled ? '-fill' : ''}.svg`;
 
     try {
       const response = await fetch(url);

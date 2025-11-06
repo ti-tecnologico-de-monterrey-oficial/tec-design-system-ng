@@ -44,12 +44,12 @@ export class BmbIconComponent implements OnInit {
 
   constructor(
     private sanitizer: DomSanitizer,
-    private iconService: BmbIconService
+    private iconService: BmbIconService,
   ) {
     effect(() => {
       if (this.icon()) {
         const svgIcon = this.loadIcon(this.icon());
-        svgIcon.then(icon => {
+        svgIcon.then((icon) => {
           if (icon !== null) {
             untracked(() => {
               this.iconSvg.set(icon as SafeHtml);
@@ -80,7 +80,10 @@ export class BmbIconComponent implements OnInit {
     }
 
     try {
-      const svgContent = await this.iconService.loadIconSvg(name, this.isFill());
+      const svgContent = await this.iconService.loadIconSvg(
+        name,
+        this.isFill(),
+      );
 
       if (!svgContent) {
         console.warn(`Icon "${name}" not found`);
@@ -88,11 +91,16 @@ export class BmbIconComponent implements OnInit {
       }
 
       const processedSvg = svgContent
-          .replace(/width="[^"]*"/, `width="${this.size() ? this.size() + 'px' : '1em'}"`)
-          .replace(/height="[^"]*"/, `height="${this.size() ? this.size() + 'px' : '1em'}"`);
+        .replace(
+          /width="[^"]*"/,
+          `width="${this.size() ? this.size() + 'px' : '1em'}"`,
+        )
+        .replace(
+          /height="[^"]*"/,
+          `height="${this.size() ? this.size() + 'px' : '1em'}"`,
+        );
 
       return this.sanitizer.bypassSecurityTrustHtml(processedSvg);
-
     } catch (error) {
       console.error(`Error loading icon "${name}":`, error);
       return null;

@@ -8,9 +8,8 @@ describe('DashboardIndicatorsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [DashboardIndicatorsComponent]
-    })
-    .compileComponents();
+      imports: [DashboardIndicatorsComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(DashboardIndicatorsComponent);
     component = fixture.componentInstance;
