@@ -95,5 +95,21 @@ export const routes: Routes = [
         (m) => m.DotPaginatorComponent,
       ),
   },
+  {
+    path: 'dashboard-indicators',
+    title: 'Dashboard Indicators',
+    loadComponent: () =>
+      import('./pages/dashboard-indicators/dashboard-indicators.component').then(
+        (d) => d.DashboardIndicatorsComponent,
+      ),
+  },
+  {
+    path: 'identity',
+    title: 'Identity',
+    loadComponent: () =>
+      import('./pages/identity/identity.component').then(
+        (i) => i.IdentityComponent,
+      ),
+  },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
 ];

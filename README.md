@@ -6,56 +6,49 @@ Descubre cómo nuestro Design System no solo da forma a la estética, sino que t
 
 ---
 
-## 🚀 v1.5.12 🎉 - 03 de octubre de 2025
+# Release Notes - Sistema de Diseño TEC
 
-En esta versión, el equipo colaboró para fortalecer la experiencia de la persona usuaria, mejorando la interfaz, la accesibilidad y la estabilidad de los componentes. El objetivo principal fue optimizar la interacción y asegurar que cada funcionalidad aporte valor real a quienes utilizan el sistema.
+## 🚀 Versión 1.5.13 - Mejora Integral de Accesibilidad y Experiencia 🎉 - 31 de octubre de 2025
+
+Esta versión marca un hito importante en nuestro compromiso con la inclusión digital y la mejora continua de la experiencia para todas las personas. Gracias al trabajo colaborativo de nuestro equipo de desarrollo, presentamos avances significativos en accesibilidad, nuevas funcionalidades para la gestión de identidad digital y optimizaciones que hacen el sistema más eficiente y fácil de usar.
 
 ### 🆕 Nuevas Funcionalidades
 
-- Se agregó la opción de habilitar o inhabilitar el input, permitiendo mayor control y accesibilidad en formularios.
-- Nuevo template para las semanas Tec, facilitando la visualización y organización de información relevante.
-- Se implementó la posibilidad de determinar la posición de los filtros en la tabla, mejorando la personalización y usabilidad.
-- Se añadió la característica de mostrar más de un dígito en el contador de notificaciones, mostrando '99+' cuando se excede el valor de 100.
-- Se agregó soporte para componentes personalizados en el modal nativo, ampliando las posibilidades de integración.
-- Se implementó la opción de mezclar notificaciones del servicio y del input alert en el Alert Center, centralizando la gestión de alertas.
-- Se añadió la funcionalidad de limpiar el estado de selección en la tabla, facilitando la gestión de datos.
-- Se agregó la opción de filtrar listados en el dropdown, mejorando la búsqueda y selección de opciones.
-- Se implementó la funcionalidad de mostrar el foco en el checkbox en estado indeterminado, mejorando la accesibilidad.
-- Se añadió la opción de mostrar el icono de notificaciones en el header móvil, manteniendo a las personas informadas.
-- Se agregó la opción de cambiar el texto del badge en la tarjeta de actividad estudiantil, permitiendo mayor personalización.
-- Se implementó la opción de mostrar el icono expandido o contraído en la Home Card, facilitando la navegación.
-- Se añadió la posibilidad de controlar la navegación por click en el selector de aplicaciones frecuentes, mejorando la experiencia de acceso.
+- **Componente de Identidad Digital Completo (beta)**: Nueva funcionalidad integral que permite a las personas gestionar su identidad institucional de manera más completa y personalizada
+
+- **Servicio de Traducciones**: Sistema robusto de internacionalización que facilita el acceso al contenido en múltiples idiomas, mejorando la experiencia para toda nuestra comunidad global
+
+- **Directiva de Selección Inteligente**: Nueva herramienta que permite a las personas seleccionar elementos de manera más intuitiva, manteniendo ocultos los elementos no seleccionados para una interfaz más limpia
+
+- **Gestión Mejorada de Archivos**: El componente Dropzone ahora acepta tipos MIME además de extensiones, facilitando la carga de diferentes tipos de archivos de manera más flexible
 
 ### ✅ Problemas Resueltos
 
-- Se corrigió el comportamiento de selección con los radios en la Filter Card, asegurando una interacción precisa.
-- Se solucionó el problema de selección intermitente en el dropdown multiselect, garantizando una experiencia consistente.
-- Se corrigió el problema de emisión de eventos del footer en el Alert Center, mejorando la comunicación de acciones.
-- Se resolvió el problema de actualización de datos en el componente Academic Progress, asegurando información actualizada.
-- Se corrigió el problema de visualización horizontal en bmb-list-group y bmb-list-group-item, optimizando la presentación de listas.
-- Se corrigió el funcionamiento de los filtros para la tabla, permitiendo una gestión eficiente de datos.
-- Se corrigió el funcionamiento errático de las tabs en el Alert Center, mejorando la navegación entre alertas.
-- Se corrigió el problema de emisión de eventos completos en Notification Card y Home Card, asegurando la trazabilidad de acciones.
-- Se corrigió el problema de compatibilidad con Safari en el componente Grades, garantizando acceso desde cualquier navegador.
-- Se corrigió el problema de renderizado de la tabla, asegurando la correcta visualización de datos.
-- Se corrigió el comportamiento del focus next en los inputs de TOTP, facilitando la autenticación.
-- Se corrigió el problema de la semana 53 en años bisiestos en el Date Picker, mostrando fechas correctas.
-- Se corrigió el problema de selección de filas en la tabla, permitiendo la interacción esperada.
+- **Accesibilidad Mejorada en Tooltips**: Se implementó navegación completa por teclado, garantizando que todas las personas puedan acceder a la información adicional sin restricciones
+
+- **Componentes de Entrada Más Confiables**: Se corrigieron los estilos de los campos checkbox y radio, eliminando inconsistencias visuales que podrían confundir a las personas
+
+- **Sidebar Más Estable**: Se resolvieron errores en elementos de navegación lateral que afectaban la experiencia de navegación de las personas
+
+- **Compatibilidad Extendida**: Se mejoró el soporte para Angular 17 en el componente Table Lite, asegurando que más proyectos puedan beneficiarse de esta funcionalidad
 
 ### ⚡ Optimizaciones
 
-- Se mejoró la experiencia responsiva en múltiples componentes, asegurando una visualización óptima en todos los dispositivos.
-- Se optimizó la estructura de documentación en Storybook, facilitando el acceso a información relevante.
-- Se actualizaron las dependencias y la gestión de saltos de línea, mejorando la estabilidad del proyecto.
-- Se implementó la nueva estrategia para mostrar el dropdown, mejorando el rendimiento y la interacción.
-- Se mejoró la accesibilidad de los componentes de tipo Input, Checkbox y Tag, promoviendo la inclusión.
-- Se optimizó la gestión de notificaciones y alertas, centralizando la experiencia de comunicación.
-- Se mejoró la navegación por teclado en el componente Check External Link, facilitando el acceso para todas las personas.
-- Se optimizó el manejo de estados y la estructura de los componentes, mejorando la mantenibilidad y escalabilidad del sistema.
+- **Interfaz Responsiva Optimizada**: Se implementaron nuevas variables CSS y mixins que mejoran significativamente la experiencia en dispositivos móviles, adaptándose automáticamente a diferentes tamaños de pantalla
 
-### 📘 Mejoras Documentación
+- **Sistema de Layout Inteligente**: La directiva de layout ahora soporta container queries, proporcionando un ajuste responsivo más preciso y eficiente que beneficia directamente la experiencia visual
 
-- Se actualizó la documentación de componentes clave como Accordion, Calendar y User Summary, facilitando la adopción y el uso correcto.
+- **Gestión de Fuentes Simplificada**: Se eliminaron fuentes obsoletas del sistema, reduciendo el tiempo de carga y mejorando el rendimiento general para todas las personas
+
+- **Documentación Automatizada**: Se estableció un proceso automatizado para la generación de wikis, asegurando que la documentación esté siempre actualizada y accesible
+
+### 📘 Mejoras en Documentación
+
+- **Lineamientos de Documentación Estandarizados**: Se establecieron nuevos estándares que garantizan información más clara y accesible para todas las personas que utilizan el sistema de diseño
+
+- **Documentación de Servicios Ampliada**: Se documentaron completamente los servicios de tabs, tema, toast y traducciones, facilitando su implementación y uso
+
+- **Ejemplos Prácticos Mejorados**: Se añadieron ejemplos más detallados y funcionales en Storybook, permitiendo una comprensión más rápida y efectiva
 
 ---
 

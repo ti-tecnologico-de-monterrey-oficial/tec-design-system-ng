@@ -2,6 +2,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   input,
+  output,
   ViewEncapsulation,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -43,6 +44,8 @@ export class BmbMediaCardComponent {
   fullmediaCard = input<boolean>(false);
   bgColor = input<string>();
   boxShadow = input<boolean>(false);
+
+  mediaCardClicked = output<MouseEvent | KeyboardEvent>();
 
   isExternalLink(link: string): boolean {
     return (!!link && isExternalLink(link)) || false;

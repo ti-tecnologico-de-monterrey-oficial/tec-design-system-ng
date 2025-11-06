@@ -34,6 +34,27 @@
         padding-right: var(--bmb-spacing-m);
         border-right: rem.rem_calc(1) solid var(--general_contrasts-50);
       }
+
+      &.hide-on-mobile {
+        display: none;
+      }
+
+      @include mixins.media-query(768, 'min') {
+        &.hide-on-mobile {
+          display: inline-flex;
+        }
+      }
+    }
+
+    &-actions {
+      display: inline-flex;
+      align-items: center;
+      flex-wrap: nowrap;
+      gap: rem.rem_calc(10);
+
+      @include mixins.media-query(768, 'min') {
+        display: none;
+      }
     }
   }
 

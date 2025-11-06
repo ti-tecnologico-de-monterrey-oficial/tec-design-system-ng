@@ -134,6 +134,14 @@ The shadow only appears if the card is not an external link and is not \`floatin
         type: { summary: 'boolean' },
       },
     },
+    mediaCardClicked: {
+      control: null,
+      description:
+        'Event emitted when the media card is clicked, this property only works if the card has no link property defined.',
+      table: {
+        category: 'Events',
+      },
+    },
   },
   args: {
     src: 'https://farm2.staticflickr.com/1919/45579541712_f58c1fd0ed_o.jpg',
@@ -150,6 +158,9 @@ The shadow only appears if the card is not an external link and is not \`floatin
     link: 'https://www.youtube.com/',
     target: '_blank',
     boxShadow: false,
+    mediaCardClicked: () => {
+      console.log('Media card clicked');
+    },
   },
 } as Meta<typeof BmbMediaCardComponent>;
 

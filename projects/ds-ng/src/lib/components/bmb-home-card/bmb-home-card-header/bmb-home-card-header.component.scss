@@ -14,7 +14,7 @@
     }
   }
 
-  .bmb_container {
+  > bmb-container > .bmb_container {
     border-radius: var(--bmb-radius-l) var(--bmb-radius-l) 0 0;
     padding: rem.rem_calc(24);
   }
