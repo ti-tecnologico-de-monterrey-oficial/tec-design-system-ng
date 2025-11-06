@@ -1,6 +1,6 @@
 {
   "name": "@ti-tecnologico-de-monterrey-oficial/ds-ng",
-  "version": "1.5.12{angularVersion}-e",
+  "version": "1.5.13{angularVersion}",
   "description": "Design System oficial del Tecnológico de Monterrey - Descubre cómo nuestro Design System no solo da forma a la estética, sino que también impulsa la consistencia en cada rincón de nuestro diseño, proporcionando una base sólida para construir experiencias memorables y coherentes. Únete a nosotros en este viaje donde la creatividad, coherencia y elegancia se encuentran para dar vida a un mundo visualmente armonioso y funcionalmente fluido.",
   "keywords": [
     "angular",
@@ -17,10 +17,11 @@
     "@angular/material": "*",
     "libphonenumber-js": "1.11.16",
     "luxon": "3.5.0",
-    "tslib": "2.3.0",
+    "tslib": "*",
     "@types/luxon": "3.4.2",
     "@angular/cdk": "*",
-    "material-symbols": "0.27.2"
+    "@material-symbols/svg-400": "^0.39.1",
+    "dompurify": "3.3.0"
   },
   "exports": {
     "./assets/styles/main.min.css": "./dist/ds-ng/assets/styles/main.min.css"

@@ -36,10 +36,10 @@
           <bmb-grade-value bmbLayoutItem type="main-grade" [score]="score()" />
         }
         <div class="bmb_container-button-header">
-          <h2 class="bmb_container-button-title">{{ titleTruncated() }}</h2>
+          <h2 class="bmb_container-button-title">{{ title() }}</h2>
           @if (subtitle() && !square() && !small()) {
             <h4 class="bmb_container-button-subtitle">
-              {{ subtitleTruncated() }}
+              {{ subtitle() }}
             </h4>
           }
         </div>

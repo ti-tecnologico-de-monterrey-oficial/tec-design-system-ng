@@ -132,5 +132,14 @@
     "insert_image": "Insert image",
     "clear_formatting": "Clear formatting",
     "select_option": "Select an option"
+  },
+  "notification_card": {
+    "tabs": {
+      "notifications": "Notifications",
+      "advertisements": "Advertisements"
+    },
+    "empty_state": {
+      "primary_text": "You have no notifications to show"
+    }
   }
 }

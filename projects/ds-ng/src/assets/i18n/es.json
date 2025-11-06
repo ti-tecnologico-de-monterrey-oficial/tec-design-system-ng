@@ -132,5 +132,14 @@
     "insert_image": "Insertar imagen",
     "clear_formatting": "Limpiar formato",
     "select_option": "Selecciona una opción"
+  },
+  "notification_card": {
+    "tabs": {
+      "notifications": "Notificaciones",
+      "advertisements": "Anuncios"
+    },
+    "empty_state": {
+      "primary_text": "No tienes elementos para mostrar"
+    }
   }
 }

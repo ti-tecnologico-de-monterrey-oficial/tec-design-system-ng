@@ -18,6 +18,7 @@
 
   &_primary {
     @include fonts.font(9, bold);
+    text-align: center;
   }
 
   &_secondary {

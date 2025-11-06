@@ -156,12 +156,12 @@ class mockService {
         id: 10,
         title: 'Alerta 10',
         description: [
-          { text: 'Descripción de la alerta 10', type: 'title' },
-          { text: 'Descripción de la alerta 10 paragraph', type: 'paragraph' },
           {
-            text: 'Descripción de la alerta 10',
-            type: 'button',
-            variant: 'primary',
+            text: `<p>¿Real o engaño? ¡No caigas en el hishing!</p><p> * Por Fernando fillalobos</p><p> Martes 28 de octubre</p><p>• 9:00 a.m. (CTM)
+</p><p>Redes sociales
+Inteligentes: Protege tu vida personal. </p><p> * Por Javier Jardón</p><p> Martes 28 de octubre</p><p> o 10:00 a.m. (cTM)</p><p></p><p>Por
+https://live.tec.mx/cbweek</p><p>¡Te esperamos!`,
+            type: 'html',
           },
         ],
         date: '19/11/2024',

@@ -66,6 +66,12 @@
                   >{{ item.text }}</a
                 >
               }
+              @case ('html') {
+                <div
+                  class="bmb_alert-center-content-complex"
+                  [innerHTML]="sanitizedHtml(item.text)"
+                ></div>
+              }
             }
           }
         </section>

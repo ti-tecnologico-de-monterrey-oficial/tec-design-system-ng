@@ -24,6 +24,11 @@
       "glob": "**/*",
       "input": "src/assets/i18n",
       "output": "./assets/i18n"
+    },
+    {
+      "glob": "**/*.svg",
+      "input": "node_modules/@material-symbols/svg-400/rounded/",
+      "output": "/node_modules/@material-symbols/svg-400/rounded/"
     }
   ],
   "allowedNonPeerDependencies": [
@@ -32,6 +37,7 @@
     "libphonenumber-js",
     "@types/luxon",
     "@angular/cdk",
-    "material-symbols"
+    "@material-symbols/svg-400",
+    "dompurify"
   ]
 }

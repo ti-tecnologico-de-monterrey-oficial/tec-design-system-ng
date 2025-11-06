@@ -1,14 +1,19 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  effect,
   input,
   OnInit,
+  signal,
+  untracked,
   ViewEncapsulation,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { buildErrorMessage, isImage } from '../../utils/utils';
 import { StyleIconType } from './types';
 import { BmbNotificationCounterComponent } from '../bmb-notification-counter/bmb-notification-counter.component';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { BmbIconService } from '../../services/icon/icon.service';
 
 @Component({
   selector: 'bmb-icon',
@@ -20,16 +25,35 @@ import { BmbNotificationCounterComponent } from '../bmb-notification-counter/bmb
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BmbIconComponent implements OnInit {
-  icon = input<string>('face');
-  materialIcon = input<boolean>(false);
-  styleIcon = input<StyleIconType>('material-symbols-rounded');
+  icon = input<string>('');
+  materialIcon = input<boolean>(false); // Deprecated
+  styleIcon = input<StyleIconType>('material-symbols-rounded'); // Deprecated
   isFill = input<boolean>(true);
-  fontWeight = input<string>('400');
+  fontWeight = input<string>('400'); // Deprecated
   size = input<number | undefined>();
   alt = input<string>('');
   dotNotification = input<number>();
 
   styleIconGoogle = 'material-symbols-rounded';
+  iconSvg = signal<SafeHtml | null>(null);
+
+  constructor(
+    private sanitizer: DomSanitizer,
+    private iconService: BmbIconService
+  ) {
+    effect(() => {
+      if (this.icon()) {
+        const svgIcon = this.loadIcon(this.icon());
+        svgIcon.then(icon => {
+          if (icon !== null) {
+            untracked(() => {
+              this.iconSvg.set(icon as SafeHtml);
+            });
+          }
+        });
+      }
+    });
+  }
 
   ngOnInit() {
     let inputs: string[] = [];
@@ -41,6 +65,32 @@ export class BmbIconComponent implements OnInit {
         The ${buildErrorMessage(inputs)} required when the icon is an image.
         `,
       );
+    }
+  }
+
+  async loadIcon(name: string): Promise<SafeHtml | null> {
+    if (!name) {
+      this.iconSvg.set(null);
+      return null;
+    }
+
+    try {
+      const svgContent = await this.iconService.loadIconSvg(name, this.isFill());
+
+      if (!svgContent) {
+        console.warn(`Icon "${name}" not found`);
+        return null;
+      }
+
+      const processedSvg = svgContent
+          .replace(/width="[^"]*"/, `width="${this.size() ? this.size() + 'px' : '1em'}"`)
+          .replace(/height="[^"]*"/, `height="${this.size() ? this.size() + 'px' : '1em'}"`);
+
+      return this.sanitizer.bypassSecurityTrustHtml(processedSvg);
+
+    } catch (error) {
+      console.error(`Error loading icon "${name}":`, error);
+      return null;
     }
   }
 
