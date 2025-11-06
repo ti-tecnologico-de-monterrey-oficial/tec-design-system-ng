@@ -431,7 +431,7 @@ export const BadgeContainerImageExample = {
       alt: 'Left content image',
     },
     title: 'Title or summary',
-    badge: { text: 'Badge 1', appearance: 'mitec_purple'},
+    badge: { text: 'Badge 1', appearance: 'mitec_purple' },
     body: `This is the body content of the card button.
     Lorem upsum aovei trirangil porilnem menuandos flenzhcrunf...`,
     textLink: {
@@ -446,11 +446,9 @@ export const BadgeImageExample = {
   name: 'Badge - No container',
   args: {
     ...BadgeContainerImageExample.args,
-    badge: { text: 'Badge 1', container: false  },
+    badge: { text: 'Badge 1', container: false },
   },
 };
-
-
 
 export const CustomContentImageExample = {
   name: 'Badge - Not container',
@@ -500,7 +498,6 @@ export const ImageExample = {
   },
 };
 
-
 //
 
 export const SmallCardExample = {
@@ -516,7 +513,7 @@ export const SmallCardExample = {
     smallDescription:
       'Lorem upsum aovei trirangil porilnem menuandos flenzhcrunf',
     botImage: {
-      src: '/assets/images/bot-icons/bot_tecGPT.svg',
+      src: 'bot_tecGPT',
       alt: 'Left content image',
     },
     smallIcon: 'info',

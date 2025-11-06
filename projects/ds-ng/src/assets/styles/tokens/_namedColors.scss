@@ -2,6 +2,7 @@
 .storybook-light-theme .docs-story {
   --general_contrasts: var(--black-primary);
   --general_contrasts-100: rgb(var(--color-charade-950));
+  --general_contrasts-80: rgb(var(--color-charade-700));
   --general_contrasts-75: rgb(var(--color-charade-700));
   --general_contrasts-50: rgb(var(--color-charade-500));
   --general_contrasts-25: rgb(var(--color-charade-200));
@@ -122,6 +123,7 @@
 .storybook-dark-theme .docs-story {
   --general_contrasts: var(--white-primary);
   --general_contrasts-100: rgb(var(--color-charade-50));
+  --general_contrasts-80: rgb(var(--color-charade-300));
   --general_contrasts-75: rgb(var(--color-charade-200));
   --general_contrasts-50: rgb(var(--color-charade-500));
   --general_contrasts-25: rgb(var(--color-charade-700));

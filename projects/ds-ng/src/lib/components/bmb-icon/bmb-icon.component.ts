@@ -1,9 +1,11 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  effect,
+  ContentChild,
   input,
   OnInit,
+  TemplateRef,
+  effect,
   signal,
   untracked,
   ViewEncapsulation,
@@ -33,18 +35,21 @@ export class BmbIconComponent implements OnInit {
   size = input<number | undefined>();
   alt = input<string>('');
   dotNotification = input<number>();
+  isSVGTemplate = input<boolean>();
+
+  @ContentChild('customIcon') customIcon!: TemplateRef<any>;
 
   styleIconGoogle = 'material-symbols-rounded';
   iconSvg = signal<SafeHtml | null>(null);
 
   constructor(
     private sanitizer: DomSanitizer,
-    private iconService: BmbIconService
+    private iconService: BmbIconService,
   ) {
     effect(() => {
       if (this.icon()) {
         const svgIcon = this.loadIcon(this.icon());
-        svgIcon.then(icon => {
+        svgIcon.then((icon) => {
           if (icon !== null) {
             untracked(() => {
               this.iconSvg.set(icon as SafeHtml);
@@ -75,7 +80,10 @@ export class BmbIconComponent implements OnInit {
     }
 
     try {
-      const svgContent = await this.iconService.loadIconSvg(name, this.isFill());
+      const svgContent = await this.iconService.loadIconSvg(
+        name,
+        this.isFill(),
+      );
 
       if (!svgContent) {
         console.warn(`Icon "${name}" not found`);
@@ -83,11 +91,16 @@ export class BmbIconComponent implements OnInit {
       }
 
       const processedSvg = svgContent
-          .replace(/width="[^"]*"/, `width="${this.size() ? this.size() + 'px' : '1em'}"`)
-          .replace(/height="[^"]*"/, `height="${this.size() ? this.size() + 'px' : '1em'}"`);
+        .replace(
+          /width="[^"]*"/,
+          `width="${this.size() ? this.size() + 'px' : '1em'}"`,
+        )
+        .replace(
+          /height="[^"]*"/,
+          `height="${this.size() ? this.size() + 'px' : '1em'}"`,
+        );
 
       return this.sanitizer.bypassSecurityTrustHtml(processedSvg);
-
     } catch (error) {
       console.error(`Error loading icon "${name}":`, error);
       return null;
@@ -106,8 +119,19 @@ export class BmbIconComponent implements OnInit {
 
   getImageStyles() {
     return {
-      width: !!this.size() ? `${this.size()}px` : 'inherit',
-      height: !!this.size() ? `${this.size()}px` : 'inherit',
+      width: !!this.size() ? `${this.size()}px` : '1em',
+      height: !!this.size() ? `${this.size()}px` : '1em',
     };
+  }
+
+  get safeSVG(): SafeHtml | null {
+    if (
+      (!this.isSVGTemplate() && this.customIcon) ||
+      (this.isSVGTemplate() && this.customIcon === undefined)
+    ) {
+      return null;
+    }
+
+    return this.sanitizer.bypassSecurityTrustHtml(this.customIcon.toString());
   }
 }

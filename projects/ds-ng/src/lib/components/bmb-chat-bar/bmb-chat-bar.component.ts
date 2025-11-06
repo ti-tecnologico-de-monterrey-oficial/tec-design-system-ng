@@ -3,7 +3,6 @@ import {
   Component,
   computed,
   ElementRef,
-  HostListener,
   input,
   model,
   output,
@@ -13,7 +12,7 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { IBotType, IChatBarActions } from './types';
-import { defaultActionList, defaultBotList } from './bot_list';
+import { defaultBotList } from './bot_list';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
@@ -29,6 +28,7 @@ import {
 } from '../../services/projection/projection.service';
 import { IBmbNativeModal } from '../bmb-modal/bmb-modal.interface';
 import { TranslatePipe } from '../../pipes/translations';
+import { BmbBotIconComponent } from '../bmb-bot-icon/bmb-bot-icon.component';
 
 export { defaultBotList, defaultActionList } from './bot_list';
 export { IBotType, IChatBarActions } from './types';
@@ -37,9 +37,10 @@ export { IBotType, IChatBarActions } from './types';
   selector: 'bmb-chat-bar',
   standalone: true,
   imports: [
-    BmbIconComponent,
     ReactiveFormsModule,
     CommonModule,
+    BmbBotIconComponent,
+    BmbIconComponent,
     BmbDotPaginatorComponent,
     BmbActionIconComponent,
     ClickOutsideDirective,
@@ -103,7 +104,8 @@ export class BmbChatBarComponent {
       (
         bot: IBotType = {
           name: 'TecBot',
-          icon: '/assets/images/bot-icons/bot_tecStandar.svg',
+          label: 'Tecbot Standard',
+          icon: 'bot_tecStandar',
         },
       ): IBotType => bot,
     );

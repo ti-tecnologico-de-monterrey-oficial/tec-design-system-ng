@@ -26,10 +26,12 @@ describe('BmbIconService', () => {
   });
 
   it('should load icon successfully with filled variant', async () => {
-    mockFetch.and.returnValue(Promise.resolve({
-      ok: true,
-      text: () => Promise.resolve('<svg>home icon</svg>')
-    }));
+    mockFetch.and.returnValue(
+      Promise.resolve({
+        ok: true,
+        text: () => Promise.resolve('<svg>home icon</svg>'),
+      }),
+    );
 
     const result = await service.loadIconSvg('home', true);
     expect(result).toBe('<svg>home icon</svg>');
@@ -37,10 +39,12 @@ describe('BmbIconService', () => {
   });
 
   it('should load icon successfully with non-filled variant', async () => {
-    mockFetch.and.returnValue(Promise.resolve({
-      ok: true,
-      text: () => Promise.resolve('<svg>home icon</svg>')
-    }));
+    mockFetch.and.returnValue(
+      Promise.resolve({
+        ok: true,
+        text: () => Promise.resolve('<svg>home icon</svg>'),
+      }),
+    );
 
     const result = await service.loadIconSvg('home', false);
     expect(result).toBe('<svg>home icon</svg>');
@@ -48,10 +52,12 @@ describe('BmbIconService', () => {
   });
 
   it('should return null when icon is not found', async () => {
-    mockFetch.and.returnValue(Promise.resolve({
-      ok: false,
-      status: 404
-    }));
+    mockFetch.and.returnValue(
+      Promise.resolve({
+        ok: false,
+        status: 404,
+      }),
+    );
 
     const result = await service.loadIconSvg('nonexistent', true);
     expect(result).toBeNull();
@@ -71,10 +77,12 @@ describe('BmbIconService', () => {
   });
 
   it('should cache loaded icons', async () => {
-    mockFetch.and.returnValue(Promise.resolve({
-      ok: true,
-      text: () => Promise.resolve('<svg>cached icon</svg>')
-    }));
+    mockFetch.and.returnValue(
+      Promise.resolve({
+        ok: true,
+        text: () => Promise.resolve('<svg>cached icon</svg>'),
+      }),
+    );
 
     const result1 = await service.loadIconSvg('home', true);
     expect(result1).toBe('<svg>cached icon</svg>');
@@ -88,20 +96,24 @@ describe('BmbIconService', () => {
   it('should return correct cache size', async () => {
     expect(service.getCacheSize()).toBe(0);
 
-    mockFetch.and.returnValue(Promise.resolve({
-      ok: true,
-      text: () => Promise.resolve('<svg>icon</svg>')
-    }));
+    mockFetch.and.returnValue(
+      Promise.resolve({
+        ok: true,
+        text: () => Promise.resolve('<svg>icon</svg>'),
+      }),
+    );
 
     await service.loadIconSvg('home', true);
     expect(service.getCacheSize()).toBe(1);
   });
 
   it('should clear cache correctly', async () => {
-    mockFetch.and.returnValue(Promise.resolve({
-      ok: true,
-      text: () => Promise.resolve('<svg>icon</svg>')
-    }));
+    mockFetch.and.returnValue(
+      Promise.resolve({
+        ok: true,
+        text: () => Promise.resolve('<svg>icon</svg>'),
+      }),
+    );
 
     await service.loadIconSvg('home', true);
     expect(service.getCacheSize()).toBe(1);
