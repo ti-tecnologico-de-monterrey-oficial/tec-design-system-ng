@@ -258,6 +258,7 @@
     &-front {
       background-color: var(--containers-container-button);
       border: rem.rem_calc(1) solid var(--general_contrasts-container-outline);
+      color: var(--general_contrasts-75);
       @include shadow(8);
     }
 
@@ -276,13 +277,7 @@
       color: var(--general_contrasts-75);
     }
 
-    &-bot-icon {
-      height: rem.rem_calc(48);
-      width: rem.rem_calc(48);
-    }
-
     &-title {
-      color: var(--general_contrasts-75);
       @include fonts.font(4, bold);
       text-align: center;
       @include mixins.truncated-string(40, 2);

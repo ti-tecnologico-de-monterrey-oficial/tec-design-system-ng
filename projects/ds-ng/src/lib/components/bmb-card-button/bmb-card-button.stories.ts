@@ -513,7 +513,7 @@ export const SmallCardExample = {
     smallDescription:
       'Lorem upsum aovei trirangil porilnem menuandos flenzhcrunf',
     botImage: {
-      src: '/assets/images/bot-icons/bot_tecGPT.svg',
+      src: 'bot_tecGPT',
       alt: 'Left content image',
     },
     smallIcon: 'info',

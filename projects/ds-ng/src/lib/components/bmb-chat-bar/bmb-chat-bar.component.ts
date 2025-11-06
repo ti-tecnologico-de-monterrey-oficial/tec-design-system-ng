@@ -28,6 +28,7 @@ import {
 } from '../../services/projection/projection.service';
 import { IBmbNativeModal } from '../bmb-modal/bmb-modal.interface';
 import { TranslatePipe } from '../../pipes/translations';
+import { BmbBotIconComponent } from '../bmb-bot-icon/bmb-bot-icon.component';
 
 export { defaultBotList, defaultActionList } from './bot_list';
 export { IBotType, IChatBarActions } from './types';
@@ -36,9 +37,10 @@ export { IBotType, IChatBarActions } from './types';
   selector: 'bmb-chat-bar',
   standalone: true,
   imports: [
-    BmbIconComponent,
     ReactiveFormsModule,
     CommonModule,
+    BmbBotIconComponent,
+    BmbIconComponent,
     BmbDotPaginatorComponent,
     BmbActionIconComponent,
     ClickOutsideDirective,

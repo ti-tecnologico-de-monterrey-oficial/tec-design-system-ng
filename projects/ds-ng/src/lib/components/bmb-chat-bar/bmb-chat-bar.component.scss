@@ -4,7 +4,6 @@
 @use '../../../assets/styles/base/vars' as vars;
 
 @mixin bot() {
-  border: 0 none;
   background-color: var(--general_contrasts-80);
   border-radius: 50%;
   width: rem.rem_calc(60);
