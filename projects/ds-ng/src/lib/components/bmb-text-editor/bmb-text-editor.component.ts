@@ -3,34 +3,66 @@ import {
   Component,
   ElementRef,
   input,
+  TemplateRef,
   ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { SafeHtml } from '@angular/platform-browser';
 import { BmbButtonDirective } from '../../directives/bmb-button/button.directive';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
+import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
+import {
+  BmbProjectionContentService,
+  IBmbProjectionContent,
+} from '../../services/projection/projection.service';
+import { BmbActionMenuComponent } from '../bmb-action-menu/bmb-action-menu.component';
+import { BmbItemComponent } from '../bmb-item/bmb-item.component';
+import { IActions } from './types';
+import { getInsertList, getSettingsList } from './list';
+import { TranslatePipe } from '../../pipes/translations';
+import { BmbTranslationsService } from '../../services/translations/translations.service';
 
 @Component({
   selector: 'bmb-text-editor',
   standalone: true,
-  imports: [BmbButtonDirective, BmbIconComponent],
+  imports: [
+    BmbButtonDirective,
+    BmbIconComponent,
+    BmbActionIconComponent,
+    BmbActionMenuComponent,
+    BmbItemComponent,
+    TranslatePipe,
+  ],
   templateUrl: './bmb-text-editor.component.html',
   styleUrl: './bmb-text-editor.component.scss',
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BmbTextEditorComponent {
-  control = input<FormControl>(new FormControl(''));
-
   @ViewChild('editor') editor!: ElementRef<HTMLDivElement>;
+  @ViewChild('moreTemplate') moreTemplate!: TemplateRef<unknown>;
+  @ViewChild('insertTemplate') insertTemplate!: TemplateRef<unknown>;
 
+  control = input<FormControl>(new FormControl(''));
   htmlContent: string = '';
   sanitizedContent: SafeHtml = '';
   currentAlignment: string = 'left';
   showTableDialog: boolean = false;
   tableRows: number = 2;
   tableColumns: number = 2;
+  settingsItems = input<IActions[]>(
+    getSettingsList(this as any, this.translations),
+  );
+
+  insertItems = input<IActions[]>(
+    getInsertList(this as any, this.translations),
+  );
+
+  constructor(
+    private contentProjected: BmbProjectionContentService,
+    private translations: BmbTranslationsService,
+  ) {}
 
   detectAlignment() {
     const selection = window.getSelection();
@@ -52,8 +84,6 @@ export class BmbTextEditorComponent {
       'justify' + alignment.charAt(0).toUpperCase() + alignment.slice(1),
     );
   }
-
-  constructor(private sanitizer: DomSanitizer) {}
 
   ngAfterViewInit() {
     this.editor.nativeElement.focus();
@@ -133,7 +163,6 @@ export class BmbTextEditorComponent {
     }
   }
 
-  // Método para generar el HTML de la tabla
   generateTableHtml(rows: number, columns: number): string {
     let tableHtml = '<table style="border-collapse: collapse; width: 100%;">';
     for (let i = 0; i < rows; i++) {
@@ -157,5 +186,27 @@ export class BmbTextEditorComponent {
       range.insertNode(div);
       this.updateContent();
     }
+  }
+
+  handleMoreDialog(event: MouseEvent | KeyboardEvent): void {
+    const data: IBmbProjectionContent = {
+      content: this.moreTemplate,
+      targetRef: event.target as HTMLElement,
+    };
+
+    this.contentProjected.openContent(data);
+  }
+
+  handleInsertDialog(event: MouseEvent | KeyboardEvent): void {
+    const data: IBmbProjectionContent = {
+      content: this.insertTemplate,
+      targetRef: event.target as HTMLElement,
+    };
+
+    this.contentProjected.openContent(data);
+  }
+
+  closeProjectedContent() {
+    this.contentProjected.closeContent();
   }
 }
