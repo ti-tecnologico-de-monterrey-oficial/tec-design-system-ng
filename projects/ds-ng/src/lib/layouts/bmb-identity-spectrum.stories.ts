@@ -249,13 +249,13 @@ const HTML_TEMPLATE: string = `
                     value="tecservices@servicios.tec.mx"
                   />
                   <bmb-icon-item
-                    label="Teléfono movel"
-                    icon="smartphone"
+                    label="Teléfono móvil"
+                    icon="mobile"
                     value="+52 81 1625 5123 (solo texto)"
                   />
                   <bmb-icon-item
                     label="Teléfono"
-                    icon="phone"
+                    icon="phone_enabled"
                     value="+52 81 1234 5123"
                   />
                   <bmb-icon-item
