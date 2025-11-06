@@ -189,6 +189,7 @@ export class BmbTextEditorComponent {
   }
 
   handleMoreDialog(event: MouseEvent | KeyboardEvent): void {
+    if (!event.target) return;
     const data: IBmbProjectionContent = {
       content: this.moreTemplate,
       targetRef: event.target as HTMLElement,
@@ -198,6 +199,7 @@ export class BmbTextEditorComponent {
   }
 
   handleInsertDialog(event: MouseEvent | KeyboardEvent): void {
+    if (!event.target) return;
     const data: IBmbProjectionContent = {
       content: this.insertTemplate,
       targetRef: event.target as HTMLElement,
