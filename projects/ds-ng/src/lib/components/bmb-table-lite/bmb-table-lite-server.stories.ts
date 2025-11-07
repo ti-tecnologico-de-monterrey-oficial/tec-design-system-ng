@@ -10,7 +10,7 @@ import {
 import { BmbTableLiteComponent } from './bmb-table-lite.component';
 
 export default {
-  title: 'Components/Containers/Table lite/Server side',
+  title: 'Components/Containers/Table/Lite server side',
   component: BmbTableLiteComponent,
   tags: ['!autodocs'],
   decorators: [

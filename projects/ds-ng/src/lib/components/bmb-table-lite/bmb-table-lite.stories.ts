@@ -292,7 +292,7 @@ const additionalBlock: string = `
 `;
 
 export default {
-  title: 'Components/Containers/Table lite',
+  title: 'Components/Containers/Table/Table lite',
   tags: ['!autodocs'],
   component: BmbTableLiteComponent,
   decorators: [
