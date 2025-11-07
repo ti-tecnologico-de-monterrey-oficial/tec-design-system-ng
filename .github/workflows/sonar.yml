@@ -18,7 +18,7 @@ jobs:
           fetch-depth: 0 # Mejor relevancia del análisis
 
       - name: SonarQube Scan
-        uses: SonarSource/sonarqube-scan-action@v2
+        uses: SonarSource/sonarqube-scan-action@master
         with:
           args: >
             -Dsonar.organization=ti-tecnologico-de-monterrey-oficial
