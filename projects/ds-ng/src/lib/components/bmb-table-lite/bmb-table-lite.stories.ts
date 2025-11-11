@@ -385,7 +385,7 @@ custom actions, and templating for both actions and detail rows.
     isSubStory: true,
   },
 )}
-${getSpecialSpecifications(getEmptyStateMessage(), { showAdditionalBlockquote: true })}
+${getSpecialSpecifications(getEmptyStateMessage(), { showAdditionalBlockquote: true, isSubStory: true })}
 ${getBasicExampleBlock(
   `
   BmbIconComponent,
@@ -842,4 +842,4 @@ If the data is loaded asynchronously, make sure to update this property after da
 
 type Story = StoryObj<BmbTableLiteComponent>;
 
-export const Default: Story = {};
+export const Default = {};

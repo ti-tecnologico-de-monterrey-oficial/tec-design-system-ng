@@ -29,6 +29,7 @@ ${getGeneralDescription(
     generalDocLink:
       'https://bamboo.tec.mx/latest/componentes/table/descripcion-general-h1hRplJO',
     isSubStory: true,
+    subStoryChart: '  ',
   },
 )}
 ${getBasicExampleBlock(
@@ -175,6 +176,10 @@ ${getBasicExampleBlock(
       console.log('Button clicked', event);
     }`,
   true,
+  '',
+  '',
+  '',
+  '  ',
 )}
         `,
       },
