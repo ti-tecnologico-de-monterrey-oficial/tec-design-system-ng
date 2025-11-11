@@ -292,7 +292,7 @@ const additionalBlock: string = `
 `;
 
 export default {
-  title: 'Components/Containers/Table lite',
+  title: 'Components/Containers/Table/Table lite',
   tags: ['!autodocs'],
   component: BmbTableLiteComponent,
   decorators: [
@@ -382,9 +382,10 @@ custom actions, and templating for both actions and detail rows.
   {
     generalDocLink:
       'https://bamboo.tec.mx/latest/componentes/table/descripcion-general-h1hRplJO',
+    isSubStory: true,
   },
 )}
-${getSpecialSpecifications(getEmptyStateMessage())}
+${getSpecialSpecifications(getEmptyStateMessage(), { showAdditionalBlockquote: true })}
 ${getBasicExampleBlock(
   `
   BmbIconComponent,
@@ -395,6 +396,7 @@ ${getBasicExampleBlock(
 `,
   '',
   additionalBlock,
+  true,
 )}
 \`\`\`html
 
