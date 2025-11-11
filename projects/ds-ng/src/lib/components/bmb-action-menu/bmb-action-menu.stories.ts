@@ -106,7 +106,7 @@ export const WithIcon: Story = {
         <ng-template>
           <bmb-item
             label="Teléfono"
-            icon="smartphone"
+            icon="mobile"
             value="52 81 8358 2000"
             valueLink="tel:52 81 8358 2000"
             valueTarget="_self"
@@ -115,7 +115,7 @@ export const WithIcon: Story = {
         <ng-template>
           <bmb-item
             label="Teléfono"
-            icon="smartphone"
+            icon="mobile"
             value="+52 81 1625 5123 (solo texto)"
           />
         </ng-template>
@@ -168,7 +168,7 @@ export const InformativeText: Story = {
         </ng-template>
         <ng-template>
           <bmb-item
-            icon="smartphone"
+            icon="mobile"
             label="Informative text. Non actionable"
             supportText="Here is some support text for your soul."
           />
@@ -234,7 +234,7 @@ export const ButtonWithIcon: Story = {
           <bmb-item icon="mail" label="Correo" [isButton]="true" (action)="action($event)" />
         </ng-template>
         <ng-template>
-          <bmb-item icon="smartphone" label="Phone" [isButton]="true" (action)="action($event)" />
+          <bmb-item icon="mobile" label="Phone" [isButton]="true" (action)="action($event)" />
         </ng-template>
       </bmb-action-menu>
   `,
