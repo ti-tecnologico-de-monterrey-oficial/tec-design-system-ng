@@ -27,16 +27,14 @@ import {
   IBmbAlertCenterProtoEventFooter,
   IBmbAlertCenterFooterEventName,
 } from './types';
-import { BmbButtonDirective } from '../../directives/bmb-button/button.directive';
-import { BmbImageComponent } from '../bmb-image/bmb-image.component';
 import { BmbAlertCenterAdsComponent } from './bmb-alert-center-ads/bmb-alert-center-ads.component';
 import { BmbAlertCenterEmptyComponent } from './bmb-alert-center-empty/bmb-alert-center-empty.component';
 import { BmbAlertCenterService } from './bmb-alert-center.service';
 import { BmbLoaderComponent } from '../bmb-loader/bmb-loader.component';
 import { BmbNativeModalService } from '../../services/modal/native-modal.service';
 import { IBmbNativeModal } from '../bmb-modal/bmb-modal.interface';
-import es from '../../../assets/i18n/es.json';
 import { BmbTranslationsService } from '../../services/translations/translations.service';
+import { BmbAlertCenterDetailComponent } from '../utils/bmb-alert-center-detail/bmb-alert-center-detail.component';
 
 @Component({
   selector: 'bmb-alert-center',
@@ -47,8 +45,7 @@ import { BmbTranslationsService } from '../../services/translations/translations
     BmbLayoutDirective,
     BmbLayoutItemDirective,
     BmbAlertCenterFormComponent,
-    BmbButtonDirective,
-    BmbImageComponent,
+    BmbAlertCenterDetailComponent,
     BmbAlertCenterAdsComponent,
     BmbAlertCenterEmptyComponent,
     BmbLoaderComponent,
