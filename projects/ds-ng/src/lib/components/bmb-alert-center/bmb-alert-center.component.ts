@@ -35,7 +35,8 @@ import { BmbAlertCenterService } from './bmb-alert-center.service';
 import { BmbLoaderComponent } from '../bmb-loader/bmb-loader.component';
 import { BmbNativeModalService } from '../../services/modal/native-modal.service';
 import { IBmbNativeModal } from '../bmb-modal/bmb-modal.interface';
-import es from '../../../assets/i18n/es.json';
+import DOMPurify from 'dompurify';
+import { DomSanitizer } from '@angular/platform-browser';
 import { BmbTranslationsService } from '../../services/translations/translations.service';
 
 @Component({
@@ -97,6 +98,7 @@ export class BmbAlertCenterComponent {
     private nativeModalService: BmbNativeModalService,
     private bmbAlertCenterService: BmbAlertCenterService,
     public translationsService: BmbTranslationsService,
+    private sanitizer: DomSanitizer,
   ) {}
 
   alertList = computed<IBmbDataAlert[]>(() => {
@@ -243,5 +245,34 @@ export class BmbAlertCenterComponent {
       alerts: events,
       event: eventType as IBmbAlertCenterFooterEventName,
     });
+  }
+
+  sanitizedHtml(html: string) {
+    const clean = DOMPurify.sanitize(html, {
+      FORBID_TAGS: [
+        'script',
+        'style',
+        'iframe',
+        'object',
+        'embed',
+        'base',
+        'meta',
+        'form',
+      ],
+      FORBID_ATTR: [
+        'style',
+        'onerror',
+        'onclick',
+        'onkeyup',
+        'onload',
+        'onmouseover',
+        'onfocus',
+        'onkeydown',
+        'onchange',
+        'onblur',
+        'onsubmit',
+      ],
+    });
+    return this.sanitizer.bypassSecurityTrustHtml(clean);
   }
 }
