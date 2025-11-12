@@ -103,3 +103,29 @@ export const getMobileResolutionSize = (isMobile: boolean = true): string => {
   if (isMobile) return '(max-width: 1000px)';
   return '(min-width: 1001px)';
 };
+
+export const forbidTagsAndAttributes = {
+  FORBID_TAGS: [
+    'script',
+    'style',
+    'iframe',
+    'object',
+    'embed',
+    'base',
+    'meta',
+    'form',
+  ],
+  FORBID_ATTR: [
+    'style',
+    'onerror',
+    'onclick',
+    'onkeyup',
+    'onload',
+    'onmouseover',
+    'onfocus',
+    'onkeydown',
+    'onchange',
+    'onblur',
+    'onsubmit',
+  ],
+};
