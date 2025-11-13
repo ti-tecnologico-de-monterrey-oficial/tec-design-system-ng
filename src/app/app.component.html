@@ -139,6 +139,7 @@
     ]"
     (userProfileClick)="handleUserProfileClick()"
     (alertButtonClick)="handleAlertButtonClick($event)"
+    (helpButtonClick)="handleHelpButtonClick()"
     bmbVerticalLayoutItem
   ></bmb-top-bar>
   <section bmbVerticalLayoutItem [rowGrow]="1">
@@ -177,5 +178,22 @@
       aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos
       himenaeos.
     </p>
+  </div>
+</ng-template>
+
+<ng-template #modalLTSTemplate>
+  <div>
+    <bmb-dropdown
+      inputId="dropdown_id"
+      name="dropdown"
+      label="Dropdown"
+      [options]="[
+        { name: 'Apple name', value: '_apple', icon: 'home', id: 'apple_' },
+        { name: 'Banana name', value: '_banana', icon: 'bolt', id: 'banana_' },
+        { name: 'Orange name', value: '_orange', icon: 'bolt', id: 'orange_' },
+        { name: 'Pear name', value: '_pear', icon: 'info', id: 'pear_' },
+        { name: 'Grape name', value: '_grape', icon: 'bolt', id: 'grape_' }
+      ]"
+    />
   </div>
 </ng-template>
