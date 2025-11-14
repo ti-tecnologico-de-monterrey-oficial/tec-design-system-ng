@@ -1,5 +1,8 @@
 import { Component, input, output } from '@angular/core';
-import { IBmbDataAlert, IBmbDataAlertsParsed } from '../../bmb-alert-center/types';
+import {
+  IBmbDataAlert,
+  IBmbDataAlertsParsed,
+} from '../../bmb-alert-center/types';
 import { CommonModule } from '@angular/common';
 import DOMPurify from 'dompurify';
 import { DomSanitizer } from '@angular/platform-browser';
@@ -12,16 +15,14 @@ import { BmbButtonDirective } from '../../../directives/bmb-button/button.direct
   standalone: true,
   imports: [CommonModule, BmbImageComponent, BmbButtonDirective],
   templateUrl: './bmb-alert-center-detail.component.html',
-  styleUrl: './bmb-alert-center-detail.component.scss'
+  styleUrl: './bmb-alert-center-detail.component.scss',
 })
 export class BmbAlertCenterDetailComponent {
   alert = input.required<IBmbDataAlertsParsed | IBmbDataAlert>();
 
   alertEvent = output<IBmbDataAlertsParsed | IBmbDataAlert>();
 
-  constructor(
-      private readonly sanitizer: DomSanitizer,
-    ) {}
+  constructor(private readonly sanitizer: DomSanitizer) {}
 
   /**
    * Sanitizes HTML content using DOMPurify before bypassing Angular's built-in sanitization.
@@ -32,8 +33,7 @@ export class BmbAlertCenterDetailComponent {
    */
   sanitizedHtml(html: string) {
     const clean = DOMPurify.sanitize(html, forbidTagsAndAttributes);
-    // NOSONAR: Content is sanitized with DOMPurify - safe to bypass Angular sanitization
-    return this.sanitizer.bypassSecurityTrustHtml(clean);
+    return this.sanitizer.bypassSecurityTrustHtml(clean); // NOSONAR: Content is sanitized with DOMPurify - safe to bypass Angular sanitization
   }
 
   handleAlertEvent(alert: IBmbDataAlertsParsed | IBmbDataAlert): void {

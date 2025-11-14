@@ -23,62 +23,62 @@ jobs:
           --user '${{ vars.JIRA_USER }}:${{ secrets.JIRA_TOKEN }}' \
           --header 'Accept: application/json' \
           --header 'Content-Type: application/json' \
-          --data '{
-            "fields": {
-              "assignee": {
-                "id": "${{ vars.JIRA_ASSIGNEE_ID }}"
+          --data "{
+            \"fields\": {
+              \"assignee\": {
+                \"id\": \"${{ vars.JIRA_ASSIGNEE_ID }}\"
               },
-              "description": {
-                "content": [
+              \"description\": {
+                \"content\": [
                   {
-                    "content": [
+                    \"content\": [
                       {
-                        "text": "$DESCRIPTION",
-                        "type": "text"
+                        \"text\": \"$DESCRIPTION\",
+                        \"type\": \"text\"
                       }
                     ],
-                    "type": "paragraph"
+                    \"type\": \"paragraph\"
                   }
                 ],
-                "type": "doc",
-                "version": 1
+                \"type\": \"doc\",
+                \"version\": 1
               },
-              "environment": {
-                "content": [
+              \"environment\": {
+                \"content\": [
                   {
-                    "content": [
+                    \"content\": [
                       {
-                        "text": "UAT",
-                        "type": "text"
+                        \"text\": \"UAT\",
+                        \"type\": \"text\"
                       }
                     ],
-                    "type": "paragraph"
+                    \"type\": \"paragraph\"
                   }
                 ],
-                "type": "doc",
-                "version": 1
+                \"type\": \"doc\",
+                \"version\": 1
               },
-              "issuetype": {
-                "id": "10085"
+              \"issuetype\": {
+                \"id\": \"10085\"
               },
-              "labels": [
-                "bugfix",
-                "github-issue-${{ github.event.issue.number }}",
-                "repo-${{ github.repository }}"
+              \"labels\": [
+                \"bugfix\",
+                \"github-issue-${{ github.event.issue.number }}\",
+                \"repo-${{ github.repository }}\"
               ],
-              "project": {
-                "id": "10203"
+              \"project\": {
+                \"id\": \"10203\"
               },
-              "reporter": {
-                "id": "${{ vars.JIRA_ASSIGNEE_ID }}"
+              \"reporter\": {
+                \"id\": \"${{ vars.JIRA_ASSIGNEE_ID }}\"
               },
-              "summary": "$SUMMARY",
-              "timetracking": {
-                "originalEstimate": "10",
-                "remainingEstimate": "5"
+              \"summary\": \"$SUMMARY\",
+              \"timetracking\": {
+                \"originalEstimate\": \"10\",
+                \"remainingEstimate\": \"5\"
               }
             },
-            "update": {}
-          }'
+            \"update\": {}
+          }"
         env:
           JIRA_TOKEN: ${{ secrets.JIRA_TOKEN }}

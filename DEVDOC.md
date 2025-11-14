@@ -214,7 +214,7 @@ Once you copy the new token go to: [Github Secrets](https://github.com/ti-tecnol
 
 ### User ID and User token
 
-To obtain the user token, go to the Jira home screen and click on `Teams`, once on Teams screen, search your name or team member that you need to assignee the new tickets. Click on team member card and the path should look something like this `https://home.atlassian.com/o/<projectID>/people/<userToken>?cloudId=<cloudID>`.
+To obtain the user token, go to the Jira home screen and click on `Teams`, once on Teams screen, search your name or team member that you need to assign the new tickets. Click on team member card and the path should look something like this `https://home.atlassian.com/o/<projectID>/people/<userToken>?cloudId=<cloudID>`.
 
 You need to copy the `userToken` and update the `JIRA_ASSIGNEE_ID` variable in [Github Variables](https://github.com/ti-tecnologico-de-monterrey-oficial/tec-design-system-ng/settings/variables/actions).
 

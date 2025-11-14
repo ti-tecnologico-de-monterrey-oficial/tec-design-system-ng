@@ -31,7 +31,7 @@ export class BmbNotificationCardModalComponent {
   }
 
   getAlert(): IBmbDataAlertsParsed {
-    if (!this.visibleAlert) {
+    if (!this.visibleAlert()) {
       throw new Error('No alert visible');
     }
     return this.visibleAlert() as IBmbDataAlertsParsed;
