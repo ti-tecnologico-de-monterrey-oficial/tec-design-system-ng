@@ -55,6 +55,7 @@
     "@angular/material": "20.0.4",
     "@angular/platform-browser": "^20.0.5",
     "@angular/router": "^20.0.5",
+    "dompurify": "^3.3.0",
     "dotenv": "^16.4.7",
     "luxon": "^3.6.1",
     "material-symbols": "0.31.9",
