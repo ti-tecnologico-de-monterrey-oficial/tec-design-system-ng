@@ -1,0 +1,84 @@
+name: Create Jira Issue from GitHub Issue
+
+on:
+  issues:
+    types: [opened]
+
+jobs:
+  create-jira-issue:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create Jira Issue with GitHub data
+        run: |
+          # Escapar caracteres especiales en el cuerpo del issue
+          DESCRIPTION=$(echo '${{ github.event.issue.body }}' | sed 's/"/\\"/g' | sed "s/'/\\'/g")
+          if [ -z "$DESCRIPTION" ]; then
+            DESCRIPTION="No description provided in GitHub issue"
+          fi
+
+          SUMMARY="[GH-${{ github.event.repository.name }}-${{ github.event.issue.number }}] ${{ github.event.issue.title }}"
+
+          curl  --request POST \
+          --url 'https://tecdemonterrey.atlassian.net/rest/api/3/issue' \
+          --user '${{ vars.JIRA_USER }}:${{ secrets.JIRA_TOKEN }}' \
+          --header 'Accept: application/json' \
+          --header 'Content-Type: application/json' \
+          --data '{
+            "fields": {
+              "assignee": {
+                "id": "${{ vars.JIRA_ASSIGNEE_ID }}"
+              },
+              "description": {
+                "content": [
+                  {
+                    "content": [
+                      {
+                        "text": "$DESCRIPTION",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ],
+                "type": "doc",
+                "version": 1
+              },
+              "environment": {
+                "content": [
+                  {
+                    "content": [
+                      {
+                        "text": "UAT",
+                        "type": "text"
+                      }
+                    ],
+                    "type": "paragraph"
+                  }
+                ],
+                "type": "doc",
+                "version": 1
+              },
+              "issuetype": {
+                "id": "10085"
+              },
+              "labels": [
+                "bugfix",
+                "github-issue-${{ github.event.issue.number }}",
+                "repo-${{ github.repository }}"
+              ],
+              "project": {
+                "id": "10203"
+              },
+              "reporter": {
+                "id": "${{ vars.JIRA_ASSIGNEE_ID }}"
+              },
+              "summary": "$SUMMARY",
+              "timetracking": {
+                "originalEstimate": "10",
+                "remainingEstimate": "5"
+              }
+            },
+            "update": {}
+          }'
+        env:
+          JIRA_TOKEN: ${{ secrets.JIRA_TOKEN }}
