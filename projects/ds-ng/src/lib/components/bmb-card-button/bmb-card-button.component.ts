@@ -65,6 +65,7 @@ export class BmbCardButtonComponent {
   menuItems = input<IDropdownItem[]>([]);
   iconTemplate: TemplateRef<any> | null = null; //Deprecated
   isTemplate = input<boolean>(false);
+  isDisabled = input<boolean>(false);
   textLink = input<IBmbLinkConfiguration>();
 
   onAddContentClick = output<MouseEvent>();

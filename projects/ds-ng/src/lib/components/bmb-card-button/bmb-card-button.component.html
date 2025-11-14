@@ -40,7 +40,8 @@
           leftContent() &&
           !leftContentIcon() &&
           leftContentImage() &&
-          !textLink()
+          !textLink(),
+        disabled: isDisabled()
       }"
       (click)="handleAddContent($event)"
     >
@@ -150,6 +151,7 @@
     <button
       type="button"
       class="bmb_card_button-add"
+      [disabled]="isDisabled()"
       (click)="handleAddContent($event)"
     >
       <bmb-icon

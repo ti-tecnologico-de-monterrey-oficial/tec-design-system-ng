@@ -81,6 +81,16 @@ ${getBasicExampleBlock('BmbCardButtonComponent')}
         type: { summary: 'boolean' },
       },
     },
+    isDisabled: {
+      control: { type: 'boolean' },
+      description:
+        'Disables the button interaction — applies for all, not for Small Card',
+      table: {
+        category: 'Common Properties',
+        defaultValue: getDefaultValueControl(false),
+        type: { summary: 'boolean' },
+      },
+    },
     botImage: {
       control: { type: 'object' },
       description:
