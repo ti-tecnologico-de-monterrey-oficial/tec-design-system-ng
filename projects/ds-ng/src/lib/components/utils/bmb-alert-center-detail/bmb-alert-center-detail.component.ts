@@ -33,7 +33,7 @@ export class BmbAlertCenterDetailComponent {
    */
   sanitizedHtml(html: string) {
     const clean = DOMPurify.sanitize(html, forbidTagsAndAttributes);
-    return this.sanitizer.bypassSecurityTrustHtml(clean); // NOSONAR: Content is sanitized with DOMPurify - safe to bypass Angular sanitization
+    return this.sanitizer.bypassSecurityTrustHtml(clean); // NOSONAR Content is sanitized with DOMPurify - safe to bypass Angular sanitization
   }
 
   handleAlertEvent(alert: IBmbDataAlertsParsed | IBmbDataAlert): void {
