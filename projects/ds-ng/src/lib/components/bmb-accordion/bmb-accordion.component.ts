@@ -168,13 +168,13 @@ export class BmbAccordionComponent implements OnInit, OnChanges {
     return styles;
   }
 
-  toggle(event?: MouseEvent): void {
+  toggle(event: MouseEvent): void {
     if (this.lockToggle()) return;
 
     if (!this._disabled()) {
       this._expanded.update((current) => !current);
       this._active.update((current) => !current);
-      this.onClick.emit(event || new MouseEvent('click'));
+      this.onClick.emit(event);
 
       if (this.expanded() == undefined) {
         if (this.isOpen()) {
@@ -188,5 +188,12 @@ export class BmbAccordionComponent implements OnInit, OnChanges {
 
   getIconToggle(): string {
     return this.isOpen() ? 'expand_less' : 'expand_more';
+  }
+
+  handleToggleKeyboard(event: KeyboardEvent): void {
+    if (event.key === 'Enter' || event.key === ' ') {
+      this.toggle(new MouseEvent('click'));
+      event.preventDefault();
+    }
   }
 }
