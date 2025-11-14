@@ -20,7 +20,11 @@ import {
   BmbProjectionContentService,
   BmbNotificationCardComponent,
   IBmbDataAlert,
+  ModalDataConfig,
+  BmbModalComponent,
+  BmbDropdownComponent,
 } from '../../projects/ds-ng/src/public-api';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
@@ -32,6 +36,7 @@ import {
     BmbVerticalLayoutDirective,
     BmbVerticalLayoutItemDirective,
     BmbSidebarComponent,
+    BmbDropdownComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
@@ -43,8 +48,11 @@ export class AppComponent {
   constructor(
     private modalService: BmbNativeModalService,
     private projectionService: BmbProjectionContentService,
+    private matDialog: MatDialog,
   ) {}
+
   @ViewChild('modalTemplate') modalTemplate!: TemplateRef<unknown>;
+  @ViewChild('modalLTSTemplate') modalLTSTemplate!: TemplateRef<any>;
 
   modalId = signal<string | null>(null);
   isTheModalOpen = computed(() => {
@@ -485,5 +493,18 @@ https://live.tec.mx/cbweek</p><p>¡Te esperamos!`,
 
   handleActionsCloseClick(params: unknown): void {
     console.log('Close button clicked', params);
+  }
+
+  handleHelpButtonClick(): void {
+    const modalData: ModalDataConfig = {
+      title: 'My Modal',
+      content: this.modalLTSTemplate,
+      primaryBtnLabel: 'Ok',
+      secondaryBtnLabel: 'Cancel',
+      hidePrimaryButton: false,
+      hideSecondaryButton: true
+    };
+
+    this.matDialog.open(BmbModalComponent, { data: modalData });
   }
 }

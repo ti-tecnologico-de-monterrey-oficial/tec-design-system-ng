@@ -95,8 +95,8 @@ export class BmbChatBarComponent {
   mobileBotSelectorTemplate!: TemplateRef<unknown>;
 
   constructor(
-    private contentProjected: BmbProjectionContentService,
-    private nativeModalService: BmbNativeModalService,
+    private readonly contentProjected: BmbProjectionContentService,
+    private readonly nativeModalService: BmbNativeModalService,
   ) {}
 
   ngOnInit(): void {
