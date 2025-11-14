@@ -91,9 +91,9 @@ export class BmbAlertCenterComponent {
   @ViewChild('container') container!: ElementRef;
 
   constructor(
-    private nativeModalService: BmbNativeModalService,
-    private bmbAlertCenterService: BmbAlertCenterService,
-    public translationsService: BmbTranslationsService,
+    private readonly nativeModalService: BmbNativeModalService,
+    private readonly bmbAlertCenterService: BmbAlertCenterService,
+    public readonly translationsService: BmbTranslationsService,
   ) {}
 
   alertList = computed<IBmbDataAlert[]>(() => {

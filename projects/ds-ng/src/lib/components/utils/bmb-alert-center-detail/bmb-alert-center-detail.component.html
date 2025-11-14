@@ -19,7 +19,17 @@
         />
       }
       @case ('video') {
-        <video [src]="item.href" controls></video>
+        <video [ariaDescription]="alert().title" [src]="item.href" controls>
+          @if (item.subtitlesURL) {
+            <track
+              kind="subtitles"
+              [src]="item.subtitlesURL"
+              [srclang]="item.language || 'es'"
+              [label]="item.language || 'Spanish'"
+              default
+            />
+          }
+        </video>
       }
       @case ('title') {
         <h3

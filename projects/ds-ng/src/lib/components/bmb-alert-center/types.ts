@@ -13,6 +13,8 @@ export interface IBmbDataAlertDetails {
   href?: string;
   type: 'paragraph' | 'image' | 'video' | 'link' | 'button' | 'title' | 'html';
   variant?: IButtonAppearance;
+  subtitlesURL?: string;
+  language?: string;
   event?: (id: string | number | undefined) => void;
 }
 
