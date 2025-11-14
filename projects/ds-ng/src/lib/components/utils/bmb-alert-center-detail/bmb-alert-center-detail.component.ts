@@ -20,11 +20,19 @@ export class BmbAlertCenterDetailComponent {
   alertEvent = output<IBmbDataAlertsParsed | IBmbDataAlert>();
 
   constructor(
-      private sanitizer: DomSanitizer,
+      private readonly sanitizer: DomSanitizer,
     ) {}
 
+  /**
+   * Sanitizes HTML content using DOMPurify before bypassing Angular's built-in sanitization.
+   * This is safe because:
+   * 1. Content is pre-sanitized with DOMPurify using restrictive forbidTagsAndAttributes config
+   * 2. DOMPurify removes all potentially dangerous HTML/JS content
+   * 3. Only safe HTML tags and attributes are allowed through the configuration
+   */
   sanitizedHtml(html: string) {
     const clean = DOMPurify.sanitize(html, forbidTagsAndAttributes);
+    // NOSONAR: Content is sanitized with DOMPurify - safe to bypass Angular sanitization
     return this.sanitizer.bypassSecurityTrustHtml(clean);
   }
 
