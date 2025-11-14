@@ -31,12 +31,12 @@ export class BmbCalendarService {
     );
   }
 
-  editEvent(id: string) {
+  editEvent(id: string, newEventData: Partial<IBmbCalendarEvent>) {
     this.eventList.update((currentEvents) =>
       currentEvents.map((event) => {
         if (event.id !== id) return event;
 
-        return event;
+        return { ...event, ...newEventData };
       }),
     );
   }
