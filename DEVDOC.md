@@ -201,6 +201,27 @@ Please check all steps on the checklist
 
 ---
 
+## Jira tokens
+
+
+### API token
+
+In order to update the Jira tokens go to: [API tokens](https://id.atlassian.com/manage-profile/security/api-tokens).
+
+> **Important:** The user token will expire after one year.
+
+Once you copy the new token go to: [Github Secrets](https://github.com/ti-tecnologico-de-monterrey-oficial/tec-design-system-ng/settings/secrets/actions) and update the `JIRA_TOKEN` secret with the new token.
+
+### User ID and User token
+
+To obtain the user token, go to the Jira home screen and click on `Teams`, once on Teams screen, search your name or team member that you need to assignee the new tickets. Click on team member card and the path should look something like this `https://home.atlassian.com/o/<projectID>/people/<userToken>?cloudId=<cloudID>`.
+
+You need to copy the `userToken` and update the `JIRA_ASSIGNEE_ID` variable in [Github Variables](https://github.com/ti-tecnologico-de-monterrey-oficial/tec-design-system-ng/settings/variables/actions).
+
+The `JIRA_USER` must be the same user who generate the API token.
+
+---
+
 ## Versions
 
 To create new versions, the SemVer standard will be used, we will follow the following flow:
