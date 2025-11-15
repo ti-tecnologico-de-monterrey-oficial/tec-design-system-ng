@@ -183,8 +183,8 @@ export class BmbCalendarComponent implements OnInit, AfterViewInit {
   detailContent?: TemplateRef<any>;
   @ViewChild('modalTemplate') modalTemplate!: TemplateRef<any>;
 
-  @HostListener('window:resize', ['$event'])
-  private resize() {
+  @HostListener('window:resize')
+  resize() {
     if (window.innerWidth < 1000) {
       this.view.set('day');
       this.isMobileHeader = true;
@@ -194,9 +194,9 @@ export class BmbCalendarComponent implements OnInit, AfterViewInit {
   }
 
   constructor(
-    private eventsSignal: BmbCalendarService,
-    private modalService: BmbNativeModalService,
-    private translationsService: BmbTranslationsService,
+    private readonly eventsSignal: BmbCalendarService,
+    private readonly modalService: BmbNativeModalService,
+    private readonly translationsService: BmbTranslationsService,
   ) {
     effect(() => {
       const calendars = this.filteredEvents().calendars || [];
