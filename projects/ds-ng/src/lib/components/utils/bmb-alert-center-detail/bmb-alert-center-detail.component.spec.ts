@@ -8,9 +8,8 @@ describe('BmbAlertCenterDetailComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [BmbAlertCenterDetailComponent]
-    })
-    .compileComponents();
+      imports: [BmbAlertCenterDetailComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(BmbAlertCenterDetailComponent);
     component = fixture.componentInstance;
