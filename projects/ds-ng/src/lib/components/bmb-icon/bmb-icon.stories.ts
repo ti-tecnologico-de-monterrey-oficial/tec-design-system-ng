@@ -45,12 +45,15 @@ ${getArchitectureSection(
   < icon />
 </i>`,
 )}
-${getSpecialSpecifications(`
+${getSpecialSpecifications(
+  `${ICON_IMAGE_DETAIL}
+>
 - Use the icons as a visual guide.
 - Check out the icon library in the documentation [here](https://bamboo.tec.mx/latest/foundations/iconos/biblioteca-WrE6VXv5)
 - ${GOOGLE_FONTS_LINK}
-- ${ICON_IMAGE_DETAIL}`)}
-<br/>
+`,
+  { showAdditionalBlockquote: true },
+)}
 ${getBasicExampleBlock('BmbIconComponent')}
         `,
       },

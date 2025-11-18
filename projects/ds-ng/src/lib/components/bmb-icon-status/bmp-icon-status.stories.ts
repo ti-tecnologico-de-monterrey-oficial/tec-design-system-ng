@@ -4,10 +4,8 @@ import {
   getBasicExampleBlock,
   getGeneralComponentDescription,
   getGeneralDescription,
-  RELEVANT_TITLE,
 } from '../../utils/doc/utils';
 import {
-  DBmbIconParamDesc,
   getAppearanceParam,
   SIMPLE_ICON_DESCRIPTION,
 } from '../../utils/doc/parameterDescriptions';
