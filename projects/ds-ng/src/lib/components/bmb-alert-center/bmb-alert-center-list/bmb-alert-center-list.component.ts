@@ -52,8 +52,7 @@ export class BmbAlertCenterListComponent {
     return date.toFormat('EEEE dd LLLL yyyy', { locale: 'es' });
   }
 
-  handleRowClick(event: Event, item: IBmbDataAlertsParsed): void {
-    const target = event.target as HTMLElement;
+  handleRowClick(item: IBmbDataAlertsParsed): void {
     this.alertSelected.emit(item);
   }
 

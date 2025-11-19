@@ -1,29 +1,34 @@
-name: Build
-with:
-  args: >
-    - Dsonar.organization=ti-tecnologico-de-monterrey-oficial
-    - Dsonar.projectKey=tec-design-system-ng
-    - Dsonar.sources=./projects/ds-ng
-    - Dsonar.sourceEncoding=UTF-8
-    - Dsonar.exclusions=**/node_modules/**
-    - Dsonar.exclusions=**/*.stories.ts
-    - Dsonar.test.exclusions=**/*.spec.ts
+name: Build & SonarCloud
+
 on:
   push:
     branches:
       - develop
   pull_request:
     types: [opened, synchronize, reopened]
+
 jobs:
   sonarcloud:
     name: SonarCloud
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout sources
+        uses: actions/checkout@v4
         with:
-          fetch-depth: 0 # Shallow clones should be disabled for a better relevancy of analysis
-      - name: SonarCloud Scan
-        uses: SonarSource/sonarcloud-github-action@master
+          fetch-depth: 0 # Mejor relevancia del análisis
+
+      - name: SonarQube Scan
+        uses: SonarSource/sonarqube-scan-action@master
+        with:
+          args: >
+            -Dsonar.organization=ti-tecnologico-de-monterrey-oficial
+            -Dsonar.projectKey=tec-design-system-ng
+            -Dsonar.sources=./projects/ds-ng
+            -Dsonar.sourceEncoding=UTF-8
+            -Dsonar.exclusions=**/node_modules/**
+            -Dsonar.exclusions=**/*.stories.ts
+            -Dsonar.exclusions=**/*.mdx
+            -Dsonar.test.exclusions=**/*.spec.ts
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Needed to get PR information, if any
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }} # Token de sonar
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Info de PR
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }} # Token Sonar
