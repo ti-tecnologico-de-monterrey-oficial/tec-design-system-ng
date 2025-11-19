@@ -1,15 +1,29 @@
 <section bmbLayout margin="none" gapSize="m">
   @if (icon()) {
-    <section bmbLayoutItem [isDynamicItem]="true">
-      <bmb-icon [icon]="icon()" [size]="iconSize()" [alt]="label()" />
-    </section>
+    <bmb-icon
+      [icon]="icon()"
+      [size]="iconSize()"
+      [alt]="label()"
+      bmbLayoutItem
+      [isDynamicItem]="true"
+    />
   }
-  <section bmbLayoutItem [isDynamicItem]="true" [colGrow]="1">
-    <span class="bmb_icon-item-label"> {{ label() }} </span>
-  </section>
-  <section bmbLayoutItem [isDynamicItem]="true" [colGrow]="1">
-    <div class="bmb_icon-item-value" [innerHTML]="safeValue"></div>
-  </section>
+  <span
+    class="bmb_icon-item-label"
+    bmbLayoutItem
+    [isDynamicItem]="true"
+    [colGrow]="1"
+  >
+    {{ label() }}
+  </span>
+
+  <div
+    class="bmb_icon-item-value"
+    [innerHTML]="safeValue"
+    bmbLayoutItem
+    [isDynamicItem]="true"
+    [colGrow]="1"
+  ></div>
 </section>
 @if (showDivider()) {
   <bmb-divider />

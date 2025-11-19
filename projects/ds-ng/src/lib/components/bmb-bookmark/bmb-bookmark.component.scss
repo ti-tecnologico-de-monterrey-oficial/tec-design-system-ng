@@ -1,13 +1,13 @@
 .bmb_bookmark {
   &:hover {
     .bmb_action_icon-icon {
-      color: var(--red-primary);
+      color: var(--buttons-destructive);
     }
   }
 
   &-active {
     .bmb_action_icon-icon {
-      color: var(--red-primary);
+      color: var(--buttons-destructive);
     }
   }
 

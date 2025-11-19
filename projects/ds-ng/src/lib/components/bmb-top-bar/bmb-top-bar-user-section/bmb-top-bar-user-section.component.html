@@ -44,15 +44,15 @@
     />
   }
   @if (showHelpButton() || mitec()) {
-    <bmb-action-icon
+    <bmb-button-icon
       bmbLayoutItem
       [ngClass]="{
         'bmb_top-bar-user-section-no-mobile':
           mitec() && (showRoleButton() || showNotifications())
       }"
       icon="help"
-      [iconSize]="32"
-      (buttonClick)="handleHelpButtonClick($event)"
+      [showContainer]="false"
+      (onButtonClick)="handleHelpButtonClick($event)"
     />
   }
   @if (!!userInformation()) {

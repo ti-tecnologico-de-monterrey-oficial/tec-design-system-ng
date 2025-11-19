@@ -18,7 +18,7 @@ The component accepts the following inputs to customize its behavior and appeara
 
 | Input            | Type               | Default                                                                | Description                                           |
 | ---------------- | ------------------ | ---------------------------------------------------------------------- | ----------------------------------------------------- |
-| `iconBot`        | `string`           | `'/assets/images/bot-icons/bot_tecStandar.svg'`                        | The icon displayed for the bot.                       |
+| `iconBot`        | `string`           | `'bot_tecStandar'`                                                     | The icon displayed for the bot.                       |
 | `message`        | `IBmbChatMessage`  | `undefined`                                                            | The chat message to display (required).               |
 | `gptBot`         | `boolean`          | `false`                                                                | Indicates whether the message is from a GPT-like bot. |
 | `gptIcons`       | `boolean`          | `false`                                                                | Enables GPT-specific icons for actions.               |
@@ -71,7 +71,7 @@ The component's template is structured as follows:
 
 ```html
 <bmb-chat-bubble
-  [iconBot]="'/assets/images/bot-icons/custom_bot.svg'"
+  [iconBot]="'custom_bot'"
   [message]="{ text: 'Hello, how can I help you?', sender: 'bot' }"
   [gptBot]="true"
   [gptIcons]="true"
@@ -91,7 +91,7 @@ The component's template is structured as follows:
 
 ```html
 <bmb-chat-bubble
-  [iconBot]="'/assets/images/bot-icons/chat_gpt.svg'"
+  [iconBot]="'chat_gpt'"
   [message]="{ text: 'This is a GPT bot message.', sender: 'bot' }"
   [gptBot]="true"
   [gptIcons]="true"

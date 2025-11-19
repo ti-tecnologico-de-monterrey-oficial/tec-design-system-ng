@@ -110,6 +110,29 @@
     "salutation": "Buenas tardes",
     "digital_id": "ID Digital"
   },
+  "text_editor": {
+    "format_block": "Estilo de párrafo",
+    "paragraph": "Párrafo",
+    "title1": "Título 1",
+    "title2": "Título 2",
+    "title3": "Título 3",
+    "appointment": "Cita",
+    "bold": "Negrita",
+    "italic": "Cursiva",
+    "underline": "Subrayado",
+    "fore_color": "Color de texto",
+    "left": "Alinear a la izquierda",
+    "center": "Centrar",
+    "right": "Alinear a la derecha",
+    "insert_ordered_list": "Lista numerada",
+    "insert_unordered_list": "Lista con viñetas",
+    "indent": "Aumentar sangría",
+    "outdent": "Disminuir sangría",
+    "insert_link": "Insertar enlace",
+    "insert_image": "Insertar imagen",
+    "clear_formatting": "Limpiar formato",
+    "select_option": "Selecciona una opción"
+  },
   "notification_card": {
     "tabs": {
       "notifications": "Notificaciones",

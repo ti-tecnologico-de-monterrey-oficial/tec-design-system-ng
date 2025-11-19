@@ -1,6 +1,9 @@
 .bmb_check-external-link-button {
+  display: inline-flex;
+
   &:has(.bmb_icon-figure) {
     display: inline-block;
+    line-height: 0;
   }
 
   &-element {

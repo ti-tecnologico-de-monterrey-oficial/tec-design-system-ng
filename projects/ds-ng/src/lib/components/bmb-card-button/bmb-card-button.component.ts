@@ -21,6 +21,7 @@ import {
   IDropdownItem,
 } from '../../types';
 import { BmbTextLinkComponent } from '../bmb-text-link/bmb-text-link.component';
+import { BmbBotIconComponent } from '../bmb-bot-icon/bmb-bot-icon.component';
 
 export interface ICardButton {
   title: string;
@@ -41,6 +42,7 @@ export interface ICardButton {
   styleUrl: './bmb-card-button.component.scss',
   imports: [
     CommonModule,
+    BmbBotIconComponent,
     BmbIconComponent,
     FormsModule,
     BmbBadgeComponent,
@@ -63,6 +65,7 @@ export class BmbCardButtonComponent {
   menuItems = input<IDropdownItem[]>([]);
   iconTemplate: TemplateRef<any> | null = null; //Deprecated
   isTemplate = input<boolean>(false);
+  isDisabled = input<boolean>(false);
   textLink = input<IBmbLinkConfiguration>();
 
   onAddContentClick = output<MouseEvent>();

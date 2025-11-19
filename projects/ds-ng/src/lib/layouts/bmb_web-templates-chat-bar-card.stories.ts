@@ -30,7 +30,7 @@ import { attributes, RELEVANT_TITLE } from '../utils/doc/utils';
       <main class="bmb_template-single-home-card-main">
         <bmb-home-card-chat
           leftIcon="chevron_left"
-          icon="/assets/images/bot-icons/bot_tecStandar.svg"
+          icon="bot_tecStandar"
           bgIconAppearance="charade-500"
           title="Asistente TECbot"
           contentPadding="none"
@@ -92,7 +92,7 @@ class StorybookModalWrapperComponent {
 }
 
 export default {
-  title: 'Internals/Home chat card',
+  title: 'Deprecated/Home chat card',
   component: BmbTopBarComponent,
   decorators: [
     moduleMetadata({
@@ -131,7 +131,7 @@ import { BmbModalComponent, ModalDataConfig } from '@ti-tecnologico-de-monterrey
         <main class="bmb_template-single-home-card-main">
             <bmb-home-card-chat
                 leftIcon="chevron_left"
-                icon="/assets/images/bot-icons/bot_tecStandar.svg"
+                icon="bot_tecStandar"
                 bgIconAppearance="charade-500"
                 title="Asistente TECbot"
                 contentPadding="none"

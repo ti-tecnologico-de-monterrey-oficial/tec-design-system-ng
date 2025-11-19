@@ -23,7 +23,10 @@
     }"
     [ngStyle]="{ width: width(), 'aspect-ratio': ratio() }"
     (click)="mediaCardClicked.emit($event)"
-    (keydown)="($event.key === 'Enter' || $event.key === ' ') && mediaCardClicked.emit($event)"
+    (keydown)="
+      ($event.key === 'Enter' || $event.key === ' ') &&
+        mediaCardClicked.emit($event)
+    "
     tabindex="0"
     role="button"
   >

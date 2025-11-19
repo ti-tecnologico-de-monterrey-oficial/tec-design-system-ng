@@ -1,6 +1,8 @@
 import { componentWrapperDecorator, Meta, StoryObj } from '@storybook/angular';
 import { BmbNotificationCounterComponent } from './bmb-notification-counter.component';
 import {
+  BlockquoteType,
+  getAlertBlockquote,
   getBasicExampleBlock,
   getGeneralDescription,
   getPageStructureForFoundationStories,
@@ -37,13 +39,18 @@ ${getGeneralDescription(
   },
 )}
 ${getSpecialSpecifications(
-  `###${RELEVANT_TITLE.warning}
->
+  `${getAlertBlockquote(
+    `
 Please consider that the fixed height of the ***Notification counter*** is 12 px,
 such that the sizes assigned to the elements in relation to it must be considered,
 in this way there will be visual harmony between the elements.
 `,
-  { isSubStory: true },
+    {
+      title: '###'.concat(RELEVANT_TITLE.important),
+      blockquoteType: BlockquoteType.important,
+    },
+  )}`,
+  { isSubStory: true, showAdditionalBlockquote: true },
 )}
 ${getBasicExampleBlock('BmbIconComponent', '', '', true)}
         `,

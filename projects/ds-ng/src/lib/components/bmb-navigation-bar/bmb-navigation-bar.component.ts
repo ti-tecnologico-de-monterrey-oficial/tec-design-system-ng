@@ -34,6 +34,7 @@ export class BmbNavigationBarComponent {
   gapSize = input<SizeNames>('m');
   justify = input<IJustifyOptions>('spaceBetween');
   alignItems = input<IAlignItemsOptions>('start');
+  isMitecHeader = input<boolean>();
 
   handleClick(actionHeader: IBmbActionHeader): void {
     actionHeader.action();
