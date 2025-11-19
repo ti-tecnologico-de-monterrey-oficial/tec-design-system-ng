@@ -160,7 +160,7 @@ export class BmbAlertCenterComponent {
       rest: [],
     };
     alerts.forEach((alert) => {
-      const diff = Math.trunc(this.now.diff(alert.pDate, 'days').days || 0);
+      const diff = Math.trunc(this.now.diff(alert.pDate, 'days').days ?? 0);
       if (diff === 0) objectEvent.recent.push(alert);
       else if (diff <= 7) objectEvent.sevenDays.push(alert);
       else if (diff <= 30) objectEvent.month.push(alert);
