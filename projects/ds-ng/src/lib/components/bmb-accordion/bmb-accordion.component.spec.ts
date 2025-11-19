@@ -7,6 +7,7 @@ describe('BmbAccordionComponent', () => {
   let component: BmbAccordionComponent;
   let fixture: ComponentFixture<BmbAccordionComponent>;
   let componentRef: ComponentRef<BmbAccordionComponent>;
+  const event: MouseEvent = new MouseEvent('click');
 
   beforeEach(async () => {
     fixture = TestBed.createComponent(BmbAccordionComponent);
@@ -20,9 +21,9 @@ describe('BmbAccordionComponent', () => {
   });
 
   it('should toggle expanded state', () => {
-    component.toggle();
+    component.toggle(event);
     expect(component['_expanded']()).toBe(true);
-    component.toggle();
+    component.toggle(event);
     expect(component['_expanded']()).toBe(false);
   });
 
@@ -30,10 +31,10 @@ describe('BmbAccordionComponent', () => {
     spyOn(component.opened, 'emit');
     spyOn(component.closed, 'emit');
 
-    component.toggle();
+    component.toggle(event);
     expect(component.opened.emit).toHaveBeenCalled();
 
-    component.toggle();
+    component.toggle(event);
     expect(component.closed.emit).toHaveBeenCalled();
   });
 
@@ -72,10 +73,10 @@ describe('BmbAccordionComponent', () => {
   });
 
   it('should return correct icon toggle', () => {
-    component.toggle();
+    component.toggle(event);
     expect(component.getIconToggle()).toBe('expand_less');
 
-    component.toggle();
+    component.toggle(event);
     expect(component.getIconToggle()).toBe('expand_more');
   });
 });
