@@ -3,13 +3,17 @@ import {
   ChangeDetectionStrategy,
   Component,
   ViewEncapsulation,
-  OnChanges,
   input,
-  signal,
   computed,
 } from '@angular/core';
-import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { IBmbTargetLink } from '../../types';
+import { BmbTextLinkComponent } from '../bmb-text-link/bmb-text-link.component';
+import { BmbValueCounterComponent } from '../bmb-value-counter/bmb-value-counter.component';
+import { BmbLayoutDirective } from '../../directives/bmb-layout/bmb-layout.directive';
+import { BmbLayoutItemDirective } from '../../directives/bmb-layout/bmb-layout-item.directive';
+import { BmbVerticalLayoutDirective } from '../../directives/bmb-layout/bmb-vertical-layout/bmb-vertical-layout.directive';
+import { BmbVerticalLayoutItemDirective } from '../../directives/bmb-layout/bmb-vertical-layout/bmb-vertical-layout-item.directive';
+import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 
 export type IBmbProgressBarVariations = 'info' | 'warning' | 'error';
 export type IBmbProgressBarTypes = 'simple' | 'counter' | 'container';
@@ -17,7 +21,16 @@ export type IBmbProgressBarTypes = 'simple' | 'counter' | 'container';
 @Component({
   selector: 'bmb-progress-bar',
   standalone: true,
-  imports: [CommonModule, BmbIconComponent],
+  imports: [
+    CommonModule,
+    BmbVerticalLayoutDirective,
+    BmbVerticalLayoutItemDirective,
+    BmbLayoutDirective,
+    BmbLayoutItemDirective,
+    BmbIconComponent,
+    BmbValueCounterComponent,
+    BmbTextLinkComponent,
+  ],
   templateUrl: './bmb-progress-bar.component.html',
   styleUrl: './bmb-progress-bar.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -35,6 +48,7 @@ export class BmbProgressBarComponent {
   textFormat = input<(counter: string, total: string) => string>(
     (counter, total) => `${counter}/${total}`,
   );
+  icon = input<string>();
 
   progressValue = computed(() => {
     const numberProgress = (this.counter() / this.totalCount()) * 100;
@@ -44,15 +58,4 @@ export class BmbProgressBarComponent {
 
     return newProgress;
   });
-
-  getFormattedText(): string {
-    if (this.textFormat() !== null) {
-      return this.textFormat()!(
-        this.counter().toString(),
-        this.totalCount().toString(),
-      );
-    }
-
-    return `${this.counter()}/${this.totalCount()}`;
-  }
 }

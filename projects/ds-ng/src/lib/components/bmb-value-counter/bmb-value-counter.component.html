@@ -1,6 +1,26 @@
-<div class="bmb_value-counter">
-  <h3 class="bmb_value-counter-label">{{ label }}</h3>
-  <span class="bmb_value-counter-progress">{{ progress }}</span>
-  <span class="bmb_value-counter-slash">/</span>
-  <span class="bmb_value-counter-value">{{ value }}</span>
-</div>
+<section
+  class="bmb_value-counter"
+  bmbLayout
+  [dynamicCols]="true"
+  margin="none"
+  alignItems="center"
+  justify="spaceBetween"
+>
+  <h3 class="bmb_value-counter-label" bmbLayoutItem>{{ label() }}</h3>
+  <section
+    bmbLayoutItem
+    bmbLayout
+    [dynamicCols]="true"
+    margin="none"
+    gapSize="xs"
+    alignItems="center"
+  >
+    <span class="bmb_value-counter-progress" bmbLayoutItem>
+      {{ formattedText.substring(0, formattedText.indexOf('/')) }}
+    </span>
+    <span class="bmb_value-counter-slash" bmbLayoutItem>/</span>
+    <span class="bmb_value-counter-value" bmbLayoutItem>
+      {{ formattedText.substring(formattedText.indexOf('/') + 1) }}
+    </span>
+  </section>
+</section>
