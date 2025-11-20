@@ -14,4 +14,18 @@ export class BmbValueCounterComponent {
   label = input<string>('');
   value = input<string>('');
   progress = input<string>('');
+  textFormat = input<(counter: string, total: string) => string>(
+    (counter, total) => `${counter}/${total}`,
+  );
+
+  get formattedText(): string {
+    if (this.textFormat() !== null) {
+      return this.textFormat()!(
+        this.progress().toString(),
+        this.value().toString(),
+      );
+    }
+
+    return `${this.progress()}/${this.value()}`;
+  }
 }
