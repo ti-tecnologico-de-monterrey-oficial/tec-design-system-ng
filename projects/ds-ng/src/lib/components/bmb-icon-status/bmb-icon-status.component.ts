@@ -8,6 +8,7 @@ import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { CommonModule } from '@angular/common';
 
 export type IBmbStatusAppearance = 'success' | 'event' | 'warning' | 'error';
+export type IBmbStatusIconColor = 'primary' | 'secondary';
 
 @Component({
   selector: 'bmb-icon-status',
@@ -21,6 +22,7 @@ export type IBmbStatusAppearance = 'success' | 'event' | 'warning' | 'error';
 export class BmbIconStatusComponent {
   icon = input.required<string>();
   statusAppearance = input<IBmbStatusAppearance>();
+  iconColor = input<IBmbStatusIconColor>('primary');
 
   getIconSize(): number {
     return (!!this.statusAppearance() && 60) || 120;
