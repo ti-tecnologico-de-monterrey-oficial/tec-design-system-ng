@@ -5,10 +5,12 @@
   margin="none"
   alignItems="center"
 >
-  @if (icon()) {
+  @if (icon() && type() !== 'simple') {
     <bmb-icon
       class="bmb_progress-bar-icon"
-      [ngClass]="'bmb_progress-bar-' + appearance()"
+      [ngClass]="
+        appearance() !== 'info' ? 'bmb_progress-bar-' + appearance() : ''
+      "
       icon="home"
       [size]="24"
     />
@@ -16,10 +18,13 @@
   <section class="bmb_progress-bar-container" bmbVerticalLayout gapSize="s">
     @if (type() === 'container') {
       <bmb-value-counter
-        [ngClass]="'bmb_progress-bar-' + appearance()"
+        [ngClass]="
+          appearance() !== 'info' ? 'bmb_progress-bar-' + appearance() : ''
+        "
         [label]="title()"
-        [value]="counter().toString()"
-        [progress]="totalCount().toString()"
+        [value]="totalCount().toString()"
+        [progress]="counter().toString()"
+        [textFormat]="textFormat()"
         bmbVerticalLayoutItem
       />
     }
@@ -39,9 +44,21 @@
           [style.width.%]="progressValue()"
         ></div>
       </div>
-      <span class="bmb_progress-bar-counter-text" bmbLayoutItem>
-        {{ progressValue() + '%' }}
-      </span>
+      @if (type() !== 'simple') {
+        @if (type() === 'counter') {
+          <bmb-value-counter
+            class="bmb_progress-bar-counter-text"
+            [value]="totalCount().toString()"
+            [progress]="counter().toString()"
+            [textFormat]="textFormat()"
+            bmbLayoutItem
+          />
+        } @else {
+          <span class="bmb_progress-bar-counter-text" bmbLayoutItem>
+            {{ progressValue() + '%' }}
+          </span>
+        }
+      }
     </section>
     @if (type() === 'container' && textLink()) {
       <bmb-text-link

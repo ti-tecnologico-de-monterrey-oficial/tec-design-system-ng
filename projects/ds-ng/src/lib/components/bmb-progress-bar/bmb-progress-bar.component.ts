@@ -58,15 +58,4 @@ export class BmbProgressBarComponent {
 
     return newProgress;
   });
-
-  getFormattedText(): string {
-    if (this.textFormat() !== null) {
-      return this.textFormat()!(
-        this.counter().toString(),
-        this.totalCount().toString(),
-      );
-    }
-
-    return `${this.counter()}/${this.totalCount()}`;
-  }
 }

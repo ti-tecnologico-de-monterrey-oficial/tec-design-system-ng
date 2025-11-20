@@ -2,7 +2,6 @@
 @use '../../../assets/styles/base/fonts' as fonts;
 
 $variants: (
-  'info': var(--general_contrasts-100),
   'warning': var(--yellow-primary),
   'error': var(--red-primary),
 );
@@ -34,11 +33,7 @@ $variants: (
       color: $color;
 
       .bmb_value-counter-value {
-        @if ($color == 'info') {
-          color: var(--general_contrasts-75);
-        } @else {
-          color: $color;
-        }
+        color: $color;
       }
     }
   }
