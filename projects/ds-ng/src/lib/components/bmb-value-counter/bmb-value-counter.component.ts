@@ -1,16 +1,31 @@
-import { Component, Input, ViewEncapsulation } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, input, ViewEncapsulation } from '@angular/core';
+import { BmbLayoutDirective } from '../../directives/bmb-layout/bmb-layout.directive';
+import { BmbLayoutItemDirective } from '../../directives/bmb-layout/bmb-layout-item.directive';
 
 @Component({
   selector: 'bmb-value-counter',
   standalone: true,
-  imports: [CommonModule],
+  imports: [BmbLayoutDirective, BmbLayoutItemDirective],
   templateUrl: './bmb-value-counter.component.html',
   styleUrl: './bmb-value-counter.component.scss',
   encapsulation: ViewEncapsulation.None,
 })
 export class BmbValueCounterComponent {
-  @Input() label: string = '';
-  @Input() value: string = '';
-  @Input() progress: string = '';
+  label = input<string>('');
+  value = input<string>('');
+  progress = input<string>('');
+  textFormat = input<(counter: string, total: string) => string>(
+    (counter, total) => `${counter}/${total}`,
+  );
+
+  get formattedText(): string {
+    if (this.textFormat() !== null) {
+      return this.textFormat()!(
+        this.progress().toString(),
+        this.value().toString(),
+      );
+    }
+
+    return `${this.progress()}/${this.value()}`;
+  }
 }

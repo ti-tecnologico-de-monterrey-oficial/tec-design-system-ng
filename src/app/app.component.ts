@@ -502,7 +502,7 @@ https://live.tec.mx/cbweek</p><p>¡Te esperamos!`,
       primaryBtnLabel: 'Ok',
       secondaryBtnLabel: 'Cancel',
       hidePrimaryButton: false,
-      hideSecondaryButton: true
+      hideSecondaryButton: true,
     };
 
     this.matDialog.open(BmbModalComponent, { data: modalData });

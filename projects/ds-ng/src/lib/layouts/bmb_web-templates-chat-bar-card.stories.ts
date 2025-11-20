@@ -94,6 +94,7 @@ class StorybookModalWrapperComponent {
 export default {
   title: 'Deprecated/Home chat card',
   component: BmbTopBarComponent,
+  tags: ['!autodocs'],
   decorators: [
     moduleMetadata({
       imports: [StorybookModalWrapperComponent, BmbTopBarComponent],

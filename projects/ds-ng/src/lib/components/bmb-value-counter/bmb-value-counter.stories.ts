@@ -5,7 +5,10 @@ import {
   getGeneralComponentDescription,
   getGeneralDescription,
 } from '../../utils/doc/utils';
-import { getLabelParamDesc } from '../../utils/doc/parameterDescriptions';
+import {
+  DBmbProgressBar,
+  getLabelParamDesc,
+} from '../../utils/doc/parameterDescriptions';
 
 export default {
   title: 'Components/Visual labels/Value counter',
@@ -25,11 +28,14 @@ ${getBasicExampleBlock('BmbValueCounterComponent')}
     label: getLabelParamDesc('left'),
     value: getLabelParamDesc('right', 'total value'),
     progress: getLabelParamDesc('right', 'progress value'),
+    textFormat: DBmbProgressBar.textFormat,
   },
   args: {
     label: 'Title',
-    value: '$0.00',
-    progress: 'primary',
+    value: '1000',
+    progress: '560',
+
+    textFormat: (value: string, total: string) => `$${value}/$${total}MXN`,
   },
 } as Meta<typeof BmbValueCounterComponent>;
 
