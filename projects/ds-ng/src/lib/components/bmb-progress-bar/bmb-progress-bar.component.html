@@ -60,7 +60,7 @@
         }
       }
     </section>
-    @if (type() === 'container' && textLink()) {
+    @if (type() === 'container' && appearance() === 'info' && textLink() ) {
       <bmb-text-link
         [textLink]="textLink()"
         [target]="target()"

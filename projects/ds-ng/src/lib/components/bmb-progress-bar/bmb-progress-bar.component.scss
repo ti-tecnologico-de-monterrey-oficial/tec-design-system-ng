@@ -7,6 +7,12 @@ $variants: (
 );
 
 .bmb_progress-bar {
+  &-icon {
+    .bmb_icon-svg {
+      color: var(--general_contrasts-main-selection);
+    }
+  }
+
   &-counter-text {
     @include fonts.font(4, regular);
     color: var(--general_contrasts-75);
@@ -31,6 +37,10 @@ $variants: (
   @each $variant, $color in $variants {
     &-#{$variant} {
       color: $color;
+
+      .bmb_icon-svg {
+        color: $color;
+      }
 
       .bmb_value-counter-value {
         color: $color;
