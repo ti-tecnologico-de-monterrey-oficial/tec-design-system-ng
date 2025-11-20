@@ -25,6 +25,7 @@ import {
   BmbDropdownComponent,
 } from '../../projects/ds-ng/src/public-api';
 import { MatDialog } from '@angular/material/dialog';
+import { TestComponentComponent } from './components/test-component/test-component.component';
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
@@ -133,20 +134,10 @@ export class AppComponent {
   handleUserProfileClick(): void {
     const data: IBmbNativeModal = {
       title: 'User Profile',
-      subtitle: 'This is your user profile modal',
-      content: this.modalTemplate,
-      size: 'medium',
-      iconStyle: 'primary',
-      actions: [
-        {
-          buttonName: 'Close',
-          appearance: 'secondary-outlined',
-          label: 'Close',
-          icon: 'close',
-          action: () => this.handleCloseModal(),
-        },
-      ],
-      closeModalClicked: (event) => this.handleActionsCloseClick(event),
+      content: TestComponentComponent,
+      inputContext: {
+        testValue: 'This value is passed from the modal input context',
+      },
     };
     this.modalId.set(this.modalService.openModal(data));
   }
