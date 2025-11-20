@@ -27,6 +27,7 @@ jobs:
             -Dsonar.sourceEncoding=UTF-8
             -Dsonar.exclusions=**/node_modules/**
             -Dsonar.exclusions=**/*.stories.ts
+            -Dsonar.exclusions=**/*.mdx
             -Dsonar.test.exclusions=**/*.spec.ts
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Info de PR
