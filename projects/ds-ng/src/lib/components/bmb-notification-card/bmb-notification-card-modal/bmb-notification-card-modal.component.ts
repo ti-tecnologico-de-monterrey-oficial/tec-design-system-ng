@@ -14,10 +14,7 @@ import { BmbAlertCenterDetailComponent } from '../../utils/bmb-alert-center-deta
   templateUrl: './bmb-notification-card-modal.component.html',
   styleUrl: './bmb-notification-card-modal.component.scss',
   standalone: true,
-  imports: [
-    CommonModule,
-    BmbAlertCenterDetailComponent,
-  ],
+  imports: [CommonModule, BmbAlertCenterDetailComponent],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
