@@ -79,5 +79,12 @@
       border-color: rgb(var(--color-charade-950));
       color: rgb(var(--color-charade-950));
     }
+
+    button {
+      &[disabled] {
+        opacity: 0.5;
+        pointer-events: none;
+      }
+    }
   }
 }
