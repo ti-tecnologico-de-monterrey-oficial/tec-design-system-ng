@@ -11,6 +11,7 @@ import {
   getDefaultValueControl,
   getAppearanceParam,
   getPropertyParamDesc,
+  DBmbIconParamDesc,
 } from '../../utils/doc/parameterDescriptions';
 
 const getPropertyForType = (
@@ -133,6 +134,7 @@ ${RELEVANT_TITLE.note} Avoid return HTML code, whether HTML code will be parsed.
         defaultValue: getDefaultValueControl('value => value'),
       },
     },
+    icon: DBmbIconParamDesc.icon,
   },
   args: {
     type: 'container',
