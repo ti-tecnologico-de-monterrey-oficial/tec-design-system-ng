@@ -26,7 +26,7 @@ import {
   BmbNotificationService,
 } from '../../../../projects/ds-ng/src/public-api';
 import { HelpMenuComponent } from '../../components/help-menu/help-menu.component';
-import { CdkDragPlaceholder } from "@angular/cdk/drag-drop";
+import { CdkDragPlaceholder } from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'bmb-home',
@@ -46,14 +46,15 @@ import { CdkDragPlaceholder } from "@angular/cdk/drag-drop";
     BmbDividerComponent,
     BmbHomeCardComponent,
     BmbMediaCardComponent,
-    CdkDragPlaceholder
-],
+    CdkDragPlaceholder,
+  ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
 })
 export class HomeComponent {
   @ViewChild('modalTemplate') modalTemplate!: TemplateRef<unknown>;
-  @ViewChild('notificationTemplate') notificationTemplate!: TemplateRef<unknown>;
+  @ViewChild('notificationTemplate')
+  notificationTemplate!: TemplateRef<unknown>;
 
   constructor(
     private router: Router,
@@ -63,7 +64,6 @@ export class HomeComponent {
     effect(() => {
       console.log('Bookmark active state changed:', this.bookmarkActive());
     });
-
 
     setTimeout(() => {
       console.log('show notification');
