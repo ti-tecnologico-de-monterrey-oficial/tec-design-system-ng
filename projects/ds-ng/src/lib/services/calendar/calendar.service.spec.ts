@@ -83,7 +83,7 @@ describe('BmbCalendarService', () => {
       modalTitle: '',
     };
     service.addEvent(event);
-    service.editEvent('edit-id', { title: 'Updated Event' });
+    service.editEvent('edit-id', event);
     const events = service.getEventList();
     expect(events.length).toBe(1);
     expect(events[0]).toEqual(event);
