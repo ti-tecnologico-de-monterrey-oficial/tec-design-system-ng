@@ -1,3 +1,4 @@
+import { TemplateRef } from '@angular/core';
 import { IButtonAppearance } from '../../types';
 import { BmbToastAppearance } from '../bmb-toast/bmb-toast.component';
 
@@ -30,7 +31,7 @@ export interface INotification
 export interface IMinimalNotification {
   title: string;
   subTitle?: string;
-  content?: string | IBmbNoticeCardDescription;
+  content?: string | IBmbNoticeCardDescription | TemplateRef<unknown>;
   isFullColor: boolean;
   id?: string;
 }
