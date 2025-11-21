@@ -9,7 +9,8 @@
       [size]="getIconSize()"
       [ngClass]="{
         'bmb_icon-status-icon': !statusAppearance(),
-        'bmb_icon-status-icon-primary': !statusAppearance() && iconColor() === 'primary',
+        'bmb_icon-status-icon-primary':
+          !statusAppearance() && iconColor() === 'primary'
       }"
       alt="status icon"
     />

@@ -68,6 +68,6 @@ export class BmbDropdownContentComponent {
     if (item?.action) {
       item.action();
       this.clickedItem.emit(item);
-    };
+    }
   }
 }

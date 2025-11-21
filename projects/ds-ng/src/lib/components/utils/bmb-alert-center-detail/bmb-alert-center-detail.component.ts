@@ -1,5 +1,8 @@
 import { Component, input, output } from '@angular/core';
-import { IBmbDataAlert, IBmbDataAlertsParsed } from '../../bmb-alert-center/types';
+import {
+  IBmbDataAlert,
+  IBmbDataAlertsParsed,
+} from '../../bmb-alert-center/types';
 import { CommonModule } from '@angular/common';
 import DOMPurify from 'dompurify';
 import { DomSanitizer } from '@angular/platform-browser';
@@ -12,16 +15,14 @@ import { BmbButtonDirective } from '../../../directives/bmb-button/button.direct
   standalone: true,
   imports: [CommonModule, BmbImageComponent, BmbButtonDirective],
   templateUrl: './bmb-alert-center-detail.component.html',
-  styleUrl: './bmb-alert-center-detail.component.scss'
+  styleUrl: './bmb-alert-center-detail.component.scss',
 })
 export class BmbAlertCenterDetailComponent {
   alert = input.required<IBmbDataAlertsParsed | IBmbDataAlert>();
 
   alertEvent = output<IBmbDataAlertsParsed | IBmbDataAlert>();
 
-  constructor(
-      private sanitizer: DomSanitizer,
-    ) {}
+  constructor(private sanitizer: DomSanitizer) {}
 
   sanitizedHtml(html: string) {
     const clean = DOMPurify.sanitize(html, forbidTagsAndAttributes);

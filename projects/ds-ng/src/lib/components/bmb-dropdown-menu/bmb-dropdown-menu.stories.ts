@@ -62,13 +62,16 @@ ${getBasicExampleBlock('BmbDropdownMenuComponent', '', '', false, '', 'Activated
       'boolean',
       false,
     ),
-    clickedItem: getOnEventParam({
-      name: 'clickedItem',
-      handleExample: '(item) => console.log("Clicked item:", item)',
-      propertyValue: 'EventEmitter<IDropdownItem>',
-      type: 'EventEmitter',
-      event_type: 'IDropdownItem',
-    }, 'IDropdownItem'),
+    clickedItem: getOnEventParam(
+      {
+        name: 'clickedItem',
+        handleExample: '(item) => console.log("Clicked item:", item)',
+        propertyValue: 'EventEmitter<IDropdownItem>',
+        type: 'EventEmitter',
+        event_type: 'IDropdownItem',
+      },
+      'IDropdownItem',
+    ),
   },
   args: {
     items: [

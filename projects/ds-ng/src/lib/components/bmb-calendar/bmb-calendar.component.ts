@@ -119,10 +119,7 @@ export class BmbCalendarComponent implements OnInit, AfterViewInit {
         if (!acc[week][stringDate]) acc[week][stringDate] = [];
         acc[week][stringDate].push({ ...event, startDate, endDate, interval });
 
-        if (
-          event.calendar &&
-          !acc.calendars?.includes(event.calendar)
-        ) {
+        if (event.calendar && !acc.calendars?.includes(event.calendar)) {
           acc.calendars?.push(event.calendar);
         }
 

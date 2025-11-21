@@ -48,7 +48,8 @@ ${getBasicExampleBlock('BmbIconStatusComponent')}
         type: 'select',
       },
       options: ['primary', 'secondary'],
-      description: 'Changes the color of the icon when no status appearance is set.',
+      description:
+        'Changes the color of the icon when no status appearance is set.',
       table: {
         category: 'Properties',
         type: { summary: 'string' },

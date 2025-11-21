@@ -9,7 +9,7 @@ import {
   IBmbDataAlert,
   IBmbDataAlertsParsed,
   IBmbAlertCenterProtoEventFooter,
-  IBmbAlertCenterTabConfig
+  IBmbAlertCenterTabConfig,
 } from './types';
 import { ComponentRef } from '@angular/core';
 
@@ -31,7 +31,7 @@ describe('BmbAlertCenterComponent', () => {
       isRead: false,
       isFavorite: false,
       isArchived: false,
-      type: 'notification'
+      type: 'notification',
     },
     {
       id: 2,
@@ -42,7 +42,7 @@ describe('BmbAlertCenterComponent', () => {
       isRead: true,
       isFavorite: true,
       isArchived: false,
-      type: 'notification'
+      type: 'notification',
     },
     {
       id: 3,
@@ -53,39 +53,45 @@ describe('BmbAlertCenterComponent', () => {
       isRead: false,
       isFavorite: false,
       isArchived: true,
-      type: 'notification'
-    }
+      type: 'notification',
+    },
   ];
 
   beforeEach(async () => {
-    const alertCenterServiceSpy = jasmine.createSpyObj('BmbAlertCenterService', [
-      'getAlerts',
-      'getAdvertisements',
-      'getLoadingState'
-    ]);
-    const nativeModalServiceSpy = jasmine.createSpyObj('BmbNativeModalService', [
-      'openModal',
-      'closeAllModals'
-    ]);
-    const translationsServiceSpy = jasmine.createSpyObj('BmbTranslationsService', [
-      'translate'
-    ]);
+    const alertCenterServiceSpy = jasmine.createSpyObj(
+      'BmbAlertCenterService',
+      ['getAlerts', 'getAdvertisements', 'getLoadingState'],
+    );
+    const nativeModalServiceSpy = jasmine.createSpyObj(
+      'BmbNativeModalService',
+      ['openModal', 'closeAllModals'],
+    );
+    const translationsServiceSpy = jasmine.createSpyObj(
+      'BmbTranslationsService',
+      ['translate'],
+    );
 
     await TestBed.configureTestingModule({
       imports: [BmbAlertCenterComponent],
       providers: [
         { provide: BmbAlertCenterService, useValue: alertCenterServiceSpy },
         { provide: BmbNativeModalService, useValue: nativeModalServiceSpy },
-        { provide: BmbTranslationsService, useValue: translationsServiceSpy }
-      ]
+        { provide: BmbTranslationsService, useValue: translationsServiceSpy },
+      ],
     }).compileComponents();
 
     fixture = TestBed.createComponent(BmbAlertCenterComponent);
     component = fixture.componentInstance;
     componentRef = fixture.componentRef;
-    mockAlertCenterService = TestBed.inject(BmbAlertCenterService) as jasmine.SpyObj<BmbAlertCenterService>;
-    mockNativeModalService = TestBed.inject(BmbNativeModalService) as jasmine.SpyObj<BmbNativeModalService>;
-    mockTranslationsService = TestBed.inject(BmbTranslationsService) as jasmine.SpyObj<BmbTranslationsService>;
+    mockAlertCenterService = TestBed.inject(
+      BmbAlertCenterService,
+    ) as jasmine.SpyObj<BmbAlertCenterService>;
+    mockNativeModalService = TestBed.inject(
+      BmbNativeModalService,
+    ) as jasmine.SpyObj<BmbNativeModalService>;
+    mockTranslationsService = TestBed.inject(
+      BmbTranslationsService,
+    ) as jasmine.SpyObj<BmbTranslationsService>;
 
     // Setup default mock returns
     mockAlertCenterService.getAlerts.and.returnValue([]);
@@ -128,16 +134,27 @@ describe('BmbAlertCenterComponent', () => {
   describe('orderCategories', () => {
     beforeEach(() => {
       // Mock current date to have predictable test results
-      const mockDate = DateTime.fromISO('2023-11-20T12:00:00') as DateTime<true>;
+      const mockDate = DateTime.fromISO(
+        '2023-11-20T12:00:00',
+      ) as DateTime<true>;
       spyOn(DateTime, 'now').and.returnValue(mockDate);
       component.now = mockDate;
     });
 
     it('should categorize alerts correctly', () => {
       const parsedAlerts: IBmbDataAlertsParsed[] = [
-        { ...mockAlerts[0], pDate: DateTime.fromISO('2023-11-20T10:00:00') as DateTime<true> }, // same day (diff = 0)
-        { ...mockAlerts[1], pDate: DateTime.fromISO('2023-11-15T10:00:00') as DateTime<true> }, // 5 days ago (diff = 5, <= 7)
-        { ...mockAlerts[2], pDate: DateTime.fromISO('2023-10-15T10:00:00') as DateTime<true> }, // 36 days ago (diff > 30)
+        {
+          ...mockAlerts[0],
+          pDate: DateTime.fromISO('2023-11-20T10:00:00') as DateTime<true>,
+        }, // same day (diff = 0)
+        {
+          ...mockAlerts[1],
+          pDate: DateTime.fromISO('2023-11-15T10:00:00') as DateTime<true>,
+        }, // 5 days ago (diff = 5, <= 7)
+        {
+          ...mockAlerts[2],
+          pDate: DateTime.fromISO('2023-10-15T10:00:00') as DateTime<true>,
+        }, // 36 days ago (diff > 30)
       ];
 
       const categories = component.orderCategories(parsedAlerts);
@@ -192,7 +209,7 @@ describe('BmbAlertCenterComponent', () => {
     it('should generate tabs correctly from config objects', () => {
       const tabConfigs: IBmbAlertCenterTabConfig[] = [
         { title: 'Desktop Tab', isMobile: false, isDesktop: true },
-        { title: 'Mobile Tab', isMobile: true, isDesktop: false }
+        { title: 'Mobile Tab', isMobile: true, isDesktop: false },
       ];
       componentRef.setInput('tabsName', tabConfigs);
 
@@ -207,7 +224,7 @@ describe('BmbAlertCenterComponent', () => {
       const alertsWithUnread = [
         { ...mockAlerts[0], isRead: false },
         { ...mockAlerts[1], isRead: false },
-        { ...mockAlerts[2], isRead: true }
+        { ...mockAlerts[2], isRead: true },
       ];
       componentRef.setInput('alerts', alertsWithUnread);
 
@@ -222,12 +239,12 @@ describe('BmbAlertCenterComponent', () => {
       // Mock container width
       Object.defineProperty(component.container.nativeElement, 'clientWidth', {
         writable: true,
-        value: 500
+        value: 500,
       });
       // Mock window width
       Object.defineProperty(window, 'innerWidth', {
         writable: true,
-        value: 1200
+        value: 1200,
       });
     });
 
@@ -235,19 +252,21 @@ describe('BmbAlertCenterComponent', () => {
       spyOn(component.showAlertDetail, 'emit');
       const alertWithParsedDate: IBmbDataAlertsParsed = {
         ...mockAlerts[0],
-        pDate: DateTime.now() as DateTime<true>
+        pDate: DateTime.now() as DateTime<true>,
       };
 
       component.handleShowAlert(alertWithParsedDate);
 
-      expect(component.showAlertDetail.emit).toHaveBeenCalledWith(mockAlerts[0]);
+      expect(component.showAlertDetail.emit).toHaveBeenCalledWith(
+        mockAlerts[0],
+      );
     });
 
     it('should open modal on mobile view', () => {
       componentRef.setInput('showMobileVersion', true);
       const alertWithParsedDate: IBmbDataAlertsParsed = {
         ...mockAlerts[0],
-        pDate: DateTime.now() as DateTime<true>
+        pDate: DateTime.now() as DateTime<true>,
       };
 
       component.handleShowAlert(alertWithParsedDate);
@@ -257,11 +276,11 @@ describe('BmbAlertCenterComponent', () => {
 
     it('should open modal when container width is small', () => {
       Object.defineProperty(component.container.nativeElement, 'clientWidth', {
-        value: 300
+        value: 300,
       });
       const alertWithParsedDate: IBmbDataAlertsParsed = {
         ...mockAlerts[0],
-        pDate: DateTime.now() as DateTime<true>
+        pDate: DateTime.now() as DateTime<true>,
       };
 
       component.handleShowAlert(alertWithParsedDate);
@@ -275,12 +294,14 @@ describe('BmbAlertCenterComponent', () => {
       spyOn(component.closeAlertDetail, 'emit');
       const alertWithParsedDate: IBmbDataAlertsParsed = {
         ...mockAlerts[0],
-        pDate: DateTime.now() as DateTime<true>
+        pDate: DateTime.now() as DateTime<true>,
       };
 
       component.handleCloseDetail(alertWithParsedDate);
 
-      expect(component.closeAlertDetail.emit).toHaveBeenCalledWith(mockAlerts[0]);
+      expect(component.closeAlertDetail.emit).toHaveBeenCalledWith(
+        mockAlerts[0],
+      );
       expect(mockNativeModalService.closeAllModals).toHaveBeenCalled();
     });
   });
@@ -302,7 +323,9 @@ describe('BmbAlertCenterComponent', () => {
 
       component.handleChangeAlertStatus(statusChange);
 
-      expect(component.onChangeAlertStatus.emit).toHaveBeenCalledWith(statusChange);
+      expect(component.onChangeAlertStatus.emit).toHaveBeenCalledWith(
+        statusChange,
+      );
     });
   });
 
@@ -315,14 +338,14 @@ describe('BmbAlertCenterComponent', () => {
       spyOn(component.navigationBarEvents, 'emit');
       const event: IBmbAlertCenterProtoEventFooter = {
         event: 'tags',
-        alerts: ['1', '2']
+        alerts: ['1', '2'],
       };
 
       component.handleNavigationBarEvents(event);
 
       expect(component.navigationBarEvents.emit).toHaveBeenCalledWith({
         alerts: [mockAlerts[0], mockAlerts[1]],
-        event: 'tags'
+        event: 'tags',
       });
     });
 
@@ -330,14 +353,14 @@ describe('BmbAlertCenterComponent', () => {
       spyOn(component.navigationBarEvents, 'emit');
       const event: IBmbAlertCenterProtoEventFooter = {
         event: 'isRead',
-        alerts: ['1'] // mockAlerts[0] is unread
+        alerts: ['1'], // mockAlerts[0] is unread
       };
 
       component.handleNavigationBarEvents(event);
 
       expect(component.navigationBarEvents.emit).toHaveBeenCalledWith({
         alerts: [mockAlerts[0]],
-        event: 'add_read'
+        event: 'add_read',
       });
     });
 
@@ -345,14 +368,14 @@ describe('BmbAlertCenterComponent', () => {
       spyOn(component.navigationBarEvents, 'emit');
       const event: IBmbAlertCenterProtoEventFooter = {
         event: 'isRead',
-        alerts: ['2'] // mockAlerts[1] is read
+        alerts: ['2'], // mockAlerts[1] is read
       };
 
       component.handleNavigationBarEvents(event);
 
       expect(component.navigationBarEvents.emit).toHaveBeenCalledWith({
         alerts: [mockAlerts[1]],
-        event: 'remove_read'
+        event: 'remove_read',
       });
     });
 
@@ -360,14 +383,14 @@ describe('BmbAlertCenterComponent', () => {
       spyOn(component.navigationBarEvents, 'emit');
       const event: IBmbAlertCenterProtoEventFooter = {
         event: 'isFavorite',
-        alerts: ['1'] // mockAlerts[0] is not favorite
+        alerts: ['1'], // mockAlerts[0] is not favorite
       };
 
       component.handleNavigationBarEvents(event);
 
       expect(component.navigationBarEvents.emit).toHaveBeenCalledWith({
         alerts: [mockAlerts[0]],
-        event: 'add_favorite'
+        event: 'add_favorite',
       });
     });
 
@@ -375,14 +398,14 @@ describe('BmbAlertCenterComponent', () => {
       spyOn(component.navigationBarEvents, 'emit');
       const event: IBmbAlertCenterProtoEventFooter = {
         event: 'isArchived',
-        alerts: ['3'] // mockAlerts[2] is archived
+        alerts: ['3'], // mockAlerts[2] is archived
       };
 
       component.handleNavigationBarEvents(event);
 
       expect(component.navigationBarEvents.emit).toHaveBeenCalledWith({
         alerts: [mockAlerts[2]],
-        event: 'remove_archived'
+        event: 'remove_archived',
       });
     });
 
@@ -390,7 +413,7 @@ describe('BmbAlertCenterComponent', () => {
       spyOn(component.navigationBarEvents, 'emit');
       const event: IBmbAlertCenterProtoEventFooter = {
         event: 'isRead',
-        alerts: ['999'] // non-existent alert ID
+        alerts: ['999'], // non-existent alert ID
       };
 
       component.handleNavigationBarEvents(event);
@@ -444,11 +467,10 @@ describe('BmbAlertCenterComponent', () => {
     it('should use loading state from service', () => {
       // Reset and setup mock for loading state
       TestBed.resetTestingModule();
-      const alertCenterServiceSpy = jasmine.createSpyObj('BmbAlertCenterService', [
-        'getAlerts',
-        'getAdvertisements', 
-        'getLoadingState'
-      ]);
+      const alertCenterServiceSpy = jasmine.createSpyObj(
+        'BmbAlertCenterService',
+        ['getAlerts', 'getAdvertisements', 'getLoadingState'],
+      );
       alertCenterServiceSpy.getAlerts.and.returnValue([]);
       alertCenterServiceSpy.getAdvertisements.and.returnValue([]);
       alertCenterServiceSpy.getLoadingState.and.returnValue(true);
@@ -458,15 +480,18 @@ describe('BmbAlertCenterComponent', () => {
         providers: [
           { provide: BmbAlertCenterService, useValue: alertCenterServiceSpy },
           { provide: BmbNativeModalService, useValue: mockNativeModalService },
-          { provide: BmbTranslationsService, useValue: mockTranslationsService }
-        ]
+          {
+            provide: BmbTranslationsService,
+            useValue: mockTranslationsService,
+          },
+        ],
       });
 
       const testFixture = TestBed.createComponent(BmbAlertCenterComponent);
       const testComponent = testFixture.componentInstance;
       testFixture.componentRef.setInput('alerts', []);
       testFixture.detectChanges();
-      
+
       expect(testComponent.isLoading()).toBe(true);
     });
 

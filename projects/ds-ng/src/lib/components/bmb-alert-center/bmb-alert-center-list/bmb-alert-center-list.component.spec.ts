@@ -25,8 +25,8 @@ describe('BmbAlertCenterListComponent', () => {
       pDate: DateTime.fromISO('2023-01-01T09:30:00') as DateTime<true>,
       tags: [
         { text: 'Urgent', color: 'error' },
-        { text: 'Academic', color: 'info' }
-      ]
+        { text: 'Academic', color: 'info' },
+      ],
     },
     {
       id: 2,
@@ -38,7 +38,7 @@ describe('BmbAlertCenterListComponent', () => {
       isFavorite: false,
       isArchived: false,
       type: 'reminder',
-      pDate: DateTime.fromISO('2023-01-02T14:00:00') as DateTime<true>
+      pDate: DateTime.fromISO('2023-01-02T14:00:00') as DateTime<true>,
     },
     {
       id: 3,
@@ -50,13 +50,13 @@ describe('BmbAlertCenterListComponent', () => {
       isFavorite: true,
       isArchived: false,
       type: 'event',
-      pDate: DateTime.fromISO('2023-01-03T16:15:00') as DateTime<true>
-    }
+      pDate: DateTime.fromISO('2023-01-03T16:15:00') as DateTime<true>,
+    },
   ];
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [BmbAlertCenterListComponent]
+      imports: [BmbAlertCenterListComponent],
     }).compileComponents();
 
     fixture = TestBed.createComponent(BmbAlertCenterListComponent);
@@ -98,21 +98,29 @@ describe('BmbAlertCenterListComponent', () => {
 
   describe('Template Rendering', () => {
     it('should render correct number of alert items', () => {
-      const alertItems = fixture.debugElement.queryAll(By.css('.bmb_alert-center-list-item'));
+      const alertItems = fixture.debugElement.queryAll(
+        By.css('.bmb_alert-center-list-item'),
+      );
       expect(alertItems.length).toBe(mockAlerts.length);
     });
 
     it('should display alert titles correctly', () => {
-      const titleElements = fixture.debugElement.queryAll(By.css('.bmb_alert-center-list-item-title'));
+      const titleElements = fixture.debugElement.queryAll(
+        By.css('.bmb_alert-center-list-item-title'),
+      );
 
       expect(titleElements.length).toBe(mockAlerts.length);
       expect(titleElements[0].nativeElement.textContent.trim()).toBe('Alert 1');
       expect(titleElements[1].nativeElement.textContent.trim()).toBe('Alert 2');
-      expect(titleElements[2].nativeElement.textContent.trim()).toBe('Favorite Alert');
+      expect(titleElements[2].nativeElement.textContent.trim()).toBe(
+        'Favorite Alert',
+      );
     });
 
     it('should display formatted time correctly', () => {
-      const timeElements = fixture.debugElement.queryAll(By.css('.bmb_alert-center-list-item-time'));
+      const timeElements = fixture.debugElement.queryAll(
+        By.css('.bmb_alert-center-list-item-time'),
+      );
 
       expect(timeElements.length).toBe(mockAlerts.length);
       expect(timeElements[0].nativeElement.textContent.trim()).toBe('9:30 AM');
@@ -134,17 +142,25 @@ describe('BmbAlertCenterListComponent', () => {
     });
 
     it('should show unread status circle for unread non-favorite alerts', () => {
-      const statusCircles = fixture.debugElement.queryAll(By.css('.bmb_alert-center-list-item-status-circle:not(.bmb_alert-center-list-item-status-circle-read)'));
+      const statusCircles = fixture.debugElement.queryAll(
+        By.css(
+          '.bmb_alert-center-list-item-status-circle:not(.bmb_alert-center-list-item-status-circle-read)',
+        ),
+      );
       expect(statusCircles.length).toBe(1); // Only Alert 1 is unread and not favorite
     });
 
     it('should show read status circle for read alerts', () => {
-      const readStatusCircles = fixture.debugElement.queryAll(By.css('.bmb_alert-center-list-item-status-circle-read'));
+      const readStatusCircles = fixture.debugElement.queryAll(
+        By.css('.bmb_alert-center-list-item-status-circle-read'),
+      );
       expect(readStatusCircles.length).toBe(1); // Only Alert 2 is read and not favorite
     });
 
     it('should show favorite star icon for favorite alerts', () => {
-      const favoriteIcons = fixture.debugElement.queryAll(By.css('.bmb_alert-center-list-item-status-favorite'));
+      const favoriteIcons = fixture.debugElement.queryAll(
+        By.css('.bmb_alert-center-list-item-status-favorite'),
+      );
       expect(favoriteIcons.length).toBe(1); // Only Alert 3 is favorite
     });
 
@@ -154,15 +170,19 @@ describe('BmbAlertCenterListComponent', () => {
     });
 
     it('should not render tags section when alerts have no tags', () => {
-      const alertsWithoutTags: IBmbDataAlertsParsed[] = [{
-        ...mockAlerts[0],
-        tags: undefined
-      }];
+      const alertsWithoutTags: IBmbDataAlertsParsed[] = [
+        {
+          ...mockAlerts[0],
+          tags: undefined,
+        },
+      ];
 
       componentRef.setInput('alerts', alertsWithoutTags);
       fixture.detectChanges();
 
-      const tagsSection = fixture.debugElement.query(By.css('.bmb_alert-center-list-item-tags'));
+      const tagsSection = fixture.debugElement.query(
+        By.css('.bmb_alert-center-list-item-tags'),
+      );
       expect(tagsSection).toBeNull();
     });
   });
@@ -179,7 +199,9 @@ describe('BmbAlertCenterListComponent', () => {
     it('should emit alertSelected when row is clicked', () => {
       spyOn(component.alertSelected, 'emit');
 
-      const contentElement = fixture.debugElement.query(By.css('.bmb_alert-center-list-item-content'));
+      const contentElement = fixture.debugElement.query(
+        By.css('.bmb_alert-center-list-item-content'),
+      );
       contentElement.nativeElement.click();
 
       expect(component.alertSelected.emit).toHaveBeenCalledWith(mockAlerts[0]);
@@ -193,7 +215,7 @@ describe('BmbAlertCenterListComponent', () => {
 
       expect(component.selectedAlert.emit).toHaveBeenCalledWith({
         event: mockEvent,
-        item: mockAlerts[0]
+        item: mockAlerts[0],
       });
     });
 
@@ -206,14 +228,16 @@ describe('BmbAlertCenterListComponent', () => {
 
       expect(component.selectedAlert.emit).toHaveBeenCalledWith({
         event: changeEvent,
-        item: mockAlerts[0]
+        item: mockAlerts[0],
       });
     });
   });
 
   describe('Date and Time Formatting', () => {
     it('should format date correctly in Spanish', () => {
-      const testDate = DateTime.fromISO('2023-01-01T10:00:00') as DateTime<true>;
+      const testDate = DateTime.fromISO(
+        '2023-01-01T10:00:00',
+      ) as DateTime<true>;
       const formattedDate = component.getTextFromDate(testDate);
 
       expect(formattedDate).toContain('domingo'); // Sunday in Spanish
@@ -244,48 +268,60 @@ describe('BmbAlertCenterListComponent', () => {
       componentRef.setInput('alerts', []);
       fixture.detectChanges();
 
-      const alertItems = fixture.debugElement.queryAll(By.css('.bmb_alert-center-list-item'));
+      const alertItems = fixture.debugElement.queryAll(
+        By.css('.bmb_alert-center-list-item'),
+      );
       expect(alertItems.length).toBe(0);
     });
 
     it('should handle alerts without optional properties', () => {
-      const minimalAlerts: IBmbDataAlertsParsed[] = [{
-        id: 1,
-        title: 'Minimal Alert',
-        description: [{ text: 'Description', type: 'paragraph' }],
-        date: '01/01/2023',
-        time: '09:30',
-        isRead: false,
-        isFavorite: false,
-        isArchived: false,
-        type: 'notification',
-        pDate: DateTime.fromISO('2023-01-01T09:30:00') as DateTime<true>
-        // no tags property
-      }];
+      const minimalAlerts: IBmbDataAlertsParsed[] = [
+        {
+          id: 1,
+          title: 'Minimal Alert',
+          description: [{ text: 'Description', type: 'paragraph' }],
+          date: '01/01/2023',
+          time: '09:30',
+          isRead: false,
+          isFavorite: false,
+          isArchived: false,
+          type: 'notification',
+          pDate: DateTime.fromISO('2023-01-01T09:30:00') as DateTime<true>,
+          // no tags property
+        },
+      ];
 
       componentRef.setInput('alerts', minimalAlerts);
       fixture.detectChanges();
 
       expect(() => fixture.detectChanges()).not.toThrow();
 
-      const alertItems = fixture.debugElement.queryAll(By.css('.bmb_alert-center-list-item'));
+      const alertItems = fixture.debugElement.queryAll(
+        By.css('.bmb_alert-center-list-item'),
+      );
       expect(alertItems.length).toBe(1);
     });
   });
 
   describe('Accessibility', () => {
     it('should have proper list structure', () => {
-      const listElement = fixture.debugElement.query(By.css('ul.bmb_alert-center-list'));
+      const listElement = fixture.debugElement.query(
+        By.css('ul.bmb_alert-center-list'),
+      );
       expect(listElement).toBeTruthy();
 
-      const listItems = fixture.debugElement.queryAll(By.css('li.bmb_alert-center-list-item'));
+      const listItems = fixture.debugElement.queryAll(
+        By.css('li.bmb_alert-center-list-item'),
+      );
       expect(listItems.length).toBe(mockAlerts.length);
     });
 
     it('should handle keyboard events on alert content', () => {
       spyOn(component.alertSelected, 'emit');
 
-      const contentElement = fixture.debugElement.query(By.css('.bmb_alert-center-list-item-content'));
+      const contentElement = fixture.debugElement.query(
+        By.css('.bmb_alert-center-list-item-content'),
+      );
       const keyupEvent = new KeyboardEvent('keyup', { key: 'Enter' });
 
       contentElement.nativeElement.dispatchEvent(keyupEvent);
@@ -307,33 +343,42 @@ describe('BmbAlertCenterListComponent', () => {
     it('should handle alerts with very long titles', () => {
       const longTitleAlert: IBmbDataAlertsParsed = {
         ...mockAlerts[0],
-        title: 'This is a very long alert title that should be handled gracefully by the component without breaking the layout or causing any issues'
+        title:
+          'This is a very long alert title that should be handled gracefully by the component without breaking the layout or causing any issues',
       };
 
       componentRef.setInput('alerts', [longTitleAlert]);
       fixture.detectChanges();
 
-      const titleElement = fixture.debugElement.query(By.css('.bmb_alert-center-list-item-title'));
-      expect(titleElement.nativeElement.textContent.trim()).toContain('This is a very long alert title');
+      const titleElement = fixture.debugElement.query(
+        By.css('.bmb_alert-center-list-item-title'),
+      );
+      expect(titleElement.nativeElement.textContent.trim()).toContain(
+        'This is a very long alert title',
+      );
     });
 
     it('should handle alerts with special characters in title', () => {
       const specialCharAlert: IBmbDataAlertsParsed = {
         ...mockAlerts[0],
-        title: 'Alert with émojis 🚨 & spëcial characters <>&"'
+        title: 'Alert with émojis 🚨 & spëcial characters <>&"',
       };
 
       componentRef.setInput('alerts', [specialCharAlert]);
       fixture.detectChanges();
 
-      const titleElement = fixture.debugElement.query(By.css('.bmb_alert-center-list-item-title'));
-      expect(titleElement.nativeElement.textContent.trim()).toBe('Alert with émojis 🚨 & spëcial characters <>&"');
+      const titleElement = fixture.debugElement.query(
+        By.css('.bmb_alert-center-list-item-title'),
+      );
+      expect(titleElement.nativeElement.textContent.trim()).toBe(
+        'Alert with émojis 🚨 & spëcial characters <>&"',
+      );
     });
 
     it('should handle alerts with empty tags array', () => {
       const emptyTagsAlert: IBmbDataAlertsParsed = {
         ...mockAlerts[0],
-        tags: []
+        tags: [],
       };
 
       componentRef.setInput('alerts', [emptyTagsAlert]);
@@ -348,36 +393,45 @@ describe('BmbAlertCenterListComponent', () => {
         ...mockAlerts[0],
         isRead: true,
         isFavorite: true,
-        isArchived: true
+        isArchived: true,
       };
 
       componentRef.setInput('alerts', [complexStateAlert]);
       fixture.detectChanges();
 
       // Should show favorite icon (takes priority over read status)
-      const favoriteIcon = fixture.debugElement.query(By.css('.bmb_alert-center-list-item-status-favorite'));
+      const favoriteIcon = fixture.debugElement.query(
+        By.css('.bmb_alert-center-list-item-status-favorite'),
+      );
       expect(favoriteIcon).toBeTruthy();
 
       // Should not show read status circle when favorite
-      const readCircle = fixture.debugElement.query(By.css('.bmb_alert-center-list-item-status-circle-read'));
+      const readCircle = fixture.debugElement.query(
+        By.css('.bmb_alert-center-list-item-status-circle-read'),
+      );
       expect(readCircle).toBeFalsy();
     });
   });
 
   describe('Performance', () => {
     it('should handle large number of alerts efficiently', () => {
-      const manyAlerts: IBmbDataAlertsParsed[] = Array.from({ length: 100 }, (_, index) => ({
-        id: index + 1,
-        title: `Alert ${index + 1}`,
-        description: [{ text: `Description ${index + 1}`, type: 'paragraph' }],
-        date: '01/01/2023',
-        time: '09:30',
-        isRead: index % 2 === 0,
-        isFavorite: index % 5 === 0,
-        isArchived: false,
-        type: 'notification',
-        pDate: DateTime.fromISO('2023-01-01T09:30:00') as DateTime<true>
-      }));
+      const manyAlerts: IBmbDataAlertsParsed[] = Array.from(
+        { length: 100 },
+        (_, index) => ({
+          id: index + 1,
+          title: `Alert ${index + 1}`,
+          description: [
+            { text: `Description ${index + 1}`, type: 'paragraph' },
+          ],
+          date: '01/01/2023',
+          time: '09:30',
+          isRead: index % 2 === 0,
+          isFavorite: index % 5 === 0,
+          isArchived: false,
+          type: 'notification',
+          pDate: DateTime.fromISO('2023-01-01T09:30:00') as DateTime<true>,
+        }),
+      );
 
       const startTime = performance.now();
       componentRef.setInput('alerts', manyAlerts);
@@ -386,7 +440,9 @@ describe('BmbAlertCenterListComponent', () => {
 
       expect(endTime - startTime).toBeLessThan(1000); // Should render within 1 second
 
-      const alertItems = fixture.debugElement.queryAll(By.css('.bmb_alert-center-list-item'));
+      const alertItems = fixture.debugElement.queryAll(
+        By.css('.bmb_alert-center-list-item'),
+      );
       expect(alertItems.length).toBe(100);
     });
   });
