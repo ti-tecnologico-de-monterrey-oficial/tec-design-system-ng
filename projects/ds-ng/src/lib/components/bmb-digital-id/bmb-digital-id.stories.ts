@@ -147,6 +147,16 @@ ${getBasicExampleBlock(
       'boolean',
       false,
     ),
+    hideMainButton: getPropertyParamDesc(
+      'hide the secondary button',
+      'boolean',
+      false,
+    ),
+    hideSecondaryButton: getPropertyParamDesc(
+      'hide the main button',
+      'boolean',
+      false,
+    ),
   },
   args: {
     name: 'Paola',
@@ -162,6 +172,8 @@ ${getBasicExampleBlock(
     logoSrc: 'assets/images/tec-logo.svg',
     disableMainButton: false,
     disableSecondaryButton: false,
+    hideMainButton: false,
+    hideSecondaryButton: false,
     imgBackground:
       'https://2.bp.blogspot.com/-YkNDZEbKt_g/TYzcbF2_tkI/AAAAAAAAalk/Vt_MHS60Xv8/s1600/www.JoseLuisAvilaHerrera.BLOGSPOT.com%2B-%2BFunny%2BCats%2B-%2BGatitos%2Bmuy%2Btiernos%2B8.jpg',
     access: () => {

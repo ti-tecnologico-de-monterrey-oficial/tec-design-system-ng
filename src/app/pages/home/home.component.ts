@@ -23,8 +23,10 @@ import {
   IBmbProjectionContent,
   BmbProjectionContentService,
   BmbMediaCardComponent,
+  BmbNotificationService,
 } from '../../../../projects/ds-ng/src/public-api';
 import { HelpMenuComponent } from '../../components/help-menu/help-menu.component';
+import { CdkDragPlaceholder } from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'bmb-home',
@@ -44,20 +46,45 @@ import { HelpMenuComponent } from '../../components/help-menu/help-menu.componen
     BmbDividerComponent,
     BmbHomeCardComponent,
     BmbMediaCardComponent,
+    CdkDragPlaceholder,
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
 })
 export class HomeComponent {
   @ViewChild('modalTemplate') modalTemplate!: TemplateRef<unknown>;
+  @ViewChild('notificationTemplate')
+  notificationTemplate!: TemplateRef<unknown>;
 
   constructor(
     private router: Router,
     private contentProjected: BmbProjectionContentService,
+    private notificationService: BmbNotificationService,
   ) {
     effect(() => {
       console.log('Bookmark active state changed:', this.bookmarkActive());
     });
+
+    setTimeout(() => {
+      console.log('show notification');
+
+      this.notificationService.addNotification({
+        title: 'Welcome to the Home Page!',
+        content: this.notificationTemplate,
+        isFullColor: false,
+        component: 'notification',
+        type: 'info',
+        delay: 500000,
+      });
+      this.notificationService.addNotification({
+        title: 'Welcome to the Home Page!',
+        content: 'This is a simple notification message.',
+        isFullColor: false,
+        component: 'notification',
+        type: 'info',
+        delay: 5000,
+      });
+    }, 1000);
   }
 
   bookmarkActive = model<boolean>(false);

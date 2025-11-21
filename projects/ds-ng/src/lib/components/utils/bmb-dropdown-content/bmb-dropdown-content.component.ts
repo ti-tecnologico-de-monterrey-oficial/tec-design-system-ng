@@ -4,6 +4,7 @@ import {
   computed,
   input,
   model,
+  output,
   signal,
   ViewEncapsulation,
 } from '@angular/core';
@@ -30,6 +31,8 @@ export class BmbDropdownContentComponent {
   items = model<IDropdownItem[]>([]);
   isKeyboardEvent = model<boolean>(false); //Internal
   enableFilter = input<boolean>(false);
+
+  clickedItem = output<IDropdownItem>();
 
   isOpen = model<boolean>(false); //remove this
 
@@ -62,6 +65,9 @@ export class BmbDropdownContentComponent {
   }
 
   handleDropdown(item: IDropdownItem) {
-    if (item?.action) item.action();
+    if (item?.action) {
+      item.action();
+      this.clickedItem.emit(item);
+    }
   }
 }

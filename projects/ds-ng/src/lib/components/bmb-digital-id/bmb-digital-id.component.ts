@@ -39,11 +39,13 @@ export class BmbDigitalIdComponent {
   icon = input<string>('qr_code_scanner');
   imgProfile = input.required<string>();
   imgBackground = input.required<string>();
-  hideButton = input<boolean>(false);
+
   secondaryTextButton = input<string>();
   secondaryIconButton = input<string>('download_2');
   disableSecondaryButton = input<boolean>(false);
   disableMainButton = input<boolean>(false);
+  hideMainButton = input<boolean>(false);
+  hideSecondaryButton = input<boolean>(false);
   logoSrc = input<string>('assets/images/tec-logo.svg');
 
   close = output<MouseEvent>();
