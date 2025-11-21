@@ -1447,3 +1447,38 @@ export const DBmbStepProgressBar = {
     'other',
   ),
 };
+
+export const getPropertyForType = (
+  isCounter: boolean = true,
+  isSimple: boolean = false,
+) => `
+<br/><br/>This property is displayed for the property type:
+${isSimple ? '- simple' : ''}
+${isCounter ? '- counter' : ''}
+- container
+`;
+
+export const DBmbProgressBar = {
+  textFormat: {
+    control: {
+      type: 'function',
+    },
+    description: `
+  Sets the text format function to show the percentage in the progress bar.
+  ${getPropertyForType()}
+  The function receives two parameters: the current value and the total value, and should return a formatted string.
+
+  If not set, it defaults to showing the value as *"value/total"*.
+
+  ${RELEVANT_TITLE.note} Avoid return HTML code, whether HTML code will be parsed.`,
+    table: {
+      category: 'Properties',
+      type: {
+        summary: '(value: string, total: string) => string',
+        detail:
+          'textFormat: (value: string, total: string) => `$${value}/$${total}MXN`',
+      },
+      defaultValue: getDefaultValueControl('value => value'),
+    },
+  },
+};
