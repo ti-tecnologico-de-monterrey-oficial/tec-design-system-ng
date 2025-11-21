@@ -84,7 +84,6 @@ export class BmbCalendarComponent implements OnInit, AfterViewInit {
   clientTimezone = input<string>(
     Intl.DateTimeFormat().resolvedOptions().timeZone,
   );
-  // lang = input<string>('es-MX'); // deprecated
   height = input<number | string>('100%');
   startBusinessHour = input<number>(8);
   calendarTitle = input<string>();
@@ -120,10 +119,7 @@ export class BmbCalendarComponent implements OnInit, AfterViewInit {
         if (!acc[week][stringDate]) acc[week][stringDate] = [];
         acc[week][stringDate].push({ ...event, startDate, endDate, interval });
 
-        if (
-          event.calendar &&
-          !acc.calendars?.some((cal) => cal === event.calendar)
-        ) {
+        if (event.calendar && !acc.calendars?.includes(event.calendar)) {
           acc.calendars?.push(event.calendar);
         }
 
