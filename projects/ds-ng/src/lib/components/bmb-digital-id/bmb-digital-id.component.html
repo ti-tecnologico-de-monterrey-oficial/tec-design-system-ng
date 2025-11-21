@@ -32,11 +32,8 @@
       [role]="role()"
     />
   </div>
-  <div
-    class="bmb_digital-id-bottom-btn"
-    [ngClass]="{ 'bmb_digital-id-bottom-btn-hide': hideButton() }"
-  >
-    @if (!disableSecondaryButton()) {
+  <div class="bmb_digital-id-bottom-btn">
+    @if (!hideSecondaryButton()) {
       <button
         type="button"
         class="bmb_digital-id-btnAccess"
@@ -46,6 +43,7 @@
         [iconSize]="0"
         size="large"
         position="left"
+        [disabled]="disableSecondaryButton()"
         (click)="handleSecondaryClick($event)"
       >
         {{
@@ -54,7 +52,7 @@
         }}
       </button>
     }
-    @if (!disableMainButton()) {
+    @if (!hideMainButton()) {
       <button
         type="button"
         class="bmb_digital-id-btnAccess"
@@ -64,6 +62,7 @@
         [iconSize]="0"
         size="large"
         position="left"
+        [disabled]="disableMainButton()"
         (click)="clickAccess($event)"
       >
         {{ textButton() }}

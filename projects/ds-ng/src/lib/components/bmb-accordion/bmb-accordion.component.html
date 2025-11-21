@@ -10,6 +10,7 @@
   <header
     [ngClass]="getClassesHeader()"
     (click)="toggle($event)"
+    (keyup)="handleToggleKeyboard($event)"
     bmbLayout
     margin="none"
     alignItems="center"
