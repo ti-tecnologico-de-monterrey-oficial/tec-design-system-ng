@@ -4,6 +4,7 @@ import {
   Component,
   input,
   output,
+  TemplateRef,
   ViewEncapsulation,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -90,5 +91,13 @@ export class BmbPushNotificationItemComponent {
     } else {
       action.action({ title, subTitle, content, isFullColor, id });
     }
+  }
+
+  isNotificationTemplate(): boolean {
+    return typeof this.notification().content !== 'string';
+  }
+
+  getContent(): TemplateRef<unknown> {
+    return this.notification().content as TemplateRef<unknown>;
   }
 }

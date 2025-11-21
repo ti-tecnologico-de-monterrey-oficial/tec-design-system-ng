@@ -42,9 +42,15 @@
         </h2>
       }
       @if (notification().content) {
-        <p class="bmb_push-notification-item-content">
-          {{ notification().content }}
-        </p>
+        <div class="bmb_push-notification-item-content">
+          @if (isNotificationTemplate()) {
+            <ng-container *ngTemplateOutlet="getContent()" />
+          } @else {
+            <p>
+              {{ notification().content }}
+            </p>
+          }
+        </div>
       }
       @if (notification().dontAskAgainEvent) {
         <div class="bmb_push-notification-item-dont-ask-again">
