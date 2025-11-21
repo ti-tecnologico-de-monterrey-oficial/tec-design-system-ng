@@ -310,5 +310,9 @@
 
   .bmb_text-link .bmb_check-external-link-button-element {
     color: var(--azul-mariner-500);
+
+    &:hover {
+      color: rgb(var(--color-mariner-400));
+    }
   }
 }
