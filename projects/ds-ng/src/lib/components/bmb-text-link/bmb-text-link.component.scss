@@ -2,19 +2,18 @@
 @use '../../../assets/styles/base/rem' as rem;
 
 .bmb_text-link {
+  @include fonts.font(4, regular);
+  color: var(--buttons-text-link);
+  line-height: 2;
+
   &-disabled {
     opacity: 0.5;
     pointer-events: none;
   }
 
-  .bmb_check-external-link-button-element {
-    position: relative;
-    padding: rem.rem_calc(2 0);
-    text-decoration: none;
+  &-item {
     display: inline-flex;
-    align-items: center;
-    color: var(--general_contrasts-main-selection);
-    line-height: 2;
+    position: relative;
 
     &::after {
       content: '';
@@ -23,7 +22,7 @@
       right: 0;
       bottom: rem.rem_calc(5);
       height: rem.rem_calc(1);
-      background: var(--general_contrasts-main-selection);
+      background: var(--buttons-text-link);
       transform: scaleX(0);
       transition: transform 0.2s ease;
     }
@@ -32,52 +31,14 @@
       transform: scaleX(1);
     }
 
-    span {
-      @include fonts.font(4, bold);
-    }
-  }
-
-  &-item {
-    &-position_left {
-      display: inline-flex;
-      flex-direction: row;
-      align-items: center;
-    }
-
-    &-position_right {
-      display: inline-flex;
+    &-reverse {
       flex-direction: row-reverse;
-      align-items: center;
-    }
-
-    &-icon {
-      font-size: rem.rem_calc(20);
-
-      &-position_left {
-        padding-right: rem.rem_calc(8);
-      }
-
-      &-position_right {
-        padding-left: rem.rem_calc(8);
-      }
     }
   }
 
   &-underlined {
-    .bmb_check-external-link-button-element {
-      @include fonts.font(4, regular);
+    > span {
       text-decoration: underline;
-
-      &::after {
-        content: '';
-        left: 0;
-        right: 0;
-        transform: scaleX(0);
-      }
-
-      &:hover::after {
-        transform: scaleX(0);
-      }
     }
   }
 }
