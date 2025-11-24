@@ -6,6 +6,7 @@ import {
   ViewEncapsulation,
   ViewChild,
   ElementRef,
+  output,
 } from '@angular/core';
 import { BmbDropdownContentComponent } from '../utils/bmb-dropdown-content/bmb-dropdown-content.component';
 import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
@@ -24,6 +25,8 @@ import { BmbProjectionContentService } from '../../services/projection/projectio
 export class BmbDropdownMenuComponent {
   items = input<IDropdownItem[]>([]);
 
+  clickedItem = output<IDropdownItem>();
+
   @ViewChild('contentDiv', { static: true }) contentRef!: ElementRef<any>;
 
   constructor(private projectionService: BmbProjectionContentService) {}
@@ -33,6 +36,12 @@ export class BmbDropdownMenuComponent {
       content: BmbDropdownContentComponent,
       targetRef: this.contentRef?.nativeElement,
       inputContext: { items: this.items() },
+      outputContext: {
+        clickedItem: (item: IDropdownItem) => {
+          this.clickedItem.emit(item);
+          this.projectionService.closeContent();
+        },
+      },
       focusOnOpen: true,
       showBackdrop: false,
     };

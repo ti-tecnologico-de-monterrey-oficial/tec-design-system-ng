@@ -69,7 +69,7 @@ export class BmbNotificationService {
 
     this.notificationList.update((currentNotifications) => [
       ...currentNotifications,
-      { ...notification, id },
+      { position: 'top-right', ...notification, id },
     ]);
 
     setTimeout(() => {
