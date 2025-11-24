@@ -1,0 +1,12 @@
+<form bmbLayout [formGroup]="userForm" (ngSubmit)="onSubmit()">
+  <section bmbLayoutItem [colSm]="2">
+    <bmb-dropzone
+      [acceptedExtensions]="['image/*']"
+      [fileSize]="2"
+      [multiple]="true"
+      (newFile)="onNewFile($event)"
+      [progress]="progressFiles()"
+    ></bmb-dropzone>
+  </section>
+  <button bmbButton appearance="primary" type="submit">Submit</button>
+</form>

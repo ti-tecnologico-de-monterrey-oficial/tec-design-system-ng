@@ -1,42 +1,32 @@
-import { Component, computed, OnInit } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { Component, signal } from '@angular/core';
 import {
-  BmbDropdownComponent,
-  BmbButtonDirective,
   BmbLayoutDirective,
   BmbLayoutItemDirective,
+  BmbDropzoneComponent,
 } from '../../../../projects/ds-ng/src/public-api';
-import { AnimeService } from '../../services/anime.service';
+import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
-  selector: 'bmb-dropdown-page',
-  templateUrl: './dropdown.component.html',
+  selector: 'bmb-dropzone-page',
+  templateUrl: './dropzone.component.html',
   standalone: true,
   imports: [
-    BmbButtonDirective,
-    BmbDropdownComponent,
+    BmbLayoutDirective,
+    BmbLayoutItemDirective,
+    BmbDropzoneComponent,
     ReactiveFormsModule,
     BmbLayoutDirective,
     BmbLayoutItemDirective,
   ],
 })
-export class DropdownPageComponent implements OnInit {
+export class DropzonePageComponent {
   userForm: FormGroup = new FormGroup({
-    dropdown: new FormControl(),
+    dropzone: new FormControl(),
   });
-
-  constructor(private animeService: AnimeService) {}
-
-  ngOnInit() {
-    this.animeService.fetchTopAnime();
-  }
+  progressFiles = signal<Record<string, number>>({});
 
   getFormControl(name: string): FormControl {
     return this.userForm.get(name) as FormControl;
-  }
-
-  handleDropdownChange(event: unknown) {
-    //Add your code
   }
 
   onSubmit() {
@@ -58,8 +48,17 @@ export class DropdownPageComponent implements OnInit {
     });
   }
 
-  options = computed(() => {
-    const elements = this.animeService.topAnime();
-    return elements.data.map((anime) => anime.title);
-  });
+  onNewFile(file: File | File[]) {
+    setTimeout(() => {
+      const updatedProgress = { ...this.progressFiles() };
+      if (Array.isArray(file)) {
+        file.forEach((f) => {
+          updatedProgress[f.name] = 50;
+        });
+      } else {
+        updatedProgress[file.name] = 50;
+      }
+      this.progressFiles.set(updatedProgress);
+    }, 1000);
+  }
 }

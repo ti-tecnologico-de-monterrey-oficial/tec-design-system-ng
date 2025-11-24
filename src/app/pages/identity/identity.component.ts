@@ -28,8 +28,6 @@ import { FormGroup } from '@angular/forms';
   selector: 'app-identity',
   standalone: true,
   imports: [
-    BmbThemeComponent,
-    BmbTopBarComponent,
     BmbSidebarComponent,
     BmbHomeCardComponent,
     BmbTabsComponent,
