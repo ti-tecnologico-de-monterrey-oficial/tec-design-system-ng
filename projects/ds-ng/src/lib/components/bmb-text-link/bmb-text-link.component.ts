@@ -8,7 +8,8 @@ import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { IBmbTargetLink } from '../../types';
 import { BmbCheckExternalLinkButtonComponent } from '../bmb-check-external-link-button/bmb-check-external-link-button.component';
 import { CommonModule } from '@angular/common';
-import { IBmbContrast } from '../../types/colors';
+import { BmbLayoutDirective } from '../../directives/bmb-layout/bmb-layout.directive';
+import { BmbLayoutItemDirective } from '../../directives/bmb-layout/bmb-layout-item.directive';
 
 export type IBmbIconPosition = 'left' | 'right';
 export type IBmbTextLinkStyle = 'icon' | 'underlined';
@@ -18,6 +19,8 @@ export type IBmbTextLinkStyle = 'icon' | 'underlined';
   standalone: true,
   imports: [
     CommonModule,
+    BmbLayoutDirective,
+    BmbLayoutItemDirective,
     BmbCheckExternalLinkButtonComponent,
     BmbIconComponent,
   ],
@@ -35,27 +38,10 @@ export class BmbTextLinkComponent {
   link = input.required<string>();
   disabled = input<boolean>(false);
 
-  getClasses(): string[] {
-    const principalClassName: string = 'bmb_text-link';
-    const classes: string[] = [principalClassName];
+  get positionClass(): string {
+    if (this.textLinkStyle() === 'icon')
+      return 'bmb_text-link-item-position_'.concat(this.iconPosition());
 
-    if (this.textLinkStyle() === 'underlined')
-      classes.push(`${principalClassName}-underlined`);
-
-    if (this.disabled()) classes.push(`${principalClassName}-disabled`);
-
-    return classes;
-  }
-
-  getPositionClass(
-    principalClassName: string,
-    isIcon: boolean,
-    position: string,
-  ): string[] {
-    const classes: string[] = [principalClassName];
-
-    if (isIcon) classes.push(`${principalClassName}-position_${position}`);
-
-    return classes;
+    return '';
   }
 }
