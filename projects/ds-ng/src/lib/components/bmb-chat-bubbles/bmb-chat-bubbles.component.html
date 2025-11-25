@@ -94,6 +94,8 @@
                   [isFill]="true"
                   [size]="24"
                   (click)="handleRepeat($event)"
+                  aria-label="button"
+                  (keypress)="handleRepeat($event)"
                 ></bmb-icon>
                 <bmb-icon
                   class="bmb_chat-bubble-extra-icon"
@@ -101,6 +103,8 @@
                   [isFill]="true"
                   [size]="24"
                   (click)="handleVoice($event)"
+                  aria-label="button"
+                  (keypress)="handleVoice($event)"
                 ></bmb-icon>
                 <bmb-icon
                   class="bmb_chat-bubble-extra-icon"
@@ -108,6 +112,8 @@
                   [isFill]="true"
                   [size]="24"
                   (click)="handleCopyContent($event)"
+                  aria-label="button"
+                  (keypress)="handleCopyContent($event)"
                 ></bmb-icon>
                 <bmb-icon
                   class="bmb_chat-bubble-extra-icon"
@@ -115,6 +121,8 @@
                   [isFill]="true"
                   [size]="24"
                   (click)="handleLike($event)"
+                  aria-label="button"
+                  (keypress)="handleLike($event)"
                 ></bmb-icon>
                 <bmb-icon
                   class="bmb_chat-bubble-extra-icon"
@@ -122,6 +130,8 @@
                   [isFill]="true"
                   [size]="24"
                   (click)="handleDislike($event)"
+                  aria-label="button"
+                  (keypress)="handleDislike($event)"
                 ></bmb-icon>
               }
             </div>

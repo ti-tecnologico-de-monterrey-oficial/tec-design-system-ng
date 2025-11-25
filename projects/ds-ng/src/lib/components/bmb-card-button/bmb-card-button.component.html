@@ -42,7 +42,9 @@
           leftContentImage() &&
           !textLink()
       }"
+      aria-label="button"
       (click)="handleAddContent($event)"
+      (keypress)="handleAddContent($event)"
     >
       @if (leftContent() || isTemplate() || hasMenu()) {
         <section class="bmb_card_button-box">
@@ -107,6 +109,8 @@
           tabindex="0"
           class="bmb_card_button-header"
           (click)="handleTitleClick($event)"
+          aria-label="button"
+          (keypress)="handleTitleClick($event)"
         >
           <h2 class="bmb_card_button-header-text">{{ title() }}</h2>
           <bmb-icon
