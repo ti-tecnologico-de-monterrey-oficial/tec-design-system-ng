@@ -453,8 +453,6 @@
     padding: var(--bmb-spacing-l);
 
     @media (max-width: 630px) {
-      border-bottom-left-radius: rem.rem_calc(20);
-      border-bottom-right-radius: rem.rem_calc(20);
       border-radius: 0;
       height: max-content;
       margin: var(--bmb-spacing-xxs);

@@ -68,8 +68,8 @@ export class BmbCardButtonComponent {
   isDisabled = input<boolean>(false);
   textLink = input<IBmbLinkConfiguration>();
 
-  onAddContentClick = output<MouseEvent>();
-  onTitleClick = output<MouseEvent>();
+  onAddContentClick = output<MouseEvent | KeyboardEvent>();
+  onTitleClick = output<MouseEvent | KeyboardEvent>();
   onSmallClick = output<MouseEvent>();
 
   //Small card
@@ -96,11 +96,11 @@ export class BmbCardButtonComponent {
     this.onSmallClick.emit(event);
   }
 
-  handleTitleClick(event: MouseEvent): void {
+  handleTitleClick(event: MouseEvent | KeyboardEvent): void {
     this.onTitleClick.emit(event);
   }
 
-  handleAddContent(event: MouseEvent): void {
+  handleAddContent(event: MouseEvent | KeyboardEvent): void {
     if (
       (this.isFullInteractive() &&
         this.leftContent() &&
