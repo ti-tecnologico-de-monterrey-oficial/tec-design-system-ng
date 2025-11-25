@@ -400,7 +400,6 @@ img {
   background-color: #eef3f8;
   border-radius: 5px;
   border: 1px solid rgba(0, 0, 0, 0.05);
-  background: #eef3f8;
   height: 180px;
   margin-bottom: 48px;
   overflow: hidden;
@@ -476,7 +475,6 @@ img {
   .sb-addon-img img {
     width: 1200px;
     transform: rotate(-12deg);
-    margin-left: 0;
     margin-top: 48px;
     margin-bottom: -40px;
     margin-left: -24px;
@@ -486,7 +484,6 @@ img {
 .bmb_doc {
   &-tabs {
     display: flex;
-    flex-direction: row;
     gap: 1rem;
     flex-direction: column;
 
