@@ -9,7 +9,6 @@ import {
   Renderer2,
   OnChanges,
   SimpleChanges,
-  output,
   model,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -102,8 +101,6 @@ export class BmbPullWedgeComponent implements AfterViewInit, OnChanges {
     } else if (this.contentHeight < midpointThreshold) {
       this.contentHeight = this.minContentHeight;
       this.isOpen.set(false);
-    } else {
-      this.contentHeight = this.contentHeight;
     }
 
     this.renderer.setStyle(
