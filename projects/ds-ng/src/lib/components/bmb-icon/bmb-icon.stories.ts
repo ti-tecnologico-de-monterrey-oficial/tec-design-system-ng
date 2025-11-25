@@ -23,10 +23,12 @@ export default {
       exclude: [
         'styleIconGoogle',
         'getFontVariationSettings',
+        'iconSvg',
         'isImage',
         'getImageStyles',
         'customIcon',
         'isSVGTemplate',
+        'loadIcon',
       ],
     },
     docs: {
