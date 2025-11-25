@@ -210,7 +210,6 @@ describe('BmbPullWedgeComponent', () => {
       component.contentHeight = 160; // Between thresholds
       component.maxDragHeight = 153;
       component.isOpen.set(false); // Set explicit state
-      const originalOpenState = component.isOpen();
 
       const mockEvent = {} as CdkDragEnd;
 
