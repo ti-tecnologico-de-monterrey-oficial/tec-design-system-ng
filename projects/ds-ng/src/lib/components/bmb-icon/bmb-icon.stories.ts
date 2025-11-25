@@ -28,7 +28,7 @@ export default {
         'getImageStyles',
         'customIcon',
         'isSVGTemplate',
-        'loadIcon'
+        'loadIcon',
       ],
     },
     docs: {
