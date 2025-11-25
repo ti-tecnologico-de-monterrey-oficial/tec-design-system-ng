@@ -29,6 +29,10 @@ $colors: (
   }
 
   &-icon {
-    color: var(--general_contrasts-main-selection);
+    color: inherit;
+
+    &-primary {
+      color: var(--general_contrasts-main-selection);
+    }
   }
 }

@@ -130,7 +130,8 @@ export class BmbNativeModalComponent {
       return;
     }
 
-    this.container.clear();
+    // Clear previous content, optional chaining in case container is not yet initialized
+    this.container?.clear();
     if (this.componentRef) {
       this.componentRef?.destroy();
       this.componentRef = null;
