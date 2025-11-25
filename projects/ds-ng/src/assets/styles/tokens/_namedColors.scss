@@ -2,6 +2,7 @@
 .storybook-light-theme .docs-story {
   --general_contrasts: var(--black-primary);
   --general_contrasts-100: rgb(var(--color-charade-950));
+  --general_contrasts-90: rgb(var(--color-charade-500));
   --general_contrasts-75: rgb(var(--color-charade-700));
   --general_contrasts-50: rgb(var(--color-charade-500));
   --general_contrasts-25: rgb(var(--color-charade-200));
@@ -19,6 +20,7 @@
   --general_contrasts-container-outline: rgb(var(--color-charade-300));
   --general_contrasts-text-sidebar: rgb(var(--color-black-primary));
   --general_contrasts-container: rgb(var(--color-charade-800));
+  --general_contrasts-primary: rgb(var(--color-mariner-700));
 
   --containers-background: rgb(var(--color-charade-200));
   --containers-main: rgb(var(--color-charade-100));
@@ -122,6 +124,7 @@
 .storybook-dark-theme .docs-story {
   --general_contrasts: var(--white-primary);
   --general_contrasts-100: rgb(var(--color-charade-50));
+  --general_contrasts-90: rgb(var(--color-charade-300));
   --general_contrasts-75: rgb(var(--color-charade-200));
   --general_contrasts-50: rgb(var(--color-charade-500));
   --general_contrasts-25: rgb(var(--color-charade-700));
@@ -137,6 +140,7 @@
   --general_contrasts-container-outline: rgb(var(--color-charade-800));
   --general_contrasts-text-sidebar: rgb(var(--color-white-primary));
   --general_contrasts-container: rgb(var(--color-charade-300));
+  --general_contrasts-primary: rgb(var(--color-mariner-400));
 
   --containers-background: rgb(var(--color-charade-950));
   --containers-main: rgb(var(--color-charade-900));
