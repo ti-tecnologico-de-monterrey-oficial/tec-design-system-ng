@@ -13,6 +13,10 @@ export default {
       page: () => getPageStructureForFoundationStories(),
       controls: {
         exclude: [
+          'iconSvg',
+          'isSVGTemplate',
+          'loadIcon',
+          'customIcon',
           'alt',
           'fontWeight',
           'icon',
