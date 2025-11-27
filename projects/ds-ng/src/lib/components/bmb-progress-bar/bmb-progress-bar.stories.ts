@@ -4,7 +4,7 @@ import {
   getBasicExampleBlock,
   getGeneralComponentDescription,
   getGeneralDescription,
-  RELEVANT_TITLE,
+  getStoryLink,
 } from '../../utils/doc/utils';
 import {
   DBmbGenericParamDesc,
@@ -15,6 +15,7 @@ import {
   getPropertyForType,
   DBmbProgressBar,
 } from '../../utils/doc/parameterDescriptions';
+import * as actionIconStory from '../bmb-action-icon/bmp-action-icon.stories';
 
 export default {
   title: 'Components/Status indicators/Progress bar',
@@ -105,7 +106,22 @@ ${getBasicExampleBlock('BmbProgressBarComponent')}
       ),
     },
     textFormat: DBmbProgressBar.textFormat,
-    icon: DBmbIconParamDesc.icon,
+    avatarIcon: DBmbIconParamDesc.icon,
+    isContainer: getPropertyParamDesc(
+      '**Container progress - Anatomy**',
+      'boolean',
+      false,
+    ),
+    actionIcon: getPropertyParamDesc(
+      '',
+      'text',
+      '',
+      '',
+      `Sets an ${getStoryLink({
+        title: actionIconStory.default.title!,
+        isAddPath: true,
+      })} to the right of the ***Progress bar*** when the **Container progress - Anatomy** is active.`,
+    ),
   },
   args: {
     type: 'container',

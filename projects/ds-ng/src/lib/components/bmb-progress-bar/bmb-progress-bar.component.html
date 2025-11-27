@@ -1,21 +1,10 @@
-<section
-  class="bmb_progress-bar"
-  bmbLayout
-  [dynamicCols]="true"
-  margin="none"
-  alignItems="center"
->
-  @if (icon() && type() !== 'simple') {
-    <bmb-icon
-      class="bmb_progress-bar-icon"
-      [ngClass]="
-        appearance() !== 'info' ? 'bmb_progress-bar-' + appearance() : ''
-      "
-      icon="home"
-      [size]="24"
-    />
-  }
-  <section class="bmb_progress-bar-container" bmbVerticalLayout gapSize="s">
+<ng-template #progressBar>
+  <section
+    class="bmb_progress-bar-container"
+    bmbLayoutItem
+    bmbVerticalLayout
+    gapSize="s"
+  >
     @if (type() === 'container') {
       <bmb-value-counter
         [ngClass]="
@@ -54,9 +43,11 @@
             bmbLayoutItem
           />
         } @else {
-          <span class="bmb_progress-bar-counter-text" bmbLayoutItem>
-            {{ progressValue() + '%' }}
-          </span>
+          @if (!isContainer()) {
+            <span class="bmb_progress-bar-counter-text" bmbLayoutItem>
+              {{ progressValue() + '%' }}
+            </span>
+          }
         }
       }
     </section>
@@ -69,4 +60,46 @@
       />
     }
   </section>
-</section>
+</ng-template>
+@if (isContainer()) {
+  <section
+    class="bmb_progress-bar"
+    bmbLayout
+    [dynamicCols]="true"
+    margin="none"
+    alignItems="center"
+  >
+    @if (!!avatarIcon() && type() !== 'simple') {
+      <bmb-icon
+        class="bmb_progress-bar-icon"
+        [ngClass]="
+          appearance() !== 'info' ? 'bmb_progress-bar-' + appearance() : ''
+        "
+        [icon]="avatarIcon()"
+        [size]="24"
+        bmbLayoutItem
+      />
+    }
+    <ng-container [ngTemplateOutlet]="progressBar" />
+    @if (totalCount() === counter()) {
+      <bmb-icon
+        class="bmb_progress-bar-icon-successful"
+        icon="check_circle"
+        [size]="24"
+        bmbLayoutItem
+      />
+    }
+    @if (!!actionIcon()) {
+      <bmb-action-icon
+        class="bmb_progress-bar-icon-action"
+        idElement="progress_bar_action"
+        [icon]="actionIcon()"
+        [iconSize]="24"
+        (buttonClick)="handleClick($event)"
+        bmbLayoutItem
+      />
+    }
+  </section>
+} @else {
+  <ng-container [ngTemplateOutlet]="progressBar" />
+}

@@ -3,6 +3,7 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
+  inject,
   input,
   output,
   SimpleChanges,
@@ -10,14 +11,13 @@ import {
 } from '@angular/core';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { BmbTextLinkComponent } from '../bmb-text-link/bmb-text-link.component';
-import {
-  BmbCardComponent,
-  BmbCardContentComponent,
-} from '../bmb-card/bmb-card.component';
 import { BmbProgressBarComponent } from '../bmb-progress-bar/bmb-progress-bar.component';
 import { getUUID } from '../../utils/utils';
 import { IBmbContrast } from '../../types/colors';
 import { TranslatePipe } from '../../pipes/translations';
+import { BmbVerticalLayoutDirective } from '../../directives/bmb-layout/bmb-vertical-layout/bmb-vertical-layout.directive';
+import { BmbVerticalLayoutItemDirective } from '../../directives/bmb-layout/bmb-vertical-layout/bmb-vertical-layout-item.directive';
+
 interface FileData {
   name: string;
   size: number;
@@ -36,13 +36,14 @@ interface IBmbFileValidation {
   standalone: true,
   imports: [
     CommonModule,
+    BmbVerticalLayoutDirective,
+    BmbVerticalLayoutItemDirective,
     BmbIconComponent,
     BmbTextLinkComponent,
-    BmbCardComponent,
-    BmbCardContentComponent,
     BmbProgressBarComponent,
     TranslatePipe,
   ],
+  providers: [TranslatePipe],
   templateUrl: './bmb-dropzone.component.html',
   styleUrl: './bmb-dropzone.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -69,6 +70,7 @@ export class BmbDropzoneComponent {
   newFile = output<File | File[]>();
   fileRemoved = output<string>();
 
+  translatePipe = inject(TranslatePipe);
   validFile: boolean = true;
   input?: HTMLInputElement;
 
@@ -82,6 +84,62 @@ export class BmbDropzoneComponent {
     ) {
       this.cdr.detectChanges();
     }
+  }
+
+  getDropZoneClass(): string[] {
+    const classList = [];
+
+    if (this.isInvalidFileOnly()) {
+      classList.push('bmb_drop-zone-container-error');
+    } else {
+      if (
+        this.fileDataList.length > 0 &&
+        !!this.fileDataList[0].name &&
+        this.fileDataList.some(
+          (file: FileData) => this.getProgress(file.name) < 100,
+        )
+      ) {
+        classList.push('bmb_drop-zone-container-uploading-file');
+      }
+
+      if (this.appearanceContrast() === 'primary') {
+        classList.push('bmb-drop-zone-container-primary');
+      }
+
+      if (this.appearanceContrast() === 'alternative') {
+        classList.push('bmb-drop-zone-container-alternative');
+      }
+    }
+
+    return classList;
+  }
+
+  getAvatarIcon(fileName: string, isError: boolean): string {
+    if (isError) return 'upload_file';
+    if (this.validFile && this.getProgress(fileName) === 100) return 'task';
+
+    return 'progress_activity';
+  }
+
+  getTitle(file: FileData): string {
+    if (file.error) {
+      if (file.errorType === 'format') {
+        return (
+          this.errorMessageFormat() ||
+          this.translatePipe.transform('dropzone.error_message_format')
+        );
+      } else if (file.errorType === 'size') {
+        return `${
+          this.errorMessageSize() ||
+          this.translatePipe.transform('dropzone.error_message_size')
+        }${file.size.toFixed(2)} MB`;
+      }
+    }
+    return file.name;
+  }
+
+  getFormatProgress(value: string, total: string): string {
+    return `${value}%/${total}%`;
   }
 
   public onFileSelected(event: Event) {
@@ -196,27 +254,27 @@ export class BmbDropzoneComponent {
     this.validFile = false;
   }
 
-  onDragOver(event: DragEvent) {
+  dragOver(event: DragEvent) {
     this.validFile = true;
     event.preventDefault();
     event.stopPropagation();
     const dropzoneElement = event.currentTarget as HTMLElement;
-    dropzoneElement.classList.add('bmb-drop-zone-drag-over');
+    dropzoneElement.classList.add('bmb_drop-zone-container-uploading-file');
   }
 
-  onDragLeave(event: DragEvent) {
+  dragLeave(event: DragEvent) {
     event.preventDefault();
     event.stopPropagation();
     const dropzoneElement = event.currentTarget as HTMLElement;
-    dropzoneElement.classList.remove('bmb-drop-zone-drag-over');
+    dropzoneElement.classList.remove('bmb_drop-zone-container-uploading-file');
   }
 
-  onDrop(event: DragEvent) {
+  drop(event: DragEvent) {
     event.preventDefault();
     event.stopPropagation();
     const dropzoneElement = event.currentTarget as HTMLElement;
     dropzoneElement.classList.add('bmb-drop-zone');
-    dropzoneElement.classList.remove('bmb-drop-zone-drag-over');
+    dropzoneElement.classList.remove('bmb_drop-zone-container-uploading-file');
 
     const files = event.dataTransfer?.files;
     if (files && files.length > 0) {
@@ -243,27 +301,5 @@ export class BmbDropzoneComponent {
       this.input.value = '';
     }
     this.cdr.detectChanges();
-  }
-
-  getDropZoneClass(): string[] {
-    const classList = [];
-
-    if (this.isInvalidFileOnly()) {
-      classList.push('bmb-drop-zone-error');
-    }
-
-    if (this.fileDataList.length > 0 && !!this.fileDataList[0].name) {
-      classList.push('bmb-drop-zone-drag-over');
-    }
-
-    if (this.appearanceContrast() === 'primary') {
-      classList.push('bmb-drop-zone-container-primary');
-    }
-
-    if (this.appearanceContrast() === 'alternative') {
-      classList.push('bmb-drop-zone-container-alternative');
-    }
-
-    return classList;
   }
 }

@@ -184,13 +184,15 @@ export const getStoryTitle = (fullTitle: string): string =>
 export const getStoryLink = ({
   title,
   showFullLinkName = true,
+  isAddPath = false,
 }: {
   title: string;
   showFullLinkName?: boolean;
+  isAddPath?: boolean;
 }): string => {
   if (showFullLinkName)
-    return `[${title}](/docs/${getFormatName(title!, /(\/)|( )/g, '-').toLocaleLowerCase()}--documentation)`;
-  return `[${getStoryTitle(title!)}](/docs/${getFormatName(title!, /(\/)|( )/g, '-').toLocaleLowerCase()}--documentation)`;
+    return `[${title}](${isAddPath ? '/?path=' : ''}/docs/${getFormatName(title!, /(\/)|( )/g, '-').toLocaleLowerCase()}--documentation)`;
+  return `[${getStoryTitle(title!)}](${isAddPath ? '/?path=' : ''}/docs/${getFormatName(title!, /(\/)|( )/g, '-').toLocaleLowerCase()}--documentation)`;
 };
 
 export const getAccordionDetail = (title: string, content: string): string => `

@@ -5,6 +5,7 @@ import {
   ViewEncapsulation,
   input,
   computed,
+  output,
 } from '@angular/core';
 import { IBmbTargetLink } from '../../types';
 import { BmbTextLinkComponent } from '../bmb-text-link/bmb-text-link.component';
@@ -14,6 +15,7 @@ import { BmbLayoutItemDirective } from '../../directives/bmb-layout/bmb-layout-i
 import { BmbVerticalLayoutDirective } from '../../directives/bmb-layout/bmb-vertical-layout/bmb-vertical-layout.directive';
 import { BmbVerticalLayoutItemDirective } from '../../directives/bmb-layout/bmb-vertical-layout/bmb-vertical-layout-item.directive';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
+import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
 
 export type IBmbProgressBarVariations = 'info' | 'warning' | 'error';
 export type IBmbProgressBarTypes = 'simple' | 'counter' | 'container';
@@ -30,6 +32,7 @@ export type IBmbProgressBarTypes = 'simple' | 'counter' | 'container';
     BmbIconComponent,
     BmbValueCounterComponent,
     BmbTextLinkComponent,
+    BmbActionIconComponent,
   ],
   templateUrl: './bmb-progress-bar.component.html',
   styleUrl: './bmb-progress-bar.component.scss',
@@ -48,7 +51,15 @@ export class BmbProgressBarComponent {
   textFormat = input<(counter: string, total: string) => string>(
     (counter, total) => `${counter}/${total}`,
   );
-  icon = input<string>();
+  isContainer = input<boolean>(false);
+  avatarIcon = input<string>('');
+  actionIcon = input<string>('');
+
+  actionClick = output<MouseEvent>();
+
+  handleClick(event: MouseEvent) {
+    this.actionClick.emit(event);
+  }
 
   progressValue = computed(() => {
     const numberProgress = (this.counter() / this.totalCount()) * 100;

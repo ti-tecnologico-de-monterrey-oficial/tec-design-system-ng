@@ -1,39 +1,60 @@
-<div class="bmb-drop-zone">
+<section class="bmb_drop-zone" bmbVerticalLayout gapSize="l">
   <section
-    class="bmb-drop-zone-container"
+    class="bmb_drop-zone-container"
     [ngClass]="getDropZoneClass()"
-    (dragover)="onDragOver($event)"
-    (dragleave)="onDragLeave($event)"
-    (drop)="onDrop($event)"
+    (dragover)="dragOver($event)"
+    (dragleave)="dragLeave($event)"
+    (drop)="drop($event)"
+    bmbVerticalLayoutItem
+    bmbVerticalLayout
+    gapSize="m"
+    justify="center"
+    alignItems="center"
   >
-    <div
-      class="bmb-drop-zone-icon"
+    <bmb-icon
+      class="bmb_drop-zone-icon"
       [ngClass]="{
-        'bmb-drop-zone-icon-valid':
+        'bmb_drop-zone-icon-valid':
           validFile && fileDataList.length > 0 && !!fileDataList[0].name,
-        'bmb-drop-zone-icon-error': isInvalidFileOnly()
+        'bmb_drop-zone-icon-error': isInvalidFileOnly()
       }"
-    >
-      <bmb-icon [icon]="mainIcon()" [size]="48" alt="Drop zone icon" />
-    </div>
-    <p class="bmb-drop-zone-label-format">
+      [icon]="mainIcon()"
+      [size]="48"
+      alt="Drop zone icon"
+      bmbVerticalLayoutItem
+      [isFullWidth]="false"
+    />
+
+    <p class="bmb_drop-zone-label" bmbVerticalLayoutItem [isFullWidth]="false">
       {{ formatFilesLabel() || ('dropzone.format_files_label' | translate) }}
     </p>
-    <p class="bmb-drop-zone-label-format-instruction">
+    <p
+      class="bmb_drop-zone-label-instruction"
+      bmbVerticalLayoutItem
+      [isFullWidth]="false"
+    >
       {{ dropInstruction() || ('dropzone.drop_instructions' | translate) }}
-      <label class="bmb-drop-zone-link" [htmlFor]="name()">
-        {{ dropLabel() || ('dropzone.drop_label' | translate) }}
-      </label>
+      <bmb-text-link
+        [textLink]="dropLabel() || ('dropzone.drop_label' | translate)"
+        [link]="name()"
+        [isOS]="true"
+      />
     </p>
     @if (isInvalidFileOnly()) {
-      <p class="bmb-drop-zone-label-format-error bmb-drop-zone-label-format">
+      <p
+        class="bmb_drop-zone-label-error"
+        bmbVerticalLayoutItem
+        [isFullWidth]="false"
+      >
         {{ errorMessage() || ('dropzone.error_message' | translate) }}
       </p>
-      @if (linkFilesSupported()) {
+      @if (!!linkFilesSupported() && !!linkLabel()) {
         <bmb-text-link
           textLinkStyle="underlined"
           [link]="linkFilesSupported()"
           [textLink]="linkLabel() || ('dropzone.link_label' | translate)"
+          bmbVerticalLayoutItem
+          [isFullWidth]="false"
         />
       }
     }
@@ -49,109 +70,20 @@
   </section>
   @if (fileDataList.length > 0) {
     @for (file of fileDataList; track file.name) {
-      <bmb-card margin="none" type="transparent">
-        <bmb-card-content>
-          <div
-            class="bmb-drop-zone-list-files"
-            [ngClass]="{
-              'bmb-drop-zone-list-files-loading':
-                !file.error && getProgress(file.name) < 100,
-              'bmb-drop-zone-list-files-error': file.error,
-              'bmb-drop-zone-list-files-valid': getProgress(file.name) === 100
-            }"
-          >
-            <span
-              class="bmb-drop-zone-list-files-icon"
-              [ngClass]="{
-                'bmb-drop-zone-list-files-icon-spin':
-                  !file.error && getProgress(file.name) < 100
-              }"
-            >
-              @if (!validFile) {
-                <bmb-icon icon="upload_file" [size]="24" />
-              } @else if (getProgress(file.name) < 100) {
-                <bmb-icon icon="progress_activity" [size]="24" class="spin" />
-              } @else if (validFile) {
-                <bmb-icon icon="task" [size]="24" />
-              }
-            </span>
-
-            <div class="bmb-drop-zone-list-name">
-              <span>{{ file.name }}</span>
-
-              <div
-                class="bmb-drop-zone-list-status"
-                [ngClass]="{
-                  'bmb-drop-zone-list-status-success':
-                    getProgress(file.name) === 100
-                }"
-              >
-                @if (validFile && getProgress(file.name) < 100) {
-                  <span>{{ getProgress(file.name) }}% / 100%</span>
-                }
-
-                @if (getProgress(file.name) === 100) {
-                  {{ file.size.toFixed(2) }} MB
-                  <bmb-icon
-                    icon="check_circle"
-                    [size]="24"
-                    class="success-icon"
-                  />
-                  <ng-container
-                    *ngTemplateOutlet="
-                      removeButton;
-                      context: { fileName: file.name }
-                    "
-                  ></ng-container>
-                }
-
-                @if (file.error) {
-                  <span>
-                    @if (file.errorType === 'format') {
-                      {{
-                        errorMessageFormat() ||
-                          ('dropzone.error_message_format' | translate)
-                      }}
-                    } @else if (file.errorType === 'size') {
-                      {{
-                        errorMessageSize() ||
-                          ('dropzone.error_message_size' | translate)
-                      }}
-                      ({{ file.size.toFixed(2) }} MB)
-                    }
-                  </span>
-                  <ng-container
-                    *ngTemplateOutlet="
-                      removeButton;
-                      context: { fileName: file.name }
-                    "
-                  ></ng-container>
-                }
-              </div>
-
-              <ng-template #removeButton let-fileName="fileName">
-                <button
-                  class="bmb-drop-zone-list-remove"
-                  (click)="removeFile(fileName)"
-                  type="button"
-                >
-                  <bmb-icon icon="delete" [size]="24" class="delete-icon" />
-                </button>
-              </ng-template>
-            </div>
-
-            @if (validFile && getProgress(file.name) < 100) {
-              <span class="bmb-drop-zone-list-upload">
-                <bmb-progress-bar
-                  type="simple"
-                  [counter]="getProgress(file.name)"
-                  [totalCount]="100"
-                />
-              </span>
-            }
-          </div>
-        </bmb-card-content>
-      </bmb-card>
+      <bmb-progress-bar
+        class="bmb-drop-zone-file"
+        type="container"
+        [totalCount]="100"
+        [counter]="getProgress(file.name)"
+        [title]="getTitle(file)"
+        [appearance]="file.error ? 'error' : 'info'"
+        [textFormat]="getFormatProgress"
+        [isContainer]="true"
+        [avatarIcon]="getAvatarIcon(file.name, file.error!)"
+        [actionIcon]="file.error ? 'close' : 'delete'"
+        (actionClick)="removeFile(file.name)"
+        bmbVerticalLayoutItem
+      />
     }
   }
-</div>
+</section>

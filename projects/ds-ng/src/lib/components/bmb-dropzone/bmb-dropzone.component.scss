@@ -1,24 +1,16 @@
 @use '../../../assets/styles/base/rem' as rem;
 @use '../../../assets/styles/base/fonts' as fonts;
-@use '../../../assets/styles/base/mixins' as mixins;
 
-.bmb-drop-zone {
-  color: RGBA(var(--color-charade-500));
-  display: flex;
-  flex-direction: column;
-  gap: var(--bmb-spacing-m);
+.bmb_drop-zone {
+  color: var(--general_contrasts-80);
   @include fonts.font(4, regular);
+  width: 100%;
 
   &-container {
-    align-items: center;
     border: rem.rem_calc(2) dashed var(--general_contrasts-container-outline);
-    border-radius: var(--bmb-radius-s);
+    border-radius: rem.rem_calc(12);
     box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    gap: var(--bmb-spacing-m);
-    justify-content: center;
-    padding: var(--bmb-spacing-m) var(--bmb-spacing-l);
+    padding: var(--bmb-spacing-m) var(--bmb-spacing-m);
 
     &-primary {
       background-color: var(--containers-background);
@@ -27,114 +19,39 @@
     &-alternative {
       background-color: var(--containers-main);
     }
-  }
 
-  &-drag-over {
-    background-color: var(--menu_select-on-surface-hovered-w-checkbox);
-    border-color: var(--general_contrasts-main-selection);
-  }
+    &-error {
+      border-color: var(--buttons-destructive);
+      background-color: transparent;
+    }
 
-  &-error {
-    border-color: var(--red-primary);
-    background-color: transparent;
-  }
+    &-uploading-file {
+      background-color: var(--menu_select-on-surface-hovered-w-checkbox);
+      border-color: var(--general_contrasts-primary);
+    }
 
-  &-label-format {
-    margin: 0;
-    color: var(--general_contrasts-50);
-    &-instruction {
-      color: var(--general_contrasts-100);
+    > p {
+      margin: 0;
     }
   }
 
-  &-link {
-    @include fonts.font(4, regular);
-    color: var(--general_contrasts-main-selection);
-    cursor: pointer;
-    text-decoration-line: underline;
-  }
+  &-label {
+    &-instruction {
+      color: var(--general_contrasts-100);
+    }
 
-  &-label-format-error {
-    color: var(--red-primary);
+    &-error {
+      color: var(--buttons-destructive);
+    }
   }
 
   &-icon {
     &-valid {
-      color: var(--general_contrasts-main-selection);
+      color: var(--general_contrasts-primary);
     }
 
     &-error {
-      color: var(--red-primary);
-    }
-  }
-
-  &-list {
-    &-files {
-      align-items: center;
-      display: grid;
-      gap: 0.5rem;
-      grid-template-areas:
-        'icon name'
-        'icon progress';
-      grid-template-columns: rem.rem_calc(24) 1fr;
-      margin: 0;
-
-      &-error {
-        color: var(--red-primary);
-        grid-template-areas: 'icon name';
-      }
-
-      &-loading .bmb-drop-zone-list-files-icon {
-        color: var(--general_contrasts-main-selection);
-      }
-
-      &-valid {
-        grid-template-areas: 'icon name';
-      }
-
-      &-icon {
-        grid-area: icon;
-        height: rem.rem_calc(24);
-        width: rem.rem_calc(24);
-
-        &-spin {
-          animation: spin 1s linear infinite;
-        }
-      }
-    }
-
-    &-upload {
-      flex: 1;
-      grid-area: progress;
-    }
-
-    &-name {
-      align-items: center;
-      display: flex;
-      grid-area: name;
-      justify-content: space-between;
-    }
-
-    &-status {
-      align-items: center;
-      display: flex;
-      gap: rem.rem_calc(8);
-
-      &-success {
-        .success-icon {
-          color: var(--red-primary);
-        }
-      }
-
-      .delete-icon {
-        color: var(--general_contrasts-50);
-      }
-    }
-
-    &-remove {
-      padding: 0;
-      margin: 0;
-      height: rem.rem_calc(24);
+      color: var(--buttons-destructive);
     }
   }
 }
