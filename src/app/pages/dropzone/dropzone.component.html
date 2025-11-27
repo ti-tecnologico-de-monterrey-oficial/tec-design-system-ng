@@ -1,12 +1,23 @@
-<form bmbLayout [formGroup]="userForm" (ngSubmit)="onSubmit()">
-  <section bmbLayoutItem [colSm]="2">
-    <bmb-dropzone
-      [acceptedExtensions]="['image/*']"
-      [fileSize]="2"
-      [multiple]="true"
-      (newFile)="onNewFile($event)"
-      [progress]="progressFiles()"
-    />
-  </section>
-  <button bmbButton appearance="primary" type="submit">Submit</button>
+<bmb-theme [showControls]="true" />
+<form
+  [formGroup]="userForm"
+  (ngSubmit)="onSubmit()"
+  style="
+    display: flex;
+    flex-direction: column;
+    margin: var(--bmb-spacing-xxl);
+    padding: var(--bmb-spacing-xxl);
+    gap: var(--bmb-spacing-xxl);
+  "
+>
+  <bmb-dropzone
+    [acceptedExtensions]="['image/*']"
+    [fileSize]="2"
+    [multiple]="true"
+    (newFile)="onNewFile($event)"
+    [progress]="progressFiles()"
+    linkLabel="Ver más información de formatos de archivo aceptados."
+    linkFilesSupported="https://www.youtube.com/"
+  />
+  <button bmbButton type="submit" appearance="primary">Submit</button>
 </form>

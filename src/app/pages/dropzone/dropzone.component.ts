@@ -1,8 +1,8 @@
 import { Component, signal } from '@angular/core';
 import {
-  BmbLayoutDirective,
-  BmbLayoutItemDirective,
   BmbDropzoneComponent,
+  BmbButtonDirective,
+  BmbThemeComponent,
 } from '../../../../projects/ds-ng/src/public-api';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 
@@ -11,12 +11,10 @@ import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
   templateUrl: './dropzone.component.html',
   standalone: true,
   imports: [
-    BmbLayoutDirective,
-    BmbLayoutItemDirective,
-    BmbDropzoneComponent,
     ReactiveFormsModule,
-    BmbLayoutDirective,
-    BmbLayoutItemDirective,
+    BmbThemeComponent,
+    BmbDropzoneComponent,
+    BmbButtonDirective,
   ],
 })
 export class DropzonePageComponent {
@@ -53,10 +51,10 @@ export class DropzonePageComponent {
       const updatedProgress = { ...this.progressFiles() };
       if (Array.isArray(file)) {
         file.forEach((f) => {
-          updatedProgress[f.name] = 50;
+          updatedProgress[f.name] = 100;
         });
       } else {
-        updatedProgress[file.name] = 50;
+        updatedProgress[file.name] = 100;
       }
       this.progressFiles.set(updatedProgress);
     }, 1000);
