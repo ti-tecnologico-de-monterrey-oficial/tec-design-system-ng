@@ -191,7 +191,7 @@ export const getStoryLink = ({
   isPreURL?: boolean;
 }): string => {
   const basisURL: string = `/docs/${getFormatName(title!, /(\/)|( )/g, '-').toLocaleLowerCase()}--documentation)`;
-  const _title: string = showFullLinkName ? title : getStoryTitle(title!);
+  const _title: string = showFullLinkName ? title : getStoryTitle(title);
   const preURL: string = isPreURL ? '/?path=' : '';
 
   return `[${_title}](${preURL}${basisURL}`;
