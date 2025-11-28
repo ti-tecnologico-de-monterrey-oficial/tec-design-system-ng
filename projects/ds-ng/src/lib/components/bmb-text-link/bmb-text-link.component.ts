@@ -37,6 +37,7 @@ export class BmbTextLinkComponent {
   iconPosition = input<IBmbIconPosition>('right');
   link = input.required<string>();
   disabled = input<boolean>(false);
+  isOS = input<boolean>(false); //Internal
 
   get positionClass(): string {
     if (this.textLinkStyle() === 'icon')

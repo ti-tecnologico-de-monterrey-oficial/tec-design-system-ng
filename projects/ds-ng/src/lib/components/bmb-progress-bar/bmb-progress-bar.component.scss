@@ -1,13 +1,26 @@
 @use '../../../assets/styles/base/rem' as rem;
 @use '../../../assets/styles/base/fonts' as fonts;
 
-$variants: (
-  'warning': var(--yellow-primary),
-  'error': var(--red-primary),
-);
-
 .bmb_progress-bar {
+  padding: var(--bmb-spacing-m);
+  border: rem.rem_calc(1) solid var(--general_contrasts-25);
+  border-radius: var(--bmb-radius-s);
+  background-color: var(--containers-modal);
+  color: var(--general_contrasts-100);
+
+  &-container {
+    margin: var(--bmb-spacing-s) 0;
+  }
+
   &-icon {
+    &-successful {
+      color: var(--alert-successful);
+    }
+
+    &-action {
+      color: var(--general_contrasts-60);
+    }
+
     .bmb_icon-svg {
       color: var(--general_contrasts-main-selection);
     }
@@ -34,17 +47,12 @@ $variants: (
     transition-property: width, background-color;
   }
 
-  @each $variant, $color in $variants {
-    &-#{$variant} {
-      color: $color;
+  &-error {
+    color: var(--buttons-destructive);
 
-      .bmb_icon-svg {
-        color: $color;
-      }
-
-      .bmb_value-counter-value {
-        color: $color;
-      }
+    .bmb_icon-svg,
+    .bmb_value-counter-value {
+      color: var(--buttons-destructive);
     }
   }
 }

@@ -16,7 +16,17 @@ export default {
   component: BmbTextLinkComponent,
   parameters: {
     docs: {
-      controls: { exclude: ['getClasses', 'getPositionClass'] },
+      controls: {
+        exclude: [
+          'getClasses',
+          'getPositionClass',
+          'isOS',
+          'getFileSizeInMB',
+          'isFileDuplicate',
+          'isValidFileSize',
+          'isValidFileType',
+        ],
+      },
       description: {
         component: `
 ${getGeneralDescription(`${getGeneralComponentDescription({ name: 'BmbTextLinkComponent' })} navigation on the page or other pages`, { generalDocLink: 'https://bamboo.tec.mx/latest/componentes/text-link/descripcion-general-S0iBFwud' })}

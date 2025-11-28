@@ -1,76 +1,65 @@
-import { Component, computed, OnInit, signal } from '@angular/core';
+import { Component, computed, OnInit } from '@angular/core';
+import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import {
   BmbDropdownComponent,
+  BmbButtonDirective,
   BmbLayoutDirective,
   BmbLayoutItemDirective,
-  BmbFrequentAppsSelectorComponent,
-  BmbHomeCardComponent,
-  BmbInputComponent,
-  BmbFilterCardComponent,
-  BmbTranslationsService,
-  BmbSwitchComponent,
-  BmbDatepickerComponent,
-  BmbDropzoneComponent,
 } from '../../../../projects/ds-ng/src/public-api';
 import { AnimeService } from '../../services/anime.service';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'bmb-dropdown-page',
   templateUrl: './dropdown.component.html',
   standalone: true,
   imports: [
+    BmbButtonDirective,
     BmbDropdownComponent,
+    ReactiveFormsModule,
     BmbLayoutDirective,
     BmbLayoutItemDirective,
-    BmbFrequentAppsSelectorComponent,
-    BmbHomeCardComponent,
-    BmbInputComponent,
-    BmbFilterCardComponent,
-    BmbSwitchComponent,
-    BmbDatepickerComponent,
-    BmbDropzoneComponent,
   ],
 })
 export class DropdownPageComponent implements OnInit {
-  constructor(
-    private animeService: AnimeService,
-    private router: Router,
-    private translationsService: BmbTranslationsService,
-  ) {}
+  userForm: FormGroup = new FormGroup({
+    dropdown: new FormControl(),
+  });
 
-  lang = computed(() => this.translationsService.getCurrentLanguage());
-  progressFiles = signal<Record<string, number>>({});
+  constructor(private animeService: AnimeService) {}
 
-  onExpandClick() {
-    this.router.navigate(['/home']);
+  ngOnInit() {
+    this.animeService.fetchTopAnime();
   }
 
-  onNewFile(file: File | File[]) {
-    setTimeout(() => {
-      const updatedProgress = { ...this.progressFiles() };
-      if (Array.isArray(file)) {
-        file.forEach((f) => {
-          updatedProgress[f.name] = 50;
-        });
-      } else {
-        updatedProgress[file.name] = 50;
+  getFormControl(name: string): FormControl {
+    return this.userForm.get(name) as FormControl;
+  }
+
+  handleDropdownChange(event: unknown) {
+    //Add your code
+  }
+
+  onSubmit() {
+    if (this.userForm.valid) {
+      //Add your code
+      return;
+    }
+    this.userForm.markAllAsTouched();
+    this.updateErrorState();
+  }
+
+  updateErrorState() {
+    Object.keys(this.userForm.controls).forEach((field: any) => {
+      const control = this.getFormControl(field);
+      if (control instanceof FormControl) {
+        control.markAsTouched();
+        control.updateValueAndValidity();
       }
-      this.progressFiles.set(updatedProgress);
-    }, 1000);
+    });
   }
 
   options = computed(() => {
     const elements = this.animeService.topAnime();
     return elements.data.map((anime) => anime.title);
   });
-
-  handleLangChange(event: boolean) {
-    const newLang = event ? 'en' : 'es';
-    this.translationsService.setLanguage(newLang);
-  }
-
-  ngOnInit() {
-    this.animeService.fetchTopAnime();
-  }
 }

@@ -184,13 +184,17 @@ export const getStoryTitle = (fullTitle: string): string =>
 export const getStoryLink = ({
   title,
   showFullLinkName = true,
+  isPreURL = false,
 }: {
   title: string;
   showFullLinkName?: boolean;
+  isPreURL?: boolean;
 }): string => {
-  if (showFullLinkName)
-    return `[${title}](/docs/${getFormatName(title!, /(\/)|( )/g, '-').toLocaleLowerCase()}--documentation)`;
-  return `[${getStoryTitle(title!)}](/docs/${getFormatName(title!, /(\/)|( )/g, '-').toLocaleLowerCase()}--documentation)`;
+  const basisURL: string = `/docs/${getFormatName(title!, /(\/)|( )/g, '-').toLocaleLowerCase()}--documentation)`;
+  const _title: string = showFullLinkName ? title : getStoryTitle(title);
+  const preURL: string = isPreURL ? '/?path=' : '';
+
+  return `[${_title}](${preURL}${basisURL}`;
 };
 
 export const getAccordionDetail = (title: string, content: string): string => `
