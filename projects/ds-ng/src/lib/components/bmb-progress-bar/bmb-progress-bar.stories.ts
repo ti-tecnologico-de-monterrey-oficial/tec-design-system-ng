@@ -119,7 +119,7 @@ ${getBasicExampleBlock('BmbProgressBarComponent')}
       '',
       `Sets an ${getStoryLink({
         title: actionIconStory.default.title!,
-        isAddPath: true,
+        isPreURL: true,
       })} to the right of the ***Progress bar*** when the **Container progress - Anatomy** is active.`,
     ),
   },
