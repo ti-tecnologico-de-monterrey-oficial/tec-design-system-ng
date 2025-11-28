@@ -10,14 +10,13 @@ import {
 } from '@angular/core';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { BmbTextLinkComponent } from '../bmb-text-link/bmb-text-link.component';
-import {
-  BmbCardComponent,
-  BmbCardContentComponent,
-} from '../bmb-card/bmb-card.component';
 import { BmbProgressBarComponent } from '../bmb-progress-bar/bmb-progress-bar.component';
 import { getUUID } from '../../utils/utils';
 import { IBmbContrast } from '../../types/colors';
 import { TranslatePipe } from '../../pipes/translations';
+import { BmbVerticalLayoutDirective } from '../../directives/bmb-layout/bmb-vertical-layout/bmb-vertical-layout.directive';
+import { BmbVerticalLayoutItemDirective } from '../../directives/bmb-layout/bmb-vertical-layout/bmb-vertical-layout-item.directive';
+
 interface FileData {
   name: string;
   size: number;
@@ -36,10 +35,10 @@ interface IBmbFileValidation {
   standalone: true,
   imports: [
     CommonModule,
+    BmbVerticalLayoutDirective,
+    BmbVerticalLayoutItemDirective,
     BmbIconComponent,
     BmbTextLinkComponent,
-    BmbCardComponent,
-    BmbCardContentComponent,
     BmbProgressBarComponent,
     TranslatePipe,
   ],
@@ -54,9 +53,8 @@ export class BmbDropzoneComponent {
   dropInstruction = input<string>();
   dropLabel = input<string>();
   errorMessage = input<string>();
-  errorMessageFormat = input<string>();
-  errorMessageSize = input<string>();
-  fileDataList: FileData[] = [];
+  errorMessageFormat = input<string>(); //Deprecated
+  errorMessageSize = input<string>(); //Deprecated
   fileSize = input<number>(2);
   formatFilesLabel = input<string>();
   linkFilesSupported = input<string>('');
@@ -69,6 +67,7 @@ export class BmbDropzoneComponent {
   newFile = output<File | File[]>();
   fileRemoved = output<string>();
 
+  fileDataList: FileData[] = [];
   validFile: boolean = true;
   input?: HTMLInputElement;
 
@@ -84,11 +83,65 @@ export class BmbDropzoneComponent {
     }
   }
 
+  getDropZoneClass(): string[] {
+    const classList = [];
+
+    if (this.isInvalidFileOnly()) {
+      classList.push('bmb_drop-zone-container-error');
+    } else {
+      if (
+        this.fileDataList.length > 0 &&
+        !!this.fileDataList[0].name &&
+        this.fileDataList.some(
+          (file: FileData) => this.getProgress(file.name) < 100,
+        )
+      ) {
+        classList.push('bmb_drop-zone-container-uploading-file');
+      }
+
+      if (this.appearanceContrast() === 'primary') {
+        classList.push('bmb-drop-zone-container-primary');
+      }
+
+      if (this.appearanceContrast() === 'alternative') {
+        classList.push('bmb-drop-zone-container-alternative');
+      }
+    }
+
+    return classList;
+  }
+
+  getAvatarIcon(progress: number, isError: boolean): string {
+    if (progress === 100) return 'upload_file';
+    if (isError) return 'task';
+
+    return 'progress_activity';
+  }
+
+  getFormatProgress(value: string, total: string): string {
+    return `${value}%/${total}%`;
+  }
+
+  getFormatSize(value: string, total: string): string {
+    return `${total}MB`;
+  }
+
+  get organizedFiles(): FileData[] {
+    if (this.fileDataList.some((file: FileData) => file.error)) {
+      return this.fileDataList.sort(
+        (file1: FileData, file2: FileData) =>
+          (Number(file1.error) - Number(file2.error)) * -1,
+      );
+    }
+
+    return this.fileDataList;
+  }
+
   public onFileSelected(event: Event) {
     this.input = event.target as HTMLInputElement;
     if (this.input.files?.[0]) {
       const files = this.input.files;
-      if (files && files.length > 0) {
+      if (files && !!files.length) {
         this.getFileAndValidate(this.multiple() ? Array.from(files) : files[0]);
       }
     }
@@ -127,6 +180,17 @@ export class BmbDropzoneComponent {
 
   private getFileSizeInMB(fileSize: number): number {
     return fileSize / 1048576;
+  }
+
+  getFileSizeMB(fileSize: number): number {
+    console.info(
+      'getFileSizeMB',
+      fileSize,
+      this.getFileSizeInMB(fileSize),
+      this.getFileSizeInMB(fileSize).toFixed(4),
+      Number(this.getFileSizeInMB(fileSize).toFixed(4)),
+    );
+    return this.getFileSizeInMB(fileSize);
   }
 
   private isValidFileSize(fileSize: number): boolean {
@@ -196,27 +260,27 @@ export class BmbDropzoneComponent {
     this.validFile = false;
   }
 
-  onDragOver(event: DragEvent) {
+  dragOver(event: DragEvent) {
     this.validFile = true;
     event.preventDefault();
     event.stopPropagation();
     const dropzoneElement = event.currentTarget as HTMLElement;
-    dropzoneElement.classList.add('bmb-drop-zone-drag-over');
+    dropzoneElement.classList.add('bmb_drop-zone-container-uploading-file');
   }
 
-  onDragLeave(event: DragEvent) {
+  dragLeave(event: DragEvent) {
     event.preventDefault();
     event.stopPropagation();
     const dropzoneElement = event.currentTarget as HTMLElement;
-    dropzoneElement.classList.remove('bmb-drop-zone-drag-over');
+    dropzoneElement.classList.remove('bmb_drop-zone-container-uploading-file');
   }
 
-  onDrop(event: DragEvent) {
+  drop(event: DragEvent) {
     event.preventDefault();
     event.stopPropagation();
     const dropzoneElement = event.currentTarget as HTMLElement;
     dropzoneElement.classList.add('bmb-drop-zone');
-    dropzoneElement.classList.remove('bmb-drop-zone-drag-over');
+    dropzoneElement.classList.remove('bmb_drop-zone-container-uploading-file');
 
     const files = event.dataTransfer?.files;
     if (files && files.length > 0) {
@@ -228,6 +292,10 @@ export class BmbDropzoneComponent {
     const progress = this.progress();
     if (typeof progress === 'number') return progress;
     return progress?.[fileName] ?? 0;
+  }
+
+  isFormatSize(progress: number, isError: boolean) {
+    return progress === 100 || isError;
   }
 
   isInvalidFileOnly(): boolean {
@@ -243,27 +311,5 @@ export class BmbDropzoneComponent {
       this.input.value = '';
     }
     this.cdr.detectChanges();
-  }
-
-  getDropZoneClass(): string[] {
-    const classList = [];
-
-    if (this.isInvalidFileOnly()) {
-      classList.push('bmb-drop-zone-error');
-    }
-
-    if (this.fileDataList.length > 0 && !!this.fileDataList[0].name) {
-      classList.push('bmb-drop-zone-drag-over');
-    }
-
-    if (this.appearanceContrast() === 'primary') {
-      classList.push('bmb-drop-zone-container-primary');
-    }
-
-    if (this.appearanceContrast() === 'alternative') {
-      classList.push('bmb-drop-zone-container-alternative');
-    }
-
-    return classList;
   }
 }

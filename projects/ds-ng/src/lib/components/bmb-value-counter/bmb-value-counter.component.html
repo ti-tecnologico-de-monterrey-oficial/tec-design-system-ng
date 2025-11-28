@@ -15,12 +15,14 @@
     gapSize="xs"
     alignItems="center"
   >
-    <span class="bmb_value-counter-progress" bmbLayoutItem>
-      {{ formattedText.substring(0, formattedText.indexOf('/')) }}
-    </span>
-    <span class="bmb_value-counter-slash" bmbLayoutItem>/</span>
+    @if (!!progressValue) {
+      <span class="bmb_value-counter-progress" bmbLayoutItem>
+        {{ progressValue }}
+      </span>
+      <span class="bmb_value-counter-slash" bmbLayoutItem>/</span>
+    }
     <span class="bmb_value-counter-value" bmbLayoutItem>
-      {{ formattedText.substring(formattedText.indexOf('/') + 1) }}
+      {{ totalValue }}
     </span>
   </section>
 </section>
