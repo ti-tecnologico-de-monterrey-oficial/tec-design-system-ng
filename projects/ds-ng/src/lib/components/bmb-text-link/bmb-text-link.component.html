@@ -1,33 +1,29 @@
-<span [ngClass]="getClasses()">
-  <bmb-check-external-link-button
+<bmb-check-external-link-button
+  class="bmb_text-link"
+  [ngClass]="{
+    'bmb_text-link-underlined': textLinkStyle() === 'underlined',
+    'bmb_text-link-disabled': disabled()
+  }"
+  [link]="link()"
+  [target]="target()"
+>
+  <section
     class="bmb_text-link-item"
-    [link]="link()"
-    [target]="target()"
+    [ngClass]="{
+      'bmb_text-link-item-reverse':
+        textLinkStyle() === 'icon' && iconPosition() === 'right'
+    }"
+    bmbLayout
+    [dynamicCols]="true"
+    margin="none"
+    gapSize="s"
+    alignItems="center"
   >
-    <span
-      [ngClass]="
-        getPositionClass(
-          'bmb_text-link-item',
-          textLinkStyle() === 'icon',
-          iconPosition()
-        )
-      "
-    >
-      @if (textLinkStyle() === 'icon' && !!icon()) {
-        <bmb-icon
-          [ngClass]="
-            getPositionClass(
-              'bmb_text-link-item-icon',
-              textLinkStyle() === 'icon',
-              iconPosition()
-            )
-          "
-          [icon]="icon()"
-          [size]="20"
-          [alt]="textLink()"
-        />
-      }
-      <span>{{ textLink() }}</span>
+    @if (textLinkStyle() === 'icon' && !!icon()) {
+      <bmb-icon [icon]="icon()" [size]="20" [alt]="textLink()" bmbLayoutItem />
+    }
+    <span bmbLayoutItem>
+      {{ textLink() }}
     </span>
-  </bmb-check-external-link-button>
-</span>
+  </section>
+</bmb-check-external-link-button>

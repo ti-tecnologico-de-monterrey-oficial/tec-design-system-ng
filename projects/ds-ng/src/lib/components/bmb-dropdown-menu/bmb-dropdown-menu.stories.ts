@@ -15,6 +15,7 @@ import {
 } from '../../utils/doc/utils';
 import {
   DBmbDropdownMenuParamDesc,
+  getOnEventParam,
   getPropertyParamDesc,
 } from '../../utils/doc/parameterDescriptions';
 import { provideHttpClient } from '@angular/common/http';
@@ -44,7 +45,7 @@ export default {
   ],
   parameters: {
     docs: {
-      controls: { exclude: ['closeDropdown', 'openDropdown'] },
+      controls: { exclude: ['closeDropdown', 'openDropdown', 'contentRef'] },
       description: {
         component: `
 ${getGeneralDescription(`${getGeneralComponentDescription({ name: 'dropdown-menu' })} navigation through the options displayed in the menu listing.`, { generalDocLink: 'https://bamboo.tec.mx/latest/componentes/dropdown-menu/descripcion-general-kEoPUKDr' })}
@@ -60,6 +61,16 @@ ${getBasicExampleBlock('BmbDropdownMenuComponent', '', '', false, '', 'Activated
       'flag to display the listing',
       'boolean',
       false,
+    ),
+    clickedItem: getOnEventParam(
+      {
+        name: 'clickedItem',
+        handleExample: '(item) => console.log("Clicked item:", item)',
+        propertyValue: 'EventEmitter<IDropdownItem>',
+        type: 'EventEmitter',
+        event_type: 'IDropdownItem',
+      },
+      'IDropdownItem',
     ),
   },
   args: {

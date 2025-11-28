@@ -48,7 +48,7 @@
       }
 
       &-subtitle {
-        color: RGBA(var(--color-charade-500));
+        color: var(--general_contrasts-80);
         @include fonts.font(3, regular);
         display: none;
 

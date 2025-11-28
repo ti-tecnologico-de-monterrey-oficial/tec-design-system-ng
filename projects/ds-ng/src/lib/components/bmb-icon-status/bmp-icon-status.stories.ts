@@ -43,10 +43,24 @@ ${getBasicExampleBlock('BmbIconStatusComponent')}
       'warning',
       'error',
     ]),
+    iconColor: {
+      control: {
+        type: 'select',
+      },
+      options: ['primary', 'secondary'],
+      description:
+        'Changes the color of the icon when no status appearance is set.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'string' },
+        defaultValue: { summary: 'primary' },
+      },
+    },
   },
   args: {
     icon: 'check',
     statusAppearance: 'success',
+    iconColor: 'primary',
   },
 } as Meta<typeof BmbIconStatusComponent>;
 
