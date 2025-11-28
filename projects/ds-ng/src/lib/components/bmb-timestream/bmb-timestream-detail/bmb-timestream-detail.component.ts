@@ -84,8 +84,6 @@ export class BmbTimestreamDetailsComponent implements AfterViewInit, OnChanges {
 
     if (currentMonthElement) {
       currentMonthElement.scrollIntoView();
-      this.monthList.nativeElement.scrollTop =
-        this.monthList.nativeElement.scrollTop;
     }
   }
 
