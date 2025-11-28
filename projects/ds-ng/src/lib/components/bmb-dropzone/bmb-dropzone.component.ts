@@ -55,7 +55,6 @@ export class BmbDropzoneComponent {
   errorMessage = input<string>();
   errorMessageFormat = input<string>(); //Deprecated
   errorMessageSize = input<string>(); //Deprecated
-  fileDataList: FileData[] = [];
   fileSize = input<number>(2);
   formatFilesLabel = input<string>();
   linkFilesSupported = input<string>('');
@@ -68,6 +67,7 @@ export class BmbDropzoneComponent {
   newFile = output<File | File[]>();
   fileRemoved = output<string>();
 
+  fileDataList: FileData[] = [];
   validFile: boolean = true;
   input?: HTMLInputElement;
 
@@ -124,6 +124,17 @@ export class BmbDropzoneComponent {
 
   getFormatSize(value: string, total: string): string {
     return `${total}MB`;
+  }
+
+  get organizedFiles(): FileData[] {
+    if (this.fileDataList.some((file: FileData) => file.error)) {
+      return this.fileDataList.sort(
+        (file1: FileData, file2: FileData) =>
+          (Number(file1.error) - Number(file2.error)) * -1,
+      );
+    }
+
+    return this.fileDataList;
   }
 
   public onFileSelected(event: Event) {

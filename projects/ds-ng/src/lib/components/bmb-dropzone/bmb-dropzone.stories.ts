@@ -60,6 +60,7 @@ export default {
           'getFileSizeMB',
           'getFormatSize',
           'isFormatSize',
+          'organizedFiles'
         ],
       },
       description: {

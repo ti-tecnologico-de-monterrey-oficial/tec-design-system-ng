@@ -69,7 +69,7 @@
     />
   </section>
   @if (fileDataList.length > 0) {
-    @for (file of fileDataList; track file.name) {
+    @for (file of organizedFiles; track file.name) {
       <bmb-progress-bar
         class="bmb-drop-zone-file"
         [ngClass]="{
@@ -96,6 +96,7 @@
         [isContainer]="true"
         [avatarIcon]="getAvatarIcon(getProgress(file.name), file.error!)"
         [actionIcon]="file.error ? 'close' : 'delete'"
+        [showStatusIcon]="getProgress(file.name) === 100"
         (actionClick)="removeFile(file.name)"
         bmbVerticalLayoutItem
       />
