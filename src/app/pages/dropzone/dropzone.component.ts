@@ -57,6 +57,6 @@ export class DropzonePageComponent {
         updatedProgress[file.name] = 100;
       }
       this.progressFiles.set(updatedProgress);
-    }, 1000);
+    }, 2000);
   }
 }

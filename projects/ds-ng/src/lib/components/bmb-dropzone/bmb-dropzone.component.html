@@ -72,14 +72,29 @@
     @for (file of fileDataList; track file.name) {
       <bmb-progress-bar
         class="bmb-drop-zone-file"
+        [ngClass]="{
+          'bmb_drop-zone-icon-animated':
+            getProgress(file.name) < 100 && !file.error
+        }"
         type="container"
-        [totalCount]="100"
+        [totalCount]="
+          isFormatSize(getProgress(file.name), file.error!)
+            ? getFileSizeMB(file.size)
+            : 100
+        "
+        [textFormat]="
+          isFormatSize(getProgress(file.name), file.error!)
+            ? getFormatSize
+            : getFormatProgress
+        "
+        [textFormatSeparator]="
+          isFormatSize(getProgress(file.name), file.error!) ? '' : '/'
+        "
         [counter]="getProgress(file.name)"
-        [title]="getTitle(file)"
+        [title]="file.name"
         [appearance]="file.error ? 'error' : 'info'"
-        [textFormat]="getFormatProgress"
         [isContainer]="true"
-        [avatarIcon]="getAvatarIcon(file.name, file.error!)"
+        [avatarIcon]="getAvatarIcon(getProgress(file.name), file.error!)"
         [actionIcon]="file.error ? 'close' : 'delete'"
         (actionClick)="removeFile(file.name)"
         bmbVerticalLayoutItem

@@ -14,6 +14,7 @@ export class BmbValueCounterComponent {
   label = input<string>('');
   value = input<string>('');
   progress = input<string>('');
+  textFormatSeparator = input<string>(''); //Internal
   textFormat = input<(counter: string, total: string) => string>(
     (counter, total) => `${counter}/${total}`,
   );
@@ -27,5 +28,25 @@ export class BmbValueCounterComponent {
     }
 
     return `${this.progress()}/${this.value()}`;
+  }
+
+  get separator(): string {
+    return !!this.textFormatSeparator() ? this.textFormatSeparator() : '/';
+  }
+
+  get progressValue(): string {
+    if (!!this.separator) {
+      return this.formattedText.substring(0, this.formattedText.indexOf('/'));
+    }
+
+    return this.value();
+  }
+
+  get totalValue(): string {
+    if (!!this.separator) {
+      return this.formattedText.substring(this.formattedText.indexOf('/') + 1);
+    }
+
+    return this.progress();
   }
 }

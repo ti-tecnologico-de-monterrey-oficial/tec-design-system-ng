@@ -3,7 +3,6 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
-  inject,
   input,
   output,
   SimpleChanges,
@@ -43,7 +42,6 @@ interface IBmbFileValidation {
     BmbProgressBarComponent,
     TranslatePipe,
   ],
-  providers: [TranslatePipe],
   templateUrl: './bmb-dropzone.component.html',
   styleUrl: './bmb-dropzone.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -55,8 +53,8 @@ export class BmbDropzoneComponent {
   dropInstruction = input<string>();
   dropLabel = input<string>();
   errorMessage = input<string>();
-  errorMessageFormat = input<string>();
-  errorMessageSize = input<string>();
+  errorMessageFormat = input<string>(); //Deprecated
+  errorMessageSize = input<string>(); //Deprecated
   fileDataList: FileData[] = [];
   fileSize = input<number>(2);
   formatFilesLabel = input<string>();
@@ -70,7 +68,6 @@ export class BmbDropzoneComponent {
   newFile = output<File | File[]>();
   fileRemoved = output<string>();
 
-  translatePipe = inject(TranslatePipe);
   validFile: boolean = true;
   input?: HTMLInputElement;
 
@@ -114,32 +111,19 @@ export class BmbDropzoneComponent {
     return classList;
   }
 
-  getAvatarIcon(fileName: string, isError: boolean): string {
-    if (isError) return 'upload_file';
-    if (this.validFile && this.getProgress(fileName) === 100) return 'task';
+  getAvatarIcon(progress: number, isError: boolean): string {
+    if (progress === 100) return 'upload_file';
+    if (isError) return 'task';
 
     return 'progress_activity';
   }
 
-  getTitle(file: FileData): string {
-    if (file.error) {
-      if (file.errorType === 'format') {
-        return (
-          this.errorMessageFormat() ||
-          this.translatePipe.transform('dropzone.error_message_format')
-        );
-      } else if (file.errorType === 'size') {
-        return `${
-          this.errorMessageSize() ||
-          this.translatePipe.transform('dropzone.error_message_size')
-        }${file.size.toFixed(2)} MB`;
-      }
-    }
-    return file.name;
-  }
-
   getFormatProgress(value: string, total: string): string {
     return `${value}%/${total}%`;
+  }
+
+  getFormatSize(value: string, total: string): string {
+    return `${total}MB`;
   }
 
   public onFileSelected(event: Event) {
@@ -185,6 +169,17 @@ export class BmbDropzoneComponent {
 
   private getFileSizeInMB(fileSize: number): number {
     return fileSize / 1048576;
+  }
+
+  getFileSizeMB(fileSize: number): number {
+    console.info(
+      'getFileSizeMB',
+      fileSize,
+      this.getFileSizeInMB(fileSize),
+      this.getFileSizeInMB(fileSize).toFixed(4),
+      Number(this.getFileSizeInMB(fileSize).toFixed(4)),
+    );
+    return this.getFileSizeInMB(fileSize);
   }
 
   private isValidFileSize(fileSize: number): boolean {
@@ -286,6 +281,10 @@ export class BmbDropzoneComponent {
     const progress = this.progress();
     if (typeof progress === 'number') return progress;
     return progress?.[fileName] ?? 0;
+  }
+
+  isFormatSize(progress: number, isError: boolean) {
+    return progress === 100 || isError;
   }
 
   isInvalidFileOnly(): boolean {

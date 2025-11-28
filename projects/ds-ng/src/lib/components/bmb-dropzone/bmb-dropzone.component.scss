@@ -50,6 +50,12 @@
       color: var(--general_contrasts-primary);
     }
 
+    &-animated {
+      .bmb_progress-bar-icon {
+        animation: spin 1.5s ease infinite;
+      }
+    }
+
     &-error {
       color: var(--buttons-destructive);
     }
