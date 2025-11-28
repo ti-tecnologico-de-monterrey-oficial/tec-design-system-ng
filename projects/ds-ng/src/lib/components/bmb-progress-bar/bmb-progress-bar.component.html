@@ -87,7 +87,7 @@
       class="bmb_progress-bar-container"
       [ngTemplateOutlet]="progressBar"
     />
-    @if (totalCount() === counter()) {
+    @if (showStatusIcon()) {
       <bmb-icon
         class="bmb_progress-bar-icon-successful"
         icon="check_circle"

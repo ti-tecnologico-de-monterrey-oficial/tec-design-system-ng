@@ -55,6 +55,7 @@ export class BmbProgressBarComponent {
   avatarIcon = input<string>('');
   actionIcon = input<string>('');
   textFormatSeparator = input<string>(''); //Internal
+  showStatusIcon = input<boolean>(false); //Internal
 
   actionClick = output<MouseEvent>();
 
