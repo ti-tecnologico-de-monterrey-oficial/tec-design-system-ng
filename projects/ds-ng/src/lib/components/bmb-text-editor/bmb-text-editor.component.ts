@@ -1,8 +1,11 @@
 import {
+  AfterViewInit,
   ChangeDetectionStrategy,
   Component,
   ElementRef,
   input,
+  OnInit,
+  signal,
   ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
@@ -20,13 +23,12 @@ import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class BmbTextEditorComponent {
+export class BmbTextEditorComponent implements AfterViewInit, OnInit {
   control = input<FormControl>(new FormControl(''));
 
   @ViewChild('editor') editor!: ElementRef<HTMLDivElement>;
 
-  htmlContent: string = '';
-  sanitizedContent: SafeHtml = '';
+  sanitizedContent = signal<SafeHtml>('');
   currentAlignment: string = 'left';
   showTableDialog: boolean = false;
   tableRows: number = 2;
@@ -54,6 +56,18 @@ export class BmbTextEditorComponent {
   }
 
   constructor(private sanitizer: DomSanitizer) {}
+
+  ngOnInit() {
+    this.sanitizedContent.set(this.sanitizer.bypassSecurityTrustHtml(
+      this.control().value || '',
+    ));
+
+    this.control().events.subscribe((eventType) => {
+      if (eventType instanceof Object && 'value' in eventType && eventType.value === null) {
+        this.sanitizedContent.set(this.sanitizer.bypassSecurityTrustHtml(''));
+      }
+    });
+  }
 
   ngAfterViewInit() {
     this.editor.nativeElement.focus();

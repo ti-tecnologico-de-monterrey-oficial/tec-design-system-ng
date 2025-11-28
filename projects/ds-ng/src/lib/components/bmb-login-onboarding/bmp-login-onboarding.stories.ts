@@ -19,7 +19,6 @@ import { RELEVANT_TITLE } from '../../utils/doc/utils';
 })
 class StorybookToastWrapperComponent {
   auth(data: unknown): boolean {
-    data;
     return true;
   }
 
@@ -36,7 +35,6 @@ class StorybookToastWrapperComponent {
   }
 
   getUserInfo(data: unknown): IBmbUserInfo {
-    data;
     return {
       id: 'A00123456',
       fullName: 'Borrego Perez',

@@ -258,7 +258,7 @@ export const getArchitectureSection = (
 Represents the structure of the component.
 \`\`\`html
 ${architectureBlock}
-\`\`\`${bmbNameLink && bmbNameLink ? getDOMArchitectureLink(bmbNameLink, documentationLink) : ''}
+\`\`\`${bmbNameLink ? getDOMArchitectureLink(bmbNameLink, documentationLink) : ''}
 <br/>
 `;
 
