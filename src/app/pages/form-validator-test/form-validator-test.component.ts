@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { FormGroup } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import {
   BmbFormValidatorComponent,
@@ -9,6 +9,7 @@ import {
   BmbLayoutDirective,
   BmbLayoutItemDirective,
   IBmbDropdownItem,
+  BmbTextEditorComponent,
 } from '../../../../projects/ds-ng/src/public-api';
 
 @Component({
@@ -21,13 +22,16 @@ import {
     BmbButtonDirective,
     BmbDropdownComponent,
     BmbInputComponent,
+    BmbTextEditorComponent,
   ],
   templateUrl: './form-validator-test.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
 })
 export class FormValidatorTestComponent {
-  formGroup: FormGroup = new FormGroup({});
+  formGroup: FormGroup = new FormGroup({
+    htmlText: new FormControl('<h1>Test</h1><p>This is a test</p>'),
+  });
 
   options: IBmbDropdownItem[] = [];
 
@@ -47,5 +51,13 @@ export class FormValidatorTestComponent {
 
   handleSubmit(form: FormGroup): void {
     console.info('handleSubmit form state:', form);
+  }
+
+  getFormControl(name: string): FormControl {
+    return this.formGroup.get(name) as FormControl;
+  }
+
+  handleReset(): void {
+    this.formGroup.reset();
   }
 }
