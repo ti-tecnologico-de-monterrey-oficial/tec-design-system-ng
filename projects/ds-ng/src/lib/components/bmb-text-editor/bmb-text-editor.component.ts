@@ -1,14 +1,17 @@
 import {
+  AfterViewInit,
   ChangeDetectionStrategy,
   Component,
   ElementRef,
   input,
   TemplateRef,
+  OnInit,
+  signal,
   ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { SafeHtml } from '@angular/platform-browser';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { BmbButtonDirective } from '../../directives/bmb-button/button.directive';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
@@ -39,14 +42,14 @@ import { BmbTranslationsService } from '../../services/translations/translations
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class BmbTextEditorComponent {
+export class BmbTextEditorComponent implements AfterViewInit, OnInit {
+  control = input<FormControl>(new FormControl(''));
+
   @ViewChild('editor') editor!: ElementRef<HTMLDivElement>;
   @ViewChild('moreTemplate') moreTemplate!: TemplateRef<unknown>;
   @ViewChild('insertTemplate') insertTemplate!: TemplateRef<unknown>;
 
-  control = input<FormControl>(new FormControl(''));
-  htmlContent: string = '';
-  sanitizedContent: SafeHtml = '';
+  sanitizedContent = signal<SafeHtml>('');
   currentAlignment: string = 'left';
   showTableDialog: boolean = false;
   tableRows: number = 2;
@@ -62,6 +65,7 @@ export class BmbTextEditorComponent {
   constructor(
     private contentProjected: BmbProjectionContentService,
     private translations: BmbTranslationsService,
+    private sanitizer: DomSanitizer,
   ) {}
 
   detectAlignment() {
@@ -83,6 +87,18 @@ export class BmbTextEditorComponent {
     this.execCommand(
       'justify' + alignment.charAt(0).toUpperCase() + alignment.slice(1),
     );
+  }
+
+  ngOnInit() {
+    this.sanitizedContent.set(this.sanitizer.bypassSecurityTrustHtml(
+      this.control().value || '',
+    ));
+
+    this.control().events.subscribe((eventType) => {
+      if (eventType instanceof Object && 'value' in eventType && eventType.value === null) {
+        this.sanitizedContent.set(this.sanitizer.bypassSecurityTrustHtml(''));
+      }
+    });
   }
 
   ngAfterViewInit() {
