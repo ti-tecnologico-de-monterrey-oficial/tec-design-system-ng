@@ -21,7 +21,7 @@ export class BmbVerticalLayoutItemDirective {
   @HostBinding('class') get elementClass(): string[] {
     const classes = ['bmb_vertical-layout-item'];
     if (this.isFullWidth()) classes.push('bmb_vertical-layout-item-full');
-    if (!!this.rowGrow()) classes.push('bmb_vertical-layout-item-scroll');
+    if (this.rowGrow()) classes.push('bmb_vertical-layout-item-scroll');
     return classes;
   }
 }

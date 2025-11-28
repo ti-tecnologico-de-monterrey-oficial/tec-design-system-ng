@@ -139,7 +139,7 @@ export class BmbDropzoneComponent {
 
   public onFileSelected(event: Event) {
     this.input = event.target as HTMLInputElement;
-    if (!!this.input.files?.[0]) {
+    if (this.input.files?.[0]) {
       const files = this.input.files;
       if (files && !!files.length) {
         this.getFileAndValidate(this.multiple() ? Array.from(files) : files[0]);

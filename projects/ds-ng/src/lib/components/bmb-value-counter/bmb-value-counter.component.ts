@@ -31,11 +31,11 @@ export class BmbValueCounterComponent {
   }
 
   get separator(): string {
-    return !!this.textFormatSeparator() ? this.textFormatSeparator() : '/';
+    return this.textFormatSeparator() ? this.textFormatSeparator() : '/';
   }
 
   get progressValue(): string {
-    if (!!this.separator) {
+    if (this.separator) {
       return this.formattedText.substring(0, this.formattedText.indexOf('/'));
     }
 
@@ -43,7 +43,7 @@ export class BmbValueCounterComponent {
   }
 
   get totalValue(): string {
-    if (!!this.separator) {
+    if (this.separator) {
       return this.formattedText.substring(this.formattedText.indexOf('/') + 1);
     }
 
