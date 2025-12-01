@@ -11,11 +11,12 @@ import {
 import { BmbMultiDotPaginatorItemComponent } from './bmb-multi-dot-paginator-item/bmb-multi-dot-paginator-item.component';
 import { CommonModule } from '@angular/common';
 import { BmbFabComponent } from '../bmb-fab/bmb-fab.component';
+import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
 
 @Component({
   selector: 'bmb-multi-dot-paginator',
   standalone: true,
-  imports: [CommonModule, BmbFabComponent],
+  imports: [CommonModule, BmbFabComponent, BmbActionIconComponent],
   templateUrl: './bmb-multi-dot-paginator.component.html',
   styleUrl: './bmb-multi-dot-paginator.component.scss',
   encapsulation: ViewEncapsulation.None,
@@ -76,6 +77,18 @@ export class BmbMultiDotPaginatorComponent implements AfterContentInit {
     if (this.selectedIndex + 1 === this.numberOfElements.length) {
       this.setClassActive(0, this.selectedIndex);
     } else {
+      this.setClassActive(this.selectedIndex + 1, this.selectedIndex);
+    }
+  }
+
+  prevItem() {
+    if (this.selectedIndex > 0) {
+      this.setClassActive(this.selectedIndex - 1, this.selectedIndex);
+    }
+  }
+
+  nextItem() {
+    if (this.selectedIndex < this.numberOfElements.length - 1) {
       this.setClassActive(this.selectedIndex + 1, this.selectedIndex);
     }
   }
