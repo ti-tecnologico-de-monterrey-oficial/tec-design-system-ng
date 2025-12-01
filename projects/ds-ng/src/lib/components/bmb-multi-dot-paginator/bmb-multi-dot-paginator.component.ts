@@ -81,13 +81,13 @@ export class BmbMultiDotPaginatorComponent implements AfterContentInit {
     }
   }
 
-  onPrev() {
+  prevItem() {
     if (this.selectedIndex > 0) {
       this.setClassActive(this.selectedIndex - 1, this.selectedIndex);
     }
   }
 
-  onNext() {
+  nextItem() {
     if (this.selectedIndex < this.numberOfElements.length - 1) {
       this.setClassActive(this.selectedIndex + 1, this.selectedIndex);
     }

@@ -39,12 +39,14 @@
     </button>
   </section>
   <footer class="bmb_multi-dot-paginator-footer">
-    <bmb-action-icon
-      [disabled]="selectedIndex === 0"
-      [icon]="'chevron_left'"
-      [iconSize]="24"
-      (buttonClick)="onPrev()"
-    ></bmb-action-icon>
+    @if (numberOfElements.length > 0) {
+      <bmb-action-icon
+        [disabled]="selectedIndex === 0"
+        [icon]="'chevron_left'"
+        [iconSize]="24"
+        (buttonClick)="prevItem()"
+      ></bmb-action-icon>
+    }
     <ul
       class="bmb_multi-dot-paginator-list"
       [style]="'--selected-child: ' + selectedIndex + ';'"
@@ -53,10 +55,7 @@
         <li
           class="bmb_multi-dot-paginator-list-item"
           [ngClass]="{
-            'bmb_multi-dot-paginator-list-item-active':
-              selectedIndex === $index,
-            'bmb_multi-dot-paginator-list-item-last':
-              $index === numberOfElements.length - 1
+            'bmb_multi-dot-paginator-list-item-active': selectedIndex === $index
           }"
         >
           <button
@@ -70,12 +69,14 @@
         </li>
       }
     </ul>
-    <bmb-action-icon
-      [disabled]="selectedIndex === numberOfElements.length - 1"
-      [icon]="'chevron_right'"
-      [iconSize]="24"
-      (buttonClick)="onNext()"
-    ></bmb-action-icon>
+    @if (numberOfElements.length > 0) {
+      <bmb-action-icon
+        [disabled]="selectedIndex === numberOfElements.length - 1"
+        [icon]="'chevron_right'"
+        [iconSize]="24"
+        (buttonClick)="nextItem()"
+      ></bmb-action-icon>
+    }
   </footer>
 </div>
 <!-- *ngFor="let i of getDotsArray()"
