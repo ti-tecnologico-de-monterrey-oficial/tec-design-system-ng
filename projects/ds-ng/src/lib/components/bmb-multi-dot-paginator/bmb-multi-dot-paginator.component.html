@@ -39,6 +39,12 @@
     </button>
   </section>
   <footer class="bmb_multi-dot-paginator-footer">
+    <bmb-action-icon
+      [disabled]="selectedIndex === 0"
+      [icon]="'chevron_left'"
+      [iconSize]="24"
+      (buttonClick)="onPrev()"
+    ></bmb-action-icon>
     <ul
       class="bmb_multi-dot-paginator-list"
       [style]="'--selected-child: ' + selectedIndex + ';'"
@@ -61,6 +67,12 @@
         </li>
       }
     </ul>
+    <bmb-action-icon
+      [disabled]="selectedIndex === numberOfElements.length - 2"
+      [icon]="'chevron_right'"
+      [iconSize]="24"
+      (buttonClick)="onNext()"
+    ></bmb-action-icon>
   </footer>
 </div>
 <!-- *ngFor="let i of getDotsArray()"
