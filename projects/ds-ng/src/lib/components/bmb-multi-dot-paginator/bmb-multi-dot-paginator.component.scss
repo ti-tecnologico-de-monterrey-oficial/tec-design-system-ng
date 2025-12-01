@@ -111,7 +111,7 @@
 
       &:last-child .bmb_multi-dot-paginator-dot::after {
         @include mixins.check-for-mobile(false) {
-          width: rem.rem_calc(14);
+          width: rem.rem_calc(30);
         }
       }
 
@@ -198,7 +198,7 @@
         z-index: 0;
 
         @include mixins.media-query(2000, 'min') {
-          width: rem.rem_calc(92);
+          width: rem.rem_calc(82);
         }
       }
     }

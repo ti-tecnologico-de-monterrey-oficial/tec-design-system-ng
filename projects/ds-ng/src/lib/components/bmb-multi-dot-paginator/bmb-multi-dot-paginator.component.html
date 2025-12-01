@@ -53,7 +53,10 @@
         <li
           class="bmb_multi-dot-paginator-list-item"
           [ngClass]="{
-            'bmb_multi-dot-paginator-list-item-active': selectedIndex === $index
+            'bmb_multi-dot-paginator-list-item-active':
+              selectedIndex === $index,
+            'bmb_multi-dot-paginator-list-item-last':
+              $index === numberOfElements.length - 1
           }"
         >
           <button
@@ -68,7 +71,7 @@
       }
     </ul>
     <bmb-action-icon
-      [disabled]="selectedIndex === numberOfElements.length - 2"
+      [disabled]="selectedIndex === numberOfElements.length - 1"
       [icon]="'chevron_right'"
       [iconSize]="24"
       (buttonClick)="onNext()"
