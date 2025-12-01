@@ -62,9 +62,9 @@ export class BmbTextEditorComponent implements AfterViewInit, OnInit {
       this.control().value || '',
     ));
 
-    this.control().events.subscribe((eventType) => {
-      if (eventType instanceof Object && 'value' in eventType && eventType.value === null) {
-        this.sanitizedContent.set(this.sanitizer.bypassSecurityTrustHtml(''));
+    this.control().valueChanges?.subscribe((value) => {
+      if (value === null) {
+      this.sanitizedContent.set(this.sanitizer.bypassSecurityTrustHtml(''));
       }
     });
   }
