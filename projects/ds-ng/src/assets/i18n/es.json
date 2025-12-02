@@ -118,5 +118,10 @@
     "empty_state": {
       "primary_text": "No tienes elementos para mostrar"
     }
+  },
+  "dropdown": {
+    "menu": {
+      "filter_placeholder": "Selecciona una opción"
+    }
   }
 }
