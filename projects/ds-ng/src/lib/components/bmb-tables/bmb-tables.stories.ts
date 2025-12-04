@@ -522,6 +522,17 @@ ${getBasicExampleBlock(
         defaultValue: { summary: 'false' },
       },
     },
+    filtersModel: {
+      control: {
+        type: 'object',
+      },
+      description: `Sets the current filters applied to the table.<br/><br/>${getModelDescription('filtersModel')}`,
+      table: {
+        category: 'Properties',
+        type: { summary: 'Record<string, any>' },
+        defaultValue: { summary: '{}' },
+      },
+    },
     select: getOnEventParam(
       getOnEvent('', 'select', 'unknown'),
       `when a row is selected by its checkbox.${SELECTED_ROW_DESCRIPTION}`,
@@ -1228,6 +1239,7 @@ ${RELEVANT_TITLE.warning} If the data is asynchronous, this property must also b
     lang: 'es',
     pageSize: 20,
     filtersPosition: 'top',
+    filtersModel: {},
   },
 } as Meta<typeof BmbTablesComponent>;
 
