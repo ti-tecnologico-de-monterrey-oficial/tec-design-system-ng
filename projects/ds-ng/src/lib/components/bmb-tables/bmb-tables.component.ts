@@ -205,15 +205,16 @@ export class BmbTablesComponent implements AfterViewInit, OnInit, OnChanges {
 
     effect(() => {
       const filtersModelValue = this.filtersModel();
+      const hasControls = this.filterForm.controls && Object.keys(this.filterForm.controls).length > 0;
+
+      if (!hasControls) {
+        // Form not initialized yet
+        return;
+      }
 
       if (Object.keys(filtersModelValue).length === 0) {
         this.filterForm.reset();
-      }
-
-      if (
-        this.filterForm.controls &&
-        Object.keys(this.filterForm.controls).length > 0
-      ) {
+      } else {
         this.updateFilterFormFromModel(filtersModelValue);
       }
     });
@@ -289,8 +290,10 @@ export class BmbTablesComponent implements AfterViewInit, OnInit, OnChanges {
 
     Object.keys(this.filterForm.controls).forEach((controlName) => {
       const control = this.filterForm.get(controlName);
-      if (control && filtersModelValue.hasOwnProperty(controlName)) {
-        const modelValue = filtersModelValue[controlName];
+      if (control) {
+        const modelValue = filtersModelValue.hasOwnProperty(controlName)
+          ? filtersModelValue[controlName]
+          : null; // Clear control if not in model
 
         if (control.value !== modelValue) {
           control.setValue(modelValue, { emitEvent: false });
