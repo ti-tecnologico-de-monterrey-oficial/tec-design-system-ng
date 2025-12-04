@@ -7,9 +7,27 @@ import {
   getOnEvent,
   IBmbOnEvent,
 } from '../../utils/doc/utils';
-import { getOnClickParam } from '../../utils/doc/parameterDescriptions';
+import {
+  DBmbIconParamDesc,
+  getDefaultValueControl,
+  getOnClickParam,
+} from '../../utils/doc/parameterDescriptions';
 
 const onCloseEvent: IBmbOnEvent = getOnEvent('close', 'onClose', 'void');
+
+const getIconParamDescription = (name: string, defaultValue: string = '""') => {
+  return {
+    ...DBmbIconParamDesc.icon,
+    description: DBmbIconParamDesc.icon.description.replace(
+      'icon name',
+      `name of the ${name} icon`,
+    ),
+    table: {
+      ...DBmbIconParamDesc.icon.table,
+      defaultValue: getDefaultValueControl(defaultValue),
+    },
+  };
+};
 
 export default {
   title: 'Particularities/mitec web/Notice card',
@@ -35,6 +53,8 @@ ${getBasicExampleBlock('BmbNoticeCardComponent', '', onCloseEvent.handleExample)
     },
   },
   argTypes: {
+    icon: getIconParamDescription('left', 'chevron_left'),
+    iconSize: DBmbIconParamDesc.iconSize,
     title: {
       control: {
         type: 'text',
