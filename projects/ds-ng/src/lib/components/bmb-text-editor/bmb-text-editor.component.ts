@@ -90,12 +90,16 @@ export class BmbTextEditorComponent implements AfterViewInit, OnInit {
   }
 
   ngOnInit() {
-    this.sanitizedContent.set(this.sanitizer.bypassSecurityTrustHtml(
-      this.control().value || '',
-    ));
+    this.sanitizedContent.set(
+      this.sanitizer.bypassSecurityTrustHtml(this.control().value || ''),
+    );
 
     this.control().events.subscribe((eventType) => {
-      if (eventType instanceof Object && 'value' in eventType && eventType.value === null) {
+      if (
+        eventType instanceof Object &&
+        'value' in eventType &&
+        eventType.value === null
+      ) {
         this.sanitizedContent.set(this.sanitizer.bypassSecurityTrustHtml(''));
       }
     });

@@ -210,7 +210,10 @@ export class BmbTablesComponent implements AfterViewInit, OnInit, OnChanges {
         this.filterForm.reset();
       }
 
-      if (this.filterForm.controls && Object.keys(this.filterForm.controls).length > 0) {
+      if (
+        this.filterForm.controls &&
+        Object.keys(this.filterForm.controls).length > 0
+      ) {
         this.updateFilterFormFromModel(filtersModelValue);
       }
     });
@@ -284,7 +287,7 @@ export class BmbTablesComponent implements AfterViewInit, OnInit, OnChanges {
   updateFilterFormFromModel(filtersModelValue: Record<string, any>) {
     this.isUpdatingFromModel = true;
 
-    Object.keys(this.filterForm.controls).forEach(controlName => {
+    Object.keys(this.filterForm.controls).forEach((controlName) => {
       const control = this.filterForm.get(controlName);
       if (control && filtersModelValue.hasOwnProperty(controlName)) {
         const modelValue = filtersModelValue[controlName];

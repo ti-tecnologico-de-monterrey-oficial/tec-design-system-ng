@@ -1239,7 +1239,7 @@ ${RELEVANT_TITLE.warning} If the data is asynchronous, this property must also b
     lang: 'es',
     pageSize: 20,
     filtersPosition: 'top',
-    filtersModel: {}
+    filtersModel: {},
   },
 } as Meta<typeof BmbTablesComponent>;
 

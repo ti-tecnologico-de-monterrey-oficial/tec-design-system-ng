@@ -19,7 +19,7 @@ import {
     ReactiveFormsModule,
     BmbLayoutDirective,
     BmbLayoutItemDirective,
-    BmbBookmarkComponent
+    BmbBookmarkComponent,
   ],
 })
 export class DropdownPageComponent implements OnInit {
@@ -61,7 +61,7 @@ export class DropdownPageComponent implements OnInit {
   }
 
   options = computed(() => {
-    return []
+    return [];
     // const elements = this.animeService.topAnime();
     // return elements.data.map((anime) => anime.title);
   });
