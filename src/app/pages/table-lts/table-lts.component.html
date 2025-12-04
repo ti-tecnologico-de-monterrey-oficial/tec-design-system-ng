@@ -1,0 +1,32 @@
+<header class="bmb_template-header">
+  <h3>Home</h3>
+  <h5>Welcome to BambooPress</h5>
+</header>
+<div class="bmb_template-margin-for-sidebar">
+  <button (click)="handleResetFilters()">reset</button>
+  <button (click)="handleApplyFilters()">apply</button>
+  <bmb-table
+    [pageSize]="20"
+    [data]="data()"
+    [columns]="columns"
+    [config]="{
+      isSelectable: true,
+      isExpandible: false,
+      isPaginable: true,
+      showActions: true
+    }"
+    filtersPosition="top"
+    [showFilters]="true"
+    [(filtersModel)]="filtersModel"
+  ></bmb-table>
+  <div>
+    {{ filtersModel() | json }}
+  </div>
+</div>
+
+<!-- (select)="select($event)"
+  (clickedRow)="clickedRow($event)"
+  (searchChange)="searchChange($event)"
+  (filtersChange)="filtersChange($event)"
+  (searchModeChange)="searchModeChange($event)"
+  (pageChange)="pageChange($event)" -->

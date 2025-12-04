@@ -114,6 +114,7 @@ export class BmbTablesComponent implements AfterViewInit, OnInit, OnChanges {
   expandedElement: any;
   selection = new SelectionModel<any>(true, []);
   tableConfig: TableConfig | undefined;
+  private isUpdatingFromModel = false;
 
   pressed = false;
   currentResizeIndex?: number;
@@ -143,6 +144,7 @@ export class BmbTablesComponent implements AfterViewInit, OnInit, OnChanges {
   currentPage = model<number>(0);
   filtersVisible = model<boolean>(false);
   filtersPosition = input<IBmbFiltersPosition>('top');
+  filtersModel = model<Record<string, any>>({});
 
   @Output() select: EventEmitter<any> = new EventEmitter();
   @Output() clickedRow: EventEmitter<any> = new EventEmitter();
@@ -198,6 +200,18 @@ export class BmbTablesComponent implements AfterViewInit, OnInit, OnChanges {
         });
       } else {
         this.selection.clear();
+      }
+    });
+
+    effect(() => {
+      const filtersModelValue = this.filtersModel();
+
+      if (Object.keys(filtersModelValue).length === 0) {
+        this.filterForm.reset();
+      }
+
+      if (this.filterForm.controls && Object.keys(this.filterForm.controls).length > 0) {
+        this.updateFilterFormFromModel(filtersModelValue);
       }
     });
   }
@@ -256,10 +270,36 @@ export class BmbTablesComponent implements AfterViewInit, OnInit, OnChanges {
     }
 
     this._rawConfig = this.config() || {};
-    //this.applyColumnsAndConfig();
 
     this.parseData(this.data());
     this.parseColumns(this.columns());
+  }
+
+  updateFiltersModel() {
+    const values: Record<string, any> = this.filterForm.getRawValue();
+
+    this.filtersModel.set(values);
+  }
+
+  updateFilterFormFromModel(filtersModelValue: Record<string, any>) {
+    this.isUpdatingFromModel = true;
+
+    Object.keys(this.filterForm.controls).forEach(controlName => {
+      const control = this.filterForm.get(controlName);
+      if (control && filtersModelValue.hasOwnProperty(controlName)) {
+        const modelValue = filtersModelValue[controlName];
+
+        if (control.value !== modelValue) {
+          control.setValue(modelValue, { emitEvent: false });
+        }
+      }
+    });
+
+    this.isUpdatingFromModel = false;
+
+    if (!this.serverSide()) {
+      this.applyFilters();
+    }
   }
 
   parseData(data: any[]) {
@@ -516,7 +556,12 @@ export class BmbTablesComponent implements AfterViewInit, OnInit, OnChanges {
       }
     });
 
-    this.filterForm.valueChanges.subscribe(() => this.applyFilters());
+    this.filterForm.valueChanges.subscribe(() => {
+      if (!this.isUpdatingFromModel) {
+        this.updateFiltersModel();
+        this.applyFilters();
+      }
+    });
   }
 
   applyFilters(): void {

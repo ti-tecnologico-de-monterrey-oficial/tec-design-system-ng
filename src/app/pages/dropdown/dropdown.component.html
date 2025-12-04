@@ -11,4 +11,8 @@
     />
   </section>
   <button bmbButton appearance="primary" type="submit">Submit</button>
+  <bmb-bookmark
+    [isActive]="false"
+    (isActiveChange)="handleBookmarkChange($event)"
+  ></bmb-bookmark>
 </form>
