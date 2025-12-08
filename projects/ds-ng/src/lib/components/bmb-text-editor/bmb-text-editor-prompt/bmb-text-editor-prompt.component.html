@@ -1,0 +1,127 @@
+<div class="bmb_text-editor-prompt">
+  <bmb-card>
+    <bmb-card-content padding="l">
+      <bmb-form-validator
+        [(formGroup)]="formGroup"
+        (formGroupState)="handleFormGroupState()"
+      >
+        <section bmbVerticalLayout margin="none">
+          <div bmbVerticalLayoutItem>
+            <bmb-input
+              inputId="prompt_url"
+              name="prompt_url"
+              [label]="
+                type() === 'link'
+                  ? ('text_editor.prompt.link.link_label' | translate)
+                  : ('text_editor.prompt.image.image_label' | translate)"
+              [isRequired]="true"
+              [helperMessage]="
+                type() === 'link'
+                  ? ('text_editor.prompt.link.link_helper' | translate)
+                  : ('text_editor.prompt.image.image_helper' | translate)
+              "
+              [placeholder]="
+                type() === 'link'
+                  ? ('text_editor.prompt.link.link_placeholder' | translate)
+                  : ('text_editor.prompt.image.image_placeholder' | translate)
+              "
+            />
+          </div>
+          @switch (type()) {
+            @case ('link') {
+              <div bmbVerticalLayoutItem>
+                <h3>
+                  {{ 'text_editor.prompt.link.target_helper' | translate }}
+                </h3>
+                <div bmbLayout margin="none" gapSize="none">
+                  <bmb-radial
+                    inputId="target_blank"
+                    name="target"
+                    label="Blank"
+                    value="_blank"
+                    [control]="getFormControl('target')"
+                    bmbLayoutItem
+                    [colSm]="2"
+                  />
+                  <bmb-radial
+                    inputId="target_self"
+                    name="target"
+                    label="Self"
+                    value="_self"
+                    bmbLayoutItem
+                    [control]="getFormControl('target')"
+                    [colSm]="2"
+                  />
+                  <bmb-radial
+                    inputId="target_parent"
+                    name="target"
+                    label="Parent"
+                    value="_parent"
+                    bmbLayoutItem
+                    [control]="getFormControl('target')"
+                    [colSm]="2"
+                  />
+                  <bmb-radial
+                    inputId="target_top"
+                    name="target"
+                    label="Top"
+                    value="_top"
+                    bmbLayoutItem
+                    [control]="getFormControl('target')"
+                    [colSm]="2"
+                  />
+                </div>
+              </div>
+              <div bmbVerticalLayoutItem>
+                <bmb-checkbox
+                  inputId="add_rel"
+                  name="rel"
+                  [checked]="true"
+                  [label]="'text_editor.prompt.link.rel_label' | translate"
+                />
+              </div>
+            }
+            @case ('image') {
+              <div bmbVerticalLayoutItem>
+                <bmb-input
+                  inputId="prompt_alt"
+                  name="prompt_alt"
+                  [label]="'text_editor.prompt.image.alt_label' | translate"
+                  [helperMessage]="
+                    'text_editor.prompt.image.alt_helper' | translate
+                  "
+                  [placeholder]="
+                    'text_editor.prompt.image.alt_placeholder' | translate
+                  "
+                />
+              </div>
+            }
+          }
+          <footer bmbVerticalLayoutItem>
+            <div bmbLayout margin="none" gapSize="m">
+              <button
+                bmbLayoutItem
+                [colSm]="4"
+                bmbButton
+                appearance="primary"
+                type="submit"
+              >
+                {{ 'text_editor.prompt.primary_button' | translate }}
+              </button>
+              <button
+                bmbLayoutItem
+                [colSm]="4"
+                bmbButton
+                appearance="secondary-outlined"
+                type="button"
+                (click)="cancelForm.emit()"
+              >
+                {{ 'text_editor.prompt.secondary_button' | translate }}
+              </button>
+            </div>
+          </footer>
+        </section>
+      </bmb-form-validator>
+    </bmb-card-content>
+  </bmb-card>
+</div>

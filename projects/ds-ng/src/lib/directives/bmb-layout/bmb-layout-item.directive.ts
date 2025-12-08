@@ -42,7 +42,7 @@ export class BmbLayoutItemDirective implements OnInit, AfterViewInit {
   constructor(private el: ElementRef) {}
 
   @HostBinding('class') get elementClass(): string[] {
-    const classes = [];
+    const classes = ['bmb_layout-item'];
 
     if (this.colSm()) classes.push(`bmb_col-sm-${this.colSm()}`);
     if (this.colLg()) classes.push(`bmb_col-lg-${this.colLg()}`);

@@ -5,7 +5,6 @@ import {
   EmbeddedViewRef,
   EnvironmentInjector,
   Injectable,
-  output,
   signal,
   TemplateRef,
   Type,
