@@ -112,6 +112,14 @@ export const routes: Routes = [
       ),
   },
   {
+    path: 'step-progress-bar',
+    title: 'Step progress bar',
+    loadComponent: () =>
+      import('./pages/step-progress-bar/step-progress-car.component').then(
+        (n) => n.BmbStepProgressBarPageComponent,
+      ),
+  },
+  {
     path: 'dashboard-indicators',
     title: 'Dashboard Indicators',
     loadComponent: () =>

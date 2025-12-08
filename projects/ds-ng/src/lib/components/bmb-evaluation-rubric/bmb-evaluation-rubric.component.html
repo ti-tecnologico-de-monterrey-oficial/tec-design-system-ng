@@ -43,20 +43,18 @@
           class="bmb_evaluation-rubric-container-criterion-eval"
           bmbLayout
           margin="none"
-          justify="spaceEvenly"
+          gapSize="m"
+          alignItems="center"
+          justify="start"
           [dynamicCols]="true"
         >
           @for (element of getEvalList(); track $index) {
-            <button type="button" (click)="handleEval(item.criterion, element)">
+            <button
+              type="button"
+              (click)="handleEval(item.criterion, element)"
+              bmbLayoutItem
+            >
               <bmb-focus-element
-                [ngClass]="
-                  getButtonClass(
-                    'bmb_evaluation-rubric-container-criterion-eval',
-                    item,
-                    element
-                  )
-                "
-                bmbLayoutItem
                 [number]="element"
                 [isInheritedBg]="true"
                 [isNormal]="true"

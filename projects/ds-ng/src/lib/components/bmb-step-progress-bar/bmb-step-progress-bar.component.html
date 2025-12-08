@@ -1,132 +1,153 @@
-<div
+<ng-template #StagesTemplate>
+  @for (index of stepsArray; track $index) {
+    <section
+      [attr.bmbLayoutItem]="type() === 'horizontal' ? true : null"
+      [attr.bmbVerticalLayoutItem]="type() !== 'horizontal' ? true : null"
+      bmbLayout
+      [dynamicCols]="true"
+      margin="none"
+      alignItems="center"
+    >
+      <button
+        type="button"
+        class="bmb_step-progress-bar-step"
+        [ngClass]="{
+          active: getStepNumber(index) === getActiveStepNumber(),
+          completed: getStepNumber(index) < getActiveStepNumber(),
+          'bmb_step-progress-bar-step-normal':
+            type() === 'horizontal' &&
+            (size() === 'normal' || size() === 'default'),
+          'bmb_step-progress-bar-step-small':
+            size() === 'small' || type() !== 'horizontal',
+          'bmb_step-progress-bar-step-medium':
+            type() === 'horizontal' && size() === 'medium',
+          'bmb_step-progress-bar-step-number':
+            type() !== 'horizontal'
+              ? true
+              : size() === 'normal' || size() === 'default'
+                ? getStepNumber(index) > getActiveStepNumber()
+                : getStepNumber(index) >= getActiveStepNumber()
+        }"
+        [disabled]="
+          type() === 'step-panel' ||
+          freeze() ||
+          getStepNumber(index) > getActiveStepNumber()
+        "
+        (click)="handleStepClicked(index)"
+        onkeypress="handleStepPressed(index)"
+        bmbLayoutItem
+      >
+        <bmb-focus-element
+          class="bmb_step-progress-bar-step-indicator"
+          [icon]="getStepNumber(index) < getActiveStepNumber() ? 'check' : ''"
+          [number]="getStepNumber(index)"
+          [isNonFocused]="getStepNumber(index) !== getActiveStepNumber()"
+          [isInheritedBg]="
+            type() === 'horizontal'
+              ? getStepNumber(index) !== getActiveStepNumber()
+              : true
+          "
+          [isCurrentColor]="true"
+          [isContainerSize]="
+            !(
+              type() === 'horizontal' &&
+              (size() === 'normal' || size() === 'default') &&
+              getStepNumber(index) === getActiveStepNumber()
+            )
+          "
+        />
+      </button>
+      @if (type() === 'vertical' || type() === 'step-panel') {
+        <section
+          class="bmb_step-progress-bar-text"
+          bmbLayoutItem
+          bmbVerticalLayout
+          gapSize="none"
+        >
+          <h3
+            class="bmb_step-progress-bar-text-title"
+            [ngClass]="{
+              pending:
+                type() === 'step-panel' &&
+                getStepNumber(index) >= getActiveStepNumber(),
+              'bmb_step-progress-bar-text-title-wizard': type() === 'step-panel'
+            }"
+            bmbVerticalLayoutItem
+          >
+            {{ labelStepsTruncated()[index] }}
+          </h3>
+          @if (type() === 'vertical') {
+            <span
+              class="bmb_step-progress-bar-text-subtitle"
+              bmbVerticalLayoutItem
+            >
+              {{
+                getActiveStepNumber() > getStepNumber(index)
+                  ? labelCompleteTruncated()
+                  : labelIncompleteTruncated()
+              }}
+            </span>
+          }
+        </section>
+      }
+    </section>
+    @if (
+      (type() === 'step-panel' &&
+        getStepNumber(index) === getActiveStepNumber()) ||
+      getStepNumber(index) < stepsArray.length
+    ) {
+      <section
+        class="bmb_step-progress-bar-line"
+        [ngClass]="{
+          completed: getStepNumber(index) < getActiveStepNumber(),
+          'bmb_step-progress-bar-line-horizontal': type() === 'horizontal',
+          'bmb_step-progress-bar-line-vertical': type() !== 'horizontal'
+        }"
+        [attr.bmbLayoutItem]="type() === 'horizontal' ? true : null"
+        [attr.bmbVerticalLayoutItem]="type() !== 'horizontal' ? true : null"
+      >
+        @if (type() === 'step-panel') {
+          <div
+            class="bmb_step-progress-bar-wizard"
+            bmbSelector
+            [idSelector]="getStepNumber(index)"
+            [activeSelectorID]="getActiveStepNumber()"
+          >
+            <ng-container [ngTemplateOutlet]="stepTemplates()[index]" />
+          </div>
+        }
+      </section>
+    }
+  }
+</ng-template>
+
+<section
   class="bmb_step-progress-bar"
   [ngClass]="{
-    'bmb_step-progress-bar-vertical': type() === 'vertical',
-    'bmb_step-progress-bar-step-panel': type() === 'step-panel'
+    'bmb_step-progress-bar-horizontal': type() === 'horizontal',
+    'bmb_step-progress-bar-vertical': type() !== 'horizontal'
   }"
 >
   @if (type() == 'horizontal') {
-    <div
-      class="bmb_step-progress-bar-item"
-      *ngFor="let i of getStepsArray()"
-      [attr.data-bs-slide-to]="i"
-      [ngClass]="{ completed: activeStep() > i }"
-      (click)="onStepClicked(i)"
-      onkeypress=""
+    <section
+      class="bmb_step-progress-bar-wrapper-horizontal"
+      bmbLayout
+      [dynamicCols]="true"
+      margin="none"
+      gapSize="none"
+      alignItems="center"
+      justify="spaceBetween"
     >
-      <div
-        class="bmb_step-progress-bar-step"
-        [ngClass]="{
-          active: activeStep() === i,
-          completed: activeStep() > i,
-          'bmb_step-progress-bar-step-normal':
-            size() == 'normal' || size() == 'default',
-          'bmb_step-progress-bar-step-small': size() == 'small',
-          'bmb_step-progress-bar-step-medium': size() == 'medium'
-        }"
-      >
-        <span *ngIf="activeStep() == i || activeStep() < i">{{ i + 1 }}</span>
-        @if (activeStep() > i) {
-          <bmb-icon [icon]="'done'" class="material-icons" [size]="24" />
-        }
-      </div>
-    </div>
-  } @else if (type() === 'vertical') {
-    <div
-      class="bmb_step-progress-bar-vertical-item"
-      *ngFor="let i of getStepsArray()"
-      [attr.data-bs-slide-to]="i"
-      [ngClass]="{
-        completed: activeStep() > i,
-        'bmb_step-progress-bar-vertical-content': labelSteps().length > 0
-      }"
-      (click)="onStepClicked(i)"
-      onkeypress=""
+      <ng-component [ngTemplateOutlet]="StagesTemplate" />
+    </section>
+  } @else {
+    <section
+      class="bmb_step-progress-bar-wrapper-vertical"
+      bmbVerticalLayout
+      margin="none"
+      gapSize="none"
     >
-      <div
-        class="bmb_step-progress-bar-vertical-step bmb_step-progress-bar-vertical-step-small"
-        [ngClass]="{
-          active: activeStep() === i,
-          completed: activeStep() > i
-        }"
-      >
-        @if (activeStep() <= i) {
-          <span>{{ i + 1 }}</span>
-        } @else {
-          <bmb-icon
-            [icon]="'done'"
-            class="bmb_step-progress-bar-icon"
-            [size]="24"
-          />
-        }
-      </div>
-      @if (labelSteps().length > 0) {
-        <div class="bmb_step-progress-bar-vertical-text">
-          <h2 class="bmb_step-progress-bar-vertical-text-title">
-            {{ labelStepsTruncated()[i] }}
-          </h2>
-          @if (activeStep() > i) {
-            <span class="bmb_step-progress-bar-vertical-text-subtitle">{{
-              labelCompleteTruncated()
-            }}</span>
-          } @else {
-            <span class="bmb_step-progress-bar-vertical-text-subtitle">{{
-              labelIncompleteTruncated()
-            }}</span>
-          }
-        </div>
-      }
-    </div>
-  } @else if (type() === 'step-panel') {
-    <div class="bmb_step-progress-bar-step-panel-item">
-      <div
-        class="bmb_step-progress-bar-step-panel-wrapper"
-        [ngClass]="{
-          active: activeStep() === i,
-          completed: activeStep() > i
-        }"
-        *ngFor="let step of getStepsArray(); let i = index"
-      >
-        <div
-          class="bmb_step-progress-bar-step-panel-header"
-          (click)="onStepPanelClicked(i)"
-        >
-          <div
-            class="bmb_step-progress-bar-step-panel-step"
-            [ngClass]="{
-              active: activeStep() === i,
-              completed: activeStep() > i
-            }"
-          >
-            @if (activeStep() > i) {
-              <bmb-icon
-                [icon]="'done'"
-                class="bmb_step-progress-bar-icon"
-                [size]="24"
-              />
-            } @else {
-              <span class="index">{{ i + 1 }}</span>
-            }
-          </div>
-
-          <span
-            class="bmb_step-progress-bar-step-panel-label"
-            [ngClass]="{
-              active: activeStep() === i,
-              completed: activeStep() > i
-            }"
-            >{{ labelStepsTruncated()[i] }}</span
-          >
-        </div>
-
-        @if (activeStep() === i && stepTemplates().length > i) {
-          <div class="bmb_step-progress-bar-step-panel-content">
-            <ng-container
-              [ngTemplateOutlet]="stepTemplates()[i]"
-            ></ng-container>
-          </div>
-        }
-      </div>
-    </div>
+      <ng-component [ngTemplateOutlet]="StagesTemplate" />
+    </section>
   }
-</div>
+</section>
