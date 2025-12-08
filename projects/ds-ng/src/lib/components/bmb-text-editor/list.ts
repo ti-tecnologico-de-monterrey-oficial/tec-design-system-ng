@@ -75,7 +75,8 @@ export function getInsertList(
       icon: 'link',
       name: translate.translate('text_editor.insert_link'),
       action: () => {
-        ctx.insertLink();
+        ctx.closeProjectedContent();
+        ctx.openPrompt('link', null);
         ctx.closeProjectedContent();
       },
     },
@@ -83,7 +84,8 @@ export function getInsertList(
       icon: 'image',
       name: translate.translate('text_editor.insert_image'),
       action: () => {
-        ctx.insertImage();
+        ctx.closeProjectedContent();
+        ctx.openPrompt('image', null);
         ctx.closeProjectedContent();
       },
     },

@@ -131,23 +131,7 @@
     "insert_link": "Insert link",
     "insert_image": "Insert image",
     "clear_formatting": "Clear formatting",
-    "select_option": "Select an option"
-  },
-  "notification_card": {
-    "tabs": {
-      "notifications": "Notifications",
-      "advertisements": "Advertisements"
-    },
-    "empty_state": {
-      "primary_text": "You have no notifications to show"
-    }
-  },
-  "dropdown": {
-    "menu": {
-      "filter_placeholder": "Select an option"
-    }
-  },
-  "text_editor": {
+    "select_option": "Select an option",
     "prompt": {
       "link": {
         "link_label": "Insert Link",
@@ -168,6 +152,20 @@
       },
       "primary_button": "Insert",
       "secondary_button": "Cancel"
+    }
+  },
+  "notification_card": {
+    "tabs": {
+      "notifications": "Notifications",
+      "advertisements": "Advertisements"
+    },
+    "empty_state": {
+      "primary_text": "You have no notifications to show"
+    }
+  },
+  "dropdown": {
+    "menu": {
+      "filter_placeholder": "Select an option"
     }
   }
 }

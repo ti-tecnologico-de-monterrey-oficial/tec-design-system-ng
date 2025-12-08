@@ -131,23 +131,7 @@
     "insert_link": "Insertar enlace",
     "insert_image": "Insertar imagen",
     "clear_formatting": "Limpiar formato",
-    "select_option": "Selecciona una opción"
-  },
-  "notification_card": {
-    "tabs": {
-      "notifications": "Notificaciones",
-      "advertisements": "Anuncios"
-    },
-    "empty_state": {
-      "primary_text": "No tienes elementos para mostrar"
-    }
-  },
-  "dropdown": {
-    "menu": {
-      "filter_placeholder": "Selecciona una opción"
-    }
-  },
-  "text_editor": {
+    "select_option": "Selecciona una opción",
     "prompt": {
       "link": {
         "link_label": "Insertar enlace",
@@ -168,6 +152,20 @@
       },
       "primary_button": "Insertar",
       "secondary_button": "Cancelar"
+    }
+  },
+  "notification_card": {
+    "tabs": {
+      "notifications": "Notificaciones",
+      "advertisements": "Anuncios"
+    },
+    "empty_state": {
+      "primary_text": "No tienes elementos para mostrar"
+    }
+  },
+  "dropdown": {
+    "menu": {
+      "filter_placeholder": "Selecciona una opción"
     }
   }
 }

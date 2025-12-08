@@ -138,18 +138,18 @@ export class BmbTextEditorComponent implements AfterViewInit, OnInit {
     this.userSelection = null;
   }
 
-  openPrompt(type: IBmbTextEditorPromptType, event: MouseEvent) {
+  openPrompt(type: IBmbTextEditorPromptType, event: MouseEvent | null) {
     this.userSelection = globalThis.getSelection()?.getRangeAt(0) || null;
-    const buttonNode = event.currentTarget as HTMLElement;
-    this.projectionContent.openContent({
+    const buttonNode = event?.currentTarget as HTMLElement;
+    this.contentProjected.openContent({
       content: BmbTextEditorPromptComponent,
       inputContext: { type },
       outputContext: {
         formValues: (values: Record<string, unknown>) =>
           this.handleClosePrompt({ ...values, type }),
-        cancelForm: () => this.projectionContent.closeContent(),
+        cancelForm: () => this.contentProjected.closeContent(),
       },
-      targetRef: buttonNode,
+      targetRef: buttonNode ?? null,
     });
   }
 
@@ -159,7 +159,7 @@ export class BmbTextEditorComponent implements AfterViewInit, OnInit {
     } else if (values['type'] === 'image' && values['prompt_url']) {
       this.insertImage(values);
     }
-    this.projectionContent.closeContent();
+    this.contentProjected.closeContent();
   }
 
   insertLink(values: Record<string, unknown>) {
