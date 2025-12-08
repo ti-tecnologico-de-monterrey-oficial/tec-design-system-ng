@@ -205,7 +205,9 @@ export class BmbTablesComponent implements AfterViewInit, OnInit, OnChanges {
 
     effect(() => {
       const filtersModelValue = this.filtersModel();
-      const hasControls = this.filterForm.controls && Object.keys(this.filterForm.controls).length > 0;
+      const hasControls =
+        this.filterForm.controls &&
+        Object.keys(this.filterForm.controls).length > 0;
 
       if (!hasControls) {
         // Form not initialized yet
