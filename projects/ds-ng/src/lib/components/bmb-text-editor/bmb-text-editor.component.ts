@@ -67,8 +67,8 @@ export class BmbTextEditorComponent implements AfterViewInit, OnInit {
   ) {}
 
   ngOnInit() {
-    // NOSONAR: Initial content sanitization
     this.sanitizedContent.set(
+      // NOSONAR: Initial content sanitization
       this.sanitizer.bypassSecurityTrustHtml(this.control().value || ''),
     );
 
