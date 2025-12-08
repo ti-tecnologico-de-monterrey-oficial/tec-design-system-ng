@@ -5,7 +5,7 @@
         <input
           type="text"
           class="bmb_dropdown-content-item-filter-input"
-          placeholder="Select an option"
+          [placeholder]="'dropdown.menu.filter_placeholder' | translate"
           (input)="filterList($event)"
         />
         <bmb-icon

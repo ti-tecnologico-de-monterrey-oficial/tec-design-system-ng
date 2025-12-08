@@ -138,7 +138,7 @@ export class BmbProjectedContentComponent {
 
         Object.keys(this.outputContext()).forEach((key) => {
           if (instance[key] && instance[key].subscribe) {
-            instance[key].subscribe(() => {
+            instance[key].subscribe((event: unknown) => {
               this.outputContext()[key](event);
             });
           }
