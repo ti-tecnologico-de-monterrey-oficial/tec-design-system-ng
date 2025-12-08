@@ -37,10 +37,10 @@ export type IBmbTextEditorPromptType = 'link' | 'image';
 export class BmbTextEditorPromptComponent {
   type = input.required<IBmbTextEditorPromptType>();
 
-  formGroup:FormGroup = new FormGroup({});
-
   formValues = output<Record<string, unknown>>();
   cancelForm = output<void>();
+
+  formGroup: FormGroup = new FormGroup({});
 
   getFormControl(name: string): FormControl {
     return this.formGroup.get(name) as FormControl;
@@ -49,10 +49,6 @@ export class BmbTextEditorPromptComponent {
   handleFormGroupState(): void {
     if (this.formGroup.valid) {
       const values = this.formGroup.getRawValue();
-
-      console.log(values);
-
-
       this.formValues.emit(values);
     }
   }

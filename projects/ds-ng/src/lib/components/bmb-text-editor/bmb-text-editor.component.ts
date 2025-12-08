@@ -14,7 +14,10 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { BmbButtonDirective } from '../../directives/bmb-button/button.directive';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { BmbProjectionContentService } from '../../services/projection/projection.service';
-import { BmbTextEditorPromptComponent, IBmbTextEditorPromptType } from './bmb-text-editor-prompt/bmb-text-editor-prompt.component';
+import {
+  BmbTextEditorPromptComponent,
+  IBmbTextEditorPromptType,
+} from './bmb-text-editor-prompt/bmb-text-editor-prompt.component';
 
 @Component({
   selector: 'bmb-text-editor',
@@ -38,7 +41,7 @@ export class BmbTextEditorComponent implements AfterViewInit, OnInit {
   userSelection: Range | null = null;
 
   detectAlignment() {
-    const selection = window.getSelection();
+    const selection = globalThis.getSelection();
     if (selection && selection.rangeCount > 0) {
       const element = selection.getRangeAt(0)
         .commonAncestorContainer as HTMLElement;
@@ -59,15 +62,15 @@ export class BmbTextEditorComponent implements AfterViewInit, OnInit {
   }
 
   constructor(
-    private sanitizer: DomSanitizer,
-    private projectionContent: BmbProjectionContentService
+    private readonly sanitizer: DomSanitizer,
+    private readonly projectionContent: BmbProjectionContentService,
   ) {}
 
   ngOnInit() {
     // NOSONAR: Initial content sanitization
-    this.sanitizedContent.set(this.sanitizer.bypassSecurityTrustHtml(
-      this.control().value || '',
-    ));
+    this.sanitizedContent.set(
+      this.sanitizer.bypassSecurityTrustHtml(this.control().value || ''),
+    );
 
     this.control().valueChanges?.subscribe((value) => {
       if (value === null) {
@@ -90,15 +93,12 @@ export class BmbTextEditorComponent implements AfterViewInit, OnInit {
 
   execCommand(command: string, value: string | null = null) {
     if (this.userSelection) {
-      const selection = window.getSelection();
+      const selection = globalThis.getSelection();
       if (selection) {
         selection.removeAllRanges();
         selection.addRange(this.userSelection);
       }
     }
-
-    console.log(window.getSelection());
-
 
     document.execCommand(command, false, value || undefined);
     this.updateContent();
@@ -107,17 +107,18 @@ export class BmbTextEditorComponent implements AfterViewInit, OnInit {
   }
 
   openPrompt(type: IBmbTextEditorPromptType, event: MouseEvent) {
-    this.userSelection = window.getSelection()?.getRangeAt(0) || null;
+    this.userSelection = globalThis.getSelection()?.getRangeAt(0) || null;
     const buttonNode = event.currentTarget as HTMLElement;
     this.projectionContent.openContent({
       content: BmbTextEditorPromptComponent,
       inputContext: { type },
       outputContext: {
-        formValues: (values: Record<string, unknown>) => this.handleClosePrompt({ ...values, type}),
+        formValues: (values: Record<string, unknown>) =>
+          this.handleClosePrompt({ ...values, type }),
         cancelForm: () => this.projectionContent.closeContent(),
       },
       targetRef: buttonNode,
-    })
+    });
   }
 
   handleClosePrompt(values: Record<string, unknown>) {
@@ -130,7 +131,7 @@ export class BmbTextEditorComponent implements AfterViewInit, OnInit {
   }
 
   insertLink(values: Record<string, unknown>) {
-    const selection = window.getSelection();
+    const selection = globalThis.getSelection();
 
     if (!selection || selection.rangeCount === 0 || !values['prompt_url']) {
       return;
@@ -140,7 +141,7 @@ export class BmbTextEditorComponent implements AfterViewInit, OnInit {
     const range = selection.getRangeAt(0);
     const parentNode = range.commonAncestorContainer.parentNode;
     if (parentNode && parentNode instanceof HTMLAnchorElement) {
-      parentNode.target = values['target'] as string || '_self';
+      parentNode.target = (values['target'] as string) || '_self';
 
       if (values['rel']) {
         parentNode.rel = 'noopener noreferrer';
@@ -149,7 +150,7 @@ export class BmbTextEditorComponent implements AfterViewInit, OnInit {
   }
 
   insertImage(values: Record<string, unknown>) {
-    const selection = window.getSelection();
+    const selection = globalThis.getSelection();
 
     if (!selection || selection.rangeCount === 0 || !values['prompt_url']) {
       return;
@@ -218,7 +219,7 @@ export class BmbTextEditorComponent implements AfterViewInit, OnInit {
 
   // Método para insertar HTML en el editor
   insertHtml(html: string) {
-    const selection = window.getSelection();
+    const selection = globalThis.getSelection();
     if (selection && selection.rangeCount > 0) {
       const range = selection.getRangeAt(0);
       const div = document.createElement('div');
