@@ -10,6 +10,7 @@ import {
 import { RouterModule, Router } from '@angular/router';
 import {
   BmbThemeComponent,
+  BmbDividerComponent,
   BmbTopBarComponent,
   BmbVerticalLayoutDirective,
   BmbVerticalLayoutItemDirective,
@@ -33,6 +34,7 @@ import { TestComponentComponent } from './components/test-component/test-compone
   imports: [
     RouterModule,
     BmbThemeComponent,
+    BmbDividerComponent,
     BmbTopBarComponent,
     BmbVerticalLayoutDirective,
     BmbVerticalLayoutItemDirective,

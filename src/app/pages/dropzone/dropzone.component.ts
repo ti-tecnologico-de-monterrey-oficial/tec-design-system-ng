@@ -2,7 +2,6 @@ import { Component, signal } from '@angular/core';
 import {
   BmbDropzoneComponent,
   BmbButtonDirective,
-  BmbThemeComponent,
 } from '../../../../projects/ds-ng/src/public-api';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 
@@ -10,12 +9,7 @@ import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
   selector: 'bmb-dropzone-page',
   templateUrl: './dropzone.component.html',
   standalone: true,
-  imports: [
-    ReactiveFormsModule,
-    BmbThemeComponent,
-    BmbDropzoneComponent,
-    BmbButtonDirective,
-  ],
+  imports: [ReactiveFormsModule, BmbDropzoneComponent, BmbButtonDirective],
 })
 export class DropzonePageComponent {
   userForm: FormGroup = new FormGroup({
