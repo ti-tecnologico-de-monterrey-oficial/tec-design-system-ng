@@ -77,10 +77,24 @@ export class AppComponent {
         link: '/calendar',
       },
       {
-        id: 3,
+        id: 8,
         icon: 'table_chart',
-        title: 'Table Lite',
-        link: '/table-lite',
+        title: 'Tables',
+        link: '',
+        children: [
+          {
+            id: 1,
+            icon: 'table',
+            title: 'Table Lite',
+            link: '/table-lite',
+          },
+          {
+            id: 2,
+            icon: 'table',
+            title: 'Table LTS',
+            link: '/table-lts',
+          },
+        ],
       },
       {
         id: 4,

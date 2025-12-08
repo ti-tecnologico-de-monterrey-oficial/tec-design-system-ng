@@ -96,6 +96,14 @@ export const routes: Routes = [
       ),
   },
   {
+    path: 'table-lts',
+    title: 'Table LTS',
+    loadComponent: () =>
+      import('./pages/table-lts/table-lts.component').then(
+        (t) => t.TableLtsComponent,
+      ),
+  },
+  {
     path: 'multi-dot-paginator',
     title: 'Multi Dot Paginator',
     loadComponent: () =>

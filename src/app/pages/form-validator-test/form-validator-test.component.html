@@ -1,51 +1,81 @@
-<bmb-form-validator
-  [(formGroup)]="formGroup"
-  (formGroupState)="handleSubmit($event)"
->
-  <section bmbLayout>
-    <bmb-dropdown
-      bmbLayoutItem
-      [colSm]="2"
-      inputId="dropdown_id1"
-      name="dropdown1"
-      label="Dropdown 1"
-      [options]="[
-        { name: 'Apple name', value: '_apple', icon: 'home', id: 'apple_' },
-        { name: 'Banana name', value: '_banana', icon: 'bolt', id: 'banana_' },
-        { name: 'Orange name', value: '_orange', icon: 'bolt', id: 'orange_' },
-        { name: 'Pear name', value: '_pear', icon: 'info', id: 'pear_' },
-        { name: 'Grape name', value: '_grape', icon: 'bolt', id: 'grape_' }
-      ]"
-      helperText="Select a fruit"
-      [required]="true"
-      (onValueChange)="handleDropdownChange($event)"
-    />
-    <bmb-dropdown
-      bmbLayoutItem
-      [colSm]="2"
-      inputId="dropdown_id2"
-      name="dropdown2"
-      label="Dropdown 2"
-      [options]="options"
-      helperText="Select a second fruit"
-      [required]="true"
-      [disabled]="true"
-      (onValueChange)="handleDropdownChange($event)"
-    />
-    <bmb-input
-      bmbLayoutItem
-      [colSm]="2"
-      id="text_field_id1"
-      name="text_field1"
-      label="Text field 1"
-      tooltip="Tooltip example"
-      icon="apps"
-      placeholder="Placeholder"
-      helperMessage="Helper Message"
-      [isRequired]="true"
-      [disabled]="true"
-      (onValueChange)="handleDropdownChange($event)"
-    />
-  </section>
-  <button bmbButton appearance="primary" type="submit">Submit</button>
-</bmb-form-validator>
+<header class="bmb_template-header">
+  <h3>Form Validator Test</h3>
+</header>
+<div class="bmb_template-margin-for-sidebar">
+  <bmb-form-validator
+    [(formGroup)]="formGroup"
+    (formGroupState)="handleSubmit($event)"
+  >
+    <section bmbLayout>
+      <bmb-dropdown
+        bmbLayoutItem
+        [colSm]="2"
+        inputId="dropdown_id1"
+        name="dropdown1"
+        label="Dropdown 1"
+        [options]="[
+          { name: 'Apple name', value: '_apple', icon: 'home', id: 'apple_' },
+          {
+            name: 'Banana name',
+            value: '_banana',
+            icon: 'bolt',
+            id: 'banana_'
+          },
+          {
+            name: 'Orange name',
+            value: '_orange',
+            icon: 'bolt',
+            id: 'orange_'
+          },
+          { name: 'Pear name', value: '_pear', icon: 'info', id: 'pear_' },
+          { name: 'Grape name', value: '_grape', icon: 'bolt', id: 'grape_' }
+        ]"
+        helperText="Select a fruit"
+        [required]="true"
+        (onValueChange)="handleDropdownChange($event)"
+      />
+      <bmb-dropdown
+        bmbLayoutItem
+        [colSm]="2"
+        inputId="dropdown_id2"
+        name="dropdown2"
+        label="Dropdown 2"
+        [options]="options"
+        helperText="Select a second fruit"
+        [required]="true"
+        [disabled]="true"
+        (onValueChange)="handleDropdownChange($event)"
+      />
+      <bmb-input
+        bmbLayoutItem
+        [colSm]="2"
+        id="text_field_id1"
+        name="text_field1"
+        label="Text field 1"
+        tooltip="Tooltip example"
+        icon="apps"
+        placeholder="Placeholder"
+        helperMessage="Helper Message"
+        [isRequired]="true"
+        [disabled]="true"
+        (onValueChange)="handleDropdownChange($event)"
+      />
+      <bmb-text-editor
+        bmbLayoutItem
+        [colSm]="4"
+        [control]="getFormControl('htmlText')"
+      ></bmb-text-editor>
+
+      {{ formGroup.value | json }}
+    </section>
+    <button bmbButton appearance="primary" type="submit">Submit</button>
+    <button
+      bmbButton
+      appearance="primary"
+      type="button"
+      (click)="handleReset()"
+    >
+      Reset
+    </button>
+  </bmb-form-validator>
+</div>

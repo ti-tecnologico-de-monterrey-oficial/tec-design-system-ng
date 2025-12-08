@@ -15,6 +15,7 @@
 
   &-header {
     position: relative;
+
     &-figure {
       margin: 0;
       line-height: 0;
@@ -28,6 +29,16 @@
       width: 100%;
       aspect-ratio: 5 / 2.5;
       object-fit: cover;
+    }
+
+    &-box {
+      height: rem.rem_calc(220);
+      width: 100%;
+      aspect-ratio: 5 / 2.5;
+      object-fit: cover;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     &-icon {

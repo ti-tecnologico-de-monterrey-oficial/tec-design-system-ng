@@ -296,7 +296,7 @@ class mockLoadingService {
 }
 
 export default {
-  title: 'Organisms/Alert center',
+  title: 'Organisms/Notification center',
   component: BmbAlertCenterComponent,
   decorators: [
     componentWrapperDecorator((story: string) => {
