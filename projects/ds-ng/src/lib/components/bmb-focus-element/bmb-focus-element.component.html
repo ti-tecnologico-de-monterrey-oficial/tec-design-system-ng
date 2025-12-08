@@ -4,7 +4,9 @@
       <bmb-icon
         class="bmb_focus-element-icon"
         [ngClass]="{
-          'bmb_focus-element-icon-focused': !isNonFocused() && !isNormal()
+          'bmb_focus-element-icon-normal': !isCurrentColor(),
+          'bmb_focus-element-icon-focused': isFocused(),
+          'bmb_focus-element-inherit': isCurrentColor()
         }"
         [icon]="icon()"
         [size]="24"
@@ -14,7 +16,9 @@
       <span
         class="bmb_focus-element-number"
         [ngClass]="{
-          'bmb_focus-element-number-focused': !isNonFocused() && !isNormal()
+          'bmb_focus-element-number-normal': !isCurrentColor(),
+          'bmb_focus-element-number-focused': isFocused(),
+          'bmb_focus-element-inherit': isCurrentColor()
         }"
       >
         {{ number() }}

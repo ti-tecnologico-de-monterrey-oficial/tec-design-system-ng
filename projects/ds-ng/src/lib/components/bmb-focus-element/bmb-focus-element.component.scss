@@ -2,31 +2,35 @@
 @use '../../../assets/styles/base/mixins' as mixins;
 @use '../../../assets/styles/base/rem' as rem;
 
-@mixin circle {
-  align-items: center;
-  display: flex;
-  height: rem.rem_calc(64);
-  justify-content: center;
-  width: rem.rem_calc(64);
-}
-
 .bmb_focus-element {
-  width: fit-content;
+  width: 100%;
+  height: 100%;
+
+  &-circle {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    width: rem.rem_calc(64);
+    height: rem.rem_calc(64);
+
+    &-container {
+      width: 100%;
+      height: 100%;
+    }
+  }
 
   &-normal_circle {
-    @include circle;
     border: rem.rem_calc(1) solid var(--general_contrasts-100);
     border-radius: 100%;
   }
 
   &-circle_focused {
-    @include circle;
-    border: rem.rem_calc(1) solid var(--general_contrasts-main-selection);
+    border: rem.rem_calc(1) solid var(--azul-mariner-500);
     border-radius: 100%;
   }
 
   &-normal_bg {
-    background-color: var(--general_contrasts-input-background);
+    background-color: var(--containers-background);
   }
 
   &-inherited_bg {
@@ -34,33 +38,41 @@
   }
 
   &-non_focused {
-    @include circle;
     border: rem.rem_calc(1) solid background-color;
     border-radius: 100%;
   }
 
   &-icon {
+    display: flex;
     align-items: center;
     color: var(--general_contrasts-100);
-    display: flex;
 
     &-focused {
-      color: var(--general_contrasts-main-selection);
+      color: var(--azul-mariner-500);
     }
   }
 
   &-number {
-    color: var(--general_contrasts-input-outline);
     display: block;
-    @include fonts.font(9, bold);
+    @include fonts.font(9, regular);
+    font-weight: bold;
+    color: var(--general_contrasts-input-outline);
+
+    &-focused {
+      color: var(--azul-mariner-500);
+    }
+  }
+
+  &-inherit {
+    color: currentColor;
   }
 
   &-title {
-    color: var(--general_contrasts-100);
     margin-top: rem.rem_calc(10);
-    text-align: center;
     @include fonts.font(3, regular);
-    max-width: 4rem;
     font-weight: 300;
+    color: var(--general_contrasts-100);
+    text-align: center;
+    max-width: rem.rem_calc(64);
   }
 }
