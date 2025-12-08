@@ -123,5 +123,28 @@
     "menu": {
       "filter_placeholder": "Select an option"
     }
+  },
+  "text_editor": {
+    "prompt": {
+      "link": {
+        "link_label": "Insert Link",
+        "link_placeholder": "https://example.com",
+        "link_helper": "Enter the URL you want to link to.",
+        "target_label": "Select Target",
+        "target_placeholder": "Select an option",
+        "target_helper": "Select the target of the link.",
+        "rel_label": "Add rel attribute (noopener noreferrer)"
+      },
+      "image": {
+        "image_label": "Insert Image",
+        "image_placeholder": "https://example.com/image.jpg",
+        "image_helper": "Enter the URL of the image you want to insert.",
+        "alt_label": "Alternative Text",
+        "alt_helper": "Provide alternative text for the image.",
+        "alt_placeholder": "Describe the image"
+      },
+      "primary_button": "Insert",
+      "secondary_button": "Cancel"
+    }
   }
 }

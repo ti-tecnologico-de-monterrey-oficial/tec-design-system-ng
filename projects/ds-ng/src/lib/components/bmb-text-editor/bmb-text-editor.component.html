@@ -139,7 +139,7 @@
         appearance="transparent"
         size="micro"
         type="button"
-        (click)="insertLink()"
+        (click)="openPrompt('link', $event)"
         title="Insertar enlace"
       >
         <bmb-icon icon="link" [size]="24" />
@@ -149,7 +149,7 @@
         appearance="transparent"
         size="micro"
         type="button"
-        (click)="insertImage()"
+        (click)="openPrompt('image', $event)"
         title="Insertar imagen"
       >
         <bmb-icon icon="image" [size]="24" />

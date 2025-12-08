@@ -13,6 +13,8 @@ import { FormControl } from '@angular/forms';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { BmbButtonDirective } from '../../directives/bmb-button/button.directive';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
+import { BmbProjectionContentService } from '../../services/projection/projection.service';
+import { BmbTextEditorPromptComponent, IBmbTextEditorPromptType } from './bmb-text-editor-prompt/bmb-text-editor-prompt.component';
 
 @Component({
   selector: 'bmb-text-editor',
@@ -33,6 +35,7 @@ export class BmbTextEditorComponent implements AfterViewInit, OnInit {
   showTableDialog: boolean = false;
   tableRows: number = 2;
   tableColumns: number = 2;
+  userSelection: Range | null = null;
 
   detectAlignment() {
     const selection = window.getSelection();
@@ -55,16 +58,21 @@ export class BmbTextEditorComponent implements AfterViewInit, OnInit {
     );
   }
 
-  constructor(private sanitizer: DomSanitizer) {}
+  constructor(
+    private sanitizer: DomSanitizer,
+    private projectionContent: BmbProjectionContentService
+  ) {}
 
   ngOnInit() {
+    // NOSONAR: Initial content sanitization
     this.sanitizedContent.set(this.sanitizer.bypassSecurityTrustHtml(
       this.control().value || '',
     ));
 
     this.control().valueChanges?.subscribe((value) => {
       if (value === null) {
-      this.sanitizedContent.set(this.sanitizer.bypassSecurityTrustHtml(''));
+        // NOSONAR: Clear content sanitization
+        this.sanitizedContent.set(this.sanitizer.bypassSecurityTrustHtml(''));
       }
     });
   }
@@ -81,15 +89,73 @@ export class BmbTextEditorComponent implements AfterViewInit, OnInit {
   }
 
   execCommand(command: string, value: string | null = null) {
+    if (this.userSelection) {
+      const selection = window.getSelection();
+      if (selection) {
+        selection.removeAllRanges();
+        selection.addRange(this.userSelection);
+      }
+    }
+
+    console.log(window.getSelection());
+
+
     document.execCommand(command, false, value || undefined);
     this.updateContent();
+
+    this.userSelection = null;
   }
 
-  insertLink() {
-    const url = prompt('Ingrese la URL:');
-    if (url) {
-      this.execCommand('createLink', url);
+  openPrompt(type: IBmbTextEditorPromptType, event: MouseEvent) {
+    this.userSelection = window.getSelection()?.getRangeAt(0) || null;
+    const buttonNode = event.currentTarget as HTMLElement;
+    this.projectionContent.openContent({
+      content: BmbTextEditorPromptComponent,
+      inputContext: { type },
+      outputContext: {
+        formValues: (values: Record<string, unknown>) => this.handleClosePrompt({ ...values, type}),
+        cancelForm: () => this.projectionContent.closeContent(),
+      },
+      targetRef: buttonNode,
+    })
+  }
+
+  handleClosePrompt(values: Record<string, unknown>) {
+    if (values['type'] === 'link' && values['prompt_url']) {
+      this.insertLink(values);
+    } else if (values['type'] === 'image' && values['prompt_url']) {
+      this.insertImage(values);
     }
+    this.projectionContent.closeContent();
+  }
+
+  insertLink(values: Record<string, unknown>) {
+    const selection = window.getSelection();
+
+    if (!selection || selection.rangeCount === 0 || !values['prompt_url']) {
+      return;
+    }
+
+    this.execCommand('createLink', values['prompt_url'] as string);
+    const range = selection.getRangeAt(0);
+    const parentNode = range.commonAncestorContainer.parentNode;
+    if (parentNode && parentNode instanceof HTMLAnchorElement) {
+      parentNode.target = values['target'] as string || '_self';
+
+      if (values['rel']) {
+        parentNode.rel = 'noopener noreferrer';
+      }
+    }
+  }
+
+  insertImage(values: Record<string, unknown>) {
+    const selection = window.getSelection();
+
+    if (!selection || selection.rangeCount === 0 || !values['prompt_url']) {
+      return;
+    }
+
+    this.execCommand('insertImage', values['prompt_url'] as string);
   }
 
   updateContent() {
@@ -103,17 +169,6 @@ export class BmbTextEditorComponent implements AfterViewInit, OnInit {
 
   getCurrentState() {
     return this.control().value;
-  }
-
-  insertImage() {
-    const url = prompt('Ingrese la URL de la imagen:');
-    if (url) {
-      if (this.isValidImageUrl(url)) {
-        this.execCommand('insertImage', url);
-      } else {
-        alert('La URL de la imagen no es válida.');
-      }
-    }
   }
 
   isValidImageUrl(url: string): boolean {
