@@ -141,8 +141,8 @@
         appearance="transparent"
         size="micro"
         type="button"
-        (click)="insertLink()"
         [title]="'text_editor.insert_link' | translate"
+        (click)="openPrompt('link', $event)"
       >
         <bmb-icon icon="link" [size]="24" />
       </button>
@@ -151,8 +151,8 @@
         appearance="transparent"
         size="micro"
         type="button"
-        (click)="insertImage()"
         [title]="'text_editor.insert_image' | translate"
+        (click)="openPrompt('image', $event)"
       >
         <bmb-icon icon="image" [size]="24" />
       </button>

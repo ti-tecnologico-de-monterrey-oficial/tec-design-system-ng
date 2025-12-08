@@ -141,5 +141,33 @@
     "empty_state": {
       "primary_text": "No tienes elementos para mostrar"
     }
+  },
+  "dropdown": {
+    "menu": {
+      "filter_placeholder": "Selecciona una opción"
+    }
+  },
+  "text_editor": {
+    "prompt": {
+      "link": {
+        "link_label": "Insertar enlace",
+        "link_placeholder": "https://example.com",
+        "link_helper": "Ingresa la URL a la que deseas enlazar.",
+        "target_label": "Selecciona destino",
+        "target_placeholder": "Selecciona una opción",
+        "target_helper": "Selecciona el destino del enlace.",
+        "rel_label": "Agregar atributo rel (noopener noreferrer)"
+      },
+      "image": {
+        "image_label": "Insertar imagen",
+        "image_placeholder": "https://example.com/image.jpg",
+        "image_helper": "Ingresa la URL de la imagen que deseas insertar.",
+        "alt_label": "Texto alternativo",
+        "alt_helper": "Ingresa el texto alternativo para la imagen.",
+        "alt_placeholder": "Texto alternativo de la imagen"
+      },
+      "primary_button": "Insertar",
+      "secondary_button": "Cancelar"
+    }
   }
 }

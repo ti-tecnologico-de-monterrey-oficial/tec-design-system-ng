@@ -12,6 +12,7 @@ import { BmbCheckExternalLinkButtonComponent } from '../../bmb-check-external-li
 import { BmbIconComponent } from '../../bmb-icon/bmb-icon.component';
 import { IDropdownItem } from '../../../types';
 import { CommonModule } from '@angular/common';
+import { TranslatePipe } from '../../../pipes/translations';
 
 @Component({
   selector: 'bmb-dropdown-content',
@@ -20,6 +21,7 @@ import { CommonModule } from '@angular/common';
     CommonModule,
     BmbCheckExternalLinkButtonComponent,
     BmbIconComponent,
+    TranslatePipe,
   ],
   templateUrl: './bmb-dropdown-content.component.html',
   styleUrl: './bmb-dropdown-content.component.scss',
