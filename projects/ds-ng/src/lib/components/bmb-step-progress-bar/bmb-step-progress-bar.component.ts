@@ -10,23 +10,39 @@ import {
   DestroyRef,
   signal,
   computed,
+  OnInit,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { BmbTranslationsService } from '../../services/translations/translations.service';
+import { BmbFocusElementComponent } from '../bmb-focus-element/bmb-focus-element.component';
+import { BmbLayoutDirective } from '../../directives/bmb-layout/bmb-layout.directive';
+import { BmbLayoutItemDirective } from '../../directives/bmb-layout/bmb-layout-item.directive';
+import { ɵEmptyOutletComponent } from '@angular/router';
+import { BmbVerticalLayoutDirective } from '../../directives/bmb-layout/bmb-vertical-layout/bmb-vertical-layout.directive';
+import { BmbVerticalLayoutItemDirective } from '../../directives/bmb-layout/bmb-vertical-layout/bmb-vertical-layout-item.directive';
+import { BmbSelectorDirective } from '../../directives/bmb-selector/bmb-selector.directive';
 
 const MOBILE_TABLET_QUERY = '(max-width: 992px)';
 
 @Component({
   selector: 'bmb-step-progress-bar',
   standalone: true,
-  imports: [CommonModule, BmbIconComponent],
+  imports: [
+    CommonModule,
+    BmbLayoutDirective,
+    BmbLayoutItemDirective,
+    BmbVerticalLayoutDirective,
+    BmbVerticalLayoutItemDirective,
+    BmbSelectorDirective,
+    BmbFocusElementComponent,
+    ɵEmptyOutletComponent,
+  ],
   templateUrl: './bmb-step-progress-bar.component.html',
   styleUrl: './bmb-step-progress-bar.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
-export class BmbStepProgressBarComponent {
+export class BmbStepProgressBarComponent implements OnInit {
   activeStep = model<number>(0);
   totalSteps = input<number>(0);
   size = input<'normal' | 'default' | 'small' | 'medium'>('normal');
@@ -58,6 +74,10 @@ export class BmbStepProgressBarComponent {
     this.destroyRef.onDestroy(() => this.abort.abort());
   }
 
+  ngOnInit(): void {
+    if (this.type() === 'step-panel') this.activeStep.set(0);
+  }
+
   private truncate = (s?: string, n = 90) =>
     s ? (s.length > n ? s.slice(0, n).trimEnd() + '…' : s) : '';
 
@@ -83,20 +103,24 @@ export class BmbStepProgressBarComponent {
     ),
   );
 
-  getStepsArray(): number[] {
+  get stepsArray(): number[] {
     return new Array(this.totalSteps() || 0).fill(0).map((_, i) => i);
   }
 
-  onStepPanelClicked(index: number): void {
-    if (!this.freeze()) {
-      this.onStepPanelPress.emit(index);
-    }
+  handleStepPressed(index: number): void {
+    this.onStepPanelPress.emit(index);
   }
 
-  onStepClicked(index: number): void {
-    if (!this.freeze()) {
-      this.activeStep.set(index);
-      this.onStepPress.emit(index);
-    }
+  handleStepClicked(index: number): void {
+    this.activeStep.set(index);
+    this.onStepPress.emit(index);
+  }
+
+  getStepNumber(index: number): number {
+    return index + 1;
+  }
+
+  getActiveStepNumber(): number {
+    return this.activeStep() + 1;
   }
 }

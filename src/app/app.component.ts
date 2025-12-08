@@ -119,9 +119,23 @@ export class AppComponent {
 
       {
         id: 6,
-        icon: 'page_control',
-        title: 'Multi Dot Paginator',
-        link: '/multi-dot-paginator',
+        icon: 'step',
+        title: 'Indicators',
+        link: '',
+        children: [
+          {
+            id: 2,
+            icon: 'page_control',
+            title: 'Multi Dot Paginator',
+            link: '/multi-dot-paginator',
+          },
+          {
+            id: 2,
+            icon: 'steppers',
+            title: 'Step progress bar',
+            link: '/step-progress-bar',
+          },
+        ],
       },
       {
         id: 7,
