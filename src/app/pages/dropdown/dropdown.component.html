@@ -1,6 +1,10 @@
 <div bmbLayout>
   <section bmbLayoutItem [colSm]="2">
-    <bmb-dropdown [options]="options()" [isFilterable]="true" />
+    <bmb-dropdown
+      [options]="options()"
+      [isFilterable]="true"
+      [customFilterFunction]="customFilterFunction"
+    />
     <bmb-input [placeholder]="'Search...'" [isClearable]="true" />
     <bmb-datepicker />
   </section>
