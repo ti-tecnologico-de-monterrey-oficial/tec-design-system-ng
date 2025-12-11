@@ -10,9 +10,8 @@ describe('BmbTextEditorPromptComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [BmbTextEditorPromptComponent],
-      schemas: [CUSTOM_ELEMENTS_SCHEMA]
-    })
-    .compileComponents();
+      schemas: [CUSTOM_ELEMENTS_SCHEMA],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(BmbTextEditorPromptComponent);
     component = fixture.componentInstance;
@@ -20,7 +19,7 @@ describe('BmbTextEditorPromptComponent', () => {
     component.formGroup = new FormGroup({
       prompt_url: new FormControl(''),
       target: new FormControl('_self'),
-      rel: new FormControl(false)
+      rel: new FormControl(false),
     });
   });
 
@@ -66,7 +65,7 @@ describe('BmbTextEditorPromptComponent', () => {
     it('should emit form values when form is valid', () => {
       component.formGroup = new FormGroup({
         prompt_url: new FormControl('https://example.com', Validators.required),
-        target: new FormControl('_blank')
+        target: new FormControl('_blank'),
       });
 
       const formValuesSpy = jasmine.createSpy('formValues');
@@ -76,14 +75,14 @@ describe('BmbTextEditorPromptComponent', () => {
 
       expect(formValuesSpy).toHaveBeenCalledWith({
         prompt_url: 'https://example.com',
-        target: '_blank'
+        target: '_blank',
       });
     });
 
     it('should not emit form values when form is invalid', () => {
       component.formGroup = new FormGroup({
         prompt_url: new FormControl('', Validators.required),
-        target: new FormControl('_blank')
+        target: new FormControl('_blank'),
       });
 
       const formValuesSpy = jasmine.createSpy('formValues');
@@ -117,7 +116,10 @@ describe('BmbTextEditorPromptComponent', () => {
   describe('Form Validation Integration', () => {
     it('should work with form validation when form is valid', () => {
       component.formGroup = new FormGroup({
-        prompt_url: new FormControl('https://valid-url.com', Validators.required)
+        prompt_url: new FormControl(
+          'https://valid-url.com',
+          Validators.required,
+        ),
       });
 
       const formValuesSpy = jasmine.createSpy('formValues');
@@ -126,13 +128,13 @@ describe('BmbTextEditorPromptComponent', () => {
       component.handleFormGroupState();
 
       expect(formValuesSpy).toHaveBeenCalledWith({
-        prompt_url: 'https://valid-url.com'
+        prompt_url: 'https://valid-url.com',
       });
     });
 
     it('should not emit when form has validation errors', () => {
       component.formGroup = new FormGroup({
-        prompt_url: new FormControl('', Validators.required)
+        prompt_url: new FormControl('', Validators.required),
       });
 
       const formValuesSpy = jasmine.createSpy('formValues');
@@ -165,7 +167,7 @@ describe('BmbTextEditorPromptComponent', () => {
     it('should handle form with null values', () => {
       component.formGroup = new FormGroup({
         prompt_url: new FormControl(null),
-        target: new FormControl(null)
+        target: new FormControl(null),
       });
 
       const formValuesSpy = jasmine.createSpy('formValues');
@@ -175,7 +177,7 @@ describe('BmbTextEditorPromptComponent', () => {
 
       expect(formValuesSpy).toHaveBeenCalledWith({
         prompt_url: null,
-        target: null
+        target: null,
       });
     });
   });

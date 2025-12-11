@@ -203,7 +203,6 @@ Please check all steps on the checklist
 
 ## Jira tokens
 
-
 ### API token
 
 In order to update the Jira tokens go to: [API tokens](https://id.atlassian.com/manage-profile/security/api-tokens).

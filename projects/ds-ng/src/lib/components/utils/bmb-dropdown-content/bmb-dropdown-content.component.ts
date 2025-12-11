@@ -33,6 +33,9 @@ export class BmbDropdownContentComponent {
   items = model<IDropdownItem[]>([]);
   isKeyboardEvent = model<boolean>(false); //Internal
   enableFilter = input<boolean>(false);
+  customFilterFunction = input<
+    ((item: IDropdownItem, filter: string) => boolean) | null
+  >(null);
 
   clickedItem = output<IDropdownItem>();
 
@@ -40,6 +43,12 @@ export class BmbDropdownContentComponent {
 
   filteredItems = computed<IDropdownItem[]>(() => {
     if (this.enableFilter() && this.filterString() !== '') {
+      if (this.customFilterFunction()) {
+        return this.items().filter((item) =>
+          this.customFilterFunction()!(item, this.filterString()),
+        );
+      }
+
       return this.items().filter((item) => {
         return (
           item.text.toLocaleLowerCase().includes(this.filterString()) ||

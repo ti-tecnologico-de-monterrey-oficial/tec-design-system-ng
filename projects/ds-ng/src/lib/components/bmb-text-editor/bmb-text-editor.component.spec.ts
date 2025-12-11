@@ -13,20 +13,25 @@ describe('BmbTextEditorComponent', () => {
   let mockSanitizer: jasmine.SpyObj<DomSanitizer>;
 
   beforeEach(async () => {
-    mockProjectionService = jasmine.createSpyObj('BmbProjectionContentService', [
-      'openContent',
-      'closeContent'
-    ]);
+    mockProjectionService = jasmine.createSpyObj(
+      'BmbProjectionContentService',
+      ['openContent', 'closeContent'],
+    );
 
-    mockSanitizer = jasmine.createSpyObj('DomSanitizer', ['bypassSecurityTrustHtml']);
+    mockSanitizer = jasmine.createSpyObj('DomSanitizer', [
+      'bypassSecurityTrustHtml',
+    ]);
     mockSanitizer.bypassSecurityTrustHtml.and.returnValue('<p>test</p>' as any);
 
     await TestBed.configureTestingModule({
       imports: [BmbTextEditorComponent, NoopAnimationsModule],
       providers: [
-        { provide: BmbProjectionContentService, useValue: mockProjectionService },
-        { provide: DomSanitizer, useValue: mockSanitizer }
-      ]
+        {
+          provide: BmbProjectionContentService,
+          useValue: mockProjectionService,
+        },
+        { provide: DomSanitizer, useValue: mockSanitizer },
+      ],
     }).compileComponents();
 
     fixture = TestBed.createComponent(BmbTextEditorComponent);
@@ -48,7 +53,7 @@ describe('BmbTextEditorComponent', () => {
       const customControl = new FormControl('<p>Initial content</p>');
       fixture.componentRef.setInput('control', customControl);
       fixture.detectChanges();
-      
+
       expect(component.control()).toBe(customControl);
       expect(component.control().value).toBe('<p>Initial content</p>');
     });
@@ -57,8 +62,10 @@ describe('BmbTextEditorComponent', () => {
       const customControl = new FormControl('<p>Test content</p>');
       fixture.componentRef.setInput('control', customControl);
       fixture.detectChanges();
-      
-      expect(mockSanitizer.bypassSecurityTrustHtml).toHaveBeenCalledWith('<p>Test content</p>');
+
+      expect(mockSanitizer.bypassSecurityTrustHtml).toHaveBeenCalledWith(
+        '<p>Test content</p>',
+      );
     });
   });
 
@@ -73,22 +80,24 @@ describe('BmbTextEditorComponent', () => {
 
     it('should handle null values in form control', () => {
       testControl.setValue(null);
-      
+
       expect(mockSanitizer.bypassSecurityTrustHtml).toHaveBeenCalledWith('');
     });
 
     it('should update form control when content changes', () => {
       spyOn(component, 'updateContent').and.callThrough();
-      
+
       // Mock the editor element
       const mockEditor = {
-        innerHTML: '<p>Updated content</p>'
+        innerHTML: '<p>Updated content</p>',
       } as HTMLDivElement;
-      
-      component.editor = { nativeElement: mockEditor } as ElementRef<HTMLDivElement>;
-      
+
+      component.editor = {
+        nativeElement: mockEditor,
+      } as ElementRef<HTMLDivElement>;
+
       component.updateContent();
-      
+
       expect(testControl.value).toBe('<p>Updated content</p>');
     });
   });
@@ -102,23 +111,39 @@ describe('BmbTextEditorComponent', () => {
 
     it('should execute bold command', () => {
       component.execCommand('bold');
-      
-      expect(document.execCommand).toHaveBeenCalledWith('bold', false, undefined);
+
+      expect(document.execCommand).toHaveBeenCalledWith(
+        'bold',
+        false,
+        undefined,
+      );
       expect(component.updateContent).toHaveBeenCalled();
     });
 
     it('should execute command with value', () => {
       component.execCommand('fontSize', '14px');
-      
-      expect(document.execCommand).toHaveBeenCalledWith('fontSize', false, '14px');
+
+      expect(document.execCommand).toHaveBeenCalledWith(
+        'fontSize',
+        false,
+        '14px',
+      );
       expect(component.updateContent).toHaveBeenCalled();
     });
 
     it('should clear formatting', () => {
       component.clearFormatting();
-      
-      expect(document.execCommand).toHaveBeenCalledWith('removeFormat', false, undefined);
-      expect(document.execCommand).toHaveBeenCalledWith('unlink', false, undefined);
+
+      expect(document.execCommand).toHaveBeenCalledWith(
+        'removeFormat',
+        false,
+        undefined,
+      );
+      expect(document.execCommand).toHaveBeenCalledWith(
+        'unlink',
+        false,
+        undefined,
+      );
     });
   });
 
@@ -130,22 +155,31 @@ describe('BmbTextEditorComponent', () => {
 
     it('should apply left alignment', () => {
       component.applyAlignment('left');
-      
-      expect(component.execCommand).toHaveBeenCalledWith('styleWithCSS', 'true');
+
+      expect(component.execCommand).toHaveBeenCalledWith(
+        'styleWithCSS',
+        'true',
+      );
       expect(component.execCommand).toHaveBeenCalledWith('justifyLeft');
     });
 
     it('should apply center alignment', () => {
       component.applyAlignment('center');
-      
-      expect(component.execCommand).toHaveBeenCalledWith('styleWithCSS', 'true');
+
+      expect(component.execCommand).toHaveBeenCalledWith(
+        'styleWithCSS',
+        'true',
+      );
       expect(component.execCommand).toHaveBeenCalledWith('justifyCenter');
     });
 
     it('should apply right alignment', () => {
       component.applyAlignment('right');
-      
-      expect(component.execCommand).toHaveBeenCalledWith('styleWithCSS', 'true');
+
+      expect(component.execCommand).toHaveBeenCalledWith(
+        'styleWithCSS',
+        'true',
+      );
       expect(component.execCommand).toHaveBeenCalledWith('justifyRight');
     });
   });
@@ -158,40 +192,42 @@ describe('BmbTextEditorComponent', () => {
       mockEvent = new MouseEvent('click');
       Object.defineProperty(mockEvent, 'currentTarget', {
         value: document.createElement('button'),
-        writable: false
+        writable: false,
       });
 
       // Mock window.getSelection
       const mockSelection = {
-        getRangeAt: jasmine.createSpy('getRangeAt').and.returnValue(new Range())
+        getRangeAt: jasmine
+          .createSpy('getRangeAt')
+          .and.returnValue(new Range()),
       };
       spyOn(window, 'getSelection').and.returnValue(mockSelection as any);
     });
 
     it('should open link prompt', () => {
       component.openPrompt('link', mockEvent);
-      
+
       expect(mockProjectionService.openContent).toHaveBeenCalled();
       expect(component.userSelection).toBeDefined();
     });
 
     it('should open image prompt', () => {
       component.openPrompt('image', mockEvent);
-      
+
       expect(mockProjectionService.openContent).toHaveBeenCalled();
       expect(component.userSelection).toBeDefined();
     });
 
     it('should handle close prompt for link', () => {
       spyOn(component, 'insertLink');
-      
+
       const values = {
         type: 'link',
-        prompt_url: 'https://example.com'
+        prompt_url: 'https://example.com',
       };
-      
+
       component.handleClosePrompt(values);
-      
+
       expect(component.insertLink).toHaveBeenCalledWith(values);
       expect(mockProjectionService.closeContent).toHaveBeenCalled();
     });
@@ -199,11 +235,11 @@ describe('BmbTextEditorComponent', () => {
     it('should handle close prompt for image', () => {
       const values = {
         type: 'image',
-        prompt_url: 'https://example.com/image.jpg'
+        prompt_url: 'https://example.com/image.jpg',
       };
-      
+
       component.handleClosePrompt(values);
-      
+
       expect(mockProjectionService.closeContent).toHaveBeenCalled();
     });
   });
@@ -216,19 +252,19 @@ describe('BmbTextEditorComponent', () => {
 
     it('should not insert link without URL', () => {
       const values = { prompt_url: '' };
-      
+
       component.insertLink(values);
-      
+
       expect(component.execCommand).not.toHaveBeenCalled();
     });
 
     it('should not insert link without selection', () => {
       spyOn(window, 'getSelection').and.returnValue(null);
-      
+
       const values = { prompt_url: 'https://example.com' };
-      
+
       component.insertLink(values);
-      
+
       expect(component.execCommand).not.toHaveBeenCalled();
     });
   });
@@ -241,20 +277,20 @@ describe('BmbTextEditorComponent', () => {
     it('should validate correct image URL', () => {
       const validUrl = 'https://example.com/image.jpg';
       const result = component.isValidImageUrl(validUrl);
-      
+
       expect(result).toBe(true);
     });
 
     it('should reject invalid URL', () => {
       const invalidUrl = 'not-a-url';
       const result = component.isValidImageUrl(invalidUrl);
-      
+
       expect(result).toBe(false);
     });
 
     it('should reject empty URL', () => {
       const result = component.isValidImageUrl('');
-      
+
       expect(result).toBe(false);
     });
   });
@@ -266,20 +302,20 @@ describe('BmbTextEditorComponent', () => {
 
     it('should open table dialog', () => {
       component.openTableDialog();
-      
+
       expect(component.showTableDialog).toBe(true);
     });
 
     it('should close table dialog', () => {
       component.showTableDialog = true;
       component.closeTableDialog();
-      
+
       expect(component.showTableDialog).toBe(false);
     });
 
     it('should generate table HTML', () => {
       const html = component.generateTableHtml(2, 3);
-      
+
       expect(html).toContain('<table');
       expect(html).toContain('</table>');
       expect(html).toContain('<tr>');
@@ -292,12 +328,12 @@ describe('BmbTextEditorComponent', () => {
     it('should insert table when valid dimensions', () => {
       spyOn(component, 'insertHtml');
       spyOn(component, 'closeTableDialog');
-      
+
       component.tableRows = 2;
       component.tableColumns = 3;
-      
+
       component.insertTable();
-      
+
       expect(component.insertHtml).toHaveBeenCalled();
       expect(component.closeTableDialog).toHaveBeenCalled();
     });
@@ -311,21 +347,21 @@ describe('BmbTextEditorComponent', () => {
 
     it('should handle select change events', () => {
       const mockEvent = {
-        target: { value: 'h1' }
+        target: { value: 'h1' },
       } as unknown as Event;
-      
+
       component.handleChange(mockEvent, 'formatBlock');
-      
+
       expect(component.execCommand).toHaveBeenCalledWith('formatBlock', 'h1');
     });
 
     it('should not execute command when no value', () => {
       const mockEvent = {
-        target: { value: '' }
+        target: { value: '' },
       } as unknown as Event;
-      
+
       component.handleChange(mockEvent, 'formatBlock');
-      
+
       expect(component.execCommand).not.toHaveBeenCalled();
     });
   });
@@ -334,14 +370,16 @@ describe('BmbTextEditorComponent', () => {
     beforeEach(() => {
       fixture.detectChanges();
       const mockEditor = {
-        innerHTML: '<p>Current content</p>'
+        innerHTML: '<p>Current content</p>',
       } as HTMLDivElement;
-      component.editor = { nativeElement: mockEditor } as ElementRef<HTMLDivElement>;
+      component.editor = {
+        nativeElement: mockEditor,
+      } as ElementRef<HTMLDivElement>;
     });
 
     it('should get current state', () => {
       const state = component.getCurrentState();
-      
+
       expect(state).toBe(component.control().value);
     });
 
@@ -349,13 +387,13 @@ describe('BmbTextEditorComponent', () => {
       // Mock window.getSelection with a simple implementation
       const mockSelection = {
         rangeCount: 0,
-        getRangeAt: jasmine.createSpy('getRangeAt')
+        getRangeAt: jasmine.createSpy('getRangeAt'),
       };
-      
+
       spyOn(window, 'getSelection').and.returnValue(mockSelection as any);
-      
+
       component.detectAlignment();
-      
+
       // Should maintain default alignment when no selection
       expect(component.currentAlignment).toBe('left');
     });

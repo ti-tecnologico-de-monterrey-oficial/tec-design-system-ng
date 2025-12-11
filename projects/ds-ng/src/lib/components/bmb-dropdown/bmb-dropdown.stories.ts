@@ -236,7 +236,17 @@ If the data is a list of  IBmbDropdownItem type, the preferred options should be
         defaultValue: getDefaultValueControl(false),
       },
     },
-
+    customFilterFunction: {
+      control: null,
+      description: 'Custom filter function for dropdown items.',
+      table: {
+        category: 'Properties',
+        type: {
+          summary: '((item: IDropdownItem, filter: string) => boolean) | null',
+        },
+        defaultValue: { summary: 'null' },
+      },
+    },
     customValidation: DBmbInputParamDesc.customValidation,
     inputId: DBmbInputParamDesc.inputId,
     tooltip: DBmbInputParamDesc.tooltip,
