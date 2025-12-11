@@ -1,5 +1,5 @@
 :root {
-  // To use colors you should use it in this way background-color: RGBA(var(--color-mariner-900));
+  // To use colors you should use it in this way background-color: rgb(var(--color-mariner-900));
 
   // Mariner
   --color-mariner-50: 240, 248, 254;
@@ -82,12 +82,12 @@
   // Constrastes principales
   // #000000 Black Primary
   --color-black-primary: 0, 0, 0;
-  --color-black-light: RGBA(var(--color-black-primary), 0.75);
-  --color-black-tint: RGBA(var(--color-black-primary), 0.5);
-  --color-black-min: RGBA(var(--color-black-primary), 0.25);
-  --color-white-light: RGBA(var(--color-white-primary), 0.75);
-  --color-white-tint: RGBA(var(--color-white-primary), 0.5);
-  --color-white-min: RGBA(var(--color-white-primary), 0.25);
+  --color-black-light: rgb(var(--color-black-primary), 0.75);
+  --color-black-tint: rgb(var(--color-black-primary), 0.5);
+  --color-black-min: rgb(var(--color-black-primary), 0.25);
+  --color-white-light: rgb(var(--color-white-primary), 0.75);
+  --color-white-tint: rgb(var(--color-white-primary), 0.5);
+  --color-white-min: rgb(var(--color-white-primary), 0.25);
 
   //Colores base
   //This one is not used anymore but I change the value to mariner-700 because is used in several components
@@ -134,7 +134,7 @@
   --color-background-main: 30, 38, 44;
 
   //Fondos complementarios Light
-  --color-container-home-light: RGBA(var(--color-white-primary));
+  --color-container-home-light: rgb(var(--color-white-primary));
   --color-container-secondary-light: 229, 233, 237;
   --color-container-button-light: 229, 233, 237;
   --color-background-main-light: 229, 233, 237;
@@ -142,8 +142,8 @@
   //Fondos complementarios Tec
   --color-container-home-tec: 0, 36, 105;
   --color-container-secondary-tec: 27, 56, 110;
-  --color-container-button-tec: RGBA(var(--color-blue-tec));
-  --color-background-main-tec: RGBA(var(--color-blue-tec));
+  --color-container-button-tec: rgb(var(--color-blue-tec));
+  --color-background-main-tec: rgb(var(--color-blue-tec));
 
   //Colores para gradients
   --color-blue-pigment: 39, 58, 161;
@@ -254,38 +254,30 @@
   //GRADIENTS
   // To use this gradient you should use it in this way
   // background-color: linear-gradient(180deg, var(--color-gradient-blue)); or background-color: radial-gradient(circle, var(--color-gradient-blue));
-  --color-button-gradient: rgba(var(--color-teal-primary), 1) 0%,
-    rgba(var(--color-blue-primary), 1) 100%;
-  --color-blue-gradient: rgba(var(--color-teal-primary), 1) 0%,
-    rgba(var(--color-blue-pigment), 1) 100%;
-  --color-green-gradient: rgba(var(--color-neon-primary), 1) 0%,
-    rgba(var(--color-green-light), 1) 100%;
-  --color-purple-gradient: rgba(var(--color-purple-primary), 1) 0%,
-    rgba(var(--color-purple-light), 1) 100%;
-  --color-bg-gradient: rgba(var(--color-japanese-indigo), 1) 0%,
-    rgba(var(--color-background-main), 1) 100%;
-  --color-bg-wheel: rgba(var(--color-eerie-black), 1) 0%,
-    rgba(var(--color-background-main), 1) 100%;
-  --color-bg-gradient-light: rgba(var(--color-white-primary), 1) 0%,
-    rgba(var(--color-blue-tint), 1) 100%;
-  --color-bg-wheel-light: rgba(var(--color-white-primary), 1) 0%,
-    rgba(var(--color-blue-tint), 1) 100%;
-  --color-bg-gradient-tec: rgba(var(--color-container-home-tec), 1) 0%,
-    rgba(var(--color-blue-tec), 1) 100%;
-  --color-bg-wheel-tec: rgba(var(--color-container-home-tec), 1) 0%,
-    rgba(var(--color-blue-tec), 1) 100%;
-  --color-academic-gradient: RGBA(var(--color-mariner-700)) 0%,
-    RGBA(var(--color-blue-light)) 100%;
-  --color-life-gradient: rgba(var(--color-green-primary), 1) 0%,
-    rgba(var(--color-green-light), 1) 100%;
-  --color-event-gradient: rgba(var(--color-purple-primary), 1) 0%,
-    rgba(var(--color-purple-light), 1) 100%;
-
-  //Named base colors
-  --white-primary: rgb(var(--color-white-primary));
-  --purple-primary: rgb(var(--color-purple-primary));
-  --red-primary: rgb(var(--color-red-primary));
-  --black-primary: rgb(var(--color-black-primary));
-  --green-primary: rgb(var(--color-green-primary));
-  --yellow-primary: rgb(var(--color-yellow-primary));
+  --color-button-gradient: rgb(var(--color-teal-primary), 1) 0%,
+    rgb(var(--color-blue-primary), 1) 100%;
+  --color-blue-gradient: rgb(var(--color-teal-primary), 1) 0%,
+    rgb(var(--color-blue-pigment), 1) 100%;
+  --color-green-gradient: rgb(var(--color-neon-primary), 1) 0%,
+    rgb(var(--color-green-light), 1) 100%;
+  --color-purple-gradient: rgb(var(--color-purple-primary), 1) 0%,
+    rgb(var(--color-purple-light), 1) 100%;
+  --color-bg-gradient: rgb(var(--color-japanese-indigo), 1) 0%,
+    rgb(var(--color-background-main), 1) 100%;
+  --color-bg-wheel: rgb(var(--color-eerie-black), 1) 0%,
+    rgb(var(--color-background-main), 1) 100%;
+  --color-bg-gradient-light: rgb(var(--color-white-primary), 1) 0%,
+    rgb(var(--color-blue-tint), 1) 100%;
+  --color-bg-wheel-light: rgb(var(--color-white-primary), 1) 0%,
+    rgb(var(--color-blue-tint), 1) 100%;
+  --color-bg-gradient-tec: rgb(var(--color-container-home-tec), 1) 0%,
+    rgb(var(--color-blue-tec), 1) 100%;
+  --color-bg-wheel-tec: rgb(var(--color-container-home-tec), 1) 0%,
+    rgb(var(--color-blue-tec), 1) 100%;
+  --color-academic-gradient: rgb(var(--color-mariner-700)) 0%,
+    rgb(var(--color-blue-light)) 100%;
+  --color-life-gradient: rgb(var(--color-green-primary), 1) 0%,
+    rgb(var(--color-green-light), 1) 100%;
+  --color-event-gradient: rgb(var(--color-purple-primary), 1) 0%,
+    rgb(var(--color-purple-light), 1) 100%;
 }

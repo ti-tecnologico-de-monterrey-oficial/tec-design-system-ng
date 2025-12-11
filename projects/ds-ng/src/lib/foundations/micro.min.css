@@ -502,12 +502,16 @@
   --red-primary: rgb(var(--color-red-primary));
   --black-primary: rgb(var(--color-black-primary));
   --green-primary: rgb(var(--color-green-primary));
+  --yellow-primary: rgb(var(--color-yellow-primary));
 }
 :root,
 .storybook-light-theme .docs-story {
   --general_contrasts: var(--black-primary);
   --general_contrasts-100: rgb(var(--color-charade-950));
+  --general_contrasts-80: rgb(var(--color-charade-700));
+  --general_contrasts-90: rgb(var(--color-charade-500));
   --general_contrasts-75: rgb(var(--color-charade-700));
+  --general_contrasts-60: rgb(var(--color-charade-900));
   --general_contrasts-50: rgb(var(--color-charade-500));
   --general_contrasts-25: rgb(var(--color-charade-200));
   --general_contrasts-20: rgb(var(--color-charade-100));
@@ -522,11 +526,13 @@
   --general_contrasts-container-outline: rgb(var(--color-charade-300));
   --general_contrasts-text-sidebar: rgb(var(--color-black-primary));
   --general_contrasts-container: rgb(var(--color-charade-800));
+  --general_contrasts-primary: rgb(var(--color-mariner-700));
   --containers-background: rgb(var(--color-charade-200));
   --containers-main: rgb(var(--color-charade-100));
   --containers-modal: rgb(var(--color-charade-50));
   --containers-container-button: rgb(var(--color-charade-50));
   --containers-background-fade: rgb(var(--color-charade-200));
+  --buttons-text-link: rgb(var(--color-mariner-700));
   --buttons-primary-normal: rgb(var(--color-mariner-700));
   --buttons-primary-hover: rgb(var(--color-mariner-800));
   --buttons-primary-select: rgb(var(--color-mariner-700));
@@ -615,7 +621,10 @@
 .storybook-dark-theme .docs-story {
   --general_contrasts: var(--white-primary);
   --general_contrasts-100: rgb(var(--color-charade-50));
+  --general_contrasts-80: rgb(var(--color-charade-300));
+  --general_contrasts-90: rgb(var(--color-charade-300));
   --general_contrasts-75: rgb(var(--color-charade-200));
+  --general_contrasts-60: rgb(var(--color-charade-200));
   --general_contrasts-50: rgb(var(--color-charade-500));
   --general_contrasts-25: rgb(var(--color-charade-700));
   --general_contrasts-20: rgb(var(--color-charade-700));
@@ -628,11 +637,13 @@
   --general_contrasts-container-outline: rgb(var(--color-charade-800));
   --general_contrasts-text-sidebar: rgb(var(--color-white-primary));
   --general_contrasts-container: rgb(var(--color-charade-300));
+  --general_contrasts-primary: rgb(var(--color-mariner-400));
   --containers-background: rgb(var(--color-charade-950));
   --containers-main: rgb(var(--color-charade-900));
   --containers-modal: rgb(var(--color-charade-950));
   --containers-container-button: rgb(var(--color-charade-900));
   --containers-background-fade: rgb(var(--color-charade-950));
+  --buttons-text-link: rgb(var(--color-mariner-500));
   --buttons-stroke-primary-selected: rgb(var(--color-mariner-300));
   --buttons-destructive: rgb(var(--color-red-light));
   --buttons-active-switch: rgb(var(--color-green-light));
@@ -1040,7 +1051,6 @@ img {
   background-color: #eef3f8;
   border-radius: 5px;
   border: 1px solid rgba(0, 0, 0, 0.05);
-  background: #eef3f8;
   height: 180px;
   margin-bottom: 48px;
   overflow: hidden;
@@ -1104,7 +1114,6 @@ img {
   .sb-addon-img img {
     width: 1200px;
     transform: rotate(-12deg);
-    margin-left: 0;
     margin-top: 48px;
     margin-bottom: -40px;
     margin-left: -24px;
@@ -1112,7 +1121,6 @@ img {
 }
 .bmb_doc-tabs {
   display: flex;
-  flex-direction: row;
   gap: 1rem;
   flex-direction: column;
 }
@@ -1148,8 +1156,7 @@ img {
 }
 .markdown-alert-note {
   border-radius: 0.5rem 0.5rem 0.5rem 0;
-  padding-top: 0.25rem !important;
-  padding-bottom: 0.5rem !important;
+  padding: 0.5rem !important;
   margin: 0 !important;
   background-color: rgba(var(--color-blue-light), 0.15);
 }
@@ -1161,8 +1168,7 @@ img {
 }
 .markdown-alert-callout {
   border-radius: 0.5rem 0.5rem 0.5rem 0;
-  padding-top: 0.25rem !important;
-  padding-bottom: 0.5rem !important;
+  padding: 0.5rem !important;
   margin: 0 !important;
   background-color: rgba(var(--color-mitec-green), 0.15);
 }
@@ -1174,8 +1180,7 @@ img {
 }
 .markdown-alert-warning {
   border-radius: 0.5rem 0.5rem 0.5rem 0;
-  padding-top: 0.25rem !important;
-  padding-bottom: 0.5rem !important;
+  padding: 0.5rem !important;
   margin: 0 !important;
   background-color: rgba(var(--color-red-light), 0.15);
 }
@@ -1861,10 +1866,9 @@ ion-content {
   color: var(--white-primary);
 }
 .bmb_btn-destructive bmb-icon {
-  color: var(--red-primary);
+  color: var(--buttons-destructive);
 }
 .bmb_btn-transparent {
-  padding: 0 0.25rem;
   background-color: rgba(0, 0, 0, 0);
   padding: 0 0.625rem;
   color: var(--general_contrasts-100);
@@ -2716,7 +2720,6 @@ ion-content {
   > *:focus-visible:not(:disabled),
 .bmb_button-group-small.bmb_button-group-primary > *:active:not(:disabled),
 .bmb_button-group-small.bmb_button-group-primary > *.bmb_btn-toggle-active {
-  border-width: 0.0625rem;
   padding: 0.5rem;
   border-width: 0.0625rem 0.0625rem 0.0625rem 0;
   box-shadow: none;
@@ -2784,7 +2787,6 @@ ion-content {
   > *:active:not(:disabled),
 .bmb_button-group-small.bmb_button-group-secondary-filled
   > *.bmb_btn-toggle-active {
-  border-width: 0.0625rem;
   padding: 0.5rem;
   border-width: 0.0625rem 0.0625rem 0.0625rem 0;
   box-shadow: none;
@@ -2878,7 +2880,6 @@ ion-content {
   > *:active:not(:disabled),
 .bmb_button-group-small.bmb_button-group-secondary-outlined
   > *.bmb_btn-toggle-active {
-  border-width: 0.0625rem;
   padding: 0.5rem;
   border-width: 0.0625rem 0.0625rem 0.0625rem 0;
   box-shadow: none;
@@ -2969,7 +2970,7 @@ ion-content {
   color: var(--white-primary);
 }
 .bmb_button-group-small.bmb_button-group-destructive > * bmb-icon {
-  color: var(--red-primary);
+  color: var(--buttons-destructive);
 }
 .bmb_button-group-small.bmb_button-group-destructive > * {
   border-width: 0.0625rem 0.0625rem 0.0625rem 0;
@@ -2980,7 +2981,6 @@ ion-content {
   > *:focus-visible:not(:disabled),
 .bmb_button-group-small.bmb_button-group-destructive > *:active:not(:disabled),
 .bmb_button-group-small.bmb_button-group-destructive > *.bmb_btn-toggle-active {
-  border-width: 0.0625rem;
   padding: 0.5rem;
   border-width: 0.0625rem 0.0625rem 0.0625rem 0;
   box-shadow: none;
@@ -3018,7 +3018,6 @@ ion-content {
   > *:focus-visible:not(:disabled),
 .bmb_button-group-small.bmb_button-group-transparent > *:active:not(:disabled),
 .bmb_button-group-small.bmb_button-group-transparent > *.bmb_btn-toggle-active {
-  border-width: 0.0625rem;
   padding: 0.5rem;
   border-width: 0.0625rem 0.0625rem 0.0625rem 0;
   box-shadow: none;
@@ -3071,7 +3070,6 @@ ion-content {
   > *:focus-visible:not(:disabled),
 .bmb_button-group-large.bmb_button-group-primary > *:active:not(:disabled),
 .bmb_button-group-large.bmb_button-group-primary > *.bmb_btn-toggle-active {
-  border-width: 0.0625rem;
   padding: 0.5rem 1rem;
   border-width: 0.0625rem 0.0625rem 0.0625rem 0;
   box-shadow: none;
@@ -3139,7 +3137,6 @@ ion-content {
   > *:active:not(:disabled),
 .bmb_button-group-large.bmb_button-group-secondary-filled
   > *.bmb_btn-toggle-active {
-  border-width: 0.0625rem;
   padding: 0.5rem 1rem;
   border-width: 0.0625rem 0.0625rem 0.0625rem 0;
   box-shadow: none;
@@ -3233,7 +3230,6 @@ ion-content {
   > *:active:not(:disabled),
 .bmb_button-group-large.bmb_button-group-secondary-outlined
   > *.bmb_btn-toggle-active {
-  border-width: 0.0625rem;
   padding: 0.5rem 1rem;
   border-width: 0.0625rem 0.0625rem 0.0625rem 0;
   box-shadow: none;
@@ -3324,7 +3320,7 @@ ion-content {
   color: var(--white-primary);
 }
 .bmb_button-group-large.bmb_button-group-destructive > * bmb-icon {
-  color: var(--red-primary);
+  color: var(--buttons-destructive);
 }
 .bmb_button-group-large.bmb_button-group-destructive > * {
   border-width: 0.0625rem 0.0625rem 0.0625rem 0;
@@ -3335,7 +3331,6 @@ ion-content {
   > *:focus-visible:not(:disabled),
 .bmb_button-group-large.bmb_button-group-destructive > *:active:not(:disabled),
 .bmb_button-group-large.bmb_button-group-destructive > *.bmb_btn-toggle-active {
-  border-width: 0.0625rem;
   padding: 0.5rem 1rem;
   border-width: 0.0625rem 0.0625rem 0.0625rem 0;
   box-shadow: none;
@@ -3365,7 +3360,6 @@ ion-content {
   background-color: RGBA(var(--color-red-primary), 0.25);
 }
 .bmb_button-group-large.bmb_button-group-transparent > * {
-  padding: 0 0.25rem;
   background-color: rgba(0, 0, 0, 0);
   padding: 0 0.625rem;
   color: var(--general_contrasts-100);
@@ -3382,7 +3376,6 @@ ion-content {
   > *:focus-visible:not(:disabled),
 .bmb_button-group-large.bmb_button-group-transparent > *:active:not(:disabled),
 .bmb_button-group-large.bmb_button-group-transparent > *.bmb_btn-toggle-active {
-  border-width: 0.0625rem;
   padding: 0.5rem 1rem;
   border-width: 0.0625rem 0.0625rem 0.0625rem 0;
   box-shadow: none;
@@ -4215,8 +4208,29 @@ ion-content {
   margin: 0;
   line-height: 0;
 }
-.bmb_icon-figure img {
+.bmb_icon-figure-image {
   object-fit: contain;
+}
+.bmb_icon-figure:has(svg) {
+  width: 100%;
+  height: 100%;
+  fill: currentColor;
+}
+.bmb_icon-svg {
+  display: inline-block;
+  line-height: 1;
+  vertical-align: -0.125em;
+}
+.bmb_icon-svg-auto-size {
+  width: 1em;
+  height: 1em;
+}
+.bmb_icon-svg > svg {
+  width: 100%;
+  height: 100%;
+}
+.bmb_icon-svg > svg * {
+  fill: currentColor;
 }
 .bmb_toast {
   align-items: flex-start;

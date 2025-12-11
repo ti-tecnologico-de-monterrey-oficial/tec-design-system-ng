@@ -1,0 +1,142 @@
+:root,
+.storybook-light-theme .docs-story {
+  // Containers
+  --containers-background: rgb(var(--gray-ged-50));
+  --containers-main: var(--white-primary);
+  --containers-header-mobile: var(--white-primary); // new
+  --containers-modal: rgb(var(--gray-ged-50));
+  --containers-top-bar: var(--black-primary); // new
+
+  // Buttons
+  --buttons-primary-normal: rgb(var(--gray-ged-950));
+  --buttons-primary-hover: rgb(var(--gray-ged-50));
+  --buttons-primary-select: rgb(var(--gray-ged-900));
+  --buttons-alternative-normal: var(--white-primary);
+  --buttons-alternative-text: rgb(var(--gray-ged-950));
+  --buttons-active-switch: var(--blue-primary);
+  --buttons-inactive-step: rgb(var(--gray-ged-400));
+  --buttons-stroke-primary-selected: rgb(var(--color-mariner-700));
+  --buttons-text-link: rgb(var(--color-mariner-700));
+
+  // General Contrasts
+  --general_contrasts-100: rgb(var(--gray-ged-950));
+  --general_contrasts-90: rgb(var(--gray-ged-500));
+  --general_contrasts-80: rgb(var(--gray-ged-800));
+  --general_contrasts-75: rgb(var(--gray-ged-700));
+  --general_contrasts-60: rgb(var(--gray-ged-900));
+  --general_contrasts-50: rgb(var(--gray-ged-500));
+  --general_contrasts-25: rgb(var(--gray-ged-300));
+  --general_contrasts-20: rgb(var(--gray-ged-200));
+  --general_contrasts-15: rgb(var(--gray-ged-200));
+  --general_contrasts-5: rgb(var(--gray-ged-50));
+  --general_contrasts-main-complimentary: rgb(var(--gray-ged-50));
+  --general_contrasts-main-selection: var(--color-black-tint);
+  --general_contrasts-icon-selection: var(--blue-primary);
+  --general_contrasts-main-selection-alternative: rgb(var(--color-green-light));
+  --general_contrasts-input-background: rgb(var(--gray-ged-100));
+  --general_contrasts-input-outline: rgb(var(--gray-ged-950));
+  --general_contrasts-container-outline: rgb(var(--gray-ged-400));
+  --general_contrasts-text-sidebar: var(--black-primary);
+  --general_contrasts-primary: rgb(var(--blue-ged-800));
+
+  //Complementary backgrounds (gradients)
+  --gradient-bg: rgb(var(--color-charade-950)) 0%,
+    rgb(var(--color-charade-900)) 100%; //var(--color-black-light); // #1F222E - #313649
+
+  //Menu (select)
+  --menu_select-surface-activated: var(--black-primary);
+  --menu_select-label-menu-active: rgb(var(--gray-ged-50));
+  --menu_select-label-menu-inactive: rgb(var(--gray-ged-950));
+  --menu_select-activated-w-checkbox: rgb(var(--blue-ged-950));
+  --menu_select-alternative-focus-label: var(--blue-primary);
+  --menu_select-on-surface-hovered-w-checkbox: rgb(var(--gray-ged-200));
+  --menu_select-on-surface-hovered: rgb(var(--gray-ged-100));
+
+  // Semantic colors
+  --semantic-success: rgb(var(--success-primary-alternative));
+  --semantic-warning: rgb(var(--warning-primary-alternative));
+  --semantic-error: var(--red-primary);
+  --semantic-info-event: var(--purple-primary);
+  --semantic-brand: var(--branding-tint);
+  --semantic-alert: var(--alert_primary-alert-light);
+
+  // Base colors - Creative use
+  --creative-use-violet: rgb(var(--violet-light));
+  --creative-use-indigo: rgb(var(--indigo-tint));
+  --creative-use-emerald: rgb(var(--emerald-tint));
+  --creative-use-dark-teal: rgb(var(--dark-teal-tint));
+  --creative-use-peach: rgb(var(--peach-light));
+  --creative-use-sepia: rgb(var(--sepia-tint));
+  --creative-use-soft-red: rgb(var(--soft-red-light));
+  --creative-use-wattle: rgb(var(--wattle-primary-alternative));
+  --creative-use-ship-cove: rgb(var(--ship-cove-light));
+  --creative-use-plantation: rgb(var(--plantation-tint));
+  --creative-use-rum: rgb(var(--rum-tint));
+  --creative-use-ripe-lemon: rgb(var(--ripe-lemon-primary-alternative));
+  --creative-use-hibiscus: rgb(var(--hibiscus-tint));
+}
+
+[data-theme='dark'],
+.storybook-dark-theme,
+.storybook-dark-theme .docs-story {
+  // Containers
+  --containers-background: rgb(var(--gray-ged-950));
+  --containers-main: rgb(var(--gray-ged-900));
+  --containers-header-mobile: rgb(var(--gray-ged-900)); // new
+  --containers-modal: rgb(var(--gray-ged-950));
+
+  // Buttons
+  --buttons-primary-normal: rgb(var(--gray-ged-50));
+  --buttons-primary-hover: var(--black-primary);
+  --buttons-primary-select: rgb(var(--gray-ged-200));
+  --buttons-alternative-normal: var(--black-primary);
+  --buttons-alternative-text: rgb(var(--gray-ged-50));
+  --buttons-active-switch: var(--color-mariner-500);
+  --buttons-inactive-step: rgb(var(--gray-ged-700));
+  --buttons-stroke-primary-selected: var(--white-primary);
+  --buttons-text-link: var(--white-primary);
+
+  // General Contrasts
+  --general_contrasts-100: rgb(var(--gray-ged-50));
+  --general_contrasts-90: rgb(var(--gray-ged-400));
+  --general_contrasts-80: rgb(var(--gray-ged-300));
+  --general_contrasts-75: rgb(var(--gray-ged-300));
+  --general_contrasts-60: rgb(var(--gray-ged-300));
+  --general_contrasts-25: rgb(var(--gray-ged-700));
+  --general_contrasts-20: rgb(var(--gray-ged-700));
+  --general_contrasts-15: rgb(var(--gray-ged-800));
+  --general_contrasts-5: rgb(var(--gray-ged-900));
+  --general_contrasts-main-selection: var(--white-primary);
+  --general_contrasts-main-selection-alternative: var(--green-primary);
+  --general_contrasts-input-background: var(--color-black-tint);
+  --general_contrasts-input-outline: rgb(var(--gray-ged-50));
+  --general_contrasts-container-outline: rgb(var(--gray-ged-800));
+  --general_contrasts-text-sidebar: var(--white-primary);
+  --general_contrasts-primary: rgb(var(--blue-ged-300));
+
+  //Complementary backgrounds (Gradients)
+  --gradient-bg: rgb(var(--color-mariner-50)) 0%,
+    rgb(var(--color-mariner-100)) 100%; // #F0F8FE - #DDEEFC
+
+  //Menu (select)
+  --menu_select-label-menu-inactive: rgb(var(--gray-ged-50));
+  --menu_select-activated-w-checkbox: rgb(var(--gray-ged-950));
+  --menu_select-alternative-focus-label: var(--color-blue-light);
+  --menu_select-on-surface-hovered-w-checkbox: var(--color-black-tint);
+  --menu_select-on-surface-hovered: rgb(var(--gray-ged-600));
+
+  // Semantic colors
+  --semantic-success: rgb(var(--success-tint-alternative));
+  --semantic-warning: var(--yellow-primary);
+  --semantic-error: var(--error-light);
+  --semantic-info-event: var(--purple-tint);
+
+  // Base colors - Creative use
+  --creative-use-violet: rgb(var(--violet-tint));
+  --creative-use-licorice: rgb(var(--licorice-tint));
+  --creative-use-peach: rgb(var(--peach-tint));
+  --creative-use-soft-red: rgb(var(--soft-red-tint));
+  --creative-use-wattle: rgb(var(--wattle-tint));
+  --creative-use-ship-cove: rgb(var(--ship-cove-tint));
+  --creative-use-ripe-lemon: rgb(var(--ripe-lemon-tint));
+}

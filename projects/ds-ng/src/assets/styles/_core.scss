@@ -6,7 +6,6 @@
 
 // Import the global style to avoid bloat of code and could be use in components will a unique charge.
 // Import and register the rem conversion
-
 @use 'base/css-vars';
 @use 'base/rem' as rem;
 @use 'base/vars' as vars;
@@ -17,29 +16,30 @@
 // Import the styles for base
 @use 'base/mixins' as mixins;
 
-// Import and register the design tokens like colors and theme
-@use 'tokens/colors';
-@use 'tokens/namedColors';
-// @use "tokens/theme";
-@use 'base/borders';
-@use 'base/shadows';
-
 // Import the styles for base
 @use 'base/reset';
 @use 'base/spacing';
 @use 'base/radius';
 
 // Import the styles for non components
-@use 'base/tooltip';
-@use 'components/buttons';
 @use 'components/col-sys';
 @use 'components/row-sys';
-@use 'components/button-group';
-@use 'components/templates';
 @use 'components/generic-dialog';
 @use 'components/selector';
 @use 'base/utils';
-@use 'base/scrollbar';
 @use 'components/organism';
 
 @use '../../../../../node_modules/@angular/cdk/overlay-prebuilt.css';
+
+// Import and register the design tokens like colors and theme
+@use 'tokens/brand/core/colors';
+@use 'tokens/brand/core/namedColors';
+@use 'base/borders';
+@use 'base/shadows';
+
+// Import the styles for non components
+@use 'base/tooltip';
+@use 'components/buttons';
+@use 'components/button-group';
+@use 'components/templates';
+@use 'base/scrollbar';

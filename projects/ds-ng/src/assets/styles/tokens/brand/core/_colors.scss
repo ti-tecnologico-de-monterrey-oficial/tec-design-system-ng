@@ -1,0 +1,226 @@
+:root {
+  //Institutional colors
+  --institutional-blue-tec: --color-blue-tec; // #0039A6
+  --white-primary: rgb(var(--color-white-primary)); // #FFFFFF
+
+  // Mariner
+  --color-mariner-50: 240, 248, 254; // #F0F8FE
+  --color-mariner-100: 221, 238, 252; // #DDEEFC
+  --color-mariner-200: 195, 226, 250; // #C3E2FA
+  --color-mariner-300: 153, 208, 247; // #99D0F7
+  --color-mariner-400: 105, 183, 241; // #69B7F1
+  --color-mariner-500: 69, 153, 236; // #4599EC
+  --color-mariner-700: 39, 102, 203; // #2766CB
+  --color-mariner-800: 38, 84, 167; // #2654A7
+  --color-mariner-900: 36, 73, 132; // #244984
+  --color-mariner-950: 26, 46, 81; // #1A2E51
+
+  // Charade
+  --color-charade-50: 246, 247, 249; // #F6F7F9
+  --color-charade-100: 235, 237, 243; // #EBEDF3
+  --color-charade-200: 211, 215, 228; // #D3D7E4
+  --color-charade-300: 173, 182, 204; // #ADB6CC
+  --color-charade-500: 97, 113, 150; // #617196
+  --color-charade-600: 77, 89, 124; // #4D597C
+  --color-charade-700: 63, 73, 101; // #3F4965
+  --color-charade-800: 55, 63, 85; // #373F55
+  --color-charade-900: 49, 54, 73; // #313649
+  --color-charade-950: 31, 34, 46; // #1F222E
+
+  // Institucional colors
+  --color-white-primary: 255, 255, 255; // #FFFFFF
+  --color-blue-tec: 0, 57, 166; // #0039A6
+
+  // MiTec
+  --color-mitec-blue: 0, 167, 247; // #00A7F7
+  --mitec_blue-light: var(--color-mitec-blue);
+  --mitec_blue-primary: 0, 89, 141; // #00598D
+
+  --color-mitec-green: 205, 222, 32; // #CDDE20
+  --mitec_green-light: var(--color-mitec-green);
+  --mitec_green-primary: 72, 81, 22; // #485116
+
+  --color-mitec-red: 236, 38, 97; // #EC2661
+  --mitec_red-light: var(--color-mitec-red);
+  --mitec_red-primary: 141, 14, 63; // #8D0E3F
+
+  --color-mitec-orange: 255, 153, 1; // #FF9901
+  --mitec_orange-light: var(--color-mitec-orange);
+  --mitec_orange-primary: 187, 76, 2; // #BB4C02
+  --mitec_orange-tint: 255, 209, 70; // #FFD146
+
+  --color-mitec-purple: 239, 131, 214; // #EF83D6
+  --mitec_purple-tint: var(--color-mitec-purple);
+  --mitec_purple-primary: var(--color-purple-light);
+
+  // Constrastes principales
+  --color-black-primary: 0, 0, 0; // #000000
+  --color-black-light: rgba(var(--color-black-primary), 0.75);
+  --color-black-tint: rgba(var(--color-black-primary), 0.5);
+  --color-black-min: rgba(var(--color-black-primary), 0.25);
+
+  --color-white-light: rgba(var(--color-white-primary), 0.75);
+  --color-white-tint: rgba(var(--color-white-primary), 0.5);
+  --color-white-min: rgba(var(--color-white-primary), 0.25);
+
+  //Base colors
+  --color-neon-primary: 39, 102, 203;
+
+  --color-blue-primary: 39, 102, 203;
+  --color-blue-light: 70, 119, 199; // #4677C7
+  --color-blue-tint: 147, 169, 204; // #93A9CC
+
+  --color-green-primary: 64, 162, 19; // #40A213
+  --color-green-light: 67, 170, 139; // #43AA8B
+  --color-green-tint: 172, 227, 146; // #ACE392
+
+  --color-purple-primary: 106, 39, 161; // #6A27A1
+  --color-purple-light: 161, 39, 128; // #A12780
+  --color-purple-tint: 200, 123, 189; // #C87BBD
+
+  --color-red-primary: 211, 47, 47; // #D32F2F
+  --color-red-light: 240, 82, 82; // #F05252
+  --color-red-tint: 252, 159, 159; // #FC9F9F
+
+  --color-yellow-primary: 252, 189, 7; // #FCBD07
+  --color-yellow-light: 254, 214, 98; // #FED662
+  --color-yellow-tint: 255, 231, 163; // #FFE7A3
+
+  --color-teal-primary: 39, 125, 161; // #277DA1
+  --color-teal-light: 82, 137, 159; // #52899F
+  --color-teal-tint: 106, 145, 161; // #6A91A1
+
+  //Fondos complementarios Dark
+  --color-container-home: 37, 46, 53;
+  --color-container-secondary: 26, 34, 40;
+  --color-container-button: 42, 52, 59;
+  --color-background-main: 30, 38, 44;
+
+  //Fondos complementarios Light
+  --color-container-home-light: rgb(var(--color-white-primary));
+  --color-container-secondary-light: 229, 233, 237;
+  --color-container-button-light: 229, 233, 237;
+  --color-background-main-light: 229, 233, 237;
+
+  //Fondos complementarios Tec
+  --color-container-home-tec: 0, 36, 105;
+  --color-container-secondary-tec: 27, 56, 110;
+  --color-container-button-tec: rgb(var(--color-blue-tec));
+  --color-background-main-tec: rgb(var(--color-blue-tec));
+
+  //Colores para gradients
+  --color-blue-pigment: 39, 58, 161;
+  --color-japanese-indigo: 39, 64, 82;
+  --color-eerie-black: 20, 25, 28;
+
+  // Creative colors
+  --violet-light: 144, 97, 241; // #9061F1
+  --violet-tint: 171, 143, 246; // #AB8FF6
+  --violet-primary: 105, 41, 196; // #6929C4
+
+  --indigo-tint: 129, 140, 248; // #818CF8
+  --indigo-primary: 67, 56, 202; // #4338CA
+
+  --emerald-tint: 74, 222, 128; // #4ADE80
+  --emerald-primary: 20, 83, 45; // #14532D
+
+  --licorice-light: 122, 84, 96; // #7A5460
+  --licorice-tint: 176, 135, 142; // #B0878E
+  --licorice-primary: 82, 60, 69; // #523C45
+
+  --dark-teal-tint: 154, 197, 223; // #9AC5DF
+  --dark-teal-primary: 35, 65, 87; // #234157
+
+  --peach-light: 215, 75, 43; // #D74B2B
+  --peach-tint: 236, 115, 87; // #EC7357
+  --peach-primary: 181, 60, 32; // #B53C20
+
+  --sepia-tint: 168, 152, 88; // #A89858
+  --sepia-primary: 103, 82, 57; // #675239
+
+  --soft-red-light: 190, 64, 79; // #BE404F
+  --soft-red-tint: 226, 138, 142; // #E28A8E
+  --soft-red-primary: 145, 47, 64; // #912F40
+
+  --wattle-tint: 205, 185, 37; // #CDB925
+  --wattle-primary: 141, 108, 27; // #8D6C1B
+
+  --ship-cove-tint: 105, 135, 201; // #6987C9
+  --ship-cove-light: 85, 110, 187; // #556EBB
+  --ship-cove-primary: 65, 78, 140; // #414E8C
+
+  --plantation-tint: 111, 146, 135; // #6F9287
+  --plantation-primary: 56, 77, 72; // #384D48
+
+  --rum-tint: 189, 170, 200; // #BDAAC8
+  --rum-primary: 89, 70, 98; // #594662
+
+  --ripe-lemon-tint: 241, 211, 2; // #F1D302
+  --ripe-lemon-primary: 116, 75, 15; // #744B0F
+
+  --hibiscus-tint: 226, 132, 181; // #E284B5
+  --hibiscus-primary: 139, 41, 81; // #8B2951
+
+  //Semantic colors
+  --success-light: var(--color-green-light);
+  --success-primary: 33, 100, 83; // #216453
+
+  //info-event
+  --purple-tint: var(--color-purple-tint);
+
+  --error-light: var(--color-red-light);
+  --error-primary: 185, 28, 28; // #B91C1C
+
+  --warning-tint: var(--color-yellow-tint);
+  --warning-primary: 122, 45, 13; // #7A2D0D
+
+  --branding-tint: var(--color-mariner-400);
+  --branding-primary: var(--color-mariner-700);
+
+  /*
+    These names have a different structure intentionally
+    so that they look more like the names in the Figma documentation,
+    apparently the name alert_primary was given due to duplicate names
+    used in the status icon.
+  */
+  --alert_primary-alert-primary: 26, 118, 132; // #1A7684
+  --alert_primary-alert-light: 27, 192, 203; // #1BC0CB
+
+  //GRADIENTS
+  // To use this gradient you should use it in this way
+  // background-color: linear-gradient(180deg, var(--color-gradient-blue)); or background-color: radial-gradient(circle, var(--color-gradient-blue));
+  --color-button-gradient: rgb(var(--color-teal-primary)) 0%,
+    rgb(var(--color-blue-primary)) 100%;
+  --color-blue-gradient: rgb(var(--color-teal-primary)) 0%,
+    rgb(var(--color-blue-pigment)) 100%;
+  --color-green-gradient: rgb(var(--color-neon-primary)) 0%,
+    rgb(var(--color-green-light)) 100%;
+  --color-purple-gradient: rgb(var(--color-purple-primary)) 0%,
+    rgb(var(--color-purple-light)) 100%;
+  --color-bg-gradient: rgb(var(--color-japanese-indigo)) 0%,
+    rgb(var(--color-background-main)) 100%;
+  --color-bg-wheel: rgb(var(--color-eerie-black)) 0%,
+    rgb(var(--color-background-main)) 100%;
+  --color-bg-gradient-light: rgb(var(--color-white-primary)) 0%,
+    rgb(var(--color-blue-tint)) 100%;
+  --color-bg-wheel-light: rgb(var(--color-white-primary)) 0%,
+    rgb(var(--color-blue-tint)) 100%;
+  --color-bg-gradient-tec: rgb(var(--color-container-home-tec)) 0%,
+    rgb(var(--color-blue-tec)) 100%;
+  --color-bg-wheel-tec: rgb(var(--color-container-home-tec)) 0%,
+    rgb(var(--color-blue-tec)) 100%;
+  --color-academic-gradient: rgb(var(--color-mariner-700)) 0%,
+    rgb(var(--color-blue-light)) 100%;
+  --color-life-gradient: rgb(var(--color-green-primary)) 0%,
+    rgb(var(--color-green-light)) 100%;
+  --color-event-gradient: rgb(var(--color-purple-primary)) 0%,
+    rgb(var(--color-purple-light)) 100%;
+
+  //Named base colors
+  --purple-primary: rgb(var(--color-purple-primary));
+  --red-primary: rgb(var(--color-red-primary));
+  --black-primary: rgb(var(--color-black-primary));
+  --green-primary: rgb(var(--color-green-primary));
+  --yellow-primary: rgb(var(--color-yellow-primary));
+  --blue-primary: var(--color-blue-primary);
+}
