@@ -41,5 +41,6 @@
 @use 'base/utils';
 @use 'base/scrollbar';
 @use 'components/organism';
+@use 'components/table';
 
 @use '../../../../../node_modules/@angular/cdk/overlay-prebuilt.css';
