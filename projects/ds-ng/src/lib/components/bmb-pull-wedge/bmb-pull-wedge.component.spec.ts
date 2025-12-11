@@ -1,5 +1,10 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Renderer2, ElementRef, SimpleChanges, SimpleChange } from '@angular/core';
+import {
+  Renderer2,
+  ElementRef,
+  SimpleChanges,
+  SimpleChange,
+} from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { CdkDragMove, CdkDragEnd, CdkDragStart } from '@angular/cdk/drag-drop';
 
@@ -12,7 +17,7 @@ describe('BmbPullWedgeComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [BmbPullWedgeComponent]
+      imports: [BmbPullWedgeComponent],
     }).compileComponents();
 
     fixture = TestBed.createComponent(BmbPullWedgeComponent);
@@ -47,7 +52,7 @@ describe('BmbPullWedgeComponent', () => {
     it('should handle initialHeight changes', () => {
       component.initialHeight = 500;
       const changes: SimpleChanges = {
-        'initialHeight': new SimpleChange(300, 500, false)
+        initialHeight: new SimpleChange(300, 500, false),
       };
 
       component.ngOnChanges(changes);
@@ -61,20 +66,21 @@ describe('BmbPullWedgeComponent', () => {
       component.minContentHeight = 150;
 
       const changes: SimpleChanges = {
-        'minContentHeight': new SimpleChange(100, 150, false)
+        minContentHeight: new SimpleChange(100, 150, false),
       };
 
       component.ngOnChanges(changes);
 
       expect(component.contentHeight).toBeGreaterThanOrEqual(150);
       expect(mockRenderer.setStyle).toHaveBeenCalled();
-    });    it('should handle isOpen changes when opening', () => {
+    });
+    it('should handle isOpen changes when opening', () => {
       const mockElement = { nativeElement: document.createElement('div') };
       component.contentRef = mockElement as ElementRef;
       component.isOpen.set(true);
 
       const changes: SimpleChanges = {
-        'isOpen': new SimpleChange(false, true, false)
+        isOpen: new SimpleChange(false, true, false),
       };
 
       component.ngOnChanges(changes);
@@ -89,7 +95,7 @@ describe('BmbPullWedgeComponent', () => {
       component.isOpen.set(false);
 
       const changes: SimpleChanges = {
-        'isOpen': new SimpleChange(true, false, false)
+        isOpen: new SimpleChange(true, false, false),
       };
 
       component.ngOnChanges(changes);
@@ -131,7 +137,7 @@ describe('BmbPullWedgeComponent', () => {
       component.minContentHeight = 100;
 
       const mockEvent = {
-        distance: { y: 50 }
+        distance: { y: 50 },
       } as CdkDragMove;
 
       component.onDragMoved(mockEvent);
@@ -147,7 +153,7 @@ describe('BmbPullWedgeComponent', () => {
       const originalHeight = component.contentHeight;
 
       const mockEvent = {
-        distance: { y: 100 } // Would make height 350, exceeding initialHeight
+        distance: { y: 100 }, // Would make height 350, exceeding initialHeight
       } as CdkDragMove;
 
       component.onDragMoved(mockEvent);
@@ -162,7 +168,7 @@ describe('BmbPullWedgeComponent', () => {
       const originalHeight = component.contentHeight;
 
       const mockEvent = {
-        distance: { y: -100 } // Would make height 50, below minContentHeight
+        distance: { y: -100 }, // Would make height 50, below minContentHeight
       } as CdkDragMove;
 
       component.onDragMoved(mockEvent);
@@ -257,14 +263,22 @@ describe('BmbPullWedgeComponent', () => {
       fixture.detectChanges();
 
       const container = fixture.debugElement.query(By.css('.bmb_pull_wedge'));
-      expect(container.nativeElement.style.height).toBe(`${component.minContentHeight}px`);
+      expect(container.nativeElement.style.height).toBe(
+        `${component.minContentHeight}px`,
+      );
     });
 
     it('should have proper template structure', () => {
       const container = fixture.debugElement.query(By.css('.bmb_pull_wedge'));
-      const wrapper = fixture.debugElement.query(By.css('.bmb_pull_wedge-wrapper'));
-      const content = fixture.debugElement.query(By.css('.bmb_pull_wedge-content'));
-      const dragArea = fixture.debugElement.query(By.css('.bmb_pull_wedge-drag'));
+      const wrapper = fixture.debugElement.query(
+        By.css('.bmb_pull_wedge-wrapper'),
+      );
+      const content = fixture.debugElement.query(
+        By.css('.bmb_pull_wedge-content'),
+      );
+      const dragArea = fixture.debugElement.query(
+        By.css('.bmb_pull_wedge-drag'),
+      );
 
       expect(container).toBeTruthy();
       expect(wrapper).toBeTruthy();
@@ -273,7 +287,9 @@ describe('BmbPullWedgeComponent', () => {
     });
 
     it('should render content area with correct classes', () => {
-      const content = fixture.debugElement.query(By.css('.bmb_pull_wedge-content'));
+      const content = fixture.debugElement.query(
+        By.css('.bmb_pull_wedge-content'),
+      );
       expect(content).toBeTruthy();
       expect(content.nativeElement.classList.contains('visible')).toBe(true);
     });
@@ -282,32 +298,46 @@ describe('BmbPullWedgeComponent', () => {
       component.isOpen.set(true);
       fixture.detectChanges();
 
-      const content = fixture.debugElement.query(By.css('.bmb_pull_wedge-content'));
-      expect(content.nativeElement.classList.contains('bmb_pull_wedge-content-open')).toBe(true);
+      const content = fixture.debugElement.query(
+        By.css('.bmb_pull_wedge-content'),
+      );
+      expect(
+        content.nativeElement.classList.contains('bmb_pull_wedge-content-open'),
+      ).toBe(true);
     });
 
     it('should remove open class when wedge is closed', () => {
       component.isOpen.set(false);
       fixture.detectChanges();
 
-      const content = fixture.debugElement.query(By.css('.bmb_pull_wedge-content'));
-      expect(content.nativeElement.classList.contains('bmb_pull_wedge-content-open')).toBe(false);
+      const content = fixture.debugElement.query(
+        By.css('.bmb_pull_wedge-content'),
+      );
+      expect(
+        content.nativeElement.classList.contains('bmb_pull_wedge-content-open'),
+      ).toBe(false);
     });
 
     it('should render drag handle with CDK drag directives', () => {
-      const dragHandle = fixture.debugElement.query(By.css('.bmb_pull_wedge-drag'));
+      const dragHandle = fixture.debugElement.query(
+        By.css('.bmb_pull_wedge-drag'),
+      );
       expect(dragHandle).toBeTruthy();
       expect(dragHandle.attributes['cdkDrag']).toBeDefined();
     });
 
     it('should render toggle button', () => {
-      const button = fixture.debugElement.query(By.css('.bmb_pull_wedge-button'));
+      const button = fixture.debugElement.query(
+        By.css('.bmb_pull_wedge-button'),
+      );
       expect(button).toBeTruthy();
       expect(button.nativeElement.textContent.trim()).toBe('Pull');
     });
 
     it('should have content projection area', () => {
-      const contentArea = fixture.debugElement.query(By.css('.bmb_pull_wedge-content'));
+      const contentArea = fixture.debugElement.query(
+        By.css('.bmb_pull_wedge-content'),
+      );
       expect(contentArea).toBeTruthy();
     });
   });
@@ -316,7 +346,9 @@ describe('BmbPullWedgeComponent', () => {
     it('should call toggleWedge when button is clicked', () => {
       spyOn(component, 'toggleWedge');
 
-      const button = fixture.debugElement.query(By.css('.bmb_pull_wedge-button'));
+      const button = fixture.debugElement.query(
+        By.css('.bmb_pull_wedge-button'),
+      );
       button.nativeElement.click();
 
       expect(component.toggleWedge).toHaveBeenCalled();
@@ -327,11 +359,15 @@ describe('BmbPullWedgeComponent', () => {
       spyOn(component, 'onDragMoved');
       spyOn(component, 'onDragEnded');
 
-      const dragHandle = fixture.debugElement.query(By.css('.bmb_pull_wedge-drag'));
+      const dragHandle = fixture.debugElement.query(
+        By.css('.bmb_pull_wedge-drag'),
+      );
 
       // Simulate drag events
       dragHandle.triggerEventHandler('cdkDragStarted', {} as CdkDragStart);
-      dragHandle.triggerEventHandler('cdkDragMoved', { distance: { y: 10 } } as CdkDragMove);
+      dragHandle.triggerEventHandler('cdkDragMoved', {
+        distance: { y: 10 },
+      } as CdkDragMove);
       dragHandle.triggerEventHandler('cdkDragEnded', {} as CdkDragEnd);
 
       expect(component.onDragStarted).toHaveBeenCalled();
@@ -342,18 +378,24 @@ describe('BmbPullWedgeComponent', () => {
 
   describe('Accessibility', () => {
     it('should have proper button attributes', () => {
-      const button = fixture.debugElement.query(By.css('.bmb_pull_wedge-button'));
+      const button = fixture.debugElement.query(
+        By.css('.bmb_pull_wedge-button'),
+      );
 
       expect(button.nativeElement.getAttribute('type')).toBe('button');
       expect(button.nativeElement.getAttribute('role')).toBe('button');
-      expect(button.nativeElement.getAttribute('name')).toBe('bmb_pull_wedge-button');
+      expect(button.nativeElement.getAttribute('name')).toBe(
+        'bmb_pull_wedge-button',
+      );
     });
 
     it('should maintain visible class for screen readers', () => {
       component.isVisible = true;
       fixture.detectChanges();
 
-      const content = fixture.debugElement.query(By.css('.bmb_pull_wedge-content'));
+      const content = fixture.debugElement.query(
+        By.css('.bmb_pull_wedge-content'),
+      );
       expect(content.nativeElement.classList.contains('visible')).toBe(true);
     });
   });
@@ -367,7 +409,7 @@ describe('BmbPullWedgeComponent', () => {
     it('should handle zero initial height', () => {
       component.initialHeight = 0;
       const changes: SimpleChanges = {
-        'initialHeight': new SimpleChange(300, 0, false)
+        initialHeight: new SimpleChange(300, 0, false),
       };
 
       component.ngOnChanges(changes);
@@ -380,7 +422,7 @@ describe('BmbPullWedgeComponent', () => {
       component.minContentHeight = 300;
 
       const changes: SimpleChanges = {
-        'minContentHeight': new SimpleChange(100, 300, false)
+        minContentHeight: new SimpleChange(100, 300, false),
       };
 
       component.ngOnChanges(changes);
@@ -394,7 +436,7 @@ describe('BmbPullWedgeComponent', () => {
       component.initialHeight = 300;
 
       const mockEvent = {
-        distance: { y: -50 }
+        distance: { y: -50 },
       } as CdkDragMove;
 
       component.onDragMoved(mockEvent);
@@ -408,7 +450,7 @@ describe('BmbPullWedgeComponent', () => {
       component.initialHeight = 300;
 
       const mockEvent = {
-        distance: { y: 0.1 }
+        distance: { y: 0.1 },
       } as CdkDragMove;
 
       component.onDragMoved(mockEvent);
@@ -422,8 +464,12 @@ describe('BmbPullWedgeComponent', () => {
       component.initialHeight = 300;
 
       // Test that component maintains valid state
-      expect(component.contentHeight).toBeGreaterThanOrEqual(component.minContentHeight);
-      expect(component.contentHeight).toBeLessThanOrEqual(component.initialHeight);
+      expect(component.contentHeight).toBeGreaterThanOrEqual(
+        component.minContentHeight,
+      );
+      expect(component.contentHeight).toBeLessThanOrEqual(
+        component.initialHeight,
+      );
     });
   });
 
@@ -440,7 +486,7 @@ describe('BmbPullWedgeComponent', () => {
       // Simulate 100 rapid drag events
       for (let i = 0; i < 100; i++) {
         const mockEvent = {
-          distance: { y: i }
+          distance: { y: i },
         } as CdkDragMove;
         component.onDragMoved(mockEvent);
       }

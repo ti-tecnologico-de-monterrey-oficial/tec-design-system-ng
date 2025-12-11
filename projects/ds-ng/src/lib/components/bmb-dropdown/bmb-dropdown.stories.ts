@@ -241,7 +241,9 @@ If the data is a list of  IBmbDropdownItem type, the preferred options should be
       description: 'Custom filter function for dropdown items.',
       table: {
         category: 'Properties',
-        type: { summary: '((item: IDropdownItem, filter: string) => boolean) | null' },
+        type: {
+          summary: '((item: IDropdownItem, filter: string) => boolean) | null',
+        },
         defaultValue: { summary: 'null' },
       },
     },

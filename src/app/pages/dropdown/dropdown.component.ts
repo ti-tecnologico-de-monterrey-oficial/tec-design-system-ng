@@ -74,8 +74,11 @@ export class DropdownPageComponent implements OnInit {
     this.animeService.fetchTopAnime();
   }
 
-  customFilterFunction = (item: { text: string; value?: string; selectedText?: string }, filter: string): boolean => {
+  customFilterFunction = (
+    item: { text: string; value?: string; selectedText?: string },
+    filter: string,
+  ): boolean => {
     // Custom filter logic: match if the text starts with the filter string
     return item.text.toLowerCase().startsWith(filter.toLowerCase());
-  }
+  };
 }
