@@ -158,15 +158,19 @@
   }
 
   &-row {
+    &.mat-mdc-header-row {
+      height: auto;
+    }
+
     &.mat-mdc-row {
-      height: rem.rem_calc(46);
+      height: auto;
     }
 
     > td,
     > th {
       height: 100%;
       overflow: hidden;
-      padding: rem.rem_calc(0 8);
+      padding: rem.rem_calc(4 8);
 
       &.truncated {
         max-width: rem.rem_calc(100);
@@ -226,11 +230,12 @@
 
     > th {
       border-bottom: 0;
-      color: RGBA(var(--color-charade-500));
+      color: var(--general_contrasts-100);
       overflow: inherit;
       position: relative;
       text-transform: uppercase;
-      @include fonts.font(4, regular);
+      @include fonts.font(4, bold);
+      text-align: left;
 
       &.mat-mdc-header-cell {
         background-color: var(--containers-modal);
