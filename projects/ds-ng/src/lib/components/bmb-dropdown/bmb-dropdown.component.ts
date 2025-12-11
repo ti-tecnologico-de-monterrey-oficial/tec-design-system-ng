@@ -83,6 +83,9 @@ export class BmbDropdownComponent implements OnInit, OnChanges {
   isFilterable = input<boolean>(false);
   inputId = input<string>(this.name());
   customValidation = input<ValidatorFn>();
+  customFilterFunction = input<((item: IDropdownItem, filter: string) => boolean) | null>(
+    null
+  );
 
   control = model<FormControl>(newFormControlByType());
 
@@ -100,7 +103,7 @@ export class BmbDropdownComponent implements OnInit, OnChanges {
 
   @ViewChild('contentDiv', { static: true }) contentRef!: ElementRef<any>;
 
-  constructor(private projectionService: BmbProjectionContentService) {}
+  constructor(private readonly projectionService: BmbProjectionContentService) {}
 
   ngOnInit() {
     if (!this.control()) {
@@ -228,6 +231,7 @@ export class BmbDropdownComponent implements OnInit, OnChanges {
         items: this.parsedOptions(),
         isKeyboardEvent: this.isKeyboardEvent,
         enableFilter: this.isFilterable(),
+        customFilterFunction: this.customFilterFunction(),
       },
       focusOnOpen: true,
     };
