@@ -854,24 +854,24 @@ export const getSandboxConsiderationsDocumentation = (
       'bmb_[__]-4',
     );
     const classes: string = _classes.toLocaleString().replaceAll(',', ' ');
-    const variableInheritStyles: string = `${style
-      .concat(!!style ? ' ' : '',
-        getMergeList(
-          varList,
-          definitionVar
-            .replace(patternToReplaceOneLine, splitChar)
-            .replace(/\`|(--)|(-4)/g, ''),
-          splitChar,
-        ),
-      )}`;
-    const variableStyles: string = `${style
-      .concat(!!style ? ' ' : '',
-        getMergeList(
-          varList,
-          classes.replaceAll('_', '-').replaceAll(' ', splitChar),
-          splitChar,
-        ),
-      )}`;
+    const variableInheritStyles: string = `${style.concat(
+      !!style ? ' ' : '',
+      getMergeList(
+        varList,
+        definitionVar
+          .replace(patternToReplaceOneLine, splitChar)
+          .replace(/\`|(--)|(-4)/g, ''),
+        splitChar,
+      ),
+    )}`;
+    const variableStyles: string = `${style.concat(
+      !!style ? ' ' : '',
+      getMergeList(
+        varList,
+        classes.replaceAll('_', '-').replaceAll(' ', splitChar),
+        splitChar,
+      ),
+    )}`;
 
     _implementationDetails = `
 >

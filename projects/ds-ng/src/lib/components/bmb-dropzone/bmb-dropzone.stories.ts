@@ -63,7 +63,7 @@ export default {
           'organizedFiles',
           'getFormatSizeError',
           'isErrorFormat',
-          'isErrorSize'
+          'isErrorSize',
         ],
       },
       description: {

@@ -65,6 +65,6 @@ export class BmbDigitalIdComponent {
   }
 
   getFullName(): string {
-    return this.name().concat(' ',this.surname());
+    return this.name().concat(' ', this.surname());
   }
 }
