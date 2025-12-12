@@ -1,0 +1,26 @@
+<bmb-theme [showControls]="true" />
+<form
+  [formGroup]="userForm"
+  (ngSubmit)="onSubmit()"
+  style="
+    display: flex;
+    flex-direction: column;
+    margin: var(--bmb-spacing-xxl);
+    padding: var(--bmb-spacing-xxl);
+    gap: var(--bmb-spacing-xxl);
+  "
+>
+  <bmb-dropzone
+    [acceptedExtensions]="['image/*']"
+    [fileSize]="400000"
+    [multiple]="true"
+    formatFilesLabel="Formats: png, jpeg, and jpg."
+    errorMessageFormat="Format not compatible."
+    errorMessageSize="File exceeds the maximum allowed size."
+    linkLabel="Ver más información de formatos de archivo aceptados."
+    linkFilesSupported="https://www.youtube.com/"
+    [progress]="progressFiles()"
+    (newFile)="onNewFile($event)"
+  />
+  <button bmbButton type="submit" appearance="primary">Submit</button>
+</form>

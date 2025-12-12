@@ -1,32 +1,48 @@
-<span [ngClass]="getClasses()">
+@if (isOS()) {
+  <label
+    class="bmb_text-link bmb_text-link-underlined"
+    [ngClass]="{
+      'bmb_text-link-disabled': disabled()
+    }"
+    [htmlFor]="link()"
+  >
+    <span>
+      {{ textLink() }}
+    </span>
+  </label>
+} @else {
   <bmb-check-external-link-button
-    class="bmb_text-link-item"
+    class="bmb_text-link"
+    [ngClass]="{
+      'bmb_text-link-underlined': textLinkStyle() === 'underlined',
+      'bmb_text-link-disabled': disabled()
+    }"
     [link]="link()"
     [target]="target()"
   >
-    <span
-      [ngClass]="
-        getPositionClass(
-          'bmb_text-link-item',
-          textLinkStyle() === 'icon',
-          iconPosition()
-        )
-      "
+    <section
+      class="bmb_text-link-item"
+      [ngClass]="{
+        'bmb_text-link-item-reverse':
+          textLinkStyle() === 'icon' && iconPosition() === 'right'
+      }"
+      bmbLayout
+      [dynamicCols]="true"
+      margin="none"
+      gapSize="s"
+      alignItems="center"
     >
       @if (textLinkStyle() === 'icon' && !!icon()) {
         <bmb-icon
-          [ngClass]="
-            getPositionClass(
-              'bmb_text-link-item-icon',
-              textLinkStyle() === 'icon',
-              iconPosition()
-            )
-          "
           [icon]="icon()"
+          [size]="20"
           [alt]="textLink()"
+          bmbLayoutItem
         />
       }
-      <span>{{ textLink() }}</span>
-    </span>
+      <span bmbLayoutItem>
+        {{ textLink() }}
+      </span>
+    </section>
   </bmb-check-external-link-button>
-</span>
+}

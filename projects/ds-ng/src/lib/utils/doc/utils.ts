@@ -184,13 +184,17 @@ export const getStoryTitle = (fullTitle: string): string =>
 export const getStoryLink = ({
   title,
   showFullLinkName = true,
+  isPreURL = false,
 }: {
   title: string;
   showFullLinkName?: boolean;
+  isPreURL?: boolean;
 }): string => {
-  if (showFullLinkName)
-    return `[${title}](/docs/${getFormatName(title!, /(\/)|( )/g, '-').toLocaleLowerCase()}--documentation)`;
-  return `[${getStoryTitle(title!)}](/docs/${getFormatName(title!, /(\/)|( )/g, '-').toLocaleLowerCase()}--documentation)`;
+  const basisURL: string = `/docs/${getFormatName(title!, /(\/)|( )/g, '-').toLocaleLowerCase()}--documentation)`;
+  const _title: string = showFullLinkName ? title : getStoryTitle(title);
+  const preURL: string = isPreURL ? '/?path=' : '';
+
+  return `[${_title}](${preURL}${basisURL}`;
 };
 
 export const getAccordionDetail = (title: string, content: string): string => `
@@ -313,14 +317,11 @@ __  standalone: true,
 __  imports: [ ${
     additionalImportName
       ? `
-    ${inputName
-      .concat(', ')
-      .concat(additionalImportName)
-      .replaceAll(
-        ',',
-        `,
+    ${inputName.concat(', ', additionalImportName).replaceAll(
+      ',',
+      `,
     `,
-      )},
+    )},
     `
       : inputName
   } ],
@@ -530,7 +531,7 @@ export const getTechnicalDocReferences = ({
 >
 ${TECHNICAL_DOC_REFERENCES}<br/>
 <ul>${references
-  .map((ref) => '<li>'.concat(getStoryLink(ref).concat('</li>')))
+  .map((ref) => '<li>'.concat(getStoryLink(ref), '</li>'))
   .toString()
   .replaceAll(',', ' ')}</ul>
 `;
@@ -783,7 +784,7 @@ const getMergeList = (
 ): string => {
   const styles: string[] = definition.split(splitChar);
   const mergeList = list.map((element: string, index: number) =>
-    element.concat(': var(--'.concat(styles[index]?.trim()).concat(');')),
+    element.concat(': var(--', styles[index]?.trim(), ');'),
   );
 
   return mergeList.toString().replaceAll(',', ' ');
@@ -854,8 +855,7 @@ export const getSandboxConsiderationsDocumentation = (
     );
     const classes: string = _classes.toLocaleString().replaceAll(',', ' ');
     const variableInheritStyles: string = `${style
-      .concat(!!style ? ' ' : '')
-      .concat(
+      .concat(!!style ? ' ' : '',
         getMergeList(
           varList,
           definitionVar
@@ -865,8 +865,7 @@ export const getSandboxConsiderationsDocumentation = (
         ),
       )}`;
     const variableStyles: string = `${style
-      .concat(!!style ? ' ' : '')
-      .concat(
+      .concat(!!style ? ' ' : '',
         getMergeList(
           varList,
           classes.replaceAll('_', '-').replaceAll(' ', splitChar),

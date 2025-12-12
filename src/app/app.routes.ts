@@ -45,6 +45,14 @@ export const routes: Routes = [
       ),
   },
   {
+    path: 'dropzone',
+    title: 'Dropzone Test',
+    loadComponent: () =>
+      import('./pages/dropzone/dropzone.component').then(
+        (d) => d.DropzonePageComponent,
+      ),
+  },
+  {
     path: 'alerts',
     title: 'Alerts Test',
     loadComponent: () =>
