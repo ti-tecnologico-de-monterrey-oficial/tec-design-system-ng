@@ -419,7 +419,24 @@ ${getBasicExampleBlock(
       table: {
         category: 'Properties',
         defaultValue: { summary: '' },
-        type: { summary: 'object' },
+        type: {
+          summary: 'TableColum[]',
+          detail: `
+TableColum {
+  label: string;
+  labelEn?: string;
+  def: string;
+  dataKey: string;
+  htmlLabel?: TemplateRef<any>;
+  templateActions?: TemplateRef<any>;
+  width?: number;
+  type?: 'string' | 'number' | 'date';
+  icon?: string;
+  dateFormat?: string;
+  isFilterable?: boolean;
+}
+        `,
+        },
       },
     },
     config: {
