@@ -23,6 +23,8 @@ export class BmbFocusElementComponent {
   isNormal = input<boolean>();
   isNonFocused = input<boolean>();
   isInheritedBg = input<boolean>();
+  isCurrentColor = input<boolean>(); //Internal
+  isContainerSize = input<boolean>(); //Internal
 
   baseClass: string = 'bmb_focus-element';
 
@@ -32,11 +34,21 @@ export class BmbFocusElementComponent {
   }
 
   getCircleClass(): string[] {
-    const classNames: string[] = [this.getBackgroundClass()];
+    const classNames: string[] = [
+      this.getBackgroundClass(),
+      `${this.baseClass}-circle`,
+    ];
+
+    if (this.isContainerSize())
+      classNames.push(`${this.baseClass}-circle-container`);
     if (this.isNonFocused())
       return [...classNames, `${this.baseClass}-non_focused`];
     if (this.isNormal())
       return [...classNames, `${this.baseClass}-normal_circle`];
     return [...classNames, `${this.baseClass}-circle_focused`];
+  }
+
+  isFocused(): boolean {
+    return !this.isNonFocused() && !this.isNormal();
   }
 }

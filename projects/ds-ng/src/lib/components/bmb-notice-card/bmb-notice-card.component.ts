@@ -2,7 +2,6 @@ import {
   ChangeDetectionStrategy,
   Component,
   input,
-  OnInit,
   output,
   ViewEncapsulation,
 } from '@angular/core';
@@ -12,6 +11,7 @@ import { BmbDotPaginatorComponent } from '../bmb-dot-paginator/bmb-dot-paginator
 import { BmbButtonDirective } from '../../directives/bmb-button/button.directive';
 import { CommonModule } from '@angular/common';
 import { TranslatePipe } from '../../pipes/translations';
+import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 
 export interface IBmbCardNoticeDescription {
   pageOne?: string;
@@ -28,6 +28,7 @@ export interface IBmbCardNoticeDescription {
     BmbDotPaginatorComponent,
     BmbButtonDirective,
     TranslatePipe,
+    BmbIconComponent,
   ],
   templateUrl: './bmb-notice-card.component.html',
   styleUrl: './bmb-notice-card.component.scss',
@@ -36,6 +37,8 @@ export interface IBmbCardNoticeDescription {
 })
 export class BmbNoticeCardComponent {
   src = input<string>('');
+  icon = input<string>('');
+  iconSize = input<number>(24);
   title = input<string>('');
   description = input<IBmbCardNoticeDescription>();
   buttonText = input<string>();

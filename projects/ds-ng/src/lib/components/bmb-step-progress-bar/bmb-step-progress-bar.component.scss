@@ -1,90 +1,105 @@
 @use '../../../assets/styles/base/fonts' as fonts;
 @use '../../../assets/styles/base/rem' as rem;
+@use '../../../assets/styles/base/mixins' as mixins;
+
+$small_variant: rem.rem_calc(32);
+$normal_varian: rem.rem_calc(48);
+$medium_variant: rem.rem_calc(42);
 
 .bmb_step-progress-bar {
-  display: flex;
-  height: auto;
-  margin-bottom: rem.rem_calc(20);
-  min-height: rem.rem_calc(70);
-  width: 100%;
-
-  &-item {
-    align-items: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    min-width: rem.rem_calc(32);
-    position: relative;
+  &-horizontal {
     width: 100%;
-    @include fonts.font(6, regular);
+  }
 
-    &::after {
-      border-bottom: rem.rem_calc(2) solid var(--buttons-inactive-step);
-      content: '';
-      left: 50%;
-      min-width: rem.rem_calc(32);
-      position: absolute;
-      top: rem.rem_calc(30);
+  &-vertical {
+    width: fit-content;
+  }
+
+  &-wizard {
+    position: relative;
+    left: $small_variant;
+    margin: var(--bmb-spacing-s) 0;
+  }
+
+  &-text {
+    @include fonts.font(4, regular);
+    word-break: break-word;
+
+    &-title {
+      color: var(--general_contrasts-100);
+
+      &-wizard {
+        @include fonts.font(6, regular);
+      }
+
+      &.pending {
+        color: var(--buttons-inactive-step);
+      }
+    }
+
+    &-subtitle {
+      color: var(--general_contrasts-75);
+    }
+  }
+
+  &-wrapper {
+    &-horizontal {
       width: 100%;
     }
 
-    &.active {
-      @include fonts.font(9, regular);
-      font-weight: bold;
+    &-vertical {
+      gap: rem.rem_calc(2);
+    }
+  }
+
+  &-line {
+    border-style: solid;
+    border-width: 0;
+    border-color: var(--buttons-inactive-step);
+
+    &-horizontal {
+      flex: 1 0 0%;
+      border-top-width: rem.rem_calc(2);
+    }
+
+    &-vertical {
+      border-left-width: rem.rem_calc(2);
+      position: relative;
+      left: calc($small_variant / 2);
+      height: fit-content;
+      min-height: rem.rem_calc(20);
     }
 
     &.completed {
-      &::after {
-        border-bottom: rem.rem_calc(2) solid
-          var(--general_contrasts-main-selection);
-        content: '';
-        left: 50%;
-        min-width: rem.rem_calc(24);
-        position: absolute;
-        top: rem.rem_calc(30);
-        width: 100%;
-      }
-
-      .bmb_step-progress-bar-step {
-        background-color: var(--general_contrasts-main-selection);
-      }
-    }
-
-    &:first-child {
-      &::before {
-        content: none;
-      }
-    }
-
-    &:last-child {
-      &::after {
-        content: none;
-      }
+      border-color: var(--buttons-primary-normal);
     }
   }
 
   &-step {
-    align-items: center;
     background-color: var(--buttons-inactive-step);
     border-radius: 50%;
-    color: var(--general_contrasts-main-complimentary);
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    margin-bottom: rem.rem_calc(6);
-    position: relative;
-    z-index: 1;
-    @include fonts.font(7, regular);
 
-    &.active {
-      background-color: var(--containers-modal);
-      border: rem.rem_calc(1) solid var(--general_contrasts-main-selection);
-      color: var(--general_contrasts-input-outline);
+    &-indicator {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 100%;
+    }
+
+    &-number {
+      &:not(.active) {
+        color: rgb(var(--color-charade-950));
+      }
+
+      .bmb_focus-element-number {
+        @include fonts.font(6, regular);
+      }
     }
 
     &-small {
-      height: rem.rem_calc(30);
-      width: rem.rem_calc(30);
+      height: $small_variant;
+      width: $small_variant;
 
       &.active {
         @include fonts.font(4, regular);
@@ -92,219 +107,45 @@
     }
 
     &-normal {
-      height: rem.rem_calc(48);
-      width: rem.rem_calc(48);
+      height: $normal_varian;
+      width: $normal_varian;
 
       &.active {
-        @include fonts.font(6, regular);
-        height: rem.rem_calc(64);
-        width: rem.rem_calc(64);
+        height: fit-content;
+        width: fit-content;
+
+        .bmb_focus-element-number {
+          font-weight: normal;
+        }
       }
     }
 
     &-medium {
-      height: rem.rem_calc(42);
-      width: rem.rem_calc(42);
-
-      &.active {
-        @include fonts.font(6, regular);
-      }
-    }
-  }
-
-  &-icon {
-    color: RGBA(var(--color-charade-50));
-  }
-
-  &-vertical {
-    flex-direction: column;
-
-    &-item {
-      align-items: center;
-      display: inline-flex;
-      padding-bottom: rem.rem_calc(20);
-      position: relative;
-
-      &::after {
-        background-color: var(--buttons-inactive-step);
-        content: '';
-        height: rem.rem_calc(30);
-        left: rem.rem_calc(20);
-        position: absolute;
-        top: rem.rem_calc(40);
-        transform: translateX(-50%);
-        width: rem.rem_calc(2);
-      }
-
-      &.active {
-        @include fonts.font(9, regular);
-        font-weight: bold;
-      }
-
-      &.completed {
-        &::after {
-          background-color: RGBA(var(--color-blue-primary));
-          content: '';
-          height: rem.rem_calc(30);
-          left: rem.rem_calc(20);
-          position: absolute;
-          top: rem.rem_calc(40);
-          transform: translateX(-50%);
-          width: rem.rem_calc(2);
-        }
-
-        .bmb_step-progress-bar-vertical-step {
-          background-color: var(--general_contrasts-main-selection);
-        }
-      }
-
-      &.bmb_step-progress-bar-vertical-content {
-        &::after {
-          top: 80%;
-        }
-      }
-
-      &:last-child {
-        &::after {
-          content: none;
-        }
-      }
+      height: $medium_variant;
+      width: $medium_variant;
     }
 
-    &-step {
-      @include fonts.font(6, regular);
-      align-items: center;
-      background: var(--buttons-inactive-step);
-      border-radius: 50%;
-      color: RGBA(var(--color-charade-950));
-      cursor: pointer;
-      display: flex;
-      justify-content: center;
-      margin-bottom: rem.rem_calc(6);
-      position: relative;
-      transition: background-color 0.3s;
-      z-index: 1;
-
-      &-small {
-        height: rem.rem_calc(42);
-        width: rem.rem_calc(42);
-
-        &.active {
-          @include fonts.font(6, regular);
-          background-color: var(--vertical-step-active);
-          border: rem.rem_calc(1) solid var(--general_contrasts-main-selection);
-          color: var(--vertical-step-active-color);
-        }
-      }
-
-      &-normal {
-        height: rem.rem_calc(48);
-        width: rem.rem_calc(48);
-        &.active {
-          @include fonts.font(6, regular);
-          background-color: var(--vertical-step-active);
-          border: rem.rem_calc(1) solid var(--general_contrasts-main-selection);
-          color: var(--vertical-step-active-color);
-          height: rem.rem_calc(64);
-          width: rem.rem_calc(64);
-        }
-      }
+    &.active {
+      color: var(--general_contrasts-input-outline);
+      background-color: var(--containers-background);
     }
 
-    &-text {
-      margin-left: rem.rem_calc(20);
-      flex: 1;
-
-      &-title {
-        color: var(--general_contrasts-100);
-        word-break: break-word;
-        @include fonts.font(5, regular);
-      }
-
-      &-subtitle {
-        color: var(--vertical-step-subtitle);
-        word-break: break-word;
-        @include fonts.font(4, regular);
-      }
+    &.completed {
+      background-color: var(--buttons-primary-normal);
+      color: var(--gris-charade-50);
     }
 
-    &-content {
-      padding-top: rem.rem_calc(20);
-    }
-  }
-
-  &-step-panel {
-    &-item {
-      width: 100%;
-      display: flex;
-      flex-flow: column;
-      gap: rem.rem_calc(20);
+    &:disabled {
+      cursor: default;
     }
 
-    &-wrapper {
-      position: relative;
-
-      &.active {
-        &::after {
-          background-color: var(--buttons-inactive-step);
-          content: '';
-          height: calc(100% - rem.rem_calc(60));
-          left: rem.rem_calc(20);
-          position: absolute;
-          top: rem.rem_calc(50);
-          transform: translateX(-50%);
-          width: rem.rem_calc(2);
-        }
-      }
-    }
-
-    &-header {
-      display: flex;
-      align-items: center;
-      gap: rem.rem_calc(20);
-      cursor: pointer;
-    }
-
-    &-step {
-      align-items: center;
-      background-color: var(--buttons-inactive-step);
-      border-radius: 50%;
-      color: RGBA(var(--color-charade-950));
-      cursor: pointer;
-      display: flex;
-      height: rem.rem_calc(42);
-      justify-content: center;
-      margin-bottom: rem.rem_calc(6);
-      position: relative;
-      width: rem.rem_calc(42);
-      z-index: 1;
-      @include fonts.font(6, regular);
-
-      &.active {
-        @include fonts.font(6, regular);
-        background-color: var(--containers-modal);
-        border: rem.rem_calc(1) solid var(--general_contrasts-main-selection);
-        color: var(--general_contrasts-input-outline);
-      }
-
-      &.completed {
-        background-color: var(--general_contrasts-main-selection);
-      }
-    }
-
-    &-label {
-      color: var(--vertical-step-subtitle);
-      @include fonts.font(6, regular);
-
-      &.active {
-        color: var(--general_contrasts-100);
-
-        font-weight: bold;
-      }
-    }
-
-    &-content {
-      margin-left: rem.rem_calc(62);
+    &:focus:not(:disabled),
+    &:focus-visible:not(:disabled),
+    &:hover:not(:disabled) {
+      outline-width: rem.rem_calc(1);
+      outline-color: var(--buttons-stroke-primary-selected);
+      outline-offset: rem.rem_calc(-4);
+      box-shadow: 0 0 rem.rem_calc(5) var(--azul-mariner-500);
     }
   }
 }

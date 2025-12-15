@@ -1352,10 +1352,20 @@ export const DBmbStepProgressBar = {
     control: {
       type: 'number',
     },
-    description: 'Sets the step that is active.',
+    description: `Sets the step that is active.
+    ${getAlertBlockquote(
+      `***activeStep = 0*** is for **step number** 1.
+      Therefore, should always be assigned to the \`activeStep\` the **step number** - 1.`,
+      {
+        title: RELEVANT_TITLE.warning,
+        blockquoteType: BlockquoteType.warning,
+      },
+    )}
+    `,
     table: {
       category: 'Properties',
       type: { summary: 'number' },
+      defaultValue: { summary: '0' },
     },
   },
   totalSteps: {
@@ -1412,6 +1422,7 @@ export const DBmbStepProgressBar = {
     table: {
       category: 'Properties',
       type: { summary: 'string[]' },
+      defaultValue: { summary: '[]' },
     },
   },
   labelComplete: {

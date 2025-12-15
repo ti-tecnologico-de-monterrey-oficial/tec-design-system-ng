@@ -96,11 +96,35 @@ export const routes: Routes = [
       ),
   },
   {
+    path: 'table-lts',
+    title: 'Table LTS',
+    loadComponent: () =>
+      import('./pages/table-lts/table-lts.component').then(
+        (t) => t.TableLtsComponent,
+      ),
+  },
+  {
+    path: 'table-html',
+    title: 'Table HTML',
+    loadComponent: () =>
+      import('./pages/table-html/table-html.component').then(
+        (t) => t.TableHtmlComponent,
+      ),
+  },
+  {
     path: 'multi-dot-paginator',
     title: 'Multi Dot Paginator',
     loadComponent: () =>
       import('./pages/dot-paginator/dot-paginator.component').then(
         (m) => m.DotPaginatorComponent,
+      ),
+  },
+  {
+    path: 'step-progress-bar',
+    title: 'Step progress bar',
+    loadComponent: () =>
+      import('./pages/step-progress-bar/step-progress-car.component').then(
+        (n) => n.BmbStepProgressBarPageComponent,
       ),
   },
   {

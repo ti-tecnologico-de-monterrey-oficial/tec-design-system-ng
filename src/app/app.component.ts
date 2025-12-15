@@ -77,10 +77,30 @@ export class AppComponent {
         link: '/calendar',
       },
       {
-        id: 3,
+        id: 8,
         icon: 'table_chart',
-        title: 'Table Lite',
-        link: '/table-lite',
+        title: 'Tables',
+        link: '',
+        children: [
+          {
+            id: 1,
+            icon: 'table',
+            title: 'Table Lite',
+            link: '/table-lite',
+          },
+          {
+            id: 2,
+            icon: 'table',
+            title: 'Table LTS',
+            link: '/table-lts',
+          },
+          {
+            id: 3,
+            icon: 'table',
+            title: 'Table HTML',
+            link: '/table-html',
+          },
+        ],
       },
       {
         id: 4,
@@ -119,9 +139,23 @@ export class AppComponent {
 
       {
         id: 6,
-        icon: 'page_control',
-        title: 'Multi Dot Paginator',
-        link: '/multi-dot-paginator',
+        icon: 'step',
+        title: 'Indicators',
+        link: '',
+        children: [
+          {
+            id: 2,
+            icon: 'page_control',
+            title: 'Multi Dot Paginator',
+            link: '/multi-dot-paginator',
+          },
+          {
+            id: 2,
+            icon: 'steppers',
+            title: 'Step progress bar',
+            link: '/step-progress-bar',
+          },
+        ],
       },
       {
         id: 7,

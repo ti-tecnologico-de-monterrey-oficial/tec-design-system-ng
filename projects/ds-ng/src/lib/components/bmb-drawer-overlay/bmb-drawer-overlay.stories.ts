@@ -35,6 +35,8 @@ export default {
           'selectNavItem',
           'toggleDrawer',
           'toggleFullDrawer',
+          'closeDrawer',
+          'onEsc',
         ],
       },
       description: {
