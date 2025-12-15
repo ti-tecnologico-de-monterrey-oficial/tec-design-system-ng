@@ -291,6 +291,7 @@ import { BmbModalComponent, ModalDataConfig } from '@ti-tecnologico-de-monterrey
     BmbCheckboxComponent,
     BmbDotPaginatorComponent,
     BmbIconComponent,
+    BmbButtonIconComponent,
   ],
   template: '',
   styleUrl: './component.scss',
@@ -375,22 +376,34 @@ Below is an example of how you can use the components needed for this organizati
                 [class.bmb-bienvenida_prev]="i < currentIndex"
                 [class.bmb-bienvenida_next]="i > currentIndex"
               >
-                <h2 class="font-bold-9">{{ step.title }}</h2>
-                <p class="font-regular-4" *ngIf="step.subtitle">
-                  {{ step.subtitle }}
-                </p>
-                <img
-                  [src]="step.imageMobile"
-                  alt=""
-                  class="bmb-bienvenida_image"
-                />
-                <p class="font-regular-5">{{ step.shortDescription }}</p>
-                <div *ngIf="step.showCheckbox">
-                  <bmb-checkbox
-                    [name]="'noShow'"
-                    [label]="'No mostrar este tutorial nuevamente'"
-                    (change)="change($event)"
-                  ></bmb-checkbox>
+                <div class="bmb-bienvenida_content">
+                  <div class="bmb-bienvenida_header">
+                    <h2 class="font-bold-9">{{ step.title }}</h2>
+                    <bmb-button-icon
+                      [idElement]="''"
+                      [icon]="'close'"
+                      [showContainer]="false"
+                      [disabled]="false"
+                      [active]="false"
+                      (onButtonClick)="closeOnboarding($event)"
+                    ></bmb-button-icon>
+                  </div>
+                  <p class="font-regular-4" *ngIf="step.subtitle">
+                    {{ step.subtitle }}
+                  </p>
+                  <img
+                    [src]="step.imageMobile"
+                    alt=""
+                    class="bmb-bienvenida_image"
+                  />
+                  <p class="font-regular-5">{{ step.shortDescription }}</p>
+                  <div *ngIf="step.showCheckbox">
+                    <bmb-checkbox
+                      [name]="'noShow'"
+                      [label]="'No mostrar este tutorial nuevamente'"
+                      (change)="change($event)"
+                    ></bmb-checkbox>
+                  </div>
                 </div>
                 <div class="bmb-bienvenida_actions">
                   <button
@@ -419,6 +432,15 @@ Below is an example of how you can use the components needed for this organizati
           </section>
           <section class="bmb-bienvenida_desktop">
             <div class="bmb-bienvenida_desktop-wrapper">
+              <bmb-button-icon
+                [idElement]="''"
+                [icon]="'close'"
+                [showContainer]="false"
+                [disabled]="false"
+                [active]="false"
+                class="bmb-bienvenida_desktop-close"
+                (onButtonClick)="closeOnboarding($event)"
+              ></bmb-button-icon>
               <div class="bmb-bienvenida_desktop-container">
                 <div class="bmb-bienvenida_desktop-content">
                   <div class="bmb-bienvenida_desktop-header">
