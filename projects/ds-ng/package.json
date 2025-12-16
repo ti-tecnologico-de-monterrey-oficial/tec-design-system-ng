@@ -11,10 +11,10 @@
   "repository": "https://github.com/ti-tecnologico-de-monterrey-oficial/tec-design-system-ng",
   "peerDependencies": {
     "rxjs": "*",
+    "@angular/core": "^{angularVersion}.0.0",
     "@angular/animations": "^{angularVersion}.0.0"
   },
   "dependencies": {
-    "@angular/core": "^{angularVersion}.0.0",
     "libphonenumber-js": "1.11.16",
     "luxon": "3.5.0",
     "tslib": "*",
