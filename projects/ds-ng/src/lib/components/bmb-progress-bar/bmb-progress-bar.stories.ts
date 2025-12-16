@@ -4,24 +4,18 @@ import {
   getBasicExampleBlock,
   getGeneralComponentDescription,
   getGeneralDescription,
-  RELEVANT_TITLE,
+  getStoryLink,
 } from '../../utils/doc/utils';
 import {
   DBmbGenericParamDesc,
   getDefaultValueControl,
   getAppearanceParam,
   getPropertyParamDesc,
+  DBmbIconParamDesc,
+  getPropertyForType,
+  DBmbProgressBar,
 } from '../../utils/doc/parameterDescriptions';
-
-const getPropertyForType = (
-  isCounter: boolean = true,
-  isSimple: boolean = false,
-) => `
-<br/><br/>This property is displayed for the property type:
-${isSimple ? '- simple' : ''}
-${isCounter ? '- counter' : ''}
-- container
-`;
+import * as actionIconStory from '../bmb-action-icon/bmp-action-icon.stories';
 
 export default {
   title: 'Components/Status indicators/Progress bar',
@@ -111,28 +105,23 @@ ${getBasicExampleBlock('BmbProgressBarComponent')}
         getPropertyForType(false),
       ),
     },
-    textFormat: {
-      control: {
-        type: 'function',
-      },
-      description: `
-Sets the text format function to show the percentage in the progress bar.
-${getPropertyForType()}
-The function receives two parameters: the current value and the total value, and should return a formatted string.
-
-If not set, it defaults to showing the value as *"value/total"*.
-
-${RELEVANT_TITLE.note} Avoid return HTML code, whether HTML code will be parsed.`,
-      table: {
-        category: 'Properties',
-        type: {
-          summary: '(value: string, total: string) => string',
-          detail:
-            'textFormat: (value: string, total: string) => `$${value}/$${total}MXN`',
-        },
-        defaultValue: getDefaultValueControl('value => value'),
-      },
-    },
+    textFormat: DBmbProgressBar.textFormat,
+    avatarIcon: DBmbIconParamDesc.icon,
+    isContainer: getPropertyParamDesc(
+      '**Container progress - Anatomy**',
+      'boolean',
+      false,
+    ),
+    actionIcon: getPropertyParamDesc(
+      '',
+      'text',
+      '',
+      '',
+      `Sets an ${getStoryLink({
+        title: actionIconStory.default.title!,
+        isPreURL: true,
+      })} to the right of the ***Progress bar*** when the **Container progress - Anatomy** is active.`,
+    ),
   },
   args: {
     type: 'container',

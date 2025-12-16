@@ -21,7 +21,7 @@ describe('BmbDropdownContentComponent', () => {
       selectedText: 'First Option',
       value: 'first',
       icon: 'home',
-      action: jasmine.createSpy('action1')
+      action: jasmine.createSpy('action1'),
     },
     {
       idItem: '2',
@@ -30,7 +30,7 @@ describe('BmbDropdownContentComponent', () => {
       value: 'second',
       icon: 'star',
       dotNotification: 3,
-      action: jasmine.createSpy('action2')
+      action: jasmine.createSpy('action2'),
     },
     {
       idItem: '3',
@@ -40,16 +40,14 @@ describe('BmbDropdownContentComponent', () => {
       icon: 'favorite',
       url: 'https://example.com',
       target: '_blank',
-      action: jasmine.createSpy('action3')
-    }
+      action: jasmine.createSpy('action3'),
+    },
   ];
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [BmbDropdownContentComponent],
-      providers: [
-        { provide: TranslatePipe, useClass: MockTranslatePipe }
-      ]
+      providers: [{ provide: TranslatePipe, useClass: MockTranslatePipe }],
     }).compileComponents();
 
     fixture = TestBed.createComponent(BmbDropdownContentComponent);
@@ -205,7 +203,9 @@ describe('BmbDropdownContentComponent', () => {
     });
 
     it('should use custom filter function when provided', () => {
-      const customFilter = jasmine.createSpy('customFilter').and.returnValue(true);
+      const customFilter = jasmine
+        .createSpy('customFilter')
+        .and.returnValue(true);
       fixture.componentRef.setInput('customFilterFunction', customFilter);
       fixture.detectChanges();
 
@@ -218,7 +218,7 @@ describe('BmbDropdownContentComponent', () => {
 
     it('should handle filter list event', () => {
       const mockEvent = {
-        target: { value: 'filter text' }
+        target: { value: 'filter text' },
       } as unknown as Event;
 
       component.filterList(mockEvent);
@@ -268,7 +268,11 @@ describe('BmbDropdownContentComponent', () => {
     });
 
     it('should render all items', () => {
-      const items = fixture.debugElement.queryAll(By.css('.bmb_dropdown-content-item:not(.bmb_dropdown-content-item-filter)'));
+      const items = fixture.debugElement.queryAll(
+        By.css(
+          '.bmb_dropdown-content-item:not(.bmb_dropdown-content-item-filter)',
+        ),
+      );
       expect(items).toHaveSize(3);
     });
 
@@ -276,7 +280,9 @@ describe('BmbDropdownContentComponent', () => {
       fixture.componentRef.setInput('enableFilter', true);
       fixture.detectChanges();
 
-      const filterInput = fixture.debugElement.query(By.css('.bmb_dropdown-content-item-filter-input'));
+      const filterInput = fixture.debugElement.query(
+        By.css('.bmb_dropdown-content-item-filter-input'),
+      );
       expect(filterInput).toBeTruthy();
     });
 
@@ -284,7 +290,9 @@ describe('BmbDropdownContentComponent', () => {
       fixture.componentRef.setInput('enableFilter', false);
       fixture.detectChanges();
 
-      const filterInput = fixture.debugElement.query(By.css('.bmb_dropdown-content-item-filter-input'));
+      const filterInput = fixture.debugElement.query(
+        By.css('.bmb_dropdown-content-item-filter-input'),
+      );
       expect(filterInput).toBeFalsy();
     });
 
@@ -292,23 +300,33 @@ describe('BmbDropdownContentComponent', () => {
       fixture.componentRef.setInput('selectedOption', 'first');
       fixture.detectChanges();
 
-      const selectedItem = fixture.debugElement.query(By.css('.bmb_dropdown-content-item-selected'));
+      const selectedItem = fixture.debugElement.query(
+        By.css('.bmb_dropdown-content-item-selected'),
+      );
       expect(selectedItem).toBeTruthy();
     });
 
     it('should render icons for items that have them', () => {
-      const icons = fixture.debugElement.queryAll(By.css('.bmb_dropdown-content-item-icon'));
+      const icons = fixture.debugElement.queryAll(
+        By.css('.bmb_dropdown-content-item-icon'),
+      );
       expect(icons).toHaveSize(3);
     });
 
     it('should render item text', () => {
-      const textElements = fixture.debugElement.queryAll(By.css('.bmb_dropdown-content-item-text'));
+      const textElements = fixture.debugElement.queryAll(
+        By.css('.bmb_dropdown-content-item-text'),
+      );
       expect(textElements).toHaveSize(3);
-      expect(textElements[0].nativeElement.textContent.trim()).toBe('First Option');
+      expect(textElements[0].nativeElement.textContent.trim()).toBe(
+        'First Option',
+      );
     });
 
     it('should render dot notifications when present', () => {
-      const itemIcons = fixture.debugElement.queryAll(By.css('.bmb_dropdown-content-item-icon'));
+      const itemIcons = fixture.debugElement.queryAll(
+        By.css('.bmb_dropdown-content-item-icon'),
+      );
       expect(itemIcons).toHaveSize(3);
       expect(itemIcons[1].componentInstance.dotNotification()).toBe(3);
     });
@@ -321,12 +339,16 @@ describe('BmbDropdownContentComponent', () => {
     });
 
     it('should have proper tabindex on main container', () => {
-      const mainContainer = fixture.debugElement.query(By.css('.bmb_dropdown-content-modal'));
+      const mainContainer = fixture.debugElement.query(
+        By.css('.bmb_dropdown-content-modal'),
+      );
       expect(mainContainer.nativeElement.tabIndex).toBe(1);
     });
 
     it('should have proper tabindex on list container', () => {
-      const listContainer = fixture.debugElement.query(By.css('.bmb_dropdown-content-container'));
+      const listContainer = fixture.debugElement.query(
+        By.css('.bmb_dropdown-content-container'),
+      );
       expect(listContainer.nativeElement.tabIndex).toBe(-1);
     });
 
@@ -345,7 +367,11 @@ describe('BmbDropdownContentComponent', () => {
 
       expect(component.filteredItems()).toEqual([]);
 
-      const items = fixture.debugElement.queryAll(By.css('.bmb_dropdown-content-item:not(.bmb_dropdown-content-item-filter)'));
+      const items = fixture.debugElement.queryAll(
+        By.css(
+          '.bmb_dropdown-content-item:not(.bmb_dropdown-content-item-filter)',
+        ),
+      );
       expect(items).toHaveSize(0);
     });
 
@@ -353,8 +379,8 @@ describe('BmbDropdownContentComponent', () => {
       const minimalItems: IDropdownItem[] = [
         {
           text: 'Minimal Item',
-          icon: ''
-        }
+          icon: '',
+        },
       ];
 
       component.items.set(minimalItems);
