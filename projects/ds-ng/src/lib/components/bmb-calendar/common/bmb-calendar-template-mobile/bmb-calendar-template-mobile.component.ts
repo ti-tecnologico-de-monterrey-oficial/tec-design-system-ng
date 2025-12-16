@@ -98,7 +98,6 @@ export class BmbCalendarTemplateMobileComponent {
       });
 
       modifyDate({ config: { month: 1 }, date: newDate });
-      this.isWedgeOpen = false;
     } else {
       modifyDate({ config: { days: 7 }, date: this.now() });
     }
