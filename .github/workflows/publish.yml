@@ -22,29 +22,28 @@ jobs:
           node-version: ${{ env.NODE_VERSION }}
           registry-url: 'https://registry.npmjs.org'
 
-      - name: Install Dependencies
-        run: npm ci
-
       - name: Change package file for versioning
         run: |
-          mv package.json package-temp.json
-          cp package/v${{ env.ANGULAR_VERSION }}/package.json ./package.json
+          rm package.json package-lock.json
+          cp ./package/v${{ env.ANGULAR_VERSION }}/package.json ./package.json
 
-      - name: Install Dependencies for Angular ${{ env.ANGULAR_VERSION }}
-        run: |
-          npm install
+      - name: Clean npm cache
+        run: npm cache clean --force
+
+      - name: Install Dependencies
+        run: npm install
 
       - name: Build Library
         run: npm run build:lib
 
       - name: Update version in package.json
         run: |
-          VERSION_FILE="./dist/ds-ng-${{ env.ANGULAR_VERSION }}/package.json"
+          VERSION_FILE="./dist/ds-ng/package.json"
           sed -i "s/{angularVersion}/${{ env.ANGULAR_VERSION }}/g" $VERSION_FILE
 
       - name: Publish to NPM
         run: |
-          npm publish ./dist/ds-ng-${{ env.ANGULAR_VERSION }} --tag a${{ env.ANGULAR_VERSION }} --access public
+          npm publish ./dist/ds-ng --tag a${{ env.ANGULAR_VERSION }} --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
@@ -64,29 +63,28 @@ jobs:
           node-version: ${{ env.NODE_VERSION }}
           registry-url: 'https://registry.npmjs.org'
 
-      - name: Install Dependencies
-        run: npm ci
-
       - name: Change package file for versioning
         run: |
-          mv package.json package-temp.json
-          cp package/v${{ env.ANGULAR_VERSION }}/package.json ./package.json
+          rm package.json package-lock.json
+          cp ./package/v${{ env.ANGULAR_VERSION }}/package.json ./package.json
 
-      - name: Install Dependencies for Angular ${{ env.ANGULAR_VERSION }}
-        run: |
-          npm install
+      - name: Clean npm cache
+        run: npm cache clean --force
+
+      - name: Install Dependencies
+        run: npm install
 
       - name: Build Library
         run: npm run build:lib
 
       - name: Update version in package.json
         run: |
-          VERSION_FILE="./dist/ds-ng-${{ env.ANGULAR_VERSION }}/package.json"
+          VERSION_FILE="./dist/ds-ng/package.json"
           sed -i "s/{angularVersion}/${{ env.ANGULAR_VERSION }}/g" $VERSION_FILE
 
       - name: Publish to NPM
         run: |
-          npm publish ./dist/ds-ng-${{ env.ANGULAR_VERSION }} --tag a${{ env.ANGULAR_VERSION }} --access public
+          npm publish ./dist/ds-ng --tag a${{ env.ANGULAR_VERSION }} --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
@@ -106,29 +104,28 @@ jobs:
           node-version: ${{ env.NODE_VERSION }}
           registry-url: 'https://registry.npmjs.org'
 
-      - name: Install Dependencies
-        run: npm ci
-
       - name: Change package file for versioning
         run: |
-          mv package.json package-temp.json
-          cp package/v${{ env.ANGULAR_VERSION }}/package.json ./package.json
+          rm package.json package-lock.json
+          cp ./package/v${{ env.ANGULAR_VERSION }}/package.json ./package.json
 
-      - name: Install Dependencies for Angular ${{ env.ANGULAR_VERSION }}
-        run: |
-          npm install
+      - name: Clean npm cache
+        run: npm cache clean --force
+
+      - name: Install Dependencies
+        run: npm install
 
       - name: Build Library
         run: npm run build:lib
 
       - name: Update version in package.json
         run: |
-          VERSION_FILE="./dist/ds-ng-${{ env.ANGULAR_VERSION }}/package.json"
+          VERSION_FILE="./dist/ds-ng/package.json"
           sed -i "s/{angularVersion}/${{ env.ANGULAR_VERSION }}/g" $VERSION_FILE
 
       - name: Publish to NPM
         run: |
-          npm publish ./dist/ds-ng-${{ env.ANGULAR_VERSION }} --tag a${{ env.ANGULAR_VERSION }} --access public
+          npm publish ./dist/ds-ng --tag a${{ env.ANGULAR_VERSION }} --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
@@ -136,7 +133,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       ANGULAR_VERSION: 20
-      NODE_VERSION: 22
+      NODE_VERSION: 20
 
     steps:
       - name: Checkout code
@@ -148,28 +145,27 @@ jobs:
           node-version: ${{ env.NODE_VERSION }}
           registry-url: 'https://registry.npmjs.org'
 
-      - name: Install Dependencies
-        run: npm ci
-
       - name: Change package file for versioning
         run: |
-          mv package.json package-temp.json
-          cp package/v${{ env.ANGULAR_VERSION }}/package.json ./package.json
+          rm package.json package-lock.json
+          cp ./package/v${{ env.ANGULAR_VERSION }}/package.json ./package.json
 
-      - name: Install Dependencies for Angular ${{ env.ANGULAR_VERSION }}
-        run: |
-          npm install
+      - name: Clean npm cache
+        run: npm cache clean --force
+
+      - name: Install Dependencies
+        run: npm install
 
       - name: Build Library
         run: npm run build:lib
 
       - name: Update version in package.json
         run: |
-          VERSION_FILE="./dist/ds-ng-${{ env.ANGULAR_VERSION }}/package.json"
+          VERSION_FILE="./dist/ds-ng/package.json"
           sed -i "s/{angularVersion}/${{ env.ANGULAR_VERSION }}/g" $VERSION_FILE
 
       - name: Publish to NPM
         run: |
-          npm publish ./dist/ds-ng-${{ env.ANGULAR_VERSION }} --tag a${{ env.ANGULAR_VERSION }} --access public
+          npm publish ./dist/ds-ng --tag a${{ env.ANGULAR_VERSION }} --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
