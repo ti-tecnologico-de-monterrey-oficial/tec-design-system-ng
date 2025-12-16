@@ -20,7 +20,6 @@ export default {
         exclude: [
           'getClasses',
           'getPositionClass',
-          'isOS',
           'getFileSizeInMB',
           'isFileDuplicate',
           'isValidFileSize',

@@ -1,10 +1,9 @@
 @use '../../../assets/styles/base/fonts' as fonts;
 @use '../../../assets/styles/base/rem' as rem;
+@use '../../../assets/styles/base/mixins' as mixins;
 
 .bmb_text-link {
-  @include fonts.font(4, regular);
-  color: var(--buttons-text-link);
-  line-height: 2;
+  @include mixins.text-link-appearance();
 
   &-disabled {
     opacity: 0.5;
@@ -33,12 +32,6 @@
 
     &-reverse {
       flex-direction: row-reverse;
-    }
-  }
-
-  &-underlined {
-    > span {
-      text-decoration: underline;
     }
   }
 }
