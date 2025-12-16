@@ -27,8 +27,8 @@ jobs:
 
       - name: Change package file for versioning
         run: |
-          mv package.json package-temp.json
-          cp package/v${{ env.ANGULAR_VERSION }}/package.json ./package.json
+          rm package.json
+          cp ./package/v${{ env.ANGULAR_VERSION }}/package.json ./package.json
 
       - name: Install Dependencies for Angular ${{ env.ANGULAR_VERSION }}
         run: |
@@ -69,8 +69,8 @@ jobs:
 
       - name: Change package file for versioning
         run: |
-          mv package.json package-temp.json
-          cp package/v${{ env.ANGULAR_VERSION }}/package.json ./package.json
+          rm package.json package-temp.json
+          cp ./package/v${{ env.ANGULAR_VERSION }}/package.json ./package.json
 
       - name: Install Dependencies for Angular ${{ env.ANGULAR_VERSION }}
         run: |
@@ -111,8 +111,8 @@ jobs:
 
       - name: Change package file for versioning
         run: |
-          mv package.json package-temp.json
-          cp package/v${{ env.ANGULAR_VERSION }}/package.json ./package.json
+          rm package.json package-temp.json
+          cp ./package/v${{ env.ANGULAR_VERSION }}/package.json ./package.json
 
       - name: Install Dependencies for Angular ${{ env.ANGULAR_VERSION }}
         run: |
@@ -153,8 +153,8 @@ jobs:
 
       - name: Change package file for versioning
         run: |
-          mv package.json package-temp.json
-          cp package/v${{ env.ANGULAR_VERSION }}/package.json ./package.json
+          rm package.json package-temp.json
+          cp ./package/v${{ env.ANGULAR_VERSION }}/package.json ./package.json
 
       - name: Install Dependencies for Angular ${{ env.ANGULAR_VERSION }}
         run: |
