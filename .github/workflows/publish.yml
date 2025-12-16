@@ -25,8 +25,8 @@ jobs:
           node-version: ${{ env.NODE_VERSION }}
           registry-url: 'https://registry.npmjs.org'
 
-      - name: Update npm to latest version
-        run: npm install -g npm@latest
+      - name: Install npm 11.5.1 for Trusted Publishers
+        run: npm install -g npm@11.5.1
 
       - name: Change package file for versioning
         run: |
@@ -70,8 +70,8 @@ jobs:
           node-version: ${{ env.NODE_VERSION }}
           registry-url: 'https://registry.npmjs.org'
 
-      - name: Update npm to latest version
-        run: npm install -g npm@latest
+      - name: Install npm 11.5.1 for Trusted Publishers
+        run: npm install -g npm@11.5.1
 
       - name: Change package file for versioning
         run: |
@@ -115,8 +115,8 @@ jobs:
           node-version: ${{ env.NODE_VERSION }}
           registry-url: 'https://registry.npmjs.org'
 
-      - name: Update npm to latest version
-        run: npm install -g npm@latest
+      - name: Install npm 11.5.1 for Trusted Publishers
+        run: npm install -g npm@11.5.1
 
       - name: Change package file for versioning
         run: |
@@ -160,8 +160,8 @@ jobs:
           node-version: ${{ env.NODE_VERSION }}
           registry-url: 'https://registry.npmjs.org'
 
-      - name: Update npm to latest version
-        run: npm install -g npm@latest
+      - name: Install npm 11.5.1 for Trusted Publishers
+        run: npm install -g npm@11.5.1
 
       - name: Change package file for versioning
         run: |
