@@ -1,4 +1,5 @@
 <bmb-theme [showControls]="true" />
+<bmb-divider />
 <form
   [formGroup]="userForm"
   (ngSubmit)="onSubmit()"
@@ -11,16 +12,34 @@
   "
 >
   <bmb-dropzone
+    name="dropzoneMulti"
     [acceptedExtensions]="['image/*']"
     [fileSize]="400000"
     [multiple]="true"
     formatFilesLabel="Formats: png, jpeg, and jpg."
     errorMessageFormat="Format not compatible."
     errorMessageSize="File exceeds the maximum allowed size."
-    linkLabel="Ver más información de formatos de archivo aceptados."
+    linkLabel="See more information about accepted file formats."
     linkFilesSupported="https://www.youtube.com/"
     [progress]="progressFiles()"
-    (newFile)="onNewFile($event)"
+    [control]="getFormControl('dropzoneMulti')"
+    (newFile)="handleNewFileMulti($event)"
+  />
+  <bmb-divider />
+  <bmb-dropzone
+    name="dropzoneSingle"
+    [acceptedExtensions]="['image/*']"
+    [fileSize]="400000"
+    formatFilesLabel="Formats: png, jpeg, and jpg."
+    errorMessageFormat="Format not compatible."
+    errorMessageSize="File exceeds the maximum allowed size."
+    linkLabel="See more information about accepted file formats."
+    linkFilesSupported="https://www.youtube.com/"
+    [progress]="progressFiles()"
+    [control]="getFormControl('dropzoneSingle')"
+    (newFile)="handleNewFileSingle($event)"
   />
   <button bmbButton type="submit" appearance="primary">Submit</button>
 </form>
+{{ getFormControl('dropzoneMulti').value | json }}
+{{ getFormControl('dropzoneSingle').value | json }}

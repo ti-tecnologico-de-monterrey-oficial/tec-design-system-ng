@@ -1,99 +1,122 @@
-<section class="bmb_drop-zone" bmbVerticalLayout gapSize="l">
-  <section
-    class="bmb_drop-zone-container"
-    [ngClass]="getDropZoneClass()"
-    (dragover)="handleDragOver($event)"
-    (dragleave)="handleDragLeave($event)"
-    (drop)="handleDrop($event)"
-    bmbVerticalLayoutItem
-    bmbVerticalLayout
-    gapSize="m"
-    justify="center"
-    alignItems="center"
-  >
-    <bmb-icon
-      class="bmb_drop-zone-icon"
-      [ngClass]="{
-        'bmb_drop-zone-icon-valid': isErrorFiles(),
-        'bmb_drop-zone-icon-error': isErrorFiles()
-      }"
-      [icon]="mainIcon()"
-      [size]="48"
-      alt="Drop zone icon"
+<bmb-input-validator
+  type="file"
+  [name]="name()"
+  [control]="control()"
+  [inputId]="inputId()"
+  [isMultipleFile]="multiple()"
+  [customValidation]="customValidation()"
+>
+  <section class="bmb_drop-zone" bmbVerticalLayout gapSize="l">
+    <section
+      class="bmb_drop-zone-container"
+      [ngClass]="getDropZoneClass()"
+      (dragover)="handleDragOver($event)"
+      (dragleave)="handleDragLeave($event)"
+      (drop)="handleDrop($event)"
       bmbVerticalLayoutItem
-      [isFullWidth]="false"
-    />
-
-    <p class="bmb_drop-zone-label" bmbVerticalLayoutItem [isFullWidth]="false">
-      {{ formatFilesLabel() || ('dropzone.format_files_label' | translate) }}
-    </p>
-    <p
-      class="bmb_drop-zone-label-instruction"
-      bmbVerticalLayoutItem
-      [isFullWidth]="false"
+      bmbVerticalLayout
+      gapSize="m"
+      justify="center"
+      alignItems="center"
     >
-      {{ dropInstruction() || ('dropzone.drop_instructions' | translate) }}
-      <bmb-text-link
-        [textLink]="dropLabel() || ('dropzone.drop_label' | translate)"
-        [link]="name()"
-        [isOS]="true"
+      <bmb-icon
+        class="bmb_drop-zone-icon"
+        [ngClass]="{
+          'bmb_drop-zone-icon-valid': isErrorFiles(),
+          'bmb_drop-zone-icon-error': isErrorFiles()
+        }"
+        [icon]="mainIcon()"
+        [size]="48"
+        alt="Drop zone icon"
+        bmbVerticalLayoutItem
+        [isFullWidth]="false"
       />
-    </p>
-    @if (isErrorFiles()) {
+
       <p
-        class="bmb_drop-zone-label-error"
+        class="bmb_drop-zone-label"
         bmbVerticalLayoutItem
         [isFullWidth]="false"
       >
-        {{ errorMessageLabel }}
+        {{ formatFilesLabel() || ('dropzone.format_files_label' | translate) }}
       </p>
-      @if (!!linkFilesSupported() && !!linkLabel()) {
-        <bmb-text-link
-          textLinkStyle="underlined"
-          [link]="linkFilesSupported()"
-          [textLink]="linkLabel() || ('dropzone.link_label' | translate)"
+      <p
+        class="bmb_drop-zone-label-instruction"
+        bmbVerticalLayoutItem
+        [isFullWidth]="false"
+      >
+        {{ dropInstruction() || ('dropzone.drop_instructions' | translate) }}
+        <label
+          class="bmb_drop-zone-input bmb_drop-zone-input-underlined"
+          [for]="inputId()"
           bmbVerticalLayoutItem
           [isFullWidth]="false"
+        >
+          {{ dropLabel() || ('dropzone.drop_label' | translate) }}
+          <input
+            hidden
+            type="file"
+            [id]="inputId()"
+            [name]="name()"
+            [accept]="acceptedExtensions().toString()"
+            [attr.multiple]="multiple() || null"
+            [tabindex]="-1"
+            (change)="handleFileSelected($event)"
+          />
+        </label>
+      </p>
+      @if (isErrorFiles()) {
+        <p
+          class="bmb_drop-zone-label-error"
+          bmbVerticalLayoutItem
+          [isFullWidth]="false"
+        >
+          {{ errorMessageLabel }}
+        </p>
+        @if (!!linkFilesSupported() && !!linkLabel()) {
+          <bmb-text-link
+            textLinkStyle="underlined"
+            [link]="linkFilesSupported()"
+            [textLink]="linkLabel() || ('dropzone.link_label' | translate)"
+            bmbVerticalLayoutItem
+            [isFullWidth]="false"
+          />
+        }
+      }
+    </section>
+    @if (!!fileDataList.length) {
+      @for (file of organizedFiles; track file.name) {
+        <bmb-progress-bar
+          class="bmb-drop-zone-file"
+          [ngClass]="{
+            'bmb_drop-zone-icon-animated': isUploadInProgress(file)
+          }"
+          type="container"
+          [totalCount]="
+            isUploadInProgress(file) ? 100 : getFileSizeInMB(file.size)
+          "
+          [textFormat]="
+            file.error || isUploadCompleted(file)
+              ? !isValidFileSize(file.size)
+                ? getFormatSizeError
+                : getFormatSize
+              : getFormatProgress
+          "
+          [textFormatSeparator]="isUploadInProgress(file) ? '' : '/'"
+          [counter]="
+            isUploadInProgress(file)
+              ? getProgress(file)
+              : getFileSizeInMB(file.size)
+          "
+          [title]="getFileName(file)"
+          [appearance]="file.error ? 'error' : 'info'"
+          [isContainer]="true"
+          [avatarIcon]="getAvatarIcon(file)"
+          [actionIcon]="file.error ? 'close' : 'delete'"
+          [showStatusIcon]="isUploadCompleted(file)"
+          (actionClick)="handleRemoveFile(file.name)"
+          bmbVerticalLayoutItem
         />
       }
     }
-    <input
-      type="file"
-      [id]="name()"
-      [name]="name()"
-      [accept]="acceptedExtensions().toString()"
-      (change)="handleFileSelected($event)"
-      [multiple]="multiple()"
-      style="display: none"
-    />
   </section>
-  @if (fileDataList.length > 0) {
-    @for (file of organizedFiles; track file.name) {
-      <bmb-progress-bar
-        class="bmb-drop-zone-file"
-        [ngClass]="{
-          'bmb_drop-zone-icon-animated': isUploadInProgress(file)
-        }"
-        type="container"
-        [totalCount]="isUploadInProgress(file) ? 100 : getFileSizeMB(file.size)"
-        [textFormat]="
-          file.error || isUploadCompleted(file)
-            ? !isValidFileSize(file.size)
-              ? getFormatSizeError
-              : getFormatSize
-            : getFormatProgress
-        "
-        [textFormatSeparator]="isUploadInProgress(file) ? '' : '/'"
-        [counter]="getProgress(file)"
-        [title]="getFileName(file)"
-        [appearance]="file.error ? 'error' : 'info'"
-        [isContainer]="true"
-        [avatarIcon]="getAvatarIcon(file)"
-        [actionIcon]="file.error ? 'close' : 'delete'"
-        [showStatusIcon]="isUploadCompleted(file)"
-        (actionClick)="handleRemoveFile(file.name)"
-        bmbVerticalLayoutItem
-      />
-    }
-  }
-</section>
+</bmb-input-validator>
