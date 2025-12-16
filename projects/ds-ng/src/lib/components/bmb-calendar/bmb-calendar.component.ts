@@ -39,6 +39,8 @@ import { BmbLayoutDirective } from '../../directives/bmb-layout/bmb-layout.direc
 import { BmbLayoutItemDirective } from '../../directives/bmb-layout/bmb-layout-item.directive';
 import { IBmbNativeModal } from '../bmb-modal/bmb-modal.interface';
 import { BmbTranslationsService } from '../../services/translations/translations.service';
+import { TranslatePipe } from '../../pipes/translations';
+import { BmbSwitchComponent } from '../bmb-switch/bmb-switch.component';
 
 const parseFromFormat = (dateString: string, format: string): DateTime => {
   if (format.toLowerCase() === 'iso') return DateTime.fromISO(dateString);
@@ -69,6 +71,8 @@ export {
     BmbDividerComponent,
     BmbLayoutDirective,
     BmbLayoutItemDirective,
+    TranslatePipe,
+    BmbSwitchComponent,
   ],
   styleUrl: './bmb-calendar.component.scss',
   templateUrl: './bmb-calendar.component.html',
@@ -171,9 +175,7 @@ export class BmbCalendarComponent implements OnInit, AfterViewInit {
     return newEvents;
   });
   filterModalId = signal<string | null>(null);
-  calendarForm: FormGroup<{ [key: string]: FormControl<any> }> = new FormGroup(
-    {},
-  );
+  calendarForm: FormGroup<{ [key: string]: FormControl<any> }> = new FormGroup({});
 
   @ViewChild('detailContent', { read: TemplateRef })
   detailContent?: TemplateRef<any>;
@@ -223,6 +225,10 @@ export class BmbCalendarComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     this.view.update((value) => (window.innerWidth < 1000 ? 'day' : value));
+    this.calendarForm.addControl(
+      'enable_notifications',
+      new FormControl(true),
+    );
 
     this.timerId = setInterval(() => {
       this.updateTime();
@@ -311,7 +317,7 @@ export class BmbCalendarComponent implements OnInit, AfterViewInit {
   handleShowModalFilter() {
     this.filterModalId.set(
       this.modalService.openModal({
-        title: this.translationsService.translate('calendar.title'),
+        title: this.translationsService.translate('calendar.modal.title'),
         subtitle: this.translationsService.translate('calendar.subtitle'),
         content: this.modalTemplate,
         size: 'x-small',

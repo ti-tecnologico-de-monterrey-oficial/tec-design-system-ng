@@ -51,7 +51,11 @@
     "day": "Day",
     "calendar": "Calendar",
     "subtitle": "Select the calendars you want to view",
-    "filter_save": "Save"
+    "filter_save": "Save",
+    "modal": {
+      "title": "Calendars and Notifications",
+      "notification_label": "Enable schedule notifications (you will receive a notification 10 minutes before your next class)"
+    }
   },
   "chat_bar": {
     "placeholder": "What would you like to find today?",

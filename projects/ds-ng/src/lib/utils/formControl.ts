@@ -8,6 +8,7 @@ export const showError = (control: FormControl): boolean => {
 
 export const newFormControlByType = (
   type: IBmbInputType | IBmbInputValType = 'text',
+  isMultipleFile: boolean = false,
 ): FormControl => {
   if (
     type === 'radio' ||
@@ -18,6 +19,8 @@ export const newFormControlByType = (
   )
     return new FormControl(null);
 
+  if (type === 'file') return new FormControl(isMultipleFile ? [null] : null);
+
   return new FormControl('');
 };
 
@@ -25,13 +28,14 @@ export const assignNewFormControl = (
   name: string,
   control: FormControl,
   type: IBmbInputType | IBmbInputValType = 'text',
+  isMultipleFile: boolean = false,
 ): FormControl | null => {
   if (!control) {
     console.warn(
       `[bmb-input - ${name}] -`,
       'The assigned control was not valid, a new formControl was generated.',
     );
-    return newFormControlByType(type);
+    return newFormControlByType(type, isMultipleFile);
   }
   return null;
 };

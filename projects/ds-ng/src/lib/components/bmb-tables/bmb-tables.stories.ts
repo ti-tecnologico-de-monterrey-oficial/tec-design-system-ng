@@ -290,6 +290,9 @@ export default {
         'headerCellRef',
         'matTableRef',
         'paginator',
+        'checkIfAllRowsSelected',
+        'checkIfSomeRowsSelected',
+        'handleMasterSelection',
       ],
     },
     docs: {
@@ -416,7 +419,24 @@ ${getBasicExampleBlock(
       table: {
         category: 'Properties',
         defaultValue: { summary: '' },
-        type: { summary: 'object' },
+        type: {
+          summary: 'TableColum[]',
+          detail: `
+TableColum {
+  label: string;
+  labelEn?: string;
+  def: string;
+  dataKey: string;
+  htmlLabel?: TemplateRef<any>;
+  templateActions?: TemplateRef<any>;
+  width?: number;
+  type?: 'string' | 'number' | 'date';
+  icon?: string;
+  dateFormat?: string;
+  isFilterable?: boolean;
+}
+        `,
+        },
       },
     },
     config: {
@@ -542,6 +562,29 @@ ${getBasicExampleBlock(
         'Record<string, any>',
       ),
     ),
+    clearSelectionWhenPageChanges: {
+      control: {
+        type: 'boolean',
+      },
+      description: 'Clears the selection when the page changes.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
+    },
+    selectionMode: {
+      control: {
+        type: 'select',
+      },
+      options: ['all', 'page'],
+      description: 'Sets the selection mode of the table.',
+      table: {
+        category: 'Properties',
+        type: { summary: `'all' | 'page'` },
+        defaultValue: { summary: 'all' },
+      },
+    },
     searchModeChange: getOnEventParam(
       getOnEvent(
         "whether search is in 'client' or 'server' mode",
@@ -1228,6 +1271,8 @@ ${RELEVANT_TITLE.warning} If the data is asynchronous, this property must also b
     lang: 'es',
     pageSize: 20,
     filtersPosition: 'top',
+    clearSelectionWhenPageChanges: false,
+    selectionMode: 'all',
   },
 } as Meta<typeof BmbTablesComponent>;
 

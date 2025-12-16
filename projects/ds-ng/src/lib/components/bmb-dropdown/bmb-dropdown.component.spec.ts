@@ -301,7 +301,9 @@ describe('BmbDropdownComponent', () => {
       component.openList();
 
       const call = projectionService.openContent.calls.mostRecent();
-      expect(call.args[0]?.inputContext?.['customFilterFunction']).toBe(customFilter);
+      expect(call.args[0]?.inputContext?.['customFilterFunction']).toBe(
+        customFilter,
+      );
     });
   });
 
