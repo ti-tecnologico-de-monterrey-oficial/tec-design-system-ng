@@ -50,6 +50,8 @@ jobs:
       - name: Publish to NPM
         run: |
           npm publish ./dist/ds-ng --tag a${{ env.ANGULAR_VERSION }} --access public
+        env:
+          NPM_CONFIG_PROVENANCE: false
 
   build-and-publish-18:
     runs-on: ubuntu-latest
@@ -95,6 +97,8 @@ jobs:
       - name: Publish to NPM
         run: |
           npm publish ./dist/ds-ng --tag a${{ env.ANGULAR_VERSION }} --access public
+        env:
+          NPM_CONFIG_PROVENANCE: false
 
   build-and-publish-19:
     runs-on: ubuntu-latest
@@ -140,6 +144,8 @@ jobs:
       - name: Publish to NPM
         run: |
           npm publish ./dist/ds-ng --tag a${{ env.ANGULAR_VERSION }} --access public
+        env:
+          NPM_CONFIG_PROVENANCE: false
 
   build-and-publish-20:
     runs-on: ubuntu-latest
@@ -184,4 +190,6 @@ jobs:
 
       - name: Publish to NPM
         run: |
-          npm publish ./dist/ds-ng --tag a${{ env.ANGULAR_VERSION }} --access public --provenance
+          npm publish ./dist/ds-ng --tag a${{ env.ANGULAR_VERSION }} --access public
+        env:
+          NPM_CONFIG_PROVENANCE: false
