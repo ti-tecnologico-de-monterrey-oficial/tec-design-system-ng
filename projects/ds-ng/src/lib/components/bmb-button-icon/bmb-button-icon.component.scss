@@ -35,14 +35,17 @@
 }
 
 .bmb_button_icon {
-  display: flex;
+  display: inline-flex;
   justify-content: center;
   align-items: center;
-
   width: rem.rem_calc(40);
   height: rem.rem_calc(40);
-
   background-color: transparent;
+
+  > bmb-action-icon {
+    display: inline-flex;
+    align-items: center;
+  }
 
   &-active:not(.bmb_button_icon-container) {
     @include active(false, false);
