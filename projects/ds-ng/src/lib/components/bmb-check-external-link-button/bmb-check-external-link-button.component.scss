@@ -1,5 +1,5 @@
 .bmb_check-external-link-button {
-  display: flex;
+  display: inline-block;
 
   &:has(.bmb_icon-figure) {
     display: inline-block;
@@ -12,6 +12,7 @@
     cursor: pointer;
     display: inline-flex;
     color: currentColor;
+    align-items: center;
 
     &-disabled {
       cursor: not-allowed;
