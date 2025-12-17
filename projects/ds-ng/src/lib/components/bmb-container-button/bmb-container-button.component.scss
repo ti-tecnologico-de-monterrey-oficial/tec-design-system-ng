@@ -39,6 +39,10 @@
     }
   }
 
+  .bmb_check-external-link-button {
+    display: flex;
+  }
+
   &-disabled.bmb_container-button-wrapper {
     @include button-class() {
       background-color: var(--containers-main);

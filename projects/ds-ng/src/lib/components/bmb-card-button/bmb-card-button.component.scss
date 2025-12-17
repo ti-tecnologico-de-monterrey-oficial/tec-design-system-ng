@@ -22,6 +22,7 @@
   @include fonts.font(3, regular);
   padding: rem.rem_calc(8 0);
   @include mixins.truncated-string(64, 3);
+  max-block-size: calc(3lh + .5rem);
 
   .bmb_text-link .bmb_check-external-link-button-element {
     line-height: 1;
@@ -173,6 +174,10 @@
   &-body {
     @include body_content();
     color: var(--general_contrasts-container);
+
+    .bmb_text-link-item-text {
+      @include fonts.font(4, bold);
+    }
   }
 
   &-custom-content {
