@@ -96,6 +96,12 @@ export class AppComponent {
             title: 'Table LTS',
             link: '/table-lts',
           },
+          {
+            id: 3,
+            icon: 'table',
+            title: 'Table HTML',
+            link: '/table-html',
+          },
         ],
       },
       {

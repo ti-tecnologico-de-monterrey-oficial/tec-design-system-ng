@@ -104,6 +104,14 @@ export const routes: Routes = [
       ),
   },
   {
+    path: 'table-html',
+    title: 'Table HTML',
+    loadComponent: () =>
+      import('./pages/table-html/table-html.component').then(
+        (t) => t.TableHtmlComponent,
+      ),
+  },
+  {
     path: 'multi-dot-paginator',
     title: 'Multi Dot Paginator',
     loadComponent: () =>
