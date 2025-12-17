@@ -8,6 +8,9 @@ on:
 jobs:
   build-and-publish-17:
     runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
     env:
       ANGULAR_VERSION: 17
       NODE_VERSION: 20
@@ -22,6 +25,9 @@ jobs:
           node-version: ${{ env.NODE_VERSION }}
           registry-url: 'https://registry.npmjs.org'
 
+      - name: Install npm 11.5.1 for Trusted Publishers
+        run: npm install -g npm@11.5.1
+
       - name: Change package file for versioning
         run: |
           rm package.json package-lock.json
@@ -45,10 +51,13 @@ jobs:
         run: |
           npm publish ./dist/ds-ng --tag a${{ env.ANGULAR_VERSION }} --access public
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NPM_CONFIG_PROVENANCE: false
 
   build-and-publish-18:
     runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
     env:
       ANGULAR_VERSION: 18
       NODE_VERSION: 20
@@ -63,6 +72,9 @@ jobs:
           node-version: ${{ env.NODE_VERSION }}
           registry-url: 'https://registry.npmjs.org'
 
+      - name: Install npm 11.5.1 for Trusted Publishers
+        run: npm install -g npm@11.5.1
+
       - name: Change package file for versioning
         run: |
           rm package.json package-lock.json
@@ -86,10 +98,13 @@ jobs:
         run: |
           npm publish ./dist/ds-ng --tag a${{ env.ANGULAR_VERSION }} --access public
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NPM_CONFIG_PROVENANCE: false
 
   build-and-publish-19:
     runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
     env:
       ANGULAR_VERSION: 19
       NODE_VERSION: 20
@@ -104,6 +119,9 @@ jobs:
           node-version: ${{ env.NODE_VERSION }}
           registry-url: 'https://registry.npmjs.org'
 
+      - name: Install npm 11.5.1 for Trusted Publishers
+        run: npm install -g npm@11.5.1
+
       - name: Change package file for versioning
         run: |
           rm package.json package-lock.json
@@ -127,10 +145,13 @@ jobs:
         run: |
           npm publish ./dist/ds-ng --tag a${{ env.ANGULAR_VERSION }} --access public
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NPM_CONFIG_PROVENANCE: false
 
   build-and-publish-20:
     runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
     env:
       ANGULAR_VERSION: 20
       NODE_VERSION: 20
@@ -145,6 +166,9 @@ jobs:
           node-version: ${{ env.NODE_VERSION }}
           registry-url: 'https://registry.npmjs.org'
 
+      - name: Install npm 11.5.1 for Trusted Publishers
+        run: npm install -g npm@11.5.1
+
       - name: Change package file for versioning
         run: |
           rm package.json package-lock.json
@@ -168,4 +192,4 @@ jobs:
         run: |
           npm publish ./dist/ds-ng --tag a${{ env.ANGULAR_VERSION }} --access public
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NPM_CONFIG_PROVENANCE: false
