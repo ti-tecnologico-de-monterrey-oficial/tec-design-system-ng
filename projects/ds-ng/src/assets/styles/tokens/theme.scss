@@ -1,83 +1,10 @@
 #storybook-docs {
-  --general_contrasts-100: RGBA(var(--color-charade-50), 1);
-  --general_contrasts-75: RGBA(var(--color-charade-200), 1);
-  --general_contrasts-50: RGBA(var(--color-charade-500), 1);
-  --general_contrasts-25: RGBA(var(--color-charade-700), 1);
-  --general_contrasts-20: RGBA(var(--color-charade-700), 1);
-  --general_contrasts-15: RGBA(var(--color-charade-800), 1);
-  --general_contrasts-5: RGBA(var(--color-charade-900), 1);
-
-  --general_contrasts-main-selection: RGBA(var(--color-mariner-700), 1);
-  --general_contrasts-main-selection-alternative: RGBA(
-    var(--color-green-light),
-    1
-  );
-
-  --general_contrasts-input-background: RGBA(var(--color-black-primary), 0.5);
-  --general_contrasts-input-outline: RGBA(var(--color-charade-50), 1);
-  --general_contrasts-container-outline: RGBA(var(--color-charade-800), 1);
-  --general_contrasts-text-sidebar: RGBA(var(--color-white-primary), 1);
-
-  --containers-background: RGBA(var(--color-charade-950), 1);
-  --containers-main: RGBA(var(--color-charade-900), 1);
-  --containers-modal: RGBA(var(--color-charade-950), 1);
-  --containers-container-button: RGBA(var(--color-charade-900), 1);
-  --containers-background-fade: RGBA(var(--color-charade-950), 1);
-
-  --buttons-active-switch: RGBA(var(--color-green-light), 1);
-  --buttons-inactive-step: RGBA(var(--color-charade-700), 1);
-
-  --menu_select-label-menu-inactive: RGBA(var(--color-charade-50), 1);
-  --menu_select-activated-w-checkbox: RGBA(var(--color-mariner-700), 1);
-  --menu_select-alternative-focus-label: RGBA(var(--color-purple-tint), 1);
-  --menu_select-on-surface-hovered-w-checkbox: RGBA(
-    var(--color-mariner-950),
-    1
-  );
-  --menu_select-on-surface-hovered: RGBA(var(--color-charade-500), 1);
-  --menu_select-on-surface-hovered-border: RGBA(var(--color-charade-500), 0.1);
-
-  --track-progress-bar: RGBA(var(--color-green-light), 1);
-  --vertical-step-active: RGBA(var(--color-charade-700), 1);
-  --vertical-step-active-color: RGBA(var(--color-charade-50), 1);
-  --vertical-step-subtitle: RGBA(var(--color-charade-500), 1);
-
-  //Semantic
-  --semantic-normal: rgb(var(--color-charade-500));
-  --semantic-strong: rgb(var(--color-mariner-200));
-  --semantic-success: rgb(var(--success-light));
-  --semantic-info-event: rgb(var(--purple-tint));
-  --semantic-warning: rgb(var(--warning-tint));
-  --semantic-error: rgb(var(--error-light));
-  --semantic-brand: rgb(var(--branding-tint));
-  --semantic-alert: rgb(var(--alert_primary-alert-light));
-  --mitec_blue: rgb(var(--mitec_blue-light));
-  --mitec_red: rgb(var(--mitec_red-light));
-  --mitec_green: rgb(var(--mitec_green-light));
-  --mitec_orange: rgb(var(--mitec_orange-light));
-  --mitec_purple: rgb(var(--mitec_purple-tint));
-  --creative-use-violet: rgb(var(--violet-tint));
-  --creative-use-indigo: rgb(var(--indigo-tint));
-  --creative-use-emerald: rgb(var(--emerald-tint));
-  --creative-use-licorice: rgb(var(--licorice-tint));
-  --creative-use-darkteal: rgb(var(--dark-teal-tint));
-  --creative-use-peach: rgb(var(--peach-tint));
-  --creative-use-sepia: rgb(var(--sepia-tint));
-  --creative-use-softred: rgb(var(--soft-red-tint));
-  --creative-use-wattle: rgb(var(--wattle-tint));
-  --creative-use-shipcove: rgb(var(--ship-cove-tint));
-  --creative-use-plantation: rgb(var(--plantation-tint));
-  --creative-use-rum: rgb(var(--rum-tint));
-  --creative-use-ripelemon: rgb(var(--ripe-lemon-tint));
-  --creative-use-hibiscus: rgb(var(--hibiscus-tint));
-  --drop_shadow-color-test-shadow: RGBA(var(--color-black-primary), 0.2);
-
-  --color-table-900: RGBA(var(--color-charade-100), 1);
-  --color-table-btn-900: RGBA(var(--color-charade-50), 1);
+  --general_contrasts-100: rgb(var(--color-charade-50));
+  --general_contrasts-75: rgb(var(--color-charade-200));
 
   .sbdocs-wrapper {
-    background-color: var(--general_contrasts-25);
-    color: var(--general_contrasts-100);
+    background-color: rgb(var(--color-charade-700));
+    color: rgb(var(--color-charade-50));
   }
 
   .sbdocs {
@@ -92,34 +19,35 @@
 
     &-content :where(p:not(.sb-anchor, .sb-unstyled, .sb-unstyled p)),
     &-content :where(li:not(.sb-anchor, .sb-unstyled, .sb-unstyled li)) {
-      color: var(--general_contrasts-75);
+      color: rgb(var(--color-charade-200));
 
       code {
-        background-color: var(--general_contrasts-75);
-        color: var(--general_contrasts-5);
-        border: 1px solid var(--general_contrasts-75);
+        background-color: rgb(var(--color-charade-200));
+        color: rgb(var(--color-charade-900));
+        border: 1px solid rgb(var(--color-charade-200));
         border-radius: 12px;
       }
     }
 
     &-preview {
       &.sb-unstyled {
-        background: var(--general_contrasts-15);
+        background: rgb(var(--color-charade-800));
 
         .sb-bar {
-          background-color: var(--general_contrasts-5);
+          background-color: rgb(var(--color-charade-900));
         }
 
         .innerZoomElementWrapper > div > div {
-          background-color: var(--containers-background);
+          background-color: antiquewhite;
+          // background-color: var(--containers-background);
           padding: 0.5rem;
         }
       }
     }
 
     &-expandable {
-      background-color: var(--general_contrasts-25);
-      border-color: var(--general_contrasts-50);
+      background-color: rgb(var(--color-charade-700));
+      border-color: rgb(var(--color-charade-500));
     }
 
     li {
@@ -130,8 +58,8 @@
       background-color: transparent;
 
       button {
-        background-color: var(--general_contrasts-50);
-        color: var(--general_contrasts-5);
+        background-color: rgb(var(--color-charade-500));
+        color: rgb(var(--color-charade-900));
 
         &:focus,
         &:hover {
@@ -141,17 +69,17 @@
     }
 
     .css-x28zkw :where(hr:not(.sb-anchor, .sb-unstyled, .sb-unstyled hr)) {
-      border-color: var(--general_contrasts-100);
+      border-color: rgb(var(--color-charade-50));
     }
   }
 
   .docblock-source {
-    background-color: var(--general_contrasts-5);
-    color: var(--general_contrasts-100);
+    background-color: rgb(var(--color-charade-900));
+    color: rgb(var(--color-charade-50));
 
     .token {
       &.property {
-        color: RGB(114, 162, 240);
+        color: rgb(114, 162, 240);
       }
 
       &.function,
@@ -161,7 +89,7 @@
 
       &.punctuation,
       &.operator {
-        color: var(--general_contrasts-75);
+        color: rgb(var(--color-charade-200));
       }
 
       &.keyword {
@@ -169,7 +97,7 @@
       }
 
       &.string {
-        color: RGB(114, 162, 240);
+        color: rgb(114, 162, 240);
       }
 
       &.boolean {
@@ -181,62 +109,62 @@
       }
 
       &.comment {
-        color: var(--general_contrasts-50);
+        color: rgb(var(--color-charade-500));
       }
     }
   }
 
   .docblock-argstable-head th {
-    color: var(--general_contrasts-100);
+    color: rgb(var(--color-charade-50));
   }
 
   .docblock-argstable-body {
     td {
-      background-color: var(--general_contrasts-5) !important;
-      color: var(--general_contrasts-75);
-      border-color: var(--general_contrasts-25);
+      background-color: rgb(var(--color-charade-900)) !important;
+      color: rgb(var(--color-charade-200));
+      border-color: rgb(var(--color-charade-700));
 
       &.css-1ikjjm3,
       &.css-79elbk {
-        background-color: var(--general_contrasts-15) !important;
+        background-color: rgb(var(--color-charade-800)) !important;
       }
 
       svg path {
-        fill: var(--general_contrasts-75);
+        fill: rgb(var(--color-charade-200));
       }
 
       .css-o1d7ko,
       .css-18pz2h2 code {
-        background-color: var(--general_contrasts-50);
-        color: var(--general_contrasts-100);
-        border: 1px solid var(--general_contrasts-50);
+        background-color: rgb(var(--color-charade-500));
+        color: rgb(var(--color-charade-50));
+        border: 1px solid rgb(var(--color-charade-500));
         border-radius: 12px;
       }
 
       select,
       input:not([role='switch']),
       textarea {
-        background-color: var(--general_contrasts-20);
-        color: var(--general_contrasts-100);
-        border: 1px solid var(--general_contrasts-20);
+        background-color: rgb(var(--color-charade-700));
+        color: rgb(var(--color-charade-50));
+        border: 1px solid rgb(var(--color-charade-700));
 
         &::placeholder {
-          color: var(--general_contrasts-75);
+          color: rgb(var(--color-charade-200));
         }
       }
 
       .css-177r6r9 {
-        background-color: var(--general_contrasts-20);
-        border: 1px solid var(--general_contrasts-20);
+        background-color: rgb(var(--color-charade-700));
+        border: 1px solid rgb(var(--color-charade-700));
 
         input {
           ~ span {
-            color: var(--general_contrasts-100);
+            color: rgb(var(--color-charade-50));
           }
 
           &:not(:checked) {
             ~ span:first-of-type {
-              background-color: var(--general_contrasts-50);
+              background-color: rgb(var(--color-charade-500));
             }
 
             ~ span:last-of-type {
@@ -250,41 +178,41 @@
             }
 
             ~ span:last-of-type {
-              background-color: var(--general_contrasts-50);
+              background-color: rgb(var(--color-charade-500));
             }
           }
         }
       }
 
       button:not(.css-d474as) {
-        background-color: var(--general_contrasts-50);
-        color: var(--general_contrasts-100);
-        border: 1px solid var(--general_contrasts-50);
+        background-color: rgb(var(--color-charade-500));
+        color: rgb(var(--color-charade-50));
+        border: 1px solid rgb(var(--color-charade-500));
         border-radius: 4px;
       }
 
       .rejt-value-node {
         &:hover .rejt-value {
-          background-color: var(--general_contrasts-50);
-          color: var(--general_contrasts-100);
-          border: 1px solid var(--general_contrasts-50);
+          background-color: rgb(var(--color-charade-500));
+          color: rgb(var(--color-charade-50));
+          border: 1px solid rgb(var(--color-charade-500));
           border-radius: 4px;
         }
       }
 
       .rejt-collapsed-text {
-        color: var(--general_contrasts-75) !important;
+        color: rgb(var(--color-charade-200)) !important;
       }
 
       .rejt-value {
-        color: var(--general_contrasts-100);
+        color: rgb(var(--color-charade-50));
       }
     }
   }
 
   .sb-bar {
-    background-color: var(--general_contrasts-5);
-    color: var(--general_contrasts-100);
+    background-color: rgb(var(--color-charade-900));
+    color: rgb(var(--color-charade-50));
   }
 
   .css-s2td8l {
@@ -298,17 +226,17 @@
   }
 
   .toc-link {
-    color: var(--general_contrasts-75);
+    color: rgb(var(--color-charade-200));
 
     &.is-active-link {
-      color: var(--general_contrasts-100);
+      color: rgb(var(--color-charade-50));
     }
   }
 }
 
 .sb-bar {
   .css-w992vf {
-    color: var(--general_contrasts-100);
+    color: rgb(var(--color-charade-50));
   }
 }
 
@@ -322,6 +250,8 @@
   box-shadow: var(--bmb-box-shadow-3);
 }
 
+// [data-brand='GED'],
+// [data-brand='BAMBOO_CORE'],
 .storybook-light-theme .docs-story {
   background-color: var(--general_contrasts-15);
   color: var(--general_contrasts-100);
@@ -399,7 +329,7 @@ img {
   position: relative;
   background-color: #eef3f8;
   border-radius: 5px;
-  border: 1px solid rgba(0, 0, 0, 0.05);
+  border: 1px solid rgb(0, 0, 0, 0.05);
   height: 180px;
   margin-bottom: 48px;
   overflow: hidden;
@@ -428,7 +358,7 @@ img {
   transform: rotate(-15deg);
   margin-left: 40px;
   margin-top: -72px;
-  box-shadow: 0 0 1px rgba(255, 255, 255, 0);
+  box-shadow: 0 0 1px rgb(255, 255, 255, 0);
   backface-visibility: hidden;
 }
 
@@ -507,15 +437,15 @@ img {
       border-color: transparent;
       padding: 0.25rem 1rem;
       cursor: pointer;
-      color: var(--general_contrasts-100);
+      color: rgb(var(--color-charade-50));
       transition: all 0.2s ease-in-out;
 
       &:hover {
-        border-color: var(--general_contrasts-50);
+        border-color: rgb(var(--color-charade-500));
       }
 
       &.active {
-        border-bottom-color: var(--general_contrasts-100);
+        border-bottom-color: rgb(var(--color-charade-50));
       }
     }
 
@@ -543,17 +473,17 @@ img {
 .markdown-alert {
   &-note {
     @include markdown-alert-text();
-    background-color: rgba(var(--color-blue-light), 0.15);
+    background-color: rgb(var(--color-blue-light), 0.15);
   }
 
   &-callout {
     @include markdown-alert-text();
-    background-color: rgba(var(--color-mitec-green), 0.15);
+    background-color: rgb(var(--color-mitec-green), 0.15);
   }
 
   &-warning {
     @include markdown-alert-text();
-    background-color: rgba(var(--color-red-light), 0.15);
+    background-color: rgb(var(--color-red-light), 0.15);
   }
 }
 //Storybook alert blockquote - end
