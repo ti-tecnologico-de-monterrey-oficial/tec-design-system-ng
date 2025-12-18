@@ -4,7 +4,7 @@
 
 @mixin font-style {
   @include fonts.font(3, regular);
-  color: RGBA(var(--color-charade-950));
+  color: var(--general_contrasts-100);
 }
 
 $variants: (
@@ -53,15 +53,5 @@ $variants: (
   &-value {
     grid-area: value;
     @include font-style();
-  }
-}
-
-[data-theme='dark'],
-.storybook-dark-theme {
-  .bmb_legend {
-    &-label,
-    &-value {
-      color: RGBA(var(--color-charade-50));
-    }
   }
 }
