@@ -25,14 +25,12 @@
   justify-content: center;
 
   &-icon {
-    color: RGBA(var(--color-mariner-700));
-    background: linear-gradient(
-      90deg,
-      RGBA(var(--color-mariner-700)) 0%,
-      transparent 100%
+    color: var(--general_contrasts-input-outline);
+    mask-image: conic-gradient(
+      from 180deg at 50% 50%,
+      black 0deg,
+      transparent 360deg
     );
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
   }
 
   &-loading {
@@ -139,12 +137,12 @@
 }
 
 @keyframes rotateAnimation {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+  // from {
+  //   transform: rotate(0deg);
+  // }
+  // to {
+  //   transform: rotate(360deg);
+  // }
 }
 
 [data-theme='dark'],
