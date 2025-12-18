@@ -14,7 +14,8 @@
   }
 
   &-list {
-    border-bottom: rem.rem_calc(1) solid var(--general_contrasts-container-outline);
+    border-bottom: rem.rem_calc(1) solid
+      var(--general_contrasts-container-outline);
   }
 
   &-item {
