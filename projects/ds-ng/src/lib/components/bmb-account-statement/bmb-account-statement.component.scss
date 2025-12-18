@@ -37,12 +37,3 @@
     }
   }
 }
-
-[data-theme='dark'],
-.storybook-dark-theme {
-  .bmb_account-statement {
-    &-modal {
-      color: RGBA(var(--color-charade-50));
-    }
-  }
-}

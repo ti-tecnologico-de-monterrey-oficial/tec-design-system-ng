@@ -14,7 +14,7 @@
   }
 
   &-list {
-    border-bottom: rem.rem_calc(1) solid RGBA(var(--color-charade-300));
+    border-bottom: rem.rem_calc(1) solid var(--general_contrasts-container-outline);
   }
 
   &-item {
@@ -33,14 +33,14 @@
     gap: rem.rem_calc(16);
 
     &-text {
-      color: RGBA(var(--color-charade-700));
+      color: var(--general_contrasts-75);
       @include fonts.font(4, regular);
     }
   }
 
   &-quantity {
     @include fonts.font(4, regular);
-    color: RGBA(var(--color-charade-950));
+    color: var(--general_contrasts-100);
 
     &-negative {
       color: var(--semantic-error);
@@ -54,7 +54,7 @@
     justify-content: space-between;
     gap: rem.rem_calc(8);
     padding-top: rem.rem_calc(11);
-    color: RGBA(var(--color-charade-950));
+    color: var(--general_contrasts-100);
 
     &-text {
       @include fonts.font(6, bold);
@@ -76,39 +76,7 @@
 
     &-item {
       @include fonts.font(3, regular);
-      color: RGBA(var(--color-charade-500));
-    }
-  }
-}
-
-[data-theme='dark'],
-.storybook-dark-theme {
-  .bmb_invoice {
-    &-list {
-      border-color: RGBA(var(--color-charade-800));
-    }
-
-    &-concept {
-      &-text {
-        color: RGBA(var(--color-charade-200));
-      }
-    }
-
-    &-quantity,
-    &-total {
-      color: RGBA(var(--color-charade-50));
-    }
-
-    &-quantity {
-      &-negative {
-        color: var(--semantic-error);
-      }
-    }
-
-    &-total {
-      &-item {
-        color: RGBA(var(--color-charade-500));
-      }
+      color: var(--general_contrasts-50);
     }
   }
 }
