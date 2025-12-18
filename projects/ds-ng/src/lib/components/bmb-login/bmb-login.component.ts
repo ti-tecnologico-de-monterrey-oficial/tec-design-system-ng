@@ -12,7 +12,7 @@ import {
   BmbHeaderMitecComponent,
   IBmbActionHeaderLinks,
 } from '../bmb-header-mitec/bmb-header-mitec.component';
-import { IBmbActionHeader, IBmbTargetLink } from '../../types';
+import { IBmbTargetLink } from '../../types';
 import { BmbLoginContentComponent } from './bmb-login-content/bmb-login-content.component';
 import { TranslatePipe } from '../../pipes/translations';
 
@@ -43,7 +43,6 @@ export class BmbLoginComponent {
   loginAsGuestTarget = input<IBmbTargetLink>('_blank');
   buttonLabel = input<string>();
   actionHeaderLinks = input<IBmbActionHeaderLinks>();
-  actionHeaders = input<IBmbActionHeader[]>([]); //Deprecated
 
   onRequest = output<any>();
   onContinue = output();

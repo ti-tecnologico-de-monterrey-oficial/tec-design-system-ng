@@ -78,7 +78,6 @@ ${getBasicExampleBlock('BmbActionMenuComponent')}
         defaultValue: false,
       },
     },
-    isAList: DBmbGenericParamDesc.deprecated,
   },
   args: {
     icon: 'account_balance_wallet',

@@ -54,7 +54,6 @@ export class BmbCardComponent {
   @Input() state: 'disabled' | 'error' | 'normal' = 'normal';
   @Input() boxShadowStyle: IBmbBoxShadowStyle | 'none' = 'none';
   @Input() borderColor: IBmbBgColor | 'default' = 'default';
-  @Input() alternative: boolean = false; // deprecated
 
   getClasses() {
     const classNames = [];

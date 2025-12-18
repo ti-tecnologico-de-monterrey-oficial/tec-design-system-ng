@@ -29,7 +29,6 @@ import {
   encapsulation: ViewEncapsulation.None,
 })
 export class BmbRadialComponent implements OnInit {
-  id = input<string>(''); //Deprecated
   checked = input<boolean>(false);
   disabled = input<boolean>(false);
   value = input<string>('');
@@ -53,10 +52,6 @@ export class BmbRadialComponent implements OnInit {
   isControlNull: boolean = false;
 
   ngOnInit() {
-    if (!!this.id() && !this.inputId()) {
-      this.inputId.set(this.id()!);
-    }
-
     if (!this.control()) {
       this.control.set(
         assignNewFormControl(this.name(), this.control(), 'radio')!,

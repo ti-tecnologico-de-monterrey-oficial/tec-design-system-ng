@@ -30,13 +30,11 @@ import { getUUID } from '../../utils/utils';
 })
 export class BmbDateRangeComponent implements OnInit {
   inputId = input<string>(getUUID());
-  label = input<string>(''); //Deprecated
   labelStartDate = input<string>('');
   labelEndDate = input<string>('');
   icon = input<string>('calendar_month');
   invalidFormatErrorMessage = input<string>();
   requiredFieldErrorMessage = input<string>();
-  appearance = input<IBmbInputAppearance | string>('normal'); //Deprecated
   disabled = input<boolean>(false);
   isRequired = input<boolean>(false);
   isClearable = input<boolean>(false);

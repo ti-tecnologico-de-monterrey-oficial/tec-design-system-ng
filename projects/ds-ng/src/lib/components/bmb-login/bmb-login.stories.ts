@@ -139,7 +139,6 @@ IBmbTargetLink = '_blank' | '_parent' | '_self' | '_top'
         },
       },
     },
-    actionHeaders: DBmbGenericParamDesc.deprecated,
     onRequest: getOnEventParam(
       getOnEvent('', 'onRequest', 'unknown'),
       ` when a request is made, typically when the continue button is clicked.`,

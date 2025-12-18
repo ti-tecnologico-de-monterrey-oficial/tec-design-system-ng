@@ -40,7 +40,6 @@ export class BmbTopBarUserSectionComponent {
     role: '',
   });
   mitec = input<boolean>(false);
-  assignmentNotification = input<string[]>([]);
   showNotifications = input<boolean>(true);
   notificationNotification = input<IBmbDataAlert[]>([]);
   showRoleButton = input<boolean>(false);
