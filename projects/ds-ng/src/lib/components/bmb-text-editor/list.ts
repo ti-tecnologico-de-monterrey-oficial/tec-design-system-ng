@@ -72,18 +72,26 @@ export function getInsertList(
 ): IActions[] {
   return [
     {
-      icon: 'link',
-      name: translate.translate('text_editor.insert_link'),
+      icon: 'format_bold',
+      name: translate.translate('text_editor.bold'),
       action: () => {
-        ctx.insertLink();
+        ctx.execCommand('bold');
         ctx.closeProjectedContent();
       },
     },
     {
-      icon: 'image',
-      name: translate.translate('text_editor.insert_image'),
+      icon: 'format_italic',
+      name: translate.translate('text_editor.italic'),
       action: () => {
-        ctx.insertImage();
+        ctx.execCommand('italic');
+        ctx.closeProjectedContent();
+      },
+    },
+    {
+      icon: 'format_underlined',
+      name: translate.translate('text_editor.underline'),
+      action: () => {
+        ctx.execCommand('underline');
         ctx.closeProjectedContent();
       },
     },

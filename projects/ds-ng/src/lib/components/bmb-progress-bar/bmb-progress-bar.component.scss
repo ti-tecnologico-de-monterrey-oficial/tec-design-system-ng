@@ -13,6 +13,8 @@
   }
 
   &-icon {
+    color: var(--general_contrasts-main-selection);
+
     &-successful {
       color: var(--alert-successful);
     }

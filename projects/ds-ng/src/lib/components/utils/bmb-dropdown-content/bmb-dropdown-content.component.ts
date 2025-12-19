@@ -12,6 +12,7 @@ import { BmbCheckExternalLinkButtonComponent } from '../../bmb-check-external-li
 import { BmbIconComponent } from '../../bmb-icon/bmb-icon.component';
 import { IDropdownItem } from '../../../types';
 import { CommonModule } from '@angular/common';
+import { TranslatePipe } from '../../../pipes/translations';
 
 @Component({
   selector: 'bmb-dropdown-content',
@@ -20,6 +21,7 @@ import { CommonModule } from '@angular/common';
     CommonModule,
     BmbCheckExternalLinkButtonComponent,
     BmbIconComponent,
+    TranslatePipe,
   ],
   templateUrl: './bmb-dropdown-content.component.html',
   styleUrl: './bmb-dropdown-content.component.scss',
@@ -31,6 +33,9 @@ export class BmbDropdownContentComponent {
   items = model<IDropdownItem[]>([]);
   isKeyboardEvent = model<boolean>(false); //Internal
   enableFilter = input<boolean>(false);
+  customFilterFunction = input<
+    ((item: IDropdownItem, filter: string) => boolean) | null
+  >(null);
 
   clickedItem = output<IDropdownItem>();
 
@@ -38,6 +43,12 @@ export class BmbDropdownContentComponent {
 
   filteredItems = computed<IDropdownItem[]>(() => {
     if (this.enableFilter() && this.filterString() !== '') {
+      if (this.customFilterFunction()) {
+        return this.items().filter((item) =>
+          this.customFilterFunction()!(item, this.filterString()),
+        );
+      }
+
       return this.items().filter((item) => {
         return (
           item.text.toLocaleLowerCase().includes(this.filterString()) ||

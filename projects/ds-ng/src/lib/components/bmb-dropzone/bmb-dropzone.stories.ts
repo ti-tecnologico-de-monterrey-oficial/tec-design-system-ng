@@ -36,18 +36,16 @@ export default {
     docs: {
       controls: {
         exclude: [
+          'getFileName',
           'getFileAndValidate',
           'getProgress',
-          'isInvalidFileOnly',
-          'dragLeave',
-          'dragOver',
-          'drop',
-          'onErrorFile',
-          'onFileSelected',
-          'removeFile',
+          'isErrorFiles',
+          'handleDragLeave',
+          'handleDragOver',
+          'handleDrop',
+          'handleFileSelected',
+          'handleRemoveFile',
           'reset',
-          'input',
-          'validFile',
           'fileDataList',
           'getAvatarIcon',
           'getDropZoneClass',
@@ -55,12 +53,21 @@ export default {
           'getFormatProgress',
           'isFileDuplicate',
           'isValidFileSize',
-          'isValidFileType',
           'ngOnChanges',
-          'getFileSizeMB',
           'getFormatSize',
-          'isFormatSize',
-          'organizedFiles',
+          'getFormatSizeError',
+          'isFormatError',
+          'isSizeError',
+          'isFormatErrorFiles',
+          'isSizeErrorFiles',
+          'isUploadCompleted',
+          'isUploadInProgress',
+          'isValidFileFormat',
+          'isControlNull',
+          'handleValidity',
+          'ngOnInit',
+          'fileRemoved',
+          'newFile',
         ],
       },
       description: {
@@ -199,7 +206,8 @@ Below is a HTML example with the basic code to use this component in a reactive 
     [acceptedExtensions]="['png', 'jpeg', 'jpg']"
     [dropInstruction]="'Arrastra tus archivos aquí o'"
     [dropLabel]="'selecciona tus archivos'"
-    [errorMessage]="'Archivo no compatible'"
+    [errorMessageFormat]="'Formato no soportado'"
+    [errorMessageSize]="'El archivo supera el tamaño máximo permitido.'"
     [fileSize]="2"
     [formatFilesLabel]="'Ver más información de formatos de archivo aceptados.'"
     [linkFilesSupported]="''"
@@ -315,11 +323,25 @@ ${RELEVANT_TITLE.example} ***image/**** is for all image types:
         type: { summary: 'string' },
       },
     },
-    errorMessage: {
-      ...DBmbInputParamDesc.errorMessage,
+    errorMessage: DBmbGenericParamDesc.deprecated,
+    errorMessageFormat: {
+      control: { type: 'text' },
+      description: 'Sets the message shown when file format is invalid.',
       table: {
-        ...DBmbInputParamDesc.errorMessage.table,
-        defaultValue: getDefaultValueControl('Archivo no compatible'),
+        category: 'Properties',
+        defaultValue: getDefaultValueControl('Formato no soportado'),
+        type: { summary: 'string' },
+      },
+    },
+    errorMessageSize: {
+      control: { type: 'text' },
+      description: 'Sets the message shown when file exceeds size limit.',
+      table: {
+        category: 'Properties',
+        defaultValue: getDefaultValueControl(
+          'El archivo supera el tamaño permitido',
+        ),
+        type: { summary: 'string' },
       },
     },
     name: DBmbInputParamDesc.name,
@@ -363,7 +385,8 @@ ${RELEVANT_TITLE.example} ***image/**** is for all image types:
     linkLabel: 'Images only',
     dropInstruction: 'Drag and drop your files or',
     mainIcon: 'image',
-    errorMessage: 'File not compatible',
+    errorMessageFormat: 'Format not compatible',
+    errorMessageSize: 'File exceeds the maximum allowed size.',
     fileSize: 2,
     multiple: false,
   },

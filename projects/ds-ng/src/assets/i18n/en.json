@@ -51,7 +51,11 @@
     "day": "Day",
     "calendar": "Calendar",
     "subtitle": "Select the calendars you want to view",
-    "filter_save": "Save"
+    "filter_save": "Save",
+    "modal": {
+      "title": "Calendars and Notifications",
+      "notification_label": "Enable schedule notifications (you will receive a notification 10 minutes before your next class)"
+    }
   },
   "chat_bar": {
     "placeholder": "What would you like to find today?",
@@ -131,7 +135,28 @@
     "insert_link": "Insert link",
     "insert_image": "Insert image",
     "clear_formatting": "Clear formatting",
-    "select_option": "Select an option"
+    "select_option": "Select an option",
+    "prompt": {
+      "link": {
+        "link_label": "Insert Link",
+        "link_placeholder": "https://example.com",
+        "link_helper": "Enter the URL you want to link to.",
+        "target_label": "Select Target",
+        "target_placeholder": "Select an option",
+        "target_helper": "Select the target of the link.",
+        "rel_label": "Add rel attribute (noopener noreferrer)"
+      },
+      "image": {
+        "image_label": "Insert Image",
+        "image_placeholder": "https://example.com/image.jpg",
+        "image_helper": "Enter the URL of the image you want to insert.",
+        "alt_label": "Alternative Text",
+        "alt_helper": "Provide alternative text for the image.",
+        "alt_placeholder": "Describe the image"
+      },
+      "primary_button": "Insert",
+      "secondary_button": "Cancel"
+    }
   },
   "notification_card": {
     "tabs": {
@@ -140,6 +165,11 @@
     },
     "empty_state": {
       "primary_text": "You have no notifications to show"
+    }
+  },
+  "dropdown": {
+    "menu": {
+      "filter_placeholder": "Select an option"
     }
   }
 }

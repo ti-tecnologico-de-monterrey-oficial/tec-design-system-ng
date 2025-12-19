@@ -26,6 +26,7 @@
     display: inline-flex;
     flex-direction: row;
     padding: rem.rem_calc(0 8);
+    align-items: center;
   }
 
   &-input {

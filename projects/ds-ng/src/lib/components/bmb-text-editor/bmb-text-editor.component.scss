@@ -29,6 +29,7 @@
       display: inline-flex;
       align-items: center;
       flex-wrap: nowrap;
+      height: rem.rem_calc(40);
 
       &:not(:last-child) {
         padding-right: var(--bmb-spacing-m);
@@ -39,7 +40,7 @@
         display: none;
       }
 
-      @include mixins.media-query(768, 'min') {
+      @include mixins.media-query(1001, 'min') {
         &.hide-on-mobile {
           display: inline-flex;
         }
@@ -52,7 +53,7 @@
       flex-wrap: nowrap;
       gap: rem.rem_calc(10);
 
-      @include mixins.media-query(768, 'min') {
+      @include mixins.media-query(1001, 'min') {
         display: none;
       }
     }

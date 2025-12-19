@@ -56,8 +56,6 @@ import { BmbInputComponent } from '../bmb-input/bmb-input.component';
 import { ReactiveFormsModule, FormControl, FormGroup } from '@angular/forms';
 import { BmbDateRangeComponent } from '../bmb-date-range/bmb-date-range.component';
 import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
-import { BmbLayoutDirective } from '../../directives/bmb-layout/bmb-layout.directive';
-import { BmbLayoutItemDirective } from '../../directives/bmb-layout/bmb-layout-item.directive';
 import { DateTime } from 'luxon';
 
 export type BmbTableLang = 'en' | 'es';
@@ -145,6 +143,8 @@ export class BmbTablesComponent implements AfterViewInit, OnInit, OnChanges {
   filtersVisible = model<boolean>(false);
   filtersPosition = input<IBmbFiltersPosition>('top');
   filtersModel = model<Record<string, any>>({});
+  selectionMode = input<'page' | 'all'>('all');
+  clearSelectionWhenPageChanges = input<boolean>(false);
 
   @Output() select: EventEmitter<any> = new EventEmitter();
   @Output() clickedRow: EventEmitter<any> = new EventEmitter();
@@ -323,6 +323,81 @@ export class BmbTablesComponent implements AfterViewInit, OnInit, OnChanges {
     }
   }
 
+  checkIfSelectionShouldBeCleared() {
+    if (this.clearSelectionWhenPageChanges()) {
+      this.selection.clear();
+      this.onSelect();
+    }
+  }
+
+  getPageData(): any[] {
+    const pageIndex = this.paginator?.pageIndex || 0;
+    const pageSize = this.paginator?.pageSize || 10;
+    const startIndex = pageIndex * pageSize;
+    const endIndex = Math.min(
+      startIndex + pageSize,
+      this.dataSource.data.length,
+    );
+    return this.dataSource.data.slice(startIndex, endIndex);
+  }
+
+  handleMasterSelection(event: Event) {
+    const isChecked = (event.target as HTMLInputElement).checked;
+
+    if (!isChecked) {
+      this.selection.clear();
+      this.onSelect();
+      return;
+    }
+
+    if (this.selectionMode() === 'all') {
+      this.toggleAllRows();
+    }
+
+    if (this.selectionMode() === 'page') {
+      const pageData = this.getPageData();
+
+      if (this.isAllSelected()) {
+        pageData.forEach((row) => this.selection.deselect(row));
+      } else {
+        pageData.forEach((row) => this.selection.select(row));
+      }
+    }
+
+    this.onSelect();
+  }
+
+  checkIfAllRowsSelected(): boolean {
+    if (!this.data().length) return false;
+
+    if (this.selectionMode() === 'all') return this.isAllSelected();
+
+    if (this.selectionMode() === 'page') {
+      const pageData = this.getPageData();
+
+      return pageData.every((row) => this.selection.isSelected(row));
+    }
+
+    return false;
+  }
+
+  checkIfSomeRowsSelected(): boolean {
+    if (this.selectionMode() === 'all') {
+      return this.selection.hasValue() && !this.isAllSelected();
+    }
+
+    if (this.selectionMode() === 'page') {
+      const pageData = this.getPageData();
+
+      return (
+        pageData.some((row) => this.selection.isSelected(row)) &&
+        !this.checkIfAllRowsSelected()
+      );
+    }
+
+    return false;
+  }
+
   parseColumns(columns: TableColum[]) {
     this._rawColumns = columns;
     this.applyColumnsAndConfig(columns);
@@ -430,10 +505,6 @@ export class BmbTablesComponent implements AfterViewInit, OnInit, OnChanges {
   }
 
   onSelect() {
-    const indexSelected = this.dataSource.data.reduce((acc, current, index) => {
-      if (this.selection.isSelected(current)) acc.push(index);
-      return acc;
-    }, []);
     this.select.emit(this.selection.selected);
   }
 
@@ -643,6 +714,7 @@ export class BmbTablesComponent implements AfterViewInit, OnInit, OnChanges {
     } else {
       this.dataSource.paginator!.pageIndex = event.pageIndex;
     }
+    this.checkIfSelectionShouldBeCleared();
   }
 
   get resolvedPageSize(): number {
@@ -663,6 +735,7 @@ export class BmbTablesComponent implements AfterViewInit, OnInit, OnChanges {
         pageIndex: 1,
         pageSize: this.resolvedPageSize,
       });
+      this.checkIfSelectionShouldBeCleared();
     }
   }
 
@@ -673,6 +746,7 @@ export class BmbTablesComponent implements AfterViewInit, OnInit, OnChanges {
         pageIndex: this.currentPage() + 1,
         pageSize: this.resolvedPageSize,
       });
+      this.checkIfSelectionShouldBeCleared();
     }
   }
 
@@ -683,6 +757,7 @@ export class BmbTablesComponent implements AfterViewInit, OnInit, OnChanges {
         pageIndex: this.currentPage() + 1,
         pageSize: this.resolvedPageSize,
       });
+      this.checkIfSelectionShouldBeCleared();
     }
   }
 
@@ -693,6 +768,7 @@ export class BmbTablesComponent implements AfterViewInit, OnInit, OnChanges {
       pageIndex: last + 1,
       pageSize: this.resolvedPageSize,
     });
+    this.checkIfSelectionShouldBeCleared();
   }
 
   getTableClasses(): string[] {

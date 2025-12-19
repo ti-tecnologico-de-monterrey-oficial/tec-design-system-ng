@@ -44,14 +44,18 @@
     "value_secondary": "$0"
   },
   "calendar": {
-    "title": "Mi Calendario",
+    "title": "Mi calendario",
     "today": "Hoy",
     "month": "Mes",
     "week": "Semana",
     "day": "Día",
     "calendar": "Calendario",
     "subtitle": "Selecciona los calendarios que quieres ver",
-    "filter_save": "Guardar"
+    "filter_save": "Guardar",
+    "modal": {
+      "title": "Calendarios y notificaciones",
+      "notification_label": "Activar notificaciones de horario (recibirás una notificación 10 minutos antes de tu próxima clase)"
+    }
   },
   "chat_bar": {
     "placeholder": "¿Qué deseas encontrar hoy?",
@@ -131,7 +135,28 @@
     "insert_link": "Insertar enlace",
     "insert_image": "Insertar imagen",
     "clear_formatting": "Limpiar formato",
-    "select_option": "Selecciona una opción"
+    "select_option": "Selecciona una opción",
+    "prompt": {
+      "link": {
+        "link_label": "Insertar enlace",
+        "link_placeholder": "https://example.com",
+        "link_helper": "Ingresa la URL a la que deseas enlazar.",
+        "target_label": "Selecciona destino",
+        "target_placeholder": "Selecciona una opción",
+        "target_helper": "Selecciona el destino del enlace.",
+        "rel_label": "Agregar atributo rel (noopener noreferrer)"
+      },
+      "image": {
+        "image_label": "Insertar imagen",
+        "image_placeholder": "https://example.com/image.jpg",
+        "image_helper": "Ingresa la URL de la imagen que deseas insertar.",
+        "alt_label": "Texto alternativo",
+        "alt_helper": "Ingresa el texto alternativo para la imagen.",
+        "alt_placeholder": "Texto alternativo de la imagen"
+      },
+      "primary_button": "Insertar",
+      "secondary_button": "Cancelar"
+    }
   },
   "notification_card": {
     "tabs": {
@@ -140,6 +165,11 @@
     },
     "empty_state": {
       "primary_text": "No tienes elementos para mostrar"
+    }
+  },
+  "dropdown": {
+    "menu": {
+      "filter_placeholder": "Selecciona una opción"
     }
   }
 }

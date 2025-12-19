@@ -6,6 +6,8 @@ import {
   BmbLayoutDirective,
   BmbLayoutItemDirective,
   BmbBookmarkComponent,
+  BmbDatepickerComponent,
+  BmbInputComponent,
 } from '../../../../projects/ds-ng/src/public-api';
 
 @Component({
@@ -19,6 +21,8 @@ import {
     BmbLayoutDirective,
     BmbLayoutItemDirective,
     BmbBookmarkComponent,
+    BmbInputComponent,
+    BmbDatepickerComponent,
   ],
 })
 export class DropdownPageComponent implements OnInit {
@@ -69,4 +73,12 @@ export class DropdownPageComponent implements OnInit {
     console.log('Bookmark active state changed:', isActive);
     //Add your code
   }
+
+  customFilterFunction = (
+    item: { text: string; value?: string; selectedText?: string },
+    filter: string,
+  ): boolean => {
+    // Custom filter logic: match if the text starts with the filter string
+    return item.text.toLowerCase().startsWith(filter.toLowerCase());
+  };
 }

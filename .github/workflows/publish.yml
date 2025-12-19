@@ -1,4 +1,4 @@
-name: Publish to npm
+name: Publish Multi-version Bamboo
 
 on:
   push:
@@ -6,18 +6,190 @@ on:
       - develop
 
 jobs:
-  publish:
+  build-and-publish-17:
     runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
+    env:
+      ANGULAR_VERSION: 17
+      NODE_VERSION: 20
 
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 20
-          registry-url: https://registry.npmjs.org
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-      - run: npm ci
-      - run: npm run build:lib
-      - run: npm publish ./dist/ds-ng --access public
+      - name: Setup Node.js ${{ env.NODE_VERSION }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: Install npm 11.5.1 for Trusted Publishers
+        run: npm install -g npm@11.5.1
+
+      - name: Change package file for versioning
+        run: |
+          rm package.json package-lock.json
+          cp ./package/v${{ env.ANGULAR_VERSION }}/package.json ./package.json
+
+      - name: Clean npm cache
+        run: npm cache clean --force
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Build Library
+        run: npm run build:lib
+
+      - name: Update version in package.json
+        run: |
+          VERSION_FILE="./dist/ds-ng/package.json"
+          sed -i "s/{angularVersion}/${{ env.ANGULAR_VERSION }}/g" $VERSION_FILE
+
+      - name: Publish to NPM
+        run: |
+          npm publish ./dist/ds-ng --tag a${{ env.ANGULAR_VERSION }} --access public
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NPM_CONFIG_PROVENANCE: false
+
+  build-and-publish-18:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
+    env:
+      ANGULAR_VERSION: 18
+      NODE_VERSION: 20
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js ${{ env.NODE_VERSION }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: Install npm 11.5.1 for Trusted Publishers
+        run: npm install -g npm@11.5.1
+
+      - name: Change package file for versioning
+        run: |
+          rm package.json package-lock.json
+          cp ./package/v${{ env.ANGULAR_VERSION }}/package.json ./package.json
+
+      - name: Clean npm cache
+        run: npm cache clean --force
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Build Library
+        run: npm run build:lib
+
+      - name: Update version in package.json
+        run: |
+          VERSION_FILE="./dist/ds-ng/package.json"
+          sed -i "s/{angularVersion}/${{ env.ANGULAR_VERSION }}/g" $VERSION_FILE
+
+      - name: Publish to NPM
+        run: |
+          npm publish ./dist/ds-ng --tag a${{ env.ANGULAR_VERSION }} --access public
+        env:
+          NPM_CONFIG_PROVENANCE: false
+
+  build-and-publish-19:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
+    env:
+      ANGULAR_VERSION: 19
+      NODE_VERSION: 20
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js ${{ env.NODE_VERSION }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: Install npm 11.5.1 for Trusted Publishers
+        run: npm install -g npm@11.5.1
+
+      - name: Change package file for versioning
+        run: |
+          rm package.json package-lock.json
+          cp ./package/v${{ env.ANGULAR_VERSION }}/package.json ./package.json
+
+      - name: Clean npm cache
+        run: npm cache clean --force
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Build Library
+        run: npm run build:lib
+
+      - name: Update version in package.json
+        run: |
+          VERSION_FILE="./dist/ds-ng/package.json"
+          sed -i "s/{angularVersion}/${{ env.ANGULAR_VERSION }}/g" $VERSION_FILE
+
+      - name: Publish to NPM
+        run: |
+          npm publish ./dist/ds-ng --tag a${{ env.ANGULAR_VERSION }} --access public
+        env:
+          NPM_CONFIG_PROVENANCE: false
+
+  build-and-publish-20:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
+    env:
+      ANGULAR_VERSION: 20
+      NODE_VERSION: 20
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js ${{ env.NODE_VERSION }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: Install npm 11.5.1 for Trusted Publishers
+        run: npm install -g npm@11.5.1
+
+      - name: Change package file for versioning
+        run: |
+          rm package.json package-lock.json
+          cp ./package/v${{ env.ANGULAR_VERSION }}/package.json ./package.json
+
+      - name: Clean npm cache
+        run: npm cache clean --force
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Build Library
+        run: npm run build:lib
+
+      - name: Update version in package.json
+        run: |
+          VERSION_FILE="./dist/ds-ng/package.json"
+          sed -i "s/{angularVersion}/${{ env.ANGULAR_VERSION }}/g" $VERSION_FILE
+
+      - name: Publish to NPM
+        run: |
+          npm publish ./dist/ds-ng --tag a${{ env.ANGULAR_VERSION }} --access public
+        env:
+          NPM_CONFIG_PROVENANCE: false

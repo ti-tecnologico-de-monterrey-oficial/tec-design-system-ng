@@ -32,7 +32,6 @@ import {
   getCustomValidation,
   getCustomValidationMessage,
   getUUID,
-  isErrorMessageSet,
 } from '../../utils/utils';
 import { BmbInputContentComponent } from '../bmb-input/bmb-input-content/bmb-input-content.component';
 import {
