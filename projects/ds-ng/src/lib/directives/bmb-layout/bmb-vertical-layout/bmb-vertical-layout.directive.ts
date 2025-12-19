@@ -11,6 +11,7 @@ export class BmbVerticalLayoutDirective {
   justify = input<IJustifyOptions>('start');
   alignItems = input<IAlignItemsOptions>('start');
   layoutHeight = input<string>('100%');
+  margin = input<SizeNames>('none');
 
   constructor() {
     effect(() => {
@@ -24,6 +25,7 @@ export class BmbVerticalLayoutDirective {
       `bmb_gap-${this.gapSize()}`,
       `bmb_justify-${this.justify()}`,
       `bmb_align-items-${this.alignItems()}`,
+      `bmb_margin-${this.margin()}`,
     ];
   }
 
