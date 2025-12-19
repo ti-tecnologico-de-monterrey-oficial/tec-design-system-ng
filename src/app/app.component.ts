@@ -185,6 +185,7 @@ export class AppComponent {
           },
         ],
       },
+      { id: 8, icon: 'app_registration', title: 'Colors', link: '/colors' },
     ],
   ];
 

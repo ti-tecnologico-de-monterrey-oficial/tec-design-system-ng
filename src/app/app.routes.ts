@@ -143,5 +143,11 @@ export const routes: Routes = [
         (i) => i.IdentityComponent,
       ),
   },
+  {
+    path: 'colors',
+    title: 'Colors',
+    loadComponent: () =>
+      import('./pages/colors/colors.component').then((j) => j.ColorsComponent),
+  },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
 ];
