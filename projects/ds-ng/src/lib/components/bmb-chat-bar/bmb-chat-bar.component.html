@@ -80,7 +80,7 @@
           @if (showEmoji()) {
             <bmb-action-icon
               class="bmb_chat-bar-emoji"
-              icon="mood"
+              [icon]="emojiIcon()"
               [iconSize]="32"
               (buttonClick)="handleEmoji()"
             />

@@ -6,6 +6,8 @@ import {
   ViewEncapsulation,
   model,
   computed,
+  TemplateRef,
+  ViewChild,
 } from '@angular/core';
 import { IBmbDataTopBar } from '../../bmb-breadcrumb/bmb-breadcrumb.component';
 import { IBmbColor } from '../../../types/colors';
@@ -15,16 +17,24 @@ import { BmbThreeColsComponent } from '../../bmb-three-cols/bmb-three-cols.compo
 import { BmbActionIconComponent } from '../../bmb-action-icon/bmb-action-icon.component';
 import { BmbNavigationBarComponent } from '../../bmb-navigation-bar/bmb-navigation-bar.component';
 import { BmbContainerComponent } from '../../bmb-container/bmb-container.component';
+import { CommonModule } from '@angular/common';
+import { BmbProjectionContentService } from '../../../services/projection/projection.service';
+import { BmbActionMenuComponent } from '../../bmb-action-menu/bmb-action-menu.component';
+import { IChatBarActions } from '../../bmb-chat-bar/types';
+import { BmbItemComponent } from '../../bmb-item/bmb-item.component';
 
 @Component({
   selector: 'bmb-home-card-header',
   standalone: true,
   imports: [
+    CommonModule,
     BmbContainerComponent,
     BmbThreeColsComponent,
     BmbActionIconComponent,
     BmbTitleContentComponent,
     BmbNavigationBarComponent,
+    BmbActionMenuComponent,
+    BmbItemComponent,
   ],
   templateUrl: './bmb-home-card-header.component.html',
   styleUrl: './bmb-home-card-header.component.scss',
@@ -32,6 +42,8 @@ import { BmbContainerComponent } from '../../bmb-container/bmb-container.compone
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BmbHomeCardHeaderComponent {
+  @ViewChild('chatBarActionsTemplate') chatBarTemplate!: TemplateRef<unknown>;
+
   title = input.required<string>();
   subtitle = input<string>();
   dataLocalNav = input<IBmbDataTopBar[]>([]);
@@ -44,10 +56,11 @@ export class BmbHomeCardHeaderComponent {
   showRightButton = input<boolean>(true);
   isExpanded = model<boolean>(false);
   useAutoExpand = input<boolean>(true); //Internal
-
+  isChat = input<boolean>(false); //Internal
   onClose = output();
   onBack = output();
   onExpandClick = output();
+  actionsList = input<IChatBarActions[]>([]);
 
   actionHeaderList = computed<IBmbActionHeader[]>(() => {
     if (this.showRightButton()) {
@@ -69,6 +82,10 @@ export class BmbHomeCardHeaderComponent {
     return [];
   });
 
+  constructor(
+    private readonly contentProjectedModal: BmbProjectionContentService,
+  ) {}
+
   getIconName(): string {
     return (!this.isMobile() && this.icon()) || '';
   }
@@ -88,5 +105,20 @@ export class BmbHomeCardHeaderComponent {
     } else {
       this.onExpandClick.emit();
     }
+  }
+
+  handleAddDialog(event: MouseEvent | KeyboardEvent): void {
+    const dialogId = 'chatBarActionsDialog';
+
+    if (this.contentProjectedModal.isContentOpen(dialogId)) {
+      return;
+    }
+
+    this.contentProjectedModal.openContent({
+      id: dialogId,
+      content: this.chatBarTemplate,
+      targetRef: event.target as HTMLElement,
+      showBackdrop: false,
+    });
   }
 }

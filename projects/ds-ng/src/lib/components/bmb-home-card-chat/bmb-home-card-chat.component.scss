@@ -15,4 +15,38 @@
     width: 100%;
     padding: rem.rem_calc(1 10 20 10);
   }
+
+  &-bot {
+    background-color: var(--general_contrasts-80);
+    border-radius: 50%;
+    width: rem.rem_calc(60);
+    height: rem.rem_calc(60);
+    padding: rem.rem_calc(10);
+    color: var(--general_contrasts-25);
+    display: block;
+    position: fixed;
+    right: rem.rem_calc(20);
+    bottom: rem.rem_calc(20);
+  }
+
+  &-chat {
+    &.bmb_projected-content[open] {
+      width: 50%;
+      top: inherit;
+      left: inherit;
+      right: rem.rem_calc(20);
+      bottom: rem.rem_calc(20);
+
+      > * {
+        display: flex;
+        width: 100%;
+        height: calc(100vh - rem.rem_calc(100));
+        overflow: auto;
+
+        .bmb_chat-card {
+          margin-top: auto;
+        }
+      }
+    }
+  }
 }

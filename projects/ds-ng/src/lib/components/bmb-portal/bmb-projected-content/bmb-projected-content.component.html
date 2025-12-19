@@ -8,9 +8,7 @@
 }
 <dialog
   class="bmb_projected-content"
-  [ngClass]="{
-    'bmb_projected-content-fix-size': fixSizeToRef()
-  }"
+  [ngClass]="dialogNgClass()"
   [ngStyle]="getPosition()"
   [open]="content() !== null"
   #projectedContentDialogRef
