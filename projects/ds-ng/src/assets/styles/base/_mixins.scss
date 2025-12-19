@@ -87,7 +87,7 @@
   @if $appearance == primary {
     outline: 0 solid transparent;
     background-color: var(--buttons-primary-normal);
-    color: var(--white-primary);
+    color: rgb(var(--white-primary));
 
     &:hover:not(:disabled),
     &:focus-visible:not(:disabled) {
@@ -103,7 +103,7 @@
     }
 
     bmb-icon {
-      color: var(--white-primary);
+      color: rgb(var(--white-primary));
     }
   } @else if $appearance == secondary-filled {
     background-color: var(--buttons-alternative-normal);
@@ -197,8 +197,8 @@
 
     &:active:not(:disabled),
     &.bmb_btn-toggle-active {
-      background-color: var(--red-primary);
-      color: var(--white-primary);
+      background-color: rgb(var(--red-primary));
+      color: rgb(var(--white-primary));
       padding: rem.rem_calc(10 14);
       border-width: rem.rem_calc(2);
 
@@ -207,7 +207,7 @@
       }
 
       bmb-icon {
-        color: var(--white-primary);
+        color: rgb(var(--white-primary));
       }
     }
 
@@ -317,7 +317,7 @@
 }
 
 @mixin error-input() {
-  border-color: var(--input-error);
+  border-color: rgb(var(--color-red-light));
 }
 
 @mixin input-checked($height, $width) {
@@ -430,7 +430,7 @@
 
 @mixin error-helper-text() {
   @include helper-text();
-  color: var(--input-error);
+  color: rgb(var(--color-red-light));
 }
 
 @mixin media-web-templates() {

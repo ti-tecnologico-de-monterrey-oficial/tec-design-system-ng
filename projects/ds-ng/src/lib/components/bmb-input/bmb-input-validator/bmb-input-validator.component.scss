@@ -33,7 +33,7 @@
     color: var(--general_contrasts-100);
 
     &-required {
-      color: var(--input-error);
+      color: rgb(var(--color-red-light));
     }
 
     &-tooltip {

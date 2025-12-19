@@ -82,11 +82,11 @@
       &-mitec_blue,
       &-mitec_red {
         .bmb_badge-bullet {
-          background-color: var(--white-primary);
+          background-color: rgb(var(--white-primary));
         }
 
         .bmb_badge-content {
-          color: var(--white-primary);
+          color: rgb(var(--white-primary));
         }
       }
 

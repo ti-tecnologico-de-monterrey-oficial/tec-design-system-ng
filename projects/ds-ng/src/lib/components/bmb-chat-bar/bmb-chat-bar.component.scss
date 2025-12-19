@@ -138,7 +138,7 @@
   }
 
   &-pause {
-    color: var(--red-primary);
+    color: rgb(var(--red-primary));
   }
 
   &-record {
@@ -244,7 +244,7 @@
 
 @keyframes recordColor {
   0% {
-    color: var(--green-primary);
+    color: rgb(var(--green-primary));
   }
 
   25% {
@@ -252,7 +252,7 @@
   }
 
   50% {
-    color: var(--green-primary);
+    color: rgb(var(--green-primary));
   }
 
   75% {
@@ -260,6 +260,6 @@
   }
 
   100% {
-    color: var(--green-primary);
+    color: rgb(var(--green-primary));
   }
 }
