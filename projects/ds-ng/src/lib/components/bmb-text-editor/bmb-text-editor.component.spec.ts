@@ -79,7 +79,9 @@ describe('BmbTextEditorComponent', () => {
     });
 
     it('should handle null values in form control', () => {
+      mockSanitizer.bypassSecurityTrustHtml.calls.reset();
       testControl.setValue(null);
+      fixture.detectChanges();
 
       expect(mockSanitizer.bypassSecurityTrustHtml).toHaveBeenCalledWith('');
     });

@@ -175,7 +175,9 @@ export class BmbCalendarComponent implements OnInit, AfterViewInit {
     return newEvents;
   });
   filterModalId = signal<string | null>(null);
-  calendarForm: FormGroup<{ [key: string]: FormControl<any> }> = new FormGroup({});
+  calendarForm: FormGroup<{ [key: string]: FormControl<any> }> = new FormGroup(
+    {},
+  );
 
   @ViewChild('detailContent', { read: TemplateRef })
   detailContent?: TemplateRef<any>;
@@ -225,10 +227,7 @@ export class BmbCalendarComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     this.view.update((value) => (window.innerWidth < 1000 ? 'day' : value));
-    this.calendarForm.addControl(
-      'enable_notifications',
-      new FormControl(true),
-    );
+    this.calendarForm.addControl('enable_notifications', new FormControl(true));
 
     this.timerId = setInterval(() => {
       this.updateTime();

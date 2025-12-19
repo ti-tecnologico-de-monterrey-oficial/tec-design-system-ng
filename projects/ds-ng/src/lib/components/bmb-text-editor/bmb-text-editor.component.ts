@@ -100,12 +100,8 @@ export class BmbTextEditorComponent implements AfterViewInit, OnInit {
       this.sanitizer.bypassSecurityTrustHtml(this.control().value || ''),
     );
 
-    this.control().valueChanges?.subscribe((eventType) => {
-      if (
-        eventType instanceof Object &&
-        'value' in eventType &&
-        eventType.value === null
-      ) {
+    this.control().valueChanges?.subscribe((value) => {
+      if (value === null) {
         // NOSONAR: Clear content sanitization
         this.sanitizedContent.set(this.sanitizer.bypassSecurityTrustHtml(''));
       }

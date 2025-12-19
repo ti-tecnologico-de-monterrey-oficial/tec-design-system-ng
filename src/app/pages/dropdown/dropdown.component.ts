@@ -6,6 +6,8 @@ import {
   BmbLayoutDirective,
   BmbLayoutItemDirective,
   BmbBookmarkComponent,
+  BmbDatepickerComponent,
+  BmbInputComponent,
 } from '../../../../projects/ds-ng/src/public-api';
 // import { AnimeService } from '../../services/anime.service';
 
@@ -20,6 +22,8 @@ import {
     BmbLayoutDirective,
     BmbLayoutItemDirective,
     BmbBookmarkComponent,
+    BmbInputComponent,
+    BmbDatepickerComponent,
   ],
 })
 export class DropdownPageComponent implements OnInit {
