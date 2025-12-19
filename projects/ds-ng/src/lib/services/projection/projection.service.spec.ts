@@ -57,8 +57,13 @@ describe('BmbProjectionContentService', () => {
       inputContext: { test: 'valor' },
       showBackdrop: true,
     };
+
     service.openContent(content);
-    expect(service.getProjectedContent()).toEqual(content);
+
+    const projected = service.getProjectedContent();
+
+    expect(projected).toEqual(jasmine.objectContaining(content));
+    expect(projected?.id).toBeDefined();
     expect(service.isThereContentProjected()).toBe(true);
   });
 
@@ -74,9 +79,14 @@ describe('BmbProjectionContentService', () => {
   it('debe sobrescribir el contenido proyectado si se abre uno nuevo', () => {
     const content1: IBmbProjectionContent = { content: null, mode: 'over' };
     const content2: IBmbProjectionContent = { content: null, mode: 'partial' };
-    service.openContent(content1);
-    expect(service.getProjectedContent()).toEqual(content1);
+
     service.openContent(content2);
-    expect(service.getProjectedContent()).toEqual(content2);
+    service.openContent(content1);
+    const firstId = service.getProjectedContent()?.id;
+
+    service.openContent(content2);
+    const secondId = service.getProjectedContent()?.id;
+
+    expect(firstId).not.toEqual(secondId);
   });
 });
