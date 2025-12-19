@@ -128,7 +128,7 @@
   &:not(.bmb_button_icon-container, .bmb_button_icon-disabled) {
     &:hover {
       .material-symbols-rounded {
-        color: var(--white-primary);
+        color: rgb(var(--white-primary));
         scale: 1.2;
       }
     }
@@ -139,6 +139,6 @@
   }
 
   .material-symbols-rounded {
-    color: var(--white-primary);
+    color: rgb(var(--white-primary));
   }
 }

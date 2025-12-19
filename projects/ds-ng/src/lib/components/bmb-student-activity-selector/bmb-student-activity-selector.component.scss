@@ -28,13 +28,25 @@
       color: RGBA(var(--color-white-primary));
 
       &.academic {
-        background: linear-gradient(to right, var(--color-academic-gradient));
+        background: linear-gradient(
+          to right,
+          rgb(var(--blue-mariner-700)) 0%,
+          rgb(var(--blue-light)) 100%
+        );
       }
       &.life {
-        background: linear-gradient(to right, var(--color-life-gradient));
+        background: linear-gradient(
+          to right,
+          rgb(var(--color-green-primary)) 0%,
+          rgb(var(--green-light)) 100%
+        );
       }
       &.events {
-        background: linear-gradient(to right, var(--color-event-gradient));
+        background: linear-gradient(
+          to right,
+          rgb(var(--purple-primary)) 0%,
+          rgb(var(--color-purple-light)) 100%
+        );
       }
     }
   }

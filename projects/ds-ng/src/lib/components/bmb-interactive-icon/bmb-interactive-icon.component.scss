@@ -29,7 +29,7 @@ $backgrounds: (
   'creative_hibiscus': var(--creative-use-hibiscus),
   'creative_ripelemon': var(--creative-use-ripelemon),
   'buttons-primary-normal': var(--buttons-primary-normal),
-  'purple-primary': var(--purple-primary),
+  'purple-primary': rbg(var(--purple-primary)),
   'general_contrasts-main-selection': var(--general_contrasts-main-selection),
   'general_contrasts-main-selection-alternative':
     var(--general_contrasts-main-selection-alternative),

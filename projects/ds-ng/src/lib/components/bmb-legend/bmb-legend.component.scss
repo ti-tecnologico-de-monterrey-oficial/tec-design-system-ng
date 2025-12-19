@@ -9,12 +9,12 @@
 
 $variants: (
   'normal': var(--general_contrasts-100),
-  'strong': RGBA(var(--color-mariner-700)),
-  'success': RGBA(var(--color-green-light)),
-  'info': RGBA(var(--color-purple-primary)),
-  'warning': RGBA(var(--color-yellow-tint)),
-  'error': RGBA(var(--color-red-light)),
-  'brand': RGBA(var(--color-neon-primary)),
+  'strong': rgb(var(--color-mariner-700)),
+  'success': rgb(var(--color-green-light)),
+  'info': rgb(var(--color-purple-primary)),
+  'warning': rgb(var(--color-yellow-tint)),
+  'error': rgb(var(--color-red-light)),
+  'brand': rgb(var(--blue-primary)),
 );
 
 .bmb_legend {
