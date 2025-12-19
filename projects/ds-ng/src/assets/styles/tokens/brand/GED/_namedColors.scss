@@ -1,81 +1,106 @@
 :root,
+// [data-brand='GED'],
+[data-theme='light'],
 .storybook-light-theme .docs-story {
   // Containers
   --containers-background: rgb(var(--gray-ged-50));
-  --containers-main: var(--white-primary);
-  --containers-header-mobile: var(--white-primary); // new
+  --containers-main: rgb(var(--white-primary));
+  --containers-header-mobile: rgb(var(--white-primary)); // new
   --containers-modal: rgb(var(--gray-ged-50));
-  --containers-top-bar: var(--black-primary); // new
+  --containers-button: rgb(var(--gray-ged-50));
+  --containers-top-bar: rgb(var(--black-primary)); // new
+  --containers-media-card-background-fade: rgba(var(--gray-ged-950), 0);
+  --containers-media-card-background: rgba(var(--gray-ged-950), 0.9);
+
+  --containers-background-fade: rgb(var(--gray-ged-200));
 
   // Buttons
   --buttons-primary-normal: rgb(var(--gray-ged-950));
   --buttons-primary-hover: rgb(var(--gray-ged-50));
   --buttons-primary-select: rgb(var(--gray-ged-900));
-  --buttons-alternative-normal: var(--white-primary);
+  --buttons-alternative-normal: rgb(var(--white-primary));
+  --buttons-alternative-hover: rgb(var(--gray-ged-800));
   --buttons-alternative-text: rgb(var(--gray-ged-950));
-  --buttons-active-switch: var(--blue-primary);
+  --buttons-alternative-text-hover: rgb(var(--gray-ged-50));
+  --buttons-primary-text: rgb(var(--gray-ged-50));
+  --buttons-fab-text: rgb(var(--black-primary));
+  --buttons-active-switch: rgb(var(--blue-primary));
   --buttons-inactive-step: rgb(var(--gray-ged-400));
-  --buttons-stroke-primary-selected: rgb(var(--color-mariner-700));
-  --buttons-text-link: rgb(var(--color-mariner-700));
+  --buttons-stroke-primary-selected: rgb(var(--blue-ged-900));
+  --buttons-destructive: rgb(var(--red-primary));
+  --buttons-text-link: rgb(var(--blue-mariner-700));
 
   // General Contrasts
-  --general_contrasts-100: rgb(var(--gray-ged-950));
-  --general_contrasts-90: rgb(var(--gray-ged-500));
-  --general_contrasts-80: rgb(var(--gray-ged-800));
-  --general_contrasts-75: rgb(var(--gray-ged-700));
-  --general_contrasts-60: rgb(var(--gray-ged-900));
-  --general_contrasts-50: rgb(var(--gray-ged-500));
-  --general_contrasts-25: rgb(var(--gray-ged-300));
-  --general_contrasts-20: rgb(var(--gray-ged-200));
-  --general_contrasts-15: rgb(var(--gray-ged-200));
-  --general_contrasts-5: rgb(var(--gray-ged-50));
-  --general_contrasts-main-complimentary: rgb(var(--gray-ged-50));
-  --general_contrasts-main-selection: var(--color-black-tint);
-  --general_contrasts-icon-selection: var(--blue-primary);
-  --general_contrasts-main-selection-alternative: rgb(var(--color-green-light));
-  --general_contrasts-input-background: rgb(var(--gray-ged-100));
-  --general_contrasts-input-outline: rgb(var(--gray-ged-950));
-  --general_contrasts-container-outline: rgb(var(--gray-ged-400));
-  --general_contrasts-text-sidebar: var(--black-primary);
-  --general_contrasts-primary: rgb(var(--blue-ged-800));
+  --general-contrasts-100: rgb(var(--gray-ged-950));
+  --general-contrasts-90: rgb(var(--gray-ged-500));
+  --general-contrasts-80: rgb(var(--gray-ged-800));
+  --general-contrasts-75: rgb(var(--gray-ged-700));
+  --general-contrasts-60: rgb(var(--gray-ged-900));
+  --general-contrasts-50: rgb(var(--gray-ged-500));
+  --general-contrasts-25: rgb(var(--gray-ged-300));
+  --general-contrasts-20: rgb(var(--gray-ged-200));
+  --general-contrasts-15: rgb(var(--gray-ged-200));
+  --general-contrasts-5: rgb(var(--gray-ged-50));
+  --general-contrasts-main-complimentary: rgb(var(--gray-ged-50));
+  --general-contrasts-main-selection: var(--black-tint);
+  --general-contrasts-icon-selection: rgb(var(--blue-primary));
+  --general-contrasts-main-selection-alternative: rgb(var(--green-light));
+  --general-contrasts-input-background: rgb(var(--gray-ged-100));
+  --general-contrasts-input-outline: rgb(var(--gray-ged-950));
+  --general-contrasts-container-outline: rgb(var(--gray-ged-400));
+  --general-contrasts-text-sidebar: rgb(var(--black-primary));
+  --general-contrasts-primary: rgb(var(--blue-ged-800));
 
-  //Complementary backgrounds (gradients)
-  --gradient-bg: rgb(var(--color-charade-950)) 0%,
-    rgb(var(--color-charade-900)) 100%; //var(--color-black-light); // #1F222E - #313649
+  --general-contrasts-container: rgb(var(--gray-ged-800));
 
   //Menu (select)
-  --menu_select-surface-activated: var(--black-primary);
-  --menu_select-label-menu-active: rgb(var(--gray-ged-50));
-  --menu_select-label-menu-inactive: rgb(var(--gray-ged-950));
-  --menu_select-activated-w-checkbox: rgb(var(--blue-ged-950));
-  --menu_select-alternative-focus-label: var(--blue-primary);
-  --menu_select-on-surface-hovered-w-checkbox: rgb(var(--gray-ged-200));
-  --menu_select-on-surface-hovered: rgb(var(--gray-ged-100));
+  --menu-select-surface-activated: rgb(var(--black-primary));
+  --menu-select-label-menu-active: rgb(var(--gray-ged-50));
+  --menu-select-label-menu-inactive: rgb(var(--gray-ged-950));
+  --menu-select-activated-w-checkbox: rgb(var(--blue-ged-950));
+  --menu-select-alternative-focus-label: rgb(var(--blue-primary));
+  --menu-select-on-surface-hovered-w-checkbox: rgb(var(--gray-ged-200));
+  --menu-select-on-surface-hovered: rgb(var(--gray-ged-100));
+
+  --menu-select-on-surface-hovered-border: rgba(var(--blue-ged-700), 0.1);
 
   // Semantic colors
   --semantic-success: rgb(var(--success-primary-alternative));
   --semantic-warning: rgb(var(--warning-primary-alternative));
-  --semantic-error: var(--red-primary);
-  --semantic-info-event: var(--purple-primary);
-  --semantic-brand: var(--branding-tint);
-  --semantic-alert: var(--alert_primary-alert-light);
+  --semantic-error: rgb(var(--red-primary));
+  --semantic-info-event: rgb(var(--purple-primary));
+  --semantic-branding: rgb(var(--branding-primary));
+  --semantic-alert: rgb(var(--alert-primary));
 
   // Base colors - Creative use
   --creative-use-violet: rgb(var(--violet-light));
-  --creative-use-indigo: rgb(var(--indigo-tint));
-  --creative-use-emerald: rgb(var(--emerald-tint));
-  --creative-use-dark-teal: rgb(var(--dark-teal-tint));
+  --creative-use-indigo: rgb(var(--indigo-primary));
+  --creative-use-emerald: rgb(var(--emerald-primary));
+  --creative-use-licorice: rgb(var(--licorice-light));
+  --creative-use-dark-teal: rgb(var(--dark-teal-primary));
   --creative-use-peach: rgb(var(--peach-light));
-  --creative-use-sepia: rgb(var(--sepia-tint));
+  --creative-use-sepia: rgb(var(--sepia-primary));
   --creative-use-soft-red: rgb(var(--soft-red-light));
   --creative-use-wattle: rgb(var(--wattle-primary-alternative));
   --creative-use-ship-cove: rgb(var(--ship-cove-light));
-  --creative-use-plantation: rgb(var(--plantation-tint));
+  --creative-use-plantation: rgb(var(--plantation-primary));
   --creative-use-rum: rgb(var(--rum-tint));
   --creative-use-ripe-lemon: rgb(var(--ripe-lemon-primary-alternative));
-  --creative-use-hibiscus: rgb(var(--hibiscus-tint));
+  --creative-use-hibiscus: rgb(var(--hibiscus-primary));
+
+  //Containers backgrounds (gradients)
+  --media-card-gradient-default: var(--containers-media-card-background-fade)
+      33.5%,
+    var(--containers-media-card-background) 81.33%;
+  --media-card-gradient-hover: var(--black-min) 0%, var(--black-min) 100%;
+  --media-card-gradient-select: var(--black-min) 0%, var(--black-min) 100%;
+
+  //Complementary backgrounds (gradients)
+  --gradient-bg-tec: rgb(var(--blue-ged-50)) 56.25%,
+    rgb(var(--blue-ged-100)) 100%;
 }
 
+// [data-brand='GED'],
 [data-theme='dark'],
 .storybook-dark-theme,
 .storybook-dark-theme .docs-story {
@@ -84,59 +109,84 @@
   --containers-main: rgb(var(--gray-ged-900));
   --containers-header-mobile: rgb(var(--gray-ged-900)); // new
   --containers-modal: rgb(var(--gray-ged-950));
+  --containers-button: rgb(var(--gray-ged-900));
 
   // Buttons
   --buttons-primary-normal: rgb(var(--gray-ged-50));
-  --buttons-primary-hover: var(--black-primary);
+  --buttons-primary-hover: rgb(var(--black-primary));
   --buttons-primary-select: rgb(var(--gray-ged-200));
-  --buttons-alternative-normal: var(--black-primary);
+  --buttons-alternative-normal: rgb(var(--black-primary));
+  --buttons-alternative-hover: rgb(var(--gray-ged-200));
   --buttons-alternative-text: rgb(var(--gray-ged-50));
-  --buttons-active-switch: var(--color-mariner-500);
+  --buttons-alternative-text-hover: rgb(var(--gray-ged-950));
+  --buttons-primary-text: rgb(var(--black-primary));
+  --buttons-fab-text: rgb(var(--white-primary));
+  --buttons-active-switch: rgb(var(--blue-mariner-500));
   --buttons-inactive-step: rgb(var(--gray-ged-700));
-  --buttons-stroke-primary-selected: var(--white-primary);
-  --buttons-text-link: var(--white-primary);
+  --buttons-stroke-primary-selected: rgb(var(--blue-ged-400));
+  --buttons-destructive: rgb(var(--red-light));
+  --buttons-text-link: rgb(var(--white-primary));
 
   // General Contrasts
-  --general_contrasts-100: rgb(var(--gray-ged-50));
-  --general_contrasts-90: rgb(var(--gray-ged-400));
-  --general_contrasts-80: rgb(var(--gray-ged-300));
-  --general_contrasts-75: rgb(var(--gray-ged-300));
-  --general_contrasts-60: rgb(var(--gray-ged-300));
-  --general_contrasts-25: rgb(var(--gray-ged-700));
-  --general_contrasts-20: rgb(var(--gray-ged-700));
-  --general_contrasts-15: rgb(var(--gray-ged-800));
-  --general_contrasts-5: rgb(var(--gray-ged-900));
-  --general_contrasts-main-selection: var(--white-primary);
-  --general_contrasts-main-selection-alternative: var(--green-primary);
-  --general_contrasts-input-background: var(--color-black-tint);
-  --general_contrasts-input-outline: rgb(var(--gray-ged-50));
-  --general_contrasts-container-outline: rgb(var(--gray-ged-800));
-  --general_contrasts-text-sidebar: var(--white-primary);
-  --general_contrasts-primary: rgb(var(--blue-ged-300));
+  --general-contrasts-100: rgb(var(--gray-ged-50));
+  --general-contrasts-90: rgb(var(--gray-ged-400));
+  --general-contrasts-80: rgb(var(--gray-ged-300));
+  --general-contrasts-75: rgb(var(--gray-ged-300));
+  --general-contrasts-60: rgb(var(--gray-ged-300));
+  --general-contrasts-25: rgb(var(--gray-ged-700));
+  --general-contrasts-20: rgb(var(--gray-ged-700));
+  --general-contrasts-15: rgb(var(--gray-ged-800));
+  --general-contrasts-5: rgb(var(--gray-ged-900));
+  --general-contrasts-main-selection: rgb(var(--white-primary));
+  --general-contrasts-main-selection-alternative: rgb(var(--green-primary));
+  --general-contrasts-input-background: var(--black-tint);
+  --general-contrasts-input-outline: rgb(var(--gray-ged-50));
+  --general-contrasts-container-outline: rgb(var(--gray-ged-800));
+  --general-contrasts-text-sidebar: rgb(var(--white-primary));
+  --general-contrasts-primary: rgb(var(--blue-ged-300));
 
-  //Complementary backgrounds (Gradients)
-  --gradient-bg: rgb(var(--color-mariner-50)) 0%,
-    rgb(var(--color-mariner-100)) 100%; // #F0F8FE - #DDEEFC
+  --general-contrasts-container: rgb(var(--gray-ged-300));
 
   //Menu (select)
-  --menu_select-label-menu-inactive: rgb(var(--gray-ged-50));
-  --menu_select-activated-w-checkbox: rgb(var(--gray-ged-950));
-  --menu_select-alternative-focus-label: var(--color-blue-light);
-  --menu_select-on-surface-hovered-w-checkbox: var(--color-black-tint);
-  --menu_select-on-surface-hovered: rgb(var(--gray-ged-600));
+  --menu-select-label-menu-inactive: rgb(var(--gray-ged-50));
+  --menu-select-activated-w-checkbox: rgb(var(--gray-ged-950));
+  --menu-select-alternative-focus-label: rgb(var(--blue-light));
+  --menu-select-on-surface-hovered-w-checkbox: var(--black-tint);
+  --menu-select-on-surface-hovered: rgb(var(--gray-ged-600));
 
   // Semantic colors
   --semantic-success: rgb(var(--success-tint-alternative));
-  --semantic-warning: var(--yellow-primary);
-  --semantic-error: var(--error-light);
-  --semantic-info-event: var(--purple-tint);
+  --semantic-warning: rgb(var(--warning-tint));
+  --semantic-error: rgb(var(--red-light));
+  --semantic-info-event: rgb(var(--purple-tint));
+  --semantic-branding: rgb(var(--branding-primary));
+  --semantic-alert: rgb(var(--alert-light));
 
   // Base colors - Creative use
   --creative-use-violet: rgb(var(--violet-tint));
+  --creative-use-indigo: rgb(var(--indigo-tint));
+  --creative-use-emerald: rgb(var(--emerald-tint));
   --creative-use-licorice: rgb(var(--licorice-tint));
+  --creative-use-dark-teal: rgb(var(--dark-teal-tint));
   --creative-use-peach: rgb(var(--peach-tint));
+  --creative-use-sepia: rgb(var(--sepia-tint));
   --creative-use-soft-red: rgb(var(--soft-red-tint));
   --creative-use-wattle: rgb(var(--wattle-tint));
   --creative-use-ship-cove: rgb(var(--ship-cove-tint));
+  --creative-use-plantation: rgb(var(--plantation-tint));
+  --creative-use-rum: rgb(var(--rum-tint));
   --creative-use-ripe-lemon: rgb(var(--ripe-lemon-tint));
+  --creative-use-hibiscus: rgb(var(--hibiscus-tint));
+
+  //Containers backgrounds (gradients)
+  --media-card-gradient-hover: var(--containers-media-card-background-fade)
+      33.5%,
+    var(--containers-media-card-background) 81.33%;
+  --media-card-gradient-select: var(--containers-media-card-background-fade)
+      33.5%,
+    var(--containers-media-card-background) 81.33%;
+
+  //Complementary backgrounds (gradients)
+  --gradient-bg-tec: rgb(var(--gray-ged-950)) 56.25%,
+    rgb(var(--gray-ged-900)) 100%;
 }

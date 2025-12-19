@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
   BmbAccordionComponent,
+  BmbDividerComponent,
   BmbLayoutDirective,
   BmbLayoutItemDirective,
   BmbSelectorDirective,
@@ -10,7 +11,6 @@ import {
   BmbVerticalLayoutItemDirective,
   IBmbTab,
 } from '../../../../projects/ds-ng/src/public-api';
-import { MatFormFieldModule } from '@angular/material/form-field';
 
 @Component({
   selector: 'colors-test',
@@ -23,7 +23,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     BmbLayoutItemDirective,
     BmbVerticalLayoutDirective,
     BmbVerticalLayoutItemDirective,
-    MatFormFieldModule,
+    BmbDividerComponent,
   ],
   templateUrl: './colors.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -36,7 +36,8 @@ export class ColorsComponent {
     { id: 2, title: 'Buttons' },
     { id: 3, title: 'General Contrasts' },
     { id: 4, title: 'Menu (select)' },
-    { id: 5, title: 'mitec' },
+    { id: 5, title: 'Semantic colors' },
+    { id: 6, title: 'mitec' },
   ];
 
   institutionalColors: string[] = ['--blue-tec', '--white-primary'];
@@ -45,15 +46,12 @@ export class ColorsComponent {
     '--blue-primary',
     '--blue-light',
     '--blue-tint',
-    '--blue-gradient',
     '--green-primary',
     '--green-light',
     '--green-tint',
-    '--gree-gradient',
     '--purple-primary',
     '--purple-light',
     '--purple-tint',
-    '--purple-gradient',
     '--red-primary',
     '--red-light',
     '--red-tint',
@@ -64,13 +62,80 @@ export class ColorsComponent {
     '--teal-light',
     '--teal-tint',
     '--black-primary',
+  ];
+
+  baseOpacityColors: string[] = [
     '--black-light',
     '--black-tint',
     '--black-min',
-    '--white-primary',
     '--white-light',
     '--white-tint',
     '--white-min',
+  ];
+
+  baseColorGradients: string[] = [
+    '--blue-gradient',
+    '--green-gradient',
+    '--purple-gradient',
+  ];
+
+  creativeBaseColors: string[] = [
+    '--violet-primary',
+    '--violet-light',
+    '--violet-tint',
+    '--indigo-primary',
+    '--indigo-tint',
+    '--emerald-primary',
+    '--emerald-tint',
+    '--licorice-primary',
+    '--licorice-light',
+    '--licorice-tint',
+    '--dark-teal-primary',
+    '--dark-teal-tint',
+    '--peach-primary',
+    '--peach-light',
+    '--peach-tint',
+    '--sepia-primary',
+    '--sepia-tint',
+    '--soft-red-primary',
+    '--soft-red-light',
+    '--soft-red-tint',
+    '--wattle-primary',
+    '--wattle-tint',
+    '--ship-cove-primary',
+    '--ship-cove-tint',
+    '--ship-cove-light',
+    '--plantation-primary',
+    '--plantation-tint',
+    '--rum-primary',
+    '--rum-tint',
+    '--ripe-lemon-primary',
+    '--ripe-lemon-tint',
+    '--hibiscus-primary',
+    '--hibiscus-tint',
+    '--wattle-primary-alternative', // #9D8A01
+    '--ripe-lemon-primary-alternative',
+  ];
+
+  creativeGradients: string[] = ['--gradient-bg-tec'];
+
+  semanticBaseColors: string[] = [
+    '--success-primary',
+    '--success-light',
+    '--success-thin',
+    '--warning-primary',
+    '--warning-tint',
+    '--error-primary',
+    '--error-light',
+    '--info-primary',
+    '--info-light',
+    '--branding-primary',
+    '--branding-tint',
+    '--alert-primary',
+    '--alert-light',
+    '--success-primary-alternative',
+    '--success-tint-alternative',
+    '--warning-primary-alternative',
   ];
 
   grayGED: string[] = [
@@ -108,6 +173,14 @@ export class ColorsComponent {
     '--containers-modal',
     '--containers-button',
     '--containers-top-bar',
+    '--containers-background-fade',
+    '--containers-media-card-background-fade',
+  ];
+
+  containerGradients: string[] = [
+    '--media-card-gradient-default',
+    '--media-card-gradient-hover',
+    '--media-card-gradient-select',
   ];
 
   buttons: string[] = [
@@ -148,49 +221,6 @@ export class ColorsComponent {
     '--general-contrasts-container-outline',
     '--general-contrasts-text-sidebar',
     '--general-contrasts-primary',
-    // '--alert-successful',
-    // '--alert-event',
-    // '--alert-event-tint',
-    // '--alert-neutral',
-    // '--alert-primary',
-    // '--alert-warning',
-    // '--alert-error',
-    // '--alert-error-blend',
-    // '--switch-checked',
-    // '--switch-checked-shadow',
-    // '--radio-checked-shadow',
-    // '--track-progress-bar',
-    // '--vertical-step-active',
-    // '--vertical-step-active-color',
-    // '--vertical-step-subtitle',
-    // '--gray-charade-50',
-    // '--gray-charade-100',
-    // '--gray-charade-300',
-    // '--gray-charade-500',
-    // '--gray-charade-700',
-    // '--azul-mariner-500',
-    // '--semantic-normal',
-    // '--semantic-strong',
-    // '--semantic-success',
-    // '--semantic-info-event',
-    // '--semantic-warning',
-    // '--semantic-error',
-    // '--semantic-brand',
-    // '--semantic-alert',
-    // '--creative-use-violet',
-    // '--creative-use-indigo',
-    // '--creative-use-emerald',
-    // '--creative-use-licorice',
-    // '--creative-use-darkteal',
-    // '--creative-use-peach',
-    // '--creative-use-sepia',
-    // '--creative-use-softred',
-    // '--creative-use-wattle',
-    // '--creative-use-shipcove',
-    // '--creative-use-plantation',
-    // '--creative-use-rum',
-    // '--creative-use-ripelemon',
-    // '--creative-use-hibiscus',
   ];
 
   menuSelect: string[] = [
@@ -203,6 +233,15 @@ export class ColorsComponent {
     '--menu-select-on-surface-hovered',
   ];
 
+  semanticColors: string[] = [
+    '--semantic-success',
+    '--semantic-warning',
+    '--semantic-error',
+    '--semantic-info-event',
+    '--semantic-branding',
+    '--semantic-alert',
+  ];
+
   mitec: string[] = [
     '--mitec-blue',
     '--mitec-red',
@@ -213,17 +252,15 @@ export class ColorsComponent {
 
   parseStyle(color: string) {
     return {
-      'background-color': color,
+      background: color,
       padding: 'var(--bmb-spacing-m) var(--bmb-spacing-xxl)',
-      'max-width': '30rem',
       'border-radius': 'var(--bmb-radius-m)',
       'border-width': '2px',
       'border-style': 'solid',
       'border-color': 'antiquewhite',
       'text-align': 'center',
-      width: 'calc(50% - var(--bmb-spacing-m))',
-      'min-width': '20rem',
-      'min-height': '6rem',
+      width: '15rem',
+      height: '8rem',
       'user-select': 'none',
       'text-shadow': `1px 1px 0 var(--general-contrasts-25), -1px -1px 0 var(--general-contrasts-25), -1px 1px 0 var(--general-contrasts-25), 1px -1px 0 var(--general-contrasts-25)`,
       'font-weight': 'bold',
@@ -240,7 +277,7 @@ export class ColorsComponent {
   }
 
   parseGradientStyle(color: string) {
-    return this.parseStyle(`linear-gradient(rgb(var(${color})))`);
+    return this.parseStyle(`linear-gradient(var(${color}))`);
   }
 
   copyToClipboard(item: any) {

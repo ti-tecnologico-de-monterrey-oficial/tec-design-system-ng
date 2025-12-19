@@ -25,14 +25,6 @@
   --blue-ged-900: 43, 62, 108; // #2B3E6C
   --blue-ged-950: var(--gray-ged-950); // #1A1A1A
 
-  // Base colors (Gradients)
-  --blue-gradient: rgb(var(--color-mariner-700)) 8.4%,
-    rgb(var(--color-blue-light)) 91.6%; // #2766CB #4677C7
-  --green-gradient: rgb(var(--color-green-primary)) 8.4%,
-    rgb(var(--color-green-light)) 91.6%; // #40A213 #43AA8B
-  --purple-gradient: rgb(var(--color-yellow-primary)) 7.74%,
-    rgb(var(--color-purple-light)) 92.26%; // #6A27A1 #A12780
-
   // Semantic colors
   --success-primary-alternative: 0, 140, 65; // #008C41
   --success-tint-alternative: 68, 189, 124; // #44BD7C
@@ -41,8 +33,4 @@
   // Base colors - Creative use
   --wattle-primary-alternative: 157, 138, 1; // #9D8A01
   --ripe-lemon-primary-alternative: 148, 119, 0; // #947700
-
-  //Complementary colors (gradients)
-  --gradient-bg: rgb(var(--color-mariner-950)) 56.25%,
-    rgb(var(--color-mariner-900)) 100%; // --color-mariner-950 #1A2E51 - --color-mariner-900 #244984
 }
