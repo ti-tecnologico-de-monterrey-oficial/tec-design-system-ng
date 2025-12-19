@@ -304,7 +304,7 @@
   content: '';
   height: rem.rem_calc(42);
   width: rem.rem_calc(42);
-  border-radius: 50%;
+  border-radius: var(--bmb-radius-full);
   opacity: $opacity;
   background-color: $color_name;
   position: absolute;

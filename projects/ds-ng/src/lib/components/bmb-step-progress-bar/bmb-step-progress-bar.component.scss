@@ -77,7 +77,7 @@ $medium_variant: rem.rem_calc(42);
 
   &-step {
     background-color: var(--buttons-inactive-step);
-    border-radius: 50%;
+    border-radius: var(--bmb-radius-full);
 
     &-indicator {
       display: flex;

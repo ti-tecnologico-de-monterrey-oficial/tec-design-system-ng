@@ -31,7 +31,7 @@ $modalSize: (
     padding: rem.rem_calc(32);
     width: calc(100% - rem.rem_calc(32));
     background-color: var(--containers-modal);
-    border-radius: rem.rem_calc(16);
+    border-radius: var(--bmb-radius-4);
     border: rem.rem_calc(1) solid var(--general_contrasts-25);
     color: var(--general_contrasts-100);
     max-height: calc(100dvh - rem.rem_calc(32));

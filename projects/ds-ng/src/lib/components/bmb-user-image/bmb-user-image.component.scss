@@ -4,7 +4,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 50%;
+  border-radius: var(--bmb-radius-full);
   overflow: hidden;
 
   &-bordered {

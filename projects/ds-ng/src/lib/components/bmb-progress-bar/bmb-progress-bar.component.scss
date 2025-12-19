@@ -35,14 +35,14 @@
     flex: 1;
     height: rem.rem_calc(8);
     min-width: rem.rem_calc(48);
-    border-radius: rem.rem_calc(5);
+    border-radius: var(--bmb-radius-2);
     background-color: var(--buttons-inactive-step);
   }
 
   &-active {
     background-color: var(--general_contrasts-main-selection);
     height: 100%;
-    border-radius: rem.rem_calc(5);
+    border-radius: var(--bmb-radius-2);
     transition: 0.3s linear;
     transition-property: width, background-color;
   }

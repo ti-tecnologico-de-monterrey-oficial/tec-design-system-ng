@@ -170,7 +170,7 @@
 
   &-dot {
     background-color: RGBA(var(--color-charade-500));
-    border-radius: 100%;
+    border-radius: var(--bmb-radius-full);
     cursor: pointer;
     height: rem.rem_calc(12);
     margin: 0 rem.rem_calc(5);
@@ -180,12 +180,12 @@
 
     &-active {
       background-color: var(--general_contrasts-main-selection);
-      border-radius: 100%;
+      border-radius: var(--bmb-radius-full);
       box-shadow: rem.rem_calc(0 0 4 0) var(--general_contrasts-main-selection);
 
       &::after {
         border: rem.rem_calc(1) solid var(--general_contrasts-main-selection);
-        border-radius: rem.rem_calc(18);
+        border-radius: var(--bmb-radius-5);
         box-shadow:
           rem.rem_calc(0 0 3 0) inset var(--general_contrasts-main-selection),
           rem.rem_calc(0 0 4 0) var(--general_contrasts-main-selection);

@@ -75,7 +75,7 @@
 
   &-dot {
     background-color: RGBA(var(--color-charade-500));
-    border-radius: 100%;
+    border-radius: var(--bmb-radius-full);
     cursor: pointer;
     height: rem.rem_calc(8);
     margin: 0 rem.rem_calc(4);
@@ -86,7 +86,7 @@
 
     &-active {
       background-color: RGBA(var(--color-mariner-700));
-      border-radius: 100%;
+      border-radius: var(--bmb-radius-full);
       height: rem.rem_calc(12);
       width: rem.rem_calc(12);
       box-shadow: rem.rem_calc(0 0 4 0) var(--buttons-primary-normal);

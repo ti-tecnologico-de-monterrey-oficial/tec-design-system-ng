@@ -3,7 +3,7 @@
 @use '../../../assets/styles/base/mixins' as mixins;
 
 @mixin shadow($border_radius) {
-  border-radius: rem.rem_calc($border_radius);
+  border-radius: var(--bmb-radius-#{$border_radius});
   box-shadow: var(--bmb-box-shadow-3);
 }
 
@@ -32,7 +32,7 @@
   display: flex;
   flex-direction: column;
   border: rem.rem_calc(1) solid var(--general_contrasts-container-outline);
-  border-radius: rem.rem_calc(16);
+  border-radius: var(--bmb-radius-4);
   height: rem.rem_calc(195);
   width: rem.rem_calc(328);
   position: relative;
@@ -40,7 +40,7 @@
   &:has(&-small) {
     height: rem.rem_calc(148);
     width: rem.rem_calc(165);
-    border-radius: rem.rem_calc(8);
+    border-radius: var(--bmb-radius-4);
     border: 0;
   }
 
@@ -51,7 +51,7 @@
     position: relative;
     width: 100%;
     height: 100%;
-    @include shadow(16);
+    @include shadow(4);
 
     user-select: none;
     -webkit-user-select: none;
@@ -103,7 +103,7 @@
   &-circle {
     align-items: center;
     background-color: var(--general_contrasts-100);
-    border-radius: 100%;
+    border-radius: var(--bmb-radius-full);
     color: var(--general_contrasts-5);
     display: flex;
     height: rem.rem_calc(48);
@@ -119,7 +119,7 @@
     max-width: 100%;
 
     &-image {
-      border-radius: rem.rem_calc(12);
+      border-radius: var(--bmb-radius-3);
       height: rem.rem_calc(66);
       object-fit: cover;
       width: rem.rem_calc(66);
@@ -196,7 +196,7 @@
     color: rgb(var(--color-white-primary));
     width: 100%;
     height: 100%;
-    @include shadow(16);
+    @include shadow(4);
 
     &-title {
       @include fonts.font(4, regular);
@@ -240,7 +240,7 @@
     }
 
     &:hover {
-      border-radius: rem.rem_calc(8);
+      border-radius: var(--bmb-radius-2);
       background-color: var(--menu_select-on-surface-hovered);
       transform: rotateY(180deg);
     }
@@ -254,7 +254,7 @@
     &-back {
       align-items: center;
       backface-visibility: hidden;
-      border-radius: rem.rem_calc(8);
+      border-radius: var(--bmb-radius-2);
       display: flex;
       flex-direction: column;
       height: 100%;
@@ -271,7 +271,7 @@
       background-color: var(--containers-container-button);
       border: rem.rem_calc(1) solid var(--general_contrasts-container-outline);
       color: var(--general_contrasts-75);
-      @include shadow(8);
+      @include shadow(2);
     }
 
     &-back {

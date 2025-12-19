@@ -32,6 +32,8 @@ $sizes: (
   @each $name, $size in $sizes {
     --bmb-radius-#{$name}: #{$size};
   }
+
+  --bmb-radius-badge: rem.rem_calc(40);
 }
 
 @each $name, $size in $sizes {

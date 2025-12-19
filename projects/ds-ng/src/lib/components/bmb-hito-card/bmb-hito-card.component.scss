@@ -19,7 +19,7 @@ $circleTypes: (
   &-bullet::after {
     background-color: rgb(var(--color-charade-500));
     border: rem.rem_calc(2) solid var(--containers-background);
-    border-radius: 50%;
+    border-radius: var(--bmb-radius-full);
     content: '';
     height: rem.rem_calc(9);
     left: rem.rem_calc(-23);
@@ -56,7 +56,7 @@ $circleTypes: (
     &-icon {
       align-items: center;
       align-self: center;
-      border-radius: 50%;
+      border-radius: var(--bmb-radius-full);
       color: rgb(var(--white-primary));
       display: flex;
       grid-area: icon;

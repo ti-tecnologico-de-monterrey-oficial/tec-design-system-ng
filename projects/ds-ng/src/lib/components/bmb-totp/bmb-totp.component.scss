@@ -41,7 +41,7 @@
 
     &:not(:last-child)::after {
       background-color: var(--general_contrasts-input-outline);
-      border-radius: 50%;
+      border-radius: var(--bmb-radius-full);
       content: '';
       display: block;
       height: rem.rem_calc(4);
