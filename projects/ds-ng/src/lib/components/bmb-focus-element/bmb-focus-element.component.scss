@@ -25,7 +25,7 @@
   }
 
   &-circle_focused {
-    border: rem.rem_calc(1) solid var(--azul-mariner-500);
+    border: rem.rem_calc(1) solid var(--blue-mariner-500);
     border-radius: var(--bmb-radius-full);
   }
 
@@ -48,7 +48,7 @@
     color: var(--general_contrasts-100);
 
     &-focused {
-      color: var(--azul-mariner-500);
+      color: var(--blue-mariner-500);
     }
   }
 
@@ -59,7 +59,7 @@
     color: var(--general_contrasts-input-outline);
 
     &-focused {
-      color: var(--azul-mariner-500);
+      color: var(--blue-mariner-500);
     }
   }
 

@@ -491,9 +491,7 @@ class StorybookColorsPlaygroundComponent {
     '--containers-media-card-background-fade',
   ];
 
-  containerGradients: string[] = [
-    '--media-card-gradient-default',
-  ];
+  containerGradients: string[] = ['--media-card-gradient-default'];
 
   buttons: string[] = [
     '--buttons-primary-normal',
