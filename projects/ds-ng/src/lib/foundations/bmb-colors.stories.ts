@@ -22,95 +22,165 @@ import {
   imports: [CommonModule, BmbTabsComponent],
   template: `
     <section
-      style="display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; align-items: center; margin-bottom: 2rem;"
+      style="display: flex; gap: var(--bmb-spacing-m); flex-wrap: wrap; justify-content: center; align-items: center; margin-bottom: 2rem;"
     >
       <h1 style="width: 100%;">${SANDBOX_TITLE}</h1>
-      <div [ngStyle]="getBackgroundColor()"></div>
-      <div [ngStyle]="getGradient()"></div>
-    </section>
-    <bmb-tabs
-      [tabs]="[
-        { id: 1, title: 'Named colors', isActive: true },
-        { id: 2, title: 'Base colors' },
-        { id: 3, title: 'Gradients' }
-      ]"
-      (selected)="handleTabChange($event)"
-    />
-    <section style="max-height: 500px; overflow-y: auto; padding: 0 1rem;">
-      @if (this.selectedTabId() === 1) {
-        <header
-          style="position: sticky; top: 0; left: 0; z-index: 1; background-color: var(--general_contrasts-15); padding: 1rem 0;"
-        >
-          <h2>Named colors</h2>
-          <p style="margin: 0; color: var(--general_contrasts-100);">
-            Named colors are the main recommendation as they are compatible with
-            both themes (light and dark). Click on the color to copy the value
-          </p>
-        </header>
-        <ul
-          style="display: flex; gap: 1rem; flex-wrap: wrap; list-style: none; padding: 0; justify-content: center;"
-        >
-          <li
-            *ngFor="let item of namedColors; index as i; trackBy: trackByFn"
-            style="padding: 1rem 3rem; max-width: 450px; border-radius: var(--bmb-radius-m); text-align: center; width: calc(50% - 1rem); min-width: 300px; cursor: pointer; user-select: none;"
+      <section
+        style="display: flex; width: 100%; margin: var(--bmb-spacing-m); gap: var(--bmb-spacing-m);"
+      >
+        @for (item of institutional_colors; track $index) {
+          <div
+            style="width: 50%; height: 4rem; border-radius: var(--bmb-radius-m); text-align: center;"
             [ngStyle]="parseNamedStyle(item)"
             [attr.title]="item"
             (click)="copyToClipboard(item)"
           >
-            <span>{{ item }}</span
-            ><br />
-          </li>
-        </ul>
-      } @else if (this.selectedTabId() === 2) {
-        <header
-          style="position: sticky; top: 0; left: 0; z-index: 1; background-color: var(--general_contrasts-15); padding: 1rem 0;"
-        >
-          <h2>Base colors</h2>
-          <p style="margin: 0; color: var(--general_contrasts-100);">
-            Click on the color to copy the value
-            <strong>Please do not use the hex or rgb values.</strong>
-          </p>
-        </header>
-        <ul
-          style="display: flex; gap: 1rem; flex-wrap: wrap; list-style: none; padding: 0; justify-content: center;"
-        >
-          <li
-            *ngFor="let item of colorList; index as i; trackBy: trackByFn"
-            style="padding: 1rem; max-width: 250px; border-radius: var(--bmb-radius-m); text-align: center; width: 33.33%; min-width: 200px; cursor: pointer; user-select: none;"
-            [ngStyle]="parseStyle(item.hex)"
-            [attr.title]="item.name"
-            (click)="copyToClipboard(item)"
+            <span>{{ item }}</span>
+          </div>
+        }
+      </section>
+    </section>
+    <bmb-tabs
+      [tabs]="[
+        { id: 0, title: 'Gray (GED)' },
+        { id: 1, title: 'Named colors', isActive: true },
+        { id: 2, title: 'Base colors' },
+        { id: 3, title: 'Gradients' },
+        { id: 4, title: 'mitec' }
+      ]"
+      (selected)="handleTabChange($event)"
+    />
+    <section
+      style="max-height: 500px; overflow-y: auto; padding: 0 var(--bmb-spacing-m);"
+    >
+      @switch (this.selectedTabId()) {
+        @case (0) {
+          <header
+            style="position: sticky; top: 0; left: 0; z-index: 1; background-color: var(--general_contrasts-15); padding: var(--bmb-spacing-m) 0;"
           >
-            <span>{{ item.name }}</span
-            ><br />
-            <span>rgb: {{ item.rgb }}</span
-            ><br />
-            <span>hex: {{ item.hex }}</span>
-          </li>
-        </ul>
-      } @else if (this.selectedTabId() === 3) {
-        <header
-          style="position: sticky; top: 0; left: 0; z-index: 1; background-color: var(--general_contrasts-15); padding: 1rem 0;"
-        >
-          <h2>Gradients</h2>
-          <p style="margin: 0; color: var(--general_contrasts-100);">
-            Click on the gradient to copy the value
-          </p>
-        </header>
-        <ul
-          style="display: flex; gap: 1rem; flex-wrap: wrap; list-style: none; padding: 0; justify-content: center;"
-        >
-          <li
-            *ngFor="let item of gradientList; index as i; trackBy: trackByFn"
-            style="padding: 1rem 3rem; max-width: 450px; border-radius: var(--bmb-radius-m); text-align: center; width: calc(50% - 1rem); min-width: 300px; cursor: pointer; user-select: none;"
-            [ngStyle]="parseGradientStyle(item)"
-            [attr.title]="item"
-            (click)="copyToClipboard(item)"
+            <h2>Gray (GED)</h2>
+            <p style="margin: 0; color: var(--general_contrasts-100);">
+              Click on the Gray (GED) to copy the value
+            </p>
+          </header>
+          <ul
+            style="display: flex; gap: var(--bmb-spacing-m); flex-wrap: wrap; list-style: none; padding: 0; justify-content: center;"
           >
-            <span>{{ item }}</span
-            ><br />
-          </li>
-        </ul>
+            @for (item of grayGED; track $index) {
+              <li
+                style="padding: var(--bmb-spacing-m) 3rem; max-width: 450px; border-radius: var(--bmb-radius-m); text-align: center; width: calc(50% - var(--bmb-spacing-m)); min-width: 300px; cursor: pointer; user-select: none;"
+                [ngStyle]="parseNamedStyle(item)"
+                [attr.title]="item"
+                (click)="copyToClipboard(item)"
+              >
+                <span>{{ item }}</span
+                ><br />
+              </li>
+            }
+          </ul>
+        }
+        @case (1) {
+          <header
+            style="position: sticky; top: 0; left: 0; z-index: 1; background-color: var(--general_contrasts-15); padding: var(--bmb-spacing-m) 0;"
+          >
+            <h2>Named colors</h2>
+            <p style="margin: 0; color: var(--general_contrasts-100);">
+              Named colors are the main recommendation as they are compatible
+              with both themes (light and dark). Click on the color to copy the
+              value
+            </p>
+          </header>
+          <ul
+            style="display: flex; gap: var(--bmb-spacing-m); flex-wrap: wrap; list-style: none; padding: 0; justify-content: center;"
+          >
+            <li
+              *ngFor="let item of namedColors; index as i; trackBy: trackByFn"
+              style="padding: var(--bmb-spacing-m) 3rem; max-width: 450px; border-radius: var(--bmb-radius-m); text-align: center; width: calc(50% - var(--bmb-spacing-m)); min-width: 300px; cursor: pointer; user-select: none;"
+              [ngStyle]="parseNamedStyle(item)"
+              [attr.title]="item"
+              (click)="copyToClipboard(item)"
+            >
+              <span>{{ item }}</span
+              ><br />
+            </li>
+          </ul>
+        }
+        @case (2) {
+          <header
+            style="position: sticky; top: 0; left: 0; z-index: 1; background-color: var(--general_contrasts-15); padding: var(--bmb-spacing-m) 0;"
+          >
+            <h2>Base colors</h2>
+            <p style="margin: 0; color: var(--general_contrasts-100);">
+              Click on the color to copy the value
+              <strong>Please do not use the hex or rgb values.</strong>
+            </p>
+          </header>
+          <ul
+            style="display: flex; gap: var(--bmb-spacing-m); flex-wrap: wrap; list-style: none; padding: 0; justify-content: center;"
+          >
+            <li
+              *ngFor="let item of colorList; index as i; trackBy: trackByFn"
+              style="padding: var(--bmb-spacing-m); max-width: 250px; border-radius: var(--bmb-radius-m); text-align: center; width: 33.33%; min-width: 200px; cursor: pointer; user-select: none;"
+              [ngStyle]="parseStyle(item.hex)"
+              [attr.title]="item.name"
+              (click)="copyToClipboard(item)"
+            >
+              <span>{{ item.name }}</span
+              ><br />
+              <span>rgb: {{ item.rgb }}</span
+              ><br />
+              <span>hex: {{ item.hex }}</span>
+            </li>
+          </ul>
+        }
+        @case (3) {
+          <header
+            style="position: sticky; top: 0; left: 0; z-index: 1; background-color: var(--general_contrasts-15); padding: var(--bmb-spacing-m) 0;"
+          >
+            <h2>Gradients</h2>
+            <p style="margin: 0; color: var(--general_contrasts-100);">
+              Click on the gradient to copy the value
+            </p>
+          </header>
+          <ul
+            style="display: flex; gap: var(--bmb-spacing-m); flex-wrap: wrap; list-style: none; padding: 0; justify-content: center;"
+          >
+            <li
+              *ngFor="let item of gradientList; index as i; trackBy: trackByFn"
+              style="padding: var(--bmb-spacing-m) 3rem; max-width: 450px; border-radius: var(--bmb-radius-m); text-align: center; width: calc(50% - var(--bmb-spacing-m)); min-width: 300px; cursor: pointer; user-select: none;"
+              [ngStyle]="parseGradientStyle(item)"
+              [attr.title]="item"
+              (click)="copyToClipboard(item)"
+            >
+              <span>{{ item }}</span
+              ><br />
+            </li>
+          </ul>
+        }
+        @case (4) {
+          <header
+            style="position: sticky; top: 0; left: 0; z-index: 1; background-color: var(--general_contrasts-15); padding: var(--bmb-spacing-m) 0;"
+          >
+            <h2>mitec</h2>
+            <p style="margin: 0; color: var(--general_contrasts-100);">
+              Click on the mitec to copy the value
+            </p>
+          </header>
+          <ul
+            style="display: flex; gap: var(--bmb-spacing-m); flex-wrap: wrap; list-style: none; padding: 0; justify-content: center;"
+          >
+            <li
+              *ngFor="item of mitec; track $index"
+              style="padding: var(--bmb-spacing-m) 3rem; max-width: 450px; border-radius: var(--bmb-radius-m); text-align: center; width: calc(50% - var(--bmb-spacing-m)); min-width: 300px; cursor: pointer; user-select: none;"
+              [ngStyle]="parseNamedStyle(item)"
+              [attr.title]="item"
+              (click)="copyToClipboard(item)"
+            >
+              <span>{{ item }}</span
+              ><br />
+            </li>
+          </ul>
+        }
       }
     </section>
   `,
@@ -591,9 +661,33 @@ class StorybookColorsPlaygroundComponent {
     },
   };
 
+  institutional_colors = ['--institutional-blue-tec', '--white-primary'];
+
+  mitec = [
+    '--mitec_blue',
+    '--mitec_red',
+    '--mitec_green',
+    '--mitec_orange',
+    '--mitec_purple',
+  ];
+
+  grayGED = [
+    '--gray-ged-50',
+    '--gray-ged-100',
+    '--gray-ged-200',
+    '--gray-ged-300',
+    '--gray-ged-400',
+    '--gray-ged-500',
+    '--gray-ged-600',
+    '--gray-ged-700',
+    '--gray-ged-800',
+    '--gray-ged-900',
+    '--gray-ged-950',
+  ];
+
   namedColors = [
-    '--general_contrasts-150',
     '--general_contrasts-100',
+    '--general_contrasts-90',
     '--general_contrasts-75',
     '--general_contrasts-50',
     '--general_contrasts-25',
@@ -603,8 +697,6 @@ class StorybookColorsPlaygroundComponent {
     '--general_contrasts-main-complimentary',
     '--general_contrasts-main-selection',
     '--general_contrasts-main-selection-alternative',
-    '--input-error',
-    '--input-support-text',
     '--general_contrasts-input-background',
     '--general_contrasts-input-outline',
     '--general_contrasts-container-outline',
@@ -644,11 +736,11 @@ class StorybookColorsPlaygroundComponent {
     '--vertical-step-active',
     '--vertical-step-active-color',
     '--vertical-step-subtitle',
-    '--gris-charade-50',
-    '--gris-charade-100',
-    '--gris-charade-300',
-    '--gris-charade-500',
-    '--gris-charade-700',
+    '--gray-charade-50',
+    '--gray-charade-100',
+    '--gray-charade-300',
+    '--gray-charade-500',
+    '--gray-charade-700',
     '--azul-mariner-500',
     '--semantic-normal',
     '--semantic-strong',
@@ -658,11 +750,6 @@ class StorybookColorsPlaygroundComponent {
     '--semantic-error',
     '--semantic-brand',
     '--semantic-alert',
-    '--mitec_blue',
-    '--mitec_red',
-    '--mitec_green',
-    '--mitec_orange',
-    '--mitec_purple',
     '--creative-use-violet',
     '--creative-use-indigo',
     '--creative-use-emerald',
@@ -692,7 +779,7 @@ class StorybookColorsPlaygroundComponent {
     '--color-bg-wheel-tec',
   ];
 
-  selectedTabId = signal<number>(1);
+  selectedTabId = signal<number>(0);
 
   handleTabChange(selectedTab: IBmbTab) {
     console.log('Selected tab ID:', selectedTab);
@@ -707,11 +794,11 @@ class StorybookColorsPlaygroundComponent {
 
   colorList = this.getColorsList();
 
-  baseStyles = {
-    height: '100px',
-    flex: 1,
-    'border-radius': 'var(--bmb-radius-m)',
-  };
+  // baseStyles = {
+  //   height: '100px',
+  //   flex: 1,
+  //   'border-radius': 'var(--bmb-radius-m)',
+  // };
 
   parseStyle(color: string) {
     return {
@@ -730,19 +817,19 @@ class StorybookColorsPlaygroundComponent {
     return this.parseStyle(`linear-gradient(var(${color}))`);
   }
 
-  getBackgroundColor() {
-    return {
-      ...this.baseStyles,
-      background: `rgba(var(${this.color()}), 1)`,
-    };
-  }
+  // getBackgroundColor() {
+  //   return {
+  //     ...this.baseStyles,
+  //     background: `rgb(var(--color-mariner-50))`,
+  //   };
+  // }
 
-  getGradient() {
-    return {
-      ...this.baseStyles,
-      'background-image': `${this.type()}(var(${this.gradient()}))`,
-    };
-  }
+  // getGradient() {
+  //   return {
+  //     ...this.baseStyles,
+  //     'background-image': `${this.type()}(var(${this.gradient()}))`,
+  //   };
+  // }
 
   getColorsList(): any[] {
     const colorList = Object.entries(this.baseColors).map(([key, value]) => ({

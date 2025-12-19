@@ -14,14 +14,14 @@
 }
 
 $types: (
-  'tec': RGBA(var(--color-blue-primary)),
-  'success': RGBA(var(--color-green-primary)),
-  'info': RGBA(var(--color-neon-primary)),
-  'neutral': RGBA(var(--color-charade-300)),
-  'event': RGBA(var(--color-purple-light)),
-  'error': RGBA(var(--color-red-primary)),
-  'warning': RGBA(var(--color-mitec-orange)),
-  'black': RGBA(var(--color-black-primary)),
+  'tec': rgb(var(--color-blue-primary)),
+  'success': rgb(var(--color-green-primary)),
+  'info': rgb(var(--blue-primary)),
+  'neutral': rgb(var(--color-charade-300)),
+  'event': rgb(var(--color-purple-light)),
+  'error': rgb(var(--color-red-primary)),
+  'warning': rgb(var(--color-mitec-orange)),
+  'black': rgb(var(--color-black-primary)),
   'creative_violet': var(--creative-use-violet),
   'creative_indigo': var(--creative-use-indigo),
   'creative_emerald': var(--creative-use-emerald),
@@ -65,7 +65,7 @@ $types: (
     }
 
     .bmb_push-notification-item-icon {
-      background-color: RGBA(var(--color-white-primary));
+      background-color: rgb(var(--color-white-primary));
 
       @each $name, $color in $types {
         &-#{$name} {
@@ -119,14 +119,14 @@ $types: (
 
     &-date {
       width: max-content;
-      color: RGBA(var(--color-white-primary), 0.75);
+      color: rgba(var(--color-white-primary), 0.75);
     }
   }
 
   &-subtitle {
     @include fonts.font(3, regular);
     font-weight: 400;
-    color: RGBA(var(--color-white-primary), 0.5);
+    color: rgba(var(--color-white-primary), 0.5);
     margin-bottom: var(--bmb-spacing-xs);
     @include text-ellipsis();
   }
@@ -145,7 +145,7 @@ $types: (
     display: flex;
     align-items: center;
     justify-content: center;
-    color: RGBA(var(--color-white-primary));
+    color: rgb(var(--color-white-primary));
   }
 
   &-container {
@@ -245,7 +245,7 @@ $types: (
 
     &-mail {
       grid-area: mail;
-      color: RGBA(var(--color-white-primary), 0.5);
+      color: rgba(var(--color-white-primary), 0.5);
     }
   }
 }

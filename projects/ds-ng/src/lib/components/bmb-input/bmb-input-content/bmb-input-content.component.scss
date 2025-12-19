@@ -149,7 +149,7 @@
 
     &-error-icon {
       @include fonts.font(4_5, regular);
-      color: var(--input-error);
+      color: rgb(var(--color-red-light));
       position: absolute;
       top: rem.rem_calc(10);
       left: calc(100% - var(--bmb-spacing-l));

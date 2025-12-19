@@ -7,7 +7,6 @@ import {
   BmbLayoutItemDirective,
   BmbBookmarkComponent,
 } from '../../../../projects/ds-ng/src/public-api';
-// import { AnimeService } from '../../services/anime.service';
 
 @Component({
   selector: 'bmb-dropdown-page',

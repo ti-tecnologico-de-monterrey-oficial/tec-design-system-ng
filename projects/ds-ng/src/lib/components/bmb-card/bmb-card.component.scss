@@ -6,7 +6,7 @@ $types: (
   'primary': (
     'border': var(--buttons-stroke-primary-selected),
     'background': var(--buttons-text-link),
-    'color': var(--white-primary),
+    'color': rgb(var(--white-primary)),
   ),
   'secondary': (
     'border': var(--general_contrasts-container-outline),
@@ -16,12 +16,12 @@ $types: (
   'succes': (
     'border': var(--alert-successful),
     'background': var(--general_contrasts-main-selection-alternative),
-    'color': var(--white-primary),
+    'color': rgb(var(--white-primary)),
   ),
   'info': (
     'border': var(--alert-event),
     'background': var(--menu_select-alternative-focus-label),
-    'color': var(--white-primary),
+    'color': rgb(var(--white-primary)),
   ),
   'warning': (
     'border': var(--alert-warning),
@@ -31,7 +31,7 @@ $types: (
   'error': (
     'border': var(--buttons-destructive),
     'background': var(--alert-error-blend),
-    'color': var(--white-primary),
+    'color': rgb(var(--white-primary)),
   ),
   'normal': (
     'border': var(--general_contrasts-container-outline),

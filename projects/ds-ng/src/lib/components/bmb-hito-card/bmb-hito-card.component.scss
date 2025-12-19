@@ -57,7 +57,7 @@ $circleTypes: (
       align-items: center;
       align-self: center;
       border-radius: 50%;
-      color: var(--white-primary);
+      color: rgb(var(--white-primary));
       display: flex;
       grid-area: icon;
       height: rem.rem_calc(32);

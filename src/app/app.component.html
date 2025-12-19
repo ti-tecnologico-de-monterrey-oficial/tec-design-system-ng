@@ -1,4 +1,3 @@
-<bmb-theme initialTheme="dark" />
 <main
   bmbVerticalLayout
   gapSize="none"
@@ -141,8 +140,10 @@
     (alertButtonClick)="handleAlertButtonClick($event)"
     (helpButtonClick)="handleHelpButtonClick()"
     bmbVerticalLayoutItem
-  ></bmb-top-bar>
+  />
   <section bmbVerticalLayoutItem [rowGrow]="1">
+    <bmb-theme [showControls]="true" />
+    <bmb-divider type="dashed" />
     <router-outlet></router-outlet>
   </section>
   <bmb-sidebar [elements]="routes" />

@@ -1,0 +1,101 @@
+:root,
+[data-theme='light'],
+.storybook-light-theme .docs-story {
+  --general-contrasts: rgb(var(--black-primary));
+
+  --general-contrasts-container: rgb(var(--color-charade-800));
+
+  --containers-background-fade: rgb(var(--color-charade-200));
+
+  --buttons-destructive: rgb(var(--color-red-primary));
+
+  --alert-successful: rgb(var(--color-green-primary));
+  --alert-event: rgb(var(--color-purple-light));
+  --alert-event-tint: rgb(var(--color-purple-tint));
+  --alert-neutral: rgb(var(--color-charade-300));
+  --alert-warning: rgb(var(--color-yellow-primary));
+  --alert-error: rgb(var(--color-red-primary));
+  --alert-error-blend: rgb(var(--color-red-light));
+
+  --menu-select-on-surface-hovered-border: rgba(var(--blue-mariner-700), 0.1);
+
+  // Semantic colors
+  --semantic-normal: rgb(var(--color-charade-500));
+  --semantic-strong: rgb(var(--blue-mariner-200));
+
+  // mitec colors
+  --mitec-blue: rgb(var(--mitec-blue-primary));
+  --mitec-red: rgb(var(--mitec-red-primary));
+  --mitec-green: rgb(var(--mitec-green-primary));
+  --mitec-orange: rgb(var(--mitec-orange-primary));
+  --mitec-purple: rgb(var(--mitec-purple-primary));
+
+  --color-table-900: rgb(var(--color-charade-900));
+  --color-table-btn-900: rgb(var(--color-charade-900));
+  --track-progress-bar: rgb(var(--color-green-primary));
+  --vertical-step-active: rgb(var(--color-charade-50));
+  --vertical-step-active-color: rgb(var(--color-charade-700));
+  --vertical-step-subtitle: rgb(var(--color-charade-700));
+
+  --buttons-active-switch-box-shadow-hover: rgba(
+    var(--color-mariner-700),
+    0.15
+  );
+  --buttons-active-switch-box-shadow-focus: rgba(
+    var(--color-mariner-700),
+    0.25
+  );
+  --buttons-inactive-switch-box-shadow-hover: rgba(
+    var(--color-charade-500),
+    0.15
+  );
+  --buttons-inactive-switch-box-shadow-focus: rgba(
+    var(--color-charade-500),
+    0.25
+  );
+  --drop_shadow-color-test-shadow: rgba(var(--color-black-primary), 0.2);
+}
+
+[data-theme='dark'],
+.storybook-dark-theme,
+.storybook-dark-theme .docs-story {
+  --general-contrasts: rgb(var(--white-primary));
+
+  --general_contrasts-container: rgb(var(--color-charade-300));
+
+  --containers-background-fade: rgb(var(--color-charade-950));
+
+  --buttons-destructive: rgb(var(--color-red-light));
+
+  --menu-select-on-surface-hovered-border: rgba(var(--color-charade-500), 0.1);
+
+  // Semantic colors
+  --semantic-normal: rgb(var(--color-charade-500));
+  --semantic-strong: rgb(var(--blue-mariner-200));
+
+  // mitec colors
+  --mitec-blue: rgb(var(--mitec-blue-light));
+  --mitec-red: rgb(var(--mitec-red-light));
+  --mitec-green: rgb(var(--mitec-green-light));
+  --mitec-orange: rgb(var(--mitec-orange-light));
+  --mitec-purple: rgb(var(--mitec-purple-tint));
+
+  --color-table-900: rgb(var(--color-charade-100));
+  --color-table-btn-900: rgb(var(--color-charade-50));
+
+  --track-progress-bar: rgb(var(--color-green-light));
+  --vertical-step-active: rgb(var(--color-charade-700));
+  --vertical-step-active-color: rgb(var(--color-charade-50));
+  --vertical-step-subtitle: rgb(var(--color-charade-500));
+
+  --buttons-active-switch-box-shadow-hover: rgba(
+    var(--color-green-light),
+    0.15
+  );
+  --buttons-active-switch-box-shadow-focus: rgba(
+    var(--color-green-light),
+    0.25
+  );
+
+  --drop_shadow-color-test-shadow: rgba(var(--color-black-primary), 0.2);
+}
