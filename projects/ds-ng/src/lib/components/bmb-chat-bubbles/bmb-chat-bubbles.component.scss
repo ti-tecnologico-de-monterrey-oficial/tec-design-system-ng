@@ -52,7 +52,8 @@
     @include fonts.font(4, regular);
     min-height: rem.rem_calc(45);
     width: fit-content;
-    border-radius: var(--bmb-radius-4) var(--bmb-radius-4) var(--bmb-radius-4) var(--bmb-radius-none);
+    border-radius: var(--bmb-radius-4) var(--bmb-radius-4) var(--bmb-radius-4)
+      var(--bmb-radius-none);
     padding: var(--bmb-radius-m);
     box-shadow: rem.rem_calc(0 2 5) rgba(0, 0, 0, 0.1);
 
@@ -61,7 +62,8 @@
     }
 
     &-top {
-      border-radius: var(--bmb-radius-none) var(--bmb-radius-4) var(--bmb-radius-4) var(--bmb-radius-4);
+      border-radius: var(--bmb-radius-none) var(--bmb-radius-4)
+        var(--bmb-radius-4) var(--bmb-radius-4);
       background-color: var(--general_contrasts-20);
     }
 
@@ -77,12 +79,14 @@
     }
 
     &-userProfile-bottom {
-      border-radius: var(--bmb-radius-4) var(--bmb-radius-4) var(--bmb-radius-none) var(--bmb-radius-4);
+      border-radius: var(--bmb-radius-4) var(--bmb-radius-4)
+        var(--bmb-radius-none) var(--bmb-radius-4);
       background-color: var(--general_contrasts-5);
     }
 
     &-userProfile-top {
-      border-radius: var(--bmb-radius-4) var(--bmb-radius-none) var(--bmb-radius-4) var(--bmb-radius-4);
+      border-radius: var(--bmb-radius-4) var(--bmb-radius-none)
+        var(--bmb-radius-4) var(--bmb-radius-4);
     }
 
     &-thinking-dots {
