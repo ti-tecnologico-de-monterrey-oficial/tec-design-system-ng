@@ -55,7 +55,7 @@
         width: rem.rem_calc(4);
         height: rem.rem_calc(4);
         background-color: var(--general_contrasts-input-outline);
-        border-radius: 50%;
+        border-radius: var(--bmb-radius-full);
         position: absolute;
         bottom: 0;
         opacity: 0.55;
@@ -69,7 +69,7 @@
 
     &-button {
       width: rem.rem_calc(32);
-      border-radius: 50%;
+      border-radius: var(--bmb-radius-full);
       aspect-ratio: 1/1;
       min-height: auto;
       opacity: 0.55;

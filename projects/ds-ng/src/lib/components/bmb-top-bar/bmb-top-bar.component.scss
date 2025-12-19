@@ -265,7 +265,7 @@
       display: inline-block;
       line-height: 0;
       overflow: hidden;
-      border-radius: 50%;
+      border-radius: var(--bmb-radius-full);
     }
   }
 }

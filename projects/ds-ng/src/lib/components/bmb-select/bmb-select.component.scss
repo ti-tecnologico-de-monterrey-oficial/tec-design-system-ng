@@ -8,7 +8,7 @@
   &-input {
     border: rem.rem_calc(1) solid RGBA(var(--color-charade-500));
     padding: rem.rem_calc(8);
-    border-radius: rem.rem_calc(8);
+    border-radius: var(--bmb-radius-2);
     display: flex;
     gap: rem.rem_calc(16);
     cursor: pointer;
@@ -32,7 +32,7 @@
     list-style: none;
     padding: 0;
     margin: 0;
-    border-radius: rem.rem_calc(8);
+    border-radius: var(--bmb-radius-2);
     overflow: hidden;
 
     &-open {

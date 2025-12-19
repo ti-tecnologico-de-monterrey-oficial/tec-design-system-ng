@@ -141,7 +141,7 @@ $types: (
     font-size: rem.rem_calc(24);
     width: rem.rem_calc(32);
     height: rem.rem_calc(32);
-    border-radius: 50%;
+    border-radius: var(--bmb-radius-full);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -169,7 +169,7 @@ $types: (
   &-media {
     margin: 1rem 0 0;
     overflow: hidden;
-    border-radius: 8px;
+    border-radius: var(--bmb-radius-2);
     max-height: 200px;
 
     &-picture {

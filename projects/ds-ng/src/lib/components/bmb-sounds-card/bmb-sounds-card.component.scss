@@ -19,7 +19,7 @@
       &-btn {
         width: rem.rem_calc(80);
         height: rem.rem_calc(80);
-        border-radius: 50%;
+        border-radius: var(--bmb-radius-full);
         padding: 0;
         margin: 0;
 
@@ -88,7 +88,7 @@
         margin: rem.rem_calc(10 0);
         height: rem.rem_calc(8);
         background-color: RGBA(var(--color-mariner-50));
-        border-radius: rem.rem_calc(5);
+        border-radius: var(--bmb-radius-1);
       }
 
       &-range::-webkit-slider-thumb {
@@ -96,7 +96,7 @@
         appearance: none;
         width: rem.rem_calc(8);
         height: rem.rem_calc(8);
-        border-radius: 50%;
+        border-radius: var(--bmb-radius-full);
         background-color: RGBA(var(--color-charade-950));
         cursor: pointer;
       }

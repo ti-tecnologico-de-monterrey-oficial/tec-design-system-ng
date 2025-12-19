@@ -91,7 +91,7 @@
 
     &::after {
       background-color: rgb(var(--color-white-primary));
-      border-radius: 50%;
+      border-radius: var(--bmb-radius-full);
       bottom: 0;
       content: '';
       height: rem.rem_calc(32);

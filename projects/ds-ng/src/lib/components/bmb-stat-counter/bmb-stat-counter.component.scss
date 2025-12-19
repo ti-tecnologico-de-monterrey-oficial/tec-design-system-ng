@@ -82,7 +82,7 @@
   &-step {
     align-items: center;
     background: var(--buttons-inactive-step);
-    border-radius: 50%;
+    border-radius: var(--bmb-radius-full);
     color: var(--general_contrasts-100);
     cursor: pointer;
     display: flex;

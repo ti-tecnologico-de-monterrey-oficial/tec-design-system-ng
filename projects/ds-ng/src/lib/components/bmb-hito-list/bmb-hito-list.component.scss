@@ -65,7 +65,7 @@
         width: rem.rem_calc(8);
         height: rem.rem_calc(8);
         background-color: var(--general_contrasts-90);
-        border-radius: 50%;
+        border-radius: var(--bmb-radius-full);
       }
 
       &-current {
