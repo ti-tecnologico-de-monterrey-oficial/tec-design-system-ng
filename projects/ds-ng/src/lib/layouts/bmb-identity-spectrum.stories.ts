@@ -407,21 +407,21 @@ const HTML_TEMPLATE: string = `
     <bmb-form-validator [(formGroup)]="userForm">
       <section bmbVerticalLayout gapSize="m">
         <bmb-input
-          id="email_id"
+          inputId="email_id"
           name="email"
           label="Correo personal"
           value="paraujo@gmail.com"
           bmbVerticalLayoutItem
         />
         <bmb-input
-          id="celphone_id"
+          inputId="celphone_id"
           name="celphone"
           label="Teléfono móvil"
           value="8123456789"
           bmbVerticalLayoutItem
         />
         <bmb-input
-          id="phone_id"
+          inputId="phone_id"
           name="phone"
           label="Teléfono local"
           value="8123456789"
@@ -432,7 +432,7 @@ const HTML_TEMPLATE: string = `
             <bmb-input
               type="text-area"
               [showMaxTextLength]="false"
-              id="permanent_address_id"
+              inputId="permanent_address_id"
               name="permanent_address"
               label="Dirección permanente"
               value="Av. Eugenio Garza Sada 2501 Col. Tecnológico CP 64700, Monterrey Nuevo León, México"
@@ -442,7 +442,7 @@ const HTML_TEMPLATE: string = `
             <bmb-input
               type="text-area"
               [showMaxTextLength]="false"
-              id="residential_address_id"
+              inputId="residential_address_id"
               name="residential_address"
               label="Dirección de residencia"
               value="Av. Eugenio Garza Sada 2501 Col. Tecnológico CP 64700, Monterrey Nuevo León, México"

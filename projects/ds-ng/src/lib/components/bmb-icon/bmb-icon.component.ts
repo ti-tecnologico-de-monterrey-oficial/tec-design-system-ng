@@ -12,7 +12,6 @@ import {
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { buildErrorMessage, isImage } from '../../utils/utils';
-import { StyleIconType } from './types';
 import { BmbNotificationCounterComponent } from '../bmb-notification-counter/bmb-notification-counter.component';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { BmbIconService } from '../../services/icon/icon.service';
@@ -28,10 +27,7 @@ import { BmbIconService } from '../../services/icon/icon.service';
 })
 export class BmbIconComponent implements OnInit {
   icon = input<string>('');
-  materialIcon = input<boolean>(false); // Deprecated
-  styleIcon = input<StyleIconType>('material-symbols-rounded'); // Deprecated
   isFill = input<boolean>(true);
-  fontWeight = input<string>('400'); // Deprecated
   size = input<number | undefined>();
   alt = input<string>('');
   dotNotification = input<number>();
@@ -113,7 +109,7 @@ export class BmbIconComponent implements OnInit {
 
   getFontVariationSettings(): string {
     const fill = this.isFill() ? "'FILL' 1" : "'FILL' 0";
-    const weight = `'wght' ${this.fontWeight()}`;
+    const weight = 'wght 400';
     return `${fill}, ${weight}`;
   }
 

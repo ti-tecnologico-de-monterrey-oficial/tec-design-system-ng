@@ -52,7 +52,6 @@ export class BmbTotpComponent {
   helperText = input<string>('');
   showButton = input<boolean>(false);
   buttonText = input<string>('');
-  maxCode = input<number>(6); //Deprecated
   disableButton = input<boolean>(false);
 
   handleSubmit = output<string>();
@@ -117,8 +116,11 @@ export class BmbTotpComponent {
   }
 
   @HostListener('keydown', ['$event'])
-  handleKeyDown(event: KeyboardEvent, idx: number): void {
+  handleKeyDown(event: KeyboardEvent): void {
     const input = event.target as HTMLInputElement;
+    const inputId = input.id;
+    const match = inputId.match(/code_.*_(\d+)$/);
+    const idx = match ? parseInt(match[1], 10) : -1;
 
     if (event.key === 'Backspace' && input.value.length === 0 && idx > 0) {
       const previousInput = document.getElementById(

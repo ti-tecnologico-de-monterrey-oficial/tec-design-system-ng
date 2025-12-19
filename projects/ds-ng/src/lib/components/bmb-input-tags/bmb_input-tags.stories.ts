@@ -148,7 +148,6 @@ ${getBasicExampleBlock('BmbInputTagsComponent', '', additionalBlock)}
     },
     tooltip: DBmbInputParamDesc.tooltip,
     tooltipPosition: DBmbInputParamDesc.tooltipPosition,
-    maxSelectedItems: DBmbGenericParamDesc.deprecated,
     inputId: DBmbInputParamDesc.inputId,
     name: DBmbInputParamDesc.name,
     value: DBmbInputParamDesc.value,

@@ -56,7 +56,6 @@ export class BmbContainerButtonComponent {
   iconLeft = input<string>('');
   isUserImage = input<boolean>(false);
   iconRight = input<string>('');
-  setButtonTemplate = input<boolean>(); //Deprecated
   badgeText = input<string>('');
   badgeAppearance = input<IBbmBgAppearance>('normal');
   state = input<'disabled' | 'error'>();

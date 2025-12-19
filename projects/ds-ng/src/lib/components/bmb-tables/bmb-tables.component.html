@@ -41,11 +41,9 @@
 
                 @case ('date') {
                   <bmb-date-range
-                    [label]="column.label"
                     [placeholderStartDate]="'Desde'"
                     [placeholderEndDate]="'Hasta'"
                     [icon]="'calendar_month'"
-                    [appearance]="'normal'"
                     [dateFormat]="'dd/MM/yyyy'"
                     [controlStart]="getFormControl(column.dataKey + '_from')"
                     [controlEnd]="getFormControl(column.dataKey + '_to')"

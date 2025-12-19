@@ -63,15 +63,6 @@ ${getBasicExampleBlock('BmbCardButtonComponent')}
     },
   },
   argTypes: {
-    iconTemplate: {
-      control: false,
-      description: '',
-      table: {
-        category: 'Template',
-        defaultValue: getDefaultValueControl(),
-        type: { summary: 'TemplateRef' },
-      },
-    },
     isSmall: {
       control: { type: 'boolean' },
       description: 'Sets the toggle between regular and small card button.',

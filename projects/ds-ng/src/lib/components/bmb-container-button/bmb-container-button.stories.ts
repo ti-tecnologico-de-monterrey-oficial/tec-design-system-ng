@@ -166,7 +166,6 @@ ${getBasicExampleBlock('BmbContainerButtonComponent')}
       },
     },
     badgeAppearance: getAppearanceParam('the badge', appearanceOptions),
-    setButtonTemplate: DBmbGenericParamDesc.deprecated,
     enableSecondaryAction: {
       control: { type: 'boolean' },
       description:

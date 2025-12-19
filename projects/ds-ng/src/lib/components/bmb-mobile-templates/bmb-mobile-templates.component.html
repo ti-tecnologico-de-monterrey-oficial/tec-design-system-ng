@@ -114,7 +114,6 @@
         [subtitle]="button.subtitle || ''"
         [iconLeft]="button.iconLeft"
         iconRight="chevron_right"
-        [setButtonTemplate]="!!button.onButton"
         (onButton)="(button.onButton)"
         [square]="template() === 'header-with-card-list'"
       />
@@ -132,7 +131,6 @@
     [calendarTimezone]="calendarTimezone()"
     [clientTimezone]="clientTimezone()"
     [lang]="lang()"
-    [currentDate]="currentDate()"
     [height]="height"
   />
 </ng-template>

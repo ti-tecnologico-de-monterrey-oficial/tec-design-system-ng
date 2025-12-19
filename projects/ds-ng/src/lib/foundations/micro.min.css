@@ -3417,7 +3417,7 @@ ion-content {
   }
 }
 ::-webkit-scrollbar-thumb {
-  background-color: RGBA(var(--color-charade-500));
+  background-color: var(--general_contrasts-25);
   border-radius: 1.25rem;
 }
 ::-webkit-scrollbar-track {
@@ -3425,17 +3425,6 @@ ion-content {
 }
 ::-webkit-scrollbar-corner {
   background: rgba(0, 0, 0, 0);
-}
-[data-theme='dark'] ::-webkit-scrollbar-thumb,
-.storybook-dark-theme ::-webkit-scrollbar-thumb {
-  background-color: RGBA(var(--color-charade-700));
-  border-radius: 1.25rem;
-  border: var(--bmb-border-inherit-1-solid);
-  border-color: RGBA(var(--color-charade-700));
-}
-[data-theme='dark'] ::-webkit-scrollbar-track,
-.storybook-dark-theme ::-webkit-scrollbar-track {
-  border-radius: 1.25rem;
 }
 .bmb_accordion {
   font-family: 'Poppins-Regular', sans-serif;
@@ -3898,52 +3887,60 @@ ion-content {
   flex-direction: column;
 }
 .bmb_card.bmb_card-type-primary {
-  --border-color: RGBA(var(--color-mariner-900));
-  background-color: RGBA(var(--color-mariner-700));
+  --border-color: var(--buttons-stroke-primary-selected);
+  --text-color: var(--white-primary);
+  background-color: var(--buttons-text-link);
   border-color: var(--border-color);
-  color: RGBA(var(--color-charade-50));
+  color: var(--white-primary);
 }
 .bmb_card.bmb_card-type-secondary {
-  --border-color: RGBA(var(--color-charade-300));
-  background-color: RGBA(var(--color-white-primary));
+  --border-color: var(--general_contrasts-container-outline);
+  --text-color: var(--general_contrasts-100);
+  background-color: var(-general_contrasts-20);
   border-color: var(--border-color);
-  color: RGBA(var(--color-charade-950));
+  color: var(--general_contrasts-100);
 }
 .bmb_card.bmb_card-type-succes {
-  --border-color: RGBA(var(--color-green-primary));
-  background-color: RGBA(var(--color-green-light));
+  --border-color: var(--alert-successful);
+  --text-color: var(--white-primary);
+  background-color: var(--general_contrasts-main-selection-alternative);
   border-color: var(--border-color);
-  color: RGBA(var(--color-charade-50));
+  color: var(--white-primary);
 }
 .bmb_card.bmb_card-type-info {
-  --border-color: RGBA(var(--color-purple-light));
-  background-color: RGBA(var(--color-purple-primary));
+  --border-color: var(--alert-event);
+  --text-color: var(--white-primary);
+  background-color: var(--menu_select-alternative-focus-label);
   border-color: var(--border-color);
-  color: RGBA(var(--color-charade-50));
+  color: var(--white-primary);
 }
 .bmb_card.bmb_card-type-warning {
-  --border-color: RGBA(var(--color-yellow-primary));
-  background-color: RGBA(var(--color-yellow-tint));
+  --border-color: var(--alert-warning);
+  --text-color: rgba(var(--color-charade-950));
+  background-color: rgba(var(--color-yellow-tint), 1);
   border-color: var(--border-color);
-  color: RGBA(var(--color-charade-950));
+  color: rgba(var(--color-charade-950));
 }
 .bmb_card.bmb_card-type-error {
-  --border-color: RGBA(var(--color-red-primary));
-  background-color: RGBA(var(--color-red-light));
+  --border-color: var(--buttons-destructive);
+  --text-color: var(--white-primary);
+  background-color: var(--alert-error-blend);
   border-color: var(--border-color);
-  color: RGBA(var(--color-charade-950));
+  color: var(--white-primary);
 }
 .bmb_card.bmb_card-type-normal {
-  --border-color: RGBA(var(--color-charade-300));
-  background-color: RGBA(var(--color-charade-100));
+  --border-color: var(--general_contrasts-container-outline);
+  --text-color: var(--general_contrasts-100);
+  background-color: var(--containers-main);
   border-color: var(--border-color);
-  color: RGBA(var(--color-charade-950));
+  color: var(--general_contrasts-100);
 }
 .bmb_card.bmb_card-type-transparent {
-  --border-color: RGBA(var(--color-charade-300));
+  --border-color: var(--general_contrasts-container-outline);
+  --text-color: var(--general_contrasts-100);
   background-color: rgba(0, 0, 0, 0);
   border-color: var(--border-color);
-  color: RGBA(var(--color-charade-950));
+  color: var(--general_contrasts-100);
 }
 .bmb_card.bmb_card-box-shadow-1 {
   box-shadow: var(--bmb-box-shadow-1);
@@ -3971,6 +3968,7 @@ ion-content {
 .bmb_card-header h3 {
   font-family: 'Poppins-Regular', sans-serif;
   font-size: 1rem;
+  color: var(--text-color);
 }
 .bmb_card-footer {
   font-family: 'Poppins-Regular', sans-serif;
@@ -3990,31 +3988,6 @@ ion-content {
 }
 .bmb_card-content-with-radius {
   border-radius: var(--bmb-border-radius);
-}
-[data-theme='dark'] .bmb_card.bmb_card-type-secondary,
-.storybook-dark-theme .bmb_card.bmb_card-type-secondary {
-  background-color: RGBA(var(--color-charade-950));
-  border-color: RGBA(var(--color-charade-800));
-  color: RGBA(var(--color-charade-50));
-}
-[data-theme='dark'] .bmb_card.bmb_card-type-normal,
-.storybook-dark-theme .bmb_card.bmb_card-type-normal {
-  background-color: RGBA(var(--color-charade-900));
-  border-color: RGBA(var(--color-charade-800));
-  color: RGBA(var(--color-charade-50));
-}
-[data-theme='dark'] .bmb_card.bmb_card-type-transparent,
-.storybook-dark-theme .bmb_card.bmb_card-type-transparent {
-  border-color: RGBA(var(--color-charade-800));
-  color: RGBA(var(--color-charade-50));
-}
-[data-theme='dark'] .bmb_card-header,
-.storybook-dark-theme .bmb_card-header {
-  border-bottom-color: RGBA(var(--color-charade-800));
-}
-[data-theme='dark'] .bmb_card-footer,
-.storybook-dark-theme .bmb_card-footer {
-  border-top-color: RGBA(var(--color-charade-800));
 }
 .bmb_checkbox-input {
   opacity: 0;

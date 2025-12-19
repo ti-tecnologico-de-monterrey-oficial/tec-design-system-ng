@@ -30,7 +30,6 @@ import {
 })
 export class BmbCheckboxComponent implements OnInit {
   name = input<string>(getUUID());
-  id = input<string>(); //Deprecated
   disabled = input<boolean>(false);
   required = input<boolean>(false);
   value = input<string>('');
@@ -54,10 +53,6 @@ export class BmbCheckboxComponent implements OnInit {
   isControlNull: boolean = false;
 
   ngOnInit(): void {
-    if (!!this.id() && !this.inputId()) {
-      this.inputId.set(this.id()!);
-    }
-
     if (!this.control()) {
       this.control.set(
         assignNewFormControl(this.name(), this.control(), 'checkbox')!,
