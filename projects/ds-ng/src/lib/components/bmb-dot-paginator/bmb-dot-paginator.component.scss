@@ -33,7 +33,7 @@
 
   &-secondary {
     background-color: var(--general_contrasts-50);
-    border-radius: rem.rem_calc(40);
+    border-radius: var(--bmb-radius-10);
     padding: rem.rem_calc(12);
 
     .dot {
@@ -42,7 +42,7 @@
       width: rem.rem_calc(6);
 
       &.active {
-        border-radius: rem.rem_calc(30);
+        border-radius: var(--bmb-radius-1);
         height: rem.rem_calc(6);
         width: rem.rem_calc(16);
       }

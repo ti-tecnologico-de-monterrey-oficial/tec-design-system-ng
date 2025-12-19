@@ -216,7 +216,7 @@
       align-items: center;
       background-color: var(--containers-container-button);
       border: rem.rem_calc(1) solid var(--general_contrasts-50);
-      border-radius: rem.rem_calc(16);
+      border-radius: var(--bmb-radius-4);
       color: var(--general_contrasts-100);
       display: inline-flex;
       min-height: rem.rem_calc(80);

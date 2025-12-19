@@ -139,12 +139,12 @@
 
     &::-webkit-scrollbar-thumb {
       background-color: var(--buttons-inactive-step);
-      border-radius: rem.rem_calc(20);
+      border-radius: var(--bmb-radius-5);
       border: rem.rem_calc(1) solid var(--buttons-inactive-step);
     }
 
     &::-webkit-scrollbar-track {
-      border-radius: rem.rem_calc(10);
+      border-radius: var(--bmb-radius-3);
     }
 
     &-error-icon {
