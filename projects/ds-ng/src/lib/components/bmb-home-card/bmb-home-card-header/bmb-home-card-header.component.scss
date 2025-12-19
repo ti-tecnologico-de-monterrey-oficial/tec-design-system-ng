@@ -8,6 +8,11 @@
     width: 100%;
   }
 
+  &-chat-actions {
+    display: flex;
+    gap: rem.rem_calc(10);
+  }
+
   .bmb_three-cols {
     > *:empty {
       display: none;

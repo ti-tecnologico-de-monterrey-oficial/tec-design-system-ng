@@ -34,6 +34,7 @@ export class BmbProjectedContentComponent {
   showBackdrop = input<boolean>(true);
   outputContext = input<{ [key: string]: (value: any) => void }>({});
   focusOnOpen = input<boolean>(true);
+  dialogClass = input<string | string[] | Record<string, boolean>>('');
 
   removeContent = output<void>();
 
@@ -155,5 +156,23 @@ export class BmbProjectedContentComponent {
     if (this.componentRef) {
       this.componentRef.destroy();
     }
+  }
+
+  dialogNgClass() {
+    const baseClasses: Record<string, boolean> = {
+      'bmb_projected-content-fix-size': this.fixSizeToRef(),
+    };
+
+    const custom = this.dialogClass();
+
+    if (typeof custom === 'string') {
+      custom.split(' ').forEach((c) => (baseClasses[c] = true));
+    } else if (Array.isArray(custom)) {
+      custom.forEach((c) => (baseClasses[c] = true));
+    } else if (typeof custom === 'object' && custom !== null) {
+      Object.assign(baseClasses, custom);
+    }
+
+    return baseClasses;
   }
 }

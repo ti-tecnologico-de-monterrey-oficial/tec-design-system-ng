@@ -4,7 +4,10 @@ import {
   getBasicExampleBlock,
   getGeneralDescription,
 } from '../../utils/doc/utils';
-import { DBmbInputParamDesc } from '../../utils/doc/parameterDescriptions';
+import {
+  DBmbIconParamDesc,
+  DBmbInputParamDesc,
+} from '../../utils/doc/parameterDescriptions';
 
 const importComments = `// optional you can customize the bot list from:
 // import { defaultBotList, IBotType } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
@@ -137,6 +140,10 @@ This is a model signal, so it is possible to use it as:
         defaultValue: { summary: 'false' },
       },
     },
+    emojiIcon: {
+      ...DBmbIconParamDesc.icon,
+      description: `${DBmbIconParamDesc.icon.description}<br/><br/> This icon will be used in the toggle functionality, as long as \`showEmoji\` is *true*. `,
+    },
     isLoading: {
       control: { type: 'boolean' },
       description: `
@@ -240,6 +247,7 @@ This is a model signal, so it is possible to use it as:
     ],
     currentBot: { name: 'TecBot', icon: 'bot_tecStandar' },
     showEmoji: false,
+    emojiIcon: 'mood',
   },
 } as Meta<typeof BmbChatBarComponent>;
 

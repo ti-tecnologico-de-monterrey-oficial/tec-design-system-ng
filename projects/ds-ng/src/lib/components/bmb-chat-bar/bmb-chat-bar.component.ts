@@ -58,6 +58,7 @@ export class BmbChatBarComponent {
   botList = input<IBotType[]>(defaultBotList);
   actionsList = input<IChatBarActions[]>([]);
   showEmoji = input<boolean>(false);
+  emojiIcon = input<string>('');
   enableMicInput = input<boolean>(false);
 
   currentBot = model<IBotType>();
