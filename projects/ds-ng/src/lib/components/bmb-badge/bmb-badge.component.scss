@@ -49,7 +49,7 @@
   }
 
   &-container {
-    border-radius: rem.rem_calc(40);
+    border-radius: var(--bmb-radius-10);
     min-height: rem.rem_calc(24);
     padding: rem.rem_calc(0 12);
 

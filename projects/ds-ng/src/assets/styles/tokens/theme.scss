@@ -98,7 +98,7 @@
         background-color: var(--general_contrasts-75);
         color: var(--general_contrasts-5);
         border: 1px solid var(--general_contrasts-75);
-        border-radius: 12px;
+        border-radius: var(--bmb-radius-3);
       }
     }
 
@@ -210,7 +210,7 @@
         background-color: var(--general_contrasts-50);
         color: var(--general_contrasts-100);
         border: 1px solid var(--general_contrasts-50);
-        border-radius: 12px;
+        border-radius: var(--bmb-radius-3);
       }
 
       select,
@@ -260,7 +260,7 @@
         background-color: var(--general_contrasts-50);
         color: var(--general_contrasts-100);
         border: 1px solid var(--general_contrasts-50);
-        border-radius: 4px;
+        border-radius: var(--bmb-radius-1);
       }
 
       .rejt-value-node {
@@ -268,7 +268,7 @@
           background-color: var(--general_contrasts-50);
           color: var(--general_contrasts-100);
           border: 1px solid var(--general_contrasts-50);
-          border-radius: 4px;
+          border-radius: var(--bmb-radius-1);
         }
       }
 
@@ -398,7 +398,7 @@ img {
   align-items: center;
   position: relative;
   background-color: #eef3f8;
-  border-radius: 5px;
+  border-radius: var(--bmb-radius-1);
   border: 1px solid rgba(0, 0, 0, 0.05);
   height: 180px;
   margin-bottom: 48px;
@@ -527,7 +527,7 @@ img {
 
 //Storybook alert blockquote
 @mixin markdown-alert-text() {
-  border-radius: 0.5rem 0.5rem 0.5rem 0;
+  border-radius: var(--bmb-radius-2) var(--bmb-radius-2) var(--bmb-radius-2) 0;
   padding: 0.5rem !important;
   margin: 0 !important;
 

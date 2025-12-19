@@ -46,7 +46,7 @@
   }
 
   &-open {
-    border-radius: rem.rem_calc(0 0 0 0);
+    border-radius: var(--bmb-radius-none);
   }
 
   &-animated {
@@ -78,7 +78,7 @@
     align-items: center;
     position: relative;
     width: rem.rem_calc(40);
-    border-radius: rem.rem_calc(20);
+    border-radius: var(--bmb-radius-5);
 
     &-icon {
       position: absolute;
