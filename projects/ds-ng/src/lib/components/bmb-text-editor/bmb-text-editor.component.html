@@ -15,6 +15,8 @@
           {{ 'text_editor.appointment' | translate }}
         </option>
       </select>
+    </span>
+    <span class="bmb_text-editor-header-group hide-on-mobile">
       <button
         bmbButton
         appearance="transparent"
@@ -52,7 +54,24 @@
         [title]="'text_editor.fore_color' | translate"
       />
     </span>
-
+    <span class="bmb_text-editor-header-group bmb_text-editor-header-actions">
+      <input
+        id="BmbTextEditorColorExt"
+        type="color"
+        (change)="handleChange($event, 'foreColor')"
+        [title]="'text_editor.fore_color' | translate"
+      />
+      <bmb-action-icon
+        icon="text_format"
+        [iconSize]="24"
+        (buttonClick)="handleInsertDialog($event)"
+      />
+      <bmb-action-icon
+        icon="more_horiz"
+        [iconSize]="24"
+        (buttonClick)="handleMoreDialog($event)"
+      />
+    </span>
     <span class="bmb_text-editor-header-group hide-on-mobile">
       <button
         bmbButton
@@ -135,7 +154,7 @@
       </button>
     </span>
 
-    <span class="bmb_text-editor-header-group hide-on-mobile">
+    <span class="bmb_text-editor-header-group">
       <button
         bmbButton
         appearance="transparent"
@@ -156,9 +175,6 @@
       >
         <bmb-icon icon="image" [size]="24" />
       </button>
-      <!-- <button bmbButton appearance="transparent" size="micro" type="button" (click)="openTableDialog()" title="Insertar tabla">
-        <bmb-icon icon="table_chart" [size]="24"/>
-      </button> -->
     </span>
 
     <span class="bmb_text-editor-header-group">
@@ -172,20 +188,6 @@
       >
         <bmb-icon icon="format_clear" [size]="24" />
       </button>
-    </span>
-
-    <span class="bmb_text-editor-header-actions">
-      <bmb-action-icon
-        icon="more_horiz"
-        [iconSize]="24"
-        (buttonClick)="handleMoreDialog($event)"
-      />
-
-      <bmb-action-icon
-        icon="add_circle"
-        [iconSize]="24"
-        (buttonClick)="handleInsertDialog($event)"
-      />
     </span>
   </header>
 
