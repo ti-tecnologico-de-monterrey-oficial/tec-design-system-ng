@@ -23,7 +23,7 @@ $tooltip_justify: 'centered', 'before', 'after';
     background-color: var(--general_contrasts-100);
     color: var(--general_contrasts-5);
     text-align: center;
-    border-radius: rem.rem_calc(5);
+    border-radius: var(--bmb-radius-1);
     padding: rem.rem_calc(8 16);
     position: absolute;
     z-index: 1;

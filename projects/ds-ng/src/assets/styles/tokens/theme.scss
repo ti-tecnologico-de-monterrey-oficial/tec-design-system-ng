@@ -22,10 +22,10 @@
       color: rgb(var(--color-charade-200));
 
       code {
-        background-color: rgb(var(--color-charade-200));
-        color: rgb(var(--color-charade-900));
-        border: 1px solid rgb(var(--color-charade-200));
-        border-radius: 12px;
+        background-color: var(--general_contrasts-75);
+        color: var(--general_contrasts-5);
+        border: 1px solid var(--general_contrasts-75);
+        border-radius: var(--bmb-radius-3);
       }
     }
 
@@ -135,10 +135,10 @@
 
       .css-o1d7ko,
       .css-18pz2h2 code {
-        background-color: rgb(var(--color-charade-500));
-        color: rgb(var(--color-charade-50));
-        border: 1px solid rgb(var(--color-charade-500));
-        border-radius: 12px;
+        background-color: var(--general_contrasts-50);
+        color: var(--general_contrasts-100);
+        border: 1px solid var(--general_contrasts-50);
+        border-radius: var(--bmb-radius-3);
       }
 
       select,
@@ -185,18 +185,18 @@
       }
 
       button:not(.css-d474as) {
-        background-color: rgb(var(--color-charade-500));
-        color: rgb(var(--color-charade-50));
-        border: 1px solid rgb(var(--color-charade-500));
-        border-radius: 4px;
+        background-color: var(--general_contrasts-50);
+        color: var(--general_contrasts-100);
+        border: 1px solid var(--general_contrasts-50);
+        border-radius: var(--bmb-radius-1);
       }
 
       .rejt-value-node {
         &:hover .rejt-value {
-          background-color: rgb(var(--color-charade-500));
-          color: rgb(var(--color-charade-50));
-          border: 1px solid rgb(var(--color-charade-500));
-          border-radius: 4px;
+          background-color: var(--general_contrasts-50);
+          color: var(--general_contrasts-100);
+          border: 1px solid var(--general_contrasts-50);
+          border-radius: var(--bmb-radius-1);
         }
       }
 
@@ -328,8 +328,8 @@ img {
   align-items: center;
   position: relative;
   background-color: #eef3f8;
-  border-radius: 5px;
-  border: 1px solid rgb(0, 0, 0, 0.05);
+  border-radius: var(--bmb-radius-1);
+  border: 1px solid rgba(0, 0, 0, 0.05);
   height: 180px;
   margin-bottom: 48px;
   overflow: hidden;
@@ -457,7 +457,7 @@ img {
 
 //Storybook alert blockquote
 @mixin markdown-alert-text() {
-  border-radius: 0.5rem 0.5rem 0.5rem 0;
+  border-radius: var(--bmb-radius-2) var(--bmb-radius-2) var(--bmb-radius-2) 0;
   padding: 0.5rem !important;
   margin: 0 !important;
 

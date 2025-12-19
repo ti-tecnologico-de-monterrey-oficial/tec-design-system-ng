@@ -34,7 +34,7 @@
 
   &-main {
     background-color: var(--general_contrasts-15);
-    border-radius: rem.rem_calc(20);
+    border-radius: var(--bmb-radius-5);
     box-shadow: rem.rem_calc(10 5 10 0) RGBA(var(--color-black-primary), 0.5);
     grid-area: main;
     height: 100%;
@@ -54,7 +54,7 @@
 
   &-aside {
     background-color: var(--general_contrasts-15);
-    border-radius: rem.rem_calc(20);
+    border-radius: var(--bmb-radius-5);
     box-shadow: rem.rem_calc(10 5 10 0) RGBA(var(--color-black-primary), 0.5);
     grid-area: aside;
     height: 100%;
@@ -92,7 +92,7 @@
 
   &-main {
     background-color: var(--general_contrasts-15);
-    border-radius: rem.rem_calc(20);
+    border-radius: var(--bmb-radius-5);
     box-shadow: rem.rem_calc(10 5 10 0) RGBA(var(--color-black-primary), 0.5);
     grid-area: main;
     height: 100%;
@@ -111,7 +111,7 @@
 
   &-aside {
     background-color: var(--general_contrasts-15);
-    border-radius: rem.rem_calc(20);
+    border-radius: var(--bmb-radius-5);
     box-shadow: rem.rem_calc(10 5 10 0) RGBA(var(--color-black-primary), 0.5);
     grid-area: aside;
     height: 100%;
@@ -148,7 +148,7 @@
 
   &-aside {
     background-color: var(--general_contrasts-15);
-    border-radius: rem.rem_calc(20);
+    border-radius: var(--bmb-radius-5);
     box-shadow: rem.rem_calc(10 5 10 0) RGBA(var(--color-black-primary), 0.5);
     grid-area: aside;
     height: 100%;
@@ -168,7 +168,7 @@
 
   &-main {
     background-color: var(--general_contrasts-15);
-    border-radius: rem.rem_calc(20);
+    border-radius: var(--bmb-radius-5);
     box-shadow: rem.rem_calc(10 5 10 0) RGBA(var(--color-black-primary), 0.5);
     grid-area: main;
     height: 100%;
@@ -202,7 +202,7 @@
 
   &-card {
     background-color: var(--general_contrasts-15);
-    border-radius: rem.rem_calc(20);
+    border-radius: var(--bmb-radius-5);
     box-shadow: rem.rem_calc(10 5 10 0) RGBA(var(--color-black-primary), 0.5);
     grid-area: main;
     height: 100%;
@@ -245,7 +245,7 @@
 
   &-main {
     background-color: var(--general_contrasts-15);
-    border-radius: rem.rem_calc(20);
+    border-radius: var(--bmb-radius-5);
     box-shadow: rem.rem_calc(10 5 10 0) RGBA(var(--color-black-primary), 0.5);
     grid-area: main;
     height: 100%;
@@ -263,7 +263,7 @@
 
   &-secondary {
     background-color: var(--general_contrasts-15);
-    border-radius: rem.rem_calc(20);
+    border-radius: var(--bmb-radius-5);
     box-shadow: rem.rem_calc(10 5 10 0) RGBA(var(--color-black-primary), 0.5);
     grid-area: secondary;
     height: 100%;
@@ -301,7 +301,7 @@
 
   &-main {
     background-color: var(--general_contrasts-15);
-    border-radius: rem.rem_calc(20);
+    border-radius: var(--bmb-radius-5);
     box-shadow: rem.rem_calc(10 5 10 0) RGBA(var(--color-black-primary), 0.5);
     grid-area: main;
     height: 100%;
@@ -320,7 +320,7 @@
 
   &-secondary {
     background-color: var(--general_contrasts-15);
-    border-radius: rem.rem_calc(20);
+    border-radius: var(--bmb-radius-5);
     box-shadow: rem.rem_calc(10 5 10 0) RGBA(var(--color-black-primary), 0.5);
     grid-area: secondary;
     height: 100%;
@@ -360,7 +360,7 @@
 
   &-main {
     background-color: var(--general_contrasts-15);
-    border-radius: rem.rem_calc(20);
+    border-radius: var(--bmb-radius-5);
     box-shadow: rem.rem_calc(10 5 10 0) RGBA(var(--color-black-primary), 0.5);
     grid-area: main;
     height: 100%;
@@ -379,7 +379,7 @@
 
   &-secondary {
     background-color: var(--general_contrasts-15);
-    border-radius: rem.rem_calc(20);
+    border-radius: var(--bmb-radius-5);
     box-shadow: rem.rem_calc(10 5 10 0) RGBA(var(--color-black-primary), 0.5);
     grid-area: secondary;
     height: 100%;
@@ -601,7 +601,7 @@
 
 .bmb_template-stand-alone-tags {
   background-color: var(--containers-main);
-  border-radius: rem.rem_calc(20);
+  border-radius: var(--bmb-radius-5);
   box-shadow: rem.rem_calc(10 5 10 0) RGBA(var(--color-black-primary), 0.5);
   display: flex;
   flex-flow: column nowrap;

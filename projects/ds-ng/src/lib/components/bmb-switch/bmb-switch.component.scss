@@ -78,7 +78,7 @@
   &-slider {
     background-color: rgb(var(--color-charade-700));
     border: 0;
-    border-radius: rem.rem_calc(15);
+    border-radius: var(--bmb-radius-3);
     cursor: pointer;
     display: block;
     height: rem.rem_calc(20);

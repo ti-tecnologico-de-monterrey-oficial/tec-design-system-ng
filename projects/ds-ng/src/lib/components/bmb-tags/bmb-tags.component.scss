@@ -65,7 +65,7 @@ $colors: (
   }
 
   &-rounded {
-    border-radius: rem.rem_calc(16);
+    border-radius: var(--bmb-radius-4);
   }
 
   @each $name, $color in $colors {
