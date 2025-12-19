@@ -81,10 +81,8 @@ export class BmbSwitchComponent {
 
   showSwitchLabel(position: string): boolean {
     if (
-      !!!this.rightIcon() &&
-      !!!this.leftIcon() &&
-      !!this.rightText() &&
-      !!this.leftText()
+      (!!this.rightIcon() || !!!this.rightText()) ||
+      (!!this.leftIcon() || !!!this.leftText())
     ) {
       if (position === 'left') return !!this.leftText();
       if (position === 'right') return !!this.rightText();

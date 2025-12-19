@@ -8,7 +8,10 @@
       [isFilterable]="true"
       [control]="getFormControl('dropdown')"
       (onValueChange)="handleDropdownChange($event)"
+      [customFilterFunction]="customFilterFunction"
     />
+    <bmb-input [placeholder]="'Search...'" [isClearable]="true" />
+    <bmb-datepicker />
   </section>
   <button bmbButton appearance="primary" type="submit">Submit</button>
   <bmb-bookmark

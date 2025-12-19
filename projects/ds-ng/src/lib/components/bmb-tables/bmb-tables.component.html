@@ -92,9 +92,9 @@
         <ng-container matColumnDef="select" sticky>
           <th mat-header-cell *matHeaderCellDef class="bmb_table-checkbox">
             <bmb-checkbox
-              (change)="$event ? toggleAllRows() : null"
-              [checked]="selection.hasValue() && isAllSelected()"
-              [indeterminate]="selection.hasValue() && !isAllSelected()"
+              (change)="handleMasterSelection($event)"
+              [checked]="checkIfAllRowsSelected()"
+              [indeterminate]="checkIfSomeRowsSelected()"
               [ariaLabel]="checkboxLabel()"
               [disabled]="false"
             />

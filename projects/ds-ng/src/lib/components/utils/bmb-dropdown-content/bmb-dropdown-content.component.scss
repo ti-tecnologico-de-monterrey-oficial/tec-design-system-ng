@@ -24,6 +24,10 @@
   &-item {
     color: var(--menu_select-label-menu-inactive);
 
+    .bmb_check-external-link-button {
+      display: block;
+    }
+
     .bmb_check-external-link-button-element {
       display: flex;
       align-items: center;

@@ -64,6 +64,17 @@ Sets the list of items for the dropdown.
         type: { summary: 'boolean' },
       },
     },
+    customFilterFunction: {
+      control: null,
+      description: 'Custom filter function for dropdown items.',
+      table: {
+        category: 'Properties',
+        type: {
+          summary: '((item: IDropdownItem, filter: string) => boolean) | null',
+        },
+        defaultValue: { summary: 'null' },
+      },
+    },
   },
   args: {
     items: [

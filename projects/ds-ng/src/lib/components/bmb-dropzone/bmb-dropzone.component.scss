@@ -60,6 +60,10 @@
       color: var(--buttons-destructive);
     }
   }
+
+  &-input {
+    @include mixins.text-link-appearance();
+  }
 }
 
 @keyframes spin {

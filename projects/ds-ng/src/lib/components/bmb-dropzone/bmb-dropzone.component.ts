@@ -4,6 +4,9 @@ import {
   ChangeDetectorRef,
   Component,
   input,
+  model,
+  OnChanges,
+  OnInit,
   output,
   SimpleChanges,
   ViewEncapsulation,
@@ -16,6 +19,19 @@ import { IBmbContrast } from '../../types/colors';
 import { TranslatePipe } from '../../pipes/translations';
 import { BmbVerticalLayoutDirective } from '../../directives/bmb-layout/bmb-vertical-layout/bmb-vertical-layout.directive';
 import { BmbVerticalLayoutItemDirective } from '../../directives/bmb-layout/bmb-vertical-layout/bmb-vertical-layout-item.directive';
+import { BmbTranslationsService } from '../../services/translations/translations.service';
+import {
+  FormControl,
+  FormsModule,
+  ReactiveFormsModule,
+  ValidatorFn,
+} from '@angular/forms';
+import {
+  assignNewFormControl,
+  handleValidity,
+  newFormControlByType,
+} from '../../utils/formControl';
+import { BmbInputValidatorComponent } from '../bmb-input/bmb-input-validator/bmb-input-validator.component';
 
 interface FileData {
   name: string;
@@ -35,6 +51,9 @@ interface IBmbFileValidation {
   standalone: true,
   imports: [
     CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    BmbInputValidatorComponent,
     BmbVerticalLayoutDirective,
     BmbVerticalLayoutItemDirective,
     BmbIconComponent,
@@ -47,14 +66,14 @@ interface IBmbFileValidation {
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
-export class BmbDropzoneComponent {
+export class BmbDropzoneComponent implements OnInit, OnChanges {
   appearanceContrast = input<IBmbContrast>('default');
   acceptedExtensions = input.required<string[]>();
   dropInstruction = input<string>();
   dropLabel = input<string>();
-  errorMessage = input<string>();
-  errorMessageFormat = input<string>(); //Deprecated
-  errorMessageSize = input<string>(); //Deprecated
+  errorMessage = input<string>(); //Deprecated
+  errorMessageFormat = input<string>();
+  errorMessageSize = input<string>();
   fileSize = input<number>(2);
   formatFilesLabel = input<string>();
   linkFilesSupported = input<string>('');
@@ -63,15 +82,35 @@ export class BmbDropzoneComponent {
   multiple = input<boolean>(false);
   name = input<string>(getUUID());
   progress = input<Record<string, number> | number>({});
+  inputId = input<string>(this.name());
+  customValidation = input<ValidatorFn>();
+
+  control = model<FormControl>(newFormControlByType('file', this.multiple()));
 
   newFile = output<File | File[]>();
   fileRemoved = output<string>();
 
   fileDataList: FileData[] = [];
-  validFile: boolean = true;
-  input?: HTMLInputElement;
+  isControlNull: boolean = false;
 
-  constructor(private cdr: ChangeDetectorRef) {}
+  constructor(
+    private cdr: ChangeDetectorRef,
+    private translationService: BmbTranslationsService,
+  ) {}
+
+  ngOnInit(): void {
+    if (!this.control()) {
+      this.control.set(
+        assignNewFormControl(
+          this.name(),
+          this.control(),
+          'file',
+          this.multiple(),
+        )!,
+      );
+      this.isControlNull = true;
+    }
+  }
 
   ngOnChanges(changes: SimpleChanges) {
     if (
@@ -83,17 +122,16 @@ export class BmbDropzoneComponent {
     }
   }
 
-  getDropZoneClass(): string[] {
+  protected getDropZoneClass(): string[] {
     const classList = [];
 
-    if (this.isInvalidFileOnly()) {
+    if (this.isErrorFiles()) {
       classList.push('bmb_drop-zone-container-error');
     } else {
       if (
-        this.fileDataList.length > 0 &&
-        !!this.fileDataList[0].name &&
-        this.fileDataList.some(
-          (file: FileData) => this.getProgress(file.name) < 100,
+        !!this.fileDataList.length &&
+        this.fileDataList?.some((file: FileData) =>
+          this.isUploadInProgress(file),
         )
       ) {
         classList.push('bmb_drop-zone-container-uploading-file');
@@ -111,22 +149,64 @@ export class BmbDropzoneComponent {
     return classList;
   }
 
-  getAvatarIcon(progress: number, isError: boolean): string {
-    if (progress === 100) return 'upload_file';
-    if (isError) return 'task';
+  protected get errorMessageLabel(): string {
+    return `${
+      this.isFormatErrorFiles()
+        ? (
+            this.errorMessageFormat()! ||
+            this.translationService.translate('dropzone.error_message_format')
+          ).concat('* ')
+        : ''
+    }${
+      this.isFormatErrorFiles()
+        ? (
+            this.errorMessageSize() ||
+            this.translationService.translate('dropzone.error_message_size')
+          ).concat('MB*')
+        : ''
+    }`;
+  }
+
+  protected getAvatarIcon(file: FileData): string {
+    if (this.getProgress(file) === 100) return 'upload_file';
+    if (file.error) return 'task';
 
     return 'progress_activity';
   }
 
-  getFormatProgress(value: string, total: string): string {
+  protected getFileName(file: FileData): string {
+    return this.isFormatError(file) ? file.name.concat('*') : file.name;
+  }
+
+  protected getFormatProgress(value: string, total: string): string {
     return `${value}%/${total}%`;
   }
 
-  getFormatSize(value: string, total: string): string {
-    return `${total}MB`;
+  protected getFormatSize(_: any, total: string): string {
+    return `${Intl.NumberFormat('en-US', {
+      minimumFractionDigits: 2,
+    }).format(Number(total))}MB`;
   }
 
-  get organizedFiles(): FileData[] {
+  protected getFormatSizeError(_: any, total: string): string {
+    return `${Intl.NumberFormat('en-US', {
+      minimumFractionDigits: 2,
+    }).format(Number(total))}MB*`;
+  }
+
+  protected getFileSizeInMB(fileSize: number): number {
+    return fileSize / 1048576;
+  }
+
+  protected getProgress(file: FileData): number {
+    const progress = this.progress();
+
+    if (file.error) return 0;
+    if (typeof progress === 'number') return progress;
+    return progress?.[file.name] ?? 0;
+  }
+
+  protected get organizedFiles(): FileData[] {
     if (this.fileDataList.some((file: FileData) => file.error)) {
       return this.fileDataList.sort(
         (file1: FileData, file2: FileData) =>
@@ -137,17 +217,52 @@ export class BmbDropzoneComponent {
     return this.fileDataList;
   }
 
-  public onFileSelected(event: Event) {
-    this.input = event.target as HTMLInputElement;
-    if (this.input.files?.[0]) {
-      const files = this.input.files;
-      if (files && !!files.length) {
-        this.getFileAndValidate(this.multiple() ? Array.from(files) : files[0]);
+  private getFileAndValidate(file: File | File[]): void {
+    const fileList = Array.isArray(file) ? file : [file];
+    const validFiles: File[] = [];
+
+    if (!this.multiple()) {
+      this.fileDataList = [];
+    }
+
+    for (const singleFile of fileList) {
+      if (this.isFileDuplicate(singleFile.name)) {
+        continue;
+      }
+
+      const fileValidation: IBmbFileValidation = {
+        isValidFormat: this.isValidFileFormat(singleFile.type, singleFile.name),
+        isValidSize: this.isValidFileSize(singleFile.size),
+      };
+      const fileData: FileData = {
+        name: singleFile.name,
+        size: this.getFileSizeInMB(singleFile.size),
+        error: !fileValidation.isValidFormat || !fileValidation.isValidSize,
+        errorType: !fileValidation.isValidFormat ? 'format' : 'size',
+      };
+
+      this.fileDataList.push(fileData);
+      if (fileValidation.isValidFormat && fileValidation.isValidSize)
+        validFiles.push(singleFile);
+    }
+
+    if (!!validFiles.length) {
+      if (this.multiple()) {
+        this.control().patchValue(validFiles.map((_file: any) => _file.name));
+        this.control().updateValueAndValidity();
+
+        this.newFile.emit(validFiles);
+      } else {
+        const _file = validFiles[0];
+        this.control().patchValue(_file.name);
+        this.control().updateValueAndValidity();
+
+        this.newFile.emit(_file);
       }
     }
   }
 
-  private isValidFileType(fileType: string, fileName: string): boolean {
+  private isValidFileFormat(fileType: string, fileName: string): boolean {
     if (
       this.acceptedExtensions().some((element: string) => element.includes('/'))
     ) {
@@ -178,22 +293,7 @@ export class BmbDropzoneComponent {
     return false;
   }
 
-  private getFileSizeInMB(fileSize: number): number {
-    return fileSize / 1048576;
-  }
-
-  getFileSizeMB(fileSize: number): number {
-    console.info(
-      'getFileSizeMB',
-      fileSize,
-      this.getFileSizeInMB(fileSize),
-      this.getFileSizeInMB(fileSize).toFixed(4),
-      Number(this.getFileSizeInMB(fileSize).toFixed(4)),
-    );
-    return this.getFileSizeInMB(fileSize);
-  }
-
-  private isValidFileSize(fileSize: number): boolean {
+  protected isValidFileSize(fileSize: number): boolean {
     return this.getFileSizeInMB(fileSize) <= this.fileSize();
   }
 
@@ -201,81 +301,49 @@ export class BmbDropzoneComponent {
     return this.fileDataList.some((existing) => existing.name === fileName);
   }
 
-  private getFileAndValidate(file: File | File[]): void {
-    const filesArray = Array.isArray(file) ? file : [file];
-    const validFiles: File[] = [];
-
-    if (!this.multiple()) {
-      this.fileDataList = [];
-    }
-
-    for (const singleFile of filesArray) {
-      if (this.isFileDuplicate(singleFile.name)) {
-        continue;
-      }
-
-      const fileValidation: IBmbFileValidation = {
-        isValidFormat: this.isValidFileType(singleFile.type, singleFile.name),
-        isValidSize: this.isValidFileSize(singleFile.size),
-      };
-      const fileData: FileData = {
-        name: singleFile.name,
-        size: this.getFileSizeInMB(singleFile.size),
-        error: !fileValidation.isValidFormat || !fileValidation.isValidSize,
-        errorType: !fileValidation.isValidFormat ? 'format' : 'size',
-      };
-
-      this.fileDataList.push(fileData);
-      if (fileValidation.isValidFormat && fileValidation.isValidSize)
-        validFiles.push(singleFile);
-    }
-
-    if (!!validFiles.length) {
-      this.newFile.emit(this.multiple() ? validFiles : validFiles[0]);
-    } else {
-      this.onErrorFile();
-    }
+  protected isUploadInProgress(file: FileData) {
+    return !file.error && this.getProgress(file) < 100;
   }
 
-  public removeFile(fileName: string): void {
-    this.fileDataList = this.fileDataList.filter(
-      (file) => file.name !== fileName,
-    );
-
-    const hasFormatErrorsOnly = this.fileDataList.some(
-      (file) => file.error && file.errorType === 'format',
-    );
-
-    this.validFile = this.fileDataList.length > 0 && !hasFormatErrorsOnly;
-
-    if (this.fileDataList.length === 0 && this.input) {
-      this.input.value = '';
-    }
-
-    this.fileRemoved.emit(fileName);
+  protected isUploadCompleted(file: FileData) {
+    return !file.error && this.getProgress(file) === 100;
   }
 
-  private onErrorFile(): void {
-    this.input && (this.input.value = '');
-    this.validFile = false;
+  protected isErrorFiles(): boolean {
+    return this.fileDataList.some((file) => file.error);
   }
 
-  dragOver(event: DragEvent) {
-    this.validFile = true;
+  private isFormatError(file: FileData): boolean {
+    return (file.error && file.errorType === 'format') || false;
+  }
+
+  protected isFormatErrorFiles(): boolean {
+    return this.fileDataList.some((file) => this.isFormatError(file));
+  }
+
+  private isSizeError(file: FileData): boolean {
+    return (file.error && file.errorType === 'size') || false;
+  }
+
+  protected isSizeErrorFiles(): boolean {
+    return this.fileDataList.some((file) => this.isSizeError(file));
+  }
+
+  protected handleDragOver(event: DragEvent) {
     event.preventDefault();
     event.stopPropagation();
     const dropzoneElement = event.currentTarget as HTMLElement;
     dropzoneElement.classList.add('bmb_drop-zone-container-uploading-file');
   }
 
-  dragLeave(event: DragEvent) {
+  protected handleDragLeave(event: DragEvent) {
     event.preventDefault();
     event.stopPropagation();
     const dropzoneElement = event.currentTarget as HTMLElement;
     dropzoneElement.classList.remove('bmb_drop-zone-container-uploading-file');
   }
 
-  drop(event: DragEvent) {
+  protected handleDrop(event: DragEvent) {
     event.preventDefault();
     event.stopPropagation();
     const dropzoneElement = event.currentTarget as HTMLElement;
@@ -283,33 +351,49 @@ export class BmbDropzoneComponent {
     dropzoneElement.classList.remove('bmb_drop-zone-container-uploading-file');
 
     const files = event.dataTransfer?.files;
-    if (files && files.length > 0) {
+    if (files && !!files.length) {
       this.getFileAndValidate(this.multiple() ? Array.from(files) : files[0]);
     }
   }
 
-  getProgress(fileName: string): number {
-    const progress = this.progress();
-    if (typeof progress === 'number') return progress;
-    return progress?.[fileName] ?? 0;
-  }
+  protected handleFileSelected(event: Event) {
+    const _input = event.target as HTMLInputElement;
 
-  isFormatSize(progress: number, isError: boolean) {
-    return progress === 100 || isError;
-  }
-
-  isInvalidFileOnly(): boolean {
-    return this.fileDataList.some(
-      (file) => file.error && file.errorType === 'format',
-    );
-  }
-
-  public reset(): void {
-    this.fileDataList = [];
-    this.validFile = true;
-    if (this.input) {
-      this.input.value = '';
+    if (_input.files?.[0]) {
+      const files = _input.files;
+      if (files && !!files.length) {
+        this.getFileAndValidate(this.multiple() ? Array.from(files) : files[0]);
+      }
     }
+  }
+
+  protected handleRemoveFile(fileName: string): void {
+    this.fileDataList = this.fileDataList.filter(
+      (file) => file.name !== fileName,
+    );
+
+    if (this.multiple()) {
+      const _fileNames = this.control().value;
+      this.control().patchValue(
+        Array.from(_fileNames).filter((_fileName) => _fileName !== fileName),
+      );
+      this.control().updateValueAndValidity();
+    } else {
+      const _fileName = this.control().value;
+      this.control().patchValue(_fileName === fileName ? null : _fileName);
+      this.control().updateValueAndValidity();
+    }
+
+    this.fileRemoved.emit(fileName);
+  }
+
+  handleValidity(): void {
+    handleValidity(this.control());
+  }
+
+  reset(): void {
+    this.fileDataList = [];
+    this.control().patchValue(this.multiple() ? [null] : null);
     this.cdr.detectChanges();
   }
 }

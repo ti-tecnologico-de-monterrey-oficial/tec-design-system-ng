@@ -200,7 +200,7 @@ export const WithHeader: Story = {
             [trailingIcon]="'chevron_right'"
           />
         </bmb-inner-header>
-        <div bmbVerticalLayoutItem bmbLayout [rowGrow]="1" justify="center" alignItems="center">
+        <div bmbVerticalLayoutItem bmbLayout margin="none" [rowGrow]="1" justify="center" alignItems="center">
           <bmb-icon-status bmbLayoutItem [icon]="'id_card'"/>
           <p bmbLayoutItem class="font-regular-9" style="text-align: center" [colSm]="4">
             Estamos activando tu credencial digital en este equipo

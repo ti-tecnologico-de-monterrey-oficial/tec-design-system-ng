@@ -1,12 +1,15 @@
 import { Component, input, output } from '@angular/core';
-import { BmbCardComponent, BmbCardContentComponent } from '../../bmb-card/bmb-card.component';
+import {
+  BmbCardComponent,
+  BmbCardContentComponent,
+} from '../../bmb-card/bmb-card.component';
 import { BmbFormValidatorComponent } from '../../bmb-form-validator/bmb-form-validator.component';
 import { FormControl, FormGroup } from '@angular/forms';
 import { BmbButtonDirective } from '../../../directives/bmb-button/button.directive';
 import { BmbInputComponent } from '../../bmb-input/bmb-input.component';
 import { TranslatePipe } from '../../../pipes/translations';
 import { BmbCheckboxComponent } from '../../bmb-checkbox/bmb-checkbox.component';
-import { BmbLayoutDirective } from "../../../directives/bmb-layout/bmb-layout.directive";
+import { BmbLayoutDirective } from '../../../directives/bmb-layout/bmb-layout.directive';
 import { BmbLayoutItemDirective } from '../../../directives/bmb-layout/bmb-layout-item.directive';
 import { BmbVerticalLayoutDirective } from '../../../directives/bmb-layout/bmb-vertical-layout/bmb-vertical-layout.directive';
 import { BmbVerticalLayoutItemDirective } from '../../../directives/bmb-layout/bmb-vertical-layout/bmb-vertical-layout-item.directive';
@@ -30,9 +33,9 @@ export type IBmbTextEditorPromptType = 'link' | 'image';
     BmbVerticalLayoutDirective,
     BmbVerticalLayoutItemDirective,
     BmbRadialComponent,
-],
+  ],
   templateUrl: './bmb-text-editor-prompt.component.html',
-  styleUrl: './bmb-text-editor-prompt.component.scss'
+  styleUrl: './bmb-text-editor-prompt.component.scss',
 })
 export class BmbTextEditorPromptComponent {
   type = input.required<IBmbTextEditorPromptType>();

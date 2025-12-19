@@ -44,14 +44,18 @@
     "value_secondary": "$0"
   },
   "calendar": {
-    "title": "Mi Calendario",
+    "title": "Mi calendario",
     "today": "Hoy",
     "month": "Mes",
     "week": "Semana",
     "day": "Día",
     "calendar": "Calendario",
     "subtitle": "Selecciona los calendarios que quieres ver",
-    "filter_save": "Guardar"
+    "filter_save": "Guardar",
+    "modal": {
+      "title": "Calendarios y notificaciones",
+      "notification_label": "Activar notificaciones de horario (recibirás una notificación 10 minutos antes de tu próxima clase)"
+    }
   },
   "chat_bar": {
     "placeholder": "¿Qué deseas encontrar hoy?",

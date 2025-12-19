@@ -317,14 +317,11 @@ __  standalone: true,
 __  imports: [ ${
     additionalImportName
       ? `
-    ${inputName
-      .concat(', ')
-      .concat(additionalImportName)
-      .replaceAll(
-        ',',
-        `,
+    ${inputName.concat(', ', additionalImportName).replaceAll(
+      ',',
+      `,
     `,
-      )},
+    )},
     `
       : inputName
   } ],
@@ -534,7 +531,7 @@ export const getTechnicalDocReferences = ({
 >
 ${TECHNICAL_DOC_REFERENCES}<br/>
 <ul>${references
-  .map((ref) => '<li>'.concat(getStoryLink(ref).concat('</li>')))
+  .map((ref) => '<li>'.concat(getStoryLink(ref), '</li>'))
   .toString()
   .replaceAll(',', ' ')}</ul>
 `;
@@ -787,7 +784,7 @@ const getMergeList = (
 ): string => {
   const styles: string[] = definition.split(splitChar);
   const mergeList = list.map((element: string, index: number) =>
-    element.concat(': var(--'.concat(styles[index]?.trim()).concat(');')),
+    element.concat(': var(--', styles[index]?.trim(), ');'),
   );
 
   return mergeList.toString().replaceAll(',', ' ');
@@ -857,26 +854,24 @@ export const getSandboxConsiderationsDocumentation = (
       'bmb_[__]-4',
     );
     const classes: string = _classes.toLocaleString().replaceAll(',', ' ');
-    const variableInheritStyles: string = `${style
-      .concat(!!style ? ' ' : '')
-      .concat(
-        getMergeList(
-          varList,
-          definitionVar
-            .replace(patternToReplaceOneLine, splitChar)
-            .replace(/\`|(--)|(-4)/g, ''),
-          splitChar,
-        ),
-      )}`;
-    const variableStyles: string = `${style
-      .concat(!!style ? ' ' : '')
-      .concat(
-        getMergeList(
-          varList,
-          classes.replaceAll('_', '-').replaceAll(' ', splitChar),
-          splitChar,
-        ),
-      )}`;
+    const variableInheritStyles: string = `${style.concat(
+      !!style ? ' ' : '',
+      getMergeList(
+        varList,
+        definitionVar
+          .replace(patternToReplaceOneLine, splitChar)
+          .replace(/\`|(--)|(-4)/g, ''),
+        splitChar,
+      ),
+    )}`;
+    const variableStyles: string = `${style.concat(
+      !!style ? ' ' : '',
+      getMergeList(
+        varList,
+        classes.replaceAll('_', '-').replaceAll(' ', splitChar),
+        splitChar,
+      ),
+    )}`;
 
     _implementationDetails = `
 >

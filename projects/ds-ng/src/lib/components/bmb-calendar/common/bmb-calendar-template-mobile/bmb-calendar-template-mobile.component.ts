@@ -90,14 +90,17 @@ export class BmbCalendarTemplateMobileComponent {
       }
     };
 
-    const newDate = DateTime.fromObject({
-      month: this.now().month,
-      year: this.now().year,
-      day: 1,
-    });
+    if (this.isWedgeOpen) {
+      const newDate = DateTime.fromObject({
+        month: this.now().month,
+        year: this.now().year,
+        day: 1,
+      });
 
-    modifyDate({ config: { month: 1 }, date: newDate });
-    this.isWedgeOpen = false;
+      modifyDate({ config: { month: 1 }, date: newDate });
+    } else {
+      modifyDate({ config: { days: 7 }, date: this.now() });
+    }
   }
 
   isSelectedDay(date: DateTime): boolean {

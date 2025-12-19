@@ -30,7 +30,8 @@ export type IBmbInputValType =
   | 'checkbox'
   | 'email'
   | 'phone'
-  | 'switch';
+  | 'switch'
+  | 'file';
 
 @Component({
   selector: 'bmb-input-validator',
@@ -68,6 +69,7 @@ export class BmbInputValidatorComponent implements OnInit {
   helperMessage = input<string>('');
   errorMessage = input<string | IBmbInputError>('');
   customValidation = input<ValidatorFn | ValidatorFn[]>();
+  isMultipleFile = input<boolean | null>(true);
 
   showError = model<boolean>(false);
   control = model<FormControl>();
