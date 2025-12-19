@@ -110,7 +110,7 @@ export class BmbHomeCardHeaderComponent {
   handleAddDialog(event: MouseEvent | KeyboardEvent): void {
     const dialogId = 'chatBarActionsDialog';
 
-    if (this.contentProjectedModal.isDialogOpen(dialogId)) {
+    if (this.contentProjectedModal.isContentOpen(dialogId)) {
       return;
     }
 

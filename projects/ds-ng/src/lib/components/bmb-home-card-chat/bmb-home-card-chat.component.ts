@@ -92,7 +92,7 @@ export class BmbHomeCardChatComponent {
     effect(
       () => {
         const currentMode = this.mode();
-        const isChatOpen = this.contentProjected.isDialogOpen(CHAT_ID);
+        const isChatOpen = this.contentProjected.isContentOpen(CHAT_ID);
         if (currentMode === 'chat' && !isChatOpen) {
           this.contentProjected.openContent({
             id: CHAT_ID,
@@ -126,7 +126,7 @@ export class BmbHomeCardChatComponent {
 
     this.mode.set('chat');
 
-    if (this.contentProjected.isDialogOpen(dialogId)) {
+    if (this.contentProjected.isContentOpen(dialogId)) {
       return;
     }
 
@@ -141,7 +141,7 @@ export class BmbHomeCardChatComponent {
   closeChat(): void {
     const dialogId = 'chatCardChat';
 
-    if (!this.contentProjected.isDialogOpen(dialogId)) {
+    if (!this.contentProjected.isContentOpen(dialogId)) {
       this.mode.set('compact');
       return;
     }

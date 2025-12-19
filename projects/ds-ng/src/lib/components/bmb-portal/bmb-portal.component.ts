@@ -76,7 +76,7 @@ export class BmbPortalComponent {
       return;
     }
 
-    if (this.projectionService.isDialogOpen(id)) {
+    if (this.projectionService.isContentOpen(id)) {
       this.projectionService.closeContent(id);
     }
   }

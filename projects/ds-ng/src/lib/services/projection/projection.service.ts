@@ -109,7 +109,7 @@ export class BmbProjectionContentService {
     return this.contentList() !== null;
   }
 
-  isDialogOpen(id: string) {
+  isContentOpen(id: string) {
     return this.contentStack().some((item) => item.id === id);
   }
 }
