@@ -493,8 +493,6 @@ class StorybookColorsPlaygroundComponent {
 
   containerGradients: string[] = [
     '--media-card-gradient-default',
-    '--media-card-gradient-hover',
-    '--media-card-gradient-select',
   ];
 
   buttons: string[] = [

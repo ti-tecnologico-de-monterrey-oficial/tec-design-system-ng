@@ -5,10 +5,10 @@
   // Containers
   --containers-background: rgb(var(--gray-ged-50));
   --containers-main: rgb(var(--white-primary));
-  --containers-header-mobile: rgb(var(--white-primary)); // new
+  --containers-header-mobile: rgb(var(--white-primary));
   --containers-modal: rgb(var(--gray-ged-50));
   --containers-button: rgb(var(--gray-ged-50));
-  --containers-top-bar: rgb(var(--black-primary)); // new
+  --containers-top-bar: rgb(var(--black-primary));
   --containers-media-card-background-fade: rgba(var(--gray-ged-950), 0);
   --containers-media-card-background: rgba(var(--gray-ged-950), 0.9);
 
@@ -31,6 +31,7 @@
   --buttons-text-link: rgb(var(--blue-mariner-700));
 
   // General Contrasts
+  --general-contrasts: rgb(var(--black-primary));
   --general-contrasts-100: rgb(var(--gray-ged-950));
   --general-contrasts-90: rgb(var(--gray-ged-500));
   --general-contrasts-80: rgb(var(--gray-ged-800));
@@ -53,7 +54,7 @@
 
   --general-contrasts-container: rgb(var(--gray-ged-800));
 
-  //Menu (select)
+  // Menu (select)
   --menu-select-surface-activated: rgb(var(--black-primary));
   --menu-select-label-menu-active: rgb(var(--gray-ged-50));
   --menu-select-label-menu-inactive: rgb(var(--gray-ged-950));
@@ -107,7 +108,7 @@
   // Containers
   --containers-background: rgb(var(--gray-ged-950));
   --containers-main: rgb(var(--gray-ged-900));
-  --containers-header-mobile: rgb(var(--gray-ged-900)); // new
+  --containers-header-mobile: rgb(var(--gray-ged-900));
   --containers-modal: rgb(var(--gray-ged-950));
   --containers-button: rgb(var(--gray-ged-900));
 
@@ -116,7 +117,7 @@
   --buttons-primary-hover: rgb(var(--black-primary));
   --buttons-primary-select: rgb(var(--gray-ged-200));
   --buttons-alternative-normal: rgb(var(--black-primary));
-  --buttons-alternative-hover: rgb(var(--gray-ged-200));
+  --buttons-alternative-hover: rgb(var(--gray-ged-800));
   --buttons-alternative-text: rgb(var(--gray-ged-50));
   --buttons-alternative-text-hover: rgb(var(--gray-ged-950));
   --buttons-primary-text: rgb(var(--black-primary));
