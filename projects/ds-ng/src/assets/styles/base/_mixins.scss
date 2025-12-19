@@ -86,40 +86,40 @@
 @mixin button($appearance: primary) {
   @if $appearance == primary {
     outline: 0 solid transparent;
-    background-color: var(--buttons-primary-normal);
-    color: rgb(var(--white-primary));
+    background: var(--buttons-primary-normal);
+    color: var(--buttons-alternative-normal);
 
     &:hover:not(:disabled),
     &:focus-visible:not(:disabled) {
-      background-color: var(--buttons-primary-hover);
+      background: var(--buttons-primary-hover);
     }
 
     &:active:not(:disabled),
     &.bmb_btn-toggle-active {
-      background-color: var(--buttons-primary-select);
+      background: var(--buttons-primary-select);
       outline-width: rem.rem_calc(1);
       outline-color: var(--buttons-stroke-primary-selected);
       box-shadow: rem.rem_calc(0 0 20) var(--azul-mariner-500);
     }
 
     bmb-icon {
-      color: rgb(var(--white-primary));
+      color: var(--buttons-alternative-normal);
     }
   } @else if $appearance == secondary-filled {
-    background-color: var(--buttons-alternative-normal);
+    background: var(--buttons-alternative-normal);
     color: var(--buttons-alternative-text);
     outline: 0;
 
     &:hover:not(:disabled),
     &:focus-visible:not(:disabled) {
-      background-color: var(--gris-charade-300);
+      background: var(--gris-charade-300);
       color: var(--gris-charade-700);
       box-shadow: 0px 0px rem.rem_calc(5) var(--gris-charade-500);
     }
 
     &:active:not(:disabled),
     &.bmb_btn-toggle-active {
-      background-color: var(--gris-charade-500);
+      background: var(--gris-charade-500);
       box-shadow: 0 0 rem.rem_calc(25) var(--gris-charade-500);
       color: var(--gris-charade-50);
 
@@ -132,7 +132,7 @@
       color: var(--buttons-alternative-text);
     }
   } @else if $appearance == secondary-outlined {
-    background-color: transparent;
+    background: transparent;
     border: var(--bmb-border-general_contrasts-100-1-solid);
     color: var(--general_contrasts-100);
     padding: rem.rem_calc(11 15);
@@ -160,7 +160,7 @@
       text-shadow: none;
       padding: rem.rem_calc(10 14);
       color: var(--general_contrasts-5);
-      background-color: var(--general_contrasts-100);
+      background: var(--general_contrasts-100);
 
       @include check-for-mobile(false) {
         padding: rem.rem_calc(6 38);
@@ -175,7 +175,7 @@
       color: var(--general_contrasts-100);
     }
   } @else if $appearance == destructive {
-    background-color: transparent;
+    background: transparent;
     border: var(--bmb-border-inherit-1-solid);
     border-color: var(--buttons-destructive);
     color: var(--buttons-destructive);
@@ -197,7 +197,7 @@
 
     &:active:not(:disabled),
     &.bmb_btn-toggle-active {
-      background-color: rgb(var(--red-primary));
+      background: rgb(var(--red-primary));
       color: rgb(var(--white-primary));
       padding: rem.rem_calc(10 14);
       border-width: rem.rem_calc(2);
@@ -215,7 +215,7 @@
       color: var(--buttons-destructive);
     }
   } @else if $appearance == transparent {
-    background-color: transparent;
+    background: transparent;
     padding: rem.rem_calc(0 10);
     color: var(--general_contrasts-100);
 
@@ -268,25 +268,25 @@
   position: fixed;
   right: rem.rem_calc(10);
   z-index: 2;
-  background-color: var(--general_contrasts-main-selection);
+  background: var(--general_contrasts-main-selection);
   box-shadow: var(--bmb-box-shadow-3);
   color: var(--general_contrasts-main-complimentary);
 
   &:focus,
   &:focus-visible {
-    background-color: var(--general_contrasts-25);
+    background: var(--general_contrasts-25);
     border: var(--bmb-border-inherit-1-solid);
     border-color: var(--general_contrasts-main-selection);
     color: var(--general_contrasts-main-selection);
   }
 
   &:hover {
-    background-color: var(--general_contrasts-50);
+    background: var(--general_contrasts-50);
     color: var(--general_contrasts-main-complimentary);
   }
 
   &:active {
-    background-color: var(--general_contrasts-input-background);
+    background: var(--general_contrasts-input-background);
     border: var(--bmb-border-inherit-1-solid);
     border-color: var(--general_contrasts-main-selection);
 
@@ -306,7 +306,7 @@
   width: rem.rem_calc(42);
   border-radius: var(--bmb-radius-full);
   opacity: $opacity;
-  background-color: $color_name;
+  background: $color_name;
   position: absolute;
   display: block;
   margin: auto;
@@ -343,7 +343,7 @@
   height: rem.rem_calc(18);
   width: rem.rem_calc(18);
   margin: rem.rem_calc(3);
-  background-color: transparent;
+  background: transparent;
   border: rem.rem_calc(2) solid $color_name;
   border-radius: $border_radius;
 
@@ -368,7 +368,7 @@
   border: rem.rem_calc(1) solid var(--general_contrasts-50);
   border-radius: var(--bmb-radius-2);
   width: 100%;
-  background-color: var(--general_contrasts-input-background);
+  background: var(--general_contrasts-input-background);
   height: rem.rem_calc(48);
   transition: all 0.3s ease;
 }
