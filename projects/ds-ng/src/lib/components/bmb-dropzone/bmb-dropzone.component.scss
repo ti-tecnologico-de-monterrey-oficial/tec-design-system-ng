@@ -8,7 +8,7 @@
 
   &-container {
     border: rem.rem_calc(2) dashed var(--general_contrasts-container-outline);
-    border-radius: rem.rem_calc(12);
+    border-radius: var(--bmb-radius-3);
     box-sizing: border-box;
     padding: var(--bmb-spacing-m) var(--bmb-spacing-m);
 

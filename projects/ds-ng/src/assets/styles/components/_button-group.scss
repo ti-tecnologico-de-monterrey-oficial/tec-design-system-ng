@@ -17,8 +17,8 @@
   }
 
   &:first-child {
-    border-top-left-radius: rem.rem_calc(8);
-    border-bottom-left-radius: rem.rem_calc(8);
+    border-top-left-radius: var(--bmb-radius-2);
+    border-bottom-left-radius: var(--bmb-radius-2);
     border-left-width: rem.rem_calc(1);
 
     &:hover:not(:disabled),
@@ -30,8 +30,8 @@
   }
 
   &:last-child {
-    border-top-right-radius: rem.rem_calc(8);
-    border-bottom-right-radius: rem.rem_calc(8);
+    border-top-right-radius: var(--bmb-radius-2);
+    border-bottom-right-radius: var(--bmb-radius-2);
   }
 }
 

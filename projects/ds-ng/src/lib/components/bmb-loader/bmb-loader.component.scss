@@ -106,7 +106,7 @@
   &-modal {
     background-color: var(--general_contrasts-25);
     border: rem.rem_calc(1) solid var(--containers-modal);
-    border-radius: rem.rem_calc(8);
+    border-radius: var(--bmb-radius-2);
     height: rem.rem_calc(163);
     left: 50%;
     position: fixed;
