@@ -41,7 +41,6 @@ export class BmbSwitchComponent {
   rightIcon = input<string>('');
   isChecked = model<boolean>(false);
   ariaLabel = input<string>();
-  id = input<string>(''); //Deprecated
   disabled = input<boolean>(false);
   name = input<string>(getUUID());
 
@@ -53,10 +52,6 @@ export class BmbSwitchComponent {
   isControlNull: boolean = false;
 
   ngOnInit(): void {
-    if (!!this.id()) {
-      this.inputId.set(this.id()!);
-    }
-
     if (!this.control()) {
       this.control.set(
         assignNewFormControl(this.name(), this.control(), 'checkbox')!,

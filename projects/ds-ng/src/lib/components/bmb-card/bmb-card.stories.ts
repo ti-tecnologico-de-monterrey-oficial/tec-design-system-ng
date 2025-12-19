@@ -105,6 +105,7 @@ ${getBasicExampleBlock('BmbCardComponent')}
         'warning',
         'error',
         'normal',
+        'transparent',
       ],
       table: {
         type: { summary: 'string' },
@@ -175,7 +176,7 @@ export const OneItem: Story = {
     template: `
       <bmb-card ${attributes(args)}>
         <bmb-card-header padding="s">
-          <h3>Header</h3>
+          Header
         </bmb-card-header>
         <bmb-card-content padding="none">
           <figure [ngStyle]="{margin: 0}">
@@ -188,7 +189,7 @@ export const OneItem: Story = {
           <p [ngStyle]="{padding: '1rem'}">Los gatos son criaturas llenas de misterio. Su elegancia al moverse, sus ojos penetrantes y su habilidad para desaparecer en las sombras han inspirado leyendas y supersticiones. Pero más allá de su aura enigmática, los gatos también son compañeros leales y cariñosos.</p>
         </bmb-card-content>
         <bmb-card-footer padding="xl">
-          <h3>Footer</h3>
+          Footer
         </bmb-card-footer>
       </bmb-card>
     `,

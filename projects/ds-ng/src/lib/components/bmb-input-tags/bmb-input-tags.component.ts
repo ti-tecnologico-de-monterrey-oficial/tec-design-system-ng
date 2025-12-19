@@ -69,7 +69,6 @@ export class BmbInputTagsComponent implements OnInit, OnChanges {
   isRequired = input<boolean>(false);
   helperMessage = input<string>('');
   disabled = input<boolean>(false);
-  maxSelectedItems = input<number>(); //Deprecated
   name = input<string>(getUUID());
   value = input<string | string[]>('');
   showError = input<boolean>(false);

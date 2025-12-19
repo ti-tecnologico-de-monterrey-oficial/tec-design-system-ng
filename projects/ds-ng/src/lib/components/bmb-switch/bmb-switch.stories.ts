@@ -96,7 +96,6 @@ ${getBasicExampleBlock('BmbSwitchComponent', '', onChange.handleExample)}
       },
     },
     inputId: DBmbInputParamDesc.inputId,
-    id: DBmbInputParamDesc.id,
     isChecked: {
       control: { type: 'boolean' },
       description:

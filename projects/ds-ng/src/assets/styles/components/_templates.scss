@@ -733,3 +733,157 @@
   max-width: rem.rem_calc(1000);
   margin: 0 auto !important;
 }
+
+.bmb_projected-content[open] {
+  top: 0;
+  bottom: 0;
+  margin: auto;
+
+  > .bmb-bienvenida {
+    width: calc(100dvw - rem.rem_calc(48));
+    margin: auto;
+    overflow: hidden;
+  }
+}
+
+.bmb-bienvenida {
+  bmb-container {
+    height: 100%;
+    display: block;
+
+    .bmb_container {
+      height: 100%;
+    }
+  }
+
+  &_mobile {
+    height: rem.rem_calc(460);
+    overflow: hidden;
+    width: 100%;
+    position: relative;
+    display: flex;
+    flex-flow: row nowrap;
+
+    .bmb-bienvenida_step {
+      height: 100%;
+    }
+
+    @include mixins.check-for-mobile(false) {
+      display: none;
+    }
+  }
+
+  &_content {
+    overflow: auto;
+    display: flex;
+    flex-flow: column nowrap;
+    position: relative;
+    gap: rem.rem_calc(16);
+  }
+
+  &_desktop {
+    height: calc(100dvh - rem.rem_calc(150));
+    overflow: hidden;
+    width: 100%;
+    position: relative;
+    display: none;
+    flex-flow: column nowrap;
+
+    @include mixins.check-for-mobile(false) {
+      display: flex;
+    }
+
+    &-wrapper {
+      min-width: rem.rem_calc(990);
+      max-width: rem.rem_calc(1076);
+      margin: auto;
+      overflow: auto;
+      height: 100%;
+      display: flex;
+      flex-flow: column;
+      width: 100%;
+    }
+
+    &-container {
+      display: flex;
+      margin-top: auto;
+      gap: rem.rem_calc(84);
+    }
+
+    &-content {
+      display: flex;
+      flex-flow: column nowrap;
+      gap: rem.rem_calc(24);
+
+      .bmb-layout-bienvenida_actions {
+        flex-flow: row nowrap;
+      }
+    }
+
+    &-description {
+      line-height: rem.rem_calc(21);
+    }
+
+    bmb-dot-paginator {
+      margin-top: auto;
+    }
+
+    &-header {
+      display: flex;
+      align-items: center;
+      gap: rem.rem_calc(24);
+    }
+
+    &-close {
+      position: absolute;
+      right: 0;
+    }
+
+    .bmb-bienvenida_actions {
+      flex-flow: row nowrap;
+    }
+
+    .bmb-bienvenida_image {
+      max-height: none;
+      min-width: rem.rem_calc(400);
+      max-width: rem.rem_calc(600);
+    }
+  }
+
+  &_image {
+    max-height: rem.rem_calc(300);
+    width: 100%;
+    object-fit: contain;
+  }
+
+  &_actions {
+    display: flex;
+    flex-flow: column nowrap;
+    gap: rem.rem_calc(16);
+  }
+
+  &_header {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &_step {
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition:
+      opacity 0.35s ease,
+      transform 0.35s ease;
+    pointer-events: none;
+    display: flex;
+    flex-flow: column nowrap;
+    gap: rem.rem_calc(16);
+    width: 100%;
+
+    &-active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+  }
+}

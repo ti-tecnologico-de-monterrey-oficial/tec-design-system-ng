@@ -99,8 +99,6 @@ export class BmbCalendarComponent implements OnInit, AfterViewInit {
   disableMobileFilter = input<boolean>(false);
   visibleDate = model<DateTime>(DateTime.now()); // internal
 
-  currentDate = input<string>(''); // Deprecated
-
   onDateChange = output<any>();
   onClose = output<any>();
 
