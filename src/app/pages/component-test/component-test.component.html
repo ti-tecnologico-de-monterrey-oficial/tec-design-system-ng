@@ -147,7 +147,7 @@
     (change)="handleRadial($event)"
   />
   <bmb-input
-    id="input_field_id"
+    inputId="input_field_id"
     name="input_field"
     label="Input"
     tooltip="Tooltip example"
@@ -183,8 +183,6 @@ FormGroup value {{ userForm.value | json }} -->
     [dropInstruction]="'Arrastra tus archivos aquí o'"
     [dropLabel]="'selecciona tus archivos'"
     [errorMessage]="'Archivo no compatible'"
-    [errorMessageFormat]="'Formato no soportado'"
-    [errorMessageSize]="'El archivo supera el tamaño máximo permitido.'"
     [fileSize]="2"
     [formatFilesLabel]="'Ver más información de formatos de archivo aceptados.'"
     [linkFilesSupported]="''"

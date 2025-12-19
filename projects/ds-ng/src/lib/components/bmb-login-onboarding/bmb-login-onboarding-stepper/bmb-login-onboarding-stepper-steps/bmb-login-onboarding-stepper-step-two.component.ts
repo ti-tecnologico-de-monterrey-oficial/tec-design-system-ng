@@ -26,7 +26,6 @@ import { IBmbError } from '../../types';
     >
       <bmb-totp
         instanceId="toTP"
-        [maxCode]="maxCode"
         [codeError]="getCodeError()"
         [errorMessage]="getErrorMessage()"
         (handleSubmit)="verifyCode($event)"

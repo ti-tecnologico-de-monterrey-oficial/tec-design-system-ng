@@ -1,7 +1,6 @@
-import { Meta, StoryObj, componentWrapperDecorator } from '@storybook/angular';
+import { Meta, StoryObj } from '@storybook/angular';
 import { BmbDatepickerComponent } from './bmb-datepicker.component';
 import {
-  DBmbGenericParamDesc,
   DBmbInputParamDesc,
   getDefaultValueControl,
   getOnEventParam,
@@ -119,7 +118,6 @@ ${getBasicExampleBlock('BmbDatepickerComponent', '', onChange.handleExample)}
     },
     disabled: DBmbInputParamDesc.disabled,
     label: DBmbInputParamDesc.label,
-    appearance: DBmbGenericParamDesc.deprecated,
     isClearable: DBmbInputParamDesc.isClearable,
     dateFormat: DBmbInputParamDesc.dateFormat,
     name: DBmbInputParamDesc.name,

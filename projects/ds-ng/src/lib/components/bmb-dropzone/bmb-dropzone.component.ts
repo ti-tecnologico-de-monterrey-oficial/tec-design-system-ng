@@ -53,8 +53,6 @@ export class BmbDropzoneComponent {
   dropInstruction = input<string>();
   dropLabel = input<string>();
   errorMessage = input<string>();
-  errorMessageFormat = input<string>(); //Deprecated
-  errorMessageSize = input<string>(); //Deprecated
   fileSize = input<number>(2);
   formatFilesLabel = input<string>();
   linkFilesSupported = input<string>('');

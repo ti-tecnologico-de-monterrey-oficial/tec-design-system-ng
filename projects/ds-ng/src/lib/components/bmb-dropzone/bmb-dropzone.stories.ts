@@ -200,8 +200,6 @@ Below is a HTML example with the basic code to use this component in a reactive 
     [dropInstruction]="'Arrastra tus archivos aquí o'"
     [dropLabel]="'selecciona tus archivos'"
     [errorMessage]="'Archivo no compatible'"
-    [errorMessageFormat]="'Formato no soportado'"
-    [errorMessageSize]="'El archivo supera el tamaño máximo permitido.'"
     [fileSize]="2"
     [formatFilesLabel]="'Ver más información de formatos de archivo aceptados.'"
     [linkFilesSupported]="''"
@@ -324,8 +322,6 @@ ${RELEVANT_TITLE.example} ***image/**** is for all image types:
         defaultValue: getDefaultValueControl('Archivo no compatible'),
       },
     },
-    errorMessageFormat: DBmbGenericParamDesc.deprecated,
-    errorMessageSize: DBmbGenericParamDesc.deprecated,
     name: DBmbInputParamDesc.name,
     fileSize: {
       control: { type: 'number' },

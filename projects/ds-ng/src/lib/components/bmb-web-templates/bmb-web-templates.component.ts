@@ -9,7 +9,6 @@ import {
 } from '@angular/core';
 import {
   BmbTopBarComponent,
-  IPositionButtonMenu,
   IUserInformation,
 } from '../bmb-top-bar/bmb-top-bar.component';
 import { BmbSidebarComponent } from '../bmb-sidebar/bmb-sidebar.component';
@@ -53,7 +52,6 @@ export class BmbWebTemplatesComponent {
   titleAsideSlot = input<string>();
 
   // top bar inputs
-  topBarPositionButtonMenu = input<IPositionButtonMenu>('left');
   topBarUserInformation = input<IUserInformation | null>(null);
   topBarHasLogoutButton = input<boolean>(true);
   topBarImage = input<string>('assets/images/tec-logo.svg');

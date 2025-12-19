@@ -116,7 +116,6 @@ Template:
         },
       },
     },
-    actionHeaders: DBmbGenericParamDesc.deprecated,
     onRequest: {
       name: 'On Request',
       control: {

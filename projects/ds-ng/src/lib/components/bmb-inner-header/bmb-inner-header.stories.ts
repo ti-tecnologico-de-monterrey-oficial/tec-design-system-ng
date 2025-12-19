@@ -81,7 +81,6 @@ ${getBasicExampleBlock('BmbInnerHeaderComponent')}
         type: { summary: 'string' },
       },
     },
-    subTitle: DBmbGenericParamDesc.deprecated,
     trailingIconPrimary: {
       ...DBmbIconParamDesc.icon,
       description: DBmbIconParamDesc.icon.description.replace(

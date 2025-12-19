@@ -34,7 +34,6 @@ import { BmbContainerComponent } from '../bmb-container/bmb-container.component'
 export class BmbInnerHeaderComponent {
   title = input<string>('');
   placeholderSearch = input<string>('');
-  subTitle = input<string>(''); //Deprecated
   trailingIconPrimary = input<string>('');
   trailingIconSecondary = input<string>('');
   disableTrailingIconPrimary = input<boolean>(false);

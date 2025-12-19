@@ -80,7 +80,6 @@ ${getBasicExampleBlock('BmbDateRangeComponent')}
     },
   },
   argTypes: {
-    label: DBmbGenericParamDesc.deprecated,
     labelStartDate: {
       ...DBmbInputParamDesc.label,
       description: DBmbInputParamDesc.label.description.replace(
@@ -130,7 +129,6 @@ ${getBasicExampleBlock('BmbDateRangeComponent')}
     },
     invalidFormatErrorMessage: DBmbInputParamDesc.invalidFormatErrorMessage,
     requiredFieldErrorMessage: DBmbInputParamDesc.requiredFieldErrorMessage,
-    appearance: DBmbGenericParamDesc.deprecated,
     disabled: DBmbInputParamDesc.disabled,
     isRequired: DBmbInputParamDesc.isRequired,
     isClearable: DBmbInputParamDesc.isClearable,
