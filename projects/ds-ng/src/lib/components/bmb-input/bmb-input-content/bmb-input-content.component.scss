@@ -139,17 +139,17 @@
 
     &::-webkit-scrollbar-thumb {
       background-color: var(--buttons-inactive-step);
-      border-radius: rem.rem_calc(20);
+      border-radius: var(--bmb-radius-5);
       border: rem.rem_calc(1) solid var(--buttons-inactive-step);
     }
 
     &::-webkit-scrollbar-track {
-      border-radius: rem.rem_calc(10);
+      border-radius: var(--bmb-radius-3);
     }
 
     &-error-icon {
       @include fonts.font(4_5, regular);
-      color: var(--input-error);
+      color: rgb(var(--color-red-light));
       position: absolute;
       top: rem.rem_calc(10);
       left: calc(100% - var(--bmb-spacing-l));

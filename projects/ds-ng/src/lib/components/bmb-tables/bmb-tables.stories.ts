@@ -309,7 +309,8 @@ custom actions, and templating for both actions and detail rows.
   },
 )}
 ${getSpecialSpecifications(getEmptyStateMessage(), { showAdditionalBlockquote: true })}<br/>
-${getAlertBlockquote(`
+${getAlertBlockquote(
+  `
   You can use the Table component styles with a simple table by using standard HTML with the class \`bmb_table-simple\`.
   \`\`\`html
   <table class="bmb_table-simple">
@@ -359,7 +360,9 @@ ${getAlertBlockquote(`
       </tr>
     </tbody>
   </table>
-\`\`\``, { title: RELEVANT_TITLE.example, blockquoteType: BlockquoteType.note })}
+\`\`\``,
+  { title: RELEVANT_TITLE.example, blockquoteType: BlockquoteType.note },
+)}
 ${getBasicExampleBlock(
   `
   BmbBadgeComponent,

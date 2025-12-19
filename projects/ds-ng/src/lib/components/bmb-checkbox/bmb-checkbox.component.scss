@@ -29,7 +29,7 @@
 
         &::after {
           @include mixins.input-checked(10, 4);
-          border: solid var(--white-primary);
+          border: solid rgb(var(--white-primary));
           border-width: rem.rem_calc(0 2 2 0);
           transform: rotate(45deg);
           top: -2px;
@@ -55,7 +55,7 @@
         &::after {
           @include mixins.input-checked(2, 12);
           position: absolute;
-          background-color: var(--white-primary);
+          background-color: rgb(var(--white-primary));
           margin: 0;
           top: 6px;
           left: 1px;

@@ -63,30 +63,7 @@ ${getBasicExampleBlock('BmbIconComponent')}
   },
   argTypes: {
     icon: DBmbIconParamDesc.icon,
-    styleIcon: {
-      ...DBmbGenericParamDesc.deprecated,
-      description: DBmbGenericParamDesc.deprecated.description
-        .concat(`<br/><br/>
-Available Icon Styles
-
-**Rounded**
-- **Description:** Icons with rounded edges. They feel softer and more friendly.
-- **Visual Features:** Rounded corners. The design is more approachable and less technical.
-- **Class Name:** \`material-symbols-rounded\`
-    `),
-    },
     isFill: DBmbIconParamDesc.isIconFill,
-    materialIcon: DBmbGenericParamDesc.deprecated,
-    fontWeight: {
-      control: { type: 'text' },
-      description:
-        'Specifies the weight of the font. Common values are ***400*** (normal) or ***700*** (bold).',
-      table: {
-        category: 'Properties',
-        defaultValue: { summary: '400' },
-        type: { summary: 'string' },
-      },
-    },
     dotNotification: DBmbIconParamDesc.iconDotNotification,
     size: DBmbIconParamDesc.iconSize,
     alt: DBmbIconParamDesc.alt,
@@ -94,7 +71,6 @@ Available Icon Styles
   args: {
     icon: 'home',
     isFill: true,
-    fontWeight: '400',
     size: 24,
     alt: 'Default alt text for image',
   },

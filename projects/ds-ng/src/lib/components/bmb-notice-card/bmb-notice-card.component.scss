@@ -7,7 +7,7 @@
   max-height: rem.rem_calc(550);
   height: fit-content;
   background-color: var(--containers-main);
-  border-radius: rem.rem_calc(16) rem.rem_calc(16) 0 0;
+  border-radius: var(--bmb-radius-4) var(--bmb-radius-4) 0 0;
 
   @media screen and (max-width: 520px) {
     width: auto;
@@ -21,7 +21,7 @@
       line-height: 0;
       grid-area: 1 / 1 / 2 / 2;
       overflow: hidden;
-      border-radius: rem.rem_calc(16) rem.rem_calc(16) 0 0;
+      border-radius: var(--bmb-radius-4) var(--bmb-radius-4) 0 0;
     }
 
     &-image {

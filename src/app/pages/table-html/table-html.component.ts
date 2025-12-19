@@ -7,7 +7,7 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './table-html.component.html',
-  styleUrl: './table-html.component.scss'
+  styleUrl: './table-html.component.scss',
 })
 export class TableHtmlComponent {
   users = data;

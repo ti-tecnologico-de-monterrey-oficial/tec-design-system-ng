@@ -201,11 +201,11 @@
         &:focus:not(:disabled),
         &:focus-visible:not(:disabled) {
           background-color: var(--buttons-primary-select);
-          color: var(--white-primary);
+          color: rgb(var(--white-primary));
           outline: rem.rem_calc(1) solid var(--buttons-stroke-primary-selected);
 
           .bmb_grade-value-main {
-            fill: var(--white-primary);
+            fill: rgb(var(--white-primary));
           }
         }
       }
@@ -215,7 +215,7 @@
       align-items: center;
       background-color: var(--containers-container-button);
       border: rem.rem_calc(1) solid var(--general_contrasts-50);
-      border-radius: rem.rem_calc(16);
+      border-radius: var(--bmb-radius-4);
       color: var(--general_contrasts-100);
       display: inline-flex;
       min-height: rem.rem_calc(80);

@@ -61,17 +61,14 @@ export class BmbDatepickerComponent implements OnInit {
   dateFormat = input<string>('dd/MM/yyyy');
   invalidFormatErrorMessage = input<string>(); //The default value is assigned as '||' in the corresponding error message
   requiredFieldErrorMessage = input<string>(); //The default value is assigned as '||' in the corresponding error message
-  appearance = input<IBmbInputAppearance | string>('normal'); //Deprecated
   disabled = input<boolean>(false);
   isRequired = input<boolean>(false);
   isClearable = input<boolean>(false);
   placeholder = input<string>(this.dateFormat());
-  // inline = input<boolean>(false);
   stepYearPicker = input<number>(18);
   name = input<string>(getUUID());
   disableDatesBefore = input<string>('');
   disableDatesAfter = input<string>('');
-  // lang = input<string>('es-MX');
   helperMessage = input<string>(this.dateFormat());
   value = input<string>();
   customValidation = input<ValidatorFn>();

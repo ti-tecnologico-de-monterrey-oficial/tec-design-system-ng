@@ -9,27 +9,17 @@
   }
 
   &-link {
-    color: RGBA(var(--color-charade-950));
+    color: var(--general_contrasts-100);
     text-decoration: none;
   }
 
   &-title {
-    color: RGBA(var(--color-charade-950));
+    color: var(--general_contrasts-100);
     @include fonts.font(5, regular);
     font-weight: 300;
   }
 
   &-icon {
     color: currentColor;
-  }
-}
-
-[data-theme='dark'],
-.storybook-dark-theme {
-  .bmb_home_section {
-    &-link,
-    &-title {
-      color: RGBA(var(--color-charade-50));
-    }
   }
 }

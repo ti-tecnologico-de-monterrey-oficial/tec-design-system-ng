@@ -1,0 +1,44 @@
+@use '../../../base/rem' as rem;
+
+$sizes: (
+  'none': 0,
+  'xxs': 0,
+  'xs': 0,
+  's': 0,
+  'm': 0,
+  'l': 0,
+  'xl': 0,
+  'xxl': 0,
+  'auto': auto,
+  'full': 50%,
+  '0': 0,
+  '1': 0,
+  '2': 0,
+  '3': 0,
+  '4': 0,
+  '5': 0,
+  '6': 0,
+  '7': 0,
+  '8': 0,
+  '9': 0,
+  '10': 0,
+  '12': 0,
+  '16': 0,
+  '20': 0,
+  '24': 0,
+);
+
+:root {
+  @each $name, $size in $sizes {
+    --bmb-radius-#{$name}: #{$size};
+  }
+
+  --bmb-radius-badge: rem.rem_calc(40);
+}
+
+@each $name, $size in $sizes {
+  .bmb_radius-#{$name} {
+    border-radius: $size;
+    --bmb-border-radius: #{$size};
+  }
+}

@@ -13,7 +13,7 @@
     border: rem.rem_calc(1) solid RGBA(var(--color-blue-primary));
 
     > bmb-icon {
-      color: var(--white-primary);
+      color: rgb(var(--white-primary));
     }
   }
 }

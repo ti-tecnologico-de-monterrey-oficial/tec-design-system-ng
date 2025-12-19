@@ -22,7 +22,7 @@
     }
 
     &-header {
-      background-color: RGBA(var(--color-charade-100));
+      background-color: var(--containers-main);
       display: flex;
       flex-direction: column;
       gap: var(--bmb-spacing-s);
@@ -87,28 +87,15 @@
     }
 
     &-main {
-      background-color: RGBA(var(--color-charade-100));
+      background-color: var(--containers-main);
       border-radius: var(--bmb-radius-m);
       padding: var(--bmb-spacing-m);
       height: 100%;
       overflow: auto;
-      border: rem.rem_calc(1) solid RGBA(var(--color-charade-300));
+      border: rem.rem_calc(1) solid var(--general_contrasts-container);
 
       &-container {
         overflow: auto;
-      }
-    }
-  }
-}
-
-[data-theme='dark'],
-.storybook-dark-theme {
-  .bmb_web-template-single-column-card {
-    .bmb_web-template {
-      &-header,
-      &-main {
-        background-color: RGBA(var(--color-charade-900));
-        border-color: RGBA(var(--color-charade-800));
       }
     }
   }

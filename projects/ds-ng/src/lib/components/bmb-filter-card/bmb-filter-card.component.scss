@@ -7,17 +7,17 @@
     height: rem.rem_calc(28);
     width: rem.rem_calc(28);
     font-size: rem.rem_calc(28);
-    color: RGBA(var(--color-charade-950));
+    color: var(--general_contrasts-100);
   }
 
   &-title {
     @include fonts.font(4, regular);
     margin: rem.rem_calc(24 0 16);
-    color: RGBA(var(--color-charade-700));
+    color: var(--general_contrasts-80);
   }
 
   &-control {
-    border-bottom: rem.rem_calc(1) solid RGBA(var(--color-charade-500));
+    border-bottom: rem.rem_calc(1) solid var(--general_contrasts-50);
     padding-bottom: rem.rem_calc(10);
 
     @include mixins.media-query(768, 'min') {
@@ -41,19 +41,6 @@
       .bmb_btn-rounded {
         width: 50%;
       }
-    }
-  }
-}
-
-[data-theme='dark'],
-.storybook-dark-theme {
-  .bmb_filter_card {
-    &-button {
-      color: RGBA(var(--color-charade-50));
-    }
-
-    &-title {
-      color: RGBA(var(--color-charade-200));
     }
   }
 }

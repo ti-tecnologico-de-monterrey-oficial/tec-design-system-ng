@@ -14,12 +14,12 @@ $colors: (
 .bmb_icon-status {
   &-wrapper {
     display: flex;
-    border-radius: 50%;
+    border-radius: var(--bmb-radius-full);
     height: rem.rem_calc(120);
     width: rem.rem_calc(120);
     align-items: center;
     justify-content: center;
-    color: var(--white-primary);
+    color: rgb(var(--white-primary));
 
     @each $name, $color in $colors {
       &-#{$name} {

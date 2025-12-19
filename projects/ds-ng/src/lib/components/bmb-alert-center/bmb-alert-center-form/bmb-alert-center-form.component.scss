@@ -34,7 +34,7 @@
 
   .bmb-bottom-navigation-bar .bmb_container {
     padding: var(--bmb-spacing-m);
-    border-radius: 0;
+    border-radius: var(--bmb-radius-none);
   }
 
   .bmb_navigation-bar {

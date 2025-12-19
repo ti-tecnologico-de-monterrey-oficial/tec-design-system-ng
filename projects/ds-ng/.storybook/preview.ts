@@ -8,7 +8,10 @@ import {
   Stories,
 } from '@storybook/addon-docs/blocks';
 import { setCompodocJson } from '@storybook/addon-docs/angular';
-import { withThemeByClassName } from '@storybook/addon-themes';
+import {
+  withThemeByClassName,
+  withThemeByDataAttribute,
+} from '@storybook/addon-themes';
 import docJson from '../../../documentation.json';
 import { allModes } from './modes';
 import {
@@ -17,6 +20,7 @@ import {
   TITLE_OF_CONTROLS,
   TOC_OBJ,
 } from '../src/lib/utils/doc/utils';
+import { Renderer } from 'storybook/internal/csf';
 
 setCompodocJson(docJson);
 
@@ -105,20 +109,47 @@ const preview: Preview = {
     a11y: {
       manual: true,
     },
+    // brandingTheme: {
+    //   description: 'Bamboo brands',
+    //   defaultValue: 'BAMBOO_CORE',
+    //   toolbar: {
+    //     title: 'Brand',
+    //     icon: 'grow',
+    //     items: ['BAMBOO_CORE', 'GED'],
+    //     dynamicTitle: false,
+    //   },
+    // },
+    // theme: {
+    //   description: 'Bamboo themes',
+    //   defaultValue: 'dark',
+    //   toolbar: {
+    //     title: 'Theme',
+    //     icon: 'edit',
+    //     items: ['light', 'dark'],
+    //     dynamicTitle: false,
+    //   },
+    // },
   },
   initialGlobals: {
     layout: 'vertical',
     viewport: { value: 'tablet', isRotated: false },
-    brandingTheme: 'mitec',
   },
   decorators: [
-    withThemeByClassName({
+    withThemeByClassName<Renderer>({
       themes: {
         light: 'storybook-light-theme',
         dark: 'storybook-dark-theme',
       },
       defaultTheme: 'dark',
     }),
+    // withThemeByDataAttribute<Renderer>({
+    //   themes: {
+    //     light: 'light',
+    //     dark: 'dark',
+    //   },
+    //   defaultTheme: 'dark',
+    //   attributeName: 'data-theme',
+    // }),
   ],
 };
 

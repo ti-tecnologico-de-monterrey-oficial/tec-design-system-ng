@@ -15,7 +15,7 @@
     display: flex;
     overflow: auto;
     transition: opacity 0.3s ease;
-    background-color: RGBA(var(--color-charade-200), 1);
+    background-color: var(--general_contrasts-25);
 
     &.visible {
       opacity: 1;
@@ -32,8 +32,8 @@
     width: rem.rem_calc(50);
     height: rem.rem_calc(4);
     cursor: pointer;
-    background-color: RGBA(var(--color-charade-700), 1);
-    border-radius: rem.rem_calc(2);
+    background-color: var(--general_contrasts-75);
+    border-radius: var(--bmb-radius-xxs);
     padding: 0;
     margin-bottom: rem.rem_calc(10);
     user-select: none;
@@ -42,18 +42,5 @@
 
   &-drag {
     transform: translate(0, 0) !important;
-  }
-}
-
-[data-theme='dark'],
-.storybook-dark-theme {
-  .bmb_pull_wedge {
-    &-button {
-      background-color: RGBA(var(--color-charade-200), 1);
-    }
-
-    &-content {
-      background-color: RGBA(var(--color-charade-700), 1);
-    }
   }
 }

@@ -21,12 +21,12 @@
 
   &-normal_circle {
     border: rem.rem_calc(1) solid var(--general_contrasts-100);
-    border-radius: 100%;
+    border-radius: var(--bmb-radius-full);
   }
 
   &-circle_focused {
     border: rem.rem_calc(1) solid var(--azul-mariner-500);
-    border-radius: 100%;
+    border-radius: var(--bmb-radius-full);
   }
 
   &-normal_bg {
@@ -39,7 +39,7 @@
 
   &-non_focused {
     border: rem.rem_calc(1) solid background-color;
-    border-radius: 100%;
+    border-radius: var(--bmb-radius-full);
   }
 
   &-icon {
