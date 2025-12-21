@@ -101,6 +101,7 @@
   .bmb_focus-element-normal_circle {
     height: rem.rem_calc(40);
     width: rem.rem_calc(40);
+    border-radius: var(--bmb-evaluation-rubric-radius-circle);
   }
 
   .bmb_focus-element-number {

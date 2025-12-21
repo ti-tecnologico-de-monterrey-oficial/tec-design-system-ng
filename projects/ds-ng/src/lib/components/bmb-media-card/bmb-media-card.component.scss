@@ -161,7 +161,7 @@
   }
 
   &-link {
-    border-radius: rem.rem_calc(20);
+    border-radius: var(--bmb-radius-5);
     text-decoration: none;
 
     .bmb_media-card-image-container {

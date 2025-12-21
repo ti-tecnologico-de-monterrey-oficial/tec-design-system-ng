@@ -96,7 +96,11 @@
     &:focus-visible:not(:disabled) {
       background: var(--buttons-primary-hover);
       border-color: var(--buttons-primary-border-hover);
-      color: var(--buttons-primary-text-hover)
+      color: var(--buttons-primary-text-hover);
+
+      bmb-icon {
+        color: var(--buttons-primary-text-hover);
+      }
     }
 
     &:active:not(:disabled),
@@ -109,6 +113,10 @@
       outline-color: var(--buttons-primary-border-active);
       box-shadow: rem.rem_calc(0 0 20) var(--blue-mariner-500);
       color: var(--buttons-alternative-normal);
+
+      bmb-icon {
+        color: var(--buttons-alternative-normal);
+      }
     }
 
     bmb-icon {

@@ -52,9 +52,8 @@
     @include fonts.font(4, regular);
     min-height: rem.rem_calc(45);
     width: fit-content;
-    border-radius: var(--bmb-radius-4) var(--bmb-radius-4) var(--bmb-radius-4)
-      var(--bmb-radius-none);
-    padding: var(--bmb-radius-m);
+    border-radius: rem.rem_calc(16) rem.rem_calc(16) rem.rem_calc(16) 0;
+    padding: var(--bmb-padding-m);
     box-shadow: rem.rem_calc(0 2 5) rgba(0, 0, 0, 0.1);
 
     &-container {
@@ -62,8 +61,7 @@
     }
 
     &-top {
-      border-radius: var(--bmb-radius-none) var(--bmb-radius-4)
-        var(--bmb-radius-4) var(--bmb-radius-4);
+      border-radius: 0 rem.rem_calc(16) rem.rem_calc(16) rem.rem_calc(16);
       background-color: var(--general_contrasts-20);
     }
 
@@ -72,21 +70,19 @@
     }
 
     &-image {
-      border-radius: var(--bmb-radius-4);
+      border-radius: rem.rem_calc(16);
       max-width: rem.rem_calc(350);
       max-height: rem.rem_calc(250);
       margin-top: rem.rem_calc(10);
     }
 
     &-userProfile-bottom {
-      border-radius: var(--bmb-radius-4) var(--bmb-radius-4)
-        var(--bmb-radius-none) var(--bmb-radius-4);
+      border-radius: rem.rem_calc(16) rem.rem_calc(16) 0 rem.rem_calc(16);
       background-color: var(--general_contrasts-5);
     }
 
     &-userProfile-top {
-      border-radius: var(--bmb-radius-4) var(--bmb-radius-none)
-        var(--bmb-radius-4) var(--bmb-radius-4);
+      border-radius: rem.rem_calc(16) 0 rem.rem_calc(16) rem.rem_calc(16);
     }
 
     &-thinking-dots {
