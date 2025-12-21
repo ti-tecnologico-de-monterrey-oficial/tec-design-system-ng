@@ -117,6 +117,15 @@
 
   --color-table-900: rgb(var(--gray-charade-900));
   --color-table-btn-900: rgb(var(--gray-charade-900));
+
+  // variables for buttons
+  --buttons-primary-border-hover: var(--buttons-primary-hover);
+  --buttons-primary-text-hover: var(--buttons-alternative-normal);
+  --buttons-primary-border-active: var(--buttons-stroke-primary-selected);
+  --buttons-card-hover-background: var(--buttons-primary-hover);
+  --buttons-card-hover-text: var(--buttons-alternative-normal);
+  --buttons-fab-text: var(--general_contrasts-main-complimentary);
+
 }
 
 // [data-brand='BAMBOO-CORE'],
