@@ -33,17 +33,18 @@
   --blue-mariner-800: 36, 73, 132; // #244984
   --blue-mariner-950: 26, 46, 81; // #1A2E51
 
-  // Gray charade
-  --gray-charade-50: 246, 247, 249; // #F6F7F9
-  --gray-charade-100: 235, 237, 243; // #EBEDF3
-  --gray-charade-200: 211, 215, 228; // #D3D7E4
-  --gray-charade-300: 173, 182, 204; // #ADB6CC
-  --gray-charade-500: 97, 113, 150; // #617196
-  --gray-charade-600: 77, 89, 124; // #4D597C
-  --gray-charade-700: 63, 73, 101; // #3F4965
-  --gray-charade-800: 55, 63, 85; // #373F55
-  --gray-charade-900: 49, 54, 73; // #313649
-  --gray-charade-950: 31, 34, 46; // #1F222E
+  // Blue (GED)
+  --blue-ged-50: 240, 244, 255; // #F0F4FF
+  --blue-ged-100: 226, 231, 243; // #E2E7F3
+  --blue-ged-200: 213, 219, 237; // #D5DBED
+  --blue-ged-300: 188, 195, 217; // #BCC3D9
+  --blue-ged-400: 162, 171, 198; // #A2ABC6
+  --blue-ged-500: 138, 148, 180; // #8A94B4
+  --blue-ged-600: 114, 125, 161; // #727DA1
+  --blue-ged-700: 91, 103, 143; // #5B678F
+  --blue-ged-800: 67, 82, 126; // #43527E
+  --blue-ged-900: 43, 62, 108; // #2B3E6C
+  --blue-ged-950: var(--gray-ged-950); // #1A1A1A
 
   // Base colors
   --black-primary: 0, 0, 0; // #000000
@@ -102,6 +103,7 @@
   --soft-red-tint: 226, 138, 142; // #E28A8E
 
   --wattle-primary: 141, 108, 27; // #8D6C1B
+  --wattle-primary-alternative: 157, 138, 1; // #9D8A01
   --wattle-tint: 205, 185, 37; // #CDB925
 
   --ship-cove-primary: 65, 78, 140; // #414E8C
@@ -115,6 +117,7 @@
   --rum-tint: 189, 170, 200; // #BDAAC8
 
   --ripe-lemon-primary: 116, 75, 15; // #744B0F
+  --ripe-lemon-primary-alternative: 148, 119, 0; // #947700
   --ripe-lemon-tint: 241, 211, 2; // #F1D302
 
   --hibiscus-primary: 139, 41, 81; // #8B2951
@@ -122,10 +125,13 @@
 
   //Semantic colors
   --success-primary: 33, 100, 83; // #216453
+  --success-primary-alternative: 0, 140, 65; // #008C41
   --success-light: 67, 170, 139; // #43AA8B
   --success-thin: var(--success-light);
+  --success-tint-alternative: 68, 189, 124; // #44BD7C
 
   --warning-primary: 122, 45, 13; // #7A2D0D
+  --warning-primary-alternative: 196, 122, 0; // #C47A00
   --warning-tint: var(--yellow-tint);
 
   --error-primary: 185, 28, 28; // #B91C1C

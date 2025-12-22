@@ -59,6 +59,30 @@
   </section>
   <section bmbVerticalLayoutItem bmbAccordionControl>
     <bmb-accordion appearanceContrast="alternative" icon="keyboard_arrow_down">
+      <ng-template #bmbAccordionHeader>{{ 'Container colors' }}</ng-template>
+      <ng-template #bmbAccordionContent>
+        <ng-template
+          *ngTemplateOutlet="
+            content;
+            context: {
+              list: grayCharade,
+              title: 'Gray '
+            }
+          "
+        />
+        <bmb-divider />
+        <ng-template
+          *ngTemplateOutlet="
+            content;
+            context: {
+              list: grayGED,
+              title: 'Gray (GED)'
+            }
+          "
+        />
+      </ng-template>
+    </bmb-accordion>
+    <bmb-accordion appearanceContrast="alternative" icon="keyboard_arrow_down">
       <ng-template #bmbAccordionHeader>{{ 'Base colors' }}</ng-template>
       <ng-template #bmbAccordionContent>
         <ng-template
@@ -138,16 +162,6 @@
     <bmb-accordion appearanceContrast="alternative" icon="keyboard_arrow_down">
       <ng-template #bmbAccordionHeader>{{ 'GED' }}</ng-template>
       <ng-template #bmbAccordionContent>
-        <ng-template
-          *ngTemplateOutlet="
-            content;
-            context: {
-              list: grayGED,
-              title: 'Gray (GED)'
-            }
-          "
-        />
-        <bmb-divider />
         <ng-template
           *ngTemplateOutlet="
             content;

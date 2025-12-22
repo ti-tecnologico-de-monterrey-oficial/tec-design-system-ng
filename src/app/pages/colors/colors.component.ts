@@ -152,6 +152,19 @@ export class ColorsComponent {
     '--gray-ged-950',
   ];
 
+  grayCharade: string[] = [
+    '--gray-charade-50',
+    '--gray-charade-100',
+    '--gray-charade-200',
+    '--gray-charade-300',
+    '--gray-charade-500',
+    '--gray-charade-600',
+    '--gray-charade-700',
+    '--gray-charade-800',
+    '--gray-charade-900',
+    '--gray-charade-950',
+  ];
+
   blueGED: string[] = [
     '--blue-ged-50',
     '--blue-ged-100',
