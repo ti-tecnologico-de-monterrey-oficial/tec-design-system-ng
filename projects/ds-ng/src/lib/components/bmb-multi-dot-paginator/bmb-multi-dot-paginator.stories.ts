@@ -39,6 +39,8 @@ export default {
           'setNextItem',
           'contentChildren',
           'ngAfterContentInit',
+          'prevItem',
+          'nextItem',
         ],
       },
       description: {

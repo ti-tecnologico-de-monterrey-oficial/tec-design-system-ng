@@ -34,7 +34,7 @@ const handleChange: IBmbOnEvent = getOnEvent(
   true,
 );
 const inputExample = `<bmb-input
-  id="${inputName}_id"
+  inputId="${inputName}_id"
   name="${inputName}"
   label="${generateLabel(inputName)}"
   tooltip="Tooltip example"
@@ -121,7 +121,7 @@ IBmbInputType = 'text' | 'password' | 'number' | 'text-area'
         defaultValue: getDefaultValueControl('text'),
       },
     },
-    id: DBmbInputParamDesc.inputId,
+    inputId: DBmbInputParamDesc.inputId,
     name: DBmbInputParamDesc.name,
     value: DBmbInputParamDesc.value,
     appearance: getAppearanceParam('input field', ['normal', 'simple']),
@@ -321,11 +321,10 @@ IBmbAdditionalAction = 'copy' | 'showHide' | 'none'
       },
     },
     showError: DBmbInputParamDesc.showError,
-    size: DBmbGenericParamDesc.deprecated,
   },
   args: {
     type: 'text',
-    id: '',
+    inputId: '',
     name: '',
     value: '',
     appearance: 'normal',

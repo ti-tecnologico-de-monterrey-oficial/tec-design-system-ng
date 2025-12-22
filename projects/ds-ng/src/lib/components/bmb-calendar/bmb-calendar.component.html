@@ -119,11 +119,11 @@
     <bmb-divider type="solid"></bmb-divider>
     <bmb-switch
       [isChecked]="true"
-      [ariaLabel]="('calendar.modal.notification_label' | translate)"
-      [rightText]="('calendar.modal.notification_label' | translate)"
+      [ariaLabel]="'calendar.modal.notification_label' | translate"
+      [rightText]="'calendar.modal.notification_label' | translate"
       name="enable_notifications"
       inputId="enable_notifications"
-      [control]=" getFormControl('enable_notifications')"
+      [control]="getFormControl('enable_notifications')"
     ></bmb-switch>
   </form>
 </ng-template>

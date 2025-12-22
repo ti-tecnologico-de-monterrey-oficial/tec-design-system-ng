@@ -292,7 +292,7 @@ const additionalBlock: string = `
 `;
 
 export default {
-  title: 'Components/Containers/Table lite',
+  title: 'Components/Containers/Table/Table lite',
   tags: ['!autodocs'],
   component: BmbTableLiteComponent,
   decorators: [
@@ -382,9 +382,10 @@ custom actions, and templating for both actions and detail rows.
   {
     generalDocLink:
       'https://bamboo.tec.mx/latest/componentes/table/descripcion-general-h1hRplJO',
+    isSubStory: true,
   },
 )}
-${getSpecialSpecifications(getEmptyStateMessage())}
+${getSpecialSpecifications(getEmptyStateMessage(), { showAdditionalBlockquote: true, isSubStory: true })}
 ${getBasicExampleBlock(
   `
   BmbIconComponent,
@@ -395,6 +396,7 @@ ${getBasicExampleBlock(
 `,
   '',
   additionalBlock,
+  true,
 )}
 \`\`\`html
 
@@ -840,4 +842,4 @@ If the data is loaded asynchronously, make sure to update this property after da
 
 type Story = StoryObj<BmbTableLiteComponent>;
 
-export const Default: Story = {};
+export const Default = {};

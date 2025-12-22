@@ -1,15 +1,18 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  ContentChild,
   input,
   model,
   output,
+  TemplateRef,
   ViewEncapsulation,
 } from '@angular/core';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { BmbCheckExternalLinkButtonComponent } from '../bmb-check-external-link-button/bmb-check-external-link-button.component';
 import { CommonModule } from '@angular/common';
 import { IBmbTargetLink } from '../../types';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
 @Component({
   selector: 'bmb-action-icon',
@@ -37,6 +40,11 @@ export class BmbActionIconComponent {
   target = input<IBmbTargetLink>();
   link = input<string>();
   disabled = input<boolean>(false);
+  isSVGTemplate = input<boolean>();
+
+  @ContentChild('customActionIcon') customActionIcon!: TemplateRef<any>;
+
+  constructor(private sanitizer: DomSanitizer) {}
 
   buttonPress = output<MouseEvent>();
   buttonClick = output<MouseEvent>();
@@ -57,5 +65,18 @@ export class BmbActionIconComponent {
     }
 
     this.buttonClick.emit(event || new MouseEvent('click'));
+  }
+
+  get safeSVG(): SafeHtml | null {
+    if (
+      (!this.isSVGTemplate() && this.customActionIcon) ||
+      (this.isSVGTemplate() && this.customActionIcon === undefined)
+    ) {
+      return null;
+    }
+
+    return this.sanitizer.bypassSecurityTrustHtml(
+      this.customActionIcon.toString(),
+    );
   }
 }

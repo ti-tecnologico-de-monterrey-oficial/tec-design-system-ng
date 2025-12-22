@@ -12,14 +12,14 @@
   &-header {
     @include fonts.font(3, regular);
     background-color: transparent;
-    border-radius: rem.rem_calc(16);
+    border-radius: var(--bmb-radius-4);
     cursor: pointer;
   }
 
   &-header-icon {
     @include fonts.font(3, regular);
     background-color: transparent;
-    border-radius: rem.rem_calc(16);
+    border-radius: var(--bmb-radius-4);
     cursor: pointer;
 
     bmb-icon {
@@ -29,7 +29,7 @@
 
   &-header-open {
     background-color: var(--menu_select-on-surface-hovered-w-checkbox);
-    border-radius: rem.rem_calc(16 16 0 0);
+    border-radius: var(--bmb-radius-4) var(--bmb-radius-4) 0 0;
     color: var(--general_contrasts-100);
   }
 
@@ -71,7 +71,7 @@
   }
 
   &.active {
-    border-color: RGBA(var(--color-mariner-700));
+    border-color: var(--general-contrasts-main-selection);
 
     .bmb_accordion-header,
     .bmb_accordion-header-icon {
@@ -86,7 +86,7 @@
 
   &:hover {
     &:not(.active):not(.disabled):hover {
-      border-color: RGBA(var(--color-mariner-700));
+      border-color: var(--general-contrasts-main-selection);
     }
   }
 

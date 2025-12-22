@@ -1,0 +1,234 @@
+:root,
+// [data-brand='BAMBOO-CORE'],
+[data-theme='light'],
+.storybook-light-theme .docs-story {
+  // Containers
+  --containers-background: rgb(var(--gray-charade-50));
+  --containers-main: rgb(var(--white-primary));
+  --containers-header-mobile: rgb(var(--white-primary));
+  --containers-modal: rgb(var(--gray-charade-50));
+  --containers-button: rgb(var(--gray-charade-50));
+  --containers-top-bar: rgb(var(--black-primary));
+  --containers-media-card-background-fade: rgba(var(--gray-charade-950), 0);
+  --containers-media-card-background: rgba(var(--gray-charade-950), 0.9);
+
+  --containers-background-fade: rgb(var(--charade-200));
+
+  // Buttons
+  --buttons-primary-normal: rgb(var(--blue-mariner-700));
+  --buttons-primary-hover: rgb(var(--blue-mariner-800));
+  --buttons-primary-select: rgb(var(--blue-mariner-700));
+  --buttons-alternative-normal: rgb(var(--gray-charade-50));
+  --buttons-alternative-hover: rgb(var(--gray-charade-300));
+  --buttons-alternative-text: rgb(var(--gray-charade-900));
+  --buttons-alternative-text-hover: rgb(var(--gray-ged-700));
+  --buttons-primary-text: rgb(var(--black-primary));
+  --buttons-fab-text: rgb(var(--white-primary));
+  --buttons-active-switch: rgb(var(--blue-mariner-700));
+  --buttons-inactive-step: rgb(var(--gray-charade-300));
+  --buttons-stroke-primary-selected: rgb(var(--blue-mariner-900));
+  --buttons-destructive: rgb(var(--red-primary));
+  --buttons-text-link: rgb(var(--blue-mariner-700));
+
+  // General Contrasts
+  --general-contrasts: rgb(var(--black-primary));
+  --general-contrasts-100: rgb(var(--gray-charade-950));
+  --general-contrasts-90: rgb(var(--gray-charade-500));
+  --general-contrasts-80: rgb(var(--gray-charade-700));
+  --general-contrasts-75: rgb(var(--gray-charade-700));
+  --general-contrasts-60: rgb(var(--gray-charade-900));
+  --general-contrasts-50: rgb(var(--gray-charade-500));
+  --general-contrasts-25: rgb(var(--gray-charade-200));
+  --general-contrasts-20: rgb(var(--gray-charade-100));
+  --general-contrasts-15: rgb(var(--gray-charade-100));
+  --general-contrasts-5: rgb(var(--gray-charade-50));
+
+  // Semantic colors
+  --semantic-success: rgb(var(--success-primary));
+  --semantic-warning: rgb(var(--warning-primary));
+  --semantic-error: rgb(var(--error-primary));
+  --semantic-info-event: rgb(var(--info-primary));
+  --semantic-branding: rgb(var(--branding-primary));
+  --semantic-alert: rgb(var(--alert-primary));
+
+  //Containers backgrounds (gradients)
+  --media-card-gradient-default: var(--containers-media-card-background-fade)
+      33.5%,
+    var(--containers-media-card-background) 81.33%;
+  --media-card-gradient-hover: var(--black-min) 0%, var(--black-min) 100%;
+  --media-card-gradient-select: var(--black-min) 0%, var(--black-min) 100%;
+
+  //Complementary backgrounds (gradients)
+  --gradient-bg-tec: rgb(var(--blue-mariner-50)) 56.25%,
+    rgb(var(--blue-mariner-100)) 100%;
+
+  --general-contrasts-main-complimentary: rgb(var(--gray-charade-50));
+  --general-contrasts-main-selection: rgb(var(--blue-mariner-700));
+  --general-contrasts-main-selection-alternative: rgb(var(--green-light));
+
+  --general-contrasts-input-background: rgb(var(--gray-charade-50));
+  --general-contrasts-input-outline: rgb(var(--blue-mariner-700));
+  --general-contrasts-container-outline: rgb(var(--gray-charade-300));
+  --general-contrasts-text-sidebar: rgb(var(--black-primary));
+  --general-contrasts-container: rgb(var(--gray-charade-800));
+  --general-contrasts-primary: rgb(var(--blue-mariner-700));
+
+  --containers-background: rgb(var(--gray-charade-200));
+  --containers-main: rgb(var(--gray-charade-100));
+  --containers-modal: rgb(var(--gray-charade-50));
+  --containers-container-button: rgb(var(--gray-charade-50));
+  --containers-background-fade: rgb(var(--gray-charade-200));
+
+  --menu-select-surface-activated: rgb(var(--blue-mariner-700));
+  --menu-select-label-menu-active: rgb(var(--gray-charade-50));
+  --menu-select-label-menu-inactive: rgb(var(--gray-charade-950));
+  --menu-select-activated-w-checkbox: rgb(var(--blue-mariner-950));
+  --menu-select-alternative-focus-label: rgb(var(--purple-primary));
+  --menu-select-on-surface-hovered-w-checkbox: rgb(var(--blue-mariner-100));
+  --menu-select-on-surface-hovered: rgb(var(--blue-mariner-100));
+  --menu-select-on-surface-hovered-border: rgba(var(--blue-mariner-700), 0.1);
+
+  --drop-shadow-color-test-shadow: rgba(var(--black-primary), 0.2);
+
+  --track-progress-bar: rgb(var(--green-primary));
+  --vertical-step-active: rgb(var(--gray-charade-50));
+  --vertical-step-active-color: rgb(var(--gray-charade-700));
+  --vertical-step-subtitle: rgb(var(--gray-charade-700));
+
+  --mitec-blue: rgb(var(--mitec-blue-primary));
+  --mitec-red: rgb(var(--mitec-red-primary));
+  --mitec-green: rgb(var(--mitec-green-primary));
+  --mitec-orange: rgb(var(--mitec-orange-primary));
+  --mitec-purple: rgb(var(--mitec-purple-primary));
+  --creative-use-violet: rgb(var(--violet-primary));
+  --creative-use-indigo: rgb(var(--indigo-primary));
+  --creative-use-emerald: rgb(var(--emerald-primary));
+  --creative-use-licorice: rgb(var(--licorice-primary));
+  --creative-use-darkteal: rgb(var(--dark-teal-primary));
+  --creative-use-peach: rgb(var(--peach-primary));
+  --creative-use-sepia: rgb(var(--sepia-primary));
+  --creative-use-softred: rgb(var(--soft-red-primary));
+  --creative-use-wattle: rgb(var(--wattle-primary));
+  --creative-use-shipcove: rgb(var(--ship-cove-primary));
+  --creative-use-plantation: rgb(var(--plantation-primary));
+  --creative-use-rum: rgb(var(--rum-primary));
+  --creative-use-ripelemon: rgb(var(--ripe-lemon-primary));
+  --creative-use-hibiscus: rgb(var(--hibiscus-primary));
+
+  --color-table-900: rgb(var(--gray-charade-900));
+  --color-table-btn-900: rgb(var(--gray-charade-900));
+
+  // variables for buttons
+  --buttons-primary-border-hover: var(--buttons-primary-hover);
+  --buttons-primary-text-hover: var(--buttons-alternative-normal);
+  --buttons-primary-border-active: var(--buttons-stroke-primary-selected);
+  --buttons-card-hover-background: var(--buttons-primary-hover);
+  --buttons-card-hover-text: var(--buttons-alternative-normal);
+  --buttons-fab-text: var(--general_contrasts-main-complimentary);
+  --bmb-evaluation-rubric-radius-circle: 50%;
+  --bmb-calendar-button-selected-background: RGBA(var(--color-white-primary));
+  --bmb-dot-paginator-dot: RGBA(var(--color-charade-500));
+}
+
+// [data-brand='BAMBOO-CORE'],
+[data-theme='dark'],
+.storybook-dark-theme,
+.storybook-dark-theme .docs-story {
+  // Containers
+  --containers-background: rgb(var(--gray-charade-950));
+  --containers-main: rgb(var(--gray-charade-900));
+  --containers-header-mobile: rgb(var(--gray-charade-900));
+  --containers-modal: rgb(var(--gray-charade-950));
+  --containers-button: rgb(var(--gray-charade-900));
+
+  // General Contrasts
+  --general-contrasts: rgb(var(--white-primary));
+  --general-contrasts-100: rgb(var(--gray-charade-50));
+  --general-contrasts-90: rgb(var(--gray-charade-300));
+  --general-contrasts-80: rgb(var(--gray-charade-300));
+  --general-contrasts-75: rgb(var(--gray-charade-200));
+  --general-contrasts-60: rgb(var(--gray-charade-200));
+  --general-contrasts-50: rgb(var(--gray-charade-500));
+  --general-contrasts-25: rgb(var(--gray-charade-700));
+  --general-contrasts-20: rgb(var(--gray-charade-700));
+  --general-contrasts-15: rgb(var(--gray-charade-800));
+  --general-contrasts-5: rgb(var(--gray-charade-900));
+
+  // Semantic colors
+  --semantic-success: rgb(var(--success-tint));
+  --semantic-warning: rgb(var(--warning-tint));
+  --semantic-error: rgb(var(--error-light));
+  --semantic-info-event: rgb(var(--info-light));
+  --semantic-branding: rgb(var(--branding-primary));
+  --semantic-alert: rgb(var(--alert-light));
+
+  //Containers backgrounds (gradients)
+  --media-card-gradient-hover: var(--containers-media-card-background-fade)
+      33.5%,
+    var(--containers-media-card-background) 81.33%;
+  --media-card-gradient-select: var(--containers-media-card-background-fade)
+      33.5%,
+    var(--containers-media-card-background) 81.33%;
+
+  //Complementary backgrounds (gradients)
+  --gradient-bg-tec: rgb(var(--gray-charade-950)) 56.25%,
+    rgb(var(--gray-charade-900)) 100%;
+
+  --general-contrasts-main-selection: rgb(var(--blue-mariner-700));
+  --general-contrasts-main-selection-alternative: rgb(var(--green-light));
+
+  --general-contrasts-input-background: rgba(var(--black-primary), 0.5);
+  --general-contrasts-input-outline: rgb(var(--gray-charade-50));
+  --general-contrasts-container-outline: rgb(var(--gray-charade-800));
+  --general-contrasts-text-sidebar: rgb(var(--white-primary));
+  --general-contrasts-container: rgb(var(--gray-charade-300));
+  --general-contrasts-primary: rgb(var(--blue-mariner-400));
+
+  --containers-background: rgb(var(--gray-charade-950));
+  --containers-main: rgb(var(--gray-charade-900));
+  --containers-modal: rgb(var(--gray-charade-950));
+  --containers-container-button: rgb(var(--gray-charade-900));
+  --containers-background-fade: rgb(var(--gray-charade-950));
+
+  --buttons-text-link: rgb(var(--blue-mariner-500));
+  --buttons-stroke-primary-selected: rgb(var(--blue-mariner-300));
+  --buttons-destructive: rgb(var(--red-light));
+  --buttons-active-switch: rgb(var(--green-light));
+  --buttons-inactive-step: rgb(var(--gray-charade-700));
+
+  --menu-select-label-menu-inactive: rgb(var(--gray-charade-50));
+  --menu-select-activated-w-checkbox: rgb(var(--blue-mariner-700));
+  --menu-select-alternative-focus-label: rgb(var(--purple-tint));
+  --menu-select-on-surface-hovered-w-checkbox: rgb(var(--blue-mariner-950));
+  --menu-select-on-surface-hovered: rgb(var(--gray-charade-500));
+  --menu-select-on-surface-hovered-border: rgba(var(--gray-charade-500), 0.1);
+
+  --track-progress-bar: rgb(var(--green-light));
+  --vertical-step-active: rgb(var(--gray-charade-700));
+  --vertical-step-active-color: rgb(var(--gray-charade-50));
+  --vertical-step-subtitle: rgb(var(--gray-charade-500));
+
+  --mitec-blue: rgb(var(--mitec-blue-light));
+  --mitec-red: rgb(var(--mitec-red-light));
+  --mitec-green: rgb(var(--mitec-green-light));
+  --mitec-orange: rgb(var(--mitec-orange-light));
+  --mitec-purple: rgb(var(--mitec-purple-tint));
+  --creative-use-violet: rgb(var(--violet-tint));
+  --creative-use-indigo: rgb(var(--indigo-tint));
+  --creative-use-emerald: rgb(var(--emerald-tint));
+  --creative-use-licorice: rgb(var(--licorice-tint));
+  --creative-use-darkteal: rgb(var(--dark-teal-tint));
+  --creative-use-peach: rgb(var(--peach-tint));
+  --creative-use-sepia: rgb(var(--sepia-tint));
+  --creative-use-softred: rgb(var(--soft-red-tint));
+  --creative-use-wattle: rgb(var(--wattle-tint));
+  --creative-use-shipcove: rgb(var(--ship-cove-tint));
+  --creative-use-plantation: rgb(var(--plantation-tint));
+  --creative-use-rum: rgb(var(--rum-tint));
+  --creative-use-ripelemon: rgb(var(--ripe-lemon-tint));
+  --creative-use-hibiscus: rgb(var(--hibiscus-tint));
+  --drop-shadow-color-test-shadow: rgba(var(--black-primary), 0.2);
+
+  --color-table-900: rgb(var(--gray-charade-100));
+  --color-table-btn-900: rgb(var(--gray-charade-50));
+}

@@ -1,0 +1,254 @@
+<ng-template
+  #content
+  let-list="list"
+  let-title="title"
+  let-isNameStyle="isNameStyle"
+  let-isGradientStyle="isGradientStyle"
+  let-isJustifyStart="isJustifyStart"
+>
+  <section bmbVerticalLayout margin="m" gapSize="none">
+    <section bmbVerticalLayoutItem>
+      <header style="margin: 0 var(--bmb-spacing-l)" bmbVerticalLayout>
+        <h2 bmbVerticalLayoutItem>{{ title }}</h2>
+        <p bmbVerticalLayoutItem>Please just click on the color to copy it.</p>
+      </header>
+    </section>
+    <section bmbVerticalLayoutItem>
+      <ul
+        style="margin: 0 var(--bmb-spacing-xxl); padding: 0; list-style: none"
+        bmbLayout
+        margin="none"
+        gapSize="xxl"
+        [justify]="isJustifyStart ? 'start' : 'center'"
+      >
+        @for (item of list; track $index) {
+          <li [attr.title]="item" bmbLayoutItem>
+            <button
+              type="button"
+              [ngStyle]="
+                isNameStyle
+                  ? parseNamedStyle(item)
+                  : isGradientStyle
+                    ? parseGradientStyle(item)
+                    : parseColorNamedStyle(item)
+              "
+              (click)="copyToClipboard(item)"
+            >
+              {{ item }}
+            </button>
+            <br />
+          </li>
+        }
+      </ul>
+    </section>
+  </section>
+</ng-template>
+
+<section bmbVerticalLayout margin="xxl">
+  <section bmbVerticalLayoutItem>
+    <ng-template
+      *ngTemplateOutlet="
+        content;
+        context: {
+          list: institutionalColors,
+          title: 'Institutional colors',
+          isJustifyStart: true
+        }
+      "
+    />
+  </section>
+  <section bmbVerticalLayoutItem bmbAccordionControl>
+    <bmb-accordion appearanceContrast="alternative" icon="keyboard_arrow_down">
+      <ng-template #bmbAccordionHeader>{{ 'Base colors' }}</ng-template>
+      <ng-template #bmbAccordionContent>
+        <ng-template
+          *ngTemplateOutlet="
+            content;
+            context: {
+              list: baseColors,
+              title: 'Base colors'
+            }
+          "
+        />
+        <bmb-divider />
+        <ng-template
+          *ngTemplateOutlet="
+            content;
+            context: {
+              list: baseOpacityColors,
+              title: 'Base opacity colors',
+              isNameStyle: true
+            }
+          "
+        />
+        <bmb-divider />
+        <ng-template
+          *ngTemplateOutlet="
+            content;
+            context: {
+              list: baseColorGradients,
+              title: 'Base gradient colors',
+              isGradientStyle: true
+            }
+          "
+        />
+      </ng-template>
+    </bmb-accordion>
+    <bmb-accordion appearanceContrast="alternative" icon="keyboard_arrow_down">
+      <ng-template #bmbAccordionHeader>
+        {{ 'Creative use' }}
+      </ng-template>
+      <ng-template #bmbAccordionContent>
+        <ng-template
+          *ngTemplateOutlet="
+            content;
+            context: {
+              list: creativeBaseColors,
+              title: 'Base colors'
+            }
+          "
+        />
+        <bmb-divider />
+        <ng-template
+          *ngTemplateOutlet="
+            content;
+            context: {
+              list: creativeGradients,
+              title: 'Complementary colors',
+              isGradientStyle: true
+            }
+          "
+        />
+      </ng-template>
+    </bmb-accordion>
+    <bmb-accordion appearanceContrast="alternative" icon="keyboard_arrow_down">
+      <ng-template #bmbAccordionHeader>{{ 'Semantic colors' }}</ng-template>
+      <ng-template #bmbAccordionContent>
+        <ng-template
+          *ngTemplateOutlet="
+            content;
+            context: {
+              list: semanticBaseColors,
+              title: 'Base colors'
+            }
+          "
+        />
+      </ng-template>
+    </bmb-accordion>
+    <bmb-accordion appearanceContrast="alternative" icon="keyboard_arrow_down">
+      <ng-template #bmbAccordionHeader>{{ 'GED' }}</ng-template>
+      <ng-template #bmbAccordionContent>
+        <ng-template
+          *ngTemplateOutlet="
+            content;
+            context: {
+              list: grayGED,
+              title: 'Gray (GED)'
+            }
+          "
+        />
+        <bmb-divider />
+        <ng-template
+          *ngTemplateOutlet="
+            content;
+            context: {
+              list: blueGED,
+              title: 'Blue (GED)'
+            }
+          "
+        />
+      </ng-template>
+    </bmb-accordion>
+  </section>
+  <p>The color options contained in the tabs depend on the theme used.</p>
+  <bmb-tabs
+    format="uppercase"
+    [tabs]="tabList"
+    [(selectedTabId)]="selectedTab"
+    bmbVerticalLayoutItem
+  >
+    <section bmbSelector [idSelector]="1" [activeSelectorID]="selectedTab">
+      <ng-template
+        *ngTemplateOutlet="
+          content;
+          context: {
+            list: containers,
+            title: tabList[selectedTab - 1].title,
+            isNameStyle: true
+          }
+        "
+      />
+      <bmb-divider />
+      <ng-template
+        *ngTemplateOutlet="
+          content;
+          context: {
+            list: containerGradients,
+            title: 'Complementary containers',
+            isGradientStyle: true
+          }
+        "
+      />
+    </section>
+    <section bmbSelector [idSelector]="2" [activeSelectorID]="selectedTab">
+      <ng-template
+        *ngTemplateOutlet="
+          content;
+          context: {
+            list: buttons,
+            title: tabList[selectedTab - 1].title,
+            isNameStyle: true
+          }
+        "
+      />
+    </section>
+    <section bmbSelector [idSelector]="3" [activeSelectorID]="selectedTab">
+      <ng-template
+        *ngTemplateOutlet="
+          content;
+          context: {
+            list: generalContrasts,
+            title: tabList[selectedTab - 1].title,
+            isNameStyle: true
+          }
+        "
+      />
+    </section>
+    <section bmbSelector [idSelector]="4" [activeSelectorID]="selectedTab">
+      <ng-template
+        *ngTemplateOutlet="
+          content;
+          context: {
+            list: menuSelect,
+            title: tabList[selectedTab - 1].title,
+            isNameStyle: true
+          }
+        "
+      />
+    </section>
+    <section bmbSelector [idSelector]="5" [activeSelectorID]="selectedTab">
+      <ng-template
+        *ngTemplateOutlet="
+          content;
+          context: {
+            list: semanticColors,
+            title: tabList[selectedTab - 1].title,
+            isNameStyle: true
+          }
+        "
+      />
+    </section>
+    <section bmbSelector [idSelector]="6" [activeSelectorID]="selectedTab">
+      <ng-template
+        *ngTemplateOutlet="
+          content;
+          context: {
+            list: mitec,
+            title: tabList[selectedTab - 1].title,
+            isNameStyle: true
+          }
+        "
+      />
+    </section>
+  </bmb-tabs>
+</section>

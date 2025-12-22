@@ -4,7 +4,10 @@ import {
   getBasicExampleBlock,
   getGeneralDescription,
 } from '../../utils/doc/utils';
-import { DBmbInputParamDesc } from '../../utils/doc/parameterDescriptions';
+import {
+  DBmbIconParamDesc,
+  DBmbInputParamDesc,
+} from '../../utils/doc/parameterDescriptions';
 
 const importComments = `// optional you can customize the bot list from:
 // import { defaultBotList, IBotType } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
@@ -137,6 +140,10 @@ This is a model signal, so it is possible to use it as:
         defaultValue: { summary: 'false' },
       },
     },
+    emojiIcon: {
+      ...DBmbIconParamDesc.icon,
+      description: `${DBmbIconParamDesc.icon.description}<br/><br/> This icon will be used in the toggle functionality, as long as \`showEmoji\` is *true*. `,
+    },
     isLoading: {
       control: { type: 'boolean' },
       description: `
@@ -215,54 +222,32 @@ This is a model signal, so it is possible to use it as:
     botList: [
       {
         name: 'TecBot',
-        icon: '/assets/images/bot-icons/bot_tecStandar.svg',
+        label: 'Tecbot Standard',
+        icon: 'bot_tecStandar',
       },
+      { name: 'ChatGPT', label: 'ChatGPT', icon: 'bot_chatGPT' },
       {
-        name: 'ChatGPT',
-        icon: '/assets/images/bot-icons/bot_tecGPT.svg',
+        name: 'TecGPT',
+        label: 'TecGPT',
+        icon: 'bot_tecGPT',
       },
-      {
-        name: 'Comment',
-        icon: '/assets/images/bot-icons/comment.svg',
-      },
-      {
-        name: 'New',
-        icon: '/assets/images/bot-icons/new.svg',
-      },
-      {
-        name: 'BotSchool',
-        icon: '/assets/images/bot-icons/bot_tecSchool.svg',
-      },
-      {
-        name: 'BotTech',
-        icon: '/assets/images/bot-icons/bot_tecTech.svg',
-      },
-      {
-        name: 'BotSport',
-        icon: '/assets/images/bot-icons/bot_tecSport.svg',
-      },
-      {
-        name: 'BotPhone',
-        icon: '/assets/images/bot-icons/bot_tecPhone.svg',
-      },
-      {
-        name: 'BotMedic',
-        icon: '/assets/images/bot-icons/bot_health.svg',
-      },
-      {
-        name: 'BotScience',
-        icon: '/assets/images/bot-icons/bot_tecScience.svg',
-      },
-      {
-        name: 'Backup',
-        icon: '/assets/images/bot-icons/backup.svg',
-      },
+      { name: 'Comment', label: 'Comment', icon: 'comment' },
+      { name: 'New', label: 'New', icon: 'new' },
+      { name: 'BotSchool', label: 'Tecbot school', icon: 'bot_tecSchool' },
+      { name: 'BotTech', label: 'Tecbot tech', icon: 'bot_tecTech' },
+      { name: 'BotSport', label: 'Tecbot sport', icon: 'bot_tecSport' },
+      { name: 'BotPhone', label: 'Tecbot phone', icon: 'bot_tecPhone' },
+      { name: 'BotMedic', label: 'Tecbot healt', icon: 'bot_health' },
+      { name: 'BotScience', label: 'Tecbot science', icon: 'bot_tecScience' },
+      { name: 'Empty', label: 'Empty', icon: 'empty' },
+      { name: 'Anthropic', label: 'Anthropic', icon: 'anthropic' },
+      { name: 'Meta', label: 'Meta', icon: 'meta' },
+      { name: 'Xai', label: 'Xai', icon: 'xai' },
+      { name: 'Google', label: 'Google', icon: 'google' },
     ],
-    currentBot: {
-      name: 'TecBot',
-      icon: '/assets/images/bot-icons/bot_tecStandar.svg',
-    },
+    currentBot: { name: 'TecBot', icon: 'bot_tecStandar' },
     showEmoji: false,
+    emojiIcon: 'mood',
   },
 } as Meta<typeof BmbChatBarComponent>;
 

@@ -63,20 +63,21 @@ ${getBasicExampleBlock('BmbCardButtonComponent')}
     },
   },
   argTypes: {
-    iconTemplate: {
-      control: false,
-      description: '',
-      table: {
-        category: 'Template',
-        defaultValue: getDefaultValueControl(),
-        type: { summary: 'TemplateRef' },
-      },
-    },
     isSmall: {
       control: { type: 'boolean' },
       description: 'Sets the toggle between regular and small card button.',
       table: {
         category: 'Small Card',
+        defaultValue: getDefaultValueControl(false),
+        type: { summary: 'boolean' },
+      },
+    },
+    isDisabled: {
+      control: { type: 'boolean' },
+      description:
+        'Disables the button interaction — applies for all, not for Small Card',
+      table: {
+        category: 'Common Properties',
         defaultValue: getDefaultValueControl(false),
         type: { summary: 'boolean' },
       },
@@ -513,7 +514,7 @@ export const SmallCardExample = {
     smallDescription:
       'Lorem upsum aovei trirangil porilnem menuandos flenzhcrunf',
     botImage: {
-      src: '/assets/images/bot-icons/bot_tecGPT.svg',
+      src: 'bot_tecGPT',
       alt: 'Left content image',
     },
     smallIcon: 'info',

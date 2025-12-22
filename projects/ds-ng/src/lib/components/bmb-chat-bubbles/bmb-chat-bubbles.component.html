@@ -21,13 +21,16 @@
             [bordered]="false"
           ></bmb-user-image>
         } @else {
-          <span class="bmb_chat-bubble-profile-bot">
-            <img
-              class="bmb_chat-bubble-profile-bot-image"
-              [src]="iconBotDefault()"
-              [alt]="'Bot'"
-            />
-          </span>
+          <bmb-icon
+            class="bmb_chat-bubble-profile-bot"
+            [size]="20"
+            alt="bot"
+            [isSVGTemplate]="true"
+          >
+            <ng-template #customIcon>
+              <bmb-bot-icon [iconName]="iconBotDefault()" />
+            </ng-template>
+          </bmb-icon>
         }
       </div>
       <div class="bmb_chat-bubble-msg-container">

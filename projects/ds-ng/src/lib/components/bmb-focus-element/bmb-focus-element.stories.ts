@@ -18,7 +18,14 @@ export default {
   parameters: {
     docs: {
       controls: {
-        exclude: ['getBackgroundClass', 'getCircleClass', 'baseClass'],
+        exclude: [
+          'getBackgroundClass',
+          'getCircleClass',
+          'baseClass',
+          'isCurrentColor',
+          'isFocused',
+          'isContainerSize',
+        ],
       },
       description: {
         component: `

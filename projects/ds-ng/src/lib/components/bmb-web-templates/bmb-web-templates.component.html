@@ -1,19 +1,15 @@
 <section [ngClass]="getSectionClass()">
   <bmb-top-bar
     [userInformation]="topBarUserInformation()"
-    [hasLogoutButton]="topBarHasLogoutButton()"
     [image]="topBarImage()"
     [mobileImage]="topBarMobileImage()"
     [appName]="topBarAppName()"
     [appSubTitle]="topBarAppSubTitle()"
     [lang]="topBarLang()"
-    [showLang]="topBarShowLang()"
     [mitec]="topBarMitec()"
-    [assignmentNotification]="topBarAssignmentNotification()"
     [alertNotification]="topBarAlertNotification()"
     class="bmb_web-template-top-bar"
     (logOut)="handleLogOut($event)"
-    (onLangChange)="handleLangChange($event)"
   />
   <header class="bmb_web-template-header">
     <div

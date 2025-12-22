@@ -4,6 +4,7 @@ import {
   Component,
   ElementRef,
   input,
+  TemplateRef,
   OnInit,
   signal,
   ViewChild,
@@ -13,7 +14,17 @@ import { FormControl } from '@angular/forms';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { BmbButtonDirective } from '../../directives/bmb-button/button.directive';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
-import { BmbProjectionContentService } from '../../services/projection/projection.service';
+import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
+import {
+  BmbProjectionContentService,
+  IBmbProjectionContent,
+} from '../../services/projection/projection.service';
+import { BmbActionMenuComponent } from '../bmb-action-menu/bmb-action-menu.component';
+import { BmbItemComponent } from '../bmb-item/bmb-item.component';
+import { IActions } from './types';
+import { getInsertList, getSettingsList } from './list';
+import { TranslatePipe } from '../../pipes/translations';
+import { BmbTranslationsService } from '../../services/translations/translations.service';
 import {
   BmbTextEditorPromptComponent,
   IBmbTextEditorPromptType,
@@ -22,7 +33,14 @@ import {
 @Component({
   selector: 'bmb-text-editor',
   standalone: true,
-  imports: [BmbButtonDirective, BmbIconComponent],
+  imports: [
+    BmbButtonDirective,
+    BmbIconComponent,
+    BmbActionIconComponent,
+    BmbActionMenuComponent,
+    BmbItemComponent,
+    TranslatePipe,
+  ],
   templateUrl: './bmb-text-editor.component.html',
   styleUrl: './bmb-text-editor.component.scss',
   encapsulation: ViewEncapsulation.None,
@@ -32,12 +50,27 @@ export class BmbTextEditorComponent implements AfterViewInit, OnInit {
   control = input<FormControl>(new FormControl(''));
 
   @ViewChild('editor') editor!: ElementRef<HTMLDivElement>;
+  @ViewChild('moreTemplate') moreTemplate!: TemplateRef<unknown>;
+  @ViewChild('insertTemplate') insertTemplate!: TemplateRef<unknown>;
 
   sanitizedContent = signal<SafeHtml>('');
   currentAlignment: string = 'left';
   showTableDialog: boolean = false;
   tableRows: number = 2;
   tableColumns: number = 2;
+  settingsItems = input<IActions[]>(
+    getSettingsList(this as any, this.translations),
+  );
+
+  insertItems = input<IActions[]>(
+    getInsertList(this as any, this.translations),
+  );
+
+  constructor(
+    private readonly contentProjected: BmbProjectionContentService,
+    private readonly translations: BmbTranslationsService,
+    private readonly sanitizer: DomSanitizer,
+  ) {}
   userSelection: Range | null = null;
 
   detectAlignment() {
@@ -60,11 +93,6 @@ export class BmbTextEditorComponent implements AfterViewInit, OnInit {
       'justify' + alignment.charAt(0).toUpperCase() + alignment.slice(1),
     );
   }
-
-  constructor(
-    private readonly sanitizer: DomSanitizer,
-    private readonly projectionContent: BmbProjectionContentService,
-  ) {}
 
   ngOnInit() {
     this.sanitizedContent.set(
@@ -106,18 +134,18 @@ export class BmbTextEditorComponent implements AfterViewInit, OnInit {
     this.userSelection = null;
   }
 
-  openPrompt(type: IBmbTextEditorPromptType, event: MouseEvent) {
+  openPrompt(type: IBmbTextEditorPromptType, event: MouseEvent | null) {
     this.userSelection = globalThis.getSelection()?.getRangeAt(0) || null;
-    const buttonNode = event.currentTarget as HTMLElement;
-    this.projectionContent.openContent({
+    const buttonNode = event?.currentTarget as HTMLElement;
+    this.contentProjected.openContent({
       content: BmbTextEditorPromptComponent,
       inputContext: { type },
       outputContext: {
         formValues: (values: Record<string, unknown>) =>
           this.handleClosePrompt({ ...values, type }),
-        cancelForm: () => this.projectionContent.closeContent(),
+        cancelForm: () => this.contentProjected.closeContent(),
       },
-      targetRef: buttonNode,
+      targetRef: buttonNode ?? null,
     });
   }
 
@@ -127,7 +155,7 @@ export class BmbTextEditorComponent implements AfterViewInit, OnInit {
     } else if (values['type'] === 'image' && values['prompt_url']) {
       this.insertImage(values);
     }
-    this.projectionContent.closeContent();
+    this.contentProjected.closeContent();
   }
 
   insertLink(values: Record<string, unknown>) {
@@ -203,7 +231,6 @@ export class BmbTextEditorComponent implements AfterViewInit, OnInit {
     }
   }
 
-  // Método para generar el HTML de la tabla
   generateTableHtml(rows: number, columns: number): string {
     let tableHtml = '<table style="border-collapse: collapse; width: 100%;">';
     for (let i = 0; i < rows; i++) {
@@ -227,5 +254,29 @@ export class BmbTextEditorComponent implements AfterViewInit, OnInit {
       range.insertNode(div);
       this.updateContent();
     }
+  }
+
+  handleMoreDialog(event: MouseEvent | KeyboardEvent): void {
+    if (!event.target) return;
+    const data: IBmbProjectionContent = {
+      content: this.moreTemplate,
+      targetRef: event.target as HTMLElement,
+    };
+
+    this.contentProjected.openContent(data);
+  }
+
+  handleInsertDialog(event: MouseEvent | KeyboardEvent): void {
+    if (!event.target) return;
+    const data: IBmbProjectionContent = {
+      content: this.insertTemplate,
+      targetRef: event.target as HTMLElement,
+    };
+
+    this.contentProjected.openContent(data);
+  }
+
+  closeProjectedContent() {
+    this.contentProjected.closeContent();
   }
 }

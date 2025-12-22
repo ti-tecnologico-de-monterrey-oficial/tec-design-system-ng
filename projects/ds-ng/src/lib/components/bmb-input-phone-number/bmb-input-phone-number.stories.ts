@@ -122,7 +122,6 @@ ${getBasicExampleBlock('BmbInputPhoneNumberComponent')}
     control: DBmbInputParamDesc.control,
     disabled: DBmbInputParamDesc.disabled,
     errorMessage: DBmbInputParamDesc.errorMessage,
-    showError: DBmbInputParamDesc.showError,
     customValidation: DBmbInputParamDesc.customValidation,
     isRequired: DBmbInputParamDesc.isRequired,
     preferredCountries: {
@@ -151,8 +150,6 @@ ${getBasicExampleBlock('BmbInputPhoneNumberComponent')}
     inputId: DBmbInputParamDesc.inputId,
     name: DBmbInputParamDesc.name,
     value: DBmbInputParamDesc.value,
-    appearance: DBmbGenericParamDesc.deprecated,
-    defaultLada: DBmbGenericParamDesc.deprecated,
     helperMessage: DBmbInputParamDesc.helperMessage,
     placeholder: DBmbInputParamDesc.placeholder,
     defaultCountryCode: {

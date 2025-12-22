@@ -22,16 +22,18 @@ export default {
     docs: {
       controls: {
         exclude: [
-          'complete',
-          'getStepsArray',
-          'goBack',
-          'goNext',
-          'onStepClicked',
-          'onStepPanelClicked',
           'stepTemplates',
-          'back',
-          'finish',
-          'next',
+          'handleStepClicked',
+          'handleStepPressed',
+          'abort',
+          'destroyRef',
+          'isMobileOrTablet',
+          'labelCompleteTruncated',
+          'labelIncompleteTruncated',
+          'labelStepsTruncated',
+          'maxChars',
+          'mql',
+          'truncate',
         ],
       },
       description: {

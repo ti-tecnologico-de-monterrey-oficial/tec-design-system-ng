@@ -21,7 +21,7 @@
     width: 100%;
     background-color: var(--containers-modal);
     border: rem.rem_calc(1) solid var(--general_contrasts-25);
-    border-radius: rem.rem_calc(16);
+    border-radius: var(--bmb-radius-4);
 
     &-header {
       &-icon_close {
@@ -67,7 +67,7 @@
       }
 
       &::-webkit-scrollbar-thumb {
-        border-radius: rem.rem_calc(16);
+        border-radius: var(--bmb-radius-4);
         border: rem.rem_calc(1) solid var(--general_contrasts-50);
       }
 

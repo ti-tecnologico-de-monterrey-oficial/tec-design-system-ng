@@ -14,6 +14,7 @@ import { BmbPortalComponent } from '../../components/bmb-portal/bmb-portal.compo
 export type IBmbProjectedContentMode = 'over' | 'partial' | 'outside';
 
 export interface IBmbProjectionContent {
+  id?: string;
   content: TemplateRef<any> | null | Type<any>;
   targetRef?: HTMLElement | null;
   mode?: IBmbProjectedContentMode;
@@ -22,6 +23,7 @@ export interface IBmbProjectionContent {
   showBackdrop?: boolean;
   outputContext?: { [key: string]: (value: any) => void };
   focusOnOpen?: boolean;
+  dialogClass?: string | string[] | Record<string, boolean>;
 }
 
 @Injectable({
@@ -29,6 +31,7 @@ export interface IBmbProjectionContent {
 })
 export class BmbProjectionContentService {
   readonly contentList = signal<IBmbProjectionContent | null>(null);
+  readonly contentStack = signal<IBmbProjectionContent[]>([]);
   private portalComponentRef: ComponentRef<BmbPortalComponent> | null = null;
 
   constructor(
@@ -63,18 +66,49 @@ export class BmbProjectionContentService {
 
   openContent(content: IBmbProjectionContent) {
     this.getOrCreatePortal();
-    this.contentList.set(content);
+
+    const id = content.id ?? crypto.randomUUID();
+
+    const normalizedContent: IBmbProjectionContent = {
+      ...content,
+      id,
+    };
+
+    this.contentStack.update((list) => [...list, normalizedContent]);
+
+    this.contentList.set(normalizedContent);
+
+    return id;
   }
 
-  closeContent() {
-    this.contentList.set(null);
+  closeContent(id?: string) {
+    if (!id) {
+      this.contentStack.set([]);
+      this.contentList.set(null);
+      return;
+    }
+
+    this.contentStack.update((list) => list.filter((item) => item.id !== id));
+
+    const remaining = this.contentStack();
+    this.contentList.set(
+      remaining.length ? remaining[remaining.length - 1] : null,
+    );
   }
 
   getProjectedContent() {
     return this.contentList();
   }
 
+  getAllProjectedContents() {
+    return this.contentStack();
+  }
+
   isThereContentProjected() {
     return this.contentList() !== null;
+  }
+
+  isContentOpen(id: string) {
+    return this.contentStack().some((item) => item.id === id);
   }
 }

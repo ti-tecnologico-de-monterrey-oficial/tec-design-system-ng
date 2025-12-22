@@ -8,7 +8,10 @@ import {
   Stories,
 } from '@storybook/addon-docs/blocks';
 import { setCompodocJson } from '@storybook/addon-docs/angular';
-import { withThemeByClassName } from '@storybook/addon-themes';
+import {
+  withThemeByClassName,
+  withThemeByDataAttribute,
+} from '@storybook/addon-themes';
 import docJson from '../../../documentation.json';
 import { allModes } from './modes';
 import {
@@ -17,6 +20,7 @@ import {
   TITLE_OF_CONTROLS,
   TOC_OBJ,
 } from '../src/lib/utils/doc/utils';
+import { Renderer } from 'storybook/internal/csf';
 
 setCompodocJson(docJson);
 
@@ -105,15 +109,24 @@ const preview: Preview = {
     a11y: {
       manual: true,
     },
-    // layout: {
-    //   description: 'Set the layout orientation of the story',
+    // brandingTheme: {
+    //   description: 'Bamboo brands',
+    //   defaultValue: 'BAMBOO_CORE',
     //   toolbar: {
-    //     title: 'Layout orientation',
-    //     icon: 'paintbrush',
-    //     items: [
-    //       { value: 'vertical', icon: 'stacked', title: 'Vertical' },
-    //       { value: 'horizontal', icon: 'sidebyside', title: 'Horizontal' },
-    //     ],
+    //     title: 'Brand',
+    //     icon: 'grow',
+    //     items: ['BAMBOO_CORE', 'GED'],
+    //     dynamicTitle: false,
+    //   },
+    // },
+    // theme: {
+    //   description: 'Bamboo themes',
+    //   defaultValue: 'dark',
+    //   toolbar: {
+    //     title: 'Theme',
+    //     icon: 'edit',
+    //     items: ['light', 'dark'],
+    //     dynamicTitle: false,
     //   },
     // },
   },
@@ -122,25 +135,21 @@ const preview: Preview = {
     viewport: { value: 'tablet', isRotated: false },
   },
   decorators: [
-    withThemeByClassName({
+    withThemeByClassName<Renderer>({
       themes: {
         light: 'storybook-light-theme',
         dark: 'storybook-dark-theme',
-        // both: 'storybook-both-theme',
       },
       defaultTheme: 'dark',
     }),
-    // TODO: Remove this when the Storybook don't have issues with the duplicated component
-    //      componentWrapperDecorator((story: string) => `
-    // <section id="storybook-theme-selector" [class]="theme">
-    //   <div class="storybook-light-theme">
-    //     ${story}
-    //   </div>
-    //   <div class="storybook-dark-theme">
-    //     ${story}
-    //   </div>
-    // </section>`,
-    //       ({ globals }) => { theme: globals['theme'] }),
+    // withThemeByDataAttribute<Renderer>({
+    //   themes: {
+    //     light: 'light',
+    //     dark: 'dark',
+    //   },
+    //   defaultTheme: 'dark',
+    //   attributeName: 'data-theme',
+    // }),
   ],
 };
 

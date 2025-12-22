@@ -53,7 +53,6 @@ export class BmbUserProfileComponent {
   buttonLabel = input<string>();
   userInfo = input.required<IBmbUserInfo>();
   actionHeaderLinks = input<IBmbActionHeaderLinks>();
-  actionHeaders = input<IBmbActionHeader[]>([]); //Deprecated
 
   onRequest = output<any>();
   onContinue = output();

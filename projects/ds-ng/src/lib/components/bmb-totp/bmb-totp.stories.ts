@@ -83,7 +83,6 @@ ${getBasicExampleBlock('BmbTotpComponent', '', additionalBlock)}
 \`\`\`html
 <bmb-totp
   instanceId="first"
-  [maxCode]="6"
   (handleSubmit)="verifyCode($event, 'first')"
   [codeError]="errors['first'] ? errors['first'].codeError : false"
   [errorMessage]="errors['first'] ? errors['first'].errorMessage : ''"
@@ -169,7 +168,6 @@ ${getBasicExampleBlock('BmbTotpComponent', '', additionalBlock)}
         type: { summary: 'boolean' },
       },
     },
-    maxCode: DBmbGenericParamDesc.deprecated,
     handleSubmit: getOnClickParam(
       getOnEvent('', 'handleSubmit'),
       `.<br/><br/> The button is displayed when \`showButton\` is true`,
@@ -184,7 +182,6 @@ ${getBasicExampleBlock('BmbTotpComponent', '', additionalBlock)}
     helperText: 'Helper text',
     showButton: false,
     buttonText: 'Verify',
-    maxCode: 6,
     disableButton: false,
     handleSubmit: () => {
       window.alert('button submitted');

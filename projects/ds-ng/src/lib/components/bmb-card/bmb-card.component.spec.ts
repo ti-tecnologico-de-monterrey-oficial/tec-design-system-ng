@@ -24,7 +24,6 @@ describe('BmbCardComponent', () => {
     expect(component.margin).toBe('m');
     expect(component.type).toBe('normal');
     expect(component.state).toBe('normal');
-    expect(component.alternative).toBe(false);
   });
 
   it('should return correct classes', () => {

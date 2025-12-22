@@ -11,6 +11,7 @@ import { BmbUserImageComponent } from '../bmb-user-image/bmb-user-image.componen
 import { CommonModule } from '@angular/common';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { BmbTextLinkComponent } from '../bmb-text-link/bmb-text-link.component';
+import { BmbBotIconComponent } from '../bmb-bot-icon/bmb-bot-icon.component';
 
 @Component({
   selector: 'bmb-chat-bubble',
@@ -18,6 +19,7 @@ import { BmbTextLinkComponent } from '../bmb-text-link/bmb-text-link.component';
   imports: [
     BmbUserImageComponent,
     CommonModule,
+    BmbBotIconComponent,
     BmbIconComponent,
     BmbTextLinkComponent,
   ],
@@ -27,14 +29,14 @@ import { BmbTextLinkComponent } from '../bmb-text-link/bmb-text-link.component';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BmbChatBubblesComponent {
-  iconBot = input<string>('/assets/images/bot-icons/bot_tecStandar.svg');
+  iconBot = input<string>('bot_tecStandar');
   message = input.required<IBmbChatMessage>();
   gptBot = input<boolean>(false);
   gptIcons = input<boolean>(false);
   isThinking = input<boolean>(false);
 
   iconBotDefault = computed(() =>
-    this.gptBot() ? '/assets/images/bot-icons/chat_gpt.svg' : this.iconBot(),
+    this.gptBot() ? 'bot_chatGPT' : this.iconBot(),
   );
 
   gptActiveIcons = input<IBmbChatGptIcons>({

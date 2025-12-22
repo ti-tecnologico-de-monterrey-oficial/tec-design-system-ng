@@ -36,11 +36,16 @@
                 "input": "projects/ds-ng/src/assets",
                 "output": "/assets/"
               },
+              {
+                "glob": "**/*.svg",
+                "input": "node_modules/@material-symbols/svg-400/rounded/",
+                "output": "/node_modules/@material-symbols/svg-400/rounded/"
+              },
               "src/favicon.ico",
               "src/assets"
             ],
             "styles": [
-              "projects/ds-ng/src/assets/styles/main.scss",
+              "projects/ds-ng/src/assets/styles/mainTEC.scss",
               "src/styles.scss"
             ],
             "scripts": [],
@@ -101,6 +106,11 @@
                 "output": "/assets/"
               },
               {
+                "glob": "**/*.svg",
+                "input": "node_modules/@material-symbols/svg-400/rounded/",
+                "output": "/node_modules/@material-symbols/svg-400/rounded/"
+              },
+              {
                 "glob": "**/*",
                 "input": "projects/ds-ng/src/svg",
                 "output": "/svg/"
@@ -109,7 +119,7 @@
               "src/assets",
               "src/svg"
             ],
-            "styles": ["projects/ds-ng/src/assets/styles/main.scss"],
+            "styles": ["projects/ds-ng/src/assets/styles/mainTEC.scss"],
             "scripts": []
           }
         },
@@ -158,7 +168,7 @@
             "compodocArgs": ["-e", "json", "-d", "."],
             "port": 6006,
             "styles": [
-              "projects/ds-ng/src/assets/styles/main.scss",
+              "projects/ds-ng/src/assets/styles/mainTEC.scss",
               "src/styles.scss",
               "projects/ds-ng/src/assets/styles/tokens/theme.scss"
             ]
@@ -172,7 +182,7 @@
             "compodoc": true,
             "compodocArgs": ["-e", "json", "-d", "."],
             "styles": [
-              "projects/ds-ng/src/assets/styles/main.scss",
+              "projects/ds-ng/src/assets/styles/mainTEC.scss",
               "src/styles.scss",
               "projects/ds-ng/src/assets/styles/tokens/theme.scss"
             ],

@@ -132,7 +132,6 @@
 
 <bmb-totp
   instanceId="first"
-  [maxCode]="6"
   (handleSubmit)="verifyCode($event, 'first')"
   [codeError]="errors['first'] ? errors['first'].codeError : false"
   [errorMessage]="errors['first'] ? errors['first'].errorMessage : ''"
@@ -143,7 +142,6 @@
 
 <bmb-totp
   instanceId="second"
-  [maxCode]="4"
   (handleSubmit)="verifyCode($event, 'second')"
   [codeError]="errors['second'] ? errors['second'].codeError : false"
   [errorMessage]="errors['second'] ? errors['second'].errorMessage : ''"

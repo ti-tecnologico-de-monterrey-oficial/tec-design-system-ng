@@ -66,10 +66,8 @@ export class BmbInputPhoneNumberComponent implements OnInit {
     align: 'above',
     justify: 'before',
   });
-  defaultLada = input<string>('+52'); //Deprecated
   defaultCountryCode = input<string>('mx'); //Must match the area lada of the initial value
   placeholder = input<string>('');
-  appearance = input<IBmbInputAppearance>('normal'); //Deprecated
   errorMessage = input<string | IBmbInputError>('');
   disabled = input<boolean>(false);
   inputId = input<string>(this.name());
@@ -79,7 +77,6 @@ export class BmbInputPhoneNumberComponent implements OnInit {
   customValidation = input<ValidatorFn>();
 
   control = model<FormControl>(new FormControl());
-  showError = model<boolean>(false); // deprecated
 
   uuid: string = getUUID();
   isFocused = signal<boolean>(false);

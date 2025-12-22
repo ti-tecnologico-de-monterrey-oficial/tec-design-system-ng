@@ -43,8 +43,13 @@
         [icon]="currentBot()?.icon!"
         [alt]="currentBot()?.name!"
         [iconSize]="40"
+        [isSVGTemplate]="true"
         (buttonClick)="handleDialog()"
-      />
+      >
+        <ng-template #customActionIcon>
+          <bmb-bot-icon [iconName]="currentBot()?.icon!" />
+        </ng-template>
+      </bmb-action-icon>
       @if (!onDragFiles) {
         <textarea
           rows="2"
@@ -75,7 +80,7 @@
           @if (showEmoji()) {
             <bmb-action-icon
               class="bmb_chat-bar-emoji"
-              icon="mood"
+              [icon]="emojiIcon()"
               [iconSize]="32"
               (buttonClick)="handleEmoji()"
             />
@@ -134,8 +139,13 @@
             [icon]="bot.icon"
             [alt]="bot.name"
             [iconSize]="40"
+            [isSVGTemplate]="true"
             (buttonClick)="handleChangeBot(bot)"
-          />
+          >
+            <ng-template #customActionIcon>
+              <bmb-bot-icon [iconName]="bot?.icon!" />
+            </ng-template>
+          </bmb-action-icon>
         </li>
       }
     </ul>
@@ -180,10 +190,15 @@
             [icon]="bot.icon"
             [alt]="bot.name"
             [iconSize]="40"
+            [isSVGTemplate]="true"
             (buttonClick)="handleMobileChangeBot(bot)"
-          />
+          >
+            <ng-template #customActionIcon>
+              <bmb-bot-icon [iconName]="bot?.icon!" />
+            </ng-template>
+          </bmb-action-icon>
           <span class="bmb_chat-bar-mobile-bot-dialog-button-text">
-            {{ bot.name }}
+            {{ bot.label }}
           </span>
         </li>
       }

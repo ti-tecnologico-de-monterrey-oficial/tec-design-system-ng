@@ -96,6 +96,22 @@ export const routes: Routes = [
       ),
   },
   {
+    path: 'table-lts',
+    title: 'Table LTS',
+    loadComponent: () =>
+      import('./pages/table-lts/table-lts.component').then(
+        (t) => t.TableLtsComponent,
+      ),
+  },
+  {
+    path: 'table-html',
+    title: 'Table HTML',
+    loadComponent: () =>
+      import('./pages/table-html/table-html.component').then(
+        (t) => t.TableHtmlComponent,
+      ),
+  },
+  {
     path: 'multi-dot-paginator',
     title: 'Multi Dot Paginator',
     loadComponent: () =>
@@ -104,12 +120,34 @@ export const routes: Routes = [
       ),
   },
   {
+    path: 'step-progress-bar',
+    title: 'Step progress bar',
+    loadComponent: () =>
+      import('./pages/step-progress-bar/step-progress-car.component').then(
+        (n) => n.BmbStepProgressBarPageComponent,
+      ),
+  },
+  {
+    path: 'dashboard-indicators',
+    title: 'Dashboard Indicators',
+    loadComponent: () =>
+      import(
+        './pages/dashboard-indicators/dashboard-indicators.component'
+      ).then((d) => d.DashboardIndicatorsComponent),
+  },
+  {
     path: 'identity',
     title: 'Identity',
     loadComponent: () =>
       import('./pages/identity/identity.component').then(
         (i) => i.IdentityComponent,
       ),
+  },
+  {
+    path: 'colors',
+    title: 'Colors',
+    loadComponent: () =>
+      import('./pages/colors/colors.component').then((j) => j.ColorsComponent),
   },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
 ];

@@ -5,21 +5,25 @@
         id="BmbTextEditorSelect"
         class="bmb_text-editor-header-select"
         (change)="handleChange($event, 'formatBlock')"
-        title="Estilo de párrafo"
+        [title]="'text_editor.format_block' | translate"
       >
-        <option value="p">Párrafo</option>
-        <option value="h1">Título 1</option>
-        <option value="h2">Título 2</option>
-        <option value="h3">Título 3</option>
-        <option value="blockquote">Cita</option>
+        <option value="p">{{ 'text_editor.paragraph' | translate }}</option>
+        <option value="h1">{{ 'text_editor.title1' | translate }}</option>
+        <option value="h2">{{ 'text_editor.title2' | translate }}</option>
+        <option value="h3">{{ 'text_editor.title3' | translate }}</option>
+        <option value="blockquote">
+          {{ 'text_editor.appointment' | translate }}
+        </option>
       </select>
+    </span>
+    <span class="bmb_text-editor-header-group hide-on-mobile">
       <button
         bmbButton
         appearance="transparent"
         size="micro"
         type="button"
         (click)="execCommand('bold')"
-        title="Negrita"
+        [title]="'text_editor.bold' | translate"
       >
         <bmb-icon icon="format_bold" [size]="24" />
       </button>
@@ -29,7 +33,7 @@
         size="micro"
         type="button"
         (click)="execCommand('italic')"
-        title="Cursiva"
+        [title]="'text_editor.italic' | translate"
       >
         <bmb-icon icon="format_italic" [size]="24" />
       </button>
@@ -39,7 +43,7 @@
         size="micro"
         type="button"
         (click)="execCommand('underline')"
-        title="Subrayado"
+        [title]="'text_editor.underline' | translate"
       >
         <bmb-icon icon="format_underlined" [size]="24" />
       </button>
@@ -47,11 +51,28 @@
         id="BmbTextEditorColor"
         type="color"
         (change)="handleChange($event, 'foreColor')"
-        title="Color de texto"
+        [title]="'text_editor.fore_color' | translate"
       />
     </span>
-
-    <span class="bmb_text-editor-header-group">
+    <span class="bmb_text-editor-header-group bmb_text-editor-header-actions">
+      <input
+        id="BmbTextEditorColorExt"
+        type="color"
+        (change)="handleChange($event, 'foreColor')"
+        [title]="'text_editor.fore_color' | translate"
+      />
+      <bmb-action-icon
+        icon="text_format"
+        [iconSize]="24"
+        (buttonClick)="handleInsertDialog($event)"
+      />
+      <bmb-action-icon
+        icon="more_horiz"
+        [iconSize]="24"
+        (buttonClick)="handleMoreDialog($event)"
+      />
+    </span>
+    <span class="bmb_text-editor-header-group hide-on-mobile">
       <button
         bmbButton
         appearance="transparent"
@@ -59,7 +80,7 @@
         type="button"
         (click)="applyAlignment('left')"
         [class.active]="currentAlignment === 'left'"
-        title="Alinear a la izquierda"
+        [title]="'text_editor.left' | translate"
       >
         <bmb-icon icon="format_align_left" [size]="24" />
       </button>
@@ -69,8 +90,8 @@
         size="micro"
         type="button"
         (click)="applyAlignment('center')"
+        [title]="'text_editor.center' | translate"
         [class.active]="currentAlignment === 'center'"
-        title="Centrar"
       >
         <bmb-icon icon="format_align_center" [size]="24" />
       </button>
@@ -80,21 +101,21 @@
         size="micro"
         type="button"
         (click)="applyAlignment('right')"
+        [title]="'text_editor.right' | translate"
         [class.active]="currentAlignment === 'right'"
-        title="Alinear a la derecha"
       >
         <bmb-icon icon="format_align_right" [size]="24" />
       </button>
     </span>
 
-    <span class="bmb_text-editor-header-group">
+    <span class="bmb_text-editor-header-group hide-on-mobile">
       <button
         bmbButton
         appearance="transparent"
         size="micro"
         type="button"
         (click)="execCommand('insertOrderedList')"
-        title="Lista numerada"
+        [title]="'text_editor.insert_ordered_list' | translate"
       >
         <bmb-icon icon="format_list_numbered" [size]="24" />
       </button>
@@ -104,20 +125,20 @@
         size="micro"
         type="button"
         (click)="execCommand('insertUnorderedList')"
-        title="Lista con viñetas"
+        [title]="'text_editor.insert_unordered_list' | translate"
       >
         <bmb-icon icon="format_list_bulleted" [size]="24" />
       </button>
     </span>
 
-    <span class="bmb_text-editor-header-group">
+    <span class="bmb_text-editor-header-group hide-on-mobile">
       <button
         bmbButton
         appearance="transparent"
         size="micro"
         type="button"
         (click)="execCommand('indent')"
-        title="Aumentar sangría"
+        [title]="'text_editor.indent' | translate"
       >
         <bmb-icon icon="format_indent_increase" [size]="24" />
       </button>
@@ -127,7 +148,7 @@
         size="micro"
         type="button"
         (click)="execCommand('outdent')"
-        title="Disminuir sangría"
+        [title]="'text_editor.outdent' | translate"
       >
         <bmb-icon icon="format_indent_decrease" [size]="24" />
       </button>
@@ -139,8 +160,8 @@
         appearance="transparent"
         size="micro"
         type="button"
+        [title]="'text_editor.insert_link' | translate"
         (click)="openPrompt('link', $event)"
-        title="Insertar enlace"
       >
         <bmb-icon icon="link" [size]="24" />
       </button>
@@ -149,15 +170,13 @@
         appearance="transparent"
         size="micro"
         type="button"
+        [title]="'text_editor.insert_image' | translate"
         (click)="openPrompt('image', $event)"
-        title="Insertar imagen"
       >
         <bmb-icon icon="image" [size]="24" />
       </button>
-      <!-- <button bmbButton appearance="transparent" size="micro" type="button" (click)="openTableDialog()" title="Insertar tabla">
-        <bmb-icon icon="table_chart" [size]="24"/>
-      </button> -->
     </span>
+
     <span class="bmb_text-editor-header-group">
       <button
         bmbButton
@@ -165,7 +184,7 @@
         size="micro"
         type="button"
         (click)="clearFormatting()"
-        title="Limpiar formato"
+        [title]="'text_editor.clear_formatting' | translate"
       >
         <bmb-icon icon="format_clear" [size]="24" />
       </button>
@@ -197,3 +216,43 @@
     </div>
   </div>
 </dialog>
+
+<ng-template #moreTemplate>
+  <section>
+    <bmb-action-menu
+      [showHeader]="false"
+      [title]="'text_editor.select_option' | translate"
+    >
+      @for (bot of settingsItems(); track $index) {
+        <ng-template>
+          <bmb-item
+            [icon]="bot.icon"
+            [label]="bot.name"
+            [isButton]="true"
+            (action)="bot.action()"
+          />
+        </ng-template>
+      }
+    </bmb-action-menu>
+  </section>
+</ng-template>
+
+<ng-template #insertTemplate>
+  <section>
+    <bmb-action-menu
+      [showHeader]="false"
+      [title]="'text_editor.select_option' | translate"
+    >
+      @for (bot of insertItems(); track $index) {
+        <ng-template>
+          <bmb-item
+            [icon]="bot.icon"
+            [label]="bot.name"
+            [isButton]="true"
+            (action)="bot.action()"
+          />
+        </ng-template>
+      }
+    </bmb-action-menu>
+  </section>
+</ng-template>

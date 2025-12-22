@@ -40,15 +40,11 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      border-radius: 50%;
-      width: rem.rem_calc(35);
-      height: rem.rem_calc(35);
-      background-color: RGBA(var(--color-charade-500));
-
-      &-image {
-        width: 70%;
-        height: 70%;
-      }
+      border-radius: var(--bmb-radius-full);
+      width: rem.rem_calc(32);
+      height: rem.rem_calc(32);
+      background-color: var(--general_contrasts-80);
+      color: var(--general_contrasts-25);
     }
   }
 
@@ -56,8 +52,8 @@
     @include fonts.font(4, regular);
     min-height: rem.rem_calc(45);
     width: fit-content;
-    border-radius: rem.rem_calc(16 16 16 0);
-    padding: var(--bmb-radius-m);
+    border-radius: rem.rem_calc(16) rem.rem_calc(16) rem.rem_calc(16) 0;
+    padding: var(--bmb-padding-m);
     box-shadow: rem.rem_calc(0 2 5) rgba(0, 0, 0, 0.1);
 
     &-container {
@@ -65,7 +61,7 @@
     }
 
     &-top {
-      border-radius: rem.rem_calc(0 16 16 16);
+      border-radius: 0 rem.rem_calc(16) rem.rem_calc(16) rem.rem_calc(16);
       background-color: var(--general_contrasts-20);
     }
 
@@ -81,12 +77,12 @@
     }
 
     &-userProfile-bottom {
-      border-radius: rem.rem_calc(16 16 0 16);
+      border-radius: rem.rem_calc(16) rem.rem_calc(16) 0 rem.rem_calc(16);
       background-color: var(--general_contrasts-5);
     }
 
     &-userProfile-top {
-      border-radius: rem.rem_calc(16 0 16 16);
+      border-radius: rem.rem_calc(16) 0 rem.rem_calc(16) rem.rem_calc(16);
     }
 
     &-thinking-dots {
@@ -98,7 +94,7 @@
       width: rem.rem_calc(12);
       height: rem.rem_calc(12);
       background-color: RGBA(var(--color-mariner-500));
-      border-radius: 50%;
+      border-radius: var(--bmb-radius-full);
       opacity: 0.3;
       animation: thinking 1.5s infinite ease-in-out;
     }

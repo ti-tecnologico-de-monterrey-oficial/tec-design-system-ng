@@ -3,7 +3,7 @@ const util = require('util');
 const fs = require('fs');
 
 const execPromise = util.promisify(exec);
-const supportedVersions = ['17', '18', '19', '20'];
+const supportedVersions = ['18', '19', '20'];
 
 async function runDockerCommands(version) {
   try {

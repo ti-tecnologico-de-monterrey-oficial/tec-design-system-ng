@@ -1,186 +1,21 @@
-<div bmbLayout>
+<form bmbLayout [formGroup]="userForm" (ngSubmit)="onSubmit()">
   <section bmbLayoutItem [colSm]="2">
     <bmb-dropdown
+      inputId="dropdown_id"
+      name="dropdown"
+      label="Dropdown"
       [options]="options()"
       [isFilterable]="true"
+      [control]="getFormControl('dropdown')"
+      (onValueChange)="handleDropdownChange($event)"
       [customFilterFunction]="customFilterFunction"
     />
     <bmb-input [placeholder]="'Search...'" [isClearable]="true" />
     <bmb-datepicker />
   </section>
-  <div bmbLayoutItem [colSm]="2">
-    <bmb-dropzone
-      [acceptedExtensions]="['image/*']"
-      [fileSize]="2"
-      [multiple]="true"
-      (newFile)="onNewFile($event)"
-      [progress]="progressFiles()"
-    ></bmb-dropzone>
-  </div>
-  <!-- <ul bmbLayoutItem [colSm]="4">
-    @for (item of options(); track $index) {
-      <li>{{ item }}</li>
-    }
-  </ul> -->
-</div>
-<bmb-switch
-  leftText="ES"
-  rightText="EN"
-  ariaLabel="Change lang"
-  name="langSwitch"
-  inputId="langSwitch"
-  (change)="handleLangChange($event)"
-></bmb-switch>
-{{ lang() }}
-<bmb-home-card
-  leftIcon="chevron_left"
-  icon="account_balance_wallet"
-  bgIconAppearance="green-light"
-  title="Title"
-  subtitle="Subtitle"
-  [showRightButton]="true"
-  (onExpandClick)="onExpandClick()"
-  [style.view-transition-name]="'homeCardTransition2'"
->
-  <bmb-filter-card
-    [modalTitle]="'Opciones Filtrado'"
-    [primaryBtnLabel]="'Aplicar Filtros'"
-    [secondaryBtnLabel]="'Limpiar Filtros'"
-    [icon]="'tune'"
-    [placeholderSearch]="'Search'"
-    [controlTypes]="[
-      {
-        title: 'Filter - tags',
-        control: [
-          { name: 'tag-1', type: 'tag', label: 'Name tag 1', checked: false },
-          { name: 'tag-2', type: 'tag', label: 'Name tag 2', checked: false }
-        ]
-      },
-      {
-        title: 'Filter - Radial',
-        control: [
-          {
-            name: 'radial-1',
-            type: 'radial',
-            label: 'Radial 1',
-            id: 'radial-1',
-            value: '1',
-            checked: false
-          },
-          {
-            name: 'radial-1',
-            type: 'radial',
-            label: 'Radial 2',
-            id: 'radial-2',
-            value: '2',
-            checked: false
-          }
-        ]
-      },
-      {
-        title: 'Filter - Checkbox',
-        control: [
-          {
-            name: 'checkbox-1',
-            type: 'checkbox',
-            label: 'Checkbox 1',
-            checked: false
-          },
-          {
-            name: 'checkbox-2',
-            type: 'checkbox',
-            label: 'Checkbox 2',
-            checked: false
-          }
-        ]
-      }
-    ]"
-    [inLine]="false"
-    [showDropdown]="false"
-    [dropdownOptions]="['Apple', 'Banana', 'Orange', 'Pear', 'Grape']"
-  ></bmb-filter-card>
-  <h1>Home Card Transition</h1>
-  <p>
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus quas
-    qui aliquid ad ipsa provident, architecto inventore vero dignissimos
-    consectetur beatae consequuntur, ipsam dolores nihil totam ut libero sequi
-    et!
-  </p>
-  <p>
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus quas
-    qui aliquid ad ipsa provident, architecto inventore vero dignissimos
-    consectetur beatae consequuntur, ipsam dolores nihil totam ut libero sequi
-    et!
-  </p>
-  <p>
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus quas
-    qui aliquid ad ipsa provident, architecto inventore vero dignissimos
-    consectetur beatae consequuntur, ipsam dolores nihil totam ut libero sequi
-    et!
-  </p>
-  <p>
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus quas
-    qui aliquid ad ipsa provident, architecto inventore vero dignissimos
-    consectetur beatae consequuntur, ipsam dolores nihil totam ut libero sequi
-    et!
-  </p>
-</bmb-home-card>
-<bmb-frequent-apps-selector
-  [title]="'Services'"
-  [apps]="[
-    {
-      icon: 'https://www.enago.com/academy/wp-content/uploads/2017/12/ImageJ3.png',
-      title: 'Home',
-      appearance: 'red',
-      callbackParam: { customData: 'Home Data' }
-    },
-    {
-      icon: 'settings',
-      title: 'My Page',
-      link: '/my-page',
-      appearance: 'yellow'
-    },
-    {
-      icon: 'settings',
-      title: 'School Calendar',
-      link: 'https://configuration.com',
-      target: '_blank',
-      appearance: 'yellow'
-    },
-    {
-      icon: 'settings',
-      title: 'Configuration',
-      link: 'https://configuration.com',
-      target: '_blank',
-      appearance: 'yellow'
-    },
-    {
-      icon: 'home',
-      title: 'Home',
-      link: '/home',
-      target: '_blank',
-      appearance: 'red'
-    },
-    {
-      icon: 'settings',
-      title: 'My Page',
-      link: '/my-page',
-      appearance: 'yellow'
-    },
-    {
-      icon: 'settings',
-      title: 'School Calendar',
-      link: 'https://configuration.com',
-      target: '_blank',
-      appearance: 'yellow'
-    },
-    {
-      icon: 'settings',
-      title: 'Configuration',
-      link: 'https://configuration.com',
-      target: '_blank',
-      appearance: 'yellow'
-    }
-  ]"
-  [layout]="'button'"
-></bmb-frequent-apps-selector>
+  <button bmbButton appearance="primary" type="submit">Submit</button>
+  <bmb-bookmark
+    [isActive]="false"
+    (isActiveChange)="handleBookmarkChange($event)"
+  ></bmb-bookmark>
+</form>

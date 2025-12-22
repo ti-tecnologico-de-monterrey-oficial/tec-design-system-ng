@@ -10,7 +10,7 @@ import {
 import { BmbTableLiteComponent } from './bmb-table-lite.component';
 
 export default {
-  title: 'Components/Containers/Table lite/Server side',
+  title: 'Components/Containers/Table/Lite server side',
   component: BmbTableLiteComponent,
   tags: ['!autodocs'],
   decorators: [
@@ -29,6 +29,7 @@ ${getGeneralDescription(
     generalDocLink:
       'https://bamboo.tec.mx/latest/componentes/table/descripcion-general-h1hRplJO',
     isSubStory: true,
+    subStoryChart: '  ',
   },
 )}
 ${getBasicExampleBlock(
@@ -175,6 +176,10 @@ ${getBasicExampleBlock(
       console.log('Button clicked', event);
     }`,
   true,
+  '',
+  '',
+  '',
+  '  ',
 )}
         `,
       },

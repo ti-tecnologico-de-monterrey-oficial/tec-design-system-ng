@@ -1,6 +1,6 @@
 <section [ngClass]="getClassList()">
   <bmb-datepicker
-    [label]="labelStartDate() || label()"
+    [label]="labelStartDate()"
     [placeholder]="placeholderStartDate()"
     [name]="name() + '_start'"
     [control]="controlStart()"
@@ -17,7 +17,7 @@
     [errorMessage]="errorMessage()"
   />
   <bmb-datepicker
-    [label]="labelEndDate() || label()"
+    [label]="labelEndDate()"
     [placeholder]="placeholderEndDate()"
     [name]="name() + '_end'"
     [control]="controlEnd()"

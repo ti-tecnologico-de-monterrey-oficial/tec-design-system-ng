@@ -14,6 +14,7 @@ import { BmbLayoutDirective } from '../../../directives/bmb-layout/bmb-layout.di
 import { BmbUserSummaryContentComponent } from '../../bmb-user-summary/bmb-user-summary-content/bmb-user-summary-content.component';
 import { BmbDropdownMenuComponent } from '../../bmb-dropdown-menu/bmb-dropdown-menu.component';
 import { IDropdownItem } from '../../../types';
+import { BmbButtonIconComponent } from '../../bmb-button-icon/bmb-button-icon.component';
 
 @Component({
   selector: 'bmb-top-bar-user-section',
@@ -22,6 +23,7 @@ import { IDropdownItem } from '../../../types';
     CommonModule,
     BmbDropdownMenuComponent,
     BmbActionIconComponent,
+    BmbButtonIconComponent,
     BmbUserSummaryContentComponent,
     BmbLayoutDirective,
     BmbLayoutItemDirective,
@@ -38,7 +40,6 @@ export class BmbTopBarUserSectionComponent {
     role: '',
   });
   mitec = input<boolean>(false);
-  assignmentNotification = input<string[]>([]);
   showNotifications = input<boolean>(true);
   notificationNotification = input<IBmbDataAlert[]>([]);
   showRoleButton = input<boolean>(false);

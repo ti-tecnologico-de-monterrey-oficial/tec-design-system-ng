@@ -8,12 +8,12 @@ import {
   model,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { IPositionButtonMenu, IUserInformation } from './types';
+import { IUserInformation } from './types';
 import { BmbTopBarUserSectionComponent } from './bmb-top-bar-user-section/bmb-top-bar-user-section.component';
 import { IBmbDataAlert } from '../bmb-alert-center/types';
 import { getMobileResolutionSize } from '../../utils/utils';
 
-export { IPositionButtonMenu, IUserInformation } from './types';
+export { IUserInformation } from './types';
 
 @Component({
   selector: 'bmb-top-bar',
@@ -36,12 +36,6 @@ export class BmbTopBarComponent implements OnInit {
   showHelpButton = input<boolean>(false);
   allowSidebarForMobile = input<boolean>(true);
 
-  positionButtonMenu = input<IPositionButtonMenu>('left'); // Deprecated
-  hasLogoutButton = input<boolean>(true); // Deprecated
-  showLang = input<boolean>(false); // Deprecated
-  showUserName = input<boolean>(true); // Deprecated
-  assignmentNotification = input<string[]>([]); // Deprecated
-
   image = model<string>('');
   mobileImage = model<string>('');
 
@@ -50,9 +44,6 @@ export class BmbTopBarComponent implements OnInit {
   alertButtonClick = output<MouseEvent>();
   roleButtonClick = output<MouseEvent>();
   backToHomeClick = output<void>();
-
-  logOut = output<any>(); // Deprecated
-  onLangChange = output<string>(); // Deprecated
 
   showAnimation: boolean = true;
   imageDefault = 'assets/images/tec-logo.svg';
@@ -84,16 +75,8 @@ export class BmbTopBarComponent implements OnInit {
     return getMobileResolutionSize(false);
   }
 
-  handleLogOutClick(event: Event) {
-    this.logOut.emit(event);
-  }
-
   handleAlertClick(event: MouseEvent) {
     this.alertButtonClick.emit(event);
-  }
-
-  handleLangChange(lang: string): void {
-    this.onLangChange.emit(lang);
   }
 
   handleHelpButtonClick(event: MouseEvent) {

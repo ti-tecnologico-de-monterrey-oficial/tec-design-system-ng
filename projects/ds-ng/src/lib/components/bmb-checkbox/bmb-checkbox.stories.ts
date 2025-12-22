@@ -76,7 +76,6 @@ ${getBasicExampleBlock('BmbCheckboxComponent', '', onChange.handleExample)}
   },
   argTypes: {
     inputId: DBmbInputParamDesc.inputId,
-    id: DBmbInputParamDesc.id,
     checked: {
       control: { type: 'boolean' },
       description: `

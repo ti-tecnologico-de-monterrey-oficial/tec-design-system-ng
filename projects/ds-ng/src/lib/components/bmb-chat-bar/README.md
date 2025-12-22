@@ -89,7 +89,7 @@ The component's template is structured as follows:
 ```html
 <bmb-chat-bar
   [placeholder]="'Escribe un mensaje...'"
-  [botList]="[{ name: 'TecBot', icon: '/assets/images/bot-icons/bot_tecStandar.svg' }]"
+  [botList]="[{ name: 'TecBot', icon: 'bot_tecStandar' }]"
   [actionsList]="[{ name: 'Action 1', icon: 'icon1' }, { name: 'Action 2', icon: 'icon2' }]"
   [showEmoji]="true"
   (onSendMessage)="handleSendMessage($event)"
@@ -107,8 +107,8 @@ The component's template is structured as follows:
 <bmb-chat-bar
   [placeholder]="'Type your message here...'"
   [botList]="[
-    { name: 'SupportBot', icon: '/assets/images/bot-icons/support_bot.svg' },
-    { name: 'SalesBot', icon: '/assets/images/bot-icons/sales_bot.svg' }
+    { name: 'SupportBot', icon: 'support_bot' },
+    { name: 'SalesBot', icon: 'sales_bot' }
   ]"
   [actionsList]="[
     { name: 'Help', icon: 'help_icon' },

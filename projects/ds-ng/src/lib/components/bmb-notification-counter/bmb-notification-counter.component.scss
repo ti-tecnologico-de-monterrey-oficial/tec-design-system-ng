@@ -15,7 +15,7 @@
     padding: rem.rem_calc(0 2);
     width: fit-content;
     @include fonts.font(1, bold);
-    color: var(--general_contrasts-50);
+    color: var(--general_contrasts-80);
     text-align: center;
     line-height: 1.2;
   }
@@ -25,8 +25,8 @@
     position: absolute;
     bottom: 0;
     right: 0;
-    color: var(--white-primary);
-    background-color: rgb(var(--color-red-light));
+    color: rgb(var(--white-primary));
+    background-color: var(--buttons-destructive);
     border-radius: rem.rem_calc(40);
   }
 

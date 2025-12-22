@@ -50,7 +50,7 @@
   &-button {
     &:not(.bmb_field-input-normal) {
       width: rem.rem_calc(32);
-      border-radius: 50%;
+      border-radius: var(--bmb-radius-full);
       aspect-ratio: 1/1;
       min-height: auto;
       opacity: 0.35;
@@ -79,7 +79,7 @@
 
     &-selected:not(.bmb_field-input-normal) {
       background-color: var(--general_contrasts-main-selection);
-      color: RGBA(var(--color-white-primary));
+      color: var(--bmb-calendar-button-selected-background);
       opacity: 1 !important;
 
       &:hover:not(:disabled):not(.bmb-disabled),
@@ -154,7 +154,7 @@
         &.bmb_datepicker-modal-button {
           width: 100%;
           aspect-ratio: auto;
-          border-radius: rem.rem_calc(16);
+          border-radius: var(--bmb-radius-4);
           padding: rem.rem_calc(2);
           opacity: 1;
           color: var(--general_contrasts-75);

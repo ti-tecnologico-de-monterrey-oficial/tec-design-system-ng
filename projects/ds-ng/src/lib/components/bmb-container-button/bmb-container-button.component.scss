@@ -29,12 +29,12 @@
 .bmb_container-button {
   &-error.bmb_container-button-wrapper {
     @include button-class() {
-      border-color: var(--red-primary);
-      color: var(--red-primary);
+      border-color: var(--buttons-destructive);
+      color: var(--buttons-destructive);
       cursor: not-allowed;
 
       .bmb_grade-value-main {
-        fill: var(--red-primary);
+        fill: var(--buttons-destructive);
       }
     }
   }
@@ -72,7 +72,6 @@
     text-overflow: ellipsis;
     display: -moz-box;
     display: -webkit-box;
-    display: box;
     -webkit-box-orient: vertical;
     // NOSONAR: Needed for line clamping
     box-orient: vertical;
@@ -123,13 +122,15 @@
   }
 
   &-square.bmb_container-button-wrapper {
-    @include button-class() {
-      flex-flow: column;
-      justify-content: center;
-      min-height: rem.rem_calc(148);
-      min-width: rem.rem_calc(148);
-      padding: rem.rem_calc(32 48);
-      width: auto;
+    &:not(.bmb_container-button-disabled):not(.bmb_container-button-error) {
+      @include button-class() {
+        flex-flow: column;
+        justify-content: center;
+        min-height: rem.rem_calc(148);
+        min-width: rem.rem_calc(148);
+        padding: rem.rem_calc(32 48);
+        width: auto;
+      }
     }
 
     .bmb_layout {
@@ -198,16 +199,17 @@
       @include button-class() {
         &:hover {
           background-color: var(--general_contrasts-50);
+          outline: 0 solid transparent;
         }
 
-        &:focus-visible:not(.bmb_container-button-disabled):not(
-            .bmb_container-button-error
-          ) {
+        &:focus:not(:disabled),
+        &:focus-visible:not(:disabled) {
           background-color: var(--buttons-primary-select);
-          color: var(--white-primary);
+          color: rgb(var(--white-primary));
+          outline: rem.rem_calc(1) solid var(--buttons-stroke-primary-selected);
 
           .bmb_grade-value-main {
-            fill: var(--white-primary);
+            fill: rgb(var(--white-primary));
           }
         }
       }
@@ -217,7 +219,7 @@
       align-items: center;
       background-color: var(--containers-container-button);
       border: rem.rem_calc(1) solid var(--general_contrasts-50);
-      border-radius: rem.rem_calc(16);
+      border-radius: var(--bmb-radius-4);
       color: var(--general_contrasts-100);
       display: inline-flex;
       min-height: rem.rem_calc(80);
@@ -225,7 +227,7 @@
       width: 100%;
 
       &:focus-visible {
-        outline: none;
+        outline: 0 solid transparent;
       }
     }
   }
@@ -245,7 +247,7 @@
         width: auto;
 
         &:focus-visible {
-          outline: none;
+          outline: 0 solid transparent;
         }
       }
     }

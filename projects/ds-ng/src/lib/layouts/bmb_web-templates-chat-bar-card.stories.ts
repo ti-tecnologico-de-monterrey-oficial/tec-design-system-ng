@@ -1,16 +1,28 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Meta, StoryFn, moduleMetadata } from '@storybook/angular';
 import {
   BmbTopBarComponent,
   BmbSidebarComponent,
   BmbHomeCardChatComponent,
   IBmbChatMessage,
+  BmbActionIconComponent,
+  IChatBarActions,
+  BmbProjectionContentService,
 } from '../../public-api';
 import { attributes, RELEVANT_TITLE } from '../utils/doc/utils';
+import { CommonModule } from '@angular/common';
+import { BmbBotIconComponent } from '../components/bmb-bot-icon/bmb-bot-icon.component';
 
 @Component({
   standalone: true,
-  imports: [BmbTopBarComponent, BmbSidebarComponent, BmbHomeCardChatComponent],
+  imports: [
+    BmbTopBarComponent,
+    BmbSidebarComponent,
+    BmbHomeCardChatComponent,
+    BmbActionIconComponent,
+    CommonModule,
+    BmbBotIconComponent,
+  ],
   selector: 'storybook-modal-wrapper',
   template: `
     <div class="bmb_template-single-home-card">
@@ -30,12 +42,15 @@ import { attributes, RELEVANT_TITLE } from '../utils/doc/utils';
       <main class="bmb_template-single-home-card-main">
         <bmb-home-card-chat
           leftIcon="chevron_left"
-          icon="/assets/images/bot-icons/bot_tecStandar.svg"
+          icon="bot_tecStandar"
           bgIconAppearance="charade-500"
           title="Asistente TECbot"
           contentPadding="none"
           subtitle="Assitente TECbot"
           [messagesHistory]="messages"
+          [actionsList]="actionList"
+          [mode]="mode"
+          [(currentBot)]="currentBot"
         >
         </bmb-home-card-chat>
       </main>
@@ -56,6 +71,14 @@ import { attributes, RELEVANT_TITLE } from '../utils/doc/utils';
   `,
 })
 class StorybookModalWrapperComponent {
+  @Input() mode: 'compact' | 'chat' | 'expanded' = 'compact';
+
+  @Input() currentBot = {
+    name: 'TecBot',
+    icon: 'bot_tecStandar',
+  };
+
+  constructor(private contentProjected: BmbProjectionContentService) {}
   messages: IBmbChatMessage[] = [
     {
       type: 'text',
@@ -89,14 +112,36 @@ class StorybookModalWrapperComponent {
       time: new Date('2025-02-19T14:34:00'),
     },
   ];
+
+  actionList: IChatBarActions[] = [
+    {
+      name: 'Expandir Chat',
+      icon: '',
+      action: () => {
+        this.contentProjected.closeContent();
+        this.mode = 'expanded';
+      },
+    },
+    {
+      name: 'Iniciar nuevo chat',
+      icon: '',
+      action: () => {},
+    },
+  ];
 }
 
 export default {
-  title: 'Internals/Home chat card',
+  title: 'Deprecated/Home chat card',
   component: BmbTopBarComponent,
+  tags: ['!autodocs'],
   decorators: [
     moduleMetadata({
-      imports: [StorybookModalWrapperComponent, BmbTopBarComponent],
+      imports: [
+        StorybookModalWrapperComponent,
+        BmbTopBarComponent,
+        BmbActionIconComponent,
+        BmbBotIconComponent,
+      ],
       providers: [],
     }),
   ],
@@ -109,7 +154,7 @@ Below is an example of how you can use this component in TypeScript:
 
 \`\`\`typescript
 import { MatDialog } from '@angular/material/dialog';
-import { BmbModalComponent, ModalDataConfig } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
+import { BmbModalComponent, ModalDataConfig, BmbActionIconComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
 @Component({
   selector: 'component',
   standalone: true,
@@ -131,12 +176,15 @@ import { BmbModalComponent, ModalDataConfig } from '@ti-tecnologico-de-monterrey
         <main class="bmb_template-single-home-card-main">
             <bmb-home-card-chat
                 leftIcon="chevron_left"
-                icon="/assets/images/bot-icons/bot_tecStandar.svg"
+                icon="bot_tecStandar"
                 bgIconAppearance="charade-500"
                 title="Asistente TECbot"
                 contentPadding="none"
                 subtitle="Assitente TECbot"
                 [messagesHistory]="messages"
+                [actionList]="actionList"
+                [mode]="mode"
+                [(currentBot)]="currentBot"
             >
             </bmb-home-card-chat>
         </main>
@@ -163,6 +211,49 @@ export class Component {
 Below is an example of how you can use this component in HTML:
         `,
       },
+    },
+  },
+  argTypes: {
+    mode: {
+      control: { type: 'select' },
+      options: ['compact', 'chat', 'expanded'],
+      description: `
+Controls how the chat is rendered.
+
+- **compact**: Shows only the floating bot icon
+- **chat**: Opens the chat inside a modal
+- **expanded**: Renders the chat inline
+      `,
+      table: {
+        category: 'State',
+        type: { summary: `'compact' | 'chat' | 'expanded'` },
+        defaultValue: { summary: 'chat' },
+      },
+    },
+
+    currentBot: {
+      control: { type: 'object' },
+      description: `
+Sets the active bot for the chat.
+
+This is a **model signal**, so it can be used as:
+- \`[(currentBot)]="currentBot"\`
+- \`(currentBotChange)="handleCurrentBotChange($event)"\`
+      `,
+      table: {
+        category: 'State',
+        type: { summary: 'IBotType' },
+        defaultValue: {
+          summary: `{ name: 'TecBot', icon: 'bot_tecStandar' }`,
+        },
+      },
+    },
+  },
+  args: {
+    mode: 'compact',
+    currentBot: {
+      name: 'TecBot',
+      icon: 'bot_tecStandar',
     },
   },
 } as Meta;

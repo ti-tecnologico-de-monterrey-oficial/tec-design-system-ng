@@ -51,12 +51,12 @@ export class BmbSidebarComponent {
 
   @ViewChild('sideNav') sideNav!: ElementRef;
 
-  @HostListener('window:focusin', ['$event'])
+  @HostListener('window:focusin')
   onFocusIn() {
     this.checkIfFocusInsideSidebar();
   }
 
-  @HostListener('window:focusout', ['$event'])
+  @HostListener('window:focusout')
   onFocusOut() {
     this.checkIfFocusInsideSidebar();
   }

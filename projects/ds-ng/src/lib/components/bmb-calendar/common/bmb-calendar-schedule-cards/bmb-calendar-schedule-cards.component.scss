@@ -6,7 +6,7 @@ $types: 'academic', 'life', 'event', 'save_the_date';
 .bmb_calendar-event {
   box-sizing: border-box;
   background-color: var(--containers-modal);
-  border-radius: rem.rem_calc(8);
+  border-radius: var(--bmb-radius-2);
   overflow: hidden;
   cursor: pointer;
   border: rem.rem_calc(1) solid var(--general_contrasts-25);

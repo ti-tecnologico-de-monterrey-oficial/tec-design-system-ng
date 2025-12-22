@@ -12,10 +12,11 @@
 }
 
 bmb-multi-dot-paginator-item {
-  width: calc((100% / var(--numberOfElements)) - 6rem);
   display: block;
 
-  @include mixins.check-for-mobile() {
+  @include mixins.check-for-mobile(false) {
+    width: calc((50% / var(--numberOfElements)) - 3rem);
+
     &.bmb_multi-dot-paginator-item-active ~ * {
       @include preview-block();
     }
@@ -33,10 +34,6 @@ bmb-multi-dot-paginator-item {
     }
   }
 
-  @include mixins.check-for-mobile(false) {
-    width: calc((50% / var(--numberOfElements)) - 3rem);
-  }
-
   @include mixins.media-query(2000, 'min') {
     width: calc((33.333% / var(--numberOfElements)) - 2rem);
   }
@@ -44,5 +41,8 @@ bmb-multi-dot-paginator-item {
 
 .bmb_multi-dot-paginator-item {
   width: 100%;
-  padding-right: 2.5rem;
+
+  @include mixins.check-for-mobile(false) {
+    padding-right: 2.5rem;
+  }
 }

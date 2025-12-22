@@ -124,7 +124,7 @@
 
 .bmb_sidebar {
   background-color: rgb(var(--color-black-primary));
-  border-radius: rem.rem_calc(0 24 24 0);
+  border-radius: var(--bmb-radius-none) var(--bmb-radius-6) var(--bmb-radius-6) var(--bmb-radius-none);
   left: 0;
   position: fixed;
   transition: width 0.3s ease;
@@ -220,6 +220,10 @@
     width: rem.rem_calc(88);
 
     &:hover:not(.bmb_sidebar-desktop-close),
+    &:focus:not(.bmb_sidebar-desktop-close),
+    &:not(.bmb_sidebar-desktop-close):has(:focus),
+    &:not(.bmb_sidebar-desktop-close):has(:focus-visible),
+    &:focus-visible:not(.bmb_sidebar-desktop-close),
     &.bmb-active:not(.bmb_sidebar-desktop-close) {
       animation: bounceToRight 0.6s ease-out;
       animation-fill-mode: forwards;
@@ -238,15 +242,17 @@
       right: 0;
       left: auto;
 
-      border-radius: rem.rem_calc(24 0 0 24);
+      border-radius: var(--bmb-radius-6) var(--bmb-radius-none) var(--bmb-radius-none) var(--bmb-radius-6);
 
       .bmb_sidebar-children {
         left: auto;
         right: 100%;
-        border-radius: rem.rem_calc(24 0 0 24);
+        border-radius: var(--bmb-radius-none) var(--bmb-radius-6) var(--bmb-radius-6) var(--bmb-radius-none);
       }
 
       &:hover:not(.bmb_sidebar-desktop-close),
+      &:focus:not(.bmb_sidebar-desktop-close),
+      &:focus-visible:not(.bmb_sidebar-desktop-close),
       &.bmb-active:not(.bmb_sidebar-desktop-close) {
         .bmb_sidebar-icon,
         .bmb_sidebar-text {
@@ -266,7 +272,9 @@
     .bmb_sidebar-item {
       position: relative;
 
-      &:hover {
+      &:hover,
+      &:focus,
+      &:focus-visible {
         .bmb_sidebar-children {
           @include open-modal();
           animation: bounceChildren 0.5s ease-out forwards;
@@ -319,7 +327,7 @@
     align-items: center;
     height: 100%;
     width: 100%;
-    border-radius: rem.rem_calc(24);
+    border-radius: var(--bmb-radius-6);
     overflow: hidden;
     color: rgb(var(--color-white-primary));
 
@@ -357,7 +365,7 @@
   }
 
   &-children {
-    border-radius: rem.rem_calc(0 24 24 0);
+    border-radius: var(--bmb-radius-none) var(--bmb-radius-6) var(--bmb-radius-6) var(--bmb-radius-none);
     background-color: rgb(var(--color-black-primary));
     flex-flow: column;
     transition: opacity 1s ease-out;

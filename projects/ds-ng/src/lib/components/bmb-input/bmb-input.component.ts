@@ -70,10 +70,8 @@ export class BmbInputComponent implements OnInit {
   maxlength = input<number>();
   minlength = input<number>();
   pattern = input<string>();
-  size = input<number>(); //Deprecated
   max = input<number>();
   min = input<number>();
-  id = input<string>(this.name());
   value = input<string>();
   autocomplete = input<string>('off');
   tooltip = input<string>('');
@@ -86,6 +84,7 @@ export class BmbInputComponent implements OnInit {
   });
   isClearable = input<boolean>(false);
   customValidation = input<ValidatorFn>();
+  inputId = input<string>(this.name());
 
   showError = model<boolean>(false);
   control = model<FormControl>(newFormControlByType(this.type()));

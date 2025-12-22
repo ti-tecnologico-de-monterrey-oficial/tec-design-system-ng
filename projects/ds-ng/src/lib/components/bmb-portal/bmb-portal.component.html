@@ -70,17 +70,23 @@
   />
 }
 
-<bmb-projected-content
-  [content]="projectedContent()?.content ?? null"
-  [htmlRef]="projectedContent()?.targetRef ?? null"
-  [mode]="projectedContent()?.mode ?? 'outside'"
-  [fixSizeToRef]="projectedContent()?.fixSizeToRef ?? false"
-  [inputContext]="projectedContent()?.inputContext ?? {}"
-  [showBackdrop]="projectedContent()?.showBackdrop ?? true"
-  [outputContext]="projectedContent()?.outputContext ?? {}"
-  (removeContent)="handleRemoveProjectedContent()"
-  [focusOnOpen]="projectedContent()?.focusOnOpen ?? true"
-></bmb-projected-content>
+<ng-container
+  *ngFor="let dialog of projectedContents(); trackBy: trackByDialogId"
+>
+  <bmb-projected-content
+    [id]="dialog.id ?? null"
+    [content]="dialog.content ?? null"
+    [htmlRef]="dialog.targetRef ?? null"
+    [mode]="dialog.mode ?? 'outside'"
+    [fixSizeToRef]="dialog.fixSizeToRef ?? false"
+    [inputContext]="dialog.inputContext ?? {}"
+    [showBackdrop]="dialog.showBackdrop ?? true"
+    [outputContext]="dialog.outputContext ?? {}"
+    [focusOnOpen]="dialog.focusOnOpen ?? true"
+    [dialogClass]="dialog.dialogClass ?? ''"
+    (removeContent)="handleRemoveProjectedContent(dialog.id)"
+  ></bmb-projected-content>
+</ng-container>
 
 <ng-template
   #commonTemplate

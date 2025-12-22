@@ -3,6 +3,8 @@ import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
 import { CommonModule } from '@angular/common';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import {
+  BlockquoteType,
+  getAlertBlockquote,
   getBasicExampleBlock,
   getEmptyStateMessage,
   getGeneralComponentDescription,
@@ -309,7 +311,61 @@ custom actions, and templating for both actions and detail rows.
       'https://bamboo.tec.mx/latest/componentes/table/descripcion-general-h1hRplJO',
   },
 )}
-${getSpecialSpecifications(getEmptyStateMessage(), { showAdditionalBlockquote: true })}
+${getSpecialSpecifications(getEmptyStateMessage(), { showAdditionalBlockquote: true })}<br/>
+${getAlertBlockquote(
+  `
+  You can use the Table component styles with a simple table by using standard HTML with the class \`bmb_table-simple\`.
+  \`\`\`html
+  <table class="bmb_table-simple">
+    <caption>Sample Table</caption>
+    <colgroup>
+      <col style="width: 40px;">
+      <col style="width: 25%;">
+      <col style="width: 25%;">
+      <col style="width: 20%;">
+      <col style="width: 15%;">
+      <col style="width: calc(15% - 40px);">
+    </colgroup>
+    <thead>
+      <tr>
+        <th scope="col">#id</th>
+        <th scope="col">First Name</th>
+        <th scope="col">Last Name</th>
+        <th scope="col">Email address</th>
+        <th scope="col">Gender</th>
+        <th scope="col">IP</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1</td>
+        <td>Lishe</td>
+        <td>Wallington</td>
+        <td>lwallington0@usda.gov</td>
+        <td>Female</td>
+        <td>108.182.101.185</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>Berne</td>
+        <td>O'Doherty</td>
+        <td>bodoherty1@oaic.gov.au</td>
+        <td>Male</td>
+        <td>49.105.134.156</td>
+      </tr>
+      <tr class="bmb_table-simple-row-selected">
+        <td>3</td>
+        <td>Gayel</td>
+        <td>Arthars</td>
+        <td>garthars2@ucoz.com</td>
+        <td>Female</td>
+        <td>90.52.235.220</td>
+      </tr>
+    </tbody>
+  </table>
+\`\`\``,
+  { title: RELEVANT_TITLE.example, blockquoteType: BlockquoteType.note },
+)}
 ${getBasicExampleBlock(
   `
   BmbBadgeComponent,
@@ -540,6 +596,17 @@ TableColum {
         category: 'Properties',
         type: { summary: 'boolean' },
         defaultValue: { summary: 'false' },
+      },
+    },
+    filtersModel: {
+      control: {
+        type: 'object',
+      },
+      description: `Sets the current filters applied to the table.<br/><br/>${getModelDescription('filtersModel')}`,
+      table: {
+        category: 'Properties',
+        type: { summary: 'Record<string, any>' },
+        defaultValue: { summary: '{}' },
       },
     },
     select: getOnEventParam(
@@ -1271,6 +1338,7 @@ ${RELEVANT_TITLE.warning} If the data is asynchronous, this property must also b
     lang: 'es',
     pageSize: 20,
     filtersPosition: 'top',
+    filtersModel: {},
     clearSelectionWhenPageChanges: false,
     selectionMode: 'all',
   },

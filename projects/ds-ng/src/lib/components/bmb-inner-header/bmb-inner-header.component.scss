@@ -35,7 +35,8 @@
   }
 
   .bmb_container {
-    border-radius: rem.rem_calc(0 0 12 12);
+    border-radius: var(--bmb-radius-none) var(--bmb-radius-none)
+      var(--bmb-radius-3) var(--bmb-radius-3);
     display: block;
   }
 

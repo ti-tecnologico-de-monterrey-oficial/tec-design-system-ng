@@ -1,0 +1,317 @@
+:root {
+  // Institutional colors
+  --white-primary: 255, 255, 255; // #FFFFFF
+  --blue-tec: 0, 57, 166; // #0039A6
+
+  // MiTec
+  --mitec-blue-primary: 0, 89, 141; // #00598D
+  --mitec-blue-light: 0, 167, 247; // #00A7F7
+
+  --mitec-green-primary: 72, 81, 22; // #485116
+  --mitec-green-light: 205, 222, 32; // #CDDE20
+
+  --mitec-red-primary: 141, 14, 63; // #8D0E3F
+  --mitec-red-light: 236, 38, 97; // #EC2661
+
+  --mitec-orange-primary: 187, 76, 2; // #BB4C02
+  --mitec-orange-light: 255, 153, 1; // #FF9901
+  --mitec-orange-tint: 255, 209, 70; // #FFD146
+
+  --mitec-purple-primary: 161, 39, 128; // #A12780
+  --mitec-purple-light: var(--mitec-purple-tint);
+  --mitec-purple-tint: 239, 131, 214; // #EF83D6
+
+  // Blue mariner
+  --blue-mariner-50: 240, 248, 254; // #F0F8FE
+  --blue-mariner-100: 221, 238, 252; // #DDEEFC
+  --blue-mariner-200: 195, 226, 250; // #C3E2FA
+  --blue-mariner-300: 153, 208, 247; // #99D0F7
+  --blue-mariner-400: 105, 183, 241; // #69B7F1
+  --blue-mariner-500: 69, 153, 236; // #4599EC
+  --blue-mariner-700: 39, 102, 203; // #2766CB
+  --blue-mariner-800: 38, 84, 167; // #2654A7
+  --blue-mariner-800: 36, 73, 132; // #244984
+  --blue-mariner-950: 26, 46, 81; // #1A2E51
+
+  // Gray charade
+  --gray-charade-50: 246, 247, 249; // #F6F7F9
+  --gray-charade-100: 235, 237, 243; // #EBEDF3
+  --gray-charade-200: 211, 215, 228; // #D3D7E4
+  --gray-charade-300: 173, 182, 204; // #ADB6CC
+  --gray-charade-500: 97, 113, 150; // #617196
+  --gray-charade-600: 77, 89, 124; // #4D597C
+  --gray-charade-700: 63, 73, 101; // #3F4965
+  --gray-charade-800: 55, 63, 85; // #373F55
+  --gray-charade-900: 49, 54, 73; // #313649
+  --gray-charade-950: 31, 34, 46; // #1F222E
+
+  // Base colors
+  --black-primary: 0, 0, 0; // #000000
+
+  --blue-primary: 39, 102, 203; // #2766CB
+  --blue-light: 70, 119, 199; // #4677C7
+  --blue-tint: 147, 169, 204; // #93A9CC
+
+  --green-primary: 64, 162, 19; // #40A213
+  --green-light: 67, 170, 139; // #43AA8B
+  --green-tint: 172, 227, 146; // #ACE392
+
+  --purple-light: 161, 39, 128; // #A12780
+  --purple-primary: 106, 39, 161; // #6A27A1
+  --purple-tint: 200, 123, 189; // #C87BBD
+
+  --red-primary: 211, 47, 47; // #D32F2F
+  --red-light: 240, 82, 82; // #F05252
+  --red-tint: 252, 159, 159; // #FC9F9F
+
+  --yellow-primary: 252, 189, 7; // #FCBD07
+  --yellow-light: 254, 214, 98; // #FED662
+  --yellow-tint: 255, 231, 163; // #FFE7A3
+
+  --teal-primary: 39, 125, 161; // #277DA1
+  --teal-light: 82, 137, 159; // #52899F
+  --teal-tint: 106, 145, 161; // #6A91A1
+
+  // Base colors - Creative use
+  --violet-primary: 105, 41, 196; // #6929C4
+  --violet-light: 144, 97, 241; // #9061F1
+  --violet-tint: 171, 143, 246; // #AB8FF6
+
+  --indigo-primary: 67, 56, 202; // #4338CA
+  --indigo-tint: 129, 140, 248; // #818CF8
+
+  --emerald-primary: 20, 83, 45; // #14532D
+  --emerald-tint: 74, 222, 128; // #4ADE80
+
+  --licorice-primary: 82, 60, 69; // #523C45
+  --licorice-light: 122, 84, 96; // #7A5460
+  --licorice-tint: 176, 135, 142; // #B0878E
+
+  --dark-teal-primary: 35, 65, 87; // #234157
+  --dark-teal-tint: 154, 197, 223; // #9AC5DF
+
+  --peach-primary: 181, 60, 32; // #B53C20
+  --peach-light: 215, 75, 43; // #D74B2B
+  --peach-tint: 236, 115, 87; // #EC7357
+
+  --sepia-primary: 103, 82, 57; // #675239
+  --sepia-tint: 168, 152, 88; // #A89858
+
+  --soft-red-primary: 145, 47, 64; // #912F40
+  --soft-red-light: 190, 64, 79; // #BE404F
+  --soft-red-tint: 226, 138, 142; // #E28A8E
+
+  --wattle-primary: 141, 108, 27; // #8D6C1B
+  --wattle-tint: 205, 185, 37; // #CDB925
+
+  --ship-cove-primary: 65, 78, 140; // #414E8C
+  --ship-cove-tint: 105, 135, 201; // #6987C9
+  --ship-cove-light: 85, 110, 187; // #556EBB
+
+  --plantation-primary: 56, 77, 72; // #384D48
+  --plantation-tint: 111, 146, 135; // #6F9287
+
+  --rum-primary: 89, 70, 98; // #594662
+  --rum-tint: 189, 170, 200; // #BDAAC8
+
+  --ripe-lemon-primary: 116, 75, 15; // #744B0F
+  --ripe-lemon-tint: 241, 211, 2; // #F1D302
+
+  --hibiscus-primary: 139, 41, 81; // #8B2951
+  --hibiscus-tint: 226, 132, 181; // #E284B5
+
+  //Semantic colors
+  --success-primary: 33, 100, 83; // #216453
+  --success-light: 67, 170, 139; // #43AA8B
+  --success-thin: var(--success-light);
+
+  --warning-primary: 122, 45, 13; // #7A2D0D
+  --warning-tint: var(--yellow-tint);
+
+  --error-primary: 185, 28, 28; // #B91C1C
+  --error-light: 240, 82, 82; // #F05252
+
+  --info-primary: var(--purple-primary);
+  --info-light: var(--purple-tint);
+
+  --branding-primary: 39, 102, 203; // #2766CB
+  --branding-tint: 105, 183, 241; // #69B7F1
+
+  --alert-primary: 26, 118, 132; // #1A7684
+  --alert-light: 27, 192, 203; // #1BC0CB
+
+  // General contrast
+  --black-light: rgba(var(--black-primary), 0.75);
+  --black-tint: rgba(var(--black-primary), 0.5);
+  --black-min: rgba(var(--black-primary), 0.25);
+
+  --white-light: rgba(var(--white-primary), 0.75);
+  --white-tint: rgba(var(--white-primary), 0.5);
+  --white-min: rgba(var(--white-primary), 0.25);
+
+  //Gradient
+  /*
+  Below are a couple of examples of gradient usage.:
+  1. - background-color: linear-gradient(180deg, var(--blue-gradient));
+  2. - background-color: radial-gradient(circle, var(--blue-gradient));
+  */
+  // Base colors (gradients)
+  --blue-gradient: rgb(var(--blue-mariner-700)) 8.4%,
+    rgb(var(--blue-light)) 91.6%; // #2766CB #4677C7
+  --green-gradient: rgb(var(--green-primary)) 8.4%,
+    rgb(var(--green-light)) 91.6%;
+  --purple-gradient: rgb(var(--purple-primary)) 7.74%,
+    rgb(var(--purple-light)) 92.26%; // #6A27A1 #A12780
+
+  --general-gradients-gradient-school: var(--blue-gradient);
+  --general-gradients-gradient-life: var(--green-gradient);
+  --general-gradients-gradient-event: var(--purple-gradient);
+
+  //Complementary colors (gradients) - Creatine use
+  --gradient-bg-tec-tec: rgb(var(--blue-mariner-950)) 56.25%,
+    rgb(var(--blue-mariner-800)) 100%;
+
+  /*Fix names*/
+  //old name = new name
+  --color-blue-tec: var(--blue-tec);
+  --color-white-primary: var(--white-primary);
+
+  --mitec_blue: var(--mitec-blue);
+  --color-mitec-blue: var(--mitec-blue-light);
+  --mitec_blue-primary: var(--mitec-blue-primary);
+  --mitec_blue-light: var(--mitec-blue-light);
+
+  --mitec_green: var(--mitec-green);
+  --color-mitec-green: var(--mitec-green-light);
+  --mitec_green-primary: var(--mitec-green-primary);
+  --mitec_green-light: var(--mitec-green-light);
+
+  --mitec_red: var(--mitec-red);
+  --color-mitec-red: var(--mitec-red-light);
+  --mitec_red-primary: var(--mitec-red-primary);
+  --mitec_red-light: var(--mitec-red-light);
+
+  --mitec_orange: var(--mitec-orange);
+  --color-mitec-orange: var(--mitec-orange-light);
+  --mitec_orange-primary: var(--mitec-orange-primary);
+  --mitec_orange-light: var(--mitec-orange-light);
+  --mitec_orange-tint: var(--mitec-orange-tint);
+
+  --mitec_purple: var(--mitec-purple);
+  --color-mitec-purple: var(--mitec-purple-light);
+  --mitec_purple-primary: var(--mitec-purple-primary);
+  --mitec_purple-tint: var(--mitec-purple-tint);
+
+  --color-charade-50: var(--gray-charade-50);
+  --color-charade-100: var(--gray-charade-100);
+  --color-charade-200: var(--gray-charade-200);
+  --color-charade-300: var(--gray-charade-300);
+  --color-charade-500: var(--gray-charade-500);
+  --color-charade-600: var(--gray-charade-600);
+  --color-charade-700: var(--gray-charade-700);
+  --color-charade-800: var(--gray-charade-800);
+  --color-charade-950: var(--gray-charade-950);
+  --color-charade-900: var(--gray-charade-900);
+
+  --color-mariner-50: var(--blue-mariner-50);
+  --color-mariner-100: var(--blue-mariner-100);
+  --color-mariner-200: var(--blue-mariner-200);
+  --color-mariner-300: var(--blue-mariner-300);
+  --color-mariner-400: var(--blue-mariner-400);
+  --color-mariner-500: var(--blue-mariner-500);
+  --color-mariner-700: var(--blue-mariner-700);
+  --color-mariner-800: var(--blue-mariner-800);
+  --color-mariner-900: var(--blue-mariner-800);
+  --color-mariner-950: var(--blue-mariner-950);
+
+  --color-black-primary: var(--black-primary);
+
+  --color-blue-primary: var(--blue-primary);
+  --color-blue-light: var(--blue-light);
+  --color-blue-tint: var(--blue-tint);
+  --color-blue-gradient: var(--blue-gradient);
+
+  --color-green-primary: var(--green-primary);
+  --color-green-light: var(--green-light);
+  --color-green-tint: var(--green-tint);
+  --color-green-gradient: var(--green-gradient);
+
+  --color-purple-light: var(--purple-light);
+  --color-purple-primary: var(--purple-primary);
+  --color-purple-tint: var(--purple-tint);
+  --color-purple-gradient: var(--purple-gradient);
+
+  --color-red-primary: var(--red-primary);
+  --color-red-light: var(--red-light);
+  --color-red-tint: var(--red-tint);
+
+  --color-yellow-primary: var(--yellow-primary);
+  --color-yellow-light: var(--yellow-light);
+  --color-yellow-tint: var(--yellow-tint);
+
+  --color-teal-primary: var(--teal-primary);
+  --color-teal-light: var(--teal-light);
+  --color-teal-tint: var(--teal-tint);
+
+  --color-black-light: var(--black-light);
+  --color-black-tint: var(--black-tint);
+  --color-black-min: var(--black-min);
+  --color-white-light: var(--white-ligh);
+  --color-white-tint: var(--white-tint);
+  --color-white-min: var(--white-min);
+
+  --semantic-brand: var(--semantic-branding);
+  --alert_primary-alert-primary: var(--alert-primary);
+  --alert_primary-alert-light: var(--alert-light);
+
+  --creative-use-darkteal: var(--creative-use-dark-teal);
+  --creative-use-softred: var(--creative-use-soft-red);
+  --creative-use-shipcove: var(--creative-use-ship-cove);
+  --creative-use-ripelemon: var(--creative-use-ripe-lemon);
+
+  --containers-container-button: var(--containers-button);
+
+  --general_contrasts: var(--general-contrasts);
+  --general_contrasts-100: var(--general-contrasts-100);
+  --general_contrasts-90: var(--general-contrasts-90);
+  --general_contrasts-80: var(--general-contrasts-80);
+  --general_contrasts-75: var(--general-contrasts-75);
+  --general_contrasts-60: var(--general-contrasts-60);
+  --general_contrasts-50: var(--general-contrasts-50);
+  --general_contrasts-25: var(--general-contrasts-25);
+  --general_contrasts-20: var(--general-contrasts-20);
+  --general_contrasts-15: var(--general-contrasts-15);
+  --general_contrasts-5: var(--general-contrasts-5);
+  --general_contrasts-main-complimentary: var(
+    --general-contrasts-main-complimentary
+  );
+  --general_contrasts-main-selection: var(--general-contrasts-main-selection);
+  --general_contrasts-main-selection-alternative: var(
+    --general-contrasts-main-selection-alternative
+  );
+  --general_contrasts-input-background: var(
+    --general-contrasts-input-background
+  );
+  --general_contrasts-input-outline: var(--general-contrasts-input-outline);
+  --general_contrasts-container: var(--general-contrasts-container);
+  --general_contrasts-container-outline: var(
+    --general-contrasts-container-outline
+  );
+  --general_contrasts-text-sidebar: var(--general-contrasts-text-sidebar);
+  --general_contrasts-primary: var(--general-contrasts-primary);
+
+  --menu_select-surface-activated: var(--menu-select-surface-activated);
+  --menu_select-label-menu-active: var(--menu-select-label-menu-active);
+  --menu_select-label-menu-inactive: var(--menu-select-label-menu-inactive);
+  --menu_select-activated-w-checkbox: var(--menu-select-activated-w-checkbox);
+  --menu_select-alternative-focus-label: var(
+    --menu-select-alternative-focus-label
+  );
+  --menu_select-on-surface-hovered-w-checkbox: var(
+    --menu-select-on-surface-hovered-w-checkbox
+  );
+  --menu_select-on-surface-hovered: var(--menu-select-on-surface-hovered);
+  --menu_select-on-surface-hovered-border: var(
+    --menu-select-on-surface-hovered-border
+  );
+}

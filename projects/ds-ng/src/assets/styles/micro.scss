@@ -16,8 +16,8 @@
 @use 'base/mixins' as mixins;
 
 // Import and register the design tokens like colors and theme
-@use 'tokens/colors';
-@use 'tokens/namedColors';
+@use 'tokens/brand/TEC/colors';
+@use 'tokens/brand/TEC/namedColors';
 @use 'tokens/theme';
 
 // Import the styles for base

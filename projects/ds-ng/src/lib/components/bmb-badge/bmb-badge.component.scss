@@ -28,7 +28,7 @@
   }
 
   &-bullet {
-    border-radius: 50%;
+    border-radius: var(--bmb-radius-full);
     display: inline-block;
     height: rem.rem_calc(8);
     margin-right: rem.rem_calc(8);
@@ -82,11 +82,11 @@
       &-mitec_blue,
       &-mitec_red {
         .bmb_badge-bullet {
-          background-color: var(--white-primary);
+          background-color: rgb(var(--white-primary));
         }
 
         .bmb_badge-content {
-          color: var(--white-primary);
+          color: rgb(var(--white-primary));
         }
       }
 

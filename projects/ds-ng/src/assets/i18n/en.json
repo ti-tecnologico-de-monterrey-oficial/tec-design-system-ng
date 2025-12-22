@@ -114,21 +114,28 @@
     "salutation": "Good afternoon",
     "digital_id": "Digital ID"
   },
-  "notification_card": {
-    "tabs": {
-      "notifications": "Notifications",
-      "advertisements": "Advertisements"
-    },
-    "empty_state": {
-      "primary_text": "You have no notifications to show"
-    }
-  },
-  "dropdown": {
-    "menu": {
-      "filter_placeholder": "Select an option"
-    }
-  },
   "text_editor": {
+    "format_block": "Paragraph style",
+    "paragraph": "Paragraph",
+    "title1": "Heading 1",
+    "title2": "Heading 2",
+    "title3": "Heading 3",
+    "appointment": "Blockquote",
+    "bold": "Bold",
+    "italic": "Italic",
+    "underline": "Underline",
+    "fore_color": "Text color",
+    "left": "Align left",
+    "center": "Center",
+    "right": "Align right",
+    "insert_ordered_list": "Numbered list",
+    "insert_unordered_list": "Bulleted list",
+    "indent": "Increase indent",
+    "outdent": "Decrease indent",
+    "insert_link": "Insert link",
+    "insert_image": "Insert image",
+    "clear_formatting": "Clear formatting",
+    "select_option": "Select an option",
     "prompt": {
       "link": {
         "link_label": "Insert Link",
@@ -149,6 +156,20 @@
       },
       "primary_button": "Insert",
       "secondary_button": "Cancel"
+    }
+  },
+  "notification_card": {
+    "tabs": {
+      "notifications": "Notifications",
+      "advertisements": "Advertisements"
+    },
+    "empty_state": {
+      "primary_text": "You have no notifications to show"
+    }
+  },
+  "dropdown": {
+    "menu": {
+      "filter_placeholder": "Select an option"
     }
   }
 }

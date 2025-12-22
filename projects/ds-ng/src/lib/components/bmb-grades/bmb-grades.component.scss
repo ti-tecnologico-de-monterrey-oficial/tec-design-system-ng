@@ -23,7 +23,7 @@
   }
 
   &-micro > .bmb_container {
-    border-radius: rem.rem_calc(16);
+    border-radius: var(--bmb-radius-4);
     border: rem.rem_calc(1) solid var(--general_contrasts-50);
     background: var(--containers-main);
   }
