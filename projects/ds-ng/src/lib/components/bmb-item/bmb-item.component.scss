@@ -63,7 +63,7 @@
   &-value,
   &-link {
     @include fonts.font(4, bold);
-    color: RGBA(var(--color-mariner-500), 1);
+    color: var(--buttons-primary-select);
 
     &-only-link {
       padding-left: rem.rem_calc(36);

@@ -71,7 +71,7 @@
   }
 
   &.active {
-    border-color: RGBA(var(--color-mariner-700));
+    border-color: var(--general-contrasts-main-selection);
 
     .bmb_accordion-header,
     .bmb_accordion-header-icon {
@@ -86,7 +86,7 @@
 
   &:hover {
     &:not(.active):not(.disabled):hover {
-      border-color: RGBA(var(--color-mariner-700));
+      border-color: var(--general-contrasts-main-selection);
     }
   }
 

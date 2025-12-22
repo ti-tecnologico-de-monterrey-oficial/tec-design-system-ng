@@ -79,7 +79,7 @@
 
     &-selected:not(.bmb_field-input-normal) {
       background-color: var(--general_contrasts-main-selection);
-      color: RGBA(var(--color-white-primary));
+      color: var(--bmb-calendar-button-selected-background);
       opacity: 1 !important;
 
       &:hover:not(:disabled):not(.bmb-disabled),
