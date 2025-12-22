@@ -108,6 +108,10 @@
   --buttons-card-hover-text: var(--general-contrasts-100);
   --buttons-fab-text: var(--buttons-alternative-normal);
   --bmb-evaluation-rubric-radius-circle: 0;
+  --bmb-calendar-button-selected-background: var(--general-contrasts-5);
+
+  // variables for containers
+  --bmb-dot-paginator-dot: rgb(var(--gray-ged-500));
 }
 
 // [data-brand='GED'],
