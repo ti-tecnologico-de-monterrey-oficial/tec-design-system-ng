@@ -10,4 +10,29 @@
   --gray-ged-700: 92, 92, 92; // #5C5C5C
   --gray-ged-800: 68, 68, 68; // #444444
   --gray-ged-900: 46, 46, 46; // #2E2E2E
+  --gray-ged-950: 26, 26, 26; // #1A1A1A
+
+  // Blue (GED)
+  --blue-ged-50: 240, 244, 255; // #F0F4FF
+  --blue-ged-100: 226, 231, 243; // #E2E7F3
+  --blue-ged-200: 213, 219, 237; // #D5DBED
+  --blue-ged-300: 188, 195, 217; // #BCC3D9
+  --blue-ged-400: 162, 171, 198; // #A2ABC6
+  --blue-ged-500: 138, 148, 180; // #8A94B4
+  --blue-ged-600: 114, 125, 161; // #727DA1
+  --blue-ged-700: 91, 103, 143; // #5B678F
+  --blue-ged-800: 67, 82, 126; // #43527E
+  --blue-ged-900: 43, 62, 108; // #2B3E6C
+  --blue-ged-950: var(--gray-ged-950); // #1A1A1A
+
+  // Semantic colors
+  --success-primary-alternative: 0, 140, 65; // #008C41
+  --success-tint-alternative: 68, 189, 124; // #44BD7C
+  --warning-primary-alternative: 196, 122, 0; // #C47A00
+
+  // Base colors - Creative use
+  --wattle-primary-alternative: 157, 138, 1; // #9D8A01
+  --ripe-lemon-primary-alternative: 148, 119, 0; // #947700
+
+  --success-tint: 67, 170, 139;
 }

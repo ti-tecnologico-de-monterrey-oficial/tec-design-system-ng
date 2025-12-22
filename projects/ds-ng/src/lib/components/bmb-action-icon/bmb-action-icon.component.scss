@@ -21,6 +21,7 @@
     align-items: center;
     color: currentColor;
     opacity: 1;
+    display: inline-flex;
 
     &-element {
       &:focus,

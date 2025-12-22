@@ -10,6 +10,7 @@
 @mixin small-selected() {
   .bmb_card_button-small-back {
     background-color: var(--menu_select-surface-activated);
+    color: var(--general-contrasts-main-complimentary);
   }
 
   .bmb_card_button-small-text,
@@ -173,7 +174,7 @@
       @include fonts.font(4, regular);
       max-width: 100%;
       @include mixins.truncated-string-line();
-      color: var(--general_contrasts);
+      color: var(--general_contrasts-100);
     }
 
     &-icon {
@@ -212,15 +213,19 @@
     }
 
     &:hover:not(:disabled) {
-      background-color: var(--buttons-primary-hover);
+      background-color: var(--buttons-card-hover-background);
+      color: var(--buttons-card-hover-text);
     }
 
     &:focus:not(:disabled),
-    &:active:not(:disabled) {
+    &:active:not(:disabled),
+    &:focus-visible:not(:disabled),
+    &:hover:active:not(:disabled) {
       background-color: var(--buttons-primary-select);
       outline-width: rem.rem_calc(1);
       outline-color: var(--buttons-stroke-primary-selected);
       box-shadow: rem.rem_calc(4 4 4 0) var(--drop_shadow-color-test-shadow);
+      color: var(--buttons-alternative-normal);
     }
 
     &:disabled {

@@ -49,11 +49,11 @@ export class BmbListGroupComponent {
     this.bmbListGroupStatusService.setListGroupId(this.listGroupId());
   }
 
-  getVarStyles(size: SizeNames | SizeNames[]) {
+  getVarStyles(size: SizeNames | SizeNames[], unit: string = 'spacing') {
     if (Array.isArray(size)) {
-      return size.map((s) => `var(--bmb-spacing-${s})`).join(' ');
+      return size.map((s) => `var(--bmb-${unit}-${s})`).join(' ');
     } else {
-      return `var(--bmb-spacing-${size})`;
+      return `var(--bmb-${unit}-${size})`;
     }
   }
 
@@ -66,7 +66,7 @@ export class BmbListGroupComponent {
 
   getStyles() {
     return {
-      '--bmb-list-group-item-radius': this.getVarStyles(this.borderRadius()),
+      '--bmb-list-group-item-radius': this.getVarStyles(this.borderRadius(), 'radius'),
       '--bmb-list-group-item-padding': this.getVarStyles(this.padding()),
       gap: `var(--bmb-spacing-${this.margin()})`,
     };
