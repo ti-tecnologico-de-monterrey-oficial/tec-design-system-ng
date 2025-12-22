@@ -8,47 +8,73 @@ Descubre cómo nuestro Design System no solo da forma a la estética, sino que t
 
 # Release Notes - Sistema de Diseño TEC
 
-## 🚀 Versión 1.5.13 - Mejora Integral de Accesibilidad y Experiencia 🎉 - 31 de octubre de 2025
+# 🚀 Versión 1.6.0 - Evolución del Sistema de Diseño 🎉
 
-Esta versión marca un hito importante en nuestro compromiso con la inclusión digital y la mejora continua de la experiencia para todas las personas. Gracias al trabajo colaborativo de nuestro equipo de desarrollo, presentamos avances significativos en accesibilidad, nuevas funcionalidades para la gestión de identidad digital y optimizaciones que hacen el sistema más eficiente y fácil de usar.
+**21 de diciembre de 2025**
 
-### 🆕 Nuevas Funcionalidades
+Esta versión representa un importante avance en la modernización y accesibilidad de nuestro sistema de diseño. Gracias al trabajo colaborativo del equipo, hemos implementado mejoras significativas que elevan la experiencia visual, optimizan el rendimiento y garantizan mayor consistencia en todas las interfaces. Las personas que interactúan con nuestras plataformas disfrutarán de una experiencia más fluida, intuitiva y accesible.
 
-- **Componente de Identidad Digital Completo (beta)**: Nueva funcionalidad integral que permite a las personas gestionar su identidad institucional de manera más completa y personalizada
+Aquí puedes ver la [Guía de migración](https://github.com/ti-tecnologico-de-monterrey-oficial/tec-design-system-ng/wiki/Guía-de-migración-a-Bamboo-1.6.0).
 
-- **Servicio de Traducciones**: Sistema robusto de internacionalización que facilita el acceso al contenido en múltiples idiomas, mejorando la experiencia para toda nuestra comunidad global
+---
 
-- **Directiva de Selección Inteligente**: Nueva herramienta que permite a las personas seleccionar elementos de manera más intuitiva, manteniendo ocultos los elementos no seleccionados para una interfaz más limpia
+## 🆕 Nuevas Funcionalidades
 
-- **Gestión Mejorada de Archivos**: El componente Dropzone ahora acepta tipos MIME además de extensiones, facilitando la carga de diferentes tipos de archivos de manera más flexible
+- **Asistente de Chat Inteligente**: El asistente ahora se adapta al contexto de navegación, expandiéndose en la página principal para mayor visibilidad y contrayéndose automáticamente en otras secciones para optimizar el espacio de trabajo
 
-### ✅ Problemas Resueltos
+- **Pantalla de Bienvenida Personalizada**: Nueva experiencia de bienvenida que facilita la orientación inicial y mejora la primera impresión al acceder a las plataformas
 
-- **Accesibilidad Mejorada en Tooltips**: Se implementó navegación completa por teclado, garantizando que todas las personas puedan acceder a la información adicional sin restricciones
+- **Filtros Personalizables en Menús Desplegables**: Mayor flexibilidad para organizar y buscar información según las necesidades específicas de cada contexto
 
-- **Componentes de Entrada Más Confiables**: Se corrigieron los estilos de los campos checkbox y radio, eliminando inconsistencias visuales que podrían confundir a las personas
+- **Editor de Texto Enriquecido Mejorado**: Nuevas capacidades de formato que permiten crear contenido más expresivo, incluyendo soporte para enlaces con control de destino
 
-- **Sidebar Más Estable**: Se resolvieron errores en elementos de navegación lateral que afectaban la experiencia de navegación de las personas
+- **Gestión Avanzada de Archivos**: Sistema mejorado de carga de documentos con mejor retroalimentación visual y organización automática de archivos con problemas
 
-- **Compatibilidad Extendida**: Se mejoró el soporte para Angular 17 en el componente Table Lite, asegurando que más proyectos puedan beneficiarse de esta funcionalidad
+- **Tablas Interactivas Mejoradas**: Nueva experiencia de selección de elementos y filtrado personalizado que facilita el trabajo con grandes volúmenes de información
 
-### ⚡ Optimizaciones
+- **Notificaciones Personalizables**: Posibilidad de incluir contenido personalizado en las notificaciones para comunicar información de manera más efectiva
 
-- **Interfaz Responsiva Optimizada**: Se implementaron nuevas variables CSS y mixins que mejoran significativamente la experiencia en dispositivos móviles, adaptándose automáticamente a diferentes tamaños de pantalla
+---
 
-- **Sistema de Layout Inteligente**: La directiva de layout ahora soporta container queries, proporcionando un ajuste responsivo más preciso y eficiente que beneficia directamente la experiencia visual
+## ✅ Problemas Resueltos
 
-- **Gestión de Fuentes Simplificada**: Se eliminaron fuentes obsoletas del sistema, reduciendo el tiempo de carga y mejorando el rendimiento general para todas las personas
+- **Selección de Fechas en Calendarios**: Se corrigió un problema que impedía seleccionar fechas correctamente, garantizando ahora una experiencia fluida al programar eventos
 
-- **Documentación Automatizada**: Se estableció un proceso automatizado para la generación de wikis, asegurando que la documentación esté siempre actualizada y accesible
+- **Mejora en Identificación Digital**: El logo del Tecnológico de Monterrey ahora se ajusta dinámicamente según el contexto, mejorando la consistencia visual
 
-### 📘 Mejoras en Documentación
+- **Visualización de Contenido en Ventanas Emergentes**: Se resolvió un problema que impedía ver cierto contenido sobre las ventanas modales, asegurando que toda la información sea accesible
 
-- **Lineamientos de Documentación Estandarizados**: Se establecieron nuevos estándares que garantizan información más clara y accesible para todas las personas que utilizan el sistema de diseño
+- **Correcciones en Formularios y Controles**: Múltiples ajustes que mejoran la estabilidad y respuesta de botones, campos de texto y otros elementos interactivos
 
-- **Documentación de Servicios Ampliada**: Se documentaron completamente los servicios de tabs, tema, toast y traducciones, facilitando su implementación y uso
+- **Elementos de Tarjetas Deshabilitados**: Los botones de tarjeta ahora muestran claramente cuando están deshabilitados con opacidad reducida, evitando confusión
 
-- **Ejemplos Prácticos Mejorados**: Se añadieron ejemplos más detallados y funcionales en Storybook, permitiendo una comprensión más rápida y efectiva
+---
+
+## ⚡ Optimizaciones
+
+- **Sistema de Variables de Diseño Unificado**: Transición completa a un sistema de variables que garantiza consistencia visual en todos los componentes, facilitando futuras actualizaciones
+
+- **Mejoras en Contraste y Accesibilidad**: Ajustes de colores en múltiples componentes (enlaces, tablas, contenedores) que cumplen con estándares de accesibilidad, beneficiando especialmente a personas con necesidades visuales específicas
+
+- **Optimización de Íconos**: Migración de fuentes de íconos a SVG, mejorando el rendimiento de carga y la calidad visual en cualquier resolución
+
+- **Refactorización de Estilos**: Reorganización del código visual que mejora los tiempos de carga y facilita el mantenimiento futuro sin afectar la experiencia de uso
+
+- **Depuración de Propiedades Obsoletas**: Eliminación de código heredado que optimiza el rendimiento general del sistema
+
+- **Publicación Automatizada y Segura**: Migración a un sistema moderno de publicación que garantiza mayor seguridad y consistencia en las actualizaciones
+
+---
+
+## 📘 Mejoras en Documentación
+
+- **Casos de Prueba Actualizados**: Documentación ampliada para menús desplegables, alertas y otros componentes que facilita la implementación correcta
+
+- **Actualización de Configuraciones**: Mejoras en la documentación técnica que aseguran una configuración más sencilla del sistema en nuevos proyectos
+
+---
+
+*Esta versión es el resultado del esfuerzo colaborativo del equipo de diseño y desarrollo, trabajando para ofrecer experiencias digitales de calidad para toda la comunidad.*
 
 ---
 
