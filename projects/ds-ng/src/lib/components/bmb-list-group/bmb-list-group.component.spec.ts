@@ -45,7 +45,7 @@ describe('BmbListGroupComponent', () => {
     spyOn(component, 'getVarStyles').and.callThrough();
     const styles = component.getStyles();
     expect(styles).toEqual({
-      '--bmb-list-group-item-radius': 'var(--bmb-spacing-m)',
+      '--bmb-list-group-item-radius': 'var(--bmb-radius-m)',
       '--bmb-list-group-item-padding': 'var(--bmb-spacing-m)',
       gap: 'var(--bmb-spacing-m)',
     });
