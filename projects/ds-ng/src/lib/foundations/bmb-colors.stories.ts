@@ -9,8 +9,7 @@ import {
   DESIGN_SYSTEM_TITLE,
   getFoundationDescriptions,
   getGeneralDescription,
-  getHelpDescriptionForGeneratingVariables,
-  getPageStructureForFoundationStories,
+  getPageStructureForTemplateStories,
   getSandboxConsiderationsDocumentation,
   getSpecialSpecifications,
   SANDBOX_TITLE,
@@ -52,7 +51,7 @@ import { BmbVerticalLayoutItemDirective } from '../directives/bmb-layout/bmb-ver
       >
         <section bmbVerticalLayout margin="m" gapSize="none">
           <section bmbVerticalLayoutItem>
-            <header style="margin: 0 var(--bmb-spacing-l)" bmbVerticalLayout>
+            <header bmbVerticalLayout>
               <h2 bmbVerticalLayoutItem>{{ title }}</h2>
               <p bmbVerticalLayoutItem>
                 Please just click on the color to copy it.
@@ -61,16 +60,18 @@ import { BmbVerticalLayoutItemDirective } from '../directives/bmb-layout/bmb-ver
           </section>
           <section bmbVerticalLayoutItem>
             <ul
-              style="margin: 0 var(--bmb-spacing-xxl); padding: 0; list-style: none"
+              style="margin: 0 var(--bmb-spacing-m); padding: 0; list-style: none"
               bmbLayout
               margin="none"
-              gapSize="xxl"
+              gapSize="l"
               [justify]="isJustifyStart ? 'start' : 'center'"
             >
               @for (item of list; track $index) {
                 <li [attr.title]="item" bmbLayoutItem>
                   <button
+                    class="font-bold-4 bmb_box-shadow-2"
                     type="button"
+                    [style]="parseStyle()"
                     [ngStyle]="
                       isNameStyle
                         ? parseNamedStyle(item)
@@ -90,7 +91,7 @@ import { BmbVerticalLayoutItemDirective } from '../directives/bmb-layout/bmb-ver
         </section>
       </ng-template>
 
-      <section bmbVerticalLayout margin="xxl">
+      <section bmbVerticalLayout margin="l">
         <section bmbVerticalLayoutItem>
           <ng-template
             *ngTemplateOutlet="
@@ -104,6 +105,35 @@ import { BmbVerticalLayoutItemDirective } from '../directives/bmb-layout/bmb-ver
           />
         </section>
         <section bmbVerticalLayoutItem bmbAccordionControl>
+          <!-- <bmb-accordion
+            appearanceContrast="alternative"
+            icon="keyboard_arrow_down"
+          >
+            <ng-template #bmbAccordionHeader>{{
+              'Container colors'
+            }}</ng-template>
+            <ng-template #bmbAccordionContent>
+              <ng-template
+                *ngTemplateOutlet="
+                  content;
+                  context: {
+                    list: grayCharade,
+                    title: 'Gray '
+                  }
+                "
+              />
+              <bmb-divider />
+              <ng-template
+                *ngTemplateOutlet="
+                  content;
+                  context: {
+                    list: grayGED,
+                    title: 'Gray (GED)'
+                  }
+                "
+              />
+            </ng-template>
+          </bmb-accordion> -->
           <bmb-accordion
             appearanceContrast="alternative"
             icon="keyboard_arrow_down"
@@ -198,16 +228,6 @@ import { BmbVerticalLayoutItemDirective } from '../directives/bmb-layout/bmb-ver
           >
             <ng-template #bmbAccordionHeader>{{ 'GED' }}</ng-template>
             <ng-template #bmbAccordionContent>
-              <ng-template
-                *ngTemplateOutlet="
-                  content;
-                  context: {
-                    list: grayGED,
-                    title: 'Gray (GED)'
-                  }
-                "
-              />
-              <bmb-divider />
               <ng-template
                 *ngTemplateOutlet="
                   content;
@@ -340,10 +360,6 @@ import { BmbVerticalLayoutItemDirective } from '../directives/bmb-layout/bmb-ver
   `,
 })
 class StorybookColorsPlaygroundComponent {
-  color = input<string>('');
-  gradient = input<string>('');
-  type = input<string>('');
-
   selectedTab: number = 1;
   tabList: IBmbTab[] = [
     { id: 1, title: 'Containers', isActive: true },
@@ -393,6 +409,19 @@ class StorybookColorsPlaygroundComponent {
     '--purple-gradient',
   ];
 
+  blueMariner: string[] = [
+    '--blue-mariner-50',
+    '--blue-mariner-100',
+    '--blue-mariner-200',
+    '--blue-mariner-300',
+    '--blue-mariner-400',
+    '--blue-mariner-500',
+    '--blue-mariner-700',
+    '--blue-mariner-800',
+    '--blue-mariner-900',
+    '--blue-mariner-950',
+  ];
+
   creativeBaseColors: string[] = [
     '--violet-primary',
     '--violet-light',
@@ -415,6 +444,7 @@ class StorybookColorsPlaygroundComponent {
     '--soft-red-light',
     '--soft-red-tint',
     '--wattle-primary',
+    '--wattle-primary-alternative',
     '--wattle-tint',
     '--ship-cove-primary',
     '--ship-cove-tint',
@@ -425,19 +455,21 @@ class StorybookColorsPlaygroundComponent {
     '--rum-tint',
     '--ripe-lemon-primary',
     '--ripe-lemon-tint',
+    '--ripe-lemon-primary-alternative',
     '--hibiscus-primary',
     '--hibiscus-tint',
-    '--wattle-primary-alternative', // #9D8A01
-    '--ripe-lemon-primary-alternative',
   ];
 
   creativeGradients: string[] = ['--gradient-bg-tec'];
 
   semanticBaseColors: string[] = [
     '--success-primary',
+    '--success-primary-alternative',
     '--success-light',
     '--success-thin',
+    '--success-tint-alternative',
     '--warning-primary',
+    '--warning-primary-alternative',
     '--warning-tint',
     '--error-primary',
     '--error-light',
@@ -447,23 +479,6 @@ class StorybookColorsPlaygroundComponent {
     '--branding-tint',
     '--alert-primary',
     '--alert-light',
-    '--success-primary-alternative',
-    '--success-tint-alternative',
-    '--warning-primary-alternative',
-  ];
-
-  grayGED: string[] = [
-    '--gray-ged-50',
-    '--gray-ged-100',
-    '--gray-ged-200',
-    '--gray-ged-300',
-    '--gray-ged-400',
-    '--gray-ged-500',
-    '--gray-ged-600',
-    '--gray-ged-700',
-    '--gray-ged-800',
-    '--gray-ged-900',
-    '--gray-ged-950',
   ];
 
   blueGED: string[] = [
@@ -560,34 +575,62 @@ class StorybookColorsPlaygroundComponent {
     '--mitec-purple',
   ];
 
-  parseStyle(color: string) {
+  grayGED: string[] = [
+    '--gray-ged-50',
+    '--gray-ged-100',
+    '--gray-ged-200',
+    '--gray-ged-300',
+    '--gray-ged-400',
+    '--gray-ged-500',
+    '--gray-ged-600',
+    '--gray-ged-700',
+    '--gray-ged-800',
+    '--gray-ged-900',
+    '--gray-ged-950',
+  ];
+
+  grayCharade: string[] = [
+    '--gray-charade-50',
+    '--gray-charade-100',
+    '--gray-charade-200',
+    '--gray-charade-300',
+    '--gray-charade-500',
+    '--gray-charade-600',
+    '--gray-charade-700',
+    '--gray-charade-800',
+    '--gray-charade-900',
+    '--gray-charade-950',
+  ];
+
+  parseStyle() {
+    return {
+      width: '12rem',
+      height: '6rem',
+      border: 'var(--bmb-border-general-contrasts-15-1-solid)',
+      'border-radius': 'var(--bmb-radius-m)',
+      'text-shadow': `1px 1px 0 var(--general-contrasts-50),
+          -1px -1px 0 var(--general-contrasts-50),
+          -1px 1px 0 var(--general-contrasts-50),
+          1px -1px 0 var(--general-contrasts-50)`,
+    };
+  }
+
+  parseBGColorStyle(color: string) {
     return {
       background: color,
-      padding: 'var(--bmb-spacing-m) var(--bmb-spacing-xxl)',
-      'border-radius': 'var(--bmb-radius-m)',
-      'border-width': '1px',
-      'border-style': 'solid',
-      'border-color': 'rgb(var(--yellow-tint))',
-      'text-align': 'center',
-      width: '15rem',
-      height: '8rem',
-      'user-select': 'none',
-      'text-shadow': `1px 1px 0 var(--general-contrasts-25), -1px -1px 0 var(--general-contrasts-25), -1px 1px 0 var(--general-contrasts-25), 1px -1px 0 var(--general-contrasts-25)`,
-      'font-weight': 'bold',
-      'font-size': '14px',
     };
   }
 
   parseColorNamedStyle(color: string) {
-    return this.parseStyle(`rgb(var(${color}))`);
+    return this.parseBGColorStyle(`rgb(var(${color}))`);
   }
 
   parseNamedStyle(color: string) {
-    return this.parseStyle(`var(${color})`);
+    return this.parseBGColorStyle(`var(${color})`);
   }
 
   parseGradientStyle(color: string) {
-    return this.parseStyle(`linear-gradient(var(${color}))`);
+    return this.parseBGColorStyle(`linear-gradient(var(${color}))`);
   }
 
   copyToClipboard(item: any) {
@@ -606,7 +649,7 @@ export default {
   ],
   parameters: {
     docs: {
-      page: () => getPageStructureForFoundationStories(),
+      page: () => getPageStructureForTemplateStories(),
       description: {
         component: `
 ${getGeneralDescription(
@@ -646,125 +689,6 @@ background: radial-gradient(circle, var(--color-gradient-blue));
 )}`,
       },
     },
-  },
-  argTypes: {
-    color: {
-      name: 'Color',
-      control: { type: 'select' },
-      options: [
-        '--color-mariner-50',
-        '--color-mariner-100',
-        '--color-mariner-200',
-        '--color-mariner-300',
-        '--color-mariner-400',
-        '--color-mariner-500',
-        '--color-mariner-700',
-        '--color-mariner-800',
-        '--color-mariner-900',
-        '--color-mariner-950',
-        '--color-charade-50',
-        '--color-charade-100',
-        '--color-charade-200',
-        '--color-charade-300',
-        '--color-charade-500',
-        '--color-charade-600',
-        '--color-charade-700',
-        '--color-charade-800',
-        '--color-charade-900',
-        '--color-charade-950',
-        '--color-white-primary',
-        '--color-blue-tec',
-        '--color-mitec-blue',
-        '--color-mitec-green',
-        '--color-mitec-red',
-        '--color-mitec-orange',
-        '--color-black-primary',
-        '--color-black-light',
-        '--color-black-tint',
-        '--color-black-min',
-        '--color-white-light',
-        '--color-white-tint',
-        '--color-white-min',
-        '--color-neon-primary',
-        '--color-blue-primary',
-        '--color-blue-light',
-        '--color-blue-tint',
-        '--color-green-primary',
-        '--color-green-light',
-        '--color-green-tint',
-        '--color-purple-primary',
-        '--color-purple-light',
-        '--color-purple-tint',
-        '--color-red-primary',
-        '--color-red-light',
-        '--color-red-tint',
-        '--color-yellow-primary',
-        '--color-yellow-light',
-        '--color-yellow-tint',
-        '--color-teal-primary',
-        '--color-teal-light',
-        '--color-teal-tint',
-        '--color-container-home',
-        '--color-container-secondary',
-        '--color-container-button',
-        '--color-background-main',
-        '--color-container-home-light',
-        '--color-container-secondary-light',
-        '--color-container-button-light',
-        '--color-background-main-light',
-        '--color-container-home-tec',
-        '--color-container-secondary-tec',
-        '--color-container-button-tec',
-        '--color-background-main-tec',
-        '--color-blue-pigment',
-        '--color-japanese-indigo',
-        '--color-eerie-black',
-      ],
-      description: getHelpDescriptionForGeneratingVariables('color', true),
-      table: {
-        category: SANDBOX_TITLE,
-        type: { summary: 'string' },
-      },
-    },
-    gradient: {
-      name: 'Gradient',
-      control: { type: 'select' },
-      options: [
-        '--color-button-gradient',
-        '--color-blue-gradient',
-        '--color-green-gradient',
-        '--color-purple-gradient',
-        '--color-bg-gradient',
-        '--color-bg-wheel',
-        '--color-bg-gradient-light',
-        '--color-bg-wheel-light',
-        '--color-bg-gradient-tec',
-        '--color-bg-wheel-tec',
-      ],
-      description: getHelpDescriptionForGeneratingVariables('gradient', true),
-      table: {
-        category: SANDBOX_TITLE,
-        type: { summary: 'string' },
-      },
-    },
-    type: {
-      name: 'Gradient type',
-      control: { type: 'radio' },
-      options: ['linear-gradient', 'radial-gradient'],
-      description: getHelpDescriptionForGeneratingVariables(
-        'gradient type',
-        true,
-      ),
-      table: {
-        category: SANDBOX_TITLE,
-        type: { summary: 'string' },
-      },
-    },
-  },
-  args: {
-    color: '--color-mariner-50',
-    gradient: '--color-bg-wheel-tec',
-    type: 'linear-gradient',
   },
 } as Meta<typeof StorybookColorsPlaygroundComponent>;
 
