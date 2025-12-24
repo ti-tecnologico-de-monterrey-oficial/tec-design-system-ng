@@ -1,9 +1,34 @@
 <ol [ngClass]="getClasses()">
-  <li
-    *ngFor="let i of getDotsArray()"
-    [attr.data-bs-target]="targets() && targets()[i] ? targets()[i].target : ''"
-    [attr.data-bs-slide-to]="i"
-    [ngClass]="{ dot: true, active: activeDotIndex() === i }"
-    (click)="onDotClicked(i)"
-  ></li>
+  @if (numberOfDots()) {
+    <li class="bmb_dot_paginator-item">
+      <bmb-action-icon
+        [disabled]="activeDotIndex() === 0"
+        [icon]="'chevron_left'"
+        [iconSize]="24"
+        (buttonClick)="prevItem()"
+      ></bmb-action-icon>
+    </li>
+  }
+  @for (target of targets(); track $index) {
+    <li class="bmb_dot_paginator-item">
+      <button
+        class="dot"
+        (click)="dotClick($index)"
+        [ngClass]="{ active: activeDotIndex() === $index }"
+        [title]="$index"
+      >
+        <span hidden="true">Go to slide {{ $index + 1 }}</span>
+      </button>
+    </li>
+  }
+  @if (numberOfDots()) {
+    <li class="bmb_dot_paginator-item">
+      <bmb-action-icon
+        [disabled]="activeDotIndex() === numberOfDots() - 1"
+        [icon]="'chevron_right'"
+        [iconSize]="24"
+        (buttonClick)="nextItem()"
+      ></bmb-action-icon>
+    </li>
+  }
 </ol>

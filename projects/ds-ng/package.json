@@ -11,20 +11,22 @@
   "repository": "https://github.com/ti-tecnologico-de-monterrey-oficial/tec-design-system-ng",
   "peerDependencies": {
     "rxjs": "*",
-    "@angular/core": "^{angularVersion}.0.0",
-    "@angular/animations": "^{angularVersion}.0.0"
+    "@angular/core": "^{angularVersion}.0.0"
   },
   "dependencies": {
+    "@angular/animations": "^{angularVersion}.0.0",
+    "@angular/cdk": "^{angularVersion}.0.0",
+    "@angular/material": "^{angularVersion}.0.0",
+    "@material-symbols/svg-400": "^0.39.1",
+    "@types/luxon": "3.4.2",
+    "dompurify": "3.3.0",
     "libphonenumber-js": "1.11.16",
     "luxon": "3.5.0",
-    "tslib": "*",
-    "@types/luxon": "3.4.2",
-    "@angular/cdk": "*",
-    "@material-symbols/svg-400": "^0.39.1",
-    "dompurify": "3.3.0"
+    "tslib": "*"
   },
   "exports": {
-    "./assets/styles/main.min.css": "./dist/ds-ng/assets/styles/main.min.css"
+    "./assets/styles/mainTEC.min.css": "./dist/ds-ng/assets/styles/mainTEC.min.css",
+    "./assets/styles/mainGED.min.css": "./dist/ds-ng/assets/styles/mainGED.min.css"
   },
   "sideEffects": false
 }

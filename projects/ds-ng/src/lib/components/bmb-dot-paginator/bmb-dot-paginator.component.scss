@@ -4,14 +4,21 @@
   align-items: center;
   display: flex;
   justify-content: center;
-  list-style-type: none;
+  list-style: none;
   margin: rem.rem_calc(8) auto;
   padding: 0;
   position: relative;
   width: fit-content;
 
-  ::marker {
-    display: none;
+  &-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    bmb-action-icon {
+      display: flex;
+      align-items: center;
+    }
   }
 
   .dot {
