@@ -730,7 +730,7 @@ export const getVariableDetail = (
 >The ${!!classes ? 'class' : 'CSS variable'} name is defined as ${definitionClass} where ${size} are the ${element} size${isInherit ? `, and also set ${variableDescription} for the child elements` : ''}.
 >
 \`\`\`html
-<div ${_style}${classes ? `class="${classes}"` : ''}>
+<div ${classes ? `class="${classes}" ` : ''}${_style.trimEnd()}>
     ${_description}
 </div>
 \`\`\`
@@ -738,7 +738,7 @@ ${
   isInherit
     ? `>
 \`\`\`html
-<div ${_style}class="${classes}">
+<div class="${classes}" ${_style.trimEnd()}>
   <div style="${stylesVar}">
     The child element has access to the ${list} of the parent element's size through the ${variableDescription.replaceAll('`', '')}.
   </div>
