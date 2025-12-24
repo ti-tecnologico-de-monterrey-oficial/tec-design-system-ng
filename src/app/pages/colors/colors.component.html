@@ -24,7 +24,9 @@
         @for (item of list; track $index) {
           <li [attr.title]="item" bmbLayoutItem>
             <button
+              class="font-bold-4"
               type="button"
+              [style]="parseStyle()"
               [ngStyle]="
                 isNameStyle
                   ? parseNamedStyle(item)
