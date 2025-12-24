@@ -1,8 +1,9 @@
 @use 'rem' as rem;
 
-$colors: general_contrasts-150, general_contrasts-100, general_contrasts-75,
-  general_contrasts-50, general_contrasts-25, general_contrasts-20,
-  general_contrasts-15, general_contrasts-5, inherit;
+$colors: general-contrasts-100, general-contrasts-90, general-contrasts-80,
+  general-contrasts-75, general-contrasts-60, general-contrasts-50,
+  general-contrasts-25, general-contrasts-20, general-contrasts-15,
+  general-contrasts-5, inherit;
 $size: 1, 2;
 $type: solid, dashed, dotted;
 

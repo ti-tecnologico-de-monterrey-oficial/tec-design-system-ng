@@ -22,7 +22,7 @@ import {
     <br />
     <div
       [ngStyle]="{ borderRadius: 'var(--bmb-radius-' + radius() + ')' }"
-      style="border: var(--bmb-border-general_contrasts-50-1-solid); padding: 1rem; text-align: center;"
+      style="border: var(--bmb-border-general-contrasts-50-1-solid); padding: 1rem; text-align: center;"
     >
       <button
         style="color: var(--general_contrasts-100);"
@@ -76,7 +76,7 @@ ${getSpecialSpecifications(
     getVariableAndClassesSizes('radius'),
     true,
     [{ element: 'radius', name: 'border-radius' }],
-    'border: var(--bmb-border-general_contrasts-50-1-solid);',
+    'border: var(--bmb-border-general-contrasts-50-1-solid);',
     true,
     true,
   ),

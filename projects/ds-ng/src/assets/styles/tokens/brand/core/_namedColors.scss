@@ -1,12 +1,6 @@
 :root,
 [data-theme='light'],
 .storybook-light-theme .docs-story {
-  --general-contrasts: rgb(var(--black-primary));
-
-  --general-contrasts-container: rgb(var(--color-charade-800));
-
-  --containers-background-fade: rgb(var(--color-charade-200));
-
   --buttons-destructive: rgb(var(--color-red-primary));
 
   --alert-successful: rgb(var(--color-green-primary));
@@ -36,34 +30,12 @@
   --vertical-step-active: rgb(var(--color-charade-50));
   --vertical-step-active-color: rgb(var(--color-charade-700));
   --vertical-step-subtitle: rgb(var(--color-charade-700));
-
-  --buttons-active-switch-box-shadow-hover: rgba(
-    var(--color-mariner-700),
-    0.15
-  );
-  --buttons-active-switch-box-shadow-focus: rgba(
-    var(--color-mariner-700),
-    0.25
-  );
-  --buttons-inactive-switch-box-shadow-hover: rgba(
-    var(--color-charade-500),
-    0.15
-  );
-  --buttons-inactive-switch-box-shadow-focus: rgba(
-    var(--color-charade-500),
-    0.25
-  );
-  --drop_shadow-color-test-shadow: rgba(var(--color-black-primary), 0.2);
 }
 
 [data-theme='dark'],
 .storybook-dark-theme,
 .storybook-dark-theme .docs-story {
-  --general-contrasts: rgb(var(--white-primary));
-
-  --general_contrasts-container: rgb(var(--color-charade-300));
-
-  --containers-background-fade: rgb(var(--color-charade-950));
+  --general-contrasts-container: rgb(var(--color-charade-300));
 
   --buttons-destructive: rgb(var(--color-red-light));
 
@@ -87,15 +59,4 @@
   --vertical-step-active: rgb(var(--color-charade-700));
   --vertical-step-active-color: rgb(var(--color-charade-50));
   --vertical-step-subtitle: rgb(var(--color-charade-500));
-
-  --buttons-active-switch-box-shadow-hover: rgba(
-    var(--color-green-light),
-    0.15
-  );
-  --buttons-active-switch-box-shadow-focus: rgba(
-    var(--color-green-light),
-    0.25
-  );
-
-  --drop_shadow-color-test-shadow: rgba(var(--color-black-primary), 0.2);
 }

@@ -74,7 +74,7 @@ Aquí puedes ver la [Guía de migración](https://github.com/ti-tecnologico-de-m
 
 ---
 
-*Esta versión es el resultado del esfuerzo colaborativo del equipo de diseño y desarrollo, trabajando para ofrecer experiencias digitales de calidad para toda la comunidad.*
+_Esta versión es el resultado del esfuerzo colaborativo del equipo de diseño y desarrollo, trabajando para ofrecer experiencias digitales de calidad para toda la comunidad._
 
 ---
 
