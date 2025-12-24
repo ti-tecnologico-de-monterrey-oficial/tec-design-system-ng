@@ -124,7 +124,8 @@
 
 .bmb_sidebar {
   background-color: rgb(var(--color-black-primary));
-  border-radius: var(--bmb-radius-none) var(--bmb-radius-6) var(--bmb-radius-6) var(--bmb-radius-none);
+  border-radius: var(--bmb-radius-none) var(--bmb-radius-6) var(--bmb-radius-6)
+    var(--bmb-radius-none);
   left: 0;
   position: fixed;
   transition: width 0.3s ease;
@@ -242,12 +243,14 @@
       right: 0;
       left: auto;
 
-      border-radius: var(--bmb-radius-6) var(--bmb-radius-none) var(--bmb-radius-none) var(--bmb-radius-6);
+      border-radius: var(--bmb-radius-6) var(--bmb-radius-none)
+        var(--bmb-radius-none) var(--bmb-radius-6);
 
       .bmb_sidebar-children {
         left: auto;
         right: 100%;
-        border-radius: var(--bmb-radius-none) var(--bmb-radius-6) var(--bmb-radius-6) var(--bmb-radius-none);
+        border-radius: var(--bmb-radius-none) var(--bmb-radius-6)
+          var(--bmb-radius-6) var(--bmb-radius-none);
       }
 
       &:hover:not(.bmb_sidebar-desktop-close),
@@ -365,7 +368,8 @@
   }
 
   &-children {
-    border-radius: var(--bmb-radius-none) var(--bmb-radius-6) var(--bmb-radius-6) var(--bmb-radius-none);
+    border-radius: var(--bmb-radius-none) var(--bmb-radius-6)
+      var(--bmb-radius-6) var(--bmb-radius-none);
     background-color: rgb(var(--color-black-primary));
     flex-flow: column;
     transition: opacity 1s ease-out;
