@@ -19,7 +19,7 @@ import {
     <h1>${SANDBOX_TITLE}</h1>
     <p [ngStyle]="getStyles()">
       <button
-        style="color: var(--general_contrasts-100);"
+        style="color: var(--general-contrasts-100);"
         (click)="copyToClipboard()"
       >
         {{ getVariableName() }}
@@ -95,14 +95,16 @@ ${getSpecialSpecifications(getSandboxConsiderationsDocumentation('borders'), { s
         type: 'select',
       },
       options: [
-        'general_contrasts-150',
-        'general_contrasts-100',
-        'general_contrasts-75',
-        'general_contrasts-50',
-        'general_contrasts-25',
-        'general_contrasts-20',
-        'general_contrasts-15',
-        'general_contrasts-5',
+        'general-contrasts-100',
+        'general-contrasts-90',
+        'general-contrasts-80',
+        'general-contrasts-75',
+        'general-contrasts-60',
+        'general-contrasts-50',
+        'general-contrasts-25',
+        'general-contrasts-20',
+        'general-contrasts-15',
+        'general-contrasts-5',
         'inherit',
       ],
     },
