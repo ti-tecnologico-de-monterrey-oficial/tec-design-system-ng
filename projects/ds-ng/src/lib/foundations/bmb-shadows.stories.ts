@@ -87,7 +87,7 @@ ${getSpecialSpecifications(
     true,
     ['box-shadow'],
     `margin: var(--bmb-spacing-m);
-      border: var(--bmb-border-general_contrasts-50-2-solid);
+      border: var(--bmb-border-general-contrasts-50-2-solid);
       border-radius: var(--bmb-radius-m);`,
   ),
   { showAdditionalBlockquote: true },
