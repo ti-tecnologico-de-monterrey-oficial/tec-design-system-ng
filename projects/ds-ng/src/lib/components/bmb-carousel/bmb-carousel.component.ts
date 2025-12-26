@@ -1,13 +1,10 @@
 import {
-  AfterContentInit,
   ChangeDetectionStrategy,
   Component,
-  ContentChildren,
-  QueryList,
   ElementRef,
   ViewEncapsulation,
-  ChangeDetectorRef,
   HostListener,
+  contentChildren,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -20,30 +17,21 @@ import { CommonModule } from '@angular/common';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class BmbCarouselComponent implements AfterContentInit {
-  @ContentChildren('carouselItem', { descendants: true })
-  contentChildren!: QueryList<ElementRef>;
+export class BmbCarouselComponent {
+  contentChildren = contentChildren<ElementRef>('carouselItem');
 
-  numberOfElements: number[] = [];
   selectedIndex = 0;
   private touchStartX = 0;
   private touchEndX = 0;
   private swipeThreshold = 50;
-
-  constructor(private cdr: ChangeDetectorRef) {}
-
-  ngAfterContentInit() {
-    this.numberOfElements = Array(this.contentChildren.length ?? 0).fill(0);
-    this.setClassActive(0);
-  }
 
   selectItem(index: number) {
     this.setClassActive(index, this.selectedIndex);
   }
 
   setClassActive(newIndex: number, oldIndex: number = 0) {
-    const activeItem = this.contentChildren?.get(newIndex)?.nativeElement;
-    const oldItem = this.contentChildren?.get(oldIndex)?.nativeElement;
+    const activeItem = this.contentChildren()[newIndex]?.nativeElement;
+    const oldItem = this.contentChildren()[oldIndex]?.nativeElement;
 
     if (!activeItem) return;
 
@@ -69,7 +57,6 @@ export class BmbCarouselComponent implements AfterContentInit {
     }
 
     this.selectedIndex = newIndex;
-    this.cdr.detectChanges();
   }
 
   @HostListener('touchstart', ['$event'])
@@ -87,7 +74,7 @@ export class BmbCarouselComponent implements AfterContentInit {
     const deltaX = this.touchStartX - this.touchEndX;
 
     if (Math.abs(deltaX) > this.swipeThreshold) {
-      if (deltaX > 0 && this.selectedIndex < this.numberOfElements.length - 1) {
+      if (deltaX > 0 && this.selectedIndex < this.contentChildren().length - 1) {
         this.selectItem(this.selectedIndex + 1);
       } else if (deltaX < 0 && this.selectedIndex > 0) {
         this.selectItem(this.selectedIndex - 1);

@@ -17,7 +17,7 @@
     justify="spaceBetween"
   >
     <div bmbLayoutItem margin="none" [isDynamicItem]="true" [colGrow]="1">
-      <ng-container [ngTemplateOutlet]="bmbAccordionHeader" />
+      <ng-container [ngTemplateOutlet]="bmbAccordionHeader() ?? null" />
     </div>
     <div bmbLayoutItem margin="none" [isDynamicItem]="true">
       @if (icon()) {
@@ -34,7 +34,7 @@
         'bmb_accordion-content-open': this._expanded()
       }"
     >
-      <ng-container [ngTemplateOutlet]="bmbAccordionContent" />
+      <ng-container [ngTemplateOutlet]="bmbAccordionContent() ?? null" />
     </section>
   }
 </section>

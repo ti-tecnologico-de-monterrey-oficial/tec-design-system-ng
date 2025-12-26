@@ -2,10 +2,9 @@ import {
   AfterViewInit,
   ChangeDetectionStrategy,
   Component,
-  ContentChildren,
+  contentChildren,
   model,
   output,
-  QueryList,
   ViewEncapsulation,
 } from '@angular/core';
 import { ReactiveFormsModule, FormGroup, FormControl } from '@angular/forms';
@@ -38,46 +37,49 @@ export class BmbFormValidatorComponent implements AfterViewInit {
 
   formGroupState = output<FormGroup>();
 
-  @ContentChildren(BmbInputComponent, { descendants: true })
-  bmbInputs!: QueryList<BmbInputComponent>;
-  @ContentChildren(BmbDropdownComponent, { descendants: true })
-  bmbDropdowns!: QueryList<BmbDropdownComponent>;
-  @ContentChildren(BmbInputPhoneNumberComponent, { descendants: true })
-  bmbInputPhoneNumbers!: QueryList<BmbInputPhoneNumberComponent>;
-  @ContentChildren(BmbInputTagsComponent, { descendants: true })
-  bmbInputTags!: QueryList<BmbInputTagsComponent>;
-  @ContentChildren(BmbDatepickerComponent, { descendants: true })
-  bmbDatepickers!: QueryList<BmbDatepickerComponent>;
-  @ContentChildren(BmbDateRangeComponent, { descendants: true })
-  bmbDateRanges!: QueryList<BmbDateRangeComponent>;
-  @ContentChildren(BmbCheckboxComponent, { descendants: true })
-  bmbCheckboxes!: QueryList<BmbCheckboxComponent>;
-  @ContentChildren(BmbRadialComponent, { descendants: true })
-  bmbRadials!: QueryList<BmbRadialComponent>;
-  @ContentChildren(BmbSwitchComponent, { descendants: true })
-  bmbSwitches!: QueryList<BmbSwitchComponent>;
+  bmbInputs = contentChildren(BmbInputComponent, { descendants: true });
+  bmbDropdowns = contentChildren(BmbDropdownComponent, {
+    descendants: true,
+  });
+  bmbInputPhoneNumbers = contentChildren(BmbInputPhoneNumberComponent, {
+    descendants: true,
+  });
+  bmbInputTags = contentChildren(BmbInputTagsComponent, {
+    descendants: true,
+  });
+  bmbDatepickers = contentChildren(BmbDatepickerComponent, {
+    descendants: true,
+  });
+  bmbDateRanges = contentChildren(BmbDateRangeComponent, {
+    descendants: true,
+  });
+  bmbCheckboxes = contentChildren(BmbCheckboxComponent, {
+    descendants: true,
+  });
+  bmbRadials = contentChildren(BmbRadialComponent, { descendants: true });
+  bmbSwitches = contentChildren(BmbSwitchComponent, { descendants: true });
 
   ngAfterViewInit(): void {
     this.addControls();
   }
 
   addControls(): void {
-    this.bmbInputs.forEach((child) => {
+    this.bmbInputs().forEach((child) => {
       this.addControl(child.name(), child.control(), child.isControlNull);
     });
-    this.bmbDropdowns.forEach((child) => {
+    this.bmbDropdowns().forEach((child) => {
       this.addControl(child.name(), child.control(), child.isControlNull);
     });
-    this.bmbInputPhoneNumbers.forEach((child) => {
+    this.bmbInputPhoneNumbers().forEach((child) => {
       this.addControl(child.name(), child.control(), child.isControlNull);
     });
-    this.bmbInputTags.forEach((child) => {
+    this.bmbInputTags().forEach((child) => {
       this.addControl(child.name(), child.control(), child.isControlNull);
     });
-    this.bmbDatepickers.forEach((child) => {
+    this.bmbDatepickers().forEach((child) => {
       this.addControl(child.name(), child.control(), child.isControlNull);
     });
-    this.bmbDateRanges.forEach((child) => {
+    this.bmbDateRanges().forEach((child) => {
       this.addControl(
         `${child.name()}_start`,
         child.controlStart(),
@@ -89,13 +91,13 @@ export class BmbFormValidatorComponent implements AfterViewInit {
         child.isControlEndNull,
       );
     });
-    this.bmbCheckboxes.forEach((child) => {
+    this.bmbCheckboxes().forEach((child) => {
       this.addControl(child.name(), child.control(), child.isControlNull);
     });
-    this.bmbRadials.forEach((child) => {
+    this.bmbRadials().forEach((child) => {
       this.addControl(child.name(), child.control()!, child.isControlNull);
     });
-    this.bmbSwitches.forEach((child) => {
+    this.bmbSwitches().forEach((child) => {
       this.addControl(child.name(), child.control()!, child.isControlNull);
     });
   }
@@ -113,7 +115,7 @@ export class BmbFormValidatorComponent implements AfterViewInit {
   }
 
   addRadials(): void {
-    const radialNames: string[] = this.bmbRadials.reduce(
+    const radialNames: string[] = this.bmbRadials().reduce(
       (acc: string[], currentElement: BmbRadialComponent) => {
         if (acc.includes(currentElement.name())) return acc;
         return [...acc, currentElement.name()];
@@ -122,7 +124,7 @@ export class BmbFormValidatorComponent implements AfterViewInit {
     );
 
     radialNames.forEach((name: string) => {
-      const radialIndexWithSameName: number[] = this.bmbRadials.reduce(
+      const radialIndexWithSameName: number[] = this.bmbRadials().reduce(
         (acc: number[], currentElement: BmbRadialComponent, index) => {
           if (currentElement.name() === name) return [...acc, index];
           return acc;
@@ -130,12 +132,10 @@ export class BmbFormValidatorComponent implements AfterViewInit {
         [],
       );
 
-      const radialControl: BmbRadialComponent = this.bmbRadials.get(
-        radialIndexWithSameName[0],
-      )!;
+      const radialControl: BmbRadialComponent = this.bmbRadials()[radialIndexWithSameName[0]]!;
 
       if (
-        this.bmbRadials
+        this.bmbRadials()
           .filter((element: BmbRadialComponent) => element.name() === name)
           .every(
             (elementSelected: BmbRadialComponent) =>
@@ -146,7 +146,7 @@ export class BmbFormValidatorComponent implements AfterViewInit {
         return;
       }
 
-      const value = this.bmbRadials
+      const value = this.bmbRadials()
         .filter((element: BmbRadialComponent) => element.name() === name)
         ?.find((elementSelected: BmbRadialComponent) =>
           elementSelected.checked(),
@@ -155,7 +155,7 @@ export class BmbFormValidatorComponent implements AfterViewInit {
 
       radialControl.control()?.setValue(value);
       radialIndexWithSameName.slice(1).forEach((element) => {
-        this.bmbRadials.get(element)?.control.set(radialControl.control());
+        this.bmbRadials()[element]?.control.set(radialControl.control());
       });
 
       this.addControl(radialControl.name(), radialControl.control()!, false);

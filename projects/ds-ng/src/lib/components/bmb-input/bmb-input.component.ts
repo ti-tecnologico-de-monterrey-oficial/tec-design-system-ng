@@ -6,8 +6,8 @@ import {
   output,
   model,
   TemplateRef,
-  ContentChild,
   OnInit,
+  contentChild,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormControl, ValidatorFn } from '@angular/forms';
@@ -94,7 +94,7 @@ export class BmbInputComponent implements OnInit {
   onChange = output<HTMLInputElement>();
   onKeyDown = output<KeyboardEvent>();
 
-  @ContentChild('customInputContent') customInputContent!: TemplateRef<any>;
+  customInputContent = contentChild<TemplateRef<any>>('customInputContent');
   isControlNull: boolean = false;
 
   ngOnInit() {

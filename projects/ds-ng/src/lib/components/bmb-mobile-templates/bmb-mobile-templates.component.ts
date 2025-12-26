@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import {
   Component,
-  ContentChild,
+  contentChild,
   input,
   OnInit,
   output,
@@ -66,18 +66,8 @@ export class BmbMobileTemplatesComponent implements OnInit {
   template = input<IBmbMobileTemplateName>('single-header');
   footerActions = input<IBmbButtonAction[]>([]);
   buttonList = input<IBmbMobileTemplateButton[]>([]);
-
-  // header inputs
   title = input<string>('');
   headerIconRight = input<string>('');
-
-  onHeaderLeftClick = output<any>();
-  onHeaderRightClick = output<any>();
-
-  // login output
-  loginHandleRequest = output<any>();
-
-  // calendar inputs
   calendarTimezone = input<string>(
     Intl.DateTimeFormat().resolvedOptions().timeZone,
   );
@@ -86,17 +76,17 @@ export class BmbMobileTemplatesComponent implements OnInit {
   );
   lang = input<string>('es-MX');
   currentDate = input<string>('');
-
-  onDateChange = output<any>();
-
-  // external link inputs
   externalLinkSubtitle = input<string>('');
 
+  onHeaderLeftClick = output<any>();
+  onHeaderRightClick = output<any>();
+  loginHandleRequest = output<any>();
+  onDateChange = output<any>();
   externalLinkOnClose = output<unknown>();
   externalLinkMenuEvent = output<IBmbMenuEvent>();
   externalLinkFooterEvent = output<IBmbFooterEvent>();
 
-  @ContentChild('bmbTemplateMain') mainContent!: TemplateRef<any>;
+  mainContent = contentChild<TemplateRef<any>>('bmbTemplateMain');
 
   height: number = 0;
 

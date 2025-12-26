@@ -1,16 +1,16 @@
 import {
   Directive,
-  ContentChildren,
-  QueryList,
   AfterContentInit,
-  Input,
   DoCheck,
   KeyValueDiffer,
   KeyValueDiffers,
   OnDestroy,
+  OutputRefSubscription,
+  ContentChildren,
+  QueryList,
+  Input,
 } from '@angular/core';
 import { BmbAccordionComponent } from '../../components/bmb-accordion/bmb-accordion.component';
-import { Subscription } from 'rxjs';
 
 @Directive({
   selector: '[bmbAccordionControl]',
@@ -25,7 +25,7 @@ export class BmbAccordionControlDirective
   accordions!: QueryList<BmbAccordionComponent>;
 
   private differ?: KeyValueDiffer<string, boolean>;
-  private subscriptions: Subscription[] = [];
+  private subscriptions: OutputRefSubscription[] = [];
   private contentReady = false;
 
   constructor(private differs: KeyValueDiffers) {}

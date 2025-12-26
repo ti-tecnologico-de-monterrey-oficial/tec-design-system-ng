@@ -2,10 +2,8 @@ import {
   AfterContentInit,
   ChangeDetectionStrategy,
   Component,
-  ContentChildren,
-  ElementRef,
+  contentChildren,
   input,
-  QueryList,
   ViewEncapsulation,
 } from '@angular/core';
 import { BmbMultiDotPaginatorItemComponent } from './bmb-multi-dot-paginator-item/bmb-multi-dot-paginator-item.component';
@@ -26,14 +24,13 @@ export class BmbMultiDotPaginatorComponent implements AfterContentInit {
   title = input.required<string>();
   subtitle = input<string>('');
 
-  @ContentChildren(BmbMultiDotPaginatorItemComponent)
-  contentChildren!: QueryList<ElementRef>;
+  childrenItems = contentChildren<BmbMultiDotPaginatorItemComponent>(BmbMultiDotPaginatorItemComponent);
 
   numberOfElements: number[] = [];
   selectedIndex = 0;
 
   ngAfterContentInit() {
-    this.numberOfElements = Array(this.contentChildren.length ?? 0).fill(0);
+    this.numberOfElements = Array(this.childrenItems().length ?? 0).fill(0);
     this.setClassActive(0);
   }
 
@@ -42,8 +39,8 @@ export class BmbMultiDotPaginatorComponent implements AfterContentInit {
   }
 
   setClassActive(newIndex: number, oldIndex: number = 0) {
-    const activeItem = this.contentChildren?.get(newIndex) as any;
-    const oldItem = this.contentChildren?.get(oldIndex) as any;
+    const activeItem = this.childrenItems()[newIndex] as any;
+    const oldItem = this.childrenItems()[oldIndex] as any;
 
     if (!activeItem) return;
 

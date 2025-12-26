@@ -37,7 +37,7 @@
     (onHandleBack)="handleClose($event)"
   />
   <main class="bmb_mobile-template-main">
-    <ng-container [ngTemplateOutlet]="mainContent"></ng-container>
+    <ng-container [ngTemplateOutlet]="mainContent() ?? null"></ng-container>
   </main>
 </ng-template>
 
@@ -50,7 +50,7 @@
     (onHandleTrailingSecondary)="handleRightClick($event)"
   />
   <main class="bmb_mobile-template-main">
-    <ng-container [ngTemplateOutlet]="mainContent"></ng-container>
+    <ng-container [ngTemplateOutlet]="mainContent() ?? null"></ng-container>
   </main>
   <footer class="bmb_mobile-template-footer">
     @for (action of footerActions(); track $index) {
@@ -78,7 +78,7 @@
   <main class="bmb_mobile-template-main">
     <bmb-card>
       <bmb-card-content>
-        <ng-container [ngTemplateOutlet]="mainContent"></ng-container>
+        <ng-container [ngTemplateOutlet]="mainContent() ?? null"></ng-container>
       </bmb-card-content>
     </bmb-card>
   </main>
@@ -118,7 +118,7 @@
         [square]="template() === 'header-with-card-list'"
       />
     }
-    <ng-container [ngTemplateOutlet]="mainContent"></ng-container>
+    <ng-container [ngTemplateOutlet]="mainContent() ?? null"></ng-container>
   </main>
 </ng-template>
 

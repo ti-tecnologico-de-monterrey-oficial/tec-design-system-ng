@@ -23,7 +23,7 @@
           [alt]="alt() || getIcon()"
         >
           <ng-template #customIcon>
-            <ng-container [ngTemplateOutlet]="customActionIcon" />
+            <ng-container [ngTemplateOutlet]="customActionIcon() ?? null" />
           </ng-template>
         </bmb-icon>
       } @else {
