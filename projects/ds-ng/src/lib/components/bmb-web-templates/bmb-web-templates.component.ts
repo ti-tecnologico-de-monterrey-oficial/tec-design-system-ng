@@ -2,7 +2,6 @@ import {
   ChangeDetectionStrategy,
   Component,
   contentChild,
-  ContentChild,
   input,
   output,
   TemplateRef,

@@ -5,7 +5,6 @@ import {
   ChangeDetectionStrategy,
   ViewEncapsulation,
   TemplateRef,
-  ContentChild,
   contentChild,
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
