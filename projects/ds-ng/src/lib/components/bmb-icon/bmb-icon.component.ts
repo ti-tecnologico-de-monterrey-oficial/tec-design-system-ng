@@ -32,8 +32,7 @@ export class BmbIconComponent implements OnInit {
   alt = input<string>('');
   dotNotification = input<number>();
   isSVGTemplate = input<boolean>();
-
-  @ContentChild('customIcon') customIcon!: TemplateRef<any>;
+  customIcon = input<TemplateRef<any>>();
 
   styleIconGoogle = 'material-symbols-rounded';
   iconSvg = signal<SafeHtml | null>(null);
@@ -122,12 +121,12 @@ export class BmbIconComponent implements OnInit {
 
   get safeSVG(): SafeHtml | null {
     if (
-      (!this.isSVGTemplate() && this.customIcon) ||
-      (this.isSVGTemplate() && this.customIcon === undefined)
+      (!this.isSVGTemplate() && this.customIcon()) ||
+      (this.isSVGTemplate() && this.customIcon() === undefined)
     ) {
       return null;
     }
 
-    return this.sanitizer.bypassSecurityTrustHtml(this.customIcon.toString());
+    return this.sanitizer.bypassSecurityTrustHtml(this.customIcon()?.toString() ?? '');
   }
 }

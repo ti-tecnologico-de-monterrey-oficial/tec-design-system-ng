@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
-  ContentChild,
+  contentChild,
   input,
   model,
   output,
@@ -64,7 +64,7 @@ export class BmbInputContentComponent {
   onKeyDown = output<KeyboardEvent>();
   onKeyUp = output<KeyboardEvent>();
 
-  @ContentChild('customContent') customContent!: TemplateRef<any>;
+  customContent = contentChild<TemplateRef<any>>('customContent');
 
   isHide: boolean = true;
   isFocus: boolean = false;

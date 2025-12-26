@@ -6,6 +6,7 @@ import {
   ViewEncapsulation,
   TemplateRef,
   ContentChild,
+  contentChild,
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
@@ -81,7 +82,7 @@ export class BmbCardButtonComponent {
 
   isFlipped: boolean = false;
 
-  @ContentChild('customContent') customContent!: TemplateRef<any>;
+  customContent = contentChild<TemplateRef<any>>('customContent');
 
   truncateText(text: string, maxLength: number): string {
     if (text.length > maxLength) {

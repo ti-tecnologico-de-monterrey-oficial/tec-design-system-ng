@@ -1,6 +1,7 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  contentChild,
   ContentChild,
   input,
   model,
@@ -42,7 +43,7 @@ export class BmbActionIconComponent {
   disabled = input<boolean>(false);
   isSVGTemplate = input<boolean>();
 
-  @ContentChild('customActionIcon') customActionIcon!: TemplateRef<any>;
+  customActionIcon = contentChild<TemplateRef<any>>('customActionIcon');
 
   constructor(private sanitizer: DomSanitizer) {}
 
@@ -69,14 +70,14 @@ export class BmbActionIconComponent {
 
   get safeSVG(): SafeHtml | null {
     if (
-      (!this.isSVGTemplate() && this.customActionIcon) ||
-      (this.isSVGTemplate() && this.customActionIcon === undefined)
+      (!this.isSVGTemplate() && this.customActionIcon()) ||
+      (this.isSVGTemplate() && this.customActionIcon() === undefined)
     ) {
       return null;
     }
 
     return this.sanitizer.bypassSecurityTrustHtml(
-      this.customActionIcon.toString(),
+      (this.customActionIcon() ?? '').toString(),
     );
   }
 }

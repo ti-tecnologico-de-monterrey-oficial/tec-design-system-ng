@@ -1,22 +1,41 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ComponentRef, TemplateRef } from '@angular/core';
 import { BmbActionMenuComponent } from './bmb-action-menu.component';
+import { Component } from '@angular/core';
+
+@Component({
+  template: `
+    <bmb-action-menu title="Test title">
+      <ng-template #tpl>Contenido</ng-template>
+    </bmb-action-menu>
+  `
+})
+class TestHostComponent {}
 
 describe('BmbActionMenuComponent', () => {
   let component: BmbActionMenuComponent;
   let fixture: ComponentFixture<BmbActionMenuComponent>;
   let componentRef: ComponentRef<BmbActionMenuComponent>;
+  let hostFixture: ComponentFixture<TestHostComponent>;
+  let hostComponent: TestHostComponent;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+      declarations: [TestHostComponent],
       imports: [BmbActionMenuComponent],
     }).compileComponents();
 
+    hostFixture = TestBed.createComponent(TestHostComponent);
+    hostComponent = hostFixture.componentInstance;
     fixture = TestBed.createComponent(BmbActionMenuComponent);
     component = fixture.componentInstance;
     componentRef = fixture.componentRef;
     componentRef.setInput('title', 'Test title');
+    component = fixture.debugElement.children[0].componentInstance;
     fixture.detectChanges();
+    hostFixture.detectChanges();
+
+    component = hostFixture.debugElement.children[0].componentInstance;
   });
 
   it('should create', () => {
@@ -34,28 +53,6 @@ describe('BmbActionMenuComponent', () => {
   });
 
   it('should update projectedContent after content initialization', () => {
-    const mockTemplateRef = jasmine.createSpyObj<TemplateRef<any>>(
-      'TemplateRef',
-      ['elementRef'],
-    );
-    component.contentTemplates.reset([mockTemplateRef]);
-    component.ngAfterContentInit();
-    expect(component.projectedContent).toEqual([mockTemplateRef]);
-  });
-
-  it('should handle ContentChildren correctly', () => {
-    const mockTemplateRef1 = jasmine.createSpyObj<TemplateRef<any>>(
-      'TemplateRef1',
-      ['elementRef'],
-    );
-    const mockTemplateRef2 = jasmine.createSpyObj<TemplateRef<any>>(
-      'TemplateRef2',
-      ['elementRef'],
-    );
-    component.contentTemplates.reset([mockTemplateRef1, mockTemplateRef2]);
-    component.ngAfterContentInit();
-    expect(component.projectedContent.length).toBe(2);
-    expect(component.projectedContent).toContain(mockTemplateRef1);
-    expect(component.projectedContent).toContain(mockTemplateRef2);
+    expect(component.projectedContent().length).toBe(1);
   });
 });

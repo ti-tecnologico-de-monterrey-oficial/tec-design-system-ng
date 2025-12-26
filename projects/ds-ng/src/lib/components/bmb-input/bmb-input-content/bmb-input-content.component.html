@@ -85,6 +85,6 @@
         </span>
       }
     }
-    <ng-container [ngTemplateOutlet]="customContent" />
+    <ng-container [ngTemplateOutlet]="customContent() ?? null" />
   </section>
 </section>

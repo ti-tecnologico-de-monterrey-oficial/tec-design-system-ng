@@ -53,7 +53,7 @@
         <h3>{{ titleMainSlot() }}</h3>
         <bmb-divider />
       }
-      <ng-container [ngTemplateOutlet]="mainContent" />
+      <ng-container [ngTemplateOutlet]="mainContent() ?? null" />
     </section>
   </main>
   <aside class="bmb_web-template-aside">
@@ -61,7 +61,7 @@
       <h3>{{ titleAsideSlot() }}</h3>
       <bmb-divider />
     }
-    <ng-container [ngTemplateOutlet]="asideContent" />
+    <ng-container [ngTemplateOutlet]="asideContent() ?? null" />
   </aside>
 </ng-template>
 
@@ -78,7 +78,7 @@
           <h3>{{ titleMainSlot() }}</h3>
           <bmb-divider />
         }
-        <ng-container [ngTemplateOutlet]="mainContent" />
+        <ng-container [ngTemplateOutlet]="mainContent() ?? null" />
       </section>
     </main>
     <aside class="bmb_web-template-aside" bmbLayoutItem [colLg]="4">
@@ -86,7 +86,7 @@
         <h3>{{ titleAsideSlot() }}</h3>
         <bmb-divider />
       }
-      <ng-container [ngTemplateOutlet]="asideContent" />
+      <ng-container [ngTemplateOutlet]="asideContent() ?? null" />
     </aside>
   </section>
 </ng-template>
@@ -104,7 +104,7 @@
           <h3>{{ titleMainSlot() }}</h3>
           <bmb-divider />
         }
-        <ng-container [ngTemplateOutlet]="mainContent" />
+        <ng-container [ngTemplateOutlet]="mainContent() ?? null" />
       </section>
     </main>
   </section>
@@ -122,11 +122,11 @@
         <h3>{{ titleAsideSlot() }}</h3>
         <bmb-divider />
       }
-      <ng-container [ngTemplateOutlet]="asideContent" />
+      <ng-container [ngTemplateOutlet]="asideContent() ?? null" />
     </aside>
     <main class="bmb_web-template-main" bmbLayoutItem [colLg]="12">
       <section class="bmb_web-template-main-container">
-        <ng-container [ngTemplateOutlet]="mainContent" />
+        <ng-container [ngTemplateOutlet]="mainContent() ?? null" />
       </section>
     </main>
   </section>
@@ -140,7 +140,7 @@
     margin="none"
   >
     <aside class="bmb_web-template-aside" bmbLayoutItem [colLg]="3">
-      <ng-container [ngTemplateOutlet]="asideContent" />
+      <ng-container [ngTemplateOutlet]="asideContent() ?? null" />
     </aside>
     <main class="bmb_web-template-main" bmbLayoutItem [colLg]="9">
       <section class="bmb_web-template-main-container">
@@ -148,7 +148,7 @@
           <h3>{{ titleMainSlot() }}</h3>
           <bmb-divider />
         }
-        <ng-container [ngTemplateOutlet]="mainContent" />
+        <ng-container [ngTemplateOutlet]="mainContent() ?? null" />
       </section>
     </main>
   </section>
@@ -162,7 +162,7 @@
     margin="none"
   >
     <aside class="bmb_web-template-aside" bmbLayoutItem [colLg]="3">
-      <ng-container [ngTemplateOutlet]="asideContent" />
+      <ng-container [ngTemplateOutlet]="asideContent() ?? null" />
     </aside>
     <main class="bmb_web-template-main" bmbLayoutItem [colLg]="6">
       <section class="bmb_web-template-main-container">
@@ -170,11 +170,11 @@
           <h3>{{ titleMainSlot() }}</h3>
           <bmb-divider />
         }
-        <ng-container [ngTemplateOutlet]="mainContent" />
+        <ng-container [ngTemplateOutlet]="mainContent() ?? null" />
       </section>
     </main>
     <aside class="bmb_web-template-aside" bmbLayoutItem [colLg]="3">
-      <ng-container [ngTemplateOutlet]="secondAsideContent" />
+      <ng-container [ngTemplateOutlet]="secondAsideContent() ?? null" />
     </aside>
   </section>
 </ng-template>

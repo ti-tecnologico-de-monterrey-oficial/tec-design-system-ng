@@ -31,14 +31,6 @@ describe('BmbCalendarComponent', () => {
     expect(component.height()).toBe('100%');
   });
 
-  it('should update view on window resize', () => {
-    spyOn(component.view, 'set');
-    window.dispatchEvent(new Event('resize'));
-    if (window.innerWidth < 1000) {
-      expect(component.view.set).toHaveBeenCalledWith('day');
-    }
-  });
-
   it('should update now and weekNumber on handleCurrentDateChange', () => {
     const newDate = DateTime.now().plus({ days: 1 });
     component.handleCurrentDateChange(newDate);

@@ -67,7 +67,7 @@ ${getBasicExampleBlock('BmbCarouselComponent')}
       name: '#carouselItem',
       control: { type: '' },
       description: `
-  Assigns the element or component as @ContentChildren of \`bmb-carousel\`, as long as it is inside \`bmb-carousel\`.
+  Assigns the element or component as contentChildren of \`bmb-carousel\`, as long as it is inside \`bmb-carousel\`.
 
   For each element or component with #carouselItem there will be a slider item in the carousel.`,
       table: {

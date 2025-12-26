@@ -1,6 +1,7 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  contentChild,
   ContentChild,
   input,
   output,
@@ -71,14 +72,15 @@ export class BmbWebTemplatesComponent {
   sideBarElements = input<SidebarElement[][]>([]);
   sideBarTitle = input<string>('');
 
-  @ContentChild('bmbTemplateAside') asideContent!: TemplateRef<any>;
-  @ContentChild('bmbTemplateMain') mainContent!: TemplateRef<any>;
-  @ContentChild('bmbTemplateSecondAside') secondAsideContent!: TemplateRef<any>;
-
-  @ContentChild('singleColumnCard') singleColumnCard!: TemplateRef<any>;
-  @ContentChild('asideFirstCard') asideFirstCard!: TemplateRef<any>;
-  @ContentChild('asideLightCard') asideLightCard!: TemplateRef<any>;
-  @ContentChild('twoAsideCard') twoAsideCard!: TemplateRef<any>;
+  asideContent = contentChild<TemplateRef<any>>('bmbTemplateAside');
+  mainContent = contentChild<TemplateRef<any>>('bmbTemplateMain');
+  secondAsideContent = contentChild<TemplateRef<any>>(
+    'bmbTemplateSecondAside',
+  );
+  singleColumnCard = contentChild<TemplateRef<any>>('singleColumnCard');
+  asideFirstCard = contentChild<TemplateRef<any>>('asideFirstCard');
+  asideLightCard = contentChild<TemplateRef<any>>('asideLightCard');
+  twoAsideCard = contentChild<TemplateRef<any>>('twoAsideCard');
 
   getSectionClass(): string[] {
     const classList = [

@@ -1,7 +1,7 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  ContentChild,
+  contentChild,
   input,
   output,
   TemplateRef,
@@ -32,7 +32,8 @@ export class BmbCheckExternalLinkButtonComponent {
   buttonClick = output<MouseEvent>();
   buttonKeyPress = output<KeyboardEvent>();
 
-  @ContentChild('commonTemplate') commonTemplate!: TemplateRef<any>;
+  commonTemplate = contentChild<TemplateRef<any>>('commonTemplate');
+
 
   isExternalLink(link: string): boolean {
     return (!!link && isExternalLink(link)) || false;
