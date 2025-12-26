@@ -4,11 +4,10 @@ import {
   IBmbDataAlertsParsed,
 } from '../../bmb-alert-center/types';
 import { CommonModule } from '@angular/common';
-import DOMPurify from 'dompurify';
 import { DomSanitizer } from '@angular/platform-browser';
-import { forbidTagsAndAttributes } from '../../../utils/utils';
 import { BmbImageComponent } from '../../bmb-image/bmb-image.component';
 import { BmbButtonDirective } from '../../../directives/bmb-button/button.directive';
+import { sanitizeContent } from '../../../utils/sanitizeContent';
 
 @Component({
   selector: 'bmb-alert-center-detail',
@@ -24,15 +23,9 @@ export class BmbAlertCenterDetailComponent {
 
   constructor(private readonly sanitizer: DomSanitizer) {}
 
-  /**
-   * Sanitizes HTML content using DOMPurify before bypassing Angular's built-in sanitization.
-   * This is safe because:
-   * 1. Content is pre-sanitized with DOMPurify using restrictive forbidTagsAndAttributes config
-   * 2. DOMPurify removes all potentially dangerous HTML/JS content
-   * 3. Only safe HTML tags and attributes are allowed through the configuration
-   */
+
   sanitizedHtml(html: string) {
-    const clean = DOMPurify.sanitize(html, forbidTagsAndAttributes);
+    const clean = sanitizeContent(html);
     return this.sanitizer.bypassSecurityTrustHtml(clean); // NOSONAR Content is sanitized with DOMPurify - safe to bypass Angular sanitization
   }
 

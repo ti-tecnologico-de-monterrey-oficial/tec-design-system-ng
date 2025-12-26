@@ -1,7 +1,6 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  ContentChild,
   input,
   OnInit,
   TemplateRef,
@@ -15,6 +14,7 @@ import { buildErrorMessage, isImage } from '../../utils/utils';
 import { BmbNotificationCounterComponent } from '../bmb-notification-counter/bmb-notification-counter.component';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { BmbIconService } from '../../services/icon/icon.service';
+import { sanitizeContent } from '../../utils/sanitizeContent';
 
 @Component({
   selector: 'bmb-icon',
@@ -94,12 +94,16 @@ export class BmbIconComponent implements OnInit {
           /height="[^"]*"/,
           `height="${this.size() ? this.size() + 'px' : '1em'}"`,
         );
-
-      return this.sanitizer.bypassSecurityTrustHtml(processedSvg);
+      return this.sanitizedHtml(processedSvg);
     } catch (error) {
       console.error(`Error loading icon "${name}":`, error);
       return null;
     }
+  }
+
+  sanitizedHtml(html: string) {
+    const clean = sanitizeContent(html);
+    return this.sanitizer.bypassSecurityTrustHtml(clean); // NOSONAR Content is sanitized with DOMPurify - safe to bypass Angular sanitization
   }
 
   isImage(icon: string): boolean {
@@ -127,6 +131,8 @@ export class BmbIconComponent implements OnInit {
       return null;
     }
 
-    return this.sanitizer.bypassSecurityTrustHtml(this.customIcon()?.toString() ?? '');
+    const clean = sanitizeContent(this.customIcon()?.toString() ?? '');
+
+    return this.sanitizer.bypassSecurityTrustHtml(clean);  // NOSONAR Content is sanitized with DOMPurify - safe to bypass Angular sanitization
   }
 }

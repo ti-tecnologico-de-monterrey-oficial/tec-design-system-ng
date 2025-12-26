@@ -57,6 +57,7 @@ import { ReactiveFormsModule, FormControl, FormGroup } from '@angular/forms';
 import { BmbDateRangeComponent } from '../bmb-date-range/bmb-date-range.component';
 import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
 import { DateTime } from 'luxon';
+import { sanitizeContent } from '../../utils/sanitizeContent';
 
 export type BmbTableLang = 'en' | 'es';
 
@@ -405,7 +406,8 @@ export class BmbTablesComponent implements AfterViewInit, OnInit, OnChanges {
   }
 
   sanitizeHTML(label: string): SafeHtml {
-    return this.sanitizer.bypassSecurityTrustHtml(label);
+    const clean = sanitizeContent(label);
+    return this.sanitizer.bypassSecurityTrustHtml(clean); // NOSONAR Content is sanitized with DOMPurify - safe to bypass Angular sanitization
   }
 
   ngAfterViewInit() {

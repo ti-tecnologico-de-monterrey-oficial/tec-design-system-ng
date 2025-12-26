@@ -13,6 +13,7 @@ import { BmbCheckExternalLinkButtonComponent } from '../bmb-check-external-link-
 import { CommonModule } from '@angular/common';
 import { IBmbTargetLink } from '../../types';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { sanitizeContent } from '../../utils/sanitizeContent';
 
 @Component({
   selector: 'bmb-action-icon',
@@ -75,8 +76,7 @@ export class BmbActionIconComponent {
       return null;
     }
 
-    return this.sanitizer.bypassSecurityTrustHtml(
-      (this.customActionIcon() ?? '').toString(),
-    );
+    const clean = sanitizeContent((this.customActionIcon() ?? '').toString());
+    return this.sanitizer.bypassSecurityTrustHtml(clean); // NOSONAR Content is sanitized with DOMPurify - safe to bypass Angular sanitization
   }
 }

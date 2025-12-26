@@ -49,6 +49,10 @@ describe('BmbAccordionControlDirective', () => {
     fixture.detectChanges();
   });
 
+  afterEach(() => {
+    fixture.destroy();
+  });
+
   it('should create the directive', () => {
     const directive = fixture.debugElement.query(By.directive(BmbAccordionControlDirective));
     expect(directive).toBeTruthy();
@@ -89,37 +93,87 @@ describe('BmbAccordionControlDirective', () => {
     expect(accordions[1]._active()).toBe(false);
   });
 
-  describe('Uncontrolled mode', () => {
-    let uncontrolledFixture: ComponentFixture<UncontrolledTestHostComponent>;
-    let uncontrolledHost: UncontrolledTestHostComponent;
+  it('should handle multiple state changes', () => {
+    const accordions = hostComponent.accordions.toArray();
 
-    beforeEach(async () => {
-      await TestBed.configureTestingModule({
-        imports: [UncontrolledTestHostComponent],
-      }).compileComponents();
-      uncontrolledFixture = TestBed.createComponent(UncontrolledTestHostComponent);
-      uncontrolledHost = uncontrolledFixture.componentInstance;
-      uncontrolledFixture.detectChanges();
-    });
+    hostComponent.states = { a1: false, a2: true };
+    fixture.detectChanges();
+    expect(accordions[0]._expanded()).toBe(false);
+    expect(accordions[1]._expanded()).toBe(true);
 
-    it('should close other accordions when one is opened', () => {
-      const accordions = uncontrolledHost.accordions.toArray();
-      accordions[0].opened.emit();
-      uncontrolledFixture.detectChanges();
+    hostComponent.states = { a1: true, a2: false };
+    fixture.detectChanges();
+    expect(accordions[0]._expanded()).toBe(true);
+    expect(accordions[1]._expanded()).toBe(false);
+  });
 
-      expect(accordions[0]._active()).toBe(true);
-      expect(accordions[1]._expanded()).toBe(false);
-      expect(accordions[2]._expanded()).toBe(false);
-    });
+  it('should unsubscribe from accordion events on destroy', () => {
+    const directive = fixture.debugElement.query(By.directive(BmbAccordionControlDirective)).injector.get(BmbAccordionControlDirective);
+    const initialState = { ...hostComponent.states };
+    fixture.destroy();
 
-    it('should not disable accordions in uncontrolled mode', () => {
-      const accordions = uncontrolledHost.accordions.toArray();
-      accordions[0].opened.emit();
-      uncontrolledFixture.detectChanges();
+    expect(hostComponent.states).toEqual(initialState);
+  });
+});
 
-      expect(accordions[0]._disabled()).toBe(false);
-      expect(accordions[1]._disabled()).toBe(false);
-      expect(accordions[2]._disabled()).toBe(false);
-    });
+describe('BmbAccordionControlDirective - Uncontrolled mode', () => {
+  let uncontrolledFixture: ComponentFixture<UncontrolledTestHostComponent>;
+  let uncontrolledHost: UncontrolledTestHostComponent;
+
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      imports: [UncontrolledTestHostComponent],
+    }).compileComponents();
+    uncontrolledFixture = TestBed.createComponent(UncontrolledTestHostComponent);
+    uncontrolledHost = uncontrolledFixture.componentInstance;
+    uncontrolledFixture.detectChanges();
+  });
+
+  afterEach(() => {
+    uncontrolledFixture.destroy();
+  });
+
+  it('should close other accordions when one is opened', () => {
+    const accordions = uncontrolledHost.accordions.toArray();
+    accordions[0].opened.emit();
+    uncontrolledFixture.detectChanges();
+
+    expect(accordions[0]._active()).toBe(true);
+    expect(accordions[1]._expanded()).toBe(false);
+    expect(accordions[2]._expanded()).toBe(false);
+  });
+
+  it('should not disable accordions in uncontrolled mode', () => {
+    const accordions = uncontrolledHost.accordions.toArray();
+    accordions[0].opened.emit();
+    uncontrolledFixture.detectChanges();
+
+    expect(accordions[0]._disabled()).toBe(false);
+    expect(accordions[1]._disabled()).toBe(false);
+    expect(accordions[2]._disabled()).toBe(false);
+  });
+
+  it('should allow switching between accordions', () => {
+    const accordions = uncontrolledHost.accordions.toArray();
+
+    accordions[0].opened.emit();
+    uncontrolledFixture.detectChanges();
+    expect(accordions[0]._active()).toBe(true);
+
+    accordions[1].opened.emit();
+    uncontrolledFixture.detectChanges();
+    expect(accordions[0]._expanded()).toBe(false);
+    expect(accordions[1]._active()).toBe(true);
+  });
+
+  it('should set active state only for opened accordion', () => {
+    const accordions = uncontrolledHost.accordions.toArray();
+
+    accordions[2].opened.emit();
+    uncontrolledFixture.detectChanges();
+
+    expect(accordions[0]._active()).toBe(false);
+    expect(accordions[1]._active()).toBe(false);
+    expect(accordions[2]._active()).toBe(true);
   });
 });
