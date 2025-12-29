@@ -23,7 +23,6 @@ import { TranslatePipe } from '../../pipes/translations';
 import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
 import {
   BmbProjectionContentService,
-  IBmbProjectionContent,
 } from '../../services/projection/projection.service';
 import { CommonModule } from '@angular/common';
 import { BmbBotIconComponent } from '../bmb-bot-icon/bmb-bot-icon.component';

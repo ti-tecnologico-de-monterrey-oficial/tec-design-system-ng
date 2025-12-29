@@ -4,9 +4,9 @@
 .storybook-light-theme .docs-story {
   // Containers
   --containers-background: rgb(var(--gray-charade-200));
-  --containers-main: rgb(var(--white-primary));
-  --containers-header-mobile: rgb(var(--white-primary));
   --containers-main: rgb(var(--gray-charade-100));
+  --containers-header-mobile: rgb(var(--white-primary));
+  --containers-modal: rgb(var(--gray-charade-100));
   --containers-button: rgb(var(--gray-charade-50));
   --containers-top-bar: rgb(var(--black-primary));
   --containers-media-card-background-fade: rgba(var(--gray-charade-950), 0);
