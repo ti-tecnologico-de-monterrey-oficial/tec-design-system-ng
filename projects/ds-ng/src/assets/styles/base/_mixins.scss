@@ -150,7 +150,7 @@
     }
   } @else if $appearance == secondary-outlined {
     background: transparent;
-    border: var(--bmb-border-general_contrasts-100-1-solid);
+    border: var(--bmb-border-general-contrasts-100-1-solid);
     color: var(--general_contrasts-100);
     padding: rem.rem_calc(11 15);
     transition: none;

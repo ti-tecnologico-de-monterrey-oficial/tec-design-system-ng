@@ -8,6 +8,7 @@ import {
   signal,
   untracked,
   ViewEncapsulation,
+  contentChild,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { buildErrorMessage, isImage } from '../../utils/utils';
@@ -32,10 +33,10 @@ export class BmbIconComponent implements OnInit {
   alt = input<string>('');
   dotNotification = input<number>();
   isSVGTemplate = input<boolean>();
-  customIcon = input<TemplateRef<any>>();
 
   styleIconGoogle = 'material-symbols-rounded';
   iconSvg = signal<SafeHtml | null>(null);
+  customIcon = contentChild<TemplateRef<any>>('customIcon');
 
   constructor(
     private sanitizer: DomSanitizer,
