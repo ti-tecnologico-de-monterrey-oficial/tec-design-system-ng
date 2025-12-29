@@ -131,9 +131,9 @@ class StorybookModalWrapperComponent {
 }
 
 export default {
-  title: 'Deprecated/Home chat card',
+  title: 'Components/Containers/AI Chat card',
   component: BmbTopBarComponent,
-  tags: ['!autodocs'],
+  tags: ['autodocs'],
   decorators: [
     moduleMetadata({
       imports: [
