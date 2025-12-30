@@ -9,6 +9,7 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { BmbDividerComponent } from '../bmb-divider/bmb-divider.component';
 import { BmbLayoutDirective } from '../../directives/bmb-layout/bmb-layout.directive';
 import { BmbLayoutItemDirective } from '../../directives/bmb-layout/bmb-layout-item.directive';
+import { sanitizeContent } from '../../utils/sanitizeContent';
 
 @Component({
   selector: 'bmb-icon-item',
@@ -34,6 +35,7 @@ export class BmbIconItemComponent {
   constructor(private sanitizer: DomSanitizer) {}
 
   get safeValue(): SafeHtml {
-    return this.sanitizer.bypassSecurityTrustHtml(this.value());
+    const clean = sanitizeContent(this.value());
+    return this.sanitizer.bypassSecurityTrustHtml(clean);  // NOSONAR Content is sanitized with DOMPurify - safe to bypass Angular sanitization
   }
 }

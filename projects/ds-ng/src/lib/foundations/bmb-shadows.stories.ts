@@ -40,7 +40,7 @@ class StorybookShadowsStoriesComponent {
 
   getStyles() {
     return {
-      boxShadow: `var(--${this.shadowsName()})`,
+      boxShadow: `var(--bmb-${this.shadowsName()})`,
       padding: '1rem',
       'text-align': 'center',
       'margin-top': '1rem',
@@ -48,7 +48,9 @@ class StorybookShadowsStoriesComponent {
   }
   copyToClipboard(type: string) {
     const str =
-      type === 'class' ? `${this.shadowsName()}` : `--${this.shadowsName()}`;
+      type === 'class'
+        ? `${this.shadowsName()}`
+        : `--bmb_${this.shadowsName()}`;
     window.navigator.clipboard.writeText(str);
     window.alert(`Color copied to clipboard: ${str}`);
   }
@@ -85,7 +87,7 @@ ${getSpecialSpecifications(
     true,
     ['box-shadow'],
     `margin: var(--bmb-spacing-m);
-      border: var(--bmb-border-general_contrasts-50-2-solid);
+      border: var(--bmb-border-general-contrasts-50-2-solid);
       border-radius: var(--bmb-radius-m);`,
   ),
   { showAdditionalBlockquote: true },
@@ -102,25 +104,25 @@ ${getSpecialSpecifications(
       ),
       table: {
         type: { summary: 'string' },
-        defaultValue: { summary: 'bmb-box-shadow-1' },
+        defaultValue: { summary: '' },
         category: SANDBOX_TITLE,
       },
       control: {
         type: 'select',
       },
       options: [
-        'bmb-box-shadow-1',
-        'bmb-box-shadow-2',
-        'bmb-box-shadow-3',
-        'bmb-box-shadow-4',
-        'bmb-box-shadow-5',
-        'bmb-box-shadow-6',
-        'bmb-box-shadow-7',
+        'box-shadow-1',
+        'box-shadow-2',
+        'box-shadow-3',
+        'box-shadow-4',
+        'box-shadow-5',
+        'box-shadow-6',
+        'box-shadow-7',
       ],
     },
   },
   args: {
-    shadowsName: 'bmb-box-shadow-1',
+    shadowsName: 'box-shadow-1',
   },
 } as Meta<StorybookShadowsStoriesComponent>;
 

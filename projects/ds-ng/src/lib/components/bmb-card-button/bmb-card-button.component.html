@@ -148,7 +148,7 @@
         </section>
       }
       <div class="bmb_card_button-custom-content">
-        <ng-container [ngTemplateOutlet]="customContent" />
+        <ng-container [ngTemplateOutlet]="customContent() ?? null" />
       </div>
     </section>
   } @else {

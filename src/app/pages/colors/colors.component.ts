@@ -79,6 +79,19 @@ export class ColorsComponent {
     '--purple-gradient',
   ];
 
+  blueMariner: string[] = [
+    '--blue-mariner-50',
+    '--blue-mariner-100',
+    '--blue-mariner-200',
+    '--blue-mariner-300',
+    '--blue-mariner-400',
+    '--blue-mariner-500',
+    '--blue-mariner-700',
+    '--blue-mariner-800',
+    '--blue-mariner-900',
+    '--blue-mariner-950',
+  ];
+
   creativeBaseColors: string[] = [
     '--violet-primary',
     '--violet-light',
@@ -101,6 +114,7 @@ export class ColorsComponent {
     '--soft-red-light',
     '--soft-red-tint',
     '--wattle-primary',
+    '--wattle-primary-alternative',
     '--wattle-tint',
     '--ship-cove-primary',
     '--ship-cove-tint',
@@ -111,19 +125,21 @@ export class ColorsComponent {
     '--rum-tint',
     '--ripe-lemon-primary',
     '--ripe-lemon-tint',
+    '--ripe-lemon-primary-alternative',
     '--hibiscus-primary',
     '--hibiscus-tint',
-    '--wattle-primary-alternative', // #9D8A01
-    '--ripe-lemon-primary-alternative',
   ];
 
   creativeGradients: string[] = ['--gradient-bg-tec'];
 
   semanticBaseColors: string[] = [
     '--success-primary',
+    '--success-primary-alternative',
     '--success-light',
     '--success-thin',
+    '--success-tint-alternative',
     '--warning-primary',
+    '--warning-primary-alternative',
     '--warning-tint',
     '--error-primary',
     '--error-light',
@@ -133,23 +149,6 @@ export class ColorsComponent {
     '--branding-tint',
     '--alert-primary',
     '--alert-light',
-    '--success-primary-alternative',
-    '--success-tint-alternative',
-    '--warning-primary-alternative',
-  ];
-
-  grayGED: string[] = [
-    '--gray-ged-50',
-    '--gray-ged-100',
-    '--gray-ged-200',
-    '--gray-ged-300',
-    '--gray-ged-400',
-    '--gray-ged-500',
-    '--gray-ged-600',
-    '--gray-ged-700',
-    '--gray-ged-800',
-    '--gray-ged-900',
-    '--gray-ged-950',
   ];
 
   blueGED: string[] = [
@@ -250,34 +249,64 @@ export class ColorsComponent {
     '--mitec-purple',
   ];
 
-  parseStyle(color: string) {
+  grayGED: string[] = [
+    '--gray-ged-50',
+    '--gray-ged-100',
+    '--gray-ged-200',
+    '--gray-ged-300',
+    '--gray-ged-400',
+    '--gray-ged-500',
+    '--gray-ged-600',
+    '--gray-ged-700',
+    '--gray-ged-800',
+    '--gray-ged-900',
+    '--gray-ged-950',
+  ];
+
+  grayCharade: string[] = [
+    '--gray-charade-50',
+    '--gray-charade-100',
+    '--gray-charade-200',
+    '--gray-charade-300',
+    '--gray-charade-500',
+    '--gray-charade-600',
+    '--gray-charade-700',
+    '--gray-charade-800',
+    '--gray-charade-900',
+    '--gray-charade-950',
+  ];
+
+  parseStyle() {
+    return {
+      padding: 'var(--bmb-spacing-m) var(--bmb-spacing-l)',
+      'border-radius': 'var(--bmb-radius-m)',
+      border: '--bmb-border-general_contrasts-5-1-solid',
+      // 'border': '1px solid rgb(var(--yellow-tint))',
+      width: '13rem',
+      height: '6rem',
+      'text-shadow': `1px 1px 0 var(--general-contrasts-25),
+          -1px -1px 0 var(--general-contrasts-25),
+          -1px 1px 0 var(--general-contrasts-25),
+          1px -1px 0 var(--general-contrasts-25)`,
+    };
+  }
+
+  parseBGColor(color: string) {
     return {
       background: color,
-      padding: 'var(--bmb-spacing-m) var(--bmb-spacing-xxl)',
-      'border-radius': 'var(--bmb-radius-m)',
-      'border-width': '1px',
-      'border-style': 'solid',
-      'border-color': 'rgb(var(--yellow-tint))',
-      'text-align': 'center',
-      width: '15rem',
-      height: '8rem',
-      'user-select': 'none',
-      'text-shadow': `1px 1px 0 var(--general-contrasts-25), -1px -1px 0 var(--general-contrasts-25), -1px 1px 0 var(--general-contrasts-25), 1px -1px 0 var(--general-contrasts-25)`,
-      'font-weight': 'bold',
-      'font-size': '14px',
     };
   }
 
   parseColorNamedStyle(color: string) {
-    return this.parseStyle(`rgb(var(${color}))`);
+    return this.parseBGColor(`rgb(var(${color}))`);
   }
 
   parseNamedStyle(color: string) {
-    return this.parseStyle(`var(${color})`);
+    return this.parseBGColor(`var(${color})`);
   }
 
   parseGradientStyle(color: string) {
-    return this.parseStyle(`linear-gradient(var(${color}))`);
+    return this.parseBGColor(`linear-gradient(var(${color}))`);
   }
 
   copyToClipboard(item: any) {

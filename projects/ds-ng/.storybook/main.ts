@@ -15,6 +15,7 @@ const config: StorybookConfig = {
   },
   docs: {
     docsMode: process.env.STORYBOOK_DOCS_MODE === 'true',
+    // docsMode: true,
     defaultName: 'Documentation',
   },
   webpackFinal: async (config) => {

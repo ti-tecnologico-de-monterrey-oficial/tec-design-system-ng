@@ -24,20 +24,17 @@
       "glob": "**/*",
       "input": "src/assets/i18n",
       "output": "./assets/i18n"
-    },
-    {
-      "glob": "**/*.svg",
-      "input": "node_modules/@material-symbols/svg-400/rounded/",
-      "output": "/node_modules/@material-symbols/svg-400/rounded/"
     }
   ],
   "allowedNonPeerDependencies": [
-    "luxon",
-    "@angular/material",
-    "libphonenumber-js",
-    "@types/luxon",
+    "@angular/animations",
     "@angular/cdk",
+    "@angular/material",
     "@material-symbols/svg-400",
-    "dompurify"
+    "@types/luxon",
+    "dompurify",
+    "libphonenumber-js",
+    "luxon",
+    "tslib"
   ]
 }

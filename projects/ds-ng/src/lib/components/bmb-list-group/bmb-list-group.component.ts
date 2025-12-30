@@ -66,7 +66,10 @@ export class BmbListGroupComponent {
 
   getStyles() {
     return {
-      '--bmb-list-group-item-radius': this.getVarStyles(this.borderRadius(), 'radius'),
+      '--bmb-list-group-item-radius': this.getVarStyles(
+        this.borderRadius(),
+        'radius',
+      ),
       '--bmb-list-group-item-padding': this.getVarStyles(this.padding()),
       gap: `var(--bmb-spacing-${this.margin()})`,
     };
