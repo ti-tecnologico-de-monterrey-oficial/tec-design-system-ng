@@ -8,15 +8,157 @@ jobs:
   create-jira-issue:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
       - name: Create Jira Issue with GitHub data
         run: |
-          # Escapar caracteres especiales en el cuerpo del issue
-          DESCRIPTION=$(echo '${{ github.event.issue.body }}' | sed 's/"/\\"/g' | sed "s/'/\\'/g")
-          if [ -z "$DESCRIPTION" ]; then
-            DESCRIPTION="No description provided in GitHub issue"
-          fi
+          # Crear un archivo temporal con el contenido del issue
+          cat > /tmp/issue_body.txt << 'EOFISSUE'
+          ${{ github.event.issue.body }}
+          EOFISSUE
+
+          # Procesar el contenido para convertirlo a formato ADF de Jira
+          node << 'EOFNODE'
+          const fs = require('fs');
+          const issueBody = fs.readFileSync('/tmp/issue_body.txt', 'utf8');
+
+          function escapeText(text) {
+            // Escapar caracteres especiales para JSON
+            return text
+              .replace(/\\/g, '\\\\')
+              .replace(/"/g, '\\"')
+              .replace(/\n/g, '\\n')
+              .replace(/\r/g, '\\r')
+              .replace(/\t/g, '\\t');
+          }
+
+          function parseMarkdownToADF(markdown) {
+            if (!markdown || markdown.trim() === '') {
+              return [{
+                type: "paragraph",
+                content: [{
+                  type: "text",
+                  text: "No description provided in GitHub issue"
+                }]
+              }];
+            }
+
+            const content = [];
+            const lines = markdown.split('\n');
+            let i = 0;
+
+            while (i < lines.length) {
+              const line = lines[i];
+
+              // Detectar bloques de código
+              if (line.trim().startsWith('```')) {
+                const language = line.trim().substring(3).trim() || 'text';
+                let codeContent = '';
+                i++;
+
+                while (i < lines.length && !lines[i].trim().startsWith('```')) {
+                  codeContent += lines[i] + '\n';
+                  i++;
+                }
+
+                content.push({
+                  type: "codeBlock",
+                  attrs: { language: language },
+                  content: [{
+                    type: "text",
+                    text: codeContent.trim()
+                  }]
+                });
+                i++;
+                continue;
+              }
+
+              // Detectar imágenes en formato markdown ![alt](url)
+              const imageRegex = /!\[([^\]]*)\]\(([^)]+)\)/g;
+              if (imageRegex.test(line)) {
+                const matches = [...line.matchAll(/!\[([^\]]*)\]\(([^)]+)\)/g)];
+                matches.forEach(match => {
+                  const alt = match[1] || 'image';
+                  const url = match[2];
+
+                  content.push({
+                    type: "mediaGroup",
+                    content: [{
+                      type: "media",
+                      attrs: {
+                        type: "external",
+                        url: url,
+                        alt: alt
+                      }
+                    }]
+                  });
+                });
+                i++;
+                continue;
+              }
+
+              // Detectar encabezados
+              const headingMatch = line.match(/^(#{1,6})\s+(.+)$/);
+              if (headingMatch) {
+                content.push({
+                  type: "heading",
+                  attrs: { level: headingMatch[1].length },
+                  content: [{
+                    type: "text",
+                    text: headingMatch[2]
+                  }]
+                });
+                i++;
+                continue;
+              }
+
+              // Párrafos normales
+              if (line.trim() !== '') {
+                content.push({
+                  type: "paragraph",
+                  content: [{
+                    type: "text",
+                    text: line
+                  }]
+                });
+              }
+              i++;
+            }
+
+            // Si no hay contenido, agregar un párrafo vacío
+            if (content.length === 0) {
+              content.push({
+                type: "paragraph",
+                content: [{
+                  type: "text",
+                  text: "No description provided"
+                }]
+              });
+            }
+
+            return content;
+          }
+
+          const adfContent = parseMarkdownToADF(issueBody);
+          const adfDescription = {
+            type: "doc",
+            version: 1,
+            content: adfContent
+          };
+
+          fs.writeFileSync('/tmp/jira_description.json', JSON.stringify(adfDescription, null, 2));
+          EOFNODE
 
           SUMMARY="[GH-${{ github.event.repository.name }}-${{ github.event.issue.number }}] ${{ github.event.issue.title }}"
+
+          # Leer la descripción procesada
+          DESCRIPTION_JSON=$(cat /tmp/jira_description.json)
 
           curl  --request POST \
           --url 'https://tecdemonterrey.atlassian.net/rest/api/3/issue' \
@@ -28,21 +170,7 @@ jobs:
               \"assignee\": {
                 \"id\": \"${{ vars.JIRA_ASSIGNEE_ID }}\"
               },
-              \"description\": {
-                \"content\": [
-                  {
-                    \"content\": [
-                      {
-                        \"text\": \"$DESCRIPTION\",
-                        \"type\": \"text\"
-                      }
-                    ],
-                    \"type\": \"paragraph\"
-                  }
-                ],
-                \"type\": \"doc\",
-                \"version\": 1
-              },
+              \"description\": $DESCRIPTION_JSON,
               \"environment\": {
                 \"content\": [
                   {
