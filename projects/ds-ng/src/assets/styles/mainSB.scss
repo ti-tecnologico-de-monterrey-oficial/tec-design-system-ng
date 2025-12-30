@@ -1,0 +1,10 @@
+//Storybook
+@use 'core';
+
+// Import and register the design tokens like colors and theme
+@use 'tokens/brand/TEC/colors' as tecColors;
+@use 'tokens/brand/GED/colors' as gedColors;
+@use 'tokens/brand/TEC/namedColors' as tecNamed;
+@use 'tokens/brand/GED/namedColors' as gedNamed;
+@use 'tokens/brand/TECMI/namedColors' as tecmiColors;
+@use 'base/radius';

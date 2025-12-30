@@ -8,10 +8,6 @@ import {
   Stories,
 } from '@storybook/addon-docs/blocks';
 import { setCompodocJson } from '@storybook/addon-docs/angular';
-import {
-  withThemeByClassName,
-  withThemeByDataAttribute,
-} from '@storybook/addon-themes';
 import docJson from '../../../documentation.json';
 import { allModes } from './modes';
 import {
@@ -20,7 +16,8 @@ import {
   TITLE_OF_CONTROLS,
   TOC_OBJ,
 } from '../src/lib/utils/doc/utils';
-import { Renderer } from 'storybook/internal/csf';
+import { useEffect, useGlobals } from 'storybook/internal/preview-api';
+import { themes } from 'storybook/theming';
 
 setCompodocJson(docJson);
 
@@ -53,6 +50,7 @@ const preview: Preview = {
       },
     },
     docs: {
+      theme: themes.dark,
       toc: TOC_OBJ,
       page: () => {
         return [
@@ -109,47 +107,49 @@ const preview: Preview = {
     a11y: {
       manual: true,
     },
-    // brandingTheme: {
-    //   description: 'Bamboo brands',
-    //   defaultValue: 'BAMBOO_CORE',
-    //   toolbar: {
-    //     title: 'Brand',
-    //     icon: 'grow',
-    //     items: ['BAMBOO_CORE', 'GED'],
-    //     dynamicTitle: false,
-    //   },
-    // },
-    // theme: {
-    //   description: 'Bamboo themes',
-    //   defaultValue: 'dark',
-    //   toolbar: {
-    //     title: 'Theme',
-    //     icon: 'edit',
-    //     items: ['light', 'dark'],
-    //     dynamicTitle: false,
-    //   },
-    // },
+    brandingThemes: {
+      name: 'Bamboo brands',
+      description: 'Bamboo brands',
+      toolbar: {
+        title: 'Brand',
+        icon: 'grow',
+        items: ['tec', 'ged', 'tecmi'],
+        dynamicTitle: false,
+      },
+      defaultValue: 'tec',
+    },
+    modes: {
+      name: 'Bamboo themes',
+      description: 'Bamboo themes',
+      toolbar: {
+        icon: 'edit',
+        items: ['light', 'dark'],
+        showName: true,
+        dynamicTitle: true,
+      },
+      defaultValue: 'dark',
+    },
   },
   initialGlobals: {
     layout: 'vertical',
     viewport: { value: 'tablet', isRotated: false },
   },
   decorators: [
-    withThemeByClassName<Renderer>({
-      themes: {
-        light: 'storybook-light-theme',
-        dark: 'storybook-dark-theme',
-      },
-      defaultTheme: 'dark',
-    }),
-    // withThemeByDataAttribute<Renderer>({
-    //   themes: {
-    //     light: 'light',
-    //     dark: 'dark',
-    //   },
-    //   defaultTheme: 'dark',
-    //   attributeName: 'data-theme',
-    // }),
+    (StoryFn: any) => {
+      const [{ brandingThemes, modes }] = useGlobals();
+
+      useEffect(() => {
+        document
+          .querySelector('.docs-story')
+          ?.setAttribute('data-brand', brandingThemes);
+      }, [brandingThemes]);
+
+      useEffect(() => {
+        document.querySelector('.docs-story')?.setAttribute('data-mode', modes);
+      }, [modes]);
+
+      return StoryFn();
+    },
   ],
 };
 

@@ -28,7 +28,7 @@ export class BmbThemeComponent implements OnInit {
   leftIcon = model<string>('light_mode');
   rightIcon = model<string>('dark_mode');
 
-  selectedTheme: string = 'light';
+  selectedTheme: string = 'dark';
   private service = inject(ThemeService);
   private initialized = false;
 
@@ -62,9 +62,6 @@ export class BmbThemeComponent implements OnInit {
   applyTheme(theme: string): void {
     if (theme !== this.selectedTheme || !this.initialized) {
       document.documentElement.setAttribute('data-theme', theme);
-      document
-        .querySelector('#background-content')
-        ?.setAttribute('data-theme', theme);
       localStorage.setItem('theme', theme);
       this.selectedTheme = theme;
     }
