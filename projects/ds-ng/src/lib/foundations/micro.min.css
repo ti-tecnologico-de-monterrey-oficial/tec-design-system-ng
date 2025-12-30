@@ -353,20 +353,29 @@
   font-size: 3rem;
 }
 :root {
-  --success-tint: 67, 170, 139;
+  --gray-charade-50: 246, 247, 249;
+  --gray-charade-100: 235, 237, 243;
+  --gray-charade-200: 211, 215, 228;
+  --gray-charade-300: 173, 182, 204;
+  --gray-charade-500: 97, 113, 150;
+  --gray-charade-600: 77, 89, 124;
+  --gray-charade-700: 63, 73, 101;
+  --gray-charade-800: 55, 63, 85;
+  --gray-charade-900: 49, 54, 73;
+  --gray-charade-950: 31, 34, 46;
 }
 :root,
-[data-theme='light'],
-.storybook-light-theme .docs-story {
-  --containers-background: rgb(var(--gray-charade-50));
+[data-mode='light'],
+[data-brand='tec'] [data-theme='light'] .docs-story {
+  --containers-background: rgb(var(--gray-charade-200));
   --containers-main: rgb(var(--white-primary));
   --containers-header-mobile: rgb(var(--white-primary));
-  --containers-modal: rgb(var(--gray-charade-50));
-  --containers-button: rgb(var(--gray-charade-50));
+  --containers-modal: rgb(var(--gray-charade-950));
+  --containers-container-button: rgb(var(--gray-charade-50));
   --containers-top-bar: rgb(var(--black-primary));
   --containers-media-card-background-fade: rgba(var(--gray-charade-950), 0);
   --containers-media-card-background: rgba(var(--gray-charade-950), 0.9);
-  --containers-background-fade: rgb(var(--charade-200));
+  --containers-background-fade: rgb(var(--gray-charade-200));
   --buttons-primary-normal: rgb(var(--blue-mariner-700));
   --buttons-primary-hover: rgb(var(--blue-mariner-800));
   --buttons-primary-select: rgb(var(--blue-mariner-700));
@@ -392,6 +401,16 @@
   --general-contrasts-20: rgb(var(--gray-charade-100));
   --general-contrasts-15: rgb(var(--gray-charade-100));
   --general-contrasts-5: rgb(var(--gray-charade-50));
+  --general-contrasts-container: rgb(var(--color-charade-800));
+  --general-contrasts-main-complimentary: rgb(var(--gray-charade-50));
+  --general-contrasts-main-selection: rgb(var(--blue-mariner-700));
+  --general-contrasts-main-selection-alternative: rgb(var(--green-light));
+  --general-contrasts-input-background: rgb(var(--gray-charade-50));
+  --general-contrasts-input-outline: rgb(var(--blue-mariner-700));
+  --general-contrasts-container-outline: rgb(var(--gray-charade-300));
+  --general-contrasts-text-sidebar: rgb(var(--black-primary));
+  --general-contrasts-container: rgb(var(--gray-charade-800));
+  --general-contrasts-primary: rgb(var(--blue-mariner-700));
   --semantic-success: rgb(var(--success-primary));
   --semantic-warning: rgb(var(--warning-primary));
   --semantic-error: rgb(var(--error-primary));
@@ -405,20 +424,6 @@
   --media-card-gradient-select: var(--black-min) 0%, var(--black-min) 100%;
   --gradient-bg-tec: rgb(var(--blue-mariner-50)) 56.25%,
     rgb(var(--blue-mariner-100)) 100%;
-  --general-contrasts-main-complimentary: rgb(var(--gray-charade-50));
-  --general-contrasts-main-selection: rgb(var(--blue-mariner-700));
-  --general-contrasts-main-selection-alternative: rgb(var(--green-light));
-  --general-contrasts-input-background: rgb(var(--gray-charade-50));
-  --general-contrasts-input-outline: rgb(var(--blue-mariner-700));
-  --general-contrasts-container-outline: rgb(var(--gray-charade-300));
-  --general-contrasts-text-sidebar: rgb(var(--black-primary));
-  --general-contrasts-container: rgb(var(--gray-charade-800));
-  --general-contrasts-primary: rgb(var(--blue-mariner-700));
-  --containers-background: rgb(var(--gray-charade-200));
-  --containers-main: rgb(var(--gray-charade-100));
-  --containers-modal: rgb(var(--gray-charade-50));
-  --containers-container-button: rgb(var(--gray-charade-50));
-  --containers-background-fade: rgb(var(--gray-charade-200));
   --menu-select-surface-activated: rgb(var(--blue-mariner-700));
   --menu-select-label-menu-active: rgb(var(--gray-charade-50));
   --menu-select-label-menu-inactive: rgb(var(--gray-charade-950));
@@ -453,6 +458,23 @@
   --creative-use-hibiscus: rgb(var(--hibiscus-primary));
   --color-table-900: rgb(var(--gray-charade-900));
   --color-table-btn-900: rgb(var(--gray-charade-900));
+  --buttons-active-switch-box-shadow-hover: rgba(
+    var(--color-mariner-700),
+    0.15
+  );
+  --buttons-active-switch-box-shadow-focus: rgba(
+    var(--color-mariner-700),
+    0.25
+  );
+  --buttons-inactive-switch-box-shadow-hover: rgba(
+    var(--color-charade-500),
+    0.15
+  );
+  --buttons-inactive-switch-box-shadow-focus: rgba(
+    var(--color-charade-500),
+    0.25
+  );
+  --drop_shadow-color-test-shadow: rgba(var(--color-black-primary), 0.2);
   --buttons-primary-border-hover: var(--buttons-primary-hover);
   --buttons-primary-text-hover: var(--buttons-alternative-normal);
   --buttons-primary-border-active: var(--buttons-stroke-primary-selected);
@@ -463,14 +485,16 @@
   --bmb-calendar-button-selected-background: RGBA(var(--color-white-primary));
   --bmb-dot-paginator-dot: RGBA(var(--color-charade-500));
 }
-[data-theme='dark'],
-.storybook-dark-theme,
-.storybook-dark-theme .docs-story {
+[data-mode='dark'],
+[data-brand='tec'] [data-theme='dark'] .docs-story {
   --containers-background: rgb(var(--gray-charade-950));
   --containers-main: rgb(var(--gray-charade-900));
   --containers-header-mobile: rgb(var(--gray-charade-900));
   --containers-modal: rgb(var(--gray-charade-950));
-  --containers-button: rgb(var(--gray-charade-900));
+  --containers-container-button: rgb(var(--gray-charade-900));
+  --containers-container-button: rgb(var(--gray-charade-900));
+  --containers-background-fade: rgb(var(--gray-charade-950));
+  --containers-background-fade: rgb(var(--color-charade-950));
   --general-contrasts: rgb(var(--white-primary));
   --general-contrasts-100: rgb(var(--gray-charade-50));
   --general-contrasts-90: rgb(var(--gray-charade-300));
@@ -504,11 +528,6 @@
   --general-contrasts-text-sidebar: rgb(var(--white-primary));
   --general-contrasts-container: rgb(var(--gray-charade-300));
   --general-contrasts-primary: rgb(var(--blue-mariner-400));
-  --containers-background: rgb(var(--gray-charade-950));
-  --containers-main: rgb(var(--gray-charade-900));
-  --containers-modal: rgb(var(--gray-charade-950));
-  --containers-container-button: rgb(var(--gray-charade-900));
-  --containers-background-fade: rgb(var(--gray-charade-950));
   --buttons-text-link: rgb(var(--blue-mariner-500));
   --buttons-stroke-primary-selected: rgb(var(--blue-mariner-300));
   --buttons-destructive: rgb(var(--red-light));
@@ -546,9 +565,18 @@
   --drop-shadow-color-test-shadow: rgba(var(--black-primary), 0.2);
   --color-table-900: rgb(var(--gray-charade-100));
   --color-table-btn-900: rgb(var(--gray-charade-50));
+  --buttons-active-switch-box-shadow-hover: rgba(
+    var(--color-green-light),
+    0.15
+  );
+  --buttons-active-switch-box-shadow-focus: rgba(
+    var(--color-green-light),
+    0.25
+  );
+  --drop_shadow-color-test-shadow: rgba(var(--color-black-primary), 0.2);
 }
 #storybook-docs .sbdocs-wrapper {
-  background-color: rgb(var(--color-charade-700));
+  background-color: rgb(var(--gray-charade-700));
   color: var(--white-light);
 }
 #storybook-docs .sbdocs-title:not([class^='bmb']),
@@ -565,7 +593,7 @@
 #storybook-docs
   .sbdocs-content
   :where(li:not(.sb-anchor, .sb-unstyled, .sb-unstyled li)) {
-  color: rgb(var(--color-charade-200));
+  color: rgb(var(--gray-charade-200));
 }
 #storybook-docs
   .sbdocs-content
@@ -575,16 +603,16 @@
   .sbdocs-content
   :where(li:not(.sb-anchor, .sb-unstyled, .sb-unstyled li))
   code {
-  background-color: var(--general_contrasts-75);
-  color: var(--general_contrasts-5);
-  border: 1px solid var(--general_contrasts-75);
+  background-color: var(--general-contrasts-75);
+  color: var(--general-contrasts-5);
+  border: 1px solid var(--general-contrasts-75);
   border-radius: var(--bmb-radius-3);
 }
 #storybook-docs .sbdocs-preview.sb-unstyled {
-  background: rgb(var(--color-charade-800));
+  background: rgb(var(--gray-charade-800));
 }
 #storybook-docs .sbdocs-preview.sb-unstyled .sb-bar {
-  background-color: rgb(var(--color-charade-900));
+  background-color: rgb(var(--gray-charade-900));
 }
 #storybook-docs
   .sbdocs-preview.sb-unstyled
@@ -595,8 +623,8 @@
   padding: 0.5rem;
 }
 #storybook-docs .sbdocs-expandable {
-  background-color: rgb(var(--color-charade-700));
-  border-color: rgb(var(--color-charade-500));
+  background-color: rgb(var(--gray-charade-700));
+  border-color: rgb(var(--gray-charade-500));
 }
 #storybook-docs .sbdocs li {
   color: var(--white-tint);
@@ -605,8 +633,8 @@
   background-color: rgba(0, 0, 0, 0);
 }
 #storybook-docs .sbdocs .css-11xgcgt button {
-  background-color: rgb(var(--color-charade-500));
-  color: rgb(var(--color-charade-900));
+  background-color: rgb(var(--gray-charade-500));
+  color: rgb(var(--gray-charade-900));
 }
 #storybook-docs .sbdocs .css-11xgcgt button:focus,
 #storybook-docs .sbdocs .css-11xgcgt button:hover {
@@ -619,7 +647,7 @@
   border-color: var(--white-light);
 }
 #storybook-docs .docblock-source {
-  background-color: rgb(var(--color-charade-900));
+  background-color: rgb(var(--gray-charade-900));
   color: var(--white-light);
 }
 #storybook-docs .docblock-source .token.property {
@@ -631,7 +659,7 @@
 }
 #storybook-docs .docblock-source .token.punctuation,
 #storybook-docs .docblock-source .token.operator {
-  color: rgb(var(--color-charade-200));
+  color: rgb(var(--gray-charade-200));
 }
 #storybook-docs .docblock-source .token.keyword {
   color: rgb(var(--color-blue-tint));
@@ -646,36 +674,36 @@
   color: rgb(var(--color-mitec-red));
 }
 #storybook-docs .docblock-source .token.comment {
-  color: rgb(var(--color-charade-500));
+  color: rgb(var(--gray-charade-500));
 }
 #storybook-docs .docblock-argstable-head th {
   color: var(--white-light);
 }
 #storybook-docs .docblock-argstable-body td {
-  background-color: rgb(var(--color-charade-900)) !important;
-  color: rgb(var(--color-charade-200));
-  border-color: rgb(var(--color-charade-700));
+  background-color: rgb(var(--gray-charade-900)) !important;
+  color: rgb(var(--gray-charade-200));
+  border-color: rgb(var(--gray-charade-700));
 }
 #storybook-docs .docblock-argstable-body td.css-1ikjjm3,
 #storybook-docs .docblock-argstable-body td.css-79elbk {
-  background-color: rgb(var(--color-charade-800)) !important;
+  background-color: rgb(var(--gray-charade-800)) !important;
 }
 #storybook-docs .docblock-argstable-body td svg path {
-  fill: rgb(var(--color-charade-200));
+  fill: rgb(var(--gray-charade-200));
 }
 #storybook-docs .docblock-argstable-body td .css-o1d7ko,
 #storybook-docs .docblock-argstable-body td .css-18pz2h2 code {
-  background-color: var(--general_contrasts-50);
-  color: var(--general_contrasts-100);
-  border: 1px solid var(--general_contrasts-50);
+  background-color: var(--general-contrasts-50);
+  color: var(--general-contrasts);
+  border: 1px solid var(--general-contrasts-50);
   border-radius: var(--bmb-radius-3);
 }
 #storybook-docs .docblock-argstable-body td select,
 #storybook-docs .docblock-argstable-body td input:not([role='switch']),
 #storybook-docs .docblock-argstable-body td textarea {
-  background-color: rgb(var(--color-charade-700));
+  background-color: rgb(var(--gray-charade-700));
   color: var(--white-light);
-  border: 1px solid rgb(var(--color-charade-700));
+  border: 1px solid rgb(var(--gray-charade-700));
 }
 #storybook-docs .docblock-argstable-body td select::placeholder,
 #storybook-docs
@@ -683,11 +711,11 @@
   td
   input:not([role='switch'])::placeholder,
 #storybook-docs .docblock-argstable-body td textarea::placeholder {
-  color: rgb(var(--color-charade-200));
+  color: rgb(var(--gray-charade-200));
 }
 #storybook-docs .docblock-argstable-body td .css-177r6r9 {
-  background-color: rgb(var(--color-charade-700));
-  border: 1px solid rgb(var(--color-charade-700));
+  background-color: rgb(var(--gray-charade-700));
+  border: 1px solid rgb(var(--gray-charade-700));
 }
 #storybook-docs .docblock-argstable-body td .css-177r6r9 input ~ span {
   color: var(--white-light);
@@ -698,7 +726,7 @@
   .css-177r6r9
   input:not(:checked)
   ~ span:first-of-type {
-  background-color: rgb(var(--color-charade-500));
+  background-color: rgb(var(--gray-charade-500));
 }
 #storybook-docs
   .docblock-argstable-body
@@ -722,28 +750,28 @@
   .css-177r6r9
   input:checked
   ~ span:last-of-type {
-  background-color: rgb(var(--color-charade-500));
+  background-color: rgb(var(--gray-charade-500));
 }
 #storybook-docs .docblock-argstable-body td button:not(.css-d474as) {
-  background-color: var(--general_contrasts-50);
-  color: var(--general_contrasts-100);
-  border: 1px solid var(--general_contrasts-50);
+  background-color: var(--general-contrasts-50);
+  color: var(--general-contrasts);
+  border: 1px solid var(--general-contrasts-50);
   border-radius: var(--bmb-radius-1);
 }
 #storybook-docs .docblock-argstable-body td .rejt-value-node:hover .rejt-value {
-  background-color: var(--general_contrasts-50);
-  color: var(--general_contrasts-100);
-  border: 1px solid var(--general_contrasts-50);
+  background-color: var(--general-contrasts-50);
+  color: var(--general-contrasts);
+  border: 1px solid var(--general-contrasts-50);
   border-radius: var(--bmb-radius-1);
 }
 #storybook-docs .docblock-argstable-body td .rejt-collapsed-text {
-  color: rgb(var(--color-charade-200)) !important;
+  color: rgb(var(--gray-charade-200)) !important;
 }
 #storybook-docs .docblock-argstable-body td .rejt-value {
   color: var(--white-light);
 }
 #storybook-docs .sb-bar {
-  background-color: rgb(var(--color-charade-900));
+  background-color: rgb(var(--gray-charade-900));
   color: var(--white-light);
 }
 #storybook-docs .css-s2td8l {
@@ -753,7 +781,7 @@
   display: none;
 }
 #storybook-docs .toc-link {
-  color: rgb(var(--color-charade-200));
+  color: rgb(var(--gray-charade-200));
 }
 #storybook-docs .toc-link.is-active-link {
   color: var(--white-light);
@@ -765,16 +793,16 @@
   border-radius: var(--bmb-radius-s) !important;
 }
 .css-yg7ze4 {
-  background-color: rgb(var(--color-charade-300));
+  background-color: rgb(var(--gray-charade-300));
   border-radius: var(--bmb-radius-s);
   box-shadow: var(--bmb-box-shadow-3);
 }
-.storybook-light-theme .docs-story {
-  background-color: var(--general_contrasts-15);
-  color: var(--general_contrasts);
+[data-theme='light'] .docs-story {
+  background-color: var(--general-contrasts-15);
+  color: var(--general-contrasts);
 }
-.storybook-light-theme .docs-story h1:not([class^='bmb']) {
-  color: var(--general_contrasts) !important;
+[data-theme='light'] .docs-story h1:not([class^='bmb']) {
+  color: var(--general-contrasts) !important;
 }
 .sb-container {
   margin-bottom: 48px;
@@ -931,7 +959,7 @@ img {
   transition: all 0.2s ease-in-out;
 }
 .bmb_doc-tabs-button:hover {
-  border-color: rgb(var(--color-charade-500));
+  border-color: rgb(var(--gray-charade-500));
 }
 .bmb_doc-tabs-button.active {
   border-bottom-color: var(--white-light);
