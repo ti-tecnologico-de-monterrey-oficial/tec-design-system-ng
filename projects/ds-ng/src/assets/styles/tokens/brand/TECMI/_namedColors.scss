@@ -1,0 +1,20 @@
+@use './../../mixinsColors' as mc;
+
+:root,
+[data-theme='light'],
+[data-brand='tecmi'][data-mode='light'] {
+  /*TECMI*/
+  // General Contrasts
+  --general-contrasts: rgb(var(--black-primary));
+
+  /*TECMI*/
+  @include mc.fixed-names;
+}
+
+[data-theme='dark'],
+[data-brand='tecmi'][data-mode='dark'] {
+  // General Contrasts
+  --general-contrasts: rgb(var(--white-primary));
+
+  @include mc.fixed-names;
+}
