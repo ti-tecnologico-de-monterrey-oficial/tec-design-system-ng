@@ -8,23 +8,23 @@
 >
   <section bmbVerticalLayout margin="m" gapSize="none">
     <section bmbVerticalLayoutItem>
-      <header style="margin: 0 var(--bmb-spacing-l)" bmbVerticalLayout>
+      <header bmbVerticalLayout>
         <h2 bmbVerticalLayoutItem>{{ title }}</h2>
         <p bmbVerticalLayoutItem>Please just click on the color to copy it.</p>
       </header>
     </section>
     <section bmbVerticalLayoutItem>
       <ul
-        style="margin: 0 var(--bmb-spacing-xxl); padding: 0; list-style: none"
+        style="margin: 0 var(--bmb-spacing-m); padding: 0; list-style: none"
         bmbLayout
         margin="none"
-        gapSize="xxl"
+        gapSize="l"
         [justify]="isJustifyStart ? 'start' : 'center'"
       >
         @for (item of list; track $index) {
           <li [attr.title]="item" bmbLayoutItem>
             <button
-              class="font-bold-4"
+              class="font-bold-4 bmb_box-shadow-2"
               type="button"
               [style]="parseStyle()"
               [ngStyle]="
@@ -46,7 +46,7 @@
   </section>
 </ng-template>
 
-<section bmbVerticalLayout margin="xxl">
+<section bmbVerticalLayout margin="l">
   <section bmbVerticalLayoutItem>
     <ng-template
       *ngTemplateOutlet="

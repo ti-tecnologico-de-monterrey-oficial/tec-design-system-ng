@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { Component } from '@angular/core';
 import { Meta, moduleMetadata, StoryObj } from '@storybook/angular';
 import { CommonModule } from '@angular/common';
 import {
@@ -109,9 +109,9 @@ import { BmbVerticalLayoutItemDirective } from '../directives/bmb-layout/bmb-ver
             appearanceContrast="alternative"
             icon="keyboard_arrow_down"
           >
-            <ng-template #bmbAccordionHeader>{{
-              'Container colors'
-            }}</ng-template>
+            <ng-template #bmbAccordionHeader>
+              {{ 'Container colors' }}
+            </ng-template>
             <ng-template #bmbAccordionContent>
               <ng-template
                 *ngTemplateOutlet="
@@ -207,9 +207,9 @@ import { BmbVerticalLayoutItemDirective } from '../directives/bmb-layout/bmb-ver
             appearanceContrast="alternative"
             icon="keyboard_arrow_down"
           >
-            <ng-template #bmbAccordionHeader>{{
-              'Semantic colors'
-            }}</ng-template>
+            <ng-template #bmbAccordionHeader>
+              {{ 'Semantic colors' }}
+            </ng-template>
             <ng-template #bmbAccordionContent>
               <ng-template
                 *ngTemplateOutlet="
@@ -240,6 +240,7 @@ import { BmbVerticalLayoutItemDirective } from '../directives/bmb-layout/bmb-ver
             </ng-template>
           </bmb-accordion>
         </section>
+        <bmb-divider />
         <p>The color options contained in the tabs depend on the theme used.</p>
         <bmb-tabs
           format="uppercase"
@@ -500,7 +501,7 @@ class StorybookColorsPlaygroundComponent {
     '--containers-main',
     '--containers-header-mobile',
     '--containers-modal',
-    '--containers-button',
+    '--containers-container-button',
     '--containers-top-bar',
     '--containers-background-fade',
     '--containers-media-card-background-fade',
