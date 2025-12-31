@@ -3,10 +3,8 @@ import {
   Component,
   input,
   ViewEncapsulation,
-  ContentChildren,
-  QueryList,
   TemplateRef,
-  AfterContentInit,
+  contentChildren,
 } from '@angular/core';
 import { IBmbColor } from '../../types/colors';
 import { CommonModule } from '@angular/common';
@@ -21,18 +19,13 @@ import { BmbTitleContentComponent } from '../bmb-title-content/bmb-title-content
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class BmbActionMenuComponent implements AfterContentInit {
+export class BmbActionMenuComponent {
   title = input.required<string>();
   subtitle = input<string>();
   icon = input<string>('');
   iconSize = input<number>(24);
   bgIconAppearance = input<IBmbColor>();
   showHeader = input<boolean>(true);
-  projectedContent: TemplateRef<any>[] = [];
 
-  @ContentChildren(TemplateRef) contentTemplates!: QueryList<TemplateRef<any>>;
-
-  ngAfterContentInit() {
-    this.projectedContent = this.contentTemplates.toArray();
-  }
+  projectedContent = contentChildren<TemplateRef<any>>(TemplateRef);
 }

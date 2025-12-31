@@ -18,7 +18,7 @@
     [ngStyle]="getImageStyles()"
     [attr.aria-label]="alt() || icon()"
   >
-    <ng-container [ngTemplateOutlet]="customIcon" />
+    <ng-container [ngTemplateOutlet]="customIcon() ?? null" />
   </figure>
 } @else if (isImage(icon())) {
   <figure class="bmb_icon-figure" [ngStyle]="getImageStyles()">

@@ -1,7 +1,7 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  ContentChild,
+  contentChild,
   input,
   model,
   output,
@@ -13,6 +13,7 @@ import { BmbCheckExternalLinkButtonComponent } from '../bmb-check-external-link-
 import { CommonModule } from '@angular/common';
 import { IBmbTargetLink } from '../../types';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { sanitizeContent } from '../../utils/sanitizeContent';
 
 @Component({
   selector: 'bmb-action-icon',
@@ -42,7 +43,7 @@ export class BmbActionIconComponent {
   disabled = input<boolean>(false);
   isSVGTemplate = input<boolean>();
 
-  @ContentChild('customActionIcon') customActionIcon!: TemplateRef<any>;
+  customActionIcon = contentChild<TemplateRef<any>>('customActionIcon');
 
   constructor(private sanitizer: DomSanitizer) {}
 
@@ -69,14 +70,13 @@ export class BmbActionIconComponent {
 
   get safeSVG(): SafeHtml | null {
     if (
-      (!this.isSVGTemplate() && this.customActionIcon) ||
-      (this.isSVGTemplate() && this.customActionIcon === undefined)
+      (!this.isSVGTemplate() && this.customActionIcon()) ||
+      (this.isSVGTemplate() && this.customActionIcon() === undefined)
     ) {
       return null;
     }
 
-    return this.sanitizer.bypassSecurityTrustHtml(
-      this.customActionIcon.toString(),
-    );
+    const clean = sanitizeContent((this.customActionIcon() ?? '').toString());
+    return this.sanitizer.bypassSecurityTrustHtml(clean); // NOSONAR Content is sanitized with DOMPurify - safe to bypass Angular sanitization
   }
 }

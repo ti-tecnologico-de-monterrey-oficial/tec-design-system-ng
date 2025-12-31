@@ -2,17 +2,15 @@ import {
   ChangeDetectionStrategy,
   Component,
   ViewEncapsulation,
-  ContentChild,
   TemplateRef,
   input,
   output,
   computed,
   signal,
   OnInit,
-  Output,
-  EventEmitter,
   OnChanges,
   SimpleChanges,
+  contentChild,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SizeNames } from '../../types';
@@ -40,27 +38,27 @@ const calculateSize: any = (pixels: string[]): string => {
   encapsulation: ViewEncapsulation.None,
 })
 export class BmbAccordionComponent implements OnInit, OnChanges {
-  @ContentChild('bmbAccordionContent') bmbAccordionContent!: TemplateRef<any>;
-  @ContentChild('bmbAccordionHeader') bmbAccordionHeader!: TemplateRef<any>;
-  public appearanceContrast = input<IBmbContrast>('default');
-  public borderRadius = input<SizeNames | SizeNames[]>('m');
-  public margin = input<SizeNames | SizeNames[]>('m');
-  public paddingHeader = input<SizeNames | SizeNames[]>('m');
-  public paddingContent = input<SizeNames | SizeNames[]>('m');
-  public icon = input<string>('');
-  public accordionId = input<number | null>(null);
-  public hideToggle = input<boolean>(false);
-  public active = input<boolean>(false);
-  public disabled = input<boolean>(false);
-  public expanded = input<boolean | undefined>();
-  public closed = output<void>();
-  public lockToggle = input<boolean>(false);
-  @Output() opened = new EventEmitter<void>();
-  public onClick = output<MouseEvent>();
-  public _expanded = signal(false);
-  public _active = signal(false);
-  public _disabled = signal(false);
-  public isOpen = computed<boolean | undefined>(() => {
+  appearanceContrast = input<IBmbContrast>('default');
+  borderRadius = input<SizeNames | SizeNames[]>('m');
+  margin = input<SizeNames | SizeNames[]>('m');
+  paddingHeader = input<SizeNames | SizeNames[]>('m');
+  paddingContent = input<SizeNames | SizeNames[]>('m');
+  icon = input<string>('');
+  accordionId = input<number | null>(null);
+  hideToggle = input<boolean>(false);
+  active = input<boolean>(false);
+  disabled = input<boolean>(false);
+  expanded = input<boolean | undefined>();
+  lockToggle = input<boolean>(false);
+
+  closed = output<void>();
+  opened = output<void>();
+  onClick = output<MouseEvent>();
+
+  _expanded = signal(false);
+  _active = signal(false);
+  _disabled = signal(false);
+  isOpen = computed<boolean | undefined>(() => {
     if (this.expanded() != undefined) {
       if (this.expanded()) {
         this.opened.emit();
@@ -73,6 +71,9 @@ export class BmbAccordionComponent implements OnInit, OnChanges {
       return this._expanded();
     }
   });
+
+  bmbAccordionContent = contentChild<TemplateRef<any>>('bmbAccordionContent');
+  bmbAccordionHeader = contentChild<TemplateRef<any>>('bmbAccordionHeader');
 
   ngOnInit(): void {
     this._expanded.update((current) => this.expanded() || current);

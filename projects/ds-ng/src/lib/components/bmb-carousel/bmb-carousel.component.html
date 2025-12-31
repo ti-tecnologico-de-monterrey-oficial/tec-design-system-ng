@@ -4,7 +4,7 @@
       class="bmb_carousel-content-list"
       [style]="
         '--numberOfElements: ' +
-        numberOfElements.length +
+        contentChildren().length +
         '; --selected-child: ' +
         selectedIndex +
         ';'
@@ -19,8 +19,8 @@
       class="bmb_carousel-list"
       [style]="'--selected-child: ' + selectedIndex + ';'"
     >
-      @for (dot of numberOfElements; track $index) {
-        <li class="bmb_carousel-list-item">
+      @for (dot of contentChildren(); track $index) {
+        <li class="bmb_carousel-list-item" [ngClass]="{ 'bmb_carousel-list-item-active': selectedIndex === $index }">
           <button
             type="button"
             class="bmb_carousel-dot"
