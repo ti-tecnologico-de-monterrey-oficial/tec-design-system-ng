@@ -28,7 +28,7 @@ export class BmbThemeComponent implements OnInit {
   leftIcon = model<string>('light_mode');
   rightIcon = model<string>('dark_mode');
 
-  selectedTheme: string = 'dark';
+  selectedTheme: string = 'light';
   private service = inject(ThemeService);
   private initialized = false;
 
