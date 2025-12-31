@@ -240,7 +240,7 @@ import { BmbVerticalLayoutItemDirective } from '../directives/bmb-layout/bmb-ver
             </ng-template>
           </bmb-accordion>
         </section>
-        <bmb-divider />
+        <bmb-divider bmbVerticalLayoutItem />
         <p>The color options contained in the tabs depend on the theme used.</p>
         <bmb-tabs
           format="uppercase"
