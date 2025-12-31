@@ -23,7 +23,6 @@ export class BmbAlertCenterDetailComponent {
 
   constructor(private readonly sanitizer: DomSanitizer) {}
 
-
   sanitizedHtml(html: string) {
     const clean = sanitizeContent(html);
     return this.sanitizer.bypassSecurityTrustHtml(clean); // NOSONAR Content is sanitized with DOMPurify - safe to bypass Angular sanitization

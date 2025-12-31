@@ -73,9 +73,7 @@ export class BmbWebTemplatesComponent {
 
   asideContent = contentChild<TemplateRef<any>>('bmbTemplateAside');
   mainContent = contentChild<TemplateRef<any>>('bmbTemplateMain');
-  secondAsideContent = contentChild<TemplateRef<any>>(
-    'bmbTemplateSecondAside',
-  );
+  secondAsideContent = contentChild<TemplateRef<any>>('bmbTemplateSecondAside');
   singleColumnCard = contentChild<TemplateRef<any>>('singleColumnCard');
   asideFirstCard = contentChild<TemplateRef<any>>('asideFirstCard');
   asideLightCard = contentChild<TemplateRef<any>>('asideLightCard');

@@ -74,7 +74,10 @@ export class BmbCarouselComponent {
     const deltaX = this.touchStartX - this.touchEndX;
 
     if (Math.abs(deltaX) > this.swipeThreshold) {
-      if (deltaX > 0 && this.selectedIndex < this.contentChildren().length - 1) {
+      if (
+        deltaX > 0 &&
+        this.selectedIndex < this.contentChildren().length - 1
+      ) {
         this.selectItem(this.selectedIndex + 1);
       } else if (deltaX < 0 && this.selectedIndex > 0) {
         this.selectItem(this.selectedIndex - 1);
