@@ -42,6 +42,60 @@ import { BmbVerticalLayoutItemDirective } from '../directives/bmb-layout/bmb-ver
     >
       <h1 style="width: 100%;">${SANDBOX_TITLE}</h1>
       <ng-template
+        #colorList
+        let-list="list"
+        let-title="title"
+        let-isNameStyle="isNameStyle"
+        let-isGradientStyle="isGradientStyle"
+        let-isJustifyStart="isJustifyStart"
+      >
+        <ul
+          style="margin: 0 var(--bmb-spacing-m); padding: 0; list-style: none"
+          bmbLayout
+          margin="none"
+          gapSize="l"
+          [justify]="isJustifyStart ? 'start' : 'center'"
+        >
+          @for (item of list; track $index) {
+            <li [attr.title]="item" bmbLayoutItem>
+              @if (isList(item)) {
+                <ng-template
+                  *ngTemplateOutlet="
+                    colorList;
+                    context: {
+                      list: item,
+                      title: $index,
+                      isNameStyle,
+                      isGradientStyle,
+                      isJustifyStart
+                    }
+                  "
+                />
+                @if ($index < list.length - 1) {
+                  <bmb-divider />
+                }
+              } @else {
+                <button
+                  class="font-bold-4 bmb_box-shadow-2"
+                  type="button"
+                  [style]="parseStyle()"
+                  [ngStyle]="
+                    isNameStyle
+                      ? parseNamedStyle(item)
+                      : isGradientStyle
+                        ? parseGradientStyle(item)
+                        : parseColorNamedStyle(item)
+                  "
+                  (click)="copyToClipboard(item)"
+                >
+                  {{ item }}
+                </button>
+              }
+            </li>
+          }
+        </ul>
+      </ng-template>
+      <ng-template
         #content
         let-list="list"
         let-title="title"
@@ -59,38 +113,21 @@ import { BmbVerticalLayoutItemDirective } from '../directives/bmb-layout/bmb-ver
             </header>
           </section>
           <section bmbVerticalLayoutItem>
-            <ul
-              style="margin: 0 var(--bmb-spacing-m); padding: 0; list-style: none"
-              bmbLayout
-              margin="none"
-              gapSize="l"
-              [justify]="isJustifyStart ? 'start' : 'center'"
-            >
-              @for (item of list; track $index) {
-                <li [attr.title]="item" bmbLayoutItem>
-                  <button
-                    class="font-bold-4 bmb_box-shadow-2"
-                    type="button"
-                    [style]="parseStyle()"
-                    [ngStyle]="
-                      isNameStyle
-                        ? parseNamedStyle(item)
-                        : isGradientStyle
-                          ? parseGradientStyle(item)
-                          : parseColorNamedStyle(item)
-                    "
-                    (click)="copyToClipboard(item)"
-                  >
-                    {{ item }}
-                  </button>
-                  <br />
-                </li>
-              }
-            </ul>
+            <ng-template
+              *ngTemplateOutlet="
+                colorList;
+                context: {
+                  list,
+                  title,
+                  isNameStyle,
+                  isGradientStyle,
+                  isJustifyStart
+                }
+              "
+            />
           </section>
         </section>
       </ng-template>
-
       <section bmbVerticalLayout margin="l">
         <section bmbVerticalLayoutItem>
           <ng-template
@@ -129,6 +166,16 @@ import { BmbVerticalLayoutItemDirective } from '../directives/bmb-layout/bmb-ver
                   context: {
                     list: grayGED,
                     title: 'Gray (GED)'
+                  }
+                "
+              />
+              <bmb-divider />
+              <ng-template
+                *ngTemplateOutlet="
+                  content;
+                  context: {
+                    list: grayTECMI,
+                    title: 'Gray (TECMI)'
                   }
                 "
               />
@@ -177,27 +224,67 @@ import { BmbVerticalLayoutItemDirective } from '../directives/bmb-layout/bmb-ver
             appearanceContrast="alternative"
             icon="keyboard_arrow_down"
           >
+            <ng-template #bmbAccordionHeader>{{ 'TEC' }}</ng-template>
+            <ng-template #bmbAccordionContent>
+              <ng-template
+                *ngTemplateOutlet="
+                  content;
+                  context: {
+                    list: blueMariner,
+                    title: 'Blue (TEC)'
+                  }
+                "
+              />
+            </ng-template>
+          </bmb-accordion>
+          <bmb-accordion
+            appearanceContrast="alternative"
+            icon="keyboard_arrow_down"
+          >
+            <ng-template #bmbAccordionHeader>{{ 'TECMI' }}</ng-template>
+            <ng-template #bmbAccordionContent>
+              <ng-template
+                *ngTemplateOutlet="
+                  content;
+                  context: {
+                    list: greenTECMI,
+                    title: 'Green (TECMI)'
+                  }
+                "
+              />
+            </ng-template>
+          </bmb-accordion>
+          <bmb-accordion
+            appearanceContrast="alternative"
+            icon="keyboard_arrow_down"
+          >
+            <ng-template #bmbAccordionHeader>{{ 'GED' }}</ng-template>
+            <ng-template #bmbAccordionContent>
+              <ng-template
+                *ngTemplateOutlet="
+                  content;
+                  context: {
+                    list: blueGED,
+                    title: 'Blue (GED)'
+                  }
+                "
+              />
+            </ng-template>
+          </bmb-accordion>
+          <bmb-accordion
+            appearanceContrast="alternative"
+            icon="keyboard_arrow_down"
+          >
             <ng-template #bmbAccordionHeader>
-              {{ 'Creative use' }}
+              {{ 'mitec' }}
             </ng-template>
             <ng-template #bmbAccordionContent>
               <ng-template
                 *ngTemplateOutlet="
                   content;
                   context: {
-                    list: creativeBaseColors,
+                    list: mitecBaseColors,
                     title: 'Base colors'
-                  }
-                "
-              />
-              <bmb-divider />
-              <ng-template
-                *ngTemplateOutlet="
-                  content;
-                  context: {
-                    list: creativeGradients,
-                    title: 'Complementary colors',
-                    isGradientStyle: true
                   }
                 "
               />
@@ -226,14 +313,27 @@ import { BmbVerticalLayoutItemDirective } from '../directives/bmb-layout/bmb-ver
             appearanceContrast="alternative"
             icon="keyboard_arrow_down"
           >
-            <ng-template #bmbAccordionHeader>{{ 'GED' }}</ng-template>
+            <ng-template #bmbAccordionHeader>
+              {{ 'Creative use' }}
+            </ng-template>
             <ng-template #bmbAccordionContent>
               <ng-template
                 *ngTemplateOutlet="
                   content;
                   context: {
-                    list: blueGED,
-                    title: 'Blue (GED)'
+                    list: creativeBaseColors,
+                    title: 'Base colors'
+                  }
+                "
+              />
+              <bmb-divider />
+              <ng-template
+                *ngTemplateOutlet="
+                  content;
+                  context: {
+                    list: creativeGradients,
+                    title: 'Complementary colors',
+                    isGradientStyle: true
                   }
                 "
               />
@@ -373,25 +473,14 @@ class StorybookColorsPlaygroundComponent {
 
   institutionalColors: string[] = ['--blue-tec', '--white-primary'];
 
-  baseColors: string[] = [
-    '--blue-primary',
-    '--blue-light',
-    '--blue-tint',
-    '--green-primary',
-    '--green-light',
-    '--green-tint',
-    '--purple-primary',
-    '--purple-light',
-    '--purple-tint',
-    '--red-primary',
-    '--red-light',
-    '--red-tint',
-    '--yellow-primary',
-    '--yellow-light',
-    '--yellow-tint',
-    '--teal-primary',
-    '--teal-light',
-    '--teal-tint',
+  baseColors = [
+    ['--neon-primary', '--neon-tint', '--neon-light'],
+    ['--blue-primary', '--blue-light', '--blue-tint'],
+    ['--teal-primary', '--teal-light', '--teal-tint'],
+    ['--red-primary', '--red-light', '--red-tint'],
+    ['--green-primary', '--green-light', '--green-tint'],
+    ['--purple-primary', '--purple-light', '--purple-tint'],
+    ['--yellow-primary', '--yellow-light', '--yellow-tint'],
     '--black-primary',
   ];
 
@@ -410,6 +499,63 @@ class StorybookColorsPlaygroundComponent {
     '--purple-gradient',
   ];
 
+  mitecBaseColors: string[][] = [
+    ['--mitec-blue-primary', '--mitec-blue-light', '--mitec-blue-tint'],
+    ['--mitec-red-primary', '--mitec-red-light', '--mitec-red-tint'],
+    ['--mitec-green-primary', '--mitec-green-light', '--mitec-green-tint'],
+    ['--mitec-orange-primary', '--mitec-orange-light', '--mitec-orange-tint'],
+    ['--mitec-purple-primary', '--mitec-purple-light', '--mitec-purple-tint'],
+  ];
+
+  creativeBaseColors: string[][] = [
+    ['--violet-primary', '--violet-light', '--violet-tint'],
+    ['--indigo-primary', '--indigo-light', '--indigo-tint'],
+    ['--emerald-primary', '--emerald-light', '--emerald-tint'],
+    ['--licorice-primary', '--licorice-light', '--licorice-tint'],
+    ['--dark-teal-primary', '--dark-teal-light', '--dark-teal-tint'],
+    ['--peach-primary', '--peach-light', '--peach-tint'],
+    ['--sepia-primary', '--sepia-light', '--sepia-tint'],
+    ['--soft-red-primary', '--soft-red-light', '--soft-red-tint'],
+    [
+      '--wattle-primary',
+      '--wattle-primary-alternative',
+      '--wattle-light',
+      '--wattle-tint',
+    ],
+    ['--ship-cove-primary', '--ship-cove-light', '--ship-cove-tint'],
+    ['--plantation-primary', '--plantation-light', '--plantation-tint'],
+    ['--rum-primary', '--rum-light', '--rum-tint'],
+    [
+      '--ripe-lemon-primary',
+      '--ripe-lemon-primary-alternative',
+      '--ripe-lemon-light',
+      '--ripe-lemon-tint',
+    ],
+    ['--hibiscus-primary', '--hibiscus-light', '--hibiscus-tint'],
+  ];
+
+  creativeGradients: string[] = ['--gradient-bg-tec'];
+
+  semanticBaseColors: string[][] = [
+    [
+      '--success-primary',
+      '--success-light',
+      '--success-thin',
+      '--success-primary-alternative',
+      '--success-tint-alternative',
+    ],
+    [
+      '--warning-primary',
+      '--warning-light',
+      '--warning-tint',
+      '--warning-primary-alternative',
+    ],
+    ['--error-primary', '--error-light', '--error-tint'],
+    ['--info-primary', '--info-light', '--info-tint'],
+    ['--branding-primary', '--branding-tint', '--branding-tint'],
+    ['--alert-primary', '--alert-light', '--alert-tint'],
+  ];
+
   blueMariner: string[] = [
     '--blue-mariner-50',
     '--blue-mariner-100',
@@ -421,65 +567,6 @@ class StorybookColorsPlaygroundComponent {
     '--blue-mariner-800',
     '--blue-mariner-900',
     '--blue-mariner-950',
-  ];
-
-  creativeBaseColors: string[] = [
-    '--violet-primary',
-    '--violet-light',
-    '--violet-tint',
-    '--indigo-primary',
-    '--indigo-tint',
-    '--emerald-primary',
-    '--emerald-tint',
-    '--licorice-primary',
-    '--licorice-light',
-    '--licorice-tint',
-    '--dark-teal-primary',
-    '--dark-teal-tint',
-    '--peach-primary',
-    '--peach-light',
-    '--peach-tint',
-    '--sepia-primary',
-    '--sepia-tint',
-    '--soft-red-primary',
-    '--soft-red-light',
-    '--soft-red-tint',
-    '--wattle-primary',
-    '--wattle-primary-alternative',
-    '--wattle-tint',
-    '--ship-cove-primary',
-    '--ship-cove-tint',
-    '--ship-cove-light',
-    '--plantation-primary',
-    '--plantation-tint',
-    '--rum-primary',
-    '--rum-tint',
-    '--ripe-lemon-primary',
-    '--ripe-lemon-tint',
-    '--ripe-lemon-primary-alternative',
-    '--hibiscus-primary',
-    '--hibiscus-tint',
-  ];
-
-  creativeGradients: string[] = ['--gradient-bg-tec'];
-
-  semanticBaseColors: string[] = [
-    '--success-primary',
-    '--success-primary-alternative',
-    '--success-light',
-    '--success-thin',
-    '--success-tint-alternative',
-    '--warning-primary',
-    '--warning-primary-alternative',
-    '--warning-tint',
-    '--error-primary',
-    '--error-light',
-    '--info-primary',
-    '--info-light',
-    '--branding-primary',
-    '--branding-tint',
-    '--alert-primary',
-    '--alert-light',
   ];
 
   blueGED: string[] = [
@@ -494,6 +581,20 @@ class StorybookColorsPlaygroundComponent {
     '--blue-ged-800',
     '--blue-ged-900',
     '--blue-ged-950',
+  ];
+
+  greenTECMI: string[] = [
+    '--green-tecmi-50',
+    '--green-tecmi-100',
+    '--green-tecmi-200',
+    '--green-tecmi-300',
+    '--green-tecmi-400',
+    '--green-tecmi-500',
+    '--green-tecmi-600',
+    '--green-tecmi-700',
+    '--green-tecmi-800',
+    '--green-tecmi-900',
+    '--green-tecmi-950',
   ];
 
   containers: string[] = [
@@ -576,6 +677,19 @@ class StorybookColorsPlaygroundComponent {
     '--mitec-purple',
   ];
 
+  grayCharade: string[] = [
+    '--gray-charade-50',
+    '--gray-charade-100',
+    '--gray-charade-200',
+    '--gray-charade-300',
+    '--gray-charade-500',
+    '--gray-charade-600',
+    '--gray-charade-700',
+    '--gray-charade-800',
+    '--gray-charade-900',
+    '--gray-charade-950',
+  ];
+
   grayGED: string[] = [
     '--gray-ged-50',
     '--gray-ged-100',
@@ -590,18 +704,25 @@ class StorybookColorsPlaygroundComponent {
     '--gray-ged-950',
   ];
 
-  grayCharade: string[] = [
-    '--gray-charade-50',
-    '--gray-charade-100',
-    '--gray-charade-200',
-    '--gray-charade-300',
-    '--gray-charade-500',
-    '--gray-charade-600',
-    '--gray-charade-700',
-    '--gray-charade-800',
-    '--gray-charade-900',
-    '--gray-charade-950',
+  grayTECMI: string[] = [
+    '--gray-tecmi-25',
+    '--gray-tecmi-50',
+    '--gray-tecmi-100',
+    '--gray-tecmi-150',
+    '--gray-tecmi-200',
+    '--gray-tecmi-300',
+    '--gray-tecmi-400',
+    '--gray-tecmi-500',
+    '--gray-tecmi-600',
+    '--gray-tecmi-700',
+    '--gray-tecmi-800',
+    '--gray-tecmi-900',
+    '--gray-tecmi-950',
   ];
+
+  isList(element: any): boolean {
+    return Array.isArray(element);
+  }
 
   parseStyle() {
     return {
