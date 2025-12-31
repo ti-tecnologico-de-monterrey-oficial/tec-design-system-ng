@@ -1,0 +1,7 @@
+//TECMI
+@use 'core';
+
+// Import and register the design tokens like named colors and theme
+@use 'tokens/brand/TECMI/colors';
+@use 'tokens/brand/TECMI/namedColors';
+@use 'base/radius';

@@ -170,17 +170,13 @@ export class ColorsComponent {
     '--containers-main',
     '--containers-header-mobile',
     '--containers-modal',
-    '--containers-button',
+    '--containers-container-button',
     '--containers-top-bar',
     '--containers-background-fade',
     '--containers-media-card-background-fade',
   ];
 
-  containerGradients: string[] = [
-    '--media-card-gradient-default',
-    '--media-card-gradient-hover',
-    '--media-card-gradient-select',
-  ];
+  containerGradients: string[] = ['--media-card-gradient-default'];
 
   buttons: string[] = [
     '--buttons-primary-normal',
@@ -278,35 +274,33 @@ export class ColorsComponent {
 
   parseStyle() {
     return {
-      padding: 'var(--bmb-spacing-m) var(--bmb-spacing-l)',
-      'border-radius': 'var(--bmb-radius-m)',
-      border: '--bmb-border-general_contrasts-5-1-solid',
-      // 'border': '1px solid rgb(var(--yellow-tint))',
-      width: '13rem',
+      width: '12rem',
       height: '6rem',
-      'text-shadow': `1px 1px 0 var(--general-contrasts-25),
-          -1px -1px 0 var(--general-contrasts-25),
-          -1px 1px 0 var(--general-contrasts-25),
-          1px -1px 0 var(--general-contrasts-25)`,
+      border: 'var(--bmb-border-general-contrasts-15-1-solid)',
+      'border-radius': 'var(--bmb-radius-m)',
+      'text-shadow': `1px 1px 0 var(--general-contrasts-50),
+          -1px -1px 0 var(--general-contrasts-50),
+          -1px 1px 0 var(--general-contrasts-50),
+          1px -1px 0 var(--general-contrasts-50)`,
     };
   }
 
-  parseBGColor(color: string) {
+  parseBGColorStyle(color: string) {
     return {
       background: color,
     };
   }
 
   parseColorNamedStyle(color: string) {
-    return this.parseBGColor(`rgb(var(${color}))`);
+    return this.parseBGColorStyle(`rgb(var(${color}))`);
   }
 
   parseNamedStyle(color: string) {
-    return this.parseBGColor(`var(${color})`);
+    return this.parseBGColorStyle(`var(${color})`);
   }
 
   parseGradientStyle(color: string) {
-    return this.parseBGColor(`linear-gradient(var(${color}))`);
+    return this.parseBGColorStyle(`linear-gradient(var(${color}))`);
   }
 
   copyToClipboard(item: any) {

@@ -1,7 +1,9 @@
+@use './../../mixinsColors' as mc;
+
 :root,
-// [data-brand='BAMBOO-CORE'],
 [data-theme='light'],
-.storybook-light-theme .docs-story {
+[data-brand='tec'][data-mode='light'] {
+  /*TEC*/
   // Containers
   --containers-background: rgb(var(--gray-charade-200));
   --containers-main: rgb(var(--gray-charade-100));
@@ -141,18 +143,22 @@
   --bmb-evaluation-rubric-radius-circle: 50%;
   --bmb-calendar-button-selected-background: RGBA(var(--color-white-primary));
   --bmb-dot-paginator-dot: RGBA(var(--color-charade-500));
+
+  /*TEC*/
+  @include mc.fixed-names;
 }
 
-// [data-brand='BAMBOO-CORE'],
 [data-theme='dark'],
-.storybook-dark-theme,
-.storybook-dark-theme .docs-story {
+[data-brand='tec'][data-mode='dark'] {
   // Containers
   --containers-background: rgb(var(--gray-charade-950));
   --containers-main: rgb(var(--gray-charade-900));
   --containers-header-mobile: rgb(var(--gray-charade-900));
   --containers-modal: rgb(var(--gray-charade-950));
-  --containers-button: rgb(var(--gray-charade-900));
+  --containers-container-button: rgb(var(--gray-charade-900));
+
+  --containers-container-button: rgb(var(--gray-charade-900));
+  --containers-background-fade: rgb(var(--gray-charade-950));
 
   --containers-background-fade: rgb(var(--color-charade-950));
 
@@ -198,10 +204,6 @@
   --general-contrasts-text-sidebar: rgb(var(--white-primary));
   --general-contrasts-container: rgb(var(--gray-charade-300));
   --general-contrasts-primary: rgb(var(--blue-mariner-400));
-
-  --containers-modal: rgb(var(--gray-charade-950));
-  --containers-container-button: rgb(var(--gray-charade-900));
-  --containers-background-fade: rgb(var(--gray-charade-950));
 
   --buttons-text-link: rgb(var(--blue-mariner-500));
   --buttons-stroke-primary-selected: rgb(var(--blue-mariner-300));
@@ -254,4 +256,6 @@
     0.25
   );
   --drop_shadow-color-test-shadow: rgba(var(--color-black-primary), 0.2);
+
+  @include mc.fixed-names;
 }

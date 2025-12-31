@@ -26,7 +26,8 @@
   },
   "exports": {
     "./assets/styles/mainTEC.min.css": "./dist/ds-ng/assets/styles/mainTEC.min.css",
-    "./assets/styles/mainGED.min.css": "./dist/ds-ng/assets/styles/mainGED.min.css"
+    "./assets/styles/mainGED.min.css": "./dist/ds-ng/assets/styles/mainGED.min.css",
+    "./assets/styles/mainTECMI.min.css": "./dist/ds-ng/assets/styles/mainTECMI.min.css"
   },
   "sideEffects": false
 }

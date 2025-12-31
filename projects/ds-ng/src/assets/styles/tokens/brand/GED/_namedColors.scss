@@ -1,18 +1,19 @@
+@use './../../mixinsColors' as mc;
+
 :root,
-// [data-brand='GED'],
 [data-theme='light'],
-.storybook-light-theme .docs-story {
+[data-brand='ged'][data-mode='light'] {
+  /*GED*/
   // Containers
   --containers-background: rgb(var(--gray-ged-50));
+  --containers-media-card-background: rgba(var(--gray-ged-950), 0.9);
   --containers-main: rgb(var(--white-primary));
   --containers-header-mobile: rgb(var(--white-primary));
   --containers-modal: rgb(var(--gray-ged-50));
-  --containers-button: rgb(var(--gray-ged-50));
+  --containers-container-button: rgb(var(--gray-ged-50));
   --containers-top-bar: rgb(var(--black-primary));
-  --containers-media-card-background-fade: rgba(var(--gray-ged-950), 0);
-  --containers-media-card-background: rgba(var(--gray-ged-950), 0.9);
-
   --containers-background-fade: rgb(var(--gray-ged-200));
+  --containers-media-card-background-fade: rgba(var(--gray-ged-950), 0);
 
   // Buttons
   --buttons-primary-normal: rgb(var(--gray-ged-950));
@@ -42,6 +43,7 @@
   --general-contrasts-20: rgb(var(--gray-ged-200));
   --general-contrasts-15: rgb(var(--gray-ged-200));
   --general-contrasts-5: rgb(var(--gray-ged-50));
+
   --general-contrasts-main-complimentary: rgb(var(--gray-ged-50));
   --general-contrasts-main-selection: var(--black-tint);
   --general-contrasts-icon-selection: rgb(var(--blue-primary));
@@ -112,18 +114,19 @@
 
   // variables for containers
   --bmb-dot-paginator-dot: rgb(var(--gray-ged-500));
+
+  /*GED*/
+  @include mc.fixed-names;
 }
 
-// [data-brand='GED'],
 [data-theme='dark'],
-.storybook-dark-theme,
-.storybook-dark-theme .docs-story {
+[data-brand='ged'][data-mode='dark'] {
   // Containers
   --containers-background: rgb(var(--gray-ged-950));
   --containers-main: rgb(var(--gray-ged-900));
   --containers-header-mobile: rgb(var(--gray-ged-900));
   --containers-modal: rgb(var(--gray-ged-950));
-  --containers-button: rgb(var(--gray-ged-900));
+  --containers-container-button: rgb(var(--gray-ged-900));
 
   // Buttons
   --buttons-primary-normal: rgb(var(--gray-ged-50));
@@ -142,6 +145,7 @@
   --buttons-text-link: rgb(var(--white-primary));
 
   // General Contrasts
+  --general-contrasts: rgb(var(--white-primary));
   --general-contrasts-100: rgb(var(--gray-ged-50));
   --general-contrasts-90: rgb(var(--gray-ged-400));
   --general-contrasts-80: rgb(var(--gray-ged-300));
@@ -206,4 +210,6 @@
 
   // variables for buttons
   --buttons-fab-text: var(--buttons-alternative-normal);
+
+  @include mc.fixed-names;
 }

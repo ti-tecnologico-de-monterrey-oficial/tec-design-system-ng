@@ -132,7 +132,8 @@ export class BmbFormValidatorComponent implements AfterViewInit {
         [],
       );
 
-      const radialControl: BmbRadialComponent = this.bmbRadials()[radialIndexWithSameName[0]]!;
+      const radialControl: BmbRadialComponent =
+        this.bmbRadials()[radialIndexWithSameName[0]]!;
 
       if (
         this.bmbRadials()

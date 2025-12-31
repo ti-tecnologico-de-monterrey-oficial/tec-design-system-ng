@@ -9,7 +9,7 @@ import {
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
-import { BmbButtonDirective } from "../../directives/bmb-button/button.directive";
+import { BmbButtonDirective } from '../../directives/bmb-button/button.directive';
 
 export interface Target {
   target: string;

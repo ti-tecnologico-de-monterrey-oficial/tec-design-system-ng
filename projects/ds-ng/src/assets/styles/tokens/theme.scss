@@ -1,8 +1,6 @@
 #storybook-docs {
-  // --general_contrasts-75: rgb(var(--color-charade-200));
-
   .sbdocs-wrapper {
-    background-color: rgb(var(--color-charade-700));
+    background-color: rgb(var(--gray-charade-700));
     color: var(--white-light);
   }
 
@@ -18,22 +16,22 @@
 
     &-content :where(p:not(.sb-anchor, .sb-unstyled, .sb-unstyled p)),
     &-content :where(li:not(.sb-anchor, .sb-unstyled, .sb-unstyled li)) {
-      color: rgb(var(--color-charade-200));
+      color: rgb(var(--gray-charade-200));
 
       code {
-        background-color: var(--general_contrasts-75);
-        color: var(--general_contrasts-5);
-        border: 1px solid var(--general_contrasts-75);
+        background-color: var(--general-contrasts-75);
+        color: var(--general-contrasts-5);
+        border: 1px solid var(--general-contrasts-75);
         border-radius: var(--bmb-radius-3);
       }
     }
 
     &-preview {
       &.sb-unstyled {
-        background: rgb(var(--color-charade-800));
+        background: rgb(var(--gray-charade-800));
 
         .sb-bar {
-          background-color: rgb(var(--color-charade-900));
+          background-color: rgb(var(--gray-charade-900));
         }
 
         .innerZoomElementWrapper > div > div {
@@ -44,8 +42,8 @@
     }
 
     &-expandable {
-      background-color: rgb(var(--color-charade-700));
-      border-color: rgb(var(--color-charade-500));
+      background-color: rgb(var(--gray-charade-700));
+      border-color: rgb(var(--gray-charade-500));
     }
 
     li {
@@ -56,8 +54,8 @@
       background-color: transparent;
 
       button {
-        background-color: rgb(var(--color-charade-500));
-        color: rgb(var(--color-charade-900));
+        background-color: rgb(var(--gray-charade-500));
+        color: rgb(var(--gray-charade-900));
 
         &:focus,
         &:hover {
@@ -72,7 +70,7 @@
   }
 
   .docblock-source {
-    background-color: rgb(var(--color-charade-900));
+    background-color: rgb(var(--gray-charade-900));
     color: var(--white-light);
 
     .token {
@@ -87,7 +85,7 @@
 
       &.punctuation,
       &.operator {
-        color: rgb(var(--color-charade-200));
+        color: rgb(var(--gray-charade-200));
       }
 
       &.keyword {
@@ -107,7 +105,7 @@
       }
 
       &.comment {
-        color: rgb(var(--color-charade-500));
+        color: rgb(var(--gray-charade-500));
       }
     }
   }
@@ -118,42 +116,42 @@
 
   .docblock-argstable-body {
     td {
-      background-color: rgb(var(--color-charade-900)) !important;
-      color: rgb(var(--color-charade-200));
-      border-color: rgb(var(--color-charade-700));
+      background-color: rgb(var(--gray-charade-900)) !important;
+      color: rgb(var(--gray-charade-200));
+      border-color: rgb(var(--gray-charade-700));
 
       &.css-1ikjjm3,
       &.css-79elbk {
-        background-color: rgb(var(--color-charade-800)) !important;
+        background-color: rgb(var(--gray-charade-800)) !important;
       }
 
       svg path {
-        fill: rgb(var(--color-charade-200));
+        fill: rgb(var(--gray-charade-200));
       }
 
       .css-o1d7ko,
       .css-18pz2h2 code {
-        background-color: var(--general_contrasts-50);
-        color: var(--general_contrasts-100);
-        border: 1px solid var(--general_contrasts-50);
+        background-color: var(--general-contrasts-50);
+        color: var(--general-contrasts);
+        border: 1px solid var(--general-contrasts-50);
         border-radius: var(--bmb-radius-3);
       }
 
       select,
       input:not([role='switch']),
       textarea {
-        background-color: rgb(var(--color-charade-700));
+        background-color: rgb(var(--gray-charade-700));
         color: var(--white-light);
-        border: 1px solid rgb(var(--color-charade-700));
+        border: 1px solid rgb(var(--gray-charade-700));
 
         &::placeholder {
-          color: rgb(var(--color-charade-200));
+          color: rgb(var(--gray-charade-200));
         }
       }
 
       .css-177r6r9 {
-        background-color: rgb(var(--color-charade-700));
-        border: 1px solid rgb(var(--color-charade-700));
+        background-color: rgb(var(--gray-charade-700));
+        border: 1px solid rgb(var(--gray-charade-700));
 
         input {
           ~ span {
@@ -162,7 +160,7 @@
 
           &:not(:checked) {
             ~ span:first-of-type {
-              background-color: rgb(var(--color-charade-500));
+              background-color: rgb(var(--gray-charade-500));
             }
 
             ~ span:last-of-type {
@@ -176,30 +174,30 @@
             }
 
             ~ span:last-of-type {
-              background-color: rgb(var(--color-charade-500));
+              background-color: rgb(var(--gray-charade-500));
             }
           }
         }
       }
 
       button:not(.css-d474as) {
-        background-color: var(--general_contrasts-50);
-        color: var(--general_contrasts-100);
-        border: 1px solid var(--general_contrasts-50);
+        background-color: var(--general-contrasts-50);
+        color: var(--general-contrasts);
+        border: 1px solid var(--general-contrasts-50);
         border-radius: var(--bmb-radius-1);
       }
 
       .rejt-value-node {
         &:hover .rejt-value {
-          background-color: var(--general_contrasts-50);
-          color: var(--general_contrasts-100);
-          border: 1px solid var(--general_contrasts-50);
+          background-color: var(--general-contrasts-50);
+          color: var(--general-contrasts);
+          border: 1px solid var(--general-contrasts-50);
           border-radius: var(--bmb-radius-1);
         }
       }
 
       .rejt-collapsed-text {
-        color: rgb(var(--color-charade-200)) !important;
+        color: rgb(var(--gray-charade-200)) !important;
       }
 
       .rejt-value {
@@ -209,7 +207,7 @@
   }
 
   .sb-bar {
-    background-color: rgb(var(--color-charade-900));
+    background-color: rgb(var(--gray-charade-900));
     color: var(--white-light);
   }
 
@@ -224,7 +222,7 @@
   }
 
   .toc-link {
-    color: rgb(var(--color-charade-200));
+    color: rgb(var(--gray-charade-200));
 
     &.is-active-link {
       color: var(--white-light);
@@ -243,18 +241,16 @@
 }
 
 .css-yg7ze4 {
-  background-color: rgb(var(--color-charade-300));
+  background-color: rgb(var(--gray-charade-300));
   border-radius: var(--bmb-radius-s);
   box-shadow: var(--bmb-box-shadow-3);
 }
 
-// [data-brand='GED'],
-// [data-brand='BAMBOO_CORE'],
-.storybook-light-theme .docs-story {
-  background-color: var(--general_contrasts-15);
-  color: var(--general_contrasts);
+.docs-story {
+  background-color: var(--general-contrasts-15);
+  color: var(--general-contrasts);
   h1:not([class^='bmb']) {
-    color: var(--general_contrasts) !important;
+    color: var(--general-contrasts) !important;
   }
 }
 
@@ -442,7 +438,7 @@ img {
       transition: all 0.2s ease-in-out;
 
       &:hover {
-        border-color: rgb(var(--color-charade-500));
+        border-color: rgb(var(--gray-charade-500));
       }
 
       &.active {

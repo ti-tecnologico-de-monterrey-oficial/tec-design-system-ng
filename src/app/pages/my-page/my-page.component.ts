@@ -48,7 +48,6 @@ import {
   IBmbTab,
 } from '../../../../projects/ds-ng/src/public-api';
 import names from '../../names.json';
-import { BmbTabStudentActivityComponent } from '../../../../dist/ds-ng';
 
 export interface Target {
   target: string;
@@ -95,7 +94,6 @@ export interface Target {
     BmbLayoutItemDirective,
     BmbCardComponent,
     BmbTablesComponent,
-    BmbTabStudentActivityComponent,
     BmbStudentActivityCardComponent,
     BmbIconComponent,
     BmbIframeComponent,
