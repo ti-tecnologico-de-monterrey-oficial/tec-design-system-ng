@@ -113,8 +113,13 @@ const preview: Preview = {
       toolbar: {
         title: 'Brand',
         icon: 'grow',
-        items: ['tec', 'ged', 'tecmi'],
-        dynamicTitle: false,
+        items: [
+          { value: 'tec', title: 'TEC' },
+          { value: 'ged', title: 'GED' },
+          { value: 'tecmi', title: 'TECMI' },
+        ],
+        showName: true,
+        dynamicTitle: true,
       },
       defaultValue: 'tec',
     },
@@ -123,7 +128,10 @@ const preview: Preview = {
       description: 'Bamboo themes',
       toolbar: {
         icon: 'edit',
-        items: ['light', 'dark'],
+        items: [
+          { value: 'light', title: '☼ Light' },
+          { value: 'dark', title: '☾ Dark' },
+        ],
         showName: true,
         dynamicTitle: true,
       },
