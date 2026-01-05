@@ -43,7 +43,7 @@ export class FormValidatorTestComponent {
     'Giacopo Mellings',
     'Clyve Nerval',
     'Pauletta Pavelka',
-    'Midge Girardot'
+    'Midge Girardot',
   ];
 
   handleDropdownChange(event: unknown): void {
