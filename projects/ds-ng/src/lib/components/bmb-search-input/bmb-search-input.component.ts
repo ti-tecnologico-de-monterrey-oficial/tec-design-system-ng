@@ -73,7 +73,7 @@ export class BmbSearchInputComponent implements AfterViewInit, OnChanges {
     }
     if (
       changes['serverSideFilteredData'] &&
-      changes['isLoading'].currentValue
+      changes['isLoading']
     ) {
       this.isDialogOpen =
         changes['serverSideFilteredData']?.currentValue?.length ||
@@ -81,8 +81,11 @@ export class BmbSearchInputComponent implements AfterViewInit, OnChanges {
     }
 
     if (changes['isLoading']) {
-      if (changes['isLoading']?.currentValue) this.filterControl.disable();
-      this.filterControl.enable();
+      if (changes['isLoading']?.currentValue) {
+        this.filterControl.disable();
+      } else {
+        this.filterControl.enable();
+      }
     }
   }
 
@@ -117,6 +120,10 @@ export class BmbSearchInputComponent implements AfterViewInit, OnChanges {
 
   handleItemClick(): void {
     this.isDialogOpen = !this.isDialogOpen;
+  }
+
+  handleClearFilter(): void {
+    this.onClearField.emit(true);
   }
 
   handleKeyDown(event: KeyboardEvent) {
