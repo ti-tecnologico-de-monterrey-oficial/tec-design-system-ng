@@ -6,3 +6,8 @@
   Button text
 </button>
 <button bmbButton size="small" appearance="destructive">Button text</button>
+<bmb-search-input
+  name="test"
+  [data]="filterOptions"
+  (onClearField)="onClearField($event)"
+></bmb-search-input>

@@ -10,6 +10,7 @@ import {
   BmbLayoutItemDirective,
   IBmbDropdownItem,
   BmbTextEditorComponent,
+  BmbSearchInputComponent,
 } from '../../../../projects/ds-ng/src/public-api';
 
 @Component({
@@ -23,6 +24,7 @@ import {
     BmbDropdownComponent,
     BmbInputComponent,
     BmbTextEditorComponent,
+    BmbSearchInputComponent,
   ],
   templateUrl: './form-validator-test.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -34,6 +36,15 @@ export class FormValidatorTestComponent {
   });
 
   options: IBmbDropdownItem[] = [];
+  filterOptions = [
+    'Carlee Bengochea',
+    'Reynard Howgate',
+    'Pearce Jore',
+    'Giacopo Mellings',
+    'Clyve Nerval',
+    'Pauletta Pavelka',
+    'Midge Girardot'
+  ];
 
   handleDropdownChange(event: unknown): void {
     if (event === '_banana') {
@@ -59,5 +70,9 @@ export class FormValidatorTestComponent {
 
   handleReset(): void {
     this.formGroup.reset();
+  }
+
+  onClearField(event: boolean): void {
+    console.info('Clear field event received:', event);
   }
 }

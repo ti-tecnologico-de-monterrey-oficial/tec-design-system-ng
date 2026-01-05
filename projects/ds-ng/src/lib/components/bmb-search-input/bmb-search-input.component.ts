@@ -119,6 +119,10 @@ export class BmbSearchInputComponent implements AfterViewInit, OnChanges {
     this.isDialogOpen = !this.isDialogOpen;
   }
 
+  handleClearFilter(): void {
+    this.onClearField.emit(true);
+  }
+
   handleKeyDown(event: KeyboardEvent) {
     const keyboardValuesToOpenDialog = [' ', 'ArrowDown', 'Down'];
     const keyboardValuesToAddOption = ['Enter'];
