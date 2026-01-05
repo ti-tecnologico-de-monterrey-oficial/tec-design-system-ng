@@ -232,7 +232,7 @@ export class ColorsComponent {
     '--semantic-success',
     '--semantic-warning',
     '--semantic-error',
-    '--semantic-info-event',
+    '--semantic-event',
     '--semantic-branding',
     '--semantic-alert',
   ];
