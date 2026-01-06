@@ -88,6 +88,8 @@
   --color-white-tint: var(--white-tint);
   --color-white-min: var(--white-min);
 
+  --semantic-normal: var(--semantic-neutral);
+  --semantic-strong: var(--semantic-neutral);
   --semantic-brand: var(--semantic-branding);
   --alert_primary-alert-primary: var(--alert-primary);
   --alert_primary-alert-light: var(--alert-light);
@@ -96,8 +98,6 @@
   --creative-use-softred: var(--creative-use-soft-red);
   --creative-use-shipcove: var(--creative-use-ship-cove);
   --creative-use-ripelemon: var(--creative-use-ripe-lemon);
-
-  --containers-container-button: var(--containers-button);
 
   --general_contrasts: var(--general-contrasts);
   --general_contrasts-100: var(--general-contrasts-100);
@@ -121,7 +121,7 @@
     --general-contrasts-input-background
   );
   --general_contrasts-input-outline: var(--general-contrasts-input-outline);
-  --general_contrasts-container: var(--general-contrasts-container);
+  --general_contrasts-container: var(--general-contrasts-container-outline);
   --general_contrasts-container-outline: var(
     --general-contrasts-container-outline
   );
