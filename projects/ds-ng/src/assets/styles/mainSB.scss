@@ -2,10 +2,6 @@
 @use 'core';
 
 // Import and register the design tokens like colors and theme
-@use 'tokens/brand/TEC/colors' as tecColors;
-@use 'tokens/brand/GED/colors' as gedColors;
-@use 'tokens/brand/TEC/namedColors' as tecNamed;
-@use 'tokens/brand/GED/namedColors' as gedNamed;
-@use 'tokens/brand/TECMI/colors' as tecmiColors;
-@use 'tokens/brand/TECMI/namedColors' as tecmiNamed;
-@use 'base/radius';
+@use './mainGED.scss' as ged;
+@use './mainTECMI.scss' as tecmi;
+@use './mainTEC.scss' as tec;

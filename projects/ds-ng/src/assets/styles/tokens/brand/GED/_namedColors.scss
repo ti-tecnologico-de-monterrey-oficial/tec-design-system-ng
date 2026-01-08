@@ -2,35 +2,8 @@
 
 :root,
 [data-theme='light'],
-[data-brand='ged'][data-mode='light'] {
+[data-brand='ged'][data-mode='light'] .docs-story {
   /*GED*/
-  // Containers
-  --containers-background: rgb(var(--gray-ged-50));
-  --containers-media-card-background: rgba(var(--gray-ged-950), 0.9);
-  --containers-main: rgb(var(--white-primary));
-  --containers-header-mobile: rgb(var(--white-primary));
-  --containers-modal: rgb(var(--gray-ged-50));
-  --containers-container-button: rgb(var(--gray-ged-50));
-  --containers-top-bar: rgb(var(--black-primary));
-  --containers-background-fade: rgb(var(--gray-ged-200));
-  --containers-media-card-background-fade: rgba(var(--gray-ged-950), 0);
-
-  // Buttons
-  --buttons-primary-normal: rgb(var(--gray-ged-950));
-  --buttons-primary-hover: rgb(var(--gray-ged-50));
-  --buttons-primary-select: rgb(var(--gray-ged-900));
-  --buttons-alternative-normal: rgb(var(--white-primary));
-  --buttons-alternative-hover: rgb(var(--gray-ged-800));
-  --buttons-alternative-text: rgb(var(--gray-ged-950));
-  --buttons-alternative-text-hover: rgb(var(--gray-ged-50));
-  --buttons-primary-text: rgb(var(--gray-ged-50));
-  --buttons-fab-text: rgb(var(--black-primary));
-  --buttons-active-switch: rgb(var(--blue-primary));
-  --buttons-inactive-step: rgb(var(--gray-ged-400));
-  --buttons-stroke-primary-selected: rgb(var(--blue-ged-900));
-  --buttons-destructive: rgb(var(--red-primary));
-  --buttons-text-link: rgb(var(--blue-mariner-700));
-
   // General Contrasts
   --general-contrasts: rgb(var(--black-primary));
   --general-contrasts-100: rgb(var(--gray-ged-950));
@@ -45,37 +18,84 @@
   --general-contrasts-5: rgb(var(--gray-ged-50));
 
   --general-contrasts-main-complimentary: rgb(var(--gray-ged-50));
-  --general-contrasts-main-selection: var(--black-tint);
+  --general-contrasts-main-selection: rgb(var(--black-primary));
   --general-contrasts-icon-selection: rgb(var(--blue-primary));
-  --general-contrasts-main-selection-alternative: rgb(var(--green-light));
+  --general-contrasts-main-selection-alternative: rgb(var(--green-primary));
+
   --general-contrasts-input-background: rgb(var(--gray-ged-100));
   --general-contrasts-input-outline: rgb(var(--gray-ged-950));
   --general-contrasts-container-outline: rgb(var(--gray-ged-400));
   --general-contrasts-text-sidebar: rgb(var(--black-primary));
   --general-contrasts-primary: rgb(var(--blue-ged-800));
 
-  --general-contrasts-container: rgb(var(--gray-ged-800));
+  --general-contrasts-inner-header-text: rgb(var(--black-primary));
+  --general-contrasts-timestream-index-inner-header-text: rgb(
+    var(--black-primary)
+  );
+  --general-contrasts-timestream-index-chevron-title-selector-text: rgb(
+    var(--gray-ged-950)
+  );
+
+  // Containers
+  --containers-background: rgb(var(--gray-ged-50));
+  --containers-media-card-background: rgb(var(--gray-ged-950));
+  --containers-main: rgb(var(--white-primary));
+  --containers-header-mobile: rgb(var(--white-primary));
+  --containers-modal: rgb(var(--gray-ged-50));
+  --containers-container-button: rgb(var(--gray-ged-50));
+
+  --containers-top-bar: rgb(var(--black-primary));
+  --containers-background-fade: rgb(250, 250, 250); // #FAFAFA
+  --containers-media-card-background-fade: rgb(26, 26, 26); // #1A1A1A
+  --containers-timestream-index: rgb(var(--white-primary));
+  --containers-timestream-index-chevron-title-selector: rgb(
+    var(--gray-ged-300)
+  );
+
+  // Buttons
+  --buttons-primary-normal: rgb(var(--gray-ged-950));
+  --buttons-primary-hover: rgb(var(--gray-ged-50));
+  --buttons-primary-select: rgb(var(--gray-ged-900));
+
+  --buttons-alternative-normal: rgb(var(--white-primary));
+  --buttons-alternative-hover: rgb(var(--gray-ged-800));
+  --buttons-alternative-text: rgb(var(--gray-ged-950));
+  --buttons-alternative-text-hover: rgb(var(--gray-ged-50));
+
+  --buttons-primary-text: rgb(var(--white-primary));
+  --buttons-fab-text: rgb(var(--black-primary));
+  --buttons-active-switch: rgb(var(--blue-primary));
+  --buttons-inactive-step: rgb(var(--gray-ged-400));
+
+  --buttons-stroke-primary-selected: rgb(var(--blue-ged-900));
+  --buttons-destructive: rgb(var(--red-primary));
+  --buttons-text-link: rgb(var(--blue-mariner-700));
 
   // Menu (select)
   --menu-select-surface-activated: rgb(var(--black-primary));
   --menu-select-label-menu-active: rgb(var(--gray-ged-50));
   --menu-select-label-menu-inactive: rgb(var(--gray-ged-950));
-  --menu-select-activated-w-checkbox: rgb(var(--blue-ged-950));
+  --menu-select-activated-w-checkbox: rgb(var(--gray-ged-800));
   --menu-select-alternative-focus-label: rgb(var(--blue-primary));
-  --menu-select-on-surface-hovered-w-checkbox: rgb(var(--gray-ged-200));
-  --menu-select-on-surface-hovered: rgb(var(--gray-ged-100));
 
-  --menu-select-on-surface-hovered-border: rgba(var(--blue-ged-700), 0.1);
+  //Menu select - On surface
+  --menu-select-on-surface-hovered-w-checkbox: rgb(var(--gray-ged-200));
+  --menu-select-on-surface-hovered: rgb(var(--blue-ged-100));
+
+  //Tecmilenio
+  --tecmi-green: rgb(var(--green-tecmi-800));
+  --tecmi-green-2: rgb(17, 152, 129); // #119881
 
   // Semantic colors
   --semantic-success: rgb(var(--success-primary-alternative));
+  --semantic-info-event: rgb(var(--purple-primary));
   --semantic-warning: rgb(var(--warning-primary-alternative));
   --semantic-error: rgb(var(--red-primary));
-  --semantic-info-event: rgb(var(--purple-primary));
   --semantic-branding: rgb(var(--branding-primary));
   --semantic-alert: rgb(var(--alert-primary));
+  --semantic-neutral: rgb(var(--blue-ged-300));
 
-  // Base colors - Creative use
+  // Creative use
   --creative-use-violet: rgb(var(--violet-light));
   --creative-use-indigo: rgb(var(--indigo-primary));
   --creative-use-emerald: rgb(var(--emerald-primary));
@@ -87,7 +107,7 @@
   --creative-use-wattle: rgb(var(--wattle-primary-alternative));
   --creative-use-ship-cove: rgb(var(--ship-cove-light));
   --creative-use-plantation: rgb(var(--plantation-primary));
-  --creative-use-rum: rgb(var(--rum-tint));
+  --creative-use-rum: rgb(var(--rum-primary));
   --creative-use-ripe-lemon: rgb(var(--ripe-lemon-primary-alternative));
   --creative-use-hibiscus: rgb(var(--hibiscus-primary));
 
@@ -108,7 +128,6 @@
   --buttons-primary-border-active: var(--buttons-primary-select);
   --buttons-card-hover-background: var(--buttons-primary-hover);
   --buttons-card-hover-text: var(--general-contrasts-100);
-  --buttons-fab-text: var(--buttons-alternative-normal);
   --bmb-evaluation-rubric-radius-circle: 0;
   --bmb-calendar-button-selected-background: var(--general-contrasts-5);
 
@@ -120,30 +139,7 @@
 }
 
 [data-theme='dark'],
-[data-brand='ged'][data-mode='dark'] {
-  // Containers
-  --containers-background: rgb(var(--gray-ged-950));
-  --containers-main: rgb(var(--gray-ged-900));
-  --containers-header-mobile: rgb(var(--gray-ged-900));
-  --containers-modal: rgb(var(--gray-ged-950));
-  --containers-container-button: rgb(var(--gray-ged-900));
-
-  // Buttons
-  --buttons-primary-normal: rgb(var(--gray-ged-50));
-  --buttons-primary-hover: rgb(var(--black-primary));
-  --buttons-primary-select: rgb(var(--gray-ged-200));
-  --buttons-alternative-normal: rgb(var(--black-primary));
-  --buttons-alternative-hover: rgb(var(--gray-ged-200));
-  --buttons-alternative-text: rgb(var(--gray-ged-50));
-  --buttons-alternative-text-hover: rgb(var(--gray-ged-950));
-  --buttons-primary-text: rgb(var(--black-primary));
-  --buttons-fab-text: rgb(var(--white-primary));
-  --buttons-active-switch: rgb(var(--blue-mariner-500));
-  --buttons-inactive-step: rgb(var(--gray-ged-700));
-  --buttons-stroke-primary-selected: rgb(var(--blue-ged-400));
-  --buttons-destructive: rgb(var(--red-light));
-  --buttons-text-link: rgb(var(--white-primary));
-
+[data-brand='ged'][data-mode='dark'] .docs-story {
   // General Contrasts
   --general-contrasts: rgb(var(--white-primary));
   --general-contrasts-100: rgb(var(--gray-ged-50));
@@ -151,36 +147,91 @@
   --general-contrasts-80: rgb(var(--gray-ged-300));
   --general-contrasts-75: rgb(var(--gray-ged-300));
   --general-contrasts-60: rgb(var(--gray-ged-300));
+  --general-contrasts-50: rgb(var(--gray-ged-500));
   --general-contrasts-25: rgb(var(--gray-ged-700));
   --general-contrasts-20: rgb(var(--gray-ged-700));
   --general-contrasts-15: rgb(var(--gray-ged-800));
   --general-contrasts-5: rgb(var(--gray-ged-900));
+
+  --general-contrasts-main-complimentary: rgb(var(--gray-ged-50));
   --general-contrasts-main-selection: rgb(var(--white-primary));
-  --general-contrasts-main-selection-alternative: rgb(var(--green-primary));
+  --general-contrasts-icon-selection: rgb(var(--blue-primary));
+  --general-contrasts-main-selection-alternative: rgb(var(--green-light));
+
   --general-contrasts-input-background: var(--black-tint);
   --general-contrasts-input-outline: rgb(var(--gray-ged-50));
   --general-contrasts-container-outline: rgb(var(--gray-ged-800));
   --general-contrasts-text-sidebar: rgb(var(--white-primary));
   --general-contrasts-primary: rgb(var(--blue-ged-300));
 
-  --general-contrasts-container: rgb(var(--gray-ged-300));
+  --general-contrasts-inner-header-text: rgb(var(--white-primary));
+  --general-contrasts-timestream-index-inner-header-text: rgb(
+    var(--white-primary)
+  );
+  --general-contrasts-timestream-index-chevron-title-selector-text: rgb(
+    var(--gray-ged-50)
+  );
+
+  // Containers
+  --containers-background: rgb(var(--gray-ged-950));
+  --containers-media-card-background: rgb(var(--gray-ged-950));
+  --containers-main: rgb(var(--gray-ged-900));
+  --containers-header-mobile: rgb(var(--gray-ged-900));
+  --containers-modal: rgb(var(--gray-ged-950));
+  --containers-container-button: rgb(var(--gray-ged-900));
+
+  --containers-top-bar: rgb(var(--black-primary));
+  --containers-background-fade: rgb(26, 26, 26); // #1A1A1A
+  --containers-media-card-background-fade: rgb(26, 26, 26); // #1A1A1A
+  --containers-timestream-index: rgb(var(--gray-ged-900));
+  --containers-timestream-index-chevron-title-selector: rgb(
+    var(--gray-ged-700)
+  );
+
+  // Buttons
+  --buttons-primary-normal: rgb(var(--gray-ged-50));
+  --buttons-primary-hover: rgb(var(--black-primary));
+  --buttons-primary-select: rgb(var(--gray-ged-200));
+
+  --buttons-alternative-normal: rgb(var(--black-primary));
+  --buttons-alternative-hover: rgb(var(--gray-ged-200));
+  --buttons-alternative-text: rgb(var(--gray-ged-50));
+  --buttons-alternative-text-hover: rgb(var(--gray-ged-950));
+
+  --buttons-primary-text: rgb(var(--black-primary));
+  --buttons-fab-text: rgb(var(--white-primary));
+  --buttons-active-switch: rgb(var(--blue-mariner-500));
+  --buttons-inactive-step: rgb(var(--gray-ged-700));
+
+  --buttons-stroke-primary-selected: rgb(var(--blue-ged-400));
+  --buttons-destructive: rgb(var(--red-light));
+  --buttons-text-link: rgb(var(--white-primary));
 
   //Menu (select)
+  --menu-select-surface-activated: rgb(var(--black-primary));
+  --menu-select-label-menu-active: rgb(var(--gray-ged-50));
   --menu-select-label-menu-inactive: rgb(var(--gray-ged-50));
   --menu-select-activated-w-checkbox: rgb(var(--gray-ged-950));
   --menu-select-alternative-focus-label: rgb(var(--blue-light));
+
+  //Menu select - On surface
   --menu-select-on-surface-hovered-w-checkbox: var(--black-tint);
   --menu-select-on-surface-hovered: rgb(var(--gray-ged-600));
 
+  //Tecmilenio
+  --tecmi-green: rgb(17, 152, 129); // #119881
+  --tecmi-green-2: rgb(17, 152, 129); // #119881
+
   // Semantic colors
   --semantic-success: rgb(var(--success-tint-alternative));
-  --semantic-warning: rgb(var(--warning-tint));
-  --semantic-error: rgb(var(--red-light));
   --semantic-info-event: rgb(var(--purple-tint));
-  --semantic-branding: rgb(var(--branding-primary));
+  --semantic-warning: rgb(var(--yellow-primary));
+  --semantic-error: rgb(var(--red-light));
+  --semantic-branding: rgb(var(--branding-tint));
   --semantic-alert: rgb(var(--alert-light));
+  --semantic-neutral: rgb(var(--gray-ged-200));
 
-  // Base colors - Creative use
+  // Creative use
   --creative-use-violet: rgb(var(--violet-tint));
   --creative-use-indigo: rgb(var(--indigo-tint));
   --creative-use-emerald: rgb(var(--emerald-tint));
@@ -207,9 +258,6 @@
   //Complementary backgrounds (gradients)
   --gradient-bg-tec: rgb(var(--gray-ged-950)) 56.25%,
     rgb(var(--gray-ged-900)) 100%;
-
-  // variables for buttons
-  --buttons-fab-text: var(--buttons-alternative-normal);
 
   @include mc.fixed-names;
 }
