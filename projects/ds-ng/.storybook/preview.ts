@@ -148,13 +148,13 @@ const preview: Preview = {
 
       useEffect(() => {
         document
-          .querySelector('.sbdocs-content')
+          .querySelector('.sb-show-main')
           ?.setAttribute('data-brand', brandingThemes);
       }, [brandingThemes]);
 
       useEffect(() => {
         document
-          .querySelector('.sbdocs-content')
+          .querySelector('.sb-show-main')
           ?.setAttribute('data-mode', modes);
       }, [modes]);
 
