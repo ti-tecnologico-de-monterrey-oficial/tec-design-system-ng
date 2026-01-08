@@ -115,8 +115,8 @@ const preview: Preview = {
         icon: 'grow',
         items: [
           { value: 'tec', title: 'TEC' },
-          { value: 'ged', title: 'GED' },
           { value: 'tecmi', title: 'TECMI' },
+          { value: 'ged', title: 'GED' },
         ],
         showName: true,
         dynamicTitle: true,
@@ -129,8 +129,8 @@ const preview: Preview = {
       toolbar: {
         icon: 'edit',
         items: [
-          { value: 'light', title: '☼ Light' },
           { value: 'dark', title: '☾ Dark' },
+          { value: 'light', title: '☼ Light' },
         ],
         showName: true,
         dynamicTitle: true,

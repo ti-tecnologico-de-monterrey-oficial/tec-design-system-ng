@@ -1,62 +1,28 @@
-// :root,
-// // .storybook-light-theme .docs-story {
-// [data-theme='light'] {
-//   --buttons-destructive: rgb(var(--color-red-primary));
+:root,
+[data-theme='light'],
+[data-mode='light'] .docs-story {
+  // mitec institutional colors
+  --mitec-blue: rgb(var(--mitec-blue-primary));
+  --mitec-red: rgb(var(--mitec-red-primary));
+  --mitec-green: rgb(var(--mitec-green-primary));
+  --mitec-orange: rgb(var(--mitec-orange-primary));
+  --mitec-purple: rgb(var(--mitec-purple-primary));
 
-//   --alert-successful: rgb(var(--color-green-primary));
-//   --alert-event: rgb(var(--color-purple-light));
-//   --alert-event-tint: rgb(var(--color-purple-tint));
-//   --alert-neutral: rgb(var(--color-charade-300));
-//   --alert-warning: rgb(var(--color-yellow-primary));
-//   --alert-error: rgb(var(--color-red-primary));
-//   --alert-error-blend: rgb(var(--color-red-light));
+  --alert-successful: rgb(var(--color-green-primary));
+  --alert-event: rgb(var(--color-purple-light));
+  --alert-event-tint: rgb(var(--color-purple-tint));
+  --alert-neutral: rgb(var(--color-charade-300));
+  --alert-warning: rgb(var(--color-yellow-primary));
+  --alert-error: rgb(var(--color-red-primary));
+  --alert-error-blend: rgb(var(--color-red-light));
+}
 
-//   --menu-select-on-surface-hovered-border: rgba(var(--blue-mariner-700), 0.1);
-
-//   // Semantic colors
-//   --semantic-normal: rgb(var(--color-charade-500));
-//   --semantic-strong: rgb(var(--blue-mariner-200));
-
-//   // mitec colors
-//   --mitec-blue: rgb(var(--mitec-blue-primary));
-//   --mitec-red: rgb(var(--mitec-red-primary));
-//   --mitec-green: rgb(var(--mitec-green-primary));
-//   --mitec-orange: rgb(var(--mitec-orange-primary));
-//   --mitec-purple: rgb(var(--mitec-purple-primary));
-
-//   --color-table-900: rgb(var(--color-charade-900));
-//   --color-table-btn-900: rgb(var(--color-charade-900));
-//   --track-progress-bar: rgb(var(--color-green-primary));
-//   --vertical-step-active: rgb(var(--color-charade-50));
-//   --vertical-step-active-color: rgb(var(--color-charade-700));
-//   --vertical-step-subtitle: rgb(var(--color-charade-700));
-// }
-
-// // .storybook-dark-theme,
-// // .storybook-dark-theme .docs-story {
-// [data-theme='dark'] {
-//   --general-contrasts-container: rgb(var(--color-charade-300));
-
-//   --buttons-destructive: rgb(var(--color-red-light));
-
-//   --menu-select-on-surface-hovered-border: rgba(var(--color-charade-500), 0.1);
-
-//   // Semantic colors
-//   --semantic-normal: rgb(var(--color-charade-500));
-//   --semantic-strong: rgb(var(--blue-mariner-200));
-
-//   // mitec colors
-//   --mitec-blue: rgb(var(--mitec-blue-light));
-//   --mitec-red: rgb(var(--mitec-red-light));
-//   --mitec-green: rgb(var(--mitec-green-light));
-//   --mitec-orange: rgb(var(--mitec-orange-light));
-//   --mitec-purple: rgb(var(--mitec-purple-tint));
-
-//   --color-table-900: rgb(var(--color-charade-100));
-//   --color-table-btn-900: rgb(var(--color-charade-50));
-
-//   --track-progress-bar: rgb(var(--color-green-light));
-//   --vertical-step-active: rgb(var(--color-charade-700));
-//   --vertical-step-active-color: rgb(var(--color-charade-50));
-//   --vertical-step-subtitle: rgb(var(--color-charade-500));
-// }
+[data-theme='dark'],
+[data-mode='dark'] .docs-story {
+  // mitec institutional colors
+  --mitec-blue: rgb(var(--mitec-blue-light));
+  --mitec-red: rgb(var(--mitec-red-light));
+  --mitec-green: rgb(var(--mitec-green-light));
+  --mitec-orange: rgb(var(--mitec-orange-light));
+  --mitec-purple: rgb(var(--mitec-purple-tint));
+}
