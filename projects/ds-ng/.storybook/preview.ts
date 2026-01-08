@@ -155,7 +155,7 @@ const preview: Preview = {
       useEffect(() => {
         document
           .querySelector('.sb-show-main')
-          ?.setAttribute('data-mode', modes);
+          ?.setAttribute('data-theme', modes);
       }, [modes]);
 
       return StoryFn();

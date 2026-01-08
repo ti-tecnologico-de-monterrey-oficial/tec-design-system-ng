@@ -2,7 +2,7 @@
 
 :root,
 [data-theme='light'],
-[data-brand='tecmi'][data-mode='light'] {
+[data-brand='tecmi'][data-theme='light'] {
   /*TECMI*/
   // General Contrasts
   --general-contrasts: rgb(var(--black-primary));
@@ -116,7 +116,7 @@
 }
 
 [data-theme='dark'],
-[data-brand='tecmi'][data-mode='dark'] {
+[data-brand='tecmi'][data-theme='dark'] {
   // General Contrasts
   --general-contrasts: rgb(var(--white-primary));
   --general-contrasts-100: rgb(var(--gray-tecmi-50));
