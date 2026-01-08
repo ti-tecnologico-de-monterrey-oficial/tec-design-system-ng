@@ -2,7 +2,7 @@
 
 :root,
 [data-theme='light'],
-[data-brand='tecmi'][data-theme='light'] {
+.storybook-light-theme [data-brand='tecmi'] {
   /*TECMI*/
   // General Contrasts
   --general-contrasts: rgb(var(--black-primary));
@@ -116,7 +116,7 @@
 }
 
 [data-theme='dark'],
-[data-brand='tecmi'][data-theme='dark'] {
+.storybook-dark-theme [data-brand='tecmi'] {
   // General Contrasts
   --general-contrasts: rgb(var(--white-primary));
   --general-contrasts-100: rgb(var(--gray-tecmi-50));

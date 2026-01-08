@@ -18,6 +18,7 @@ import {
 } from '../src/lib/utils/doc/utils';
 import { useEffect, useGlobals } from 'storybook/internal/preview-api';
 import { themes } from 'storybook/theming';
+import { withThemeByClassName } from "@storybook/addon-themes";
 
 setCompodocJson(docJson);
 
@@ -123,20 +124,6 @@ const preview: Preview = {
       },
       defaultValue: 'tec',
     },
-    modes: {
-      name: 'Bamboo themes',
-      description: 'Bamboo themes',
-      toolbar: {
-        icon: 'edit',
-        items: [
-          { value: 'dark', title: '☾ Dark' },
-          { value: 'light', title: '☼ Light' },
-        ],
-        showName: true,
-        dynamicTitle: true,
-      },
-      defaultValue: 'dark',
-    },
   },
   initialGlobals: {
     layout: 'vertical',
@@ -151,15 +138,15 @@ const preview: Preview = {
           .querySelector('.sb-show-main')
           ?.setAttribute('data-brand', brandingThemes);
       }, [brandingThemes]);
-
-      useEffect(() => {
-        document
-          .querySelector('.sb-show-main')
-          ?.setAttribute('data-theme', modes);
-      }, [modes]);
-
       return StoryFn();
     },
+    withThemeByClassName({
+      themes: {
+        light: 'storybook-light-theme',
+        dark: 'storybook-dark-theme',
+      },
+      defaultTheme: "dark",
+    }),
   ],
 };
 
