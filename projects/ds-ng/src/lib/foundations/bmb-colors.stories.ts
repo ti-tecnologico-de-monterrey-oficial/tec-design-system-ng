@@ -142,7 +142,7 @@ import { BmbVerticalLayoutItemDirective } from '../directives/bmb-layout/bmb-ver
           />
         </section>
         <section bmbVerticalLayoutItem bmbAccordionControl>
-          <!-- <bmb-accordion
+          <bmb-accordion
             appearanceContrast="alternative"
             icon="keyboard_arrow_down"
           >
@@ -164,8 +164,8 @@ import { BmbVerticalLayoutItemDirective } from '../directives/bmb-layout/bmb-ver
                 *ngTemplateOutlet="
                   content;
                   context: {
-                    list: grayGED,
-                    title: 'Gray (GED)'
+                    list: grayTECMI,
+                    title: 'Gray (TECMI)'
                   }
                 "
               />
@@ -174,13 +174,13 @@ import { BmbVerticalLayoutItemDirective } from '../directives/bmb-layout/bmb-ver
                 *ngTemplateOutlet="
                   content;
                   context: {
-                    list: grayTECMI,
-                    title: 'Gray (TECMI)'
+                    list: grayGED,
+                    title: 'Gray (GED)'
                   }
                 "
               />
             </ng-template>
-          </bmb-accordion> -->
+          </bmb-accordion>
           <bmb-accordion
             appearanceContrast="alternative"
             icon="keyboard_arrow_down"
@@ -224,7 +224,7 @@ import { BmbVerticalLayoutItemDirective } from '../directives/bmb-layout/bmb-ver
             appearanceContrast="alternative"
             icon="keyboard_arrow_down"
           >
-            <ng-template #bmbAccordionHeader>{{ 'TEC' }}</ng-template>
+            <ng-template #bmbAccordionHeader>{{ 'TEC colors' }}</ng-template>
             <ng-template #bmbAccordionContent>
               <ng-template
                 *ngTemplateOutlet="
@@ -241,7 +241,9 @@ import { BmbVerticalLayoutItemDirective } from '../directives/bmb-layout/bmb-ver
             appearanceContrast="alternative"
             icon="keyboard_arrow_down"
           >
-            <ng-template #bmbAccordionHeader>{{ 'TECMI' }}</ng-template>
+            <ng-template #bmbAccordionHeader>{{
+              'Tecmilenio colors'
+            }}</ng-template>
             <ng-template #bmbAccordionContent>
               <ng-template
                 *ngTemplateOutlet="
@@ -252,13 +254,23 @@ import { BmbVerticalLayoutItemDirective } from '../directives/bmb-layout/bmb-ver
                   }
                 "
               />
+              <bmb-divider />
+              <ng-template
+                *ngTemplateOutlet="
+                  content;
+                  context: {
+                    list: institutionalTECMI,
+                    title: 'Institutional / Tecmilenio branding'
+                  }
+                "
+              />
             </ng-template>
           </bmb-accordion>
           <bmb-accordion
             appearanceContrast="alternative"
             icon="keyboard_arrow_down"
           >
-            <ng-template #bmbAccordionHeader>{{ 'GED' }}</ng-template>
+            <ng-template #bmbAccordionHeader>{{ 'GED colors' }}</ng-template>
             <ng-template #bmbAccordionContent>
               <ng-template
                 *ngTemplateOutlet="
@@ -276,7 +288,7 @@ import { BmbVerticalLayoutItemDirective } from '../directives/bmb-layout/bmb-ver
             icon="keyboard_arrow_down"
           >
             <ng-template #bmbAccordionHeader>
-              {{ 'mitec' }}
+              {{ 'mitec base color' }}
             </ng-template>
             <ng-template #bmbAccordionContent>
               <ng-template
@@ -314,7 +326,7 @@ import { BmbVerticalLayoutItemDirective } from '../directives/bmb-layout/bmb-ver
             icon="keyboard_arrow_down"
           >
             <ng-template #bmbAccordionHeader>
-              {{ 'Creative use' }}
+              {{ 'Creative use colors' }}
             </ng-template>
             <ng-template #bmbAccordionContent>
               <ng-template
@@ -357,12 +369,13 @@ import { BmbVerticalLayoutItemDirective } from '../directives/bmb-layout/bmb-ver
               *ngTemplateOutlet="
                 content;
                 context: {
-                  list: containers,
+                  list: generalContrasts,
                   title: tabList[selectedTab - 1].title,
                   isNameStyle: true
                 }
               "
             />
+
             <bmb-divider />
             <ng-template
               *ngTemplateOutlet="
@@ -384,7 +397,7 @@ import { BmbVerticalLayoutItemDirective } from '../directives/bmb-layout/bmb-ver
               *ngTemplateOutlet="
                 content;
                 context: {
-                  list: buttons,
+                  list: containers,
                   title: tabList[selectedTab - 1].title,
                   isNameStyle: true
                 }
@@ -400,7 +413,7 @@ import { BmbVerticalLayoutItemDirective } from '../directives/bmb-layout/bmb-ver
               *ngTemplateOutlet="
                 content;
                 context: {
-                  list: generalContrasts,
+                  list: buttons,
                   title: tabList[selectedTab - 1].title,
                   isNameStyle: true
                 }
@@ -448,7 +461,39 @@ import { BmbVerticalLayoutItemDirective } from '../directives/bmb-layout/bmb-ver
               *ngTemplateOutlet="
                 content;
                 context: {
-                  list: mitec,
+                  list: mitecInstitutionalColors,
+                  title: tabList[selectedTab - 1].title,
+                  isNameStyle: true
+                }
+              "
+            />
+          </section>
+          <section
+            bmbSelector
+            [idSelector]="7"
+            [activeSelectorID]="selectedTab"
+          >
+            <ng-template
+              *ngTemplateOutlet="
+                content;
+                context: {
+                  list: creativeUseColors,
+                  title: tabList[selectedTab - 1].title,
+                  isNameStyle: true
+                }
+              "
+            />
+          </section>
+          <section
+            bmbSelector
+            [idSelector]="8"
+            [activeSelectorID]="selectedTab"
+          >
+            <ng-template
+              *ngTemplateOutlet="
+                content;
+                context: {
+                  list: tecmilenioColors,
                   title: tabList[selectedTab - 1].title,
                   isNameStyle: true
                 }
@@ -463,12 +508,14 @@ import { BmbVerticalLayoutItemDirective } from '../directives/bmb-layout/bmb-ver
 class StorybookColorsPlaygroundComponent {
   selectedTab: number = 1;
   tabList: IBmbTab[] = [
-    { id: 1, title: 'Containers', isActive: true },
-    { id: 2, title: 'Buttons' },
-    { id: 3, title: 'General Contrasts' },
-    { id: 4, title: 'Menu (select)' },
-    { id: 5, title: 'Semantic colors' },
+    { id: 1, title: 'General Contrasts', isActive: true },
+    { id: 2, title: 'Containers' },
+    { id: 3, title: 'Buttons' },
+    { id: 4, title: 'Menu' },
+    { id: 5, title: 'Semantic' },
     { id: 6, title: 'mitec' },
+    { id: 7, title: 'Creative use' },
+    { id: 8, title: 'Tecmilenio' },
   ];
 
   institutionalColors: string[] = ['--blue-tec', '--white-primary'];
@@ -597,15 +644,66 @@ class StorybookColorsPlaygroundComponent {
     '--green-tecmi-950',
   ];
 
-  containers: string[] = [
-    '--containers-background',
-    '--containers-main',
-    '--containers-header-mobile',
-    '--containers-modal',
-    '--containers-container-button',
-    '--containers-top-bar',
-    '--containers-background-fade',
-    '--containers-media-card-background-fade',
+  tecmilenioColors: string[] = ['--tecmi-green', '--tecmi-green-2'];
+
+  institutionalTECMI: string[] = [
+    '--tecmi-primary',
+    '--tecmi-secondary',
+    '--tecmi-auxiliar-one',
+    '--tecmi-auxiliar-two',
+    '--tecmi-auxiliar-three',
+  ];
+
+  generalContrasts: string[][] = [
+    [
+      '--general-contrasts',
+      '--general-contrasts-100',
+      '--general-contrasts-90',
+      '--general-contrasts-80',
+      '--general-contrasts-75',
+      '--general-contrasts-60',
+      '--general-contrasts-50',
+      '--general-contrasts-25',
+      '--general-contrasts-20',
+      '--general-contrasts-15',
+      '--general-contrasts-5',
+    ],
+    [
+      '--general-contrasts-main-complimentary',
+      '--general-contrasts-main-selection',
+      '--general-contrasts-icon-selection',
+      '--general-contrasts-main-selection-alternative',
+    ],
+    [
+      '--general-contrasts-input-background',
+      '--general-contrasts-input-outline',
+      '--general-contrasts-container-outline',
+    ],
+    [
+      '--general-contrasts-text-sidebar',
+      '--general-contrasts-primary',
+      '--general-contrasts-inner-header-text',
+      '--general-contrasts-timestream-index-inner-header-text',
+      '--general-contrasts-timestream-index-chevron-title-selector-text',
+    ],
+  ];
+
+  containers: string[][] = [
+    [
+      '--containers-background',
+      '--containers-media-card-background',
+      '--containers-main',
+      '--containers-header-mobile',
+      '--containers-modal',
+      '--containers-container-button',
+    ],
+    [
+      '--containers-top-bar',
+      '--containers-background-fade',
+      '--containers-media-card-background-fade',
+      '--containers-timestream-index',
+      '--containers-timestream-index-chevron-title-selector',
+    ],
   ];
 
   containerGradients: string[] = ['--media-card-gradient-default'];
@@ -627,54 +725,53 @@ class StorybookColorsPlaygroundComponent {
     '--buttons-text-link',
   ];
 
-  generalContrasts: string[] = [
-    '--general-contrasts',
-    '--general-contrasts-100',
-    '--general-contrasts-90',
-    '--general-contrasts-80',
-    '--general-contrasts-75',
-    '--general-contrasts-60',
-    '--general-contrasts-50',
-    '--general-contrasts-25',
-    '--general-contrasts-20',
-    '--general-contrasts-15',
-    '--general-contrasts-5',
-    '--general-contrasts-main-complimentary',
-    '--general-contrasts-main-selection',
-    '--general-contrasts-icon-selection',
-    '--general-contrasts-main-selection-alternative',
-    '--general-contrasts-input-background',
-    '--general-contrasts-input-outline',
-    '--general-contrasts-container-outline',
-    '--general-contrasts-text-sidebar',
-    '--general-contrasts-primary',
-  ];
-
-  menuSelect: string[] = [
-    '--menu-select-surface-activated',
-    '--menu-select-label-menu-active',
-    '--menu-select-label-menu-inactive',
-    '--menu-select-activated-w-checkbox',
-    '--menu-select-alternative-focus-label',
-    '--menu-select-on-surface-hovered-w-checkbox',
-    '--menu-select-on-surface-hovered',
+  menuSelect: string[][] = [
+    [
+      '--menu-select-surface-activated',
+      '--menu-select-label-menu-active',
+      '--menu-select-label-menu-inactive',
+      '--menu-select-activated-w-checkbox',
+      '--menu-select-alternative-focus-label',
+    ],
+    [
+      '--menu-select-on-surface-hovered-w-checkbox',
+      '--menu-select-on-surface-hovered',
+    ],
   ];
 
   semanticColors: string[] = [
     '--semantic-success',
+    '--semantic-info-event',
     '--semantic-warning',
     '--semantic-error',
-    '--semantic-info-event',
     '--semantic-branding',
     '--semantic-alert',
+    '--semantic-neutral',
   ];
 
-  mitec: string[] = [
+  mitecInstitutionalColors: string[] = [
     '--mitec-blue',
     '--mitec-red',
     '--mitec-green',
     '--mitec-orange',
     '--mitec-purple',
+  ];
+
+  creativeUseColors: string[] = [
+    '--creative-use-violet',
+    '--creative-use-indigo',
+    '--creative-use-emerald',
+    '--creative-use-licorice',
+    '--creative-use-darkteal',
+    '--creative-use-peach',
+    '--creative-use-sepia',
+    '--creative-use-softred',
+    '--creative-use-wattle',
+    '--creative-use-shipcove',
+    '--creative-use-plantation',
+    '--creative-use-rum',
+    '--creative-use-ripe-lemon',
+    '--creative-use-hibiscus',
   ];
 
   grayCharade: string[] = [
@@ -688,20 +785,6 @@ class StorybookColorsPlaygroundComponent {
     '--gray-charade-800',
     '--gray-charade-900',
     '--gray-charade-950',
-  ];
-
-  grayGED: string[] = [
-    '--gray-ged-50',
-    '--gray-ged-100',
-    '--gray-ged-200',
-    '--gray-ged-300',
-    '--gray-ged-400',
-    '--gray-ged-500',
-    '--gray-ged-600',
-    '--gray-ged-700',
-    '--gray-ged-800',
-    '--gray-ged-900',
-    '--gray-ged-950',
   ];
 
   grayTECMI: string[] = [
@@ -720,6 +803,20 @@ class StorybookColorsPlaygroundComponent {
     '--gray-tecmi-950',
   ];
 
+  grayGED: string[] = [
+    '--gray-ged-50',
+    '--gray-ged-100',
+    '--gray-ged-200',
+    '--gray-ged-300',
+    '--gray-ged-400',
+    '--gray-ged-500',
+    '--gray-ged-600',
+    '--gray-ged-700',
+    '--gray-ged-800',
+    '--gray-ged-900',
+    '--gray-ged-950',
+  ];
+
   isList(element: any): boolean {
     return Array.isArray(element);
   }
@@ -728,8 +825,11 @@ class StorybookColorsPlaygroundComponent {
     return {
       width: '12rem',
       height: '6rem',
+      'padding-left': 'var(--bmb-spacing-xxs)',
+      'padding-right': 'var(--bmb-spacing-xxs)',
       border: 'var(--bmb-border-general-contrasts-15-1-solid)',
       'border-radius': 'var(--bmb-radius-m)',
+      color: 'rgb(var(--gray-charade-800))',
       'text-shadow': `1px 1px 0 var(--general-contrasts-50),
           -1px -1px 0 var(--general-contrasts-50),
           -1px 1px 0 var(--general-contrasts-50),
