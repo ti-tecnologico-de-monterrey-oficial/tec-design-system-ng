@@ -121,29 +121,6 @@
 
 [data-theme='dark'],
 [data-brand='ged'][data-mode='dark'] {
-  // Containers
-  --containers-background: rgb(var(--gray-ged-950));
-  --containers-main: rgb(var(--gray-ged-900));
-  --containers-header-mobile: rgb(var(--gray-ged-900));
-  --containers-modal: rgb(var(--gray-ged-950));
-  --containers-container-button: rgb(var(--gray-ged-900));
-
-  // Buttons
-  --buttons-primary-normal: rgb(var(--gray-ged-50));
-  --buttons-primary-hover: rgb(var(--black-primary));
-  --buttons-primary-select: rgb(var(--gray-ged-200));
-  --buttons-alternative-normal: rgb(var(--black-primary));
-  --buttons-alternative-hover: rgb(var(--gray-ged-200));
-  --buttons-alternative-text: rgb(var(--gray-ged-50));
-  --buttons-alternative-text-hover: rgb(var(--gray-ged-950));
-  --buttons-primary-text: rgb(var(--black-primary));
-  --buttons-fab-text: rgb(var(--white-primary));
-  --buttons-active-switch: rgb(var(--blue-mariner-500));
-  --buttons-inactive-step: rgb(var(--gray-ged-700));
-  --buttons-stroke-primary-selected: rgb(var(--blue-ged-400));
-  --buttons-destructive: rgb(var(--red-light));
-  --buttons-text-link: rgb(var(--white-primary));
-
   // General Contrasts
   --general-contrasts: rgb(var(--white-primary));
   --general-contrasts-100: rgb(var(--gray-ged-50));

@@ -150,18 +150,6 @@
 
 [data-theme='dark'],
 [data-brand='tec'][data-mode='dark'] {
-  // Containers
-  --containers-background: rgb(var(--gray-charade-950));
-  --containers-main: rgb(var(--gray-charade-900));
-  --containers-header-mobile: rgb(var(--gray-charade-900));
-  --containers-modal: rgb(var(--gray-charade-950));
-  --containers-container-button: rgb(var(--gray-charade-900));
-
-  --containers-container-button: rgb(var(--gray-charade-900));
-  --containers-background-fade: rgb(var(--gray-charade-950));
-
-  --containers-background-fade: rgb(var(--color-charade-950));
-
   // General Contrasts
   --general-contrasts: rgb(var(--white-primary));
   --general-contrasts-100: rgb(var(--gray-charade-50));
