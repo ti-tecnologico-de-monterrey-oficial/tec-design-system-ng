@@ -30,6 +30,7 @@ export class TableLtsComponent implements OnInit {
       icon: 'face',
       labelEn: 'Last Name',
       type: 'string',
+      width: 200,
     },
     {
       def: 'email',
@@ -39,6 +40,7 @@ export class TableLtsComponent implements OnInit {
       labelEn: 'Email',
       type: 'string',
       isFilterable: false,
+      width: 500
     },
     {
       def: 'birthday',
@@ -68,7 +70,7 @@ export class TableLtsComponent implements OnInit {
         {
           id: 1,
           first_name: 'Mindy',
-          last_name: 'Dengel',
+          last_name: 'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
           email: 'mdengel0@examiner.com',
           country: 'Latvia',
           birthday: '17/10/2001',

@@ -39,7 +39,7 @@
               {
                 "glob": "**/*.svg",
                 "input": "node_modules/@material-symbols/svg-400/rounded/",
-                "output": "/node_modules/@material-symbols/svg-400/rounded/"
+                "output": "/assets/icons/material-rounded/"
               },
               "src/favicon.ico",
               "src/assets"
