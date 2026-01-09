@@ -500,6 +500,22 @@ import { BmbVerticalLayoutItemDirective } from '../directives/bmb-layout/bmb-ver
               "
             />
           </section>
+          <section
+            bmbSelector
+            [idSelector]="9"
+            [activeSelectorID]="selectedTab"
+          >
+            <ng-template
+              *ngTemplateOutlet="
+                content;
+                context: {
+                  list: alertColors,
+                  title: tabList[selectedTab - 1].title,
+                  isNameStyle: true
+                }
+              "
+            />
+          </section>
         </bmb-tabs>
       </section>
     </section>
@@ -516,6 +532,7 @@ class StorybookColorsPlaygroundComponent {
     { id: 6, title: 'mitec' },
     { id: 7, title: 'Creative use' },
     { id: 8, title: 'Tecmilenio' },
+    { id: 9, title: 'Alert' },
   ];
 
   institutionalColors: string[] = ['--blue-tec', '--white-primary'];
@@ -644,8 +661,6 @@ class StorybookColorsPlaygroundComponent {
     '--green-tecmi-950',
   ];
 
-  tecmilenioColors: string[] = ['--tecmi-green', '--tecmi-green-2'];
-
   institutionalTECMI: string[] = [
     '--tecmi-primary',
     '--tecmi-secondary',
@@ -772,6 +787,17 @@ class StorybookColorsPlaygroundComponent {
     '--creative-use-rum',
     '--creative-use-ripe-lemon',
     '--creative-use-hibiscus',
+  ];
+
+  tecmilenioColors: string[] = ['--tecmi-green', '--tecmi-green-2'];
+
+  alertColors: string[] = [
+    '--alert-successful',
+    '--alert-event',
+    '--alert-neutral',
+    '--alert-primary-alert-primary',
+    '--alert-warning',
+    '--alert-error',
   ];
 
   grayCharade: string[] = [
