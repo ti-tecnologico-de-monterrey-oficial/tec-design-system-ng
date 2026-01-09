@@ -58,6 +58,7 @@ import { BmbDateRangeComponent } from '../bmb-date-range/bmb-date-range.componen
 import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
 import { DateTime } from 'luxon';
 import { sanitizeContent } from '../../utils/sanitizeContent';
+import { TranslatePipe } from '../../pipes/translations';
 
 export type BmbTableLang = 'en' | 'es';
 
@@ -80,6 +81,7 @@ export type BmbTableLang = 'en' | 'es';
     ReactiveFormsModule,
     BmbDateRangeComponent,
     BmbActionIconComponent,
+    TranslatePipe,
   ],
   templateUrl: './bmb-tables.component.html',
   styleUrl: './bmb-tables.component.scss',

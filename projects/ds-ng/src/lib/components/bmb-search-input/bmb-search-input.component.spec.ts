@@ -1,4 +1,9 @@
-import { ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
+import {
+  ComponentFixture,
+  TestBed,
+  fakeAsync,
+  tick,
+} from '@angular/core/testing';
 import { BmbSearchInputComponent } from './bmb-search-input.component';
 import { ComponentRef } from '@angular/core';
 import { By } from '@angular/platform-browser';
@@ -122,7 +127,9 @@ describe('BmbSearchInputComponent', () => {
     component.setSelectedValue(item);
 
     expect(component.filterControl.value).toBe('Apple');
-    expect(component.onServerSideFilterEvent.emit).toHaveBeenCalledWith('Apple');
+    expect(component.onServerSideFilterEvent.emit).toHaveBeenCalledWith(
+      'Apple',
+    );
   });
 
   it('should close dialog when closeList is called', () => {
@@ -178,6 +185,8 @@ describe('BmbSearchInputComponent', () => {
     component.handleKeyDown(event);
 
     expect(event.preventDefault).toHaveBeenCalled();
-    expect(component.setSelectedValue).toHaveBeenCalledWith(component.filteredData[0]);
+    expect(component.setSelectedValue).toHaveBeenCalledWith(
+      component.filteredData[0],
+    );
   });
 });
