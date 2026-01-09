@@ -8,14 +8,14 @@
 
   bmb-tabs {
     .bmb_tabs-item {
-      color: var(--general_contrasts-75);
+      color: var(--general-contrasts-75);
     }
   }
 
   bmb-alert-center-list {
     .bmb_alert-center-list-item-time,
     .bmb_alert-center-list-item-date {
-      color: var(--general_contrasts-75);
+      color: var(--general-contrasts-75);
     }
   }
 
@@ -28,7 +28,7 @@
     position: relative;
 
     @include mixins.check-for-mobile(false) {
-      border-right: rem.rem_calc(1) solid var(--general_contrasts-15);
+      border-right: rem.rem_calc(1) solid var(--general-contrasts-15);
     }
 
     &-no-border {

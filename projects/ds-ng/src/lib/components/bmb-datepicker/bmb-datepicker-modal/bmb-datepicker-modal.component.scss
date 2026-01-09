@@ -4,7 +4,7 @@
 
 .bmb_datepicker-modal {
   width: 100%;
-  color: var(--general_contrasts-100);
+  color: var(--general-contrasts-100);
   background-color: var(--containers-main);
   border-radius: var(--bmb-radius-m);
   max-width: rem.rem_calc(400);
@@ -56,7 +56,7 @@
       opacity: 0.35;
       padding: rem.rem_calc(0 4);
       text-transform: capitalize;
-      color: var(--general_contrasts-100);
+      color: var(--general-contrasts-100);
     }
 
     &.bmb_field-input-normal {
@@ -74,18 +74,18 @@
     &:hover:not(:disabled):not(.bmb-disabled),
     &:focus:not(:disabled):not(.bmb-disabled),
     &:focus-visible:not(:disabled):not(.bmb-disabled) {
-      background-color: var(--general_contrasts-25);
+      background-color: var(--general-contrasts-25);
     }
 
     &-selected:not(.bmb_field-input-normal) {
-      background-color: var(--general_contrasts-main-selection);
+      background-color: var(--general-contrasts-main-selection);
       color: var(--bmb-calendar-button-selected-background);
       opacity: 1 !important;
 
       &:hover:not(:disabled):not(.bmb-disabled),
       &:focus:not(:disabled):not(.bmb-disabled),
       &:focus-visible:not(:disabled):not(.bmb-disabled) {
-        background-color: var(--general_contrasts-main-selection);
+        background-color: var(--general-contrasts-main-selection);
       }
     }
   }
@@ -133,7 +133,7 @@
         &:hover:not(:disabled):not(.bmb-disabled):not(
             .bmb_datepicker-modal-calendar-list-item-selected
           ) {
-          border-color: var(--general_contrasts-75);
+          border-color: var(--general-contrasts-75);
           background-color: transparent;
         }
       }
@@ -157,14 +157,14 @@
           border-radius: var(--bmb-radius-4);
           padding: rem.rem_calc(2);
           opacity: 1;
-          color: var(--general_contrasts-75);
+          color: var(--general-contrasts-75);
         }
         &-selected.bmb_datepicker-modal-button {
-          background-color: var(--general_contrasts-input-outline);
+          background-color: var(--general-contrasts-input-outline);
           color: var(--containers-main);
 
           &:hover:not(:disabled):not(.bmb-disabled) {
-            background-color: var(--general_contrasts-input-outline);
+            background-color: var(--general-contrasts-input-outline);
             color: var(--containers-main);
           }
         }

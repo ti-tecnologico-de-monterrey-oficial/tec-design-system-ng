@@ -20,14 +20,14 @@ import {
     <h1>${SANDBOX_TITLE}</h1>
     <p [ngStyle]="getStyles()">
       <button
-        style="color: var(--general_contrasts-100);"
+        style="color: var(--general-contrasts-100);"
         (click)="copyToClipboard('var')"
       >
         CSS variable name: <strong>--{{ shadowsName() }}</strong>
       </button>
       <bmb-divider />
       <button
-        style="color: var(--general_contrasts-100);"
+        style="color: var(--general-contrasts-100);"
         (click)="copyToClipboard('class')"
       >
         Class name: <strong>{{ shadowsName() }}</strong>

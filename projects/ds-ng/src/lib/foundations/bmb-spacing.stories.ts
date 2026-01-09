@@ -42,14 +42,14 @@ import {
       <bmb-card margin="none">
         <bmb-card-content padding="m">
           <button
-            style="color: var(--general_contrasts-100);"
+            style="color: var(--general-contrasts-100);"
             (click)="handleClick('--bmb-padding-' + padding())"
           >
             CSS variable name: <strong>--bmb-padding-{{ padding() }}</strong>
           </button>
           <bmb-divider />
           <button
-            style="color: var(--general_contrasts-100);"
+            style="color: var(--general-contrasts-100);"
             (click)="handleClick('bmb_padding-' + padding())"
           >
             Class name: <strong>bmb_padding-{{ padding() }}</strong>
@@ -60,14 +60,14 @@ import {
       <bmb-card margin="none">
         <bmb-card-content padding="m">
           <button
-            style="color: var(--general_contrasts-100);"
+            style="color: var(--general-contrasts-100);"
             (click)="handleClick('--bmb-gap-' + gap())"
           >
             CSS variable name: <strong>--bmb-gap-{{ gap() }}</strong>
           </button>
           <bmb-divider />
           <button
-            style="color: var(--general_contrasts-100);"
+            style="color: var(--general-contrasts-100);"
             (click)="handleClick('bmb_gap-' + gap())"
           >
             Class name: <strong>bmb_gap-{{ gap() }}</strong>
@@ -78,14 +78,14 @@ import {
       <bmb-card margin="none">
         <bmb-card-content padding="m">
           <button
-            style="color: var(--general_contrasts-100);"
+            style="color: var(--general-contrasts-100);"
             (click)="handleClick('--bmb-margin-' + margin())"
           >
             CSS variable name: <strong>--bmb-margin-{{ margin() }}</strong>
           </button>
           <bmb-divider />
           <button
-            style="color: var(--general_contrasts-100);"
+            style="color: var(--general-contrasts-100);"
             (click)="handleClick('bmb_margin-' + margin())"
           >
             Class name: <strong>bmb_margin-{{ margin() }}</strong>

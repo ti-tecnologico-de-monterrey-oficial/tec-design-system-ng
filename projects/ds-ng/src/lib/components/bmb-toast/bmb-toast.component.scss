@@ -2,35 +2,35 @@
 @use '../../../assets/styles/base/rem' as rem;
 
 $appearanceList: (
-  'neutral': var(--general_contrasts-75),
+  'neutral': var(--general-contrasts-75),
   'primary': var(--semantic-brand),
   'warning': var(--semantic-warning),
   'error': var(--semantic-error),
   'event': var(--semantic-info-event),
   'successful': var(--semantic-success),
-  'mitec_blue': RGBA(var(--color-mitec-blue)),
-  'mitec_red': RGBA(var(--color-mitec-red)),
-  'mitec_green': RGBA(var(--color-mitec-green)),
-  'mitec_orange': RGBA(var(--color-mitec-orange)),
-  'mitec_light_green': RGBA(var(--color-green-light)),
-  'mitec_purple': RGBA(var(--color-mitec-purple)),
+  'mitec_blue': RGBA(var(--mitec-blue)),
+  'mitec_red': RGBA(var(--mitec-red)),
+  'mitec_green': RGBA(var(--mitec-green)),
+  'mitec_orange': RGBA(var(--mitec-orange)),
+  'mitec_light_green': RGBA(var(--green-light)),
+  'mitec_purple': RGBA(var(--mitec-purple)),
   'creative_violet': var(--creative-use-violet),
   'creative_indigo': var(--creative-use-indigo),
   'creative_emerald': var(--creative-use-emerald),
   'creative_licorice': var(--creative-use-licorice),
-  'creative_darkteal': var(--creative-use-darkteal),
+  'creative_darkteal': var(--creative-use-dark-teal),
   'creative_peach': var(--creative-use-peach),
   'creative_sepia': var(--creative-use-sepia),
-  'creative_softred': var(--creative-use-softred),
+  'creative_softred': var(--creative-use-soft-red),
   'creative_wattle': var(--creative-use-wattle),
-  'creative_shipcove': var(--creative-use-shipcove),
+  'creative_shipcove': var(--creative-use-ship-cove),
   'creative_plantation': var(--creative-use-plantation),
   'creative_rum': var(--creative-use-rum),
   'creative_hibiscus': var(--creative-use-hibiscus),
-  'creative_ripelemon': var(--creative-use-ripelemon),
+  'creative_ripelemon': var(--creative-use-ripe-lemon),
 );
 
-@mixin toast($appearance: neutral, $color: var(--general_contrasts-75)) {
+@mixin toast($appearance: neutral, $color: var(--general-contrasts-75)) {
   border-color: $color;
   @if (
     $appearance ==
@@ -51,7 +51,7 @@ $appearanceList: (
     }
   } @else {
     .bmb_toast-icon {
-      color: var(--general_contrasts-75);
+      color: var(--general-contrasts-75);
     }
   }
 }
@@ -62,7 +62,7 @@ $appearanceList: (
   border-radius: var(--bmb-radius-1);
   border-style: solid;
   border-width: rem.rem_calc(1);
-  color: var(--general_contrasts-100);
+  color: var(--general-contrasts-100);
   display: flex;
   gap: rem.rem_calc(8);
   justify-content: space-between;
@@ -95,7 +95,7 @@ $appearanceList: (
   }
 
   &-description {
-    color: var(--general_contrasts-75);
+    color: var(--general-contrasts-75);
     display: block;
     margin: rem.rem_calc(2) 0 0;
     white-space: normal;
@@ -118,12 +118,12 @@ $appearanceList: (
 
   &-close {
     font-size: rem.rem_calc(20);
-    color: var(--general_contrasts-100);
+    color: var(--general-contrasts-100);
   }
 
   &-reminder {
     border: 0 none;
-    color: var(--general_contrasts-input-outline);
+    color: var(--general-contrasts-input-outline);
     justify-content: center;
 
     .bmb_toast-content {

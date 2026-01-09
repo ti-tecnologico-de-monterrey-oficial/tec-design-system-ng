@@ -3,7 +3,7 @@
 .bmb_container {
   align-items: flex-start;
   background-color: var(--containers-main);
-  border-color: var(--general_contrasts-container-outline);
+  border-color: var(--general-contrasts-container-outline);
   border-radius: var(--bmb-radius-2);
   border-style: solid;
   border-width: rem.rem_calc(1);
@@ -36,7 +36,7 @@
   // Modal
   &-secondary-container {
     background-color: var(--containers-modal);
-    border-color: var(--general_contrasts-25);
+    border-color: var(--general-contrasts-25);
     flex-direction: column;
     justify-content: center;
     padding: rem.rem_calc(16);
@@ -44,8 +44,8 @@
 
   &-contrast-box-container {
     align-items: center;
-    background-color: var(--general_contrasts-input-background);
-    border-color: var(--color-black-min);
+    background-color: var(--general-contrasts-input-background);
+    border-color: var(--black-min);
     border-radius: var(--bmb-radius-6);
     flex-direction: column;
     justify-content: center;

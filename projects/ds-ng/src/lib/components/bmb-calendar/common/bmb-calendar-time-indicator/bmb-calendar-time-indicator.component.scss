@@ -8,7 +8,7 @@
   width: calc(100% - rem.rem_calc(70));
   height: 1px;
   overflow: visible;
-  background-color: var(--general_contrasts-main-selection);
+  background-color: var(--general-contrasts-main-selection);
   transform: translateY(rem.rem_calc(-50));
 
   @include mixins.media-query(1001, 'min') {
@@ -16,14 +16,14 @@
   }
 
   &-time {
-    background-color: var(--general_contrasts-main-selection);
+    background-color: var(--general-contrasts-main-selection);
     font-size: rem.rem_calc(12);
     position: absolute;
     right: 100%;
     top: rem.rem_calc(-14);
     padding: rem.rem_calc(4 8);
     white-space: nowrap;
-    color: RGBA(var(--color-white-primary));
+    color: RGBA(var(--white-primary));
     border-radius: rem.rem_calc(44);
   }
 }

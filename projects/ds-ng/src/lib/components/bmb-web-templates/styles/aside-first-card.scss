@@ -94,14 +94,14 @@
       background-color: var(--containers-main);
       border-radius: var(--bmb-radius-m);
       padding: var(--bmb-spacing-m);
-      border: rem.rem_calc(1) solid var(--general_contrasts-container);
+      border: rem.rem_calc(1) solid var(--general-contrasts-container);
     }
 
     &-aside {
       background-color: var(--containers-main);
       border-radius: var(--bmb-radius-m);
       padding: var(--bmb-spacing-m);
-      border: rem.rem_calc(1) solid var(--general_contrasts-container);
+      border: rem.rem_calc(1) solid var(--general-contrasts-container);
     }
   }
 }

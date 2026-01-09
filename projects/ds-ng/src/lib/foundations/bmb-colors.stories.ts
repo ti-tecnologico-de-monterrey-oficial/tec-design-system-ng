@@ -759,7 +759,7 @@ class StorybookColorsPlaygroundComponent {
     '--semantic-info-event',
     '--semantic-warning',
     '--semantic-error',
-    '--semantic-branding',
+    '--semantic-brand',
     '--semantic-alert',
     '--semantic-neutral',
   ];
@@ -777,12 +777,12 @@ class StorybookColorsPlaygroundComponent {
     '--creative-use-indigo',
     '--creative-use-emerald',
     '--creative-use-licorice',
-    '--creative-use-darkteal',
+    '--creative-use-dark-teal',
     '--creative-use-peach',
     '--creative-use-sepia',
-    '--creative-use-softred',
+    '--creative-use-soft-red',
     '--creative-use-wattle',
-    '--creative-use-shipcove',
+    '--creative-use-ship-cove',
     '--creative-use-plantation',
     '--creative-use-rum',
     '--creative-use-ripe-lemon',
@@ -917,16 +917,16 @@ ${getSpecialSpecifications(
     `
 ### Implementation details:
 >\`\`\`css
-background-color: rgb(var(--color-name));
-color: rgb(var(--color-name));
+background-color: rgb(var(--name));
+color: rgb(var(--name));
 >
 /* You need to avoid the rgb() for some variables, take a look to the playground */
-background-color: var(--color-name);
-color: var(--color-name);
+background-color: var(--name);
+color: var(--name);
 >
 /* For gradients colors */
-background: linear-gradient(180deg, var(--color-gradient-blue));
-background: radial-gradient(circle, var(--color-gradient-blue));
+background: linear-gradient(180deg, var(--gradient-blue));
+background: radial-gradient(circle, var(--gradient-blue));
 \`\`\`
 - To seamlessly integrate these colors into your design.
 - Dive into ${DESIGN_SYSTEM_TITLE} color palette to discover the perfect colors that will bring your designs to life.

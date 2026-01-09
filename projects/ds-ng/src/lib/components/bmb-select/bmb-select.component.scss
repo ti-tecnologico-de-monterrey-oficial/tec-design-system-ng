@@ -6,7 +6,7 @@
   position: relative;
 
   &-input {
-    border: rem.rem_calc(1) solid RGBA(var(--color-charade-500));
+    border: rem.rem_calc(1) solid RGBA(var(--gray-charade-500));
     padding: rem.rem_calc(8);
     border-radius: var(--bmb-radius-2);
     display: flex;
@@ -27,7 +27,7 @@
 
   &-list {
     display: none;
-    background-color: RGBA(var(--color-black-primary));
+    background-color: RGBA(var(--black-primary));
     z-index: 999;
     list-style: none;
     padding: 0;

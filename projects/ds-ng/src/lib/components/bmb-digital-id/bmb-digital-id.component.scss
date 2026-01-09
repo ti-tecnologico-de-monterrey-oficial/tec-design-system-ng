@@ -2,7 +2,7 @@
 @use '../../../assets/styles/base/rem' as rem;
 
 .bmb_digital-id {
-  background-color: rgb(var(--color-charade-50));
+  background-color: rgb(var(--gray-charade-50));
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows:
@@ -24,7 +24,7 @@
       grid-row: 1/2;
       grid-column: 1/2;
       z-index: 2;
-      color: rgb(var(--color-white-primary));
+      color: rgb(var(--white-primary));
     }
 
     &-image {
@@ -48,22 +48,22 @@
 
     .bmb_user-summary_content-wrapper-title-column {
       @include fonts.font(9, bold);
-      color: rgb(var(--color-black-primary)) !important;
+      color: rgb(var(--black-primary)) !important;
       padding-top: var(--bmb-spacing-l);
     }
 
     .bmb_user_image-bordered {
-      background-color: rgb(var(--color-white-primary));
+      background-color: rgb(var(--white-primary));
     }
 
     .bmb_user-summary_content-wrapper-general-text {
       @include fonts.font(7, regular);
-      color: rgba(var(--color-black-primary), 0.75);
+      color: rgba(var(--black-primary), 0.75);
     }
 
     .bmb_user-summary_content-wrapper-campus {
       @include fonts.font(5, regular);
-      color: rgba(var(--color-black-primary), 0.75);
+      color: rgba(var(--black-primary), 0.75);
     }
   }
 
@@ -76,8 +76,8 @@
     gap: var(--bmb-spacing-m);
 
     .bmb_btn-secondary-outlined {
-      border-color: rgb(var(--color-charade-950));
-      color: rgb(var(--color-charade-950));
+      border-color: rgb(var(--gray-charade-950));
+      color: rgb(var(--gray-charade-950));
     }
 
     button {

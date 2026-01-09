@@ -22,7 +22,7 @@
   }
 
   &-item {
-    color: var(--menu_select-label-menu-inactive);
+    color: var(--menu-select-label-menu-inactive);
 
     .bmb_check-external-link-button {
       display: block;
@@ -42,19 +42,19 @@
       &:hover,
       &:focus,
       &:focus-visible {
-        background-color: var(--menu_select-on-surface-hovered);
+        background-color: var(--menu-select-on-surface-hovered);
         outline: 0 none;
       }
     }
 
     &-selected {
-      color: var(--menu_select-label-menu-active);
+      color: var(--menu-select-label-menu-active);
       .bmb_check-external-link-button-element {
-        background-color: var(--menu_select-surface-activated);
+        background-color: var(--menu-select-surface-activated);
         &:hover,
         &:focus,
         &:focus-visible {
-          color: var(--menu_select-label-menu-inactive);
+          color: var(--menu-select-label-menu-inactive);
         }
       }
     }
@@ -81,10 +81,10 @@
 
       &-input {
         border-radius: var(--bmb-radius-2) var(--bmb-radius-2) 0 0;
-        border: rem.rem_calc(1) solid var(--general_contrasts-50);
-        background-color: var(--general_contrasts-input-background);
+        border: rem.rem_calc(1) solid var(--general-contrasts-50);
+        background-color: var(--general-contrasts-input-background);
         padding: rem.rem_calc(8 8 8 48);
-        color: var(--menu_select-label-menu-inactive);
+        color: var(--menu-select-label-menu-inactive);
         width: 100%;
 
         &:hover,

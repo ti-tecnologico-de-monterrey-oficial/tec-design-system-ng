@@ -56,14 +56,14 @@ $font-weights: 100, 200, 300, 400, 500, 600, 700, 800, 900;
       flex: 1;
 
       &-title {
-        color: var(--general_contrasts-100);
+        color: var(--general-contrasts-100);
         @include font-sizes();
         @include font-weights();
         @include centered();
       }
 
       &-subtitle {
-        color: var(--general_contrasts-75);
+        color: var(--general-contrasts-75);
         @include font-sizes();
         @include font-weights();
         @include centered();
@@ -74,7 +74,7 @@ $font-weights: 100, 200, 300, 400, 500, 600, 700, 800, 900;
       .bmb_breadcrumb-link,
       .bmb_breadcrumb-separator,
       .bmb_breadcrumb-dropdown-button {
-        color: var(--general_contrasts-75);
+        color: var(--general-contrasts-75);
         @include fonts.font(4, regular);
       }
 
