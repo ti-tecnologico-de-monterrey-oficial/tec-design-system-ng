@@ -264,7 +264,6 @@
     &.bmb_table_lite-actions {
       background: inherit;
       border-left: rem.rem_calc(1) solid var(--buttons-inactive-step);
-      color: var(--color-table-90);
       position: sticky;
       right: 0;
       z-index: 2;
@@ -274,7 +273,6 @@
       align-items: center;
       background: transparent;
       border: 0;
-      color: var(--color-table-90);
       cursor: pointer;
       display: flex;
       padding: 0;
