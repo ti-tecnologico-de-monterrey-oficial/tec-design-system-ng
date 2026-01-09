@@ -115,9 +115,9 @@ const preview: Preview = {
         title: 'Brand',
         icon: 'grow',
         items: [
-          { value: 'tec', title: 'TEC' },
-          { value: 'tecmi', title: 'TECMI' },
-          { value: 'ged', title: 'GED' },
+          { value: 'tec', title: 'TEC brand' },
+          { value: 'tecmi', title: 'TECMI brand' },
+          { value: 'ged', title: 'GED brand' },
         ],
         showName: true,
         dynamicTitle: true,
@@ -142,10 +142,10 @@ const preview: Preview = {
     },
     withThemeByClassName({
       themes: {
-        light: 'storybook-light-theme',
-        dark: 'storybook-dark-theme',
+        Light: 'storybook-light-theme',
+        Dark: 'storybook-dark-theme',
       },
-      defaultTheme: 'dark',
+      defaultTheme: 'Dark',
     }),
   ],
 };
