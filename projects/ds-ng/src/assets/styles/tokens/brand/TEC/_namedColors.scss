@@ -211,6 +211,14 @@
     var(--gray-charade-700)
   );
 
+  //Alert
+  --alert-successful: rgb(var(--green-primary));
+  --alert-event: rgb(var(--purple-light));
+  --alert-neutral: rgb(var(--gray-charade-300));
+  --alert-primary-alert-primary: rgb(var(--neon-primary));
+  --alert-warning: rgb(var(--yellow-primary));
+  --alert-error: rgb(var(--red-primary));
+
   // Buttons
   --buttons-primary-normal: rgb(var(--blue-mariner-700));
   --buttons-primary-hover: rgb(var(--blue-mariner-800));
@@ -229,6 +237,14 @@
   --buttons-stroke-primary-selected: rgb(var(--blue-mariner-300));
   --buttons-destructive: rgb(var(--red-light));
   --buttons-text-link: rgb(var(--blue-mariner-500));
+
+  //Alert
+  --alert-successful: rgb(var(--green-primary));
+  --alert-event: rgb(var(--purple-light));
+  --alert-neutral: rgb(var(--gray-charade-300));
+  --alert-primary-alert-primary: rgb(var(--neon-primary));
+  --alert-warning: rgb(var(--yellow-primary));
+  --alert-error: rgb(var(--red-primary));
 
   //Menu select
   --menu-select-surface-activated: rgb(var(--blue-mariner-700));
