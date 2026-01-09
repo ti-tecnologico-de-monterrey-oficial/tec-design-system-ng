@@ -40,7 +40,7 @@ export class TableLtsComponent implements OnInit {
       labelEn: 'Email',
       type: 'string',
       isFilterable: false,
-      width: 500
+      width: 500,
     },
     {
       def: 'birthday',

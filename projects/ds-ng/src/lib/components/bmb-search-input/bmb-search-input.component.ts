@@ -71,10 +71,7 @@ export class BmbSearchInputComponent implements AfterViewInit, OnChanges {
     } else {
       this.initOptions(this.data());
     }
-    if (
-      changes['serverSideFilteredData'] &&
-      changes['isLoading']
-    ) {
+    if (changes['serverSideFilteredData'] && changes['isLoading']) {
       this.isDialogOpen =
         changes['serverSideFilteredData']?.currentValue?.length ||
         changes['isLoading']?.currentValue;
