@@ -25,7 +25,7 @@ export class TableLtsComponent implements OnInit {
     },
     {
       def: 'last_name',
-      label: 'Apellido',
+      label: 'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
       dataKey: 'last_name',
       icon: 'face',
       labelEn: 'Last Name',

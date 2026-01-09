@@ -7,7 +7,7 @@
             <bmb-input
               class="bmb_table-search"
               [type]="'text'"
-              [placeholder]="'Buscar'"
+              [placeholder]="'table.filters.search' | translate"
               [disabled]="false"
               [icon]="'search'"
               [appearance]="'normal'"
@@ -23,14 +23,14 @@
                 @case ('number') {
                   <div class="bmb_table-filter-item-number" margin="none">
                     <bmb-input
-                      [label]="column.label + ' mínimo'"
+                      [label]="column.label + ('table.filters.min' | translate)"
                       [type]="'number'"
                       [placeholder]="'Mín'"
                       [appearance]="'normal'"
                       [control]="getFormControl(column.dataKey + '_min')"
                     />
                     <bmb-input
-                      [label]="column.label + ' máximo'"
+                      [label]="column.label + ('table.filters.max' | translate)"
                       [type]="'number'"
                       [placeholder]="'Máx'"
                       [appearance]="'normal'"
@@ -41,9 +41,11 @@
 
                 @case ('date') {
                   <bmb-date-range
-                    [placeholderStartDate]="'Desde'"
-                    [placeholderEndDate]="'Hasta'"
+                    [placeholderStartDate]="'table.filters.startDatePlaceholder' | translate"
+                    [placeholderEndDate]="'table.filters.endDatePlaceholder' | translate"
                     [icon]="'calendar_month'"
+                    [labelEndDate]="'table.filters.endDate' | translate"
+                    [labelStartDate]="'table.filters.startDate' | translate"
                     [dateFormat]="'dd/MM/yyyy'"
                     [controlStart]="getFormControl(column.dataKey + '_from')"
                     [controlEnd]="getFormControl(column.dataKey + '_to')"
@@ -59,7 +61,7 @@
                 @default {
                   <bmb-input
                     [label]="column.label"
-                    [placeholder]="'Filtrar'"
+                    [placeholder]="'table.filters.filter' | translate"
                     [control]="getFormControl(column.dataKey + '_contains')"
                   />
                 }

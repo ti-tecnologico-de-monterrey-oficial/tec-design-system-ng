@@ -181,6 +181,8 @@
 
       &.wrapped {
         white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
       }
 
       @include mixins.media-query(768, 'min') {
