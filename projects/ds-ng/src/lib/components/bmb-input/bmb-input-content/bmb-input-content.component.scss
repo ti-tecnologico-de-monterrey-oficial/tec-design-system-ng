@@ -165,6 +165,10 @@
     gap: var(--bmb-spacing-s);
     align-items: center;
     padding: rem.rem_calc(4);
+
+    bmb-action-icon {
+      display: flex;
+    }
   }
 
   &-additional_action,
