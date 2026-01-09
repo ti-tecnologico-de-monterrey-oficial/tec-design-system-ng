@@ -111,6 +111,18 @@
   --creative-use-ripe-lemon: rgb(var(--ripe-lemon-primary));
   --creative-use-hibiscus: rgb(var(--hibiscus-primary));
 
+  // variables for buttons
+  --buttons-primary-border-hover: var(--buttons-primary-normal);
+  --buttons-primary-text-hover: var(--buttons-primary-normal);
+  --buttons-primary-border-active: var(--buttons-primary-select);
+  --buttons-card-hover-background: var(--buttons-primary-hover);
+  --buttons-card-hover-text: var(--general-contrasts-100);
+  --bmb-evaluation-rubric-radius-circle: 0;
+  --bmb-calendar-button-selected-background: var(--general-contrasts-5);
+
+  // variables for containers
+  --bmb-dot-paginator-dot: rgb(var(--gray-ged-500));
+
   /*TECMI*/
   @include mc.fixed-names;
 }
