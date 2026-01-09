@@ -71,6 +71,14 @@
   --buttons-destructive: rgb(var(--red-primary));
   --buttons-text-link: rgb(var(--blue-mariner-700));
 
+  //Alert
+  --alert-successful: rgb(var(--green-primary));
+  --alert-event: rgb(var(--purple-light));
+  --alert-neutral: rgb(var(--gray-charade-300));
+  --alert-primary-alert-primary: rgb(var(--neon-primary));
+  --alert-warning: rgb(var(--yellow-primary));
+  --alert-error: rgb(var(--red-primary));
+
   //Menu select
   --menu-select-surface-activated: rgb(var(--blue-mariner-700));
   --menu-select-label-menu-active: rgb(var(--gray-charade-50));
@@ -122,40 +130,26 @@
   --gradient-bg-tec: rgb(var(--blue-mariner-50)) 56.25%,
     rgb(var(--blue-mariner-100)) 100%;
 
-  --drop-shadow-color-test-shadow: rgba(var(--black-primary), 0.2);
-
-  --vertical-step-active: rgb(var(--gray-charade-50));
-  --vertical-step-active-color: rgb(var(--gray-charade-700));
-  --vertical-step-subtitle: rgb(var(--gray-charade-700));
-
   // New variables
-  --buttons-active-switch-box-shadow-hover: rgba(
-    var(--color-mariner-700),
-    0.15
-  );
-  --buttons-active-switch-box-shadow-focus: rgba(
-    var(--color-mariner-700),
-    0.25
-  );
+  --buttons-active-switch-box-shadow-hover: rgba(var(--blue-mariner-700), 0.15);
+  --buttons-active-switch-box-shadow-focus: rgba(var(--blue-mariner-700), 0.25);
   --buttons-inactive-switch-box-shadow-hover: rgba(
-    var(--color-charade-500),
+    var(--gray-charade-500),
     0.15
   );
   --buttons-inactive-switch-box-shadow-focus: rgba(
-    var(--color-charade-500),
+    var(--gray-charade-500),
     0.25
   );
-  --drop_shadow-color-test-shadow: rgba(var(--color-black-primary), 0.2);
 
-  // Buttons (only develop)
   --buttons-primary-border-hover: var(--buttons-primary-hover);
   --buttons-primary-text-hover: var(--buttons-alternative-normal);
   --buttons-primary-border-active: var(--buttons-stroke-primary-selected);
   --buttons-card-hover-background: var(--buttons-primary-hover);
   --buttons-card-hover-text: var(--buttons-alternative-normal);
   --bmb-evaluation-rubric-radius-circle: 50%;
-  --bmb-calendar-button-selected-background: RGBA(var(--color-white-primary));
-  --bmb-dot-paginator-dot: RGBA(var(--color-charade-500));
+  --bmb-calendar-button-selected-background: rgb(var(--white-primary));
+  --bmb-dot-paginator-dot: rgb(var(--gray-charade-500));
 
   /*TEC*/
   @include mc.fixed-names;
@@ -230,6 +224,14 @@
   --buttons-destructive: rgb(var(--red-light));
   --buttons-text-link: rgb(var(--blue-mariner-500));
 
+  //Alert
+  --alert-successful: rgb(var(--green-primary));
+  --alert-event: rgb(var(--purple-light));
+  --alert-neutral: rgb(var(--gray-charade-300));
+  --alert-primary-alert-primary: rgb(var(--neon-primary));
+  --alert-warning: rgb(var(--yellow-primary));
+  --alert-error: rgb(var(--red-primary));
+
   //Menu select
   --menu-select-surface-activated: rgb(var(--blue-mariner-700));
   --menu-select-label-menu-active: rgb(var(--gray-charade-50));
@@ -282,21 +284,26 @@
   --gradient-bg-tec: rgb(var(--gray-charade-950)) 56.25%,
     rgb(var(--gray-charade-900)) 100%;
 
-  --vertical-step-active: rgb(var(--gray-charade-700));
-  --vertical-step-active-color: rgb(var(--gray-charade-50));
-  --vertical-step-subtitle: rgb(var(--gray-charade-500));
-
-  --drop-shadow-color-test-shadow: rgba(var(--black-primary), 0.2);
-
-  --buttons-active-switch-box-shadow-hover: rgba(
-    var(--color-green-light),
+  // New variables
+  --buttons-active-switch-box-shadow-hover: rgba(var(--green-light), 0.15);
+  --buttons-active-switch-box-shadow-focus: rgba(var(--green-light), 0.25);
+  --buttons-inactive-switch-box-shadow-hover: rgba(
+    var(--gray-charade-500),
     0.15
   );
-  --buttons-active-switch-box-shadow-focus: rgba(
-    var(--color-green-light),
+  --buttons-inactive-switch-box-shadow-focus: rgba(
+    var(--gray-charade-500),
     0.25
   );
-  --drop_shadow-color-test-shadow: rgba(var(--color-black-primary), 0.2);
+
+  --buttons-primary-border-hover: var(--buttons-primary-hover);
+  --buttons-primary-text-hover: var(--buttons-alternative-normal);
+  --buttons-primary-border-active: var(--buttons-stroke-primary-selected);
+  --buttons-card-hover-background: var(--buttons-primary-hover);
+  --buttons-card-hover-text: var(--buttons-alternative-normal);
+  --bmb-evaluation-rubric-radius-circle: 50%;
+  --bmb-calendar-button-selected-background: rgb(var(--white-primary));
+  --bmb-dot-paginator-dot: rgb(var(--gray-charade-500));
 
   @include mc.fixed-names;
 }
