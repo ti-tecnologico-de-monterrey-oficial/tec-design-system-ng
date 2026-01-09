@@ -9,7 +9,7 @@
   &-header {
     display: flex;
     padding: rem.rem_calc(16 24);
-    border-bottom: rem.rem_calc(1) solid var(--general_contrasts-50);
+    border-bottom: rem.rem_calc(1) solid var(--general-contrasts-50);
     gap: rem.rem_calc(16);
   }
 
@@ -50,10 +50,10 @@
       cursor: pointer;
       transition: background-color 0.3s;
       @include fonts.font(4, regular);
-      color: var(--general_contrasts-75);
+      color: var(--general-contrasts-75);
 
       &:hover {
-        background-color: var(--general_contrasts-25);
+        background-color: var(--general-contrasts-25);
       }
 
       &-title {

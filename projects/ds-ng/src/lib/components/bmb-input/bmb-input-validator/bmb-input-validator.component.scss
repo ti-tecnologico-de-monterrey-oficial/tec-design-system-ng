@@ -30,14 +30,14 @@
     padding: var(--bmb-spacing-s);
     gap: var(--bmb-spacing-s);
     @include fonts.font(4, regular);
-    color: var(--general_contrasts-100);
+    color: var(--general-contrasts-100);
 
     &-required {
-      color: rgb(var(--color-red-light));
+      color: rgb(var(--red-light));
     }
 
     &-tooltip {
-      color: var(--general_contrasts-50);
+      color: var(--general-contrasts-50);
     }
 
     &-max {
@@ -57,7 +57,7 @@
 
       &-simple {
         @include mixins.helper-text();
-        color: var(--general_contrasts-50);
+        color: var(--general-contrasts-50);
       }
     }
 

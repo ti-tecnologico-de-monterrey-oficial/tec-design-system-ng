@@ -3,7 +3,7 @@
 @use '../base/rem' as rem;
 
 .bmb_template-header {
-  background-color: var(--general_contrasts-15);
+  background-color: var(--general-contrasts-15);
   gap: var(--bmb-spacing-s);
   height: rem.rem_calc(100);
   padding: rem.rem_calc(24) rem.rem_calc(24) rem.rem_calc(24) rem.rem_calc(100);
@@ -33,9 +33,9 @@
   }
 
   &-main {
-    background-color: var(--general_contrasts-15);
+    background-color: var(--general-contrasts-15);
     border-radius: var(--bmb-radius-5);
-    box-shadow: rem.rem_calc(10 5 10 0) RGBA(var(--color-black-primary), 0.5);
+    box-shadow: rem.rem_calc(10 5 10 0) RGBA(var(--black-primary), 0.5);
     grid-area: main;
     height: 100%;
     padding: var(--bmb-spacing-l);
@@ -53,9 +53,9 @@
   }
 
   &-aside {
-    background-color: var(--general_contrasts-15);
+    background-color: var(--general-contrasts-15);
     border-radius: var(--bmb-radius-5);
-    box-shadow: rem.rem_calc(10 5 10 0) RGBA(var(--color-black-primary), 0.5);
+    box-shadow: rem.rem_calc(10 5 10 0) RGBA(var(--black-primary), 0.5);
     grid-area: aside;
     height: 100%;
     padding: var(--bmb-spacing-l);
@@ -91,9 +91,9 @@
   }
 
   &-main {
-    background-color: var(--general_contrasts-15);
+    background-color: var(--general-contrasts-15);
     border-radius: var(--bmb-radius-5);
-    box-shadow: rem.rem_calc(10 5 10 0) RGBA(var(--color-black-primary), 0.5);
+    box-shadow: rem.rem_calc(10 5 10 0) RGBA(var(--black-primary), 0.5);
     grid-area: main;
     height: 100%;
     margin-left: rem.rem_calc(80);
@@ -110,9 +110,9 @@
   }
 
   &-aside {
-    background-color: var(--general_contrasts-15);
+    background-color: var(--general-contrasts-15);
     border-radius: var(--bmb-radius-5);
-    box-shadow: rem.rem_calc(10 5 10 0) RGBA(var(--color-black-primary), 0.5);
+    box-shadow: rem.rem_calc(10 5 10 0) RGBA(var(--black-primary), 0.5);
     grid-area: aside;
     height: 100%;
     padding: var(--bmb-spacing-l);
@@ -147,9 +147,9 @@
   }
 
   &-aside {
-    background-color: var(--general_contrasts-15);
+    background-color: var(--general-contrasts-15);
     border-radius: var(--bmb-radius-5);
-    box-shadow: rem.rem_calc(10 5 10 0) RGBA(var(--color-black-primary), 0.5);
+    box-shadow: rem.rem_calc(10 5 10 0) RGBA(var(--black-primary), 0.5);
     grid-area: aside;
     height: 100%;
     margin-left: rem.rem_calc(80);
@@ -167,9 +167,9 @@
   }
 
   &-main {
-    background-color: var(--general_contrasts-15);
+    background-color: var(--general-contrasts-15);
     border-radius: var(--bmb-radius-5);
-    box-shadow: rem.rem_calc(10 5 10 0) RGBA(var(--color-black-primary), 0.5);
+    box-shadow: rem.rem_calc(10 5 10 0) RGBA(var(--black-primary), 0.5);
     grid-area: main;
     height: 100%;
     overflow: hidden;
@@ -201,9 +201,9 @@
   }
 
   &-card {
-    background-color: var(--general_contrasts-15);
+    background-color: var(--general-contrasts-15);
     border-radius: var(--bmb-radius-5);
-    box-shadow: rem.rem_calc(10 5 10 0) RGBA(var(--color-black-primary), 0.5);
+    box-shadow: rem.rem_calc(10 5 10 0) RGBA(var(--black-primary), 0.5);
     grid-area: main;
     height: 100%;
     margin-left: rem.rem_calc(80);
@@ -244,9 +244,9 @@
   }
 
   &-main {
-    background-color: var(--general_contrasts-15);
+    background-color: var(--general-contrasts-15);
     border-radius: var(--bmb-radius-5);
-    box-shadow: rem.rem_calc(10 5 10 0) RGBA(var(--color-black-primary), 0.5);
+    box-shadow: rem.rem_calc(10 5 10 0) RGBA(var(--black-primary), 0.5);
     grid-area: main;
     height: 100%;
     padding: var(--bmb-spacing-l);
@@ -262,9 +262,9 @@
   }
 
   &-secondary {
-    background-color: var(--general_contrasts-15);
+    background-color: var(--general-contrasts-15);
     border-radius: var(--bmb-radius-5);
-    box-shadow: rem.rem_calc(10 5 10 0) RGBA(var(--color-black-primary), 0.5);
+    box-shadow: rem.rem_calc(10 5 10 0) RGBA(var(--black-primary), 0.5);
     grid-area: secondary;
     height: 100%;
     padding: var(--bmb-spacing-l);
@@ -300,9 +300,9 @@
   }
 
   &-main {
-    background-color: var(--general_contrasts-15);
+    background-color: var(--general-contrasts-15);
     border-radius: var(--bmb-radius-5);
-    box-shadow: rem.rem_calc(10 5 10 0) RGBA(var(--color-black-primary), 0.5);
+    box-shadow: rem.rem_calc(10 5 10 0) RGBA(var(--black-primary), 0.5);
     grid-area: main;
     height: 100%;
     margin-left: rem.rem_calc(80);
@@ -319,9 +319,9 @@
   }
 
   &-secondary {
-    background-color: var(--general_contrasts-15);
+    background-color: var(--general-contrasts-15);
     border-radius: var(--bmb-radius-5);
-    box-shadow: rem.rem_calc(10 5 10 0) RGBA(var(--color-black-primary), 0.5);
+    box-shadow: rem.rem_calc(10 5 10 0) RGBA(var(--black-primary), 0.5);
     grid-area: secondary;
     height: 100%;
     padding: var(--bmb-spacing-l);
@@ -359,9 +359,9 @@
   }
 
   &-main {
-    background-color: var(--general_contrasts-15);
+    background-color: var(--general-contrasts-15);
     border-radius: var(--bmb-radius-5);
-    box-shadow: rem.rem_calc(10 5 10 0) RGBA(var(--color-black-primary), 0.5);
+    box-shadow: rem.rem_calc(10 5 10 0) RGBA(var(--black-primary), 0.5);
     grid-area: main;
     height: 100%;
     margin-left: rem.rem_calc(80);
@@ -378,9 +378,9 @@
   }
 
   &-secondary {
-    background-color: var(--general_contrasts-15);
+    background-color: var(--general-contrasts-15);
     border-radius: var(--bmb-radius-5);
-    box-shadow: rem.rem_calc(10 5 10 0) RGBA(var(--color-black-primary), 0.5);
+    box-shadow: rem.rem_calc(10 5 10 0) RGBA(var(--black-primary), 0.5);
     grid-area: secondary;
     height: 100%;
     margin-left: rem.rem_calc(80);
@@ -419,10 +419,10 @@
   }
 
   &-aside {
-    background-color: var(--general_contrasts-15);
+    background-color: var(--general-contrasts-15);
     border-bottom-left-radius: rem.rem_calc(20);
     border-top-left-radius: rem.rem_calc(20);
-    box-shadow: rem.rem_calc(10 5 10 0) RGBA(var(--color-black-primary), 0.5);
+    box-shadow: rem.rem_calc(10 5 10 0) RGBA(var(--black-primary), 0.5);
     grid-area: aside;
     height: 100%;
     margin-left: rem.rem_calc(80);
@@ -443,10 +443,10 @@
   }
 
   &-main {
-    background-color: var(--general_contrasts-5);
+    background-color: var(--general-contrasts-5);
     border-bottom-right-radius: rem.rem_calc(20);
     border-top-right-radius: rem.rem_calc(20);
-    box-shadow: rem.rem_calc(10 5 5.6 0) RGBA(var(--color-black-primary), 0.5);
+    box-shadow: rem.rem_calc(10 5 5.6 0) RGBA(var(--black-primary), 0.5);
     grid-area: main;
     height: 100%;
     overflow: hidden;
@@ -550,7 +550,7 @@
 
   .bmb_accordion {
     .bmb_check-external-link-button {
-      color: var(--general_contrasts-main-selection);
+      color: var(--general-contrasts-main-selection);
 
       button {
         font-size: rem.rem_calc(14);
@@ -571,7 +571,7 @@
 
   &-cta {
     align-items: center;
-    color: var(--general_contrasts-main-selection);
+    color: var(--general-contrasts-main-selection);
     cursor: pointer;
     display: inline-flex;
     gap: rem.rem_calc(2);
@@ -582,7 +582,7 @@
     text-decoration: none;
 
     &::after {
-      background: var(--general_contrasts-main-selection);
+      background: var(--general-contrasts-main-selection);
       bottom: rem.rem_calc(5);
       content: '';
       height: rem.rem_calc(1);
@@ -602,7 +602,7 @@
 .bmb_template-stand-alone-tags {
   background-color: var(--containers-main);
   border-radius: var(--bmb-radius-5);
-  box-shadow: rem.rem_calc(10 5 10 0) RGBA(var(--color-black-primary), 0.5);
+  box-shadow: rem.rem_calc(10 5 10 0) RGBA(var(--black-primary), 0.5);
   display: flex;
   flex-flow: column nowrap;
   margin: rem.rem_calc(24 24 24 100);
@@ -648,7 +648,7 @@
 }
 
 .bmb_template-subheader {
-  border-bottom: rem.rem_calc(1) solid var(--general_contrasts-15);
+  border-bottom: rem.rem_calc(1) solid var(--general-contrasts-15);
   padding: rem.rem_calc(24);
 
   ul {
@@ -670,7 +670,7 @@
 
       &::after,
       &:before {
-        background-color: var(--general_contrasts-text-sidebar);
+        background-color: var(--general-contrasts-text-sidebar);
         bottom: 0;
         content: '';
         display: none;

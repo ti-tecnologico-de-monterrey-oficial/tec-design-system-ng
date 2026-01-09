@@ -2,7 +2,7 @@
 @use '../../../../assets/styles/base/mixins' as mixins;
 
 .bmb_top-bar-user-section {
-  color: rgb(var(--color-white-primary));
+  color: rgb(var(--white-primary));
 
   @include mixins.check-for-mobile() {
     gap: var(--bmb-spacing-s);
@@ -10,19 +10,19 @@
 
   &-menu {
     .bmb_dropdown-content-item {
-      color: rgb(var(--color-white-primary));
+      color: rgb(var(--white-primary));
       .bmb_check-external-link-button-element {
         &:hover,
         &:focus,
         &:focus-visible {
-          background-color: rgb(var(--color-charade-500));
+          background-color: rgb(var(--gray-charade-500));
           outline: 0 none;
         }
       }
     }
 
     .bmb_dropdown-content-modal {
-      background-color: rgb(var(--color-charade-900));
+      background-color: rgb(var(--gray-charade-900));
     }
 
     .bmb_dropdown_menu {

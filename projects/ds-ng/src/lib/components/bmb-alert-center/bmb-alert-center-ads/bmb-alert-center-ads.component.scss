@@ -4,7 +4,7 @@
 .bmb_alert-center {
   &-form {
     padding: var(--bmb-spacing-m);
-    color: var(--general_contrasts-100);
+    color: var(--general-contrasts-100);
     height: calc(100% - rem.rem_calc(40));
     display: flex;
     flex-direction: column;

@@ -7,7 +7,7 @@
   margin: rem.rem_calc(8 0 16 0);
 
   &-title {
-    color: var(--general_contrasts-100);
+    color: var(--general-contrasts-100);
     text-align: center;
     @include fonts.font(5, regular);
     font-weight: 300;

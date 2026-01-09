@@ -30,25 +30,25 @@
 
   &-yellow-circle {
     left: 38.5%;
-    @include circle(RGBA(var(--color-mitec-green), 1));
+    @include circle(RGBA(var(--mitec-green), 1));
     animation: bmb_mitec_logo_animation_yellow_circle 1s 1;
   }
 
   &-red-circle {
     left: 45.5%;
-    @include circle(RGBA(var(--color-mitec-red), 1));
+    @include circle(RGBA(var(--mitec-red), 1));
     animation: bmb_mitec_logo_animation_red_circle 1s 0.2s 1;
   }
 
   &-orange-circle {
     left: 53.2%;
-    @include circle(RGBA(var(--color-mitec-orange), 1));
+    @include circle(RGBA(var(--mitec-orange), 1));
     animation: bmb_mitec_logo_animation_orange_circle 1s 0.3s 1;
   }
 
   &-blue-circle {
     left: 61%;
-    @include circle(RGBA(var(--color-mitec-blue), 1));
+    @include circle(RGBA(var(--mitec-blue), 1));
     animation: bmb_mitec_logo_animation_blue_circle 1s 0.9s 1;
   }
 
@@ -81,7 +81,7 @@
     left: 35.7%;
     width: 28.2%;
     top: 62.78%;
-    fill: var(--general_contrasts-100);
+    fill: var(--general-contrasts-100);
     animation: bmb_mitec_logo_animation_title 4s 1;
   }
 
@@ -89,7 +89,7 @@
     @include fonts.font(9, bold);
     text-align: center;
     font-size: 60%;
-    fill: var(--general_contrasts-100);
+    fill: var(--general-contrasts-100);
     text-anchor: middle;
     animation: bmb_mitec_logo_animation_subtitle 4s 1;
   }

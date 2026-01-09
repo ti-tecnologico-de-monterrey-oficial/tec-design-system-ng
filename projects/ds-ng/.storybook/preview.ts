@@ -116,7 +116,7 @@ const preview: Preview = {
         icon: 'grow',
         items: [
           { value: 'tec', title: 'TEC brand' },
-          { value: 'tecmi', title: 'TECMI brand' },
+          // { value: 'tecmi', title: 'TECMI brand' },
           { value: 'ged', title: 'GED brand' },
         ],
         showName: true,

@@ -3,12 +3,12 @@
 @use '../../../assets/styles/base/mixins' as mixins;
 
 .bmb_drop-zone {
-  color: var(--general_contrasts-80);
+  color: var(--general-contrasts-80);
   @include fonts.font(4, regular);
   width: 100%;
 
   &-container {
-    border: rem.rem_calc(2) dashed var(--general_contrasts-container-outline);
+    border: rem.rem_calc(2) dashed var(--general-contrasts-container-outline);
     border-radius: var(--bmb-radius-3);
     box-sizing: border-box;
     padding: var(--bmb-spacing-m) var(--bmb-spacing-m);
@@ -27,8 +27,8 @@
     }
 
     &-uploading-file {
-      background-color: var(--menu_select-on-surface-hovered-w-checkbox);
-      border-color: var(--general_contrasts-primary);
+      background-color: var(--menu-select-on-surface-hovered-w-checkbox);
+      border-color: var(--general-contrasts-primary);
     }
 
     > p {
@@ -38,7 +38,7 @@
 
   &-label {
     &-instruction {
-      color: var(--general_contrasts-100);
+      color: var(--general-contrasts-100);
     }
 
     &-error {
@@ -48,7 +48,7 @@
 
   &-icon {
     &-valid {
-      color: var(--general_contrasts-primary);
+      color: var(--general-contrasts-primary);
     }
 
     &-animated {

@@ -29,13 +29,13 @@
 
   &-title {
     @include fonts.font(6, regular);
-    color: var(--general_contrasts-100);
+    color: var(--general-contrasts-100);
     font-weight: 300;
   }
 
   &-subtitle {
     @include fonts.font(5, regular);
-    color: var(--general_contrasts-50);
+    color: var(--general-contrasts-50);
     font-weight: 300;
   }
 
@@ -119,7 +119,7 @@
         @include mixins.check-for-mobile(false) {
           + .bmb_multi-dot-paginator-list-item {
             .bmb_multi-dot-paginator-dot {
-              background-color: var(--general_contrasts-main-selection);
+              background-color: var(--general-contrasts-main-selection);
             }
           }
         }
@@ -128,7 +128,7 @@
           + .bmb_multi-dot-paginator-list-item
             + .bmb_multi-dot-paginator-list-item {
             .bmb_multi-dot-paginator-dot {
-              background-color: var(--general_contrasts-main-selection);
+              background-color: var(--general-contrasts-main-selection);
             }
           }
         }
@@ -174,7 +174,7 @@
   }
 
   &-dot {
-    background-color: RGBA(var(--color-charade-500));
+    background-color: RGBA(var(--gray-charade-500));
     border-radius: var(--bmb-radius-full);
     cursor: pointer;
     height: rem.rem_calc(12);
@@ -184,16 +184,16 @@
     width: rem.rem_calc(12);
 
     &-active {
-      background-color: var(--general_contrasts-main-selection);
+      background-color: var(--general-contrasts-main-selection);
       border-radius: var(--bmb-radius-full);
-      box-shadow: rem.rem_calc(0 0 4 0) var(--general_contrasts-main-selection);
+      box-shadow: rem.rem_calc(0 0 4 0) var(--general-contrasts-main-selection);
 
       &::after {
-        border: rem.rem_calc(1) solid var(--general_contrasts-main-selection);
+        border: rem.rem_calc(1) solid var(--general-contrasts-main-selection);
         border-radius: rem.rem_calc(20);
         box-shadow:
-          rem.rem_calc(0 0 3 0) inset var(--general_contrasts-main-selection),
-          rem.rem_calc(0 0 4 0) var(--general_contrasts-main-selection);
+          rem.rem_calc(0 0 3 0) inset var(--general-contrasts-main-selection),
+          rem.rem_calc(0 0 4 0) var(--general-contrasts-main-selection);
         content: '';
         height: rem.rem_calc(24);
         left: rem.rem_calc(-7);
