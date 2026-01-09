@@ -2,7 +2,7 @@
 
 :root,
 [data-theme='light'],
-[data-brand='tec'][data-mode='light'] .docs-story {
+.storybook-light-theme [data-brand='tec'] {
   /*TEC*/
   // General Contrasts
   --general-contrasts: rgb(var(--black-primary));
@@ -162,7 +162,7 @@
 }
 
 [data-theme='dark'],
-[data-brand='tec'][data-mode='dark'] .docs-story {
+.storybook-dark-theme [data-brand='tec'] {
   // General Contrasts
   --general-contrasts: rgb(var(--white-primary));
   --general-contrasts-100: rgb(var(--gray-charade-50));

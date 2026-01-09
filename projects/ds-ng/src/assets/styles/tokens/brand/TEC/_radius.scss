@@ -30,7 +30,7 @@ $sizes: (
 );
 
 :root,
-[data-brand='tec'] .docs-story {
+[data-brand='tec'] {
   @include radius.radiusVar($sizes);
 }
 

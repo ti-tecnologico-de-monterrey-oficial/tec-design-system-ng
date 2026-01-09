@@ -2,7 +2,7 @@
 
 :root,
 [data-theme='light'],
-[data-brand='ged'][data-mode='light'] .docs-story {
+.storybook-light-theme [data-brand='ged'] {
   /*GED*/
   // General Contrasts
   --general-contrasts: rgb(var(--black-primary));
@@ -147,7 +147,7 @@
 }
 
 [data-theme='dark'],
-[data-brand='ged'][data-mode='dark'] .docs-story {
+.storybook-dark-theme [data-brand='ged'] {
   // General Contrasts
   --general-contrasts: rgb(var(--white-primary));
   --general-contrasts-100: rgb(var(--gray-ged-50));
