@@ -14,9 +14,9 @@
     animation: skeleton 1.2s infinite linear;
     background: linear-gradient(
       90deg,
-      var(--general_contrasts-25) 0%,
-      var(--general_contrasts-50) 50%,
-      var(--general_contrasts-25) 100%
+      var(--general-contrasts-25) 0%,
+      var(--general-contrasts-50) 50%,
+      var(--general-contrasts-25) 100%
     );
     background-size: 200% 100%;
   }
@@ -32,7 +32,7 @@
   }
 
   &-header {
-    background-color: var(--general_contrasts-5);
+    background-color: var(--general-contrasts-5);
     border-radius: var(--bmb-radius-none) var(--bmb-radius-none)
       var(--bmb-radius-3) var(--bmb-radius-3);
     padding: rem.rem_calc(16);
@@ -42,7 +42,7 @@
     margin-bottom: rem.rem_calc(16);
     padding: rem.rem_calc(16 38);
     gap: rem.rem_calc(16 85) !important;
-    background-color: var(--general_contrasts-5);
+    background-color: var(--general-contrasts-5);
 
     .bmb_skeleton-circle {
       height: rem.rem_calc(64);
@@ -53,7 +53,7 @@
   &-generic1 {
     gap: rem.rem_calc(40) !important;
     padding: rem.rem_calc(40 16);
-    background-color: var(--general_contrasts-5);
+    background-color: var(--general-contrasts-5);
     border-radius: var(--bmb-radius-3);
   }
 
@@ -65,13 +65,13 @@
 
     .bmb_skeleton-box {
       height: rem.rem_calc(296);
-      background-color: var(--general_contrasts-5);
+      background-color: var(--general-contrasts-5);
       border-radius: var(--bmb-radius-6);
     }
   }
 
   &-generic3 {
-    border: rem.rem_calc(1) solid var(--general_contrasts-container-outline);
+    border: rem.rem_calc(1) solid var(--general-contrasts-container-outline);
     border-radius: var(--bmb-radius-6);
 
     .bmb_skeleton-box-header {

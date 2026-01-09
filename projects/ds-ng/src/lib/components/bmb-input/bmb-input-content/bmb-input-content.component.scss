@@ -9,7 +9,7 @@
 @mixin input($type: normal) {
   @include mixins.reset-element();
   @include fonts.font(4, regular);
-  color: var(--general_contrasts-100);
+  color: var(--general-contrasts-100);
 
   &:focus,
   &:focus,
@@ -23,8 +23,8 @@
     width: 100%;
     background-color: transparent;
     border: 0;
-    border-bottom: rem.rem_calc(1) solid var(--general_contrasts-50);
-    color: var(--general_contrasts-100);
+    border-bottom: rem.rem_calc(1) solid var(--general-contrasts-50);
+    color: var(--general-contrasts-100);
     padding-left: var(--bmb-spacing-m);
     transition: all 0.3s ease;
 
@@ -38,14 +38,14 @@
       box-sizing: inherit;
       border-bottom: rem.rem_calc(2)
         solid
-        var(--general_contrasts-input-outline);
-      color: var(--general_contrasts-input-outline);
-      caret-color: var(--general_contrasts-input-outline);
+        var(--general-contrasts-input-outline);
+      color: var(--general-contrasts-input-outline);
+      caret-color: var(--general-contrasts-input-outline);
     }
 
     &:hover {
       box-sizing: inherit;
-      border-bottom: rem.rem_calc(2) solid var(--general_contrasts-50);
+      border-bottom: rem.rem_calc(2) solid var(--general-contrasts-50);
     }
   } @else {
     @include placeholder-padding(var(--bmb-spacing-s));
@@ -71,12 +71,12 @@
     width: 100%;
 
     &:hover .bmb_field-icon-simple {
-      color: var(--general_contrasts-50);
+      color: var(--general-contrasts-50);
     }
   }
 
   &-icon {
-    color: var(--general_contrasts-100);
+    color: var(--general-contrasts-100);
     left: var(--bmb-spacing-s);
     position: absolute;
     top: 50%;
@@ -94,11 +94,11 @@
       left: 0;
 
       &-error {
-        color: var(--general_contrasts-75);
+        color: var(--general-contrasts-75);
       }
 
       &-focused {
-        color: var(--general_contrasts-input-outline);
+        color: var(--general-contrasts-input-outline);
       }
     }
   }
@@ -149,7 +149,7 @@
 
     &-error-icon {
       @include fonts.font(4_5, regular);
-      color: rgb(var(--color-red-light));
+      color: rgb(var(--red-light));
       position: absolute;
       top: rem.rem_calc(10);
       left: calc(100% - var(--bmb-spacing-l));
@@ -174,7 +174,7 @@
   &-additional_action,
   &-clear {
     .bmb_check-external-link-button-element {
-      color: var(--general_contrasts-50);
+      color: var(--general-contrasts-50);
     }
   }
 }

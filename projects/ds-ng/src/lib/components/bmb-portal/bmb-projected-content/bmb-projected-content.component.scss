@@ -7,7 +7,7 @@
   padding: 0;
   background-color: transparent;
   margin: 0;
-  color: var(--general_contrasts-100);
+  color: var(--general-contrasts-100);
 
   @include mixins.media-query(1000, 'max') {
     left: 1rem !important;

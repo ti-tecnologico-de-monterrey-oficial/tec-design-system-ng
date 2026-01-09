@@ -3,8 +3,8 @@
 
 .bmb_list-group-item {
   align-items: center;
-  border: rem.rem_calc(1) solid var(--general_contrasts-container-outline);
-  color: var(--general_contrasts-100);
+  border: rem.rem_calc(1) solid var(--general-contrasts-container-outline);
+  color: var(--general-contrasts-100);
   display: flex;
   gap: var(--bmb-spacing-m);
   padding: var(--bmb-list-group-item-padding);
@@ -16,24 +16,24 @@
 
   &-primary {
     background-color: var(--containers-background);
-    color: var(--general_contrasts-100);
+    color: var(--general-contrasts-100);
   }
 
   &-alternative {
     background-color: var(--containers-main);
-    color: var(--general_contrasts-100);
+    color: var(--general-contrasts-100);
   }
 
   &-selected {
-    border-color: var(--menu_select-surface-activated);
-    background-color: var(--menu_select-on-surface-hovered);
+    border-color: var(--menu-select-surface-activated);
+    background-color: var(--menu-select-on-surface-hovered);
   }
 
   &:hover {
     &:not(.bmb_list-group-item-selected):not(
         .bmb_list-group-item-disabled
       ):hover {
-      border-color: var(--menu_select-surface-activated);
+      border-color: var(--menu-select-surface-activated);
     }
   }
 

@@ -1,7 +1,7 @@
 @use '../../../assets/styles/base/rem' as rem;
 
 .bmb_divider {
-  border: rem.rem_calc(1) solid RGBA(var(--color-charade-500));
+  border: rem.rem_calc(1) solid RGBA(var(--gray-charade-500));
   margin: rem.rem_calc(16 0);
   width: 100%;
 

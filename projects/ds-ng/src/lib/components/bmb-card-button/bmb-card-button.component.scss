@@ -9,7 +9,7 @@
 
 @mixin small-selected() {
   .bmb_card_button-small-back {
-    background-color: var(--menu_select-surface-activated);
+    background-color: var(--menu-select-surface-activated);
     color: var(--general-contrasts-main-complimentary);
   }
 
@@ -33,7 +33,7 @@
 .bmb_card_button {
   display: flex;
   flex-direction: column;
-  border: rem.rem_calc(1) solid var(--general_contrasts-container-outline);
+  border: rem.rem_calc(1) solid var(--general-contrasts-container-outline);
   border-radius: var(--bmb-radius-4);
   height: rem.rem_calc(195);
   width: rem.rem_calc(328);
@@ -61,16 +61,16 @@
     -ms-user-select: none;
 
     &:hover:not(:disabled) {
-      background-color: var(--general_contrasts-15);
+      background-color: var(--general-contrasts-15);
 
       .bmb_text-link .bmb_check-external-link-button-element {
-        color: rgb(var(--color-mariner-400));
+        color: rgb(var(--blue-mariner-400));
       }
     }
 
     &:focus:not(:disabled),
     &:active:not(:disabled) {
-      background-color: var(--general_contrasts-25);
+      background-color: var(--general-contrasts-25);
     }
 
     &-button {
@@ -104,9 +104,9 @@
 
   &-circle {
     align-items: center;
-    background-color: var(--general_contrasts-100);
+    background-color: var(--general-contrasts-100);
     border-radius: var(--bmb-radius-full);
-    color: var(--general_contrasts-5);
+    color: var(--general-contrasts-5);
     display: flex;
     height: rem.rem_calc(48);
     justify-content: center;
@@ -160,7 +160,7 @@
     justify-content: flex-end;
     overflow: hidden;
     padding: rem.rem_calc(0 10);
-    color: var(--general_contrasts-75);
+    color: var(--general-contrasts-75);
     gap: rem.rem_calc(16);
   }
 
@@ -174,17 +174,17 @@
       @include fonts.font(4, regular);
       max-width: 100%;
       @include mixins.truncated-string-line();
-      color: var(--general_contrasts-100);
+      color: var(--general-contrasts-100);
     }
 
     &-icon {
-      color: rgb(var(--color-charade-300));
+      color: rgb(var(--gray-charade-300));
     }
   }
 
   &-body {
     @include body_content();
-    color: var(--general_contrasts-container);
+    color: var(--general-contrasts-80);
 
     .bmb_text-link-item-text {
       @include fonts.font(4, bold);
@@ -193,7 +193,7 @@
 
   &-custom-content {
     @include body_content();
-    color: var(--general_contrasts-75);
+    color: var(--general-contrasts-75);
   }
 
   &-add {
@@ -242,7 +242,7 @@
     transform-style: preserve-3d;
     transition: transform 0.6s;
     width: 100%;
-    border-color: var(--general_contrasts-container-outline);
+    border-color: var(--general-contrasts-container-outline);
     justify-content: flex-start;
 
     &:active:not(:disabled) {
@@ -251,7 +251,7 @@
 
     &:hover {
       border-radius: var(--bmb-radius-2);
-      background-color: var(--menu_select-on-surface-hovered);
+      background-color: var(--menu-select-on-surface-hovered);
       transform: rotateY(180deg);
     }
 
@@ -279,24 +279,24 @@
 
     &-front {
       background-color: var(--containers-container-button);
-      border: rem.rem_calc(1) solid var(--general_contrasts-container-outline);
-      color: var(--general_contrasts-75);
+      border: rem.rem_calc(1) solid var(--general-contrasts-container-outline);
+      color: var(--general-contrasts-75);
       @include shadow(2);
     }
 
     &-back {
-      background-color: var(--menu_select-on-surface-hovered);
+      background-color: var(--menu-select-on-surface-hovered);
       transform: rotateY(180deg);
     }
 
     &-top-icon {
       align-self: flex-end;
-      color: var(--general_contrasts-50);
+      color: var(--general-contrasts-50);
     }
 
     &-close-icon {
       align-self: flex-end;
-      color: var(--general_contrasts-75);
+      color: var(--general-contrasts-75);
     }
 
     &-title {
@@ -307,7 +307,7 @@
 
     &-text {
       @include fonts.font(1, regular);
-      color: var(--general_contrasts-50);
+      color: var(--general-contrasts-50);
       padding-top: rem.rem_calc(16);
       text-align: center;
       width: 100%;
@@ -315,14 +315,14 @@
   }
 
   .bmb_dropdown_menu {
-    color: var(--general_contrasts-container);
+    color: var(--general-contrasts-container);
   }
 
   .bmb_text-link .bmb_check-external-link-button-element {
     color: var(--blue-mariner-500);
 
     &:hover {
-      color: rgb(var(--color-mariner-400));
+      color: rgb(var(--blue-mariner-400));
     }
   }
 }

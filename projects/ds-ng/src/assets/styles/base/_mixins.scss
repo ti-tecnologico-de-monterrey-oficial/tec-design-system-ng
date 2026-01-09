@@ -334,7 +334,7 @@
 }
 
 @mixin error-input() {
-  border-color: rgb(var(--color-red-light));
+  border-color: rgb(var(--red-light));
 }
 
 @mixin input-checked($height, $width) {
@@ -447,7 +447,7 @@
 
 @mixin error-helper-text() {
   @include helper-text();
-  color: rgb(var(--color-red-light));
+  color: rgb(var(--red-light));
 }
 
 @mixin media-web-templates() {

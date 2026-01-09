@@ -32,8 +32,8 @@ $modalSize: (
     width: calc(100% - rem.rem_calc(32));
     background-color: var(--containers-modal);
     border-radius: var(--bmb-radius-4);
-    border: rem.rem_calc(1) solid var(--general_contrasts-25);
-    color: var(--general_contrasts-100);
+    border: rem.rem_calc(1) solid var(--general-contrasts-25);
+    color: var(--general-contrasts-100);
     max-height: calc(100dvh - rem.rem_calc(32));
     display: flex;
     flex-direction: column;

@@ -25,7 +25,7 @@
   justify-content: center;
 
   &-icon {
-    color: var(--general_contrasts-input-outline);
+    color: var(--general-contrasts-input-outline);
     mask-image: conic-gradient(
       from 85deg at 50% 50%,
       transparent 0deg,
@@ -83,18 +83,18 @@
 
   &-title {
     @include fonts.font(9, bold);
-    color: var(--general_contrasts-100);
+    color: var(--general-contrasts-100);
     margin: rem.rem_calc(16 0 12);
   }
 
   &-subtitle {
     @include fonts.font(5, regular);
-    color: var(--general_contrasts-100);
+    color: var(--general-contrasts-100);
     margin: 0;
   }
 
   &-overlay {
-    background-color: var(--color-black-tint);
+    background-color: var(--black-tint);
     height: 100vh;
     left: 0;
     position: fixed;
@@ -104,7 +104,7 @@
   }
 
   &-modal {
-    background-color: var(--general_contrasts-25);
+    background-color: var(--general-contrasts-25);
     border: rem.rem_calc(1) solid var(--containers-modal);
     border-radius: var(--bmb-radius-2);
     height: rem.rem_calc(163);

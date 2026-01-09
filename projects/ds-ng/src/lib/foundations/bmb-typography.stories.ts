@@ -92,7 +92,7 @@ function getClassName(object: any): any {
 
 const customizable = (): StoryFn => (args) => ({
   props: args,
-  template: `<div style="color: var(--general_contrasts-100);" ${getClassName(args)}>Typography</div>`,
+  template: `<div style="color: var(--general-contrasts-100);" ${getClassName(args)}>Typography</div>`,
 });
 
 export const Default = customizable();

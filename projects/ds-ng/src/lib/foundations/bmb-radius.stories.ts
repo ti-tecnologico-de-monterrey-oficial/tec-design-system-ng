@@ -25,14 +25,14 @@ import {
       style="border: var(--bmb-border-general-contrasts-50-1-solid); padding: 1rem; text-align: center;"
     >
       <button
-        style="color: var(--general_contrasts-100);"
+        style="color: var(--general-contrasts-100);"
         (click)="handleClick('--bmb-radius-' + radius())"
       >
         CSS variable name: <strong>--bmb-radius-{{ radius() }}</strong>
       </button>
       <bmb-divider />
       <button
-        style="color: var(--general_contrasts-100);"
+        style="color: var(--general-contrasts-100);"
         (click)="handleClick('bmb_radius-' + radius())"
       >
         Class name: <strong>bmb_radius-{{ radius() }}</strong>

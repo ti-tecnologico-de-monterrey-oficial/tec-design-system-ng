@@ -89,13 +89,13 @@
   &-wrapper {
     border-radius: var(--bmb-radius-l);
     box-shadow: rem.rem_calc(12) rem.rem_calc(12) rem.rem_calc(4) 0
-      RGBA(var(--color-black-primary), 0.33);
+      RGBA(var(--black-primary), 0.33);
     transition: all 0.3s ease-in-out;
   }
 
   &-container {
     background-color: var(--containers-background);
-    border: rem.rem_calc(1) solid var(--general_contrasts-container-outline);
+    border: rem.rem_calc(1) solid var(--general-contrasts-container-outline);
     border-radius: 0 0 var(--bmb-radius-l) var(--bmb-radius-l);
     overflow: auto;
   }

@@ -8,7 +8,7 @@
   width: 100%;
 
   &-default {
-    border-bottom: rem.rem_calc(1) solid var(--general_contrasts-50);
+    border-bottom: rem.rem_calc(1) solid var(--general-contrasts-50);
     flex-flow: row wrap;
     justify-content: space-between;
     padding: rem.rem_calc(16);
@@ -38,7 +38,7 @@
   &-label,
   &-icon,
   &-support {
-    color: var(--general_contrasts-100);
+    color: var(--general-contrasts-100);
     text-align: left;
   }
 
@@ -51,7 +51,7 @@
 
     a {
       @include fonts.font(4, bold);
-      color: RGBA(var(--color-mariner-500), 1);
+      color: RGBA(var(--blue-mariner-500), 1);
       text-decoration: none;
 
       &:hover {
@@ -96,11 +96,11 @@
 
     &:hover,
     &:focus-visible {
-      background-color: RGBA(var(--color-mariner-700), 1);
+      background-color: RGBA(var(--blue-mariner-700), 1);
 
       .bmb_item-label,
       .bmb_item-icon {
-        color: RGBA(var(--color-charade-50), 1);
+        color: RGBA(var(--gray-charade-50), 1);
       }
     }
   }

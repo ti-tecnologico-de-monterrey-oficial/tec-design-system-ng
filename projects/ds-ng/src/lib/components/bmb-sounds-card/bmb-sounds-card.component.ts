@@ -46,14 +46,14 @@ export class BmbSoundsCardComponent implements AfterViewInit {
   ngAfterViewInit(): void {
     this.trackInput = this.rangeVolume?.nativeElement;
     this.percentage = this.internalVolume / 100;
-    this.trackInput!.style.background = `linear-gradient(to right, RGBA(var( --color-mariner-700)) ${this.percentage * 100}%, RGBA(var(--color-charade-50)) ${this.percentage * 100}%)`;
+    this.trackInput!.style.background = `linear-gradient(to right, RGBA(var( --blue-mariner-700)) ${this.percentage * 100}%, RGBA(var(--gray-charade-50)) ${this.percentage * 100}%)`;
   }
 
   onVolumeChange(event: Event) {
     const inputElement = event.target as HTMLInputElement;
     this.internalVolume = +inputElement.value;
     this.percentage = this.internalVolume / 100;
-    this.trackInput!.style.background = `linear-gradient(to right, RGBA(var(--color-mariner-700)) ${this.percentage * 100}%, RGBA(var(--color-charade-50)) ${this.percentage * 100}%)`;
+    this.trackInput!.style.background = `linear-gradient(to right, RGBA(var(--blue-mariner-700)) ${this.percentage * 100}%, RGBA(var(--gray-charade-50)) ${this.percentage * 100}%)`;
     this.handlevolume.emit(this.internalVolume);
   }
 
@@ -68,11 +68,11 @@ export class BmbSoundsCardComponent implements AfterViewInit {
       this.saveVolume = this.internalVolume;
       this.internalVolume = 0;
       this.percentage = this.internalVolume / 100;
-      this.trackInput!.style.background = `linear-gradient(to right, RGBA(var(--color-mariner-700)) ${this.percentage * 100}%, RGBA(var(--color-charade-50)) ${this.percentage * 100}%)`;
+      this.trackInput!.style.background = `linear-gradient(to right, RGBA(var(--blue-mariner-700)) ${this.percentage * 100}%, RGBA(var(--gray-charade-50)) ${this.percentage * 100}%)`;
     } else {
       this.internalVolume = this.saveVolume;
       this.percentage = this.internalVolume / 100;
-      this.trackInput!.style.background = `linear-gradient(to right, RGBA(var(--color-mariner-700)) ${this.percentage * 100}%, RGBA(var(--color-charade-50)) ${this.percentage * 100}%)`;
+      this.trackInput!.style.background = `linear-gradient(to right, RGBA(var(--blue-mariner-700)) ${this.percentage * 100}%, RGBA(var(--gray-charade-50)) ${this.percentage * 100}%)`;
     }
     this.handleMute.emit(this.isMuted);
   }
