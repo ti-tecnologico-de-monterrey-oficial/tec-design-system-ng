@@ -283,22 +283,6 @@
     }
   }
 
-  // Expanded preview
-  .css-1cvjpgl:has(.bmb_top-bar),
-  .css-1cvjpgl:has(.bmb_sidebar),
-  .sb-show-main.sb-main-padded:has(.bmb_top-bar),
-  .sb-show-main.sb-main-padded:has(.bmb_sidebar) {
-    padding: 0 !important;
-
-    .innerZoomElementWrapper {
-      > div {
-        border-width: 0 !important;
-        > div {
-          padding: 0 !important;
-        }
-      }
-    }
-  }
   // Expanded preview - end
 
   .docs-story {
@@ -523,4 +507,21 @@ img {
 
 .css-kydxqj {
   background-color: rgb(var(--gray-charade-600)) !important;
+}
+
+// Expanded preview
+.css-1cvjpgl:has(.bmb_top-bar),
+.css-1cvjpgl:has(.bmb_sidebar),
+.sb-show-main.sb-main-padded:has(.bmb_top-bar),
+.sb-show-main.sb-main-padded:has(.bmb_sidebar) {
+  padding: 0 !important;
+
+  .innerZoomElementWrapper {
+    > div {
+      border-width: 0 !important;
+      > div {
+        padding: 0 !important;
+      }
+    }
+  }
 }

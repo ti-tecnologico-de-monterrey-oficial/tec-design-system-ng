@@ -142,6 +142,29 @@
   // variables for containers
   --bmb-dot-paginator-dot: rgb(var(--gray-ged-500));
 
+  --buttons-active-switch-box-shadow-hover: rgba(var(--green-light), 0.15);
+  --buttons-active-switch-box-shadow-focus: rgba(var(--green-light), 0.25);
+  --buttons-inactive-switch-box-shadow-hover: rgba(
+    var(--gray-charade-500),
+    0.15
+  );
+  --buttons-inactive-switch-box-shadow-focus: rgba(
+    var(--gray-charade-500),
+    0.25
+  );
+
+  // Switch box variables - this variables are only for development purposes
+  --buttons-active-switch-box-shadow-hover: rgba(var(--green-light), 0.15);
+  --buttons-active-switch-box-shadow-focus: rgba(var(--green-light), 0.25);
+  --buttons-inactive-switch-box-shadow-hover: rgba(
+    var(--gray-charade-500),
+    0.15
+  );
+  --buttons-inactive-switch-box-shadow-focus: rgba(
+    var(--gray-charade-500),
+    0.25
+  );
+
   /*GED*/
   @include mc.fixed-names;
 }
@@ -274,6 +297,30 @@
   //Complementary backgrounds (gradients)
   --gradient-bg-tec: rgb(var(--gray-ged-950)) 56.25%,
     rgb(var(--gray-ged-900)) 100%;
+
+  // variables for buttons
+  --buttons-primary-border-hover: var(--buttons-primary-normal);
+  --buttons-primary-text-hover: var(--buttons-primary-normal);
+  --buttons-primary-border-active: var(--buttons-primary-select);
+  --buttons-card-hover-background: var(--buttons-primary-hover);
+  --buttons-card-hover-text: var(--general-contrasts-100);
+  --bmb-evaluation-rubric-radius-circle: 0;
+  --bmb-calendar-button-selected-background: var(--general-contrasts-5);
+
+  // variables for containers
+  --bmb-dot-paginator-dot: rgb(var(--gray-ged-500));
+
+  // Switch box variables - this variables are only for development purposes
+  --buttons-active-switch-box-shadow-hover: rgba(var(--green-light), 0.15);
+  --buttons-active-switch-box-shadow-focus: rgba(var(--green-light), 0.25);
+  --buttons-inactive-switch-box-shadow-hover: rgba(
+    var(--gray-charade-500),
+    0.15
+  );
+  --buttons-inactive-switch-box-shadow-focus: rgba(
+    var(--gray-charade-500),
+    0.25
+  );
 
   @include mc.fixed-names;
 }
