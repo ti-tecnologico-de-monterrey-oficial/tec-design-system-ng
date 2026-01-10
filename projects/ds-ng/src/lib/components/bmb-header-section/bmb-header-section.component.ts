@@ -54,7 +54,7 @@ export class BmbHeaderSectionComponent {
     }
     if (!!this.bgIconAppearance()) {
       return {
-        'background-color': `RGBA(var(--${this.bgIconAppearance()}))`,
+        'background-color': `rgb(var(--${this.bgIconAppearance()}))`,
       };
     }
     return {};

@@ -54,7 +54,7 @@
     width: fit-content;
     border-radius: rem.rem_calc(16) rem.rem_calc(16) rem.rem_calc(16) 0;
     padding: var(--bmb-padding-m);
-    box-shadow: rem.rem_calc(0 2 5) rgba(0, 0, 0, 0.1);
+    box-shadow: rem.rem_calc(0 2 5) rgba(var(--black-primary), 0.1);
 
     &-container {
       max-width: 70%;
@@ -93,7 +93,7 @@
     &-thinking-dot {
       width: rem.rem_calc(12);
       height: rem.rem_calc(12);
-      background-color: RGBA(var(--blue-mariner-500));
+      background-color: rgb(var(--blue-mariner-500));
       border-radius: var(--bmb-radius-full);
       opacity: 0.3;
       animation: thinking 1.5s infinite ease-in-out;

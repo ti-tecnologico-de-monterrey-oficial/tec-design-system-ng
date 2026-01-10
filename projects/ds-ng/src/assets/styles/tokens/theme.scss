@@ -439,7 +439,7 @@ img {
   position: relative;
   background-color: #eef3f8;
   border-radius: var(--bmb-radius-1);
-  border: 1px solid rgba(0, 0, 0, 0.05);
+  border: 1px solid rgb(var(--black-tint));
   height: 180px;
   margin-bottom: 48px;
   overflow: hidden;
