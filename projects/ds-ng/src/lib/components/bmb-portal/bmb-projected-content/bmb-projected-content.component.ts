@@ -166,7 +166,7 @@ export class BmbProjectedContentComponent {
     const custom = this.dialogClass();
 
     if (typeof custom === 'string') {
-      custom.split(' ').forEach((c) => (baseClasses[c] = true));
+      custom?.split(' ').forEach((c) => (baseClasses[c] = true));
     } else if (Array.isArray(custom)) {
       custom.forEach((c) => (baseClasses[c] = true));
     } else if (typeof custom === 'object' && custom !== null) {

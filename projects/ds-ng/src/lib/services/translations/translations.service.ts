@@ -59,7 +59,7 @@ export class BmbTranslationsService {
 
   translate(keyList: string): string {
     return (
-      keyList.split('.').reduce((acc: any, clave: string) => {
+      keyList?.split('.').reduce((acc: any, clave: string) => {
         return acc && acc[clave] !== undefined ? acc[clave] : undefined;
       }, this.dictionaries()[this.currentLanguage()]) ?? keyList
     );

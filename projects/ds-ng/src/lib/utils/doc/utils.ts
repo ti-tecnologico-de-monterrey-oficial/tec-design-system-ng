@@ -135,7 +135,7 @@ export const getFormatName = (
 
   if (!!separator && replace === '') {
     return name
-      .split(separator)
+      ?.split(separator)
       .map((element) => getProperName(element))
       .toString()
       .replaceAll(',', '');
@@ -782,7 +782,7 @@ const getMergeList = (
   definition: string,
   splitChar: string,
 ): string => {
-  const styles: string[] = definition.split(splitChar);
+  const styles: string[] = definition?.split(splitChar);
   const mergeList = list.map((element: string, index: number) =>
     element.concat(': var(--', styles[index]?.trim(), ');'),
   );

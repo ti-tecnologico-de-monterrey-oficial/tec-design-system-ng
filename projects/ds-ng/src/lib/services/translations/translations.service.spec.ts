@@ -282,7 +282,7 @@ describe('BmbTranslationsService', () => {
       // Create French dictionary with same structure
       const frenchDict: BmbDictionaries = {};
       esKeys.forEach((key) => {
-        const keyParts = key.split('.');
+        const keyParts = key?.split('.');
         let current: any = frenchDict;
 
         keyParts.forEach((part, index) => {
