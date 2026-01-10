@@ -195,7 +195,7 @@ const HTML_TEMPLATE: string = `
     <bmb-home-card
       leftIcon="chevron_left"
       icon="account_circle"
-      bgIconAppearance="mariner-700"
+      bgIconAppearance="blue-mariner-700"
       title="Mi perfil - Detalle extendido"
       subtitle="Mi perfil - Detalle extendido"
       contentPadding="xl"

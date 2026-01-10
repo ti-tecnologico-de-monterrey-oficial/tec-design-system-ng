@@ -53,7 +53,7 @@ export class BmbHomeCardChatComponent {
   placeholder = input<string>('');
   botList = input<IBotType[]>([]);
   leftIcon = input<string>('chevron_left');
-  bgIconAppearance = input<IBmbColor>('charade-500');
+  bgIconAppearance = input<IBmbColor>('gray-charade-500');
   messagesHistory = input.required<IBmbChatMessage[]>();
   mode = model<'compact' | 'chat' | 'expanded'>('expanded');
 
