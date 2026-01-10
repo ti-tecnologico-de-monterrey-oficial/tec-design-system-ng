@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/angular';
+import { moduleMetadata, type Meta, type StoryObj } from '@storybook/angular';
 import { BmbBadgeComponent } from './bmb-badge.component';
 import { IBbmBgAppearance } from '../bmb-advertisement-card/types';
 import {
@@ -13,6 +13,7 @@ import {
   getPropertyParamDesc,
   getWidthIncreaseDesc,
 } from '../../utils/doc/parameterDescriptions';
+import { BmbDividerComponent } from '../bmb-divider/bmb-divider.component';
 
 const defaultAppearanceValue: string = 'normal';
 
@@ -50,6 +51,11 @@ const appearanceOptions: IBbmBgAppearance[] = [
 export default {
   title: 'Components/Visual labels/Badge',
   component: BmbBadgeComponent,
+  decorators: [
+    moduleMetadata({
+      imports: [BmbDividerComponent],
+    }),
+  ],
   parameters: {
     docs: {
       description: {
@@ -99,4 +105,32 @@ export const Bullet = {
   args: {
     container: false,
   },
+};
+
+export const AllColors = {
+  render: () => ({
+    template: `
+      <div style="display: flex; flex-direction: row; gap: 12px; flex-wrap: wrap;">
+        <bmb-badge
+          *ngFor="let appearance of appearances"
+          [appearance]="appearance"
+          [text]="appearance"
+        >
+        </bmb-badge>
+      </div>
+      <bmb-divider></bmb-divider>
+      <div style="display: flex; flex-direction: row; gap: 12px; flex-wrap: wrap;">
+        <bmb-badge
+          *ngFor="let appearance of appearances"
+          [appearance]="appearance"
+          [text]="appearance"
+          [container]="false"
+        >
+        </bmb-badge>
+      </div>
+    `,
+    props: {
+      appearances: appearanceOptions,
+    },
+  }),
 };

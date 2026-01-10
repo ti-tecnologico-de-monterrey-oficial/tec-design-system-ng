@@ -103,6 +103,7 @@
         padding: var(--bmb-spacing-m);
         width: 100%;
         box-sizing: border-box;
+        border-radius: 0 0 var(--bmb-border-radius) var(--bmb-border-radius);
 
         &-backdrop {
           margin: var(--bmb-spacing-m);
