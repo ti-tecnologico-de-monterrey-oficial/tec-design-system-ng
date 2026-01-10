@@ -132,7 +132,7 @@ $medium_variant: rem.rem_calc(42);
 
     &.completed {
       background-color: var(--buttons-primary-normal);
-      color: var(--gris-charade-50);
+      color: rgb(var(--gray-charade-50));
     }
 
     &:disabled {
@@ -145,7 +145,7 @@ $medium_variant: rem.rem_calc(42);
       outline-width: rem.rem_calc(1);
       outline-color: var(--buttons-stroke-primary-selected);
       outline-offset: rem.rem_calc(-4);
-      box-shadow: 0 0 rem.rem_calc(5) var(--blue-mariner-500);
+      box-shadow: 0 0 rem.rem_calc(5) rgb(var(--blue-mariner-500));
     }
   }
 }
