@@ -142,6 +142,29 @@
   // variables for containers
   --bmb-dot-paginator-dot: rgb(var(--gray-ged-500));
 
+  --buttons-active-switch-box-shadow-hover: rgba(var(--green-light), 0.15);
+  --buttons-active-switch-box-shadow-focus: rgba(var(--green-light), 0.25);
+  --buttons-inactive-switch-box-shadow-hover: rgba(
+    var(--gray-charade-500),
+    0.15
+  );
+  --buttons-inactive-switch-box-shadow-focus: rgba(
+    var(--gray-charade-500),
+    0.25
+  );
+
+  // Switch box variables - this variables are only for development purposes
+  --buttons-active-switch-box-shadow-hover: rgba(var(--green-light), 0.15);
+  --buttons-active-switch-box-shadow-focus: rgba(var(--green-light), 0.25);
+  --buttons-inactive-switch-box-shadow-hover: rgba(
+    var(--gray-charade-500),
+    0.15
+  );
+  --buttons-inactive-switch-box-shadow-focus: rgba(
+    var(--gray-charade-500),
+    0.25
+  );
+
   /*GED*/
   @include mc.fixed-names;
 }
@@ -286,6 +309,18 @@
 
   // variables for containers
   --bmb-dot-paginator-dot: rgb(var(--gray-ged-500));
+
+  // Switch box variables - this variables are only for development purposes
+  --buttons-active-switch-box-shadow-hover: rgba(var(--green-light), 0.15);
+  --buttons-active-switch-box-shadow-focus: rgba(var(--green-light), 0.25);
+  --buttons-inactive-switch-box-shadow-hover: rgba(
+    var(--gray-charade-500),
+    0.15
+  );
+  --buttons-inactive-switch-box-shadow-focus: rgba(
+    var(--gray-charade-500),
+    0.25
+  );
 
   @include mc.fixed-names;
 }

@@ -131,6 +131,18 @@
   // variables for containers
   --bmb-dot-paginator-dot: rgb(var(--gray-ged-500));
 
+  // Switch box variables - this variables are only for development purposes
+  --buttons-active-switch-box-shadow-hover: rgba(var(--green-light), 0.15);
+  --buttons-active-switch-box-shadow-focus: rgba(var(--green-light), 0.25);
+  --buttons-inactive-switch-box-shadow-hover: rgba(
+    var(--gray-charade-500),
+    0.15
+  );
+  --buttons-inactive-switch-box-shadow-focus: rgba(
+    var(--gray-charade-500),
+    0.25
+  );
+
   /*TECMI*/
   @include mc.fixed-names;
 }
@@ -251,6 +263,18 @@
   --creative-use-rum: rgb(var(--rum-tint));
   --creative-use-ripe-lemon: rgb(var(--ripe-lemon-tint));
   --creative-use-hibiscus: rgb(var(--hibiscus-tint));
+
+  // Switch box variables - this variables are only for development purposes
+  --buttons-active-switch-box-shadow-hover: rgba(var(--green-light), 0.15);
+  --buttons-active-switch-box-shadow-focus: rgba(var(--green-light), 0.25);
+  --buttons-inactive-switch-box-shadow-hover: rgba(
+    var(--gray-charade-500),
+    0.15
+  );
+  --buttons-inactive-switch-box-shadow-focus: rgba(
+    var(--gray-charade-500),
+    0.25
+  );
 
   @include mc.fixed-names;
 }
