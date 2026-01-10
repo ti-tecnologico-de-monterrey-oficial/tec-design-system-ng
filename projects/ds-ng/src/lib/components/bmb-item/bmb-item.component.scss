@@ -51,7 +51,7 @@
 
     a {
       @include fonts.font(4, bold);
-      color: RGBA(var(--blue-mariner-500), 1);
+      color: rgb(var(--blue-mariner-500));
       text-decoration: none;
 
       &:hover {
@@ -96,11 +96,11 @@
 
     &:hover,
     &:focus-visible {
-      background-color: RGBA(var(--blue-mariner-700), 1);
+      background-color: rgb(var(--blue-mariner-700));
 
       .bmb_item-label,
       .bmb_item-icon {
-        color: RGBA(var(--gray-charade-50), 1);
+        color: rgb(var(--gray-charade-50));
       }
     }
   }

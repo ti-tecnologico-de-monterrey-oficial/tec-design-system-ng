@@ -35,7 +35,7 @@
   &-main {
     background-color: var(--general-contrasts-15);
     border-radius: var(--bmb-radius-5);
-    box-shadow: rem.rem_calc(10 5 10 0) RGBA(var(--black-primary), 0.5);
+    box-shadow: rem.rem_calc(10 5 10 0) rgb(var(--black-tint));
     grid-area: main;
     height: 100%;
     padding: var(--bmb-spacing-l);
@@ -55,7 +55,7 @@
   &-aside {
     background-color: var(--general-contrasts-15);
     border-radius: var(--bmb-radius-5);
-    box-shadow: rem.rem_calc(10 5 10 0) RGBA(var(--black-primary), 0.5);
+    box-shadow: rem.rem_calc(10 5 10 0) rgb(var(--black-tint));
     grid-area: aside;
     height: 100%;
     padding: var(--bmb-spacing-l);
@@ -93,7 +93,7 @@
   &-main {
     background-color: var(--general-contrasts-15);
     border-radius: var(--bmb-radius-5);
-    box-shadow: rem.rem_calc(10 5 10 0) RGBA(var(--black-primary), 0.5);
+    box-shadow: rem.rem_calc(10 5 10 0) rgb(var(--black-tint));
     grid-area: main;
     height: 100%;
     margin-left: rem.rem_calc(80);
@@ -112,7 +112,7 @@
   &-aside {
     background-color: var(--general-contrasts-15);
     border-radius: var(--bmb-radius-5);
-    box-shadow: rem.rem_calc(10 5 10 0) RGBA(var(--black-primary), 0.5);
+    box-shadow: rem.rem_calc(10 5 10 0) rgb(var(--black-tint));
     grid-area: aside;
     height: 100%;
     padding: var(--bmb-spacing-l);
@@ -149,7 +149,7 @@
   &-aside {
     background-color: var(--general-contrasts-15);
     border-radius: var(--bmb-radius-5);
-    box-shadow: rem.rem_calc(10 5 10 0) RGBA(var(--black-primary), 0.5);
+    box-shadow: rem.rem_calc(10 5 10 0) rgb(var(--black-tint));
     grid-area: aside;
     height: 100%;
     margin-left: rem.rem_calc(80);
@@ -169,7 +169,7 @@
   &-main {
     background-color: var(--general-contrasts-15);
     border-radius: var(--bmb-radius-5);
-    box-shadow: rem.rem_calc(10 5 10 0) RGBA(var(--black-primary), 0.5);
+    box-shadow: rem.rem_calc(10 5 10 0) rgb(var(--black-tint));
     grid-area: main;
     height: 100%;
     overflow: hidden;
@@ -203,7 +203,7 @@
   &-card {
     background-color: var(--general-contrasts-15);
     border-radius: var(--bmb-radius-5);
-    box-shadow: rem.rem_calc(10 5 10 0) RGBA(var(--black-primary), 0.5);
+    box-shadow: rem.rem_calc(10 5 10 0) rgb(var(--black-tint));
     grid-area: main;
     height: 100%;
     margin-left: rem.rem_calc(80);
@@ -246,7 +246,7 @@
   &-main {
     background-color: var(--general-contrasts-15);
     border-radius: var(--bmb-radius-5);
-    box-shadow: rem.rem_calc(10 5 10 0) RGBA(var(--black-primary), 0.5);
+    box-shadow: rem.rem_calc(10 5 10 0) rgb(var(--black-tint));
     grid-area: main;
     height: 100%;
     padding: var(--bmb-spacing-l);
@@ -264,7 +264,7 @@
   &-secondary {
     background-color: var(--general-contrasts-15);
     border-radius: var(--bmb-radius-5);
-    box-shadow: rem.rem_calc(10 5 10 0) RGBA(var(--black-primary), 0.5);
+    box-shadow: rem.rem_calc(10 5 10 0) rgb(var(--black-tint));
     grid-area: secondary;
     height: 100%;
     padding: var(--bmb-spacing-l);
@@ -302,7 +302,7 @@
   &-main {
     background-color: var(--general-contrasts-15);
     border-radius: var(--bmb-radius-5);
-    box-shadow: rem.rem_calc(10 5 10 0) RGBA(var(--black-primary), 0.5);
+    box-shadow: rem.rem_calc(10 5 10 0) rgb(var(--black-tint));
     grid-area: main;
     height: 100%;
     margin-left: rem.rem_calc(80);
@@ -321,7 +321,7 @@
   &-secondary {
     background-color: var(--general-contrasts-15);
     border-radius: var(--bmb-radius-5);
-    box-shadow: rem.rem_calc(10 5 10 0) RGBA(var(--black-primary), 0.5);
+    box-shadow: rem.rem_calc(10 5 10 0) rgb(var(--black-tint));
     grid-area: secondary;
     height: 100%;
     padding: var(--bmb-spacing-l);
@@ -361,7 +361,7 @@
   &-main {
     background-color: var(--general-contrasts-15);
     border-radius: var(--bmb-radius-5);
-    box-shadow: rem.rem_calc(10 5 10 0) RGBA(var(--black-primary), 0.5);
+    box-shadow: rem.rem_calc(10 5 10 0) rgb(var(--black-tint));
     grid-area: main;
     height: 100%;
     margin-left: rem.rem_calc(80);
@@ -380,7 +380,7 @@
   &-secondary {
     background-color: var(--general-contrasts-15);
     border-radius: var(--bmb-radius-5);
-    box-shadow: rem.rem_calc(10 5 10 0) RGBA(var(--black-primary), 0.5);
+    box-shadow: rem.rem_calc(10 5 10 0) rgb(var(--black-tint));
     grid-area: secondary;
     height: 100%;
     margin-left: rem.rem_calc(80);
@@ -422,7 +422,7 @@
     background-color: var(--general-contrasts-15);
     border-bottom-left-radius: rem.rem_calc(20);
     border-top-left-radius: rem.rem_calc(20);
-    box-shadow: rem.rem_calc(10 5 10 0) RGBA(var(--black-primary), 0.5);
+    box-shadow: rem.rem_calc(10 5 10 0) rgb(var(--black-tint));
     grid-area: aside;
     height: 100%;
     margin-left: rem.rem_calc(80);
@@ -446,7 +446,7 @@
     background-color: var(--general-contrasts-5);
     border-bottom-right-radius: rem.rem_calc(20);
     border-top-right-radius: rem.rem_calc(20);
-    box-shadow: rem.rem_calc(10 5 5.6 0) RGBA(var(--black-primary), 0.5);
+    box-shadow: rem.rem_calc(10 5 5.6 0) rgb(var(--black-tint));
     grid-area: main;
     height: 100%;
     overflow: hidden;
@@ -602,7 +602,7 @@
 .bmb_template-stand-alone-tags {
   background-color: var(--containers-main);
   border-radius: var(--bmb-radius-5);
-  box-shadow: rem.rem_calc(10 5 10 0) RGBA(var(--black-primary), 0.5);
+  box-shadow: rem.rem_calc(10 5 10 0) rgb(var(--black-tint));
   display: flex;
   flex-flow: column nowrap;
   margin: rem.rem_calc(24 24 24 100);

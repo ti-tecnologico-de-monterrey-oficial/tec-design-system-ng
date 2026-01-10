@@ -3,17 +3,17 @@
 @use '../../../assets/styles/base/rem' as rem;
 
 $backgrounds: (
-  'red': RGBA(var(--red-primary)),
-  'blue': RGBA(var(--blue-mariner-700)),
-  'green': RGBA(var(--green-primary)),
-  'yellow': RGBA(var(--yellow-primary)),
-  'purple': RGBA(var(--purple-primary)),
-  'mitec_blue': RGBA(var(--mitec-blue)),
-  'mitec_red': RGBA(var(--mitec-red)),
-  'mitec_green': RGBA(var(--mitec-green)),
-  'mitec_orange': RGBA(var(--mitec-orange)),
-  'mitec_light_green': RGBA(var(--green-light)),
-  'mitec_purple': RGBA(var(--purple-light)),
+  'red': rgb(var(--red-primary)),
+  'blue': rgb(var(--blue-mariner-700)),
+  'green': rgb(var(--green-primary)),
+  'yellow': rgb(var(--yellow-primary)),
+  'purple': rgb(var(--purple-primary)),
+  'mitec_blue': rgb(var(--mitec-blue)),
+  'mitec_red': rgb(var(--mitec-red)),
+  'mitec_green': rgb(var(--mitec-green)),
+  'mitec_orange': rgb(var(--mitec-orange)),
+  'mitec_light_green': rgb(var(--green-light)),
+  'mitec_purple': rgb(var(--purple-light)),
   'creative_violet': var(--creative-use-violet),
   'creative_indigo': var(--creative-use-indigo),
   'creative_emerald': var(--creative-use-emerald),
@@ -108,7 +108,7 @@ $backgrounds: (
   &-box {
     align-items: center;
     border-radius: rem.rem_calc(16);
-    color: RGBA(var(--white-primary));
+    color: rgb(var(--white-primary));
     display: flex;
     flex-direction: column;
     height: rem.rem_calc(64);

@@ -57,7 +57,7 @@
 @mixin destructive() {
   &:hover:not(:disabled),
   &:focus-visible:not(:disabled) {
-    background-color: RGBA(var(--red-primary), 0.25);
+    background-color: rgba(var(--red-primary), 0.25);
   }
 }
 

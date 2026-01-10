@@ -3,12 +3,12 @@
 
 $colors: (
   // normal is the default color, so is not necessary to define it
-  'mitec_blue': RGBA(var(--mitec-blue)),
-  'mitec_red': RGBA(var(--mitec-red)),
-  'mitec_green': RGBA(var(--mitec-green)),
-  'mitec_orange': RGBA(var(--mitec-orange)),
-  'mitec_light_green': RGBA(var(--green-light)),
-  'mitec_purple': RGBA(var(--mitec-purple)),
+  'mitec_blue': rgb(var(--mitec-blue)),
+  'mitec_red': rgb(var(--mitec-red)),
+  'mitec_green': rgb(var(--mitec-green)),
+  'mitec_orange': rgb(var(--mitec-orange)),
+  'mitec_light_green': rgb(var(--green-light)),
+  'mitec_purple': rgb(var(--mitec-purple)),
   'creative_violet': var(--creative-use-violet),
   'creative_indigo': var(--creative-use-indigo),
   'creative_emerald': var(--creative-use-emerald),

@@ -34,21 +34,21 @@ $types: 'academic', 'life', 'event', 'save_the_date';
   &-type {
     &-academic {
       &.bmb_calendar-event-active:not(.bmb_calendar-event-disabled) {
-        border-color: RGBA(var(--blue-mariner-700));
+        border-color: rgb(var(--blue-mariner-700));
       }
 
       .bmb_calendar-event-indicator {
-        background-color: RGBA(var(--blue-mariner-700));
+        background-color: rgb(var(--blue-mariner-700));
       }
     }
 
     &-events {
       &.bmb_calendar-event-active:not(.bmb_calendar-event-disabled) {
-        border-color: RGBA(var(--purple-light));
+        border-color: rgb(var(--purple-light));
       }
 
       .bmb_calendar-event-indicator {
-        background-color: RGBA(var(--purple-light));
+        background-color: rgb(var(--purple-light));
       }
     }
 
@@ -64,11 +64,11 @@ $types: 'academic', 'life', 'event', 'save_the_date';
 
     &-save_the_date {
       &.bmb_calendar-event-active:not(.bmb_calendar-event-disabled) {
-        border-color: RGBA(var(--yellow-primary));
+        border-color: rgb(var(--yellow-primary));
       }
 
       .bmb_calendar-event-indicator {
-        background-color: RGBA(var(--yellow-primary));
+        background-color: rgb(var(--yellow-primary));
       }
     }
   }
@@ -124,7 +124,7 @@ $types: 'academic', 'life', 'event', 'save_the_date';
 
   &-indicator {
     grid-area: indicator;
-    background-color: RGBA(var(--blue-mariner-700));
+    background-color: rgb(var(--blue-mariner-700));
     margin-right: rem.rem-calc(8);
   }
 

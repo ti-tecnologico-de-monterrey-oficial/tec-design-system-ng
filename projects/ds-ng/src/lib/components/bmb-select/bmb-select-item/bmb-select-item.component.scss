@@ -6,7 +6,7 @@
 
   &:hover,
   &:focus-visible {
-    background-color: RGBA(var(--gray-charade-500));
+    background-color: rgb(var(--gray-charade-500));
   }
 
   button {
@@ -18,7 +18,7 @@
 
     &:hover,
     &:focus-visible {
-      background-color: RGBA(var(--gray-charade-500));
+      background-color: rgb(var(--gray-charade-500));
     }
   }
 }
