@@ -119,14 +119,14 @@ $types: (
 
     &-date {
       width: max-content;
-      color: rgba(var(--white-primary), 0.75);
+      color: rgb(var(--black-light));
     }
   }
 
   &-subtitle {
     @include fonts.font(3, regular);
     font-weight: 400;
-    color: rgba(var(--white-primary), 0.5);
+    color: rgb(var(--black-tint));
     margin-bottom: var(--bmb-spacing-xs);
     @include text-ellipsis();
   }
@@ -245,7 +245,7 @@ $types: (
 
     &-mail {
       grid-area: mail;
-      color: rgba(var(--white-primary), 0.5);
+      color: rgb(var(--black-tint));
     }
   }
 }

@@ -5,26 +5,26 @@ $types: (
   'academic':
     linear-gradient(
       139deg,
-      RGBA(var(--blue-mariner-950)) -47.21%,
-      RGBA(var(--blue-mariner-900)) 93.52%
+      rgb(var(--blue-mariner-950)) -47.21%,
+      rgb(var(--blue-mariner-900)) 93.52%
     ),
   'life':
     linear-gradient(
       325deg,
-      RGBA(var(--green-primary)) 18.73%,
-      RGBA(var(--green-light)) 103.37%
+      rgb(var(--green-primary)) 18.73%,
+      rgb(var(--green-light)) 103.37%
     ),
   'events':
     linear-gradient(
       132deg,
-      RGBA(var(--purple-primary)) -7.51%,
-      RGBA(var(--purple-light)) 98.98%
+      rgb(var(--purple-primary)) -7.51%,
+      rgb(var(--purple-light)) 98.98%
     ),
   'save_the_date':
     linear-gradient(
       132deg,
-      RGBA(var(--yellow-primary)) -7.51%,
-      RGBA(var(--mitec-orange-primary)) 98.98%
+      rgb(var(--yellow-primary)) -7.51%,
+      rgb(var(--mitec-orange-primary)) 98.98%
     ),
 );
 
@@ -112,20 +112,20 @@ $types: (
 
     .bmb_badge-container {
       &.bmb_badge-mitec_green {
-        background-color: RGBA(var(--mitec-green));
+        background-color: rgb(var(--mitec-green));
       }
       &.bmb_badge-mitec_purple {
-        background-color: RGBA(var(--mitec-purple));
+        background-color: rgb(var(--mitec-purple));
       }
       &.bmb_badge-mitec_orange {
-        background-color: RGBA(var(--mitec-orange-tint));
+        background-color: rgb(var(--mitec-orange-tint));
       }
 
       .bmb_badge-bullet {
-        background-color: RGBA(var(--gray-charade-900));
+        background-color: rgb(var(--gray-charade-900));
       }
       .bmb_badge-content {
-        color: RGBA(var(--gray-charade-900));
+        color: rgb(var(--gray-charade-900));
       }
     }
   }

@@ -25,8 +25,8 @@ $types: (
   ),
   'warning': (
     'border': var(--alert-warning),
-    'background': rgba(var(--yellow-tint), 1),
-    'color': rgba(var(--gray-charade-950)),
+    'background': rgb(var(--yellow-tint)),
+    'color': rgb(var(--gray-charade-950)),
   ),
   'error': (
     'border': var(--buttons-destructive),
