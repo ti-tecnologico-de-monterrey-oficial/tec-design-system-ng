@@ -88,7 +88,7 @@
 
     &:hover:not(:disabled),
     &:focus-visible:not(:disabled) {
-      background-color: rgb(var(--black-min));
+      background-color: var(--white-min);
     }
 
     &-close i,
