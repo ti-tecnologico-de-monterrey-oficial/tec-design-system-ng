@@ -43,7 +43,7 @@ import { BmbBotIconComponent } from '../components/bmb-bot-icon/bmb-bot-icon.com
         <bmb-home-card-chat
           leftIcon="chevron_left"
           icon="bot_tecStandar"
-          bgIconAppearance="charade-500"
+          bgIconAppearance="gray-charade-500"
           title="Asistente TECbot"
           contentPadding="none"
           subtitle="Assitente TECbot"
@@ -177,7 +177,7 @@ import { BmbModalComponent, ModalDataConfig, BmbActionIconComponent } from '@ti-
             <bmb-home-card-chat
                 leftIcon="chevron_left"
                 icon="bot_tecStandar"
-                bgIconAppearance="charade-500"
+                bgIconAppearance="gray-charade-500"
                 title="Asistente TECbot"
                 contentPadding="none"
                 subtitle="Assitente TECbot"

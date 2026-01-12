@@ -142,10 +142,10 @@ const preview: Preview = {
     },
     withThemeByClassName({
       themes: {
-        Light: 'storybook-light-theme',
-        Dark: 'storybook-dark-theme',
+        light: 'storybook-light-theme',
+        dark: 'storybook-dark-theme',
       },
-      defaultTheme: 'Dark',
+      defaultTheme: 'dark',
     }),
   ],
 };

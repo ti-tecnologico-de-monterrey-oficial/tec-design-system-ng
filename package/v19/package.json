@@ -17,7 +17,7 @@
     "build-storybook": "ng run ds-ng:build-storybook",
     "build": "ng build",
     "chromatic": "npx chromatic",
-    "build:styles": "npm run build:TEC && npm run build:GED && build:TECMI",
+    "build:styles": "npm run build:TEC && npm run build:TECMI && npm run build:GED",
     "build:TEC": "sass projects/ds-ng/src/assets/styles/mainTEC.scss dist/ds-ng/assets/styles/mainTEC.min.css --style=compressed",
     "build:GED": "sass projects/ds-ng/src/assets/styles/mainGED.scss dist/ds-ng/assets/styles/mainGED.min.css --style=compressed",
     "build:TECMI": "sass projects/ds-ng/src/assets/styles/mainTECMI.scss dist/ds-ng/assets/styles/mainTECMI.min.css --style=compressed",

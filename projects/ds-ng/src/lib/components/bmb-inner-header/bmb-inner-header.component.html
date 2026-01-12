@@ -17,7 +17,12 @@
             [control]="getFormControl('search')"
           />
         </form>
-      } @else if(trailingIconSecondary() !== '' || trailingIconPrimary() !== '' || showSearch() || title() !== '') {
+      } @else if (
+        trailingIconSecondary() !== '' ||
+        trailingIconPrimary() !== '' ||
+        showSearch() ||
+        title() !== ''
+      ) {
         <bmb-three-cols
           [ngClass]="{
             'bmb_inner_header-container-space': !!trailingIconSecondary()

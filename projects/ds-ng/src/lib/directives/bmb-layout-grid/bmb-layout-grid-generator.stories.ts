@@ -209,13 +209,17 @@ class StorybookLayoutGridStories {
   getCoordinates(section: string, item: string) {
     switch (section) {
       case 'colStart':
-        return parseInt(item.split(' / ')[1]);
+        return parseInt(item?.split(' / ')[1]);
       case 'rowStart':
-        return parseInt(item.split(' / ')[0]);
+        return parseInt(item?.split(' / ')[0]);
       case 'cols':
-        return parseInt(item.split(' / ')[3]) - parseInt(item.split(' / ')[1]);
+        return (
+          parseInt(item?.split(' / ')[3]) - parseInt(item?.split(' / ')[1])
+        );
       case 'rows':
-        return parseInt(item.split(' / ')[2]) - parseInt(item.split(' / ')[0]);
+        return (
+          parseInt(item?.split(' / ')[2]) - parseInt(item?.split(' / ')[0])
+        );
       default:
         return 0;
     }
@@ -243,8 +247,8 @@ class StorybookLayoutGridStories {
 
   generateNewItem() {
     const coordinates = {
-      start: this.start.split(' / '),
-      end: this.end.split(' / '),
+      start: this.start?.split(' / '),
+      end: this.end?.split(' / '),
     };
     const start = {
       row: Math.min(

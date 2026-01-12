@@ -111,7 +111,7 @@
       border-color: var(--buttons-primary-border-active);
       outline-width: rem.rem_calc(1);
       outline-color: var(--buttons-primary-border-active);
-      box-shadow: rem.rem_calc(0 0 20) var(--blue-mariner-500);
+      box-shadow: rem.rem_calc(0 0 20) rgb(var(--blue-mariner-500));
       color: var(--buttons-alternative-normal);
 
       bmb-icon {
