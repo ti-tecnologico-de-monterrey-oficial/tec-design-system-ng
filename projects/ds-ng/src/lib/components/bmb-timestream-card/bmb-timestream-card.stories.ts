@@ -74,18 +74,6 @@ const color_names: IBmbColor[] = [
   'teal-primary',
   'teal-light',
   'teal-tint',
-  'container-home',
-  'container-secondary',
-  'container-button',
-  'background-main',
-  'container-home-light',
-  'container-secondary-light',
-  'container-button-light',
-  'background-main-light',
-  'container-home-tec',
-  'container-secondary-tec',
-  'container-button-tec',
-  'background-main-tec',
 ];
 
 export default {

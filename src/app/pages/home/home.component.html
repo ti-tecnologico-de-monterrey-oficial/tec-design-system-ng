@@ -5,6 +5,121 @@
 <div class="bmb_template-margin-for-sidebar">
   <section bmbLayout margin="none" gapSize="m">
     <div bmbVerticalLayout bmbLayoutItem [colSm]="4" [colLg]="6" gapSize="m">
+      <bmb-advertisement-card
+        [data]="{
+          promociones: [
+            {
+              imgData: {
+                url: 'https://farm2.staticflickr.com/1919/45579541712_f58c1fd0ed_o.jpg',
+                alt: 'Imagen'
+              },
+              content: {
+                title: 'Lorem ipsum dolor sit amet p1',
+                description:
+                  'lorem commodi eveniet ullam accusantium officiis mollitia error ipsa sapiente.',
+                linkBtn: 'www.google.com',
+                labelBtn: 'ACTION'
+              }
+            },
+            {
+              imgData: {
+                url: 'https://content.elmueble.com/medio/2023/03/29/razas-de-perros_725466fb_230329160906_900x900.jpg',
+                alt: 'Imagen'
+              },
+              content: {
+                title: 'Lorem ipsum p2',
+                description:
+                  'lorem commodi eveniet ullam accusantium officiis mollitia error ipsa sapiente. lorem commodi eveniet ullam accusantium officiis mollitia error ipsa sapiente. lorem commodi eveniet ullam accusantium officiis mollitia error ipsa sapiente.',
+                linkBtn: 'www.google.com',
+                labelBtn: 'GO'
+              }
+            },
+            {
+              imgData: {
+                url: 'https://content.elmueble.com/medio/2024/04/03/razas-de-perros-pequenos_0718680a_240403083147_900x900.jpg',
+                alt: 'Imagen'
+              },
+              content: {
+                title: 'Lorem ipsum dolor p3',
+                description:
+                  'lorem commodi eveniet ullam accusantium officiis mollitia error ipsa sapiente. lorem commodi eveniet ullam accusantium officiis mollitia error ipsa sapiente. lorem commodi eveniet ullam accusantium officiis mollitia error ipsa sapiente. lorem commodi eveniet ullam accusantium officiis mollitia error ipsa sapiente. lorem commodi eveniet ullam accusantium officiis mollitia error ipsa sapiente. lorem commodi eveniet ullam accusantium officiis mollitia error ipsa sapiente.',
+                linkBtn: 'www.google.com',
+                labelBtn: 'ACTION'
+              }
+            }
+          ],
+          avisos: [
+            {
+              imgData: {
+                url: 'https://picsum.photos/id/10/200/300',
+                alt: 'AVISOS'
+              },
+              content: {
+                title: 'Lorem ipsum dolor sit amet avisos',
+                description:
+                  'lorem commodi eveniet ullam accusantium officiis mollitia error ipsa sapiente.',
+                linkBtn: 'www.google.com',
+                labelBtn: 'ACTION'
+              }
+            },
+            {
+              imgData: {
+                url: 'https://picsum.photos/id/11/200/300',
+                alt: 'AVISOS'
+              },
+              content: {
+                title: 'Lorem ipsum dolor sit amet a2',
+                description:
+                  'lorem commodi eveniet ullam accusantium officiis mollitia error ipsa sapiente.',
+                linkBtn: 'www.google.com',
+                labelBtn: 'ACTION'
+              }
+            },
+            {
+              imgData: {
+                url: 'https://picsum.photos/id/18/200/300',
+                alt: 'Imagen'
+              },
+              content: {
+                title: 'Lorem ipsum dolor sit amet a3',
+                description:
+                  'lorem commodi eveniet ullam accusantium officiis mollitia error ipsa sapiente.',
+                linkBtn: 'www.google.com',
+                labelBtn: 'ACTION'
+              }
+            }
+          ],
+          informacion: [
+            {
+              imgData: {
+                url: 'https://picsum.photos/id/48/200/300',
+                alt: 'PROMO'
+              },
+              content: {
+                title: 'Lorem ipsum dolor sit amet i1',
+                description:
+                  'lorem commodi eveniet ullam accusantium officiis mollitia error ipsa sapiente.',
+                linkBtn: 'www.google.com',
+                labelBtn: 'ACTION'
+              }
+            },
+            {
+              imgData: {
+                url: 'https://picsum.photos/id/8/200/300',
+                alt: 'PROMO'
+              },
+              content: {
+                title: 'Lorem ipsum dolor sit amet i2',
+                description:
+                  'lorem commodi eveniet ullam accusantium officiis mollitia error ipsa sapiente.',
+                linkBtn: 'www.google.com',
+                labelBtn: 'ACTION'
+              }
+            }
+          ]
+        }"
+        [subtitle]="'Subtitulo'"
+      ></bmb-advertisement-card>
       <bmb-accordion
         borderRadius="m"
         margin="none"

@@ -112,10 +112,10 @@ $types: (
 
     .bmb_badge-container {
       &.bmb_badge-mitec_green {
-        background-color: rgb(var(--mitec-green));
+        background-color: rgb(var(--mitec-green-light));
       }
       &.bmb_badge-mitec_purple {
-        background-color: rgb(var(--mitec-purple));
+        background-color: rgb(var(--mitec-purple-light));
       }
       &.bmb_badge-mitec_orange {
         background-color: rgb(var(--mitec-orange-tint));

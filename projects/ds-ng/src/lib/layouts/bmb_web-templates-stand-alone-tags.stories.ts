@@ -40,14 +40,14 @@ import * as buttonStory from '../directives/bmb-button/button.stories';
   template: `
     <bmb-top-bar />
     <section class="bmb_template-header">
-      <h3>Header</h3>
-      <h5>Text</h5>
+      <h3 class="bmb_template-header-content">Header</h3>
+      <h5 class="bmb_template-header-content">Text</h5>
     </section>
     <div class="bmb_template-stand-alone-tags">
       <div class="bmb_template-subheader">
         <ul>
           <li>
-            <h4>Subheader</h4>
+            <h4 class="bmb_template-header-content">Subheader</h4>
           </li>
           <li>
             <bmb-badge
