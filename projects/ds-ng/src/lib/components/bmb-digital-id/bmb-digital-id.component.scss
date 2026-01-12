@@ -58,12 +58,12 @@
 
     .bmb_user-summary_content-wrapper-general-text {
       @include fonts.font(7, regular);
-      color: rgb(var(--black-light));
+      color: var(--black-light);
     }
 
     .bmb_user-summary_content-wrapper-campus {
       @include fonts.font(5, regular);
-      color: rgb(var(--black-light));
+      color: var(--black-light);
     }
   }
 
