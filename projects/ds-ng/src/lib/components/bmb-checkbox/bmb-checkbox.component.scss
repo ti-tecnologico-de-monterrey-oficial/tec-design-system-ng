@@ -38,10 +38,10 @@
     }
 
     &:not(:checked):not(.bmb_checkbox-input-indeterminate) {
-      @include focus-mark(rgb(var(--color-charade-900)));
+      @include focus-mark(rgb(var(--gray-charade-900)));
 
       & + .bmb_checkbox-mark {
-        @include mixins.input-shadow(rgb(var(--color-charade-900)));
+        @include mixins.input-shadow(rgb(var(--gray-charade-900)));
       }
     }
 
@@ -72,7 +72,7 @@
 
   &-mark {
     @include mixins.input-mark(
-      var(--general_contrasts-75),
+      var(--general-contrasts-75),
       var(--bmb-radius-xs)
     );
   }

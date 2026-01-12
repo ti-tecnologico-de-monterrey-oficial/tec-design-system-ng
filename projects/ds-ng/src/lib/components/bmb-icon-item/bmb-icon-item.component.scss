@@ -13,7 +13,7 @@
     a {
       @include fonts.font(4, bold);
       align-items: center;
-      color: var(--general_contrasts-main-selection);
+      color: var(--general-contrasts-main-selection);
       display: inline-flex;
       line-height: 2;
       text-decoration: underline;

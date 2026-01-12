@@ -4,7 +4,7 @@
 
 .bmb_media-card {
   @include fonts.font(3, regular);
-  color: var(--general_contrasts-100);
+  color: var(--general-contrasts-100);
   position: relative;
   border-radius: rem.rem_calc(20);
   cursor: pointer;
@@ -93,16 +93,17 @@
       align-items: flex-end;
       justify-content: flex-end;
       z-index: 1;
-      color: RGBA(var(--color-charade-50));
+      color: rgb(var(--gray-charade-50));
 
       .bmb_media-card-content-container {
         background-image: linear-gradient(
-          RGBA(var(--color-charade-950), 0),
-          RGBA(var(--color-charade-950), 1)
+          rgba(var(--gray-charade-950), 0),
+          rgba(var(--gray-charade-950), 1)
         );
         padding: var(--bmb-spacing-m);
         width: 100%;
         box-sizing: border-box;
+        border-radius: 0 0 var(--bmb-border-radius) var(--bmb-border-radius);
 
         &-backdrop {
           margin: var(--bmb-spacing-m);
@@ -151,7 +152,7 @@
       }
 
       &-date {
-        color: rgb(var(--color-charade-500));
+        color: rgb(var(--gray-charade-500));
       }
     }
 
@@ -172,8 +173,8 @@
           content: '';
           position: absolute;
           background-image: linear-gradient(
-            RGBA(var(--color-charade-950), 0),
-            RGBA(var(--color-charade-950), 0.9)
+            rgba(var(--gray-charade-950), 0),
+            rgba(var(--gray-charade-950), 0.9)
           );
           width: 100%;
           height: 100%;
@@ -201,7 +202,7 @@
 
     &:active {
       .bmb_media-card-content-title {
-        color: RGBA(var(--color-mariner-500));
+        color: rgb(var(--blue-mariner-500));
       }
     }
   }

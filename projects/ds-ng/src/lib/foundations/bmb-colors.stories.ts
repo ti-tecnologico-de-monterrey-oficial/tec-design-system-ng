@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { Component } from '@angular/core';
 import { Meta, moduleMetadata, StoryObj } from '@storybook/angular';
 import { CommonModule } from '@angular/common';
 import {
@@ -42,6 +42,60 @@ import { BmbVerticalLayoutItemDirective } from '../directives/bmb-layout/bmb-ver
     >
       <h1 style="width: 100%;">${SANDBOX_TITLE}</h1>
       <ng-template
+        #colorList
+        let-list="list"
+        let-title="title"
+        let-isNameStyle="isNameStyle"
+        let-isGradientStyle="isGradientStyle"
+        let-isJustifyStart="isJustifyStart"
+      >
+        <ul
+          style="margin: 0 var(--bmb-spacing-m); padding: 0; list-style: none"
+          bmbLayout
+          margin="none"
+          gapSize="l"
+          [justify]="isJustifyStart ? 'start' : 'center'"
+        >
+          @for (item of list; track $index) {
+            <li [attr.title]="item" bmbLayoutItem>
+              @if (isList(item)) {
+                <ng-template
+                  *ngTemplateOutlet="
+                    colorList;
+                    context: {
+                      list: item,
+                      title: $index,
+                      isNameStyle,
+                      isGradientStyle,
+                      isJustifyStart
+                    }
+                  "
+                />
+                @if ($index < list.length - 1) {
+                  <bmb-divider />
+                }
+              } @else {
+                <button
+                  class="font-bold-4 bmb_box-shadow-2"
+                  type="button"
+                  [style]="parseStyle()"
+                  [ngStyle]="
+                    isNameStyle
+                      ? parseNamedStyle(item)
+                      : isGradientStyle
+                        ? parseGradientStyle(item)
+                        : parseColorNamedStyle(item)
+                  "
+                  (click)="copyToClipboard(item)"
+                >
+                  {{ item }}
+                </button>
+              }
+            </li>
+          }
+        </ul>
+      </ng-template>
+      <ng-template
         #content
         let-list="list"
         let-title="title"
@@ -59,38 +113,21 @@ import { BmbVerticalLayoutItemDirective } from '../directives/bmb-layout/bmb-ver
             </header>
           </section>
           <section bmbVerticalLayoutItem>
-            <ul
-              style="margin: 0 var(--bmb-spacing-m); padding: 0; list-style: none"
-              bmbLayout
-              margin="none"
-              gapSize="l"
-              [justify]="isJustifyStart ? 'start' : 'center'"
-            >
-              @for (item of list; track $index) {
-                <li [attr.title]="item" bmbLayoutItem>
-                  <button
-                    class="font-bold-4 bmb_box-shadow-2"
-                    type="button"
-                    [style]="parseStyle()"
-                    [ngStyle]="
-                      isNameStyle
-                        ? parseNamedStyle(item)
-                        : isGradientStyle
-                          ? parseGradientStyle(item)
-                          : parseColorNamedStyle(item)
-                    "
-                    (click)="copyToClipboard(item)"
-                  >
-                    {{ item }}
-                  </button>
-                  <br />
-                </li>
-              }
-            </ul>
+            <ng-template
+              *ngTemplateOutlet="
+                colorList;
+                context: {
+                  list,
+                  title,
+                  isNameStyle,
+                  isGradientStyle,
+                  isJustifyStart
+                }
+              "
+            />
           </section>
         </section>
       </ng-template>
-
       <section bmbVerticalLayout margin="l">
         <section bmbVerticalLayoutItem>
           <ng-template
@@ -109,9 +146,9 @@ import { BmbVerticalLayoutItemDirective } from '../directives/bmb-layout/bmb-ver
             appearanceContrast="alternative"
             icon="keyboard_arrow_down"
           >
-            <ng-template #bmbAccordionHeader>{{
-              'Container colors'
-            }}</ng-template>
+            <ng-template #bmbAccordionHeader>
+              {{ 'Container colors' }}
+            </ng-template>
             <ng-template #bmbAccordionContent>
               <ng-template
                 *ngTemplateOutlet="
@@ -119,6 +156,16 @@ import { BmbVerticalLayoutItemDirective } from '../directives/bmb-layout/bmb-ver
                   context: {
                     list: grayCharade,
                     title: 'Gray '
+                  }
+                "
+              />
+              <bmb-divider />
+              <ng-template
+                *ngTemplateOutlet="
+                  content;
+                  context: {
+                    list: grayTECMI,
+                    title: 'Gray (TECMI)'
                   }
                 "
               />
@@ -177,8 +224,109 @@ import { BmbVerticalLayoutItemDirective } from '../directives/bmb-layout/bmb-ver
             appearanceContrast="alternative"
             icon="keyboard_arrow_down"
           >
+            <ng-template #bmbAccordionHeader>{{ 'TEC colors' }}</ng-template>
+            <ng-template #bmbAccordionContent>
+              <ng-template
+                *ngTemplateOutlet="
+                  content;
+                  context: {
+                    list: blueMariner,
+                    title: 'Blue (TEC)'
+                  }
+                "
+              />
+            </ng-template>
+          </bmb-accordion>
+          <bmb-accordion
+            appearanceContrast="alternative"
+            icon="keyboard_arrow_down"
+          >
+            <ng-template #bmbAccordionHeader>{{
+              'Tecmilenio colors'
+            }}</ng-template>
+            <ng-template #bmbAccordionContent>
+              <ng-template
+                *ngTemplateOutlet="
+                  content;
+                  context: {
+                    list: greenTECMI,
+                    title: 'Green (TECMI)'
+                  }
+                "
+              />
+              <bmb-divider />
+              <ng-template
+                *ngTemplateOutlet="
+                  content;
+                  context: {
+                    list: institutionalTECMI,
+                    title: 'Institutional / Tecmilenio branding'
+                  }
+                "
+              />
+            </ng-template>
+          </bmb-accordion>
+          <bmb-accordion
+            appearanceContrast="alternative"
+            icon="keyboard_arrow_down"
+          >
+            <ng-template #bmbAccordionHeader>{{ 'GED colors' }}</ng-template>
+            <ng-template #bmbAccordionContent>
+              <ng-template
+                *ngTemplateOutlet="
+                  content;
+                  context: {
+                    list: blueGED,
+                    title: 'Blue (GED)'
+                  }
+                "
+              />
+            </ng-template>
+          </bmb-accordion>
+          <bmb-accordion
+            appearanceContrast="alternative"
+            icon="keyboard_arrow_down"
+          >
             <ng-template #bmbAccordionHeader>
-              {{ 'Creative use' }}
+              {{ 'mitec base color' }}
+            </ng-template>
+            <ng-template #bmbAccordionContent>
+              <ng-template
+                *ngTemplateOutlet="
+                  content;
+                  context: {
+                    list: mitecBaseColors,
+                    title: 'Base colors'
+                  }
+                "
+              />
+            </ng-template>
+          </bmb-accordion>
+          <bmb-accordion
+            appearanceContrast="alternative"
+            icon="keyboard_arrow_down"
+          >
+            <ng-template #bmbAccordionHeader>
+              {{ 'Semantic colors' }}
+            </ng-template>
+            <ng-template #bmbAccordionContent>
+              <ng-template
+                *ngTemplateOutlet="
+                  content;
+                  context: {
+                    list: semanticBaseColors,
+                    title: 'Base colors'
+                  }
+                "
+              />
+            </ng-template>
+          </bmb-accordion>
+          <bmb-accordion
+            appearanceContrast="alternative"
+            icon="keyboard_arrow_down"
+          >
+            <ng-template #bmbAccordionHeader>
+              {{ 'Creative use colors' }}
             </ng-template>
             <ng-template #bmbAccordionContent>
               <ng-template
@@ -203,43 +351,8 @@ import { BmbVerticalLayoutItemDirective } from '../directives/bmb-layout/bmb-ver
               />
             </ng-template>
           </bmb-accordion>
-          <bmb-accordion
-            appearanceContrast="alternative"
-            icon="keyboard_arrow_down"
-          >
-            <ng-template #bmbAccordionHeader>{{
-              'Semantic colors'
-            }}</ng-template>
-            <ng-template #bmbAccordionContent>
-              <ng-template
-                *ngTemplateOutlet="
-                  content;
-                  context: {
-                    list: semanticBaseColors,
-                    title: 'Base colors'
-                  }
-                "
-              />
-            </ng-template>
-          </bmb-accordion>
-          <bmb-accordion
-            appearanceContrast="alternative"
-            icon="keyboard_arrow_down"
-          >
-            <ng-template #bmbAccordionHeader>{{ 'GED' }}</ng-template>
-            <ng-template #bmbAccordionContent>
-              <ng-template
-                *ngTemplateOutlet="
-                  content;
-                  context: {
-                    list: blueGED,
-                    title: 'Blue (GED)'
-                  }
-                "
-              />
-            </ng-template>
-          </bmb-accordion>
         </section>
+        <bmb-divider bmbVerticalLayoutItem />
         <p>The color options contained in the tabs depend on the theme used.</p>
         <bmb-tabs
           format="uppercase"
@@ -256,12 +369,13 @@ import { BmbVerticalLayoutItemDirective } from '../directives/bmb-layout/bmb-ver
               *ngTemplateOutlet="
                 content;
                 context: {
-                  list: containers,
+                  list: generalContrasts,
                   title: tabList[selectedTab - 1].title,
                   isNameStyle: true
                 }
               "
             />
+
             <bmb-divider />
             <ng-template
               *ngTemplateOutlet="
@@ -283,7 +397,7 @@ import { BmbVerticalLayoutItemDirective } from '../directives/bmb-layout/bmb-ver
               *ngTemplateOutlet="
                 content;
                 context: {
-                  list: buttons,
+                  list: containers,
                   title: tabList[selectedTab - 1].title,
                   isNameStyle: true
                 }
@@ -299,7 +413,7 @@ import { BmbVerticalLayoutItemDirective } from '../directives/bmb-layout/bmb-ver
               *ngTemplateOutlet="
                 content;
                 context: {
-                  list: generalContrasts,
+                  list: buttons,
                   title: tabList[selectedTab - 1].title,
                   isNameStyle: true
                 }
@@ -347,7 +461,55 @@ import { BmbVerticalLayoutItemDirective } from '../directives/bmb-layout/bmb-ver
               *ngTemplateOutlet="
                 content;
                 context: {
-                  list: mitec,
+                  list: mitecInstitutionalColors,
+                  title: tabList[selectedTab - 1].title,
+                  isNameStyle: true
+                }
+              "
+            />
+          </section>
+          <section
+            bmbSelector
+            [idSelector]="7"
+            [activeSelectorID]="selectedTab"
+          >
+            <ng-template
+              *ngTemplateOutlet="
+                content;
+                context: {
+                  list: creativeUseColors,
+                  title: tabList[selectedTab - 1].title,
+                  isNameStyle: true
+                }
+              "
+            />
+          </section>
+          <section
+            bmbSelector
+            [idSelector]="8"
+            [activeSelectorID]="selectedTab"
+          >
+            <ng-template
+              *ngTemplateOutlet="
+                content;
+                context: {
+                  list: tecmilenioColors,
+                  title: tabList[selectedTab - 1].title,
+                  isNameStyle: true
+                }
+              "
+            />
+          </section>
+          <section
+            bmbSelector
+            [idSelector]="9"
+            [activeSelectorID]="selectedTab"
+          >
+            <ng-template
+              *ngTemplateOutlet="
+                content;
+                context: {
+                  list: alertColors,
                   title: tabList[selectedTab - 1].title,
                   isNameStyle: true
                 }
@@ -362,35 +524,27 @@ import { BmbVerticalLayoutItemDirective } from '../directives/bmb-layout/bmb-ver
 class StorybookColorsPlaygroundComponent {
   selectedTab: number = 1;
   tabList: IBmbTab[] = [
-    { id: 1, title: 'Containers', isActive: true },
-    { id: 2, title: 'Buttons' },
-    { id: 3, title: 'General Contrasts' },
-    { id: 4, title: 'Menu (select)' },
-    { id: 5, title: 'Semantic colors' },
+    { id: 1, title: 'General Contrasts', isActive: true },
+    { id: 2, title: 'Containers' },
+    { id: 3, title: 'Buttons' },
+    { id: 4, title: 'Menu' },
+    { id: 5, title: 'Semantic' },
     { id: 6, title: 'mitec' },
+    { id: 7, title: 'Creative use' },
+    { id: 8, title: 'Tecmilenio' },
+    { id: 9, title: 'Alert' },
   ];
 
   institutionalColors: string[] = ['--blue-tec', '--white-primary'];
 
-  baseColors: string[] = [
-    '--blue-primary',
-    '--blue-light',
-    '--blue-tint',
-    '--green-primary',
-    '--green-light',
-    '--green-tint',
-    '--purple-primary',
-    '--purple-light',
-    '--purple-tint',
-    '--red-primary',
-    '--red-light',
-    '--red-tint',
-    '--yellow-primary',
-    '--yellow-light',
-    '--yellow-tint',
-    '--teal-primary',
-    '--teal-light',
-    '--teal-tint',
+  baseColors = [
+    ['--neon-primary', '--neon-tint', '--neon-light'],
+    ['--blue-primary', '--blue-light', '--blue-tint'],
+    ['--teal-primary', '--teal-light', '--teal-tint'],
+    ['--red-primary', '--red-light', '--red-tint'],
+    ['--green-primary', '--green-light', '--green-tint'],
+    ['--purple-primary', '--purple-light', '--purple-tint'],
+    ['--yellow-primary', '--yellow-light', '--yellow-tint'],
     '--black-primary',
   ];
 
@@ -409,6 +563,63 @@ class StorybookColorsPlaygroundComponent {
     '--purple-gradient',
   ];
 
+  mitecBaseColors: string[][] = [
+    ['--mitec-blue-primary', '--mitec-blue-light', '--mitec-blue-tint'],
+    ['--mitec-red-primary', '--mitec-red-light', '--mitec-red-tint'],
+    ['--mitec-green-primary', '--mitec-green-light', '--mitec-green-tint'],
+    ['--mitec-orange-primary', '--mitec-orange-light', '--mitec-orange-tint'],
+    ['--mitec-purple-primary', '--mitec-purple-light', '--mitec-purple-tint'],
+  ];
+
+  creativeBaseColors: string[][] = [
+    ['--violet-primary', '--violet-light', '--violet-tint'],
+    ['--indigo-primary', '--indigo-light', '--indigo-tint'],
+    ['--emerald-primary', '--emerald-light', '--emerald-tint'],
+    ['--licorice-primary', '--licorice-light', '--licorice-tint'],
+    ['--dark-teal-primary', '--dark-teal-light', '--dark-teal-tint'],
+    ['--peach-primary', '--peach-light', '--peach-tint'],
+    ['--sepia-primary', '--sepia-light', '--sepia-tint'],
+    ['--soft-red-primary', '--soft-red-light', '--soft-red-tint'],
+    [
+      '--wattle-primary',
+      '--wattle-primary-alternative',
+      '--wattle-light',
+      '--wattle-tint',
+    ],
+    ['--ship-cove-primary', '--ship-cove-light', '--ship-cove-tint'],
+    ['--plantation-primary', '--plantation-light', '--plantation-tint'],
+    ['--rum-primary', '--rum-light', '--rum-tint'],
+    [
+      '--ripe-lemon-primary',
+      '--ripe-lemon-primary-alternative',
+      '--ripe-lemon-light',
+      '--ripe-lemon-tint',
+    ],
+    ['--hibiscus-primary', '--hibiscus-light', '--hibiscus-tint'],
+  ];
+
+  creativeGradients: string[] = ['--gradient-bg-tec'];
+
+  semanticBaseColors: string[][] = [
+    [
+      '--success-primary',
+      '--success-light',
+      '--success-thin',
+      '--success-primary-alternative',
+      '--success-tint-alternative',
+    ],
+    [
+      '--warning-primary',
+      '--warning-light',
+      '--warning-tint',
+      '--warning-primary-alternative',
+    ],
+    ['--error-primary', '--error-light', '--error-tint'],
+    ['--info-primary', '--info-light', '--info-tint'],
+    ['--branding-primary', '--branding-tint', '--branding-tint'],
+    ['--alert-primary', '--alert-light', '--alert-tint'],
+  ];
+
   blueMariner: string[] = [
     '--blue-mariner-50',
     '--blue-mariner-100',
@@ -420,65 +631,6 @@ class StorybookColorsPlaygroundComponent {
     '--blue-mariner-800',
     '--blue-mariner-900',
     '--blue-mariner-950',
-  ];
-
-  creativeBaseColors: string[] = [
-    '--violet-primary',
-    '--violet-light',
-    '--violet-tint',
-    '--indigo-primary',
-    '--indigo-tint',
-    '--emerald-primary',
-    '--emerald-tint',
-    '--licorice-primary',
-    '--licorice-light',
-    '--licorice-tint',
-    '--dark-teal-primary',
-    '--dark-teal-tint',
-    '--peach-primary',
-    '--peach-light',
-    '--peach-tint',
-    '--sepia-primary',
-    '--sepia-tint',
-    '--soft-red-primary',
-    '--soft-red-light',
-    '--soft-red-tint',
-    '--wattle-primary',
-    '--wattle-primary-alternative',
-    '--wattle-tint',
-    '--ship-cove-primary',
-    '--ship-cove-tint',
-    '--ship-cove-light',
-    '--plantation-primary',
-    '--plantation-tint',
-    '--rum-primary',
-    '--rum-tint',
-    '--ripe-lemon-primary',
-    '--ripe-lemon-tint',
-    '--ripe-lemon-primary-alternative',
-    '--hibiscus-primary',
-    '--hibiscus-tint',
-  ];
-
-  creativeGradients: string[] = ['--gradient-bg-tec'];
-
-  semanticBaseColors: string[] = [
-    '--success-primary',
-    '--success-primary-alternative',
-    '--success-light',
-    '--success-thin',
-    '--success-tint-alternative',
-    '--warning-primary',
-    '--warning-primary-alternative',
-    '--warning-tint',
-    '--error-primary',
-    '--error-light',
-    '--info-primary',
-    '--info-light',
-    '--branding-primary',
-    '--branding-tint',
-    '--alert-primary',
-    '--alert-light',
   ];
 
   blueGED: string[] = [
@@ -495,15 +647,78 @@ class StorybookColorsPlaygroundComponent {
     '--blue-ged-950',
   ];
 
-  containers: string[] = [
-    '--containers-background',
-    '--containers-main',
-    '--containers-header-mobile',
-    '--containers-modal',
-    '--containers-button',
-    '--containers-top-bar',
-    '--containers-background-fade',
-    '--containers-media-card-background-fade',
+  greenTECMI: string[] = [
+    '--green-tecmi-50',
+    '--green-tecmi-100',
+    '--green-tecmi-200',
+    '--green-tecmi-300',
+    '--green-tecmi-400',
+    '--green-tecmi-500',
+    '--green-tecmi-600',
+    '--green-tecmi-700',
+    '--green-tecmi-800',
+    '--green-tecmi-900',
+    '--green-tecmi-950',
+  ];
+
+  institutionalTECMI: string[] = [
+    '--tecmi-primary',
+    '--tecmi-secondary',
+    '--tecmi-auxiliar-one',
+    '--tecmi-auxiliar-two',
+    '--tecmi-auxiliar-three',
+  ];
+
+  generalContrasts: string[][] = [
+    [
+      '--general-contrasts',
+      '--general-contrasts-100',
+      '--general-contrasts-90',
+      '--general-contrasts-80',
+      '--general-contrasts-75',
+      '--general-contrasts-60',
+      '--general-contrasts-50',
+      '--general-contrasts-25',
+      '--general-contrasts-20',
+      '--general-contrasts-15',
+      '--general-contrasts-5',
+    ],
+    [
+      '--general-contrasts-main-complimentary',
+      '--general-contrasts-main-selection',
+      '--general-contrasts-icon-selection',
+      '--general-contrasts-main-selection-alternative',
+    ],
+    [
+      '--general-contrasts-input-background',
+      '--general-contrasts-input-outline',
+      '--general-contrasts-container-outline',
+    ],
+    [
+      '--general-contrasts-text-sidebar',
+      '--general-contrasts-primary',
+      '--general-contrasts-inner-header-text',
+      '--general-contrasts-timestream-index-inner-header-text',
+      '--general-contrasts-timestream-index-chevron-title-selector-text',
+    ],
+  ];
+
+  containers: string[][] = [
+    [
+      '--containers-background',
+      '--containers-media-card-background',
+      '--containers-main',
+      '--containers-header-mobile',
+      '--containers-modal',
+      '--containers-container-button',
+    ],
+    [
+      '--containers-top-bar',
+      '--containers-background-fade',
+      '--containers-media-card-background-fade',
+      '--containers-timestream-index',
+      '--containers-timestream-index-chevron-title-selector',
+    ],
   ];
 
   containerGradients: string[] = ['--media-card-gradient-default'];
@@ -525,54 +740,93 @@ class StorybookColorsPlaygroundComponent {
     '--buttons-text-link',
   ];
 
-  generalContrasts: string[] = [
-    '--general-contrasts',
-    '--general-contrasts-100',
-    '--general-contrasts-90',
-    '--general-contrasts-80',
-    '--general-contrasts-75',
-    '--general-contrasts-60',
-    '--general-contrasts-50',
-    '--general-contrasts-25',
-    '--general-contrasts-20',
-    '--general-contrasts-15',
-    '--general-contrasts-5',
-    '--general-contrasts-main-complimentary',
-    '--general-contrasts-main-selection',
-    '--general-contrasts-icon-selection',
-    '--general-contrasts-main-selection-alternative',
-    '--general-contrasts-input-background',
-    '--general-contrasts-input-outline',
-    '--general-contrasts-container-outline',
-    '--general-contrasts-text-sidebar',
-    '--general-contrasts-primary',
-  ];
-
-  menuSelect: string[] = [
-    '--menu-select-surface-activated',
-    '--menu-select-label-menu-active',
-    '--menu-select-label-menu-inactive',
-    '--menu-select-activated-w-checkbox',
-    '--menu-select-alternative-focus-label',
-    '--menu-select-on-surface-hovered-w-checkbox',
-    '--menu-select-on-surface-hovered',
+  menuSelect: string[][] = [
+    [
+      '--menu-select-surface-activated',
+      '--menu-select-label-menu-active',
+      '--menu-select-label-menu-inactive',
+      '--menu-select-activated-w-checkbox',
+      '--menu-select-alternative-focus-label',
+    ],
+    [
+      '--menu-select-on-surface-hovered-w-checkbox',
+      '--menu-select-on-surface-hovered',
+    ],
   ];
 
   semanticColors: string[] = [
     '--semantic-success',
+    '--semantic-info-event',
     '--semantic-warning',
     '--semantic-error',
-    '--semantic-info-event',
-    '--semantic-branding',
+    '--semantic-brand',
     '--semantic-alert',
+    '--semantic-neutral',
   ];
 
-  mitec: string[] = [
+  mitecInstitutionalColors: string[] = [
     '--mitec-blue',
     '--mitec-red',
     '--mitec-green',
     '--mitec-orange',
     '--mitec-purple',
+  ];
+
+  creativeUseColors: string[] = [
+    '--creative-use-violet',
+    '--creative-use-indigo',
+    '--creative-use-emerald',
+    '--creative-use-licorice',
+    '--creative-use-dark-teal',
+    '--creative-use-peach',
+    '--creative-use-sepia',
+    '--creative-use-soft-red',
+    '--creative-use-wattle',
+    '--creative-use-ship-cove',
+    '--creative-use-plantation',
+    '--creative-use-rum',
+    '--creative-use-ripe-lemon',
+    '--creative-use-hibiscus',
+  ];
+
+  tecmilenioColors: string[] = ['--tecmi-green', '--tecmi-green-2'];
+
+  alertColors: string[] = [
+    '--alert-successful',
+    '--alert-event',
+    '--alert-neutral',
+    '--alert-primary-alert-primary',
+    '--alert-warning',
+    '--alert-error',
+  ];
+
+  grayCharade: string[] = [
+    '--gray-charade-50',
+    '--gray-charade-100',
+    '--gray-charade-200',
+    '--gray-charade-300',
+    '--gray-charade-500',
+    '--gray-charade-600',
+    '--gray-charade-700',
+    '--gray-charade-800',
+    '--gray-charade-900',
+    '--gray-charade-950',
+  ];
+
+  grayTECMI: string[] = [
+    '--gray-tecmi-25',
+    '--gray-tecmi-50',
+    '--gray-tecmi-100',
+    '--gray-tecmi-150',
+    '--gray-tecmi-200',
+    '--gray-tecmi-300',
+    '--gray-tecmi-400',
+    '--gray-tecmi-500',
+    '--gray-tecmi-600',
+    '--gray-tecmi-700',
+    '--gray-tecmi-800',
+    '--gray-tecmi-900',
+    '--gray-tecmi-950',
   ];
 
   grayGED: string[] = [
@@ -589,25 +843,19 @@ class StorybookColorsPlaygroundComponent {
     '--gray-ged-950',
   ];
 
-  grayCharade: string[] = [
-    '--gray-charade-50',
-    '--gray-charade-100',
-    '--gray-charade-200',
-    '--gray-charade-300',
-    '--gray-charade-500',
-    '--gray-charade-600',
-    '--gray-charade-700',
-    '--gray-charade-800',
-    '--gray-charade-900',
-    '--gray-charade-950',
-  ];
+  isList(element: any): boolean {
+    return Array.isArray(element);
+  }
 
   parseStyle() {
     return {
       width: '12rem',
       height: '6rem',
+      'padding-left': 'var(--bmb-spacing-xxs)',
+      'padding-right': 'var(--bmb-spacing-xxs)',
       border: 'var(--bmb-border-general-contrasts-15-1-solid)',
       'border-radius': 'var(--bmb-radius-m)',
+      color: 'rgb(var(--gray-charade-800))',
       'text-shadow': `1px 1px 0 var(--general-contrasts-50),
           -1px -1px 0 var(--general-contrasts-50),
           -1px 1px 0 var(--general-contrasts-50),
@@ -669,16 +917,16 @@ ${getSpecialSpecifications(
     `
 ### Implementation details:
 >\`\`\`css
-background-color: rgb(var(--color-name));
-color: rgb(var(--color-name));
+background-color: rgb(var(--name));
+color: rgb(var(--name));
 >
 /* You need to avoid the rgb() for some variables, take a look to the playground */
-background-color: var(--color-name);
-color: var(--color-name);
+background-color: var(--name);
+color: var(--name);
 >
 /* For gradients colors */
-background: linear-gradient(180deg, var(--color-gradient-blue));
-background: radial-gradient(circle, var(--color-gradient-blue));
+background: linear-gradient(180deg, var(--gradient-blue));
+background: radial-gradient(circle, var(--gradient-blue));
 \`\`\`
 - To seamlessly integrate these colors into your design.
 - Dive into ${DESIGN_SYSTEM_TITLE} color palette to discover the perfect colors that will bring your designs to life.

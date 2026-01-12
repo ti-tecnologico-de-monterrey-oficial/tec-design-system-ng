@@ -40,13 +40,13 @@
     gap: rem.rem_calc(8);
 
     @include fonts.font(5, regular);
-    color: var(--general_contrasts-75);
+    color: var(--general-contrasts-75);
   }
 
   &-version {
     margin-top: rem.rem_calc(16);
     @include fonts.font(3, regular);
-    color: var(--general_contrasts-75);
+    color: var(--general-contrasts-75);
     font-weight: 400;
     text-align: center;
   }
@@ -61,7 +61,7 @@
     gap: rem.rem_calc(16);
 
     border-radius: var(--bmb-radius-6);
-    border: rem.rem_calc(1) solid var(--general_contrasts-container-outline);
+    border: rem.rem_calc(1) solid var(--general-contrasts-container-outline);
     background: var(--containers-background);
     box-shadow: var(--bmb-box-shadow-3);
 

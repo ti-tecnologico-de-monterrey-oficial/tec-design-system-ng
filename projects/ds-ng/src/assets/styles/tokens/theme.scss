@@ -1,11 +1,4 @@
 #storybook-docs {
-  // --general_contrasts-75: rgb(var(--color-charade-200));
-
-  .sbdocs-wrapper {
-    background-color: rgb(var(--color-charade-700));
-    color: var(--white-light);
-  }
-
   .sbdocs {
     &-title:not([class^='bmb']),
     h1:not([class^='bmb']),
@@ -13,228 +6,338 @@
     h3:not([class^='bmb']),
     h4:not([class^='bmb']),
     h5:not([class^='bmb']) {
-      color: var(--white-light);
+      color: rgb(var(--white-primary));
+      border-bottom-width: 0;
     }
 
     &-content :where(p:not(.sb-anchor, .sb-unstyled, .sb-unstyled p)),
     &-content :where(li:not(.sb-anchor, .sb-unstyled, .sb-unstyled li)) {
-      color: rgb(var(--color-charade-200));
+      color: rgba(var(--white-primary), 0.9);
 
       code {
-        background-color: var(--general_contrasts-75);
-        color: var(--general_contrasts-5);
-        border: 1px solid var(--general_contrasts-75);
+        background: rgb(var(--gray-charade-500));
+        color: rgb(var(--white-primary));
+        border: 1px solid rgb(var(--gray-charade-700));
         border-radius: var(--bmb-radius-3);
+      }
+
+      strong {
+        color: rgb(var(--white-primary));
       }
     }
 
     &-preview {
       &.sb-unstyled {
-        background: rgb(var(--color-charade-800));
-
         .sb-bar {
-          background-color: rgb(var(--color-charade-900));
-        }
-
-        .innerZoomElementWrapper > div > div {
-          background-color: var(--containers-background);
-          padding: 0.5rem;
+          background-color: rgb(var(--gray-charade-900));
         }
       }
     }
 
     &-expandable {
-      background-color: rgb(var(--color-charade-700));
-      border-color: rgb(var(--color-charade-500));
+      background-color: rgb(var(--gray-charade-900));
+      border-color: rgb(var(--gray-charade-700));
+      color: rgb(var(--gray-charade-400));
     }
 
-    li {
-      color: var(--white-tint);
+    &-a,
+    a:not(.toc-list-item > a) {
+      color: rgb(var(--blue-mariner-300));
     }
 
-    .css-11xgcgt {
-      background-color: transparent;
+    .css-nvhx8f {
+      background-color: rgb(var(--gray-charade-950));
 
-      button {
-        background-color: rgb(var(--color-charade-500));
-        color: rgb(var(--color-charade-900));
+      &:hover {
+        color: rgb(var(--gray-charade-950));
+        background-color: rgb(var(--gray-charade-900));
+      }
 
-        &:focus,
+      &:focus {
+        box-shadow: rgb(var(--blue-mariner-500)) 0px -3px 0px 0px inset;
+      }
+    }
+  }
+
+  .docblock {
+    width: auto;
+
+    &-source {
+      background-color: rgb(var(--gray-charade-900));
+      color: rgb(var(--white-primary));
+
+      .token {
+        color: rgb(var(--green-tint));
+
+        &.property {
+          color: rgb(var(--blue-mariner-300));
+        }
+
+        &.function,
+        &.tag {
+          color: rgb(var(--green-tint));
+        }
+
+        &.attr-name {
+          color: rgb(var(--blue-mariner-500));
+        }
+
+        &.attr-value {
+          color: rgb(var(--gray-charade-50));
+        }
+
+        &.punctuation,
+        &.operator {
+          color: rgb(var(--gray-charade-200));
+        }
+
+        &.keyword {
+          color: rgb(var(--purple-tint));
+        }
+
+        &.string {
+          color: rgb(var(--blue-mariner-300));
+        }
+
+        &.boolean {
+          color: rgb(var(--green-light));
+        }
+
+        &.imports.maybe-class-name {
+          color: rgb(var(--red-tint));
+        }
+
+        &.maybe-class-name {
+          color: rgb(var(--yellow-tint));
+        }
+
+        &.comment {
+          color: rgb(var(--gray-charade-500));
+        }
+      }
+
+      .language-typescript {
+        color: rgba(var(--red-light), 0.5);
+      }
+    }
+
+    &-code {
+      &-toggle {
+        background-color: transparent;
+      }
+    }
+
+    &-argstable {
+      &-body {
+        td {
+          background-color: rgb(var(--gray-charade-800)) !important;
+          color: rgb(var(--gray-charade-50));
+          border-color: rgb(var(--gray-charade-700));
+
+          &.css-1e7w8fv {
+            color: rgb(var(--white-primary));
+          }
+
+          &.css-1e7w8fv,
+          &.css-79elbk {
+            background-color: rgb(var(--gray-charade-700)) !important;
+          }
+
+          .css-13nzt7e > span,
+          code {
+            background-color: rgb(var(--gray-charade-700));
+            border: 1px solid rgb(var(--gray-charade-600));
+            border-radius: var(--bmb-radius-2);
+          }
+
+          select,
+          input:not([role='switch']),
+          textarea {
+            background-color: rgb(var(--gray-charade-700));
+            border: 1px solid rgb(var(--gray-charade-700));
+
+            &::placeholder {
+              color: rgb(var(--gray-charade-200));
+            }
+          }
+
+          > label {
+            background-color: rgb(var(--gray-charade-900));
+            border-color: rgb(var(--gray-charade-700));
+            input {
+              ~ span {
+                color: rgb(var(--white-primary));
+              }
+
+              &:not(:checked) {
+                ~ span:first-of-type {
+                  background-color: rgb(var(--gray-charade-500));
+                }
+
+                ~ span:last-of-type {
+                  background-color: transparent;
+                }
+              }
+
+              &:checked {
+                ~ span:first-of-type {
+                  background-color: transparent;
+                }
+
+                ~ span:last-of-type {
+                  background-color: rgb(var(--gray-charade-500));
+                }
+              }
+            }
+          }
+
+          > button:not(.css-d474as) {
+            background-color: rgb(var(--gray-charade-900));
+            color: rgb(var(--gray-charade-400));
+            border-color: rgb(var(--gray-charade-700));
+          }
+
+          .rejt-value-node {
+            &:hover .rejt-value {
+              background-color: rgb(var(--gray-charade-700));
+            }
+          }
+        }
+      }
+
+      &-head th {
+        color: rgb(var(--white-primary));
+      }
+    }
+  }
+
+  .bmb_doc {
+    &-tabs {
+      display: flex;
+      gap: 1rem;
+      flex-direction: column;
+
+      &-header {
+        margin: 0 !important;
+        padding: 0 !important;
+        display: flex;
+        flex-direction: row;
+        gap: 1rem;
+        list-style: none !important;
+      }
+
+      &-item {
+        margin: 0 !important;
+      }
+
+      &-button {
+        background: none;
+        border-width: 0 0 2px;
+        border-style: solid;
+        border-color: transparent;
+        padding: 0.25rem 1rem;
+        cursor: pointer;
+        color: var(--white-light);
+        transition: all 0.2s ease-in-out;
+
         &:hover {
-          box-shadow: rgb(var(--color-blue-tint)) 0px -3px 0px 0px inset;
+          border-color: rgb(var(--gray-charade-500));
         }
-      }
-    }
 
-    .css-x28zkw :where(hr:not(.sb-anchor, .sb-unstyled, .sb-unstyled hr)) {
-      border-color: var(--white-light);
-    }
-  }
-
-  .docblock-source {
-    background-color: rgb(var(--color-charade-900));
-    color: var(--white-light);
-
-    .token {
-      &.property {
-        color: rgb(114, 162, 240);
-      }
-
-      &.function,
-      &.tag {
-        color: rgb(var(--color-green-tint));
-      }
-
-      &.punctuation,
-      &.operator {
-        color: rgb(var(--color-charade-200));
-      }
-
-      &.keyword {
-        color: rgb(var(--color-blue-tint));
-      }
-
-      &.string {
-        color: rgb(114, 162, 240);
-      }
-
-      &.boolean {
-        color: rgb(var(--color-mitec-green));
-      }
-
-      &.maybe-class-name {
-        color: rgb(var(--color-mitec-red));
-      }
-
-      &.comment {
-        color: rgb(var(--color-charade-500));
-      }
-    }
-  }
-
-  .docblock-argstable-head th {
-    color: var(--white-light);
-  }
-
-  .docblock-argstable-body {
-    td {
-      background-color: rgb(var(--color-charade-900)) !important;
-      color: rgb(var(--color-charade-200));
-      border-color: rgb(var(--color-charade-700));
-
-      &.css-1ikjjm3,
-      &.css-79elbk {
-        background-color: rgb(var(--color-charade-800)) !important;
-      }
-
-      svg path {
-        fill: rgb(var(--color-charade-200));
-      }
-
-      .css-o1d7ko,
-      .css-18pz2h2 code {
-        background-color: var(--general_contrasts-50);
-        color: var(--general_contrasts-100);
-        border: 1px solid var(--general_contrasts-50);
-        border-radius: var(--bmb-radius-3);
-      }
-
-      select,
-      input:not([role='switch']),
-      textarea {
-        background-color: rgb(var(--color-charade-700));
-        color: var(--white-light);
-        border: 1px solid rgb(var(--color-charade-700));
-
-        &::placeholder {
-          color: rgb(var(--color-charade-200));
+        &.active {
+          border-bottom-color: var(--white-light);
         }
       }
 
-      .css-177r6r9 {
-        background-color: rgb(var(--color-charade-700));
-        border: 1px solid rgb(var(--color-charade-700));
-
-        input {
-          ~ span {
-            color: var(--white-light);
-          }
-
-          &:not(:checked) {
-            ~ span:first-of-type {
-              background-color: rgb(var(--color-charade-500));
-            }
-
-            ~ span:last-of-type {
-              background-color: transparent;
-            }
-          }
-
-          &:checked {
-            ~ span:first-of-type {
-              background-color: transparent;
-            }
-
-            ~ span:last-of-type {
-              background-color: rgb(var(--color-charade-500));
-            }
-          }
-        }
-      }
-
-      button:not(.css-d474as) {
-        background-color: var(--general_contrasts-50);
-        color: var(--general_contrasts-100);
-        border: 1px solid var(--general_contrasts-50);
-        border-radius: var(--bmb-radius-1);
-      }
-
-      .rejt-value-node {
-        &:hover .rejt-value {
-          background-color: var(--general_contrasts-50);
-          color: var(--general_contrasts-100);
-          border: 1px solid var(--general_contrasts-50);
-          border-radius: var(--bmb-radius-1);
-        }
-      }
-
-      .rejt-collapsed-text {
-        color: rgb(var(--color-charade-200)) !important;
-      }
-
-      .rejt-value {
-        color: var(--white-light);
+      &-panel .sbdocs-wrapper {
+        padding: 0;
       }
     }
   }
 
-  .sb-bar {
-    background-color: rgb(var(--color-charade-900));
-    color: var(--white-light);
-  }
+  //Table of contents
+  .css-q7khkg,
+  .css-1gxbv11 {
+    width: fit-content !important;
+    padding-right: 0.25rem;
+    z-index: 999;
 
-  .css-s2td8l {
-    background-color: transparent;
-  }
+    .toc-list-item {
+      margin-left: 0.75rem !important;
+      > a {
+        color: rgb(var(--gray-charade-50));
+      }
 
-  storybook-toast-wrapper {
-    ~ .actions {
-      display: none;
+      &.is-active-li > a {
+        color: rgb(var(--gray-charade-300));
+      }
     }
   }
 
-  .toc-link {
-    color: rgb(var(--color-charade-200));
+  //Documentation width
+  .css-x28zkw {
+    max-width: 63.125rem !important;
 
-    &.is-active-link {
-      color: var(--white-light);
+    &:has(.bmb_top-bar) {
+      max-width: 90.25rem !important;
+    }
+  }
+
+  // Expanded preview - end
+
+  .docs-story {
+    background-color: var(--containers-modal);
+  }
+
+  .docs-story {
+    color: var(--general-contrasts);
+
+    h1:not([class^='bmb']) {
+      color: var(--general-contrasts) !important;
     }
   }
 }
 
-.sb-bar {
-  .css-w992vf {
-    color: var(--white-light);
+//Storybook alert blockquote
+@mixin markdown-alert-text() {
+  border-radius: var(--bmb-radius-2) var(--bmb-radius-2) var(--bmb-radius-2) 0;
+  padding: 0.5rem !important;
+  margin: 0 !important;
+
+  > header {
+    display: none;
+  }
+
+  > h2 {
+    border-bottom: 0;
+  }
+}
+
+.markdown-alert {
+  &-note {
+    @include markdown-alert-text();
+    background-color: rgba(var(--blue-tint), 0.15);
+  }
+
+  &-callout {
+    @include markdown-alert-text();
+    background-color: rgba(var(--green-tint), 0.1);
+  }
+
+  &-warning {
+    @include markdown-alert-text();
+    background-color: rgba(var(--red-tint), 0.15);
+  }
+}
+//Storybook alert blockquote - end
+
+[data-testid='tooltip'] {
+  background-color: rgb(var(--gray-charade-950)) !important;
+}
+
+storybook-toast-wrapper {
+  ~ .actions {
+    display: none;
   }
 }
 
@@ -243,19 +346,9 @@
 }
 
 .css-yg7ze4 {
-  background-color: rgb(var(--color-charade-300));
+  background-color: rgb(var(--gray-charade-300));
   border-radius: var(--bmb-radius-s);
   box-shadow: var(--bmb-box-shadow-3);
-}
-
-// [data-brand='GED'],
-// [data-brand='BAMBOO_CORE'],
-.storybook-light-theme .docs-story {
-  background-color: var(--general_contrasts-15);
-  color: var(--general_contrasts);
-  h1:not([class^='bmb']) {
-    color: var(--general_contrasts) !important;
-  }
 }
 
 .sb-container {
@@ -330,7 +423,7 @@ img {
   position: relative;
   background-color: #eef3f8;
   border-radius: var(--bmb-radius-1);
-  border: 1px solid rgba(0, 0, 0, 0.05);
+  border: 1px solid var(--black-tint);
   height: 180px;
   margin-bottom: 48px;
   overflow: hidden;
@@ -412,107 +505,8 @@ img {
   }
 }
 
-.bmb_doc {
-  &-tabs {
-    display: flex;
-    gap: 1rem;
-    flex-direction: column;
-
-    &-header {
-      margin: 0 !important;
-      padding: 0 !important;
-      display: flex;
-      flex-direction: row;
-      gap: 1rem;
-      list-style: none !important;
-    }
-
-    &-item {
-      margin: 0 !important;
-    }
-
-    &-button {
-      background: none;
-      border-width: 0 0 2px;
-      border-style: solid;
-      border-color: transparent;
-      padding: 0.25rem 1rem;
-      cursor: pointer;
-      color: var(--white-light);
-      transition: all 0.2s ease-in-out;
-
-      &:hover {
-        border-color: rgb(var(--color-charade-500));
-      }
-
-      &.active {
-        border-bottom-color: var(--white-light);
-      }
-    }
-
-    &-panel .sbdocs-wrapper {
-      padding: 0;
-    }
-  }
-}
-
-//Storybook alert blockquote
-@mixin markdown-alert-text() {
-  border-radius: var(--bmb-radius-2) var(--bmb-radius-2) var(--bmb-radius-2) 0;
-  padding: 0.5rem !important;
-  margin: 0 !important;
-
-  > header {
-    display: none;
-  }
-
-  > h2 {
-    border-bottom: 0;
-  }
-}
-
-.markdown-alert {
-  &-note {
-    @include markdown-alert-text();
-    background-color: rgb(var(--color-blue-light), 0.15);
-  }
-
-  &-callout {
-    @include markdown-alert-text();
-    background-color: rgb(var(--color-mitec-green), 0.15);
-  }
-
-  &-warning {
-    @include markdown-alert-text();
-    background-color: rgb(var(--color-red-light), 0.15);
-  }
-}
-//Storybook alert blockquote - end
-
-//Table of contents
-.css-q7khkg {
-  width: fit-content !important;
-  padding-right: 0.25rem;
-  z-index: 999;
-
-  .toc-list-item {
-    margin-left: 0.75rem !important;
-  }
-}
-
-//Documentation width
-.css-x28zkw {
-  max-width: 63.125rem !important;
-
-  &:has(.bmb_top-bar) {
-    max-width: 90.25rem !important;
-  }
-}
-
-//Controls width
-.docblock-argstable,
-.css-v2ifgj.css-v2ifgj {
-  width: auto;
+.css-kydxqj {
+  background-color: rgb(var(--gray-charade-600)) !important;
 }
 
 // Expanded preview
@@ -531,4 +525,3 @@ img {
     }
   }
 }
-// Expanded preview - end

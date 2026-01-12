@@ -101,13 +101,13 @@ import { BmbLayoutItemDirective } from '../bmb-layout/bmb-layout-item.directive'
     .grid-placeholder {
       background-image: repeating-linear-gradient(
         45deg,
-        var(--general_contrasts-50) 0,
-        var(--general_contrasts-50) 1px,
+        var(--general-contrasts-50) 0,
+        var(--general-contrasts-50) 1px,
         transparent 0,
         transparent 50%
       );
       background-size: 8px 8px;
-      border: 1px solid var(--general_contrasts-50);
+      border: 1px solid var(--general-contrasts-50);
       padding: 1rem;
       opacity: 0.5;
       user-select: none;
@@ -209,13 +209,17 @@ class StorybookLayoutGridStories {
   getCoordinates(section: string, item: string) {
     switch (section) {
       case 'colStart':
-        return parseInt(item.split(' / ')[1]);
+        return parseInt(item?.split(' / ')[1]);
       case 'rowStart':
-        return parseInt(item.split(' / ')[0]);
+        return parseInt(item?.split(' / ')[0]);
       case 'cols':
-        return parseInt(item.split(' / ')[3]) - parseInt(item.split(' / ')[1]);
+        return (
+          parseInt(item?.split(' / ')[3]) - parseInt(item?.split(' / ')[1])
+        );
       case 'rows':
-        return parseInt(item.split(' / ')[2]) - parseInt(item.split(' / ')[0]);
+        return (
+          parseInt(item?.split(' / ')[2]) - parseInt(item?.split(' / ')[0])
+        );
       default:
         return 0;
     }
@@ -243,8 +247,8 @@ class StorybookLayoutGridStories {
 
   generateNewItem() {
     const coordinates = {
-      start: this.start.split(' / '),
-      end: this.end.split(' / '),
+      start: this.start?.split(' / '),
+      end: this.end?.split(' / '),
     };
     const start = {
       row: Math.min(

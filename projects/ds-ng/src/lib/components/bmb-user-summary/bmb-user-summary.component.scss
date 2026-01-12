@@ -3,8 +3,8 @@
 @use '../../../assets/styles/base/rem' as rem;
 
 .bmb_user-summary {
-  background-color: var(--general_contrasts-input-background);
-  border: rem.rem_calc(1) solid RGBA(var(--color-black-primary), 0.25);
+  background-color: var(--general-contrasts-input-background);
+  border: rem.rem_calc(1) solid var(--black-min);
   border-radius: var(--bmb-radius-6);
   display: flex;
   flex-direction: column;

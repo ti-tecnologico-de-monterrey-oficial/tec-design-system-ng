@@ -181,6 +181,8 @@
 
       &.wrapped {
         white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
       }
 
       @include mixins.media-query(768, 'min') {
@@ -230,7 +232,7 @@
 
     > th {
       border-bottom: 0;
-      color: var(--general_contrasts-100);
+      color: var(--general-contrasts-100);
       overflow: inherit;
       position: relative;
       text-transform: uppercase;
@@ -244,7 +246,7 @@
 
     > td {
       @include fonts.font(4, regular);
-      border-bottom-color: var(--general_contrasts-25);
+      border-bottom-color: var(--general-contrasts-25);
       border-bottom-style: dashed;
 
       &.bmb_table-actions {
@@ -274,10 +276,10 @@
   &-even {
     &.mat-mdc-row {
       background-color: var(--containers-modal);
-      color: var(--menu_select-label-menu-inactive);
+      color: var(--menu-select-label-menu-inactive);
 
       &.bmb_table-expandible {
-        background-color: var(--menu_select-on-surface-hovered-w-checkbox);
+        background-color: var(--menu-select-on-surface-hovered-w-checkbox);
       }
     }
   }
@@ -285,17 +287,17 @@
   &-odd {
     &.mat-mdc-row {
       background-color: var(--general_contrasts-15);
-      color: var(--vertical-step-active-color);
+      color: var(--general_contrasts-75);
     }
 
     &.bmb_table-expandible {
-      background-color: var(--menu_select-on-surface-hovered-w-checkbox);
+      background-color: var(--menu-select-on-surface-hovered-w-checkbox);
     }
   }
 
   &-details {
     &.mat-mdc-row {
-      background-color: var(--menu_select-on-surface-hovered-w-checkbox);
+      background-color: var(--menu-select-on-surface-hovered-w-checkbox);
       height: 0;
 
       > td {
@@ -305,7 +307,7 @@
 
       &.bmb_table-expanded {
         > td {
-          border-bottom: rem.rem_calc(1) dashed var(--general_contrasts-25);
+          border-bottom: rem.rem_calc(1) dashed var(--general-contrasts-25);
           padding: rem.rem_calc(16);
         }
       }
@@ -313,7 +315,7 @@
   }
 
   &-detail {
-    color: var(--general_contrasts-75);
+    color: var(--general-contrasts-75);
     display: flex;
     overflow: hidden;
 
@@ -323,7 +325,7 @@
   }
 
   &-resize {
-    border-right: rem.rem_calc(1) solid var(--general_contrasts-25);
+    border-right: rem.rem_calc(1) solid var(--general-contrasts-25);
     cursor: col-resize;
     display: inline-block;
     height: 100%;
@@ -352,13 +354,13 @@
     z-index: 10;
 
     &-text {
-      color: var(--general_contrasts-75);
+      color: var(--general-contrasts-75);
       margin-right: rem.rem_calc(32);
       @include fonts.font(3, regular);
     }
 
     &-btn {
-      color: var(--color-table-btn-900);
+      color: var(--general-contrasts-100);
       height: rem.rem_calc(48);
       padding: 0;
       width: rem.rem_calc(48);

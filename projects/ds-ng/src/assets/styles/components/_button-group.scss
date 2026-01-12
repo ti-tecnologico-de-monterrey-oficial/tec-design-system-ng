@@ -42,22 +42,22 @@
 
   &:hover:not(:disabled),
   &:focus-visible:not(:disabled) {
-    background-color: var(--general_contrasts-25);
+    background-color: var(--general-contrasts-25);
   }
 
   &:active:not(:disabled),
   &.bmb_btn-toggle-active {
-    background-color: var(--general_contrasts-input-background);
-    color: var(--general_contrasts-100);
+    background-color: var(--general-contrasts-input-background);
+    color: var(--general-contrasts-100);
     box-shadow: none;
-    border-color: var(--general_contrasts-100);
+    border-color: var(--general-contrasts-100);
   }
 }
 
 @mixin destructive() {
   &:hover:not(:disabled),
   &:focus-visible:not(:disabled) {
-    background-color: RGBA(var(--color-red-primary), 0.25);
+    background-color: rgba(var(--red-primary), 0.25);
   }
 }
 

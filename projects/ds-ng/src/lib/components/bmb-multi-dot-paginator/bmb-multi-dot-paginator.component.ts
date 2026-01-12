@@ -24,7 +24,9 @@ export class BmbMultiDotPaginatorComponent implements AfterContentInit {
   title = input.required<string>();
   subtitle = input<string>('');
 
-  childrenItems = contentChildren<BmbMultiDotPaginatorItemComponent>(BmbMultiDotPaginatorItemComponent);
+  childrenItems = contentChildren<BmbMultiDotPaginatorItemComponent>(
+    BmbMultiDotPaginatorItemComponent,
+  );
 
   numberOfElements: number[] = [];
   selectedIndex = 0;

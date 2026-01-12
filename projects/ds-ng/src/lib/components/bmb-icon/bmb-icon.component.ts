@@ -134,6 +134,6 @@ export class BmbIconComponent implements OnInit {
 
     const clean = sanitizeContent(this.customIcon()?.toString() ?? '');
 
-    return this.sanitizer.bypassSecurityTrustHtml(clean);  // NOSONAR Content is sanitized with DOMPurify - safe to bypass Angular sanitization
+    return this.sanitizer.bypassSecurityTrustHtml(clean); // NOSONAR Content is sanitized with DOMPurify - safe to bypass Angular sanitization
   }
 }

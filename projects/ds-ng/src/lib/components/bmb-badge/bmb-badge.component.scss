@@ -23,7 +23,7 @@
 
   &-content {
     display: inline-block;
-    color: var(--general_contrasts-100);
+    color: var(--general-contrasts-100);
     flex: 1;
   }
 
@@ -44,7 +44,7 @@
 
   &-disabled {
     .bmb_badge-content {
-      color: var(--general_contrasts-50);
+      color: var(--general-contrasts-50);
     }
   }
 
@@ -54,11 +54,11 @@
     padding: rem.rem_calc(0 12);
 
     .bmb_badge-bullet {
-      background-color: var(--general_contrasts-5);
+      background-color: var(--general-contrasts-5);
     }
 
     .bmb_badge-content {
-      color: var(--general_contrasts-5);
+      color: var(--general-contrasts-5);
     }
 
     &.bmb_badge {
@@ -70,11 +70,11 @@
 
       &-strong {
         .bmb_badge-bullet {
-          background-color: rgb(var(--color-charade-900));
+          background-color: rgb(var(--gray-charade-900));
         }
 
         .bmb_badge-content {
-          color: rgb(var(--color-charade-900));
+          color: rgb(var(--gray-charade-900));
         }
       }
 
@@ -91,13 +91,13 @@
       }
 
       &-disabled {
-        background-color: var(--general_contrasts-15);
+        background-color: var(--general-contrasts-15);
         .bmb_badge-bullet {
-          background-color: var(--general_contrasts-50);
+          background-color: var(--general-contrasts-50);
         }
 
         .bmb_badge-content {
-          color: var(--general_contrasts-50);
+          color: var(--general-contrasts-50);
         }
       }
 

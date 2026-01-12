@@ -21,12 +21,12 @@
   }
 
   &-title {
-    color: var(--general_contrasts-100);
+    color: var(--general-contrasts-100);
     @include fonts.font(9, bold);
   }
 
   &-subtitle {
-    color: var(--general_contrasts-75);
+    color: var(--general-contrasts-75);
     @include fonts.font(3, light);
   }
 
@@ -40,7 +40,7 @@
     position: relative;
 
     &:not(:last-child)::after {
-      background-color: var(--general_contrasts-input-outline);
+      background-color: var(--general-contrasts-input-outline);
       border-radius: var(--bmb-radius-full);
       content: '';
       display: block;

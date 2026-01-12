@@ -69,7 +69,7 @@ export class BmbMediaCardComponent {
   }
 
   getBackgroundColor(): string {
-    return this.bgColor() ? `RGBA(var(${this.bgColor()}))` : 'transparent';
+    return this.bgColor() ? `rgb(var(${this.bgColor()}))` : 'transparent';
   }
 
   getUserAttribute(attribute: string | undefined): string {

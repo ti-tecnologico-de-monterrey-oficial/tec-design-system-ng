@@ -27,7 +27,7 @@
     }
 
     &-title {
-      color: var(--general_contrasts-100);
+      color: var(--general-contrasts-100);
       @include fonts.font(5, regular);
       word-wrap: break-word;
       overflow-wrap: break-word;
@@ -50,22 +50,22 @@
     }
 
     &-general-text {
-      color: var(--general_contrasts-75);
+      color: var(--general-contrasts-75);
       @include fonts.font(4, regular);
     }
 
     &-campus {
-      color: var(--general_contrasts-75);
+      color: var(--general-contrasts-75);
       @include fonts.font(4, regular);
     }
 
     &-role {
-      color: var(--general_contrasts-75);
+      color: var(--general-contrasts-75);
       @include fonts.font(4, regular);
     }
 
     &-email {
-      color: var(--general_contrasts-75);
+      color: var(--general-contrasts-75);
       @include fonts.font(2, regular);
     }
   }

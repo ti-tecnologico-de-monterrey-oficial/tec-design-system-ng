@@ -3,7 +3,7 @@
 
 .bmb_sounds-card {
   &-active {
-    background-color: RGBA(var(--color-mariner-700));
+    background-color: rgb(var(--blue-mariner-700));
   }
 
   &-content {
@@ -24,11 +24,11 @@
         margin: 0;
 
         &:hover {
-          background-color: RGBA(var(--color-charade-50));
+          background-color: rgb(var(--gray-charade-50));
         }
 
         &-playing {
-          background-color: RGBA(var(--color-charade-50));
+          background-color: rgb(var(--gray-charade-50));
         }
 
         &-icon {
@@ -36,14 +36,14 @@
           top: 50%;
           left: 50%;
           transform: translate(-50%, -50%);
-          color: RGBA(var(--color-charade-50));
+          color: rgb(var(--gray-charade-50));
 
           &:hover {
-            color: RGBA(var(--color-mariner-700));
+            color: rgb(var(--blue-mariner-700));
           }
 
           &-playing {
-            color: RGBA(var(--color-mariner-500));
+            color: rgb(var(--blue-mariner-500));
           }
         }
       }
@@ -66,7 +66,7 @@
     &-subtitle {
       &-text {
         @include fonts.font(2, regular);
-        color: RGBA(var(--color-charade-200));
+        color: rgb(var(--gray-charade-200));
       }
     }
 
@@ -78,7 +78,7 @@
         margin-top: rem.rem_calc(5);
 
         bmb-icon {
-          color: RGBA(var(--color-mariner-50));
+          color: rgb(var(--blue-mariner-50));
         }
       }
 
@@ -87,7 +87,7 @@
         width: 100%;
         margin: rem.rem_calc(10 0);
         height: rem.rem_calc(8);
-        background-color: RGBA(var(--color-mariner-50));
+        background-color: rgb(var(--blue-mariner-50));
         border-radius: var(--bmb-radius-1);
       }
 
@@ -97,7 +97,7 @@
         width: rem.rem_calc(8);
         height: rem.rem_calc(8);
         border-radius: var(--bmb-radius-full);
-        background-color: RGBA(var(--color-charade-950));
+        background-color: rgb(var(--gray-charade-950));
         cursor: pointer;
       }
 

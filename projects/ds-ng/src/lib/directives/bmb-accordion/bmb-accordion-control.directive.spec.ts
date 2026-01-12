@@ -17,7 +17,8 @@ import { KeyValueDiffers } from '@angular/core';
 })
 class TestHostComponent {
   states = { a1: true, a2: false };
-  @ViewChildren(BmbAccordionComponent) accordions!: QueryList<BmbAccordionComponent>;
+  @ViewChildren(BmbAccordionComponent)
+  accordions!: QueryList<BmbAccordionComponent>;
 }
 
 @Component({
@@ -32,7 +33,8 @@ class TestHostComponent {
   imports: [BmbAccordionControlDirective, BmbAccordionComponent],
 })
 class UncontrolledTestHostComponent {
-  @ViewChildren(BmbAccordionComponent) accordions!: QueryList<BmbAccordionComponent>;
+  @ViewChildren(BmbAccordionComponent)
+  accordions!: QueryList<BmbAccordionComponent>;
 }
 
 describe('BmbAccordionControlDirective', () => {
@@ -54,7 +56,9 @@ describe('BmbAccordionControlDirective', () => {
   });
 
   it('should create the directive', () => {
-    const directive = fixture.debugElement.query(By.directive(BmbAccordionControlDirective));
+    const directive = fixture.debugElement.query(
+      By.directive(BmbAccordionControlDirective),
+    );
     expect(directive).toBeTruthy();
   });
 
@@ -108,7 +112,9 @@ describe('BmbAccordionControlDirective', () => {
   });
 
   it('should unsubscribe from accordion events on destroy', () => {
-    const directive = fixture.debugElement.query(By.directive(BmbAccordionControlDirective)).injector.get(BmbAccordionControlDirective);
+    const directive = fixture.debugElement
+      .query(By.directive(BmbAccordionControlDirective))
+      .injector.get(BmbAccordionControlDirective);
     const initialState = { ...hostComponent.states };
     fixture.destroy();
 
@@ -124,7 +130,9 @@ describe('BmbAccordionControlDirective - Uncontrolled mode', () => {
     await TestBed.configureTestingModule({
       imports: [UncontrolledTestHostComponent],
     }).compileComponents();
-    uncontrolledFixture = TestBed.createComponent(UncontrolledTestHostComponent);
+    uncontrolledFixture = TestBed.createComponent(
+      UncontrolledTestHostComponent,
+    );
     uncontrolledHost = uncontrolledFixture.componentInstance;
     uncontrolledFixture.detectChanges();
   });

@@ -63,6 +63,7 @@ export class BmbInputContentComponent {
   onChange = output<HTMLInputElement>();
   onKeyDown = output<KeyboardEvent>();
   onKeyUp = output<KeyboardEvent>();
+  clearEvent = output<void>();
 
   customContent = contentChild<TemplateRef<any>>('customContent');
 
@@ -97,6 +98,7 @@ export class BmbInputContentComponent {
   handleClearValue() {
     this.control().reset();
     this.onChange.emit(this.control().value);
+    this.clearEvent.emit();
   }
 
   get inputClasses(): { [key: string]: boolean } {

@@ -169,7 +169,7 @@ function getStyle(args: any): any {
     margin: var(--bmb-spacing-${args.margin});
     padding: var(--bmb-spacing-${args.padding});
     border-radius: var(--bmb-radius-${args.radius});
-    background-color: rgb(var(--color-blue-tint));
+    background-color: rgb(var(--blue-tint));
   `;
   return `style="${classList}"`;
 }

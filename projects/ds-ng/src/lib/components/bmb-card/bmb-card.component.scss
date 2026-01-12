@@ -9,39 +9,39 @@ $types: (
     'color': rgb(var(--white-primary)),
   ),
   'secondary': (
-    'border': var(--general_contrasts-container-outline),
+    'border': var(--general-contrasts-container-outline),
     'background': var(-general_contrasts-20),
-    'color': var(--general_contrasts-100),
+    'color': var(--general-contrasts-100),
   ),
   'succes': (
     'border': var(--alert-successful),
-    'background': var(--general_contrasts-main-selection-alternative),
+    'background': var(--general-contrasts-main-selection-alternative),
     'color': rgb(var(--white-primary)),
   ),
   'info': (
     'border': var(--alert-event),
-    'background': var(--menu_select-alternative-focus-label),
+    'background': var(--menu-select-alternative-focus-label),
     'color': rgb(var(--white-primary)),
   ),
   'warning': (
     'border': var(--alert-warning),
-    'background': rgba(var(--color-yellow-tint), 1),
-    'color': rgba(var(--color-charade-950)),
+    'background': rgb(var(--yellow-tint)),
+    'color': rgb(var(--gray-charade-950)),
   ),
   'error': (
     'border': var(--buttons-destructive),
-    'background': var(--alert-error-blend),
+    'background': var(--alert-error),
     'color': rgb(var(--white-primary)),
   ),
   'normal': (
-    'border': var(--general_contrasts-container-outline),
+    'border': var(--general-contrasts-container-outline),
     'background': var(--containers-main),
-    'color': var(--general_contrasts-100),
+    'color': var(--general-contrasts-100),
   ),
   'transparent': (
-    'border': var(--general_contrasts-container-outline),
+    'border': var(--general-contrasts-container-outline),
     'background': transparent,
-    'color': var(--general_contrasts-100),
+    'color': var(--general-contrasts-100),
   ),
 );
 

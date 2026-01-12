@@ -18,31 +18,31 @@ import * as topBarStory from '../components/bmb-top-bar/bmb-top-bar.stories';
   template: `
     <bmb-top-bar />
     <section class="bmb_template-header">
-      <h3>Header</h3>
-      <h5>Text</h5>
+      <h3 class="bmb_template-header-content">Header</h3>
+      <h5 class="bmb_template-header-content">Text</h5>
     </section>
     <div class="bmb_template-aside-full">
       <main class="bmb_template-aside-full-main">
         <h3 class="bmb_template-aside-full-title">Subheader</h3>
-        <h5>
+        <p>
           Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aut ipsa
           repudiandae hic. Non, fugiat? Repellendus impedit soluta excepturi
           fugit doloribus. Quos, vel suscipit. Deleniti similique tempore at
           culpa facilis sunt laudantium, magni maxime dolor reprehenderit saepe!
           Quam eius, iste voluptate corporis sequi impedit fuga repudiandae amet
           placeat, delectus, quis sapiente?
-        </h5>
+        </p>
       </main>
       <aside class="bmb_template-aside-full-aside">
         <h3 class="bmb_template-aside-full-title">Subheader</h3>
-        <h5>
+        <p>
           Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aut ipsa
           repudiandae hic. Non, fugiat? Repellendus impedit soluta excepturi
           fugit doloribus. Quos, vel suscipit. Deleniti similique tempore at
           culpa facilis sunt laudantium, magni maxime dolor reprehenderit saepe!
           Quam eius, iste voluptate corporis sequi impedit fuga repudiandae amet
           placeat, delectus, quis sapiente?
-        </h5>
+        </p>
       </aside>
     </div>
   `,
@@ -74,25 +74,25 @@ ${getBasicExampleBlock('BmbTopBarComponent')}
 <div class="bmb_template-aside-full">
   <main class="bmb_template-aside-full-main">
     <h3 class="bmb_template-aside-full-title">Subheader</h3>
-    <h5>
+    <p>
           Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aut ipsa
           repudiandae hic. Non, fugiat? Repellendus impedit soluta excepturi
           fugit doloribus. Quos, vel suscipit. Deleniti similique tempore at
           culpa facilis sunt laudantium, magni maxime dolor reprehenderit saepe!
           Quam eius, iste voluptate corporis sequi impedit fuga repudiandae amet
           placeat, delectus, quis sapiente?
-        </h5>
+        </p>
   </main>
   <aside class="bmb_template-aside-full-aside">
     <h3 class="bmb_template-aside-full-title">Subheader</h3>
-    <h5>
+    <p>
           Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aut ipsa
           repudiandae hic. Non, fugiat? Repellendus impedit soluta excepturi
           fugit doloribus. Quos, vel suscipit. Deleniti similique tempore at
           culpa facilis sunt laudantium, magni maxime dolor reprehenderit saepe!
           Quam eius, iste voluptate corporis sequi impedit fuga repudiandae amet
           placeat, delectus, quis sapiente?
-        </h5>
+        </p>
   </aside>
 </div>
 \`\`\`

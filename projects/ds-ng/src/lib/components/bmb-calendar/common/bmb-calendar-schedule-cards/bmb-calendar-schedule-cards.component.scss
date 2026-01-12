@@ -9,7 +9,7 @@ $types: 'academic', 'life', 'event', 'save_the_date';
   border-radius: var(--bmb-radius-2);
   overflow: hidden;
   cursor: pointer;
-  border: rem.rem_calc(1) solid var(--general_contrasts-25);
+  border: rem.rem_calc(1) solid var(--general-contrasts-25);
   @include fonts.font(3, regular);
   display: grid;
   gap: 0 0;
@@ -23,52 +23,52 @@ $types: 'academic', 'life', 'event', 'save_the_date';
   }
 
   &-disabled {
-    background-color: var(--general_contrasts-50);
-    color: var(--general_contrasts-75);
+    background-color: var(--general-contrasts-50);
+    color: var(--general-contrasts-75);
 
     .bmb_calendar-event-indicator {
-      background-color: var(--general_contrasts-50);
+      background-color: var(--general-contrasts-50);
     }
   }
 
   &-type {
     &-academic {
       &.bmb_calendar-event-active:not(.bmb_calendar-event-disabled) {
-        border-color: RGBA(var(--color-mariner-700));
+        border-color: rgb(var(--blue-mariner-700));
       }
 
       .bmb_calendar-event-indicator {
-        background-color: RGBA(var(--color-mariner-700));
+        background-color: rgb(var(--blue-mariner-700));
       }
     }
 
     &-events {
       &.bmb_calendar-event-active:not(.bmb_calendar-event-disabled) {
-        border-color: RGBA(var(--color-purple-light));
+        border-color: rgb(var(--purple-light));
       }
 
       .bmb_calendar-event-indicator {
-        background-color: RGBA(var(--color-purple-light));
+        background-color: rgb(var(--purple-light));
       }
     }
 
     &-life {
       &.bmb_calendar-event-active:not(.bmb_calendar-event-disabled) {
-        border-color: RGB(var(--color-green-light));
+        border-color: RGB(var(--green-light));
       }
 
       .bmb_calendar-event-indicator {
-        background-color: RGB(var(--color-green-light));
+        background-color: RGB(var(--green-light));
       }
     }
 
     &-save_the_date {
       &.bmb_calendar-event-active:not(.bmb_calendar-event-disabled) {
-        border-color: RGBA(var(--color-yellow-primary));
+        border-color: rgb(var(--yellow-primary));
       }
 
       .bmb_calendar-event-indicator {
-        background-color: RGBA(var(--color-yellow-primary));
+        background-color: rgb(var(--yellow-primary));
       }
     }
   }
@@ -124,7 +124,7 @@ $types: 'academic', 'life', 'event', 'save_the_date';
 
   &-indicator {
     grid-area: indicator;
-    background-color: RGBA(var(--color-mariner-700));
+    background-color: rgb(var(--blue-mariner-700));
     margin-right: rem.rem-calc(8);
   }
 

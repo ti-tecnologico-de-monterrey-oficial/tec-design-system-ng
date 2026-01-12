@@ -16,6 +16,15 @@ import {
   DBmbIconParamDesc,
   getDefaultValueControl,
 } from '../../utils/doc/parameterDescriptions';
+import { IButtonAppearance } from '../../types';
+
+const appearanceOptions: IButtonAppearance[] = [
+  'primary',
+  'secondary-filled',
+  'secondary-outlined',
+  'destructive',
+  'transparent',
+];
 
 export default {
   title: 'Components/Buttons/Button',
@@ -213,17 +222,23 @@ export const Appearance = {
   name: 'Appearance',
   args: {
     icon: 'home',
-    appearance: 'secondary-filled',
   },
   render: (args: any) => ({
-    props: args,
+    props: {
+      appearances: appearanceOptions,
+      ...args,
+    },
     template: `
+    <div style="display: flex; flex-direction: row; gap: 12px; flex-wrap: wrap;">
       <button
         bmbButton
+        *ngFor="let appearance of appearances"
+        [appearance]="appearance"
         ${attributes(args)}
       >
         ${attributesText(args)}
-      </button>`,
+      </button>
+    </div>`,
   }),
 };
 

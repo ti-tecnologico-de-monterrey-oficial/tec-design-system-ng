@@ -171,5 +171,17 @@
     "menu": {
       "filter_placeholder": "Selecciona una opción"
     }
+  },
+  "table": {
+    "filters": {
+      "startDate": "Start Date",
+      "startDatePlaceholder": "Fecha de inicio",
+      "endDate": "End Date",
+      "endDatePlaceholder": "Fecha de fin",
+      "min": " mínimo",
+      "max": " máximo",
+      "search": "Buscar",
+      "filter": "Filtrar"
+    }
   }
 }

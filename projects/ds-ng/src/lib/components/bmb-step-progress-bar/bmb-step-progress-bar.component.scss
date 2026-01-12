@@ -26,7 +26,7 @@ $medium_variant: rem.rem_calc(42);
     word-break: break-word;
 
     &-title {
-      color: var(--general_contrasts-100);
+      color: var(--general-contrasts-100);
 
       &-wizard {
         @include fonts.font(6, regular);
@@ -38,7 +38,7 @@ $medium_variant: rem.rem_calc(42);
     }
 
     &-subtitle {
-      color: var(--general_contrasts-75);
+      color: var(--general-contrasts-75);
     }
   }
 
@@ -89,7 +89,7 @@ $medium_variant: rem.rem_calc(42);
 
     &-number {
       &:not(.active) {
-        color: rgb(var(--color-charade-950));
+        color: rgb(var(--gray-charade-950));
       }
 
       .bmb_focus-element-number {
@@ -126,13 +126,13 @@ $medium_variant: rem.rem_calc(42);
     }
 
     &.active {
-      color: var(--general_contrasts-input-outline);
+      color: var(--general-contrasts-input-outline);
       background-color: var(--containers-background);
     }
 
     &.completed {
       background-color: var(--buttons-primary-normal);
-      color: var(--gris-charade-50);
+      color: rgb(var(--gray-charade-50));
     }
 
     &:disabled {
@@ -145,7 +145,7 @@ $medium_variant: rem.rem_calc(42);
       outline-width: rem.rem_calc(1);
       outline-color: var(--buttons-stroke-primary-selected);
       outline-offset: rem.rem_calc(-4);
-      box-shadow: 0 0 rem.rem_calc(5) var(--blue-mariner-500);
+      box-shadow: 0 0 rem.rem_calc(5) rgb(var(--blue-mariner-500));
     }
   }
 }

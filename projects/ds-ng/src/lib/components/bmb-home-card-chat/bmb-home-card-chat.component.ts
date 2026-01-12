@@ -21,9 +21,7 @@ import { IBmbChatMessage } from '../bmb-chat-bubbles/types';
 import { BmbChatBubblesComponent } from '../bmb-chat-bubbles/bmb-chat-bubbles.component';
 import { TranslatePipe } from '../../pipes/translations';
 import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
-import {
-  BmbProjectionContentService,
-} from '../../services/projection/projection.service';
+import { BmbProjectionContentService } from '../../services/projection/projection.service';
 import { CommonModule } from '@angular/common';
 import { BmbBotIconComponent } from '../bmb-bot-icon/bmb-bot-icon.component';
 import { IBmbActionHeader } from '../../types';
@@ -55,7 +53,7 @@ export class BmbHomeCardChatComponent {
   placeholder = input<string>('');
   botList = input<IBotType[]>([]);
   leftIcon = input<string>('chevron_left');
-  bgIconAppearance = input<IBmbColor>('charade-500');
+  bgIconAppearance = input<IBmbColor>('gray-charade-500');
   messagesHistory = input.required<IBmbChatMessage[]>();
   mode = model<'compact' | 'chat' | 'expanded'>('expanded');
 

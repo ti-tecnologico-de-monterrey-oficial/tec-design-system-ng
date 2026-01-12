@@ -15,7 +15,7 @@
     padding: rem.rem_calc(0 2);
     width: fit-content;
     @include fonts.font(1, bold);
-    color: var(--general_contrasts-80);
+    color: var(--general-contrasts-80);
     text-align: center;
     line-height: 1.2;
   }

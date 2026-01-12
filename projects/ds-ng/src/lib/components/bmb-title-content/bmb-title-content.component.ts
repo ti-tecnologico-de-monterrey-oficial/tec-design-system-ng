@@ -13,6 +13,7 @@ import { CommonModule } from '@angular/common';
 import { BmbContainerComponent } from '../bmb-container/bmb-container.component';
 import { isImage } from '../../utils/utils';
 import { IBmbColor } from '../../types/colors';
+import { getRGBColorKeyValue } from '../../utils/utils';
 
 export type IBmbFontWeightContent =
   | '100'
@@ -64,9 +65,7 @@ export class BmbTitleContentComponent {
       return { 'background-color': 'transparent' };
     }
     if (!!this.bgIconAppearance()) {
-      return {
-        'background-color': `rgb(var(--color-${this.bgIconAppearance()}))`,
-      };
+      return getRGBColorKeyValue(this.bgIconAppearance() as string);
     }
     return {};
   }

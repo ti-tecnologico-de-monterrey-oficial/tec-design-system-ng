@@ -1,4 +1,5 @@
 @use '../../../base/rem' as rem;
+@use '../../../base/radius' as radius;
 
 $sizes: (
   'none': 0,
@@ -28,17 +29,11 @@ $sizes: (
   '24': 0,
 );
 
-:root {
-  @each $name, $size in $sizes {
-    --bmb-radius-#{$name}: #{$size};
-  }
-
-  --bmb-radius-badge: rem.rem_calc(40);
+:root,
+[data-brand='ged'] {
+  @include radius.radiusVar($sizes);
 }
 
 @each $name, $size in $sizes {
-  .bmb_radius-#{$name} {
-    border-radius: $size;
-    --bmb-border-radius: #{$size};
-  }
+  @include radius.radiusClass($sizes, ged);
 }

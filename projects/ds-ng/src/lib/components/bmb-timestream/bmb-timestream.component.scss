@@ -59,20 +59,20 @@
       align-items: center;
 
       &-name {
-        color: var(--general_contrasts-75);
+        color: var(--general-contrasts-75);
       }
 
       &-date {
-        color: RGBA(var(--color-charade-500));
+        color: rgb(var(--gray-charade-500));
       }
     }
 
     &-tab {
       padding: var(--bmb-spacing-m);
-      color: var(--general_contrasts-75);
+      color: var(--general-contrasts-75);
 
       &-title {
-        color: var(--general_contrasts-75);
+        color: var(--general-contrasts-75);
         @include fonts.font(3, regular);
         font-weight: normal;
       }
@@ -125,7 +125,7 @@
     height: auto;
 
     .bmb_hito-card-active::after {
-      background-color: var(--general_contrasts-50);
+      background-color: var(--general-contrasts-50);
     }
   }
 }

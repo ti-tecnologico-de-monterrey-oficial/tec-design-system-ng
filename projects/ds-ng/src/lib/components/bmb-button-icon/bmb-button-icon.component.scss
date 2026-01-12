@@ -14,16 +14,16 @@
     @if $outline == true {
       @include container(
         rem.rem_calc(1),
-        var(--general_contrasts-input-background),
-        var(--general_contrasts-100),
-        var(--general_contrasts-5)
+        var(--general-contrasts-input-background),
+        var(--general-contrasts-100),
+        var(--general-contrasts-5)
       );
     } @else {
       @include container(
         rem.rem_calc(1),
-        rgb(var(--color-charade-50)),
-        var(--general_contrasts-50),
-        rgb(var(--color-charade-50))
+        rgb(var(--gray-charade-50)),
+        var(--general-contrasts-50),
+        rgb(var(--gray-charade-50))
       );
     }
   } @else {
@@ -60,9 +60,9 @@
       border-radius: var(--bmb-radius-s);
       @include container(
         rem.rem_calc(1),
-        var(--general_contrasts-container-outline),
-        var(--general_contrasts-input-background),
-        var(--general_contrasts-50)
+        var(--general-contrasts-container-outline),
+        var(--general-contrasts-input-background),
+        var(--general-contrasts-50)
       );
     }
 
@@ -74,8 +74,8 @@
       &:hover {
         @include container(
           rem.rem_calc(1),
-          var(--general_contrasts-container-outline),
-          var(--general_contrasts-input-background),
+          var(--general-contrasts-container-outline),
+          var(--general-contrasts-input-background),
           var(--buttons-alternative-text)
         );
       }
@@ -89,9 +89,9 @@
       &.bmb_button_icon {
         @include container(
           rem.rem_calc(1),
-          var(--general_contrasts-100),
-          var(--general_contrasts-input-background),
-          var(--general_contrasts-100)
+          var(--general-contrasts-100),
+          var(--general-contrasts-input-background),
+          var(--general-contrasts-100)
         );
       }
 
@@ -103,9 +103,9 @@
         &:hover {
           @include container(
             rem.rem_calc(2),
-            var(--general_contrasts-100),
-            var(--general_contrasts-input-background),
-            var(--general_contrasts-100)
+            var(--general-contrasts-100),
+            var(--general-contrasts-input-background),
+            var(--general-contrasts-100)
           );
         }
 

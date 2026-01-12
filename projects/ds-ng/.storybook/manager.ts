@@ -6,7 +6,6 @@ addons.setConfig({
   toolbar: {
     'storybook/background': { hidden: true },
   },
-
   theme: bambooDarkTheme,
   sidebar: {
     filters: {

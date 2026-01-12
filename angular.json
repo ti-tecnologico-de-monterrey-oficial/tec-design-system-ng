@@ -39,7 +39,7 @@
               {
                 "glob": "**/*.svg",
                 "input": "node_modules/@material-symbols/svg-400/rounded/",
-                "output": "/node_modules/@material-symbols/svg-400/rounded/"
+                "output": "/assets/icons/material-rounded/"
               },
               "src/favicon.ico",
               "src/assets"
@@ -168,7 +168,7 @@
             "compodocArgs": ["-e", "json", "-d", "."],
             "port": 6006,
             "styles": [
-              "projects/ds-ng/src/assets/styles/mainTEC.scss",
+              "projects/ds-ng/src/assets/styles/mainSB.scss",
               "src/styles.scss",
               "projects/ds-ng/src/assets/styles/tokens/theme.scss"
             ]
@@ -182,7 +182,7 @@
             "compodoc": true,
             "compodocArgs": ["-e", "json", "-d", "."],
             "styles": [
-              "projects/ds-ng/src/assets/styles/mainTEC.scss",
+              "projects/ds-ng/src/assets/styles/mainSB.scss",
               "src/styles.scss",
               "projects/ds-ng/src/assets/styles/tokens/theme.scss"
             ],

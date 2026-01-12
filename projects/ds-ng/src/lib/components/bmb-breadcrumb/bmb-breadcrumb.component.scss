@@ -9,12 +9,12 @@
 
   &-top {
     align-items: center;
-    color: RGBA(var(--color-white-primary));
+    color: rgb(var(--white-primary));
     display: flex;
     width: 100%;
 
     &-separator {
-      color: RGBA(var(--color-white-primary));
+      color: rgb(var(--white-primary));
       display: none;
       font-size: rem.rem_calc(20);
       margin: rem.rem_calc(0 8);
@@ -47,13 +47,13 @@
   }
 
   &-separator {
-    color: var(--general_contrasts-main-selection);
+    color: var(--general-contrasts-main-selection);
     display: block;
     font-size: rem.rem_calc(20);
     margin: rem.rem_calc(0 8);
 
     &-inactive {
-      color: var(--general_contrasts-100);
+      color: var(--general-contrasts-100);
     }
 
     @include mixins.media-query(768, 'max') {
@@ -64,7 +64,7 @@
   &-link,
   &-text {
     @include fonts.font(4, regular);
-    color: var(--general_contrasts-main-selection);
+    color: var(--general-contrasts-main-selection);
     max-width: 100%;
     overflow: hidden;
     text-decoration: none;
@@ -104,7 +104,7 @@
   }
 
   &-text {
-    color: var(--general_contrasts-100);
+    color: var(--general-contrasts-100);
     display: none;
 
     @include mixins.media-query(769, 'min') {
@@ -121,17 +121,17 @@
 
     &-button {
       @include fonts.font(5, regular);
-      color: var(--general_contrasts-main-selection);
+      color: var(--general-contrasts-main-selection);
       padding: 0;
       width: rem.rem_calc(50);
 
       &-inactive {
-        color: var(--general_contrasts-100);
+        color: var(--general-contrasts-100);
       }
     }
 
     &-menu {
-      background-color: var(--general_contrasts-20);
+      background-color: var(--general-contrasts-20);
       box-shadow: var(--bmb-shadow-3);
       display: flex;
       flex-flow: column;
@@ -143,14 +143,14 @@
 
       .bmb_breadcrumb-link {
         @include fonts.font(4, regular);
-        color: var(--general_contrasts-100);
+        color: var(--general-contrasts-100);
         flex: 1;
       }
     }
 
     &-items {
       align-items: center;
-      color: var(--general_contrasts-100);
+      color: var(--general-contrasts-100);
       display: flex;
       padding: rem.rem_calc(8 16);
     }
@@ -181,7 +181,7 @@
   }
 
   &-icon {
-    color: var(--general_contrasts-main-selection);
+    color: var(--general-contrasts-main-selection);
     font-size: rem.rem_calc(20);
   }
 }

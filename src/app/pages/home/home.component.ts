@@ -24,6 +24,7 @@ import {
   BmbProjectionContentService,
   BmbMediaCardComponent,
   BmbNotificationService,
+  BmbAdvertisementCardComponent,
 } from '../../../../projects/ds-ng/src/public-api';
 import { HelpMenuComponent } from '../../components/help-menu/help-menu.component';
 import { CdkDragPlaceholder } from '@angular/cdk/drag-drop';
@@ -47,6 +48,7 @@ import { CdkDragPlaceholder } from '@angular/cdk/drag-drop';
     BmbHomeCardComponent,
     BmbMediaCardComponent,
     CdkDragPlaceholder,
+    BmbAdvertisementCardComponent,
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',

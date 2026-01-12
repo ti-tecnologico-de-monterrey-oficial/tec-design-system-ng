@@ -8,7 +8,7 @@ import { Component } from '@angular/core';
     <bmb-action-menu title="Test title">
       <ng-template #tpl>Contenido</ng-template>
     </bmb-action-menu>
-  `
+  `,
 })
 class TestHostComponent {}
 

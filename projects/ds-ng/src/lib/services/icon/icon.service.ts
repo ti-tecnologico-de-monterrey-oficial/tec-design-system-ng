@@ -6,8 +6,7 @@ import { Injectable } from '@angular/core';
 export class BmbIconService {
   private iconCache = new Map<string, string>();
   private readonly storybookPath = '/assets/icons/material-rounded';
-  private readonly angularAppPath =
-    '/node_modules/@material-symbols/svg-400/rounded';
+  private readonly angularAppPath = '/assets/icons/material-rounded';
 
   async loadIconSvg(
     iconName: string,

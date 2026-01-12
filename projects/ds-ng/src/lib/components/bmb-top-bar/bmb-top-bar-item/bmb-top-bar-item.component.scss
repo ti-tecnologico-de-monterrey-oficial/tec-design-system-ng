@@ -4,7 +4,7 @@
 
 .bmb_top-bar-item {
   @include fonts.font(5, regular);
-  color: RGBA(var(--color-charade-500));
+  color: rgb(var(--gray-charade-500));
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -13,24 +13,24 @@
     padding: rem.rem_calc(8) rem.rem_calc(16);
     width: 100vw;
     box-sizing: border-box;
-    color: RGBA(var(--color-white-primary));
+    color: rgb(var(--white-primary));
 
     &:hover,
     &:focus-visible {
-      background-color: RGBA(var(--color-blue-primary));
+      background-color: rgb(var(--blue-primary));
     }
 
     &-active {
-      background-color: RGBA(var(--color-charade-500));
+      background-color: rgb(var(--gray-charade-500));
     }
   }
 
   a {
-    color: RGBA(var(--color-charade-500));
+    color: rgb(var(--gray-charade-500));
     text-decoration: none;
 
     @include mixins.check-for-mobile() {
-      color: RGBA(var(--color-white-primary));
+      color: rgb(var(--white-primary));
     }
   }
 }

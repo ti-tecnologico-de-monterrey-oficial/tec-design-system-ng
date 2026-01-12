@@ -20,8 +20,8 @@ $tooltip_justify: 'centered', 'before', 'after';
     min-width: rem.rem_calc(280);
     max-width: rem.rem_calc(400);
     min-height: rem.rem_calc(35);
-    background-color: var(--general_contrasts-100);
-    color: var(--general_contrasts-5);
+    background-color: var(--general-contrasts-100);
+    color: var(--general-contrasts-5);
     text-align: center;
     border-radius: var(--bmb-radius-1);
     padding: rem.rem_calc(8 16);
@@ -121,21 +121,3 @@ $tooltip_justify: 'centered', 'before', 'after';
     }
   }
 }
-
-// [data-theme="dark"],
-// .storybook-dark-theme {
-//   // .bmb_tooltip {
-//   //   background-color: transparent;
-//   //   &-container {
-//   //     background-color: RGBA(var(--color-charade-50));
-
-//   //     &-title {
-//   //       color: RGBA(var(--color-charade-950));
-//   //     }
-
-//   //     &-description {
-//   //       color: RGBA(var(--color-charade-950));
-//   //     }
-//   //   }
-//   // }
-// }
