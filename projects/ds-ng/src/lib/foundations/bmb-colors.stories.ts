@@ -142,7 +142,7 @@ import { BmbVerticalLayoutItemDirective } from '../directives/bmb-layout/bmb-ver
           />
         </section>
         <section bmbVerticalLayoutItem bmbAccordionControl>
-          <bmb-accordion
+          <!-- <bmb-accordion
             appearanceContrast="alternative"
             icon="keyboard_arrow_down"
           >
@@ -180,7 +180,7 @@ import { BmbVerticalLayoutItemDirective } from '../directives/bmb-layout/bmb-ver
                 "
               />
             </ng-template>
-          </bmb-accordion>
+          </bmb-accordion> -->
           <bmb-accordion
             appearanceContrast="alternative"
             icon="keyboard_arrow_down"
