@@ -129,3 +129,17 @@ export const forbidTagsAndAttributes = {
     'onsubmit',
   ],
 };
+
+export const getRGBColorKeyValue = (color: string): Record<string, string> => {
+  const newColor = color.includes('mitec') ||
+    color === 'black-tint' ||
+    color === 'black-light' ||
+    color === 'black-min' ||
+    color === 'white-tint' ||
+    color === 'white-light' ||
+    color === 'white-min' ?
+    `var(--${color})` : `rgb(var(--${color}))`;
+  return {
+    'background-color': newColor,
+  };
+}

@@ -8,7 +8,7 @@ import {
 import { CommonModule } from '@angular/common';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { BmbContainerComponent } from '../bmb-container/bmb-container.component';
-import { isImage } from '../../utils/utils';
+import { getRGBColorKeyValue, isImage } from '../../utils/utils';
 import {
   BmbBreadcrumbComponent,
   IBmbDataTopBar,
@@ -53,9 +53,7 @@ export class BmbHeaderSectionComponent {
       return { 'background-color': 'transparent' };
     }
     if (!!this.bgIconAppearance()) {
-      return {
-        'background-color': `rgb(var(--${this.bgIconAppearance()}))`,
-      };
+      return getRGBColorKeyValue(this.bgIconAppearance() as string);
     }
     return {};
   }

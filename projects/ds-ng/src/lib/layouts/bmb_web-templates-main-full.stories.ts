@@ -18,12 +18,12 @@ import * as topBarStory from '../components/bmb-top-bar/bmb-top-bar.stories';
   template: `
     <bmb-top-bar />
     <section class="bmb_template-header">
-      <h3>Header</h3>
-      <h5>Text</h5>
+      <h3 class="bmb_template-header-content">Header</h3>
+      <p class="bmb_template-header-content">Text</p>
     </section>
     <div class="bmb_template-main-full">
       <main class="bmb_template-main-full-card">
-        <h5>
+        <p>
           Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nisi velit
           libero eveniet alias esse at perspiciatis minus quia aperiam enim?
           Commodi cum minima recusandae quidem blanditiis maiores, eaque
@@ -35,7 +35,7 @@ import * as topBarStory from '../components/bmb-top-bar/bmb-top-bar.stories';
           magni molestiae unde animi autem eos odit qui illum? Minus recusandae
           neque quia debitis nostrum aut, modi in omnis ad accusantium dolores
           vel eligendi labore.
-        </h5>
+        </p>
       </main>
     </div>
   `,
@@ -66,7 +66,7 @@ ${getBasicExampleBlock('BmbTopBarComponent')}
 </section>
 <div class="bmb_template-main-full">
   <main class="bmb_template-main-full-card">
-    <h5>
+    <p>
       Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nisi velit
       libero eveniet alias esse at perspiciatis minus quia aperiam enim?
       Commodi cum minima recusandae quidem blanditiis maiores, eaque
@@ -78,7 +78,7 @@ ${getBasicExampleBlock('BmbTopBarComponent')}
       magni molestiae unde animi autem eos odit qui illum? Minus recusandae
       neque quia debitis nostrum aut, modi in omnis ad accusantium dolores
       vel eligendi labore.
-    </h5>
+    </p>
   </main>
 </div>
 \`\`\`
