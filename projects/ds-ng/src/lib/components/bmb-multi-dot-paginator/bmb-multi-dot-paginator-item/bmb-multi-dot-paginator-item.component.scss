@@ -20,6 +20,10 @@ bmb-multi-dot-paginator-item {
     &.bmb_multi-dot-paginator-item-active ~ * {
       @include preview-block();
     }
+
+    &.bmb_multi-dot-paginator-item-active + * {
+      opacity: 1;
+    }
   }
 
   @include mixins.media-range-query(vars.$breakpoint_min_web, 1999) {
