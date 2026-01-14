@@ -18,12 +18,12 @@ import * as topBarStory from '../components/bmb-top-bar/bmb-top-bar.stories';
   template: `
     <bmb-top-bar />
     <section class="bmb_template-header">
-      <h3>Header</h3>
-      <h5>Text</h5>
+      <h3 class="bmb_template-header-content">Header</h3>
+      <h5 class="bmb_template-header-content">Text</h5>
     </section>
     <div class="bmb_template-aside-first">
       <main class="bmb_template-aside-first-main">
-        <h5>
+        <p>
           Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nisi velit
           libero eveniet alias esse at perspiciatis minus quia aperiam enim?
           Commodi cum minima recusandae quidem blanditiis maiores, eaque
@@ -35,18 +35,18 @@ import * as topBarStory from '../components/bmb-top-bar/bmb-top-bar.stories';
           magni molestiae unde animi autem eos odit qui illum? Minus recusandae
           neque quia debitis nostrum aut, modi in omnis ad accusantium dolores
           vel eligendi labore.
-        </h5>
+        </p>
       </main>
       <aside class="bmb_template-aside-first-aside">
         <h3 class="bmb_template-aside-title">Subheader</h3>
-        <h5>
+        <p>
           Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aut ipsa
           repudiandae hic. Non, fugiat? Repellendus impedit soluta excepturi
           fugit doloribus. Quos, vel suscipit. Deleniti similique tempore at
           culpa facilis sunt laudantium, magni maxime dolor reprehenderit saepe!
           Quam eius, iste voluptate corporis sequi impedit fuga repudiandae amet
           placeat, delectus, quis sapiente?
-        </h5>
+        </p>
       </aside>
     </div>
   `,
@@ -72,12 +72,12 @@ ${getBasicExampleBlock('BmbTopBarComponent')}
 \`\`\`html
 <bmb-top-bar/>
 <section class="bmb_template-header">
-  <h3>Header</h3>
-  <h5>Text</h5>
+  <h3 class="bmb_template-header-content>Header</h3>
+  <h5 class="bmb_template-header-content>Text</h5>
 </section>
 <div class="bmb_template-aside-first">
   <main class="bmb_template-aside-first-main">
-    <h5>
+    <p>
       Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nisi velit
       libero eveniet alias esse at perspiciatis minus quia aperiam enim?
       Commodi cum minima recusandae quidem blanditiis maiores, eaque
@@ -89,18 +89,18 @@ ${getBasicExampleBlock('BmbTopBarComponent')}
       magni molestiae unde animi autem eos odit qui illum? Minus recusandae
       neque quia debitis nostrum aut, modi in omnis ad accusantium dolores
       vel eligendi labore.
-    </h5>
+    </p>
   </main>
   <aside class="bmb_template-aside-first-aside">
     <h3 class="bmb_template-aside-title">Subheader</h3>
-    <h5>
+    <p>
       Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aut ipsa
       repudiandae hic. Non, fugiat? Repellendus impedit soluta excepturi
       fugit doloribus. Quos, vel suscipit. Deleniti similique tempore at
       culpa facilis sunt laudantium, magni maxime dolor reprehenderit saepe!
       Quam eius, iste voluptate corporis sequi impedit fuga repudiandae amet
       placeat, delectus, quis sapiente?
-    </h5>
+    </p>
   </aside>
 </div>
 \`\`\`

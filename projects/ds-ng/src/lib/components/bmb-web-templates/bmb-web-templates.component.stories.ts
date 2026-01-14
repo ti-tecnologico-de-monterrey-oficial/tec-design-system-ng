@@ -3,7 +3,7 @@ import { BmbWebTemplatesComponent } from './bmb-web-templates.component';
 
 export default {
   title: 'Templates',
-  tags: ['hideInSidebar'],
+  tags: ['!autodocs', 'hideInSidebar'],
   component: BmbWebTemplatesComponent,
   parameters: {
     docs: {

@@ -579,6 +579,7 @@ import { BmbModalComponent, ModalDataConfig } from '@ti-tecnologico-de-monterrey
               [isListItem]="false"
               [image]="'https://picsum.photos/id/64/200/300'"
               [dateFormat]="'yyyy-MM-dd HH:mm:ss'"
+              [badgeText]="'New'"
             />
             <bmb-student-activity-card
               [startDate]="'2021-12-24 10:00:00'"
@@ -590,6 +591,7 @@ import { BmbModalComponent, ModalDataConfig } from '@ti-tecnologico-de-monterrey
               [isListItem]="false"
               [image]="'https://picsum.photos/id/64/200/300'"
               [dateFormat]="'yyyy-MM-dd HH:mm:ss'"
+              [badgeText]="'New'"
             />
             <bmb-student-activity-card
               [startDate]="'2021-12-24 10:00:00'"
@@ -601,6 +603,7 @@ import { BmbModalComponent, ModalDataConfig } from '@ti-tecnologico-de-monterrey
               [isListItem]="false"
               [image]="'https://picsum.photos/id/64/200/300'"
               [dateFormat]="'yyyy-MM-dd HH:mm:ss'"
+              badgeText="New"
             />
             <bmb-student-activity-card
               [startDate]="'2021-12-24 10:00:00'"
@@ -612,6 +615,7 @@ import { BmbModalComponent, ModalDataConfig } from '@ti-tecnologico-de-monterrey
               [isListItem]="false"
               [image]="'https://picsum.photos/id/64/200/300'"
               [dateFormat]="'yyyy-MM-dd HH:mm:ss'"
+              [badgeText]="'New'"
             />
             <bmb-student-activity-card
               [startDate]="'2021-12-24 10:00:00'"
@@ -623,6 +627,7 @@ import { BmbModalComponent, ModalDataConfig } from '@ti-tecnologico-de-monterrey
               [isListItem]="false"
               [image]="'https://picsum.photos/id/64/200/300'"
               [dateFormat]="'yyyy-MM-dd HH:mm:ss'"
+              [badgeText]="'New'"
             />
           </section>
         </section>
