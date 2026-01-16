@@ -405,6 +405,7 @@ class StorybookAccordionTabs {
 export default {
   title: 'Particularities/mitec web/Landings/Accordion with image',
   component: BmbTopBarComponent,
+  tags: ['!autodocs'],
   decorators: [
     moduleMetadata({
       imports: [StorybookAccordionTabs, BmbTopBarComponent],

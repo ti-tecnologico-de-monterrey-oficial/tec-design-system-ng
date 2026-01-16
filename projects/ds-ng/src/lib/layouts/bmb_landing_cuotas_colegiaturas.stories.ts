@@ -348,12 +348,12 @@ class StorybookCuotasColegiaturasComponent {
 
 export default {
   title:
-    'Particularities/mitec web/Landings/Cuotas de colegiatura y políticas de pago',
+    'Particularities/mitec web/Landings/Container buttons card/Cuotas de colegiatura y políticas de pago',
   component: BmbTopBarComponent,
+  tags: ['!autodocs'],
   decorators: [
     moduleMetadata({
       imports: [StorybookCuotasColegiaturasComponent, BmbTopBarComponent],
-      providers: [],
     }),
   ],
   parameters: {

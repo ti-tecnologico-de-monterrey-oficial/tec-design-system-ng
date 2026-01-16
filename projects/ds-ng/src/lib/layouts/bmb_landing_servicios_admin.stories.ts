@@ -790,12 +790,13 @@ class StorybookAccordionTabs {
 }
 
 export default {
-  title: 'Particularities/mitec web/Landings/Servicios admin',
+  title:
+    'Particularities/mitec web/Landings/Container buttons card/Servicios admin',
   component: BmbTopBarComponent,
+  tags: ['!autodocs'],
   decorators: [
     moduleMetadata({
       imports: [StorybookAccordionTabs, BmbTopBarComponent],
-      providers: [],
     }),
     applicationConfig({
       providers: [BmbNativeModalService],
