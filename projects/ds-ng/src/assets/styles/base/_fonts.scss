@@ -24,19 +24,19 @@
   src: url('/assets/fonts/Poppins/Poppins-Bold.ttf') format('truetype');
 }
 
-$font-poppins-thin: 'Poppins-Thin', sans-serif;
+// $font-poppins-thin: 'Poppins-Thin', sans-serif;
 $font-poppins-light: 'Poppins-Light', sans-serif;
 $font-poppins-regular: 'Poppins-Regular', sans-serif;
-$font-poppins-medium: 'Poppins-Medium', sans-serif;
-$font-poppins-semibold: 'Poppins-Semibold', sans-serif;
+// $font-poppins-medium: 'Poppins-Medium', sans-serif;
+// $font-poppins-semibold: 'Poppins-Semibold', sans-serif;
 $font-poppins-bold: 'Poppins-Bold', sans-serif;
 
 $font-map: (
-  thin: $font-poppins-thin,
+  // thin: $font-poppins-thin,
   light: $font-poppins-light,
   regular: $font-poppins-regular,
-  medium: $font-poppins-medium,
-  semibold: $font-poppins-semibold,
+  // medium: $font-poppins-medium,
+  // semibold: $font-poppins-semibold,
   bold: $font-poppins-bold,
 );
 
