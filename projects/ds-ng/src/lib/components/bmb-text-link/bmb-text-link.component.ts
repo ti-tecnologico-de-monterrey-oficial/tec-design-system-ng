@@ -8,8 +8,6 @@ import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { IBmbTargetLink } from '../../types';
 import { BmbCheckExternalLinkButtonComponent } from '../bmb-check-external-link-button/bmb-check-external-link-button.component';
 import { CommonModule } from '@angular/common';
-import { BmbLayoutDirective } from '../../directives/bmb-layout/bmb-layout.directive';
-import { BmbLayoutItemDirective } from '../../directives/bmb-layout/bmb-layout-item.directive';
 
 export type IBmbIconPosition = 'left' | 'right';
 export type IBmbTextLinkStyle = 'icon' | 'underlined';
@@ -19,8 +17,6 @@ export type IBmbTextLinkStyle = 'icon' | 'underlined';
   standalone: true,
   imports: [
     CommonModule,
-    BmbLayoutDirective,
-    BmbLayoutItemDirective,
     BmbCheckExternalLinkButtonComponent,
     BmbIconComponent,
   ],
