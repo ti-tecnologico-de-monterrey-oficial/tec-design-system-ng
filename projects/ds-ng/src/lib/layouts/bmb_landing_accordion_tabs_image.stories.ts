@@ -409,7 +409,6 @@ export default {
   decorators: [
     moduleMetadata({
       imports: [StorybookAccordionTabs, BmbTopBarComponent],
-      providers: [],
     }),
   ],
   parameters: {
