@@ -11,7 +11,7 @@ export default {
   title: 'Components/Buttons/Bookmark',
   component: BmbBookmarkComponent,
   parameters: {
-    controls: { exclude: ['getClassList', 'handleClick'] },
+    controls: { exclude: ['handleClick'] },
     docs: {
       description: {
         component: `

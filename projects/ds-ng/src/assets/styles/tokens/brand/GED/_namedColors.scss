@@ -26,7 +26,9 @@
   --general-contrasts-input-outline: rgb(var(--gray-ged-950));
   --general-contrasts-container-outline: rgb(var(--gray-ged-400));
   --general-contrasts-text-sidebar: rgb(var(--black-primary));
+
   --general-contrasts-primary: rgb(var(--blue-ged-800));
+  --general-contrasts-primary-high-contrast: rgb(var(--blue-ged-200));
 
   --general-contrasts-inner-header-text: rgb(var(--black-primary));
   --general-contrasts-timestream-index-inner-header-text: rgb(
@@ -60,6 +62,7 @@
   --buttons-alternative-normal: rgb(var(--white-primary));
   --buttons-alternative-hover: rgb(var(--gray-ged-800));
   --buttons-alternative-text: rgb(var(--gray-ged-950));
+  --buttons-alternative-select-text: rgb(var(--gray-ged-50));
   --buttons-alternative-text-hover: rgb(var(--gray-ged-50));
 
   --buttons-primary-text: rgb(var(--white-primary));
@@ -68,6 +71,9 @@
   --buttons-inactive-step: rgb(var(--gray-ged-400));
 
   --buttons-stroke-primary-selected: rgb(var(--blue-ged-900));
+  --buttons-blur-primary-select: rgb(var(--gray-ged-500));
+  --buttons-stroke-primary-hover: rgb(var(--black-primary));
+
   --buttons-destructive: rgb(var(--red-primary));
   --buttons-text-link: rgb(var(--blue-mariner-700));
 
@@ -131,7 +137,6 @@
     rgb(var(--blue-ged-100)) 100%;
 
   // variables for buttons
-  --buttons-primary-border-hover: var(--buttons-primary-normal);
   --buttons-primary-text-hover: var(--buttons-primary-normal);
   --buttons-primary-border-active: var(--buttons-primary-select);
   --buttons-card-hover-background: var(--buttons-primary-hover);
@@ -193,7 +198,9 @@
   --general-contrasts-input-outline: rgb(var(--gray-ged-50));
   --general-contrasts-container-outline: rgb(var(--gray-ged-800));
   --general-contrasts-text-sidebar: rgb(var(--white-primary));
+
   --general-contrasts-primary: rgb(var(--blue-ged-300));
+  --general-contrasts-primary-high-contrast: rgb(var(--blue-ged-300));
 
   --general-contrasts-inner-header-text: rgb(var(--white-primary));
   --general-contrasts-timestream-index-inner-header-text: rgb(
@@ -227,6 +234,7 @@
   --buttons-alternative-normal: rgb(var(--black-primary));
   --buttons-alternative-hover: rgb(var(--gray-ged-200));
   --buttons-alternative-text: rgb(var(--gray-ged-50));
+  --buttons-alternative-select-text: rgb(var(--gray-ged-50));
   --buttons-alternative-text-hover: rgb(var(--gray-ged-950));
 
   --buttons-primary-text: rgb(var(--black-primary));
@@ -235,6 +243,9 @@
   --buttons-inactive-step: rgb(var(--gray-ged-700));
 
   --buttons-stroke-primary-selected: rgb(var(--blue-ged-400));
+  --buttons-blur-primary-select: rgb(var(--gray-ged-600));
+  --buttons-stroke-primary-hover: rgb(var(--white-primary));
+
   --buttons-destructive: rgb(var(--red-light));
   --buttons-text-link: rgb(var(--white-primary));
 
@@ -299,7 +310,6 @@
     rgb(var(--gray-ged-900)) 100%;
 
   // variables for buttons
-  --buttons-primary-border-hover: var(--buttons-primary-normal);
   --buttons-primary-text-hover: var(--buttons-primary-normal);
   --buttons-primary-border-active: var(--buttons-primary-select);
   --buttons-card-hover-background: var(--buttons-primary-hover);
