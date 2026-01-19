@@ -95,7 +95,7 @@
     &:hover:not(:disabled),
     &:focus-visible:not(:disabled) {
       background: var(--buttons-primary-hover);
-      border-color: var(--buttons-primary-border-hover);
+      border-color: var(--buttons-primary-hove);
       color: var(--buttons-primary-text-hover);
 
       bmb-icon {
