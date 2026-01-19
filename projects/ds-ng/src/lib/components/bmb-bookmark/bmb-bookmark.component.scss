@@ -1,20 +1,11 @@
 .bmb_bookmark {
+  color: var(--black-tint);
+
+  &.active {
+    color: rgb(var(--red-light));
+  }
+
   &:hover {
-    .bmb_action_icon-icon {
-      color: var(--buttons-destructive);
-    }
-  }
-
-  &-active {
-    .bmb_action_icon-icon {
-      color: var(--buttons-destructive);
-    }
-  }
-
-  &:not(.bmb_bookmark-active) {
-    .bmb_action_icon-icon {
-      color: var(--black-tint);
-      transition: all 0.3s ease;
-    }
+    opacity: 50%;
   }
 }

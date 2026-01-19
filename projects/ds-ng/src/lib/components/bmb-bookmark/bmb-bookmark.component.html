@@ -1,5 +1,6 @@
 <bmb-action-icon
-  [ngClass]="getClassList()"
+  class="bmb_bookmark"
+  [ngClass]="{ active: isActive() }"
   icon="bookmark"
   [iconSize]="24"
   (buttonClick)="handleClick($event)"

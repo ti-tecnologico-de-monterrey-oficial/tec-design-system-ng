@@ -23,10 +23,4 @@ export class BmbBookmarkComponent {
     event?.stopPropagation();
     this.isActive.update((value) => !value);
   }
-
-  getClassList() {
-    const classList = ['bmb_bookmark'];
-    if (this.isActive()) classList.push('bmb_bookmark-active');
-    return classList;
-  }
 }
