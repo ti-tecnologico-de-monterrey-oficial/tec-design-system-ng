@@ -14,7 +14,6 @@ import {
 import {
   DBmbInputParamDesc,
   getOnEventParam,
-  DBmbGenericParamDesc,
   getDefaultValueControl,
   getAppearanceParam,
 } from '../../utils/doc/parameterDescriptions';

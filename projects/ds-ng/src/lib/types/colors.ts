@@ -53,17 +53,17 @@ export type IBmbColor =
   | 'teal-primary'
   | 'teal-light'
   | 'teal-tint';
-  // | 'container-home'
-  // | 'container-secondary'
-  // | 'container-button'
-  // | 'background-main'
-  // | 'container-home-light'
-  // | 'container-secondary-light'
-  // | 'container-button-light'
-  // | 'background-main-light'
-  // | 'container-home-tec'
-  // | 'container-secondary-tec'
-  // | 'container-button-tec'
-  // | 'background-main-tec';
+// | 'container-home'
+// | 'container-secondary'
+// | 'container-button'
+// | 'background-main'
+// | 'container-home-light'
+// | 'container-secondary-light'
+// | 'container-button-light'
+// | 'background-main-light'
+// | 'container-home-tec'
+// | 'container-secondary-tec'
+// | 'container-button-tec'
+// | 'background-main-tec';
 
 export type IBmbContrast = 'default' | 'primary' | 'alternative';

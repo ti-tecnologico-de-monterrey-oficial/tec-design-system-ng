@@ -416,12 +416,13 @@ class StorybookAccordionTabs {
 }
 
 export default {
-  title: 'Particularities/mitec web/Landings/Caja de ahorro',
+  title:
+    'Particularities/mitec web/Landings/Accordion with image/Caja de ahorro',
   component: BmbTopBarComponent,
+  tags: ['!autodocs'],
   decorators: [
     moduleMetadata({
       imports: [StorybookAccordionTabs, BmbTopBarComponent],
-      providers: [],
     }),
   ],
   parameters: {
@@ -461,7 +462,7 @@ ${getBasicExampleBlock(
     BmbCardContentComponent,
     BmbAccordionComponent,
     BmbButtonDirective,
-    BmbAccordionControlDirective, 
+    BmbAccordionControlDirective,
     BmbIconComponent`,
   '',
   `actionHeaders: IBmbActionHeader[] = [

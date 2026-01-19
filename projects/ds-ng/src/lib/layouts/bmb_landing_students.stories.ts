@@ -189,6 +189,7 @@ class StorybookHomeMitecMobile {}
 export default {
   title: 'Particularities/mitec web/Landings/Student service',
   component: BmbTopBarComponent,
+  tags: ['!autodocs'],
   decorators: [
     moduleMetadata({
       imports: [StorybookHomeMitecMobile, BmbTopBarComponent],
