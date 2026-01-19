@@ -26,7 +26,9 @@
   --general-contrasts-input-outline: rgb(var(--blue-mariner-700));
   --general-contrasts-container-outline: rgb(var(--gray-charade-300));
   --general-contrasts-text-sidebar: rgb(var(--black-primary));
+
   --general-contrasts-primary: rgb(var(--blue-mariner-700));
+  --general-contrasts-primary-high-contrast: rgb(var(--blue-mariner-300));
 
   --general-contrasts-inner-header-text: rgb(var(--black-primary));
   --general-contrasts-timestream-index-inner-header-text: rgb(
@@ -60,6 +62,7 @@
   --buttons-alternative-normal: rgb(var(--gray-charade-50));
   --buttons-alternative-hover: rgb(var(--gray-charade-300));
   --buttons-alternative-text: rgb(var(--gray-charade-900));
+  --buttons-alternative-select-text: rgb(var(--gray-charade-50));
   --buttons-alternative-text-hover: rgb(var(--gray-charade-700));
 
   --buttons-primary-text: rgb(var(--blue-mariner-700));
@@ -68,6 +71,9 @@
   --buttons-inactive-step: rgb(var(--gray-charade-300));
 
   --buttons-stroke-primary-selected: rgb(var(--blue-mariner-900));
+  --buttons-blur-primary-select: rgb(var(--blue-mariner-500));
+  --buttons-stroke-primary-hover: rgb(var(--blue-mariner-800));
+
   --buttons-destructive: rgb(var(--red-primary));
   --buttons-text-link: rgb(var(--blue-mariner-700));
 
@@ -180,7 +186,9 @@
   --general-contrasts-input-outline: rgb(var(--gray-charade-50));
   --general-contrasts-container-outline: rgb(var(--gray-charade-800));
   --general-contrasts-text-sidebar: rgb(var(--white-primary));
+
   --general-contrasts-primary: rgb(var(--blue-mariner-400));
+  --general-contrasts-primary-high-contrast: rgb(var(--blue-mariner-400));
 
   --general-contrasts-inner-header-text: rgb(var(--white-primary));
   --general-contrasts-timestream-index-inner-header-text: rgb(
@@ -214,6 +222,7 @@
   --buttons-alternative-normal: rgb(var(--gray-charade-50));
   --buttons-alternative-hover: rgb(var(--gray-charade-300));
   --buttons-alternative-text: rgb(var(--gray-charade-900));
+  --buttons-alternative-select-text: rgb(var(--gray-charade-50));
   --buttons-alternative-text-hover: rgb(var(--gray-charade-700));
 
   --buttons-primary-text: rgb(var(--blue-mariner-700));
@@ -222,6 +231,9 @@
   --buttons-inactive-step: rgb(var(--gray-charade-700));
 
   --buttons-stroke-primary-selected: rgb(var(--blue-mariner-300));
+  --buttons-blur-primary-select: rgb(var(--blue-mariner-500));
+  --buttons-stroke-primary-hover: rgb(var(--blue-mariner-800));
+
   --buttons-destructive: rgb(var(--red-light));
   --buttons-text-link: rgb(var(--blue-mariner-500));
 
