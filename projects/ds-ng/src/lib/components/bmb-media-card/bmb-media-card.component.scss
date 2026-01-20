@@ -87,6 +87,13 @@
   }
 
   &-content {
+    &-overlay {
+      height: 100%;
+      width: 100%;
+      border-radius: 24px;
+      border-radius: 0;
+      background-image: linear-gradient(var(--containers-media-card-background-fade) 0%, var(--containers-media-card-background) 100%);
+    }
     &-inline {
       grid-area: 1 / 1 / 2 / 2;
       display: flex;
@@ -94,12 +101,10 @@
       justify-content: flex-end;
       z-index: 1;
       color: rgb(var(--gray-charade-50));
+      flex-flow: column;
 
       .bmb_media-card-content-container {
-        background-image: linear-gradient(
-          rgba(var(--gray-charade-950), 0),
-          rgba(var(--gray-charade-950), 1)
-        );
+        background-color: var(--containers-media-card-background);
         padding: var(--bmb-spacing-m);
         width: 100%;
         box-sizing: border-box;
