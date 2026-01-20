@@ -68,8 +68,9 @@ export class BmbMediaCardComponent {
     return classes;
   }
 
-  getBackgroundColor(): string {
-    return this.bgColor() ? `rgb(var(${this.bgColor()}))` : 'transparent';
+  getBackgroundColor(): Record<string, string> {
+    if (this.type() === 'inline') return {};
+    return this.bgColor() ? { 'background-color': `rgb(var(${this.bgColor()}))` } : { 'background-color': 'transparent' };
   }
 
   getUserAttribute(attribute: string | undefined): string {
