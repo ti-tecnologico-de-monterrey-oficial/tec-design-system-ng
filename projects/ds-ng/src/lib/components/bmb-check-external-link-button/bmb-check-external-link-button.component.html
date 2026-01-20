@@ -27,7 +27,7 @@
       class="bmb_check-external-link-button-element"
       [id]="idElement()"
       [href]="link()"
-      [target]="target()"
+      [target]="target() || '_blank'"
       rel="noopener noreferrer"
     >
       <ng-container [ngTemplateOutlet]="commonTemplate" />
