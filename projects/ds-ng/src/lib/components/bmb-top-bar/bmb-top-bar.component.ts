@@ -33,6 +33,7 @@ export class BmbTopBarComponent implements OnInit {
   mitec = input<boolean>(false);
   alertNotification = input<IBmbDataAlert[]>([]);
   showRoleButton = input<boolean>(false);
+  showSearchButton = input<boolean>(false);
   showHelpButton = input<boolean>(false);
   allowSidebarForMobile = input<boolean>(true);
 
@@ -44,6 +45,7 @@ export class BmbTopBarComponent implements OnInit {
   alertButtonClick = output<MouseEvent>();
   roleButtonClick = output<MouseEvent>();
   backToHomeClick = output<void>();
+  searchButtonClick = output<MouseEvent>();
 
   showAnimation: boolean = true;
   imageDefault = 'assets/images/tec-logo.svg';
@@ -89,6 +91,10 @@ export class BmbTopBarComponent implements OnInit {
 
   handleRoleChange(event: MouseEvent) {
     this.roleButtonClick.emit(event);
+  }
+
+  handleSearchChange(event: MouseEvent): void {
+    this.searchButtonClick.emit(event);
   }
 
   handleBackToHome(): void {
