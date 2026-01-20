@@ -49,8 +49,8 @@
         isMobile,
         hasChildren: !!item.children
       })
-        ? ''
-        : item.target!
+        ? item.target!
+        : ''
     "
     (buttonClick)="toggleChildren(item)"
   >

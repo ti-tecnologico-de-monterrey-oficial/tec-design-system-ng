@@ -54,7 +54,6 @@ export default {
           'clearSelectElement',
           'closeSidebar',
           'sideNav',
-          'error',
         ],
       },
       description: {
@@ -392,7 +391,6 @@ This property affected to web resolution only.
               icon: 'file_copy',
               title: 'Sub-item 4',
               link: 'https://www.youtube.com/watch?v=beh56CrNRsQ',
-              target: '',
             },
           ],
         },
