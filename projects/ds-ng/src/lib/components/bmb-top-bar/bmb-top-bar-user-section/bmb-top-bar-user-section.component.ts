@@ -43,12 +43,14 @@ export class BmbTopBarUserSectionComponent {
   showNotifications = input<boolean>(true);
   notificationNotification = input<IBmbDataAlert[]>([]);
   showRoleButton = input<boolean>(false);
+  showSearchButton = input<boolean>(false);
   showHelpButton = input<boolean>(false);
 
   helpButtonClick = output<MouseEvent>();
   userClick = output<MouseEvent>();
   alertClick = output<MouseEvent>();
   roleButtonClick = output<MouseEvent>();
+  searchButtonClick = output<MouseEvent>();
 
   isOpenNotifications: boolean = false;
   dialogPosition: { top: string; left: string } | null = {
@@ -79,8 +81,15 @@ export class BmbTopBarUserSectionComponent {
       text: 'Cambio de usuario',
       action: (event) => this.handleRoleChange(event as MouseEvent),
     };
+    const search: IDropdownItem = {
+      idItem: 'search',
+      icon: 'search',
+      text: 'Buscar',
+      action: (event) => this.handleSearchChange(event as MouseEvent),
+    };
 
     if (this.showRoleButton()) menu.unshift(changeUser);
+    if (this.showSearchButton()) menu.unshift(search);
     if (this.showNotifications()) menu.unshift(notification);
 
     return menu;
@@ -108,5 +117,9 @@ export class BmbTopBarUserSectionComponent {
 
   handleRoleChange(event: MouseEvent): void {
     this.roleButtonClick.emit(event);
+  }
+
+  handleSearchChange(event: MouseEvent): void {
+    this.searchButtonClick.emit(event);
   }
 }

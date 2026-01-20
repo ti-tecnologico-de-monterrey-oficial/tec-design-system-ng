@@ -194,6 +194,10 @@ The setting applies only to mobile.
     positionButtonMenu: DBmbGenericParamDesc.deprecated,
     roleButtonClick: getOnClickParam(getOnEvent('role', 'roleButtonClick')),
     showRoleButton: getShowButton('role'),
+    searchButtonClick: getOnClickParam(
+      getOnEvent('search', 'searchButtonClick'),
+    ),
+    showSearchButton: getShowButton('search'),
     backToHomeClick: getOnClickParam(
       getOnEvent('back to home', 'backToHomeClick', 'void'),
     ),
@@ -210,6 +214,7 @@ The setting applies only to mobile.
     lang: 'es',
     mitec: false,
     showRoleButton: false,
+    showSearchButton: false,
     showHelpButton: false,
     backToHomeClick: () => {
       console.log('Back to home clicked');
@@ -222,6 +227,9 @@ The setting applies only to mobile.
     },
     roleButtonClick: () => {
       console.log('roleButtonClick clicked');
+    },
+    searchButtonClick: () => {
+      console.log('searchButtonClick clicked');
     },
     userProfileClick: () => {
       console.log('userProfileClick clicked');
@@ -299,6 +307,179 @@ export const MitecWithUserInformationWithRoleChange: Story = {
       role: 'Alumno',
     },
     showRoleButton: true,
+    alertNotification: [
+      {
+        id: 10,
+        title: 'Alerta 10',
+        description: [
+          {
+            text: 'Descripción de la alerta 10',
+            type: 'title',
+          },
+          {
+            text: 'Descripción de la alerta 10 paragraph',
+            type: 'paragraph',
+          },
+          {
+            text: 'Descripción de la alerta 10',
+            type: 'button',
+            variant: 'primary',
+          },
+        ],
+        date: '19/11/2024',
+        isRead: false,
+        time: '12:00',
+        tags: [
+          {
+            text: 'tag1',
+            color: 'info',
+          },
+          {
+            text: 'tag2',
+            color: 'brand',
+          },
+        ],
+        type: 'tipo 1',
+        isFavorite: true,
+        isArchived: false,
+      },
+      {
+        id: 1,
+        title: 'Alerta 1',
+        description: [
+          {
+            text: 'Descripción de la alerta 10',
+            type: 'title',
+          },
+          {
+            text: 'Descripción de la alerta 10 paragraph',
+            type: 'paragraph',
+          },
+          {
+            text: 'Descripción de la alerta 10 link',
+            type: 'link',
+            href: 'https://www.google.com',
+          },
+          {
+            text: 'Descripción de la alerta 10',
+            type: 'button',
+            variant: 'secondary-filled',
+          },
+        ],
+        date: '01/11/2024',
+        isRead: false,
+        time: '12:00',
+        type: 'tipo 1',
+        isFavorite: true,
+        isArchived: false,
+      },
+      {
+        id: 2,
+        title: 'Alerta 2',
+        description: [
+          {
+            text: 'Descripción de la alerta 10',
+            type: 'title',
+          },
+          {
+            text: 'Descripción de la alerta 10 paragraph',
+            type: 'paragraph',
+          },
+          {
+            text: 'Descripción de la alerta 10 link',
+            type: 'image',
+            href: 'https://picsum.photos/id/25/200',
+          },
+        ],
+        date: '19/11/2024',
+        isRead: true,
+        time: '15:00',
+        type: 'tipo 2',
+        isFavorite: false,
+        isArchived: true,
+      },
+      {
+        id: 3,
+        title: 'Alerta 3',
+        description: [
+          {
+            text: 'Descripción de la alerta 10',
+            type: 'paragraph',
+            style: 'bold',
+          },
+          {
+            text: 'Descripción de la alerta 10 paragraph',
+            type: 'paragraph',
+          },
+        ],
+        date: '18/11/2024',
+        isRead: false,
+        time: '12:00',
+        type: 'tipo 1',
+        isFavorite: false,
+        isArchived: false,
+      },
+      {
+        id: 4,
+        title: 'Alerta 4',
+        description: [
+          {
+            text: 'Descripción de la alerta 10',
+            type: 'paragraph',
+            style: 'bold',
+          },
+          {
+            text: 'Descripción de la alerta 10 paragraph',
+            type: 'paragraph',
+          },
+        ],
+        date: '02/11/2024',
+        isRead: true,
+        time: '12:00',
+        type: 'tipo 3',
+        isFavorite: false,
+        isArchived: false,
+      },
+      {
+        id: 4,
+        title: 'Alerta 40',
+        description: [
+          {
+            text: 'Descripción de la alerta 10',
+            type: 'title',
+          },
+          {
+            text: 'Descripción de la alerta 10 paragraph',
+            type: 'paragraph',
+          },
+          {
+            text: 'Descripción de la alerta 10 link',
+            type: 'image',
+            href: 'https://picsum.photos/id/26/200',
+          },
+        ],
+        date: '02/01/2024',
+        isRead: true,
+        time: '12:00',
+        type: 'tipo 1',
+        isFavorite: false,
+        isArchived: false,
+      },
+    ],
+  },
+};
+
+export const MitecWithUserInformationWithSearch: Story = {
+  name: 'Mitec with user information with search',
+  args: {
+    mitec: true,
+    userInformation: {
+      name: 'Santiago Hernández',
+      image: 'https://picsum.photos/id/64/200/300',
+      role: 'Alumno',
+    },
+    showRoleButton: true,
+    showSearchButton: true,
     alertNotification: [
       {
         id: 10,
