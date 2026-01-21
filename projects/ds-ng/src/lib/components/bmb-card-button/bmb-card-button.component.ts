@@ -13,6 +13,7 @@ import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { BmbBadgeComponent } from '../bmb-badge/bmb-badge.component';
 import { IBbmBgAppearance } from '../bmb-advertisement-card/types';
 import { BmbDropdownMenuComponent } from '../bmb-dropdown-menu/bmb-dropdown-menu.component';
+import { isABotIcon } from '../../utils/botIcon';
 
 import {
   IBmbBadgeInfo,
@@ -109,5 +110,9 @@ export class BmbCardButtonComponent {
       !this.isFullInteractive()
     )
       this.onAddContentClick.emit(event);
+  }
+
+  isABotTemplate(icon: string): boolean {
+    return isABotIcon(icon);
   }
 }
