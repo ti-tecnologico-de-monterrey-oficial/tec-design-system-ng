@@ -503,3 +503,9 @@ https://live.tec.mx/cbweek</p><p>¡Te esperamos!`,
 type Story = StoryObj<BmbNotificationCardComponent>;
 
 export const Default: Story = {};
+
+export const NoTabs: Story = {
+  args: {
+    showAdvertisements: false,
+  },
+};
