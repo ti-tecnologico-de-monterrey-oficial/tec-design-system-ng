@@ -387,7 +387,7 @@ This property affected to web resolution only.
             {
               id: 5.2,
               icon: 'file_copy',
-              title: 'Sub-item tyt',
+              title: 'Sub-item',
               link: 'https://www.youtube.com/watch?v=beh56CrNRsQ',
               target: '_blank',
             },
