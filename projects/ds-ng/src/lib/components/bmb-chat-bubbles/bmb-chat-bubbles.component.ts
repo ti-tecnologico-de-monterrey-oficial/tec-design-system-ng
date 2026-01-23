@@ -12,6 +12,7 @@ import { CommonModule } from '@angular/common';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { BmbTextLinkComponent } from '../bmb-text-link/bmb-text-link.component';
 import { BmbBotIconComponent } from '../bmb-bot-icon/bmb-bot-icon.component';
+import { BmbContainerButtonComponent } from '../bmb-container-button/bmb-container-button.component';
 
 @Component({
   selector: 'bmb-chat-bubble',
@@ -22,6 +23,7 @@ import { BmbBotIconComponent } from '../bmb-bot-icon/bmb-bot-icon.component';
     BmbBotIconComponent,
     BmbIconComponent,
     BmbTextLinkComponent,
+    BmbContainerButtonComponent,
   ],
   templateUrl: './bmb-chat-bubbles.component.html',
   styleUrl: './bmb-chat-bubbles.component.scss',
