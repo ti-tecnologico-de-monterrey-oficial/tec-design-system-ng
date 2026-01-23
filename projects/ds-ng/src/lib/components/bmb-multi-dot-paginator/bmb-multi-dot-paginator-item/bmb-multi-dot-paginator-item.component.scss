@@ -40,6 +40,10 @@ bmb-multi-dot-paginator-item {
 
   @include mixins.media-query(2000, 'min') {
     width: calc((33.333% / var(--numberOfElements)) - 2rem);
+
+    &.bmb_multi-dot-paginator-item-active + * + * {
+      opacity: 1;
+    }
   }
 }
 

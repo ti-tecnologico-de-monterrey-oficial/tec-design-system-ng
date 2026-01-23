@@ -9,6 +9,7 @@ import {
   IBmbOnEvent,
 } from '../../utils/doc/utils';
 import {
+  DBmbGenericParamDesc,
   DBmbIconParamDesc,
   getDefaultValueControl,
   getOnClickParam,
@@ -28,7 +29,14 @@ export default {
   ],
   parameters: {
     docs: {
-      controls: { exclude: ['active', 'getClassName', 'onFabClick'] },
+      controls: {
+        exclude: [
+          'isActive',
+          'getClassName',
+          'handleFabClick',
+          'handleFabPress',
+        ],
+      },
       description: {
         component: `
 ${getGeneralDescription(`${getGeneralComponentDescription({ name: 'fab', type: 'component', alternativeDescription: 'that provides a floating button that will help deploy various tools, libraries, or frameworks when activated.' })} `, { generalDocLink: 'https://bamboo.tec.mx/latest/componentes/main-fab/descripcion-general-Hm3R2zPj' })}
@@ -55,40 +63,25 @@ ${getBasicExampleBlock('BmbFabComponent', '', onEvent.handleExample)}
       description: 'Sets the size of the fab component.',
       table: {
         category: 'Properties',
-        defaultValue: getDefaultValueControl(),
+        defaultValue: getDefaultValueControl('large'),
         type: { summary: 'string' },
       },
     },
-    type: {
-      control: { type: 'radio' },
-      options: ['extended', 'normal'],
-      description: 'Sets the type of the fab component.',
-      table: {
-        category: 'Properties',
-        defaultValue: getDefaultValueControl(),
-        type: { summary: 'string' },
-      },
-    },
+    type: DBmbGenericParamDesc.deprecated,
     fabClick: getOnClickParam(onEvent),
     mitec: {
       control: { type: 'boolean' },
       description:
-        'Sets the component changes to a version that is used for the platform "Mitec", this version changes the color and the position of the text.',
+        'Sets the component changes to a version that is used for the platform "mitec", this version changes the color and the position of the text.',
       table: {
+        category: 'Properties',
         type: { summary: 'boolean' },
         defaultValue: getDefaultValueControl(false),
       },
     },
   },
   args: {
-    icon: 'add',
-    text: 'FAB',
-    size: 'small',
-    type: 'extended',
-    mitec: false,
-    fabClick: () => {
-      console.info('onFabClick');
-    },
+    size: 'large',
   },
 } as Meta<typeof BmbFabComponent>;
 

@@ -16,7 +16,15 @@
         [items]="getMenu()"
       />
     }
-    @if (showRoleButton()) {
+    @if (showSearchButton()) {
+      <bmb-action-icon
+        bmbLayoutItem
+        class="bmb_top-bar-user-section-no-mobile"
+        icon="search"
+        [iconSize]="32"
+        (buttonClick)="handleSearchChange($event)"
+      />
+    } @else if (showRoleButton()) {
       <bmb-action-icon
         bmbLayoutItem
         class="bmb_top-bar-user-section-no-mobile"

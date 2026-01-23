@@ -26,7 +26,9 @@
   --general-contrasts-input-outline: rgb(var(--green-tecmi-800));
   --general-contrasts-container-outline: rgb(var(--gray-tecmi-400));
   --general-contrasts-text-sidebar: rgb(var(--black-primary));
+
   --general-contrasts-primary: rgb(var(--green-tecmi-800));
+  --general-contrasts-primary-high-contrast: rgb(var(--green-tecmi-200));
 
   --general-contrasts-inner-header-text: rgb(var(--white-primary));
   --general-contrasts-timestream-index-inner-header-text: rgb(
@@ -38,15 +40,15 @@
 
   // Containers
   --containers-background: rgb(var(--gray-tecmi-25));
-  --containers-media-card-background: rgb(var(--gray-tecmi-100));
+  --containers-media-card-background: rgba(var(--gray-tecmi-100), 0.9);
   --containers-main: rgb(var(--gray-tecmi-50));
   --containers-header-mobile: rgb(var(--green-tecmi-800));
   --containers-modal: rgb(var(--gray-tecmi-100));
   --containers-container-button: rgb(var(--gray-tecmi-50));
 
   --containers-top-bar: rgb(var(--green-tecmi-800));
-  --containers-background-fade: rgb(211, 215, 228); // #D3D7E4
-  --containers-media-card-background-fade: rgb(11, 14, 18); // #0B0E12
+  --containers-background-fade: rgba(211, 215, 228, 0); // #D3D7E4
+  --containers-media-card-background-fade: rgba(11, 14, 18, 0); // #0B0E12
   --containers-timestream-index: rgb(var(--gray-tecmi-150));
   --containers-timestream-index-chevron-title-selector: rgb(
     var(--green-tecmi-950)
@@ -58,16 +60,20 @@
   --buttons-primary-select: rgb(var(--green-tecmi-800));
 
   --buttons-alternative-normal: rgb(var(--gray-tecmi-25));
-  --buttons-alternative-hover: rgb(var(--gray-tecmi-600));
+  --buttons-alternative-hover: rgb(var(--gray-tecmi-400));
   --buttons-alternative-text: rgb(var(--gray-tecmi-800));
+  --buttons-alternative-select-text: rgb(var(--gray-tecmi-50));
   --buttons-alternative-text-hover: rgb(var(--gray-tecmi-500));
 
-  --buttons-primary-text: rgb(var(--white-primary));
-  --buttons-fab-text: rgb(var(--black-primary));
+  --buttons-primary-text: rgb(var(--green-tecmi-700));
+  --buttons-fab-text: rgb(var(--white-primary));
   --buttons-active-switch: rgb(var(--green-tecmi-600));
   --buttons-inactive-step: rgb(var(--gray-tecmi-300));
 
   --buttons-stroke-primary-selected: rgb(var(--green-tecmi-950));
+  --buttons-blur-primary-select: rgb(var(--green-tecmi-600));
+  --buttons-stroke-primary-hover: rgb(var(--green-tecmi-900));
+
   --buttons-destructive: rgb(var(--red-primary));
   --buttons-text-link: rgb(var(--green-tecmi-700));
 
@@ -120,7 +126,6 @@
   --creative-use-hibiscus: rgb(var(--hibiscus-primary));
 
   // variables for buttons
-  --buttons-primary-border-hover: var(--buttons-primary-normal);
   --buttons-primary-text-hover: var(--buttons-primary-normal);
   --buttons-primary-border-active: var(--buttons-primary-select);
   --buttons-card-hover-background: var(--buttons-primary-hover);
@@ -171,7 +176,9 @@
   --general-contrasts-input-outline: rgb(var(--gray-tecmi-50));
   --general-contrasts-container-outline: rgb(var(--gray-tecmi-700));
   --general-contrasts-text-sidebar: rgb(var(--white-primary));
+
   --general-contrasts-primary: rgb(var(--green-tecmi-300));
+  --general-contrasts-primary-high-contrast: rgb(var(--green-tecmi-300));
 
   --general-contrasts-inner-header-text: rgb(var(--white-primary));
   --general-contrasts-timestream-index-inner-header-text: rgb(
@@ -183,15 +190,15 @@
 
   // Containers
   --containers-background: rgb(var(--gray-tecmi-950));
-  --containers-media-card-background: rgb(var(--gray-tecmi-900));
+  --containers-media-card-background: rgba(var(--gray-tecmi-900), 0.9);
   --containers-main: rgb(var(--gray-tecmi-900));
   --containers-header-mobile: rgb(var(--green-tecmi-800));
   --containers-modal: rgb(var(--gray-tecmi-800));
   --containers-container-button: rgb(var(--gray-tecmi-900));
 
   --containers-top-bar: rgb(var(--green-tecmi-800));
-  --containers-background-fade: rgb(31, 34, 46); // #1F222E
-  --containers-media-card-background-fade: rgb(11, 14, 18); // #0B0E12
+  --containers-background-fade: rgba(31, 34, 46, 0); // #1F222E
+  --containers-media-card-background-fade: rgba(11, 14, 18, 0); // #0B0E12
   --containers-timestream-index: rgb(var(--gray-tecmi-800));
   --containers-timestream-index-chevron-title-selector: rgb(
     var(--green-tecmi-950)
@@ -204,15 +211,19 @@
 
   --buttons-alternative-normal: rgb(var(--gray-tecmi-25));
   --buttons-alternative-hover: rgb(var(--gray-tecmi-400));
-  --buttons-alternative-text: rgb(var(--gray-tecmi-50));
+  --buttons-alternative-text: rgb(var(--gray-tecmi-800));
+  --buttons-alternative-select-text: rgb(var(--gray-tecmi-50));
   --buttons-alternative-text-hover: rgb(var(--gray-tecmi-900));
 
-  --buttons-primary-text: rgb(var(--black-primary));
+  --buttons-primary-text: rgb(var(--green-tecmi-700));
   --buttons-fab-text: rgb(var(--white-primary));
   --buttons-active-switch: rgb(var(--green-tecmi-400));
   --buttons-inactive-step: rgb(var(--gray-tecmi-700));
 
   --buttons-stroke-primary-selected: rgb(var(--green-tecmi-500));
+  --buttons-blur-primary-select: rgb(var(--green-tecmi-600));
+  --buttons-stroke-primary-hover: rgb(var(--green-tecmi-900));
+
   --buttons-destructive: rgb(var(--red-light));
   --buttons-text-link: rgb(var(--green-tecmi-500));
 

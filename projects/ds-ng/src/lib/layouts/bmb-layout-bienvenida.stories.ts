@@ -250,7 +250,7 @@ class StorybookLayoutBienvenida implements AfterViewInit, OnChanges {
 }
 
 export default {
-  title: 'Organisms/Layout bienvenida',
+  title: 'Templates/Guided tour',
   decorators: [
     moduleMetadata({
       imports: [StorybookLayoutBienvenida],

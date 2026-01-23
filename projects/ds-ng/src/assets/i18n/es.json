@@ -174,9 +174,9 @@
   },
   "table": {
     "filters": {
-      "startDate": "Start Date",
+      "startDate": "Fecha de inicio",
       "startDatePlaceholder": "Fecha de inicio",
-      "endDate": "End Date",
+      "endDate": "Fecha de fin",
       "endDatePlaceholder": "Fecha de fin",
       "min": " mínimo",
       "max": " máximo",

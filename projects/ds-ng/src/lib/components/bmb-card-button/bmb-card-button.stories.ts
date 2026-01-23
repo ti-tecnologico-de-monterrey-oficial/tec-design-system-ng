@@ -514,7 +514,7 @@ export const SmallCardExample = {
     smallDescription:
       'Lorem upsum aovei trirangil porilnem menuandos flenzhcrunf',
     botImage: {
-      src: 'bot_tecGPT',
+      src: 'https://tecgpt0grl0prod0stg.blob.core.windows.net/gpt-portal-public/ICONOS/icon_modelo_CHAT_GPT.svg',
       alt: 'Left content image',
     },
     smallIcon: 'info',
