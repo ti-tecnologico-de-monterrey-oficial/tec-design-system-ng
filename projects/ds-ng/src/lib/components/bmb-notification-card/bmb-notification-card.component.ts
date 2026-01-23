@@ -48,6 +48,7 @@ export class BmbNotificationCardComponent {
   maxHeight = input<string>('auto');
   emptyStateData = input<IBmbAlertEmptyState>();
   dateFormat = input<string>('dd/MM/yyyy HH:mm');
+  showAdvertisements = input<boolean>(true);
 
   alertEvent = output<IBmbDataAlert>();
   showAlertDetail = output<IBmbDataAlert>();

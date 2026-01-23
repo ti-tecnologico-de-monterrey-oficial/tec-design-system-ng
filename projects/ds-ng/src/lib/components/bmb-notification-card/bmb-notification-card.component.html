@@ -10,27 +10,35 @@
     (onExpandClick)="onExpandClick.emit()"
   >
     <div class="bmb_home-notification-card-content">
-      <bmb-tabs
-        [tabs]="tabsConfig()"
-        [(selectedTabId)]="selectedTab"
-      ></bmb-tabs>
-      @switch (selectedTab()) {
-        @case (1) {
-          <bmb-alert-center-list
-            [alerts]="parsedData()"
-            [enableMultipleSelection]="false"
-            (alertSelected)="handleAlertSelected($event)"
-          />
+      @if (showAdvertisements()) {
+        <bmb-tabs
+          [tabs]="tabsConfig()"
+          [(selectedTabId)]="selectedTab"
+        ></bmb-tabs>
+        @switch (selectedTab()) {
+          @case (1) {
+            <bmb-alert-center-list
+              [alerts]="parsedData()"
+              [enableMultipleSelection]="false"
+              (alertSelected)="handleAlertSelected($event)"
+            />
+          }
+          @case (2) {
+            <bmb-alert-center-ads
+              [advertisements]="advertisements()"
+              (alertEvent)="handleAlertEvent($event)"
+            />
+          }
+          @default {
+            <div>Invalid ID selected</div>
+          }
         }
-        @case (2) {
-          <bmb-alert-center-ads
-            [advertisements]="advertisements()"
-            (alertEvent)="handleAlertEvent($event)"
-          />
-        }
-        @default {
-          <div>Invalid ID selected</div>
-        }
+      } @else {
+        <bmb-alert-center-list
+          [alerts]="parsedData()"
+          [enableMultipleSelection]="false"
+          (alertSelected)="handleAlertSelected($event)"
+        />
       }
     </div>
   </bmb-home-card>
