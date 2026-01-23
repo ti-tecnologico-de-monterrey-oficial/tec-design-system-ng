@@ -50,8 +50,14 @@ describe('BmbNotificationCardComponent', () => {
     await TestBed.configureTestingModule({
       imports: [BmbNotificationCardComponent],
       providers: [
-        { provide: BmbTranslationsService, useClass: MockBmbTranslationsService },
-        { provide: BmbProjectionContentService, useClass: MockBmbProjectionContentService },
+        {
+          provide: BmbTranslationsService,
+          useClass: MockBmbTranslationsService,
+        },
+        {
+          provide: BmbProjectionContentService,
+          useClass: MockBmbProjectionContentService,
+        },
         { provide: BmbNativeModalService, useClass: MockBmbNativeModalService },
       ],
     }).compileComponents();
@@ -79,21 +85,25 @@ describe('BmbNotificationCardComponent', () => {
       const parsed = component.parsedData();
       expect(parsed.length).toBe(1);
       expect(parsed[0].pDate.isValid).toBe(true);
-      expect(parsed[0].pDate.toFormat('dd/MM/yyyy HH:mm')).toBe('01/01/2023 10:00');
+      expect(parsed[0].pDate.toFormat('dd/MM/yyyy HH:mm')).toBe(
+        '01/01/2023 10:00',
+      );
     });
 
     it('should parse dates correctly with iso format', () => {
-        const isoDate = '2023-01-01T10:00:00';
-        const isoAlert = { ...mockAlert, date: isoDate };
-        componentRef.setInput('data', [isoAlert]);
-        componentRef.setInput('dateFormat', 'iso');
-        fixture.detectChanges();
+      const isoDate = '2023-01-01T10:00:00';
+      const isoAlert = { ...mockAlert, date: isoDate };
+      componentRef.setInput('data', [isoAlert]);
+      componentRef.setInput('dateFormat', 'iso');
+      fixture.detectChanges();
 
-        const parsed = component.parsedData();
-        expect(parsed.length).toBe(1);
-        expect(parsed[0].pDate.isValid).toBe(true);
-        expect(parsed[0].pDate.hasSame(DateTime.fromISO(isoDate), 'minute')).toBe(true);
-      });
+      const parsed = component.parsedData();
+      expect(parsed.length).toBe(1);
+      expect(parsed[0].pDate.isValid).toBe(true);
+      expect(parsed[0].pDate.hasSame(DateTime.fromISO(isoDate), 'minute')).toBe(
+        true,
+      );
+    });
   });
 
   describe('badgeTabs', () => {
@@ -113,7 +123,7 @@ describe('BmbNotificationCardComponent', () => {
 
   describe('tabsConfig', () => {
     it('should configure tabs with translated titles and badges', () => {
-      componentRef.setInput('data', [{...mockAlert, isRead: false}]);
+      componentRef.setInput('data', [{ ...mockAlert, isRead: false }]);
       fixture.detectChanges();
 
       const tabs = component.tabsConfig();
@@ -134,9 +144,11 @@ describe('BmbNotificationCardComponent', () => {
     });
 
     it('should return default empty state if not provided', () => {
-        const defaultState = component.getEmptyStateData();
-        expect(defaultState.primaryText).toBe('notification_card.empty_state.primary_text');
-        expect(defaultState.showButton).toBe(false);
+      const defaultState = component.getEmptyStateData();
+      expect(defaultState.primaryText).toBe(
+        'notification_card.empty_state.primary_text',
+      );
+      expect(defaultState.showButton).toBe(false);
     });
   });
 
