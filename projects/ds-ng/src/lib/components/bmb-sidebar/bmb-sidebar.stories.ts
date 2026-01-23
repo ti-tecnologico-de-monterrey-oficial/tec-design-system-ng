@@ -389,8 +389,9 @@ This property affected to web resolution only.
             {
               id: 5.2,
               icon: 'file_copy',
-              title: 'Sub-item 4',
+              title: 'Sub-item tyt',
               link: 'https://www.youtube.com/watch?v=beh56CrNRsQ',
+              target: '_blank',
             },
           ],
         },
@@ -410,7 +411,7 @@ This property affected to web resolution only.
         },
         {
           id: 9,
-          icon: 'account_box',
+          icon: '/assets/svg/test.svg',
           title: 'Admin. usuarios',
           link: 'vivencia3',
         },
