@@ -67,26 +67,26 @@ export class HomeComponent {
       console.log('Bookmark active state changed:', this.bookmarkActive());
     });
 
-    setTimeout(() => {
-      console.log('show notification');
+    // setTimeout(() => {
+    //   console.log('show notification');
 
-      this.notificationService.addNotification({
-        title: 'Welcome to the Home Page!',
-        content: this.notificationTemplate,
-        isFullColor: false,
-        component: 'notification',
-        type: 'info',
-        delay: 500000,
-      });
-      this.notificationService.addNotification({
-        title: 'Welcome to the Home Page!',
-        content: 'This is a simple notification message.',
-        isFullColor: false,
-        component: 'notification',
-        type: 'info',
-        delay: 5000,
-      });
-    }, 1000);
+    //   this.notificationService.addNotification({
+    //     title: 'Welcome to the Home Page!',
+    //     content: this.notificationTemplate,
+    //     isFullColor: false,
+    //     component: 'notification',
+    //     type: 'info',
+    //     delay: 500000,
+    //   });
+    //   this.notificationService.addNotification({
+    //     title: 'Welcome to the Home Page!',
+    //     content: 'This is a simple notification message.',
+    //     isFullColor: false,
+    //     component: 'notification',
+    //     type: 'info',
+    //     delay: 5000,
+    //   });
+    // }, 1000);
   }
 
   bookmarkActive = model<boolean>(false);

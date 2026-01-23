@@ -14,10 +14,14 @@ import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { BmbCheckExternalLinkButtonComponent } from '../bmb-check-external-link-button/bmb-check-external-link-button.component';
 import { IPositionButtonMenu } from '../bmb-top-bar/types';
 import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
+import { BmbLayoutDirective } from '../../directives/bmb-layout/bmb-layout.directive';
+import { BmbLayoutItemDirective } from '../../directives/bmb-layout/bmb-layout-item.directive';
+import { BmbVerticalLayoutDirective } from '../../directives/bmb-layout/bmb-vertical-layout/bmb-vertical-layout.directive';
+import { BmbVerticalLayoutItemDirective } from '../../directives/bmb-layout/bmb-vertical-layout/bmb-vertical-layout-item.directive';
+import { BmbDividerComponent } from '../bmb-divider/bmb-divider.component';
 
 interface IBmbIsButton {
   link?: string;
-  isMobile: boolean;
   hasChildren: boolean;
 }
 
@@ -29,6 +33,11 @@ interface IBmbIsButton {
     BmbIconComponent,
     BmbCheckExternalLinkButtonComponent,
     BmbActionIconComponent,
+    BmbDividerComponent,
+    BmbVerticalLayoutDirective,
+    BmbVerticalLayoutItemDirective,
+    BmbLayoutDirective,
+    BmbLayoutItemDirective,
   ],
   templateUrl: './bmb-sidebar.component.html',
   styleUrl: './bmb-sidebar.component.scss',
@@ -88,12 +97,12 @@ export class BmbSidebarComponent {
     });
   }
 
-  checkForButton({ isMobile, hasChildren }: IBmbIsButton): boolean {
-    return isMobile && hasChildren;
+  checkForButton(hasChildren: boolean): boolean {
+    return hasChildren;
   }
 
-  getLink({ link, isMobile, hasChildren }: IBmbIsButton): string {
-    if (this.checkForButton({ isMobile, hasChildren })) return '';
+  getLink({ link, hasChildren }: IBmbIsButton): string {
+    if (this.checkForButton(hasChildren)) return '';
     return link || '';
   }
 
@@ -103,24 +112,29 @@ export class BmbSidebarComponent {
   }
 
   clearSelectElement() {
-    this.selectedElement = null;
+    // this.selectedElement = null;
   }
 
   toggleChildren(element: SidebarElement) {
-    if (this.selectedElement === element) {
-      this.clearSelectElement();
-      return;
-    }
+    // if (this.selectedElement === element) {
+    //   this.clearSelectElement();
 
-    this.selectedElement = element;
+    //   return;
+    // }
 
-    if (element.children) {
-      element.isOpen = !element.isOpen;
-    }
+    // this.selectedElement = element;
+
+    // if (element.children) {
+    //   element.isOpen = !element.isOpen;
+    // }
+    const children = document.getElementById(
+      'children_'.concat(element.id.toString()),
+    );
+    children?.classList.add('open');
   }
 
   checkIfFocusInsideSidebar() {
-    const sidebar = document.querySelector('.bmb_sidebar-desktop');
+    const sidebar = document.querySelector('.bmb_sidebar');
     const activeElement = document.activeElement;
     this.isActive =
       (sidebar && activeElement && sidebar.contains(activeElement)) || false;
@@ -129,13 +143,12 @@ export class BmbSidebarComponent {
   checkToCloseSidebar(event: any) {
     if (event.link && !event.children) {
       this.closeSidebar();
-      this.sideNav.nativeElement.classList.add('bmb_sidebar-desktop-close');
+      this.sideNav.nativeElement.classList.add('close');
+      // document.getElementById(event.id.toString())?.classList.add('open');
 
       setTimeout(() => {
-        this.sideNav.nativeElement.classList.remove(
-          'bmb_sidebar-desktop-close',
-        );
-        this.sideNav.nativeElement.classList.remove('bmb-active');
+        this.sideNav.nativeElement.classList.remove('close');
+        this.sideNav.nativeElement.classList.remove('active');
       }, 500);
     }
   }
