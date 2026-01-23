@@ -349,6 +349,10 @@
       &:focus-visible {
         background-color: rgb(var(--white-primary));
         color: rgb(var(--black-primary));
+
+        .bmb_icon-figure-image {
+          filter: invert(100%);
+        }
       }
     }
   }
