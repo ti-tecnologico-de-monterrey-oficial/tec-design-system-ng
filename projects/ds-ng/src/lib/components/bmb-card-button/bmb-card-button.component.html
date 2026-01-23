@@ -18,9 +18,13 @@
             <ng-template #customIcon>
               <bmb-bot-icon [iconName]="botImage()?.src!" />
             </ng-template>
-        </bmb-icon>
+          </bmb-icon>
         } @else {
-          <bmb-icon [size]="48" [alt]="botImage()?.alt!" [icon]="botImage()?.src!"></bmb-icon>
+          <bmb-icon
+            [size]="48"
+            [alt]="botImage()?.alt!"
+            [icon]="botImage()?.src!"
+          ></bmb-icon>
         }
         <h3 class="bmb_card_button-small-title">{{ smallTitle() }}</h3>
       </div>

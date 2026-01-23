@@ -70,7 +70,9 @@ export class BmbMediaCardComponent {
 
   getBackgroundColor(): Record<string, string> {
     if (this.type() === 'inline') return {};
-    return this.bgColor() ? { 'background-color': `rgb(var(${this.bgColor()}))` } : { 'background-color': 'transparent' };
+    return this.bgColor()
+      ? { 'background-color': `rgb(var(${this.bgColor()}))` }
+      : { 'background-color': 'transparent' };
   }
 
   getUserAttribute(attribute: string | undefined): string {

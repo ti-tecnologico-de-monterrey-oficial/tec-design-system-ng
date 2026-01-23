@@ -35,16 +35,12 @@ export default {
     docs: {
       controls: {
         exclude: [
-          'ngOnInit',
           'checkIfFocusInsideSidebar',
           'checkToCloseSidebar',
-          'closeSideBar',
           'getLink',
-          'getMobileIcon',
           'onFocusIn',
           'onFocusOut',
           'toggleChildren',
-          'toggleSidebar',
           'currentUrl',
           'hasSubmenu',
           'isActive',
@@ -55,6 +51,7 @@ export default {
           'closeSidebar',
           'sideNav',
           'error',
+          'checkForButton',
         ],
       },
       description: {
@@ -390,9 +387,9 @@ This property affected to web resolution only.
             {
               id: 5.2,
               icon: 'file_copy',
-              title: 'Sub-item 4',
+              title: 'Sub-item',
               link: 'https://www.youtube.com/watch?v=beh56CrNRsQ',
-              target: '',
+              target: '_blank',
             },
           ],
         },
