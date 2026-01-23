@@ -409,7 +409,7 @@ This property affected to web resolution only.
         },
         {
           id: 9,
-          icon: '/assets/svg/test.svg',
+          icon: 'account_box',
           title: 'Admin. usuarios',
           link: 'vivencia3',
         },
