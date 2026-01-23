@@ -35,16 +35,12 @@ export default {
     docs: {
       controls: {
         exclude: [
-          'ngOnInit',
           'checkIfFocusInsideSidebar',
           'checkToCloseSidebar',
-          'closeSideBar',
           'getLink',
-          'getMobileIcon',
           'onFocusIn',
           'onFocusOut',
           'toggleChildren',
-          'toggleSidebar',
           'currentUrl',
           'hasSubmenu',
           'isActive',
@@ -54,6 +50,8 @@ export default {
           'clearSelectElement',
           'closeSidebar',
           'sideNav',
+          'error',
+          'checkForButton',
         ],
       },
       description: {
