@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { ComponentRef, TemplateRef } from '@angular/core';
+import { ComponentRef } from '@angular/core';
 import { BmbActionMenuComponent } from './bmb-action-menu.component';
 import { Component } from '@angular/core';
 
@@ -53,6 +53,6 @@ describe('BmbActionMenuComponent', () => {
   });
 
   it('should update projectedContent after content initialization', () => {
-    expect(component.projectedContent().length).toBe(1);
+    expect(component.projectedContent.length).toBe(1);
   });
 });

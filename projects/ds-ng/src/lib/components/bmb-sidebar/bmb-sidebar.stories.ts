@@ -35,16 +35,12 @@ export default {
     docs: {
       controls: {
         exclude: [
-          'ngOnInit',
           'checkIfFocusInsideSidebar',
           'checkToCloseSidebar',
-          'closeSideBar',
           'getLink',
-          'getMobileIcon',
           'onFocusIn',
           'onFocusOut',
           'toggleChildren',
-          'toggleSidebar',
           'currentUrl',
           'hasSubmenu',
           'isActive',
@@ -54,6 +50,8 @@ export default {
           'clearSelectElement',
           'closeSidebar',
           'sideNav',
+          'error',
+          'checkForButton',
         ],
       },
       description: {
@@ -389,7 +387,7 @@ This property affected to web resolution only.
             {
               id: 5.2,
               icon: 'file_copy',
-              title: 'Sub-item tyt',
+              title: 'Sub-item',
               link: 'https://www.youtube.com/watch?v=beh56CrNRsQ',
               target: '_blank',
             },
@@ -411,7 +409,7 @@ This property affected to web resolution only.
         },
         {
           id: 9,
-          icon: '/assets/svg/test.svg',
+          icon: 'account_box',
           title: 'Admin. usuarios',
           link: 'vivencia3',
         },

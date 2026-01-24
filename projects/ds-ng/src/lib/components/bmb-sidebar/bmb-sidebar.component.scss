@@ -246,6 +246,10 @@ $_mobile_menu_position: rem.rem_calc(64);
         background-color: rgb(var(--white-primary));
         color: rgb(var(--black-primary));
         border-radius: var(--bmb-radius-6);
+
+        .bmb_icon-figure-image {
+          filter: invert(100%);
+        }
       }
     }
   }

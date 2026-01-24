@@ -1,6 +1,13 @@
 import { TemplateRef } from '@angular/core';
+import { IBmbTargetLink } from '../../types';
 
-export type TBmbMessageType = 'text' | 'mixed' | 'image' | 'link' | 'template';
+export type TBmbMessageType =
+  | 'text'
+  | 'mixed'
+  | 'image'
+  | 'link'
+  | 'options'
+  | 'template';
 export type IBmbBubblePosition = 'top' | 'bottom';
 
 export interface IBmbChatMessage {
@@ -11,10 +18,18 @@ export interface IBmbChatMessage {
   time: Date;
 }
 
+export interface IMessageContentOptions {
+  title: string;
+  target?: IBmbTargetLink;
+  link?: string;
+  onButton?: () => void;
+}
+
 export interface MessageContent {
   text?: string;
   imageUrl?: string;
   link?: string;
+  options?: IMessageContentOptions[];
   template?: TemplateRef<any>;
 }
 
