@@ -85,6 +85,7 @@ export class BmbInputComponent implements OnInit {
   isClearable = input<boolean>(false);
   customValidation = input<ValidatorFn>();
   inputId = input<string>(this.name());
+  isLoading = input<boolean>(false); // internal
 
   showError = model<boolean>(false);
   control = model<FormControl>(newFormControlByType(this.type()));

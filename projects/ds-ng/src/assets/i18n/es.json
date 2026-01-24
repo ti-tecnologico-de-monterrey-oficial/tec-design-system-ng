@@ -183,5 +183,23 @@
       "search": "Buscar",
       "filter": "Filtrar"
     }
+  },
+  "search_card": {
+    "title": "Encuentra servicios o personas",
+    "input_placeholder": "Escribe para buscar",
+    "empty_state": {
+      "new_search_card_title": "Empieza a buscar para encontrar resultados",
+      "no_results_title": "No se encontraron resultados"
+    },
+    "tabs": {
+      "services": "Servicios",
+      "people": "Personas",
+      "all": "Todos"
+    }
+  },
+  "input": {
+    "content": {
+      "loading_alt": "Cargando..."
+    }
   }
 }

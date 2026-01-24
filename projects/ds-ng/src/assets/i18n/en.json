@@ -183,5 +183,9 @@
       "search": "Search",
       "filter": "Filter"
     }
+  },
+  "search_card": {
+    "title": "Find services or people",
+    "input_placeholder": "Type to search"
   }
 }
