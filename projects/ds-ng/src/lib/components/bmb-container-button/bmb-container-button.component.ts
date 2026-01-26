@@ -92,6 +92,10 @@ export class BmbContainerButtonComponent {
       classList.push('bmb_container-button-square');
     }
 
+    if (this.square() && this.small() && !this.iconLeft()) {
+      classList.push('bmb_container-button-square-no-icon');
+    }
+
     if (this.small()) {
       classList.push('bmb_container-button-small');
     }

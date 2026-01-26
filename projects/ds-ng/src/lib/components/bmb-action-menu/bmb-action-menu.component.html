@@ -16,9 +16,9 @@
     [ngClass]="{ 'bmb_action_menu-container-no-header': !showHeader() }"
   >
     <ul class="bmb_action_menu-list">
-      @for (item of projectedContent(); track $index) {
+      @for (element of projectedContent; track $index) {
         <li class="bmb_action_menu-item">
-          <ng-container [ngTemplateOutlet]="item" />
+          <ng-container *ngTemplateOutlet="element" />
         </li>
       }
     </ul>

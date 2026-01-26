@@ -2,20 +2,15 @@ import { Meta, moduleMetadata, StoryObj } from '@storybook/angular';
 import { BmbActionMenuComponent } from './bmb-action-menu.component';
 import {
   attributes,
-  BlockquoteType,
-  DESIGN_SYSTEM_TITLE,
-  getAlertBlockquote,
   getBasicExampleBlock,
   getElementUsesDesc,
   getGeneralComponentDescription,
   getGeneralDescription,
   getSpecialSpecifications,
   getTechnicalOneReference,
-  RELEVANT_TITLE,
 } from '../../utils/doc/utils';
 import { BmbItemComponent } from '../bmb-item/bmb-item.component';
 import {
-  DBmbGenericParamDesc,
   DBmbHomeCardParamDesc,
   getDefaultValueControl,
 } from '../../utils/doc/parameterDescriptions';

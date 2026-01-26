@@ -66,6 +66,12 @@ export default {
           'activeTab',
           'expanded',
           'tabsConfig',
+          'badgeTabs',
+          'parsedData',
+          'selectedTab',
+          'visibleAlert',
+          'getEmptyStateData',
+          'handleAlertSelected',
         ],
       },
       description: {
@@ -166,6 +172,35 @@ ${getBasicExampleBlock(
       table: {
         category: 'Events',
         type: { summary: 'alertEvent($event)', detail: typeDetail },
+      },
+    },
+    showAdvertisements: {
+      control: { type: 'boolean' },
+      description: 'Determines whether to show the advertisements tab',
+      table: {
+        category: 'Properties',
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'true' },
+      },
+    },
+    dateFormat: {
+      control: { type: 'text' },
+      description:
+        'Sets the date format for displaying alert dates. Accepts any valid Luxon date format string or "iso" for ISO format.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'string' },
+        defaultValue: { summary: 'dd/MM/yyyy HH:mm' },
+      },
+    },
+    emptyStateData: {
+      control: { type: 'object' },
+      description:
+        'Sets the data for the empty state when there are no alerts to display',
+      table: {
+        category: 'Properties',
+        type: { summary: 'IBmbAlertEmptyState' },
+        defaultValue: { summary: '{}' },
       },
     },
     showAlertDetail: {
@@ -445,6 +480,10 @@ https://live.tec.mx/cbweek</p><p>¡Te esperamos!`,
         isArchived: false,
       },
     ],
+    showAdvertisements: true,
+    dateFormat: 'dd/MM/yyyy HH:mm',
+    hideExpandBtn: false,
+    emptyStateData: {},
     alertEvent: () => {
       console.log('alertEvent');
     },
@@ -464,3 +503,9 @@ https://live.tec.mx/cbweek</p><p>¡Te esperamos!`,
 type Story = StoryObj<BmbNotificationCardComponent>;
 
 export const Default: Story = {};
+
+export const NoTabs: Story = {
+  args: {
+    showAdvertisements: false,
+  },
+};

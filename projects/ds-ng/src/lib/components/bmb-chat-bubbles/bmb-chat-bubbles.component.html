@@ -71,6 +71,24 @@
               ></bmb-text-link>
             }
 
+            @if (message().type === 'options') {
+              <p>{{ message().content.text }}</p>
+              <div class="bmb_chat-bubble-msg-options-container">
+                @for (item of message().content.options; track $index) {
+                  <bmb-container-button
+                    [title]="item.title"
+                    [target]="item.target || '_blank'"
+                    [link]="item.link || ''"
+                    iconLeft=""
+                    iconRight=""
+                    [small]="true"
+                    (onButton)="(item.onButton)"
+                    [square]="true"
+                  />
+                }
+              </div>
+            }
+
             @if (message().type === 'template') {
               <ng-container
                 *ngTemplateOutlet="message().content.template!"

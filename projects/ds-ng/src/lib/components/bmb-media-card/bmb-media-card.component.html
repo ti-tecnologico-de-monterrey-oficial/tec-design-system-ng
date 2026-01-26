@@ -79,9 +79,12 @@
     class="bmb_media-card-content"
     [ngClass]="'bmb_media-card-content-' + type()"
   >
+    @if (this.type() === 'inline') {
+      <div class="bmb_media-card-content-overlay"></div>
+    }
     <section
       class="bmb_media-card-content-container"
-      [ngStyle]="{ 'background-color': getBackgroundColor() }"
+      [ngStyle]="getBackgroundColor()"
       [ngClass]="getContentClasses()"
     >
       @if (title()) {

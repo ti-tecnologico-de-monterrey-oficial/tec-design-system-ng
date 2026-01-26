@@ -31,7 +31,7 @@ $colors: (
 );
 
 $containers: (
-  'normal': var(--general_contrasts-50),
+  'normal': var(--general-contrasts-50),
   'strong': rgb(var(--blue-mariner-200)),
   'success': var(--semantic-success),
   'info': var(--semantic-info-event),

@@ -4,7 +4,8 @@ import {
   input,
   ViewEncapsulation,
   TemplateRef,
-  contentChildren,
+  ContentChildren,
+  QueryList,
 } from '@angular/core';
 import { IBmbColor } from '../../types/colors';
 import { CommonModule } from '@angular/common';
@@ -27,5 +28,6 @@ export class BmbActionMenuComponent {
   bgIconAppearance = input<IBmbColor>();
   showHeader = input<boolean>(true);
 
-  projectedContent = contentChildren<TemplateRef<any>>(TemplateRef);
+  @ContentChildren(TemplateRef)
+  projectedContent!: QueryList<any>;
 }

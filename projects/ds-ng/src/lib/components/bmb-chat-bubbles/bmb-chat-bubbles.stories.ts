@@ -1,4 +1,4 @@
-import { Meta, StoryObj } from '@storybook/angular';
+import { Meta, moduleMetadata, StoryObj } from '@storybook/angular';
 import { BmbChatBubblesComponent } from './bmb-chat-bubbles.component';
 import {
   getBasicExampleBlock,
@@ -12,6 +12,7 @@ import {
   getOnClickParam,
   getOnEventParam,
 } from '../../utils/doc/parameterDescriptions';
+import { RouterTestingModule } from '@angular/router/testing';
 
 const IMPORTANT_DESCRIPTION: string = `${RELEVANT_TITLE.important}
 The event only returns a signal to indicates the click event.
@@ -28,6 +29,11 @@ const getOnClickAndImportantParam = (
 export default {
   title: 'Components/Containers/AI Chat bubble',
   component: BmbChatBubblesComponent,
+  decorators: [
+    moduleMetadata({
+      imports: [RouterTestingModule],
+    }),
+  ],
   parameters: {
     docs: {
       controls: {
@@ -233,6 +239,41 @@ export const Thinking: Story = {
     },
     gptIcons: false,
     isThinking: true,
+  },
+  ...Default,
+};
+
+export const OptionsTemplate: Story = {
+  args: {
+    message: {
+      isUserMessage: false,
+      type: 'options',
+      content: {
+        text: '¿Cómo te puedo ayudar?',
+        options: [
+          {
+            title: 'Option 1',
+            target: '_blank',
+            link: 'https://www.google.com.mx/maps/preview',
+          },
+          {
+            title: 'Option 2',
+            link: 'calendar',
+          },
+          {
+            title: 'Option 3',
+            link: 'home',
+          },
+          {
+            title: 'Option 4',
+            link: 'dropdown',
+          },
+        ],
+      },
+      time: new Date(),
+    },
+    gptIcons: true,
+    gptBot: true,
   },
   ...Default,
 };
