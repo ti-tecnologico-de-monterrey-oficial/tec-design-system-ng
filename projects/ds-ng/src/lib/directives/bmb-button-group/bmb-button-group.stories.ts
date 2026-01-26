@@ -6,7 +6,10 @@ import {
   getGeneralComponentDescription,
   getGeneralDescription,
 } from '../../utils/doc/utils';
-import { DBmbButtonParamDesc } from '../../utils/doc/parameterDescriptions';
+import {
+  DBmbButtonParamDesc,
+  DBmbGenericParamDesc,
+} from '../../utils/doc/parameterDescriptions';
 
 export default {
   title: 'Components/Buttons/Button group',
@@ -23,11 +26,10 @@ ${getBasicExampleBlock('BmbButtonGroupDirective')}
     },
   },
   argTypes: {
-    appearance: DBmbButtonParamDesc.appearance,
+    appearance: DBmbGenericParamDesc.deprecated,
     size: DBmbButtonParamDesc.size,
   },
   args: {
-    appearance: 'primary',
     size: 'small',
   },
 } as Meta<typeof BmbButtonGroupDirective>;
