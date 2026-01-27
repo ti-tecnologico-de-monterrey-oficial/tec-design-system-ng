@@ -119,9 +119,7 @@
     }
 
     &-menu {
-      .bmb_dropdown-menu {
-        display: inline-flex;
-      }
+      display: flex;
     }
   }
 
