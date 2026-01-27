@@ -49,7 +49,7 @@ export default {
           'showAnimation',
           'showUserName',
           'getNoMobileResolutionSize',
-          'handleSearchChange'
+          'handleSearchChange',
         ],
       },
       description: {
