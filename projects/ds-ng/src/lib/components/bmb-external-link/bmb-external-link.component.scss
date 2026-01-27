@@ -31,5 +31,9 @@
 
   &-menu {
     position: relative;
+
+    &-list {
+      @include mixins.dropdown-menu-left(250);
+    }
   }
 }

@@ -351,6 +351,15 @@
   text-overflow: ellipsis;
 }
 
+@mixin dropdown-menu-left($max-width) {
+  .bmb_dropdown-content-modal {
+    right: 0;
+    left: inherit;
+    max-width: rem.rem_calc($max-width);
+    min-width: rem.rem_calc($max-width);
+  }
+}
+
 @mixin helper-text() {
   @include fonts.font(4, regular);
   margin: 0;
