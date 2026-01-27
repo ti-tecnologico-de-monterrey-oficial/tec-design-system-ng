@@ -119,8 +119,8 @@
     }
 
     &-menu {
-      .bmb_dropdown_menu-list {
-        @include mixins.dropdown-menu-left(250);
+      .bmb_dropdown-menu {
+        display: inline-flex;
       }
     }
   }

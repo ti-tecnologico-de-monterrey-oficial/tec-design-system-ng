@@ -1,7 +1,7 @@
 @use '../../../assets/styles/base/rem' as rem;
 @use '../../../assets/styles/base/fonts' as fonts;
 
-.bmb_action_menu {
+.bmb_action-menu {
   border: rem.rem_calc(1) solid var(--general-contrasts-container-outline);
   border-radius: var(--bmb-radius-l);
   box-shadow: var(--bmb-shadow-3);
