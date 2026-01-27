@@ -1,8 +1,12 @@
 @use '../../../assets/styles/base/rem' as rem;
 
 .bmb_dropdown-menu {
-  position: relative;
+  display: inline-flex;
   color: currentColor;
+
+  &-button {
+    display: inline-flex;
+  }
 
   &-list {
     .bmb_dropdown-content-modal {
