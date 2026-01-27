@@ -48,6 +48,8 @@ export default {
           'mobileImageMitecDefault',
           'showAnimation',
           'showUserName',
+          'getNoMobileResolutionSize',
+          'handleSearchChange'
         ],
       },
       description: {
