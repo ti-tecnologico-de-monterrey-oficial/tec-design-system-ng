@@ -27,6 +27,7 @@ import { BmbIconItemComponent } from '../bmb-icon-item/bmb-icon-item.component';
 import { BmbDividerComponent } from '../bmb-divider/bmb-divider.component';
 import { BmbRadialComponent } from '../bmb-radial/bmb-radial.component';
 import { FormControl } from '@angular/forms';
+import { BmbCheckExternalLinkButtonComponent } from '../bmb-check-external-link-button/bmb-check-external-link-button.component';
 
 @Component({
   selector: 'bmb-profile',
@@ -43,6 +44,7 @@ import { FormControl } from '@angular/forms';
     BmbButtonDirective,
     BmbHomeCardComponent,
     BmbRadialComponent,
+    BmbCheckExternalLinkButtonComponent,
   ],
   templateUrl: './bmb-profile.component.html',
   styleUrl: './bmb-profile.component.scss',
@@ -62,7 +64,11 @@ export class BmbProfileComponent implements OnInit {
   tecServicesLink = input<string>('');
   targetLinks = input<IBmbTargetLink>('_blank');
   versionLabel = input<string>('');
+  versionBackText = input<string>('');
+  versionBackLink = input<string>('');
+  versionBackTarget = input<IBmbTargetLink>('_blank');
   enableLangChange = input<boolean>(false);
+  enableVersionBack = input<boolean>(false);
 
   handleCloseSession = output();
   handleCloseProfile = output();
