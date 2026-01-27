@@ -131,6 +131,27 @@
       </div>
       <bmb-theme leftText="Light" rightText="Dark" [showControls]="true" />
     </section>
+
+    @if (enableVersionBack()) {
+      <bmb-divider />
+      <bmb-check-external-link-button
+        [link]="versionBackLink()"
+        [target]="versionBackTarget()"
+        class="bmb_profile-info-container-link"
+      >
+        <section class="bmb_profile-info-container version-back">
+          <div class="bmb_profile-info-container-item">
+            <bmb-icon [icon]="'compare_arrows'" [size]="24" />
+            <span class="bmb_profile-info-container-item-text">{{
+              versionBackText()
+            }}</span>
+          </div>
+
+          <bmb-icon [icon]="'keyboard_arrow_right'" [size]="24" />
+        </section>
+      </bmb-check-external-link-button>
+    }
+
     @if (isMobile() && !isStandAlone()) {
       <section class="bmb_profile-access">
         <bmb-container-button
