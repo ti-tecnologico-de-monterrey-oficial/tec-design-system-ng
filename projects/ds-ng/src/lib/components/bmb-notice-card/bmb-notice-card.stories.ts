@@ -5,6 +5,8 @@ import {
   getGeneralComponentDescription,
   getGeneralDescription,
   getOnEvent,
+  getSpecialSpecifications,
+  getTECParticularitiesMessage,
   IBmbOnEvent,
 } from '../../utils/doc/utils';
 import {
@@ -47,6 +49,9 @@ export default {
       description: {
         component: `
 ${getGeneralDescription(`${getGeneralComponentDescription({ name: 'notice-card' })} pop-up news or information notifications to be displayed within ***mitec*** in the ***web*** version.`, { generalDocLink: 'https://bamboo.tec.mx/latest/particularities/mitec-web/notice-card-sfSif5Rk' })}
+${getSpecialSpecifications(getTECParticularitiesMessage(), {
+  showAdditionalBlockquote: true,
+})}
 ${getBasicExampleBlock('BmbNoticeCardComponent', '', onCloseEvent.handleExample)}
         `,
       },

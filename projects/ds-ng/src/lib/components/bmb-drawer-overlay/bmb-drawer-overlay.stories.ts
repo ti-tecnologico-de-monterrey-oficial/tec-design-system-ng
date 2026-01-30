@@ -5,6 +5,8 @@ import {
   getGeneralComponentDescription,
   getGeneralDescription,
   getOnEvent,
+  getSpecialSpecifications,
+  getTECParticularitiesMessage,
   RELEVANT_TITLE,
 } from '../../utils/doc/utils';
 import {
@@ -42,6 +44,9 @@ export default {
       description: {
         component: `
 ${getGeneralDescription(`${getGeneralComponentDescription({ name: 'drawer-overlay', type: 'element' })} to implement an interactive overlay in addition to an application menu and header.`, { generalDocLink: 'https://bamboo.tec.mx/latest/particularities/mitec-app/fab-overlay-drawer-11JEvoAR' })}
+${getSpecialSpecifications(getTECParticularitiesMessage(), {
+  showAdditionalBlockquote: true,
+})}
 ${getBasicExampleBlock('BmbDrawerOverlayComponent')}
 `,
       },

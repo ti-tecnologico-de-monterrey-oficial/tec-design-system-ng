@@ -5,6 +5,8 @@ import {
   getGeneralComponentDescription,
   getGeneralDescription,
   getOnEvent,
+  getSpecialSpecifications,
+  getTECParticularitiesMessage,
   RELEVANT_TITLE,
 } from '../../utils/doc/utils';
 import {
@@ -55,6 +57,9 @@ export default {
       description: {
         component: `
 ${getGeneralDescription(`${getGeneralComponentDescription({ name: 'top-bar' })} to display user information, notifications, and various action buttons.`, { generalDocLink: 'https://bamboo.tec.mx/latest/componentes/top-bar/descripcion-general-WczOiPOw' })}
+${getSpecialSpecifications(getTECParticularitiesMessage('mitec logo'), {
+  showAdditionalBlockquote: true,
+})}
 ${getBasicExampleBlock('BmbTopBarComponent')}
         `,
       },

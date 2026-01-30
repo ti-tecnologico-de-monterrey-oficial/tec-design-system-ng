@@ -225,6 +225,27 @@ ${getAlertBlockquote(
 )}
 `;
 
+export const getTECParticularitiesMessage = (
+  element = '',
+  {
+    isParticularity = true,
+    isSubStory = false,
+    subStoryChart = '-',
+  }: {
+    isParticularity?: boolean;
+    isSubStory?: boolean;
+    subStoryChart?: string;
+  } = {},
+): string => `
+${getAlertBlockquote(
+  `Please remember that **${element || 'this element'}** is a ${isParticularity ? 'particularity' : 'feature'} of the **TEC brand**, that way ***cannot be used*** by other brands.`,
+  {
+    title: `###${getSubStoryIdentifier(isSubStory, subStoryChart)}${RELEVANT_TITLE.warning}`,
+    blockquoteType: BlockquoteType.warning,
+  },
+)}
+`;
+
 export const getOutOfModalUseMessage = ({
   isSubStory = false,
   subStoryChart = '-',

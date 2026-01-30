@@ -30,7 +30,7 @@ const getButtonDesc = (isCloseButton: boolean) => {
 };
 
 export default {
-  title: 'Particularities/mitec app/Inner header',
+  title: 'Components/Menus/Inner header',
   component: BmbInnerHeaderComponent,
   decorators: [
     moduleMetadata({

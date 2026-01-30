@@ -5,6 +5,8 @@ import {
   getGeneralComponentDescription,
   getGeneralDescription,
   getOnEvent,
+  getSpecialSpecifications,
+  getTECParticularitiesMessage,
   IBmbOnEvent,
 } from '../../utils/doc/utils';
 import { getOnEventParam } from '../../utils/doc/parameterDescriptions';
@@ -40,6 +42,9 @@ export default {
       description: {
         component: `
 ${getGeneralDescription(`${getGeneralComponentDescription({ name: 'sounds-card', type: 'element' })} a graphical interface to be displayed for use in audio playback.`, { generalDocLink: 'https://bamboo.tec.mx/latest/particularities/mitec-web/tec-sound-card-AssAgA82' })}
+${getSpecialSpecifications(getTECParticularitiesMessage(), {
+  showAdditionalBlockquote: true,
+})}
 ${getBasicExampleBlock(
   'BmbSoundsCardComponent',
   '',
