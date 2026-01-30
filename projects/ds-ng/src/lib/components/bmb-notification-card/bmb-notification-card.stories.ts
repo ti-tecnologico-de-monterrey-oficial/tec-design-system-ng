@@ -241,7 +241,7 @@ https://live.tec.mx/cbweek</p><p>¡Te esperamos!`,
             variant: 'primary',
           },
         ],
-        date: '19/11/2024',
+        date: '26/01/2025',
         isRead: false,
         time: '12:00',
         tags: [
@@ -332,7 +332,7 @@ https://live.tec.mx/cbweek</p><p>¡Te esperamos!`,
         isArchived: false,
       },
       {
-        id: 4,
+        id: 40,
         title: 'Alerta 40',
         description: [
           { text: 'Descripción de la alerta 10', type: 'title' },
@@ -370,7 +370,7 @@ https://live.tec.mx/cbweek</p><p>¡Te esperamos!`,
             variant: 'primary',
           },
         ],
-        date: '19/11/2024',
+        date: '26/01/2025',
         isRead: false,
         time: '12:00',
         tags: [
@@ -504,7 +504,7 @@ type Story = StoryObj<BmbNotificationCardComponent>;
 
 export const Default: Story = {};
 
-export const NoTabs: Story = {
+export const WithNoAdvertisements: Story = {
   args: {
     showAdvertisements: false,
   },
