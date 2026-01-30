@@ -27,7 +27,7 @@ import { TranslatePipe } from '../../../pipes/translations';
     BmbIconComponent,
     ReactiveFormsModule,
     BmbActionIconComponent,
-    TranslatePipe
+    TranslatePipe,
   ],
   templateUrl: './bmb-input-content.component.html',
   styleUrl: './bmb-input-content.component.scss',

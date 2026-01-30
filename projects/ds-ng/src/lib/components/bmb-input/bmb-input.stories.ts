@@ -70,7 +70,13 @@ export default {
   tags: ['!autodocs'],
   parameters: {
     controls: {
-      exclude: ['handleChange', 'handleKeyPress', 'onBlur', 'onFocus', 'isLoading'],
+      exclude: [
+        'handleChange',
+        'handleKeyPress',
+        'onBlur',
+        'onFocus',
+        'isLoading',
+      ],
     },
     docs: {
       description: {

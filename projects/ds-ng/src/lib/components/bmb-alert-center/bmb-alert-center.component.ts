@@ -171,7 +171,7 @@ export class BmbAlertCenterComponent {
   }
 
   handleShowAlert(item: IBmbDataAlertsParsed): void {
-    if(item.customEventHandler) {
+    if (item.customEventHandler) {
       const { pDate, ...alertData } = item;
       this.showAlertDetail.emit(alertData);
       return;

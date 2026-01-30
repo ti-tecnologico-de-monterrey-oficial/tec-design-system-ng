@@ -7,19 +7,16 @@ export default {
   parameters: {
     docs: {
       controls: {
-        exclude: [
-
-        ],
+        exclude: [],
       },
-      description: {
-
-      },
+      description: {},
     },
   },
   argTypes: {
     title: {
       control: 'text',
-      description: 'Title of the search card. If not provided, a default translated title will be used.',
+      description:
+        'Title of the search card. If not provided, a default translated title will be used.',
       table: {
         type: { summary: 'string' },
         defaultValue: { summary: "''" },
@@ -27,7 +24,8 @@ export default {
     },
     inputPlaceholder: {
       control: 'text',
-      description: 'Placeholder text for the search input field. If not provided, a default translated placeholder will be used.',
+      description:
+        'Placeholder text for the search input field. If not provided, a default translated placeholder will be used.',
       table: {
         type: { summary: 'string' },
         defaultValue: { summary: "''" },

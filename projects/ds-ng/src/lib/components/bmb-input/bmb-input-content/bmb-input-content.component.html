@@ -62,7 +62,7 @@
         (blur)="handleBlur()"
         (keyup)="handleKeyUp($event)"
       />
-      @if ((showAdditionalAction() || isClearable()) || isLoading()) {
+      @if (showAdditionalAction() || isClearable() || isLoading()) {
         <span class="bmb_field-actions">
           @if (showAdditionalAction() && !isLoading()) {
             <bmb-action-icon

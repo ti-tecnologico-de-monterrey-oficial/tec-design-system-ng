@@ -8,9 +8,8 @@ describe('BmbSearchCardEmptyStateComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [BmbSearchCardEmptyStateComponent]
-    })
-    .compileComponents();
+      imports: [BmbSearchCardEmptyStateComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(BmbSearchCardEmptyStateComponent);
     component = fixture.componentInstance;

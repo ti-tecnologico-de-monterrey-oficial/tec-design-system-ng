@@ -48,9 +48,7 @@ export class FormValidatorTestComponent {
         const searchLower = searchTerm.toLowerCase();
 
         const filteredPersons = persons
-          .filter((person) =>
-            person.name?.toLowerCase().includes(searchLower),
-          )
+          .filter((person) => person.name?.toLowerCase().includes(searchLower))
           .map((person) => ({
             ...person,
             id: person.id.toString(),

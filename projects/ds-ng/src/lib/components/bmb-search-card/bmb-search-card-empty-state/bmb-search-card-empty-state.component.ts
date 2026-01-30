@@ -7,11 +7,7 @@ import { BmbVerticalLayoutItemDirective } from '../../../directives/bmb-layout/b
 @Component({
   selector: 'bmb-search-card-empty-state',
   standalone: true,
-  imports: [
-    BmbIconComponent,
-    TranslatePipe,
-    BmbVerticalLayoutDirective,
-  ],
+  imports: [BmbIconComponent, TranslatePipe, BmbVerticalLayoutDirective],
   templateUrl: './bmb-search-card-empty-state.component.html',
   styleUrl: './bmb-search-card-empty-state.component.scss',
 })
