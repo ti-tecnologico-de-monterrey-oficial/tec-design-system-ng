@@ -75,6 +75,8 @@ export class BmbIconComponent implements OnInit {
       return null;
     }
 
+    if (this.isImage(name)) return null;
+
     try {
       const svgContent = await this.iconService.loadIconSvg(
         name,

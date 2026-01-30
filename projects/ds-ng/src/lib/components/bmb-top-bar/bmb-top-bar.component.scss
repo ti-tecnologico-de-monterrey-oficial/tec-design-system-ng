@@ -35,9 +35,11 @@
   padding: rem.rem_calc(8 16);
   gap: rem.rem_calc(16);
   align-items: center;
-  position: relative;
+  position: sticky;
   z-index: 2;
   height: 64px;
+  top: 0;
+  left: 0;
 
   &-sidebar {
     @include mixins.check-for-mobile() {

@@ -11,6 +11,15 @@
   &-content {
     flex: 1;
     overflow: auto;
+
+    &-header {
+      position: sticky;
+      top: 0;
+      left: 0;
+      background-color: var(--containers-background);
+      z-index: 1;
+      padding: var(--bmb-spacing-s) 0;
+    }
   }
 
   &-title {
@@ -21,15 +30,9 @@
 
   &-footer {
     width: 100%;
-    height: 0;
     overflow: hidden;
-
-    &-active {
-      height: max-content;
-      margin-left: rem.rem_calc(-16);
-      margin-bottom: rem.rem_calc(-16);
-      width: calc(100% + rem.rem_calc(32));
-    }
+    background-color: var(--containers-main);
+    padding: var(--bmb-spacing-m) 0;
   }
 
   .bmb-bottom-navigation-bar .bmb_container {

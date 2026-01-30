@@ -33,6 +33,9 @@
       "empty_state": {
         "primary_text": "You have no notifications to show"
       }
+    },
+    "list": {
+      "select_all_button": "Select All"
     }
   },
   "balance_overview": {
@@ -161,10 +164,19 @@
   "notification_card": {
     "tabs": {
       "notifications": "Notifications",
-      "advertisements": "Advertisements"
+      "advertisements": "Advertisements",
+      "unread": "Unread"
     },
     "empty_state": {
       "primary_text": "You have no notifications to show"
+    }
+  },
+  "notification_center": {
+    "actions": {
+      "mark_as_read": "Mark as read",
+      "mark_as_archive": "Mark as archived",
+      "mark_as_favorite": "Mark as favorite",
+      "add_tag": "Add tag"
     }
   },
   "dropdown": {
@@ -183,5 +195,9 @@
       "search": "Search",
       "filter": "Filter"
     }
+  },
+  "search_card": {
+    "title": "Find services or people",
+    "input_placeholder": "Type to search"
   }
 }
