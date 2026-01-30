@@ -177,4 +177,17 @@
       color: var(--general-contrasts-50);
     }
   }
+
+  &-loading-icon {
+    animation: loadingAnimation 1s linear infinite;
+  }
+}
+
+@keyframes loadingAnimation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(359deg);
+  }
 }

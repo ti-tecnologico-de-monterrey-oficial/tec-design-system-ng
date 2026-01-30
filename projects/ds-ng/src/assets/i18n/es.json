@@ -33,6 +33,9 @@
       "empty_state": {
         "primary_text": "No tienes notificaciones para mostrar"
       }
+    },
+    "list": {
+      "select_all_button": "Seleccionar todo"
     }
   },
   "balance_overview": {
@@ -161,10 +164,19 @@
   "notification_card": {
     "tabs": {
       "notifications": "Notificaciones",
-      "advertisements": "Anuncios"
+      "advertisements": "Anuncios",
+      "unread": "No leídos"
     },
     "empty_state": {
       "primary_text": "No tienes elementos para mostrar"
+    }
+  },
+  "notification_center": {
+    "actions": {
+      "mark_as_read": "Marcar como leído",
+      "mark_as_archive": "Marcar como archivado",
+      "mark_as_favorite": "Marcar como favorito",
+      "add_tag": "Agregar etiqueta"
     }
   },
   "dropdown": {
@@ -182,6 +194,24 @@
       "max": " máximo",
       "search": "Buscar",
       "filter": "Filtrar"
+    }
+  },
+  "search_card": {
+    "title": "Encuentra servicios o personas",
+    "input_placeholder": "Escribe para buscar",
+    "empty_state": {
+      "new_search_card_title": "Empieza a buscar para encontrar resultados",
+      "no_results_title": "No se encontraron resultados"
+    },
+    "tabs": {
+      "services": "Servicios",
+      "people": "Personas",
+      "all": "Todos"
+    }
+  },
+  "input": {
+    "content": {
+      "loading_alt": "Cargando..."
     }
   }
 }

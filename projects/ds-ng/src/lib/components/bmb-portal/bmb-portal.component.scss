@@ -4,7 +4,7 @@ $toast-in-duration: 0.5s;
 $toast-out-duration: 0.5s;
 
 @mixin base() {
-  position: absolute;
+  position: fixed;
   width: clamp(
     rem.rem_calc(100),
     calc(100% - rem.rem_calc(32)),

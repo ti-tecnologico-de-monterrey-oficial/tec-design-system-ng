@@ -209,7 +209,7 @@ describe('BmbAlertCenterListComponent', () => {
 
     it('should emit selectedAlert when handleSelection is called', () => {
       spyOn(component.selectedAlert, 'emit');
-      const mockEvent = new Event('change');
+      const mockEvent = { target: { checked: true } } as any;
 
       component.handleSelection(mockEvent, mockAlerts[0]);
 
@@ -223,7 +223,7 @@ describe('BmbAlertCenterListComponent', () => {
       spyOn(component.selectedAlert, 'emit');
 
       const checkbox = fixture.debugElement.query(By.css('bmb-checkbox'));
-      const changeEvent = new Event('change');
+      const changeEvent = { target: { checked: true } } as any;
       checkbox.triggerEventHandler('change', changeEvent);
 
       expect(component.selectedAlert.emit).toHaveBeenCalledWith({
@@ -261,7 +261,7 @@ describe('BmbAlertCenterListComponent', () => {
 
   describe('Component State', () => {
     it('should initialize isSelected as empty array', () => {
-      expect(component.isSelected).toEqual([]);
+      expect(component.selectionState()).toEqual({});
     });
 
     it('should handle empty alerts array', () => {

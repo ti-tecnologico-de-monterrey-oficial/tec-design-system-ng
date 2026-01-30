@@ -29,6 +29,7 @@ export interface IBmbDataAlert {
   type: string;
   isFavorite: boolean;
   isArchived: boolean;
+  customEventHandler?: boolean;
 }
 
 export type IBmbDataAlertsEventType =
@@ -86,4 +87,10 @@ export type IBmbAlertCenterFooterEventName =
 export interface IBmbAlertCenterFooterEvent {
   alerts: IBmbDataAlert[];
   event: IBmbAlertCenterFooterEventName;
+}
+
+export interface IBmbBottomNavigationBarProps {
+  tags: boolean;
+  favorites: boolean;
+  archive: boolean;
 }

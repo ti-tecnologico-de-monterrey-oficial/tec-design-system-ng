@@ -1,15 +1,25 @@
-<form
-  class="bmb_alert-center-form"
-  [formGroup]="alertSelectionForm"
-  (ngSubmit)="onSubmit($event)"
->
+<div class="bmb_alert-center-form">
   <section class="bmb_alert-center-form-content">
+    @if (enableMultipleSelection()) {
+      <header class="bmb_alert-center-form-content-header">
+        <bmb-checkbox
+          name="selectAll"
+          [label]="'alert_center.list.select_all_button' | translate"
+          id="selectAll"
+          value="selectAll"
+          (change)="handleSelectAll($event)"
+          [indeterminate]="
+            isSomeAlertSelected().some && !isSomeAlertSelected().all
+          "
+        />
+      </header>
+    }
     @if (filteredEvents().recent.length) {
       <h3 class="bmb_alert-center-form-title">Recientes</h3>
       <bmb-alert-center-list
         (alertSelected)="alertSelected($event)"
-        (selectedAlert)="handleSelection($event)"
         [alerts]="filteredEvents().recent"
+        [(selectionState)]="selectionState"
         [enableMultipleSelection]="enableMultipleSelection()"
       />
     }
@@ -17,27 +27,27 @@
       <h3 class="bmb_alert-center-form-title">Últimos 7 días</h3>
       <bmb-alert-center-list
         (alertSelected)="alertSelected($event)"
-        (selectedAlert)="handleSelection($event)"
         [alerts]="filteredEvents().sevenDays"
         [enableMultipleSelection]="enableMultipleSelection()"
+        [(selectionState)]="selectionState"
       />
     }
     @if (filteredEvents().month.length) {
       <h3 class="bmb_alert-center-form-title">Últimos 30 días</h3>
       <bmb-alert-center-list
         (alertSelected)="alertSelected($event)"
-        (selectedAlert)="handleSelection($event)"
         [alerts]="filteredEvents().month"
         [enableMultipleSelection]="enableMultipleSelection()"
+        [(selectionState)]="selectionState"
       />
     }
     @if (filteredEvents().rest.length) {
       <h3 class="bmb_alert-center-form-title">Restantes</h3>
       <bmb-alert-center-list
         (alertSelected)="alertSelected($event)"
-        (selectedAlert)="handleSelection($event)"
         [alerts]="filteredEvents().rest"
         [enableMultipleSelection]="enableMultipleSelection()"
+        [(selectionState)]="selectionState"
       />
     }
     @if (
@@ -51,11 +61,13 @@
       </section>
     }
   </section>
-  <footer [ngClass]="getFooterClassList()">
-    <bmb-bottom-navigation-bar
-      class="bmb_alert-center-footer"
-      [navigationBarIcons]="navigationBarIcons"
-      (navigationBarEvents)="handleNavigationBarEvents($event)"
-    />
-  </footer>
-</form>
+  @if (isSomeAlertSelected().some) {
+    <footer class="bmb_alert-center-form-footer">
+      <bmb-navigation-bar
+        [actionHeaders]="navigationBarIcons()"
+        [iconSize]="24"
+        justify="spaceAround"
+      />
+    </footer>
+  }
+</div>

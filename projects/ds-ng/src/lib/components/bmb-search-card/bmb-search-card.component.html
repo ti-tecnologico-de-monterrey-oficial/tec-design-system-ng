@@ -1,0 +1,60 @@
+<section class="bmb_search-card">
+  <bmb-home-card
+    [title]="title() || 'search_card.title' | translate"
+    [showRightButton]="false"
+    icon="search"
+    bgIconAppearance="blue-primary"
+  >
+    <bmb-input
+      [placeholder]="
+        inputPlaceholder() || 'search_card.input_placeholder' | translate
+      "
+      [icon]="'search'"
+      [isClearable]="true"
+      [control]="inputSearchControl"
+      [isLoading]="isLoading()"
+    />
+    <section
+      class="bmb_search-card-results"
+      [ngClass]="{
+        'bmb_search-card-results-active':
+          results().persons.length && results().services.length
+      }"
+    ></section>
+    <bmb-tabs [tabs]="tabsData()" [(selectedTabId)]="selectedTabId">
+      @switch (selectedTabId()) {
+        @case (1) {
+          @if (results().services.length) {
+            <section class="bmb_search-card-results-section">
+              <h3>{{ 'search_card.tabs.services' | translate }}</h3>
+              <ul class="bmb_search-card-results-list">
+                @for (service of results().services; track $index) {
+                  <li class="bmb_search-card-results-list-item">
+                    <bmb-search-card-item
+                      [name]="service.name"
+                      [subtitle]="service.category"
+                      [icon]="service.icon ?? 'crop_square'"
+                      [backgroundColorIcon]="
+                        service.backgroundColorIcon ?? 'black-primary'
+                      "
+                    ></bmb-search-card-item>
+                  </li>
+                }
+              </ul>
+            </section>
+          }
+        }
+        @case (2) {}
+        @case (3) {}
+      }
+    </bmb-tabs>
+    @if (
+      !results().persons.length && !results().services.length && !isLoading()
+    ) {
+      <bmb-search-card-empty-state
+        [inputHasValue]="!!inputSearchControl.value"
+      ></bmb-search-card-empty-state>
+    }
+    {{ isLoading() ? 'Loading...' : '' }}
+  </bmb-home-card>
+</section>

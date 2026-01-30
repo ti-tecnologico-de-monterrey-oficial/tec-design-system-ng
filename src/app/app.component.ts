@@ -24,6 +24,7 @@ import {
   ModalDataConfig,
   BmbModalComponent,
   BmbDropdownComponent,
+  BmbSearchCardComponent,
 } from '../../projects/ds-ng/src/public-api';
 import { MatDialog } from '@angular/material/dialog';
 import { TestComponentComponent } from './components/test-component/test-component.component';
@@ -549,5 +550,24 @@ https://live.tec.mx/cbweek</p><p>¡Te esperamos!`,
     };
 
     this.matDialog.open(BmbModalComponent, { data: modalData });
+  }
+
+  handleSearchButtonClick(event: MouseEvent): void {
+    console.log('Search button clicked');
+
+    this.projectionService.openContent({
+      content: BmbSearchCardComponent,
+      targetRef: event.currentTarget as HTMLElement,
+      showBackdrop: false,
+      inputContext: {
+        title: 'Search',
+        inputPlaceholder: 'Type to search...',
+      },
+      outputContext: {
+        triggerSearch: (value: string) => {
+          console.log('Search triggered with value from app component:', value);
+        },
+      },
+    });
   }
 }
