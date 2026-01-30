@@ -1,5 +1,8 @@
 import { Component, input } from '@angular/core';
-import { BmbLayoutGridDirective, BmbLayoutGridItemDirective } from '../../../directives/bmb-layout-grid/bmb-layout-grid.directive';
+import {
+  BmbLayoutGridDirective,
+  BmbLayoutGridItemDirective,
+} from '../../../directives/bmb-layout-grid/bmb-layout-grid.directive';
 import { IBmbColor } from '../../../types/colors';
 import { BmbIconComponent } from '../../bmb-icon/bmb-icon.component';
 import { getRGBColorKeyValue, isImage } from '../../../utils/utils';
@@ -8,9 +11,14 @@ import { CommonModule } from '@angular/common';
 @Component({
   selector: 'bmb-search-card-item',
   standalone: true,
-  imports: [BmbLayoutGridDirective, BmbLayoutGridItemDirective, BmbIconComponent, CommonModule],
+  imports: [
+    BmbLayoutGridDirective,
+    BmbLayoutGridItemDirective,
+    BmbIconComponent,
+    CommonModule,
+  ],
   templateUrl: './bmb-search-card-item.component.html',
-  styleUrl: './bmb-search-card-item.component.scss'
+  styleUrl: './bmb-search-card-item.component.scss',
 })
 export class BmbSearchCardItemComponent {
   name = input<string>('');

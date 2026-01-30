@@ -17,7 +17,8 @@
     <section
       class="bmb_search-card-results"
       [ngClass]="{
-        'bmb_search-card-results-active': results().persons.length && results().services.length
+        'bmb_search-card-results-active':
+          results().persons.length && results().services.length
       }"
     ></section>
     <bmb-tabs [tabs]="tabsData()" [(selectedTabId)]="selectedTabId">
@@ -33,7 +34,9 @@
                       [name]="service.name"
                       [subtitle]="service.category"
                       [icon]="service.icon ?? 'crop_square'"
-                      [backgroundColorIcon]="service.backgroundColorIcon ?? 'black-primary'"
+                      [backgroundColorIcon]="
+                        service.backgroundColorIcon ?? 'black-primary'
+                      "
                     ></bmb-search-card-item>
                   </li>
                 }
@@ -45,9 +48,13 @@
         @case (3) {}
       }
     </bmb-tabs>
-    @if (!results().persons.length && !results().services.length && !isLoading()) {
-      <bmb-search-card-empty-state [inputHasValue]="!!inputSearchControl.value"></bmb-search-card-empty-state>
+    @if (
+      !results().persons.length && !results().services.length && !isLoading()
+    ) {
+      <bmb-search-card-empty-state
+        [inputHasValue]="!!inputSearchControl.value"
+      ></bmb-search-card-empty-state>
     }
-    {{isLoading() ? 'Loading...' : ''}}
+    {{ isLoading() ? 'Loading...' : '' }}
   </bmb-home-card>
 </section>

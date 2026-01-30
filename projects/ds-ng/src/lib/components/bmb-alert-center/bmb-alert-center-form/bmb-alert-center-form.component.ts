@@ -120,12 +120,14 @@ export class BmbAlertCenterFormComponent {
   });
   isSomeAlertSelected = computed(() => {
     const state = this.selectionState();
-    const summarySelection = Object.values(state)
-      .reduce((acc, value) => {
+    const summarySelection = Object.values(state).reduce(
+      (acc, value) => {
         acc.some = acc.some || value;
         acc.all = acc.all && value;
         return acc;
-      }, {some: false, all: true});
+      },
+      { some: false, all: true },
+    );
     return summarySelection;
   });
 
@@ -133,16 +135,20 @@ export class BmbAlertCenterFormComponent {
     const actions: IBmbActionHeader[] = [
       {
         icon: 'done_all',
-        alt: this.translationsService.translate('notification_center.actions.mark_as_read'),
+        alt: this.translationsService.translate(
+          'notification_center.actions.mark_as_read',
+        ),
         action: () => {
           this.handleNavigationBarEvents('isRead');
         },
-      }
+      },
     ];
     if (this.enabledOptions().tags) {
       actions.push({
         icon: 'sell',
-        alt: this.translationsService.translate('notification_center.actions.add_tag'),
+        alt: this.translationsService.translate(
+          'notification_center.actions.add_tag',
+        ),
         action: () => {
           this.handleNavigationBarEvents('tags');
         },
@@ -151,7 +157,9 @@ export class BmbAlertCenterFormComponent {
     if (this.enabledOptions().favorites) {
       actions.push({
         icon: 'star',
-        alt: this.translationsService.translate('notification_center.actions.mark_as_favorite'),
+        alt: this.translationsService.translate(
+          'notification_center.actions.mark_as_favorite',
+        ),
         action: () => {
           this.handleNavigationBarEvents('isFavorite');
         },
@@ -160,7 +168,9 @@ export class BmbAlertCenterFormComponent {
     if (this.enabledOptions().archive) {
       actions.push({
         icon: 'inventory_2',
-        alt: this.translationsService.translate('notification_center.actions.mark_as_archive'),
+        alt: this.translationsService.translate(
+          'notification_center.actions.mark_as_archive',
+        ),
         action: () => {
           this.handleNavigationBarEvents('isArchived');
         },
@@ -178,7 +188,9 @@ export class BmbAlertCenterFormComponent {
         (acc, alert) => {
           acc[`${alert.id}`] = false;
           return acc;
-        }, {} as Record<string, boolean>);
+        },
+        {} as Record<string, boolean>,
+      );
 
       untracked(() => {
         this.selectionState.set(initialSelectionState);

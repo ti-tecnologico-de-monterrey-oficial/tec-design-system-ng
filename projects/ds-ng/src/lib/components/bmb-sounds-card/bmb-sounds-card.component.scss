@@ -108,7 +108,11 @@
   }
 
   .bmb_media-card-content-inline .bmb_media-card-content-container {
-    background-image: linear-gradient(0deg, rgba(31, 34, 46, 0.00) 33.5%, rgb(var(--blue-mariner-950)));
+    background-image: linear-gradient(
+      0deg,
+      rgba(31, 34, 46, 0) 33.5%,
+      rgb(var(--blue-mariner-950))
+    );
   }
 
   .bmb_media-card-content-overlay {

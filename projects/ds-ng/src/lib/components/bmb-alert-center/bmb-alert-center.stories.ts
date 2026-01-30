@@ -298,7 +298,8 @@ export default {
       description: {
         component: `
 ${getGeneralDescription('`bmb-alert-center` is an organism designed to centralize and display all important alerts and notifications that require users attention.', { generalDocLink: 'https://bamboo.tec.mx/latest/organismos/alert-center/descripcion-general-ws9A3oYS' })}
-${getSpecialSpecifications(`
+${getSpecialSpecifications(
+  `
   > ### Alert and advertisement type description.
   > #### Alert type description \`IBmbDataAlert\`
   > The alert item description supports different content types to provide flexibility in displaying information. The supported types are:
@@ -435,7 +436,9 @@ ${getSpecialSpecifications(`
    <bmb-alert-center ... />
   </div>
   > \`\`\`
-`, { showAdditionalBlockquote: true })}
+`,
+  { showAdditionalBlockquote: true },
+)}
 ${getBasicExampleBlock('BmbAlertCenterComponent')}
 
         `,

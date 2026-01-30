@@ -1,6 +1,4 @@
-<div
-  class="bmb_alert-center-form"
->
+<div class="bmb_alert-center-form">
   <section class="bmb_alert-center-form-content">
     @if (enableMultipleSelection()) {
       <header class="bmb_alert-center-form-content-header">
@@ -10,7 +8,9 @@
           id="selectAll"
           value="selectAll"
           (change)="handleSelectAll($event)"
-          [indeterminate]="isSomeAlertSelected().some && !isSomeAlertSelected().all"
+          [indeterminate]="
+            isSomeAlertSelected().some && !isSomeAlertSelected().all
+          "
         />
       </header>
     }
