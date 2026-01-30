@@ -18,6 +18,7 @@ import {
 export default {
   title: 'Organisms/Login layout web',
   component: BmbLoginComponent,
+  tags: ['tec'],
   parameters: {
     docs: {
       controls: {

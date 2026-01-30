@@ -717,7 +717,7 @@ export default {
   title:
     'Particularities/mitec web/Landings/Container buttons card/Semanas Tec',
   component: SemanasTecLandingComponent,
-  tags: ['!autodocs'],
+  tags: ['!autodocs', 'tec'],
   parameters: {
     docs: {
       page: () => getPageStructureForTemplateStories(),

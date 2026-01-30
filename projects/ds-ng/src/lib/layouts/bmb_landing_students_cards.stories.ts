@@ -188,6 +188,7 @@ class StorybookHomeMitecMobile {}
 export default {
   title: 'Particularities/mitec web/Landings/Student card',
   component: BmbTopBarComponent,
+  tags: ['tec'],
   decorators: [
     moduleMetadata({
       imports: [StorybookHomeMitecMobile, BmbTopBarComponent],

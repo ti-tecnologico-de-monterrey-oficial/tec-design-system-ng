@@ -663,6 +663,7 @@ class StorybookAccordionTabs {
 export default {
   title: 'Particularities/mitec web/Landings/Accordion tab',
   component: BmbTopBarComponent,
+  tags: ['tec'],
   decorators: [
     moduleMetadata({
       imports: [StorybookAccordionTabs, BmbTopBarComponent],

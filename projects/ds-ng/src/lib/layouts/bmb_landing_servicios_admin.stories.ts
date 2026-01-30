@@ -794,7 +794,7 @@ export default {
   title:
     'Particularities/mitec web/Landings/Container buttons card/Servicios admin',
   component: BmbTopBarComponent,
-  tags: ['!autodocs'],
+  tags: ['!autodocs', 'tec'],
   decorators: [
     moduleMetadata({
       imports: [StorybookAccordionTabs, BmbTopBarComponent],

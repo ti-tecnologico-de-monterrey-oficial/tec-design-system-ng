@@ -22,6 +22,7 @@ const onVolumeEvent: IBmbOnEvent = getOnEvent(
 export default {
   title: 'Particularities/mitec web/Tec sound card',
   component: BmbSoundsCardComponent,
+  tags: ['tec'],
   parameters: {
     docs: {
       controls: {

@@ -91,6 +91,7 @@ class StorybookToastWrapperComponent {
 export default {
   title: 'Organisms/Login onboarding mobile',
   component: BmbLoginOnboardingComponent,
+  tags: ['tec'],
   decorators: [
     moduleMetadata({
       imports: [StorybookToastWrapperComponent, BmbLoginOnboardingComponent],

@@ -515,6 +515,7 @@ class StorybookHomeMitecMobile {
 export default {
   title: 'Organisms/Home mitec mobile',
   component: BmbUserProfileComponent,
+  tags: ['tec'],
   decorators: [
     moduleMetadata({
       imports: [StorybookHomeMitecMobile, BmbUserProfileComponent],

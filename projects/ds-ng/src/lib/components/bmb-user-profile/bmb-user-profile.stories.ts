@@ -12,6 +12,7 @@ import { DBmbGenericParamDesc } from '../../utils/doc/parameterDescriptions';
 export default {
   title: 'Dev tools/User profile',
   component: BmbUserProfileComponent,
+  tags: ['tec'],
   parameters: {
     docs: {
       controls: { exclude: ['isLoading', 'handleContinue'] },

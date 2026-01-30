@@ -179,6 +179,7 @@ class StorybookHomeMitecMobile {
 export default {
   title: 'Particularities/mitec web/Landings/Student tab',
   component: BmbTopBarComponent,
+  tags: ['tec'],
   decorators: [
     moduleMetadata({
       imports: [StorybookHomeMitecMobile, BmbTopBarComponent],

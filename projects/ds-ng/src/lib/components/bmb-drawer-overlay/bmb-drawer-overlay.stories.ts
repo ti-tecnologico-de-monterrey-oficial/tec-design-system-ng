@@ -18,6 +18,7 @@ import {
 export default {
   title: 'Particularities/mitec app/FAB Overlay drawer',
   component: BmbDrawerOverlayComponent,
+  tags: ['tec'],
   decorators: [
     componentWrapperDecorator((story: string) => {
       return `

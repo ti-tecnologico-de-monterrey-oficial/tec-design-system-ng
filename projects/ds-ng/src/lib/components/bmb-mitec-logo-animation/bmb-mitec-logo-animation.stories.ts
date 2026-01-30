@@ -16,6 +16,7 @@ import {
 export default {
   title: 'Dev tools/Mitec logo animation',
   component: BmbMitecLogoAnimationComponent,
+  tags: ['tec'],
   decorators: [
     componentWrapperDecorator((story: string) => {
       return `

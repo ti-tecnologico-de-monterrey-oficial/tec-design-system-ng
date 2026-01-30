@@ -725,7 +725,7 @@ class StorybookHackathon {
 export default {
   title: 'Particularities/mitec web/Landings/Student service/Hackathon',
   component: BmbTopBarComponent,
-  tags: ['!autodocs'],
+  tags: ['!autodocs', 'tec'],
   decorators: [
     moduleMetadata({
       imports: [StorybookHackathon, BmbTopBarComponent],

@@ -420,7 +420,7 @@ export default {
   title:
     'Particularities/mitec web/Landings/Accordion with image/Caja de ahorro',
   component: BmbTopBarComponent,
-  tags: ['!autodocs'],
+  tags: ['!autodocs', 'tec'],
   decorators: [
     moduleMetadata({
       imports: [StorybookAccordionTabs, BmbTopBarComponent],
