@@ -37,6 +37,7 @@ import {
   getPageStructureForTemplateStories,
   getSpecialSpecifications,
   getTechnicalDocReferences,
+  getTECParticularitiesMessage,
 } from '../utils/doc/utils';
 
 import * as topBarStory from '../components/bmb-top-bar/bmb-top-bar.stories';
@@ -793,7 +794,7 @@ export default {
   title:
     'Particularities/mitec web/Landings/Container buttons card/Servicios admin',
   component: BmbTopBarComponent,
-  tags: ['!autodocs'],
+  tags: ['!autodocs', 'tec'],
   decorators: [
     moduleMetadata({
       imports: [StorybookAccordionTabs, BmbTopBarComponent],
@@ -809,7 +810,9 @@ export default {
         component: `
 ${getLandingGeneralDesc('Servicios admin')}
 ${getSpecialSpecifications(
-  getTechnicalDocReferences({
+  `
+  ${getTECParticularitiesMessage()}<br/>
+  ${getTechnicalDocReferences({
     references: [
       { title: topBarStory.default.title! },
       { title: sideBarStory.default.title! },
@@ -825,7 +828,7 @@ ${getSpecialSpecifications(
       { title: buttonStory.default.title! },
     ],
     isFullScreenDesc: true,
-  }),
+  })}`,
   { showAdditionalBlockquote: true },
 )}
 ${getBasicExampleBlock(

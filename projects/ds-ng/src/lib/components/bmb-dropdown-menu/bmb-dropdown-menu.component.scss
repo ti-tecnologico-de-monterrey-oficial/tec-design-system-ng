@@ -1,13 +1,10 @@
 @use '../../../assets/styles/base/rem' as rem;
 
-.bmb_dropdown_menu {
-  position: relative;
+.bmb_dropdown-menu {
+  display: inline-flex;
   color: currentColor;
 
-  &-list {
-    .bmb_dropdown-content-modal {
-      left: var(--bmb-spacing-m);
-      max-width: rem.rem_calc(250);
-    }
+  &-button {
+    display: inline-flex;
   }
 }

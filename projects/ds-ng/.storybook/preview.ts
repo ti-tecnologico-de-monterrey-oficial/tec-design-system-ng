@@ -130,15 +130,26 @@ const preview: Preview = {
     viewport: { value: 'tablet', isRotated: false },
   },
   decorators: [
-    (StoryFn: any) => {
+    (StoryFn: any, context) => {
       const [{ brandingThemes }] = useGlobals();
+      const story = StoryFn();
 
       useEffect(() => {
         document
           .querySelector('.sb-show-main')
           ?.setAttribute('data-brand', brandingThemes);
       }, [brandingThemes]);
-      return StoryFn();
+
+      if (
+        context.tags.some((element) => element === 'tec') &&
+        brandingThemes !== 'tec'
+      ) {
+        story.template = `<p>
+          Please remember that <strong>this element</strong> is a particularity of the <strong>TEC brand</strong>, that way <strong><em>cannot be used</em></strong> by other brands.
+          </p>`;
+      }
+
+      return story;
     },
     withThemeByClassName({
       themes: {

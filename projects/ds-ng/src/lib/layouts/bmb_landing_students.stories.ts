@@ -16,6 +16,7 @@ import {
   getPageStructureForTemplateStories,
   getSpecialSpecifications,
   getTechnicalDocReferences,
+  getTECParticularitiesMessage,
 } from '../utils/doc/utils';
 import * as topBarStory from '../components/bmb-top-bar/bmb-top-bar.stories';
 import * as sideBarStory from '../components/bmb-sidebar/bmb-sidebar.stories';
@@ -189,7 +190,7 @@ class StorybookHomeMitecMobile {}
 export default {
   title: 'Particularities/mitec web/Landings/Student service',
   component: BmbTopBarComponent,
-  tags: ['!autodocs'],
+  tags: ['!autodocs', 'tec'],
   decorators: [
     moduleMetadata({
       imports: [StorybookHomeMitecMobile, BmbTopBarComponent],
@@ -202,7 +203,9 @@ export default {
         component: `
 ${getLandingGeneralDesc('Student service')}
 ${getSpecialSpecifications(
-  getTechnicalDocReferences({
+  `
+  ${getTECParticularitiesMessage()}<br/>
+  ${getTechnicalDocReferences({
     references: [
       { title: topBarStory.default.title! },
       { title: sideBarStory.default.title! },
@@ -212,7 +215,7 @@ ${getSpecialSpecifications(
       { title: layoutStory.default.title! },
     ],
     isFullScreenDesc: true,
-  }),
+  })}`,
   { showAdditionalBlockquote: true },
 )}
 ${getBasicExampleBlock(`BmbTopBarComponent,

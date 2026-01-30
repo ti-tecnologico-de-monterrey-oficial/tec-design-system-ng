@@ -55,7 +55,7 @@ describe('BmbDropdownMenuComponent', () => {
 
     fixture.detectChanges();
     const dropdownMenuElement =
-      fixture.nativeElement.querySelector('.bmb_dropdown_menu');
+      fixture.nativeElement.querySelector('.bmb_dropdown-menu');
     expect(dropdownMenuElement).toBeTruthy();
   });
 });
