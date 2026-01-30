@@ -198,8 +198,8 @@
   },
   "search_card": {
     "title": "Find services or people",
-    "input_placeholder": "Type to search"
-    ,"empty_state": {
+    "input_placeholder": "Type to search",
+    "empty_state": {
       "new_search_card_title": "Start searching to find results",
       "no_results_title": "No results found"
     },
