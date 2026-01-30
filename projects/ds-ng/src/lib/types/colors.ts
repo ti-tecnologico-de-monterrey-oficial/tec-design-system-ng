@@ -66,4 +66,4 @@ export type IBmbColor =
 // | 'container-button-tec'
 // | 'background-main-tec';
 
-export type IBmbContrast = 'default' | 'primary' | 'alternative';
+export type IBmbContrast = 'default' | 'primary' | 'alternative' | 'solid';

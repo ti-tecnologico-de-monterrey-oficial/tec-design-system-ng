@@ -80,5 +80,33 @@
       object-position: center;
       height: 100%;
     }
+
+    &-images {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      transition: transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+  }
+
+  &-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 3;
+
+    &--left {
+      left: rem.rem_calc(8);
+    }
+
+    &--right {
+      right: rem.rem_calc(8);
+    }
+  }
+
+  &-carousel {
+    overflow: hidden;
   }
 }
