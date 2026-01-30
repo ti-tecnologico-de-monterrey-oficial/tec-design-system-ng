@@ -45,6 +45,10 @@
   > bmb-action-icon {
     display: inline-flex;
     align-items: center;
+
+    .bmb_check-external-link-button-element:hover:not(:disabled) {
+      opacity: 1;
+    }
   }
 
   &-active:not(.bmb_button_icon-container) {
@@ -124,6 +128,22 @@
     &-alternative {
       &.bmb_button_icon {
         background-color: var(--containers-main);
+      }
+    }
+
+    &-solid {
+      &.bmb_button_icon {
+        background-color: var(--color-black-light);
+        border-color: var(--general-contrasts-container-outline);
+        color: var(--white-primary);
+      }
+
+      &:not(.bmb_button_icon-disabled) {
+        &:hover {
+          background-color: rgba(var(--color-black-primary), 1);
+          color: var(--white-primary);
+          border-color: var(--general-contrasts-input-outline);
+        }
       }
     }
   }

@@ -47,7 +47,7 @@ ${getBasicExampleBlock('BmbButtonIconComponent', '', onEvent.handleExample)}
   argTypes: {
     appearanceContrast: getAppearanceParam(
       'button icon',
-      ['default', 'primary', 'alternative'],
+      ['default', 'primary', 'alternative', 'solid'],
       'default',
     ),
     idElement: DBmbGenericParamDesc.uniqueId,
