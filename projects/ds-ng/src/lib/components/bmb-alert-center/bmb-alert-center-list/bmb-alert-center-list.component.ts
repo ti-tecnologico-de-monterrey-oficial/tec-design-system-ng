@@ -1,8 +1,12 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  computed,
+  effect,
   input,
+  model,
   output,
+  untracked,
   ViewEncapsulation,
 } from '@angular/core';
 import { BmbCheckboxComponent } from '../../bmb-checkbox/bmb-checkbox.component';
@@ -16,6 +20,7 @@ import {
   BmbLayoutGridItemDirective,
 } from '../../../directives/bmb-layout-grid/bmb-layout-grid.directive';
 import { BmbIconComponent } from '../../bmb-icon/bmb-icon.component';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'bmb-alert-center-list',
@@ -28,6 +33,7 @@ import { BmbIconComponent } from '../../bmb-icon/bmb-icon.component';
     BmbLayoutGridDirective,
     BmbLayoutGridItemDirective,
     BmbIconComponent,
+    CommonModule,
   ],
   templateUrl: './bmb-alert-center-list.component.html',
   styleUrl: './bmb-alert-center-list.component.scss',
@@ -38,13 +44,22 @@ export class BmbAlertCenterListComponent {
   alerts = input.required<IBmbDataAlertsParsed[]>();
   name = input<string>('');
   enableMultipleSelection = input<boolean>(true);
+  selectionState = model<Record<string, boolean>>({});
 
   alertSelected = output<IBmbDataAlertsParsed>();
   selectedAlert = output<{ event: Event; item: IBmbDataAlertsParsed }>();
-
-  isSelected: IBmbDataAlertsParsed[] = [];
+  isSomeAlertSelected = computed(() => {
+    const state = this.selectionState();
+    return Object.values(state).some((isSelected) => isSelected);
+  });
 
   handleSelection(event: Event, item: IBmbDataAlertsParsed): void {
+    this.selectionState.update((state) => {
+      return {
+        ...state,
+        [item.id]: (event.target as HTMLInputElement).checked,
+      };
+    });
     this.selectedAlert.emit({ event, item });
   }
 
