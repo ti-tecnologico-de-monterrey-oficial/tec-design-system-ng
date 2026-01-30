@@ -1,0 +1,13 @@
+
+
+.bmb_search-card-results {
+  &-list {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+
+  &-section {
+    padding-block-start: var(--bmb-spacing-l);
+  }
+}

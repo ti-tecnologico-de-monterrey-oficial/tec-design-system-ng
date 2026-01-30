@@ -62,9 +62,9 @@
         (blur)="handleBlur()"
         (keyup)="handleKeyUp($event)"
       />
-      @if (showAdditionalAction() || isClearable()) {
+      @if ((showAdditionalAction() || isClearable()) || isLoading()) {
         <span class="bmb_field-actions">
-          @if (showAdditionalAction()) {
+          @if (showAdditionalAction() && !isLoading()) {
             <bmb-action-icon
               class="bmb_field-additional_action"
               [icon]="getAdditionalActionIcon()"
@@ -73,13 +73,21 @@
               (buttonClick)="actionToExecute()"
             />
           }
-          @if (isClearable()) {
+          @if (isClearable() && !isLoading()) {
             <bmb-action-icon
               class="bmb_field-clear"
               icon="close"
               [iconSize]="24"
               [disabled]="control().disabled"
               (buttonClick)="handleClearValue()"
+            />
+          }
+          @if (isLoading()) {
+            <bmb-icon
+              class="bmb_field-loading-icon"
+              icon="progress_activity"
+              [size]="24"
+              [alt]="'input.content.loading_alt' | translate"
             />
           }
         </span>
