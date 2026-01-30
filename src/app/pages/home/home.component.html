@@ -2,9 +2,50 @@
   <h3>Home</h3>
   <h5>Welcome to BambooPress</h5>
 </header>
+
 <div class="bmb_template-margin-for-sidebar">
   <section bmbLayout margin="none" gapSize="m">
     <div bmbVerticalLayout bmbLayoutItem [colSm]="4" [colLg]="6" gapSize="m">
+      <section bmbVerticalLayoutItem [rowGrow]="1">
+        <bmb-action-menu
+          icon="account_balance_wallet"
+          bgIconAppearance="green-light"
+          title="Title"
+          subtitle="Subtitle"
+          [showHeader]="true"
+        >
+          @for (_item of items; track $index) {
+            @if (_item?.isActive) {
+              <ng-template>
+                <bmb-item
+                  [label]="_item.label"
+                  [icon]="_item.icon"
+                  [value]="_item.value"
+                  [valueLink]="_item.valueLink"
+                  valueTarget="_self"
+                />
+              </ng-template>
+            } @else if (!_item?.isActive) {
+              <ng-template>
+                <bmb-item
+                  [label]="_item.label"
+                  [value]="_item.value"
+                  [valueLink]="_item.valueLink"
+                  valueTarget="_self"
+                />
+              </ng-template>
+            }
+          }
+          <ng-template>
+            <bmb-item
+              label="Correo"
+              value="tecservices@servicios.tec.mx"
+              valueLink="mailto:tecservices@servicios.tec.mx"
+              valueTarget="_self"
+            />
+          </ng-template>
+        </bmb-action-menu>
+      </section>
       <bmb-advertisement-card
         [data]="{
           promociones: [

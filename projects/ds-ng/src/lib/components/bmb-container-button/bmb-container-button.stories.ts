@@ -332,6 +332,16 @@ export const SquareExample = {
   },
 };
 
+export const SquareWithoutIconExample = {
+  name: 'Square without icon example',
+  args: {
+    iconRight: '',
+    iconLeft: '',
+    square: true,
+    small: true,
+  },
+};
+
 export const SmallExample = {
   name: 'Small version example',
   args: {

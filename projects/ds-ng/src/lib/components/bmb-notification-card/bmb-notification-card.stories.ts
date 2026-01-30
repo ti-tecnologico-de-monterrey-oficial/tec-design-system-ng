@@ -71,7 +71,7 @@ export default {
           'selectedTab',
           'visibleAlert',
           'getEmptyStateData',
-          'handleAlertSelected'
+          'handleAlertSelected',
         ],
       },
       description: {

@@ -263,6 +263,44 @@ IBmbHierarchyProfileData {
       getOnEvent('', 'handleLangChange', 'IBmbUserData'),
     ),
     userData: DBmbGenericParamDesc.deprecated,
+    versionBackText: {
+      control: 'text',
+      description: 'Sets the version back text to display in the component',
+      table: {
+        category: 'Properties',
+        type: { summary: 'string' },
+      },
+    },
+    versionBackLink: {
+      control: 'text',
+      description: 'Sets the version back link to redirect in the component',
+      table: {
+        category: 'Events',
+        defaultValue: { summary: '' },
+        type: { summary: 'string' },
+      },
+    },
+    versionBackTarget: {
+      control: 'radio',
+      options: ['_blank', '_parent', '_self', '_top'],
+      description:
+        'The target attribute for the link. Refer to https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a for more information.',
+      table: {
+        category: 'Events',
+        type: { summary: 'IBmbTargetLink' },
+        defaultValue: { summary: '_blank' },
+      },
+    },
+    enableVersionBack: {
+      control: { type: 'boolean' },
+      description:
+        'When true, the component will display the version back link.',
+      table: {
+        category: 'Properties',
+        defaultValue: { summary: 'false' },
+        type: { summary: 'boolean' },
+      },
+    },
   },
   args: {
     handleCloseSession: () => {
@@ -450,6 +488,193 @@ export const CollaboratorWebExample = {
         hierarchyTarget: '_blank',
       },
     },
+  },
+  render: (args: any) => ({
+    props: args,
+    template: `
+      <bmb-profile
+        ${attributes(args)}
+      />
+    `,
+  }),
+};
+
+export const StudentMobileVersionBackExample = {
+  name: 'Example of Student (mobile) variant with version back',
+  args: {
+    studentData: {
+      userData: {
+        name: 'Paloma Araujo',
+        userImg: 'https://picsum.photos/id/64/200/300',
+        registration: 'A032132',
+        email: 'mail@tec.mx',
+      },
+      period: 'AGO-DIC 24',
+      campus: 'Monterrey',
+      program: 'ARQ19',
+      curp: 'xxxx0000xxxx0000xx',
+      isExatec: false,
+    },
+    campusAcessLink: 'https://www.example.com',
+    idDigitalLink: 'https://www.example.com',
+    tecServicesLink: 'https://www.example.com',
+    targetLinks: '_blank',
+    versionLabel: 'Versión 1.5.10',
+    handleCloseProfile: () => {
+      console.log('Close Profile');
+    },
+    versionBackTarget: '_blank',
+    versionBackLink: 'https://www.example.com',
+    versionBackText: 'Regresar a versión anterior mitec',
+    enableVersionBack: true,
+  },
+  render: (args: any) => ({
+    props: args,
+    template: `
+      <bmb-profile
+        ${attributes(args)}
+      />
+    `,
+  }),
+};
+
+export const StudentWebVersionBackExample = {
+  name: 'Example of Student (web) variant with version back',
+  argTypes: {
+    handleCloseProfile: {
+      control: false,
+    },
+  },
+  args: {
+    isMobile: false,
+    studentData: {
+      userData: {
+        name: 'Paloma Araujo',
+        userImg: 'https://picsum.photos/id/64/200/300',
+        registration: 'A032132',
+        email: 'mail@tec.mx',
+      },
+      period: 'AGO-DIC 24',
+      campus: 'Monterrey',
+      program: 'ARQ19',
+      curp: 'xxxx0000xxxx0000xx',
+      linkedin:
+        '<a href="https://linkedin.com" target="_blank" rel="noopener">Ir a LinkedIn</a>',
+      isExatec: true,
+    },
+    versionBackTarget: '_blank',
+    versionBackLink: 'https://www.example.com',
+    versionBackText: 'Regresar a versión anterior mitec',
+    enableVersionBack: true,
+  },
+  render: (args: any) => ({
+    props: args,
+    template: `
+      <bmb-profile
+        [isMobile]="isMobile"
+        [studentData]="studentData"
+        [enableVersionBack]="enableVersionBack"
+        [versionBackText]="versionBackText"
+        [versionBackLink]="versionBackLink"
+        [versionBackTarget]="versionBackTarget"
+      />
+    `,
+  }),
+};
+
+export const CollaboratorMobileVersionBackExample = {
+  name: 'Example of Collaborator (mobile) variant with version back',
+  args: {
+    isStudent: false,
+    collaboratorData: {
+      userData: {
+        name: 'Paloma Araujo',
+        userImg: 'https://picsum.photos/id/64/200/300',
+        registration: 'L0123456',
+        email: 'mail@tec.mx',
+      },
+      position: 'Desarrollador de Software',
+      area: 'Dirección de Desarrollo-Techvolution 2.0',
+      leader: {
+        userData: {
+          name: 'Arturo González Martínez',
+          userImg: 'https://picsum.photos/id/64/200/300',
+          email: 'mail@tec.mx',
+        },
+      },
+      generalist: {
+        userData: {
+          name: 'Ana María Gutiérrez Pineda',
+          userImg: 'https://picsum.photos/id/64/200/300',
+          email: 'mail@tec.mx',
+        },
+      },
+    },
+    campusAcessLink: 'https://www.example.com',
+    idDigitalLink: 'https://www.example.com',
+    tecServicesLink: 'https://www.example.com',
+    targetLinks: '_blank',
+    versionLabel: 'Versión 1.5.10',
+    versionBackTarget: '_blank',
+    versionBackLink: 'https://www.example.com',
+    versionBackText: 'Regresar a versión anterior mitec',
+    enableVersionBack: true,
+    handleCloseProfile: () => {
+      console.log('Close Profile');
+    },
+  },
+  render: (args: any) => ({
+    props: args,
+    template: `
+      <bmb-profile
+        ${attributes(args)}
+      />
+    `,
+  }),
+};
+
+export const CollaboratorWebVersionBackExample = {
+  name: 'Example of Collaborator (web) variant with version back',
+  argTypes: {
+    handleCloseProfile: {
+      control: false,
+    },
+  },
+  args: {
+    isStudent: false,
+    isMobile: false,
+    collaboratorData: {
+      userData: {
+        name: 'Paloma Araujo',
+        userImg: 'https://picsum.photos/id/64/200/300',
+        registration: 'L0123456',
+        email: 'mail@tec.mx',
+      },
+      position: 'Desarrollador de Software',
+      area: 'Dirección de Desarrollo-Techvolution 2.0',
+      leader: {
+        userData: {
+          name: 'Arturo González Martínez',
+          userImg: 'https://picsum.photos/id/64/200/300',
+          email: 'mail@tec.mx',
+        },
+        hierarchyLink: 'https://www.example.com',
+        hierarchyTarget: '_blank',
+      },
+      generalist: {
+        userData: {
+          name: 'Ana María Gutiérrez Pineda',
+          userImg: 'https://picsum.photos/id/64/200/300',
+          email: 'mail@tec.mx',
+        },
+        hierarchyLink: 'https://www.example.com',
+        hierarchyTarget: '_blank',
+      },
+    },
+    versionBackTarget: '_blank',
+    versionBackLink: 'https://www.example.com',
+    versionBackText: 'Regresar a versión anterior mitec',
+    enableVersionBack: true,
   },
   render: (args: any) => ({
     props: args,

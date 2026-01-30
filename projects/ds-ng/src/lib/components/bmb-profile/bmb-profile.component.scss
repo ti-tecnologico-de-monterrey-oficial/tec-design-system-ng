@@ -23,6 +23,17 @@
           margin-left: rem.rem_calc(16);
         }
       }
+
+      &-link {
+        .bmb_check-external-link-button,
+        .bmb_check-external-link-button-element {
+          width: 100%;
+        }
+      }
+
+      &.version-back {
+        padding: 0;
+      }
     }
   }
 

@@ -40,8 +40,7 @@
       color: rgb(var(--gray-charade-400));
     }
 
-    &-a,
-    a:not(.toc-list-item > a) {
+    &-a:not(.toc-list-item > a) {
       color: rgb(var(--blue-mariner-300));
     }
 

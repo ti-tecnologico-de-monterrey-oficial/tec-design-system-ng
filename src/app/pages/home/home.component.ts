@@ -25,6 +25,8 @@ import {
   BmbMediaCardComponent,
   BmbNotificationService,
   BmbAdvertisementCardComponent,
+  BmbActionMenuComponent,
+  BmbItemComponent,
 } from '../../../../projects/ds-ng/src/public-api';
 import { HelpMenuComponent } from '../../components/help-menu/help-menu.component';
 import { CdkDragPlaceholder } from '@angular/cdk/drag-drop';
@@ -49,14 +51,48 @@ import { CdkDragPlaceholder } from '@angular/cdk/drag-drop';
     BmbMediaCardComponent,
     CdkDragPlaceholder,
     BmbAdvertisementCardComponent,
+    BmbActionMenuComponent,
+    BmbItemComponent,
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
 })
 export class HomeComponent {
+  bookmarkActive = model<boolean>(false);
   @ViewChild('modalTemplate') modalTemplate!: TemplateRef<unknown>;
   @ViewChild('notificationTemplate')
   notificationTemplate!: TemplateRef<unknown>;
+
+  items = [
+    {
+      label: 'Correo',
+      icon: 'mail',
+      value: 'correo',
+      valueLink: 'mailto:tecservices@servicios.tec.mx',
+      isActive: false,
+    },
+    {
+      label: 'Teléfono',
+      icon: 'mobile',
+      value: '52 81 8358 2000',
+      valueLink: 'tel:52 81 8358 2000',
+      isActive: true,
+    },
+    {
+      label: 'Celular',
+      icon: 'mobile',
+      value: '+52 81 1625 5123 (solo texto)',
+      valueLink: '',
+      isActive: false,
+    },
+    {
+      label: 'Preguntas',
+      icon: 'question_exchange',
+      value: 'Preguntas',
+      valueLink: '',
+      isActive: true,
+    },
+  ];
 
   constructor(
     private router: Router,
@@ -70,14 +106,14 @@ export class HomeComponent {
     setTimeout(() => {
       console.log('show notification');
 
-      this.notificationService.addNotification({
-        title: 'Welcome to the Home Page!',
-        content: this.notificationTemplate,
-        isFullColor: false,
-        component: 'notification',
-        type: 'info',
-        delay: 500000,
-      });
+      // this.notificationService.addNotification({
+      //   title: 'Welcome to the Home Page!',
+      //   content: this.notificationTemplate,
+      //   isFullColor: false,
+      //   component: 'notification',
+      //   type: 'info',
+      //   delay: 500000,
+      // });
       this.notificationService.addNotification({
         title: 'Welcome to the Home Page!',
         content: 'This is a simple notification message.',
@@ -88,8 +124,6 @@ export class HomeComponent {
       });
     }, 1000);
   }
-
-  bookmarkActive = model<boolean>(false);
 
   templateClick(event: MouseEvent | KeyboardEvent) {
     const data: IBmbProjectionContent = {
