@@ -1,42 +1,11 @@
-<div
-  class="bmb_search-card-item"
-  bmbLayoutGrid
-  colGapSize="m"
-  rowGapSize="m"
-  [columnSize]="['48px', '1fr']"
-  rowSize="auto"
-  [columns]="2"
-  [rows]="2"
->
-  <section
-    bmbLayoutGridItem
-    [colStart]="1"
-    [rowStart]="1"
-    [numberOfColumns]="1"
-    [numberOfRows]="2"
-  >
-    <span class="bmb_title-content-container-icon" [ngStyle]="getStyles()">
-      <bmb-icon [icon]="icon()" [size]="24" [alt]="name()" />
-    </span>
-  </section>
-
-  <section
-    bmbLayoutGridItem
-    [colStart]="2"
-    [rowStart]="1"
-    [numberOfColumns]="1"
-    [numberOfRows]="1"
-  >
-    {{ name() }}
-  </section>
-
-  <section
-    bmbLayoutGridItem
-    [colStart]="2"
-    [rowStart]="2"
-    [numberOfColumns]="1"
-    [numberOfRows]="1"
-  >
-    {{ subtitle() }}
-  </section>
+<div class="bmb_search-card-item" (click)="handleClick()" tabindex="0" role="button">
+  <bmb-title-content
+    [title]="name()"
+    [subtitle]="subtitle()"
+    [icon]="icon()"
+    [iconSize]="24"
+    [bgIconAppearance]="backgroundColorIcon()"
+    [isAvatarIcon]="!isService()"
+    [avatarSize]="'desktop-small'"
+  />
 </div>

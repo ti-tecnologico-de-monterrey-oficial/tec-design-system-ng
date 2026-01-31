@@ -21,5 +21,6 @@
     [results]="resultList()"
     (triggerSearch)="handleSearchChange($event)"
     [isLoading]="isSearchLoading()"
+    (searchItemClick)="handleServiceClick($event)"
   ></bmb-search-card>
 </div>
