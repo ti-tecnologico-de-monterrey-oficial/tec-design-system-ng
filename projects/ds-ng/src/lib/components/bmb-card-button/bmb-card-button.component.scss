@@ -15,7 +15,7 @@
 
   .bmb_card_button-small-text,
   .bmb_card_button-small-close-icon {
-    color: var(--buttons-alternative-normal);
+    color: var(--general-contrasts-75);
   }
 }
 
@@ -303,7 +303,7 @@
 
     &-text {
       @include fonts.font(1, regular);
-      color: var(--general-contrasts-50);
+      color: var(--general-contrasts-75);
       padding-top: rem.rem_calc(16);
       text-align: center;
       width: 100%;
