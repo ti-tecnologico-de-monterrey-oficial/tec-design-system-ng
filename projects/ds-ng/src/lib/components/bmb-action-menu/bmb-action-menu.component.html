@@ -1,6 +1,6 @@
-<section class="bmb_action_menu">
+<section class="bmb_action-menu">
   @if (showHeader()) {
-    <div class="bmb_action_menu-header">
+    <div class="bmb_action-menu-header">
       <bmb-title-content
         [transparentBgC]="true"
         [title]="title()"
@@ -12,12 +12,12 @@
     </div>
   }
   <section
-    class="bmb_action_menu-container"
-    [ngClass]="{ 'bmb_action_menu-container-no-header': !showHeader() }"
+    class="bmb_action-menu-container"
+    [ngClass]="{ 'bmb_action-menu-container-no-header': !showHeader() }"
   >
-    <ul class="bmb_action_menu-list">
+    <ul class="bmb_action-menu-list">
       @for (element of projectedContent; track $index) {
-        <li class="bmb_action_menu-item">
+        <li class="bmb_action-menu-item">
           <ng-container *ngTemplateOutlet="element" />
         </li>
       }

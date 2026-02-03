@@ -24,10 +24,6 @@
     .bmb_dropdown-content-modal {
       background-color: rgb(var(--gray-charade-900));
     }
-
-    .bmb_dropdown_menu {
-      @include mixins.dropdown-menu-left(250);
-    }
   }
 
   &-no-mobile {

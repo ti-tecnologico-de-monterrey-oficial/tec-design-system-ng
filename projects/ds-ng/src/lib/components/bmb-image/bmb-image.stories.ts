@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/angular';
 import { BmbImageComponent } from './bmb-image.component';
 import {
+  attributes,
   DESIGN_SYSTEM_TITLE,
   getArchitectureSection,
   getBasicExampleBlock,
@@ -46,6 +47,7 @@ ${getBasicExampleBlock('BmbImageComponent')}
     loading: DBmbImageParamDesc.loading,
     enableZoom: DBmbImageParamDesc.enableZoom,
     isBlurredBackdrop: DBmbImageParamDesc.isBlurredBackdrop,
+    images: DBmbImageParamDesc.images,
   },
   args: {
     src: 'https://farm2.staticflickr.com/1919/45579541712_f58c1fd0ed_o.jpg',
@@ -63,4 +65,35 @@ ${getBasicExampleBlock('BmbImageComponent')}
 
 type Story = StoryObj<BmbImageComponent>;
 
-export const Default: Story = {};
+export const Default: Story = {
+  render: (args) => ({
+    props: args,
+    template: `
+        <bmb-image ${attributes(args)}/>
+      `,
+  }),
+};
+
+export const Carousel: Story = {
+  name: 'Example carousel',
+  args: {
+    images: [
+      {
+        src: 'https://farm2.staticflickr.com/1919/45579541712_f58c1fd0ed_o.jpg',
+        mobileSrc:
+          'https://2.bp.blogspot.com/-YkNDZEbKt_g/TYzcbF2_tkI/AAAAAAAAalk/Vt_MHS60Xv8/s1600/www.JoseLuisAvilaHerrera.BLOGSPOT.com%2B-%2BFunny%2BCats%2B-%2BGatitos%2Bmuy%2Btiernos%2B8.jpg',
+        alt: 'Image 1',
+      },
+      {
+        src: 'https://images.unsplash.com/photo-1546182990-dffeafbe841d',
+        mobileSrc:
+          'https://images.unsplash.com/photo-1546182990-dffeafbe841d?auto=format&fit=crop&w=800&q=60',
+        alt: 'Image 2',
+      },
+      {
+        src: 'https://images.unsplash.com/photo-1507149833265-60c372daea22',
+        alt: 'Image 3',
+      },
+    ],
+  },
+};

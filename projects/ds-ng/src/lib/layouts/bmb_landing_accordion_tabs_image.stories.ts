@@ -21,6 +21,7 @@ import {
   getPageStructureForTemplateStories,
   getSpecialSpecifications,
   getTechnicalDocReferences,
+  getTECParticularitiesMessage,
 } from '../utils/doc/utils';
 
 import * as topBarStory from '../components/bmb-top-bar/bmb-top-bar.stories';
@@ -405,7 +406,7 @@ class StorybookAccordionTabs {
 export default {
   title: 'Particularities/mitec web/Landings/Accordion with image',
   component: BmbTopBarComponent,
-  tags: ['!autodocs'],
+  tags: ['!autodocs', 'tec'],
   decorators: [
     moduleMetadata({
       imports: [StorybookAccordionTabs, BmbTopBarComponent],
@@ -418,7 +419,9 @@ export default {
         component: `
 ${getLandingGeneralDesc('Accordion with image')}
 ${getSpecialSpecifications(
-  getTechnicalDocReferences({
+  `
+  ${getTECParticularitiesMessage()}<br/>
+  ${getTechnicalDocReferences({
     references: [
       { title: topBarStory.default.title! },
       { title: sideBarStory.default.title! },
@@ -433,7 +436,7 @@ ${getSpecialSpecifications(
       { title: iconStory.default.title! },
     ],
     isFullScreenDesc: true,
-  }),
+  })}`,
   { showAdditionalBlockquote: true },
 )}
 ${getBasicExampleBlock(

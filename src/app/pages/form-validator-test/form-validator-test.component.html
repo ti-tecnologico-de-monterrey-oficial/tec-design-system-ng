@@ -11,3 +11,16 @@
   [data]="filterOptions"
   (onClearField)="onClearField($event)"
 ></bmb-search-input>
+<br />
+<div style="margin-left: 200px; padding-right: 1rem">
+  <bmb-text-editor [control]="getFormControl('htmlText')"></bmb-text-editor>
+  <br />
+  <bmb-search-card
+    [title]="''"
+    [inputPlaceholder]="''"
+    [results]="resultList()"
+    (triggerSearch)="handleSearchChange($event)"
+    [isLoading]="isSearchLoading()"
+    (searchItemClick)="handleServiceClick($event)"
+  ></bmb-search-card>
+</div>

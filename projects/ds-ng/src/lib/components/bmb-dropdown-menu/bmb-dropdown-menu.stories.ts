@@ -57,11 +57,6 @@ ${getBasicExampleBlock('BmbDropdownMenuComponent', '', '', false, '', 'Activated
   },
   argTypes: {
     items: DBmbDropdownMenuParamDesc.items,
-    isOpen: getPropertyParamDesc(
-      'flag to display the listing',
-      'boolean',
-      false,
-    ),
     clickedItem: getOnEventParam(
       {
         name: 'clickedItem',

@@ -18,7 +18,14 @@ import {
   IBmbUserInfo,
 } from '../../public-api';
 import { CommonModule } from '@angular/common';
-import { attributes } from '../utils/doc/utils';
+import {
+  attributes,
+  DESIGN_SYSTEM_TITLE,
+  getGeneralDescription,
+  getSpecialSpecifications,
+  getTECParticularitiesMessage,
+  RELEVANT_TITLE,
+} from '../utils/doc/utils';
 import { BmbCarouselComponent } from '../components/bmb-carousel/bmb-carousel.component';
 
 @Component({
@@ -508,6 +515,7 @@ class StorybookHomeMitecMobile {
 export default {
   title: 'Organisms/Home mitec mobile',
   component: BmbUserProfileComponent,
+  tags: ['tec'],
   decorators: [
     moduleMetadata({
       imports: [StorybookHomeMitecMobile, BmbUserProfileComponent],
@@ -518,9 +526,18 @@ export default {
     docs: {
       description: {
         component: `
-Below is an example of how you can use the components needed for this organization ingit status
- TypeScript:
+${getGeneralDescription(`Template containing the ${DESIGN_SYSTEM_TITLE} elements to be used to implement the **Home mitec mobile** organism.`)}
+${getSpecialSpecifications(
+  `
+${getTECParticularitiesMessage('organism')}
 
+>
+###${RELEVANT_TITLE.configuration}
+Below is an example of how you can use the components needed for this organization.`,
+  {
+    showAdditionalBlockquote: true,
+  },
+)}
 \`\`\`typescript
 import { MatDialog } from '@angular/material/dialog';
 import { BmbModalComponent, ModalDataConfig } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';

@@ -561,6 +561,32 @@ The badge should always have a parent element.`,
       type: { summary: 'boolean' },
     },
   },
+  images: {
+    control: {
+      type: 'object',
+    },
+    description: `
+Sets multiple images to enable carousel behavior.
+
+When this property is provided with more than one image, the component automatically switches to carousel mode and displays navigation arrows.
+
+Each image supports:
+- **src**: high-resolution image URL (required)
+- **mobileSrc**: low-resolution image URL (optional)
+- **alt**: alternative text (optional)
+  `,
+    table: {
+      category: 'Properties',
+      type: {
+        summary: `{
+  src: string;
+  mobileSrc?: string;
+  alt?: string;
+}[]`,
+      },
+      defaultValue: getDefaultValueControl(),
+    },
+  },
 };
 
 export const DBmbIconParamDesc = {

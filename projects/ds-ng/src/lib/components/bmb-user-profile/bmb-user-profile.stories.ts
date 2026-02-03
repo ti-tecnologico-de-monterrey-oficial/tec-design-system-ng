@@ -4,18 +4,24 @@ import {
   getBasicExampleBlock,
   getGeneralComponentDescription,
   getGeneralDescription,
+  getSpecialSpecifications,
+  getTECParticularitiesMessage,
 } from '../../utils/doc/utils';
 import { DBmbGenericParamDesc } from '../../utils/doc/parameterDescriptions';
 
 export default {
   title: 'Dev tools/User profile',
   component: BmbUserProfileComponent,
+  tags: ['tec'],
   parameters: {
     docs: {
       controls: { exclude: ['isLoading', 'handleContinue'] },
       description: {
         component: `
 ${getGeneralDescription(`${getGeneralComponentDescription({ type: 'element' })} `, { generalDocLink: 'https://bamboo.tec.mx/latest/dev-tools/coleccion-de-componentes-uC69aq75' })}
+${getSpecialSpecifications(getTECParticularitiesMessage('organism'), {
+  showAdditionalBlockquote: true,
+})}
 ${getBasicExampleBlock('')}
         `,
       },

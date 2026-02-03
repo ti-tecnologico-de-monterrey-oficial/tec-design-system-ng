@@ -2,7 +2,16 @@ import { moduleMetadata, type Meta, type StoryFn } from '@storybook/angular';
 import { BmbLoginOnboardingComponent } from './bmb-login-onboarding.component';
 import { Component } from '@angular/core';
 import { IBmbLoginOnboarding, IBmbUserInfo } from '../../types';
-import { RELEVANT_TITLE } from '../../utils/doc/utils';
+import {
+  BlockquoteType,
+  getAlertBlockquote,
+  getBasicExampleBlock,
+  getGeneralComponentDescription,
+  getGeneralDescription,
+  getSpecialSpecifications,
+  getTECParticularitiesMessage,
+  RELEVANT_TITLE,
+} from '../../utils/doc/utils';
 
 @Component({
   standalone: true,
@@ -82,6 +91,7 @@ class StorybookToastWrapperComponent {
 export default {
   title: 'Organisms/Login onboarding mobile',
   component: BmbLoginOnboardingComponent,
+  tags: ['tec'],
   decorators: [
     moduleMetadata({
       imports: [StorybookToastWrapperComponent, BmbLoginOnboardingComponent],
@@ -92,25 +102,28 @@ export default {
     docs: {
       description: {
         component: `
-${RELEVANT_TITLE.note}This component **does not have support** for the \`light\` theme.
-
-Below is an example of how you can use this component in TypeScript:
-
-\`\`\`typescript
-import {
-  BmbLoginOnboardingComponent,
+${getGeneralDescription(`${getGeneralComponentDescription({ name: 'login', type: 'organism' })} to log in to the web platform. It includes fields for credentials and password recovery.`, { generalDocLink: 'https://bamboo.tec.mx/latest/organisms/login-layout-web/descripcion-general-uYEtF9vq' })}
+${getSpecialSpecifications(
+  `${getTECParticularitiesMessage('organism')}
+<br/>
+  ${getAlertBlockquote(
+    `This component **does not have support** for the *light* theme.`,
+    {
+      title: `###${RELEVANT_TITLE.deprecated}`,
+      blockquoteType: BlockquoteType.note,
+    },
+  )}
+  `,
+  {
+    showAdditionalBlockquote: true,
+  },
+)}
+${getBasicExampleBlock(
+  `BmbLoginOnboardingComponent,
   IBmbLoginOnboarding,
-   IBmbUserInfo,
-} from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
-
-@Component({
-  selector: 'component',
-  standalone: true,
-  imports: [ BmbLoginOnboardingComponent ],
-  templateUrl: './component.html',
-  styleUrl: './component.scss',
-})
-export class AppComponent {
+   IBmbUserInfo`,
+  '',
+  `
   auth(data: unknown): boolean {
     data;
     return true;
@@ -172,13 +185,13 @@ export class AppComponent {
     }
   }
 }
-
-\`\`\`
-
-Below is an example of how you can use this component in HTML:
+`,
+)}
+\`\`\`html
 <bmb-login-onboarding (handleRequet)="handleRequet($event)">
   <p>custom content</p>
 </bmb-login-onboarding>
+\`\`\`
         `,
       },
     },

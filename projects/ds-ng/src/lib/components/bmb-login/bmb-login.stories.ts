@@ -5,18 +5,20 @@ import {
   getGeneralComponentDescription,
   getGeneralDescription,
   getOnEvent,
+  getSpecialSpecifications,
+  getTECParticularitiesMessage,
   RELEVANT_TITLE,
 } from '../../utils/doc/utils';
 import {
   DBmbGenericParamDesc,
   getDefaultValueControl,
-  getOnClickParam,
   getOnEventParam,
 } from '../../utils/doc/parameterDescriptions';
 
 export default {
   title: 'Organisms/Login layout web',
   component: BmbLoginComponent,
+  tags: ['tec'],
   parameters: {
     docs: {
       controls: {
@@ -27,14 +29,14 @@ export default {
           'handleContinue',
           'handleFormGroup',
           'handleRememberMe',
-          '',
-          '',
-          '',
         ],
       },
       description: {
         component: `
 ${getGeneralDescription(`${getGeneralComponentDescription({ name: 'login', type: 'organism' })} to log in to the web platform. It includes fields for credentials and password recovery.`, { generalDocLink: 'https://bamboo.tec.mx/latest/organisms/login-layout-web/descripcion-general-uYEtF9vq' })}
+${getSpecialSpecifications(getTECParticularitiesMessage('organism'), {
+  showAdditionalBlockquote: true,
+})}
 ${getBasicExampleBlock('BmbLoginComponent')}
         `,
       },

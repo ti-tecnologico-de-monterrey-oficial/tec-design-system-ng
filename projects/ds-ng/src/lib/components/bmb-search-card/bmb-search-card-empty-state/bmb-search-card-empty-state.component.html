@@ -1,0 +1,28 @@
+<div
+  class="bmb_search-card-empty-state"
+  bmbVerticalLayout
+  gapSize="m"
+  justify="center"
+  alignItems="center"
+  margin="m"
+>
+  <div class="bmb_search-card-empty-state_icon">
+    <bmb-icon
+      icon="quiz"
+      [size]="120"
+      [alt]="
+        inputHasValue()
+          ? ('search_card.empty_state.no_results_title' | translate)
+          : ('search_card.empty_state.new_search_card_title' | translate)
+      "
+    ></bmb-icon>
+  </div>
+
+  <h2 class="bmb_search-card-empty-state_primary">
+    {{
+      inputHasValue()
+        ? ('search_card.empty_state.no_results_title' | translate)
+        : ('search_card.empty_state.new_search_card_title' | translate)
+    }}
+  </h2>
+</div>

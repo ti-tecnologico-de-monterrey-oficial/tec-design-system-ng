@@ -17,6 +17,7 @@ import {
   IBmbInputAppearance,
   IBmbInputType,
 } from '../bmb-input.component';
+import { TranslatePipe } from '../../../pipes/translations';
 
 @Component({
   selector: 'bmb-input-content',
@@ -26,6 +27,7 @@ import {
     BmbIconComponent,
     ReactiveFormsModule,
     BmbActionIconComponent,
+    TranslatePipe,
   ],
   templateUrl: './bmb-input-content.component.html',
   styleUrl: './bmb-input-content.component.scss',
@@ -55,6 +57,7 @@ export class BmbInputContentComponent {
   isError = input<boolean>(false);
   isHidden = input<boolean>(false);
   showStates = input<boolean>(false);
+  isLoading = input<boolean>(false);
 
   control = model<FormControl>(new FormControl());
 

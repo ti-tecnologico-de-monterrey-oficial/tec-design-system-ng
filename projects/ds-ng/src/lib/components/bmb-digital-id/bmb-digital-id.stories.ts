@@ -10,6 +10,8 @@ import {
   getGeneralComponentDescription,
   getGeneralDescription,
   getOnEvent,
+  getSpecialSpecifications,
+  getTECParticularitiesMessage,
   IBmbOnEvent,
 } from '../../utils/doc/utils';
 import {
@@ -49,6 +51,7 @@ const getPropDesc = (name: string) => {
 export default {
   title: 'Particularities/mitec app/Digital ID',
   component: BmbDigitalIdComponent,
+  tags: ['tec'],
   decorators: [
     componentWrapperDecorator((story: string) => {
       return `<div style="max-width: 430px; margin: 0 auto">
@@ -71,6 +74,9 @@ export default {
       description: {
         component: `
 ${getGeneralDescription(`${getGeneralComponentDescription({ name: 'digital-id' })} the digital identification to be displayed, adapting to the profile within the institution.`, { generalDocLink: 'https://bamboo.tec.mx/latest/particularities/mitec-app/digital-id-OGcI0rQ5' })}
+${getSpecialSpecifications(getTECParticularitiesMessage(), {
+  showAdditionalBlockquote: true,
+})}
 ${getBasicExampleBlock(
   'BmbDigitalIdComponent',
   '',
@@ -167,7 +173,6 @@ ${getBasicExampleBlock(
     role: 'Estudiante',
     textButton: 'Acceso a Campues',
     icon: 'qr_code_scanner',
-    hideButton: false,
     imgProfile: 'https://picsum.photos/id/64/200/300',
     logoSrc: 'assets/images/tec-logo.svg',
     disableMainButton: false,

@@ -1,6 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { FormControl, FormGroup } from '@angular/forms';
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
+import { Subject } from 'rxjs';
+import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import {
   BmbFormValidatorComponent,
   BmbButtonDirective,
@@ -11,7 +13,11 @@ import {
   IBmbDropdownItem,
   BmbTextEditorComponent,
   BmbSearchInputComponent,
+  BmbSearchCardComponent,
+  IBmbSearchCardItemResult,
 } from '../../../../projects/ds-ng/src/public-api';
+import persons from './persons.json';
+import services from './services.json';
 
 @Component({
   selector: 'bmb-form-validator-test',
@@ -25,14 +31,51 @@ import {
     BmbInputComponent,
     BmbTextEditorComponent,
     BmbSearchInputComponent,
+    BmbSearchCardComponent,
   ],
   templateUrl: './form-validator-test.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
 })
 export class FormValidatorTestComponent {
+  private searchSubject = new Subject<string>();
+
+  constructor() {
+    this.searchSubject
+      .pipe(debounceTime(1000), distinctUntilChanged())
+      .subscribe((searchTerm) => {
+        const searchLower = searchTerm.toLowerCase();
+
+        const filteredPersons = persons
+          .filter((person) => person.name?.toLowerCase().includes(searchLower))
+          .map((person) => ({
+            ...person,
+            id: person.id.toString(),
+            type: person.type as 'person' | 'service',
+          }));
+
+        const filteredServices = services
+          .filter((service) =>
+            service.name?.toLowerCase().includes(searchLower),
+          )
+          .map((service) => ({
+            ...service,
+            id: service.id.toString(),
+            type: service.type as 'person' | 'service',
+          }));
+
+        this.resultList.set([
+          ...filteredPersons,
+          ...filteredServices,
+        ]);
+        this.isSearchLoading.set(false);
+      });
+  }
+
   formGroup: FormGroup = new FormGroup({
-    htmlText: new FormControl('<h1>Test</h1><p>This is a test</p>'),
+    htmlText: new FormControl(
+      `<div contenteditable="true" class="bmb_text-editor-content"><h1>Test</h1><p>This is a test</p><p><br></p><p><a href="https://www.google.com" target="_blank" rel="noopener noreferrer">asd</a></p></div>`,
+    ),
   });
 
   options: IBmbDropdownItem[] = [];
@@ -74,5 +117,20 @@ export class FormValidatorTestComponent {
 
   onClearField(event: boolean): void {
     console.info('Clear field event received:', event);
+  }
+
+  isSearchLoading = signal<boolean>(false);
+  resultList = signal<IBmbSearchCardItemResult[]>([]);
+
+  handleSearchChange(searchTerm: string): void {
+    if (searchTerm) {
+      this.isSearchLoading.set(true);
+      console.log('Search term:', searchTerm);
+      this.searchSubject.next(searchTerm);
+    }
+  }
+
+  handleServiceClick(service: IBmbSearchCardItemResult): void {
+    console.log('Service clicked:', service);
   }
 }

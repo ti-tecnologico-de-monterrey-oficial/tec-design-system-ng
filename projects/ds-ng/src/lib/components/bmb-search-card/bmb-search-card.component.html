@@ -1,0 +1,95 @@
+<section class="bmb_search-card">
+  <bmb-home-card
+    [title]="title() || 'search_card.title' | translate"
+    [showRightButton]="false"
+    icon="search"
+    bgIconAppearance="blue-primary"
+  >
+    <bmb-input
+      [placeholder]="
+        inputPlaceholder() || 'search_card.input_placeholder' | translate
+      "
+      [icon]="'search'"
+      [isClearable]="true"
+      [control]="inputSearchControl"
+      [isLoading]="isLoading()"
+    />
+    <section
+      class="bmb_search-card-results"
+      [ngClass]="{
+        'bmb_search-card-results-active':
+          computedResults().persons.length && computedResults().services.length
+      }"
+    ></section>
+    <bmb-tabs [tabs]="tabsData()" [(selectedTabId)]="selectedTabId">
+      @switch (selectedTabId()) {
+        @case (1) {
+          @if (computedResults().services.length) {
+            <section class="bmb_search-card-results-section">
+              <h3>{{ 'search_card.tabs.services' | translate }}</h3>
+              <ul class="bmb_search-card-results-list">
+                @for (service of computedResults().services; track $index) {
+                  <ng-container *ngTemplateOutlet="cardItem; context: { item: service }"></ng-container>
+                }
+              </ul>
+            </section>
+          }
+          @if (computedResults().persons.length) {
+            <section class="bmb_search-card-results-section">
+              <h3>{{ 'search_card.tabs.people' | translate }}</h3>
+              <ul class="bmb_search-card-results-list">
+                @for (person of computedResults().persons; track $index) {
+                  <ng-container *ngTemplateOutlet="cardItem; context: { item: person }"></ng-container>
+                }
+              </ul>
+            </section>
+          }
+        }
+        @case (2) {
+          @if (computedResults().services.length) {
+            <section class="bmb_search-card-results-section">
+              <h3>{{ 'search_card.tabs.services' | translate }}</h3>
+              <ul class="bmb_search-card-results-list">
+                @for (service of computedResults().services; track $index) {
+                  <ng-container *ngTemplateOutlet="cardItem; context: { item: service }"></ng-container>
+                }
+              </ul>
+            </section>
+          }
+        }
+        @case (3) {
+          @if (computedResults().persons.length) {
+            <section class="bmb_search-card-results-section">
+              <h3>{{ 'search_card.tabs.people' | translate }}</h3>
+              <ul class="bmb_search-card-results-list">
+                @for (person of computedResults().persons; track $index) {
+                  <ng-container *ngTemplateOutlet="cardItem; context: { item: person }"></ng-container>
+                }
+              </ul>
+            </section>
+          }
+        }
+      }
+    </bmb-tabs>
+    @if (
+      !computedResults().persons.length && !computedResults().services.length && !isLoading()
+    ) {
+      <bmb-search-card-empty-state
+        [inputHasValue]="!!inputSearchControl.value"
+      ></bmb-search-card-empty-state>
+    }
+    {{ isLoading() ? 'Loading...' : '' }}
+  </bmb-home-card>
+</section>
+
+<ng-template #cardItem let-item="item">
+  <li class="bmb_search-card-results-list-item">
+    <bmb-search-card-item
+      [name]="item.name"
+      [subtitle]="item.subtitle"
+      [icon]="item.avatarOrIcon"
+      [isService]="false"
+      (triggerClick)="searchItemClick.emit(item)"
+    ></bmb-search-card-item>
+  </li>
+</ng-template>

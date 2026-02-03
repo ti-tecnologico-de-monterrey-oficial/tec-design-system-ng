@@ -38,7 +38,14 @@ import { BmbVerticalLayoutItemDirective } from '../directives/bmb-layout/bmb-ver
   ],
   template: `
     <section
-      style="display: flex; gap: var(--bmb-spacing-m); flex-wrap: wrap; justify-content: center; align-items: center; margin-bottom: 2rem;"
+      style="
+      width: 100%;F
+      display: flex;
+      gap: var(--bmb-spacing-m);
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 2rem;"
     >
       <h1 style="width: 100%;">${SANDBOX_TITLE}</h1>
       <ng-template
@@ -50,7 +57,11 @@ import { BmbVerticalLayoutItemDirective } from '../directives/bmb-layout/bmb-ver
         let-isJustifyStart="isJustifyStart"
       >
         <ul
-          style="margin: 0 var(--bmb-spacing-m); padding: 0; list-style: none"
+          style="
+          width: 100%;
+          margin: 0 var(--bmb-spacing-m);
+          padding: 0;
+          list-style: none;"
           bmbLayout
           margin="none"
           gapSize="l"

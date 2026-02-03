@@ -3,9 +3,14 @@
   [ngClass]="{ 'bmb_title-content-transparent_bgc': transparentBgC() }"
 >
   <section class="bmb_title-content-container">
-    @if (!!icon()) {
+    @if (!!icon() && !isAvatarIcon()) {
       <span class="bmb_title-content-container-icon" [ngStyle]="getStyles()">
         <bmb-icon [icon]="icon()" [size]="iconSize()" [alt]="title()" />
+      </span>
+    }
+    @if (isAvatarIcon()) {
+      <span class="bmb_title-content-container-avatar">
+        <bmb-user-image [image]="icon()" [size]="avatarSize()"></bmb-user-image>
       </span>
     }
     <section class="bmb_title-content-container-wrapper">
