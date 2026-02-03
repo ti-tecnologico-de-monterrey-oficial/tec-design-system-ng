@@ -64,10 +64,7 @@ export class FormValidatorTestComponent {
             type: service.type as 'person' | 'service',
           }));
 
-        this.resultList.set([
-          ...filteredPersons,
-          ...filteredServices,
-        ]);
+        this.resultList.set([...filteredPersons, ...filteredServices]);
         this.isSearchLoading.set(false);
       });
   }

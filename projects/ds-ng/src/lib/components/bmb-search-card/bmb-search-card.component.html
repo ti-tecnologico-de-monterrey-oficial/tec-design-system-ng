@@ -29,7 +29,9 @@
               <h3>{{ 'search_card.tabs.services' | translate }}</h3>
               <ul class="bmb_search-card-results-list">
                 @for (service of computedResults().services; track $index) {
-                  <ng-container *ngTemplateOutlet="cardItem; context: { item: service }"></ng-container>
+                  <ng-container
+                    *ngTemplateOutlet="cardItem; context: { item: service }"
+                  ></ng-container>
                 }
               </ul>
             </section>
@@ -39,7 +41,9 @@
               <h3>{{ 'search_card.tabs.people' | translate }}</h3>
               <ul class="bmb_search-card-results-list">
                 @for (person of computedResults().persons; track $index) {
-                  <ng-container *ngTemplateOutlet="cardItem; context: { item: person }"></ng-container>
+                  <ng-container
+                    *ngTemplateOutlet="cardItem; context: { item: person }"
+                  ></ng-container>
                 }
               </ul>
             </section>
@@ -51,7 +55,9 @@
               <h3>{{ 'search_card.tabs.services' | translate }}</h3>
               <ul class="bmb_search-card-results-list">
                 @for (service of computedResults().services; track $index) {
-                  <ng-container *ngTemplateOutlet="cardItem; context: { item: service }"></ng-container>
+                  <ng-container
+                    *ngTemplateOutlet="cardItem; context: { item: service }"
+                  ></ng-container>
                 }
               </ul>
             </section>
@@ -63,7 +69,9 @@
               <h3>{{ 'search_card.tabs.people' | translate }}</h3>
               <ul class="bmb_search-card-results-list">
                 @for (person of computedResults().persons; track $index) {
-                  <ng-container *ngTemplateOutlet="cardItem; context: { item: person }"></ng-container>
+                  <ng-container
+                    *ngTemplateOutlet="cardItem; context: { item: person }"
+                  ></ng-container>
                 }
               </ul>
             </section>
@@ -72,7 +80,9 @@
       }
     </bmb-tabs>
     @if (
-      !computedResults().persons.length && !computedResults().services.length && !isLoading()
+      !computedResults().persons.length &&
+      !computedResults().services.length &&
+      !isLoading()
     ) {
       <bmb-search-card-empty-state
         [inputHasValue]="!!inputSearchControl.value"

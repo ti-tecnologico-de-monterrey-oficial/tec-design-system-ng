@@ -1,4 +1,10 @@
-import { ChangeDetectionStrategy, Component, input, output, ViewEncapsulation } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  input,
+  output,
+  ViewEncapsulation,
+} from '@angular/core';
 import { IBmbColor } from '../../../types/colors';
 import { getRGBColorKeyValue, isImage } from '../../../utils/utils';
 import { CommonModule } from '@angular/common';
@@ -7,10 +13,7 @@ import { BmbTitleContentComponent } from '../../bmb-title-content/bmb-title-cont
 @Component({
   selector: 'bmb-search-card-item',
   standalone: true,
-  imports: [
-    CommonModule,
-    BmbTitleContentComponent,
-  ],
+  imports: [CommonModule, BmbTitleContentComponent],
   templateUrl: './bmb-search-card-item.component.html',
   styleUrl: './bmb-search-card-item.component.scss',
   encapsulation: ViewEncapsulation.None,
