@@ -10,26 +10,14 @@ import { BmbTranslationsService } from '../../services/translations/translations
 import { BmbSearchCardItemComponent } from './bmb-search-card-item/bmb-search-card-item.component';
 import { IBmbColor } from '../../types/colors';
 
-export interface IBmbSearchCardResultService {
-  id?: string;
+export interface IBmbSearchCardItemResult {
+  id: string;
   name: string;
-  category: string;
-  icon?: string;
+  subtitle: string;
+  avatarOrIcon: string;
   backgroundColorIcon?: IBmbColor;
+  type: 'person' | 'service';
   [key: string]: any;
-}
-
-export interface IBmbSearchCardResultPerson {
-  id?: string;
-  name: string;
-  area: string;
-  avatar: string;
-  [key: string]: any;
-}
-
-export interface IBmbSearchCardResults {
-  services: IBmbSearchCardResultService[];
-  persons: IBmbSearchCardResultPerson[];
 }
 
 @Component({
@@ -50,29 +38,50 @@ export interface IBmbSearchCardResults {
 export class BmbSearchCardComponent {
   title = input<string>('');
   inputPlaceholder = input<string>('');
-  results = input<IBmbSearchCardResults>({ services: [], persons: [] });
+  results = input<IBmbSearchCardItemResult[]>([]);
   isLoading = input<boolean>(false);
 
+  selectedTabId = model<number>(1);
+
   triggerSearch = output<string>();
+  searchItemClick = output<IBmbSearchCardItemResult>();
 
   inputSearchControl = new FormControl('');
-  selectedTabId = model<number>(1);
+  computedResults = computed<{
+    services: IBmbSearchCardItemResult[];
+    persons: IBmbSearchCardItemResult[];
+  }>(() => {
+    return this.results().reduce(
+      (acc, item) => {
+        if (item.type === 'service') {
+          acc.services.push(item);
+        } else if (item.type === 'person') {
+          acc.persons.push(item);
+        }
+        return acc;
+      },
+      { services: [], persons: [] } as {
+        services: IBmbSearchCardItemResult[];
+        persons: IBmbSearchCardItemResult[];
+      },
+    );
+  });
   tabsData = computed<IBmbTab[]>(() => [
     {
       id: 1,
       title: this.translationsService.translate('search_card.tabs.all'),
-      badge: this.results().persons.length + this.results().services.length,
+      badge: this.computedResults().persons.length + this.computedResults().services.length,
       isActive: true,
     },
     {
       id: 2,
       title: this.translationsService.translate('search_card.tabs.services'),
-      badge: this.results().services.length,
+      badge: this.computedResults().services.length,
     },
     {
       id: 3,
       title: this.translationsService.translate('search_card.tabs.people'),
-      badge: this.results().persons.length,
+      badge: this.computedResults().persons.length,
     },
   ]);
 

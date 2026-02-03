@@ -14,6 +14,8 @@ import { BmbContainerComponent } from '../bmb-container/bmb-container.component'
 import { isImage } from '../../utils/utils';
 import { IBmbColor } from '../../types/colors';
 import { getRGBColorKeyValue } from '../../utils/utils';
+import { BmbUserImageComponent } from '../bmb-user-image/bmb-user-image.component';
+import { IBmbUserImageSize } from '../../types';
 
 export type IBmbFontWeightContent =
   | '100'
@@ -34,6 +36,7 @@ export type IBmbFontWeightContent =
     BmbContainerComponent,
     BmbIconComponent,
     BmbBreadcrumbComponent,
+    BmbUserImageComponent,
   ],
   templateUrl: './bmb-title-content.component.html',
   styleUrl: './bmb-title-content.component.scss',
@@ -55,6 +58,8 @@ export class BmbTitleContentComponent {
   icon = input<string>('');
   iconSize = input<number>(24);
   bgIconAppearance = input<IBmbColor>();
+  isAvatarIcon = input<boolean>(false);
+  avatarSize = input<IBmbUserImageSize>('desktop-small');
 
   isImage(icon: string): boolean {
     return isImage(icon);

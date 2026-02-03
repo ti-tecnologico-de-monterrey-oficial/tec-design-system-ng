@@ -14,8 +14,7 @@ import {
   BmbTextEditorComponent,
   BmbSearchInputComponent,
   BmbSearchCardComponent,
-  IBmbSearchCardResultPerson,
-  IBmbSearchCardResultService,
+  IBmbSearchCardItemResult,
 } from '../../../../projects/ds-ng/src/public-api';
 import persons from './persons.json';
 import services from './services.json';
@@ -52,6 +51,7 @@ export class FormValidatorTestComponent {
           .map((person) => ({
             ...person,
             id: person.id.toString(),
+            type: person.type as 'person' | 'service',
           }));
 
         const filteredServices = services
@@ -61,15 +61,13 @@ export class FormValidatorTestComponent {
           .map((service) => ({
             ...service,
             id: service.id.toString(),
+            type: service.type as 'person' | 'service',
           }));
 
-        console.log('Filtered persons:', filteredPersons);
-        console.log('Filtered services:', filteredServices);
-
-        this.resultList.set({
-          services: filteredServices,
-          persons: filteredPersons,
-        });
+        this.resultList.set([
+          ...filteredPersons,
+          ...filteredServices,
+        ]);
         this.isSearchLoading.set(false);
       });
   }
@@ -122,10 +120,7 @@ export class FormValidatorTestComponent {
   }
 
   isSearchLoading = signal<boolean>(false);
-  resultList = signal<{
-    services: IBmbSearchCardResultService[];
-    persons: IBmbSearchCardResultPerson[];
-  }>({ services: [], persons: [] });
+  resultList = signal<IBmbSearchCardItemResult[]>([]);
 
   handleSearchChange(searchTerm: string): void {
     if (searchTerm) {
@@ -133,5 +128,9 @@ export class FormValidatorTestComponent {
       console.log('Search term:', searchTerm);
       this.searchSubject.next(searchTerm);
     }
+  }
+
+  handleServiceClick(service: IBmbSearchCardItemResult): void {
+    console.log('Service clicked:', service);
   }
 }
