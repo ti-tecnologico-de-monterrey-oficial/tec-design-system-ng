@@ -56,7 +56,15 @@ export default {
   parameters: {
     docs: {
       controls: {
-        exclude: ['getClassList', 'handleClick', 'handleSecondaryClick'],
+        exclude: [
+          'getClassList',
+          'handleClick',
+          'handleSecondaryClick',
+          'abort',
+          'destroyRef',
+          'isMobileOrTablet',
+          'mql',
+        ],
       },
       description: {
         component: `
