@@ -28,6 +28,7 @@
       }
 
       &:hover::after {
+        color: var(--general-contrasts-main-selection);
         transform: scaleX(1);
       }
     }
