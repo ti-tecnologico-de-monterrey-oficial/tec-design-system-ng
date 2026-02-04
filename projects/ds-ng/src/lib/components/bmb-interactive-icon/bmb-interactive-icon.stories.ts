@@ -144,7 +144,6 @@ ${getBasicExampleBlock('BmbInteractiveIconComponent', ON_BUTTON_CLICK.handleExam
   args: {
     appearanceContrast: 'default',
     title: 'Canvas',
-    description: 'Short Description',
     appearance: 'red',
     icon: 'face',
     target: '_blank',
