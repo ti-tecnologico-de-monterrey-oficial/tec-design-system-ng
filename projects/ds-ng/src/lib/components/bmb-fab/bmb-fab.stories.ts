@@ -67,7 +67,16 @@ ${getBasicExampleBlock('BmbFabComponent', '', onEvent.handleExample)}
         type: { summary: 'string' },
       },
     },
-    type: DBmbGenericParamDesc.deprecated,
+    type: {
+      control: { type: 'radio' },
+      options: ['extended', 'normal'],
+      description: 'Sets the type of the fab component.',
+      table: {
+        category: 'Properties',
+        defaultValue: getDefaultValueControl('normal'),
+        type: { summary: 'string' },
+      },
+    },
     fabClick: getOnClickParam(onEvent),
     mitec: {
       control: { type: 'boolean' },

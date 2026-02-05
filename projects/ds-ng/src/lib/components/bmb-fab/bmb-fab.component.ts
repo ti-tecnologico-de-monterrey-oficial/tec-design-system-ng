@@ -16,13 +16,11 @@ export class BmbFabComponent {
   size = input<FabSize>('large');
   mitec = input<boolean>(false);
   text = input<string | null>('');
+  type = input<FabType>('normal');
 
   fabClick = output<MouseEvent>();
 
   isActive: boolean = false;
-
-  //Deprecated
-  type = input<FabType>();
 
   handleFabClick(event: MouseEvent): void {
     this.isActive = !this.isActive;
@@ -32,11 +30,11 @@ export class BmbFabComponent {
   get className(): string {
     const baseClassName: string = `${this.mitec() ? 'bmb_fab-mitec-button' : 'bmb_fab-main'}`;
 
-    return `${baseClassName} ${baseClassName}-${this.size()}`;
+    return `${baseClassName} ${baseClassName}-${this.type() === 'extended' ? 'extended' : this.size()}`;
   }
 
   get iconName(): string {
-    if (!this.mitec() && this.size() === 'large') {
+    if (!this.mitec() && this.type() === 'normal' && this.size() === 'large') {
       if (this.isActive) return 'close';
       return this.icon() || 'apps';
     }
