@@ -29,7 +29,9 @@
               <h3>{{ 'search_card.tabs.services' | translate }}</h3>
               <ul class="bmb_search-card-results-list">
                 @for (service of computedResults().services; track $index) {
-                  <ng-container *ngTemplateOutlet="cardItem; context: { item: service }"></ng-container>
+                  <ng-container
+                    *ngTemplateOutlet="cardItem; context: { item: service }"
+                  ></ng-container>
                 }
               </ul>
             </section>
@@ -39,7 +41,9 @@
               <h3>{{ 'search_card.tabs.people' | translate }}</h3>
               <ul class="bmb_search-card-results-list">
                 @for (person of computedResults().persons; track $index) {
-                  <ng-container *ngTemplateOutlet="cardItem; context: { item: person }"></ng-container>
+                  <ng-container
+                    *ngTemplateOutlet="cardItem; context: { item: person }"
+                  ></ng-container>
                 }
               </ul>
             </section>
@@ -51,10 +55,16 @@
               <h3>{{ 'search_card.tabs.services' | translate }}</h3>
               <ul class="bmb_search-card-results-list">
                 @for (service of computedResults().services; track $index) {
-                  <ng-container *ngTemplateOutlet="cardItem; context: { item: service }"></ng-container>
+                  <ng-container
+                    *ngTemplateOutlet="cardItem; context: { item: service }"
+                  ></ng-container>
                 }
               </ul>
             </section>
+          } @else {
+            <bmb-search-card-empty-state
+              [inputHasValue]="!!inputSearchControl.value"
+            ></bmb-search-card-empty-state>
           }
         }
         @case (3) {
@@ -63,16 +73,24 @@
               <h3>{{ 'search_card.tabs.people' | translate }}</h3>
               <ul class="bmb_search-card-results-list">
                 @for (person of computedResults().persons; track $index) {
-                  <ng-container *ngTemplateOutlet="cardItem; context: { item: person }"></ng-container>
+                  <ng-container
+                    *ngTemplateOutlet="cardItem; context: { item: person }"
+                  ></ng-container>
                 }
               </ul>
             </section>
+          } @else {
+            <bmb-search-card-empty-state
+              [inputHasValue]="!!inputSearchControl.value"
+            ></bmb-search-card-empty-state>
           }
         }
       }
     </bmb-tabs>
     @if (
-      !computedResults().persons.length && !computedResults().services.length && !isLoading()
+      !computedResults().persons.length &&
+      !computedResults().services.length &&
+      !isLoading()
     ) {
       <bmb-search-card-empty-state
         [inputHasValue]="!!inputSearchControl.value"
@@ -88,7 +106,7 @@
       [name]="item.name"
       [subtitle]="item.subtitle"
       [icon]="item.avatarOrIcon"
-      [isService]="false"
+      [isService]="item.type === 'service'"
       (triggerClick)="searchItemClick.emit(item)"
     ></bmb-search-card-item>
   </li>
