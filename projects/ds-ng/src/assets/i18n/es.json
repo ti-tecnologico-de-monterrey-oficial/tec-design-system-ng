@@ -155,7 +155,13 @@
         "image_helper": "Ingresa la URL de la imagen que deseas insertar.",
         "alt_label": "Texto alternativo",
         "alt_helper": "Ingresa el texto alternativo para la imagen.",
-        "alt_placeholder": "Texto alternativo de la imagen"
+        "alt_placeholder": "Texto alternativo de la imagen",
+        "width_label": "Ancho",
+        "width_placeholder": "100",
+        "height_label": "Alto",
+        "height_placeholder": "100",
+        "size_unit": "Unidad de medida",
+        "alignment_type": "Tipo de alineación"
       },
       "primary_button": "Insertar",
       "secondary_button": "Cancelar"
