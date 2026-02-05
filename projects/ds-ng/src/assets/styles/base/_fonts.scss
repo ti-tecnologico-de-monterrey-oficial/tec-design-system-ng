@@ -86,7 +86,7 @@ $sizes: (
 // Method 2: Classes
 // font styles can be used as individual classes .font-thin-2
 @each $name, $size in $sizes {
-  @each $type in thin, light, regular, medium, semibold, bold {
+  @each $type in light, regular, bold {
     .font-#{$type}-#{$name} {
       font-family: map.get($font-map, $type);
       font-size: $size;
