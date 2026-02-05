@@ -262,6 +262,15 @@ IBmbHierarchyProfileData {
     handleCollaboratorClick: getOnClickParam(
       getOnEvent('', 'handleLangChange', 'IBmbUserData'),
     ),
+    handleBack: getOnClickParam(getOnEvent('left icon (<)', 'handleBack')),
+    handleExpand: getOnClickParam(
+      getOnEvent('expand or collapse icon', 'handleExpand'),
+      '. This should be used as a navigation action.',
+    ),
+    handleRight: getOnClickParam(
+      getOnEvent('right icon (diversity_3) only on mobile', 'handleRight'),
+      '. This should be used as a navigation action.',
+    ),
     userData: DBmbGenericParamDesc.deprecated,
     versionBackText: {
       control: 'text',
