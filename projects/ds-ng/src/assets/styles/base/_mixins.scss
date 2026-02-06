@@ -95,12 +95,8 @@
     &:hover:not(:disabled),
     &:focus-visible:not(:disabled) {
       background: var(--buttons-primary-hover);
-      border-color: var(--buttons-primary-hove);
-      color: var(--buttons-primary-text-hover);
-
-      bmb-icon {
-        color: var(--buttons-primary-text-hover);
-      }
+      border-color: var(--buttons-stroke-primary-selected);
+      color: var(--buttons-fab-text);
     }
 
     &:active:not(:disabled),
@@ -108,18 +104,10 @@
     &:active:focus:not(:disabled),
     &.bmb_btn-toggle-active {
       background: var(--buttons-primary-select);
-      border-color: var(--buttons-primary-border-active);
+      border-color: var(--buttons-primary-select);
       outline-width: rem.rem_calc(1);
-      outline-color: var(--buttons-primary-border-active);
-      box-shadow: rem.rem_calc(0 0 20) rgb(var(--blue-mariner-500));
-      color: var(--buttons-alternative-normal);
-
-      bmb-icon {
-        color: var(--buttons-alternative-normal);
-      }
-    }
-
-    bmb-icon {
+      outline-color: var(--buttons-primary-select);
+      box-shadow: rem.rem_calc(0 0 20) var(--buttons-blur-primary-select);
       color: var(--buttons-alternative-normal);
     }
   } @else if $appearance == secondary-filled {
@@ -129,24 +117,15 @@
 
     &:hover:not(:disabled),
     &:focus-visible:not(:disabled) {
-      background: rgb(var(--gray-charade-300));
-      color: rgb(var(--gray-charade-700));
-      box-shadow: 0px 0px rem.rem_calc(5) rgb(var(--gray-charade-500));
+      background: var(--buttons-alternative-hover);
+      color: var(--buttons-alternative-text-hover);
     }
 
     &:active:not(:disabled),
     &.bmb_btn-toggle-active {
-      background: rgb(var(--gray-charade-500));
-      box-shadow: 0 0 rem.rem_calc(25) rgb(var(--gray-charade-500));
-      color: rgb(var(--gray-charade-50));
-
-      bmb-icon {
-        color: rgb(var(--gray-charade-50));
-      }
-    }
-
-    bmb-icon {
-      color: var(--buttons-alternative-text);
+      background: var(--general-contrasts-50);
+      box-shadow: 0 0 rem.rem_calc(25) var(--general-contrasts-50);
+      color: var(--buttons-alternative-select-text);
     }
   } @else if $appearance == secondary-outlined {
     background: transparent;
@@ -171,9 +150,8 @@
 
     &:active:not(:disabled),
     &.bmb_btn-toggle-active {
-      border: var(--bmb-border-inherit-2-solid);
       border-color: var(--general-contrasts-input-background);
-      box-shadow: 0px 0px rem.rem_calc(25) rgb(var(--gray-charade-500));
+      box-shadow: 0px 0px rem.rem_calc(25) var(--general-contrasts-50);
       text-shadow: none;
       padding: rem.rem_calc(10 14);
       color: var(--general-contrasts-5);
@@ -182,14 +160,6 @@
       @include check-for-mobile(false) {
         padding: rem.rem_calc(6 38);
       }
-
-      bmb-icon {
-        color: var(--general-contrasts-5);
-      }
-    }
-
-    bmb-icon {
-      color: var(--general-contrasts-100);
     }
   } @else if $appearance == destructive {
     background: transparent;
@@ -218,18 +188,11 @@
       color: rgb(var(--white-primary));
       padding: rem.rem_calc(10 14);
       border-width: rem.rem_calc(2);
+      box-shadow: rem.rem_calc(0 0 20) rgb(var(--red-primary));
 
       @include check-for-mobile(false) {
         padding: rem.rem_calc(6 38);
       }
-
-      bmb-icon {
-        color: rgb(var(--white-primary));
-      }
-    }
-
-    bmb-icon {
-      color: var(--buttons-destructive);
     }
   } @else if $appearance == transparent {
     background: transparent;

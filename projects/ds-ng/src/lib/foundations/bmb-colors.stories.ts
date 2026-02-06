@@ -741,6 +741,7 @@ class StorybookColorsPlaygroundComponent {
     '--buttons-alternative-normal',
     '--buttons-alternative-hover',
     '--buttons-alternative-text',
+    '--buttons-alternative-select-text',
     '--buttons-alternative-text-hover',
     '--buttons-primary-text',
     '--buttons-fab-text',

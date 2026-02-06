@@ -70,7 +70,9 @@ export class BmbSearchCardComponent {
     {
       id: 1,
       title: this.translationsService.translate('search_card.tabs.all'),
-      badge: this.computedResults().persons.length + this.computedResults().services.length,
+      badge:
+        this.computedResults().persons.length +
+        this.computedResults().services.length,
       isActive: true,
     },
     {

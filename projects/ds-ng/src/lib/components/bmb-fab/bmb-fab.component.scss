@@ -14,7 +14,10 @@
 }
 
 @mixin fab-size($size: small) {
-  @if $size == large {
+  @if $size == extended {
+    height: rem.rem_calc(64);
+    width: max-content;
+  } @else if $size == large {
     height: rem.rem_calc(64);
     width: rem.rem_calc(64);
   } @else {
@@ -27,43 +30,39 @@
   display: flex;
   align-items: center;
   justify-content: center;
-
-  gap: var(--bmb-spacing-m);
+  @include fonts.font(4, regular);
 
   &-mitec {
     flex-direction: column;
     width: max-content;
+    gap: var(--bmb-spacing-m);
+    color: var(--general-contrasts-100);
 
     &-button {
       @include fab-content();
-      background-color: var(--buttons-alternative-normal);
-      color: var(--buttons-primary-normal);
+      background-color: var(--buttons-fab-text);
+      color: var(--buttons-primary-text);
 
       &.active {
         background-color: var(--general-contrasts-main-selection);
         border: rem.rem_calc(1) solid rgb(var(--blue-primary));
-
-        > bmb-icon {
-          color: rgb(var(--white-primary));
-        }
+        color: var(--buttons-fab-text);
       }
 
       &-small {
-        @include fab-size(small);
-
-        .bmb_fab-mitec-text {
-          @include fonts.font(2, regular);
-          text-align: center;
-        }
+        @include fab-size();
       }
 
       &-large {
         @include fab-size(large);
+      }
 
-        .bmb_fab-mitec-text {
-          @include fonts.font(4, regular);
-          text-align: center;
-        }
+      &:hover,
+      &:focus,
+      &:focus-visible {
+        background: var(--buttons-primary-hover);
+        border-color: transparent;
+        color: var(--buttons-fab-text);
       }
     }
   }
@@ -79,25 +78,22 @@
     color: var(--buttons-alternative-normal);
 
     &-small {
-      @include fab-size(small);
+      @include fab-size();
     }
 
     &-large {
       @include fab-size(large);
     }
 
+    &-extended {
+      border-radius: rem.rem_calc(100);
+      padding: var(--bmb-spacing-s) var(--bmb-spacing-m);
+      gap: var(--bmb-spacing-s);
+      @include fab-size(extended);
+    }
+
     &-action {
       transition: transform 0.5s ease-in-out;
-    }
-
-    &.active {
-      background: var(--general-contrasts-input-background);
-      border-color: var(--general-contrasts-main-selection);
-      color: var(--general-contrasts-main-selection);
-    }
-
-    &:active {
-      animation: rotateAnimation 0.5s ease-in-out forwards;
     }
 
     &:focus,
@@ -107,10 +103,20 @@
       color: var(--general-contrasts-main-selection);
     }
 
+    &.active {
+      background: var(--general-contrasts-input-background);
+      border-color: var(--general-contrasts-main-selection);
+      color: var(--general-contrasts-main-selection);
+    }
+
+    &:active:not(.bmb_fab-main-extended) {
+      animation: rotateAnimation 0.2s ease-in-out forwards;
+    }
+
     &:hover {
-      background: var(--general-contrasts-50);
+      background: var(--buttons-primary-hover);
       border-color: transparent;
-      color: var(--buttons-alternative-normal);
+      color: var(--buttons-fab-text);
     }
   }
 }
@@ -119,7 +125,10 @@
   0% {
     transform: rotate(0deg);
   }
-  100% {
+  50% {
     transform: rotate(180deg);
+  }
+  100% {
+    transform: rotate(360deg);
   }
 }

@@ -1,8 +1,7 @@
 <span
   class="bmb_text-link"
   [ngClass]="{
-    'bmb_text-link-underlined': textLinkStyle() === 'underlined',
-    'bmb_text-link-disabled': disabled()
+    disabled: disabled()
   }"
 >
   <bmb-check-external-link-button [link]="link()" [target]="target()">
@@ -15,13 +14,18 @@
     >
       @if (textLinkStyle() === 'icon' && !!icon()) {
         <bmb-icon
+          class="bmb_text-link-item-icon"
           [icon]="icon()"
           [size]="20"
           [alt]="textLink()"
-          class="bmb_text-link-item-icon"
         />
       }
-      <span class="bmb_text-link-item-text">
+      <span
+        class="bmb_text-link-item-text"
+        [ngClass]="{
+          underlined: textLinkStyle() === 'underlined'
+        }"
+      >
         {{ textLink() }}
       </span>
     </span>
