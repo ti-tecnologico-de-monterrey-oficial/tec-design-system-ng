@@ -58,23 +58,20 @@ export class BmbImageComponent {
     encodeURI(this.currentImage().mobileSrc || ''),
   );
 
-  canGoPrev = computed(() => this.currentIndex() > 0);
-
-  canGoNext = computed(() => {
-    const total = this.images()?.length ?? 0;
-    return this.currentIndex() < total - 1;
-  });
-
   next(): void {
-    if (!this.isCarousel() || !this.canGoNext()) return;
+    if (!this.isCarousel()) return;
 
-    this.currentIndex.update((i) => i + 1);
+    const total = this.images()?.length ?? 0;
+
+    this.currentIndex.update((i) => (i === total - 1 ? 0 : i + 1));
   }
 
   prev(): void {
-    if (!this.isCarousel() || !this.canGoPrev()) return;
+    if (!this.isCarousel()) return;
 
-    this.currentIndex.update((i) => i - 1);
+    const total = this.images()?.length ?? 0;
+
+    this.currentIndex.update((i) => (i === 0 ? total - 1 : i - 1));
   }
 
   getClasses(): string[] {
