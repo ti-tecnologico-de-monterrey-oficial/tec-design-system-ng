@@ -140,6 +140,17 @@
   <router-outlet></router-outlet>
 </main>
 <bmb-sidebar [elements]="routes" />
+<bmb-home-card-chat
+  leftIcon="chevron_left"
+  icon="bot_tecStandar"
+  bgIconAppearance="gray-charade-500"
+  title="Asistente TECbot"
+  contentPadding="none"
+  subtitle="Assitente TECbot"
+  [messagesHistory]="[]"
+  [currentBot]="currentBot"
+  mode="compact"
+/>
 
 <ng-template #modalTemplate>
   <div>

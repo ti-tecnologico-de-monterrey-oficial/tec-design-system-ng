@@ -149,13 +149,5 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./pages/colors/colors.component').then((j) => j.ColorsComponent),
   },
-  {
-    path: 'tec-sound',
-    title: 'TEC Sound',
-    loadComponent: () =>
-      import('./pages/sound-layout/sound-layout.component').then(
-        (s) => s.SoundLayoutComponent,
-      ),
-  },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
 ];
