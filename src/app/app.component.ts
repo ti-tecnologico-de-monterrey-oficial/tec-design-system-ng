@@ -158,6 +158,12 @@ export class AppComponent {
             title: 'Step progress bar',
             link: '/step-progress-bar',
           },
+          {
+            id: 3,
+            icon: 'sound_detection_loud_sound',
+            title: 'TEC sound',
+            link: '/tec-sound',
+          }
         ],
       },
       {
