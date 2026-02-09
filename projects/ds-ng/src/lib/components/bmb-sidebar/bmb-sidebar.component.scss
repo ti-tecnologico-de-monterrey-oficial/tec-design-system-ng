@@ -299,7 +299,8 @@
     gap: rem.rem_calc(8);
 
     &:nth-of-type(n + 2) {
-      border-top: rem.rem_calc(1) solid rgb(var(--gray-charade-800));
+      border-top: rem.rem_calc(1) solid
+        var(--general-contrasts-container-outline);
       margin-top: rem.rem_calc(24);
       padding-top: rem.rem_calc(24);
     }
