@@ -188,8 +188,11 @@ export class BmbTextEditorComponent implements AfterViewInit, OnInit {
     const range = selection.getRangeAt(0);
     let imageNode: HTMLImageElement | null = null;
     range.commonAncestorContainer.childNodes.forEach((node) => {
-      debugger
-      if (node instanceof HTMLImageElement && !node.classList.contains('bmb-old-node')) {
+      debugger;
+      if (
+        node instanceof HTMLImageElement &&
+        !node.classList.contains('bmb-old-node')
+      ) {
         imageNode = node as HTMLImageElement;
         if (values['prompt_img_width'] && values['unit_size']) {
           imageNode.style.width = `${values['prompt_img_width']}${values['unit_size']}`;
