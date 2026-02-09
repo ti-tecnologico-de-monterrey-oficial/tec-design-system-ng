@@ -26,8 +26,8 @@ import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 export class BmbSoundsCardComponent implements AfterViewInit {
   title = input<string>('');
   subtitle = input<string>('');
-  width = input<string>('250px');
-  ratio = input<string>('8/9');
+  width = input<string>('100%');
+  ratio = input<string>();
 
   handlevolume = output<number>();
   handlePlay = output<boolean>();

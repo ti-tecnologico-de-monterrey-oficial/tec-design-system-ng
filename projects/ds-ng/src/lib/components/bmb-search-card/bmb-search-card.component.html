@@ -61,6 +61,10 @@
                 }
               </ul>
             </section>
+          } @else {
+            <bmb-search-card-empty-state
+              [inputHasValue]="!!inputSearchControl.value"
+            ></bmb-search-card-empty-state>
           }
         }
         @case (3) {
@@ -75,6 +79,10 @@
                 }
               </ul>
             </section>
+          } @else {
+            <bmb-search-card-empty-state
+              [inputHasValue]="!!inputSearchControl.value"
+            ></bmb-search-card-empty-state>
           }
         }
       }
@@ -98,7 +106,7 @@
       [name]="item.name"
       [subtitle]="item.subtitle"
       [icon]="item.avatarOrIcon"
-      [isService]="false"
+      [isService]="item.type === 'service'"
       (triggerClick)="searchItemClick.emit(item)"
     ></bmb-search-card-item>
   </li>

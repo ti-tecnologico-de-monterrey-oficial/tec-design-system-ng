@@ -185,6 +185,27 @@ export class BmbTextEditorComponent implements AfterViewInit, OnInit {
     }
 
     this.execCommand('insertImage', values['prompt_url'] as string);
+    const range = selection.getRangeAt(0);
+    let imageNode: HTMLImageElement | null = null;
+    range.commonAncestorContainer.childNodes.forEach((node) => {
+      debugger
+      if (node instanceof HTMLImageElement && !node.classList.contains('bmb-old-node')) {
+        imageNode = node as HTMLImageElement;
+        if (values['prompt_img_width'] && values['unit_size']) {
+          imageNode.style.width = `${values['prompt_img_width']}${values['unit_size']}`;
+        }
+        if (values['prompt_img_height'] && values['unit_size']) {
+          imageNode.style.height = `${values['prompt_img_height']}${values['unit_size']}`;
+        }
+        if (values['prompt_alt']) {
+          imageNode.alt = values['prompt_alt'] as string;
+        }
+        if (values['alignment_type']) {
+          imageNode.style.objectFit = values['alignment_type'] as string;
+        }
+        imageNode.classList.add('bmb-old-node');
+      }
+    });
   }
 
   updateContent() {
