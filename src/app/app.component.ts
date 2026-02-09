@@ -110,7 +110,7 @@ export class AppComponent {
       {
         id: 4,
         icon: 'reorder',
-        title: 'Inputs',
+        title: 'Admin.usuariosusuariosusuarios',
         link: '',
         children: [
           {
