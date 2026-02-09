@@ -28,7 +28,7 @@
 }
 
 .bmb_top-bar {
-  background-color: rgb(var(--black-primary));
+  background-color: var(--containers-top-bar);
   color: rgb(var(--white-primary));
   display: flex;
   justify-content: space-between;
@@ -145,6 +145,9 @@
     &-name {
       @include fonts.font(6, regular);
       text-align: center;
+      &-title {
+        color: rgb(var(--white-primary));
+      }
     }
   }
 
@@ -206,7 +209,7 @@
         position: absolute;
         top: 100%;
         z-index: 99;
-        background-color: rgb(var(--black-primary));
+        background-color: var(--containers-top-bar);
         left: 0;
         flex-flow: column;
         width: 100%;
