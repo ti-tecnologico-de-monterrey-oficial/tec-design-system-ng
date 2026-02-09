@@ -182,7 +182,7 @@ import { BmbModalComponent, ModalDataConfig, BmbActionIconComponent } from '@ti-
                 contentPadding="none"
                 subtitle="Assitente TECbot"
                 [messagesHistory]="messages"
-                [actionList]="actionList"
+                [actionsList]="actionList"
                 [mode]="mode"
                 [(currentBot)]="currentBot"
             >

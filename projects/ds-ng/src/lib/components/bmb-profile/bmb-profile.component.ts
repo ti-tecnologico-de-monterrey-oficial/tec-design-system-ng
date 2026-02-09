@@ -74,6 +74,11 @@ export class BmbProfileComponent implements OnInit {
   handleCloseProfile = output();
   handleCollaboratorClick = output<IBmbUserData>();
   handleLangChange = model<string>();
+  onRightClick = output<Event>();
+
+  onBack = output<Event>();
+  onExpandClick = output<Event>();
+  isExpanded = model<boolean>(false);
 
   _studentData: IBmbStudentProfileData = {
     userData: {
@@ -174,5 +179,17 @@ export class BmbProfileComponent implements OnInit {
   handleRadial(newValue: string): void {
     this.langFormControl.setValue(newValue);
     this.handleLangChange.set(newValue);
+  }
+
+  handleBack(event: any): void {
+    this.onBack.emit(event);
+  }
+
+  handleExpand(event: any): void {
+    this.onExpandClick.emit(event);
+  }
+
+  handleRight(event: Event): void {
+    this.onRightClick.emit(event);
   }
 }
