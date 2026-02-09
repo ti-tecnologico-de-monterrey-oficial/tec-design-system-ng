@@ -78,4 +78,14 @@ export class BmbMediaCardComponent {
   getUserAttribute(attribute: string | undefined): string {
     return attribute || '';
   }
+
+  getMediaCardClasses(isLink: boolean): string[] {
+    const classes = [];
+    if (this.boxShadow()) classes.push('bmb_media-card-box-shadow');
+    if (isLink) classes.push(`bmb_media-card-${this.type()}`);
+    if (!isLink && !this.ratio()) {
+      classes.push('bmb_media-card-auto-layout');
+    }
+    return classes;
+  }
 }

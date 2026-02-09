@@ -62,15 +62,20 @@
 
     &:hover:not(:disabled) {
       background-color: var(--general-contrasts-15);
+      border-color: var(--general-contrasts-container-outline);
 
       .bmb_text-link .bmb_check-external-link-button-element {
-        color: rgb(var(--blue-mariner-400));
+        color: var(--general-contrasts-main-selection);
       }
     }
 
     &:focus:not(:disabled),
     &:active:not(:disabled) {
-      background-color: var(--general-contrasts-25);
+      background-color: var(--general-contrasts-50);
+
+      .bmb_card_button-header-text {
+        color: var(--buttons-alternative-select-text);
+      }
     }
 
     &-button {
@@ -312,13 +317,5 @@
 
   .bmb_dropdown-menu {
     color: var(--general-contrasts-80);
-  }
-
-  .bmb_text-link .bmb_check-external-link-button-element {
-    color: rgb(var(--blue-mariner-500));
-
-    &:hover {
-      color: rgb(var(--blue-mariner-400));
-    }
   }
 }

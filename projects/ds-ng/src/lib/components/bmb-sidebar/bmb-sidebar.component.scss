@@ -123,7 +123,7 @@
 }
 
 .bmb_sidebar {
-  background-color: rgb(var(--black-primary));
+  background-color: var(--containers-top-bar);
   border-radius: var(--bmb-radius-none) var(--bmb-radius-6) var(--bmb-radius-6)
     var(--bmb-radius-none);
   left: 0;
@@ -152,12 +152,12 @@
 
     &-content {
       width: 100%;
-      background-color: rgb(var(--black-primary));
+      background-color: var(--containers-top-bar);
     }
 
     &-button {
       display: inline-flex;
-      background-color: rgb(var(--black-primary));
+      background-color: var(--containers-top-bar);
       color: rgb(var(--white-primary));
 
       @include mixins.hidden-for-no-mobile();
@@ -299,7 +299,8 @@
     gap: rem.rem_calc(8);
 
     &:nth-of-type(n + 2) {
-      border-top: rem.rem_calc(1) solid rgb(var(--gray-charade-800));
+      border-top: rem.rem_calc(1) solid
+        var(--general-contrasts-container-outline);
       margin-top: rem.rem_calc(24);
       padding-top: rem.rem_calc(24);
     }
@@ -374,7 +375,7 @@
   &-children {
     border-radius: var(--bmb-radius-none) var(--bmb-radius-6)
       var(--bmb-radius-6) var(--bmb-radius-none);
-    background-color: rgb(var(--black-primary));
+    background-color: var(--containers-top-bar);
     flex-flow: column;
     transition: opacity 1s ease-out;
     width: 0;

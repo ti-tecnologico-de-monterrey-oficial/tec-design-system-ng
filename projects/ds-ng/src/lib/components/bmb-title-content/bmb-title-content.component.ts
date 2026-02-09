@@ -60,13 +60,18 @@ export class BmbTitleContentComponent {
   bgIconAppearance = input<IBmbColor>();
   isAvatarIcon = input<boolean>(false);
   avatarSize = input<IBmbUserImageSize>('desktop-small');
+  forceSquareApp = input<boolean>(false);
 
   isImage(icon: string): boolean {
     return isImage(icon);
   }
 
   getStyles(): object {
-    if (this.isImage(this.icon()) && this.transparentBgC()) {
+    if (
+      this.isImage(this.icon()) &&
+      this.transparentBgC() &&
+      !this.forceSquareApp()
+    ) {
       return { 'background-color': 'transparent' };
     }
     if (!!this.bgIconAppearance()) {

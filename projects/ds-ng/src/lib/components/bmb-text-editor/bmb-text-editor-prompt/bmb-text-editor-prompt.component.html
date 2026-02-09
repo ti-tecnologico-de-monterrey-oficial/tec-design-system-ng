@@ -77,7 +77,6 @@
                 <bmb-checkbox
                   inputId="add_rel"
                   name="rel"
-                  [checked]="true"
                   [label]="'text_editor.prompt.link.rel_label' | translate"
                 />
               </div>
@@ -88,13 +87,120 @@
                   inputId="prompt_alt"
                   name="prompt_alt"
                   [label]="'text_editor.prompt.image.alt_label' | translate"
-                  [helperMessage]="
-                    'text_editor.prompt.image.alt_helper' | translate
-                  "
                   [placeholder]="
                     'text_editor.prompt.image.alt_placeholder' | translate
                   "
                 />
+              </div>
+              <div bmbVerticalLayoutItem>
+                <div
+                  bmbLayout
+                  margin="none"
+                  gapSize="m"
+                  [dynamicCols]="true"
+                  alignItems="center"
+                >
+                  <h3 bmbLayoutItem [isDynamicItem]="true" [colGrow]="1">
+                    {{ 'text_editor.prompt.image.size_unit' | translate }}
+                  </h3>
+                  <bmb-radial
+                    inputId="size_unit_percent"
+                    name="unit_size"
+                    label="%"
+                    value="%"
+                    bmbLayoutItem
+                    [control]="getFormControl('unit_size')"
+                    [isDynamicItem]="true"
+                  />
+                  <bmb-radial
+                    inputId="size_unit_px"
+                    name="unit_size"
+                    label="px"
+                    value="px"
+                    [control]="getFormControl('unit_size')"
+                    bmbLayoutItem
+                    [isDynamicItem]="true"
+                  />
+                </div>
+              </div>
+              <div bmbVerticalLayoutItem>
+                <div bmbLayout margin="none" gapSize="m">
+                  <div bmbLayoutItem [colSm]="2">
+                    <bmb-input
+                      inputId="prompt_img_width"
+                      name="prompt_img_width"
+                      [label]="
+                        'text_editor.prompt.image.width_label' | translate
+                      "
+                      [placeholder]="
+                        'text_editor.prompt.image.width_placeholder' | translate
+                      "
+                      value="100"
+                    />
+                  </div>
+                  <div bmbLayoutItem [colSm]="2">
+                    <bmb-input
+                      inputId="prompt_img_height"
+                      name="prompt_img_height"
+                      [label]="
+                        'text_editor.prompt.image.height_label' | translate
+                      "
+                      [placeholder]="
+                        'text_editor.prompt.image.height_placeholder'
+                          | translate
+                      "
+                    />
+                  </div>
+                </div>
+              </div>
+              <div bmbVerticalLayoutItem>
+                <h3>
+                  {{ 'text_editor.prompt.image.alignment_type' | translate }}
+                </h3>
+                <div
+                  bmbLayout
+                  margin="none"
+                  gapSize="m"
+                  [dynamicCols]="true"
+                  alignItems="center"
+                >
+                  <bmb-radial
+                    inputId="alignImageFit"
+                    name="alignment_type"
+                    label="Fit"
+                    value="fit"
+                    bmbLayoutItem
+                    [control]="getFormControl('alignment_type')"
+                    [colSm]="2"
+                  />
+                  <bmb-radial
+                    inputId="alignImageContains"
+                    name="alignment_type"
+                    label="Contains"
+                    value="contains"
+                    [control]="getFormControl('alignment_type')"
+                    bmbLayoutItem
+                    [colSm]="2"
+                  />
+                  <bmb-radial
+                    inputId="alignImageCover"
+                    name="alignment_type"
+                    label="Cover"
+                    value="cover"
+                    [control]="getFormControl('alignment_type')"
+                    bmbLayoutItem
+                    [colSm]="2"
+                  />
+                  <bmb-radial
+                    inputId="alignImageNone"
+                    name="alignment_type"
+                    label="none"
+                    value="none"
+                    [control]="getFormControl('alignment_type')"
+                    bmbLayoutItem
+                    [colSm]="2"
+                  />
+                </div>
               </div>
             }
           }

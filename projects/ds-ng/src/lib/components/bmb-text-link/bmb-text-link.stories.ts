@@ -88,7 +88,7 @@ ${getBasicExampleBlock('BmbTextLinkComponent')}
     link: 'https://www.youtube.com',
     target: '_blank',
     icon: 'arrow_forward',
-    iconPosition: 'right',
+    iconPosition: 'left',
     disabled: false,
   },
 } as Meta<typeof BmbTextLinkComponent>;
@@ -116,6 +116,7 @@ export const UnderlinedExample = {
 export const DisableExample = {
   name: 'Disable example',
   args: {
+    iconPosition: 'right',
     disabled: true,
   },
 };

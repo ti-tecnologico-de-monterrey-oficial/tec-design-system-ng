@@ -4,9 +4,7 @@
   border: rem.rem_calc($border-width) solid $border-color;
   background-color: $background-color;
 
-  .material-symbols-rounded {
-    color: $icon-color;
-  }
+  color: $icon-color;
 }
 
 @mixin active($container, $outline) {
@@ -21,16 +19,13 @@
     } @else {
       @include container(
         rem.rem_calc(1),
-        rgb(var(--gray-charade-50)),
+        var(--general-contrasts-main-complimentary),
         var(--general-contrasts-50),
-        rgb(var(--gray-charade-50))
+        var(--general-contrasts-main-complimentary)
       );
     }
   } @else {
-    .material-symbols-rounded {
-      color: var(--buttons-primary-select);
-      scale: 1;
-    }
+    color: var(--buttons-primary-select);
   }
 }
 
@@ -150,8 +145,9 @@
 
   &:not(.bmb_button_icon-container, .bmb_button_icon-disabled) {
     &:hover {
-      .material-symbols-rounded {
-        color: rgb(var(--white-primary));
+      color: rgb(var(--white-primary));
+
+      .bmb_action_icon-icon {
         scale: 1.2;
       }
     }
@@ -161,7 +157,5 @@
     }
   }
 
-  .material-symbols-rounded {
-    color: rgb(var(--white-primary));
-  }
+  color: rgb(var(--white-primary));
 }
