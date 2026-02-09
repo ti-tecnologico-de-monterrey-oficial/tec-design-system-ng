@@ -27,8 +27,13 @@
     }
 
     &-uploading-file {
+      color: var(--general-contrasts-primary);
       background-color: var(--menu-select-on-surface-hovered-w-checkbox);
-      border-color: var(--general-contrasts-primary);
+      border-color: currentColor;
+
+      .bmb_drop-zone-icon {
+        color: currentColor;
+      }
     }
 
     > p {
@@ -47,9 +52,7 @@
   }
 
   &-icon {
-    &-valid {
-      color: var(--general-contrasts-primary);
-    }
+    color: var(--general-contrasts-80);
 
     &-animated {
       .bmb_progress-bar-icon {
