@@ -9,11 +9,14 @@ import {
   getBasicExampleBlock,
   getGeneralComponentDescription,
   getGeneralDescription,
+  getSpecialSpecifications,
+  getTECParticularitiesMessage,
 } from '../../utils/doc/utils';
 
 export default {
   title: 'Dev tools/Mitec logo animation',
   component: BmbMitecLogoAnimationComponent,
+  tags: ['tec'],
   decorators: [
     componentWrapperDecorator((story: string) => {
       return `
@@ -25,6 +28,9 @@ export default {
       description: {
         component: `
 ${getGeneralDescription(`${getGeneralComponentDescription({ name: 'mitec-logo-animation', type: 'element' })} the ***mitec*** logo to be displayed in different variants of size.`, { generalDocLink: 'https://bamboo.tec.mx/latest/dev-tools/coleccion-de-componentes-uC69aq75' })}
+${getSpecialSpecifications(getTECParticularitiesMessage(), {
+  showAdditionalBlockquote: true,
+})}
 ${getBasicExampleBlock('BmbMitecLogoAnimationComponent')}
         `,
       },

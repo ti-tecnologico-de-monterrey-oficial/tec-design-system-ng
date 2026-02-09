@@ -6,7 +6,7 @@
 ) {
   <a
     class="bmb_media-card bmb_media-card-link"
-    [ngClass]="'bmb_media-card-' + type()"
+    [ngClass]="getMediaCardClasses(true)"
     [ngStyle]="{ width: width(), 'aspect-ratio': ratio() }"
     [href]="link()"
     [target]="target()"
@@ -17,10 +17,7 @@
 } @else {
   <section
     [class]="'bmb_media-card bmb_media-card-' + type()"
-    [ngClass]="{
-      'bmb_media-card-boxShadow': boxShadow(),
-      'bmb_media-card-auto-layout': !ratio()
-    }"
+    [ngClass]="getMediaCardClasses(false)"
     [ngStyle]="{ width: width(), 'aspect-ratio': ratio() }"
     (click)="mediaCardClicked.emit($event)"
     (keydown)="

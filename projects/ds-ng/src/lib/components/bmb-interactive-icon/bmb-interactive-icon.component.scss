@@ -41,6 +41,7 @@ $backgrounds: (
   flex-flow: column;
   gap: var(--bmb-spacing-xs);
   transition: all 0.3s ease;
+  color: var(--general-contrasts-100);
 
   &-primary {
     background-color: var(--containers-background);
@@ -119,14 +120,12 @@ $backgrounds: (
   }
 
   &-title {
-    color: var(--general-contrasts-100);
     font-weight: 300;
     text-align: center;
     @include fonts.font(3, regular);
   }
 
   &-description {
-    color: var(--general-contrasts-75);
     display: block;
     @include fonts.font(3, regular);
   }
@@ -148,17 +147,5 @@ $backgrounds: (
     height: rem.rem_calc(64);
     object-fit: contain;
     width: rem.rem_calc(64);
-  }
-
-  &:hover,
-  &:focus-visible {
-    .bmb_interactive_icon-title {
-      color: var(--buttons-primary-normal);
-    }
-  }
-  &:active {
-    .bmb_interactive_icon-title {
-      color: var(--buttons-primary-select);
-    }
   }
 }

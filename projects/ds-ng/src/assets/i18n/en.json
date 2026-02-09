@@ -33,6 +33,9 @@
       "empty_state": {
         "primary_text": "You have no notifications to show"
       }
+    },
+    "list": {
+      "select_all_button": "Select All"
     }
   },
   "balance_overview": {
@@ -152,7 +155,13 @@
         "image_helper": "Enter the URL of the image you want to insert.",
         "alt_label": "Alternative Text",
         "alt_helper": "Provide alternative text for the image.",
-        "alt_placeholder": "Describe the image"
+        "alt_placeholder": "Describe the image",
+        "width_label": "Width",
+        "width_placeholder": "100",
+        "height_label": "Height",
+        "height_placeholder": "100",
+        "size_unit": "Unit of measure",
+        "alignment_type": "Alignment type"
       },
       "primary_button": "Insert",
       "secondary_button": "Cancel"
@@ -161,10 +170,19 @@
   "notification_card": {
     "tabs": {
       "notifications": "Notifications",
-      "advertisements": "Advertisements"
+      "advertisements": "Advertisements",
+      "unread": "Unread"
     },
     "empty_state": {
       "primary_text": "You have no notifications to show"
+    }
+  },
+  "notification_center": {
+    "actions": {
+      "mark_as_read": "Mark as read",
+      "mark_as_archive": "Mark as archived",
+      "mark_as_favorite": "Mark as favorite",
+      "add_tag": "Add tag"
     }
   },
   "dropdown": {
@@ -182,6 +200,24 @@
       "max": " maximum",
       "search": "Search",
       "filter": "Filter"
+    }
+  },
+  "search_card": {
+    "title": "Find services or people",
+    "input_placeholder": "Type to search",
+    "empty_state": {
+      "new_search_card_title": "Start searching to find results",
+      "no_results_title": "No results found"
+    },
+    "tabs": {
+      "services": "Services",
+      "people": "People",
+      "all": "All"
+    }
+  },
+  "input": {
+    "content": {
+      "loading_alt": "Loading..."
     }
   }
 }

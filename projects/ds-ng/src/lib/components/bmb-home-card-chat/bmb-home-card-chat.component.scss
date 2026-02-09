@@ -6,8 +6,8 @@
     display: flex;
     flex-direction: column;
     overflow-y: scroll;
-    height: rem.rem_calc(500);
-    max-height: rem.rem_calc(500);
+    flex: 1;
+    overflow: auto;
     padding: rem.rem_calc(0 10 0 20);
   }
 
@@ -45,6 +45,26 @@
 
         .bmb_chat-card {
           margin-top: auto;
+        }
+
+        .bmb_chat-card,
+        bmb-home-card,
+        .bmb_home-card,
+        .bmb_home-card-wrapper {
+          height: 100%;
+          width: 100%;
+          display: block;
+        }
+
+        .bmb_home-card-wrapper {
+          display: flex;
+          flex-direction: column;
+        }
+
+        .bmb_home-card-container {
+          flex: 1;
+          display: flex;
+          flex-direction: column;
         }
       }
     }

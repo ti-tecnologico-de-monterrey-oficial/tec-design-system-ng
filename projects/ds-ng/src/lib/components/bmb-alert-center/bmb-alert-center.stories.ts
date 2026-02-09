@@ -7,7 +7,6 @@ import {
 import { BmbAlertCenterComponent } from './bmb-alert-center.component';
 import { BmbAlertCenterService } from './bmb-alert-center.service';
 import {
-  getAlertCenterServiceDocumentation,
   getBasicExampleBlock,
   getGeneralDescription,
   getOnEvent,
@@ -26,7 +25,7 @@ class mockService {
     return [
       {
         id: 10,
-        title: 'Alerta 10',
+        title: 'Esta alerta tiene un manejador de evento personalizado',
         description: [
           { text: 'Descripción de la alerta 10', type: 'title' },
           {
@@ -42,7 +41,7 @@ https://live.tec.mx/cbweek</p><p>¡Te esperamos!`,
             variant: 'primary',
           },
         ],
-        date: '19/11/2024',
+        date: '26/01/2026',
         isRead: false,
         time: '12:00',
         tags: [
@@ -52,6 +51,7 @@ https://live.tec.mx/cbweek</p><p>¡Te esperamos!`,
         type: 'tipo 1',
         isFavorite: true,
         isArchived: false,
+        customEventHandler: true,
       },
       {
         id: 1,
@@ -132,25 +132,6 @@ https://live.tec.mx/cbweek</p><p>¡Te esperamos!`,
         isFavorite: false,
         isArchived: false,
       },
-      {
-        id: 40,
-        title: 'Alerta 40',
-        description: [
-          { text: 'Descripción de la alerta 10', type: 'title' },
-          { text: 'Descripción de la alerta 10 paragraph', type: 'paragraph' },
-          {
-            text: 'Descripción de la alerta 10 link',
-            type: 'image',
-            href: 'https://picsum.photos/id/26/200',
-          },
-        ],
-        date: '02/01/2024',
-        isRead: true,
-        time: '12:00',
-        type: 'tipo 1',
-        isFavorite: false,
-        isArchived: false,
-      },
     ];
   }
   getLoadingState() {
@@ -170,7 +151,7 @@ https://live.tec.mx/cbweek</p><p>¡Te esperamos!`,
             type: 'html',
           },
         ],
-        date: '19/11/2024',
+        date: '26/01/2025',
         isRead: false,
         time: '12:00',
         tags: [
@@ -260,25 +241,6 @@ https://live.tec.mx/cbweek</p><p>¡Te esperamos!`,
         isFavorite: false,
         isArchived: false,
       },
-      {
-        id: 4,
-        title: 'Alerta 40',
-        description: [
-          { text: 'Descripción de la alerta 10', type: 'title' },
-          { text: 'Descripción de la alerta 10 paragraph', type: 'paragraph' },
-          {
-            text: 'Descripción de la alerta 10 link',
-            type: 'image',
-            href: 'https://picsum.photos/id/24/200',
-          },
-        ],
-        date: '02/01/2024',
-        isRead: true,
-        time: '12:00',
-        type: 'tipo 1',
-        isFavorite: false,
-        isArchived: false,
-      },
     ];
   }
 }
@@ -331,14 +293,39 @@ export default {
           'orderEvents',
           'container',
           'detailContent',
-          'navigationBarEvents',
         ],
       },
       description: {
         component: `
 ${getGeneralDescription('`bmb-alert-center` is an organism designed to centralize and display all important alerts and notifications that require users attention.', { generalDocLink: 'https://bamboo.tec.mx/latest/organismos/alert-center/descripcion-general-ws9A3oYS' })}
-${getSpecialSpecifications(`
-  > ###Configuration
+${getSpecialSpecifications(
+  `
+  > ### Alert and advertisement type description.
+  > #### Alert type description \`IBmbDataAlert\`
+  > The alert item description supports different content types to provide flexibility in displaying information. The supported types are:
+  > - **id**: A unique identifier for the alert.
+  > - **Title**: Used for main headings or titles within the alert description.
+  > - **Description**: Used for standard text content, allowing for detailed descriptions.
+  > - **date**: Represents the date associated with the alert.
+  > - **time**: Represents the time associated with the alert.
+  > - **tags**: An array of tags associated with the alert for categorization or labeling.
+  > - **type**: A string representing the type or category of the alert.
+  > - **isRead**: A boolean indicating whether the alert has been read.
+  > - **isFavorite**: A boolean indicating whether the alert is marked as a favorite.
+  > - **isArchived**: A boolean indicating whether the alert has been archived.
+  > - **customEventHandler**: A boolean indicating whether the alert uses a custom event handler for interactions.
+  >
+  > Each description item can have the following types:
+  > - **paragraph**: For standard text content.
+  > - **image**: To include images within the alert.
+  > - **video**: To embed videos.
+  > - **link**: To add hyperlinks.
+  > - **button**: To include actionable buttons.
+  > - **title**: For headings or titles.
+  > - **html**: To include custom HTML content.
+
+  > ### Alert service
+  > #### Configuration
   > Add the \`BmbAlertCenterService\` to your App providers:
   >
   > \`\`\`javascript
@@ -350,11 +337,11 @@ ${getSpecialSpecifications(`
   >
   > ---
   >
-  > ###Alert center service methods
+  > #### Alert center service methods
   >
-  > ####Alerts
+  > #### Alerts
   >
-  > #####Set notifications
+  > ##### Set notifications
   >
   > \`\`\`typescript
   setAlerts(alerts: IBmbDataAlert[]);
@@ -362,7 +349,7 @@ ${getSpecialSpecifications(`
   >
   > This method sets the alerts to be displayed in the alert center replacing whether existing alerts.
   >
-  > #####Update notifications
+  > ##### Update notifications
   >
   > \`\`\`typescript
   updateAlerts(alertList: IBmbDataAlert[]);
@@ -370,7 +357,7 @@ ${getSpecialSpecifications(`
   >
   > This method updates the existing alerts with the provided list. If an alert with the same ID exists, it will be updated; otherwise, it will remain unchanged.
   >
-  > #####Add notifications
+  > ##### Add notifications
   >
   > \`\`\`typescript
   addAlerts(alerts: IBmbDataAlert[]);
@@ -378,7 +365,7 @@ ${getSpecialSpecifications(`
   >
   > This method adds new alerts to the existing list of alerts without replacing them.
   >
-  > #####Get notifications
+  > ##### Get notifications
   >
   > \`\`\`typescript
   getAlerts(): IBmbDataAlert[];
@@ -388,9 +375,9 @@ ${getSpecialSpecifications(`
   >
   > ---
   >
-  > ####Advertisements
+  > #### Advertisements
   >
-  > #####Set advertisements
+  > ##### Set advertisements
   >
   > \`\`\`typescript
   setAdvertisements(ads: IBmbDataAdvertisement[]);
@@ -406,7 +393,7 @@ ${getSpecialSpecifications(`
   >
   > This method updates the existing advertisements with the provided list. If an advertisement with the same ID exists, it will be updated; otherwise, it will remain unchanged.
   >
-  > #####Add advertisements
+  > ##### Add advertisements
   >
   > \`\`\`typescript
   addAdvertisements(ads: IBmbDataAdvertisement[]);
@@ -414,7 +401,7 @@ ${getSpecialSpecifications(`
   >
   > This method adds new advertisements to the existing list of advertisements without replacing them.
   >
-  > #####Get advertisements
+  > ##### Get advertisements
   >
   > \`\`\`typescript
   getAdvertisements(): IBmbDataAdvertisement[];
@@ -424,9 +411,9 @@ ${getSpecialSpecifications(`
   >
   > ---
   >
-  > ####Loading state
+  > #### Loading state
   >
-  > #####Set loading state
+  > ##### Set loading state
   >
   > \`\`\`typescript
   setLoadingState(loading: boolean = false);
@@ -434,14 +421,14 @@ ${getSpecialSpecifications(`
   >
   > This method sets the loading state.
   >
-  > #####Get loading state
+  > ##### Get loading state
   >
   > \`\`\`typescript
   getLoadingState(): boolean;
   > \`\`\`
   >
   > This method retrieves the current loading state.
-  > ### Scroll
+  > #### Scroll
   If you want the component to handle the scroll, you should wrap it in a container with a defined height.
   >
   > \`\`\`html
@@ -449,9 +436,9 @@ ${getSpecialSpecifications(`
    <bmb-alert-center ... />
   </div>
   > \`\`\`
-`)}
-
-${getAlertCenterServiceDocumentation()}
+`,
+  { showAdditionalBlockquote: true },
+)}
 ${getBasicExampleBlock('BmbAlertCenterComponent')}
 
         `,
@@ -521,6 +508,13 @@ ${getBasicExampleBlock('BmbAlertCenterComponent')}
         'IBmbDataAlert',
       ),
     ),
+    navigationBarEvents: getOnEventParam(
+      getOnEvent(
+        'an event from the footer navigation bar',
+        'navigationBarEvents',
+        'IBmbAlertCenterFooterEvent',
+      ),
+    ),
     advertisements: {
       ...DBmbGenericParamDesc.deprecated,
       description: DBmbGenericParamDesc.deprecated.description.concat(
@@ -573,10 +567,10 @@ ${getBasicExampleBlock('BmbAlertCenterComponent')}
   args: {
     tabsName: [
       { title: 'Notificaciones', isMobile: true, isDesktop: true },
-      { title: 'No leídos', isMobile: false, isDesktop: true },
+      { title: 'No leídos', isMobile: true, isDesktop: true },
       { title: 'Favoritos', isMobile: false, isDesktop: true },
       { title: 'Archivados', isMobile: false, isDesktop: true },
-      { title: 'Anuncios', isMobile: true, isDesktop: true },
+      { title: 'Anuncios', isMobile: false, isDesktop: false },
     ],
     dateFormat: 'dd/MM/yyyy',
     onChangeAlertStatus: (event: any) => {
@@ -590,6 +584,9 @@ ${getBasicExampleBlock('BmbAlertCenterComponent')}
     },
     closeAlertDetail: (event: any) => {
       console.log('closeAlertDetail', event);
+    },
+    navigationBarEvents: (event: any) => {
+      console.log('navigationBarEvents', event);
     },
     hideTabs: false,
     emptyStateData: '',
@@ -691,5 +688,22 @@ export const LoadingState = {
         alert('Botón del Empty State clickeado');
       },
     },
+  },
+};
+
+export const AllTabsEnabled = {
+  decorators: [
+    moduleMetadata({
+      providers: [{ provide: BmbAlertCenterService, useClass: mockService }],
+    }),
+  ],
+  args: {
+    tabsName: [
+      { title: 'Notificaciones', isMobile: true, isDesktop: true },
+      { title: 'No leídos', isMobile: true, isDesktop: true },
+      { title: 'Favoritos', isMobile: true, isDesktop: true },
+      { title: 'Archivados', isMobile: true, isDesktop: true },
+      { title: 'Anuncios', isMobile: true, isDesktop: true },
+    ],
   },
 };

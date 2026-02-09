@@ -5,8 +5,6 @@ import {
   input,
   model,
   output,
-  TemplateRef,
-  ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -108,26 +106,38 @@ export class BmbNotificationCardComponent {
       ),
     ];
   });
-  tabsConfig = computed<IBmbTab[]>(() => [
-    {
-      title: this.translationsService.translate(
-        'notification_card.tabs.notifications',
-      ),
-      isMobile: true,
-      isDesktop: true,
-      id: 0,
-      isActive: true,
-      badge: this.badgeTabs()[0],
-    },
-    {
-      title: this.translationsService.translate(
-        'notification_card.tabs.advertisements',
-      ),
-      isMobile: true,
-      isDesktop: true,
-      id: 1,
-    },
-  ]);
+  tabsConfig = computed<IBmbTab[]>(() => {
+    const tabs: IBmbTab[] = [
+      {
+        title: this.translationsService.translate(
+          'notification_card.tabs.notifications',
+        ),
+        isMobile: true,
+        isDesktop: true,
+        id: 1,
+        isActive: true,
+        badge: this.badgeTabs()[0],
+      },
+    ];
+
+    if (this.showAdvertisements()) {
+      tabs.push({
+        title: this.translationsService.translate(
+          'notification_card.tabs.advertisements',
+        ),
+        isMobile: true,
+        isDesktop: true,
+        id: 2,
+        isActive: false,
+        badge: this.badgeTabs()[1],
+      });
+    }
+
+    return tabs;
+  });
+  unreadAlerts = computed<IBmbDataAlertsParsed[]>(() => {
+    return this.parsedData().filter((alert) => !alert.isRead);
+  });
 
   handleAlertEvent(alert: unknown) {
     this.alertEvent.emit(alert as IBmbDataAlert);

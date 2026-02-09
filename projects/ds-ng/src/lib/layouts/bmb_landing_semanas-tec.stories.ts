@@ -6,6 +6,7 @@ import {
   getPageStructureForTemplateStories,
   getSpecialSpecifications,
   getTechnicalDocReferences,
+  getTECParticularitiesMessage,
 } from '../utils/doc/utils';
 import {
   BmbHomeCardComponent,
@@ -716,7 +717,7 @@ export default {
   title:
     'Particularities/mitec web/Landings/Container buttons card/Semanas Tec',
   component: SemanasTecLandingComponent,
-  tags: ['!autodocs'],
+  tags: ['!autodocs', 'tec'],
   parameters: {
     docs: {
       page: () => getPageStructureForTemplateStories(),
@@ -724,7 +725,9 @@ export default {
         component: `
 ${getLandingGeneralDesc('Semanas Tec')}
 ${getSpecialSpecifications(
-  getTechnicalDocReferences({
+  `
+  ${getTECParticularitiesMessage()}<br/>
+  ${getTechnicalDocReferences({
     references: [
       { title: topBarStory.default.title! },
       { title: sideBarStory.default.title! },
@@ -746,7 +749,7 @@ ${getSpecialSpecifications(
       { title: containerButtonStory.default.title! },
     ],
     isFullScreenDesc: true,
-  }),
+  })}`,
   { showAdditionalBlockquote: true },
 )}
 ${getBasicExampleBlock(

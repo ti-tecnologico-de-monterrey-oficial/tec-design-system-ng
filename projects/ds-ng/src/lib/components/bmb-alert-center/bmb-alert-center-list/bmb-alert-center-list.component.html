@@ -12,6 +12,7 @@
             [id]="item.id + ''"
             [value]="item.id + ''"
             (change)="handleSelection($event, item)"
+            [checked]="selectionState()[item.id + ''] || false"
           />
         </section>
       }

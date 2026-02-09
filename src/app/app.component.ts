@@ -24,6 +24,8 @@ import {
   ModalDataConfig,
   BmbModalComponent,
   BmbDropdownComponent,
+  BmbSearchCardComponent,
+  BmbHomeCardChatComponent,
 } from '../../projects/ds-ng/src/public-api';
 import { MatDialog } from '@angular/material/dialog';
 import { TestComponentComponent } from './components/test-component/test-component.component';
@@ -40,6 +42,7 @@ import { TestComponentComponent } from './components/test-component/test-compone
     BmbVerticalLayoutItemDirective,
     BmbSidebarComponent,
     BmbDropdownComponent,
+    BmbHomeCardChatComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
@@ -156,6 +159,12 @@ export class AppComponent {
             icon: 'steppers',
             title: 'Step progress bar',
             link: '/step-progress-bar',
+          },
+          {
+            id: 3,
+            icon: 'sound_detection_loud_sound',
+            title: 'TEC sound',
+            link: '/tec-sound',
           },
         ],
       },
@@ -550,4 +559,30 @@ https://live.tec.mx/cbweek</p><p>¡Te esperamos!`,
 
     this.matDialog.open(BmbModalComponent, { data: modalData });
   }
+
+  handleSearchButtonClick(event: MouseEvent): void {
+    console.log('Search button clicked');
+
+    this.projectionService.openContent({
+      content: BmbSearchCardComponent,
+      targetRef: event.currentTarget as HTMLElement,
+      showBackdrop: false,
+      inputContext: {
+        title: 'Search',
+        inputPlaceholder: 'Type to search...',
+      },
+      outputContext: {
+        triggerSearch: (value: string) => {
+          console.log('Search triggered with value from app component:', value);
+        },
+      },
+    });
+  }
+
+  message = signal<string>('Hello from AppComponent!');
+
+  currentBot = {
+    name: 'TecBot',
+    icon: 'bot_tecStandar',
+  };
 }

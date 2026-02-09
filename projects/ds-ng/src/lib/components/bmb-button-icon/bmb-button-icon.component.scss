@@ -4,9 +4,7 @@
   border: rem.rem_calc($border-width) solid $border-color;
   background-color: $background-color;
 
-  .material-symbols-rounded {
-    color: $icon-color;
-  }
+  color: $icon-color;
 }
 
 @mixin active($container, $outline) {
@@ -21,16 +19,13 @@
     } @else {
       @include container(
         rem.rem_calc(1),
-        rgb(var(--gray-charade-50)),
+        var(--general-contrasts-main-complimentary),
         var(--general-contrasts-50),
-        rgb(var(--gray-charade-50))
+        var(--general-contrasts-main-complimentary)
       );
     }
   } @else {
-    .material-symbols-rounded {
-      color: var(--buttons-primary-select);
-      scale: 1;
-    }
+    color: var(--buttons-primary-select);
   }
 }
 
@@ -45,6 +40,10 @@
   > bmb-action-icon {
     display: inline-flex;
     align-items: center;
+
+    .bmb_check-external-link-button-element:hover:not(:disabled) {
+      opacity: 1;
+    }
   }
 
   &-active:not(.bmb_button_icon-container) {
@@ -126,12 +125,29 @@
         background-color: var(--containers-main);
       }
     }
+
+    &-solid {
+      &.bmb_button_icon {
+        background-color: var(--color-black-light);
+        border-color: var(--general-contrasts-container-outline);
+        color: var(--white-primary);
+      }
+
+      &:not(.bmb_button_icon-disabled) {
+        &:hover {
+          background-color: rgba(var(--color-black-primary), 1);
+          color: var(--white-primary);
+          border-color: var(--general-contrasts-input-outline);
+        }
+      }
+    }
   }
 
   &:not(.bmb_button_icon-container, .bmb_button_icon-disabled) {
     &:hover {
-      .material-symbols-rounded {
-        color: rgb(var(--white-primary));
+      color: rgb(var(--white-primary));
+
+      .bmb_action_icon-icon {
         scale: 1.2;
       }
     }
@@ -141,7 +157,5 @@
     }
   }
 
-  .material-symbols-rounded {
-    color: rgb(var(--white-primary));
-  }
+  color: rgb(var(--white-primary));
 }

@@ -1,0 +1,17 @@
+<div
+  class="bmb_search-card-item"
+  (click)="handleClick()"
+  tabindex="0"
+  role="button"
+>
+  <bmb-title-content
+    [title]="name()"
+    [subtitle]="subtitle()"
+    [icon]="icon()"
+    [iconSize]="24"
+    [bgIconAppearance]="backgroundColorIcon()"
+    [isAvatarIcon]="!isService()"
+    [avatarSize]="'desktop-small'"
+    [forceSquareApp]="isService()"
+  />
+</div>

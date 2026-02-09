@@ -59,10 +59,10 @@ export class BmbAlertCenterComponent {
   dateFormat = input<string>('dd/MM/yyyy');
   tabsName = input<string[] | IBmbAlertCenterTabConfig[]>([
     { title: 'Notificaciones', isMobile: true, isDesktop: true },
-    { title: 'No leídos', isMobile: false, isDesktop: true },
+    { title: 'No leídos', isMobile: true, isDesktop: true },
     { title: 'Favoritos', isMobile: false, isDesktop: true },
     { title: 'Archivados', isMobile: false, isDesktop: true },
-    { title: 'Anuncios', isMobile: true, isDesktop: true },
+    { title: 'Anuncios', isMobile: false, isDesktop: false },
   ]);
   hideTabs = input<boolean>(false);
   enableMultipleSelection = input<boolean>(true);
@@ -145,6 +145,7 @@ export class BmbAlertCenterComponent {
         `${alert.date} ${alert.time}`,
         `${this.dateFormat()} HH:mm`,
       ),
+      customEventHandler: alert.customEventHandler ?? false,
     }));
 
     return parserDates.sort((a, b) => {
@@ -170,6 +171,12 @@ export class BmbAlertCenterComponent {
   }
 
   handleShowAlert(item: IBmbDataAlertsParsed): void {
+    if (item.customEventHandler) {
+      const { pDate, ...alertData } = item;
+      this.showAlertDetail.emit(alertData);
+      return;
+    }
+
     this.visibleAlert = item;
     const { pDate, ...alertData } = item;
 

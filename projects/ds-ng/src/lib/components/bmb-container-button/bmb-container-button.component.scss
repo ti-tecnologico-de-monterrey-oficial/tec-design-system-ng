@@ -36,6 +36,14 @@
       .bmb_grade-value-main {
         fill: var(--buttons-destructive);
       }
+
+      .bmb_container-button-subtitle {
+        color: var(--buttons-destructive);
+      }
+
+      .bmb_container-button-right-icon {
+        color: var(--general-contrasts-100);
+      }
     }
   }
 
@@ -119,9 +127,7 @@
     }
 
     &-menu {
-      .bmb_dropdown_menu-list {
-        @include mixins.dropdown-menu-left(250);
-      }
+      display: flex;
     }
   }
 
@@ -230,9 +236,10 @@
         }
 
         &:focus:not(:disabled),
-        &:focus-visible:not(:disabled) {
+        &:focus-visible:not(:disabled),
+        &:active:not(:disabled) {
           background-color: var(--buttons-primary-select);
-          color: rgb(var(--white-primary));
+          color: var(--buttons-alternative-normal);
           outline: rem.rem_calc(1) solid var(--buttons-stroke-primary-selected);
 
           .bmb_grade-value-main {

@@ -30,7 +30,7 @@
   }
 
   &-normal_bg {
-    background-color: var(--containers-background);
+    background-color: var(--general-contrasts-input-background);
   }
 
   &-inherited_bg {
@@ -48,7 +48,7 @@
     color: var(--general-contrasts-100);
 
     &-focused {
-      color: rgb(var(--blue-mariner-500));
+      color: var(--general-contrasts-main-selection);
     }
   }
 
@@ -59,7 +59,7 @@
     color: var(--general-contrasts-input-outline);
 
     &-focused {
-      color: rgb(var(--blue-mariner-500));
+      color: var(--general-contrasts-main-selection);
     }
   }
 

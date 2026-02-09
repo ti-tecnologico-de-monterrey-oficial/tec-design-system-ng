@@ -22,6 +22,7 @@ import {
   getPageStructureForTemplateStories,
   getSpecialSpecifications,
   getTechnicalDocReferences,
+  getTECParticularitiesMessage,
 } from '../utils/doc/utils';
 
 import * as topBarStory from '../components/bmb-top-bar/bmb-top-bar.stories';
@@ -350,7 +351,7 @@ export default {
   title:
     'Particularities/mitec web/Landings/Container buttons card/Cuotas de colegiatura y políticas de pago',
   component: BmbTopBarComponent,
-  tags: ['!autodocs'],
+  tags: ['!autodocs', 'tec'],
   decorators: [
     moduleMetadata({
       imports: [StorybookCuotasColegiaturasComponent, BmbTopBarComponent],
@@ -363,7 +364,9 @@ export default {
         component: `
 ${getLandingGeneralDesc('Cuotas de colegiatura y políticas de pago')}
 ${getSpecialSpecifications(
-  getTechnicalDocReferences({
+  `
+  ${getTECParticularitiesMessage()}<br/>
+  ${getTechnicalDocReferences({
     references: [
       { title: topBarStory.default.title! },
       { title: sideBarStory.default.title! },
@@ -378,7 +381,7 @@ ${getSpecialSpecifications(
       { title: dropdownStory.default.title! },
     ],
     isFullScreenDesc: true,
-  }),
+  })}`,
   { showAdditionalBlockquote: true },
 )}
 ${getBasicExampleBlock(

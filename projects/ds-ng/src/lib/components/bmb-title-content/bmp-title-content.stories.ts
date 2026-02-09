@@ -8,6 +8,9 @@ export default {
   component: BmbTitleContentComponent,
   parameters: {
     docs: {
+      controls: {
+        exclude: ['getClassNames', 'getStyles', 'isImage', 'showBreadcrumbs'],
+      },
       description: {
         component: `
 Below is an example of how you can use this component in TypeScript:
@@ -292,6 +295,47 @@ ${RELEVANT_TITLE.note}<= 0 will be inherited.`,
         type: { summary: 'boolean (optional)' },
       },
     },
+    isAvatarIcon: {
+      name: 'Is avatar icon',
+      control: { type: 'boolean' },
+      description: 'Sets whether the icon is an avatar image when true.',
+      table: {
+        category: 'Properties',
+        defaultValue: { summary: 'false' },
+        type: { summary: 'boolean (optional)' },
+      },
+    },
+    avatarSize: {
+      name: 'Avatar size',
+      control: {
+        type: 'select',
+      },
+      options: [
+        'mobile-small',
+        'mobile-medium',
+        'mobile-large',
+        'desktop-small',
+        'desktop-medium',
+        'desktop-large',
+      ],
+      description: 'Sets the avatar size.',
+      table: {
+        category: 'Properties',
+        defaultValue: { summary: 'desktop-small' },
+        type: { summary: 'IBmbUserImageSize (optional)' },
+      },
+    },
+    forceSquareApp: {
+      name: 'Force square appearance',
+      control: { type: 'boolean' },
+      description:
+        'Forces the icon to have a square appearance when true, even if it is an image with transparent background.',
+      table: {
+        category: 'Properties',
+        defaultValue: { summary: 'false' },
+        type: { summary: 'boolean (optional)' },
+      },
+    },
   },
   args: {
     title: 'Title',
@@ -308,6 +352,9 @@ ${RELEVANT_TITLE.note}<= 0 will be inherited.`,
     icon: 'account_balance_wallet',
     iconSize: 24,
     bgIconAppearance: 'green-light',
+    isAvatarIcon: false,
+    avatarSize: 'desktop-small',
+    forceSquareApp: false,
   },
 } as Meta<typeof BmbTitleContentComponent>;
 

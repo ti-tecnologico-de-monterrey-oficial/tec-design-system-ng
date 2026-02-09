@@ -43,7 +43,7 @@
       border-radius: var(--bmb-radius-full);
       width: rem.rem_calc(32);
       height: rem.rem_calc(32);
-      background-color: var(--general-contrasts-80);
+      background-color: var(--general-contrasts-50);
       color: var(--general-contrasts-25);
     }
   }
@@ -63,6 +63,7 @@
     &-top {
       border-radius: 0 rem.rem_calc(16) rem.rem_calc(16) rem.rem_calc(16);
       background-color: var(--general-contrasts-20);
+      color: var(--general-contrasts-75);
     }
 
     p {
@@ -93,7 +94,7 @@
     &-thinking-dot {
       width: rem.rem_calc(12);
       height: rem.rem_calc(12);
-      background-color: rgb(var(--blue-mariner-500));
+      background-color: var(--general-contrasts-main-selection);
       border-radius: var(--bmb-radius-full);
       opacity: 0.3;
       animation: thinking 1.5s infinite ease-in-out;
