@@ -89,7 +89,7 @@ import * as iconStory from '../components/bmb-icon/bmb-icon.stories';
           >
             <bmb-card margin="none" bmbLayoutItem [colSm]="6" [colLg]="6">
               <bmb-card-header padding="m">
-                <h3 class="font-medium-5 truncate-title">
+                <h3 class="font-regular-5 truncate-title">
                   Lorem ipsum dolor sit amet consectetur. Nisl nibh phasellus
                   condimentum mi faucibus.
                 </h3>
@@ -130,7 +130,7 @@ import * as iconStory from '../components/bmb-icon/bmb-icon.stories';
             </bmb-card>
             <bmb-card margin="none" bmbLayoutItem [colSm]="6" [colLg]="6">
               <bmb-card-header padding="m">
-                <h3 class="font-medium-5 truncate-title">
+                <h3 class="font-regular-5 truncate-title">
                   Lorem ipsum dolor sit amet consectetur. Nisl nibh phasellus
                   condimentum mi faucibus.
                 </h3>
@@ -148,7 +148,7 @@ import * as iconStory from '../components/bmb-icon/bmb-icon.stories';
                     icon="keyboard_arrow_down"
                   >
                     <ng-template #bmbAccordionHeader>
-                      <span class="font-medium-4"> Información general </span>
+                      <span class="font-regular-4"> Información general </span>
                     </ng-template>
                     <ng-template #bmbAccordionContent>
                       <div class="truncate-170">
@@ -171,7 +171,7 @@ import * as iconStory from '../components/bmb-icon/bmb-icon.stories';
                     icon="keyboard_arrow_down"
                   >
                     <ng-template #bmbAccordionHeader>
-                      <span class="font-medium-4">Guías</span>
+                      <span class="font-regular-4">Guías</span>
                     </ng-template>
                     <ng-template #bmbAccordionContent>
                       <div class="bmb_template-accordion-links">
@@ -180,7 +180,7 @@ import * as iconStory from '../components/bmb-icon/bmb-icon.stories';
                           href="https://www.youtube.com"
                           target="'_blank'"
                         >
-                          <span class="font-medium-4"
+                          <span class="font-regular-4"
                             >Guía para establecer y dar seguimiento a mi Plan de
                             Desarrollo</span
                           >
@@ -191,7 +191,7 @@ import * as iconStory from '../components/bmb-icon/bmb-icon.stories';
                           href="https://www.youtube.com"
                           target="'_blank'"
                         >
-                          <span class="font-medium-4"
+                          <span class="font-regular-4"
                             >Guía para acompañar a tu equipo en mi Plan de
                             Desarrollo</span
                           >
@@ -203,7 +203,7 @@ import * as iconStory from '../components/bmb-icon/bmb-icon.stories';
                           href="https://www.youtube.com"
                           target="'_blank'"
                         >
-                          <span class="font-medium-4"
+                          <span class="font-regular-4"
                             >Guía para reguistrar tu plan en Success
                             Factors</span
                           >
@@ -223,7 +223,7 @@ import * as iconStory from '../components/bmb-icon/bmb-icon.stories';
                     icon="keyboard_arrow_down"
                   >
                     <ng-template #bmbAccordionHeader>
-                      <span class="font-medium-4">Recursos de desarrollo </span>
+                      <span class="font-regular-4">Recursos de desarrollo </span>
                     </ng-template>
                     <ng-template #bmbAccordionContent>
                       <div class="bmb_template-accordion-links">
@@ -232,7 +232,7 @@ import * as iconStory from '../components/bmb-icon/bmb-icon.stories';
                           href="https://www.youtube.com"
                           target="'_blank'"
                         >
-                          <span class="font-medium-4"
+                          <span class="font-regular-4"
                             >Oferta de desarrollo</span
                           >
                           <bmb-icon icon="arrow_forward" [size]="20" />
@@ -242,7 +242,7 @@ import * as iconStory from '../components/bmb-icon/bmb-icon.stories';
                           href="https://www.youtube.com"
                           target="'_blank'"
                         >
-                          <span class="font-medium-4"
+                          <span class="font-regular-4"
                             >Oportunidades de crecimiento</span
                           >
                           <bmb-icon icon="arrow_forward" [size]="20" />
@@ -252,7 +252,7 @@ import * as iconStory from '../components/bmb-icon/bmb-icon.stories';
                           href="https://www.youtube.com"
                           target="'_blank'"
                         >
-                          <span class="font-medium-4">mi BiblioTECa</span>
+                          <span class="font-regular-4">mi BiblioTECa</span>
                           <bmb-icon icon="arrow_forward" [size]="20" />
                         </a>
                       </div>
@@ -269,7 +269,7 @@ import * as iconStory from '../components/bmb-icon/bmb-icon.stories';
                     icon="keyboard_arrow_down"
                   >
                     <ng-template #bmbAccordionHeader>
-                      <span class="font-medium-4">FAQ's </span>
+                      <span class="font-regular-4">FAQ's </span>
                     </ng-template>
                     <ng-template #bmbAccordionContent>
                       <div class="truncate-170">
@@ -297,7 +297,7 @@ import * as iconStory from '../components/bmb-icon/bmb-icon.stories';
                     icon="keyboard_arrow_down"
                   >
                     <ng-template #bmbAccordionHeader>
-                      <span class="font-medium-4">FAQ's </span>
+                      <span class="font-regular-4">FAQ's </span>
                     </ng-template>
                     <ng-template #bmbAccordionContent>
                       <div class="truncate-170">
@@ -548,7 +548,7 @@ ${getBasicExampleBlock(
           >
             <bmb-card margin="none" bmbLayoutItem [colSm]="6" [colLg]="6">
               <bmb-card-header padding="m">
-                <h3 class="font-medium-5 truncate-title">
+                <h3 class="font-regular-5 truncate-title">
                   Lorem ipsum dolor sit amet consectetur. Nisl nibh phasellus
                   condimentum mi faucibus.
                 </h3>
@@ -589,7 +589,7 @@ ${getBasicExampleBlock(
             </bmb-card>
             <bmb-card margin="none" bmbLayoutItem [colSm]="6" [colLg]="6">
               <bmb-card-header padding="m">
-                <h3 class="font-medium-5 truncate-title">
+                <h3 class="font-regular-5 truncate-title">
                   Lorem ipsum dolor sit amet consectetur. Nisl nibh phasellus
                   condimentum mi faucibus.
                 </h3>
@@ -607,7 +607,7 @@ ${getBasicExampleBlock(
                     icon="keyboard_arrow_down"
                   >
                     <ng-template #bmbAccordionHeader>
-                      <span class="font-medium-4"> Información general </span>
+                      <span class="font-regular-4"> Información general </span>
                     </ng-template>
                     <ng-template #bmbAccordionContent>
                       <div class="truncate-170">
@@ -630,7 +630,7 @@ ${getBasicExampleBlock(
                     icon="keyboard_arrow_down"
                   >
                     <ng-template #bmbAccordionHeader>
-                      <span class="font-medium-4">Guías</span>
+                      <span class="font-regular-4">Guías</span>
                     </ng-template>
                     <ng-template #bmbAccordionContent>
                       <div class="bmb_template-accordion-links">
@@ -639,7 +639,7 @@ ${getBasicExampleBlock(
                           href="https://www.youtube.com"
                           target="'_blank'"
                         >
-                          <span class="font-medium-4"
+                          <span class="font-regular-4"
                             >Guía para establecer y dar seguimiento a mi Plan de
                             Desarrollo</span
                           >
@@ -650,7 +650,7 @@ ${getBasicExampleBlock(
                           href="https://www.youtube.com"
                           target="'_blank'"
                         >
-                          <span class="font-medium-4"
+                          <span class="font-regular-4"
                             >Guía para acompañar a tu equipo en mi Plan de
                             Desarrollo</span
                           >
@@ -662,7 +662,7 @@ ${getBasicExampleBlock(
                           href="https://www.youtube.com"
                           target="'_blank'"
                         >
-                          <span class="font-medium-4"
+                          <span class="font-regular-4"
                             >Guía para reguistrar tu plan en Success
                             Factors</span
                           >
@@ -682,7 +682,7 @@ ${getBasicExampleBlock(
                     icon="keyboard_arrow_down"
                   >
                     <ng-template #bmbAccordionHeader>
-                      <span class="font-medium-4">Recursos de desarrollo </span>
+                      <span class="font-regular-4">Recursos de desarrollo </span>
                     </ng-template>
                     <ng-template #bmbAccordionContent>
                       <div class="bmb_template-accordion-links">
@@ -691,7 +691,7 @@ ${getBasicExampleBlock(
                           href="https://www.youtube.com"
                           target="'_blank'"
                         >
-                          <span class="font-medium-4"
+                          <span class="font-regular-4"
                             >Oferta de desarrollo</span
                           >
                           <bmb-icon icon="arrow_forward" [size]="20" />
@@ -701,7 +701,7 @@ ${getBasicExampleBlock(
                           href="https://www.youtube.com"
                           target="'_blank'"
                         >
-                          <span class="font-medium-4"
+                          <span class="font-regular-4"
                             >Oportunidades de crecimiento</span
                           >
                           <bmb-icon icon="arrow_forward" [size]="20" />
@@ -711,7 +711,7 @@ ${getBasicExampleBlock(
                           href="https://www.youtube.com"
                           target="'_blank'"
                         >
-                          <span class="font-medium-4">mi BiblioTECa</span>
+                          <span class="font-regular-4">mi BiblioTECa</span>
                           <bmb-icon icon="arrow_forward" [size]="20" />
                         </a>
                       </div>
@@ -728,7 +728,7 @@ ${getBasicExampleBlock(
                     icon="keyboard_arrow_down"
                   >
                     <ng-template #bmbAccordionHeader>
-                      <span class="font-medium-4">FAQ's </span>
+                      <span class="font-regular-4">FAQ's </span>
                     </ng-template>
                     <ng-template #bmbAccordionContent>
                       <div class="truncate-170">
@@ -756,7 +756,7 @@ ${getBasicExampleBlock(
                     icon="keyboard_arrow_down"
                   >
                     <ng-template #bmbAccordionHeader>
-                      <span class="font-medium-4">FAQ's </span>
+                      <span class="font-regular-4">FAQ's </span>
                     </ng-template>
                     <ng-template #bmbAccordionContent>
                       <div class="truncate-170">
