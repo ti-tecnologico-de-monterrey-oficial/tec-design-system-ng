@@ -281,19 +281,12 @@
 @mixin normal-input-focus() {
   &:focus,
   &:focus-visible,
+  &:hover,
   &-focus {
     box-sizing: inherit;
     border-color: var(--general-contrasts-input-outline);
     caret-color: var(--general-contrasts-input-outline);
-    outline: rem.rem_calc(1) solid;
-    outline-color: var(--general-contrasts-input-outline);
-  }
-
-  &:hover {
-    box-sizing: inherit;
-    border-color: var(--general-contrasts-50);
-    outline: rem.rem_calc(1) solid;
-    outline-color: var(--general-contrasts-50);
+    outline: rem.rem_calc(1) solid var(--general-contrasts-input-outline);
   }
 }
 
@@ -321,7 +314,7 @@
 
 @mixin normal-helper-text() {
   @include helper-text();
-  color: var(--general-contrasts-input-outline);
+  color: var(--general-contrasts-80);
 }
 
 @mixin error-helper-text() {

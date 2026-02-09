@@ -8,9 +8,8 @@ describe('SoundLayoutComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [SoundLayoutComponent]
-    })
-    .compileComponents();
+      imports: [SoundLayoutComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(SoundLayoutComponent);
     component = fixture.componentInstance;

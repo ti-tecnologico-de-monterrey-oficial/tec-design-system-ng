@@ -15,7 +15,6 @@
     display: flex;
     overflow: auto;
     transition: opacity 0.3s ease;
-    background-color: var(--general-contrasts-25);
 
     &.visible {
       opacity: 1;

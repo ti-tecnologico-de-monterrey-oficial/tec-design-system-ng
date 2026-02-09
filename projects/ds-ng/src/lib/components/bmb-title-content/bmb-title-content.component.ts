@@ -67,7 +67,11 @@ export class BmbTitleContentComponent {
   }
 
   getStyles(): object {
-    if (this.isImage(this.icon()) && this.transparentBgC() && !this.forceSquareApp()) {
+    if (
+      this.isImage(this.icon()) &&
+      this.transparentBgC() &&
+      !this.forceSquareApp()
+    ) {
       return { 'background-color': 'transparent' };
     }
     if (!!this.bgIconAppearance()) {

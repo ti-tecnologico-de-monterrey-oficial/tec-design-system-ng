@@ -33,7 +33,7 @@ export type IBmbTextEditorPromptType = 'link' | 'image';
     BmbVerticalLayoutDirective,
     BmbVerticalLayoutItemDirective,
     BmbRadialComponent,
-],
+  ],
   templateUrl: './bmb-text-editor-prompt.component.html',
   styleUrl: './bmb-text-editor-prompt.component.scss',
 })
