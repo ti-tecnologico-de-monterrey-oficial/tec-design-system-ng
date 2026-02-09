@@ -8,49 +8,15 @@
 
 **El proyecto de Bamboo fue realizado con la versión v21.6.1 de Node y 10.3.0 de NPM.**
 
-### Migración de Github packages a NPM
-
-Para los equipos con la versión de Bamboo 0.2.1 o inferior, se debe migrar el paquete a NPM ya que el repositorio anterior no se seguirá actualizando, por lo que es necesario este proceso para seguir recibiendo todas las actualizaciones.
-
-Es necesario cerrar la sesión en el scope del TEC, para ello es necesario ejecutar los siguientes comandos:
-
-`npm logout --scope=@ti-tecnologico-de-monterrey-oficial`
-
-`npm uninstall @ti-tecnologico-de-monterrey-oficial/ds-ng`
-
-Una vez hecho lo anterior es necesario borrar el archivo .npmrc con la línea:
-
-`@ti-tecnologico-de-monterrey-oficial:registry=https://npm.pkg.github.com`
-
-Ahora podemos hacer la instalación de Bamboo nuevamente dependiendo de tu versión de Angular
-
-`npm i @ti-tecnologico-de-monterrey-oficial/ds-ng@a17`
-
-`npm i @ti-tecnologico-de-monterrey-oficial/ds-ng@a18`
-
-`npm i @ti-tecnologico-de-monterrey-oficial/ds-ng@a19`
-
-Ahora el paquete deberá tener la versión 0.2.2 o superior, ejemplo para Angular 18.
-
-`"@ti-tecnologico-de-monterrey7-oficial/ds-ng": "^1.5.X18",`
-
-### Visual Studio Code
-
-Puedes utilizar cualquier Entorno de Desarrollo Integrado (IDE), pero te recomendamos utilizar Visual Studio Code.
-
-Si aún no tienes Visual Studio Code instalado, puedes descargarlo desde el sitio oficial:
-
-[Visual Studio Code](https://code.visualstudio.com)
-
 ## Instala Design System Bamboo
 
 Ejecuta el siguiente comando en la raíz del proyecto dependiendo de tu versión de Angular:
 
-- Angular 17: `npm install @ti-tecnologico-de-monterrey-oficial/ds-ng@a17`
-
 - Angular 18: `npm install @ti-tecnologico-de-monterrey-oficial/ds-ng@a18`
 
 - Angular 19: `npm install @ti-tecnologico-de-monterrey-oficial/ds-ng@a19`
+
+- Angular 20: `npm install @ti-tecnologico-de-monterrey-oficial/ds-ng@a20`
 
 Sigue los pasos de la guía para configurar los estilos y las fuentes.
 
@@ -59,6 +25,12 @@ Sigue los pasos de la guía para configurar los estilos y las fuentes.
 Para poder utilizar Bamboo, sigue estos pasos para agregar estilos y configuraciones específicas del paquete:
 
 En el archivo `angular.json` de tu proyecto, agrega el siguiente contenido donde esta _“styles”_ y _“assets”_:
+
+Para importar los estilos es necesario decidir la marca deseada ya que no se puede cambiar en tiempo de ejecución.
+
+
+- TEC – mainTEC.min.css
+- Grupo educativo – mainGED.min.css
 
 ```
 "assets": [
@@ -78,29 +50,17 @@ En el archivo `angular.json` de tu proyecto, agrega el siguiente contenido donde
         "glob": "**/*",
         "input": "./node_modules/@ti-tecnologico-de-monterrey-oficial/ds-ng/assets/svg/",
         "output": "/assets/svg/"
-    }
+    },
+    {
+      "glob": "**/*.svg",
+      "input": "node_modules/@material-symbols/svg-400/rounded/",
+      "output": "/assets/icons/material-rounded/"
+    },
 ],
 "styles": [
     "src/styles.scss",
-    "node_modules/@ti-tecnologico-de-monterrey-oficial/ds-ng/assets/styles/main.min.css"
+    "node_modules/@ti-tecnologico-de-monterrey-oficial/ds-ng/assets/styles/mainTEC.min.css"
 ],
-```
-
-## Instalación de íconos
-
-Agrega las siguientes lineas a tu archivo de estilos global `src/styles.scss`.
-
-**Angular 17.3**
-
-```
-$material-symbols-font-path: 'material-symbols/';
-@import 'material-symbols/rounded';
-```
-
-**Angular 18+**
-
-```
-@import 'material-symbols/rounded';
 ```
 
 ---
