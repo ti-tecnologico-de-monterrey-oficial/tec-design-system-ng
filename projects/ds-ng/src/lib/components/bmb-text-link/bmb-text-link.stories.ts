@@ -88,7 +88,7 @@ ${getBasicExampleBlock('BmbTextLinkComponent')}
     link: 'https://www.youtube.com',
     target: '_blank',
     icon: 'arrow_forward',
-    iconPosition: 'left',
+    iconPosition: 'right',
     disabled: false,
   },
 } as Meta<typeof BmbTextLinkComponent>;
