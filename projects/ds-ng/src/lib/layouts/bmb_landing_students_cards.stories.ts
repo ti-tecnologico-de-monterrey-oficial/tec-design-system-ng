@@ -96,7 +96,7 @@ import * as layoutStory from '../directives/bmb-layout/bmb-layout.stories';
                     />
                   </div>
                   <div bmbLayoutItem [colSm]="3">
-                    <h1 class="font-medium-8">
+                    <h1 class="font-regular-8">
                       Lorem ipsum dolor sit amet consectetur.
                     </h1>
                     <p>
@@ -120,7 +120,7 @@ import * as layoutStory from '../directives/bmb-layout/bmb-layout.stories';
             <div bmbLayoutItem [colSm]="4" [colLg]="6">
               <bmb-card margin="none">
                 <section bmbLayout margin="none" class="bmb_padding-m">
-                  <h1 bmbLayoutItem [colSm]="4" class="font-medium-8">
+                  <h1 bmbLayoutItem [colSm]="4" class="font-regular-8">
                     Lorem ipsum dolor sit amet consectetur.
                   </h1>
                   <div bmbLayoutItem [colSm]="1">
@@ -145,7 +145,7 @@ import * as layoutStory from '../directives/bmb-layout/bmb-layout.stories';
               </bmb-card>
               <bmb-card margin="none" style="margin-top: 1rem; display: block;">
                 <section bmbLayout margin="none" class="bmb_padding-m">
-                  <h1 bmbLayoutItem [colSm]="4" class="font-medium-8">
+                  <h1 bmbLayoutItem [colSm]="4" class="font-regular-8">
                     Lorem ipsum dolor sit amet
                   </h1>
                   <div bmbLayoutItem [colSm]="4">
@@ -280,7 +280,7 @@ ${getBasicExampleBlock(`BmbTopBarComponent,
                 />
               </div>
               <div bmbLayoutItem [colSm]="3">
-                <h1 class="font-medium-8">Lorem ipsum dolor sit amet consectetur. </h1>
+                <h1 class="font-regular-8">Lorem ipsum dolor sit amet consectetur. </h1>
                 <p>Lorem ipsum dolor sit amet consectetur. Nisl nibh phasellus condimentum mi faucibus. In quisque justo senectus in sed adipiscing. Arcu neque feugiat aenean nam accumsan justo ut. Pulvinar urna amet proin sit sed tellus ipsum.</p>
                 <p>Lorem ipsum dolor sit amet consectetur. Nisl nibh phasellus condimentum mi faucibus. In quisque justo senectus in sed adipiscing. Arcu neque feugiat aenean nam accumsan justo ut. Pulvinar urna amet proin sit sed tellus ipsum.</p>
               </div>
@@ -290,7 +290,7 @@ ${getBasicExampleBlock(`BmbTopBarComponent,
         <div bmbLayoutItem [colSm]="4" [colLg]="6">
           <bmb-card margin="none">
             <section bmbLayout margin="none" class="bmb_padding-m">
-              <h1 bmbLayoutItem [colSm]="4" class="font-medium-8">Lorem ipsum dolor sit amet consectetur. </h1>
+              <h1 bmbLayoutItem [colSm]="4" class="font-regular-8">Lorem ipsum dolor sit amet consectetur. </h1>
               <div bmbLayoutItem [colSm]="1">
                 <bmb-image
                   src="https://picsum.photos/id/25/400"
@@ -310,7 +310,7 @@ ${getBasicExampleBlock(`BmbTopBarComponent,
           </bmb-card>
           <bmb-card margin="none" style="margin-top: 1rem; display: block;">
             <section bmbLayout margin="none" class="bmb_padding-m">
-              <h1 bmbLayoutItem [colSm]="4" class="font-medium-8">Lorem ipsum dolor sit amet</h1>
+              <h1 bmbLayoutItem [colSm]="4" class="font-regular-8">Lorem ipsum dolor sit amet</h1>
               <div bmbLayoutItem [colSm]="4">
                 <p>Lorem ipsum dolor sit amet consectetur. Nisl nibh phasellus condimentum mi faucibus. In quisque justo senectus in sed .</p>
               </div>

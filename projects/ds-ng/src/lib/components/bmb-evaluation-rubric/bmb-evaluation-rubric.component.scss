@@ -32,8 +32,9 @@
         align-items: center;
         gap: var(--bmb-spacing-s);
 
-        > h3 {
+        &-name {
           @include fonts.font(4, regular);
+          color: var(--general-contrasts-100);
         }
 
         > bmb-tooltip {

@@ -108,7 +108,7 @@ import * as layoutStory from '../directives/bmb-layout/bmb-layout.stories';
                   />
                 </div>
                 <div bmbLayoutItem [colSm]="3">
-                  <h1 class="font-medium-8">
+                  <h1 class="font-regular-8">
                     Lorem ipsum dolor sit amet consectetur. Nisl nibh phasellus
                     condimentum
                   </h1>
@@ -130,7 +130,7 @@ import * as layoutStory from '../directives/bmb-layout/bmb-layout.stories';
             @case (2) {
               <section bmbLayout margin="none" class="bmb_padding-m">
                 <div bmbLayoutItem [colSm]="4">
-                  <h1 class="font-medium-8">
+                  <h1 class="font-regular-8">
                     Lorem ipsum dolor sit amet consectetur. Nisl nibh phasellus
                     condimentum
                   </h1>
@@ -291,7 +291,7 @@ ${getBasicExampleBlock(
               />
             </div>
             <div bmbLayoutItem [colSm]="3">
-              <h1 class="font-medium-8">Lorem ipsum dolor sit amet consectetur. Nisl nibh phasellus condimentum </h1>
+              <h1 class="font-regular-8">Lorem ipsum dolor sit amet consectetur. Nisl nibh phasellus condimentum </h1>
               <p>Lorem ipsum dolor sit amet consectetur. Nisl nibh phasellus condimentum mi faucibus. In quisque justo senectus in sed adipiscing. Arcu neque feugiat aenean nam accumsan justo ut. Pulvinar urna amet proin sit sed tellus ipsum.</p>
               <p>Lorem ipsum dolor sit amet consectetur. Nisl nibh phasellus condimentum mi faucibus. In quisque justo senectus in sed adipiscing. Arcu neque feugiat aenean nam accumsan justo ut. Pulvinar urna amet proin sit sed tellus ipsum.</p>
             </div>
@@ -300,7 +300,7 @@ ${getBasicExampleBlock(
         @case(2) {
           <section bmbLayout margin="none" class="bmb_padding-m">
             <div bmbLayoutItem [colSm]="4">
-              <h1 class="font-medium-8">Lorem ipsum dolor sit amet consectetur. Nisl nibh phasellus condimentum </h1>
+              <h1 class="font-regular-8">Lorem ipsum dolor sit amet consectetur. Nisl nibh phasellus condimentum </h1>
               <p>Lorem ipsum dolor sit amet consectetur. Nisl nibh phasellus condimentum mi faucibus. In quisque justo senectus in sed adipiscing. Arcu neque feugiat aenean nam accumsan justo ut. Pulvinar urna amet proin sit sed tellus ipsum.</p>
               <p>Lorem ipsum dolor sit amet consectetur. Nisl nibh phasellus condimentum mi faucibus. In quisque justo senectus in sed adipiscing. Arcu neque feugiat aenean nam accumsan justo ut. Pulvinar urna amet proin sit sed tellus ipsum.</p>
             </div>

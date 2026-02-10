@@ -117,7 +117,7 @@ import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
                       />
                     </figure>
                     <bmb-card-header padding="m">
-                      <h3 class="font-medium-5">¡Bienvenido/a!</h3>
+                      <h3 class="font-regular-5">¡Bienvenido/a!</h3>
                     </bmb-card-header>
                     <p class="font-regular-4 padding-s">
                       Lorem ipsum dolor sit amet consectetur. Nisl nibh
@@ -132,7 +132,7 @@ import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
                 <bmb-card margin="none">
                   <bmb-card-content>
                     <bmb-card-header padding="m">
-                      <h3 class="font-medium-5">Simulador de colegiaturas</h3>
+                      <h3 class="font-regular-5">Simulador de colegiaturas</h3>
                     </bmb-card-header>
                     <div class="bmb_template-accordion-links padding-s">
                       <a
@@ -140,7 +140,7 @@ import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
                         href="https://www.youtube.com"
                         target="'_blank'"
                       >
-                        <span class="font-medium-4">Preparatoria</span>
+                        <span class="font-regular-4">Preparatoria</span>
                         <bmb-icon icon="arrow_forward" [size]="20" />
                       </a>
                       <a
@@ -148,7 +148,7 @@ import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
                         href="https://www.youtube.com"
                         target="'_blank'"
                       >
-                        <span class="font-medium-4">Profesional Tex21!</span>
+                        <span class="font-regular-4">Profesional Tex21!</span>
                         <bmb-icon icon="arrow_forward" [size]="20" />
                       </a>
                     </div>
@@ -161,7 +161,7 @@ import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
                 <bmb-card margin="none" style="height: 100%;">
                   <bmb-card-content>
                     <bmb-card-header padding="m">
-                      <h3 class="font-medium-5">
+                      <h3 class="font-regular-5">
                         Para consultar la cuota de colegiatura selecciona:
                       </h3>
                     </bmb-card-header>
@@ -570,7 +570,7 @@ ${getBasicExampleBlock(
                       />
                     </figure>
                     <bmb-card-header padding="m">
-                      <h3 class="font-medium-5">¡Bienvenido/a!</h3>
+                      <h3 class="font-regular-5">¡Bienvenido/a!</h3>
                     </bmb-card-header>
                     <p class="font-regular-4 padding-s">
                       Lorem ipsum dolor sit amet consectetur. Nisl nibh
@@ -585,7 +585,7 @@ ${getBasicExampleBlock(
                 <bmb-card margin="none">
                   <bmb-card-content>
                     <bmb-card-header padding="m">
-                      <h3 class="font-medium-5">Simulador de colegiaturas</h3>
+                      <h3 class="font-regular-5">Simulador de colegiaturas</h3>
                     </bmb-card-header>
                     <div class="bmb_template-accordion-links padding-s">
                       <a
@@ -593,7 +593,7 @@ ${getBasicExampleBlock(
                         href="https://www.youtube.com"
                         target="'_blank'"
                       >
-                        <span class="font-medium-4">Preparatoria</span>
+                        <span class="font-regular-4">Preparatoria</span>
                         <bmb-icon icon="arrow_forward" [size]="20" />
                       </a>
                       <a
@@ -601,7 +601,7 @@ ${getBasicExampleBlock(
                         href="https://www.youtube.com"
                         target="'_blank'"
                       >
-                        <span class="font-medium-4">Profesional Tex21!</span>
+                        <span class="font-regular-4">Profesional Tex21!</span>
                         <bmb-icon icon="arrow_forward" [size]="20" />
                       </a>
                     </div>
@@ -614,7 +614,7 @@ ${getBasicExampleBlock(
                 <bmb-card margin="none" style="height: 100%;">
                   <bmb-card-content>
                     <bmb-card-header padding="m">
-                      <h3 class="font-medium-5">
+                      <h3 class="font-regular-5">
                         Para consultar la cuota de colegiatura selecciona:
                       </h3>
                     </bmb-card-header>
