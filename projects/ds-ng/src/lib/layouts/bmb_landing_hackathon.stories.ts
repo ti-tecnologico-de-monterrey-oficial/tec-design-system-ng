@@ -135,7 +135,7 @@ import { Router } from '@angular/router';
                           />
                         </figure>
                         <bmb-card-header padding="m">
-                          <h3 class="font-medium-5">Bienvenidos innovadores</h3>
+                          <h3 class="font-regular-5">Bienvenidos innovadores</h3>
                         </bmb-card-header>
                         <p class="font-regular-4 padding-s">
                           Lorem ipsum dolor sit amet consectetur. Nisl nibh
@@ -160,7 +160,7 @@ import { Router } from '@angular/router';
                     <bmb-card margin="none">
                       <bmb-card-content>
                         <bmb-card-header padding="m">
-                          <h3 class="font-medium-5">
+                          <h3 class="font-regular-5">
                             Transforma al Tec con tu solución
                           </h3>
                         </bmb-card-header>
@@ -181,7 +181,7 @@ import { Router } from '@angular/router';
                     <bmb-card margin="none">
                       <bmb-card-content>
                         <bmb-card-header padding="m">
-                          <h3 class="font-medium-5">Desafíos disponibles</h3>
+                          <h3 class="font-regular-5">Desafíos disponibles</h3>
                         </bmb-card-header>
                         <div class="bmb_template-accordion-links padding-s">
                           <a
@@ -189,7 +189,7 @@ import { Router } from '@angular/router';
                             href="https://www.youtube.com"
                             target="'_blank'"
                           >
-                            <span class="font-medium-4">SGMM</span>
+                            <span class="font-regular-4">SGMM</span>
                             <bmb-icon icon="arrow_forward" [size]="20" />
                           </a>
                           <a
@@ -197,7 +197,7 @@ import { Router } from '@angular/router';
                             href="https://www.youtube.com"
                             target="'_blank'"
                           >
-                            <span class="font-medium-4">TECservices</span>
+                            <span class="font-regular-4">TECservices</span>
                             <bmb-icon icon="arrow_forward" [size]="20" />
                           </a>
                           <a
@@ -205,7 +205,7 @@ import { Router } from '@angular/router';
                             href="https://www.youtube.com"
                             target="'_blank'"
                           >
-                            <span class="font-medium-4">mitec</span>
+                            <span class="font-regular-4">mitec</span>
                             <bmb-icon icon="arrow_forward" [size]="20" />
                           </a>
                           <a
@@ -213,7 +213,7 @@ import { Router } from '@angular/router';
                             href="https://www.youtube.com"
                             target="'_blank'"
                           >
-                            <span class="font-medium-4">Inscripciones</span>
+                            <span class="font-regular-4">Inscripciones</span>
                             <bmb-icon icon="arrow_forward" [size]="20" />
                           </a>
                         </div>
@@ -222,7 +222,7 @@ import { Router } from '@angular/router';
                     <bmb-card margin="none">
                       <bmb-card-content>
                         <bmb-card-header padding="m">
-                          <h3 class="font-medium-5">Etapas</h3>
+                          <h3 class="font-regular-5">Etapas</h3>
                         </bmb-card-header>
                         <p class="font-regular-4 padding-s">
                           Lorem ipsum dolor sit amet consectetur. Nisl nibh
@@ -262,7 +262,7 @@ import { Router } from '@angular/router';
                           />
                         </figure>
                         <bmb-card-header padding="m">
-                          <h3 class="font-medium-5">Desafío</h3>
+                          <h3 class="font-regular-5">Desafío</h3>
                         </bmb-card-header>
                         <p class="font-regular-4 padding-s">
                           Lorem ipsum dolor sit amet consectetur. Nisl nibh
@@ -280,7 +280,7 @@ import { Router } from '@angular/router';
                     <bmb-card margin="none">
                       <bmb-card-content>
                         <bmb-card-header padding="m">
-                          <h3 class="font-medium-5">Contacto de apoyo</h3>
+                          <h3 class="font-regular-5">Contacto de apoyo</h3>
                         </bmb-card-header>
                         <p class="font-regular-4 padding-s">
                           Lorem ipsum dolor sit amet consectetur. Nisl nibh
@@ -294,7 +294,7 @@ import { Router } from '@angular/router';
                   <div class="bmb_template-height">
                     <bmb-card margin="none" style="height: 100%;">
                       <bmb-card-header padding="m">
-                        <h3 class="font-medium-5 truncate-title">Acerca de</h3>
+                        <h3 class="font-regular-5 truncate-title">Acerca de</h3>
                       </bmb-card-header>
                       <bmb-card-content>
                         <section bmbAccordionControl>
@@ -309,7 +309,7 @@ import { Router } from '@angular/router';
                             icon="keyboard_arrow_down"
                           >
                             <ng-template #bmbAccordionHeader>
-                              <span class="font-medium-4"> Contexto </span>
+                              <span class="font-regular-4"> Contexto </span>
                             </ng-template>
                             <ng-template #bmbAccordionContent>
                               <div class="truncate-170">
@@ -338,7 +338,7 @@ import { Router } from '@angular/router';
                             icon="keyboard_arrow_down"
                           >
                             <ng-template #bmbAccordionHeader>
-                              <span class="font-medium-4">Reto </span>
+                              <span class="font-regular-4">Reto </span>
                             </ng-template>
                             <ng-template #bmbAccordionContent>
                               <div class="truncate-170">
@@ -359,7 +359,7 @@ import { Router } from '@angular/router';
                                 type="button"
                                 (click)="openModalTemplate($event)"
                               >
-                                <span class="font-medium-4"
+                                <span class="font-regular-4"
                                   >Bajas de unidades de formación</span
                                 >
                                 <bmb-icon icon="arrow_forward" [size]="20" />
@@ -389,7 +389,7 @@ import { Router } from '@angular/router';
                                     icon="keyboard_arrow_down"
                                   >
                                     <ng-template #bmbAccordionHeader>
-                                      <span class="font-medium-4">
+                                      <span class="font-regular-4">
                                         Paso 1 - Descarga y llena el formato
                                       </span>
                                     </ng-template>
@@ -422,7 +422,7 @@ import { Router } from '@angular/router';
                                     icon="keyboard_arrow_down"
                                   >
                                     <ng-template #bmbAccordionHeader>
-                                      <span class="font-medium-4">
+                                      <span class="font-regular-4">
                                         Paso 2 - Descarga y llena el formato
                                       </span>
                                     </ng-template>
@@ -455,7 +455,7 @@ import { Router } from '@angular/router';
                                     icon="keyboard_arrow_down"
                                   >
                                     <ng-template #bmbAccordionHeader>
-                                      <span class="font-medium-4">
+                                      <span class="font-regular-4">
                                         Paso 3 - Descarga y llena el formato
                                       </span>
                                     </ng-template>
@@ -488,7 +488,7 @@ import { Router } from '@angular/router';
                                     icon="keyboard_arrow_down"
                                   >
                                     <ng-template #bmbAccordionHeader>
-                                      <span class="font-medium-4">
+                                      <span class="font-regular-4">
                                         Paso 4 - Descarga y llena el formato
                                       </span>
                                     </ng-template>
@@ -525,7 +525,7 @@ import { Router } from '@angular/router';
                             icon="keyboard_arrow_down"
                           >
                             <ng-template #bmbAccordionHeader>
-                              <span class="font-medium-4">Objetivos </span>
+                              <span class="font-regular-4">Objetivos </span>
                             </ng-template>
                             <ng-template #bmbAccordionContent>
                               <div class="truncate-170">
@@ -554,7 +554,7 @@ import { Router } from '@angular/router';
                             icon="keyboard_arrow_down"
                           >
                             <ng-template #bmbAccordionHeader>
-                              <span class="font-medium-4">Indicadores </span>
+                              <span class="font-regular-4">Indicadores </span>
                             </ng-template>
                             <ng-template #bmbAccordionContent>
                               <div class="truncate-170">
@@ -960,7 +960,7 @@ ${getBasicExampleBlock(
                           />
                         </figure>
                         <bmb-card-header padding="m">
-                          <h3 class="font-medium-5">Bienvenidos innovadores</h3>
+                          <h3 class="font-regular-5">Bienvenidos innovadores</h3>
                         </bmb-card-header>
                         <p class="font-regular-4 padding-s">
                           Lorem ipsum dolor sit amet consectetur. Nisl nibh
@@ -985,7 +985,7 @@ ${getBasicExampleBlock(
                     <bmb-card margin="none">
                       <bmb-card-content>
                         <bmb-card-header padding="m">
-                          <h3 class="font-medium-5">
+                          <h3 class="font-regular-5">
                             Transforma al Tec con tu solución
                           </h3>
                         </bmb-card-header>
@@ -1006,7 +1006,7 @@ ${getBasicExampleBlock(
                     <bmb-card margin="none">
                       <bmb-card-content>
                         <bmb-card-header padding="m">
-                          <h3 class="font-medium-5">Desafíos disponibles</h3>
+                          <h3 class="font-regular-5">Desafíos disponibles</h3>
                         </bmb-card-header>
                         <div class="bmb_template-accordion-links padding-s">
                           <a
@@ -1014,7 +1014,7 @@ ${getBasicExampleBlock(
                             href="https://www.youtube.com"
                             target="'_blank'"
                           >
-                            <span class="font-medium-4">SGMM</span>
+                            <span class="font-regular-4">SGMM</span>
                             <bmb-icon icon="arrow_forward" [size]="20" />
                           </a>
                           <a
@@ -1022,7 +1022,7 @@ ${getBasicExampleBlock(
                             href="https://www.youtube.com"
                             target="'_blank'"
                           >
-                            <span class="font-medium-4">TECservices</span>
+                            <span class="font-regular-4">TECservices</span>
                             <bmb-icon icon="arrow_forward" [size]="20" />
                           </a>
                           <a
@@ -1030,7 +1030,7 @@ ${getBasicExampleBlock(
                             href="https://www.youtube.com"
                             target="'_blank'"
                           >
-                            <span class="font-medium-4">mitec</span>
+                            <span class="font-regular-4">mitec</span>
                             <bmb-icon icon="arrow_forward" [size]="20" />
                           </a>
                           <a
@@ -1038,7 +1038,7 @@ ${getBasicExampleBlock(
                             href="https://www.youtube.com"
                             target="'_blank'"
                           >
-                            <span class="font-medium-4">Inscripciones</span>
+                            <span class="font-regular-4">Inscripciones</span>
                             <bmb-icon icon="arrow_forward" [size]="20" />
                           </a>
                         </div>
@@ -1047,7 +1047,7 @@ ${getBasicExampleBlock(
                     <bmb-card margin="none">
                       <bmb-card-content>
                         <bmb-card-header padding="m">
-                          <h3 class="font-medium-5">Etapas</h3>
+                          <h3 class="font-regular-5">Etapas</h3>
                         </bmb-card-header>
                         <p class="font-regular-4 padding-s">
                           Lorem ipsum dolor sit amet consectetur. Nisl nibh
@@ -1087,7 +1087,7 @@ ${getBasicExampleBlock(
                           />
                         </figure>
                         <bmb-card-header padding="m">
-                          <h3 class="font-medium-5">Desafío</h3>
+                          <h3 class="font-regular-5">Desafío</h3>
                         </bmb-card-header>
                         <p class="font-regular-4 padding-s">
                           Lorem ipsum dolor sit amet consectetur. Nisl nibh
@@ -1105,7 +1105,7 @@ ${getBasicExampleBlock(
                     <bmb-card margin="none">
                       <bmb-card-content>
                         <bmb-card-header padding="m">
-                          <h3 class="font-medium-5">Contacto de apoyo</h3>
+                          <h3 class="font-regular-5">Contacto de apoyo</h3>
                         </bmb-card-header>
                         <p class="font-regular-4 padding-s">
                           Lorem ipsum dolor sit amet consectetur. Nisl nibh
@@ -1119,7 +1119,7 @@ ${getBasicExampleBlock(
                   <div class="bmb_template-height">
                     <bmb-card margin="none" style="height: 100%;">
                       <bmb-card-header padding="m">
-                        <h3 class="font-medium-5 truncate-title">Acerca de</h3>
+                        <h3 class="font-regular-5 truncate-title">Acerca de</h3>
                       </bmb-card-header>
                       <bmb-card-content>
                         <section bmbAccordionControl>
@@ -1134,7 +1134,7 @@ ${getBasicExampleBlock(
                             icon="keyboard_arrow_down"
                           >
                             <ng-template #bmbAccordionHeader>
-                              <span class="font-medium-4"> Contexto </span>
+                              <span class="font-regular-4"> Contexto </span>
                             </ng-template>
                             <ng-template #bmbAccordionContent>
                               <div class="truncate-170">
@@ -1163,7 +1163,7 @@ ${getBasicExampleBlock(
                             icon="keyboard_arrow_down"
                           >
                             <ng-template #bmbAccordionHeader>
-                              <span class="font-medium-4">Reto </span>
+                              <span class="font-regular-4">Reto </span>
                             </ng-template>
                             <ng-template #bmbAccordionContent>
                               <div class="truncate-170">
@@ -1184,7 +1184,7 @@ ${getBasicExampleBlock(
                                 type="button"
                                 (click)="openModalTemplate($event)"
                               >
-                                <span class="font-medium-4"
+                                <span class="font-regular-4"
                                   >Bajas de unidades de formación</span
                                 >
                                 <bmb-icon icon="arrow_forward" [size]="20" />
@@ -1214,7 +1214,7 @@ ${getBasicExampleBlock(
                                     icon="keyboard_arrow_down"
                                   >
                                     <ng-template #bmbAccordionHeader>
-                                      <span class="font-medium-4">
+                                      <span class="font-regular-4">
                                         Paso 1 - Descarga y llena el formato
                                       </span>
                                     </ng-template>
@@ -1247,7 +1247,7 @@ ${getBasicExampleBlock(
                                     icon="keyboard_arrow_down"
                                   >
                                     <ng-template #bmbAccordionHeader>
-                                      <span class="font-medium-4">
+                                      <span class="font-regular-4">
                                         Paso 2 - Descarga y llena el formato
                                       </span>
                                     </ng-template>
@@ -1280,7 +1280,7 @@ ${getBasicExampleBlock(
                                     icon="keyboard_arrow_down"
                                   >
                                     <ng-template #bmbAccordionHeader>
-                                      <span class="font-medium-4">
+                                      <span class="font-regular-4">
                                         Paso 3 - Descarga y llena el formato
                                       </span>
                                     </ng-template>
@@ -1313,7 +1313,7 @@ ${getBasicExampleBlock(
                                     icon="keyboard_arrow_down"
                                   >
                                     <ng-template #bmbAccordionHeader>
-                                      <span class="font-medium-4">
+                                      <span class="font-regular-4">
                                         Paso 4 - Descarga y llena el formato
                                       </span>
                                     </ng-template>
@@ -1350,7 +1350,7 @@ ${getBasicExampleBlock(
                             icon="keyboard_arrow_down"
                           >
                             <ng-template #bmbAccordionHeader>
-                              <span class="font-medium-4">Objetivos </span>
+                              <span class="font-regular-4">Objetivos </span>
                             </ng-template>
                             <ng-template #bmbAccordionContent>
                               <div class="truncate-170">
@@ -1379,7 +1379,7 @@ ${getBasicExampleBlock(
                             icon="keyboard_arrow_down"
                           >
                             <ng-template #bmbAccordionHeader>
-                              <span class="font-medium-4">Indicadores </span>
+                              <span class="font-regular-4">Indicadores </span>
                             </ng-template>
                             <ng-template #bmbAccordionContent>
                               <div class="truncate-170">

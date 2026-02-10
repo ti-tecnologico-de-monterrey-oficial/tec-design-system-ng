@@ -90,7 +90,7 @@ import * as layoutStory from '../directives/bmb-layout/bmb-layout.stories';
               [colLg]="8"
               class="bmb_padding-m"
             >
-              <h1 class="font-medium-8">
+              <h1 class="font-regular-8">
                 Lorem ipsum dolor sit amet consectetur. Nisl nibh phasellus
                 condimentum
               </h1>
@@ -121,7 +121,7 @@ import * as layoutStory from '../directives/bmb-layout/bmb-layout.stories';
                 [enableZoom]="true"
               />
               <div class="bmb_padding-m">
-                <h2 class="font-medium-5">Accesos</h2>
+                <h2 class="font-regular-5">Accesos</h2>
                 <ul>
                   <li>
                     <bmb-text-link
@@ -277,7 +277,7 @@ ${getBasicExampleBlock(`BmbTopBarComponent,
           [colLg]="8"
           class="bmb_padding-m"
         >
-          <h1 class="font-medium-8">
+          <h1 class="font-regular-8">
             Lorem ipsum dolor sit amet consectetur. Nisl nibh phasellus
             condimentum
           </h1>
@@ -308,7 +308,7 @@ ${getBasicExampleBlock(`BmbTopBarComponent,
             [enableZoom]="true"
           />
           <div class="bmb_padding-m">
-            <h2 class="font-medium-5">Accesos</h2>
+            <h2 class="font-regular-5">Accesos</h2>
             <ul>
               <li>
                 <bmb-text-link

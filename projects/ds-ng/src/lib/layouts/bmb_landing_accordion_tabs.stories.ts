@@ -122,7 +122,7 @@ import * as toastStory from '../components/bmb-toast/bmb-toast.stories';
               >
                 <bmb-card margin="none" bmbLayoutItem [colSm]="6" [colLg]="6">
                   <bmb-card-header padding="m">
-                    <h3 class="font-medium-5 truncate-title">
+                    <h3 class="font-regular-5 truncate-title">
                       Lorem ipsum dolor sit amet consectetur. Nisl nibh
                       phasellus condimentum mi faucibus.
                     </h3>
@@ -157,7 +157,7 @@ import * as toastStory from '../components/bmb-toast/bmb-toast.stories';
                 </bmb-card>
                 <bmb-card margin="none" bmbLayoutItem [colSm]="6" [colLg]="6">
                   <bmb-card-header padding="m">
-                    <h3 class="font-medium-5 truncate-title">Proceso</h3>
+                    <h3 class="font-regular-5 truncate-title">Proceso</h3>
                   </bmb-card-header>
                   <bmb-card-content>
                     <section bmbAccordionControl>
@@ -172,7 +172,7 @@ import * as toastStory from '../components/bmb-toast/bmb-toast.stories';
                         icon="keyboard_arrow_down"
                       >
                         <ng-template #bmbAccordionHeader>
-                          <span class="font-medium-4">
+                          <span class="font-regular-4">
                             Paso 1 - Descarga y llena el formato
                           </span>
                         </ng-template>
@@ -203,7 +203,7 @@ import * as toastStory from '../components/bmb-toast/bmb-toast.stories';
                         icon="keyboard_arrow_down"
                       >
                         <ng-template #bmbAccordionHeader>
-                          <span class="font-medium-4"
+                          <span class="font-regular-4"
                             >Paso 2 - Crea la solicitud y adjunta la
                             documentación
                           </span>
@@ -227,7 +227,7 @@ import * as toastStory from '../components/bmb-toast/bmb-toast.stories';
                             type="button"
                             (click)="openModalTemplate($event)"
                           >
-                            <span class="font-medium-4"
+                            <span class="font-regular-4"
                               >Bajas de unidades de formación</span
                             >
                             <bmb-icon icon="arrow_forward" [size]="20" />
@@ -257,7 +257,7 @@ import * as toastStory from '../components/bmb-toast/bmb-toast.stories';
                                 icon="keyboard_arrow_down"
                               >
                                 <ng-template #bmbAccordionHeader>
-                                  <span class="font-medium-4">
+                                  <span class="font-regular-4">
                                     Paso 1 - Descarga y llena el formato
                                   </span>
                                 </ng-template>
@@ -289,7 +289,7 @@ import * as toastStory from '../components/bmb-toast/bmb-toast.stories';
                                 icon="keyboard_arrow_down"
                               >
                                 <ng-template #bmbAccordionHeader>
-                                  <span class="font-medium-4">
+                                  <span class="font-regular-4">
                                     Paso 2 - Descarga y llena el formato
                                   </span>
                                 </ng-template>
@@ -321,7 +321,7 @@ import * as toastStory from '../components/bmb-toast/bmb-toast.stories';
                                 icon="keyboard_arrow_down"
                               >
                                 <ng-template #bmbAccordionHeader>
-                                  <span class="font-medium-4">
+                                  <span class="font-regular-4">
                                     Paso 3 - Descarga y llena el formato
                                   </span>
                                 </ng-template>
@@ -353,7 +353,7 @@ import * as toastStory from '../components/bmb-toast/bmb-toast.stories';
                                 icon="keyboard_arrow_down"
                               >
                                 <ng-template #bmbAccordionHeader>
-                                  <span class="font-medium-4">
+                                  <span class="font-regular-4">
                                     Paso 4 - Descarga y llena el formato
                                   </span>
                                 </ng-template>
@@ -389,7 +389,7 @@ import * as toastStory from '../components/bmb-toast/bmb-toast.stories';
                         icon="keyboard_arrow_down"
                       >
                         <ng-template #bmbAccordionHeader>
-                          <span class="font-medium-4"
+                          <span class="font-regular-4"
                             >Paso 3 - Confirmación
                           </span>
                         </ng-template>
@@ -420,7 +420,7 @@ import * as toastStory from '../components/bmb-toast/bmb-toast.stories';
                         icon="keyboard_arrow_down"
                       >
                         <ng-template #bmbAccordionHeader>
-                          <span class="font-medium-4"
+                          <span class="font-regular-4"
                             >Paso 4 - Notificación y cierres
                           </span>
                         </ng-template>
@@ -449,7 +449,7 @@ import * as toastStory from '../components/bmb-toast/bmb-toast.stories';
               <section bmbLayout margin="none">
                 <bmb-card margin="none" bmbLayoutItem [colSm]="12" [colLg]="12">
                   <bmb-card-header padding="m">
-                    <h3 class="font-medium-5 truncate-title">
+                    <h3 class="font-regular-5 truncate-title">
                       Lorem ipsum dolor sit amet consectetur. Nisl nibh
                       phasellus condimentum mi faucibus.
                     </h3>
@@ -489,7 +489,7 @@ import * as toastStory from '../components/bmb-toast/bmb-toast.stories';
               <section bmbLayout margin="none">
                 <bmb-card margin="none" bmbLayoutItem [colSm]="12" [colLg]="12">
                   <bmb-card-header padding="m">
-                    <h3 class="font-medium-5 truncate-title">
+                    <h3 class="font-regular-5 truncate-title">
                       Lorem ipsum dolor sit amet consectetur. Nisl nibh
                       phasellus condimentum mi faucibus.
                     </h3>
@@ -877,7 +877,7 @@ ${getBasicExampleBlock(
               >
                 <bmb-card margin="none" bmbLayoutItem [colSm]="6" [colLg]="6">
                   <bmb-card-header padding="m">
-                    <h3 class="font-medium-5 truncate-title">
+                    <h3 class="font-regular-5 truncate-title">
                       Lorem ipsum dolor sit amet consectetur. Nisl nibh
                       phasellus condimentum mi faucibus.
                     </h3>
@@ -912,7 +912,7 @@ ${getBasicExampleBlock(
                 </bmb-card>
                 <bmb-card margin="none" bmbLayoutItem [colSm]="6" [colLg]="6">
                   <bmb-card-header padding="m">
-                    <h3 class="font-medium-5 truncate-title">Proceso</h3>
+                    <h3 class="font-regular-5 truncate-title">Proceso</h3>
                   </bmb-card-header>
                   <bmb-card-content>
                     <section bmbAccordionControl>
@@ -927,7 +927,7 @@ ${getBasicExampleBlock(
                         icon="keyboard_arrow_down"
                       >
                         <ng-template #bmbAccordionHeader>
-                          <span class="font-medium-4">
+                          <span class="font-regular-4">
                             Paso 1 - Descarga y llena el formato
                           </span>
                         </ng-template>
@@ -958,7 +958,7 @@ ${getBasicExampleBlock(
                         icon="keyboard_arrow_down"
                       >
                         <ng-template #bmbAccordionHeader>
-                          <span class="font-medium-4"
+                          <span class="font-regular-4"
                             >Paso 2 - Crea la solicitud y adjunta la
                             documentación
                           </span>
@@ -982,7 +982,7 @@ ${getBasicExampleBlock(
                             type="button"
                             (click)="openModalTemplate($event)"
                           >
-                            <span class="font-medium-4"
+                            <span class="font-regular-4"
                               >Bajas de unidades de formación</span
                             >
                             <bmb-icon icon="arrow_forward" [size]="20" />
@@ -1012,7 +1012,7 @@ ${getBasicExampleBlock(
                                 icon="keyboard_arrow_down"
                               >
                                 <ng-template #bmbAccordionHeader>
-                                  <span class="font-medium-4">
+                                  <span class="font-regular-4">
                                     Paso 1 - Descarga y llena el formato
                                   </span>
                                 </ng-template>
@@ -1044,7 +1044,7 @@ ${getBasicExampleBlock(
                                 icon="keyboard_arrow_down"
                               >
                                 <ng-template #bmbAccordionHeader>
-                                  <span class="font-medium-4">
+                                  <span class="font-regular-4">
                                     Paso 2 - Descarga y llena el formato
                                   </span>
                                 </ng-template>
@@ -1076,7 +1076,7 @@ ${getBasicExampleBlock(
                                 icon="keyboard_arrow_down"
                               >
                                 <ng-template #bmbAccordionHeader>
-                                  <span class="font-medium-4">
+                                  <span class="font-regular-4">
                                     Paso 3 - Descarga y llena el formato
                                   </span>
                                 </ng-template>
@@ -1108,7 +1108,7 @@ ${getBasicExampleBlock(
                                 icon="keyboard_arrow_down"
                               >
                                 <ng-template #bmbAccordionHeader>
-                                  <span class="font-medium-4">
+                                  <span class="font-regular-4">
                                     Paso 4 - Descarga y llena el formato
                                   </span>
                                 </ng-template>
@@ -1144,7 +1144,7 @@ ${getBasicExampleBlock(
                         icon="keyboard_arrow_down"
                       >
                         <ng-template #bmbAccordionHeader>
-                          <span class="font-medium-4"
+                          <span class="font-regular-4"
                             >Paso 3 - Confirmación
                           </span>
                         </ng-template>
@@ -1175,7 +1175,7 @@ ${getBasicExampleBlock(
                         icon="keyboard_arrow_down"
                       >
                         <ng-template #bmbAccordionHeader>
-                          <span class="font-medium-4"
+                          <span class="font-regular-4"
                             >Paso 4 - Notificación y cierres
                           </span>
                         </ng-template>
@@ -1204,7 +1204,7 @@ ${getBasicExampleBlock(
               <section bmbLayout margin="none">
                 <bmb-card margin="none" bmbLayoutItem [colSm]="12" [colLg]="12">
                   <bmb-card-header padding="m">
-                    <h3 class="font-medium-5 truncate-title">
+                    <h3 class="font-regular-5 truncate-title">
                       Lorem ipsum dolor sit amet consectetur. Nisl nibh
                       phasellus condimentum mi faucibus.
                     </h3>
@@ -1244,7 +1244,7 @@ ${getBasicExampleBlock(
               <section bmbLayout margin="none">
                 <bmb-card margin="none" bmbLayoutItem [colSm]="12" [colLg]="12">
                   <bmb-card-header padding="m">
-                    <h3 class="font-medium-5 truncate-title">
+                    <h3 class="font-regular-5 truncate-title">
                       Lorem ipsum dolor sit amet consectetur. Nisl nibh
                       phasellus condimentum mi faucibus.
                     </h3>

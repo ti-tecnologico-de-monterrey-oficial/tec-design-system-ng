@@ -148,7 +148,7 @@ import * as buttonStory from '../directives/bmb-button/button.stories';
                       icon="keyboard_arrow_down"
                     >
                       <ng-template #bmbAccordionHeader>
-                        <span class="font-medium-4"> ABC de activo fijo </span>
+                        <span class="font-regular-4"> ABC de activo fijo </span>
                       </ng-template>
                       <ng-template #bmbAccordionContent>
                         <div class="bmb_template-accordion-links">
@@ -157,7 +157,7 @@ import * as buttonStory from '../directives/bmb-button/button.stories';
                             href="https://www.youtube.com"
                             target="'_blank'"
                           >
-                            <span class="font-medium-4"
+                            <span class="font-regular-4"
                               >Guía para establecer y dar seguimiento a mi Plan
                               de Desarrollo</span
                             >
@@ -168,7 +168,7 @@ import * as buttonStory from '../directives/bmb-button/button.stories';
                             href="https://www.youtube.com"
                             target="'_blank'"
                           >
-                            <span class="font-medium-4"
+                            <span class="font-regular-4"
                               >Guía para acompañar a tu equipo en mi Plan de
                               Desarrollo</span
                             >
@@ -180,7 +180,7 @@ import * as buttonStory from '../directives/bmb-button/button.stories';
                             href="https://www.youtube.com"
                             target="'_blank'"
                           >
-                            <span class="font-medium-4"
+                            <span class="font-regular-4"
                               >Guía para reguistrar tu plan en Success
                               Factors</span
                             >
@@ -200,7 +200,7 @@ import * as buttonStory from '../directives/bmb-button/button.stories';
                       icon="keyboard_arrow_down"
                     >
                       <ng-template #bmbAccordionHeader>
-                        <span class="font-medium-4"> ABC de activo fijo </span>
+                        <span class="font-regular-4"> ABC de activo fijo </span>
                       </ng-template>
                       <ng-template #bmbAccordionContent>
                         <div class="bmb_template-accordion-links">
@@ -209,7 +209,7 @@ import * as buttonStory from '../directives/bmb-button/button.stories';
                             href="https://www.youtube.com"
                             target="'_blank'"
                           >
-                            <span class="font-medium-4"
+                            <span class="font-regular-4"
                               >Guía para establecer y dar seguimiento a mi Plan
                               de Desarrollo</span
                             >
@@ -220,7 +220,7 @@ import * as buttonStory from '../directives/bmb-button/button.stories';
                             href="https://www.youtube.com"
                             target="'_blank'"
                           >
-                            <span class="font-medium-4"
+                            <span class="font-regular-4"
                               >Guía para acompañar a tu equipo en mi Plan de
                               Desarrollo</span
                             >
@@ -232,7 +232,7 @@ import * as buttonStory from '../directives/bmb-button/button.stories';
                             href="https://www.youtube.com"
                             target="'_blank'"
                           >
-                            <span class="font-medium-4"
+                            <span class="font-regular-4"
                               >Guía para reguistrar tu plan en Success
                               Factors</span
                             >
@@ -287,7 +287,7 @@ import * as buttonStory from '../directives/bmb-button/button.stories';
                       icon="keyboard_arrow_down"
                     >
                       <ng-template #bmbAccordionHeader>
-                        <span class="font-medium-4"> ABC de activo fijo </span>
+                        <span class="font-regular-4"> ABC de activo fijo </span>
                       </ng-template>
                       <ng-template #bmbAccordionContent>
                         <div class="bmb_template-accordion-links">
@@ -296,7 +296,7 @@ import * as buttonStory from '../directives/bmb-button/button.stories';
                             href="https://www.youtube.com"
                             target="'_blank'"
                           >
-                            <span class="font-medium-4"
+                            <span class="font-regular-4"
                               >Guía para establecer y dar seguimiento a mi Plan
                               de Desarrollo</span
                             >
@@ -307,7 +307,7 @@ import * as buttonStory from '../directives/bmb-button/button.stories';
                             href="https://www.youtube.com"
                             target="'_blank'"
                           >
-                            <span class="font-medium-4"
+                            <span class="font-regular-4"
                               >Guía para acompañar a tu equipo en mi Plan de
                               Desarrollo</span
                             >
@@ -319,7 +319,7 @@ import * as buttonStory from '../directives/bmb-button/button.stories';
                             href="https://www.youtube.com"
                             target="'_blank'"
                           >
-                            <span class="font-medium-4"
+                            <span class="font-regular-4"
                               >Guía para reguistrar tu plan en Success
                               Factors</span
                             >
@@ -339,7 +339,7 @@ import * as buttonStory from '../directives/bmb-button/button.stories';
                       icon="keyboard_arrow_down"
                     >
                       <ng-template #bmbAccordionHeader>
-                        <span class="font-medium-4"> ABC de activo fijo </span>
+                        <span class="font-regular-4"> ABC de activo fijo </span>
                       </ng-template>
                       <ng-template #bmbAccordionContent>
                         <div class="bmb_template-accordion-links">
@@ -348,7 +348,7 @@ import * as buttonStory from '../directives/bmb-button/button.stories';
                             href="https://www.youtube.com"
                             target="'_blank'"
                           >
-                            <span class="font-medium-4"
+                            <span class="font-regular-4"
                               >Guía para establecer y dar seguimiento a mi Plan
                               de Desarrollo</span
                             >
@@ -359,7 +359,7 @@ import * as buttonStory from '../directives/bmb-button/button.stories';
                             href="https://www.youtube.com"
                             target="'_blank'"
                           >
-                            <span class="font-medium-4"
+                            <span class="font-regular-4"
                               >Guía para acompañar a tu equipo en mi Plan de
                               Desarrollo</span
                             >
@@ -371,7 +371,7 @@ import * as buttonStory from '../directives/bmb-button/button.stories';
                             href="https://www.youtube.com"
                             target="'_blank'"
                           >
-                            <span class="font-medium-4"
+                            <span class="font-regular-4"
                               >Guía para reguistrar tu plan en Success
                               Factors</span
                             >
@@ -426,7 +426,7 @@ import * as buttonStory from '../directives/bmb-button/button.stories';
                       icon="keyboard_arrow_down"
                     >
                       <ng-template #bmbAccordionHeader>
-                        <span class="font-medium-4"> ABC de activo fijo </span>
+                        <span class="font-regular-4"> ABC de activo fijo </span>
                       </ng-template>
                       <ng-template #bmbAccordionContent>
                         <div class="bmb_template-accordion-links">
@@ -435,7 +435,7 @@ import * as buttonStory from '../directives/bmb-button/button.stories';
                             href="https://www.youtube.com"
                             target="'_blank'"
                           >
-                            <span class="font-medium-4"
+                            <span class="font-regular-4"
                               >Guía para establecer y dar seguimiento a mi Plan
                               de Desarrollo</span
                             >
@@ -446,7 +446,7 @@ import * as buttonStory from '../directives/bmb-button/button.stories';
                             href="https://www.youtube.com"
                             target="'_blank'"
                           >
-                            <span class="font-medium-4"
+                            <span class="font-regular-4"
                               >Guía para acompañar a tu equipo en mi Plan de
                               Desarrollo</span
                             >
@@ -458,7 +458,7 @@ import * as buttonStory from '../directives/bmb-button/button.stories';
                             href="https://www.youtube.com"
                             target="'_blank'"
                           >
-                            <span class="font-medium-4"
+                            <span class="font-regular-4"
                               >Guía para reguistrar tu plan en Success
                               Factors</span
                             >
@@ -478,7 +478,7 @@ import * as buttonStory from '../directives/bmb-button/button.stories';
                       icon="keyboard_arrow_down"
                     >
                       <ng-template #bmbAccordionHeader>
-                        <span class="font-medium-4"> ABC de activo fijo </span>
+                        <span class="font-regular-4"> ABC de activo fijo </span>
                       </ng-template>
                       <ng-template #bmbAccordionContent>
                         <div class="bmb_template-accordion-links">
@@ -487,7 +487,7 @@ import * as buttonStory from '../directives/bmb-button/button.stories';
                             href="https://www.youtube.com"
                             target="'_blank'"
                           >
-                            <span class="font-medium-4"
+                            <span class="font-regular-4"
                               >Guía para establecer y dar seguimiento a mi Plan
                               de Desarrollo</span
                             >
@@ -498,7 +498,7 @@ import * as buttonStory from '../directives/bmb-button/button.stories';
                             href="https://www.youtube.com"
                             target="'_blank'"
                           >
-                            <span class="font-medium-4"
+                            <span class="font-regular-4"
                               >Guía para acompañar a tu equipo en mi Plan de
                               Desarrollo</span
                             >
@@ -510,7 +510,7 @@ import * as buttonStory from '../directives/bmb-button/button.stories';
                             href="https://www.youtube.com"
                             target="'_blank'"
                           >
-                            <span class="font-medium-4"
+                            <span class="font-regular-4"
                               >Guía para reguistrar tu plan en Success
                               Factors</span
                             >
@@ -565,7 +565,7 @@ import * as buttonStory from '../directives/bmb-button/button.stories';
                       icon="keyboard_arrow_down"
                     >
                       <ng-template #bmbAccordionHeader>
-                        <span class="font-medium-4"> ABC de activo fijo </span>
+                        <span class="font-regular-4"> ABC de activo fijo </span>
                       </ng-template>
                       <ng-template #bmbAccordionContent>
                         <div class="bmb_template-accordion-links">
@@ -574,7 +574,7 @@ import * as buttonStory from '../directives/bmb-button/button.stories';
                             href="https://www.youtube.com"
                             target="'_blank'"
                           >
-                            <span class="font-medium-4"
+                            <span class="font-regular-4"
                               >Guía para establecer y dar seguimiento a mi Plan
                               de Desarrollo</span
                             >
@@ -585,7 +585,7 @@ import * as buttonStory from '../directives/bmb-button/button.stories';
                             href="https://www.youtube.com"
                             target="'_blank'"
                           >
-                            <span class="font-medium-4"
+                            <span class="font-regular-4"
                               >Guía para acompañar a tu equipo en mi Plan de
                               Desarrollo</span
                             >
@@ -597,7 +597,7 @@ import * as buttonStory from '../directives/bmb-button/button.stories';
                             href="https://www.youtube.com"
                             target="'_blank'"
                           >
-                            <span class="font-medium-4"
+                            <span class="font-regular-4"
                               >Guía para reguistrar tu plan en Success
                               Factors</span
                             >
@@ -617,7 +617,7 @@ import * as buttonStory from '../directives/bmb-button/button.stories';
                       icon="keyboard_arrow_down"
                     >
                       <ng-template #bmbAccordionHeader>
-                        <span class="font-medium-4"> ABC de activo fijo </span>
+                        <span class="font-regular-4"> ABC de activo fijo </span>
                       </ng-template>
                       <ng-template #bmbAccordionContent>
                         <div class="bmb_template-accordion-links">
@@ -626,7 +626,7 @@ import * as buttonStory from '../directives/bmb-button/button.stories';
                             href="https://www.youtube.com"
                             target="'_blank'"
                           >
-                            <span class="font-medium-4"
+                            <span class="font-regular-4"
                               >Guía para establecer y dar seguimiento a mi Plan
                               de Desarrollo</span
                             >
@@ -637,7 +637,7 @@ import * as buttonStory from '../directives/bmb-button/button.stories';
                             href="https://www.youtube.com"
                             target="'_blank'"
                           >
-                            <span class="font-medium-4"
+                            <span class="font-regular-4"
                               >Guía para acompañar a tu equipo en mi Plan de
                               Desarrollo</span
                             >
@@ -649,7 +649,7 @@ import * as buttonStory from '../directives/bmb-button/button.stories';
                             href="https://www.youtube.com"
                             target="'_blank'"
                           >
-                            <span class="font-medium-4"
+                            <span class="font-regular-4"
                               >Guía para reguistrar tu plan en Success
                               Factors</span
                             >
@@ -1027,7 +1027,7 @@ ${getBasicExampleBlock(
                     icon="keyboard_arrow_down"
                   >
                     <ng-template #bmbAccordionHeader>
-                      <span class="font-medium-4"> ABC de activo fijo </span>
+                      <span class="font-regular-4"> ABC de activo fijo </span>
                     </ng-template>
                     <ng-template #bmbAccordionContent>
                       <div class="bmb_template-accordion-links">
@@ -1036,7 +1036,7 @@ ${getBasicExampleBlock(
                           href="https://www.youtube.com"
                           target="'_blank'"
                         >
-                          <span class="font-medium-4"
+                          <span class="font-regular-4"
                             >Guía para establecer y dar seguimiento a mi Plan
                             de Desarrollo</span
                           >
@@ -1047,7 +1047,7 @@ ${getBasicExampleBlock(
                           href="https://www.youtube.com"
                           target="'_blank'"
                         >
-                          <span class="font-medium-4"
+                          <span class="font-regular-4"
                             >Guía para acompañar a tu equipo en mi Plan de
                             Desarrollo</span
                           >
@@ -1059,7 +1059,7 @@ ${getBasicExampleBlock(
                           href="https://www.youtube.com"
                           target="'_blank'"
                         >
-                          <span class="font-medium-4"
+                          <span class="font-regular-4"
                             >Guía para reguistrar tu plan en Success
                             Factors</span
                           >
@@ -1079,7 +1079,7 @@ ${getBasicExampleBlock(
                     icon="keyboard_arrow_down"
                   >
                     <ng-template #bmbAccordionHeader>
-                      <span class="font-medium-4"> ABC de activo fijo </span>
+                      <span class="font-regular-4"> ABC de activo fijo </span>
                     </ng-template>
                     <ng-template #bmbAccordionContent>
                       <div class="bmb_template-accordion-links">
@@ -1088,7 +1088,7 @@ ${getBasicExampleBlock(
                           href="https://www.youtube.com"
                           target="'_blank'"
                         >
-                          <span class="font-medium-4"
+                          <span class="font-regular-4"
                             >Guía para establecer y dar seguimiento a mi Plan
                             de Desarrollo</span
                           >
@@ -1099,7 +1099,7 @@ ${getBasicExampleBlock(
                           href="https://www.youtube.com"
                           target="'_blank'"
                         >
-                          <span class="font-medium-4"
+                          <span class="font-regular-4"
                             >Guía para acompañar a tu equipo en mi Plan de
                             Desarrollo</span
                           >
@@ -1111,7 +1111,7 @@ ${getBasicExampleBlock(
                           href="https://www.youtube.com"
                           target="'_blank'"
                         >
-                          <span class="font-medium-4"
+                          <span class="font-regular-4"
                             >Guía para reguistrar tu plan en Success
                             Factors</span
                           >
@@ -1166,7 +1166,7 @@ ${getBasicExampleBlock(
                     icon="keyboard_arrow_down"
                   >
                     <ng-template #bmbAccordionHeader>
-                      <span class="font-medium-4"> ABC de activo fijo </span>
+                      <span class="font-regular-4"> ABC de activo fijo </span>
                     </ng-template>
                     <ng-template #bmbAccordionContent>
                       <div class="bmb_template-accordion-links">
@@ -1175,7 +1175,7 @@ ${getBasicExampleBlock(
                           href="https://www.youtube.com"
                           target="'_blank'"
                         >
-                          <span class="font-medium-4"
+                          <span class="font-regular-4"
                             >Guía para establecer y dar seguimiento a mi Plan
                             de Desarrollo</span
                           >
@@ -1186,7 +1186,7 @@ ${getBasicExampleBlock(
                           href="https://www.youtube.com"
                           target="'_blank'"
                         >
-                          <span class="font-medium-4"
+                          <span class="font-regular-4"
                             >Guía para acompañar a tu equipo en mi Plan de
                             Desarrollo</span
                           >
@@ -1198,7 +1198,7 @@ ${getBasicExampleBlock(
                           href="https://www.youtube.com"
                           target="'_blank'"
                         >
-                          <span class="font-medium-4"
+                          <span class="font-regular-4"
                             >Guía para reguistrar tu plan en Success
                             Factors</span
                           >
@@ -1218,7 +1218,7 @@ ${getBasicExampleBlock(
                     icon="keyboard_arrow_down"
                   >
                     <ng-template #bmbAccordionHeader>
-                      <span class="font-medium-4"> ABC de activo fijo </span>
+                      <span class="font-regular-4"> ABC de activo fijo </span>
                     </ng-template>
                     <ng-template #bmbAccordionContent>
                       <div class="bmb_template-accordion-links">
@@ -1227,7 +1227,7 @@ ${getBasicExampleBlock(
                           href="https://www.youtube.com"
                           target="'_blank'"
                         >
-                          <span class="font-medium-4"
+                          <span class="font-regular-4"
                             >Guía para establecer y dar seguimiento a mi Plan
                             de Desarrollo</span
                           >
@@ -1238,7 +1238,7 @@ ${getBasicExampleBlock(
                           href="https://www.youtube.com"
                           target="'_blank'"
                         >
-                          <span class="font-medium-4"
+                          <span class="font-regular-4"
                             >Guía para acompañar a tu equipo en mi Plan de
                             Desarrollo</span
                           >
@@ -1250,7 +1250,7 @@ ${getBasicExampleBlock(
                           href="https://www.youtube.com"
                           target="'_blank'"
                         >
-                          <span class="font-medium-4"
+                          <span class="font-regular-4"
                             >Guía para reguistrar tu plan en Success
                             Factors</span
                           >
@@ -1305,7 +1305,7 @@ ${getBasicExampleBlock(
                     icon="keyboard_arrow_down"
                   >
                     <ng-template #bmbAccordionHeader>
-                      <span class="font-medium-4"> ABC de activo fijo </span>
+                      <span class="font-regular-4"> ABC de activo fijo </span>
                     </ng-template>
                     <ng-template #bmbAccordionContent>
                       <div class="bmb_template-accordion-links">
@@ -1314,7 +1314,7 @@ ${getBasicExampleBlock(
                           href="https://www.youtube.com"
                           target="'_blank'"
                         >
-                          <span class="font-medium-4"
+                          <span class="font-regular-4"
                             >Guía para establecer y dar seguimiento a mi Plan
                             de Desarrollo</span
                           >
@@ -1325,7 +1325,7 @@ ${getBasicExampleBlock(
                           href="https://www.youtube.com"
                           target="'_blank'"
                         >
-                          <span class="font-medium-4"
+                          <span class="font-regular-4"
                             >Guía para acompañar a tu equipo en mi Plan de
                             Desarrollo</span
                           >
@@ -1337,7 +1337,7 @@ ${getBasicExampleBlock(
                           href="https://www.youtube.com"
                           target="'_blank'"
                         >
-                          <span class="font-medium-4"
+                          <span class="font-regular-4"
                             >Guía para reguistrar tu plan en Success
                             Factors</span
                           >
@@ -1357,7 +1357,7 @@ ${getBasicExampleBlock(
                     icon="keyboard_arrow_down"
                   >
                     <ng-template #bmbAccordionHeader>
-                      <span class="font-medium-4"> ABC de activo fijo </span>
+                      <span class="font-regular-4"> ABC de activo fijo </span>
                     </ng-template>
                     <ng-template #bmbAccordionContent>
                       <div class="bmb_template-accordion-links">
@@ -1366,7 +1366,7 @@ ${getBasicExampleBlock(
                           href="https://www.youtube.com"
                           target="'_blank'"
                         >
-                          <span class="font-medium-4"
+                          <span class="font-regular-4"
                             >Guía para establecer y dar seguimiento a mi Plan
                             de Desarrollo</span
                           >
@@ -1377,7 +1377,7 @@ ${getBasicExampleBlock(
                           href="https://www.youtube.com"
                           target="'_blank'"
                         >
-                          <span class="font-medium-4"
+                          <span class="font-regular-4"
                             >Guía para acompañar a tu equipo en mi Plan de
                             Desarrollo</span
                           >
@@ -1389,7 +1389,7 @@ ${getBasicExampleBlock(
                           href="https://www.youtube.com"
                           target="'_blank'"
                         >
-                          <span class="font-medium-4"
+                          <span class="font-regular-4"
                             >Guía para reguistrar tu plan en Success
                             Factors</span
                           >
@@ -1444,7 +1444,7 @@ ${getBasicExampleBlock(
                     icon="keyboard_arrow_down"
                   >
                     <ng-template #bmbAccordionHeader>
-                      <span class="font-medium-4"> ABC de activo fijo </span>
+                      <span class="font-regular-4"> ABC de activo fijo </span>
                     </ng-template>
                     <ng-template #bmbAccordionContent>
                       <div class="bmb_template-accordion-links">
@@ -1453,7 +1453,7 @@ ${getBasicExampleBlock(
                           href="https://www.youtube.com"
                           target="'_blank'"
                         >
-                          <span class="font-medium-4"
+                          <span class="font-regular-4"
                             >Guía para establecer y dar seguimiento a mi Plan
                             de Desarrollo</span
                           >
@@ -1464,7 +1464,7 @@ ${getBasicExampleBlock(
                           href="https://www.youtube.com"
                           target="'_blank'"
                         >
-                          <span class="font-medium-4"
+                          <span class="font-regular-4"
                             >Guía para acompañar a tu equipo en mi Plan de
                             Desarrollo</span
                           >
@@ -1476,7 +1476,7 @@ ${getBasicExampleBlock(
                           href="https://www.youtube.com"
                           target="'_blank'"
                         >
-                          <span class="font-medium-4"
+                          <span class="font-regular-4"
                             >Guía para reguistrar tu plan en Success
                             Factors</span
                           >
@@ -1496,7 +1496,7 @@ ${getBasicExampleBlock(
                     icon="keyboard_arrow_down"
                   >
                     <ng-template #bmbAccordionHeader>
-                      <span class="font-medium-4"> ABC de activo fijo </span>
+                      <span class="font-regular-4"> ABC de activo fijo </span>
                     </ng-template>
                     <ng-template #bmbAccordionContent>
                       <div class="bmb_template-accordion-links">
@@ -1505,7 +1505,7 @@ ${getBasicExampleBlock(
                           href="https://www.youtube.com"
                           target="'_blank'"
                         >
-                          <span class="font-medium-4"
+                          <span class="font-regular-4"
                             >Guía para establecer y dar seguimiento a mi Plan
                             de Desarrollo</span
                           >
@@ -1516,7 +1516,7 @@ ${getBasicExampleBlock(
                           href="https://www.youtube.com"
                           target="'_blank'"
                         >
-                          <span class="font-medium-4"
+                          <span class="font-regular-4"
                             >Guía para acompañar a tu equipo en mi Plan de
                             Desarrollo</span
                           >
@@ -1528,7 +1528,7 @@ ${getBasicExampleBlock(
                           href="https://www.youtube.com"
                           target="'_blank'"
                         >
-                          <span class="font-medium-4"
+                          <span class="font-regular-4"
                             >Guía para reguistrar tu plan en Success
                             Factors</span
                           >
