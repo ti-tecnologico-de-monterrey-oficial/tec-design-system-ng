@@ -446,6 +446,20 @@
   </section>
 </div>
 
+<bmb-home-card-chat
+  leftIcon="chevron_left"
+  icon="bot_tecStandar"
+  bgIconAppearance="gray-charade-500"
+  title="Asistente TECbot"
+  contentPadding="none"
+  subtitle="Assitente TECbot"
+  [messagesHistory]="messages"
+  [actionsList]="actionList"
+  [mode]="mode"
+  [(currentBot)]="currentBot"
+>
+</bmb-home-card-chat>
+
 <ng-template #modalTemplate>
   <div class="bmb_template-modal-content">
     <p>Some content for the modal</p>

@@ -1,6 +1,7 @@
 import {
   Component,
   effect,
+  Input,
   model,
   TemplateRef,
   ViewChild,
@@ -27,6 +28,9 @@ import {
   BmbAdvertisementCardComponent,
   BmbActionMenuComponent,
   BmbItemComponent,
+  BmbHomeCardChatComponent,
+  IChatBarActions,
+  IBmbChatMessage,
 } from '../../../../projects/ds-ng/src/public-api';
 import { HelpMenuComponent } from '../../components/help-menu/help-menu.component';
 import { CdkDragPlaceholder } from '@angular/cdk/drag-drop';
@@ -53,6 +57,7 @@ import { CdkDragPlaceholder } from '@angular/cdk/drag-drop';
     BmbAdvertisementCardComponent,
     BmbActionMenuComponent,
     BmbItemComponent,
+    BmbHomeCardChatComponent,
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
@@ -62,6 +67,12 @@ export class HomeComponent {
   @ViewChild('modalTemplate') modalTemplate!: TemplateRef<unknown>;
   @ViewChild('notificationTemplate')
   notificationTemplate!: TemplateRef<unknown>;
+
+  @Input() mode: 'compact' | 'chat' | 'expanded' = 'compact';
+  @Input() currentBot = {
+    name: 'TecBot',
+    icon: 'bot_tecStandar',
+  };
 
   items = [
     {
@@ -91,6 +102,55 @@ export class HomeComponent {
       value: 'Preguntas',
       valueLink: '',
       isActive: true,
+    },
+  ];
+
+  actionList: IChatBarActions[] = [
+    {
+      name: 'Expandir Chat',
+      icon: '',
+      action: () => {
+        this.mode = 'expanded';
+      },
+    },
+    {
+      name: 'Iniciar nuevo chat',
+      icon: '',
+      action: () => {},
+    },
+  ];
+
+  messages: IBmbChatMessage[] = [
+    {
+      type: 'text',
+      content: { text: 'Hola, ¿cómo estás? En que puedo ayudarte' },
+      isUserMessage: false,
+      time: new Date('2025-02-19T14:31:00'),
+    },
+    {
+      type: 'text',
+      content: {
+        text: 'Hola, me gustaria un pequeño resumen de la festividad del dia de la bandera en México',
+      },
+      userProfile: 'https://picsum.photos/id/64/200/301',
+      isUserMessage: true,
+      time: new Date('2025-02-19T14:32:00'),
+    },
+    {
+      type: 'text',
+      content: {
+        text: 'El Día de la Bandera en México se celebra el 24 de febrero de cada año. Esta fecha conmemora la adopción de la bandera actual en 1821, tras la independencia del país. Es un día para rendir homenaje a los símbolos patrios y a la historia de México, destacando la importancia de la unidad y el orgullo nacional. En este día se realizan ceremonias cívicas y militares en todo el país.',
+      },
+      userProfile: 'https://picsum.photos/id/64/200/301',
+      isUserMessage: false,
+      time: new Date('2025-02-19T14:33:00'),
+    },
+    {
+      type: 'text',
+      content: { text: 'Gracias.' },
+      userProfile: 'https://picsum.photos/id/64/200/301',
+      isUserMessage: true,
+      time: new Date('2025-02-19T14:34:00'),
     },
   ];
 

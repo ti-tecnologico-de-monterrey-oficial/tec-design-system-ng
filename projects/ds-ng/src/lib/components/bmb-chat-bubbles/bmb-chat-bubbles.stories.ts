@@ -273,7 +273,6 @@ export const OptionsTemplate: Story = {
       time: new Date(),
     },
     gptIcons: true,
-    gptBot: true,
   },
   ...Default,
 };
