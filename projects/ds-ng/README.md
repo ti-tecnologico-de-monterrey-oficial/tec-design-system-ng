@@ -28,7 +28,6 @@ En el archivo `angular.json` de tu proyecto, agrega el siguiente contenido donde
 
 Para importar los estilos es necesario decidir la marca deseada ya que no se puede cambiar en tiempo de ejecución.
 
-
 - TEC – mainTEC.min.css
 - Grupo educativo – mainGED.min.css
 
