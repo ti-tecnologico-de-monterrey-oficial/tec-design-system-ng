@@ -29,9 +29,9 @@
     @for (item of evaluationRubricList(); track $index) {
       <section class="bmb_evaluation-rubric-container-criterion">
         <section class="bmb_evaluation-rubric-container-criterion-title">
-          <label>
+          <h3 class="bmb_evaluation-rubric-container-criterion-title-name">
             {{ item.criterion }}
-          </label>
+          </h3>
           <bmb-tooltip
             [title]="item.criterion"
             [text]="item.tooltip"

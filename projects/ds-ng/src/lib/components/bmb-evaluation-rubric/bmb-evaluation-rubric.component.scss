@@ -28,10 +28,22 @@
       gap: var(--bmb-spacing-s);
 
       &-title {
-        display: flex;
+        display: inline-flex;
         align-items: center;
         gap: var(--bmb-spacing-s);
-        @include fonts.font(4, regular);
+
+        &-name {
+          @include fonts.font(4, regular);
+          color: var(--general-contrasts-100);
+        }
+
+        > bmb-tooltip {
+          display: inline-flex;
+        }
+
+        .bmb_tooltip {
+          line-height: 0;
+        }
       }
 
       &-eval {
