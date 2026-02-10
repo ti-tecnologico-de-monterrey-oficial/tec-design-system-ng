@@ -15,6 +15,7 @@ Descubre cómo nuestro Design System no solo da forma a la estética, sino que t
 Esta versión se enfoca en hacer más eficiente la navegación y gestión de información, introduciendo nuevas herramientas de búsqueda y mejorando el centro de notificaciones. Gracias al esfuerzo colaborativo, hemos refinado la interfaz para ofrecer una experiencia más fluida, rápida y accesible para todas las personas que interactúan con el sistema.
 
 ### 🆕 Nuevas Funcionalidades
+
 - **Tarjeta de Búsqueda:** Incorporamos un nuevo componente visual diseñado para mostrar resultados de búsqueda de manera clara y destacada.
 - **Carrusel de Imágenes:** El visualizador de imágenes evoluciona y ahora permite navegar entre múltiples fotografías en formato de carrusel.
 - **Gestión eficiente de notificaciones:** Simplificamos el Centro de Notificaciones y añadimos la opción de "seleccionar todos" para marcar avisos como leídos rápidamente.
@@ -23,12 +24,14 @@ Esta versión se enfoca en hacer más eficiente la navegación y gestión de inf
 - **Acceso a versión clásica:** Añadimos un enlace directo en "Mi Perfil" para facilitar el retorno al portal anterior cuando sea necesario.
 
 ### ✅ Problemas Resueltos
+
 - **Accesibilidad en ayudas visuales:** Ajustamos el contraste de los textos de ayuda (tooltips) para asegurar que sean legibles para todas las personas.
 - **Interacción de búsqueda:** Corregimos el botón para limpiar el campo de búsqueda, asegurando que funcione al primer intento .
 - **Claridad en navegación:** Mejoramos la visibilidad de los indicadores de página (puntos) para saber exactamente qué contenido se está viendo.
 - **Legibilidad:** Ajustamos los colores del texto en los botones de tarjetas para garantizar una lectura cómoda y sin esfuerzo.
 
 ### ⚡ Optimizaciones
+
 - **Mayor rapidez:** Optimizamos el "peso" del sistema, lo que se traduce en tiempos de carga más rápidos para las aplicaciones.
 - **Consistencia visual:** Actualizamos y corregimos la paleta de colores institucional para ofrecer una experiencia visual más armónica y coherente.
 - **Seguridad en integraciones:** Reforzamos la seguridad en el procesamiento de información externa para proteger mejor los datos.
