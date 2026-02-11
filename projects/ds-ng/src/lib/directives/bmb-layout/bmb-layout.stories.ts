@@ -49,7 +49,7 @@ ${getAuxiliaryDescription('Layout', 'Layout item')}`,
 )}
 ${getSpecialSpecifications(
   `
-${getReferenceRecommendationForVariable('size reference in CSS')}
+${getReferenceRecommendationForVariable('size reference')}
 >
 ***Layout*** provides a set of directives that can be used to define the layout structure, including the \`BmbLayout\` and \`BmbLayoutItem\` directives.
 ><br/><br/>
