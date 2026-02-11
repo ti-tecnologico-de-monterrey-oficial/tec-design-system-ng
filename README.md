@@ -15,14 +15,16 @@ Descubre cómo nuestro Design System no solo da forma a la estética, sino que t
 Este release es resultado del trabajo colaborativo entre las áreas, que en conjunto refinaron la interfaz y sus comportamientos para ofrecer una experiencia mitec más fluida, rápida y accesible para todas las personas que interactúan con la plataforma.
 
 ### 🆕 Nuevas Funcionalidades
+
 - **Search Card:** Incorporamos un nuevo componente visual diseñado para mostrar resultados de búsqueda de manera clara y destacada.
 - **Image:** El visualizador de imágenes evoluciona y ahora permite navegar entre múltiples fotografías en formato de carrusel.
-- **Centro de Notificaciones:** Mejoramos: Simplificamos la gestión  de notificaciones y añadimos la opción de "seleccionar todos" para marcar avisos como leídos rápidamente.
+- **Centro de Notificaciones:** Mejoramos: Simplificamos la gestión de notificaciones y añadimos la opción de "seleccionar todos" para marcar avisos como leídos rápidamente.
 - **Top Bar:** Agregamos la funcionalidad de búsqueda global directamente en la Barra Superior para un acceso inmediato desde cualquier lugar.
 - **AI Chat bubble:** Renovamos con opciones de consulta precargadas para agilizar la ayuda.
 - **Mi pefil:** Añadimos un enlace directo para facilitar el retorno al portal anterior cuando sea necesario.
 
 ✅ Problemas Resueltos
+
 - **Accesibilidad en ayudas visuales:** Ajustamos el contraste de los textos de ayuda (tooltips) para asegurar que sean legibles para todas las personas.
 - **Interacción de búsqueda:** Corregimos el botón para limpiar el campo de búsqueda, asegurando que funcione al primer intento .
 - **Claridad en navegación:** Mejoramos la visibilidad de los indicadores de página (puntos) para saber exactamente qué contenido se está viendo.

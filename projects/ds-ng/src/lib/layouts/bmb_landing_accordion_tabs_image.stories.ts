@@ -223,7 +223,9 @@ import * as iconStory from '../components/bmb-icon/bmb-icon.stories';
                     icon="keyboard_arrow_down"
                   >
                     <ng-template #bmbAccordionHeader>
-                      <span class="font-regular-4">Recursos de desarrollo </span>
+                      <span class="font-regular-4"
+                        >Recursos de desarrollo
+                      </span>
                     </ng-template>
                     <ng-template #bmbAccordionContent>
                       <div class="bmb_template-accordion-links">
