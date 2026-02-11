@@ -39,7 +39,7 @@ const meta: Meta<BmbLayoutItemDirective> = {
 ${getGeneralDescription(getAuxiliaryDescription('Layout', 'Layout item'), { generalDocLink: 'https://bamboo.tec.mx/latest/foundations/layout/descripcion-general-EfPFAmaP', isSubStory: true })}
 ${getSpecialSpecifications(
   `
-${getReferenceRecommendationForVariable('size reference in CSS')}
+${getReferenceRecommendationForVariable('size reference')}
 >
 This component is used to create a layout for your application. It allows you to define the size of the columns for different screen sizes (mobile and full resolution). You can also set margins for the left and right sides of the columns. The \`isDynamicItem\` property allows you to enable dynamic sizing for the columns, and the \`colGrow\` property sets how much of the flex container positive free space should be assigned to the flex item main size.<br/><br/>
 The \`colSm\` and \`colLg\` properties determine the size of the columns for mobile and full resolution devices, respectively. The \`marginLeft\` and \`marginRight\` properties set the margin areas on the left and right sides of the columns.
