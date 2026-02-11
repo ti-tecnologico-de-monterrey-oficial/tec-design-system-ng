@@ -8,30 +8,25 @@ Descubre cómo nuestro Design System no solo da forma a la estética, sino que t
 
 # Release Notes - Sistema de Diseño TEC
 
-# 🚀 Versión 1.6.1 - Potenciando la Búsqueda y Simplificando Notificaciones 🎉
+# 🚀 Bamboo Design System · Versión 1.6.1 - Impulsando la nueva experiencia mitec: navegación más ágil, información más accesible🎉
 
-**09 de febrero de 2026**
+**📅 09 de febrero de 2026**
 
-Esta versión se enfoca en hacer más eficiente la navegación y gestión de información, introduciendo nuevas herramientas de búsqueda y mejorando el centro de notificaciones. Gracias al esfuerzo colaborativo, hemos refinado la interfaz para ofrecer una experiencia más fluida, rápida y accesible para todas las personas que interactúan con el sistema.
+Este release es resultado del trabajo colaborativo entre las áreas, que en conjunto refinaron la interfaz y sus comportamientos para ofrecer una experiencia mitec más fluida, rápida y accesible para todas las personas que interactúan con la plataforma.
 
 ### 🆕 Nuevas Funcionalidades
-- **Tarjeta de Búsqueda:** Incorporamos un nuevo componente visual diseñado para mostrar resultados de búsqueda de manera clara y destacada.
-- **Carrusel de Imágenes:** El visualizador de imágenes evoluciona y ahora permite navegar entre múltiples fotografías en formato de carrusel.
-- **Gestión eficiente de notificaciones:** Simplificamos el Centro de Notificaciones y añadimos la opción de "seleccionar todos" para marcar avisos como leídos rápidamente.
-- **Búsqueda Global:** Agregamos la funcionalidad de búsqueda directamente en la Barra Superior para un acceso inmediato desde cualquier lugar.
-- **Asistente IA:** Renovamos la barra de chat con inteligencia artificial, ubicándola a la derecha con opciones de consulta precargadas para agilizar la ayuda .
-- **Acceso a versión clásica:** Añadimos un enlace directo en "Mi Perfil" para facilitar el retorno al portal anterior cuando sea necesario.
+- **Search Card:** Incorporamos un nuevo componente visual diseñado para mostrar resultados de búsqueda de manera clara y destacada.
+- **Image:** El visualizador de imágenes evoluciona y ahora permite navegar entre múltiples fotografías en formato de carrusel.
+- **Centro de Notificaciones:** Mejoramos: Simplificamos la gestión  de notificaciones y añadimos la opción de "seleccionar todos" para marcar avisos como leídos rápidamente.
+- **Top Bar:** Agregamos la funcionalidad de búsqueda global directamente en la Barra Superior para un acceso inmediato desde cualquier lugar.
+- **AI Chat bubble:** Renovamos con opciones de consulta precargadas para agilizar la ayuda.
+- **Mi pefil:** Añadimos un enlace directo para facilitar el retorno al portal anterior cuando sea necesario.
 
-### ✅ Problemas Resueltos
+✅ Problemas Resueltos
 - **Accesibilidad en ayudas visuales:** Ajustamos el contraste de los textos de ayuda (tooltips) para asegurar que sean legibles para todas las personas.
 - **Interacción de búsqueda:** Corregimos el botón para limpiar el campo de búsqueda, asegurando que funcione al primer intento .
 - **Claridad en navegación:** Mejoramos la visibilidad de los indicadores de página (puntos) para saber exactamente qué contenido se está viendo.
 - **Legibilidad:** Ajustamos los colores del texto en los botones de tarjetas para garantizar una lectura cómoda y sin esfuerzo.
-
-### ⚡ Optimizaciones
-- **Mayor rapidez:** Optimizamos el "peso" del sistema, lo que se traduce en tiempos de carga más rápidos para las aplicaciones.
-- **Consistencia visual:** Actualizamos y corregimos la paleta de colores institucional para ofrecer una experiencia visual más armónica y coherente.
-- **Seguridad en integraciones:** Reforzamos la seguridad en el procesamiento de información externa para proteger mejor los datos.
 
 _Esta versión es el resultado del esfuerzo colaborativo del equipo de diseño y desarrollo, trabajando para ofrecer experiencias digitales de calidad para toda la comunidad._
 
