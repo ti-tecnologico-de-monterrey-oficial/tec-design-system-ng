@@ -13,43 +13,38 @@
     justify="spaceBetween"
     alignItems="center"
   >
-    <section
-      bmbLayoutItem
-      bmbLayout
-      gapSize="s"
-      margin="none"
-      justify="center"
-      alignItems="center"
-    >
-      @if (!isHeader) {
-        @if (!!element.icon) {
-          <bmb-icon
-            class="bmb_sidebar-icon"
-            [icon]="element.icon"
-            [alt]="element.title"
-            [size]="24"
+    <section bmbLayoutItem>
+      <section bmbLayout gapSize="s" margin="none">
+        @if (!isHeader) {
+          @if (!!element.icon) {
+            <bmb-icon
+              class="bmb_sidebar-icon"
+              [icon]="element.icon"
+              [alt]="element.title"
+              [size]="24"
+              bmbLayoutItem
+            />
+          }
+        } @else if (level >= 2) {
+          <bmb-action-icon
+            class="bmb_sidebar-mobile bmb_sidebar-button"
+            [idElement]="element?.id?.toString()"
+            icon="chevron_left"
+            [iconSize]="24"
+            (buttonClick)="toggleChildren(element)"
             bmbLayoutItem
           />
         }
-      } @else if (level >= 2) {
-        <bmb-action-icon
-          class="bmb_sidebar-mobile bmb_sidebar-button"
-          [idElement]="element?.id?.toString()"
-          icon="chevron_left"
-          [iconSize]="24"
-          (buttonClick)="toggleChildren(element)"
+        <span
+          class="bmb_sidebar-text"
+          [ngClass]="{
+            header: isHeader
+          }"
           bmbLayoutItem
-        />
-      }
-      <span
-        class="bmb_sidebar-text"
-        [ngClass]="{
-          header: isHeader
-        }"
-        bmbLayoutItem
-      >
-        {{ element!.title }}
-      </span>
+        >
+          {{ element!.title }}
+        </span>
+      </section>
     </section>
     @if (isHeader) {
       <bmb-action-icon
