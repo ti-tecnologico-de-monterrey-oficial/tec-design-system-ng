@@ -32,6 +32,7 @@
         <div class="bmb_progress-bar-track" bmbLayoutItem>
           <div
             class="bmb_progress-bar-active"
+            [ngClass]="progressBarColorClass()"
             [style.width.%]="progressValue()"
           ></div>
         </div>
