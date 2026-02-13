@@ -65,16 +65,16 @@ export class BmbProfileComponent implements OnInit {
   targetLinks = input<IBmbTargetLink>('_blank');
   versionLabel = input<string>('');
   versionBackText = input<string>('');
-  versionBackLink = input<string>('');
-  versionBackTarget = input<IBmbTargetLink>('_blank');
   enableLangChange = input<boolean>(false);
   enableVersionBack = input<boolean>(false);
+
+  handleLangChange = model<string>();
 
   handleCloseSession = output();
   handleCloseProfile = output();
   handleCollaboratorClick = output<IBmbUserData>();
-  handleLangChange = model<string>();
   onRightClick = output<Event>();
+  handleVersionBack = output<Event>();
 
   onBack = output<Event>();
   onExpandClick = output<Event>();
@@ -191,5 +191,9 @@ export class BmbProfileComponent implements OnInit {
 
   handleRight(event: Event): void {
     this.onRightClick.emit(event);
+  }
+
+  handleBackClick(event: Event): void {
+    this.handleVersionBack.emit(event);
   }
 }
