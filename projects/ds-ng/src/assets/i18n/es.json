@@ -219,5 +219,13 @@
     "content": {
       "loading_alt": "Cargando..."
     }
+  },
+  "filter_card": {
+    "dropdown": {
+      "placeholder": "Selecciona una opción"
+    },
+    "global_search": {
+      "placeholder": "Buscar..."
+    }
   }
 }

@@ -20,3 +20,19 @@
   />
   <button bmbButton type="submit" appearance="primary">Submit</button>
 </form>
+<div style="margin: 0 120px">
+  <bmb-filter-card
+    [modalTitle]="'Opciones Filtrado'"
+    [primaryBtnLabel]="'Aplicar Filtros'"
+    [secondaryBtnLabel]="'Limpiar Filtros'"
+    [icon]="'tune'"
+    [controlTypes]="filterControls"
+    [inLine]="true"
+    [showGlobalSearch]="true"
+    [showDropdown]="false"
+    [dropdownOptions]="['Apple', 'Banana', 'Orange', 'Pear', 'Grape']"
+    [placeholderSearch]="'Search'"
+    (applyFilters)="handleFilters($event)"
+    (resetFilters)="handleResetFilters()"
+  />
+</div>
