@@ -26,6 +26,10 @@ import {
   BmbDropdownComponent,
   BmbSearchCardComponent,
   BmbHomeCardChatComponent,
+  IChatBarActions,
+  IBmbChatMessage,
+  IBmbHomeCardChatMode,
+  IBotType,
 } from '../../projects/ds-ng/src/public-api';
 import { MatDialog } from '@angular/material/dialog';
 import { TestComponentComponent } from './components/test-component/test-component.component';
@@ -36,10 +40,7 @@ import { TestComponentComponent } from './components/test-component/test-compone
   imports: [
     RouterModule,
     BmbThemeComponent,
-    BmbDividerComponent,
     BmbTopBarComponent,
-    BmbVerticalLayoutDirective,
-    BmbVerticalLayoutItemDirective,
     BmbSidebarComponent,
     BmbDropdownComponent,
     BmbHomeCardChatComponent,
@@ -55,6 +56,7 @@ export class AppComponent {
     private modalService: BmbNativeModalService,
     private projectionService: BmbProjectionContentService,
     private matDialog: MatDialog,
+    private contentProjected: BmbProjectionContentService,
   ) {}
 
   @ViewChild('modalTemplate') modalTemplate!: TemplateRef<unknown>;
@@ -196,6 +198,46 @@ export class AppComponent {
       },
       { id: 8, icon: 'app_registration', title: 'Colors', link: '/colors' },
     ],
+  ];
+
+  mode: IBmbHomeCardChatMode = 'compact';
+
+  currentBot: IBotType = {
+    name: 'TecBot',
+    icon: 'bot_tecStandar',
+  };
+  messages: IBmbChatMessage[] = [
+    {
+      type: 'text',
+      content: { text: 'Hola, ¿cómo estás? En que puedo ayudarte' },
+      isUserMessage: false,
+      time: new Date('2025-02-19T14:31:00'),
+    },
+    {
+      type: 'text',
+      content: {
+        text: 'Hola, me gustaria un pequeño resumen de la festividad del dia de la bandera en México',
+      },
+      userProfile: 'https://picsum.photos/id/64/200/301',
+      isUserMessage: true,
+      time: new Date('2025-02-19T14:32:00'),
+    },
+    {
+      type: 'text',
+      content: {
+        text: 'El Día de la Bandera en México se celebra el 24 de febrero de cada año. Esta fecha conmemora la adopción de la bandera actual en 1821, tras la independencia del país. Es un día para rendir homenaje a los símbolos patrios y a la historia de México, destacando la importancia de la unidad y el orgullo nacional. En este día se realizan ceremonias cívicas y militares en todo el país.',
+      },
+      userProfile: 'https://picsum.photos/id/64/200/301',
+      isUserMessage: false,
+      time: new Date('2025-02-19T14:33:00'),
+    },
+    {
+      type: 'text',
+      content: { text: 'Gracias.' },
+      userProfile: 'https://picsum.photos/id/64/200/301',
+      isUserMessage: true,
+      time: new Date('2025-02-19T14:34:00'),
+    },
   ];
 
   handleUserProfileClick(): void {
@@ -580,9 +622,4 @@ https://live.tec.mx/cbweek</p><p>¡Te esperamos!`,
   }
 
   message = signal<string>('Hello from AppComponent!');
-
-  currentBot = {
-    name: 'TecBot',
-    icon: 'bot_tecStandar',
-  };
 }
