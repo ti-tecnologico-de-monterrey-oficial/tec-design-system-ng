@@ -19,7 +19,11 @@ import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.compo
 
 export type IBmbProgressBarVariations = 'info' | 'warning' | 'error';
 export type IBmbProgressBarTypes = 'simple' | 'counter' | 'container';
-export type IBmbProgressBarColorType = 'info' | 'warning' | 'error' | 'success';
+export type IBmbProgressBarStatusColor =
+  | 'info'
+  | 'warning'
+  | 'error'
+  | 'success';
 
 @Component({
   selector: 'bmb-progress-bar',
@@ -55,7 +59,7 @@ export class BmbProgressBarComponent {
   isContainer = input<boolean>(false);
   avatarIcon = input<string>('');
   actionIcon = input<string>('');
-  colorType = input<IBmbProgressBarColorType>('info');
+  statusColor = input<IBmbProgressBarStatusColor>('info');
   textFormatSeparator = input<string>(''); //Internal
   showStatusIcon = input<boolean>(false); //Internal
 
@@ -75,6 +79,6 @@ export class BmbProgressBarComponent {
   });
 
   progressBarColorClass = computed(() => {
-    return `bmb_progress-bar-active-${this.colorType()}`;
+    return `bmb_progress-bar-active-${this.statusColor()}`;
   });
 }

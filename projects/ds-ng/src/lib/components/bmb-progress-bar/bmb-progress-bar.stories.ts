@@ -47,17 +47,17 @@ ${getBasicExampleBlock('BmbProgressBarComponent')}
         defaultValue: getDefaultValueControl('simple'),
       },
     },
-    colorType: {
+    statusColor: {
       control: {
         type: 'radio',
       },
       options: ['info', 'warning', 'error', 'success'],
-      description: 'Sets the color type of the progress bar.',
+      description: 'Sets the status color of the progress bar.',
       table: {
         category: 'Properties',
         type: {
-          summary: 'IBmbProgressBarColorType',
-          detail: `IBmbProgressBarColorType = 'info' | 'warning' | 'error' | 'success'`,
+          summary: 'IBmbProgressBarStatusColor',
+          detail: `IBmbProgressBarStatusColor = 'info' | 'warning' | 'error' | 'success'`,
         },
         defaultValue: getDefaultValueControl('info'),
       },
@@ -140,7 +140,7 @@ ${getBasicExampleBlock('BmbProgressBarComponent')}
   },
   args: {
     type: 'container',
-    colorType: 'info',
+    statusColor: 'info',
     totalCount: 1000,
     counter: 560,
     title: 'Creditos ocupados para esta iniciativa',
