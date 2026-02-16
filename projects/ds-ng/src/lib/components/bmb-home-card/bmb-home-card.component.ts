@@ -11,7 +11,6 @@ import { IBmbDataTopBar } from '../bmb-breadcrumb/bmb-breadcrumb.component';
 import { IBmbColor } from '../../types/colors';
 import { IBmbActionHeader, SizeNames } from '../../types';
 import { CommonModule } from '@angular/common';
-import { IChatBarActions } from '../bmb-chat-bar/types';
 
 @Component({
   selector: 'bmb-home-card',
@@ -35,9 +34,7 @@ export class BmbHomeCardComponent {
   contentPadding = input<SizeNames>('l');
   showRightButton = input<boolean>(true);
   isExpanded = model<boolean>(false);
-  useAutoExpand = input<boolean>(true); //Internal
-  isChat = input<boolean>(false); //Internal
-  actionsList = input<IChatBarActions[]>([]);
+
   onClose = output();
   onBack = output();
   onExpandClick = output();

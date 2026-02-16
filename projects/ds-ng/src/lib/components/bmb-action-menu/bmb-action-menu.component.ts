@@ -9,12 +9,12 @@ import {
 } from '@angular/core';
 import { IBmbColor } from '../../types/colors';
 import { CommonModule } from '@angular/common';
-import { BmbTitleContentComponent } from '../bmb-title-content/bmb-title-content.component';
+import { BmbHomeCardHeaderComponent } from '../bmb-home-card/bmb-home-card-header/bmb-home-card-header.component';
 
 @Component({
   selector: 'bmb-action-menu',
   standalone: true,
-  imports: [CommonModule, BmbTitleContentComponent],
+  imports: [CommonModule, BmbHomeCardHeaderComponent],
   templateUrl: './bmb-action-menu.component.html',
   styleUrl: './bmb-action-menu.component.scss',
   encapsulation: ViewEncapsulation.None,

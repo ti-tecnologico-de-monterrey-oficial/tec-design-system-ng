@@ -46,42 +46,29 @@
       <section bmbVerticalLayoutItem [rowGrow]="1">
         <bmb-action-menu
           icon="account_balance_wallet"
-          bgIconAppearance="green-light"
-          title="Title"
+          bgIconAppearance="blue-primary"
+          title="Ayuda TECservices"
           subtitle="Subtitle"
           [showHeader]="true"
         >
           @for (_item of items; track $index) {
-            @if (_item?.isActive) {
-              <ng-template>
-                <bmb-item
-                  [label]="_item.label"
-                  [icon]="_item.icon"
-                  [value]="_item.value"
-                  [valueLink]="_item.valueLink"
-                  valueTarget="_self"
-                />
-              </ng-template>
-            } @else if (!_item?.isActive) {
-              <ng-template>
-                <bmb-item
-                  [label]="_item.label"
-                  [value]="_item.value"
-                  [valueLink]="_item.valueLink"
-                  valueTarget="_self"
-                />
-              </ng-template>
+            @if (_item?.isTecService) {
+              <bmb-item
+                [label]="_item.Title"
+                [icon]="_item.icono"
+                [value]="_item.Title"
+                [valueLink]="_item.url"
+                valueTarget="_self"
+              />
+            } @else {
+              <bmb-item
+                label="¡Califica tu experiencia!"
+                icon="mood"
+                (action)="handleOpen('test')"
+                [isButton]="true"
+              />
             }
           }
-          <ng-template>
-            <bmb-item
-              label="Correo"
-              icon="mail"
-              value="tecservices@servicios.tec.mx"
-              valueLink="mailto:tecservices@servicios.tec.mx"
-              valueTarget="_self"
-            />
-          </ng-template>
         </bmb-action-menu>
       </section>
       <bmb-advertisement-card
@@ -483,20 +470,6 @@
     </div>
   </section>
 </div>
-
-<bmb-home-card-chat
-  leftIcon="chevron_left"
-  icon="bot_tecStandar"
-  bgIconAppearance="gray-charade-500"
-  title="Asistente TECbot"
-  contentPadding="none"
-  subtitle="Assitente TECbot"
-  [messagesHistory]="messages"
-  [actionsList]="actionList"
-  [mode]="mode"
-  [(currentBot)]="currentBot"
->
-</bmb-home-card-chat>
 
 <ng-template #modalTemplate>
   <div class="bmb_template-modal-content">

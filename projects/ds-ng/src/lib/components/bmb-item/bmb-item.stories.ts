@@ -76,6 +76,7 @@ ${getBasicExampleBlock('BmbItemComponent')}
       '',
       'Renders the item as a button when true.',
     ),
+    rightIcon: { ...DBmbIconParamDesc.icon },
     action: getOnClickParam(getOnEvent('item', 'action')),
   },
   args: {
@@ -149,8 +150,10 @@ export const WithSupportTextWithLinkAnIcon: Story = {
 };
 
 export const IsAButton: Story = {
+  name: 'Button Variant with right icon',
   args: {
     isButton: true,
+    rightIcon: 'chevron_forward',
   },
   render: (args) => ({
     props: {

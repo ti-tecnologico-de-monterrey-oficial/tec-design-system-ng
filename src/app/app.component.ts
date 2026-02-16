@@ -10,10 +10,7 @@ import {
 import { RouterModule, Router } from '@angular/router';
 import {
   BmbThemeComponent,
-  BmbDividerComponent,
   BmbTopBarComponent,
-  BmbVerticalLayoutDirective,
-  BmbVerticalLayoutItemDirective,
   BmbSidebarComponent,
   SidebarElement,
   BmbNativeModalService,
@@ -26,6 +23,9 @@ import {
   BmbDropdownComponent,
   BmbSearchCardComponent,
   BmbHomeCardChatComponent,
+  IBmbChatMessage,
+  IBmbHomeCardChatMode,
+  IBotType,
   IBmbSearchCardItemResult,
 } from '../../projects/ds-ng/src/public-api';
 import { MatDialog } from '@angular/material/dialog';
@@ -42,10 +42,7 @@ import services from './pages/form-validator-test/services.json';
   imports: [
     RouterModule,
     BmbThemeComponent,
-    BmbDividerComponent,
     BmbTopBarComponent,
-    BmbVerticalLayoutDirective,
-    BmbVerticalLayoutItemDirective,
     BmbSidebarComponent,
     BmbDropdownComponent,
     BmbHomeCardChatComponent,
@@ -64,6 +61,7 @@ export class AppComponent {
     private modalService: BmbNativeModalService,
     private projectionService: BmbProjectionContentService,
     private matDialog: MatDialog,
+    private contentProjected: BmbProjectionContentService,
   ) {
     this.searchSubject
       .pipe(debounceTime(1000), distinctUntilChanged())
@@ -245,6 +243,46 @@ export class AppComponent {
       },
       { id: 8, icon: 'app_registration', title: 'Colors', link: '/colors' },
     ],
+  ];
+
+  mode: IBmbHomeCardChatMode = 'compact';
+
+  currentBot: IBotType = {
+    name: 'TecBot',
+    icon: 'bot_tecStandar',
+  };
+  messages: IBmbChatMessage[] = [
+    {
+      type: 'text',
+      content: { text: 'Hola, ¿cómo estás? En que puedo ayudarte' },
+      isUserMessage: false,
+      time: new Date('2025-02-19T14:31:00'),
+    },
+    {
+      type: 'text',
+      content: {
+        text: 'Hola, me gustaria un pequeño resumen de la festividad del dia de la bandera en México',
+      },
+      userProfile: 'https://picsum.photos/id/64/200/301',
+      isUserMessage: true,
+      time: new Date('2025-02-19T14:32:00'),
+    },
+    {
+      type: 'text',
+      content: {
+        text: 'El Día de la Bandera en México se celebra el 24 de febrero de cada año. Esta fecha conmemora la adopción de la bandera actual en 1821, tras la independencia del país. Es un día para rendir homenaje a los símbolos patrios y a la historia de México, destacando la importancia de la unidad y el orgullo nacional. En este día se realizan ceremonias cívicas y militares en todo el país.',
+      },
+      userProfile: 'https://picsum.photos/id/64/200/301',
+      isUserMessage: false,
+      time: new Date('2025-02-19T14:33:00'),
+    },
+    {
+      type: 'text',
+      content: { text: 'Gracias.' },
+      userProfile: 'https://picsum.photos/id/64/200/301',
+      isUserMessage: true,
+      time: new Date('2025-02-19T14:34:00'),
+    },
   ];
 
   handleUserProfileClick(): void {
@@ -670,14 +708,8 @@ https://live.tec.mx/cbweek</p><p>¡Te esperamos!`,
       },
     });
 
-    this.contentID.set(contentID);
+    // this.contentID.set(contentID);
   }
 
   message = signal<string>('Hello from AppComponent!');
-  contentID = signal<string>('');
-
-  currentBot = {
-    name: 'TecBot',
-    icon: 'bot_tecStandar',
-  };
 }

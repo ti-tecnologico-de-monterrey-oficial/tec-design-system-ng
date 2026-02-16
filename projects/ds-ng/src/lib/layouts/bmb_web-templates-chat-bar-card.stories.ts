@@ -1,17 +1,19 @@
 import { Component, Input } from '@angular/core';
 import { Meta, StoryFn, moduleMetadata } from '@storybook/angular';
-import {
-  BmbTopBarComponent,
-  BmbSidebarComponent,
-  BmbHomeCardChatComponent,
-  IBmbChatMessage,
-  BmbActionIconComponent,
-  IChatBarActions,
-  BmbProjectionContentService,
-} from '../../public-api';
+
 import { attributes, RELEVANT_TITLE } from '../utils/doc/utils';
 import { CommonModule } from '@angular/common';
 import { BmbBotIconComponent } from '../components/bmb-bot-icon/bmb-bot-icon.component';
+import { BmbTopBarComponent } from './../components/bmb-top-bar/bmb-top-bar.component';
+import { BmbSidebarComponent } from './../components/bmb-sidebar/bmb-sidebar.component';
+import {
+  BmbHomeCardChatComponent,
+  IBmbHomeCardChatMode,
+} from './../components/bmb-home-card-chat/bmb-home-card-chat.component';
+import { BmbActionIconComponent } from './../components/bmb-action-icon/bmb-action-icon.component';
+import { IBmbChatMessage } from '../types';
+import { IBotType, IChatBarActions } from './../components/bmb-chat-bar/types';
+import { BmbProjectionContentService } from './../services/projection/projection.service';
 
 @Component({
   standalone: true,
@@ -19,9 +21,7 @@ import { BmbBotIconComponent } from '../components/bmb-bot-icon/bmb-bot-icon.com
     BmbTopBarComponent,
     BmbSidebarComponent,
     BmbHomeCardChatComponent,
-    BmbActionIconComponent,
     CommonModule,
-    BmbBotIconComponent,
   ],
   selector: 'storybook-modal-wrapper',
   template: `
@@ -33,10 +33,8 @@ import { BmbBotIconComponent } from '../components/bmb-bot-icon/bmb-bot-icon.com
           role: 'Alumno'
         }"
         [mitec]="true"
-        [hasLogoutButton]="false"
         [appName]="'TecTest'"
         [appSubTitle]="'Sub title'"
-        [showLang]="false"
         [lang]="'es'"
       />
       <main class="bmb_template-single-home-card-main">
@@ -71,9 +69,9 @@ import { BmbBotIconComponent } from '../components/bmb-bot-icon/bmb-bot-icon.com
   `,
 })
 class StorybookModalWrapperComponent {
-  @Input() mode: 'compact' | 'chat' | 'expanded' = 'compact';
+  @Input() mode: IBmbHomeCardChatMode = 'compact';
 
-  @Input() currentBot = {
+  @Input() currentBot: IBotType = {
     name: 'TecBot',
     icon: 'bot_tecStandar',
   };

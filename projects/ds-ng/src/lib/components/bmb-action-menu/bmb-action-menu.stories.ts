@@ -194,6 +194,9 @@ export const InformativeTextWithoutIcon: Story = {
 };
 
 export const Button: Story = {
+  args: {
+    showHeader: false,
+  },
   render: (args: any) => ({
     props: {
       ...args,
@@ -215,6 +218,9 @@ export const Button: Story = {
 };
 
 export const ButtonWithIcon: Story = {
+  args: {
+    showHeader: false,
+  },
   render: (args: any) => ({
     props: {
       ...args,

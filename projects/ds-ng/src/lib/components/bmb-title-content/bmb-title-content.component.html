@@ -28,7 +28,7 @@
           {{ title() }}
         </h2>
       }
-      @if (showBreadcrumbs()) {
+      @if (showBreadcrumbs() && dataLocalNav() && dataLocalNav().length) {
         <span class="bmb_title-content-container-wrapper-breadcrumb">
           <bmb-breadcrumb [dataLocalNav]="dataLocalNav()" />
         </span>

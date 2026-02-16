@@ -1,9 +1,4 @@
-<section
-  class="bmb_item"
-  [ngClass]="{
-    'bmb_item-default': !isButton()
-  }"
->
+<section class="bmb_item">
   @if (isButton()) {
     <button
       (click)="handleClick($event)"
@@ -11,50 +6,86 @@
       size="large"
       type="button"
       appearance="transparent"
-      class="bmb_item-button"
+      class="bmb_item bmb_item-button"
     >
-      @if (icon()) {
-        <bmb-icon
-          [icon]="icon()"
-          [size]="iconSize()"
-          class="bmb_item-icon"
-          alt="Item icon"
-        />
-      }
-      <span class="bmb_item-label">{{ label() }}</span>
+      <ng-container [ngTemplateOutlet]="itemContent" />
     </button>
   } @else {
-    <div class="bmb_item-wrapper">
-      @if (icon()) {
-        <bmb-icon
-          [icon]="icon()"
-          [size]="iconSize()"
-          class="bmb_item-icon"
-          alt="Item icon"
-        />
-      }
-      <div class="bmb_item-text">
-        <span class="bmb_item-label">{{ label() }}</span>
-        <span class="bmb_item-support" [innerHTML]="supportText()"></span>
-      </div>
-    </div>
-
-    @if (valueLink()) {
-      <a
-        class="bmb_item-link"
-        [href]="valueLink()"
-        [target]="valueTarget() === '_blank' ? 'noopener noreferrer' : null"
-        [ngClass]="{ 'bmb_item-link-only-link': icon() }"
-      >
-        {{ value() }}
-      </a>
-    } @else {
-      <span
-        class="bmb_item-value"
-        [ngClass]="{ 'bmb_item-link-only-link': icon() }"
-      >
-        {{ value() }}
-      </span>
-    }
+    <ng-container [ngTemplateOutlet]="itemContent" />
+    <bmb-divider class="bmb_item-divider" />
   }
 </section>
+
+<ng-template #itemContent>
+  <section
+    class="bmb_item-wrapper"
+    [ngClass]="{ action: isButton() }"
+    bmbLayout
+    margin="none"
+    alignItems="center"
+  >
+    @if (!!icon()) {
+      <bmb-icon
+        [icon]="icon()"
+        [size]="iconSize()"
+        alt="Item icon"
+        bmbLayoutItem
+        [isDynamicItem]="true"
+      />
+    }
+    <section bmbLayoutItem [isDynamicItem]="true" [colGrow]="1">
+      <section
+        bmbLayout
+        margin="none"
+        [alignItems]="rightIcon() ? 'center' : 'start'"
+        [gapSize]="!!supportText() ? 'xs' : 'none'"
+        [isContainerQuery]="true"
+      >
+        <span
+          class="bmb_item-label"
+          bmbLayoutItem
+          [isDynamicItem]="true"
+          [colGrow]="1"
+        >
+          {{ label() }}
+        </span>
+        @if (isButton()) {
+          <ng-container [ngTemplateOutlet]="rightItemContent" />
+        } @else {
+          @if (!!valueLink()) {
+            <bmb-text-link
+              [textLink]="value()"
+              [link]="valueLink()"
+              [target]="valueTarget()"
+              icon=""
+              bmbLayoutItem
+            />
+          } @else if (!!supportText()) {
+            <div
+              class="bmb_item-support"
+              [innerHTML]="safeValue"
+              bmbLayoutItem
+            ></div>
+          } @else {
+            <ng-container [ngTemplateOutlet]="rightItemContent" />
+          }
+        }
+      </section>
+    </section>
+  </section>
+</ng-template>
+
+<ng-template #rightItemContent>
+  @if (rightIcon()) {
+    <bmb-icon
+      [icon]="rightIcon()"
+      [size]="iconSize()"
+      alt="Item icon"
+      bmbLayoutItem
+    />
+  } @else if (!!value()) {
+    <span class="bmb_item-value" bmbLayoutItem>
+      {{ value() }}
+    </span>
+  }
+</ng-template>

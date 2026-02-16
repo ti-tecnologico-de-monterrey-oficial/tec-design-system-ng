@@ -332,10 +332,7 @@
   @include fonts.font(4, regular);
   color: var(--buttons-text-link);
   line-height: 2;
-
-  &-underlined {
-    text-decoration: underline;
-  }
+  text-decoration: none;
 }
 
 @mixin check-for-mobile($condition: true) {
