@@ -7,29 +7,15 @@
   box-shadow: var(--bmb-shadow-3);
   overflow: hidden;
 
-  &-header {
-    background-color: var(--containers-main);
-    overflow: hidden;
-    padding: rem.rem_calc(16 24z);
-  }
-
-  &-container {
-    @include fonts.font(3, regular);
-    color: var(--general-contrasts-100);
-    border-radius: 0 0 var(--bmb-radius-l) var(--bmb-radius-l);
-    border-top: rem.rem_calc(1) solid var(--general-contrasts-container-outline);
-    background-color: var(--containers-background);
-    overflow: hidden;
-    padding: rem.rem_calc(24);
-
-    &-no-header {
-      border: none;
-    }
-  }
-
   &-list {
     margin: 0;
-    padding: 0;
+    padding: var(--bmb-spacing-l);
     list-style-type: none;
+
+    &.action {
+      display: flex;
+      flex-direction: column;
+      gap: var(--bmb-spacing-m);
+    }
   }
 }

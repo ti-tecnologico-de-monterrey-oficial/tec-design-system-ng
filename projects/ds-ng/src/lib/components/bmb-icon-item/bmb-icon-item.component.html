@@ -1,30 +1,8 @@
-<section bmbLayout margin="none" gapSize="m">
-  @if (icon()) {
-    <bmb-icon
-      [icon]="icon()"
-      [size]="iconSize()"
-      [alt]="label()"
-      bmbLayoutItem
-      [isDynamicItem]="true"
-    />
-  }
-  <span
-    class="bmb_icon-item-label"
-    bmbLayoutItem
-    [isDynamicItem]="true"
-    [colGrow]="1"
-  >
-    {{ label() }}
-  </span>
-
-  <div
-    class="bmb_icon-item-value"
-    [innerHTML]="safeValue"
-    bmbLayoutItem
-    [isDynamicItem]="true"
-    [colGrow]="1"
-  ></div>
-</section>
-@if (showDivider()) {
-  <bmb-divider />
-}
+<bmb-item
+  class="bmb_icon-item"
+  [ngClass]="{ no_divider: !showDivider() }"
+  [label]="label()"
+  [icon]="icon()"
+  [iconSize]="iconSize()"
+  [value]="value()"
+/>

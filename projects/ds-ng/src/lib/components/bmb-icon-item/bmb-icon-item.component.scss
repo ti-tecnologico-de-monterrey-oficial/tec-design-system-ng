@@ -1,22 +1,7 @@
-@use '../../../assets/styles/base/fonts' as fonts;
-
 .bmb_icon-item {
-  &-label {
-    @include fonts.font(4, regular);
-    text-align: left;
-  }
-
-  &-value {
-    @include fonts.font(4, regular);
-    text-align: right;
-
-    a {
-      @include fonts.font(4, bold);
-      align-items: center;
-      color: var(--general-contrasts-main-selection);
-      display: inline-flex;
-      line-height: 2;
-      text-decoration: underline;
+  &.no_divider {
+    .bmb_item-divider {
+      display: none;
     }
   }
 }

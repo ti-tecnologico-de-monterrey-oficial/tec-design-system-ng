@@ -76,6 +76,7 @@ ${getBasicExampleBlock('BmbItemComponent')}
       '',
       'Renders the item as a button when true.',
     ),
+    rightIcon: { ...DBmbIconParamDesc.icon },
     action: getOnClickParam(getOnEvent('item', 'action')),
   },
   args: {

@@ -1,26 +1,20 @@
 <section class="bmb_action-menu">
   @if (showHeader()) {
-    <div class="bmb_action-menu-header">
-      <bmb-title-content
-        [transparentBgC]="true"
-        [title]="title()"
-        [subtitle]="subtitle()"
-        [icon]="icon()"
-        [iconSize]="iconSize()!"
-        [bgIconAppearance]="bgIconAppearance()"
-      />
-    </div>
+    <bmb-home-card-header
+      [title]="title()"
+      [subtitle]="subtitle()"
+      [icon]="icon()"
+      [iconSize]="iconSize()!"
+      [bgIconAppearance]="bgIconAppearance()"
+      [showRightButton]="false"
+    />
   }
-  <section
-    class="bmb_action-menu-container"
-    [ngClass]="{ 'bmb_action-menu-container-no-header': !showHeader() }"
-  >
-    <ul class="bmb_action-menu-list">
-      @for (element of projectedContent; track $index) {
-        <li class="bmb_action-menu-item">
-          <ng-container *ngTemplateOutlet="element" />
-        </li>
-      }
-    </ul>
-  </section>
+  <ul class="bmb_action-menu-list" [ngClass]="{ action: !showHeader() }">
+    @for (element of projectedContent; track $index) {
+      <li class="bmb_action-menu-item">
+        <ng-container *ngTemplateOutlet="element" />
+      </li>
+    }
+  </ul>
+  <ng-content />
 </section>
