@@ -1,4 +1,4 @@
-import { IBmbDropdownItem } from "../bmb-dropdown/bmb-dropdown.component";
+import { IBmbDropdownItem } from '../bmb-dropdown/bmb-dropdown.component';
 
 export interface IBmbControlType {
   title: string;
@@ -11,6 +11,6 @@ export interface IBmbControlType {
     rightText?: string;
     value?: string;
     id?: string;
-    options?: string[] | IBmbDropdownItem[]
+    options?: string[] | IBmbDropdownItem[];
   }[];
 }

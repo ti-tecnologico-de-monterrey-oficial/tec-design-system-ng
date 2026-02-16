@@ -11,7 +11,12 @@ import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
   selector: 'bmb-dropzone-page',
   templateUrl: './dropzone.component.html',
   standalone: true,
-  imports: [ReactiveFormsModule, BmbDropzoneComponent, BmbButtonDirective, BmbFilterCardComponent],
+  imports: [
+    ReactiveFormsModule,
+    BmbDropzoneComponent,
+    BmbButtonDirective,
+    BmbFilterCardComponent,
+  ],
 })
 export class DropzonePageComponent {
   userForm: FormGroup = new FormGroup({
@@ -67,18 +72,30 @@ export class DropzonePageComponent {
           options: [
             { value: 'banana', name: 'Banana' },
             { value: 'apple', name: 'Apple' },
-            { value: 'tomato', name: 'Tomato' }
+            { value: 'tomato', name: 'Tomato' },
           ],
-          value: 'apple'
-        }
-      ]
+          value: 'apple',
+        },
+      ],
     },
     {
       title: 'Filter - tags',
       control: [
-        { name: 'tag-1', type: 'tag', label: 'Name tag 1', checked: true, id: 'some_field_id' },
-        { name: 'tag-2', type: 'tag', label: 'Name tag 2', checked: false, id: 'some_field_id' }
-      ]
+        {
+          name: 'tag-1',
+          type: 'tag',
+          label: 'Name tag 1',
+          checked: true,
+          id: 'some_field_id',
+        },
+        {
+          name: 'tag-2',
+          type: 'tag',
+          label: 'Name tag 2',
+          checked: false,
+          id: 'some_field_id',
+        },
+      ],
     },
     {
       title: 'Filter - Radial',
@@ -89,7 +106,7 @@ export class DropzonePageComponent {
           label: 'Radial 1',
           id: 'radial-1',
           value: '1',
-          checked: true
+          checked: true,
         },
         {
           name: 'radial-1',
@@ -97,9 +114,9 @@ export class DropzonePageComponent {
           label: 'Radial 2',
           id: 'radial-2',
           value: '2',
-          checked: false
-        }
-      ]
+          checked: false,
+        },
+      ],
     },
     {
       title: 'Filter - Checkbox',
@@ -108,15 +125,15 @@ export class DropzonePageComponent {
           name: 'checkbox-1',
           type: 'checkbox',
           label: 'Checkbox 1',
-          checked: true
+          checked: true,
         },
         {
           name: 'checkbox-2',
           type: 'checkbox',
           label: 'Checkbox 2',
-          checked: false
-        }
-      ]
+          checked: false,
+        },
+      ],
     },
     {
       title: 'Filter - Switch',
@@ -126,9 +143,9 @@ export class DropzonePageComponent {
           type: 'switch',
           rightText: 'Switch 3',
           checked: false,
-          label: 'Switch test'
-        }
-      ]
+          label: 'Switch test',
+        },
+      ],
     },
   ];
 
@@ -138,6 +155,5 @@ export class DropzonePageComponent {
 
   handleResetFilters() {
     console.log('reset filters');
-
   }
 }
