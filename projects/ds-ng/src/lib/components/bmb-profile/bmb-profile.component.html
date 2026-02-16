@@ -135,9 +135,8 @@
     @if (enableVersionBack()) {
       <bmb-divider />
       <bmb-check-external-link-button
-        [link]="versionBackLink()"
-        [target]="versionBackTarget()"
         class="bmb_profile-info-container-link"
+        (buttonClick)="handleBackClick($event)"
       >
         <section class="bmb_profile-info-container version-back">
           <div class="bmb_profile-info-container-item">

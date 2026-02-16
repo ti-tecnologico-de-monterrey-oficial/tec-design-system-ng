@@ -2,22 +2,30 @@
   <ng-template #modalTemplate>
     <div class="bmb_filter_card-modal">
       <form [formGroup]="filterForm">
-        @if (showDropdown()) {
-          <bmb-dropdown
-            [placeholder]="placeholderSearch()"
-            [options]="dropdownOptions()"
-            [control]="getFormControl('search')"
-            (onValueChange)="onValueChange($event)"
-            [isFilterable]="true"
-          />
-        } @else {
-          <bmb-input
-            [placeholder]="placeholderSearch()"
-            [icon]="'search'"
-            [appearance]="'normal'"
-            [control]="getFormControl('search')"
-            [isClearable]="true"
-          />
+        @if (showGlobalSearch()) {
+          @if (showDropdown()) {
+            <bmb-dropdown
+              [placeholder]="
+                placeholderSearch() ||
+                ('filter_card.global_search.placeholder' | translate)
+              "
+              [options]="dropdownOptions()"
+              [control]="getFormControl('search')"
+              (onValueChange)="onValueChange($event, 'search')"
+              [isFilterable]="true"
+            />
+          } @else {
+            <bmb-input
+              [placeholder]="
+                placeholderSearch() ||
+                ('filter_card.global_search.placeholder' | translate)
+              "
+              [icon]="'search'"
+              [appearance]="'normal'"
+              [control]="getFormControl('search')"
+              [isClearable]="true"
+            />
+          }
         }
         @for (controlType of controlTypes(); track $index) {
           <h4 class="bmb_filter_card-title">{{ controlType.title }}</h4>
@@ -60,6 +68,18 @@
                     [rightText]="control.rightText ?? ''"
                     [isChecked]="filterForm.get(control.name)?.value === true"
                     (change)="onControlChange(control, $event)"
+                  />
+                }
+                @case ('dropdown') {
+                  <bmb-dropdown
+                    [placeholder]="
+                      control.placeholder ??
+                      ('filter_card.dropdown.placeholder' | translate)
+                    "
+                    [options]="control.options ?? []"
+                    [control]="getFormControl(control.name)"
+                    (onValueChange)="onValueChange($event, control.name)"
+                    [isFilterable]="true"
                   />
                 }
               }

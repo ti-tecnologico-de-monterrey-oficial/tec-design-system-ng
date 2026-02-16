@@ -4,7 +4,44 @@
 </header>
 
 <div class="bmb_template-margin-for-sidebar">
-  <section bmbLayout margin="none" gapSize="m">
+  <section
+    bmbLayout
+    margin="none"
+    gapSize="m"
+    justify="stretch"
+    alignItems="stretch"
+  >
+    <bmb-container-button
+      bmbLayoutItem
+      [colLg]="4"
+      [title]="'Ir al linkedin'"
+      [square]="false"
+      [small]="true"
+      [iconLeft]="'connect_without_contact'"
+      [iconRight]="''"
+      (link)="('https://linkedin.com')"
+    ></bmb-container-button>
+
+    <bmb-container-button
+      bmbLayoutItem
+      [colLg]="4"
+      [title]="'Enviar correo'"
+      [square]="false"
+      [small]="true"
+      [iconLeft]="'mail'"
+      [iconRight]="''"
+      (link)="('https://linkedin.com')"
+    ></bmb-container-button>
+
+    <bmb-container-button
+      bmbLayoutItem
+      [colLg]="4"
+      [title]="'Enviar mensaje por Teams'"
+      [square]="false"
+      [iconLeft]="'sms'"
+      [iconRight]="''"
+      (link)="('https://linkedin.com')"
+    ></bmb-container-button>
     <div bmbVerticalLayout bmbLayoutItem [colSm]="4" [colLg]="6" gapSize="m">
       <section bmbVerticalLayoutItem [rowGrow]="1">
         <bmb-action-menu
@@ -180,6 +217,7 @@
         icon="keyboard_arrow_down"
         [expanded]="true"
         bmbVerticalLayoutItem
+        justify="stretch"
       >
         <ng-template #bmbAccordionHeader>
           <h2>At a glance</h2>

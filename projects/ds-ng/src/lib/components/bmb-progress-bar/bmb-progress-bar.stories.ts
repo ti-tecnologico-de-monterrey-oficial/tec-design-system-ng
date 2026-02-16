@@ -47,6 +47,21 @@ ${getBasicExampleBlock('BmbProgressBarComponent')}
         defaultValue: getDefaultValueControl('simple'),
       },
     },
+    statusColor: {
+      control: {
+        type: 'radio',
+      },
+      options: ['info', 'warning', 'error', 'success'],
+      description: 'Sets the status color of the progress bar.',
+      table: {
+        category: 'Properties',
+        type: {
+          summary: 'IBmbProgressBarStatusColor',
+          detail: `IBmbProgressBarStatusColor = 'info' | 'warning' | 'error' | 'success'`,
+        },
+        defaultValue: getDefaultValueControl('info'),
+      },
+    },
     totalCount: {
       control: {
         type: 'number',
@@ -125,6 +140,7 @@ ${getBasicExampleBlock('BmbProgressBarComponent')}
   },
   args: {
     type: 'container',
+    statusColor: 'info',
     totalCount: 1000,
     counter: 560,
     title: 'Creditos ocupados para esta iniciativa',

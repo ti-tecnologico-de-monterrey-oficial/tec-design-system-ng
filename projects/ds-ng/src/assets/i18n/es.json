@@ -192,9 +192,9 @@
   },
   "table": {
     "filters": {
-      "startDate": "Fecha de inicio",
+      "startDate": "inicio",
       "startDatePlaceholder": "Fecha de inicio",
-      "endDate": "Fecha de fin",
+      "endDate": "fin",
       "endDatePlaceholder": "Fecha de fin",
       "min": " mínimo",
       "max": " máximo",
@@ -218,6 +218,14 @@
   "input": {
     "content": {
       "loading_alt": "Cargando..."
+    }
+  },
+  "filter_card": {
+    "dropdown": {
+      "placeholder": "Selecciona una opción"
+    },
+    "global_search": {
+      "placeholder": "Buscar..."
     }
   }
 }

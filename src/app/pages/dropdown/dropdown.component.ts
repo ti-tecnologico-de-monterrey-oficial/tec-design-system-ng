@@ -9,6 +9,7 @@ import {
   BmbDatepickerComponent,
   BmbInputComponent,
 } from '../../../../projects/ds-ng/src/public-api';
+import { AnimeService } from '../../services/anime.service';
 
 @Component({
   selector: 'bmb-dropdown-page',
@@ -30,10 +31,10 @@ export class DropdownPageComponent implements OnInit {
     dropdown: new FormControl(),
   });
 
-  // constructor(private animeService: AnimeService) {}
+  constructor(private animeService: AnimeService) {}
 
   ngOnInit() {
-    // this.animeService.fetchTopAnime();
+    this.animeService.fetchTopAnime();
   }
 
   getFormControl(name: string): FormControl {
@@ -64,9 +65,9 @@ export class DropdownPageComponent implements OnInit {
   }
 
   options = computed(() => {
-    return [];
-    // const elements = this.animeService.topAnime();
-    // return elements.data.map((anime) => anime.title);
+    // return [];
+    const elements = this.animeService.topAnime();
+    return elements.data.map((anime) => anime.title);
   });
 
   handleBookmarkChange(isActive: boolean) {

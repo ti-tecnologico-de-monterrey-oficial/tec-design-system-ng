@@ -10,10 +10,7 @@ import {
 import { RouterModule, Router } from '@angular/router';
 import {
   BmbThemeComponent,
-  BmbDividerComponent,
   BmbTopBarComponent,
-  BmbVerticalLayoutDirective,
-  BmbVerticalLayoutItemDirective,
   BmbSidebarComponent,
   SidebarElement,
   BmbNativeModalService,
@@ -26,13 +23,18 @@ import {
   BmbDropdownComponent,
   BmbSearchCardComponent,
   BmbHomeCardChatComponent,
-  IChatBarActions,
   IBmbChatMessage,
   IBmbHomeCardChatMode,
   IBotType,
+  IBmbSearchCardItemResult,
 } from '../../projects/ds-ng/src/public-api';
 import { MatDialog } from '@angular/material/dialog';
 import { TestComponentComponent } from './components/test-component/test-component.component';
+import { Subject } from 'rxjs';
+import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
+
+import persons from './pages/form-validator-test/persons.json';
+import services from './pages/form-validator-test/services.json';
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
@@ -44,6 +46,7 @@ import { TestComponentComponent } from './components/test-component/test-compone
     BmbSidebarComponent,
     BmbDropdownComponent,
     BmbHomeCardChatComponent,
+    BmbSearchCardComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
@@ -52,16 +55,45 @@ import { TestComponentComponent } from './components/test-component/test-compone
 })
 export class AppComponent {
   private router = inject(Router);
+  private searchSubject = new Subject<string>();
+
   constructor(
     private modalService: BmbNativeModalService,
     private projectionService: BmbProjectionContentService,
     private matDialog: MatDialog,
     private contentProjected: BmbProjectionContentService,
-  ) {}
+  ) {
+    this.searchSubject
+      .pipe(debounceTime(1000), distinctUntilChanged())
+      .subscribe((searchTerm) => {
+        const searchLower = searchTerm.toLowerCase();
+
+        const filteredPersons = persons
+          .filter((person) => person.name?.toLowerCase().includes(searchLower))
+          .map((person) => ({
+            ...person,
+            id: person.id.toString(),
+            type: person.type as 'person' | 'service',
+          }));
+
+        const filteredServices = services
+          .filter((service) =>
+            service.name?.toLowerCase().includes(searchLower),
+          )
+          .map((service) => ({
+            ...service,
+            id: service.id.toString(),
+            type: service.type as 'person' | 'service',
+          }));
+
+        this.resultList.set([...filteredPersons, ...filteredServices]);
+        this.isSearchLoading.set(false);
+      });
+  }
 
   @ViewChild('modalTemplate') modalTemplate!: TemplateRef<unknown>;
   @ViewChild('modalLTSTemplate') modalLTSTemplate!: TemplateRef<any>;
-
+  @ViewChild('searchTemplate') searchTemplate!: TemplateRef<any>;
   modalId = signal<string | null>(null);
   isTheModalOpen = computed(() => {
     if (!this.modalId()) return false;
@@ -139,11 +171,24 @@ export class AppComponent {
     [
       {
         id: 5,
-        icon: 'align_flex_center',
-        title: 'Flex',
-        link: '/flex',
+        icon: 'responsive_layout',
+        title: 'Layouts',
+        link: '',
+        children: [
+          {
+            id: 5,
+            icon: 'align_flex_center',
+            title: 'Flex',
+            link: '/flex',
+          },
+          {
+            id: 6,
+            icon: 'calendar_view_month',
+            title: 'Column sys',
+            link: '/col-sys',
+          },
+        ],
       },
-
       {
         id: 6,
         icon: 'step',
@@ -602,23 +647,68 @@ https://live.tec.mx/cbweek</p><p>¡Te esperamos!`,
     this.matDialog.open(BmbModalComponent, { data: modalData });
   }
 
+  resultList = signal<IBmbSearchCardItemResult[]>([]);
+  isSearchLoading = signal<boolean>(false);
+
+  handleServiceClick(service: IBmbSearchCardItemResult): void {
+    console.log('Service clicked:', service);
+  }
+
+  handleSearchChange(searchTerm: string): void {
+    if (searchTerm) {
+      this.isSearchLoading.set(true);
+      console.log('Search term:', searchTerm);
+      // this.searchSubject.next(searchTerm);}
+      const searchLower = searchTerm.toLowerCase();
+
+      const filteredPersons = persons
+        .filter((person) => person.name?.toLowerCase().includes(searchLower))
+        .map((person) => ({
+          ...person,
+          id: person.id.toString(),
+          type: person.type as 'person' | 'service',
+        }));
+
+      const filteredServices = services
+        .filter((service) => service.name?.toLowerCase().includes(searchLower))
+        .map((service) => ({
+          ...service,
+          id: service.id.toString(),
+          type: service.type as 'person' | 'service',
+        }));
+
+      console.log([...filteredPersons, ...filteredServices]);
+
+      this.resultList.set([...filteredPersons, ...filteredServices]);
+      this.isSearchLoading.set(false);
+    }
+  }
+
   handleSearchButtonClick(event: MouseEvent): void {
     console.log('Search button clicked');
 
-    this.projectionService.openContent({
+    const contentID = this.projectionService.openContent({
+      // content: this.searchTemplate,
       content: BmbSearchCardComponent,
       targetRef: event.currentTarget as HTMLElement,
       showBackdrop: false,
       inputContext: {
         title: 'Search',
         inputPlaceholder: 'Type to search...',
+        results: this.resultList(),
+        isLoading: this.isSearchLoading(),
       },
       outputContext: {
         triggerSearch: (value: string) => {
-          console.log('Search triggered with value from app component:', value);
+          this.handleSearchChange(value);
+        },
+        searchItemClick: (event: IBmbSearchCardItemResult) => {
+          this.handleServiceClick(event);
         },
       },
     });
+
+    // this.contentID.set(contentID);
   }
 
   message = signal<string>('Hello from AppComponent!');
