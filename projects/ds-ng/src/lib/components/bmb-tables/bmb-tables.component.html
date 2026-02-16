@@ -48,8 +48,16 @@
                       'table.filters.endDatePlaceholder' | translate
                     "
                     [icon]="'calendar_month'"
-                    [labelEndDate]="column.label + ' - ' +  ('table.filters.endDate' | translate)"
-                    [labelStartDate]="column.label + ' - ' + ('table.filters.startDate' | translate) "
+                    [labelEndDate]="
+                      column.label +
+                      ' - ' +
+                      ('table.filters.endDate' | translate)
+                    "
+                    [labelStartDate]="
+                      column.label +
+                      ' - ' +
+                      ('table.filters.startDate' | translate)
+                    "
                     [dateFormat]="'dd/MM/yyyy'"
                     [controlStart]="getFormControl(column.dataKey + '_from')"
                     [controlEnd]="getFormControl(column.dataKey + '_to')"

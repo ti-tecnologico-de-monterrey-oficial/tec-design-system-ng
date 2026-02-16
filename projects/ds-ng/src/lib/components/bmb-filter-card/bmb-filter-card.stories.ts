@@ -116,13 +116,14 @@ ${getBasicExampleBlock('BmbFilterCardComponent')}
     },
     showGlobalSearch: {
       control: 'boolean',
-      Description: 'Determines if the global search is visible (input or dropdown).',
+      Description:
+        'Determines if the global search is visible (input or dropdown).',
       table: {
         category: 'Properties',
         type: { summary: 'boolean' },
         defaultValue: { summary: true },
-      }
-    }
+      },
+    },
   },
   args: {
     showDropdown: false,
@@ -145,9 +146,9 @@ ${getBasicExampleBlock('BmbFilterCardComponent')}
             options: [
               { value: 'banana', name: 'Banana' },
               { value: 'apple', name: 'Apple' },
-              { value: 'tomato', name: 'Tomato' }
+              { value: 'tomato', name: 'Tomato' },
             ],
-            value: 'apple'
+            value: 'apple',
           },
         ],
       },

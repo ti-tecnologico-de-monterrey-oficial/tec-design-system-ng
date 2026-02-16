@@ -135,7 +135,9 @@ import { Router } from '@angular/router';
                           />
                         </figure>
                         <bmb-card-header padding="m">
-                          <h3 class="font-regular-5">Bienvenidos innovadores</h3>
+                          <h3 class="font-regular-5">
+                            Bienvenidos innovadores
+                          </h3>
                         </bmb-card-header>
                         <p class="font-regular-4 padding-s">
                           Lorem ipsum dolor sit amet consectetur. Nisl nibh
