@@ -192,9 +192,9 @@
   },
   "table": {
     "filters": {
-      "startDate": "Start Date",
+      "startDate": "start",
       "startDatePlaceholder": "Start Date",
-      "endDate": "End Date",
+      "endDate": "end",
       "endDatePlaceholder": "End Date",
       "min": " minimum",
       "max": " maximum",
