@@ -14,6 +14,7 @@ import {
   DBmbModalParamDesc,
   getOnClickParam,
 } from '../../utils/doc/parameterDescriptions';
+import { Description } from '@storybook/addon-docs/blocks';
 
 export default {
   title: 'Components/Containers/Filter card',
@@ -33,6 +34,8 @@ export default {
           'filterForm',
           'storedValues',
           'modalTemplate',
+          'modalId',
+          'handleSubmit',
         ],
       },
       description: {
@@ -95,7 +98,7 @@ ${getBasicExampleBlock('BmbFilterCardComponent')}
       description:
         'Determines if the dropdown should be displayed instead of the input.',
       table: {
-        category: 'Properties',
+        category: 'Deprecated',
         type: { summary: 'boolean' },
         defaultValue: { summary: false },
       },
@@ -104,11 +107,21 @@ ${getBasicExampleBlock('BmbFilterCardComponent')}
       control: { type: 'array' },
       description: 'Defines the list of options available in the dropdown.',
       table: {
-        category: 'Properties',
+        category: 'Deprecated',
         type: { summary: 'string[]' },
         defaultValue: {
           summary: "['Apple', 'Banana', 'Orange', 'Pear', 'Grape']",
         },
+      },
+    },
+    showGlobalSearch: {
+      control: 'boolean',
+      Description:
+        'Determines if the global search is visible (input or dropdown).',
+      table: {
+        category: 'Properties',
+        type: { summary: 'boolean' },
+        defaultValue: { summary: true },
       },
     },
   },
@@ -124,6 +137,21 @@ ${getBasicExampleBlock('BmbFilterCardComponent')}
       console.log('Filters applied', filters);
     },
     controlTypes: [
+      {
+        title: 'Filter - Dropdown',
+        control: [
+          {
+            name: 'dropdown-1',
+            type: 'dropdown',
+            options: [
+              { value: 'banana', name: 'Banana' },
+              { value: 'apple', name: 'Apple' },
+              { value: 'tomato', name: 'Tomato' },
+            ],
+            value: 'apple',
+          },
+        ],
+      },
       {
         title: 'Filter - tags',
         control: [
@@ -192,6 +220,7 @@ ${getBasicExampleBlock('BmbFilterCardComponent')}
       },
     ],
     inLine: false,
+    showGlobalSearch: true,
   },
 } as Meta<typeof BmbFilterCardComponent>;
 
