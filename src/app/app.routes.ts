@@ -149,5 +149,11 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./pages/colors/colors.component').then((j) => j.ColorsComponent),
   },
+  {
+    path: 'col-sys',
+    title: 'Column sys',
+    loadComponent: () =>
+      import('./pages/layout-columns/layout-columns.component').then((j) => j.LayoutColumnsComponent),
+  },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
 ];

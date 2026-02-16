@@ -173,11 +173,24 @@ export class AppComponent {
     [
       {
         id: 5,
-        icon: 'align_flex_center',
-        title: 'Flex',
-        link: '/flex',
+        icon: 'responsive_layout',
+        title: 'Layouts',
+        link: '',
+        children: [
+          {
+            id: 5,
+            icon: 'align_flex_center',
+            title: 'Flex',
+            link: '/flex',
+          },
+          {
+            id: 6,
+            icon: 'calendar_view_month',
+            title: 'Column sys',
+            link: '/col-sys',
+          },
+        ],
       },
-
       {
         id: 6,
         icon: 'step',
@@ -610,28 +623,26 @@ https://live.tec.mx/cbweek</p><p>¡Te esperamos!`,
       // this.searchSubject.next(searchTerm);}
       const searchLower = searchTerm.toLowerCase();
 
-        const filteredPersons = persons
-          .filter((person) => person.name?.toLowerCase().includes(searchLower))
-          .map((person) => ({
-            ...person,
-            id: person.id.toString(),
-            type: person.type as 'person' | 'service',
-          }));
+      const filteredPersons = persons
+        .filter((person) => person.name?.toLowerCase().includes(searchLower))
+        .map((person) => ({
+          ...person,
+          id: person.id.toString(),
+          type: person.type as 'person' | 'service',
+        }));
 
-        const filteredServices = services
-          .filter((service) =>
-            service.name?.toLowerCase().includes(searchLower),
-          )
-          .map((service) => ({
-            ...service,
-            id: service.id.toString(),
-            type: service.type as 'person' | 'service',
-          }));
+      const filteredServices = services
+        .filter((service) => service.name?.toLowerCase().includes(searchLower))
+        .map((service) => ({
+          ...service,
+          id: service.id.toString(),
+          type: service.type as 'person' | 'service',
+        }));
 
-        console.log([...filteredPersons, ...filteredServices]);
+      console.log([...filteredPersons, ...filteredServices]);
 
-        this.resultList.set([...filteredPersons, ...filteredServices]);
-        this.isSearchLoading.set(false);
+      this.resultList.set([...filteredPersons, ...filteredServices]);
+      this.isSearchLoading.set(false);
     }
   }
 
@@ -655,7 +666,7 @@ https://live.tec.mx/cbweek</p><p>¡Te esperamos!`,
         },
         searchItemClick: (event: IBmbSearchCardItemResult) => {
           this.handleServiceClick(event);
-        }
+        },
       },
     });
 
