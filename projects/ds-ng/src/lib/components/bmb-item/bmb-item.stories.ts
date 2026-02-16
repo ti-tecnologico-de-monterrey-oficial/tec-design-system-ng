@@ -150,8 +150,10 @@ export const WithSupportTextWithLinkAnIcon: Story = {
 };
 
 export const IsAButton: Story = {
+  name: 'Button Variant with right icon',
   args: {
     isButton: true,
+    rightIcon: 'chevron_forward',
   },
   render: (args) => ({
     props: {
