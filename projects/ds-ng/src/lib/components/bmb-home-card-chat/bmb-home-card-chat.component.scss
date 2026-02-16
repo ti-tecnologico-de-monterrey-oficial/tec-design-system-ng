@@ -69,5 +69,10 @@
         }
       }
     }
+
+    &-actions {
+      display: flex;
+      gap: rem.rem_calc(10);
+    }
   }
 }

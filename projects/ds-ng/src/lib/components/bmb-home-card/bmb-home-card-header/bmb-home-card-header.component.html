@@ -1,16 +1,17 @@
 <header class="bmb_home-card-header">
-  <bmb-container>
+  <bmb-container
+    class="bmb_home-card-header-wrapper"
+    [ngClass]="{ left: !!leftIcon() }"
+  >
     <span class="bmb_home-card-header-container">
       <bmb-three-cols [expandMainColumn]="true">
         <ng-template #bmbLeftContent>
           @if (!!leftIcon()) {
-            <span class="bmb_home-card-header-container-left_template">
-              <bmb-action-icon
-                [icon]="leftIcon()!"
-                [iconSize]="24"
-                (buttonClick)="handleBack()"
-              />
-            </span>
+            <bmb-action-icon
+              [icon]="leftIcon()!"
+              [iconSize]="24"
+              (buttonClick)="handleBack()"
+            />
           }
         </ng-template>
         <ng-template #bmbMainContent>
@@ -24,46 +25,13 @@
           />
         </ng-template>
         <ng-template #bmbRightContent>
-          @if (isChat()) {
-            <div class="bmb_home-card-header-chat-actions">
-              <bmb-action-icon
-                class="bmb_home-card-header-more"
-                icon="more_vert"
-                [iconSize]="24"
-                (buttonClick)="handleAddDialog($event)"
-              />
-              <bmb-navigation-bar
-                [actionHeaders]="actionHeaders()"
-                [iconSize]="24"
-                alignItems="center"
-              />
-            </div>
-          } @else {
-            <bmb-navigation-bar
-              [actionHeaders]="actionHeaderList()"
-              [iconSize]="24"
-              alignItems="center"
-            />
-          }
+          <bmb-navigation-bar
+            [actionHeaders]="actionHeaderList()"
+            [iconSize]="24"
+            alignItems="center"
+          />
         </ng-template>
       </bmb-three-cols>
     </span>
   </bmb-container>
 </header>
-
-<ng-template #chatBarActionsTemplate>
-  <section class="bmb_chat-bar-actions-dialog">
-    <bmb-action-menu [showHeader]="false" title="Selecciona una opción">
-      @for (bot of actionsList(); track $index) {
-        <ng-template>
-          <bmb-item
-            [icon]="bot.icon"
-            [label]="bot.name"
-            [isButton]="true"
-            (action)="bot.action()"
-          />
-        </ng-template>
-      }
-    </bmb-action-menu>
-  </section>
-</ng-template>
