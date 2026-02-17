@@ -16,7 +16,7 @@ import { BmbActionIconComponent } from '../../bmb-action-icon/bmb-action-icon.co
 import { BmbNavigationBarComponent } from '../../bmb-navigation-bar/bmb-navigation-bar.component';
 import { BmbContainerComponent } from '../../bmb-container/bmb-container.component';
 import { CommonModule } from '@angular/common';
-import { IChatBarActions } from '../../bmb-chat-bar/types';
+import { IBotType } from '../../bmb-chat-bar/types';
 
 @Component({
   selector: 'bmb-home-card-header',
@@ -46,11 +46,11 @@ export class BmbHomeCardHeaderComponent {
   isMobile = input<boolean>();
   showRightButton = input<boolean>(true);
   isExpanded = model<boolean>(false);
+  currentBot = model<IBotType>();
 
   onClose = output();
   onBack = output();
   onExpandClick = output();
-  actionsList = input<IChatBarActions[]>([]);
 
   actionHeaderList = computed<IBmbActionHeader[]>(() => {
     if (this.showRightButton()) {

@@ -1,31 +1,25 @@
 import { Component, Input } from '@angular/core';
 import { Meta, StoryFn, moduleMetadata } from '@storybook/angular';
-
-import { attributes, RELEVANT_TITLE } from '../utils/doc/utils';
+import {
+  attributes,
+  BlockquoteType,
+  getAlertBlockquote,
+  getBasicExampleBlock,
+  getGeneralDescription,
+  getSpecialSpecifications,
+  RELEVANT_TITLE,
+} from '../utils/doc/utils';
 import { CommonModule } from '@angular/common';
-import { BmbBotIconComponent } from '../components/bmb-bot-icon/bmb-bot-icon.component';
 import { BmbTopBarComponent } from './../components/bmb-top-bar/bmb-top-bar.component';
 import { BmbSidebarComponent } from './../components/bmb-sidebar/bmb-sidebar.component';
 import {
   BmbHomeCardChatComponent,
   IBmbHomeCardChatMode,
 } from './../components/bmb-home-card-chat/bmb-home-card-chat.component';
-import { BmbActionIconComponent } from './../components/bmb-action-icon/bmb-action-icon.component';
 import { IBmbChatMessage } from '../types';
-import { IBotType, IChatBarActions } from './../components/bmb-chat-bar/types';
-import { BmbProjectionContentService } from './../services/projection/projection.service';
+import { IBotType, IChatBarActions } from './../components/bmb-chat-bar/types'
 
-@Component({
-  standalone: true,
-  imports: [
-    BmbTopBarComponent,
-    BmbSidebarComponent,
-    BmbHomeCardChatComponent,
-    CommonModule,
-  ],
-  selector: 'storybook-modal-wrapper',
-  template: `
-    <div class="bmb_template-single-home-card">
+const HTMLtemplate: string = `<div class="bmb_template-single-home-card">
       <bmb-top-bar
         [userInformation]="{
           name: 'Santiago Hernández',
@@ -40,7 +34,6 @@ import { BmbProjectionContentService } from './../services/projection/projection
       <main class="bmb_template-single-home-card-main">
         <bmb-home-card-chat
           leftIcon="chevron_left"
-          icon="bot_tecStandar"
           bgIconAppearance="gray-charade-500"
           title="Asistente TECbot"
           contentPadding="none"
@@ -65,8 +58,17 @@ import { BmbProjectionContentService } from './../services/projection/projection
         ]
       ]"
       [title]="'Navegacion para mobiles'"
-    ></bmb-sidebar>
-  `,
+    />`;
+@Component({
+  standalone: true,
+  imports: [
+    BmbTopBarComponent,
+    BmbSidebarComponent,
+    BmbHomeCardChatComponent,
+    CommonModule,
+  ],
+  selector: 'storybook-modal-wrapper',
+  template: HTMLtemplate,
 })
 class StorybookModalWrapperComponent {
   @Input() mode: IBmbHomeCardChatMode = 'compact';
@@ -76,7 +78,6 @@ class StorybookModalWrapperComponent {
     icon: 'bot_tecStandar',
   };
 
-  constructor(private contentProjected: BmbProjectionContentService) {}
   messages: IBmbChatMessage[] = [
     {
       type: 'text',
@@ -113,16 +114,8 @@ class StorybookModalWrapperComponent {
 
   actionList: IChatBarActions[] = [
     {
-      name: 'Expandir Chat',
-      icon: '',
-      action: () => {
-        this.contentProjected.closeContent();
-        this.mode = 'expanded';
-      },
-    },
-    {
-      name: 'Iniciar nuevo chat',
-      icon: '',
+      name: 'other (example)',
+      icon: 'quiz',
       action: () => {},
     },
   ];
@@ -137,8 +130,7 @@ export default {
       imports: [
         StorybookModalWrapperComponent,
         BmbTopBarComponent,
-        BmbActionIconComponent,
-        BmbBotIconComponent,
+        BmbHomeCardChatComponent,
       ],
       providers: [],
     }),
@@ -146,68 +138,71 @@ export default {
   parameters: {
     docs: {
       description: {
-        component: `${RELEVANT_TITLE.note}When you click on fullscreen icon, in Storybook doesn’t look the best due to the many elements, but in your project, it should display correctly.
+        component: `
+${getGeneralDescription(`Below you will find an example of the instructions for building the **AI Chat card** ...`)}
+${getSpecialSpecifications(
+  `${getAlertBlockquote(
+    `When you click on fullscreen icon, in Storybook doesn’t look the best due to the many elements, but in your project, it should display correctly.
 
-Below is an example of how you can use this component in TypeScript:
+>
+    ...`,
+    { title: RELEVANT_TITLE.warning, blockquoteType: BlockquoteType.important },
+  )}`,
+  { showAdditionalBlockquote: true },
+)}
+${getBasicExampleBlock(
+  `
+  BmbTopBarComponent,
+  BmbSidebarComponent,
+  BmbHomeCardChatComponent
+  `,
+  '',
+  ` messages: IBmbChatMessage[] = [
+    {
+      type: 'text',
+      content: { text: 'Hola, ¿cómo estás? En que puedo ayudarte' },
+      isUserMessage: false,
+      time: new Date('2025-02-19T14:31:00'),
+    },
+    {
+      type: 'text',
+      content: {
+        text: 'Hola, me gustaria un pequeño resumen de la festividad del dia de la bandera en México',
+      },
+      userProfile: 'https://picsum.photos/id/64/200/301',
+      isUserMessage: true,
+      time: new Date('2025-02-19T14:32:00'),
+    },
+    {
+      type: 'text',
+      content: {
+        text: 'El Día de la Bandera en México se celebra el 24 de febrero de cada año. Esta fecha conmemora la adopción de la bandera actual en 1821, tras la independencia del país. Es un día para rendir homenaje a los símbolos patrios y a la historia de México, destacando la importancia de la unidad y el orgullo nacional. En este día se realizan ceremonias cívicas y militares en todo el país.',
+      },
+      userProfile: 'https://picsum.photos/id/64/200/301',
+      isUserMessage: false,
+      time: new Date('2025-02-19T14:33:00'),
+    },
+    {
+      type: 'text',
+      content: { text: 'Gracias.' },
+      userProfile: 'https://picsum.photos/id/64/200/301',
+      isUserMessage: true,
+      time: new Date('2025-02-19T14:34:00'),
+    },
+  ];
 
+  actionList: IChatBarActions[] = [
+    {
+      name: 'other (example)',
+      icon: 'quiz',
+      action: () => {},
+    },
+  ];`,
+)}
+\`\`\`html
+${HTMLtemplate}
 \`\`\`typescript
-import { MatDialog } from '@angular/material/dialog';
-import { BmbModalComponent, ModalDataConfig, BmbActionIconComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
-@Component({
-  selector: 'component',
-  standalone: true,
-  imports: [],
-  templateUrl: '
-        <bmb-top-bar
-            [userInformation]="{
-            name: 'Santiago Hernández',
-            image: 'https://picsum.photos/id/64/200/300',
-            role: 'Alumno',
-            }"
-            [mitec]="true"
-            [hasLogoutButton]="false"
-            [appName]="'TecTest'"
-            [appSubTitle]="'Sub title'"
-            [showLang]="false"
-            [lang]="'es'"
-        />
-        <main class="bmb_template-single-home-card-main">
-            <bmb-home-card-chat
-                leftIcon="chevron_left"
-                icon="bot_tecStandar"
-                bgIconAppearance="gray-charade-500"
-                title="Asistente TECbot"
-                contentPadding="none"
-                subtitle="Assitente TECbot"
-                [messagesHistory]="messages"
-                [actionsList]="actionList"
-                [mode]="mode"
-                [(currentBot)]="currentBot"
-            >
-            </bmb-home-card-chat>
-        </main>
-        <bmb-sidebar
-            [elements]="[
-                [
-                {
-                    id: 2,
-                    icon: 'task',
-                    title: 'Agregar firmantes',
-                    link: 'https://www.youtube.com/watch?v=beh56CrNRsQ',
-                },
-                ],
-            ]"
-            [title]="'Navegacion para mobiles'"
-        ></bmb-sidebar>
-  ',
-  styleUrl: './component.scss',
-})
-export class Component {
-}
-\`\`\`
-
-Below is an example of how you can use this component in HTML:
-        `,
+`,
       },
     },
   },
@@ -261,7 +256,7 @@ export const Default: StoryFn = (args) => {
     props: args,
     template: `
       <!-- Instruction to users: This component is used for internal Storybook logic and should not be copied -->
-      <storybook-modal-wrapper ${attributes(args)}></storybook-modal-wrapper>
+      <storybook-modal-wrapper ${attributes(args)} />
     `,
   };
 };
