@@ -3,14 +3,25 @@
   [ngClass]="{ 'bmb_title-content-transparent_bgc': transparentBgC() }"
 >
   <section class="bmb_title-content-container">
-    @if (!!icon() && !isAvatarIcon()) {
+    @if (isAvatarIcon()) {
+      <span class="bmb_title-content-container-avatar">
+        <bmb-user-image [image]="icon()" [size]="avatarSize()" />
+      </span>
+    } @else if (!!icon()) {
       <span class="bmb_title-content-container-icon" [ngStyle]="getStyles()">
         <bmb-icon [icon]="icon()" [size]="iconSize()" [alt]="title()" />
       </span>
-    }
-    @if (isAvatarIcon()) {
-      <span class="bmb_title-content-container-avatar">
-        <bmb-user-image [image]="icon()" [size]="avatarSize()"></bmb-user-image>
+    } @else if (!!currentBot()) {
+      <span class="bmb_title-content-container-icon" [ngStyle]="getStyles()">
+        <bmb-icon
+          [size]="iconSize()"
+          [isSVGTemplate]="true"
+          [alt]="currentBot()?.icon!"
+        >
+          <ng-template #customIcon>
+            <bmb-bot-icon [iconName]="currentBot()?.icon!" />
+          </ng-template>
+        </bmb-icon>
       </span>
     }
     <section class="bmb_title-content-container-wrapper">

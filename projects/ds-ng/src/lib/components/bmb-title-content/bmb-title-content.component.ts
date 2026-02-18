@@ -2,6 +2,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   input,
+  model,
   ViewEncapsulation,
 } from '@angular/core';
 import {
@@ -16,6 +17,9 @@ import { IBmbColor } from '../../types/colors';
 import { getRGBColorKeyValue } from '../../utils/utils';
 import { BmbUserImageComponent } from '../bmb-user-image/bmb-user-image.component';
 import { IBmbUserImageSize } from '../../types';
+
+import { BmbBotIconComponent } from '../bmb-bot-icon/bmb-bot-icon.component';
+import { IBotType } from '../bmb-chat-bar/types';
 
 export type IBmbFontWeightContent =
   | '100'
@@ -37,6 +41,7 @@ export type IBmbFontWeightContent =
     BmbIconComponent,
     BmbBreadcrumbComponent,
     BmbUserImageComponent,
+    BmbBotIconComponent,
   ],
   templateUrl: './bmb-title-content.component.html',
   styleUrl: './bmb-title-content.component.scss',
@@ -61,6 +66,7 @@ export class BmbTitleContentComponent {
   isAvatarIcon = input<boolean>(false);
   avatarSize = input<IBmbUserImageSize>('desktop-small');
   forceSquareApp = input<boolean>(false);
+  currentBot = model<IBotType>();
 
   isImage(icon: string): boolean {
     return isImage(icon);
