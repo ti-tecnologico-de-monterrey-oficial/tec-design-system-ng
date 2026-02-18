@@ -17,7 +17,7 @@ import {
   IBmbHomeCardChatMode,
 } from './../components/bmb-home-card-chat/bmb-home-card-chat.component';
 import { IBmbChatMessage } from '../types';
-import { IBotType, IChatBarActions } from './../components/bmb-chat-bar/types'
+import { IBotType, IChatBarActions } from './../components/bmb-chat-bar/types';
 
 const HTMLtemplate: string = `<div class="bmb_template-single-home-card">
       <bmb-top-bar
@@ -139,13 +139,11 @@ export default {
     docs: {
       description: {
         component: `
-${getGeneralDescription(`Below you will find an example of the instructions for building the **AI Chat card** ...`)}
+${getGeneralDescription(`Below you will find an example of the instructions for building the **AI Chat card**.`)}
 ${getSpecialSpecifications(
   `${getAlertBlockquote(
     `When you click on fullscreen icon, in Storybook doesn’t look the best due to the many elements, but in your project, it should display correctly.
-
->
-    ...`,
+`,
     { title: RELEVANT_TITLE.warning, blockquoteType: BlockquoteType.important },
   )}`,
   { showAdditionalBlockquote: true },
