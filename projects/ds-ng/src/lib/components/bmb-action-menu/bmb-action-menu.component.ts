@@ -10,11 +10,12 @@ import {
 import { IBmbColor } from '../../types/colors';
 import { CommonModule } from '@angular/common';
 import { BmbHomeCardHeaderComponent } from '../bmb-home-card/bmb-home-card-header/bmb-home-card-header.component';
+import { BmbDividerComponent } from '../bmb-divider/bmb-divider.component';
 
 @Component({
   selector: 'bmb-action-menu',
   standalone: true,
-  imports: [CommonModule, BmbHomeCardHeaderComponent],
+  imports: [CommonModule, BmbHomeCardHeaderComponent, BmbDividerComponent],
   templateUrl: './bmb-action-menu.component.html',
   styleUrl: './bmb-action-menu.component.scss',
   encapsulation: ViewEncapsulation.None,
@@ -28,6 +29,6 @@ export class BmbActionMenuComponent {
   bgIconAppearance = input<IBmbColor>();
   showHeader = input<boolean>(true);
 
-  @ContentChildren(TemplateRef)
+  @ContentChildren(TemplateRef, { descendants: false })
   projectedContent!: QueryList<any>;
 }

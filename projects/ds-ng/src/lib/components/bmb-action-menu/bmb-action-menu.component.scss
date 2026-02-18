@@ -8,9 +8,7 @@
   overflow: hidden;
 
   &-list {
-    margin: 0;
     padding: var(--bmb-spacing-l);
-    list-style-type: none;
 
     &.action {
       display: flex;
