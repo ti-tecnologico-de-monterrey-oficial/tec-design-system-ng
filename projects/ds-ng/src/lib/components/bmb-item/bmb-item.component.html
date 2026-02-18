@@ -12,7 +12,6 @@
     </button>
   } @else {
     <ng-container [ngTemplateOutlet]="itemContent" />
-    <bmb-divider class="bmb_item-divider" />
   }
 </section>
 
@@ -24,8 +23,9 @@
     margin="none"
     alignItems="center"
   >
-    @if (!!icon()) {
+    @if (icon()) {
       <bmb-icon
+        class="bmb_item-icon"
         [icon]="icon()"
         [size]="iconSize()"
         alt="Item icon"
@@ -35,32 +35,38 @@
     }
     <section bmbLayoutItem [isDynamicItem]="true" [colGrow]="1">
       <section
+        class="bmb_item-content"
         bmbLayout
         margin="none"
         [alignItems]="rightIcon() ? 'center' : 'start'"
-        [gapSize]="!!supportText() ? 'xs' : 'none'"
+        [gapSize]="!rightIcon() ? 'xs' : 'none'"
         [isContainerQuery]="true"
       >
-        <span
-          class="bmb_item-label"
-          bmbLayoutItem
-          [isDynamicItem]="true"
-          [colGrow]="1"
-        >
-          {{ label() }}
-        </span>
+        <section bmbLayoutItem [isDynamicItem]="true" [colGrow]="1">
+          <section bmbVerticalLayout gapSize="xs">
+            <span class="bmb_item-label" bmbVerticalLayoutItem>
+              {{ label() }}
+            </span>
+            @if (rightIcon() && subLabel()) {
+              <span class="bmb_item-sublabel" bmbVerticalLayoutItem>
+                {{ subLabel() }}
+              </span>
+            }
+          </section>
+        </section>
         @if (isButton()) {
           <ng-container [ngTemplateOutlet]="rightItemContent" />
         } @else {
-          @if (!!valueLink()) {
+          @if (valueLink()) {
             <bmb-text-link
+              class="bmb_item-link"
               [textLink]="value()"
               [link]="valueLink()"
               [target]="valueTarget()"
               icon=""
               bmbLayoutItem
             />
-          } @else if (!!supportText()) {
+          } @else if (supportText()) {
             <div
               class="bmb_item-support"
               [innerHTML]="safeValue"
@@ -78,12 +84,13 @@
 <ng-template #rightItemContent>
   @if (rightIcon()) {
     <bmb-icon
+      class="bmb_item-icon-right"
       [icon]="rightIcon()"
       [size]="iconSize()"
       alt="Item icon"
       bmbLayoutItem
     />
-  } @else if (!!value()) {
+  } @else if (value()) {
     <span class="bmb_item-value" bmbLayoutItem>
       {{ value() }}
     </span>
