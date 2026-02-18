@@ -78,7 +78,6 @@ ${getBasicExampleBlock('BmbActionMenuComponent')}
     icon: 'account_balance_wallet',
     bgIconAppearance: 'green-light',
     title: 'Title',
-    subtitle: 'Subtitle',
     showHeader: true,
   },
 } as Meta<typeof BmbActionMenuComponent>;
