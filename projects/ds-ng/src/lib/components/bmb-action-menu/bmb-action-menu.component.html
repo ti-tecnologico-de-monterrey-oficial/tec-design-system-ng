@@ -9,12 +9,12 @@
       [showRightButton]="false"
     />
   }
-  <ul class="bmb_action-menu-list" [ngClass]="{ action: !showHeader() }">
+  <section class="bmb_action-menu-list" [ngClass]="{ action: !showHeader() }">
     @for (element of projectedContent; track $index) {
-      <li class="bmb_action-menu-item">
-        <ng-container *ngTemplateOutlet="element" />
-      </li>
+      <ng-container *ngTemplateOutlet="element" />
+      @if (showHeader() && $index + 1 < projectedContent.length) {
+        <bmb-divider class="bmb_item-divider" />
+      }
     }
-  </ul>
-  <ng-content />
+  </section>
 </section>

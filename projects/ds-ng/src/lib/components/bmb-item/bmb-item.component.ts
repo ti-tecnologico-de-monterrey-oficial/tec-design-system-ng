@@ -11,9 +11,10 @@ import { CommonModule } from '@angular/common';
 import { BmbLayoutDirective } from '../../directives/bmb-layout/bmb-layout.directive';
 import { BmbLayoutItemDirective } from '../../directives/bmb-layout/bmb-layout-item.directive';
 import { BmbTextLinkComponent } from '../bmb-text-link/bmb-text-link.component';
-import { BmbDividerComponent } from '../bmb-divider/bmb-divider.component';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { sanitizeContent } from '../../utils/sanitizeContent';
+import { BmbVerticalLayoutDirective } from '../../directives/bmb-layout/bmb-vertical-layout/bmb-vertical-layout.directive';
+import { BmbVerticalLayoutItemDirective } from '../../directives/bmb-layout/bmb-vertical-layout/bmb-vertical-layout-item.directive';
 
 @Component({
   selector: 'bmb-item',
@@ -22,9 +23,10 @@ import { sanitizeContent } from '../../utils/sanitizeContent';
     CommonModule,
     BmbIconComponent,
     BmbTextLinkComponent,
-    BmbDividerComponent,
     BmbLayoutDirective,
     BmbLayoutItemDirective,
+    BmbVerticalLayoutDirective,
+    BmbVerticalLayoutItemDirective,
   ],
   templateUrl: './bmb-item.component.html',
   styleUrl: './bmb-item.component.scss',
@@ -41,6 +43,7 @@ export class BmbItemComponent {
   supportText = input<string>('');
   isButton = input<boolean>(false);
   rightIcon = input<string>('');
+  subLabel = input<string>('');
 
   action = output<MouseEvent>();
 

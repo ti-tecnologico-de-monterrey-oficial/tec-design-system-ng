@@ -78,7 +78,6 @@ ${getBasicExampleBlock('BmbActionMenuComponent')}
     icon: 'account_balance_wallet',
     bgIconAppearance: 'green-light',
     title: 'Title',
-    subtitle: 'Subtitle',
     showHeader: true,
   },
 } as Meta<typeof BmbActionMenuComponent>;
@@ -158,13 +157,6 @@ export const InformativeText: Story = {
             label="Informative text. Non actionable"
             icon="mail"
             supportText="Support text. <a href='https://www.google.com.mx' target='_blank'>Optional hyperlink text</a>"
-          />
-        </ng-template>
-        <ng-template>
-          <bmb-item
-            icon="mobile"
-            label="Informative text. Non actionable"
-            supportText="Here is some support text for your soul."
           />
         </ng-template>
       </bmb-action-menu>

@@ -11,6 +11,7 @@ import { IBmbDataTopBar } from '../bmb-breadcrumb/bmb-breadcrumb.component';
 import { IBmbColor } from '../../types/colors';
 import { IBmbActionHeader, SizeNames } from '../../types';
 import { CommonModule } from '@angular/common';
+import { IBotType } from '../bmb-chat-bar/types';
 
 @Component({
   selector: 'bmb-home-card',
@@ -34,6 +35,7 @@ export class BmbHomeCardComponent {
   contentPadding = input<SizeNames>('l');
   showRightButton = input<boolean>(true);
   isExpanded = model<boolean>(false);
+  currentBot = model<IBotType>();
 
   onClose = output();
   onBack = output();
