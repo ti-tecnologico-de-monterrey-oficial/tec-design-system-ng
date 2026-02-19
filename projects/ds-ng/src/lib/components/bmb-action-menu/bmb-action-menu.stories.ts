@@ -169,13 +169,6 @@ export const InformativeText: Story = {
             supportText="Support text. <a href='https://www.google.com.mx' target='_blank'>Optional hyperlink text</a>"
           />
         </ng-template>
-        <ng-template>
-          <bmb-item
-            icon="mobile"
-            label="Informative text. Non actionable"
-            supportText="Here is some support text for your soul."
-          />
-        </ng-template>
       </bmb-action-menu>
   `,
   }),
@@ -203,6 +196,9 @@ export const InformativeTextWithoutIcon: Story = {
 };
 
 export const Button: Story = {
+  args: {
+    showHeader: false,
+  },
   render: (args: any) => ({
     props: {
       ...args,
@@ -224,6 +220,9 @@ export const Button: Story = {
 };
 
 export const ButtonWithIcon: Story = {
+  args: {
+    showHeader: false,
+  },
   render: (args: any) => ({
     props: {
       ...args,

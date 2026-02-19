@@ -8,15 +8,19 @@ import { BmbItemComponent } from './bmb-item.component';
 import { CommonModule } from '@angular/common';
 import {
   attributes,
+  BlockquoteType,
+  getAlertBlockquote,
   getBasicExampleBlock,
   getGeneralComponentDescription,
   getGeneralDescription,
   getOnEvent,
+  RELEVANT_TITLE,
 } from '../../utils/doc/utils';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import {
   DBmbGenericParamDesc,
   DBmbIconParamDesc,
+  getDefaultValueControl,
   getOnClickParam,
   getPropertyParamDesc,
 } from '../../utils/doc/parameterDescriptions';
@@ -57,17 +61,36 @@ ${getBasicExampleBlock('BmbItemComponent')}
     icon: DBmbIconParamDesc.icon,
     iconSize: DBmbIconParamDesc.iconSize,
     label: getPropertyParamDesc('main label'),
+    subLabel: getPropertyParamDesc(
+      '',
+      'text',
+      '',
+      '',
+      `Sets the second label of the item.
+${getAlertBlockquote(
+  `This label is only displayed for the variant with *right icon.*`,
+  { title: RELEVANT_TITLE.important, blockquoteType: BlockquoteType.important },
+)}`,
+    ),
     value: {
       control: 'text',
       description: 'Sets the value to show on the right side.',
-      table: { category: 'Properties', type: { summary: 'string (required)' } },
+      table: {
+        category: 'Properties',
+        type: { summary: 'string (required)' },
+        defaultValue: getDefaultValueControl(),
+      },
     },
     valueLink: DBmbGenericParamDesc.linkOrButton,
     valueTarget: DBmbGenericParamDesc.target,
     supportText: {
       control: 'text',
       description: 'Sets a support text shown below the label.',
-      table: { category: 'Properties', type: { summary: 'string' } },
+      table: {
+        category: 'Properties',
+        type: { summary: 'string' },
+        defaultValue: getDefaultValueControl(),
+      },
     },
     isButton: getPropertyParamDesc(
       '',
@@ -76,6 +99,7 @@ ${getBasicExampleBlock('BmbItemComponent')}
       '',
       'Renders the item as a button when true.',
     ),
+    rightIcon: { ...DBmbIconParamDesc.icon },
     action: getOnClickParam(getOnEvent('item', 'action')),
   },
   args: {
@@ -149,8 +173,11 @@ export const WithSupportTextWithLinkAnIcon: Story = {
 };
 
 export const IsAButton: Story = {
+  name: 'Button Variant with right icon',
   args: {
     isButton: true,
+    subLabel: 'info',
+    rightIcon: 'chevron_forward',
   },
   render: (args) => ({
     props: {

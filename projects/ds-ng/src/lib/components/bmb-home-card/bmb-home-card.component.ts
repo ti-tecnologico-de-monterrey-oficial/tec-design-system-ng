@@ -14,6 +14,7 @@ import { IBmbActionHeader, SizeNames } from '../../types';
 import { CommonModule } from '@angular/common';
 import { IChatBarActions } from '../bmb-chat-bar/types';
 import { logDeprecatedInput } from '../../utils/logDeprecatedInput';
+import { IBotType } from '../bmb-chat-bar/types';
 
 @Component({
   selector: 'bmb-home-card',
@@ -40,6 +41,7 @@ export class BmbHomeCardComponent {
   useAutoExpand = input<boolean>(true); //Internal
   isChat = input<boolean>(false); //Internal
   actionsList = input<IChatBarActions[]>([]);
+  currentBot = model<IBotType>();
 
   onClose = output();
   onBack = output();

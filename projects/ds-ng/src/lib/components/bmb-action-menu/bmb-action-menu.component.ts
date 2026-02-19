@@ -10,13 +10,14 @@ import {
 } from '@angular/core';
 import { IBmbColor } from '../../types/colors';
 import { CommonModule } from '@angular/common';
-import { BmbTitleContentComponent } from '../bmb-title-content/bmb-title-content.component';
 import { logDeprecatedInput } from '../../utils/logDeprecatedInput';
+import { BmbHomeCardHeaderComponent } from '../bmb-home-card/bmb-home-card-header/bmb-home-card-header.component';
+import { BmbDividerComponent } from '../bmb-divider/bmb-divider.component';
 
 @Component({
   selector: 'bmb-action-menu',
   standalone: true,
-  imports: [CommonModule, BmbTitleContentComponent],
+  imports: [CommonModule, BmbHomeCardHeaderComponent, BmbDividerComponent],
   templateUrl: './bmb-action-menu.component.html',
   styleUrl: './bmb-action-menu.component.scss',
   encapsulation: ViewEncapsulation.None,
@@ -47,6 +48,6 @@ export class BmbActionMenuComponent {
     });
   }
 
-  @ContentChildren(TemplateRef)
+  @ContentChildren(TemplateRef, { descendants: false })
   projectedContent!: QueryList<any>;
 }

@@ -54,9 +54,7 @@ ${getBasicExampleBlock('BmbIconItemComponent')}
     },
     value: {
       control: { type: 'text' },
-      description: `Sets the value for the item. This corresponds to the text shown on the right.
-
-You can pass plain text or valid HTML tags. If HTML is used, it will be safely rendered inside the component.`,
+      description: `Sets the value for the item. This corresponds to the text shown on the right.`,
       table: {
         category: 'Properties',
         defaultValue: { summary: '' },
@@ -75,24 +73,10 @@ You can pass plain text or valid HTML tags. If HTML is used, it will be safely r
     icon: 'calendar_month',
     iconSize: 24,
     label: 'Semestre',
-    value: `<a href="https://linkedin.com">Ir a enlace Linkedin</a>`,
-    showDivider: true,
+    value: 'Additional Info',
   },
 } as Meta<typeof BmbIconItemComponent>;
 
 type Story = StoryObj<BmbIconItemComponent>;
 
-export const Default: Story = {
-  render: (args) => ({
-    props: args,
-    template: `
-      <bmb-icon-item
-        [icon]="icon"
-        [iconSize]="iconSize"
-        [label]="label"
-        [value]="value"
-        [showDivider]="showDivider"
-      />
-    `,
-  }),
-};
+export const Default: Story = {};

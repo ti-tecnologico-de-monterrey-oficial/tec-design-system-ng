@@ -57,7 +57,6 @@ import { CdkDragPlaceholder } from '@angular/cdk/drag-drop';
     BmbAdvertisementCardComponent,
     BmbActionMenuComponent,
     BmbItemComponent,
-    BmbHomeCardChatComponent,
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
@@ -68,121 +67,128 @@ export class HomeComponent {
   @ViewChild('notificationTemplate')
   notificationTemplate!: TemplateRef<unknown>;
 
-  @Input() mode: 'compact' | 'chat' | 'expanded' = 'compact';
-  @Input() currentBot = {
-    name: 'TecBot',
-    icon: 'bot_tecStandar',
-  };
-
   items = [
-    {
-      label: 'Correo',
-      icon: 'mail',
-      value: 'correo',
-      valueLink: 'mailto:tecservices@servicios.tec.mx',
-      isActive: false,
-    },
-    {
-      label: 'Teléfono',
-      icon: 'mobile',
-      value: '52 81 8358 2000',
-      valueLink: 'tel:52 81 8358 2000',
-      isActive: true,
-    },
-    {
-      label: 'Celular',
-      icon: 'mobile',
-      value: '+52 81 1625 5123 (solo texto)',
-      valueLink: '',
-      isActive: false,
-    },
-    {
-      label: 'Preguntas',
-      icon: 'question_exchange',
-      value: 'Preguntas',
-      valueLink: '',
-      isActive: true,
-    },
-  ];
+    // {
+    //   label: 'Correo',
+    //   icon: 'mail',
+    //   value: 'correo',
+    //   valueLink: 'mailto:tecservices@servicios.tec.mx',
+    //   isActive: false,
+    // },
+    // {
+    //   label: 'Teléfono',
+    //   icon: 'mobile',
+    //   value: '52 81 8358 2000',
+    //   valueLink: 'tel:52 81 8358 2000',
+    //   isActive: true,
+    // },
+    // {
+    //   label: 'Celular',
+    //   icon: 'mobile',
+    //   value: '+52 81 1625 5123 (solo texto)',
+    //   valueLink: '',
+    //   isActive: false,
+    // },
+    // {
+    //   label: 'Preguntas',
+    //   icon: 'question_exchange',
+    //   value: 'Preguntas',
+    //   valueLink: '',
+    //   isActive: true,
+    // },
 
-  actionList: IChatBarActions[] = [
     {
-      name: 'Expandir Chat',
-      icon: '',
-      action: () => {
-        this.mode = 'expanded';
-      },
+      Id: '8',
+      Title: 'Preguntas frecuentes',
+      icono:
+        'https://saprodtecportal.blob.core.windows.net/mitec/colaboradores/PublishingImages/TecServices-Iconos/preguntas.png',
+      url: 'http://tecprod.service-now.com/tec?id=kb_search&kb_knowledge_base=053ae72397f6d510655570700153afb4',
+      orden: 1,
+      Audiencias_x0020_de_x0020_destin:
+        '00000000-0000-0000-0000-000000000000; ',
+      AudienciaCoincidente: '00000000-0000-0000-0000-000000000000',
+      validUrl: true,
+      isTecService: true,
+      isSvg: false,
     },
     {
-      name: 'Iniciar nuevo chat',
-      icon: '',
-      action: () => {},
-    },
-  ];
-
-  messages: IBmbChatMessage[] = [
-    {
-      type: 'text',
-      content: { text: 'Hola, ¿cómo estás? En que puedo ayudarte' },
-      isUserMessage: false,
-      time: new Date('2025-02-19T14:31:00'),
-    },
-    {
-      type: 'text',
-      content: {
-        text: 'Hola, me gustaria un pequeño resumen de la festividad del dia de la bandera en México',
-      },
-      userProfile: 'https://picsum.photos/id/64/200/301',
-      isUserMessage: true,
-      time: new Date('2025-02-19T14:32:00'),
+      Id: '6',
+      Title: '+52 81 1625 5123 (solo texto)',
+      icono:
+        'https://saprodtecportal.blob.core.windows.net/mitec/colaboradores/PublishingImages/TecServices-Iconos/wa.png',
+      url: 'https://web.whatsapp.com/send?phone=528116255123&text=Requiero%20ayuda%20con%20lo%20siguiente:%20',
+      orden: 3,
+      Audiencias_x0020_de_x0020_destin:
+        '00000000-0000-0000-0000-000000000000; ',
+      AudienciaCoincidente: '00000000-0000-0000-0000-000000000000',
+      validUrl: false,
+      isTecService: true,
+      isSvg: false,
     },
     {
-      type: 'text',
-      content: {
-        text: 'El Día de la Bandera en México se celebra el 24 de febrero de cada año. Esta fecha conmemora la adopción de la bandera actual en 1821, tras la independencia del país. Es un día para rendir homenaje a los símbolos patrios y a la historia de México, destacando la importancia de la unidad y el orgullo nacional. En este día se realizan ceremonias cívicas y militares en todo el país.',
-      },
-      userProfile: 'https://picsum.photos/id/64/200/301',
-      isUserMessage: false,
-      time: new Date('2025-02-19T14:33:00'),
+      Id: '4',
+      Title: 'tecservices@servicios.tec.mx',
+      icono:
+        'https://saprodtecportal.blob.core.windows.net/mitec/colaboradores/PublishingImages/TecServices-Iconos/Correo.png',
+      url: 'https://tecprod.service-now.com/tec?id=sc_cat_item&sys_id=bb0f80ef97a4ca90655570700153af16',
+      orden: 4,
+      Audiencias_x0020_de_x0020_destin:
+        '00000000-0000-0000-0000-000000000000; ',
+      AudienciaCoincidente: '00000000-0000-0000-0000-000000000000',
+      validUrl: true,
+      isTecService: true,
+      isSvg: false,
     },
     {
-      type: 'text',
-      content: { text: 'Gracias.' },
-      userProfile: 'https://picsum.photos/id/64/200/301',
-      isUserMessage: true,
-      time: new Date('2025-02-19T14:34:00'),
+      Id: '7',
+      Title: '52 81 8358 2000',
+      icono:
+        'https://saprodtecportal.blob.core.windows.net/mitec/colaboradores/PublishingImages/TecServices-Iconos/telefono.png',
+      url: 'tel:+528183582000',
+      orden: 5,
+      Audiencias_x0020_de_x0020_destin:
+        '00000000-0000-0000-0000-000000000000; ',
+      AudienciaCoincidente: '00000000-0000-0000-0000-000000000000',
+      validUrl: false,
+      isTecService: true,
+      isSvg: false,
+    },
+    {
+      Title: '¡Califica tu experiencia!',
+      icono: 'mood',
+      url: 'https://sitiosmiespacio.itesm.mx/publicos/evaluacionescsc/Paginas/Experiencia/intermediario_audiencias_experiencia.html?IDExp=82&IDPlat=2',
+      isTecService: false,
     },
   ];
 
   constructor(
     private router: Router,
     private contentProjected: BmbProjectionContentService,
-    private notificationService: BmbNotificationService,
   ) {
     effect(() => {
-      console.log('Bookmark active state changed:', this.bookmarkActive());
+      // console.log('Bookmark active state changed:', this.bookmarkActive());
     });
 
-    setTimeout(() => {
-      console.log('show notification');
+    // setTimeout(() => {
+    //   console.log('show notification');
 
-      // this.notificationService.addNotification({
-      //   title: 'Welcome to the Home Page!',
-      //   content: this.notificationTemplate,
-      //   isFullColor: false,
-      //   component: 'notification',
-      //   type: 'info',
-      //   delay: 500000,
-      // });
-      this.notificationService.addNotification({
-        title: 'Welcome to the Home Page!',
-        content: 'This is a simple notification message.',
-        isFullColor: false,
-        component: 'notification',
-        type: 'info',
-        delay: 5000,
-      });
-    }, 1000);
+    //   this.notificationService.addNotification({
+    //     title: 'Welcome to the Home Page!',
+    //     content: this.notificationTemplate,
+    //     isFullColor: false,
+    //     component: 'notification',
+    //     type: 'info',
+    //     delay: 500000,
+    //   });
+    //   this.notificationService.addNotification({
+    //     title: 'Welcome to the Home Page!',
+    //     content: 'This is a simple notification message.',
+    //     isFullColor: false,
+    //     component: 'notification',
+    //     type: 'info',
+    //     delay: 5000,
+    //   });
+    // }, 1000);
   }
 
   templateClick(event: MouseEvent | KeyboardEvent) {
@@ -223,5 +229,9 @@ export class HomeComponent {
 
   handleImageCard(event: MouseEvent | KeyboardEvent): void {
     console.log('Image card clicked', event);
+  }
+
+  handleOpen(value: string): void {
+    console.info('handleOpen', value);
   }
 }
