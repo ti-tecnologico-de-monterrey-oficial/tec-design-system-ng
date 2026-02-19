@@ -13,7 +13,7 @@ import { BmbLoginOnboardingService } from '../../bmb-login-onboarding.service';
   imports: [BmbLoginOnboardingStepperStepComponent],
   template: `
     <bmb-login-onboarding-stepper-step
-      title="Paso 3"
+      componentTitle="Paso 3"
       subtitle="Registra tus datos biométricos"
       cancelBackLabel="Anterior"
       continueLabel="Siguiente"

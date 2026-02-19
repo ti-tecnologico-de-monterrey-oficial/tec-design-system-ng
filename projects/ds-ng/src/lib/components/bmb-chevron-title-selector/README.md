@@ -56,7 +56,7 @@ The component's template is structured as follows:
 
 ```html
 <bmb-chevron-title-selector
-  [title]="'Main Title'"
+  [componentTitle]="'Main Title'"
   [subtitle]="'Subtitle Text'"
   [isIconSubtitle]="false"
   [iconSubtitle]="'info'"
@@ -75,7 +75,7 @@ The component's template is structured as follows:
 
 ```html
 <bmb-chevron-title-selector
-  [title]="'Settings'"
+  [componentTitle]="'Settings'"
   [subtitle]="'Manage your preferences'"
   [leadingIcon]="'settings'"
   [trailingIcon]="'chevron-right'"
@@ -87,7 +87,7 @@ The component's template is structured as follows:
 
 ```html
 <bmb-chevron-title-selector
-  [title]="'Notifications'"
+  [componentTitle]="'Notifications'"
   [isIconSubtitle]="true"
   [iconSubtitle]="'bell'"
   [leadingIcon]="'notifications'"

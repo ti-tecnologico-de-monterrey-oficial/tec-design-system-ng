@@ -78,7 +78,7 @@ import { BmbLayoutItemDirective } from '../bmb-layout/bmb-layout-item.directive'
               icon="content_copy"
               [iconSize]="24"
               (buttonClick)="copyCode()"
-              title="Copy code"
+              componentTitle="Copy code"
             />
           </div>
         </section>

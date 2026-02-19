@@ -3,6 +3,7 @@ import {
   AfterViewInit,
   ChangeDetectionStrategy,
   Component,
+  effect,
   ElementRef,
   input,
   OnInit,
@@ -13,6 +14,7 @@ import {
 } from '@angular/core';
 import { BmbMediaCardComponent } from '../bmb-media-card/bmb-media-card.component';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
+import { logDeprecatedInput } from '../../utils/logDeprecatedInput';
 
 @Component({
   selector: 'bmb-sounds-card',
@@ -24,10 +26,12 @@ import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
   encapsulation: ViewEncapsulation.None,
 })
 export class BmbSoundsCardComponent implements AfterViewInit {
-  title = input<string>('');
   subtitle = input<string>('');
   width = input<string>('100%');
   ratio = input<string>();
+  componentTitle = input<string>();
+
+  title = input<string>(); // deprecated
 
   handlevolume = output<number>();
   handlePlay = output<boolean>();
@@ -39,6 +43,17 @@ export class BmbSoundsCardComponent implements AfterViewInit {
   saveVolume: number = 0;
   trackInput: HTMLInputElement | null = null;
   percentage: number = 0;
+
+  constructor() {
+    effect(() => {
+      const deprecatedTitle = this.title();
+      const newTitle = this.componentTitle();
+      logDeprecatedInput(
+        { name: 'title', hasValue: !!deprecatedTitle },
+        { name: 'componentTitle', hasValue: !!newTitle },
+      );
+    });
+  }
 
   @ViewChild('rangeVolume', { read: ElementRef })
   rangeVolume?: ElementRef<any>;

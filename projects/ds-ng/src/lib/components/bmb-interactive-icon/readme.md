@@ -36,7 +36,7 @@
 <bmb-interactive-icon
   [appearance]="'mitec_blue'"
   [appearanceContrast]="'primary'"
-  [title]="'Perfil'"
+  [componentTitle]="'Perfil'"
   [description]="'Accede a tu perfil personal'"
   [icon]="'person'"
   [dotNotification]="3"

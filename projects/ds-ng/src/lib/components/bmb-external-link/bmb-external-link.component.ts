@@ -1,6 +1,7 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  effect,
   ElementRef,
   input,
   output,
@@ -20,6 +21,7 @@ import { isExternalLink } from '../../utils/utils';
 import { BmbContainerComponent } from '../bmb-container/bmb-container.component';
 import { IDropdownItem } from '../../types';
 import { BmbProjectionContentService } from '../../services/projection/projection.service';
+import { logDeprecatedInput } from '../../utils/logDeprecatedInput';
 
 export type IBmbMenuEvent = 'link' | 'openNew' | 'info';
 
@@ -39,7 +41,6 @@ export type IBmbMenuEvent = 'link' | 'openNew' | 'info';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BmbExternalLinkComponent {
-  title = input.required<string>();
   subtitle = input.required<string>();
   navigationBarIcons = input<IBmbNavigationBarIcons>({
     one: { name: 'arrow_back_ios', label: '' },
@@ -47,8 +48,26 @@ export class BmbExternalLinkComponent {
     three: { name: 'share', label: '' },
     four: { name: 'refresh', label: '' },
   });
+  componentTitle = input<string>(); // once title is removed, this should be required
 
-  constructor(private projectionService: BmbProjectionContentService) {}
+  title = input<string>(); // deprecated
+
+  constructor(private projectionService: BmbProjectionContentService) {
+    effect(() => {
+      const deprecatedTitle = this.title();
+      const newTitle = this.componentTitle();
+      logDeprecatedInput(
+        { name: 'title', hasValue: !!deprecatedTitle },
+        { name: 'componentTitle', hasValue: !!newTitle },
+      );
+
+      if (!deprecatedTitle && !newTitle) {
+        throw new Error(
+          'The "componentTitle" input is required. Please provide a value for it.',
+        );
+      }
+    });
+  }
 
   onClose = output<unknown>();
   menuEvent = output<IBmbMenuEvent>();

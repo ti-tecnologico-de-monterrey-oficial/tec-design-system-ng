@@ -84,8 +84,8 @@
       [ngStyle]="getBackgroundColor()"
       [ngClass]="getContentClasses()"
     >
-      @if (title()) {
-        <h1 class="bmb_media-card-content-title">{{ title() }}</h1>
+      @if (componentTitle() || title()) {
+        <h1 class="bmb_media-card-content-title">{{ componentTitle() || title() }}</h1>
       }
       @if (subtitle() && type() === 'floating') {
         <h2 class="bmb_media-card-content-subtitle">{{ subtitle() }}</h2>

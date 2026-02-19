@@ -42,9 +42,7 @@ import { BmbItemComponent } from '../../bmb-item/bmb-item.component';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BmbHomeCardHeaderComponent {
-  @ViewChild('chatBarActionsTemplate') chatBarTemplate!: TemplateRef<unknown>;
-
-  title = input.required<string>();
+  componentTitle = input<string>(); // once title is removed, this should be required
   subtitle = input<string>();
   dataLocalNav = input<IBmbDataTopBar[]>([]);
   leftIcon = input<string>();
@@ -61,6 +59,10 @@ export class BmbHomeCardHeaderComponent {
   onBack = output();
   onExpandClick = output();
   actionsList = input<IChatBarActions[]>([]);
+
+  title = input<string>(); // deprecated
+
+  @ViewChild('chatBarActionsTemplate') chatBarTemplate!: TemplateRef<unknown>;
 
   actionHeaderList = computed<IBmbActionHeader[]>(() => {
     if (this.showRightButton()) {

@@ -31,7 +31,8 @@ export default {
           'onFooterOptionClick',
           'onMenuOptionClick',
           'showMenu',
-          '',
+          'contentRef',
+          'menuItems',
         ],
       },
       description: {
@@ -50,7 +51,7 @@ ${getBasicExampleBlock('BmbExternalLinkComponent')}
     },
   },
   argTypes: {
-    title: getPropertyParamDesc('header'),
+    componentTitle: getPropertyParamDesc('header'),
     subtitle: getPropertyParamDesc('header', 'text', '', '', '', 'subtitle'),
     navigationBarIcons: {
       control: {
@@ -100,9 +101,18 @@ four: { name: 'refresh', label: '' },
       getOnEvent('one of the footer icon', 'footerEvent', 'IBmbFooterEvent'),
       ``,
     ),
+    title: {
+      control: null,
+      description: 'Please use `componentTitle` instead of `title` to set the component title.',
+      table: {
+        category: 'Deprecated',
+        type: { summary: 'string' },
+        defaultValue: '',
+      },
+    }
   },
   args: {
-    title: 'CONECTA',
+    componentTitle: 'CONECTA',
     subtitle: 'https://www.CONECTA.tec.mx',
     navigationBarIcons: {
       one: { name: 'arrow_back_ios', label: '' },

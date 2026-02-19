@@ -195,7 +195,7 @@ export const WithHeader: Story = {
       >
         <bmb-inner-header bmbVerticalLayoutItem>
           <bmb-chevron-title-selector
-            [title]="'Acceso a Campus'"
+            [componentTitle]="'Acceso a Campus'"
             [leadingIcon]="'chevron_left'"
             [trailingIcon]="'chevron_right'"
           />

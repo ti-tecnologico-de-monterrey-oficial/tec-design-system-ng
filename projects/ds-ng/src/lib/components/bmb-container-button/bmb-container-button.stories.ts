@@ -76,7 +76,7 @@ ${getBasicExampleBlock('BmbContainerButtonComponent')}
     },
   },
   argTypes: {
-    title: {
+    componentTitle: {
       control: {
         type: 'text',
       },
@@ -209,9 +209,18 @@ ${getBasicExampleBlock('BmbContainerButtonComponent')}
       ON_CLICK_DESCRIPTION,
     ),
     dropdownMenuItems: DBmbDropdownMenuParamDesc.items,
+    title: {
+      control: null,
+      description: 'Please use `componentTitle` instead of `title` to set the component title.',
+      table: {
+        category: 'Deprecated',
+        type: { summary: 'string' },
+        defaultValue: '',
+      },
+    }
   },
   args: {
-    title: 'Tema de App',
+    componentTitle: 'Tema de App',
     iconLeft: 'home',
     iconRight: 'chevron_right',
     onButton: () => {
@@ -286,7 +295,7 @@ export const BookmarkActiveExample = {
 export const UserImageExample = {
   name: 'Varian for profile (user image) example',
   args: {
-    title: 'Ana María Gutiérrez Pineda',
+    componentTitle: 'Ana María Gutiérrez Pineda',
     subtitle: 'email@email.com',
     iconRight: '',
     iconLeft: 'https://picsum.photos/id/64/200/300',

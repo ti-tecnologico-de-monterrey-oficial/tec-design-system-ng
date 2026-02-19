@@ -196,7 +196,7 @@ const HTML_TEMPLATE: string = `
       leftIcon="chevron_left"
       icon="account_circle"
       bgIconAppearance="blue-mariner-700"
-      title="Mi perfil - Detalle extendido"
+      componentTitle="Mi perfil - Detalle extendido"
       subtitle="Mi perfil - Detalle extendido"
       contentPadding="xl"
       [isExpanded]="true"
@@ -400,7 +400,7 @@ const HTML_TEMPLATE: string = `
         }
       ]
     ]"
-    [title]="'Navegacion para mobiles'"
+    [componentTitle]="'Navegacion para mobiles'"
     [position]="'left'"
   />
   <ng-template #modalTemplate>

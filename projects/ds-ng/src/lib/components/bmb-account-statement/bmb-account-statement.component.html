@@ -1,7 +1,9 @@
 <div class="bmb_account-statement">
   <bmb-inner-header
     (onHandleClose)="handleClose($event)"
-    [title]="title() || ('account_statement.title' | translate)"
+    [componentTitle]="
+      componentTitle() || title() || ('account_statement.title' | translate)
+    "
     [showSearch]="false"
     [showClose]="true"
   />
@@ -28,7 +30,7 @@
           type="container"
           [counter]="counter()"
           [totalCount]="totalCount()"
-          [title]="
+          [componentTitle]="
             progressTitle() || ('account_statement.progress_title' | translate)
           "
         />
@@ -72,7 +74,7 @@
         type="container"
         [counter]="counter()"
         [totalCount]="totalCount()"
-        [title]="
+        [componentTitle]="
           progressTitle() || ('account_statement.progress_title' | translate)
         "
       />

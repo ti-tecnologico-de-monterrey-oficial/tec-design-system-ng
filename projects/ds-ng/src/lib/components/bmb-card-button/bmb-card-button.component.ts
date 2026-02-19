@@ -55,7 +55,7 @@ export interface ICardButton {
 })
 export class BmbCardButtonComponent {
   isFullInteractive = input<boolean>(true);
-  title = input<string>('');
+  componentTitle = input<string>('');
   body = input<string>('');
   badge = input<IBmbBadgeInfo>();
   icon = input<string>('');
@@ -79,6 +79,8 @@ export class BmbCardButtonComponent {
   smallIcon = input<string>('');
   smallTitle = input<string>('');
   smallDescription = input<string>('');
+
+  title = input<string>(); // deprecated
 
   isFlipped: boolean = false;
 

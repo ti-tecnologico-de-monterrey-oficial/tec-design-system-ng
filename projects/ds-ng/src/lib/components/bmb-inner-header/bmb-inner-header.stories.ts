@@ -63,7 +63,7 @@ ${getBasicExampleBlock('BmbInnerHeaderComponent')}
     },
   },
   argTypes: {
-    title: {
+    componentTitle: {
       control: { type: 'text' },
       description: 'Sets the main title for the header.',
       table: {
@@ -123,9 +123,18 @@ ${getBasicExampleBlock('BmbInnerHeaderComponent')}
     isLoading: DBmbGenericParamDesc.deprecated,
     data: DBmbGenericParamDesc.deprecated,
     onValueChange: DBmbGenericParamDesc.deprecated,
+    title: {
+      control: null,
+      description: 'Please use `componentTitle` instead of `title` to set the component title.',
+      table: {
+        category: 'Deprecated',
+        type: { summary: 'string' },
+        defaultValue: '',
+      },
+    }
   },
   args: {
-    title: 'Inner Header',
+    componentTitle: 'Inner Header',
     placeholderSearch: 'Search',
     showClose: true,
     trailingIconPrimary: 'lock',
@@ -225,7 +234,7 @@ export const AnotherCustomExample = {
     >
       <!-- This example implements "Chevron Title Selector" component. -->
       <bmb-chevron-title-selector
-        title="Title"
+        componentTitle="Title"
         leadingIcon="chevron_left"
         trailingIcon="chevron_right"
         (onLeadingClick)="onLeadingClick($event)"

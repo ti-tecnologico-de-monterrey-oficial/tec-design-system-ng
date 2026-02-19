@@ -3,10 +3,12 @@ import {
   ChangeDetectionStrategy,
   ViewEncapsulation,
   input,
+  effect,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { BmbContainerComponent } from '../bmb-container/bmb-container.component';
+import { logDeprecatedInput } from '../../utils/logDeprecatedInput';
 
 @Component({
   selector: 'bmb-home-section',
@@ -18,8 +20,21 @@ import { BmbContainerComponent } from '../bmb-container/bmb-container.component'
   encapsulation: ViewEncapsulation.None,
 })
 export class BmbHomeSectionComponent {
-  title = input<string>('');
   icon = input<string>('');
   target = input<string>('');
   link = input<string>('');
+  componentTitle = input<string>();
+
+  title = input<string>(); // deprecated
+
+  constructor() {
+    effect(() => {
+      const deprecatedTitle = this.title();
+      const newTitle = this.componentTitle();
+      logDeprecatedInput(
+        { name: 'title', hasValue: !!deprecatedTitle },
+        { name: 'componentTitle', hasValue: !!newTitle },
+      );
+    });
+  }
 }

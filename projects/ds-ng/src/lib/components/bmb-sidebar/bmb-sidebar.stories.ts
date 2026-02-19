@@ -299,7 +299,7 @@ ${LEVEL_DESCRIPTION}
         },
       },
     },
-    title: {
+    componentTitle: {
       control: {
         type: 'text',
       },
@@ -308,6 +308,15 @@ ${LEVEL_DESCRIPTION}
         category: 'Properties',
         type: { summary: 'string' },
         defaultValue: getDefaultValueControl(),
+      },
+    },
+    title: {
+      control: null,
+      description: 'Please use `componentTitle` instead of `title` to set the component title.',
+      table: {
+        category: 'Deprecated',
+        type: { summary: 'string' },
+        defaultValue: '',
       },
     },
     position: {
@@ -415,7 +424,7 @@ This property affected to web resolution only.
         },
       ],
     ],
-    title: 'Navegacion para mobiles',
+    componentTitle: 'Navegacion para mobiles',
     position: 'left',
   },
 } as Meta<typeof BmbSidebarComponent>;

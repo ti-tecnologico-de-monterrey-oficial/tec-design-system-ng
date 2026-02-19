@@ -8,7 +8,7 @@
     }"
   >
     <h4 class="bmb_toast-title">
-      {{ title() }}
+      {{ componentTitle() || title() }}
     </h4>
     @if (description() && appearance() !== 'reminder') {
       <p class="bmb_toast-description">{{ description() }}</p>

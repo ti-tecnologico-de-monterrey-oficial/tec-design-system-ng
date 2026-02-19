@@ -24,6 +24,7 @@ export default {
         'isExternalLink',
         'bgColor',
         'fullmediaCard',
+        'getMediaCardClasses',
       ],
     },
     docs: {
@@ -58,7 +59,7 @@ ${getBasicExampleBlock('BmbMediaCardComponent')}
       description:
         'Sets the visualization type to the card, the **inline** enables the `title`, `date` and `custom HTML` properties, the **author_detail** enable the `title`, `subtitle`, `date`, `user section`, and `custom HTML` and the **floating** option enables all the content.',
     },
-    title: {
+    componentTitle: {
       control: {
         type: 'text',
       },
@@ -142,6 +143,15 @@ The shadow only appears if the card is not an external link and is not \`floatin
         category: 'Events',
       },
     },
+    title: {
+      control: null,
+      description: 'Please use `componentTitle` instead of `title` to set the component title.',
+      table: {
+        category: 'Deprecated',
+        type: { summary: 'string' },
+        defaultValue: '',
+      },
+    },
   },
   args: {
     src: 'https://farm2.staticflickr.com/1919/45579541712_f58c1fd0ed_o.jpg',
@@ -154,6 +164,7 @@ The shadow only appears if the card is not an external link and is not \`floatin
     loading: 'lazy',
     enableZoom: false,
     isBlurredBackdrop: false,
+    componentTitle: 'Media card title',
     type: 'inline',
     link: 'https://www.youtube.com/',
     target: '_blank',

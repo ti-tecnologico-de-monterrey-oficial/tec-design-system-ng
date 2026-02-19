@@ -33,7 +33,7 @@ ${getBasicExampleBlock('BmbSimpleHeaderComponent', '', onIconClickEvent.handleEx
     },
   },
   argTypes: {
-    title: getPropertyParamDesc('header'),
+    componentTitle: getPropertyParamDesc('header'),
     icon: {
       ...DBmbIconParamDesc.icon,
       description: DBmbIconParamDesc.icon.description.concat(
@@ -44,10 +44,19 @@ ${getBasicExampleBlock('BmbSimpleHeaderComponent', '', onIconClickEvent.handleEx
       'primary color on the icon',
       'boolean',
     ),
+    title: {
+      control: null,
+      description: 'Please use `componentTitle` instead of `title` to set the component title.',
+      table: {
+        category: 'Deprecated',
+        type: { summary: 'string' },
+        defaultValue: '',
+      },
+    },
     onIconClick: getOnClickParam(onIconClickEvent),
   },
   args: {
-    title: 'Mis apps',
+    componentTitle: 'Mis apps',
     icon: 'apps',
     iconAlternativeColor: false,
     onIconClick: () => {

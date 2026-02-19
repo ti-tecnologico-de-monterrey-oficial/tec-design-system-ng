@@ -7,7 +7,7 @@
         </ng-template>
         <ng-template #bmbMainContent>
           <bmb-title-content
-            [title]="title()"
+            [componentTitle]="componentTitle() || title() || ''"
             titleSize="6"
             titleFontWeight="600"
             [transparentBgC]="true"
@@ -33,7 +33,7 @@
             {{ item.criterion }}
           </h3>
           <bmb-tooltip
-            [title]="item.criterion"
+            [componentTitle]="item.criterion"
             [text]="item.tooltip"
             [size]="20"
           />

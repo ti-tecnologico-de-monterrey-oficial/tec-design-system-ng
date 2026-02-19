@@ -4,10 +4,12 @@ import {
   ViewEncapsulation,
   input,
   output,
+  effect,
 } from '@angular/core';
 import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
 import { BmbThreeColsComponent } from '../bmb-three-cols/bmb-three-cols.component';
 import { BmbTitleContentComponent } from '../bmb-title-content/bmb-title-content.component';
+import { logDeprecatedInput } from '../../utils/logDeprecatedInput';
 
 @Component({
   selector: 'bmb-chevron-title-selector',
@@ -23,7 +25,7 @@ import { BmbTitleContentComponent } from '../bmb-title-content/bmb-title-content
   encapsulation: ViewEncapsulation.None,
 })
 export class BmbChevronTitleSelectorComponent {
-  title = input.required<string>();
+  componentTitle = input<string>(); // once title is removed, this should be required
   subtitle = input<string>();
   isIconSubtitle = input<boolean>();
   iconSubtitle = input<string>('');
@@ -34,6 +36,25 @@ export class BmbChevronTitleSelectorComponent {
 
   onLeadingClick = output();
   onTrailingClick = output();
+
+  title = input<string>(); // deprecated
+
+  constructor() {
+    effect(() => {
+      const deprecatedTitle = this.title();
+      const newTitle = this.componentTitle();
+      logDeprecatedInput(
+        { name: 'title', hasValue: !!deprecatedTitle },
+        { name: 'componentTitle', hasValue: !!newTitle },
+      );
+
+      if (!deprecatedTitle && !newTitle) {
+        throw new Error(
+          'The "componentTitle" input is required. Please provide a value for it.',
+        );
+      }
+    });
+  }
 
   handleLeadingClick(event: any): void {
     this.onLeadingClick.emit(event);

@@ -99,7 +99,7 @@ ${RELEVANT_TITLE.example}
         type: { summary: 'any - []' },
       },
     },
-    title: getPropertyParamDesc(
+    componentTitle: getPropertyParamDesc(
       'inner header. This will be shown on whether of the menu item (`menu` property)',
     ),
     dataSearch: {
@@ -260,6 +260,15 @@ IBmbInteractiveIconAppearance =
     onValueChange: getOnEventParam(
       getOnEvent('the value of the search field', 'onValueChange', 'string'),
     ),
+    title: {
+      control: null,
+      description: 'Please use `componentTitle` instead of `title` to set the component title.',
+      table: {
+        category: 'Deprecated',
+        type: { summary: 'string' },
+        defaultValue: '',
+      },
+    }
   },
   args: {
     menu: [
@@ -293,7 +302,7 @@ IBmbInteractiveIconAppearance =
         },
       },
     ],
-    title: 'Inner Header',
+    componentTitle: 'Inner Header',
     dataSearch: ['Search Item 1', 'Search Item 2', 'Search Item 3'],
     tabs: [
       { title: 'Tab 1', id: 0 },

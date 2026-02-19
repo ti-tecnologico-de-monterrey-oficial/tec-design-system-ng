@@ -36,7 +36,7 @@
 
 ```html
 <bmb-timestream-card
-  [title]="'Cronograma académico'"
+  [componentTitle]="'Cronograma académico'"
   [subtitle]="'Eventos importantes del semestre'"
   [dataLocalNav]="[{ label: 'Inicio', link: '/inicio' }]"
   [icon]="'calendar_today'"

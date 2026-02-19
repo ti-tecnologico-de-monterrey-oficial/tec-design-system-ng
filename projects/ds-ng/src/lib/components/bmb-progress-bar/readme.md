@@ -29,7 +29,7 @@
   [type]="'counter'"
   [totalCount]="100"
   [counter]="75"
-  [title]="'Progreso de inscripción'"
+  [componentTitle]="'Progreso de inscripción'"
   [appearance]="'info'"
   [textLink]="'Ver detalles'"
   [href]="'/detalle-progreso'"

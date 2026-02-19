@@ -5,7 +5,7 @@
   <section class="bmb_title-content-container">
     @if (!!icon() && !isAvatarIcon()) {
       <span class="bmb_title-content-container-icon" [ngStyle]="getStyles()">
-        <bmb-icon [icon]="icon()" [size]="iconSize()" [alt]="title()" />
+        <bmb-icon [icon]="icon()" [size]="iconSize()" [alt]="componentTitle() || title() || 'icon'" />
       </span>
     }
     @if (isAvatarIcon()) {
@@ -14,7 +14,7 @@
       </span>
     }
     <section class="bmb_title-content-container-wrapper">
-      @if (!!title()) {
+      @if (!!componentTitle() || !!title()) {
         <h2
           class="bmb_title-content-container-wrapper-title"
           [ngClass]="
@@ -25,7 +25,7 @@
             )
           "
         >
-          {{ title() }}
+          {{ componentTitle() || title() }}
         </h2>
       }
       @if (showBreadcrumbs()) {

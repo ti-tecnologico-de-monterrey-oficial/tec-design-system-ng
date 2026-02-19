@@ -2,6 +2,7 @@ import {
   AfterViewInit,
   ChangeDetectionStrategy,
   Component,
+  effect,
   input,
   OnInit,
   output,
@@ -35,6 +36,7 @@ import {
 import { IBmbNativeModal } from '../bmb-modal/bmb-modal.interface';
 import { CommonModule } from '@angular/common';
 import { TranslatePipe } from '../../pipes/translations';
+import { logDeprecatedInput } from '../../utils/logDeprecatedInput';
 
 @Component({
   selector: 'bmb-account-statement',
@@ -61,7 +63,6 @@ import { TranslatePipe } from '../../pipes/translations';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BmbAccountStatementComponent implements AfterViewInit, OnInit {
-  title = input<string>();
   progressCircleTitle = input<string[]>([]);
   labelPrimary = input<string>();
   labelSecondary = input<string>();
@@ -81,6 +82,9 @@ export class BmbAccountStatementComponent implements AfterViewInit, OnInit {
   modalOtherAmountLabel = input<string>();
   modalPrimaryButtonLabel = input<string>();
   errorMessage = input<string>();
+  componentTitle = input<string>();
+
+  title = input<string>(); // deprecated
 
   closeEvent = output<MouseEvent>();
   backEvent = output<MouseEvent>();
@@ -100,7 +104,16 @@ export class BmbAccountStatementComponent implements AfterViewInit, OnInit {
   });
   showErrors: { [key: string]: boolean } = {};
 
-  constructor(private modalService: BmbNativeModalService) {}
+  constructor(private modalService: BmbNativeModalService) {
+    effect(() => {
+      const deprecatedTitle = this.title();
+      const newTitle = this.componentTitle();
+      logDeprecatedInput(
+        { name: 'title', hasValue: !!deprecatedTitle },
+        { name: 'componentTitle', hasValue: !!newTitle }
+      );
+    });
+  }
 
   ngOnInit(): void {
     this.maxAmount = this.totalCount() - this.counter();

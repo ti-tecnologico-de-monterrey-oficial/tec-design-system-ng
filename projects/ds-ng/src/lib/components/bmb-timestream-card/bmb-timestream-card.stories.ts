@@ -125,7 +125,7 @@ ${getBasicExampleBlock('BmbTimestreamCardComponent')}
     },
   },
   argTypes: {
-    title: getPropertyParamDesc('the card'),
+    componentTitle: getPropertyParamDesc('the card'),
     subtitle: getPropertyParamDesc('the card', 'text', '', '', '', 'subtitle'),
     dataLocalNav: {
       control: { type: 'object' },
@@ -171,6 +171,15 @@ IBmbDataTopBar {
         defaultValue: getDefaultValueControl('dd/MM/yyyy'),
       },
     },
+    title: {
+      control: null,
+      description: 'Please use `componentTitle` instead of `title` to set the component title.',
+      table: {
+        category: 'Deprecated',
+        type: { summary: 'string' },
+        defaultValue: '',
+      },
+    },
     lang: DBmbGenericParamDesc.lang,
     events: {
       control: {
@@ -185,7 +194,7 @@ IBmbDataTopBar {
     },
   },
   args: {
-    title: 'Title',
+    componentTitle: 'Title',
     subtitle: 'Subtitle',
     dataLocalNav: [],
     icon: 'trending_up',

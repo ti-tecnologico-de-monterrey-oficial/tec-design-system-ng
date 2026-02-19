@@ -61,7 +61,7 @@ ${getBasicExampleBlock('BmbNoticeCardComponent', '', onCloseEvent.handleExample)
   argTypes: {
     icon: getIconParamDescription('left', 'chevron_left'),
     iconSize: DBmbIconParamDesc.iconSize,
-    title: {
+    componentTitle: {
       control: {
         type: 'text',
       },
@@ -130,9 +130,18 @@ ${getBasicExampleBlock('BmbNoticeCardComponent', '', onCloseEvent.handleExample)
       description: 'Sets the color of the close button.',
     },
     onClose: getOnClickParam(onCloseEvent),
+    title: {
+      control: null,
+      description: 'Please use `componentTitle` instead of `title` to set the component title.',
+      table: {
+        category: 'Deprecated',
+        type: { summary: 'string' },
+        defaultValue: '',
+      },
+    },
   },
   args: {
-    title: 'Notification Title',
+    componentTitle: 'Notification Title',
     src: 'https://farm2.staticflickr.com/1919/45579541712_f58c1fd0ed_o.jpg',
     description: {
       pageOne: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',

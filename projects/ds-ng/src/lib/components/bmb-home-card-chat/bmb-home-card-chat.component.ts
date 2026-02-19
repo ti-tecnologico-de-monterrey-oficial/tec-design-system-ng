@@ -25,6 +25,7 @@ import { BmbProjectionContentService } from '../../services/projection/projectio
 import { CommonModule } from '@angular/common';
 import { BmbBotIconComponent } from '../bmb-bot-icon/bmb-bot-icon.component';
 import { IBmbActionHeader } from '../../types';
+import { logDeprecatedInput } from '../../utils/logDeprecatedInput';
 
 @Component({
   selector: 'bmb-home-card-chat',
@@ -44,9 +45,6 @@ import { IBmbActionHeader } from '../../types';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BmbHomeCardChatComponent {
-  @ViewChild('contentTemplate') contentTemplate!: TemplateRef<any>;
-
-  title = input<string>();
   subtitle = input<string>();
   icon = input<string>('smart_toy');
   isMobile = input<boolean>(false);
@@ -56,6 +54,9 @@ export class BmbHomeCardChatComponent {
   bgIconAppearance = input<IBmbColor>('gray-charade-500');
   messagesHistory = input.required<IBmbChatMessage[]>();
   mode = model<'compact' | 'chat' | 'expanded'>('expanded');
+  componentTitle = input<string>();
+
+  title = input<string>(); // deprecated
 
   actionsList = input<IChatBarActions[]>([]);
 
@@ -66,8 +67,9 @@ export class BmbHomeCardChatComponent {
   onBack = output();
   onSendMessage = output<string>();
 
-  showHeaderRightButton = computed(() => this.mode() !== 'chat');
+  @ViewChild('contentTemplate') contentTemplate!: TemplateRef<any>;
 
+  showHeaderRightButton = computed(() => this.mode() !== 'chat');
   chatActionHeaders = computed<IBmbActionHeader[]>(() => {
     if (this.mode() !== 'chat') {
       return [];
@@ -104,6 +106,15 @@ export class BmbHomeCardChatComponent {
       },
       { allowSignalWrites: true },
     );
+
+    effect(() => {
+      const deprecatedTitle = this.title();
+      const newTitle = this.componentTitle();
+      logDeprecatedInput(
+        { name: 'title', hasValue: !!deprecatedTitle },
+        { name: 'componentTitle', hasValue: !!newTitle }
+      );
+    });
   }
 
   handleClose(): void {

@@ -232,7 +232,7 @@
       sidebarElementTemplate;
       context: {
         element: {
-          title: title()
+          title: componentTitle() || title(),
         },
         iconSize: 32,
         isHeader: true,

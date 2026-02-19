@@ -36,6 +36,7 @@ export default {
           'responsive',
           'svg',
           'showRestBackground',
+          'isTitleString',
         ],
       },
       description: {
@@ -82,7 +83,7 @@ ${IMPORTANT_DESCRIPTION}`,
         defaultValue: getDefaultValueControl(0),
       },
     },
-    title: getPropertyParamDesc(
+    componentTitle: getPropertyParamDesc(
       'progress circle',
       'text',
       '""',
@@ -118,12 +119,21 @@ ${IMPORTANT_DESCRIPTION}
         defaultValue: getDefaultValueControl('success'),
       },
     },
+    title: {
+      control: null,
+      description: 'Please use `componentTitle` instead of `title` to set the component title.',
+      table: {
+        category: 'Deprecated',
+        type: { summary: 'string' },
+        defaultValue: '',
+      },
+    },
     showBackground: DBmbGenericParamDesc.deprecated,
   },
   args: {
     fullFillPathStatus: false,
     percent: 85,
-    title: ['Total a pagar', 'este mes'],
+    componentTitle: ['Total a pagar', 'este mes'],
     showTitle: false,
     valueLabel: '$10000',
     showValueLabel: false,
@@ -144,7 +154,7 @@ export const WithValueLabel: Story = {
 export const WithTitle: Story = {
   args: {
     showTitle: true,
-    title: ['Total a pagar', 'este mes'],
+    componentTitle: ['Total a pagar', 'este mes'],
   },
 };
 

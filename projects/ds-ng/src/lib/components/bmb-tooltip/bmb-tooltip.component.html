@@ -5,7 +5,7 @@
       [size]="size()"
       [icon]="icon()"
       [isFill]="isFill()"
-      [alt]="title() || 'Tooltip icon'"
+      [alt]="componentTitle() || title() || 'Tooltip icon'"
       [tabIndex]="0"
       role="button"
       aria-haspopup="true"
@@ -27,9 +27,9 @@
       [ngClass]="getClasses()"
       [attr.aria-hidden]="!isTooltipVisible()"
     >
-      @if (title()) {
+      @if (componentTitle() || title()) {
         <section class="bmb_tooltip-container-title">
-          <span class="bmb_tooltip-container-title-text">{{ title() }}</span>
+          <span class="bmb_tooltip-container-title-text">{{ componentTitle() || title() }}</span>
         </section>
       }
       <section class="bmb_tooltip-container-description">

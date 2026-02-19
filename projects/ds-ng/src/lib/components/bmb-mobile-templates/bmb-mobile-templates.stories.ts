@@ -101,7 +101,7 @@ ${getBasicExampleBlock(
         type: { summary: 'IBmbMobileTemplateButton[]' },
       },
     },
-    title: {
+    componentTitle: {
       control: {
         type: 'text',
       },
@@ -227,10 +227,19 @@ ${getBasicExampleBlock(
         category: 'Events',
       },
     },
+    title: {
+      control: null,
+      description: 'Please use `componentTitle` instead of `title` to set the component title.',
+      table: {
+        category: 'Deprecated',
+        type: { summary: 'string' },
+        defaultValue: '',
+      },
+    },
   },
   args: {
     template: 'single-header',
-    title: 'Title',
+    componentTitle: 'Title',
     buttonList: [
       {
         title: 'Title 1',
@@ -300,7 +309,7 @@ export const Default: Story = {
     template: `
     <bmb-mobile-templates
       [template]="template"
-      [title]="title"
+      [componentTitle]="title"
       [buttonList]="buttonList"
       [footerActions]="footerActions"
       [headerIconLeft]="headerIconLeft"

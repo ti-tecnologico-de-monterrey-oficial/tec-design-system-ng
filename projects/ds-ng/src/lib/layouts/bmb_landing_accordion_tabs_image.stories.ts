@@ -76,7 +76,7 @@ import * as iconStory from '../components/bmb-icon/bmb-icon.stories';
           leftIcon="chevron_left"
           icon="map"
           bgIconAppearance="teal-primary"
-          title="Mi Plan de Desarrollo"
+          componentTitle="Mi Plan de Desarrollo"
           contentPadding="xl"
           [isExpanded]="true"
           (onBack)="handleBack()"
@@ -334,7 +334,7 @@ import * as iconStory from '../components/bmb-icon/bmb-icon.stories';
           }
         ]
       ]"
-      [title]="'Navegacion para mobiles'"
+      [componentTitle]="'Navegacion para mobiles'"
     ></bmb-sidebar>
   `,
 })
@@ -537,7 +537,7 @@ ${getBasicExampleBlock(
           leftIcon="chevron_left"
           icon="map"
           bgIconAppearance="teal-primary"
-          title="Mi Plan de Desarrollo"
+          componentTitle="Mi Plan de Desarrollo"
           contentPadding="xl"
           [isExpanded]="true"
           (onBack)="handleBack()"
@@ -793,7 +793,7 @@ ${getBasicExampleBlock(
           },
         ],
       ]"
-      [title]="'Navegacion para mobiles'"
+      [componentTitle]="'Navegacion para mobiles'"
     ></bmb-sidebar>
 `,
       },

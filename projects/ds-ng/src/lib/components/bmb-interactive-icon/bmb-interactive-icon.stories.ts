@@ -80,7 +80,7 @@ ${getBasicExampleBlock('BmbInteractiveIconComponent', ON_BUTTON_CLICK.handleExam
       'default',
     ),
     dotNotification: DBmbIconParamDesc.iconDotNotification,
-    title: {
+    componentTitle: {
       control: {
         type: 'text',
       },
@@ -140,10 +140,19 @@ ${getBasicExampleBlock('BmbInteractiveIconComponent', ON_BUTTON_CLICK.handleExam
     },
     setButtonTemplate: DBmbGenericParamDesc.deprecated,
     buttonClick: DBmbGenericParamDesc.onButtonClick,
+    title: {
+      control: null,
+      description: 'Please use `componentTitle` instead of `title` to set the component title.',
+      table: {
+        category: 'Deprecated',
+        type: { summary: 'string' },
+        defaultValue: '',
+      },
+    }
   },
   args: {
     appearanceContrast: 'default',
-    title: 'Canvas',
+    componentTitle: 'Canvas',
     appearance: 'red',
     icon: 'face',
     target: '_blank',

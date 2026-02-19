@@ -84,7 +84,7 @@ ${getBasicExampleBlock('BmbProgressBarComponent')}
         defaultValue: getDefaultValueControl(0),
       },
     },
-    title: getPropertyParamDesc(
+    componentTitle: getPropertyParamDesc(
       'progress bar',
       'text',
       '""',
@@ -137,13 +137,22 @@ ${getBasicExampleBlock('BmbProgressBarComponent')}
         isPreURL: true,
       })} to the right of the ***Progress bar*** when the **Container progress - Anatomy** is active.`,
     ),
+    title: {
+      control: null,
+      description: 'Please use `componentTitle` instead of `title` to set the component title.',
+      table: {
+        category: 'Deprecated',
+        type: { summary: 'string' },
+        defaultValue: '',
+      },
+    }
   },
   args: {
     type: 'container',
     statusColor: 'info',
     totalCount: 1000,
     counter: 560,
-    title: 'Creditos ocupados para esta iniciativa',
+    componentTitle: 'Creditos ocupados para esta iniciativa',
     appearance: 'info',
     textLink: 'Aumentar Creditos',
     href: 'https://www.google.com',

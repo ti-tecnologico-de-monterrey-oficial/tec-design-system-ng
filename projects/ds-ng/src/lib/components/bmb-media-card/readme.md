@@ -47,7 +47,7 @@
   [loading]="'lazy'"
   [enableZoom]="true"
   [type]="'floating'"
-  [title]="'Nuevo logro académico'"
+  [componentTitle]="'Nuevo logro académico'"
   [subtitle]="'Reconocimiento internacional'"
   [content]="'El Tec de Monterrey fue premiado por su innovación educativa.'"
   [date]="'2025-10-09'"

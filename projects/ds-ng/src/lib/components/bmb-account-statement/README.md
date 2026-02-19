@@ -103,7 +103,7 @@ The component's template is structured as follows:
 
 ```html
 <bmb-account-statement
-  [title]="'Estado de cuenta'"
+  [componentTitle]="'Estado de cuenta'"
   [progressCircleTitle]="['Total a pagar', 'este mes']"
   [labelPrimary]="'Cuota Mensual'"
   [labelSecondary]="'Pendiente'"

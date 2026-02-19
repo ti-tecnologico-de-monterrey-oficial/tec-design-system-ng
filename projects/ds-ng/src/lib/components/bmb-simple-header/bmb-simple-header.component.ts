@@ -1,6 +1,7 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  effect,
   input,
   output,
   ViewEncapsulation,
@@ -8,6 +9,7 @@ import {
 import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
 import { BmbLayoutDirective } from '../../directives/bmb-layout/bmb-layout.directive';
 import { BmbLayoutItemDirective } from '../../directives/bmb-layout/bmb-layout-item.directive';
+import { logDeprecatedInput } from '../../utils/logDeprecatedInput';
 
 @Component({
   selector: 'bmb-simple-header',
@@ -15,7 +17,7 @@ import { BmbLayoutItemDirective } from '../../directives/bmb-layout/bmb-layout-i
   imports: [BmbLayoutDirective, BmbLayoutItemDirective, BmbActionIconComponent],
   template: `
     <section bmbLayout alignItems="center">
-      <h4 bmbLayoutItem [isDynamicItem]="true" [colGrow]="1">{{ title() }}</h4>
+      <h4 bmbLayoutItem [isDynamicItem]="true" [colGrow]="1">{{ componentTitle() || title() }}</h4>
       <span
         [style.color]="
           iconAlternativeColor()
@@ -35,11 +37,24 @@ import { BmbLayoutItemDirective } from '../../directives/bmb-layout/bmb-layout-i
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BmbSimpleHeaderComponent {
-  title = input<string>('');
   icon = input<string>('');
   iconAlternativeColor = input<boolean>(false);
+  componentTitle = input<string>();
+
+  title = input<string>(); // deprecated
 
   onIconClick = output<any>();
+
+  constructor() {
+    effect(() => {
+      const deprecatedTitle = this.title();
+      const newTitle = this.componentTitle();
+      logDeprecatedInput(
+        { name: 'title', hasValue: !!deprecatedTitle },
+        { name: 'componentTitle', hasValue: !!newTitle },
+      );
+    });
+  }
 
   handleClick(event: any): void {
     this.onIconClick.emit(event);

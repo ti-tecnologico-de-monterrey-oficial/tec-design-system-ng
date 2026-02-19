@@ -18,11 +18,11 @@
       class="bmb_loader-error-icon"
       [ngClass]="'bmb_loader-error-icon-' + appearance()"
     >
-      <bmb-icon [icon]="icon()" class="bmb_loader-icon" [alt]="title()" />
+      <bmb-icon [icon]="icon()" class="bmb_loader-icon" [alt]="componentTitle() || title() || ''" />
     </div>
   }
-  @if (title()) {
-    <h2 class="bmb_loader-title">{{ title() }}</h2>
+  @if (componentTitle() || title()) {
+    <h2 class="bmb_loader-title">{{ componentTitle() || title() }}</h2>
   }
   @if (subtitle()) {
     <h3 class="bmb_loader-subtitle">{{ subtitle() }}</h3>

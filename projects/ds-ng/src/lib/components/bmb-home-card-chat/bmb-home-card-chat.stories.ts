@@ -8,10 +8,10 @@ import {
   BmbActionIconComponent,
   IChatBarActions,
   BmbProjectionContentService,
-} from '../../public-api';
-import { attributes, RELEVANT_TITLE } from '../utils/doc/utils';
+} from '../../../public-api';
+import { attributes, RELEVANT_TITLE } from '../../utils/doc/utils';
 import { CommonModule } from '@angular/common';
-import { BmbBotIconComponent } from '../components/bmb-bot-icon/bmb-bot-icon.component';
+import { BmbBotIconComponent } from '../../components/bmb-bot-icon/bmb-bot-icon.component';
 
 @Component({
   standalone: true,
@@ -44,7 +44,7 @@ import { BmbBotIconComponent } from '../components/bmb-bot-icon/bmb-bot-icon.com
           leftIcon="chevron_left"
           icon="bot_tecStandar"
           bgIconAppearance="gray-charade-500"
-          title="Asistente TECbot"
+          componentTitle="Asistente TECbot"
           contentPadding="none"
           subtitle="Assitente TECbot"
           [messagesHistory]="messages"
@@ -66,7 +66,7 @@ import { BmbBotIconComponent } from '../components/bmb-bot-icon/bmb-bot-icon.com
           }
         ]
       ]"
-      [title]="'Navegacion para mobiles'"
+      [componentTitle]="'Navegacion para mobiles'"
     ></bmb-sidebar>
   `,
 })
@@ -178,7 +178,7 @@ import { BmbModalComponent, ModalDataConfig, BmbActionIconComponent } from '@ti-
                 leftIcon="chevron_left"
                 icon="bot_tecStandar"
                 bgIconAppearance="gray-charade-500"
-                title="Asistente TECbot"
+                componentTitle="Asistente TECbot"
                 contentPadding="none"
                 subtitle="Assitente TECbot"
                 [messagesHistory]="messages"
@@ -199,7 +199,7 @@ import { BmbModalComponent, ModalDataConfig, BmbActionIconComponent } from '@ti-
                 },
                 ],
             ]"
-            [title]="'Navegacion para mobiles'"
+            [componentTitle]="'Navegacion para mobiles'"
         ></bmb-sidebar>
   ',
   styleUrl: './component.scss',

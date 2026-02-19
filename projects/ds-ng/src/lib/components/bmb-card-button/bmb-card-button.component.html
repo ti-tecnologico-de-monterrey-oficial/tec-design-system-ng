@@ -72,7 +72,7 @@
                     [icon]="leftContentIcon()"
                     [size]="32"
                     class="bmb_card_button-circle-icon"
-                    [alt]="title()"
+                    [alt]="componentTitle() || title() || ''"
                   />
                 </div>
               } @else {
@@ -91,7 +91,7 @@
                     />
                   }
                   <h2 class="bmb_card_button-top-header-container-title">
-                    {{ title() }}
+                    {{ componentTitle() || title() || '' }}
                   </h2>
                 </section>
               }
@@ -121,7 +121,7 @@
           aria-label="button"
           (keypress)="handleTitleClick($event)"
         >
-          <h2 class="bmb_card_button-header-text">{{ title() }}</h2>
+          <h2 class="bmb_card_button-header-text">{{ componentTitle() || title() || '' }}</h2>
           <bmb-icon
             [icon]="icon()"
             [size]="16"
@@ -171,9 +171,9 @@
         [size]="48"
         class="bmb_card_button-add-icon"
         [isFill]="false"
-        [alt]="title()"
+        [alt]="componentTitle() || title() || ''"
       />
-      <div class="bmb_card_button-add-title">{{ title() }}</div>
+      <div class="bmb_card_button-add-title">{{ componentTitle() || title() || '' }}</div>
     </button>
   }
 </section>

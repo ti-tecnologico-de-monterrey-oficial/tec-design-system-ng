@@ -1,6 +1,7 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  effect,
   input,
   OnInit,
   output,
@@ -25,6 +26,7 @@ import { buildErrorMessage } from '../../utils/utils';
 import { BmbTitleContentComponent } from '../bmb-title-content/bmb-title-content.component';
 import { IBmbNativeModal } from '../bmb-modal/bmb-modal.interface';
 import { BmbNativeModalService } from '../../services/modal/native-modal.service';
+import { logDeprecatedInput } from '../../utils/logDeprecatedInput';
 
 @Component({
   selector: 'bmb-grades',
@@ -51,10 +53,12 @@ export class BmbGradesComponent implements OnInit {
   grades = input<IBmbGrades[]>([]);
   isMicro = input<boolean>();
   gradeTitle = input<string>();
-  title = input<string>();
   accredited = input<IBmbNameValuePair>();
   average = input<IBmbNameValuePair>();
   summary = input<IBmbNameValuePair>();
+  componentTitle = input<string>();
+
+  title = input<string>(); // deprecated
 
   closeGrades = output();
 
@@ -72,7 +76,7 @@ export class BmbGradesComponent implements OnInit {
       let inputs: string[] = [];
 
       if (!this.gradeTitle()) inputs.push('gradeTitle');
-      if (!this.title()) inputs.push('title');
+      if (!this.componentTitle() || !this.title()) inputs.push('title');
       if (!this.accredited()) inputs.push('accredited');
       if (!this.average()) inputs.push('average');
       if (!this.summary()) inputs.push('summary');
@@ -93,7 +97,16 @@ export class BmbGradesComponent implements OnInit {
     }
   }
 
-  constructor(private modalService: BmbNativeModalService) {}
+  constructor(private modalService: BmbNativeModalService) {
+    effect(() => {
+      const deprecatedTitle = this.title();
+      const newTitle = this.componentTitle();
+      logDeprecatedInput(
+        { name: 'title', hasValue: !!deprecatedTitle },
+        { name: 'componentTitle', hasValue: !!newTitle },
+      );
+    });
+  }
 
   openModalComponent(element: any): void {
     this.partials = element.partials;

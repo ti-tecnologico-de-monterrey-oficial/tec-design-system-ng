@@ -14,6 +14,7 @@ import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { BmbCheckExternalLinkButtonComponent } from '../bmb-check-external-link-button/bmb-check-external-link-button.component';
 import { IPositionButtonMenu } from '../bmb-top-bar/types';
 import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
+import { logDeprecatedInput } from '../../utils/logDeprecatedInput';
 
 interface IBmbIsButton {
   link?: string;
@@ -37,8 +38,10 @@ interface IBmbIsButton {
 })
 export class BmbSidebarComponent {
   elements = input<SidebarElement[][]>([]);
-  title = input<string>('Navigation');
   position = input<IPositionButtonMenu>('left'); //Only for web
+  componentTitle = input<string>('Navigation');
+
+  title = input<string>(); // deprecated
 
   currentUrl: string = '';
   isOpen: boolean = false;
@@ -84,6 +87,15 @@ export class BmbSidebarComponent {
 
       this.hasSubmenu = this.elements()?.some((element) =>
         element?.some((el) => el.children),
+      );
+    });
+
+    effect(() => {
+      const deprecatedTitle = this.title();
+      const newTitle = this.componentTitle();
+      logDeprecatedInput(
+        { name: 'title', hasValue: !!deprecatedTitle },
+        { name: 'componentTitle', hasValue: !!newTitle }
       );
     });
   }

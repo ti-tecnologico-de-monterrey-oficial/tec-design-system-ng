@@ -4,9 +4,11 @@ import {
   ViewEncapsulation,
   input,
   output,
+  effect,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
+import { logDeprecatedInput } from '../../utils/logDeprecatedInput';
 
 export type BmbToastAppearance =
   | 'neutral'
@@ -49,12 +51,25 @@ export type BmbToastAppearance =
 export class BmbToastComponent {
   appearance = input<BmbToastAppearance>('neutral');
   isClosable = input<boolean>(false);
-  title = input<string>('');
   description = input<string>();
-  position = input<string>('top'); // deprecated
   id = input<string | number>('');
+  componentTitle = input<string>();
+
+  title = input<string>(); // deprecated
+  position = input<string>('top'); // deprecated
 
   onClose = output<MouseEvent>();
+
+  constructor() {
+    effect(() => {
+      const deprecatedTitle = this.title();
+      const newTitle = this.componentTitle();
+      logDeprecatedInput(
+        { name: 'title', hasValue: !!deprecatedTitle },
+        { name: 'componentTitle', hasValue: !!newTitle },
+      );
+    });
+  }
 
   getClasses(): string[] {
     const classes: string[] = ['bmb_toast'];

@@ -67,7 +67,7 @@ IBmbAdvertisementImage = {
         defaultValue: { summary: `{}` },
       },
     },
-    title: {
+    componentTitle: {
       control: {
         type: 'text',
       },
@@ -89,6 +89,15 @@ IBmbAdvertisementImage = {
         defaultValue: { summary: '' },
       },
     },
+    title: {
+      control: null,
+      description: 'Please use `componentTitle` instead of `title` to set the component title.',
+      table: {
+        category: 'Deprecated',
+        type: { summary: 'string' },
+        defaultValue: '',
+      },
+    }
   },
   args: {
     data: {
@@ -204,6 +213,7 @@ IBmbAdvertisementImage = {
       ],
     },
     subtitle: 'Subtitulo',
+    componentTitle: 'Titulo',
   },
 } as Meta<typeof BmbAdvertisementCardComponent>;
 

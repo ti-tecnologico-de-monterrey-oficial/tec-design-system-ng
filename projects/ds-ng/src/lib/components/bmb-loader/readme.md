@@ -36,7 +36,7 @@
 ```html
 <bmb-loader
   [appearance]="'normal'"
-  [title]="'Cargando información...'"
+  [componentTitle]="'Cargando información...'"
   [icon]="'hourglass_empty'"
   [subtitle]="'Por favor espera unos segundos.'"
   [overlay]="true"

@@ -189,6 +189,12 @@ export class AppComponent {
             title: 'Column sys',
             link: '/col-sys',
           },
+          {
+            id: 7,
+            icon: 'layers',
+            title: 'Modals',
+            link: '/modals',
+          }
         ],
       },
       {

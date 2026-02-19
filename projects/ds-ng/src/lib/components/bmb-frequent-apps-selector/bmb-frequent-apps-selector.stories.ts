@@ -51,7 +51,7 @@ ${getBasicExampleBlock(
 )}
 \`\`\`html
 <bmb-frequent-apps-selector
-  title="My Frequent Apps"
+  componentTitle="My Frequent Apps"
   [apps]="apps"
 />
 \`\`\`
@@ -132,7 +132,7 @@ IBmbInteractiveIconAppearance =
         },
       },
     },
-    title: getPropertyParamDesc(
+    componentTitle: getPropertyParamDesc(
       'frequent apps to display above the list of applications.',
     ),
     layout: {
@@ -155,6 +155,15 @@ IBmbInteractiveIconAppearance =
       ON_CLICK_DESCRIPTION,
       'pressed',
     ),
+    title: {
+      control: null,
+      description: 'Please use `componentTitle` instead of `title` to set the component title.',
+      table: {
+        category: 'Deprecated',
+        type: { summary: 'string' },
+        defaultValue: '',
+      },
+    }
   },
   args: {
     apps: [
@@ -212,7 +221,7 @@ IBmbInteractiveIconAppearance =
         appearance: 'yellow',
       },
     ],
-    title: 'Services',
+    componentTitle: 'Services',
     layout: 'regular',
     appClick: (app: any) => {
       console.log('Icon clicked:', app);

@@ -5,6 +5,7 @@ import {
   ChangeDetectionStrategy,
   ViewEncapsulation,
   signal,
+  effect,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BmbInputComponent } from '../bmb-input/bmb-input.component';
@@ -13,6 +14,7 @@ import { BmbThreeColsComponent } from '../bmb-three-cols/bmb-three-cols.componen
 import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
 import { BmbTitleContentComponent } from '../bmb-title-content/bmb-title-content.component';
 import { BmbContainerComponent } from '../bmb-container/bmb-container.component';
+import { logDeprecatedInput } from '../../utils/logDeprecatedInput';
 
 @Component({
   selector: 'bmb-inner-header',
@@ -32,7 +34,7 @@ import { BmbContainerComponent } from '../bmb-container/bmb-container.component'
   encapsulation: ViewEncapsulation.None,
 })
 export class BmbInnerHeaderComponent {
-  title = input<string>('');
+  componentTitle = input<string>();
   placeholderSearch = input<string>('');
   trailingIconPrimary = input<string>('');
   trailingIconSecondary = input<string>('');
@@ -41,6 +43,20 @@ export class BmbInnerHeaderComponent {
   showClose = input<boolean>(false);
   showReturn = input<boolean>(false);
   showSearch = input<boolean>(false);
+
+  title = input<string>(''); // deprecated
+
+  constructor() {
+    effect(() => {
+      const deprecatedTitle = this.title();
+      const newTitle = this.componentTitle();
+      logDeprecatedInput(
+        { name: 'title', hasValue: !!deprecatedTitle },
+        { name: 'componentTitle', hasValue: !!newTitle }
+      );
+    });
+  }
+
   toggleSearch = signal<boolean>(false);
 
   searchForm: FormGroup = new FormGroup({

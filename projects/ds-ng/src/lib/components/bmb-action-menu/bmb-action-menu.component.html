@@ -3,7 +3,7 @@
     <div class="bmb_action-menu-header">
       <bmb-title-content
         [transparentBgC]="true"
-        [title]="title()"
+        [componentTitle]="componentTitle() || title() || ''"
         [subtitle]="subtitle()"
         [icon]="icon()"
         [iconSize]="iconSize()!"

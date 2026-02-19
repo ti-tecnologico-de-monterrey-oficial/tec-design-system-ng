@@ -23,7 +23,7 @@ export default {
   parameters: {
     docs: {
       controls: {
-        exclude: ['handleBack', 'handleClose', 'handleExpand', 'useAutoExpand'],
+        exclude: ['handleBack', 'handleClose', 'handleExpand', 'useAutoExpand', 'actionsList'],
       },
       description: {
         component: `
@@ -66,7 +66,7 @@ ${getBasicExampleBlock(
     icon: DBmbHomeCardParamDesc.icon,
     iconSize: DBmbHomeCardParamDesc.iconSize,
     bgIconAppearance: DBmbHomeCardParamDesc.bgIconAppearance,
-    title: DBmbHomeCardParamDesc.title,
+    componentTitle: DBmbHomeCardParamDesc.title,
     subtitle: DBmbHomeCardParamDesc.subtitle,
     dataLocalNav: {
       control: { type: 'object' },
@@ -119,14 +119,6 @@ ${getBasicExampleBlock(
     },
     onClose: getOnClickParam(getOnEvent('close icon (x)', 'onClose')),
     onBack: getOnClickParam(getOnEvent('left icon (<)', 'onBack')),
-    test_text: {
-      name: 'Text',
-      description: 'Header content example.',
-      table: {
-        category: 'Example',
-        type: { summary: 'string' },
-      },
-    },
     isExpanded: {
       control: { type: 'boolean' },
       description:
@@ -141,18 +133,26 @@ ${getBasicExampleBlock(
       getOnEvent('expand or collapse icon', 'onExpandClick'),
       '. This should be used as a navigation action.',
     ),
+    title: {
+      control: null,
+      description: 'Please use `componentTitle` instead of `title` to set the component title.',
+      table: {
+        category: 'Deprecated',
+        type: { summary: 'string' },
+        defaultValue: '',
+      },
+    }
   },
   args: {
     leftIcon: 'chevron_left',
     icon: 'account_balance_wallet',
     bgIconAppearance: 'green-light',
-    title: 'Title',
+    componentTitle: 'Title',
     subtitle: 'Subtitle',
     dataLocalNav: [],
     actionHeaders: [],
     showRightButton: true,
     isMobile: false,
-    test_text: 'hello world',
     isExpanded: false,
     onExpandClick: () => {
       console.log('Expand button clicked');
