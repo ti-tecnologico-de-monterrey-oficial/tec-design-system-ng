@@ -472,7 +472,7 @@ const HTML_TEMPLATE: string = `
 `;
 
 @Component({
-  selector: 'storybook-identity-spectrum',
+  selector: 'storybook-identity-spectrum-student',
   standalone: true,
   imports: [
     BmbTopBarComponent,
@@ -495,7 +495,7 @@ const HTML_TEMPLATE: string = `
   ],
   template: HTML_TEMPLATE,
 })
-export class StorybookIdentitySpectrum {
+export class StorybookIdentitySpectrumStudent {
   selectedTab = 1;
   actionHeaders: IBmbActionHeader[] = [
     {
@@ -520,8 +520,9 @@ export class StorybookIdentitySpectrum {
 }
 
 export default {
-  title: 'Organisms/Identity spectrum',
-  component: StorybookIdentitySpectrum,
+  title: 'Organisms/Identity spectrum/Student',
+  component: StorybookIdentitySpectrumStudent,
+  tags: ['!autodocs'],
   decorators: [
     componentWrapperDecorator((story: string) => {
       return `<div style="height: 80rem;">
@@ -619,15 +620,15 @@ ${HTML_TEMPLATE}
       },
     },
   },
-} as Meta<typeof StorybookIdentitySpectrum>;
+} as Meta<typeof StorybookIdentitySpectrumStudent>;
 
-type Story = StoryObj<StorybookIdentitySpectrum>;
+type Story = StoryObj<StorybookIdentitySpectrumStudent>;
 
 export const Default: Story = {
   render: (args) => ({
     template: `
       <!-- Instruction to users: This component is used for internal Storybook logic and should not be copied -->
-      <storybook-identity-spectrum />
+      <storybook-identity-spectrum-student />
     `,
   }),
 };
