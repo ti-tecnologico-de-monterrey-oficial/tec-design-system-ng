@@ -13,7 +13,6 @@ import {
 import { BmbHomeCardComponent } from '../bmb-home-card/bmb-home-card.component';
 import {
   BmbChatBarComponent,
-  defaultBotList,
   IBotType,
   IChatBarActions,
 } from '../bmb-chat-bar/bmb-chat-bar.component';
@@ -27,10 +26,7 @@ import { CommonModule } from '@angular/common';
 import { BmbBotIconComponent } from '../bmb-bot-icon/bmb-bot-icon.component';
 import { IBmbActionHeader } from '../../types';
 import { logDeprecatedInput } from '../../utils/logDeprecatedInput';
-import { BmbActionMenuComponent } from '../bmb-action-menu/bmb-action-menu.component';
-import { BmbItemComponent } from '../bmb-item/bmb-item.component';
 
-export type IBmbHomeCardChatMode = 'compact' | 'chat' | 'expanded';
 @Component({
   selector: 'bmb-home-card-chat',
   standalone: true,
@@ -42,8 +38,6 @@ export type IBmbHomeCardChatMode = 'compact' | 'chat' | 'expanded';
     TranslatePipe,
     BmbActionIconComponent,
     BmbBotIconComponent,
-    BmbActionMenuComponent,
-    BmbItemComponent,
   ],
   templateUrl: './bmb-home-card-chat.component.html',
   styleUrl: './bmb-home-card-chat.component.scss',
@@ -51,40 +45,31 @@ export type IBmbHomeCardChatMode = 'compact' | 'chat' | 'expanded';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BmbHomeCardChatComponent {
-  @ViewChild('contentTemplate') contentTemplate!: TemplateRef<any>;
-  @ViewChild('chatBarActionsTemplate', { static: true })
-  chatBarTemplate!: TemplateRef<any>;
-
   subtitle = input<string>();
+  icon = input<string>('smart_toy');
   isMobile = input<boolean>(false);
   placeholder = input<string>('');
-  botList = input<IBotType[]>(defaultBotList);
+  botList = input<IBotType[]>([]);
   leftIcon = input<string>('chevron_left');
   bgIconAppearance = input<IBmbColor>('gray-charade-500');
   messagesHistory = input.required<IBmbChatMessage[]>();
+  mode = model<'compact' | 'chat' | 'expanded'>('expanded');
   componentTitle = input<string>();
+  actionsList = input<IChatBarActions[]>([]);
 
   title = input<string>(); // deprecated
 
-  actionsList = input<IChatBarActions[]>([]);
-
-  currentBot = model<IBotType>({
-    name: 'TecBot',
-    label: 'Tecbot Standard',
-    icon: 'bot_tecStandar',
-  });
+  currentBot = model<IBotType>();
   isLoading = model<boolean>(false);
-  mode = model<'compact' | 'chat' | 'expanded'>('expanded');
 
-  getClose = output();
-  getBack = output();
-  getSendMessage = output<string>();
-  getNewChat = output<boolean>();
-  getExpand = output<any>();
+  onClose = output();
+  onBack = output();
+  onSendMessage = output<string>();
 
-  private chatCardChatId: string = 'chatCardChat';
+  @ViewChild('contentTemplate') contentTemplate!: TemplateRef<any>;
 
   showHeaderRightButton = computed(() => this.mode() !== 'chat');
+
   chatActionHeaders = computed<IBmbActionHeader[]>(() => {
     if (this.mode() !== 'chat') {
       return [];
@@ -92,28 +77,31 @@ export class BmbHomeCardChatComponent {
 
     return [
       {
-        icon: 'more_vert',
-        action: () => this.handleAddDialog(event),
+        icon: 'zoom_in_map',
+        isToggleActive: false,
+        iconActiveToggle: 'close',
+        action: () => this.closeChat(),
       },
     ];
   });
 
   constructor(private contentProjected: BmbProjectionContentService) {
+    const CHAT_ID = 'chatCardChat';
+
     effect(
       () => {
-        if (this.mode() === 'chat') {
-          if (!this.isChatCardOpen()) {
-            this.contentProjected.openContent({
-              id: this.chatCardChatId,
-              content: this.contentTemplate,
-              dialogClass: ['bmb_chat-card-chat'],
-              focusOnOpen: true,
-            });
-          }
-        } else {
-          if (this.isChatCardOpen()) {
-            this.contentProjected.closeContent(this.chatCardChatId);
-          }
+        const currentMode = this.mode();
+        const isChatOpen = this.contentProjected.isContentOpen(CHAT_ID);
+        if (currentMode === 'chat' && !isChatOpen) {
+          this.contentProjected.openContent({
+            id: CHAT_ID,
+            content: this.contentTemplate,
+            dialogClass: ['bmb_chat-card-chat'],
+            focusOnOpen: true,
+          });
+        }
+        if (currentMode !== 'chat' && isChatOpen) {
+          this.contentProjected.closeContent(CHAT_ID);
         }
       },
       { allowSignalWrites: true },
@@ -129,41 +117,29 @@ export class BmbHomeCardChatComponent {
     });
   }
 
-  handleChat(event?: Event): void {
-    if (this.isChatCardOpen()) {
-      this.contentProjected.closeContent(this.chatCardChatId);
-      this.closeChat();
-    }
-
-    this.getExpand.emit(event);
-  }
-
   handleClose(): void {
-    if (this.isChatCardOpen()) {
-      this.contentProjected.closeContent(this.chatCardChatId);
-      this.closeChat();
-    }
-
-    this.getClose.emit();
+    this.onClose.emit();
   }
 
   handleBack(): void {
-    this.getBack.emit();
+    this.onBack.emit();
   }
 
   handleSend(message: string): void {
-    this.getSendMessage.emit(message);
+    this.onSendMessage.emit(message);
   }
 
   openChatFromCompact(): void {
+    const dialogId = 'chatCardChat';
+
     this.mode.set('chat');
 
-    if (this.isChatCardOpen()) {
+    if (this.contentProjected.isContentOpen(dialogId)) {
       return;
     }
 
     this.contentProjected.openContent({
-      id: this.chatCardChatId,
+      id: dialogId,
       content: this.contentTemplate,
       dialogClass: ['bmb_chat-card-chat'],
       focusOnOpen: true,
@@ -171,46 +147,17 @@ export class BmbHomeCardChatComponent {
   }
 
   closeChat(): void {
-    if (!this.isChatCardOpen()) {
+    const dialogId = 'chatCardChat';
+
+    if (!this.contentProjected.isContentOpen(dialogId)) {
       this.mode.set('compact');
       return;
     }
 
-    this.contentProjected.closeContent(this.chatCardChatId);
+    this.contentProjected.closeContent(dialogId);
 
     queueMicrotask(() => {
       this.mode.set('compact');
     });
-  }
-
-  handleAddDialog(event?: Event): void {
-    const dialogId = 'chatBarActionsDialog';
-    console.info('handleAddDialog', event);
-
-    if (this.contentProjected.isContentOpen(dialogId)) {
-      return;
-    }
-
-    const data = {
-      id: dialogId,
-      content: this.chatBarTemplate,
-      targetRef: event?.target as HTMLHtmlElement,
-      focusOnOpen: true,
-      showBackdrop: false,
-    };
-    this.contentProjected.openContent(data);
-  }
-
-  isChatCardOpen(): boolean {
-    return this.contentProjected.isContentOpen(this.chatCardChatId);
-  }
-
-  handleExpand(): void {
-    this.contentProjected.closeContent();
-    this.mode.set('expanded');
-  }
-
-  handleNewText(): void {
-    this.getNewChat.emit(true);
   }
 }

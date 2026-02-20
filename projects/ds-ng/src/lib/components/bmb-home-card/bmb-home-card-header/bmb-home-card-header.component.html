@@ -16,7 +16,7 @@
         </ng-template>
         <ng-template #bmbMainContent>
           <bmb-title-content
-            [componentTitle]="componentTitle() || title() || ''"
+            [componentTitle]="componentTitle() || title()"
             [subtitle]="subtitle()"
             [icon]="getIconName()"
             [iconSize]="iconSize()!"
@@ -36,20 +36,3 @@
     </span>
   </bmb-container>
 </header>
-
-<ng-template #chatBarActionsTemplate>
-  <section class="bmb_chat-bar-actions-dialog">
-    <bmb-action-menu [showHeader]="false" componentTitle="Selecciona una opción">
-      @for (bot of actionsList(); track $index) {
-        <ng-template>
-          <bmb-item
-            [icon]="bot.icon"
-            [label]="bot.name"
-            [isButton]="true"
-            (action)="bot.action()"
-          />
-        </ng-template>
-      }
-    </bmb-action-menu>
-  </section>
-</ng-template>

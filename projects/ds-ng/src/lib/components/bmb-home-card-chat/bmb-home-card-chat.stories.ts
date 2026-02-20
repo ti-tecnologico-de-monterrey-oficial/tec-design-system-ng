@@ -8,16 +8,15 @@ import {
   getGeneralDescription,
   getSpecialSpecifications,
   RELEVANT_TITLE,
-} from '../utils/doc/utils';
+} from '../../utils/doc/utils';
 import { CommonModule } from '@angular/common';
-import { BmbTopBarComponent } from './../components/bmb-top-bar/bmb-top-bar.component';
-import { BmbSidebarComponent } from './../components/bmb-sidebar/bmb-sidebar.component';
+import { BmbTopBarComponent } from '../../components/bmb-top-bar/bmb-top-bar.component';
+import { BmbSidebarComponent } from '../../components/bmb-sidebar/bmb-sidebar.component';
 import {
   BmbHomeCardChatComponent,
-  IBmbHomeCardChatMode,
-} from './../components/bmb-home-card-chat/bmb-home-card-chat.component';
-import { IBmbChatMessage } from '../types';
-import { IBotType, IChatBarActions } from './../components/bmb-chat-bar/types';
+} from '../../components/bmb-home-card-chat/bmb-home-card-chat.component';
+import { IBmbChatMessage } from '../../types';
+import { IBotType, IChatBarActions } from '../../components/bmb-chat-bar/types';
 
 const HTMLtemplate: string = `<div class="bmb_template-single-home-card">
       <bmb-top-bar
@@ -57,7 +56,7 @@ const HTMLtemplate: string = `<div class="bmb_template-single-home-card">
           }
         ]
       ]"
-      [title]="'Navegacion para mobiles'"
+      [componentTitle]="'Navegacion para mobiles'"
     />`;
 @Component({
   standalone: true,
@@ -71,7 +70,7 @@ const HTMLtemplate: string = `<div class="bmb_template-single-home-card">
   template: HTMLtemplate,
 })
 class StorybookModalWrapperComponent {
-  @Input() mode: IBmbHomeCardChatMode = 'compact';
+  @Input() mode = 'compact';
 
   @Input() currentBot: IBotType = {
     name: 'TecBot',

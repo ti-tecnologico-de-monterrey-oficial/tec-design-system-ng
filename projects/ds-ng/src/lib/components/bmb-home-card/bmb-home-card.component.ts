@@ -12,9 +12,8 @@ import { IBmbDataTopBar } from '../bmb-breadcrumb/bmb-breadcrumb.component';
 import { IBmbColor } from '../../types/colors';
 import { IBmbActionHeader, SizeNames } from '../../types';
 import { CommonModule } from '@angular/common';
-import { IChatBarActions } from '../bmb-chat-bar/types';
-import { logDeprecatedInput } from '../../utils/logDeprecatedInput';
 import { IBotType } from '../bmb-chat-bar/types';
+import { logDeprecatedInput } from '../../utils/logDeprecatedInput';
 
 @Component({
   selector: 'bmb-home-card',
@@ -26,7 +25,6 @@ import { IBotType } from '../bmb-chat-bar/types';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BmbHomeCardComponent {
-  componentTitle = input<string>(); // once title is removed, this should be required
   subtitle = input<string>();
   dataLocalNav = input<IBmbDataTopBar[]>([]);
   leftIcon = input<string>();
@@ -38,16 +36,14 @@ export class BmbHomeCardComponent {
   contentPadding = input<SizeNames>('l');
   showRightButton = input<boolean>(true);
   isExpanded = model<boolean>(false);
-  useAutoExpand = input<boolean>(true); //Internal
-  isChat = input<boolean>(false); //Internal
-  actionsList = input<IChatBarActions[]>([]);
   currentBot = model<IBotType>();
+  componentTitle = input<string>(); // once title is removed, this should be required
+
+  title = input<string>(); // deprecated
 
   onClose = output();
   onBack = output();
   onExpandClick = output();
-
-  title = input<string>(); // deprecated
 
   constructor() {
     effect(() => {

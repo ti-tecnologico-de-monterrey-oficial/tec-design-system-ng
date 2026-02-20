@@ -108,7 +108,7 @@
   <main class="bmb_mobile-template-main">
     @for (button of buttonList(); track $index) {
       <bmb-container-button
-        [title]="button.title"
+        [componentTitle]="button.title"
         [target]="button.target || '_blank'"
         [link]="button.link || ''"
         [subtitle]="button.subtitle || ''"

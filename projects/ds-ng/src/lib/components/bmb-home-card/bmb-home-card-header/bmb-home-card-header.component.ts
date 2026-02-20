@@ -6,8 +6,7 @@ import {
   ViewEncapsulation,
   model,
   computed,
-  ViewChild,
-  TemplateRef,
+  effect,
 } from '@angular/core';
 import { IBmbDataTopBar } from '../../bmb-breadcrumb/bmb-breadcrumb.component';
 import { IBmbColor } from '../../../types/colors';
@@ -19,6 +18,7 @@ import { BmbNavigationBarComponent } from '../../bmb-navigation-bar/bmb-navigati
 import { BmbContainerComponent } from '../../bmb-container/bmb-container.component';
 import { CommonModule } from '@angular/common';
 import { IBotType } from '../../bmb-chat-bar/types';
+import { logDeprecatedInput } from '../../../utils/logDeprecatedInput';
 
 @Component({
   selector: 'bmb-home-card-header',
@@ -37,7 +37,6 @@ import { IBotType } from '../../bmb-chat-bar/types';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BmbHomeCardHeaderComponent {
-  componentTitle = input<string>(); // once title is removed, this should be required
   subtitle = input<string>();
   dataLocalNav = input<IBmbDataTopBar[]>([]);
   leftIcon = input<string>();
@@ -49,14 +48,30 @@ export class BmbHomeCardHeaderComponent {
   showRightButton = input<boolean>(true);
   isExpanded = model<boolean>(false);
   currentBot = model<IBotType>();
+  componentTitle = input<string>(); // once title is removed, this should be required
+
+  title = input<string>(); // deprecated
 
   onClose = output();
   onBack = output();
   onExpandClick = output();
 
-  title = input<string>(); // deprecated
+  constructor() {
+    effect(() => {
+      const deprecatedTitle = this.title();
+      const newTitle = this.componentTitle();
+      logDeprecatedInput(
+        { name: 'title', hasValue: !!deprecatedTitle },
+        { name: 'componentTitle', hasValue: !!newTitle },
+      );
 
-  @ViewChild('chatBarActionsTemplate') chatBarTemplate!: TemplateRef<unknown>;
+      if (!deprecatedTitle && !newTitle) {
+        throw new Error(
+          'The "componentTitle" input is required. Please provide a value for it.',
+        );
+      }
+    });
+  }
 
   actionHeaderList = computed<IBmbActionHeader[]>(() => {
     if (this.showRightButton()) {

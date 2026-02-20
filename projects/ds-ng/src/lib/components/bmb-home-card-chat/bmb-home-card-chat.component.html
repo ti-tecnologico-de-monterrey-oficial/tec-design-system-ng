@@ -4,15 +4,15 @@
       [leftIcon]="mode() === 'chat' ? undefined : leftIcon()"
       [componentTitle]="componentTitle() || title() || ('home_card_chat.title' | translate)"
       [subtitle]="subtitle() || ('home_card_chat.subtitle' | translate)"
+      [icon]="icon()"
       [isMobile]="isMobile()"
+      (onClose)="handleClose()"
       [actionHeaders]="chatActionHeaders()"
+      [actionsList]="actionsList()"
+      [isChat]="mode() === 'chat'"
+      (onBack)="handleBack()"
       [bgIconAppearance]="bgIconAppearance()"
       [contentPadding]="'xs'"
-      [isExpanded]="isChatCardOpen()"
-      [(currentBot)]="currentBot"
-      (onExpandClick)="handleChat()"
-      (onClose)="handleClose()"
-      (onBack)="handleBack()"
     >
       <div class="bmb_chat-card-container">
         @for (message of messagesHistory(); track $index) {
@@ -26,19 +26,19 @@
           [(currentBot)]="currentBot"
           [(isLoading)]="isLoading"
           (onSendMessage)="handleSend($event)"
-        />
+        ></bmb-chat-bar>
       </div>
     </bmb-home-card>
   </section>
 </ng-template>
 
 @if (mode() === 'expanded') {
-  <ng-container *ngTemplateOutlet="chatContent" />
+  <ng-container *ngTemplateOutlet="chatContent"></ng-container>
 }
 
 <ng-template #contentTemplate>
   <div class="bmb_chat-card-chat-content">
-    <ng-container *ngTemplateOutlet="chatContent" />
+    <ng-container *ngTemplateOutlet="chatContent"></ng-container>
   </div>
 </ng-template>
 
@@ -56,26 +56,3 @@
     </ng-template>
   </bmb-action-icon>
 }
-
-<ng-template #chatBarActionsTemplate>
-  <bmb-action-menu
-    class="bmb_chat-card-chat-actions"
-    [showHeader]="false"
-    title="Selecciona una opción"
-  >
-    <ng-template>
-      <bmb-item
-        label="Expandir Chat"
-        [isButton]="true"
-        (action)="handleExpand()"
-      />
-    </ng-template>
-    <ng-template>
-      <bmb-item
-        label="Iniciar nuevo chat"
-        [isButton]="true"
-        (action)="handleExpand()"
-      />
-    </ng-template>
-  </bmb-action-menu>
-</ng-template>
