@@ -87,7 +87,11 @@ export class BmbImageComponent {
     this.imageClick.emit({ img, index });
   }
 
-  handleImageKeyDown(event: KeyboardEvent, img: BmbImageItem, index: number): void {
+  handleImageKeyDown(
+    event: KeyboardEvent,
+    img: BmbImageItem,
+    index: number,
+  ): void {
     if (event.key === 'Enter' || event.key === ' ') {
       this.handleImageClick(img, index);
     }
