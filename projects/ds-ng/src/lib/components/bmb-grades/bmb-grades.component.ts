@@ -76,7 +76,7 @@ export class BmbGradesComponent implements OnInit {
       let inputs: string[] = [];
 
       if (!this.gradeTitle()) inputs.push('gradeTitle');
-      if (!this.componentTitle() || !this.title()) inputs.push('title');
+      if (!this.componentTitle() && !this.title()) inputs.push('title');
       if (!this.accredited()) inputs.push('accredited');
       if (!this.average()) inputs.push('average');
       if (!this.summary()) inputs.push('summary');

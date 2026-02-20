@@ -88,7 +88,7 @@ export const Default: Story = {
   render: (args) => ({
     props: args,
     template: `
-<bmb-multi-dot-paginator [componentTitle]="title" [subtitle]="subtitle">
+<bmb-multi-dot-paginator [componentTitle]="componentTitle" [subtitle]="subtitle">
   <bmb-multi-dot-paginator-item>Custom component</bmb-multi-dot-paginator-item>
   <bmb-multi-dot-paginator-item>
     <bmb-home-card componentTitle="Some title">Custom content</bmb-home-card>
