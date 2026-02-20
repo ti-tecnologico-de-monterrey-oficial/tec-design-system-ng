@@ -3,9 +3,11 @@ import {
   ChangeDetectionStrategy,
   ViewEncapsulation,
   input,
+  effect,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
+import { logDeprecatedInput } from '../../utils/logDeprecatedInput';
 
 @Component({
   selector: 'bmb-focus-element',
@@ -19,15 +21,27 @@ import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 export class BmbFocusElementComponent {
   icon = input<string>('');
   number = input<number>(0);
-  title = input<string>('');
   isNormal = input<boolean>();
   isNonFocused = input<boolean>();
   isInheritedBg = input<boolean>();
   isCurrentColor = input<boolean>(); //Internal
   isContainerSize = input<boolean>(); //Internal
+  componentTitle = input<string>();
+
+  title = input<string>(); // deprecated
 
   baseClass: string = 'bmb_focus-element';
 
+  constructor() {
+    effect(() => {
+      const deprecatedTitle = this.title();
+      const newTitle = this.componentTitle();
+      logDeprecatedInput(
+        { name: 'title', hasValue: !!deprecatedTitle },
+        { name: 'componentTitle', hasValue: !!newTitle },
+      );
+    });
+  }
   getBackgroundClass(): string {
     if (this.isInheritedBg()) return `${this.baseClass}-inherited_bg`;
     return `${this.baseClass}-normal_bg`;

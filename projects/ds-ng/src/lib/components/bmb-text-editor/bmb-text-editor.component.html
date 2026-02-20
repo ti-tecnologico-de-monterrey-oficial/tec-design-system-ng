@@ -221,7 +221,7 @@
   <section>
     <bmb-action-menu
       [showHeader]="false"
-      [title]="'text_editor.select_option' | translate"
+      [componentTitle]="'text_editor.select_option' | translate"
     >
       @for (bot of settingsItems(); track $index) {
         <ng-template>
@@ -241,7 +241,7 @@
   <section>
     <bmb-action-menu
       [showHeader]="false"
-      [title]="'text_editor.select_option' | translate"
+      [componentTitle]="'text_editor.select_option' | translate"
     >
       @for (bot of insertItems(); track $index) {
         <ng-template>

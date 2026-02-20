@@ -161,7 +161,10 @@
 
 <ng-template #chatBarTemplate>
   <section class="bmb_chat-bar-add-dialog">
-    <bmb-action-menu [showHeader]="false" title="Selecciona una opción">
+    <bmb-action-menu
+      [showHeader]="false"
+      componentTitle="Selecciona una opción"
+    >
       @for (bot of actionsList(); track $index) {
         <ng-template>
           <bmb-item

@@ -3,6 +3,7 @@ import {
   Component,
   computed,
   DestroyRef,
+  effect,
   inject,
   input,
   output,
@@ -21,6 +22,7 @@ import {
 } from '../bmb-timestream/types';
 import { BmbBadgeComponent } from '../bmb-badge/bmb-badge.component';
 import { IBbmBgAppearance } from '../bmb-advertisement-card/types';
+import { logDeprecatedInput } from '../../utils/logDeprecatedInput';
 
 const MOBILE_QUERY = '(max-width: 767px)';
 
@@ -41,7 +43,6 @@ const MOBILE_QUERY = '(max-width: 767px)';
 })
 export class BmbHitoCardComponent {
   icon = input<string>();
-  title = input.required<string>();
   id = input.required<string | number>();
   short_description = input<string>('');
   type = input.required<ITimelineEventType | IBmbTimelineCustomEvent>();
@@ -50,6 +51,9 @@ export class BmbHitoCardComponent {
   is_active = input<boolean>(false);
   isCompact = input<boolean>(false);
   alternative_appearance = input<boolean>(false);
+  componentTitle = input<string>();
+
+  title = input<string>(); // deprecated
 
   handleClick = output<string | number>();
 
@@ -67,14 +71,24 @@ export class BmbHitoCardComponent {
       { signal: this.abort.signal },
     );
     this.destroyRef.onDestroy(() => this.abort.abort());
+
+    effect(() => {
+      const deprecatedTitle = this.title();
+      const newTitle = this.componentTitle();
+      logDeprecatedInput(
+        { name: 'title', hasValue: !!deprecatedTitle },
+        { name: 'componentTitle', hasValue: !!newTitle },
+      );
+    });
   }
 
   private t = (s?: string, n = 90) =>
     s ? (s.length > n ? s.slice(0, n).trimEnd() + '…' : s) : '';
 
-  readonly titleDisplayed = computed(() =>
-    this.isMobile() ? this.t(this.title(), 30) : this.title(),
-  );
+  readonly titleDisplayed = computed(() => {
+    const title = this.componentTitle() || this.title();
+    return this.isMobile() ? this.t(title, 30) : title;
+  });
 
   getClassList(): string[] {
     const classList = ['bmb_hito-card'];

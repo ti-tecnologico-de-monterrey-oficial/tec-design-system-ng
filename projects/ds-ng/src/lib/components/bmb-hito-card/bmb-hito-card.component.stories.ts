@@ -32,10 +32,12 @@ export default {
           'getClassList',
           'getHitoIconClass',
           'handleEventChange',
-          '',
-          '',
-          '',
-          '',
+          'abort',
+          'destroyRef',
+          'isMobile',
+          'mql',
+          't',
+          'titleDisplayed',
         ],
       },
       description: {
@@ -48,7 +50,7 @@ ${getBasicExampleBlock('BmbHitoCardComponent')}
   },
   argTypes: {
     icon: DBmbIconParamDesc.icon,
-    title: {
+    componentTitle: {
       control: { type: 'text' },
       description: 'Sets the title text of the card.',
       table: {
@@ -209,10 +211,20 @@ IBbmBgAppearance =
       'after the hito card is clicked.',
       'other',
     ),
+    title: {
+      control: null,
+      description:
+        'Please use `componentTitle` instead of `title` to set the component title.',
+      table: {
+        category: 'Deprecated',
+        type: { summary: 'string' },
+        defaultValue: '',
+      },
+    },
   },
   args: {
     icon: 'home',
-    title: 'Hito card title',
+    componentTitle: 'Hito card title',
     id: 'card',
     short_description: 'Short description',
     type: 'active',

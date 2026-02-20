@@ -48,20 +48,20 @@ The component's template is structured as follows:
   >
     <bmb-focus-element
       bmbLayoutItem
-      [title]="getName(accredited())"
+      [componentTitle]="getName(accredited())"
       [number]="getValue(accredited())"
       [isNormal]="true"
       [isNonFocused]="true"
     ></bmb-focus-element>
     <bmb-focus-element
       bmbLayoutItem
-      [title]="getName(average())"
+      [componentTitle]="getName(average())"
       [number]="getValue(average())"
       [isNonFocused]="true"
     ></bmb-focus-element>
     <bmb-focus-element
       bmbLayoutItem
-      [title]="getName(summary())"
+      [componentTitle]="getName(summary())"
       [number]="getValue(summary())"
       [isNormal]="true"
       [isNonFocused]="true"

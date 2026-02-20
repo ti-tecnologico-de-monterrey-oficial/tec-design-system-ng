@@ -9,7 +9,11 @@
       </span>
     } @else if (!!icon()) {
       <span class="bmb_title-content-container-icon" [ngStyle]="getStyles()">
-        <bmb-icon [icon]="icon()" [size]="iconSize()" [alt]="title()" />
+        <bmb-icon
+          [icon]="icon()"
+          [size]="iconSize()"
+          [alt]="componentTitle() || title() || 'icon'"
+        />
       </span>
     } @else if (!!currentBot()) {
       <span class="bmb_title-content-container-icon" [ngStyle]="getStyles()">
@@ -25,7 +29,7 @@
       </span>
     }
     <section class="bmb_title-content-container-wrapper">
-      @if (!!title()) {
+      @if (!!componentTitle() || !!title()) {
         <h2
           class="bmb_title-content-container-wrapper-title"
           [ngClass]="
@@ -36,7 +40,7 @@
             )
           "
         >
-          {{ title() }}
+          {{ componentTitle() || title() }}
         </h2>
       }
       @if (showBreadcrumbs() && dataLocalNav() && dataLocalNav().length) {

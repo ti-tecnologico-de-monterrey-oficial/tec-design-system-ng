@@ -157,5 +157,13 @@ export const routes: Routes = [
         (j) => j.LayoutColumnsComponent,
       ),
   },
+  {
+    path: 'modals',
+    title: 'Modals',
+    loadComponent: () =>
+      import('./pages/modals-templates/modals-templates.component').then(
+        (m) => m.ModalsTemplatesComponent,
+      ),
+  },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
 ];

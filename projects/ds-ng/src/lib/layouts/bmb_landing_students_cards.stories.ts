@@ -79,7 +79,7 @@ import * as layoutStory from '../directives/bmb-layout/bmb-layout.stories';
           leftIcon="chevron_left"
           icon="school"
           bgIconAppearance="blue-primary"
-          title="Nombre del servicio"
+          componentTitle="Nombre del servicio"
           contentPadding="xl"
         >
           <section bmbLayout margin="none" class="bmb_padding-m">
@@ -179,7 +179,7 @@ import * as layoutStory from '../directives/bmb-layout/bmb-layout.stories';
           }
         ]
       ]"
-      [title]="'Navegacion para mobiles'"
+      [componentTitle]="'Navegacion para mobiles'"
     ></bmb-sidebar>
   `,
 })
@@ -263,7 +263,7 @@ ${getBasicExampleBlock(`BmbTopBarComponent,
       leftIcon="chevron_left"
       icon="school"
       bgIconAppearance="blue-primary"
-      title="Nombre del servicio"
+      componentTitle="Nombre del servicio"
       contentPadding="xl"
     >
       <section bmbLayout margin="none" class="bmb_padding-m">
@@ -336,7 +336,7 @@ ${getBasicExampleBlock(`BmbTopBarComponent,
       },
     ],
   ]"
-  [title]="'Navegacion para mobiles'"
+  [componentTitle]="'Navegacion para mobiles'"
 />\`\`\`
         `,
       },

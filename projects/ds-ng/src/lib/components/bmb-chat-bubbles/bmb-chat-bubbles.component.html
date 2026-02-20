@@ -76,7 +76,7 @@
               <div class="bmb_chat-bubble-msg-options-container">
                 @for (item of message().content.options; track $index) {
                   <bmb-container-button
-                    [title]="item.title"
+                    [componentTitle]="item.title"
                     [target]="item.target || '_blank'"
                     [link]="item.link || ''"
                     iconLeft=""

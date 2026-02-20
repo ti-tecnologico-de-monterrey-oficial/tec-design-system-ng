@@ -85,7 +85,7 @@ If you want to see how it works with the **Notification Service** and animations
     },
   },
   argTypes: {
-    title: getPropertyParamDesc(
+    componentTitle: getPropertyParamDesc(
       'toast notification',
       'text',
       '',
@@ -135,9 +135,19 @@ If you want to see how it works with the **Notification Service** and animations
     },
     onClose: getOnClickParam(onEventBlock, ` and the toast is closed`),
     position: DBmbGenericParamDesc.deprecated,
+    title: {
+      control: null,
+      description:
+        'Please use `componentTitle` instead of `title` to set the component title.',
+      table: {
+        category: 'Deprecated',
+        type: { summary: 'string' },
+        defaultValue: '',
+      },
+    },
   },
   args: {
-    title: 'Your toast title here',
+    componentTitle: 'Your toast title here',
     description: 'Your toast description here (optional)',
     appearance: 'neutral',
     isClosable: false,

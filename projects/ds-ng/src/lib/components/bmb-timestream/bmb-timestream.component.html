@@ -93,7 +93,7 @@
                 @for (date of getInstances(selectedEvent); track $index) {
                   <bmb-hito-card
                     [icon]="selectedEvent.icon || 'app_badging'"
-                    [title]="selectedEvent.title"
+                    [componentTitle]="selectedEvent.title"
                     [type]="selectedEvent.type"
                     [id]="$index"
                     [enable_bullet]="false"
@@ -113,7 +113,7 @@
                   @for (related of selectedEvent.related_to; track $index) {
                     <bmb-hito-card
                       [icon]="selectedEvent.icon || 'app_badging'"
-                      [title]="related"
+                      [componentTitle]="related"
                       [type]="selectedEvent.type"
                       [id]="related"
                       [enable_bullet]="false"

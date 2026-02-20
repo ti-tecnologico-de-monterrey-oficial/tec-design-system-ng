@@ -98,7 +98,7 @@ import * as toastStory from '../components/bmb-toast/bmb-toast.stories';
           leftIcon="chevron_left"
           icon="school"
           bgIconAppearance="mitec-green"
-          title="Beca socioeconómica"
+          componentTitle="Beca socioeconómica"
           contentPadding="xl"
           [isExpanded]="true"
           (onBack)="handleBack()"
@@ -236,7 +236,7 @@ import * as toastStory from '../components/bmb-toast/bmb-toast.stories';
                             <bmb-toast
                               [appearance]="'warning'"
                               [isClosable]="true"
-                              [title]="
+                              [componentTitle]="
                                 'Importante: Antes de dar de baja, asegúrate de tener el formato correcto.'
                               "
                               [id]="'1'"
@@ -539,7 +539,7 @@ import * as toastStory from '../components/bmb-toast/bmb-toast.stories';
           }
         ]
       ]"
-      [title]="'Navegacion para mobiles'"
+      [componentTitle]="'Navegacion para mobiles'"
     ></bmb-sidebar>
   `,
 })
@@ -853,7 +853,7 @@ ${getBasicExampleBlock(
           leftIcon="chevron_left"
           icon="school"
           bgIconAppearance="mitec-green"
-          title="Beca socioeconómica"
+          componentTitle="Beca socioeconómica"
           contentPadding="xl"
           [isExpanded]="true"
           (onBack)="handleBack()"
@@ -991,7 +991,7 @@ ${getBasicExampleBlock(
                             <bmb-toast
                               [appearance]="'warning'"
                               [isClosable]="true"
-                              [title]="
+                              [componentTitle]="
                                 'Importante: Antes de dar de baja, asegúrate de tener el formato correcto.'
                               "
                               [id]="'1'"
@@ -1294,7 +1294,7 @@ ${getBasicExampleBlock(
           },
         ],
       ]"
-      [title]="'Navegacion para mobiles'"
+      [componentTitle]="'Navegacion para mobiles'"
     ></bmb-sidebar>
 `,
       },

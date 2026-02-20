@@ -1,6 +1,6 @@
 <div class="bmb_calendar-month-mobile">
   <bmb-inner-header
-    [title]="calendarTitle() || ('calendar.title' | translate)"
+    [componentTitle]="calendarTitle() || ('calendar.title' | translate)"
     [showClose]="true"
     trailingIconSecondary="tune"
     [disableTrailingIconSecondary]="disableMobileFilter()"
@@ -9,7 +9,7 @@
   >
     <div class="bmb_calendar-month-mobile-nav">
       <bmb-chevron-title-selector
-        [title]="now().setLocale(locale()).toFormat('MMM')"
+        [componentTitle]="now().setLocale(locale()).toFormat('MMM')"
         leadingIcon="chevron_left"
         trailingIcon="chevron_right"
         (onLeadingClick)="handleMonthChange('-')"

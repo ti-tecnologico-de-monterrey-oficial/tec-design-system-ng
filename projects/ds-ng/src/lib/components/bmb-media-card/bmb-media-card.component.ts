@@ -1,6 +1,7 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  effect,
   input,
   output,
   ViewEncapsulation,
@@ -9,6 +10,7 @@ import { CommonModule } from '@angular/common';
 import { SizeNames, IBmbTargetLink } from '../../types';
 import { BmbUserImageComponent } from '../bmb-user-image/bmb-user-image.component';
 import { isExternalLink } from '../../utils/utils';
+import { logDeprecatedInput } from '../../utils/logDeprecatedInput';
 
 export type IBmbMediaCardType = 'inline' | 'floating' | 'author_detail';
 export type IBmbMediaCardLoading = 'lazy' | 'eager';
@@ -35,7 +37,6 @@ export class BmbMediaCardComponent {
   enableZoom = input<boolean>(false);
   isBlurredBackdrop = input<boolean>(false);
   type = input<IBmbMediaCardType>('inline');
-  title = input<string>();
   subtitle = input<string>();
   content = input<string>();
   date = input<string>();
@@ -44,8 +45,22 @@ export class BmbMediaCardComponent {
   fullmediaCard = input<boolean>(false);
   bgColor = input<string>();
   boxShadow = input<boolean>(false);
+  componentTitle = input<string>();
+
+  title = input<string>(); // deprecated
 
   mediaCardClicked = output<MouseEvent | KeyboardEvent>();
+
+  constructor() {
+    effect(() => {
+      const deprecatedTitle = this.title();
+      const newTitle = this.componentTitle();
+      logDeprecatedInput(
+        { name: 'title', hasValue: !!deprecatedTitle },
+        { name: 'componentTitle', hasValue: !!newTitle },
+      );
+    });
+  }
 
   isExternalLink(link: string): boolean {
     return (!!link && isExternalLink(link)) || false;

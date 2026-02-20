@@ -80,7 +80,7 @@ import * as buttonStory from '../directives/bmb-button/button.stories';
           leftIcon="chevron_left"
           icon="map"
           bgIconAppearance="teal-primary"
-          title="Mi caja de ahorro"
+          componentTitle="Mi caja de ahorro"
           contentPadding="xl"
           [isExpanded]="true"
           (onBack)="handleBack()"
@@ -341,7 +341,7 @@ import * as buttonStory from '../directives/bmb-button/button.stories';
           }
         ]
       ]"
-      [title]="'Navegacion para mobiles'"
+      [componentTitle]="'Navegacion para mobiles'"
     ></bmb-sidebar>
   `,
 })
@@ -560,7 +560,7 @@ ${getBasicExampleBlock(
           leftIcon="chevron_left"
           icon="map"
           bgIconAppearance="teal-primary"
-          title="Mi caja de ahorro"
+          componentTitle="Mi caja de ahorro"
           contentPadding="xl"
           [isExpanded]="true"
           (onBack)="handleBack()"
@@ -819,7 +819,7 @@ ${getBasicExampleBlock(
           },
         ],
       ]"
-      [title]="'Navegacion para mobiles'"
+      [componentTitle]="'Navegacion para mobiles'"
     ></bmb-sidebar>
 `,
       },

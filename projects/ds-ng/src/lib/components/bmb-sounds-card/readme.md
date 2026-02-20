@@ -29,7 +29,7 @@
 
 ```html
 <bmb-sounds-card
-  [title]="'Podcast semanal'"
+  [componentTitle]="'Podcast semanal'"
   [subtitle]="'Episodio 12: Innovación educativa'"
   [width]="'320px'"
   [ratio]="'16/9'"

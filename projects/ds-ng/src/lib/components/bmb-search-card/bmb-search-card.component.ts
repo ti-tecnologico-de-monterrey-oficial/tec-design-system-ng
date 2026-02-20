@@ -36,10 +36,12 @@ export interface IBmbSearchCardItemResult {
   styleUrl: './bmb-search-card.component.scss',
 })
 export class BmbSearchCardComponent {
-  title = input<string>('');
   inputPlaceholder = input<string>('');
   results = input<IBmbSearchCardItemResult[]>([]);
   isLoading = input<boolean>(false);
+  componentTitle = input<string>();
+
+  title = input<string>(); // deprecated
 
   selectedTabId = model<number>(1);
 

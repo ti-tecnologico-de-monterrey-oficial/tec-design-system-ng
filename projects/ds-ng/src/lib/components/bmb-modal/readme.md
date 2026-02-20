@@ -35,7 +35,7 @@
 
 ```html
 <bmb-native-modal
-  [title]="'Confirmar acción'"
+  [componentTitle]="'Confirmar acción'"
   [subtitle]="'¿Estás seguro de continuar?'"
   [content]="modalContentTemplate"
   [actions]="[

@@ -45,7 +45,7 @@ ${getBasicExampleBlock('')}
     },
   },
   argTypes: {
-    title: getPropertyParamDesc('tooltip'),
+    componentTitle: getPropertyParamDesc('tooltip'),
     text: DBmbTooltipParamDesc.text,
     icon: {
       control: {
@@ -62,9 +62,19 @@ ${getBasicExampleBlock('')}
     isFill: DBmbIconParamDesc.isIconFill,
     align: DBmbTooltipParamDesc.align,
     justify: DBmbTooltipParamDesc.justify,
+    title: {
+      control: null,
+      description:
+        'Please use `componentTitle` instead of `title` to set the component title.',
+      table: {
+        category: 'Deprecated',
+        type: { summary: 'string' },
+        defaultValue: '',
+      },
+    },
   },
   args: {
-    title: 'Titulo del tooltip',
+    componentTitle: 'Titulo del tooltip',
     text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum nihil modi repellendus ad aspernatur corporis.',
     icon: 'help',
     size: 40,

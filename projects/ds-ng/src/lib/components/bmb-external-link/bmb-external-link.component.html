@@ -12,7 +12,7 @@
         <ng-template #bmbMainContent>
           <bmb-title-content
             class="bmb_external-link-title"
-            [title]="title()"
+            [componentTitle]="componentTitle() || title() || ''"
             titleSize="6"
             [subtitle]="subtitle()"
             subtitleSize="3"

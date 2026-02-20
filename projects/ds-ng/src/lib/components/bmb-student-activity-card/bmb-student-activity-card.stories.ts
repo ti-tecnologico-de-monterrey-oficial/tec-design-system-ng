@@ -55,7 +55,7 @@ ${getBasicExampleBlock('BmbStudentActivityCardComponent')}
         type: { summary: 'DateTime' },
       },
     },
-    title: {
+    componentTitle: {
       control: {
         type: 'text',
       },
@@ -66,7 +66,6 @@ ${getBasicExampleBlock('BmbStudentActivityCardComponent')}
         defaultValue: { summary: '' },
       },
     },
-    modalTitle: DBmbGenericParamDesc.deprecated,
     location: {
       control: {
         type: 'text',
@@ -89,7 +88,6 @@ ${getBasicExampleBlock('BmbStudentActivityCardComponent')}
         defaultValue: { summary: '' },
       },
     },
-    detail: DBmbGenericParamDesc.deprecated,
     type: {
       control: 'select',
       options: ['academic', 'life', 'events', 'save_the_date'],
@@ -100,7 +98,6 @@ ${getBasicExampleBlock('BmbStudentActivityCardComponent')}
         defaultValue: { summary: 'academic' },
       },
     },
-    status: DBmbGenericParamDesc.deprecated,
     isListItem: {
       control: 'boolean',
       description: 'Sets the card as a list item.',
@@ -137,12 +134,22 @@ ${getBasicExampleBlock('BmbStudentActivityCardComponent')}
         defaultValue: { summary: '' },
       },
     },
+    title: {
+      control: null,
+      description:
+        'Please use `componentTitle` instead of `title` to set the component title.',
+      table: {
+        category: 'Deprecated',
+        type: { summary: 'string' },
+        defaultValue: '',
+      },
+    },
   },
 
   args: {
     startDate: '2021-12-24 10:00:00',
     endDate: '2021-12-24 11:00:00',
-    title: 'Activity title',
+    componentTitle: 'Activity title',
     type: 'academic',
     location: 'Activity location',
     responsible: 'Activity responsible',

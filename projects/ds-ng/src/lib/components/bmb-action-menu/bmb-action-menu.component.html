@@ -1,7 +1,7 @@
 <section class="bmb_action-menu">
   @if (showHeader()) {
     <bmb-home-card-header
-      [title]="title()"
+      [componentTitle]="componentTitle() || title() || ''"
       [subtitle]="subtitle()"
       [icon]="icon()"
       [iconSize]="iconSize()!"

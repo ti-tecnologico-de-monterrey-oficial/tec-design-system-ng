@@ -31,8 +31,10 @@ import { TranslatePipe } from '../../pipes/translations';
 })
 export class BmbAdvertisementCardComponent {
   data = model<IBmbAdvertisementData>();
-  title = input<string>('');
+  componentTitle = input<string>('');
   subtitle = input<string>('');
+
+  title = input<string>(''); // deprecated
 
   expanded: boolean = false;
   selectedTabId: number = 0;

@@ -297,11 +297,21 @@ IBmbPartial = {
       'Enables the micro version of grades when true.',
     ),
     gradeTitle: getPropertyDescription('main title'),
-    title: getPropertyDescription(''),
+    componentTitle: getPropertyDescription(''),
     accredited: getPropertyDescription('accreditation status'),
     average: getPropertyDescription('average'),
     summary: getPropertyDescription('summary'),
     closeGrades: getOnClickParam(getOnEvent('close', 'closeGrades')),
+    title: {
+      control: null,
+      description:
+        'Please use `componentTitle` instead of `title` to set the component title.',
+      table: {
+        category: 'Deprecated',
+        type: { summary: 'string' },
+        defaultValue: '',
+      },
+    },
   },
   args: {
     grades: [
@@ -454,7 +464,7 @@ IBmbPartial = {
     ],
     isMicro: false,
     gradeTitle: 'Período actual',
-    title: 'Semestral AGO-DIC 2024',
+    componentTitle: 'Semestral AGO-DIC 2024',
     accredited: { name: 'Créditos aprobados', value: '39' },
     average: { name: 'Promedio acumulado', value: '90' },
     summary: { name: 'Faltas totales', value: '3' },

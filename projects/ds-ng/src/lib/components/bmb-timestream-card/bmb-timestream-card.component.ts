@@ -1,6 +1,7 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  effect,
   input,
   signal,
   ViewEncapsulation,
@@ -23,6 +24,7 @@ import { IBmbControlType } from '../bmb-filter-card/bmb-filter-card.interface';
 import { timestreamFilter } from '../../utils/timestreamFilters';
 import { CommonModule } from '@angular/common';
 import { IBmbActionHeader } from '../../types';
+import { logDeprecatedInput } from '../../utils/logDeprecatedInput';
 
 @Component({
   selector: 'bmb-timestream-card',
@@ -42,15 +44,34 @@ import { IBmbActionHeader } from '../../types';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BmbTimestreamCardComponent {
-  title = input.required<string>();
   subtitle = input<string>();
   dataLocalNav = input<IBmbDataTopBar[]>([]);
   icon = input<string>('trending_up');
   bgIconAppearance = input<IBmbColor>('mitec-red');
+  componentTitle = input<string>(); // once title is removed, this should be required
+
+  title = input<string>(); // deprecated
 
   lang = input<string>('es');
   dateFormat = input<string>('dd/MM/yyyy');
   events = input<ITimelineEvent[]>([]);
+
+  constructor() {
+    effect(() => {
+      const deprecatedTitle = this.title();
+      const newTitle = this.componentTitle();
+      logDeprecatedInput(
+        { name: 'title', hasValue: !!deprecatedTitle },
+        { name: 'componentTitle', hasValue: !!newTitle },
+      );
+
+      if (!deprecatedTitle && !newTitle) {
+        throw new Error(
+          'The "componentTitle" input is required. Please provide a value for it.',
+        );
+      }
+    });
+  }
 
   clamp: IBmbClamp = { min: 0, max: '100%', size: '100%' };
   isMobile: boolean = false;

@@ -22,13 +22,15 @@ export type IBmbJustifyTooltip = 'centered' | 'before' | 'after';
 })
 export class BmbTooltipComponent {
   text = input<string>('');
-  title = input<string>('');
   icon = input<string>('help');
   size = input<number>();
   align = input<IBmbAlignTooltip>('below');
   justify = input<IBmbJustifyTooltip>('after');
   isFill = input<boolean>(true);
   isTooltipVisible = signal(false);
+  componentTitle = input<string>();
+
+  title = input<string>(); // deprecated
 
   handleFocus(event: KeyboardEvent | FocusEvent) {
     const key = (event as KeyboardEvent).key;

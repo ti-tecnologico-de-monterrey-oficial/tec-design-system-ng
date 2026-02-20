@@ -29,7 +29,7 @@
       ]}
     ]
   ]"
-  [title]="'Menú principal'"
+  [componentTitle]="'Menú principal'"
   [position]="'left'"
 ></bmb-sidebar>
 ```

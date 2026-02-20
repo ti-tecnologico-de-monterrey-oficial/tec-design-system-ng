@@ -5,7 +5,7 @@ import { Component } from '@angular/core';
 
 @Component({
   template: `
-    <bmb-action-menu title="Test title">
+    <bmb-action-menu componentTitle="Test title">
       <ng-template #tpl>Contenido</ng-template>
     </bmb-action-menu>
   `,

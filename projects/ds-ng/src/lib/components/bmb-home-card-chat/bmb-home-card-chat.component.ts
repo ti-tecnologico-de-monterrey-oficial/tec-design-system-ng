@@ -54,7 +54,6 @@ export class BmbHomeCardChatComponent {
   @ViewChild('chatBarActionsTemplate', { static: true })
   chatBarTemplate!: TemplateRef<any>;
 
-  title = input<string>();
   subtitle = input<string>();
   isMobile = input<boolean>(false);
   placeholder = input<string>('');
@@ -63,6 +62,9 @@ export class BmbHomeCardChatComponent {
   bgIconAppearance = input<IBmbColor>('gray-charade-500');
   messagesHistory = input.required<IBmbChatMessage[]>();
   actionsList = input<IChatBarActions[]>([]);
+  componentTitle = input<string>('');
+
+  title = input<string>(''); // deprecated
 
   currentBot = model<IBotType>({
     name: 'TecBot',

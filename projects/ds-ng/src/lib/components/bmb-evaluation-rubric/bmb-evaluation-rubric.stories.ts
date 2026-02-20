@@ -32,7 +32,7 @@ ${getBasicExampleBlock('BmbEvaluationRubricComponent')}
     },
   },
   argTypes: {
-    title: {
+    componentTitle: {
       control: { type: 'text' },
       description: 'Sets the title of the component.',
       table: {
@@ -134,10 +134,20 @@ IBmbInputAppearance = 'main' | 'normal' | 'simple';
         },
       },
     },
+    title: {
+      control: null,
+      description:
+        'Please use `componentTitle` instead of `title` to set the component title.',
+      table: {
+        category: 'Deprecated',
+        type: { summary: 'string' },
+        defaultValue: '',
+      },
+    },
     onClose: getOnClickParam(getOnEvent('close (x)', 'onClose', 'void')),
   },
   args: {
-    title: 'Rúbrica de evaluación',
+    componentTitle: 'Rúbrica de evaluación',
     icon: 'checklist_rtl',
     rightIcon: 'close',
     evaluationRubricList: [

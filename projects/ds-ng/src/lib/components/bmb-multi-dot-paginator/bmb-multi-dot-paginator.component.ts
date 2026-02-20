@@ -3,6 +3,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   contentChildren,
+  effect,
   input,
   ViewEncapsulation,
 } from '@angular/core';
@@ -10,6 +11,7 @@ import { BmbMultiDotPaginatorItemComponent } from './bmb-multi-dot-paginator-ite
 import { CommonModule } from '@angular/common';
 import { BmbFabComponent } from '../bmb-fab/bmb-fab.component';
 import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
+import { logDeprecatedInput } from '../../utils/logDeprecatedInput';
 
 @Component({
   selector: 'bmb-multi-dot-paginator',
@@ -21,8 +23,10 @@ import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.compo
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BmbMultiDotPaginatorComponent implements AfterContentInit {
-  title = input.required<string>();
   subtitle = input<string>('');
+  componentTitle = input<string>(); // once title is removed, this should be required
+
+  title = input<string>(); // deprecated
 
   childrenItems = contentChildren<BmbMultiDotPaginatorItemComponent>(
     BmbMultiDotPaginatorItemComponent,
@@ -30,6 +34,23 @@ export class BmbMultiDotPaginatorComponent implements AfterContentInit {
 
   numberOfElements: number[] = [];
   selectedIndex = 0;
+
+  constructor() {
+    effect(() => {
+      const deprecatedTitle = this.title();
+      const newTitle = this.componentTitle();
+      logDeprecatedInput(
+        { name: 'title', hasValue: !!deprecatedTitle },
+        { name: 'componentTitle', hasValue: !!newTitle },
+      );
+
+      if (!deprecatedTitle && !newTitle) {
+        throw new Error(
+          'The "componentTitle" input is required. Please provide a value for it.',
+        );
+      }
+    });
+  }
 
   ngAfterContentInit() {
     this.numberOfElements = Array(this.childrenItems().length ?? 0).fill(0);

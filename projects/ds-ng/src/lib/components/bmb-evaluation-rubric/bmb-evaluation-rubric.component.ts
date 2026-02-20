@@ -1,6 +1,7 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  effect,
   input,
   model,
   output,
@@ -22,6 +23,7 @@ import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.compo
 import { BmbTitleContentComponent } from '../bmb-title-content/bmb-title-content.component';
 import { BmbContainerComponent } from '../bmb-container/bmb-container.component';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
+import { logDeprecatedInput } from '../../utils/logDeprecatedInput';
 
 export interface IBmbEvaluationRubric {
   criterion: string;
@@ -74,7 +76,7 @@ export interface IBmbEvalRubricButtons {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BmbEvaluationRubricComponent {
-  title = input.required<string>();
+  componentTitle = input<string>(); // once title is removed, this should be required
   icon = input<string>('checklist_rtl');
   rightIcon = input<string>('close');
   evaluationRubricList = model.required<IBmbEvaluationRubric[]>();
@@ -85,7 +87,26 @@ export class BmbEvaluationRubricComponent {
 
   onClose = output();
 
+  title = input<string>(); // deprecated
+
   summary: number = 0;
+
+  constructor() {
+    effect(() => {
+      const deprecatedTitle = this.title();
+      const newTitle = this.componentTitle();
+      logDeprecatedInput(
+        { name: 'title', hasValue: !!deprecatedTitle },
+        { name: 'componentTitle', hasValue: !!newTitle },
+      );
+
+      if (!deprecatedTitle && !newTitle) {
+        throw new Error(
+          'The "componentTitle" input is required. Please provide a value for it.',
+        );
+      }
+    });
+  }
 
   getEvalList(): number[] {
     const evalList: number[] = [];

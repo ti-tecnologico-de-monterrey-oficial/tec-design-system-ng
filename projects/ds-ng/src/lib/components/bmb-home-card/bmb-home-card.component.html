@@ -1,7 +1,7 @@
 <section class="bmb_home-card">
   <div class="bmb_home-card-wrapper">
     <bmb-home-card-header
-      [title]="title()"
+      [componentTitle]="componentTitle() || title()"
       [subtitle]="subtitle()"
       [dataLocalNav]="dataLocalNav()"
       [leftIcon]="leftIcon()"

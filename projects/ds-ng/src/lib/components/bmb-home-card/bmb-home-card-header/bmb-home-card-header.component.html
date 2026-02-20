@@ -16,7 +16,7 @@
         </ng-template>
         <ng-template #bmbMainContent>
           <bmb-title-content
-            [title]="title()"
+            [componentTitle]="componentTitle() || title()"
             [subtitle]="subtitle()"
             [icon]="getIconName()"
             [iconSize]="iconSize()!"

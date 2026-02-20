@@ -51,7 +51,7 @@ ${getBasicExampleBlock('BmbActionMenuComponent')}
     icon: DBmbHomeCardParamDesc.icon,
     iconSize: DBmbHomeCardParamDesc.iconSize,
     bgIconAppearance: DBmbHomeCardParamDesc.bgIconAppearance,
-    title: DBmbHomeCardParamDesc.title,
+    componentTitle: DBmbHomeCardParamDesc.title,
     subtitle: DBmbHomeCardParamDesc.subtitle,
     showHeader: {
       control: { type: 'boolean' },
@@ -73,11 +73,22 @@ ${getBasicExampleBlock('BmbActionMenuComponent')}
         defaultValue: false,
       },
     },
+    title: {
+      control: null,
+      description:
+        'Please use `componentTitle` instead of `title` to set the component title.',
+      table: {
+        category: 'Deprecated',
+        type: { summary: 'string' },
+        defaultValue: '',
+      },
+    },
   },
   args: {
     icon: 'account_balance_wallet',
     bgIconAppearance: 'green-light',
-    title: 'Title',
+    componentTitle: 'Title',
+    subtitle: 'Subtitle',
     showHeader: true,
   },
 } as Meta<typeof BmbActionMenuComponent>;
