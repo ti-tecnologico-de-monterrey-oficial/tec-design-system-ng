@@ -3,6 +3,7 @@ import {
   Component,
   computed,
   input,
+  output,
   signal,
   ViewEncapsulation,
 } from '@angular/core';
@@ -31,8 +32,10 @@ export class BmbImageComponent {
   loading = input<IBmbMediaCardLoading>('lazy');
   enableZoom = input<boolean>(false);
   isBlurredBackdrop = input<boolean>(false);
-
   images = input<BmbImageItem[] | null>(null);
+
+  imageClick = output<{ img: BmbImageItem; index: number }>();
+
   currentIndex = signal(0);
   isCarousel = computed(
     () =>
@@ -78,5 +81,15 @@ export class BmbImageComponent {
     const classes = [`bmb_radius-${this.borderRadius()}`];
     if (this.enableZoom()) classes.push('bmb_image-figure-zoom');
     return classes;
+  }
+
+  handleImageClick(img: BmbImageItem, index: number): void {
+    this.imageClick.emit({ img, index });
+  }
+
+  handleImageKeyDown(event: KeyboardEvent, img: BmbImageItem, index: number): void {
+    if (event.key === 'Enter' || event.key === ' ') {
+      this.handleImageClick(img, index);
+    }
   }
 }

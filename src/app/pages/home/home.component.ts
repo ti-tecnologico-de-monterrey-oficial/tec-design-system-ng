@@ -1,7 +1,6 @@
 import {
   Component,
   effect,
-  Input,
   model,
   TemplateRef,
   ViewChild,
@@ -24,16 +23,11 @@ import {
   IBmbProjectionContent,
   BmbProjectionContentService,
   BmbMediaCardComponent,
-  BmbNotificationService,
-  BmbAdvertisementCardComponent,
   BmbActionMenuComponent,
   BmbItemComponent,
-  BmbHomeCardChatComponent,
-  IChatBarActions,
-  IBmbChatMessage,
+  BmbImageComponent,
 } from '../../../../projects/ds-ng/src/public-api';
 import { HelpMenuComponent } from '../../components/help-menu/help-menu.component';
-import { CdkDragPlaceholder } from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'bmb-home',
@@ -53,10 +47,9 @@ import { CdkDragPlaceholder } from '@angular/cdk/drag-drop';
     BmbDividerComponent,
     BmbHomeCardComponent,
     BmbMediaCardComponent,
-    CdkDragPlaceholder,
-    BmbAdvertisementCardComponent,
     BmbActionMenuComponent,
     BmbItemComponent,
+    BmbImageComponent,
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
@@ -233,5 +226,9 @@ export class HomeComponent {
 
   handleOpen(value: string): void {
     console.info('handleOpen', value);
+  }
+
+  handleImageClick(event: unknown): void {
+    console.log('Image clicked:', event);
   }
 }

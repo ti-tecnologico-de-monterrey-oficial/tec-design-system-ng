@@ -8,6 +8,7 @@ import {
   getGeneralDescription,
 } from '../../utils/doc/utils';
 import { DBmbImageParamDesc } from '../../utils/doc/parameterDescriptions';
+import { BmbImageItem } from './types';
 
 export default {
   title: 'Components/Images/Image',
@@ -48,6 +49,13 @@ ${getBasicExampleBlock('BmbImageComponent')}
     enableZoom: DBmbImageParamDesc.enableZoom,
     isBlurredBackdrop: DBmbImageParamDesc.isBlurredBackdrop,
     images: DBmbImageParamDesc.images,
+    imageClick: {
+      control: null,
+      description: 'Event emitted when an image is clicked.',
+      table: {
+        type: { summary: 'EventEmitter<{ img: BmbImageItem; index: number }>' },
+      },
+    },
   },
   args: {
     src: 'https://farm2.staticflickr.com/1919/45579541712_f58c1fd0ed_o.jpg',
@@ -60,19 +68,15 @@ ${getBasicExampleBlock('BmbImageComponent')}
     loading: 'lazy',
     enableZoom: false,
     isBlurredBackdrop: false,
+    imageClick: (event: { img: BmbImageItem; index: number }) => {
+      console.log('Image clicked', event);
+    },
   },
 } as Meta<typeof BmbImageComponent>;
 
 type Story = StoryObj<BmbImageComponent>;
 
-export const Default: Story = {
-  render: (args) => ({
-    props: args,
-    template: `
-        <bmb-image ${attributes(args)}/>
-      `,
-  }),
-};
+export const Default: Story = {};
 
 export const Carousel: Story = {
   name: 'Example carousel',
