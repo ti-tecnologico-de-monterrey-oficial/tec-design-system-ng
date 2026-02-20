@@ -12,9 +12,7 @@ import {
 import { CommonModule } from '@angular/common';
 import { BmbTopBarComponent } from '../../components/bmb-top-bar/bmb-top-bar.component';
 import { BmbSidebarComponent } from '../../components/bmb-sidebar/bmb-sidebar.component';
-import {
-  BmbHomeCardChatComponent,
-} from '../../components/bmb-home-card-chat/bmb-home-card-chat.component';
+import { BmbHomeCardChatComponent } from '../../components/bmb-home-card-chat/bmb-home-card-chat.component';
 import { IBmbChatMessage } from '../../types';
 import { IBotType, IChatBarActions } from '../../components/bmb-chat-bar/types';
 

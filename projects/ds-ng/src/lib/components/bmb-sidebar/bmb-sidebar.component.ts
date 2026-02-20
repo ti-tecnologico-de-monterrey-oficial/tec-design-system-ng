@@ -95,7 +95,7 @@ export class BmbSidebarComponent {
       const newTitle = this.componentTitle();
       logDeprecatedInput(
         { name: 'title', hasValue: !!deprecatedTitle },
-        { name: 'componentTitle', hasValue: !!newTitle }
+        { name: 'componentTitle', hasValue: !!newTitle },
       );
     });
   }

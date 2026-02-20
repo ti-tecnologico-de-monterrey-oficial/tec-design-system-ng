@@ -145,7 +145,8 @@ The shadow only appears if the card is not an external link and is not \`floatin
     },
     title: {
       control: null,
-      description: 'Please use `componentTitle` instead of `title` to set the component title.',
+      description:
+        'Please use `componentTitle` instead of `title` to set the component title.',
       table: {
         category: 'Deprecated',
         type: { summary: 'string' },

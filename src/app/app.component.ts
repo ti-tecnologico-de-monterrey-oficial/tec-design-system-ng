@@ -192,7 +192,7 @@ export class AppComponent {
             icon: 'layers',
             title: 'Modals',
             link: '/modals',
-          }
+          },
         ],
       },
       {

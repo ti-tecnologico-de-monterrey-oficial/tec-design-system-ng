@@ -26,7 +26,7 @@ export class BmbLoginOnboardingStepperStepComponent {
   cancelBackLabel = input.required<string>();
   continueLabel = input.required<string>();
   isContinueDisable = input<boolean>();
-  componentTitle = input.required<string>(); // once title is removed, this should be required
+  componentTitle = input<string>(); // once title is removed, this should be required
 
   title = input<string>(); // deprecated
 

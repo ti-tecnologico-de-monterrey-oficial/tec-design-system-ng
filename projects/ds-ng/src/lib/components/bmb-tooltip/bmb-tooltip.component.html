@@ -29,7 +29,9 @@
     >
       @if (componentTitle() || title()) {
         <section class="bmb_tooltip-container-title">
-          <span class="bmb_tooltip-container-title-text">{{ componentTitle() || title() }}</span>
+          <span class="bmb_tooltip-container-title-text">{{
+            componentTitle() || title()
+          }}</span>
         </section>
       }
       <section class="bmb_tooltip-container-description">

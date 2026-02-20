@@ -1,6 +1,8 @@
 <section class="bmb_search-card">
   <bmb-home-card
-    [componentTitle]="(componentTitle() || title()) || 'search_card.title' | translate"
+    [componentTitle]="
+      componentTitle() || title() || 'search_card.title' | translate
+    "
     [showRightButton]="false"
     icon="search"
     bgIconAppearance="blue-primary"

@@ -9,7 +9,11 @@
       </span>
     } @else if (!!icon()) {
       <span class="bmb_title-content-container-icon" [ngStyle]="getStyles()">
-        <bmb-icon [icon]="icon()" [size]="iconSize()" [alt]="componentTitle() || title() || 'icon'" />
+        <bmb-icon
+          [icon]="icon()"
+          [size]="iconSize()"
+          [alt]="componentTitle() || title() || 'icon'"
+        />
       </span>
     } @else if (!!currentBot()) {
       <span class="bmb_title-content-container-icon" [ngStyle]="getStyles()">

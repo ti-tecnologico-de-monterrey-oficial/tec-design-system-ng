@@ -18,7 +18,11 @@
       class="bmb_loader-error-icon"
       [ngClass]="'bmb_loader-error-icon-' + appearance()"
     >
-      <bmb-icon [icon]="icon()" class="bmb_loader-icon" [alt]="componentTitle() || title() || ''" />
+      <bmb-icon
+        [icon]="icon()"
+        class="bmb_loader-icon"
+        [alt]="componentTitle() || title() || ''"
+      />
     </div>
   }
   @if (componentTitle() || title()) {

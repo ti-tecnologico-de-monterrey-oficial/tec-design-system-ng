@@ -39,11 +39,13 @@ export class BmbActionMenuComponent {
       const newTitle = this.componentTitle();
       logDeprecatedInput(
         { name: 'title', hasValue: !!deprecatedTitle },
-        { name: 'componentTitle', hasValue: !!newTitle }
+        { name: 'componentTitle', hasValue: !!newTitle },
       );
 
       if (!deprecatedTitle && !newTitle) {
-        throw new Error('The "componentTitle" input is required. Please provide a value for it.');
+        throw new Error(
+          'The "componentTitle" input is required. Please provide a value for it.',
+        );
       }
     });
   }

@@ -142,13 +142,14 @@ ${getBasicExampleBlock('BmbInteractiveIconComponent', ON_BUTTON_CLICK.handleExam
     buttonClick: DBmbGenericParamDesc.onButtonClick,
     title: {
       control: null,
-      description: 'Please use `componentTitle` instead of `title` to set the component title.',
+      description:
+        'Please use `componentTitle` instead of `title` to set the component title.',
       table: {
         category: 'Deprecated',
         type: { summary: 'string' },
         defaultValue: '',
       },
-    }
+    },
   },
   args: {
     appearanceContrast: 'default',

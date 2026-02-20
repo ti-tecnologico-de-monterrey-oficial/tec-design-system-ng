@@ -85,7 +85,9 @@
       [ngClass]="getContentClasses()"
     >
       @if (componentTitle() || title()) {
-        <h1 class="bmb_media-card-content-title">{{ componentTitle() || title() }}</h1>
+        <h1 class="bmb_media-card-content-title">
+          {{ componentTitle() || title() }}
+        </h1>
       }
       @if (subtitle() && type() === 'floating') {
         <h2 class="bmb_media-card-content-subtitle">{{ subtitle() }}</h2>

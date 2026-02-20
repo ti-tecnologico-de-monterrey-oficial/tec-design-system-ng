@@ -87,7 +87,7 @@ export class BmbTitleContentComponent {
       }
     });
   }
-    currentBot = model<IBotType>();
+  currentBot = model<IBotType>();
 
   isImage(icon: string): boolean {
     return isImage(icon);

@@ -115,7 +115,8 @@ ${getBasicExampleBlock(
     ),
     title: {
       control: null,
-      description: 'Please use `componentTitle` instead of `title` to set the component title.',
+      description:
+        'Please use `componentTitle` instead of `title` to set the component title.',
       table: {
         category: 'Deprecated',
         type: { summary: 'string' },

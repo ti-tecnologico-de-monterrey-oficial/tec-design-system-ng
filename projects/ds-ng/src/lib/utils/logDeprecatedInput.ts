@@ -3,15 +3,18 @@ export interface ILogDeprecatedInput {
   hasValue: boolean;
 }
 
-export const logDeprecatedInput = (deprecatedInput: ILogDeprecatedInput, newInput: ILogDeprecatedInput | null) => {
-  if (deprecatedInput.hasValue && (newInput !== null && !newInput.hasValue)) {
+export const logDeprecatedInput = (
+  deprecatedInput: ILogDeprecatedInput,
+  newInput: ILogDeprecatedInput | null,
+) => {
+  if (deprecatedInput.hasValue && newInput !== null && !newInput.hasValue) {
     console.warn(
       `The "${deprecatedInput.name}" input is deprecated and will be removed in future versions. Please use "${newInput.name}" instead.`,
     );
     return;
   }
 
-  if (deprecatedInput.hasValue && (newInput === null)) {
+  if (deprecatedInput.hasValue && newInput === null) {
     console.warn(
       `The "${deprecatedInput.name}" input is deprecated and will be removed in future versions. Check the documentation for more details.`,
     );

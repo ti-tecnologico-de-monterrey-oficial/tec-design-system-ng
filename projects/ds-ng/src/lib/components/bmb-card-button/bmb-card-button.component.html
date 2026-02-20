@@ -121,7 +121,9 @@
           aria-label="button"
           (keypress)="handleTitleClick($event)"
         >
-          <h2 class="bmb_card_button-header-text">{{ componentTitle() || title() || '' }}</h2>
+          <h2 class="bmb_card_button-header-text">
+            {{ componentTitle() || title() || '' }}
+          </h2>
           <bmb-icon
             [icon]="icon()"
             [size]="16"
@@ -173,7 +175,9 @@
         [isFill]="false"
         [alt]="componentTitle() || title() || ''"
       />
-      <div class="bmb_card_button-add-title">{{ componentTitle() || title() || '' }}</div>
+      <div class="bmb_card_button-add-title">
+        {{ componentTitle() || title() || '' }}
+      </div>
     </button>
   }
 </section>

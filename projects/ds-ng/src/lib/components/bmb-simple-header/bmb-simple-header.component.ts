@@ -17,7 +17,9 @@ import { logDeprecatedInput } from '../../utils/logDeprecatedInput';
   imports: [BmbLayoutDirective, BmbLayoutItemDirective, BmbActionIconComponent],
   template: `
     <section bmbLayout alignItems="center">
-      <h4 bmbLayoutItem [isDynamicItem]="true" [colGrow]="1">{{ componentTitle() || title() }}</h4>
+      <h4 bmbLayoutItem [isDynamicItem]="true" [colGrow]="1">
+        {{ componentTitle() || title() }}
+      </h4>
       <span
         [style.color]="
           iconAlternativeColor()

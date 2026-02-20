@@ -72,7 +72,7 @@ describe('BmbAdvertisementCardComponent', () => {
   });
 
   it('should have default title and subtitle', () => {
-    expect(component.title()).toBe('');
+    expect(component.componentTitle()).toBe('');
     expect(component.subtitle()).toBe('');
   });
 
