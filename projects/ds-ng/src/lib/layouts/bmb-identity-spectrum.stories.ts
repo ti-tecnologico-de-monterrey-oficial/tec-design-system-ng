@@ -10,9 +10,7 @@ import { BmbUserSummaryContentComponent } from '../components/bmb-user-summary/b
 import {
   BmbCardComponent,
   BmbCardContentComponent,
-  BmbCardHeaderComponent,
 } from '../components/bmb-card/bmb-card.component';
-import { BmbIconItemComponent } from '../components/bmb-icon-item/bmb-icon-item.component';
 import { BmbFormValidatorComponent } from '../components/bmb-form-validator/bmb-form-validator.component';
 import { BmbInputComponent } from '../components/bmb-input/bmb-input.component';
 
@@ -33,9 +31,9 @@ import * as homeCardStory from '../components/bmb-home-card/bmp-home-card.storie
 import * as tabsStory from '../components/bmb-tabs/bmb-tabs.component.stories';
 import * as genericCardStory from '../components/bmb-card/bmb-card.stories';
 import * as userSummaryContentStory from '../components/bmb-user-summary/bmb-user-summary-content/bmb-user-summary-content.stories';
-import * as iconItemStory from '../components/bmb-icon-item/bmb-icon-item.stories';
 import * as inputStory from '../components/bmb-input/bmb-input.stories';
-
+import * as itemItemStory from '../components/bmb-item/bmb-item.stories';
+import * as actionMenuStory from '../components/bmb-action-menu/bmb-action-menu.stories';
 import * as nativeModalStory from '../components/bmb-modal/bmb-native-modal.stories';
 
 import * as buttonDirectiveStory from '../directives/bmb-button/button.stories';
@@ -55,6 +53,8 @@ import {
   getTechnicalDocReferences,
   RELEVANT_TITLE,
 } from '../utils/doc/utils';
+import { BmbActionMenuComponent } from '../components/bmb-action-menu/bmb-action-menu.component';
+import { BmbItemComponent } from '../components/bmb-item/bmb-item.component';
 
 const HTML_TEMPLATE: string = `
 <div class="bmb_organism-identity-spectrum">
@@ -239,63 +239,101 @@ const HTML_TEMPLATE: string = `
                   </bmb-card-content>
                 </bmb-card>
               <bmb-card borderRadius="m" margin="none" bmbVerticalLayoutItem>
-                <bmb-card-header margin="m">
-                  <h3>Datos de contacto</h3>
-                </bmb-card-header>
-                <bmb-card-content padding="l">
-                  <bmb-icon-item
-                    icon="mail"
-                    label="Correo personal"
-                    value="tecservices@servicios.tec.mx"
-                  />
-                  <bmb-icon-item
-                    label="Teléfono móvil"
-                    icon="mobile"
-                    value="+52 81 1625 5123 (solo texto)"
-                  />
-                  <bmb-icon-item
-                    label="Teléfono"
-                    icon="phone_enabled"
-                    value="+52 81 1234 5123"
-                  />
-                  <bmb-icon-item
-                    label="Dirección permanente"
-                    icon="location_on"
-                    value="Av. Eugenio Garza Sada 2501 Col. Tecnológico CP 64700, Monterrey Nuevo León, México"
-                    [showDivider]="false"
-                  />
-                </bmb-card-content>
+                <bmb-action-menu title="Datos de contacto" [showHeader]='true'>
+                  <ng-template>
+                    <bmb-item
+                      icon="mail"
+                      label="Correo personal"
+                      value="tecservices@servicios.tec.mx"
+                      valueLink="mailto:tecservices@servicios.tec.mx"
+                      valueTarget="_self"
+                    />
+                  </ng-template>
+                  <ng-template>
+                    <bmb-item
+                      icon="mobile"
+                      label="Teléfono móvil"
+                      value="+52 81 1625 5123 (solo texto)"
+                      valueLink="tel:8116255123"
+                      valueTarget="_self"
+                    />
+                  </ng-template>
+                  <ng-template>
+                    <bmb-item
+                      icon="call"
+                      label="Teléfono"
+                      value="+52 81 1234 5123"
+                      valueLink="tel:8112345123"
+                      valueTarget="_self"
+                    />
+                  </ng-template>
+                  <ng-template>
+                    <bmb-item
+                      icon="location_on"
+                      label="Dirección permanente"
+                      value="Av. Eugenio Garza Sada 2501 Col. Tecnológico CP 64700, Monterrey Nuevo León, México"
+                    />
+                  </ng-template>
+                </bmb-action-menu>
               </bmb-card>
             </section>
           </section>
           <section bmbLayoutItem [colLg]="6">
             <bmb-card borderRadius="m" margin="none" >
-              <bmb-card-header margin="m">
-                <h3>Personas filiadas</h3>
-              </bmb-card-header>
-              <bmb-card-content padding="l">
-                <bmb-icon-item label="Madre" value="Paloma Reyes Araujo" />
-                <bmb-icon-item
-                  label="Correo Madre"
-                  value="Maria.Araujo@gmail.com"
-                />
-                <bmb-icon-item label="Padre" value="Arturo Araujo Reyes" />
-                <bmb-icon-item label="Correo Padre" value="Okeha67@live.com" />
-                <bmb-icon-item
-                  label="Patria Potestad"
-                  value="Arturo Araujo Reyes"
-                />
-                <bmb-icon-item
-                  label="Responsable de pago"
-                  value="Arturo Araujo Reyes"
-                />
-                <bmb-icon-item label="Hijo/Hija" value="Paloma Reyes Araujo" />
-                <bmb-icon-item
-                  label="Esposo/Esposa"
-                  value="Paloma Reyes Araujo"
-                  [showDivider]="false"
-                />
-              </bmb-card-content>
+              <bmb-action-menu title="Personas afiliadas" [showHeader]='true'>
+                <ng-template>
+                  <bmb-item
+                    label="Madre"
+                    value="Paloma Reyes Araujo"
+                  />
+                </ng-template>
+                <ng-template>
+                  <bmb-item
+                    label="Correo Madre"
+                    value="Maria.Araujo@gmail.com"
+                    valueLink="mailto:Maria.Araujo@gmail.com"
+                    valueTarget="_self"
+                  />
+                </ng-template>
+                <ng-template>
+                  <bmb-item
+                    label="Padre"
+                    value="Arturo Araujo Reyes"
+                  />
+                </ng-template>
+                  <ng-template>
+                  <bmb-item
+                    label="Correo Padre"
+                    value="Okeha67@live.com"
+                    valueLink="mailto:Okeha67@live.com"
+                    valueTarget="_self"
+                  />
+                </ng-template>
+                  <ng-template>
+                  <bmb-item
+                    label="Patria Potestad"
+                    value="Arturo Araujo Reyes"
+                  />
+                </ng-template>
+                <ng-template>
+                  <bmb-item
+                    label="Responsable de pago"
+                    value="Arturo Araujo Reyes"
+                  />
+                </ng-template>
+                <ng-template>
+                  <bmb-item
+                    label="Hijo/Hija"
+                    value="Paloma Reyes Araujo"
+                  />
+                </ng-template>
+                <ng-template>
+                  <bmb-item
+                    label="Esposo/Esposa"
+                    value="Paloma Reyes Araujo"
+                  />
+                </ng-template>
+              </bmb-action-menu>  
             </bmb-card>
           </section>
         </section>
@@ -310,68 +348,97 @@ const HTML_TEMPLATE: string = `
         >
           <section bmbLayoutItem [colLg]="6">
             <bmb-card borderRadius="m" margin="none">
-              <bmb-card-header margin="m">
-                <h3>Información académica</h3>
-              </bmb-card-header>
-              <bmb-card-content padding="l">
-                <bmb-icon-item
-                  label="Carrera"
-                  value="Ingeniero en Tecnologías Computacionales ('99)"
-                />
-                <bmb-icon-item label="Estatus académico" value="Regular" />
-                <bmb-icon-item label="Semestre actual" value="Ago-Dic 2025" />
-                <bmb-icon-item label="Campus" value="Monterrey" />
-                <bmb-icon-item label="Nivel" value="Profesional" />
-                <bmb-icon-item
-                  label="Programa"
-                  value="Alumno Prog Internacional"
-                  [showDivider]="false"
-                />
-              </bmb-card-content>
+              <bmb-action-menu title="Información académica" [showHeader]='true'>
+                <ng-template>
+                  <bmb-item
+                    label="Carrera"
+                    value="Ingeniero en Tecnologías Computacionales ('99)"
+                  />
+                </ng-template>
+                <ng-template>
+                  <bmb-item
+                    label="Estatus académico"
+                    value="Regular"
+                  />
+                </ng-template>
+                <ng-template>
+                  <bmb-item
+                    label="Semestre actual"
+                    value="Ago-Dic 2025"
+                  />
+                </ng-template>
+                  <ng-template>
+                  <bmb-item
+                    label="Campus"
+                    value="Monterrey"
+                  />
+                </ng-template>
+                  <ng-template>
+                  <bmb-item
+                    label="Nivel"
+                    value="Profesional"
+                  />
+                </ng-template>
+                <ng-template>
+                  <bmb-item
+                    label="Programa"
+                    value="Alumno Prog Internacional"
+                  />
+                </ng-template>
+              </bmb-action-menu>  
             </bmb-card>
           </section>
           <section bmbLayoutItem [colLg]="6">
             <section bmbVerticalLayout gapSize="xl">
               <bmb-card borderRadius="m" margin="none" bmbVerticalLayoutItem>
-                <bmb-card-header margin="m">
-                  <h3>Acreditaciones</h3>
-                </bmb-card-header>
-                <bmb-card-content padding="l">
-                  <bmb-icon-item
-                    label="Unidades del plan acreditadas"
-                    value="Unidades del plan acreditadas"
-                  />
-                  <bmb-icon-item
-                    label="Unidades del plan pendientes"
-                    value="732"
-                  />
-                  <bmb-icon-item
-                    label="Materias del plan acreditadas"
-                    value="006"
-                  />
-                  <bmb-icon-item
-                    label="Materias del plan pendientes"
-                    value="075"
-                  />
-                  <bmb-icon-item
-                    label="Semestre acreditado"
-                    value="01"
-                    [showDivider]="false"
-                  />
-                </bmb-card-content>
+                <bmb-action-menu title="Acreditaciones" [showHeader]='true'>
+                  <ng-template>
+                    <bmb-item
+                      label="Unidades del plan acreditadas"
+                      value="Unidades del plan acreditadas"
+                    />
+                  </ng-template>
+                  <ng-template>
+                    <bmb-item
+                      label="Unidades del plan pendientes"
+                      value="732"
+                    />
+                  </ng-template>
+                  <ng-template>
+                    <bmb-item
+                      label="Materias del plan acreditadas"
+                      value="006"
+                    />
+                  </ng-template>
+                    <ng-template>
+                    <bmb-item
+                      label="Materias del plan pendientes"
+                      value="075"
+                    />
+                  </ng-template>
+                    <ng-template>
+                    <bmb-item
+                      label="Semestre acreditado"
+                      value="01"
+                    />
+                  </ng-template>
+                </bmb-action-menu>
               </bmb-card>
               <bmb-card borderRadius="m" margin="none" bmbVerticalLayoutItem>
-                <bmb-card-header margin="m">
-                  <h3>Examen de admisión</h3>
-                </bmb-card-header>
-                <bmb-card-content padding="l">
-                  <bmb-icon-item label="Verbal Profesional" value="747.00" />
-                  <bmb-icon-item
-                    label="Matemático Profesional"
-                    value="609.00"
-                    [showDivider]="false"
-                  />
-                </bmb-card-content>
+                <bmb-action-menu title="Examen de admisión" [showHeader]='true'>
+                  <ng-template>
+                    <bmb-item
+                      label="Verbal Profesional"
+                      value="747.00"
+                    />
+                  </ng-template>
+                  <ng-template>
+                    <bmb-item
+                      label="Matemático Profesional"
+                      value="609.00"
+                    />
+                  </ng-template>
+                </bmb-action-menu>
               </bmb-card>
             </section>
           </section>
@@ -480,11 +547,11 @@ const HTML_TEMPLATE: string = `
     BmbHomeCardComponent,
     BmbTabsComponent,
     BmbCardComponent,
-    BmbCardHeaderComponent,
     BmbCardContentComponent,
     BmbUserSummaryContentComponent,
-    BmbIconItemComponent,
     BmbFormValidatorComponent,
+    BmbActionMenuComponent,
+    BmbItemComponent,
     BmbInputComponent,
     BmbButtonDirective,
     BmbLayoutDirective,
@@ -557,7 +624,8 @@ the developer can add data to the ${getStoryTitle(genericCardStory.default.title
       { title: tabsStory.default.title! },
       { title: genericCardStory.default.title! },
       { title: userSummaryContentStory.default.title! },
-      { title: iconItemStory.default.title! },
+      { title: actionMenuStory.default.title! },
+      { title: itemItemStory.default.title! },
       { title: inputStory.default.title! },
       { title: nativeModalStory.default.title! },
       { title: buttonDirectiveStory.default.title! },
@@ -575,10 +643,10 @@ ${getBasicExampleBlock(
   BmbHomeCardComponent,
   BmbTabsComponent,
   BmbCardComponent,
-  BmbCardHeaderComponent,
   BmbCardContentComponent,
   BmbUserSummaryContentComponent,
-  BmbIconItemComponent,
+  BmbActionMenuComponent,
+  BmbItemComponent,
   BmbFormValidatorComponent,
   BmbInputComponent,
   BmbButtonDirective,
