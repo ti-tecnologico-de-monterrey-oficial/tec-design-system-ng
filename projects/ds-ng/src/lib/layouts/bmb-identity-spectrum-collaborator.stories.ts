@@ -1,6 +1,6 @@
 import { componentWrapperDecorator, Meta, StoryObj } from '@storybook/angular';
-import { Component, TemplateRef, ViewChild } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { Component, signal, TemplateRef, ViewChild } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 import { BmbTopBarComponent } from '../components/bmb-top-bar/bmb-top-bar.component';
 import { BmbSidebarComponent } from '../components/bmb-sidebar/bmb-sidebar.component';
@@ -34,7 +34,7 @@ import * as userSummaryContentStory from '../components/bmb-user-summary/bmb-use
 import * as inputStory from '../components/bmb-input/bmb-input.stories';
 import * as itemItemStory from '../components/bmb-item/bmb-item.stories';
 import * as actionMenuStory from '../components/bmb-action-menu/bmb-action-menu.stories';
-
+import * as dropzoneStory from '../components/bmb-dropzone/bmb-dropzone.stories';
 import * as nativeModalStory from '../components/bmb-modal/bmb-native-modal.stories';
 
 import * as buttonDirectiveStory from '../directives/bmb-button/button.stories';
@@ -56,6 +56,7 @@ import {
 } from '../utils/doc/utils';
 import { BmbActionMenuComponent } from '../components/bmb-action-menu/bmb-action-menu.component';
 import { BmbItemComponent } from '../components/bmb-item/bmb-item.component';
+import { BmbDropzoneComponent } from '../components/bmb-dropzone/bmb-dropzone.component';
 
 const HTML_TEMPLATE: string = `
 <div class="bmb_organism-identity-spectrum">
@@ -468,8 +469,28 @@ const HTML_TEMPLATE: string = `
     [position]="'left'"
   />
   <ng-template #modalTemplate>
-    <bmb-form-validator [(formGroup)]="userForm">
-      <section bmbVerticalLayout gapSize="m">
+    <bmb-form-validator [(formGroup)]="userForm" (ngSubmit)="onSubmit()">
+      <section bmbLayoutItem bmbVerticalLayout gapSize="m">
+        <section bmbVerticalLayoutItem gapSize="s">
+          <label for="bmbFileInput" class="font-regular-4 bmb_padding-s">Imagen de perfil</label><br>
+          <bmb-dropzone
+            [acceptedExtensions]="['png', 'jpeg', 'jpg']"
+            [dropInstruction]="'Arrastra tu archivo y suelta o'"
+            [dropLabel]="'sube un archivo'"
+            [errorMessageFormat]="'Formato no soportado'"
+            [errorMessageSize]="'El archivo supera el tamaño máximo permitido.'"
+            [fileSize]="2"
+            [formatFilesLabel]="'Imagen de perfil'"
+            [linkFilesSupported]="''"
+            [linkLabel]="'Ver más información de formatos de archivo aceptados.'"
+            [mainIcon]="'image'"
+            [multiple]="true"
+            [name]="'bmbFileInput'"
+            [progress]="progress()"
+            (fileRemoved)="removeFileFromForm($event)"
+            (newFile)="onFileReceived($event)"
+          />
+        </section>
         <bmb-input
           inputId="email_id"
           name="email"
@@ -477,20 +498,26 @@ const HTML_TEMPLATE: string = `
           value="paraujo@gmail.com"
           bmbVerticalLayoutItem
         />
-        <bmb-input
-          inputId="celphone_id"
-          name="celphone"
-          label="Teléfono móvil"
-          value="8123456789"
-          bmbVerticalLayoutItem
-        />
-        <bmb-input
-          inputId="phone_id"
-          name="phone"
-          label="Teléfono local"
-          value="8123456789"
-          bmbVerticalLayoutItem
-        />
+        <section bmbVerticalLayoutItem bmbLayout margin="none" gapSize="m">
+          <section bmbLayoutItem [colLg]="6">
+            <bmb-input
+              inputId="celphone_id"
+              name="celphone"
+              label="Teléfono móvil"
+              value="8123456789"
+              bmbVerticalLayoutItem
+            />
+          </section>
+          <section bmbLayoutItem [colLg]="6">
+            <bmb-input
+              inputId="phone_id"
+              name="phone"
+              label="Teléfono local"
+              value="8123456789"
+              bmbVerticalLayoutItem
+            />
+          </section>
+        </section>
         <section bmbVerticalLayoutItem bmbLayout margin="none" gapSize="m">
           <section bmbLayoutItem [colLg]="6">
             <bmb-input
@@ -556,6 +583,7 @@ const HTML_TEMPLATE: string = `
     BmbVerticalLayoutDirective,
     BmbVerticalLayoutItemDirective,
     BmbSelectorDirective,
+    BmbDropzoneComponent,
   ],
   template: HTML_TEMPLATE,
 })
@@ -569,7 +597,9 @@ export class StorybookIdentitySpectrumCollaborator {
     },
   ];
   userForm: FormGroup = new FormGroup({});
+  progress = signal<Record<string, number>>({});
 
+  @ViewChild(BmbDropzoneComponent) dropzone?: BmbDropzoneComponent;
   @ViewChild('modalTemplate') modalTemplate!: TemplateRef<any>;
 
   openModal(): void {
@@ -584,7 +614,88 @@ export class StorybookIdentitySpectrumCollaborator {
     window.open('https://www.successfactors.com/', '_blank');
   }
 
-  constructor(private modalService: BmbNativeModalService) {}
+  constructor(
+    private modalService: BmbNativeModalService,
+    private fb: FormBuilder,
+  ) {
+    this.userForm = this.fb.group({
+      bmbFileInput: [null],
+      email: [''],
+      celphone: [''],
+      phone: [''],
+      permanent_address: [''],
+      residential_address: [''],
+    });
+  }
+
+  onFileReceived(files: File | File[]) {
+    const incomingFiles = Array.isArray(files) ? files : [files];
+    const current = this.getCurrentFiles();
+
+    const currentKeys = new Set(current.map((f) => `${f.name}-${f.size}`));
+    const newFiles = incomingFiles.filter(
+      (f) => !currentKeys.has(`${f.name}-${f.size}`),
+    );
+
+    const updated = [...current, ...newFiles];
+
+    this.userForm.patchValue({
+      bmbFileInput: updated.length > 1 ? updated : updated[0],
+    });
+
+    newFiles.forEach(this.simulateUpload.bind(this));
+  }
+
+  simulateUpload(file: File) {
+    let progress = 0;
+
+    this.progress.update((map) => ({ ...map, [file.name]: 0 }));
+
+    const interval = setInterval(() => {
+      progress += 50;
+
+      this.progress.update((map) => ({
+        ...map,
+        [file.name]: Math.min(progress, 100),
+      }));
+
+      if (progress >= 100) {
+        clearInterval(interval);
+      }
+    }, 300);
+  }
+
+  removeFileFromForm(fileName: string) {
+    const files = this.getCurrentFiles();
+    const updated = files.filter((f) => f.name !== fileName);
+
+    this.userForm.patchValue({
+      bmbFileInput: updated.length > 1 ? updated : updated[0] ?? null,
+    });
+
+    const progressMap = { ...this.progress() };
+    delete progressMap[fileName];
+    this.progress.set(progressMap);
+  }
+
+  getCurrentFiles(): File[] {
+    const control = this.userForm.value.bmbFileInput;
+    if (!control) return [];
+    return Array.isArray(control) ? control : [control];
+  }
+
+  onSubmit() {
+    const files = this.getCurrentFiles();
+    const allUploaded = files.every((f) => this.progress()[f.name] === 100);
+
+    if (!allUploaded) return;
+
+    console.log('Enviar:', this.userForm.value);
+
+    this.userForm.reset();
+    this.progress.set({});
+    this.dropzone?.reset();
+  }
 }
 
 export default {
@@ -637,6 +748,7 @@ the developer can add data to the ${getStoryTitle(genericCardStory.default.title
       { title: layoutDirectiveStory.default.title! },
       { title: verticalLayoutDirectiveStory.default.title! },
       { title: selectorDirectiveStory.default.title! },
+      { title: dropzoneStory.default.title! },
     ],
   })}`,
   { showAdditionalBlockquote: true },
@@ -661,6 +773,7 @@ ${getBasicExampleBlock(
   BmbVerticalLayoutDirective,
   BmbVerticalLayoutItemDirective,
   BmbSelectorDirective,
+  BmbDropzoneComponent
 `,
   `import { TemplateRef, ViewChild, ViewEncapsulation } from '@angular/core';
 import { FormGroup } from '@angular/forms';
