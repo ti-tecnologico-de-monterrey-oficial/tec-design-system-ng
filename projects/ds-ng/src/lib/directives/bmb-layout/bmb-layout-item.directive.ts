@@ -74,15 +74,15 @@ export class BmbLayoutItemDirective implements OnInit, AfterViewInit {
     const parent = host.parentElement;
 
     if (
-      parent.classList.contains('bmb_layout-container') &&
-      !host.classList.contains('bmb_layout-container-item')
+      parent.classList?.contains('bmb_layout-container') &&
+      !host.classList?.contains('bmb_layout-container-item')
     ) {
-      host.classList.add('bmb_layout-container-item');
+      host.classList?.add('bmb_layout-container-item');
     } else if (
-      parent.classList.contains('bmb_layout') &&
-      !host.classList.contains('bmb_layout-item')
+      parent.classList?.contains('bmb_layout') &&
+      !host.classList?.contains('bmb_layout-item')
     ) {
-      host.classList.add('bmb_layout-item');
+      host.classList?.add('bmb_layout-item');
     }
   }
 }
