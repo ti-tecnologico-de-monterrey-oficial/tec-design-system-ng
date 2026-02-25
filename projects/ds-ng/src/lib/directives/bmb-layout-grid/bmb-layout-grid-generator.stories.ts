@@ -389,7 +389,7 @@ The generated HTML code will include the \`bmbLayoutGrid\` and \`bmbLayoutGridIt
         type: 'number',
       },
       description:
-        'The height of the grid. If a number is provided, it will be used as the height in pixels. If a string is provided, it will be used as the height in CSS units (e.g. "100%", "50vh", etc.).',
+        'The height of the grid. If a number is provided, it will be used as the height in pixels. If a string is provided, it will be used as the height in CSS units (e.g. "100%", "50dvh", etc.).',
       table: {
         category: 'Properties',
         type: { summary: 'string | number' },
