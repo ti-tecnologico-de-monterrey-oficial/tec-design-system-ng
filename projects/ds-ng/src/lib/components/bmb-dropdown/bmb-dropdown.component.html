@@ -11,7 +11,6 @@
   [control]="control()"
   [showError]="shouldShowError"
   [tooltip]="tooltip()"
-  [tooltipPosition]="tooltipPosition()"
   [customValidation]="customValidation()"
 >
   <div #contentDiv>
@@ -32,12 +31,28 @@
     >
       <ng-template #customContent>
         <label [htmlFor]="inputId()">
-          <bmb-icon
-            class="bmb_field-actions"
-            icon="keyboard_arrow_down"
-            (click)="openList()"
-            [size]="24"
-          />
+          <section
+            bmbLayout
+            margin="none"
+            [gapSize]="isMultiSelect() ? 's' : 'none'"
+          >
+            @if (isMultiSelect()) {
+              <bmb-tag
+                [text]="'+1'"
+                [dismissible]="true"
+                [isDisabled]="false"
+                (closedTag)="handleClearSelectedOptions()"
+                bmbLayoutItem
+              />
+            }
+            <bmb-icon
+              class="bmb_field-actions"
+              icon="keyboard_arrow_down"
+              (click)="openList()"
+              [size]="24"
+              bmbLayoutItem
+            />
+          </section>
         </label>
       </ng-template>
     </bmb-input-content>
