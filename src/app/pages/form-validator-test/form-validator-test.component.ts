@@ -33,7 +33,7 @@ import services from './services.json';
     BmbTextEditorComponent,
     BmbSearchInputComponent,
     BmbSearchCardComponent,
-    BmbInputTagsComponent
+    BmbInputTagsComponent,
   ],
   templateUrl: './form-validator-test.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
