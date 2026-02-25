@@ -78,10 +78,6 @@ export class BmbInputComponent implements OnInit {
   rows = input<number>(3);
   showMaxTextLength = input<boolean>(true);
   additionalAction = input<IBmbAdditionalAction>('none');
-  tooltipPosition = input<IBmbInputTooltipPosition>({
-    align: 'above',
-    justify: 'before',
-  });
   isClearable = input<boolean>(false);
   customValidation = input<ValidatorFn>();
   inputId = input<string>(this.name());
@@ -94,6 +90,11 @@ export class BmbInputComponent implements OnInit {
   isBlur = output<boolean>();
   onChange = output<HTMLInputElement>();
   onKeyDown = output<KeyboardEvent>();
+
+  tooltipPosition = input<IBmbInputTooltipPosition>({
+    align: 'above',
+    justify: 'before',
+  }); // Deprecated
 
   customInputContent = contentChild<TemplateRef<any>>('customInputContent');
   isControlNull: boolean = false;
