@@ -2,6 +2,7 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
+  forwardRef,
   input,
   model,
   OnInit,
@@ -36,7 +37,11 @@ export type IBmbInputValType =
 @Component({
   selector: 'bmb-input-validator',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, BmbTooltipComponent],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    forwardRef(() => BmbTooltipComponent), // avoid circular dependency on Storybook
+  ],
   templateUrl: './bmb-input-validator.component.html',
   styleUrl: './bmb-input-validator.component.scss',
   encapsulation: ViewEncapsulation.None,

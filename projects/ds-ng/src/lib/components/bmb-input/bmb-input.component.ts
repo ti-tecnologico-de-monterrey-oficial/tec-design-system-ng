@@ -11,7 +11,7 @@ import {
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormControl, ValidatorFn } from '@angular/forms';
-import {
+import type {
   IBmbAlignTooltip,
   IBmbJustifyTooltip,
 } from '../bmb-tooltip/bmb-tooltip.component';
