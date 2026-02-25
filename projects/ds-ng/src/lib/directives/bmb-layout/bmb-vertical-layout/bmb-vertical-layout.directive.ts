@@ -1,4 +1,4 @@
-import { Directive, effect, HostBinding, input } from '@angular/core';
+import { Directive, HostBinding, input } from '@angular/core';
 import { SizeNames } from '../../../types';
 import { IAlignItemsOptions, IJustifyOptions } from '../bmb-layout.directive';
 
@@ -10,16 +10,16 @@ export class BmbVerticalLayoutDirective {
   gapSize = input<SizeNames>('m');
   justify = input<IJustifyOptions>('start');
   alignItems = input<IAlignItemsOptions>('start');
-  layoutHeight = input<string>('100%');
+  layoutHeight = input<string>('auto');
   margin = input<SizeNames>('none');
 
-  constructor() {
-    effect(() => {
-      this.styleHeight = this.layoutHeight();
-    });
+  @HostBinding('style.height')
+  get styleHeight(): string {
+    return this.layoutHeight();
   }
 
-  @HostBinding('class') get elementClass(): string[] {
+  @HostBinding('class')
+  get elementClass(): string[] {
     return [
       'bmb_vertical-layout',
       `bmb_gap-${this.gapSize()}`,
@@ -28,6 +28,4 @@ export class BmbVerticalLayoutDirective {
       `bmb_margin-${this.margin()}`,
     ];
   }
-
-  @HostBinding('style.height') styleHeight?: string;
 }

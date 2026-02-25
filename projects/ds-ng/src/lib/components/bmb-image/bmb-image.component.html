@@ -80,6 +80,10 @@
             [alt]="img.alt || alt()"
             [loading]="loading()"
             class="bmb_image-figure-image"
+            role="button"
+            tabindex="0"
+            (click)="handleImageClick(img, $index)"
+            (keydown)="handleImageKeyDown($event, img, $index)"
           />
         </picture>
       </figure>
