@@ -61,7 +61,6 @@ export class AppComponent {
     private modalService: BmbNativeModalService,
     private projectionService: BmbProjectionContentService,
     private matDialog: MatDialog,
-    private contentProjected: BmbProjectionContentService,
   ) {
     this.searchSubject
       .pipe(debounceTime(1000), distinctUntilChanged())
@@ -155,12 +154,18 @@ export class AppComponent {
           },
           {
             id: 2,
+            icon: 'input',
+            title: 'Input',
+            link: '/input',
+          },
+          {
+            id: 3,
             icon: 'dropdown',
             title: 'Dropdown',
             link: '/dropdown',
           },
           {
-            id: 3,
+            id: 4,
             icon: 'upload_file',
             title: 'Dropzone',
             link: '/dropzone',
