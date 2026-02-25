@@ -33,11 +33,15 @@
     color: var(--general-contrasts-100);
 
     &-required {
+      display: inline-flex;
+      height: fit-content;
       color: rgb(var(--red-light));
     }
 
     &-tooltip {
-      color: var(--general-contrasts-50);
+      display: inline-flex;
+      height: fit-content;
+      color: var(--general-contrasts-75);
     }
 
     &-max {

@@ -10,7 +10,6 @@ import {
 import {
   IBmbInputAppearance,
   IBmbInputError,
-  IBmbInputTooltipPosition,
   IBmbInputType,
 } from '../bmb-input.component';
 import {
@@ -61,10 +60,6 @@ export class BmbInputValidatorComponent implements OnInit {
   jsonFormat = input<boolean>(false);
   tooltip = input<string>('');
   rows = input<number>(3);
-  tooltipPosition = input<IBmbInputTooltipPosition>({
-    align: 'above',
-    justify: 'before',
-  });
   showMaxTextLength = input<boolean | null>(true);
   helperMessage = input<string>('');
   errorMessage = input<string | IBmbInputError>('');
