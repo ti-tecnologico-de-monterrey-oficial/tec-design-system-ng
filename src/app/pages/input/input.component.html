@@ -7,7 +7,6 @@
       placeholder="Placeholder"
       icon="apps"
       tooltip="Tooltip example"
-      [isClearable]="false"
       [isClearable]="true"
       [errorMessage]="{
         required: 'Please enter the required data',
@@ -32,8 +31,199 @@
       placeholder="Placeholder"
       icon="apps"
       tooltip="Tooltip example"
-      [isClearable]="false"
       [isClearable]="true"
+      [errorMessage]="{
+        required: 'Please enter the required data',
+        jsonFormat: 'Please enter content in valid JSON format',
+        minLength: 'Please enter at least 4 characters',
+        pattern: 'Please enter only letters'
+      }"
+      [disabled]="false"
+      [isRequired]="true"
+      (isFocus)="handleFocus($event)"
+      (isBlur)="handleBlur($event)"
+      (onChange)="handleChange($event)"
+    />
+  </section>
+  <section bmbLayoutItem [colSm]="2">
+    <bmb-input
+      inputId="inputId"
+      name="inputTest"
+      label="Input"
+      placeholder="Placeholder"
+      icon="apps"
+      tooltip="Tooltip example"
+      [isClearable]="true"
+      additionalAction="copy"
+      [errorMessage]="{
+        required: 'Please enter the required data',
+        jsonFormat: 'Please enter content in valid JSON format',
+        minLength: 'Please enter at least 4 characters',
+        pattern: 'Please enter only letters'
+      }"
+      [disabled]="false"
+      [isRequired]="true"
+      (isFocus)="handleFocus($event)"
+      (isBlur)="handleBlur($event)"
+      (onChange)="handleChange($event)"
+    />
+  </section>
+  <section bmbLayoutItem [colSm]="2">
+    <bmb-input
+      type="text"
+      inputId="inputId"
+      name="inputSimpleTest"
+      appearance="simple"
+      label="Simple input"
+      placeholder="Placeholder"
+      icon="apps"
+      tooltip="Tooltip example"
+      [isClearable]="true"
+      additionalAction="copy"
+      [errorMessage]="{
+        required: 'Please enter the required data',
+        jsonFormat: 'Please enter content in valid JSON format',
+        minLength: 'Please enter at least 4 characters',
+        pattern: 'Please enter only letters'
+      }"
+      [disabled]="false"
+      [isRequired]="true"
+      (isFocus)="handleFocus($event)"
+      (isBlur)="handleBlur($event)"
+      (onChange)="handleChange($event)"
+    />
+  </section>
+  <section bmbLayoutItem [colSm]="2">
+    <bmb-input
+      type="password"
+      inputId="inputId"
+      name="inputTest"
+      label="Input"
+      placeholder="Placeholder"
+      icon="apps"
+      tooltip="Tooltip example"
+      [isClearable]="true"
+      additionalAction="showHide"
+      [errorMessage]="{
+        required: 'Please enter the required data',
+        jsonFormat: 'Please enter content in valid JSON format',
+        minLength: 'Please enter at least 4 characters',
+        pattern: 'Please enter only letters'
+      }"
+      [disabled]="false"
+      [isRequired]="true"
+      (isFocus)="handleFocus($event)"
+      (isBlur)="handleBlur($event)"
+      (onChange)="handleChange($event)"
+    />
+  </section>
+  <section bmbLayoutItem [colSm]="2">
+    <bmb-input
+      type="password"
+      inputId="inputId"
+      name="inputSimpleTest"
+      appearance="simple"
+      label="Simple input"
+      placeholder="Placeholder"
+      icon="apps"
+      tooltip="Tooltip example"
+      [isClearable]="true"
+      additionalAction="showHide"
+      [errorMessage]="{
+        required: 'Please enter the required data',
+        jsonFormat: 'Please enter content in valid JSON format',
+        minLength: 'Please enter at least 4 characters',
+        pattern: 'Please enter only letters'
+      }"
+      [disabled]="false"
+      [isRequired]="true"
+      (isFocus)="handleFocus($event)"
+      (isBlur)="handleBlur($event)"
+      (onChange)="handleChange($event)"
+    />
+  </section>
+  <section bmbLayoutItem [colSm]="2">
+    <bmb-input
+      type="number"
+      inputId="inputId"
+      name="inputTest"
+      label="Input"
+      placeholder="Placeholder"
+      icon="apps"
+      tooltip="Tooltip example"
+      [isClearable]="true"
+      additionalAction="copy"
+      [errorMessage]="{
+        required: 'Please enter the required data',
+        jsonFormat: 'Please enter content in valid JSON format',
+        minLength: 'Please enter at least 4 characters',
+        pattern: 'Please enter only letters'
+      }"
+      [disabled]="false"
+      [isRequired]="true"
+      (isFocus)="handleFocus($event)"
+      (isBlur)="handleBlur($event)"
+      (onChange)="handleChange($event)"
+    />
+  </section>
+  <section bmbLayoutItem [colSm]="2">
+    <bmb-input
+      type="number"
+      inputId="inputId"
+      name="inputSimpleTest"
+      appearance="simple"
+      label="Simple input"
+      placeholder="Placeholder"
+      icon="apps"
+      tooltip="Tooltip example"
+      [isClearable]="true"
+      additionalAction="copy"
+      [errorMessage]="{
+        required: 'Please enter the required data',
+        jsonFormat: 'Please enter content in valid JSON format',
+        minLength: 'Please enter at least 4 characters',
+        pattern: 'Please enter only letters'
+      }"
+      [disabled]="false"
+      [isRequired]="true"
+      (isFocus)="handleFocus($event)"
+      (isBlur)="handleBlur($event)"
+      (onChange)="handleChange($event)"
+    />
+  </section>
+  <section bmbLayoutItem [colSm]="2">
+    <bmb-input
+      type="text-area"
+      inputId="inputId"
+      name="inputTest"
+      label="Input"
+      placeholder="Placeholder"
+      icon="apps"
+      tooltip="Tooltip example"
+      [errorMessage]="{
+        required: 'Please enter the required data',
+        jsonFormat: 'Please enter content in valid JSON format',
+        minLength: 'Please enter at least 4 characters',
+        pattern: 'Please enter only letters'
+      }"
+      [disabled]="false"
+      [isRequired]="true"
+      (isFocus)="handleFocus($event)"
+      (isBlur)="handleBlur($event)"
+      (onChange)="handleChange($event)"
+    />
+  </section>
+  <section bmbLayoutItem [colSm]="2">
+    <bmb-input
+      type="text-area"
+      inputId="inputId"
+      name="inputSimpleTest"
+      appearance="simple"
+      label="Simple input"
+      placeholder="Placeholder"
+      icon="apps"
+      tooltip="Tooltip example"
+      [maxlength]="120"
       [errorMessage]="{
         required: 'Please enter the required data',
         jsonFormat: 'Please enter content in valid JSON format',
