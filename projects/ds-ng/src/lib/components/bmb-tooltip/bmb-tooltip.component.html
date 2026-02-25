@@ -1,42 +1,36 @@
-<section class="bmb_tooltip">
-  @if (icon() && size()) {
-    <bmb-icon
-      class="bmb_tooltip-icon"
-      [size]="size()"
-      [icon]="icon()"
-      [isFill]="isFill()"
-      [alt]="componentTitle() || title() || 'Tooltip icon'"
-      [tabIndex]="0"
-      role="button"
-      aria-haspopup="true"
-      [attr.aria-expanded]="isTooltipVisible()"
-      aria-describedby="tooltip-content"
-      (focus)="handleFocus($event)"
-      (blur)="handleFocus($event)"
-      (keydown)="handleFocus($event)"
-    />
-  } @else {
-    <ng-content></ng-content>
-  }
+@if (icon() && size()) {
+  <bmb-action-icon
+    idElement="tooltip_element"
+    [iconSize]="size()"
+    [icon]="icon()"
+    [isFill]="isFill()"
+    [alt]="componentTitle() || title() || 'Tooltip icon'"
+    aria-describedby="tooltip-icon"
+    (buttonClick)="showTooltip($event)"
+  />
+} @else {
+  <ng-content />
+}
 
-  @if (isTooltipVisible()) {
+<ng-template #contentTooltip>
+  <div>
     <section
       id="tooltip-content"
-      role="tooltip"
-      class="bmb_tooltip-container"
-      [ngClass]="getClasses()"
-      [attr.aria-hidden]="!isTooltipVisible()"
+      class="bmb_tooltip"
+      aria-describedby="tooltip-content"
+      bmbVerticalLayout
+      gapSize="s"
     >
       @if (componentTitle() || title()) {
-        <section class="bmb_tooltip-container-title">
-          <span class="bmb_tooltip-container-title-text">{{
-            componentTitle() || title()
-          }}</span>
-        </section>
+        <span bmbVerticalLayoutItem margin="none" [rowGrow]="1">
+          {{ componentTitle() || title() }}
+        </span>
       }
-      <section class="bmb_tooltip-container-description">
-        <span class="bmb_tooltip-container-description-text">{{ text() }}</span>
-      </section>
+      <span bmbVerticalLayoutItem margin="none" [rowGrow]="1">
+        {{
+          'Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum nihil modi repellendus ad aspernatur corporis.'
+        }}
+      </span>
     </section>
-  }
-</section>
+  </div>
+</ng-template>
