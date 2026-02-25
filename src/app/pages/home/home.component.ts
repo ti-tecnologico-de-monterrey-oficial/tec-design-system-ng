@@ -26,8 +26,10 @@ import {
   BmbActionMenuComponent,
   BmbItemComponent,
   BmbImageComponent,
+  BmbNativeModalService,
 } from '../../../../projects/ds-ng/src/public-api';
 import { HelpMenuComponent } from '../../components/help-menu/help-menu.component';
+import { ModalWDropdownComponent } from '../../components/modal-w-dropdown/modal-w-dropdown.component';
 
 @Component({
   selector: 'bmb-home',
@@ -157,6 +159,7 @@ export class HomeComponent {
   constructor(
     private router: Router,
     private contentProjected: BmbProjectionContentService,
+    private modalService: BmbNativeModalService,
   ) {
     effect(() => {
       // console.log('Bookmark active state changed:', this.bookmarkActive());
@@ -230,5 +233,18 @@ export class HomeComponent {
 
   handleImageClick(event: unknown): void {
     console.log('Image clicked:', event);
+  }
+
+  handleModalWithDropdown(event: MouseEvent | KeyboardEvent): void {
+    const data: IBmbProjectionContent = {
+      content: this.modalTemplate,
+      targetRef: event.target as HTMLElement,
+    };
+
+    this.modalService.openModal({
+      title: 'Modal with Dropdown',
+      content: ModalWDropdownComponent,
+      size: 'medium',
+    });
   }
 }

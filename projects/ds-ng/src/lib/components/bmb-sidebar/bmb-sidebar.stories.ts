@@ -26,7 +26,7 @@ export default {
       imports: [CommonModule, RouterTestingModule],
     }),
     componentWrapperDecorator((story: string) => {
-      return `<div style="height: 50vh;">
+      return `<div style="height: 50dvh;">
         ${story}
       </div>`;
     }),
