@@ -46,7 +46,7 @@
   }
 
   &-error {
-    height: 100vh;
+    height: 100dvh;
     margin: auto;
     padding: rem.rem_calc(40 0);
     text-align: center;
@@ -95,11 +95,11 @@
 
   &-overlay {
     background-color: var(--black-tint);
-    height: 100vh;
+    height: 100dvh;
     left: 0;
     position: fixed;
     top: 0;
-    width: 100vw;
+    width: 100dvw;
     z-index: 999;
   }
 

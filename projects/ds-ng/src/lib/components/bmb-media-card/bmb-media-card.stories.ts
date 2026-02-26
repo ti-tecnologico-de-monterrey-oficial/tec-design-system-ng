@@ -159,7 +159,7 @@ The shadow only appears if the card is not an external link and is not \`floatin
     mobileSrc:
       'https://2.bp.blogspot.com/-YkNDZEbKt_g/TYzcbF2_tkI/AAAAAAAAalk/Vt_MHS60Xv8/s1600/www.JoseLuisAvilaHerrera.BLOGSPOT.com%2B-%2BFunny%2BCats%2B-%2BGatitos%2Bmuy%2Btiernos%2B8.jpg',
     alt: 'Fruits',
-    width: 'clamp(200px, 100%, calc(50vw - 3rem))',
+    width: 'clamp(200px, 100%, calc(50dvw - 3rem))',
     ratio: '1/1',
     borderRadius: 'm',
     loading: 'lazy',

@@ -133,15 +133,15 @@
   --bmb-dot-paginator-dot: rgb(var(--gray-ged-500));
 
   // Switch box variables - this variables are only for development purposes
-  --buttons-active-switch-box-shadow-hover: rgba(var(--green-light), 0.15);
-  --buttons-active-switch-box-shadow-focus: rgba(var(--green-light), 0.25);
+  --buttons-active-switch-box-shadow-hover: rgba(var(--green-light), 0.1);
+  --buttons-active-switch-box-shadow-focus: rgba(var(--green-light), 0.2);
   --buttons-inactive-switch-box-shadow-hover: rgba(
     var(--gray-charade-500),
-    0.15
+    0.1
   );
   --buttons-inactive-switch-box-shadow-focus: rgba(
     var(--gray-charade-500),
-    0.25
+    0.2
   );
 
   /*TECMI*/
