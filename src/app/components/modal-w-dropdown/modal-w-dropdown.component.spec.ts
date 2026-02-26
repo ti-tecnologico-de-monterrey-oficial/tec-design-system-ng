@@ -8,9 +8,8 @@ describe('ModalWDropdownComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ModalWDropdownComponent]
-    })
-    .compileComponents();
+      imports: [ModalWDropdownComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(ModalWDropdownComponent);
     component = fixture.componentInstance;

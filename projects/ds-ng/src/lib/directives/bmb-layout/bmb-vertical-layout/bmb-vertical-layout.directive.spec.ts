@@ -4,11 +4,7 @@ import { BmbVerticalLayoutDirective } from './bmb-vertical-layout.directive';
 
 @Component({
   template: `
-    <section
-      id="layout"
-      bmbVerticalLayout
-      [layoutHeight]="height"
-    ></section>
+    <section id="layout" bmbVerticalLayout [layoutHeight]="height"></section>
   `,
   standalone: true,
   imports: [BmbVerticalLayoutDirective],

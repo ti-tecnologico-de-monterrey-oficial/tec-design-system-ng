@@ -13,7 +13,7 @@
 | `gapSize`      | `SizeNames`          | Espacio (gap) entre los elementos del layout vertical           | `'m'`             | No          |
 | `justify`      | `IJustifyOptions`    | Justificación de los elementos (`start`, `center`, `end`, etc.) | `'start'`         | No          |
 | `alignItems`   | `IAlignItemsOptions` | Alineación vertical de los elementos (`start`, `center`, etc.)  | `'start'`         | No          |
-| `layoutHeight` | `string`             | Altura total del layout vertical (ej. `'100%'`, `'80dvh'`)       | `'100%'`          | No          |
+| `layoutHeight` | `string`             | Altura total del layout vertical (ej. `'100%'`, `'80dvh'`)      | `'100%'`          | No          |
 
 ---
 
