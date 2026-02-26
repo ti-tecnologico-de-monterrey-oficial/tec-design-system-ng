@@ -72,7 +72,7 @@
   }
 
   &-input {
-    .bmb_field-input-normal {
+    .bmb_field.normal {
       border-radius: var(--bmb-radius-xs);
       height: rem.rem_calc(32);
       width: rem.rem_calc(32);

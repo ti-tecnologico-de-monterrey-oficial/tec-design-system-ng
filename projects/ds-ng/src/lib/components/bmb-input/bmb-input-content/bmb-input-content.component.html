@@ -1,98 +1,91 @@
-<section class="bmb_field">
-  <section class="bmb_field-wrapper">
-    @if (!!icon() && type() !== 'text-area') {
+<section
+  class="bmb_field"
+  [ngClass]="{
+    'bmb_field-text-area': type() === 'text-area',
+    normal: type() !== 'text-area' || appearance() === 'normal',
+    simple: type() !== 'text-area' && appearance() === 'simple',
+    focused: isFocused,
+    error: isError()
+  }"
+>
+  @if (!!icon() && type() !== 'text-area') {
+    <bmb-icon [icon]="icon()" [size]="24" [alt]="name()" />
+  }
+  @if (type() === 'text-area') {
+    <textarea
+      [autocomplete]="autoComplete()"
+      [placeholder]="placeholder()"
+      [required]="isRequired()"
+      [formControl]="control()"
+      [maxlength]="maxLength()!"
+      [style.height.px]="heightTextArea()!"
+      [minlength]="minLength()!"
+      [spellcheck]="spellcheck()"
+      [rows]="rows()"
+      [name]="name()"
+      [id]="inputId()"
+      [pattern]="pattern()!"
+      [tabindex]="control().disabled ? -1 : 0"
+      (keydown)="handleKeyPress($event)"
+      (change)="handleChange($event)"
+      (focus)="handleFocus()"
+      (blur)="handleBlur()"
+    ></textarea>
+    @if (isError()) {
       <bmb-icon
-        class="bmb_field-icon"
-        [ngClass]="{
-          'bmb_field-icon-simple': appearance() === 'simple',
-          'bmb_field-icon-simple-focused': appearance() === 'simple' && isFocus,
-          'bmb_field-icon-simple-error': appearance() === 'simple' && isError()
-        }"
-        [icon]="icon()"
+        class="bmb_field-text-area-error-icon"
+        icon="error"
         [size]="24"
-        [alt]="name()"
       />
     }
-    @if (type() === 'text-area') {
-      <textarea
-        class="bmb_field-text-area"
-        [ngClass]="inputClasses"
-        [autocomplete]="autoComplete()"
-        [placeholder]="placeholder()"
-        [required]="isRequired()"
-        [formControl]="control()"
-        [maxlength]="maxLength()!"
-        [style.height.px]="heightTextArea()!"
-        [minlength]="minLength()!"
-        [spellcheck]="spellcheck()"
-        [rows]="rows()"
-        [name]="name()"
-        [id]="inputId()"
-        [pattern]="pattern()!"
-        [tabindex]="control().disabled ? -1 : 0"
-        (keydown)="handleKeyPress($event)"
-        (change)="handleChange($event)"
-        (focus)="handleFocus()"
-        (blur)="handleBlur()"
-      ></textarea>
-      @if (isError()) {
-        <bmb-icon class="bmb_field-text-area-error-icon" [icon]="'error'" />
+  } @else {
+    <input
+      [type]="getType()"
+      [autocomplete]="autoComplete()"
+      [readOnly]="isReadOnly()"
+      [placeholder]="placeholder()"
+      [formControl]="control()"
+      [name]="name()"
+      [id]="inputId()"
+      [spellcheck]="spellcheck()"
+      [maxlength]="maxLength()!"
+      [minlength]="minLength()!"
+      [pattern]="pattern()!"
+      [max]="max()"
+      [min]="min()"
+      [tabindex]="control().disabled ? -1 : 0"
+      (keydown)="handleKeyPress($event)"
+      (change)="handleChange($event)"
+      (focus)="handleFocus()"
+      (blur)="handleBlur()"
+      (keyup)="handleKeyUp($event)"
+    />
+    @if (showAdditionalAction() || isClearable() || isLoading()) {
+      @if (showAdditionalAction() && !isLoading()) {
+        <bmb-action-icon
+          [icon]="getAdditionalActionIcon()"
+          [iconSize]="24"
+          [disabled]="control().disabled"
+          (buttonClick)="actionToExecute()"
+        />
       }
-    } @else {
-      <input
-        class="bmb_field-input"
-        [type]="getType()"
-        [ngClass]="inputClasses"
-        [autocomplete]="autoComplete()"
-        [readOnly]="isReadOnly()"
-        [placeholder]="placeholder()"
-        [formControl]="control()"
-        [name]="name()"
-        [id]="inputId()"
-        [spellcheck]="spellcheck()"
-        [maxlength]="maxLength()!"
-        [minlength]="minLength()!"
-        [pattern]="pattern()!"
-        [max]="max()"
-        [min]="min()"
-        [tabindex]="control().disabled ? -1 : 0"
-        (keydown)="handleKeyPress($event)"
-        (change)="handleChange($event)"
-        (focus)="handleFocus()"
-        (blur)="handleBlur()"
-        (keyup)="handleKeyUp($event)"
-      />
-      @if (showAdditionalAction() || isClearable() || isLoading()) {
-        <span class="bmb_field-actions">
-          @if (showAdditionalAction() && !isLoading()) {
-            <bmb-action-icon
-              class="bmb_field-additional_action"
-              [icon]="getAdditionalActionIcon()"
-              [iconSize]="24"
-              [disabled]="control().disabled"
-              (buttonClick)="actionToExecute()"
-            />
-          }
-          @if (isClearable() && !isLoading()) {
-            <bmb-action-icon
-              class="bmb_field-clear"
-              icon="close"
-              [iconSize]="24"
-              [disabled]="control().disabled"
-              (buttonClick)="handleClearValue()"
-            />
-          }
-          @if (isLoading()) {
-            <bmb-icon
-              class="bmb_field-loading-icon"
-              icon="progress_activity"
-              [size]="24"
-              [alt]="'input.content.loading_alt' | translate"
-            />
-          }
-        </span>
+      @if (isClearable() && !isLoading()) {
+        <bmb-action-icon
+          icon="close"
+          [iconSize]="24"
+          [disabled]="control().disabled"
+          (buttonClick)="handleClearValue()"
+        />
+      }
+      @if (isLoading()) {
+        <bmb-icon
+          class="bmb_field-loading-icon"
+          icon="progress_activity"
+          [size]="24"
+          [alt]="'input.content.loading_alt' | translate"
+        />
       }
     }
-    <ng-container [ngTemplateOutlet]="customContent() ?? null" />
-  </section>
+  }
+  <ng-container [ngTemplateOutlet]="customContent() ?? null" />
 </section>

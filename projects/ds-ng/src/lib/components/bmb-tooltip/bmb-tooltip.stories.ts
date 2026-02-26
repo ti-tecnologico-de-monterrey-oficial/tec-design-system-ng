@@ -1,13 +1,5 @@
+import { StoryObj, type Meta } from '@storybook/angular';
 import {
-  componentWrapperDecorator,
-  moduleMetadata,
-  StoryFn,
-  type Meta,
-} from '@storybook/angular';
-import { BmbTooltipComponent } from './bmb-tooltip.component';
-import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
-import {
-  attributes,
   getBasicExampleBlock,
   getGeneralComponentDescription,
   getGeneralDescription,
@@ -19,27 +11,17 @@ import {
   getPropertyParamDesc,
   SIMPLE_ICON_DESCRIPTION,
 } from '../../utils/doc/parameterDescriptions';
+import { BmbTooltipComponent } from './bmb-tooltip.component';
 
 export default {
   title: 'Components/Status indicators/ToolTip',
   component: BmbTooltipComponent,
-  decorators: [
-    moduleMetadata({
-      imports: [BmbIconComponent],
-    }),
-    componentWrapperDecorator((story: string) => {
-      return `
-        <div style="height: 500px; display: flex; justify-content: center; align-items: center;">
-          ${story}
-        </div>`;
-    }),
-  ],
   parameters: {
     docs: {
       description: {
         component: `
 ${getGeneralDescription(`${getGeneralComponentDescription({ name: 'tooltip' })} to provide additional, brief information about the element's purpose.`, { generalDocLink: 'https://bamboo.tec.mx/latest/componentes/tooltip/descripcion-general-Y5OcIrFr' })}
-${getBasicExampleBlock('')}
+${getBasicExampleBlock('BmbTooltipComponent')}
         `,
       },
     },
@@ -74,23 +56,14 @@ ${getBasicExampleBlock('')}
     },
   },
   args: {
-    componentTitle: 'Titulo del tooltip',
+    componentTitle: 'Tooltip title',
     text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum nihil modi repellendus ad aspernatur corporis.',
     icon: 'help',
     size: 40,
     isFill: true,
-    align: 'right',
-    justify: 'centered',
   },
-} as Meta<typeof BmbIconComponent>;
+} as Meta<typeof BmbTooltipComponent>;
 
-const customizable = (): StoryFn => (args) => ({
-  props: args,
-  template: `
-    <bmb-tooltip
-      ${attributes(args)}
-    />
-  `,
-});
+type Story = StoryObj<BmbTooltipComponent>;
 
-export const Default = customizable();
+export const Default: Story = {};

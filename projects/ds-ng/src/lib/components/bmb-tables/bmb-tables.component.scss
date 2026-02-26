@@ -110,10 +110,7 @@
       }
 
       bmb-input:first-child {
-        .bmb_field-actions {
-          right: rem.rem_calc(40);
-        }
-        .bmb_field-wrapper::after {
+        .bmb_field::after {
           content: '';
           width: rem.rem_calc(16);
           height: 0;

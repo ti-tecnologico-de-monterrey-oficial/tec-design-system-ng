@@ -9,20 +9,24 @@ import {
 import { FormControl, ValidatorFn } from '@angular/forms';
 import { BmbDatepickerComponent } from '../bmb-datepicker/bmb-datepicker.component';
 import { CommonModule } from '@angular/common';
-import {
-  IBmbInputAppearance,
-  IBmbInputError,
-} from '../bmb-input/bmb-input.component';
+import { IBmbInputError } from '../bmb-input/bmb-input.component';
 import {
   assignNewFormControl,
   newFormControlByType,
 } from '../../utils/formControl';
 import { getUUID } from '../../utils/utils';
+import { BmbLayoutDirective } from '../../directives/bmb-layout/bmb-layout.directive';
+import { BmbLayoutItemDirective } from '../../directives/bmb-layout/bmb-layout-item.directive';
 
 @Component({
   selector: 'bmb-date-range',
   standalone: true,
-  imports: [BmbDatepickerComponent, CommonModule],
+  imports: [
+    BmbDatepickerComponent,
+    BmbLayoutDirective,
+    BmbLayoutItemDirective,
+    CommonModule,
+  ],
   templateUrl: './bmb-date-range.component.html',
   styleUrl: './bmb-date-range.component.scss',
   encapsulation: ViewEncapsulation.None,
@@ -80,11 +84,5 @@ export class BmbDateRangeComponent implements OnInit {
         this.disableDatesAfter = value;
       }
     });
-  }
-
-  getClassList(): string[] {
-    const classList = ['bmb_date-range'];
-    if (!this.multipleRow()) classList.push('bmb_date-range-column');
-    return classList;
   }
 }

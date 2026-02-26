@@ -50,10 +50,6 @@ export type IBmbHomeCardChatMode = 'compact' | 'chat' | 'expanded';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BmbHomeCardChatComponent {
-  @ViewChild('contentTemplate') contentTemplate!: TemplateRef<any>;
-  @ViewChild('chatBarActionsTemplate', { static: true })
-  chatBarTemplate!: TemplateRef<any>;
-
   subtitle = input<string>();
   isMobile = input<boolean>(false);
   placeholder = input<string>('');
@@ -80,6 +76,9 @@ export class BmbHomeCardChatComponent {
   getNewChat = output<boolean>();
   getExpand = output<any>();
 
+  @ViewChild('contentTemplate') contentTemplate!: TemplateRef<any>;
+  @ViewChild('chatBarActionsTemplate', { static: true })
+  chatBarTemplate!: TemplateRef<any>;
   private chatCardChatId: string = 'chatCardChat';
 
   chatActionHeaders = computed<IBmbActionHeader[]>(() => {
@@ -173,7 +172,6 @@ export class BmbHomeCardChatComponent {
 
   handleAddDialog(event?: Event): void {
     const dialogId = 'chatBarActionsDialog';
-    console.info('handleAddDialog', event);
 
     if (this.contentProjected.isContentOpen(dialogId)) {
       return;

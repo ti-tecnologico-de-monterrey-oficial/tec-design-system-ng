@@ -13,7 +13,7 @@
       @include mixins.error-input();
     }
 
-    @include mixins.normal-input-focus();
+    @include mixins.input-focused();
 
     .bmb_input-validator-label {
       display: none;
@@ -28,7 +28,7 @@
     .bmb_dropdown {
       width: rem.rem_calc(80);
 
-      .bmb_field-input-normal {
+      .bmb_field.normal {
         border-top-right-radius: 0;
         border-bottom-right-radius: 0;
         border-width: rem.rem_calc(0 1 0 0);
@@ -50,7 +50,7 @@
 
   &-number {
     flex: 1;
-    .bmb_field-input-normal {
+    .bmb_field.normal {
       border-top-left-radius: 0;
       border-bottom-left-radius: 0;
       border: 0;

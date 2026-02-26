@@ -13,7 +13,7 @@
       @include mixins.error-input();
     }
 
-    @include mixins.normal-input-focus();
+    @include mixins.input-focused();
   }
 
   &-dialog {
@@ -40,7 +40,7 @@
   }
 
   &-filter {
-    .bmb_field-input-normal {
+    .bmb_field.normal {
       border: 0;
       height: rem.rem_calc(44);
 
