@@ -18,6 +18,8 @@ import {
   IBmbInputType,
 } from '../bmb-input.component';
 import { TranslatePipe } from '../../../pipes/translations';
+import { BmbLayoutDirective } from '../../../directives/bmb-layout/bmb-layout.directive';
+import { BmbLayoutItemDirective } from '../../../directives/bmb-layout/bmb-layout-item.directive';
 
 @Component({
   selector: 'bmb-input-content',
@@ -28,6 +30,8 @@ import { TranslatePipe } from '../../../pipes/translations';
     ReactiveFormsModule,
     BmbActionIconComponent,
     TranslatePipe,
+    BmbLayoutDirective,
+    BmbLayoutItemDirective,
   ],
   templateUrl: './bmb-input-content.component.html',
   styleUrl: './bmb-input-content.component.scss',
@@ -71,16 +75,16 @@ export class BmbInputContentComponent {
   customContent = contentChild<TemplateRef<any>>('customContent');
 
   isHide: boolean = true;
-  isFocus: boolean = false;
+  isFocused: boolean = false;
 
   handleFocus() {
-    this.isFocus = true;
-    this.onFocus.emit(this.isFocus);
+    this.isFocused = true;
+    this.onFocus.emit(this.isFocused);
   }
 
   handleBlur() {
-    this.isFocus = false;
-    this.onFocus.emit(this.isFocus);
+    this.isFocused = false;
+    this.onFocus.emit(this.isFocused);
     this.onBlur.emit(true);
   }
 
@@ -102,33 +106,6 @@ export class BmbInputContentComponent {
     this.control().reset();
     this.onChange.emit(this.control().value);
     this.clearEvent.emit();
-  }
-
-  get inputClasses(): { [key: string]: boolean } {
-    const appearance =
-      this.type() === 'text-area' ? 'normal' : this.appearance();
-    const baseName = 'bmb_field-input';
-    const classes = [`${baseName}-${appearance}`];
-
-    if (this.showAdditionalAction() || this.isClearable()) {
-      if (this.showAdditionalAction() && this.isClearable()) {
-        classes.push(`${baseName}-limited-actions`);
-      } else {
-        classes.push(`${baseName}-limited`);
-      }
-    }
-
-    if (this.isError()) {
-      classes.push(`${baseName}-error`);
-    }
-
-    return classes.reduce(
-      (acc, className) => {
-        acc[className] = true;
-        return acc;
-      },
-      {} as { [key: string]: boolean },
-    );
   }
 
   getType() {

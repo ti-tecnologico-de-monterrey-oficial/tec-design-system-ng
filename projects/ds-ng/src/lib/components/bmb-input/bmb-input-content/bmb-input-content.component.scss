@@ -2,179 +2,93 @@
 @use '../../../../assets/styles/base/mixins' as mixins;
 @use '../../../../assets/styles/base/rem' as rem;
 
-@mixin placeholder-padding($padding) {
-  padding-left: $padding;
-}
-
-@mixin input($type: normal) {
-  @include mixins.reset-element();
-  @include fonts.font(4, regular);
-  color: var(--general-contrasts-100);
-
-  &:focus,
-  &:focus,
-  &:hover {
-    @include mixins.focus-element();
-  }
-
-  @if $type == 'simple' {
-    box-sizing: border-box;
-    height: rem.rem_calc(48);
-    width: 100%;
-    background-color: transparent;
-    border: 0;
-    border-bottom: rem.rem_calc(1) solid var(--general-contrasts-50);
-    color: var(--general-contrasts-100);
-    padding-left: var(--bmb-spacing-m);
-    transition: all 0.3s ease;
-
-    &.bmb_field-input-error {
-      @include mixins.error-input();
-    }
-
-    &:focus,
-    &:focus-visible,
-    &:hover {
-      box-sizing: inherit;
-      border-bottom: rem.rem_calc(2)
-        solid
-        var(--general-contrasts-input-outline);
-      color: var(--general-contrasts-input-outline);
-      caret-color: var(--general-contrasts-input-outline);
-    }
-
-    &:hover {
-      box-sizing: inherit;
-      border-bottom: rem.rem_calc(2) solid var(--general-contrasts-50);
-    }
-  } @else {
-    @include placeholder-padding(var(--bmb-spacing-s));
-    @include mixins.normal-input();
-
-    &.bmb_field-input-error {
-      @include mixins.error-input();
-    }
-
-    @include mixins.normal-input-focus();
-  }
+@mixin input-features() {
+  border-color: transparent;
+  background-color: transparent;
+  color: currentColor;
 
   &::placeholder {
     @include mixins.input-placeholder();
   }
+
+  &:focus,
+  &:focus-visible {
+    outline-style: none;
+  }
+}
+
+@mixin input-appearance($type: normal) {
+  @if $type == 'simple' {
+    box-sizing: border-box;
+    width: 100%;
+    background-color: transparent;
+    border: 0;
+    border-bottom: rem.rem_calc(1) solid var(--general-contrasts-50);
+    transition: all 0.3s ease;
+  } @else {
+    @include mixins.normal-input();
+  }
+
+  > input {
+    @include input-features();
+  }
 }
 
 .bmb_field {
-  &-wrapper {
-    align-items: center;
-    display: flex;
-    position: relative;
-    width: 100%;
+  @include fonts.font(4, regular);
+  color: var(--general-contrasts-100);
+  padding: var(--bmb-spacing-s);
 
-    &:hover .bmb_field-icon-simple {
-      color: var(--general-contrasts-50);
-    }
+  &.normal {
+    @include input-appearance();
   }
 
-  &-icon {
-    color: var(--general-contrasts-100);
-    left: var(--bmb-spacing-s);
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-
-    ~ .bmb_field-input-normal {
-      @include placeholder-padding(rem.rem_calc(39));
-    }
-
-    ~ .bmb_field-input-simple {
-      @include placeholder-padding(rem.rem_calc(31));
-    }
-
-    &-simple {
-      left: 0;
-
-      &-error {
-        color: var(--general-contrasts-75);
-      }
-
-      &-focused {
-        color: var(--general-contrasts-input-outline);
-      }
-    }
+  &.simple {
+    @include input-appearance('simple');
   }
 
-  &-input {
-    text-overflow: ellipsis;
-    white-space: normal;
-    overflow: hidden;
+  &.focused,
+  &:hover {
+    @include mixins.input-focused();
+  }
 
-    &-limited {
-      padding-right: rem.rem_calc(36);
-
-      &-actions {
-        padding-right: rem.rem_calc(72);
-      }
-    }
-
-    &-normal {
-      @include input('normal');
-    }
-
-    &-simple {
-      @include input('simple');
-    }
+  &.error {
+    @include mixins.error-input();
   }
 
   &-text-area {
-    min-height: rem.rem_calc(30);
-    height: rem.rem_calc(90);
-    min-width: rem.rem_calc(124);
-    resize: none;
-    padding: var(--bmb-spacing-s);
+    @include mixins.normal-input();
 
-    &::-webkit-scrollbar {
-      -webkit-appearance: none;
-      width: rem.rem_calc(8);
-    }
+    > textarea {
+      min-height: rem.rem_calc(30);
+      height: rem.rem_calc(90);
+      min-width: rem.rem_calc(124);
+      width: 100%;
+      resize: none;
+      @include input-features();
 
-    &::-webkit-scrollbar-thumb {
-      background-color: var(--buttons-inactive-step);
-      border-radius: var(--bmb-radius-5);
-      border: rem.rem_calc(1) solid var(--buttons-inactive-step);
-    }
+      scrollbar-width: rem.rem_calc(8);
+      scrollbar-color: var(--buttons-inactive-step) transparent;
 
-    &::-webkit-scrollbar-track {
-      border-radius: var(--bmb-radius-3);
+      &::-webkit-scrollbar {
+        -webkit-appearance: none;
+        width: rem.rem_calc(8);
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background-color: var(--buttons-inactive-step);
+        border-radius: var(--bmb-radius-5);
+        border: rem.rem_calc(1) solid var(--buttons-inactive-step);
+      }
+
+      &::-webkit-scrollbar-track {
+        border-radius: var(--bmb-radius-3);
+      }
     }
 
     &-error-icon {
-      @include fonts.font(4_5, regular);
       color: rgb(var(--red-light));
-      position: absolute;
-      top: rem.rem_calc(10);
-      left: calc(100% - var(--bmb-spacing-l));
-    }
-  }
-
-  &-actions {
-    right: rem.rem_calc(8);
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    display: flex;
-    gap: var(--bmb-spacing-s);
-    align-items: center;
-    padding: rem.rem_calc(4);
-
-    bmb-action-icon {
-      display: flex;
-    }
-  }
-
-  &-additional_action,
-  &-clear {
-    .bmb_check-external-link-button-element {
-      color: var(--general-contrasts-50);
+      text-align: start;
     }
   }
 
