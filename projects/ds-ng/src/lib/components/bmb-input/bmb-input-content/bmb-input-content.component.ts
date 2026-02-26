@@ -18,8 +18,6 @@ import {
   IBmbInputType,
 } from '../bmb-input.component';
 import { TranslatePipe } from '../../../pipes/translations';
-import { BmbLayoutDirective } from '../../../directives/bmb-layout/bmb-layout.directive';
-import { BmbLayoutItemDirective } from '../../../directives/bmb-layout/bmb-layout-item.directive';
 
 @Component({
   selector: 'bmb-input-content',
@@ -30,8 +28,6 @@ import { BmbLayoutItemDirective } from '../../../directives/bmb-layout/bmb-layou
     ReactiveFormsModule,
     BmbActionIconComponent,
     TranslatePipe,
-    BmbLayoutDirective,
-    BmbLayoutItemDirective,
   ],
   templateUrl: './bmb-input-content.component.html',
   styleUrl: './bmb-input-content.component.scss',

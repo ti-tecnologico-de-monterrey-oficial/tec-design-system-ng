@@ -3,6 +3,7 @@
 @use '../../../../assets/styles/base/rem' as rem;
 
 @mixin input-features() {
+  flex: 1;
   border-color: transparent;
   background-color: transparent;
   color: currentColor;
@@ -18,9 +19,11 @@
 }
 
 @mixin input-appearance($type: normal) {
+  width: 100%;
+  max-height: rem.rem_calc(48);
+
   @if $type == 'simple' {
     box-sizing: border-box;
-    width: 100%;
     background-color: transparent;
     border: 0;
     border-bottom: rem.rem_calc(1) solid var(--general-contrasts-50);
@@ -35,9 +38,12 @@
 }
 
 .bmb_field {
+  display: inline-flex;
   @include fonts.font(4, regular);
   color: var(--general-contrasts-100);
   padding: var(--bmb-spacing-s);
+  gap: var(--bmb-spacing-s);
+  align-items: center;
 
   &.normal {
     @include input-appearance();
@@ -66,6 +72,7 @@
       width: 100%;
       resize: none;
       @include input-features();
+      align-items: start;
 
       scrollbar-width: rem.rem_calc(8);
       scrollbar-color: var(--buttons-inactive-step) transparent;

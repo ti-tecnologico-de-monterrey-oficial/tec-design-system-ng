@@ -7,13 +7,9 @@
     focused: isFocused,
     error: isError()
   }"
-  bmbLayout
-  margin="none"
-  gapSize="s"
-  [alignItems]="type() === 'text-area' ? 'start' : 'center'"
 >
   @if (!!icon() && type() !== 'text-area') {
-    <bmb-icon [icon]="icon()" [size]="24" [alt]="name()" bmbLayoutItem />
+    <bmb-icon [icon]="icon()" [size]="24" [alt]="name()" />
   }
   @if (type() === 'text-area') {
     <textarea
@@ -34,16 +30,12 @@
       (change)="handleChange($event)"
       (focus)="handleFocus()"
       (blur)="handleBlur()"
-      bmbLayoutItem
-      [isDynamicItem]="true"
-      [colGrow]="1"
     ></textarea>
     @if (isError()) {
       <bmb-icon
         class="bmb_field-text-area-error-icon"
         icon="error"
         [size]="24"
-        bmbLayoutItem
       />
     }
   } @else {
@@ -67,9 +59,6 @@
       (focus)="handleFocus()"
       (blur)="handleBlur()"
       (keyup)="handleKeyUp($event)"
-      bmbLayoutItem
-      [isDynamicItem]="true"
-      [colGrow]="1"
     />
     @if (showAdditionalAction() || isClearable() || isLoading()) {
       @if (showAdditionalAction() && !isLoading()) {
@@ -78,7 +67,6 @@
           [iconSize]="24"
           [disabled]="control().disabled"
           (buttonClick)="actionToExecute()"
-          bmbLayoutItem
         />
       }
       @if (isClearable() && !isLoading()) {
@@ -87,7 +75,6 @@
           [iconSize]="24"
           [disabled]="control().disabled"
           (buttonClick)="handleClearValue()"
-          bmbLayoutItem
         />
       }
       @if (isLoading()) {
@@ -96,11 +83,9 @@
           icon="progress_activity"
           [size]="24"
           [alt]="'input.content.loading_alt' | translate"
-          bmbLayoutItem
         />
       }
     }
   }
-
-  <ng-container [ngTemplateOutlet]="customContent() ?? null" bmbLayoutItem />
+  <ng-container [ngTemplateOutlet]="customContent() ?? null" />
 </section>

@@ -3,35 +3,11 @@
 @use '../../../assets/styles/base/rem' as rem;
 
 .bmb_date-range {
-  display: flex;
-  flex-flow: column;
+  &-middle-dash {
+    width: rem.rem_calc(16);
+    height: rem.rem_calc(40);
+    border-bottom: rem.rem_calc(2) solid;
 
-  > * {
-    flex: 1;
-  }
-
-  &-column {
-    flex-flow: row;
-    @include mixins.media-query(699, 'max') {
-      flex-flow: column;
-    }
-
-    bmb-datepicker:first-child {
-      .bmb_field-actions {
-        right: rem.rem_calc(40);
-      }
-      .bmb_field-wrapper::after {
-        content: '';
-        width: rem.rem_calc(16);
-        height: 0;
-        border-top: rem.rem_calc(2) solid;
-        margin: rem.rem_calc(0 10);
-        display: inline-block;
-
-        @include mixins.media-query(699, 'max') {
-          display: none;
-        }
-      }
-    }
+    @include mixins.hidden-for-mobile();
   }
 }
