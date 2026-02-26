@@ -64,7 +64,6 @@ export class BmbAlertCenterFormComponent {
     favorites: true,
     archive: true,
   });
-
   selectionState = model<Record<string, boolean>>({});
 
   showAlertDetail = output<IBmbDataAlertsParsed>();
