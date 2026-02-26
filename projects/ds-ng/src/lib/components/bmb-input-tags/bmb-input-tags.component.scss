@@ -13,7 +13,7 @@
       @include mixins.error-input();
     }
 
-    @include mixins.normal-input-focus();
+    @include mixins.input-focused();
   }
 
   &-dialog {
