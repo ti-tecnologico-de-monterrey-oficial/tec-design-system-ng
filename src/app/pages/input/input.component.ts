@@ -5,9 +5,9 @@ import {
   BmbLayoutDirective,
   BmbLayoutItemDirective,
   BmbInputComponent,
+  BmbActionIconComponent,
 } from '../../../../projects/ds-ng/src/public-api';
 import { AnimeService } from '../../services/anime.service';
-
 @Component({
   selector: 'bmb-input-page',
   templateUrl: './input.component.html',
@@ -15,6 +15,7 @@ import { AnimeService } from '../../services/anime.service';
   imports: [
     BmbInputComponent,
     BmbButtonDirective,
+    BmbActionIconComponent,
     ReactiveFormsModule,
     BmbLayoutDirective,
     BmbLayoutItemDirective,
@@ -55,14 +56,14 @@ export class InputPageComponent implements OnInit {
   }
 
   handleFocus(event: boolean): void {
-    console.info('handleFocus', event);
+    // console.info('handleFocus', event);
   }
 
   handleBlur(event: boolean): void {
-    console.info('handleBlur', event);
+    // console.info('handleBlur', event);
   }
 
   handleChange(event: HTMLInputElement): void {
-    console.info('handleChange', event);
+    // console.info('handleChange', event);
   }
 }
