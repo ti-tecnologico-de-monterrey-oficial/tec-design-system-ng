@@ -12,6 +12,7 @@ export interface TableColum {
   icon?: string;
   dateFormat?: string;
   isFilterable?: boolean;
+  sticky?: boolean | 'auto';
 }
 
 export interface TableConfig {
