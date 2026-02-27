@@ -12,5 +12,6 @@ export interface IBmbControlType {
     value?: string;
     id?: string;
     options?: string[] | IBmbDropdownItem[];
+    isMultiSelect?: boolean;
   }[];
 }

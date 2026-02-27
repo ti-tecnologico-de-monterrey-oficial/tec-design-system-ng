@@ -13,6 +13,7 @@ import { BmbIconComponent } from '../../bmb-icon/bmb-icon.component';
 import { IDropdownItem } from '../../../types';
 import { CommonModule } from '@angular/common';
 import { TranslatePipe } from '../../../pipes/translations';
+import { BmbDividerComponent } from '../../bmb-divider/bmb-divider.component';
 
 @Component({
   selector: 'bmb-dropdown-content',
@@ -21,6 +22,7 @@ import { TranslatePipe } from '../../../pipes/translations';
     CommonModule,
     BmbCheckExternalLinkButtonComponent,
     BmbIconComponent,
+    BmbDividerComponent,
     TranslatePipe,
   ],
   templateUrl: './bmb-dropdown-content.component.html',
@@ -36,6 +38,7 @@ export class BmbDropdownContentComponent {
   customFilterFunction = input<
     ((item: IDropdownItem, filter: string) => boolean) | null
   >(null);
+  isMultiSelect = input<boolean>(false);
 
   clickedItem = output<IDropdownItem>();
 
@@ -80,5 +83,34 @@ export class BmbDropdownContentComponent {
       item.action();
       this.clickedItem.emit(item);
     }
+  }
+
+  handleSelectedAll() {
+    this.items().forEach((item) => {
+      if (this.isIndeterminate && this.isSelected(item.value!)) {
+        return;
+      }
+
+      this.handleDropdown(item);
+    });
+  }
+
+  get totalSelectedOptions(): number {
+    if (Array.isArray(this.selectedOption())) {
+      return this.selectedOption()?.length || 0;
+    }
+
+    return 0;
+  }
+
+  get isIndeterminate(): boolean {
+    return (
+      !!this.totalSelectedOptions &&
+      this.items().length > this.totalSelectedOptions
+    );
+  }
+
+  get isAllSelected(): boolean {
+    return this.items().length === this.totalSelectedOptions;
   }
 }

@@ -188,7 +188,9 @@
   "dropdown": {
     "menu": {
       "filter_placeholder": "Selecciona una opción"
-    }
+    },
+    "no_result": "No se encontraron coincidencias.",
+    "select_all": "Seleccionar todos"
   },
   "table": {
     "filters": {

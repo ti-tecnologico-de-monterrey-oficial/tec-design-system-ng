@@ -308,14 +308,14 @@ describe('BmbDropdownContentComponent', () => {
 
     it('should render icons for items that have them', () => {
       const icons = fixture.debugElement.queryAll(
-        By.css('.bmb_dropdown-content-item-icon'),
+        By.css('.bmb_dropdown-content-element-icon'),
       );
       expect(icons).toHaveSize(3);
     });
 
     it('should render item text', () => {
       const textElements = fixture.debugElement.queryAll(
-        By.css('.bmb_dropdown-content-item-text'),
+        By.css('.bmb_dropdown-content-element-text'),
       );
       expect(textElements).toHaveSize(3);
       expect(textElements[0].nativeElement.textContent.trim()).toBe(
@@ -325,7 +325,7 @@ describe('BmbDropdownContentComponent', () => {
 
     it('should render dot notifications when present', () => {
       const itemIcons = fixture.debugElement.queryAll(
-        By.css('.bmb_dropdown-content-item-icon'),
+        By.css('.bmb_dropdown-content-element-icon'),
       );
       expect(itemIcons).toHaveSize(3);
       expect(itemIcons[1].componentInstance.dotNotification()).toBe(3);
@@ -369,7 +369,7 @@ describe('BmbDropdownContentComponent', () => {
 
       const items = fixture.debugElement.queryAll(
         By.css(
-          '.bmb_dropdown-content-item:not(.bmb_dropdown-content-item-filter)',
+          '.bmb_dropdown-content-item:has(.bmb_dropdown-content-item-empty)',
         ),
       );
       expect(items).toHaveSize(0);

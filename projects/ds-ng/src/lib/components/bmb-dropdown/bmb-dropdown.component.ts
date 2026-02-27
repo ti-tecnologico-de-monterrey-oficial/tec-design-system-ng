@@ -14,7 +14,6 @@ import {
   ElementRef,
 } from '@angular/core';
 import { FormControl, ReactiveFormsModule, ValidatorFn } from '@angular/forms';
-import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import {
   convertListToSelectList,
   getSelectedValues,
@@ -37,6 +36,10 @@ import {
 } from '../../utils/formControl';
 import { BmbInputValidatorComponent } from '../bmb-input/bmb-input-validator/bmb-input-validator.component';
 import { BmbProjectionContentService } from '../../services/projection/projection.service';
+import { BmbLayoutDirective } from '../../directives/bmb-layout/bmb-layout.directive';
+import { BmbLayoutItemDirective } from '../../directives/bmb-layout/bmb-layout-item.directive';
+import { BmbTagComponent } from '../bmb-tags/bmb-tags.component';
+import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
 
 export interface IBmbDropdownItem {
   name: string;
@@ -51,10 +54,13 @@ export interface IBmbDropdownItem {
   standalone: true,
   imports: [
     CommonModule,
-    BmbIconComponent,
+    BmbActionIconComponent,
     ReactiveFormsModule,
     BmbInputValidatorComponent,
     BmbInputContentComponent,
+    BmbTagComponent,
+    BmbLayoutDirective,
+    BmbLayoutItemDirective,
   ],
   templateUrl: './bmb-dropdown.component.html',
   styleUrl: './bmb-dropdown.component.scss',
@@ -100,6 +106,7 @@ export class BmbDropdownComponent implements OnInit, OnChanges {
   isControlNull: boolean = false;
   parsedOptions = computed(() => this.initOptions(this.options()));
   selectedItem: IDropdownItem | null = null;
+  dialogID: string = `dialog_id_${this.uuid}`;
 
   @ViewChild('contentDiv', { static: true }) contentRef!: ElementRef<any>;
 
@@ -143,6 +150,7 @@ export class BmbDropdownComponent implements OnInit, OnChanges {
       return {
         ...element,
         icon: !this.isMultiSelect() && this.showIcon() ? element.icon! : '',
+        showIndicator: this.isMultiSelect(),
         action: () => {
           this.setSelectedValue(element);
           this.projectionService.closeContent();
@@ -163,6 +171,9 @@ export class BmbDropdownComponent implements OnInit, OnChanges {
 
   handleFocus(value: boolean): void {
     this.onFocus.emit(value);
+    if (!this.isFilterable()) {
+      this.openList();
+    }
   }
 
   getUUID(name: string): string {
@@ -191,9 +202,7 @@ export class BmbDropdownComponent implements OnInit, OnChanges {
           controlValue.includes(value!),
         );
 
-        this.selectionControl.setValue(
-          selectedItems.map((element) => ` ${element.selectedText}`),
-        );
+        this.selectionControl.setValue(selectedItems[0]?.selectedText);
         return;
       }
 
@@ -228,12 +237,16 @@ export class BmbDropdownComponent implements OnInit, OnChanges {
       targetRef: this.contentRef?.nativeElement,
       fixSizeToRef: true,
       showBackdrop: false,
+      id: this.dialogID,
       inputContext: {
         selectedOption: this.control().value,
         items: this.parsedOptions(),
         isKeyboardEvent: this.isKeyboardEvent,
-        enableFilter: this.isFilterable(),
-        customFilterFunction: this.customFilterFunction(),
+        enableFilter: !this.isMultiSelect() && this.isFilterable(),
+        customFilterFunction: this.isMultiSelect()
+          ? null
+          : this.customFilterFunction(),
+        isMultiSelect: this.isMultiSelect(),
       },
       focusOnOpen: true,
     };
@@ -255,5 +268,33 @@ export class BmbDropdownComponent implements OnInit, OnChanges {
 
   get shouldShowError(): boolean {
     return showError(this.control());
+  }
+
+  handleClearSelectedOptions(): void {
+    this.control().setValue(this.isMultiSelect() ? [] : '');
+  }
+
+  handleChangeValue(event: HTMLInputElement): void {
+    if (event === null) {
+      this.handleClearSelectedOptions();
+    }
+  }
+
+  get isOpenList(): boolean {
+    return this.projectionService.isContentOpen(this.dialogID);
+  }
+
+  get isSelectedLengthAtLeastOne(): boolean {
+    return this.control().value?.length || 0;
+  }
+
+  get selectedOptionCounter(): number {
+    return !this.isSelectedLengthAtLeastOne
+      ? 0
+      : this.control().value?.length - 1;
+  }
+
+  get tagValue(): string {
+    return `+${this.selectedOptionCounter}`;
   }
 }

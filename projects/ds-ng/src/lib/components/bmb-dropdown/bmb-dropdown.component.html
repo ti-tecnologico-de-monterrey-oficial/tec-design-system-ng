@@ -24,10 +24,13 @@
       [isReadOnly]="true"
       [placeholder]="placeholder()"
       [isError]="shouldShowError"
-      (click)="openList()"
+      [isClearable]="
+        isMultiSelect() && isSelectedLengthAtLeastOne && !selectedOptionCounter
+      "
       (onKeyDown)="onKeyDown($event)"
       (onBlur)="handleValidity()"
       (onFocus)="handleFocus($event)"
+      (onChange)="handleChangeValue($event)"
     >
       <ng-template #customContent>
         <label [htmlFor]="inputId()">
@@ -36,20 +39,21 @@
             margin="none"
             [gapSize]="isMultiSelect() ? 's' : 'none'"
           >
-            @if (isMultiSelect()) {
+            @if (isMultiSelect() && !!selectedOptionCounter) {
               <bmb-tag
-                [text]="'+1'"
+                [text]="tagValue"
                 [dismissible]="true"
+                [enableClick]="true"
                 [isDisabled]="false"
                 (closedTag)="handleClearSelectedOptions()"
+                (clickedTag)="handleClearSelectedOptions()"
                 bmbLayoutItem
               />
             }
-            <bmb-icon
-              class="bmb_field-actions"
-              icon="keyboard_arrow_down"
-              (click)="openList()"
-              [size]="24"
+            <bmb-action-icon
+              [icon]="isOpenList ? 'keyboard_arrow_up' : 'keyboard_arrow_down'"
+              [iconSize]="24"
+              (buttonClick)="openList()"
               bmbLayoutItem
             />
           </section>

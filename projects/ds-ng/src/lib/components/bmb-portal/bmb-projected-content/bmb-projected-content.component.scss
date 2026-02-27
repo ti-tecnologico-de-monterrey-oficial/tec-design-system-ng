@@ -8,6 +8,7 @@
   background-color: transparent;
   margin: 0;
   color: var(--general-contrasts-100);
+  outline-style: none;
 
   @include mixins.media-query(1000, 'max') {
     left: 1rem !important;
