@@ -106,6 +106,7 @@ export class BmbDropdownComponent implements OnInit, OnChanges {
   isControlNull: boolean = false;
   parsedOptions = computed(() => this.initOptions(this.options()));
   selectedItem: IDropdownItem | null = null;
+  dialogID: string = `dialog_id_${this.uuid}`;
 
   @ViewChild('contentDiv', { static: true }) contentRef!: ElementRef<any>;
 
@@ -236,6 +237,7 @@ export class BmbDropdownComponent implements OnInit, OnChanges {
       targetRef: this.contentRef?.nativeElement,
       fixSizeToRef: true,
       showBackdrop: false,
+      id: this.dialogID,
       inputContext: {
         selectedOption: this.control().value,
         items: this.parsedOptions(),
@@ -276,6 +278,10 @@ export class BmbDropdownComponent implements OnInit, OnChanges {
     if (event === null) {
       this.handleClearSelectedOptions();
     }
+  }
+
+  get isOpenList(): boolean {
+    return this.projectionService.isContentOpen(this.dialogID);
   }
 
   get isSelectedLengthAtLeastOne(): boolean {
