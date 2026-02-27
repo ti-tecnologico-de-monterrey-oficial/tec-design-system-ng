@@ -2,7 +2,7 @@
   class="bmb_field"
   [ngClass]="{
     'bmb_field-text-area': type() === 'text-area',
-    normal: type() !== 'text-area' || appearance() === 'normal',
+    normal: type() !== 'text-area' && appearance() === 'normal',
     simple: type() !== 'text-area' && appearance() === 'simple',
     focused: isFocused,
     error: isError()
@@ -13,6 +13,7 @@
   }
   @if (type() === 'text-area') {
     <textarea
+      class="bmb_field-textarea"
       [autocomplete]="autoComplete()"
       [placeholder]="placeholder()"
       [required]="isRequired()"
@@ -40,6 +41,7 @@
     }
   } @else {
     <input
+      class="bmb_field-input"
       [type]="getType()"
       [autocomplete]="autoComplete()"
       [readOnly]="isReadOnly()"

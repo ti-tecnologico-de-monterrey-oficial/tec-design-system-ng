@@ -188,7 +188,9 @@
   "dropdown": {
     "menu": {
       "filter_placeholder": "Select an option"
-    }
+    },
+    "no_result": "No matches where found.",
+    "select_all": "Select all"
   },
   "table": {
     "filters": {

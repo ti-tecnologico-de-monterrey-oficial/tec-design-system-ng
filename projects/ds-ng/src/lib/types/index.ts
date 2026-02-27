@@ -149,6 +149,7 @@ export interface IBmbBadgeInfo {
 export interface IDropdownItem {
   idItem?: string;
   icon: string;
+  showIndicator?: boolean;
   text: string;
   dotNotification?: number; //for icon
   selectedText?: string;

@@ -281,6 +281,22 @@
   transition: all 0.3s ease;
 }
 
+@mixin input-features() {
+  flex: 1;
+  border-color: transparent;
+  background-color: transparent;
+  color: currentColor;
+
+  &::placeholder {
+    @include input-placeholder();
+  }
+
+  &:focus,
+  &:focus-visible {
+    outline-style: none;
+  }
+}
+
 @mixin input-focused() {
   box-sizing: inherit;
   border-color: var(--general-contrasts-input-outline);

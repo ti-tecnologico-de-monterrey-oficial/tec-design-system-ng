@@ -2,22 +2,6 @@
 @use '../../../../assets/styles/base/mixins' as mixins;
 @use '../../../../assets/styles/base/rem' as rem;
 
-@mixin input-features() {
-  flex: 1;
-  border-color: transparent;
-  background-color: transparent;
-  color: currentColor;
-
-  &::placeholder {
-    @include mixins.input-placeholder();
-  }
-
-  &:focus,
-  &:focus-visible {
-    outline-style: none;
-  }
-}
-
 @mixin input-appearance($type: normal) {
   width: 100%;
   max-height: rem.rem_calc(48);
@@ -33,7 +17,7 @@
   }
 
   > input {
-    @include input-features();
+    @include mixins.input-features();
   }
 }
 
@@ -71,7 +55,7 @@
       min-width: rem.rem_calc(124);
       width: 100%;
       resize: none;
-      @include input-features();
+      @include mixins.input-features();
       align-items: start;
 
       scrollbar-width: rem.rem_calc(8);
