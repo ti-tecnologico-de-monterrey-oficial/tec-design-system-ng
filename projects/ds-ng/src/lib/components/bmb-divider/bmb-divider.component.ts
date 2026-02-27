@@ -3,8 +3,12 @@ import {
   Input,
   ChangeDetectionStrategy,
   ViewEncapsulation,
+  input,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
+
+export type BmbDividerType = 'simple' | 'dashed' | 'dotted';
+
 @Component({
   selector: 'bmb-divider',
   styleUrl: './bmb-divider.component.scss',
@@ -15,17 +19,14 @@ import { CommonModule } from '@angular/common';
   encapsulation: ViewEncapsulation.None,
 })
 export class BmbDividerComponent {
-  @Input() type: string = '';
-
-  constructor() {}
+  type = input<BmbDividerType>('simple');
+  removeMargin = input<boolean>(false);
 
   getClasses(): string[] {
-    const classes: string[] = ['bmb_divider'];
-
-    if (this.type) {
-      classes.push('bmb_divider-' + this.type);
-    }
-
-    return classes;
+    return [
+      'bmb_divider',
+      `bmb_divider-${this.type}`,
+      this.removeMargin() ? 'bmb_divider-no-margin' : ''
+    ];
   }
 }

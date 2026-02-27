@@ -45,7 +45,9 @@ export class BmbTooltipComponent {
   @ViewChild('contentTooltip', { static: true })
   contentTooltip!: TemplateRef<any>;
 
-  constructor(private contentProjected: BmbProjectionContentService) {
+  constructor(
+    // private contentProjected: BmbProjectionContentService
+  ) {
     effect(() => {
       const deprecatedTitle = this.title();
       const newTitle = this.componentTitle();
@@ -63,11 +65,11 @@ export class BmbTooltipComponent {
   }
 
   showTooltip(event?: Event): void {
-    this.contentProjected.openContent({
-      content: this.contentTooltip,
-      targetRef: event?.target as HTMLHtmlElement,
-      focusOnOpen: true,
-      showBackdrop: false,
-    });
+    // this.contentProjected.openContent({
+    //   content: this.contentTooltip,
+    //   targetRef: event?.target as HTMLHtmlElement,
+    //   focusOnOpen: true,
+    //   showBackdrop: false,
+    // });
   }
 }

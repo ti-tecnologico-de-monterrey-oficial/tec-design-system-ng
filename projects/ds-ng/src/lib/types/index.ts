@@ -12,6 +12,7 @@ export * from '../components/bmb-sidebar/bmb-sidebar.interface';
 export * from '../components/bmb-grades/types';
 export * from '../components/bmb-tables/bmb-tables.interface';
 export * from '../components/bmb-image/types';
+export * from './colors';
 
 export type SizeNames = 'xs' | 's' | 'm' | 'l' | 'xl' | 'xxl' | 'none' | 'auto';
 export type IButtonAppearance =
