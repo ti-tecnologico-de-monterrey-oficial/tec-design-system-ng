@@ -522,9 +522,14 @@ export class BmbTableLiteComponent implements OnInit, OnChanges {
 
   // 🔹 Define clases dinámicas para celdas de datos
   getCellClasses(row: any, columnKey: string, index: number): any {
+    const column = this.tableColumns[index];
     const semanticType = row[columnKey + 'Type'];
+
+    const isSticky =
+      column?.sticky === true || (column?.sticky === undefined && index === 0);
+
     return {
-      'bmb_table_lite-sticky': index === 0,
+      'bmb_table_lite-sticky': isSticky,
       truncated: this.truncate(),
       ['bmb_table_lite-' + semanticType]: !!semanticType,
     };
@@ -532,8 +537,13 @@ export class BmbTableLiteComponent implements OnInit, OnChanges {
 
   // 🔹 Define clases dinámicas para encabezados
   getHeaderCellClasses(i: number): any {
+    const column = this.tableColumns[i];
+
+    const isSticky =
+      column?.sticky === true || (column?.sticky === undefined && i === 0);
+
     return {
-      'bmb_table_lite-sticky': i === 0,
+      'bmb_table_lite-sticky': isSticky,
       truncated: this.truncate(),
     };
   }

@@ -42,32 +42,32 @@ export class BmbTooltipComponent {
   align = input<string>(); // deprecated
   justify = input<string>(); // deprecated
 
-  @ViewChild('contentTooltip', { static: true })
-  contentTooltip!: TemplateRef<any>;
+  // @ViewChild('contentTooltip', { static: true })
+  // contentTooltip!: TemplateRef<any>;
 
-  constructor(private contentProjected: BmbProjectionContentService) {
-    effect(() => {
-      const deprecatedTitle = this.title();
-      const newTitle = this.componentTitle();
-      logDeprecatedInput(
-        { name: 'title', hasValue: !!deprecatedTitle },
-        { name: 'componentTitle', hasValue: !!newTitle },
-      );
+  // constructor(private contentProjected: BmbProjectionContentService) {
+  //   effect(() => {
+  //     const deprecatedTitle = this.title();
+  //     const newTitle = this.componentTitle();
+  //     logDeprecatedInput(
+  //       { name: 'title', hasValue: !!deprecatedTitle },
+  //       { name: 'componentTitle', hasValue: !!newTitle },
+  //     );
 
-      if (!deprecatedTitle && !newTitle) {
-        throw new Error(
-          'The "componentTitle" input is required. Please provide a value for it.',
-        );
-      }
-    });
-  }
+  //     if (!deprecatedTitle && !newTitle) {
+  //       throw new Error(
+  //         'The "componentTitle" input is required. Please provide a value for it.',
+  //       );
+  //     }
+  //   });
+  // }
 
-  showTooltip(event?: Event): void {
-    this.contentProjected.openContent({
-      content: this.contentTooltip,
-      targetRef: event?.target as HTMLHtmlElement,
-      focusOnOpen: true,
-      showBackdrop: false,
-    });
-  }
+  // showTooltip(event?: Event): void {
+  //   this.contentProjected.openContent({
+  //     content: this.contentTooltip,
+  //     targetRef: event?.target as HTMLHtmlElement,
+  //     focusOnOpen: true,
+  //     showBackdrop: false,
+  //   });
+  // }
 }
