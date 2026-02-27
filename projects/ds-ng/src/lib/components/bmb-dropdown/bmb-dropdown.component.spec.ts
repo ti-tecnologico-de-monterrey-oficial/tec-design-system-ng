@@ -21,7 +21,7 @@ describe('BmbDropdownComponent', () => {
   beforeEach(async () => {
     const projectionServiceSpy = jasmine.createSpyObj(
       'BmbProjectionContentService',
-      ['openContent', 'closeContent'],
+      ['openContent', 'closeContent', 'isContentOpen'],
     );
 
     await TestBed.configureTestingModule({
