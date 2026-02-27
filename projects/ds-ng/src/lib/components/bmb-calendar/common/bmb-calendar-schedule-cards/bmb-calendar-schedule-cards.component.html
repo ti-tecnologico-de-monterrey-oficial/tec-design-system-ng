@@ -7,12 +7,14 @@
     title="{{ event().title }} - {{ event().detail }}"
   >
     <div class="bmb_calendar-event-indicator"></div>
-    <h3 class="bmb_calendar-event-title">
-      {{ event().title }}
-    </h3>
+    <header class="bmb_calendar-event-header">
+      <span class="bmb_calendar-event-header-circle" [ngStyle]="getBulletStyle()"></span>
+      <h3 class="bmb_calendar-event-title">
+        {{ event().title }}
+      </h3>
+    </header>
     @if (extendedContent()) {
       <p class="bmb_calendar-event-content">{{ event().detail }}</p>
-      <span class="bmb_calendar-event-time">{{ handleTimeRange() }}</span>
     }
   </div>
 }
