@@ -246,11 +246,6 @@ export class BmbDropdownComponent implements OnInit, OnChanges {
           : this.customFilterFunction(),
         isMultiSelect: this.isMultiSelect(),
       },
-      // outputContext: {
-      //   getSelectedAll: () => {
-      //     this.handleClearSelectedOptions();
-      //   },
-      // },
       focusOnOpen: true,
     };
     this.projectionService.openContent(data);
