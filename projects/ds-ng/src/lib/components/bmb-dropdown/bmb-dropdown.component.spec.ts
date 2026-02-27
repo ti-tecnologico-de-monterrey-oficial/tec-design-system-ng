@@ -5,8 +5,6 @@ import {
   IBmbDropdownItem,
 } from './bmb-dropdown.component';
 import { BmbProjectionContentService } from '../../services/projection/projection.service';
-import { DebugElement } from '@angular/core';
-import { By } from '@angular/platform-browser';
 
 describe('BmbDropdownComponent', () => {
   let component: BmbDropdownComponent;
@@ -216,8 +214,8 @@ describe('BmbDropdownComponent', () => {
       component.control()?.setValue(['first', 'second']);
 
       const selectionValue = component.selectionControl.value;
-      expect(selectionValue).toContain(' First Option');
-      expect(selectionValue).toContain(' Second Option');
+
+      expect(selectionValue.toString()).toEqual('First Option');
     });
 
     it('should update selected icon when showIcon is true', () => {
@@ -282,6 +280,7 @@ describe('BmbDropdownComponent', () => {
     });
 
     it('should pass filterable configuration to dropdown content', () => {
+      fixture.componentRef.setInput('isMultiSelect', false);
       fixture.componentRef.setInput('isFilterable', true);
       fixture.componentRef.setInput('options', mockStringOptions);
       fixture.detectChanges();

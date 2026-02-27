@@ -1,13 +1,12 @@
 import { Component, computed, OnInit } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 import {
   BmbDropdownComponent,
   BmbButtonDirective,
   BmbLayoutDirective,
   BmbLayoutItemDirective,
   BmbBookmarkComponent,
-  BmbDatepickerComponent,
-  BmbInputComponent,
+  BmbFormValidatorComponent,
 } from '../../../../projects/ds-ng/src/public-api';
 import { AnimeService } from '../../services/anime.service';
 
@@ -18,18 +17,14 @@ import { AnimeService } from '../../services/anime.service';
   imports: [
     BmbButtonDirective,
     BmbDropdownComponent,
-    ReactiveFormsModule,
+    BmbFormValidatorComponent,
     BmbLayoutDirective,
     BmbLayoutItemDirective,
     BmbBookmarkComponent,
-    BmbInputComponent,
-    BmbDatepickerComponent,
   ],
 })
 export class DropdownPageComponent implements OnInit {
-  userForm: FormGroup = new FormGroup({
-    dropdown: new FormControl(),
-  });
+  userForm: FormGroup = new FormGroup({});
 
   constructor(private animeService: AnimeService) {}
 
@@ -45,27 +40,7 @@ export class DropdownPageComponent implements OnInit {
     //Add your code
   }
 
-  onSubmit() {
-    if (this.userForm.valid) {
-      //Add your code
-      return;
-    }
-    this.userForm.markAllAsTouched();
-    this.updateErrorState();
-  }
-
-  updateErrorState() {
-    Object.keys(this.userForm.controls).forEach((field: any) => {
-      const control = this.getFormControl(field);
-      if (control instanceof FormControl) {
-        control.markAsTouched();
-        control.updateValueAndValidity();
-      }
-    });
-  }
-
   options = computed(() => {
-    // return [];
     const elements = this.animeService.topAnime();
     return elements.data.map((anime) => anime.title);
   });
@@ -82,4 +57,8 @@ export class DropdownPageComponent implements OnInit {
     // Custom filter logic: match if the text starts with the filter string
     return item.text.toLowerCase().startsWith(filter.toLowerCase());
   };
+
+  handleFormGroupState(state: FormGroup): void {
+    console.info(state.controls);
+  }
 }
