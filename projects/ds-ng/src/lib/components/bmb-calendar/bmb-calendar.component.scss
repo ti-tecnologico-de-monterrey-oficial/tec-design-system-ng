@@ -16,9 +16,8 @@
 
   &-event-bullet {
     width: rem.rem_calc(8);
-    height: rem.rem_calc(8);
-    border-radius: var(--bmb-radius-full);
-    margin-left: rem.rem_calc(8);
+    height: rem.rem_calc(14);
+    border-radius: var(--bmb-radius-xxs);
     background-color: var(--general-contrasts-50);
 
     &-academic {
@@ -128,20 +127,5 @@
   &-content {
     flex: 1 0 0%;
     overflow: hidden;
-  }
-
-  &-event-modal {
-    &-title {
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: wrap;
-      @include fonts.font(5, regular);
-    }
-
-    &-detail,
-    &-place,
-    &-duration {
-      @include fonts.font(4, regular);
-    }
   }
 }

@@ -104,8 +104,6 @@ export class BmbExternalLinkComponent {
   }
 
   handleOpenMenu(): void {
-    console.log('Opening menu', this.contentRef?.nativeElement);
-
     this.projectionService.openContent({
       content: BmbDropdownContentComponent,
       targetRef: this.contentRef?.nativeElement,

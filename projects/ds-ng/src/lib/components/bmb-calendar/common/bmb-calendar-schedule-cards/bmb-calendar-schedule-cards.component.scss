@@ -144,3 +144,7 @@ $types: 'academic', 'life', 'event', 'save_the_date';
     grid-area: time;
   }
 }
+
+.bmb_calendar-event-modal-text {
+  @include fonts.font(4, regular);
+}
