@@ -1,21 +1,56 @@
-<form bmbLayout [formGroup]="userForm" (ngSubmit)="onSubmit()">
-  <section bmbLayoutItem [colSm]="2">
-    <bmb-dropdown
-      inputId="dropdown_id"
-      name="dropdown"
-      label="Dropdown"
-      [options]="options()"
-      [isFilterable]="true"
-      [control]="getFormControl('dropdown')"
-      (onValueChange)="handleDropdownChange($event)"
-      [customFilterFunction]="customFilterFunction"
-    />
-    <bmb-input [placeholder]="'Search...'" [isClearable]="true" />
-    <bmb-datepicker />
+<bmb-form-validator
+  [(formGroup)]="userForm"
+  (formGroupState)="handleFormGroupState($event)"
+>
+  <section bmbLayout>
+    <section bmbLayoutItem [colSm]="2">
+      <bmb-dropdown
+        inputId="dropdown_id"
+        name="dropdown"
+        label="Dropdown 1"
+        [options]="options()"
+        [isFilterable]="true"
+        (onValueChange)="handleDropdownChange($event)"
+        [customFilterFunction]="customFilterFunction"
+      />
+    </section>
+    <section bmbLayoutItem [colSm]="2">
+      <bmb-dropdown
+        inputId="dropdown_id2"
+        name="dropdown2"
+        label="Dropdown 2"
+        [options]="options()"
+        (onValueChange)="handleDropdownChange($event)"
+        [customFilterFunction]="customFilterFunction"
+      />
+    </section>
+    <section bmbLayoutItem [colSm]="2">
+      <bmb-dropdown
+        inputId="dropdown_id3"
+        name="dropdown3"
+        label="Dropdown 3"
+        [options]="options()"
+        [isMultiSelect]="true"
+        (onValueChange)="handleDropdownChange($event)"
+        [customFilterFunction]="customFilterFunction"
+      />
+    </section>
+    <section bmbLayoutItem [colSm]="2">
+      <bmb-dropdown
+        inputId="dropdown_id4"
+        name="dropdown4"
+        label="Dropdown 4"
+        [options]="options()"
+        (onValueChange)="handleDropdownChange($event)"
+        [customFilterFunction]="customFilterFunction"
+      />
+    </section>
+    <section bmbLayoutItem [colSm]="2">
+      <bmb-bookmark
+        [isActive]="false"
+        (isActiveChange)="handleBookmarkChange($event)"
+      />
+      <button bmbButton appearance="primary" type="submit">Submit</button>
+    </section>
   </section>
-  <button bmbButton appearance="primary" type="submit">Submit</button>
-  <bmb-bookmark
-    [isActive]="false"
-    (isActiveChange)="handleBookmarkChange($event)"
-  ></bmb-bookmark>
-</form>
+</bmb-form-validator>

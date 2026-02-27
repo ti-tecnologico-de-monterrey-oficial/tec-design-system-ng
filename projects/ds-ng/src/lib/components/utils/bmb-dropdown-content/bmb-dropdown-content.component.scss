@@ -1,7 +1,10 @@
 @use '../../../../assets/styles/base/rem' as rem;
 @use '../../../../assets/styles/base/fonts' as fonts;
+@use '../../../../assets/styles/base/mixins' as mixins;
 
 .bmb_dropdown-content {
+  outline-style: none;
+
   &-modal {
     background-color: var(--containers-main);
     border: 0;
@@ -12,7 +15,7 @@
     width: 100%;
     border-radius: var(--bmb-radius-2);
     padding: 0;
-    margin: rem.rem_calc(8 0 0);
+    outline-style: none;
   }
 
   &-container {
@@ -21,36 +24,85 @@
     margin: 0;
   }
 
+  &-element {
+    display: flex;
+    width: 100%;
+    height: rem.rem_calc(48);
+    padding: var(--bmb-spacing-s) var(--bmb-spacing-m);
+    gap: var(--bmb-spacing-m);
+    align-items: center;
+    background-color: inherit;
+    color: currentColor;
+
+    &-text {
+      max-width: 100%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    &-indicator {
+      @include mixins.input-mark(currentColor, var(--bmb-radius-xs));
+
+      &.selected {
+        background-color: var(--buttons-active-switch);
+        border-color: var(--buttons-active-switch);
+
+        &::after {
+          @include mixins.input-checked(10, 4);
+          border: solid rgb(var(--white-primary));
+          border-width: rem.rem_calc(0 2 2 0);
+          transform: rotate(45deg);
+          top: -2px;
+        }
+      }
+
+      &.indeterminate {
+        background-color: var(--buttons-active-switch);
+        border-color: var(--buttons-active-switch);
+
+        &::after {
+          @include mixins.input-checked(2, 12);
+          position: absolute;
+          background-color: rgb(var(--white-primary));
+          margin: 0;
+          top: 6px;
+          left: 1px;
+        }
+      }
+    }
+  }
+
   &-item {
+    @include fonts.font(4, regular);
     color: var(--menu-select-label-menu-inactive);
 
     .bmb_check-external-link-button {
       display: block;
-    }
 
-    .bmb_check-external-link-button-element {
-      display: flex;
-      align-items: center;
-      background-color: transparent;
-      border: none;
-      padding: rem.rem_calc(8 16);
-      text-decoration: none;
-      width: 100%;
-      height: rem.rem_calc(48);
-      gap: var(--bmb-spacing-m);
+      &-element {
+        text-decoration: none;
+        width: 100%;
+        height: rem.rem_calc(48);
 
-      &:hover,
-      &:focus,
-      &:focus-visible {
-        background-color: var(--menu-select-on-surface-hovered);
-        outline: 0 none;
+        &:hover,
+        &:focus,
+        &:focus-visible {
+          .bmb_dropdown-content-element {
+            background-color: var(--menu-select-on-surface-hovered);
+          }
+          outline: 0 none;
+        }
       }
     }
 
     &-selected {
       color: var(--menu-select-label-menu-active);
       .bmb_check-external-link-button-element {
-        background-color: var(--menu-select-surface-activated);
+        .bmb_dropdown-content-element {
+          background-color: var(--menu-select-surface-activated);
+        }
+
         &:hover,
         &:focus,
         &:focus-visible {
@@ -59,40 +111,25 @@
       }
     }
 
-    &-text {
-      max-width: 100%;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-      @include fonts.font(4, regular);
-    }
-
     &-filter {
-      position: sticky;
-      top: 0;
-      left: 0;
-      background-color: var(--containers-main);
-
-      &-icon {
-        position: absolute;
-        left: rem.rem_calc(8);
-        top: rem.rem_calc(8);
-      }
-
       &-input {
-        border-radius: var(--bmb-radius-2) var(--bmb-radius-2) 0 0;
-        border: rem.rem_calc(1) solid var(--general-contrasts-50);
-        background-color: var(--general-contrasts-input-background);
-        padding: rem.rem_calc(8 8 8 48);
-        color: var(--menu-select-label-menu-inactive);
-        width: 100%;
+        @include mixins.normal-input();
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
 
-        &:hover,
-        &:focus,
-        &:focus-visible {
-          outline: none;
+        > input {
+          @include mixins.input-features();
         }
       }
+    }
+
+    &-empty {
+      padding: var(--bmb-spacing-s) var(--bmb-spacing-m);
+      text-align: center;
+    }
+
+    .bmb_divider {
+      margin: 0;
     }
   }
 }

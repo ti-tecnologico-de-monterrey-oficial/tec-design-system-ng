@@ -17,38 +17,24 @@
   }
 
   &-dialog {
-    .bmb_dropdown-content-item {
-      .bmb_check-external-link-button {
-        display: block;
-        padding: rem.rem_calc(11 16);
-      }
-
-      .bmb_check-external-link-button-element {
-        width: auto;
-        border-radius: var(--bmb-spacing-m);
-        padding: var(--bmb-spacing-s);
-        height: rem.rem_calc(26);
-        border: rem.rem_calc(1) solid transparent;
+    .bmb_dropdown-content {
+      &-item .bmb_check-external-link-button-element {
+        padding: 0 var(--bmb-spacing-m);
 
         &:hover,
         &:focus,
         &:focus-visible {
-          border-color: var(--menu-select-on-surface-hovered-border);
+          .bmb_dropdown-content-element {
+            border-color: var(--menu-select-on-surface-hovered-border);
+          }
         }
       }
-    }
-  }
 
-  &-filter {
-    .bmb_field.normal {
-      border: 0;
-      height: rem.rem_calc(44);
-
-      &:focus,
-      &:focus-visible,
-      &:hover {
-        border: 0;
-        outline: 0 none;
+      &-element {
+        width: auto;
+        height: rem.rem_calc(26);
+        border-radius: var(--bmb-spacing-m);
+        border: rem.rem_calc(1) solid transparent;
       }
     }
   }
@@ -65,4 +51,5 @@
 
 .bmb_generic-dialog {
   z-index: 9999;
+  outline-style: none;
 }

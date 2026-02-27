@@ -293,6 +293,7 @@ export default {
           'orderEvents',
           'container',
           'detailContent',
+          'translationsService'
         ],
       },
       description: {
@@ -563,6 +564,30 @@ ${getBasicExampleBlock('BmbAlertCenterComponent')}
         defaultValue: getDefaultValueControl('true'),
       },
     },
+    enabledFooterOptions: {
+      control: { type: 'control' },
+      description:
+        'Configures the options to show in the footer navigation bar and enables or disables them.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'IBmbBottomNavigationBarProps' },
+        defaultValue: getDefaultValueControl(`{
+          tags: true,
+          favorites: true,
+          archive: true,
+        }`),
+      },
+    },
+    notificationSelectionState: {
+      control: null,
+      description:
+        'Represents the selection state of the notifications. The keys of the object are the notification IDs, and the values are booleans indicating whether each notification is selected.',
+      table: {
+        category: 'Properties',
+        type: { summary: '{ [key: string]: boolean }' },
+        defaultValue: getDefaultValueControl(`{}`),
+      },
+    },
   },
   args: {
     tabsName: [
@@ -592,6 +617,11 @@ ${getBasicExampleBlock('BmbAlertCenterComponent')}
     emptyStateData: '',
     enableMultipleSelection: true,
     showMobileVersion: false,
+    enabledFooterOptions: {
+      tags: true,
+      favorites: true,
+      archive: true,
+    }
   },
 } as Meta<typeof BmbAlertCenterComponent>;
 
