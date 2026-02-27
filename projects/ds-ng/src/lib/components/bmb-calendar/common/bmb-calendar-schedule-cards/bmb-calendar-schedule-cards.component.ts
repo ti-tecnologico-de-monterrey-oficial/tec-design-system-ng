@@ -91,7 +91,9 @@ export class BmbCalendarScheduleCardsComponent {
     console.log('bullet style');
 
     return {
-      'background-color': `rgb(var(--${this.event().bulletColor}))` || 'var(--bmb-color-success-primary)',
+      'background-color':
+        `rgb(var(--${this.event().bulletColor}))` ||
+        'var(--bmb-color-success-primary)',
     };
   }
 }

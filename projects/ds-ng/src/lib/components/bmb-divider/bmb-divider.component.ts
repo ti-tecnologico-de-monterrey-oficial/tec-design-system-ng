@@ -26,7 +26,7 @@ export class BmbDividerComponent {
     return [
       'bmb_divider',
       `bmb_divider-${this.type}`,
-      this.removeMargin() ? 'bmb_divider-no-margin' : ''
+      this.removeMargin() ? 'bmb_divider-no-margin' : '',
     ];
   }
 }
