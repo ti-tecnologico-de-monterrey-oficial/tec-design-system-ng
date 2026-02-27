@@ -45,11 +45,11 @@
       @include mixins.checkbox-mark();
 
       &.selected {
-         @include mixins.checkbox-mark('selected');
+        @include mixins.checkbox-mark('selected');
       }
 
       &.indeterminate {
-         @include mixins.checkbox-mark('indeterminate');
+        @include mixins.checkbox-mark('indeterminate');
       }
     }
   }
