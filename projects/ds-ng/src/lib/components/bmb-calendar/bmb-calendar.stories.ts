@@ -98,7 +98,13 @@ class MockCalendarService {
           end: today.plus({ days: i - 91, hours: e - 2 }).toISO() as string,
           detail: `Event ${i} detail`,
           daysRepetition: e % 2 === 0 ? 'L,X,V' : 'M,J',
-          campus: 'Campus ' + (i % 3 === 0 ? 'Monterrey' : i % 3 === 1 ? 'Santa Fe' : 'Guadalajara'),
+          campus:
+            'Campus ' +
+            (i % 3 === 0
+              ? 'Monterrey'
+              : i % 3 === 1
+                ? 'Santa Fe'
+                : 'Guadalajara'),
           // status: i % 2 === 0 ? 'active' : 'disabled',
           type:
             i % 4 === 0

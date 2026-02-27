@@ -42,33 +42,14 @@
     }
 
     &-indicator {
-      @include mixins.input-mark(currentColor, var(--bmb-radius-xs));
+      @include mixins.checkbox-mark();
 
       &.selected {
-        background-color: var(--buttons-active-switch);
-        border-color: var(--buttons-active-switch);
-
-        &::after {
-          @include mixins.input-checked(10, 4);
-          border: solid rgb(var(--white-primary));
-          border-width: rem.rem_calc(0 2 2 0);
-          transform: rotate(45deg);
-          top: -2px;
-        }
+        @include mixins.checkbox-mark('selected');
       }
 
       &.indeterminate {
-        background-color: var(--buttons-active-switch);
-        border-color: var(--buttons-active-switch);
-
-        &::after {
-          @include mixins.input-checked(2, 12);
-          position: absolute;
-          background-color: rgb(var(--white-primary));
-          margin: 0;
-          top: 6px;
-          left: 1px;
-        }
+        @include mixins.checkbox-mark('indeterminate');
       }
     }
   }
@@ -126,10 +107,6 @@
     &-empty {
       padding: var(--bmb-spacing-s) var(--bmb-spacing-m);
       text-align: center;
-    }
-
-    .bmb_divider {
-      margin: 0;
     }
   }
 }

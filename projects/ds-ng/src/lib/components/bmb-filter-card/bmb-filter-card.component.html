@@ -79,7 +79,8 @@
                     [options]="control.options ?? []"
                     [control]="getFormControl(control.name)"
                     (onValueChange)="onValueChange($event, control.name)"
-                    [isFilterable]="true"
+                    [isFilterable]="!control?.isMultiSelect!"
+                    [isMultiSelect]="control?.isMultiSelect!"
                   />
                 }
               }

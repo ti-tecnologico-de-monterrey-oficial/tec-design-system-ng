@@ -8,7 +8,10 @@
   >
     <div class="bmb_calendar-event-indicator"></div>
     <header class="bmb_calendar-event-header">
-      <span class="bmb_calendar-event-header-circle" [ngStyle]="getBulletStyle()"></span>
+      <span
+        class="bmb_calendar-event-header-circle"
+        [ngStyle]="getBulletStyle()"
+      ></span>
       <h3 class="bmb_calendar-event-title">
         {{ event().title }}
       </h3>

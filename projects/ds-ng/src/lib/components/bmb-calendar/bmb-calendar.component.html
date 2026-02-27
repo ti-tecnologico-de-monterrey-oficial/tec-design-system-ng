@@ -89,7 +89,7 @@
         [numberOfRows]="1"
       >
         @if (selectedEvent.tags?.length) {
-          <p style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 0;">
+          <p style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 0">
             @for (item of selectedEvent.tags; track $index) {
               <bmb-badge [text]="item.text" [appearance]="item.appearance" />
             }
@@ -134,7 +134,9 @@
         [numberOfRows]="1"
       >
         @if (selectedEvent.place) {
-          <p class="bmb_calendar-event-modal-place">{{ selectedEvent.place }}</p>
+          <p class="bmb_calendar-event-modal-place">
+            {{ selectedEvent.place }}
+          </p>
         }
       </section>
 
