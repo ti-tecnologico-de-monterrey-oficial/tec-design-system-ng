@@ -200,8 +200,6 @@ export class BmbAccountStatementComponent implements AfterViewInit, OnInit {
   }
 
   customHandleClick() {
-    console.log('customHandleClick');
-
     if (!this.isEnableCustomAmount) {
       this.payEvent.emit(this.totalCount() - this.counter());
     } else if (this.amountForm.valid) {

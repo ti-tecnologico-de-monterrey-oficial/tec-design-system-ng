@@ -476,8 +476,6 @@ export class BmbTableLiteComponent implements OnInit, OnChanges {
 
   // 🔹 Emite el evento cuando cambia la selección
   onSelect() {
-    console.log(this.selection.selected);
-
     this.select.emit(this.selection.selected);
   }
 

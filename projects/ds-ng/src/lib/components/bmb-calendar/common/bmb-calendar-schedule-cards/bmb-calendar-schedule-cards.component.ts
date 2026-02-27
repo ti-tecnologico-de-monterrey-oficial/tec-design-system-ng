@@ -4,16 +4,32 @@ import {
   ViewEncapsulation,
   input,
   output,
+  ViewChild,
+  TemplateRef,
 } from '@angular/core';
 import { IBmbCalendarEvent, IBmbCalendarEventClick } from '../../types';
 import { DateTime } from 'luxon';
 import { getTimeRange, HOUR_HEIGHT } from '../../utils';
 import { CommonModule } from '@angular/common';
+import { IBmbNativeModal } from '../../../bmb-modal/bmb-modal.interface';
+import { BmbNativeModalService } from '../../../../services/modal/native-modal.service';
+import {
+  BmbLayoutGridDirective,
+  BmbLayoutGridItemDirective,
+} from '../../../../directives/bmb-layout-grid/bmb-layout-grid.directive';
+import { BmbBadgeComponent } from '../../../bmb-badge/bmb-badge.component';
+import { BmbDividerComponent } from '../../../bmb-divider/bmb-divider.component';
 
 @Component({
   selector: 'bmb-calendar-schedule-cards',
   standalone: true,
-  imports: [CommonModule],
+  imports: [
+    CommonModule,
+    BmbLayoutGridDirective,
+    BmbLayoutGridItemDirective,
+    BmbBadgeComponent,
+    BmbDividerComponent,
+  ],
   templateUrl: './bmb-calendar-schedule-cards.component.html',
   styleUrl: './bmb-calendar-schedule-cards.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -24,9 +40,11 @@ export class BmbCalendarScheduleCardsComponent {
   isPositionAbsolute = input<boolean>(true);
   extendedContent = input<boolean>(true);
 
-  onSelectEvent = output<IBmbCalendarEventClick>();
-
   now = DateTime.now();
+  @ViewChild('detailContent', { read: TemplateRef })
+  detailContent?: TemplateRef<any>;
+
+  constructor(private readonly modalService: BmbNativeModalService) {}
 
   getPosition(): string {
     if (!this.isPositionAbsolute()) return '';
@@ -76,22 +94,42 @@ export class BmbCalendarScheduleCardsComponent {
     return newClasses;
   }
 
-  handleSelectEvent(domEvent: any) {
-    this.onSelectEvent.emit({
-      event: this.event(),
-      position: domEvent.target.getBoundingClientRect().y,
-    });
-  }
+  // handleSelectEvent(domEvent: any) {
+  //   this.onSelectEvent.emit({
+  //     event: this.event(),
+  //     position: domEvent.target.getBoundingClientRect().y,
+  //   });
+  // }
 
   handleTimeRange(): string {
     return getTimeRange(this.event());
   }
 
   getBulletStyle() {
-    console.log('bullet style');
-
     return {
-      'background-color': `rgb(var(--${this.event().bulletColor}))` || 'var(--bmb-color-success-primary)',
+      'background-color':
+        `rgb(var(--${this.event().bulletColor}))` ||
+        'var(--bmb-color-success-primary)',
     };
+  }
+
+  getDuration() {
+    if (!this.event()) return '';
+    return `${DateTime.fromISO(this.event().start).toFormat('hh:mm a')} - ${DateTime.fromISO(this.event().end).toFormat('hh:mm a')}`;
+  }
+
+  handleSelectEvent(): void {
+    const event = this.event();
+    const title = event.modalTitle ?? event.title;
+    const modalTitle =
+      event.status === 'disabled' ? `(Cancelado) ${title}` : title;
+
+    const data: IBmbNativeModal = {
+      title: modalTitle,
+      subtitle: event.subtitle,
+      content: this.detailContent,
+      size: 'small',
+    };
+    this.modalService.openModal(data);
   }
 }

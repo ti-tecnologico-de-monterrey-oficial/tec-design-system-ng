@@ -15,7 +15,6 @@
       @for (event of eventsOnDate()[$index]; track $index) {
         <bmb-calendar-schedule-cards
           [event]="event"
-          (onSelectEvent)="handleEventSelection($event)"
           [isPositionAbsolute]="false"
           [extendedContent]="false"
         />

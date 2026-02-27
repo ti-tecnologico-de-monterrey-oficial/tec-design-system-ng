@@ -293,7 +293,7 @@ export default {
           'orderEvents',
           'container',
           'detailContent',
-          'translationsService'
+          'translationsService',
         ],
       },
       description: {
@@ -621,7 +621,7 @@ ${getBasicExampleBlock('BmbAlertCenterComponent')}
       tags: true,
       favorites: true,
       archive: true,
-    }
+    },
   },
 } as Meta<typeof BmbAlertCenterComponent>;
 

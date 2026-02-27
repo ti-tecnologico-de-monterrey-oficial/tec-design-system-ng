@@ -160,8 +160,6 @@ export class BmbFilterCardComponent implements OnInit {
   }
 
   onControlChange(control: any, event: any) {
-    console.log(event);
-
     const formControl = this.filterForm.get(control.name);
     if (formControl) {
       switch (control.type) {

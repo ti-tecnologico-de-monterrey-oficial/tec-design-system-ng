@@ -36,8 +36,6 @@ export class BmbCalendarTemplateDayComponent {
   startBusinessHour = input<number>(8);
   dateFormat = input<string>(DEFAULT_DATE_FORMAT);
 
-  onSelectEvent = output<IBmbCalendarEventClick>();
-
   eventsWithLayout = computed<IBmbCalendarEvent[]>(() => {
     return layoutEvents(this.events());
   });
@@ -49,9 +47,5 @@ export class BmbCalendarTemplateDayComponent {
 
   getNameDay(): string {
     return this.now().toFormat('cccc', { locale: this.locale() });
-  }
-
-  handleEventSelection(newEvent: IBmbCalendarEventClick) {
-    this.onSelectEvent.emit(newEvent);
   }
 }

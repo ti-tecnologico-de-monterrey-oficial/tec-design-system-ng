@@ -33,9 +33,6 @@ export class BmbCalendarTemplateMonthComponent {
   now = input<DateTime>(DateTime.now());
   events = input<IBmbParsedDates>({});
 
-  @Output() onSelectEvent: EventEmitter<IBmbCalendarEventClick> =
-    new EventEmitter<IBmbCalendarEventClick>();
-
   constructor(private translationsService: BmbTranslationsService) {}
 
   locale = computed(() => this.translationsService.getCurrentLanguage());
@@ -56,10 +53,6 @@ export class BmbCalendarTemplateMonthComponent {
   isNow(date: DateTime): boolean {
     const diff = date.diffNow('day').days;
     return diff < 0 && diff > -1;
-  }
-
-  handleEventSelection(newEvent: IBmbCalendarEventClick) {
-    this.onSelectEvent.emit(newEvent);
   }
 
   renderEvents(events: IBmbCalendarRenderEvents): any[] {

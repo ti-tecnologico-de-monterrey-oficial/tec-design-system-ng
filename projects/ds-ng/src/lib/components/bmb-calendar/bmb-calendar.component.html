@@ -26,7 +26,6 @@
       <bmb-calendar-template-day
         [now]="visibleDate()"
         [events]="getDayEvents()"
-        (onSelectEvent)="handleSelectEvent($event)"
         [currentTime]="currentTime()"
         [startBusinessHour]="startBusinessHour()"
         [dateFormat]="dateFormat()"
@@ -38,7 +37,6 @@
         [weekDays]="renderWeekDays()"
         [now]="visibleDate()"
         [events]="filteredEvents()"
-        (onSelectEvent)="handleSelectEvent($event)"
         [currentTime]="currentTime()"
         [startBusinessHour]="startBusinessHour()"
         [selectedWeek]="selectedWeek()"
@@ -49,7 +47,6 @@
       <bmb-calendar-template-month
         [now]="visibleDate()"
         [events]="filteredEvents()"
-        (onSelectEvent)="handleSelectEvent($event)"
         class="bmb_calendar-content"
       />
     }
@@ -70,93 +67,10 @@
   }
 </div>
 
-<ng-template #detailContent>
-  @if (selectedEvent) {
-    <div
-      bmbLayoutGrid
-      colGapSize="m"
-      rowGapSize="m"
-      columnSize="1fr"
-      rowSize="auto"
-      [columns]="2"
-      [rows]="4"
-    >
-      <section
-        bmbLayoutGridItem
-        [colStart]="1"
-        [rowStart]="1"
-        [numberOfColumns]="2"
-        [numberOfRows]="1"
-      >
-        @if (selectedEvent.tags?.length) {
-          <p style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 0;">
-            @for (item of selectedEvent.tags; track $index) {
-              <bmb-badge [text]="item.text" [appearance]="item.appearance" />
-            }
-          </p>
-        }
-      </section>
-      <section
-        bmbLayoutGridItem
-        [colStart]="1"
-        [rowStart]="2"
-        [numberOfColumns]="2"
-        [numberOfRows]="1"
-      >
-        <bmb-divider [removeMargin]="true" />
-      </section>
-      <section
-        bmbLayoutGridItem
-        [colStart]="1"
-        [rowStart]="3"
-        [numberOfColumns]="1"
-        [numberOfRows]="1"
-      >
-        <div class="bmb_calendar-event-modal-duration">{{ getDuration() }}</div>
-      </section>
-      <section
-        bmbLayoutGridItem
-        [colStart]="2"
-        [rowStart]="3"
-        [numberOfColumns]="1"
-        [numberOfRows]="1"
-      >
-        @if (selectedEvent.daysRepetition) {
-          <span>{{ selectedEvent.daysRepetition }}</span>
-        }
-      </section>
-
-      <section
-        bmbLayoutGridItem
-        [colStart]="1"
-        [rowStart]="4"
-        [numberOfColumns]="1"
-        [numberOfRows]="1"
-      >
-        @if (selectedEvent.place) {
-          <p class="bmb_calendar-event-modal-place">{{ selectedEvent.place }}</p>
-        }
-      </section>
-
-      <section
-        bmbLayoutGridItem
-        [colStart]="2"
-        [rowStart]="4"
-        [numberOfColumns]="1"
-        [numberOfRows]="1"
-      >
-        @if (selectedEvent.campus) {
-          <span>{{ selectedEvent.campus }}</span>
-        }
-      </section>
-    </div>
-  }
-</ng-template>
-
 <ng-template #modalTemplate>
   <form [formGroup]="calendarForm">
     @for (item of filteredEvents().calendars; track $index) {
-      <div bmbLayout gapSize="s" alignItems="center">
+      <div bmbLayout gapSize="m" alignItems="center">
         <bmb-checkbox
           bmbLayoutItem
           [isDynamicItem]="true"
