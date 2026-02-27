@@ -41,6 +41,11 @@ import { IBmbNativeModal } from '../bmb-modal/bmb-modal.interface';
 import { BmbTranslationsService } from '../../services/translations/translations.service';
 import { TranslatePipe } from '../../pipes/translations';
 import { BmbSwitchComponent } from '../bmb-switch/bmb-switch.component';
+import { IBmbColorSemantics } from '../../types';
+import {
+  BmbLayoutGridDirective,
+  BmbLayoutGridItemDirective,
+} from '../../directives/bmb-layout-grid/bmb-layout-grid.directive';
 
 const parseFromFormat = (dateString: string, format: string): DateTime => {
   if (format.toLowerCase() === 'iso') return DateTime.fromISO(dateString);
@@ -73,6 +78,8 @@ export {
     BmbLayoutItemDirective,
     TranslatePipe,
     BmbSwitchComponent,
+    BmbLayoutGridDirective,
+    BmbLayoutGridItemDirective,
   ],
   styleUrl: './bmb-calendar.component.scss',
   templateUrl: './bmb-calendar.component.html',
@@ -116,10 +123,18 @@ export class BmbCalendarComponent implements OnInit, AfterViewInit {
         const interval = Interval.fromDateTimes(startDate, endDate);
         const week = startDate.weekNumber;
         const stringDate = startDate.toFormat('yyyy-MM-dd');
+        const bulletColor: IBmbColorSemantics =
+          event.bulletColor || 'success-primary';
 
         if (!acc[week]) acc[week] = {};
         if (!acc[week][stringDate]) acc[week][stringDate] = [];
-        acc[week][stringDate].push({ ...event, startDate, endDate, interval });
+        acc[week][stringDate].push({
+          ...event,
+          startDate,
+          endDate,
+          interval,
+          bulletColor,
+        });
 
         if (event.calendar && !acc.calendars?.includes(event.calendar)) {
           acc.calendars?.push(event.calendar);

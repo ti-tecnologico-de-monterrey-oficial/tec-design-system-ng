@@ -1,5 +1,6 @@
 import { DateTime, Interval } from 'luxon';
 import { IBbmBgAppearance } from '../bmb-advertisement-card/types';
+import { IBmbColorSemantics } from '../../types/colors';
 
 export type IBmbCalendarEvent = {
   title: string;
@@ -7,7 +8,7 @@ export type IBmbCalendarEvent = {
   detail: string;
   start: string;
   end: string;
-  modalTitle: string;
+  modalTitle?: string;
   status?: IBmbEventStatus;
   type?: IBmbEventType;
   id?: string;
@@ -23,6 +24,9 @@ export type IBmbCalendarEvent = {
   column?: number;
   columnCount?: number;
   interval?: Interval;
+  bulletColor?: IBmbColorSemantics;
+  daysRepetition?: string;
+  campus?: string;
 };
 
 export type IBmbCalendarView = 'week' | 'month' | 'day';

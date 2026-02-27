@@ -13,8 +13,12 @@ $types: 'academic', 'life', 'event', 'save_the_date';
   @include fonts.font(3, regular);
   display: grid;
   gap: 0 0;
-  grid-template-areas: 'indicator title';
-  grid-template-rows: 1fr;
+  grid-template-columns: rem.rem_calc(16) 1fr;
+  grid-template-rows: 1fr auto;
+  grid-template-areas:
+    'indicator title'
+    'indicator content'
+    'indicator time';
 
   &-absolute {
     position: absolute;
@@ -74,36 +78,11 @@ $types: 'academic', 'life', 'event', 'save_the_date';
   }
 
   &-grid {
-    &-full {
-      grid-template-columns: rem.rem_calc(16) 1fr;
-      grid-template-rows: auto auto 1fr;
-      grid-template-areas:
-        'indicator title'
-        'indicator content'
-        'indicator time';
-    }
 
     &-reduced {
-      align-items: center;
-      display: flex;
-
       .bmb_calendar-event-title {
-        max-width: calc(100% - rem.rem_calc(16));
-        padding: 0;
-      }
-
-      .bmb_calendar-event-time {
-        display: none;
-      }
-
-      .bmb_calendar-event-content {
-        display: none;
-      }
-
-      .bmb_calendar-event-indicator {
-        height: 100%;
-        width: rem.rem_calc(8);
-        min-height: rem.rem_calc(22);
+        -webkit-line-clamp: 1;
+        line-clamp: 1;
       }
     }
   }
@@ -115,11 +94,12 @@ $types: 'academic', 'life', 'event', 'save_the_date';
   }
 
   &-content {
-    margin-bottom: rem.rem-calc(4);
+    margin: 0 rem.rem-calc(5) rem.rem-calc(5) 0;
     grid-area: content;
+    overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
-    overflow: hidden;
+    text-align: end;
   }
 
   &-indicator {
@@ -128,14 +108,37 @@ $types: 'academic', 'life', 'event', 'save_the_date';
     margin-right: rem.rem-calc(8);
   }
 
-  &-title {
+  &-header {
+    display: flex;
+    align-items: center;
     grid-area: title;
+    align-items: baseline;
+    gap: rem.rem_calc(4);
+
+    &-circle {
+      display: inline-block;
+      width: rem.rem_calc(8);
+      height: rem.rem_calc(8);
+      border-radius: 50%;
+      background-color: currentColor;
+      margin-right: rem.rem_calc(4);
+    }
+  }
+
+  &-title {
     @include fonts.font(4, regular);
     font-weight: 400;
-    white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
-    padding-top: rem.rem_calc(16);
+    padding: rem.rem_calc(16) rem.rem_calc(5) 0 0;
+    word-break: break-all;
+    display: -webkit-box;
+    display: box;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    -webkit-box-orient: vertical;
+    box-orient: vertical;
+    flex: 1;
   }
 
   &-time {
