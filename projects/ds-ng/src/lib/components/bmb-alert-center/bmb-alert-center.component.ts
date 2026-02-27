@@ -26,6 +26,7 @@ import {
   IBmbAlertCenterFooterEvent,
   IBmbAlertCenterProtoEventFooter,
   IBmbAlertCenterFooterEventName,
+  IBmbBottomNavigationBarProps,
 } from './types';
 import { BmbAlertCenterAdsComponent } from './bmb-alert-center-ads/bmb-alert-center-ads.component';
 import { BmbAlertCenterEmptyComponent } from './bmb-alert-center-empty/bmb-alert-center-empty.component';
@@ -79,6 +80,12 @@ export class BmbAlertCenterComponent {
   // deprecated properties
   alerts = input<IBmbDataAlert[]>([]);
   advertisements = input<IBmbDataAlert[]>([]);
+  enabledFooterOptions = input<IBmbBottomNavigationBarProps>({
+    tags: true,
+    favorites: true,
+    archive: true,
+  });
+  notificationSelectionState = model<{ [key: string]: boolean }>({});
 
   onChangeAlertStatus = output<IBmbDataAlertsOutput>();
   alertEvent = output<IBmbDataAlert>();

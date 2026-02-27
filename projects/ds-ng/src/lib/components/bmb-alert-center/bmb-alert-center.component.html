@@ -41,6 +41,8 @@
           [emptyStateData]="emptyStateData()"
           (navigationBarEvents)="handleNavigationBarEvents($event)"
           filterBy="all"
+          [(selectionState)]="notificationSelectionState"
+          [enabledOptions]="enabledFooterOptions()"
         />
       } @else if (selectedTab() === 2) {
         <bmb-alert-center-form
@@ -51,6 +53,8 @@
           [emptyStateData]="emptyStateData()"
           (navigationBarEvents)="handleNavigationBarEvents($event)"
           filterBy="unread"
+          [(selectionState)]="notificationSelectionState"
+          [enabledOptions]="enabledFooterOptions()"
         />
       } @else if (selectedTab() === 3) {
         <bmb-alert-center-form
@@ -61,6 +65,8 @@
           [emptyStateData]="emptyStateData()"
           (navigationBarEvents)="handleNavigationBarEvents($event)"
           filterBy="favorites"
+          [(selectionState)]="notificationSelectionState"
+          [enabledOptions]="enabledFooterOptions()"
         />
       } @else if (selectedTab() === 4) {
         <bmb-alert-center-form
