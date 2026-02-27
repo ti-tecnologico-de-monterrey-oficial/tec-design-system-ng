@@ -94,13 +94,6 @@ export class BmbCalendarScheduleCardsComponent {
     return newClasses;
   }
 
-  // handleSelectEvent(domEvent: any) {
-  //   this.onSelectEvent.emit({
-  //     event: this.event(),
-  //     position: domEvent.target.getBoundingClientRect().y,
-  //   });
-  // }
-
   handleTimeRange(): string {
     return getTimeRange(this.event());
   }

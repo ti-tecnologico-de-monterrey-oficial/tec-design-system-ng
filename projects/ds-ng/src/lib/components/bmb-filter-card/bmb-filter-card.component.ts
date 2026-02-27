@@ -159,7 +159,7 @@ export class BmbFilterCardComponent implements OnInit {
     this.modalId.set(this.modalService.openModal(data));
   }
 
-  onControlChange(control: any, event: any) {
+  controlChange(control: any, event: any) {
     const formControl = this.filterForm.get(control.name);
     if (formControl) {
       switch (control.type) {
