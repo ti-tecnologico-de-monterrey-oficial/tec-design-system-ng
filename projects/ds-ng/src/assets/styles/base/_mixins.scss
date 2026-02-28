@@ -318,6 +318,7 @@
   border-color: transparent;
   background-color: transparent;
   color: currentColor;
+  width: 100%;
 
   &::placeholder {
     @include input-placeholder();

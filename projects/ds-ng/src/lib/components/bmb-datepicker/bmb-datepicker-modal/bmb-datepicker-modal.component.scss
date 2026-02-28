@@ -48,7 +48,7 @@
   }
 
   &-button {
-    &:not(.bmb_field.normal) {
+    &:not(.normal) {
       width: rem.rem_calc(32);
       border-radius: var(--bmb-radius-full);
       aspect-ratio: 1/1;
