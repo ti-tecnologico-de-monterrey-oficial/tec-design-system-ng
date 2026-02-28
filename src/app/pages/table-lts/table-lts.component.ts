@@ -1,19 +1,22 @@
-import { Component, model, OnInit, signal } from '@angular/core';
+import { Component, model, OnInit, signal, TemplateRef, ViewChild } from '@angular/core';
 import {
   BmbTablesComponent,
   TableColum,
+  BmbTooltipComponent,
 } from '../../../../projects/ds-ng/src/public-api';
 import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-table-lts',
   standalone: true,
-  imports: [BmbTablesComponent, CommonModule],
+  imports: [BmbTablesComponent, CommonModule, BmbTooltipComponent],
   templateUrl: './table-lts.component.html',
   styleUrl: './table-lts.component.scss',
 })
 export class TableLtsComponent implements OnInit {
   data = signal<any[]>([]);
+  @ViewChild('conceptTemplate') conceptTemplate!: TemplateRef<any>;
+
   columns: TableColum[] = [
     {
       def: 'first_name',
@@ -75,6 +78,7 @@ export class TableLtsComponent implements OnInit {
           country: 'Latvia',
           birthday: '17/10/2001',
           balance: 9424,
+          last_nameTemplate: this.conceptTemplate,
         },
         {
           id: 2,
