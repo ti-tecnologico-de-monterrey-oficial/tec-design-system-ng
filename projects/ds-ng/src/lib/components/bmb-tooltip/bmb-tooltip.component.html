@@ -1,19 +1,29 @@
-@if (icon() && size()) {
-  <bmb-action-icon
-    idElement="tooltip_element"
-    [iconSize]="size()"
-    [icon]="icon()"
-    [isFill]="isFill()"
-    [alt]="componentTitle() || title() || 'Tooltip icon'"
-    aria-describedby="tooltip-icon"
-    (buttonClick)="showTooltip($event)"
-  />
-} @else {
-  <ng-content />
-}
+<span
+  #tooltipContainer
+  class="bmb_tooltip-container"
+  (mouseenter)="showTooltip()"
+  (mouseleave)="hideTooltip()"
+  (focusin)="showTooltip()"
+  (focusout)="hideTooltip()"
+  (mousedown)="showTooltip()"
+  (mouseup)="hideTooltip()"
+  (touchstart)="showTooltip()"
+  (touchend)="hideTooltip()"
+>
+  @if (icon() && size()) {
+    <bmb-action-icon
+      idElement="tooltip_element"
+      [iconSize]="size()"
+      [icon]="icon()"
+      [isFill]="isFill()"
+      [alt]="componentTitle() || title() || 'Tooltip icon'"
+      aria-describedby="tooltip-icon"
+    />
+  } @else {
+    <ng-content />
+  }
 
-<ng-template #contentTooltip>
-  <div>
+  <dialog [open]="isTooltipVisible()" class="bmb_tooltip-dialog" aria-hidden="true" [ngStyle]="dialogStyles()">
     <section
       id="tooltip-content"
       class="bmb_tooltip"
@@ -32,5 +42,5 @@
         }}
       </span>
     </section>
-  </div>
-</ng-template>
+  </dialog>
+</span>
