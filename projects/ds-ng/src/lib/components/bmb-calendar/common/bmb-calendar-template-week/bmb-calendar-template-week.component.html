@@ -21,10 +21,7 @@
           }
 
           @for (singleEvent of eventsOnWeek()[$index]; track $index) {
-            <bmb-calendar-schedule-cards
-              [event]="singleEvent"
-              (onSelectEvent)="handleEventSelection($event)"
-            />
+            <bmb-calendar-schedule-cards [event]="singleEvent" />
           }
         </div>
       </section>
