@@ -30,7 +30,7 @@ describe('BmbActionMenuComponent', () => {
     fixture = TestBed.createComponent(BmbActionMenuComponent);
     component = fixture.componentInstance;
     componentRef = fixture.componentRef;
-    componentRef.setInput('title', 'Test title');
+    componentRef.setInput('componentTitle', 'Test title');
     component = fixture.debugElement.children[0].componentInstance;
     fixture.detectChanges();
     hostFixture.detectChanges();
@@ -43,7 +43,7 @@ describe('BmbActionMenuComponent', () => {
   });
 
   it('should set the title input correctly', () => {
-    expect(componentRef.instance.title()).toBe('Test title');
+    expect(componentRef.instance.componentTitle()).toBe('Test title');
   });
 
   it('should have default values for optional inputs', () => {
@@ -53,9 +53,9 @@ describe('BmbActionMenuComponent', () => {
   });
 
   it('should update title when input changes', () => {
-    componentRef.setInput('title', 'Updated title');
+    componentRef.setInput('componentTitle', 'Updated title');
     fixture.detectChanges();
-    expect(componentRef.instance.title()).toBe('Updated title');
+    expect(componentRef.instance.componentTitle()).toBe('Updated title');
   });
 
   it('should update icon when input changes', () => {
@@ -82,6 +82,6 @@ describe('BmbActionMenuComponent', () => {
   });
 
   it('should have componentTitle attribute from host component', () => {
-    expect(component.title()).toBe('Test title');
+    expect(component.componentTitle()).toBe('Test title');
   });
 });
