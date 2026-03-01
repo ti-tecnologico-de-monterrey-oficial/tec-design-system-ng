@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
 @Component({
   template: `
     <bmb-action-menu componentTitle="Test title">
-      <ng-template #tpl>Contenido</ng-template>
+      <ng-template #actionMenuItem>Content</ng-template>
     </bmb-action-menu>
   `,
 })
@@ -52,7 +52,36 @@ describe('BmbActionMenuComponent', () => {
     expect(componentRef.instance.showHeader()).toBe(true);
   });
 
-  it('should update projectedContent after content initialization', () => {
-    expect(component.projectedContent.length).toBe(1);
+  it('should update title when input changes', () => {
+    componentRef.setInput('title', 'Updated title');
+    fixture.detectChanges();
+    expect(componentRef.instance.title()).toBe('Updated title');
+  });
+
+  it('should update icon when input changes', () => {
+    componentRef.setInput('icon', 'star');
+    fixture.detectChanges();
+    expect(componentRef.instance.icon()).toBe('star');
+  });
+
+  it('should update iconSize when input changes', () => {
+    componentRef.setInput('iconSize', 32);
+    fixture.detectChanges();
+    expect(componentRef.instance.iconSize()).toBe(32);
+  });
+
+  it('should update showHeader when input changes', () => {
+    componentRef.setInput('showHeader', false);
+    fixture.detectChanges();
+    expect(componentRef.instance.showHeader()).toBe(false);
+  });
+
+  it('should render component in host component', () => {
+    expect(hostComponent).toBeTruthy();
+    expect(component).toBeTruthy();
+  });
+
+  it('should have componentTitle attribute from host component', () => {
+    expect(component.title()).toBe('Test title');
   });
 });

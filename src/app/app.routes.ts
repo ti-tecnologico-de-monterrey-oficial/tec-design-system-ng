@@ -171,5 +171,11 @@ export const routes: Routes = [
         (s) => s.ModalsTemplatesComponent,
       ),
   },
+  {
+    path: 'menu',
+    title: 'Menu',
+    loadComponent: () =>
+      import('./pages/menu/menu.component').then((t) => t.MenuPageComponent),
+  },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
 ];
