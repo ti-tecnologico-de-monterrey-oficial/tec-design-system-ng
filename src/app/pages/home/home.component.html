@@ -20,7 +20,7 @@
       [iconLeft]="'connect_without_contact'"
       [iconRight]="''"
       (onButton)="handleModalWithDropdown($event)"
-    ></bmb-container-button>
+    />
 
     <bmb-container-button
       bmbLayoutItem
@@ -31,7 +31,7 @@
       [iconLeft]="'mail'"
       [iconRight]="''"
       (link)="('https://linkedin.com')"
-    ></bmb-container-button>
+    />
 
     <bmb-container-button
       bmbLayoutItem
@@ -44,67 +44,42 @@
     ></bmb-container-button>
     <div bmbVerticalLayout bmbLayoutItem [colSm]="4" [colLg]="6" gapSize="m">
       <section bmbVerticalLayoutItem [rowGrow]="1">
-        <bmb-action-menu
-          icon="account_balance_wallet"
-          bgIconAppearance="green-light"
-          componentTitle="Ayuda TECservices"
-          subtitle="Subtitle"
-          [showHeader]="true"
-        >
-          @for (_item of items; track $index) {
-            @if (_item?.isTecService) {
-              <bmb-item
-                [label]="_item.Title"
-                [icon]="_item.icono"
-                [value]="_item.Title"
-                [valueLink]="_item.url"
-                valueTarget="_self"
-              />
-            } @else {
-              <bmb-item
-                label="¡Califica tu experiencia!"
-                icon="mood"
-                (action)="handleOpen('test')"
-                [isButton]="true"
-              />
+        <bmb-image
+          [src]="
+            'https://farm2.staticflickr.com/1919/45579541712_f58c1fd0ed_o.jpg'
+          "
+          [mobileSrc]="
+            'https://2.bp.blogspot.com/-YkNDZEbKt_g/TYzcbF2_tkI/AAAAAAAAalk/Vt_MHS60Xv8/s1600/www.JoseLuisAvilaHerrera.BLOGSPOT.com%2B-%2BFunny%2BCats%2B-%2BGatitos%2Bmuy%2Btiernos%2B8.jpg'
+          "
+          [alt]="'Fruits'"
+          [width]="'clamp(200px, 100%, calc(50dvw - 3rem))'"
+          [ratio]="'1/1'"
+          [borderRadius]="'m'"
+          [loading]="'lazy'"
+          [enableZoom]="false"
+          [isBlurredBackdrop]="false"
+          [images]="[
+            {
+              src: 'https://farm2.staticflickr.com/1919/45579541712_f58c1fd0ed_o.jpg',
+              mobileSrc:
+                'https://2.bp.blogspot.com/-YkNDZEbKt_g/TYzcbF2_tkI/AAAAAAAAalk/Vt_MHS60Xv8/s1600/www.JoseLuisAvilaHerrera.BLOGSPOT.com%2B-%2BFunny%2BCats%2B-%2BGatitos%2Bmuy%2Btiernos%2B8.jpg',
+              alt: 'Image 1'
+            },
+            {
+              src: 'https://images.unsplash.com/photo-1546182990-dffeafbe841d',
+              mobileSrc:
+                'https://images.unsplash.com/photo-1546182990-dffeafbe841d?auto=format&fit=crop&w=800&q=60',
+              alt: 'Image 2'
+            },
+            {
+              src: 'https://images.unsplash.com/photo-1507149833265-60c372daea22',
+              alt: 'Image 3'
             }
-          }
-        </bmb-action-menu>
+          ]"
+          (imageClick)="handleImageClick($event)"
+        />
       </section>
-      <bmb-image
-        [src]="
-          'https://farm2.staticflickr.com/1919/45579541712_f58c1fd0ed_o.jpg'
-        "
-        [mobileSrc]="
-          'https://2.bp.blogspot.com/-YkNDZEbKt_g/TYzcbF2_tkI/AAAAAAAAalk/Vt_MHS60Xv8/s1600/www.JoseLuisAvilaHerrera.BLOGSPOT.com%2B-%2BFunny%2BCats%2B-%2BGatitos%2Bmuy%2Btiernos%2B8.jpg'
-        "
-        [alt]="'Fruits'"
-        [width]="'clamp(200px, 100%, calc(50dvw - 3rem))'"
-        [ratio]="'1/1'"
-        [borderRadius]="'m'"
-        [loading]="'lazy'"
-        [enableZoom]="false"
-        [isBlurredBackdrop]="false"
-        [images]="[
-          {
-            src: 'https://farm2.staticflickr.com/1919/45579541712_f58c1fd0ed_o.jpg',
-            mobileSrc:
-              'https://2.bp.blogspot.com/-YkNDZEbKt_g/TYzcbF2_tkI/AAAAAAAAalk/Vt_MHS60Xv8/s1600/www.JoseLuisAvilaHerrera.BLOGSPOT.com%2B-%2BFunny%2BCats%2B-%2BGatitos%2Bmuy%2Btiernos%2B8.jpg',
-            alt: 'Image 1'
-          },
-          {
-            src: 'https://images.unsplash.com/photo-1546182990-dffeafbe841d',
-            mobileSrc:
-              'https://images.unsplash.com/photo-1546182990-dffeafbe841d?auto=format&fit=crop&w=800&q=60',
-            alt: 'Image 2'
-          },
-          {
-            src: 'https://images.unsplash.com/photo-1507149833265-60c372daea22',
-            alt: 'Image 3'
-          }
-        ]"
-        (imageClick)="handleImageClick($event)"
-      ></bmb-image>
+
       <bmb-accordion
         borderRadius="m"
         margin="none"

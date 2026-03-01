@@ -23,7 +23,12 @@
     <ng-content />
   }
 
-  <dialog [open]="isTooltipVisible()" class="bmb_tooltip-dialog" aria-hidden="true" [ngStyle]="dialogStyles()">
+  <dialog
+    [open]="isTooltipVisible()"
+    class="bmb_tooltip-dialog"
+    aria-hidden="true"
+    [ngStyle]="dialogStyles()"
+  >
     <section
       id="tooltip-content"
       class="bmb_tooltip"

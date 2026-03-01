@@ -71,24 +71,14 @@ export class BmbTooltipComponent {
   getPosition() {
     const width = window.innerWidth;
     const height = window.innerHeight;
-    const targetPosition = this.tooltipContainer.nativeElement.getBoundingClientRect();
+    const targetPosition =
+      this.tooltipContainer.nativeElement.getBoundingClientRect();
 
     const left =
-      targetPosition.left <= width / 2
-        ? 'calc(100% + .5rem)'
-        : 'auto';
-    const right =
-      targetPosition.left > width / 2
-        ? 'calc(100% + .5rem)'
-        : null;
-    const top =
-      targetPosition.top <= height / 2
-        ? '0px'
-        : null;
-    const bottom =
-      targetPosition.top > height / 2
-        ? '0px'
-        : null;
+      targetPosition.left <= width / 2 ? 'calc(100% + .5rem)' : 'auto';
+    const right = targetPosition.left > width / 2 ? 'calc(100% + .5rem)' : null;
+    const top = targetPosition.top <= height / 2 ? '0px' : null;
+    const bottom = targetPosition.top > height / 2 ? '0px' : null;
 
     return {
       top,

@@ -109,12 +109,6 @@ export class AppComponent {
         link: '/home',
       },
       {
-        id: 2,
-        icon: 'calendar_today',
-        title: 'Calendar',
-        link: '/calendar',
-      },
-      {
         id: 8,
         icon: 'table_chart',
         title: 'Tables',
@@ -224,6 +218,7 @@ export class AppComponent {
             title: 'TEC sound',
             link: '/tec-sound',
           },
+          { id: 8, icon: 'app_registration', title: 'Colors', link: '/colors' },
         ],
       },
       {
@@ -252,7 +247,26 @@ export class AppComponent {
           },
         ],
       },
-      { id: 8, icon: 'app_registration', title: 'Colors', link: '/colors' },
+      {
+        id: 9,
+        icon: 'account_circle',
+        title: 'Menu',
+        link: '',
+        children: [
+          {
+            id: 1,
+            icon: 'menu',
+            title: 'Menu',
+            link: '/menu',
+          },
+          {
+            id: 2,
+            icon: 'calendar_today',
+            title: 'Calendar',
+            link: '/calendar',
+          },
+        ],
+      },
     ],
   ];
 

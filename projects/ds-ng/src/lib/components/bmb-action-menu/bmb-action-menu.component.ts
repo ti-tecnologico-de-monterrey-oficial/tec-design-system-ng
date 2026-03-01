@@ -4,9 +4,8 @@ import {
   input,
   ViewEncapsulation,
   TemplateRef,
-  ContentChildren,
-  QueryList,
   effect,
+  contentChildren,
 } from '@angular/core';
 import { IBmbColor } from '../../types/colors';
 import { CommonModule } from '@angular/common';
@@ -33,6 +32,11 @@ export class BmbActionMenuComponent {
 
   title = input<string>(); // deprecated
 
+  protected genericMenuContent = contentChildren<TemplateRef<any>>(
+    TemplateRef<any>,
+  );
+  protected menuContent = contentChildren<TemplateRef<any>>('actionMenuItem');
+
   constructor() {
     effect(() => {
       const deprecatedTitle = this.title();
@@ -50,6 +54,9 @@ export class BmbActionMenuComponent {
     });
   }
 
-  @ContentChildren(TemplateRef, { descendants: false })
-  projectedContent!: QueryList<any>;
+  protected get menuContentList() {
+    return this.menuContent().length
+      ? this.menuContent()
+      : this.genericMenuContent();
+  }
 }

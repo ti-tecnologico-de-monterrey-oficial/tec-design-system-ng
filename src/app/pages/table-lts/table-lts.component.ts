@@ -1,4 +1,11 @@
-import { Component, model, OnInit, signal, TemplateRef, ViewChild } from '@angular/core';
+import {
+  Component,
+  model,
+  OnInit,
+  signal,
+  TemplateRef,
+  ViewChild,
+} from '@angular/core';
 import {
   BmbTablesComponent,
   TableColum,
