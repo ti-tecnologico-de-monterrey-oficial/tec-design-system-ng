@@ -3,13 +3,14 @@ import {
   ChangeDetectionStrategy,
   Component,
   effect,
+  ElementRef,
   input,
+  signal,
   TemplateRef,
   ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
 import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
-import { BmbProjectionContentService } from '../../services/projection/projection.service';
 import { logDeprecatedInput } from '../../utils/logDeprecatedInput';
 import { BmbVerticalLayoutDirective } from '../../directives/bmb-layout/bmb-vertical-layout/bmb-vertical-layout.directive';
 import { BmbVerticalLayoutItemDirective } from '../../directives/bmb-layout/bmb-vertical-layout/bmb-vertical-layout-item.directive';
@@ -44,9 +45,13 @@ export class BmbTooltipComponent {
 
   @ViewChild('contentTooltip', { static: true })
   contentTooltip!: TemplateRef<any>;
+  @ViewChild('tooltipContainer', { static: true })
+  tooltipContainer!: ElementRef<HTMLElement>;
 
-  constructor() // private contentProjected: BmbProjectionContentService
-  {
+  isTooltipVisible = signal(false);
+  dialogStyles = signal<{ [key: string]: string }>({});
+
+  constructor() {
     effect(() => {
       const deprecatedTitle = this.title();
       const newTitle = this.componentTitle();
@@ -63,12 +68,56 @@ export class BmbTooltipComponent {
     });
   }
 
+  getPosition() {
+    const width = window.innerWidth;
+    const height = window.innerHeight;
+    const targetPosition = this.tooltipContainer.nativeElement.getBoundingClientRect();
+
+    const left =
+      targetPosition.left <= width / 2
+        ? 'calc(100% + .5rem)'
+        : 'auto';
+    const right =
+      targetPosition.left > width / 2
+        ? 'calc(100% + .5rem)'
+        : null;
+    const top =
+      targetPosition.top <= height / 2
+        ? '0px'
+        : null;
+    const bottom =
+      targetPosition.top > height / 2
+        ? '0px'
+        : null;
+
+    return {
+      top,
+      left,
+      right,
+      bottom,
+    };
+  }
+
   showTooltip(event?: Event): void {
-    // this.contentProjected.openContent({
-    //   content: this.contentTooltip,
-    //   targetRef: event?.target as HTMLHtmlElement,
-    //   focusOnOpen: true,
-    //   showBackdrop: false,
-    // });
+    const position = this.getPosition();
+    const newPosition: any = {};
+    if (position.top) {
+      newPosition['top'] = position.top;
+    }
+    if (position.left) {
+      newPosition['left'] = position.left;
+    }
+    if (position.right) {
+      newPosition['right'] = position.right;
+    }
+    if (position.bottom) {
+      newPosition['bottom'] = position.bottom;
+    }
+    this.dialogStyles.set(newPosition);
+    this.isTooltipVisible.set(true);
+  }
+
+  hideTooltip(): void {
+    this.isTooltipVisible.set(false);
   }
 }

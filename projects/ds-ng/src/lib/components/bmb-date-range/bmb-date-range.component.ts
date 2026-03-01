@@ -15,16 +15,12 @@ import {
   newFormControlByType,
 } from '../../utils/formControl';
 import { getUUID } from '../../utils/utils';
-import { BmbLayoutDirective } from '../../directives/bmb-layout/bmb-layout.directive';
-import { BmbLayoutItemDirective } from '../../directives/bmb-layout/bmb-layout-item.directive';
 
 @Component({
   selector: 'bmb-date-range',
   standalone: true,
   imports: [
     BmbDatepickerComponent,
-    BmbLayoutDirective,
-    BmbLayoutItemDirective,
     CommonModule,
   ],
   templateUrl: './bmb-date-range.component.html',
@@ -84,5 +80,11 @@ export class BmbDateRangeComponent implements OnInit {
         this.disableDatesAfter = value;
       }
     });
+  }
+
+  getClassList(): string[] {
+    const classList = ['bmb_date-range'];
+    if (!this.multipleRow()) classList.push('bmb_date-range-column');
+    return classList;
   }
 }

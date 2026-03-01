@@ -5,6 +5,7 @@ import {
   getGeneralDescription,
 } from '../../utils/doc/utils';
 import {
+  DBmbGenericParamDesc,
   DBmbIconParamDesc,
   DBmbTooltipParamDesc,
   getDefaultValueControl,
@@ -42,8 +43,8 @@ ${getBasicExampleBlock('BmbTooltipComponent')}
     },
     size: DBmbIconParamDesc.iconSize,
     isFill: DBmbIconParamDesc.isIconFill,
-    align: DBmbTooltipParamDesc.align,
-    justify: DBmbTooltipParamDesc.justify,
+    align: DBmbGenericParamDesc.deprecated,
+    justify: DBmbGenericParamDesc.deprecated,
     title: {
       control: null,
       description:
