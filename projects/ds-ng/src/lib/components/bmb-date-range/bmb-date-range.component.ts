@@ -19,10 +19,7 @@ import { getUUID } from '../../utils/utils';
 @Component({
   selector: 'bmb-date-range',
   standalone: true,
-  imports: [
-    BmbDatepickerComponent,
-    CommonModule,
-  ],
+  imports: [BmbDatepickerComponent, CommonModule],
   templateUrl: './bmb-date-range.component.html',
   styleUrl: './bmb-date-range.component.scss',
   encapsulation: ViewEncapsulation.None,
