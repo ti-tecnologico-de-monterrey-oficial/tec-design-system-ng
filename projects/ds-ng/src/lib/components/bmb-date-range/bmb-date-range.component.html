@@ -1,4 +1,4 @@
-<section bmbLayout margin="none" gapSize="s" alignItems="center">
+<section [ngClass]="getClassList()">
   <bmb-datepicker
     [label]="labelStartDate()"
     [placeholder]="placeholderStartDate()"
@@ -15,12 +15,9 @@
     helperMessage=""
     [customValidation]="customValidation()"
     [errorMessage]="errorMessage()"
-    bmbLayoutItem
-    [isDynamicItem]="!multipleRow()"
-    [colGrow]="1"
   />
   @if (!multipleRow()) {
-    <div class="bmb_date-range-middle-dash" bmbLayoutItem></div>
+    <div class="bmb_date-range-middle-dash"></div>
   }
   <bmb-datepicker
     [label]="labelEndDate()"
@@ -38,8 +35,5 @@
     helperMessage=""
     [customValidation]="customValidation()"
     [errorMessage]="errorMessage()"
-    bmbLayoutItem
-    [isDynamicItem]="!multipleRow()"
-    [colGrow]="1"
   />
 </section>

@@ -612,11 +612,9 @@ export class BmbTablesComponent implements AfterViewInit, OnInit, OnChanges {
       'bmb_table-sticky': index === 0,
       truncated: this.truncate(),
       wrapped: this.wrap(),
+      [`bmb_table-${semanticType}`]: !!semanticType,
+      'bmb_table-content-custom': !!row[columnKey + 'Template'],
     };
-
-    if (semanticType) {
-      classes['bmb_table-' + semanticType] = true;
-    }
 
     return classes;
   }

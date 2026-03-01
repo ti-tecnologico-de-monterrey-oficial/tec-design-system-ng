@@ -182,6 +182,10 @@
         overflow: hidden;
       }
 
+      &.bmb_table-content-custom {
+        overflow: visible;
+      }
+
       @include mixins.media-query(768, 'min') {
         max-width: fit-content;
       }

@@ -23,3 +23,15 @@
     {{ filtersModel() | json }}
   </div>
 </div>
+
+<ng-template #conceptTemplate let-row="row">
+  <div class="concept-template">
+    <span>{{ row.concept }}</span>
+    <bmb-tooltip
+      title="Tooltip example"
+      icon="info"
+      [size]="20"
+      text="some text"
+    ></bmb-tooltip>
+  </div>
+</ng-template>
