@@ -47,6 +47,7 @@
 
   &-text-area {
     @include mixins.normal-input();
+    height: auto;
 
     > textarea {
       min-height: rem.rem_calc(30);
