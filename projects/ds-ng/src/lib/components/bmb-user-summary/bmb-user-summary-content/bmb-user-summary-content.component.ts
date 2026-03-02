@@ -9,7 +9,12 @@ import { BmbUserImageComponent } from '../../bmb-user-image/bmb-user-image.compo
 import { CommonModule } from '@angular/common';
 import { BmbLayoutItemDirective } from '../../../directives/bmb-layout/bmb-layout-item.directive';
 import { BmbLayoutDirective } from '../../../directives/bmb-layout/bmb-layout.directive';
-import { IBmbUserImageSize, SizeNames } from '../../../types';
+import {
+  IBmbLinkConfiguration,
+  IBmbUserImageSize,
+  SizeNames,
+} from '../../../types';
+import { BmbTextLinkComponent } from '../../bmb-text-link/bmb-text-link.component';
 
 export type IBmbContentLayoutSummary = 'column' | 'row';
 
@@ -21,6 +26,7 @@ export type IBmbContentLayoutSummary = 'column' | 'row';
     BmbUserImageComponent,
     BmbLayoutDirective,
     BmbLayoutItemDirective,
+    BmbTextLinkComponent,
   ],
   templateUrl: './bmb-user-summary-content.component.html',
   styleUrl: './bmb-user-summary-content.component.scss',
@@ -38,7 +44,7 @@ export class BmbUserSummaryContentComponent {
   infoCareer = input<string>('');
   campus = input<string>('');
   role = input<string>('');
-  email = input<string>('');
+  email = input<string | IBmbLinkConfiguration>('');
   salutation = input<string>('Buenas tardes');
   contentLayout = input<IBmbContentLayoutSummary>('column');
   gapSize = input<SizeNames>('none');
@@ -77,5 +83,10 @@ export class BmbUserSummaryContentComponent {
 
   handleUserClick(event: MouseEvent) {
     this.onUserClick.emit(event);
+  }
+
+  get emailAsLink(): IBmbLinkConfiguration | null {
+    const value = this.email();
+    return typeof value === 'object' && value !== null ? value : null;
   }
 }
