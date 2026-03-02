@@ -4,7 +4,6 @@
 
 @mixin input-appearance($type: normal) {
   width: 100%;
-  max-height: rem.rem_calc(48);
 
   @if $type == 'simple' {
     box-sizing: border-box;

@@ -13,18 +13,16 @@
       </h3>
       <section class="bmb_totp-code">
         @for (field of codesArray(); track $index) {
-          <section class="bmb_totp-separator">
-            <bmb-input-content
-              type="number"
-              class="bmb_totp-input"
-              [inputId]="'code_' + instanceId() + '_' + $index"
-              [name]="'name_' + instanceId() + '_' + $index"
-              [maxLength]="1"
-              [isError]="codeError()"
-              [control]="getFormControl('name_' + instanceId() + '_' + $index)"
-              (onKeyUp)="handleKeyUp($event, $index)"
-            />
-          </section>
+          <bmb-input-content
+            type="number"
+            class="bmb_totp-input"
+            [inputId]="'code_' + instanceId() + '_' + $index"
+            [name]="'name_' + instanceId() + '_' + $index"
+            [maxLength]="1"
+            [isError]="codeError()"
+            [control]="getFormControl('name_' + instanceId() + '_' + $index)"
+            (onKeyUp)="handleKeyUp($event, $index)"
+          />
         }
       </section>
       @if (codeError()) {
@@ -34,7 +32,6 @@
         <button
           class="bmb_totp-button"
           bmbButton
-          size="large"
           type="submit"
           [disabled]="disableButton()"
         >
