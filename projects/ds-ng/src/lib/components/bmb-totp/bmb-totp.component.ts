@@ -5,7 +5,6 @@ import {
   HostListener,
   input,
   output,
-  ElementRef,
   computed,
 } from '@angular/core';
 import { Subject } from 'rxjs';

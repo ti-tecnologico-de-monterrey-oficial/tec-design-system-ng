@@ -50,6 +50,7 @@
 
   &-number {
     flex: 1;
+    height: rem.rem_calc(48);
     .bmb_field.normal {
       border-top-left-radius: 0;
       border-bottom-left-radius: 0;
