@@ -85,7 +85,7 @@ ${getBasicExampleBlock('BmbChevronTitleSelectorComponent')}
     },
   },
   argTypes: {
-    title: getPropertyParamDesc(
+    componentTitle: getPropertyParamDesc(
       'chevron selector',
       'text',
       '""',
@@ -104,9 +104,19 @@ ${getBasicExampleBlock('BmbChevronTitleSelectorComponent')}
     onTrailingClick: getOnClickParam(
       getOnEvent('right icon', 'onTrailingClick', 'void'),
     ),
+    title: {
+      control: null,
+      description:
+        'Please use `componentTitle` instead of `title` to set the component title.',
+      table: {
+        category: 'Deprecated',
+        type: { summary: 'string' },
+        defaultValue: '',
+      },
+    },
   },
   args: {
-    title: 'Title',
+    componentTitle: 'Title',
     subtitle: '',
     leadingIcon: 'chevron_left',
     trailingIcon: 'chevron_right',

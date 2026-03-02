@@ -15,7 +15,7 @@ describe('BmbCardButtonComponent', () => {
     fixture = TestBed.createComponent(BmbCardButtonComponent);
     component = fixture.componentInstance;
     componentRef = fixture.componentRef;
-    componentRef.setInput('title', 'Test Title');
+    componentRef.setInput('componentTitle', 'Test Title');
     componentRef.setInput('body', 'Test Body');
     componentRef.setInput('icon', 'test-icon');
     componentRef.setInput('isFullInteractive', true);
@@ -31,7 +31,7 @@ describe('BmbCardButtonComponent', () => {
     const titleElement = fixture.nativeElement.querySelector(
       '.bmb_card_button-header-text',
     );
-    expect(titleElement.textContent).toBe('Test Title');
+    expect(titleElement.textContent).toBe(' Test Title ');
   });
 
   it('should render body', () => {

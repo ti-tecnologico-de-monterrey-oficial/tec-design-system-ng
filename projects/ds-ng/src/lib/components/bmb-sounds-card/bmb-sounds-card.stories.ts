@@ -58,7 +58,7 @@ ${getBasicExampleBlock(
     },
   },
   argTypes: {
-    title: {
+    componentTitle: {
       control: {
         type: 'text',
       },
@@ -113,9 +113,19 @@ ${getBasicExampleBlock(
       'of the mute, returns a true value when the user clicks the sound button and returns a false value when the mute icon is clicked.',
       'other',
     ),
+    title: {
+      control: null,
+      description:
+        'Please use `componentTitle` instead of `title` to set the component title.',
+      table: {
+        category: 'Deprecated',
+        type: { summary: 'string' },
+        defaultValue: '',
+      },
+    },
   },
   args: {
-    title: 'Tec Sounds Radio',
+    componentTitle: 'Tec Sounds Radio',
     subtitle: '98.76 FM',
     width: '500px',
     ratio: '8/9',

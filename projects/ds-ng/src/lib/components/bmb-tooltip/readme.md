@@ -25,7 +25,7 @@
 ```html
 <bmb-tooltip
   [text]="'Este campo es obligatorio.'"
-  [title]="'Ayuda'"
+  [componentTitle]="'Ayuda'"
   [icon]="'info'"
   [size]="20"
   [align]="'above'"

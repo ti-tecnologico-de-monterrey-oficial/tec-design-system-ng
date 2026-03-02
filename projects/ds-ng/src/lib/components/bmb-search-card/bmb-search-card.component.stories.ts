@@ -7,19 +7,35 @@ export default {
   parameters: {
     docs: {
       controls: {
-        exclude: [],
+        exclude: [
+          'computedResults',
+          'handleResultClick',
+          'inputSearchControl',
+          'selectedTabId',
+          'tabsData',
+        ],
       },
       description: {},
     },
   },
   argTypes: {
-    title: {
+    componentTitle: {
       control: 'text',
       description:
         'Title of the search card. If not provided, a default translated title will be used.',
       table: {
         type: { summary: 'string' },
         defaultValue: { summary: "''" },
+        category: 'Properties',
+      },
+    },
+    results: {
+      control: 'object',
+      description: 'Array of search results to display in the card.',
+      table: {
+        type: { summary: 'IBmbSearchCardItemResult[]' },
+        defaultValue: { summary: '[]' },
+        category: 'Properties',
       },
     },
     inputPlaceholder: {
@@ -29,6 +45,7 @@ export default {
       table: {
         type: { summary: 'string' },
         defaultValue: { summary: "''" },
+        category: 'Properties',
       },
     },
     triggerSearch: {
@@ -44,15 +61,28 @@ export default {
       table: {
         type: { summary: 'boolean' },
         defaultValue: { summary: 'false' },
+        category: 'Properties',
+      },
+    },
+    title: {
+      control: null,
+      description:
+        'Please use `componentTitle` instead of `title` to set the component title.',
+      table: {
+        category: 'Deprecated',
+        type: { summary: 'string' },
+        defaultValue: '',
       },
     },
   },
   args: {
-    title: '',
+    componentTitle: '',
     inputPlaceholder: '',
     triggerSearch: (value: string) => {
       console.log('Search triggered with value:', value);
     },
+    isLoading: false,
+    results: [],
   },
 } as Meta<typeof BmbSearchCardComponent>;
 

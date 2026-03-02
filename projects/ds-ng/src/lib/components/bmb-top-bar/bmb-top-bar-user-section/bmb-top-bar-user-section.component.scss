@@ -8,24 +8,6 @@
     gap: var(--bmb-spacing-s);
   }
 
-  &-menu {
-    .bmb_dropdown-content-item {
-      color: rgb(var(--white-primary));
-      .bmb_check-external-link-button-element {
-        &:hover,
-        &:focus,
-        &:focus-visible {
-          background-color: rgb(var(--gray-charade-500));
-          outline: 0 none;
-        }
-      }
-    }
-
-    .bmb_dropdown-content-modal {
-      background-color: rgb(var(--gray-charade-900));
-    }
-  }
-
   &-no-mobile {
     display: block;
     line-height: 0;

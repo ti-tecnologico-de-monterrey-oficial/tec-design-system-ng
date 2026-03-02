@@ -14,29 +14,29 @@
     <bmb-container-button
       bmbLayoutItem
       [colLg]="4"
-      [title]="'Ir al linkedin'"
+      [componentTitle]="'Ir al linkedin'"
       [square]="false"
       [small]="true"
       [iconLeft]="'connect_without_contact'"
       [iconRight]="''"
-      (link)="('https://linkedin.com')"
-    ></bmb-container-button>
+      (onButton)="handleModalWithDropdown($event)"
+    />
 
     <bmb-container-button
       bmbLayoutItem
       [colLg]="4"
-      [title]="'Enviar correo'"
+      [componentTitle]="'Enviar correo'"
       [square]="false"
       [small]="true"
       [iconLeft]="'mail'"
       [iconRight]="''"
       (link)="('https://linkedin.com')"
-    ></bmb-container-button>
+    />
 
     <bmb-container-button
       bmbLayoutItem
       [colLg]="4"
-      [title]="'Enviar mensaje por Teams'"
+      [componentTitle]="'Enviar mensaje por Teams'"
       [square]="false"
       [iconLeft]="'sms'"
       [iconRight]="''"
@@ -44,161 +44,42 @@
     ></bmb-container-button>
     <div bmbVerticalLayout bmbLayoutItem [colSm]="4" [colLg]="6" gapSize="m">
       <section bmbVerticalLayoutItem [rowGrow]="1">
-        <bmb-action-menu
-          icon="account_balance_wallet"
-          bgIconAppearance="green-light"
-          title="Title"
-          subtitle="Subtitle"
-          [showHeader]="true"
-        >
-          @for (_item of items; track $index) {
-            @if (_item?.isActive) {
-              <ng-template>
-                <bmb-item
-                  [label]="_item.label"
-                  [icon]="_item.icon"
-                  [value]="_item.value"
-                  [valueLink]="_item.valueLink"
-                  valueTarget="_self"
-                />
-              </ng-template>
-            } @else if (!_item?.isActive) {
-              <ng-template>
-                <bmb-item
-                  [label]="_item.label"
-                  [value]="_item.value"
-                  [valueLink]="_item.valueLink"
-                  valueTarget="_self"
-                />
-              </ng-template>
+        <bmb-image
+          [src]="
+            'https://farm2.staticflickr.com/1919/45579541712_f58c1fd0ed_o.jpg'
+          "
+          [mobileSrc]="
+            'https://2.bp.blogspot.com/-YkNDZEbKt_g/TYzcbF2_tkI/AAAAAAAAalk/Vt_MHS60Xv8/s1600/www.JoseLuisAvilaHerrera.BLOGSPOT.com%2B-%2BFunny%2BCats%2B-%2BGatitos%2Bmuy%2Btiernos%2B8.jpg'
+          "
+          [alt]="'Fruits'"
+          [width]="'clamp(200px, 100%, calc(50dvw - 3rem))'"
+          [ratio]="'1/1'"
+          [borderRadius]="'m'"
+          [loading]="'lazy'"
+          [enableZoom]="false"
+          [isBlurredBackdrop]="false"
+          [images]="[
+            {
+              src: 'https://farm2.staticflickr.com/1919/45579541712_f58c1fd0ed_o.jpg',
+              mobileSrc:
+                'https://2.bp.blogspot.com/-YkNDZEbKt_g/TYzcbF2_tkI/AAAAAAAAalk/Vt_MHS60Xv8/s1600/www.JoseLuisAvilaHerrera.BLOGSPOT.com%2B-%2BFunny%2BCats%2B-%2BGatitos%2Bmuy%2Btiernos%2B8.jpg',
+              alt: 'Image 1'
+            },
+            {
+              src: 'https://images.unsplash.com/photo-1546182990-dffeafbe841d',
+              mobileSrc:
+                'https://images.unsplash.com/photo-1546182990-dffeafbe841d?auto=format&fit=crop&w=800&q=60',
+              alt: 'Image 2'
+            },
+            {
+              src: 'https://images.unsplash.com/photo-1507149833265-60c372daea22',
+              alt: 'Image 3'
             }
-          }
-          <ng-template>
-            <bmb-item
-              label="Correo"
-              icon="mail"
-              value="tecservices@servicios.tec.mx"
-              valueLink="mailto:tecservices@servicios.tec.mx"
-              valueTarget="_self"
-            />
-          </ng-template>
-        </bmb-action-menu>
+          ]"
+          (imageClick)="handleImageClick($event)"
+        />
       </section>
-      <bmb-advertisement-card
-        [data]="{
-          promociones: [
-            {
-              imgData: {
-                url: 'https://farm2.staticflickr.com/1919/45579541712_f58c1fd0ed_o.jpg',
-                alt: 'Imagen'
-              },
-              content: {
-                title: 'Lorem ipsum dolor sit amet p1',
-                description:
-                  'lorem commodi eveniet ullam accusantium officiis mollitia error ipsa sapiente.',
-                linkBtn: 'www.google.com',
-                labelBtn: 'ACTION'
-              }
-            },
-            {
-              imgData: {
-                url: 'https://content.elmueble.com/medio/2023/03/29/razas-de-perros_725466fb_230329160906_900x900.jpg',
-                alt: 'Imagen'
-              },
-              content: {
-                title: 'Lorem ipsum p2',
-                description:
-                  'lorem commodi eveniet ullam accusantium officiis mollitia error ipsa sapiente. lorem commodi eveniet ullam accusantium officiis mollitia error ipsa sapiente. lorem commodi eveniet ullam accusantium officiis mollitia error ipsa sapiente.',
-                linkBtn: 'www.google.com',
-                labelBtn: 'GO'
-              }
-            },
-            {
-              imgData: {
-                url: 'https://content.elmueble.com/medio/2024/04/03/razas-de-perros-pequenos_0718680a_240403083147_900x900.jpg',
-                alt: 'Imagen'
-              },
-              content: {
-                title: 'Lorem ipsum dolor p3',
-                description:
-                  'lorem commodi eveniet ullam accusantium officiis mollitia error ipsa sapiente. lorem commodi eveniet ullam accusantium officiis mollitia error ipsa sapiente. lorem commodi eveniet ullam accusantium officiis mollitia error ipsa sapiente. lorem commodi eveniet ullam accusantium officiis mollitia error ipsa sapiente. lorem commodi eveniet ullam accusantium officiis mollitia error ipsa sapiente. lorem commodi eveniet ullam accusantium officiis mollitia error ipsa sapiente.',
-                linkBtn: 'www.google.com',
-                labelBtn: 'ACTION'
-              }
-            }
-          ],
-          avisos: [
-            {
-              imgData: {
-                url: 'https://picsum.photos/id/10/200/300',
-                alt: 'AVISOS'
-              },
-              content: {
-                title: 'Lorem ipsum dolor sit amet avisos',
-                description:
-                  'lorem commodi eveniet ullam accusantium officiis mollitia error ipsa sapiente.',
-                linkBtn: 'www.google.com',
-                labelBtn: 'ACTION'
-              }
-            },
-            {
-              imgData: {
-                url: 'https://picsum.photos/id/11/200/300',
-                alt: 'AVISOS'
-              },
-              content: {
-                title: 'Lorem ipsum dolor sit amet a2',
-                description:
-                  'lorem commodi eveniet ullam accusantium officiis mollitia error ipsa sapiente.',
-                linkBtn: 'www.google.com',
-                labelBtn: 'ACTION'
-              }
-            },
-            {
-              imgData: {
-                url: 'https://picsum.photos/id/18/200/300',
-                alt: 'Imagen'
-              },
-              content: {
-                title: 'Lorem ipsum dolor sit amet a3',
-                description:
-                  'lorem commodi eveniet ullam accusantium officiis mollitia error ipsa sapiente.',
-                linkBtn: 'www.google.com',
-                labelBtn: 'ACTION'
-              }
-            }
-          ],
-          informacion: [
-            {
-              imgData: {
-                url: 'https://picsum.photos/id/48/200/300',
-                alt: 'PROMO'
-              },
-              content: {
-                title: 'Lorem ipsum dolor sit amet i1',
-                description:
-                  'lorem commodi eveniet ullam accusantium officiis mollitia error ipsa sapiente.',
-                linkBtn: 'www.google.com',
-                labelBtn: 'ACTION'
-              }
-            },
-            {
-              imgData: {
-                url: 'https://picsum.photos/id/8/200/300',
-                alt: 'PROMO'
-              },
-              content: {
-                title: 'Lorem ipsum dolor sit amet i2',
-                description:
-                  'lorem commodi eveniet ullam accusantium officiis mollitia error ipsa sapiente.',
-                linkBtn: 'www.google.com',
-                labelBtn: 'ACTION'
-              }
-            }
-          ]
-        }"
-        [subtitle]="'Subtitulo'"
-      ></bmb-advertisement-card>
+
       <bmb-accordion
         borderRadius="m"
         margin="none"
@@ -483,20 +364,6 @@
     </div>
   </section>
 </div>
-
-<bmb-home-card-chat
-  leftIcon="chevron_left"
-  icon="bot_tecStandar"
-  bgIconAppearance="gray-charade-500"
-  title="Asistente TECbot"
-  contentPadding="none"
-  subtitle="Assitente TECbot"
-  [messagesHistory]="messages"
-  [actionsList]="actionList"
-  [mode]="mode"
-  [(currentBot)]="currentBot"
->
-</bmb-home-card-chat>
 
 <ng-template #modalTemplate>
   <div class="bmb_template-modal-content">

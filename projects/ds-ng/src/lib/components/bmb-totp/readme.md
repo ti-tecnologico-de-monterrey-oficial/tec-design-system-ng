@@ -33,7 +33,7 @@
 
 ```html
 <bmb-totp
-  [title]="'Verificación en dos pasos'"
+  [componentTitle]="'Verificación en dos pasos'"
   [subtitle]="'Ingresa el código de tu app de autenticación'"
   [codeError]="hasError"
   [errorMessage]="'Código incorrecto, intenta de nuevo.'"

@@ -21,6 +21,7 @@
         trailingIconSecondary() !== '' ||
         trailingIconPrimary() !== '' ||
         showSearch() ||
+        componentTitle() !== '' ||
         title() !== ''
       ) {
         <bmb-three-cols
@@ -37,7 +38,7 @@
           </ng-template>
           <ng-template #bmbMainContent>
             <bmb-title-content
-              [title]="title()"
+              [componentTitle]="componentTitle() || title()"
               titleSize="6"
               [isCenterContent]="true"
               [transparentBgC]="true"

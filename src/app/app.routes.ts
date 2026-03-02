@@ -25,7 +25,7 @@ export const routes: Routes = [
     path: 'component-test',
     loadComponent: () =>
       import('./pages/component-test/component-test.component').then(
-        (c) => c.AppComponent,
+        (b) => b.AppComponent,
       ),
   },
   {
@@ -33,15 +33,21 @@ export const routes: Routes = [
     title: 'Form Validator Test',
     loadComponent: () =>
       import('./pages/form-validator-test/form-validator-test.component').then(
-        (f) => f.FormValidatorTestComponent,
+        (c) => c.FormValidatorTestComponent,
       ),
+  },
+  {
+    path: 'input',
+    title: 'Input Test',
+    loadComponent: () =>
+      import('./pages/input/input.component').then((d) => d.InputPageComponent),
   },
   {
     path: 'dropdown',
     title: 'Dropdown Test',
     loadComponent: () =>
       import('./pages/dropdown/dropdown.component').then(
-        (d) => d.DropdownPageComponent,
+        (e) => e.DropdownPageComponent,
       ),
   },
   {
@@ -49,7 +55,7 @@ export const routes: Routes = [
     title: 'Dropzone Test',
     loadComponent: () =>
       import('./pages/dropzone/dropzone.component').then(
-        (d) => d.DropzonePageComponent,
+        (f) => f.DropzonePageComponent,
       ),
   },
   {
@@ -57,7 +63,7 @@ export const routes: Routes = [
     title: 'Alerts Test',
     loadComponent: () =>
       import('./pages/alerts/alerts.component').then(
-        (a) => a.AlertsPageComponent,
+        (g) => g.AlertsPageComponent,
       ),
   },
   {
@@ -78,21 +84,21 @@ export const routes: Routes = [
     title: 'Calendar Test',
     loadComponent: () =>
       import('./pages/calendar/calendar.component').then(
-        (c) => c.CalendarComponent,
+        (i) => i.CalendarComponent,
       ),
   },
   {
     path: 'ia',
     title: 'Inteligencia Artificial',
     loadComponent: () =>
-      import('./pages/ia/ia.component').then((c) => c.IaComponent),
+      import('./pages/ia/ia.component').then((i) => i.IaComponent),
   },
   {
     path: 'table-lite',
     title: 'Table Lite',
     loadComponent: () =>
       import('./pages/table-lite/table-lite.component').then(
-        (t) => t.TableLiteComponent,
+        (j) => j.TableLiteComponent,
       ),
   },
   {
@@ -100,7 +106,7 @@ export const routes: Routes = [
     title: 'Table LTS',
     loadComponent: () =>
       import('./pages/table-lts/table-lts.component').then(
-        (t) => t.TableLtsComponent,
+        (k) => k.TableLtsComponent,
       ),
   },
   {
@@ -108,7 +114,7 @@ export const routes: Routes = [
     title: 'Table HTML',
     loadComponent: () =>
       import('./pages/table-html/table-html.component').then(
-        (t) => t.TableHtmlComponent,
+        (l) => l.TableHtmlComponent,
       ),
   },
   {
@@ -133,29 +139,43 @@ export const routes: Routes = [
     loadComponent: () =>
       import(
         './pages/dashboard-indicators/dashboard-indicators.component'
-      ).then((d) => d.DashboardIndicatorsComponent),
+      ).then((o) => o.DashboardIndicatorsComponent),
   },
   {
     path: 'identity',
     title: 'Identity',
     loadComponent: () =>
       import('./pages/identity/identity.component').then(
-        (i) => i.IdentityComponent,
+        (p) => p.IdentityComponent,
       ),
   },
   {
     path: 'colors',
     title: 'Colors',
     loadComponent: () =>
-      import('./pages/colors/colors.component').then((j) => j.ColorsComponent),
+      import('./pages/colors/colors.component').then((q) => q.ColorsComponent),
   },
   {
     path: 'col-sys',
     title: 'Column sys',
     loadComponent: () =>
       import('./pages/layout-columns/layout-columns.component').then(
-        (j) => j.LayoutColumnsComponent,
+        (r) => r.LayoutColumnsComponent,
       ),
+  },
+  {
+    path: 'modals',
+    title: 'Modals',
+    loadComponent: () =>
+      import('./pages/modals-templates/modals-templates.component').then(
+        (s) => s.ModalsTemplatesComponent,
+      ),
+  },
+  {
+    path: 'menu',
+    title: 'Menu',
+    loadComponent: () =>
+      import('./pages/menu/menu.component').then((t) => t.MenuPageComponent),
   },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
 ];

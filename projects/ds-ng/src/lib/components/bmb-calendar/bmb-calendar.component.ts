@@ -31,16 +31,15 @@ import {
 import { getWeekDays, getMonthDays, DEFAULT_DATE_FORMAT } from './utils';
 import { BmbCalendarService } from '../../services/calendar/calendar.service';
 import { BmbNativeModalService } from '../../services/modal/native-modal.service';
-import { BmbBadgeComponent } from '../bmb-badge/bmb-badge.component';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { BmbCheckboxComponent } from '../bmb-checkbox/bmb-checkbox.component';
 import { BmbDividerComponent } from '../bmb-divider/bmb-divider.component';
 import { BmbLayoutDirective } from '../../directives/bmb-layout/bmb-layout.directive';
 import { BmbLayoutItemDirective } from '../../directives/bmb-layout/bmb-layout-item.directive';
-import { IBmbNativeModal } from '../bmb-modal/bmb-modal.interface';
 import { BmbTranslationsService } from '../../services/translations/translations.service';
 import { TranslatePipe } from '../../pipes/translations';
 import { BmbSwitchComponent } from '../bmb-switch/bmb-switch.component';
+import { IBmbColorSemantics } from '../../types';
 
 const parseFromFormat = (dateString: string, format: string): DateTime => {
   if (format.toLowerCase() === 'iso') return DateTime.fromISO(dateString);
@@ -64,7 +63,6 @@ export {
     BmbCalendarTemplateMonthComponent,
     BmbCalendarHeaderComponent,
     BmbCalendarTemplateMobileComponent,
-    BmbBadgeComponent,
     BmbLoaderComponent,
     ReactiveFormsModule,
     BmbCheckboxComponent,
@@ -116,10 +114,18 @@ export class BmbCalendarComponent implements OnInit, AfterViewInit {
         const interval = Interval.fromDateTimes(startDate, endDate);
         const week = startDate.weekNumber;
         const stringDate = startDate.toFormat('yyyy-MM-dd');
+        const bulletColor: IBmbColorSemantics =
+          event.bulletColor || 'success-primary';
 
         if (!acc[week]) acc[week] = {};
         if (!acc[week][stringDate]) acc[week][stringDate] = [];
-        acc[week][stringDate].push({ ...event, startDate, endDate, interval });
+        acc[week][stringDate].push({
+          ...event,
+          startDate,
+          endDate,
+          interval,
+          bulletColor,
+        });
 
         if (event.calendar && !acc.calendars?.includes(event.calendar)) {
           acc.calendars?.push(event.calendar);
@@ -177,8 +183,6 @@ export class BmbCalendarComponent implements OnInit, AfterViewInit {
     {},
   );
 
-  @ViewChild('detailContent', { read: TemplateRef })
-  detailContent?: TemplateRef<any>;
   @ViewChild('modalTemplate') modalTemplate!: TemplateRef<any>;
 
   @HostListener('window:resize')
@@ -275,23 +279,6 @@ export class BmbCalendarComponent implements OnInit, AfterViewInit {
     return events;
   }
 
-  handleSelectEvent(newEvent: IBmbCalendarEventClick): void {
-    const { event } = newEvent;
-    const title = event.modalTitle ?? event.title;
-    const modalTitle =
-      event.status === 'disabled' ? `(Cancelado) ${title}` : title;
-
-    this.selectedEvent = event;
-
-    const data: IBmbNativeModal = {
-      title: modalTitle,
-      subtitle: event.subtitle,
-      content: this.detailContent,
-      size: 'small',
-    };
-    this.modalService.openModal(data);
-  }
-
   isAnEventSelected(event: IBmbCalendarEventClick | null): boolean {
     return !!event;
   }
@@ -300,11 +287,6 @@ export class BmbCalendarComponent implements OnInit, AfterViewInit {
     if (typeof height === 'number') return `${height}px`;
 
     return height;
-  }
-
-  getDuration() {
-    if (!this.selectedEvent) return '';
-    return `${DateTime.fromISO(this.selectedEvent.start).toFormat('hh:mm a')} - ${DateTime.fromISO(this.selectedEvent.end).toFormat('hh:mm a')}`;
   }
 
   handleClose() {

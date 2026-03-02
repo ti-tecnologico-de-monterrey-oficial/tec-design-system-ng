@@ -29,7 +29,7 @@
   [valueLabel]="'$10,000'"
   [percent]="75"
   [showValueLabel]="true"
-  [title]="'Total recaudado'"
+  [componentTitle]="'Total recaudado'"
   [showTitle]="true"
   [showBackground]="true"
   [fillPathStatus]="'info'"

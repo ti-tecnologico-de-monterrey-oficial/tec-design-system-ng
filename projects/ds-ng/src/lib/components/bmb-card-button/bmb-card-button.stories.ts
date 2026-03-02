@@ -43,8 +43,7 @@ export default {
           'truncateText',
           'botIcon',
           'isFlipped',
-          '',
-          '',
+          'isABotTemplate',
         ],
       },
       description: {
@@ -266,7 +265,7 @@ ${RELEVANT_TITLE.note} there is an example in the **Template example** the secti
         type: { summary: 'IBmbLinkConfiguration' },
       },
     },
-    title: {
+    componentTitle: {
       control: { type: 'text' },
       description: 'Sets the title of the card button.',
       table: {
@@ -315,6 +314,16 @@ Usage:
       getOnEvent('', 'onAddContentClick'),
       ON_CLICK_DESCRIPTION,
     ),
+    title: {
+      control: null,
+      description:
+        'Please use `componentTitle` instead of `title` to set the component title.',
+      table: {
+        category: 'Deprecated',
+        type: { summary: 'string' },
+        defaultValue: '',
+      },
+    },
   },
   args: {},
 } as Meta<typeof BmbCardButtonComponent>;
@@ -328,7 +337,7 @@ export const Default = {
   args: {
     leftContent: true as unknown as InputSignal<boolean>,
     leftContentIcon: 'note_add' as unknown as InputSignal<string>,
-    title: 'Title or Text summary' as unknown as InputSignal<string>,
+    componentTitle: 'Title or Text summary' as unknown as InputSignal<string>,
     icon: 'group' as unknown as InputSignal<string>,
     body: `This is the body content of the card button.
     It can be long and will be truncated with ellipsis after 3 lines.
@@ -415,7 +424,7 @@ export const AddContentExample = {
   },
   args: {
     isFullInteractive: false,
-    title: 'Create new skill',
+    componentTitle: 'Create new skill',
     icon: 'add_circle',
     onAddContentClick: () => {
       console.log('onAddContentClick');
@@ -431,7 +440,7 @@ export const BadgeContainerImageExample = {
       src: 'https://picsum.photos/id/25/200/300',
       alt: 'Left content image',
     },
-    title: 'Title or summary',
+    componentTitle: 'Title or summary',
     badge: { text: 'Badge 1', appearance: 'mitec_purple' },
     body: `This is the body content of the card button.
     Lorem upsum aovei trirangil porilnem menuandos flenzhcrunf...`,
@@ -459,7 +468,7 @@ export const CustomContentImageExample = {
       src: 'https://picsum.photos/id/25/200/300',
       alt: 'Left content image',
     },
-    title: 'Title or summary',
+    componentTitle: 'Title or summary',
     badge: { text: 'Badge 1', container: false, appearance: 'success' },
     onAddContentClick: () => {
       console.log('onAddContentClick');
@@ -494,7 +503,7 @@ export const ImageExample = {
       src: 'https://picsum.photos/id/25/200/300',
       alt: 'Left content image',
     },
-    title: 'Title or summary',
+    componentTitle: 'Title or summary',
     body: `Test example | Test example | Test example`,
   },
 };

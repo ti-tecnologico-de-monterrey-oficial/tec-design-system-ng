@@ -12,7 +12,7 @@
             [loading]="'lazy'"
             class="bmb_notice-card-header-image"
             [srcset]="src()"
-            [alt]="title()"
+            [alt]="componentTitle() || title()"
             [loading]="'lazy'"
           />
         </picture>
@@ -33,7 +33,7 @@
   </section>
   <section class="bmb_notice-card-content">
     <div class="bmb_notice-card-content-title">
-      <h3>{{ title() }}</h3>
+      <h3>{{ componentTitle() || title() }}</h3>
     </div>
     @if (activeIndex == 0) {
       <div class="bmb_notice-card-content-description-one">

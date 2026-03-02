@@ -23,7 +23,7 @@ export default {
   parameters: {
     docs: {
       controls: {
-        exclude: ['handleBack', 'handleClose', 'handleExpand', 'useAutoExpand'],
+        exclude: ['handleBack', 'handleClose', 'handleExpand'],
       },
       description: {
         component: `

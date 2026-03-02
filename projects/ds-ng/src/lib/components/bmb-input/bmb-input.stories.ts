@@ -88,7 +88,7 @@ ${getFieldDescription(
 )}
 ${getArchitectureSection(`<section class="bmb_field">
   <!-- conditional class bmb_field-disabled -->
-  <section class="bmb_field-wrapper">
+  <section>
     <!-- if label is defined -->
     <label class="bmb_field-label" for="input">{ label }</label>
     <input { configuration } />

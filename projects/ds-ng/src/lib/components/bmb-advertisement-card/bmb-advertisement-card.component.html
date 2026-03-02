@@ -66,10 +66,11 @@
     leftIcon="chevron_left"
     icon="assignment"
     bgIconAppearance="mitec-green"
-    [title]="title() || ('advertisement_card.title' | translate)"
+    [componentTitle]="
+      componentTitle() || title() || ('advertisement_card.title' | translate)
+    "
     [subtitle]="subtitle()"
     [(isExpanded)]="expanded"
-    [useAutoExpand]="false"
   >
     <div class="bmb_advertisement-card-tabs">
       <bmb-tabs

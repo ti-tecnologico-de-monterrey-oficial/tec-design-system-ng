@@ -34,7 +34,7 @@
             <bmb-hito-card
               [icon]="event.icon || 'app_badging'"
               (handleClick)="handleEventChange(event)"
-              [title]="event.title"
+              [componentTitle]="event.title"
               [short_description]="!isMicro() ? event.short_description : ''"
               [type]="event.type"
               [id]="event.id"

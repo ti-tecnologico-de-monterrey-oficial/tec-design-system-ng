@@ -8,20 +8,23 @@
     width: 100%;
   }
 
-  &-chat-actions {
-    display: flex;
-    gap: rem.rem_calc(10);
-  }
-
   .bmb_three-cols {
     > *:empty {
       display: none;
     }
   }
 
-  > bmb-container > .bmb_container {
-    border-radius: var(--bmb-radius-l) var(--bmb-radius-l) 0 0;
-    padding: rem.rem_calc(24);
+  &-wrapper {
+    > .bmb_container {
+      border-radius: var(--bmb-radius-l) var(--bmb-radius-l) 0 0;
+      padding: rem.rem_calc(16 24);
+    }
+
+    &.left {
+      > .bmb_container {
+        padding: rem.rem_calc(24);
+      }
+    }
   }
 
   .bmb_title-content-container-icon,

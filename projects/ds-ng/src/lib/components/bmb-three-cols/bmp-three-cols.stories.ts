@@ -149,7 +149,7 @@ export const Default: Story = {
       <bmb-title-content
         icon="account_balance_wallet"
         bgIconAppearance="green-light"
-        title="Title"
+        componentTitle="Title"
         subtitle="Subtitle"
       />
     </ng-template>

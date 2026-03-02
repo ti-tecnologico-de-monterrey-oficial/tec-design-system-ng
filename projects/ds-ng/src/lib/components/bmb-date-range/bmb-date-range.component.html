@@ -16,6 +16,9 @@
     [customValidation]="customValidation()"
     [errorMessage]="errorMessage()"
   />
+  @if (!multipleRow()) {
+    <div class="bmb_date-range-middle-dash"></div>
+  }
   <bmb-datepicker
     [label]="labelEndDate()"
     [placeholder]="placeholderEndDate()"

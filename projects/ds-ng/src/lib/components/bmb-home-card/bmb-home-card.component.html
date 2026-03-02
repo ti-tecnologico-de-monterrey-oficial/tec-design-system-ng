@@ -1,20 +1,18 @@
 <section class="bmb_home-card">
   <div class="bmb_home-card-wrapper">
     <bmb-home-card-header
-      [title]="title()"
+      [componentTitle]="componentTitle() || title()"
       [subtitle]="subtitle()"
       [dataLocalNav]="dataLocalNav()"
       [leftIcon]="leftIcon()"
       [icon]="icon()"
       [iconSize]="iconSize()"
       [bgIconAppearance]="bgIconAppearance()"
-      [isChat]="isChat()"
-      [actionsList]="actionsList()"
       [actionHeaders]="actionHeaders()"
       [showRightButton]="showRightButton()"
       [isMobile]="isMobile()"
+      [(currentBot)]="currentBot"
       [(isExpanded)]="isExpanded"
-      [useAutoExpand]="useAutoExpand()"
       (onClose)="handleClose()"
       (onBack)="handleBack()"
       (onExpandClick)="handleExpand()"

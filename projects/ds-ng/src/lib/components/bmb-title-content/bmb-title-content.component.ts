@@ -1,7 +1,9 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  effect,
   input,
+  model,
   ViewEncapsulation,
 } from '@angular/core';
 import {
@@ -16,6 +18,10 @@ import { IBmbColor } from '../../types/colors';
 import { getRGBColorKeyValue } from '../../utils/utils';
 import { BmbUserImageComponent } from '../bmb-user-image/bmb-user-image.component';
 import { IBmbUserImageSize } from '../../types';
+import { logDeprecatedInput } from '../../utils/logDeprecatedInput';
+
+import { BmbBotIconComponent } from '../bmb-bot-icon/bmb-bot-icon.component';
+import { IBotType } from '../bmb-chat-bar/types';
 
 export type IBmbFontWeightContent =
   | '100'
@@ -37,6 +43,7 @@ export type IBmbFontWeightContent =
     BmbIconComponent,
     BmbBreadcrumbComponent,
     BmbUserImageComponent,
+    BmbBotIconComponent,
   ],
   templateUrl: './bmb-title-content.component.html',
   styleUrl: './bmb-title-content.component.scss',
@@ -44,7 +51,6 @@ export type IBmbFontWeightContent =
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BmbTitleContentComponent {
-  title = input.required<string>();
   titleSize = input<string>('5');
   titleFontWeight = input<string>('600');
   subtitle = input<string | undefined>('');
@@ -61,6 +67,27 @@ export class BmbTitleContentComponent {
   isAvatarIcon = input<boolean>(false);
   avatarSize = input<IBmbUserImageSize>('desktop-small');
   forceSquareApp = input<boolean>(false);
+  componentTitle = input<string>(); // once title is removed, this should be required
+
+  title = input<string>(); // deprecated
+
+  constructor() {
+    effect(() => {
+      const deprecatedTitle = this.title();
+      const newTitle = this.componentTitle();
+      logDeprecatedInput(
+        { name: 'title', hasValue: !!deprecatedTitle },
+        { name: 'componentTitle', hasValue: !!newTitle },
+      );
+
+      if (!deprecatedTitle && !newTitle) {
+        throw new Error(
+          'The "componentTitle" input is required. Please provide a value for it.',
+        );
+      }
+    });
+  }
+  currentBot = model<IBotType>();
 
   isImage(icon: string): boolean {
     return isImage(icon);

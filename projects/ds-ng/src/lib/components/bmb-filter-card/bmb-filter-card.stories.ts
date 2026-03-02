@@ -8,13 +8,18 @@ import {
   getGeneralDescription,
   getOnEvent,
   getSpecialSpecifications,
+  getTechnicalDocReferences,
 } from '../../utils/doc/utils';
 import {
   DBmbButtonParamDesc,
   DBmbModalParamDesc,
   getOnClickParam,
 } from '../../utils/doc/parameterDescriptions';
-import { Description } from '@storybook/addon-docs/blocks';
+import * as checkboxStory from './../bmb-checkbox/bmb-checkbox.stories';
+import * as switchStory from './../bmb-switch/bmb-switch.stories';
+import * as radialStory from './../bmb-radial/bmb-radial.stories';
+import * as dropdownStory from './../bmb-dropdown/bmb-dropdown.stories';
+import * as tagsStory from './../bmb-tags/bmb-tags.stories';
 
 export default {
   title: 'Components/Containers/Filter card',
@@ -41,7 +46,18 @@ export default {
       description: {
         component: `
 ${getGeneralDescription(`${getGeneralComponentDescription({ name: 'filter-card' })} to display and managing filter controls in a modal dialog.`, { generalDocLink: 'https://bamboo.tec.mx/latest/componentes/filter-card/descripcion-general-Be01z0Al' })}
-${getSpecialSpecifications(getEmptyStateMessage(), { showAdditionalBlockquote: true })}
+${getSpecialSpecifications(
+  `${getEmptyStateMessage()} ${getTechnicalDocReferences({
+    references: [
+      { title: dropdownStory.default.title! },
+      { title: tagsStory.default.title! },
+      { title: radialStory.default.title! },
+      { title: checkboxStory.default.title! },
+      { title: switchStory.default.title! },
+    ],
+  })}`,
+  { showAdditionalBlockquote: true },
+)}
 ${getBasicExampleBlock('BmbFilterCardComponent')}
         `,
       },
@@ -59,21 +75,37 @@ ${getBasicExampleBlock('BmbFilterCardComponent')}
     },
     controlTypes: {
       control: { type: 'array' },
-      description:
-        'An array of control types, each with a title and an array of controls.',
+      description: `
+Sets the data list of control types.
+
+Data descriptions:
+- ***name***: Unique identifier name for the control
+- ***type***: Type of control to render (radial, checkbox, switch, tag, dropdown'
+- ***label***: Display label for the control
+- ***checked***: Whether the control is checked/selected (for checkbox, switch, radial)
+- ***placeholder***: Placeholder text (for input/dropdown controls)
+- ***rightText***: Additional text to display on the right side
+- ***value***: Current value of the control
+- ***id***: Unique identifier for the control element
+- ***options***: Available options for selection controls (for dropdown controls)
+- ***isMultiSelect***: Whether multiple selections are allowed (for dropdown controls), when this attribute is true the list will not be filterable.
+        `,
       table: {
         category: 'Properties',
         defaultValue: { summary: '' },
         type: {
           summary: 'IBmbControlType[]',
           detail: `IBmbControlType {
-  title: string;
-  control: {
-    name: string;
-    type: 'radial' | 'checkbox' | 'switch' | 'tag';
-    label: string;
-    checked: boolean;
-    rightText?: string;
+  name: string;
+  type: 'radial' | 'checkbox' | 'switch' | 'tag' | 'dropdown';
+  label: string;
+  checked?: boolean;
+  placeholder?: string;
+  rightText?: string;
+  value?: string;
+  id?: string;
+  options?: string[] | IBmbDropdownItem[];
+  isMultiSelect?: boolean;
   }[];
 }`,
         },
@@ -86,7 +118,7 @@ ${getBasicExampleBlock('BmbFilterCardComponent')}
     inLine: {
       control: { type: 'boolean' },
       description:
-        'Display the filter card in the document instead of the dialog',
+        'Displays the filter card in the document instead of the dialog.',
       table: {
         category: 'Properties',
         type: { summary: 'boolean' },
@@ -149,6 +181,7 @@ ${getBasicExampleBlock('BmbFilterCardComponent')}
               { value: 'tomato', name: 'Tomato' },
             ],
             value: 'apple',
+            isMultiSelect: true,
           },
         ],
       },

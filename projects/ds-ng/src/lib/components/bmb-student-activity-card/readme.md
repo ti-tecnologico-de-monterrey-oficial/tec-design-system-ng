@@ -29,7 +29,7 @@
 <bmb-student-activity-card
   [startDate]="'2025-10-20 09:00:00'"
   [endDate]="'2025-10-20 12:00:00'"
-  [title]="'Taller de Innovación'"
+  [componentTitle]="'Taller de Innovación'"
   [location]="'Aula Magna, Campus Monterrey'"
   [responsible]="'Dra. Ana Pérez'"
   [type]="'academic'"

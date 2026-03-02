@@ -37,13 +37,23 @@ ${getBasicExampleBlock('BmbHomeSectionComponent')}
     },
   },
   argTypes: {
-    title: getPropertyParamDesc('home section'),
+    componentTitle: getPropertyParamDesc('home section'),
     icon: DBmbIconParamDesc.icon,
     link: DBmbGenericParamDesc.link,
     target: DBmbGenericParamDesc.target,
+    title: {
+      control: null,
+      description:
+        'Please use `componentTitle` instead of `title` to set the component title.',
+      table: {
+        category: 'Deprecated',
+        type: { summary: 'string' },
+        defaultValue: '',
+      },
+    },
   },
   args: {
-    title: 'Section name',
+    componentTitle: 'Section name',
     icon: 'chevron_right',
     target: '_blank',
     link: 'https://www.youtube.com/',

@@ -164,7 +164,7 @@ import * as buttonStory from '../directives/bmb-button/button.stories';
             }
           ]
         ]"
-        title="Navegacion para mobiles"
+        componentTitle="Navegacion para mobiles"
       />
     </div>
   `,
@@ -332,7 +332,7 @@ ${getBasicExampleBlock(`BmbTopBarComponent,
       },
     ],
   ]"
-  title="Navegacion para mobiles"
+  componentTitle="Navegacion para mobiles"
 />
 </div>
 \`\`\`

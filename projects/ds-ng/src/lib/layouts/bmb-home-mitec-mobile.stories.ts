@@ -63,20 +63,20 @@ import { BmbCarouselComponent } from '../components/bmb-carousel/bmb-carousel.co
           trailingIcon="notifications"
           (onTrailingIconClick)="onTrailingIconClick($event)"
         />
-        <bmb-simple-header title="Mis acciones" icon="trending_up" />
+        <bmb-simple-header componentTitle="Mis acciones" icon="trending_up" />
         <bmb-timestream
           [events]="timestreamEvents"
           dateFormat="yyyy-MM-dd"
           [isMicro]="true"
         />
         <bmb-divider />
-        <bmb-simple-header title="Mi horario" icon="calendar_month" />
+        <bmb-simple-header componentTitle="Mi horario" icon="calendar_month" />
         <section class="bmb_horizontal-scroll">
           <section class="bmb_horizontal-scroll-wrapper">
             <bmb-student-activity-card
               [startDate]="'2021-12-24 10:00:00'"
               [endDate]="'2021-12-24 11:00:00'"
-              [title]="'Activity title'"
+              [componentTitle]="'Activity title'"
               [location]="'Activity location'"
               [responsible]="'Activity responsible'"
               [type]="'academic'"
@@ -87,7 +87,7 @@ import { BmbCarouselComponent } from '../components/bmb-carousel/bmb-carousel.co
             <bmb-student-activity-card
               [startDate]="'2021-12-24 10:00:00'"
               [endDate]="'2021-12-24 11:00:00'"
-              [title]="'Activity title'"
+              [componentTitle]="'Activity title'"
               [location]="'Activity location'"
               [responsible]="'Activity responsible'"
               [type]="'life'"
@@ -98,7 +98,7 @@ import { BmbCarouselComponent } from '../components/bmb-carousel/bmb-carousel.co
             <bmb-student-activity-card
               [startDate]="'2021-12-24 10:00:00'"
               [endDate]="'2021-12-24 11:00:00'"
-              [title]="'Activity title'"
+              [componentTitle]="'Activity title'"
               [location]="'Activity location'"
               [responsible]="'Activity responsible'"
               [type]="'events'"
@@ -109,7 +109,7 @@ import { BmbCarouselComponent } from '../components/bmb-carousel/bmb-carousel.co
             <bmb-student-activity-card
               [startDate]="'2021-12-24 10:00:00'"
               [endDate]="'2021-12-24 11:00:00'"
-              [title]="'Activity title'"
+              [componentTitle]="'Activity title'"
               [location]="'Activity location'"
               [responsible]="'Activity responsible'"
               [type]="'academic'"
@@ -120,7 +120,7 @@ import { BmbCarouselComponent } from '../components/bmb-carousel/bmb-carousel.co
             <bmb-student-activity-card
               [startDate]="'2021-12-24 10:00:00'"
               [endDate]="'2021-12-24 11:00:00'"
-              [title]="'Activity title'"
+              [componentTitle]="'Activity title'"
               [location]="'Activity location'"
               [responsible]="'Activity responsible'"
               [type]="'life'"
@@ -131,20 +131,20 @@ import { BmbCarouselComponent } from '../components/bmb-carousel/bmb-carousel.co
           </section>
         </section>
         <bmb-divider />
-        <bmb-simple-header title="Mi avance académico" icon="school" />
+        <bmb-simple-header componentTitle="Mi avance académico" icon="school" />
         <bmb-grades
           [isMicro]="true"
           [gradeTitle]="'Período actual'"
-          [title]="'Semestral AGO-DIC 2024'"
+          [componentTitle]="'Semestral AGO-DIC 2024'"
           [accredited]="{ name: 'Créditos aprobados', value: '39' }"
           [average]="{ name: 'Promedio acumulado', value: '90' }"
           [summary]="{ name: 'Faltas totales', value: '3' }"
         />
         <bmb-divider />
-        <bmb-simple-header title="Mis apps" icon="apps" />
+        <bmb-simple-header componentTitle="Mis apps" icon="apps" />
         <bmb-frequent-apps-selector [apps]="selectorApps" layout="button" />
         <bmb-divider />
-        <bmb-simple-header title="CONECTA" icon="open_in_browser" />
+        <bmb-simple-header componentTitle="CONECTA" icon="open_in_browser" />
         <bmb-carousel>
           <section #carouselItem>
             <bmb-media-card
@@ -153,7 +153,7 @@ import { BmbCarouselComponent } from '../components/bmb-carousel/bmb-carousel.co
               ratio="1/1"
               borderRadius="m"
               type="floating"
-              title="Custom HTML content 1"
+              componentTitle="Custom HTML content 1"
             />
           </section>
           <section #carouselItem>
@@ -163,7 +163,7 @@ import { BmbCarouselComponent } from '../components/bmb-carousel/bmb-carousel.co
               ratio="1/1"
               borderRadius="m"
               type="floating"
-              title="Custom HTML content 2"
+              componentTitle="Custom HTML content 2"
             />
           </section>
           <section #carouselItem>
@@ -173,7 +173,7 @@ import { BmbCarouselComponent } from '../components/bmb-carousel/bmb-carousel.co
               ratio="1/1"
               borderRadius="m"
               type="floating"
-              title="Custom HTML content 3"
+              componentTitle="Custom HTML content 3"
             >
               <span>Custom HTML</span>
             </bmb-media-card>
@@ -182,7 +182,7 @@ import { BmbCarouselComponent } from '../components/bmb-carousel/bmb-carousel.co
         <bmb-divider />
         <bmb-drawer-overlay
           [menu]="menu"
-          [title]="'Inner Header'"
+          [componentTitle]="'Inner Header'"
           [dataSearch]="['Search Item 1', 'Search Item 2', 'Search Item 3']"
           [tabs]="tabs"
           [appServices]="appServices"
@@ -576,20 +576,20 @@ import { BmbModalComponent, ModalDataConfig } from '@ti-tecnologico-de-monterrey
           trailingIcon="notifications"
           (onTrailingIconClick)="onTrailingIconClick($event)"
         />
-        <bmb-simple-header title="Mis acciones" icon="trending_up" />
+        <bmb-simple-header componentTitle="Mis acciones" icon="trending_up" />
         <bmb-timestream
           [events]="timestreamEvents"
           dateFormat="yyyy-MM-dd"
           [isMicro]="true"
         />
         <bmb-divider />
-        <bmb-simple-header title="Mi horario" icon="calendar_month" />
+        <bmb-simple-header componentTitle="Mi horario" icon="calendar_month" />
         <section class="bmb_horizontal-scroll">
           <section class="bmb_horizontal-scroll-wrapper">
             <bmb-student-activity-card
               [startDate]="'2021-12-24 10:00:00'"
               [endDate]="'2021-12-24 11:00:00'"
-              [title]="'Activity title'"
+              [componentTitle]="'Activity title'"
               [location]="'Activity location'"
               [responsible]="'Activity responsible'"
               [type]="'academic'"
@@ -601,7 +601,7 @@ import { BmbModalComponent, ModalDataConfig } from '@ti-tecnologico-de-monterrey
             <bmb-student-activity-card
               [startDate]="'2021-12-24 10:00:00'"
               [endDate]="'2021-12-24 11:00:00'"
-              [title]="'Activity title'"
+              [componentTitle]="'Activity title'"
               [location]="'Activity location'"
               [responsible]="'Activity responsible'"
               [type]="'life'"
@@ -613,7 +613,7 @@ import { BmbModalComponent, ModalDataConfig } from '@ti-tecnologico-de-monterrey
             <bmb-student-activity-card
               [startDate]="'2021-12-24 10:00:00'"
               [endDate]="'2021-12-24 11:00:00'"
-              [title]="'Activity title'"
+              [componentTitle]="'Activity title'"
               [location]="'Activity location'"
               [responsible]="'Activity responsible'"
               [type]="'events'"
@@ -625,7 +625,7 @@ import { BmbModalComponent, ModalDataConfig } from '@ti-tecnologico-de-monterrey
             <bmb-student-activity-card
               [startDate]="'2021-12-24 10:00:00'"
               [endDate]="'2021-12-24 11:00:00'"
-              [title]="'Activity title'"
+              [componentTitle]="'Activity title'"
               [location]="'Activity location'"
               [responsible]="'Activity responsible'"
               [type]="'academic'"
@@ -637,7 +637,7 @@ import { BmbModalComponent, ModalDataConfig } from '@ti-tecnologico-de-monterrey
             <bmb-student-activity-card
               [startDate]="'2021-12-24 10:00:00'"
               [endDate]="'2021-12-24 11:00:00'"
-              [title]="'Activity title'"
+              [componentTitle]="'Activity title'"
               [location]="'Activity location'"
               [responsible]="'Activity responsible'"
               [type]="'life'"
@@ -649,23 +649,23 @@ import { BmbModalComponent, ModalDataConfig } from '@ti-tecnologico-de-monterrey
           </section>
         </section>
         <bmb-divider />
-        <bmb-simple-header title="Mi avance académico" icon="school" />
+        <bmb-simple-header componentTitle="Mi avance académico" icon="school" />
         <bmb-grades
           [isMicro]="true"
           [gradeTitle]="'Período actual'"
-          [title]="'Semestral AGO-DIC 2024'"
+          [componentTitle]="'Semestral AGO-DIC 2024'"
           [accredited]="{ name: 'Créditos aprobados', value: '39' }"
           [average]="{ name: 'Promedio acumulado', value: '90' }"
           [summary]="{ name: 'Faltas totales', value: '3' }"
         />
         <bmb-divider />
-        <bmb-simple-header title="Mis apps" icon="apps" />
+        <bmb-simple-header componentTitle="Mis apps" icon="apps" />
         <bmb-frequent-apps-selector
           [apps]="selectorApps"
           layout="button"
         />
         <bmb-divider />
-        <bmb-simple-header title="CONECTA" icon="open_in_browser" />
+        <bmb-simple-header componentTitle="CONECTA" icon="open_in_browser" />
         <bmb-carousel>
           <section #carouselItem>
             <bmb-media-card
@@ -674,7 +674,7 @@ import { BmbModalComponent, ModalDataConfig } from '@ti-tecnologico-de-monterrey
               ratio="1/1"
               borderRadius="m"
               type="floating"
-              title="Custom HTML content 1"
+              componentTitle="Custom HTML content 1"
             />
           </section>
           <section #carouselItem>
@@ -684,7 +684,7 @@ import { BmbModalComponent, ModalDataConfig } from '@ti-tecnologico-de-monterrey
               ratio="1/1"
               borderRadius="m"
               type="floating"
-              title="Custom HTML content 2"
+              componentTitle="Custom HTML content 2"
             />
           </section>
           <section #carouselItem>
@@ -694,7 +694,7 @@ import { BmbModalComponent, ModalDataConfig } from '@ti-tecnologico-de-monterrey
               ratio="1/1"
               borderRadius="m"
               type="floating"
-              title="Custom HTML content 3"
+              componentTitle="Custom HTML content 3"
             >
               <span>Custom HTML</span>
             </bmb-media-card>
@@ -703,7 +703,7 @@ import { BmbModalComponent, ModalDataConfig } from '@ti-tecnologico-de-monterrey
         <bmb-divider />
         <bmb-drawer-overlay
           [menu]="menu"
-          [title]="'Inner Header'"
+          [componentTitle]="'Inner Header'"
           [dataSearch]="['Search Item 1', 'Search Item 2', 'Search Item 3']"
           [tabs]="tabs"
           [appServices]="appServices"

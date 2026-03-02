@@ -42,7 +42,7 @@ export interface IBmbCardNoticeDescription {
 ```html
 <bmb-notice-card
   [src]="'/assets/alerta.svg'"
-  [title]="'Actualización importante'"
+  [componentTitle]="'Actualización importante'"
   [description]="{ pageOne: 'Se realizará mantenimiento el viernes.', pageTwo: 'El servicio estará disponible nuevamente el sábado.' }"
   [buttonText]="'Entendido'"
   [link]="'/detalles-mantenimiento'"

@@ -13,7 +13,7 @@
 | `gapSize`      | `SizeNames`          | Espacio (gap) entre los elementos del layout vertical           | `'m'`             | No          |
 | `justify`      | `IJustifyOptions`    | Justificación de los elementos (`start`, `center`, `end`, etc.) | `'start'`         | No          |
 | `alignItems`   | `IAlignItemsOptions` | Alineación vertical de los elementos (`start`, `center`, etc.)  | `'start'`         | No          |
-| `layoutHeight` | `string`             | Altura total del layout vertical (ej. `'100%'`, `'80vh'`)       | `'100%'`          | No          |
+| `layoutHeight` | `string`             | Altura total del layout vertical (ej. `'100%'`, `'80dvh'`)      | `'100%'`          | No          |
 
 ---
 
@@ -25,7 +25,7 @@
   [gapSize]="'l'"
   [justify]="'center'"
   [alignItems]="'stretch'"
-  [layoutHeight]="'80vh'"
+  [layoutHeight]="'80dvh'"
 >
   <div>Sección superior</div>
   <div>Sección central</div>
@@ -71,7 +71,7 @@
 ## Ejemplo de uso
 
 ```html
-<div style="display: flex; flex-direction: column; height: 100vh;">
+<div style="display: flex; flex-direction: column; height: 100dvh;">
   <div bmbVerticalLayoutItem [rowGrow]="1">
     <!-- Sección principal que crece -->
   </div>

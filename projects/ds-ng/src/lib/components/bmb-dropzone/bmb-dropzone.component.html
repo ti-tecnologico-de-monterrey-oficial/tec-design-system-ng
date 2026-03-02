@@ -106,7 +106,7 @@
               ? getProgress(file)
               : getFileSizeInMB(file.size)
           "
-          [title]="getFileName(file)"
+          [componentTitle]="getFileName(file)"
           [appearance]="file.error ? 'error' : 'info'"
           [isContainer]="true"
           [avatarIcon]="getAvatarIcon(file)"

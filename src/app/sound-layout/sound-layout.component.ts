@@ -3,7 +3,7 @@ import {
   BmbLayoutDirective,
   BmbLayoutItemDirective,
   BmbSoundsCardComponent,
-} from '../../../../projects/ds-ng/src/public-api';
+} from '../../../projects/ds-ng/src/public-api';
 
 @Component({
   selector: 'app-sound-layout',

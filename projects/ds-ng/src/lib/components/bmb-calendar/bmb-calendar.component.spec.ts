@@ -1,15 +1,10 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import {
-  BmbCalendarComponent,
-  IBmbCalendarEventClick,
-} from './bmb-calendar.component';
-import { BmbCalendarService } from '../../services/calendar/calendar.service';
+import { BmbCalendarComponent } from './bmb-calendar.component';
 import { DateTime } from 'luxon';
 
 describe('BmbCalendarComponent', () => {
   let component: BmbCalendarComponent;
   let fixture: ComponentFixture<BmbCalendarComponent>;
-  let calendarServiceStub: Partial<BmbCalendarService>;
 
   beforeEach(async () => {
     fixture = TestBed.createComponent(BmbCalendarComponent);
@@ -62,9 +57,6 @@ describe('BmbCalendarComponent', () => {
       tags: [],
       status: 'active',
     };
-
-    const duration = component.getDuration();
-    expect(duration).toBe('01:00 PM - 01:30 PM');
   });
 
   it('should emit onClose when handleClose is called', () => {

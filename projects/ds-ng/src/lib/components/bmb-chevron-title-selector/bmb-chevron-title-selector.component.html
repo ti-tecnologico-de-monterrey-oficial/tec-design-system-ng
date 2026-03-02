@@ -14,7 +14,7 @@
     </ng-template>
     <ng-template #bmbMainContent>
       <bmb-title-content
-        [title]="title()"
+        [componentTitle]="componentTitle() || title() || ''"
         titleSize="4"
         titleFontWeight="300"
         [subtitle]="subtitle()"

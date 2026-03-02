@@ -15,7 +15,7 @@ import { IBmbError } from '../../types';
   imports: [BmbLoginOnboardingStepperStepComponent, BmbTotpComponent],
   template: `
     <bmb-login-onboarding-stepper-step
-      title="Paso 2"
+      componentTitle="Paso 2"
       subtitle="Ingresa tu ToTP"
       label="Recuerda que debes contar con la aplicación de identificación"
       sublabel="(Google/Microsoft Authenticator)"

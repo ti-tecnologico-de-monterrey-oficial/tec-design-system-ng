@@ -95,7 +95,7 @@ import * as buttonStory from '../directives/bmb-button/button.stories';
           leftIcon="chevron_left"
           icon="newspaper"
           bgIconAppearance="purple-light"
-          title="Servicios administrativos"
+          componentTitle="Servicios administrativos"
           contentPadding="xl"
           [isExpanded]="true"
           (onBack)="handleBack()"
@@ -677,7 +677,7 @@ import * as buttonStory from '../directives/bmb-button/button.stories';
           }
         ]
       ]"
-      [title]="'Navegacion para mobiles'"
+      [componentTitle]="'Navegacion para mobiles'"
     ></bmb-sidebar>
   `,
 })
@@ -974,7 +974,7 @@ ${getBasicExampleBlock(
         leftIcon="chevron_left"
         icon="newspaper"
         bgIconAppearance="purple-light"
-        title="Servicios administrativos"
+        componentTitle="Servicios administrativos"
         contentPadding="xl"
         [isExpanded]="true"
         (onBack)="handleBack()"
@@ -1556,7 +1556,7 @@ ${getBasicExampleBlock(
         }
       ]
     ]"
-    [title]="'Navegacion para mobiles'"
+    [componentTitle]="'Navegacion para mobiles'"
   ></bmb-sidebar>
 `,
       },

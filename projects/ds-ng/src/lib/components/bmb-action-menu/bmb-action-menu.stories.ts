@@ -2,12 +2,15 @@ import { Meta, moduleMetadata, StoryObj } from '@storybook/angular';
 import { BmbActionMenuComponent } from './bmb-action-menu.component';
 import {
   attributes,
+  BlockquoteType,
+  getAlertBlockquote,
   getBasicExampleBlock,
   getElementUsesDesc,
   getGeneralComponentDescription,
   getGeneralDescription,
   getSpecialSpecifications,
   getTechnicalOneReference,
+  RELEVANT_TITLE,
 } from '../../utils/doc/utils';
 import { BmbItemComponent } from '../bmb-item/bmb-item.component';
 import {
@@ -26,6 +29,7 @@ export default {
   ],
   parameters: {
     docs: {
+      controls: { exclude: ['genericMenuContent', 'menuContent'] },
       description: {
         component: `
 ${getGeneralDescription(
@@ -37,6 +41,20 @@ ${getGeneralDescription(
 )}
 ${getSpecialSpecifications(
   `
+${getAlertBlockquote(
+  `
+Please remember to always add the *#actionMenuItem* tag to the ***Action menu*** templates for proper functionality.
+\`\`\`html
+<ng-template #actionMenuItem>
+  <!-- Content  -->
+</ng-template>\`\`\``,
+  {
+    title: RELEVANT_TITLE.configuration,
+    blockquoteType: BlockquoteType.important,
+    isRelevantTitle: true,
+  },
+)}
+<br/>
 ${getElementUsesDesc('item')}
 ${getTechnicalOneReference(item.default.title!)}
   `,
@@ -51,7 +69,7 @@ ${getBasicExampleBlock('BmbActionMenuComponent')}
     icon: DBmbHomeCardParamDesc.icon,
     iconSize: DBmbHomeCardParamDesc.iconSize,
     bgIconAppearance: DBmbHomeCardParamDesc.bgIconAppearance,
-    title: DBmbHomeCardParamDesc.title,
+    componentTitle: DBmbHomeCardParamDesc.title,
     subtitle: DBmbHomeCardParamDesc.subtitle,
     showHeader: {
       control: { type: 'boolean' },
@@ -73,11 +91,21 @@ ${getBasicExampleBlock('BmbActionMenuComponent')}
         defaultValue: false,
       },
     },
+    title: {
+      control: null,
+      description:
+        'Please use `componentTitle` instead of `title` to set the component title.',
+      table: {
+        category: 'Deprecated',
+        type: { summary: 'string' },
+        defaultValue: '',
+      },
+    },
   },
   args: {
     icon: 'account_balance_wallet',
     bgIconAppearance: 'green-light',
-    title: 'Title',
+    componentTitle: 'Title',
     subtitle: 'Subtitle',
     showHeader: true,
   },
@@ -89,7 +117,7 @@ export const WithIcon: Story = {
   render: (args: any) => ({
     template: `
       <bmb-action-menu ${attributes(args)}>
-        <ng-template>
+        <ng-template #actionMenuItem>
           <bmb-item
             label="Correo"
             value="tecservices@servicios.tec.mx"
@@ -97,7 +125,7 @@ export const WithIcon: Story = {
             valueTarget="_self"
         />
         </ng-template>
-        <ng-template>
+        <ng-template #actionMenuItem>
           <bmb-item
             label="Teléfono"
             icon="mobile"
@@ -106,7 +134,7 @@ export const WithIcon: Story = {
             valueTarget="_self"
           />
         </ng-template>
-        <ng-template>
+        <ng-template #actionMenuItem>
           <bmb-item
             label="Teléfono"
             icon="mobile"
@@ -122,7 +150,7 @@ export const WithoutIcon: Story = {
   render: (args: any) => ({
     template: `
       <bmb-action-menu ${attributes(args)}>
-        <ng-template>
+        <ng-template #actionMenuItem>
           <bmb-item
             label="Correo"
             value="tecservices@servicios.tec.mx"
@@ -130,7 +158,7 @@ export const WithoutIcon: Story = {
             valueTarget="_self"
           />
         </ng-template>
-        <ng-template>
+        <ng-template #actionMenuItem>
           <bmb-item
             label="Teléfono"
             value="52 81 8358 2000"
@@ -138,7 +166,7 @@ export const WithoutIcon: Story = {
             valueTarget="_self"
           />
         </ng-template>
-        <ng-template>
+        <ng-template #actionMenuItem>
           <bmb-item
             label="Teléfono"
             value="+52 81 1625 5123 (solo texto)"
@@ -153,18 +181,11 @@ export const InformativeText: Story = {
   render: (args: any) => ({
     template: `
       <bmb-action-menu ${attributes(args)}>
-        <ng-template>
+        <ng-template #actionMenuItem>
           <bmb-item
             label="Informative text. Non actionable"
             icon="mail"
             supportText="Support text. <a href='https://www.google.com.mx' target='_blank'>Optional hyperlink text</a>"
-          />
-        </ng-template>
-        <ng-template>
-          <bmb-item
-            icon="mobile"
-            label="Informative text. Non actionable"
-            supportText="Here is some support text for your soul."
           />
         </ng-template>
       </bmb-action-menu>
@@ -176,13 +197,13 @@ export const InformativeTextWithoutIcon: Story = {
   render: (args: any) => ({
     template: `
       <bmb-action-menu ${attributes(args)}>
-        <ng-template>
+        <ng-template #actionMenuItem>
           <bmb-item
             label="Informative text. Non actionable"
             supportText="Support text. <a href='https://www.google.com.mx' target='_blank'>Optional hyperlink text</a>"
           />
         </ng-template>
-        <ng-template>
+        <ng-template #actionMenuItem>
           <bmb-item
             label="Informative text. Non actionable"
             supportText="Here is some support text for your soul."
@@ -194,19 +215,22 @@ export const InformativeTextWithoutIcon: Story = {
 };
 
 export const Button: Story = {
+  args: {
+    showHeader: false,
+  },
   render: (args: any) => ({
     props: {
       ...args,
       action: () => {
-        alert('In this method you can define the action to be executed');
+        console.info('In this method you can define the action to be executed');
       },
     },
     template: `
       <bmb-action-menu ${attributes(args)}>
-        <ng-template>
+        <ng-template #actionMenuItem>
           <bmb-item label="Correo" [isButton]="true" (action)="action($event)" />
         </ng-template>
-        <ng-template>
+        <ng-template #actionMenuItem>
           <bmb-item label="Phone" [isButton]="true" (action)="action($event)" />
         </ng-template>
       </bmb-action-menu>
@@ -215,19 +239,22 @@ export const Button: Story = {
 };
 
 export const ButtonWithIcon: Story = {
+  args: {
+    showHeader: false,
+  },
   render: (args: any) => ({
     props: {
       ...args,
       action: () => {
-        alert('In this method you can define the action to be executed');
+        console.info('In this method you can define the action to be executed');
       },
     },
     template: `
       <bmb-action-menu ${attributes(args)}>
-        <ng-template>
+        <ng-template #actionMenuItem>
           <bmb-item icon="mail" label="Correo" [isButton]="true" (action)="action($event)" />
         </ng-template>
-        <ng-template>
+        <ng-template #actionMenuItem>
           <bmb-item icon="mobile" label="Phone" [isButton]="true" (action)="action($event)" />
         </ng-template>
       </bmb-action-menu>

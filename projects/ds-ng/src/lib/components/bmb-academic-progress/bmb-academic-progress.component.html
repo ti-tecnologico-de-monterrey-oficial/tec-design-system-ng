@@ -9,7 +9,7 @@
     @for (metric of metrics(); track $index) {
       <bmb-focus-element
         bmbLayoutItem
-        [title]="metric.name"
+        [componentTitle]="metric.name"
         [number]="metric.value"
         [isNormal]="true"
         [isNonFocused]="true"

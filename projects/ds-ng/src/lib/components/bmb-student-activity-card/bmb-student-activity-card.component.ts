@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
+  effect,
   input,
   output,
   ViewEncapsulation,
@@ -10,6 +11,7 @@ import { DateTime } from 'luxon';
 import { IBmbEventType } from '../bmb-calendar/types';
 import { BmbBadgeComponent } from '../bmb-badge/bmb-badge.component';
 import { IBbmBgAppearance } from '../bmb-advertisement-card/types';
+import { logDeprecatedInput } from '../../utils/logDeprecatedInput';
 
 @Component({
   selector: 'bmb-student-activity-card',
@@ -23,7 +25,6 @@ import { IBbmBgAppearance } from '../bmb-advertisement-card/types';
 export class BmbStudentActivityCardComponent {
   startDate = input.required<string>();
   endDate = input.required<string>();
-  title = input<string>();
   location = input<string>();
   responsible = input<string>();
   type = input<IBmbEventType>('academic');
@@ -31,6 +32,20 @@ export class BmbStudentActivityCardComponent {
   image = input<string>();
   dateFormat = input<string>('yyyy-MM-dd HH:mm:ss');
   badgeText = input<string>('');
+  componentTitle = input<string>();
+
+  title = input<string>(); // deprecated
+
+  constructor() {
+    effect(() => {
+      const deprecatedTitle = this.title();
+      const newTitle = this.componentTitle();
+      logDeprecatedInput(
+        { name: 'title', hasValue: !!deprecatedTitle },
+        { name: 'componentTitle', hasValue: !!newTitle },
+      );
+    });
+  }
 
   parsedStartDate: DateTime = DateTime.now();
   parsedEndDate: DateTime = DateTime.now();

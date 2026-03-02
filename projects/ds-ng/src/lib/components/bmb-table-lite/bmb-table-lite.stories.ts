@@ -843,3 +843,56 @@ If the data is loaded asynchronously, make sure to update this property after da
 type Story = StoryObj<BmbTableLiteComponent>;
 
 export const Default = {};
+
+export const WithoutFirstColumnSticky: Story = {
+  args: {
+    columns: [
+      {
+        def: 'first_name',
+        label: 'Nombre',
+        dataKey: 'first_name',
+        icon: 'face',
+        labelEn: 'Name',
+        type: 'string',
+        sticky: false,
+      },
+      {
+        def: 'last_name',
+        label: 'Apellido',
+        dataKey: 'last_name',
+        icon: 'face',
+        labelEn: 'Last Name',
+        type: 'string',
+      },
+      {
+        def: 'email',
+        label: 'Correo Electrónico',
+        dataKey: 'email',
+        icon: 'email',
+        labelEn: 'Email',
+        type: 'string',
+      },
+      {
+        def: 'birthday',
+        label: 'Cumpleaños',
+        dataKey: 'birthday',
+        labelEn: 'Birthday',
+        type: 'date',
+        dateFormat: 'dd/MM/yyyy',
+      },
+      {
+        def: 'country',
+        label: 'País',
+        dataKey: 'country',
+        labelEn: 'Country',
+      },
+      {
+        def: 'balance',
+        label: 'Saldo',
+        dataKey: 'balance',
+        labelEn: 'Balance',
+        type: 'number',
+      },
+    ],
+  },
+};

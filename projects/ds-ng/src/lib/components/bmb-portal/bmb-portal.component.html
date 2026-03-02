@@ -57,7 +57,7 @@
 
 @for (item of modalSignal(); track $index) {
   <bmb-native-modal
-    [title]="item.title || ''"
+    [componentTitle]="item.title || ''"
     [content]="item.content || ''"
     [modalId]="item.modalId || ''"
     [subtitle]="item.subtitle || ''"
@@ -98,7 +98,7 @@
       @if (notification.component === 'toast') {
         <bmb-toast
           [class.is-closing]="notification.closing"
-          [title]="notification.title"
+          [componentTitle]="notification.title"
           [description]="notification.content"
           [appearance]="notification.appearance || 'neutral'"
           [isClosable]="true"
@@ -108,7 +108,7 @@
       } @else if (notification.component === 'notice-card') {
         <bmb-notice-card
           [src]="notification.media"
-          [title]="notification.title"
+          [componentTitle]="notification.title"
           [description]="notification.content"
           [buttonText]="notification.buttonText"
           [link]="notification.link"

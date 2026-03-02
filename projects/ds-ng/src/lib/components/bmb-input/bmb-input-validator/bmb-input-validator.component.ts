@@ -2,6 +2,7 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
+  forwardRef,
   input,
   model,
   OnInit,
@@ -10,7 +11,6 @@ import {
 import {
   IBmbInputAppearance,
   IBmbInputError,
-  IBmbInputTooltipPosition,
   IBmbInputType,
 } from '../bmb-input.component';
 import {
@@ -36,7 +36,11 @@ export type IBmbInputValType =
 @Component({
   selector: 'bmb-input-validator',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, BmbTooltipComponent],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    forwardRef(() => BmbTooltipComponent), // avoid circular dependency on Storybook
+  ],
   templateUrl: './bmb-input-validator.component.html',
   styleUrl: './bmb-input-validator.component.scss',
   encapsulation: ViewEncapsulation.None,
@@ -61,10 +65,6 @@ export class BmbInputValidatorComponent implements OnInit {
   jsonFormat = input<boolean>(false);
   tooltip = input<string>('');
   rows = input<number>(3);
-  tooltipPosition = input<IBmbInputTooltipPosition>({
-    align: 'above',
-    justify: 'before',
-  });
   showMaxTextLength = input<boolean | null>(true);
   helperMessage = input<string>('');
   errorMessage = input<string | IBmbInputError>('');

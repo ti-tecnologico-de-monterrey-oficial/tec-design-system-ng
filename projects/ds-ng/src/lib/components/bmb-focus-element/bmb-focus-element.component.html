@@ -25,7 +25,7 @@
       </span>
     }
   </section>
-  @if (title()) {
-    <h5 class="bmb_focus-element-title">{{ title() }}</h5>
+  @if (componentTitle() || title()) {
+    <h5 class="bmb_focus-element-title">{{ componentTitle() || title() }}</h5>
   }
 </section>
