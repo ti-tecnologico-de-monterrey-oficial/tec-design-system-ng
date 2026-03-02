@@ -70,7 +70,7 @@ import * as dividerStory from '../components/bmb-divider/bmb-divider.stories';
           leftIcon="chevron_left"
           icon="school"
           bgIconAppearance="mitec-green"
-          title="Beca socioeconómica"
+          componentTitle="Beca socioeconómica"
           contentPadding="xl"
           [isExpanded]="true"
           (onBack)="handleBack()"
@@ -112,7 +112,7 @@ import * as dividerStory from '../components/bmb-divider/bmb-divider.stories';
                   bmbLayoutItem
                   [colSm]="4"
                   [colLg]="4"
-                  title="Tema de App"
+                  componentTitle="Tema de App"
                   iconLeft="home"
                   iconRight="chevron_right"
                   (onButton)="onButton($event)"
@@ -135,7 +135,7 @@ import * as dividerStory from '../components/bmb-divider/bmb-divider.stories';
                   bmbLayoutItem
                   [colSm]="4"
                   [colLg]="4"
-                  title="Tema de App"
+                  componentTitle="Tema de App"
                   iconLeft="home"
                   iconRight="chevron_right"
                   (onButton)="onButton($event)"
@@ -158,7 +158,7 @@ import * as dividerStory from '../components/bmb-divider/bmb-divider.stories';
                   bmbLayoutItem
                   [colSm]="4"
                   [colLg]="4"
-                  title="Tema de App"
+                  componentTitle="Tema de App"
                   iconLeft="home"
                   iconRight="chevron_right"
                   (onButton)="onButton($event)"
@@ -181,7 +181,7 @@ import * as dividerStory from '../components/bmb-divider/bmb-divider.stories';
                   bmbLayoutItem
                   [colSm]="4"
                   [colLg]="4"
-                  title="Tema de App"
+                  componentTitle="Tema de App"
                   iconLeft="home"
                   iconRight="chevron_right"
                   (onButton)="onButton($event)"
@@ -204,7 +204,7 @@ import * as dividerStory from '../components/bmb-divider/bmb-divider.stories';
                   bmbLayoutItem
                   [colSm]="4"
                   [colLg]="4"
-                  title="Tema de App"
+                  componentTitle="Tema de App"
                   iconLeft="home"
                   iconRight="chevron_right"
                   (onButton)="onButton($event)"
@@ -227,7 +227,7 @@ import * as dividerStory from '../components/bmb-divider/bmb-divider.stories';
                   bmbLayoutItem
                   [colSm]="4"
                   [colLg]="4"
-                  title="Tema de App"
+                  componentTitle="Tema de App"
                   iconLeft="home"
                   iconRight="chevron_right"
                   (onButton)="onButton($event)"
@@ -591,7 +591,7 @@ import * as dividerStory from '../components/bmb-divider/bmb-divider.stories';
             }
           ]
         ]"
-        [title]="'Navegacion para mobiles'"
+        [componentTitle]="'Navegacion para mobiles'"
       ></bmb-sidebar>
     </section>
     <ng-template #modalTemplate>
@@ -834,7 +834,7 @@ inputChange(event: any) {
           leftIcon="chevron_left"
           icon="school"
           bgIconAppearance="mitec-green"
-          title="Beca socioeconómica"
+          componentTitle="Beca socioeconómica"
           contentPadding="xl"
           [isExpanded]="true"
           (onBack)="handleBack()"
@@ -876,7 +876,7 @@ inputChange(event: any) {
                   bmbLayoutItem
                   [colSm]="4"
                   [colLg]="4"
-                  title="Tema de App"
+                  componentTitle="Tema de App"
                   iconLeft="home"
                   iconRight="chevron_right"
                   (onButton)="onButton($event)"
@@ -899,7 +899,7 @@ inputChange(event: any) {
                   bmbLayoutItem
                   [colSm]="4"
                   [colLg]="4"
-                  title="Tema de App"
+                  componentTitle="Tema de App"
                   iconLeft="home"
                   iconRight="chevron_right"
                   (onButton)="onButton($event)"
@@ -922,7 +922,7 @@ inputChange(event: any) {
                   bmbLayoutItem
                   [colSm]="4"
                   [colLg]="4"
-                  title="Tema de App"
+                  componentTitle="Tema de App"
                   iconLeft="home"
                   iconRight="chevron_right"
                   (onButton)="onButton($event)"
@@ -945,7 +945,7 @@ inputChange(event: any) {
                   bmbLayoutItem
                   [colSm]="4"
                   [colLg]="4"
-                  title="Tema de App"
+                  componentTitle="Tema de App"
                   iconLeft="home"
                   iconRight="chevron_right"
                   (onButton)="onButton($event)"
@@ -968,7 +968,7 @@ inputChange(event: any) {
                   bmbLayoutItem
                   [colSm]="4"
                   [colLg]="4"
-                  title="Tema de App"
+                  componentTitle="Tema de App"
                   iconLeft="home"
                   iconRight="chevron_right"
                   (onButton)="onButton($event)"
@@ -991,7 +991,7 @@ inputChange(event: any) {
                   bmbLayoutItem
                   [colSm]="4"
                   [colLg]="4"
-                  title="Tema de App"
+                  componentTitle="Tema de App"
                   iconLeft="home"
                   iconRight="chevron_right"
                   (onButton)="onButton($event)"
@@ -1355,7 +1355,7 @@ inputChange(event: any) {
             }
           ]
         ]"
-        [title]="'Navegacion para mobiles'"
+        [componentTitle]="'Navegacion para mobiles'"
       ></bmb-sidebar>
     </section>
     <ng-template #modalTemplate>

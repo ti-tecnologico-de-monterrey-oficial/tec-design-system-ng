@@ -38,6 +38,9 @@ export default {
           'updateErrorState',
           'customAmount',
           'modalTemplate',
+          'customHandleClick',
+          'handleSubmit',
+          'modalID',
         ],
       },
       description: {
@@ -49,7 +52,7 @@ ${getBasicExampleBlock('BmbAccountStatementComponent')}
     },
   },
   argTypes: {
-    title: getPropertyParamDesc(
+    componentTitle: getPropertyParamDesc(
       'account statement',
       'text',
       'Estado de cuenta',
@@ -203,9 +206,19 @@ ${getBasicExampleBlock('BmbAccountStatementComponent')}
       getOnEvent('pay', 'payEvent', 'number'),
       ' this is a primary button',
     ),
+    title: {
+      control: null,
+      description:
+        'Please use `componentTitle` instead of `title` to set the component title.',
+      table: {
+        category: 'Deprecated',
+        type: { summary: 'string' },
+        defaultValue: '',
+      },
+    },
   },
   args: {
-    title: 'Estado de cuenta',
+    componentTitle: 'Estado de cuenta',
     labelPrimary: 'Cuota Mensual',
     labelSecondary: 'Pendiente',
     totalCount: 10000,

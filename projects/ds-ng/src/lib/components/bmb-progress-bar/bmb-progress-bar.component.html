@@ -10,7 +10,7 @@
         [ngClass]="
           appearance() !== 'info' ? 'bmb_progress-bar-' + appearance() : ''
         "
-        [label]="title()"
+        [label]="componentTitle() || title()"
         [value]="totalCount().toString()"
         [progress]="counter().toString()"
         [textFormat]="textFormat()"

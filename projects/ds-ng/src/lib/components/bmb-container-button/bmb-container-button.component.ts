@@ -9,6 +9,7 @@ import {
   computed,
   inject,
   DestroyRef,
+  effect,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
@@ -22,6 +23,7 @@ import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.compo
 import { BmbBookmarkComponent } from '../bmb-bookmark/bmb-bookmark.component';
 import { BmbUserImageComponent } from '../bmb-user-image/bmb-user-image.component';
 import { BmbDropdownMenuComponent } from '../bmb-dropdown-menu/bmb-dropdown-menu.component';
+import { logDeprecatedInput } from '../../utils/logDeprecatedInput';
 
 const MOBILE_TABLET_QUERY = '(max-width: 992px)';
 @Component({
@@ -46,7 +48,7 @@ const MOBILE_TABLET_QUERY = '(max-width: 992px)';
   encapsulation: ViewEncapsulation.None,
 })
 export class BmbContainerButtonComponent {
-  title = input<string>('');
+  componentTitle = input<string>();
   score = input<string>('');
   square = input<boolean>();
   small = input<boolean>();
@@ -64,6 +66,8 @@ export class BmbContainerButtonComponent {
   enableBookmark = input<boolean>(false);
   isBookmarkActive = model<boolean>(false);
   dropdownMenuItems = input<IDropdownItem[]>([]);
+
+  title = input<string>(); // deprecated
 
   onButton = output<MouseEvent>();
   secondaryAction = output<MouseEvent>();
@@ -84,6 +88,15 @@ export class BmbContainerButtonComponent {
       { signal: this.abort.signal },
     );
     this.destroyRef.onDestroy(() => this.abort.abort());
+
+    effect(() => {
+      const deprecatedTitle = this.title();
+      const newTitle = this.componentTitle();
+      logDeprecatedInput(
+        { name: 'title', hasValue: !!deprecatedTitle },
+        { name: 'componentTitle', hasValue: !!newTitle },
+      );
+    });
   }
 
   getClassList(): string[] {

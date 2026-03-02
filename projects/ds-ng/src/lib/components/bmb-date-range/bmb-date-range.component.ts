@@ -9,10 +9,7 @@ import {
 import { FormControl, ValidatorFn } from '@angular/forms';
 import { BmbDatepickerComponent } from '../bmb-datepicker/bmb-datepicker.component';
 import { CommonModule } from '@angular/common';
-import {
-  IBmbInputAppearance,
-  IBmbInputError,
-} from '../bmb-input/bmb-input.component';
+import { IBmbInputError } from '../bmb-input/bmb-input.component';
 import {
   assignNewFormControl,
   newFormControlByType,

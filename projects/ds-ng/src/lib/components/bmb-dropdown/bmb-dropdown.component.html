@@ -11,7 +11,6 @@
   [control]="control()"
   [showError]="shouldShowError"
   [tooltip]="tooltip()"
-  [tooltipPosition]="tooltipPosition()"
   [customValidation]="customValidation()"
 >
   <div #contentDiv>
@@ -25,19 +24,39 @@
       [isReadOnly]="true"
       [placeholder]="placeholder()"
       [isError]="shouldShowError"
-      (click)="openList()"
+      [isClearable]="
+        isMultiSelect() && isSelectedLengthAtLeastOne && !selectedOptionCounter
+      "
       (onKeyDown)="onKeyDown($event)"
       (onBlur)="handleValidity()"
       (onFocus)="handleFocus($event)"
+      (onChange)="handleChangeValue($event)"
     >
       <ng-template #customContent>
         <label [htmlFor]="inputId()">
-          <bmb-icon
-            class="bmb_field-actions"
-            icon="keyboard_arrow_down"
-            (click)="openList()"
-            [size]="24"
-          />
+          <section
+            bmbLayout
+            margin="none"
+            [gapSize]="isMultiSelect() ? 's' : 'none'"
+          >
+            @if (isMultiSelect() && !!selectedOptionCounter) {
+              <bmb-tag
+                [text]="tagValue"
+                [dismissible]="true"
+                [enableClick]="true"
+                [isDisabled]="false"
+                (closedTag)="handleClearSelectedOptions()"
+                (clickedTag)="handleClearSelectedOptions()"
+                bmbLayoutItem
+              />
+            }
+            <bmb-action-icon
+              [icon]="isOpenList ? 'keyboard_arrow_up' : 'keyboard_arrow_down'"
+              [iconSize]="24"
+              (buttonClick)="openList()"
+              bmbLayoutItem
+            />
+          </section>
         </label>
       </ng-template>
     </bmb-input-content>

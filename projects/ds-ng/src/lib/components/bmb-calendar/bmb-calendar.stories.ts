@@ -41,16 +41,17 @@ class MockCalendarService {
 
     const events: IBmbCalendarEvent[] = [
       {
-        title: `Event custom 4`,
+        title: `Aplicación de procesos de conservación de la materia`,
         start: today.toISO() as string,
-        end: today.plus({ minutes: 120 }).toISO() as string,
-        detail: `Event custom detail`,
+        end: today.plus({ minutes: 60 }).toISO() as string,
+        detail: `Aulas IV - 407`,
         modalTitle: `Event custom`,
         subtitle: `Event custom subtitle`,
         // status: 'disabled',
         type: 'events',
         place: `Event custom place`,
         calendar: 'events',
+        bulletColor: 'success-thin',
       },
       {
         title: `Event custom 3`,
@@ -96,8 +97,14 @@ class MockCalendarService {
           start: today.plus({ days: i - 91, hours: e - 3 }).toISO() as string,
           end: today.plus({ days: i - 91, hours: e - 2 }).toISO() as string,
           detail: `Event ${i} detail`,
-          modalTitle: `Event ${i}`,
-          subtitle: `Event ${i} subtitle`,
+          daysRepetition: e % 2 === 0 ? 'L,X,V' : 'M,J',
+          campus:
+            'Campus ' +
+            (i % 3 === 0
+              ? 'Monterrey'
+              : i % 3 === 1
+                ? 'Santa Fe'
+                : 'Guadalajara'),
           // status: i % 2 === 0 ? 'active' : 'disabled',
           type:
             i % 4 === 0

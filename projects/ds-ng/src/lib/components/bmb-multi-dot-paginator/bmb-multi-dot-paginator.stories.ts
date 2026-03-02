@@ -63,11 +63,21 @@ ${getBasicExampleBlock('BmbMultiDotPaginatorItemComponent, BmbMultiDotPaginatorI
     },
   },
   argTypes: {
-    title: getPropertyParamDesc('paginator'),
+    componentTitle: getPropertyParamDesc('paginator'),
     subtitle: getPropertyParamDesc('paginator', 'text', '', '', '', 'subtitle'),
+    title: {
+      control: null,
+      description:
+        'Please use `componentTitle` instead of `title` to set the component title.',
+      table: {
+        category: 'Deprecated',
+        type: { summary: 'string' },
+        defaultValue: '',
+      },
+    },
   },
   args: {
-    title: 'Example Title',
+    componentTitle: 'Example Title',
     subtitle: 'Example Subtitle',
   },
 } as Meta<typeof BmbMultiDotPaginatorComponent>;
@@ -79,18 +89,18 @@ export const Default: Story = {
   render: (args) => ({
     props: args,
     template: `
-<bmb-multi-dot-paginator [title]="title" [subtitle]="subtitle">
+<bmb-multi-dot-paginator [componentTitle]="componentTitle" [subtitle]="subtitle">
   <bmb-multi-dot-paginator-item>Custom component</bmb-multi-dot-paginator-item>
   <bmb-multi-dot-paginator-item>
-    <bmb-home-card title="Some title">Custom content</bmb-home-card>
+    <bmb-home-card componentTitle="Some title">Custom content</bmb-home-card>
   </bmb-multi-dot-paginator-item>
   <bmb-multi-dot-paginator-item>Custom component</bmb-multi-dot-paginator-item>
   <bmb-multi-dot-paginator-item>
-    <bmb-home-card title="Some title">Custom content</bmb-home-card>
+    <bmb-home-card componentTitle="Some title">Custom content</bmb-home-card>
   </bmb-multi-dot-paginator-item>
   <bmb-multi-dot-paginator-item>Custom component</bmb-multi-dot-paginator-item>
   <bmb-multi-dot-paginator-item>
-    <bmb-home-card title="Some title">Custom content</bmb-home-card>
+    <bmb-home-card componentTitle="Some title">Custom content</bmb-home-card>
   </bmb-multi-dot-paginator-item>
   <!-- Add more elements -->
 </bmb-multi-dot-paginator>

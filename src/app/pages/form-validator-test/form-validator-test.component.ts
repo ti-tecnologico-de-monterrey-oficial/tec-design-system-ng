@@ -15,6 +15,7 @@ import {
   BmbSearchInputComponent,
   BmbSearchCardComponent,
   IBmbSearchCardItemResult,
+  BmbInputTagsComponent,
 } from '../../../../projects/ds-ng/src/public-api';
 import persons from './persons.json';
 import services from './services.json';
@@ -32,6 +33,7 @@ import services from './services.json';
     BmbTextEditorComponent,
     BmbSearchInputComponent,
     BmbSearchCardComponent,
+    BmbInputTagsComponent,
   ],
   templateUrl: './form-validator-test.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,

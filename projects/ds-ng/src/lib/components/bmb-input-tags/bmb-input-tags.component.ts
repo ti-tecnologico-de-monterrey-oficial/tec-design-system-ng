@@ -74,6 +74,7 @@ export class BmbInputTagsComponent implements OnInit, OnChanges {
   showError = input<boolean>(false);
   inputId = input<string>(this.name());
   customValidation = input<ValidatorFn>();
+  enableCustomTags = input<boolean>(true);
 
   tagOptions = model<string[] | IBmbDropdownItem[]>([]);
   control = model<FormControl>(newFormControlByType());
@@ -182,15 +183,20 @@ export class BmbInputTagsComponent implements OnInit, OnChanges {
   selectOptionWithKey(value: string): void {
     if (!!value) {
       const selectedLength: number = this.filteredOptions.length;
+      const listOfValues: string[] = value
+        .split(',')
+        .map((item) => item.trim());
 
-      if (!!selectedLength) {
-        this.setSelectedValue(this.filteredOptions[0]);
-      } else {
-        this.addOption(value);
-        this.setSelectedValue(
-          this.filteredOptions[this.filteredOptions.length - 1],
-        );
-      }
+      listOfValues.forEach((val) => {
+        if (!!selectedLength) {
+          this.setSelectedValue(this.filteredOptions[0]);
+        } else if (this.enableCustomTags() && !selectedLength) {
+          this.addOption(val);
+          this.setSelectedValue(
+            this.filteredOptions[this.filteredOptions.length - 1],
+          );
+        }
+      }); // juan, pedro sanchez, maria gomez, luis fernandez
     }
   }
 
@@ -219,7 +225,7 @@ export class BmbInputTagsComponent implements OnInit, OnChanges {
   }
 
   handleKeyDown(event: KeyboardEvent) {
-    const keyboardValuesToOpenDialog = [' ', 'ArrowDown', 'Down'];
+    const keyboardValuesToOpenDialog = ['ArrowDown', 'Down'];
     const keyboardValuesToAddOption = [',', 'Enter'];
 
     if (keyboardValuesToOpenDialog.includes(event.key)) {

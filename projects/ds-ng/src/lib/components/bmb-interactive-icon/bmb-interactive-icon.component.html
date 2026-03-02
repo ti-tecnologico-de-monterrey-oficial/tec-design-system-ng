@@ -9,13 +9,15 @@
         [icon]="icon()"
         [size]="32"
         [dotNotification]="dotNotification()"
-        [alt]="title() || 'icon'"
+        [alt]="componentTitle() || title() || 'icon'"
       />
     </span>
-    @if (title() || description()) {
+    @if (componentTitle() || title() || description()) {
       <span class="bmb_interactive_icon-text">
-        @if (title()) {
-          <h4 class="bmb_interactive_icon-title">{{ title() }}</h4>
+        @if (componentTitle() || title()) {
+          <h4 class="bmb_interactive_icon-title">
+            {{ componentTitle() || title() }}
+          </h4>
         }
         @if (description() && horizontal()) {
           <span class="bmb_interactive_icon-description">

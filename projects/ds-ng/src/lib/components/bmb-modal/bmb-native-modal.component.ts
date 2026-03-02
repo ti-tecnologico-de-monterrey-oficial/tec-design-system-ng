@@ -45,7 +45,7 @@ import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
   ],
 })
 export class BmbNativeModalComponent {
-  title = input<string>('');
+  componentTitle = input<string>('');
   subtitle = input<string>('');
   content = input<TemplateRef<any> | null | Type<any> | string>('');
   actions = input<IBmbActionButton[]>([]);

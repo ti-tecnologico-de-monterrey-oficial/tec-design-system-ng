@@ -2,7 +2,9 @@
   <section class="bmb_chat-card">
     <bmb-home-card
       [leftIcon]="mode() === 'chat' ? undefined : leftIcon()"
-      [title]="title() || ('home_card_chat.title' | translate)"
+      [componentTitle]="
+        componentTitle() || title() || ('home_card_chat.title' | translate)
+      "
       [subtitle]="subtitle() || ('home_card_chat.subtitle' | translate)"
       [isMobile]="isMobile()"
       [actionHeaders]="chatActionHeaders()"
@@ -42,17 +44,18 @@
   </div>
 </ng-template>
 
-@if (mode() === 'compact') {
+@if (currentBot() && mode() === 'compact') {
   <bmb-action-icon
     class="bmb_chat-card-bot"
-    [icon]="currentBot()?.icon!"
-    [alt]="currentBot()?.name!"
+    [icon]="currentBot().icon"
+    [alt]="currentBot().name"
     [iconSize]="40"
     [isSVGTemplate]="true"
     (buttonClick)="openChatFromCompact()"
   >
     <ng-template #customActionIcon>
-      <bmb-bot-icon [iconName]="currentBot()?.icon!" />
+      <!-- @if (currentBot() && currentBot().icon) {} -->
+      <bmb-bot-icon [iconName]="currentBot().icon" />
     </ng-template>
   </bmb-action-icon>
 }
@@ -61,7 +64,7 @@
   <bmb-action-menu
     class="bmb_chat-card-chat-actions"
     [showHeader]="false"
-    title="Selecciona una opción"
+    componentTitle="Selecciona una opción"
   >
     <ng-template>
       <bmb-item

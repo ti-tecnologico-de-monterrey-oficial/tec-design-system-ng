@@ -45,10 +45,10 @@
           <h2 class="bmb_progress-circle-title-container">
             @if (isTitleString()) {
               <span class="bmb_progress-circle-title">
-                {{ title() }}
+                {{ validTitle() }}
               </span>
             } @else {
-              @for (segment of title(); track $index) {
+              @for (segment of validTitle(); track $index) {
                 <span class="bmb_progress-circle-title">
                   {{ segment }}
                 </span>

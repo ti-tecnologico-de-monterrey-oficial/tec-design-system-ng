@@ -47,7 +47,6 @@ export class BmbCalendarTemplateWeekComponent {
   startBusinessHour = input<number>(8);
   selectedWeek = input<number>(0);
 
-  onSelectEvent = output<IBmbCalendarEventClick>();
   eventsOnWeek = computed<IBmbCalendarEvent[][]>(() => {
     return this.weekDays().map((day) => {
       const eventsOnDay =
@@ -70,9 +69,5 @@ export class BmbCalendarTemplateWeekComponent {
 
   renderEvents(events: IBmbCalendarRenderEvents): any[] {
     return eventsInDate(events);
-  }
-
-  handleEventSelection(newEvent: IBmbCalendarEventClick) {
-    this.onSelectEvent.emit(newEvent);
   }
 }

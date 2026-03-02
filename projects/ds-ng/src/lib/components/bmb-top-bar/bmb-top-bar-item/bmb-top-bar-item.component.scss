@@ -11,7 +11,7 @@
 
   @include mixins.check-for-mobile() {
     padding: rem.rem_calc(8) rem.rem_calc(16);
-    width: 100vw;
+    width: 100dvw;
     box-sizing: border-box;
     color: rgb(var(--white-primary));
 

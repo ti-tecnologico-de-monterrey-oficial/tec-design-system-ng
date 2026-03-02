@@ -77,7 +77,7 @@
   }
 }
 
-// Focus for button and input
+// Focus for button
 @mixin focus-element($inset: outset) {
   outline: 0;
 }
@@ -151,7 +151,7 @@
     &:active:not(:disabled),
     &.bmb_btn-toggle-active {
       border-color: var(--general-contrasts-input-background);
-      box-shadow: 0px 0px rem.rem_calc(25) var(--general-contrasts-50);
+      box-shadow: 0 0 rem.rem_calc(25) var(--general-contrasts-50);
       text-shadow: none;
       padding: rem.rem_calc(10 14);
       color: var(--general-contrasts-5);
@@ -222,7 +222,9 @@
 }
 
 @mixin error-input() {
+  box-sizing: inherit;
   border-color: rgb(var(--red-light));
+  outline-color: rgb(var(--red-light));
 }
 
 @mixin input-checked($height, $width) {
@@ -231,6 +233,38 @@
   margin: rem.rem_calc(2) auto 0;
   height: rem.rem_calc($height);
   width: rem.rem_calc($width);
+}
+
+@mixin checkbox-mark($mark_type: 'normal', $show_shadow: false) {
+  @if $mark_type == 'normal' {
+    @include input-mark(var(--general-contrasts-75), var(--bmb-radius-xs));
+  } @else {
+    background-color: var(--buttons-active-switch);
+    border-color: var(--buttons-active-switch);
+
+    @if $show_shadow == true {
+      @include input-shadow(var(--buttons-active-switch));
+    }
+  }
+
+  @if $mark_type == 'selected' {
+    &::after {
+      @include input-checked(10, 4);
+      border: solid rgb(var(--white-primary));
+      border-width: rem.rem_calc(0 2 2 0);
+      transform: rotate(45deg);
+      top: rem.rem_calc(-2);
+    }
+  } @else if $mark_type == 'indeterminate' {
+    &::after {
+      @include input-checked(2, 12);
+      position: absolute;
+      background-color: rgb(var(--white-primary));
+      margin: 0;
+      top: rem.rem_calc(6);
+      left: rem.rem_calc(1);
+    }
+  }
 }
 
 @mixin input-shadow($color_name) {
@@ -271,6 +305,7 @@
 @mixin normal-input() {
   box-sizing: border-box;
   border: rem.rem_calc(1) solid var(--general-contrasts-50);
+  outline: rem.rem_calc(1) solid transparent;
   border-radius: var(--bmb-radius-2);
   width: 100%;
   background: var(--general-contrasts-input-background);
@@ -278,16 +313,27 @@
   transition: all 0.3s ease;
 }
 
-@mixin normal-input-focus() {
-  &:focus,
-  &:focus-visible,
-  &:hover,
-  &-focus {
-    box-sizing: inherit;
-    border-color: var(--general-contrasts-input-outline);
-    caret-color: var(--general-contrasts-input-outline);
-    outline: rem.rem_calc(1) solid var(--general-contrasts-input-outline);
+@mixin input-features() {
+  flex: 1;
+  border-color: transparent;
+  background-color: transparent;
+  color: currentColor;
+  width: 100%;
+
+  &::placeholder {
+    @include input-placeholder();
   }
+
+  &:focus,
+  &:focus-visible {
+    outline-style: none;
+  }
+}
+
+@mixin input-focused() {
+  box-sizing: inherit;
+  border-color: var(--general-contrasts-input-outline);
+  outline-color: var(--general-contrasts-input-outline);
 }
 
 @mixin truncated-string($max-block-size, $line-clamp) {

@@ -42,7 +42,7 @@ export interface IBmbListItemsElement {
 
 ```html
 <bmb-list-items
-  [title]="'Historial de actividades'"
+  [componentTitle]="'Historial de actividades'"
   [addButtonIcon]="'add_circle'"
   [showAddButton]="true"
   [items]="[

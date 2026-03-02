@@ -5,7 +5,7 @@
       @for (item of menu().slice(0, 4); track $index) {
         <bmb-interactive-icon
           [appearance]="item.appearance"
-          [title]="item.title"
+          [componentTitle]="item.title"
           [icon]="item.icon"
           [target]="item?.target!"
           [link]="item?.link!"
@@ -18,7 +18,7 @@
   @if (isFull) {
     <section class="bmb_drawer-full">
       <bmb-inner-header
-        [title]="title()"
+        [componentTitle]="componentTitle() || title()"
         [showReturn]="true"
         (onHandleBack)="toggleFullDrawer($event)"
         (searchData)="handleValueChange($event)"
@@ -29,7 +29,7 @@
         @for (app of appsActive; track $index) {
           <bmb-interactive-icon
             [appearance]="app.appearance"
-            [title]="app.title"
+            [componentTitle]="app.title"
             [icon]="app.icon"
             [target]="app?.target!"
             [link]="app?.link!"

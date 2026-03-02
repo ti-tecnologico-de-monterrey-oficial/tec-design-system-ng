@@ -1,7 +1,7 @@
 <section class="bmb_home_section">
   <bmb-container appearance="primary-home">
     <section class="bmb_home_section-header">
-      <h3 class="bmb_home_section-title">{{ title() }}</h3>
+      <h3 class="bmb_home_section-title">{{ componentTitle() || title() }}</h3>
       <a class="bmb_home_section-link" [href]="link()" [target]="target()">
         <bmb-icon
           class="bmb_home_section-icon"

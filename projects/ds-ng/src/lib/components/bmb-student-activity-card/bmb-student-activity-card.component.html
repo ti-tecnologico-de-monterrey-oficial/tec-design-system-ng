@@ -4,7 +4,8 @@
       <img
         class="bmb_student-activity-card-image-pic"
         [src]="image()"
-        [alt]="title()"
+        [alt]="componentTitle() || title()"
+        [title]="componentTitle() || title()"
       />
     </figure>
   }
@@ -16,7 +17,7 @@
     />
   </div>
   <h4 class="bmb_student-activity-card-title">
-    {{ title() }}
+    {{ componentTitle() || title() }}
   </h4>
   <section class="bmb_student-activity-card-content">
     <strong class="bmb_student-activity-card-content-time">

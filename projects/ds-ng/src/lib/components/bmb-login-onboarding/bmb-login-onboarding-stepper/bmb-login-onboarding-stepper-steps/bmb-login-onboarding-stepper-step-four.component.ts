@@ -16,7 +16,7 @@ import { IBmbNativeModal } from '../../../bmb-modal/bmb-modal.interface';
   imports: [BmbLoginOnboardingStepperStepComponent],
   template: `
     <bmb-login-onboarding-stepper-step
-      title="Paso 4"
+      componentTitle="Paso 4"
       subtitle="Activa tu entrada a Campus"
       label="Con esta funcionalidad tu ID Digital te permitirá ingresar al campus automáticamente."
       sublabel="(Siempre podrás utilizar tu ID Digital manualmente y podrás cambiar esta configuración)"

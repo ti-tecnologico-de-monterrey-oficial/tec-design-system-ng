@@ -28,7 +28,7 @@
     { title: 'Inicio de semestre', start: '20/08/2025', end: '20/08/2025', type: 'active' },
     { title: 'Examen final', start: '10/12/2025', end: '10/12/2025', type: 'pending' }
   ]"
-  [clamp]="{ min: 200, max: '80vh', size: '100%' }"
+  [clamp]="{ min: 200, max: '80dvh', size: '100%' }"
 ></bmb-timestream>
 ```
 

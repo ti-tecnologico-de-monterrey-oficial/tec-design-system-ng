@@ -1,7 +1,7 @@
 <div class="bmb_multi-dot-paginator">
   <header class="bmb_multi-dot-paginator-header">
     <h2 class="bmb_multi-dot-paginator-title">
-      {{ title() }}
+      {{ componentTitle() || title() }}
       @if (subtitle()) {
         <h4 class="bmb_multi-dot-paginator-subtitle">{{ subtitle() }}</h4>
       }

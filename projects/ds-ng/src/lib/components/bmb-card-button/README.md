@@ -78,7 +78,7 @@ The component's template is structured as follows:
 ```html
 <bmb-card-button
   [isFullInteractive]="true"
-  [title]="'Card Title'"
+  [componentTitle]="'Card Title'"
   [body]="'This is the body text of the card.'"
   [badge]="{ text: 'New', appearance: 'primary' }"
   [icon]="'home'"
@@ -108,7 +108,7 @@ The component's template is structured as follows:
 ```html
 <bmb-card-button
   [isFullInteractive]="true"
-  [title]="'Interactive Card'"
+  [componentTitle]="'Interactive Card'"
   [body]="'This card has interactive features.'"
   [badge]="{ text: 'Hot', appearance: 'warning' }"
   [icon]="'star'"

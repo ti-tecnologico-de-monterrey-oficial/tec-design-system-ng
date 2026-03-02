@@ -96,6 +96,7 @@
     top: 50%;
     transform: translateY(-50%);
     z-index: 3;
+    color: rgb(var(--white-primary));
 
     &--left {
       left: rem.rem_calc(8);

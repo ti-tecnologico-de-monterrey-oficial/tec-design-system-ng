@@ -71,7 +71,7 @@ ${getBasicExampleBlock('BmbLoaderComponent')}
     },
   },
   argTypes: {
-    title: getPropertyParamDesc('loading'),
+    componentTitle: getPropertyParamDesc('loading'),
     subtitle: {
       control: {
         type: 'text',
@@ -158,9 +158,19 @@ ${getBasicExampleBlock('BmbLoaderComponent')}
         type: { summary: 'boolean' },
       },
     },
+    title: {
+      control: null,
+      description:
+        'Please use `componentTitle` instead of `title` to set the component title.',
+      table: {
+        category: 'Deprecated',
+        type: { summary: 'string' },
+        defaultValue: '',
+      },
+    },
   },
   args: {
-    title: 'Cargando...',
+    componentTitle: 'Cargando...',
     subtitle: '',
     overlay: false,
     isVisible: true,

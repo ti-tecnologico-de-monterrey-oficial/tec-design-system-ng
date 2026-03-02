@@ -16,7 +16,7 @@ import { IBmbLinkConfiguration } from '../../../../types';
   imports: [BmbLoginOnboardingStepperStepComponent, BmbLoginContentComponent],
   template: `
     <bmb-login-onboarding-stepper-step
-      title="Paso 1"
+      componentTitle="Paso 1"
       subtitle="Ingresa con tu cuenta institucional"
       cancelBackLabel="Cancelar"
       continueLabel="Siguiente"

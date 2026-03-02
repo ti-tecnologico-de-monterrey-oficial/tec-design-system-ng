@@ -94,7 +94,7 @@ import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
           leftIcon="chevron_left"
           icon="receipt_long"
           bgIconAppearance="green-primary"
-          title="Cuotas de colegiatura y políticas de pago"
+          componentTitle="Cuotas de colegiatura y políticas de pago"
           contentPadding="xl"
           [isExpanded]="true"
           (onBack)="handleBack()"
@@ -232,7 +232,7 @@ import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
           }
         ]
       ]"
-      [title]="'Navegacion para mobiles'"
+      [componentTitle]="'Navegacion para mobiles'"
     ></bmb-sidebar>
   `,
 })
@@ -547,7 +547,7 @@ ${getBasicExampleBlock(
           leftIcon="chevron_left"
           icon="receipt_long"
           bgIconAppearance="green-primary"
-          title="Cuotas de colegiatura y políticas de pago"
+          componentTitle="Cuotas de colegiatura y políticas de pago"
           contentPadding="xl"
           [isExpanded]="true"
           (onBack)="handleBack()"
@@ -685,7 +685,7 @@ ${getBasicExampleBlock(
           }
         ]
       ]"
-      [title]="'Navegacion para mobiles'"
+      [componentTitle]="'Navegacion para mobiles'"
     ></bmb-sidebar>
 `,
       },

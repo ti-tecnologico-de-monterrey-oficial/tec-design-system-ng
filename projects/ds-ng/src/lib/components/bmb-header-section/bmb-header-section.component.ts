@@ -4,6 +4,7 @@ import {
   ViewEncapsulation,
   input,
   output,
+  effect,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
@@ -18,6 +19,7 @@ import { IBmbActionHeader } from '../../types';
 import { BmbNavigationBarComponent } from '../bmb-navigation-bar/bmb-navigation-bar.component';
 import { getClassNameByConditional } from '../../utils/getClassName';
 import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
+import { logDeprecatedInput } from '../../utils/logDeprecatedInput';
 
 @Component({
   selector: 'bmb-header-section',
@@ -36,8 +38,7 @@ import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.compo
   encapsulation: ViewEncapsulation.None,
 })
 export class BmbHeaderSectionComponent {
-  title = input<string | undefined>('');
-  subtitle = input<string | undefined>('');
+  subtitle = input<string>();
   dataLocalNav = input<IBmbDataTopBar[]>([]);
   leftIcon = input<string>('');
   actionHeaders = input<IBmbActionHeader[]>([]);
@@ -45,6 +46,7 @@ export class BmbHeaderSectionComponent {
   iconSize = input<number>(16);
   bgIconAppearance = input<IBmbColor>();
   transparentBgC = input<boolean>();
+  componentTitle = input<string>();
 
   onClickLeft = output<any>();
 

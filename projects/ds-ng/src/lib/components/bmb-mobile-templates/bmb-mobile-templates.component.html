@@ -29,7 +29,7 @@
 
 <ng-template #singleHeader>
   <bmb-inner-header
-    [title]="this.title()"
+    [componentTitle]="componentTitle() || title()"
     [showClose]="true"
     [trailingIconSecondary]="this.headerIconRight()"
     (onHandleClose)="handleLeftClick($event)"
@@ -43,7 +43,7 @@
 
 <ng-template #headerWithFooter>
   <bmb-inner-header
-    [title]="this.title()"
+    [componentTitle]="componentTitle() || title()"
     [showClose]="true"
     [trailingIconSecondary]="this.headerIconRight()"
     (onHandleClose)="handleLeftClick($event)"
@@ -69,7 +69,7 @@
 
 <ng-template #cardHeaderWithFooter>
   <bmb-inner-header
-    [title]="this.title()"
+    [componentTitle]="componentTitle() || title()"
     [showClose]="true"
     [trailingIconSecondary]="this.headerIconRight()"
     (onHandleClose)="handleLeftClick($event)"
@@ -99,7 +99,7 @@
 
 <ng-template #headerWithButtonList>
   <bmb-inner-header
-    [title]="this.title()"
+    [componentTitle]="componentTitle() || title()"
     [showClose]="true"
     [trailingIconSecondary]="this.headerIconRight()"
     (onHandleClose)="handleLeftClick($event)"
@@ -108,7 +108,7 @@
   <main class="bmb_mobile-template-main">
     @for (button of buttonList(); track $index) {
       <bmb-container-button
-        [title]="button.title"
+        [componentTitle]="button.title"
         [target]="button.target || '_blank'"
         [link]="button.link || ''"
         [subtitle]="button.subtitle || ''"
@@ -137,7 +137,7 @@
 
 <ng-template #externalLink>
   <bmb-external-link
-    [title]="title()"
+    [componentTitle]="componentTitle() || title()"
     [subtitle]="externalLinkSubtitle()"
     (onClose)="handleClose($event)"
     (menuEvent)="handleMenuEvent($event)"

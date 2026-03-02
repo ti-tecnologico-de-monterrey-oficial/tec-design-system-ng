@@ -54,13 +54,18 @@ export class BmbProgressCircleComponent implements OnChanges {
   valueLabel = input<string>();
   percent = input<number>(0);
   showValueLabel = input<boolean>(false);
-  title = input<string | string[]>('');
+  componentTitle = input<string | string[]>('');
   showTitle = input<boolean>(false);
   showBackground = input<boolean>(true);
   showRestBackground = input<boolean>(false);
   fillPathStatus = input<BmbProgressCirclePathStatus>('success');
   fullFillPathStatus = input<boolean>(false);
 
+  title = input<string | string[]>(''); // deprecated
+
+  validTitle = computed(() => {
+    return this.componentTitle() || this.title();
+  });
   options = computed<BmbProgressCircleOptionsInterface>(() => {
     const opts: BmbProgressCircleOptionsInterface = {
       responsive: true,
@@ -74,7 +79,7 @@ export class BmbProgressCircleComponent implements OnChanges {
       showTitle: this.showTitle() ?? false,
       showValueLabel: this.showValueLabel() ?? false,
       valueLabel: this.valueLabel() ?? '',
-      title: this.title() ?? '',
+      title: this.validTitle() ?? '',
       showBackground: this.showBackground() ?? true,
     };
     return opts;
@@ -97,7 +102,7 @@ export class BmbProgressCircleComponent implements OnChanges {
   }
 
   isTitleString(): boolean {
-    return typeof this.title() === 'string';
+    return typeof this.validTitle() === 'string';
   }
 
   polarToCartesian(
@@ -140,13 +145,13 @@ export class BmbProgressCircleComponent implements OnChanges {
       texts: new Array<any>(),
       tspans: new Array<any>(),
     };
-    if (this.title() === '') {
+    if (this.validTitle() === '') {
       title.texts.push(titleTextPercent);
     } else {
-      if (this.title() instanceof Array) {
-        title.texts = [...this.title()];
+      if (this.validTitle() instanceof Array) {
+        title.texts = [...(this.validTitle() as string[])];
       } else {
-        title.texts.push(this.title().toString());
+        title.texts.push((this.validTitle() as string).toString());
       }
     }
     let valueLabel = {

@@ -10,10 +10,7 @@
         <div class="bmb_calendar-row-body"></div>
       }
       @for (event of eventsWithLayout(); track $index) {
-        <bmb-calendar-schedule-cards
-          [event]="event"
-          (onSelectEvent)="handleEventSelection($event)"
-        />
+        <bmb-calendar-schedule-cards [event]="event" />
       }
     </div>
   </section>

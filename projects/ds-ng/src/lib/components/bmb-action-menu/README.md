@@ -44,7 +44,7 @@ The component's template is structured as follows:
 
 ```html
 <bmb-action-menu
-  [title]="'Menu Title'"
+  [componentTitle]="'Menu Title'"
   [subtitle]="'Menu Subtitle'"
   [icon]="'menu'"
   [iconSize]="32"
@@ -75,7 +75,7 @@ This lifecycle hook initializes the projected content by converting the `Content
 
 ```html
 <bmb-action-menu
-  [title]="'Actions'"
+  [componentTitle]="'Actions'"
   [subtitle]="'Choose an option'"
   [icon]="'settings'"
   [iconSize]="24"

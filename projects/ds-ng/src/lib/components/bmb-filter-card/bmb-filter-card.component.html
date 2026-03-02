@@ -38,7 +38,7 @@
                     [dismissible]="false"
                     [enableClick]="true"
                     [isActive]="storedValues[control.name]?.checked ?? false"
-                    (clickedTag)="onControlChange(control, $event)"
+                    (clickedTag)="controlChange(control, $event)"
                   />
                 }
                 @case ('radial') {
@@ -49,7 +49,7 @@
                       filterForm.get(control.name)?.value === control.label
                     "
                     [label]="control.label"
-                    (change)="onControlChange(control, $event)"
+                    (change)="controlChange(control, $event)"
                     [value]="control.value ?? control.name"
                   />
                 }
@@ -58,7 +58,7 @@
                     [name]="control.name"
                     [checked]="filterForm.get(control.name)?.value"
                     [label]="control.label"
-                    (change)="onControlChange(control, $event)"
+                    (change)="controlChange(control, $event)"
                     [inputId]="control.id ?? control.name + '-' + $index"
                     [value]="control.value ?? control.name"
                   />
@@ -67,7 +67,7 @@
                   <bmb-switch
                     [rightText]="control.rightText ?? ''"
                     [isChecked]="filterForm.get(control.name)?.value === true"
-                    (change)="onControlChange(control, $event)"
+                    (change)="controlChange(control, $event)"
                   />
                 }
                 @case ('dropdown') {
@@ -79,7 +79,8 @@
                     [options]="control.options ?? []"
                     [control]="getFormControl(control.name)"
                     (onValueChange)="onValueChange($event, control.name)"
-                    [isFilterable]="true"
+                    [isFilterable]="!control?.isMultiSelect!"
+                    [isMultiSelect]="control?.isMultiSelect!"
                   />
                 }
               }

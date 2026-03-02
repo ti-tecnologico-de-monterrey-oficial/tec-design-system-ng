@@ -22,9 +22,11 @@ import { IBmbApp } from '../../types';
   encapsulation: ViewEncapsulation.None,
 })
 export class BmbFrequentAppsSelectorComponent {
-  title = input<string>('');
   apps = input<IBmbApp[]>([]);
   layout = input<IBmbInteractiveIconType>('regular');
+  componentTitle = input<string>();
+
+  title = input<string>(); // deprecated
 
   appClick = output<any>();
 

@@ -1,7 +1,7 @@
 <div style="margin: 0 120px">
-  <bmb-multi-dot-paginator title="Test title" subtitle="Test subtitle">
+  <bmb-multi-dot-paginator componentTitle="Test title" subtitle="Test subtitle">
     <bmb-multi-dot-paginator-item>
-      <section bmbVerticalLayout>
+      <section bmbVerticalLayout layoutHeight="300px">
         <bmb-card
           borderRadius="m"
           margin="none"
@@ -9,6 +9,8 @@
           boxShadowStyle="box-shadow-5"
           borderColor="default"
           bmbVerticalLayoutItem
+          [rowGrow]="1"
+          [disableScroll]="true"
         >
           <bmb-card-content>
             <div>Card</div>

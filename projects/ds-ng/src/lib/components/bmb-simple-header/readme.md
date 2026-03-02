@@ -26,7 +26,7 @@
 
 ```html
 <bmb-simple-header
-  [title]="'Perfil de usuario'"
+  [componentTitle]="'Perfil de usuario'"
   [icon]="'settings'"
   [iconAlternativeColor]="true"
   (onIconClick)="handleSettingsClick($event)"

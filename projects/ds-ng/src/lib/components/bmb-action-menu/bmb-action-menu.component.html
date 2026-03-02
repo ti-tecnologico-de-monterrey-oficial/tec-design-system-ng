@@ -1,7 +1,7 @@
 <section class="bmb_action-menu">
   @if (showHeader()) {
     <bmb-home-card-header
-      [title]="title()"
+      [componentTitle]="componentTitle() || title() || ''"
       [subtitle]="subtitle()"
       [icon]="icon()"
       [iconSize]="iconSize()!"
@@ -10,9 +10,9 @@
     />
   }
   <section class="bmb_action-menu-list" [ngClass]="{ action: !showHeader() }">
-    @for (element of projectedContent; track $index) {
-      <ng-container *ngTemplateOutlet="element" />
-      @if (showHeader() && $index + 1 < projectedContent.length) {
+    @for (element of menuContentList; track $index) {
+      <ng-container [ngTemplateOutlet]="element" />
+      @if (showHeader() && $index + 1 < menuContentList.length) {
         <bmb-divider class="bmb_item-divider" />
       }
     }

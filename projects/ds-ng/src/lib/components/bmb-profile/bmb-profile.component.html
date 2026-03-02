@@ -52,7 +52,7 @@
   <section class="bmb_profile-access">
     <h2 class="bmb_profile-title">Mi Líder</h2>
     <bmb-container-button
-      [title]="collaboratorData()?.leader?.userData?.name!"
+      [componentTitle]="collaboratorData()?.leader?.userData?.name!"
       [subtitle]="collaboratorData()?.leader?.userData?.email!"
       [iconLeft]="collaboratorData()?.leader?.userData?.userImg!"
       [isUserImage]="true"
@@ -62,7 +62,7 @@
     />
     <h2 class="bmb_profile-title">Mi Generalista</h2>
     <bmb-container-button
-      [title]="collaboratorData()?.generalist?.userData?.name!"
+      [componentTitle]="collaboratorData()?.generalist?.userData?.name!"
       [subtitle]="collaboratorData()?.generalist?.userData?.email!"
       [iconLeft]="collaboratorData()?.generalist?.userData?.userImg!"
       [isUserImage]="true"
@@ -154,21 +154,21 @@
     @if (isMobile() && !isStandAlone()) {
       <section class="bmb_profile-access">
         <bmb-container-button
-          title="ID Digital"
+          componentTitle="ID Digital"
           iconLeft="person"
           iconRight="chevron_right"
           [link]="idDigitalLink()"
           [target]="targetLinks()!"
         />
         <bmb-container-button
-          title="Acceso a Campus"
+          componentTitle="Acceso a Campus"
           iconLeft="qr_code"
           iconRight="chevron_right"
           [link]="campusAcessLink()"
           [target]="targetLinks()!"
         />
         <bmb-container-button
-          title="TecServices"
+          componentTitle="TecServices"
           iconLeft="forum"
           iconRight="chevron_right"
           [link]="tecServicesLink()"
@@ -201,7 +201,7 @@
 } @else if (isMobile()) {
   <!-- TODO: ADD [headerIconRight]="'diversity_3'" -->
   <bmb-mobile-templates
-    [title]="'Mi Perfil'"
+    [componentTitle]="'Mi Perfil'"
     (externalLinkOnClose)="closeProfile()"
     (handleRightClick)="handleRight($event)"
   >
@@ -213,7 +213,7 @@
   <bmb-home-card
     icon="person"
     bgIconAppearance="green-light"
-    title="Mi perfil"
+    componentTitle="Mi perfil"
     [showRightButton]="false"
     contentPadding="l"
     leftIcon="chevron_left"

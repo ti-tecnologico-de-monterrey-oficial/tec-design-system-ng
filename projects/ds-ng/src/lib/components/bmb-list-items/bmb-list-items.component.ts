@@ -36,11 +36,11 @@ interface IBmbListItemsElementGroupedByDate {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BmbListItemsComponent implements OnInit {
-  title = input<string>('');
   addButtonIcon = input<string>('add_box');
   showAddButton = input<boolean>(true);
   items = input<IBmbListItemsElement[]>([]);
   dateFormat = input<string>('yyyy-MM-dd');
+  componentTitle = input<string>();
 
   addButtonAction = output<MouseEvent>();
 

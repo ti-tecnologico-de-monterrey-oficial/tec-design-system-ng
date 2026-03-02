@@ -50,11 +50,6 @@ export type IBmbHomeCardChatMode = 'compact' | 'chat' | 'expanded';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BmbHomeCardChatComponent {
-  @ViewChild('contentTemplate') contentTemplate!: TemplateRef<any>;
-  @ViewChild('chatBarActionsTemplate', { static: true })
-  chatBarTemplate!: TemplateRef<any>;
-
-  title = input<string>();
   subtitle = input<string>();
   isMobile = input<boolean>(false);
   placeholder = input<string>('');
@@ -63,6 +58,9 @@ export class BmbHomeCardChatComponent {
   bgIconAppearance = input<IBmbColor>('gray-charade-500');
   messagesHistory = input.required<IBmbChatMessage[]>();
   actionsList = input<IChatBarActions[]>([]);
+  componentTitle = input<string>('');
+
+  title = input<string>(''); // deprecated
 
   currentBot = model<IBotType>({
     name: 'TecBot',
@@ -78,6 +76,9 @@ export class BmbHomeCardChatComponent {
   getNewChat = output<boolean>();
   getExpand = output<any>();
 
+  @ViewChild('contentTemplate') contentTemplate!: TemplateRef<any>;
+  @ViewChild('chatBarActionsTemplate', { static: true })
+  chatBarTemplate!: TemplateRef<any>;
   private chatCardChatId: string = 'chatCardChat';
 
   chatActionHeaders = computed<IBmbActionHeader[]>(() => {
@@ -171,7 +172,6 @@ export class BmbHomeCardChatComponent {
 
   handleAddDialog(event?: Event): void {
     const dialogId = 'chatBarActionsDialog';
-    console.info('handleAddDialog', event);
 
     if (this.contentProjected.isContentOpen(dialogId)) {
       return;

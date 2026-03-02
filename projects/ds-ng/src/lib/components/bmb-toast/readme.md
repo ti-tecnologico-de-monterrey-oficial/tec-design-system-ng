@@ -31,7 +31,7 @@
 <bmb-toast
   [appearance]="'warning'"
   [isClosable]="true"
-  [title]="'Advertencia'"
+  [componentTitle]="'Advertencia'"
   [description]="'No se pudo guardar los cambios.'"
   [id]="123"
   (onClose)="handleToastClose($event)"

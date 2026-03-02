@@ -31,7 +31,7 @@
 
 ```html
 <bmb-title-content
-  [title]="'Panel de control'"
+  [componentTitle]="'Panel de control'"
   [titleSize]="'6'"
   [titleFontWeight]="'700'"
   [subtitle]="'Bienvenido al sistema de gestión'"

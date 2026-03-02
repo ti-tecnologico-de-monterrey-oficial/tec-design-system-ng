@@ -11,7 +11,7 @@ import {
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormControl, ValidatorFn } from '@angular/forms';
-import {
+import type {
   IBmbAlignTooltip,
   IBmbJustifyTooltip,
 } from '../bmb-tooltip/bmb-tooltip.component';
@@ -78,10 +78,6 @@ export class BmbInputComponent implements OnInit {
   rows = input<number>(3);
   showMaxTextLength = input<boolean>(true);
   additionalAction = input<IBmbAdditionalAction>('none');
-  tooltipPosition = input<IBmbInputTooltipPosition>({
-    align: 'above',
-    justify: 'before',
-  });
   isClearable = input<boolean>(false);
   customValidation = input<ValidatorFn>();
   inputId = input<string>(this.name());
@@ -94,6 +90,11 @@ export class BmbInputComponent implements OnInit {
   isBlur = output<boolean>();
   onChange = output<HTMLInputElement>();
   onKeyDown = output<KeyboardEvent>();
+
+  tooltipPosition = input<IBmbInputTooltipPosition>({
+    align: 'above',
+    justify: 'before',
+  }); // Deprecated
 
   customInputContent = contentChild<TemplateRef<any>>('customInputContent');
   isControlNull: boolean = false;

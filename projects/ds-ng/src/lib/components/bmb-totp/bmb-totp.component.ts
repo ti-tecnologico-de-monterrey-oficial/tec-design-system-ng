@@ -5,7 +5,6 @@ import {
   HostListener,
   input,
   output,
-  ElementRef,
   computed,
 } from '@angular/core';
 import { Subject } from 'rxjs';
@@ -43,8 +42,6 @@ import { TranslatePipe } from '../../pipes/translations';
 })
 export class BmbTotpComponent {
   private destroy$ = new Subject<void>();
-
-  title = input<string>();
   subtitle = input<string>();
   instanceId = input<string>(getUUID());
   codeError = input<boolean>(false);
@@ -53,6 +50,9 @@ export class BmbTotpComponent {
   showButton = input<boolean>(false);
   buttonText = input<string>('');
   disableButton = input<boolean>(false);
+  componentTitle = input<string>();
+
+  title = input<string>(); // deprecated
 
   handleSubmit = output<string>();
 

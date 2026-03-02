@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import {
   Component,
   contentChild,
+  effect,
   input,
   OnInit,
   output,
@@ -24,6 +25,7 @@ import {
 import { IBmbFooterEvent } from '../bmb-bottom-navigation-bar/bmb-bottom-navigation-bar.component';
 import { BmbInnerHeaderComponent } from '../bmb-inner-header/bmb-inner-header.component';
 import { IBmbTargetLink } from '../../types';
+import { logDeprecatedInput } from '../../utils/logDeprecatedInput';
 
 export type IBmbMobileTemplateName =
   | 'single-header'
@@ -66,7 +68,6 @@ export class BmbMobileTemplatesComponent implements OnInit {
   template = input<IBmbMobileTemplateName>('single-header');
   footerActions = input<IBmbButtonAction[]>([]);
   buttonList = input<IBmbMobileTemplateButton[]>([]);
-  title = input<string>('');
   headerIconRight = input<string>('');
   calendarTimezone = input<string>(
     Intl.DateTimeFormat().resolvedOptions().timeZone,
@@ -85,10 +86,23 @@ export class BmbMobileTemplatesComponent implements OnInit {
   externalLinkOnClose = output<unknown>();
   externalLinkMenuEvent = output<IBmbMenuEvent>();
   externalLinkFooterEvent = output<IBmbFooterEvent>();
+  componentTitle = input<string>();
+
+  title = input<string>(); // deprecated
 
   mainContent = contentChild<TemplateRef<any>>('bmbTemplateMain');
-
   height: number = 0;
+
+  constructor() {
+    effect(() => {
+      const deprecatedTitle = this.title();
+      const newTitle = this.componentTitle();
+      logDeprecatedInput(
+        { name: 'title', hasValue: !!deprecatedTitle },
+        { name: 'componentTitle', hasValue: !!newTitle },
+      );
+    });
+  }
 
   ngOnInit() {
     this.height = window.innerHeight;

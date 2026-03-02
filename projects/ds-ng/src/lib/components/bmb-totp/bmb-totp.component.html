@@ -6,25 +6,23 @@
     >
       <bmb-icon class="bmb_totp-icon" icon="lock" [size]="48" />
       <h2 class="bmb_totp-title">
-        {{ title() || ('totp.title' | translate) }}
+        {{ componentTitle() || title() || ('totp.title' | translate) }}
       </h2>
       <h3 class="bmb_totp-subtitle">
         {{ subtitle() || ('totp.subtitle' | translate) }}
       </h3>
       <section class="bmb_totp-code">
         @for (field of codesArray(); track $index) {
-          <section class="bmb_totp-separator">
-            <bmb-input-content
-              type="number"
-              class="bmb_totp-input"
-              [inputId]="'code_' + instanceId() + '_' + $index"
-              [name]="'name_' + instanceId() + '_' + $index"
-              [maxLength]="1"
-              [isError]="codeError()"
-              [control]="getFormControl('name_' + instanceId() + '_' + $index)"
-              (onKeyUp)="handleKeyUp($event, $index)"
-            />
-          </section>
+          <bmb-input-content
+            type="number"
+            class="bmb_totp-input"
+            [inputId]="'code_' + instanceId() + '_' + $index"
+            [name]="'name_' + instanceId() + '_' + $index"
+            [maxLength]="1"
+            [isError]="codeError()"
+            [control]="getFormControl('name_' + instanceId() + '_' + $index)"
+            (onKeyUp)="handleKeyUp($event, $index)"
+          />
         }
       </section>
       @if (codeError()) {
@@ -34,7 +32,6 @@
         <button
           class="bmb_totp-button"
           bmbButton
-          size="large"
           type="submit"
           [disabled]="disableButton()"
         >

@@ -1,6 +1,7 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  effect,
   input,
   output,
   ViewEncapsulation,
@@ -12,6 +13,7 @@ import { BmbButtonDirective } from '../../directives/bmb-button/button.directive
 import { CommonModule } from '@angular/common';
 import { TranslatePipe } from '../../pipes/translations';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
+import { logDeprecatedInput } from '../../utils/logDeprecatedInput';
 
 export interface IBmbCardNoticeDescription {
   pageOne?: string;
@@ -39,16 +41,29 @@ export class BmbNoticeCardComponent {
   src = input<string>('');
   icon = input<string>('');
   iconSize = input<number>(24);
-  title = input<string>('');
   description = input<IBmbCardNoticeDescription>();
   buttonText = input<string>();
   link = input<string>('');
   closeBtnColor = input<'white' | 'black'>('white');
+  componentTitle = input<string>();
+
+  title = input<string>(); // deprecated
 
   onClose = output<void>();
   onClickBtn = output<void>();
 
   activeIndex = 0;
+
+  constructor() {
+    effect(() => {
+      const deprecatedTitle = this.title();
+      const newTitle = this.componentTitle();
+      logDeprecatedInput(
+        { name: 'title', hasValue: !!deprecatedTitle },
+        { name: 'componentTitle', hasValue: !!newTitle },
+      );
+    });
+  }
 
   onDotPress(index: number): void {
     this.activeIndex = index;

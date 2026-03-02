@@ -4,12 +4,14 @@ import {
   ViewEncapsulation,
   input,
   output,
+  effect,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { BmbCheckExternalLinkButtonComponent } from '../bmb-check-external-link-button/bmb-check-external-link-button.component';
 import { IBmbTargetLink } from '../../types';
 import { IBmbContrast } from '../../types/colors';
+import { logDeprecatedInput } from '../../utils/logDeprecatedInput';
 
 export type IBmbInteractiveIconAppearance =
   | 'red'
@@ -61,7 +63,6 @@ export type IBmbInteractiveIconType = 'regular' | 'button' | 'app_drawer';
 export class BmbInteractiveIconComponent {
   appearanceContrast = input<IBmbContrast>('default');
   appearance = input<IBmbInteractiveIconAppearance>('red');
-  title = input<string>();
   description = input<string>('');
   icon = input<string>('face');
   dotNotification = input<number>();
@@ -70,8 +71,22 @@ export class BmbInteractiveIconComponent {
   link = input<string>();
   layout = input<IBmbInteractiveIconType>('regular');
   setButtonTemplate = input<boolean>(false);
+  componentTitle = input<string>();
+
+  title = input<string>(); // deprecated
 
   buttonClick = output<MouseEvent>();
+
+  constructor() {
+    effect(() => {
+      const deprecatedTitle = this.title();
+      const newTitle = this.componentTitle();
+      logDeprecatedInput(
+        { name: 'title', hasValue: !!deprecatedTitle },
+        { name: 'componentTitle', hasValue: !!newTitle },
+      );
+    });
+  }
 
   getClasses(): string[] {
     const principalClassName: string = 'bmb_interactive_icon';

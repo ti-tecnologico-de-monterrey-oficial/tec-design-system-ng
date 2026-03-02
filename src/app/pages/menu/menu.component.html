@@ -1,0 +1,28 @@
+<bmb-action-menu
+  icon="account_balance_wallet"
+  bgIconAppearance="green-light"
+  componentTitle="Ayuda TECservices"
+  subtitle="Subtitle"
+  [showHeader]="true"
+>
+  @for (_item of items; track $index) {
+    <ng-template #actionMenuItem>
+      @if (_item?.isTecService) {
+        <bmb-item
+          [label]="_item.Title"
+          [icon]="_item.icono"
+          [value]="_item.Title"
+          [valueLink]="_item.url"
+          valueTarget="_self"
+        />
+      } @else {
+        <bmb-item
+          label="¡Califica tu experiencia!"
+          icon="mood"
+          (action)="handleOpen('test')"
+          [isButton]="true"
+        />
+      }
+    </ng-template>
+  }
+</bmb-action-menu>

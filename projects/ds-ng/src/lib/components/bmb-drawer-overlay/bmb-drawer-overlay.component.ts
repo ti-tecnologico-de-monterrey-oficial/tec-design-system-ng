@@ -28,13 +28,15 @@ import { BmbTabsComponent, IBmbTab } from '../bmb-tabs/bmb-tabs.component';
 })
 export class BmbDrawerOverlayComponent {
   menu = input<any>([]);
-  title = input<string>('');
+  componentTitle = input<string>('');
   dataSearch = input<string[]>([]);
   tabs = input<IBmbTab[]>([]);
   appServices = input<{ [key: number]: IBmbApp[] }>({});
 
   onValueChange = output<string>();
   buttonClick = output<MouseEvent>();
+
+  title = input<string>(); // deprecated
 
   isOpen: boolean = false;
   isFull: boolean = false;

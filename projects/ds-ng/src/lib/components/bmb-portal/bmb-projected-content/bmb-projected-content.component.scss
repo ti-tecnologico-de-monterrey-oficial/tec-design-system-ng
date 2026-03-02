@@ -8,6 +8,7 @@
   background-color: transparent;
   margin: 0;
   color: var(--general-contrasts-100);
+  outline-style: none;
 
   @include mixins.media-query(1000, 'max') {
     left: 1rem !important;
@@ -19,6 +20,12 @@
         width: 100% !important;
       }
     }
+  }
+
+  @media (height <= 300px) {
+    height: calc(100% - 2rem) !important;
+    top: 1rem !important;
+    bottom: 1rem !important;
   }
 
   &[open] {

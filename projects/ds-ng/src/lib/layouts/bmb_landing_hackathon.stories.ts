@@ -370,7 +370,7 @@ import { Router } from '@angular/router';
                                 <bmb-toast
                                   [appearance]="'warning'"
                                   [isClosable]="true"
-                                  [title]="
+                                  [componentTitle]="
                                     'Importante: Antes de dar de baja, asegúrate de tener el formato correcto.'
                                   "
                                   [id]="'1'"
@@ -596,7 +596,7 @@ import { Router } from '@angular/router';
           }
         ]
       ]"
-      [title]="'Navegacion para mobiles'"
+      [componentTitle]="'Navegacion para mobiles'"
     ></bmb-sidebar>
   `,
 })
@@ -1195,7 +1195,7 @@ ${getBasicExampleBlock(
                                 <bmb-toast
                                   [appearance]="'warning'"
                                   [isClosable]="true"
-                                  [title]="
+                                  [componentTitle]="
                                     'Importante: Antes de dar de baja, asegúrate de tener el formato correcto.'
                                   "
                                   [id]="'1'"
@@ -1421,7 +1421,7 @@ ${getBasicExampleBlock(
           }
         ]
       ]"
-      [title]="'Navegacion para mobiles'"
+      [componentTitle]="'Navegacion para mobiles'"
     ></bmb-sidebar>
 `,
       },

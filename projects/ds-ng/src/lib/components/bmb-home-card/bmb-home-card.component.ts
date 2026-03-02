@@ -1,6 +1,7 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  effect,
   input,
   model,
   output,
@@ -12,6 +13,7 @@ import { IBmbColor } from '../../types/colors';
 import { IBmbActionHeader, SizeNames } from '../../types';
 import { CommonModule } from '@angular/common';
 import { IBotType } from '../bmb-chat-bar/types';
+import { logDeprecatedInput } from '../../utils/logDeprecatedInput';
 
 @Component({
   selector: 'bmb-home-card',
@@ -23,7 +25,6 @@ import { IBotType } from '../bmb-chat-bar/types';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BmbHomeCardComponent {
-  title = input.required<string>();
   subtitle = input<string>();
   dataLocalNav = input<IBmbDataTopBar[]>([]);
   leftIcon = input<string>();
@@ -36,10 +37,30 @@ export class BmbHomeCardComponent {
   showRightButton = input<boolean>(true);
   isExpanded = model<boolean>(false);
   currentBot = model<IBotType>();
+  componentTitle = input<string>(); // once title is removed, this should be required
+
+  title = input<string>(); // deprecated
 
   onClose = output();
   onBack = output();
   onExpandClick = output();
+
+  constructor() {
+    effect(() => {
+      const deprecatedTitle = this.title();
+      const newTitle = this.componentTitle();
+      logDeprecatedInput(
+        { name: 'title', hasValue: !!deprecatedTitle },
+        { name: 'componentTitle', hasValue: !!newTitle },
+      );
+
+      if (!deprecatedTitle && !newTitle) {
+        throw new Error(
+          'The "componentTitle" input is required. Please provide a value for it.',
+        );
+      }
+    });
+  }
 
   handleClose(): void {
     this.onClose.emit();

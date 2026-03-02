@@ -26,7 +26,6 @@
       <bmb-calendar-template-day
         [now]="visibleDate()"
         [events]="getDayEvents()"
-        (onSelectEvent)="handleSelectEvent($event)"
         [currentTime]="currentTime()"
         [startBusinessHour]="startBusinessHour()"
         [dateFormat]="dateFormat()"
@@ -38,7 +37,6 @@
         [weekDays]="renderWeekDays()"
         [now]="visibleDate()"
         [events]="filteredEvents()"
-        (onSelectEvent)="handleSelectEvent($event)"
         [currentTime]="currentTime()"
         [startBusinessHour]="startBusinessHour()"
         [selectedWeek]="selectedWeek()"
@@ -49,7 +47,6 @@
       <bmb-calendar-template-month
         [now]="visibleDate()"
         [events]="filteredEvents()"
-        (onSelectEvent)="handleSelectEvent($event)"
         class="bmb_calendar-content"
       />
     }
@@ -70,31 +67,10 @@
   }
 </div>
 
-<ng-template #detailContent>
-  @if (selectedEvent) {
-    <section>
-      @if (selectedEvent.tags?.length) {
-        <p style="display: flex; flex-wrap: wrap; gap: 0.5rem">
-          @for (item of selectedEvent.tags; track $index) {
-            <bmb-badge [text]="item.text" [appearance]="item.appearance" />
-          }
-        </p>
-      }
-      @if (selectedEvent.title) {
-        <p class="bmb_calendar-event-modal-title">{{ selectedEvent.title }}</p>
-      }
-      @if (selectedEvent.place) {
-        <p class="bmb_calendar-event-modal-place">{{ selectedEvent.place }}</p>
-      }
-      <div class="bmb_calendar-event-modal-duration">{{ getDuration() }}</div>
-    </section>
-  }
-</ng-template>
-
 <ng-template #modalTemplate>
   <form [formGroup]="calendarForm">
     @for (item of filteredEvents().calendars; track $index) {
-      <div bmbLayout gapSize="s" alignItems="center">
+      <div bmbLayout gapSize="m" alignItems="center">
         <bmb-checkbox
           bmbLayoutItem
           [isDynamicItem]="true"
@@ -116,7 +92,7 @@
         >
       </div>
     }
-    <bmb-divider type="solid"></bmb-divider>
+    <bmb-divider type="simple"></bmb-divider>
     <bmb-switch
       [isChecked]="true"
       [ariaLabel]="'calendar.modal.notification_label' | translate"

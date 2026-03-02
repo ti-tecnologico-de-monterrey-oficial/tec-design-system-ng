@@ -6,11 +6,13 @@ import {
   ElementRef,
   input,
   output,
+  effect,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { BmbButtonDirective } from '../../directives/bmb-button/button.directive';
 import { IBbmBgAppearance } from '../bmb-advertisement-card/types';
+import { logDeprecatedInput } from '../../utils/logDeprecatedInput';
 
 @Component({
   selector: 'bmb-loader',
@@ -23,7 +25,6 @@ import { IBbmBgAppearance } from '../bmb-advertisement-card/types';
 })
 export class BmbLoaderComponent {
   appearance = input<IBbmBgAppearance>('normal');
-  title = input<string>('');
   icon = input<string>('wifi_off');
   subtitle = input<string>('');
   overlay = input<boolean>(false);
@@ -33,6 +34,9 @@ export class BmbLoaderComponent {
   buttonPrimary = input<string>('');
   buttonSecondary = input<string>('');
   showInline = input<boolean>(false);
+  componentTitle = input<string>();
+
+  title = input<string>(); // deprecated
 
   onButtonPrimary = output<MouseEvent>();
   onButtonSecondary = output<MouseEvent>();
@@ -40,7 +44,16 @@ export class BmbLoaderComponent {
   constructor(
     private renderer: Renderer2,
     private elRef: ElementRef,
-  ) {}
+  ) {
+    effect(() => {
+      const deprecatedTitle = this.title();
+      const newTitle = this.componentTitle();
+      logDeprecatedInput(
+        { name: 'title', hasValue: !!deprecatedTitle },
+        { name: 'componentTitle', hasValue: !!newTitle },
+      );
+    });
+  }
 
   ngOnInit() {
     this.updateBodyClass();

@@ -6,6 +6,7 @@ import {
   input,
   computed,
   output,
+  effect,
 } from '@angular/core';
 import { IBmbTargetLink } from '../../types';
 import { BmbTextLinkComponent } from '../bmb-text-link/bmb-text-link.component';
@@ -16,6 +17,7 @@ import { BmbVerticalLayoutDirective } from '../../directives/bmb-layout/bmb-vert
 import { BmbVerticalLayoutItemDirective } from '../../directives/bmb-layout/bmb-vertical-layout/bmb-vertical-layout-item.directive';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
+import { logDeprecatedInput } from '../../utils/logDeprecatedInput';
 
 export type IBmbProgressBarVariations = 'info' | 'warning' | 'error';
 export type IBmbProgressBarTypes = 'simple' | 'counter' | 'container';
@@ -45,10 +47,10 @@ export type IBmbProgressBarStatusColor =
   encapsulation: ViewEncapsulation.None,
 })
 export class BmbProgressBarComponent {
+  componentTitle = input<string>();
   type = input<IBmbProgressBarTypes>('simple');
   totalCount = input<number>(0);
   counter = input<number>(0);
-  title = input<string>('');
   appearance = input<IBmbProgressBarVariations>('info');
   textLink = input<string>('');
   href = input<string>('');
@@ -64,6 +66,19 @@ export class BmbProgressBarComponent {
   showStatusIcon = input<boolean>(false); //Internal
 
   actionClick = output<MouseEvent>();
+
+  title = input<string>(''); // deprecated
+
+  constructor() {
+    effect(() => {
+      const deprecatedTitle = this.title();
+      const newTitle = this.componentTitle();
+      logDeprecatedInput(
+        { name: 'title', hasValue: !!deprecatedTitle },
+        { name: 'componentTitle', hasValue: !!newTitle },
+      );
+    });
+  }
 
   handleClick(event: MouseEvent) {
     this.actionClick.emit(event);

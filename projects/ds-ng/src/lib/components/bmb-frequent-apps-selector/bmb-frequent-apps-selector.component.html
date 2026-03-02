@@ -1,10 +1,10 @@
 <section class="bmb_frequent_apps">
-  <h2 class="bmb_frequent_apps-title">{{ title() }}</h2>
+  <h2 class="bmb_frequent_apps-title">{{ componentTitle() || title() }}</h2>
   <div #container [ngClass]="getClassesFAC()">
     @for (app of apps(); track $index) {
       <bmb-interactive-icon
         [icon]="app.icon"
-        [title]="app.title"
+        [componentTitle]="app.title"
         [link]="app?.link!"
         [target]="app?.target!"
         [appearance]="app.appearance"

@@ -1,4 +1,4 @@
-import { Directive, effect, HostBinding, input } from '@angular/core';
+import { Directive, HostBinding, input } from '@angular/core';
 
 @Directive({
   selector: '[bmbVerticalLayoutItem]',
@@ -7,21 +7,18 @@ import { Directive, effect, HostBinding, input } from '@angular/core';
 export class BmbVerticalLayoutItemDirective {
   rowGrow = input<number>(0);
   isFullWidth = input<boolean>(true);
+  disableScroll = input<boolean>(false);
 
-  constructor() {
-    effect(() => {
-      if (this.rowGrow() !== 0) {
-        this.flex = `${this.rowGrow()} 0 0%`;
-      }
-    });
+  @HostBinding('style.flex')
+  get flexSize(): string {
+    return `${this.rowGrow()} 0 0%`;
   }
-
-  @HostBinding('style.flex') flex?: string;
 
   @HostBinding('class') get elementClass(): string[] {
     const classes = ['bmb_vertical-layout-item'];
     if (this.isFullWidth()) classes.push('bmb_vertical-layout-item-full');
-    if (this.rowGrow()) classes.push('bmb_vertical-layout-item-scroll');
+    if (this.rowGrow() && !this.disableScroll())
+      classes.push('bmb_vertical-layout-item-scroll');
     return classes;
   }
 }

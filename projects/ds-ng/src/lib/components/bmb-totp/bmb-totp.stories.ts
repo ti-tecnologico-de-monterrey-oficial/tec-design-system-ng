@@ -96,7 +96,7 @@ ${getBasicExampleBlock('BmbTotpComponent', '', additionalBlock)}
     },
   },
   argTypes: {
-    title: {
+    componentTitle: {
       control: { type: 'text' },
       description: 'Sets the title of the TOTP prompt',
       table: {
@@ -172,9 +172,19 @@ ${getBasicExampleBlock('BmbTotpComponent', '', additionalBlock)}
       getOnEvent('', 'handleSubmit'),
       `.<br/><br/> The button is displayed when \`showButton\` is true`,
     ),
+    title: {
+      control: null,
+      description:
+        'Please use `componentTitle` instead of `title` to set the component title.',
+      table: {
+        category: 'Deprecated',
+        type: { summary: 'string' },
+        defaultValue: '',
+      },
+    },
   },
   args: {
-    title: 'TOTP',
+    componentTitle: 'TOTP',
     subtitle: '(Time-based One-time Password)',
     instanceId: 'first',
     codeError: false,

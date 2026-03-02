@@ -61,7 +61,6 @@ export class AppComponent {
     private modalService: BmbNativeModalService,
     private projectionService: BmbProjectionContentService,
     private matDialog: MatDialog,
-    private contentProjected: BmbProjectionContentService,
   ) {
     this.searchSubject
       .pipe(debounceTime(1000), distinctUntilChanged())
@@ -110,12 +109,6 @@ export class AppComponent {
         link: '/home',
       },
       {
-        id: 2,
-        icon: 'calendar_today',
-        title: 'Calendar',
-        link: '/calendar',
-      },
-      {
         id: 8,
         icon: 'table_chart',
         title: 'Tables',
@@ -155,12 +148,18 @@ export class AppComponent {
           },
           {
             id: 2,
+            icon: 'input',
+            title: 'Input',
+            link: '/input',
+          },
+          {
+            id: 3,
             icon: 'dropdown',
             title: 'Dropdown',
             link: '/dropdown',
           },
           {
-            id: 3,
+            id: 4,
             icon: 'upload_file',
             title: 'Dropzone',
             link: '/dropzone',
@@ -186,6 +185,12 @@ export class AppComponent {
             icon: 'calendar_view_month',
             title: 'Column sys',
             link: '/col-sys',
+          },
+          {
+            id: 7,
+            icon: 'layers',
+            title: 'Modals',
+            link: '/modals',
           },
         ],
       },
@@ -213,6 +218,7 @@ export class AppComponent {
             title: 'TEC sound',
             link: '/tec-sound',
           },
+          { id: 8, icon: 'app_registration', title: 'Colors', link: '/colors' },
         ],
       },
       {
@@ -241,7 +247,26 @@ export class AppComponent {
           },
         ],
       },
-      { id: 8, icon: 'app_registration', title: 'Colors', link: '/colors' },
+      {
+        id: 9,
+        icon: 'account_circle',
+        title: 'Menu',
+        link: '',
+        children: [
+          {
+            id: 1,
+            icon: 'menu',
+            title: 'Menu',
+            link: '/menu',
+          },
+          {
+            id: 2,
+            icon: 'calendar_today',
+            title: 'Calendar',
+            link: '/calendar',
+          },
+        ],
+      },
     ],
   ];
 

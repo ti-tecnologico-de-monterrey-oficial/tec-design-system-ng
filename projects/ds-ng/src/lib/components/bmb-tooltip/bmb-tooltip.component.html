@@ -1,40 +1,51 @@
-<section class="bmb_tooltip">
+<span
+  #tooltipContainer
+  class="bmb_tooltip-container"
+  (mouseenter)="showTooltip()"
+  (mouseleave)="hideTooltip()"
+  (focusin)="showTooltip()"
+  (focusout)="hideTooltip()"
+  (mousedown)="showTooltip()"
+  (mouseup)="hideTooltip()"
+  (touchstart)="showTooltip()"
+  (touchend)="hideTooltip()"
+>
   @if (icon() && size()) {
-    <bmb-icon
-      class="bmb_tooltip-icon"
-      [size]="size()"
+    <bmb-action-icon
+      idElement="tooltip_element"
+      [iconSize]="size()"
       [icon]="icon()"
       [isFill]="isFill()"
-      [alt]="title() || 'Tooltip icon'"
-      [tabIndex]="0"
-      role="button"
-      aria-haspopup="true"
-      [attr.aria-expanded]="isTooltipVisible()"
-      aria-describedby="tooltip-content"
-      (focus)="handleFocus($event)"
-      (blur)="handleFocus($event)"
-      (keydown)="handleFocus($event)"
+      [alt]="componentTitle() || title() || 'Tooltip icon'"
+      aria-describedby="tooltip-icon"
     />
   } @else {
-    <ng-content></ng-content>
+    <ng-content />
   }
 
-  @if (isTooltipVisible()) {
+  <dialog
+    [open]="isTooltipVisible()"
+    class="bmb_tooltip-dialog"
+    aria-hidden="true"
+    [ngStyle]="dialogStyles()"
+  >
     <section
       id="tooltip-content"
-      role="tooltip"
-      class="bmb_tooltip-container"
-      [ngClass]="getClasses()"
-      [attr.aria-hidden]="!isTooltipVisible()"
+      class="bmb_tooltip"
+      aria-describedby="tooltip-content"
+      bmbVerticalLayout
+      gapSize="s"
     >
-      @if (title()) {
-        <section class="bmb_tooltip-container-title">
-          <span class="bmb_tooltip-container-title-text">{{ title() }}</span>
-        </section>
+      @if (componentTitle() || title()) {
+        <span bmbVerticalLayoutItem margin="none" [rowGrow]="1">
+          {{ componentTitle() || title() }}
+        </span>
       }
-      <section class="bmb_tooltip-container-description">
-        <span class="bmb_tooltip-container-description-text">{{ text() }}</span>
-      </section>
+      <span bmbVerticalLayoutItem margin="none" [rowGrow]="1">
+        {{
+          'Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum nihil modi repellendus ad aspernatur corporis.'
+        }}
+      </span>
     </section>
-  }
-</section>
+  </dialog>
+</span>

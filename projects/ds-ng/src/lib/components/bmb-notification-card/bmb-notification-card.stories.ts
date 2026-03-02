@@ -159,7 +159,7 @@ ${getBasicExampleBlock(
     maxHeight: {
       control: { type: 'text' },
       description:
-        'Sets the maximum height of the notification card. Accepts any valid CSS height value (e.g., "300px", "50vh", "auto").',
+        'Sets the maximum height of the notification card. Accepts any valid CSS height value (e.g., "300px", "50dvh", "auto").',
       table: {
         category: 'Properties',
         type: { summary: 'string' },

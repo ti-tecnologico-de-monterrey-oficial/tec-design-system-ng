@@ -22,7 +22,7 @@
       [ngClass]="{ 'bmb_datepicker-modal-nav-item': view !== 'calendar' }"
     >
       <button
-        class="bmb_datepicker-modal-button bmb_field-input-normal bmb_datepicker-modal-nav-button"
+        class="bmb_datepicker-modal-button bmb_field normal bmb_datepicker-modal-nav-button"
         type="button"
         (click)="handleChangeView('month')"
         bmbButton
@@ -37,7 +37,7 @@
     </li>
     <li bmbLayoutItem [isDynamicItem]="true" [colGrow]="1">
       <button
-        class="bmb_datepicker-modal-button bmb_field-input-normal bmb_datepicker-modal-nav-button"
+        class="bmb_datepicker-modal-button bmb_field normal bmb_datepicker-modal-nav-button"
         type="button"
         (click)="handleChangeView('year')"
         bmbButton
