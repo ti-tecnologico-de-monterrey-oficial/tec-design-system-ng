@@ -1,7 +1,6 @@
-import { componentWrapperDecorator, Meta, StoryObj } from '@storybook/angular';
+import { Meta, StoryObj } from '@storybook/angular';
 import { BmbTotpComponent } from './bmb-totp.component';
 import {
-  DBmbGenericParamDesc,
   DBmbInputParamDesc,
   getOnClickParam,
 } from '../../utils/doc/parameterDescriptions';
