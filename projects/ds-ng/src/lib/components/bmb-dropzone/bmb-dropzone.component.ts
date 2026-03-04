@@ -396,4 +396,17 @@ export class BmbDropzoneComponent implements OnInit, OnChanges {
     this.control().patchValue(this.multiple() ? [null] : null);
     this.cdr.detectChanges();
   }
+
+  protected getAcceptAttribute(): string {
+    return this.acceptedExtensions()
+      .map((ext) => {
+        const cleanExt = ext.trim().toLowerCase();
+
+        if (cleanExt.includes('/')) return cleanExt;
+        if (cleanExt.startsWith('.')) return cleanExt;
+
+        return `.${cleanExt}`;
+      })
+      .join(',');
+  }
 }
