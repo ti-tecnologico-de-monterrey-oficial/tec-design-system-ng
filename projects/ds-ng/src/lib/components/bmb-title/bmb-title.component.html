@@ -1,0 +1,38 @@
+<section class="bmb_title">
+  <section class="bmb_title-wrapper">
+    @if (!!componentTitle()) {
+      <h2
+        class="bmb_title-wrapper-title"
+        [ngClass]="
+          getClassNames(
+            'bmb_title-wrapper-title',
+            titleSize(),
+            titleFontWeight()
+          )
+        "
+      >
+        {{ componentTitle() }}
+      </h2>
+    }
+    @if (!!subtitle()) {
+      <h3
+        class="bmb_title-wrapper-subtitle"
+        [ngClass]="getClassNames('bmb_title-wrapper-subtitle')"
+      >
+        <ng-content />
+        <span
+          class="bmb_title-wrapper-subtitle-text"
+          [ngClass]="
+            getClassNames(
+              'bmb_title-wrapper-subtitle-text',
+              subtitleSize(),
+              subtitleFontWeight()
+            )
+          "
+        >
+          {{ subtitle() }}
+        </span>
+      </h3>
+    }
+  </section>
+</section>
