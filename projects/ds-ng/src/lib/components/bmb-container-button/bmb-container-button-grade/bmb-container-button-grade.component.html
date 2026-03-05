@@ -2,6 +2,7 @@
   class="bmb_container-button-grade"
   [isDisable]="isDisable()"
   [isError]="isError()"
+  (getClickButton)="handleClick($event)"
 >
   <ng-template #bmbContainerLeft>
     <bmb-grade-value

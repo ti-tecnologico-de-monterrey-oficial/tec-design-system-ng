@@ -1,4 +1,8 @@
-<bmb-container-button-base [isDisable]="isDisable()" [isError]="isError()">
+<bmb-container-button-base
+  [isDisable]="isDisable()"
+  [isError]="isError()"
+  (getClickButton)="handleClick($event)"
+>
   @if (leftIconName()) {
     <ng-template #bmbContainerLeft>
       <bmb-icon

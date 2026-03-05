@@ -3,6 +3,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   input,
+  output,
   ViewEncapsulation,
 } from '@angular/core';
 import { BmbContainerButtonBaseComponent } from '../bmb-container-button-base/bmb-container-button-base.component';
@@ -31,4 +32,9 @@ export class BmbContainerButtonGradeComponent {
   score = input.required<number | string>();
   isDisable = input<boolean>(false);
   isError = input<boolean>(false);
+  getClickButton = output<MouseEvent>();
+
+  handleClick(event: any): void {
+    this.getClickButton.emit(event);
+  }
 }
