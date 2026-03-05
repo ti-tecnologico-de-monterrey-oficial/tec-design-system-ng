@@ -1,0 +1,18 @@
+<bmb-container-button-base [isDisable]="isDisable()" [isError]="isError()">
+  @if (leftIconName()) {
+    <ng-template #bmbContainerLeft>
+      <bmb-icon
+        [icon]="leftIconName()"
+        [isFill]="true"
+        [size]="24"
+        [alt]="iconImageAlt() || leftIconName()"
+      />
+    </ng-template>
+  }
+  <ng-template #bmbContainerMain>
+    <bmb-title [componentTitle]="componentTitle()" [subtitle]="subtitle()" />
+  </ng-template>
+  <ng-template #bmbContainerRight>
+    <bmb-icon icon="chevron_forward" [size]="24" />
+  </ng-template>
+</bmb-container-button-base>
