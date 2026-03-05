@@ -11,7 +11,8 @@
   color: var(--general-contrasts-100);
 
   &,
-  > *:first-child {
+  > *:first-child,
+  :where(#mainContentID) > *:first-child {
     width: 100%;
   }
 
