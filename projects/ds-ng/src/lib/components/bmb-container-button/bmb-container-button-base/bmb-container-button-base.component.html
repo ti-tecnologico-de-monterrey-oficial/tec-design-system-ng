@@ -1,0 +1,29 @@
+<button
+  type="button"
+  class="bmb_container-button-base"
+  [ngClass]="{ error: isError() }"
+  [disabled]="isDisable()"
+  (click)="handleClick($event)"
+>
+  <bmb-three-cols [expandMainColumn]="true">
+    @if (containerLeft().length) {
+      @for (leftItem of containerLeft(); track $index) {
+        <ng-template #bmbLeftContent>
+          <ng-container [ngTemplateOutlet]="leftItem" />
+        </ng-template>
+      }
+    }
+
+    <ng-template #bmbMainContent>
+      <ng-container [ngTemplateOutlet]="containerMain() ?? null" />
+    </ng-template>
+
+    @if (containerRight().length) {
+      @for (rightItem of containerRight(); track $index) {
+        <ng-template #bmbRightContent>
+          <ng-container [ngTemplateOutlet]="rightItem" />
+        </ng-template>
+      }
+    }
+  </bmb-three-cols>
+</button>
