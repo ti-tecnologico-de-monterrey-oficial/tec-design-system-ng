@@ -50,6 +50,11 @@
               </ul>
             </section>
           }
+          @if (!computedResults().services.length && !computedResults().persons.length) {
+            <bmb-search-card-empty-state
+              [inputHasValue]="!!inputSearchControl.value"
+            ></bmb-search-card-empty-state>
+          }
         }
         @case (2) {
           @if (computedResults().services.length) {
@@ -89,15 +94,6 @@
         }
       }
     </bmb-tabs>
-    @if (
-      !computedResults().persons.length &&
-      !computedResults().services.length &&
-      !isLoading()
-    ) {
-      <bmb-search-card-empty-state
-        [inputHasValue]="!!inputSearchControl.value"
-      ></bmb-search-card-empty-state>
-    }
     {{ isLoading() ? 'Loading...' : '' }}
   </bmb-home-card>
 </section>
