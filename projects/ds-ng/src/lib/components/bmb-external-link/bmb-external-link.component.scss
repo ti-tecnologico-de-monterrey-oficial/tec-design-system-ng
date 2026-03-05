@@ -20,8 +20,11 @@
   }
 
   &-title {
-    .bmb_title-wrapper-subtitle,
-    .bmb_title-wrapper-subtitle-text {
+    .bmb_title-content-container-wrapper-title {
+      color: var(--general-contrasts-100);
+    }
+
+    .bmb_title-content-container-wrapper-subtitle {
       color: var(--general-contrasts-50);
     }
   }
