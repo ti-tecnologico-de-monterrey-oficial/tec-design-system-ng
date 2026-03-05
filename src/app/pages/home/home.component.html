@@ -11,16 +11,18 @@
     justify="stretch"
     alignItems="stretch"
   >
-    <bmb-container-button
-      bmbLayoutItem
-      [colLg]="4"
-      [componentTitle]="'Ir al linkedin'"
-      [square]="false"
-      [small]="true"
-      [iconLeft]="'connect_without_contact'"
-      [iconRight]="''"
-      (onButton)="handleModalWithDropdown($event)"
-    />
+    <div>
+      <bmb-filter-card
+        [modalTitle]="'Opciones Filtrado'"
+        [primaryBtnLabel]="'Aplicar Filtros'"
+        [secondaryBtnLabel]="'Limpiar Filtros'"
+        [icon]="'tune'"
+        [showGlobalSearch]="true"
+        [showDropdown]="true"
+        [dropdownOptions]="['Apple', 'Banana', 'Orange', 'Pear', 'Grape']"
+        [placeholderSearch]="'Search'"
+      ></bmb-filter-card>
+    </div>
 
     <bmb-container-button
       bmbLayoutItem

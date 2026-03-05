@@ -249,6 +249,7 @@ export class BmbDropdownComponent implements OnInit, OnChanges {
         isMultiSelect: this.isMultiSelect(),
       },
       focusOnOpen: true,
+      forceMobileCenter: true,
     };
     this.projectionService.openContent(data);
   }

@@ -25,6 +25,7 @@ import {
   BmbMediaCardComponent,
   BmbImageComponent,
   BmbNativeModalService,
+  BmbFilterCardComponent,
 } from '../../../../projects/ds-ng/src/public-api';
 import { HelpMenuComponent } from '../../components/help-menu/help-menu.component';
 import { ModalWDropdownComponent } from '../../components/modal-w-dropdown/modal-w-dropdown.component';
@@ -48,6 +49,7 @@ import { ModalWDropdownComponent } from '../../components/modal-w-dropdown/modal
     BmbHomeCardComponent,
     BmbMediaCardComponent,
     BmbImageComponent,
+    BmbFilterCardComponent,
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
