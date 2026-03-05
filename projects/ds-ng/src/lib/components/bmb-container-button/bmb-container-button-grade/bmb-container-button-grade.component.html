@@ -1,6 +1,13 @@
-<bmb-container-button-base [isDisable]="isDisable()" [isError]="isError()">
+<bmb-container-button-base
+  class="bmb_container-button-grade"
+  [isDisable]="isDisable()"
+  [isError]="isError()"
+>
   <ng-template #bmbContainerLeft>
-    <bmb-grade-value [score]="score()" />
+    <bmb-grade-value
+      class="bmb_container-button-grade-score"
+      [score]="score()"
+    />
   </ng-template>
   <ng-template #bmbContainerMain>
     <bmb-title [componentTitle]="componentTitle()" [subtitle]="subtitle()" />
