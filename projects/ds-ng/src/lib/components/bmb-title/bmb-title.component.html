@@ -17,21 +17,15 @@
     @if (!!subtitle()) {
       <h3
         class="bmb_title-wrapper-subtitle"
-        [ngClass]="getClassNames('bmb_title-wrapper-subtitle')"
+        [ngClass]="
+          getClassNames(
+            'bmb_title-wrapper-subtitle',
+            subtitleSize(),
+            subtitleFontWeight()
+          )
+        "
       >
-        <ng-content />
-        <span
-          class="bmb_title-wrapper-subtitle-text"
-          [ngClass]="
-            getClassNames(
-              'bmb_title-wrapper-subtitle-text',
-              subtitleSize(),
-              subtitleFontWeight()
-            )
-          "
-        >
-          {{ subtitle() }}
-        </span>
+        {{ subtitle() }}
       </h3>
     }
   </section>
