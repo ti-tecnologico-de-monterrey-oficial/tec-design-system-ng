@@ -2,7 +2,7 @@
   type="button"
   class="bmb_container-button-base"
   [ngClass]="{ error: isError() }"
-  [disabled]="isDisable()"
+  [disabled]="isDisabled()"
   (click)="handleClick($event)"
 >
   <bmb-three-cols [expandMainColumn]="true">

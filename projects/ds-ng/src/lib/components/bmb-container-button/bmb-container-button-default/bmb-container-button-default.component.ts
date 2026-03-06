@@ -30,7 +30,7 @@ export class BmbContainerButtonDefaultComponent {
   subtitle = input<string>('');
   leftIconName = input<string>('');
   iconImageAlt = input<string>('');
-  isDisable = input<boolean>(false);
+  isDisabled = input<boolean>(false);
   isError = input<boolean>(false);
 
   getClickButton = output<MouseEvent>();
