@@ -2,6 +2,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   contentChild,
+  contentChildren,
   input,
   TemplateRef,
   ViewEncapsulation,
@@ -30,7 +31,7 @@ export class BmbThreeColsComponent {
   alignItems = input<IAlignItemsOptions>('center');
   expandMainColumn = input<boolean>(false);
 
-  leftContent = contentChild<TemplateRef<any>>('bmbLeftContent');
+  leftContent = contentChildren<TemplateRef<any>>('bmbLeftContent');
   mainContent = contentChild<TemplateRef<any>>('bmbMainContent');
-  rightContent = contentChild<TemplateRef<any>>('bmbRightContent');
+  rightContent = contentChildren<TemplateRef<any>>('bmbRightContent');
 }

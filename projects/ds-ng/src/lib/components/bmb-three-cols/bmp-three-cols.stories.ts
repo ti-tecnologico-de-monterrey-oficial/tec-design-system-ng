@@ -1,9 +1,18 @@
 import { Meta, moduleMetadata, StoryObj } from '@storybook/angular';
 import { BmbThreeColsComponent } from './bmb-three-cols.component';
-import { BmbTitleContentComponent } from '../bmb-title-content/bmb-title-content.component';
+import { BmbTitleComponent } from '../bmb-title/bmb-title.component';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { BmbContainerComponent } from '../bmb-container/bmb-container.component';
-import { attributes } from '../../utils/doc/utils';
+import {
+  attributes,
+  BlockquoteType,
+  getAlertBlockquote,
+  getBasicExampleBlock,
+  getGeneralComponentDescription,
+  getGeneralDescription,
+  getSpecialSpecifications,
+  RELEVANT_TITLE,
+} from '../../utils/doc/utils';
 
 export default {
   title: 'Internals/Three column content template',
@@ -11,59 +20,57 @@ export default {
   decorators: [
     moduleMetadata({
       declarations: [],
-      imports: [
-        BmbContainerComponent,
-        BmbTitleContentComponent,
-        BmbIconComponent,
-      ],
+      imports: [BmbContainerComponent, BmbTitleComponent, BmbIconComponent],
     }),
   ],
   parameters: {
+    controls: { exclude: ['leftContent', 'mainContent', 'rightContent'] },
     docs: {
       description: {
         component: `
-Below is an example of how you can use this component in TypeScript:
-
-\`\`\`typescript
-import { BmbThreeColsComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
-
-@Component({
-  selector: 'component',
-  standalone: true,
-  imports: [ BmbThreeColsComponent ],
-  templateUrl: './component.html',
-  styleUrl: './component.scss',
-})
-export class AppComponent {
-
-...
+${getGeneralDescription(
+  `
+${getGeneralComponentDescription({ name: 'three-cols' })} organize information into columns or sections using templates with labels, as well as alignment and justification.
+  `,
+)}
+${getSpecialSpecifications(
+  `${getAlertBlockquote(
+    'Please remember to always add the appropriate tag to the templates for proper organization.',
+    {
+      title: RELEVANT_TITLE.configuration,
+      blockquoteType: BlockquoteType.important,
+      isRelevantTitle: true,
+    },
+  )}
+>The column names or tags are:
+- bmbLeftContent (optional or more than one)
+- bmbMainContent
+  - bmbTopMainContent
+  - bmbBottomMainContent
+- bmbRightContent (optional or more than one)
+`,
+  { showAdditionalBlockquote: true },
+)}
+${getBasicExampleBlock('BmbThreeColsComponent')}
+\`\`\`html
+<bmb-three-cols>
+  <ng-template #bmbLeftContent>
+    <!-- Content  -->
+  </ng-template>
+  <ng-template #bmbMainContent>
+    <!-- Content  -->
+  </ng-template>
+  <ng-template #bmbRightContent>
+    <!-- Content  -->
+  </ng-template>
+</bmb-three-cols>
 \`\`\`
-
-
-Below is an example of how you can use this component in HTML:
         `,
       },
     },
   },
   argTypes: {
-    names: {
-      name: 'Column names',
-      control: {
-        type: 'radio',
-      },
-      options: ['bmbLeftContent', 'bmbMainContent', 'bmbRightContent'],
-      table: {
-        category: 'templates',
-        type: { summary: 'ng-template' },
-      },
-      description: `
-    The column names are bmbLeftContent, bmbMainContent, and bmbRightContent.
-    The html block must be inside the ng-template with the column name,
-    example: <ng-template #columnName> <p> text </p> </ng-template>
-      `,
-    },
     gapSize: {
-      name: 'Gap size',
       control: {
         type: 'select',
       },
@@ -76,7 +83,6 @@ Below is an example of how you can use this component in HTML:
       description: 'Determines the size of the space between columns.',
     },
     justify: {
-      name: 'Justify content',
       control: {
         type: 'select',
       },
@@ -97,7 +103,6 @@ Below is an example of how you can use this component in HTML:
       description: 'Set the justify content.',
     },
     alignItems: {
-      name: 'Align items',
       control: {
         type: 'select',
       },
@@ -110,7 +115,6 @@ Below is an example of how you can use this component in HTML:
       description: 'Set the align items.',
     },
     expandMainColumn: {
-      name: 'Expand main column',
       control: { type: 'boolean' },
       description:
         'This property expands the main column to the maximum width.',
@@ -146,11 +150,9 @@ export const Default: Story = {
       />
     </ng-template>
     <ng-template #bmbMainContent>
-      <bmb-title-content
-        icon="account_balance_wallet"
-        bgIconAppearance="green-light"
+      <bmb-title
         componentTitle="Title"
-        subtitle="Subtitle"
+        subtitle="Sub title"
       />
     </ng-template>
     <ng-template #bmbRightContent>
