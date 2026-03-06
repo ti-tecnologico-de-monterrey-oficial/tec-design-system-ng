@@ -317,7 +317,8 @@
     "type": "service",
     "name": "Spicy Vegetable Sushi Rolls",
     "subtitle": "Food - Prepared Foods",
-    "avatarOrIcon": "https://robohash.org/aperiamdoloribusearum.png?size=50x50&set=set1"
+    "avatarOrIcon": "https://robohash.org/aperiamdoloribusearum.png?size=50x50&set=set1",
+    "description": "Delicious and spicy vegetable sushi rolls made with fresh ingredients. Perfect for a quick and healthy meal."
   },
   {
     "id": 41,

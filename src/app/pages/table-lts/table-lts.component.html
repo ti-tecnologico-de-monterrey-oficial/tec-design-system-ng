@@ -22,6 +22,7 @@
   <div>
     {{ filtersModel() | json }}
   </div>
+  <button (click)="updateColumns()">hide columns</button>
 </div>
 
 <ng-template #conceptTemplate let-row="row">

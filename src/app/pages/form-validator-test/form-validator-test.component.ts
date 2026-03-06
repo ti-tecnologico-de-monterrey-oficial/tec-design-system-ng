@@ -44,7 +44,7 @@ export class FormValidatorTestComponent {
 
   constructor() {
     this.searchSubject
-      .pipe(debounceTime(1000), distinctUntilChanged())
+      .pipe(debounceTime(100), distinctUntilChanged())
       .subscribe((searchTerm) => {
         const searchLower = searchTerm.toLowerCase();
 

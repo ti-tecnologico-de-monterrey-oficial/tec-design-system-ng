@@ -635,6 +635,10 @@ export class TableLtsComponent implements OnInit {
     });
   }
 
+  updateColumns() {
+    this.columns = this.columns.filter((col) => col.def !== 'email');
+  }
+
   handleResetFilters() {
     this.filtersModel.set({});
   }

@@ -22,12 +22,6 @@
     }
   }
 
-  @media (height <= 300px) {
-    height: calc(100% - 2rem) !important;
-    top: 1rem !important;
-    bottom: 1rem !important;
-  }
-
   &[open] {
     animation: fadein 0.3s ease-in forwards;
 
@@ -42,6 +36,15 @@
     > * {
       width: 100%;
       display: block;
+    }
+  }
+
+  &-force-mobile-center {
+    @include mixins.media-query(1000, 'max') {
+      left: 1rem !important;
+      right: 1rem !important;
+      top: 1rem !important;
+      max-height: calc(100dvh - 2rem);
     }
   }
 }

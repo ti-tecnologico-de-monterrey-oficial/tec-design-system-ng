@@ -45,8 +45,6 @@
   <p>{{ getFormControl('htmlText').value }}</p>
   <br />
   <bmb-search-card
-    [componentTitle]="''"
-    [inputPlaceholder]="''"
     [results]="resultList()"
     (triggerSearch)="handleSearchChange($event)"
     [isLoading]="isSearchLoading()"

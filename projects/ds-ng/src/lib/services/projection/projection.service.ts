@@ -24,6 +24,7 @@ export interface IBmbProjectionContent {
   outputContext?: { [key: string]: (value: any) => void };
   focusOnOpen?: boolean;
   dialogClass?: string | string[] | Record<string, boolean>;
+  forceMobileCenter?: boolean;
 }
 
 @Injectable({

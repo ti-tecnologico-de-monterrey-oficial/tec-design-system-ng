@@ -27,6 +27,7 @@ import {
   IBmbHomeCardChatMode,
   IBotType,
   IBmbSearchCardItemResult,
+  BmbProfileComponent,
 } from '../../projects/ds-ng/src/public-api';
 import { MatDialog } from '@angular/material/dialog';
 import { TestComponentComponent } from './components/test-component/test-component.component';
@@ -310,15 +311,53 @@ export class AppComponent {
     },
   ];
 
-  handleUserProfileClick(): void {
-    const data: IBmbNativeModal = {
+  handleUserProfileClick(event: MouseEvent): void {
+    const targetRef = event.currentTarget as HTMLElement;
+    const data = {
       title: 'User Profile',
-      content: TestComponentComponent,
+      content: BmbProfileComponent,
+      targetRef,
       inputContext: {
-        testValue: 'This value is passed from the modal input context',
+        isStudent: false,
+        isMobile: false,
+        enableVersionBack: true,
+        versionBackText: 'Back to previous version',
+        collaboratorData: {
+          userData: {
+            name: 'Paloma Araujo',
+            userImg: 'https://picsum.photos/id/64/200/300',
+            registration: 'L0123456',
+            email: 'mail@tec.mx',
+          },
+          position: 'Desarrollador de Software',
+          area: 'Dirección de Desarrollo-Techvolution 2.0',
+          leader: {
+            userData: {
+              name: 'Arturo González Martínez',
+              userImg: 'https://picsum.photos/id/64/200/300',
+              email: 'mail@tec.mx',
+            },
+            hierarchyLink: 'https://www.example.com',
+            hierarchyTarget: '_blank',
+          },
+          generalist: {
+            userData: {
+              name: 'Ana María Gutiérrez Pineda',
+              userImg: 'https://picsum.photos/id/64/200/300',
+              email: 'mail@tec.mx',
+            },
+            hierarchyLink: 'https://www.example.com',
+            hierarchyTarget: '_blank',
+          },
+        },
+      },
+      outputContext: {
+        handleVersionBack: (event: Event) => {
+          console.log('Version back clicked', event);
+        },
       },
     };
-    this.modalId.set(this.modalService.openModal(data));
+    this.projectionService.openContent(data);
   }
 
   handleCloseModal(): void {

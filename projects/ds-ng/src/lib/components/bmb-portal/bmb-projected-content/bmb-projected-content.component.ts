@@ -35,6 +35,7 @@ export class BmbProjectedContentComponent {
   outputContext = input<{ [key: string]: (value: any) => void }>({});
   focusOnOpen = input<boolean>(true);
   dialogClass = input<string | string[] | Record<string, boolean>>('');
+  forceMobileCenter = input<boolean>(false);
 
   removeContent = output<void>();
 
@@ -164,6 +165,10 @@ export class BmbProjectedContentComponent {
     };
 
     const custom = this.dialogClass();
+
+    if (this.forceMobileCenter()) {
+      baseClasses['bmb_projected-content-force-mobile-center'] = true;
+    }
 
     if (typeof custom === 'string') {
       custom?.split(' ').forEach((c) => (baseClasses[c] = true));
