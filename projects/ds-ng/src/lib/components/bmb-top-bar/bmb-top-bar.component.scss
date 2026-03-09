@@ -258,6 +258,12 @@
         width: auto;
       }
     }
+
+    .bmb_button_icon-active:not(.bmb_button_icon-container),
+    .bmb_button_icon:not(.bmb_button_icon-container,
+    .bmb_button_icon-disabled):active {
+      color: rgb(var(--white-primary));
+    }
   }
 
   &-lang {
