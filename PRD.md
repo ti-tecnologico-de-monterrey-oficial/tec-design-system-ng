@@ -39,7 +39,7 @@ The `@ti-tecnologico-de-monterrey-oficial/ds-ng` is the official Design System o
 
 ### Compatibility
 
-- Angular version: `^17.0.0` and above.
+- Angular version: `^18.0.0` and above.
 - Browser support: Latest versions of Chrome, Firefox, Safari, and Edge.
 
 ### Performance

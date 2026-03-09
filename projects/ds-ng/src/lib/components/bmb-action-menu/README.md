@@ -16,15 +16,15 @@ The `BmbActionMenuComponent` is a standalone Angular component designed to displ
 
 The component accepts the following inputs to customize its behavior and appearance:
 
-| Input              | Type        | Default     | Description                                                                                                |
-| ------------------ | ----------- | ----------- | ---------------------------------------------------------------------------------------------------------- |
-| `title` (required) | `string`    | `undefined` | The title of the action menu.                                                                              |
-| `subtitle`         | `string`    | `undefined` | The subtitle of the action menu.                                                                           |
-| `icon`             | `string`    | `''`        | The name of the icon to display in the header.                                                             |
-| `iconSize`         | `number`    | `24`        | The size of the icon in pixels.                                                                            |
-| `bgIconAppearance` | `IBmbColor` | `undefined` | The background color of the icon.                                                                          |
-| `showHeader`       | `boolean`   | `true`      | Determines whether the header (title, subtitle, and icon) is displayed.                                    |
-| ~~`isAList`~~      | `boolean`   | `true`      | ~~**\[Deprecated]** Previously indicated whether the content should be displayed as a list. Styling is now |
+| Input                 | Type        | Default     | Description                                                                                       |
+| --------------------- | ----------- | ----------- | ------------------------------------------------------------------------------------------------- |
+| `componentTitle` (*)  | `string`    | `undefined` | Required title of the action menu. If not provided, the component will throw an error.           |
+| `subtitle`            | `string`    | `undefined` | The subtitle of the action menu.                                                                  |
+| `icon`                | `string`    | `''`        | The name of the icon to display in the header.                                                    |
+| `iconSize`            | `number`    | `24`        | The size of the icon in pixels.                                                                   |
+| `bgIconAppearance`    | `IBmbColor` | `undefined` | The background color of the icon.                                                                 |
+| `showHeader`          | `boolean`   | `true`      | Determines whether the header (title, subtitle, and icon) is displayed.                           |
+| `title` (deprecated)  | `string`    | `undefined` | Deprecated. Use `componentTitle` instead. Kept only for backward compatibility and logs a warning. |
 
 ---
 
@@ -50,7 +50,6 @@ The component's template is structured as follows:
   [iconSize]="32"
   [bgIconAppearance]="'primary'"
   [showHeader]="true"
-  [isAList]="true"
 >
   <ng-template>
     <p>Menu Item 1</p>
@@ -81,7 +80,6 @@ This lifecycle hook initializes the projected content by converting the `Content
   [iconSize]="24"
   [bgIconAppearance]="'secondary'"
   [showHeader]="true"
-  [isAList]="false"
 >
   <ng-template>
     <button>Option 1</button>

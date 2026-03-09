@@ -229,7 +229,7 @@ If the data is a list of  IBmbDropdownItem type, the preferred options should be
     },
     isMultiSelect: {
       control: { type: 'boolean' },
-      description: '',
+      description: 'Sets the multiple selection in the options selection.',
       table: {
         category: 'Properties',
         type: { summary: 'boolean' },

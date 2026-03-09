@@ -7,10 +7,20 @@
   [gapSize]="gapSize()"
   [dynamicCols]="true"
 >
-  <div bmbLayoutItem [isDynamicItem]="true" class="bmb_three-cols-child">
-    <ng-container [ngTemplateOutlet]="leftContent() ?? null" />
-  </div>
+  @if (leftContent().length) {
+    @for (leftItem of leftContent(); track $index) {
+      <div
+        [id]="'leftContentID'.concat($index.toString())"
+        bmbLayoutItem
+        [isDynamicItem]="true"
+        class="bmb_three-cols-child"
+      >
+        <ng-container [ngTemplateOutlet]="leftItem" />
+      </div>
+    }
+  }
   <div
+    id="mainContentID"
     bmbLayoutItem
     [isDynamicItem]="true"
     class="bmb_three-cols-child"
@@ -18,7 +28,16 @@
   >
     <ng-container [ngTemplateOutlet]="mainContent() ?? null" />
   </div>
-  <div bmbLayoutItem [isDynamicItem]="true" class="bmb_three-cols-child">
-    <ng-container [ngTemplateOutlet]="rightContent() ?? null" />
-  </div>
+  @if (rightContent().length) {
+    @for (rightItem of rightContent(); track $index) {
+      <div
+        [id]="'rightContentID'.concat($index.toString())"
+        bmbLayoutItem
+        [isDynamicItem]="true"
+        class="bmb_three-cols-child"
+      >
+        <ng-container [ngTemplateOutlet]="rightItem" />
+      </div>
+    }
+  }
 </section>

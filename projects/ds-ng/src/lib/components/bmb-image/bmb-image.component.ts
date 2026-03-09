@@ -87,6 +87,14 @@ export class BmbImageComponent {
     this.imageClick.emit({ img, index });
   }
 
+  handleSingleImageClick(): void {
+    this.imageClick.emit({ img: {
+      src: this.src(),
+      mobileSrc: this.mobileSrc(),
+      alt: this.alt(),
+    }, index: 0 });
+  }
+
   handleImageKeyDown(
     event: KeyboardEvent,
     img: BmbImageItem,

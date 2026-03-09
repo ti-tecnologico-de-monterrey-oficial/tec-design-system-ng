@@ -84,6 +84,7 @@
     [outputContext]="dialog.outputContext ?? {}"
     [focusOnOpen]="dialog.focusOnOpen ?? true"
     [dialogClass]="dialog.dialogClass ?? ''"
+    [forceMobileCenter]="dialog.forceMobileCenter ?? false"
     (removeContent)="handleRemoveProjectedContent(dialog.id)"
   ></bmb-projected-content>
 </ng-container>

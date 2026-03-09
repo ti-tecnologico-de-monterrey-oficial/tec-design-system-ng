@@ -70,13 +70,22 @@
       </span>
     }
     @if (!!email()) {
-      <span
-        class="bmb_user-summary_content-wrapper-email"
-        bmbLayoutItem
-        [isDynamicItem]="true"
-      >
-        {{ email() }}
-      </span>
+      @if (emailAsLink) {
+        <bmb-text-link
+          [textLink]="emailAsLink.label"
+          icon=""
+          [link]="emailAsLink.link"
+          [target]="emailAsLink.target!"
+        />
+      } @else {
+        <span
+          class="bmb_user-summary_content-wrapper-email"
+          bmbLayoutItem
+          [isDynamicItem]="true"
+        >
+          {{ email() }}
+        </span>
+      }
     }
     @if (!!role()) {
       <span

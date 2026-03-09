@@ -1,0 +1,19 @@
+<bmb-container-button-base
+  class="bmb_container-button-grade"
+  [isDisable]="isDisable()"
+  [isError]="isError()"
+  (getClickButton)="handleClick($event)"
+>
+  <ng-template #bmbContainerLeft>
+    <bmb-grade-value
+      class="bmb_container-button-grade-score"
+      [score]="score()"
+    />
+  </ng-template>
+  <ng-template #bmbContainerMain>
+    <bmb-title [componentTitle]="componentTitle()" [subtitle]="subtitle()" />
+  </ng-template>
+  <ng-template #bmbContainerRight>
+    <bmb-icon icon="chevron_forward" [size]="24" />
+  </ng-template>
+</bmb-container-button-base>

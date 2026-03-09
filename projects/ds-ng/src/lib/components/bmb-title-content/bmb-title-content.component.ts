@@ -54,7 +54,7 @@ export class BmbTitleContentComponent {
   titleSize = input<string>('5');
   titleFontWeight = input<string>('600');
   subtitle = input<string | undefined>('');
-  subtitleSize = input<string>('4');
+  subtitleSize = input<string>('3');
   subtitleFontWeight = input<string>('400');
   subtitleIcon = input<string>('');
   subtitleIconSize = input<number>(0);

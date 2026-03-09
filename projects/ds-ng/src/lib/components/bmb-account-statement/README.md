@@ -16,28 +16,29 @@ The `BmbAccountStatementComponent` is a standalone Angular component designed to
 
 The component accepts the following inputs to customize its behavior and appearance:
 
-| Input                     | Type       | Default                                                               | Description                                            |
-| ------------------------- | ---------- | --------------------------------------------------------------------- | ------------------------------------------------------ |
-| `title`                   | `string`   | `'Estado de cuenta'`                                                  | The title of the account statement.                    |
-| `progressCircleTitle`     | `string[]` | `['Total a pagar', 'este mes']`                                       | The title displayed inside the progress circle.        |
-| `labelPrimary`            | `string`   | `'Cuota Mensual'`                                                     | The label for the primary amount.                      |
-| `labelSecondary`          | `string`   | `'Pendiente'`                                                         | The label for the secondary amount.                    |
-| `totalCount`              | `number`   | `0`                                                                   | The total amount to be paid.                           |
-| `counter`                 | `number`   | `0`                                                                   | The amount already paid.                               |
-| `progressTitle`           | `string`   | `'Total pagado'`                                                      | The title for the progress bar.                        |
-| `formatDates`             | `string`   | `'yyyy-MM-dd'`                                                        | The date format used for displaying dates.             |
-| `paymentDeadline`         | `string`   | `undefined`                                                           | The payment deadline date.                             |
-| `cutOffDate`              | `string`   | `undefined`                                                           | The cutoff date for the account statement.             |
-| `paymentDeadlineLabel`    | `string`   | `'Fecha límite de pago:'`                                             | The label for the payment deadline.                    |
-| `cutOffDateLabel`         | `string`   | `'Fecha de corte:'`                                                   | The label for the cutoff date.                         |
-| `payButtonLabel`          | `string`   | `'Pagar'`                                                             | The label for the pay button.                          |
-| `backButtonLabel`         | `string`   | `'Regresar'`                                                          | The label for the back button.                         |
-| `modalTitle`              | `string`   | `''`                                                                  | The title of the modal.                                |
-| `modalSubtitle`           | `string`   | `''`                                                                  | The subtitle of the modal.                             |
-| `modalRestLabel`          | `string`   | `'Pagar restante'`                                                    | The label for the "pay remaining" option in the modal. |
-| `modalOtherAmountLabel`   | `string`   | `'Otra cantidad'`                                                     | The label for the "other amount" option in the modal.  |
-| `modalPrimaryButtonLabel` | `string`   | `'Pagar'`                                                             | The label for the primary button in the modal.         |
-| `errorMessage`            | `string`   | `'Error, Este campo es requerido y debe ser una cantidad entre 1 y '` | The error message displayed for invalid inputs.        |
+| Input                     | Type       | Default       | Description                                                            |
+| ------------------------- | ---------- | ------------- | ---------------------------------------------------------------------- |
+| `componentTitle`          | `string`   | `undefined`   | Title of the account statement.                                       |
+| `title` (deprecated)      | `string`   | `undefined`   | Deprecated. Use `componentTitle` instead.                             |
+| `progressCircleTitle`     | `string[]` | `[]`          | Title lines displayed inside the progress circle.                     |
+| `labelPrimary`            | `string`   | `undefined`   | Label for the primary amount.                                         |
+| `labelSecondary`          | `string`   | `undefined`   | Label for the secondary amount.                                       |
+| `totalCount`              | `number`   | `0`           | Total amount to be paid.                                              |
+| `counter`                 | `number`   | `0`           | Amount already paid.                                                  |
+| `progressTitle`           | `string`   | `undefined`   | Title for the progress bar.                                           |
+| `formatDates`             | `string`   | `'yyyy-MM-dd'`| Date format used for displaying dates (e.g., payment deadline).       |
+| `paymentDeadline`         | `string`   | `undefined`   | Payment deadline date.                                                |
+| `cutOffDate`              | `string`   | `undefined`   | Cutoff date for the account statement.                                |
+| `paymentDeadlineLabel`    | `string`   | `undefined`   | Label for the payment deadline.                                       |
+| `cutOffDateLabel`         | `string`   | `undefined`   | Label for the cutoff date.                                            |
+| `payButtonLabel`          | `string`   | `undefined`   | Label for the pay button.                                             |
+| `backButtonLabel`         | `string`   | `undefined`   | Label for the back button.                                            |
+| `modalTitle`              | `string`   | `undefined`   | Title of the payment modal.                                           |
+| `modalSubtitle`           | `string`   | `undefined`   | Subtitle of the payment modal.                                        |
+| `modalRestLabel`          | `string`   | `undefined`   | Label for the "pay remaining" option in the modal.                   |
+| `modalOtherAmountLabel`   | `string`   | `undefined`   | Label for the "other amount" option in the modal.                    |
+| `modalPrimaryButtonLabel` | `string`   | `undefined`   | Label for the primary button in the modal.                            |
+| `errorMessage`            | `string`   | `undefined`   | Custom error message displayed for invalid inputs.                    |
 
 ---
 
@@ -79,9 +80,9 @@ Formats a number as currency.
 
 Enables or disables the custom amount input based on the selected option.
 
-### `onSubmit()`
+### `handleSubmit()`
 
-Handles the form submission for payments, validating the input and emitting the `payEvent`.
+Handles the form submission for payments inside the modal, validating the input and emitting the `payEvent`.
 
 ### `getFormControl(name: string): FormControl`
 
@@ -94,6 +95,10 @@ Updates the error state of the form controls.
 ### `getProgressPercent(): number`
 
 Calculates the progress percentage based on the `counter` and `totalCount`.
+
+### `customHandleClick()`
+
+Handles the click action when using the component without the native modal service, emitting `payEvent` based on the configured amount.
 
 ---
 

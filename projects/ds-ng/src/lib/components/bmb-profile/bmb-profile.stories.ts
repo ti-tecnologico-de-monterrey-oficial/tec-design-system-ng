@@ -280,26 +280,6 @@ IBmbHierarchyProfileData {
         type: { summary: 'string' },
       },
     },
-    versionBackLink: {
-      control: 'text',
-      description: 'Sets the version back link to redirect in the component',
-      table: {
-        category: 'Events',
-        defaultValue: { summary: '' },
-        type: { summary: 'string' },
-      },
-    },
-    versionBackTarget: {
-      control: 'radio',
-      options: ['_blank', '_parent', '_self', '_top'],
-      description:
-        'The target attribute for the link. Refer to https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a for more information.',
-      table: {
-        category: 'Events',
-        type: { summary: 'IBmbTargetLink' },
-        defaultValue: { summary: '_blank' },
-      },
-    },
     enableVersionBack: {
       control: { type: 'boolean' },
       description:
@@ -310,10 +290,17 @@ IBmbHierarchyProfileData {
         type: { summary: 'boolean' },
       },
     },
+    handleVersionBack: getOnClickParam(
+      getOnEvent('version back link', 'handleVersionBack'),
+      '. This should be used as a navigation action.',
+    ),
   },
   args: {
     handleCloseSession: () => {
       console.log('Close session');
+    },
+    handleVersionBack: () => {
+      console.log('Version back');
     },
   },
 } as Meta<typeof BmbProfileComponent>;
@@ -331,14 +318,6 @@ export const Default = {
       email: 'mail@tec.mx',
     },
   },
-  render: (args: any) => ({
-    props: args,
-    template: `
-      <bmb-profile
-        ${attributes(args)}
-      />
-    `,
-  }),
 };
 
 export const StudentMobileExample = {
@@ -366,14 +345,6 @@ export const StudentMobileExample = {
       console.log('Close Profile');
     },
   },
-  render: (args: any) => ({
-    props: args,
-    template: `
-      <bmb-profile
-        ${attributes(args)}
-      />
-    `,
-  }),
 };
 
 export const StudentWebExample = {
@@ -401,15 +372,6 @@ export const StudentWebExample = {
       isExatec: true,
     },
   },
-  render: (args: any) => ({
-    props: args,
-    template: `
-      <bmb-profile
-        [isMobile]="isMobile"
-        [studentData]="studentData"
-      />
-    `,
-  }),
 };
 
 export const CollaboratorMobileExample = {
@@ -449,14 +411,6 @@ export const CollaboratorMobileExample = {
       console.log('Close Profile');
     },
   },
-  render: (args: any) => ({
-    props: args,
-    template: `
-      <bmb-profile
-        ${attributes(args)}
-      />
-    `,
-  }),
 };
 
 export const CollaboratorWebExample = {
@@ -532,19 +486,10 @@ export const StudentMobileVersionBackExample = {
     handleCloseProfile: () => {
       console.log('Close Profile');
     },
-    versionBackTarget: '_blank',
     versionBackLink: 'https://www.example.com',
     versionBackText: 'Regresar a versión anterior mitec',
     enableVersionBack: true,
   },
-  render: (args: any) => ({
-    props: args,
-    template: `
-      <bmb-profile
-        ${attributes(args)}
-      />
-    `,
-  }),
 };
 
 export const StudentWebVersionBackExample = {
@@ -571,8 +516,6 @@ export const StudentWebVersionBackExample = {
         '<a href="https://linkedin.com" target="_blank" rel="noopener">Ir a LinkedIn</a>',
       isExatec: true,
     },
-    versionBackTarget: '_blank',
-    versionBackLink: 'https://www.example.com',
     versionBackText: 'Regresar a versión anterior mitec',
     enableVersionBack: true,
   },
@@ -585,7 +528,6 @@ export const StudentWebVersionBackExample = {
         [enableVersionBack]="enableVersionBack"
         [versionBackText]="versionBackText"
         [versionBackLink]="versionBackLink"
-        [versionBackTarget]="versionBackTarget"
       />
     `,
   }),
@@ -624,8 +566,6 @@ export const CollaboratorMobileVersionBackExample = {
     tecServicesLink: 'https://www.example.com',
     targetLinks: '_blank',
     versionLabel: 'Versión 1.5.10',
-    versionBackTarget: '_blank',
-    versionBackLink: 'https://www.example.com',
     versionBackText: 'Regresar a versión anterior mitec',
     enableVersionBack: true,
     handleCloseProfile: () => {
@@ -680,8 +620,6 @@ export const CollaboratorWebVersionBackExample = {
         hierarchyTarget: '_blank',
       },
     },
-    versionBackTarget: '_blank',
-    versionBackLink: 'https://www.example.com',
     versionBackText: 'Regresar a versión anterior mitec',
     enableVersionBack: true,
   },
