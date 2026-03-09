@@ -108,11 +108,12 @@ ${getBasicExampleBlock('BmbIdentitySpectrumComponent')}
       },
     },
     email: {
-      control: 'text',
-      description: 'Sets the user email.',
+      control: 'object',
+      description:
+        'Sets the user email. Can be string or IBmbLinkConfiguration.',
       table: {
         category: 'Properties',
-        type: { summary: 'string' },
+        type: { summary: 'string | IBmbLinkConfiguration' },
         defaultValue: { summary: '' },
       },
     },
@@ -217,3 +218,13 @@ ${getBasicExampleBlock('BmbIdentitySpectrumComponent')}
 type Story = StoryObj<BmbUserSummaryContentComponent>;
 
 export const Default: Story = {};
+
+export const Emailaslink: Story = {
+  args: {
+    email: {
+      label: 'Send email',
+      link: 'mailto:email@mail.com',
+      target: '_blank',
+    },
+  },
+};

@@ -56,7 +56,7 @@
             type="file"
             [id]="inputId()"
             [name]="name()"
-            [accept]="acceptedExtensions().toString()"
+            [accept]="getAcceptAttribute()"
             [attr.multiple]="multiple() || null"
             [tabindex]="-1"
             (change)="handleFileSelected($event)"

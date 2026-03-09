@@ -12,6 +12,10 @@ import { BmbCheckExternalLinkButtonComponent } from '../bmb-check-external-link-
 import { IBmbTargetLink } from '../../types';
 import { IBmbContrast } from '../../types/colors';
 import { logDeprecatedInput } from '../../utils/logDeprecatedInput';
+import {
+  BmbBoxIconComponent,
+  IBmbBoxIconAppearance,
+} from '../bmb-box-icon/bmb-box-icon.component';
 
 export type IBmbInteractiveIconAppearance =
   | 'red'
@@ -55,7 +59,7 @@ export type IBmbInteractiveIconType = 'regular' | 'button' | 'app_drawer';
   imports: [
     CommonModule,
     BmbCheckExternalLinkButtonComponent,
-    BmbIconComponent,
+    BmbBoxIconComponent,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
@@ -105,10 +109,11 @@ export class BmbInteractiveIconComponent {
 
     if (this.horizontal()) classes.push(`${principalClassName}-horizontal`);
 
-    if (this.appearance())
-      classes.push(`bmb_interactive_icon-${this.appearance()}`);
-
     return classes;
+  }
+
+  get boxColor(): IBmbBoxIconAppearance {
+    return this.appearance() as IBmbBoxIconAppearance;
   }
 
   handleClick(event: MouseEvent): void {

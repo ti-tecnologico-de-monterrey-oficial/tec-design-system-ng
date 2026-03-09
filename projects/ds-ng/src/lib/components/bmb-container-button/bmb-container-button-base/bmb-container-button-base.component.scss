@@ -1,0 +1,48 @@
+@use '../../../../assets/styles/base/rem' as rem;
+
+.bmb_container-button-base {
+  display: inline-flex;
+  min-height: rem.rem_calc(80);
+  padding: var(--bmb-spacing-l);
+  background-color: var(--containers-container-button);
+  border: rem.rem_calc(1) solid var(--general-contrasts-50);
+  outline: rem.rem_calc(1) solid var(--general-contrasts-50);
+  border-radius: var(--bmb-radius-4);
+  color: var(--general-contrasts-100);
+
+  &,
+  > *:first-child,
+  :where(#mainContentID) > *:first-child {
+    width: 100%;
+  }
+
+  &.error:is(:disabled, :not(:hover, :focus, :focus-visible)) {
+    background-color: var(--containers-container-button);
+    border-color: var(--buttons-destructive);
+    outline-color: var(--buttons-destructive);
+
+    :where(#mainContentID) {
+      * {
+        color: var(--buttons-destructive);
+      }
+    }
+  }
+
+  &:focus,
+  &:focus-visible {
+    background-color: var(--buttons-primary-select);
+    color: var(--buttons-alternative-normal);
+    outline-color: var(--buttons-stroke-primary-selected);
+  }
+
+  &:hover:not(:disabled) {
+    background-color: var(--general-contrasts-50);
+    border-color: var(--general-contrasts-50);
+    outline-color: var(--general-contrasts-50);
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+}
