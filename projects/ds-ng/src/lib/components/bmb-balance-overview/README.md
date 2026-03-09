@@ -18,24 +18,23 @@ The component accepts the following inputs to customize its behavior and appeara
 
 ### Progress Circle Inputs
 
-| Input                          | Type                                                    | Default            | Description                                                     |
-| ------------------------------ | ------------------------------------------------------- | ------------------ | --------------------------------------------------------------- |
-| `progressCirclePercent`        | `number`                                                | `0`                | The percentage value to display in the progress circle.         |
-| `progressCircleValue`          | `string`                                                | `'Progress Value'` | The value displayed inside the progress circle.                 |
-| `showProgressCircleValue`      | `boolean`                                               | `true`             | Determines whether the progress circle value is displayed.      |
-| `progressCircleTitle`          | `string                                                 | string[]`          |                                                                 |
-| `'Title'`                      | The title displayed inside or near the progress circle. |
-| `showProgressCircleTitle`      | `boolean`                                               | `true`             | Determines whether the progress circle title is displayed.      |
-| `showProgressCircleBackground` | `boolean`                                               | `true`             | Determines whether the progress circle background is displayed. |
+| Input                          | Type                    | Default   | Description                                                     |
+| ------------------------------ | ----------------------- | --------- | --------------------------------------------------------------- |
+| `progressCirclePercent`        | `number`                | `0`       | The percentage value to display in the progress circle.         |
+| `progressCircleValue`          | `string`                | `''`      | The value displayed inside the progress circle.                 |
+| `showProgressCircleValue`      | `boolean`               | `true`    | Determines whether the progress circle value is displayed.      |
+| `progressCircleTitle`          | `string \| string[]`   | `''`      | The title displayed inside or near the progress circle.         |
+| `showProgressCircleTitle`      | `boolean`               | `true`    | Determines whether the progress circle title is displayed.      |
+| `showProgressCircleBackground` | `boolean`               | `true`    | Determines whether the progress circle background is displayed. |
 
 ### Legend Inputs
 
-| Input            | Type     | Default  | Description                         |
-| ---------------- | -------- | -------- | ----------------------------------- |
-| `labelPrimary`   | `string` | `'Text'` | The label for the primary legend.   |
-| `valuePrimary`   | `string` | `'$0'`   | The value for the primary legend.   |
-| `labelSecondary` | `string` | `'Text'` | The label for the secondary legend. |
-| `valueSecondary` | `string` | `'$0'`   | The value for the secondary legend. |
+| Input            | Type     | Default | Description                         |
+| ---------------- | -------- | ------- | ----------------------------------- |
+| `labelPrimary`   | `string` | `''`    | The label for the primary legend.   |
+| `valuePrimary`   | `string` | `''`    | The value for the primary legend.   |
+| `labelSecondary` | `string` | `''`    | The label for the secondary legend. |
+| `valueSecondary` | `string` | `''`    | The value for the secondary legend. |
 
 ---
 

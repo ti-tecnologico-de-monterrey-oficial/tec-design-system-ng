@@ -16,18 +16,20 @@ The `BmbAccordionComponent` is a standalone Angular component designed to create
 
 The component accepts the following inputs to customize its behavior and appearance:
 
-| Input            | Type       | Default      | Description                                     |                                                          |
-| ---------------- | ---------- | ------------ | ----------------------------------------------- | -------------------------------------------------------- |
-| `borderRadius`   | `SizeNames | SizeNames[]` | `'m'`                                           | Defines the border radius of the accordion.              |
-| `margin`         | `SizeNames | SizeNames[]` | `'m'`                                           | Sets the margin around the accordion.                    |
-| `paddingHeader`  | `SizeNames | SizeNames[]` | `'m'`                                           | Sets the padding for the accordion header.               |
-| `paddingContent` | `SizeNames | SizeNames[]` | `'m'`                                           | Sets the padding for the accordion content.              |
-| `icon`           | `string`   | `''`         | Specifies the icon to display in the header.    |                                                          |
-| `accordionId`    | `number`   | `0`          | Unique identifier for the accordion.            |                                                          |
-| `hideToggle`     | `boolean`  | `false`      | Hides the toggle icon if set to `true`.         |                                                          |
-| `active`         | `boolean`  | `false`      | Marks the accordion as active.                  |                                                          |
-| `disabled`       | `boolean`  | `false`      | Disables the accordion, preventing interaction. |                                                          |
-| `expanded`       | `boolean   | undefined`   | `undefined`                                     | Controls whether the accordion is expanded or collapsed. |
+| Input              | Type                     | Default      | Description                                                                 |
+| ------------------ | ------------------------ | ------------ | --------------------------------------------------------------------------- |
+| `appearanceContrast` | `IBmbContrast`         | `'default'`  | Defines the contrast style of the accordion (`default`, `primary`, etc.).   |
+| `borderRadius`     | `SizeNames \| SizeNames[]` | `'m'`      | Defines the border radius of the accordion.                                 |
+| `margin`           | `SizeNames \| SizeNames[]` | `'m'`      | Sets the margin around the accordion.                                       |
+| `paddingHeader`    | `SizeNames \| SizeNames[]` | `'m'`      | Sets the padding for the accordion header.                                  |
+| `paddingContent`   | `SizeNames \| SizeNames[]` | `'m'`      | Sets the padding for the accordion content.                                 |
+| `icon`             | `string`                 | `''`         | Specifies the icon to display in the header.                                |
+| `accordionId`      | `number \| null`        | `null`       | Unique identifier for the accordion (used when grouping multiple items).    |
+| `hideToggle`       | `boolean`                | `false`      | Hides the toggle icon if set to `true`.                                     |
+| `active`           | `boolean`                | `false`      | Marks the accordion as active.                                              |
+| `disabled`         | `boolean`                | `false`      | Disables the accordion, preventing interaction.                             |
+| `expanded`         | `boolean \| undefined`  | `undefined`  | Controls whether the accordion is expanded (`true`/`false`) or controlled internally (`undefined`). |
+| `lockToggle`       | `boolean`                | `false`      | Locks the toggle action when set to `true`, preventing the accordion state from changing. |
 
 ---
 
