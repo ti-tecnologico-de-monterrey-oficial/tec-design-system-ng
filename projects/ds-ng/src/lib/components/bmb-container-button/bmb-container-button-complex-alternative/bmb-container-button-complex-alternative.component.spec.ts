@@ -6,7 +6,7 @@ import { ComponentRef } from '@angular/core';
 describe('BmbContainerButtonComplexAlternativeComponent', () => {
   let component: BmbContainerButtonComplexAlternativeComponent;
   let fixture: ComponentFixture<BmbContainerButtonComplexAlternativeComponent>;
-let componentRef: ComponentRef<BmbContainerButtonComplexAlternativeComponent>;
+  let componentRef: ComponentRef<BmbContainerButtonComplexAlternativeComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
