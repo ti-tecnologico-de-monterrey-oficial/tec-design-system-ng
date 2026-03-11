@@ -23,6 +23,7 @@ import { BmbThreeColsComponent } from '../../bmb-three-cols/bmb-three-cols.compo
 export class BmbContainerButtonBaseComponent {
   isDisabled = input<boolean>(false);
   isError = input<boolean>(false);
+  isSquare = input<boolean>(false);
 
   getClickButton = output<MouseEvent>();
 
