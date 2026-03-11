@@ -88,7 +88,7 @@ ${getBasicExampleBlock('BmbNoticeCardComponent', '', onCloseEvent.handleExample)
         type: 'object',
       },
       description:
-        'Sets the description of the notice card, this is an object with two pages, each page is a string.',
+        'Sets the description of the notice card. Each page accepts plain text or HTML content for rich text formatting.',
       table: {
         category: 'Properties',
         type: { summary: 'IBmbCardNoticeDescription' },
@@ -163,3 +163,29 @@ ${getBasicExampleBlock('BmbNoticeCardComponent', '', onCloseEvent.handleExample)
 type Story = StoryObj<BmbNoticeCardComponent>;
 
 export const Default: Story = {};
+
+export const WithHtmlContent: Story = {
+  args: {
+    componentTitle: 'Notification Title',
+    description: {
+      pageOne: `
+        <p><b>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</b>
+        Sed do eiusmod tempor incididunt <a href="https://www.youtube.com" target="_blank">consectetur adipiscing elit.</a>
+        Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+      `,
+      pageTwo: `
+        <p><b>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</b>
+        Sed do eiusmod tempor incididunt <a href="https://www.youtube.com" target="_blank">consectetur adipiscing elit.</a>
+        Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+      `,
+    },
+    buttonText: 'Ir',
+    link: 'https://www.youtube.com',
+    onClose: () => {
+      console.log('onClose');
+    },
+    onClickBtn: () => {
+      console.log('onClickBtn');
+    },
+  },
+};

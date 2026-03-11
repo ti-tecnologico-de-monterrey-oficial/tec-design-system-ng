@@ -14,10 +14,11 @@ import { CommonModule } from '@angular/common';
 import { TranslatePipe } from '../../pipes/translations';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { logDeprecatedInput } from '../../utils/logDeprecatedInput';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
 export interface IBmbCardNoticeDescription {
-  pageOne?: string;
-  pageTwo?: string;
+  pageOne?: string | SafeHtml;
+  pageTwo?: string | SafeHtml;
 }
 
 @Component({
@@ -54,7 +55,7 @@ export class BmbNoticeCardComponent {
 
   activeIndex = 0;
 
-  constructor() {
+  constructor(private sanitizer: DomSanitizer) {
     effect(() => {
       const deprecatedTitle = this.title();
       const newTitle = this.componentTitle();
@@ -75,5 +76,12 @@ export class BmbNoticeCardComponent {
 
   handleClickBtn() {
     this.onClickBtn.emit();
+  }
+
+  getPage(page: keyof IBmbCardNoticeDescription): SafeHtml | undefined {
+    const value = this.description()?.[page];
+    return value
+      ? this.sanitizer.bypassSecurityTrustHtml(value as string)
+      : undefined;
   }
 }
