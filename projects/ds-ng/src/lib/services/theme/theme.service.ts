@@ -1,24 +1,44 @@
-import { Inject, Injectable, Optional } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { inject, Injectable, signal } from '@angular/core';
+import { BMB_DEFAULT_THEME } from './theme-config';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ThemeService {
-  constructor(
-    @Optional() @Inject('defaultTheme') private defaultTheme: string,
-  ) {}
+  private defaultTheme = inject(BMB_DEFAULT_THEME, { optional: true }) || 'light';
 
-  private themeSubject = new BehaviorSubject<string>(
-    localStorage.getItem('theme') || this.defaultTheme || 'light',
-  );
-  theme$ = this.themeSubject.asObservable();
+  readonly theme = signal<string>(this.getInitialTheme());
 
-  getDefaultTheme(): string {
-    return this.defaultTheme || 'light';
+  getInitialTheme(): string {
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) return savedTheme;
+    return this.defaultTheme;
   }
 
-  setTheme(theme: string): void {
-    this.themeSubject.next(theme);
+  setInitialTheme(newInitialTheme?: string): void {
+    const savedTheme = localStorage.getItem('theme');
+    if (newInitialTheme && !savedTheme) {
+      this.theme.set(newInitialTheme);
+    } else if (savedTheme) {
+      this.theme.set(savedTheme);
+    } else {
+      this.theme.set(this.defaultTheme);
+    }
+
+    document.documentElement.setAttribute('data-theme', this.theme());
+  }
+
+  setThemeAndSaveInLocal(theme: string): void {
+    this.theme.set(theme);
+    localStorage.setItem('theme', theme);
+    document.documentElement.setAttribute('data-theme', this.theme())
+  }
+
+  getTheme(): string {
+    return this.theme();
+  }
+
+  getDefaultTheme(): string {
+    return this.defaultTheme;
   }
 }
