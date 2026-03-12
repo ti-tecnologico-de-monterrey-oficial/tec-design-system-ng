@@ -1,11 +1,12 @@
 # Novedades ## [v1.6.1-c] -
-2026-03-11
+2026-03-12
 
 ### 🚀 Novedades
 
 * doc(component / tooltip): Se actualizó la documentación del tooltip
 * Formato
 * feat(component/dropdown): se restructuro la funcionalidad de multi selección según diseño en Figma para el componente 'Dropdown'. Se realizaron ajustes en el componente 'input-content' al igual que en 'dropdown-content' para soportarlo. Además se agregaron pruebas en aplicación.
+* [GH-tec-design-system-ng-947] bmb-notice-card allow load html
 * fix(component/action-menu): se corrigió comportamiento inestable para los bloques de código con ciclos o estructuras condicionales.
 * chore: se agregó nuevo componente para implementar título y opcional sub título.
 * feat(component / calendar): Se actualizó la interfaz del calendario
@@ -110,6 +111,8 @@ doc(component / tooltip): Se actualizó la documentación del tooltip
 Formato
 - **feat(component/dropdown): se restructuro la funcionalidad de multi selección según diseño en Figma para el componente 'Dropdown'. Se realizaron ajustes en el componente 'input-content' al igual que en 'dropdown-content' para soportarlo. Además se agregaron pruebas en aplicación.**:
 feat(component/dropdown): se restructuro la funcionalidad de multi selección según diseño en Figma para el componente 'Dropdown'. Se realizaron ajustes en el componente 'input-content' al igual que en 'dropdown-content' para soportarlo. Además se agregaron pruebas en aplicación.
+- **[GH-tec-design-system-ng-947] bmb-notice-card allow load html**:
+[GH-tec-design-system-ng-947] bmb-notice-card allow load html
 - **fix(component/action-menu): se corrigió comportamiento inestable para los bloques de código con ciclos o estructuras condicionales.**:
 fix(component/action-menu): se corrigió comportamiento inestable para los bloques de código con ciclos o estructuras condicionales.
 - **chore: se agregó nuevo componente para implementar título y opcional sub título.**:
@@ -311,6 +314,8 @@ doc(component / tooltip): Se actualizó la documentación del tooltip
 Formato
 - **feat(component/dropdown): se restructuro la funcionalidad de multi selección según diseño en Figma para el componente 'Dropdown'. Se realizaron ajustes en el componente 'input-content' al igual que en 'dropdown-content' para soportarlo. Además se agregaron pruebas en aplicación.**:
 feat(component/dropdown): se restructuro la funcionalidad de multi selección según diseño en Figma para el componente 'Dropdown'. Se realizaron ajustes en el componente 'input-content' al igual que en 'dropdown-content' para soportarlo. Además se agregaron pruebas en aplicación.
+- **[GH-tec-design-system-ng-947] bmb-notice-card allow load html**:
+[GH-tec-design-system-ng-947] bmb-notice-card allow load html
 - **fix(component/action-menu): se corrigió comportamiento inestable para los bloques de código con ciclos o estructuras condicionales.**:
 fix(component/action-menu): se corrigió comportamiento inestable para los bloques de código con ciclos o estructuras condicionales.
 - **chore: se agregó nuevo componente para implementar título y opcional sub título.**:

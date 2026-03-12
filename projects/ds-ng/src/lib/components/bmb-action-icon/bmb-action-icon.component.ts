@@ -77,6 +77,6 @@ export class BmbActionIconComponent {
     }
 
     const clean = sanitizeContent((this.customActionIcon() ?? '').toString());
-    return this.sanitizer.bypassSecurityTrustHtml(clean); // NOSONAR Content is sanitized with DOMPurify - safe to bypass Angular sanitization
+    return this.sanitizer.bypassSecurityTrustHtml(clean);
   }
 }
