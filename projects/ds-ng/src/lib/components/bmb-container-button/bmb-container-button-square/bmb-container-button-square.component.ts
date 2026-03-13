@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -5,14 +6,12 @@ import {
   output,
   ViewEncapsulation,
 } from '@angular/core';
-
-import { BmbContainerButtonBaseComponent } from '../bmb-container-button-base/bmb-container-button-base.component';
 import { BmbIconComponent } from '../../bmb-icon/bmb-icon.component';
 import { BmbTitleComponent } from '../../bmb-title/bmb-title.component';
-import { CommonModule } from '@angular/common';
+import { BmbContainerButtonBaseComponent } from '../bmb-container-button-base/bmb-container-button-base.component';
 
 @Component({
-  selector: 'bmb-container-button-default',
+  selector: 'bmb-container-button-square',
   standalone: true,
   imports: [
     CommonModule,
@@ -20,15 +19,15 @@ import { CommonModule } from '@angular/common';
     BmbIconComponent,
     BmbTitleComponent,
   ],
-  templateUrl: './bmb-container-button-default.component.html',
-  styleUrl: './bmb-container-button-default.component.scss',
+  templateUrl: './bmb-container-button-square.component.html',
+  styleUrl: './bmb-container-button-square.component.scss',
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class BmbContainerButtonDefaultComponent {
+export class BmbContainerButtonSquareComponent {
   componentTitle = input.required<string>();
   subtitle = input<string>('');
-  leftIconName = input<string>('');
+  iconName = input.required<string>();
   iconImageAlt = input<string>('');
   isDisabled = input<boolean>(false);
   isError = input<boolean>(false);
