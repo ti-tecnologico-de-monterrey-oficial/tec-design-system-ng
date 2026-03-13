@@ -440,6 +440,15 @@ By default, the supported language are:
 };
 
 export const DBmbImageParamDesc = {
+  animation: {
+    control: 'select',
+    options: ['fade', 'parallax', 'parallax-fade'],
+    description: 'Carousel animation style.',
+    table: {
+      type: { summary: `'fade' | 'parallax' | 'parallax-fade'` },
+      defaultValue: { summary: 'parallax' },
+    },
+  },
   image: {
     control: {
       type: 'text',

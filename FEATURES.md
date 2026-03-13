@@ -5,21 +5,23 @@
 
 * doc(component / tooltip): Se actualizó la documentación del tooltip
 * Formato
-* feat(component/dropdown): se restructuro la funcionalidad de multi selección según diseño en Figma para el componente 'Dropdown'. Se realizaron ajustes en el componente 'input-content' al igual que en 'dropdown-content' para soportarlo. Además se agregaron pruebas en aplicación.
 * fix(component/action-menu): se corrigió comportamiento inestable para los bloques de código con ciclos o estructuras condicionales.
 * chore: se agregó nuevo componente para implementar título y opcional sub título.
-* feat(component / calendar): Se actualizó la interfaz del calendario
 * chore: se agregó componente con apariencia de la anatomía del componente 'Interactive icon' en su variante de contenedor e ícono.
 * fix(component / tooltip): Se actualizo el componente para una estructura más accesible y se hacen mejoras de rendimiento
 * feature fix
+* feat(component/container-button): se agregó variante 'square' según diseño en Figma. Se implementaron solo las entradas necesarias, además se agregó código necesario en componente base.
 * chore: se actualizó el componente de columnas para permitir de 0-N columnas a la izquierda del contenido principal, lo mismo para el contenido derecho.
 * chore: se implementó componente base con los estilos del diseño y los estados de las variantes de 'Container button' según Figma.
 * fix(component / dropdown): Se actualizaron los estilos para el dropdown cuando el teclado está activo
 * chore: se agregó nuevo componente box-icon para reutilización de código y estilos.
+* feat(component/container-button): se agregó variante 'complex' según diseño en Figma. Se implementaron solo las entradas necesarias.
 * feat(component/container-button): se agregó variante badge según diseño en Figma. Se implementaron solo las entradas necesarias.
+* feat(component/container-button): se agregó variante 'complex alternative' según diseño en Figma. Se implementaron solo las entradas necesarias.
 * Formato
 * chore: se implemeto mixin de CSS para hacer reutilizables los estilos del 'checkbox'.
 * feat(component/container-button): se agregó variante default según diseño en Figma. Se implementaron solo las entradas necesarias.
+* chore: se actualizaron los SVG de los íconos del componente 'tecBot'.
 * fix(component / Profile): Se removió el icono de la izquierda de la tarjeta
 * feat(component/container-button): se agregó variante grades según diseño en Figma. Se implementaron solo las entradas necesarias.
 * fix(component / date picker): Se corrigieron los estilos del datepicker y del date range
@@ -31,6 +33,7 @@
 * feat(component / proejected content): Se agregó un nuevo atributo responsivo
 * chore: escenario de pruebas
 * removed logs
+* chore: se realizó corrección de typo.
 * feat(component/container-button): se agregó clase al componente de 'grade-value' para alineación correcta de elementos.
 * Formato
 * Update bmb-search-card.component.html
@@ -42,28 +45,29 @@
 * feat(component/dropdown): se agrego información visual en el ícono de 'dropdown' para indicar que el listado está abierto o cerrado.
 * chore: se modificaron los escenarios de pruebas para soportar la nueva estructura de estilos.
 * Update bmb-top-bar.component.scss
-* Update bmb-dropdown.component.ts
+* chore: se agregó código para favorecer a la alineación de los elementos.
 * chore: se actualizo el tamaño de la fuente según el diseño del subtitulo en Figma.
 * Formato
 * feat(component/container-button): se agregó ancho de 100% al contenido principal del componente base..
 * chore: se eliminó código no utilizado.
+* Formato
 * chore: se agregó descripción de propiedad.
 * chore: se agregó el evento para verificar si el listado del 'dropdown' está abierto a las pruebas de dicho componente.
 * chore: se eliminó importación no utilizada.
 * chore: se revirtió el cambio.
 * conflict merge
-* feat(component / Notification center): Se actualizaron las propiedades y documentación del Notification center
-* Merge pull request #955 from ti-tecnologico-de-monterrey-oficial/DS01-3072
 * removed title prop from all components
 * test actualizados
 * Formato
 * Identy spectrum: Actualización para agregar area seleccionable.
 * Pruebas unitarias
+* feat(component/dropdown): se restructuro la funcionalidad de multi selección según diseño en Figma para el componente 'Dropdown'. Se realizaron ajustes en el componente 'input-content' al igual que en 'dropdown-content' para soportarlo. Además se agregaron pruebas en aplicación.
 * fix(component / filter card): Se agregó la posibilidad de valores por defecto y se corrigieron problemas de estabilidad en el componente del filter card
 * feat(component/action-menu): Se agregó la posibilidad de agregar un ícono a la derecha. Se realizó refactorización de componente para permitir todas las variantes diseñadas en Figma.
 * chore: refactorización de código para reutilización y organización de estilos.
 * mezcla con fature prod
 * chore: se realizó refactorización en 'AI Chat card' para hacer propias las funcionalidades de variantes según Figma.
+* feat(component / calendar): Se actualizó la interfaz del calendario
 * chore: refactorización para reutilización de Bamboo.
 * doc(component / layout): Se actualizo la app de prueba
 * chore: corrección en plantilla para implementar 'AI chat bar'.
@@ -81,6 +85,7 @@
 * Progress bar
 * fix(component / input with tags): Se corrigió el comportamiento erratico del espacio y se agregó una propiedad para permitir tags personalizadas
 * chore: pruebas.
+* feat(component / Notification center): Se actualizaron las propiedades y documentación del Notification center
 * Delete bmp-home-card-header.stories.ts
 * chore: refactorización para reutilización de Bamboo.
 * chore: se agregó la opción de agregar SVG de 'bots' alternativo a los íconos con color de fondo.
@@ -88,12 +93,14 @@
 * Chore: refactorización de código para reutilización.
 * change variable
 * chore: refactorización de código.
-* fix(component / Input validator): Se evita la dependencia circular en el input validator
 * chore: refactorización para reutilización de Bamboo.
 * fix(component / profile card): Se cambio la funcionalida del switch version en el profile card
 * Formato
-* fix(component / table): Se arreglaron los textos para el filtro de fechas en las tablas
 * chore: refactorización para reutilización de Bamboo.
+* Update bmb-dropdown.component.ts
+* Merge pull request #955 from ti-tecnologico-de-monterrey-oficial/DS01-3072
+* fix(component / Input validator): Se evita la dependencia circular en el input validator
+* fix(component / table): Se arreglaron los textos para el filtro de fechas en las tablas
 * refactorización de componentes
 * Update bmb_web-templates-chat-bar-card.stories.ts
 * chore: se agregó corrección para la posición del icono de cierre.
@@ -108,20 +115,18 @@
 doc(component / tooltip): Se actualizó la documentación del tooltip
 - **Formato**:
 Formato
-- **feat(component/dropdown): se restructuro la funcionalidad de multi selección según diseño en Figma para el componente 'Dropdown'. Se realizaron ajustes en el componente 'input-content' al igual que en 'dropdown-content' para soportarlo. Además se agregaron pruebas en aplicación.**:
-feat(component/dropdown): se restructuro la funcionalidad de multi selección según diseño en Figma para el componente 'Dropdown'. Se realizaron ajustes en el componente 'input-content' al igual que en 'dropdown-content' para soportarlo. Además se agregaron pruebas en aplicación.
 - **fix(component/action-menu): se corrigió comportamiento inestable para los bloques de código con ciclos o estructuras condicionales.**:
 fix(component/action-menu): se corrigió comportamiento inestable para los bloques de código con ciclos o estructuras condicionales.
 - **chore: se agregó nuevo componente para implementar título y opcional sub título.**:
 chore: se agregó nuevo componente para implementar título y opcional sub título.
-- **feat(component / calendar): Se actualizó la interfaz del calendario**:
-feat(component / calendar): Se actualizó la interfaz del calendario
 - **chore: se agregó componente con apariencia de la anatomía del componente 'Interactive icon' en su variante de contenedor e ícono.**:
 chore: se agregó componente con apariencia de la anatomía del componente 'Interactive icon' en su variante de contenedor e ícono.
 - **fix(component / tooltip): Se actualizo el componente para una estructura más accesible y se hacen mejoras de rendimiento**:
 fix(component / tooltip): Se actualizo el componente para una estructura más accesible y se hacen mejoras de rendimiento
 - **feature fix**:
 feature fix
+- **feat(component/container-button): se agregó variante 'square' según diseño en Figma. Se implementaron solo las entradas necesarias, además se agregó código necesario en componente base.**:
+feat(component/container-button): se agregó variante 'square' según diseño en Figma. Se implementaron solo las entradas necesarias, además se agregó código necesario en componente base.
 - **chore: se actualizó el componente de columnas para permitir de 0-N columnas a la izquierda del contenido principal, lo mismo para el contenido derecho.**:
 chore: se actualizó el componente de columnas para permitir de 0-N columnas a la izquierda del contenido principal, lo mismo para el contenido derecho.
 - **chore: se implementó componente base con los estilos del diseño y los estados de las variantes de 'Container button' según Figma.**:
@@ -130,14 +135,20 @@ chore: se implementó componente base con los estilos del diseño y los estados 
 fix(component / dropdown): Se actualizaron los estilos para el dropdown cuando el teclado está activo
 - **chore: se agregó nuevo componente box-icon para reutilización de código y estilos.**:
 chore: se agregó nuevo componente box-icon para reutilización de código y estilos.
+- **feat(component/container-button): se agregó variante 'complex' según diseño en Figma. Se implementaron solo las entradas necesarias.**:
+feat(component/container-button): se agregó variante 'complex' según diseño en Figma. Se implementaron solo las entradas necesarias.
 - **feat(component/container-button): se agregó variante badge según diseño en Figma. Se implementaron solo las entradas necesarias.**:
 feat(component/container-button): se agregó variante badge según diseño en Figma. Se implementaron solo las entradas necesarias.
+- **feat(component/container-button): se agregó variante 'complex alternative' según diseño en Figma. Se implementaron solo las entradas necesarias.**:
+feat(component/container-button): se agregó variante 'complex alternative' según diseño en Figma. Se implementaron solo las entradas necesarias.
 - **Formato**:
 Formato
 - **chore: se implemeto mixin de CSS para hacer reutilizables los estilos del 'checkbox'.**:
 chore: se implemeto mixin de CSS para hacer reutilizables los estilos del 'checkbox'.
 - **feat(component/container-button): se agregó variante default según diseño en Figma. Se implementaron solo las entradas necesarias.**:
 feat(component/container-button): se agregó variante default según diseño en Figma. Se implementaron solo las entradas necesarias.
+- **chore: se actualizaron los SVG de los íconos del componente 'tecBot'.**:
+chore: se actualizaron los SVG de los íconos del componente 'tecBot'.
 - **fix(component / Profile): Se removió el icono de la izquierda de la tarjeta**:
 fix(component / Profile): Se removió el icono de la izquierda de la tarjeta
 - **feat(component/container-button): se agregó variante grades según diseño en Figma. Se implementaron solo las entradas necesarias.**:
@@ -160,6 +171,8 @@ feat(component / proejected content): Se agregó un nuevo atributo responsivo
 chore: escenario de pruebas
 - **removed logs**:
 removed logs
+- **chore: se realizó corrección de typo.**:
+chore: se realizó corrección de typo.
 - **feat(component/container-button): se agregó clase al componente de 'grade-value' para alineación correcta de elementos.**:
 feat(component/container-button): se agregó clase al componente de 'grade-value' para alineación correcta de elementos.
 - **Formato**:
@@ -184,8 +197,8 @@ feat(component/dropdown): se agrego información visual en el ícono de 'dropdow
 chore: se modificaron los escenarios de pruebas para soportar la nueva estructura de estilos.
 - **Update bmb-top-bar.component.scss**:
 Update bmb-top-bar.component.scss
-- **Update bmb-dropdown.component.ts**:
-Update bmb-dropdown.component.ts
+- **chore: se agregó código para favorecer a la alineación de los elementos.**:
+chore: se agregó código para favorecer a la alineación de los elementos.
 - **chore: se actualizo el tamaño de la fuente según el diseño del subtitulo en Figma.**:
 chore: se actualizo el tamaño de la fuente según el diseño del subtitulo en Figma.
 - **Formato**:
@@ -194,6 +207,8 @@ Formato
 feat(component/container-button): se agregó ancho de 100% al contenido principal del componente base..
 - **chore: se eliminó código no utilizado.**:
 chore: se eliminó código no utilizado.
+- **Formato**:
+Formato
 - **chore: se agregó descripción de propiedad.**:
 chore: se agregó descripción de propiedad.
 - **chore: se agregó el evento para verificar si el listado del 'dropdown' está abierto a las pruebas de dicho componente.**:
@@ -204,10 +219,6 @@ chore: se eliminó importación no utilizada.
 chore: se revirtió el cambio.
 - **conflict merge**:
 conflict merge
-- **feat(component / Notification center): Se actualizaron las propiedades y documentación del Notification center**:
-feat(component / Notification center): Se actualizaron las propiedades y documentación del Notification center
-- **Merge pull request #955 from ti-tecnologico-de-monterrey-oficial/DS01-3072**:
-Merge pull request #955 from ti-tecnologico-de-monterrey-oficial/DS01-3072
 - **removed title prop from all components**:
 removed title prop from all components
 - **test actualizados**:
@@ -218,6 +229,8 @@ Formato
 Identy spectrum: Actualización para agregar area seleccionable.
 - **Pruebas unitarias**:
 Pruebas unitarias
+- **feat(component/dropdown): se restructuro la funcionalidad de multi selección según diseño en Figma para el componente 'Dropdown'. Se realizaron ajustes en el componente 'input-content' al igual que en 'dropdown-content' para soportarlo. Además se agregaron pruebas en aplicación.**:
+feat(component/dropdown): se restructuro la funcionalidad de multi selección según diseño en Figma para el componente 'Dropdown'. Se realizaron ajustes en el componente 'input-content' al igual que en 'dropdown-content' para soportarlo. Además se agregaron pruebas en aplicación.
 - **fix(component / filter card): Se agregó la posibilidad de valores por defecto y se corrigieron problemas de estabilidad en el componente del filter card**:
 fix(component / filter card): Se agregó la posibilidad de valores por defecto y se corrigieron problemas de estabilidad en el componente del filter card
 - **feat(component/action-menu): Se agregó la posibilidad de agregar un ícono a la derecha. Se realizó refactorización de componente para permitir todas las variantes diseñadas en Figma.**:
@@ -228,6 +241,8 @@ chore: refactorización de código para reutilización y organización de estilo
 mezcla con fature prod
 - **chore: se realizó refactorización en 'AI Chat card' para hacer propias las funcionalidades de variantes según Figma.**:
 chore: se realizó refactorización en 'AI Chat card' para hacer propias las funcionalidades de variantes según Figma.
+- **feat(component / calendar): Se actualizó la interfaz del calendario**:
+feat(component / calendar): Se actualizó la interfaz del calendario
 - **chore: refactorización para reutilización de Bamboo.**:
 chore: refactorización para reutilización de Bamboo.
 - **doc(component / layout): Se actualizo la app de prueba**:
@@ -262,6 +277,8 @@ Progress bar
 fix(component / input with tags): Se corrigió el comportamiento erratico del espacio y se agregó una propiedad para permitir tags personalizadas
 - **chore: pruebas.**:
 chore: pruebas.
+- **feat(component / Notification center): Se actualizaron las propiedades y documentación del Notification center**:
+feat(component / Notification center): Se actualizaron las propiedades y documentación del Notification center
 - **Delete bmp-home-card-header.stories.ts**:
 Delete bmp-home-card-header.stories.ts
 - **chore: refactorización para reutilización de Bamboo.**:
@@ -276,18 +293,22 @@ Chore: refactorización de código para reutilización.
 change variable
 - **chore: refactorización de código.**:
 chore: refactorización de código.
-- **fix(component / Input validator): Se evita la dependencia circular en el input validator**:
-fix(component / Input validator): Se evita la dependencia circular en el input validator
 - **chore: refactorización para reutilización de Bamboo.**:
 chore: refactorización para reutilización de Bamboo.
 - **fix(component / profile card): Se cambio la funcionalida del switch version en el profile card**:
 fix(component / profile card): Se cambio la funcionalida del switch version en el profile card
 - **Formato**:
 Formato
-- **fix(component / table): Se arreglaron los textos para el filtro de fechas en las tablas**:
-fix(component / table): Se arreglaron los textos para el filtro de fechas en las tablas
 - **chore: refactorización para reutilización de Bamboo.**:
 chore: refactorización para reutilización de Bamboo.
+- **Update bmb-dropdown.component.ts**:
+Update bmb-dropdown.component.ts
+- **Merge pull request #955 from ti-tecnologico-de-monterrey-oficial/DS01-3072**:
+Merge pull request #955 from ti-tecnologico-de-monterrey-oficial/DS01-3072
+- **fix(component / Input validator): Se evita la dependencia circular en el input validator**:
+fix(component / Input validator): Se evita la dependencia circular en el input validator
+- **fix(component / table): Se arreglaron los textos para el filtro de fechas en las tablas**:
+fix(component / table): Se arreglaron los textos para el filtro de fechas en las tablas
 - **refactorización de componentes**:
 refactorización de componentes
 - **Update bmb_web-templates-chat-bar-card.stories.ts**:
@@ -309,20 +330,18 @@ chore: se quito valor de ejemplo para el sub título.
 doc(component / tooltip): Se actualizó la documentación del tooltip
 - **Formato**:
 Formato
-- **feat(component/dropdown): se restructuro la funcionalidad de multi selección según diseño en Figma para el componente 'Dropdown'. Se realizaron ajustes en el componente 'input-content' al igual que en 'dropdown-content' para soportarlo. Además se agregaron pruebas en aplicación.**:
-feat(component/dropdown): se restructuro la funcionalidad de multi selección según diseño en Figma para el componente 'Dropdown'. Se realizaron ajustes en el componente 'input-content' al igual que en 'dropdown-content' para soportarlo. Además se agregaron pruebas en aplicación.
 - **fix(component/action-menu): se corrigió comportamiento inestable para los bloques de código con ciclos o estructuras condicionales.**:
 fix(component/action-menu): se corrigió comportamiento inestable para los bloques de código con ciclos o estructuras condicionales.
 - **chore: se agregó nuevo componente para implementar título y opcional sub título.**:
 chore: se agregó nuevo componente para implementar título y opcional sub título.
-- **feat(component / calendar): Se actualizó la interfaz del calendario**:
-feat(component / calendar): Se actualizó la interfaz del calendario
 - **chore: se agregó componente con apariencia de la anatomía del componente 'Interactive icon' en su variante de contenedor e ícono.**:
 chore: se agregó componente con apariencia de la anatomía del componente 'Interactive icon' en su variante de contenedor e ícono.
 - **fix(component / tooltip): Se actualizo el componente para una estructura más accesible y se hacen mejoras de rendimiento**:
 fix(component / tooltip): Se actualizo el componente para una estructura más accesible y se hacen mejoras de rendimiento
 - **feature fix**:
 feature fix
+- **feat(component/container-button): se agregó variante 'square' según diseño en Figma. Se implementaron solo las entradas necesarias, además se agregó código necesario en componente base.**:
+feat(component/container-button): se agregó variante 'square' según diseño en Figma. Se implementaron solo las entradas necesarias, además se agregó código necesario en componente base.
 - **chore: se actualizó el componente de columnas para permitir de 0-N columnas a la izquierda del contenido principal, lo mismo para el contenido derecho.**:
 chore: se actualizó el componente de columnas para permitir de 0-N columnas a la izquierda del contenido principal, lo mismo para el contenido derecho.
 - **chore: se implementó componente base con los estilos del diseño y los estados de las variantes de 'Container button' según Figma.**:
@@ -331,14 +350,20 @@ chore: se implementó componente base con los estilos del diseño y los estados 
 fix(component / dropdown): Se actualizaron los estilos para el dropdown cuando el teclado está activo
 - **chore: se agregó nuevo componente box-icon para reutilización de código y estilos.**:
 chore: se agregó nuevo componente box-icon para reutilización de código y estilos.
+- **feat(component/container-button): se agregó variante 'complex' según diseño en Figma. Se implementaron solo las entradas necesarias.**:
+feat(component/container-button): se agregó variante 'complex' según diseño en Figma. Se implementaron solo las entradas necesarias.
 - **feat(component/container-button): se agregó variante badge según diseño en Figma. Se implementaron solo las entradas necesarias.**:
 feat(component/container-button): se agregó variante badge según diseño en Figma. Se implementaron solo las entradas necesarias.
+- **feat(component/container-button): se agregó variante 'complex alternative' según diseño en Figma. Se implementaron solo las entradas necesarias.**:
+feat(component/container-button): se agregó variante 'complex alternative' según diseño en Figma. Se implementaron solo las entradas necesarias.
 - **Formato**:
 Formato
 - **chore: se implemeto mixin de CSS para hacer reutilizables los estilos del 'checkbox'.**:
 chore: se implemeto mixin de CSS para hacer reutilizables los estilos del 'checkbox'.
 - **feat(component/container-button): se agregó variante default según diseño en Figma. Se implementaron solo las entradas necesarias.**:
 feat(component/container-button): se agregó variante default según diseño en Figma. Se implementaron solo las entradas necesarias.
+- **chore: se actualizaron los SVG de los íconos del componente 'tecBot'.**:
+chore: se actualizaron los SVG de los íconos del componente 'tecBot'.
 - **fix(component / Profile): Se removió el icono de la izquierda de la tarjeta**:
 fix(component / Profile): Se removió el icono de la izquierda de la tarjeta
 - **feat(component/container-button): se agregó variante grades según diseño en Figma. Se implementaron solo las entradas necesarias.**:
@@ -361,6 +386,8 @@ feat(component / proejected content): Se agregó un nuevo atributo responsivo
 chore: escenario de pruebas
 - **removed logs**:
 removed logs
+- **chore: se realizó corrección de typo.**:
+chore: se realizó corrección de typo.
 - **feat(component/container-button): se agregó clase al componente de 'grade-value' para alineación correcta de elementos.**:
 feat(component/container-button): se agregó clase al componente de 'grade-value' para alineación correcta de elementos.
 - **Formato**:
@@ -385,8 +412,8 @@ feat(component/dropdown): se agrego información visual en el ícono de 'dropdow
 chore: se modificaron los escenarios de pruebas para soportar la nueva estructura de estilos.
 - **Update bmb-top-bar.component.scss**:
 Update bmb-top-bar.component.scss
-- **Update bmb-dropdown.component.ts**:
-Update bmb-dropdown.component.ts
+- **chore: se agregó código para favorecer a la alineación de los elementos.**:
+chore: se agregó código para favorecer a la alineación de los elementos.
 - **chore: se actualizo el tamaño de la fuente según el diseño del subtitulo en Figma.**:
 chore: se actualizo el tamaño de la fuente según el diseño del subtitulo en Figma.
 - **Formato**:
@@ -395,6 +422,8 @@ Formato
 feat(component/container-button): se agregó ancho de 100% al contenido principal del componente base..
 - **chore: se eliminó código no utilizado.**:
 chore: se eliminó código no utilizado.
+- **Formato**:
+Formato
 - **chore: se agregó descripción de propiedad.**:
 chore: se agregó descripción de propiedad.
 - **chore: se agregó el evento para verificar si el listado del 'dropdown' está abierto a las pruebas de dicho componente.**:
@@ -405,10 +434,6 @@ chore: se eliminó importación no utilizada.
 chore: se revirtió el cambio.
 - **conflict merge**:
 conflict merge
-- **feat(component / Notification center): Se actualizaron las propiedades y documentación del Notification center**:
-feat(component / Notification center): Se actualizaron las propiedades y documentación del Notification center
-- **Merge pull request #955 from ti-tecnologico-de-monterrey-oficial/DS01-3072**:
-Merge pull request #955 from ti-tecnologico-de-monterrey-oficial/DS01-3072
 - **removed title prop from all components**:
 removed title prop from all components
 - **test actualizados**:
@@ -419,6 +444,8 @@ Formato
 Identy spectrum: Actualización para agregar area seleccionable.
 - **Pruebas unitarias**:
 Pruebas unitarias
+- **feat(component/dropdown): se restructuro la funcionalidad de multi selección según diseño en Figma para el componente 'Dropdown'. Se realizaron ajustes en el componente 'input-content' al igual que en 'dropdown-content' para soportarlo. Además se agregaron pruebas en aplicación.**:
+feat(component/dropdown): se restructuro la funcionalidad de multi selección según diseño en Figma para el componente 'Dropdown'. Se realizaron ajustes en el componente 'input-content' al igual que en 'dropdown-content' para soportarlo. Además se agregaron pruebas en aplicación.
 - **fix(component / filter card): Se agregó la posibilidad de valores por defecto y se corrigieron problemas de estabilidad en el componente del filter card**:
 fix(component / filter card): Se agregó la posibilidad de valores por defecto y se corrigieron problemas de estabilidad en el componente del filter card
 - **feat(component/action-menu): Se agregó la posibilidad de agregar un ícono a la derecha. Se realizó refactorización de componente para permitir todas las variantes diseñadas en Figma.**:
@@ -429,6 +456,8 @@ chore: refactorización de código para reutilización y organización de estilo
 mezcla con fature prod
 - **chore: se realizó refactorización en 'AI Chat card' para hacer propias las funcionalidades de variantes según Figma.**:
 chore: se realizó refactorización en 'AI Chat card' para hacer propias las funcionalidades de variantes según Figma.
+- **feat(component / calendar): Se actualizó la interfaz del calendario**:
+feat(component / calendar): Se actualizó la interfaz del calendario
 - **chore: refactorización para reutilización de Bamboo.**:
 chore: refactorización para reutilización de Bamboo.
 - **doc(component / layout): Se actualizo la app de prueba**:
@@ -463,6 +492,8 @@ Progress bar
 fix(component / input with tags): Se corrigió el comportamiento erratico del espacio y se agregó una propiedad para permitir tags personalizadas
 - **chore: pruebas.**:
 chore: pruebas.
+- **feat(component / Notification center): Se actualizaron las propiedades y documentación del Notification center**:
+feat(component / Notification center): Se actualizaron las propiedades y documentación del Notification center
 - **Delete bmp-home-card-header.stories.ts**:
 Delete bmp-home-card-header.stories.ts
 - **chore: refactorización para reutilización de Bamboo.**:
@@ -477,18 +508,22 @@ Chore: refactorización de código para reutilización.
 change variable
 - **chore: refactorización de código.**:
 chore: refactorización de código.
-- **fix(component / Input validator): Se evita la dependencia circular en el input validator**:
-fix(component / Input validator): Se evita la dependencia circular en el input validator
 - **chore: refactorización para reutilización de Bamboo.**:
 chore: refactorización para reutilización de Bamboo.
 - **fix(component / profile card): Se cambio la funcionalida del switch version en el profile card**:
 fix(component / profile card): Se cambio la funcionalida del switch version en el profile card
 - **Formato**:
 Formato
-- **fix(component / table): Se arreglaron los textos para el filtro de fechas en las tablas**:
-fix(component / table): Se arreglaron los textos para el filtro de fechas en las tablas
 - **chore: refactorización para reutilización de Bamboo.**:
 chore: refactorización para reutilización de Bamboo.
+- **Update bmb-dropdown.component.ts**:
+Update bmb-dropdown.component.ts
+- **Merge pull request #955 from ti-tecnologico-de-monterrey-oficial/DS01-3072**:
+Merge pull request #955 from ti-tecnologico-de-monterrey-oficial/DS01-3072
+- **fix(component / Input validator): Se evita la dependencia circular en el input validator**:
+fix(component / Input validator): Se evita la dependencia circular en el input validator
+- **fix(component / table): Se arreglaron los textos para el filtro de fechas en las tablas**:
+fix(component / table): Se arreglaron los textos para el filtro de fechas en las tablas
 - **refactorización de componentes**:
 refactorización de componentes
 - **Update bmb_web-templates-chat-bar-card.stories.ts**:

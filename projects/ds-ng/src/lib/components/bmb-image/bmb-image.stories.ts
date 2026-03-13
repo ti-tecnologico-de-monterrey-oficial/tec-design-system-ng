@@ -88,6 +88,7 @@ ${getBasicExampleBlock('BmbImageComponent')}
     enableZoom: DBmbImageParamDesc.enableZoom,
     isBlurredBackdrop: DBmbImageParamDesc.isBlurredBackdrop,
     images: DBmbImageParamDesc.images,
+    animation: DBmbImageParamDesc.animation,
     imageClick: {
       control: null,
       description: 'Event emitted when an image is clicked.',
@@ -251,5 +252,29 @@ handleImageClick(event: { img: BmbImageItem; index: number }) {
         `,
       },
     },
+  },
+};
+
+export const CarouselFade: Story = {
+  name: 'Carousel - Fade animation',
+  args: {
+    animation: 'fade',
+    images: Carousel.args?.images,
+  },
+};
+
+export const CarouselParallax: Story = {
+  name: 'Carousel - Parallax animation',
+  args: {
+    animation: 'parallax',
+    images: Carousel.args?.images,
+  },
+};
+
+export const CarouselParallaxFade: Story = {
+  name: 'Carousel - Parallax + Fade animation',
+  args: {
+    animation: 'parallax-fade',
+    images: Carousel.args?.images,
   },
 };
