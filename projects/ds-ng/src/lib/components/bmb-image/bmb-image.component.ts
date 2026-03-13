@@ -37,6 +37,8 @@ export class BmbImageComponent implements OnDestroy {
   images = input<BmbImageItem[] | null>(null);
 
   imageClick = output<{ img: BmbImageItem; index: number }>();
+  animation = input<'fade' | 'parallax' | 'parallax-fade'>('parallax');
+  animationClass = computed(() => `bmb-carousel-${this.animation()}`);
 
   currentIndex = signal(0);
   isCarousel = computed(
@@ -165,5 +167,37 @@ export class BmbImageComponent implements OnDestroy {
     if (event.key === 'Enter' || event.key === ' ') {
       this.handleImageClick(img, index);
     }
+  }
+
+  carouselClass = computed(() => {
+    if (!this.isCarousel()) return '';
+
+    return `bmb_image-carousel-${this.animation()}`;
+  });
+
+  getImageStyle(index: number) {
+    const position = index - this.currentIndex();
+
+    if (this.animation() === 'parallax') {
+      return {
+        transform: `translateX(${position * 100}%)`,
+      };
+    }
+
+    if (this.animation() === 'fade') {
+      return {
+        opacity: position === 0 ? 1 : 0,
+        zIndex: position === 0 ? 2 : 1,
+      };
+    }
+
+    if (this.animation() === 'parallax-fade') {
+      return {
+        transform: `translateX(${position * 100}%)`,
+        opacity: position === 0 ? 1 : 0.4,
+      };
+    }
+
+    return {};
   }
 }
