@@ -1,7 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/angular';
 import { BmbImageComponent } from './bmb-image.component';
 import {
-  attributes,
   DESIGN_SYSTEM_TITLE,
   getArchitectureSection,
   getBasicExampleBlock,
@@ -9,6 +8,44 @@ import {
 } from '../../utils/doc/utils';
 import { DBmbImageParamDesc } from '../../utils/doc/parameterDescriptions';
 import { BmbImageItem } from './types';
+import { Component, signal } from '@angular/core';
+
+@Component({
+  selector: 'storybook-bmb-image-signal-host',
+  standalone: true,
+  imports: [BmbImageComponent],
+  template: `
+    <bmb-image
+      [images]="images()"
+      alt="Dynamic images example"
+      [width]="'clamp(200px, 100%, calc(50dvw - 3rem))'"
+      [ratio]="'1/1'"
+      (imageClick)="handleImageClick($event)"
+    />
+  `,
+})
+class StorybookBmbImageSignalHostComponent {
+  images = signal<BmbImageItem[]>([]);
+
+  constructor() {
+    setTimeout(() => {
+      this.images.set([
+        {
+          src: 'https://images.unsplash.com/photo-1546182990-dffeafbe841d',
+          alt: 'Image 1',
+        },
+        {
+          src: 'https://images.unsplash.com/photo-1507149833265-60c372daea22',
+          alt: 'Image 2',
+        },
+      ]);
+    }, 2000);
+  }
+
+  handleImageClick(event: { img: BmbImageItem; index: number }) {
+    console.log('Image clicked', event);
+  }
+}
 
 export default {
   title: 'Components/Images/Image',
@@ -39,6 +76,8 @@ ${getBasicExampleBlock('BmbImageComponent')}
     },
   },
   argTypes: {
+    autoplay: DBmbImageParamDesc.autoplay,
+    autoplayInterval: DBmbImageParamDesc.autoplayInterval,
     src: DBmbImageParamDesc.src,
     mobileSrc: DBmbImageParamDesc.mobileSrc,
     alt: DBmbImageParamDesc.alt,
@@ -79,7 +118,7 @@ type Story = StoryObj<BmbImageComponent>;
 export const Default: Story = {};
 
 export const Carousel: Story = {
-  name: 'Example carousel',
+  name: 'Carousel',
   args: {
     images: [
       {
@@ -99,5 +138,118 @@ export const Carousel: Story = {
         alt: 'Image 3',
       },
     ],
+  },
+};
+
+export const ClickEvent: Story = {
+  name: 'Carousel - Click event',
+  args: {
+    images: [
+      {
+        src: 'https://images.unsplash.com/photo-1546182990-dffeafbe841d',
+        alt: 'Image 1',
+      },
+      {
+        src: 'https://images.unsplash.com/photo-1507149833265-60c372daea22',
+        alt: 'Image 2',
+      },
+    ],
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Clicking on an image should emit the `imageClick` event so consumers can implement custom logic. In this example, the event is logged to the console.',
+      },
+    },
+  },
+};
+
+export const CarouselAutoplay: Story = {
+  name: 'Carousel - Autoplay',
+  args: {
+    autoplay: true,
+    autoplayInterval: 2000,
+    images: [
+      {
+        src: 'https://farm2.staticflickr.com/1919/45579541712_f58c1fd0ed_o.jpg',
+        alt: 'Image 1',
+      },
+      {
+        src: 'https://images.unsplash.com/photo-1546182990-dffeafbe841d',
+        alt: 'Image 2',
+      },
+      {
+        src: 'https://images.unsplash.com/photo-1507149833265-60c372daea22',
+        alt: 'Image 3',
+      },
+    ],
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'The carousel automatically transitions between images using the autoplay feature.',
+      },
+    },
+  },
+};
+
+export const DynamicImagesWithSignal: Story = {
+  name: 'Carousel - Dynamic images with signal',
+  render: () => ({
+    moduleMetadata: {
+      imports: [StorybookBmbImageSignalHostComponent],
+    },
+    template: `<storybook-bmb-image-signal-host></storybook-bmb-image-signal-host>`,
+  }),
+  parameters: {
+    docs: {
+      description: {
+        story: `
+Example showing how **bmb-image** can receive images from an Angular **signal**.
+
+### HTML
+
+\`\`\`html
+<bmb-image
+  [images]="images()"
+  alt="Dynamic images example"
+  ratio="1/1"
+  borderRadius="m"
+  (imageClick)="handleImageClick($event)"
+></bmb-image>
+\`\`\`
+
+### TypeScript
+
+\`\`\`ts
+import { signal } from '@angular/core';
+import { BmbImageItem } from './types';
+
+images = signal<BmbImageItem[]>([]);
+
+constructor() {
+  setTimeout(() => {
+    this.images.set([
+      {
+        src: 'https://images.unsplash.com/photo-1546182990-dffeafbe841d',
+        alt: 'Image 1'
+      },
+      {
+        src: 'https://images.unsplash.com/photo-1507149833265-60c372daea22',
+        alt: 'Image 2'
+      }
+    ]);
+  }, 2000);
+}
+
+handleImageClick(event: { img: BmbImageItem; index: number }) {
+  console.log('Image clicked', event);
+}
+\`\`\`
+        `,
+      },
+    },
   },
 };

@@ -2,7 +2,9 @@ import {
   ChangeDetectionStrategy,
   Component,
   computed,
+  effect,
   input,
+  OnDestroy,
   output,
   signal,
   ViewEncapsulation,
@@ -22,7 +24,7 @@ import { BmbButtonIconComponent } from '../bmb-button-icon/bmb-button-icon.compo
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class BmbImageComponent {
+export class BmbImageComponent implements OnDestroy {
   src = input<string>('');
   mobileSrc = input<string>();
   alt = input<string>('');
@@ -44,15 +46,72 @@ export class BmbImageComponent {
       !this.isBlurredBackdrop(),
   );
 
-  currentImage = computed(() => {
-    if (!this.isCarousel()) {
-      return {
-        src: this.src(),
-        mobileSrc: this.mobileSrc(),
-        alt: this.alt(),
-      };
+  private autoplayTimer?: ReturnType<typeof setInterval>;
+  autoplay = input<boolean>(false);
+  autoplayInterval = input<number>(5000);
+
+  constructor() {
+    effect(
+      () => {
+        const imgs = this.images();
+        const total = imgs?.length ?? 0;
+
+        if (total === 0) {
+          this.currentIndex.set(0);
+          return;
+        }
+
+        if (this.currentIndex() >= total) {
+          this.currentIndex.set(0);
+        }
+      },
+      { allowSignalWrites: true },
+    );
+
+    effect(
+      () => {
+        const autoplayEnabled = this.autoplay();
+        const interval = this.autoplayInterval();
+        const carousel = this.isCarousel();
+
+        if (this.autoplayTimer) {
+          clearInterval(this.autoplayTimer);
+          this.autoplayTimer = undefined;
+        }
+
+        if (autoplayEnabled && carousel) {
+          this.autoplayTimer = setInterval(() => {
+            this.next();
+          }, interval);
+        }
+      },
+      { allowSignalWrites: true },
+    );
+  }
+
+  ngOnDestroy() {
+    if (this.autoplayTimer) {
+      clearInterval(this.autoplayTimer);
     }
-    return this.images()![this.currentIndex()];
+  }
+
+  currentImage = computed(() => {
+    const carouselImages = this.images();
+
+    if (
+      this.isCarousel() &&
+      carouselImages &&
+      carouselImages.length > 0 &&
+      carouselImages[this.currentIndex()]
+    ) {
+      return carouselImages[this.currentIndex()];
+    }
+
+    return {
+      src: this.src(),
+      mobileSrc: this.mobileSrc(),
+      alt: this.alt(),
+    };
   });
 
   encodedURL = computed(() => encodeURI(this.currentImage().src));
@@ -88,11 +147,14 @@ export class BmbImageComponent {
   }
 
   handleSingleImageClick(): void {
-    this.imageClick.emit({ img: {
-      src: this.src(),
-      mobileSrc: this.mobileSrc(),
-      alt: this.alt(),
-    }, index: 0 });
+    this.imageClick.emit({
+      img: {
+        src: this.src(),
+        mobileSrc: this.mobileSrc(),
+        alt: this.alt(),
+      },
+      index: 0,
+    });
   }
 
   handleImageKeyDown(
