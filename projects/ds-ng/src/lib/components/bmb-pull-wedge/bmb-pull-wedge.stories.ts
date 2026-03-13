@@ -64,12 +64,11 @@ ${RELEVANT_TITLE.note} Minimum height: 50px.`,
         defaultValue: getDefaultValueControl(100),
       },
     },
-    isOpen: getPropertyParamDesc(
-      'open pull wedge',
-      'boolean',
-      false,
-      ' Otherwise it sets it as closed.',
-    ),
+    isOpen: getPropertyParamDesc('open pull wedge', {
+      controlType: 'boolean',
+      defaultSummary: false,
+      additionalDescription: ' Otherwise it sets it as closed.',
+    }),
   },
   args: {
     initialHeight: 300,

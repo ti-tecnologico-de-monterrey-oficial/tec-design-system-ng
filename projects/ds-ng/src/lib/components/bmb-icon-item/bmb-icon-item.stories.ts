@@ -61,13 +61,12 @@ ${getBasicExampleBlock('BmbIconItemComponent')}
         type: { summary: 'string (required)' },
       },
     },
-    showDivider: getPropertyParamDesc(
-      '',
-      'boolean',
-      true,
-      '',
-      'Shows a divider at the bottom or the element when true.',
-    ),
+    showDivider: getPropertyParamDesc('', {
+      controlType: 'boolean',
+      defaultSummary: true,
+      alternativeDescription:
+        'Shows a divider at the bottom or the element when true.',
+    }),
   },
   args: {
     icon: 'calendar_month',

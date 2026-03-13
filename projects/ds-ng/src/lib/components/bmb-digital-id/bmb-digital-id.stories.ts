@@ -29,13 +29,10 @@ const onCloseEvent: IBmbOnEvent = getOnEvent('close', 'close'),
     'onSecondaryClick',
   );
 const getPropDesc = (name: string) => {
-  const propDesc = getPropertyParamDesc(
-    '',
-    'text',
-    false,
-    '',
-    `Sets the ${name} that will be shown on the profile.`,
-  );
+  const propDesc = getPropertyParamDesc('', {
+    defaultSummary: false,
+    alternativePropName: ` ${name} that will be shown on the profile.`,
+  });
 
   return {
     ...propDesc,
@@ -139,30 +136,29 @@ ${getBasicExampleBlock(
         '<br/><br/>This image will be shown as the background on the profile.',
       ),
     },
-    hideButton: getPropertyParamDesc('button to hidden', 'boolean', false),
+    hideButton: getPropertyParamDesc('button to hidden', {
+      controlType: 'boolean',
+      defaultSummary: false,
+    }),
     close: getOnClickParam(onCloseEvent),
     access: getOnClickParam(onAccessEvent),
     onSecondaryClick: getOnClickParam(onSecondaryClickEvent),
     disableSecondaryButton: getPropertyParamDesc(
       'disable the secondary button',
-      'boolean',
-      false,
+      { controlType: 'boolean', defaultSummary: false },
     ),
-    disableMainButton: getPropertyParamDesc(
-      'disable the main button',
-      'boolean',
-      false,
-    ),
-    hideMainButton: getPropertyParamDesc(
-      'hide the secondary button',
-      'boolean',
-      false,
-    ),
-    hideSecondaryButton: getPropertyParamDesc(
-      'hide the main button',
-      'boolean',
-      false,
-    ),
+    disableMainButton: getPropertyParamDesc('disable the main button', {
+      controlType: 'boolean',
+      defaultSummary: false,
+    }),
+    hideMainButton: getPropertyParamDesc('hide the secondary button', {
+      controlType: 'boolean',
+      defaultSummary: false,
+    }),
+    hideSecondaryButton: getPropertyParamDesc('hide the main button', {
+      controlType: 'boolean',
+      defaultSummary: false,
+    }),
   },
   args: {
     name: 'Paola',

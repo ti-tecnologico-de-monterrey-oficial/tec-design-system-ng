@@ -71,24 +71,20 @@ ${getBasicExampleBlock('BmbBadgeComponent')}
     },
   },
   argTypes: {
-    text: getPropertyParamDesc(
-      'badge',
-      'text',
-      '""',
-      '<br/><br/>'.concat(getWidthIncreaseDesc('badge')),
-    ),
+    text: getPropertyParamDesc('badge', {
+      additionalDescription: '<br/><br/>'.concat(getWidthIncreaseDesc('badge')),
+    }),
     appearance: getAppearanceParam(
       'badge',
       appearanceOptions,
       defaultAppearanceValue,
       `<br/><br/>${getDefaultValueDesc(defaultAppearanceValue)}<br/><br/>Background appearance is deprecated.`,
     ),
-    container: getPropertyParamDesc(
-      'container',
-      'boolean',
-      true,
-      ' When false, show a bullet.',
-    ),
+    container: getPropertyParamDesc('container', {
+      controlType: 'boolean',
+      defaultSummary: true,
+      additionalDescription: ' When false, show a bullet.',
+    }),
   },
   args: {
     text: 'Badge text',

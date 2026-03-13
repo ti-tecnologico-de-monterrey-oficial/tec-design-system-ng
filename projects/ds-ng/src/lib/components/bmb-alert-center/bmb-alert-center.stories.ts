@@ -529,7 +529,10 @@ ${getBasicExampleBlock('BmbAlertCenterComponent')}
         'IBmbDataAlert',
       ),
     ),
-    hideTabs: getPropertyParamDesc('hide tabs', 'boolean'),
+    hideTabs: getPropertyParamDesc('hide tabs', {
+      controlType: 'boolean',
+      defaultSummary: false,
+    }),
     emptyStateData: {
       control: { type: 'object' },
       table: {

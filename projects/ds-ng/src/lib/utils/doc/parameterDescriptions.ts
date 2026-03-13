@@ -182,13 +182,22 @@ This documentation is displayed as a tab at the top.
 `;
 
 export const getPropertyParamDesc = (
-  name: string,
-  controlType: IBmbControlType | boolean | string = 'text',
-  defaultSummary: any = '""',
-  additionalDescription: string = '',
-  alternativeDescription: string = '',
-  alternativePropName: string = '',
-  summaryType: string = '',
+  name?: string,
+  {
+    controlType = 'text',
+    defaultSummary = '""',
+    additionalDescription = '',
+    alternativeDescription = '',
+    alternativePropName = '',
+    summaryType = '',
+  }: {
+    controlType?: IBmbControlType | boolean | string;
+    defaultSummary?: any;
+    additionalDescription?: string;
+    alternativeDescription?: string;
+    alternativePropName?: string;
+    summaryType?: string;
+  } = {},
 ) => {
   return {
     control: !!controlType && {
@@ -218,13 +227,9 @@ export const getLabelParamDesc = (
   name: string = '',
   additionalDescription: string = '',
 ) =>
-  getPropertyParamDesc(
-    '',
-    'text',
-    '',
-    '',
-    `Sets the ${name || 'label'} for the content${!!position ? ` of the ${position} section` : ''}${additionalDescription}.`,
-  );
+  getPropertyParamDesc('', {
+    alternativeDescription: `Sets the ${name || 'label'} for the content${!!position ? ` of the ${position} section` : ''}${additionalDescription}.`,
+  });
 
 export const getAppearanceDescription = (name: string): string =>
   `Sets the appearance of ${name}, affecting its visual style.`;
@@ -1470,6 +1475,35 @@ export const DBmbStepProgressBar = {
     getOnEvent('', 'onStepPanelPress', 'number'),
     `with the index when a step panel is pressed.`,
     'other',
+  ),
+};
+
+export const DBmbContainerButtonParamDesc = {
+  componentTitle: {
+    control: {
+      type: 'text',
+    },
+    description: 'Sets the title of the button container.',
+    table: {
+      category: 'Properties',
+      defaultValue: getDefaultValueControl(),
+      type: { summary: 'string' },
+    },
+  },
+  subtitle: {
+    control: {
+      type: 'text',
+    },
+    description: 'sets the subtitle of the button container.',
+    table: {
+      category: 'Properties',
+      defaultValue: getDefaultValueControl(),
+      type: { summary: 'string' },
+    },
+  },
+  getClickButton: getOnClickParam(
+    getOnEvent('', 'getClickButton'),
+    ON_CLICK_DESCRIPTION,
   ),
 };
 

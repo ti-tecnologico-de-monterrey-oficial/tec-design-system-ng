@@ -43,14 +43,10 @@ ${getBasicExampleBlock('BmbLogoComponent')}
       description:
         'Sets the size of the user image, affecting its visual size.',
     },
-    buttonName: getPropertyParamDesc(
-      'logo',
-      'text',
-      'logo_button',
-      '',
-      '',
-      'name',
-    ),
+    buttonName: getPropertyParamDesc('logo', {
+      defaultSummary: 'logo_button',
+      alternativePropName: 'name',
+    }),
     link: DBmbGenericParamDesc.linkOrButton,
     target: DBmbGenericParamDesc.target,
     buttonClick: DBmbGenericParamDesc.onButtonClick,

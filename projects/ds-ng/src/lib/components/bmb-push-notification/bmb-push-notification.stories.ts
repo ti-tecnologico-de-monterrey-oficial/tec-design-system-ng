@@ -198,11 +198,10 @@ ${getBasicExampleBlock('BmbPushNotificationComponent')}
           `,
       'other',
     ),
-    isFullColor: getPropertyParamDesc(
-      'full color to the notification',
-      'boolean',
-      false,
-    ),
+    isFullColor: getPropertyParamDesc('full color to the notification', {
+      controlType: 'boolean',
+      defaultSummary: false,
+    }),
     delay: {
       control: { type: 'number' },
       description: '',

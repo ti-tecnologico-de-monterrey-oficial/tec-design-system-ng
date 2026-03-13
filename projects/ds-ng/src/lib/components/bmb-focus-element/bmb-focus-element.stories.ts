@@ -37,16 +37,14 @@ ${getBasicExampleBlock('BmbFocusElementComponent')}
   },
   argTypes: {
     title: getPropertyParamDesc('focus element'),
-    number: getPropertyParamDesc(
-      'focus element',
-      'number',
-      0,
-      `<br/><br/>
+    number: getPropertyParamDesc('focus element', {
+      controlType: 'number',
+      defaultSummary: 0,
+      additionalDescription: `<br/><br/>
  ${RELEVANT_TITLE.important}
  The number is only considered if it does not have icon.`,
-      '',
-      'number',
-    ),
+      alternativePropName: 'number',
+    }),
     icon: {
       ...DBmbIconParamDesc.icon,
       description: DBmbIconParamDesc.icon.description.concat(

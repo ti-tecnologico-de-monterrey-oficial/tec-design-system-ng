@@ -84,12 +84,9 @@ ${getBasicExampleBlock('BmbProgressBarComponent')}
         defaultValue: getDefaultValueControl(0),
       },
     },
-    componentTitle: getPropertyParamDesc(
-      'progress bar',
-      'text',
-      '""',
-      getPropertyForType(false),
-    ),
+    componentTitle: getPropertyParamDesc('progress bar', {
+      additionalDescription: getPropertyForType(false),
+    }),
     appearance: getAppearanceParam(
       'progress bar',
       ['info', 'warning', 'error'],
@@ -122,21 +119,16 @@ ${getBasicExampleBlock('BmbProgressBarComponent')}
     },
     textFormat: DBmbProgressBar.textFormat,
     avatarIcon: DBmbIconParamDesc.icon,
-    isContainer: getPropertyParamDesc(
-      '**Container progress - Anatomy**',
-      'boolean',
-      false,
-    ),
-    actionIcon: getPropertyParamDesc(
-      '',
-      'text',
-      '',
-      '',
-      `Sets an ${getStoryLink({
+    isContainer: getPropertyParamDesc('**Container progress - Anatomy**', {
+      controlType: 'boolean',
+      defaultSummary: false,
+    }),
+    actionIcon: getPropertyParamDesc('', {
+      alternativeDescription: `Sets an ${getStoryLink({
         title: actionIconStory.default.title!,
         isPreURL: true,
       })} to the right of the ***Progress bar*** when the **Container progress - Anatomy** is active.`,
-    ),
+    }),
     title: {
       control: null,
       description:

@@ -126,7 +126,9 @@ ${getBasicExampleBlock('BmbTimestreamCardComponent')}
   },
   argTypes: {
     componentTitle: getPropertyParamDesc('the card'),
-    subtitle: getPropertyParamDesc('the card', 'text', '', '', '', 'subtitle'),
+    subtitle: getPropertyParamDesc('the card', {
+      alternativePropName: 'subtitle',
+    }),
     dataLocalNav: {
       control: { type: 'object' },
       description: 'Sets a list of breadcrumb data for local navigation.',

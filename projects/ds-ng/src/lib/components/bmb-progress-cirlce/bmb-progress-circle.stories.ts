@@ -48,19 +48,17 @@ ${getBasicExampleBlock('BmbProgressCircleComponent')}
     },
   },
   argTypes: {
-    valueLabel: getPropertyParamDesc(
-      'value label',
-      'text',
-      '""',
-      '<br/><br/>The value label will be displayed in the center of the progress circle.',
-    ),
-    fullFillPathStatus: getPropertyParamDesc(
-      'full state',
-      'boolean',
-      false,
-      `<br/><br/>The progress circle will display in a full state and the percentage path and value content will be hidden.
+    valueLabel: getPropertyParamDesc('value label', {
+      defaultSummary: '""',
+      additionalDescription:
+        '<br/><br/>The value label will be displayed in the center of the progress circle.',
+    }),
+    fullFillPathStatus: getPropertyParamDesc('full state', {
+      controlType: 'boolean',
+      defaultSummary: false,
+      additionalDescription: `<br/><br/>The progress circle will display in a full state and the percentage path and value content will be hidden.
 ${IMPORTANT_DESCRIPTION}`,
-    ),
+    }),
     showValueLabel: {
       control: {
         type: 'boolean',
@@ -83,16 +81,13 @@ ${IMPORTANT_DESCRIPTION}`,
         defaultValue: getDefaultValueControl(0),
       },
     },
-    componentTitle: getPropertyParamDesc(
-      'progress circle',
-      'text',
-      '""',
-      `
+    componentTitle: getPropertyParamDesc('progress circle', {
+      additionalDescription: `
 <br/><br/>Considerations for displaying text on one or more lines:
 - Use a string to display the title on a single line.
 - Use a string array to display the title on more than one line.
 `,
-    ),
+    }),
     showTitle: {
       control: {
         type: 'boolean',
