@@ -1,9 +1,4 @@
-import {
-  Meta,
-  StoryObj,
-  applicationConfig,
-  moduleMetadata,
-} from '@storybook/angular';
+import { Meta, StoryObj, applicationConfig } from '@storybook/angular';
 import { BmbDropdownMenuComponent } from './bmb-dropdown-menu.component';
 import { ActivatedRoute } from '@angular/router';
 import {
@@ -16,7 +11,6 @@ import {
 import {
   DBmbDropdownMenuParamDesc,
   getOnEventParam,
-  getPropertyParamDesc,
 } from '../../utils/doc/parameterDescriptions';
 import { provideHttpClient } from '@angular/common/http';
 
