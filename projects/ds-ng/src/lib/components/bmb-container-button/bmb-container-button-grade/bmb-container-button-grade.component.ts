@@ -30,8 +30,9 @@ export class BmbContainerButtonGradeComponent {
   componentTitle = input.required<string>();
   subtitle = input<string>('');
   score = input.required<number | string>();
-  isDisable = input<boolean>(false);
+  isDisabled = input<boolean>(false);
   isError = input<boolean>(false);
+
   getClickButton = output<MouseEvent>();
 
   handleClick(event: any): void {

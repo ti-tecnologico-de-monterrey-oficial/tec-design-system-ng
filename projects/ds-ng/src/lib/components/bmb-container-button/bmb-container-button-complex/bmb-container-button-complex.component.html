@@ -3,7 +3,7 @@
   [isError]="isError()"
   (getClickButton)="handleClick($event)"
 >
-  @if (leftIconName()) {
+  @if (!!leftIconName()) {
     <ng-template #bmbContainerLeft>
       <bmb-icon
         [icon]="leftIconName()"
@@ -16,7 +16,16 @@
   <ng-template #bmbContainerMain>
     <bmb-title [componentTitle]="componentTitle()" [subtitle]="subtitle()" />
   </ng-template>
-  <ng-template #bmbContainerRight>
-    <bmb-icon icon="chevron_forward" [size]="24" />
-  </ng-template>
+
+  @if (!!actionIconName()) {
+    <ng-template #bmbContainerRight>
+      <bmb-action-icon
+        [icon]="actionIconName()!"
+        [iconSize]="24"
+        [alt]="actionIconImageAlt() || actionIconName()!"
+        [disabled]="isDisabled()"
+        (buttonClick)="handleTrailingContent($event)"
+      />
+    </ng-template>
+  }
 </bmb-container-button-base>

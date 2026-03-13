@@ -1,0 +1,20 @@
+<bmb-container-button-base
+  [isDisabled]="isDisabled()"
+  [isError]="isError()"
+  [isSquare]="true"
+  (getClickButton)="handleClick($event)"
+>
+  <bmb-icon
+    topItem
+    [icon]="iconName()"
+    [isFill]="true"
+    [size]="32"
+    [alt]="iconImageAlt() || iconName()"
+  />
+  <bmb-title
+    mainItem
+    [componentTitle]="componentTitle()"
+    [subtitle]="subtitle()"
+    [isCenterContent]="true"
+  />
+</bmb-container-button-base>

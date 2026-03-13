@@ -3,42 +3,51 @@ import {
   ChangeDetectionStrategy,
   Component,
   input,
+  model,
   output,
   ViewEncapsulation,
 } from '@angular/core';
 import { BmbContainerButtonBaseComponent } from '../bmb-container-button-base/bmb-container-button-base.component';
-import { BmbIconComponent } from '../../bmb-icon/bmb-icon.component';
+import {
+  BmbBoxIconComponent,
+  IBmbBoxIconAppearance,
+} from '../../bmb-box-icon/bmb-box-icon.component';
 import { BmbTitleComponent } from '../../bmb-title/bmb-title.component';
-import { BmbBadgeComponent } from '../../bmb-badge/bmb-badge.component';
-import { IBmbBadgeInfo } from '../../../types';
+import { BmbBookmarkComponent } from '../../bmb-bookmark/bmb-bookmark.component';
 
 @Component({
-  selector: 'bmb-container-button-badge',
+  selector: 'bmb-container-button-complex-alternative',
   standalone: true,
   imports: [
     CommonModule,
     BmbContainerButtonBaseComponent,
-    BmbIconComponent,
+    BmbBoxIconComponent,
     BmbTitleComponent,
-    BmbBadgeComponent,
+    BmbBookmarkComponent,
   ],
-  templateUrl: './bmb-container-button-badge.component.html',
-  styleUrl: './bmb-container-button-badge.component.scss',
+  templateUrl: './bmb-container-button-complex-alternative.component.html',
+  styleUrl: './bmb-container-button-complex-alternative.component.scss',
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class BmbContainerButtonBadgeComponent {
+export class BmbContainerButtonComplexAlternativeComponent {
   componentTitle = input.required<string>();
   subtitle = input<string>('');
   leftIconName = input.required<string>();
   iconImageAlt = input<string>('');
-  badge = input.required<IBmbBadgeInfo>();
+  leftIconBoxColor = input<IBmbBoxIconAppearance>();
   isDisabled = input<boolean>(false);
   isError = input<boolean>(false);
+  isBookmarkActive = model<boolean>(false);
 
   getClickButton = output<MouseEvent>();
+  getClickBookmark = output<MouseEvent>();
 
   handleClick(event: any): void {
     this.getClickButton.emit(event);
+  }
+
+  handleClickBookmark(event: any): void {
+    this.getClickBookmark.emit(event);
   }
 }
