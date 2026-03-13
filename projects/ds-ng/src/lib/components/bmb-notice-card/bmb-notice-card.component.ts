@@ -55,7 +55,7 @@ export class BmbNoticeCardComponent {
 
   activeIndex = 0;
 
-  constructor(private sanitizer: DomSanitizer) {
+  constructor(private readonly sanitizer: DomSanitizer) {
     effect(() => {
       const deprecatedTitle = this.title();
       const newTitle = this.componentTitle();
