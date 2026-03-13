@@ -587,6 +587,31 @@ Each image supports:
       defaultValue: getDefaultValueControl(),
     },
   },
+  autoplay: {
+    control: { type: 'boolean' },
+    description: `
+Enables automatic carousel transition when multiple images are provided.
+
+When enabled, the carousel will automatically move to the next image after the defined interval.`,
+    table: {
+      category: 'Properties',
+      defaultValue: getDefaultValueControl('false'),
+      type: { summary: 'boolean' },
+    },
+  },
+
+  autoplayInterval: {
+    control: { type: 'number' },
+    description: `
+Defines the interval in milliseconds between automatic carousel transitions.
+
+This property only takes effect when **autoplay** is enabled.`,
+    table: {
+      category: 'Properties',
+      defaultValue: getDefaultValueControl('5000'),
+      type: { summary: 'number' },
+    },
+  },
 };
 
 export const DBmbIconParamDesc = {

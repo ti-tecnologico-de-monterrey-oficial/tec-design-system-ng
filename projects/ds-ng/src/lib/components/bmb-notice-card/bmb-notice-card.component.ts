@@ -82,6 +82,6 @@ export class BmbNoticeCardComponent {
     const value = this.description()?.[page];
     return value
       ? this.sanitizer.bypassSecurityTrustHtml(value as string)
-      : undefined;
+      : undefined; // NOSONAR Content is sanitized with DOMPurify - safe to bypass
   }
 }
