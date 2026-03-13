@@ -969,6 +969,20 @@ export const appConfig: ApplicationConfig = {
 >
 `;
 
+export const getContainerButtonComponentDescription = ({
+  selectorName,
+  variantName,
+  componentName,
+}: {
+  selectorName: string;
+  variantName: string;
+  componentName: string;
+}): string => `
+${getGeneralDescription(`${getGeneralComponentDescription({ name: selectorName })} to implement the ***${variantName}*** of **Container button**. The content of this variant will be work as a button`, { generalDocLink: 'https://bamboo.tec.mx/latest/componentes/container-button/descripcion-general-dzTxNX36' })}
+${getSpecialSpecifications(getEmptyStateMessage(), { showAdditionalBlockquote: true })}
+${getBasicExampleBlock(componentName)}
+`;
+
 /*
 Checklist:
 ON THIS PAGE (optional, TABLE OF CONTENTS) [Done, is in preview, if not so add parameters: { docs: { toc: TOC_OBJ...]
