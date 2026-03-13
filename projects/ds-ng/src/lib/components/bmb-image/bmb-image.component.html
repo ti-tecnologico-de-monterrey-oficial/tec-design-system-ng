@@ -3,7 +3,7 @@
   [ngClass]="{ 'bmb_image-carousel': isCarousel() }"
   [ngStyle]="{ width: width(), 'aspect-ratio': ratio() }"
 >
-  @if (isBlurredBackdrop()) {
+  @if (isBlurredBackdrop() && !isCarousel()) {
     <figure
       class="bmb_image-figure bmb_image-figure-backdrop"
       [ngClass]="getClasses()"
@@ -23,27 +23,28 @@
       </picture>
     </figure>
   }
-  <figure
-    class="bmb_image-figure"
-    [ngClass]="getClasses()"
-    [ngStyle]="{ 'aspect-ratio': ratio() }"
-  >
-    <picture>
-      <source media="(min-width: 1000px)" [srcset]="encodedURL()" />
-      @if (encodedMobileURL()) {
-        <source [srcset]="encodedMobileURL()" />
-      }
-      <img
-        [srcset]="encodedURL()"
-        [alt]="alt()"
-        [loading]="loading()"
-        class="bmb_image-figure-image"
-        (click)="handleSingleImageClick()"
-      />
-    </picture>
-  </figure>
 
-  @if (isCarousel()) {
+  @if (!isCarousel()) {
+    <figure
+      class="bmb_image-figure"
+      [ngClass]="getClasses()"
+      [ngStyle]="{ 'aspect-ratio': ratio() }"
+    >
+      <picture>
+        <source media="(min-width: 1000px)" [srcset]="encodedURL()" />
+        @if (encodedMobileURL()) {
+          <source [srcset]="encodedMobileURL()" />
+        }
+        <img
+          [srcset]="encodedURL()"
+          [alt]="alt()"
+          [loading]="loading()"
+          class="bmb_image-figure-image"
+          (click)="handleSingleImageClick()"
+        />
+      </picture>
+    </figure>
+  } @else {
     <div class="bmb_image-arrow bmb_image-arrow--left">
       <bmb-button-icon
         icon="chevron_left"
