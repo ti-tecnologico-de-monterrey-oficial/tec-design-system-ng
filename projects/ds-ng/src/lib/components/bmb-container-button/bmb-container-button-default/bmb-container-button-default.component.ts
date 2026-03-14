@@ -30,6 +30,7 @@ export class BmbContainerButtonDefaultComponent {
   subtitle = input<string>('');
   leftIconName = input<string>('');
   iconImageAlt = input<string>('');
+  hideChevron = input<boolean>(false);
   isDisabled = input<boolean>(false);
   isError = input<boolean>(false);
 

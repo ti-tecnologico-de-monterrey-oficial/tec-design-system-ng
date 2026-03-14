@@ -1478,7 +1478,7 @@ export const DBmbStepProgressBar = {
   ),
 };
 
-export const DBmbContainerButtonParamDesc = {
+export const DBmbContainerButton = {
   componentTitle: {
     control: {
       type: 'text',
@@ -1487,7 +1487,7 @@ export const DBmbContainerButtonParamDesc = {
     table: {
       category: 'Properties',
       defaultValue: getDefaultValueControl(),
-      type: { summary: 'string' },
+      type: { summary: 'string (required)' },
     },
   },
   subtitle: {
@@ -1501,6 +1501,10 @@ export const DBmbContainerButtonParamDesc = {
       type: { summary: 'string' },
     },
   },
+  isError: getPropertyParamDesc('the error state of container button', {
+    controlType: 'boolean',
+    defaultSummary: false,
+  }),
   getClickButton: getOnClickParam(
     getOnEvent('', 'getClickButton'),
     ON_CLICK_DESCRIPTION,

@@ -23,4 +23,8 @@ describe('BmbContainerButtonDefaultComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should set the componentTitle input correctly', () => {
+    expect(component.componentTitle()).toBe('Test');
+  });
 });
