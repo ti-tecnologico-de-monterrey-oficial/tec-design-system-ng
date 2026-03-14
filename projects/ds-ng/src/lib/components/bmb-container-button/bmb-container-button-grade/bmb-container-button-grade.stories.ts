@@ -33,7 +33,7 @@ export default {
     score: {
       ...DBmbGradeValue.score,
       table: {
-        ...DBmbContainerButton.rightIconName.table,
+        ...DBmbGradeValue.score.table,
         type: {
           summary:
             DBmbGradeValue.score.table.type.summary.concat(' (required)'),
