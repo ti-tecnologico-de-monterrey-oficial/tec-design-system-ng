@@ -5,7 +5,10 @@ import {
   getGeneralComponentDescription,
   getGeneralDescription,
 } from '../../utils/doc/utils';
-import { DBmbGradeValue, getAppearanceParam } from '../../utils/doc/parameterDescriptions';
+import {
+  DBmbGradeValue,
+  getAppearanceParam,
+} from '../../utils/doc/parameterDescriptions';
 
 export default {
   title: 'Components/Visual labels/Grade value',
