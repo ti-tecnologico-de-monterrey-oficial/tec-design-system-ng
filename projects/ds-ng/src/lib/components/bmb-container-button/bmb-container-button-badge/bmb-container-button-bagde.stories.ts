@@ -49,7 +49,7 @@ ${getContainerButtonComponentDescription({
     leftIconName: {
       ...DBmbIconParamDesc.icon,
       table: {
-        ...DBmbContainerButton.rightIconName.table,
+        ...DBmbIconParamDesc.icon.table,
         type: {
           summary:
             DBmbIconParamDesc.icon.table.type.summary.concat(' (required)'),
