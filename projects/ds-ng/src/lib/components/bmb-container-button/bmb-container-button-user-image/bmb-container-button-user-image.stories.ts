@@ -1,7 +1,7 @@
 import { Meta, StoryObj } from '@storybook/angular';
 import { getContainerButtonComponentDescription } from '../../../utils/doc/utils';
 import {
-  DBmbContainerButtonParamDesc,
+  DBmbContainerButton,
   DBmbGenericParamDesc,
   DBmbIconParamDesc,
   DBmbImageParamDesc,
@@ -20,8 +20,8 @@ export default {
       description: {
         component: `
         ${getContainerButtonComponentDescription({
-          selectorName: 'container-button-user-image',
-          variantName: 'user image variant',
+          selectorName: 'user-image',
+          variantName: 'user image',
           componentName: 'BmbContainerButtonUserImageComponent',
         })}
         `,
@@ -37,19 +37,11 @@ export default {
     email: getPropertyParamDesc('the container button', {
       alternativePropName: 'user email',
     }),
-    rightIconName: {
-      ...DBmbIconParamDesc.icon,
-      description: DBmbIconParamDesc.icon.description.concat(
-        '<br/>This icon will be show at the right of the container button.',
-      ),
-    },
+    rightIconName: DBmbContainerButton.rightIconName,
     iconImageAlt: DBmbImageParamDesc.alt,
     isDisabled: DBmbGenericParamDesc.disabled,
-    isError: getPropertyParamDesc('the error state of container button', {
-      controlType: 'boolean',
-      defaultSummary: false,
-    }),
-    getClickButton: DBmbContainerButtonParamDesc.getClickButton,
+    isError: DBmbContainerButton.isError,
+    getClickButton: DBmbContainerButton.getClickButton,
   },
   args: {
     avatarURL: 'https://picsum.photos/id/64/200/300',
