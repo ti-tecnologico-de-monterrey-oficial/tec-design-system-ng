@@ -29,9 +29,9 @@ import { BmbActionIconComponent } from '../../bmb-action-icon/bmb-action-icon.co
 export class BmbContainerButtonComplexComponent {
   componentTitle = input.required<string>();
   subtitle = input<string>('');
-  leftIconName = input<string>('');
+  leftIconName = input.required<string>();
   iconImageAlt = input<string>('');
-  actionIconName = input<string>();
+  actionIconName = input.required<string>();
   actionIconImageAlt = input<string>('');
   isDisabled = input<boolean>(false);
   isError = input<boolean>(false);

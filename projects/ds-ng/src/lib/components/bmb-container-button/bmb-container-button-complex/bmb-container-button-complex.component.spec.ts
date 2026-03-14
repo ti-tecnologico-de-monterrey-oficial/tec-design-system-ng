@@ -17,10 +17,24 @@ describe('BmbContainerButtonComplexComponent', () => {
     component = fixture.componentInstance;
     componentRef = fixture.componentRef;
     componentRef.setInput('componentTitle', 'Test');
+    componentRef.setInput('leftIconName', 'home');
+    componentRef.setInput('actionIconName', 'help');
     fixture.detectChanges();
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should set componentTitle input', () => {
+    expect(component.componentTitle()).toBe('Test');
+  });
+
+  it('should set leftIconName input', () => {
+    expect(component.leftIconName()).toBe('home');
+  });
+
+  it('should set actionIconName input', () => {
+    expect(component.actionIconName()).toBe('help');
   });
 });
