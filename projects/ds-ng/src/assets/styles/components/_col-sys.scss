@@ -194,3 +194,15 @@ $alignItemsOptions: (
     }
   }
 }
+
+.bmb_align-items-stretch {
+  & > bmb-container-button.bmb_layout-item {
+    & > .bmb_container-button,
+    bmb-check-external-link-button,
+    .bmb_check-external-link-button,
+    .bmb_check-external-link-button-element {
+      height: 100%;
+      display: block;
+    }
+  }
+}
