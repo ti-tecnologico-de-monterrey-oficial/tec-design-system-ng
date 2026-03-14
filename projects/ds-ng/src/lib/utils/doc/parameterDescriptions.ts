@@ -1479,27 +1479,17 @@ export const DBmbStepProgressBar = {
 };
 
 export const DBmbContainerButton = {
-  componentTitle: {
-    control: {
-      type: 'text',
-    },
-    description: 'Sets the title of the button container.',
-    table: {
-      category: 'Properties',
-      defaultValue: getDefaultValueControl(),
-      type: { summary: 'string (required)' },
-    },
-  },
-  subtitle: {
-    control: {
-      type: 'text',
-    },
-    description: 'sets the subtitle of the button container.',
-    table: {
-      category: 'Properties',
-      defaultValue: getDefaultValueControl(),
-      type: { summary: 'string' },
-    },
+  componentTitle: getPropertyParamDesc('container button', {
+    summaryType: 'string(required)',
+  }),
+  subtitle: getPropertyParamDesc('container button', {
+    alternativePropName: 'subtitle',
+  }),
+  rightIconName: {
+    ...DBmbIconParamDesc.icon,
+    description: DBmbIconParamDesc.icon.description.concat(
+      '<br/>This icon will be show at the right of the container button.',
+    ),
   },
   isError: getPropertyParamDesc('the error state of container button', {
     controlType: 'boolean',
@@ -1542,6 +1532,19 @@ export const DBmbProgressBar = {
           'textFormat: (value: string, total: string) => `$${value}/$${total}MXN`',
       },
       defaultValue: getDefaultValueControl('value => value'),
+    },
+  },
+};
+
+export const DBmbGradeValue = {
+  score: {
+    control: { type: 'text' },
+    description:
+      'Sets the number or text to display as score. The value can be a number or a string with a maximum of 4 characters.',
+    table: {
+      category: 'Properties',
+      type: { summary: 'number or string' },
+      defaultValue: { summary: 0 },
     },
   },
 };
