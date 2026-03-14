@@ -18,7 +18,7 @@ describe('BmbContainerButtonGradeComponent', () => {
     componentRef = fixture.componentRef;
     componentRef.setInput('componentTitle', 'Test');
     componentRef.setInput('score', 'A');
-    componentRef.setInput('rightIconName','home');
+    componentRef.setInput('rightIconName', 'home');
     fixture.detectChanges();
   });
 
@@ -47,5 +47,4 @@ describe('BmbContainerButtonGradeComponent', () => {
     const compiled = fixture.nativeElement;
     expect(compiled.textContent).toContain('A');
   });
-
 });

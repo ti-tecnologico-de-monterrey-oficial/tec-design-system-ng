@@ -24,6 +24,10 @@
     />
   </ng-template>
   <ng-template #bmbContainerRight>
-    <bmb-icon icon="chevron_forward" [size]="24" />
+    <bmb-icon
+      [icon]="rightIconName()"
+      [size]="24"
+      [alt]="rightIconImageAlt() || rightIconName()"
+    />
   </ng-template>
 </bmb-container-button-base>
