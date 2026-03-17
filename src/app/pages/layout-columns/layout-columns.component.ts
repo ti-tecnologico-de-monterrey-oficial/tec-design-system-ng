@@ -9,6 +9,8 @@ import {
   BmbVerticalLayoutItemDirective,
   BmbAccordionControlDirective,
   BmbMultiDotPaginatorItemComponent,
+  BmbContainerButtonComponent,
+  BmbProgressCircleComponent,
 } from '../../../../projects/ds-ng/src/public-api';
 
 @Component({
@@ -24,6 +26,9 @@ import {
     BmbCardContentComponent,
     BmbMultiDotPaginatorComponent,
     BmbMultiDotPaginatorItemComponent,
+    BmbContainerButtonComponent,
+    BmbProgressCircleComponent,
+
   ],
   templateUrl: './layout-columns.component.html',
   styleUrl: './layout-columns.component.scss',

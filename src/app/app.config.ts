@@ -13,6 +13,7 @@ import {
 
 import { routes } from './app.routes';
 import { provideHttpClient } from '@angular/common/http';
+import { BMB_DEFAULT_THEME } from '../../projects/ds-ng/src/lib/services/theme/theme-config';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -29,5 +30,6 @@ export const appConfig: ApplicationConfig = {
       BmbProjectionContentService,
       BmbTranslationsService,
     ]),
+    { provide: BMB_DEFAULT_THEME, useValue: 'light' }
   ],
 };

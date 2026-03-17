@@ -1,4 +1,43 @@
 <div style="margin: 0 120px">
+  <div
+    bmbLayout
+    gapSize="m"
+    justify="stretch"
+    alignItems="stretch"
+    margin="none"
+  >
+    <div bmbLayoutItem [colLg]="2">
+      <bmb-progress-circle
+        class="balance-contener"
+        [percent]="55"
+        [title]="'99.6 / 100.8'"
+        [showTitle]="true"
+        [showValueLabel]="true"
+        [valueLabel]="'1000'"
+        [fillPathStatus]="'success'"
+      ></bmb-progress-circle>
+    </div>
+
+    <bmb-container-button
+      bmbLayoutItem
+      [colLg]="4"
+      [title]="'Enviar correo'"
+      [square]="false"
+      [iconLeft]="'mail'"
+      [iconRight]="''"
+      (link)="('https://linkedin.com')"
+    ></bmb-container-button>
+
+    <bmb-container-button
+      bmbLayoutItem
+      [colLg]="3"
+      [title]="'Enviar mensaje por Teams'"
+      [square]="false"
+      [iconLeft]="'sms'"
+      [iconRight]="''"
+      (link)="('https://linkedin.com')"
+    ></bmb-container-button>
+  </div>
   <bmb-multi-dot-paginator componentTitle="Test title" subtitle="Test subtitle">
     <bmb-multi-dot-paginator-item>
       <section bmbVerticalLayout layoutHeight="300px">
