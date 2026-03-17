@@ -96,41 +96,40 @@ ${getBasicExampleBlock('BmbTagComponent')}
 <br/><br/>Whenever \`dismissible\` property is false, the appearance will be a normal tag.
         `),
     },
-    text: getPropertyParamDesc(
-      'tag',
-      'text',
-      '""',
-      '<br/><br/>'.concat(getWidthIncreaseDesc('tag')),
-    ),
+    text: getPropertyParamDesc('the tag', {
+      additionalDescription: '<br/><br/>'.concat(getWidthIncreaseDesc('tag')),
+      alternativePropName: 'text',
+    }),
     grouped: getPropertyParamDesc(
       'tags in a group by assigning them to a parent element',
-      'boolean',
-      false,
-      `<br/><br/>${getDefaultValueDesc(false)}<br/><br/>The tag should always have a parent element.`,
+      {
+        controlType: 'boolean',
+        defaultSummary: false,
+        additionalDescription: `<br/><br/>${getDefaultValueDesc(false)}<br/><br/>The tag should always have a parent element.`,
+      },
     ),
-    dismissible: getPropertyParamDesc(
-      'close icon',
-      'boolean',
-      false,
-      `<br/><br/>Whenever the tag is dismissible, the different states of the tag will be added to its behavior.<br/><br/>${getGeneralDocDescription(GENERAL_DOCUMENTATION_LINK)}`,
-    ),
-    isActive: getPropertyParamDesc(
-      'appearance of the active or selected state, only applies when `dismissible` is true',
-      'boolean',
-      false,
-    ),
+    dismissible: getPropertyParamDesc('close icon', {
+      controlType: 'boolean',
+      defaultSummary: false,
+      additionalDescription: `<br/><br/>Whenever the tag is dismissible, the different states of the tag will be added to its behavior.<br/><br/>${getGeneralDocDescription(GENERAL_DOCUMENTATION_LINK)}`,
+    }),
+    isActive: getPropertyParamDesc('active state', {
+      controlType: 'boolean',
+      defaultSummary: false,
+      additionalDescription:
+        '<br/><br/>Sets the appearance of the active or selected state, only applies when `dismissible` is true',
+    }),
     isDisabled: {
       ...DBmbGenericParamDesc.disabled,
       description: DBmbGenericParamDesc.disabled.description.concat(
         '<br/><br/>Disabled state will only be applied when `dismissible` property is true.',
       ),
     },
-    enableClick: getPropertyParamDesc(
-      'enable the tag to be clickable',
-      'boolean',
-      false,
-      `<br/><br/>${getDefaultValueDesc(false)}`,
-    ),
+    enableClick: getPropertyParamDesc('enable the tag to be clickable', {
+      controlType: 'boolean',
+      defaultSummary: false,
+      additionalDescription: `<br/><br/>${getDefaultValueDesc(false)}`,
+    }),
     clickedTag: getOnClickParam(onClickedTagEvent, ``),
     closedTag: getOnClickParam(onCloseTagEvent, ``),
   },

@@ -7,15 +7,21 @@ import {
   effect,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { BmbCheckExternalLinkButtonComponent } from '../bmb-check-external-link-button/bmb-check-external-link-button.component';
-import { IBmbTargetLink } from '../../types';
+import {
+  IBmbAlertColors,
+  IBmbBaseColors,
+  IBmbCreativeBaseColors,
+  IBmbCreativeUseColors,
+  IBmbmitecBaseColors,
+  IBmbMitecInstitutionalColors,
+  IBmbSemanticBaseColors,
+  IBmbSemanticColors,
+  IBmbTargetLink,
+} from '../../types';
 import { IBmbContrast } from '../../types/colors';
 import { logDeprecatedInput } from '../../utils/logDeprecatedInput';
-import {
-  BmbBoxIconComponent,
-  IBmbBoxIconAppearance,
-} from '../bmb-box-icon/bmb-box-icon.component';
+import { BmbBoxIconComponent } from '../bmb-box-icon/bmb-box-icon.component';
 
 export type IBmbInteractiveIconAppearance =
   | 'red'
@@ -66,7 +72,17 @@ export type IBmbInteractiveIconType = 'regular' | 'button' | 'app_drawer';
 })
 export class BmbInteractiveIconComponent {
   appearanceContrast = input<IBmbContrast>('default');
-  appearance = input<IBmbInteractiveIconAppearance>('red');
+  appearance = input<
+    | IBmbInteractiveIconAppearance
+    | IBmbBaseColors
+    | IBmbmitecBaseColors
+    | IBmbCreativeBaseColors
+    | IBmbSemanticBaseColors
+    | IBmbSemanticColors
+    | IBmbMitecInstitutionalColors
+    | IBmbCreativeUseColors
+    | IBmbAlertColors
+  >('red');
   description = input<string>('');
   icon = input<string>('face');
   dotNotification = input<number>();
@@ -110,10 +126,6 @@ export class BmbInteractiveIconComponent {
     if (this.horizontal()) classes.push(`${principalClassName}-horizontal`);
 
     return classes;
-  }
-
-  get boxColor(): IBmbBoxIconAppearance {
-    return this.appearance() as IBmbBoxIconAppearance;
   }
 
   handleClick(event: MouseEvent): void {

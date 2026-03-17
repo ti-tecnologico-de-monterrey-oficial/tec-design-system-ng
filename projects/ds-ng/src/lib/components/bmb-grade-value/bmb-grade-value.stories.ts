@@ -5,7 +5,10 @@ import {
   getGeneralComponentDescription,
   getGeneralDescription,
 } from '../../utils/doc/utils';
-import { getAppearanceParam } from '../../utils/doc/parameterDescriptions';
+import {
+  DBmbGradeValue,
+  getAppearanceParam,
+} from '../../utils/doc/parameterDescriptions';
 
 export default {
   title: 'Components/Visual labels/Grade value',
@@ -43,16 +46,7 @@ ${getBasicExampleBlock('BmbGradeValueComponent')}
         defaultValue: { summary: 'main-grade' },
       },
     },
-    score: {
-      control: { type: 'text' },
-      description:
-        'Sets the number or text to display as score. The value can be a number or a string with a maximum of 4 characters.',
-      table: {
-        category: 'Properties',
-        type: { summary: 'number or string' },
-        defaultValue: { summary: 0 },
-      },
-    },
+    score: DBmbGradeValue.score,
   },
   args: {
     appearanceContrast: 'default',

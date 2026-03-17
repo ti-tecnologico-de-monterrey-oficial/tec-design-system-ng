@@ -85,12 +85,9 @@ If you want to see how it works with the **Notification Service** and animations
     },
   },
   argTypes: {
-    componentTitle: getPropertyParamDesc(
-      'toast notification',
-      'text',
-      '',
-      `<br/><br/>This title should be concise and direct, providing the user with immediate feedback or information related to their actions.`,
-    ),
+    componentTitle: getPropertyParamDesc('toast notification', {
+      additionalDescription: `<br/><br/>This title should be concise and direct, providing the user with immediate feedback or information related to their actions.`,
+    }),
     description: {
       control: {
         type: 'text',

@@ -61,7 +61,6 @@ export class MenuPageComponent {
       Title: '+52 81 1625 5123 (solo texto)',
       icono:
         'https://saprodtecportal.blob.core.windows.net/mitec/colaboradores/PublishingImages/TecServices-Iconos/wa.png',
-      url: 'https://web.whatsapp.com/send?phone=528116255123&text=Requiero%20ayuda%20con%20lo%20siguiente:%20',
       orden: 3,
       Audiencias_x0020_de_x0020_destin:
         '00000000-0000-0000-0000-000000000000; ',

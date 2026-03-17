@@ -1,6 +1,7 @@
 import { Meta, StoryObj } from '@storybook/angular';
 
 import {
+  colorList,
   getBasicExampleBlock,
   getGeneralComponentDescription,
   getGeneralDescription,
@@ -10,42 +11,7 @@ import {
   getAppearanceParam,
   ON_BUTTON_CLICK,
 } from '../../utils/doc/parameterDescriptions';
-import {
-  BmbBoxIconComponent,
-  IBmbBoxIconAppearance,
-} from './bmb-box-icon.component';
-
-const boxColorOptions: IBmbBoxIconAppearance[] = [
-  'red',
-  'blue',
-  'green',
-  'yellow',
-  'purple',
-  'mitec_blue',
-  'mitec_red',
-  'mitec_green',
-  'mitec_orange',
-  'mitec_light_green',
-  'mitec_purple',
-  'creative_violet',
-  'creative_indigo',
-  'creative_emerald',
-  'creative_licorice',
-  'creative_darkteal',
-  'creative_peach',
-  'creative_sepia',
-  'creative_softred',
-  'creative_wattle',
-  'creative_shipcove',
-  'creative_plantation',
-  'creative_rum',
-  'creative_hibiscus',
-  'creative_ripelemon',
-  'buttons-primary-normal',
-  'purple-primary',
-  'general_contrasts-main-selection',
-  'general_contrasts-main-selection-alternative',
-];
+import { BmbBoxIconComponent } from './bmb-box-icon.component';
 
 export default {
   title: 'Dev tools/Box icon',
@@ -72,11 +38,11 @@ ${getBasicExampleBlock('BmbBoxIconComponent', ON_BUTTON_CLICK.handleExample)}
     iconName: DBmbIconParamDesc.icon,
     iconImageAlt: DBmbIconParamDesc.alt,
     isIconFilled: DBmbIconParamDesc.isIconFill,
-    boxColor: getAppearanceParam('the box icon', boxColorOptions),
+    boxColor: getAppearanceParam('the box icon', colorList),
   },
   args: {
     iconName: 'face',
-    boxColor: 'creative_sepia',
+    boxColor: 'semantic-success',
   },
 } as Meta<typeof BmbBoxIconComponent>;
 

@@ -1,0 +1,84 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+import * as defaultStory from './bmb-container-button-default/bmb-container-button-default.stories';
+import * as gradeStory from './bmb-container-button-grade/bmb-container-button-grade.stories';
+import * as badgeStory from './bmb-container-button-badge/bmb-container-button-badge.stories';
+import * as squareStory from './bmb-container-button-square/bmb-container-button-square.stories';
+import * as complexStory from './bmb-container-button-complex/bmb-container-button-complex.stories';
+import * as complexAlternativeStory from './bmb-container-button-complex-alternative/bmb-container-button-complex-alternative.stories';
+import * as userImageStory from './bmb-container-button-user-image/bmb-container-button-user-image.stories';
+import * as ltsStory from './bmb-container-button.stories';
+import { ListTemplate } from '../../../DocComponents/ListTemplate.mdx';
+import { getFormatName } from '../../utils/doc/utils';
+
+<Meta title="Components/Buttons/Container button" />
+<ListTemplate
+  content={[
+    defaultStory,
+    gradeStory,
+    badgeStory,
+    complexStory,
+    complexAlternativeStory,
+    userImageStory,
+    ltsStory,
+  ]}
+  context={{
+    [getFormatName(
+      defaultStory.default.title,
+      /(\/)|( )/g,
+      '_',
+    ).toLocaleLowerCase()]: {
+      showStories: false,
+      showControls: true,
+    },
+    [getFormatName(
+      gradeStory.default.title,
+      /(\/)|( )/g,
+      '_',
+    ).toLocaleLowerCase()]: {
+      showStories: false,
+      showControls: true,
+    },
+    [getFormatName(
+      gradeStory.default.title,
+      /(\/)|( )/g,
+      '_',
+    ).toLocaleLowerCase()]: {
+      showStories: false,
+      showControls: true,
+    },
+    [getFormatName(
+      badgeStory.default.title,
+      /(\/)|( )/g,
+      '_',
+    ).toLocaleLowerCase()]: {
+      showStories: false,
+      showControls: true,
+    },
+    [getFormatName(
+      complexStory.default.title,
+      /(\/)|( )/g,
+      '_',
+    ).toLocaleLowerCase()]: {
+      showStories: false,
+      showControls: true,
+    },
+    [getFormatName(
+      complexAlternativeStory.default.title,
+      /(\/)|( )/g,
+      '_',
+    ).toLocaleLowerCase()]: {
+      showStories: false,
+      showControls: true,
+    },
+    [getFormatName(
+      userImageStory.default.title,
+      /(\/)|( )/g,
+      '_',
+    ).toLocaleLowerCase()]: {
+      showStories: false,
+      showControls: true,
+    }
+  }}
+
+/>

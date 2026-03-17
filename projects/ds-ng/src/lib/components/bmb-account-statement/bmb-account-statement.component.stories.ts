@@ -52,75 +52,39 @@ ${getBasicExampleBlock('BmbAccountStatementComponent')}
     },
   },
   argTypes: {
-    componentTitle: getPropertyParamDesc(
-      'account statement',
-      'text',
-      'Estado de cuenta',
-    ),
-    labelPrimary: getPropertyParamDesc(
-      'account statement',
-      'text',
-      'Cuota Mensual',
-      '',
-      '',
-      'text of primary label',
-    ),
-    labelSecondary: getPropertyParamDesc(
-      'account statement',
-      'text',
-      'Pendiente',
-      '',
-      '',
-      'text of secondary label',
-    ),
-    totalCount: getPropertyParamDesc(
-      'account statement',
-      'text',
-      0,
-      '',
-      '',
-      'total amount',
-    ),
-    counter: getPropertyParamDesc(
-      'account statement',
-      'text',
-      0,
-      '',
-      '',
-      'partial amount',
-    ),
-    progressTitle: getPropertyParamDesc(
-      'header',
-      'text',
-      'Total pagado',
-      '',
-      '',
-      'progress title',
-    ),
-    formatDates: getPropertyParamDesc(
-      '`cutOffDate` and `paymentDeadline`',
-      'text',
-      'yyyy-MM-dd',
-      '',
-      '',
-      'format dates',
-    ),
-    paymentDeadline: getPropertyParamDesc(
-      'payment deadline',
-      'text',
-      '',
-      '',
-      '',
-      'date',
-    ),
-    cutOffDate: getPropertyParamDesc(
-      'payment cutoff',
-      'text',
-      '',
-      '',
-      '',
-      'date',
-    ),
+    componentTitle: getPropertyParamDesc('account statement', {
+      defaultSummary: 'Estado de cuenta',
+    }),
+    labelPrimary: getPropertyParamDesc('account statement', {
+      defaultSummary: 'Cuota Mensual',
+      alternativePropName: 'text of primary label',
+    }),
+    labelSecondary: getPropertyParamDesc('account statement', {
+      defaultSummary: 'Pendiente',
+      alternativePropName: 'text of secondary label',
+    }),
+    totalCount: getPropertyParamDesc('account statement', {
+      defaultSummary: 0,
+      alternativePropName: 'total amount',
+    }),
+    counter: getPropertyParamDesc('account statement', {
+      defaultSummary: 0,
+      alternativePropName: 'partial amount',
+    }),
+    progressTitle: getPropertyParamDesc('header', {
+      defaultSummary: 'Total pagado',
+      alternativePropName: 'progress title',
+    }),
+    formatDates: getPropertyParamDesc('`cutOffDate` and `paymentDeadline`', {
+      defaultSummary: 'yyyy-MM-dd',
+      alternativePropName: 'format dates',
+    }),
+    paymentDeadline: getPropertyParamDesc('payment deadline', {
+      alternativePropName: 'date',
+    }),
+    cutOffDate: getPropertyParamDesc('payment cutoff', {
+      alternativePropName: 'date',
+    }),
     paymentDeadlineLabel: {
       control: {
         type: 'text',
@@ -143,57 +107,38 @@ ${getBasicExampleBlock('BmbAccountStatementComponent')}
         defaultValue: getDefaultValueControl('Fecha de corte:'),
       },
     },
-    payButtonLabel: getPropertyParamDesc('pay button', 'text', 'Pagar'),
-    backButtonLabel: getPropertyParamDesc('back button', 'text', 'Regresar'),
+    payButtonLabel: getPropertyParamDesc('pay button', {
+      defaultSummary: 'Pagar',
+    }),
+    backButtonLabel: getPropertyParamDesc('back button', {
+      defaultSummary: 'Regresar',
+    }),
     modalTitle: getPropertyParamDesc('modal'),
-    modalSubtitle: getPropertyParamDesc(
-      'modal',
-      'text',
-      '',
-      '',
-      '',
-      'subtitle',
-    ),
-    modalRestLabel: getPropertyParamDesc(
-      'modal',
-      'text',
-      'Pagar restante',
-      '',
-      '',
-      'balance label',
-    ),
-    modalOtherAmountLabel: getPropertyParamDesc(
-      'modal',
-      'text',
-      'Otra cantidad',
-      '',
-      '',
-      'label for the custom amount',
-    ),
-    modalPrimaryButtonLabel: getPropertyParamDesc(
-      'modal',
-      'text',
-      'Otra cantidad',
-      '',
-      '',
-      'primary button label',
-    ),
-    errorMessage: getPropertyParamDesc(
-      'custom amount',
-      'text',
-      'Error, Este campo es requerido y debe ser una cantidad entre 1 y',
-      '',
-      '',
-      '*error message*',
-    ),
-    progressCircleTitle: getPropertyParamDesc(
-      'progress circle',
-      'object',
-      "['Total a pagar', 'este mes']",
-      '',
-      '',
-      'label',
-    ),
+    modalSubtitle: getPropertyParamDesc('modal', {
+      alternativePropName: 'subtitle',
+    }),
+    modalRestLabel: getPropertyParamDesc('modal', {
+      defaultSummary: 'Pagar restante',
+      alternativePropName: 'balance label',
+    }),
+    modalOtherAmountLabel: getPropertyParamDesc('modal', {
+      defaultSummary: 'Otra cantidad',
+      alternativePropName: 'label for the custom amount',
+    }),
+    modalPrimaryButtonLabel: getPropertyParamDesc('modal', {
+      defaultSummary: 'Otra cantidad',
+      alternativePropName: 'primary button label',
+    }),
+    errorMessage: getPropertyParamDesc('custom amount', {
+      defaultSummary:
+        'Error, Este campo es requerido y debe ser una cantidad entre 1 y',
+      alternativePropName: '*error message*',
+    }),
+    progressCircleTitle: getPropertyParamDesc('progress circle', {
+      controlType: 'object',
+      defaultSummary: "['Total a pagar', 'este mes']",
+      alternativePropName: 'label',
+    }),
     closeEvent: getOnClickParam(
       getOnEvent('close', 'closeEvent'),
       '. The close button is located in the statement header',

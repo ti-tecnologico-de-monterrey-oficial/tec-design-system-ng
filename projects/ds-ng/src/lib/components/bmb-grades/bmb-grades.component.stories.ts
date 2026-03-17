@@ -16,14 +16,11 @@ import {
 
 const REQUIRED_MICRO_DESC: string = `<br/><br/>${RELEVANT_TITLE.note}Required when \`isMicro\` property is true.`;
 const getPropertyDescription = (name: string) => {
-  const propertyDesc: any = getPropertyParamDesc(
-    'grades',
-    'object',
-    false,
-    `${REQUIRED_MICRO_DESC}<br/><br/>${DEFAULT_VALUE_DESC}`,
-    '',
-    name,
-  );
+  const propertyDesc: any = getPropertyParamDesc('grades', {
+    controlType: 'object',
+    additionalDescription: `${REQUIRED_MICRO_DESC}<br/><br/>${DEFAULT_VALUE_DESC}`,
+    alternativePropName: name,
+  });
   return {
     ...propertyDesc,
     table: {
@@ -289,13 +286,11 @@ IBmbPartial = {
         },
       },
     },
-    isMicro: getPropertyParamDesc(
-      '',
-      'boolean',
-      '',
-      '',
-      'Enables the micro version of grades when true.',
-    ),
+    isMicro: getPropertyParamDesc('', {
+      controlType: 'boolean',
+      defaultSummary: false,
+      alternativeDescription: 'Enables the micro version of grades when true.',
+    }),
     gradeTitle: getPropertyDescription('main title'),
     componentTitle: getPropertyDescription(''),
     accredited: getPropertyDescription('accreditation status'),

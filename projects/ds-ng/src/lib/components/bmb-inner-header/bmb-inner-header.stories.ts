@@ -24,8 +24,7 @@ const getButtonDesc = (isCloseButton: boolean) => {
 
   return getPropertyParamDesc(
     `***${buttons[Number(isCloseButton)]}*** button visible`,
-    'boolean',
-    false,
+    { controlType: 'boolean', defaultSummary: false },
   );
 };
 
@@ -97,12 +96,9 @@ ${getBasicExampleBlock('BmbInnerHeaderComponent')}
     },
     showClose: getButtonDesc(true),
     showReturn: getButtonDesc(false),
-    showSearch: getPropertyParamDesc(
-      `***search*** button visible`,
-      'boolean',
-      false,
-      '<br/><br/>',
-    ),
+    showSearch: getPropertyParamDesc(`***search*** button visible`, {
+      controlType: 'boolean',
+    }),
     onHandleBack: getOnClickParam(getOnEvent('back', 'onHandleBack')),
     onHandleClose: getOnClickParam(getOnEvent('close', 'onHandleClose')),
     onHandleTrailingPrimary: getOnClickParam(

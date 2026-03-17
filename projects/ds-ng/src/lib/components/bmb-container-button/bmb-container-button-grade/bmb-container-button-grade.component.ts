@@ -30,6 +30,8 @@ export class BmbContainerButtonGradeComponent {
   componentTitle = input.required<string>();
   subtitle = input<string>('');
   score = input.required<number | string>();
+  rightIconName = input.required<string>();
+  iconImageAlt = input<string>('');
   isDisabled = input<boolean>(false);
   isError = input<boolean>(false);
 

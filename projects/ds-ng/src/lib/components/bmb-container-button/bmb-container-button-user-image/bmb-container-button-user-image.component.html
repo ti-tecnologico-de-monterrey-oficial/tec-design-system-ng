@@ -1,17 +1,18 @@
 <bmb-container-button-base
-  class="bmb_container-button-grade"
   [isDisabled]="isDisabled()"
   [isError]="isError()"
   (getClickButton)="handleClick($event)"
 >
   <ng-template #bmbContainerLeft>
-    <bmb-grade-value
-      class="bmb_container-button-grade-score"
-      [score]="score()"
+    <bmb-user-image
+      size="desktop-small"
+      [image]="avatarURL()"
+      [altImage]="avatarAlt() || 'User image'"
     />
   </ng-template>
+
   <ng-template #bmbContainerMain>
-    <bmb-title [componentTitle]="componentTitle()" [subtitle]="subtitle()" />
+    <bmb-title [componentTitle]="fullName()" [subtitle]="email()" />
   </ng-template>
   <ng-template #bmbContainerRight>
     <bmb-icon
