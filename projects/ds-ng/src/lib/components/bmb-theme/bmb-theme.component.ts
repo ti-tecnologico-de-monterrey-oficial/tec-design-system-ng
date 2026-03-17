@@ -5,6 +5,8 @@ import {
   ViewEncapsulation,
   input,
   model,
+  signal,
+  computed,
 } from '@angular/core';
 import { ThemeService } from '../../services/theme/theme.service';
 import { CommonModule } from '@angular/common';
@@ -28,50 +30,22 @@ export class BmbThemeComponent implements OnInit {
   leftIcon = model<string>('light_mode');
   rightIcon = model<string>('dark_mode');
 
-  selectedTheme: string = 'light';
-  private service = inject(ThemeService);
-  private initialized = false;
+  constructor(
+    private themeService: ThemeService,
+  ) {}
 
   ngOnInit(): void {
-    this.leftIcon.update((value) => (!this.leftText() && value) || '');
-    this.rightIcon.update((value) => (!this.rightText() && value) || '');
-
-    this.selectedTheme = this.calculateTheme();
-    this.applyTheme(this.selectedTheme);
-
-    this.service.theme$.subscribe((theme: any) => {
-      if (this.initialized && theme !== this.selectedTheme) {
-        this.applyTheme(theme);
-      }
-    });
-
-    this.initialized = true;
+    this.themeService.setInitialTheme(this.initialTheme());
   }
 
-  calculateTheme(): string {
-    const savedTheme = localStorage.getItem('theme');
-
-    if (!this.showControls() && !!this.initialTheme())
-      return this.initialTheme()!;
-    if (savedTheme) return savedTheme;
-    if (!!this.initialTheme()) return this.initialTheme()!;
-
-    return this.service.getDefaultTheme();
-  }
+  selectedTheme = computed(() => this.themeService.getTheme());
 
   applyTheme(theme: string): void {
-    if (theme !== this.selectedTheme || !this.initialized) {
-      document.documentElement.setAttribute('data-theme', theme);
-      localStorage.setItem('theme', theme);
-      this.selectedTheme = theme;
-    }
+    this.themeService.setThemeAndSaveInLocal(theme);
   }
 
   onThemeChange(isChecked: boolean): void {
     const newTheme = isChecked ? 'dark' : 'light';
-    if (newTheme !== this.selectedTheme) {
-      this.applyTheme(newTheme);
-      this.service.setTheme(newTheme);
-    }
+    this.applyTheme(newTheme);
   }
 }

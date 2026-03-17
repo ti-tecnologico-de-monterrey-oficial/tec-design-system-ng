@@ -21,8 +21,9 @@ import { BmbThreeColsComponent } from '../../bmb-three-cols/bmb-three-cols.compo
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BmbContainerButtonBaseComponent {
-  isDisable = input<boolean>(false);
+  isDisabled = input<boolean>(false);
   isError = input<boolean>(false);
+  isSquare = input<boolean>(false);
 
   getClickButton = output<MouseEvent>();
 

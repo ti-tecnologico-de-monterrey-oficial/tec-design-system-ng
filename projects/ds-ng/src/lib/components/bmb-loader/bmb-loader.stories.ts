@@ -101,7 +101,10 @@ ${getBasicExampleBlock('BmbLoaderComponent')}
         type: { summary: 'boolean' },
       },
     },
-    errorState: getPropertyParamDesc('error state', 'boolean'),
+    errorState: getPropertyParamDesc('error state', {
+      controlType: 'boolean',
+      defaultSummary: false,
+    }),
     appearance: getAppearanceParam('icon loader', appearanceOptions, 'normal'),
     icon: {
       control: {

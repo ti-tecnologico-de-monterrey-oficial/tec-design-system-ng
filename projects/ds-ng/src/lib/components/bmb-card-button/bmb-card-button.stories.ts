@@ -16,6 +16,7 @@ import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.compo
 import { InputSignal } from '@angular/core';
 import { IDropdownItem } from '../../types';
 import {
+  DBmbBadgeType,
   DBmbDropdownMenuParamDesc,
   DBmbIconParamDesc,
   getDefaultValueControl,
@@ -145,38 +146,7 @@ IBmbImageInfo {
         type: { summary: 'string' },
       },
     },
-    badge: {
-      control: { type: 'object' },
-      description: `
-Sets the bade info: text, appearance, and container.
-
-Badge info properties:
-- \`text\`: (string) Sets the text of the badge. The width will increase depending on the length of the text..
-
-- \`appearance\`: (optional, string) Sets the appearance of the badge, affecting its visual style.
-
-  **Default appearance**: normal.
-
-  ${RELEVANT_TITLE.note} disabled and background do not exist for container.
-
-- \`container\`: (optional, boolean) Sets the container flag. This displays the container when true; if false, it displays a bullet.
-      `,
-      table: {
-        category: 'Full Interactive',
-        defaultValue: getDefaultValueControl(),
-        type: {
-          summary: 'IBmbBadgeInfo',
-          detail: `
-IBmbBadgeInfo {
-  text: string;
-  appearance: string;
-  container?: boolean;
-}
-
-        `,
-        },
-      },
-    },
+    badge: DBmbBadgeType.badge,
     leftContent: {
       control: { type: 'boolean' },
       description:

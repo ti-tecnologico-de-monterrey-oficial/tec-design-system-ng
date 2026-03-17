@@ -1,5 +1,5 @@
 <bmb-container-button-base
-  [isDisable]="isDisable()"
+  [isDisabled]="isDisabled()"
   [isError]="isError()"
   (getClickButton)="handleClick($event)"
 >
@@ -16,7 +16,9 @@
   <ng-template #bmbContainerMain>
     <bmb-title [componentTitle]="componentTitle()" [subtitle]="subtitle()" />
   </ng-template>
-  <ng-template #bmbContainerRight>
-    <bmb-icon icon="chevron_forward" [size]="24" />
-  </ng-template>
+  @if (!hideChevron()) {
+    <ng-template #bmbContainerRight>
+      <bmb-icon icon="chevron_forward" [size]="24" />
+    </ng-template>
+  }
 </bmb-container-button-base>

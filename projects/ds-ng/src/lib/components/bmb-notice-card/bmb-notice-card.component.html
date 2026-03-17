@@ -37,16 +37,18 @@
     </div>
     @if (activeIndex == 0) {
       <div class="bmb_notice-card-content-description-one">
-        <p class="bmb_notice-card-content-description-text">
-          {{ description()?.pageOne }}
-        </p>
+        <p
+          class="bmb_notice-card-content-description-text"
+          [innerHTML]="getPage('pageOne')"
+        ></p>
       </div>
     }
     @if (description()!.pageTwo && activeIndex === 1) {
       <div class="bmb_notice-card-content-description-two">
-        <p class="bmb_notice-card-content-description-text">
-          {{ description()?.pageTwo }}
-        </p>
+        <p
+          class="bmb_notice-card-content-description-text"
+          [innerHTML]="getPage('pageTwo')"
+        ></p>
       </div>
     }
   </section>

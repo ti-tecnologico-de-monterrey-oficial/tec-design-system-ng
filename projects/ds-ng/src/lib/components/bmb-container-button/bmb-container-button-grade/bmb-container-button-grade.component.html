@@ -1,6 +1,6 @@
 <bmb-container-button-base
   class="bmb_container-button-grade"
-  [isDisable]="isDisable()"
+  [isDisabled]="isDisabled()"
   [isError]="isError()"
   (getClickButton)="handleClick($event)"
 >
@@ -14,6 +14,10 @@
     <bmb-title [componentTitle]="componentTitle()" [subtitle]="subtitle()" />
   </ng-template>
   <ng-template #bmbContainerRight>
-    <bmb-icon icon="chevron_forward" [size]="24" />
+    <bmb-icon
+      [icon]="rightIconName()"
+      [size]="24"
+      [alt]="iconImageAlt() || rightIconName()"
+    />
   </ng-template>
 </bmb-container-button-base>

@@ -52,6 +52,15 @@ export * from './lib/components/bmb-user-image/bmb-user-image.component';
 export * from './lib/components/bmb-header-mobile/bmb-header-mobile.component';
 export * from './lib/components/bmb-dot-paginator/bmb-dot-paginator.component';
 export * from './lib/components/bmb-container-button/bmb-container-button.component';
+export * from './lib/components/bmb-container-button/bmb-container-button-default/bmb-container-button-default.component';
+export * from './lib/components/bmb-container-button/bmb-container-button-grade/bmb-container-button-grade.component';
+export * from './lib/components/bmb-container-button/bmb-container-button-badge/bmb-container-button-badge.component';
+export * from './lib/components/bmb-container-button/bmb-container-button-square/bmb-container-button-square.component';
+export * from './lib/components/bmb-container-button/bmb-container-button-complex/bmb-container-button-complex.component';
+export * from './lib/components/bmb-container-button/bmb-container-button-complex-alternative/bmb-container-button-complex-alternative.component';
+export * from './lib/components/bmb-container-button/bmb-container-button-user-image/bmb-container-button-user-image.component';
+export * from './lib/components/bmb-box-icon/bmb-box-icon.component';
+
 export * from './lib/components/bmb-interactive-icon/bmb-interactive-icon.component';
 export * from './lib/components/bmb-fab/bmb-fab.component';
 export * from './lib/components/bmb-theme/bmb-theme.component';

@@ -40,10 +40,10 @@ ${getBasicExampleBlock('BmbSimpleHeaderComponent', '', onIconClickEvent.handleEx
         'The icon is shown at right',
       ),
     },
-    iconAlternativeColor: getPropertyParamDesc(
-      'primary color on the icon',
-      'boolean',
-    ),
+    iconAlternativeColor: getPropertyParamDesc('primary color on the icon', {
+      controlType: 'boolean',
+      defaultSummary: false,
+    }),
     title: {
       control: null,
       description:

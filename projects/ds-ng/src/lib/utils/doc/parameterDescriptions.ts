@@ -182,13 +182,22 @@ This documentation is displayed as a tab at the top.
 `;
 
 export const getPropertyParamDesc = (
-  name: string,
-  controlType: IBmbControlType | boolean | string = 'text',
-  defaultSummary: any = '""',
-  additionalDescription: string = '',
-  alternativeDescription: string = '',
-  alternativePropName: string = '',
-  summaryType: string = '',
+  name?: string,
+  {
+    controlType = 'text',
+    defaultSummary = '""',
+    additionalDescription = '',
+    alternativeDescription = '',
+    alternativePropName = '',
+    summaryType = '',
+  }: {
+    controlType?: IBmbControlType | boolean | string;
+    defaultSummary?: any;
+    additionalDescription?: string;
+    alternativeDescription?: string;
+    alternativePropName?: string;
+    summaryType?: string;
+  } = {},
 ) => {
   return {
     control: !!controlType && {
@@ -218,13 +227,9 @@ export const getLabelParamDesc = (
   name: string = '',
   additionalDescription: string = '',
 ) =>
-  getPropertyParamDesc(
-    '',
-    'text',
-    '',
-    '',
-    `Sets the ${name || 'label'} for the content${!!position ? ` of the ${position} section` : ''}${additionalDescription}.`,
-  );
+  getPropertyParamDesc('', {
+    alternativeDescription: `Sets the ${name || 'label'} for the content${!!position ? ` of the ${position} section` : ''}${additionalDescription}.`,
+  });
 
 export const getAppearanceDescription = (name: string): string =>
   `Sets the appearance of ${name}, affecting its visual style.`;
@@ -440,6 +445,15 @@ By default, the supported language are:
 };
 
 export const DBmbImageParamDesc = {
+  animation: {
+    control: 'select',
+    options: ['fade', 'parallax', 'parallax-fade'],
+    description: 'Carousel animation style.',
+    table: {
+      type: { summary: `'fade' | 'parallax' | 'parallax-fade'` },
+      defaultValue: { summary: 'parallax' },
+    },
+  },
   image: {
     control: {
       type: 'text',
@@ -585,6 +599,31 @@ Each image supports:
 }[]`,
       },
       defaultValue: getDefaultValueControl(),
+    },
+  },
+  autoplay: {
+    control: { type: 'boolean' },
+    description: `
+Enables automatic carousel transition when multiple images are provided.
+
+When enabled, the carousel will automatically move to the next image after the defined interval.`,
+    table: {
+      category: 'Properties',
+      defaultValue: getDefaultValueControl('false'),
+      type: { summary: 'boolean' },
+    },
+  },
+
+  autoplayInterval: {
+    control: { type: 'number' },
+    description: `
+Defines the interval in milliseconds between automatic carousel transitions.
+
+This property only takes effect when **autoplay** is enabled.`,
+    table: {
+      category: 'Properties',
+      defaultValue: getDefaultValueControl('5000'),
+      type: { summary: 'number' },
     },
   },
 };
@@ -1473,6 +1512,29 @@ export const DBmbStepProgressBar = {
   ),
 };
 
+export const DBmbContainerButton = {
+  componentTitle: getPropertyParamDesc('container button', {
+    summaryType: 'string(required)',
+  }),
+  subtitle: getPropertyParamDesc('container button', {
+    alternativePropName: 'subtitle',
+  }),
+  rightIconName: {
+    ...DBmbIconParamDesc.icon,
+    description: DBmbIconParamDesc.icon.description.concat(
+      '<br/>This icon will be show at the right of the container button.',
+    ),
+  },
+  isError: getPropertyParamDesc('the error state of container button', {
+    controlType: 'boolean',
+    defaultSummary: false,
+  }),
+  getClickButton: getOnClickParam(
+    getOnEvent('', 'getClickButton'),
+    ON_CLICK_DESCRIPTION,
+  ),
+};
+
 export const getPropertyForType = (
   isCounter: boolean = true,
   isSimple: boolean = false,
@@ -1504,6 +1566,54 @@ export const DBmbProgressBar = {
           'textFormat: (value: string, total: string) => `$${value}/$${total}MXN`',
       },
       defaultValue: getDefaultValueControl('value => value'),
+    },
+  },
+};
+
+export const DBmbGradeValue = {
+  score: {
+    control: { type: 'text' },
+    description:
+      'Sets the number or text to display as score. The value can be a number or a string with a maximum of 4 characters.',
+    table: {
+      category: 'Properties',
+      type: { summary: 'number or string' },
+      defaultValue: { summary: 0 },
+    },
+  },
+};
+
+export const DBmbBadgeType = {
+  badge: {
+    control: { type: 'object' },
+    description: `
+Sets the bade info: text, appearance, and container.
+
+Badge info properties:
+- \`text\`: (string) Sets the text of the badge. The width will increase depending on the length of the text..
+
+- \`appearance\`: (optional, string) Sets the appearance of the badge, affecting its visual style.
+
+  **Default appearance**: normal.
+
+  ${RELEVANT_TITLE.note} disabled and background do not exist for container.
+
+- \`container\`: (optional, boolean) Sets the container flag. This displays the container when true; if false, it displays a bullet.
+      `,
+    table: {
+      category: 'Full Interactive',
+      defaultValue: getDefaultValueControl(),
+      type: {
+        summary: 'IBmbBadgeInfo',
+        detail: `
+IBmbBadgeInfo {
+  text: string;
+  appearance: string;
+  container?: boolean;
+}
+
+        `,
+      },
     },
   },
 };

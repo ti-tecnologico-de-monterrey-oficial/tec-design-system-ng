@@ -29,11 +29,10 @@ const getIconParamDescription = (name: string, defaultValue: string = '""') => {
 };
 
 const getFlagParamDescription = (name: string) =>
-  getPropertyParamDesc(
-    `${name} icon to disabled and unclickable`,
-    'boolean',
-    false,
-  );
+  getPropertyParamDesc(`${name} icon to disabled and unclickable`, {
+    controlType: 'boolean',
+    defaultSummary: false,
+  });
 
 export default {
   title: 'Components/Menus/Chevron title selector',
@@ -85,15 +84,9 @@ ${getBasicExampleBlock('BmbChevronTitleSelectorComponent')}
     },
   },
   argTypes: {
-    componentTitle: getPropertyParamDesc(
-      'chevron selector',
-      'text',
-      '""',
-      '',
-      '',
-      '',
-      'string (required)',
-    ),
+    componentTitle: getPropertyParamDesc('chevron selector', {
+      summaryType: 'string (required)',
+    }),
     leadingIcon: getIconParamDescription('left', 'chevron_left'),
     trailingIcon: getIconParamDescription('right', 'chevron_right'),
     isDisabledLeadingIcon: getFlagParamDescription('left'),

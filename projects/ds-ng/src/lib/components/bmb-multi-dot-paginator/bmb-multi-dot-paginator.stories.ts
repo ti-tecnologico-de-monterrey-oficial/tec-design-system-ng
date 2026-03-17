@@ -41,6 +41,7 @@ export default {
           'ngAfterContentInit',
           'prevItem',
           'nextItem',
+          'childrenItems',
         ],
       },
       description: {
@@ -64,7 +65,9 @@ ${getBasicExampleBlock('BmbMultiDotPaginatorItemComponent, BmbMultiDotPaginatorI
   },
   argTypes: {
     componentTitle: getPropertyParamDesc('paginator'),
-    subtitle: getPropertyParamDesc('paginator', 'text', '', '', '', 'subtitle'),
+    subtitle: getPropertyParamDesc('paginator', {
+      alternativePropName: 'subtitle',
+    }),
     title: {
       control: null,
       description:

@@ -7,13 +7,29 @@
   background-color: var(--containers-container-button);
   border: rem.rem_calc(1) solid var(--general-contrasts-50);
   outline: rem.rem_calc(1) solid var(--general-contrasts-50);
-  border-radius: var(--bmb-radius-4);
+  border-radius: var(--bmb-radius-m);
   color: var(--general-contrasts-100);
 
-  &,
-  > *:first-child,
-  :where(#mainContentID) > *:first-child {
-    width: 100%;
+  &-square {
+    flex-direction: column;
+    gap: var(--bmb-spacing-s);
+    justify-content: center;
+    align-items: center;
+    min-height: rem.rem_calc(148);
+    min-width: rem.rem_calc(148);
+    width: auto;
+
+    *[topElement]:not(:first-child) {
+      display: none;
+    }
+  }
+
+  &:not(.bmb_container-button-base-square) {
+    &,
+    > *:first-child,
+    :where(#mainContentID) > *:first-child {
+      width: 100%;
+    }
   }
 
   &.error:is(:disabled, :not(:hover, :focus, :focus-visible)) {

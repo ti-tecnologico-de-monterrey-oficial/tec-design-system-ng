@@ -1,9 +1,7 @@
 <bmb-action-menu
-  icon="account_balance_wallet"
-  bgIconAppearance="green-light"
+  icon="help"
+  bgIconAppearance="blue-light"
   componentTitle="Ayuda TECservices"
-  subtitle="Subtitle"
-  [showHeader]="true"
 >
   @for (_item of items; track $index) {
     <ng-template #actionMenuItem>
@@ -12,13 +10,14 @@
           [label]="_item.Title"
           [icon]="_item.icono"
           [value]="_item.Title"
-          [valueLink]="_item.url"
+          [valueLink]="_item.url!"
           valueTarget="_self"
         />
       } @else {
         <bmb-item
           label="¡Califica tu experiencia!"
           icon="mood"
+          rightIcon="chevron_right"
           (action)="handleOpen('test')"
           [isButton]="true"
         />

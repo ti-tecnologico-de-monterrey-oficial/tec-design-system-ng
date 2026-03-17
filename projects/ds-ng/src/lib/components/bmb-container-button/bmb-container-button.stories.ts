@@ -51,8 +51,9 @@ const appearanceOptions: IBbmBgAppearance[] = [
 ];
 
 export default {
-  title: 'Components/Buttons/Container button',
+  title: 'Components/Buttons/Container button/LTS',
   component: BmbContainerButtonComponent,
+  tags: ['!autodocs'],
   parameters: {
     docs: {
       controls: {

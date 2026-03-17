@@ -18,10 +18,33 @@ describe('BmbContainerButtonGradeComponent', () => {
     componentRef = fixture.componentRef;
     componentRef.setInput('componentTitle', 'Test');
     componentRef.setInput('score', 'A');
+    componentRef.setInput('rightIconName', 'home');
     fixture.detectChanges();
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should set componentTitle input', () => {
+    expect(component.componentTitle()).toBe('Test');
+  });
+
+  it('should set score input', () => {
+    expect(component.score()).toBe('A');
+  });
+
+  it('should set rightIconName input', () => {
+    expect(component.rightIconName()).toBe('home');
+  });
+
+  it('should render componentTitle', () => {
+    const compiled = fixture.nativeElement;
+    expect(compiled.textContent).toContain('Test');
+  });
+
+  it('should render score', () => {
+    const compiled = fixture.nativeElement;
+    expect(compiled.textContent).toContain('A');
   });
 });

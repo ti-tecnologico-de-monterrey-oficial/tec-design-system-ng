@@ -61,17 +61,13 @@ ${getBasicExampleBlock('BmbItemComponent')}
     icon: DBmbIconParamDesc.icon,
     iconSize: DBmbIconParamDesc.iconSize,
     label: getPropertyParamDesc('main label'),
-    subLabel: getPropertyParamDesc(
-      '',
-      'text',
-      '',
-      '',
-      `Sets the second label of the item.
+    subLabel: getPropertyParamDesc('', {
+      alternativeDescription: `Sets the second label of the item.
 ${getAlertBlockquote(
   `This label is only displayed for the variant with *right icon.*`,
   { title: RELEVANT_TITLE.important, blockquoteType: BlockquoteType.important },
 )}`,
-    ),
+    }),
     value: {
       control: 'text',
       description: 'Sets the value to show on the right side.',
@@ -92,13 +88,11 @@ ${getAlertBlockquote(
         defaultValue: getDefaultValueControl(),
       },
     },
-    isButton: getPropertyParamDesc(
-      '',
-      'boolean',
-      false,
-      '',
-      'Renders the item as a button when true.',
-    ),
+    isButton: getPropertyParamDesc('', {
+      controlType: 'boolean',
+      defaultSummary: false,
+      additionalDescription: 'Renders the item as a button when true.',
+    }),
     rightIcon: { ...DBmbIconParamDesc.icon },
     action: getOnClickParam(getOnEvent('item', 'action')),
   },

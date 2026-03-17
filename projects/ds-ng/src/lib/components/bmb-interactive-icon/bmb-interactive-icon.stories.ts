@@ -4,6 +4,7 @@ import {
   IBmbInteractiveIconAppearance,
 } from './bmb-interactive-icon.component';
 import {
+  colorList,
   getBasicExampleBlock,
   getGeneralComponentDescription,
   getGeneralDescription,
@@ -111,7 +112,7 @@ ${getBasicExampleBlock('BmbInteractiveIconComponent', ON_BUTTON_CLICK.handleExam
     },
     appearance: getAppearanceParam(
       'the interactive icon',
-      interactiveIconAppearanceOptions,
+      [...colorList, ...interactiveIconAppearanceOptions],
       'red',
     ),
     link: DBmbGenericParamDesc.linkOrButton,

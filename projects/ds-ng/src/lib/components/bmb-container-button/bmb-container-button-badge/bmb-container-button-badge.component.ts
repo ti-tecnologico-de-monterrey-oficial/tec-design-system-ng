@@ -33,7 +33,9 @@ export class BmbContainerButtonBadgeComponent {
   leftIconName = input.required<string>();
   iconImageAlt = input<string>('');
   badge = input.required<IBmbBadgeInfo>();
-  isDisable = input<boolean>(false);
+  rightIconName = input.required<string>();
+  rightIconImageAlt = input<string>('');
+  isDisabled = input<boolean>(false);
   isError = input<boolean>(false);
 
   getClickButton = output<MouseEvent>();

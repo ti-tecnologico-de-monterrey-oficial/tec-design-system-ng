@@ -6,7 +6,7 @@
   <section [ngClass]="getClasses()">
     <bmb-box-icon
       [iconName]="icon()"
-      [boxColor]="boxColor"
+      [boxColor]="appearance()"
       [boxSize]="
         layout() === 'button' || layout() === 'app_drawer' ? 'small' : 'regular'
       "

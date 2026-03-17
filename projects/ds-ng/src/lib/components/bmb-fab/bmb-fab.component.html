@@ -1,12 +1,5 @@
 <section class="bmb_fab" [ngClass]="{ 'bmb_fab-mitec': mitec() }">
-  <button
-    type="button"
-    [class]="className"
-    [ngClass]="{
-      active: isActive
-    }"
-    (click)="handleFabClick($event)"
-  >
+  <button type="button" [class]="className" (click)="handleFabClick($event)">
     @if (!mitec() && type() === 'extended') {
       <span>{{ text() || 'FAB' }}</span>
     }

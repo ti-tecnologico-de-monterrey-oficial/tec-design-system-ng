@@ -2,7 +2,9 @@ import {
   ChangeDetectionStrategy,
   Component,
   computed,
+  effect,
   input,
+  OnDestroy,
   output,
   signal,
   ViewEncapsulation,
@@ -22,7 +24,7 @@ import { BmbButtonIconComponent } from '../bmb-button-icon/bmb-button-icon.compo
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class BmbImageComponent {
+export class BmbImageComponent implements OnDestroy {
   src = input<string>('');
   mobileSrc = input<string>();
   alt = input<string>('');
@@ -35,6 +37,8 @@ export class BmbImageComponent {
   images = input<BmbImageItem[] | null>(null);
 
   imageClick = output<{ img: BmbImageItem; index: number }>();
+  animation = input<'fade' | 'parallax' | 'parallax-fade'>('parallax');
+  animationClass = computed(() => `bmb-carousel-${this.animation()}`);
 
   currentIndex = signal(0);
   isCarousel = computed(
@@ -44,15 +48,72 @@ export class BmbImageComponent {
       !this.isBlurredBackdrop(),
   );
 
-  currentImage = computed(() => {
-    if (!this.isCarousel()) {
-      return {
-        src: this.src(),
-        mobileSrc: this.mobileSrc(),
-        alt: this.alt(),
-      };
+  private autoplayTimer?: ReturnType<typeof setInterval>;
+  autoplay = input<boolean>(false);
+  autoplayInterval = input<number>(5000);
+
+  constructor() {
+    effect(
+      () => {
+        const imgs = this.images();
+        const total = imgs?.length ?? 0;
+
+        if (total === 0) {
+          this.currentIndex.set(0);
+          return;
+        }
+
+        if (this.currentIndex() >= total) {
+          this.currentIndex.set(0);
+        }
+      },
+      { allowSignalWrites: true },
+    );
+
+    effect(
+      () => {
+        const autoplayEnabled = this.autoplay();
+        const interval = this.autoplayInterval();
+        const carousel = this.isCarousel();
+
+        if (this.autoplayTimer) {
+          clearInterval(this.autoplayTimer);
+          this.autoplayTimer = undefined;
+        }
+
+        if (autoplayEnabled && carousel) {
+          this.autoplayTimer = setInterval(() => {
+            this.next();
+          }, interval);
+        }
+      },
+      { allowSignalWrites: true },
+    );
+  }
+
+  ngOnDestroy() {
+    if (this.autoplayTimer) {
+      clearInterval(this.autoplayTimer);
     }
-    return this.images()![this.currentIndex()];
+  }
+
+  currentImage = computed(() => {
+    const carouselImages = this.images();
+
+    if (
+      this.isCarousel() &&
+      carouselImages &&
+      carouselImages.length > 0 &&
+      carouselImages[this.currentIndex()]
+    ) {
+      return carouselImages[this.currentIndex()];
+    }
+
+    return {
+      src: this.src(),
+      mobileSrc: this.mobileSrc(),
+      alt: this.alt(),
+    };
   });
 
   encodedURL = computed(() => encodeURI(this.currentImage().src));
@@ -88,11 +149,14 @@ export class BmbImageComponent {
   }
 
   handleSingleImageClick(): void {
-    this.imageClick.emit({ img: {
-      src: this.src(),
-      mobileSrc: this.mobileSrc(),
-      alt: this.alt(),
-    }, index: 0 });
+    this.imageClick.emit({
+      img: {
+        src: this.src(),
+        mobileSrc: this.mobileSrc(),
+        alt: this.alt(),
+      },
+      index: 0,
+    });
   }
 
   handleImageKeyDown(
@@ -103,5 +167,37 @@ export class BmbImageComponent {
     if (event.key === 'Enter' || event.key === ' ') {
       this.handleImageClick(img, index);
     }
+  }
+
+  carouselClass = computed(() => {
+    if (!this.isCarousel()) return '';
+
+    return `bmb_image-carousel-${this.animation()}`;
+  });
+
+  getImageStyle(index: number) {
+    const position = index - this.currentIndex();
+
+    if (this.animation() === 'parallax') {
+      return {
+        transform: `translateX(${position * 100}%)`,
+      };
+    }
+
+    if (this.animation() === 'fade') {
+      return {
+        opacity: position === 0 ? 1 : 0,
+        zIndex: position === 0 ? 2 : 1,
+      };
+    }
+
+    if (this.animation() === 'parallax-fade') {
+      return {
+        transform: `translateX(${position * 100}%)`,
+        opacity: position === 0 ? 1 : 0.4,
+      };
+    }
+
+    return {};
   }
 }

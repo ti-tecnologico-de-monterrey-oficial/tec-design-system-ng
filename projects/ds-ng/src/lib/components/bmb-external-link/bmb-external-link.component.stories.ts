@@ -7,7 +7,6 @@ import {
   getGeneralDescription,
   getOnEvent,
   getSpecialSpecifications,
-  IBmbOnEvent,
 } from '../../utils/doc/utils';
 import {
   getDefaultValueControl,
@@ -52,7 +51,9 @@ ${getBasicExampleBlock('BmbExternalLinkComponent')}
   },
   argTypes: {
     componentTitle: getPropertyParamDesc('header'),
-    subtitle: getPropertyParamDesc('header', 'text', '', '', '', 'subtitle'),
+    subtitle: getPropertyParamDesc('header', {
+      alternativePropName: 'subtitle',
+    }),
     navigationBarIcons: {
       control: {
         type: 'object',

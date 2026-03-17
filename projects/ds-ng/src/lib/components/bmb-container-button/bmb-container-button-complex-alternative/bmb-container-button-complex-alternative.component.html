@@ -1,0 +1,22 @@
+<bmb-container-button-base
+  [isDisabled]="isDisabled()"
+  [isError]="isError()"
+  (getClickButton)="handleClick($event)"
+>
+  @if (!!leftIconName()) {
+    <ng-template #bmbContainerLeft>
+      <bmb-box-icon
+        [iconName]="leftIconName()"
+        [boxColor]="leftIconBoxColor()"
+        [iconImageAlt]="iconImageAlt() || leftIconName()"
+      />
+    </ng-template>
+  }
+  <ng-template #bmbContainerMain>
+    <bmb-title [componentTitle]="componentTitle()" [subtitle]="subtitle()" />
+  </ng-template>
+
+  <ng-template #bmbContainerRight>
+    <bmb-bookmark [isActive]="isBookmarkActive()" />
+  </ng-template>
+</bmb-container-button-base>
