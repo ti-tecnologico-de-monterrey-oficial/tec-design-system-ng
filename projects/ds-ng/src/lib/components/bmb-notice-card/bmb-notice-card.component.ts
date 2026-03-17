@@ -15,6 +15,7 @@ import { TranslatePipe } from '../../pipes/translations';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { logDeprecatedInput } from '../../utils/logDeprecatedInput';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { sanitizeContent } from '../../utils/sanitizeContent';
 
 export interface IBmbCardNoticeDescription {
   pageOne?: string | SafeHtml;
@@ -81,7 +82,7 @@ export class BmbNoticeCardComponent {
   getPage(page: keyof IBmbCardNoticeDescription): SafeHtml | undefined {
     const value = this.description()?.[page];
     return value
-      ? this.sanitizer.bypassSecurityTrustHtml(value as string)
-      : undefined; // NOSONAR Content is sanitized with DOMPurify - safe to bypass
+      ? this.sanitizer.bypassSecurityTrustHtml(sanitizeContent(value as string)) // NOSONAR Content is sanitized with DOMPurify - safe to bypass
+      : undefined;
   }
 }
