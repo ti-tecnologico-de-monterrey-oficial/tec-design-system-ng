@@ -1,10 +1,11 @@
 # Novedades ## [v1.6.1-c] -
-2026-03-13
+2026-03-17
 
 ### 🚀 Novedades
 
 * doc(component / tooltip): Se actualizó la documentación del tooltip
 * Formato
+* [GH-tec-design-system-ng-947] bmb-notice-card allow load html
 * fix(component/action-menu): se corrigió comportamiento inestable para los bloques de código con ciclos o estructuras condicionales.
 * chore: se agregó nuevo componente para implementar título y opcional sub título.
 * chore: se agregó componente con apariencia de la anatomía del componente 'Interactive icon' en su variante de contenedor e ícono.
@@ -21,7 +22,6 @@
 * Formato
 * chore: se implemeto mixin de CSS para hacer reutilizables los estilos del 'checkbox'.
 * feat(component/container-button): se agregó variante default según diseño en Figma. Se implementaron solo las entradas necesarias.
-* chore: se actualizaron los SVG de los íconos del componente 'tecBot'.
 * fix(component / Profile): Se removió el icono de la izquierda de la tarjeta
 * feat(component/container-button): se agregó variante grades según diseño en Figma. Se implementaron solo las entradas necesarias.
 * fix(component / date picker): Se corrigieron los estilos del datepicker y del date range
@@ -35,10 +35,10 @@
 * removed logs
 * chore: se realizó corrección de typo.
 * feat(component/container-button): se agregó clase al componente de 'grade-value' para alineación correcta de elementos.
-* Formato
 * Update bmb-search-card.component.html
 * chore: se agregó el evento del click.
 * chore: se aplicó la nueva característica del 'bmb-divider' para mostrarlo sin margen.
+* [GH-tec-design-system-ng-947] bmb-notice-card allow load html
 * feat(component / image): Se actualizó el evento click de la imagen
 * Revert "chore: se realizaron ajustes para soportar el nuevo componente de título."
 * chore: se realizaron ajustes para soportar el nuevo componente de título.
@@ -93,6 +93,7 @@
 * Chore: refactorización de código para reutilización.
 * change variable
 * chore: refactorización de código.
+* Formato
 * chore: refactorización para reutilización de Bamboo.
 * fix(component / profile card): Se cambio la funcionalida del switch version en el profile card
 * Formato
@@ -115,6 +116,8 @@
 doc(component / tooltip): Se actualizó la documentación del tooltip
 - **Formato**:
 Formato
+- **[GH-tec-design-system-ng-947] bmb-notice-card allow load html**:
+[GH-tec-design-system-ng-947] bmb-notice-card allow load html
 - **fix(component/action-menu): se corrigió comportamiento inestable para los bloques de código con ciclos o estructuras condicionales.**:
 fix(component/action-menu): se corrigió comportamiento inestable para los bloques de código con ciclos o estructuras condicionales.
 - **chore: se agregó nuevo componente para implementar título y opcional sub título.**:
@@ -147,8 +150,6 @@ Formato
 chore: se implemeto mixin de CSS para hacer reutilizables los estilos del 'checkbox'.
 - **feat(component/container-button): se agregó variante default según diseño en Figma. Se implementaron solo las entradas necesarias.**:
 feat(component/container-button): se agregó variante default según diseño en Figma. Se implementaron solo las entradas necesarias.
-- **chore: se actualizaron los SVG de los íconos del componente 'tecBot'.**:
-chore: se actualizaron los SVG de los íconos del componente 'tecBot'.
 - **fix(component / Profile): Se removió el icono de la izquierda de la tarjeta**:
 fix(component / Profile): Se removió el icono de la izquierda de la tarjeta
 - **feat(component/container-button): se agregó variante grades según diseño en Figma. Se implementaron solo las entradas necesarias.**:
@@ -175,14 +176,14 @@ removed logs
 chore: se realizó corrección de typo.
 - **feat(component/container-button): se agregó clase al componente de 'grade-value' para alineación correcta de elementos.**:
 feat(component/container-button): se agregó clase al componente de 'grade-value' para alineación correcta de elementos.
-- **Formato**:
-Formato
 - **Update bmb-search-card.component.html**:
 Update bmb-search-card.component.html
 - **chore: se agregó el evento del click.**:
 chore: se agregó el evento del click.
 - **chore: se aplicó la nueva característica del 'bmb-divider' para mostrarlo sin margen.**:
 chore: se aplicó la nueva característica del 'bmb-divider' para mostrarlo sin margen.
+- **[GH-tec-design-system-ng-947] bmb-notice-card allow load html**:
+[GH-tec-design-system-ng-947] bmb-notice-card allow load html
 - **feat(component / image): Se actualizó el evento click de la imagen**:
 feat(component / image): Se actualizó el evento click de la imagen
 - **Revert "chore: se realizaron ajustes para soportar el nuevo componente de título."**:
@@ -293,6 +294,8 @@ Chore: refactorización de código para reutilización.
 change variable
 - **chore: refactorización de código.**:
 chore: refactorización de código.
+- **Formato**:
+Formato
 - **chore: refactorización para reutilización de Bamboo.**:
 chore: refactorización para reutilización de Bamboo.
 - **fix(component / profile card): Se cambio la funcionalida del switch version en el profile card**:
@@ -330,6 +333,8 @@ chore: se quito valor de ejemplo para el sub título.
 doc(component / tooltip): Se actualizó la documentación del tooltip
 - **Formato**:
 Formato
+- **[GH-tec-design-system-ng-947] bmb-notice-card allow load html**:
+[GH-tec-design-system-ng-947] bmb-notice-card allow load html
 - **fix(component/action-menu): se corrigió comportamiento inestable para los bloques de código con ciclos o estructuras condicionales.**:
 fix(component/action-menu): se corrigió comportamiento inestable para los bloques de código con ciclos o estructuras condicionales.
 - **chore: se agregó nuevo componente para implementar título y opcional sub título.**:
@@ -362,8 +367,6 @@ Formato
 chore: se implemeto mixin de CSS para hacer reutilizables los estilos del 'checkbox'.
 - **feat(component/container-button): se agregó variante default según diseño en Figma. Se implementaron solo las entradas necesarias.**:
 feat(component/container-button): se agregó variante default según diseño en Figma. Se implementaron solo las entradas necesarias.
-- **chore: se actualizaron los SVG de los íconos del componente 'tecBot'.**:
-chore: se actualizaron los SVG de los íconos del componente 'tecBot'.
 - **fix(component / Profile): Se removió el icono de la izquierda de la tarjeta**:
 fix(component / Profile): Se removió el icono de la izquierda de la tarjeta
 - **feat(component/container-button): se agregó variante grades según diseño en Figma. Se implementaron solo las entradas necesarias.**:
@@ -390,14 +393,14 @@ removed logs
 chore: se realizó corrección de typo.
 - **feat(component/container-button): se agregó clase al componente de 'grade-value' para alineación correcta de elementos.**:
 feat(component/container-button): se agregó clase al componente de 'grade-value' para alineación correcta de elementos.
-- **Formato**:
-Formato
 - **Update bmb-search-card.component.html**:
 Update bmb-search-card.component.html
 - **chore: se agregó el evento del click.**:
 chore: se agregó el evento del click.
 - **chore: se aplicó la nueva característica del 'bmb-divider' para mostrarlo sin margen.**:
 chore: se aplicó la nueva característica del 'bmb-divider' para mostrarlo sin margen.
+- **[GH-tec-design-system-ng-947] bmb-notice-card allow load html**:
+[GH-tec-design-system-ng-947] bmb-notice-card allow load html
 - **feat(component / image): Se actualizó el evento click de la imagen**:
 feat(component / image): Se actualizó el evento click de la imagen
 - **Revert "chore: se realizaron ajustes para soportar el nuevo componente de título."**:
@@ -508,6 +511,8 @@ Chore: refactorización de código para reutilización.
 change variable
 - **chore: refactorización de código.**:
 chore: refactorización de código.
+- **Formato**:
+Formato
 - **chore: refactorización para reutilización de Bamboo.**:
 chore: refactorización para reutilización de Bamboo.
 - **fix(component / profile card): Se cambio la funcionalida del switch version en el profile card**:
