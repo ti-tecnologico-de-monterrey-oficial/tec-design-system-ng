@@ -12,6 +12,7 @@ import { BmbContainerButtonSquareComponent } from './bmb-container-button-square
 export default {
   title: 'Components/Buttons/Container button square',
   component: BmbContainerButtonSquareComponent,
+  tags: ['!autodocs'],
   parameters: {
     docs: {
       controls: {

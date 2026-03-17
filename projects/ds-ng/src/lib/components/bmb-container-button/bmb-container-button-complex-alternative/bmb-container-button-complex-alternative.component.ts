@@ -8,12 +8,19 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { BmbContainerButtonBaseComponent } from '../bmb-container-button-base/bmb-container-button-base.component';
-import {
-  BmbBoxIconComponent,
-  IBmbBoxIconAppearance,
-} from '../../bmb-box-icon/bmb-box-icon.component';
+import { BmbBoxIconComponent } from '../../bmb-box-icon/bmb-box-icon.component';
 import { BmbTitleComponent } from '../../bmb-title/bmb-title.component';
 import { BmbBookmarkComponent } from '../../bmb-bookmark/bmb-bookmark.component';
+import {
+  IBmbAlertColors,
+  IBmbBaseColors,
+  IBmbCreativeBaseColors,
+  IBmbCreativeUseColors,
+  IBmbmitecBaseColors,
+  IBmbMitecInstitutionalColors,
+  IBmbSemanticBaseColors,
+  IBmbSemanticColors,
+} from '../../../types';
 
 @Component({
   selector: 'bmb-container-button-complex-alternative',
@@ -35,7 +42,16 @@ export class BmbContainerButtonComplexAlternativeComponent {
   subtitle = input<string>('');
   leftIconName = input.required<string>();
   iconImageAlt = input<string>('');
-  leftIconBoxColor = input<IBmbBoxIconAppearance>();
+  leftIconBoxColor = input<
+    | IBmbBaseColors
+    | IBmbmitecBaseColors
+    | IBmbCreativeBaseColors
+    | IBmbSemanticBaseColors
+    | IBmbSemanticColors
+    | IBmbMitecInstitutionalColors
+    | IBmbCreativeUseColors
+    | IBmbAlertColors
+  >();
   isDisabled = input<boolean>(false);
   isError = input<boolean>(false);
   isBookmarkActive = model<boolean>(false);

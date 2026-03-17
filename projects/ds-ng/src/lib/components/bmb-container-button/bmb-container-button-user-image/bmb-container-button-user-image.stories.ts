@@ -3,15 +3,15 @@ import { getContainerButtonComponentDescription } from '../../../utils/doc/utils
 import {
   DBmbContainerButton,
   DBmbGenericParamDesc,
-  DBmbIconParamDesc,
   DBmbImageParamDesc,
   getPropertyParamDesc,
 } from '../../../utils/doc/parameterDescriptions';
 import { BmbContainerButtonUserImageComponent } from './bmb-container-button-user-image.component';
 
 export default {
-  title: 'Components/Buttons/Container button user image',
+  title: 'Components/Buttons/Container button/User',
   component: BmbContainerButtonUserImageComponent,
+  tags: ['!autodocs'],
   parameters: {
     docs: {
       controls: {

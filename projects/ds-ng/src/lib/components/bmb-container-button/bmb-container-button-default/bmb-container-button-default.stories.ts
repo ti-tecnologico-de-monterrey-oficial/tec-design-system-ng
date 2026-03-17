@@ -10,8 +10,9 @@ import {
 import { BmbContainerButtonDefaultComponent } from './bmb-container-button-default.component';
 
 export default {
-  title: 'Components/Buttons/Container button default',
+  title: 'Components/Buttons/Container button/Default',
   component: BmbContainerButtonDefaultComponent,
+  tags: ['!autodocs'],
   parameters: {
     docs: {
       controls: {

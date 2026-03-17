@@ -9,8 +9,9 @@ import {
 import { BmbContainerButtonComplexComponent } from './bmb-container-button-complex.component';
 
 export default {
-  title: 'Components/Buttons/Container button complex',
+  title: 'Components/Buttons/Container button/Complex',
   component: BmbContainerButtonComplexComponent,
+  tags: ['!autodocs'],
   parameters: {
     docs: {
       controls: {

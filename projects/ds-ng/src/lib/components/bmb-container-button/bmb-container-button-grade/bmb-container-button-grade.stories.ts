@@ -9,8 +9,9 @@ import {
 import { BmbContainerButtonGradeComponent } from './bmb-container-button-grade.component';
 
 export default {
-  title: 'Components/Buttons/Container button grade',
+  title: 'Components/Buttons/Container button/Grade',
   component: BmbContainerButtonGradeComponent,
+  tags: ['!autodocs'],
   parameters: {
     docs: {
       controls: {

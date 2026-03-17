@@ -15,8 +15,9 @@ import { BmbTitleComponent } from '../../bmb-title/bmb-title.component';
 import { CommonModule } from '@angular/common';
 
 export default {
-  title: 'Components/Buttons/Container button badge',
+  title: 'Components/Buttons/Container button/Badge',
   component: BmbContainerButtonBadgeComponent,
+  tags: ['!autodocs'],
   decorators: [
     moduleMetadata({
       imports: [
