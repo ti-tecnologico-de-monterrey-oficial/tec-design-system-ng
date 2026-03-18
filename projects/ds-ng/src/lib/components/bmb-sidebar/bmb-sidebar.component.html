@@ -83,7 +83,11 @@
                 hasSubmenu &&
                 !element.children?.length
             }"
+            role="button"
+            tabindex="0"
             (click)="checkToCloseSidebar(element)"
+            (keydown.enter)="checkToCloseSidebar(element)"
+            (keydown.space)="checkToCloseSidebar(element)"
           >
             <ng-container
               *ngTemplateOutlet="
@@ -190,7 +194,14 @@
     @if (level >= 2 && !!element.children) {
       <ul class="bmb_sidebar-list">
         @for (child of element?.children?.slice(0, 6); track $index) {
-          <li class="bmb_sidebar-item" (click)="checkToCloseSidebar(child)">
+          <li
+            class="bmb_sidebar-item"
+            role="button"
+            tabindex="0"
+            (click)="checkToCloseSidebar(child)"
+            (keydown.enter)="checkToCloseSidebar(child)"
+            (keydown.space)="checkToCloseSidebar(child)"
+          >
             <ng-container
               *ngTemplateOutlet="
                 itemsTemplate;

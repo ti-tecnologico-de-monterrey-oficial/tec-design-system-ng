@@ -16,14 +16,14 @@ The `BmbCardComponent` is a standalone Angular component designed to display con
 
 The component accepts the following inputs to customize its behavior and appearance:
 
-| Input           | Type                                   | Default     | Description                                                                                 |
-| --------------- | -------------------------------------- | ----------- | ------------------------------------------------------------------------------------------- |
-| `borderRadius`  | `SizeNames \| SizeNames[]`           | `'m'`       | Defines the border radius of the card.                                                     |
-| `margin`        | `SizeNames \| SizeNames[]`           | `'m'`       | Sets the margin around the card.                                                           |
-| `type`          | `IBmbCardType`                        | `'normal'`  | Specifies the type of the card (e.g., `primary`, `secondary`, `error`, `transparent`).     |
-| `state`         | `'disabled' \| 'error' \| 'normal'` | `'normal'`  | Defines the state of the card (disabled, error, or normal).                                |
-| `boxShadowStyle`| `IBmbBoxShadowStyle \| 'none'`       | `'none'`    | Applies a shadow style to the card. Use `'none'` to disable box shadow.                    |
-| `borderColor`   | `IBmbBgColor \| 'default'`           | `'default'` | Sets the border color using Bamboo background tokens. `'default'` uses the standard style. |
+| Input            | Type                                | Default     | Description                                                                                |
+| ---------------- | ----------------------------------- | ----------- | ------------------------------------------------------------------------------------------ |
+| `borderRadius`   | `SizeNames \| SizeNames[]`          | `'m'`       | Defines the border radius of the card.                                                     |
+| `margin`         | `SizeNames \| SizeNames[]`          | `'m'`       | Sets the margin around the card.                                                           |
+| `type`           | `IBmbCardType`                      | `'normal'`  | Specifies the type of the card (e.g., `primary`, `secondary`, `error`, `transparent`).     |
+| `state`          | `'disabled' \| 'error' \| 'normal'` | `'normal'`  | Defines the state of the card (disabled, error, or normal).                                |
+| `boxShadowStyle` | `IBmbBoxShadowStyle \| 'none'`      | `'none'`    | Applies a shadow style to the card. Use `'none'` to disable box shadow.                    |
+| `borderColor`    | `IBmbBgColor \| 'default'`          | `'default'` | Sets the border color using Bamboo background tokens. `'default'` uses the standard style. |
 
 ### `IBmbCardType` Values
 
@@ -64,10 +64,10 @@ Returns an object of inline styles for the card, including `border-radius` and `
 
 #### Inputs
 
-| Input            | Type                         | Default | Description                              |
-| ---------------- | ---------------------------- | ------- | ---------------------------------------- |
-| `padding`        | `SizeNames \| SizeNames[]` | `'m'`   | Sets the padding for the card header.    |
-| `colorBackground`| `IBmbBgColor \| null`      | `null`  | Optional background color for the header. |
+| Input             | Type                       | Default | Description                               |
+| ----------------- | -------------------------- | ------- | ----------------------------------------- |
+| `padding`         | `SizeNames \| SizeNames[]` | `'m'`   | Sets the padding for the card header.     |
+| `colorBackground` | `IBmbBgColor \| null`      | `null`  | Optional background color for the header. |
 
 ---
 
@@ -81,10 +81,10 @@ Returns an object of inline styles for the card, including `border-radius` and `
 
 #### Inputs
 
-| Input            | Type                         | Default | Description                              |
-| ---------------- | ---------------------------- | ------- | ---------------------------------------- |
-| `padding`        | `SizeNames \| SizeNames[]` | `'m'`   | Sets the padding for the card footer.    |
-| `colorBackground`| `IBmbBgColor \| null`      | `null`  | Optional background color for the footer. |
+| Input             | Type                       | Default | Description                               |
+| ----------------- | -------------------------- | ------- | ----------------------------------------- |
+| `padding`         | `SizeNames \| SizeNames[]` | `'m'`   | Sets the padding for the card footer.     |
+| `colorBackground` | `IBmbBgColor \| null`      | `null`  | Optional background color for the footer. |
 
 ---
 
@@ -98,11 +98,11 @@ Returns an object of inline styles for the card, including `border-radius` and `
 
 #### Inputs
 
-| Input             | Type                         | Default | Description                               |
-| ----------------- | ---------------------------- | ------- | ----------------------------------------- |
-| `padding`         | `SizeNames \| SizeNames[]` | `'m'`   | Sets the padding for the card content.    |
-| `colorBackground` | `IBmbBgColor \| null`      | `null`  | Optional background color for the content.|
-| `setBorderRadius` | `boolean`                    | `false` | Applies border radius styles to the content container. |
+| Input             | Type                       | Default | Description                                            |
+| ----------------- | -------------------------- | ------- | ------------------------------------------------------ |
+| `padding`         | `SizeNames \| SizeNames[]` | `'m'`   | Sets the padding for the card content.                 |
+| `colorBackground` | `IBmbBgColor \| null`      | `null`  | Optional background color for the content.             |
+| `setBorderRadius` | `boolean`                  | `false` | Applies border radius styles to the content container. |
 
 ---
 

@@ -134,7 +134,11 @@
       @for (row of pageSlice; track trackByRow(row); let rIndex = $index) {
         <div
           class="bmb_table_lite-row"
+          role="button"
+          tabindex="0"
           (click)="onSelectRow(row)"
+          (keydown.enter)="onSelectRow(row)"
+          (keydown.space)="onSelectRow(row)"
           [ngClass]="{
             'bmb_table_lite-even': isEven(rIndex),
             'bmb_table_lite-odd': isOdd(rIndex),

@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { BmbThemeComponent } from './bmb-theme.component';
 import { ThemeService } from '../../services/theme/theme.service';
-import { of } from 'rxjs';
+import { signal } from '@angular/core';
 
 describe('BmbThemeComponent', () => {
   let component: BmbThemeComponent;
@@ -10,15 +10,20 @@ describe('BmbThemeComponent', () => {
 
   beforeEach(() => {
     themeServiceStub = {
-      theme$: of('dark'),
-      getDefaultTheme: () => 'light',
-      setTheme: jasmine.createSpy('setTheme'),
+      getTheme: () => 'dark',
+      setThemeAndSaveInLocal: jasmine.createSpy('setThemeAndSaveInLocal'),
+      setInitialTheme: jasmine.createSpy('setInitialTheme'),
     };
 
     TestBed.configureTestingModule({
       imports: [BmbThemeComponent],
-      providers: [{ provide: ThemeService, useValue: themeServiceStub }],
-    }).compileComponents();
+    })
+      .overrideComponent(BmbThemeComponent, {
+        set: {
+          providers: [{ provide: ThemeService, useValue: themeServiceStub }],
+        },
+      })
+      .compileComponents();
 
     fixture = TestBed.createComponent(BmbThemeComponent);
     component = fixture.componentInstance;
@@ -28,23 +33,17 @@ describe('BmbThemeComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should initialize leftIcon and rightIcon', () => {
-    spyOn(component.leftIcon, 'update').and.callThrough();
-    spyOn(component.rightIcon, 'update').and.callThrough();
-
-    component.ngOnInit();
-
-    expect(component.leftIcon.update).toHaveBeenCalled();
-    expect(component.rightIcon.update).toHaveBeenCalled();
+  it('should call setInitialTheme on init', () => {
+    // The initialTheme input starts empty
+    fixture.detectChanges();
+    expect(themeServiceStub.setInitialTheme).toHaveBeenCalledWith('');
   });
 
-  it('should set selectedTheme and apply it', () => {
-    spyOn(component, 'calculateTheme').and.returnValue('dark');
+  it('should apply theme on change', () => {
     spyOn(component, 'applyTheme').and.callThrough();
-
-    component.ngOnInit();
-
-    expect(component.selectedTheme).toBe('dark');
+    component.onThemeChange(true);
     expect(component.applyTheme).toHaveBeenCalledWith('dark');
+    expect(themeServiceStub.setThemeAndSaveInLocal).toHaveBeenCalledWith('dark');
   });
 });
+

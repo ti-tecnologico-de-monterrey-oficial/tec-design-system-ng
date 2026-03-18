@@ -5,7 +5,8 @@ import { BMB_DEFAULT_THEME } from './theme-config';
   providedIn: 'root',
 })
 export class ThemeService {
-  private defaultTheme = inject(BMB_DEFAULT_THEME, { optional: true }) || 'light';
+  private defaultTheme =
+    inject(BMB_DEFAULT_THEME, { optional: true }) || 'light';
 
   readonly theme = signal<string>(this.getInitialTheme());
 
@@ -31,7 +32,7 @@ export class ThemeService {
   setThemeAndSaveInLocal(theme: string): void {
     this.theme.set(theme);
     localStorage.setItem('theme', theme);
-    document.documentElement.setAttribute('data-theme', this.theme())
+    document.documentElement.setAttribute('data-theme', this.theme());
   }
 
   getTheme(): string {

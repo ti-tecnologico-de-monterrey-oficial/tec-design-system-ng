@@ -49,29 +49,29 @@ export class BmbChatBubblesComponent {
     dislike: true,
   });
 
-  onRepeatRequest = output<MouseEvent | KeyboardEvent>();
-  onVoice = output<MouseEvent | KeyboardEvent>();
-  onCopy = output<MouseEvent | KeyboardEvent>();
-  onLike = output<MouseEvent | KeyboardEvent>();
-  onDislike = output<MouseEvent | KeyboardEvent>();
+  onRepeatRequest = output<Event>();
+  onVoice = output<Event>();
+  onCopy = output<Event>();
+  onLike = output<Event>();
+  onDislike = output<Event>();
 
-  handleRepeat(event: MouseEvent | KeyboardEvent) {
+  handleRepeat(event: Event) {
     this.onRepeatRequest.emit(event);
   }
 
-  handleVoice(event: MouseEvent | KeyboardEvent) {
+  handleVoice(event: Event) {
     this.onVoice.emit(event);
   }
 
-  handleCopyContent(event: MouseEvent | KeyboardEvent) {
+  handleCopyContent(event: Event) {
     this.onCopy.emit(event);
   }
 
-  handleLike(event: MouseEvent | KeyboardEvent) {
+  handleLike(event: Event) {
     this.onLike.emit(event);
   }
 
-  handleDislike(event: MouseEvent | KeyboardEvent) {
+  handleDislike(event: Event) {
     this.onDislike.emit(event);
   }
 }

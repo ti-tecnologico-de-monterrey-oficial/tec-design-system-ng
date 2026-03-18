@@ -1,45 +1,40 @@
+import { TestBed } from '@angular/core/testing';
 import { ThemeService } from './theme.service';
+import { BMB_DEFAULT_THEME } from './theme-config';
 
 describe('ThemeService', () => {
   let service: ThemeService;
 
   beforeEach(() => {
-    // Limpia localStorage antes de cada prueba
     localStorage.removeItem('theme');
-    service = new ThemeService('dark');
+    TestBed.configureTestingModule({
+      providers: [
+        ThemeService,
+        { provide: BMB_DEFAULT_THEME, useValue: 'dark' }
+      ]
+    });
   });
 
-  it('debe inicializar con el tema de localStorage si existe', (done) => {
+  it('debe inicializar con el tema de localStorage si existe', () => {
     localStorage.setItem('theme', 'custom');
-    service = new ThemeService('light');
-    service.theme$.subscribe((theme) => {
-      expect(theme).toBe('custom');
-      done();
-    });
+    service = TestBed.inject(ThemeService);
+    expect(service.theme()).toBe('custom');
   });
 
-  it('debe inicializar con el tema por defecto si no hay tema en localStorage', (done) => {
-    service = new ThemeService('dark');
-    service.theme$.subscribe((theme) => {
-      expect(theme).toBe('dark');
-      done();
-    });
+  it('debe inicializar con el tema por defecto si no hay tema en localStorage', () => {
+    service = TestBed.inject(ThemeService);
+    expect(service.theme()).toBe('dark');
   });
 
   it('debe retornar el tema por defecto con getDefaultTheme()', () => {
+    service = TestBed.inject(ThemeService);
     expect(service.getDefaultTheme()).toBe('dark');
   });
 
-  it('debe retornar "light" si no se proporciona tema por defecto', () => {
-    service = new ThemeService(undefined as any);
-    expect(service.getDefaultTheme()).toBe('light');
-  });
-
-  it('debe actualizar el tema con setTheme()', (done) => {
-    service.setTheme('blue');
-    service.theme$.subscribe((theme) => {
-      expect(theme).toBe('blue');
-      done();
-    });
+  it('debe actualizar el tema con setThemeAndSaveInLocal()', () => {
+    service = TestBed.inject(ThemeService);
+    service.setThemeAndSaveInLocal('blue');
+    expect(service.theme()).toBe('blue');
+    expect(localStorage.getItem('theme')).toBe('blue');
   });
 });

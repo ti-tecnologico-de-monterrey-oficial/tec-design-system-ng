@@ -16,29 +16,29 @@ The `BmbAccountStatementComponent` is a standalone Angular component designed to
 
 The component accepts the following inputs to customize its behavior and appearance:
 
-| Input                     | Type       | Default       | Description                                                            |
-| ------------------------- | ---------- | ------------- | ---------------------------------------------------------------------- |
-| `componentTitle`          | `string`   | `undefined`   | Title of the account statement.                                       |
-| `title` (deprecated)      | `string`   | `undefined`   | Deprecated. Use `componentTitle` instead.                             |
-| `progressCircleTitle`     | `string[]` | `[]`          | Title lines displayed inside the progress circle.                     |
-| `labelPrimary`            | `string`   | `undefined`   | Label for the primary amount.                                         |
-| `labelSecondary`          | `string`   | `undefined`   | Label for the secondary amount.                                       |
-| `totalCount`              | `number`   | `0`           | Total amount to be paid.                                              |
-| `counter`                 | `number`   | `0`           | Amount already paid.                                                  |
-| `progressTitle`           | `string`   | `undefined`   | Title for the progress bar.                                           |
-| `formatDates`             | `string`   | `'yyyy-MM-dd'`| Date format used for displaying dates (e.g., payment deadline).       |
-| `paymentDeadline`         | `string`   | `undefined`   | Payment deadline date.                                                |
-| `cutOffDate`              | `string`   | `undefined`   | Cutoff date for the account statement.                                |
-| `paymentDeadlineLabel`    | `string`   | `undefined`   | Label for the payment deadline.                                       |
-| `cutOffDateLabel`         | `string`   | `undefined`   | Label for the cutoff date.                                            |
-| `payButtonLabel`          | `string`   | `undefined`   | Label for the pay button.                                             |
-| `backButtonLabel`         | `string`   | `undefined`   | Label for the back button.                                            |
-| `modalTitle`              | `string`   | `undefined`   | Title of the payment modal.                                           |
-| `modalSubtitle`           | `string`   | `undefined`   | Subtitle of the payment modal.                                        |
-| `modalRestLabel`          | `string`   | `undefined`   | Label for the "pay remaining" option in the modal.                   |
-| `modalOtherAmountLabel`   | `string`   | `undefined`   | Label for the "other amount" option in the modal.                    |
-| `modalPrimaryButtonLabel` | `string`   | `undefined`   | Label for the primary button in the modal.                            |
-| `errorMessage`            | `string`   | `undefined`   | Custom error message displayed for invalid inputs.                    |
+| Input                     | Type       | Default        | Description                                                     |
+| ------------------------- | ---------- | -------------- | --------------------------------------------------------------- |
+| `componentTitle`          | `string`   | `undefined`    | Title of the account statement.                                 |
+| `title` (deprecated)      | `string`   | `undefined`    | Deprecated. Use `componentTitle` instead.                       |
+| `progressCircleTitle`     | `string[]` | `[]`           | Title lines displayed inside the progress circle.               |
+| `labelPrimary`            | `string`   | `undefined`    | Label for the primary amount.                                   |
+| `labelSecondary`          | `string`   | `undefined`    | Label for the secondary amount.                                 |
+| `totalCount`              | `number`   | `0`            | Total amount to be paid.                                        |
+| `counter`                 | `number`   | `0`            | Amount already paid.                                            |
+| `progressTitle`           | `string`   | `undefined`    | Title for the progress bar.                                     |
+| `formatDates`             | `string`   | `'yyyy-MM-dd'` | Date format used for displaying dates (e.g., payment deadline). |
+| `paymentDeadline`         | `string`   | `undefined`    | Payment deadline date.                                          |
+| `cutOffDate`              | `string`   | `undefined`    | Cutoff date for the account statement.                          |
+| `paymentDeadlineLabel`    | `string`   | `undefined`    | Label for the payment deadline.                                 |
+| `cutOffDateLabel`         | `string`   | `undefined`    | Label for the cutoff date.                                      |
+| `payButtonLabel`          | `string`   | `undefined`    | Label for the pay button.                                       |
+| `backButtonLabel`         | `string`   | `undefined`    | Label for the back button.                                      |
+| `modalTitle`              | `string`   | `undefined`    | Title of the payment modal.                                     |
+| `modalSubtitle`           | `string`   | `undefined`    | Subtitle of the payment modal.                                  |
+| `modalRestLabel`          | `string`   | `undefined`    | Label for the "pay remaining" option in the modal.              |
+| `modalOtherAmountLabel`   | `string`   | `undefined`    | Label for the "other amount" option in the modal.               |
+| `modalPrimaryButtonLabel` | `string`   | `undefined`    | Label for the primary button in the modal.                      |
+| `errorMessage`            | `string`   | `undefined`    | Custom error message displayed for invalid inputs.              |
 
 ---
 

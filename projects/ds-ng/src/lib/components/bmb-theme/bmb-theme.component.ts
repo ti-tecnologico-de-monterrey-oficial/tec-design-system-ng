@@ -30,9 +30,7 @@ export class BmbThemeComponent implements OnInit {
   leftIcon = model<string>('light_mode');
   rightIcon = model<string>('dark_mode');
 
-  constructor(
-    private themeService: ThemeService,
-  ) {}
+  constructor(private themeService: ThemeService) {}
 
   ngOnInit(): void {
     this.themeService.setInitialTheme(this.initialTheme());
