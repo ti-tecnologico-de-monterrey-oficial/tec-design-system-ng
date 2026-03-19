@@ -10,8 +10,8 @@ describe('ThemeService', () => {
     TestBed.configureTestingModule({
       providers: [
         ThemeService,
-        { provide: BMB_DEFAULT_THEME, useValue: 'dark' }
-      ]
+        { provide: BMB_DEFAULT_THEME, useValue: 'dark' },
+      ],
     });
   });
 
