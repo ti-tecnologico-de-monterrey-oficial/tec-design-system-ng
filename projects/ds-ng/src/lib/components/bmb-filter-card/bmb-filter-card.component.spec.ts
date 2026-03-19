@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { BmbFilterCardComponent } from './bmb-filter-card.component';
 import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormControl } from '@angular/forms';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import {
   IBmbControlType,
@@ -18,7 +18,8 @@ describe('BmbFilterCardComponent', () => {
         {
           provide: BmbNativeModalService,
           useValue: {
-            open: () => {},
+            openModal: () => {},
+            closeModal: () => {},
           },
         },
       ],
@@ -304,5 +305,145 @@ describe('BmbFilterCardComponent', () => {
 
       expect(component.filterForm.get('carrera')?.value).toBeFalsy();
     });
+  describe('Additional Coverage: Modal, Submit, and Control Changes', () => {
+    it('should open modal when openModalComponent is called', () => {
+      const fixture = TestBed.createComponent(BmbFilterCardComponent);
+      const component = fixture.componentInstance;
+      const modalSpy = spyOn(component['modalService'], 'openModal').and.returnValue('modal-123');
+      
+      component.openModalComponent();
+      
+      expect(modalSpy).toHaveBeenCalled();
+      expect(component.modalId()).toBe('modal-123');
+    });
+
+    it('should submit form data and close modal on handleSubmit', () => {
+      const fixture = TestBed.createComponent(BmbFilterCardComponent);
+      const component = fixture.componentInstance;
+      const closeSpy = spyOn(component['modalService'], 'closeModal');
+      const emitSpy = spyOn(component.applyFilters, 'emit');
+      
+      // Need to invoke detectChanges to initialize the form
+      fixture.detectChanges();
+      
+      component.modalId.set('modal-123');
+      component.storedValues = {
+        'checkbox-1': { type: 'checkbox', name: 'checkbox-1', checked: true },
+        'radial-1': { type: 'radial', name: 'radial-1', checked: true },
+        'dropdown-1': { type: 'dropdown', name: 'dropdown-1', checked: false, value: 'option A' },
+      };
+      
+      component.filterForm.addControl('dropdown-1', new FormControl('option A'));
+      // Simulate search input value
+      component.filterForm.get('search')?.setValue('test search');
+      
+      component.handleSubmit();
+      
+      expect(closeSpy).toHaveBeenCalledWith('modal-123');
+      expect(emitSpy).toHaveBeenCalledWith(jasmine.objectContaining({
+        'checkbox-1': jasmine.any(Object),
+        'radial-1': jasmine.any(Object),
+        search: 'test search'
+      }));
+    });
+
+    it('should handle switch control change', () => {
+      const fixture = TestBed.createComponent(BmbFilterCardComponent);
+      const component = fixture.componentInstance;
+      fixture.componentRef.setInput('controlTypes', [{ title: 'T', control: [{ name: 'sw', type: 'switch' }] }]);
+      fixture.detectChanges();
+      
+      component.controlChange({ name: 'sw', type: 'switch' }, true);
+      expect(component.filterForm.get('sw')?.value).toBeTrue();
+      expect(component.storedValues['sw'].checked).toBeTrue();
+    });
+
+    it('should handle checkbox control change', () => {
+      const fixture = TestBed.createComponent(BmbFilterCardComponent);
+      const component = fixture.componentInstance;
+      fixture.componentRef.setInput('controlTypes', [{ title: 'T', control: [{ name: 'chk', type: 'checkbox' }] }]);
+      fixture.detectChanges();
+      
+      component.controlChange({ name: 'chk', type: 'checkbox' }, { target: { checked: true } });
+      expect(component.filterForm.get('chk')?.value).toBeTrue();
+      expect(component.storedValues['chk'].checked).toBeTrue();
+    });
+
+    it('should handle dropdown control change', () => {
+      const fixture = TestBed.createComponent(BmbFilterCardComponent);
+      const component = fixture.componentInstance;
+      fixture.componentRef.setInput('controlTypes', [{ title: 'T', control: [{ name: 'drop', type: 'dropdown', options: ['A','B'] }] }]);
+      fixture.detectChanges();
+      
+      component.controlChange({ name: 'drop', type: 'dropdown', value: 'B' }, 'B');
+      expect(component.filterForm.get('drop')?.value).toBe('B');
+      expect(component.storedValues['drop'].value).toBe('B');
+    });
+
+    it('should handle tag/default control change', () => {
+      const fixture = TestBed.createComponent(BmbFilterCardComponent);
+      const component = fixture.componentInstance;
+      fixture.componentRef.setInput('controlTypes', [{ title: 'T', control: [{ name: 'tag1', type: 'tag' }] }]);
+      fixture.detectChanges();
+      
+      component.controlChange({ name: 'tag1', type: 'tag' }, null);
+      expect(component.filterForm.get('tag1')?.value).toBeTrue();
+      expect(component.storedValues['tag1'].checked).toBeTrue();
+    });
+
+    it('should handle multiple radial inputs with the same name in ngOnInit', () => {
+      const fixture = TestBed.createComponent(BmbFilterCardComponent);
+      const component = fixture.componentInstance;
+      fixture.componentRef.setInput('controlTypes', [{
+        title: 'T',
+        control: [
+          { name: 'rad1', type: 'radial', label: 'R1', value: 'V1', checked: false },
+          { name: 'rad1', type: 'radial', label: 'R2', value: 'V2', checked: true }
+        ]
+      }]);
+      fixture.detectChanges();
+      expect(component.filterForm.get('rad1')?.value).toBe('R2');
+      expect(component.storedValues['rad1'].checked).toBeTrue();
+      expect(component.storedValues['rad1'].value).toBe('V2');
+    });
+
+    it('should handle getFormControl', () => {
+      const fixture = TestBed.createComponent(BmbFilterCardComponent);
+      const component = fixture.componentInstance;
+      const control = component.getFormControl('search');
+      expect(control).toBeTruthy();
+    });
+
+    it('should log error for unsupported control type', () => {
+      const consoleSpy = spyOn(console, 'error');
+      const fixture = TestBed.createComponent(BmbFilterCardComponent);
+      const component = fixture.componentInstance;
+      fixture.componentRef.setInput('controlTypes', [{ title: 'T', control: [{ name: 'inv', type: 'invalid' as any }] }]);
+      fixture.detectChanges();
+      expect(consoleSpy).toHaveBeenCalledWith('Control type not supported');
+    });
+
+    it('should ignore control change if formControl is missing', () => {
+      const fixture = TestBed.createComponent(BmbFilterCardComponent);
+      const component = fixture.componentInstance;
+      fixture.componentRef.setInput('controlTypes', [{ title: 'T', control: [{ name: 'chk', type: 'checkbox' }] }]);
+      fixture.detectChanges();
+      
+      component.filterForm.removeControl('chk');
+      component.controlChange({ name: 'chk', type: 'checkbox' }, { target: { checked: true } });
+      
+      expect(component.filterForm.get('chk')).toBeNull();
+    });
+
+    it('should explicitly emit reset event on onReset', () => {
+      const fixture = TestBed.createComponent(BmbFilterCardComponent);
+      const component = fixture.componentInstance;
+      const emitSpy = spyOn(component.resetFilters, 'emit');
+      fixture.detectChanges();
+      
+      component.onReset();
+      expect(emitSpy).toHaveBeenCalled();
+    });
   });
+});
 });
