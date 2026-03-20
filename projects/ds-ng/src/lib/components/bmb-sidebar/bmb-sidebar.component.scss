@@ -326,6 +326,11 @@
     }
   }
 
+  &-border {
+    border-top: rem.rem_calc(1) solid var(--general-contrasts-container-outline);
+    width: 100%;
+  }
+
   &-link {
     display: flex;
     align-items: center;
