@@ -161,7 +161,9 @@ export class BmbFilterCardComponent implements OnInit {
               this.storedValues[control.name] = {
                 ...storedValue,
                 checked: control.checked || storedValue.checked,
-                value: control.checked ? control.value : storedValue.value,
+                value: control.checked
+                  ? (control.value ?? control.label)
+                  : storedValue.value,
                 originalControl: [...storedValue.originalControl, control],
               };
             } else {
@@ -172,7 +174,7 @@ export class BmbFilterCardComponent implements OnInit {
               this.storedValues[control.name] = {
                 ...control,
                 checked: control.checked ?? false,
-                value: control.checked ? control.value : '',
+                value: control.checked ? (control.value ?? control.label) : '',
                 originalControl: [control],
               };
             }
@@ -368,7 +370,15 @@ export class BmbFilterCardComponent implements OnInit {
   }
 
   private updateFilterValues(name: string, value: any): void {
-    if (this.filterValues()[name] === value) return;
+    const current = this.filterValues()[name];
+    if (current === value) return;
+    if (
+      Array.isArray(current) &&
+      Array.isArray(value) &&
+      current.length === value.length &&
+      current.every((v, i) => v === value[i])
+    )
+      return;
     this.filterValues.update((vals) => ({ ...vals, [name]: value }));
   }
 
