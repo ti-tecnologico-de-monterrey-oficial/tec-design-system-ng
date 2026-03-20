@@ -301,7 +301,10 @@ export class BmbFilterCardComponent implements OnInit {
         formData[key] = stored;
       } else if (stored.type === 'dropdown') {
         const currentValue = this.filterForm.get(key)?.value;
-        if (currentValue) {
+        const hasValue = Array.isArray(currentValue)
+          ? currentValue.length > 0
+          : !!currentValue;
+        if (hasValue) {
           formData[key] = { ...stored, value: currentValue };
         }
       }
@@ -310,7 +313,9 @@ export class BmbFilterCardComponent implements OnInit {
     if (globalSearchValue) {
       formData.search = globalSearchValue;
     }
-    this.modalService.closeModal(this.modalId() as string);
+    if (this.modalId()) {
+      this.modalService.closeModal(this.modalId() as string);
+    }
     this.applyFilters.emit(formData);
   }
 
@@ -328,15 +333,25 @@ export class BmbFilterCardComponent implements OnInit {
   }
 
   private clearControl(name: string): void {
-    this.filterForm.get(name)?.reset();
-    if (this.storedValues[name]) {
-      this.storedValues[name] = {
-        ...this.storedValues[name],
-        checked: false,
-        value: '',
-      };
+    const stored = this.storedValues[name];
+    let resetValue: any = '';
+    if (stored) {
+      switch (stored.type) {
+        case 'checkbox':
+        case 'switch':
+        case 'tag':
+          resetValue = false;
+          break;
+        case 'dropdown':
+          resetValue = Array.isArray(stored.value) ? [] : '';
+          break;
+        default:
+          resetValue = '';
+      }
+      this.storedValues[name] = { ...stored, checked: false, value: resetValue };
     }
-    this.updateFilterValues(name, '');
+    this.filterForm.get(name)?.reset(resetValue);
+    this.updateFilterValues(name, resetValue);
   }
 
   private updateFilterValues(name: string, value: any): void {
