@@ -322,6 +322,19 @@ export class BmbFilterCardComponent implements OnInit {
   onReset() {
     this.filterForm.reset();
     this.filterValues.set({});
+    Object.keys(this.storedValues).forEach((name) => {
+      const stored = this.storedValues[name];
+      if (!stored) return;
+      const resetValue =
+        stored.type === 'checkbox' ||
+        stored.type === 'switch' ||
+        stored.type === 'tag'
+          ? false
+          : stored.isMultiSelect
+            ? []
+            : '';
+      this.storedValues[name] = { ...stored, checked: false, value: resetValue };
+    });
     this.resetFilters.emit();
   }
 
@@ -343,7 +356,7 @@ export class BmbFilterCardComponent implements OnInit {
           resetValue = false;
           break;
         case 'dropdown':
-          resetValue = Array.isArray(stored.value) ? [] : '';
+          resetValue = stored.isMultiSelect ? [] : '';
           break;
         default:
           resetValue = '';
