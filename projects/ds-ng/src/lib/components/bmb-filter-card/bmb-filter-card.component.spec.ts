@@ -305,6 +305,8 @@ describe('BmbFilterCardComponent', () => {
 
       expect(component.filterForm.get('carrera')?.value).toBeFalsy();
     });
+  });
+
   describe('Additional Coverage: Modal, Submit, and Control Changes', () => {
     it('should open modal when openModalComponent is called', () => {
       const fixture = TestBed.createComponent(BmbFilterCardComponent);
@@ -445,5 +447,4 @@ describe('BmbFilterCardComponent', () => {
       expect(emitSpy).toHaveBeenCalled();
     });
   });
-});
 });

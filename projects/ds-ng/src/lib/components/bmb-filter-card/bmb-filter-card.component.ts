@@ -121,11 +121,15 @@ export class BmbFilterCardComponent implements OnInit {
 
       this.dynamicOptionsMap().forEach((options, name) => {
         const current = this.filterForm.get(name)?.value;
-        if (!current) return;
+        if (!current || (Array.isArray(current) && current.length === 0))
+          return;
         const validValues = options.map((o) =>
           typeof o === 'string' ? o : o.value,
         );
-        if (!validValues.includes(current)) this.clearControl(name);
+        const isValid = Array.isArray(current)
+          ? current.every((v: string) => validValues.includes(v))
+          : validValues.includes(current);
+        if (!isValid) this.clearControl(name);
       });
     });
   }
@@ -193,7 +197,11 @@ export class BmbFilterCardComponent implements OnInit {
     const initial: Record<string, any> = {};
     this.controlTypes().forEach((ct) =>
       ct.control.forEach((c) => {
-        initial[c.name] = this.filterForm.get(c.name)?.value;
+        const stored = this.storedValues[c.name];
+        initial[c.name] =
+          stored?.type === 'radial'
+            ? stored.value ?? this.filterForm.get(c.name)?.value
+            : this.filterForm.get(c.name)?.value;
       }),
     );
     this.filterValues.set(initial);
@@ -328,9 +336,11 @@ export class BmbFilterCardComponent implements OnInit {
         value: '',
       };
     }
+    this.updateFilterValues(name, '');
   }
 
   private updateFilterValues(name: string, value: any): void {
+    if (this.filterValues()[name] === value) return;
     this.filterValues.update((vals) => ({ ...vals, [name]: value }));
   }
 
