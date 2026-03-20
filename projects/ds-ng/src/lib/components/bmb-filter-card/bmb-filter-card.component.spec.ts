@@ -305,6 +305,71 @@ describe('BmbFilterCardComponent', () => {
 
       expect(component.filterForm.get('carrera')?.value).toBeFalsy();
     });
+
+    it('should match optionRule by semantic value when radial label differs from value', () => {
+      const controlTypesWithValue: IBmbControlType[] = [
+        {
+          title: 'Campus',
+          control: [
+            { name: 'campusSem', type: 'radial', label: 'Monterrey', value: 'MTY', id: 'sem-mty' },
+            { name: 'campusSem', type: 'radial', label: 'Guadalajara', value: 'GDL', id: 'sem-gdl' },
+          ],
+        },
+        {
+          title: 'Carrera',
+          control: [{ name: 'carreraSem', type: 'dropdown', label: 'Carrera', options: [] }],
+        },
+      ];
+      const rules: IBmbOptionRule[] = [
+        { when: { campusSem: 'MTY' }, target: 'carreraSem', options: ['Ingeniería', 'Medicina'] },
+        { when: { campusSem: 'GDL' }, target: 'carreraSem', options: ['Arquitectura', 'Diseño'] },
+      ];
+
+      const fixture = TestBed.createComponent(BmbFilterCardComponent);
+      const component = fixture.componentInstance;
+      fixture.componentRef.setInput('controlTypes', controlTypesWithValue);
+      fixture.componentRef.setInput('optionRules', rules);
+      fixture.detectChanges();
+
+      // Selecting Monterrey stores semantic value 'MTY' in filterValues, not display label 'Monterrey'
+      component.controlChange(
+        { name: 'campusSem', type: 'radial', label: 'Monterrey', value: 'MTY' },
+        { checked: true },
+      );
+      fixture.detectChanges();
+
+      const carreraControl = controlTypesWithValue[1].control[0];
+      expect(component.getControlOptions(carreraControl)).toEqual(['Ingeniería', 'Medicina']);
+    });
+
+    it('should seed filterValues with semantic value on init when radial is pre-checked with value != label', () => {
+      const controlTypesPreChecked: IBmbControlType[] = [
+        {
+          title: 'Campus',
+          control: [
+            { name: 'campusPre', type: 'radial', label: 'Monterrey', value: 'MTY', checked: true, id: 'pre-mty' },
+            { name: 'campusPre', type: 'radial', label: 'Guadalajara', value: 'GDL', id: 'pre-gdl' },
+          ],
+        },
+        {
+          title: 'Carrera',
+          control: [{ name: 'carreraPre', type: 'dropdown', label: 'Carrera', options: [] }],
+        },
+      ];
+      const rules: IBmbOptionRule[] = [
+        { when: { campusPre: 'MTY' }, target: 'carreraPre', options: ['Ingeniería', 'Medicina'] },
+      ];
+
+      const fixture = TestBed.createComponent(BmbFilterCardComponent);
+      const component = fixture.componentInstance;
+      fixture.componentRef.setInput('controlTypes', controlTypesPreChecked);
+      fixture.componentRef.setInput('optionRules', rules);
+      fixture.detectChanges();
+
+      // Without the fix, filterValues['campusPre'] would be 'Monterrey' (label) and the rule wouldn't match
+      const carreraControl = controlTypesPreChecked[1].control[0];
+      expect(component.getControlOptions(carreraControl)).toEqual(['Ingeniería', 'Medicina']);
+    });
   });
 
   describe('Additional Coverage: Modal, Submit, and Control Changes', () => {

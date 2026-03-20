@@ -367,7 +367,7 @@ export class BmbFilterCardComponent implements OnInit {
     return this.filterForm.get(name) as FormControl;
   }
 
-  onValueChange(event: string, name: string) {
+  onValueChange(event: string | string[], name: string) {
     this.filterForm.get(name)?.setValue(event);
     this.updateFilterValues(name, event);
     if (this.storedValues[name]) {
