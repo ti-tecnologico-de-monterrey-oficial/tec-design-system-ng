@@ -8,13 +8,18 @@ import { BmbSidebarComponent } from './bmb-sidebar.component';
 import { CommonModule } from '@angular/common';
 import { RouterTestingModule } from '@angular/router/testing';
 import {
+  BlockquoteType,
+  getAlertBlockquote,
   getBasicExampleBlock,
   getGeneralComponentDescription,
   getGeneralDescription,
   getSpecialSpecifications,
   RELEVANT_TITLE,
 } from '../../utils/doc/utils';
-import { getDefaultValueControl } from '../../utils/doc/parameterDescriptions';
+import {
+  getDefaultValueControl,
+  getPropertyParamDesc,
+} from '../../utils/doc/parameterDescriptions';
 
 const LEVEL_DESCRIPTION = `${RELEVANT_TITLE.important}
 There is a limit of two levels of nesting and the main list must have a maximum of two lists, the first has a limit of 5 elements and the second a limit of 3.`;
@@ -320,6 +325,14 @@ ${LEVEL_DESCRIPTION}
         defaultValue: '',
       },
     },
+    showHeaderForChildren: getPropertyParamDesc('header visible for children', {
+      controlType: 'boolean',
+      defaultSummary: false,
+      additionalDescription: `
+
+The header is the parent option selected.
+${getAlertBlockquote('The mobile variant always has a header.', { title: RELEVANT_TITLE.important, blockquoteType: BlockquoteType.important })}`,
+    }),
     position: {
       control: {
         type: 'select',
