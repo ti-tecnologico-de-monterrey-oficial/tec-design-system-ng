@@ -33,7 +33,6 @@ export default {
       controls: {
         exclude: [
           'numberOfElements',
-          'selectedIndex',
           'selectItem',
           'setClassActive',
           'setNextItem',
@@ -78,10 +77,20 @@ ${getBasicExampleBlock('BmbMultiDotPaginatorItemComponent, BmbMultiDotPaginatorI
         defaultValue: '',
       },
     },
+    selectedIndex: {
+      control: { type: 'number' },
+      description: 'Index of the currently selected item. This is a model that can be used to set the selected item programmatically.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'number' },
+        defaultValue: 0,
+      },
+    },
   },
   args: {
     componentTitle: 'Example Title',
     subtitle: 'Example Subtitle',
+    selectedIndex: 0,
   },
 } as Meta<typeof BmbMultiDotPaginatorComponent>;
 
