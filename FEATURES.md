@@ -1,10 +1,9 @@
-# Novedades ## [v1.6.1-e] -
+# Novedades ## [v1.6.1-d] -
 
-2026-03-21
+2026-03-18
 
 ### 🚀 Novedades
 
-- update doc
 - chore: documentación de 'Container button'.
 - chore: se realizó refactorización para la generación de documentación de las propiedades .
 - Feat: Nueva configuración del servicio para el tema
