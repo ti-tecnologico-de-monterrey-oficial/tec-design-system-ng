@@ -30,6 +30,6 @@ export const appConfig: ApplicationConfig = {
       BmbProjectionContentService,
       BmbTranslationsService,
     ]),
-    { provide: BMB_DEFAULT_THEME, useValue: 'light' }
+    { provide: BMB_DEFAULT_THEME, useValue: 'light' },
   ],
 };

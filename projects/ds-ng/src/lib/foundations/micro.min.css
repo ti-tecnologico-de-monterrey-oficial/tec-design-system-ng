@@ -22,7 +22,7 @@
   font-family: 'Poppins-Light';
   font-style: normal;
   font-weight: 300;
-  src: url('/assets/fonts/Poppins/Poppins-ExtraLight.ttf') format('truetype');
+  src: url('/assets/fonts/Poppins/Poppins-Light.ttf') format('truetype');
 }
 @font-face {
   font-family: 'Poppins-Regular';
@@ -894,7 +894,7 @@
   border-width: 0 0 2px;
   border-style: solid;
   border-color: rgba(0, 0, 0, 0);
-  padding: 0.25rem 1rem;
+  padding: 0.25rem 0.5rem;
   cursor: pointer;
   color: var(--white-light);
   transition: all 0.2s ease-in-out;
@@ -2585,6 +2585,21 @@ ion-content {
   > .bmb_home-card-wrapper
   > .bmb_home-card-container {
   flex: 1;
+}
+.bmb_align-items-stretch
+  > bmb-container-button.bmb_layout-item
+  > .bmb_container-button,
+.bmb_align-items-stretch
+  > bmb-container-button.bmb_layout-item
+  bmb-check-external-link-button,
+.bmb_align-items-stretch
+  > bmb-container-button.bmb_layout-item
+  .bmb_check-external-link-button,
+.bmb_align-items-stretch
+  > bmb-container-button.bmb_layout-item
+  .bmb_check-external-link-button-element {
+  height: 100%;
+  display: block;
 }
 .bmb_button-group {
   display: inline-flex;

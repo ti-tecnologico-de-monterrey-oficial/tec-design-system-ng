@@ -40,7 +40,11 @@
           [alt]="alt()"
           [loading]="loading()"
           class="bmb_image-figure-image"
+          role="button"
+          tabindex="0"
           (click)="handleSingleImageClick()"
+          (keydown.enter)="handleSingleImageClick()"
+          (keydown.space)="handleSingleImageClick()"
         />
       </picture>
     </figure>

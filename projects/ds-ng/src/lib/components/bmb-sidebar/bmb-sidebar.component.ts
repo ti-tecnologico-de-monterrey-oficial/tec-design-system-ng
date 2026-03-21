@@ -40,6 +40,7 @@ export class BmbSidebarComponent {
   elements = input<SidebarElement[][]>([]);
   position = input<IPositionButtonMenu>('left'); //Only for web
   componentTitle = input<string>('Navigation');
+  showHeaderForChildren = input<boolean>(false);
 
   title = input<string>(); // deprecated
 
@@ -128,6 +129,10 @@ export class BmbSidebarComponent {
 
     if (element.children) {
       element.isOpen = !element.isOpen;
+    }
+
+    if (element.event) {
+      element.event(element);
     }
   }
 

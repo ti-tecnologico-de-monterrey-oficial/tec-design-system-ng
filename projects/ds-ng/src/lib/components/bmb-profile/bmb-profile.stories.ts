@@ -294,6 +294,16 @@ IBmbHierarchyProfileData {
       getOnEvent('version back link', 'handleVersionBack'),
       '. This should be used as a navigation action.',
     ),
+    enableExpandButton: {
+      control: { type: 'boolean' },
+      description:
+        'When true, the component will display the expand button at the right side of the header.',
+      table: {
+        category: 'Properties',
+        defaultValue: { summary: 'true' },
+        type: { summary: 'boolean' },
+      },
+    },
   },
   args: {
     handleCloseSession: () => {
@@ -302,6 +312,7 @@ IBmbHierarchyProfileData {
     handleVersionBack: () => {
       console.log('Version back');
     },
+    enableExpandButton: true,
   },
 } as Meta<typeof BmbProfileComponent>;
 

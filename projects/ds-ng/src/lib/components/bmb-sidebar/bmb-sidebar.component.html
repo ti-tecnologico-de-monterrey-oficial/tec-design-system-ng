@@ -8,7 +8,7 @@
   let-isMobile="isMobile"
   let-hasChildren="hasChildren"
 >
-  @if (!isHeader && !!element.icon) {
+  @if ((!isHeader && !!element.icon) || (isHeader && !isMobile)) {
     <bmb-icon
       class="bmb_sidebar-icon"
       [icon]="element.icon"
@@ -18,8 +18,8 @@
   }
   <span
     [ngClass]="{
-      'bmb_sidebar-text': !isHeader,
-      'bmb_sidebar-header-text': isHeader
+      'bmb_sidebar-text': !isHeader || (isHeader && !isMobile),
+      'bmb_sidebar-header-text': isHeader && isMobile
     }"
   >
     {{ element!.title }}
@@ -83,7 +83,11 @@
                 hasSubmenu &&
                 !element.children?.length
             }"
+            role="button"
+            tabindex="0"
             (click)="checkToCloseSidebar(element)"
+            (keydown.enter)="checkToCloseSidebar(element)"
+            (keydown.space)="checkToCloseSidebar(element)"
           >
             <ng-container
               *ngTemplateOutlet="
@@ -189,8 +193,32 @@
     }
     @if (level >= 2 && !!element.children) {
       <ul class="bmb_sidebar-list">
+        @if (!isMobile && showHeaderForChildren()) {
+          <!-- Header -->
+          <section class="bmb_sidebar-item bmb_sidebar-header">
+            <ng-container
+              *ngTemplateOutlet="
+                elementTemplate;
+                context: {
+                  element,
+                  isHeader: true,
+                  isMobile,
+                  hasChildren: !!element.children
+                }
+              "
+            />
+          </section>
+          <div class="bmb_sidebar-border"></div>
+        }
         @for (child of element?.children?.slice(0, 6); track $index) {
-          <li class="bmb_sidebar-item" (click)="checkToCloseSidebar(child)">
+          <li
+            class="bmb_sidebar-item"
+            role="button"
+            tabindex="0"
+            (click)="checkToCloseSidebar(child)"
+            (keydown.enter)="checkToCloseSidebar(child)"
+            (keydown.space)="checkToCloseSidebar(child)"
+          >
             <ng-container
               *ngTemplateOutlet="
                 itemsTemplate;

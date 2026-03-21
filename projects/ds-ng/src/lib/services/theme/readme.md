@@ -8,8 +8,8 @@
 
 ## Props / Parámetros
 
-| Propiedad          | Tipo     | Descripción                            | Valor por defecto | Obligatorio |
-| ------------------ | -------- | -------------------------------------- | ----------------- | ----------- |
+| Propiedad           | Tipo     | Descripción                            | Valor por defecto | Obligatorio |
+| ------------------- | -------- | -------------------------------------- | ----------------- | ----------- |
 | `BMB_DEFAULT_THEME` | `string` | Tema por defecto inyectado al servicio | `'light'`         | No          |
 
 ### Observables y métodos
@@ -61,9 +61,7 @@ Para configurar un tema por defecto diferente a `'light'`, debes proveer el toke
 import { BMB_DEFAULT_THEME } from './services/theme/theme-config';
 
 bootstrapApplication(AppComponent, {
-  providers: [
-    { provide: BMB_DEFAULT_THEME, useValue: 'dark' }
-  ]
+  providers: [{ provide: BMB_DEFAULT_THEME, useValue: 'dark' }],
 });
 ```
 
@@ -73,11 +71,9 @@ bootstrapApplication(AppComponent, {
 import { BMB_DEFAULT_THEME } from './services/theme/theme-config';
 
 @NgModule({
-  providers: [
-    { provide: BMB_DEFAULT_THEME, useValue: 'dark' }
-  ]
+  providers: [{ provide: BMB_DEFAULT_THEME, useValue: 'dark' }],
 })
-export class AppModule { }
+export class AppModule {}
 ```
 
 ---

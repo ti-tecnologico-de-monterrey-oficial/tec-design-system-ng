@@ -50,7 +50,10 @@
               </ul>
             </section>
           }
-          @if (!computedResults().services.length && !computedResults().persons.length) {
+          @if (
+            !computedResults().services.length &&
+            !computedResults().persons.length
+          ) {
             <bmb-search-card-empty-state
               [inputHasValue]="!!inputSearchControl.value"
             ></bmb-search-card-empty-state>

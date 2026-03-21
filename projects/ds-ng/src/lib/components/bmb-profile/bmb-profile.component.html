@@ -216,7 +216,7 @@
     componentTitle="Mi perfil"
     [showRightButton]="false"
     contentPadding="l"
-    [showRightButton]="true"
+    [showRightButton]="enableExpandButton()"
     (onBack)="handleBack($event)"
     (onExpandClick)="handleExpand($event)"
     [(isExpanded)]="isExpanded"

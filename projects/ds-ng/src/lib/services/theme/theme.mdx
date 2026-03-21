@@ -75,52 +75,56 @@ import {
 
       <Source
         code={`import { Component, OnInit } from '@angular/core';
+
 import { ThemeService } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
 
 @Component({
-  selector: 'app-root',
-  template: '<router-outlet />',
+selector: 'app-root',
+template: '<router-outlet />',
 })
 export class AppComponent implements OnInit {
-  constructor(private themeService: ThemeService) {}
+constructor(private themeService: ThemeService) {}
 
-  ngOnInit(): void {
-    // This will set the theme from localStorage if present,
-    // otherwise it will use the default or the one you pass in.
-    this.themeService.setInitialTheme();
-  }
+ngOnInit(): void {
+// This will set the theme from localStorage if present,
+// otherwise it will use the default or the one you pass in.
+this.themeService.setInitialTheme();
 }
-        `}
-      />
+}
+`}
+/>
 
       <br />
       <h4>🟢 Toggle and persist the theme</h4>
 
       <Source
         code={`import { Component } from '@angular/core';
+
 import { ThemeService } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
 
 @Component({
-  selector: 'app-theme-toggle',
-  template: ` + "`" + `<button (click)="toggleTheme()">
-  Toggle theme (current: {{ currentTheme }})
+selector: 'app-theme-toggle',
+template: ` + "`" + `<button (click)="toggleTheme()">
+Toggle theme (current: {{ currentTheme }})
+
 </button>` + "`" + `,
 })
 export class ThemeToggleComponent {
   currentTheme = this.themeService.getTheme();
 
-  constructor(private themeService: ThemeService) {}
+constructor(private themeService: ThemeService) {}
 
-  toggleTheme(): void {
-    const current = this.themeService.getTheme();
-    const next = current === 'light' ? 'dark' : 'light';
+toggleTheme(): void {
+const current = this.themeService.getTheme();
+const next = current === 'light' ? 'dark' : 'light';
 
     this.themeService.setThemeAndSaveInLocal(next);
     this.currentTheme = this.themeService.getTheme();
-  }
+
 }
-        `}
-      />
+}
+`}
+/>
 
       <br />
       <h4>🔵 Configure a custom default theme</h4>
@@ -131,6 +135,7 @@ export class ThemeToggleComponent {
 
       <Source
         code={`import { ApplicationConfig } from '@angular/core';
+
 import { provideRouter } from '@angular/router';
 import { BMB_DEFAULT_THEME } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
 

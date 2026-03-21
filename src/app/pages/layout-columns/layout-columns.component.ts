@@ -28,7 +28,6 @@ import {
     BmbMultiDotPaginatorItemComponent,
     BmbContainerButtonComponent,
     BmbProgressCircleComponent,
-
   ],
   templateUrl: './layout-columns.component.html',
   styleUrl: './layout-columns.component.scss',

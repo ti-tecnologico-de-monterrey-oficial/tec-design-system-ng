@@ -17,7 +17,7 @@
           <bmb-user-image
             [size]="'mobile-small'"
             [image]="message().userProfile!"
-            [altImage]="'Alt image description'"
+            [altImage]="'Imagen de perfil del usuario'"
             [bordered]="false"
           ></bmb-user-image>
         } @else {
@@ -53,7 +53,7 @@
               <img
                 class="bmb_chat-bubble-msg-image"
                 [src]="message().content.imageUrl"
-                alt="Message Img"
+                alt="Imagen adjunta al mensaje"
               />
             }
 
@@ -114,45 +114,60 @@
                   icon="repeat"
                   [isFill]="true"
                   [size]="24"
+                  role="button"
+                  tabindex="0"
                   (click)="handleRepeat($event)"
-                  aria-label="button"
-                  (keypress)="handleRepeat($event)"
+                  aria-label="Repetir respuesta"
+                  (keydown.enter)="handleRepeat($event)"
+                  (keydown.space)="handleRepeat($event)"
                 ></bmb-icon>
                 <bmb-icon
                   class="bmb_chat-bubble-extra-icon"
                   icon="record_voice_over"
                   [isFill]="true"
                   [size]="24"
+                  role="button"
+                  tabindex="0"
                   (click)="handleVoice($event)"
-                  aria-label="button"
-                  (keypress)="handleVoice($event)"
+                  aria-label="Escuchar respuesta"
+                  (keydown.enter)="handleVoice($event)"
+                  (keydown.space)="handleVoice($event)"
                 ></bmb-icon>
                 <bmb-icon
                   class="bmb_chat-bubble-extra-icon"
                   icon="content_copy"
                   [isFill]="true"
                   [size]="24"
+                  role="button"
+                  tabindex="0"
                   (click)="handleCopyContent($event)"
-                  aria-label="button"
-                  (keypress)="handleCopyContent($event)"
+                  aria-label="Copiar contenido"
+                  (keydown.enter)="handleCopyContent($event)"
+                  (keydown.space)="handleCopyContent($event)"
                 ></bmb-icon>
                 <bmb-icon
                   class="bmb_chat-bubble-extra-icon"
                   icon="thumb_up"
                   [isFill]="true"
                   [size]="24"
+                  role="button"
+                  tabindex="0"
                   (click)="handleLike($event)"
-                  aria-label="button"
-                  (keypress)="handleLike($event)"
+                  aria-label="Me gusta"
+                  (keydown.enter)="handleLike($event)"
+                  (keydown.space)="handleLike($event)"
                 ></bmb-icon>
                 <bmb-icon
                   class="bmb_chat-bubble-extra-icon"
                   icon="thumb_down"
                   [isFill]="true"
                   [size]="24"
+                  role="button"
+                  tabindex="0"
                   (click)="handleDislike($event)"
-                  aria-label="button"
-                  (keypress)="handleDislike($event)"
+                  aria-label="No me gusta"
+                  (keydown.enter)="handleDislike($event)"
+                  (keydown.space)="handleDislike($event)"
                 ></bmb-icon>
               }
             </div>
