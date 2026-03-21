@@ -14,7 +14,7 @@
         '--numberOfElements: ' +
         numberOfElements.length +
         '; --selected-child: ' +
-        selectedIndex +
+        selectedIndex() +
         ';'
       "
     >
@@ -41,12 +41,12 @@
   <footer class="bmb_multi-dot-paginator-footer">
     <ul
       class="bmb_multi-dot-paginator-list"
-      [style]="'--selected-child: ' + selectedIndex + ';'"
+      [style]="'--selected-child: ' + selectedIndex() + ';'"
     >
       @if (numberOfElements.length > 0) {
         <li class="bmb_multi-dot-paginator-list-item">
           <bmb-action-icon
-            [disabled]="selectedIndex === 0"
+            [disabled]="selectedIndex() === 0"
             [icon]="'chevron_left'"
             [iconSize]="24"
             (buttonClick)="prevItem()"
@@ -57,7 +57,8 @@
         <li
           class="bmb_multi-dot-paginator-list-item"
           [ngClass]="{
-            'bmb_multi-dot-paginator-list-item-active': selectedIndex === $index
+            'bmb_multi-dot-paginator-list-item-active':
+              selectedIndex() === $index
           }"
         >
           <button
@@ -65,7 +66,7 @@
             (click)="selectItem($index)"
             [title]="$index"
             [ngClass]="{
-              'bmb_multi-dot-paginator-dot-active': selectedIndex === $index
+              'bmb_multi-dot-paginator-dot-active': selectedIndex() === $index
             }"
           ></button>
         </li>
@@ -73,7 +74,7 @@
       @if (numberOfElements.length > 0) {
         <li class="bmb_multi-dot-paginator-list-item">
           <bmb-action-icon
-            [disabled]="selectedIndex === numberOfElements.length - 1"
+            [disabled]="selectedIndex() === numberOfElements.length - 1"
             [icon]="'chevron_right'"
             [iconSize]="24"
             (buttonClick)="nextItem()"

@@ -130,6 +130,10 @@ export class BmbSidebarComponent {
     if (element.children) {
       element.isOpen = !element.isOpen;
     }
+
+    if (element.event) {
+      element.event(element);
+    }
   }
 
   checkIfFocusInsideSidebar() {
