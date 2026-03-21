@@ -79,7 +79,8 @@ ${getBasicExampleBlock('BmbMultiDotPaginatorItemComponent, BmbMultiDotPaginatorI
     },
     selectedIndex: {
       control: { type: 'number' },
-      description: 'Index of the currently selected item. This is a model that can be used to set the selected item programmatically.',
+      description:
+        'Index of the currently selected item. This is a model that can be used to set the selected item programmatically.',
       table: {
         category: 'Properties',
         type: { summary: 'number' },

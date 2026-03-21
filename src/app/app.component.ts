@@ -272,8 +272,8 @@ export class AppComponent {
             title: 'Custom event',
             event: (event) => {
               console.log('Custom event triggered', event);
-            }
-          }
+            },
+          },
         ],
       },
     ],
