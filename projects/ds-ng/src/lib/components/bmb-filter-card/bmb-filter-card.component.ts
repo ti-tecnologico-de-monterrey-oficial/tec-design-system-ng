@@ -272,7 +272,7 @@ export class BmbFilterCardComponent implements OnInit {
           this.updateFilterValues(control.name, formControl.value);
           this.storedValues[control.name] = {
             ...this.storedValues[control.name],
-            value: control.value ?? control.label,
+            value: formControl.value,
           };
           break;
         default: //for the tag option or any other option that does not have an activated control
