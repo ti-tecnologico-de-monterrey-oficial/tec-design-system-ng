@@ -1,4 +1,4 @@
-import { Meta, StoryObj } from '@storybook/angular';
+import { Meta, moduleMetadata, StoryObj } from '@storybook/angular';
 import { BmbActionIconComponent } from './bmb-action-icon.component';
 import {
   getBasicExampleBlock,
@@ -15,12 +15,18 @@ import {
   ON_BUTTON_CLICK,
   ON_CLICK_DESCRIPTION,
 } from '../../utils/doc/parameterDescriptions';
+import { BmbTooltipComponent } from '../bmb-tooltip/bmb-tooltip.component';
 
 const onButtonPress: IBmbOnEvent = getOnEvent('', 'buttonPress');
 
 export default {
   title: 'Components/Buttons/Action icon',
   component: BmbActionIconComponent,
+  decorators: [
+    moduleMetadata({
+      imports: [BmbTooltipComponent],
+    }),
+  ],
   parameters: {
     controls: {
       exclude: ['getIcon', 'handleClick', 'handlePress'],
@@ -101,7 +107,12 @@ This property switches the \`isToggleActive\` when \`isToggleActive\` is true`,
   },
 } as Meta<typeof BmbActionIconComponent>;
 
-type Story = StoryObj<BmbActionIconComponent>;
+type Story = StoryObj<
+  BmbActionIconComponent & {
+    tooltipText: string;
+    tooltipTitle: string;
+  }
+>;
 
 export const Default: Story = {
   name: 'Default example',
@@ -158,5 +169,39 @@ export const IconLinkExample = {
   args: {
     link: 'https://www.example.com/',
     target: '_blank',
+  },
+};
+
+export const WithTooltipControls: Story = {
+  name: 'With tooltip (controls)',
+  render: (args) => ({
+    props: args,
+    template: `
+      <bmb-tooltip
+        [text]="tooltipText"
+        [componentTitle]="tooltipTitle"
+      >
+        <bmb-action-icon
+          [icon]="icon"
+          [iconSize]="iconSize"
+        />
+      </bmb-tooltip>
+    `,
+  }),
+  args: {
+    icon: 'info',
+    iconSize: 24,
+    tooltipText: 'Tooltip description',
+    tooltipTitle: 'Tooltip title',
+  },
+  argTypes: {
+    tooltipText: {
+      control: 'text',
+      description: 'Tooltip description',
+    },
+    tooltipTitle: {
+      control: 'text',
+      description: 'Tooltip title',
+    },
   },
 };

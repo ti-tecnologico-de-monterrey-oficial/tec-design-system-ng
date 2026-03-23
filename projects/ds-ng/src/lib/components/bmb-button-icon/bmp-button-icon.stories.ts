@@ -45,6 +45,24 @@ ${getBasicExampleBlock('BmbButtonIconComponent', '', onEvent.handleExample)}
     },
   },
   argTypes: {
+    tooltipTitle: {
+      control: { type: 'text' },
+      description: 'Title displayed in the tooltip.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'string (optional)' },
+        defaultValue: getDefaultValueControl(''),
+      },
+    },
+    tooltipText: {
+      control: { type: 'text' },
+      description: 'Text content displayed inside the tooltip.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'string (optional)' },
+        defaultValue: getDefaultValueControl(''),
+      },
+    },
     appearanceContrast: getAppearanceParam(
       'button icon',
       ['default', 'primary', 'alternative', 'solid'],
@@ -116,6 +134,16 @@ export const outlineExample = {
 export const NoContainerExample = {
   name: 'No container variant example',
   args: {
+    icon: 'help',
+    showContainer: false,
+  },
+};
+
+export const WithTooltip: Story = {
+  name: 'With tooltip example',
+  args: {
+    tooltipTitle: 'Tooltip title',
+    tooltipText: 'Tooltip text',
     icon: 'help',
     showContainer: false,
   },

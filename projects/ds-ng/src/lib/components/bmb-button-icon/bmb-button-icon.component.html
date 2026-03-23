@@ -1,22 +1,31 @@
-<span
-  class="bmb_button_icon"
-  [ngClass]="{
-    'bmb_button_icon-active': active(),
-    'bmb_button_icon-container': showContainer(),
-    'bmb_button_icon-container-outline': showContainer() && isOutline(),
-    'bmb_button_icon-disabled': disabled(),
-    'bmb_button_icon-container-primary': appearanceContrast() === 'primary',
-    'bmb_button_icon-container-alternative':
-      appearanceContrast() === 'alternative',
-    'bmb_button_icon-container-solid': appearanceContrast() === 'solid'
-  }"
->
-  <bmb-action-icon
-    [idElement]="idElement()"
-    [icon]="icon()"
-    [iconSize]="showContainer() ? 24 : 32"
-    [disabled]="disabled()!"
-    (buttonPress)="handlePress()"
-    (buttonClick)="handleClick($event)"
-  />
-</span>
+<ng-template #iconTemplate>
+  <span
+    class="bmb_button_icon"
+    [ngClass]="{
+      'bmb_button_icon-active': active(),
+      'bmb_button_icon-container': showContainer(),
+      'bmb_button_icon-container-outline': showContainer() && isOutline(),
+      'bmb_button_icon-disabled': disabled(),
+      'bmb_button_icon-container-primary': appearanceContrast() === 'primary',
+      'bmb_button_icon-container-alternative':
+        appearanceContrast() === 'alternative',
+      'bmb_button_icon-container-solid': appearanceContrast() === 'solid'
+    }"
+  >
+    <bmb-action-icon
+      [idElement]="idElement()"
+      [icon]="icon()"
+      [iconSize]="showContainer() ? 24 : 32"
+      [disabled]="disabled()!"
+      (buttonPress)="handlePress()"
+      (buttonClick)="handleClick($event)"
+    />
+  </span>
+</ng-template>
+@if (tooltipText() || tooltipTitle()) {
+  <bmb-tooltip [text]="tooltipText()" [componentTitle]="tooltipTitle()">
+    <ng-container *ngTemplateOutlet="iconTemplate" />
+  </bmb-tooltip>
+} @else {
+  <ng-container *ngTemplateOutlet="iconTemplate" />
+}

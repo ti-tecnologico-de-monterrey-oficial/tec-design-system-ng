@@ -9,11 +9,12 @@ import {
 import { CommonModule } from '@angular/common';
 import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
 import { IBmbContrast } from '../../types/colors';
+import { BmbTooltipComponent } from '../bmb-tooltip/bmb-tooltip.component';
 
 @Component({
   selector: 'bmb-button-icon',
   standalone: true,
-  imports: [CommonModule, BmbActionIconComponent],
+  imports: [CommonModule, BmbActionIconComponent, BmbTooltipComponent],
   templateUrl: './bmb-button-icon.component.html',
   styleUrl: './bmb-button-icon.component.scss',
   encapsulation: ViewEncapsulation.None,
@@ -27,6 +28,8 @@ export class BmbButtonIconComponent {
   disabled = input<boolean>(false);
   active = model<boolean>(false);
   isOutline = model<boolean>(false);
+  tooltipTitle = input<string>('');
+  tooltipText = input<string>('');
 
   onButtonClick = output<MouseEvent>();
 
