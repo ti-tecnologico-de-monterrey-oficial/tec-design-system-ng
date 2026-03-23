@@ -266,6 +266,14 @@ export class AppComponent {
             title: 'Calendar',
             link: '/calendar',
           },
+          {
+            id: 3,
+            icon: 'blanket',
+            title: 'Custom event',
+            event: (event) => {
+              console.log('Custom event triggered', event);
+            },
+          },
         ],
       },
     ],
@@ -322,6 +330,7 @@ export class AppComponent {
         isMobile: false,
         enableVersionBack: true,
         versionBackText: 'Back to previous version',
+        enableExpandButton: false,
         collaboratorData: {
           userData: {
             name: 'Paloma Araujo',

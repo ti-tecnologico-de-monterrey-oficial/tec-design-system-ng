@@ -160,7 +160,9 @@
       background-color: var(--containers-top-bar);
       color: rgb(var(--white-primary));
 
-      @include mixins.hidden-for-no-mobile();
+      @media (min-height: 630px) and (min-width: 1000px) {
+        display: none;
+      }
     }
 
     &.bmb_sidebar-open {
@@ -268,7 +270,7 @@
       }
     }
 
-    @include mixins.check-for-mobile(false) {
+    @media (min-height: 631px) and (min-width: 1001px) {
       display: block;
     }
 
@@ -324,6 +326,11 @@
       align-items: center;
       justify-content: center;
     }
+  }
+
+  &-border {
+    border-top: rem.rem_calc(1) solid var(--general-contrasts-container-outline);
+    width: 100%;
   }
 
   &-link {

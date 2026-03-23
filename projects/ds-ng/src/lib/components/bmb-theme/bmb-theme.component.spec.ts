@@ -43,7 +43,8 @@ describe('BmbThemeComponent', () => {
     spyOn(component, 'applyTheme').and.callThrough();
     component.onThemeChange(true);
     expect(component.applyTheme).toHaveBeenCalledWith('dark');
-    expect(themeServiceStub.setThemeAndSaveInLocal).toHaveBeenCalledWith('dark');
+    expect(themeServiceStub.setThemeAndSaveInLocal).toHaveBeenCalledWith(
+      'dark',
+    );
   });
 });
-

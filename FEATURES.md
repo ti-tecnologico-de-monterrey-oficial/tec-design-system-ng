@@ -1,4 +1,4 @@
-# Novedades ## [v1.6.1-d] -
+# Novedades ## [v1.6.1-e] -
 2026-03-23
 
 ### 🚀 Novedades
@@ -9,6 +9,8 @@ update doc
 chore: documentación de 'Container button'.
 *
 chore: se realizó refactorización para la generación de documentación de las propiedades .
+*
+Bmb tooltip
 *
 Feat: Nueva configuración del servicio para el tema
 *
@@ -26,8 +28,6 @@ feat(component/container-button-badge): se agregó ícono derecho
 *
 feat(component/container-button-complex): se implementaron obligatorios los elementos izquierdo y derecho.
 *
-feat(component/container-button): se agregó variante 'complex alternative' según diseño en Figma. Se implementaron solo las entradas necesarias.
-*
 Depuración de código no utilizado.
 *
 chore: se actualizaron los SVG de los íconos del componente 'tecBot'.
@@ -42,21 +42,21 @@ fix(component / col-sys): Se actualizaron los stretch de los container buttons
 *
 chore: se realizaron ajustes por descripciones reutilizables.
 *
+feat(component/fabb): se modifica los estilos para que se aplique el estilo de estatus activo solo al presionarlo.
+*
+fix: (component / progress circle): Se mejoró la responsividad del componente progress circle
+*
 chore: se agregó documentación reutilizable para el 'container-button'.
 *
-chore: se agregaron casos de pruebas.
+chore se agregaron las variantes del 'Container button' para uso de los desarrolladores.
 *
 Update bmb-notice-card.component.ts
 *
 Notice card
 *
-feat(component/fabb): se modifica los estilos para que se aplique el estilo de estatus activo solo al presionarlo.
-*
-fix: (component / progress circle): Se mejoró la responsividad del componente progress circle
+chore: se agregaron casos de pruebas.
 *
 chore: se ejecutó escenario de pruebas para el 'action-menu'.
-*
-chore se agregaron las variantes del 'Container button' para uso de los desarrolladores.
 *
 Update bmb-top-bar.component.scss
 *
@@ -71,8 +71,6 @@ Merge pull request #998 from ti-tecnologico-de-monterrey-oficial/DS01-3126
 doc(component / tooltip): Se actualizó la documentación del tooltip
 *
 Formato
-*
-fix(component/action-menu): se corrigió comportamiento inestable para los bloques de código con ciclos o estructuras condicionales.
 *
 chore: se agregó nuevo componente para implementar título y opcional sub título.
 *
@@ -89,6 +87,8 @@ chore: se agregó nuevo componente box-icon para reutilización de código y est
 feat(component/container-button): se agregó variante 'complex' según diseño en Figma. Se implementaron solo las entradas necesarias.
 *
 feat(component/container-button): se agregó variante badge según diseño en Figma. Se implementaron solo las entradas necesarias.
+*
+feat(component/container-button): se agregó variante 'complex alternative' según diseño en Figma. Se implementaron solo las entradas necesarias.
 *
 Formato
 *
@@ -142,6 +142,8 @@ conflict merge
 *
 feat(component/dropdown): se restructuro la funcionalidad de multi selección según diseño en Figma para el componente 'Dropdown'. Se realizaron ajustes en el componente 'input-content' al igual que en 'dropdown-content' para soportarlo. Además se agregaron pruebas en aplicación.
 *
+fix(component/action-menu): se corrigió comportamiento inestable para los bloques de código con ciclos o estructuras condicionales.
+*
 chore: refactorización de código para reutilización y organización de estilos.
 *
 feat(component / calendar): Se actualizó la interfaz del calendario
@@ -155,8 +157,6 @@ fix(component / tooltip): Se actualizo el componente para una estructura más ac
 Chore: pruebas en aplicaciones.
 *
 chore: refactorización de código para reutilizar CSS.
-*
-fix(component / modal): Se aseguró que tanto el modal como el contenido proyectado se centren cuando es necesario
 *
 Formato
 *
@@ -235,6 +235,8 @@ update(component / image): Se actualizaron las pruebas del componente
 feat(component / image): Se agregó el evento click o keydown al componente de imagen
 *
 Identity spectrum
+*
+fix(component / modal): Se aseguró que tanto el modal como el contenido proyectado se centren cuando es necesario
 *
 chore: se agregó la posibilidad de una segunda etiqueta para ser mostrada en los elementos del 'action-menu' que tengan el ícono de la derecha.
 *
@@ -278,6 +280,8 @@ update doc
 chore: documentación de 'Container button'.
 - **chore: se realizó refactorización para la generación de documentación de las propiedades .**:
 chore: se realizó refactorización para la generación de documentación de las propiedades .
+- **Bmb tooltip**:
+Bmb tooltip
 - **Feat: Nueva configuración del servicio para el tema**:
 Feat: Nueva configuración del servicio para el tema
 - **Animacion de bmb image**:
@@ -294,8 +298,6 @@ feat(component/container-button): se agregó variante 'square' según diseño en
 feat(component/container-button-badge): se agregó ícono derecho
 - **feat(component/container-button-complex): se implementaron obligatorios los elementos izquierdo y derecho.**:
 feat(component/container-button-complex): se implementaron obligatorios los elementos izquierdo y derecho.
-- **feat(component/container-button): se agregó variante 'complex alternative' según diseño en Figma. Se implementaron solo las entradas necesarias.**:
-feat(component/container-button): se agregó variante 'complex alternative' según diseño en Figma. Se implementaron solo las entradas necesarias.
 - **Depuración de código no utilizado.**:
 Depuración de código no utilizado.
 - **chore: se actualizaron los SVG de los íconos del componente 'tecBot'.**:
@@ -310,22 +312,22 @@ Create bmb-container-button-square.stories.ts
 fix(component / col-sys): Se actualizaron los stretch de los container buttons
 - **chore: se realizaron ajustes por descripciones reutilizables.**:
 chore: se realizaron ajustes por descripciones reutilizables.
-- **chore: se agregó documentación reutilizable para el 'container-button'.**:
-chore: se agregó documentación reutilizable para el 'container-button'.
-- **chore: se agregaron casos de pruebas.**:
-chore: se agregaron casos de pruebas.
-- **Update bmb-notice-card.component.ts**:
-Update bmb-notice-card.component.ts
-- **Notice card**:
-Notice card
 - **feat(component/fabb): se modifica los estilos para que se aplique el estilo de estatus activo solo al presionarlo.**:
 feat(component/fabb): se modifica los estilos para que se aplique el estilo de estatus activo solo al presionarlo.
 - **fix: (component / progress circle): Se mejoró la responsividad del componente progress circle**:
 fix: (component / progress circle): Se mejoró la responsividad del componente progress circle
-- **chore: se ejecutó escenario de pruebas para el 'action-menu'.**:
-chore: se ejecutó escenario de pruebas para el 'action-menu'.
+- **chore: se agregó documentación reutilizable para el 'container-button'.**:
+chore: se agregó documentación reutilizable para el 'container-button'.
 - **chore se agregaron las variantes del 'Container button' para uso de los desarrolladores.**:
 chore se agregaron las variantes del 'Container button' para uso de los desarrolladores.
+- **Update bmb-notice-card.component.ts**:
+Update bmb-notice-card.component.ts
+- **Notice card**:
+Notice card
+- **chore: se agregaron casos de pruebas.**:
+chore: se agregaron casos de pruebas.
+- **chore: se ejecutó escenario de pruebas para el 'action-menu'.**:
+chore: se ejecutó escenario de pruebas para el 'action-menu'.
 - **Update bmb-top-bar.component.scss**:
 Update bmb-top-bar.component.scss
 - **Formato**:
@@ -340,8 +342,6 @@ Merge pull request #998 from ti-tecnologico-de-monterrey-oficial/DS01-3126
 doc(component / tooltip): Se actualizó la documentación del tooltip
 - **Formato**:
 Formato
-- **fix(component/action-menu): se corrigió comportamiento inestable para los bloques de código con ciclos o estructuras condicionales.**:
-fix(component/action-menu): se corrigió comportamiento inestable para los bloques de código con ciclos o estructuras condicionales.
 - **chore: se agregó nuevo componente para implementar título y opcional sub título.**:
 chore: se agregó nuevo componente para implementar título y opcional sub título.
 - **chore: se agregó componente con apariencia de la anatomía del componente 'Interactive icon' en su variante de contenedor e ícono.**:
@@ -358,6 +358,8 @@ chore: se agregó nuevo componente box-icon para reutilización de código y est
 feat(component/container-button): se agregó variante 'complex' según diseño en Figma. Se implementaron solo las entradas necesarias.
 - **feat(component/container-button): se agregó variante badge según diseño en Figma. Se implementaron solo las entradas necesarias.**:
 feat(component/container-button): se agregó variante badge según diseño en Figma. Se implementaron solo las entradas necesarias.
+- **feat(component/container-button): se agregó variante 'complex alternative' según diseño en Figma. Se implementaron solo las entradas necesarias.**:
+feat(component/container-button): se agregó variante 'complex alternative' según diseño en Figma. Se implementaron solo las entradas necesarias.
 - **Formato**:
 Formato
 - **feat(component/container-button): se agregó variante default según diseño en Figma. Se implementaron solo las entradas necesarias.**:
@@ -412,6 +414,8 @@ chore: se revirtió el cambio.
 conflict merge
 - **feat(component/dropdown): se restructuro la funcionalidad de multi selección según diseño en Figma para el componente 'Dropdown'. Se realizaron ajustes en el componente 'input-content' al igual que en 'dropdown-content' para soportarlo. Además se agregaron pruebas en aplicación.**:
 feat(component/dropdown): se restructuro la funcionalidad de multi selección según diseño en Figma para el componente 'Dropdown'. Se realizaron ajustes en el componente 'input-content' al igual que en 'dropdown-content' para soportarlo. Además se agregaron pruebas en aplicación.
+- **fix(component/action-menu): se corrigió comportamiento inestable para los bloques de código con ciclos o estructuras condicionales.**:
+fix(component/action-menu): se corrigió comportamiento inestable para los bloques de código con ciclos o estructuras condicionales.
 - **chore: refactorización de código para reutilización y organización de estilos.**:
 chore: refactorización de código para reutilización y organización de estilos.
 - **feat(component / calendar): Se actualizó la interfaz del calendario**:
@@ -426,8 +430,6 @@ fix(component / tooltip): Se actualizo el componente para una estructura más ac
 Chore: pruebas en aplicaciones.
 - **chore: refactorización de código para reutilizar CSS.**:
 chore: refactorización de código para reutilizar CSS.
-- **fix(component / modal): Se aseguró que tanto el modal como el contenido proyectado se centren cuando es necesario**:
-fix(component / modal): Se aseguró que tanto el modal como el contenido proyectado se centren cuando es necesario
 - **Formato**:
 Formato
 - **chore: se implemeto mixin de CSS para hacer reutilizables los estilos del 'checkbox'.**:
@@ -506,6 +508,8 @@ update(component / image): Se actualizaron las pruebas del componente
 feat(component / image): Se agregó el evento click o keydown al componente de imagen
 - **Identity spectrum**:
 Identity spectrum
+- **fix(component / modal): Se aseguró que tanto el modal como el contenido proyectado se centren cuando es necesario**:
+fix(component / modal): Se aseguró que tanto el modal como el contenido proyectado se centren cuando es necesario
 - **chore: se agregó la posibilidad de una segunda etiqueta para ser mostrada en los elementos del 'action-menu' que tengan el ícono de la derecha.**:
 chore: se agregó la posibilidad de una segunda etiqueta para ser mostrada en los elementos del 'action-menu' que tengan el ícono de la derecha.
 - **feat(component / vertical col sys): Se agregó la posibilidad de remover el scroll en el item del vertical layout**:
@@ -549,6 +553,8 @@ update doc
 chore: documentación de 'Container button'.
 - **chore: se realizó refactorización para la generación de documentación de las propiedades .**:
 chore: se realizó refactorización para la generación de documentación de las propiedades .
+- **Bmb tooltip**:
+Bmb tooltip
 - **Feat: Nueva configuración del servicio para el tema**:
 Feat: Nueva configuración del servicio para el tema
 - **Animacion de bmb image**:
@@ -565,8 +571,6 @@ feat(component/container-button): se agregó variante 'square' según diseño en
 feat(component/container-button-badge): se agregó ícono derecho
 - **feat(component/container-button-complex): se implementaron obligatorios los elementos izquierdo y derecho.**:
 feat(component/container-button-complex): se implementaron obligatorios los elementos izquierdo y derecho.
-- **feat(component/container-button): se agregó variante 'complex alternative' según diseño en Figma. Se implementaron solo las entradas necesarias.**:
-feat(component/container-button): se agregó variante 'complex alternative' según diseño en Figma. Se implementaron solo las entradas necesarias.
 - **Depuración de código no utilizado.**:
 Depuración de código no utilizado.
 - **chore: se actualizaron los SVG de los íconos del componente 'tecBot'.**:
@@ -581,22 +585,22 @@ Create bmb-container-button-square.stories.ts
 fix(component / col-sys): Se actualizaron los stretch de los container buttons
 - **chore: se realizaron ajustes por descripciones reutilizables.**:
 chore: se realizaron ajustes por descripciones reutilizables.
-- **chore: se agregó documentación reutilizable para el 'container-button'.**:
-chore: se agregó documentación reutilizable para el 'container-button'.
-- **chore: se agregaron casos de pruebas.**:
-chore: se agregaron casos de pruebas.
-- **Update bmb-notice-card.component.ts**:
-Update bmb-notice-card.component.ts
-- **Notice card**:
-Notice card
 - **feat(component/fabb): se modifica los estilos para que se aplique el estilo de estatus activo solo al presionarlo.**:
 feat(component/fabb): se modifica los estilos para que se aplique el estilo de estatus activo solo al presionarlo.
 - **fix: (component / progress circle): Se mejoró la responsividad del componente progress circle**:
 fix: (component / progress circle): Se mejoró la responsividad del componente progress circle
-- **chore: se ejecutó escenario de pruebas para el 'action-menu'.**:
-chore: se ejecutó escenario de pruebas para el 'action-menu'.
+- **chore: se agregó documentación reutilizable para el 'container-button'.**:
+chore: se agregó documentación reutilizable para el 'container-button'.
 - **chore se agregaron las variantes del 'Container button' para uso de los desarrolladores.**:
 chore se agregaron las variantes del 'Container button' para uso de los desarrolladores.
+- **Update bmb-notice-card.component.ts**:
+Update bmb-notice-card.component.ts
+- **Notice card**:
+Notice card
+- **chore: se agregaron casos de pruebas.**:
+chore: se agregaron casos de pruebas.
+- **chore: se ejecutó escenario de pruebas para el 'action-menu'.**:
+chore: se ejecutó escenario de pruebas para el 'action-menu'.
 - **Update bmb-top-bar.component.scss**:
 Update bmb-top-bar.component.scss
 - **Formato**:
@@ -611,8 +615,6 @@ Merge pull request #998 from ti-tecnologico-de-monterrey-oficial/DS01-3126
 doc(component / tooltip): Se actualizó la documentación del tooltip
 - **Formato**:
 Formato
-- **fix(component/action-menu): se corrigió comportamiento inestable para los bloques de código con ciclos o estructuras condicionales.**:
-fix(component/action-menu): se corrigió comportamiento inestable para los bloques de código con ciclos o estructuras condicionales.
 - **chore: se agregó nuevo componente para implementar título y opcional sub título.**:
 chore: se agregó nuevo componente para implementar título y opcional sub título.
 - **chore: se agregó componente con apariencia de la anatomía del componente 'Interactive icon' en su variante de contenedor e ícono.**:
@@ -629,6 +631,8 @@ chore: se agregó nuevo componente box-icon para reutilización de código y est
 feat(component/container-button): se agregó variante 'complex' según diseño en Figma. Se implementaron solo las entradas necesarias.
 - **feat(component/container-button): se agregó variante badge según diseño en Figma. Se implementaron solo las entradas necesarias.**:
 feat(component/container-button): se agregó variante badge según diseño en Figma. Se implementaron solo las entradas necesarias.
+- **feat(component/container-button): se agregó variante 'complex alternative' según diseño en Figma. Se implementaron solo las entradas necesarias.**:
+feat(component/container-button): se agregó variante 'complex alternative' según diseño en Figma. Se implementaron solo las entradas necesarias.
 - **Formato**:
 Formato
 - **feat(component/container-button): se agregó variante default según diseño en Figma. Se implementaron solo las entradas necesarias.**:
@@ -683,6 +687,8 @@ chore: se revirtió el cambio.
 conflict merge
 - **feat(component/dropdown): se restructuro la funcionalidad de multi selección según diseño en Figma para el componente 'Dropdown'. Se realizaron ajustes en el componente 'input-content' al igual que en 'dropdown-content' para soportarlo. Además se agregaron pruebas en aplicación.**:
 feat(component/dropdown): se restructuro la funcionalidad de multi selección según diseño en Figma para el componente 'Dropdown'. Se realizaron ajustes en el componente 'input-content' al igual que en 'dropdown-content' para soportarlo. Además se agregaron pruebas en aplicación.
+- **fix(component/action-menu): se corrigió comportamiento inestable para los bloques de código con ciclos o estructuras condicionales.**:
+fix(component/action-menu): se corrigió comportamiento inestable para los bloques de código con ciclos o estructuras condicionales.
 - **chore: refactorización de código para reutilización y organización de estilos.**:
 chore: refactorización de código para reutilización y organización de estilos.
 - **feat(component / calendar): Se actualizó la interfaz del calendario**:
@@ -697,8 +703,6 @@ fix(component / tooltip): Se actualizo el componente para una estructura más ac
 Chore: pruebas en aplicaciones.
 - **chore: refactorización de código para reutilizar CSS.**:
 chore: refactorización de código para reutilizar CSS.
-- **fix(component / modal): Se aseguró que tanto el modal como el contenido proyectado se centren cuando es necesario**:
-fix(component / modal): Se aseguró que tanto el modal como el contenido proyectado se centren cuando es necesario
 - **Formato**:
 Formato
 - **chore: se implemeto mixin de CSS para hacer reutilizables los estilos del 'checkbox'.**:
@@ -777,6 +781,8 @@ update(component / image): Se actualizaron las pruebas del componente
 feat(component / image): Se agregó el evento click o keydown al componente de imagen
 - **Identity spectrum**:
 Identity spectrum
+- **fix(component / modal): Se aseguró que tanto el modal como el contenido proyectado se centren cuando es necesario**:
+fix(component / modal): Se aseguró que tanto el modal como el contenido proyectado se centren cuando es necesario
 - **chore: se agregó la posibilidad de una segunda etiqueta para ser mostrada en los elementos del 'action-menu' que tengan el ícono de la derecha.**:
 chore: se agregó la posibilidad de una segunda etiqueta para ser mostrada en los elementos del 'action-menu' que tengan el ícono de la derecha.
 - **feat(component / vertical col sys): Se agregó la posibilidad de remover el scroll en el item del vertical layout**:

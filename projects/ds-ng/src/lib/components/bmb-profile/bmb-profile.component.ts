@@ -67,6 +67,7 @@ export class BmbProfileComponent implements OnInit {
   versionBackText = input<string>('');
   enableLangChange = input<boolean>(false);
   enableVersionBack = input<boolean>(false);
+  enableExpandButton = input<boolean>(true);
 
   handleLangChange = model<string>();
 

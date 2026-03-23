@@ -5,6 +5,7 @@ import {
   contentChildren,
   effect,
   input,
+  model,
   ViewEncapsulation,
 } from '@angular/core';
 import { BmbMultiDotPaginatorItemComponent } from './bmb-multi-dot-paginator-item/bmb-multi-dot-paginator-item.component';
@@ -26,6 +27,8 @@ export class BmbMultiDotPaginatorComponent implements AfterContentInit {
   subtitle = input<string>('');
   componentTitle = input<string>(); // once title is removed, this should be required
 
+  selectedIndex = model<number>(0);
+
   title = input<string>(); // deprecated
 
   childrenItems = contentChildren<BmbMultiDotPaginatorItemComponent>(
@@ -33,7 +36,6 @@ export class BmbMultiDotPaginatorComponent implements AfterContentInit {
   );
 
   numberOfElements: number[] = [];
-  selectedIndex = 0;
 
   constructor() {
     effect(() => {
@@ -54,11 +56,11 @@ export class BmbMultiDotPaginatorComponent implements AfterContentInit {
 
   ngAfterContentInit() {
     this.numberOfElements = Array(this.childrenItems().length ?? 0).fill(0);
-    this.setClassActive(0);
+    this.setClassActive(this.selectedIndex());
   }
 
   selectItem(index: number) {
-    this.setClassActive(index, this.selectedIndex);
+    this.setClassActive(index, this.selectedIndex());
   }
 
   setClassActive(newIndex: number, oldIndex: number = 0) {
@@ -90,26 +92,26 @@ export class BmbMultiDotPaginatorComponent implements AfterContentInit {
       }, 500);
     }
 
-    this.selectedIndex = newIndex;
+    this.selectedIndex.set(newIndex);
   }
 
   setNextItem() {
-    if (this.selectedIndex + 1 === this.numberOfElements.length) {
-      this.setClassActive(0, this.selectedIndex);
+    if (this.selectedIndex() + 1 === this.numberOfElements.length) {
+      this.setClassActive(0, this.selectedIndex());
     } else {
-      this.setClassActive(this.selectedIndex + 1, this.selectedIndex);
+      this.setClassActive(this.selectedIndex() + 1, this.selectedIndex());
     }
   }
 
   prevItem() {
-    if (this.selectedIndex > 0) {
-      this.setClassActive(this.selectedIndex - 1, this.selectedIndex);
+    if (this.selectedIndex() > 0) {
+      this.setClassActive(this.selectedIndex() - 1, this.selectedIndex());
     }
   }
 
   nextItem() {
-    if (this.selectedIndex < this.numberOfElements.length - 1) {
-      this.setClassActive(this.selectedIndex + 1, this.selectedIndex);
+    if (this.selectedIndex() < this.numberOfElements.length - 1) {
+      this.setClassActive(this.selectedIndex() + 1, this.selectedIndex());
     }
   }
 }
