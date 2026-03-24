@@ -50,26 +50,70 @@
     />
   </section>
   <section class="bmb_profile-access">
-    <h2 class="bmb_profile-title">Mi Líder</h2>
-    <bmb-container-button
-      [componentTitle]="collaboratorData()?.leader?.userData?.name!"
-      [subtitle]="collaboratorData()?.leader?.userData?.email!"
-      [iconLeft]="collaboratorData()?.leader?.userData?.userImg!"
-      [isUserImage]="true"
-      [link]="collaboratorData()?.leader?.hierarchyLink!"
-      [target]="collaboratorData()?.leader?.hierarchyTarget!"
-      (onButton)="handleButtonClick(collaboratorData()?.leader?.userData)"
-    />
-    <h2 class="bmb_profile-title">Mi Generalista</h2>
-    <bmb-container-button
-      [componentTitle]="collaboratorData()?.generalist?.userData?.name!"
-      [subtitle]="collaboratorData()?.generalist?.userData?.email!"
-      [iconLeft]="collaboratorData()?.generalist?.userData?.userImg!"
-      [isUserImage]="true"
-      [link]="collaboratorData()?.generalist?.hierarchyLink!"
-      [target]="collaboratorData()?.generalist?.hierarchyTarget!"
-      (onButton)="handleButtonClick(collaboratorData()?.generalist?.userData)"
-    />
+    <h2 class="bmb_profile-title">{{ 'profile.leader' | translate }}</h2>
+    <bmb-card margin="none" borderColor="contrasts-50">
+      <bmb-card-content padding="l">
+        <section
+          bmbLayout
+          margin="none"
+          alignItems="center"
+          justify="spaceBetween"
+        >
+          <bmb-user-image
+            size="desktop-small"
+            altImage="Image of icon left"
+            bmbLayoutItem
+            [isDynamicItem]="true"
+            [image]="collaboratorData()?.leader?.userData?.userImg!"
+          />
+          <div
+            class="bmb_container-button-header"
+            bmbLayoutItem
+            [isDynamicItem]="true"
+            [colGrow]="1"
+          >
+            <h2 class="bmb_container-button-title">
+              {{ collaboratorData()?.leader?.userData?.name! }}
+            </h2>
+            <h4 class="bmb_container-button-subtitle">
+              {{ collaboratorData()?.leader?.userData?.email! }}
+            </h4>
+          </div>
+        </section>
+      </bmb-card-content>
+    </bmb-card>
+    <h2 class="bmb_profile-title">{{ 'profile.generalist' | translate }}</h2>
+    <bmb-card margin="none" borderColor="contrasts-50">
+      <bmb-card-content padding="l">
+        <section
+          bmbLayout
+          margin="none"
+          alignItems="center"
+          justify="spaceBetween"
+        >
+          <bmb-user-image
+            size="desktop-small"
+            altImage="Image of icon left"
+            bmbLayoutItem
+            [isDynamicItem]="true"
+            [image]="collaboratorData()?.generalist?.userData?.userImg!"
+          />
+          <div
+            class="bmb_container-button-header"
+            bmbLayoutItem
+            [isDynamicItem]="true"
+            [colGrow]="1"
+          >
+            <h2 class="bmb_container-button-title">
+              {{ collaboratorData()?.generalist?.userData?.name! }}
+            </h2>
+            <h4 class="bmb_container-button-subtitle">
+              {{ collaboratorData()?.generalist?.userData?.email! }}
+            </h4>
+          </div>
+        </section>
+      </bmb-card-content>
+    </bmb-card>
   </section>
 </ng-template>
 

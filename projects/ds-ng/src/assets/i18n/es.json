@@ -229,5 +229,9 @@
     "global_search": {
       "placeholder": "Buscar..."
     }
+  },
+  "profile": {
+    "leader": "Mi Líder",
+    "generalist": "Mi Generalista"
   }
 }
