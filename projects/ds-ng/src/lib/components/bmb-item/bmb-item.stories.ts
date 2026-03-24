@@ -20,6 +20,7 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import {
   DBmbGenericParamDesc,
   DBmbIconParamDesc,
+  DBmbItemActionMenu,
   getDefaultValueControl,
   getOnClickParam,
   getPropertyParamDesc,
@@ -60,7 +61,7 @@ ${getBasicExampleBlock('BmbItemComponent')}
   argTypes: {
     icon: DBmbIconParamDesc.icon,
     iconSize: DBmbIconParamDesc.iconSize,
-    label: getPropertyParamDesc('main label'),
+    label: DBmbItemActionMenu.label,
     subLabel: getPropertyParamDesc('', {
       alternativeDescription: `Sets the second label of the item.
 ${getAlertBlockquote(

@@ -1619,8 +1619,6 @@ IBmbBadgeInfo {
 };
 
 export const DBmbItemActionMenu = {
-  icon: DBmbIconParamDesc.icon,
-  iconSize: DBmbIconParamDesc.iconSize,
   label: getPropertyParamDesc('the item', {
     alternativePropName: 'main label',
     summaryType: 'string (required)',
@@ -1634,15 +1632,13 @@ ${getAlertBlockquote(
   }),
   value: {
     control: 'text',
-    description: 'Sets the value to show on the right side.',
+    description: 'Sets the text value to show on the right side.',
     table: {
       category: 'Properties',
       type: { summary: 'string (required)' },
       defaultValue: getDefaultValueControl(),
     },
   },
-  valueLink: DBmbGenericParamDesc.linkOrButton,
-  valueTarget: DBmbGenericParamDesc.target,
   supportText: {
     control: 'text',
     description: 'Sets a support text shown below the label.',
