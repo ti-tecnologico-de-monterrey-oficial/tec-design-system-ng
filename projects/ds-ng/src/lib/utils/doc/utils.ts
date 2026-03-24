@@ -978,8 +978,33 @@ export const getContainerButtonComponentDescription = ({
   variantName: string;
   componentName: string;
 }): string => `
-${getGeneralDescription(`${getGeneralComponentDescription({ name: 'container-button-'.concat(selectorName) })} to implement the ***${variantName}*** variant of **Container button**. The content of this variant will be work as a button`, { generalDocLink: 'https://bamboo.tec.mx/latest/componentes/container-button/descripcion-general-dzTxNX36' })}
+${getGeneralDescription(`${getGeneralComponentDescription({ name: 'container-button-'.concat(selectorName) })} to implement the ***${variantName}*** variant of **Container button**. The content of this variant will be work as a button.`, { generalDocLink: 'https://bamboo.tec.mx/latest/componentes/container-button/descripcion-general-dzTxNX36' })}
 ${getSpecialSpecifications(getEmptyStateMessage(), { showAdditionalBlockquote: true })}
+${getBasicExampleBlock(componentName)}
+`;
+
+export const getActionMenuItemComponentDescription = ({
+  selectorName,
+  variantName,
+  componentName,
+  parentName = 'Action menu',
+}: {
+  selectorName: string;
+  variantName: string;
+  componentName: string;
+  parentName?: string;
+}): string => `
+${getGeneralDescription(
+  `${getGeneralComponentDescription({
+    name: 'item-'.concat(selectorName),
+    type: 'element',
+  })} to implement the ***${variantName}*** variant of **${parentName}**. Those elements are useful to display main data in an organized way.`,
+  {
+    generalDocLink:
+      'https://bamboo.tec.mx/latest/components/action-menu/descripcion-general-gXdipbgD',
+  },
+)}
+${getSpecialSpecifications(getAlertBlockquote(`This element is used to implement the ***${variantName}*** variant of **${parentName}**`, { title: RELEVANT_TITLE.configuration, blockquoteType: BlockquoteType.important }), { showAdditionalBlockquote: true })}
 ${getBasicExampleBlock(componentName)}
 `;
 

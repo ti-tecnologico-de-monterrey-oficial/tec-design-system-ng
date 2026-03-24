@@ -26,7 +26,7 @@ import {
 } from '../../utils/doc/parameterDescriptions';
 
 export default {
-  title: 'Dev tools/Item',
+  title: 'Internals/Item',
   component: BmbItemComponent,
   decorators: [
     moduleMetadata({
