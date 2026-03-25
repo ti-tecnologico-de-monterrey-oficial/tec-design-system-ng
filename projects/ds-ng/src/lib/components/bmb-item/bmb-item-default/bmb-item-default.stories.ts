@@ -33,10 +33,12 @@ ${getActionMenuItemComponentDescription({
   argTypes: {
     icon: DBmbIconParamDesc.icon,
     label: DBmbItemActionMenu.label,
+    value: DBmbItemActionMenu.value,
   },
   args: {
     label: 'Text',
     icon: 'face',
+    value: '',
   },
 } as Meta<typeof BmbItemDefaultComponent>;
 

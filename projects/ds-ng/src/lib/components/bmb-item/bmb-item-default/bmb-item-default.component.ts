@@ -17,4 +17,5 @@ import { BmbItemComponent } from '../bmb-item.component';
 export class BmbItemDefaultComponent {
   icon = input<string>('');
   label = input.required<string>();
+  value = input<string>('');
 }

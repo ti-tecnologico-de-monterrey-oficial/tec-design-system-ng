@@ -23,4 +23,10 @@ describe('BmbItemDefaultComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should display value', () => {
+    componentRef.setInput('value', 'Text');
+    fixture.detectChanges();
+    expect(componentRef.instance.value()).toBe('Text');
+  });
 });
