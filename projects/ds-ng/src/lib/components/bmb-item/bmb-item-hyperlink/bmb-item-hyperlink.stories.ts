@@ -34,7 +34,17 @@ ${getActionMenuItemComponentDescription({
   argTypes: {
     icon: DBmbIconParamDesc.icon,
     label: DBmbItemActionMenu.label,
-    value: DBmbItemActionMenu.value,
+    value: {
+      ...DBmbItemActionMenu.value,
+      table: {
+        ...DBmbItemActionMenu.value.table,
+        type: {
+          ...DBmbItemActionMenu.value.table.type,
+          summary:
+            DBmbItemActionMenu.value.table.type.summary.concat(' (required)'),
+        },
+      },
+    },
     valueLink: {
       ...DBmbGenericParamDesc.link,
       table: {

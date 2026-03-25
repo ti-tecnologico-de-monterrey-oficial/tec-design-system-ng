@@ -1635,7 +1635,7 @@ ${getAlertBlockquote(
     description: 'Sets the text value to show on the right side.',
     table: {
       category: 'Properties',
-      type: { summary: 'string (required)' },
+      type: { summary: 'string' },
       defaultValue: getDefaultValueControl(),
     },
   },
