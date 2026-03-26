@@ -20,11 +20,11 @@
         <div class="bmb_list-group-item-main-data">
           <span class="bmb_list-group-item-main-data-header">
             {{ headerText() }}
-            <bmb-action-icon
-              [tooltipTitle]="tooltipTitle()"
-              [tooltipText]="tooltipText()"
-              [icon]="'help'"
-              [iconSize]="16"
+            <bmb-tooltip
+              [componentTitle]="tooltipTitle()"
+              [text]="tooltipText()"
+              icon="help"
+              [size]="16"
               [isFill]="true"
               align="right"
               justify="centered"

@@ -1,42 +1,40 @@
-<bmb-tooltip [text]="computedTooltipText" [componentTitle]="tooltipTitle()">
-  <span class="bmb_action_icon">
-    <bmb-check-external-link-button
-      class="bmb_action_icon-button-link"
-      [idElement]="idElement()"
-      [link]="link()!"
-      [target]="target()!"
-      (buttonPress)="handlePress($event)"
-      (buttonClick)="handleClick($event)"
-      [disabled]="disabled()"
-      [buttonName]="getIcon()"
+<span class="bmb_action_icon">
+  <bmb-check-external-link-button
+    class="bmb_action_icon-button-link"
+    [idElement]="idElement()"
+    [link]="link()!"
+    [target]="target()!"
+    (buttonPress)="handlePress($event)"
+    (buttonClick)="handleClick($event)"
+    [disabled]="disabled()"
+    [buttonName]="getIcon()"
+  >
+    <span
+      class="bmb_action_icon-icon"
+      [ngClass]="{
+        'bmb_action_icon-icon-toggle_icon':
+          !!toggleIconActive() && isAccentColor()
+      }"
     >
-      <span
-        class="bmb_action_icon-icon"
-        [ngClass]="{
-          'bmb_action_icon-icon-toggle_icon':
-            !!toggleIconActive() && isAccentColor()
-        }"
-      >
-        @if (isSVGTemplate() && !!safeSVG) {
-          <bmb-icon
-            [size]="iconSize()"
-            [isSVGTemplate]="true"
-            [alt]="alt() || getIcon()"
-          >
-            <ng-template #customIcon>
-              <ng-container [ngTemplateOutlet]="customActionIcon() ?? null" />
-            </ng-template>
-          </bmb-icon>
-        } @else {
-          <bmb-icon
-            [icon]="getIcon()"
-            [size]="iconSize()"
-            [isFill]="isFill()"
-            [dotNotification]="dotNotification()"
-            [alt]="alt()"
-          />
-        }
-      </span>
-    </bmb-check-external-link-button>
-  </span>
-</bmb-tooltip>
+      @if (isSVGTemplate() && !!safeSVG) {
+        <bmb-icon
+          [size]="iconSize()"
+          [isSVGTemplate]="true"
+          [alt]="alt() || getIcon()"
+        >
+          <ng-template #customIcon>
+            <ng-container [ngTemplateOutlet]="customActionIcon() ?? null" />
+          </ng-template>
+        </bmb-icon>
+      } @else {
+        <bmb-icon
+          [icon]="getIcon()"
+          [size]="iconSize()"
+          [isFill]="isFill()"
+          [dotNotification]="dotNotification()"
+          [alt]="alt()"
+        />
+      }
+    </span>
+  </bmb-check-external-link-button>
+</span>

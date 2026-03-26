@@ -75,7 +75,6 @@ export class BmbInputComponent implements OnInit {
   value = input<string>();
   autocomplete = input<string>('off');
   tooltip = input<string>('');
-  tooltipTitle = input<string>('');
   rows = input<number>(3);
   showMaxTextLength = input<boolean>(true);
   additionalAction = input<IBmbAdditionalAction>('none');

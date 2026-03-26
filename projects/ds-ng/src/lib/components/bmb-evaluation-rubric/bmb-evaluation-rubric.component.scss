@@ -40,6 +40,10 @@
         > bmb-tooltip {
           display: inline-flex;
         }
+
+        .bmb_tooltip {
+          line-height: 0;
+        }
       }
 
       &-eval {

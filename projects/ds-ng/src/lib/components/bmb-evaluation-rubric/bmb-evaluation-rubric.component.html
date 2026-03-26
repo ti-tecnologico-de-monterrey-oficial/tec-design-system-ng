@@ -16,7 +16,6 @@
         <ng-template #bmbRightContent>
           <span class="bmb_evaluation-rubric-header-button">
             <bmb-action-icon
-              [tooltipTitle]="tooltipHeaderIcon()"
               [icon]="rightIcon()"
               [iconSize]="24"
               (buttonClick)="handleClose()"
@@ -33,10 +32,10 @@
           <h3 class="bmb_evaluation-rubric-container-criterion-title-name">
             {{ item.criterion }}
           </h3>
-          <bmb-action-icon
-            [tooltipText]="item.tooltip"
-            [icon]="'help'"
-            [iconSize]="20"
+          <bmb-tooltip
+            [componentTitle]="item.criterion"
+            [text]="item.tooltip"
+            [size]="20"
           />
         </section>
         <section
@@ -88,7 +87,6 @@
       [label]="commentEvalRubric().label"
       type="text-area"
       [tooltip]="commentEvalRubric().tooltip"
-      [tooltipTitle]="commentEvalRubric().tooltipTitle"
       [placeholder]="commentEvalRubric().placeHolder"
       [icon]="commentEvalRubric().icon!"
       [errorMessage]="commentEvalRubric().errorMessage!"
