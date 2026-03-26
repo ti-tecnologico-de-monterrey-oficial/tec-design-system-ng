@@ -22,8 +22,8 @@ import {
 } from '@angular/forms';
 import { IBbmSidePosition } from '../../../types';
 import { CommonModule } from '@angular/common';
-import { BmbTooltipComponent } from '../../bmb-tooltip/bmb-tooltip.component';
 import { getPositionClass } from '../../../utils/utils';
+import { BmbActionIconComponent } from '../../bmb-action-icon/bmb-action-icon.component';
 
 export type IBmbInputValType =
   | 'radio'
@@ -36,11 +36,7 @@ export type IBmbInputValType =
 @Component({
   selector: 'bmb-input-validator',
   standalone: true,
-  imports: [
-    CommonModule,
-    ReactiveFormsModule,
-    forwardRef(() => BmbTooltipComponent), // avoid circular dependency on Storybook
-  ],
+  imports: [CommonModule, ReactiveFormsModule, BmbActionIconComponent],
   templateUrl: './bmb-input-validator.component.html',
   styleUrl: './bmb-input-validator.component.scss',
   encapsulation: ViewEncapsulation.None,
@@ -64,6 +60,7 @@ export class BmbInputValidatorComponent implements OnInit {
   pattern = input<string>();
   jsonFormat = input<boolean>(false);
   tooltip = input<string>('');
+  tooltipTitle = input<string>('');
   rows = input<number>(3);
   showMaxTextLength = input<boolean | null>(true);
   helperMessage = input<string>('');

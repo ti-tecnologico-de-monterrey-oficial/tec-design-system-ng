@@ -56,7 +56,8 @@ ${getBasicExampleBlock('BmbButtonIconComponent', '', onEvent.handleExample)}
     },
     tooltipText: {
       control: { type: 'text' },
-      description: 'Text content displayed inside the tooltip.',
+      description:
+        'Text content displayed inside the tooltip. If not provided, the icon name will be used as the tooltip title.',
       table: {
         category: 'Properties',
         type: { summary: 'string (optional)' },
@@ -113,6 +114,8 @@ ${RELEVANT_TITLE.note} \`showContainer\` must also be true.
     showContainer: true,
     disabled: false,
     active: false,
+    tooltipTitle: 'Tooltip title',
+    tooltipText: 'Tooltip text',
     onButtonClick: action('on-click'),
   },
 } as Meta<typeof BmbButtonIconComponent>;
@@ -134,16 +137,6 @@ export const outlineExample = {
 export const NoContainerExample = {
   name: 'No container variant example',
   args: {
-    icon: 'help',
-    showContainer: false,
-  },
-};
-
-export const WithTooltip: Story = {
-  name: 'With tooltip example',
-  args: {
-    tooltipTitle: 'Tooltip title',
-    tooltipText: 'Tooltip text',
     icon: 'help',
     showContainer: false,
   },

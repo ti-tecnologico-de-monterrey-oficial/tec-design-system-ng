@@ -37,6 +37,7 @@ const inputExample = `<bmb-input
   name="${inputName}"
   label="${generateLabel(inputName)}"
   tooltip="Tooltip example"
+  tooltipTitle="Tooltip title example"
   icon="apps"
   placeholder="Placeholder"
   helperMessage="Helper Message"
@@ -133,6 +134,7 @@ IBmbInputType = 'text' | 'password' | 'number' | 'text-area'
     appearance: getAppearanceParam('input field', ['normal', 'simple']),
     label: DBmbInputParamDesc.label,
     tooltip: DBmbInputParamDesc.tooltip,
+    tooltipTitle: DBmbInputParamDesc.tooltipTitle,
     tooltipPosition: DBmbInputParamDesc.tooltipPosition,
     icon: DBmbInputParamDesc.icon,
     placeholder: DBmbInputParamDesc.placeholder,
@@ -336,6 +338,7 @@ IBmbAdditionalAction = 'copy' | 'showHide' | 'none'
     appearance: 'normal',
     label: 'Input Label',
     tooltip: 'Tooltip example',
+    tooltipTitle: 'Tooltip title example',
     tooltipPosition: { align: 'above', justify: 'before' },
     icon: 'apps',
     placeholder: 'Placeholder',

@@ -15,18 +15,12 @@ import {
   ON_BUTTON_CLICK,
   ON_CLICK_DESCRIPTION,
 } from '../../utils/doc/parameterDescriptions';
-import { BmbTooltipComponent } from '../bmb-tooltip/bmb-tooltip.component';
 
 const onButtonPress: IBmbOnEvent = getOnEvent('', 'buttonPress');
 
 export default {
   title: 'Components/Buttons/Action icon',
   component: BmbActionIconComponent,
-  decorators: [
-    moduleMetadata({
-      imports: [BmbTooltipComponent],
-    }),
-  ],
   parameters: {
     controls: {
       exclude: ['getIcon', 'handleClick', 'handlePress'],
@@ -83,6 +77,25 @@ The toggle needs the following properties for correct operation:
         type: { summary: 'boolean (optional)' },
       },
     },
+    tooltipTitle: {
+      control: { type: 'text' },
+      description: 'Title displayed in the tooltip.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'string (optional)' },
+        defaultValue: getDefaultValueControl(''),
+      },
+    },
+    tooltipText: {
+      control: { type: 'text' },
+      description:
+        'Text content displayed inside the tooltip. If not provided, the icon name will be used as the tooltip title.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'string (optional)' },
+        defaultValue: getDefaultValueControl(''),
+      },
+    },
     dotNotification: DBmbIconParamDesc.iconDotNotification,
     link: DBmbGenericParamDesc.linkOrButton,
     target: DBmbGenericParamDesc.target,
@@ -96,6 +109,8 @@ This property switches the \`isToggleActive\` when \`isToggleActive\` is true`,
   },
   args: {
     idElement: '',
+    tooltipTitle: 'Tooltip title example',
+    tooltipText: 'Tooltip text example',
     icon: 'info',
     iconSize: 24,
     buttonPress: () => {
@@ -107,12 +122,7 @@ This property switches the \`isToggleActive\` when \`isToggleActive\` is true`,
   },
 } as Meta<typeof BmbActionIconComponent>;
 
-type Story = StoryObj<
-  BmbActionIconComponent & {
-    tooltipText: string;
-    tooltipTitle: string;
-  }
->;
+type Story = StoryObj<typeof BmbActionIconComponent>;
 
 export const Default: Story = {
   name: 'Default example',
@@ -169,39 +179,5 @@ export const IconLinkExample = {
   args: {
     link: 'https://www.example.com/',
     target: '_blank',
-  },
-};
-
-export const WithTooltipControls: Story = {
-  name: 'With tooltip (controls)',
-  render: (args) => ({
-    props: args,
-    template: `
-      <bmb-tooltip
-        [text]="tooltipText"
-        [componentTitle]="tooltipTitle"
-      >
-        <bmb-action-icon
-          [icon]="icon"
-          [iconSize]="iconSize"
-        />
-      </bmb-tooltip>
-    `,
-  }),
-  args: {
-    icon: 'info',
-    iconSize: 24,
-    tooltipText: 'Tooltip description',
-    tooltipTitle: 'Tooltip title',
-  },
-  argTypes: {
-    tooltipText: {
-      control: 'text',
-      description: 'Tooltip description',
-    },
-    tooltipTitle: {
-      control: 'text',
-      description: 'Tooltip title',
-    },
   },
 };

@@ -10,10 +10,10 @@ import {
   ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
-import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
 import { logDeprecatedInput } from '../../utils/logDeprecatedInput';
 import { BmbVerticalLayoutDirective } from '../../directives/bmb-layout/bmb-vertical-layout/bmb-vertical-layout.directive';
 import { BmbVerticalLayoutItemDirective } from '../../directives/bmb-layout/bmb-vertical-layout/bmb-vertical-layout-item.directive';
+import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 
 export type IBmbAlignTooltip = 'above' | 'below' | 'left' | 'right'; //Deprecated
 export type IBmbJustifyTooltip = 'centered' | 'before' | 'after'; //Deprecated
@@ -23,7 +23,7 @@ export type IBmbJustifyTooltip = 'centered' | 'before' | 'after'; //Deprecated
   standalone: true,
   imports: [
     CommonModule,
-    BmbActionIconComponent,
+    BmbIconComponent,
     BmbVerticalLayoutDirective,
     BmbVerticalLayoutItemDirective,
   ],
@@ -37,7 +37,7 @@ export class BmbTooltipComponent {
   icon = input<string>('help');
   size = input<number>();
   isFill = input<boolean>(true);
-  componentTitle = input<string>('Tooltip title');
+  componentTitle = input<string>('');
 
   title = input<string>(); // deprecated
   align = input<string>(); // deprecated
@@ -59,12 +59,6 @@ export class BmbTooltipComponent {
         { name: 'title', hasValue: !!deprecatedTitle },
         { name: 'componentTitle', hasValue: !!newTitle },
       );
-
-      if (!deprecatedTitle && !newTitle) {
-        throw new Error(
-          'The "componentTitle" input is required. Please provide a value for it.',
-        );
-      }
     });
   }
 
