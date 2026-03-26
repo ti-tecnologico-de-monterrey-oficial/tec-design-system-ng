@@ -19,12 +19,11 @@
           <small class="bmb_input-validator-label-required">*</small>
         }
         @if (!!tooltip()) {
-          <bmb-action-icon
+          <bmb-tooltip
             class="bmb_input-validator-label-tooltip"
-            [tooltipTitle]="tooltipTitle()"
-            [tooltipText]="tooltip()"
+            [text]="tooltip()"
             [icon]="'help'"
-            [iconSize]="20"
+            [size]="20"
           />
         }
         @if (type() === 'text-area' && showMaxTextLength()) {

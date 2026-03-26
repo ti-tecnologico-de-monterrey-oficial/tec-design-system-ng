@@ -11,9 +11,10 @@
   (touchend)="hideTooltip()"
 >
   @if (icon() && size()) {
-    <bmb-icon
+    <bmb-action-icon
+      idElement="tooltip_element"
+      [iconSize]="size()"
       [icon]="icon()"
-      [size]="size()"
       [isFill]="isFill()"
       [alt]="componentTitle() || title() || 'Tooltip icon'"
       aria-describedby="tooltip-icon"
@@ -40,11 +41,11 @@
           {{ componentTitle() || title() }}
         </span>
       }
-      @if (text()) {
-        <span bmbVerticalLayoutItem margin="none" [rowGrow]="1">
-          {{ text() }}
-        </span>
-      }
+      <span bmbVerticalLayoutItem margin="none" [rowGrow]="1">
+        {{
+          'Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum nihil modi repellendus ad aspernatur corporis.'
+        }}
+      </span>
     </section>
   </dialog>
 </span>

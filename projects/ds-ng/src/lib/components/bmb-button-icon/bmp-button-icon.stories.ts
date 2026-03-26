@@ -45,25 +45,6 @@ ${getBasicExampleBlock('BmbButtonIconComponent', '', onEvent.handleExample)}
     },
   },
   argTypes: {
-    tooltipTitle: {
-      control: { type: 'text' },
-      description: 'Title displayed in the tooltip.',
-      table: {
-        category: 'Properties',
-        type: { summary: 'string (optional)' },
-        defaultValue: getDefaultValueControl(''),
-      },
-    },
-    tooltipText: {
-      control: { type: 'text' },
-      description:
-        'Text content displayed inside the tooltip. If not provided, the icon name will be used as the tooltip title.',
-      table: {
-        category: 'Properties',
-        type: { summary: 'string (optional)' },
-        defaultValue: getDefaultValueControl(''),
-      },
-    },
     appearanceContrast: getAppearanceParam(
       'button icon',
       ['default', 'primary', 'alternative', 'solid'],
@@ -114,8 +95,6 @@ ${RELEVANT_TITLE.note} \`showContainer\` must also be true.
     showContainer: true,
     disabled: false,
     active: false,
-    tooltipTitle: 'Tooltip title',
-    tooltipText: 'Tooltip text',
     onButtonClick: action('on-click'),
   },
 } as Meta<typeof BmbButtonIconComponent>;
