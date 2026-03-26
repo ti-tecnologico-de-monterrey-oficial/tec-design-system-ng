@@ -1,4 +1,4 @@
-<span
+<div
   class="bmb_button_icon"
   [ngClass]="{
     'bmb_button_icon-active': active(),
@@ -18,5 +18,7 @@
     [disabled]="disabled()!"
     (buttonPress)="handlePress()"
     (buttonClick)="handleClick($event)"
+    [tooltipText]="computedTooltipText"
+    [tooltipTitle]="tooltipTitle()"
   />
-</span>
+</div>

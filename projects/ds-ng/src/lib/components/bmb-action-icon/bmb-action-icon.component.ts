@@ -14,12 +14,14 @@ import { CommonModule } from '@angular/common';
 import { IBmbTargetLink } from '../../types';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { sanitizeContent } from '../../utils/sanitizeContent';
+import { BmbTooltipComponent } from '../bmb-tooltip/bmb-tooltip.component';
 
 @Component({
   selector: 'bmb-action-icon',
   standalone: true,
   imports: [
     CommonModule,
+    BmbTooltipComponent,
     BmbCheckExternalLinkButtonComponent,
     BmbIconComponent,
   ],
@@ -42,6 +44,8 @@ export class BmbActionIconComponent {
   link = input<string>();
   disabled = input<boolean>(false);
   isSVGTemplate = input<boolean>();
+  tooltipTitle = input<string>('');
+  tooltipText = input<string>('');
 
   customActionIcon = contentChild<TemplateRef<any>>('customActionIcon');
 
@@ -78,5 +82,9 @@ export class BmbActionIconComponent {
 
     const clean = sanitizeContent((this.customActionIcon() ?? '').toString());
     return this.sanitizer.bypassSecurityTrustHtml(clean); // NOSONAR Content is sanitized with DOMPurify - safe to bypass Angular sanitization
+  }
+
+  get computedTooltipText(): string {
+    return this.tooltipText() || this.icon();
   }
 }

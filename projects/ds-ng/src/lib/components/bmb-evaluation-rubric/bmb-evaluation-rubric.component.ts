@@ -12,7 +12,6 @@ import { BmbFocusElementComponent } from '../bmb-focus-element/bmb-focus-element
 import { BmbLayoutDirective } from '../../directives/bmb-layout/bmb-layout.directive';
 import { BmbLayoutItemDirective } from '../../directives/bmb-layout/bmb-layout-item.directive';
 import { BmbDividerComponent } from '../bmb-divider/bmb-divider.component';
-import { BmbTooltipComponent } from '../bmb-tooltip/bmb-tooltip.component';
 import {
   BmbInputComponent,
   IBmbInputAppearance,
@@ -35,6 +34,7 @@ export interface IBmbCommentEvalRubric {
   label: string;
   placeHolder: string;
   tooltip: string;
+  tooltipTitle: string;
   icon?: string;
   errorMessage?: string;
   helperMessage?: string;
@@ -62,7 +62,6 @@ export interface IBmbEvalRubricButtons {
     BmbIconComponent,
     BmbTitleContentComponent,
     BmbActionIconComponent,
-    BmbTooltipComponent,
     BmbFocusElementComponent,
     BmbLayoutDirective,
     BmbLayoutItemDirective,
@@ -76,7 +75,7 @@ export interface IBmbEvalRubricButtons {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BmbEvaluationRubricComponent {
-  componentTitle = input<string>(); // once title is removed, this should be required
+  componentTitle = input<string>('Title'); // once title is removed, this should be required
   icon = input<string>('checklist_rtl');
   rightIcon = input<string>('close');
   evaluationRubricList = model.required<IBmbEvaluationRubric[]>();
@@ -84,7 +83,7 @@ export class BmbEvaluationRubricComponent {
   summaryLabel = input.required<string>();
   commentEvalRubric = input.required<IBmbCommentEvalRubric>();
   evalRubricButtons = input.required<IBmbEvalRubricButtons>();
-
+  tooltipHeaderIcon = input<string>('');
   onClose = output();
 
   title = input<string>(); // deprecated
