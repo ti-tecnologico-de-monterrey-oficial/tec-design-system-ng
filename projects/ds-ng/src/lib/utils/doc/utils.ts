@@ -485,6 +485,21 @@ ${getSubStoryIdentifier(isSubStory, subStoryChart).concat(_title)}
 `;
 };
 
+export const getActionMenuAlert = (): string =>
+  getAlertBlockquote(
+    `
+Please remember to always add the *#actionMenuItem* tag to the ***Action menu*** templates for proper functionality.
+\`\`\`html
+<ng-template #actionMenuItem>
+  <!-- Content  -->
+</ng-template>\`\`\``,
+    {
+      title: RELEVANT_TITLE.configuration,
+      blockquoteType: BlockquoteType.important,
+      isRelevantTitle: true,
+    },
+  );
+
 export const getDeprecatedDesc = ({
   type,
   isHeaderL2,
@@ -531,9 +546,9 @@ ${getAlertBlockquote(
   },
 )}`;
 
-export const getElementUsesDesc = (name: string) =>
+export const getElementUsesDesc = (name: string, isOther: boolean = true) =>
   getAlertBlockquote(
-    `This example uses \`bmb-${name}\`, other ${DESIGN_SYSTEM_TITLE} or html elements can also be used.`,
+    `This example uses \`bmb-${name}\`${isOther ? ', other ***Action menu*** **variants** can also be used.' : ''}`,
     {
       title: '###'.concat(RELEVANT_TITLE.example),
       blockquoteType: BlockquoteType.note,
