@@ -38,8 +38,9 @@
   background-color: transparent;
 
   > bmb-action-icon {
-    display: inline-flex;
-    align-items: center;
+    .bmb_tooltip-container {
+      display: flex;
+    }
 
     .bmb_check-external-link-button-element:hover:not(:disabled) {
       opacity: 1;

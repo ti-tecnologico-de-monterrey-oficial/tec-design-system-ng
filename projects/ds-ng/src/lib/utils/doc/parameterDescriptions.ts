@@ -1046,6 +1046,15 @@ ${getLabelDescription('above')}
       defaultValue: getDefaultValueControl(),
     },
   },
+  tooltipTitle: {
+    control: { type: 'text' },
+    description: 'Title displayed in the tooltip.',
+    table: {
+      category: 'Properties',
+      type: { summary: 'string (optional)' },
+      defaultValue: getDefaultValueControl(''),
+    },
+  },
   tooltipPosition: {
     control: {
       type: 'object',
