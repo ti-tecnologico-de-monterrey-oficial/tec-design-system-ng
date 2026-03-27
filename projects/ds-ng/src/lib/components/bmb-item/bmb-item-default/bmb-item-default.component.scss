@@ -1,0 +1,7 @@
+@use '../../../../assets/styles/base/fonts' as fonts;
+
+.bmb_item-default {
+  @include fonts.font(5, regular);
+  color: var(--general-contrasts-100);
+  padding: var(--bmb-spacing-s) var(--bmb-spacing-m);
+}

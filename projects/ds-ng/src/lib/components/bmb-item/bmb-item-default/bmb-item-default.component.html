@@ -1,1 +1,23 @@
-<bmb-item [icon]="icon()" [iconSize]="24" [label]="label()" [value]="value()" />
+<section
+  class="bmb_item-default"
+  bmbLayout
+  margin="none"
+  alignItems="center"
+  [dynamicCols]="true"
+>
+  @if (icon()) {
+    <bmb-icon
+      class="bmb_item-icon"
+      [icon]="icon()"
+      [size]="24"
+      alt="Item icon"
+      bmbLayoutItem
+    />
+  }
+  <span bmbLayoutItem [isDynamicItem]="true" [colGrow]="1">
+    {{ label() }}
+  </span>
+  <span bmbLayoutItem>
+    {{ value() }}
+  </span>
+</section>

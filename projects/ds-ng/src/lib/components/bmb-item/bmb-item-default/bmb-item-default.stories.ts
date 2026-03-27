@@ -36,9 +36,9 @@ ${getActionMenuItemComponentDescription({
     value: DBmbItemActionMenu.value,
   },
   args: {
-    label: 'Text',
-    icon: 'face',
-    value: '',
+    label: 'Name',
+    icon: 'info',
+    value: 'Pedro Perez',
   },
 } as Meta<typeof BmbItemDefaultComponent>;
 
