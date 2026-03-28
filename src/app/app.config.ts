@@ -9,6 +9,7 @@ import {
   BmbNativeModalService,
   BmbProjectionContentService,
   BmbTranslationsService,
+  ThemeService,
 } from '../../projects/ds-ng/src/public-api';
 
 import { routes } from './app.routes';
@@ -29,6 +30,7 @@ export const appConfig: ApplicationConfig = {
       BmbNativeModalService,
       BmbProjectionContentService,
       BmbTranslationsService,
+      ThemeService,
     ]),
     { provide: BMB_DEFAULT_THEME, useValue: 'light' },
   ],
