@@ -28,11 +28,11 @@
 <ng-template #conceptTemplate let-row="row">
   <div class="concept-template">
     <span>{{ row.concept }}</span>
-    <bmb-action-icon
-      [tooltipTitle]="'Tooltip example'"
-      [tooltipText]="'some text'"
-      [icon]="'info'"
-      [iconSize]="20"
-    />
+    <bmb-tooltip
+      title="Tooltip example"
+      icon="info"
+      [size]="20"
+      text="some text"
+    ></bmb-tooltip>
   </div>
 </ng-template>

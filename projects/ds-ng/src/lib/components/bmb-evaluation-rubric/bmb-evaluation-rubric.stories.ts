@@ -6,10 +6,7 @@ import {
   getGeneralDescription,
   getOnEvent,
 } from '../../utils/doc/utils';
-import {
-  getDefaultValueControl,
-  getOnClickParam,
-} from '../../utils/doc/parameterDescriptions';
+import { getOnClickParam } from '../../utils/doc/parameterDescriptions';
 
 export default {
   title: 'Components/Containers/Evaluation rubric',
@@ -147,15 +144,6 @@ IBmbInputAppearance = 'main' | 'normal' | 'simple';
         defaultValue: '',
       },
     },
-    tooltipHeaderIcon: {
-      control: { type: 'text' },
-      description: 'Title displayed in the tooltip.',
-      table: {
-        category: 'Properties',
-        type: { summary: 'string (optional)' },
-        defaultValue: getDefaultValueControl(''),
-      },
-    },
     onClose: getOnClickParam(getOnEvent('close (x)', 'onClose', 'void')),
   },
   args: {
@@ -185,8 +173,7 @@ IBmbInputAppearance = 'main' | 'normal' | 'simple';
     commentEvalRubric: {
       label: 'Observaciones (Optional)',
       placeHolder: 'Ingresa los puntos a mejorar del skill.',
-      tooltip: 'Tooltip',
-      tooltipTitle: 'Observaciones',
+      tooltip: 'Tool tip',
       showMaxTextLength: false,
     },
     evalRubricButtons: {

@@ -1,4 +1,4 @@
-import { Meta, moduleMetadata, StoryObj } from '@storybook/angular';
+import { Meta, StoryObj } from '@storybook/angular';
 import { BmbActionIconComponent } from './bmb-action-icon.component';
 import {
   getBasicExampleBlock,
@@ -77,25 +77,6 @@ The toggle needs the following properties for correct operation:
         type: { summary: 'boolean (optional)' },
       },
     },
-    tooltipTitle: {
-      control: { type: 'text' },
-      description: 'Title displayed in the tooltip.',
-      table: {
-        category: 'Properties',
-        type: { summary: 'string (optional)' },
-        defaultValue: getDefaultValueControl(''),
-      },
-    },
-    tooltipText: {
-      control: { type: 'text' },
-      description:
-        'Text content displayed inside the tooltip. If not provided, the icon name will be used as the tooltip title.',
-      table: {
-        category: 'Properties',
-        type: { summary: 'string (optional)' },
-        defaultValue: getDefaultValueControl(''),
-      },
-    },
     dotNotification: DBmbIconParamDesc.iconDotNotification,
     link: DBmbGenericParamDesc.linkOrButton,
     target: DBmbGenericParamDesc.target,
@@ -109,8 +90,6 @@ This property switches the \`isToggleActive\` when \`isToggleActive\` is true`,
   },
   args: {
     idElement: '',
-    tooltipTitle: 'Tooltip title example',
-    tooltipText: 'Tooltip text example',
     icon: 'info',
     iconSize: 24,
     buttonPress: () => {
@@ -122,7 +101,7 @@ This property switches the \`isToggleActive\` when \`isToggleActive\` is true`,
   },
 } as Meta<typeof BmbActionIconComponent>;
 
-type Story = StoryObj<typeof BmbActionIconComponent>;
+type Story = StoryObj<BmbActionIconComponent>;
 
 export const Default: Story = {
   name: 'Default example',

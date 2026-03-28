@@ -91,7 +91,6 @@ import {
         name="input_field"
         label="Input"
         tooltip="Tooltip example"
-        tooltipTitle="Tooltip title example"
         placeholder="Placeholder"
         icon="apps"
         [isRequired]="true"
