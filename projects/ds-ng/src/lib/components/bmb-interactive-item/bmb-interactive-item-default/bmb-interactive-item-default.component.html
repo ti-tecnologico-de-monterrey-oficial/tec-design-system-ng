@@ -1,0 +1,28 @@
+<bmb-container-button-base
+  class="bmb_interactive-item-default"
+  [isDisabled]="!isActive()"
+  (getClickButton)="handleActionClick($event)"
+>
+  <ng-template #bmbContainerLeft>
+    <bmb-icon
+      [icon]="icon()"
+      [isFill]="true"
+      [size]="24"
+      alt="Profile switch menu"
+    />
+  </ng-template>
+
+  <ng-template #bmbContainerMain>
+    <bmb-title
+      [componentTitle]="itemTitle()"
+      [subtitle]="
+        isActive()
+          ? ('interactive_item_default.active' | translate)
+          : ('interactive_item_default.inactive' | translate)
+      "
+    />
+  </ng-template>
+  <ng-template #bmbContainerRight>
+    <bmb-icon [icon]="isActive() ? 'check' : 'chevron_right'" [size]="24" />
+  </ng-template>
+</bmb-container-button-base>

@@ -229,5 +229,9 @@
     "global_search": {
       "placeholder": "Buscar..."
     }
+  },
+  "interactive_item_default": {
+    "active": "Activo",
+    "inactive": "Inactivo"
   }
 }
