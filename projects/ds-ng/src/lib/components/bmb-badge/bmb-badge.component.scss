@@ -90,6 +90,16 @@
         }
       }
 
+      &-warning {
+        .bmb_badge-bullet {
+          background-color: rgb(var(--black-primary));
+        }
+
+        .bmb_badge-content {
+          color: rgb(var(--black-primary));
+        }
+      }
+
       &-disabled {
         background-color: var(--general-contrasts-15);
         .bmb_badge-bullet {
