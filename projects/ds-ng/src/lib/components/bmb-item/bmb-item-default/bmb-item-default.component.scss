@@ -1,7 +1,9 @@
-@use '../../../../assets/styles/base/fonts' as fonts;
+@use '../mixins.scss' as mixins;
 
 .bmb_item-default {
-  @include fonts.font(5, regular);
-  color: var(--general-contrasts-100);
-  padding: var(--bmb-spacing-s) var(--bmb-spacing-m);
+  @include mixins.item_wrapper();
+}
+
+:host {
+  display: flex;
 }

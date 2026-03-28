@@ -1,0 +1,15 @@
+@use '../../../assets/styles/base/fonts' as fonts;
+
+@mixin item_wrapper() {
+  @include fonts.font(5, regular);
+  color: var(--general-contrasts-100);
+  padding: var(--bmb-spacing-s) var(--bmb-spacing-m);
+
+  * > span:not(:last-child) {
+    text-align: start;
+  }
+
+  * > :last-child {
+    text-align: right;
+  }
+}

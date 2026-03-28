@@ -1,8 +1,28 @@
-<bmb-item
-  [icon]="icon()"
-  [iconSize]="24"
-  [label]="label()"
-  [value]="value()"
-  [valueLink]="valueLink()"
-  [valueTarget]="valueTarget()"
-/>
+<section
+  class="bmb_item-hyperlink"
+  bmbLayout
+  margin="none"
+  alignItems="center"
+  [dynamicCols]="true"
+>
+  @if (icon()) {
+    <bmb-icon [icon]="icon()" [size]="24" alt="Item icon" bmbLayoutItem />
+  }
+  <section bmbLayoutItem [isDynamicItem]="true" [colGrow]="1">
+    <section bmbLayout margin="none">
+      <span bmbLayoutItem [isDynamicItem]="true" [colGrow]="1">
+        {{ label() }}
+      </span>
+      <bmb-text-link
+        class="bmb_item-link"
+        [textLink]="value()"
+        [link]="valueLink()"
+        [target]="valueTarget()"
+        icon=""
+        bmbLayoutItem
+        [isDynamicItem]="true"
+        [colGrow]="1"
+      />
+    </section>
+  </section>
+</section>
