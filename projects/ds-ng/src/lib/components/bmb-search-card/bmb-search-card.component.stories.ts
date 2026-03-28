@@ -48,13 +48,6 @@ export default {
         category: 'Properties',
       },
     },
-    triggerSearch: {
-      action: 'triggerSearch',
-      description: 'Event emitted when the search input value changes.',
-      table: {
-        type: { summary: 'EventEmitter<string>' },
-      },
-    },
     isLoading: {
       control: 'boolean',
       description: 'Indicates whether the search card is in a loading state.',
@@ -74,12 +67,46 @@ export default {
         defaultValue: '',
       },
     },
+    getBookmarkItemClick: {
+      control: null,
+      action: 'getBookmarkItemClick',
+      description:
+        'Event emitted when the bookmark icon of a search result is clicked.',
+      table: {
+        category: 'Outputs',
+        type: { summary: 'EventEmitter<IBmbSearchCardItemResult>' },
+      },
+    },
+    searchItemClick: {
+      control: null,
+      action: 'searchItemClick',
+      description: 'Event emitted when a search result item is clicked.',
+      table: {
+        category: 'Outputs',
+        type: { summary: 'EventEmitter<IBmbSearchCardItemResult>' },
+      },
+    },
+    triggerSearch: {
+      control: null,
+      action: 'triggerSearch',
+      description: 'Event emitted when the search input value changes.',
+      table: {
+        category: 'Outputs',
+        type: { summary: 'EventEmitter<string>' },
+      },
+    },
   },
   args: {
     componentTitle: '',
     inputPlaceholder: '',
     triggerSearch: (value: string) => {
       console.log('Search triggered with value:', value);
+    },
+    searchItemClick: (item: any) => {
+      console.log('Search item clicked:', item);
+    },
+    getBookmarkItemClick: (item: any) => {
+      console.log('Bookmark item clicked:', item);
     },
     isLoading: false,
     results: [],

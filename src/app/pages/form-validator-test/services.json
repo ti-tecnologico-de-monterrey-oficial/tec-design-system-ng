@@ -1,6 +1,7 @@
 [
   {
     "id": 1,
+    "isBookmarkActive": true,
     "country_code": "mx",
     "type": "service",
     "name": "Sooji (Semolina)",
@@ -9,6 +10,7 @@
   },
   {
     "id": 2,
+    "isBookmarkActive": true,
     "country_code": "mx",
     "type": "service",
     "name": "Fitness Resistance Bands",
@@ -17,6 +19,7 @@
   },
   {
     "id": 3,
+    "isBookmarkActive": true,
     "country_code": "mx",
     "type": "service",
     "name": "Nutty Granola Clusters",
@@ -25,6 +28,7 @@
   },
   {
     "id": 4,
+    "isBookmarkActive": true,
     "country_code": "mx",
     "type": "service",
     "name": "Pet Grooming Brush",
@@ -33,6 +37,7 @@
   },
   {
     "id": 5,
+    "isBookmarkActive": true,
     "country_code": "mx",
     "type": "service",
     "name": "Frozen Chicken Nuggets",
@@ -41,6 +46,7 @@
   },
   {
     "id": 6,
+    "isBookmarkActive": false,
     "country_code": "mx",
     "type": "service",
     "name": "Canvas Tote Bag",
@@ -49,6 +55,7 @@
   },
   {
     "id": 7,
+    "isBookmarkActive": false,
     "country_code": "mx",
     "type": "service",
     "name": "Set of SilavatarOrIcone Cooking Utensils",
@@ -57,6 +64,7 @@
   },
   {
     "id": 8,
+    "isBookmarkActive": false,
     "country_code": "mx",
     "type": "service",
     "name": "Biodegradable Phone Case",
@@ -65,6 +73,7 @@
   },
   {
     "id": 9,
+    "isBookmarkActive": false,
     "country_code": "mx",
     "type": "service",
     "name": "Italian Meatballs",
@@ -73,6 +82,7 @@
   },
   {
     "id": 10,
+    "isBookmarkActive": false,
     "country_code": "mx",
     "type": "service",
     "name": "Buttermilk Pancakes",
@@ -81,6 +91,7 @@
   },
   {
     "id": 11,
+    "isBookmarkActive": false,
     "country_code": "mx",
     "type": "service",
     "name": "Cinnamon Rolls",
@@ -89,6 +100,7 @@
   },
   {
     "id": 12,
+    "isBookmarkActive": false,
     "country_code": "mx",
     "type": "service",
     "name": "Smart Wi-Fi Camera",
@@ -97,6 +109,7 @@
   },
   {
     "id": 13,
+    "isBookmarkActive": false,
     "country_code": "mx",
     "type": "service",
     "name": "Inflatable Paddle Board",
@@ -105,6 +118,7 @@
   },
   {
     "id": 14,
+    "isBookmarkActive": false,
     "country_code": "mx",
     "type": "service",
     "name": "Cream Cheese",
@@ -113,6 +127,7 @@
   },
   {
     "id": 15,
+    "isBookmarkActive": false,
     "country_code": "mx",
     "type": "service",
     "name": "Teriyaki Chicken Stir-Fry",
@@ -121,6 +136,7 @@
   },
   {
     "id": 16,
+    "isBookmarkActive": false,
     "country_code": "mx",
     "type": "service",
     "name": "DIY Lip Balm Making Kit",
@@ -129,6 +145,7 @@
   },
   {
     "id": 17,
+    "isBookmarkActive": false,
     "country_code": "mx",
     "type": "service",
     "name": "Voice-Controlled Speaker",
@@ -137,6 +154,7 @@
   },
   {
     "id": 18,
+    "isBookmarkActive": false,
     "country_code": "mx",
     "type": "service",
     "name": "Window A/C Unit",
@@ -145,6 +163,7 @@
   },
   {
     "id": 19,
+    "isBookmarkActive": false,
     "country_code": "mx",
     "type": "service",
     "name": "Pet Grooming Gloves",
@@ -153,6 +172,7 @@
   },
   {
     "id": 20,
+    "isBookmarkActive": false,
     "country_code": "mx",
     "type": "service",
     "name": "Maple Cinnamon Almonds",
@@ -161,6 +181,7 @@
   },
   {
     "id": 21,
+    "isBookmarkActive": false,
     "country_code": "mx",
     "type": "service",
     "name": "Whole Grain Hamburger Buns",
@@ -169,6 +190,7 @@
   },
   {
     "id": 22,
+    "isBookmarkActive": false,
     "country_code": "mx",
     "type": "service",
     "name": "Legging Pants",
@@ -177,6 +199,7 @@
   },
   {
     "id": 23,
+    "isBookmarkActive": false,
     "country_code": "mx",
     "type": "service",
     "name": "Striped Long Sleeve Shirt",
@@ -185,6 +208,7 @@
   },
   {
     "id": 24,
+    "isBookmarkActive": false,
     "country_code": "mx",
     "type": "service",
     "name": "Classic Slim Fit Shirt",
@@ -193,6 +217,7 @@
   },
   {
     "id": 25,
+    "isBookmarkActive": false,
     "country_code": "mx",
     "type": "service",
     "name": "Gardening Gloves with Claws",
@@ -201,6 +226,7 @@
   },
   {
     "id": 26,
+    "isBookmarkActive": false,
     "country_code": "mx",
     "type": "service",
     "name": "Coconut Chips",
@@ -209,6 +235,7 @@
   },
   {
     "id": 27,
+    "isBookmarkActive": false,
     "country_code": "mx",
     "type": "service",
     "name": "Mixed Berry Smoothie Pack",
@@ -217,6 +244,7 @@
   },
   {
     "id": 28,
+    "isBookmarkActive": false,
     "country_code": "mx",
     "type": "service",
     "name": "Chic Jumpsuit",
@@ -225,6 +253,7 @@
   },
   {
     "id": 29,
+    "isBookmarkActive": false,
     "country_code": "mx",
     "type": "service",
     "name": "Bock Beer Mustard",
@@ -233,6 +262,7 @@
   },
   {
     "id": 30,
+    "isBookmarkActive": false,
     "country_code": "mx",
     "type": "service",
     "name": "Rechargeable Electric Toothbrush",
@@ -241,6 +271,7 @@
   },
   {
     "id": 31,
+    "isBookmarkActive": false,
     "country_code": "mx",
     "type": "service",
     "name": "Outdoor Portable Fire Pit",
@@ -249,6 +280,7 @@
   },
   {
     "id": 32,
+    "isBookmarkActive": false,
     "country_code": "mx",
     "type": "service",
     "name": "Smart LED Desk Lamp",
@@ -257,6 +289,7 @@
   },
   {
     "id": 33,
+    "isBookmarkActive": false,
     "country_code": "mx",
     "type": "service",
     "name": "Karaoke Microphone",
@@ -265,6 +298,7 @@
   },
   {
     "id": 34,
+    "isBookmarkActive": false,
     "country_code": "mx",
     "type": "service",
     "name": "Air Fryer",
@@ -273,6 +307,7 @@
   },
   {
     "id": 35,
+    "isBookmarkActive": false,
     "country_code": "mx",
     "type": "service",
     "name": "Pesto Genovese",
@@ -281,6 +316,7 @@
   },
   {
     "id": 36,
+    "isBookmarkActive": false,
     "country_code": "mx",
     "type": "service",
     "name": "Whole Grain Hamburger Buns",
@@ -289,6 +325,7 @@
   },
   {
     "id": 37,
+    "isBookmarkActive": false,
     "country_code": "mx",
     "type": "service",
     "name": "Lentil Pasta",
@@ -297,6 +334,7 @@
   },
   {
     "id": 38,
+    "isBookmarkActive": false,
     "country_code": "mx",
     "type": "service",
     "name": "LED Desk Lamp with USB Charging Port",
@@ -305,6 +343,7 @@
   },
   {
     "id": 39,
+    "isBookmarkActive": false,
     "country_code": "mx",
     "type": "service",
     "name": "Party Mini Dress",
@@ -313,6 +352,7 @@
   },
   {
     "id": 40,
+    "isBookmarkActive": false,
     "country_code": "mx",
     "type": "service",
     "name": "Spicy Vegetable Sushi Rolls",
@@ -322,6 +362,7 @@
   },
   {
     "id": 41,
+    "isBookmarkActive": false,
     "country_code": "mx",
     "type": "service",
     "name": "Slim Wallet",
@@ -330,6 +371,7 @@
   },
   {
     "id": 42,
+    "isBookmarkActive": false,
     "country_code": "mx",
     "type": "service",
     "name": "Asian Stir-Fry Vegetables",
@@ -338,6 +380,7 @@
   },
   {
     "id": 43,
+    "isBookmarkActive": false,
     "country_code": "mx",
     "type": "service",
     "name": "Heat-Resistant SilavatarOrIcone Mat",
@@ -346,6 +389,7 @@
   },
   {
     "id": 44,
+    "isBookmarkActive": false,
     "country_code": "mx",
     "type": "service",
     "name": "Ramen Noodle Soup Cups",
@@ -354,6 +398,7 @@
   },
   {
     "id": 45,
+    "isBookmarkActive": false,
     "country_code": "mx",
     "type": "service",
     "name": "Portable Ice Maker",
@@ -362,6 +407,7 @@
   },
   {
     "id": 46,
+    "isBookmarkActive": false,
     "country_code": "mx",
     "type": "service",
     "name": "Heavy-Duty Utility Tote",
@@ -370,6 +416,7 @@
   },
   {
     "id": 47,
+    "isBookmarkActive": false,
     "country_code": "mx",
     "type": "service",
     "name": "SilavatarOrIcone Ice Cube Tray",
@@ -378,6 +425,7 @@
   },
   {
     "id": 48,
+    "isBookmarkActive": false,
     "country_code": "mx",
     "type": "service",
     "name": "Garlic and Herb Cream Cheese",
@@ -386,6 +434,7 @@
   },
   {
     "id": 49,
+    "isBookmarkActive": false,
     "country_code": "mx",
     "type": "service",
     "name": "Tattoo Kit",
@@ -394,6 +443,7 @@
   },
   {
     "id": 50,
+    "isBookmarkActive": false,
     "country_code": "mx",
     "type": "service",
     "name": "Wildflower Honey",
@@ -402,6 +452,7 @@
   },
   {
     "id": 51,
+    "isBookmarkActive": false,
     "country_code": "mx",
     "type": "service",
     "name": "Pepper Jack Cheese Slices",
@@ -410,6 +461,7 @@
   },
   {
     "id": 52,
+    "isBookmarkActive": false,
     "country_code": "mx",
     "type": "service",
     "name": "Flavored Instant Oatmeal",
@@ -418,6 +470,7 @@
   },
   {
     "id": 53,
+    "isBookmarkActive": false,
     "country_code": "mx",
     "type": "service",
     "name": "Non-Stick Grill Pan",
@@ -426,6 +479,7 @@
   },
   {
     "id": 54,
+    "isBookmarkActive": false,
     "country_code": "mx",
     "type": "service",
     "name": "Reusable Food Storage Bags",
@@ -434,6 +488,7 @@
   },
   {
     "id": 55,
+    "isBookmarkActive": false,
     "country_code": "mx",
     "type": "service",
     "name": "Vegetable and Cheese Quesadillas",
@@ -442,6 +497,7 @@
   },
   {
     "id": 56,
+    "isBookmarkActive": false,
     "country_code": "mx",
     "type": "service",
     "name": "Herb Seasoned Croutons",
@@ -450,6 +506,7 @@
   },
   {
     "id": 57,
+    "isBookmarkActive": false,
     "country_code": "mx",
     "type": "service",
     "name": "Peanut Butter Chocolate Clusters",
@@ -458,6 +515,7 @@
   },
   {
     "id": 58,
+    "isBookmarkActive": false,
     "country_code": "mx",
     "type": "service",
     "name": "Chocolate Mint Cookies",
@@ -466,6 +524,7 @@
   },
   {
     "id": 59,
+    "isBookmarkActive": false,
     "country_code": "mx",
     "type": "service",
     "name": "Cookbook",
@@ -474,6 +533,7 @@
   },
   {
     "id": 60,
+    "isBookmarkActive": false,
     "country_code": "mx",
     "type": "service",
     "name": "Rechargeable Electric Toothbrush",
@@ -482,6 +542,7 @@
   },
   {
     "id": 61,
+    "isBookmarkActive": false,
     "country_code": "mx",
     "type": "service",
     "name": "Beef Tacos",
@@ -490,6 +551,7 @@
   },
   {
     "id": 62,
+    "isBookmarkActive": false,
     "country_code": "mx",
     "type": "service",
     "name": "Sweet Potato and Chickpea Bowl",
@@ -498,6 +560,7 @@
   },
   {
     "id": 63,
+    "isBookmarkActive": false,
     "country_code": "mx",
     "type": "service",
     "name": "Digital Wireless Camera",
@@ -506,6 +569,7 @@
   },
   {
     "id": 64,
+    "isBookmarkActive": false,
     "country_code": "mx",
     "type": "service",
     "name": "Portable Grill Cover",
@@ -514,6 +578,7 @@
   },
   {
     "id": 65,
+    "isBookmarkActive": false,
     "country_code": "mx",
     "type": "service",
     "name": "Asian Noodle Salad Kit",
@@ -522,6 +587,7 @@
   },
   {
     "id": 66,
+    "isBookmarkActive": false,
     "country_code": "mx",
     "type": "service",
     "name": "Non-Toxic Crayons for Kids",
@@ -530,6 +596,7 @@
   },
   {
     "id": 67,
+    "isBookmarkActive": false,
     "country_code": "mx",
     "type": "service",
     "name": "Decorative Throw Pillows",
@@ -538,6 +605,7 @@
   },
   {
     "id": 68,
+    "isBookmarkActive": false,
     "country_code": "mx",
     "type": "service",
     "name": "Ginger Turmeric Latte Mix",
@@ -546,6 +614,7 @@
   },
   {
     "id": 69,
+    "isBookmarkActive": false,
     "country_code": "mx",
     "type": "service",
     "name": "Buffalo Sauce",
@@ -554,6 +623,7 @@
   },
   {
     "id": 70,
+    "isBookmarkActive": false,
     "country_code": "mx",
     "type": "service",
     "name": "Roasted Sweet Corn",
@@ -562,6 +632,7 @@
   },
   {
     "id": 71,
+    "isBookmarkActive": false,
     "country_code": "mx",
     "type": "service",
     "name": "Collapsible Camping Cup",
@@ -570,6 +641,7 @@
   },
   {
     "id": 72,
+    "isBookmarkActive": false,
     "country_code": "mx",
     "type": "service",
     "name": "Adjustable Kneeling Pad",
@@ -578,6 +650,7 @@
   },
   {
     "id": 73,
+    "isBookmarkActive": false,
     "country_code": "mx",
     "type": "service",
     "name": "Thai Peanut Dressing",
@@ -586,6 +659,7 @@
   },
   {
     "id": 74,
+    "isBookmarkActive": false,
     "country_code": "mx",
     "type": "service",
     "name": "Spinach Feta Wraps",
@@ -594,6 +668,7 @@
   },
   {
     "id": 75,
+    "isBookmarkActive": false,
     "country_code": "mx",
     "type": "service",
     "name": "LED Table Lamp",
@@ -602,6 +677,7 @@
   },
   {
     "id": 76,
+    "isBookmarkActive": false,
     "country_code": "mx",
     "type": "service",
     "name": "Balsamic Vinegar",
@@ -610,6 +686,7 @@
   },
   {
     "id": 77,
+    "isBookmarkActive": false,
     "country_code": "mx",
     "type": "service",
     "name": "Fitness Tracker Watch",
@@ -618,6 +695,7 @@
   },
   {
     "id": 78,
+    "isBookmarkActive": false,
     "country_code": "mx",
     "type": "service",
     "name": "Diced Tomatoes (canned)",
@@ -626,6 +704,7 @@
   },
   {
     "id": 79,
+    "isBookmarkActive": false,
     "country_code": "mx",
     "type": "service",
     "name": "Multicolored LED Strip Lights",
@@ -634,6 +713,7 @@
   },
   {
     "id": 80,
+    "isBookmarkActive": false,
     "country_code": "mx",
     "type": "service",
     "name": "Wireless Security Camera",
@@ -642,6 +722,7 @@
   },
   {
     "id": 81,
+    "isBookmarkActive": false,
     "country_code": "mx",
     "type": "service",
     "name": "Whole Wheat Pasta",
@@ -650,6 +731,7 @@
   },
   {
     "id": 82,
+    "isBookmarkActive": false,
     "country_code": "mx",
     "type": "service",
     "name": "Portable Ice Maker",
@@ -658,6 +740,7 @@
   },
   {
     "id": 83,
+    "isBookmarkActive": false,
     "country_code": "mx",
     "type": "service",
     "name": "Handcrafted Wooden Jewelry Box",
@@ -666,6 +749,7 @@
   },
   {
     "id": 84,
+    "isBookmarkActive": false,
     "country_code": "mx",
     "type": "service",
     "name": "Cable Knit Cardigan",
@@ -674,6 +758,7 @@
   },
   {
     "id": 85,
+    "isBookmarkActive": false,
     "country_code": "mx",
     "type": "service",
     "name": "Thai Peanut Noodles",
@@ -682,6 +767,7 @@
   },
   {
     "id": 86,
+    "isBookmarkActive": false,
     "country_code": "mx",
     "type": "service",
     "name": "3D Night Light",
@@ -690,6 +776,7 @@
   },
   {
     "id": 87,
+    "isBookmarkActive": false,
     "country_code": "mx",
     "type": "service",
     "name": "Chunky Knit Sweater",
@@ -698,6 +785,7 @@
   },
   {
     "id": 88,
+    "isBookmarkActive": false,
     "country_code": "mx",
     "type": "service",
     "name": "Memory Foam Mattress Pad",
@@ -706,6 +794,7 @@
   },
   {
     "id": 89,
+    "isBookmarkActive": false,
     "country_code": "mx",
     "type": "service",
     "name": "Non-Slip Yoga Socks",
@@ -714,6 +803,7 @@
   },
   {
     "id": 90,
+    "isBookmarkActive": false,
     "country_code": "mx",
     "type": "service",
     "name": "Vegan Chickpea Salad",
@@ -722,6 +812,7 @@
   },
   {
     "id": 91,
+    "isBookmarkActive": false,
     "country_code": "mx",
     "type": "service",
     "name": "Coconut Curry Sauce",
@@ -730,6 +821,7 @@
   },
   {
     "id": 92,
+    "isBookmarkActive": false,
     "country_code": "mx",
     "type": "service",
     "name": "Sweet Potato Mash",
@@ -738,6 +830,7 @@
   },
   {
     "id": 93,
+    "isBookmarkActive": false,
     "country_code": "mx",
     "type": "service",
     "name": "Reusable SilavatarOrIcone Food Storage Bags",
@@ -746,6 +839,7 @@
   },
   {
     "id": 94,
+    "isBookmarkActive": false,
     "country_code": "mx",
     "type": "service",
     "name": "Classic Cheeseburger Mix",
@@ -754,6 +848,7 @@
   },
   {
     "id": 95,
+    "isBookmarkActive": false,
     "country_code": "mx",
     "type": "service",
     "name": "Thai Peanut Noodles",
@@ -762,6 +857,7 @@
   },
   {
     "id": 96,
+    "isBookmarkActive": false,
     "country_code": "mx",
     "type": "service",
     "name": "Lemon Herb Quinoa",
@@ -770,6 +866,7 @@
   },
   {
     "id": 97,
+    "isBookmarkActive": false,
     "country_code": "mx",
     "type": "service",
     "name": "Fitness Foam Roller",
@@ -778,6 +875,7 @@
   },
   {
     "id": 98,
+    "isBookmarkActive": false,
     "country_code": "mx",
     "type": "service",
     "name": "Dog Waste Bag Dispenser",
@@ -786,6 +884,7 @@
   },
   {
     "id": 99,
+    "isBookmarkActive": false,
     "country_code": "mx",
     "type": "service",
     "name": "Outdoor Fire Pit",
@@ -794,6 +893,7 @@
   },
   {
     "id": 100,
+    "isBookmarkActive": false,
     "country_code": "mx",
     "type": "service",
     "name": "Arcade Game Machine",

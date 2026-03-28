@@ -1,5 +1,6 @@
 import {
   Component,
+  computed,
   effect,
   model,
   TemplateRef,
@@ -26,6 +27,9 @@ import {
   BmbImageComponent,
   BmbNativeModalService,
   BmbFilterCardComponent,
+  ThemeService,
+  BmbThemeComponent,
+  BmbCardButtonComponent,
 } from '../../../../projects/ds-ng/src/public-api';
 import { HelpMenuComponent } from '../../components/help-menu/help-menu.component';
 import { ModalWDropdownComponent } from '../../components/modal-w-dropdown/modal-w-dropdown.component';
@@ -50,6 +54,8 @@ import { ModalWDropdownComponent } from '../../components/modal-w-dropdown/modal
     BmbMediaCardComponent,
     BmbImageComponent,
     BmbFilterCardComponent,
+    BmbThemeComponent,
+    BmbCardButtonComponent,
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
@@ -64,32 +70,20 @@ export class HomeComponent {
     private router: Router,
     private contentProjected: BmbProjectionContentService,
     private modalService: BmbNativeModalService,
+    private themeService: ThemeService,
   ) {
     effect(() => {
-      // console.log('Bookmark active state changed:', this.bookmarkActive());
+      const theme = this.currentTheme();
+
+      console.log('Current theme:', theme);
     });
-
-    // setTimeout(() => {
-    //   console.log('show notification');
-
-    //   this.notificationService.addNotification({
-    //     title: 'Welcome to the Home Page!',
-    //     content: this.notificationTemplate,
-    //     isFullColor: false,
-    //     component: 'notification',
-    //     type: 'info',
-    //     delay: 500000,
-    //   });
-    //   this.notificationService.addNotification({
-    //     title: 'Welcome to the Home Page!',
-    //     content: 'This is a simple notification message.',
-    //     isFullColor: false,
-    //     component: 'notification',
-    //     type: 'info',
-    //     delay: 5000,
-    //   });
-    // }, 1000);
   }
+
+  currentTheme = computed(() => {
+    console.log('Computing current theme...');
+
+    return this.themeService.getTheme();
+  });
 
   templateClick(event: MouseEvent | KeyboardEvent) {
     const data: IBmbProjectionContent = {

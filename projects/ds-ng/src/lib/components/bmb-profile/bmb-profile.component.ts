@@ -87,9 +87,10 @@ export class BmbProfileComponent implements OnInit {
 
   handleCloseSession = output();
   handleCloseProfile = output();
-  handleCollaboratorClick = output<IBmbUserData>();
   onRightClick = output<Event>();
   handleVersionBack = output<Event>();
+
+  handleCollaboratorClick = output<IBmbUserData>(); //Deprecated
 
   onBack = output<Event>();
   onExpandClick = output<Event>();
@@ -188,7 +189,7 @@ export class BmbProfileComponent implements OnInit {
   }
 
   handleButtonClick(data: IBmbUserData | undefined): void {
-    if (data) this.handleCollaboratorClick.emit(data);
+    // if (data) this.handleCollaboratorClick.emit(data);
   }
 
   handleRadial(newValue: string): void {

@@ -16,7 +16,6 @@ import { BmbSwitchComponent } from '../bmb-switch/bmb-switch.component';
   selector: 'bmb-theme',
   standalone: true,
   imports: [CommonModule, BmbSwitchComponent],
-  providers: [ThemeService],
   templateUrl: './bmb-theme.component.html',
   encapsulation: ViewEncapsulation.None,
 })

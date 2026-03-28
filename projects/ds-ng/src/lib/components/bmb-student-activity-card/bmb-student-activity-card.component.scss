@@ -46,19 +46,35 @@ $types: (
     }
   }
 
+  &-bullet {
+    width: rem.rem_calc(8);
+    height: rem.rem_calc(8);
+    border-radius: 50%;
+    grid-area: bullet;
+    align-self: center;
+  }
+
   &-list-item {
     border-bottom: rem.rem_calc(1) solid var(--general-contrasts-50);
+    background-image: none;
     width: 100%;
     border-radius: 0;
     box-shadow: none;
     display: grid;
     grid-template-columns: rem.rem_calc(64) 1fr max-content;
     grid-template-rows: auto;
-    gap: rem.rem_calc(8);
+    gap: rem.rem_calc(8) rem.rem_calc(16);
     padding: rem.rem_calc(16) 0;
     grid-template-areas:
       'image title badge'
       'image location location';
+
+    &-no-image {
+      grid-template-columns: rem.rem_calc(8) 1fr max-content;
+      grid-template-areas:
+        'bullet title badge'
+        'bullet location location';
+    }
 
     .bmb_student-activity-card-title {
       padding: 0;
@@ -101,7 +117,7 @@ $types: (
     grid-area: image;
 
     &-pic {
-      object-fit: fill;
+      object-fit: cover;
       width: 100%;
       height: 100%;
     }
