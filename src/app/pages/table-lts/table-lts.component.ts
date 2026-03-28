@@ -7,16 +7,16 @@ import {
   ViewChild,
 } from '@angular/core';
 import {
+  BmbActionIconComponent,
   BmbTablesComponent,
   TableColum,
-  BmbTooltipComponent,
 } from '../../../../projects/ds-ng/src/public-api';
 import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-table-lts',
   standalone: true,
-  imports: [BmbTablesComponent, CommonModule, BmbTooltipComponent],
+  imports: [BmbTablesComponent, CommonModule, BmbActionIconComponent],
   templateUrl: './table-lts.component.html',
   styleUrl: './table-lts.component.scss',
 })

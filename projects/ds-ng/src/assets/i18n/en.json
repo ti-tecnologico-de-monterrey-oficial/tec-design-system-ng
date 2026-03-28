@@ -233,5 +233,9 @@
   "interactive_item_default": {
     "active": "Active",
     "inactive": "Inactive"
+  },
+  "profile": {
+    "leader": "My Leader",
+    "generalist": "My Generalist"
   }
 }

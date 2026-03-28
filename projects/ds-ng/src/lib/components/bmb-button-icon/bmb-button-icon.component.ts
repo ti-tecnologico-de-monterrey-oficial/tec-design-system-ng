@@ -27,6 +27,8 @@ export class BmbButtonIconComponent {
   disabled = input<boolean>(false);
   active = model<boolean>(false);
   isOutline = model<boolean>(false);
+  tooltipTitle = input<string>('');
+  tooltipText = input<string>('');
 
   onButtonClick = output<MouseEvent>();
 
@@ -36,5 +38,9 @@ export class BmbButtonIconComponent {
 
   handleClick(event: MouseEvent): void {
     this.onButtonClick.emit(event);
+  }
+
+  get computedTooltipText(): string {
+    return this.tooltipText() || this.icon();
   }
 }
