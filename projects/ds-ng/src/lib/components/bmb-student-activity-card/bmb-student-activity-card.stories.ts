@@ -144,6 +144,47 @@ ${getBasicExampleBlock('BmbStudentActivityCardComponent')}
         defaultValue: '',
       },
     },
+    disableImage: {
+      control: 'boolean',
+      description: 'Disable the image and show a colored bullet instead.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
+    },
+    bulletColor: {
+      control: 'select',
+      options: [
+        'success-primary',
+        'success-light',
+        'success-thin',
+        'success-primary-alternative',
+        'success-tint-alternative',
+        'warning-primary',
+        'warning-light',
+        'warning-tint',
+        'warning-primary-alternative',
+        'error-primary',
+        'error-light',
+        'error-tint',
+        'info-primary',
+        'info-light',
+        'info-tint',
+        'branding-primary',
+        'branding-tint',
+        'branding-tint',
+        'alert-primary',
+        'alert-light',
+        'alert-tint',
+      ],
+      description: 'Sets the color of the bullet when image is disabled.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'IBmbColorSemantics' },
+        defaultValue: { summary: 'success-primary' },
+      },
+    },
   },
 
   args: {
@@ -157,8 +198,26 @@ ${getBasicExampleBlock('BmbStudentActivityCardComponent')}
     image: 'https://picsum.photos/id/64/200/300',
     dateFormat: 'yyyy-MM-dd HH:mm:ss',
     badgeText: 'Badge text',
+    disableImage: false,
+    bulletColor: 'success-primary',
   },
 } as Meta<typeof BmbStudentActivityCardComponent>;
 
 type Story = StoryObj<BmbStudentActivityCardComponent>;
 export const Default: Story = {};
+
+export const ListItem: Story = {
+  args: {
+    ...Default.args,
+    isListItem: true,
+  },
+};
+
+export const ListItemNoImage: Story = {
+  args: {
+    ...Default.args,
+    isListItem: true,
+    disableImage: true,
+    bulletColor: 'warning-primary',
+  },
+};

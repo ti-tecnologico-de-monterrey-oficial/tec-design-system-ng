@@ -1,5 +1,5 @@
 <div [ngClass]="getCardClasses()">
-  @if (isListItem() && image()) {
+  @if (isListItem() && image() && !disableImage()) {
     <figure class="bmb_student-activity-card-image">
       <img
         class="bmb_student-activity-card-image-pic"
@@ -8,6 +8,12 @@
         [title]="componentTitle() || title()"
       />
     </figure>
+  }
+  @if (isListItem() && disableImage()) {
+    <div
+      class="bmb_student-activity-card-bullet"
+      [ngStyle]="getBulletStyles()"
+    ></div>
   }
   <div class="bmb_student-activity-card-badge">
     <bmb-badge
