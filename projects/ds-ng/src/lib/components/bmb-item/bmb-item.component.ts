@@ -1,6 +1,7 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  effect,
   input,
   output,
   ViewEncapsulation,
@@ -47,7 +48,13 @@ export class BmbItemComponent {
 
   action = output<MouseEvent>();
 
-  constructor(private sanitizer: DomSanitizer) {}
+  constructor(private sanitizer: DomSanitizer) {
+    effect(() => {
+      console.warn(
+        'This component is not longer supported, please use bmb-item-[variant] or bmb-interactive-item-[variant]',
+      );
+    });
+  }
 
   get safeValue(): SafeHtml {
     const clean = sanitizeContent(this.supportText());

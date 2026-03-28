@@ -5,7 +5,46 @@
   [(selectedIndex)]="currentIndex"
 >
   <bmb-multi-dot-paginator-item>
-    <bmb-progress-circle
+    <bmb-card-button
+      [isTemplate]="true"
+      componentTitle=""
+      [leftContentImage]="{
+        src: 'https://picsum.photos/id/25/200/300',
+        alt: 'Left content image'
+      }"
+      [leftContent]="true"
+      [hasMenu]="true"
+      [menuItems]="[
+        {
+          icon: 'link',
+          text: 'Link',
+          url: 'https://example.com'
+        },
+        {
+          icon: 'delete',
+          text: 'Delete',
+          url: 'https://example.com'
+        },
+        {
+          icon: 'settings',
+          text: 'Settings',
+          url: 'https://example.com'
+        }
+      ]"
+    >
+      <bmb-bookmark />
+      <!-- por favor recordar revisar la documentación del bmb-bookmark -->
+      <ng-template #customContent>
+        <h3>Resumen de texto</h3>
+        <p>
+          This is the body content of the card button. It can be long and will
+          be truncated with ellipsis after 3 lines. This is the body content of
+          the card button. It can be long and will be truncated with ellipsis
+          after 3 lines.
+        </p>
+      </ng-template>
+    </bmb-card-button>
+    <!-- <bmb-progress-circle
       [valueLabel]="'$100000000000000'"
       [percent]="85"
       [showValueLabel]="true"
@@ -17,7 +56,7 @@
       [showTitle]="true"
       [fillPathStatus]="'success'"
       [fullFillPathStatus]="false"
-    ></bmb-progress-circle>
+    ></bmb-progress-circle> -->
   </bmb-multi-dot-paginator-item>
   <bmb-multi-dot-paginator-item>
     <bmb-home-card title="Some title">

@@ -230,6 +230,10 @@
       "placeholder": "Buscar..."
     }
   },
+  "interactive_item_default": {
+    "active": "Activo",
+    "inactive": "Inactivo"
+  },
   "profile": {
     "leader": "Mi Líder",
     "generalist": "Mi Generalista"

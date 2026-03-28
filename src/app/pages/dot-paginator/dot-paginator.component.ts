@@ -5,6 +5,8 @@ import {
   BmbHomeCardComponent,
   BmbProgressCircleComponent,
   BmbBalanceOverviewComponent,
+  BmbCardButtonComponent,
+  BmbBookmarkComponent,
 } from '../../../../projects/ds-ng/src/public-api';
 
 @Component({
@@ -16,10 +18,12 @@ import {
     BmbHomeCardComponent,
     BmbProgressCircleComponent,
     BmbBalanceOverviewComponent,
+    BmbCardButtonComponent,
+    BmbBookmarkComponent,
   ],
   templateUrl: './dot-paginator.component.html',
   styleUrl: './dot-paginator.component.scss',
 })
 export class DotPaginatorComponent {
-  currentIndex = model<number>(3);
+  currentIndex = model<number>(0);
 }
