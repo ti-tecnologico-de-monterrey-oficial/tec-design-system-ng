@@ -160,6 +160,8 @@ export * from './lib/components/bmb-form-validator/bmb-form-validator.component'
 export * from './lib/components/bmb-three-cols/bmb-three-cols.component';
 export * from './lib/components/bmb-title-content/bmb-title-content.component';
 export * from './lib/components/bmb-item/bmb-item.component';
+export * from './lib/components/bmb-item/children';
+export * from './lib/components/bmb-interactive-item/children';
 export * from './lib/components/bmb-navigation-bar/bmb-navigation-bar.component';
 export * from './lib/components/bmb-notice-card/bmb-notice-card.component';
 export * from './lib/components/bmb-modal/bmb-native-modal.component';
