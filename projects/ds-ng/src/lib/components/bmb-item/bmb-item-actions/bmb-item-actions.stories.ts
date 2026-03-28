@@ -1,6 +1,7 @@
 import { Meta, StoryObj, componentWrapperDecorator } from '@storybook/angular';
 import { getActionMenuItemComponentDescription } from '../../../utils/doc/utils';
 import {
+  DBmbGenericParamDesc,
   DBmbIconParamDesc,
   DBmbItemActionMenu,
 } from '../../../utils/doc/parameterDescriptions';
@@ -34,6 +35,7 @@ ${getActionMenuItemComponentDescription({
   argTypes: {
     icon: DBmbIconParamDesc.icon,
     label: DBmbItemActionMenu.label,
+    isDisabled: DBmbGenericParamDesc.disabled,
     getActionClick: DBmbItemActionMenu.action,
   },
   args: {

@@ -13,3 +13,11 @@
     text-align: right;
   }
 }
+
+@mixin action_item() {
+  .bmb_container-button-base {
+    padding: var(--bmb-spacing-s) var(--bmb-spacing-m);
+    border-radius: var(--bmb-radius-2);
+    min-height: fit-content;
+  }
+}

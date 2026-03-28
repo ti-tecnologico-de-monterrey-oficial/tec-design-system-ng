@@ -1,0 +1,9 @@
+@use '../mixins.scss' as mixins;
+
+.bmb_item-actions {
+  @include mixins.action_item();
+}
+
+:host {
+  display: flex;
+}

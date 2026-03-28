@@ -5,12 +5,12 @@ import {
   output,
   ViewEncapsulation,
 } from '@angular/core';
-import { BmbItemComponent } from '../bmb-item.component';
+import { BmbContainerButtonDefaultComponent } from '../../bmb-container-button/bmb-container-button-default/bmb-container-button-default.component';
 
 @Component({
   selector: 'bmb-item-actions',
   standalone: true,
-  imports: [BmbItemComponent],
+  imports: [BmbContainerButtonDefaultComponent],
   templateUrl: './bmb-item-actions.component.html',
   styleUrl: './bmb-item-actions.component.scss',
   encapsulation: ViewEncapsulation.None,
@@ -19,6 +19,7 @@ import { BmbItemComponent } from '../bmb-item.component';
 export class BmbItemActionsComponent {
   icon = input<string>('');
   label = input.required<string>();
+  isDisabled = input<boolean>(false);
 
   getActionClick = output<MouseEvent>();
 

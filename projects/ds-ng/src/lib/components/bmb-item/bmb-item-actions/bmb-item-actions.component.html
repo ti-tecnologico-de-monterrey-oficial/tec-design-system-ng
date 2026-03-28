@@ -1,7 +1,9 @@
-<bmb-item
-  [icon]="icon()"
-  [iconSize]="24"
-  [label]="label()"
-  [isButton]="true"
-  (action)="handleActionClick($event)"
+<bmb-container-button-default
+  class="bmb_item-actions"
+  [componentTitle]="label()"
+  [leftIconName]="icon()"
+  iconImageAlt="Action menu"
+  [hideChevron]="true"
+  [isDisabled]="isDisabled()"
+  (getClickButton)="handleActionClick($event)"
 />
