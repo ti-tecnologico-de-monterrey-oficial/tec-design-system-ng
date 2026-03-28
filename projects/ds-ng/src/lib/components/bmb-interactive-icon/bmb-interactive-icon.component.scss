@@ -35,6 +35,11 @@ $backgrounds: (
     var(--general-contrasts-main-selection-alternative),
 );
 
+:host {
+  display: inline-flex;
+  align-items: center;
+}
+
 .bmb_interactive_icon {
   align-items: center;
   display: flex;

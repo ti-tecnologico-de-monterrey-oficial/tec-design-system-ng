@@ -1,7 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-// import { BmbStudentActivityCardComponent } from './bmb-student-activity-card.component';
 import { BmbStudentActivityCardComponent } from './bmb-student-activity-card.component';
-import { CommonModule } from '@angular/common';
 import { ComponentRef } from '@angular/core';
 
 describe('BmbStudentActivityCardComponent', () => {
@@ -28,12 +26,25 @@ describe('BmbStudentActivityCardComponent', () => {
     expect(component).toBeTruthy();
   });
 
+  it('should parse start and end dates on init', () => {
+    expect(component.parsedStartDate.year).toBe(2021);
+    expect(component.parsedStartDate.month).toBe(12);
+    expect(component.parsedStartDate.day).toBe(24);
+    expect(component.parsedStartDate.hour).toBe(10);
+
+    expect(component.parsedEndDate.year).toBe(2021);
+    expect(component.parsedEndDate.month).toBe(12);
+    expect(component.parsedEndDate.day).toBe(24);
+    expect(component.parsedEndDate.hour).toBe(11);
+  });
+
   it('should return correct card classes', () => {
     componentRef.setInput('isListItem', true);
     componentRef.setInput('type', 'academic');
     expect(component.getCardClasses()).toEqual([
       'bmb_student-activity-card',
       'bmb_student-activity-card-list-item',
+      'bmb_student-activity-card-academic',
     ]);
 
     componentRef.setInput('isListItem', false);
@@ -41,6 +52,14 @@ describe('BmbStudentActivityCardComponent', () => {
     expect(component.getCardClasses()).toEqual([
       'bmb_student-activity-card',
       'bmb_student-activity-card-life',
+    ]);
+
+    componentRef.setInput('isListItem', true);
+    componentRef.setInput('disableImage', true);
+    expect(component.getCardClasses()).toEqual([
+      'bmb_student-activity-card',
+      'bmb_student-activity-card-list-item',
+      'bmb_student-activity-card-list-item-no-image',
     ]);
   });
 
@@ -53,5 +72,15 @@ describe('BmbStudentActivityCardComponent', () => {
 
     componentRef.setInput('type', 'events');
     expect(component.getBadgeType()).toBe('mitec_purple');
+
+    componentRef.setInput('type', 'save_the_date');
+    expect(component.getBadgeType()).toBe('mitec_orange');
+  });
+
+  it('should return correct bullet styles', () => {
+    componentRef.setInput('bulletColor', 'error-primary');
+    expect(component.getBulletStyles()).toEqual({
+      'background-color': 'rgb(var(--error-primary))',
+    });
   });
 });

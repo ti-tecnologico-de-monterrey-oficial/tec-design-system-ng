@@ -1,0 +1,44 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+import * as interactiveItemStory from './bmb-interactive-item-default/bmb-interactive-item-default.stories';
+import * as chevronInteractiveItemStory from './bmb-interactive-item-chevron/bmb-interactive-item-chevron.stories';
+import * as textButtonInteractiveItemStory from './bmb-interactive-item-text-button/bmb-interactive-item-text-button.stories';
+
+import { ListTemplate } from '../../../DocComponents/ListTemplate.mdx';
+import { getFormatName } from '../../utils/doc/utils';
+
+<Meta title="Dev tools/Interactive item" />
+<ListTemplate
+  content={[
+    chevronInteractiveItemStory,
+    textButtonInteractiveItemStory,
+    interactiveItemStory
+]}
+context={{
+    [getFormatName(
+      interactiveItemStory.default.title,
+      /(\/)|( )/g,
+      '_',
+    ).toLocaleLowerCase()]: {
+      showStories: false,
+      showControls: true,
+    },
+    [getFormatName(
+      chevronInteractiveItemStory.default.title,
+      /(\/)|( )/g,
+      '_',
+    ).toLocaleLowerCase()]: {
+      showStories: false,
+      showControls: true,
+    },
+    [getFormatName(
+      textButtonInteractiveItemStory.default.title,
+      /(\/)|( )/g,
+      '_',
+    ).toLocaleLowerCase()]: {
+      showStories: false,
+      showControls: true,
+    },
+  }}
+
+/>

@@ -132,4 +132,8 @@ export class FormValidatorTestComponent {
   handleServiceClick(service: IBmbSearchCardItemResult): void {
     console.log('Service clicked:', service);
   }
+
+  handleBookmarkClick(item: IBmbSearchCardItemResult): void {
+    console.log('Bookmark clicked:', item);
+  }
 }

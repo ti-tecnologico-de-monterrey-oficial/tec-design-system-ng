@@ -8,27 +8,31 @@ Descubre cómo nuestro Design System no solo da forma a la estética, sino que t
 
 # Release Notes - Sistema de Diseño TEC
 
-# 🚀 Bamboo Design System · Versión 1.6.1 - Impulsando la nueva experiencia mitec: navegación más ágil, información más accesible🎉
+# 🚀 Bamboo Design System · Versión v1.6.2 🎉
 
-**📅 09 de febrero de 2026**
-
-Este release es resultado del trabajo colaborativo entre las áreas, que en conjunto refinaron la interfaz y sus comportamientos para ofrecer una experiencia mitec más fluida, rápida y accesible para todas las personas que interactúan con la plataforma.
+**📅 27 de febrero de 2026**
+Esta versión se enfoca en enriquecer los componentes interactivos, mejorar la coherencia visual y resolver detalles que afectaban la experiencia diaria de las personas que usan las aplicaciones construidas con el diseño Bamboo. Es el resultado de un trabajo colaborativo entre diseño, desarrollo y QA, orientado a ofrecer interfaces más claras, accesibles y fáciles de mantener. El principal beneficio es una experiencia más consistente, predecible y alineada con los flujos reales de las personas.
 
 ### 🆕 Nuevas Funcionalidades
+- Se incorporaron nuevas variantes de menús de acción y botones contenedores (íconos derechos, elementos interactivos, hyperlinks, badges, variantes “square”, “complex” y “user image”), permitiendo construir interfaces más expresivas y alineadas con los diseños de Figma sin trabajo manual adicional.
+- Se añadió una nueva variante para la tarjeta de actividad estudiantil y se ajustó la tarjeta de perfil para mostrar solo las acciones relevantes según el rol, facilitando que las personas identifiquen información clave de un vistazo.
+- Se actualizaron el calendario y el centro de notificaciones con propiedades y UI mejoradas, haciendo más sencilla la consulta de eventos y avisos importantes en menos pasos.
+- Se habilitó la multi-selección en tarjetas de filtro y dropdowns relacionados, permitiendo combinar varios criterios de búsqueda de forma sencilla y reduciendo el número de interacciones necesarias.
 
-- **Search Card:** Incorporamos un nuevo componente visual diseñado para mostrar resultados de búsqueda de manera clara y destacada.
-- **Image:** El visualizador de imágenes evoluciona y ahora permite navegar entre múltiples fotografías en formato de carrusel.
-- **Centro de Notificaciones:** Mejoramos: Simplificamos la gestión de notificaciones y añadimos la opción de "seleccionar todos" para marcar avisos como leídos rápidamente.
-- **Top Bar:** Agregamos la funcionalidad de búsqueda global directamente en la Barra Superior para un acceso inmediato desde cualquier lugar.
-- **AI Chat bubble:** Renovamos con opciones de consulta precargadas para agilizar la ayuda.
-- **Mi pefil:** Añadimos un enlace directo para facilitar el retorno al portal anterior cuando sea necesario.
+### ✅ Problemas Resueltos
+- Se corrigió el servicio de tema para que propague correctamente los cambios de apariencia en todos los componentes, asegurando que las pantallas mantengan un estilo coherente al alternar entre temas claros y oscuros.
+- Se ajustaron componentes como tooltip, modal, progress circle, image y notification center para mejorar accesibilidad, centrado de contenidos, responsividad y estabilidad, reduciendo comportamientos inesperados durante la navegación.
+- Se actualizaron tablas, filtros de fechas y campos con etiquetas (tags) para evitar desbordes de contenido, textos confusos y comportamientos erráticos, mejorando la lectura y la interacción con grandes volúmenes de información.
+- Se mejoró el contraste visual en componentes como badge, switch y date picker, disminuyendo la probabilidad de interpretar mal estados de advertencia o selecciones de fecha.
 
-✅ Problemas Resueltos
+### ⚡ Optimizaciones
+- Se refactorizaron múltiples componentes (menús de acción, botones contenedores, tarjetas, layouts y otros) para reutilizar estilos y lógica, logrando una interfaz más consistente y un comportamiento más predecible entre pantallas.
+- Se eliminaron dependencias y código no utilizado y se consolidaron mixins y componentes base, contribuyendo a tiempos de carga más estables y a un mantenimiento técnico más ágil del sistema de diseño.
+- Se ajustaron alineaciones y espaciados en diversos componentes (incluyendo elementos con bookmark, barras superiores y sistemas de columnas), ofreciendo una interfaz más limpia, legible y equilibrada en diferentes resoluciones.
 
-- **Accesibilidad en ayudas visuales:** Ajustamos el contraste de los textos de ayuda (tooltips) para asegurar que sean legibles para todas las personas.
-- **Interacción de búsqueda:** Corregimos el botón para limpiar el campo de búsqueda, asegurando que funcione al primer intento .
-- **Claridad en navegación:** Mejoramos la visibilidad de los indicadores de página (puntos) para saber exactamente qué contenido se está viendo.
-- **Legibilidad:** Ajustamos los colores del texto en los botones de tarjetas para garantizar una lectura cómoda y sin esfuerzo.
+### 📘 Mejoras Documentación
+- Se actualizó la documentación de componentes como tooltip, layout, container button, action menu y student activity card, facilitando que los equipos de desarrollo integren estas piezas de interfaz con ejemplos claros y alineados al diseño actual.
+- Se reforzaron plantillas y descripciones reutilizables de propiedades y variantes, reduciendo la ambigüedad y ayudando a que nuevas personas del equipo adopten el sistema de diseño con mayor rapidez.
 
 _Esta versión es el resultado del esfuerzo colaborativo del equipo de diseño y desarrollo, trabajando para ofrecer experiencias digitales de calidad para toda la comunidad._
 

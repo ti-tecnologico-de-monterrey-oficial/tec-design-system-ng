@@ -431,6 +431,16 @@ By default, the supported language are:
       defaultValue: false,
     },
   },
+  deprecatedTitle: {
+    control: null,
+    description:
+      'Please use `componentTitle` instead of `title` to set the component title.',
+    table: {
+      category: 'Deprecated',
+      type: { summary: 'string' },
+      defaultValue: '',
+    },
+  },
   onButtonClick: getOnClickParam(ON_BUTTON_CLICK, ON_CLICK_DESCRIPTION),
   onButtonPress: getOnClickParam(
     getOnEvent('', 'buttonPress'),
@@ -1616,4 +1626,62 @@ IBmbBadgeInfo {
       },
     },
   },
+};
+
+export const DBmbItemActionMenu = {
+  label: getPropertyParamDesc('the item', {
+    alternativePropName: 'main label',
+    summaryType: 'string (required)',
+  }),
+  subLabel: getPropertyParamDesc('', {
+    alternativeDescription: `Sets the second label of the item.
+${getAlertBlockquote(
+  `This label is only displayed for the variant with *right icon.*`,
+  { title: RELEVANT_TITLE.important, blockquoteType: BlockquoteType.important },
+)}`,
+  }),
+  value: {
+    control: 'text',
+    description: 'Sets the text value to show on the right side.',
+    table: {
+      category: 'Properties',
+      type: { summary: 'string' },
+      defaultValue: getDefaultValueControl(),
+    },
+  },
+  supportText: {
+    control: 'text',
+    description: 'Sets a support text shown below the label.',
+    table: {
+      category: 'Properties',
+      type: { summary: 'string' },
+      defaultValue: getDefaultValueControl(),
+    },
+  },
+  isButton: getPropertyParamDesc('', {
+    controlType: 'boolean',
+    defaultSummary: false,
+    additionalDescription: 'Renders the item as a button when true.',
+  }),
+  rightIcon: { ...DBmbIconParamDesc.icon },
+  action: getOnClickParam(getOnEvent('item', 'action')),
+};
+
+export const DBmbActionMenu = {
+  icon: DBmbHomeCardParamDesc.icon,
+  iconSize: DBmbHomeCardParamDesc.iconSize,
+  bgIconAppearance: DBmbHomeCardParamDesc.bgIconAppearance,
+  componentTitle: DBmbHomeCardParamDesc.title,
+  subtitle: DBmbHomeCardParamDesc.subtitle,
+  showHeader: {
+    control: { type: 'boolean' },
+    description:
+      'Sets a flag to indicate whether the card should show the header.<br/><br/>Shows the header when true. ',
+    table: {
+      category: 'Properties',
+      type: { summary: 'boolean (optional)' },
+      defaultValue: getDefaultValueControl(true),
+    },
+  },
+  title: DBmbGenericParamDesc.deprecatedTitle,
 };

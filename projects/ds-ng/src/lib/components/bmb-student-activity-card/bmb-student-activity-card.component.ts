@@ -12,6 +12,7 @@ import { IBmbEventType } from '../bmb-calendar/types';
 import { BmbBadgeComponent } from '../bmb-badge/bmb-badge.component';
 import { IBbmBgAppearance } from '../bmb-advertisement-card/types';
 import { logDeprecatedInput } from '../../utils/logDeprecatedInput';
+import { IBmbColorSemantics } from '../../types';
 
 @Component({
   selector: 'bmb-student-activity-card',
@@ -33,6 +34,8 @@ export class BmbStudentActivityCardComponent {
   dateFormat = input<string>('yyyy-MM-dd HH:mm:ss');
   badgeText = input<string>('');
   componentTitle = input<string>();
+  disableImage = input<boolean>(false);
+  bulletColor = input<IBmbColorSemantics>('success-primary');
 
   title = input<string>(); // deprecated
 
@@ -61,6 +64,8 @@ export class BmbStudentActivityCardComponent {
   getCardClasses(): string[] {
     const classes = ['bmb_student-activity-card'];
     if (this.isListItem()) classes.push('bmb_student-activity-card-list-item');
+    if (this.isListItem() && this.disableImage())
+      classes.push('bmb_student-activity-card-list-item-no-image');
     else classes.push(`bmb_student-activity-card-${this.type()}`);
 
     return classes;
@@ -77,5 +82,11 @@ export class BmbStudentActivityCardComponent {
       case 'save_the_date':
         return 'mitec_orange';
     }
+  }
+
+  getBulletStyles(): object {
+    return {
+      'background-color': `rgb(var(--${this.bulletColor()}))`,
+    };
   }
 }

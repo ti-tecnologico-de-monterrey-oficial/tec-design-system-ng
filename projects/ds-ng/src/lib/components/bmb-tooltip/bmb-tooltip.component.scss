@@ -1,6 +1,11 @@
 @use '../../../assets/styles/base/fonts' as fonts;
 @use '../../../assets/styles/base/rem' as rem;
 
+bmb-tooltip {
+  display: inline-flex;
+  align-items: center;
+}
+
 .bmb_tooltip {
   width: 100%;
 
