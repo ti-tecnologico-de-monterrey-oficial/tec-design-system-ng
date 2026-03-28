@@ -17,6 +17,7 @@ export interface IBmbSearchCardItemResult {
   avatarOrIcon: string;
   backgroundColorIcon?: IBmbColor;
   type: 'person' | 'service';
+  isBookmarkActive?: boolean;
   [key: string]: any;
 }
 
@@ -47,6 +48,7 @@ export class BmbSearchCardComponent {
 
   triggerSearch = output<string>();
   searchItemClick = output<IBmbSearchCardItemResult>();
+  getBookmarkItemClick = output<IBmbSearchCardItemResult>();
 
   inputSearchControl = new FormControl('');
   computedResults = computed<{
@@ -92,6 +94,13 @@ export class BmbSearchCardComponent {
   constructor(private translationsService: BmbTranslationsService) {
     this.inputSearchControl.valueChanges.subscribe((value) => {
       this.triggerSearch.emit(value || '');
+    });
+  }
+
+  handleBookmarkClick(item: IBmbSearchCardItemResult): void {
+    this.getBookmarkItemClick.emit({
+      ...item,
+      isBookmarkActive: !item.isBookmarkActive,
     });
   }
 }

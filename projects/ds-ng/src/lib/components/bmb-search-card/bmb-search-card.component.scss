@@ -1,11 +1,26 @@
-.bmb_search-card-results {
-  &-list {
-    padding: 0;
-    margin: 0;
-    list-style: none;
+.bmb_search-card {
+  width: var(--bmb-card-max-width);
+  max-width: 100%;
+  max-height: calc(100dvh - 4rem);
+  overflow: auto;
+
+  &-results {
+    max-height: calc(100dvh - 18rem);
+    overflow: auto;
+
+    &-list {
+      padding: 0;
+      margin: 0;
+      list-style: none;
+    }
+
+    &-section {
+      padding-block-start: var(--bmb-spacing-l);
+    }
   }
 
-  &-section {
-    padding-block-start: var(--bmb-spacing-l);
+  bmb-tabs {
+    margin-block-start: var(--bmb-spacing-m);
+    display: block;
   }
 }

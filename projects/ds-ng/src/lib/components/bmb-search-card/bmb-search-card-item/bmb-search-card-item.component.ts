@@ -8,12 +8,23 @@ import {
 import { IBmbColor } from '../../../types/colors';
 import { getRGBColorKeyValue, isImage } from '../../../utils/utils';
 import { CommonModule } from '@angular/common';
-import { BmbTitleContentComponent } from '../../bmb-title-content/bmb-title-content.component';
+import { BmbLayoutDirective } from '../../../directives/bmb-layout/bmb-layout.directive';
+import { BmbLayoutItemDirective } from '../../../directives/bmb-layout/bmb-layout-item.directive';
+import { BmbIconComponent } from '../../bmb-icon/bmb-icon.component';
+import { BmbUserImageComponent } from '../../bmb-user-image/bmb-user-image.component';
+import { BmbBookmarkComponent } from '../../bmb-bookmark/bmb-bookmark.component';
 
 @Component({
   selector: 'bmb-search-card-item',
   standalone: true,
-  imports: [CommonModule, BmbTitleContentComponent],
+  imports: [
+    CommonModule,
+    BmbLayoutDirective,
+    BmbLayoutItemDirective,
+    BmbIconComponent,
+    BmbUserImageComponent,
+    BmbBookmarkComponent
+  ],
   templateUrl: './bmb-search-card-item.component.html',
   styleUrl: './bmb-search-card-item.component.scss',
   encapsulation: ViewEncapsulation.None,
@@ -26,18 +37,23 @@ export class BmbSearchCardItemComponent {
   icon = input<string>('crop_square');
   isService = input<boolean>(true);
   backgroundColorIcon = input<IBmbColor>('black-primary');
+  isBookmarkActive = input<boolean>(false);
 
   triggerClick = output<void>();
+  getBookmarkClick = output<void>();
 
   getStyles(): object {
-    if (isImage(this.icon())) {
-      return { 'background-color': 'transparent' };
-    }
-
-    return getRGBColorKeyValue(this.backgroundColorIcon() as string);
+    const bgColor = getRGBColorKeyValue(this.backgroundColorIcon() as string);
+    return bgColor;
   }
 
   handleClick(): void {
     this.triggerClick.emit();
+  }
+
+  handleBookmarkClick(): void {
+    this.getBookmarkClick.emit();
+    console.log('1ra etapa');
+
   }
 }

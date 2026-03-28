@@ -1,17 +1,45 @@
-<div
-  class="bmb_search-card-item"
-  (click)="handleClick()"
-  tabindex="0"
-  role="button"
->
-  <bmb-title-content
-    [componentTitle]="name()"
-    [subtitle]="subtitle()"
-    [icon]="icon()"
-    [iconSize]="24"
-    [bgIconAppearance]="backgroundColorIcon()"
-    [isAvatarIcon]="!isService()"
-    [avatarSize]="'desktop-small'"
-    [forceSquareApp]="isService()"
-  />
-</div>
+<section class="bmb_search-card-item" bmbLayout alignItems="center">
+  <button
+    (click)="handleClick()"
+    bmbLayoutItem
+    [isDynamicItem]="true"
+    [colGrow]="1"
+    class="bmb_search-card-item-button"
+  >
+    <span bmbLayout margin="none" alignItems="center">
+      <div bmbLayoutItem [isDynamicItem]="true">
+        @if (isService()) {
+          <bmb-icon
+            class="bmb_search-card-item-box"
+            [icon]="icon()"
+            [size]="24"
+            [alt]="name()"
+            [ngStyle]="getStyles()"
+          />
+        } @else {
+          <bmb-user-image [image]="icon()" size="desktop-small" />
+        }
+      </div>
+      <section bmbLayoutItem [isDynamicItem]="true" [colGrow]="1">
+        @if (name()) {
+          <h2 class="bmb_search-card-item-title">
+            {{ name() }}
+          </h2>
+        }
+        @if (subtitle()) {
+          <h3 class="bmb_search-card-item-subtitle">
+            {{ subtitle() }}
+          </h3>
+        }
+      </section>
+    </span>
+  </button>
+  @if (isService()) {
+    <div bmbLayoutItem [isDynamicItem]="true">
+      <bmb-bookmark
+        [isActive]="isBookmarkActive()"
+        (isActiveChange)="handleBookmarkClick()"
+      ></bmb-bookmark>
+    </div>
+  }
+</section>
