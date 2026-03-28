@@ -23,7 +23,7 @@ import { BmbBookmarkComponent } from '../../bmb-bookmark/bmb-bookmark.component'
     BmbLayoutItemDirective,
     BmbIconComponent,
     BmbUserImageComponent,
-    BmbBookmarkComponent
+    BmbBookmarkComponent,
   ],
   templateUrl: './bmb-search-card-item.component.html',
   styleUrl: './bmb-search-card-item.component.scss',
@@ -54,6 +54,5 @@ export class BmbSearchCardItemComponent {
   handleBookmarkClick(): void {
     this.getBookmarkClick.emit();
     console.log('1ra etapa');
-
   }
 }

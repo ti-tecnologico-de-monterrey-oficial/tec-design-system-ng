@@ -70,12 +70,12 @@ export class HomeComponent {
     private router: Router,
     private contentProjected: BmbProjectionContentService,
     private modalService: BmbNativeModalService,
-    private themeService: ThemeService
+    private themeService: ThemeService,
   ) {
     effect(() => {
       const theme = this.currentTheme();
 
-        console.log('Current theme:', theme);
+      console.log('Current theme:', theme);
     });
   }
 

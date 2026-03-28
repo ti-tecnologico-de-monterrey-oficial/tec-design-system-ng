@@ -64,7 +64,8 @@ export class BmbStudentActivityCardComponent {
   getCardClasses(): string[] {
     const classes = ['bmb_student-activity-card'];
     if (this.isListItem()) classes.push('bmb_student-activity-card-list-item');
-    if (this.isListItem() && this.disableImage()) classes.push('bmb_student-activity-card-list-item-no-image');
+    if (this.isListItem() && this.disableImage())
+      classes.push('bmb_student-activity-card-list-item-no-image');
     else classes.push(`bmb_student-activity-card-${this.type()}`);
 
     return classes;

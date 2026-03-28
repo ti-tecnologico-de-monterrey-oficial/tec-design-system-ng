@@ -1,6 +1,12 @@
 <div class="bmb_alert-center-form">
   <section class="bmb_alert-center-form-content">
-    @if (enableMultipleSelection() && (filteredEvents().recent.length || filteredEvents().sevenDays.length || filteredEvents().month.length || filteredEvents().rest.length)) {
+    @if (
+      enableMultipleSelection() &&
+      (filteredEvents().recent.length ||
+        filteredEvents().sevenDays.length ||
+        filteredEvents().month.length ||
+        filteredEvents().rest.length)
+    ) {
       <header class="bmb_alert-center-form-content-header">
         <bmb-checkbox
           name="selectAll"
