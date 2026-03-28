@@ -30,19 +30,23 @@
           }"
         >
           <ng-template #bmbLeftContent>
-            <bmb-action-icon
-              [icon]="getLeftIcon()"
-              [iconSize]="24"
-              (buttonClick)="handleBack($event)"
-            />
+            @if (getLeftIcon()) {
+              <bmb-action-icon
+                [icon]="getLeftIcon()"
+                [iconSize]="24"
+                (buttonClick)="handleBack($event)"
+              />
+            }
           </ng-template>
           <ng-template #bmbMainContent>
-            <bmb-title-content
-              [componentTitle]="componentTitle() || title()"
-              titleSize="6"
-              [isCenterContent]="true"
-              [transparentBgC]="true"
-            />
+            @if (componentTitle() || title()) {
+              <bmb-title-content
+                [componentTitle]="componentTitle() || title()"
+                titleSize="6"
+                [isCenterContent]="true"
+                [transparentBgC]="true"
+              />
+            }
           </ng-template>
           <ng-template #bmbRightContent>
             <span class="bmb_inner_header-actions">
