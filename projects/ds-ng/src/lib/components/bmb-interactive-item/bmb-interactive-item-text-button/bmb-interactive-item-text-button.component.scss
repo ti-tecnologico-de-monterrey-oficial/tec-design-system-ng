@@ -1,0 +1,9 @@
+@use './../../bmb-item/mixins.scss' as mixins;
+
+.bmb_interactive-item-text-button {
+  @include mixins.action_item();
+}
+
+:host {
+  display: flex;
+}

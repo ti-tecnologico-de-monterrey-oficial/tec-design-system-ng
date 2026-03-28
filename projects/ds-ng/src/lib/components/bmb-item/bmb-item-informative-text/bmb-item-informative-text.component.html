@@ -1,0 +1,38 @@
+<section
+  class="bmb_item-informative-text"
+  bmbLayout
+  margin="none"
+  alignItems="center"
+>
+  @if (icon()) {
+    <bmb-icon
+      class="bmb_item-icon"
+      [icon]="icon()"
+      [size]="24"
+      alt="Item icon"
+      bmbLayoutItem
+      [isDynamicItem]="true"
+    />
+  }
+  <section bmbLayoutItem [isDynamicItem]="true" [colGrow]="1">
+    <section bmbVerticalLayout gapSize="xs">
+      <span bmbVerticalLayoutItem>
+        {{ itemTitle() }}
+      </span>
+      @if (supportText()) {
+        <span
+          class="bmb_item-informative-text-support-text"
+          bmbVerticalLayoutItem
+        >
+          {{ supportText() }}
+          <bmb-text-link
+            [textLink]="supportTextLinkLabel()!"
+            icon=""
+            [link]="supportTextLink()!"
+            [target]="supportTextTarget()"
+          />
+        </span>
+      }
+    </section>
+  </section>
+</section>
