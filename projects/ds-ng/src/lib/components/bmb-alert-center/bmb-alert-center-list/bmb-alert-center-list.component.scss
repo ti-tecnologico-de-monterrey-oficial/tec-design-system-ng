@@ -67,6 +67,10 @@
       grid-area: time;
       margin-top: rem.rem_calc(6);
       text-transform: lowercase;
+
+      &.no-lowercase {
+        text-transform: none;
+      }
     }
   }
 }

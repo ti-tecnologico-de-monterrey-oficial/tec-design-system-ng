@@ -99,8 +99,11 @@
           [numberOfColumns]="1"
           [numberOfRows]="3"
           class="bmb_alert-center-list-item-time"
+          [ngClass]="{
+            'no-lowercase': getTimeVariant(item.pDate) !== 'today'
+          }"
         >
-          {{ getFormattedTime(item.time) }}
+          {{ getFormattedTime(item.time, item.pDate) }}
         </span>
       </div>
     </li>

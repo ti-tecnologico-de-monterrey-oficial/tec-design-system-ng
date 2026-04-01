@@ -8,6 +8,7 @@
     componentTitle="Mis Notificaciones"
     [isMobile]="false"
     (onExpandClick)="onExpandClick.emit()"
+    [showRightButton]="!hideExpandBtn()"
   >
     <div class="bmb_home-notification-card-content">
       @if (showAdvertisements()) {
