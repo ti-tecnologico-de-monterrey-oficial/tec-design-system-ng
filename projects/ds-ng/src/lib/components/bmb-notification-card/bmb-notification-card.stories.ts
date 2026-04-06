@@ -156,6 +156,16 @@ ${getBasicExampleBlock(
         defaultValue: { summary: 'false' },
       },
     },
+    enableRowClick: {
+      control: { type: 'boolean' },
+      description:
+        'Enables click interaction on each alert row. Show or hide the modal with the alert details when clicking on an alert.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'boolean' },
+        defaultValue: { summary: true },
+      },
+    },
     maxHeight: {
       control: { type: 'text' },
       description:
@@ -222,6 +232,7 @@ ${getBasicExampleBlock(
     onExpandClick: getOnClickParam(getOnEvent('', 'onExpandClick', 'void')),
   },
   args: {
+    enableRowClick: true,
     data: [
       {
         id: 10,

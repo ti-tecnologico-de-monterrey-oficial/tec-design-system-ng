@@ -45,6 +45,7 @@ export class BmbAlertCenterListComponent {
   name = input<string>('');
   enableMultipleSelection = input<boolean>(true);
   selectionState = model<Record<string, boolean>>({});
+  enableRowClick = input<boolean>(true);
 
   alertSelected = output<IBmbDataAlertsParsed>();
   selectedAlert = output<{ event: Event; item: IBmbDataAlertsParsed }>();

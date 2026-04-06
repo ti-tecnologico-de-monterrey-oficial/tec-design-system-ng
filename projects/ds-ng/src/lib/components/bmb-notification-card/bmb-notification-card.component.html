@@ -21,6 +21,7 @@
             <bmb-alert-center-list
               [alerts]="parsedData()"
               [enableMultipleSelection]="false"
+              [enableRowClick]="enableRowClick()"
               (alertSelected)="handleAlertSelected($event)"
             />
           }
@@ -38,6 +39,7 @@
         <bmb-alert-center-list
           [alerts]="parsedData()"
           [enableMultipleSelection]="false"
+          [enableRowClick]="enableRowClick()"
           (alertSelected)="handleAlertSelected($event)"
         />
       }

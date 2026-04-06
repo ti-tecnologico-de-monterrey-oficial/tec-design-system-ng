@@ -42,7 +42,11 @@
     }
 
     &-content {
-      cursor: pointer;
+      cursor: default;
+
+      &.clickable {
+        cursor: pointer;
+      }
     }
 
     &-title {
