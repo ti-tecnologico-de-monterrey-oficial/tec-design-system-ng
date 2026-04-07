@@ -45,6 +45,7 @@ export class BmbAlertCenterListComponent {
   name = input<string>('');
   enableMultipleSelection = input<boolean>(true);
   selectionState = model<Record<string, boolean>>({});
+  enableRowClick = input<boolean>(true);
 
   alertSelected = output<IBmbDataAlertsParsed>();
   selectedAlert = output<{ event: Event; item: IBmbDataAlertsParsed }>();
@@ -71,7 +72,42 @@ export class BmbAlertCenterListComponent {
     this.alertSelected.emit(item);
   }
 
-  getFormattedTime(date: any): string {
-    return DateTime.fromFormat(date, 'HH:mm').toFormat('h:mm a');
+  getTimeVariant(pDate: DateTime): 'today' | 'yesterday' | 'date' {
+    if (!pDate?.isValid) return 'date';
+
+    const now = DateTime.now().startOf('day');
+    const target = pDate.startOf('day');
+    const diffDays = now.diff(target, 'days').days;
+
+    if (diffDays === 0) return 'today';
+    if (diffDays === 1) return 'yesterday';
+
+    return 'date';
+  }
+
+  getFormattedTime(time: string, pDate: DateTime): string {
+    if (!pDate?.isValid) return '';
+
+    const now = DateTime.now().startOf('day');
+    const target = pDate.startOf('day');
+
+    const diffDays = now.diff(target, 'days').days;
+
+    const [hour, minute] = time.split(':').map(Number);
+
+    const dateTime = pDate.set({ hour, minute });
+    if (diffDays < 0) {
+      return dateTime.toFormat('h:mm a').toLowerCase();
+    }
+
+    if (diffDays === 0) {
+      return dateTime.toFormat('h:mm a');
+    }
+
+    if (diffDays === 1) {
+      return 'Ayer';
+    }
+
+    return pDate.toFormat('dd/MM/yyyy');
   }
 }

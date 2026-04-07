@@ -8,6 +8,7 @@
     componentTitle="Mis Notificaciones"
     [isMobile]="false"
     (onExpandClick)="onExpandClick.emit()"
+    [showRightButton]="!hideExpandBtn()"
   >
     <div class="bmb_home-notification-card-content">
       @if (showAdvertisements()) {
@@ -20,6 +21,7 @@
             <bmb-alert-center-list
               [alerts]="parsedData()"
               [enableMultipleSelection]="false"
+              [enableRowClick]="enableRowClick()"
               (alertSelected)="handleAlertSelected($event)"
             />
           }
@@ -37,6 +39,7 @@
         <bmb-alert-center-list
           [alerts]="parsedData()"
           [enableMultipleSelection]="false"
+          [enableRowClick]="enableRowClick()"
           (alertSelected)="handleAlertSelected($event)"
         />
       }

@@ -18,6 +18,7 @@
       }
       <div
         class="bmb_alert-center-list-item-content"
+        [class.clickable]="enableRowClick()"
         bmbLayoutGrid
         colGapSize="s"
         rowGapSize="s"
@@ -25,8 +26,8 @@
         rowSize="auto"
         [columns]="3"
         [rows]="3"
-        (click)="handleRowClick(item)"
-        (keyup)="handleRowClick(item)"
+        (click)="enableRowClick() && handleRowClick(item)"
+        (keyup)="enableRowClick() && handleRowClick(item)"
         bmbLayoutItem
         [colGrow]="1"
         [isDynamicItem]="true"
@@ -99,8 +100,11 @@
           [numberOfColumns]="1"
           [numberOfRows]="3"
           class="bmb_alert-center-list-item-time"
+          [ngClass]="{
+            'no-lowercase': getTimeVariant(item.pDate) !== 'today'
+          }"
         >
-          {{ getFormattedTime(item.time) }}
+          {{ getFormattedTime(item.time, item.pDate) }}
         </span>
       </div>
     </li>
