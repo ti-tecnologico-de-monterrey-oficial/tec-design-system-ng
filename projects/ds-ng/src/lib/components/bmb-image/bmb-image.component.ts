@@ -35,8 +35,9 @@ export class BmbImageComponent implements OnDestroy {
   enableZoom = input<boolean>(false);
   isBlurredBackdrop = input<boolean>(false);
   images = input<BmbImageItem[] | null>(null);
+  callbackParams = input<any>({});
 
-  imageClick = output<{ img: BmbImageItem; index: number }>();
+  imageClick = output<{ img: BmbImageItem; index: number, cbParams: any }>();
   animation = input<'fade' | 'parallax' | 'parallax-fade'>('parallax');
   animationClass = computed(() => `bmb-carousel-${this.animation()}`);
 
@@ -145,7 +146,7 @@ export class BmbImageComponent implements OnDestroy {
   }
 
   handleImageClick(img: BmbImageItem, index: number): void {
-    this.imageClick.emit({ img, index });
+    this.imageClick.emit({ img, index, cbParams: this.callbackParams() });
   }
 
   handleSingleImageClick(): void {
@@ -156,6 +157,7 @@ export class BmbImageComponent implements OnDestroy {
         alt: this.alt(),
       },
       index: 0,
+      cbParams: this.callbackParams(),
     });
   }
 

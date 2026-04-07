@@ -258,11 +258,9 @@
     icon="person"
     bgIconAppearance="green-light"
     componentTitle="Mi perfil"
-    [showRightButton]="false"
     contentPadding="l"
     [showRightButton]="enableExpandButton()"
     (onBack)="handleBack($event)"
-    (onExpandClick)="handleExpand($event)"
     [(isExpanded)]="isExpanded"
   >
     <ng-container [ngTemplateOutlet]="content" />
