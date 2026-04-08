@@ -1,19 +1,25 @@
 # Novedades ## [v1.6.2] -
-2026-04-06
+2026-04-08
 
 ### 🚀 Novedades
 
 *
-notification alert card
+fix(component/home-card): se agregaron estilos (CSS) para todos los componentes y elementos que usan el 'Home card' para mostrar la sombra cuando se implemente mediante el 'Bmb content projection service'
+*
+notification card
 
 ### 🆕 Nuevos Componentes
 
-- **notification alert card**:
-notification alert card
+- **fix(component/home-card): se agregaron estilos (CSS) para todos los componentes y elementos que usan el 'Home card' para mostrar la sombra cuando se implemente mediante el 'Bmb content projection service'**:
+fix(component/home-card): se agregaron estilos (CSS) para todos los componentes y elementos que usan el 'Home card' para mostrar la sombra cuando se implemente mediante el 'Bmb content projection service'
+- **notification card**:
+notification card
 
 ### 🔄 Componentes Actualizados
 
-- **notification alert card**:
-notification alert card
+- **fix(component/home-card): se agregaron estilos (CSS) para todos los componentes y elementos que usan el 'Home card' para mostrar la sombra cuando se implemente mediante el 'Bmb content projection service'**:
+fix(component/home-card): se agregaron estilos (CSS) para todos los componentes y elementos que usan el 'Home card' para mostrar la sombra cuando se implemente mediante el 'Bmb content projection service'
+- **notification card**:
+notification card
 
 ---
