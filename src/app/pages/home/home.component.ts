@@ -5,6 +5,7 @@ import {
   model,
   TemplateRef,
   ViewChild,
+  ViewEncapsulation,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
@@ -28,8 +29,6 @@ import {
   BmbNativeModalService,
   BmbFilterCardComponent,
   ThemeService,
-  BmbThemeComponent,
-  BmbCardButtonComponent,
 } from '../../../../projects/ds-ng/src/public-api';
 import { HelpMenuComponent } from '../../components/help-menu/help-menu.component';
 import { ModalWDropdownComponent } from '../../components/modal-w-dropdown/modal-w-dropdown.component';
@@ -54,11 +53,10 @@ import { ModalWDropdownComponent } from '../../components/modal-w-dropdown/modal
     BmbMediaCardComponent,
     BmbImageComponent,
     BmbFilterCardComponent,
-    BmbThemeComponent,
-    BmbCardButtonComponent,
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
+  encapsulation: ViewEncapsulation.None,
 })
 export class HomeComponent {
   bookmarkActive = model<boolean>(false);
@@ -130,11 +128,6 @@ export class HomeComponent {
   }
 
   handleModalWithDropdown(event: MouseEvent | KeyboardEvent): void {
-    const data: IBmbProjectionContent = {
-      content: this.modalTemplate,
-      targetRef: event.target as HTMLElement,
-    };
-
     this.modalService.openModal({
       title: 'Modal with Dropdown',
       content: ModalWDropdownComponent,
