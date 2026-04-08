@@ -3,6 +3,7 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
+  computed,
   input,
   model,
   OnChanges,
@@ -90,6 +91,7 @@ export class BmbDropzoneComponent implements OnInit, OnChanges {
   newFile = output<File | File[]>();
   fileRemoved = output<string>();
 
+  // fileDataList: FileData[] = computed(() => []);
   fileDataList: FileData[] = [];
   isControlNull: boolean = false;
 
@@ -158,11 +160,11 @@ export class BmbDropzoneComponent implements OnInit, OnChanges {
           ).concat('* ')
         : ''
     }${
-      this.isFormatErrorFiles()
+      this.isSizeErrorFiles()
         ? (
             this.errorMessageSize() ||
             this.translationService.translate('dropzone.error_message_size')
-          ).concat('MB*')
+          ).concat(' MB*')
         : ''
     }`;
   }
@@ -358,6 +360,7 @@ export class BmbDropzoneComponent implements OnInit, OnChanges {
 
   protected handleFileSelected(event: Event) {
     const _input = event.target as HTMLInputElement;
+    console.info('handleFileSelected', _input);
 
     if (_input.files?.[0]) {
       const files = _input.files;
