@@ -170,7 +170,11 @@ describe('BmbImageComponent', () => {
 
     component.handleImageClick(images[1], 1);
 
-    expect(spy).toHaveBeenCalledWith({ img: images[1], index: 1 });
+    expect(spy).toHaveBeenCalledWith({
+      img: images[1],
+      index: 1,
+      cbParams: {},
+    });
   });
 
   it('should emit imageClick on Enter or Space key press', () => {
@@ -180,13 +184,21 @@ describe('BmbImageComponent', () => {
 
     const enterEvent = new KeyboardEvent('keydown', { key: 'Enter' });
     component.handleImageKeyDown(enterEvent, img, 0);
-    expect(spy).toHaveBeenCalledWith({ img, index: 0 });
+    expect(spy).toHaveBeenCalledWith({
+      img,
+      index: 0,
+      cbParams: {},
+    });
 
     spy.calls.reset();
 
     const spaceEvent = new KeyboardEvent('keydown', { key: ' ' });
     component.handleImageKeyDown(spaceEvent, img, 1);
-    expect(spy).toHaveBeenCalledWith({ img, index: 1 });
+    expect(spy).toHaveBeenCalledWith({
+      img,
+      index: 1,
+      cbParams: {},
+    });
   });
 
   it('should not emit imageClick for other keys', () => {
@@ -258,6 +270,10 @@ describe('BmbImageComponent', () => {
     imgs[1].click();
     fixture.detectChanges();
 
-    expect(spy).toHaveBeenCalledWith({ img: images[1], index: 1 });
+    expect(spy).toHaveBeenCalledWith({
+      img: images[1],
+      index: 1,
+      cbParams: {},
+    });
   });
 });
