@@ -1,4 +1,11 @@
-import { Component, computed, input, model, output } from '@angular/core';
+import {
+  Component,
+  computed,
+  input,
+  model,
+  output,
+  ViewEncapsulation,
+} from '@angular/core';
 import { BmbHomeCardComponent } from '../bmb-home-card/bmb-home-card.component';
 import { TranslatePipe } from '../../pipes/translations';
 import { BmbInputComponent } from '../bmb-input/bmb-input.component';
@@ -35,6 +42,7 @@ export interface IBmbSearchCardItemResult {
   ],
   templateUrl: './bmb-search-card.component.html',
   styleUrl: './bmb-search-card.component.scss',
+  encapsulation: ViewEncapsulation.None,
 })
 export class BmbSearchCardComponent {
   inputPlaceholder = input<string>('');

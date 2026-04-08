@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 import {
   BmbHomeCardComponent,
   BmbLayoutDirective,
@@ -17,6 +17,7 @@ import { Router } from '@angular/router';
     BmbContainerButtonComponent,
   ],
   templateUrl: './homeCardTransition.component.html',
+  encapsulation: ViewEncapsulation.None,
 })
 export class HomeCardComponent {
   constructor(private router: Router) {}

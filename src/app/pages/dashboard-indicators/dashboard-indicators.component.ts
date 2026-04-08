@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 import {
   BmbHomeCardComponent,
   BmbLayoutDirective,
@@ -17,5 +17,7 @@ import {
   ],
   templateUrl: './dashboard-indicators.component.html',
   styleUrl: './dashboard-indicators.component.scss',
+
+  encapsulation: ViewEncapsulation.None,
 })
 export class DashboardIndicatorsComponent {}

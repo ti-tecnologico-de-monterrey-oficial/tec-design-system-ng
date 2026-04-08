@@ -28,6 +28,7 @@ import {
   IBotType,
   IBmbSearchCardItemResult,
   BmbProfileComponent,
+  BmbCarouselComponent,
 } from '../../projects/ds-ng/src/public-api';
 import { MatDialog } from '@angular/material/dialog';
 import { TestComponentComponent } from './components/test-component/test-component.component';
@@ -48,6 +49,7 @@ import services from './pages/form-validator-test/services.json';
     BmbDropdownComponent,
     BmbHomeCardChatComponent,
     BmbSearchCardComponent,
+    BmbCarouselComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
