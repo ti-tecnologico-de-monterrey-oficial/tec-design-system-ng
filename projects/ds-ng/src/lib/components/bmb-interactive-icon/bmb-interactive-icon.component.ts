@@ -53,7 +53,8 @@ export type IBmbInteractiveIconAppearance =
   | 'buttons-primary-normal'
   | 'purple-primary'
   | 'general_contrasts-main-selection'
-  | 'general_contrasts-main-selection-alternative';
+  | 'general_contrasts-main-selection-alternative'
+  | 'white';
 
 export type IBmbInteractiveIconType = 'regular' | 'button' | 'app_drawer';
 

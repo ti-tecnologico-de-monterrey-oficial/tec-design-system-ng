@@ -49,24 +49,24 @@
       </picture>
     </figure>
   } @else {
-    <div class="bmb_image-arrow bmb_image-arrow--left">
-      <bmb-button-icon
-        icon="chevron_left"
-        [showContainer]="true"
-        (onButtonClick)="prev()"
-        appearanceContrast="solid"
-      />
-    </div>
-
-    <div class="bmb_image-arrow bmb_image-arrow--right">
-      <bmb-button-icon
-        icon="chevron_right"
-        [showContainer]="true"
-        (onButtonClick)="next()"
-        appearanceContrast="solid"
-      />
-    </div>
-
+    @if (images() && images()!.length > 1) {
+      <div class="bmb_image-arrow bmb_image-arrow--left">
+        <bmb-button-icon
+          icon="chevron_left"
+          [showContainer]="true"
+          (onButtonClick)="prev()"
+          appearanceContrast="solid"
+        />
+      </div>
+      <div class="bmb_image-arrow bmb_image-arrow--right">
+        <bmb-button-icon
+          icon="chevron_right"
+          [showContainer]="true"
+          (onButtonClick)="next()"
+          appearanceContrast="solid"
+        />
+      </div>
+    }
     @for (img of images(); track $index) {
       <figure
         class="bmb_image-figure bmb_image-figure-images"

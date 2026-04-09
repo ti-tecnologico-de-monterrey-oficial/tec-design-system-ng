@@ -33,6 +33,7 @@ $backgrounds: (
   'general_contrasts-main-selection': var(--general-contrasts-main-selection),
   'general_contrasts-main-selection-alternative':
     var(--general-contrasts-main-selection-alternative),
+  'white': rgb(var(--white-primary))
 );
 
 :host {
