@@ -36,12 +36,26 @@
 
 <ng-template #collaborator>
   <section class="bmb_profile-info">
+    @if (collaboratorData()?.enableRolSwitch) {
+      <bmb-check-external-link-button
+        class="bmb_profile-info-change-role bmb_item-wrapper"
+        (buttonClick)="handleRoleSwitch()"
+      >
+        <bmb-icon [icon]="'work'" [size]="24" />
+        <span class="bmb_profile-info-change-role-item-role">
+          {{ this.currentRole() }}
+        </span>
+        <span class="bmb_profile-info-change-role-item">
+          Cambia de perfil
+        </span>
+        <bmb-icon [icon]="'keyboard_arrow_right'" [size]="24" />
+      </bmb-check-external-link-button>
+    }
     <bmb-icon-item
       icon="id_card"
       label="Puesto"
       [value]="collaboratorData()?.position!"
     />
-
     <bmb-icon-item
       icon="location_on"
       label="Área"
@@ -127,6 +141,7 @@
       [email]="getUserData().email"
       contentLayout="row"
       [isImageBordered]="false"
+      [idDigital]="getUserData().idDigital"
     />
     @if (!isStandAlone()) {
       @if (isStudent()) {
@@ -177,22 +192,22 @@
     </section>
 
     @if (enableVersionBack()) {
-      <bmb-divider />
-      <bmb-check-external-link-button
-        class="bmb_profile-info-container-link"
-        (buttonClick)="handleBackClick($event)"
-      >
-        <section class="bmb_profile-info-container version-back">
-          <div class="bmb_profile-info-container-item">
-            <bmb-icon [icon]="'compare_arrows'" [size]="24" />
-            <span class="bmb_profile-info-container-item-text">{{
-              versionBackText()
-            }}</span>
-          </div>
+      <section class="bmb_profile-info-container version-back">
+        <bmb-check-external-link-button
+          class="bmb_profile-info-container-link"
+          (buttonClick)="handleBackClick($event)"
+        >
 
-          <bmb-icon [icon]="'keyboard_arrow_right'" [size]="24" />
-        </section>
-      </bmb-check-external-link-button>
+            <div class="bmb_profile-info-container-item">
+              <bmb-icon [icon]="'compare_arrows'" [size]="24" />
+              <span class="bmb_profile-info-container-item-text">{{
+                versionBackText()
+              }}</span>
+            </div>
+
+            <bmb-icon [icon]="'keyboard_arrow_right'" [size]="24" />
+        </bmb-check-external-link-button>
+      </section>
     }
 
     @if (isMobile() && !isStandAlone()) {
@@ -258,11 +273,9 @@
     icon="person"
     bgIconAppearance="green-light"
     componentTitle="Mi perfil"
-    [showRightButton]="false"
     contentPadding="l"
     [showRightButton]="enableExpandButton()"
     (onBack)="handleBack($event)"
-    (onExpandClick)="handleExpand($event)"
     [(isExpanded)]="isExpanded"
   >
     <ng-container [ngTemplateOutlet]="content" />

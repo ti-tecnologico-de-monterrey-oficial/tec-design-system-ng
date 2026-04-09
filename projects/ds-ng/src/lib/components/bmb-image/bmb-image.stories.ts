@@ -96,6 +96,13 @@ ${getBasicExampleBlock('BmbImageComponent')}
         type: { summary: 'EventEmitter<{ img: BmbImageItem; index: number }>' },
       },
     },
+    callbackParams: {
+      control: null,
+      description: 'Additional parameters to emit with the imageClick event.',
+      table: {
+        type: { summary: 'any' },
+      },
+    },
   },
   args: {
     src: 'https://farm2.staticflickr.com/1919/45579541712_f58c1fd0ed_o.jpg',
