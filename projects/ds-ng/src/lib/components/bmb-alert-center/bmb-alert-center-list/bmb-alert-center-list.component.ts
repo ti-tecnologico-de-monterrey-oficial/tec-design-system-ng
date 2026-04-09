@@ -102,7 +102,12 @@ export class BmbAlertCenterListComponent {
 
     if (diffDays < 0) return dateTime.toFormat('h:mm a').toLowerCase();
     if (diffDays === 0) return dateTime.toFormat('h:mm a');
-    if (diffDays === 1) return 'Ayer';
+    if (diffDays === 1) {
+      return (
+        dateTime.setLocale('es').toRelativeCalendar() ??
+        dateTime.toFormat('dd/MM/yyyy')
+      );
+    }
 
     return pDate.toFormat('dd/MM/yyyy');
   }

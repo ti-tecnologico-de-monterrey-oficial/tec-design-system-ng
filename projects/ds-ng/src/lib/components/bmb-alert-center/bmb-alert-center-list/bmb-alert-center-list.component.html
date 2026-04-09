@@ -101,7 +101,7 @@
           [numberOfRows]="3"
           class="bmb_alert-center-list-item-time"
           [ngClass]="{
-            'no-lowercase': getTimeVariant(item.pDate) !== 'today'
+            'no-lowercase': getTimeVariant(item.pDate) === 'today'
           }"
         >
           {{ getFormattedTime(item.time, item.pDate) }}
