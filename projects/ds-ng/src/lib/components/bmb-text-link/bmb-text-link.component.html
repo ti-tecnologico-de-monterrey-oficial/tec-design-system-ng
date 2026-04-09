@@ -17,7 +17,7 @@
           class="bmb_text-link-item-icon"
           [icon]="icon()"
           [size]="20"
-          [alt]="textLink()"
+          [alt]="textLink() || icon()"
         />
       }
       <span
@@ -27,6 +27,7 @@
         }"
       >
         {{ textLink() }}
+        <ng-content></ng-content>
       </span>
     </span>
   </bmb-check-external-link-button>

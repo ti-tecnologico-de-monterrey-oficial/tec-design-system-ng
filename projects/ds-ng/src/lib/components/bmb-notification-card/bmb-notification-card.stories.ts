@@ -8,7 +8,11 @@ import {
   getSpecialSpecifications,
   RELEVANT_TITLE,
 } from '../../utils/doc/utils';
-import { getOnClickParam } from '../../utils/doc/parameterDescriptions';
+import {
+  DBmbHomeCardParamDesc,
+  DBmbIconParamDesc,
+  getOnClickParam,
+} from '../../utils/doc/parameterDescriptions';
 
 const typeDetail: string = `
 event: IBmbDataAlert
@@ -124,6 +128,13 @@ ${getBasicExampleBlock(
     },
   },
   argTypes: {
+    leftIcon: {
+      ...DBmbHomeCardParamDesc.icon,
+      description: DBmbIconParamDesc.icon.description.replace(
+        'icon',
+        'left header icon. If not provided, the interactive icon will not be rendered',
+      ),
+    },
     data: {
       control: {
         type: 'object',

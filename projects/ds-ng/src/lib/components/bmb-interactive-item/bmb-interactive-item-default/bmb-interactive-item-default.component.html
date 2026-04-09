@@ -1,28 +1,35 @@
-<bmb-container-button-base
+<button
+  type="button"
   class="bmb_interactive-item-default"
-  [isDisabled]="!isActive()"
-  (getClickButton)="handleActionClick($event)"
+  (click)="handleActionClick($event)"
+  bmbLayout
+  margin="none"
+  alignItems="center"
+  [dynamicCols]="true"
 >
-  <ng-template #bmbContainerLeft>
-    <bmb-icon
-      [icon]="icon()"
-      [isFill]="true"
-      [size]="24"
-      alt="Profile switch menu"
-    />
-  </ng-template>
-
-  <ng-template #bmbContainerMain>
-    <bmb-title
-      [componentTitle]="itemTitle()"
-      [subtitle]="
-        isActive()
-          ? ('interactive_item_default.active' | translate)
-          : ('interactive_item_default.inactive' | translate)
-      "
-    />
-  </ng-template>
-  <ng-template #bmbContainerRight>
-    <bmb-icon [icon]="isActive() ? 'check' : 'chevron_right'" [size]="24" />
-  </ng-template>
-</bmb-container-button-base>
+  <bmb-icon
+    [icon]="icon()"
+    [isFill]="true"
+    [size]="24"
+    alt="Profile switch menu"
+    bmbLayoutItem
+  />
+  <bmb-title
+    class="bmb_interactive-item-default-title"
+    [ngClass]="{ active: isActive() }"
+    [componentTitle]="itemTitle()"
+    [subtitle]="
+      isActive()
+        ? ('interactive_item_default.active' | translate)
+        : ('interactive_item_default.inactive' | translate)
+    "
+    bmbLayoutItem
+    [isDynamicItem]="true"
+    [colGrow]="1"
+  />
+  <bmb-icon
+    [icon]="isActive() ? 'check' : 'chevron_right'"
+    [size]="24"
+    bmbLayoutItem
+  />
+</button>

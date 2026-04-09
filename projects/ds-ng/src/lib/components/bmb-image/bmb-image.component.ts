@@ -15,12 +15,21 @@ import { IBmbMediaCardLoading } from '../bmb-media-card/bmb-media-card.component
 import { BmbImageItem } from './types';
 import { BmbButtonIconComponent } from '../bmb-button-icon/bmb-button-icon.component';
 
+export interface BmbImageHeight {
+  s: string;
+  l: string;
+}
+
 @Component({
   selector: 'bmb-image',
   standalone: true,
   imports: [CommonModule, BmbButtonIconComponent],
   templateUrl: './bmb-image.component.html',
   styleUrl: './bmb-image.component.scss',
+  host: {
+    '[style.--image-min-height-s]': 'minHeight().s',
+    '[style.--image-min-height-l]': 'minHeight().l',
+  },
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -35,15 +44,17 @@ export class BmbImageComponent implements OnDestroy {
   enableZoom = input<boolean>(false);
   isBlurredBackdrop = input<boolean>(false);
   images = input<BmbImageItem[] | null>(null);
+  callbackParams = input<any>({});
+  minHeight = input<BmbImageHeight>({ s: 'auto', l: 'auto' });
 
-  imageClick = output<{ img: BmbImageItem; index: number }>();
+  imageClick = output<{ img: BmbImageItem; index: number; cbParams: any }>();
   animation = input<'fade' | 'parallax' | 'parallax-fade'>('parallax');
   animationClass = computed(() => `bmb-carousel-${this.animation()}`);
 
   currentIndex = signal(0);
   isCarousel = computed(
     () =>
-      (this.images()?.length ?? 0) > 1 &&
+      (this.images()?.length ?? 0) &&
       !this.enableZoom() &&
       !this.isBlurredBackdrop(),
   );
@@ -145,7 +156,7 @@ export class BmbImageComponent implements OnDestroy {
   }
 
   handleImageClick(img: BmbImageItem, index: number): void {
-    this.imageClick.emit({ img, index });
+    this.imageClick.emit({ img, index, cbParams: this.callbackParams() });
   }
 
   handleSingleImageClick(): void {
@@ -156,6 +167,7 @@ export class BmbImageComponent implements OnDestroy {
         alt: this.alt(),
       },
       index: 0,
+      cbParams: this.callbackParams(),
     });
   }
 
@@ -198,6 +210,10 @@ export class BmbImageComponent implements OnDestroy {
       };
     }
 
+    return {};
+  }
+
+  getImageContainerStyle() {
     return {};
   }
 }
