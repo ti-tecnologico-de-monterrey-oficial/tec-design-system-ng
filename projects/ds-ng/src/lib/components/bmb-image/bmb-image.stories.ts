@@ -52,7 +52,20 @@ export default {
   component: BmbImageComponent,
   parameters: {
     docs: {
-      controls: { exclude: ['getClasses'] },
+      controls: {
+        exclude: [
+          'getClasses',
+          'currentIndex',
+          'isCarousel',
+          'carouselClass',
+          'encodedURL',
+          'encodedMobileURL',
+          'imageClick',
+          'animationClass',
+          'autoplayTimer',
+          'currentImage'
+        ],
+      },
       description: {
         component: `
 ${getGeneralDescription(
@@ -96,11 +109,33 @@ ${getBasicExampleBlock('BmbImageComponent')}
         type: { summary: 'EventEmitter<{ img: BmbImageItem; index: number }>' },
       },
     },
+    objectFit: {
+      control: 'select',
+      options: ['cover', 'contain', 'fill', 'none', 'scale-down'],
+      description:
+        'CSS object-fit value to control how the image fits within its container.',
+      table: {
+        type: { summary: 'IBmbImageObjectFit' },
+        defaultValue: { summary: 'cover' },
+        category: 'Properties',
+      },
+    },
     callbackParams: {
       control: null,
       description: 'Additional parameters to emit with the imageClick event.',
       table: {
         type: { summary: 'any' },
+        category: 'Properties',
+      },
+    },
+    minHeight: {
+      control: null,
+      description:
+        'Object specifying minimum heights for small and large screens, used for carousel mode.',
+      table: {
+        type: { summary: 'IBmbImageHeight' },
+        defaultValue: { summary: '{ s: "auto", l: "auto" }' },
+        category: 'Properties',
       },
     },
   },
@@ -118,6 +153,7 @@ ${getBasicExampleBlock('BmbImageComponent')}
     imageClick: (event: { img: BmbImageItem; index: number }) => {
       console.log('Image clicked', event);
     },
+    objectFit: 'cover',
   },
 } as Meta<typeof BmbImageComponent>;
 
