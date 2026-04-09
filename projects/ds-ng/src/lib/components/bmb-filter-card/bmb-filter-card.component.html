@@ -28,64 +28,68 @@
           }
         }
         @for (controlType of controlTypes(); track $index) {
-          <h4 class="bmb_filter_card-title">{{ controlType.title }}</h4>
-          <div class="bmb_filter_card-control">
-            @for (control of controlType.control; track $index) {
-              @switch (control.type) {
-                @case ('tag') {
-                  <bmb-tag
-                    [text]="control.label"
-                    [dismissible]="false"
-                    [enableClick]="true"
-                    [isActive]="storedValues[control.name]?.checked ?? false"
-                    (clickedTag)="controlChange(control, $event)"
-                  />
-                }
-                @case ('radial') {
-                  <bmb-radial
-                    [name]="control.name"
-                    [inputId]="control.id ?? control.name + '-' + $index"
-                    [checked]="
-                      filterForm.get(control.name)?.value === control.label
-                    "
-                    [label]="control.label"
-                    (change)="controlChange(control, $event)"
-                    [value]="control.value ?? control.name"
-                  />
-                }
-                @case ('checkbox') {
-                  <bmb-checkbox
-                    [name]="control.name"
-                    [checked]="filterForm.get(control.name)?.value"
-                    [label]="control.label"
-                    (change)="controlChange(control, $event)"
-                    [inputId]="control.id ?? control.name + '-' + $index"
-                    [value]="control.value ?? control.name"
-                  />
-                }
-                @case ('switch') {
-                  <bmb-switch
-                    [rightText]="control.rightText ?? ''"
-                    [isChecked]="filterForm.get(control.name)?.value === true"
-                    (change)="controlChange(control, $event)"
-                  />
-                }
-                @case ('dropdown') {
-                  <bmb-dropdown
-                    [placeholder]="
-                      control.placeholder ??
-                      ('filter_card.dropdown.placeholder' | translate)
-                    "
-                    [options]="control.options ?? []"
-                    [control]="getFormControl(control.name)"
-                    (onValueChange)="onValueChange($event, control.name)"
-                    [isFilterable]="!control?.isMultiSelect!"
-                    [isMultiSelect]="control?.isMultiSelect!"
-                  />
+          @if (isSectionVisible(controlType)) {
+            <h4 class="bmb_filter_card-title">{{ controlType.title }}</h4>
+            <div class="bmb_filter_card-control">
+              @for (control of controlType.control; track $index) {
+                @if (isControlVisible(control.name)) {
+                  @switch (control.type) {
+                    @case ('tag') {
+                      <bmb-tag
+                        [text]="control.label"
+                        [dismissible]="false"
+                        [enableClick]="true"
+                        [isActive]="storedValues[control.name]?.checked ?? false"
+                        (clickedTag)="controlChange(control, $event)"
+                      />
+                    }
+                    @case ('radial') {
+                      <bmb-radial
+                        [name]="control.name"
+                        [inputId]="control.id ?? control.name + '-' + $index"
+                        [checked]="
+                          filterForm.get(control.name)?.value === control.label
+                        "
+                        [label]="control.label"
+                        (change)="controlChange(control, $event)"
+                        [value]="control.value ?? control.name"
+                      />
+                    }
+                    @case ('checkbox') {
+                      <bmb-checkbox
+                        [name]="control.name"
+                        [checked]="filterForm.get(control.name)?.value"
+                        [label]="control.label"
+                        (change)="controlChange(control, $event)"
+                        [inputId]="control.id ?? control.name + '-' + $index"
+                        [value]="control.value ?? control.name"
+                      />
+                    }
+                    @case ('switch') {
+                      <bmb-switch
+                        [rightText]="control.rightText ?? ''"
+                        [isChecked]="filterForm.get(control.name)?.value === true"
+                        (change)="controlChange(control, $event)"
+                      />
+                    }
+                    @case ('dropdown') {
+                      <bmb-dropdown
+                        [placeholder]="
+                          control.placeholder ??
+                          ('filter_card.dropdown.placeholder' | translate)
+                        "
+                        [options]="getControlOptions(control)"
+                        [control]="getFormControl(control.name)"
+                        (onValueChange)="onValueChange($event, control.name)"
+                        [isFilterable]="!control?.isMultiSelect!"
+                        [isMultiSelect]="control?.isMultiSelect!"
+                      />
+                    }
+                  }
                 }
               }
-            }
-          </div>
+            </div>
+          }
         }
         @if (inLine()) {
           <footer class="bmb_filter_card-footer">
