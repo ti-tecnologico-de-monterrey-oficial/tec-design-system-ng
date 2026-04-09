@@ -760,12 +760,12 @@ https://live.tec.mx/cbweek</p><p>¡Te esperamos!`,
   }
 
   handleSearchButtonClick(event: MouseEvent): void {
-    console.log('Search button clicked');
+    console.log('Search button clicked', event);
 
     const contentID = this.projectionService.openContent({
       content: this.searchTemplate,
       // content: BmbSearchCardComponent,
-      targetRef: event.currentTarget as HTMLElement,
+      targetRef: event ? event.currentTarget as HTMLElement : null,
       showBackdrop: false,
       inputContext: {
         title: 'Search',
