@@ -103,13 +103,13 @@
       display: flex;
       align-items: center;
 
-      &:nth-last-child(2) .bmb_multi-dot-paginator-dot::after {
+      &:nth-last-child(3) .bmb_multi-dot-paginator-dot::after {
         @include mixins.media-query(2000, 'min') {
-          width: rem.rem_calc(24);
+          width: rem.rem_calc(48);
         }
       }
 
-      &:last-child .bmb_multi-dot-paginator-dot::after {
+      &:nth-last-child(2) .bmb_multi-dot-paginator-dot::after {
         @include mixins.check-for-mobile(false) {
           width: rem.rem_calc(24);
         }

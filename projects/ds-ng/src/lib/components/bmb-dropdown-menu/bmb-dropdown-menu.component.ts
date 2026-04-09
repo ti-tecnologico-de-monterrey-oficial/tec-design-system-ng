@@ -26,6 +26,7 @@ export class BmbDropdownMenuComponent {
   items = input<IDropdownItem[]>([]);
 
   clickedItem = output<IDropdownItem>();
+  contentID = signal<string>('');
 
   @ViewChild('contentDiv', { static: true }) contentRef!: ElementRef<any>;
 
@@ -39,12 +40,13 @@ export class BmbDropdownMenuComponent {
       outputContext: {
         clickedItem: (item: IDropdownItem) => {
           this.clickedItem.emit(item);
-          this.projectionService.closeContent();
+          this.projectionService.closeContent(this.contentID());
         },
       },
       focusOnOpen: true,
       showBackdrop: false,
     };
-    this.projectionService.openContent(data);
+    const id = this.projectionService.openContent(data);
+    this.contentID.set(id);
   }
 }
