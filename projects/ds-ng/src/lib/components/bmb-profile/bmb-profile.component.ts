@@ -82,6 +82,7 @@ export class BmbProfileComponent implements OnInit {
   enableLangChange = input<boolean>(false);
   enableVersionBack = input<boolean>(false);
   enableExpandButton = input<boolean>(true);
+  currentRole = input<string>('');
 
   handleLangChange = model<string>();
 
@@ -89,6 +90,7 @@ export class BmbProfileComponent implements OnInit {
   handleCloseProfile = output();
   onRightClick = output<Event>();
   handleVersionBack = output<Event>();
+  getRoleChange = output<void>();
 
   handleCollaboratorClick = output<IBmbUserData>(); //Deprecated
 
@@ -211,5 +213,9 @@ export class BmbProfileComponent implements OnInit {
 
   handleBackClick(event: Event): void {
     this.handleVersionBack.emit(event);
+  }
+
+  handleRoleSwitch(): void {
+    this.getRoleChange.emit();
   }
 }

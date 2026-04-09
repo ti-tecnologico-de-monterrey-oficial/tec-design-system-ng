@@ -15,6 +15,7 @@ import {
   SizeNames,
 } from '../../../types';
 import { BmbTextLinkComponent } from '../../bmb-text-link/bmb-text-link.component';
+import { BmbIconComponent } from '../../bmb-icon/bmb-icon.component';
 
 export type IBmbContentLayoutSummary = 'column' | 'row';
 
@@ -27,6 +28,7 @@ export type IBmbContentLayoutSummary = 'column' | 'row';
     BmbLayoutDirective,
     BmbLayoutItemDirective,
     BmbTextLinkComponent,
+    BmbIconComponent
   ],
   templateUrl: './bmb-user-summary-content.component.html',
   styleUrl: './bmb-user-summary-content.component.scss',
@@ -50,6 +52,7 @@ export class BmbUserSummaryContentComponent {
   gapSize = input<SizeNames>('none');
   CURP = input<string>();
   additionalInfo = input<string>();
+  idDigital = input<string>();
 
   onUserClick = output<MouseEvent>();
 

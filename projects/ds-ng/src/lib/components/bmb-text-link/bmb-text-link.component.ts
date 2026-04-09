@@ -26,7 +26,7 @@ export type IBmbTextLinkStyle = 'icon' | 'underlined';
   encapsulation: ViewEncapsulation.None,
 })
 export class BmbTextLinkComponent {
-  textLink = input.required<string>();
+  textLink = input<string>();
   textLinkStyle = input<IBmbTextLinkStyle>('icon');
   target = input<IBmbTargetLink>('_blank');
   icon = input<string>('arrow_forward');

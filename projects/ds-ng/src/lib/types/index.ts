@@ -89,6 +89,7 @@ export interface IBmbUserData {
   userImg: string;
   email: string;
   registration?: string;
+  idDigital?: string;
 }
 
 export interface IBmbStudentProfileData {
@@ -113,6 +114,7 @@ export interface IBmbCollaboratorProfileData {
   area: string;
   leader: IBmbHierarchyProfileData;
   generalist: IBmbHierarchyProfileData;
+  enableRolSwitch?: boolean;
 }
 
 export interface IBmbActionHeader {
