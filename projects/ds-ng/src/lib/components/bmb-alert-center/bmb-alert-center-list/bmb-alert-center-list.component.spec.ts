@@ -38,7 +38,7 @@ describe('BmbAlertCenterListComponent', () => {
       isFavorite: false,
       isArchived: false,
       type: 'reminder',
-      pDate: DateTime.fromISO('2023-01-02T14:00:00') as DateTime<true>,
+      pDate: DateTime.fromISO('2023-01-01T14:00:00') as DateTime<true>,
     },
     {
       id: 3,
@@ -50,9 +50,15 @@ describe('BmbAlertCenterListComponent', () => {
       isFavorite: true,
       isArchived: false,
       type: 'event',
-      pDate: DateTime.fromISO('2023-01-03T16:15:00') as DateTime<true>,
+      pDate: DateTime.fromISO('2023-01-01T16:15:00') as DateTime<true>,
     },
   ];
+
+  beforeEach(() => {
+    spyOn(DateTime, 'now').and.returnValue(
+      DateTime.fromISO('2023-01-01T00:00:00') as DateTime<true>,
+    );
+  });
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -247,15 +253,20 @@ describe('BmbAlertCenterListComponent', () => {
     });
 
     it('should format time correctly to 12-hour format', () => {
-      expect(component.getFormattedTime('09:30')).toBe('9:30 AM');
-      expect(component.getFormattedTime('14:00')).toBe('2:00 PM');
-      expect(component.getFormattedTime('00:00')).toBe('12:00 AM');
-      expect(component.getFormattedTime('12:00')).toBe('12:00 PM');
-      expect(component.getFormattedTime('23:59')).toBe('11:59 PM');
+      const today = DateTime.now();
+
+      expect(component.getFormattedTime('09:30', today)).toBe('9:30 AM');
+      expect(component.getFormattedTime('14:00', today)).toBe('2:00 PM');
+      expect(component.getFormattedTime('00:00', today)).toBe('12:00 AM');
+      expect(component.getFormattedTime('12:00', today)).toBe('12:00 PM');
+      expect(component.getFormattedTime('23:59', today)).toBe('11:59 PM');
     });
 
     it('should handle invalid time format gracefully', () => {
-      expect(() => component.getFormattedTime('invalid')).not.toThrow();
+      const date = DateTime.now();
+
+      expect(() => component.getFormattedTime('invalid', date)).not.toThrow();
+      expect(component.getFormattedTime('invalid', date)).toBe('');
     });
   });
 

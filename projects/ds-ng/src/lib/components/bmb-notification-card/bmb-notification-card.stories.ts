@@ -263,7 +263,7 @@ https://live.tec.mx/cbweek</p><p>¡Te esperamos!`,
             variant: 'primary',
           },
         ],
-        date: '01/04/2026 12:00',
+        date: '09/04/2026 12:10',
         isRead: false,
         time: '12:00',
         tags: [
