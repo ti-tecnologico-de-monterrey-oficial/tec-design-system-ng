@@ -47,6 +47,7 @@ const interactiveIconAppearanceOptions: IBmbInteractiveIconAppearance[] = [
   'purple-primary',
   'general_contrasts-main-selection',
   'general_contrasts-main-selection-alternative',
+  'white',
 ];
 
 export default {

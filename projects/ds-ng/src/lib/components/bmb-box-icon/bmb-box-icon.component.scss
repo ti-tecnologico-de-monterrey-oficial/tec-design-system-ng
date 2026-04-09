@@ -229,6 +229,7 @@ $backgrounds: (
   'general_contrasts-main-selection': var(--general-contrasts-main-selection),
   'general_contrasts-main-selection-alternative':
     var(--general-contrasts-main-selection-alternative),
+  'white': rgb(var(--white-primary))
 );
 
 .bmb_box-icon {
@@ -255,5 +256,9 @@ $backgrounds: (
         background-color: $color;
       }
     }
+  }
+
+  &.color-white {
+    color: rgb(var(--black-primary));
   }
 }
