@@ -103,11 +103,22 @@
       <bmb-text-link
         [link]="idDigital() ?? ''"
         target="_self"
-        style="line-height: 0rem;"
+        style="line-height: 0rem"
       >
         <span bmbLayout gapSize="none" margin="none" alignItems="center">
-          <bmb-icon icon="id_card" [size]="20" bmbLayoutItem [isDynamicItem]="true"></bmb-icon>
-          <span bmbLayoutItem [isDynamicItem]="true" [colGrow]="1" style="margin: 0 .5rem;">ID Digital</span>
+          <bmb-icon
+            icon="id_card"
+            [size]="20"
+            bmbLayoutItem
+            [isDynamicItem]="true"
+          ></bmb-icon>
+          <span
+            bmbLayoutItem
+            [isDynamicItem]="true"
+            [colGrow]="1"
+            style="margin: 0 0.5rem"
+            >ID Digital</span
+          >
         </span>
       </bmb-text-link>
     }

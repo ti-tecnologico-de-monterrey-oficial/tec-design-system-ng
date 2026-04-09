@@ -15,9 +15,27 @@
 }
 
 @mixin action_item() {
-  .bmb_container-button-base {
-    padding: var(--bmb-spacing-s) var(--bmb-spacing-m);
-    border-radius: var(--bmb-radius-2);
-    min-height: fit-content;
+  display: inline-flex;
+  width: 100%;
+  color: var(--general-contrasts-100);
+  padding: var(--bmb-spacing-s) var(--bmb-spacing-m);
+
+  &:hover:not(:disabled) {
+    background-color: var(--buttons-primary-normal);
+    border-radius: var(--bmb-radius-s);
+    color: var(--buttons-alternative-normal);
+
+    .bmb_title-wrapper-subtitle {
+      opacity: 1;
+    }
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+
+  .bmb_title-wrapper-subtitle {
+    opacity: 0.5;
   }
 }

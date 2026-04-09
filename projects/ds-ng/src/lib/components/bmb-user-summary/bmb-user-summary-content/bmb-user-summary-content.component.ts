@@ -28,7 +28,7 @@ export type IBmbContentLayoutSummary = 'column' | 'row';
     BmbLayoutDirective,
     BmbLayoutItemDirective,
     BmbTextLinkComponent,
-    BmbIconComponent
+    BmbIconComponent,
   ],
   templateUrl: './bmb-user-summary-content.component.html',
   styleUrl: './bmb-user-summary-content.component.scss',

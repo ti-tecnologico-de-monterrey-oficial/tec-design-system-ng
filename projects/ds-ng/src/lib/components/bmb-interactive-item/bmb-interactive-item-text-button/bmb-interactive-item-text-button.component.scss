@@ -2,6 +2,10 @@
 
 .bmb_interactive-item-text-button {
   @include mixins.action_item();
+
+  & > :first-child {
+    width: 100%;
+  }
 }
 
 :host {

@@ -1,9 +1,6 @@
-<bmb-container-button-base
+<bmb-item-default
   class="bmb_interactive-item-text-button"
-  [isDisabled]="isDisabled()"
-  (getClickButton)="handleActionClick($event)"
->
-  <ng-template #bmbContainerMain>
-    <bmb-item-default [icon]="icon()" [label]="label()" [value]="value()" />
-  </ng-template>
-</bmb-container-button-base>
+  [icon]="icon()"
+  [label]="label()"
+  [value]="value()"
+/>
