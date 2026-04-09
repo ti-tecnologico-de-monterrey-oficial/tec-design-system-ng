@@ -197,15 +197,14 @@
           class="bmb_profile-info-container-link"
           (buttonClick)="handleBackClick($event)"
         >
+          <div class="bmb_profile-info-container-item">
+            <bmb-icon [icon]="'compare_arrows'" [size]="24" />
+            <span class="bmb_profile-info-container-item-text">{{
+              versionBackText()
+            }}</span>
+          </div>
 
-            <div class="bmb_profile-info-container-item">
-              <bmb-icon [icon]="'compare_arrows'" [size]="24" />
-              <span class="bmb_profile-info-container-item-text">{{
-                versionBackText()
-              }}</span>
-            </div>
-
-            <bmb-icon [icon]="'keyboard_arrow_right'" [size]="24" />
+          <bmb-icon [icon]="'keyboard_arrow_right'" [size]="24" />
         </bmb-check-external-link-button>
       </section>
     }
