@@ -5,12 +5,14 @@ import {
   output,
   ViewEncapsulation,
 } from '@angular/core';
-import { BmbContainerButtonDefaultComponent } from '../../bmb-container-button/bmb-container-button-default/bmb-container-button-default.component';
+import { BmbIconComponent } from '../../bmb-icon/bmb-icon.component';
+import { BmbLayoutDirective } from '../../../directives/bmb-layout/bmb-layout.directive';
+import { BmbLayoutItemDirective } from '../../../directives/bmb-layout/bmb-layout-item.directive';
 
 @Component({
   selector: 'bmb-item-actions',
   standalone: true,
-  imports: [BmbContainerButtonDefaultComponent],
+  imports: [BmbIconComponent, BmbLayoutDirective, BmbLayoutItemDirective],
   templateUrl: './bmb-item-actions.component.html',
   styleUrl: './bmb-item-actions.component.scss',
   encapsulation: ViewEncapsulation.None,
