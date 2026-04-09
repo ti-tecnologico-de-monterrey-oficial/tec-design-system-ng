@@ -48,6 +48,7 @@ export class BmbNotificationCardComponent {
   emptyStateData = input<IBmbAlertEmptyState>();
   dateFormat = input<string>('dd/MM/yyyy HH:mm');
   showAdvertisements = input<boolean>(true);
+  leftIcon = input<string>('');
 
   alertEvent = output<IBmbDataAlert>();
   showAlertDetail = output<IBmbDataAlert>();
