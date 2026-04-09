@@ -158,11 +158,11 @@ export class BmbDropzoneComponent implements OnInit, OnChanges {
           ).concat('* ')
         : ''
     }${
-      this.isFormatErrorFiles()
+      this.isSizeErrorFiles()
         ? (
             this.errorMessageSize() ||
             this.translationService.translate('dropzone.error_message_size')
-          ).concat('MB*')
+          ).concat(' MB*')
         : ''
     }`;
   }

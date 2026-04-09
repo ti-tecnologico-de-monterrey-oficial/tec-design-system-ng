@@ -1,6 +1,10 @@
-import { Component, TemplateRef, ViewChild } from '@angular/core';
 import {
-  BmbTopBarComponent,
+  Component,
+  TemplateRef,
+  ViewChild,
+  ViewEncapsulation,
+} from '@angular/core';
+import {
   BmbSidebarComponent,
   BmbHomeCardComponent,
   BmbTabsComponent,
@@ -17,7 +21,6 @@ import {
   IBmbActionHeader,
   IBmbNativeModal,
   BmbNativeModalService,
-  BmbThemeComponent,
   BmbIconItemComponent,
   BmbSelectorDirective,
   BmbUserSummaryContentComponent,
@@ -47,6 +50,7 @@ import { FormGroup } from '@angular/forms';
   ],
   templateUrl: './identity.component.html',
   styleUrl: './identity.component.scss',
+  encapsulation: ViewEncapsulation.None,
 })
 export class IdentityComponent {
   selectedTab = 1;

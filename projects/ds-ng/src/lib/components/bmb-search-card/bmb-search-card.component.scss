@@ -2,7 +2,7 @@
   width: var(--bmb-card-max-width);
   max-width: 100%;
   max-height: calc(100dvh - 4rem);
-  overflow: auto;
+  overflow: visible;
 
   &-results {
     max-height: calc(100dvh - 18rem);

@@ -304,6 +304,19 @@ IBmbHierarchyProfileData {
         type: { summary: 'boolean' },
       },
     },
+    currentRole: {
+      control: 'text',
+      description:
+        'Sets the current role to display in the component. This is only used when the profile is for a collaborator and the role switch is enabled.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'string' },
+      },
+    },
+    getRoleChange: getOnClickParam(
+      getOnEvent('', 'handleRoleSwitch'),
+      '. This should be used to switch between student and collaborator roles.',
+    ),
   },
   args: {
     handleCloseSession: () => {
@@ -311,6 +324,9 @@ IBmbHierarchyProfileData {
     },
     handleVersionBack: () => {
       console.log('Version back');
+    },
+    getRoleChange: () => {
+      console.log('Role change');
     },
     enableExpandButton: true,
   },
@@ -396,6 +412,7 @@ export const CollaboratorMobileExample = {
         registration: 'L0123456',
         email: 'mail@tec.mx',
       },
+      enableRolSwitch: true,
       position: 'Desarrollador de Software',
       area: 'Dirección de Desarrollo-Techvolution 2.0',
       leader: {
@@ -418,6 +435,7 @@ export const CollaboratorMobileExample = {
     tecServicesLink: 'https://www.example.com',
     targetLinks: '_blank',
     versionLabel: 'Versión 1.5.10',
+    currentRole: 'Colaborador',
     handleCloseProfile: () => {
       console.log('Close Profile');
     },
@@ -482,6 +500,7 @@ export const StudentMobileVersionBackExample = {
         userImg: 'https://picsum.photos/id/64/200/300',
         registration: 'A032132',
         email: 'mail@tec.mx',
+        idDigital: 'https://www.example.com/id-digital',
       },
       period: 'AGO-DIC 24',
       campus: 'Monterrey',
@@ -518,6 +537,7 @@ export const StudentWebVersionBackExample = {
         userImg: 'https://picsum.photos/id/64/200/300',
         registration: 'A032132',
         email: 'mail@tec.mx',
+        idDigital: 'https://www.example.com/id-digital',
       },
       period: 'AGO-DIC 24',
       campus: 'Monterrey',
@@ -548,13 +568,16 @@ export const CollaboratorMobileVersionBackExample = {
   name: 'Example of Collaborator (mobile) variant with version back',
   args: {
     isStudent: false,
+    currentRole: 'Colaborador',
     collaboratorData: {
       userData: {
         name: 'Paloma Araujo',
         userImg: 'https://picsum.photos/id/64/200/300',
         registration: 'L0123456',
         email: 'mail@tec.mx',
+        idDigital: 'https://www.example.com/id-digital',
       },
+      enableRolSwitch: true,
       position: 'Desarrollador de Software',
       area: 'Dirección de Desarrollo-Techvolution 2.0',
       leader: {
@@ -603,6 +626,7 @@ export const CollaboratorWebVersionBackExample = {
   args: {
     isStudent: false,
     isMobile: false,
+    currentRole: 'Colaborador',
     collaboratorData: {
       userData: {
         name: 'Paloma Araujo',
@@ -610,6 +634,7 @@ export const CollaboratorWebVersionBackExample = {
         registration: 'L0123456',
         email: 'mail@tec.mx',
       },
+      enableRolSwitch: true,
       position: 'Desarrollador de Software',
       area: 'Dirección de Desarrollo-Techvolution 2.0',
       leader: {

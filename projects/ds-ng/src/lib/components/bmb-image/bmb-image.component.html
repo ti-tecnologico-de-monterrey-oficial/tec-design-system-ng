@@ -19,6 +19,7 @@
           [alt]="alt()"
           [loading]="loading()"
           class="bmb_image-figure-image"
+          [style]="{ 'object-fit': objectFit()}"
         />
       </picture>
     </figure>
@@ -45,28 +46,29 @@
           (click)="handleSingleImageClick()"
           (keydown.enter)="handleSingleImageClick()"
           (keydown.space)="handleSingleImageClick()"
+          [style]="{ 'object-fit': objectFit()}"
         />
       </picture>
     </figure>
   } @else {
-    <div class="bmb_image-arrow bmb_image-arrow--left">
-      <bmb-button-icon
-        icon="chevron_left"
-        [showContainer]="true"
-        (onButtonClick)="prev()"
-        appearanceContrast="solid"
-      />
-    </div>
-
-    <div class="bmb_image-arrow bmb_image-arrow--right">
-      <bmb-button-icon
-        icon="chevron_right"
-        [showContainer]="true"
-        (onButtonClick)="next()"
-        appearanceContrast="solid"
-      />
-    </div>
-
+    @if (images() && images()!.length > 1) {
+      <div class="bmb_image-arrow bmb_image-arrow--left">
+        <bmb-button-icon
+          icon="chevron_left"
+          [showContainer]="true"
+          (onButtonClick)="prev()"
+          appearanceContrast="solid"
+        />
+      </div>
+      <div class="bmb_image-arrow bmb_image-arrow--right">
+        <bmb-button-icon
+          icon="chevron_right"
+          [showContainer]="true"
+          (onButtonClick)="next()"
+          appearanceContrast="solid"
+        />
+      </div>
+    }
     @for (img of images(); track $index) {
       <figure
         class="bmb_image-figure bmb_image-figure-images"
@@ -87,6 +89,7 @@
             tabindex="0"
             (click)="handleImageClick(img, $index)"
             (keydown)="handleImageKeyDown($event, img, $index)"
+            [style]="{ 'object-fit': objectFit()}"
           />
         </picture>
       </figure>

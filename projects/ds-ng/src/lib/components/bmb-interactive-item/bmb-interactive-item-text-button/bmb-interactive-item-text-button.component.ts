@@ -5,13 +5,12 @@ import {
   output,
   ViewEncapsulation,
 } from '@angular/core';
-import { BmbContainerButtonBaseComponent } from '../../bmb-container-button/bmb-container-button-base/bmb-container-button-base.component';
 import { BmbItemDefaultComponent } from '../../bmb-item/children';
 
 @Component({
   selector: 'bmb-interactive-item-text-button',
   standalone: true,
-  imports: [BmbContainerButtonBaseComponent, BmbItemDefaultComponent],
+  imports: [BmbItemDefaultComponent],
   templateUrl: './bmb-interactive-item-text-button.component.html',
   styleUrl: './bmb-interactive-item-text-button.component.scss',
   encapsulation: ViewEncapsulation.None,

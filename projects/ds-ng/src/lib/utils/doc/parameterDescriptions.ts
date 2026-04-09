@@ -462,6 +462,7 @@ export const DBmbImageParamDesc = {
     table: {
       type: { summary: `'fade' | 'parallax' | 'parallax-fade'` },
       defaultValue: { summary: 'parallax' },
+      category: 'Properties',
     },
   },
   image: {

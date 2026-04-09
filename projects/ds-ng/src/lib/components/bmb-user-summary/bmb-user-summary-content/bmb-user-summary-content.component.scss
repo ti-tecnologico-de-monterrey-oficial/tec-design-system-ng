@@ -39,7 +39,7 @@
       }
 
       &-row {
-        @include fonts.font(7, regular);
+        @include fonts.font(6, bold);
         text-align: start;
       }
 

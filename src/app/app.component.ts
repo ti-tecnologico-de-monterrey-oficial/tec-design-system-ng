@@ -28,6 +28,7 @@ import {
   IBotType,
   IBmbSearchCardItemResult,
   BmbProfileComponent,
+  BmbCarouselComponent,
 } from '../../projects/ds-ng/src/public-api';
 import { MatDialog } from '@angular/material/dialog';
 import { TestComponentComponent } from './components/test-component/test-component.component';
@@ -48,6 +49,7 @@ import services from './pages/form-validator-test/services.json';
     BmbDropdownComponent,
     BmbHomeCardChatComponent,
     BmbSearchCardComponent,
+    BmbCarouselComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
@@ -758,12 +760,12 @@ https://live.tec.mx/cbweek</p><p>¡Te esperamos!`,
   }
 
   handleSearchButtonClick(event: MouseEvent): void {
-    console.log('Search button clicked');
+    console.log('Search button clicked', event);
 
     const contentID = this.projectionService.openContent({
       content: this.searchTemplate,
       // content: BmbSearchCardComponent,
-      targetRef: event.currentTarget as HTMLElement,
+      targetRef: event ? event.currentTarget as HTMLElement : null,
       showBackdrop: false,
       inputContext: {
         title: 'Search',
