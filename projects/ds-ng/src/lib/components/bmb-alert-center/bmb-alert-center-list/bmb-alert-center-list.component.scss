@@ -42,7 +42,11 @@
     }
 
     &-content {
-      cursor: pointer;
+      cursor: default;
+
+      &.clickable {
+        cursor: pointer;
+      }
     }
 
     &-title {
@@ -66,7 +70,11 @@
       @include font-time();
       grid-area: time;
       margin-top: rem.rem_calc(6);
-      text-transform: lowercase;
+      text-transform: capitalize;
+
+      &.no-lowercase {
+        text-transform: lowercase;
+      }
     }
   }
 }

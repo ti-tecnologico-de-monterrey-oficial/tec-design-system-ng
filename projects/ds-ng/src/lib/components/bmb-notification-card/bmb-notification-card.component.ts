@@ -44,9 +44,11 @@ export class BmbNotificationCardComponent {
   advertisements = input<IBmbDataAlert[]>([]);
   hideExpandBtn = input<boolean>(false);
   maxHeight = input<string>('auto');
+  enableRowClick = input<boolean>(true);
   emptyStateData = input<IBmbAlertEmptyState>();
   dateFormat = input<string>('dd/MM/yyyy HH:mm');
   showAdvertisements = input<boolean>(true);
+  leftIcon = input<string>('');
 
   alertEvent = output<IBmbDataAlert>();
   showAlertDetail = output<IBmbDataAlert>();

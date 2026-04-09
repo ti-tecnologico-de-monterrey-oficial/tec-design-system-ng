@@ -7,7 +7,7 @@
     flex-direction: column;
     overflow-y: scroll;
     flex: 1;
-    overflow: auto;
+    overflow: visible;
     padding: rem.rem_calc(0 10 0 20);
   }
 
@@ -41,7 +41,7 @@
         display: flex;
         width: 100%;
         height: calc(100vh - rem.rem_calc(100));
-        overflow: auto;
+        overflow: visible;
 
         .bmb_chat-card {
           margin-top: auto;
