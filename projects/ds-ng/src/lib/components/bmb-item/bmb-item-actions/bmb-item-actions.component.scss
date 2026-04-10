@@ -9,7 +9,7 @@
     text-align: start;
   }
 
-  @include mixins.action_item();
+  @include mixins.action-item();
 }
 
 :host {

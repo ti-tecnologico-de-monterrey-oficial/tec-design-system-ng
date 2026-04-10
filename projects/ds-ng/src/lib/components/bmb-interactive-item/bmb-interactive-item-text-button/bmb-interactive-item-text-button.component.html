@@ -1,6 +1,7 @@
-<bmb-item-default
+<button
+  type="button"
   class="bmb_interactive-item-text-button"
-  [icon]="icon()"
-  [label]="label()"
-  [value]="value()"
-/>
+  (click)="handleActionClick($event)"
+>
+  <bmb-item-default [icon]="icon()" [label]="label()" [value]="value()" />
+</button>
