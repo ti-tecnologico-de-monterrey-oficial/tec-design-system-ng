@@ -1,5 +1,9 @@
 @use '../mixins.scss' as mixins;
 
 .bmb_item-informative-text {
-  @include mixins.text_item();
+  @include mixins.item-wrapper();
+}
+
+:host {
+  display: flex;
 }
