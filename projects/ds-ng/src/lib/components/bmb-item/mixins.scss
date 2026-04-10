@@ -1,13 +1,27 @@
 @use '../../../assets/styles/base/fonts' as fonts;
+@use '../../../assets/styles/base/rem' as rem;
+
+@mixin text_item() {
+  @include fonts.font(5, regular);
+  line-height: rem.rem_calc(24);
+  color: var(--general-contrasts-100);
+
+  * > span {
+    &:not(:last-child) {
+      text-align: start;
+    }
+
+    &:last-child {
+      @include fonts.font(4, regular);
+      line-height: rem.rem_calc(21);
+    }
+  }
+}
 
 @mixin item_wrapper() {
-  @include fonts.font(5, regular);
-  color: var(--general-contrasts-100);
   padding: var(--bmb-spacing-s) var(--bmb-spacing-m);
 
-  * > span:not(:last-child) {
-    text-align: start;
-  }
+  @include text_item();
 
   * > :last-child {
     text-align: right;
