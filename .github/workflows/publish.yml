@@ -12,7 +12,7 @@ jobs:
       contents: read
     env:
       ANGULAR_VERSION: 18
-      NODE_VERSION: 20
+      NODE_VERSION: 22
 
     steps:
       - name: Checkout code
@@ -59,7 +59,7 @@ jobs:
       contents: read
     env:
       ANGULAR_VERSION: 19
-      NODE_VERSION: 20
+      NODE_VERSION: 22
 
     steps:
       - name: Checkout code
@@ -106,7 +106,7 @@ jobs:
       contents: read
     env:
       ANGULAR_VERSION: 20
-      NODE_VERSION: 20
+      NODE_VERSION: 22
 
     steps:
       - name: Checkout code
