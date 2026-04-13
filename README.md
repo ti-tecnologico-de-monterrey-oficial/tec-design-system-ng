@@ -8,35 +8,25 @@ Descubre cómo nuestro Design System no solo da forma a la estética, sino que t
 
 # Release Notes - Sistema de Diseño TEC
 
-# 🚀 Bamboo Design System · Versión v1.6.2 🎉
+# 🚀 Bamboo Design System · Versión v1.6.3
 
-**📅 27 de febrero de 2026**
-Esta versión se enfoca en enriquecer los componentes interactivos, mejorar la coherencia visual y resolver detalles que afectaban la experiencia diaria de las personas que usan las aplicaciones construidas con el diseño Bamboo. Es el resultado de un trabajo colaborativo entre diseño, desarrollo y QA, orientado a ofrecer interfaces más claras, accesibles y fáciles de mantener. El principal beneficio es una experiencia más consistente, predecible y alineada con los flujos reales de las personas.
+**📅 13 de Abril de 2026**
+Esta versión se enfoca en hacer más claras las notificaciones, los menús de acción y los componentes interactivos clave. Es el resultado del trabajo colaborativo de varios equipos para reducir fricciones en flujos cotidianos y mejorar la legibilidad visual. Las personas se benefician de una experiencia más consistente, predecible y accesible en situaciones de uso intensivo.
 
 ### 🆕 Nuevas Funcionalidades
-
-- Se incorporaron nuevas variantes de menús de acción y botones contenedores (íconos derechos, elementos interactivos, hyperlinks, badges, variantes “square”, “complex” y “user image”), permitiendo construir interfaces más expresivas y alineadas con los diseños de Figma sin trabajo manual adicional.
-- Se añadió una nueva variante para la tarjeta de actividad estudiantil y se ajustó la tarjeta de perfil para mostrar solo las acciones relevantes según el rol, facilitando que las personas identifiquen información clave de un vistazo.
-- Se actualizaron el calendario y el centro de notificaciones con propiedades y UI mejoradas, haciendo más sencilla la consulta de eventos y avisos importantes en menos pasos.
-- Se habilitó la multi-selección en tarjetas de filtro y dropdowns relacionados, permitiendo combinar varios criterios de búsqueda de forma sencilla y reduciendo el número de interacciones necesarias.
+- El componente de perfil ahora permite cambiar de rol y emite eventos claros para reaccionar a estos cambios, facilitando a las personas alternar entre distintos contextos (por ejemplo, estudiante y colaborador) sin salir del flujo actual.
+- Se incorpora una tarjeta de notificación dedicada para mostrar avisos importantes de forma más visible y estructurada, ayudando a que las personas identifiquen rápidamente información prioritaria.
+- Los íconos interactivos ahora pueden utilizar un fondo blanco adicional, mejorando el contraste y la legibilidad en interfaces con fondos complejos.
 
 ### ✅ Problemas Resueltos
-
-- Se corrigió el servicio de tema para que propague correctamente los cambios de apariencia en todos los componentes, asegurando que las pantallas mantengan un estilo coherente al alternar entre temas claros y oscuros.
-- Se ajustaron componentes como tooltip, modal, progress circle, image y notification center para mejorar accesibilidad, centrado de contenidos, responsividad y estabilidad, reduciendo comportamientos inesperados durante la navegación.
-- Se actualizaron tablas, filtros de fechas y campos con etiquetas (tags) para evitar desbordes de contenido, textos confusos y comportamientos erráticos, mejorando la lectura y la interacción con grandes volúmenes de información.
-- Se mejoró el contraste visual en componentes como badge, switch y date picker, disminuyendo la probabilidad de interpretar mal estados de advertencia o selecciones de fecha.
+- Se ajustó el comportamiento del menú desplegable para que, al cerrar un modal, solo se cierre el dropdown relacionado, evitando cierres inesperados de otros elementos y manteniendo el control en manos de las personas.
+- Se corrigió la validación del tamaño de archivo en el componente de selección, mostrando ahora mensajes de error acordes a la situación real y evitando confusión al cargar documentos.
+- Se mejoró el comportamiento responsivo del componente de imagen cuando se utiliza junto con el paginador de múltiples puntos, asegurando que las imágenes se muestren completas y sin recortes en diferentes tamaños de pantalla.
+- Se actualizaron los estilos de la tarjeta “Home card” para que la sombra y el relieve visual se apliquen de forma consistente en todos los lugares donde se utiliza, facilitando reconocer elementos interactivos.
+- Se corrigieron las medidas de la credencial digital para que se muestre con proporciones adecuadas, lo que mejora la legibilidad de los datos personales y evita recortes visuales.
 
 ### ⚡ Optimizaciones
-
-- Se refactorizaron múltiples componentes (menús de acción, botones contenedores, tarjetas, layouts y otros) para reutilizar estilos y lógica, logrando una interfaz más consistente y un comportamiento más predecible entre pantallas.
-- Se eliminaron dependencias y código no utilizado y se consolidaron mixins y componentes base, contribuyendo a tiempos de carga más estables y a un mantenimiento técnico más ágil del sistema de diseño.
-- Se ajustaron alineaciones y espaciados en diversos componentes (incluyendo elementos con bookmark, barras superiores y sistemas de columnas), ofreciendo una interfaz más limpia, legible y equilibrada en diferentes resoluciones.
-
-### 📘 Mejoras Documentación
-
-- Se actualizó la documentación de componentes como tooltip, layout, container button, action menu y student activity card, facilitando que los equipos de desarrollo integren estas piezas de interfaz con ejemplos claros y alineados al diseño actual.
-- Se reforzaron plantillas y descripciones reutilizables de propiedades y variantes, reduciendo la ambigüedad y ayudando a que nuevas personas del equipo adopten el sistema de diseño con mayor rapidez.
+- Se refinaron los estilos y la organización visual de los menús de acción, especialmente en variantes como “Profile switch menu” y textos informativos, para hacer más clara la jerarquía de opciones y reducir errores al seleccionar acciones.
 
 _Esta versión es el resultado del esfuerzo colaborativo del equipo de diseño y desarrollo, trabajando para ofrecer experiencias digitales de calidad para toda la comunidad._
 

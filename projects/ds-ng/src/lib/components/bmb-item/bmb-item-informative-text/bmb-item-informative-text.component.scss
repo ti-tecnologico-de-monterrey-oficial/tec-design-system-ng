@@ -1,13 +1,9 @@
-@use '../../../../assets/styles/base/fonts' as fonts;
-@use '../../../../assets/styles/base/rem' as rem;
+@use '../mixins.scss' as mixins;
 
 .bmb_item-informative-text {
-  @include fonts.font(5, regular);
-  line-height: rem.rem_calc(24);
-  color: var(--general-contrasts-100);
+  @include mixins.item-wrapper();
+}
 
-  &-support-text {
-    @include fonts.font(4, regular);
-    line-height: rem.rem_calc(21);
-  }
+:host {
+  display: flex;
 }

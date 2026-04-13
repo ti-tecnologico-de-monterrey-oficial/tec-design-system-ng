@@ -15,3 +15,15 @@ export interface IBmbControlType {
     isMultiSelect?: boolean;
   }[];
 }
+
+export interface IBmbVisibilityRule {
+  when: Record<string, any>;
+  show?: string[];
+  hide?: string[];
+}
+
+export interface IBmbOptionRule {
+  when: Record<string, any>;
+  target: string;
+  options: string[] | IBmbDropdownItem[];
+}

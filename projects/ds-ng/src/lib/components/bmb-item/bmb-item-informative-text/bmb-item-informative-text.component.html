@@ -6,7 +6,6 @@
 >
   @if (icon()) {
     <bmb-icon
-      class="bmb_item-icon"
       [icon]="icon()"
       [size]="24"
       alt="Item icon"
@@ -20,10 +19,7 @@
         {{ itemTitle() }}
       </span>
       @if (supportText()) {
-        <span
-          class="bmb_item-informative-text-support-text"
-          bmbVerticalLayoutItem
-        >
+        <span bmbVerticalLayoutItem>
           {{ supportText() }}
           <bmb-text-link
             [textLink]="supportTextLinkLabel()!"

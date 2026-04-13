@@ -50,9 +50,10 @@ export class BmbImageComponent implements OnDestroy {
   callbackParams = input<any>({});
   minHeight = input<BmbImageHeight>({ s: 'auto', l: 'auto' });
   objectFit = input<IBmbImageObjectFit>('cover');
+  animation = input<'fade' | 'parallax' | 'parallax-fade'>('parallax');
 
   imageClick = output<{ img: BmbImageItem; index: number; cbParams: any }>();
-  animation = input<'fade' | 'parallax' | 'parallax-fade'>('parallax');
+
   animationClass = computed(() => `bmb-carousel-${this.animation()}`);
 
   currentIndex = signal(0);

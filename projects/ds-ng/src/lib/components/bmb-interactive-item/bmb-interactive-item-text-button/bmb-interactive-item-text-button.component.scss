@@ -1,7 +1,7 @@
 @use './../../bmb-item/mixins.scss' as mixins;
 
 .bmb_interactive-item-text-button {
-  @include mixins.action_item();
+  @include mixins.action-item(false);
 
   & > :first-child {
     width: 100%;

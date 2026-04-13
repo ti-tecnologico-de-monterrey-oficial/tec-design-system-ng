@@ -1,5 +1,7 @@
 import {
   Component,
+  computed,
+  effect,
   input,
   OnInit,
   ChangeDetectionStrategy,
@@ -17,7 +19,12 @@ import { BmbRadialComponent } from '../bmb-radial/bmb-radial.component';
 import { BmbCheckboxComponent } from '../bmb-checkbox/bmb-checkbox.component';
 import { IBmbNativeModal } from '../bmb-modal/bmb-modal.interface';
 import { BmbInputComponent } from '../bmb-input/bmb-input.component';
-import { IBmbControlType } from './bmb-filter-card.interface';
+import {
+  IBmbControlType,
+  IBmbOptionRule,
+  IBmbVisibilityRule,
+} from './bmb-filter-card.interface';
+import { IBmbDropdownItem } from '../bmb-dropdown/bmb-dropdown.component';
 import { BmbButtonDirective } from '../../directives/bmb-button/button.directive';
 import { BmbDropdownComponent } from '../bmb-dropdown/bmb-dropdown.component';
 import { BmbTagComponent } from '../bmb-tags/bmb-tags.component';
@@ -59,6 +66,9 @@ export class BmbFilterCardComponent implements OnInit {
   dropdownOptions = input<string[]>([]); // deprecated
   placeholderSearch = input<string>('');
 
+  visibilityRules = input<IBmbVisibilityRule[]>([]);
+  optionRules = input<IBmbOptionRule[]>([]);
+
   applyFilters = output<any>();
   resetFilters = output<void>();
 
@@ -69,9 +79,60 @@ export class BmbFilterCardComponent implements OnInit {
 
   modalId = signal<string | null>(null);
 
+  private filterValues = signal<Record<string, any>>({});
+
+  private readonly visibleControlIds = computed(() => {
+    const rules = this.visibilityRules();
+    if (!rules.length) return null;
+    const values = this.filterValues();
+    const map = new Map<string, boolean>();
+    for (const rule of rules) {
+      if (this.ruleMatches(rule.when, values)) {
+        rule.show?.forEach((id) => map.set(id, true));
+        rule.hide?.forEach((id) => map.set(id, false));
+      }
+    }
+    return map;
+  });
+
+  private readonly dynamicOptionsMap = computed(() => {
+    const rules = this.optionRules();
+    if (!rules.length) return new Map<string, string[] | IBmbDropdownItem[]>();
+    const values = this.filterValues();
+    const map = new Map<string, string[] | IBmbDropdownItem[]>();
+    for (const rule of rules) {
+      if (this.ruleMatches(rule.when, values)) {
+        map.set(rule.target, rule.options);
+      }
+    }
+    return map;
+  });
+
   @ViewChild('modalTemplate') modalTemplate!: TemplateRef<any>;
 
-  constructor(private modalService: BmbNativeModalService) {}
+  constructor(private modalService: BmbNativeModalService) {
+    effect(() => {
+      const visMap = this.visibleControlIds();
+      if (visMap) {
+        visMap.forEach((visible, name) => {
+          if (!visible) this.clearControl(name);
+        });
+      }
+
+      this.dynamicOptionsMap().forEach((options, name) => {
+        const current = this.filterForm.get(name)?.value;
+        if (!current || (Array.isArray(current) && current.length === 0))
+          return;
+        const validValues = options.map((o) =>
+          typeof o === 'string' ? o : o.value,
+        );
+        const isValid = Array.isArray(current)
+          ? current.every((v: string) => validValues.includes(v))
+          : validValues.includes(current);
+        if (!isValid) this.clearControl(name);
+      });
+    });
+  }
 
   ngOnInit(): void {
     this.controlTypes().forEach((controlType) => {
@@ -100,7 +161,9 @@ export class BmbFilterCardComponent implements OnInit {
               this.storedValues[control.name] = {
                 ...storedValue,
                 checked: control.checked || storedValue.checked,
-                value: control.checked ? control.value : storedValue.value,
+                value: control.checked
+                  ? (control.value ?? control.label)
+                  : storedValue.value,
                 originalControl: [...storedValue.originalControl, control],
               };
             } else {
@@ -111,7 +174,7 @@ export class BmbFilterCardComponent implements OnInit {
               this.storedValues[control.name] = {
                 ...control,
                 checked: control.checked ?? false,
-                value: control.checked ? control.value : '',
+                value: control.checked ? (control.value ?? control.label) : '',
                 originalControl: [control],
               };
             }
@@ -132,6 +195,18 @@ export class BmbFilterCardComponent implements OnInit {
         }
       });
     });
+
+    const initial: Record<string, any> = {};
+    this.controlTypes().forEach((ct) =>
+      ct.control.forEach((c) => {
+        const stored = this.storedValues[c.name];
+        initial[c.name] =
+          stored?.type === 'radial'
+            ? stored.value ?? this.filterForm.get(c.name)?.value
+            : this.filterForm.get(c.name)?.value;
+      }),
+    );
+    this.filterValues.set(initial);
   }
 
   openModalComponent() {
@@ -165,6 +240,7 @@ export class BmbFilterCardComponent implements OnInit {
       switch (control.type) {
         case 'switch':
           formControl.setValue(event);
+          this.updateFilterValues(control.name, formControl.value);
           const switchValue = {
             ...this.storedValues[control.name],
             checked: event,
@@ -173,6 +249,7 @@ export class BmbFilterCardComponent implements OnInit {
           break;
         case 'checkbox':
           formControl.setValue(event.target.checked);
+          this.updateFilterValues(control.name, formControl.value);
           const checkboxValue = {
             ...this.storedValues[control.name],
             checked: event.target.checked,
@@ -181,23 +258,27 @@ export class BmbFilterCardComponent implements OnInit {
           break;
         case 'radial':
           formControl.setValue(control.label);
+          this.updateFilterValues(control.name, control.value ?? control.label);
           const radialValue = {
             ...this.storedValues[control.name],
             checked: event.checked,
             value: control.value ?? control.label,
+            label: control.label,
           };
           this.storedValues[control.name] = radialValue;
           break;
         case 'dropdown':
           formControl.setValue(event);
+          this.updateFilterValues(control.name, formControl.value);
           this.storedValues[control.name] = {
             ...this.storedValues[control.name],
-            value: control.value ?? control.label,
+            value: formControl.value,
           };
           break;
         default: //for the tag option or any other option that does not have an activated control
           const updatedValue = !this.storedValues[control.name]?.checked;
           formControl.setValue(updatedValue);
+          this.updateFilterValues(control.name, formControl.value);
           const elementValue = {
             ...this.storedValues[control.name],
             checked: updatedValue,
@@ -211,36 +292,124 @@ export class BmbFilterCardComponent implements OnInit {
   handleSubmit() {
     const formData: any = {};
     Object.keys(this.storedValues).forEach((key) => {
+      const stored = this.storedValues[key];
       if (
-        (this.storedValues[key].checked &&
-          (this.storedValues[key].type === 'checkbox' ||
-            this.storedValues[key].type === 'tag' ||
-            this.storedValues[key].type === 'radial' ||
-            this.storedValues[key].type === 'switch')) ||
-        (this.storedValues[key].value &&
-          this.storedValues[key].type === 'dropdown')
+        stored.checked &&
+        (stored.type === 'checkbox' ||
+          stored.type === 'tag' ||
+          stored.type === 'radial' ||
+          stored.type === 'switch')
       ) {
-        formData[key] = this.storedValues[key];
+        formData[key] = stored;
+      } else if (stored.type === 'dropdown') {
+        const currentValue = this.filterForm.get(key)?.value;
+        const hasValue = Array.isArray(currentValue)
+          ? currentValue.length > 0
+          : !!currentValue;
+        if (hasValue) {
+          formData[key] = { ...stored, value: currentValue };
+        }
       }
     });
     const globalSearchValue = this.filterForm.get('search')?.value;
     if (globalSearchValue) {
       formData.search = globalSearchValue;
     }
-    this.modalService.closeModal(this.modalId() as string);
+    if (this.modalId()) {
+      this.modalService.closeModal(this.modalId() as string);
+    }
     this.applyFilters.emit(formData);
   }
 
   onReset() {
     this.filterForm.reset();
+    this.filterValues.set({});
+    Object.keys(this.storedValues).forEach((name) => {
+      const stored = this.storedValues[name];
+      if (!stored) return;
+      const resetValue =
+        stored.type === 'checkbox' ||
+        stored.type === 'switch' ||
+        stored.type === 'tag'
+          ? false
+          : stored.isMultiSelect
+            ? []
+            : '';
+      this.storedValues[name] = { ...stored, checked: false, value: resetValue };
+    });
     this.resetFilters.emit();
+  }
+
+  private ruleMatches(
+    when: Record<string, any>,
+    values: Record<string, any>,
+  ): boolean {
+    return Object.entries(when).every(([k, v]) => values[k] === v);
+  }
+
+  private clearControl(name: string): void {
+    const stored = this.storedValues[name];
+    let resetValue: any = '';
+    if (stored) {
+      switch (stored.type) {
+        case 'checkbox':
+        case 'switch':
+        case 'tag':
+          resetValue = false;
+          break;
+        case 'dropdown':
+          resetValue = stored.isMultiSelect ? [] : '';
+          break;
+        default:
+          resetValue = '';
+      }
+      this.storedValues[name] = { ...stored, checked: false, value: resetValue };
+    }
+    this.filterForm.get(name)?.reset(resetValue);
+    this.updateFilterValues(name, resetValue);
+  }
+
+  private updateFilterValues(name: string, value: any): void {
+    const current = this.filterValues()[name];
+    if (current === value) return;
+    if (
+      Array.isArray(current) &&
+      Array.isArray(value) &&
+      current.length === value.length &&
+      current.every((v, i) => v === value[i])
+    )
+      return;
+    this.filterValues.update((vals) => ({ ...vals, [name]: value }));
+  }
+
+  isControlVisible(name: string): boolean {
+    const map = this.visibleControlIds();
+    if (!map) return true;
+    const visible = map.get(name);
+    return visible === undefined ? true : visible;
+  }
+
+  isSectionVisible(controlType: IBmbControlType): boolean {
+    const map = this.visibleControlIds();
+    if (!map) return true;
+    return controlType.control.some((c) => this.isControlVisible(c.name));
+  }
+
+  getControlOptions(
+    control: IBmbControlType['control'][number],
+  ): string[] | IBmbDropdownItem[] {
+    return this.dynamicOptionsMap().get(control.name) ?? control.options ?? [];
   }
 
   getFormControl(name: string): FormControl {
     return this.filterForm.get(name) as FormControl;
   }
 
-  onValueChange(event: string, name: string) {
+  onValueChange(event: string | string[], name: string) {
     this.filterForm.get(name)?.setValue(event);
+    this.updateFilterValues(name, event);
+    if (this.storedValues[name]) {
+      this.storedValues[name] = { ...this.storedValues[name], value: event };
+    }
   }
 }

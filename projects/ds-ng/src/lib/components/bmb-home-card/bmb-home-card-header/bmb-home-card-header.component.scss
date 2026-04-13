@@ -22,7 +22,11 @@
 
     &.left {
       > .bmb_container {
-        padding: rem.rem_calc(24);
+        padding: rem.rem_calc(12 24);
+
+        @include mixins.desktop-styles() {
+          padding: rem.rem_calc(24);
+        }
       }
     }
   }
@@ -31,6 +35,9 @@
   .bmb_title-content-container-wrapper-subtitle,
   .bmb_title-content-container-wrapper-breadcrumb {
     @include mixins.container-query(559, 'max') {
+      display: none;
+    }
+    @include mixins.mobile-styles() {
       display: none;
     }
   }
