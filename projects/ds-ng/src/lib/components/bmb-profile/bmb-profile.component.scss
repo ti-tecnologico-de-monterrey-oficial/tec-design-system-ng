@@ -5,8 +5,13 @@
   padding: rem.rem_calc(22) rem.rem_calc(16);
   // width: var(--bmb-card-max-width);
   // max-width: 100%;
-  // max-height: calc(100dvh - 4rem);
-  // overflow: auto;
+
+  &-home-card {
+    .bmb_home-card-container {
+max-height: calc(100dvh - 9rem);
+  overflow: auto;
+    }
+  }
 
   &-info {
     margin-top: rem.rem_calc(38);
