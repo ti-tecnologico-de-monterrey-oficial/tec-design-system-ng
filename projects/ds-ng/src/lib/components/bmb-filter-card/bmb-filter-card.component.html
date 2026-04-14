@@ -39,7 +39,9 @@
                         [text]="control.label"
                         [dismissible]="false"
                         [enableClick]="true"
-                        [isActive]="storedValues[control.name]?.checked ?? false"
+                        [isActive]="
+                          storedValues[control.name]?.checked ?? false
+                        "
                         (clickedTag)="controlChange(control, $event)"
                       />
                     }
@@ -68,7 +70,9 @@
                     @case ('switch') {
                       <bmb-switch
                         [rightText]="control.rightText ?? ''"
-                        [isChecked]="filterForm.get(control.name)?.value === true"
+                        [isChecked]="
+                          filterForm.get(control.name)?.value === true
+                        "
                         (change)="controlChange(control, $event)"
                       />
                     }

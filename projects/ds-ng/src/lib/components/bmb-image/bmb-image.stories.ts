@@ -63,7 +63,7 @@ export default {
           'imageClick',
           'animationClass',
           'autoplayTimer',
-          'currentImage'
+          'currentImage',
         ],
       },
       description: {

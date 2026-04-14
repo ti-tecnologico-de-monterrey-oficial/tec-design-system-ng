@@ -20,8 +20,12 @@ export interface BmbImageHeight {
   l: string;
 }
 
-export type IBmbImageObjectFit = 'cover' | 'contain' | 'fill' | 'none' | 'scale-down';
-
+export type IBmbImageObjectFit =
+  | 'cover'
+  | 'contain'
+  | 'fill'
+  | 'none'
+  | 'scale-down';
 
 @Component({
   selector: 'bmb-image',
