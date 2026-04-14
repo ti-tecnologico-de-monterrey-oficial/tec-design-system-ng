@@ -250,7 +250,7 @@ ${getBasicExampleBlock(
         type: { summary: 'boolean' },
         defaultValue: { summary: false },
       },
-    }
+    },
   },
   args: {
     enableRowClick: true,

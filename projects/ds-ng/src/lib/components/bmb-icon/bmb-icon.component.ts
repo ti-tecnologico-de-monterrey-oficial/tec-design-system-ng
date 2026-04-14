@@ -138,12 +138,15 @@ export class BmbIconComponent implements OnInit {
   svgHtml = signal<SafeHtml | undefined>(undefined);
 
   loadSvg(path: string) {
-    this.http.get(path, { responseType: 'text' }).subscribe((raw) => {
-      this.svgHtml.set(this.sanitizedHtml(raw));
-    }, (error) => {
-      console.error(`Error loading SVG from path "${path}":`, error);
-      this.svgHtml.set(undefined);
-    });
+    this.http.get(path, { responseType: 'text' }).subscribe(
+      (raw) => {
+        this.svgHtml.set(this.sanitizedHtml(raw));
+      },
+      (error) => {
+        console.error(`Error loading SVG from path "${path}":`, error);
+        this.svgHtml.set(undefined);
+      },
+    );
   }
 
   isImage(icon: string): boolean {
