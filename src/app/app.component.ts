@@ -2,6 +2,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   computed,
+  effect,
   inject,
   signal,
   TemplateRef,
@@ -14,7 +15,6 @@ import {
   BmbSidebarComponent,
   SidebarElement,
   BmbNativeModalService,
-  IBmbNativeModal,
   BmbProjectionContentService,
   BmbNotificationCardComponent,
   IBmbDataAlert,
@@ -31,9 +31,8 @@ import {
   BmbCarouselComponent,
 } from '../../projects/ds-ng/src/public-api';
 import { MatDialog } from '@angular/material/dialog';
-import { TestComponentComponent } from './components/test-component/test-component.component';
 import { Subject } from 'rxjs';
-import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
+import { debounceTime, distinctUntilChanged, timeout } from 'rxjs/operators';
 
 import persons from './pages/form-validator-test/persons.json';
 import services from './pages/form-validator-test/services.json';
@@ -59,6 +58,8 @@ import services from './pages/form-validator-test/services.json';
 export class AppComponent {
   private router = inject(Router);
   private searchSubject = new Subject<string>();
+
+  _isLoading = signal<boolean>(false);
 
   constructor(
     private modalService: BmbNativeModalService,
@@ -91,6 +92,10 @@ export class AppComponent {
         this.resultList.set([...filteredPersons, ...filteredServices]);
         this.isSearchLoading.set(false);
       });
+
+    // effect(() => {
+    //   const status =
+    // })
   }
 
   @ViewChild('modalTemplate') modalTemplate!: TemplateRef<unknown>;
@@ -320,6 +325,16 @@ export class AppComponent {
       time: new Date('2025-02-19T14:34:00'),
     },
   ];
+
+  handleSendMessage(value: unknown): void {
+    console.info('handleSendMessage app', value);
+
+    setTimeout(() => {
+      console.info('handleSendMessage before', this._isLoading());
+      this._isLoading.set(false);
+      console.info('handleSendMessage value', this._isLoading());
+    }, 2000);
+  }
 
   handleUserProfileClick(event: MouseEvent): void {
     const targetRef = event.currentTarget as HTMLElement;

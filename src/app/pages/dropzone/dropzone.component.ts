@@ -4,15 +4,16 @@ import {
   BmbButtonDirective,
   BmbFilterCardComponent,
   IBmbControlType,
+  BmbFormValidatorComponent,
 } from '../../../../projects/ds-ng/src/public-api';
-import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'bmb-dropzone-page',
   templateUrl: './dropzone.component.html',
   standalone: true,
   imports: [
-    ReactiveFormsModule,
+    BmbFormValidatorComponent,
     BmbDropzoneComponent,
     BmbButtonDirective,
     BmbFilterCardComponent,
@@ -23,6 +24,8 @@ export class DropzonePageComponent {
     dropzone: new FormControl(),
   });
   progressFiles = signal<Record<string, number>>({});
+
+  _isLoading = signal<boolean>(false);
 
   getFormControl(name: string): FormControl {
     return this.userForm.get(name) as FormControl;
@@ -155,5 +158,13 @@ export class DropzonePageComponent {
 
   handleResetFilters() {
     console.log('reset filters');
+  }
+
+  handleFormGroupState(state: FormGroup): void {
+    console.info('handleFormGroupState', this.userForm.controls['dropzone']);
+  }
+
+  handleSend(value: unknown): void {
+    console.info('Send', value);
   }
 }
