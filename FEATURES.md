@@ -1,5 +1,5 @@
-# Novedades ## [v1.6.3-a] -
-2026-04-13
+# Novedades ## [v1.6.3-b] -
+2026-04-14
 
 ### 🚀 Novedades
 
