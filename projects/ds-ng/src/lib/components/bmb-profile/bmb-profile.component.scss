@@ -5,8 +5,13 @@
   padding: rem.rem_calc(22) rem.rem_calc(16);
   // width: var(--bmb-card-max-width);
   // max-width: 100%;
-  // max-height: calc(100dvh - 4rem);
-  // overflow: auto;
+
+  &-home-card {
+    .bmb_home-card-container {
+max-height: calc(100dvh - 9rem);
+  overflow: auto;
+    }
+  }
 
   &-info {
     margin-top: rem.rem_calc(38);
@@ -139,5 +144,33 @@
     padding: 0 0 var(--bmb-spacing-m);
     margin-bottom: var(--bmb-spacing-m);
     border-bottom: rem.rem_calc(1) solid var(--general-contrasts-50);
+  }
+
+  .bmb_container-button-title {
+    font-weight: 300;
+    text-align: left;
+    word-break: break-word;
+    font-family: "Poppins-Regular", sans-serif;
+    font-size: 0.875rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -moz-box;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    box-orient: vertical;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+  }
+
+  .bmb_container-button-subtitle {
+    color: var(--general-contrasts-75);
+    font-weight: 300;
+    text-align: left;
+    word-break: break-word;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-family: "Poppins-Regular", sans-serif;
+    font-size: 0.75rem;
   }
 }

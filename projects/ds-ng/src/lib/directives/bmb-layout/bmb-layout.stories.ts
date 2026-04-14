@@ -18,6 +18,7 @@ import {
   RELEVANT_TITLE,
 } from '../../utils/doc/utils';
 import { DBmbLayoutParamDesc } from '../../utils/doc/parameterDescriptions';
+import { BmbInteractiveIconComponent } from '../../components/bmb-interactive-icon/bmb-interactive-icon.component';
 
 const meta: Meta<BmbLayoutDirective> = {
   title: 'Foundations/Layouts/Layout',
@@ -31,6 +32,7 @@ const meta: Meta<BmbLayoutDirective> = {
         BmbLayoutItemDirective,
         BmbCardComponent,
         BmbCardContentComponent,
+        BmbInteractiveIconComponent,
       ],
     }),
   ],
@@ -435,6 +437,261 @@ export const ColumnOffset = {
             <strong>Right</strong> Sm: 0, Lg: 0
           </bmb-card-content>
         </bmb-card>
+    `,
+  }),
+};
+
+export const AutoLayoutWithMultipleRows = {
+  name: 'Auto Layout with multiple rows',
+  args: {
+    dynamicCols: true,
+  },
+  describe: `Some text`,
+  render: (args: any) => ({
+    props: args,
+    template: `
+      <section bmbLayout>
+        <bmb-interactive-icon
+          bmbLayoutItem margin="none" [isDynamicItem]=true
+          appearanceContrast="default"
+          appearance="red"
+          icon="face"
+          [horizontal]="false"
+          target="_blank"
+          link="https://www.youtube.com/"
+          layout="regular"
+          [setButtonTemplate]="false"
+          componentTitle="Canvas"
+        />
+        <bmb-interactive-icon
+          bmbLayoutItem margin="none" [isDynamicItem]=true
+          appearanceContrast="default"
+          appearance="red"
+          icon="face"
+          [horizontal]="false"
+          target="_blank"
+          link="https://www.youtube.com/"
+          layout="regular"
+          [setButtonTemplate]="false"
+          componentTitle="Canvas"
+        />
+        <bmb-interactive-icon
+          bmbLayoutItem margin="none" [isDynamicItem]=true
+          appearanceContrast="default"
+          appearance="red"
+          icon="face"
+          [horizontal]="false"
+          target="_blank"
+          link="https://www.youtube.com/"
+          layout="regular"
+          [setButtonTemplate]="false"
+          componentTitle="Canvas"
+        />
+        <bmb-interactive-icon
+          bmbLayoutItem margin="none" [isDynamicItem]=true
+          appearanceContrast="default"
+          appearance="red"
+          icon="face"
+          [horizontal]="false"
+          target="_blank"
+          link="https://www.youtube.com/"
+          layout="regular"
+          [setButtonTemplate]="false"
+          componentTitle="Canvas"
+        />
+        <bmb-interactive-icon
+          bmbLayoutItem margin="none" [isDynamicItem]=true
+          appearanceContrast="default"
+          appearance="red"
+          icon="face"
+          [horizontal]="false"
+          target="_blank"
+          link="https://www.youtube.com/"
+          layout="regular"
+          [setButtonTemplate]="false"
+          componentTitle="Canvas"
+        />
+        <bmb-interactive-icon
+          bmbLayoutItem margin="none" [isDynamicItem]=true
+          appearanceContrast="default"
+          appearance="red"
+          icon="face"
+          [horizontal]="false"
+          target="_blank"
+          link="https://www.youtube.com/"
+          layout="regular"
+          [setButtonTemplate]="false"
+          componentTitle="Canvas"
+        />
+        <bmb-interactive-icon
+          bmbLayoutItem margin="none" [isDynamicItem]=true
+          appearanceContrast="default"
+          appearance="red"
+          icon="face"
+          [horizontal]="false"
+          target="_blank"
+          link="https://www.youtube.com/"
+          layout="regular"
+          [setButtonTemplate]="false"
+          componentTitle="Canvas"
+        />
+        <bmb-interactive-icon
+          bmbLayoutItem margin="none" [isDynamicItem]=true
+          appearanceContrast="default"
+          appearance="red"
+          icon="face"
+          [horizontal]="false"
+          target="_blank"
+          link="https://www.youtube.com/"
+          layout="regular"
+          [setButtonTemplate]="false"
+          componentTitle="Canvas"
+        />
+        <bmb-interactive-icon
+          bmbLayoutItem margin="none" [isDynamicItem]=true
+          appearanceContrast="default"
+          appearance="red"
+          icon="face"
+          [horizontal]="false"
+          target="_blank"
+          link="https://www.youtube.com/"
+          layout="regular"
+          [setButtonTemplate]="false"
+          componentTitle="Canvas"
+        />
+        <bmb-interactive-icon
+          bmbLayoutItem margin="none" [isDynamicItem]=true
+          appearanceContrast="default"
+          appearance="red"
+          icon="face"
+          [horizontal]="false"
+          target="_blank"
+          link="https://www.youtube.com/"
+          layout="regular"
+          [setButtonTemplate]="false"
+          componentTitle="Canvas"
+        />
+        <bmb-interactive-icon
+          bmbLayoutItem margin="none" [isDynamicItem]=true
+          appearanceContrast="default"
+          appearance="red"
+          icon="face"
+          [horizontal]="false"
+          target="_blank"
+          link="https://www.youtube.com/"
+          layout="regular"
+          [setButtonTemplate]="false"
+          componentTitle="Canvas"
+        />
+        <bmb-interactive-icon
+          bmbLayoutItem margin="none" [isDynamicItem]=true
+          appearanceContrast="default"
+          appearance="red"
+          icon="face"
+          [horizontal]="false"
+          target="_blank"
+          link="https://www.youtube.com/"
+          layout="regular"
+          [setButtonTemplate]="false"
+          componentTitle="Canvas"
+        />
+        <bmb-interactive-icon
+          bmbLayoutItem margin="none" [isDynamicItem]=true
+          appearanceContrast="default"
+          appearance="red"
+          icon="face"
+          [horizontal]="false"
+          target="_blank"
+          link="https://www.youtube.com/"
+          layout="regular"
+          [setButtonTemplate]="false"
+          componentTitle="Canvas"
+        />
+        <bmb-interactive-icon
+          bmbLayoutItem margin="none" [isDynamicItem]=true
+          appearanceContrast="default"
+          appearance="red"
+          icon="face"
+          [horizontal]="false"
+          target="_blank"
+          link="https://www.youtube.com/"
+          layout="regular"
+          [setButtonTemplate]="false"
+          componentTitle="Canvas"
+        />
+        <bmb-interactive-icon
+          bmbLayoutItem margin="none" [isDynamicItem]=true
+          appearanceContrast="default"
+          appearance="red"
+          icon="face"
+          [horizontal]="false"
+          target="_blank"
+          link="https://www.youtube.com/"
+          layout="regular"
+          [setButtonTemplate]="false"
+          componentTitle="Canvas"
+        />
+        <bmb-interactive-icon
+          bmbLayoutItem margin="none" [isDynamicItem]=true
+          appearanceContrast="default"
+          appearance="red"
+          icon="face"
+          [horizontal]="false"
+          target="_blank"
+          link="https://www.youtube.com/"
+          layout="regular"
+          [setButtonTemplate]="false"
+          componentTitle="Canvas"
+        />
+        <bmb-interactive-icon
+          bmbLayoutItem margin="none" [isDynamicItem]=true
+          appearanceContrast="default"
+          appearance="red"
+          icon="face"
+          [horizontal]="false"
+          target="_blank"
+          link="https://www.youtube.com/"
+          layout="regular"
+          [setButtonTemplate]="false"
+          componentTitle="Canvas"
+        />
+        <bmb-interactive-icon
+          bmbLayoutItem margin="none" [isDynamicItem]=true
+          appearanceContrast="default"
+          appearance="red"
+          icon="face"
+          [horizontal]="false"
+          target="_blank"
+          link="https://www.youtube.com/"
+          layout="regular"
+          [setButtonTemplate]="false"
+          componentTitle="Canvas"
+        />
+        <bmb-interactive-icon
+          bmbLayoutItem margin="none" [isDynamicItem]=true
+          appearanceContrast="default"
+          appearance="red"
+          icon="face"
+          [horizontal]="false"
+          target="_blank"
+          link="https://www.youtube.com/"
+          layout="regular"
+          [setButtonTemplate]="false"
+          componentTitle="Canvas"
+        />
+        <bmb-interactive-icon
+          bmbLayoutItem margin="none" [isDynamicItem]=true
+          appearanceContrast="default"
+          appearance="red"
+          icon="face"
+          [horizontal]="false"
+          target="_blank"
+          link="https://www.youtube.com/"
+          layout="regular"
+          [setButtonTemplate]="false"
+          componentTitle="Canvas"
+        />
+      </section>
     `,
   }),
 };

@@ -27,6 +27,15 @@
   }
 }
 
+bmb-top-bar {
+  position: sticky;
+  z-index: 2;
+  display: block;
+  top: 0;
+  left: 0;
+  width: 100vw;
+}
+
 .bmb_top-bar {
   background-color: var(--containers-top-bar);
   color: rgb(var(--white-primary));
@@ -42,7 +51,7 @@
   left: 0;
 
   &-sidebar {
-    @include mixins.check-for-mobile() {
+    @include mixins.mobile-styles() {
       padding-left: rem.rem_calc(48);
     }
   }

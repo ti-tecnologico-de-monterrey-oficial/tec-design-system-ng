@@ -20,6 +20,9 @@ export interface BmbImageHeight {
   l: string;
 }
 
+export type IBmbImageObjectFit = 'cover' | 'contain' | 'fill' | 'none' | 'scale-down';
+
+
 @Component({
   selector: 'bmb-image',
   standalone: true,
@@ -46,9 +49,11 @@ export class BmbImageComponent implements OnDestroy {
   images = input<BmbImageItem[] | null>(null);
   callbackParams = input<any>({});
   minHeight = input<BmbImageHeight>({ s: 'auto', l: 'auto' });
+  objectFit = input<IBmbImageObjectFit>('cover');
+  animation = input<'fade' | 'parallax' | 'parallax-fade'>('parallax');
 
   imageClick = output<{ img: BmbImageItem; index: number; cbParams: any }>();
-  animation = input<'fade' | 'parallax' | 'parallax-fade'>('parallax');
+
   animationClass = computed(() => `bmb-carousel-${this.animation()}`);
 
   currentIndex = signal(0);

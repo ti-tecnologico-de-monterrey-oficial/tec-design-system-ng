@@ -27,19 +27,19 @@ bmb-multi-dot-paginator-item {
     }
   }
 
-  @include mixins.media-range-query(vars.$breakpoint_min_web, 1999) {
+  @include mixins.media-range-query(vars.$breakpoint_min_web, 1899) {
     &.bmb_multi-dot-paginator-item-active + * ~ * {
       @include preview-block();
     }
   }
 
-  @media (1999px < width) {
+  @media (1899px < width) {
     &.bmb_multi-dot-paginator-item-active + * + * ~ * {
       @include preview-block();
     }
   }
 
-  @include mixins.media-query(2000, 'min') {
+  @include mixins.media-query(1900, 'min') {
     width: calc((33.333% / var(--numberOfElements)) - 2rem);
 
     &.bmb_multi-dot-paginator-item-active + * + * {

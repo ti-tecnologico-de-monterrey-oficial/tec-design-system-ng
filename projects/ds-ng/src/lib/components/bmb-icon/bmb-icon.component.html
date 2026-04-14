@@ -20,6 +20,8 @@
   >
     <ng-container [ngTemplateOutlet]="customIcon() ?? null" />
   </figure>
+} @else if (isSVGPath(icon())) {
+  <div [innerHTML]="svgHtml()"></div>
 } @else if (isImage(icon())) {
   <figure class="bmb_icon-figure" [ngStyle]="getImageStyles()">
     <img
