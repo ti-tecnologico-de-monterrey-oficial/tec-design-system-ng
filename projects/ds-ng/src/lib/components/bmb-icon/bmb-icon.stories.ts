@@ -1,4 +1,4 @@
-import { Meta, StoryObj } from '@storybook/angular';
+import { Meta, StoryObj, applicationConfig } from '@storybook/angular';
 import { BmbIconComponent } from './bmb-icon.component';
 import {
   getArchitectureSection,
@@ -13,10 +13,18 @@ import {
   DBmbIconParamDesc,
   ICON_IMAGE_DETAIL,
 } from '../../utils/doc/parameterDescriptions';
+import { provideHttpClient } from '@angular/common/http';
 
 export default {
   title: 'Foundations/Icon',
   component: BmbIconComponent,
+  decorators: [
+    applicationConfig({
+      providers: [
+        provideHttpClient(),
+      ],
+    }),
+  ],
   tags: ['!autodocs'],
   parameters: {
     controls: {

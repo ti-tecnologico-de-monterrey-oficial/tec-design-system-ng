@@ -591,7 +591,7 @@ https://live.tec.mx/cbweek</p><p>¡Te esperamos!`,
     const contentID = this.projectionService.openContent({
       content: this.searchTemplate,
       // content: BmbSearchCardComponent,
-      targetRef: event ? event.currentTarget as HTMLElement : null,
+      targetRef: event ? (event.currentTarget as HTMLElement) : null,
       showBackdrop: false,
       inputContext: {
         title: 'Search',

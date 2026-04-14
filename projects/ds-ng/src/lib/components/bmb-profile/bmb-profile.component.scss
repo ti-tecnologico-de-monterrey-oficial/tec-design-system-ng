@@ -8,8 +8,8 @@
 
   &-home-card {
     .bmb_home-card-container {
-max-height: calc(100dvh - 9rem);
-  overflow: auto;
+      max-height: calc(100dvh - 9rem);
+      overflow: auto;
     }
   }
 
@@ -150,7 +150,7 @@ max-height: calc(100dvh - 9rem);
     font-weight: 300;
     text-align: left;
     word-break: break-word;
-    font-family: "Poppins-Regular", sans-serif;
+    font-family: 'Poppins-Regular', sans-serif;
     font-size: 0.875rem;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -170,7 +170,7 @@ max-height: calc(100dvh - 9rem);
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    font-family: "Poppins-Regular", sans-serif;
+    font-family: 'Poppins-Regular', sans-serif;
     font-size: 0.75rem;
   }
 }

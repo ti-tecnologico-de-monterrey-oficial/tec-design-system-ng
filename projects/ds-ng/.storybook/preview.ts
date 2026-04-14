@@ -1,4 +1,5 @@
 import type { Preview } from '@storybook/angular';
+import { applicationConfig } from '@storybook/angular';
 import {
   Controls,
   Description,
@@ -19,6 +20,8 @@ import {
 import { useEffect, useGlobals } from 'storybook/internal/preview-api';
 import { themes } from 'storybook/theming';
 import { withThemeByClassName } from '@storybook/addon-themes';
+import { provideHttpClient } from '@angular/common/http';
+import { provideRouter } from '@angular/router';
 
 setCompodocJson(docJson);
 
@@ -130,6 +133,9 @@ const preview: Preview = {
     viewport: { value: 'tablet', isRotated: false },
   },
   decorators: [
+    applicationConfig({
+      providers: [provideHttpClient(), provideRouter([])],
+    }),
     (StoryFn: any, context) => {
       const [{ brandingThemes }] = useGlobals();
       const story = StoryFn();

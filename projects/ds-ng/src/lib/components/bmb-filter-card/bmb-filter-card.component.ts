@@ -162,7 +162,7 @@ export class BmbFilterCardComponent implements OnInit {
                 ...storedValue,
                 checked: control.checked || storedValue.checked,
                 value: control.checked
-                  ? (control.value ?? control.label)
+                  ? control.value ?? control.label
                   : storedValue.value,
                 originalControl: [...storedValue.originalControl, control],
               };
@@ -174,7 +174,7 @@ export class BmbFilterCardComponent implements OnInit {
               this.storedValues[control.name] = {
                 ...control,
                 checked: control.checked ?? false,
-                value: control.checked ? (control.value ?? control.label) : '',
+                value: control.checked ? control.value ?? control.label : '',
                 originalControl: [control],
               };
             }
@@ -335,7 +335,11 @@ export class BmbFilterCardComponent implements OnInit {
           : stored.isMultiSelect
             ? []
             : '';
-      this.storedValues[name] = { ...stored, checked: false, value: resetValue };
+      this.storedValues[name] = {
+        ...stored,
+        checked: false,
+        value: resetValue,
+      };
     });
     this.resetFilters.emit();
   }
@@ -363,7 +367,11 @@ export class BmbFilterCardComponent implements OnInit {
         default:
           resetValue = '';
       }
-      this.storedValues[name] = { ...stored, checked: false, value: resetValue };
+      this.storedValues[name] = {
+        ...stored,
+        checked: false,
+        value: resetValue,
+      };
     }
     this.filterForm.get(name)?.reset(resetValue);
     this.updateFilterValues(name, resetValue);
