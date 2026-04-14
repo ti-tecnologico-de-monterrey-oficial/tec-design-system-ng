@@ -49,6 +49,7 @@ export class BmbNotificationCardComponent {
   dateFormat = input<string>('dd/MM/yyyy HH:mm');
   showAdvertisements = input<boolean>(true);
   leftIcon = input<string>('');
+  enableCustomHandlerClick = input<boolean>(false);
 
   alertEvent = output<IBmbDataAlert>();
   showAlertDetail = output<IBmbDataAlert>();
@@ -146,6 +147,11 @@ export class BmbNotificationCardComponent {
   }
 
   handleAlertSelected(alert: IBmbDataAlertsParsed) {
+    if (this.enableCustomHandlerClick()) {
+      this.handleAlertEvent(alert);
+      return;
+    }
+
     this.showAlertDetail.emit(alert);
     this.projectionService.closeContent();
     this.modalService.openModal({

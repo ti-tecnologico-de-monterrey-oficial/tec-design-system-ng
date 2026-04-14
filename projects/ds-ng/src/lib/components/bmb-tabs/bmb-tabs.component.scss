@@ -19,7 +19,7 @@
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
-    max-width: 15rem;
+    max-width: rem.rem_calc(192);
     display: inline-block;
 
     &-container {
@@ -54,7 +54,6 @@
     gap: rem.rem_calc(8);
     height: rem.rem_calc(40);
     justify-content: center;
-    min-width: max-content;
     padding: rem.rem_calc(8);
     scroll-behavior: smooth;
     scroll-snap-align: start;
@@ -63,7 +62,8 @@
     line-height: rem.rem_calc(18);
     @include fonts.font(5, regular);
     font-weight: 500;
-    width: 100%;
+    width: calc(100% - 1rem);
+    box-sizing: content-box;
 
     &:hover,
     &:focus-visible {

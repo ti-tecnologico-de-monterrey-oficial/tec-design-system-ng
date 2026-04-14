@@ -241,9 +241,20 @@ ${getBasicExampleBlock(
       },
     },
     onExpandClick: getOnClickParam(getOnEvent('', 'onExpandClick', 'void')),
+    enableCustomHandlerClick: {
+      control: { type: 'boolean' },
+      description:
+        'When true, clicking on an alert will trigger the alertEvent output instead of showAlertDetail. This allows you to implement a custom behavior when an alert is clicked.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'boolean' },
+        defaultValue: { summary: false },
+      },
+    }
   },
   args: {
     enableRowClick: true,
+    enableCustomHandlerClick: false,
     data: [
       {
         id: 10,
