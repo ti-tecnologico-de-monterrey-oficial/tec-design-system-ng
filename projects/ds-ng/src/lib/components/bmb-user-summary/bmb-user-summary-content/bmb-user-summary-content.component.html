@@ -18,21 +18,31 @@
     margin="none"
     [dynamicCols]="true"
   >
-    <h3
-      class="bmb_user-summary_content-wrapper-title"
-      [ngClass]="getSalutationClasses('bmb_user-summary_content-wrapper-title')"
-      bmbLayoutItem
-      [isDynamicItem]="true"
+    <div
+      role="button"
+      tabindex="0"
+      (click)="handleUserClick($event)"
+      (keypress)="handleUserClick($event)"
+      class="bmb_user-summary_content-wrapper-button"
     >
-      {{ getName() }}
-    </h3>
-    <span
-      class="bmb_user-summary_content-wrapper-general-text"
-      bmbLayoutItem
-      [isDynamicItem]="true"
-    >
-      {{ userId() }}
-    </span>
+      <h3
+        class="bmb_user-summary_content-wrapper-title"
+        [ngClass]="
+          getSalutationClasses('bmb_user-summary_content-wrapper-title')
+        "
+        bmbLayoutItem
+        [isDynamicItem]="true"
+      >
+        {{ getName() }}
+      </h3>
+      <span
+        class="bmb_user-summary_content-wrapper-general-text"
+        bmbLayoutItem
+        [isDynamicItem]="true"
+      >
+        {{ userId() }}
+      </span>
+    </div>
     @if (!!campus()) {
       <span
         class="bmb_user-summary_content-wrapper-campus"
@@ -88,16 +98,26 @@
       }
     }
     @if (!!role()) {
-      <span
-        class="bmb_user-summary_content-wrapper-title"
-        [ngClass]="
-          getSalutationClasses('bmb_user-summary_content-wrapper-title', true)
-        "
-        bmbLayoutItem
-        [isDynamicItem]="true"
+      <div
+        role="button"
+        tabindex="0"
+        (click)="handleUserClick($event)"
+        (keypress)="handleUserClick($event)"
+        class="bmb_user-summary_content-wrapper-button"
       >
-        {{ contentLayout() === 'column' ? role().toLocaleUpperCase() : role() }}
-      </span>
+        <span
+          class="bmb_user-summary_content-wrapper-title"
+          [ngClass]="
+            getSalutationClasses('bmb_user-summary_content-wrapper-title', true)
+          "
+          bmbLayoutItem
+          [isDynamicItem]="true"
+        >
+          {{
+            contentLayout() === 'column' ? role().toLocaleUpperCase() : role()
+          }}
+        </span>
+      </div>
     }
     @if (idDigital()) {
       <bmb-text-link

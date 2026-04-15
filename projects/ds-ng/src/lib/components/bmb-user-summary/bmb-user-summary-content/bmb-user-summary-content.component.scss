@@ -3,8 +3,8 @@
 
 .bmb_user-summary_content {
   align-items: center;
-  display: flex;
   background-color: transparent;
+  display: flex;
 
   &-column {
     flex-direction: column;
@@ -28,10 +28,10 @@
 
     &-title {
       color: var(--general-contrasts-100);
-      @include fonts.font(5, regular);
-      word-wrap: break-word;
       overflow-wrap: break-word;
       text-align: center;
+      word-wrap: break-word;
+      @include fonts.font(5, regular);
 
       &-column {
         @include fonts.font(6, regular);
@@ -47,6 +47,13 @@
         font-style: italic;
         max-width: rem.rem_calc(160);
       }
+    }
+
+    &-button {
+      align-items: center;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
     }
 
     &-general-text {
