@@ -16,7 +16,6 @@ import { BmbNotificationCounterComponent } from '../bmb-notification-counter/bmb
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { BmbIconService } from '../../services/icon/icon.service';
 import { sanitizeContent } from '../../utils/sanitizeContent';
-import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'bmb-icon',
@@ -42,35 +41,10 @@ export class BmbIconComponent implements OnInit {
   constructor(
     private sanitizer: DomSanitizer,
     private iconService: BmbIconService,
-    private http: HttpClient,
   ) {
     effect(() => {
-      const iconName = this.icon();
-
-      untracked(() => {
-        // Reset cuando no hay icono
-        if (!iconName) {
-          this.iconSvg.set(null);
-          this.svgHtml.set(undefined);
-          return;
-        }
-
-        // Si es una ruta .svg, cargarla vía HTTP y usar svgHtml
-        if (this.isSVGPath(iconName)) {
-          this.loadSvg(iconName);
-          this.iconSvg.set(null);
-          return;
-        }
-
-        // Si es una imagen (png, jpg, etc.), no intentamos cargar desde el servicio de íconos
-        if (this.isImage(iconName)) {
-          this.iconSvg.set(null);
-          this.svgHtml.set(undefined);
-          return;
-        }
-
-        // Ícono de librería (no imagen ni ruta .svg)
-        const svgIcon = this.loadIcon(iconName);
+      if (this.icon()) {
+        const svgIcon = this.loadIcon(this.icon());
         svgIcon.then((icon) => {
           if (icon !== null) {
             untracked(() => {
@@ -78,7 +52,7 @@ export class BmbIconComponent implements OnInit {
             });
           }
         });
-      });
+      }
     });
   }
 
@@ -135,20 +109,6 @@ export class BmbIconComponent implements OnInit {
     return this.sanitizer.bypassSecurityTrustHtml(clean); // NOSONAR Content is sanitized with DOMPurify - safe to bypass Angular sanitization
   }
 
-  svgHtml = signal<SafeHtml | undefined>(undefined);
-
-  loadSvg(path: string) {
-    this.http.get(path, { responseType: 'text' }).subscribe(
-      (raw) => {
-        this.svgHtml.set(this.sanitizedHtml(raw));
-      },
-      (error) => {
-        console.error(`Error loading SVG from path "${path}":`, error);
-        this.svgHtml.set(undefined);
-      },
-    );
-  }
-
   isImage(icon: string): boolean {
     return isImage(icon);
   }
@@ -164,10 +124,6 @@ export class BmbIconComponent implements OnInit {
       width: !!this.size() ? `${this.size()}px` : '1em',
       height: !!this.size() ? `${this.size()}px` : '1em',
     };
-  }
-
-  isSVGPath(icon: string): boolean {
-    return icon.trim().toLocaleLowerCase().endsWith('.svg');
   }
 
   get safeSVG(): SafeHtml | null {
