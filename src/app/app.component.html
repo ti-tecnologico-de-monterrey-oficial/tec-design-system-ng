@@ -138,6 +138,7 @@
     (alertButtonClick)="handleAlertButtonClick($event)"
     (helpButtonClick)="handleHelpButtonClick()"
   />
+  {{ _isLoading() }}
   <main class="bmb_template-single-home-card-main">
     <bmb-home-card-chat
       leftIcon="chevron_left"
@@ -148,7 +149,9 @@
       subtitle="Assitente TECbot"
       [messagesHistory]="messages"
       [mode]="mode"
+      [(isLoading)]="_isLoading"
       [(currentBot)]="currentBot"
+      (getSendMessage)="handleSendMessage($event)"
     />
     <bmb-theme [showControls]="false" initialTheme="dark" />
     <router-outlet />

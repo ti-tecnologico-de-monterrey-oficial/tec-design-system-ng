@@ -28,7 +28,9 @@ export class BmbFabComponent {
   }
 
   get className(): string {
-    const baseClassName: string = `${this.mitec() ? 'bmb_fab-mitec-button' : 'bmb_fab-main'}`;
+    if (this.mitec()) return 'bmb_fab-mitec-button';
+
+    const baseClassName: string = 'bmb_fab-main';
 
     return `${baseClassName} ${baseClassName}-${this.type() === 'extended' ? 'extended' : this.size()}`;
   }

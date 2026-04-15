@@ -20,9 +20,7 @@ export default {
   component: BmbIconComponent,
   decorators: [
     applicationConfig({
-      providers: [
-        provideHttpClient(),
-      ],
+      providers: [provideHttpClient()],
     }),
   ],
   tags: ['!autodocs'],
