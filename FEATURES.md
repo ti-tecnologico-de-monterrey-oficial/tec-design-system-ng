@@ -1,4 +1,4 @@
-# Novedades ## [v1.6.3-c] -
+# Novedades ## [v1.6.3-d] -
 2026-04-16
 
 ### 🚀 Novedades
@@ -13,6 +13,8 @@ Add conditional visibility and cascading options to filter card component
 feat(component / icon): Se agregaron iconos personalizados
 *
 test: Add unit tests for BmbFilterCardComponent, along with related dependency updates.
+*
+roll back user summary changes
 *
 chore: escenarios de pruebas integrales en aplicaciones
 *
@@ -68,6 +70,8 @@ Add conditional visibility and cascading options to filter card component
 feat(component / icon): Se agregaron iconos personalizados
 - **test: Add unit tests for BmbFilterCardComponent, along with related dependency updates.**:
 test: Add unit tests for BmbFilterCardComponent, along with related dependency updates.
+- **roll back user summary changes**:
+roll back user summary changes
 - **chore: escenarios de pruebas integrales en aplicaciones**:
 chore: escenarios de pruebas integrales en aplicaciones
 - **fix(component/action-menu): se agregaron estilos para organizar contenido de manera responsiva.**:
@@ -123,6 +127,8 @@ Add conditional visibility and cascading options to filter card component
 feat(component / icon): Se agregaron iconos personalizados
 - **test: Add unit tests for BmbFilterCardComponent, along with related dependency updates.**:
 test: Add unit tests for BmbFilterCardComponent, along with related dependency updates.
+- **roll back user summary changes**:
+roll back user summary changes
 - **chore: escenarios de pruebas integrales en aplicaciones**:
 chore: escenarios de pruebas integrales en aplicaciones
 - **fix(component/action-menu): se agregaron estilos para organizar contenido de manera responsiva.**:
