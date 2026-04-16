@@ -4,17 +4,25 @@
 ### 🚀 Novedades
 
 *
+feat(component / icon): Se agregaron iconos personalizados
+*
+topbar user
+*
+roll back user summary changes
+*
+topbar user
+*
+topbar user
+*
+topbar user
+*
 Formato
 *
 new config
 *
 Add conditional visibility and cascading options to filter card component
 *
-feat(component / icon): Se agregaron iconos personalizados
-*
 test: Add unit tests for BmbFilterCardComponent, along with related dependency updates.
-*
-roll back user summary changes
 *
 chore: escenarios de pruebas integrales en aplicaciones
 *
@@ -60,18 +68,26 @@ chore: se eliminó código que no se utiliza
 
 ### 🆕 Nuevos Componentes
 
+- **feat(component / icon): Se agregaron iconos personalizados**:
+feat(component / icon): Se agregaron iconos personalizados
+- **topbar user**:
+topbar user
+- **roll back user summary changes**:
+roll back user summary changes
+- **topbar user**:
+topbar user
+- **topbar user**:
+topbar user
+- **topbar user**:
+topbar user
 - **Formato**:
 Formato
 - **new config**:
 new config
 - **Add conditional visibility and cascading options to filter card component**:
 Add conditional visibility and cascading options to filter card component
-- **feat(component / icon): Se agregaron iconos personalizados**:
-feat(component / icon): Se agregaron iconos personalizados
 - **test: Add unit tests for BmbFilterCardComponent, along with related dependency updates.**:
 test: Add unit tests for BmbFilterCardComponent, along with related dependency updates.
-- **roll back user summary changes**:
-roll back user summary changes
 - **chore: escenarios de pruebas integrales en aplicaciones**:
 chore: escenarios de pruebas integrales en aplicaciones
 - **fix(component/action-menu): se agregaron estilos para organizar contenido de manera responsiva.**:
@@ -117,18 +133,26 @@ chore: se eliminó código que no se utiliza
 
 ### 🔄 Componentes Actualizados
 
+- **feat(component / icon): Se agregaron iconos personalizados**:
+feat(component / icon): Se agregaron iconos personalizados
+- **topbar user**:
+topbar user
+- **roll back user summary changes**:
+roll back user summary changes
+- **topbar user**:
+topbar user
+- **topbar user**:
+topbar user
+- **topbar user**:
+topbar user
 - **Formato**:
 Formato
 - **new config**:
 new config
 - **Add conditional visibility and cascading options to filter card component**:
 Add conditional visibility and cascading options to filter card component
-- **feat(component / icon): Se agregaron iconos personalizados**:
-feat(component / icon): Se agregaron iconos personalizados
 - **test: Add unit tests for BmbFilterCardComponent, along with related dependency updates.**:
 test: Add unit tests for BmbFilterCardComponent, along with related dependency updates.
-- **roll back user summary changes**:
-roll back user summary changes
 - **chore: escenarios de pruebas integrales en aplicaciones**:
 chore: escenarios de pruebas integrales en aplicaciones
 - **fix(component/action-menu): se agregaron estilos para organizar contenido de manera responsiva.**:
