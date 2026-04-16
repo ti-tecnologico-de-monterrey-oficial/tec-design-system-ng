@@ -339,14 +339,14 @@ export class BmbDropzoneComponent implements OnInit, OnChanges {
   protected handleDragLeave(event: DragEvent) {
     event.preventDefault();
     event.stopPropagation();
-    const dropzoneElement = event.currentTarget as HTMLElement;
+    const dropzoneElement = event?.currentTarget as HTMLElement;
     dropzoneElement.classList.remove('bmb_drop-zone-container-uploading-file');
   }
 
   protected handleDrop(event: DragEvent) {
     event.preventDefault();
     event.stopPropagation();
-    const dropzoneElement = event.currentTarget as HTMLElement;
+    const dropzoneElement = event?.currentTarget as HTMLElement;
     dropzoneElement.classList.add('bmb-drop-zone');
     dropzoneElement.classList.remove('bmb_drop-zone-container-uploading-file');
 
@@ -357,9 +357,9 @@ export class BmbDropzoneComponent implements OnInit, OnChanges {
   }
 
   protected handleFileSelected(event: Event) {
-    const _input = event.target as HTMLInputElement;
+    const _input = event?.target as HTMLInputElement;
 
-    if (_input.files?.[0]) {
+    if (_input?.files?.[0]) {
       const files = _input.files;
       if (files && !!files.length) {
         this.getFileAndValidate(this.multiple() ? Array.from(files) : files[0]);
