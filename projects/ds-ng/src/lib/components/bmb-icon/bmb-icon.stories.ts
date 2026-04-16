@@ -59,6 +59,16 @@ ${getSpecialSpecifications(
 - Use the icons as a visual guide.
 - Check out the icon library in the documentation [here](https://bamboo.tec.mx/latest/foundations/iconos/biblioteca-WrE6VXv5)
 - ${GOOGLE_FONTS_LINK}
+- Custom icons list:
+  - bmb_android
+  - bmb_apple
+  - bmb_drive
+  - bmb_facebook
+  - bmb_instagram
+  - bmb_teams
+  - bmb_twitter
+  - bmb_whatsapp
+  - bmb_youtube
 `,
   { showAdditionalBlockquote: true },
 )}

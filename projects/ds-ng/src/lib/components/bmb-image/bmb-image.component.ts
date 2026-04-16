@@ -55,6 +55,7 @@ export class BmbImageComponent implements OnDestroy {
   minHeight = input<BmbImageHeight>({ s: 'auto', l: 'auto' });
   objectFit = input<IBmbImageObjectFit>('cover');
   animation = input<'fade' | 'parallax' | 'parallax-fade'>('parallax');
+  avoidEncoding = input<boolean>(false);
 
   imageClick = output<{ img: BmbImageItem; index: number; cbParams: any }>();
 
@@ -136,11 +137,19 @@ export class BmbImageComponent implements OnDestroy {
     };
   });
 
-  encodedURL = computed(() => encodeURI(this.currentImage().src));
+  encodedURL = computed(() => {
+    if (this.avoidEncoding()) {
+      return this.currentImage().src || '';
+    }
+    return encodeURI(this.currentImage().src || '');
+  });
 
-  encodedMobileURL = computed(() =>
-    encodeURI(this.currentImage().mobileSrc || ''),
-  );
+  encodedMobileURL = computed(() => {
+    if (this.avoidEncoding()) {
+      return this.currentImage().mobileSrc || '';
+    }
+    return encodeURI(this.currentImage().mobileSrc || '');
+  });
 
   next(): void {
     if (!this.isCarousel()) return;

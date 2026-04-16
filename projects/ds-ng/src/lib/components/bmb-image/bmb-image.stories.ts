@@ -138,6 +138,15 @@ ${getBasicExampleBlock('BmbImageComponent')}
         category: 'Properties',
       },
     },
+    avoidEncoding: {
+      control: 'boolean',
+      description: 'If true, the image URLs will not be encoded.',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+        category: 'Properties',
+      },
+    },
   },
   args: {
     src: 'https://farm2.staticflickr.com/1919/45579541712_f58c1fd0ed_o.jpg',
@@ -154,6 +163,7 @@ ${getBasicExampleBlock('BmbImageComponent')}
       console.log('Image clicked', event);
     },
     objectFit: 'cover',
+    avoidEncoding: false,
   },
 } as Meta<typeof BmbImageComponent>;
 

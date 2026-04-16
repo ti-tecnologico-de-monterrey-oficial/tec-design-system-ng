@@ -1,4 +1,4 @@
-# Novedades ## [v1.6.3-b] -
+# Novedades ## [v1.6.3-d] -
 2026-04-16
 
 ### 🚀 Novedades
@@ -11,6 +11,8 @@ new config
 Add conditional visibility and cascading options to filter card component
 *
 tabs, user-summary
+*
+topbar user
 *
 test: Add unit tests for BmbFilterCardComponent, along with related dependency updates.
 *
@@ -64,6 +66,8 @@ new config
 Add conditional visibility and cascading options to filter card component
 - **tabs, user-summary**:
 tabs, user-summary
+- **topbar user**:
+topbar user
 - **test: Add unit tests for BmbFilterCardComponent, along with related dependency updates.**:
 test: Add unit tests for BmbFilterCardComponent, along with related dependency updates.
 - **chore: escenarios de pruebas integrales en aplicaciones**:
@@ -117,6 +121,8 @@ new config
 Add conditional visibility and cascading options to filter card component
 - **tabs, user-summary**:
 tabs, user-summary
+- **topbar user**:
+topbar user
 - **test: Add unit tests for BmbFilterCardComponent, along with related dependency updates.**:
 test: Add unit tests for BmbFilterCardComponent, along with related dependency updates.
 - **chore: escenarios de pruebas integrales en aplicaciones**:

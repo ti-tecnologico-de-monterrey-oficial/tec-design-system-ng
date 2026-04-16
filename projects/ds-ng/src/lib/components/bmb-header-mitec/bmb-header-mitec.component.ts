@@ -37,37 +37,37 @@ export class BmbHeaderMitecComponent {
 
   _actionHeaders: IBmbActionHeader[] = [
     {
-      icon: 'apple_svg',
+      icon: 'bmb_apple',
       alt: 'apple social icon',
       link: this.actionHeaderLinks()?.apple.link,
       action: () => {},
     },
     {
-      icon: 'android_svg',
+      icon: 'bmb_android',
       alt: 'android social icon',
       link: this.actionHeaderLinks()?.android.link,
       action: () => {},
     },
     {
-      icon: 'twitter_svg',
-      alt: 'witter social icon',
+      icon: 'bmb_twitter',
+      alt: 'twitter social icon',
       link: this.actionHeaderLinks()?.twitter.link,
       action: () => {},
     },
     {
-      icon: 'facebook_svg',
+      icon: 'bmb_facebook',
       alt: 'facebook social icon',
       link: this.actionHeaderLinks()?.facebook.link,
       action: () => {},
     },
     {
-      icon: 'instagram_svg',
+      icon: 'bmb_instagram',
       alt: 'instagram social icon',
       link: this.actionHeaderLinks()?.instagram.link,
       action: () => {},
     },
     {
-      icon: 'youtube_svg',
+      icon: 'bmb_youtube',
       alt: 'youtube social icon',
       link: this.actionHeaderLinks()?.youtube.link,
       action: () => {},
