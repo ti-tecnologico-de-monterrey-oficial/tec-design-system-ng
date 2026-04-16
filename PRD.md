@@ -74,11 +74,11 @@ The `@ti-tecnologico-de-monterrey-oficial/ds-ng` is the official Design System o
 
 All of the following jobs run automatically on every push to `develop` and on every pull request:
 
-| Job | Purpose | Blocks merge on failure |
-|---|---|:---:|
-| **Build Library** | Verifies `npm run build:lib` compiles successfully | ✅ |
-| **E2E Tests** | Runs Playwright tests against the demo app | ✅ |
-| **SonarCloud** | Static analysis and security scanning | ✅ |
+| Job               | Purpose                                            | Blocks merge on failure |
+| ----------------- | -------------------------------------------------- | :---------------------: |
+| **Build Library** | Verifies `npm run build:lib` compiles successfully |           ✅            |
+| **E2E Tests**     | Runs Playwright tests against the demo app         |           ✅            |
+| **SonarCloud**    | Static analysis and security scanning              |           ✅            |
 
 A Playwright HTML report is uploaded as a GitHub Actions artifact (retained 7 days) for every run.
 
