@@ -15,6 +15,7 @@ import { BmbUserSummaryContentComponent } from '../../bmb-user-summary/bmb-user-
 import { BmbDropdownMenuComponent } from '../../bmb-dropdown-menu/bmb-dropdown-menu.component';
 import { IDropdownItem } from '../../../types';
 import { BmbButtonIconComponent } from '../../bmb-button-icon/bmb-button-icon.component';
+import { BmbCheckExternalLinkButtonComponent } from '../../bmb-check-external-link-button/bmb-check-external-link-button.component';
 
 @Component({
   selector: 'bmb-top-bar-user-section',
@@ -27,6 +28,7 @@ import { BmbButtonIconComponent } from '../../bmb-button-icon/bmb-button-icon.co
     BmbUserSummaryContentComponent,
     BmbLayoutDirective,
     BmbLayoutItemDirective,
+    BmbCheckExternalLinkButtonComponent,
   ],
   templateUrl: './bmb-top-bar-user-section.component.html',
   styleUrl: './bmb-top-bar-user-section.component.scss',
