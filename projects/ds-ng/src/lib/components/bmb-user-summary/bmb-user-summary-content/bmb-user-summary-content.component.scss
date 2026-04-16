@@ -49,13 +49,6 @@
       }
     }
 
-    &-button {
-      align-items: center;
-      cursor: pointer;
-      display: flex;
-      flex-direction: column;
-    }
-
     &-general-text {
       color: var(--general-contrasts-75);
       @include fonts.font(4, regular);

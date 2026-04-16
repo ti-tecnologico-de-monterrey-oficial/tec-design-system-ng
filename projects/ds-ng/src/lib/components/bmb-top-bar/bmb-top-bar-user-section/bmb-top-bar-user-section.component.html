@@ -64,17 +64,23 @@
     />
   }
   @if (!!userInformation()) {
-    <bmb-user-summary-content
-      bmbLayoutItem
-      [image]="userInformation().image"
-      [altImage]="userInformation.name"
-      [name]="mitec() ? userInformation().name : ''"
-      imageSize="mobile-small"
-      [isImageBordered]="false"
-      [role]="mitec() ? userInformation().role : ''"
-      contentLayout="row"
-      salutation=""
-      (onUserClick)="handleUserClick($event)"
-    />
+    <bmb-check-external-link-button
+      [disabled]="false"
+      (buttonClick)="handleUserClick($event)"
+      class="bmb_top-bar-user-section-button"
+    >
+      <bmb-user-summary-content
+        bmbLayoutItem
+        [image]="userInformation().image"
+        [altImage]="userInformation.name"
+        [name]="mitec() ? userInformation().name : ''"
+        imageSize="mobile-small"
+        [isImageBordered]="false"
+        [role]="mitec() ? userInformation().role : ''"
+        contentLayout="row"
+        salutation=""
+        (onUserClick)="handleUserClick($event)"
+      />
+    </bmb-check-external-link-button>
   }
 </section>
