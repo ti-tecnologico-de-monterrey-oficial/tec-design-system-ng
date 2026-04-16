@@ -1,6 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ComponentRef } from '@angular/core';
-import { BmbCustomIconsComponent, BmbCustomIconListType } from './bmb-custom-icons.component';
+import {
+  BmbCustomIconsComponent,
+  BmbCustomIconListType,
+} from './bmb-custom-icons.component';
 
 describe('BmbCustomIconsComponent', () => {
   let component: BmbCustomIconsComponent;
