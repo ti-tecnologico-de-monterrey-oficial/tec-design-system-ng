@@ -14,7 +14,10 @@ build-storybook.log
 CHANGELOG.md
 commitlint.config.js
 documentation.json
+e2e/                        ← Playwright E2E tests
+  app.spec.ts
 package.json
+playwright.config.ts        ← Playwright configuration
 projects/
   ds-ng/
     src/
@@ -104,13 +107,27 @@ getProgressPercent(): number {
 
 ## Testing
 
-**Unit Tests**: Configured using Karma and Jasmine, with test files located in projects/ds-ng/src/lib/\*_/_.spec.ts.
+**Unit Tests**: Configured using Karma and Jasmine, with test files located in `projects/ds-ng/src/lib/**/*.spec.ts`.
+
+**E2E Tests**: Configured using Playwright. Test files are located in `e2e/`. The configuration is in `playwright.config.ts`. Playwright automatically starts `ng serve` before running tests.
+
+```bash
+npm run e2e          # headless
+npm run e2e:ui       # interactive UI mode
+npm run e2e:debug    # debug mode with inspector
+```
 
 **Storybook**: Used for developing and testing UI components in isolation.
 
 ## Continuous Integration
 
-**GitHub Actions**: Configured in workflows for automated testing and deployment.
+**GitHub Actions**: Three jobs run automatically on every push to `develop` and on every pull request:
+
+| Job | Command | Description |
+|---|---|---|
+| **Build Library** | `npm run build:lib` | Verifies the library compiles successfully |
+| **E2E Tests** | `npm run e2e` | Runs Playwright tests; report uploaded as artifact |
+| **SonarCloud** | — | Static analysis and security scanning |
 
 ## Additional Tools
 
@@ -132,7 +149,7 @@ getProgressPercent(): number {
 
 **Serve the Application**: `ng serve`.
 
-**Run Tests**: `ng test`.
+**Run Tests**: `npm run test` (runs lint + format check + unit tests + E2E tests).
 
 ## Repository
 
@@ -196,7 +213,8 @@ Please check all steps on the checklist
 
 - [ ] My code matches all coding standars.
 - [ ] I included the documentation files (.stories.ts).
-- [ ] I ran the unit test before submitting.
+- [ ] I ran the unit tests before submitting (`npm run test`).
+- [ ] I ran the E2E tests before submitting (`npm run e2e`).
 - [ ] My code resolved all of the task's acceptance criteria.
 
 ---

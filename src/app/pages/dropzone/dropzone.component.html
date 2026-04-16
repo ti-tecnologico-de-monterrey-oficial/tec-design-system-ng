@@ -13,6 +13,7 @@
       linkLabel="Ver más información de formatos de archivo aceptados."
       linkFilesSupported="https://www.youtube.com/"
       (newFile)="onNewFile($event)"
+      (fileRemoved)="handleFileRemoved($event)"
       bmbVerticalLayoutItem
     />
     <button

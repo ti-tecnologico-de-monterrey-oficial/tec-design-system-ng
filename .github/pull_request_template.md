@@ -18,5 +18,6 @@ Please check all steps on the checklist
 
 - [ ] My code matches all coding standars.
 - [ ] I included the documentation files (.stories.ts).
-- [ ] I ran the unit test before submitting.
+- [ ] I ran the unit tests before submitting (`npm run test`).
+- [ ] I ran the E2E tests before submitting (`npm run e2e`).
 - [ ] My code resolved all of the task's acceptance criteria.

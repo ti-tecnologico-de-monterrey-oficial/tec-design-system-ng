@@ -370,7 +370,7 @@ ${RELEVANT_TITLE.example} ***image/**** is for all image types:
     ),
     fileRemoved: getOnEventParam(
       getOnEvent('', 'fileRemoved', 'string'),
-      'when a file is removed, the file name is the emitted value. ',
+      'when a file is removed, the file name is emitted. ',
       'other',
     ),
   },
