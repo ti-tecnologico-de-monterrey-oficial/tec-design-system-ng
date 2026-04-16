@@ -1,15 +1,15 @@
 import { Component, input } from '@angular/core';
 
 export type BmbCustomIconListType =
-  'bmb_android' |
-  'bmb_apple' |
-  'bmb_drive' |
-  'bmb_facebook' |
-  'bmb_instagram' |
-  'bmb_teams' |
-  'bmb_twitter' |
-  'bmb_whatsapp' |
-  'bmb_youtube';
+  | 'bmb_android'
+  | 'bmb_apple'
+  | 'bmb_drive'
+  | 'bmb_facebook'
+  | 'bmb_instagram'
+  | 'bmb_teams'
+  | 'bmb_twitter'
+  | 'bmb_whatsapp'
+  | 'bmb_youtube';
 
 export const BmbCustomIconList: BmbCustomIconListType[] = [
   'bmb_android',
