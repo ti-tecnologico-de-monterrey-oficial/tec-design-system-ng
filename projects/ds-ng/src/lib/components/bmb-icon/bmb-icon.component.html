@@ -11,7 +11,15 @@
     ></span>
   }
 </ng-template>
-
+@if (isCustomIcon()) {
+  <figure
+    class="bmb_icon-figure"
+    [ngStyle]="getImageStyles()"
+    [attr.aria-label]="alt() || icon()"
+  >
+    <bmb-custom-icons [icon]="customIconName()" [size]="size() ?? 16" />
+  </figure>
+}
 @if (isSVGTemplate() && !!safeSVG) {
   <figure
     class="bmb_icon-figure"

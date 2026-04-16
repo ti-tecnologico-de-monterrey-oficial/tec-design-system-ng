@@ -9,6 +9,7 @@ import {
   untracked,
   ViewEncapsulation,
   contentChild,
+  computed,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { buildErrorMessage, isImage } from '../../utils/utils';
@@ -16,20 +17,31 @@ import { BmbNotificationCounterComponent } from '../bmb-notification-counter/bmb
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { BmbIconService } from '../../services/icon/icon.service';
 import { sanitizeContent } from '../../utils/sanitizeContent';
+import {
+  BmbCustomIconList,
+  BmbCustomIconListType,
+  BmbCustomIconsComponent,
+} from './bmb-custom-icons/bmb-custom-icons.component';
+import { A11yModule } from "@angular/cdk/a11y";
 
 @Component({
   selector: 'bmb-icon',
   standalone: true,
-  imports: [CommonModule, BmbNotificationCounterComponent],
+  imports: [
+    CommonModule,
+    BmbNotificationCounterComponent,
+    BmbCustomIconsComponent,
+    A11yModule
+],
   templateUrl: './bmb-icon.component.html',
   styleUrl: './bmb-icon.component.scss',
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BmbIconComponent implements OnInit {
-  icon = input<string>('');
+  icon = input<string | BmbCustomIconListType>('');
   isFill = input<boolean>(true);
-  size = input<number | undefined>();
+  size = input<number>();
   alt = input<string>('');
   dotNotification = input<number>();
   isSVGTemplate = input<boolean>();
@@ -37,6 +49,15 @@ export class BmbIconComponent implements OnInit {
   styleIconGoogle = 'material-symbols-rounded';
   iconSvg = signal<SafeHtml | null>(null);
   customIcon = contentChild<TemplateRef<any>>('customIcon');
+
+  isCustomIcon = computed(() => {
+    const iconValue = this.icon();
+    return BmbCustomIconList.includes(iconValue as BmbCustomIconListType);
+  });
+  customIconName = computed<BmbCustomIconListType>(() => {
+    const iconValue = this.icon();
+    return this.isCustomIcon() ? (iconValue as BmbCustomIconListType) : 'bmb_android';
+  });
 
   constructor(
     private sanitizer: DomSanitizer,

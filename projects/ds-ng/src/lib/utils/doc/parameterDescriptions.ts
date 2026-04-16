@@ -647,7 +647,7 @@ export const DBmbIconParamDesc = {
     description: ICON_DESCRIPTION,
     table: {
       category: 'Properties',
-      type: { summary: 'string' },
+      type: { summary: 'string | BmbCustomIconListType' },
       defaultValue: getDefaultValueControl(),
     },
   },
