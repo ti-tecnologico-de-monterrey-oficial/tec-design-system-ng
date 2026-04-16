@@ -295,6 +295,12 @@
       color: var(--general-contrasts) !important;
     }
   }
+
+  [id*='story--components-menus-top-bar'] {
+    bmb-top-bar {
+      width: 100%;
+    }
+  }
 }
 
 //Storybook alert blockquote

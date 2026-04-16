@@ -6,6 +6,8 @@
 *
 topbar user
 *
+topbar user
+*
 Formato
 *
 new config
@@ -64,6 +66,8 @@ chore: se eliminó código que no se utiliza
 
 ### 🆕 Nuevos Componentes
 
+- **topbar user**:
+topbar user
 - **topbar user**:
 topbar user
 - **Formato**:
@@ -125,6 +129,8 @@ chore: se eliminó código que no se utiliza
 
 ### 🔄 Componentes Actualizados
 
+- **topbar user**:
+topbar user
 - **topbar user**:
 topbar user
 - **Formato**:

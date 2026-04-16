@@ -79,6 +79,7 @@
         [role]="mitec() ? userInformation().role : ''"
         contentLayout="row"
         salutation=""
+        (onUserClick)="handleUserClick($event)"
       />
     </bmb-check-external-link-button>
   }
