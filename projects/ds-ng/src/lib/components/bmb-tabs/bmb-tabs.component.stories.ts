@@ -248,7 +248,7 @@ Data:
     appearanceContrast: 'default',
     tabs: [
       { id: 1, title: 'Tec de Monterrey', badge: 13, isActive: true },
-      { id: 2, title: 'Label demasiado grande para una tab', badge: 113, },
+      { id: 2, title: 'Label demasiado grande para una tab', badge: 113 },
       { id: 3, title: 'Mas usado', badge: 100 },
       { id: 4, title: 'Textualesssssssssssssssssssssssssss' },
       { id: 5, title: 'Text' },

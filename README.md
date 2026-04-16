@@ -14,11 +14,13 @@ Descubre cómo nuestro Design System no solo da forma a la estética, sino que t
 Esta versión se enfoca en hacer más claras las notificaciones, los menús de acción y los componentes interactivos clave. Es el resultado del trabajo colaborativo de varios equipos para reducir fricciones en flujos cotidianos y mejorar la legibilidad visual. Las personas se benefician de una experiencia más consistente, predecible y accesible en situaciones de uso intensivo.
 
 ### 🆕 Nuevas Funcionalidades
+
 - El componente de perfil ahora permite cambiar de rol y emite eventos claros para reaccionar a estos cambios, facilitando a las personas alternar entre distintos contextos (por ejemplo, estudiante y colaborador) sin salir del flujo actual.
 - Se incorpora una tarjeta de notificación dedicada para mostrar avisos importantes de forma más visible y estructurada, ayudando a que las personas identifiquen rápidamente información prioritaria.
 - Los íconos interactivos ahora pueden utilizar un fondo blanco adicional, mejorando el contraste y la legibilidad en interfaces con fondos complejos.
 
 ### ✅ Problemas Resueltos
+
 - Se ajustó el comportamiento del menú desplegable para que, al cerrar un modal, solo se cierre el dropdown relacionado, evitando cierres inesperados de otros elementos y manteniendo el control en manos de las personas.
 - Se corrigió la validación del tamaño de archivo en el componente de selección, mostrando ahora mensajes de error acordes a la situación real y evitando confusión al cargar documentos.
 - Se mejoró el comportamiento responsivo del componente de imagen cuando se utiliza junto con el paginador de múltiples puntos, asegurando que las imágenes se muestren completas y sin recortes en diferentes tamaños de pantalla.
@@ -26,6 +28,7 @@ Esta versión se enfoca en hacer más claras las notificaciones, los menús de a
 - Se corrigieron las medidas de la credencial digital para que se muestre con proporciones adecuadas, lo que mejora la legibilidad de los datos personales y evita recortes visuales.
 
 ### ⚡ Optimizaciones
+
 - Se refinaron los estilos y la organización visual de los menús de acción, especialmente en variantes como “Profile switch menu” y textos informativos, para hacer más clara la jerarquía de opciones y reducir errores al seleccionar acciones.
 
 _Esta versión es el resultado del esfuerzo colaborativo del equipo de diseño y desarrollo, trabajando para ofrecer experiencias digitales de calidad para toda la comunidad._

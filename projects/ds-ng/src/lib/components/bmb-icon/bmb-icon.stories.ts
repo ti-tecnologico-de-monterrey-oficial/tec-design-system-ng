@@ -1,4 +1,4 @@
-import { Meta, StoryObj } from '@storybook/angular';
+import { Meta, StoryObj, applicationConfig } from '@storybook/angular';
 import { BmbIconComponent } from './bmb-icon.component';
 import {
   getArchitectureSection,
@@ -13,10 +13,16 @@ import {
   DBmbIconParamDesc,
   ICON_IMAGE_DETAIL,
 } from '../../utils/doc/parameterDescriptions';
+import { provideHttpClient } from '@angular/common/http';
 
 export default {
   title: 'Foundations/Icon',
   component: BmbIconComponent,
+  decorators: [
+    applicationConfig({
+      providers: [provideHttpClient()],
+    }),
+  ],
   tags: ['!autodocs'],
   parameters: {
     controls: {
@@ -53,6 +59,16 @@ ${getSpecialSpecifications(
 - Use the icons as a visual guide.
 - Check out the icon library in the documentation [here](https://bamboo.tec.mx/latest/foundations/iconos/biblioteca-WrE6VXv5)
 - ${GOOGLE_FONTS_LINK}
+- Custom icons list:
+  - bmb_android
+  - bmb_apple
+  - bmb_drive
+  - bmb_facebook
+  - bmb_instagram
+  - bmb_teams
+  - bmb_twitter
+  - bmb_whatsapp
+  - bmb_youtube
 `,
   { showAdditionalBlockquote: true },
 )}

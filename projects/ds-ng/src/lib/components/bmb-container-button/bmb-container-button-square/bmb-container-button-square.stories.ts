@@ -5,12 +5,11 @@ import {
   DBmbGenericParamDesc,
   DBmbIconParamDesc,
   DBmbImageParamDesc,
-  getPropertyParamDesc,
 } from '../../../utils/doc/parameterDescriptions';
 import { BmbContainerButtonSquareComponent } from './bmb-container-button-square.component';
 
 export default {
-  title: 'Components/Buttons/Container button square',
+  title: 'Components/Buttons/Square',
   component: BmbContainerButtonSquareComponent,
   tags: ['!autodocs'],
   parameters: {
@@ -34,10 +33,6 @@ ${getContainerButtonComponentDescription({
     subtitle: DBmbContainerButton.subtitle,
     iconName: DBmbIconParamDesc.icon,
     iconImageAlt: DBmbImageParamDesc.alt,
-    hideChevron: getPropertyParamDesc('right chevron hide', {
-      controlType: 'boolean',
-      defaultSummary: false,
-    }),
     isDisabled: DBmbGenericParamDesc.disabled,
     isError: DBmbContainerButton.isError,
     getClickButton: DBmbContainerButton.getClickButton,
@@ -47,8 +42,7 @@ ${getContainerButtonComponentDescription({
     subtitle: 'sub title',
     iconName: 'home',
     iconImageAlt: '',
-    hideChevron: false,
-    isDisable: false,
+    isDisabled: false,
     isError: false,
     getClickButton: () => {
       console.log('Container button clicked');

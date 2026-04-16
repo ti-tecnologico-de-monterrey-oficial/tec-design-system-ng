@@ -145,7 +145,10 @@ describe('BmbFilterCardComponent', () => {
       fixture.componentRef.setInput('visibilityRules', visibilityRules);
       fixture.detectChanges();
 
-      component.controlChange({ name: 'nivel', type: 'radial', label: 'Profesional' }, { checked: true });
+      component.controlChange(
+        { name: 'nivel', type: 'radial', label: 'Profesional' },
+        { checked: true },
+      );
       fixture.detectChanges();
 
       expect(component.isControlVisible('tipoEval')).toBeTrue();
@@ -159,7 +162,10 @@ describe('BmbFilterCardComponent', () => {
       fixture.componentRef.setInput('visibilityRules', visibilityRules);
       fixture.detectChanges();
 
-      component.controlChange({ name: 'nivel', type: 'radial', label: 'Preparatoria' }, { checked: true });
+      component.controlChange(
+        { name: 'nivel', type: 'radial', label: 'Preparatoria' },
+        { checked: true },
+      );
       fixture.detectChanges();
 
       expect(component.isControlVisible('deptos')).toBeTrue();
@@ -173,10 +179,16 @@ describe('BmbFilterCardComponent', () => {
       fixture.componentRef.setInput('visibilityRules', visibilityRules);
       fixture.detectChanges();
 
-      component.controlChange({ name: 'tipoEval', type: 'radial', label: 'Parcial' }, { checked: true });
+      component.controlChange(
+        { name: 'tipoEval', type: 'radial', label: 'Parcial' },
+        { checked: true },
+      );
       fixture.detectChanges();
 
-      component.controlChange({ name: 'nivel', type: 'radial', label: 'Preparatoria' }, { checked: true });
+      component.controlChange(
+        { name: 'nivel', type: 'radial', label: 'Preparatoria' },
+        { checked: true },
+      );
       fixture.detectChanges();
 
       expect(component.filterForm.get('tipoEval')?.value).toBeFalsy();
@@ -189,11 +201,14 @@ describe('BmbFilterCardComponent', () => {
       fixture.componentRef.setInput('visibilityRules', visibilityRules);
       fixture.detectChanges();
 
-      component.controlChange({ name: 'nivel', type: 'radial', label: 'Profesional' }, { checked: true });
+      component.controlChange(
+        { name: 'nivel', type: 'radial', label: 'Profesional' },
+        { checked: true },
+      );
       fixture.detectChanges();
 
-      const deptosSection = baseControlTypes.find(ct =>
-        ct.control.some(c => c.name === 'deptos'),
+      const deptosSection = baseControlTypes.find((ct) =>
+        ct.control.some((c) => c.name === 'deptos'),
       )!;
       expect(component.isSectionVisible(deptosSection)).toBeFalse();
     });
@@ -205,7 +220,10 @@ describe('BmbFilterCardComponent', () => {
       fixture.componentRef.setInput('visibilityRules', visibilityRules);
       fixture.detectChanges();
 
-      component.controlChange({ name: 'nivel', type: 'radial', label: 'Profesional' }, { checked: true });
+      component.controlChange(
+        { name: 'nivel', type: 'radial', label: 'Profesional' },
+        { checked: true },
+      );
       fixture.detectChanges();
 
       component.onReset();
@@ -242,8 +260,16 @@ describe('BmbFilterCardComponent', () => {
     const guadalajaraOptions = ['Arquitectura', 'Diseño'];
 
     const optionRules: IBmbOptionRule[] = [
-      { when: { campus: 'Monterrey' }, target: 'carrera', options: monterreyOptions },
-      { when: { campus: 'Guadalajara' }, target: 'carrera', options: guadalajaraOptions },
+      {
+        when: { campus: 'Monterrey' },
+        target: 'carrera',
+        options: monterreyOptions,
+      },
+      {
+        when: { campus: 'Guadalajara' },
+        target: 'carrera',
+        options: guadalajaraOptions,
+      },
     ];
 
     it('should return static options when no optionRules are provided', () => {
@@ -263,11 +289,16 @@ describe('BmbFilterCardComponent', () => {
       fixture.componentRef.setInput('optionRules', optionRules);
       fixture.detectChanges();
 
-      component.controlChange({ name: 'campus', type: 'radial', label: 'Monterrey' }, { checked: true });
+      component.controlChange(
+        { name: 'campus', type: 'radial', label: 'Monterrey' },
+        { checked: true },
+      );
       fixture.detectChanges();
 
       const carreraControl = cascadeControlTypes[1].control[0];
-      expect(component.getControlOptions(carreraControl)).toEqual(monterreyOptions);
+      expect(component.getControlOptions(carreraControl)).toEqual(
+        monterreyOptions,
+      );
     });
 
     it('should update dynamic options when source control changes', () => {
@@ -277,14 +308,22 @@ describe('BmbFilterCardComponent', () => {
       fixture.componentRef.setInput('optionRules', optionRules);
       fixture.detectChanges();
 
-      component.controlChange({ name: 'campus', type: 'radial', label: 'Monterrey' }, { checked: true });
+      component.controlChange(
+        { name: 'campus', type: 'radial', label: 'Monterrey' },
+        { checked: true },
+      );
       fixture.detectChanges();
 
-      component.controlChange({ name: 'campus', type: 'radial', label: 'Guadalajara' }, { checked: true });
+      component.controlChange(
+        { name: 'campus', type: 'radial', label: 'Guadalajara' },
+        { checked: true },
+      );
       fixture.detectChanges();
 
       const carreraControl = cascadeControlTypes[1].control[0];
-      expect(component.getControlOptions(carreraControl)).toEqual(guadalajaraOptions);
+      expect(component.getControlOptions(carreraControl)).toEqual(
+        guadalajaraOptions,
+      );
     });
 
     it('should clear dependent dropdown value if current value is not in new options', () => {
@@ -294,13 +333,19 @@ describe('BmbFilterCardComponent', () => {
       fixture.componentRef.setInput('optionRules', optionRules);
       fixture.detectChanges();
 
-      component.controlChange({ name: 'campus', type: 'radial', label: 'Monterrey' }, { checked: true });
+      component.controlChange(
+        { name: 'campus', type: 'radial', label: 'Monterrey' },
+        { checked: true },
+      );
       component.onValueChange('Ingeniería', 'carrera');
       fixture.detectChanges();
 
       expect(component.filterForm.get('carrera')?.value).toBe('Ingeniería');
 
-      component.controlChange({ name: 'campus', type: 'radial', label: 'Guadalajara' }, { checked: true });
+      component.controlChange(
+        { name: 'campus', type: 'radial', label: 'Guadalajara' },
+        { checked: true },
+      );
       fixture.detectChanges();
 
       expect(component.filterForm.get('carrera')?.value).toBeFalsy();
@@ -311,18 +356,45 @@ describe('BmbFilterCardComponent', () => {
         {
           title: 'Campus',
           control: [
-            { name: 'campusSem', type: 'radial', label: 'Monterrey', value: 'MTY', id: 'sem-mty' },
-            { name: 'campusSem', type: 'radial', label: 'Guadalajara', value: 'GDL', id: 'sem-gdl' },
+            {
+              name: 'campusSem',
+              type: 'radial',
+              label: 'Monterrey',
+              value: 'MTY',
+              id: 'sem-mty',
+            },
+            {
+              name: 'campusSem',
+              type: 'radial',
+              label: 'Guadalajara',
+              value: 'GDL',
+              id: 'sem-gdl',
+            },
           ],
         },
         {
           title: 'Carrera',
-          control: [{ name: 'carreraSem', type: 'dropdown', label: 'Carrera', options: [] }],
+          control: [
+            {
+              name: 'carreraSem',
+              type: 'dropdown',
+              label: 'Carrera',
+              options: [],
+            },
+          ],
         },
       ];
       const rules: IBmbOptionRule[] = [
-        { when: { campusSem: 'MTY' }, target: 'carreraSem', options: ['Ingeniería', 'Medicina'] },
-        { when: { campusSem: 'GDL' }, target: 'carreraSem', options: ['Arquitectura', 'Diseño'] },
+        {
+          when: { campusSem: 'MTY' },
+          target: 'carreraSem',
+          options: ['Ingeniería', 'Medicina'],
+        },
+        {
+          when: { campusSem: 'GDL' },
+          target: 'carreraSem',
+          options: ['Arquitectura', 'Diseño'],
+        },
       ];
 
       const fixture = TestBed.createComponent(BmbFilterCardComponent);
@@ -339,7 +411,10 @@ describe('BmbFilterCardComponent', () => {
       fixture.detectChanges();
 
       const carreraControl = controlTypesWithValue[1].control[0];
-      expect(component.getControlOptions(carreraControl)).toEqual(['Ingeniería', 'Medicina']);
+      expect(component.getControlOptions(carreraControl)).toEqual([
+        'Ingeniería',
+        'Medicina',
+      ]);
     });
 
     it('should seed filterValues with semantic value on init when radial is pre-checked with value != label', () => {
@@ -347,17 +422,41 @@ describe('BmbFilterCardComponent', () => {
         {
           title: 'Campus',
           control: [
-            { name: 'campusPre', type: 'radial', label: 'Monterrey', value: 'MTY', checked: true, id: 'pre-mty' },
-            { name: 'campusPre', type: 'radial', label: 'Guadalajara', value: 'GDL', id: 'pre-gdl' },
+            {
+              name: 'campusPre',
+              type: 'radial',
+              label: 'Monterrey',
+              value: 'MTY',
+              checked: true,
+              id: 'pre-mty',
+            },
+            {
+              name: 'campusPre',
+              type: 'radial',
+              label: 'Guadalajara',
+              value: 'GDL',
+              id: 'pre-gdl',
+            },
           ],
         },
         {
           title: 'Carrera',
-          control: [{ name: 'carreraPre', type: 'dropdown', label: 'Carrera', options: [] }],
+          control: [
+            {
+              name: 'carreraPre',
+              type: 'dropdown',
+              label: 'Carrera',
+              options: [],
+            },
+          ],
         },
       ];
       const rules: IBmbOptionRule[] = [
-        { when: { campusPre: 'MTY' }, target: 'carreraPre', options: ['Ingeniería', 'Medicina'] },
+        {
+          when: { campusPre: 'MTY' },
+          target: 'carreraPre',
+          options: ['Ingeniería', 'Medicina'],
+        },
       ];
 
       const fixture = TestBed.createComponent(BmbFilterCardComponent);
@@ -368,7 +467,10 @@ describe('BmbFilterCardComponent', () => {
 
       // Without the fix, filterValues['campusPre'] would be 'Monterrey' (label) and the rule wouldn't match
       const carreraControl = controlTypesPreChecked[1].control[0];
-      expect(component.getControlOptions(carreraControl)).toEqual(['Ingeniería', 'Medicina']);
+      expect(component.getControlOptions(carreraControl)).toEqual([
+        'Ingeniería',
+        'Medicina',
+      ]);
     });
   });
 
@@ -376,10 +478,13 @@ describe('BmbFilterCardComponent', () => {
     it('should open modal when openModalComponent is called', () => {
       const fixture = TestBed.createComponent(BmbFilterCardComponent);
       const component = fixture.componentInstance;
-      const modalSpy = spyOn(component['modalService'], 'openModal').and.returnValue('modal-123');
-      
+      const modalSpy = spyOn(
+        component['modalService'],
+        'openModal',
+      ).and.returnValue('modal-123');
+
       component.openModalComponent();
-      
+
       expect(modalSpy).toHaveBeenCalled();
       expect(component.modalId()).toBe('modal-123');
     });
@@ -389,37 +494,49 @@ describe('BmbFilterCardComponent', () => {
       const component = fixture.componentInstance;
       const closeSpy = spyOn(component['modalService'], 'closeModal');
       const emitSpy = spyOn(component.applyFilters, 'emit');
-      
+
       // Need to invoke detectChanges to initialize the form
       fixture.detectChanges();
-      
+
       component.modalId.set('modal-123');
       component.storedValues = {
         'checkbox-1': { type: 'checkbox', name: 'checkbox-1', checked: true },
         'radial-1': { type: 'radial', name: 'radial-1', checked: true },
-        'dropdown-1': { type: 'dropdown', name: 'dropdown-1', checked: false, value: 'option A' },
+        'dropdown-1': {
+          type: 'dropdown',
+          name: 'dropdown-1',
+          checked: false,
+          value: 'option A',
+        },
       };
-      
-      component.filterForm.addControl('dropdown-1', new FormControl('option A'));
+
+      component.filterForm.addControl(
+        'dropdown-1',
+        new FormControl('option A'),
+      );
       // Simulate search input value
       component.filterForm.get('search')?.setValue('test search');
-      
+
       component.handleSubmit();
-      
+
       expect(closeSpy).toHaveBeenCalledWith('modal-123');
-      expect(emitSpy).toHaveBeenCalledWith(jasmine.objectContaining({
-        'checkbox-1': jasmine.any(Object),
-        'radial-1': jasmine.any(Object),
-        search: 'test search'
-      }));
+      expect(emitSpy).toHaveBeenCalledWith(
+        jasmine.objectContaining({
+          'checkbox-1': jasmine.any(Object),
+          'radial-1': jasmine.any(Object),
+          search: 'test search',
+        }),
+      );
     });
 
     it('should handle switch control change', () => {
       const fixture = TestBed.createComponent(BmbFilterCardComponent);
       const component = fixture.componentInstance;
-      fixture.componentRef.setInput('controlTypes', [{ title: 'T', control: [{ name: 'sw', type: 'switch' }] }]);
+      fixture.componentRef.setInput('controlTypes', [
+        { title: 'T', control: [{ name: 'sw', type: 'switch' }] },
+      ]);
       fixture.detectChanges();
-      
+
       component.controlChange({ name: 'sw', type: 'switch' }, true);
       expect(component.filterForm.get('sw')?.value).toBeTrue();
       expect(component.storedValues['sw'].checked).toBeTrue();
@@ -428,10 +545,15 @@ describe('BmbFilterCardComponent', () => {
     it('should handle checkbox control change', () => {
       const fixture = TestBed.createComponent(BmbFilterCardComponent);
       const component = fixture.componentInstance;
-      fixture.componentRef.setInput('controlTypes', [{ title: 'T', control: [{ name: 'chk', type: 'checkbox' }] }]);
+      fixture.componentRef.setInput('controlTypes', [
+        { title: 'T', control: [{ name: 'chk', type: 'checkbox' }] },
+      ]);
       fixture.detectChanges();
-      
-      component.controlChange({ name: 'chk', type: 'checkbox' }, { target: { checked: true } });
+
+      component.controlChange(
+        { name: 'chk', type: 'checkbox' },
+        { target: { checked: true } },
+      );
       expect(component.filterForm.get('chk')?.value).toBeTrue();
       expect(component.storedValues['chk'].checked).toBeTrue();
     });
@@ -439,10 +561,18 @@ describe('BmbFilterCardComponent', () => {
     it('should handle dropdown control change', () => {
       const fixture = TestBed.createComponent(BmbFilterCardComponent);
       const component = fixture.componentInstance;
-      fixture.componentRef.setInput('controlTypes', [{ title: 'T', control: [{ name: 'drop', type: 'dropdown', options: ['A','B'] }] }]);
+      fixture.componentRef.setInput('controlTypes', [
+        {
+          title: 'T',
+          control: [{ name: 'drop', type: 'dropdown', options: ['A', 'B'] }],
+        },
+      ]);
       fixture.detectChanges();
-      
-      component.controlChange({ name: 'drop', type: 'dropdown', value: 'B' }, 'B');
+
+      component.controlChange(
+        { name: 'drop', type: 'dropdown', value: 'B' },
+        'B',
+      );
       expect(component.filterForm.get('drop')?.value).toBe('B');
       expect(component.storedValues['drop'].value).toBe('B');
     });
@@ -450,9 +580,11 @@ describe('BmbFilterCardComponent', () => {
     it('should handle tag/default control change', () => {
       const fixture = TestBed.createComponent(BmbFilterCardComponent);
       const component = fixture.componentInstance;
-      fixture.componentRef.setInput('controlTypes', [{ title: 'T', control: [{ name: 'tag1', type: 'tag' }] }]);
+      fixture.componentRef.setInput('controlTypes', [
+        { title: 'T', control: [{ name: 'tag1', type: 'tag' }] },
+      ]);
       fixture.detectChanges();
-      
+
       component.controlChange({ name: 'tag1', type: 'tag' }, null);
       expect(component.filterForm.get('tag1')?.value).toBeTrue();
       expect(component.storedValues['tag1'].checked).toBeTrue();
@@ -461,13 +593,27 @@ describe('BmbFilterCardComponent', () => {
     it('should handle multiple radial inputs with the same name in ngOnInit', () => {
       const fixture = TestBed.createComponent(BmbFilterCardComponent);
       const component = fixture.componentInstance;
-      fixture.componentRef.setInput('controlTypes', [{
-        title: 'T',
-        control: [
-          { name: 'rad1', type: 'radial', label: 'R1', value: 'V1', checked: false },
-          { name: 'rad1', type: 'radial', label: 'R2', value: 'V2', checked: true }
-        ]
-      }]);
+      fixture.componentRef.setInput('controlTypes', [
+        {
+          title: 'T',
+          control: [
+            {
+              name: 'rad1',
+              type: 'radial',
+              label: 'R1',
+              value: 'V1',
+              checked: false,
+            },
+            {
+              name: 'rad1',
+              type: 'radial',
+              label: 'R2',
+              value: 'V2',
+              checked: true,
+            },
+          ],
+        },
+      ]);
       fixture.detectChanges();
       expect(component.filterForm.get('rad1')?.value).toBe('R2');
       expect(component.storedValues['rad1'].checked).toBeTrue();
@@ -485,7 +631,9 @@ describe('BmbFilterCardComponent', () => {
       const consoleSpy = spyOn(console, 'error');
       const fixture = TestBed.createComponent(BmbFilterCardComponent);
       const component = fixture.componentInstance;
-      fixture.componentRef.setInput('controlTypes', [{ title: 'T', control: [{ name: 'inv', type: 'invalid' as any }] }]);
+      fixture.componentRef.setInput('controlTypes', [
+        { title: 'T', control: [{ name: 'inv', type: 'invalid' as any }] },
+      ]);
       fixture.detectChanges();
       expect(consoleSpy).toHaveBeenCalledWith('Control type not supported');
     });
@@ -493,12 +641,17 @@ describe('BmbFilterCardComponent', () => {
     it('should ignore control change if formControl is missing', () => {
       const fixture = TestBed.createComponent(BmbFilterCardComponent);
       const component = fixture.componentInstance;
-      fixture.componentRef.setInput('controlTypes', [{ title: 'T', control: [{ name: 'chk', type: 'checkbox' }] }]);
+      fixture.componentRef.setInput('controlTypes', [
+        { title: 'T', control: [{ name: 'chk', type: 'checkbox' }] },
+      ]);
       fixture.detectChanges();
-      
+
       component.filterForm.removeControl('chk');
-      component.controlChange({ name: 'chk', type: 'checkbox' }, { target: { checked: true } });
-      
+      component.controlChange(
+        { name: 'chk', type: 'checkbox' },
+        { target: { checked: true } },
+      );
+
       expect(component.filterForm.get('chk')).toBeNull();
     });
 
@@ -507,7 +660,7 @@ describe('BmbFilterCardComponent', () => {
       const component = fixture.componentInstance;
       const emitSpy = spyOn(component.resetFilters, 'emit');
       fixture.detectChanges();
-      
+
       component.onReset();
       expect(emitSpy).toHaveBeenCalled();
     });

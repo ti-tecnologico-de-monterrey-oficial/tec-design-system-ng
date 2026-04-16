@@ -14,7 +14,6 @@ import {
   BmbSidebarComponent,
   SidebarElement,
   BmbNativeModalService,
-  IBmbNativeModal,
   BmbProjectionContentService,
   BmbNotificationCardComponent,
   IBmbDataAlert,
@@ -31,7 +30,6 @@ import {
   BmbCarouselComponent,
 } from '../../projects/ds-ng/src/public-api';
 import { MatDialog } from '@angular/material/dialog';
-import { TestComponentComponent } from './components/test-component/test-component.component';
 import { Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { sidebarOptions } from './sidebarOptions';
@@ -60,6 +58,8 @@ import services from './pages/form-validator-test/services.json';
 export class AppComponent {
   private router = inject(Router);
   private searchSubject = new Subject<string>();
+
+  _isLoading = signal<boolean>(false);
 
   constructor(
     private modalService: BmbNativeModalService,
@@ -92,6 +92,10 @@ export class AppComponent {
         this.resultList.set([...filteredPersons, ...filteredServices]);
         this.isSearchLoading.set(false);
       });
+
+    // effect(() => {
+    //   const status =
+    // })
   }
 
   @ViewChild('modalTemplate') modalTemplate!: TemplateRef<unknown>;
@@ -145,6 +149,16 @@ export class AppComponent {
       time: new Date('2025-02-19T14:34:00'),
     },
   ];
+
+  handleSendMessage(value: unknown): void {
+    console.info('handleSendMessage app', value);
+
+    setTimeout(() => {
+      console.info('handleSendMessage before', this._isLoading());
+      this._isLoading.set(false);
+      console.info('handleSendMessage value', this._isLoading());
+    }, 2000);
+  }
 
   handleUserProfileClick(event: MouseEvent): void {
     const targetRef = event.currentTarget as HTMLElement;
@@ -591,7 +605,7 @@ https://live.tec.mx/cbweek</p><p>¡Te esperamos!`,
     const contentID = this.projectionService.openContent({
       content: this.searchTemplate,
       // content: BmbSearchCardComponent,
-      targetRef: event ? event.currentTarget as HTMLElement : null,
+      targetRef: event ? (event.currentTarget as HTMLElement) : null,
       showBackdrop: false,
       inputContext: {
         title: 'Search',

@@ -19,7 +19,7 @@
           [alt]="alt()"
           [loading]="loading()"
           class="bmb_image-figure-image"
-          [style]="{ 'object-fit': objectFit()}"
+          [style]="{ 'object-fit': objectFit() }"
         />
       </picture>
     </figure>
@@ -46,7 +46,7 @@
           (click)="handleSingleImageClick()"
           (keydown.enter)="handleSingleImageClick()"
           (keydown.space)="handleSingleImageClick()"
-          [style]="{ 'object-fit': objectFit()}"
+          [style]="{ 'object-fit': objectFit() }"
         />
       </picture>
     </figure>
@@ -89,7 +89,7 @@
             tabindex="0"
             (click)="handleImageClick(img, $index)"
             (keydown)="handleImageKeyDown($event, img, $index)"
-            [style]="{ 'object-fit': objectFit()}"
+            [style]="{ 'object-fit': objectFit() }"
           />
         </picture>
       </figure>

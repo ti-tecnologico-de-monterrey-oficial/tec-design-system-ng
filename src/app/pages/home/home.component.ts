@@ -29,7 +29,7 @@ import {
   BmbNativeModalService,
   BmbFilterCardComponent,
   ThemeService,
-  BmbIconComponent
+  BmbIconComponent,
 } from '../../../../projects/ds-ng/src/public-api';
 import { HelpMenuComponent } from '../../components/help-menu/help-menu.component';
 import { ModalWDropdownComponent } from '../../components/modal-w-dropdown/modal-w-dropdown.component';
@@ -54,7 +54,7 @@ import { ModalWDropdownComponent } from '../../components/modal-w-dropdown/modal
     BmbMediaCardComponent,
     BmbImageComponent,
     BmbFilterCardComponent,
-    BmbIconComponent
+    BmbIconComponent,
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',

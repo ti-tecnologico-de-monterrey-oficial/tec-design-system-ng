@@ -54,7 +54,7 @@ export class BmbUserSummaryContentComponent {
   additionalInfo = input<string>();
   idDigital = input<string>();
 
-  onUserClick = output<MouseEvent>();
+  onUserClick = output<{ source: 'mouse' | 'keyboard' }>();
 
   getClass(mainClassName: string): string[] {
     const classes: string[] = [];
@@ -84,8 +84,10 @@ export class BmbUserSummaryContentComponent {
     return this.name();
   }
 
-  handleUserClick(event: MouseEvent) {
-    this.onUserClick.emit(event);
+  handleUserClick(event: MouseEvent | KeyboardEvent) {
+    this.onUserClick.emit({
+      source: event instanceof MouseEvent ? 'mouse' : 'keyboard',
+    });
   }
 
   get emailAsLink(): IBmbLinkConfiguration | null {

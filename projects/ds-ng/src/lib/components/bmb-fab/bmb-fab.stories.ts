@@ -2,14 +2,16 @@ import { Meta, componentWrapperDecorator, StoryObj } from '@storybook/angular';
 import { BmbFabComponent } from './bmb-fab.component';
 import {
   attributes,
+  BlockquoteType,
+  getAlertBlockquote,
   getBasicExampleBlock,
   getGeneralComponentDescription,
   getGeneralDescription,
   getOnEvent,
   IBmbOnEvent,
+  RELEVANT_TITLE,
 } from '../../utils/doc/utils';
 import {
-  DBmbGenericParamDesc,
   DBmbIconParamDesc,
   getDefaultValueControl,
   getOnClickParam,
@@ -80,8 +82,11 @@ ${getBasicExampleBlock('BmbFabComponent', '', onEvent.handleExample)}
     fabClick: getOnClickParam(onEvent),
     mitec: {
       control: { type: 'boolean' },
-      description:
-        'Sets the component changes to a version that is used for the platform "mitec", this version changes the color and the position of the text.',
+      description: `Sets the component changes to a version that is used for **mitec** platform.
+${getAlertBlockquote(`**mitec** has only one appearance and size.`, {
+  title: RELEVANT_TITLE.important,
+  blockquoteType: BlockquoteType.important,
+})}`,
       table: {
         category: 'Properties',
         type: { summary: 'boolean' },

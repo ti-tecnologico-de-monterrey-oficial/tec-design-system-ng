@@ -9,6 +9,7 @@ import {
   untracked,
   ViewEncapsulation,
   contentChild,
+  computed,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { buildErrorMessage, isImage } from '../../utils/utils';
@@ -16,21 +17,31 @@ import { BmbNotificationCounterComponent } from '../bmb-notification-counter/bmb
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { BmbIconService } from '../../services/icon/icon.service';
 import { sanitizeContent } from '../../utils/sanitizeContent';
-import { HttpClient } from '@angular/common/http';
+import {
+  BmbCustomIconList,
+  BmbCustomIconListType,
+  BmbCustomIconsComponent,
+} from './bmb-custom-icons/bmb-custom-icons.component';
+import { A11yModule } from "@angular/cdk/a11y";
 
 @Component({
   selector: 'bmb-icon',
   standalone: true,
-  imports: [CommonModule, BmbNotificationCounterComponent],
+  imports: [
+    CommonModule,
+    BmbNotificationCounterComponent,
+    BmbCustomIconsComponent,
+    A11yModule
+],
   templateUrl: './bmb-icon.component.html',
   styleUrl: './bmb-icon.component.scss',
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BmbIconComponent implements OnInit {
-  icon = input<string>('');
+  icon = input<string | BmbCustomIconListType>('');
   isFill = input<boolean>(true);
-  size = input<number | undefined>();
+  size = input<number>();
   alt = input<string>('');
   dotNotification = input<number>();
   isSVGTemplate = input<boolean>();
@@ -39,38 +50,22 @@ export class BmbIconComponent implements OnInit {
   iconSvg = signal<SafeHtml | null>(null);
   customIcon = contentChild<TemplateRef<any>>('customIcon');
 
+  isCustomIcon = computed(() => {
+    const iconValue = this.icon();
+    return BmbCustomIconList.includes(iconValue as BmbCustomIconListType);
+  });
+  customIconName = computed<BmbCustomIconListType>(() => {
+    const iconValue = this.icon();
+    return this.isCustomIcon() ? (iconValue as BmbCustomIconListType) : 'bmb_android';
+  });
+
   constructor(
     private sanitizer: DomSanitizer,
     private iconService: BmbIconService,
-    private http: HttpClient,
   ) {
     effect(() => {
-      const iconName = this.icon();
-
-      untracked(() => {
-        // Reset cuando no hay icono
-        if (!iconName) {
-          this.iconSvg.set(null);
-          this.svgHtml.set(undefined);
-          return;
-        }
-
-        // Si es una ruta .svg, cargarla vía HTTP y usar svgHtml
-        if (this.isSVGPath(iconName)) {
-          this.loadSvg(iconName);
-          this.iconSvg.set(null);
-          return;
-        }
-
-        // Si es una imagen (png, jpg, etc.), no intentamos cargar desde el servicio de íconos
-        if (this.isImage(iconName)) {
-          this.iconSvg.set(null);
-          this.svgHtml.set(undefined);
-          return;
-        }
-
-        // Ícono de librería (no imagen ni ruta .svg)
-        const svgIcon = this.loadIcon(iconName);
+      if (this.icon()) {
+        const svgIcon = this.loadIcon(this.icon());
         svgIcon.then((icon) => {
           if (icon !== null) {
             untracked(() => {
@@ -78,7 +73,7 @@ export class BmbIconComponent implements OnInit {
             });
           }
         });
-      });
+      }
     });
   }
 
@@ -135,17 +130,6 @@ export class BmbIconComponent implements OnInit {
     return this.sanitizer.bypassSecurityTrustHtml(clean); // NOSONAR Content is sanitized with DOMPurify - safe to bypass Angular sanitization
   }
 
-  svgHtml = signal<SafeHtml | undefined>(undefined);
-
-  loadSvg(path: string) {
-    this.http.get(path, { responseType: 'text' }).subscribe((raw) => {
-      this.svgHtml.set(this.sanitizedHtml(raw));
-    }, (error) => {
-      console.error(`Error loading SVG from path "${path}":`, error);
-      this.svgHtml.set(undefined);
-    });
-  }
-
   isImage(icon: string): boolean {
     return isImage(icon);
   }
@@ -161,10 +145,6 @@ export class BmbIconComponent implements OnInit {
       width: !!this.size() ? `${this.size()}px` : '1em',
       height: !!this.size() ? `${this.size()}px` : '1em',
     };
-  }
-
-  isSVGPath(icon: string): boolean {
-    return icon.trim().toLocaleLowerCase().endsWith('.svg');
   }
 
   get safeSVG(): SafeHtml | null {
