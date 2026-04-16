@@ -15,10 +15,6 @@
     @include mixins.hidden-for-mobile();
   }
 
-  &-button {
-    cursor: pointer;
-  }
-
   &-mobile {
     display: block;
     line-height: 0;
