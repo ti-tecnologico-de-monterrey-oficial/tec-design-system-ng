@@ -167,4 +167,8 @@ export class DropzonePageComponent {
   handleSend(value: unknown): void {
     console.info('Send', value);
   }
+
+  handleFileRemoved(value: unknown): void {
+    console.info('handleFileRemoved', value);
+  }
 }

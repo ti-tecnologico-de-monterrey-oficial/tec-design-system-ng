@@ -81,6 +81,8 @@ export class BmbProgressBarComponent {
   }
 
   handleClick(event: MouseEvent) {
+    event.preventDefault();
+    event.stopPropagation();
     this.actionClick.emit(event);
   }
 

@@ -22,7 +22,7 @@ import {
   BmbCustomIconListType,
   BmbCustomIconsComponent,
 } from './bmb-custom-icons/bmb-custom-icons.component';
-import { A11yModule } from "@angular/cdk/a11y";
+import { A11yModule } from '@angular/cdk/a11y';
 
 @Component({
   selector: 'bmb-icon',
@@ -31,8 +31,8 @@ import { A11yModule } from "@angular/cdk/a11y";
     CommonModule,
     BmbNotificationCounterComponent,
     BmbCustomIconsComponent,
-    A11yModule
-],
+    A11yModule,
+  ],
   templateUrl: './bmb-icon.component.html',
   styleUrl: './bmb-icon.component.scss',
   encapsulation: ViewEncapsulation.None,
@@ -56,7 +56,9 @@ export class BmbIconComponent implements OnInit {
   });
   customIconName = computed<BmbCustomIconListType>(() => {
     const iconValue = this.icon();
-    return this.isCustomIcon() ? (iconValue as BmbCustomIconListType) : 'bmb_android';
+    return this.isCustomIcon()
+      ? (iconValue as BmbCustomIconListType)
+      : 'bmb_android';
   });
 
   constructor(
