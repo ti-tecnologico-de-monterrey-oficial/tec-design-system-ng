@@ -4,17 +4,21 @@
 ### 🚀 Novedades
 
 *
+topbar user
+*
 Formato
 *
 new config
 *
 Add conditional visibility and cascading options to filter card component
 *
-tabs, user-summary
+feat(component / icon): Se agregaron iconos personalizados
 *
 topbar user
 *
 test: Add unit tests for BmbFilterCardComponent, along with related dependency updates.
+*
+roll back user summary changes
 *
 chore: escenarios de pruebas integrales en aplicaciones
 *
@@ -31,6 +35,8 @@ feat: Add bmb-filter-card component with dynamic filtering.
 fix(component / home card): Se actualizaron los estilos responsivos para la home card
 *
 fix(component / multi dot paginator): Se actualizaron los estilos responsivos para el multi dot paginator
+*
+feat(component / image): se agregó la posibilidad de evitar el encoding en la fuente de la imagen
 *
 feat(component/fab): se ealizaron modificaciones para que la versión 'mitec' sea fija (según diseño en Figma)  y no pueda ser modificada.
 *
@@ -58,18 +64,22 @@ chore: se eliminó código que no se utiliza
 
 ### 🆕 Nuevos Componentes
 
+- **topbar user**:
+topbar user
 - **Formato**:
 Formato
 - **new config**:
 new config
 - **Add conditional visibility and cascading options to filter card component**:
 Add conditional visibility and cascading options to filter card component
-- **tabs, user-summary**:
-tabs, user-summary
+- **feat(component / icon): Se agregaron iconos personalizados**:
+feat(component / icon): Se agregaron iconos personalizados
 - **topbar user**:
 topbar user
 - **test: Add unit tests for BmbFilterCardComponent, along with related dependency updates.**:
 test: Add unit tests for BmbFilterCardComponent, along with related dependency updates.
+- **roll back user summary changes**:
+roll back user summary changes
 - **chore: escenarios de pruebas integrales en aplicaciones**:
 chore: escenarios de pruebas integrales en aplicaciones
 - **fix(component/action-menu): se agregaron estilos para organizar contenido de manera responsiva.**:
@@ -86,6 +96,8 @@ feat: Add bmb-filter-card component with dynamic filtering.
 fix(component / home card): Se actualizaron los estilos responsivos para la home card
 - **fix(component / multi dot paginator): Se actualizaron los estilos responsivos para el multi dot paginator**:
 fix(component / multi dot paginator): Se actualizaron los estilos responsivos para el multi dot paginator
+- **feat(component / image): se agregó la posibilidad de evitar el encoding en la fuente de la imagen**:
+feat(component / image): se agregó la posibilidad de evitar el encoding en la fuente de la imagen
 - **feat(component/fab): se ealizaron modificaciones para que la versión 'mitec' sea fija (según diseño en Figma)  y no pueda ser modificada.**:
 feat(component/fab): se ealizaron modificaciones para que la versión 'mitec' sea fija (según diseño en Figma)  y no pueda ser modificada.
 - **fix(component / profile): Se corrigieron los estilos del profile**:
@@ -113,18 +125,22 @@ chore: se eliminó código que no se utiliza
 
 ### 🔄 Componentes Actualizados
 
+- **topbar user**:
+topbar user
 - **Formato**:
 Formato
 - **new config**:
 new config
 - **Add conditional visibility and cascading options to filter card component**:
 Add conditional visibility and cascading options to filter card component
-- **tabs, user-summary**:
-tabs, user-summary
+- **feat(component / icon): Se agregaron iconos personalizados**:
+feat(component / icon): Se agregaron iconos personalizados
 - **topbar user**:
 topbar user
 - **test: Add unit tests for BmbFilterCardComponent, along with related dependency updates.**:
 test: Add unit tests for BmbFilterCardComponent, along with related dependency updates.
+- **roll back user summary changes**:
+roll back user summary changes
 - **chore: escenarios de pruebas integrales en aplicaciones**:
 chore: escenarios de pruebas integrales en aplicaciones
 - **fix(component/action-menu): se agregaron estilos para organizar contenido de manera responsiva.**:
@@ -141,6 +157,8 @@ feat: Add bmb-filter-card component with dynamic filtering.
 fix(component / home card): Se actualizaron los estilos responsivos para la home card
 - **fix(component / multi dot paginator): Se actualizaron los estilos responsivos para el multi dot paginator**:
 fix(component / multi dot paginator): Se actualizaron los estilos responsivos para el multi dot paginator
+- **feat(component / image): se agregó la posibilidad de evitar el encoding en la fuente de la imagen**:
+feat(component / image): se agregó la posibilidad de evitar el encoding en la fuente de la imagen
 - **feat(component/fab): se ealizaron modificaciones para que la versión 'mitec' sea fija (según diseño en Figma)  y no pueda ser modificada.**:
 feat(component/fab): se ealizaron modificaciones para que la versión 'mitec' sea fija (según diseño en Figma)  y no pueda ser modificada.
 - **fix(component / profile): Se corrigieron los estilos del profile**:
