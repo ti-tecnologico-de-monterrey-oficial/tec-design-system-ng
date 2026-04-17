@@ -42,7 +42,7 @@ export const sidebarOptions: SidebarElement[][] = [
       children: [
         {
           id: 1,
-          icon: 'list_alt_check',
+          icon: 'bmb_drive',
           title: 'Forms',
           link: '/form-validator',
         },
