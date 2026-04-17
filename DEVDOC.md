@@ -123,11 +123,11 @@ npm run e2e:debug    # debug mode with inspector
 
 **GitHub Actions**: Three jobs run automatically on every push to `develop` and on every pull request:
 
-| Job | Command | Description |
-|---|---|---|
-| **Build Library** | `npm run build:lib` | Verifies the library compiles successfully |
-| **E2E Tests** | `npm run e2e` | Runs Playwright tests; report uploaded as artifact |
-| **SonarCloud** | — | Static analysis and security scanning |
+| Job               | Command             | Description                                        |
+| ----------------- | ------------------- | -------------------------------------------------- |
+| **Build Library** | `npm run build:lib` | Verifies the library compiles successfully         |
+| **E2E Tests**     | `npm run e2e`       | Runs Playwright tests; report uploaded as artifact |
+| **SonarCloud**    | —                   | Static analysis and security scanning              |
 
 ## Additional Tools
 

@@ -5,7 +5,9 @@ import { CommonModule } from '@angular/common';
 import { moduleMetadata } from '@storybook/angular';
 import { BmbHomeCardComponent } from '../bmb-home-card/bmb-home-card.component';
 import {
+  BlockquoteType,
   DESIGN_SYSTEM_TITLE,
+  getAlertBlockquote,
   getBasicExampleBlock,
   getGeneralComponentDescription,
   getGeneralDescription,
@@ -79,8 +81,16 @@ ${getBasicExampleBlock('BmbMultiDotPaginatorItemComponent, BmbMultiDotPaginatorI
     },
     selectedIndex: {
       control: { type: 'number' },
-      description:
-        'Index of the currently selected item. This is a model that can be used to set the selected item programmatically.',
+      description: `Sets the index of the currently selected item. <br/><br/>
+This is a model that can be used to set the selected item programmatically.
+${getAlertBlockquote(
+  `Selected index is a value between 0 and the item numbers. Please keep this in mind to ensure it works properly.<br/><br/>
+The back button is taken as a \`bmb-multi-dot-paginator-item\` that way; it is the last index.`,
+  {
+    title: RELEVANT_TITLE.configuration,
+    blockquoteType: BlockquoteType.important,
+  },
+)}`,
       table: {
         category: 'Properties',
         type: { summary: 'number' },

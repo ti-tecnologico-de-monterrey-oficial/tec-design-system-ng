@@ -4,11 +4,11 @@
 
 Las siguientes versiones del sistema están actualmente soportadas. Se recomienda utilizar siempre la versión más reciente para garantizar la recepción de actualizaciones de seguridad y soporte técnico. Las versiones anteriores a la 1.4.x ya no reciben mantenimiento ni correcciones de seguridad.
 
-| Version | Supported          |
-| ------- | ------------------ |
-| 1.6.x   | ✅ |
-| 1.5.x   | ❌ |
-| < 1.4.x | ❌ |
+| Version | Supported |
+| ------- | --------- |
+| 1.6.x   | ✅        |
+| 1.5.x   | ❌        |
+| < 1.4.x | ❌        |
 
 ## Reporting a Vulnerability
 
