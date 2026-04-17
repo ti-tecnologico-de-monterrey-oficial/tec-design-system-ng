@@ -7,7 +7,6 @@
 
   .bmb_multi-dot-paginator-item {
     padding-right: 0;
-    padding-left: 2.5rem;
   }
 }
 
@@ -52,7 +51,7 @@ bmb-multi-dot-paginator-item {
   width: 100%;
   height: 100%;
 
-  @include mixins.check-for-mobile(false) {
+  @include mixins.mobile-styles() {
     padding-right: 2.5rem;
   }
 }
