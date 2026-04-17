@@ -71,10 +71,27 @@
           ></button>
         </li>
       }
+      <li
+        class="bmb_multi-dot-paginator-list-item"
+        [ngClass]="{
+          'bmb_multi-dot-paginator-list-item-active':
+            selectedIndex() === numberOfElements.length
+        }"
+      >
+        <button
+          class="bmb_multi-dot-paginator-dot"
+          (click)="selectItem(numberOfElements.length)"
+          [title]="numberOfElements.length"
+          [ngClass]="{
+            'bmb_multi-dot-paginator-dot-active':
+              selectedIndex() === numberOfElements.length
+          }"
+        ></button>
+      </li>
       @if (numberOfElements.length > 0) {
         <li class="bmb_multi-dot-paginator-list-item">
           <bmb-action-icon
-            [disabled]="selectedIndex() === numberOfElements.length - 1"
+            [disabled]="selectedIndex() === numberOfElements.length"
             [icon]="'chevron_right'"
             [iconSize]="24"
             (buttonClick)="nextItem()"
