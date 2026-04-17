@@ -6,8 +6,9 @@ Las siguientes versiones del sistema están actualmente soportadas. Se recomiend
 
 | Version | Supported          |
 | ------- | ------------------ |
-| 1.5.x   | :white_check_mark: |
-| < 1.4.x | :x:                |
+| 1.6.x   | ✅ |
+| 1.5.x   | ❌ |
+| < 1.4.x | ❌ |
 
 ## Reporting a Vulnerability
 

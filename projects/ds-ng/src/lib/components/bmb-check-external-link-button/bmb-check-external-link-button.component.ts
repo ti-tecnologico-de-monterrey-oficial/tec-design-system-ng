@@ -43,13 +43,13 @@ export class BmbCheckExternalLinkButtonComponent {
   }
 
   handlePress(event: MouseEvent): void {
-    this.buttonPress.emit(event);
     event.stopPropagation();
+    this.buttonPress.emit(event);
   }
 
   handleClick(event: MouseEvent): void {
-    this.buttonClick.emit(event);
     event.stopPropagation();
+    this.buttonClick.emit(event);
   }
 
   handleKeyPress(event: KeyboardEvent): void {
