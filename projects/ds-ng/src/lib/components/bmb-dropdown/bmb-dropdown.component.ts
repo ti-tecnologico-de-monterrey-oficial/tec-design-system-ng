@@ -170,10 +170,8 @@ export class BmbDropdownComponent implements OnInit, OnChanges {
   }
 
   handleFocus(value: boolean): void {
+    if (value) this.openList();
     this.onFocus.emit(value);
-    if (!this.isFilterable()) {
-      this.openList();
-    }
   }
 
   getUUID(name: string): string {
