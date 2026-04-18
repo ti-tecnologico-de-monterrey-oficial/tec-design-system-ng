@@ -36,6 +36,7 @@ import {
 import { BmbLayoutDirective } from '../../directives/bmb-layout/bmb-layout.directive';
 import { BmbLayoutItemDirective } from '../../directives/bmb-layout/bmb-layout-item.directive';
 import { BmbUserImageComponent } from '../bmb-user-image/bmb-user-image.component';
+import { BmbLoaderComponent } from '../bmb-loader/bmb-loader.component';
 
 @Component({
   selector: 'bmb-profile',
@@ -59,6 +60,7 @@ import { BmbUserImageComponent } from '../bmb-user-image/bmb-user-image.componen
     BmbLayoutItemDirective,
     BmbUserImageComponent,
     BmbCardContentComponent,
+    BmbLoaderComponent,
   ],
   templateUrl: './bmb-profile.component.html',
   styleUrl: './bmb-profile.component.scss',
@@ -83,6 +85,7 @@ export class BmbProfileComponent implements OnInit {
   enableVersionBack = input<boolean>(false);
   enableExpandButton = input<boolean>(true);
   currentRole = input<string>('');
+  isLoading = input<boolean>(false);
 
   handleLangChange = model<string>();
 

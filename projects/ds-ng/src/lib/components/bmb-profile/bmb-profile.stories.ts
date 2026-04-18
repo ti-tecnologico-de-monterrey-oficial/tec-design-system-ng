@@ -21,6 +21,7 @@ import {
   DBmbGenericParamDesc,
   getOnClickParam,
 } from '../../utils/doc/parameterDescriptions';
+import { isStandalone } from '@angular/core';
 
 const onCloseSession: IBmbOnEvent = getOnEvent(
     '',
@@ -317,6 +318,16 @@ IBmbHierarchyProfileData {
       getOnEvent('', 'handleRoleSwitch'),
       '. This should be used to switch between student and collaborator roles.',
     ),
+    isLoading: {
+      control: { type: 'boolean' },
+      description:
+        'When true, the component will display a loader and hide the content. This is useful to simulate the loading state of the component.',
+      table: {
+        category: 'Properties',
+        defaultValue: { summary: 'false' },
+        type: { summary: 'boolean' },
+      },
+    },
   },
   args: {
     handleCloseSession: () => {
@@ -329,6 +340,7 @@ IBmbHierarchyProfileData {
       console.log('Role change');
     },
     enableExpandButton: true,
+    isLoading: false,
   },
 } as Meta<typeof BmbProfileComponent>;
 
@@ -345,6 +357,14 @@ export const Default = {
       email: 'mail@tec.mx',
     },
   },
+};
+
+export const Loading = {
+  name: 'Loading state example',
+  args: {
+    isMobile: false,
+    isLoading: true,
+  }
 };
 
 export const StudentMobileExample = {
