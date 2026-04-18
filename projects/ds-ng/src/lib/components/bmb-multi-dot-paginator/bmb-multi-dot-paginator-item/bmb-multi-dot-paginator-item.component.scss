@@ -4,10 +4,6 @@
 
 @mixin preview-block() {
   opacity: 0.5;
-
-  .bmb_multi-dot-paginator-item {
-    padding-right: 0;
-  }
 }
 
 bmb-multi-dot-paginator-item {
@@ -24,9 +20,13 @@ bmb-multi-dot-paginator-item {
     &.bmb_multi-dot-paginator-item-active + * {
       opacity: 1;
     }
+
+    &.bmb_multi-dot-paginator-item-active + * + * {
+      padding-left: 1rem;
+    }
   }
 
-  @include mixins.media-range-query(vars.$breakpoint_min_web, 1899) {
+  @media (width > 1000px) {
     &.bmb_multi-dot-paginator-item-active + * ~ * {
       @include preview-block();
     }
@@ -44,14 +44,27 @@ bmb-multi-dot-paginator-item {
     &.bmb_multi-dot-paginator-item-active + * + * {
       opacity: 1;
     }
+
+    &.bmb_multi-dot-paginator-item-active + * + * + * {
+      padding-left: 1.5rem;
+    }
   }
 }
 
 .bmb_multi-dot-paginator-item {
   width: 100%;
   height: 100%;
+  padding-right: 0;
 
-  @include mixins.mobile-styles() {
-    padding-right: 2.5rem;
+  @media (width > 1000px) {
+    & {
+      padding-right: 2.5rem;
+    }
+  }
+
+  @media (width > 1000px) and (height < 651px) {
+    & {
+      padding-right: 1.5rem;
+    }
   }
 }
