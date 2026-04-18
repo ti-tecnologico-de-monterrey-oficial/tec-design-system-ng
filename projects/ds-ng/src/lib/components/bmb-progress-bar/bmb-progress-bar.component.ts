@@ -81,10 +81,13 @@ export class BmbProgressBarComponent {
   }
 
   handleClick(event: MouseEvent) {
+    event.preventDefault();
+    event.stopPropagation();
     this.actionClick.emit(event);
   }
 
   progressValue = computed(() => {
+    if (this.totalCount() === 0) return '0';
     const numberProgress = (this.counter() / this.totalCount()) * 100;
     let newProgress = numberProgress.toFixed(2);
     if (numberProgress < 0) newProgress = '0';

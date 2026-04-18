@@ -19,8 +19,7 @@
   >
     <bmb-custom-icons [icon]="customIconName()" [size]="size() ?? 16" />
   </figure>
-}
-@if (isSVGTemplate() && !!safeSVG) {
+} @else if (isSVGTemplate() && !!safeSVG) {
   <figure
     class="bmb_icon-figure"
     [ngStyle]="getImageStyles()"

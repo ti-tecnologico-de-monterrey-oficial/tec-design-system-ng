@@ -36,6 +36,7 @@ The `@ti-tecnologico-de-monterrey-oficial/ds-ng` is the official Design System o
 - **RxJS**: Reactive programming library.
 - **Luxon**: For date and time utilities.
 - **Material Symbols**: For consistent iconography.
+- **Playwright**: End-to-end testing framework for the demo application.
 
 ### Compatibility
 
@@ -61,6 +62,28 @@ The `@ti-tecnologico-de-monterrey-oficial/ds-ng` is the official Design System o
 - As a designer, I want to customize themes to match the institution's branding.
 - As an end user, I want the interface to be accessible and responsive on all devices.
 
+## Quality Assurance
+
+### Testing Strategy
+
+- **Unit Tests**: Component-level tests via Karma/Jasmine (`ng test ds-ng`), including linting and format checks.
+- **End-to-End Tests**: Playwright tests covering navigation and rendering of the demo application (`npm run e2e`).
+- **Static Analysis**: SonarCloud integration for code quality and security scanning on every push to `develop` and every pull request.
+
+### CI/CD Pipeline
+
+All of the following jobs run automatically on every push to `develop` and on every pull request:
+
+| Job               | Purpose                                            | Blocks merge on failure |
+| ----------------- | -------------------------------------------------- | :---------------------: |
+| **Build Library** | Verifies `npm run build:lib` compiles successfully |           ✅            |
+| **E2E Tests**     | Runs Playwright tests against the demo app         |           ✅            |
+| **SonarCloud**    | Static analysis and security scanning              |           ✅            |
+
+A Playwright HTML report is uploaded as a GitHub Actions artifact (retained 7 days) for every run.
+
+Publishing to NPM is triggered separately on GitHub Release events and supports multi-version builds (Angular 18, 19, 20).
+
 ## Roadmap
 
 ### Phase 1: Core Components
@@ -84,8 +107,10 @@ The `@ti-tecnologico-de-monterrey-oficial/ds-ng` is the official Design System o
 
 - **Dependency Updates**: Changes in Angular or other dependencies may cause compatibility issues.
 - **Performance**: Large bundle sizes could impact loading times.
+- **Multi-framework Support**: Expanding to React requires careful separation of framework-agnostic logic, types, and tokens to avoid duplication.
 
 ### Mitigation
 
 - Regularly update dependencies and test compatibility.
 - Optimize components for performance and enable lazy loading.
+- Adopt a monorepo structure with a shared `bamboo-core` package containing design tokens, TypeScript interfaces, and pure utilities consumed by both Angular and React libraries.

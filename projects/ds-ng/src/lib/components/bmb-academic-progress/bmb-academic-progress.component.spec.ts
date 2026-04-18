@@ -1,6 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { BmbAcademicProgressComponent } from './bmb-academic-progress.component';
-import { IBmbNameValuePair } from '../../types';
 import { ComponentRef } from '@angular/core';
 
 describe('BmbAcademicProgressComponent', () => {

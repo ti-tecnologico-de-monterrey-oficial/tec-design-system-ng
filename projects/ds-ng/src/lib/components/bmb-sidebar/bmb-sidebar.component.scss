@@ -160,7 +160,7 @@
       background-color: var(--containers-top-bar);
       color: rgb(var(--white-primary));
 
-      @media (min-height: 630px) and (min-width: 1000px) {
+      @media (min-height: 651px) and (min-width: 1000px) {
         display: none;
       }
     }
@@ -193,7 +193,7 @@
       .bmb_sidebar-list {
         @include list();
 
-        @media (max-height: 630px) {
+        @media (max-height: 650px) {
           @include list();
         }
       }
@@ -270,7 +270,7 @@
       }
     }
 
-    @media (min-height: 631px) and (min-width: 1001px) {
+    @media (min-height: 651px) and (min-width: 1001px) {
       display: block;
     }
 

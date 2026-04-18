@@ -59,12 +59,17 @@ export class BmbMultiDotPaginatorComponent implements AfterContentInit {
     this.setClassActive(this.selectedIndex());
   }
 
-  selectItem(index: number) {
+  protected selectItem(index: number) {
     this.setClassActive(index, this.selectedIndex());
+    console.info('selectItem index', index, this.selectedIndex());
   }
 
-  setClassActive(newIndex: number, oldIndex: number = 0) {
-    const activeItem = this.childrenItems()[newIndex] as any;
+  protected setClassActive(newIndex: number, oldIndex: number = 0) {
+    const activeItem = this.childrenItems()[
+      newIndex === this.numberOfElements.length
+        ? this.numberOfElements.length - 1
+        : newIndex
+    ] as any;
     const oldItem = this.childrenItems()[oldIndex] as any;
 
     if (!activeItem) return;
@@ -92,10 +97,12 @@ export class BmbMultiDotPaginatorComponent implements AfterContentInit {
       }, 500);
     }
 
-    this.selectedIndex.set(newIndex);
+    this.selectedIndex.set(
+      newIndex === this.numberOfElements.length ? newIndex - 1 : newIndex,
+    );
   }
 
-  setNextItem() {
+  protected setNextItem() {
     if (this.selectedIndex() + 1 === this.numberOfElements.length) {
       this.setClassActive(0, this.selectedIndex());
     } else {
@@ -103,15 +110,16 @@ export class BmbMultiDotPaginatorComponent implements AfterContentInit {
     }
   }
 
-  prevItem() {
+  protected prevItem() {
     if (this.selectedIndex() > 0) {
       this.setClassActive(this.selectedIndex() - 1, this.selectedIndex());
     }
   }
 
-  nextItem() {
-    if (this.selectedIndex() < this.numberOfElements.length - 1) {
+  protected nextItem() {
+    if (this.selectedIndex() < this.numberOfElements.length) {
       this.setClassActive(this.selectedIndex() + 1, this.selectedIndex());
+      console.info('nextItem', this.selectedIndex());
     }
   }
 }
