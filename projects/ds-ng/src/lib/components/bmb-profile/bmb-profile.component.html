@@ -254,7 +254,11 @@
 
 @if (isStandAlone()) {
   <section class="bmb_profile-stand_alone">
-    <ng-container [ngTemplateOutlet]="content" />
+    @if (isLoading()) {
+      <bmb-loader></bmb-loader>
+    } @else {
+      <ng-container [ngTemplateOutlet]="content" />
+    }
   </section>
 } @else if (isMobile()) {
   <!-- TODO: ADD [headerIconRight]="'diversity_3'" -->
@@ -264,7 +268,11 @@
     (handleRightClick)="handleRight($event)"
   >
     <ng-template #bmbTemplateMain>
-      <ng-container [ngTemplateOutlet]="content" />
+      @if (isLoading()) {
+        <bmb-loader></bmb-loader>
+      } @else {
+        <ng-container [ngTemplateOutlet]="content" />
+      }
     </ng-template>
   </bmb-mobile-templates>
 } @else {
@@ -278,6 +286,10 @@
     [(isExpanded)]="isExpanded"
     class="bmb_profile-home-card"
   >
-    <ng-container [ngTemplateOutlet]="content" />
+    @if (isLoading()) {
+        <bmb-loader></bmb-loader>
+    } @else {
+      <ng-container [ngTemplateOutlet]="content" />
+    }
   </bmb-home-card>
 }
