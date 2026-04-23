@@ -2,10 +2,7 @@ import {
   Component,
   ChangeDetectionStrategy,
   ViewEncapsulation,
-  HostListener,
   input,
-  ViewChild,
-  ElementRef,
   effect,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -15,10 +12,10 @@ import { BmbCheckExternalLinkButtonComponent } from '../bmb-check-external-link-
 import { IPositionButtonMenu } from '../bmb-top-bar/types';
 import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
 import { logDeprecatedInput } from '../../utils/logDeprecatedInput';
+import { BmbDividerComponent } from '../bmb-divider/bmb-divider.component';
 
 interface IBmbIsButton {
   link?: string;
-  isMobile: boolean;
   hasChildren: boolean;
 }
 
@@ -30,6 +27,7 @@ interface IBmbIsButton {
     BmbIconComponent,
     BmbCheckExternalLinkButtonComponent,
     BmbActionIconComponent,
+    BmbDividerComponent,
   ],
   templateUrl: './bmb-sidebar.component.html',
   styleUrl: './bmb-sidebar.component.scss',
@@ -44,26 +42,9 @@ export class BmbSidebarComponent {
 
   title = input<string>(); // deprecated
 
-  currentUrl: string = '';
   isOpen: boolean = false;
-  selectedElement: SidebarElement | null = null;
-  isActive: boolean = false;
-  hasSubmenu: boolean = false;
   maxChildrenLevel: number = 2;
-
   error = false;
-
-  @ViewChild('sideNav') sideNav!: ElementRef;
-
-  @HostListener('window:focusin')
-  onFocusIn() {
-    this.checkIfFocusInsideSidebar();
-  }
-
-  @HostListener('window:focusout')
-  onFocusOut() {
-    this.checkIfFocusInsideSidebar();
-  }
 
   constructor() {
     effect(() => {
@@ -85,10 +66,6 @@ export class BmbSidebarComponent {
         );
         this.error = true;
       }
-
-      this.hasSubmenu = this.elements()?.some((element) =>
-        element?.some((el) => el.children),
-      );
     });
 
     effect(() => {
@@ -101,59 +78,31 @@ export class BmbSidebarComponent {
     });
   }
 
-  checkForButton({ isMobile, hasChildren }: IBmbIsButton): boolean {
-    return isMobile && hasChildren;
+  protected checkForButton(hasChildren: boolean): boolean {
+    return hasChildren;
   }
 
-  getLink({ link, isMobile, hasChildren }: IBmbIsButton): string {
-    if (this.checkForButton({ isMobile, hasChildren })) return '';
+  protected getLink({ link, hasChildren }: IBmbIsButton): string {
+    if (this.checkForButton(hasChildren)) return '';
     return link || '';
   }
 
-  closeSidebar() {
+  protected closeSidebar(selectedElement?: SidebarElement) {
+    if (selectedElement) {
+      this.clearSelectElement(selectedElement);
+    }
     this.isOpen = false;
-    this.clearSelectElement();
   }
 
-  clearSelectElement() {
-    this.selectedElement = null;
-  }
-
-  toggleChildren(element: SidebarElement) {
-    if (this.selectedElement === element) {
-      this.clearSelectElement();
-      return;
-    }
-
-    this.selectedElement = element;
-
-    if (element.children) {
-      element.isOpen = !element.isOpen;
-    }
-
-    if (element.event) {
-      element.event(element);
+  protected clearSelectElement(selectedElement: SidebarElement): void {
+    if (selectedElement) {
+      selectedElement.isOpen = false;
     }
   }
 
-  checkIfFocusInsideSidebar() {
-    const sidebar = document.querySelector('.bmb_sidebar-desktop');
-    const activeElement = document.activeElement;
-    this.isActive =
-      (sidebar && activeElement && sidebar.contains(activeElement)) || false;
-  }
-
-  checkToCloseSidebar(event: any) {
-    if (event.link && !event.children) {
-      this.closeSidebar();
-      this.sideNav.nativeElement.classList.add('bmb_sidebar-desktop-close');
-
-      setTimeout(() => {
-        this.sideNav.nativeElement.classList.remove(
-          'bmb_sidebar-desktop-close',
-        );
-        this.sideNav.nativeElement.classList.remove('bmb-active');
-      }, 500);
+  protected toggleChildren(selectedElement: SidebarElement) {
+    if (selectedElement) {
+      selectedElement.isOpen = !selectedElement.isOpen;
     }
   }
 }

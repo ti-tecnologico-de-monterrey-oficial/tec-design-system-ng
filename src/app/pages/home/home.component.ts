@@ -129,10 +129,13 @@ export class HomeComponent {
     console.log('Image clicked:', event);
   }
 
-  handleModalWithDropdown(event: MouseEvent | KeyboardEvent): void {
+  handleModalWithDropdown(): void {
     this.modalService.openModal({
       title: 'Modal with Dropdown',
       content: ModalWDropdownComponent,
+      inputContext: {
+        isFilterable: false,
+      },
       size: 'medium',
     });
   }

@@ -1,5 +1,9 @@
 @use '../../../../assets/styles/base/mixins' as mixins;
 
+body:has(.bmb_projected-backdrop) {
+  overflow: hidden;
+}
+
 .bmb_projected-content {
   position: fixed;
   border: 0 none;
