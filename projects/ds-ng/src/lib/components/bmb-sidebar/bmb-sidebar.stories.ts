@@ -40,21 +40,12 @@ export default {
     docs: {
       controls: {
         exclude: [
-          'checkIfFocusInsideSidebar',
-          'checkToCloseSidebar',
           'getLink',
-          'onFocusIn',
-          'onFocusOut',
           'toggleChildren',
-          'currentUrl',
-          'hasSubmenu',
-          'isActive',
           'isOpen',
-          'selectedElement',
           'maxChildrenLevel',
           'clearSelectElement',
           'closeSidebar',
-          'sideNav',
           'error',
           'checkForButton',
         ],
