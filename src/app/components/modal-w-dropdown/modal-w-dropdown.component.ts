@@ -1,4 +1,4 @@
-import { Component, computed, OnInit } from '@angular/core';
+import { Component, computed, input, OnInit } from '@angular/core';
 import { BmbDropdownComponent } from '../../../../projects/ds-ng/src/public-api';
 import { AnimeService } from '../../services/anime.service';
 
@@ -10,6 +10,7 @@ import { AnimeService } from '../../services/anime.service';
   styleUrl: './modal-w-dropdown.component.scss',
 })
 export class ModalWDropdownComponent implements OnInit {
+  isFilterable = input.required<boolean>();
   constructor(private animeService: AnimeService) {}
 
   ngOnInit() {
