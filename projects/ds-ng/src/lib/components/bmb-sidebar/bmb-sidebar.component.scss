@@ -1,5 +1,6 @@
 @use '../../../assets/styles/base/fonts' as fonts;
 @use '../../../assets/styles/base/rem' as rem;
+@use '../../../assets/styles/base/mixins' as mixins;
 
 $_mobile_menu_position: rem.rem_calc(64);
 $_web_max_width: rem.rem_calc(280);
@@ -108,11 +109,11 @@ $_web_min_width: rem.rem_calc(88);
 
 @mixin check-for-mobile($condition: true) {
   @if $condition == true {
-    @include media-query(vars.$breakpoint_max_mobile, 'max') {
+    @media (width <= 1000px) or (height <= #{rem.rem_calc(650)}) {
       @content;
     }
   } @else {
-    @include media-query(vars.$breakpoint_min_web, 'min') {
+    @media (width > 1000px) and (height > #{rem.rem_calc(650)}) {
       @content;
     }
   }
@@ -124,7 +125,7 @@ $_web_min_width: rem.rem_calc(88);
   }
 }
 
-@mixin hidden-for-no-mobile() {
+@mixin hidden-for-desktop() {
   @include check-for-mobile(false) {
     display: none;
   }
@@ -152,7 +153,7 @@ $_web_min_width: rem.rem_calc(88);
   }
 
   &-mobile {
-    @include hidden-for-no-mobile();
+    @include hidden-for-desktop();
   }
 
   /*Mobile / Web*/
@@ -171,7 +172,7 @@ $_web_min_width: rem.rem_calc(88);
     }
 
     &-mobile {
-      @include hidden-for-no-mobile();
+      @include hidden-for-desktop();
     }
   }
 
@@ -247,7 +248,7 @@ $_web_min_width: rem.rem_calc(88);
       flex: 1;
       text-align: start;
       @include fonts.font(4, medium);
-      @include truncated-string-line();
+      @include mixins.truncated-string-line();
 
       @include check-for-mobile(false) {
         display: none;
