@@ -364,7 +364,7 @@ export const Loading = {
   args: {
     isMobile: false,
     isLoading: true,
-  }
+  },
 };
 
 export const StudentMobileExample = {
