@@ -1,5 +1,4 @@
 @use '../../../assets/styles/base/fonts' as fonts;
-@use '../../../assets/styles/base/mixins' as mixins;
 @use '../../../assets/styles/base/rem' as rem;
 
 $_mobile_menu_position: rem.rem_calc(64);
@@ -107,6 +106,30 @@ $_web_min_width: rem.rem_calc(88);
   animation: bounceChildren 0.3s ease-out forwards;
 }
 
+@mixin check-for-mobile($condition: true) {
+  @if $condition == true {
+    @include media-query(vars.$breakpoint_max_mobile, 'max') {
+      @content;
+    }
+  } @else {
+    @include media-query(vars.$breakpoint_min_web, 'min') {
+      @content;
+    }
+  }
+}
+
+@mixin hidden-for-mobile() {
+  @include check-for-mobile() {
+    display: none;
+  }
+}
+
+@mixin hidden-for-no-mobile() {
+  @include check-for-mobile(false) {
+    display: none;
+  }
+}
+
 .bmb_sidebar {
   position: fixed;
   left: auto;
@@ -115,7 +138,7 @@ $_web_min_width: rem.rem_calc(88);
   z-index: 999;
 
   /*Mobile*/
-  @include mixins.check-for-mobile() {
+  @include check-for-mobile() {
     left: rem.rem_calc(8);
     top: rem.rem_calc(16);
   }
@@ -129,7 +152,7 @@ $_web_min_width: rem.rem_calc(88);
   }
 
   &-mobile {
-    @include mixins.hidden-for-no-mobile();
+    @include hidden-for-no-mobile();
   }
 
   /*Mobile / Web*/
@@ -138,7 +161,7 @@ $_web_min_width: rem.rem_calc(88);
     flex-direction: column;
     flex: 1;
 
-    @include mixins.check-for-mobile() {
+    @include check-for-mobile() {
       display: none;
       padding: var(--bmb-spacing-l);
 
@@ -148,12 +171,12 @@ $_web_min_width: rem.rem_calc(88);
     }
 
     &-mobile {
-      @include mixins.hidden-for-no-mobile();
+      @include hidden-for-no-mobile();
     }
   }
 
   /*Web*/
-  @include mixins.check-for-mobile(false) {
+  @include check-for-mobile(false) {
     @include sidebar-web();
     width: $_web_min_width;
     height: rem.rem_calc(480);
@@ -196,7 +219,7 @@ $_web_min_width: rem.rem_calc(88);
   &-web {
     display: flex;
     width: 100%;
-    @include mixins.hidden-for-mobile();
+    @include hidden-for-mobile();
   }
 
   /*Header*/
@@ -224,9 +247,9 @@ $_web_min_width: rem.rem_calc(88);
       flex: 1;
       text-align: start;
       @include fonts.font(4, medium);
-      @include mixins.truncated-string-line();
+      @include truncated-string-line();
 
-      @include mixins.check-for-mobile(false) {
+      @include check-for-mobile(false) {
         display: none;
         opacity: 0;
       }
@@ -235,7 +258,7 @@ $_web_min_width: rem.rem_calc(88);
     &-arrow {
       display: inline-block;
 
-      @include mixins.check-for-mobile(false) {
+      @include check-for-mobile(false) {
         display: none;
         opacity: 0;
       }
@@ -276,7 +299,7 @@ $_web_min_width: rem.rem_calc(88);
       display: inline-flex;
 
       /*Web - Children*/
-      @include mixins.check-for-mobile(false) {
+      @include check-for-mobile(false) {
         position: relative;
 
         &:hover > .bmb_sidebar-children,
@@ -295,7 +318,7 @@ $_web_min_width: rem.rem_calc(88);
 
     /*Mobile*/
     &.open {
-      @include mixins.check-for-mobile() {
+      @include check-for-mobile() {
         display: flex;
         left: 0;
         @include open-mobile;
@@ -304,7 +327,7 @@ $_web_min_width: rem.rem_calc(88);
     }
 
     /*web*/
-    @include mixins.check-for-mobile(false) {
+    @include check-for-mobile(false) {
       @include sidebar-web(true, true);
 
       &:has(*:focus-visible) {
@@ -318,7 +341,7 @@ $_web_min_width: rem.rem_calc(88);
   }
 
   &.open {
-    @include mixins.check-for-mobile() {
+    @include check-for-mobile() {
       @include open-mobile;
       left: 0;
       animation: bounceRightMobile 0.6s ease-out forwards;
