@@ -7,7 +7,6 @@ import {
   BmbFormValidatorComponent,
   BmbButtonDirective,
   BmbDropdownComponent,
-  BmbInputComponent,
   BmbLayoutDirective,
   BmbLayoutItemDirective,
   IBmbDropdownItem,
@@ -16,6 +15,7 @@ import {
   BmbSearchCardComponent,
   IBmbSearchCardItemResult,
   BmbInputTagsComponent,
+  BmbInputComponent,
 } from '../../../../projects/ds-ng/src/public-api';
 import persons from './persons.json';
 import services from './services.json';
@@ -34,6 +34,7 @@ import services from './services.json';
     BmbSearchInputComponent,
     BmbSearchCardComponent,
     BmbInputTagsComponent,
+    BmbInputComponent,
   ],
   templateUrl: './form-validator-test.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -75,6 +76,7 @@ export class FormValidatorTestComponent {
     htmlText: new FormControl(
       `<div contenteditable="true" class="bmb_text-editor-content"><h1>Test</h1><p>This is a test</p><p><br></p><p><a href="https://www.google.com" target="_blank" rel="noopener noreferrer">asd</a></p></div>`,
     ),
+    text_field1: new FormControl({ value: '', disabled: false }),
   });
 
   options: IBmbDropdownItem[] = [];

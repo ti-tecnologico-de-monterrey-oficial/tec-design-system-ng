@@ -33,7 +33,6 @@
     "@material-symbols/svg-400",
     "@types/luxon",
     "dompurify",
-    "libphonenumber-js",
     "luxon",
     "tslib"
   ]
