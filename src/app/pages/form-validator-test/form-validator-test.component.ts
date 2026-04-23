@@ -76,7 +76,7 @@ export class FormValidatorTestComponent {
     htmlText: new FormControl(
       `<div contenteditable="true" class="bmb_text-editor-content"><h1>Test</h1><p>This is a test</p><p><br></p><p><a href="https://www.google.com" target="_blank" rel="noopener noreferrer">asd</a></p></div>`,
     ),
-    text_field1: new FormControl({ value: '' , disabled: false }),
+    text_field1: new FormControl({ value: '', disabled: false }),
   });
 
   options: IBmbDropdownItem[] = [];
