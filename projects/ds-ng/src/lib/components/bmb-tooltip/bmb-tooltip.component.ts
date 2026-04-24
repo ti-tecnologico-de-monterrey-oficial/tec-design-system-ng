@@ -37,7 +37,7 @@ export class BmbTooltipComponent {
   icon = input<string>('help');
   size = input<number>();
   isFill = input<boolean>(true);
-  componentTitle = input<string>('Tooltip title');
+  componentTitle = input<string>();
 
   title = input<string>(); // deprecated
   align = input<string>(); // deprecated

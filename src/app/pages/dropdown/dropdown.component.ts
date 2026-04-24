@@ -61,4 +61,9 @@ export class DropdownPageComponent implements OnInit {
   handleFormGroupState(state: FormGroup): void {
     console.info(state.controls);
   }
+
+  onInstitutionValueChange(event: unknown) {
+    console.log('Selected institution:', event);
+    //Add your code
+  }
 }
