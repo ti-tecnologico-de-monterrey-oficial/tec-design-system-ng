@@ -1,5 +1,5 @@
-# Novedades ## [v1.6.3-f] -
-2026-04-23
+# Novedades ## [v1.6.3-g] -
+2026-04-24
 
 ### 🚀 Novedades
 
@@ -7,6 +7,8 @@
 Formato
 *
 new config
+*
+build
 *
 Formato
 *
@@ -17,6 +19,8 @@ Formato
 Add conditional visibility and cascading options to filter card component
 *
 fix(component/sidebar): Se realizo refactorización de código para depurar elementos y simplificar estructura. La navegación ahora es en su mayoría manejo con CSS.
+*
+feat(component / interactive icon): se agregó el tooltip al interactive icon
 *
 feat(component / icon): Se agregaron iconos personalizados
 *
@@ -70,6 +74,8 @@ feat(component / image): se agregó la posibilidad de evitar el encoding en la f
 *
 feat(component/fab): se ealizaron modificaciones para que la versión 'mitec' sea fija (según diseño en Figma)  y no pueda ser modificada.
 *
+fix(component / image): se actualizaron los estilos para permitir cambiar el cursor si hay un evento click
+*
 fix(component / profile): Se corrigieron los estilos del profile
 *
 feat(component/container-button): se agregó la documentación de variantes 'Square' como pestaña en el componente principal.
@@ -111,6 +117,8 @@ chore: se agregó código para prevenir la propagación y detenerla.
 chore: se eliminó código que no se utiliza.
 *
 feat: Add BmbFilterCard component.
+*
+Update bmb-sidebar.component.html
 *
 fix(component / progress bar): Se corrigió el NAN cuando el valor inicial y total son cero
 *
@@ -126,6 +134,8 @@ chore: se eliminó código que no se utiliza
 Formato
 - **new config**:
 new config
+- **build**:
+build
 - **Formato**:
 Formato
 - **Formato**:
@@ -136,6 +146,8 @@ Formato
 Add conditional visibility and cascading options to filter card component
 - **fix(component/sidebar): Se realizo refactorización de código para depurar elementos y simplificar estructura. La navegación ahora es en su mayoría manejo con CSS.**:
 fix(component/sidebar): Se realizo refactorización de código para depurar elementos y simplificar estructura. La navegación ahora es en su mayoría manejo con CSS.
+- **feat(component / interactive icon): se agregó el tooltip al interactive icon**:
+feat(component / interactive icon): se agregó el tooltip al interactive icon
 - **feat(component / icon): Se agregaron iconos personalizados**:
 feat(component / icon): Se agregaron iconos personalizados
 - **feat(component/multi-dot-paginator): se agrego el botón como último índice. Se implementó funcionalidad para que permita seleccionar solo un índice.**:
@@ -188,6 +200,8 @@ fix(component / multi dot paginator): Se actualizaron los estilos responsivos pa
 feat(component / image): se agregó la posibilidad de evitar el encoding en la fuente de la imagen
 - **feat(component/fab): se ealizaron modificaciones para que la versión 'mitec' sea fija (según diseño en Figma)  y no pueda ser modificada.**:
 feat(component/fab): se ealizaron modificaciones para que la versión 'mitec' sea fija (según diseño en Figma)  y no pueda ser modificada.
+- **fix(component / image): se actualizaron los estilos para permitir cambiar el cursor si hay un evento click**:
+fix(component / image): se actualizaron los estilos para permitir cambiar el cursor si hay un evento click
 - **fix(component / profile): Se corrigieron los estilos del profile**:
 fix(component / profile): Se corrigieron los estilos del profile
 - **feat(component/container-button): se agregó la documentación de variantes 'Square' como pestaña en el componente principal.**:
@@ -230,6 +244,8 @@ chore: se agregó código para prevenir la propagación y detenerla.
 chore: se eliminó código que no se utiliza.
 - **feat: Add BmbFilterCard component.**:
 feat: Add BmbFilterCard component.
+- **Update bmb-sidebar.component.html**:
+Update bmb-sidebar.component.html
 - **fix(component / progress bar): Se corrigió el NAN cuando el valor inicial y total son cero**:
 fix(component / progress bar): Se corrigió el NAN cuando el valor inicial y total son cero
 - **chore: se eliminó código no útil (no utilizado).**:
@@ -245,6 +261,8 @@ chore: se eliminó código que no se utiliza
 Formato
 - **new config**:
 new config
+- **build**:
+build
 - **Formato**:
 Formato
 - **Formato**:
@@ -255,6 +273,8 @@ Formato
 Add conditional visibility and cascading options to filter card component
 - **fix(component/sidebar): Se realizo refactorización de código para depurar elementos y simplificar estructura. La navegación ahora es en su mayoría manejo con CSS.**:
 fix(component/sidebar): Se realizo refactorización de código para depurar elementos y simplificar estructura. La navegación ahora es en su mayoría manejo con CSS.
+- **feat(component / interactive icon): se agregó el tooltip al interactive icon**:
+feat(component / interactive icon): se agregó el tooltip al interactive icon
 - **feat(component / icon): Se agregaron iconos personalizados**:
 feat(component / icon): Se agregaron iconos personalizados
 - **feat(component/multi-dot-paginator): se agrego el botón como último índice. Se implementó funcionalidad para que permita seleccionar solo un índice.**:
@@ -307,6 +327,8 @@ fix(component / multi dot paginator): Se actualizaron los estilos responsivos pa
 feat(component / image): se agregó la posibilidad de evitar el encoding en la fuente de la imagen
 - **feat(component/fab): se ealizaron modificaciones para que la versión 'mitec' sea fija (según diseño en Figma)  y no pueda ser modificada.**:
 feat(component/fab): se ealizaron modificaciones para que la versión 'mitec' sea fija (según diseño en Figma)  y no pueda ser modificada.
+- **fix(component / image): se actualizaron los estilos para permitir cambiar el cursor si hay un evento click**:
+fix(component / image): se actualizaron los estilos para permitir cambiar el cursor si hay un evento click
 - **fix(component / profile): Se corrigieron los estilos del profile**:
 fix(component / profile): Se corrigieron los estilos del profile
 - **feat(component/container-button): se agregó la documentación de variantes 'Square' como pestaña en el componente principal.**:
@@ -349,6 +371,8 @@ chore: se agregó código para prevenir la propagación y detenerla.
 chore: se eliminó código que no se utiliza.
 - **feat: Add BmbFilterCard component.**:
 feat: Add BmbFilterCard component.
+- **Update bmb-sidebar.component.html**:
+Update bmb-sidebar.component.html
 - **fix(component / progress bar): Se corrigió el NAN cuando el valor inicial y total son cero**:
 fix(component / progress bar): Se corrigió el NAN cuando el valor inicial y total son cero
 - **chore: se eliminó código no útil (no utilizado).**:
