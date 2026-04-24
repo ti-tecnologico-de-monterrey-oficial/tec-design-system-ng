@@ -147,6 +147,16 @@ ${getBasicExampleBlock('BmbImageComponent')}
         category: 'Properties',
       },
     },
+    enableCursorPointer: {
+      control: 'boolean',
+      description:
+        'If true, the cursor will be a pointer when hovering over the image, this property only affects the cursor style and do not apply if the carousel is enabled. Note that this does not affect the actual click behavior, which is determined by whether there are listeners for the imageClick event.',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+        category: 'Properties',
+      },
+    },
   },
   args: {
     src: 'https://farm2.staticflickr.com/1919/45579541712_f58c1fd0ed_o.jpg',
@@ -164,6 +174,7 @@ ${getBasicExampleBlock('BmbImageComponent')}
     },
     objectFit: 'cover',
     avoidEncoding: false,
+    enableCursorPointer: false,
   },
 } as Meta<typeof BmbImageComponent>;
 
