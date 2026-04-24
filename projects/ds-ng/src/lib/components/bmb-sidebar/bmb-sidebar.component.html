@@ -4,7 +4,7 @@
   let-elements="elements"
   let-parentElement="parentElement"
   let-level="level"
-  let-isWeb="isWeb"
+  let-isDesktop="isDesktop"
 >
   @for (element of elements; track $index) {
     <li class="bmb_sidebar-list-item" (click)="closeSidebar(element)">
@@ -33,7 +33,7 @@
             <bmb-icon
               class="bmb_sidebar-item-arrow"
               [icon]="
-                isWeb && position() === 'right'
+                isDesktop && position() === 'right'
                   ? 'chevron_left'
                   : 'chevron_right'
               "
@@ -49,7 +49,7 @@
           class="bmb_sidebar-children"
           [ngClass]="{
             open: element.isOpen,
-            'bmb_sidebar-children-right': isWeb && position() === 'right'
+            'bmb_sidebar-children-right': isDesktop && position() === 'right'
           }"
         >
           <ng-container
@@ -60,7 +60,7 @@
                 parentElement: element,
                 level: level + 1,
                 selectedElement: element,
-                isWeb
+                isDesktop
               }
             "
           />
@@ -77,22 +77,23 @@
   let-level="level"
   let-selectedElement="selectedElement"
   let-parentElement="parentElement"
-  let-isWeb="isWeb"
+  let-isDesktop="isDesktop"
   let-showHeader="showHeader"
 >
   <section
     class="bmb_sidebar-menu"
     [ngClass]="{
-      open: !isWeb && isOpen,
-      'bmb_sidebar-menu-mobile': !isWeb
+      open: !isDesktop && isOpen,
+      'bmb_sidebar-menu-mobile': !isDesktop
     }"
   >
     <!-- Header -->
     @if (
-      (!isWeb && isOpen) || (isWeb && level >= 2 && showHeaderForChildren())
+      (!isDesktop && isOpen) ||
+      (isDesktop && level >= 2 && showHeaderForChildren())
     ) {
       <section class="bmb_sidebar-header">
-        @if (!isWeb && level >= 2) {
+        @if (!isDesktop && level >= 2) {
           <bmb-action-icon
             [idElement]="'button'.concat(selectedElement?.id?.toString())"
             icon="chevron_left"
@@ -105,7 +106,7 @@
           {{ selectedElement?.title }}
         </span>
 
-        @if (!isWeb) {
+        @if (!isDesktop) {
           <bmb-action-icon
             idElement="sidebar_close"
             icon="close"
@@ -133,7 +134,7 @@
                 elements: group,
                 parentElement,
                 level,
-                isWeb
+                isDesktop
               }
             "
           />
@@ -145,7 +146,7 @@
             context: {
               elements,
               parentElement,
-              isWeb,
+              isDesktop,
               level
             }
           "
@@ -162,7 +163,7 @@
   let-level="level"
   let-selectedElement="selectedElement"
   let-parentElement="parentElement"
-  let-isWeb="isWeb"
+  let-isDesktop="isDesktop"
 >
   <!-- Mobile -->
   @if (level === 1) {
@@ -182,22 +183,22 @@
       context: {
         elements,
         level,
-        isWeb: false,
+        isDesktop: false,
         selectedElement,
         parentElement
       }
     "
   />
 
-  <!-- Web -->
-  <section class="bmb_sidebar-web">
+  <!-- Desktop -->
+  <section class="bmb_sidebar-desktop">
     <ng-container
       *ngTemplateOutlet="
         sidebarContentTemplate;
         context: {
           elements,
           level,
-          isWeb: true,
+          isDesktop: true,
           selectedElement,
           parentElement
         }

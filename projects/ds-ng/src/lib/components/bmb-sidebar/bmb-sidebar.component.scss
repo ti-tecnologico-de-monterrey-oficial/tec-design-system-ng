@@ -69,7 +69,7 @@ $_web_min_width: rem.rem_calc(88);
   overflow-x: hidden;
 }
 
-@mixin sidebar-web($is_left: true, $is_children: false) {
+@mixin sidebar-desktop($is_left: true, $is_children: false) {
   padding: var(--bmb-spacing-l);
 
   @if $is_left == true {
@@ -99,7 +99,7 @@ $_web_min_width: rem.rem_calc(88);
   }
 }
 
-@mixin sidebar-web-children {
+@mixin sidebar-desktop-children {
   display: flex;
   position: absolute;
   top: auto;
@@ -156,7 +156,7 @@ $_web_min_width: rem.rem_calc(88);
     @include hidden-for-desktop();
   }
 
-  /*Mobile / Web*/
+  /*Mobile / Desktop*/
   &-menu {
     display: flex;
     flex-direction: column;
@@ -176,9 +176,9 @@ $_web_min_width: rem.rem_calc(88);
     }
   }
 
-  /*Web*/
+  /*Desktop*/
   @include check-for-mobile(false) {
-    @include sidebar-web();
+    @include sidebar-desktop();
     width: $_web_min_width;
     height: rem.rem_calc(480);
     top: 50%;
@@ -186,7 +186,7 @@ $_web_min_width: rem.rem_calc(88);
     transform: translateY(-50%);
 
     &-right {
-      @include sidebar-web(false);
+      @include sidebar-desktop(false);
 
       .bmb_sidebar-item {
         flex-direction: row-reverse;
@@ -217,7 +217,7 @@ $_web_min_width: rem.rem_calc(88);
     }
   }
 
-  &-web {
+  &-desktop {
     display: flex;
     width: 100%;
     @include hidden-for-mobile();
@@ -299,7 +299,7 @@ $_web_min_width: rem.rem_calc(88);
     &-item {
       display: inline-flex;
 
-      /*Web - Children*/
+      /*Desktop - Children*/
       @include check-for-mobile(false) {
         position: relative;
 
@@ -307,7 +307,7 @@ $_web_min_width: rem.rem_calc(88);
         &:focus-visible > .bmb_sidebar-children,
         .bmb_sidebar-element:has(:hover) + .bmb_sidebar-children,
         .bmb_sidebar-element:has(*:focus-visible) + .bmb_sidebar-children {
-          @include sidebar-web-children;
+          @include sidebar-desktop-children;
         }
       }
     }
@@ -329,14 +329,14 @@ $_web_min_width: rem.rem_calc(88);
 
     /*web*/
     @include check-for-mobile(false) {
-      @include sidebar-web(true, true);
+      @include sidebar-desktop(true, true);
 
       &:has(*:focus-visible) {
-        @include sidebar-web-children;
+        @include sidebar-desktop-children;
       }
 
       &-right {
-        @include sidebar-web(false, true);
+        @include sidebar-desktop(false, true);
       }
     }
   }
