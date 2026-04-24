@@ -176,7 +176,7 @@ export const sidebarOptions: SidebarElement[][] = [
           icon: 'blanket',
           title: 'Custom event',
           event: (event) => {
-            console.log('Custom event triggered', event);
+            console.info('Custom event triggered', event);
           },
         },
       ],
