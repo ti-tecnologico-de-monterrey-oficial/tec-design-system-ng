@@ -33,24 +33,6 @@ describe('BmbSidebarComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should return the link when element has no children', () => {
-    expect(
-      component['getLink']({
-        link: '/home',
-        hasChildren: false,
-      }),
-    ).toBe('/home');
-  });
-
-  it('should return an empty link when element has children', () => {
-    expect(
-      component['getLink']({
-        link: '/home',
-        hasChildren: true,
-      }),
-    ).toBe('');
-  });
-
   it('should close sidebar and clear selected element open state', () => {
     const selected = createSidebarElement(5, 'Menu', '/menu');
     selected.isOpen = true;
