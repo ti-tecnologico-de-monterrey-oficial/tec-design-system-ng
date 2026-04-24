@@ -52,6 +52,7 @@
             open: element.isOpen,
             'bmb_sidebar-children-right': isWeb && position() === 'right'
           }"
+          (click)="closeSidebar()"
         >
           <ng-container
             *ngTemplateOutlet="
