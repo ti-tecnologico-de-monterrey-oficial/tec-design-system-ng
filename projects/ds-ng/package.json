@@ -18,9 +18,9 @@
     "@angular/cdk": "^{angularVersion}.0.0",
     "@angular/material": "^{angularVersion}.0.0",
     "@material-symbols/svg-400": "^0.39.1",
-    "@types/luxon": "3.4.2",
+    "@types/luxon": "3.7.1",
     "dompurify": "3.4.1",
-    "luxon": "3.5.0",
+    "luxon": "3.7.2",
     "tslib": "*"
   },
   "exports": {
