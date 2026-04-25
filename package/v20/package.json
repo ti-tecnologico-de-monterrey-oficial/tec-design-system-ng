@@ -61,7 +61,7 @@
     "@material-symbols/svg-400": "^0.39.1",
     "dompurify": "^3.4.1",
     "dotenv": "^16.4.7",
-    "luxon": "^3.6.1",
+    "luxon": "^3.7.2",
     "rxjs": "~7.8.0",
     "tslib": "2.3.0",
     "zone.js": "~0.15.0"
@@ -78,7 +78,7 @@
     "@angular/compiler-cli": "^20.0.5",
     "@compodoc/compodoc": "^1.1.26",
     "@types/jasmine": "~5.1.0",
-    "@types/luxon": "^3.4.2",
+    "@types/luxon": "^3.7.1",
     "@typescript-eslint/eslint-plugin": "7.2.0",
     "@typescript-eslint/parser": "7.2.0",
     "auto-changelog": "^2.4.0",

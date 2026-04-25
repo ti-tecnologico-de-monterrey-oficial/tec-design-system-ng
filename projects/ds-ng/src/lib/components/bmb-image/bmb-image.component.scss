@@ -104,6 +104,7 @@ bmb-image {
       left: 0;
       width: 100%;
       height: auto;
+      cursor: pointer;
 
       @include mixins.media-query(768, 'min') {
         height: 100%;
