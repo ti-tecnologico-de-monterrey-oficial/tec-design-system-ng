@@ -2,19 +2,18 @@
 <ng-template
   #elementsTemplate
   let-elements="elements"
+  let-parentElement="parentElement"
   let-level="level"
   let-isWeb="isWeb"
 >
   @for (element of elements; track $index) {
-    <li class="bmb_sidebar-list-item">
+    <li class="bmb_sidebar-list-item" (click)="closeSidebar(element)">
       <bmb-check-external-link-button
         class="bmb_sidebar-element"
         [idElement]="'element' + element.id!"
-        [link]="
-          getLink({ hasChildren: !!element.children, link: element.link! })
-        "
-        [target]="checkForButton(!!element.children) ? '' : element.target!"
-        (buttonClick)="toggleChildren(element)"
+        [link]="getLink(element)"
+        [target]="element.target"
+        (buttonClick)="checkForCustomEvent(element, parentElement)"
       >
         <section class="bmb_sidebar-item">
           @if (!!element.icon) {
@@ -58,6 +57,7 @@
               sidebarTemplate;
               context: {
                 elements: element.children?.slice(0, 6),
+                parentElement: element,
                 level: level + 1,
                 selectedElement: element,
                 isWeb
@@ -76,6 +76,7 @@
   let-elements="elements"
   let-level="level"
   let-selectedElement="selectedElement"
+  let-parentElement="parentElement"
   let-isWeb="isWeb"
   let-showHeader="showHeader"
 >
@@ -130,6 +131,7 @@
               elementsTemplate;
               context: {
                 elements: group,
+                parentElement,
                 level,
                 isWeb
               }
@@ -142,6 +144,7 @@
             elementsTemplate;
             context: {
               elements,
+              parentElement,
               isWeb,
               level
             }
@@ -158,6 +161,7 @@
   let-elements="elements"
   let-level="level"
   let-selectedElement="selectedElement"
+  let-parentElement="parentElement"
   let-isWeb="isWeb"
 >
   <!-- Mobile -->
@@ -170,7 +174,6 @@
       toggleIconActive="chevron_left"
       [isAccentColor]="false"
       [(isToggleActive)]="isOpen"
-      (buttonClick)="clearSelectElement(selectedElement)"
     />
   }
   <ng-container
@@ -180,7 +183,8 @@
         elements,
         level,
         isWeb: false,
-        selectedElement
+        selectedElement,
+        parentElement
       }
     "
   />
@@ -194,7 +198,8 @@
           elements,
           level,
           isWeb: true,
-          selectedElement
+          selectedElement,
+          parentElement
         }
       "
     />

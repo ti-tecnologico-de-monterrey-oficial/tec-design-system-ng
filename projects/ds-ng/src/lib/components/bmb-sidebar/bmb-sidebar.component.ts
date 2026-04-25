@@ -14,11 +14,6 @@ import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.compo
 import { logDeprecatedInput } from '../../utils/logDeprecatedInput';
 import { BmbDividerComponent } from '../bmb-divider/bmb-divider.component';
 
-interface IBmbIsButton {
-  link?: string;
-  hasChildren: boolean;
-}
-
 @Component({
   selector: 'bmb-sidebar',
   standalone: true,
@@ -78,20 +73,20 @@ export class BmbSidebarComponent {
     });
   }
 
-  protected checkForButton(hasChildren: boolean): boolean {
-    return hasChildren;
+  protected hasChildren(selectedElement: SidebarElement): boolean {
+    return !!selectedElement.children;
   }
 
-  protected getLink({ link, hasChildren }: IBmbIsButton): string {
-    if (this.checkForButton(hasChildren)) return '';
-    return link || '';
+  protected getLink(selectedElement: SidebarElement): string {
+    if (this.hasChildren(selectedElement)) return '';
+    return selectedElement.link || '';
   }
 
-  protected closeSidebar(selectedElement?: SidebarElement) {
+  protected closeSidebar(selectedElement: SidebarElement) {
     if (selectedElement) {
       this.clearSelectElement(selectedElement);
+      this.isOpen = false;
     }
-    this.isOpen = false;
   }
 
   protected clearSelectElement(selectedElement: SidebarElement): void {
@@ -103,6 +98,24 @@ export class BmbSidebarComponent {
   protected toggleChildren(selectedElement: SidebarElement) {
     if (selectedElement) {
       selectedElement.isOpen = !selectedElement.isOpen;
+    }
+  }
+
+  protected checkForCustomEvent(
+    selectedElement: SidebarElement,
+    parentElement: SidebarElement,
+  ): void {
+    if (selectedElement) {
+      this.toggleChildren(selectedElement);
+      if (
+        !this.hasChildren(selectedElement) &&
+        !this.getLink(selectedElement)
+      ) {
+        this.closeSidebar(parentElement);
+        if (selectedElement.event) {
+          selectedElement.event(selectedElement);
+        }
+      }
     }
   }
 }

@@ -9,6 +9,9 @@ import {
   BmbImageComponent,
   BmbVerticalLayoutDirective,
   BmbVerticalLayoutItemDirective,
+  BmbInteractiveIconComponent,
+  BmbLayoutDirective,
+  BmbLayoutItemDirective,
 } from '../../../../projects/ds-ng/src/public-api';
 
 @Component({
@@ -24,6 +27,9 @@ import {
     BmbImageComponent,
     BmbVerticalLayoutDirective,
     BmbVerticalLayoutItemDirective,
+    BmbInteractiveIconComponent,
+    BmbLayoutDirective,
+    BmbLayoutItemDirective,
   ],
   templateUrl: './dot-paginator.component.html',
   styleUrl: './dot-paginator.component.scss',
