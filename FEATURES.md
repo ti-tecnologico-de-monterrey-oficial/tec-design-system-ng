@@ -1,5 +1,5 @@
 # Novedades ## [v1.6.3-g] -
-2026-04-24
+2026-04-25
 
 ### 🚀 Novedades
 
@@ -9,6 +9,8 @@ Formato
 new config
 *
 build
+*
+formato
 *
 Formato
 *
@@ -24,6 +26,8 @@ feat(component / interactive icon): se agregó el tooltip al interactive icon
 *
 feat(component / icon): Se agregaron iconos personalizados
 *
+se agergó soporte para angular 21
+*
 feat(component/multi-dot-paginator): se agrego el botón como último índice. Se implementó funcionalidad para que permita seleccionar solo un índice.
 *
 utils(app): Actualización de la app demo
@@ -37,6 +41,8 @@ chore: se eliminó código que solo se usaba para validación y pruebas
 roll back user summary changes
 *
 chore: escenarios de pruebas integrales en aplicaciones
+*
+feat(commponent/sidebar): se agregó implementación para soportar eventos personalizados.
 *
 fix(component/action-menu): se agregaron estilos para organizar contenido de manera responsiva.
 *
@@ -70,13 +76,17 @@ Formato
 *
 fix(component / multi dot paginator): Se actualizaron los estilos responsivos para el multi dot paginator
 *
+fix(component / profile): Se corrigieron los estilos del profile
+*
+topbar user
+*
+topbar user
+*
 feat(component / image): se agregó la posibilidad de evitar el encoding en la fuente de la imagen
 *
 feat(component/fab): se ealizaron modificaciones para que la versión 'mitec' sea fija (según diseño en Figma)  y no pueda ser modificada.
 *
 fix(component / image): se actualizaron los estilos para permitir cambiar el cursor si hay un evento click
-*
-fix(component / profile): Se corrigieron los estilos del profile
 *
 feat(component/container-button): se agregó la documentación de variantes 'Square' como pestaña en el componente principal.
 *
@@ -87,8 +97,6 @@ feat: Add BmbFilterCard component with dynamic filtering capabilities.
 chore: se agregaron ejemplos para soporte de la aplicación.
 *
 feat: `bmb-filter-card`.
-*
-topbar user
 *
 fix(component / notification card): Se corrigió el tamaño de las notificaciones
 *
@@ -123,8 +131,6 @@ Update bmb-sidebar.component.html
 fix(component / progress bar): Se corrigió el NAN cuando el valor inicial y total son cero
 *
 chore: se eliminó código no útil (no utilizado).
-*
-topbar user
 *
 chore: se eliminó código que no se utiliza
 
@@ -136,6 +142,8 @@ Formato
 new config
 - **build**:
 build
+- **formato**:
+formato
 - **Formato**:
 Formato
 - **Formato**:
@@ -150,6 +158,8 @@ fix(component/sidebar): Se realizo refactorización de código para depurar elem
 feat(component / interactive icon): se agregó el tooltip al interactive icon
 - **feat(component / icon): Se agregaron iconos personalizados**:
 feat(component / icon): Se agregaron iconos personalizados
+- **se agergó soporte para angular 21**:
+se agergó soporte para angular 21
 - **feat(component/multi-dot-paginator): se agrego el botón como último índice. Se implementó funcionalidad para que permita seleccionar solo un índice.**:
 feat(component/multi-dot-paginator): se agrego el botón como último índice. Se implementó funcionalidad para que permita seleccionar solo un índice.
 - **utils(app): Actualización de la app demo**:
@@ -164,6 +174,8 @@ chore: se eliminó código que solo se usaba para validación y pruebas
 roll back user summary changes
 - **chore: escenarios de pruebas integrales en aplicaciones**:
 chore: escenarios de pruebas integrales en aplicaciones
+- **feat(commponent/sidebar): se agregó implementación para soportar eventos personalizados.**:
+feat(commponent/sidebar): se agregó implementación para soportar eventos personalizados.
 - **fix(component/action-menu): se agregaron estilos para organizar contenido de manera responsiva.**:
 fix(component/action-menu): se agregaron estilos para organizar contenido de manera responsiva.
 - **feat(component / dot paginator): Se actualizaron los margenes para los dot paginators**:
@@ -196,14 +208,18 @@ Formato
 Formato
 - **fix(component / multi dot paginator): Se actualizaron los estilos responsivos para el multi dot paginator**:
 fix(component / multi dot paginator): Se actualizaron los estilos responsivos para el multi dot paginator
+- **fix(component / profile): Se corrigieron los estilos del profile**:
+fix(component / profile): Se corrigieron los estilos del profile
+- **topbar user**:
+topbar user
+- **topbar user**:
+topbar user
 - **feat(component / image): se agregó la posibilidad de evitar el encoding en la fuente de la imagen**:
 feat(component / image): se agregó la posibilidad de evitar el encoding en la fuente de la imagen
 - **feat(component/fab): se ealizaron modificaciones para que la versión 'mitec' sea fija (según diseño en Figma)  y no pueda ser modificada.**:
 feat(component/fab): se ealizaron modificaciones para que la versión 'mitec' sea fija (según diseño en Figma)  y no pueda ser modificada.
 - **fix(component / image): se actualizaron los estilos para permitir cambiar el cursor si hay un evento click**:
 fix(component / image): se actualizaron los estilos para permitir cambiar el cursor si hay un evento click
-- **fix(component / profile): Se corrigieron los estilos del profile**:
-fix(component / profile): Se corrigieron los estilos del profile
 - **feat(component/container-button): se agregó la documentación de variantes 'Square' como pestaña en el componente principal.**:
 feat(component/container-button): se agregó la documentación de variantes 'Square' como pestaña en el componente principal.
 - **feat: Add `bmb-filter-card` component with dynamic visibility and option rules.**:
@@ -214,8 +230,6 @@ feat: Add BmbFilterCard component with dynamic filtering capabilities.
 chore: se agregaron ejemplos para soporte de la aplicación.
 - **feat: `bmb-filter-card`.**:
 feat: `bmb-filter-card`.
-- **topbar user**:
-topbar user
 - **fix(component / notification card): Se corrigió el tamaño de las notificaciones**:
 fix(component / notification card): Se corrigió el tamaño de las notificaciones
 - **fix(component / dropdown): Se corrigió el desface de menú del dropdown**:
@@ -250,8 +264,6 @@ Update bmb-sidebar.component.html
 fix(component / progress bar): Se corrigió el NAN cuando el valor inicial y total son cero
 - **chore: se eliminó código no útil (no utilizado).**:
 chore: se eliminó código no útil (no utilizado).
-- **topbar user**:
-topbar user
 - **chore: se eliminó código que no se utiliza**:
 chore: se eliminó código que no se utiliza
 
@@ -263,6 +275,8 @@ Formato
 new config
 - **build**:
 build
+- **formato**:
+formato
 - **Formato**:
 Formato
 - **Formato**:
@@ -277,6 +291,8 @@ fix(component/sidebar): Se realizo refactorización de código para depurar elem
 feat(component / interactive icon): se agregó el tooltip al interactive icon
 - **feat(component / icon): Se agregaron iconos personalizados**:
 feat(component / icon): Se agregaron iconos personalizados
+- **se agergó soporte para angular 21**:
+se agergó soporte para angular 21
 - **feat(component/multi-dot-paginator): se agrego el botón como último índice. Se implementó funcionalidad para que permita seleccionar solo un índice.**:
 feat(component/multi-dot-paginator): se agrego el botón como último índice. Se implementó funcionalidad para que permita seleccionar solo un índice.
 - **utils(app): Actualización de la app demo**:
@@ -291,6 +307,8 @@ chore: se eliminó código que solo se usaba para validación y pruebas
 roll back user summary changes
 - **chore: escenarios de pruebas integrales en aplicaciones**:
 chore: escenarios de pruebas integrales en aplicaciones
+- **feat(commponent/sidebar): se agregó implementación para soportar eventos personalizados.**:
+feat(commponent/sidebar): se agregó implementación para soportar eventos personalizados.
 - **fix(component/action-menu): se agregaron estilos para organizar contenido de manera responsiva.**:
 fix(component/action-menu): se agregaron estilos para organizar contenido de manera responsiva.
 - **feat(component / dot paginator): Se actualizaron los margenes para los dot paginators**:
@@ -323,14 +341,18 @@ Formato
 Formato
 - **fix(component / multi dot paginator): Se actualizaron los estilos responsivos para el multi dot paginator**:
 fix(component / multi dot paginator): Se actualizaron los estilos responsivos para el multi dot paginator
+- **fix(component / profile): Se corrigieron los estilos del profile**:
+fix(component / profile): Se corrigieron los estilos del profile
+- **topbar user**:
+topbar user
+- **topbar user**:
+topbar user
 - **feat(component / image): se agregó la posibilidad de evitar el encoding en la fuente de la imagen**:
 feat(component / image): se agregó la posibilidad de evitar el encoding en la fuente de la imagen
 - **feat(component/fab): se ealizaron modificaciones para que la versión 'mitec' sea fija (según diseño en Figma)  y no pueda ser modificada.**:
 feat(component/fab): se ealizaron modificaciones para que la versión 'mitec' sea fija (según diseño en Figma)  y no pueda ser modificada.
 - **fix(component / image): se actualizaron los estilos para permitir cambiar el cursor si hay un evento click**:
 fix(component / image): se actualizaron los estilos para permitir cambiar el cursor si hay un evento click
-- **fix(component / profile): Se corrigieron los estilos del profile**:
-fix(component / profile): Se corrigieron los estilos del profile
 - **feat(component/container-button): se agregó la documentación de variantes 'Square' como pestaña en el componente principal.**:
 feat(component/container-button): se agregó la documentación de variantes 'Square' como pestaña en el componente principal.
 - **feat: Add `bmb-filter-card` component with dynamic visibility and option rules.**:
@@ -341,8 +363,6 @@ feat: Add BmbFilterCard component with dynamic filtering capabilities.
 chore: se agregaron ejemplos para soporte de la aplicación.
 - **feat: `bmb-filter-card`.**:
 feat: `bmb-filter-card`.
-- **topbar user**:
-topbar user
 - **fix(component / notification card): Se corrigió el tamaño de las notificaciones**:
 fix(component / notification card): Se corrigió el tamaño de las notificaciones
 - **fix(component / dropdown): Se corrigió el desface de menú del dropdown**:
@@ -377,8 +397,6 @@ Update bmb-sidebar.component.html
 fix(component / progress bar): Se corrigió el NAN cuando el valor inicial y total son cero
 - **chore: se eliminó código no útil (no utilizado).**:
 chore: se eliminó código no útil (no utilizado).
-- **topbar user**:
-topbar user
 - **chore: se eliminó código que no se utiliza**:
 chore: se eliminó código que no se utiliza
 
