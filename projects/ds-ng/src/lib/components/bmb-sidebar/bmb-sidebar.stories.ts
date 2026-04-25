@@ -47,7 +47,8 @@ export default {
           'clearSelectElement',
           'closeSidebar',
           'error',
-          'checkForButton',
+          'hasChildren',
+          'checkForCustomEvent',
         ],
       },
       description: {
