@@ -56,6 +56,7 @@ export class BmbImageComponent implements OnDestroy {
   objectFit = input<IBmbImageObjectFit>('cover');
   animation = input<'fade' | 'parallax' | 'parallax-fade'>('parallax');
   avoidEncoding = input<boolean>(false);
+  enableCursorPointer = input<boolean>(false);
 
   imageClick = output<{ img: BmbImageItem; index: number; cbParams: any }>();
 
