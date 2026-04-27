@@ -118,4 +118,11 @@ export class BmbSidebarComponent {
       }
     }
   }
+
+  protected handleClose(): void {
+    if (!this.isOpen) {
+      const openElements = document.querySelectorAll('.open');
+      openElements.forEach((element) => element.classList.remove('open'));
+    }
+  }
 }
