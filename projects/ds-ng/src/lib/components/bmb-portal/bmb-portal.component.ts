@@ -2,6 +2,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   computed,
+  Signal,
   ViewEncapsulation,
 } from '@angular/core';
 import { BmbNotificationService } from '../../services/notification/notification.service';
@@ -36,37 +37,76 @@ import { BmbProjectedContentComponent } from './bmb-projected-content/bmb-projec
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BmbPortalComponent {
+  readonly notificationPositions: NonNullable<INotification['position']>[] = [
+    'top-left',
+    'top-center',
+    'top-right',
+    'bottom-left',
+    'bottom-center',
+    'bottom-right',
+  ];
+
   constructor(
     private notificationSignal: BmbNotificationService,
     private modalService: BmbNativeModalService,
     private projectionService: BmbProjectionContentService,
   ) {}
 
-  modalSignal = computed(() => this.modalService.getModalList());
-  projectedContent = computed(() =>
-    this.projectionService.getProjectedContent(),
+  modalSignal = this.modalService.modals;
+  normalizedModals = computed(() =>
+    this.modalSignal().map((item) => ({
+      ...item,
+      modalId: item.modalId ?? '',
+      title: item.title ?? '',
+      subtitle: item.subtitle ?? '',
+      content: item.content ?? '',
+      size: item.size ?? 'medium',
+      actions: item.actions ?? [],
+      inputContext: item.inputContext ?? {},
+      outputContext: item.outputContext ?? {},
+    })),
   );
   notificationsList = computed(() =>
     this.notificationSignal.getNotificationList(),
   );
+  notificationsByPosition = computed(() => {
+    const grouped: Record<NonNullable<INotification['position']>, INotification[]> = {
+      'top-left': [],
+      'top-center': [],
+      'top-right': [],
+      'bottom-left': [],
+      'bottom-center': [],
+      'bottom-right': [],
+    };
 
-  closeNotification(notification: INotification) {
+    for (const notification of this.notificationsList()) {
+      grouped[notification.position ?? 'top-right'].push(notification);
+    }
+
+    return grouped;
+  });
+  hasToast = computed(() =>
+    this.notificationsList().some((n) => n.component === 'toast'),
+  );
+  projectedContents: Signal<IBmbProjectionContent[]> = computed(() =>
+    this.projectionService.getAllProjectedContents(),
+  );
+
+  closeNotification(notification: INotification): void {
     if (notification.id) {
       this.notificationSignal.deleteNotification(notification.id);
     }
   }
 
-  getNotificationPosition() {
-    return this.notificationSignal.positionX;
-  }
-
-  handleCloseModal(id: string) {
-    this.modalService.closeModal(id);
-  }
-
-  handleModalClick(item: IBmbNativeModal, event: unknown) {
-    if (item.closeModalClicked) {
-      item.closeModalClicked({ item, event });
+  handleModalClick(
+    item: IBmbNativeModal,
+    event: { modalId: string; event: MouseEvent },
+  ): void {
+    try {
+      item.closeModalClicked?.({ item, event });
+    } catch {
+      console.warn(`Error executing closeModalClicked for modal with id ${item.modalId}`);
+      return;
     }
   }
 
@@ -80,16 +120,4 @@ export class BmbPortalComponent {
       this.projectionService.closeContent(id);
     }
   }
-
-  trackByDialogId(_: number, dialog: IBmbProjectionContent) {
-    return dialog.id;
-  }
-
-  hasToast(): boolean {
-    return this.notificationsList().some((n) => n.component === 'toast');
-  }
-
-  projectedContents = computed(() =>
-    this.projectionService.getAllProjectedContents(),
-  );
 }
