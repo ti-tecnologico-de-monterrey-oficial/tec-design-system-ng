@@ -118,4 +118,13 @@ export class BmbSidebarComponent {
       }
     }
   }
+
+  protected handleClose(): void {
+    if (!this.isOpen) {
+      const openElements = document.querySelectorAll(
+        '.bmb_sidebar-children.open',
+      );
+      openElements.forEach((element) => element.classList.remove('open'));
+    }
+  }
 }
