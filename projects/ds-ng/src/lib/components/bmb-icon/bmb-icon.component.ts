@@ -23,6 +23,7 @@ import {
   BmbCustomIconsComponent,
 } from './bmb-custom-icons/bmb-custom-icons.component';
 import { A11yModule } from '@angular/cdk/a11y';
+import { getUUID } from '../../utils/utils';
 
 @Component({
   selector: 'bmb-icon',
@@ -45,6 +46,7 @@ export class BmbIconComponent implements OnInit {
   alt = input<string>('');
   dotNotification = input<number>();
   isSVGTemplate = input<boolean>();
+  testId = input<string>(getUUID());
 
   styleIconGoogle = 'material-symbols-rounded';
   iconSvg = signal<SafeHtml | null>(null);
