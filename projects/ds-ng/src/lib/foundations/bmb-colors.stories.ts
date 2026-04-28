@@ -699,6 +699,7 @@ class StorybookColorsPlaygroundComponent {
       '--general-contrasts-main-selection',
       '--general-contrasts-icon-selection',
       '--general-contrasts-main-selection-alternative',
+      '--general-contrasts-main-selection-icon-alternative',
     ],
     [
       '--general-contrasts-input-background',

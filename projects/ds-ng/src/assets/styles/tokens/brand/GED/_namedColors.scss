@@ -21,6 +21,9 @@
   --general-contrasts-main-selection: rgb(var(--black-primary));
   --general-contrasts-icon-selection: rgb(var(--blue-primary));
   --general-contrasts-main-selection-alternative: rgb(var(--green-primary));
+  --general-contrasts-main-selection-icon-alternative: rgb(
+    var(--white-primary)
+  );
 
   --general-contrasts-input-background: rgb(var(--gray-ged-100));
   --general-contrasts-input-outline: rgb(var(--gray-ged-950));
@@ -103,7 +106,7 @@
   // Semantic colors
   --semantic-success: rgb(var(--success-primary-alternative));
   --semantic-info-event: rgb(var(--purple-primary));
-  --semantic-warning: rgb(var(--warning-primary-alternative));
+  --semantic-warning: rgb(var(--warning-primary));
   --semantic-error: rgb(var(--red-primary));
   --semantic-brand: rgb(var(--branding-primary));
   --semantic-alert: rgb(var(--alert-primary));
@@ -189,6 +192,9 @@
   --general-contrasts-main-selection: rgb(var(--white-primary));
   --general-contrasts-icon-selection: rgb(var(--blue-primary));
   --general-contrasts-main-selection-alternative: rgb(var(--green-light));
+  --general-contrasts-main-selection-icon-alternative: rgb(
+    var(--white-primary)
+  );
 
   --general-contrasts-input-background: var(--black-tint);
   --general-contrasts-input-outline: rgb(var(--gray-ged-50));
@@ -271,7 +277,7 @@
   // Semantic colors
   --semantic-success: rgb(var(--success-tint-alternative));
   --semantic-info-event: rgb(var(--purple-tint));
-  --semantic-warning: rgb(var(--yellow-primary));
+  --semantic-warning: rgb(var(-yellow-light));
   --semantic-error: rgb(var(--red-light));
   --semantic-brand: rgb(var(--branding-tint));
   --semantic-alert: rgb(var(--alert-light));

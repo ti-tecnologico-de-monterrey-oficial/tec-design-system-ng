@@ -21,6 +21,9 @@
   --general-contrasts-main-selection: rgb(var(--blue-mariner-700));
   --general-contrasts-icon-selection: rgb(var(--blue-mariner-500));
   --general-contrasts-main-selection-alternative: rgb(var(--green-primary));
+  --general-contrasts-main-selection-icon-alternative: rgb(
+    var(--white-primary)
+  );
 
   --general-contrasts-input-background: rgb(var(--gray-charade-50));
   --general-contrasts-input-outline: rgb(var(--blue-mariner-700));
@@ -176,6 +179,9 @@
   --general-contrasts-main-selection: rgb(var(--blue-mariner-700));
   --general-contrasts-icon-selection: rgb(var(--blue-mariner-500));
   --general-contrasts-main-selection-alternative: rgb(var(--green-light));
+  --general-contrasts-main-selection-icon-alternative: rgb(
+    var(--white-primary)
+  );
 
   --general-contrasts-input-background: var(--black-tint);
   --general-contrasts-input-outline: rgb(var(--gray-charade-50));
