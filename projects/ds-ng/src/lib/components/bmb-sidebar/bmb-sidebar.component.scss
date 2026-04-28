@@ -25,22 +25,6 @@ $_min_width: rem.rem_calc(88);
   }
 }
 
-/*Desktop*/
-@keyframes bounceChildren {
-  0% {
-    opacity: 0;
-    width: 0;
-  }
-  50% {
-    opacity: 0.8;
-    width: $_max_width * 0.5;
-  }
-  100% {
-    opacity: 1;
-    width: $_max_width;
-  }
-}
-
 @mixin sidebar-mobile {
   position: fixed;
   @include sidebar-width;
@@ -84,7 +68,7 @@ $_min_width: rem.rem_calc(88);
   display: flex;
   position: absolute;
   overflow: hidden;
-  animation: bounceChildren 0.3s ease-out forwards;
+  animation: bounceToRight 0.3s ease-in forwards;
 }
 
 @mixin check-for-mobile {
@@ -139,7 +123,7 @@ $_min_width: rem.rem_calc(88);
 
     &.open {
       display: block;
-      animation: bounceToRight 0.6s ease-out forwards;
+      animation: bounceToRight 0.3s ease-in forwards;
     }
   }
 
@@ -187,7 +171,7 @@ $_min_width: rem.rem_calc(88);
         opacity: 1;
       }
 
-      animation: bounceToRight 0.3s ease-out forwards;
+      animation: bounceToRight 0.3s ease-in forwards;
     }
   }
 
@@ -312,7 +296,7 @@ $_min_width: rem.rem_calc(88);
       &.open {
         left: 0;
         display: block;
-        animation: bounceToRight 0.6s ease-out forwards;
+        animation: bounceToRight 0.3s ease-out forwards;
       }
     }
 
