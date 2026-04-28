@@ -38,6 +38,10 @@
 
     &-logo {
       width: rem.rem_calc(245);
+
+      .bmb_image-figure-image {
+        height: 100%;
+      }
     }
   }
 
