@@ -788,6 +788,7 @@ class StorybookColorsPlaygroundComponent {
 
   creativeUseColors: string[] = [
     '--creative-use-violet',
+    '--creative-use-strong',
     '--creative-use-indigo',
     '--creative-use-emerald',
     '--creative-use-licorice',
