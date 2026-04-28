@@ -29,6 +29,14 @@ export interface IBmbProjectionContent {
   focusOnOpen?: boolean;
   dialogClass?: string | string[] | Record<string, boolean>;
   forceMobileCenter?: boolean;
+  beforeCloseContent?: (event: {
+    id: string;
+    reason: 'single' | 'all';
+  }) => void;
+  afterCloseContent?: (event: {
+    id: string;
+    reason: 'single' | 'all';
+  }) => void;
 }
 
 @Injectable({
@@ -122,12 +130,44 @@ export class BmbProjectionContentService {
     return id;
   }
 
+  private runCloseHook(
+    content: IBmbProjectionContent,
+    hook: 'beforeCloseContent' | 'afterCloseContent',
+    reason: 'single' | 'all',
+  ): void {
+    try {
+      content[hook]?.({
+        id: content.id ?? '',
+        reason,
+      });
+    } catch {
+      console.warn(`Error executing ${hook} for projected content with id ${content.id}`);
+    }
+  }
+
   closeContent(id?: string): void {
     if (!id) {
+      const contentsToClose = this.contentStack();
+
+      contentsToClose.forEach((content) => {
+        this.runCloseHook(content, 'beforeCloseContent', 'all');
+      });
+
       this.contentStack.set([]);
       this.contentList.set(null);
       this.destroyPortalIfUnused();
+
+      contentsToClose.forEach((content) => {
+        this.runCloseHook(content, 'afterCloseContent', 'all');
+      });
+
       return;
+    }
+
+    const contentToClose = this.contentStack().find((item) => item.id === id);
+
+    if (contentToClose) {
+      this.runCloseHook(contentToClose, 'beforeCloseContent', 'single');
     }
 
     this.contentStack.update((list) => list.filter((item) => item.id !== id));
@@ -138,6 +178,10 @@ export class BmbProjectionContentService {
     );
 
     this.destroyPortalIfUnused();
+
+    if (contentToClose) {
+      this.runCloseHook(contentToClose, 'afterCloseContent', 'single');
+    }
   }
 
   getProjectedContent(): IBmbProjectionContent | null {

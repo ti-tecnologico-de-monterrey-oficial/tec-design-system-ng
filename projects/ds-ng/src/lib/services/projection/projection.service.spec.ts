@@ -75,6 +75,29 @@ describe('BmbProjectionContentService', () => {
     expect(service.isThereContentProjected()).toBe(false);
   });
 
+  it('debe ejecutar beforeCloseContent y afterCloseContent al cerrar un contenido por id', () => {
+    const beforeCloseContent = jasmine.createSpy('beforeCloseContent');
+    const afterCloseContent = jasmine.createSpy('afterCloseContent');
+
+    const id = service.openContent(
+      createContent({
+        beforeCloseContent,
+        afterCloseContent,
+      }),
+    );
+
+    service.closeContent(id);
+
+    expect(beforeCloseContent).toHaveBeenCalledOnceWith({
+      id,
+      reason: 'single',
+    });
+    expect(afterCloseContent).toHaveBeenCalledOnceWith({
+      id,
+      reason: 'single',
+    });
+  });
+
   it('debe mantener una pila y restaurar el anterior al cerrar el último', () => {
     const firstId = service.openContent(createContent({ mode: 'partial' }));
     const secondId = service.openContent(createContent({ mode: 'over' }));
@@ -84,6 +107,47 @@ describe('BmbProjectionContentService', () => {
     service.closeContent(secondId);
 
     expect(service.getProjectedContent()?.id).toBe(firstId);
+  });
+
+  it('debe ejecutar beforeCloseContent y afterCloseContent al cerrar todo el contenido', () => {
+    const beforeFirst = jasmine.createSpy('beforeFirst');
+    const afterFirst = jasmine.createSpy('afterFirst');
+    const beforeSecond = jasmine.createSpy('beforeSecond');
+    const afterSecond = jasmine.createSpy('afterSecond');
+
+    const firstId = service.openContent(
+      createContent({
+        id: 'content-1',
+        beforeCloseContent: beforeFirst,
+        afterCloseContent: afterFirst,
+      }),
+    );
+    const secondId = service.openContent(
+      createContent({
+        id: 'content-2',
+        beforeCloseContent: beforeSecond,
+        afterCloseContent: afterSecond,
+      }),
+    );
+
+    service.closeContent();
+
+    expect(beforeFirst).toHaveBeenCalledOnceWith({
+      id: firstId,
+      reason: 'all',
+    });
+    expect(afterFirst).toHaveBeenCalledOnceWith({
+      id: firstId,
+      reason: 'all',
+    });
+    expect(beforeSecond).toHaveBeenCalledOnceWith({
+      id: secondId,
+      reason: 'all',
+    });
+    expect(afterSecond).toHaveBeenCalledOnceWith({
+      id: secondId,
+      reason: 'all',
+    });
   });
 
   it('debe lanzar error si se intenta abrir contenido con id duplicado', () => {

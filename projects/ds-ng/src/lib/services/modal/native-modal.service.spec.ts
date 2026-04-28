@@ -80,6 +80,29 @@ describe('BmbNativeModalService', () => {
     expect(service.getModalList().length).toBe(0);
   });
 
+  it('debe ejecutar beforeCloseModal y afterCloseModal al cerrar un modal', () => {
+    const beforeCloseModal = jasmine.createSpy('beforeCloseModal');
+    const afterCloseModal = jasmine.createSpy('afterCloseModal');
+
+    const id = service.openModal(
+      createModal({
+        beforeCloseModal,
+        afterCloseModal,
+      }),
+    );
+
+    service.closeModal(id);
+
+    expect(beforeCloseModal).toHaveBeenCalledOnceWith({
+      modalId: id,
+      reason: 'single',
+    });
+    expect(afterCloseModal).toHaveBeenCalledOnceWith({
+      modalId: id,
+      reason: 'single',
+    });
+  });
+
   it('debe cerrar todos los modales', () => {
     service.openModal(createModal({ title: 'Modal 1', content: 'A' }));
     service.openModal(createModal({ title: 'Modal 2', content: 'B' }));
@@ -89,6 +112,47 @@ describe('BmbNativeModalService', () => {
     service.closeAllModals();
 
     expect(service.getModalList().length).toBe(0);
+  });
+
+  it('debe ejecutar beforeCloseModal y afterCloseModal al cerrar todos los modales', () => {
+    const beforeFirst = jasmine.createSpy('beforeFirst');
+    const afterFirst = jasmine.createSpy('afterFirst');
+    const beforeSecond = jasmine.createSpy('beforeSecond');
+    const afterSecond = jasmine.createSpy('afterSecond');
+
+    const firstId = service.openModal(
+      createModal({
+        modalId: 'modal-1',
+        beforeCloseModal: beforeFirst,
+        afterCloseModal: afterFirst,
+      }),
+    );
+    const secondId = service.openModal(
+      createModal({
+        modalId: 'modal-2',
+        beforeCloseModal: beforeSecond,
+        afterCloseModal: afterSecond,
+      }),
+    );
+
+    service.closeAllModals();
+
+    expect(beforeFirst).toHaveBeenCalledOnceWith({
+      modalId: firstId,
+      reason: 'all',
+    });
+    expect(afterFirst).toHaveBeenCalledOnceWith({
+      modalId: firstId,
+      reason: 'all',
+    });
+    expect(beforeSecond).toHaveBeenCalledOnceWith({
+      modalId: secondId,
+      reason: 'all',
+    });
+    expect(afterSecond).toHaveBeenCalledOnceWith({
+      modalId: secondId,
+      reason: 'all',
+    });
   });
 
   it('debe verificar si existe un modal por id', () => {

@@ -94,17 +94,52 @@ export class BmbNativeModalService {
     return id;
   }
 
+  private runCloseHook(
+    modal: IBmbNativeModal,
+    hook: 'beforeCloseModal' | 'afterCloseModal',
+    reason: 'single' | 'all',
+  ): void {
+    try {
+      modal[hook]?.({
+        modalId: modal.modalId ?? '',
+        reason,
+      });
+    } catch {
+      console.warn(`Error executing ${hook} for modal with id ${modal.modalId}`);
+    }
+  }
+
   closeModal(id: string) {
+    const modalToClose = this.modalList().find((modal) => modal.modalId === id);
+
+    if (modalToClose) {
+      this.runCloseHook(modalToClose, 'beforeCloseModal', 'single');
+    }
+
     this.modalList.update((currentModals) =>
       currentModals.filter((modal) => modal.modalId !== id),
     );
 
     this.destroyPortalIfUnused();
+
+    if (modalToClose) {
+      this.runCloseHook(modalToClose, 'afterCloseModal', 'single');
+    }
   }
 
   closeAllModals() {
+    const modalsToClose = this.modalList();
+
+    modalsToClose.forEach((modal) => {
+      this.runCloseHook(modal, 'beforeCloseModal', 'all');
+    });
+
     this.modalList.set([]);
     this.destroyPortalIfUnused();
+
+    modalsToClose.forEach((modal) => {
+      this.runCloseHook(modal, 'afterCloseModal', 'all');
+    });
   }
 
   getModalList(): IBmbNativeModal[] {
