@@ -697,6 +697,8 @@ class StorybookColorsPlaygroundComponent {
     ],
     [
       '--general-contrasts-main-complimentary',
+      '--general-contrasts-light-complimentary',
+      '--general-contrasts-dark-complimentary',
       '--general-contrasts-main-selection',
       '--general-contrasts-icon-selection',
       '--general-contrasts-main-selection-alternative',
