@@ -29,6 +29,8 @@ import {
   BmbNativeModalService,
   BmbFilterCardComponent,
   ThemeService,
+  BmbActionIconComponent,
+  BmbTooltipComponent,
   BmbIconComponent,
 } from '../../../../projects/ds-ng/src/public-api';
 import { HelpMenuComponent } from '../../components/help-menu/help-menu.component';
@@ -55,6 +57,8 @@ import { ModalWDropdownComponent } from '../../components/modal-w-dropdown/modal
     BmbImageComponent,
     BmbFilterCardComponent,
     BmbIconComponent,
+    BmbActionIconComponent,
+    BmbTooltipComponent,
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
@@ -138,5 +142,9 @@ export class HomeComponent {
       },
       size: 'medium',
     });
+  }
+
+  printPaymentDetails(event: MouseEvent | KeyboardEvent): void {
+    console.log('Payment details printed', event);
   }
 }
