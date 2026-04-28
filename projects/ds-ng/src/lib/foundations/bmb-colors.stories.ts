@@ -685,6 +685,7 @@ class StorybookColorsPlaygroundComponent {
       '--general-contrasts',
       '--general-contrasts-100',
       '--general-contrasts-90',
+      '--general-contrasts-85',
       '--general-contrasts-80',
       '--general-contrasts-75',
       '--general-contrasts-60',
