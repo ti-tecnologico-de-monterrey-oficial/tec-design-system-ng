@@ -718,6 +718,7 @@ class StorybookColorsPlaygroundComponent {
   containers: string[][] = [
     [
       '--containers-background',
+      '--containers-background-alternative',
       '--containers-media-card-background',
       '--containers-main',
       '--containers-header-mobile',
