@@ -5,6 +5,14 @@
 
 <div class="bmb_template-margin-for-sidebar">
   <button (click)="handleModalWithDropdown()">Open Modal</button>
+  <bmb-tooltip [text]="'texto de prueba'" [componentTitle]="'Titlo de prueba'">
+    <bmb-action-icon
+      [idElement]="'1'"
+      (buttonClick)="printPaymentDetails($event)"
+      [icon]="'download'"
+      [iconSize]="24"
+    />
+  </bmb-tooltip>
   <section
     bmbLayout
     margin="none"

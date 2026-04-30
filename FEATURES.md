@@ -1,4 +1,4 @@
-# Novedades ## [v1.6.3-f] -
+# Novedades ## [v1.6.3-g] -
 2026-04-30
 
 ### 🚀 Novedades
@@ -15,6 +15,8 @@ Formato
 Formato
 *
 Formato
+*
+bubble chat
 *
 Add conditional visibility and cascading options to filter card component
 *
@@ -136,6 +138,8 @@ Formato
 Formato
 - **Formato**:
 Formato
+- **bubble chat**:
+bubble chat
 - **Add conditional visibility and cascading options to filter card component**:
 Add conditional visibility and cascading options to filter card component
 - **fix(component/sidebar): Se realizo refactorización de código para depurar elementos y simplificar estructura. La navegación ahora es en su mayoría manejo con CSS.**:
@@ -257,6 +261,8 @@ Formato
 Formato
 - **Formato**:
 Formato
+- **bubble chat**:
+bubble chat
 - **Add conditional visibility and cascading options to filter card component**:
 Add conditional visibility and cascading options to filter card component
 - **fix(component/sidebar): Se realizo refactorización de código para depurar elementos y simplificar estructura. La navegación ahora es en su mayoría manejo con CSS.**:

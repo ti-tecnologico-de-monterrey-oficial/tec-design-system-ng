@@ -2,19 +2,17 @@
 <ng-template
   #elementsTemplate
   let-elements="elements"
+  let-parentElement="parentElement"
   let-level="level"
-  let-isWeb="isWeb"
 >
   @for (element of elements; track $index) {
-    <li class="bmb_sidebar-list-item">
+    <li class="bmb_sidebar-list-item" (click)="closeSidebar(element)">
       <bmb-check-external-link-button
         class="bmb_sidebar-element"
         [idElement]="'element' + element.id!"
-        [link]="
-          getLink({ hasChildren: !!element.children, link: element.link! })
-        "
-        [target]="checkForButton(!!element.children) ? '' : element.target!"
-        (buttonClick)="toggleChildren(element)"
+        [link]="getLink(element)"
+        [target]="element.target"
+        (buttonClick)="checkForCustomEvent(element, parentElement)"
       >
         <section class="bmb_sidebar-item">
           @if (!!element.icon) {
@@ -33,11 +31,7 @@
           @if (level === 1 && !!element.children) {
             <bmb-icon
               class="bmb_sidebar-item-arrow"
-              [icon]="
-                isWeb && position() === 'right'
-                  ? 'chevron_left'
-                  : 'chevron_right'
-              "
+              [icon]="position() === 'right' ? 'chevron_left' : 'chevron_right'"
               [size]="24"
             />
           }
@@ -50,7 +44,7 @@
           class="bmb_sidebar-children"
           [ngClass]="{
             open: element.isOpen,
-            'bmb_sidebar-children-right': isWeb && position() === 'right'
+            'bmb_sidebar-children-right': position() === 'right'
           }"
         >
           <ng-container
@@ -58,9 +52,9 @@
               sidebarTemplate;
               context: {
                 elements: element.children?.slice(0, 6),
+                parentElement: element,
                 level: level + 1,
-                selectedElement: element,
-                isWeb
+                selectedElement: element
               }
             "
           />
@@ -72,27 +66,19 @@
 
 <!-- Content template -->
 <ng-template
-  #sidebarContentTemplate
+  #sidebarTemplate
   let-elements="elements"
   let-level="level"
   let-selectedElement="selectedElement"
-  let-isWeb="isWeb"
+  let-parentElement="parentElement"
   let-showHeader="showHeader"
 >
-  <section
-    class="bmb_sidebar-menu"
-    [ngClass]="{
-      open: !isWeb && isOpen,
-      'bmb_sidebar-menu-mobile': !isWeb
-    }"
-  >
-    <!-- Header -->
-    @if (
-      (!isWeb && isOpen) || (isWeb && level >= 2 && showHeaderForChildren())
-    ) {
-      <section class="bmb_sidebar-header">
-        @if (!isWeb && level >= 2) {
+  <section class="bmb_sidebar-menu">
+    <section class="bmb_sidebar-header">
+      <section class="bmb_sidebar-header-wrapper">
+        @if (level >= 2) {
           <bmb-action-icon
+            class="bmb_sidebar-header-back"
             [idElement]="'button'.concat(selectedElement?.id?.toString())"
             icon="chevron_left"
             [iconSize]="24"
@@ -104,18 +90,17 @@
           {{ selectedElement?.title }}
         </span>
 
-        @if (!isWeb) {
-          <bmb-action-icon
-            idElement="sidebar_close"
-            icon="close"
-            [iconSize]="24"
-            [isAccentColor]="false"
-            (buttonClick)="closeSidebar(selectedElement)"
-          />
-        }
+        <bmb-action-icon
+          class="bmb_sidebar-header-close"
+          idElement="sidebar_close"
+          icon="close"
+          [iconSize]="24"
+          [isAccentColor]="false"
+          (buttonClick)="closeSidebar(selectedElement)"
+        />
       </section>
       <bmb-divider />
-    }
+    </section>
 
     <!-- List -->
     <ul class="bmb_sidebar-list">
@@ -130,8 +115,8 @@
               elementsTemplate;
               context: {
                 elements: group,
-                level,
-                isWeb
+                parentElement,
+                level
               }
             "
           />
@@ -142,7 +127,7 @@
             elementsTemplate;
             context: {
               elements,
-              isWeb,
+              parentElement,
               level
             }
           "
@@ -152,56 +137,17 @@
   </section>
 </ng-template>
 
-<!-- Navigation template -->
-<ng-template
-  #sidebarTemplate
-  let-elements="elements"
-  let-level="level"
-  let-selectedElement="selectedElement"
-  let-isWeb="isWeb"
->
-  <!-- Mobile -->
-  @if (level === 1) {
-    <bmb-action-icon
-      class="bmb_sidebar-mobile bmb_sidebar-button"
-      idElement="sidebar_main"
-      icon="chevron_right"
-      [iconSize]="32"
-      toggleIconActive="chevron_left"
-      [isAccentColor]="false"
-      [(isToggleActive)]="isOpen"
-      (buttonClick)="clearSelectElement(selectedElement)"
-    />
-  }
-  <ng-container
-    *ngTemplateOutlet="
-      sidebarContentTemplate;
-      context: {
-        elements,
-        level,
-        isWeb: false,
-        selectedElement
-      }
-    "
-  />
-
-  <!-- Web -->
-  <section class="bmb_sidebar-web">
-    <ng-container
-      *ngTemplateOutlet="
-        sidebarContentTemplate;
-        context: {
-          elements,
-          level,
-          isWeb: true,
-          selectedElement
-        }
-      "
-    />
-  </section>
-</ng-template>
-
 @if (!error) {
+  <bmb-action-icon
+    class="bmb_sidebar-button"
+    idElement="sidebar_main"
+    icon="chevron_right"
+    [iconSize]="32"
+    toggleIconActive="chevron_left"
+    [isAccentColor]="false"
+    [(isToggleActive)]="isOpen"
+    (buttonClick)="handleClose()"
+  />
   <nav
     #sideNav
     class="bmb_sidebar"

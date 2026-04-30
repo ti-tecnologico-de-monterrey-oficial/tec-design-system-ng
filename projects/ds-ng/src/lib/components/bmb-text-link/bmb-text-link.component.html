@@ -3,6 +3,7 @@
   [ngClass]="{
     disabled: disabled()
   }"
+  [attr.data-automation-id]="testId()"
 >
   <bmb-check-external-link-button [link]="link()" [target]="target()">
     <span
@@ -18,6 +19,7 @@
           [icon]="icon()"
           [size]="20"
           [alt]="textLink() || icon()"
+          [testId]="testId() + '-icon'"
         />
       }
       <span

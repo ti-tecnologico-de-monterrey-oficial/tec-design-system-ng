@@ -46,7 +46,10 @@
           (click)="handleSingleImageClick()"
           (keydown.enter)="handleSingleImageClick()"
           (keydown.space)="handleSingleImageClick()"
-          [style]="{ 'object-fit': objectFit() }"
+          [style]="{
+            'object-fit': objectFit(),
+            cursor: enableCursorPointer() ? 'pointer' : 'default'
+          }"
         />
       </picture>
     </figure>
