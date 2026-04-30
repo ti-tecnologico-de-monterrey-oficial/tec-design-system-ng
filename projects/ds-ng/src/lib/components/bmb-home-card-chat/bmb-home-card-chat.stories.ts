@@ -57,7 +57,7 @@ const HTMLtemplate: string = `<div class="bmb_template-single-home-card">
     [mode]="args.mode"
     [(currentBot)]="args.currentBot"
     [(isLoading)]="args.isLoading"
-    (onBubbleAction)="args.onBubbleAction?.($event)"
+    (getBubbleAction)="args.getBubbleAction?.($event)"
     (getSendMessage)="args.getSendMessage?.($event)"
     (getClose)="args.getClose?.()"
     (getBack)="args.getBack?.()"
@@ -472,7 +472,7 @@ type IBotType = {
     },
 
     // ===== EVENTS =====
-    onBubbleAction: {
+    getBubbleAction: {
       action: 'bubbleAction',
       control: false,
       description: `
@@ -645,11 +645,11 @@ handleNewChat() {
     ],
 
     // ===== EVENTS =====
-    onBubbleAction: (event: IBmbChatActionEvent) => {
+    getBubbleAction: (event: IBmbChatActionEvent) => {
       console.log('🔥 Bubble Action:', event);
     },
 
-    getSendMessage: (message: IBmbChatMessage) => {
+    getSendMessage: (message: string) => {
       console.log('📩 Send Message:', message);
     },
 

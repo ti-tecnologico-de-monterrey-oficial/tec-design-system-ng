@@ -73,7 +73,7 @@ export class BmbHomeCardChatComponent {
   });
   isLoading = model<boolean>(false);
   mode = model<'compact' | 'chat' | 'expanded'>('expanded');
-  onBubbleAction = output<IBmbChatActionEvent>();
+  getBubbleAction = output<IBmbChatActionEvent>();
 
   getClose = output();
   getBack = output();

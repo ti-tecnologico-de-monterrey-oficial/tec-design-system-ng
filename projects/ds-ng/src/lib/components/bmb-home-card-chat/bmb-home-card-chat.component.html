@@ -24,7 +24,7 @@
             [gptBot]="resolveGptBot(message)"
             [isThinking]="resolveThinking(message, $index)"
             [testId]="resolveTestId(message, $index)"
-            (onAction)="onBubbleAction.emit($event)"
+            (getAction)="getBubbleAction.emit($event)"
           />
         }
       </div>

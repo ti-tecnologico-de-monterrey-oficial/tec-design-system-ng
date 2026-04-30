@@ -1,7 +1,6 @@
 import { Meta, moduleMetadata, StoryObj } from '@storybook/angular';
 import { BmbChatBubblesComponent } from './bmb-chat-bubbles.component';
 import {
-  getBasicExampleBlock,
   getGeneralComponentDescription,
   getGeneralDescription,
   getOnEvent,
@@ -9,7 +8,6 @@ import {
   RELEVANT_TITLE,
 } from '../../utils/doc/utils';
 import {
-  DBmbGenericParamDesc,
   getOnClickParam,
   getOnEventParam,
 } from '../../utils/doc/parameterDescriptions';
@@ -19,7 +17,7 @@ import { IBmbChatActionEvent } from './types';
 const DEPRECATED_DESC = `
 ⛔ Deprecated  
 This property will not be maintainable. This will be removed in future versions.  
-Use "onAction" instead.
+Use "getAction" instead.
 `;
 
 const IMPORTANT_DESCRIPTION: string = `${RELEVANT_TITLE.important}
@@ -185,8 +183,8 @@ ${DEPRECATED_DESC}`,
         'other',
       ),
     },
-    onAction: getOnEventParam(
-      getOnEvent('chat action', 'onAction'),
+    getAction: getOnEventParam(
+      getOnEvent('chat action', 'getAction'),
       'Returns the action performed, the messageId and the full message object.',
       'other',
     ),
@@ -227,7 +225,7 @@ export const UserMsg: Story = {
   parameters: {
     controls: {
       exclude: [
-        'onAction',
+        'getAction',
         'onRepeatRequest',
         'onVoice',
         'onCopy',
@@ -261,7 +259,7 @@ export const ChatGpt: Story = {
   ...Default,
   parameters: {
     controls: {
-      exclude: ['onAction'],
+      exclude: ['getAction'],
     },
   },
 };
@@ -290,7 +288,7 @@ export const LinkResponse: Story = {
   ...Default,
   parameters: {
     controls: {
-      exclude: ['onAction'],
+      exclude: ['getAction'],
     },
   },
 };
@@ -312,7 +310,7 @@ export const TextAndImage: Story = {
   parameters: {
     controls: {
       exclude: [
-        'onAction',
+        'getAction',
         'onRepeatRequest',
         'onVoice',
         'onCopy',
@@ -342,7 +340,7 @@ export const Thinking: Story = {
   parameters: {
     controls: {
       exclude: [
-        'onAction',
+        'getAction',
         'onRepeatRequest',
         'onVoice',
         'onCopy',
@@ -394,12 +392,12 @@ export const OptionsTemplate: Story = {
   ...Default,
   parameters: {
     controls: {
-      exclude: ['onAction'],
+      exclude: ['getAction'],
     },
   },
 };
 
-export const ChatUsingOnAction: Story = {
+export const ChatUsingGetAction: Story = {
   args: {
     message: {
       id: '3',
@@ -412,7 +410,7 @@ export const ChatUsingOnAction: Story = {
     },
     gptIcons: true,
     gptBot: true,
-    onAction: (e: IBmbChatActionEvent) => {
+    getAction: (e: IBmbChatActionEvent) => {
       console.log('🔥 ACTION:', e.action);
       console.log('📌 MESSAGE ID:', e.messageId);
       console.log('📦 MESSAGE:', e.message);

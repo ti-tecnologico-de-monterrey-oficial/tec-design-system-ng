@@ -13,6 +13,8 @@ import {
   IBmbChatGptIcons,
   IBmbChatActionEvent,
   TChatAction,
+  BmbChatGptIconInput,
+  IBmbChatGptIconState,
 } from './types';
 import { BmbUserImageComponent } from '../bmb-user-image/bmb-user-image.component';
 import { CommonModule } from '@angular/common';
@@ -78,22 +80,28 @@ export class BmbChatBubblesComponent {
     this.gptBot() ? 'bot_chatGPT' : this.iconBot(),
   );
 
-  /** @deprecated Use onAction instead */
+  /** @deprecated Use getAction instead */
   onRepeatRequest = output<Event>();
 
-  /** @deprecated Use onAction instead */
+  /** @deprecated Use getAction instead */
   onVoice = output<Event>();
 
-  /** @deprecated Use onAction instead */
+  /** @deprecated Use getAction instead */
   onCopy = output<Event>();
 
-  /** @deprecated Use onAction instead */
+  /** @deprecated Use getAction instead */
   onLike = output<Event>();
 
-  /** @deprecated Use onAction instead */
+  /** @deprecated Use getAction instead */
   onDislike = output<Event>();
 
-  gptActiveIcons = input<IBmbChatGptIcons>({
+  gptActiveIcons = input<{
+    repeat: BmbChatGptIconInput;
+    voice: BmbChatGptIconInput;
+    copy: BmbChatGptIconInput;
+    like: BmbChatGptIconInput;
+    dislike: BmbChatGptIconInput;
+  }>({
     repeat: { visible: true },
     voice: { visible: true },
     copy: { visible: true },
@@ -101,18 +109,29 @@ export class BmbChatBubblesComponent {
     dislike: { visible: true },
   });
 
-  onAction = output<IBmbChatActionEvent>();
+  getAction = output<IBmbChatActionEvent>();
   iconsState = model<IBmbChatGptIcons>(this.buildState());
+
+  private normalize(icon: BmbChatGptIconInput): IBmbChatGptIconState {
+    if (typeof icon === 'boolean') {
+      return { visible: icon, active: false };
+    }
+
+    return {
+      visible: icon.visible,
+      active: icon.active ?? false,
+    };
+  }
 
   private buildState(): IBmbChatGptIcons {
     const config = this.gptActiveIcons();
 
     return {
-      repeat: { ...config.repeat, active: false },
-      voice: { ...config.voice, active: false },
-      copy: { ...config.copy, active: false },
-      like: { ...config.like, active: false },
-      dislike: { ...config.dislike, active: false },
+      repeat: this.normalize(config.repeat),
+      voice: this.normalize(config.voice),
+      copy: this.normalize(config.copy),
+      like: this.normalize(config.like),
+      dislike: this.normalize(config.dislike),
     };
   }
 
@@ -179,7 +198,7 @@ export class BmbChatBubblesComponent {
         break;
     }
 
-    this.onAction.emit({
+    this.getAction.emit({
       action,
       messageId: this.message().id,
       message: this.message(),

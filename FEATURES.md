@@ -4,9 +4,11 @@
 ### 🚀 Novedades
 
 *
+Formato
+*
 bubble chat
 *
-Formato
+bubble chat
 *
 new config
 *
@@ -156,13 +158,13 @@ chore: se agregó código para prevenir la propagación y detenerla.
 *
 chore: se eliminó código que no se utiliza.
 *
-Update bmb-sidebar.component.html
-*
-fix(component / progress bar): Se corrigió el NAN cuando el valor inicial y total son cero
-*
 topbar user
 *
 feat: Add BmbFilterCard component.
+*
+Update bmb-sidebar.component.html
+*
+fix(component / progress bar): Se corrigió el NAN cuando el valor inicial y total son cero
 *
 chore: se eliminó código no útil (no utilizado).
 *
@@ -170,10 +172,12 @@ chore: se eliminó código que no se utiliza
 
 ### 🆕 Nuevos Componentes
 
-- **bubble chat**:
-bubble chat
 - **Formato**:
 Formato
+- **bubble chat**:
+bubble chat
+- **bubble chat**:
+bubble chat
 - **new config**:
 new config
 - **build**:
@@ -322,14 +326,14 @@ fix(component / icon): Se soluciono el problema de iconos duplicados
 chore: se agregó código para prevenir la propagación y detenerla.
 - **chore: se eliminó código que no se utiliza.**:
 chore: se eliminó código que no se utiliza.
-- **Update bmb-sidebar.component.html**:
-Update bmb-sidebar.component.html
-- **fix(component / progress bar): Se corrigió el NAN cuando el valor inicial y total son cero**:
-fix(component / progress bar): Se corrigió el NAN cuando el valor inicial y total son cero
 - **topbar user**:
 topbar user
 - **feat: Add BmbFilterCard component.**:
 feat: Add BmbFilterCard component.
+- **Update bmb-sidebar.component.html**:
+Update bmb-sidebar.component.html
+- **fix(component / progress bar): Se corrigió el NAN cuando el valor inicial y total son cero**:
+fix(component / progress bar): Se corrigió el NAN cuando el valor inicial y total son cero
 - **chore: se eliminó código no útil (no utilizado).**:
 chore: se eliminó código no útil (no utilizado).
 - **chore: se eliminó código que no se utiliza**:
@@ -337,10 +341,12 @@ chore: se eliminó código que no se utiliza
 
 ### 🔄 Componentes Actualizados
 
-- **bubble chat**:
-bubble chat
 - **Formato**:
 Formato
+- **bubble chat**:
+bubble chat
+- **bubble chat**:
+bubble chat
 - **new config**:
 new config
 - **build**:
@@ -489,14 +495,14 @@ fix(component / icon): Se soluciono el problema de iconos duplicados
 chore: se agregó código para prevenir la propagación y detenerla.
 - **chore: se eliminó código que no se utiliza.**:
 chore: se eliminó código que no se utiliza.
-- **Update bmb-sidebar.component.html**:
-Update bmb-sidebar.component.html
-- **fix(component / progress bar): Se corrigió el NAN cuando el valor inicial y total son cero**:
-fix(component / progress bar): Se corrigió el NAN cuando el valor inicial y total son cero
 - **topbar user**:
 topbar user
 - **feat: Add BmbFilterCard component.**:
 feat: Add BmbFilterCard component.
+- **Update bmb-sidebar.component.html**:
+Update bmb-sidebar.component.html
+- **fix(component / progress bar): Se corrigió el NAN cuando el valor inicial y total son cero**:
+fix(component / progress bar): Se corrigió el NAN cuando el valor inicial y total son cero
 - **chore: se eliminó código no útil (no utilizado).**:
 chore: se eliminó código no útil (no utilizado).
 - **chore: se eliminó código que no se utiliza**:

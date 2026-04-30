@@ -46,6 +46,8 @@ export interface IBmbChatActionEvent {
   event?: Event;
 }
 
+export type BmbChatGptIconInput = boolean | IBmbChatGptIconState;
+
 export interface IBmbChatGptIcons {
   repeat: IBmbChatGptIconState;
   voice: IBmbChatGptIconState;
