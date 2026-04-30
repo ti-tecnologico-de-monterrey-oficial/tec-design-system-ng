@@ -9,10 +9,18 @@ import {
   RELEVANT_TITLE,
 } from '../../utils/doc/utils';
 import {
+  DBmbGenericParamDesc,
   getOnClickParam,
   getOnEventParam,
 } from '../../utils/doc/parameterDescriptions';
 import { RouterTestingModule } from '@angular/router/testing';
+import { IBmbChatActionEvent } from './types';
+
+const DEPRECATED_DESC = `
+⛔ Deprecated  
+This property will not be maintainable. This will be removed in future versions.  
+Use "onAction" instead.
+`;
 
 const IMPORTANT_DESCRIPTION: string = `${RELEVANT_TITLE.important}
 The event only returns a signal to indicates the click event.
@@ -38,13 +46,21 @@ export default {
     docs: {
       controls: {
         exclude: [
+          // deprecated API
           'handleCopyContent',
           'handleDislike',
           'handleLike',
           'handleRepeat',
           'handleVoice',
-          'gptActiveIcons',
           'iconBotDefault',
+
+          // internal logic
+          'gptActiveIcons',
+          'handleAction',
+          'actions',
+          'iconsState',
+          'buildState',
+          'toggleFeedback',
         ],
       },
       description: {
@@ -58,7 +74,6 @@ It supports [AI icons](https://bamboo.tec.mx/latest/componentes/ai-chat-bar/ai-i
   },
 )}
 ${getSpecialSpecifications(`### ${IMPORTANT_DESCRIPTION}`)}
-${getBasicExampleBlock('BmbChatBubblesComponent')}
         `,
       },
     },
@@ -75,16 +90,17 @@ ${getBasicExampleBlock('BmbChatBubblesComponent')}
     message: {
       control: { type: 'object' },
       description:
-        'Sets the information required for the chat bubble, includes the text, type of the text, image for the user etc.',
+        'Defines the message displayed in the chat bubble, including id, content, type (text, image, link, etc.), and metadata such as time and user.',
       table: {
         category: 'Properties',
         type: { summary: 'IBmbChatMessage' },
         defaultValue: {
           summary: {
+            id: 'msg-1',
             isUserMessage: false,
             type: 'text',
             content: {
-              text: ' Lorem ipsum dolor sit amet,  consectetur adipiscing elit. Ut justo.',
+              text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut justo.',
             },
             time: '2025-03-27T15:48:33.065Z',
           },
@@ -103,7 +119,7 @@ ${getBasicExampleBlock('BmbChatBubblesComponent')}
     gptIcons: {
       control: { type: 'boolean' },
       description:
-        'Sets the extra icons, these icons are only for the response from the bot, not for the user.',
+        'Enables the action icons (repeat, voice, copy, like, dislike) for bot messages.',
       table: {
         category: 'Properties',
         defaultValue: { summary: 'false' },
@@ -120,18 +136,64 @@ ${getBasicExampleBlock('BmbChatBubblesComponent')}
         type: { summary: 'boolean' },
       },
     },
-    onRepeatRequest: getOnEventParam(
-      getOnEvent('repeat the request', 'onRepeatRequest'),
-      'when the request needs to be repeated.',
+    onRepeatRequest: {
+      ...getOnEventParam(
+        getOnEvent('repeat the request', 'onRepeatRequest'),
+        `Triggers when the user requests to repeat the message.
+
+${DEPRECATED_DESC}`,
+        'other',
+      ),
+    },
+
+    onVoice: {
+      ...getOnEventParam(
+        getOnEvent('voice', 'onVoice'),
+        `Triggers the voice playback action when the user clicks the icon.
+
+${DEPRECATED_DESC}`,
+        'other',
+      ),
+    },
+
+    onCopy: {
+      ...getOnEventParam(
+        getOnEvent('copy', 'onCopy'),
+        `Triggers the copy action when the user clicks the icon.
+
+${DEPRECATED_DESC}`,
+        'other',
+      ),
+    },
+
+    onLike: {
+      ...getOnEventParam(
+        getOnEvent('like', 'onLike'),
+        `Triggers the like action when the user clicks the icon.
+
+${DEPRECATED_DESC}`,
+        'other',
+      ),
+    },
+
+    onDislike: {
+      ...getOnEventParam(
+        getOnEvent('dislike', 'onDislike'),
+        `Triggers the dislike action when the user clicks the icon.
+
+${DEPRECATED_DESC}`,
+        'other',
+      ),
+    },
+    onAction: getOnEventParam(
+      getOnEvent('chat action', 'onAction'),
+      'Returns the action performed, the messageId and the full message object.',
       'other',
     ),
-    onVoice: getOnClickAndImportantParam('voice', 'onVoice'),
-    onCopy: getOnClickAndImportantParam('copy', 'onCopy'),
-    onLike: getOnClickAndImportantParam('like', 'onLike'),
-    onDislike: getOnClickAndImportantParam('onDislike', 'onDislike'),
   },
   args: {
     message: {
+      id: 'msg-1',
       isUserMessage: false,
       userProfile: 'https://picsum.photos/id/64/200/300',
       type: 'text',
@@ -141,21 +203,6 @@ ${getBasicExampleBlock('BmbChatBubblesComponent')}
       time: new Date(),
     },
     gptIcons: false,
-    onRepeatRequest: () => {
-      console.log('Repeat request Button');
-    },
-    onVoice: () => {
-      console.log('Play Voice Button');
-    },
-    onCopy: () => {
-      console.log('Copy Button');
-    },
-    onLike: () => {
-      console.log('Like Button');
-    },
-    onDislike: () => {
-      console.log('Dislike Button');
-    },
   },
 } as Meta<typeof BmbChatBubblesComponent>;
 
@@ -166,6 +213,7 @@ export const Default: Story = {};
 export const UserMsg: Story = {
   args: {
     message: {
+      id: '2',
       isUserMessage: true,
       userProfile: 'https://picsum.photos/id/64/200/300',
       type: 'text',
@@ -176,11 +224,24 @@ export const UserMsg: Story = {
     },
   },
   ...Default,
+  parameters: {
+    controls: {
+      exclude: [
+        'onAction',
+        'onRepeatRequest',
+        'onVoice',
+        'onCopy',
+        'onLike',
+        'onDislike',
+      ],
+    },
+  },
 };
 
 export const ChatGpt: Story = {
   args: {
     message: {
+      id: '3',
       isUserMessage: false,
       type: 'text',
       content: {
@@ -190,13 +251,25 @@ export const ChatGpt: Story = {
     },
     gptIcons: true,
     gptBot: true,
+    // 👇 deprecated handlers
+    onRepeatRequest: () => console.log('Repeat'),
+    onVoice: () => console.log('Voice'),
+    onCopy: () => console.log('Copy'),
+    onLike: () => console.log('Like'),
+    onDislike: () => console.log('Dislike'),
   },
   ...Default,
+  parameters: {
+    controls: {
+      exclude: ['onAction'],
+    },
+  },
 };
 
 export const LinkResponse: Story = {
   args: {
     message: {
+      id: '4',
       isUserMessage: false,
       type: 'link',
       content: {
@@ -207,13 +280,25 @@ export const LinkResponse: Story = {
     },
     gptIcons: true,
     gptBot: true,
+    // 👇 deprecated handlers
+    onRepeatRequest: () => console.log('Repeat'),
+    onVoice: () => console.log('Voice'),
+    onCopy: () => console.log('Copy'),
+    onLike: () => console.log('Like'),
+    onDislike: () => console.log('Dislike'),
   },
   ...Default,
+  parameters: {
+    controls: {
+      exclude: ['onAction'],
+    },
+  },
 };
 
 export const TextAndImage: Story = {
   args: {
     message: {
+      id: '5',
       isUserMessage: false,
       type: 'mixed',
       content: {
@@ -224,11 +309,24 @@ export const TextAndImage: Story = {
     },
   },
   ...Default,
+  parameters: {
+    controls: {
+      exclude: [
+        'onAction',
+        'onRepeatRequest',
+        'onVoice',
+        'onCopy',
+        'onLike',
+        'onDislike',
+      ],
+    },
+  },
 };
 
 export const Thinking: Story = {
   args: {
     message: {
+      id: '6',
       isUserMessage: false,
       type: 'mixed',
       content: {
@@ -241,11 +339,24 @@ export const Thinking: Story = {
     isThinking: true,
   },
   ...Default,
+  parameters: {
+    controls: {
+      exclude: [
+        'onAction',
+        'onRepeatRequest',
+        'onVoice',
+        'onCopy',
+        'onLike',
+        'onDislike',
+      ],
+    },
+  },
 };
 
 export const OptionsTemplate: Story = {
   args: {
     message: {
+      id: '1',
       isUserMessage: false,
       type: 'options',
       content: {
@@ -273,6 +384,45 @@ export const OptionsTemplate: Story = {
       time: new Date(),
     },
     gptIcons: true,
+    // 👇 deprecated handlers
+    onRepeatRequest: () => console.log('Repeat'),
+    onVoice: () => console.log('Voice'),
+    onCopy: () => console.log('Copy'),
+    onLike: () => console.log('Like'),
+    onDislike: () => console.log('Dislike'),
   },
   ...Default,
+  parameters: {
+    controls: {
+      exclude: ['onAction'],
+    },
+  },
+};
+
+export const ChatUsingOnAction: Story = {
+  args: {
+    message: {
+      id: '3',
+      isUserMessage: false,
+      type: 'text',
+      content: {
+        text: 'Lorem ipsum...',
+      },
+      time: new Date(),
+    },
+    gptIcons: true,
+    gptBot: true,
+    onAction: (e: IBmbChatActionEvent) => {
+      console.log('🔥 ACTION:', e.action);
+      console.log('📌 MESSAGE ID:', e.messageId);
+      console.log('📦 MESSAGE:', e.message);
+      console.log('🖱 EVENT:', e.event);
+    },
+  },
+  ...Default,
+  parameters: {
+    controls: {
+      exclude: ['onRepeatRequest', 'onVoice', 'onCopy', 'onLike', 'onDislike'],
+    },
+  },
 };

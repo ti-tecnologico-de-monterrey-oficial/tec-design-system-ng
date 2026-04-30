@@ -1,5 +1,5 @@
 # Novedades ## [v1.6.3-f] -
-2026-04-23
+2026-04-30
 
 ### 🚀 Novedades
 
@@ -7,6 +7,8 @@
 Formato
 *
 new config
+*
+build
 *
 Formato
 *
@@ -126,6 +128,8 @@ chore: se eliminó código que no se utiliza
 Formato
 - **new config**:
 new config
+- **build**:
+build
 - **Formato**:
 Formato
 - **Formato**:
@@ -245,6 +249,8 @@ chore: se eliminó código que no se utiliza
 Formato
 - **new config**:
 new config
+- **build**:
+build
 - **Formato**:
 Formato
 - **Formato**:
