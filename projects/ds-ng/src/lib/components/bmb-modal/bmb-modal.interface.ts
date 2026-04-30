@@ -53,6 +53,14 @@ export interface IBmbNativeModal
   iconStyle?: IBmbModalAlertStyle;
   actions?: IBmbActionButton[];
   closeModalClicked?: (event: unknown) => void;
+  beforeCloseModal?: (event: {
+    modalId: string;
+    reason: 'single' | 'all';
+  }) => void;
+  afterCloseModal?: (event: {
+    modalId: string;
+    reason: 'single' | 'all';
+  }) => void;
   inputContext?: { [key: string]: any };
   outputContext?: { [key: string]: (value: any) => void };
   content?: string | TemplateRef<any> | null | Type<any>;

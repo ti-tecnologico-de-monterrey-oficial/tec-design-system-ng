@@ -1,4 +1,5 @@
 import { Component, input } from '@angular/core';
+import { getUUID } from '../../../utils/utils';
 
 export type BmbCustomIconListType =
   | 'bmb_android'
@@ -32,4 +33,5 @@ export const BmbCustomIconList: BmbCustomIconListType[] = [
 export class BmbCustomIconsComponent {
   icon = input.required<BmbCustomIconListType>();
   size = input<number | undefined>();
+  testId = input<string>(getUUID());
 }

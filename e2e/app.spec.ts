@@ -30,5 +30,6 @@ test.describe('Navigation', () => {
     await page.goto('/alerts');
     await expect(page).toHaveTitle(/Alerts/);
     await expect(page.locator('app-root')).toBeVisible();
+    // page.getTestId('alerts-page').should('be.visible');
   });
 });

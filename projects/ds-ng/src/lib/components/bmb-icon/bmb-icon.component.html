@@ -8,22 +8,29 @@
         width: !!size() ? size() + 'px' : '1em',
         height: !!size() ? size() + 'px' : '1em'
       }"
+      [attr.data-automation-id]="testId()"
     ></span>
   }
 </ng-template>
+
 @if (isCustomIcon()) {
   <figure
     class="bmb_icon-figure"
     [ngStyle]="getImageStyles()"
     [attr.aria-label]="alt() || icon()"
   >
-    <bmb-custom-icons [icon]="customIconName()" [size]="size() ?? 16" />
+    <bmb-custom-icons
+      [testId]="testId()"
+      [icon]="customIconName()"
+      [size]="size() ?? 16"
+    />
   </figure>
 } @else if (isSVGTemplate() && !!safeSVG) {
   <figure
     class="bmb_icon-figure"
     [ngStyle]="getImageStyles()"
     [attr.aria-label]="alt() || icon()"
+    [attr.data-automation-id]="testId()"
   >
     <ng-container [ngTemplateOutlet]="customIcon() ?? null" />
   </figure>
@@ -33,6 +40,7 @@
       class="bmb_icon-figure-image"
       [src]="icon()"
       [alt]="alt()"
+      [attr.data-automation-id]="testId()"
       [ngStyle]="getImageStyles()"
     />
   </figure>
