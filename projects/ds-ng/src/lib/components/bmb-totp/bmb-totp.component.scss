@@ -33,6 +33,8 @@
   &-code {
     display: flex;
     gap: var(--bmb-spacing-m);
+    align-items: center;
+    justify-content: space-between;
   }
 
   &-input {
@@ -59,19 +61,21 @@
       }
     }
 
-    &:not(:last-child)::after {
-      background-color: var(--general-contrasts-input-outline);
-      border-radius: var(--bmb-radius-full);
-      content: '';
-      height: rem.rem_calc(4);
-      position: absolute;
-      bottom: rem.rem_calc(50);
-      width: rem.rem_calc(4);
-      margin: rem.rem_calc(6);
-    }
-
     &:last-child {
       padding-right: 0;
+    }
+  }
+
+  &-circle {
+    background-color: var(--general-contrasts-input-outline);
+    border-radius: var(--bmb-radius-full);
+    display: block;
+    height: rem.rem_calc(4);
+    bottom: rem.rem_calc(50);
+    width: rem.rem_calc(4);
+
+    &:last-child {
+      display: none;
     }
   }
 
