@@ -108,6 +108,7 @@
       [icon]="item.avatarOrIcon"
       [isService]="item.type === 'service'"
       [isBookmarkActive]="item.isBookmarkActive ?? false"
+      [backgroundColorIcon]="item?.backgroundColorIcon ?? 'black-primary'"
       (triggerClick)="searchItemClick.emit(item)"
       (getBookmarkClick)="handleBookmarkClick(item)"
     ></bmb-search-card-item>

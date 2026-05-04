@@ -68,7 +68,9 @@
             [ngClass]="{
               'bmb_multi-dot-paginator-dot-active': selectedIndex() === $index
             }"
-          ></button>
+          >
+            <span></span>
+          </button>
         </li>
       }
       <li
@@ -86,7 +88,9 @@
             'bmb_multi-dot-paginator-dot-active':
               selectedIndex() === numberOfElements.length
           }"
-        ></button>
+        >
+          <span></span>
+        </button>
       </li>
       @if (numberOfElements.length > 0) {
         <li class="bmb_multi-dot-paginator-list-item">

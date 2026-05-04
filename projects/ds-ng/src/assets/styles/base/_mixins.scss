@@ -6,13 +6,13 @@
 
 // Media query
 @mixin mobile-styles {
-  @media (height <= 650px) or (width <= 1000px) {
+  @media (height <= #{rem.rem_calc(vars.$breakpoint_max_height_mobile)}) or (width <= #{rem.rem_calc(vars.$breakpoint_max_mobile)}) {
     @content;
   }
 }
 
 @mixin desktop-styles {
-  @media (height > 650px) and (width > 1000px) {
+  @media (height > #{rem.rem_calc(vars.$breakpoint_max_height_mobile)}) and (width >= #{rem.rem_calc(vars.$breakpoint_min_web)}) {
     @content;
   }
 }

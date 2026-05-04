@@ -6,7 +6,8 @@
     "type": "service",
     "name": "Sooji (Semolina)",
     "subtitle": "Food - Baking",
-    "avatarOrIcon": "https://robohash.org/quamitaquea.png?size=50x50&set=set1"
+    "avatarOrIcon": "https://robohash.org/quamitaquea.png?size=50x50&set=set1",
+    "backgroundColorIcon": "white-primary"
   },
   {
     "id": 2,
@@ -15,7 +16,8 @@
     "type": "service",
     "name": "Fitness Resistance Bands",
     "subtitle": "Fitness",
-    "avatarOrIcon": "https://robohash.org/nemofugitqui.png?size=50x50&set=set1"
+    "avatarOrIcon": "https://robohash.org/nemofugitqui.png?size=50x50&set=set1",
+    "backgroundColorIcon": "white-primary"
   },
   {
     "id": 3,

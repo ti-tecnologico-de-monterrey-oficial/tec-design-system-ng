@@ -43,12 +43,14 @@ body:has(.bmb_projected-backdrop) {
     }
   }
 
-  &-force-mobile-center {
-    @include mixins.media-query(1000, 'max') {
+  &-force-mobile-center:has(input:focus) {
+    @media screen and (width <= 1000px) and (pointer: coarse) {
       left: 1rem !important;
       right: 1rem !important;
       top: 1rem !important;
       max-height: calc(100dvh - 2rem);
+      margin: 0;
+
     }
   }
 }

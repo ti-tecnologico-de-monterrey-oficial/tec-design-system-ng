@@ -49,6 +49,7 @@ export default {
           'error',
           'hasChildren',
           'checkForCustomEvent',
+          'handleClose',
         ],
       },
       description: {

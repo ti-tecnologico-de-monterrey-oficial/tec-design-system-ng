@@ -1,75 +1,40 @@
 @use '../../../assets/styles/base/fonts' as fonts;
 @use '../../../assets/styles/base/rem' as rem;
 @use '../../../assets/styles/base/mixins' as mixins;
+@use '../../../assets/styles/base/vars' as vars;
 
 $_mobile_menu_position: rem.rem_calc(64);
-$_web_max_width: rem.rem_calc(280);
-$_web_min_width: rem.rem_calc(88);
+$_max_width: rem.rem_calc(280);
+$_min_width: rem.rem_calc(88);
+
+@mixin sidebar-width {
+  @media (width <= #{rem.rem_calc(vars.$breakpoint_max_mobile/2)}) {
+    width: 100%;
+  }
+}
 
 @keyframes bounceToRight {
   0% {
-    width: $_web_min_width;
+    width: $_min_width;
   }
   50% {
-    width: $_web_max_width * 1.1;
+    width: $_max_width * 1.1;
   }
   100% {
-    width: $_web_max_width;
+    @include sidebar-width;
   }
 }
 
-@keyframes bounceChildren {
-  0% {
-    opacity: 0;
-    width: 0;
-  }
-  50% {
-    opacity: 0.8;
-    width: $_web_max_width * 0.5;
-  }
-  100% {
-    opacity: 1;
-    width: $_web_max_width;
-  }
-}
-
-@keyframes bounceRightMobile {
-  0% {
-    opacity: 0;
-    width: 0;
-  }
-  50% {
-    opacity: 80%;
-    width: 100%;
-  }
-  100% {
-    opacity: 1;
-    width: 100%;
-  }
-}
-
-@keyframes bounceFromRight {
-  0% {
-    transform: translateX(100%);
-  }
-  50% {
-    transform: translateX(-5%);
-  }
-  100% {
-    transform: translateX(0);
-  }
-}
-
-@mixin open-mobile {
-  width: 100%;
-  height: calc(100vh - $_mobile_menu_position);
+@mixin sidebar-mobile {
   position: fixed;
+  @include sidebar-width;
+  height: calc(100vh - $_mobile_menu_position);
   top: $_mobile_menu_position;
   overflow-y: auto;
   overflow-x: hidden;
 }
 
-@mixin sidebar-web($is_left: true, $is_children: false) {
+@mixin sidebar-desktop($is_left: true, $is_children: false) {
   padding: var(--bmb-spacing-l);
 
   @if $is_left == true {
@@ -99,94 +64,87 @@ $_web_min_width: rem.rem_calc(88);
   }
 }
 
-@mixin sidebar-web-children {
+@mixin sidebar-desktop-children {
   display: flex;
   position: absolute;
-  top: auto;
   overflow: hidden;
-  animation: bounceChildren 0.3s ease-out forwards;
+  animation: bounceToRight 0.3s ease-in forwards;
 }
 
-@mixin check-for-mobile($condition: true) {
-  @if $condition == true {
-    @media (width <= 1000px) or (height <= #{rem.rem_calc(650)}) {
-      @content;
-    }
-  } @else {
-    @media (width > 1000px) and (height > #{rem.rem_calc(650)}) {
-      @content;
-    }
+@mixin check-for-mobile {
+  @media (width <= #{rem.rem_calc(vars.$breakpoint_max_mobile)}) or (height <= #{rem.rem_calc(vars.$breakpoint_max_height_mobile)}) {
+    @content;
   }
 }
 
-@mixin hidden-for-mobile() {
-  @include check-for-mobile() {
+@mixin check-for-desktop {
+  @media (width >= #{rem.rem_calc(vars.$breakpoint_min_web)}) and (height > #{rem.rem_calc(vars.$breakpoint_max_height_mobile)}) {
+    @content;
+  }
+}
+
+@mixin hidden-for-mobile {
+  @include check-for-mobile {
     display: none;
   }
 }
 
-@mixin hidden-for-desktop() {
-  @include check-for-mobile(false) {
+@mixin hidden-for-desktop {
+  @include check-for-desktop {
     display: none;
   }
+}
+
+@mixin base {
+  background-color: var(--containers-top-bar);
+  color: rgb(var(--white-primary));
+  position: fixed;
+  z-index: 999;
 }
 
 .bmb_sidebar {
-  position: fixed;
-  left: auto;
-  background-color: var(--containers-top-bar);
-  color: rgb(var(--white-primary));
-  z-index: 999;
+  @include base;
+  left: 0;
+  padding: var(--bmb-spacing-l);
+  display: none;
 
   /*Mobile*/
-  @include check-for-mobile() {
-    left: rem.rem_calc(8);
-    top: rem.rem_calc(16);
-  }
-
   &-button {
     display: inline-flex;
-    background-color: inherit;
-    position: fixed;
+    @include base;
     left: rem.rem_calc(8);
     top: rem.rem_calc(16);
+
+    @include hidden-for-desktop;
   }
 
-  &-mobile {
-    @include hidden-for-desktop();
+  @include check-for-mobile {
+    @include sidebar-mobile;
+
+    &.open {
+      display: block;
+      animation: bounceToRight 0.3s ease-in forwards;
+    }
   }
 
-  /*Mobile / Web*/
   &-menu {
     display: flex;
-    flex-direction: column;
-    flex: 1;
-
-    @include check-for-mobile() {
-      display: none;
-      padding: var(--bmb-spacing-l);
-
-      &.open {
-        display: flex;
-      }
-    }
-
-    &-mobile {
-      @include hidden-for-desktop();
-    }
+    flex-flow: column;
   }
 
-  /*Web*/
-  @include check-for-mobile(false) {
-    @include sidebar-web();
-    width: $_web_min_width;
+  /*Desktop*/
+  @include check-for-desktop {
+    display: block;
+    @include sidebar-desktop;
+    width: $_min_width;
     height: rem.rem_calc(480);
     top: 50%;
     overflow: hidden;
     transform: translateY(-50%);
 
     &-right {
-      @include sidebar-web(false);
+      @include sidebar-desktop(false);
+      left: auto;
 
       .bmb_sidebar-item {
         flex-direction: row-reverse;
@@ -196,11 +154,11 @@ $_web_min_width: rem.rem_calc(88);
     &:hover,
     &:focus-visible,
     &:focus-within {
-      width: $_web_max_width;
+      width: $_max_width;
       overflow: visible;
 
       .bmb_sidebar-item {
-        width: calc($_web_max_width - var(--bmb-spacing-l) * 2);
+        width: calc($_max_width - var(--bmb-spacing-l) * 2);
       }
 
       .bmb_sidebar-item-text {
@@ -213,20 +171,22 @@ $_web_min_width: rem.rem_calc(88);
         opacity: 1;
       }
 
-      animation: bounceToRight 0.3s ease-out forwards;
+      animation: bounceToRight 0.3s ease-in forwards;
     }
-  }
-
-  &-web {
-    display: flex;
-    width: 100%;
-    @include hidden-for-mobile();
   }
 
   /*Header*/
   &-header {
-    display: inline-flex;
-    gap: var(--bmb-spacing-m);
+    display: flex;
+    position: inherit;
+    flex-flow: column;
+    width: 100%;
+
+    &-wrapper {
+      display: inline-flex;
+      gap: var(--bmb-spacing-m);
+      align-items: center;
+    }
 
     &-title {
       display: inline-block;
@@ -234,6 +194,18 @@ $_web_min_width: rem.rem_calc(88);
       word-break: break-all;
       @include fonts.font(6, bold);
     }
+
+    &-back {
+      display: inline-flex;
+      @include hidden-for-desktop;
+    }
+
+    &-close {
+      display: inline-flex;
+      @include hidden-for-desktop;
+    }
+
+    @include hidden-for-desktop;
   }
 
   /*Menu*/
@@ -248,9 +220,9 @@ $_web_min_width: rem.rem_calc(88);
       flex: 1;
       text-align: start;
       @include fonts.font(4, medium);
-      @include mixins.truncated-string-line();
+      @include mixins.truncated-string-line;
 
-      @include check-for-mobile(false) {
+      @include check-for-desktop {
         display: none;
         opacity: 0;
       }
@@ -259,7 +231,7 @@ $_web_min_width: rem.rem_calc(88);
     &-arrow {
       display: inline-block;
 
-      @include check-for-mobile(false) {
+      @include check-for-desktop {
         display: none;
         opacity: 0;
       }
@@ -299,15 +271,15 @@ $_web_min_width: rem.rem_calc(88);
     &-item {
       display: inline-flex;
 
-      /*Web - Children*/
-      @include check-for-mobile(false) {
+      /*Desktop - Children*/
+      @include check-for-desktop {
         position: relative;
 
         &:hover > .bmb_sidebar-children,
         &:focus-visible > .bmb_sidebar-children,
         .bmb_sidebar-element:has(:hover) + .bmb_sidebar-children,
         .bmb_sidebar-element:has(*:focus-visible) + .bmb_sidebar-children {
-          @include sidebar-web-children;
+          @include sidebar-desktop-children;
         }
       }
     }
@@ -316,36 +288,29 @@ $_web_min_width: rem.rem_calc(88);
   &-children {
     display: none;
     background-color: var(--containers-top-bar);
+    padding: var(--bmb-spacing-l);
 
     /*Mobile*/
-    &.open {
-      @include check-for-mobile() {
-        display: flex;
+    @include check-for-mobile {
+      @include sidebar-mobile;
+      &.open {
         left: 0;
-        @include open-mobile;
-        animation: bounceFromRight 0.6s ease-out forwards;
+        display: block;
+        animation: bounceToRight 0.3s ease-out forwards;
       }
     }
 
-    /*web*/
-    @include check-for-mobile(false) {
-      @include sidebar-web(true, true);
+    /*Desktop*/
+    @include check-for-desktop {
+      @include sidebar-desktop(true, true);
 
       &:has(*:focus-visible) {
-        @include sidebar-web-children;
+        @include sidebar-desktop-children;
       }
 
       &-right {
-        @include sidebar-web(false, true);
+        @include sidebar-desktop(false, true);
       }
-    }
-  }
-
-  &.open {
-    @include check-for-mobile() {
-      @include open-mobile;
-      left: 0;
-      animation: bounceRightMobile 0.6s ease-out forwards;
     }
   }
 }
