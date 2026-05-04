@@ -685,6 +685,7 @@ class StorybookColorsPlaygroundComponent {
       '--general-contrasts',
       '--general-contrasts-100',
       '--general-contrasts-90',
+      '--general-contrasts-85',
       '--general-contrasts-80',
       '--general-contrasts-75',
       '--general-contrasts-60',
@@ -696,9 +697,12 @@ class StorybookColorsPlaygroundComponent {
     ],
     [
       '--general-contrasts-main-complimentary',
+      '--general-contrasts-light-complimentary',
+      '--general-contrasts-dark-complimentary',
       '--general-contrasts-main-selection',
       '--general-contrasts-icon-selection',
       '--general-contrasts-main-selection-alternative',
+      '--general-contrasts-main-selection-icon-alternative',
     ],
     [
       '--general-contrasts-input-background',
@@ -717,6 +721,7 @@ class StorybookColorsPlaygroundComponent {
   containers: string[][] = [
     [
       '--containers-background',
+      '--containers-background-alternative',
       '--containers-media-card-background',
       '--containers-main',
       '--containers-header-mobile',
@@ -786,6 +791,7 @@ class StorybookColorsPlaygroundComponent {
 
   creativeUseColors: string[] = [
     '--creative-use-violet',
+    '--creative-use-strong',
     '--creative-use-indigo',
     '--creative-use-emerald',
     '--creative-use-licorice',
