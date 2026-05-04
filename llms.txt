@@ -1,0 +1,653 @@
+# Bamboo Design System - AI Systems Documentation
+
+## Overview
+
+**Bamboo Design System** is the official design system for Tecnológico de Monterrey. It is an Angular library that provides a comprehensive collection of reusable UI components, utilities, and design patterns to create consistent, accessible, and memorable digital experiences.
+
+**Purpose**: Facilitate the construction of web and mobile applications with coherent visual identity, accessibility principles, and flexibility for different organizational contexts (TEC, GED, TECMI).
+
+**Current Version**: v1.6.3
+**Last Updated**: April 13, 2026
+
+---
+
+## Technology Stack
+
+### Frontend Library
+- **Angular**: 18, 19, 20, 21 (multi-version support)
+- **TypeScript**: Strict typing
+- **SCSS**: Modular styles and themes
+- **Storybook**: Interactive component documentation
+- **Angular Components**: Standalone components
+
+### CLI Tool (BMB CLI)
+- **Language**: Rust
+- **Available on**: NPM and Cargo
+- **Features**: Scaffolding, blueprint generators, automatic migrations
+
+### Testing & QA
+- **Playwright**: E2E testing
+- **Jasmine/Karma**: Unit testing
+- **Compodoc**: Component documentation
+- **Chromatic**: Visual testing integrated with Storybook
+
+### Code Quality
+- **ESLint**: Linting
+- **Prettier**: Formatting
+- **Commitlint**: Conventional commits
+- **Auto-changelog**: Automatic version management
+
+---
+
+## Project Structure
+
+```
+tec-design-system-ng/
+├── projects/
+│   └── ds-ng/                          # Main library
+│       ├── src/
+│       │   ├── assets/                 # SVG, icons, fonts
+│       │   ├── lib/
+│       │   │   ├── components/         # UI Components
+│       │   │   ├── directives/         # Angular Directives
+│       │   │   ├── services/           # Shared Services
+│       │   │   ├── pipes/              # Angular Pipes
+│       │   │   ├── types/              # TypeScript Types
+│       │   │   ├── utils/              # Utilities
+│       │   │   ├── layouts/            # Predefined Layouts
+│       │   │   └── foundations/        # Base styles, themes
+│       │   └── public-api.ts
+│       └── ng-package.json
+├── src/                                # Demo application
+│   ├── app/
+│   ├── assets/
+│   ├── stories/                        # Storybook Stories
+│   ├── main.ts
+│   └── styles.scss
+├── e2e/                                # E2E Tests with Playwright
+├── angular.json                        # Angular CLI Configuration
+├── package.json                        # Dependencies and scripts
+├── playwright.config.ts                # Playwright Configuration
+└── documentation.json                  # Documentation Configuration
+
+tec-design-system-ng-cli/               # CLI Tool (Rust)
+├── src/
+│   ├── main.rs
+│   ├── commands/                       # create, generate, migrate, update
+│   ├── blueprints/                     # Templates for scaffolding
+│   └── migrations/                     # Automatic codemods
+└── Cargo.toml
+```
+
+---
+
+## Main Components
+
+### Available Components
+
+The library includes 50+ UI components organized by categories:
+
+#### Navigation
+- **Sidebar**: Side navigation with hierarchical navigation support
+- **Header/Topbar**: Top bar with user and actions
+- **Footer**: Footer
+- **Breadcrumbs**: Breadcrumb navigation
+- **Tabs**: Navigable tabs
+- **Dropdown**: Dropdown menus
+- **Action Menu**: Contextual action menu
+
+#### Data Input
+- **Input**: Text, email, number, password fields
+- **Select**: Option selector
+- **Checkbox**: Checkboxes
+- **Radio Button**: Single-selection radio buttons
+- **Switch/Toggle**: Toggle switches
+- **Textarea**: Multi-line text area
+- **Date Picker**: Date selector
+- **File Input**: File upload
+- **Form**: Form container
+
+#### Content
+- **Card**: Content cards
+- **Home Card**: Special home card
+- **Notification Card**: Notification card
+- **Avatar**: User avatars
+- **Badge**: Labels
+- **Icon**: Scalable icons
+- **Interactive Icon**: Interactive icons
+- **Image**: Optimized image component
+
+#### Content Navigation
+- **Pagination**: Standard pagination
+- **Multi-Dot Paginator**: Multi-dot paginator
+- **Carousel**: Content carousel
+
+#### Feedback & States
+- **Button**: Primary, secondary, tertiary buttons
+- **Container Button**: Container button
+- **Alert**: Alerts
+- **Toast/Notification**: Popup notifications
+- **Progress Bar**: Progress bar
+- **Spinner/Loader**: Loading indicators
+- **Empty State**: Empty state
+- **Error State**: Error state
+
+#### Specialized Components
+- **Profile**: User profile with role switching
+- **Account Statement**: Account statement
+- **Digital Credential**: Digital credential
+- **Filter Card**: Filter card with conditional options
+- **User Summary**: User summary
+
+#### Utilities
+- **Modal/Dialog**: Modal dialogs
+- **Tooltip**: Tooltip information
+- **Popover**: Floating container
+- **Sidebar**: Collapsible sidebar
+- **Drawer**: Sliding drawer
+
+### Directives
+- Custom directives for validation
+- Event handling directives
+- Advanced interactivity directives
+
+### Services
+- Common utility services
+- State management (when applicable)
+- API integration
+
+### Pipes
+- Pipes for data transformation
+- Pipes for date, number, currency formatting
+
+### Utilities (Utils)
+- Helper functions for data manipulation
+- Validators
+- Shared constants
+
+---
+
+## Themes and Customization
+
+### Available Themes
+
+The library supports multiple visual identities:
+
+1. **TEC** (Tecnológico de Monterrey)
+   - Institutional corporate colors
+   - TEC-specific styles
+   - Applied via mainTEC.scss
+
+2. **TECMI** (Tecnológico de Monterrey - Marketing & Innovation)
+   - Specialized variant for marketing initiatives
+   - Custom TECMI styles
+   - Applied via mainTECMI.scss
+
+3. **GED** (General Education Division)
+   - Theme for general education division
+   - GED-specific styles
+   - Applied via mainGED.scss
+
+### Micro CSS
+- Minimal CSS utilities for specific cases
+- Optimized for performance
+- Applied via micro.scss
+
+### Customization
+- Reusable SCSS variables
+- Extensible color system
+- Customizable typography
+- Modular spacing
+
+---
+
+## Installation Guides
+
+### For Angular Projects
+
+#### 1. With BMB CLI (Recommended)
+
+```bash
+# Install BMB CLI globally
+npm install -g tec-design-system-ng-cli
+
+# Create new project with full scaffolding
+bmb create
+
+# Generate predefined components/layouts
+bmb generate -p src/app/pages
+```
+
+**Available Blueprints**:
+- Dashboard Layout: Sidebar + Header + Main container
+- Main Layout: Intelligent grid for heavy content
+- Empty Layout: Clean box for quick start
+
+#### 2. Manual Installation
+
+```bash
+# Install library from NPM
+npm install @ti-tecnologico-de-monterrey-oficial/tec-design-system-ng
+
+# Import base styles in main.ts or main.scss
+import '@ti-tecnologico-de-monterrey-oficial/tec-design-system-ng/assets/styles/mainTEC.min.css'
+
+# Or for other themes:
+// mainGED.min.css
+// mainTECMI.min.css
+// micro.min.css
+```
+
+#### 3. Angular Configuration
+
+Add to `angular.json` in `assets`:
+
+```json
+"assets": [
+  {
+    "glob": "**/*",
+    "input": "node_modules/@ti-tecnologico-de-monterrey-oficial/tec-design-system-ng/assets",
+    "output": "/assets"
+  }
+]
+```
+
+### Version Compatibility
+
+```
+Angular 18: Compatible
+Angular 19: Compatible
+Angular 20: Compatible
+Angular 21: Compatible (Recent support added in v1.6.3)
+```
+
+---
+
+## CLI Tool (BMB CLI)
+
+### Installation
+
+```bash
+# Via NPM (recommended for teams)
+npm install -g tec-design-system-ng-cli
+
+# Via Cargo (for local development)
+cargo install --path .
+```
+
+### Available Commands
+
+#### 1. `bmb create`
+Initializes a new Angular standalone project with:
+- Architecture from scratch with best practices
+- Automatic installation of DS dependencies
+- Auto-injection of base assets (SVG, fonts, styles, images)
+- Brand selection (TEC, GED, TECMI)
+- Automatic configuration in angular.json
+
+**Usage**:
+```bash
+bmb create
+```
+
+**Interactivity**:
+- Select Angular version (18, 19, 20, 21)
+- Choose corporate brand
+- Confirm installation
+
+#### 2. `bmb generate`
+Interactive assistant for injecting pre-built complete layouts.
+
+**Usage**:
+```bash
+bmb generate -p src/app/pages
+```
+
+**Available Blueprints**:
+- **Dashboard Layout**: Complete structure with sidebar, header, and content area
+- **Main Layout**: Intelligent grid for large content
+- **Empty Layout**: Quick start box
+
+**Features**:
+- Generates ready-to-use TypeScript + HTML code
+- Supports Material Symbols
+- Respects project structure
+
+#### 3. `bmb migrate`
+Automatic codemod to migrate legacy code to new versions.
+
+**Usage**:
+```bash
+bmb migrate
+```
+
+**Features**:
+- Concurrent analysis of thousands of files in seconds
+- Multi-threading for performance
+- Automatically ignores heavy folders (node_modules, dist)
+- Automatically updates deprecated tags
+- Modifies obsolete syntax to modern
+
+**Supports**:
+- .ts files (TypeScript)
+- .html files (Templates)
+
+#### 4. `bmb update`
+Keeps the CLI automatically updated.
+
+**Usage**:
+```bash
+bmb update
+```
+
+### CLI Development
+
+The CLI is built in Rust for maximum performance:
+
+```
+src/
+├── main.rs           # Entry point
+├── commands/         # Command logic
+│   ├── create.rs     # create command
+│   ├── generate.rs   # generate command
+│   ├── migrate.rs    # migrate command
+│   └── update.rs     # update command
+├── blueprints/       # Handlebars Templates
+│   ├── templates/    # Template files
+│   │   ├── app/
+│   │   └── blueprints/
+│   └── templates.rs  # Rendering logic
+└── migrations/       # Codemods
+    └── mod.rs
+```
+
+---
+
+## Workflows
+
+### Local Development Workflow
+
+```bash
+# 1. Install dependencies
+npm install
+
+# 2. Start development server
+npm start
+# or
+ng serve
+
+# 3. In another terminal, start Storybook
+npm run storybook
+
+# 4. Run tests while developing
+npm run test
+
+# 5. Run linting
+npm run lint
+
+# 6. Format code
+npm run format
+```
+
+### Build and Release Workflow
+
+```bash
+# 1. Build library
+npm run build:lib
+
+# 2. Build styles (all themes)
+npm run build:styles
+
+# 3. Build Storybook for documentation
+npm run build-storybook
+
+# 4. Publish as beta
+npm run publish:beta
+
+# 5. Publish stable version
+npm run publish:latest
+```
+
+### Testing Workflow
+
+```bash
+# Unit tests
+ng test ds-ng
+
+# E2E Tests with Playwright
+npm run e2e
+
+# E2E Tests with interactive UI
+npm run e2e:ui
+
+# E2E Tests in debug mode
+npm run e2e:debug
+```
+
+### Changelog and Versioning
+
+```bash
+# Generate changelog automatically
+npm run version
+
+# Specifically default changelog
+npm run changelog:default
+
+# Custom changelog (latest features)
+npm run changelog:custom
+```
+
+---
+
+## Configuration and Important Files
+
+### angular.json
+Defines all Angular CLI configurations:
+- Available projects
+- Build targets
+- Development/production configurations
+- Assets to include
+- Storybook options
+
+### package.json
+```
+@ti-tecnologico-de-monterrey-oficial/tec-design-system-ng
+Version: 1.6.3-g
+License: MIT
+Repository: Tecnológico de Monterrey Official GitHub
+```
+
+### playwright.config.ts
+E2E test configuration:
+- Browsers (Chromium, Firefox, WebKit)
+- Viewport sizes
+- Base URLs
+- Screenshots and videos on failures
+
+### tsconfig.json
+TypeScript configuration:
+- Strict mode enabled
+- Full typing
+- Target ES2020
+
+### SCSS Architecture
+```
+assets/styles/
+├── mainTEC.scss        # TEC Theme (primary)
+├── mainGED.scss        # GED Theme
+├── mainTECMI.scss      # TECMI Theme
+├── micro.scss          # Minimal utilities
+├── foundations/        # Base styles
+│   ├── colors/
+│   ├── typography/
+│   ├── spacing/
+│   ├── shadows/
+│   └── breakpoints/
+└── components/         # Component styles
+```
+
+---
+
+## Official Documentation
+
+### Documentation Channels
+
+1. **Storybook** (Interactive)
+   - URL: https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/
+   - Interactive examples of each component
+   - Properties and variants
+   - Code snippets
+
+2. **Bamboo Portal** (Documentation Hub)
+   - URL: https://bamboo.tec.mx/
+   - Installation guides by framework (Angular, Ionic)
+   - UI/UX Resources
+   - Design patterns
+
+3. **GitHub** (Repository)
+   - URL: https://github.com/ti-tecnologico-de-monterrey-oficial/tec-design-system-ng/
+   - Source code
+   - Issues and discussions
+   - Contributions
+
+4. **Figma** (Design)
+   - URL: https://www.figma.com/file/LYk8AJb5RjQhRfPmRIdEQ9/Bamboo-Design-System
+   - Design components
+   - Design tokens
+   - Usage guides
+
+### Generated Documentation
+
+```bash
+# Generate documentation with Compodoc
+npm run compodoc:build
+
+# Generate and serve documentation
+npm run compodoc:build-and-serve
+
+# Serve existing documentation
+npm run compodoc:serve
+```
+
+---
+
+## Latest Updates (v1.6.3)
+
+### New Features
+- **Profile Component**: Enables role switching and emits clear events
+- **Notification Card**: Dedicated card for important notifications
+- **Interactive Icons**: Support for additional white background
+- **Angular 21**: Support added in this version
+
+### Improvements
+- Dropdown: Improved behavior when closing modals
+- File Input: Enhanced file size validation
+- Image Component: Improved responsiveness with paginator
+- Home Card: Refined responsive styles
+- Multi-Dot Paginator: Enhanced responsive styles
+- Action Menu: Updated responsive design
+
+### Bug Fixes
+- Fixed shadow on Home Card
+- Proper proportions in Digital Credential
+- Correct event propagation handling
+- Resolved icon duplication
+
+---
+
+## Commit Structure
+
+The project follows **Conventional Commits**:
+
+```
+feat(component/name):    New functionality
+fix(component/name):     Bug fix
+docs(component/name):    Documentation
+style(component/name):   Styles (not CSS)
+refactor(component/name): Refactoring
+test(component/name):    Tests
+chore(component/name):   Build/deps tasks
+utils(component/name):   Utilities
+```
+
+Automatically validated by **commitlint**.
+
+---
+
+## CI/CD Pipeline
+
+### Automatic Validations
+- Linting with ESLint
+- Formatting check with Prettier
+- Unit tests
+- E2E tests with Playwright
+- Changelog generation
+
+### Publishing
+- Publishing to NPM Registry
+- Beta and Latest versions
+- Chromatic for visual testing
+
+---
+
+## Resources for Designers and Developers
+
+### For Designers
+- [Figma Design System](https://www.figma.com/file/LYk8AJb5RjQhRfPmRIdEQ9/Bamboo-Design-System)
+- UI/UX Resources on Bamboo Portal
+- Component usage guides
+
+### For Developers
+- [GitHub Repository](https://github.com/ti-tecnologico-de-monterrey-oficial/tec-design-system-ng/)
+- [Storybook Documentation](https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/)
+- [Angular Installation Guide](https://bamboo.tec.mx/latest/recursos/angular-guia-de-instalacion-de-bamboo-W3qVyi3x)
+- [Ionic Installation Guide](https://bamboo.tec.mx/latest/recursos/ionic-guia-de-instalacion-de-bamboo-ReyuzhoX)
+- [BMB CLI GitHub](https://github.com/ti-tecnologico-de-monterrey-oficial/tec-design-system-ng-cli)
+
+---
+
+## Ecosystem Tools
+
+| Tool | Purpose | Link |
+|-------------|----------|------|
+| Figma | Component design | figma.com |
+| Supernova | Documentation and publishing | supernova.io |
+| GitHub | Code repository | github.com |
+| Storybook | Interactive documentation | storybook.js.org |
+| Chromatic | Visual testing | chromatic.com |
+| Playwright | E2E testing | playwright.dev |
+| Angular | Main framework | angular.io |
+
+---
+
+## Contact and Support
+
+**Organization**: Tecnológico de Monterrey - Information Technology Department
+
+**Official Repositories**:
+- Main: https://github.com/ti-tecnologico-de-monterrey-oficial/tec-design-system-ng
+- CLI: https://github.com/ti-tecnologico-de-monterrey-oficial/tec-design-system-ng-cli
+
+**Official Portal**: https://bamboo.tec.mx/
+
+**Help Center**: Available in the GitHub repository under "Issues" and "Discussions"
+
+---
+
+## Notes for AI Developers
+
+This `llms.txt` file provides a comprehensive guide to the Bamboo Design System. To understand better:
+
+1. **Structure**: The project is an Angular library with reusable components
+2. **Purpose**: Ensure visual consistency and UX across Tecnológico applications
+3. **Tooling**: Uses TypeScript, SCSS, Storybook, and Playwright
+4. **CLI**: Rust tool (BMB CLI) for automating scaffolding and migrations
+5. **Multi-brand**: Supports multiple corporate themes (TEC, GED, TECMI)
+6. **Multi-version**: Compatible with Angular 18-21
+
+The code is well-typed, documented, and follows best practices of modern Angular development.
+
+---
+
+**Last Updated**: April 29, 2026
+**Maintained by**: Ti Tecnológico de Monterrey
