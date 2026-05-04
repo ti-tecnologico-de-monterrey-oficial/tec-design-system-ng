@@ -8,6 +8,7 @@
   --general-contrasts: rgb(var(--black-primary));
   --general-contrasts-100: rgb(var(--gray-ged-950));
   --general-contrasts-90: rgb(var(--gray-ged-500));
+  --general-contrasts-85: rgb(var(--gray-ged-600));
   --general-contrasts-80: rgb(var(--gray-ged-800));
   --general-contrasts-75: rgb(var(--gray-ged-700));
   --general-contrasts-60: rgb(var(--gray-ged-900));
@@ -18,9 +19,14 @@
   --general-contrasts-5: rgb(var(--gray-ged-50));
 
   --general-contrasts-main-complimentary: rgb(var(--gray-ged-50));
+  --general-contrasts-light-complimentary: rgb(var(--gray-ged-100));
+  --general-contrasts-dark-complimentary: rgb(var(--gray-ged-950));
   --general-contrasts-main-selection: rgb(var(--black-primary));
   --general-contrasts-icon-selection: rgb(var(--blue-primary));
   --general-contrasts-main-selection-alternative: rgb(var(--green-primary));
+  --general-contrasts-main-selection-icon-alternative: rgb(
+    var(--white-primary)
+  );
 
   --general-contrasts-input-background: rgb(var(--gray-ged-100));
   --general-contrasts-input-outline: rgb(var(--gray-ged-950));
@@ -40,6 +46,7 @@
 
   // Containers
   --containers-background: rgb(var(--gray-ged-50));
+  --containers-background-alternative: rgb(var(--gray-ged-50));
   --containers-media-card-background: rgb(var(--gray-ged-950), 0.9);
   --containers-main: rgb(var(--white-primary));
   --containers-header-mobile: rgb(var(--white-primary));
@@ -93,7 +100,7 @@
   --menu-select-alternative-focus-label: rgb(var(--blue-primary));
 
   //Menu select - On surface
-  --menu-select-on-surface-hovered-w-checkbox: rgb(var(--gray-ged-200));
+  --menu-select-on-surface-hovered-w-checkbox: rgb(var(--blue-ged-200));
   --menu-select-on-surface-hovered: rgb(var(--blue-ged-100));
 
   //Tecmilenio
@@ -103,7 +110,7 @@
   // Semantic colors
   --semantic-success: rgb(var(--success-primary-alternative));
   --semantic-info-event: rgb(var(--purple-primary));
-  --semantic-warning: rgb(var(--warning-primary-alternative));
+  --semantic-warning: rgb(var(--warning-primary));
   --semantic-error: rgb(var(--red-primary));
   --semantic-brand: rgb(var(--branding-primary));
   --semantic-alert: rgb(var(--alert-primary));
@@ -111,6 +118,7 @@
 
   // Creative use
   --creative-use-violet: rgb(var(--violet-light));
+  --creative-use-strong: rgb(var(--blue-mariner-300));
   --creative-use-indigo: rgb(var(--indigo-primary));
   --creative-use-emerald: rgb(var(--emerald-primary));
   --creative-use-licorice: rgb(var(--licorice-light));
@@ -176,6 +184,7 @@
   --general-contrasts: rgb(var(--white-primary));
   --general-contrasts-100: rgb(var(--gray-ged-50));
   --general-contrasts-90: rgb(var(--gray-ged-400));
+  --general-contrasts-85: rgb(var(--gray-ged-300));
   --general-contrasts-80: rgb(var(--gray-ged-300));
   --general-contrasts-75: rgb(var(--gray-ged-300));
   --general-contrasts-60: rgb(var(--gray-ged-300));
@@ -186,9 +195,14 @@
   --general-contrasts-5: rgb(var(--gray-ged-900));
 
   --general-contrasts-main-complimentary: rgb(var(--gray-ged-50));
+  --general-contrasts-light-complimentary: rgb(var(--gray-ged-100));
+  --general-contrasts-dark-complimentary: rgb(var(--gray-ged-950));
   --general-contrasts-main-selection: rgb(var(--white-primary));
   --general-contrasts-icon-selection: rgb(var(--blue-primary));
   --general-contrasts-main-selection-alternative: rgb(var(--green-light));
+  --general-contrasts-main-selection-icon-alternative: rgb(
+    var(--white-primary)
+  );
 
   --general-contrasts-input-background: var(--black-tint);
   --general-contrasts-input-outline: rgb(var(--gray-ged-50));
@@ -208,6 +222,7 @@
 
   // Containers
   --containers-background: rgb(var(--gray-ged-950));
+  --containers-background-alternative: rgb(var(--gray-ged-950));
   --containers-media-card-background: rgba(var(--gray-ged-950), 0.9);
   --containers-main: rgb(var(--gray-ged-900));
   --containers-header-mobile: rgb(var(--gray-ged-900));
@@ -271,7 +286,7 @@
   // Semantic colors
   --semantic-success: rgb(var(--success-tint-alternative));
   --semantic-info-event: rgb(var(--purple-tint));
-  --semantic-warning: rgb(var(--yellow-primary));
+  --semantic-warning: rgb(var(--yellow-light));
   --semantic-error: rgb(var(--red-light));
   --semantic-brand: rgb(var(--branding-tint));
   --semantic-alert: rgb(var(--alert-light));
@@ -279,6 +294,7 @@
 
   // Creative use
   --creative-use-violet: rgb(var(--violet-tint));
+  --creative-use-strong: rgb(var(--blue-mariner-200));
   --creative-use-indigo: rgb(var(--indigo-tint));
   --creative-use-emerald: rgb(var(--emerald-tint));
   --creative-use-licorice: rgb(var(--licorice-tint));

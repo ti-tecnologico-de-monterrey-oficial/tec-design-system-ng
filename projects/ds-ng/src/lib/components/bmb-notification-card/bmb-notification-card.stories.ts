@@ -76,6 +76,7 @@ export default {
           'visibleAlert',
           'getEmptyStateData',
           'handleAlertSelected',
+          'unreadAlerts',
         ],
       },
       description: {

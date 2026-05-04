@@ -52,6 +52,7 @@ export default {
           'showUserName',
           'getNoMobileResolutionSize',
           'handleSearchChange',
+          'backToHomeClick',
         ],
       },
       description: {
@@ -204,16 +205,17 @@ The setting applies only to mobile.
     searchButtonClick: getOnClickParam(
       getOnEvent('search', 'searchButtonClick'),
     ),
+    getLogoLink: DBmbGenericParamDesc.linkOrButton,
+    getLogoTarget: DBmbGenericParamDesc.target,
     showSearchButton: getShowButton('search'),
-    backToHomeClick: getOnClickParam(
-      getOnEvent('back to home', 'backToHomeClick', 'void'),
-    ),
+    backToHomeClick: DBmbGenericParamDesc.deprecated,
     onLangChange: getOnClickParam(getOnEvent('language', 'onLangChange')),
     logOut: DBmbGenericParamDesc.deprecated,
     assignmentNotification: DBmbGenericParamDesc.deprecated,
     appSubTitle: DBmbGenericParamDesc.deprecated,
     hasLogoutButton: DBmbGenericParamDesc.deprecated,
     showLang: DBmbGenericParamDesc.deprecated,
+    getLogoClick: getOnClickParam(getOnEvent('logo', 'getLogoClick')),
   },
   args: {
     appPowered: 'Powered x Bamboo Design',
@@ -223,9 +225,6 @@ The setting applies only to mobile.
     showRoleButton: false,
     showSearchButton: false,
     showHelpButton: false,
-    backToHomeClick: () => {
-      console.log('Back to home clicked');
-    },
     helpButtonClick: () => {
       console.log('helpButtonClick clicked');
     },
@@ -646,5 +645,53 @@ export const MitecWithUserInformationWithSearch: Story = {
         isArchived: false,
       },
     ],
+  },
+};
+
+export const LogoAsButton: Story = {
+  name: 'Logo as button',
+  args: {
+    getLogoLink: '',
+    getLogoTarget: '_self',
+    getLogoClick: () => {
+      console.log('Logo clicked as button');
+    },
+  },
+  parameters: {
+    controls: {
+      exclude: ['backToHomeClick'],
+    },
+  },
+};
+
+export const LogoAsInternalLink: Story = {
+  name: 'Logo as internal link',
+  args: {
+    getLogoLink: '/home',
+    getLogoTarget: '_self',
+    getLogoClick: () => {
+      console.log('Logo clicked (internal link)');
+    },
+  },
+  parameters: {
+    controls: {
+      exclude: ['backToHomeClick'],
+    },
+  },
+};
+
+export const LogoAsExternalLink: Story = {
+  name: 'Logo as external link',
+  args: {
+    getLogoLink: 'https://www.google.com',
+    getLogoTarget: '_blank',
+    getLogoClick: () => {
+      console.log('Logo clicked (external link)');
+    },
+  },
+  parameters: {
+    controls: {
+      exclude: ['backToHomeClick'],
+    },
   },
 };
