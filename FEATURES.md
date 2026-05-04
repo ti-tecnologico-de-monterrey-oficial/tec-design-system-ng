@@ -1,16 +1,10 @@
-# Novedades ## [v1.6.3-g] -
-2026-04-30
+# Novedades ## [v1.6.3-h] -
+2026-05-04
 
 ### 🚀 Novedades
 
 *
 Formato
-*
-bubble chat
-*
-bubble chat
-*
-new config
 *
 build
 *
@@ -18,31 +12,39 @@ formato
 *
 Formato
 *
-Formato
-*
-Formato
-*
 bubble chat
 *
-Add conditional visibility and cascading options to filter card component
-*
 fix(component/sidebar): Se realizo refactorización de código para depurar elementos y simplificar estructura. La navegación ahora es en su mayoría manejo con CSS.
-*
-Formato
 *
 fix(component / portal): Se agregó un parche de seguridad
 *
 feat(component / interactive icon): se agregó el tooltip al interactive icon
-*
-feat(component / icon): Se agregaron iconos personalizados
-*
-feat(component/sidebar): se realizaron ajustes para manejar las versión móvil o de escritorio mediante consultar de CSS.
 *
 feat(utils): Se agregaron funciones beforeClose y afterClose a los servicios de Modal y ProjectedContent
 *
 fix(component / Projection service): Se agregó un parche de seguridad
 *
 fix(component / native modal): Se agregó un parche de seguridad
+*
+bubble chat
+*
+bubble chat
+*
+bubble chat
+*
+new config
+*
+Formato
+*
+Formato
+*
+Add conditional visibility and cascading options to filter card component
+*
+Formato
+*
+feat(component / icon): Se agregaron iconos personalizados
+*
+feat(component/sidebar): se realizaron ajustes para manejar las versión móvil o de escritorio mediante consultar de CSS.
 *
 se agergó soporte para angular 21
 *
@@ -174,44 +176,46 @@ chore: se eliminó código que no se utiliza
 
 - **Formato**:
 Formato
-- **bubble chat**:
-bubble chat
-- **bubble chat**:
-bubble chat
-- **new config**:
-new config
 - **build**:
 build
 - **formato**:
 formato
 - **Formato**:
 Formato
-- **Formato**:
-Formato
-- **Formato**:
-Formato
 - **bubble chat**:
 bubble chat
-- **Add conditional visibility and cascading options to filter card component**:
-Add conditional visibility and cascading options to filter card component
 - **fix(component/sidebar): Se realizo refactorización de código para depurar elementos y simplificar estructura. La navegación ahora es en su mayoría manejo con CSS.**:
 fix(component/sidebar): Se realizo refactorización de código para depurar elementos y simplificar estructura. La navegación ahora es en su mayoría manejo con CSS.
-- **Formato**:
-Formato
 - **fix(component / portal): Se agregó un parche de seguridad**:
 fix(component / portal): Se agregó un parche de seguridad
 - **feat(component / interactive icon): se agregó el tooltip al interactive icon**:
 feat(component / interactive icon): se agregó el tooltip al interactive icon
-- **feat(component / icon): Se agregaron iconos personalizados**:
-feat(component / icon): Se agregaron iconos personalizados
-- **feat(component/sidebar): se realizaron ajustes para manejar las versión móvil o de escritorio mediante consultar de CSS.**:
-feat(component/sidebar): se realizaron ajustes para manejar las versión móvil o de escritorio mediante consultar de CSS.
 - **feat(utils): Se agregaron funciones beforeClose y afterClose a los servicios de Modal y ProjectedContent**:
 feat(utils): Se agregaron funciones beforeClose y afterClose a los servicios de Modal y ProjectedContent
 - **fix(component / Projection service): Se agregó un parche de seguridad**:
 fix(component / Projection service): Se agregó un parche de seguridad
 - **fix(component / native modal): Se agregó un parche de seguridad**:
 fix(component / native modal): Se agregó un parche de seguridad
+- **bubble chat**:
+bubble chat
+- **bubble chat**:
+bubble chat
+- **bubble chat**:
+bubble chat
+- **new config**:
+new config
+- **Formato**:
+Formato
+- **Formato**:
+Formato
+- **Add conditional visibility and cascading options to filter card component**:
+Add conditional visibility and cascading options to filter card component
+- **Formato**:
+Formato
+- **feat(component / icon): Se agregaron iconos personalizados**:
+feat(component / icon): Se agregaron iconos personalizados
+- **feat(component/sidebar): se realizaron ajustes para manejar las versión móvil o de escritorio mediante consultar de CSS.**:
+feat(component/sidebar): se realizaron ajustes para manejar las versión móvil o de escritorio mediante consultar de CSS.
 - **se agergó soporte para angular 21**:
 se agergó soporte para angular 21
 - **feat(component/multi-dot-paginator): se agrego el botón como último índice. Se implementó funcionalidad para que permita seleccionar solo un índice.**:
@@ -343,44 +347,46 @@ chore: se eliminó código que no se utiliza
 
 - **Formato**:
 Formato
-- **bubble chat**:
-bubble chat
-- **bubble chat**:
-bubble chat
-- **new config**:
-new config
 - **build**:
 build
 - **formato**:
 formato
 - **Formato**:
 Formato
-- **Formato**:
-Formato
-- **Formato**:
-Formato
 - **bubble chat**:
 bubble chat
-- **Add conditional visibility and cascading options to filter card component**:
-Add conditional visibility and cascading options to filter card component
 - **fix(component/sidebar): Se realizo refactorización de código para depurar elementos y simplificar estructura. La navegación ahora es en su mayoría manejo con CSS.**:
 fix(component/sidebar): Se realizo refactorización de código para depurar elementos y simplificar estructura. La navegación ahora es en su mayoría manejo con CSS.
-- **Formato**:
-Formato
 - **fix(component / portal): Se agregó un parche de seguridad**:
 fix(component / portal): Se agregó un parche de seguridad
 - **feat(component / interactive icon): se agregó el tooltip al interactive icon**:
 feat(component / interactive icon): se agregó el tooltip al interactive icon
-- **feat(component / icon): Se agregaron iconos personalizados**:
-feat(component / icon): Se agregaron iconos personalizados
-- **feat(component/sidebar): se realizaron ajustes para manejar las versión móvil o de escritorio mediante consultar de CSS.**:
-feat(component/sidebar): se realizaron ajustes para manejar las versión móvil o de escritorio mediante consultar de CSS.
 - **feat(utils): Se agregaron funciones beforeClose y afterClose a los servicios de Modal y ProjectedContent**:
 feat(utils): Se agregaron funciones beforeClose y afterClose a los servicios de Modal y ProjectedContent
 - **fix(component / Projection service): Se agregó un parche de seguridad**:
 fix(component / Projection service): Se agregó un parche de seguridad
 - **fix(component / native modal): Se agregó un parche de seguridad**:
 fix(component / native modal): Se agregó un parche de seguridad
+- **bubble chat**:
+bubble chat
+- **bubble chat**:
+bubble chat
+- **bubble chat**:
+bubble chat
+- **new config**:
+new config
+- **Formato**:
+Formato
+- **Formato**:
+Formato
+- **Add conditional visibility and cascading options to filter card component**:
+Add conditional visibility and cascading options to filter card component
+- **Formato**:
+Formato
+- **feat(component / icon): Se agregaron iconos personalizados**:
+feat(component / icon): Se agregaron iconos personalizados
+- **feat(component/sidebar): se realizaron ajustes para manejar las versión móvil o de escritorio mediante consultar de CSS.**:
+feat(component/sidebar): se realizaron ajustes para manejar las versión móvil o de escritorio mediante consultar de CSS.
 - **se agergó soporte para angular 21**:
 se agergó soporte para angular 21
 - **feat(component/multi-dot-paginator): se agrego el botón como último índice. Se implementó funcionalidad para que permita seleccionar solo un índice.**:
