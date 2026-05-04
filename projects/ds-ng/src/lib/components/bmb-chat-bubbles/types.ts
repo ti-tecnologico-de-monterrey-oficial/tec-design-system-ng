@@ -11,6 +11,7 @@ export type TBmbMessageType =
 export type IBmbBubblePosition = 'top' | 'bottom';
 
 export interface IBmbChatMessage {
+  id: string;
   userProfile?: string;
   isUserMessage: boolean;
   type: TBmbMessageType;
@@ -33,10 +34,26 @@ export interface MessageContent {
   template?: TemplateRef<any>;
 }
 
-export interface IBmbChatGptIcons {
-  repeat: boolean;
-  voice: boolean;
-  copy: boolean;
-  like: boolean;
-  dislike: boolean;
+export interface IBmbChatGptIconState {
+  visible: boolean;
+  active?: boolean;
 }
+
+export interface IBmbChatActionEvent {
+  action: 'repeat' | 'voice' | 'copy' | 'like' | 'dislike';
+  messageId: string;
+  message: IBmbChatMessage;
+  event?: Event;
+}
+
+export type BmbChatGptIconInput = boolean | IBmbChatGptIconState;
+
+export interface IBmbChatGptIcons {
+  repeat: IBmbChatGptIconState;
+  voice: IBmbChatGptIconState;
+  copy: IBmbChatGptIconState;
+  like: IBmbChatGptIconState;
+  dislike: IBmbChatGptIconState;
+}
+
+export type TChatAction = 'repeat' | 'voice' | 'copy' | 'like' | 'dislike';

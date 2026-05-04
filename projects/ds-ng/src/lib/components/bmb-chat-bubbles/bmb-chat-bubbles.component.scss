@@ -148,6 +148,14 @@
     &-icon {
       color: var(--general-contrasts-50);
       cursor: pointer;
+
+      &:hover {
+        color: var(--general-contrasts-100);
+      }
+
+      &.is-active {
+        color: var(--general-contrasts-100);
+      }
     }
 
     &-container {

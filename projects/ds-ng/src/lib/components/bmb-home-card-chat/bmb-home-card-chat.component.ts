@@ -18,7 +18,10 @@ import {
   IChatBarActions,
 } from '../bmb-chat-bar/bmb-chat-bar.component';
 import { IBmbColor } from '../../types/colors';
-import { IBmbChatMessage } from '../bmb-chat-bubbles/types';
+import {
+  IBmbChatActionEvent,
+  IBmbChatMessage,
+} from '../bmb-chat-bubbles/types';
 import { BmbChatBubblesComponent } from '../bmb-chat-bubbles/bmb-chat-bubbles.component';
 import { TranslatePipe } from '../../pipes/translations';
 import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
@@ -59,6 +62,7 @@ export class BmbHomeCardChatComponent {
   messagesHistory = input.required<IBmbChatMessage[]>();
   actionsList = input<IChatBarActions[]>([]);
   componentTitle = input<string>('');
+  testId = input<string>('chat-bubble');
 
   title = input<string>(''); // deprecated
 
@@ -69,6 +73,7 @@ export class BmbHomeCardChatComponent {
   });
   isLoading = model<boolean>(false);
   mode = model<'compact' | 'chat' | 'expanded'>('expanded');
+  getBubbleAction = output<IBmbChatActionEvent>();
 
   getClose = output();
   getBack = output();
@@ -198,5 +203,23 @@ export class BmbHomeCardChatComponent {
 
   handleNewText(): void {
     this.getNewChat.emit(true);
+  }
+
+  resolveGptIcons(message: IBmbChatMessage): boolean {
+    return !message.isUserMessage;
+  }
+
+  resolveGptBot(message: IBmbChatMessage): boolean {
+    return !message.isUserMessage;
+  }
+
+  resolveThinking(message: IBmbChatMessage, index: number): boolean {
+    const isLast = index === this.messagesHistory().length - 1;
+
+    return !message.isUserMessage && this.isLoading() && isLast;
+  }
+
+  resolveTestId(message: IBmbChatMessage, index: number): string {
+    return `${this.testId()}-bubble-${message.id ?? index}`;
   }
 }
