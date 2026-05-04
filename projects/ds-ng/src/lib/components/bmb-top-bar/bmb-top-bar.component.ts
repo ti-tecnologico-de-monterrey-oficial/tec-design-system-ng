@@ -12,13 +12,19 @@ import { IUserInformation } from './types';
 import { BmbTopBarUserSectionComponent } from './bmb-top-bar-user-section/bmb-top-bar-user-section.component';
 import { IBmbDataAlert } from '../bmb-alert-center/types';
 import { getMobileResolutionSize } from '../../utils/utils';
+import { BmbCheckExternalLinkButtonComponent } from '../bmb-check-external-link-button/bmb-check-external-link-button.component';
+import { IBmbTargetLink } from '../../types';
 
 export { IUserInformation } from './types';
 
 @Component({
   selector: 'bmb-top-bar',
   standalone: true,
-  imports: [CommonModule, BmbTopBarUserSectionComponent],
+  imports: [
+    CommonModule,
+    BmbTopBarUserSectionComponent,
+    BmbCheckExternalLinkButtonComponent,
+  ],
   templateUrl: './bmb-top-bar.component.html',
   styleUrl: './bmb-top-bar.component.scss',
   encapsulation: ViewEncapsulation.None,
@@ -36,6 +42,8 @@ export class BmbTopBarComponent implements OnInit {
   showSearchButton = input<boolean>(false);
   showHelpButton = input<boolean>(false);
   allowSidebarForMobile = input<boolean>(true);
+  getLogoLink = input<string>('');
+  getLogoTarget = input<IBmbTargetLink>('_blank');
 
   image = model<string>('');
   mobileImage = model<string>('');
@@ -45,6 +53,7 @@ export class BmbTopBarComponent implements OnInit {
   alertButtonClick = output<MouseEvent>();
   roleButtonClick = output<MouseEvent>();
   backToHomeClick = output<void>();
+  getLogoClick = output<void>();
   searchButtonClick = output<MouseEvent>();
 
   showAnimation: boolean = true;
@@ -99,5 +108,9 @@ export class BmbTopBarComponent implements OnInit {
 
   handleBackToHome(): void {
     this.backToHomeClick.emit();
+  }
+
+  handleLogoClick(): void {
+    this.getLogoClick.emit();
   }
 }

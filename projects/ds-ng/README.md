@@ -18,6 +18,8 @@ Ejecuta el siguiente comando en la raíz del proyecto dependiendo de tu versión
 
 - Angular 20: `npm install @ti-tecnologico-de-monterrey-oficial/ds-ng@a20`
 
+- Angular 21: `npm install @ti-tecnologico-de-monterrey-oficial/ds-ng@a21`
+
 Sigue los pasos de la guía para configurar los estilos y las fuentes.
 
 ## Utiliza Design System Bamboo

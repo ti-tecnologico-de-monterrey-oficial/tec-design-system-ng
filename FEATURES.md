@@ -4,9 +4,9 @@
 ### 🚀 Novedades
 
 *
-Formato
+Update
 *
-new config
+Formato
 *
 build
 *
@@ -14,11 +14,7 @@ formato
 *
 Formato
 *
-Formato
-*
-Formato
-*
-Add conditional visibility and cascading options to filter card component
+bubble chat
 *
 fix(component/sidebar): Se realizo refactorización de código para depurar elementos y simplificar estructura. La navegación ahora es en su mayoría manejo con CSS.
 *
@@ -30,8 +26,6 @@ fix(component / portal): Se agregó un parche de seguridad
 *
 feat(component / interactive icon): se agregó el tooltip al interactive icon
 *
-feat(component / icon): Se agregaron iconos personalizados
-*
 feat(component/sidebar): se realizaron ajustes para manejar las versión móvil o de escritorio mediante consultar de CSS.
 *
 feat(utils): Se agregaron funciones beforeClose y afterClose a los servicios de Modal y ProjectedContent
@@ -40,11 +34,33 @@ fix(component / Projection service): Se agregó un parche de seguridad
 *
 fix(component / native modal): Se agregó un parche de seguridad
 *
+bubble chat
+*
 se agergó soporte para angular 21
 *
-feat(component/multi-dot-paginator): se agrego el botón como último índice. Se implementó funcionalidad para que permita seleccionar solo un índice.
-*
 utils(app): Actualización de la app demo
+*
+bubble chat
+*
+feat(commponent/sidebar): se agregó implementación para soportar eventos personalizados.
+*
+feat(component / dot paginator): Se actualizaron los margenes para los dot paginators
+*
+fix(component / search card): Se corrigieron los colores de los servicios
+*
+bubble chat
+*
+new config
+*
+Formato
+*
+Formato
+*
+Add conditional visibility and cascading options to filter card component
+*
+feat(component / icon): Se agregaron iconos personalizados
+*
+feat(component/multi-dot-paginator): se agrego el botón como último índice. Se implementó funcionalidad para que permita seleccionar solo un índice.
 *
 topbar user
 *
@@ -58,13 +74,9 @@ fix(component / multi dot paginator): Se agregaron animaciones a los puntos del 
 *
 chore: escenarios de pruebas integrales en aplicaciones
 *
-feat(commponent/sidebar): se agregó implementación para soportar eventos personalizados.
-*
 fix(component/action-menu): se agregaron estilos para organizar contenido de manera responsiva.
 *
 feat(component/sidebar): se agrego consulta para definir el ancho del 'Sidebar' según dispositivo.
-*
-feat(component / dot paginator): Se actualizaron los margenes para los dot paginators
 *
 feat: implement BmbFilterCard component with support for conditional and cascading filters.
 *
@@ -128,8 +140,6 @@ fix(component / dropdown): Se corrigió el desface de menú del dropdown
 *
 Formato
 *
-fix(component / search card): Se corrigieron los colores de los servicios
-*
 fix(component / tooltip): Se solucionó el problema del contenido del tooltip
 *
 Update preview.ts
@@ -156,6 +166,8 @@ chore: se agregó código para prevenir la propagación y detenerla.
 *
 chore: se eliminó código que no se utiliza.
 *
+chore: se eliminó código no útil (no utilizado).
+*
 topbar user
 *
 feat: Add BmbFilterCard component.
@@ -163,29 +175,23 @@ feat: Add BmbFilterCard component.
 Update bmb-sidebar.component.html
 *
 fix(component / progress bar): Se corrigió el NAN cuando el valor inicial y total son cero
-*
-chore: se eliminó código no útil (no utilizado).
 *
 chore: se eliminó código que no se utiliza
 
 ### 🆕 Nuevos Componentes
 
+- **Update**:
+Update
 - **Formato**:
 Formato
-- **new config**:
-new config
 - **build**:
 build
 - **formato**:
 formato
 - **Formato**:
 Formato
-- **Formato**:
-Formato
-- **Formato**:
-Formato
-- **Add conditional visibility and cascading options to filter card component**:
-Add conditional visibility and cascading options to filter card component
+- **bubble chat**:
+bubble chat
 - **fix(component/sidebar): Se realizo refactorización de código para depurar elementos y simplificar estructura. La navegación ahora es en su mayoría manejo con CSS.**:
 fix(component/sidebar): Se realizo refactorización de código para depurar elementos y simplificar estructura. La navegación ahora es en su mayoría manejo con CSS.
 - **feat(component / dropdown): Se corrigió la posición del menú**:
@@ -196,8 +202,6 @@ Formato
 fix(component / portal): Se agregó un parche de seguridad
 - **feat(component / interactive icon): se agregó el tooltip al interactive icon**:
 feat(component / interactive icon): se agregó el tooltip al interactive icon
-- **feat(component / icon): Se agregaron iconos personalizados**:
-feat(component / icon): Se agregaron iconos personalizados
 - **feat(component/sidebar): se realizaron ajustes para manejar las versión móvil o de escritorio mediante consultar de CSS.**:
 feat(component/sidebar): se realizaron ajustes para manejar las versión móvil o de escritorio mediante consultar de CSS.
 - **feat(utils): Se agregaron funciones beforeClose y afterClose a los servicios de Modal y ProjectedContent**:
@@ -206,12 +210,34 @@ feat(utils): Se agregaron funciones beforeClose y afterClose a los servicios de 
 fix(component / Projection service): Se agregó un parche de seguridad
 - **fix(component / native modal): Se agregó un parche de seguridad**:
 fix(component / native modal): Se agregó un parche de seguridad
+- **bubble chat**:
+bubble chat
 - **se agergó soporte para angular 21**:
 se agergó soporte para angular 21
-- **feat(component/multi-dot-paginator): se agrego el botón como último índice. Se implementó funcionalidad para que permita seleccionar solo un índice.**:
-feat(component/multi-dot-paginator): se agrego el botón como último índice. Se implementó funcionalidad para que permita seleccionar solo un índice.
 - **utils(app): Actualización de la app demo**:
 utils(app): Actualización de la app demo
+- **bubble chat**:
+bubble chat
+- **feat(commponent/sidebar): se agregó implementación para soportar eventos personalizados.**:
+feat(commponent/sidebar): se agregó implementación para soportar eventos personalizados.
+- **feat(component / dot paginator): Se actualizaron los margenes para los dot paginators**:
+feat(component / dot paginator): Se actualizaron los margenes para los dot paginators
+- **fix(component / search card): Se corrigieron los colores de los servicios**:
+fix(component / search card): Se corrigieron los colores de los servicios
+- **bubble chat**:
+bubble chat
+- **new config**:
+new config
+- **Formato**:
+Formato
+- **Formato**:
+Formato
+- **Add conditional visibility and cascading options to filter card component**:
+Add conditional visibility and cascading options to filter card component
+- **feat(component / icon): Se agregaron iconos personalizados**:
+feat(component / icon): Se agregaron iconos personalizados
+- **feat(component/multi-dot-paginator): se agrego el botón como último índice. Se implementó funcionalidad para que permita seleccionar solo un índice.**:
+feat(component/multi-dot-paginator): se agrego el botón como último índice. Se implementó funcionalidad para que permita seleccionar solo un índice.
 - **topbar user**:
 topbar user
 - **test: Add unit tests for BmbFilterCardComponent, along with related dependency updates.**:
@@ -224,14 +250,10 @@ roll back user summary changes
 fix(component / multi dot paginator): Se agregaron animaciones a los puntos del multi dot paginator
 - **chore: escenarios de pruebas integrales en aplicaciones**:
 chore: escenarios de pruebas integrales en aplicaciones
-- **feat(commponent/sidebar): se agregó implementación para soportar eventos personalizados.**:
-feat(commponent/sidebar): se agregó implementación para soportar eventos personalizados.
 - **fix(component/action-menu): se agregaron estilos para organizar contenido de manera responsiva.**:
 fix(component/action-menu): se agregaron estilos para organizar contenido de manera responsiva.
 - **feat(component/sidebar): se agrego consulta para definir el ancho del 'Sidebar' según dispositivo.**:
 feat(component/sidebar): se agrego consulta para definir el ancho del 'Sidebar' según dispositivo.
-- **feat(component / dot paginator): Se actualizaron los margenes para los dot paginators**:
-feat(component / dot paginator): Se actualizaron los margenes para los dot paginators
 - **feat: implement BmbFilterCard component with support for conditional and cascading filters.**:
 feat: implement BmbFilterCard component with support for conditional and cascading filters.
 - **chore: se agregaron casos de pruebas para el nuevo código de sidebar**:
@@ -294,8 +316,6 @@ fix(component / notification card): Se corrigió el tamaño de las notificacione
 fix(component / dropdown): Se corrigió el desface de menú del dropdown
 - **Formato**:
 Formato
-- **fix(component / search card): Se corrigieron los colores de los servicios**:
-fix(component / search card): Se corrigieron los colores de los servicios
 - **fix(component / tooltip): Se solucionó el problema del contenido del tooltip**:
 fix(component / tooltip): Se solucionó el problema del contenido del tooltip
 - **Update preview.ts**:
@@ -322,6 +342,8 @@ fix(component / icon): Se soluciono el problema de iconos duplicados
 chore: se agregó código para prevenir la propagación y detenerla.
 - **chore: se eliminó código que no se utiliza.**:
 chore: se eliminó código que no se utiliza.
+- **chore: se eliminó código no útil (no utilizado).**:
+chore: se eliminó código no útil (no utilizado).
 - **topbar user**:
 topbar user
 - **feat: Add BmbFilterCard component.**:
@@ -330,29 +352,23 @@ feat: Add BmbFilterCard component.
 Update bmb-sidebar.component.html
 - **fix(component / progress bar): Se corrigió el NAN cuando el valor inicial y total son cero**:
 fix(component / progress bar): Se corrigió el NAN cuando el valor inicial y total son cero
-- **chore: se eliminó código no útil (no utilizado).**:
-chore: se eliminó código no útil (no utilizado).
 - **chore: se eliminó código que no se utiliza**:
 chore: se eliminó código que no se utiliza
 
 ### 🔄 Componentes Actualizados
 
+- **Update**:
+Update
 - **Formato**:
 Formato
-- **new config**:
-new config
 - **build**:
 build
 - **formato**:
 formato
 - **Formato**:
 Formato
-- **Formato**:
-Formato
-- **Formato**:
-Formato
-- **Add conditional visibility and cascading options to filter card component**:
-Add conditional visibility and cascading options to filter card component
+- **bubble chat**:
+bubble chat
 - **fix(component/sidebar): Se realizo refactorización de código para depurar elementos y simplificar estructura. La navegación ahora es en su mayoría manejo con CSS.**:
 fix(component/sidebar): Se realizo refactorización de código para depurar elementos y simplificar estructura. La navegación ahora es en su mayoría manejo con CSS.
 - **feat(component / dropdown): Se corrigió la posición del menú**:
@@ -363,8 +379,6 @@ Formato
 fix(component / portal): Se agregó un parche de seguridad
 - **feat(component / interactive icon): se agregó el tooltip al interactive icon**:
 feat(component / interactive icon): se agregó el tooltip al interactive icon
-- **feat(component / icon): Se agregaron iconos personalizados**:
-feat(component / icon): Se agregaron iconos personalizados
 - **feat(component/sidebar): se realizaron ajustes para manejar las versión móvil o de escritorio mediante consultar de CSS.**:
 feat(component/sidebar): se realizaron ajustes para manejar las versión móvil o de escritorio mediante consultar de CSS.
 - **feat(utils): Se agregaron funciones beforeClose y afterClose a los servicios de Modal y ProjectedContent**:
@@ -373,12 +387,34 @@ feat(utils): Se agregaron funciones beforeClose y afterClose a los servicios de 
 fix(component / Projection service): Se agregó un parche de seguridad
 - **fix(component / native modal): Se agregó un parche de seguridad**:
 fix(component / native modal): Se agregó un parche de seguridad
+- **bubble chat**:
+bubble chat
 - **se agergó soporte para angular 21**:
 se agergó soporte para angular 21
-- **feat(component/multi-dot-paginator): se agrego el botón como último índice. Se implementó funcionalidad para que permita seleccionar solo un índice.**:
-feat(component/multi-dot-paginator): se agrego el botón como último índice. Se implementó funcionalidad para que permita seleccionar solo un índice.
 - **utils(app): Actualización de la app demo**:
 utils(app): Actualización de la app demo
+- **bubble chat**:
+bubble chat
+- **feat(commponent/sidebar): se agregó implementación para soportar eventos personalizados.**:
+feat(commponent/sidebar): se agregó implementación para soportar eventos personalizados.
+- **feat(component / dot paginator): Se actualizaron los margenes para los dot paginators**:
+feat(component / dot paginator): Se actualizaron los margenes para los dot paginators
+- **fix(component / search card): Se corrigieron los colores de los servicios**:
+fix(component / search card): Se corrigieron los colores de los servicios
+- **bubble chat**:
+bubble chat
+- **new config**:
+new config
+- **Formato**:
+Formato
+- **Formato**:
+Formato
+- **Add conditional visibility and cascading options to filter card component**:
+Add conditional visibility and cascading options to filter card component
+- **feat(component / icon): Se agregaron iconos personalizados**:
+feat(component / icon): Se agregaron iconos personalizados
+- **feat(component/multi-dot-paginator): se agrego el botón como último índice. Se implementó funcionalidad para que permita seleccionar solo un índice.**:
+feat(component/multi-dot-paginator): se agrego el botón como último índice. Se implementó funcionalidad para que permita seleccionar solo un índice.
 - **topbar user**:
 topbar user
 - **test: Add unit tests for BmbFilterCardComponent, along with related dependency updates.**:
@@ -391,14 +427,10 @@ roll back user summary changes
 fix(component / multi dot paginator): Se agregaron animaciones a los puntos del multi dot paginator
 - **chore: escenarios de pruebas integrales en aplicaciones**:
 chore: escenarios de pruebas integrales en aplicaciones
-- **feat(commponent/sidebar): se agregó implementación para soportar eventos personalizados.**:
-feat(commponent/sidebar): se agregó implementación para soportar eventos personalizados.
 - **fix(component/action-menu): se agregaron estilos para organizar contenido de manera responsiva.**:
 fix(component/action-menu): se agregaron estilos para organizar contenido de manera responsiva.
 - **feat(component/sidebar): se agrego consulta para definir el ancho del 'Sidebar' según dispositivo.**:
 feat(component/sidebar): se agrego consulta para definir el ancho del 'Sidebar' según dispositivo.
-- **feat(component / dot paginator): Se actualizaron los margenes para los dot paginators**:
-feat(component / dot paginator): Se actualizaron los margenes para los dot paginators
 - **feat: implement BmbFilterCard component with support for conditional and cascading filters.**:
 feat: implement BmbFilterCard component with support for conditional and cascading filters.
 - **chore: se agregaron casos de pruebas para el nuevo código de sidebar**:
@@ -461,8 +493,6 @@ fix(component / notification card): Se corrigió el tamaño de las notificacione
 fix(component / dropdown): Se corrigió el desface de menú del dropdown
 - **Formato**:
 Formato
-- **fix(component / search card): Se corrigieron los colores de los servicios**:
-fix(component / search card): Se corrigieron los colores de los servicios
 - **fix(component / tooltip): Se solucionó el problema del contenido del tooltip**:
 fix(component / tooltip): Se solucionó el problema del contenido del tooltip
 - **Update preview.ts**:
@@ -489,6 +519,8 @@ fix(component / icon): Se soluciono el problema de iconos duplicados
 chore: se agregó código para prevenir la propagación y detenerla.
 - **chore: se eliminó código que no se utiliza.**:
 chore: se eliminó código que no se utiliza.
+- **chore: se eliminó código no útil (no utilizado).**:
+chore: se eliminó código no útil (no utilizado).
 - **topbar user**:
 topbar user
 - **feat: Add BmbFilterCard component.**:
@@ -497,8 +529,6 @@ feat: Add BmbFilterCard component.
 Update bmb-sidebar.component.html
 - **fix(component / progress bar): Se corrigió el NAN cuando el valor inicial y total son cero**:
 fix(component / progress bar): Se corrigió el NAN cuando el valor inicial y total son cero
-- **chore: se eliminó código no útil (no utilizado).**:
-chore: se eliminó código no útil (no utilizado).
 - **chore: se eliminó código que no se utiliza**:
 chore: se eliminó código que no se utiliza
 

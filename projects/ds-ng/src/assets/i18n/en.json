@@ -237,5 +237,12 @@
   "profile": {
     "leader": "My Leader",
     "generalist": "My Generalist"
+  },
+  "chat_bubbles": {
+    "repeat": "Repeat answer",
+    "voice": "Listen to answer",
+    "copy": "Copy content",
+    "like": "Like",
+    "dislike": "Dislike"
   }
 }

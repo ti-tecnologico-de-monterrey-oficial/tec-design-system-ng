@@ -8,21 +8,27 @@
   --general-contrasts: rgb(var(--black-primary));
   --general-contrasts-100: rgb(var(--gray-tecmi-950));
   --general-contrasts-90: rgb(var(--gray-tecmi-900));
+  --general-contrasts-85: rgb(var(--gray-tecmi-500));
   --general-contrasts-80: rgb(var(--gray-tecmi-800));
   --general-contrasts-75: rgb(var(--gray-tecmi-700));
   --general-contrasts-60: rgb(var(--gray-tecmi-600));
   --general-contrasts-50: rgb(var(--gray-tecmi-500));
-  --general-contrasts-25: rgb(var(--gray-tecmi-300));
+  --general-contrasts-25: rgb(var(--gray-tecmi-400));
   --general-contrasts-20: rgb(var(--gray-tecmi-150));
   --general-contrasts-15: rgb(var(--gray-tecmi-150));
   --general-contrasts-5: rgb(var(--gray-tecmi-50));
 
   --general-contrasts-main-complimentary: rgb(var(--gray-tecmi-50));
+  --general-contrasts-light-complimentary: rgb(var(--white-primary));
+  --general-contrasts-dark-complimentary: rgb(var(--gray-tecmi-950));
   --general-contrasts-main-selection: rgb(var(--green-tecmi-600));
   --general-contrasts-icon-selection: rgb(var(--green-tecmi-600));
   --general-contrasts-main-selection-alternative: rgb(var(--green-primary));
+  --general-contrasts-main-selection-icon-alternative: rgb(
+    var(--white-primary)
+  );
 
-  --general-contrasts-input-background: rgb(var(--gray-tecmi-50));
+  --general-contrasts-input-background: rgb(var(--gray-tecmi-200));
   --general-contrasts-input-outline: rgb(var(--green-tecmi-800));
   --general-contrasts-container-outline: rgb(var(--gray-tecmi-400));
   --general-contrasts-text-sidebar: rgb(var(--black-primary));
@@ -40,10 +46,11 @@
 
   // Containers
   --containers-background: rgb(var(--gray-tecmi-25));
+  --containers-background-alternative: rgb(var(--gray-tecmi-300));
   --containers-media-card-background: rgba(var(--gray-tecmi-100), 0.9);
-  --containers-main: rgb(var(--gray-tecmi-50));
+  --containers-main: rgb(var(--gray-tecmi-150));
   --containers-header-mobile: rgb(var(--green-tecmi-800));
-  --containers-modal: rgb(var(--gray-tecmi-100));
+  --containers-modal: rgb(var(--gray-tecmi-50));
   --containers-container-button: rgb(var(--gray-tecmi-50));
 
   --containers-top-bar: rgb(var(--green-tecmi-800));
@@ -68,7 +75,7 @@
   --buttons-primary-text: rgb(var(--green-tecmi-700));
   --buttons-fab-text: rgb(var(--white-primary));
   --buttons-active-switch: rgb(var(--green-tecmi-600));
-  --buttons-inactive-step: rgb(var(--gray-tecmi-300));
+  --buttons-inactive-step: rgb(var(--gray-tecmi-400));
 
   --buttons-stroke-primary-selected: rgb(var(--green-tecmi-950));
   --buttons-blur-primary-select: rgb(var(--green-tecmi-600));
@@ -94,7 +101,7 @@
 
   //Menu select - On surface
   --menu-select-on-surface-hovered-w-checkbox: rgb(var(--green-tecmi-100));
-  --menu-select-on-surface-hovered: rgb(var(--gray-tecmi-100));
+  --menu-select-on-surface-hovered: rgb(var(--green-tecmi-100));
 
   //Tecmilenio
   --tecmi-green: rgb(var(--green-tecmi-800));
@@ -111,6 +118,7 @@
 
   // Creative use
   --creative-use-violet: rgb(var(--violet-primary));
+  --creative-use-strong: rgb(var(--blue-mariner-300));
   --creative-use-indigo: rgb(var(--indigo-primary));
   --creative-use-emerald: rgb(var(--emerald-primary));
   --creative-use-licorice: rgb(var(--licorice-primary));
@@ -154,6 +162,7 @@
   --general-contrasts: rgb(var(--white-primary));
   --general-contrasts-100: rgb(var(--gray-tecmi-50));
   --general-contrasts-90: rgb(var(--gray-tecmi-100));
+  --general-contrasts-85: rgb(var(--gray-tecmi-450));
   --general-contrasts-80: rgb(var(--gray-tecmi-300));
   --general-contrasts-75: rgb(var(--gray-tecmi-300));
   --general-contrasts-60: rgb(var(--gray-tecmi-400));
@@ -164,9 +173,14 @@
   --general-contrasts-5: rgb(var(--gray-tecmi-900));
 
   --general-contrasts-main-complimentary: rgb(var(--gray-tecmi-50));
+  --general-contrasts-light-complimentary: rgb(var(--white-primary));
+  --general-contrasts-dark-complimentary: rgb(var(--gray-tecmi-950));
   --general-contrasts-main-selection: rgb(var(--green-tecmi-600));
   --general-contrasts-icon-selection: rgb(var(--green-tecmi-600));
   --general-contrasts-main-selection-alternative: rgb(var(--green-tecmi-200));
+  --general-contrasts-main-selection-icon-alternative: rgb(
+    var(--white-primary)
+  );
 
   --general-contrasts-input-background: var(--black-tint);
   --general-contrasts-input-outline: rgb(var(--gray-tecmi-50));
@@ -186,6 +200,7 @@
 
   // Containers
   --containers-background: rgb(var(--gray-tecmi-950));
+  --containers-background-alternative: rgb(var(--gray-tecmi-950));
   --containers-media-card-background: rgba(var(--gray-tecmi-900), 0.9);
   --containers-main: rgb(var(--gray-tecmi-900));
   --containers-header-mobile: rgb(var(--green-tecmi-800));
@@ -249,7 +264,7 @@
   // Semantic colors
   --semantic-success: rgb(var(--success-tint-alternative));
   --semantic-info-event: rgb(var(--purple-tint));
-  --semantic-warning: rgb(var(--warning-tint));
+  --semantic-warning: rgb(var(--yellow-light));
   --semantic-error: rgb(var(--error-light));
   --semantic-brand: rgb(var(--branding-tint));
   --semantic-alert: rgb(var(--alert-light));
@@ -257,6 +272,7 @@
 
   // Creative use
   --creative-use-violet: rgb(var(--violet-tint));
+  --creative-use-strong: rgb(var(--blue-mariner-200));
   --creative-use-indigo: rgb(var(--indigo-tint));
   --creative-use-emerald: rgb(var(--emerald-tint));
   --creative-use-licorice: rgb(var(--licorice-tint));
