@@ -11,11 +11,13 @@
   --general-contrasts-85: rgb(var(--gray-charade-500));
   --general-contrasts-80: rgb(var(--gray-charade-700));
   --general-contrasts-75: rgb(var(--gray-charade-700));
-  --general-contrasts-60: rgb(var(--gray-charade-900));
+  --general-contrasts-60: rgb(var(--gray-charade-600));
   --general-contrasts-50: rgb(var(--gray-charade-500));
+  --general-contrasts-40: rgb(var(--gray-charade-500));
   --general-contrasts-25: rgb(var(--gray-charade-200));
   --general-contrasts-20: rgb(var(--gray-charade-100));
   --general-contrasts-15: rgb(var(--gray-charade-100));
+  --general-contrasts-10: rgb(var(--gray-charade-100));
   --general-contrasts-5: rgb(var(--gray-charade-50));
 
   --general-contrasts-main-complimentary: rgb(var(--gray-charade-50));
@@ -36,30 +38,17 @@
   --general-contrasts-primary: rgb(var(--blue-mariner-700));
   --general-contrasts-primary-high-contrast: rgb(var(--blue-mariner-300));
 
-  --general-contrasts-inner-header-text: rgb(var(--black-primary));
-  --general-contrasts-timestream-index-inner-header-text: rgb(
-    var(--black-primary)
-  );
-  --general-contrasts-timestream-index-chevron-title-selector-text: rgb(
-    var(--gray-charade-950)
-  );
-
   // Containers
   --containers-background: rgb(var(--gray-charade-200));
   --containers-background-alternative: rgb(var(--gray-charade-200));
-  --containers-media-card-background: rgba(var(--gray-charade-950), 0.9);
   --containers-main: rgb(var(--gray-charade-100));
-  --containers-header-mobile: rgb(var(--gray-charade-100));
   --containers-modal: rgb(var(--gray-charade-50));
   --containers-container-button: rgb(var(--gray-charade-50));
 
   --containers-top-bar: rgb(var(--black-primary));
-  --containers-background-fade: rgba(211, 215, 228, 0); // #D3D7E4
-  --containers-media-card-background-fade: rgba(31, 34, 46, 0); // #1F222E
-  --containers-timestream-index: rgb(var(--gray-charade-100));
-  --containers-timestream-index-chevron-title-selector: rgb(
-    var(--gray-charade-200)
-  );
+  --containers-media-card-background: var(--gray-charade-950);
+  --containers-background-fade: rgba(211, 215, 228, 0); // #D3D7E4 · 0%
+  --containers-media-card-background-fade: rgba(31, 34, 46, 0); // #1F222E · 0%
 
   // Buttons
   --buttons-primary-normal: rgb(var(--blue-mariner-700));
@@ -176,9 +165,11 @@
   --general-contrasts-75: rgb(var(--gray-charade-200));
   --general-contrasts-60: rgb(var(--gray-charade-200));
   --general-contrasts-50: rgb(var(--gray-charade-500));
+  --general-contrasts-40: rgb(var(--gray-charade-500));
   --general-contrasts-25: rgb(var(--gray-charade-700));
   --general-contrasts-20: rgb(var(--gray-charade-700));
   --general-contrasts-15: rgb(var(--gray-charade-800));
+  --general-contrasts-10: rgb(var(--gray-charade-800));
   --general-contrasts-5: rgb(var(--gray-charade-900));
 
   --general-contrasts-main-complimentary: rgb(var(--gray-charade-50));
@@ -199,30 +190,17 @@
   --general-contrasts-primary: rgb(var(--blue-mariner-400));
   --general-contrasts-primary-high-contrast: rgb(var(--blue-mariner-400));
 
-  --general-contrasts-inner-header-text: rgb(var(--white-primary));
-  --general-contrasts-timestream-index-inner-header-text: rgb(
-    var(--white-primary)
-  );
-  --general-contrasts-timestream-index-chevron-title-selector-text: rgb(
-    var(--gray-charade-50)
-  );
-
   // Containers
   --containers-background: rgb(var(--gray-charade-950));
   --containers-background-alternative: rgb(var(--gray-charade-950));
-  --containers-media-card-background: rgba(var(--gray-charade-950), 0.9);
   --containers-main: rgb(var(--gray-charade-900));
-  --containers-header-mobile: rgb(var(--gray-charade-900));
   --containers-modal: rgb(var(--gray-charade-950));
   --containers-container-button: rgb(var(--gray-charade-900));
 
   --containers-top-bar: rgb(var(--black-primary));
-  --containers-background-fade: rgba(31, 34, 46, 0); // #1F222E
-  --containers-media-card-background-fade: rgba(31, 34, 46, 0); // #1F222E
-  --containers-timestream-index: rgb(var(--gray-charade-900));
-  --containers-timestream-index-chevron-title-selector: rgb(
-    var(--gray-charade-700)
-  );
+  --containers-media-card-background: var(--gray-charade-950);
+  --containers-background-fade: rgba(31, 34, 46, 0); // #1F222E · 0%
+  --containers-media-card-background-fade: rgba(31, 34, 46, 0); // #1F222E · 0%
 
   // Buttons
   --buttons-primary-normal: rgb(var(--blue-mariner-700));
