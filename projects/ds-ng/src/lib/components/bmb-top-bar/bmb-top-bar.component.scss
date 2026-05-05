@@ -50,6 +50,10 @@ bmb-top-bar {
   top: 0;
   left: 0;
 
+  bmb-check-external-link-button {
+    display: flex;
+  }
+
   &-sidebar {
     @include mixins.mobile-styles() {
       padding-left: rem.rem_calc(48);
