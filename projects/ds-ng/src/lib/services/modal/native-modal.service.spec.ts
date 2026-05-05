@@ -9,7 +9,9 @@ describe('BmbNativeModalService', () => {
   let service: BmbNativeModalService;
   let appRef: ApplicationRef;
 
-  function createModal(overrides: Partial<IBmbNativeModal> = {}): IBmbNativeModal {
+  function createModal(
+    overrides: Partial<IBmbNativeModal> = {},
+  ): IBmbNativeModal {
     return {
       modalId: '',
       title: 'Test',
@@ -166,7 +168,9 @@ describe('BmbNativeModalService', () => {
   });
 
   it('debe destruir el portal cuando no quedan modales', () => {
-    const fakeHostView = { rootNodes: [document.createElement('bmb-portal')] } as any;
+    const fakeHostView = {
+      rootNodes: [document.createElement('bmb-portal')],
+    } as any;
     const fakePortalRef = {
       hostView: fakeHostView,
       destroy: jasmine.createSpy('destroy'),
