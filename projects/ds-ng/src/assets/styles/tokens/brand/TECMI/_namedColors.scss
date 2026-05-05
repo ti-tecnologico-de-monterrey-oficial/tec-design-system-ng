@@ -55,7 +55,7 @@
   --buttons-primary-hover: rgb(var(--green-tecmi-900));
   --buttons-primary-select: rgb(var(--green-tecmi-800));
 
-  --buttons-alternative-normal: rgb(var(--gray-tecmi-25));
+  --buttons-alternative-normal: rgb(var(--white-primary));
   --buttons-alternative-hover: rgb(var(--gray-tecmi-400));
   --buttons-alternative-text: rgb(var(--gray-tecmi-800));
   --buttons-alternative-select-text: rgb(var(--gray-tecmi-50));
@@ -66,6 +66,7 @@
   --buttons-active-switch: rgb(var(--green-tecmi-600));
   --buttons-inactive-step: rgb(var(--gray-tecmi-400));
 
+  --buttons-stroke-alternative-normal: rgb(var(--gray-tecmi-450));
   --buttons-stroke-primary-selected: rgb(var(--green-tecmi-950));
   --buttons-blur-primary-select: rgb(var(--green-tecmi-600));
   --buttons-stroke-primary-hover: rgb(var(--green-tecmi-900));
@@ -209,6 +210,7 @@
   --buttons-active-switch: rgb(var(--green-tecmi-400));
   --buttons-inactive-step: rgb(var(--gray-tecmi-700));
 
+  --buttons-stroke-alternative-normal: rgb(var(--gray-tecmi-25));
   --buttons-stroke-primary-selected: rgb(var(--green-tecmi-500));
   --buttons-blur-primary-select: rgb(var(--green-tecmi-600));
   --buttons-stroke-primary-hover: rgb(var(--green-tecmi-900));

@@ -55,7 +55,7 @@
   --buttons-primary-hover: rgb(var(--gray-ged-50));
   --buttons-primary-select: rgb(var(--gray-ged-900));
 
-  --buttons-alternative-normal: rgb(var(--white-primary));
+  --buttons-alternative-normal: rgb(var(--gray-ged-100));
   --buttons-alternative-hover: rgb(var(--gray-ged-800));
   --buttons-alternative-text: rgb(var(--gray-ged-950));
   --buttons-alternative-select-text: rgb(var(--gray-ged-50));
@@ -66,6 +66,7 @@
   --buttons-active-switch: rgb(var(--blue-primary));
   --buttons-inactive-step: rgb(var(--gray-ged-400));
 
+  --buttons-stroke-alternative-normal: rgb(var(--gray-ged-300));
   --buttons-stroke-primary-selected: rgb(var(--blue-ged-900));
   --buttons-blur-primary-select: rgb(var(--gray-ged-500));
   --buttons-stroke-primary-hover: rgb(var(--black-primary));
@@ -231,6 +232,7 @@
   --buttons-active-switch: rgb(var(--blue-mariner-500));
   --buttons-inactive-step: rgb(var(--gray-ged-700));
 
+  --buttons-stroke-alternative-normal: rgb(var(--black-primary));
   --buttons-stroke-primary-selected: rgb(var(--blue-ged-400));
   --buttons-blur-primary-select: rgb(var(--gray-ged-600));
   --buttons-stroke-primary-hover: rgb(var(--white-primary));
