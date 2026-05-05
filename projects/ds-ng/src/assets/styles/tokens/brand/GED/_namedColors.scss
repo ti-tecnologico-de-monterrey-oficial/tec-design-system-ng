@@ -46,7 +46,7 @@
   --containers-container-button: rgb(var(--gray-ged-50));
 
   --containers-top-bar: rgb(var(--black-primary));
-  --containers-media-card-background: var(--gray-ged-950);
+  --containers-media-card-background: rgb(var(--gray-ged-950), 0.9);
   --containers-background-fade: rgba(250, 250, 250, 0); // #FAFAFA · 0%
   --containers-media-card-background-fade: rgba(26, 26, 26, 0); // #1A1A1A · 0%
 
@@ -212,7 +212,7 @@
   --containers-container-button: rgb(var(--gray-ged-900));
 
   --containers-top-bar: rgb(var(--black-primary));
-  --containers-media-card-background: var(--gray-ged-950);
+  --containers-media-card-background: rgb(var(--gray-ged-950), 0.9);
   --containers-background-fade: rgba(26, 26, 26, 0); // #1A1A1A · 0%
   --containers-media-card-background-fade: rgba(26, 26, 26, 0); // #1A1A1A · 0%
 

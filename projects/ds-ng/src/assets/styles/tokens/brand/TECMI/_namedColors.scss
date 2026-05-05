@@ -46,7 +46,7 @@
   --containers-container-button: rgb(var(--gray-tecmi-50));
 
   --containers-top-bar: rgb(var(--green-tecmi-800));
-  --containers-media-card-background: var(--gray-tecmi-950);
+  --containers-media-card-background: rgb(var(--gray-tecmi-950), 0.9);
   --containers-background-fade: rgba(211, 215, 228, 0); // #D3D7E4 · 0%
   --containers-media-card-background-fade: rgba(11, 14, 18, 0); // #0B0E12 · 0%
 
@@ -190,7 +190,7 @@
   --containers-container-button: rgb(var(--gray-tecmi-900));
 
   --containers-top-bar: rgb(var(--green-tecmi-800));
-  --containers-media-card-background: var(--gray-tecmi-900);
+  --containers-media-card-background: rgba(var(--gray-tecmi-900), 0.9);
   --containers-background-fade: rgba(31, 34, 46, 0); // #1F222E · 0%
   --containers-media-card-background-fade: rgba(11, 14, 18, 0); // #0B0E12 · 0%
 

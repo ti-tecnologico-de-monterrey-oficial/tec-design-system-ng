@@ -46,7 +46,7 @@
   --containers-container-button: rgb(var(--gray-charade-50));
 
   --containers-top-bar: rgb(var(--black-primary));
-  --containers-media-card-background: var(--gray-charade-950);
+  --containers-media-card-background: rgba(var(--gray-charade-950), 0.9);
   --containers-background-fade: rgba(211, 215, 228, 0); // #D3D7E4 · 0%
   --containers-media-card-background-fade: rgba(31, 34, 46, 0); // #1F222E · 0%
 
@@ -199,7 +199,7 @@
   --containers-container-button: rgb(var(--gray-charade-900));
 
   --containers-top-bar: rgb(var(--black-primary));
-  --containers-media-card-background: var(--gray-charade-950);
+  --containers-media-card-background: rgba(var(--gray-charade-950), 0.9);
   --containers-background-fade: rgba(31, 34, 46, 0); // #1F222E · 0%
   --containers-media-card-background-fade: rgba(31, 34, 46, 0); // #1F222E · 0%
 
