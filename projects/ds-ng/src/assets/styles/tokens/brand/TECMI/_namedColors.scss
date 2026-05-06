@@ -8,7 +8,6 @@
   --general-contrasts: rgb(var(--black-primary));
   --general-contrasts-100: rgb(var(--gray-tecmi-950));
   --general-contrasts-90: rgb(var(--gray-tecmi-900));
-  --general-contrasts-85: rgb(var(--gray-tecmi-500));
   --general-contrasts-80: rgb(var(--gray-tecmi-800));
   --general-contrasts-75: rgb(var(--gray-tecmi-700));
   --general-contrasts-60: rgb(var(--gray-tecmi-600));
@@ -26,9 +25,6 @@
   --general-contrasts-main-selection: rgb(var(--green-tecmi-600));
   --general-contrasts-icon-selection: rgb(var(--green-tecmi-600));
   --general-contrasts-main-selection-alternative: rgb(var(--green-primary));
-  --general-contrasts-main-selection-icon-alternative: rgb(
-    var(--white-primary)
-  );
 
   --general-contrasts-input-background: rgb(var(--gray-tecmi-200));
   --general-contrasts-input-outline: rgb(var(--green-tecmi-800));
@@ -40,7 +36,6 @@
 
   // Containers
   --containers-background: rgb(var(--gray-tecmi-25));
-  --containers-background-alternative: rgb(var(--gray-tecmi-300));
   --containers-main: rgb(var(--gray-tecmi-150));
   --containers-modal: rgb(var(--gray-tecmi-50));
   --containers-container-button: rgb(var(--gray-tecmi-50));
@@ -152,7 +147,6 @@
   --general-contrasts: rgb(var(--white-primary));
   --general-contrasts-100: rgb(var(--gray-tecmi-50));
   --general-contrasts-90: rgb(var(--gray-tecmi-100));
-  --general-contrasts-85: rgb(var(--gray-tecmi-450));
   --general-contrasts-80: rgb(var(--gray-tecmi-300));
   --general-contrasts-75: rgb(var(--gray-tecmi-300));
   --general-contrasts-60: rgb(var(--gray-tecmi-400));
@@ -170,9 +164,6 @@
   --general-contrasts-main-selection: rgb(var(--green-tecmi-600));
   --general-contrasts-icon-selection: rgb(var(--green-tecmi-600));
   --general-contrasts-main-selection-alternative: rgb(var(--green-tecmi-200));
-  --general-contrasts-main-selection-icon-alternative: rgb(
-    var(--gray-tecmi-800)
-  );
 
   --general-contrasts-input-background: var(--black-tint);
   --general-contrasts-input-outline: rgb(var(--gray-tecmi-50));
@@ -184,7 +175,6 @@
 
   // Containers
   --containers-background: rgb(var(--gray-tecmi-950));
-  --containers-background-alternative: rgb(var(--gray-tecmi-950));
   --containers-main: rgb(var(--gray-tecmi-900));
   --containers-modal: rgb(var(--gray-tecmi-800));
   --containers-container-button: rgb(var(--gray-tecmi-900));
