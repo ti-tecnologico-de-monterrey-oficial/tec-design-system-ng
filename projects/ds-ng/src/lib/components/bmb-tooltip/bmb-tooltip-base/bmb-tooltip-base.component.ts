@@ -4,10 +4,12 @@ import {
   DestroyRef,
   ElementRef,
   inject,
+  PLATFORM_ID,
   input,
   ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
+import { DOCUMENT, isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'bmb-tooltip-base',
@@ -26,6 +28,8 @@ export class BmbTooltipBaseComponent {
   tooltipContainer!: ElementRef<HTMLElement>;
 
   private readonly destroyRef = inject(DestroyRef);
+  private readonly document = inject<Document>(DOCUMENT);
+  private readonly platformId = inject(PLATFORM_ID);
   private tooltipElement: HTMLDialogElement | null = null;
   private readonly repositionHandler = () => this.updateTooltipPosition();
 
@@ -36,6 +40,15 @@ export class BmbTooltipBaseComponent {
   }
 
   getPosition() {
+    if (!this.isBrowserEnvironment()) {
+      return {
+        top: null,
+        left: null,
+        right: null,
+        bottom: null,
+      };
+    }
+
     const width = window.innerWidth;
     const height = window.innerHeight;
     const targetPosition =
@@ -91,6 +104,10 @@ export class BmbTooltipBaseComponent {
   }
 
   showTooltip(): void {
+    if (!this.isBrowserEnvironment()) {
+      return;
+    }
+
     if (this.tooltipElement) {
       this.updateTooltipPosition();
       return;
@@ -98,7 +115,7 @@ export class BmbTooltipBaseComponent {
 
     this.tooltipElement = this.createTooltipElement();
     this.tooltipElement.style.visibility = 'hidden';
-    document.body.appendChild(this.tooltipElement);
+  this.document.body.appendChild(this.tooltipElement);
     this.tooltipElement.offsetHeight;
     this.updateTooltipPosition();
     this.tooltipElement.style.visibility = 'visible';
@@ -108,6 +125,11 @@ export class BmbTooltipBaseComponent {
   }
 
   hideTooltip(): void {
+    if (!this.isBrowserEnvironment()) {
+      this.tooltipElement = null;
+      return;
+    }
+
     if (!this.tooltipElement) {
       return;
     }
@@ -119,23 +141,23 @@ export class BmbTooltipBaseComponent {
   }
 
   private createTooltipElement(): HTMLDialogElement {
-    const dialog = document.createElement('dialog');
+    const dialog = this.document.createElement('dialog');
     dialog.className = 'bmb_tooltip-dialog bmb_tooltip-dialog--floating';
     dialog.setAttribute('open', 'true');
     dialog.setAttribute('aria-hidden', 'true');
 
-    const section = document.createElement('section');
+    const section = this.document.createElement('section');
     section.className = 'bmb_tooltip';
     section.setAttribute('aria-describedby', 'tooltip-content');
 
     if (this.componentTitle()) {
-      const titleElement = document.createElement('strong');
+      const titleElement = this.document.createElement('strong');
       titleElement.textContent = this.componentTitle() || '';
       section.appendChild(titleElement);
     }
 
     if (this.text()) {
-      const textElement = document.createElement('span');
+      const textElement = this.document.createElement('span');
       textElement.textContent = this.text();
       section.appendChild(textElement);
     }
@@ -145,6 +167,10 @@ export class BmbTooltipBaseComponent {
   }
 
   private updateTooltipPosition(): void {
+    if (!this.isBrowserEnvironment()) {
+      return;
+    }
+
     if (!this.tooltipElement) {
       return;
     }
@@ -172,5 +198,9 @@ export class BmbTooltipBaseComponent {
       newPosition['bottom'] = position.bottom;
     }
     Object.assign(this.tooltipElement.style, newPosition);
+  }
+
+  private isBrowserEnvironment(): boolean {
+    return isPlatformBrowser(this.platformId);
   }
 }
