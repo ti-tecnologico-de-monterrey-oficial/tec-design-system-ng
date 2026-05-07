@@ -8,8 +8,8 @@ import {
   OnInit,
   ViewEncapsulation,
 } from '@angular/core';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FormControl, ValidatorFn } from '@angular/forms';
+import { Subscription } from 'rxjs';
 import { BmbDatepickerComponent } from '../bmb-datepicker/bmb-datepicker.component';
 import { CommonModule } from '@angular/common';
 import { IBmbInputError } from '../bmb-input/bmb-input.component';
@@ -57,6 +57,13 @@ export class BmbDateRangeComponent implements OnInit {
   isControlStartNull: boolean = false;
   isControlEndNull: boolean = false;
   private readonly destroyRef = inject(DestroyRef);
+  private readonly subscriptions = new Subscription();
+
+  constructor() {
+    this.destroyRef.onDestroy(() => {
+      this.subscriptions.unsubscribe();
+    });
+  }
 
   ngOnInit() {
     if (!this.controlStart()) {
@@ -73,9 +80,8 @@ export class BmbDateRangeComponent implements OnInit {
       this.isControlEndNull = true;
     }
 
-    this.controlStart()?.valueChanges
-      .pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe((value) => {
+    const controlStartSubscription = this.controlStart()?.valueChanges.subscribe(
+      (value) => {
         if (!!value) {
           const parsedDate = DateTime.fromFormat(value, this.dateFormat());
 
@@ -87,15 +93,24 @@ export class BmbDateRangeComponent implements OnInit {
             .minus({ day: 1 })
             .toFormat(this.dateFormat());
         }
-      });
+      },
+    );
 
-    this.controlEnd()?.valueChanges
-      .pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe((value) => {
+    const controlEndSubscription = this.controlEnd()?.valueChanges.subscribe(
+      (value) => {
         if (!!value) {
           this.disableDatesAfterCurrent = value;
         }
-      });
+      },
+    );
+
+    if (controlStartSubscription) {
+      this.subscriptions.add(controlStartSubscription);
+    }
+
+    if (controlEndSubscription) {
+      this.subscriptions.add(controlEndSubscription);
+    }
   }
 
   getClassList(): string[] {
