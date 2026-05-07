@@ -162,7 +162,6 @@ This date must have the same format as \`dateFormat\`.
         defaultValue: getDefaultValueControl('es-MX'),
       },
     },
-
     helperMessage: {
       ...DBmbInputParamDesc.helperMessage,
       table: {

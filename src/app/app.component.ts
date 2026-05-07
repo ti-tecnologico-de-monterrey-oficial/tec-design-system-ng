@@ -35,6 +35,7 @@ import { sidebarOptions } from './sidebarOptions';
 
 import persons from './pages/form-validator-test/persons.json';
 import services from './pages/form-validator-test/services.json';
+import { BmbDelayProfileComponent } from './components/bmb-delay-profile/bmb-delay-profile.component';
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
@@ -166,49 +167,10 @@ export class AppComponent {
     const targetRef = event.currentTarget as HTMLElement;
     const data = {
       title: 'User Profile',
-      content: BmbProfileComponent,
+      content: BmbDelayProfileComponent,
       targetRef,
-      inputContext: {
-        isStudent: false,
-        isMobile: false,
-        enableVersionBack: true,
-        versionBackText: 'Back to previous version',
-        enableExpandButton: false,
-        collaboratorData: {
-          userData: {
-            name: 'Paloma Araujo',
-            userImg: 'https://picsum.photos/id/64/200/300',
-            registration: 'L0123456',
-            email: 'mail@tec.mx',
-          },
-          position: 'Desarrollador de Software',
-          area: 'Dirección de Desarrollo-Techvolution 2.0',
-          leader: {
-            userData: {
-              name: 'Arturo González Martínez',
-              userImg: 'https://picsum.photos/id/64/200/300',
-              email: 'mail@tec.mx',
-            },
-            hierarchyLink: 'https://www.example.com',
-            hierarchyTarget: '_blank',
-          },
-          generalist: {
-            userData: {
-              name: 'Ana María Gutiérrez Pineda',
-              userImg: 'https://picsum.photos/id/64/200/300',
-              email: 'mail@tec.mx',
-            },
-            hierarchyLink: 'https://www.example.com',
-            hierarchyTarget: '_blank',
-          },
-        },
-      },
-      outputContext: {
-        handleVersionBack: (event: Event) => {
-          console.log('Version back clicked', event);
-        },
-      },
     };
+
     this.projectionService.openContent(data);
   }
 
