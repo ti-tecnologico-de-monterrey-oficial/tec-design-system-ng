@@ -6,7 +6,7 @@ Descubre cómo nuestro Design System no solo da forma a la estética, sino que t
 
 ---
 
-> [!WARNING] 
+> [!WARNING]
 > Angular 18 saldrá de soporte el 31 de Mayo de 2026, por favor actualiza a una versión de Angular más reciente.
 
 ---
