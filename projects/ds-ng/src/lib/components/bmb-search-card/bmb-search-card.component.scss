@@ -1,7 +1,7 @@
 .bmb_search-card {
   width: var(--bmb-card-max-width);
   max-width: 100%;
-  max-height: calc(100dvh - 4rem);
+  max-height: calc(100% - 4rem);
   overflow: visible;
 
   &-results {

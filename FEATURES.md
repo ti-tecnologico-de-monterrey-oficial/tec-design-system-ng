@@ -1,8 +1,10 @@
 # Novedades ## [v1.6.3-i] -
-2026-05-05
+2026-05-07
 
 ### 🚀 Novedades
 
+*
+top bar
 *
 top bar
 *
@@ -18,6 +20,8 @@ formato
 *
 Formato
 *
+fix(component / portal): Se agregó un parche de seguridad
+*
 top bar
 *
 feat(component / interactive icon): se agregó el tooltip al interactive icon
@@ -30,8 +34,6 @@ feat(utils): Se agregaron funciones beforeClose y afterClose a los servicios de 
 *
 fix(component / Projection service): Se agregó un parche de seguridad
 *
-fix(component / native modal): Se agregó un parche de seguridad
-*
 bubble chat
 *
 se agergó soporte para angular 21
@@ -42,11 +44,11 @@ bubble chat
 *
 feat(commponent/sidebar): se agregó implementación para soportar eventos personalizados.
 *
+feat(component/sidebar): se agrego consulta para definir el ancho del 'Sidebar' según dispositivo.
+*
 Fix(component / totp): Se corrigieron los bullets en la parte inferior
 *
-chore: se agregó nueva variable de color para cada una de las marcas.
-*
-chore: se agregaron nuevas variables de color complementarias '--general-contrasts-light-complimentary' y '--general-contrasts-dark-complimentary' para cada una de las marcas.
+chore: se agregó nueva variable de color '--gray-tecmi-450' para la marca 'Tec milenio', también se agregó la variable '--general-contrasts-85' para cada una de las marcas.
 *
 Angular 21 note
 *
@@ -54,17 +56,15 @@ fix(component / top bar): Se corrigió el comportamiento de dos líneas en el to
 *
 Update
 *
-fix(component / portal): Se agregó un parche de seguridad
+fix(component / native modal): Se agregó un parche de seguridad
 *
 fix(component / multi dot paginator): Se agregaron animaciones a los puntos del multi dot paginator
 *
-feat(component/sidebar): se agrego consulta para definir el ancho del 'Sidebar' según dispositivo.
-*
 chore: se cambio el nombre de web a desktop por homologación.
 *
-utils(dependencias): Actualización de dependencias
-*
 fix(component / image): se actualizaron los estilos para permitir cambiar el cursor si hay un evento click
+*
+chore: se agregó nueva variable de color para cada una de las marcas.
 *
 feat(component/sidebar): se agregó la misma animación para todos los menús y submenús.
 *
@@ -72,11 +72,11 @@ feat(test): Se actualizaron los componentes para soportar testID
 *
 actualizacion de paquetes
 *
+chore: se agregaron nuevas variables de color complementarias '--general-contrasts-light-complimentary' y '--general-contrasts-dark-complimentary' para cada una de las marcas.
+*
 fix(component / notification card): Se corrigió el tamaño de las notificaciones
 *
 fix(component / dropdown): Se corrigió el desface de menú del dropdown
-*
-chore: se agregó nueva variable de color '--gray-tecmi-450' para la marca 'Tec milenio', también se agregó la variable '--general-contrasts-85' para cada una de las marcas.
 *
 fix(component / search card): Se corrigieron los colores de los servicios
 *
@@ -97,6 +97,12 @@ chore: se actualizó el color de la variable '--containers-modal' para la marca 
 chore: se actualizó el color de la variable '--general-contrasts-25' para la marca 'tecmi' para el tema claro según Figma.
 *
 chore: se actualizó el color de la variable '--general-contrasts-input-background' para la marca 'tecmi' para el tema claro según Figma.
+*
+chore: se actualizó el color de la variable '--menu-select-on-surface-hovered-w-checkbox' para la marca de grupo educativo en el tema claro.
+*
+chore: se actualizó el color de la variable '--green-tecmi-100' para la marca 'tecmi' para el tema claro.
+*
+chore: se actualizó el color de la variable '--containers-main' para la marca 'tecmi' para el tema claro.
 *
 chore: se actualizó el color de la variable '--buttons-inactive-step' para la marca 'tecmi' para el tema claro.
 *
@@ -148,6 +154,8 @@ version
 *
 fix(component/action-menu): se agregaron estilos para el texto secundario contenido ya sea en el lado derecho o como soporte. Se emitió el click para la variante interactiva con texto del lado izquierdo.
 *
+utils(dependencias): Actualización de dependencias
+*
 feat(component / profile): Se agregó un estado de carga
 *
 topbar user
@@ -198,27 +206,21 @@ Update bmb-multi-dot-paginator-item.component.scss
 *
 fix(component / icon): Se soluciono el problema de iconos duplicados
 *
-chore: se actualizó el color de la variable '--menu-select-on-surface-hovered-w-checkbox' para la marca de grupo educativo en el tema claro.
-*
-chore: se actualizó el color de la variable '--green-tecmi-100' para la marca 'tecmi' para el tema claro.
-*
-chore: se actualizó el color de la variable '--containers-main' para la marca 'tecmi' para el tema claro.
-*
 chore: se agregó código para prevenir la propagación y detenerla.
 *
 chore: se eliminó código que no se utiliza.
-*
-fix(component / progress bar): Se corrigió el NAN cuando el valor inicial y total son cero
-*
-chore: se eliminó código no útil (no utilizado).
-*
-topbar user
 *
 feat: Add BmbFilterCard component.
 *
 chore: se agregó nueva variable de color '--creative-use-strong' para cada una de las marcas.
 *
 Update bmb-sidebar.component.html
+*
+fix(component / progress bar): Se corrigió el NAN cuando el valor inicial y total son cero
+*
+chore: se eliminó código no útil (no utilizado).
+*
+topbar user
 *
 chore: se eliminó código que no se utiliza
 
@@ -226,6 +228,8 @@ chore: se eliminó código que no se utiliza
 
 - **top bar**:
 top bar
+- **top bar**:
+top bar
 - **build**:
 build
 - **formato**:
@@ -238,6 +242,8 @@ feat(component / dropdown): Se corrigió la posición del menú
 formato
 - **Formato**:
 Formato
+- **fix(component / portal): Se agregó un parche de seguridad**:
+fix(component / portal): Se agregó un parche de seguridad
 - **top bar**:
 top bar
 - **feat(component / interactive icon): se agregó el tooltip al interactive icon**:
@@ -250,8 +256,6 @@ top bar
 feat(utils): Se agregaron funciones beforeClose y afterClose a los servicios de Modal y ProjectedContent
 - **fix(component / Projection service): Se agregó un parche de seguridad**:
 fix(component / Projection service): Se agregó un parche de seguridad
-- **fix(component / native modal): Se agregó un parche de seguridad**:
-fix(component / native modal): Se agregó un parche de seguridad
 - **bubble chat**:
 bubble chat
 - **se agergó soporte para angular 21**:
@@ -262,42 +266,40 @@ utils(app): Actualización de la app demo
 bubble chat
 - **feat(commponent/sidebar): se agregó implementación para soportar eventos personalizados.**:
 feat(commponent/sidebar): se agregó implementación para soportar eventos personalizados.
+- **feat(component/sidebar): se agrego consulta para definir el ancho del 'Sidebar' según dispositivo.**:
+feat(component/sidebar): se agrego consulta para definir el ancho del 'Sidebar' según dispositivo.
 - **Fix(component / totp): Se corrigieron los bullets en la parte inferior**:
 Fix(component / totp): Se corrigieron los bullets en la parte inferior
-- **chore: se agregó nueva variable de color para cada una de las marcas.**:
-chore: se agregó nueva variable de color para cada una de las marcas.
-- **chore: se agregaron nuevas variables de color complementarias '--general-contrasts-light-complimentary' y '--general-contrasts-dark-complimentary' para cada una de las marcas.**:
-chore: se agregaron nuevas variables de color complementarias '--general-contrasts-light-complimentary' y '--general-contrasts-dark-complimentary' para cada una de las marcas.
+- **chore: se agregó nueva variable de color '--gray-tecmi-450' para la marca 'Tec milenio', también se agregó la variable '--general-contrasts-85' para cada una de las marcas.**:
+chore: se agregó nueva variable de color '--gray-tecmi-450' para la marca 'Tec milenio', también se agregó la variable '--general-contrasts-85' para cada una de las marcas.
 - **Angular 21 note**:
 Angular 21 note
 - **fix(component / top bar): Se corrigió el comportamiento de dos líneas en el top bar**:
 fix(component / top bar): Se corrigió el comportamiento de dos líneas en el top bar
 - **Update**:
 Update
-- **fix(component / portal): Se agregó un parche de seguridad**:
-fix(component / portal): Se agregó un parche de seguridad
+- **fix(component / native modal): Se agregó un parche de seguridad**:
+fix(component / native modal): Se agregó un parche de seguridad
 - **fix(component / multi dot paginator): Se agregaron animaciones a los puntos del multi dot paginator**:
 fix(component / multi dot paginator): Se agregaron animaciones a los puntos del multi dot paginator
-- **feat(component/sidebar): se agrego consulta para definir el ancho del 'Sidebar' según dispositivo.**:
-feat(component/sidebar): se agrego consulta para definir el ancho del 'Sidebar' según dispositivo.
 - **chore: se cambio el nombre de web a desktop por homologación.**:
 chore: se cambio el nombre de web a desktop por homologación.
-- **utils(dependencias): Actualización de dependencias**:
-utils(dependencias): Actualización de dependencias
 - **fix(component / image): se actualizaron los estilos para permitir cambiar el cursor si hay un evento click**:
 fix(component / image): se actualizaron los estilos para permitir cambiar el cursor si hay un evento click
+- **chore: se agregó nueva variable de color para cada una de las marcas.**:
+chore: se agregó nueva variable de color para cada una de las marcas.
 - **feat(component/sidebar): se agregó la misma animación para todos los menús y submenús.**:
 feat(component/sidebar): se agregó la misma animación para todos los menús y submenús.
 - **feat(test): Se actualizaron los componentes para soportar testID**:
 feat(test): Se actualizaron los componentes para soportar testID
 - **actualizacion de paquetes**:
 actualizacion de paquetes
+- **chore: se agregaron nuevas variables de color complementarias '--general-contrasts-light-complimentary' y '--general-contrasts-dark-complimentary' para cada una de las marcas.**:
+chore: se agregaron nuevas variables de color complementarias '--general-contrasts-light-complimentary' y '--general-contrasts-dark-complimentary' para cada una de las marcas.
 - **fix(component / notification card): Se corrigió el tamaño de las notificaciones**:
 fix(component / notification card): Se corrigió el tamaño de las notificaciones
 - **fix(component / dropdown): Se corrigió el desface de menú del dropdown**:
 fix(component / dropdown): Se corrigió el desface de menú del dropdown
-- **chore: se agregó nueva variable de color '--gray-tecmi-450' para la marca 'Tec milenio', también se agregó la variable '--general-contrasts-85' para cada una de las marcas.**:
-chore: se agregó nueva variable de color '--gray-tecmi-450' para la marca 'Tec milenio', también se agregó la variable '--general-contrasts-85' para cada una de las marcas.
 - **fix(component / search card): Se corrigieron los colores de los servicios**:
 fix(component / search card): Se corrigieron los colores de los servicios
 - **chore: se agregó nueva variable de color para contenedores**:
@@ -318,6 +320,12 @@ chore: se actualizó el color de la variable '--containers-modal' para la marca 
 chore: se actualizó el color de la variable '--general-contrasts-25' para la marca 'tecmi' para el tema claro según Figma.
 - **chore: se actualizó el color de la variable '--general-contrasts-input-background' para la marca 'tecmi' para el tema claro según Figma.**:
 chore: se actualizó el color de la variable '--general-contrasts-input-background' para la marca 'tecmi' para el tema claro según Figma.
+- **chore: se actualizó el color de la variable '--menu-select-on-surface-hovered-w-checkbox' para la marca de grupo educativo en el tema claro.**:
+chore: se actualizó el color de la variable '--menu-select-on-surface-hovered-w-checkbox' para la marca de grupo educativo en el tema claro.
+- **chore: se actualizó el color de la variable '--green-tecmi-100' para la marca 'tecmi' para el tema claro.**:
+chore: se actualizó el color de la variable '--green-tecmi-100' para la marca 'tecmi' para el tema claro.
+- **chore: se actualizó el color de la variable '--containers-main' para la marca 'tecmi' para el tema claro.**:
+chore: se actualizó el color de la variable '--containers-main' para la marca 'tecmi' para el tema claro.
 - **chore: se actualizó el color de la variable '--buttons-inactive-step' para la marca 'tecmi' para el tema claro.**:
 chore: se actualizó el color de la variable '--buttons-inactive-step' para la marca 'tecmi' para el tema claro.
 - **chore: se ocultó elemento de las propiedades.**:
@@ -368,6 +376,8 @@ topbar user
 version
 - **fix(component/action-menu): se agregaron estilos para el texto secundario contenido ya sea en el lado derecho o como soporte. Se emitió el click para la variante interactiva con texto del lado izquierdo.**:
 fix(component/action-menu): se agregaron estilos para el texto secundario contenido ya sea en el lado derecho o como soporte. Se emitió el click para la variante interactiva con texto del lado izquierdo.
+- **utils(dependencias): Actualización de dependencias**:
+utils(dependencias): Actualización de dependencias
 - **feat(component / profile): Se agregó un estado de carga**:
 feat(component / profile): Se agregó un estado de carga
 - **topbar user**:
@@ -418,28 +428,22 @@ fix(component / dropdown): Se agergó un ancho minimo al dropdown
 Update bmb-multi-dot-paginator-item.component.scss
 - **fix(component / icon): Se soluciono el problema de iconos duplicados**:
 fix(component / icon): Se soluciono el problema de iconos duplicados
-- **chore: se actualizó el color de la variable '--menu-select-on-surface-hovered-w-checkbox' para la marca de grupo educativo en el tema claro.**:
-chore: se actualizó el color de la variable '--menu-select-on-surface-hovered-w-checkbox' para la marca de grupo educativo en el tema claro.
-- **chore: se actualizó el color de la variable '--green-tecmi-100' para la marca 'tecmi' para el tema claro.**:
-chore: se actualizó el color de la variable '--green-tecmi-100' para la marca 'tecmi' para el tema claro.
-- **chore: se actualizó el color de la variable '--containers-main' para la marca 'tecmi' para el tema claro.**:
-chore: se actualizó el color de la variable '--containers-main' para la marca 'tecmi' para el tema claro.
 - **chore: se agregó código para prevenir la propagación y detenerla.**:
 chore: se agregó código para prevenir la propagación y detenerla.
 - **chore: se eliminó código que no se utiliza.**:
 chore: se eliminó código que no se utiliza.
-- **fix(component / progress bar): Se corrigió el NAN cuando el valor inicial y total son cero**:
-fix(component / progress bar): Se corrigió el NAN cuando el valor inicial y total son cero
-- **chore: se eliminó código no útil (no utilizado).**:
-chore: se eliminó código no útil (no utilizado).
-- **topbar user**:
-topbar user
 - **feat: Add BmbFilterCard component.**:
 feat: Add BmbFilterCard component.
 - **chore: se agregó nueva variable de color '--creative-use-strong' para cada una de las marcas.**:
 chore: se agregó nueva variable de color '--creative-use-strong' para cada una de las marcas.
 - **Update bmb-sidebar.component.html**:
 Update bmb-sidebar.component.html
+- **fix(component / progress bar): Se corrigió el NAN cuando el valor inicial y total son cero**:
+fix(component / progress bar): Se corrigió el NAN cuando el valor inicial y total son cero
+- **chore: se eliminó código no útil (no utilizado).**:
+chore: se eliminó código no útil (no utilizado).
+- **topbar user**:
+topbar user
 - **chore: se eliminó código que no se utiliza**:
 chore: se eliminó código que no se utiliza
 
@@ -447,6 +451,8 @@ chore: se eliminó código que no se utiliza
 
 - **top bar**:
 top bar
+- **top bar**:
+top bar
 - **build**:
 build
 - **formato**:
@@ -459,6 +465,8 @@ feat(component / dropdown): Se corrigió la posición del menú
 formato
 - **Formato**:
 Formato
+- **fix(component / portal): Se agregó un parche de seguridad**:
+fix(component / portal): Se agregó un parche de seguridad
 - **top bar**:
 top bar
 - **feat(component / interactive icon): se agregó el tooltip al interactive icon**:
@@ -471,8 +479,6 @@ top bar
 feat(utils): Se agregaron funciones beforeClose y afterClose a los servicios de Modal y ProjectedContent
 - **fix(component / Projection service): Se agregó un parche de seguridad**:
 fix(component / Projection service): Se agregó un parche de seguridad
-- **fix(component / native modal): Se agregó un parche de seguridad**:
-fix(component / native modal): Se agregó un parche de seguridad
 - **bubble chat**:
 bubble chat
 - **se agergó soporte para angular 21**:
@@ -483,42 +489,40 @@ utils(app): Actualización de la app demo
 bubble chat
 - **feat(commponent/sidebar): se agregó implementación para soportar eventos personalizados.**:
 feat(commponent/sidebar): se agregó implementación para soportar eventos personalizados.
+- **feat(component/sidebar): se agrego consulta para definir el ancho del 'Sidebar' según dispositivo.**:
+feat(component/sidebar): se agrego consulta para definir el ancho del 'Sidebar' según dispositivo.
 - **Fix(component / totp): Se corrigieron los bullets en la parte inferior**:
 Fix(component / totp): Se corrigieron los bullets en la parte inferior
-- **chore: se agregó nueva variable de color para cada una de las marcas.**:
-chore: se agregó nueva variable de color para cada una de las marcas.
-- **chore: se agregaron nuevas variables de color complementarias '--general-contrasts-light-complimentary' y '--general-contrasts-dark-complimentary' para cada una de las marcas.**:
-chore: se agregaron nuevas variables de color complementarias '--general-contrasts-light-complimentary' y '--general-contrasts-dark-complimentary' para cada una de las marcas.
+- **chore: se agregó nueva variable de color '--gray-tecmi-450' para la marca 'Tec milenio', también se agregó la variable '--general-contrasts-85' para cada una de las marcas.**:
+chore: se agregó nueva variable de color '--gray-tecmi-450' para la marca 'Tec milenio', también se agregó la variable '--general-contrasts-85' para cada una de las marcas.
 - **Angular 21 note**:
 Angular 21 note
 - **fix(component / top bar): Se corrigió el comportamiento de dos líneas en el top bar**:
 fix(component / top bar): Se corrigió el comportamiento de dos líneas en el top bar
 - **Update**:
 Update
-- **fix(component / portal): Se agregó un parche de seguridad**:
-fix(component / portal): Se agregó un parche de seguridad
+- **fix(component / native modal): Se agregó un parche de seguridad**:
+fix(component / native modal): Se agregó un parche de seguridad
 - **fix(component / multi dot paginator): Se agregaron animaciones a los puntos del multi dot paginator**:
 fix(component / multi dot paginator): Se agregaron animaciones a los puntos del multi dot paginator
-- **feat(component/sidebar): se agrego consulta para definir el ancho del 'Sidebar' según dispositivo.**:
-feat(component/sidebar): se agrego consulta para definir el ancho del 'Sidebar' según dispositivo.
 - **chore: se cambio el nombre de web a desktop por homologación.**:
 chore: se cambio el nombre de web a desktop por homologación.
-- **utils(dependencias): Actualización de dependencias**:
-utils(dependencias): Actualización de dependencias
 - **fix(component / image): se actualizaron los estilos para permitir cambiar el cursor si hay un evento click**:
 fix(component / image): se actualizaron los estilos para permitir cambiar el cursor si hay un evento click
+- **chore: se agregó nueva variable de color para cada una de las marcas.**:
+chore: se agregó nueva variable de color para cada una de las marcas.
 - **feat(component/sidebar): se agregó la misma animación para todos los menús y submenús.**:
 feat(component/sidebar): se agregó la misma animación para todos los menús y submenús.
 - **feat(test): Se actualizaron los componentes para soportar testID**:
 feat(test): Se actualizaron los componentes para soportar testID
 - **actualizacion de paquetes**:
 actualizacion de paquetes
+- **chore: se agregaron nuevas variables de color complementarias '--general-contrasts-light-complimentary' y '--general-contrasts-dark-complimentary' para cada una de las marcas.**:
+chore: se agregaron nuevas variables de color complementarias '--general-contrasts-light-complimentary' y '--general-contrasts-dark-complimentary' para cada una de las marcas.
 - **fix(component / notification card): Se corrigió el tamaño de las notificaciones**:
 fix(component / notification card): Se corrigió el tamaño de las notificaciones
 - **fix(component / dropdown): Se corrigió el desface de menú del dropdown**:
 fix(component / dropdown): Se corrigió el desface de menú del dropdown
-- **chore: se agregó nueva variable de color '--gray-tecmi-450' para la marca 'Tec milenio', también se agregó la variable '--general-contrasts-85' para cada una de las marcas.**:
-chore: se agregó nueva variable de color '--gray-tecmi-450' para la marca 'Tec milenio', también se agregó la variable '--general-contrasts-85' para cada una de las marcas.
 - **fix(component / search card): Se corrigieron los colores de los servicios**:
 fix(component / search card): Se corrigieron los colores de los servicios
 - **chore: se agregó nueva variable de color para contenedores**:
@@ -539,6 +543,12 @@ chore: se actualizó el color de la variable '--containers-modal' para la marca 
 chore: se actualizó el color de la variable '--general-contrasts-25' para la marca 'tecmi' para el tema claro según Figma.
 - **chore: se actualizó el color de la variable '--general-contrasts-input-background' para la marca 'tecmi' para el tema claro según Figma.**:
 chore: se actualizó el color de la variable '--general-contrasts-input-background' para la marca 'tecmi' para el tema claro según Figma.
+- **chore: se actualizó el color de la variable '--menu-select-on-surface-hovered-w-checkbox' para la marca de grupo educativo en el tema claro.**:
+chore: se actualizó el color de la variable '--menu-select-on-surface-hovered-w-checkbox' para la marca de grupo educativo en el tema claro.
+- **chore: se actualizó el color de la variable '--green-tecmi-100' para la marca 'tecmi' para el tema claro.**:
+chore: se actualizó el color de la variable '--green-tecmi-100' para la marca 'tecmi' para el tema claro.
+- **chore: se actualizó el color de la variable '--containers-main' para la marca 'tecmi' para el tema claro.**:
+chore: se actualizó el color de la variable '--containers-main' para la marca 'tecmi' para el tema claro.
 - **chore: se actualizó el color de la variable '--buttons-inactive-step' para la marca 'tecmi' para el tema claro.**:
 chore: se actualizó el color de la variable '--buttons-inactive-step' para la marca 'tecmi' para el tema claro.
 - **chore: se ocultó elemento de las propiedades.**:
@@ -589,6 +599,8 @@ topbar user
 version
 - **fix(component/action-menu): se agregaron estilos para el texto secundario contenido ya sea en el lado derecho o como soporte. Se emitió el click para la variante interactiva con texto del lado izquierdo.**:
 fix(component/action-menu): se agregaron estilos para el texto secundario contenido ya sea en el lado derecho o como soporte. Se emitió el click para la variante interactiva con texto del lado izquierdo.
+- **utils(dependencias): Actualización de dependencias**:
+utils(dependencias): Actualización de dependencias
 - **feat(component / profile): Se agregó un estado de carga**:
 feat(component / profile): Se agregó un estado de carga
 - **topbar user**:
@@ -639,28 +651,22 @@ fix(component / dropdown): Se agergó un ancho minimo al dropdown
 Update bmb-multi-dot-paginator-item.component.scss
 - **fix(component / icon): Se soluciono el problema de iconos duplicados**:
 fix(component / icon): Se soluciono el problema de iconos duplicados
-- **chore: se actualizó el color de la variable '--menu-select-on-surface-hovered-w-checkbox' para la marca de grupo educativo en el tema claro.**:
-chore: se actualizó el color de la variable '--menu-select-on-surface-hovered-w-checkbox' para la marca de grupo educativo en el tema claro.
-- **chore: se actualizó el color de la variable '--green-tecmi-100' para la marca 'tecmi' para el tema claro.**:
-chore: se actualizó el color de la variable '--green-tecmi-100' para la marca 'tecmi' para el tema claro.
-- **chore: se actualizó el color de la variable '--containers-main' para la marca 'tecmi' para el tema claro.**:
-chore: se actualizó el color de la variable '--containers-main' para la marca 'tecmi' para el tema claro.
 - **chore: se agregó código para prevenir la propagación y detenerla.**:
 chore: se agregó código para prevenir la propagación y detenerla.
 - **chore: se eliminó código que no se utiliza.**:
 chore: se eliminó código que no se utiliza.
-- **fix(component / progress bar): Se corrigió el NAN cuando el valor inicial y total son cero**:
-fix(component / progress bar): Se corrigió el NAN cuando el valor inicial y total son cero
-- **chore: se eliminó código no útil (no utilizado).**:
-chore: se eliminó código no útil (no utilizado).
-- **topbar user**:
-topbar user
 - **feat: Add BmbFilterCard component.**:
 feat: Add BmbFilterCard component.
 - **chore: se agregó nueva variable de color '--creative-use-strong' para cada una de las marcas.**:
 chore: se agregó nueva variable de color '--creative-use-strong' para cada una de las marcas.
 - **Update bmb-sidebar.component.html**:
 Update bmb-sidebar.component.html
+- **fix(component / progress bar): Se corrigió el NAN cuando el valor inicial y total son cero**:
+fix(component / progress bar): Se corrigió el NAN cuando el valor inicial y total son cero
+- **chore: se eliminó código no útil (no utilizado).**:
+chore: se eliminó código no útil (no utilizado).
+- **topbar user**:
+topbar user
 - **chore: se eliminó código que no se utiliza**:
 chore: se eliminó código que no se utiliza
 
