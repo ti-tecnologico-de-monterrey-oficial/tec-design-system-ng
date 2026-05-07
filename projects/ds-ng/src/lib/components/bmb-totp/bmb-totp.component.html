@@ -23,6 +23,7 @@
             [control]="getFormControl('name_' + instanceId() + '_' + $index)"
             (onKeyUp)="handleKeyUp($event, $index)"
           />
+          <span class="bmb_totp-circle"></span>
         }
       </section>
       @if (codeError()) {

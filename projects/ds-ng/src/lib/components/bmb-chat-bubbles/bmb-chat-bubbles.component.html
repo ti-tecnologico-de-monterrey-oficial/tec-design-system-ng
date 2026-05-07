@@ -1,4 +1,4 @@
-<section class="bmb_chat-bubble">
+<section class="bmb_chat-bubble" [attr.data-automation-id]="testId()">
   <section class="bmb_chat-bubble-main">
     <div
       class="bmb_chat-bubble-main-info"
@@ -36,6 +36,7 @@
       <div class="bmb_chat-bubble-msg-container">
         <div
           class="bmb_chat-bubble-msg"
+          [attr.data-testid]="testId() + '-message'"
           [ngClass]="{
             'bmb_chat-bubble-msg-userProfile-bottom': message().isUserMessage,
             'bmb_chat-bubble-msg-top': !message().isUserMessage
@@ -52,13 +53,16 @@
               <p>{{ message().content.text }}</p>
               <img
                 class="bmb_chat-bubble-msg-image"
+                [attr.data-testid]="testId() + '-image'"
                 [src]="message().content.imageUrl"
                 alt="Imagen adjunta al mensaje"
               />
             }
 
             @if (message().type === 'text') {
-              <p>{{ message().content.text }}</p>
+              <p [attr.data-testid]="testId() + '-text'">
+                {{ message().content.text }}
+              </p>
             }
 
             @if (message().type === 'link') {
@@ -78,6 +82,7 @@
                   <bmb-container-button
                     [componentTitle]="item.title"
                     [target]="item.target || '_blank'"
+                    [attr.data-testid]="testId() + '-option-' + $index"
                     [link]="item.link || ''"
                     iconLeft=""
                     iconRight=""
@@ -109,66 +114,25 @@
           } @else {
             <div class="bmb_chat-bubble-extra-container">
               @if (gptIcons()) {
-                <bmb-icon
-                  class="bmb_chat-bubble-extra-icon"
-                  icon="repeat"
-                  [isFill]="true"
-                  [size]="24"
-                  role="button"
-                  tabindex="0"
-                  (click)="handleRepeat($event)"
-                  aria-label="Repetir respuesta"
-                  (keydown.enter)="handleRepeat($event)"
-                  (keydown.space)="handleRepeat($event)"
-                ></bmb-icon>
-                <bmb-icon
-                  class="bmb_chat-bubble-extra-icon"
-                  icon="record_voice_over"
-                  [isFill]="true"
-                  [size]="24"
-                  role="button"
-                  tabindex="0"
-                  (click)="handleVoice($event)"
-                  aria-label="Escuchar respuesta"
-                  (keydown.enter)="handleVoice($event)"
-                  (keydown.space)="handleVoice($event)"
-                ></bmb-icon>
-                <bmb-icon
-                  class="bmb_chat-bubble-extra-icon"
-                  icon="content_copy"
-                  [isFill]="true"
-                  [size]="24"
-                  role="button"
-                  tabindex="0"
-                  (click)="handleCopyContent($event)"
-                  aria-label="Copiar contenido"
-                  (keydown.enter)="handleCopyContent($event)"
-                  (keydown.space)="handleCopyContent($event)"
-                ></bmb-icon>
-                <bmb-icon
-                  class="bmb_chat-bubble-extra-icon"
-                  icon="thumb_up"
-                  [isFill]="true"
-                  [size]="24"
-                  role="button"
-                  tabindex="0"
-                  (click)="handleLike($event)"
-                  aria-label="Me gusta"
-                  (keydown.enter)="handleLike($event)"
-                  (keydown.space)="handleLike($event)"
-                ></bmb-icon>
-                <bmb-icon
-                  class="bmb_chat-bubble-extra-icon"
-                  icon="thumb_down"
-                  [isFill]="true"
-                  [size]="24"
-                  role="button"
-                  tabindex="0"
-                  (click)="handleDislike($event)"
-                  aria-label="No me gusta"
-                  (keydown.enter)="handleDislike($event)"
-                  (keydown.space)="handleDislike($event)"
-                ></bmb-icon>
+                @for (action of actions(); track action.key) {
+                  @if (iconsState()[action.key].visible) {
+                    <bmb-icon
+                      class="bmb_chat-bubble-extra-icon"
+                      [icon]="action.icon"
+                      [isFill]="true"
+                      [size]="24"
+                      role="button"
+                      tabindex="0"
+                      (click)="handleAction(action.key, $event)"
+                      (keydown.enter)="handleAction(action.key, $event)"
+                      (keydown.space)="handleAction(action.key, $event)"
+                      [attr.aria-label]="action.label"
+                      [ngClass]="{
+                        'is-active': iconsState()[action.key].active
+                      }"
+                    ></bmb-icon>
+                  }
+                }
               }
             </div>
             <p class="bmb_chat-bubble-extra-time">

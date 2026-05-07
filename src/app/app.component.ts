@@ -116,12 +116,14 @@ export class AppComponent {
   };
   messages: IBmbChatMessage[] = [
     {
+      id: '1',
       type: 'text',
       content: { text: 'Hola, ¿cómo estás? En que puedo ayudarte' },
       isUserMessage: false,
       time: new Date('2025-02-19T14:31:00'),
     },
     {
+      id: '2',
       type: 'text',
       content: {
         text: 'Hola, me gustaria un pequeño resumen de la festividad del dia de la bandera en México',
@@ -131,6 +133,7 @@ export class AppComponent {
       time: new Date('2025-02-19T14:32:00'),
     },
     {
+      id: '3',
       type: 'text',
       content: {
         text: 'El Día de la Bandera en México se celebra el 24 de febrero de cada año. Esta fecha conmemora la adopción de la bandera actual en 1821, tras la independencia del país. Es un día para rendir homenaje a los símbolos patrios y a la historia de México, destacando la importancia de la unidad y el orgullo nacional. En este día se realizan ceremonias cívicas y militares en todo el país.',
@@ -140,6 +143,7 @@ export class AppComponent {
       time: new Date('2025-02-19T14:33:00'),
     },
     {
+      id: '4',
       type: 'text',
       content: { text: 'Gracias.' },
       userProfile: 'https://picsum.photos/id/64/200/301',

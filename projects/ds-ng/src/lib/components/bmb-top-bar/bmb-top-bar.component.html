@@ -5,18 +5,20 @@
     'bmb_top-bar-sidebar': allowSidebarForMobile()
   }"
 >
-  <figure
-    class="bmb_top-bar-logo-section"
-    (keydown)="handleBackToHome()"
-    (click)="handleBackToHome()"
-    tabindex="0"
+  <bmb-check-external-link-button
+    [link]="getLogoLink()"
+    [target]="getLogoTarget() || '_blank'"
+    (buttonClick)="handleLogoClick()"
+    (buttonPress)="handleLogoClick()"
   >
-    <picture>
-      <source [media]="getNoMobileResolutionSize()" [srcset]="image()" />
-      <source [srcset]="mobileImage()" />
-      <img [src]="image()" alt="TEC de Monterrey" loading="lazy" />
-    </picture>
-  </figure>
+    <figure class="bmb_top-bar-logo-section">
+      <picture>
+        <source [media]="getNoMobileResolutionSize()" [srcset]="image()" />
+        <source [srcset]="mobileImage()" />
+        <img [src]="image()" alt="TEC de Monterrey" loading="lazy" />
+      </picture>
+    </figure>
+  </bmb-check-external-link-button>
   <nav class="bmb_top-bar-nav">
     <section class="bmb_top-bar-app-name">
       @if (appName() && !mitec()) {
