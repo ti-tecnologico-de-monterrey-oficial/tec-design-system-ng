@@ -153,13 +153,15 @@ describe('BmbProjectionContentService', () => {
   it('debe lanzar error si se intenta abrir contenido con id duplicado', () => {
     service.openContent(createContent({ id: 'duplicate-id' }));
 
-    expect(() => service.openContent(createContent({ id: 'duplicate-id' }))).toThrowError(
-      'Projected content with id "duplicate-id" is already open.',
-    );
+    expect(() =>
+      service.openContent(createContent({ id: 'duplicate-id' })),
+    ).toThrowError('Projected content with id "duplicate-id" is already open.');
   });
 
   it('debe destruir el portal al cerrar el último contenido', () => {
-    const fakeHostView = { rootNodes: [document.createElement('bmb-portal')] } as any;
+    const fakeHostView = {
+      rootNodes: [document.createElement('bmb-portal')],
+    } as any;
     const fakePortalRef = {
       hostView: fakeHostView,
       destroy: jasmine.createSpy('destroy'),

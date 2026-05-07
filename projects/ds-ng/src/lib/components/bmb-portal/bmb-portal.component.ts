@@ -70,7 +70,10 @@ export class BmbPortalComponent {
     this.notificationSignal.getNotificationList(),
   );
   notificationsByPosition = computed(() => {
-    const grouped: Record<NonNullable<INotification['position']>, INotification[]> = {
+    const grouped: Record<
+      NonNullable<INotification['position']>,
+      INotification[]
+    > = {
       'top-left': [],
       'top-center': [],
       'top-right': [],
@@ -105,7 +108,9 @@ export class BmbPortalComponent {
     try {
       item.closeModalClicked?.({ item, event });
     } catch {
-      console.warn(`Error executing closeModalClicked for modal with id ${item.modalId}`);
+      console.warn(
+        `Error executing closeModalClicked for modal with id ${item.modalId}`,
+      );
       return;
     }
   }

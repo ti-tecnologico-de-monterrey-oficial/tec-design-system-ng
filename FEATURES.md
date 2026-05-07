@@ -4,17 +4,9 @@
 ### 🚀 Novedades
 
 *
-bubble chat
-*
-Search card and projected content
-*
-top bar
-*
-top bar
-*
-build
-*
 formato
+*
+bubble chat
 *
 feat(component / dropdown): Se corrigió la posición del menú
 *
@@ -22,11 +14,25 @@ formato
 *
 Formato
 *
+fix(component / portal): Se agregó un parche de seguridad
+*
 top bar
 *
 feat(component / interactive icon): se agregó el tooltip al interactive icon
 *
 feat(component/sidebar): se realizaron ajustes para manejar las versión móvil o de escritorio mediante consultar de CSS.
+*
+Search card and projected content
+*
+bubble chat
+*
+top bar
+*
+Search card and projected content
+*
+top bar
+*
+build
 *
 top bar
 *
@@ -36,35 +42,25 @@ fix(component / Projection service): Se agregó un parche de seguridad
 *
 fix(component / native modal): Se agregó un parche de seguridad
 *
-bubble chat
-*
 se agergó soporte para angular 21
 *
 utils(app): Actualización de la app demo
 *
 bubble chat
 *
-feat(commponent/sidebar): se agregó implementación para soportar eventos personalizados.
-*
-Fix(component / totp): Se corrigieron los bullets en la parte inferior
-*
-chore: se agregó nueva variable de color para cada una de las marcas.
-*
-Angular 21 note
-*
-fix(component / top bar): Se corrigió el comportamiento de dos líneas en el top bar
-*
-Update
-*
-fix(component / portal): Se agregó un parche de seguridad
-*
 fix(component / multi dot paginator): Se agregaron animaciones a los puntos del multi dot paginator
+*
+feat(commponent/sidebar): se agregó implementación para soportar eventos personalizados.
 *
 feat(component/sidebar): se agrego consulta para definir el ancho del 'Sidebar' según dispositivo.
 *
 chore: se cambio el nombre de web a desktop por homologación.
 *
 fix(component / image): se actualizaron los estilos para permitir cambiar el cursor si hay un evento click
+*
+Fix(component / totp): Se corrigieron los bullets en la parte inferior
+*
+chore: se agregó nueva variable de color para cada una de las marcas.
 *
 feat(component/sidebar): se agregó la misma animación para todos los menús y submenús.
 *
@@ -74,23 +70,27 @@ actualizacion de paquetes
 *
 chore: se agregaron nuevas variables de color complementarias '--general-contrasts-light-complimentary' y '--general-contrasts-dark-complimentary' para cada una de las marcas.
 *
-fix(component / notification card): Se corrigió el tamaño de las notificaciones
-*
 fix(component / dropdown): Se corrigió el desface de menú del dropdown
 *
 chore: se agregó nueva variable de color '--gray-tecmi-450' para la marca 'Tec milenio', también se agregó la variable '--general-contrasts-85' para cada una de las marcas.
+*
+Angular 21 note
 *
 fix(component / search card): Se corrigieron los colores de los servicios
 *
 chore: se agregó nueva variable de color para contenedores
 *
-chore: se agregó nueva variable de color '--creative-use-strong' para cada una de las marcas.
-*
 chore: se agregó nueva variable para punto de ruptura para dispositivos móviles.
 *
-fix(component / Digital ID): Se corrigió el tamaño de la imagen para el digial ID
-*
 chore. se actualizó el color semántico (advertencia).
+*
+fix(component / top bar): Se corrigió el comportamiento de dos líneas en el top bar
+*
+Update
+*
+chore: se agregó nueva variable de color '--creative-use-strong' para cada una de las marcas.
+*
+fix(component / Digital ID): Se corrigió el tamaño de la imagen para el digial ID
 *
 chore: se implementó consulta más especifica para evitar impacto en elementos que no son del 'Sidebar'.
 *
@@ -189,6 +189,8 @@ chore: se agregaron ejemplos para soporte de la aplicación.
 feat: `bmb-filter-card`.
 *
 topbar user
+*
+fix(component / notification card): Se corrigió el tamaño de las notificaciones
 *
 Formato
 *
@@ -228,30 +230,36 @@ chore: se eliminó código que no se utiliza
 
 ### 🆕 Nuevos Componentes
 
-- **bubble chat**:
-bubble chat
-- **Search card and projected content**:
-Search card and projected content
-- **top bar**:
-top bar
-- **top bar**:
-top bar
-- **build**:
-build
 - **formato**:
 formato
+- **bubble chat**:
+bubble chat
 - **feat(component / dropdown): Se corrigió la posición del menú**:
 feat(component / dropdown): Se corrigió la posición del menú
 - **formato**:
 formato
 - **Formato**:
 Formato
+- **fix(component / portal): Se agregó un parche de seguridad**:
+fix(component / portal): Se agregó un parche de seguridad
 - **top bar**:
 top bar
 - **feat(component / interactive icon): se agregó el tooltip al interactive icon**:
 feat(component / interactive icon): se agregó el tooltip al interactive icon
 - **feat(component/sidebar): se realizaron ajustes para manejar las versión móvil o de escritorio mediante consultar de CSS.**:
 feat(component/sidebar): se realizaron ajustes para manejar las versión móvil o de escritorio mediante consultar de CSS.
+- **Search card and projected content**:
+Search card and projected content
+- **bubble chat**:
+bubble chat
+- **top bar**:
+top bar
+- **Search card and projected content**:
+Search card and projected content
+- **top bar**:
+top bar
+- **build**:
+build
 - **top bar**:
 top bar
 - **feat(utils): Se agregaron funciones beforeClose y afterClose a los servicios de Modal y ProjectedContent**:
@@ -260,36 +268,26 @@ feat(utils): Se agregaron funciones beforeClose y afterClose a los servicios de 
 fix(component / Projection service): Se agregó un parche de seguridad
 - **fix(component / native modal): Se agregó un parche de seguridad**:
 fix(component / native modal): Se agregó un parche de seguridad
-- **bubble chat**:
-bubble chat
 - **se agergó soporte para angular 21**:
 se agergó soporte para angular 21
 - **utils(app): Actualización de la app demo**:
 utils(app): Actualización de la app demo
 - **bubble chat**:
 bubble chat
-- **feat(commponent/sidebar): se agregó implementación para soportar eventos personalizados.**:
-feat(commponent/sidebar): se agregó implementación para soportar eventos personalizados.
-- **Fix(component / totp): Se corrigieron los bullets en la parte inferior**:
-Fix(component / totp): Se corrigieron los bullets en la parte inferior
-- **chore: se agregó nueva variable de color para cada una de las marcas.**:
-chore: se agregó nueva variable de color para cada una de las marcas.
-- **Angular 21 note**:
-Angular 21 note
-- **fix(component / top bar): Se corrigió el comportamiento de dos líneas en el top bar**:
-fix(component / top bar): Se corrigió el comportamiento de dos líneas en el top bar
-- **Update**:
-Update
-- **fix(component / portal): Se agregó un parche de seguridad**:
-fix(component / portal): Se agregó un parche de seguridad
 - **fix(component / multi dot paginator): Se agregaron animaciones a los puntos del multi dot paginator**:
 fix(component / multi dot paginator): Se agregaron animaciones a los puntos del multi dot paginator
+- **feat(commponent/sidebar): se agregó implementación para soportar eventos personalizados.**:
+feat(commponent/sidebar): se agregó implementación para soportar eventos personalizados.
 - **feat(component/sidebar): se agrego consulta para definir el ancho del 'Sidebar' según dispositivo.**:
 feat(component/sidebar): se agrego consulta para definir el ancho del 'Sidebar' según dispositivo.
 - **chore: se cambio el nombre de web a desktop por homologación.**:
 chore: se cambio el nombre de web a desktop por homologación.
 - **fix(component / image): se actualizaron los estilos para permitir cambiar el cursor si hay un evento click**:
 fix(component / image): se actualizaron los estilos para permitir cambiar el cursor si hay un evento click
+- **Fix(component / totp): Se corrigieron los bullets en la parte inferior**:
+Fix(component / totp): Se corrigieron los bullets en la parte inferior
+- **chore: se agregó nueva variable de color para cada una de las marcas.**:
+chore: se agregó nueva variable de color para cada una de las marcas.
 - **feat(component/sidebar): se agregó la misma animación para todos los menús y submenús.**:
 feat(component/sidebar): se agregó la misma animación para todos los menús y submenús.
 - **feat(test): Se actualizaron los componentes para soportar testID**:
@@ -298,24 +296,28 @@ feat(test): Se actualizaron los componentes para soportar testID
 actualizacion de paquetes
 - **chore: se agregaron nuevas variables de color complementarias '--general-contrasts-light-complimentary' y '--general-contrasts-dark-complimentary' para cada una de las marcas.**:
 chore: se agregaron nuevas variables de color complementarias '--general-contrasts-light-complimentary' y '--general-contrasts-dark-complimentary' para cada una de las marcas.
-- **fix(component / notification card): Se corrigió el tamaño de las notificaciones**:
-fix(component / notification card): Se corrigió el tamaño de las notificaciones
 - **fix(component / dropdown): Se corrigió el desface de menú del dropdown**:
 fix(component / dropdown): Se corrigió el desface de menú del dropdown
 - **chore: se agregó nueva variable de color '--gray-tecmi-450' para la marca 'Tec milenio', también se agregó la variable '--general-contrasts-85' para cada una de las marcas.**:
 chore: se agregó nueva variable de color '--gray-tecmi-450' para la marca 'Tec milenio', también se agregó la variable '--general-contrasts-85' para cada una de las marcas.
+- **Angular 21 note**:
+Angular 21 note
 - **fix(component / search card): Se corrigieron los colores de los servicios**:
 fix(component / search card): Se corrigieron los colores de los servicios
 - **chore: se agregó nueva variable de color para contenedores**:
 chore: se agregó nueva variable de color para contenedores
-- **chore: se agregó nueva variable de color '--creative-use-strong' para cada una de las marcas.**:
-chore: se agregó nueva variable de color '--creative-use-strong' para cada una de las marcas.
 - **chore: se agregó nueva variable para punto de ruptura para dispositivos móviles.**:
 chore: se agregó nueva variable para punto de ruptura para dispositivos móviles.
-- **fix(component / Digital ID): Se corrigió el tamaño de la imagen para el digial ID**:
-fix(component / Digital ID): Se corrigió el tamaño de la imagen para el digial ID
 - **chore. se actualizó el color semántico (advertencia).**:
 chore. se actualizó el color semántico (advertencia).
+- **fix(component / top bar): Se corrigió el comportamiento de dos líneas en el top bar**:
+fix(component / top bar): Se corrigió el comportamiento de dos líneas en el top bar
+- **Update**:
+Update
+- **chore: se agregó nueva variable de color '--creative-use-strong' para cada una de las marcas.**:
+chore: se agregó nueva variable de color '--creative-use-strong' para cada una de las marcas.
+- **fix(component / Digital ID): Se corrigió el tamaño de la imagen para el digial ID**:
+fix(component / Digital ID): Se corrigió el tamaño de la imagen para el digial ID
 - **chore: se implementó consulta más especifica para evitar impacto en elementos que no son del 'Sidebar'.**:
 chore: se implementó consulta más especifica para evitar impacto en elementos que no son del 'Sidebar'.
 - **chore: se actualizó el color de la variable '--containers-modal' para la marca 'tecmi' para el tema claro según Figma.**:
@@ -414,6 +416,8 @@ chore: se agregaron ejemplos para soporte de la aplicación.
 feat: `bmb-filter-card`.
 - **topbar user**:
 topbar user
+- **fix(component / notification card): Se corrigió el tamaño de las notificaciones**:
+fix(component / notification card): Se corrigió el tamaño de las notificaciones
 - **Formato**:
 Formato
 - **fix(component / tooltip): Se solucionó el problema del contenido del tooltip**:
@@ -453,30 +457,36 @@ chore: se eliminó código que no se utiliza
 
 ### 🔄 Componentes Actualizados
 
-- **bubble chat**:
-bubble chat
-- **Search card and projected content**:
-Search card and projected content
-- **top bar**:
-top bar
-- **top bar**:
-top bar
-- **build**:
-build
 - **formato**:
 formato
+- **bubble chat**:
+bubble chat
 - **feat(component / dropdown): Se corrigió la posición del menú**:
 feat(component / dropdown): Se corrigió la posición del menú
 - **formato**:
 formato
 - **Formato**:
 Formato
+- **fix(component / portal): Se agregó un parche de seguridad**:
+fix(component / portal): Se agregó un parche de seguridad
 - **top bar**:
 top bar
 - **feat(component / interactive icon): se agregó el tooltip al interactive icon**:
 feat(component / interactive icon): se agregó el tooltip al interactive icon
 - **feat(component/sidebar): se realizaron ajustes para manejar las versión móvil o de escritorio mediante consultar de CSS.**:
 feat(component/sidebar): se realizaron ajustes para manejar las versión móvil o de escritorio mediante consultar de CSS.
+- **Search card and projected content**:
+Search card and projected content
+- **bubble chat**:
+bubble chat
+- **top bar**:
+top bar
+- **Search card and projected content**:
+Search card and projected content
+- **top bar**:
+top bar
+- **build**:
+build
 - **top bar**:
 top bar
 - **feat(utils): Se agregaron funciones beforeClose y afterClose a los servicios de Modal y ProjectedContent**:
@@ -485,36 +495,26 @@ feat(utils): Se agregaron funciones beforeClose y afterClose a los servicios de 
 fix(component / Projection service): Se agregó un parche de seguridad
 - **fix(component / native modal): Se agregó un parche de seguridad**:
 fix(component / native modal): Se agregó un parche de seguridad
-- **bubble chat**:
-bubble chat
 - **se agergó soporte para angular 21**:
 se agergó soporte para angular 21
 - **utils(app): Actualización de la app demo**:
 utils(app): Actualización de la app demo
 - **bubble chat**:
 bubble chat
-- **feat(commponent/sidebar): se agregó implementación para soportar eventos personalizados.**:
-feat(commponent/sidebar): se agregó implementación para soportar eventos personalizados.
-- **Fix(component / totp): Se corrigieron los bullets en la parte inferior**:
-Fix(component / totp): Se corrigieron los bullets en la parte inferior
-- **chore: se agregó nueva variable de color para cada una de las marcas.**:
-chore: se agregó nueva variable de color para cada una de las marcas.
-- **Angular 21 note**:
-Angular 21 note
-- **fix(component / top bar): Se corrigió el comportamiento de dos líneas en el top bar**:
-fix(component / top bar): Se corrigió el comportamiento de dos líneas en el top bar
-- **Update**:
-Update
-- **fix(component / portal): Se agregó un parche de seguridad**:
-fix(component / portal): Se agregó un parche de seguridad
 - **fix(component / multi dot paginator): Se agregaron animaciones a los puntos del multi dot paginator**:
 fix(component / multi dot paginator): Se agregaron animaciones a los puntos del multi dot paginator
+- **feat(commponent/sidebar): se agregó implementación para soportar eventos personalizados.**:
+feat(commponent/sidebar): se agregó implementación para soportar eventos personalizados.
 - **feat(component/sidebar): se agrego consulta para definir el ancho del 'Sidebar' según dispositivo.**:
 feat(component/sidebar): se agrego consulta para definir el ancho del 'Sidebar' según dispositivo.
 - **chore: se cambio el nombre de web a desktop por homologación.**:
 chore: se cambio el nombre de web a desktop por homologación.
 - **fix(component / image): se actualizaron los estilos para permitir cambiar el cursor si hay un evento click**:
 fix(component / image): se actualizaron los estilos para permitir cambiar el cursor si hay un evento click
+- **Fix(component / totp): Se corrigieron los bullets en la parte inferior**:
+Fix(component / totp): Se corrigieron los bullets en la parte inferior
+- **chore: se agregó nueva variable de color para cada una de las marcas.**:
+chore: se agregó nueva variable de color para cada una de las marcas.
 - **feat(component/sidebar): se agregó la misma animación para todos los menús y submenús.**:
 feat(component/sidebar): se agregó la misma animación para todos los menús y submenús.
 - **feat(test): Se actualizaron los componentes para soportar testID**:
@@ -523,24 +523,28 @@ feat(test): Se actualizaron los componentes para soportar testID
 actualizacion de paquetes
 - **chore: se agregaron nuevas variables de color complementarias '--general-contrasts-light-complimentary' y '--general-contrasts-dark-complimentary' para cada una de las marcas.**:
 chore: se agregaron nuevas variables de color complementarias '--general-contrasts-light-complimentary' y '--general-contrasts-dark-complimentary' para cada una de las marcas.
-- **fix(component / notification card): Se corrigió el tamaño de las notificaciones**:
-fix(component / notification card): Se corrigió el tamaño de las notificaciones
 - **fix(component / dropdown): Se corrigió el desface de menú del dropdown**:
 fix(component / dropdown): Se corrigió el desface de menú del dropdown
 - **chore: se agregó nueva variable de color '--gray-tecmi-450' para la marca 'Tec milenio', también se agregó la variable '--general-contrasts-85' para cada una de las marcas.**:
 chore: se agregó nueva variable de color '--gray-tecmi-450' para la marca 'Tec milenio', también se agregó la variable '--general-contrasts-85' para cada una de las marcas.
+- **Angular 21 note**:
+Angular 21 note
 - **fix(component / search card): Se corrigieron los colores de los servicios**:
 fix(component / search card): Se corrigieron los colores de los servicios
 - **chore: se agregó nueva variable de color para contenedores**:
 chore: se agregó nueva variable de color para contenedores
-- **chore: se agregó nueva variable de color '--creative-use-strong' para cada una de las marcas.**:
-chore: se agregó nueva variable de color '--creative-use-strong' para cada una de las marcas.
 - **chore: se agregó nueva variable para punto de ruptura para dispositivos móviles.**:
 chore: se agregó nueva variable para punto de ruptura para dispositivos móviles.
-- **fix(component / Digital ID): Se corrigió el tamaño de la imagen para el digial ID**:
-fix(component / Digital ID): Se corrigió el tamaño de la imagen para el digial ID
 - **chore. se actualizó el color semántico (advertencia).**:
 chore. se actualizó el color semántico (advertencia).
+- **fix(component / top bar): Se corrigió el comportamiento de dos líneas en el top bar**:
+fix(component / top bar): Se corrigió el comportamiento de dos líneas en el top bar
+- **Update**:
+Update
+- **chore: se agregó nueva variable de color '--creative-use-strong' para cada una de las marcas.**:
+chore: se agregó nueva variable de color '--creative-use-strong' para cada una de las marcas.
+- **fix(component / Digital ID): Se corrigió el tamaño de la imagen para el digial ID**:
+fix(component / Digital ID): Se corrigió el tamaño de la imagen para el digial ID
 - **chore: se implementó consulta más especifica para evitar impacto en elementos que no son del 'Sidebar'.**:
 chore: se implementó consulta más especifica para evitar impacto en elementos que no son del 'Sidebar'.
 - **chore: se actualizó el color de la variable '--containers-modal' para la marca 'tecmi' para el tema claro según Figma.**:
@@ -639,6 +643,8 @@ chore: se agregaron ejemplos para soporte de la aplicación.
 feat: `bmb-filter-card`.
 - **topbar user**:
 topbar user
+- **fix(component / notification card): Se corrigió el tamaño de las notificaciones**:
+fix(component / notification card): Se corrigió el tamaño de las notificaciones
 - **Formato**:
 Formato
 - **fix(component / tooltip): Se solucionó el problema del contenido del tooltip**:
