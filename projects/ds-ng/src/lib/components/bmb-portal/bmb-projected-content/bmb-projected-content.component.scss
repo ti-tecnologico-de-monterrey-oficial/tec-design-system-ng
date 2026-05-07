@@ -14,6 +14,16 @@ body:has(.bmb_projected-backdrop) {
   color: var(--general-contrasts-100);
   outline-style: none;
 
+  &[open] {
+    animation: fadein 0.3s ease-in forwards;
+
+    > * {
+      width: max-content;
+      display: block;
+      height: 100%;
+    }
+  }
+
   @include mixins.media-query(1000, 'max') {
     left: 1rem !important;
     right: 1rem !important;
@@ -22,17 +32,8 @@ body:has(.bmb_projected-backdrop) {
     &[open] {
       > * {
         width: 100% !important;
+        height: auto;
       }
-    }
-  }
-
-  &[open] {
-    animation: fadein 0.3s ease-in forwards;
-
-    > * {
-      width: max-content;
-      display: block;
-      height: auto;
     }
   }
 
