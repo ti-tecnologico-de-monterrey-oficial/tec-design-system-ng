@@ -1,6 +1,15 @@
 @use '../../../assets/styles/base/fonts' as fonts;
 @use '../../../assets/styles/base/rem' as rem;
 
+bmb-profile {
+  width: clamp(250px, 100%, 400px);
+  display: block;
+
+  @media screen and (width >= 1001px) {
+    width: 400px;
+  }
+}
+
 .bmb_profile {
   padding: rem.rem_calc(22) rem.rem_calc(16);
   // width: var(--bmb-card-max-width);

@@ -105,7 +105,9 @@ export class BmbNativeModalService {
         reason,
       });
     } catch {
-      console.warn(`Error executing ${hook} for modal with id ${modal.modalId}`);
+      console.warn(
+        `Error executing ${hook} for modal with id ${modal.modalId}`,
+      );
     }
   }
 

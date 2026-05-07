@@ -99,7 +99,8 @@ $backgrounds: (
     font-weight: 300;
     text-align: center;
     @include fonts.font(3, regular);
-    word-break: break-all;
+    overflow-wrap: break-word;
+    hyphens: auto;
     display: -webkit-box;
     display: box;
     -webkit-line-clamp: 2;

@@ -64,70 +64,74 @@
     />
   </section>
   <section class="bmb_profile-access">
-    <h2 class="bmb_profile-title">{{ 'profile.leader' | translate }}</h2>
-    <bmb-card margin="none" borderColor="contrasts-50">
-      <bmb-card-content padding="l">
-        <section
-          bmbLayout
-          margin="none"
-          alignItems="center"
-          justify="spaceBetween"
-        >
-          <bmb-user-image
-            size="desktop-small"
-            altImage="Image of icon left"
-            bmbLayoutItem
-            [isDynamicItem]="true"
-            [image]="collaboratorData()?.leader?.userData?.userImg!"
-          />
-          <div
-            class="bmb_container-button-header"
-            bmbLayoutItem
-            [isDynamicItem]="true"
-            [colGrow]="1"
+    @if (collaboratorData()?.leader) {
+      <h2 class="bmb_profile-title">{{ 'profile.leader' | translate }}</h2>
+      <bmb-card margin="none" borderColor="contrasts-50">
+        <bmb-card-content padding="l">
+          <section
+            bmbLayout
+            margin="none"
+            alignItems="center"
+            justify="spaceBetween"
           >
-            <h2 class="bmb_container-button-title">
-              {{ collaboratorData()?.leader?.userData?.name! }}
-            </h2>
-            <h4 class="bmb_container-button-subtitle">
-              {{ collaboratorData()?.leader?.userData?.email! }}
-            </h4>
-          </div>
-        </section>
-      </bmb-card-content>
-    </bmb-card>
-    <h2 class="bmb_profile-title">{{ 'profile.generalist' | translate }}</h2>
-    <bmb-card margin="none" borderColor="contrasts-50">
-      <bmb-card-content padding="l">
-        <section
-          bmbLayout
-          margin="none"
-          alignItems="center"
-          justify="spaceBetween"
-        >
-          <bmb-user-image
-            size="desktop-small"
-            altImage="Image of icon left"
-            bmbLayoutItem
-            [isDynamicItem]="true"
-            [image]="collaboratorData()?.generalist?.userData?.userImg!"
-          />
-          <div
-            class="bmb_container-button-header"
-            bmbLayoutItem
-            [isDynamicItem]="true"
-            [colGrow]="1"
+            <bmb-user-image
+              size="desktop-small"
+              altImage="Image of icon left"
+              bmbLayoutItem
+              [isDynamicItem]="true"
+              [image]="collaboratorData()?.leader?.userData?.userImg!"
+            />
+            <div
+              class="bmb_container-button-header"
+              bmbLayoutItem
+              [isDynamicItem]="true"
+              [colGrow]="1"
+            >
+              <h2 class="bmb_container-button-title">
+                {{ collaboratorData()?.leader?.userData?.name! }}
+              </h2>
+              <h4 class="bmb_container-button-subtitle">
+                {{ collaboratorData()?.leader?.userData?.email! }}
+              </h4>
+            </div>
+          </section>
+        </bmb-card-content>
+      </bmb-card>
+    }
+    @if (collaboratorData()?.generalist) {
+      <h2 class="bmb_profile-title">{{ 'profile.generalist' | translate }}</h2>
+      <bmb-card margin="none" borderColor="contrasts-50">
+        <bmb-card-content padding="l">
+          <section
+            bmbLayout
+            margin="none"
+            alignItems="center"
+            justify="spaceBetween"
           >
-            <h2 class="bmb_container-button-title">
-              {{ collaboratorData()?.generalist?.userData?.name! }}
-            </h2>
-            <h4 class="bmb_container-button-subtitle">
-              {{ collaboratorData()?.generalist?.userData?.email! }}
-            </h4>
-          </div>
-        </section>
-      </bmb-card-content>
-    </bmb-card>
+            <bmb-user-image
+              size="desktop-small"
+              altImage="Image of icon left"
+              bmbLayoutItem
+              [isDynamicItem]="true"
+              [image]="collaboratorData()?.generalist?.userData?.userImg!"
+            />
+            <div
+              class="bmb_container-button-header"
+              bmbLayoutItem
+              [isDynamicItem]="true"
+              [colGrow]="1"
+            >
+              <h2 class="bmb_container-button-title">
+                {{ collaboratorData()?.generalist?.userData?.name! }}
+              </h2>
+              <h4 class="bmb_container-button-subtitle">
+                {{ collaboratorData()?.generalist?.userData?.email! }}
+              </h4>
+            </div>
+          </section>
+        </bmb-card-content>
+      </bmb-card>
+    }
   </section>
 </ng-template>
 
@@ -255,13 +259,15 @@
 @if (isStandAlone()) {
   <section class="bmb_profile-stand_alone">
     @if (isLoading()) {
-      <bmb-loader></bmb-loader>
+      <bmb-loader
+      componentTitle="Cargando perfil"
+      [showInline]="true"
+    ></bmb-loader>
     } @else {
       <ng-container [ngTemplateOutlet]="content" />
     }
   </section>
 } @else if (isMobile()) {
-  <!-- TODO: ADD [headerIconRight]="'diversity_3'" -->
   <bmb-mobile-templates
     [componentTitle]="'Mi Perfil'"
     (externalLinkOnClose)="closeProfile()"
@@ -269,7 +275,10 @@
   >
     <ng-template #bmbTemplateMain>
       @if (isLoading()) {
-        <bmb-loader></bmb-loader>
+        <bmb-loader
+          componentTitle="Cargando perfil"
+          [showInline]="true"
+        ></bmb-loader>
       } @else {
         <ng-container [ngTemplateOutlet]="content" />
       }
@@ -287,7 +296,10 @@
     class="bmb_profile-home-card"
   >
     @if (isLoading()) {
-      <bmb-loader></bmb-loader>
+      <bmb-loader
+        componentTitle="Cargando perfil"
+        [showInline]="true"
+      ></bmb-loader>
     } @else {
       <ng-container [ngTemplateOutlet]="content" />
     }

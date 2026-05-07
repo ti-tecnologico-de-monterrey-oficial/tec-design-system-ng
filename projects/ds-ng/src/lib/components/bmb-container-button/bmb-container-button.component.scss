@@ -74,7 +74,8 @@
   &-title {
     font-weight: 300;
     text-align: left;
-    word-break: break-word;
+    hyphens: auto;
+    overflow-wrap: break-word;
     @include fonts.font(4, regular);
     overflow: hidden;
     text-overflow: ellipsis;

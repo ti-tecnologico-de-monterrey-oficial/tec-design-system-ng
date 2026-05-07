@@ -690,9 +690,11 @@ class StorybookColorsPlaygroundComponent {
       '--general-contrasts-75',
       '--general-contrasts-60',
       '--general-contrasts-50',
+      '--general-contrasts-40',
       '--general-contrasts-25',
       '--general-contrasts-20',
       '--general-contrasts-15',
+      '--general-contrasts-10',
       '--general-contrasts-5',
     ],
     [
@@ -709,31 +711,22 @@ class StorybookColorsPlaygroundComponent {
       '--general-contrasts-input-outline',
       '--general-contrasts-container-outline',
     ],
-    [
-      '--general-contrasts-text-sidebar',
-      '--general-contrasts-primary',
-      '--general-contrasts-inner-header-text',
-      '--general-contrasts-timestream-index-inner-header-text',
-      '--general-contrasts-timestream-index-chevron-title-selector-text',
-    ],
+    ['--general-contrasts-text-sidebar', '--general-contrasts-primary'],
   ];
 
   containers: string[][] = [
     [
       '--containers-background',
       '--containers-background-alternative',
-      '--containers-media-card-background',
       '--containers-main',
-      '--containers-header-mobile',
       '--containers-modal',
       '--containers-container-button',
     ],
     [
       '--containers-top-bar',
+      '--containers-media-card-background',
       '--containers-background-fade',
       '--containers-media-card-background-fade',
-      '--containers-timestream-index',
-      '--containers-timestream-index-chevron-title-selector',
     ],
   ];
 
@@ -752,6 +745,7 @@ class StorybookColorsPlaygroundComponent {
     '--buttons-fab-text',
     '--buttons-active-switch',
     '--buttons-inactive-step',
+    '--buttons-stroke-alternative-normal',
     '--buttons-stroke-primary-selected',
     '--buttons-destructive',
     '--buttons-text-link',

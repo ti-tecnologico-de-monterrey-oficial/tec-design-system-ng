@@ -33,10 +33,7 @@ export interface IBmbProjectionContent {
     id: string;
     reason: 'single' | 'all';
   }) => void;
-  afterCloseContent?: (event: {
-    id: string;
-    reason: 'single' | 'all';
-  }) => void;
+  afterCloseContent?: (event: { id: string; reason: 'single' | 'all' }) => void;
 }
 
 @Injectable({
@@ -97,7 +94,8 @@ export class BmbProjectionContentService {
   }
 
   private createContentId(): string {
-    return typeof crypto !== 'undefined' && typeof crypto.randomUUID === 'function'
+    return typeof crypto !== 'undefined' &&
+      typeof crypto.randomUUID === 'function'
       ? crypto.randomUUID()
       : getUUID();
   }
@@ -141,7 +139,9 @@ export class BmbProjectionContentService {
         reason,
       });
     } catch {
-      console.warn(`Error executing ${hook} for projected content with id ${content.id}`);
+      console.warn(
+        `Error executing ${hook} for projected content with id ${content.id}`,
+      );
     }
   }
 

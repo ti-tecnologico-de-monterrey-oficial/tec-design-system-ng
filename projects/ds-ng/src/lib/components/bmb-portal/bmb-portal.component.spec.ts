@@ -1,4 +1,10 @@
-import { Component, EventEmitter, Input, Output, TemplateRef } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+  TemplateRef,
+} from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { signal, Type } from '@angular/core';
 
@@ -167,7 +173,10 @@ describe('BmbPortalComponent', () => {
       imports: [BmbPortalComponent],
       providers: [
         { provide: BmbNotificationService, useValue: notificationServiceMock },
-        { provide: BmbProjectionContentService, useValue: projectionServiceMock },
+        {
+          provide: BmbProjectionContentService,
+          useValue: projectionServiceMock,
+        },
         { provide: BmbNativeModalService, useValue: modalServiceMock },
       ],
     }).compileComponents();
@@ -246,7 +255,9 @@ describe('BmbPortalComponent', () => {
 
     component.handleRemoveProjectedContent('dialog-1');
 
-    expect(projectionServiceMock.isContentOpen).toHaveBeenCalledWith('dialog-1');
+    expect(projectionServiceMock.isContentOpen).toHaveBeenCalledWith(
+      'dialog-1',
+    );
     expect(projectionServiceMock.closeContent).toHaveBeenCalledWith('dialog-1');
   });
 
@@ -264,9 +275,8 @@ describe('BmbPortalComponent', () => {
   });
 
   it('should render accessibility attributes for notification region', () => {
-    const portalRegion: HTMLElement = fixture.nativeElement.querySelector(
-      '.bmb_portal',
-    );
+    const portalRegion: HTMLElement =
+      fixture.nativeElement.querySelector('.bmb_portal');
 
     expect(portalRegion.getAttribute('role')).toBe('region');
     expect(portalRegion.getAttribute('aria-label')).toBe('Notification portal');

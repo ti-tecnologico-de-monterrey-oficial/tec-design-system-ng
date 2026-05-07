@@ -14,6 +14,7 @@ import { CommonModule } from '@angular/common';
 import { IBmbTargetLink } from '../../types';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { sanitizeContent } from '../../utils/sanitizeContent';
+import { BmbTooltipBaseComponent } from '../bmb-tooltip/bmb-tooltip-base/bmb-tooltip-base.component';
 
 @Component({
   selector: 'bmb-action-icon',
@@ -22,6 +23,7 @@ import { sanitizeContent } from '../../utils/sanitizeContent';
     CommonModule,
     BmbCheckExternalLinkButtonComponent,
     BmbIconComponent,
+    BmbTooltipBaseComponent,
   ],
   templateUrl: './bmb-action-icon.component.html',
   styleUrl: './bmb-action-icon.component.scss',

@@ -26,7 +26,8 @@
     "type": "service",
     "name": "Nutty Granola Clusters",
     "subtitle": "Food - Cereal",
-    "avatarOrIcon": "https://robohash.org/veniameaqueculpa.png?size=50x50&set=set1"
+    "avatarOrIcon": "home",
+    "backgroundColorIcon": "blue-mariner-100"
   },
   {
     "id": 4,

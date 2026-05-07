@@ -53,6 +53,9 @@ export class BmbSearchCardItemComponent {
 
   handleBookmarkClick(): void {
     this.getBookmarkClick.emit();
-    console.log('1ra etapa');
+  }
+
+  getClassBox(): string {
+    return `bmb_search-card-item-box-${this.backgroundColorIcon()}`;
   }
 }

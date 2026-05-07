@@ -126,25 +126,15 @@ $backgrounds: (
     var(--general-contrasts-container-outline),
   'general-contrasts-text-sidebar': var(--general-contrasts-text-sidebar),
   'general-contrasts-primary': var(--general-contrasts-primary),
-  'general-contrasts-inner-header-text':
-    var(--general-contrasts-inner-header-text),
-  'general-contrasts-timestream-index-inner-header-text':
-    var(--general-contrasts-timestream-index-inner-header-text),
-  'general-contrasts-timestream-index-chevron-title-selector-text':
-    var(--general-contrasts-timestream-index-chevron-title-selector-text),
   'containers-background': var(--containers-background),
-  'containers-media-card-background': var(--containers-media-card-background),
   'containers-main': var(--containers-main),
-  'containers-header-mobile': var(--containers-header-mobile),
   'containers-modal': var(--containers-modal),
   'containers-container-button': var(--containers-container-button),
   'containers-top-bar': var(--containers-top-bar),
+  'containers-media-card-background': var(--containers-media-card-background),
   'containers-background-fade': var(--containers-background-fade),
   'containers-media-card-background-fade':
     var(--containers-media-card-background-fade),
-  'containers-timestream-index': var(--containers-timestream-index),
-  'containers-timestream-index-chevron-title-selector':
-    var(--containers-timestream-index-chevron-title-selector),
   'buttons-primary-normal': var(--buttons-primary-normal),
   'buttons-primary-hover': var(--buttons-primary-hover),
   'buttons-primary-select': var(--buttons-primary-select),

@@ -8,14 +8,15 @@
   --general-contrasts: rgb(var(--black-primary));
   --general-contrasts-100: rgb(var(--gray-tecmi-950));
   --general-contrasts-90: rgb(var(--gray-tecmi-900));
-  --general-contrasts-85: rgb(var(--gray-tecmi-500));
   --general-contrasts-80: rgb(var(--gray-tecmi-800));
   --general-contrasts-75: rgb(var(--gray-tecmi-700));
   --general-contrasts-60: rgb(var(--gray-tecmi-600));
   --general-contrasts-50: rgb(var(--gray-tecmi-500));
+  --general-contrasts-40: rgb(var(--gray-tecmi-300));
   --general-contrasts-25: rgb(var(--gray-tecmi-400));
   --general-contrasts-20: rgb(var(--gray-tecmi-150));
   --general-contrasts-15: rgb(var(--gray-tecmi-150));
+  --general-contrasts-10: rgb(var(--gray-tecmi-200));
   --general-contrasts-5: rgb(var(--gray-tecmi-50));
 
   --general-contrasts-main-complimentary: rgb(var(--gray-tecmi-50));
@@ -24,9 +25,6 @@
   --general-contrasts-main-selection: rgb(var(--green-tecmi-600));
   --general-contrasts-icon-selection: rgb(var(--green-tecmi-600));
   --general-contrasts-main-selection-alternative: rgb(var(--green-primary));
-  --general-contrasts-main-selection-icon-alternative: rgb(
-    var(--white-primary)
-  );
 
   --general-contrasts-input-background: rgb(var(--gray-tecmi-200));
   --general-contrasts-input-outline: rgb(var(--green-tecmi-800));
@@ -36,37 +34,23 @@
   --general-contrasts-primary: rgb(var(--green-tecmi-800));
   --general-contrasts-primary-high-contrast: rgb(var(--green-tecmi-200));
 
-  --general-contrasts-inner-header-text: rgb(var(--white-primary));
-  --general-contrasts-timestream-index-inner-header-text: rgb(
-    var(--black-primary)
-  );
-  --general-contrasts-timestream-index-chevron-title-selector-text: rgb(
-    var(--white-primary)
-  );
-
   // Containers
   --containers-background: rgb(var(--gray-tecmi-25));
-  --containers-background-alternative: rgb(var(--gray-tecmi-300));
-  --containers-media-card-background: rgba(var(--gray-tecmi-100), 0.9);
   --containers-main: rgb(var(--gray-tecmi-150));
-  --containers-header-mobile: rgb(var(--green-tecmi-800));
   --containers-modal: rgb(var(--gray-tecmi-50));
   --containers-container-button: rgb(var(--gray-tecmi-50));
 
   --containers-top-bar: rgb(var(--green-tecmi-800));
-  --containers-background-fade: rgba(211, 215, 228, 0); // #D3D7E4
-  --containers-media-card-background-fade: rgba(11, 14, 18, 0); // #0B0E12
-  --containers-timestream-index: rgb(var(--gray-tecmi-150));
-  --containers-timestream-index-chevron-title-selector: rgb(
-    var(--green-tecmi-950)
-  );
+  --containers-media-card-background: rgb(var(--gray-tecmi-950), 0.9);
+  --containers-background-fade: rgba(211, 215, 228, 0); // #D3D7E4 · 0%
+  --containers-media-card-background-fade: rgba(11, 14, 18, 0); // #0B0E12 · 0%
 
   // Buttons
   --buttons-primary-normal: rgb(var(--green-tecmi-800));
   --buttons-primary-hover: rgb(var(--green-tecmi-900));
   --buttons-primary-select: rgb(var(--green-tecmi-800));
 
-  --buttons-alternative-normal: rgb(var(--gray-tecmi-25));
+  --buttons-alternative-normal: rgb(var(--white-primary));
   --buttons-alternative-hover: rgb(var(--gray-tecmi-400));
   --buttons-alternative-text: rgb(var(--gray-tecmi-800));
   --buttons-alternative-select-text: rgb(var(--gray-tecmi-50));
@@ -77,6 +61,7 @@
   --buttons-active-switch: rgb(var(--green-tecmi-600));
   --buttons-inactive-step: rgb(var(--gray-tecmi-400));
 
+  --buttons-stroke-alternative-normal: rgb(var(--gray-tecmi-450));
   --buttons-stroke-primary-selected: rgb(var(--green-tecmi-950));
   --buttons-blur-primary-select: rgb(var(--green-tecmi-600));
   --buttons-stroke-primary-hover: rgb(var(--green-tecmi-900));
@@ -162,14 +147,15 @@
   --general-contrasts: rgb(var(--white-primary));
   --general-contrasts-100: rgb(var(--gray-tecmi-50));
   --general-contrasts-90: rgb(var(--gray-tecmi-100));
-  --general-contrasts-85: rgb(var(--gray-tecmi-450));
   --general-contrasts-80: rgb(var(--gray-tecmi-300));
   --general-contrasts-75: rgb(var(--gray-tecmi-300));
   --general-contrasts-60: rgb(var(--gray-tecmi-400));
   --general-contrasts-50: rgb(var(--gray-tecmi-500));
+  --general-contrasts-40: rgb(var(--gray-tecmi-300));
   --general-contrasts-25: rgb(var(--gray-tecmi-600));
   --general-contrasts-20: rgb(var(--gray-tecmi-700));
   --general-contrasts-15: rgb(var(--gray-tecmi-800));
+  --general-contrasts-10: rgb(var(--gray-tecmi-700));
   --general-contrasts-5: rgb(var(--gray-tecmi-900));
 
   --general-contrasts-main-complimentary: rgb(var(--gray-tecmi-50));
@@ -178,9 +164,6 @@
   --general-contrasts-main-selection: rgb(var(--green-tecmi-600));
   --general-contrasts-icon-selection: rgb(var(--green-tecmi-600));
   --general-contrasts-main-selection-alternative: rgb(var(--green-tecmi-200));
-  --general-contrasts-main-selection-icon-alternative: rgb(
-    var(--white-primary)
-  );
 
   --general-contrasts-input-background: var(--black-tint);
   --general-contrasts-input-outline: rgb(var(--gray-tecmi-50));
@@ -190,30 +173,16 @@
   --general-contrasts-primary: rgb(var(--green-tecmi-300));
   --general-contrasts-primary-high-contrast: rgb(var(--green-tecmi-300));
 
-  --general-contrasts-inner-header-text: rgb(var(--white-primary));
-  --general-contrasts-timestream-index-inner-header-text: rgb(
-    var(--white-primary)
-  );
-  --general-contrasts-timestream-index-chevron-title-selector-text: rgb(
-    var(--white-primary)
-  );
-
   // Containers
   --containers-background: rgb(var(--gray-tecmi-950));
-  --containers-background-alternative: rgb(var(--gray-tecmi-950));
-  --containers-media-card-background: rgba(var(--gray-tecmi-900), 0.9);
   --containers-main: rgb(var(--gray-tecmi-900));
-  --containers-header-mobile: rgb(var(--green-tecmi-800));
   --containers-modal: rgb(var(--gray-tecmi-800));
   --containers-container-button: rgb(var(--gray-tecmi-900));
 
   --containers-top-bar: rgb(var(--green-tecmi-800));
-  --containers-background-fade: rgba(31, 34, 46, 0); // #1F222E
-  --containers-media-card-background-fade: rgba(11, 14, 18, 0); // #0B0E12
-  --containers-timestream-index: rgb(var(--gray-tecmi-800));
-  --containers-timestream-index-chevron-title-selector: rgb(
-    var(--green-tecmi-950)
-  );
+  --containers-media-card-background: rgba(var(--gray-tecmi-900), 0.9);
+  --containers-background-fade: rgba(31, 34, 46, 0); // #1F222E · 0%
+  --containers-media-card-background-fade: rgba(11, 14, 18, 0); // #0B0E12 · 0%
 
   // Buttons
   --buttons-primary-normal: rgb(var(--green-tecmi-800));
@@ -231,6 +200,7 @@
   --buttons-active-switch: rgb(var(--green-tecmi-400));
   --buttons-inactive-step: rgb(var(--gray-tecmi-700));
 
+  --buttons-stroke-alternative-normal: rgb(var(--gray-tecmi-25));
   --buttons-stroke-primary-selected: rgb(var(--green-tecmi-500));
   --buttons-blur-primary-select: rgb(var(--green-tecmi-600));
   --buttons-stroke-primary-hover: rgb(var(--green-tecmi-900));
@@ -250,7 +220,7 @@
   --menu-select-surface-activated: rgb(var(--green-tecmi-800));
   --menu-select-label-menu-active: rgb(var(--gray-tecmi-50));
   --menu-select-label-menu-inactive: rgb(var(--gray-tecmi-50));
-  --menu-select-activated-w-checkbox: rgb(var(--gray-tecmi-900));
+  --menu-select-activated-w-checkbox: rgb(var(--green-tecmi-700));
   --menu-select-alternative-focus-label: rgb(var(--green-tecmi-400));
 
   //Menu select - On surface
