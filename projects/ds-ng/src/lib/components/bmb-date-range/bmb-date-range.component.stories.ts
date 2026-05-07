@@ -192,6 +192,36 @@ The name of the \`FormControl\` must consist of the name assigned in the \`name\
       },
     },
     inputId: DBmbInputParamDesc.inputId,
+    disableDatesBefore: {
+      control: {
+        type: 'text',
+      },
+      description: `
+Sets the date that indicates previous dates as disabled.
+
+This date must have the same format as \`dateFormat\`.
+      `,
+      table: {
+        category: 'Properties',
+        type: { summary: 'string' },
+        defaultValue: getDefaultValueControl(),
+      },
+    },
+    disableDatesAfter: {
+      control: {
+        type: 'text',
+      },
+      description: `
+Sets the date that indicates later dates as disabled.
+
+This date must have the same format as \`dateFormat\`.
+      `,
+      table: {
+        category: 'Properties',
+        type: { summary: 'string' },
+        defaultValue: getDefaultValueControl(),
+      },
+    },
   },
   args: {
     inputId: '',

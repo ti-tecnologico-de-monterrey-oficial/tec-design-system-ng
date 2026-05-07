@@ -1,15 +1,4 @@
-<span
-  #tooltipContainer
-  class="bmb_tooltip-container"
-  (mouseenter)="showTooltip()"
-  (mouseleave)="hideTooltip()"
-  (focusin)="showTooltip()"
-  (focusout)="hideTooltip()"
-  (mousedown)="showTooltip()"
-  (mouseup)="hideTooltip()"
-  (touchstart)="showTooltip()"
-  (touchend)="hideTooltip()"
->
+<bmb-tooltip-base [componentTitle]="this.componentTitle() || this.title()" [text]="this.text()">
   @if (icon() && size()) {
     <bmb-action-icon
       idElement="tooltip_element"
@@ -22,28 +11,4 @@
   } @else {
     <ng-content />
   }
-
-  <dialog
-    [open]="isTooltipVisible()"
-    class="bmb_tooltip-dialog"
-    aria-hidden="true"
-    [ngStyle]="dialogStyles()"
-  >
-    <section
-      id="tooltip-content"
-      class="bmb_tooltip"
-      aria-describedby="tooltip-content"
-      bmbVerticalLayout
-      gapSize="s"
-    >
-      @if (componentTitle() || title()) {
-        <span bmbVerticalLayoutItem margin="none" [rowGrow]="1">
-          {{ componentTitle() || title() }}
-        </span>
-      }
-      <span bmbVerticalLayoutItem margin="none" [rowGrow]="1">
-        {{ text() }}
-      </span>
-    </section>
-  </dialog>
-</span>
+</bmb-tooltip-base>

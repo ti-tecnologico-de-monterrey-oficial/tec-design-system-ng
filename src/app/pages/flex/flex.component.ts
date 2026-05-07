@@ -4,6 +4,8 @@ import {
   BmbLayoutItemDirective,
   BmbVerticalLayoutDirective,
   BmbVerticalLayoutItemDirective,
+  BmbInteractiveIconComponent,
+  BmbTooltipComponent,
 } from '../../../../projects/ds-ng/src/public-api';
 
 @Component({
@@ -14,6 +16,8 @@ import {
     BmbVerticalLayoutItemDirective,
     BmbLayoutDirective,
     BmbLayoutItemDirective,
+    BmbInteractiveIconComponent,
+    BmbTooltipComponent,
   ],
   standalone: true,
 })

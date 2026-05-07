@@ -452,7 +452,7 @@ export const AutoLayoutWithMultipleRows = {
     template: `
       <section bmbLayout>
         <bmb-interactive-icon
-          bmbLayoutItem margin="none" [isDynamicItem]=true
+          bmbLayoutItem margin="none" [colSm]="1" [colLg]="2"
           appearanceContrast="default"
           appearance="red"
           icon="face"
@@ -461,7 +461,7 @@ export const AutoLayoutWithMultipleRows = {
           link="https://www.youtube.com/"
           layout="regular"
           [setButtonTemplate]="false"
-          componentTitle="Canvas"
+          componentTitle="This is a tooltip with a very long text that should be truncated with an ellipsis when it exceeds the maximum width of the tooltip dialog"
         />
         <bmb-interactive-icon
           bmbLayoutItem margin="none" [isDynamicItem]=true
