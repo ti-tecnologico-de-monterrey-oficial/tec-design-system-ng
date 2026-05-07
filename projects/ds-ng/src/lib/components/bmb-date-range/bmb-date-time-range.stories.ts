@@ -201,15 +201,21 @@ export class StorybookDateTimeRange {
       if (!value) return null;
 
       const dateTime: DateTime = this.getDateTime(
-        this.getFormControl(dateControlName),
-        control as FormControl,
-      );
-      const oppositeDateTime: DateTime = this.getDateTime(
-        this.getFormControl(oppositeDateControlName),
-        this.getFormControl(oppositeTimeControlName),
-      );
+          this.getFormControl(dateControlName),
+          control as FormControl,
+        ),
+        oppositeTimeControl: FormControl = this.getFormControl(
+          oppositeTimeControlName,
+        ),
+        oppositeDateTime: DateTime = this.getDateTime(
+          this.getFormControl(oppositeDateControlName),
+          oppositeTimeControl,
+        );
 
-      if (this.operations[operation](dateTime, oppositeDateTime)) {
+      if (
+        oppositeTimeControl.value &&
+        this.operations[operation](dateTime, oppositeDateTime)
+      ) {
         return { customValidation: true };
       }
 
@@ -351,15 +357,21 @@ import { DateTime, DateTimeMaybeValid } from 'luxon';
       if (!value) return null;
 
       const dateTime: DateTime = this.getDateTime(
-        this.getFormControl(dateControlName),
-        control as FormControl,
-      );
-      const oppositeDateTime: DateTime = this.getDateTime(
-        this.getFormControl(oppositeDateControlName),
-        this.getFormControl(oppositeTimeControlName),
-      );
+          this.getFormControl(dateControlName),
+          control as FormControl,
+        ),
+        oppositeTimeControl: FormControl = this.getFormControl(
+          oppositeTimeControlName,
+        ),
+        oppositeDateTime: DateTime = this.getDateTime(
+          this.getFormControl(oppositeDateControlName),
+          oppositeTimeControl,
+        );
 
-      if (this.operations[operation](dateTime, oppositeDateTime)) {
+      if (
+        oppositeTimeControl.value &&
+        this.operations[operation](dateTime, oppositeDateTime)
+      ) {
         return { customValidation: true };
       }
 
