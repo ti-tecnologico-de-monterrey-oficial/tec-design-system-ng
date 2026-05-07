@@ -10,7 +10,6 @@ import {
 import {
   getControlDescription,
   DBmbInputParamDesc,
-  DBmbGenericParamDesc,
   getDefaultValueControl,
 } from '../../utils/doc/parameterDescriptions';
 
