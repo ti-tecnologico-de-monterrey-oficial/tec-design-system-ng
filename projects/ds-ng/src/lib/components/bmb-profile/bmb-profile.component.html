@@ -256,10 +256,13 @@
   </section>
 </ng-template>
 
-<!-- @if (isStandAlone()) {
+@if (isStandAlone()) {
   <section class="bmb_profile-stand_alone">
     @if (isLoading()) {
-      <bmb-loader></bmb-loader>
+      <bmb-loader
+      componentTitle="Cargando perfil"
+      [showInline]="true"
+    ></bmb-loader>
     } @else {
       <ng-container [ngTemplateOutlet]="content" />
     }
@@ -272,7 +275,10 @@
   >
     <ng-template #bmbTemplateMain>
       @if (isLoading()) {
-        <bmb-loader></bmb-loader>
+        <bmb-loader
+          componentTitle="Cargando perfil"
+          [showInline]="true"
+        ></bmb-loader>
       } @else {
         <ng-container [ngTemplateOutlet]="content" />
       }
@@ -290,28 +296,12 @@
     class="bmb_profile-home-card"
   >
     @if (isLoading()) {
-      <bmb-loader></bmb-loader>
+      <bmb-loader
+        componentTitle="Cargando perfil"
+        [showInline]="true"
+      ></bmb-loader>
     } @else {
       <ng-container [ngTemplateOutlet]="content" />
     }
   </bmb-home-card>
-} -->
-<bmb-home-card
-  icon="person"
-  bgIconAppearance="green-light"
-  componentTitle="Mi perfil"
-  contentPadding="l"
-  [showRightButton]="enableExpandButton()"
-  (onBack)="handleBack($event)"
-  [(isExpanded)]="isExpanded"
-  class="bmb_profile-home-card"
->
-  @if (isLoading()) {
-    <bmb-loader
-      componentTitle="Cargando perfil"
-      [showInline]="true"
-    ></bmb-loader>
-  } @else {
-    <ng-container [ngTemplateOutlet]="content" />
-  }
-</bmb-home-card>
+}
