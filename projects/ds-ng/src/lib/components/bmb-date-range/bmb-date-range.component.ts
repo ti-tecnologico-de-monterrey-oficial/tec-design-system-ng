@@ -15,6 +15,7 @@ import {
   newFormControlByType,
 } from '../../utils/formControl';
 import { getUUID } from '../../utils/utils';
+import { DateTime } from 'luxon';
 
 @Component({
   selector: 'bmb-date-range',
@@ -45,9 +46,11 @@ export class BmbDateRangeComponent implements OnInit {
   multipleRow = input<boolean>(false);
   customValidation = input<ValidatorFn>();
   errorMessage = input<string | IBmbInputError>('');
+  disableDatesBefore = input<string>('');
+  disableDatesAfter = input<string>('');
 
-  disableDatesBefore: string = '';
-  disableDatesAfter: string = '';
+  disableDatesBeforeCurrent: string = '';
+  disableDatesAfterCurrent: string = '';
   isControlStartNull: boolean = false;
   isControlEndNull: boolean = false;
 
@@ -68,13 +71,14 @@ export class BmbDateRangeComponent implements OnInit {
 
     this.controlStart()?.valueChanges.subscribe((value) => {
       if (!!value) {
-        this.disableDatesBefore = value;
+        const newDate = DateTime.fromFormat(value, this.dateFormat()).minus({ day: 1 }).toFormat(this.dateFormat());
+        this.disableDatesBeforeCurrent = newDate;
       }
     });
 
     this.controlEnd()?.valueChanges.subscribe((value) => {
       if (!!value) {
-        this.disableDatesAfter = value;
+        this.disableDatesAfterCurrent = value;
       }
     });
   }
