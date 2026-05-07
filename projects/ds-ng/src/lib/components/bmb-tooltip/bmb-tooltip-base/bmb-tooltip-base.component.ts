@@ -3,6 +3,7 @@ import {
   Component,
   DestroyRef,
   ElementRef,
+  effect,
   inject,
   PLATFORM_ID,
   input,
@@ -34,6 +35,18 @@ export class BmbTooltipBaseComponent {
   private readonly repositionHandler = () => this.updateTooltipPosition();
 
   constructor() {
+    effect(() => {
+      this.componentTitle();
+      this.text();
+
+      if (!this.tooltipElement || !this.isBrowserEnvironment()) {
+        return;
+      }
+
+      this.updateTooltipContent();
+      this.updateTooltipPosition();
+    });
+
     this.destroyRef.onDestroy(() => {
       this.hideTooltip();
     });
@@ -109,13 +122,14 @@ export class BmbTooltipBaseComponent {
     }
 
     if (this.tooltipElement) {
+      this.updateTooltipContent();
       this.updateTooltipPosition();
       return;
     }
 
     this.tooltipElement = this.createTooltipElement();
     this.tooltipElement.style.visibility = 'hidden';
-  this.document.body.appendChild(this.tooltipElement);
+    this.document.body.appendChild(this.tooltipElement);
     this.tooltipElement.offsetHeight;
     this.updateTooltipPosition();
     this.tooltipElement.style.visibility = 'visible';
@@ -146,6 +160,12 @@ export class BmbTooltipBaseComponent {
     dialog.setAttribute('open', 'true');
     dialog.setAttribute('aria-hidden', 'true');
 
+    dialog.appendChild(this.createTooltipContent());
+
+    return dialog;
+  }
+
+  private createTooltipContent(): HTMLElement {
     const section = this.document.createElement('section');
     section.className = 'bmb_tooltip';
     section.setAttribute('aria-describedby', 'tooltip-content');
@@ -162,8 +182,15 @@ export class BmbTooltipBaseComponent {
       section.appendChild(textElement);
     }
 
-    dialog.appendChild(section);
-    return dialog;
+    return section;
+  }
+
+  private updateTooltipContent(): void {
+    if (!this.tooltipElement) {
+      return;
+    }
+
+    this.tooltipElement.replaceChildren(this.createTooltipContent());
   }
 
   private updateTooltipPosition(): void {

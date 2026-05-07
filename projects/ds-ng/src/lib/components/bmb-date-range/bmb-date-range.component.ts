@@ -1,11 +1,14 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  DestroyRef,
   input,
+  inject,
   model,
   OnInit,
   ViewEncapsulation,
 } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FormControl, ValidatorFn } from '@angular/forms';
 import { BmbDatepickerComponent } from '../bmb-datepicker/bmb-datepicker.component';
 import { CommonModule } from '@angular/common';
@@ -53,6 +56,7 @@ export class BmbDateRangeComponent implements OnInit {
   disableDatesAfterCurrent: string = '';
   isControlStartNull: boolean = false;
   isControlEndNull: boolean = false;
+  private readonly destroyRef = inject(DestroyRef);
 
   ngOnInit() {
     if (!this.controlStart()) {
@@ -69,18 +73,29 @@ export class BmbDateRangeComponent implements OnInit {
       this.isControlEndNull = true;
     }
 
-    this.controlStart()?.valueChanges.subscribe((value) => {
-      if (!!value) {
-        const newDate = DateTime.fromFormat(value, this.dateFormat()).minus({ day: 1 }).toFormat(this.dateFormat());
-        this.disableDatesBeforeCurrent = newDate;
-      }
-    });
+    this.controlStart()?.valueChanges
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe((value) => {
+        if (!!value) {
+          const parsedDate = DateTime.fromFormat(value, this.dateFormat());
 
-    this.controlEnd()?.valueChanges.subscribe((value) => {
-      if (!!value) {
-        this.disableDatesAfterCurrent = value;
-      }
-    });
+          if (!parsedDate.isValid) {
+            return;
+          }
+
+          this.disableDatesBeforeCurrent = parsedDate
+            .minus({ day: 1 })
+            .toFormat(this.dateFormat());
+        }
+      });
+
+    this.controlEnd()?.valueChanges
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe((value) => {
+        if (!!value) {
+          this.disableDatesAfterCurrent = value;
+        }
+      });
   }
 
   getClassList(): string[] {

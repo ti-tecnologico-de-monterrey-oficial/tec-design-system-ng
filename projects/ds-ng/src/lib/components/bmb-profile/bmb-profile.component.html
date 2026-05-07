@@ -64,7 +64,7 @@
     />
   </section>
   <section class="bmb_profile-access">
-    @if (collaboratorData()?.leader !== null) {
+    @if (collaboratorData()?.leader) {
       <h2 class="bmb_profile-title">{{ 'profile.leader' | translate }}</h2>
       <bmb-card margin="none" borderColor="contrasts-50">
         <bmb-card-content padding="l">
@@ -98,7 +98,7 @@
         </bmb-card-content>
       </bmb-card>
     }
-    @if (collaboratorData()?.generalist !== null) {
+    @if (collaboratorData()?.generalist) {
       <h2 class="bmb_profile-title">{{ 'profile.generalist' | translate }}</h2>
       <bmb-card margin="none" borderColor="contrasts-50">
         <bmb-card-content padding="l">
