@@ -46,12 +46,6 @@ export class BmbTooltipComponent {
         { name: 'title', hasValue: !!deprecatedTitle },
         { name: 'componentTitle', hasValue: !!newTitle },
       );
-
-      if (!deprecatedTitle && !newTitle) {
-        throw new Error(
-          'The "componentTitle" input is required. Please provide a value for it.',
-        );
-      }
     });
   }
 }
