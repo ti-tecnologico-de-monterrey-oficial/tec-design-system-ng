@@ -216,13 +216,17 @@
   --general-contrasts-90: rgb(var(--gray-charade-500));
   --general-contrasts-80: rgb(var(--gray-charade-700));
   --general-contrasts-75: rgb(var(--gray-charade-700));
-  --general-contrasts-60: rgb(var(--gray-charade-900));
+  --general-contrasts-60: rgb(var(--gray-charade-600));
   --general-contrasts-50: rgb(var(--gray-charade-500));
+  --general-contrasts-40: rgb(var(--gray-charade-500));
   --general-contrasts-25: rgb(var(--gray-charade-200));
   --general-contrasts-20: rgb(var(--gray-charade-100));
   --general-contrasts-15: rgb(var(--gray-charade-100));
+  --general-contrasts-10: rgb(var(--gray-charade-100));
   --general-contrasts-5: rgb(var(--gray-charade-50));
   --general-contrasts-main-complimentary: rgb(var(--gray-charade-50));
+  --general-contrasts-light-complimentary: rgb(var(--white-primary));
+  --general-contrasts-dark-complimentary: rgb(var(--gray-charade-950));
   --general-contrasts-main-selection: rgb(var(--blue-mariner-700));
   --general-contrasts-icon-selection: rgb(var(--blue-mariner-500));
   --general-contrasts-main-selection-alternative: rgb(var(--green-primary));
@@ -232,30 +236,18 @@
   --general-contrasts-text-sidebar: rgb(var(--black-primary));
   --general-contrasts-primary: rgb(var(--blue-mariner-700));
   --general-contrasts-primary-high-contrast: rgb(var(--blue-mariner-300));
-  --general-contrasts-inner-header-text: rgb(var(--black-primary));
-  --general-contrasts-timestream-index-inner-header-text: rgb(
-    var(--black-primary)
-  );
-  --general-contrasts-timestream-index-chevron-title-selector-text: rgb(
-    var(--gray-charade-950)
-  );
   --containers-background: rgb(var(--gray-charade-200));
-  --containers-media-card-background: rgba(var(--gray-charade-950), 0.9);
   --containers-main: rgb(var(--gray-charade-100));
-  --containers-header-mobile: rgb(var(--gray-charade-100));
   --containers-modal: rgb(var(--gray-charade-50));
   --containers-container-button: rgb(var(--gray-charade-50));
   --containers-top-bar: rgb(var(--black-primary));
+  --containers-media-card-background: rgba(var(--gray-charade-950), 0.9);
   --containers-background-fade: rgba(211, 215, 228, 0);
   --containers-media-card-background-fade: rgba(31, 34, 46, 0);
-  --containers-timestream-index: rgb(var(--gray-charade-100));
-  --containers-timestream-index-chevron-title-selector: rgb(
-    var(--gray-charade-200)
-  );
   --buttons-primary-normal: rgb(var(--blue-mariner-700));
   --buttons-primary-hover: rgb(var(--blue-mariner-800));
   --buttons-primary-select: rgb(var(--blue-mariner-700));
-  --buttons-alternative-normal: rgb(var(--gray-charade-50));
+  --buttons-alternative-normal: rgb(var(--white-primary));
   --buttons-alternative-hover: rgb(var(--gray-charade-300));
   --buttons-alternative-text: rgb(var(--gray-charade-900));
   --buttons-alternative-select-text: rgb(var(--gray-charade-50));
@@ -264,6 +256,7 @@
   --buttons-fab-text: rgb(var(--white-primary));
   --buttons-active-switch: rgb(var(--blue-mariner-700));
   --buttons-inactive-step: rgb(var(--gray-charade-300));
+  --buttons-stroke-alternative-normal: rgb(var(--gray-charade-300));
   --buttons-stroke-primary-selected: rgb(var(--blue-mariner-900));
   --buttons-blur-primary-select: rgb(var(--blue-mariner-500));
   --buttons-stroke-primary-hover: rgb(var(--blue-mariner-800));
@@ -292,6 +285,7 @@
   --semantic-alert: rgb(var(--alert-primary));
   --semantic-neutral: rgb(var(--gray-charade-300));
   --creative-use-violet: rgb(var(--violet-primary));
+  --creative-use-strong: rgb(var(--blue-mariner-300));
   --creative-use-indigo: rgb(var(--indigo-primary));
   --creative-use-emerald: rgb(var(--emerald-primary));
   --creative-use-licorice: rgb(var(--licorice-primary));
@@ -323,7 +317,6 @@
     0.2
   );
   --bmb-evaluation-rubric-radius-circle: 50%;
-  --bmb-calendar-button-selected-background: rgb(var(--white-primary));
   --bmb-dot-paginator-dot: rgb(var(--gray-charade-500));
   --buttons-secondary-filled-hover-background: var(--gray-charade-300);
   --color-blue-tec: var(--blue-tec);
@@ -453,11 +446,15 @@
   --general-contrasts-75: rgb(var(--gray-charade-200));
   --general-contrasts-60: rgb(var(--gray-charade-200));
   --general-contrasts-50: rgb(var(--gray-charade-500));
+  --general-contrasts-40: rgb(var(--gray-charade-500));
   --general-contrasts-25: rgb(var(--gray-charade-700));
   --general-contrasts-20: rgb(var(--gray-charade-700));
   --general-contrasts-15: rgb(var(--gray-charade-800));
+  --general-contrasts-10: rgb(var(--gray-charade-800));
   --general-contrasts-5: rgb(var(--gray-charade-900));
   --general-contrasts-main-complimentary: rgb(var(--gray-charade-50));
+  --general-contrasts-light-complimentary: rgb(var(--white-primary));
+  --general-contrasts-dark-complimentary: rgb(var(--gray-charade-950));
   --general-contrasts-main-selection: rgb(var(--blue-mariner-700));
   --general-contrasts-icon-selection: rgb(var(--blue-mariner-500));
   --general-contrasts-main-selection-alternative: rgb(var(--green-light));
@@ -467,26 +464,14 @@
   --general-contrasts-text-sidebar: rgb(var(--white-primary));
   --general-contrasts-primary: rgb(var(--blue-mariner-400));
   --general-contrasts-primary-high-contrast: rgb(var(--blue-mariner-400));
-  --general-contrasts-inner-header-text: rgb(var(--white-primary));
-  --general-contrasts-timestream-index-inner-header-text: rgb(
-    var(--white-primary)
-  );
-  --general-contrasts-timestream-index-chevron-title-selector-text: rgb(
-    var(--gray-charade-50)
-  );
   --containers-background: rgb(var(--gray-charade-950));
-  --containers-media-card-background: rgba(var(--gray-charade-950), 0.9);
   --containers-main: rgb(var(--gray-charade-900));
-  --containers-header-mobile: rgb(var(--gray-charade-900));
   --containers-modal: rgb(var(--gray-charade-950));
   --containers-container-button: rgb(var(--gray-charade-900));
   --containers-top-bar: rgb(var(--black-primary));
+  --containers-media-card-background: rgba(var(--gray-charade-950), 0.9);
   --containers-background-fade: rgba(31, 34, 46, 0);
   --containers-media-card-background-fade: rgba(31, 34, 46, 0);
-  --containers-timestream-index: rgb(var(--gray-charade-900));
-  --containers-timestream-index-chevron-title-selector: rgb(
-    var(--gray-charade-700)
-  );
   --buttons-primary-normal: rgb(var(--blue-mariner-700));
   --buttons-primary-hover: rgb(var(--blue-mariner-800));
   --buttons-primary-select: rgb(var(--blue-mariner-700));
@@ -499,6 +484,7 @@
   --buttons-fab-text: rgb(var(--white-primary));
   --buttons-active-switch: rgb(var(--green-light));
   --buttons-inactive-step: rgb(var(--gray-charade-700));
+  --buttons-stroke-alternative-normal: rgb(var(--gray-charade-50));
   --buttons-stroke-primary-selected: rgb(var(--blue-mariner-300));
   --buttons-blur-primary-select: rgb(var(--blue-mariner-500));
   --buttons-stroke-primary-hover: rgb(var(--blue-mariner-800));
@@ -527,6 +513,7 @@
   --semantic-alert: rgb(var(--alert-light));
   --semantic-neutral: rgb(var(--gray-charade-200));
   --creative-use-violet: rgb(var(--violet-tint));
+  --creative-use-strong: rgb(var(--blue-mariner-200));
   --creative-use-indigo: rgb(var(--indigo-tint));
   --creative-use-emerald: rgb(var(--emerald-tint));
   --creative-use-licorice: rgb(var(--licorice-tint));
@@ -559,7 +546,6 @@
     0.25
   );
   --bmb-evaluation-rubric-radius-circle: 50%;
-  --bmb-calendar-button-selected-background: rgb(var(--white-primary));
   --bmb-dot-paginator-dot: rgb(var(--gray-charade-500));
   --color-blue-tec: var(--blue-tec);
   --color-white-primary: var(--white-primary);
@@ -1664,7 +1650,7 @@ ion-content {
 .bmb_btn-primary:hover:not(:disabled),
 .bmb_btn-primary:focus-visible:not(:disabled) {
   background: var(--buttons-primary-hover);
-  border-color: var(--buttons-stroke-primary-selected);
+  border-color: var(--buttons-stroke-primary-hover);
   color: var(--buttons-fab-text);
 }
 .bmb_btn-primary:active:not(:disabled),
@@ -2619,7 +2605,7 @@ ion-content {
 .bmb_button-group-small.bmb_button-group-primary
   > *:focus-visible:not(:disabled) {
   background: var(--buttons-primary-hover);
-  border-color: var(--buttons-stroke-primary-selected);
+  border-color: var(--buttons-stroke-primary-hover);
   color: var(--buttons-fab-text);
 }
 .bmb_button-group-small.bmb_button-group-primary > *:active:not(:disabled),
@@ -2943,7 +2929,7 @@ ion-content {
 .bmb_button-group-large.bmb_button-group-primary
   > *:focus-visible:not(:disabled) {
   background: var(--buttons-primary-hover);
-  border-color: var(--buttons-stroke-primary-selected);
+  border-color: var(--buttons-stroke-primary-hover);
   color: var(--buttons-fab-text);
 }
 .bmb_button-group-large.bmb_button-group-primary > *:active:not(:disabled),
