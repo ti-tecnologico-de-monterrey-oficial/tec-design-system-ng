@@ -1,4 +1,7 @@
-<bmb-tooltip-base [componentTitle]="this.componentTitle() || this.title()" [text]="this.text()">
+<bmb-tooltip-base
+  [componentTitle]="this.componentTitle() || this.title()"
+  [text]="this.text()"
+>
   @if (icon() && size()) {
     <bmb-action-icon
       idElement="tooltip_element"
