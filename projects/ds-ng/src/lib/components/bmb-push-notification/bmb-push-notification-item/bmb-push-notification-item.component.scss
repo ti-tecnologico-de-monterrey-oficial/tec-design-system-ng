@@ -41,9 +41,7 @@ $types: (
 );
 
 $notification_appearance: colorFn.map-merged(
-  colors.$creative_use_colors,
-  colors.$semantic_colors,
-  colors.$mitec_institutional_colors,
+  colors.$bmb_push_notification_type,
   $types
 );
 
