@@ -3,7 +3,7 @@
   [target]="target()!"
   (buttonClick)="handleClick($event)"
 >
-  <bmb-tooltip [componentTitle]="componentTitle() || title() || ''">
+  <bmb-tooltip-base [componentTitle]="componentTitle() || title() || ''">
     <section [ngClass]="getClasses()">
       <bmb-box-icon
         [iconName]="icon()"
@@ -29,5 +29,5 @@
         </span>
       }
     </section>
-  </bmb-tooltip>
+  </bmb-tooltip-base>
 </bmb-check-external-link-button>

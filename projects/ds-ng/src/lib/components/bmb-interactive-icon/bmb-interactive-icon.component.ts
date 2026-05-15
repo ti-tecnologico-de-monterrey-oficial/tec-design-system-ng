@@ -21,8 +21,8 @@ import {
 import { IBmbContrast } from '../../types/colors';
 import { logDeprecatedInput } from '../../utils/logDeprecatedInput';
 import { BmbBoxIconComponent } from '../bmb-box-icon/bmb-box-icon.component';
-import { BmbTooltipComponent } from '../bmb-tooltip/bmb-tooltip.component';
 import { IBmbTargetLink } from '../../types';
+import { BmbTooltipBaseComponent } from '../bmb-tooltip/bmb-tooltip-base/bmb-tooltip-base.component';
 
 export type IBmbInteractiveIconAppearance =
   | 'red'
@@ -68,7 +68,7 @@ export type IBmbInteractiveIconType = 'regular' | 'button' | 'app_drawer';
     CommonModule,
     BmbCheckExternalLinkButtonComponent,
     BmbBoxIconComponent,
-    BmbTooltipComponent,
+    BmbTooltipBaseComponent,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,

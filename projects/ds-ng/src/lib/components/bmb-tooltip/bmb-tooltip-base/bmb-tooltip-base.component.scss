@@ -1,0 +1,43 @@
+@use '../../../../assets/styles/base/fonts' as fonts;
+@use '../../../../assets/styles/base/rem' as rem;
+
+bmb-tooltip-base {
+  display: inline-flex;
+  align-items: center;
+}
+
+.bmb_tooltip {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: var(--bmb-spacing-s);
+
+  &-container {
+    display: inline-flex;
+    align-items: center;
+    position: relative;
+  }
+
+  &-dialog {
+    position: absolute;
+    z-index: 9999;
+    max-width: rem.rem_calc(280);
+    background-color: var(--general-contrasts-100);
+    color: var(--general-contrasts-5);
+    border-radius: var(--bmb-radius-s);
+    padding: var(--bmb-spacing-s) var(--bmb-spacing-m);
+    @include fonts.font(3, regular);
+    border: 0 none;
+    width: max-content;
+    outline: 0 none;
+    hyphens: auto;
+    overflow-wrap: break-word;
+
+    &--floating {
+      pointer-events: none;
+      margin: 0;
+      inset: auto;
+      position: fixed;
+    }
+  }
+}

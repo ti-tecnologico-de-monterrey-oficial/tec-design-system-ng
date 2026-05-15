@@ -112,8 +112,8 @@ export interface IBmbCollaboratorProfileData {
   userData: IBmbUserData;
   position: string;
   area: string;
-  leader: IBmbHierarchyProfileData;
-  generalist: IBmbHierarchyProfileData;
+  leader: IBmbHierarchyProfileData | null;
+  generalist: IBmbHierarchyProfileData | null;
   enableRolSwitch?: boolean;
 }
 

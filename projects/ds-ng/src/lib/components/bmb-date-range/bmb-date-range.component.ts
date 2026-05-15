@@ -1,12 +1,15 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  DestroyRef,
   input,
+  inject,
   model,
   OnInit,
   ViewEncapsulation,
 } from '@angular/core';
 import { FormControl, ValidatorFn } from '@angular/forms';
+import { Subscription } from 'rxjs';
 import { BmbDatepickerComponent } from '../bmb-datepicker/bmb-datepicker.component';
 import { CommonModule } from '@angular/common';
 import { IBmbInputError } from '../bmb-input/bmb-input.component';
@@ -15,6 +18,7 @@ import {
   newFormControlByType,
 } from '../../utils/formControl';
 import { getUUID } from '../../utils/utils';
+import { DateTime } from 'luxon';
 
 @Component({
   selector: 'bmb-date-range',
@@ -45,11 +49,21 @@ export class BmbDateRangeComponent implements OnInit {
   multipleRow = input<boolean>(false);
   customValidation = input<ValidatorFn>();
   errorMessage = input<string | IBmbInputError>('');
+  disableDatesBefore = input<string>('');
+  disableDatesAfter = input<string>('');
 
-  disableDatesBefore: string = '';
-  disableDatesAfter: string = '';
+  disableDatesBeforeCurrent: string = '';
+  disableDatesAfterCurrent: string = '';
   isControlStartNull: boolean = false;
   isControlEndNull: boolean = false;
+  private readonly destroyRef = inject(DestroyRef);
+  private readonly subscriptions = new Subscription();
+
+  constructor() {
+    this.destroyRef.onDestroy(() => {
+      this.subscriptions.unsubscribe();
+    });
+  }
 
   ngOnInit() {
     if (!this.controlStart()) {
@@ -66,17 +80,37 @@ export class BmbDateRangeComponent implements OnInit {
       this.isControlEndNull = true;
     }
 
-    this.controlStart()?.valueChanges.subscribe((value) => {
-      if (!!value) {
-        this.disableDatesBefore = value;
-      }
-    });
+    const controlStartSubscription = this.controlStart()?.valueChanges.subscribe(
+      (value) => {
+        if (!!value) {
+          const parsedDate = DateTime.fromFormat(value, this.dateFormat());
 
-    this.controlEnd()?.valueChanges.subscribe((value) => {
-      if (!!value) {
-        this.disableDatesAfter = value;
-      }
-    });
+          if (!parsedDate.isValid) {
+            return;
+          }
+
+          this.disableDatesBeforeCurrent = parsedDate
+            .minus({ day: 1 })
+            .toFormat(this.dateFormat());
+        }
+      },
+    );
+
+    const controlEndSubscription = this.controlEnd()?.valueChanges.subscribe(
+      (value) => {
+        if (!!value) {
+          this.disableDatesAfterCurrent = value;
+        }
+      },
+    );
+
+    if (controlStartSubscription) {
+      this.subscriptions.add(controlStartSubscription);
+    }
+
+    if (controlEndSubscription) {
+      this.subscriptions.add(controlEndSubscription);
+    }
   }
 
   getClassList(): string[] {

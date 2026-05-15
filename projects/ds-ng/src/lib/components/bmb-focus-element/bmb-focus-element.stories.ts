@@ -82,7 +82,7 @@ ${getBasicExampleBlock('BmbFocusElementComponent')}
   args: {
     title: 'Title',
     icon: 'close',
-    number: '',
+    number: 0,
     isNonFocused: false,
     isNormal: false,
     isInheritedBg: false,
@@ -92,3 +92,10 @@ ${getBasicExampleBlock('BmbFocusElementComponent')}
 type Story = StoryObj<BmbFocusElementComponent>;
 
 export const Default: Story = {};
+
+export const Number: Story = {
+  args: {
+    icon: '',
+    number: 1,
+  },
+};
