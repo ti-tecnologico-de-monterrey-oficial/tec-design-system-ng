@@ -10,8 +10,9 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "storybook": "ng run ds-ng:storybook",
-    "start": "ng serve",
+    "json2sass": "node convert-json2sass.js",
+    "storybook": "npm run json2sass && ng run ds-ng:storybook",
+    "start": "npm run json2sass && ng serve",
     "watch": "ng build --watch --configuration development",
     "test": "npm run lint && npm run format-check && npm run e2e && ng test ds-ng",
     "build-storybook": "ng run ds-ng:build-storybook",

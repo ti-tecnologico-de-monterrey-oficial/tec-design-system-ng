@@ -81,7 +81,7 @@
 
       &-selected {
         background-color: var(--general-contrasts-main-selection);
-        color: rgb(var(--white-primary));
+        color: var(--buttons-alternative-normal);
         opacity: 1 !important;
       }
     }

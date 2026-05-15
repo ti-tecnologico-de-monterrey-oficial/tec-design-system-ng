@@ -7,11 +7,14 @@ import { BmbPushNotificationComponent } from './bmb-push-notification.component'
 import { NotificationType } from './types';
 import {
   attributes,
+  BlockquoteType,
+  getAlertBlockquote,
   getBasicExampleBlock,
   getGeneralComponentDescription,
   getGeneralDescription,
   getOnEvent,
   getSpecialSpecifications,
+  RELEVANT_TITLE,
 } from '../../utils/doc/utils';
 import {
   DBmbIconParamDesc,
@@ -20,6 +23,7 @@ import {
   getOnEventParam,
   getPropertyParamDesc,
 } from '../../utils/doc/parameterDescriptions';
+import { BMB_PUSH_NOTIFICATION_COLOR_LIST } from '../../types/foundations/colors/color-type';
 
 const TITLE_PROPERTY_DESCRIPTION = getPropertyParamDesc('notification');
 @Component({
@@ -105,7 +109,40 @@ export default {
       description: {
         component: `
 ${getGeneralDescription(`${getGeneralComponentDescription({ name: 'push-notification' })} to easily configure notifications to display in the apps.`, { generalDocLink: 'https://bamboo.tec.mx/latest/componentes/push-notification/descripcion-general-neloJm9o' })}
-${getSpecialSpecifications(` ### Configuration
+${getSpecialSpecifications(
+  `
+${getAlertBlockquote(
+  `Follow name colors are deprecated:
+ - 'tec'
+ - 'success'
+ - 'info'
+ - 'neutral'
+ - 'event'
+ - 'error'
+ - 'warning'
+ - 'creative_violet'
+ - 'creative_indigo'
+ - 'creative_emerald'
+ - 'creative_licorice'
+ - 'creative_darkteal'
+ - 'creative_peach'
+ - 'creative_sepia'
+ - 'creative_softred'
+ - 'creative_wattle'
+ - 'creative_shipcove'
+ - 'creative_plantation'
+ - 'creative_rum'
+ - 'creative_hibiscus'
+ - 'creative_ripelemon'
+<br/><br/>Please do not use them because they will be removed in future versions.`,
+  {
+    title: '###'.concat(RELEVANT_TITLE.deprecated),
+    blockquoteType: BlockquoteType.warning,
+    isRelevantTitle: true,
+  },
+)}
+> <br/><br/>
+### Configuration
 Add the **BmbNotificationService** to your App providers:
 \`\`\`typescript
 providers: [
@@ -114,7 +151,9 @@ providers: [
 ],\`\`\`
 ###Show notifications
 Add the **BmbPushNotificationComponent** at the bottom of your **app.component.html**.
-`)}
+`,
+  { showAdditionalBlockquote: true },
+)}
 ${getBasicExampleBlock('BmbPushNotificationComponent')}
         `,
       },
@@ -146,31 +185,14 @@ ${getBasicExampleBlock('BmbPushNotificationComponent')}
         '<br/><br/>The notification icon.',
       ),
     },
-    type: getAppearanceParam('notification', [
-      'tec',
-      'success',
-      'info',
-      'neutral',
-      'event',
-      'error',
-      'warning',
-      'black',
-      'creative_violet',
-      'creative_indigo',
-      'creative_emerald',
-      'creative_licorice',
-      'creative_darkteal',
-      'creative_orange',
-      'creative_peach',
-      'creative_sepia',
-      'creative_softred',
-      'creative_wattle',
-      'creative_shipcove',
-      'creative_plantation',
-      'creative_rum',
-      'creative_hibiscus',
-      'creative_ripelemon',
-    ]),
+    type: getAppearanceParam(
+      'notification',
+      BMB_PUSH_NOTIFICATION_COLOR_LIST,
+      '',
+      `IBmbCreativeUseColors:
+
+      `,
+    ),
     enableDontAskAgain: getOnEventParam(
       getOnEvent('', 'dontAskAgainEvent', 'string'),
       "when the checkbox is clicked, emits the id of the notification.<br/><br/> Useful for enabling the **Don't ask again** flag.",

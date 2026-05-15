@@ -1,12 +1,13 @@
 import { TemplateRef } from '@angular/core';
 import { IButtonAppearance } from '../../types';
 import { BmbToastAppearance } from '../bmb-toast/bmb-toast.component';
+import { IBmbPushNotificationColors } from '../../types/foundations/colors/color-type';
 
 export interface INotification
   extends IMinimalNotification,
     IBmbNoticeCardContent {
   icon?: string;
-  type?: NotificationType;
+  type?: IBmbPushNotificationColors | NotificationType;
   dontAskAgainEvent?: (id: string) => void;
   date?: string;
   delay?: number;

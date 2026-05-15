@@ -6,7 +6,7 @@ import { BmbProfileComponent } from '../../../../projects/ds-ng/src/public-api';
   standalone: true,
   imports: [BmbProfileComponent],
   templateUrl: './bmb-delay-profile.component.html',
-  styleUrl: './bmb-delay-profile.component.scss'
+  styleUrl: './bmb-delay-profile.component.scss',
 })
 export class BmbDelayProfileComponent {
   loadingState = signal(true);
