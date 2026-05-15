@@ -17,12 +17,12 @@ import {
   IBmbMitecInstitutionalColors,
   IBmbSemanticBaseColors,
   IBmbSemanticColors,
-  IBmbTargetLink,
-} from '../../types';
+} from '../../types/foundations/colors/color-type';
 import { IBmbContrast } from '../../types/colors';
 import { logDeprecatedInput } from '../../utils/logDeprecatedInput';
 import { BmbBoxIconComponent } from '../bmb-box-icon/bmb-box-icon.component';
 import { BmbTooltipComponent } from '../bmb-tooltip/bmb-tooltip.component';
+import { IBmbTargetLink } from '../../types';
 
 export type IBmbInteractiveIconAppearance =
   | 'red'
