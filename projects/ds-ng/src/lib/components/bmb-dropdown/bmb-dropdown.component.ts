@@ -40,6 +40,7 @@ import { BmbLayoutDirective } from '../../directives/bmb-layout/bmb-layout.direc
 import { BmbLayoutItemDirective } from '../../directives/bmb-layout/bmb-layout-item.directive';
 import { BmbTagComponent } from '../bmb-tags/bmb-tags.component';
 import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
+import { TranslatePipe } from '../../pipes/translations';
 
 export interface IBmbDropdownItem {
   name: string;
@@ -61,6 +62,7 @@ export interface IBmbDropdownItem {
     BmbTagComponent,
     BmbLayoutDirective,
     BmbLayoutItemDirective,
+    TranslatePipe
   ],
   templateUrl: './bmb-dropdown.component.html',
   styleUrl: './bmb-dropdown.component.scss',
