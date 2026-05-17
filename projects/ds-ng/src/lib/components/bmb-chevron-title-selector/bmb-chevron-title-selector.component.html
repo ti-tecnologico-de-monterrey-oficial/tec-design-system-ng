@@ -8,6 +8,7 @@
             [iconSize]="24"
             [disabled]="isDisabledLeadingIcon()"
             (buttonClick)="handleLeadingClick($event)"
+            [alt]="alternativeTextLeadingIcon() || ('chevron_title_selector.prev' | translate)"
           />
         </span>
       }
@@ -32,6 +33,7 @@
             [iconSize]="24"
             [disabled]="isDisabledTrailingIcon()"
             (buttonClick)="handleTrailingClick($event)"
+            [alt]="alternativeTextTrailingIcon() || ('chevron_title_selector.next' | translate)"
           />
         </span>
       }
