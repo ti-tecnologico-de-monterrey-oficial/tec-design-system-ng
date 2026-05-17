@@ -4,7 +4,6 @@ import {
   ViewEncapsulation,
   input,
   output,
-  effect,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
@@ -19,7 +18,6 @@ import { IBmbActionHeader } from '../../types';
 import { BmbNavigationBarComponent } from '../bmb-navigation-bar/bmb-navigation-bar.component';
 import { getClassNameByConditional } from '../../utils/getClassName';
 import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
-import { logDeprecatedInput } from '../../utils/logDeprecatedInput';
 
 @Component({
   selector: 'bmb-header-section',
@@ -46,7 +44,7 @@ export class BmbHeaderSectionComponent {
   iconSize = input<number>(16);
   bgIconAppearance = input<IBmbColor>();
   transparentBgC = input<boolean>();
-  componentTitle = input<string>();
+  componentTitleLeft= input<string>();
 
   onClickLeft = output<any>();
 
