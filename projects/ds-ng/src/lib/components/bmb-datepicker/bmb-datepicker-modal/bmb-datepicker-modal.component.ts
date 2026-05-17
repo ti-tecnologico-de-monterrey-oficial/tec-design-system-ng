@@ -16,6 +16,7 @@ import { CommonModule } from '@angular/common';
 import { orderDayNames } from '../../../utils/utils';
 import { BmbActionIconComponent } from '../../bmb-action-icon/bmb-action-icon.component';
 import { BmbTranslationsService } from '../../../services/translations/translations.service';
+import { TranslatePipe } from '../../../pipes/translations';
 
 @Component({
   selector: 'bmb-datepicker-modal',
@@ -26,6 +27,7 @@ import { BmbTranslationsService } from '../../../services/translations/translati
     BmbLayoutItemDirective,
     BmbButtonDirective,
     BmbActionIconComponent,
+    TranslatePipe
   ],
   templateUrl: './bmb-datepicker-modal.component.html',
   styleUrls: [
