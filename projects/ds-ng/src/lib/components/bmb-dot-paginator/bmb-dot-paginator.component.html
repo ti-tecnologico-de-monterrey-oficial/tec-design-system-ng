@@ -6,6 +6,7 @@
         [icon]="'chevron_left'"
         [iconSize]="24"
         (buttonClick)="prevItem()"
+        [alt]="'dot_paginator.prev' | translate"
       ></bmb-action-icon>
     </li>
   }
@@ -17,7 +18,7 @@
         [ngClass]="{ active: activeDotIndex() === $index }"
         [title]="$index"
       >
-        <span hidden="true">Go to slide {{ $index + 1 }}</span>
+        <span hidden="true">{{ 'dot_paginator.go_to_slide' | translate }} {{ $index + 1 }}</span>
       </button>
     </li>
   }
@@ -28,6 +29,7 @@
         [icon]="'chevron_right'"
         [iconSize]="24"
         (buttonClick)="nextItem()"
+        [alt]="'dot_paginator.next' | translate"
       ></bmb-action-icon>
     </li>
   }
