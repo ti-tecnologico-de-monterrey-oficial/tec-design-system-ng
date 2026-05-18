@@ -8,9 +8,8 @@ describe('BmbDelayProfileComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [BmbDelayProfileComponent]
-    })
-    .compileComponents();
+      imports: [BmbDelayProfileComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(BmbDelayProfileComponent);
     component = fixture.componentInstance;

@@ -14,7 +14,7 @@
         rem.rem_calc(1),
         var(--general-contrasts-input-background),
         var(--general-contrasts-100),
-        var(--general-contrasts-5)
+        var(--general-contrasts-100)
       );
     } @else {
       @include container(

@@ -8,6 +8,8 @@ version 1.6.3-j
 *
 Formato
 *
+chat bubble lts
+*
 bubble chat
 *
 Formato
@@ -48,6 +50,8 @@ bubble chat
 *
 fix(component / date range): Se optimizó la destrucción del código
 *
+fix(component / multi dot paginator): Se agregaron animaciones a los puntos del multi dot paginator
+*
 Update dockerBuild.js
 *
 fix(component / date range): Se corrigió el formato de la fecha
@@ -64,7 +68,13 @@ fix(component / search box): se corrigieron los contrastes de los iconos
 *
 Fix(component / totp): Se corrigieron los bullets en la parte inferior
 *
+chore: se agregó nueva variable de color para cada una de las marcas.
+*
+feat(test): Se actualizaron los componentes para soportar testID
+*
 fix(component / focus element): Se agregó la posibilidad de mostrar el 0
+*
+chore: se agregaron nuevas variables de color complementarias '--general-contrasts-light-complimentary' y '--general-contrasts-dark-complimentary' para cada una de las marcas.
 *
 chore: se agregó opacidad para correcto funcionamiento del componente "Media card".
 *
@@ -132,8 +142,6 @@ chore: se eliminó código que solo se usaba para validación y pruebas
 *
 roll back user summary changes
 *
-fix(component / multi dot paginator): Se agregaron animaciones a los puntos del multi dot paginator
-*
 chore: escenarios de pruebas integrales en aplicaciones
 *
 feat(commponent/sidebar): se agregó implementación para soportar eventos personalizados.
@@ -174,37 +182,31 @@ Formato
 *
 fix(component / multi dot paginator): Se actualizaron los estilos responsivos para el multi dot paginator
 *
-fix(component / profile): Se corrigieron los estilos del profile
-*
-topbar user
-*
-topbar user
-*
 feat(component / image): se agregó la posibilidad de evitar el encoding en la fuente de la imagen
 *
 feat(component/fab): se ealizaron modificaciones para que la versión 'mitec' sea fija (según diseño en Figma)  y no pueda ser modificada.
 *
 fix(component / image): se actualizaron los estilos para permitir cambiar el cursor si hay un evento click
 *
-chore: se agregó nueva variable de color para cada una de las marcas.
-*
 feat(component/sidebar): se agregó la misma animación para todos los menús y submenús.
 *
-feat(test): Se actualizaron los componentes para soportar testID
+fix(component / profile): Se corrigieron los estilos del profile
 *
 actualizacion de paquetes
-*
-feat(component/container-button): se agregó la documentación de variantes 'Square' como pestaña en el componente principal.
 *
 feat: Add `bmb-filter-card` component with dynamic visibility and option rules.
 *
 feat: Add BmbFilterCard component with dynamic filtering capabilities.
 *
+topbar user
+*
+topbar user
+*
+feat(component/container-button): se agregó la documentación de variantes 'Square' como pestaña en el componente principal.
+*
 chore: se agregaron ejemplos para soporte de la aplicación.
 *
 feat: `bmb-filter-card`.
-*
-chore: se agregaron nuevas variables de color complementarias '--general-contrasts-light-complimentary' y '--general-contrasts-dark-complimentary' para cada una de las marcas.
 *
 fix(component / notification card): Se corrigió el tamaño de las notificaciones
 *
@@ -278,6 +280,8 @@ chore: se eliminó código que no se utiliza
 version 1.6.3-j
 - **Formato**:
 Formato
+- **chat bubble lts**:
+chat bubble lts
 - **bubble chat**:
 bubble chat
 - **Formato**:
@@ -318,6 +322,8 @@ chore: se agregaron variables, se depuraron variables para homologar con Figma.
 bubble chat
 - **fix(component / date range): Se optimizó la destrucción del código**:
 fix(component / date range): Se optimizó la destrucción del código
+- **fix(component / multi dot paginator): Se agregaron animaciones a los puntos del multi dot paginator**:
+fix(component / multi dot paginator): Se agregaron animaciones a los puntos del multi dot paginator
 - **Update dockerBuild.js**:
 Update dockerBuild.js
 - **fix(component / date range): Se corrigió el formato de la fecha**:
@@ -334,8 +340,14 @@ chore: se eliminaron nuevas variables porque no se utilizan en ningún component
 fix(component / search box): se corrigieron los contrastes de los iconos
 - **Fix(component / totp): Se corrigieron los bullets en la parte inferior**:
 Fix(component / totp): Se corrigieron los bullets en la parte inferior
+- **chore: se agregó nueva variable de color para cada una de las marcas.**:
+chore: se agregó nueva variable de color para cada una de las marcas.
+- **feat(test): Se actualizaron los componentes para soportar testID**:
+feat(test): Se actualizaron los componentes para soportar testID
 - **fix(component / focus element): Se agregó la posibilidad de mostrar el 0**:
 fix(component / focus element): Se agregó la posibilidad de mostrar el 0
+- **chore: se agregaron nuevas variables de color complementarias '--general-contrasts-light-complimentary' y '--general-contrasts-dark-complimentary' para cada una de las marcas.**:
+chore: se agregaron nuevas variables de color complementarias '--general-contrasts-light-complimentary' y '--general-contrasts-dark-complimentary' para cada una de las marcas.
 - **chore: se agregó opacidad para correcto funcionamiento del componente "Media card".**:
 chore: se agregó opacidad para correcto funcionamiento del componente "Media card".
 - **chore: se agregó nueva variable a todas las marcas para homologar con Figma**:
@@ -402,8 +414,6 @@ test: Add unit tests for BmbFilterCardComponent, along with related dependency u
 chore: se eliminó código que solo se usaba para validación y pruebas
 - **roll back user summary changes**:
 roll back user summary changes
-- **fix(component / multi dot paginator): Se agregaron animaciones a los puntos del multi dot paginator**:
-fix(component / multi dot paginator): Se agregaron animaciones a los puntos del multi dot paginator
 - **chore: escenarios de pruebas integrales en aplicaciones**:
 chore: escenarios de pruebas integrales en aplicaciones
 - **feat(commponent/sidebar): se agregó implementación para soportar eventos personalizados.**:
@@ -444,38 +454,32 @@ Formato
 Formato
 - **fix(component / multi dot paginator): Se actualizaron los estilos responsivos para el multi dot paginator**:
 fix(component / multi dot paginator): Se actualizaron los estilos responsivos para el multi dot paginator
-- **fix(component / profile): Se corrigieron los estilos del profile**:
-fix(component / profile): Se corrigieron los estilos del profile
-- **topbar user**:
-topbar user
-- **topbar user**:
-topbar user
 - **feat(component / image): se agregó la posibilidad de evitar el encoding en la fuente de la imagen**:
 feat(component / image): se agregó la posibilidad de evitar el encoding en la fuente de la imagen
 - **feat(component/fab): se ealizaron modificaciones para que la versión 'mitec' sea fija (según diseño en Figma)  y no pueda ser modificada.**:
 feat(component/fab): se ealizaron modificaciones para que la versión 'mitec' sea fija (según diseño en Figma)  y no pueda ser modificada.
 - **fix(component / image): se actualizaron los estilos para permitir cambiar el cursor si hay un evento click**:
 fix(component / image): se actualizaron los estilos para permitir cambiar el cursor si hay un evento click
-- **chore: se agregó nueva variable de color para cada una de las marcas.**:
-chore: se agregó nueva variable de color para cada una de las marcas.
 - **feat(component/sidebar): se agregó la misma animación para todos los menús y submenús.**:
 feat(component/sidebar): se agregó la misma animación para todos los menús y submenús.
-- **feat(test): Se actualizaron los componentes para soportar testID**:
-feat(test): Se actualizaron los componentes para soportar testID
+- **fix(component / profile): Se corrigieron los estilos del profile**:
+fix(component / profile): Se corrigieron los estilos del profile
 - **actualizacion de paquetes**:
 actualizacion de paquetes
-- **feat(component/container-button): se agregó la documentación de variantes 'Square' como pestaña en el componente principal.**:
-feat(component/container-button): se agregó la documentación de variantes 'Square' como pestaña en el componente principal.
 - **feat: Add `bmb-filter-card` component with dynamic visibility and option rules.**:
 feat: Add `bmb-filter-card` component with dynamic visibility and option rules.
 - **feat: Add BmbFilterCard component with dynamic filtering capabilities.**:
 feat: Add BmbFilterCard component with dynamic filtering capabilities.
+- **topbar user**:
+topbar user
+- **topbar user**:
+topbar user
+- **feat(component/container-button): se agregó la documentación de variantes 'Square' como pestaña en el componente principal.**:
+feat(component/container-button): se agregó la documentación de variantes 'Square' como pestaña en el componente principal.
 - **chore: se agregaron ejemplos para soporte de la aplicación.**:
 chore: se agregaron ejemplos para soporte de la aplicación.
 - **feat: `bmb-filter-card`.**:
 feat: `bmb-filter-card`.
-- **chore: se agregaron nuevas variables de color complementarias '--general-contrasts-light-complimentary' y '--general-contrasts-dark-complimentary' para cada una de las marcas.**:
-chore: se agregaron nuevas variables de color complementarias '--general-contrasts-light-complimentary' y '--general-contrasts-dark-complimentary' para cada una de las marcas.
 - **fix(component / notification card): Se corrigió el tamaño de las notificaciones**:
 fix(component / notification card): Se corrigió el tamaño de las notificaciones
 - **fix(component / dropdown): Se corrigió el desface de menú del dropdown**:
@@ -549,6 +553,8 @@ chore: se eliminó código que no se utiliza
 version 1.6.3-j
 - **Formato**:
 Formato
+- **chat bubble lts**:
+chat bubble lts
 - **bubble chat**:
 bubble chat
 - **Formato**:
@@ -589,6 +595,8 @@ chore: se agregaron variables, se depuraron variables para homologar con Figma.
 bubble chat
 - **fix(component / date range): Se optimizó la destrucción del código**:
 fix(component / date range): Se optimizó la destrucción del código
+- **fix(component / multi dot paginator): Se agregaron animaciones a los puntos del multi dot paginator**:
+fix(component / multi dot paginator): Se agregaron animaciones a los puntos del multi dot paginator
 - **Update dockerBuild.js**:
 Update dockerBuild.js
 - **fix(component / date range): Se corrigió el formato de la fecha**:
@@ -605,8 +613,14 @@ chore: se eliminaron nuevas variables porque no se utilizan en ningún component
 fix(component / search box): se corrigieron los contrastes de los iconos
 - **Fix(component / totp): Se corrigieron los bullets en la parte inferior**:
 Fix(component / totp): Se corrigieron los bullets en la parte inferior
+- **chore: se agregó nueva variable de color para cada una de las marcas.**:
+chore: se agregó nueva variable de color para cada una de las marcas.
+- **feat(test): Se actualizaron los componentes para soportar testID**:
+feat(test): Se actualizaron los componentes para soportar testID
 - **fix(component / focus element): Se agregó la posibilidad de mostrar el 0**:
 fix(component / focus element): Se agregó la posibilidad de mostrar el 0
+- **chore: se agregaron nuevas variables de color complementarias '--general-contrasts-light-complimentary' y '--general-contrasts-dark-complimentary' para cada una de las marcas.**:
+chore: se agregaron nuevas variables de color complementarias '--general-contrasts-light-complimentary' y '--general-contrasts-dark-complimentary' para cada una de las marcas.
 - **chore: se agregó opacidad para correcto funcionamiento del componente "Media card".**:
 chore: se agregó opacidad para correcto funcionamiento del componente "Media card".
 - **chore: se agregó nueva variable a todas las marcas para homologar con Figma**:
@@ -673,8 +687,6 @@ test: Add unit tests for BmbFilterCardComponent, along with related dependency u
 chore: se eliminó código que solo se usaba para validación y pruebas
 - **roll back user summary changes**:
 roll back user summary changes
-- **fix(component / multi dot paginator): Se agregaron animaciones a los puntos del multi dot paginator**:
-fix(component / multi dot paginator): Se agregaron animaciones a los puntos del multi dot paginator
 - **chore: escenarios de pruebas integrales en aplicaciones**:
 chore: escenarios de pruebas integrales en aplicaciones
 - **feat(commponent/sidebar): se agregó implementación para soportar eventos personalizados.**:
@@ -715,38 +727,32 @@ Formato
 Formato
 - **fix(component / multi dot paginator): Se actualizaron los estilos responsivos para el multi dot paginator**:
 fix(component / multi dot paginator): Se actualizaron los estilos responsivos para el multi dot paginator
-- **fix(component / profile): Se corrigieron los estilos del profile**:
-fix(component / profile): Se corrigieron los estilos del profile
-- **topbar user**:
-topbar user
-- **topbar user**:
-topbar user
 - **feat(component / image): se agregó la posibilidad de evitar el encoding en la fuente de la imagen**:
 feat(component / image): se agregó la posibilidad de evitar el encoding en la fuente de la imagen
 - **feat(component/fab): se ealizaron modificaciones para que la versión 'mitec' sea fija (según diseño en Figma)  y no pueda ser modificada.**:
 feat(component/fab): se ealizaron modificaciones para que la versión 'mitec' sea fija (según diseño en Figma)  y no pueda ser modificada.
 - **fix(component / image): se actualizaron los estilos para permitir cambiar el cursor si hay un evento click**:
 fix(component / image): se actualizaron los estilos para permitir cambiar el cursor si hay un evento click
-- **chore: se agregó nueva variable de color para cada una de las marcas.**:
-chore: se agregó nueva variable de color para cada una de las marcas.
 - **feat(component/sidebar): se agregó la misma animación para todos los menús y submenús.**:
 feat(component/sidebar): se agregó la misma animación para todos los menús y submenús.
-- **feat(test): Se actualizaron los componentes para soportar testID**:
-feat(test): Se actualizaron los componentes para soportar testID
+- **fix(component / profile): Se corrigieron los estilos del profile**:
+fix(component / profile): Se corrigieron los estilos del profile
 - **actualizacion de paquetes**:
 actualizacion de paquetes
-- **feat(component/container-button): se agregó la documentación de variantes 'Square' como pestaña en el componente principal.**:
-feat(component/container-button): se agregó la documentación de variantes 'Square' como pestaña en el componente principal.
 - **feat: Add `bmb-filter-card` component with dynamic visibility and option rules.**:
 feat: Add `bmb-filter-card` component with dynamic visibility and option rules.
 - **feat: Add BmbFilterCard component with dynamic filtering capabilities.**:
 feat: Add BmbFilterCard component with dynamic filtering capabilities.
+- **topbar user**:
+topbar user
+- **topbar user**:
+topbar user
+- **feat(component/container-button): se agregó la documentación de variantes 'Square' como pestaña en el componente principal.**:
+feat(component/container-button): se agregó la documentación de variantes 'Square' como pestaña en el componente principal.
 - **chore: se agregaron ejemplos para soporte de la aplicación.**:
 chore: se agregaron ejemplos para soporte de la aplicación.
 - **feat: `bmb-filter-card`.**:
 feat: `bmb-filter-card`.
-- **chore: se agregaron nuevas variables de color complementarias '--general-contrasts-light-complimentary' y '--general-contrasts-dark-complimentary' para cada una de las marcas.**:
-chore: se agregaron nuevas variables de color complementarias '--general-contrasts-light-complimentary' y '--general-contrasts-dark-complimentary' para cada una de las marcas.
 - **fix(component / notification card): Se corrigió el tamaño de las notificaciones**:
 fix(component / notification card): Se corrigió el tamaño de las notificaciones
 - **fix(component / dropdown): Se corrigió el desface de menú del dropdown**:
