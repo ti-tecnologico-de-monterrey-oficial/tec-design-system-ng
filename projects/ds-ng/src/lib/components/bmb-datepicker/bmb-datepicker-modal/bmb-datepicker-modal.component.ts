@@ -27,7 +27,7 @@ import { TranslatePipe } from '../../../pipes/translations';
     BmbLayoutItemDirective,
     BmbButtonDirective,
     BmbActionIconComponent,
-    TranslatePipe
+    TranslatePipe,
   ],
   templateUrl: './bmb-datepicker-modal.component.html',
   styleUrls: [

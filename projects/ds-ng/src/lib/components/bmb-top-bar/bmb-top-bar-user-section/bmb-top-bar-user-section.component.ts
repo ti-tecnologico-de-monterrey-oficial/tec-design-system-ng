@@ -30,7 +30,7 @@ import { TranslatePipe } from '../../../pipes/translations';
     BmbLayoutDirective,
     BmbLayoutItemDirective,
     BmbCheckExternalLinkButtonComponent,
-    TranslatePipe
+    TranslatePipe,
   ],
   templateUrl: './bmb-top-bar-user-section.component.html',
   styleUrl: './bmb-top-bar-user-section.component.scss',

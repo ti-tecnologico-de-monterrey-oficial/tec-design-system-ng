@@ -91,8 +91,8 @@ export class BmbHomeCardHeaderComponent {
           alt: this.isMobile()
             ? this.translationsService.translate('home_card.close')
             : this.isExpanded()
-            ? this.translationsService.translate('home_card.collapse')
-            : this.translationsService.translate('home_card.expand'),
+              ? this.translationsService.translate('home_card.collapse')
+              : this.translationsService.translate('home_card.expand'),
           action: () => this.handleExpandChange(),
         },
       ];

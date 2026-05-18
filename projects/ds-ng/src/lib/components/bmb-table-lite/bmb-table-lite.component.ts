@@ -45,7 +45,7 @@ import {
     BmbInputComponent,
     BmbDateRangeComponent,
     BmbActionIconComponent,
-    TranslatePipe
+    TranslatePipe,
   ],
   templateUrl: './bmb-table-lite.component.html',
   styleUrl: './bmb-table-lite.component.scss',

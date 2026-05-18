@@ -24,7 +24,7 @@ import { TranslatePipe } from '../../pipes/translations';
     BmbCheckExternalLinkButtonComponent,
     BmbActionIconComponent,
     BmbDividerComponent,
-    TranslatePipe
+    TranslatePipe,
   ],
   templateUrl: './bmb-sidebar.component.html',
   styleUrl: './bmb-sidebar.component.scss',

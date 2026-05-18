@@ -38,7 +38,7 @@ export interface IBmbTab {
     CommonModule,
     BmbActionIconComponent,
     BmbNotificationCounterComponent,
-    TranslatePipe
+    TranslatePipe,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,

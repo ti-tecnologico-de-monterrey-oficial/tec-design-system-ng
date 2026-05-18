@@ -118,7 +118,11 @@
             this.isLoading()!
           "
           (buttonClick)="handleSend()"
-          [alt]="isLoading() ? ('chat_bar.loading' | translate) : ('chat_bar.send_message' | translate)"
+          [alt]="
+            isLoading()
+              ? ('chat_bar.loading' | translate)
+              : ('chat_bar.send_message' | translate)
+          "
         />
       } @else {
         <div class="bmb_chat-bar-container-drag">

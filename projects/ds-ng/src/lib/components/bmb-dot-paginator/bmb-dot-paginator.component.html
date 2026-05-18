@@ -18,7 +18,9 @@
         [ngClass]="{ active: activeDotIndex() === $index }"
         [title]="$index"
       >
-        <span hidden="true">{{ 'dot_paginator.go_to_slide' | translate }} {{ $index + 1 }}</span>
+        <span hidden="true"
+          >{{ 'dot_paginator.go_to_slide' | translate }} {{ $index + 1 }}</span
+        >
       </button>
     </li>
   }

@@ -20,11 +20,7 @@ export interface Target {
   selector: 'bmb-dot-paginator',
   standalone: true,
   styleUrl: './bmb-dot-paginator.component.scss',
-  imports: [
-    CommonModule,
-    BmbActionIconComponent,
-    TranslatePipe,
-  ],
+  imports: [CommonModule, BmbActionIconComponent, TranslatePipe],
   templateUrl: './bmb-dot-paginator.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,

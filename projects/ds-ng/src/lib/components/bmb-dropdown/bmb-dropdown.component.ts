@@ -62,7 +62,7 @@ export interface IBmbDropdownItem {
     BmbTagComponent,
     BmbLayoutDirective,
     BmbLayoutItemDirective,
-    TranslatePipe
+    TranslatePipe,
   ],
   templateUrl: './bmb-dropdown.component.html',
   styleUrl: './bmb-dropdown.component.scss',

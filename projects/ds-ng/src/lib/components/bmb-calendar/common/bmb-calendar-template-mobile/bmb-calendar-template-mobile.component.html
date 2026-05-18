@@ -15,12 +15,8 @@
         trailingIcon="chevron_right"
         (onLeadingClick)="handleMonthChange('-')"
         (onTrailingClick)="handleMonthChange('+')"
-        [alternativeTextLeadingIcon]="
-          'calendar.previous_month' | translate
-        "
-        [alternativeTextTrailingIcon]="
-          'calendar.next_month' | translate
-        "
+        [alternativeTextLeadingIcon]="'calendar.previous_month' | translate"
+        [alternativeTextTrailingIcon]="'calendar.next_month' | translate"
       />
     </div>
     <bmb-pull-wedge
