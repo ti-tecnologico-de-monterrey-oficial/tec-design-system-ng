@@ -25,6 +25,7 @@ import {
 import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
 import { BmbNativeModalService } from '../../services/modal/native-modal.service';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
+import { TranslatePipe } from '../../pipes/translations';
 
 @Component({
   selector: 'bmb-native-modal',
@@ -42,6 +43,7 @@ import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
     BmbTitleContentComponent,
     BmbActionIconComponent,
     BmbIconComponent,
+    TranslatePipe,
   ],
 })
 export class BmbNativeModalComponent {

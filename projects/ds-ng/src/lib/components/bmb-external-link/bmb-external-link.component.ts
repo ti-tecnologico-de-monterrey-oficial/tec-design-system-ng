@@ -22,6 +22,7 @@ import { BmbContainerComponent } from '../bmb-container/bmb-container.component'
 import { IDropdownItem } from '../../types';
 import { BmbProjectionContentService } from '../../services/projection/projection.service';
 import { logDeprecatedInput } from '../../utils/logDeprecatedInput';
+import { TranslatePipe } from '../../pipes/translations';
 
 export type IBmbMenuEvent = 'link' | 'openNew' | 'info';
 
@@ -34,6 +35,7 @@ export type IBmbMenuEvent = 'link' | 'openNew' | 'info';
     BmbThreeColsComponent,
     BmbActionIconComponent,
     BmbTitleContentComponent,
+    TranslatePipe,
   ],
   templateUrl: './bmb-external-link.component.html',
   styleUrl: './bmb-external-link.component.scss',

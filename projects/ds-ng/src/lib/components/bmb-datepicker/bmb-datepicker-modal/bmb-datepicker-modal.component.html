@@ -13,6 +13,7 @@
         icon="keyboard_arrow_left"
         [iconSize]="24"
         (buttonClick)="handleChevronClick('less')"
+        [alt]="'calendar_date_picker.prev' | translate"
       />
     </li>
     <li
@@ -54,6 +55,7 @@
         icon="keyboard_arrow_right"
         [iconSize]="24"
         (buttonClick)="handleChevronClick('plus')"
+        [alt]="'calendar_date_picker.next' | translate"
       />
     </li>
   </nav>

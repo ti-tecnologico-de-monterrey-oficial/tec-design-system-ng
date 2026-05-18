@@ -6,6 +6,7 @@
         icon="arrow_back_ios"
         (buttonClick)="scrollTo(true)"
         [disabled]="scrollLeft() === 0"
+        [alt]="'tabs.previous' | translate"
       />
     }
     <ul
@@ -60,6 +61,7 @@
         icon="arrow_forward_ios"
         (buttonClick)="scrollTo(false)"
         [disabled]="scrollRight() === 0"
+        [alt]="'tabs.next' | translate"
       />
     }
   </div>

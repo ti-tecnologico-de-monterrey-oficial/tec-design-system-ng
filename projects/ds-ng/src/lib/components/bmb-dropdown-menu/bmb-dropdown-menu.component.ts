@@ -12,13 +12,14 @@ import { BmbDropdownContentComponent } from '../utils/bmb-dropdown-content/bmb-d
 import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
 import { IDropdownItem } from '../../types';
 import { BmbProjectionContentService } from '../../services/projection/projection.service';
+import { TranslatePipe } from '../../pipes/translations';
 
 @Component({
   selector: 'bmb-dropdown-menu',
   standalone: true,
   templateUrl: './bmb-dropdown-menu.component.html',
   styleUrl: './bmb-dropdown-menu.component.scss',
-  imports: [BmbActionIconComponent],
+  imports: [BmbActionIconComponent, TranslatePipe],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
