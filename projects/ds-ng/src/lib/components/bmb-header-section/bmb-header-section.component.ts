@@ -44,7 +44,9 @@ export class BmbHeaderSectionComponent {
   iconSize = input<number>(16);
   bgIconAppearance = input<IBmbColor>();
   transparentBgC = input<boolean>();
+  componentTitle = input<string>();
   componentTitleLeft= input<string>();
+  alternativeTextLeftIcon = input<string>('');
 
   onClickLeft = output<any>();
 
