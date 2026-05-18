@@ -55,6 +55,9 @@
     "calendar": "Calendario",
     "subtitle": "Selecciona los calendarios que quieres ver",
     "filter_save": "Guardar",
+    "filter": "Filtrar",
+    "previous_month": "Mes anterior",
+    "next_month": "Mes siguiente",
     "modal": {
       "title": "Calendarios y notificaciones",
       "notification_label": "Activar notificaciones de horario (recibirás una notificación 10 minutos antes de tu próxima clase)"
@@ -62,10 +65,19 @@
   },
   "chat_bar": {
     "placeholder": "¿Qué deseas encontrar hoy?",
-    "drag_files": "Arrastra tus archivos aquí"
+    "drag_files": "Arrastra tus archivos aquí",
+    "close": "Cerrar",
+    "pause": "Pausar grabación",
+    "record": "Iniciar grabación",
+    "emoji": "Emoji",
+    "add": "Agregar",
+    "mic": "Micrófono",
+    "send_message": "Enviar mensaje",
+    "loading": "Cargando..."
   },
   "digital_id": {
-    "secondary_button_label": "Descargar ID a PDF"
+    "secondary_button_label": "Descargar ID a PDF",
+    "close": "Cerrar"
   },
   "dropzone": {
     "drop_instructions": "Arrastra y suelta tus archivos aquí o",
@@ -95,7 +107,10 @@
     "forgot_password": "¿Olvidaste tu contraseña?"
   },
   "notice_card": {
-    "button_text": "Enterado"
+    "button_text": "Enterado",
+    "close": "Cerrar",
+    "next": "Siguiente",
+    "previous": "Anterior"
   },
   "step_progress_bar": {
     "label_completed": "Completo",
@@ -165,7 +180,9 @@
       },
       "primary_button": "Insertar",
       "secondary_button": "Cancelar"
-    }
+    },
+    "text_format": "Formato de texto",
+    "more": "Más opciones"
   },
   "notification_card": {
     "tabs": {
@@ -190,7 +207,9 @@
       "filter_placeholder": "Selecciona una opción"
     },
     "no_result": "No se encontraron coincidencias.",
-    "select_all": "Seleccionar todos"
+    "select_all": "Seleccionar todos",
+    "close_options": "Cerrar opciones",
+    "open_options": "Abrir opciones"
   },
   "table": {
     "filters": {
@@ -202,7 +221,8 @@
       "max": " máximo",
       "search": "Buscar",
       "filter": "Filtrar"
-    }
+    },
+    "search": "Buscar"
   },
   "search_card": {
     "title": "Encuentra servicios o personas",
@@ -219,7 +239,11 @@
   },
   "input": {
     "content": {
-      "loading_alt": "Cargando..."
+      "loading_alt": "Cargando...",
+      "copy": "Copiar contenido",
+      "show_password": "Mostrar contraseña",
+      "hide_password": "Ocultar contraseña",
+      "clear": "Limpiar"
     }
   },
   "filter_card": {
@@ -244,5 +268,71 @@
     "copy": "Copiar contenido",
     "like": "Me gusta",
     "dislike": "No me gusta"
+  },
+  "bookmark": {
+    "bookmark": "Marcador"
+  },
+  "chevron_title_selector": {
+    "prev": "Anterior",
+    "next": "Siguiente"
+  },
+  "calendar_date_picker": {
+    "prev": "Mes anterior",
+    "next": "Mes siguiente"
+  },
+  "dot_paginator": {
+    "prev": "Anterior",
+    "next": "Siguiente",
+    "go_to_slide": "Ir a la diapositiva"
+  },
+  "dropdown_menu": {
+    "open_menu": "Abrir menú"
+  },
+  "evaluation_rubric": {
+    "close": "Cerrar"
+  },
+  "external_link": {
+    "close": "Cerrar",
+    "open_menu": "Abrir menú"
+  },
+  "home_card": {
+    "back": "Volver",
+    "expand": "Expandir",
+    "collapse": "Colapsar",
+    "close": "Cerrar"
+  },
+  "inner_header": {
+    "close": "Cerrar",
+    "back": "Volver",
+    "search": "Buscar"
+  },
+  "list_items": {
+    "add": "Agregar"
+  },
+  "native_modal": {
+    "close": "Cerrar"
+  },
+  "multi_dot_paginator": {
+    "prev": "Anterior",
+    "next": "Siguiente",
+    "go_to_slide": "Regresar al inicio"
+  },
+  "sidebar": {
+    "back": "Volver",
+    "close": "Cerrar",
+    "open_menu": "Abrir menú"
+  },
+  "tabs": {
+    "previous": "Anterior",
+    "next": "Siguiente"
+  },
+  "tags": {
+    "close": "Cerrar"
+  },
+  "top_bar": {
+    "search": "Buscar",
+    "role_switch": "Cambiar rol",
+    "notifications": "Notificaciones",
+    "help": "Ayuda"
   }
 }

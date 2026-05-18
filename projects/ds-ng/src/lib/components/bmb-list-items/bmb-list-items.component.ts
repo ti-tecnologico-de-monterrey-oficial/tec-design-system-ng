@@ -10,6 +10,7 @@ import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.compo
 import { DateTime } from 'luxon';
 import { CommonModule } from '@angular/common';
 import { BmbInputComponent } from '../bmb-input/bmb-input.component';
+import { TranslatePipe } from '../../pipes/translations';
 
 export interface IBmbListItemsElement {
   title: string;
@@ -29,7 +30,12 @@ interface IBmbListItemsElementGroupedByDate {
 @Component({
   selector: 'bmb-list-items',
   standalone: true,
-  imports: [BmbActionIconComponent, CommonModule, BmbInputComponent],
+  imports: [
+    BmbActionIconComponent,
+    CommonModule,
+    BmbInputComponent,
+    TranslatePipe,
+  ],
   templateUrl: './bmb-list-items.component.html',
   styleUrl: './bmb-list-items.component.scss',
   encapsulation: ViewEncapsulation.None,

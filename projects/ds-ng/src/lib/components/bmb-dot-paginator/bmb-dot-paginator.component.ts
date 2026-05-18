@@ -9,7 +9,7 @@ import {
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
-import { BmbButtonDirective } from '../../directives/bmb-button/button.directive';
+import { TranslatePipe } from '../../pipes/translations';
 
 export interface Target {
   target: string;
@@ -20,7 +20,7 @@ export interface Target {
   selector: 'bmb-dot-paginator',
   standalone: true,
   styleUrl: './bmb-dot-paginator.component.scss',
-  imports: [CommonModule, BmbActionIconComponent, BmbButtonDirective],
+  imports: [CommonModule, BmbActionIconComponent, TranslatePipe],
   templateUrl: './bmb-dot-paginator.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,

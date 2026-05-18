@@ -18,6 +18,7 @@ import { TabsService } from '../../services/tabs/tabs.service';
 import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
 import { IBmbContrast } from '../../types/colors';
 import { BmbNotificationCounterComponent } from '../bmb-notification-counter/bmb-notification-counter.component';
+import { TranslatePipe } from '../../pipes/translations';
 
 export interface IBmbTab {
   id: number;
@@ -37,6 +38,7 @@ export interface IBmbTab {
     CommonModule,
     BmbActionIconComponent,
     BmbNotificationCounterComponent,
+    TranslatePipe,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,

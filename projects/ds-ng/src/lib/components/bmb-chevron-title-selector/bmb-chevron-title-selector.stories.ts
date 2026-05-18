@@ -107,12 +107,26 @@ ${getBasicExampleBlock('BmbChevronTitleSelectorComponent')}
         defaultValue: '',
       },
     },
+    alternativeTextLeadingIcon: getPropertyParamDesc(
+      'alternative text for the left icon, used for accessibility',
+      {
+        summaryType: 'string',
+      },
+    ),
+    alternativeTextTrailingIcon: getPropertyParamDesc(
+      'alternative text for the right icon, used for accessibility',
+      {
+        summaryType: 'string',
+      },
+    ),
   },
   args: {
     componentTitle: 'Title',
     subtitle: '',
     leadingIcon: 'chevron_left',
     trailingIcon: 'chevron_right',
+    alternativeTextLeadingIcon: 'Izquierda',
+    alternativeTextTrailingIcon: 'Derecha',
     isDisabledLeadingIcon: false,
     isDisabledTrailingIcon: false,
     onLeadingClick: () => {

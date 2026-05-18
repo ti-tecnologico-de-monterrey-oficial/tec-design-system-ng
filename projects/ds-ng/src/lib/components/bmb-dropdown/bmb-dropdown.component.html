@@ -55,6 +55,12 @@
               [iconSize]="24"
               (buttonClick)="openList()"
               bmbLayoutItem
+              [alt]="
+                (isOpenList
+                  ? 'dropdown.close_options'
+                  : 'dropdown.open_options'
+                ) | translate
+              "
             />
           </section>
         </label>

@@ -33,6 +33,7 @@
             icon="close"
             [iconSize]="24"
             (buttonClick)="deleteFile($index)"
+            [alt]="'chat_bar.close' | translate"
           />
         </div>
       }
@@ -69,12 +70,14 @@
             icon="pause"
             [iconSize]="40"
             (buttonClick)="handleStopMic()"
+            [alt]="'chat_bar.pause' | translate"
           />
           <bmb-action-icon
             class="bmb_chat-bar-record bmb_chat-bar-record-animated"
             icon="graphic_eq"
             [iconSize]="40"
             (buttonClick)="handleRecord()"
+            [alt]="'chat_bar.record' | translate"
           />
         } @else {
           @if (showEmoji()) {
@@ -83,6 +86,7 @@
               [icon]="emojiIcon()"
               [iconSize]="32"
               (buttonClick)="handleEmoji()"
+              [alt]="'chat_bar.emoji' | translate"
             />
           }
           @if (actionsList().length) {
@@ -91,6 +95,7 @@
               icon="add"
               [iconSize]="32"
               (buttonClick)="handleAddDialog($event)"
+              [alt]="'chat_bar.add' | translate"
             />
           }
           @if (enableMicInput()) {
@@ -99,6 +104,7 @@
               icon="mic"
               [iconSize]="32"
               (buttonClick)="handleMic()"
+              [alt]="'chat_bar.mic' | translate"
             />
           }
         }
@@ -112,6 +118,11 @@
             this.isLoading()!
           "
           (buttonClick)="handleSend()"
+          [alt]="
+            isLoading()
+              ? ('chat_bar.loading' | translate)
+              : ('chat_bar.send_message' | translate)
+          "
         />
       } @else {
         <div class="bmb_chat-bar-container-drag">

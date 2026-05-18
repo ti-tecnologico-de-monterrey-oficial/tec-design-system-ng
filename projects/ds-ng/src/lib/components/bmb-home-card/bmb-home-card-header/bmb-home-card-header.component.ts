@@ -19,6 +19,8 @@ import { BmbContainerComponent } from '../../bmb-container/bmb-container.compone
 import { CommonModule } from '@angular/common';
 import { IBotType } from '../../bmb-chat-bar/types';
 import { logDeprecatedInput } from '../../../utils/logDeprecatedInput';
+import { TranslatePipe } from '../../../pipes/translations';
+import { BmbTranslationsService } from '../../../services/translations/translations.service';
 
 @Component({
   selector: 'bmb-home-card-header',
@@ -30,6 +32,7 @@ import { logDeprecatedInput } from '../../../utils/logDeprecatedInput';
     BmbActionIconComponent,
     BmbTitleContentComponent,
     BmbNavigationBarComponent,
+    TranslatePipe,
   ],
   templateUrl: './bmb-home-card-header.component.html',
   styleUrl: './bmb-home-card-header.component.scss',
@@ -56,7 +59,7 @@ export class BmbHomeCardHeaderComponent {
   onBack = output();
   onExpandClick = output();
 
-  constructor() {
+  constructor(private translationsService: BmbTranslationsService) {
     effect(() => {
       const deprecatedTitle = this.title();
       const newTitle = this.componentTitle();
@@ -85,6 +88,11 @@ export class BmbHomeCardHeaderComponent {
           icon: mainIcon,
           isToggleActive: false,
           iconActiveToggle: mainIcon,
+          alt: this.isMobile()
+            ? this.translationsService.translate('home_card.close')
+            : this.isExpanded()
+              ? this.translationsService.translate('home_card.collapse')
+              : this.translationsService.translate('home_card.expand'),
           action: () => this.handleExpandChange(),
         },
       ];

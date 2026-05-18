@@ -129,12 +129,28 @@ ${getBasicExampleBlock('BmbInnerHeaderComponent')}
         defaultValue: '',
       },
     },
+    alternativeTextTrailingIconPrimary: getPropertyParamDesc(
+      'Alternative text for the primary trailing icon',
+      {
+        controlType: 'text',
+        defaultSummary: '',
+      },
+    ),
+    alternativeTextTrailingIconSecondary: getPropertyParamDesc(
+      'Alternative text for the secondary trailing icon',
+      {
+        controlType: 'text',
+        defaultSummary: '',
+      },
+    ),
   },
   args: {
     componentTitle: 'Inner Header',
     placeholderSearch: 'Search',
     showClose: true,
     trailingIconPrimary: 'lock',
+    alternativeTextTrailingIconPrimary: 'Lock icon',
+    alternativeTextTrailingIconSecondary: 'Home icon',
     onHandleBack: () => {
       console.log('Close button clicked in Storybook');
     },

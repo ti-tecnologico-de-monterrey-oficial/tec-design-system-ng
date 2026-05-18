@@ -24,7 +24,7 @@
           icon="keyboard_return"
           size="large"
           type="normal"
-          text="Regresar al inicio"
+          [text]="'multi_dot_paginator.go_to_slide' | translate"
           [mitec]="true"
           (click)="selectItem(0)"
         />
@@ -33,9 +33,9 @@
     <button
       class="bmb_multi-dot-paginator-next"
       (click)="setNextItem()"
-      title="Siguiente"
+      [title]="'multi_dot_paginator.next' | translate"
     >
-      Siguiente
+      {{ 'multi_dot_paginator.next' | translate }}
     </button>
   </section>
   <footer class="bmb_multi-dot-paginator-footer">
@@ -50,6 +50,7 @@
             [icon]="'chevron_left'"
             [iconSize]="24"
             (buttonClick)="prevItem()"
+            [alt]="'multi_dot_paginator.prev' | translate"
           ></bmb-action-icon>
         </li>
       }
@@ -99,6 +100,7 @@
             [icon]="'chevron_right'"
             [iconSize]="24"
             (buttonClick)="nextItem()"
+            [alt]="'multi_dot_paginator.next' | translate"
           ></bmb-action-icon>
         </li>
       }

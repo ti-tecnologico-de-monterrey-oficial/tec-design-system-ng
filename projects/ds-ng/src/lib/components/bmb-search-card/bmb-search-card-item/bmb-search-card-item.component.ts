@@ -5,14 +5,14 @@ import {
   output,
   ViewEncapsulation,
 } from '@angular/core';
-import { IBmbColor } from '../../../types/colors';
-import { getRGBColorKeyValue, isImage } from '../../../utils/utils';
+import { getRGBColorKeyValue } from '../../../utils/utils';
 import { CommonModule } from '@angular/common';
 import { BmbLayoutDirective } from '../../../directives/bmb-layout/bmb-layout.directive';
 import { BmbLayoutItemDirective } from '../../../directives/bmb-layout/bmb-layout-item.directive';
-import { BmbIconComponent } from '../../bmb-icon/bmb-icon.component';
 import { BmbUserImageComponent } from '../../bmb-user-image/bmb-user-image.component';
 import { BmbBookmarkComponent } from '../../bmb-bookmark/bmb-bookmark.component';
+import { BmbBoxIconComponent } from '../../bmb-box-icon/bmb-box-icon.component';
+import { IBmbInteractiveIconAppearance } from '../../bmb-interactive-icon/bmb-interactive-icon.component';
 
 @Component({
   selector: 'bmb-search-card-item',
@@ -21,9 +21,9 @@ import { BmbBookmarkComponent } from '../../bmb-bookmark/bmb-bookmark.component'
     CommonModule,
     BmbLayoutDirective,
     BmbLayoutItemDirective,
-    BmbIconComponent,
     BmbUserImageComponent,
     BmbBookmarkComponent,
+    BmbBoxIconComponent,
   ],
   templateUrl: './bmb-search-card-item.component.html',
   styleUrl: './bmb-search-card-item.component.scss',
@@ -36,7 +36,7 @@ export class BmbSearchCardItemComponent {
   subtitle = input<string>('');
   icon = input<string>('crop_square');
   isService = input<boolean>(true);
-  backgroundColorIcon = input<IBmbColor>('black-primary');
+  backgroundColorIcon = input<IBmbInteractiveIconAppearance>('white_primary');
   isBookmarkActive = input<boolean>(false);
 
   triggerClick = output<void>();
