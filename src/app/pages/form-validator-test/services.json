@@ -7,7 +7,7 @@
     "name": "Sooji (Semolina)",
     "subtitle": "Food - Baking",
     "avatarOrIcon": "https://robohash.org/quamitaquea.png?size=50x50&set=set1",
-    "backgroundColorIcon": "white-primary"
+    "backgroundColorIcon": "white_primary"
   },
   {
     "id": 2,
@@ -17,7 +17,7 @@
     "name": "Fitness Resistance Bands",
     "subtitle": "Fitness",
     "avatarOrIcon": "https://robohash.org/nemofugitqui.png?size=50x50&set=set1",
-    "backgroundColorIcon": "white-primary"
+    "backgroundColorIcon": "white_primary"
   },
   {
     "id": 3,
@@ -27,7 +27,7 @@
     "name": "Nutty Granola Clusters",
     "subtitle": "Food - Cereal",
     "avatarOrIcon": "home",
-    "backgroundColorIcon": "blue-mariner-100"
+    "backgroundColorIcon": "creative_ripelemon"
   },
   {
     "id": 4,
