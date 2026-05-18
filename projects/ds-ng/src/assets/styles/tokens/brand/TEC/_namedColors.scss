@@ -142,7 +142,6 @@
   );
 
   --bmb-evaluation-rubric-radius-circle: 50%;
-  --bmb-calendar-button-selected-background: rgb(var(--white-primary));
   --bmb-dot-paginator-dot: rgb(var(--gray-charade-500));
   --buttons-secondary-filled-hover-background: var(--gray-charade-300);
 
@@ -291,7 +290,6 @@
   );
 
   --bmb-evaluation-rubric-radius-circle: 50%;
-  --bmb-calendar-button-selected-background: rgb(var(--white-primary));
   --bmb-dot-paginator-dot: rgb(var(--gray-charade-500));
 
   @include mc.fixed-names;

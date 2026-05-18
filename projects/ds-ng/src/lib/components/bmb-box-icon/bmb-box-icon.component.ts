@@ -15,7 +15,7 @@ import {
   IBmbMitecInstitutionalColors,
   IBmbSemanticBaseColors,
   IBmbSemanticColors,
-} from '../../types';
+} from '../../types/foundations/colors/color-type';
 import { IBmbInteractiveIconAppearance } from '../bmb-interactive-icon/bmb-interactive-icon.component';
 
 export type IBmbBoxIconSize = 'regular' | 'small';
