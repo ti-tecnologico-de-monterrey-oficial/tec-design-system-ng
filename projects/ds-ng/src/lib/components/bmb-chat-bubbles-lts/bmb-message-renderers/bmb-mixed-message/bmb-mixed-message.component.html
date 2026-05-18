@@ -1,0 +1,12 @@
+<div class="bmb-chat-bubbles-lts-mixed">
+  <p class="bmb-chat-bubbles-lts-mixed-text">
+    {{ message().content.text }}
+  </p>
+
+  <img
+    class="bmb-chat-bubbles-lts-mixed-image"
+    [src]="message().content.imageUrl"
+    alt="Mixed message image"
+    loading="lazy"
+  />
+</div>
