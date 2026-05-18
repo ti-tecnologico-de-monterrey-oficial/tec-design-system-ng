@@ -65,6 +65,7 @@ export class BmbBottomNavigationBarComponent {
       this.actionHeaders.push({
         icon: element.name,
         action: () => this.onNavigationBarOptionClick(element.eventName!),
+        alt: element.label,
       });
     });
   }
