@@ -15,6 +15,7 @@ import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.compo
 import { BmbTitleContentComponent } from '../bmb-title-content/bmb-title-content.component';
 import { BmbContainerComponent } from '../bmb-container/bmb-container.component';
 import { logDeprecatedInput } from '../../utils/logDeprecatedInput';
+import { TranslatePipe } from '../../pipes/translations';
 
 @Component({
   selector: 'bmb-inner-header',
@@ -27,6 +28,7 @@ import { logDeprecatedInput } from '../../utils/logDeprecatedInput';
     BmbTitleContentComponent,
     BmbInputComponent,
     ReactiveFormsModule,
+    TranslatePipe,
   ],
   styleUrl: './bmb-inner-header.component.scss',
   templateUrl: './bmb-inner-header.component.html',
@@ -40,6 +42,9 @@ export class BmbInnerHeaderComponent {
   trailingIconSecondary = input<string>('');
   disableTrailingIconPrimary = input<boolean>(false);
   disableTrailingIconSecondary = input<boolean>(false);
+  alternativeTextTrailingIconPrimary = input<string>('');
+  alternativeTextTrailingIconSecondary = input<string>('');
+  showBack = input<boolean>(false);
   showClose = input<boolean>(false);
   showReturn = input<boolean>(false);
   showSearch = input<boolean>(false);
