@@ -9,13 +9,10 @@
     <span bmbLayout margin="none" alignItems="center">
       <div bmbLayoutItem [isDynamicItem]="true">
         @if (isService()) {
-          <bmb-icon
-            class="bmb_search-card-item-box"
-            [icon]="icon()"
-            [size]="24"
-            [alt]="name()"
-            [ngStyle]="getStyles()"
-            [ngClass]="getClassBox()"
+          <bmb-box-icon
+            [iconName]="icon()"
+            [boxColor]="backgroundColorIcon()"
+            boxSize="regular"
           />
         } @else {
           <bmb-user-image [image]="icon()" size="desktop-small" />

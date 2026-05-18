@@ -15,14 +15,14 @@ import { CommonModule } from '@angular/common';
 import { BmbSearchCardEmptyStateComponent } from './bmb-search-card-empty-state/bmb-search-card-empty-state.component';
 import { BmbTranslationsService } from '../../services/translations/translations.service';
 import { BmbSearchCardItemComponent } from './bmb-search-card-item/bmb-search-card-item.component';
-import { IBmbColor } from '../../types/colors';
+import { IBmbInteractiveIconAppearance } from '../bmb-interactive-icon/bmb-interactive-icon.component';
 
 export interface IBmbSearchCardItemResult {
   id: string;
   name: string;
   subtitle: string;
   avatarOrIcon: string;
-  backgroundColorIcon?: IBmbColor;
+  backgroundColorIcon?: IBmbInteractiveIconAppearance;
   type: 'person' | 'service';
   isBookmarkActive?: boolean;
   [key: string]: any;
