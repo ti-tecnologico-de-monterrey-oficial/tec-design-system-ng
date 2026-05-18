@@ -27,6 +27,7 @@ export class BmbButtonIconComponent {
   disabled = input<boolean>(false);
   active = model<boolean>(false);
   isOutline = model<boolean>(false);
+  alt = input<string>('');
 
   onButtonClick = output<MouseEvent>();
 

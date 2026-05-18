@@ -107,7 +107,7 @@
     &:hover:not(:disabled),
     &:focus-visible:not(:disabled) {
       background: var(--buttons-primary-hover);
-      border-color: var(--buttons-stroke-primary-selected);
+      border-color: var(--buttons-stroke-primary-hover);
       color: var(--buttons-fab-text);
     }
 

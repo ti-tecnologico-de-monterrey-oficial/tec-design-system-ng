@@ -260,9 +260,9 @@
   <section class="bmb_profile-stand_alone">
     @if (isLoading()) {
       <bmb-loader
-      componentTitle="Cargando perfil"
-      [showInline]="true"
-    ></bmb-loader>
+        componentTitle="Cargando perfil"
+        [showInline]="true"
+      ></bmb-loader>
     } @else {
       <ng-container [ngTemplateOutlet]="content" />
     }

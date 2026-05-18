@@ -73,6 +73,12 @@
       .bmb_check-external-link-button-element {
         display: inline-block;
         width: 100%;
+
+        bmb-tooltip-base,
+        .bmb_tooltip-container,
+        .bmb_interactive_icon-button {
+          width: 100%;
+        }
       }
     }
   }

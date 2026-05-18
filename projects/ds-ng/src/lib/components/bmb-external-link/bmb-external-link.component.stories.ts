@@ -117,10 +117,10 @@ four: { name: 'refresh', label: '' },
     componentTitle: 'CONECTA',
     subtitle: 'https://www.CONECTA.tec.mx',
     navigationBarIcons: {
-      one: { name: 'arrow_back_ios', label: '' },
-      two: { name: 'arrow_forward_ios', label: '' },
-      three: { name: 'share', label: '' },
-      four: { name: 'refresh', label: '' },
+      one: { name: 'arrow_back_ios', label: 'Regresar' },
+      two: { name: 'arrow_forward_ios', label: 'Adelante' },
+      three: { name: 'share', label: 'Compartir' },
+      four: { name: 'refresh', label: 'Actualizar' },
     },
     onClose: () => {
       console.log('Close button clicked in Storybook');

@@ -31,6 +31,7 @@ import { logDeprecatedInput } from '../../utils/logDeprecatedInput';
           [icon]="icon()"
           [iconSize]="24"
           (buttonClick)="handleClick($event)"
+          [alt]="componentTitle() || title() || ''"
         />
       </span>
     </section>

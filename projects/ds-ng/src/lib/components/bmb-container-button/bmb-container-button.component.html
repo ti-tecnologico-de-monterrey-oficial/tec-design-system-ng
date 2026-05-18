@@ -67,6 +67,7 @@
               [iconSize]="24"
               (buttonClick)="handleSecondaryClick($event)"
               [disabled]="state() === 'disabled'"
+              [alt]="alternativeTextRightIcon() || iconRight()"
             />
           } @else if (!!dropdownMenuItems().length) {
             <bmb-dropdown-menu
