@@ -6,7 +6,7 @@
           <bmb-input
             class="bmb_table_lite-input"
             [type]="'text'"
-            [placeholder]="'Buscar'"
+            [placeholder]="'table.search' | translate"
             [disabled]="false"
             [icon]="'search'"
             [appearance]="'normal'"
@@ -17,6 +17,7 @@
             [icon]="'filter_list'"
             [iconSize]="24"
             (buttonClick)="toggleFilters()"
+            [alt]="'table.filters.filter' | translate"
           ></bmb-action-icon>
         </section>
       }
