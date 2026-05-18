@@ -19,6 +19,7 @@ import { BmbContainerComponent } from '../../bmb-container/bmb-container.compone
 import { CommonModule } from '@angular/common';
 import { IBotType } from '../../bmb-chat-bar/types';
 import { logDeprecatedInput } from '../../../utils/logDeprecatedInput';
+import { TranslatePipe } from '../../../pipes/translations';
 
 @Component({
   selector: 'bmb-home-card-header',
@@ -30,6 +31,7 @@ import { logDeprecatedInput } from '../../../utils/logDeprecatedInput';
     BmbActionIconComponent,
     BmbTitleContentComponent,
     BmbNavigationBarComponent,
+    TranslatePipe,
   ],
   templateUrl: './bmb-home-card-header.component.html',
   styleUrl: './bmb-home-card-header.component.scss',
