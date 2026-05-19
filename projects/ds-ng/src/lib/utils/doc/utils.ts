@@ -229,16 +229,18 @@ export const getTECParticularitiesMessage = (
   element = '',
   {
     isParticularity = true,
+    isSpecificRestriction = false,
     isSubStory = false,
     subStoryChart = '-',
   }: {
     isParticularity?: boolean;
+    isSpecificRestriction?: boolean;
     isSubStory?: boolean;
     subStoryChart?: string;
   } = {},
 ): string => `
 ${getAlertBlockquote(
-  `Please remember that **${element || 'this element'}** is a ${isParticularity ? 'particularity' : 'feature'} of the **TEC brand**, that way ***cannot be used*** by other brands.`,
+  `Please remember that **${element || 'this element'}** is a ${isParticularity ? 'particularity' : 'feature'} of the ${isSpecificRestriction ? '**TEC** and **TECMI** brands' : '**TEC brand**'}, that way ***cannot be used*** by ${isSpecificRestriction ? '**GED**' : 'other'} ${isSpecificRestriction ? 'brand' : 'brands'}.`,
   {
     title: `###${getSubStoryIdentifier(isSubStory, subStoryChart)}${RELEVANT_TITLE.warning}`,
     blockquoteType: BlockquoteType.warning,

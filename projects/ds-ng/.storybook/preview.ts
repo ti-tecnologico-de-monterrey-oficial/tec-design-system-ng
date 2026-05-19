@@ -153,6 +153,13 @@ const preview: Preview = {
         story.template = `<p>
           Please remember that <strong>this element</strong> is a particularity of the <strong>TEC brand</strong>, that way <strong><em>cannot be used</em></strong> by other brands.
           </p>`;
+      } else if (
+        context.tags.some((element) => element === 'ged') &&
+        brandingThemes === 'ged'
+      ) {
+        story.template = `<p>
+          Please remember that <strong>this element</strong> is a particularity, that way <strong><em>cannot be used</em></strong> by this brand.
+          </p>`;
       }
 
       return story;
