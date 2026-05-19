@@ -65,6 +65,7 @@ export class BmbContainerButtonComponent {
   enableBookmark = input<boolean>(false);
   isBookmarkActive = model<boolean>(false);
   dropdownMenuItems = input<IDropdownItem[]>([]);
+  alternativeTextRightIcon = input<string>('');
 
   title = input<string>(); // deprecated
 

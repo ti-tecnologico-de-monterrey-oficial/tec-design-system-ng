@@ -55,6 +55,9 @@
     "calendar": "Calendar",
     "subtitle": "Select the calendars you want to view",
     "filter_save": "Save",
+    "filter": "Filter",
+    "previous_month": "Previous Month",
+    "next_month": "Next Month",
     "modal": {
       "title": "Calendars and Notifications",
       "notification_label": "Enable schedule notifications (you will receive a notification 10 minutes before your next class)"
@@ -62,10 +65,19 @@
   },
   "chat_bar": {
     "placeholder": "What would you like to find today?",
-    "drag_files": "Drag your files here"
+    "drag_files": "Drag your files here",
+    "close": "Close",
+    "pause": "Pause recording",
+    "record": "Start recording",
+    "emoji": "Emoji",
+    "add": "Add",
+    "mic": "Microphone",
+    "send_message": "Send message",
+    "loading": "Loading..."
   },
   "digital_id": {
-    "secondary_button_label": "Download ID as PDF"
+    "secondary_button_label": "Download ID as PDF",
+    "close": "Close"
   },
   "dropzone": {
     "drop_instructions": "Drag and drop your files here or",
@@ -95,7 +107,10 @@
     "forgot_password": "Forgot your password?"
   },
   "notice_card": {
-    "button_text": "Understood"
+    "button_text": "Understood",
+    "close": "Close",
+    "next": "Next",
+    "previous": "Previous"
   },
   "step_progress_bar": {
     "label_completed": "Complete",
@@ -165,7 +180,9 @@
       },
       "primary_button": "Insert",
       "secondary_button": "Cancel"
-    }
+    },
+    "text_format": "Text format",
+    "more": "More options"
   },
   "notification_card": {
     "tabs": {
@@ -190,7 +207,9 @@
       "filter_placeholder": "Select an option"
     },
     "no_result": "No matches where found.",
-    "select_all": "Select all"
+    "select_all": "Select all",
+    "close_options": "Close options",
+    "open_options": "Open options"
   },
   "table": {
     "filters": {
@@ -202,7 +221,8 @@
       "max": " maximum",
       "search": "Search",
       "filter": "Filter"
-    }
+    },
+    "search": "Search"
   },
   "search_card": {
     "title": "Find services or people",
@@ -219,7 +239,11 @@
   },
   "input": {
     "content": {
-      "loading_alt": "Loading..."
+      "loading_alt": "Loading...",
+      "copy": "Copy content",
+      "show_password": "Show password",
+      "hide_password": "Hide password",
+      "clear": "Clear"
     }
   },
   "filter_card": {
@@ -244,5 +268,71 @@
     "copy": "Copy content",
     "like": "Like",
     "dislike": "Dislike"
+  },
+  "bookmark": {
+    "bookmark": "Bookmark"
+  },
+  "chevron_title_selector": {
+    "prev": "Previous",
+    "next": "Next"
+  },
+  "calendar_date_picker": {
+    "prev": "Previous month",
+    "next": "Next month"
+  },
+  "dot_paginator": {
+    "prev": "Previous",
+    "next": "Next",
+    "go_to_slide": "Go to slide"
+  },
+  "dropdown_menu": {
+    "open_menu": "Open menu"
+  },
+  "evaluation_rubric": {
+    "close": "Close"
+  },
+  "external_link": {
+    "close": "Close",
+    "open_menu": "Open menu"
+  },
+  "home_card": {
+    "back": "Back",
+    "expand": "Expand",
+    "collapse": "Collapse",
+    "close": "Close"
+  },
+  "inner_header": {
+    "close": "Close",
+    "back": "Back",
+    "search": "Search"
+  },
+  "list_items": {
+    "add": "Add"
+  },
+  "native_modal": {
+    "close": "Close"
+  },
+  "multi_dot_paginator": {
+    "prev": "Previous",
+    "next": "Next",
+    "go_to_slide": "Go to beginning"
+  },
+  "sidebar": {
+    "back": "Back",
+    "close": "Close",
+    "open_menu": "Open menu"
+  },
+  "tabs": {
+    "previous": "Previous",
+    "next": "Next"
+  },
+  "tags": {
+    "close": "Close"
+  },
+  "top_bar": {
+    "search": "Search",
+    "role_switch": "Switch role",
+    "notifications": "Notifications",
+    "help": "Help"
   }
 }

@@ -6,7 +6,7 @@
   <img
     class="bmb-chat-bubbles-lts-mixed-image"
     [src]="message().content.imageUrl"
-    alt="Mixed message image"
+    [attr.alt]="message().content.text || 'Message image'"
     loading="lazy"
   />
 </div>

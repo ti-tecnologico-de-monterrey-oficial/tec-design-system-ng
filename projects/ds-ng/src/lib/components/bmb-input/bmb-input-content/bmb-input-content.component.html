@@ -69,6 +69,7 @@
           [iconSize]="24"
           [disabled]="control().disabled"
           (buttonClick)="actionToExecute()"
+          [alt]="'input.content.' + additionalAction() | translate"
         />
       }
       @if (isClearable() && !isLoading()) {
@@ -77,6 +78,7 @@
           [iconSize]="24"
           [disabled]="control().disabled"
           (buttonClick)="handleClearValue()"
+          [alt]="'input.content.clear' | translate"
         />
       }
       @if (isLoading()) {

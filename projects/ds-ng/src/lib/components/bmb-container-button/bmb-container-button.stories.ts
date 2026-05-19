@@ -220,11 +220,24 @@ ${getBasicExampleBlock('BmbContainerButtonComponent')}
         defaultValue: '',
       },
     },
+    alternativeTextRightIcon: {
+      control: {
+        type: 'text',
+      },
+      description:
+        'The alternative text for the right icon. It is used for accessibility purposes and will be read by screen readers. It is recommended to provide an alternative text that describes the function of the icon, especially if the icon does not have a clear meaning on its own.',
+      table: {
+        category: 'Properties',
+        defaultValue: getDefaultValueControl(),
+        type: { summary: 'string' },
+      },
+    },
   },
   args: {
     componentTitle: 'Tema de App',
     iconLeft: 'home',
     iconRight: 'chevron_right',
+    alternativeTextRightIcon: 'Go to details',
     onButton: () => {
       console.log('Container button clicked');
     },

@@ -24,6 +24,7 @@ import { BmbTitleContentComponent } from '../bmb-title-content/bmb-title-content
 import { BmbContainerComponent } from '../bmb-container/bmb-container.component';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { logDeprecatedInput } from '../../utils/logDeprecatedInput';
+import { TranslatePipe } from '../../pipes/translations';
 
 export interface IBmbEvaluationRubric {
   criterion: string;
@@ -69,6 +70,7 @@ export interface IBmbEvalRubricButtons {
     BmbDividerComponent,
     BmbInputComponent,
     BmbButtonDirective,
+    TranslatePipe,
   ],
   templateUrl: './bmb-evaluation-rubric.component.html',
   styleUrl: './bmb-evaluation-rubric.component.scss',
