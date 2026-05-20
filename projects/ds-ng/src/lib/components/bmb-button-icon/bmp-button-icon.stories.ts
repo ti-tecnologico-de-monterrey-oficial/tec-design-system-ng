@@ -88,6 +88,7 @@ ${RELEVANT_TITLE.note} \`showContainer\` must also be true.
       },
     },
     onButtonClick: getOnClickParam(onEvent),
+    alt: DBmbIconParamDesc.alt,
   },
   args: {
     idElement: '',
@@ -96,6 +97,7 @@ ${RELEVANT_TITLE.note} \`showContainer\` must also be true.
     disabled: false,
     active: false,
     onButtonClick: action('on-click'),
+    alt: 'Button icon',
   },
 } as Meta<typeof BmbButtonIconComponent>;
 
@@ -110,6 +112,7 @@ export const outlineExample = {
   args: {
     icon: 'thumb_down',
     isOutline: true,
+    alt: 'Outline button icon',
   },
 };
 
@@ -118,6 +121,7 @@ export const NoContainerExample = {
   args: {
     icon: 'help',
     showContainer: false,
+    alt: 'No container button icon',
   },
 };
 

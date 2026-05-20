@@ -83,6 +83,7 @@
             icon="chevron_left"
             [iconSize]="24"
             (buttonClick)="toggleChildren(selectedElement)"
+            [alt]="'sidebar.back' | translate"
           />
         }
 
@@ -97,6 +98,7 @@
           [iconSize]="24"
           [isAccentColor]="false"
           (buttonClick)="closeSidebar(selectedElement)"
+          [alt]="'sidebar.close' | translate"
         />
       </section>
       <bmb-divider />
@@ -147,6 +149,7 @@
     [isAccentColor]="false"
     [(isToggleActive)]="isOpen"
     (buttonClick)="handleClose()"
+    [alt]="'sidebar.open_menu' | translate"
   />
   <nav
     #sideNav

@@ -80,12 +80,14 @@ export class BmbTooltipBaseComponent {
     let bottom: string | null = null;
 
     if (!canShowOnLeft && !canShowOnRight) {
-      top = targetPosition.top <= height / 2
-        ? `${targetPosition.bottom + spacing}px`
-        : null;
-      bottom = targetPosition.top > height / 2
-        ? `${Math.max(height - targetPosition.top + spacing, 0)}px`
-        : null;
+      top =
+        targetPosition.top <= height / 2
+          ? `${targetPosition.bottom + spacing}px`
+          : null;
+      bottom =
+        targetPosition.top > height / 2
+          ? `${Math.max(height - targetPosition.top + spacing, 0)}px`
+          : null;
       const centerLeft = Math.max((width - tooltipWidth) / 2, spacing);
       left = `${centerLeft}px`;
     } else {
@@ -100,12 +102,11 @@ export class BmbTooltipBaseComponent {
       } else {
         left = `${targetPosition.right + spacing}px`;
       }
-      top = targetPosition.top <= height / 2
-        ? `${targetPosition.top}px`
-        : null;
-      bottom = targetPosition.top > height / 2
-        ? `${Math.max(height - targetPosition.bottom, 0)}px`
-        : null;
+      top = targetPosition.top <= height / 2 ? `${targetPosition.top}px` : null;
+      bottom =
+        targetPosition.top > height / 2
+          ? `${Math.max(height - targetPosition.bottom, 0)}px`
+          : null;
     }
 
     return {

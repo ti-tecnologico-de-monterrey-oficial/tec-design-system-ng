@@ -1,6 +1,8 @@
 @use '../../../../assets/styles/base/rem' as rem;
 @use '../../../../assets/styles/base/fonts' as fonts;
 @use '../../../../assets/styles/base/mixins' as mixins;
+@use '../../../../assets/styles/base/color-group-name' as colors;
+@use '../../../../assets/styles/base/color-functions' as colorFn;
 
 @mixin text-ellipsis() {
   white-space: nowrap;
@@ -38,6 +40,11 @@ $types: (
   'creative_ripelemon': var(--creative-use-ripe-lemon),
 );
 
+$notification_appearance: colorFn.map-merged(
+  colors.$bmb_push_notification_type,
+  $types
+);
+
 .bmb_push-notification-item {
   @include fonts.font(3, regular);
   margin-bottom: var(--bmb-spacing-m);
@@ -57,7 +64,7 @@ $types: (
     }
 
     &.bmb_push-notification-item-type {
-      @each $name, $color in $types {
+      @each $name, $color in $notification_appearance {
         &-#{$name} {
           background-color: $color;
         }
@@ -65,12 +72,40 @@ $types: (
     }
 
     .bmb_push-notification-item-icon {
-      background-color: rgb(var(--white-primary));
-
-      @each $name, $color in $types {
+      @each $name, $color in $notification_appearance {
         &-#{$name} {
-          color: $color;
+          @if $name == 'semantic-warning' or $name == 'semantic-success' {
+            color: rgb(var(--black-primary));
+          } @else {
+            background-color: rgb(var(--white-primary));
+            color: $color;
+          }
         }
+      }
+    }
+
+    &.bmb_push-notification-item-type-semantic-warning,
+    &.bmb_push-notification-item-type-semantic-success {
+      color: rgb(var(--black-primary));
+
+      .bmb_push-notification-item-title,
+      .bmb_push-notification-item-button,
+      .bmb_input-validator-label {
+        color: rgb(var(--black-primary));
+      }
+
+      .bmb_push-notification-item-title-date,
+      .bmb_push-notification-item-subtitle {
+        color: var(--black-tint);
+      }
+
+      .bmb_push-notification-item-content,
+      .bmb_push-notification-item-user-mail {
+        color: var(--black-light);
+      }
+
+      .bmb_push-notification-item-dont-ask-again .bmb_checkbox-mark {
+        border-color: var(--black-light);
       }
     }
   }
@@ -80,7 +115,7 @@ $types: (
     border-radius: var(--bmb-radius-s);
 
     &.bmb_push-notification-item-type {
-      @each $name, $color in $types {
+      @each $name, $color in $notification_appearance {
         &-#{$name} {
           border-left-color: $color;
         }
@@ -88,7 +123,7 @@ $types: (
     }
 
     .bmb_push-notification-item-icon {
-      @each $name, $color in $types {
+      @each $name, $color in $notification_appearance {
         &-#{$name} {
           background-color: $color;
         }
@@ -247,5 +282,9 @@ $types: (
       grid-area: mail;
       color: var(--white-tint);
     }
+  }
+
+  &-revition {
+    margin-left: var(--bmb-spacing-m);
   }
 }

@@ -25,6 +25,7 @@ import { BmbCheckboxComponent } from '../bmb-checkbox/bmb-checkbox.component';
 import { BmbInputComponent } from '../bmb-input/bmb-input.component';
 import { BmbDateRangeComponent } from '../bmb-date-range/bmb-date-range.component';
 import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
+import { TranslatePipe } from '../../pipes/translations';
 
 import {
   IBmbFiltersPosition,
@@ -44,6 +45,7 @@ import {
     BmbInputComponent,
     BmbDateRangeComponent,
     BmbActionIconComponent,
+    TranslatePipe,
   ],
   templateUrl: './bmb-table-lite.component.html',
   styleUrl: './bmb-table-lite.component.scss',

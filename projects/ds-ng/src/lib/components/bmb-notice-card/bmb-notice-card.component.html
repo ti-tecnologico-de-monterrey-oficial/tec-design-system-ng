@@ -29,6 +29,7 @@
       [icon]="'close'"
       [iconSize]="28"
       (buttonClick)="handleClose()"
+      [alt]="'notice_card.close' | translate"
     />
   </section>
   <section class="bmb_notice-card-content">
@@ -62,6 +63,7 @@
           [icon]="'chevron_left'"
           [iconSize]="28"
           (buttonClick)="onDotPress(0)"
+          [alt]="'notice_card.previous' | translate"
         />
       }
     </div>
@@ -114,6 +116,7 @@
           [icon]="'chevron_right'"
           [iconSize]="28"
           (buttonClick)="onDotPress(1)"
+          [alt]="'notice_card.next' | translate"
         />
       }
     </div>

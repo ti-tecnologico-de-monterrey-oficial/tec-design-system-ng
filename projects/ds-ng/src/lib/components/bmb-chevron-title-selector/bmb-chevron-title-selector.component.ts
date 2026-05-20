@@ -10,6 +10,7 @@ import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.compo
 import { BmbThreeColsComponent } from '../bmb-three-cols/bmb-three-cols.component';
 import { BmbTitleContentComponent } from '../bmb-title-content/bmb-title-content.component';
 import { logDeprecatedInput } from '../../utils/logDeprecatedInput';
+import { TranslatePipe } from '../../pipes/translations';
 
 @Component({
   selector: 'bmb-chevron-title-selector',
@@ -18,6 +19,7 @@ import { logDeprecatedInput } from '../../utils/logDeprecatedInput';
     BmbThreeColsComponent,
     BmbTitleContentComponent,
     BmbActionIconComponent,
+    TranslatePipe,
   ],
   styleUrl: './bmb-chevron-title-selector.component.scss',
   templateUrl: './bmb-chevron-title-selector.component.html',
@@ -33,6 +35,8 @@ export class BmbChevronTitleSelectorComponent {
   trailingIcon = input<string>('');
   isDisabledLeadingIcon = input<boolean>(false);
   isDisabledTrailingIcon = input<boolean>(false);
+  alternativeTextLeadingIcon = input<string>('');
+  alternativeTextTrailingIcon = input<string>('');
 
   onLeadingClick = output();
   onTrailingClick = output();

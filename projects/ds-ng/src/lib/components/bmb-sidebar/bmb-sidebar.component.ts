@@ -13,6 +13,7 @@ import { IPositionButtonMenu } from '../bmb-top-bar/types';
 import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
 import { logDeprecatedInput } from '../../utils/logDeprecatedInput';
 import { BmbDividerComponent } from '../bmb-divider/bmb-divider.component';
+import { TranslatePipe } from '../../pipes/translations';
 
 @Component({
   selector: 'bmb-sidebar',
@@ -23,6 +24,7 @@ import { BmbDividerComponent } from '../bmb-divider/bmb-divider.component';
     BmbCheckExternalLinkButtonComponent,
     BmbActionIconComponent,
     BmbDividerComponent,
+    TranslatePipe,
   ],
   templateUrl: './bmb-sidebar.component.html',
   styleUrl: './bmb-sidebar.component.scss',

@@ -8,9 +8,8 @@ describe('BmbTooltipBaseComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [BmbTooltipBaseComponent]
-    })
-    .compileComponents();
+      imports: [BmbTooltipBaseComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(BmbTooltipBaseComponent);
     component = fixture.componentInstance;

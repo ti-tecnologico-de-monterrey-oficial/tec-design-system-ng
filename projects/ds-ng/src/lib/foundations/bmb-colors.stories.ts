@@ -6,12 +6,14 @@ import {
   IBmbTab,
 } from '../components/bmb-tabs/bmb-tabs.component';
 import {
+  BlockquoteType,
   DESIGN_SYSTEM_TITLE,
   getFoundationDescriptions,
   getGeneralDescription,
   getPageStructureForTemplateStories,
   getSandboxConsiderationsDocumentation,
   getSpecialSpecifications,
+  RELEVANT_TITLE,
   SANDBOX_TITLE,
 } from '../utils/doc/utils';
 import { BmbDividerComponent } from '../components/bmb-divider/bmb-divider.component';
@@ -21,6 +23,11 @@ import { BmbLayoutDirective } from '../directives/bmb-layout/bmb-layout.directiv
 import { BmbLayoutItemDirective } from '../directives/bmb-layout/bmb-layout-item.directive';
 import { BmbVerticalLayoutDirective } from '../directives/bmb-layout/bmb-vertical-layout/bmb-vertical-layout.directive';
 import { BmbVerticalLayoutItemDirective } from '../directives/bmb-layout/bmb-vertical-layout/bmb-vertical-layout-item.directive';
+import {
+  BMB_CREATIVE_COLOR_LIST,
+  BMB_MITEC_COLOR_LIST,
+  BMB_SEMANTIC_COLOR_LIST,
+} from '../types/foundations/colors/color-type';
 
 @Component({
   standalone: true,
@@ -119,7 +126,17 @@ import { BmbVerticalLayoutItemDirective } from '../directives/bmb-layout/bmb-ver
             <header bmbVerticalLayout>
               <h2 bmbVerticalLayoutItem>{{ title }}</h2>
               <p bmbVerticalLayoutItem>
-                Please just click on the color to copy it.
+                Please just click on the color to copy it. Example to use the
+                variable:
+                <strong>
+                  <em>
+                    {{
+                      isNameStyle || isGradientStyle
+                        ? 'var([var-name]);'
+                        : 'rgb(var([var-name]));'
+                    }}
+                  </em>
+                </strong>
               </p>
             </header>
           </section>
@@ -685,7 +702,6 @@ class StorybookColorsPlaygroundComponent {
       '--general-contrasts',
       '--general-contrasts-100',
       '--general-contrasts-90',
-      '--general-contrasts-85',
       '--general-contrasts-80',
       '--general-contrasts-75',
       '--general-contrasts-60',
@@ -704,7 +720,6 @@ class StorybookColorsPlaygroundComponent {
       '--general-contrasts-main-selection',
       '--general-contrasts-icon-selection',
       '--general-contrasts-main-selection-alternative',
-      '--general-contrasts-main-selection-icon-alternative',
     ],
     [
       '--general-contrasts-input-background',
@@ -717,7 +732,6 @@ class StorybookColorsPlaygroundComponent {
   containers: string[][] = [
     [
       '--containers-background',
-      '--containers-background-alternative',
       '--containers-main',
       '--containers-modal',
       '--containers-container-button',
@@ -747,6 +761,8 @@ class StorybookColorsPlaygroundComponent {
     '--buttons-inactive-step',
     '--buttons-stroke-alternative-normal',
     '--buttons-stroke-primary-selected',
+    '--buttons-blur-primary-select',
+    '--buttons-stroke-primary-hover',
     '--buttons-destructive',
     '--buttons-text-link',
   ];
@@ -765,41 +781,11 @@ class StorybookColorsPlaygroundComponent {
     ],
   ];
 
-  semanticColors: string[] = [
-    '--semantic-success',
-    '--semantic-info-event',
-    '--semantic-warning',
-    '--semantic-error',
-    '--semantic-brand',
-    '--semantic-alert',
-    '--semantic-neutral',
-  ];
+  semanticColors: string[] = this.parseColors(BMB_SEMANTIC_COLOR_LIST);
 
-  mitecInstitutionalColors: string[] = [
-    '--mitec-blue',
-    '--mitec-red',
-    '--mitec-green',
-    '--mitec-orange',
-    '--mitec-purple',
-  ];
+  mitecInstitutionalColors: string[] = this.parseColors(BMB_MITEC_COLOR_LIST);
 
-  creativeUseColors: string[] = [
-    '--creative-use-violet',
-    '--creative-use-strong',
-    '--creative-use-indigo',
-    '--creative-use-emerald',
-    '--creative-use-licorice',
-    '--creative-use-dark-teal',
-    '--creative-use-peach',
-    '--creative-use-sepia',
-    '--creative-use-soft-red',
-    '--creative-use-wattle',
-    '--creative-use-ship-cove',
-    '--creative-use-plantation',
-    '--creative-use-rum',
-    '--creative-use-ripe-lemon',
-    '--creative-use-hibiscus',
-  ];
+  creativeUseColors: string[] = this.parseColors(BMB_CREATIVE_COLOR_LIST);
 
   tecmilenioColors: string[] = ['--tecmi-green', '--tecmi-green-2'];
 
@@ -854,6 +840,10 @@ class StorybookColorsPlaygroundComponent {
     '--gray-ged-900',
     '--gray-ged-950',
   ];
+
+  parseColors(colorList: string[]): string[] {
+    return [...colorList.map((element: string) => `--${element}`)];
+  }
 
   isList(element: any): boolean {
     return Array.isArray(element);

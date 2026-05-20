@@ -33,7 +33,7 @@ $backgrounds: (
   'general_contrasts-main-selection': var(--general-contrasts-main-selection),
   'general_contrasts-main-selection-alternative':
     var(--general-contrasts-main-selection-alternative),
-  'white': rgb(var(--white-primary)),
+  'white_primary': rgb(var(--white-primary)),
 );
 
 :host {
@@ -133,5 +133,22 @@ $backgrounds: (
     height: rem.rem_calc(64);
     object-fit: contain;
     width: rem.rem_calc(64);
+  }
+
+  @media (height <= 600px) {
+    .bmb_box-icon.regular {
+      height: 3rem;
+      width: 3rem;
+
+      .bmb_icon-svg-auto-size {
+        height: 1.5rem !important;
+        width: 1.5rem !important;
+      }
+    }
+
+    &-title {
+      -webkit-line-clamp: 1;
+      line-clamp: 1;
+    }
   }
 }

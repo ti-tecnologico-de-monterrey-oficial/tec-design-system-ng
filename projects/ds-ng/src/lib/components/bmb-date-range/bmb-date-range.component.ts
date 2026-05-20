@@ -80,8 +80,8 @@ export class BmbDateRangeComponent implements OnInit {
       this.isControlEndNull = true;
     }
 
-    const controlStartSubscription = this.controlStart()?.valueChanges.subscribe(
-      (value) => {
+    const controlStartSubscription =
+      this.controlStart()?.valueChanges.subscribe((value) => {
         if (!!value) {
           const parsedDate = DateTime.fromFormat(value, this.dateFormat());
 
@@ -93,8 +93,7 @@ export class BmbDateRangeComponent implements OnInit {
             .minus({ day: 1 })
             .toFormat(this.dateFormat());
         }
-      },
-    );
+      });
 
     const controlEndSubscription = this.controlEnd()?.valueChanges.subscribe(
       (value) => {

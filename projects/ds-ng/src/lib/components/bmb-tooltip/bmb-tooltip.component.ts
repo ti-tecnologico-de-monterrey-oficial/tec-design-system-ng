@@ -16,11 +16,7 @@ export type IBmbJustifyTooltip = 'centered' | 'before' | 'after'; //Deprecated
 @Component({
   selector: 'bmb-tooltip',
   standalone: true,
-  imports: [
-    CommonModule,
-    BmbActionIconComponent,
-    BmbTooltipBaseComponent,
-  ],
+  imports: [CommonModule, BmbActionIconComponent, BmbTooltipBaseComponent],
   templateUrl: './bmb-tooltip.component.html',
   styleUrl: './bmb-tooltip.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -38,7 +34,6 @@ export class BmbTooltipComponent {
   justify = input<string>(); // deprecated
 
   constructor() {
-
     effect(() => {
       const deprecatedTitle = this.title();
       const newTitle = this.componentTitle();
