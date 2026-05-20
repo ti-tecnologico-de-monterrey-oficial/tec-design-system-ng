@@ -334,5 +334,9 @@
     "role_switch": "Cambiar rol",
     "notifications": "Notificaciones",
     "help": "Ayuda"
+  },
+  "image": {
+    "previous": "Imagen anterior",
+    "next": "Siguiente imagen"
   }
 }
