@@ -4,6 +4,7 @@ import { By } from '@angular/platform-browser';
 
 import { OptionsMessageComponent } from './bmb-options-message.component';
 import { BmbOptionsMessage } from '../../types';
+import { provideRouter } from '@angular/router';
 
 let componentRef: ComponentRef<OptionsMessageComponent>;
 
@@ -39,6 +40,7 @@ describe('OptionsMessageComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [OptionsMessageComponent],
+      providers: [provideRouter([])],
     }).compileComponents();
 
     fixture = TestBed.createComponent(OptionsMessageComponent);
@@ -87,7 +89,7 @@ describe('OptionsMessageComponent', () => {
       By.css('bmb-container-button'),
     )[0];
 
-    expect(button.componentInstance.componentTitle).toBe('Option 1');
+    expect(button.componentInstance.componentTitle()).toBe('Option 1');
   });
 
   it('should pass correct target input', () => {
@@ -95,7 +97,7 @@ describe('OptionsMessageComponent', () => {
       By.css('bmb-container-button'),
     )[0];
 
-    expect(button.componentInstance.target).toBe('_blank');
+    expect(button.componentInstance.target()).toBe('_blank');
   });
 
   it('should fallback target to _self', () => {
@@ -103,7 +105,7 @@ describe('OptionsMessageComponent', () => {
       By.css('bmb-container-button'),
     )[1];
 
-    expect(button.componentInstance.target).toBe('_self');
+    expect(button.componentInstance.target()).toBe('_self');
   });
 
   it('should pass correct link input', () => {
@@ -111,7 +113,7 @@ describe('OptionsMessageComponent', () => {
       By.css('bmb-container-button'),
     )[0];
 
-    expect(button.componentInstance.link).toBe('/option-1');
+    expect(button.componentInstance.link()).toBe('/option-1');
   });
 
   it('should fallback link to empty string', () => {
@@ -119,19 +121,19 @@ describe('OptionsMessageComponent', () => {
       By.css('bmb-container-button'),
     )[1];
 
-    expect(button.componentInstance.link).toBe('');
+    expect(button.componentInstance.link()).toBe('');
   });
 
   it('should set small input as true', () => {
     const button = fixture.debugElement.query(By.css('bmb-container-button'));
 
-    expect(button.componentInstance.small).toBeTrue();
+    expect(button.componentInstance.small()).toBeTrue();
   });
 
   it('should set square input as true', () => {
     const button = fixture.debugElement.query(By.css('bmb-container-button'));
 
-    expect(button.componentInstance.square).toBeTrue();
+    expect(button.componentInstance.square()).toBeTrue();
   });
 
   it('should render data-testid attribute', () => {
