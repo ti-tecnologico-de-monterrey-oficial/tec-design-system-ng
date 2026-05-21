@@ -1,10 +1,8 @@
 # Novedades ## [v1.6.3-k] -
-2026-05-19
+2026-05-21
 
 ### 🚀 Novedades
 
-*
-chat bubble lts
 *
 micro CSS update
 *
@@ -16,6 +14,10 @@ chat bubble lts
 *
 vq.6.3-k
 *
+chat bubble lts
+*
+Button container mobile created
+*
 revert service projection changes
 *
 feat(component / bottom navigation): Se agregaron traducciones a los tooltips
@@ -26,13 +28,13 @@ feat(component/push-notification): se realizo ajuste en color de CSS según Figm
 *
 feat(component / inner header): Se agregaron traducciones a los tooltips
 *
-feat(component / chevron title): Se agregaron traducciones a los tooltips
+chore: se quito la restricción en la documentación de Storybook del componente "FAB Overlay drawer".
+*
+Fixes after PR review
 *
 feat(component / multi dot paginator): Se agregaron traducciones a los tooltips
 *
 feat(component / home card): Se agregaron traducciones a los tooltips
-*
-chore: se agregó ejemplo de uso de las variables de colores nombras.
 *
 feat(component / container button): Se agregaron traducciones a los tooltips
 *
@@ -46,29 +48,33 @@ feat(component / top bar): Se agregaron traducciones a los tooltips
 *
 feat(component / calendar): Se agregaron traducciones a los tooltips
 *
-feat(component / chatbar): Se agregaron traducciones a los tooltips
-*
-Update services.json
-*
 feat(component / table): Se agregaron traducciones a los tooltips
 *
-feat(component / button icon): Se agregaron traducciones a los tooltips
-*
 feat(component/chat-bubble): se realizo ajuste en color de CSS según Figma. Cambios de contraste para Tec milenio.
+*
+feat(component / sidebar): Se agregaron traducciones a los tooltips
+*
+feat(component / date picker): Se agregaron traducciones a los tooltips
+*
+feat(component / evaluation rubric): Se agregaron traducciones a los tooltips
+*
+feat(component/tags): se realizo ajuste en color de CSS según Figma. Cambios de contraste para Tec milenio.
+*
+chat bubble lts
+*
+chore: se agregó ejemplo de uso de las variables de colores nombras.
+*
+Update services.json
 *
 feat(component/calentar-standar): se realizo ajuste en color de CSS según Figma. Cambios de contraste para Tec milenio.
 *
 feat(component / tags): Se agregaron traducciones a los tooltips
-*
-feat(component / sidebar): Se agregaron traducciones a los tooltips
 *
 feat(component / modal): Se agregaron traducciones a los tooltips
 *
 feat(component / header section): Se agregaron traducciones a los tooltips
 *
 feat(component / external link): Se agregaron traducciones a los tooltips
-*
-feat(component / date picker): Se agregaron traducciones a los tooltips
 *
 feat(component/inner-header): se realizo ajuste en color de CSS según Figma. Cambios de contraste para Tec milenio.
 *
@@ -77,8 +83,6 @@ feat(component / notice card): Se agregaron traducciones a los tooltips
 feat(component / home card): Se agregaron traducciones a los tooltips
 *
 feat(component / header section): Se agregaron traducciones a los tooltips
-*
-feat(component / evaluation rubric): Se agregaron traducciones a los tooltips
 *
 Update bmb-interactive-icon.stories.ts
 *
@@ -102,8 +106,6 @@ version 1.6.3-j
 *
 Formato
 *
-bubble chat
-*
 Formato
 *
 Formato
@@ -123,8 +125,6 @@ chore: se agregó documentación de ejemplo para implementar rangos de fechas.
 chore: se implemento códogo para evitar errores por "typo". Los tipos de datos se generan a partir de objetos json  al igual que los listados con los nombres para la documentación.
 *
 top bar
-*
-bubble chat
 *
 top bar
 *
@@ -156,6 +156,8 @@ fix(component / search box): se corrigieron los contrastes de los iconos
 *
 Fix(component / totp): Se corrigieron los bullets en la parte inferior
 *
+feat(component / chevron title): Se agregaron traducciones a los tooltips
+*
 fix(component / focus element): Se agregó la posibilidad de mostrar el 0
 *
 chore: se agregó opacidad para correcto funcionamiento del componente "Media card".
@@ -164,9 +166,13 @@ chore: se agregó nueva variable a todas las marcas para homologar con Figma
 *
 chore se elimino variables "--bmb-calendar-button-selected-background" ahora se usará "--buttons-alternative-normal" para homologar con Figma.
 *
+feat(component / chatbar): Se agregaron traducciones a los tooltips
+*
 Angular 21 note
 *
 fix(component / search card): Se corrigieron los colores de los servicios
+*
+feat(component / button icon): Se agregaron traducciones a los tooltips
 *
 fix(component / frequent app selector): Se solucionó el problema de los botones de distintos tamaños
 *
@@ -196,11 +202,11 @@ top bar
 *
 Update
 *
-chore: se ocultó elemento de las propiedades.
+Formato
 *
 bubble chat
 *
-Formato
+bubble chat
 *
 new config
 *
@@ -213,6 +219,8 @@ Formato
 Formato
 *
 Formato
+*
+bubble chat
 *
 Add conditional visibility and cascading options to filter card component
 *
@@ -375,6 +383,8 @@ chore: se actualizó el color de la variable '--buttons-inactive-step' para la m
 chore: se agregó código para prevenir la propagación y detenerla.
 *
 chore: se eliminó código que no se utiliza.
+*
+chore: se ocultó elemento de las propiedades.
 *
 chore: se eliminó código no útil (no utilizado).
 *
@@ -392,8 +402,6 @@ chore: se eliminó código que no se utiliza
 
 ### 🆕 Nuevos Componentes
 
-- **chat bubble lts**:
-chat bubble lts
 - **micro CSS update**:
 micro CSS update
 - **format**:
@@ -404,6 +412,10 @@ formato
 chat bubble lts
 - **vq.6.3-k**:
 vq.6.3-k
+- **chat bubble lts**:
+chat bubble lts
+- **Button container mobile created**:
+Button container mobile created
 - **revert service projection changes**:
 revert service projection changes
 - **feat(component / bottom navigation): Se agregaron traducciones a los tooltips**:
@@ -414,14 +426,14 @@ feat(component / search card): Se estandarizaron los colores para los iconos
 feat(component/push-notification): se realizo ajuste en color de CSS según Figma. Cambios de contraste para Tec milenio.
 - **feat(component / inner header): Se agregaron traducciones a los tooltips**:
 feat(component / inner header): Se agregaron traducciones a los tooltips
-- **feat(component / chevron title): Se agregaron traducciones a los tooltips**:
-feat(component / chevron title): Se agregaron traducciones a los tooltips
+- **chore: se quito la restricción en la documentación de Storybook del componente "FAB Overlay drawer".**:
+chore: se quito la restricción en la documentación de Storybook del componente "FAB Overlay drawer".
+- **Fixes after PR review**:
+Fixes after PR review
 - **feat(component / multi dot paginator): Se agregaron traducciones a los tooltips**:
 feat(component / multi dot paginator): Se agregaron traducciones a los tooltips
 - **feat(component / home card): Se agregaron traducciones a los tooltips**:
 feat(component / home card): Se agregaron traducciones a los tooltips
-- **chore: se agregó ejemplo de uso de las variables de colores nombras.**:
-chore: se agregó ejemplo de uso de las variables de colores nombras.
 - **feat(component / container button): Se agregaron traducciones a los tooltips**:
 feat(component / container button): Se agregaron traducciones a los tooltips
 - **feat(component / dot paginator): Se agregaron traducciones a los tooltips**:
@@ -434,30 +446,34 @@ feat(component / list items): Se agregaron traducciones a los tooltips
 feat(component / top bar): Se agregaron traducciones a los tooltips
 - **feat(component / calendar): Se agregaron traducciones a los tooltips**:
 feat(component / calendar): Se agregaron traducciones a los tooltips
-- **feat(component / chatbar): Se agregaron traducciones a los tooltips**:
-feat(component / chatbar): Se agregaron traducciones a los tooltips
-- **Update services.json**:
-Update services.json
 - **feat(component / table): Se agregaron traducciones a los tooltips**:
 feat(component / table): Se agregaron traducciones a los tooltips
-- **feat(component / button icon): Se agregaron traducciones a los tooltips**:
-feat(component / button icon): Se agregaron traducciones a los tooltips
 - **feat(component/chat-bubble): se realizo ajuste en color de CSS según Figma. Cambios de contraste para Tec milenio.**:
 feat(component/chat-bubble): se realizo ajuste en color de CSS según Figma. Cambios de contraste para Tec milenio.
+- **feat(component / sidebar): Se agregaron traducciones a los tooltips**:
+feat(component / sidebar): Se agregaron traducciones a los tooltips
+- **feat(component / date picker): Se agregaron traducciones a los tooltips**:
+feat(component / date picker): Se agregaron traducciones a los tooltips
+- **feat(component / evaluation rubric): Se agregaron traducciones a los tooltips**:
+feat(component / evaluation rubric): Se agregaron traducciones a los tooltips
+- **feat(component/tags): se realizo ajuste en color de CSS según Figma. Cambios de contraste para Tec milenio.**:
+feat(component/tags): se realizo ajuste en color de CSS según Figma. Cambios de contraste para Tec milenio.
+- **chat bubble lts**:
+chat bubble lts
+- **chore: se agregó ejemplo de uso de las variables de colores nombras.**:
+chore: se agregó ejemplo de uso de las variables de colores nombras.
+- **Update services.json**:
+Update services.json
 - **feat(component/calentar-standar): se realizo ajuste en color de CSS según Figma. Cambios de contraste para Tec milenio.**:
 feat(component/calentar-standar): se realizo ajuste en color de CSS según Figma. Cambios de contraste para Tec milenio.
 - **feat(component / tags): Se agregaron traducciones a los tooltips**:
 feat(component / tags): Se agregaron traducciones a los tooltips
-- **feat(component / sidebar): Se agregaron traducciones a los tooltips**:
-feat(component / sidebar): Se agregaron traducciones a los tooltips
 - **feat(component / modal): Se agregaron traducciones a los tooltips**:
 feat(component / modal): Se agregaron traducciones a los tooltips
 - **feat(component / header section): Se agregaron traducciones a los tooltips**:
 feat(component / header section): Se agregaron traducciones a los tooltips
 - **feat(component / external link): Se agregaron traducciones a los tooltips**:
 feat(component / external link): Se agregaron traducciones a los tooltips
-- **feat(component / date picker): Se agregaron traducciones a los tooltips**:
-feat(component / date picker): Se agregaron traducciones a los tooltips
 - **feat(component/inner-header): se realizo ajuste en color de CSS según Figma. Cambios de contraste para Tec milenio.**:
 feat(component/inner-header): se realizo ajuste en color de CSS según Figma. Cambios de contraste para Tec milenio.
 - **feat(component / notice card): Se agregaron traducciones a los tooltips**:
@@ -466,8 +482,6 @@ feat(component / notice card): Se agregaron traducciones a los tooltips
 feat(component / home card): Se agregaron traducciones a los tooltips
 - **feat(component / header section): Se agregaron traducciones a los tooltips**:
 feat(component / header section): Se agregaron traducciones a los tooltips
-- **feat(component / evaluation rubric): Se agregaron traducciones a los tooltips**:
-feat(component / evaluation rubric): Se agregaron traducciones a los tooltips
 - **Update bmb-interactive-icon.stories.ts**:
 Update bmb-interactive-icon.stories.ts
 - **feat(component / tabs): Se agregaron traducciones a los tooltips**:
@@ -490,8 +504,6 @@ chat bubble lts
 version 1.6.3-j
 - **Formato**:
 Formato
-- **bubble chat**:
-bubble chat
 - **Formato**:
 Formato
 - **Formato**:
@@ -512,8 +524,6 @@ chore: se agregó documentación de ejemplo para implementar rangos de fechas.
 chore: se implemento códogo para evitar errores por "typo". Los tipos de datos se generan a partir de objetos json  al igual que los listados con los nombres para la documentación.
 - **top bar**:
 top bar
-- **bubble chat**:
-bubble chat
 - **top bar**:
 top bar
 - **chore: se agregaron variables, se depuraron variables para homologar con Figma.**:
@@ -544,6 +554,8 @@ chore: se eliminaron nuevas variables porque no se utilizan en ningún component
 fix(component / search box): se corrigieron los contrastes de los iconos
 - **Fix(component / totp): Se corrigieron los bullets en la parte inferior**:
 Fix(component / totp): Se corrigieron los bullets en la parte inferior
+- **feat(component / chevron title): Se agregaron traducciones a los tooltips**:
+feat(component / chevron title): Se agregaron traducciones a los tooltips
 - **fix(component / focus element): Se agregó la posibilidad de mostrar el 0**:
 fix(component / focus element): Se agregó la posibilidad de mostrar el 0
 - **chore: se agregó opacidad para correcto funcionamiento del componente "Media card".**:
@@ -552,10 +564,14 @@ chore: se agregó opacidad para correcto funcionamiento del componente "Media ca
 chore: se agregó nueva variable a todas las marcas para homologar con Figma
 - **chore se elimino variables "--bmb-calendar-button-selected-background" ahora se usará "--buttons-alternative-normal" para homologar con Figma.**:
 chore se elimino variables "--bmb-calendar-button-selected-background" ahora se usará "--buttons-alternative-normal" para homologar con Figma.
+- **feat(component / chatbar): Se agregaron traducciones a los tooltips**:
+feat(component / chatbar): Se agregaron traducciones a los tooltips
 - **Angular 21 note**:
 Angular 21 note
 - **fix(component / search card): Se corrigieron los colores de los servicios**:
 fix(component / search card): Se corrigieron los colores de los servicios
+- **feat(component / button icon): Se agregaron traducciones a los tooltips**:
+feat(component / button icon): Se agregaron traducciones a los tooltips
 - **fix(component / frequent app selector): Se solucionó el problema de los botones de distintos tamaños**:
 fix(component / frequent app selector): Se solucionó el problema de los botones de distintos tamaños
 - **feat(component / bookmark): Se agregaron traducciones a los tooltips**:
@@ -584,12 +600,12 @@ chore: se eliminó código que no se utiliza.
 top bar
 - **Update**:
 Update
-- **chore: se ocultó elemento de las propiedades.**:
-chore: se ocultó elemento de las propiedades.
-- **bubble chat**:
-bubble chat
 - **Formato**:
 Formato
+- **bubble chat**:
+bubble chat
+- **bubble chat**:
+bubble chat
 - **new config**:
 new config
 - **build**:
@@ -602,6 +618,8 @@ Formato
 Formato
 - **Formato**:
 Formato
+- **bubble chat**:
+bubble chat
 - **Add conditional visibility and cascading options to filter card component**:
 Add conditional visibility and cascading options to filter card component
 - **fix(component/sidebar): Se realizo refactorización de código para depurar elementos y simplificar estructura. La navegación ahora es en su mayoría manejo con CSS.**:
@@ -764,6 +782,8 @@ chore: se actualizó el color de la variable '--buttons-inactive-step' para la m
 chore: se agregó código para prevenir la propagación y detenerla.
 - **chore: se eliminó código que no se utiliza.**:
 chore: se eliminó código que no se utiliza.
+- **chore: se ocultó elemento de las propiedades.**:
+chore: se ocultó elemento de las propiedades.
 - **chore: se eliminó código no útil (no utilizado).**:
 chore: se eliminó código no útil (no utilizado).
 - **topbar user**:
@@ -781,8 +801,6 @@ chore: se eliminó código que no se utiliza
 
 ### 🔄 Componentes Actualizados
 
-- **chat bubble lts**:
-chat bubble lts
 - **micro CSS update**:
 micro CSS update
 - **format**:
@@ -793,6 +811,10 @@ formato
 chat bubble lts
 - **vq.6.3-k**:
 vq.6.3-k
+- **chat bubble lts**:
+chat bubble lts
+- **Button container mobile created**:
+Button container mobile created
 - **revert service projection changes**:
 revert service projection changes
 - **feat(component / bottom navigation): Se agregaron traducciones a los tooltips**:
@@ -803,14 +825,14 @@ feat(component / search card): Se estandarizaron los colores para los iconos
 feat(component/push-notification): se realizo ajuste en color de CSS según Figma. Cambios de contraste para Tec milenio.
 - **feat(component / inner header): Se agregaron traducciones a los tooltips**:
 feat(component / inner header): Se agregaron traducciones a los tooltips
-- **feat(component / chevron title): Se agregaron traducciones a los tooltips**:
-feat(component / chevron title): Se agregaron traducciones a los tooltips
+- **chore: se quito la restricción en la documentación de Storybook del componente "FAB Overlay drawer".**:
+chore: se quito la restricción en la documentación de Storybook del componente "FAB Overlay drawer".
+- **Fixes after PR review**:
+Fixes after PR review
 - **feat(component / multi dot paginator): Se agregaron traducciones a los tooltips**:
 feat(component / multi dot paginator): Se agregaron traducciones a los tooltips
 - **feat(component / home card): Se agregaron traducciones a los tooltips**:
 feat(component / home card): Se agregaron traducciones a los tooltips
-- **chore: se agregó ejemplo de uso de las variables de colores nombras.**:
-chore: se agregó ejemplo de uso de las variables de colores nombras.
 - **feat(component / container button): Se agregaron traducciones a los tooltips**:
 feat(component / container button): Se agregaron traducciones a los tooltips
 - **feat(component / dot paginator): Se agregaron traducciones a los tooltips**:
@@ -823,30 +845,34 @@ feat(component / list items): Se agregaron traducciones a los tooltips
 feat(component / top bar): Se agregaron traducciones a los tooltips
 - **feat(component / calendar): Se agregaron traducciones a los tooltips**:
 feat(component / calendar): Se agregaron traducciones a los tooltips
-- **feat(component / chatbar): Se agregaron traducciones a los tooltips**:
-feat(component / chatbar): Se agregaron traducciones a los tooltips
-- **Update services.json**:
-Update services.json
 - **feat(component / table): Se agregaron traducciones a los tooltips**:
 feat(component / table): Se agregaron traducciones a los tooltips
-- **feat(component / button icon): Se agregaron traducciones a los tooltips**:
-feat(component / button icon): Se agregaron traducciones a los tooltips
 - **feat(component/chat-bubble): se realizo ajuste en color de CSS según Figma. Cambios de contraste para Tec milenio.**:
 feat(component/chat-bubble): se realizo ajuste en color de CSS según Figma. Cambios de contraste para Tec milenio.
+- **feat(component / sidebar): Se agregaron traducciones a los tooltips**:
+feat(component / sidebar): Se agregaron traducciones a los tooltips
+- **feat(component / date picker): Se agregaron traducciones a los tooltips**:
+feat(component / date picker): Se agregaron traducciones a los tooltips
+- **feat(component / evaluation rubric): Se agregaron traducciones a los tooltips**:
+feat(component / evaluation rubric): Se agregaron traducciones a los tooltips
+- **feat(component/tags): se realizo ajuste en color de CSS según Figma. Cambios de contraste para Tec milenio.**:
+feat(component/tags): se realizo ajuste en color de CSS según Figma. Cambios de contraste para Tec milenio.
+- **chat bubble lts**:
+chat bubble lts
+- **chore: se agregó ejemplo de uso de las variables de colores nombras.**:
+chore: se agregó ejemplo de uso de las variables de colores nombras.
+- **Update services.json**:
+Update services.json
 - **feat(component/calentar-standar): se realizo ajuste en color de CSS según Figma. Cambios de contraste para Tec milenio.**:
 feat(component/calentar-standar): se realizo ajuste en color de CSS según Figma. Cambios de contraste para Tec milenio.
 - **feat(component / tags): Se agregaron traducciones a los tooltips**:
 feat(component / tags): Se agregaron traducciones a los tooltips
-- **feat(component / sidebar): Se agregaron traducciones a los tooltips**:
-feat(component / sidebar): Se agregaron traducciones a los tooltips
 - **feat(component / modal): Se agregaron traducciones a los tooltips**:
 feat(component / modal): Se agregaron traducciones a los tooltips
 - **feat(component / header section): Se agregaron traducciones a los tooltips**:
 feat(component / header section): Se agregaron traducciones a los tooltips
 - **feat(component / external link): Se agregaron traducciones a los tooltips**:
 feat(component / external link): Se agregaron traducciones a los tooltips
-- **feat(component / date picker): Se agregaron traducciones a los tooltips**:
-feat(component / date picker): Se agregaron traducciones a los tooltips
 - **feat(component/inner-header): se realizo ajuste en color de CSS según Figma. Cambios de contraste para Tec milenio.**:
 feat(component/inner-header): se realizo ajuste en color de CSS según Figma. Cambios de contraste para Tec milenio.
 - **feat(component / notice card): Se agregaron traducciones a los tooltips**:
@@ -855,8 +881,6 @@ feat(component / notice card): Se agregaron traducciones a los tooltips
 feat(component / home card): Se agregaron traducciones a los tooltips
 - **feat(component / header section): Se agregaron traducciones a los tooltips**:
 feat(component / header section): Se agregaron traducciones a los tooltips
-- **feat(component / evaluation rubric): Se agregaron traducciones a los tooltips**:
-feat(component / evaluation rubric): Se agregaron traducciones a los tooltips
 - **Update bmb-interactive-icon.stories.ts**:
 Update bmb-interactive-icon.stories.ts
 - **feat(component / tabs): Se agregaron traducciones a los tooltips**:
@@ -879,8 +903,6 @@ chat bubble lts
 version 1.6.3-j
 - **Formato**:
 Formato
-- **bubble chat**:
-bubble chat
 - **Formato**:
 Formato
 - **Formato**:
@@ -901,8 +923,6 @@ chore: se agregó documentación de ejemplo para implementar rangos de fechas.
 chore: se implemento códogo para evitar errores por "typo". Los tipos de datos se generan a partir de objetos json  al igual que los listados con los nombres para la documentación.
 - **top bar**:
 top bar
-- **bubble chat**:
-bubble chat
 - **top bar**:
 top bar
 - **chore: se agregaron variables, se depuraron variables para homologar con Figma.**:
@@ -933,6 +953,8 @@ chore: se eliminaron nuevas variables porque no se utilizan en ningún component
 fix(component / search box): se corrigieron los contrastes de los iconos
 - **Fix(component / totp): Se corrigieron los bullets en la parte inferior**:
 Fix(component / totp): Se corrigieron los bullets en la parte inferior
+- **feat(component / chevron title): Se agregaron traducciones a los tooltips**:
+feat(component / chevron title): Se agregaron traducciones a los tooltips
 - **fix(component / focus element): Se agregó la posibilidad de mostrar el 0**:
 fix(component / focus element): Se agregó la posibilidad de mostrar el 0
 - **chore: se agregó opacidad para correcto funcionamiento del componente "Media card".**:
@@ -941,10 +963,14 @@ chore: se agregó opacidad para correcto funcionamiento del componente "Media ca
 chore: se agregó nueva variable a todas las marcas para homologar con Figma
 - **chore se elimino variables "--bmb-calendar-button-selected-background" ahora se usará "--buttons-alternative-normal" para homologar con Figma.**:
 chore se elimino variables "--bmb-calendar-button-selected-background" ahora se usará "--buttons-alternative-normal" para homologar con Figma.
+- **feat(component / chatbar): Se agregaron traducciones a los tooltips**:
+feat(component / chatbar): Se agregaron traducciones a los tooltips
 - **Angular 21 note**:
 Angular 21 note
 - **fix(component / search card): Se corrigieron los colores de los servicios**:
 fix(component / search card): Se corrigieron los colores de los servicios
+- **feat(component / button icon): Se agregaron traducciones a los tooltips**:
+feat(component / button icon): Se agregaron traducciones a los tooltips
 - **fix(component / frequent app selector): Se solucionó el problema de los botones de distintos tamaños**:
 fix(component / frequent app selector): Se solucionó el problema de los botones de distintos tamaños
 - **feat(component / bookmark): Se agregaron traducciones a los tooltips**:
@@ -973,12 +999,12 @@ chore: se eliminó código que no se utiliza.
 top bar
 - **Update**:
 Update
-- **chore: se ocultó elemento de las propiedades.**:
-chore: se ocultó elemento de las propiedades.
-- **bubble chat**:
-bubble chat
 - **Formato**:
 Formato
+- **bubble chat**:
+bubble chat
+- **bubble chat**:
+bubble chat
 - **new config**:
 new config
 - **build**:
@@ -991,6 +1017,8 @@ Formato
 Formato
 - **Formato**:
 Formato
+- **bubble chat**:
+bubble chat
 - **Add conditional visibility and cascading options to filter card component**:
 Add conditional visibility and cascading options to filter card component
 - **fix(component/sidebar): Se realizo refactorización de código para depurar elementos y simplificar estructura. La navegación ahora es en su mayoría manejo con CSS.**:
@@ -1153,6 +1181,8 @@ chore: se actualizó el color de la variable '--buttons-inactive-step' para la m
 chore: se agregó código para prevenir la propagación y detenerla.
 - **chore: se eliminó código que no se utiliza.**:
 chore: se eliminó código que no se utiliza.
+- **chore: se ocultó elemento de las propiedades.**:
+chore: se ocultó elemento de las propiedades.
 - **chore: se eliminó código no útil (no utilizado).**:
 chore: se eliminó código no útil (no utilizado).
 - **topbar user**:
