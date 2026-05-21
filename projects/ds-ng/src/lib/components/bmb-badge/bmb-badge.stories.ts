@@ -1,52 +1,26 @@
 import { moduleMetadata, type Meta, type StoryObj } from '@storybook/angular';
 import { BmbBadgeComponent } from './bmb-badge.component';
-import { IBbmBgAppearance } from '../bmb-advertisement-card/types';
 import {
+  BlockquoteType,
+  getAlertBlockquote,
   getArchitectureSection,
   getBasicExampleBlock,
   getGeneralComponentDescription,
   getGeneralDescription,
+  getSpecialSpecifications,
+  RELEVANT_TITLE,
 } from '../../utils/doc/utils';
 import {
   getAppearanceParam,
-  getDefaultValueDesc,
   getPropertyParamDesc,
   getWidthIncreaseDesc,
 } from '../../utils/doc/parameterDescriptions';
 import { BmbDividerComponent } from '../bmb-divider/bmb-divider.component';
+import { BMB_BADGE_COLOR_LIST } from '../../types/foundations/colors/color-type';
 
 const defaultAppearanceValue: string = 'normal';
 
-const appearanceOptions: IBbmBgAppearance[] = [
-  'normal',
-  'strong',
-  'success',
-  'info',
-  'warning',
-  'error',
-  'brand',
-  'alert',
-  'disabled',
-  'mitec_blue',
-  'mitec_red',
-  'mitec_green',
-  'mitec_orange',
-  'mitec_purple',
-  'creative_violet',
-  'creative_indigo',
-  'creative_emerald',
-  'creative_licorice',
-  'creative_darkteal',
-  'creative_peach',
-  'creative_sepia',
-  'creative_softred',
-  'creative_wattle',
-  'creative_shipcove',
-  'creative_plantation',
-  'creative_rum',
-  'creative_hibiscus',
-  'creative_ripelemon',
-];
+const appearanceOptions = [...BMB_BADGE_COLOR_LIST, 'disabled'];
 
 export default {
   title: 'Components/Visual labels/Badge',
@@ -65,6 +39,57 @@ ${getArchitectureSection(`<section class="bmb_badge"> <!-- conditional classes b
   <span class="bmb_badge-bullet"></span>
   <span class="bmb_badge-content"></span>
 </section>`)}
+${getSpecialSpecifications(
+  `
+${getAlertBlockquote(
+  `Follow name colors are deprecated:
+ - 'strong',
+ - 'success',
+ - 'info',
+ - 'warning',
+ - 'error',
+ - 'brand',
+ - 'alert',
+ - 'background',
+ - 'mitec_blue',
+ - 'mitec_red',
+ - 'mitec_green',
+ - 'mitec_orange',
+ - 'mitec_purple',
+ - 'creative_violet',
+ - 'creative_indigo',
+ - 'creative_emerald',
+ - 'creative_licorice',
+ - 'creative_darkteal',
+ - 'creative_peach',
+ - 'creative_sepia',
+ - 'creative_softred',
+ - 'creative_wattle',
+ - 'creative_shipcove',
+ - 'creative_plantation',
+ - 'creative_rum',
+ - 'creative_hibiscus',
+ - 'creative_ripelemon',
+<br/><br/>Please do not use them because they will be removed in future versions.`,
+  {
+    title: '###'.concat(RELEVANT_TITLE.deprecated),
+    blockquoteType: BlockquoteType.warning,
+    isRelevantTitle: true,
+  },
+)}
+>
+### Configuration
+Add the **BmbNotificationService** to your App providers:
+\`\`\`typescript
+providers: [
+  provideRouter(routes),
+  importProvidersFrom([BmbNotificationService, ...]),
+],\`\`\`
+###Show notifications
+Add the **BmbPushNotificationComponent** at the bottom of your **app.component.html**.
+`,
+  { showAdditionalBlockquote: true },
+)}
 ${getBasicExampleBlock('BmbBadgeComponent')}
         `,
       },
@@ -78,7 +103,13 @@ ${getBasicExampleBlock('BmbBadgeComponent')}
       'badge',
       appearanceOptions,
       defaultAppearanceValue,
-      `<br/><br/>${getDefaultValueDesc(defaultAppearanceValue)}<br/><br/>Background appearance is deprecated.`,
+      getAlertBlockquote(
+        `***${defaultAppearanceValue}*** is the default value.`,
+        {
+          title: RELEVANT_TITLE.configuration,
+          blockquoteType: BlockquoteType.note,
+        },
+      ),
     ),
     container: getPropertyParamDesc('container', {
       controlType: 'boolean',
@@ -107,22 +138,22 @@ export const AllColors = {
   render: () => ({
     template: `
       <div style="display: flex; flex-direction: row; gap: 12px; flex-wrap: wrap;">
-        <bmb-badge
-          *ngFor="let appearance of appearances"
-          [appearance]="appearance"
-          [text]="appearance"
-        >
-        </bmb-badge>
+        @for (appearance of appearances; track $index) {
+          <bmb-badge
+            [appearance]="appearance"
+            [text]="appearance"
+          />
+        }
       </div>
-      <bmb-divider></bmb-divider>
+      <bmb-divider />
       <div style="display: flex; flex-direction: row; gap: 12px; flex-wrap: wrap;">
-        <bmb-badge
-          *ngFor="let appearance of appearances"
-          [appearance]="appearance"
-          [text]="appearance"
-          [container]="false"
-        >
-        </bmb-badge>
+        @for (appearance of appearances; track $index) {
+          <bmb-badge
+            [appearance]="appearance"
+            [text]="appearance"
+            [container]="false"
+          />
+        }
       </div>
     `,
     props: {

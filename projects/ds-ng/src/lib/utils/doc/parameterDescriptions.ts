@@ -58,7 +58,7 @@ The width of the ${name} will increase depending on the length of the text.`;
 
 export const getDefaultValueDesc = (defaultValue: any): string => `
 ${RELEVANT_TITLE.note}
-The default value is ${defaultValue}.${DEFAULT_VALUE_DESC}`;
+The default value is ${defaultValue}. ${DEFAULT_VALUE_DESC}`;
 
 export const getDefaultValueControl = (summary: any = '""') => {
   const _summary: string =

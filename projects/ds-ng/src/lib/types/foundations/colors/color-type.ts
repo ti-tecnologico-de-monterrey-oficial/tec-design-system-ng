@@ -144,3 +144,9 @@ export const BMB_PUSH_NOTIFICATION_COLOR_LIST: string[] = [
 
 export type IBmbPushNotificationColors =
   (typeof BMB_PUSH_NOTIFICATION_COLOR_LIST)[number];
+
+export const BMB_BADGE_COLOR_LIST: string[] = [
+  ...Object.keys(COLOR_GROUP_NAMES['bmb_badge_type']),
+] as const;
+
+export type IBmbBadgeColors = (typeof BMB_BADGE_COLOR_LIST)[number];
