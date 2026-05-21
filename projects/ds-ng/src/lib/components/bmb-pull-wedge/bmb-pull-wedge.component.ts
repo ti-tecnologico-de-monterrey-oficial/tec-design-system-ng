@@ -1,6 +1,7 @@
 import {
   Component,
-  Input,
+  input,
+  effect,
   ChangeDetectionStrategy,
   ViewEncapsulation,
   AfterViewInit,
@@ -29,36 +30,42 @@ import {
   encapsulation: ViewEncapsulation.None,
 })
 export class BmbPullWedgeComponent implements AfterViewInit, OnChanges {
-  @Input() initialHeight: number = 300;
-  @Input() minContentHeight: number = 100;
+  initialHeight = input<number>(300);
+  minContentHeight = input<number>(100);
 
   isOpen = model<boolean>(false);
   @ViewChild('content', { static: true }) contentRef!: ElementRef;
 
-  contentHeight: number = this.minContentHeight;
+  contentHeight: number = this.minContentHeight();
   maxDragHeight: number = 0;
   // isOpen = false;
   isVisible = true;
   private initialDragHeight = 0;
 
-  constructor(private renderer: Renderer2) {}
+  constructor(private renderer: Renderer2) {
+    effect(() => {
+      const open = this.isOpen();
+
+      this.contentHeight = open
+        ? this.initialHeight()
+        : this.minContentHeight();
+
+      if (this.contentRef) {
+        this.renderer.setStyle(
+          this.contentRef.nativeElement,
+          'height',
+          `${this.contentHeight}px`,
+        );
+      }
+    });
+  }
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['initialHeight']) {
-      this.maxDragHeight = this.initialHeight * 0.51;
+      this.maxDragHeight = this.initialHeight() * 0.51;
     }
     if (changes['minContentHeight']) {
-      this.contentHeight = Math.max(this.contentHeight, this.minContentHeight);
-      this.renderer.setStyle(
-        this.contentRef.nativeElement,
-        'height',
-        `${this.contentHeight}px`,
-      );
-    }
-    if (changes['isOpen']) {
-      this.contentHeight = this.isOpen()
-        ? this.initialHeight
-        : this.minContentHeight;
+      this.contentHeight = Math.max(this.contentHeight, this.minContentHeight());
       this.renderer.setStyle(
         this.contentRef.nativeElement,
         'height',
@@ -82,7 +89,7 @@ export class BmbPullWedgeComponent implements AfterViewInit, OnChanges {
   onDragMoved(event: CdkDragMove) {
     const newHeight = this.initialDragHeight + event.distance.y;
 
-    if (newHeight >= this.minContentHeight && newHeight <= this.initialHeight) {
+    if (newHeight >= this.minContentHeight() && newHeight <= this.initialHeight()) {
       this.contentHeight = newHeight;
       this.renderer.setStyle(
         this.contentRef.nativeElement,
@@ -96,10 +103,10 @@ export class BmbPullWedgeComponent implements AfterViewInit, OnChanges {
     const midpointThreshold = 150;
 
     if (this.contentHeight >= this.maxDragHeight) {
-      this.contentHeight = this.initialHeight;
+      this.contentHeight = this.initialHeight();
       this.isOpen.set(true);
     } else if (this.contentHeight < midpointThreshold) {
-      this.contentHeight = this.minContentHeight;
+      this.contentHeight = this.minContentHeight();
       this.isOpen.set(false);
     }
 
@@ -113,7 +120,7 @@ export class BmbPullWedgeComponent implements AfterViewInit, OnChanges {
   toggleWedge() {
     if (this.isOpen()) {
       this.isOpen.set(false);
-      this.contentHeight = this.minContentHeight;
+      this.contentHeight = this.minContentHeight();
       this.renderer.setStyle(
         this.contentRef.nativeElement,
         'height',
@@ -121,7 +128,7 @@ export class BmbPullWedgeComponent implements AfterViewInit, OnChanges {
       );
     } else {
       this.isOpen.set(true);
-      this.contentHeight = this.initialHeight;
+      this.contentHeight = this.initialHeight();
       this.renderer.setStyle(
         this.contentRef.nativeElement,
         'height',
