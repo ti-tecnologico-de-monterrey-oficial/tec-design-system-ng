@@ -1,14 +1,14 @@
-<div class="bmb-chat-bubbles-lts-options">
+<div class="bmb-ai-chat-bubble-options">
   @if (message().content.text) {
-    <p class="bmb-chat-bubbles-lts-options-text">
+    <p class="bmb-ai-chat-bubble-options-text">
       {{ message().content.text }}
     </p>
   }
 
-  <div class="bmb-chat-bubbles-lts-options-actions">
+  <div class="bmb-ai-chat-bubble-options-actions">
     @for (option of message().content.options; track option.id) {
       <bmb-container-button
-        class="bmb-chat-bubbles-lts-options__button"
+        class="bmb-ai-chat-bubble-options__button"
         [componentTitle]="option.label"
         [target]="option.target || '_self'"
         [link]="option.href || ''"

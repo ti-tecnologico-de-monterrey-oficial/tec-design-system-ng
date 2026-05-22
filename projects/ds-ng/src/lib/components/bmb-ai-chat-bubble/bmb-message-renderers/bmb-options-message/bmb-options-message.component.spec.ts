@@ -62,7 +62,7 @@ describe('OptionsMessageComponent', () => {
 
   it('should render wrapper container', () => {
     const wrapper = fixture.debugElement.query(
-      By.css('.bmb-chat-bubbles-lts-options'),
+      By.css('.bmb-ai-chat-bubble-options'),
     );
 
     expect(wrapper).toBeTruthy();
@@ -70,7 +70,7 @@ describe('OptionsMessageComponent', () => {
 
   it('should render message text', () => {
     const textElement: HTMLElement = fixture.debugElement.query(
-      By.css('.bmb-chat-bubbles-lts-options-text'),
+      By.css('.bmb-ai-chat-bubble-options-text'),
     ).nativeElement;
 
     expect(textElement.textContent?.trim()).toBe(mockMessage.content.text!);
@@ -176,7 +176,7 @@ describe('OptionsMessageComponent', () => {
     fixture.detectChanges();
 
     const textElement = fixture.debugElement.query(
-      By.css('.bmb-chat-bubbles-lts-options-text'),
+      By.css('.bmb-ai-chat-bubble-options-text'),
     );
 
     expect(textElement).toBeFalsy();
