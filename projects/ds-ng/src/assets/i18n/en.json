@@ -192,7 +192,8 @@
     },
     "empty_state": {
       "primary_text": "You have no notifications to show"
-    }
+    },
+    "title": "My Notifications"
   },
   "notification_center": {
     "actions": {
