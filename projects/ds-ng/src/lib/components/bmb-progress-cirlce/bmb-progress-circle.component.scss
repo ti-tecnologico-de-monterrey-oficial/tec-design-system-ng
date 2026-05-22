@@ -3,7 +3,7 @@
 @use '../../../assets/styles/base/mixins' as mixins;
 
 $status: (
-  'gray': var(--general-contrasts-5),
+  'gray': var(--general-contrasts-input-background),
   'success': var(--general-contrasts-main-selection-alternative),
   'error': var(--semantic-error),
   'warning': var(--semantic-warning),

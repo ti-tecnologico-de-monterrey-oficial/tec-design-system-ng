@@ -1,6 +1,8 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  computed,
+  effect,
   input,
   output,
   TemplateRef,
@@ -12,6 +14,10 @@ import { BmbIconComponent } from '../../bmb-icon/bmb-icon.component';
 import { BmbUserImageComponent } from '../../bmb-user-image/bmb-user-image.component';
 import { BmbCheckboxComponent } from '../../bmb-checkbox/bmb-checkbox.component';
 import { BmbButtonDirective } from '../../../directives/bmb-button/button.directive';
+import {
+  BMB_CREATIVE_COLOR_LIST,
+  BMB_SEMANTIC_COLOR_LIST,
+} from '../../../types/foundations/colors/color-type';
 
 @Component({
   selector: 'bmb-push-notification-item',
@@ -33,8 +39,39 @@ export class BmbPushNotificationItemComponent {
 
   onClose = output<MouseEvent>();
 
-  isExpanded = true;
-  dontAskAgain = false;
+  isValidForFullVariant = computed<boolean>(
+    () =>
+      BMB_SEMANTIC_COLOR_LIST.some(
+        (element) => this.notification().type === element,
+      ) ||
+      BMB_CREATIVE_COLOR_LIST.some(
+        (element) => this.notification().type === element,
+      ),
+  );
+  isValidVariant = computed<boolean>(
+    () =>
+      !BMB_SEMANTIC_COLOR_LIST.some(
+        (element) => this.notification().type === element,
+      ),
+  );
+
+  isExpanded: boolean = true;
+  dontAskAgain: boolean = false;
+  constructor() {
+    effect(() => {
+      if (this.notification().isFullColor && !this.isValidForFullVariant()) {
+        throw new Error(
+          `"${this.notification().type}" type is not valid for full variant. Please provide a valid type.`,
+        );
+      }
+
+      if (this.notification().isFullColor && !this.isValidVariant()) {
+        throw new Error(
+          `"${this.notification().type}" type is not valid for this variant. Please provide a valid type.`,
+        );
+      }
+    });
+  }
 
   getNotificationClasses(): string[] {
     const classList = [
@@ -42,7 +79,10 @@ export class BmbPushNotificationItemComponent {
       `bmb_push-notification-item-type-${this.notification()?.type}`,
     ];
 
-    if (this.notification()?.isFullColor)
+    if (
+      (this.notification()?.isFullColor && this.isValidForFullVariant()) ||
+      (!this.notification()?.isFullColor && !this.isValidVariant())
+    )
       classList.push('bmb_push-notification-item-full-color');
     else classList.push('bmb_push-notification-item-regular-tmp');
 
