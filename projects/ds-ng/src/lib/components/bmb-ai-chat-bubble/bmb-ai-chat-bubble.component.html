@@ -1,12 +1,12 @@
 @if (message(); as message) {
   <section
-    class="bmb-chat-bubbles-lts"
+    class="bmb-ai-chat-bubble"
     role="article"
     aria-label="Chat"
     [attr.data-automation-id]="testId()"
   >
-    <div class="bmb-chat-bubbles-lts-wrapper" [ngClass]="bubbleClasses()">
-      <div class="bmb-chat-bubbles-lts-profile">
+    <div class="bmb-ai-chat-bubble-wrapper" [ngClass]="bubbleClasses()">
+      <div class="bmb-ai-chat-bubble-profile">
         @if (message.isUser) {
           <bmb-user-image
             [size]="'mobile-small'"
@@ -16,7 +16,7 @@
           ></bmb-user-image>
         } @else {
           <bmb-icon
-            class="bmb-chat-bubbles-lts-profile-bot"
+            class="bmb-ai-chat-bubble-profile-bot"
             [size]="20"
             alt="bot"
             [isSVGTemplate]="true"
@@ -27,16 +27,16 @@
           </bmb-icon>
         }
       </div>
-      <div class="bmb-chat-bubbles-lts-container">
+      <div class="bmb-ai-chat-bubble-container">
         <div
-          class="bmb-chat-bubbles-lts-msg"
+          class="bmb-ai-chat-bubble-msg"
           [attr.data-testid]="testId() + '-message'"
         >
           @if (isThinking()) {
-            <div class="bmb-chat-bubbles-lts-thinking-dots">
-              <span class="bmb-chat-bubbles-lts-thinking-dot"></span>
-              <span class="bmb-chat-bubbles-lts-thinking-dot"></span>
-              <span class="bmb-chat-bubbles-lts-thinking-dot"></span>
+            <div class="bmb-ai-chat-bubble-thinking-dots">
+              <span class="bmb-ai-chat-bubble-thinking-dot"></span>
+              <span class="bmb-ai-chat-bubble-thinking-dot"></span>
+              <span class="bmb-ai-chat-bubble-thinking-dot"></span>
             </div>
           } @else {
             @switch (message.type) {
@@ -71,13 +71,13 @@
           }
         </div>
 
-        <div class="bmb-chat-bubbles-lts-extra">
+        <div class="bmb-ai-chat-bubble-extra">
           @if (message.isUser) {
-            <p class="bmb-chat-bubbles-lts-extra-time">
+            <p class="bmb-ai-chat-bubble-extra-time">
               {{ message.timestamp | date: 'hh:mm a' }}
             </p>
           } @else {
-            <div class="bmb-chat-bubbles-lts-extra-container">
+            <div class="bmb-ai-chat-bubble-extra-container">
               @if (showActions() && !message.isUser) {
                 <bmb-chat-actions
                   [message]="message"
@@ -85,7 +85,7 @@
                 />
               }
             </div>
-            <p class="bmb-chat-bubbles-lts-extra-time">
+            <p class="bmb-ai-chat-bubble-extra-time">
               {{ message.timestamp | date: 'hh:mm a' }}
             </p>
           }

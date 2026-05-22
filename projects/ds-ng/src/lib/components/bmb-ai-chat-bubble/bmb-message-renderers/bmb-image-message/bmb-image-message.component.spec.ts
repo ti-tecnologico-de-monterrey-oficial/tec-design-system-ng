@@ -46,7 +46,7 @@ describe('ImageMessageComponent', () => {
 
   it('should render image', () => {
     const image = fixture.debugElement.query(
-      By.css('.bmb-chat-bubbles-lts-image-picture'),
+      By.css('.bmb-ai-chat-bubble-image-picture'),
     );
 
     expect(image).toBeTruthy();
@@ -54,7 +54,7 @@ describe('ImageMessageComponent', () => {
 
   it('should render correct image src', () => {
     const image: HTMLImageElement = fixture.debugElement.query(
-      By.css('.bmb-chat-bubbles-lts-image-picture'),
+      By.css('.bmb-ai-chat-bubble-image-picture'),
     ).nativeElement;
 
     expect(image.src).toContain(mockMessage.content.imageUrl);
@@ -62,7 +62,7 @@ describe('ImageMessageComponent', () => {
 
   it('should render correct image alt', () => {
     const image: HTMLImageElement = fixture.debugElement.query(
-      By.css('.bmb-chat-bubbles-lts-image-picture'),
+      By.css('.bmb-ai-chat-bubble-image-picture'),
     ).nativeElement;
 
     expect(image.src).toContain(mockMessage.content.imageUrl!);
@@ -81,7 +81,7 @@ describe('ImageMessageComponent', () => {
     fixture.detectChanges();
 
     const image: HTMLImageElement = fixture.debugElement.query(
-      By.css('.bmb-chat-bubbles-lts-image-picture'),
+      By.css('.bmb-ai-chat-bubble-image-picture'),
     ).nativeElement;
 
     expect(image.alt).toBe('Chat image');
@@ -89,7 +89,7 @@ describe('ImageMessageComponent', () => {
 
   it('should have lazy loading enabled', () => {
     const image: HTMLImageElement = fixture.debugElement.query(
-      By.css('.bmb-chat-bubbles-lts-image-picture'),
+      By.css('.bmb-ai-chat-bubble-image-picture'),
     ).nativeElement;
 
     expect(image.loading).toBe('lazy');
@@ -97,7 +97,7 @@ describe('ImageMessageComponent', () => {
 
   it('should render wrapper container', () => {
     const wrapper = fixture.debugElement.query(
-      By.css('.bmb-chat-bubbles-lts-image'),
+      By.css('.bmb-ai-chat-bubble-image'),
     );
 
     expect(wrapper).toBeTruthy();

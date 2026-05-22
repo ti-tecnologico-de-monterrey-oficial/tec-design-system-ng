@@ -23,6 +23,7 @@ import { DateTime } from 'luxon';
 import { BmbProjectionContentService } from '../../services/projection/projection.service';
 import { BmbNativeModalService } from '../../services/modal/native-modal.service';
 import { BmbNotificationCardModalComponent } from './bmb-notification-card-modal/bmb-notification-card-modal.component';
+import { TranslatePipe } from '../../pipes/translations';
 
 @Component({
   selector: 'bmb-notification-card',
@@ -33,6 +34,7 @@ import { BmbNotificationCardModalComponent } from './bmb-notification-card-modal
     BmbHomeCardComponent,
     BmbAlertCenterAdsComponent,
     BmbAlertCenterListComponent,
+    TranslatePipe,
   ],
   templateUrl: './bmb-notification-card.component.html',
   styleUrl: './bmb-notification-card.component.scss',
@@ -50,6 +52,7 @@ export class BmbNotificationCardComponent {
   showAdvertisements = input<boolean>(true);
   leftIcon = input<string>('');
   enableCustomHandlerClick = input<boolean>(false);
+  componentTitle = input<string>('');
 
   alertEvent = output<IBmbDataAlert>();
   showAlertDetail = output<IBmbDataAlert>();

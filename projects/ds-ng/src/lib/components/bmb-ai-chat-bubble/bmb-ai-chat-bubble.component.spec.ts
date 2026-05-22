@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ComponentRef } from '@angular/core';
 import { By } from '@angular/platform-browser';
 
-import { BmbChatBubblesLtsComponent } from './bmb-chat-bubbles-lts.component';
+import { BmbAiChatBubbleComponent } from './bmb-ai-chat-bubble.component';
 import {
   BmbChatActionEvent,
   BmbImageMessage,
@@ -12,11 +12,11 @@ import {
   BmbTextMessage,
 } from './types';
 
-let componentRef: ComponentRef<BmbChatBubblesLtsComponent>;
+let componentRef: ComponentRef<BmbAiChatBubbleComponent>;
 
-describe('BmbChatBubblesLtsComponent', () => {
-  let component: BmbChatBubblesLtsComponent;
-  let fixture: ComponentFixture<BmbChatBubblesLtsComponent>;
+describe('BmbAiChatBubbleComponent', () => {
+  let component: BmbAiChatBubbleComponent;
+  let fixture: ComponentFixture<BmbAiChatBubbleComponent>;
 
   const mockBotMessage: BmbTextMessage = {
     id: '1',
@@ -41,10 +41,10 @@ describe('BmbChatBubblesLtsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [BmbChatBubblesLtsComponent],
+      imports: [BmbAiChatBubbleComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(BmbChatBubblesLtsComponent);
+    fixture = TestBed.createComponent(BmbAiChatBubbleComponent);
     component = fixture.componentInstance;
     componentRef = fixture.componentRef;
 
@@ -70,7 +70,7 @@ describe('BmbChatBubblesLtsComponent', () => {
 
   it('should render bot message class', () => {
     const element = fixture.debugElement.query(
-      By.css('.bmb-chat-bubbles-lts-bot'),
+      By.css('.bmb-ai-chat-bubble-bot'),
     );
 
     expect(element).toBeTruthy();
@@ -82,7 +82,7 @@ describe('BmbChatBubblesLtsComponent', () => {
     fixture.detectChanges();
 
     const element = fixture.debugElement.query(
-      By.css('.bmb-chat-bubbles-lts-user'),
+      By.css('.bmb-ai-chat-bubble-user'),
     );
 
     expect(element).toBeTruthy();
@@ -94,7 +94,7 @@ describe('BmbChatBubblesLtsComponent', () => {
     fixture.detectChanges();
 
     const element = fixture.debugElement.query(
-      By.css('.bmb-chat-bubbles-lts-thinking-dots'),
+      By.css('.bmb-ai-chat-bubble-thinking-dots'),
     );
 
     expect(element).toBeTruthy();
