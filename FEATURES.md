@@ -1,5 +1,5 @@
-# Novedades ## [v1.6.3-k] -
-2026-05-18
+# Novedades ## [v1.6.3-l] -
+2026-05-22
 
 ### 🚀 Novedades
 
@@ -11,6 +11,8 @@ format
 version 1.6.3-j
 *
 Formato
+*
+vq.6.3-k
 *
 bubble chat
 *
@@ -99,8 +101,6 @@ feat(component / dropdown): Se agregaron traducciones a los tooltips
 feat(component / list items): Se agregaron traducciones a los tooltips
 *
 chore se elimino variables "--bmb-calendar-button-selected-background" ahora se usará "--buttons-alternative-normal" para homologar con Figma.
-*
-chore: se agregó nueva variable de color '--gray-tecmi-450' para la marca 'Tec milenio', también se agregó la variable '--general-contrasts-85' para cada una de las marcas.
 *
 feat(component / top bar): Se agregaron traducciones a los tooltips
 *
@@ -311,6 +311,8 @@ fix(component / notification card): Se corrigió el tamaño de las notificacione
 fix(component / dropdown): Se corrigió el desface de menú del dropdown
 *
 Formato
+*
+chore: se agregó nueva variable de color '--gray-tecmi-450' para la marca 'Tec milenio', también se agregó la variable '--general-contrasts-85' para cada una de las marcas.
 *
 chore: se agregó nueva variable de color para contenedores
 *
@@ -376,6 +378,8 @@ format
 version 1.6.3-j
 - **Formato**:
 Formato
+- **vq.6.3-k**:
+vq.6.3-k
 - **bubble chat**:
 bubble chat
 - **Formato**:
@@ -464,8 +468,6 @@ feat(component / dropdown): Se agregaron traducciones a los tooltips
 feat(component / list items): Se agregaron traducciones a los tooltips
 - **chore se elimino variables "--bmb-calendar-button-selected-background" ahora se usará "--buttons-alternative-normal" para homologar con Figma.**:
 chore se elimino variables "--bmb-calendar-button-selected-background" ahora se usará "--buttons-alternative-normal" para homologar con Figma.
-- **chore: se agregó nueva variable de color '--gray-tecmi-450' para la marca 'Tec milenio', también se agregó la variable '--general-contrasts-85' para cada una de las marcas.**:
-chore: se agregó nueva variable de color '--gray-tecmi-450' para la marca 'Tec milenio', también se agregó la variable '--general-contrasts-85' para cada una de las marcas.
 - **feat(component / top bar): Se agregaron traducciones a los tooltips**:
 feat(component / top bar): Se agregaron traducciones a los tooltips
 - **feat(component / calendar): Se agregaron traducciones a los tooltips**:
@@ -676,6 +678,8 @@ fix(component / notification card): Se corrigió el tamaño de las notificacione
 fix(component / dropdown): Se corrigió el desface de menú del dropdown
 - **Formato**:
 Formato
+- **chore: se agregó nueva variable de color '--gray-tecmi-450' para la marca 'Tec milenio', también se agregó la variable '--general-contrasts-85' para cada una de las marcas.**:
+chore: se agregó nueva variable de color '--gray-tecmi-450' para la marca 'Tec milenio', también se agregó la variable '--general-contrasts-85' para cada una de las marcas.
 - **chore: se agregó nueva variable de color para contenedores**:
 chore: se agregó nueva variable de color para contenedores
 - **fix(component / tooltip): Se solucionó el problema del contenido del tooltip**:
@@ -741,6 +745,8 @@ format
 version 1.6.3-j
 - **Formato**:
 Formato
+- **vq.6.3-k**:
+vq.6.3-k
 - **bubble chat**:
 bubble chat
 - **Formato**:
@@ -829,8 +835,6 @@ feat(component / dropdown): Se agregaron traducciones a los tooltips
 feat(component / list items): Se agregaron traducciones a los tooltips
 - **chore se elimino variables "--bmb-calendar-button-selected-background" ahora se usará "--buttons-alternative-normal" para homologar con Figma.**:
 chore se elimino variables "--bmb-calendar-button-selected-background" ahora se usará "--buttons-alternative-normal" para homologar con Figma.
-- **chore: se agregó nueva variable de color '--gray-tecmi-450' para la marca 'Tec milenio', también se agregó la variable '--general-contrasts-85' para cada una de las marcas.**:
-chore: se agregó nueva variable de color '--gray-tecmi-450' para la marca 'Tec milenio', también se agregó la variable '--general-contrasts-85' para cada una de las marcas.
 - **feat(component / top bar): Se agregaron traducciones a los tooltips**:
 feat(component / top bar): Se agregaron traducciones a los tooltips
 - **feat(component / calendar): Se agregaron traducciones a los tooltips**:
@@ -1041,6 +1045,8 @@ fix(component / notification card): Se corrigió el tamaño de las notificacione
 fix(component / dropdown): Se corrigió el desface de menú del dropdown
 - **Formato**:
 Formato
+- **chore: se agregó nueva variable de color '--gray-tecmi-450' para la marca 'Tec milenio', también se agregó la variable '--general-contrasts-85' para cada una de las marcas.**:
+chore: se agregó nueva variable de color '--gray-tecmi-450' para la marca 'Tec milenio', también se agregó la variable '--general-contrasts-85' para cada una de las marcas.
 - **chore: se agregó nueva variable de color para contenedores**:
 chore: se agregó nueva variable de color para contenedores
 - **fix(component / tooltip): Se solucionó el problema del contenido del tooltip**:
