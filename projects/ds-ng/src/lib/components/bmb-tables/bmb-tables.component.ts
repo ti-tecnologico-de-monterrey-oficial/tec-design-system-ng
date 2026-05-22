@@ -4,8 +4,6 @@ import {
   AfterViewInit,
   ViewChild,
   OnInit,
-  Output,
-  EventEmitter,
   ElementRef,
   TemplateRef,
   HostListener,
@@ -13,6 +11,7 @@ import {
   ViewEncapsulation,
   ChangeDetectionStrategy,
   input,
+  output,
   OnChanges,
   effect,
   SimpleChanges,
@@ -149,13 +148,13 @@ export class BmbTablesComponent implements AfterViewInit, OnInit, OnChanges {
   selectionMode = input<'page' | 'all'>('all');
   clearSelectionWhenPageChanges = input<boolean>(false);
 
-  @Output() select: EventEmitter<any> = new EventEmitter();
-  @Output() clickedRow: EventEmitter<any> = new EventEmitter();
-  @Output() searchChange = new EventEmitter<string>();
-  @Output() filtersChange = new EventEmitter<Record<string, any>>();
-  @Output() searchModeChange = new EventEmitter<'client' | 'server'>();
+  select = output<any>();
+  clickedRow = output<any>();
+  searchChange = output<string>();
+  filtersChange = output<Record<string, any>>();
+  searchModeChange = output<'client' | 'server'>();
 
-  @Output() pageChange = new EventEmitter<{
+  pageChange = output<{
     pageIndex: number;
     pageSize: number;
   }>();
