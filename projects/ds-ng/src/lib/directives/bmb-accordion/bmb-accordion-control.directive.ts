@@ -8,7 +8,7 @@ import {
   OutputRefSubscription,
   ContentChildren,
   QueryList,
-  Input,
+  input,
 } from '@angular/core';
 import { BmbAccordionComponent } from '../../components/bmb-accordion/bmb-accordion.component';
 
@@ -19,7 +19,7 @@ import { BmbAccordionComponent } from '../../components/bmb-accordion/bmb-accord
 export class BmbAccordionControlDirective
   implements AfterContentInit, DoCheck, OnDestroy
 {
-  @Input() accordionStates?: { [id: string]: boolean };
+  accordionStates = input<{ [id: string]: boolean }>({});
 
   @ContentChildren(BmbAccordionComponent)
   accordions!: QueryList<BmbAccordionComponent>;
@@ -33,7 +33,7 @@ export class BmbAccordionControlDirective
   ngAfterContentInit(): void {
     this.subscriptions = this.accordions.map((accordion) => {
       return accordion.opened.subscribe(() => {
-        if (!this.accordionStates) {
+        if (!this.accordionStates()) {
           this.closeOthers(String(accordion.accordionId()));
         } else {
           this.updateExternalState(String(accordion.accordionId()));
@@ -41,7 +41,7 @@ export class BmbAccordionControlDirective
       });
     });
 
-    if (this.accordionStates) {
+    if (this.accordionStates()) {
       this.differ = this.differs.find({}).create();
       this.applyControlledStates();
     }
@@ -49,9 +49,10 @@ export class BmbAccordionControlDirective
   }
 
   ngDoCheck(): void {
+    const accordionStates = this.accordionStates();
     if (!this.contentReady || !this.accordionStates || !this.differ) return;
 
-    const changes = this.differ.diff(this.accordionStates);
+    const changes = this.differ.diff(accordionStates);
     if (changes) {
       this.applyControlledStates();
     }
@@ -63,7 +64,7 @@ export class BmbAccordionControlDirective
 
   private applyControlledStates(): void {
     this.accordions.forEach((accordion) => {
-      const state = this.accordionStates![accordion.accordionId()!];
+      const state = this.accordionStates()![accordion.accordionId()!];
       accordion._disabled.set(false);
       if (!state) {
         accordion._disabled.set(true);
@@ -79,7 +80,7 @@ export class BmbAccordionControlDirective
         accordion._expanded.set(false);
         accordion._active.set(false);
 
-        if (this.accordionStates) {
+        if (this.accordionStates()) {
           accordion._disabled.set(true);
         } else {
           accordion._disabled.set(false);
@@ -93,7 +94,7 @@ export class BmbAccordionControlDirective
   private updateExternalState(openId: string): void {
     if (!this.accordionStates) return;
     Object.keys(this.accordionStates).forEach((id) => {
-      this.accordionStates![id] = id === openId;
+      this.accordionStates()![id] = id === openId;
     });
   }
 }
