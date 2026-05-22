@@ -192,7 +192,8 @@
     },
     "empty_state": {
       "primary_text": "No tienes elementos para mostrar"
-    }
+    },
+    "title": "Mis notificaciones"
   },
   "notification_center": {
     "actions": {
@@ -334,5 +335,9 @@
     "role_switch": "Cambiar rol",
     "notifications": "Notificaciones",
     "help": "Ayuda"
+  },
+  "image": {
+    "previous": "Imagen anterior",
+    "next": "Siguiente imagen"
   }
 }

@@ -6,12 +6,14 @@ import {
   IBmbTab,
 } from '../components/bmb-tabs/bmb-tabs.component';
 import {
+  BlockquoteType,
   DESIGN_SYSTEM_TITLE,
   getFoundationDescriptions,
   getGeneralDescription,
   getPageStructureForTemplateStories,
   getSandboxConsiderationsDocumentation,
   getSpecialSpecifications,
+  RELEVANT_TITLE,
   SANDBOX_TITLE,
 } from '../utils/doc/utils';
 import { BmbDividerComponent } from '../components/bmb-divider/bmb-divider.component';
@@ -124,7 +126,17 @@ import {
             <header bmbVerticalLayout>
               <h2 bmbVerticalLayoutItem>{{ title }}</h2>
               <p bmbVerticalLayoutItem>
-                Please just click on the color to copy it.
+                Please just click on the color to copy it. Example to use the
+                variable:
+                <strong>
+                  <em>
+                    {{
+                      isNameStyle || isGradientStyle
+                        ? 'var([var-name]);'
+                        : 'rgb(var([var-name]));'
+                    }}
+                  </em>
+                </strong>
               </p>
             </header>
           </section>

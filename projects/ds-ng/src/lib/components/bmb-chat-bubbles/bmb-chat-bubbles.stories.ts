@@ -13,6 +13,7 @@ import {
 } from '../../utils/doc/parameterDescriptions';
 import { RouterTestingModule } from '@angular/router/testing';
 import { IBmbChatActionEvent } from './types';
+import { CommonModule } from '@angular/common';
 
 const DEPRECATED_DESC = `
 ⛔ Deprecated  
@@ -33,11 +34,12 @@ const getOnClickAndImportantParam = (
   );
 
 export default {
-  title: 'Components/Containers/AI Chat bubble',
+  title: 'Components/Containers/AI Chat Bubble/AI Chat bubble (deprecated)',
+  ags: ['!autodocs'],
   component: BmbChatBubblesComponent,
   decorators: [
     moduleMetadata({
-      imports: [RouterTestingModule],
+      imports: [CommonModule, RouterTestingModule],
     }),
   ],
   parameters: {

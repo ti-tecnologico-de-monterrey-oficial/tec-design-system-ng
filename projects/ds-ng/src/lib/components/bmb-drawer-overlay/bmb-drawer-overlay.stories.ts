@@ -18,7 +18,7 @@ import {
 export default {
   title: 'Particularities/mitec app/FAB Overlay drawer',
   component: BmbDrawerOverlayComponent,
-  tags: ['tec'],
+  tags: ['ged'],
   decorators: [
     componentWrapperDecorator((story: string) => {
       return `
@@ -45,9 +45,14 @@ export default {
       description: {
         component: `
 ${getGeneralDescription(`${getGeneralComponentDescription({ name: 'drawer-overlay', type: 'element' })} to implement an interactive overlay in addition to an application menu and header.`, { generalDocLink: 'https://bamboo.tec.mx/latest/particularities/mitec-app/fab-overlay-drawer-11JEvoAR' })}
-${getSpecialSpecifications(getTECParticularitiesMessage(), {
-  showAdditionalBlockquote: true,
-})}
+${getSpecialSpecifications(
+  getTECParticularitiesMessage('FAB Overlay drawer', {
+    isSpecificRestriction: true,
+  }),
+  {
+    showAdditionalBlockquote: true,
+  },
+)}
 ${getBasicExampleBlock('BmbDrawerOverlayComponent')}
 `,
       },

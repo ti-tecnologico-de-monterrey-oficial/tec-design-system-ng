@@ -6,7 +6,7 @@ import {
   input,
   ViewEncapsulation,
 } from '@angular/core';
-import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
+import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { logDeprecatedInput } from '../../utils/logDeprecatedInput';
 import { BmbTooltipBaseComponent } from './bmb-tooltip-base/bmb-tooltip-base.component';
 
@@ -16,7 +16,7 @@ export type IBmbJustifyTooltip = 'centered' | 'before' | 'after'; //Deprecated
 @Component({
   selector: 'bmb-tooltip',
   standalone: true,
-  imports: [CommonModule, BmbActionIconComponent, BmbTooltipBaseComponent],
+  imports: [CommonModule, BmbIconComponent, BmbTooltipBaseComponent],
   templateUrl: './bmb-tooltip.component.html',
   styleUrl: './bmb-tooltip.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
