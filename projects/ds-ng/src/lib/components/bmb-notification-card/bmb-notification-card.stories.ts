@@ -252,10 +252,20 @@ ${getBasicExampleBlock(
         defaultValue: { summary: false },
       },
     },
+    componentTitle: {
+      control: { type: 'text' },
+      description: 'Sets the title of the component',
+      table: {
+        category: 'Properties',
+        type: { summary: 'string' },
+        defaultValue: { summary: '' },
+      },
+    },
   },
   args: {
     enableRowClick: true,
     enableCustomHandlerClick: false,
+    componentTitle: 'My Notifications',
     data: [
       {
         id: 10,
