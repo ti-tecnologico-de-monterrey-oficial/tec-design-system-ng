@@ -46,7 +46,7 @@ describe('MixedMessageComponent', () => {
 
   it('should render wrapper container', () => {
     const wrapper = fixture.debugElement.query(
-      By.css('.bmb-chat-bubbles-lts-mixed'),
+      By.css('.bmb-ai-chat-bubble-mixed'),
     );
 
     expect(wrapper).toBeTruthy();
@@ -54,7 +54,7 @@ describe('MixedMessageComponent', () => {
 
   it('should render message text', () => {
     const textElement: HTMLElement = fixture.debugElement.query(
-      By.css('.bmb-chat-bubbles-lts-mixed-text'),
+      By.css('.bmb-ai-chat-bubble-mixed-text'),
     ).nativeElement;
 
     expect(textElement.textContent?.trim()).toBe(mockMessage.content.text);
@@ -62,7 +62,7 @@ describe('MixedMessageComponent', () => {
 
   it('should render image', () => {
     const image = fixture.debugElement.query(
-      By.css('.bmb-chat-bubbles-lts-mixed-image'),
+      By.css('.bmb-ai-chat-bubble-mixed-image'),
     );
 
     expect(image).toBeTruthy();
@@ -70,7 +70,7 @@ describe('MixedMessageComponent', () => {
 
   it('should render correct image src', () => {
     const image: HTMLImageElement = fixture.debugElement.query(
-      By.css('.bmb-chat-bubbles-lts-mixed-image'),
+      By.css('.bmb-ai-chat-bubble-mixed-image'),
     ).nativeElement;
 
     expect(image.src).toContain(mockMessage.content.imageUrl);
@@ -78,7 +78,7 @@ describe('MixedMessageComponent', () => {
 
   it('should render correct image alt', () => {
     const image: HTMLImageElement = fixture.debugElement.query(
-      By.css('.bmb-chat-bubbles-lts-mixed-image'),
+      By.css('.bmb-ai-chat-bubble-mixed-image'),
     ).nativeElement;
 
     expect(image.alt).toBe(mockMessage.content.text);
@@ -86,7 +86,7 @@ describe('MixedMessageComponent', () => {
 
   it('should have lazy loading enabled', () => {
     const image: HTMLImageElement = fixture.debugElement.query(
-      By.css('.bmb-chat-bubbles-lts-mixed-image'),
+      By.css('.bmb-ai-chat-bubble-mixed-image'),
     ).nativeElement;
 
     expect(image.loading).toBe('lazy');
@@ -106,7 +106,7 @@ describe('MixedMessageComponent', () => {
     fixture.detectChanges();
 
     const image: HTMLImageElement = fixture.debugElement.query(
-      By.css('.bmb-chat-bubbles-lts-mixed-image'),
+      By.css('.bmb-ai-chat-bubble-mixed-image'),
     ).nativeElement;
 
     expect(image.alt).toBe('Message image');

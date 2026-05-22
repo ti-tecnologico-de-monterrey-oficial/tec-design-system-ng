@@ -1,5 +1,5 @@
 # Novedades ## [v1.6.3-k] -
-2026-05-21
+2026-05-22
 
 ### 🚀 Novedades
 
@@ -20,6 +20,8 @@ Button container mobile created
 *
 revert service projection changes
 *
+solving tests
+*
 feat(component / bottom navigation): Se agregaron traducciones a los tooltips
 *
 feat(component / search card): Se estandarizaron los colores para los iconos
@@ -36,7 +38,9 @@ feat(component / multi dot paginator): Se agregaron traducciones a los tooltips
 *
 feat(component / home card): Se agregaron traducciones a los tooltips
 *
-feat(component / container button): Se agregaron traducciones a los tooltips
+chore: se agregó ejemplo de uso de las variables de colores nombras.
+*
+fix(component / image): Se actualizaron las traducciones para el componente de imagen
 *
 feat(component / dot paginator): Se agregaron traducciones a los tooltips
 *
@@ -48,29 +52,15 @@ feat(component / top bar): Se agregaron traducciones a los tooltips
 *
 feat(component / calendar): Se agregaron traducciones a los tooltips
 *
+Update services.json
+*
 feat(component / table): Se agregaron traducciones a los tooltips
 *
 feat(component/chat-bubble): se realizo ajuste en color de CSS según Figma. Cambios de contraste para Tec milenio.
 *
-feat(component / sidebar): Se agregaron traducciones a los tooltips
-*
-feat(component / date picker): Se agregaron traducciones a los tooltips
-*
-feat(component / evaluation rubric): Se agregaron traducciones a los tooltips
-*
-feat(component/tags): se realizo ajuste en color de CSS según Figma. Cambios de contraste para Tec milenio.
-*
-chat bubble lts
-*
-chore: se agregó ejemplo de uso de las variables de colores nombras.
-*
-Update services.json
-*
 feat(component/calentar-standar): se realizo ajuste en color de CSS según Figma. Cambios de contraste para Tec milenio.
 *
 feat(component / tags): Se agregaron traducciones a los tooltips
-*
-feat(component / modal): Se agregaron traducciones a los tooltips
 *
 feat(component / header section): Se agregaron traducciones a los tooltips
 *
@@ -78,13 +68,23 @@ feat(component / external link): Se agregaron traducciones a los tooltips
 *
 feat(component/inner-header): se realizo ajuste en color de CSS según Figma. Cambios de contraste para Tec milenio.
 *
+Update bmb-interactive-icon.stories.ts
+*
+feat(component/tags): se realizo ajuste en color de CSS según Figma. Cambios de contraste para Tec milenio.
+*
+chat bubble lts
+*
+feat(component / sidebar): Se agregaron traducciones a los tooltips
+*
+feat(component / modal): Se agregaron traducciones a los tooltips
+*
 feat(component / notice card): Se agregaron traducciones a los tooltips
 *
 feat(component / home card): Se agregaron traducciones a los tooltips
 *
 feat(component / header section): Se agregaron traducciones a los tooltips
 *
-Update bmb-interactive-icon.stories.ts
+feat(component / evaluation rubric): Se agregaron traducciones a los tooltips
 *
 feat(component / tabs): Se agregaron traducciones a los tooltips
 *
@@ -112,8 +112,6 @@ Formato
 *
 Formato
 *
-feat(component / dropdown): Se corrigió la posición del menú
-*
 fix(component / Date range): Se adoptó la fecha de inicio y fin del date picker
 *
 fix(component / tooltip): Se corrigieron los estilos de salto de línea y se corrigió la posición del tooltip
@@ -133,8 +131,6 @@ chore: se agregaron variables, se depuraron variables para homologar con Figma.
 feat(component/push-notificacion): se aplicó cambio de colores "tecmi" según Figma. Se aplicó mejora de tipo de datos a partir de objetos json.
 *
 chore: se cambiaron los tipos de datos a un archivo más específico donde se generaran datos a nivel grupo y componente.
-*
-bubble chat
 *
 fix(component / date range): Se optimizó la destrucción del código
 *
@@ -160,6 +156,8 @@ feat(component / chevron title): Se agregaron traducciones a los tooltips
 *
 fix(component / focus element): Se agregó la posibilidad de mostrar el 0
 *
+feat(component / container button): Se agregaron traducciones a los tooltips
+*
 chore: se agregó opacidad para correcto funcionamiento del componente "Media card".
 *
 chore: se agregó nueva variable a todas las marcas para homologar con Figma
@@ -175,6 +173,8 @@ fix(component / search card): Se corrigieron los colores de los servicios
 feat(component / button icon): Se agregaron traducciones a los tooltips
 *
 fix(component / frequent app selector): Se solucionó el problema de los botones de distintos tamaños
+*
+feat(component / date picker): Se agregaron traducciones a los tooltips
 *
 feat(component / bookmark): Se agregaron traducciones a los tooltips
 *
@@ -204,27 +204,17 @@ Update
 *
 Formato
 *
-bubble chat
-*
-bubble chat
-*
-new config
-*
 build
 *
 formato
 *
 Formato
 *
-Formato
-*
-Formato
-*
 bubble chat
 *
-Add conditional visibility and cascading options to filter card component
-*
 fix(component/sidebar): Se realizo refactorización de código para depurar elementos y simplificar estructura. La navegación ahora es en su mayoría manejo con CSS.
+*
+feat(component / dropdown): Se corrigió la posición del menú
 *
 formato
 *
@@ -234,8 +224,6 @@ fix(component / portal): Se agregó un parche de seguridad
 *
 feat(component / interactive icon): se agregó el tooltip al interactive icon
 *
-feat(component / icon): Se agregaron iconos personalizados
-*
 feat(component/sidebar): se realizaron ajustes para manejar las versión móvil o de escritorio mediante consultar de CSS.
 *
 feat(utils): Se agregaron funciones beforeClose y afterClose a los servicios de Modal y ProjectedContent
@@ -244,11 +232,27 @@ fix(component / Projection service): Se agregó un parche de seguridad
 *
 fix(component / native modal): Se agregó un parche de seguridad
 *
+bubble chat
+*
+utils(app): Actualización de la app demo
+*
+bubble chat
+*
+bubble chat
+*
+new config
+*
+Formato
+*
+Formato
+*
+Add conditional visibility and cascading options to filter card component
+*
+feat(component / icon): Se agregaron iconos personalizados
+*
 se agergó soporte para angular 21
 *
 feat(component/multi-dot-paginator): se agrego el botón como último índice. Se implementó funcionalidad para que permita seleccionar solo un índice.
-*
-utils(app): Actualización de la app demo
 *
 topbar user
 *
@@ -418,6 +422,8 @@ chat bubble lts
 Button container mobile created
 - **revert service projection changes**:
 revert service projection changes
+- **solving tests**:
+solving tests
 - **feat(component / bottom navigation): Se agregaron traducciones a los tooltips**:
 feat(component / bottom navigation): Se agregaron traducciones a los tooltips
 - **feat(component / search card): Se estandarizaron los colores para los iconos**:
@@ -434,8 +440,10 @@ Fixes after PR review
 feat(component / multi dot paginator): Se agregaron traducciones a los tooltips
 - **feat(component / home card): Se agregaron traducciones a los tooltips**:
 feat(component / home card): Se agregaron traducciones a los tooltips
-- **feat(component / container button): Se agregaron traducciones a los tooltips**:
-feat(component / container button): Se agregaron traducciones a los tooltips
+- **chore: se agregó ejemplo de uso de las variables de colores nombras.**:
+chore: se agregó ejemplo de uso de las variables de colores nombras.
+- **fix(component / image): Se actualizaron las traducciones para el componente de imagen**:
+fix(component / image): Se actualizaron las traducciones para el componente de imagen
 - **feat(component / dot paginator): Se agregaron traducciones a los tooltips**:
 feat(component / dot paginator): Se agregaron traducciones a los tooltips
 - **feat(component / dropdown): Se agregaron traducciones a los tooltips**:
@@ -446,44 +454,40 @@ feat(component / list items): Se agregaron traducciones a los tooltips
 feat(component / top bar): Se agregaron traducciones a los tooltips
 - **feat(component / calendar): Se agregaron traducciones a los tooltips**:
 feat(component / calendar): Se agregaron traducciones a los tooltips
+- **Update services.json**:
+Update services.json
 - **feat(component / table): Se agregaron traducciones a los tooltips**:
 feat(component / table): Se agregaron traducciones a los tooltips
 - **feat(component/chat-bubble): se realizo ajuste en color de CSS según Figma. Cambios de contraste para Tec milenio.**:
 feat(component/chat-bubble): se realizo ajuste en color de CSS según Figma. Cambios de contraste para Tec milenio.
-- **feat(component / sidebar): Se agregaron traducciones a los tooltips**:
-feat(component / sidebar): Se agregaron traducciones a los tooltips
-- **feat(component / date picker): Se agregaron traducciones a los tooltips**:
-feat(component / date picker): Se agregaron traducciones a los tooltips
-- **feat(component / evaluation rubric): Se agregaron traducciones a los tooltips**:
-feat(component / evaluation rubric): Se agregaron traducciones a los tooltips
-- **feat(component/tags): se realizo ajuste en color de CSS según Figma. Cambios de contraste para Tec milenio.**:
-feat(component/tags): se realizo ajuste en color de CSS según Figma. Cambios de contraste para Tec milenio.
-- **chat bubble lts**:
-chat bubble lts
-- **chore: se agregó ejemplo de uso de las variables de colores nombras.**:
-chore: se agregó ejemplo de uso de las variables de colores nombras.
-- **Update services.json**:
-Update services.json
 - **feat(component/calentar-standar): se realizo ajuste en color de CSS según Figma. Cambios de contraste para Tec milenio.**:
 feat(component/calentar-standar): se realizo ajuste en color de CSS según Figma. Cambios de contraste para Tec milenio.
 - **feat(component / tags): Se agregaron traducciones a los tooltips**:
 feat(component / tags): Se agregaron traducciones a los tooltips
-- **feat(component / modal): Se agregaron traducciones a los tooltips**:
-feat(component / modal): Se agregaron traducciones a los tooltips
 - **feat(component / header section): Se agregaron traducciones a los tooltips**:
 feat(component / header section): Se agregaron traducciones a los tooltips
 - **feat(component / external link): Se agregaron traducciones a los tooltips**:
 feat(component / external link): Se agregaron traducciones a los tooltips
 - **feat(component/inner-header): se realizo ajuste en color de CSS según Figma. Cambios de contraste para Tec milenio.**:
 feat(component/inner-header): se realizo ajuste en color de CSS según Figma. Cambios de contraste para Tec milenio.
+- **Update bmb-interactive-icon.stories.ts**:
+Update bmb-interactive-icon.stories.ts
+- **feat(component/tags): se realizo ajuste en color de CSS según Figma. Cambios de contraste para Tec milenio.**:
+feat(component/tags): se realizo ajuste en color de CSS según Figma. Cambios de contraste para Tec milenio.
+- **chat bubble lts**:
+chat bubble lts
+- **feat(component / sidebar): Se agregaron traducciones a los tooltips**:
+feat(component / sidebar): Se agregaron traducciones a los tooltips
+- **feat(component / modal): Se agregaron traducciones a los tooltips**:
+feat(component / modal): Se agregaron traducciones a los tooltips
 - **feat(component / notice card): Se agregaron traducciones a los tooltips**:
 feat(component / notice card): Se agregaron traducciones a los tooltips
 - **feat(component / home card): Se agregaron traducciones a los tooltips**:
 feat(component / home card): Se agregaron traducciones a los tooltips
 - **feat(component / header section): Se agregaron traducciones a los tooltips**:
 feat(component / header section): Se agregaron traducciones a los tooltips
-- **Update bmb-interactive-icon.stories.ts**:
-Update bmb-interactive-icon.stories.ts
+- **feat(component / evaluation rubric): Se agregaron traducciones a los tooltips**:
+feat(component / evaluation rubric): Se agregaron traducciones a los tooltips
 - **feat(component / tabs): Se agregaron traducciones a los tooltips**:
 feat(component / tabs): Se agregaron traducciones a los tooltips
 - **feat(component / text editor): Se agregaron traducciones a los tooltips**:
@@ -510,8 +514,6 @@ Formato
 Formato
 - **Formato**:
 Formato
-- **feat(component / dropdown): Se corrigió la posición del menú**:
-feat(component / dropdown): Se corrigió la posición del menú
 - **fix(component / Date range): Se adoptó la fecha de inicio y fin del date picker**:
 fix(component / Date range): Se adoptó la fecha de inicio y fin del date picker
 - **fix(component / tooltip): Se corrigieron los estilos de salto de línea y se corrigió la posición del tooltip**:
@@ -532,8 +534,6 @@ chore: se agregaron variables, se depuraron variables para homologar con Figma.
 feat(component/push-notificacion): se aplicó cambio de colores "tecmi" según Figma. Se aplicó mejora de tipo de datos a partir de objetos json.
 - **chore: se cambiaron los tipos de datos a un archivo más específico donde se generaran datos a nivel grupo y componente.**:
 chore: se cambiaron los tipos de datos a un archivo más específico donde se generaran datos a nivel grupo y componente.
-- **bubble chat**:
-bubble chat
 - **fix(component / date range): Se optimizó la destrucción del código**:
 fix(component / date range): Se optimizó la destrucción del código
 - **Update dockerBuild.js**:
@@ -558,6 +558,8 @@ Fix(component / totp): Se corrigieron los bullets en la parte inferior
 feat(component / chevron title): Se agregaron traducciones a los tooltips
 - **fix(component / focus element): Se agregó la posibilidad de mostrar el 0**:
 fix(component / focus element): Se agregó la posibilidad de mostrar el 0
+- **feat(component / container button): Se agregaron traducciones a los tooltips**:
+feat(component / container button): Se agregaron traducciones a los tooltips
 - **chore: se agregó opacidad para correcto funcionamiento del componente "Media card".**:
 chore: se agregó opacidad para correcto funcionamiento del componente "Media card".
 - **chore: se agregó nueva variable a todas las marcas para homologar con Figma**:
@@ -574,6 +576,8 @@ fix(component / search card): Se corrigieron los colores de los servicios
 feat(component / button icon): Se agregaron traducciones a los tooltips
 - **fix(component / frequent app selector): Se solucionó el problema de los botones de distintos tamaños**:
 fix(component / frequent app selector): Se solucionó el problema de los botones de distintos tamaños
+- **feat(component / date picker): Se agregaron traducciones a los tooltips**:
+feat(component / date picker): Se agregaron traducciones a los tooltips
 - **feat(component / bookmark): Se agregaron traducciones a los tooltips**:
 feat(component / bookmark): Se agregaron traducciones a los tooltips
 - **feat(component/push-notificacion): se aplicó cambio de colores "tecmi" según Figma. Se aplicó mejora de tipo de datos a partir de objetos json.**:
@@ -602,28 +606,18 @@ top bar
 Update
 - **Formato**:
 Formato
-- **bubble chat**:
-bubble chat
-- **bubble chat**:
-bubble chat
-- **new config**:
-new config
 - **build**:
 build
 - **formato**:
 formato
 - **Formato**:
 Formato
-- **Formato**:
-Formato
-- **Formato**:
-Formato
 - **bubble chat**:
 bubble chat
-- **Add conditional visibility and cascading options to filter card component**:
-Add conditional visibility and cascading options to filter card component
 - **fix(component/sidebar): Se realizo refactorización de código para depurar elementos y simplificar estructura. La navegación ahora es en su mayoría manejo con CSS.**:
 fix(component/sidebar): Se realizo refactorización de código para depurar elementos y simplificar estructura. La navegación ahora es en su mayoría manejo con CSS.
+- **feat(component / dropdown): Se corrigió la posición del menú**:
+feat(component / dropdown): Se corrigió la posición del menú
 - **formato**:
 formato
 - **Formato**:
@@ -632,8 +626,6 @@ Formato
 fix(component / portal): Se agregó un parche de seguridad
 - **feat(component / interactive icon): se agregó el tooltip al interactive icon**:
 feat(component / interactive icon): se agregó el tooltip al interactive icon
-- **feat(component / icon): Se agregaron iconos personalizados**:
-feat(component / icon): Se agregaron iconos personalizados
 - **feat(component/sidebar): se realizaron ajustes para manejar las versión móvil o de escritorio mediante consultar de CSS.**:
 feat(component/sidebar): se realizaron ajustes para manejar las versión móvil o de escritorio mediante consultar de CSS.
 - **feat(utils): Se agregaron funciones beforeClose y afterClose a los servicios de Modal y ProjectedContent**:
@@ -642,12 +634,28 @@ feat(utils): Se agregaron funciones beforeClose y afterClose a los servicios de 
 fix(component / Projection service): Se agregó un parche de seguridad
 - **fix(component / native modal): Se agregó un parche de seguridad**:
 fix(component / native modal): Se agregó un parche de seguridad
+- **bubble chat**:
+bubble chat
+- **utils(app): Actualización de la app demo**:
+utils(app): Actualización de la app demo
+- **bubble chat**:
+bubble chat
+- **bubble chat**:
+bubble chat
+- **new config**:
+new config
+- **Formato**:
+Formato
+- **Formato**:
+Formato
+- **Add conditional visibility and cascading options to filter card component**:
+Add conditional visibility and cascading options to filter card component
+- **feat(component / icon): Se agregaron iconos personalizados**:
+feat(component / icon): Se agregaron iconos personalizados
 - **se agergó soporte para angular 21**:
 se agergó soporte para angular 21
 - **feat(component/multi-dot-paginator): se agrego el botón como último índice. Se implementó funcionalidad para que permita seleccionar solo un índice.**:
 feat(component/multi-dot-paginator): se agrego el botón como último índice. Se implementó funcionalidad para que permita seleccionar solo un índice.
-- **utils(app): Actualización de la app demo**:
-utils(app): Actualización de la app demo
 - **topbar user**:
 topbar user
 - **test: Add unit tests for BmbFilterCardComponent, along with related dependency updates.**:
@@ -817,6 +825,8 @@ chat bubble lts
 Button container mobile created
 - **revert service projection changes**:
 revert service projection changes
+- **solving tests**:
+solving tests
 - **feat(component / bottom navigation): Se agregaron traducciones a los tooltips**:
 feat(component / bottom navigation): Se agregaron traducciones a los tooltips
 - **feat(component / search card): Se estandarizaron los colores para los iconos**:
@@ -833,8 +843,10 @@ Fixes after PR review
 feat(component / multi dot paginator): Se agregaron traducciones a los tooltips
 - **feat(component / home card): Se agregaron traducciones a los tooltips**:
 feat(component / home card): Se agregaron traducciones a los tooltips
-- **feat(component / container button): Se agregaron traducciones a los tooltips**:
-feat(component / container button): Se agregaron traducciones a los tooltips
+- **chore: se agregó ejemplo de uso de las variables de colores nombras.**:
+chore: se agregó ejemplo de uso de las variables de colores nombras.
+- **fix(component / image): Se actualizaron las traducciones para el componente de imagen**:
+fix(component / image): Se actualizaron las traducciones para el componente de imagen
 - **feat(component / dot paginator): Se agregaron traducciones a los tooltips**:
 feat(component / dot paginator): Se agregaron traducciones a los tooltips
 - **feat(component / dropdown): Se agregaron traducciones a los tooltips**:
@@ -845,44 +857,40 @@ feat(component / list items): Se agregaron traducciones a los tooltips
 feat(component / top bar): Se agregaron traducciones a los tooltips
 - **feat(component / calendar): Se agregaron traducciones a los tooltips**:
 feat(component / calendar): Se agregaron traducciones a los tooltips
+- **Update services.json**:
+Update services.json
 - **feat(component / table): Se agregaron traducciones a los tooltips**:
 feat(component / table): Se agregaron traducciones a los tooltips
 - **feat(component/chat-bubble): se realizo ajuste en color de CSS según Figma. Cambios de contraste para Tec milenio.**:
 feat(component/chat-bubble): se realizo ajuste en color de CSS según Figma. Cambios de contraste para Tec milenio.
-- **feat(component / sidebar): Se agregaron traducciones a los tooltips**:
-feat(component / sidebar): Se agregaron traducciones a los tooltips
-- **feat(component / date picker): Se agregaron traducciones a los tooltips**:
-feat(component / date picker): Se agregaron traducciones a los tooltips
-- **feat(component / evaluation rubric): Se agregaron traducciones a los tooltips**:
-feat(component / evaluation rubric): Se agregaron traducciones a los tooltips
-- **feat(component/tags): se realizo ajuste en color de CSS según Figma. Cambios de contraste para Tec milenio.**:
-feat(component/tags): se realizo ajuste en color de CSS según Figma. Cambios de contraste para Tec milenio.
-- **chat bubble lts**:
-chat bubble lts
-- **chore: se agregó ejemplo de uso de las variables de colores nombras.**:
-chore: se agregó ejemplo de uso de las variables de colores nombras.
-- **Update services.json**:
-Update services.json
 - **feat(component/calentar-standar): se realizo ajuste en color de CSS según Figma. Cambios de contraste para Tec milenio.**:
 feat(component/calentar-standar): se realizo ajuste en color de CSS según Figma. Cambios de contraste para Tec milenio.
 - **feat(component / tags): Se agregaron traducciones a los tooltips**:
 feat(component / tags): Se agregaron traducciones a los tooltips
-- **feat(component / modal): Se agregaron traducciones a los tooltips**:
-feat(component / modal): Se agregaron traducciones a los tooltips
 - **feat(component / header section): Se agregaron traducciones a los tooltips**:
 feat(component / header section): Se agregaron traducciones a los tooltips
 - **feat(component / external link): Se agregaron traducciones a los tooltips**:
 feat(component / external link): Se agregaron traducciones a los tooltips
 - **feat(component/inner-header): se realizo ajuste en color de CSS según Figma. Cambios de contraste para Tec milenio.**:
 feat(component/inner-header): se realizo ajuste en color de CSS según Figma. Cambios de contraste para Tec milenio.
+- **Update bmb-interactive-icon.stories.ts**:
+Update bmb-interactive-icon.stories.ts
+- **feat(component/tags): se realizo ajuste en color de CSS según Figma. Cambios de contraste para Tec milenio.**:
+feat(component/tags): se realizo ajuste en color de CSS según Figma. Cambios de contraste para Tec milenio.
+- **chat bubble lts**:
+chat bubble lts
+- **feat(component / sidebar): Se agregaron traducciones a los tooltips**:
+feat(component / sidebar): Se agregaron traducciones a los tooltips
+- **feat(component / modal): Se agregaron traducciones a los tooltips**:
+feat(component / modal): Se agregaron traducciones a los tooltips
 - **feat(component / notice card): Se agregaron traducciones a los tooltips**:
 feat(component / notice card): Se agregaron traducciones a los tooltips
 - **feat(component / home card): Se agregaron traducciones a los tooltips**:
 feat(component / home card): Se agregaron traducciones a los tooltips
 - **feat(component / header section): Se agregaron traducciones a los tooltips**:
 feat(component / header section): Se agregaron traducciones a los tooltips
-- **Update bmb-interactive-icon.stories.ts**:
-Update bmb-interactive-icon.stories.ts
+- **feat(component / evaluation rubric): Se agregaron traducciones a los tooltips**:
+feat(component / evaluation rubric): Se agregaron traducciones a los tooltips
 - **feat(component / tabs): Se agregaron traducciones a los tooltips**:
 feat(component / tabs): Se agregaron traducciones a los tooltips
 - **feat(component / text editor): Se agregaron traducciones a los tooltips**:
@@ -909,8 +917,6 @@ Formato
 Formato
 - **Formato**:
 Formato
-- **feat(component / dropdown): Se corrigió la posición del menú**:
-feat(component / dropdown): Se corrigió la posición del menú
 - **fix(component / Date range): Se adoptó la fecha de inicio y fin del date picker**:
 fix(component / Date range): Se adoptó la fecha de inicio y fin del date picker
 - **fix(component / tooltip): Se corrigieron los estilos de salto de línea y se corrigió la posición del tooltip**:
@@ -931,8 +937,6 @@ chore: se agregaron variables, se depuraron variables para homologar con Figma.
 feat(component/push-notificacion): se aplicó cambio de colores "tecmi" según Figma. Se aplicó mejora de tipo de datos a partir de objetos json.
 - **chore: se cambiaron los tipos de datos a un archivo más específico donde se generaran datos a nivel grupo y componente.**:
 chore: se cambiaron los tipos de datos a un archivo más específico donde se generaran datos a nivel grupo y componente.
-- **bubble chat**:
-bubble chat
 - **fix(component / date range): Se optimizó la destrucción del código**:
 fix(component / date range): Se optimizó la destrucción del código
 - **Update dockerBuild.js**:
@@ -957,6 +961,8 @@ Fix(component / totp): Se corrigieron los bullets en la parte inferior
 feat(component / chevron title): Se agregaron traducciones a los tooltips
 - **fix(component / focus element): Se agregó la posibilidad de mostrar el 0**:
 fix(component / focus element): Se agregó la posibilidad de mostrar el 0
+- **feat(component / container button): Se agregaron traducciones a los tooltips**:
+feat(component / container button): Se agregaron traducciones a los tooltips
 - **chore: se agregó opacidad para correcto funcionamiento del componente "Media card".**:
 chore: se agregó opacidad para correcto funcionamiento del componente "Media card".
 - **chore: se agregó nueva variable a todas las marcas para homologar con Figma**:
@@ -973,6 +979,8 @@ fix(component / search card): Se corrigieron los colores de los servicios
 feat(component / button icon): Se agregaron traducciones a los tooltips
 - **fix(component / frequent app selector): Se solucionó el problema de los botones de distintos tamaños**:
 fix(component / frequent app selector): Se solucionó el problema de los botones de distintos tamaños
+- **feat(component / date picker): Se agregaron traducciones a los tooltips**:
+feat(component / date picker): Se agregaron traducciones a los tooltips
 - **feat(component / bookmark): Se agregaron traducciones a los tooltips**:
 feat(component / bookmark): Se agregaron traducciones a los tooltips
 - **feat(component/push-notificacion): se aplicó cambio de colores "tecmi" según Figma. Se aplicó mejora de tipo de datos a partir de objetos json.**:
@@ -1001,28 +1009,18 @@ top bar
 Update
 - **Formato**:
 Formato
-- **bubble chat**:
-bubble chat
-- **bubble chat**:
-bubble chat
-- **new config**:
-new config
 - **build**:
 build
 - **formato**:
 formato
 - **Formato**:
 Formato
-- **Formato**:
-Formato
-- **Formato**:
-Formato
 - **bubble chat**:
 bubble chat
-- **Add conditional visibility and cascading options to filter card component**:
-Add conditional visibility and cascading options to filter card component
 - **fix(component/sidebar): Se realizo refactorización de código para depurar elementos y simplificar estructura. La navegación ahora es en su mayoría manejo con CSS.**:
 fix(component/sidebar): Se realizo refactorización de código para depurar elementos y simplificar estructura. La navegación ahora es en su mayoría manejo con CSS.
+- **feat(component / dropdown): Se corrigió la posición del menú**:
+feat(component / dropdown): Se corrigió la posición del menú
 - **formato**:
 formato
 - **Formato**:
@@ -1031,8 +1029,6 @@ Formato
 fix(component / portal): Se agregó un parche de seguridad
 - **feat(component / interactive icon): se agregó el tooltip al interactive icon**:
 feat(component / interactive icon): se agregó el tooltip al interactive icon
-- **feat(component / icon): Se agregaron iconos personalizados**:
-feat(component / icon): Se agregaron iconos personalizados
 - **feat(component/sidebar): se realizaron ajustes para manejar las versión móvil o de escritorio mediante consultar de CSS.**:
 feat(component/sidebar): se realizaron ajustes para manejar las versión móvil o de escritorio mediante consultar de CSS.
 - **feat(utils): Se agregaron funciones beforeClose y afterClose a los servicios de Modal y ProjectedContent**:
@@ -1041,12 +1037,28 @@ feat(utils): Se agregaron funciones beforeClose y afterClose a los servicios de 
 fix(component / Projection service): Se agregó un parche de seguridad
 - **fix(component / native modal): Se agregó un parche de seguridad**:
 fix(component / native modal): Se agregó un parche de seguridad
+- **bubble chat**:
+bubble chat
+- **utils(app): Actualización de la app demo**:
+utils(app): Actualización de la app demo
+- **bubble chat**:
+bubble chat
+- **bubble chat**:
+bubble chat
+- **new config**:
+new config
+- **Formato**:
+Formato
+- **Formato**:
+Formato
+- **Add conditional visibility and cascading options to filter card component**:
+Add conditional visibility and cascading options to filter card component
+- **feat(component / icon): Se agregaron iconos personalizados**:
+feat(component / icon): Se agregaron iconos personalizados
 - **se agergó soporte para angular 21**:
 se agergó soporte para angular 21
 - **feat(component/multi-dot-paginator): se agrego el botón como último índice. Se implementó funcionalidad para que permita seleccionar solo un índice.**:
 feat(component/multi-dot-paginator): se agrego el botón como último índice. Se implementó funcionalidad para que permita seleccionar solo un índice.
-- **utils(app): Actualización de la app demo**:
-utils(app): Actualización de la app demo
 - **topbar user**:
 topbar user
 - **test: Add unit tests for BmbFilterCardComponent, along with related dependency updates.**:

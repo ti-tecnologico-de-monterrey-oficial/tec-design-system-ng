@@ -1,7 +1,7 @@
 @use '../../../assets/styles/base/rem' as rem;
 @use '../../../assets/styles/base/fonts' as fonts;
 
-.bmb-chat-bubbles-lts {
+.bmb-ai-chat-bubble {
   margin: rem.rem_calc(10 0);
   width: 100%;
 
@@ -12,11 +12,11 @@
   }
 
   &-bot {
-    .bmb-chat-bubbles-lts-profile {
+    .bmb-ai-chat-bubble-profile {
       align-items: flex-start;
     }
 
-    .bmb-chat-bubbles-lts-msg {
+    .bmb-ai-chat-bubble-msg {
       border-radius: 0 rem.rem_calc(16) rem.rem_calc(16) rem.rem_calc(16);
       background-color: var(--general-contrasts-20);
       color: var(--general-contrasts-75);
@@ -26,18 +26,18 @@
   &-user {
     justify-content: flex-end;
 
-    .bmb-chat-bubbles-lts-profile {
+    .bmb-ai-chat-bubble-profile {
       align-items: flex-end;
       margin-bottom: rem.rem_calc(36);
       order: 3;
     }
 
-    .bmb-chat-bubbles-lts-msg {
+    .bmb-ai-chat-bubble-msg {
       border-radius: rem.rem_calc(16) rem.rem_calc(16) 0 rem.rem_calc(16);
       background-color: var(--general-contrasts-5);
     }
 
-    .bmb-chat-bubbles-lts-extra {
+    .bmb-ai-chat-bubble-extra {
       justify-content: flex-start;
       margin-right: rem.rem_calc(45);
     }
