@@ -1,7 +1,7 @@
 import {
   AfterViewInit,
   Component,
-  Input,
+  input,
   OnChanges,
   SimpleChanges,
   TemplateRef,
@@ -52,7 +52,7 @@ export interface OnboardingStep {
       <div class="bmb-bienvenida">
         <bmb-container [appearance]="'secondary-container'">
           <section class="bmb-bienvenida_mobile">
-            <ng-container *ngFor="let step of steps; let i = index">
+            <ng-container *ngFor="let step of steps(); let i = index">
               <article
                 class="bmb-bienvenida_step"
                 [class.bmb-bienvenida_step-active]="i === currentIndex"
@@ -128,21 +128,21 @@ export interface OnboardingStep {
                 <div class="bmb-bienvenida_desktop-content">
                   <div class="bmb-bienvenida_desktop-header">
                     <h2 class="font-bold-11">
-                      {{ steps[currentIndex].title }}
+                      {{ steps()[currentIndex].title }}
                     </h2>
                     <bmb-icon
-                      [icon]="steps[currentIndex].icon"
-                      [size]="steps[currentIndex].iconSize"
+                      [icon]="steps()[currentIndex].icon"
+                      [size]="steps()[currentIndex].iconSize"
                     ></bmb-icon>
                   </div>
-                  <p class="font-bold-9" *ngIf="steps[currentIndex].subtitle">
-                    {{ steps[currentIndex].subtitle }}
+                  <p class="font-bold-9" *ngIf="steps()[currentIndex].subtitle">
+                    {{ steps()[currentIndex].subtitle }}
                   </p>
                   <p
                     class="font-regular-4 bmb-bienvenida_desktop-description"
-                    [innerHTML]="steps[currentIndex].description"
+                    [innerHTML]="steps()[currentIndex].description"
                   ></p>
-                  <div *ngIf="steps[currentIndex].showCheckbox">
+                  <div *ngIf="steps()[currentIndex].showCheckbox">
                     <bmb-checkbox
                       name="desktopNoShow"
                       label="No mostrar este tutorial nuevamente"
@@ -151,28 +151,28 @@ export interface OnboardingStep {
                   </div>
                   <div class="bmb-bienvenida_actions">
                     <button
-                      *ngIf="steps[currentIndex].secondaryButton"
+                      *ngIf="steps()[currentIndex].secondaryButton"
                       bmbButton
                       appearance="secondary-outlined"
                       (click)="back()"
                     >
-                      {{ steps[currentIndex].secondaryButton }}
+                      {{ steps()[currentIndex].secondaryButton }}
                     </button>
 
                     <button bmbButton (click)="next()">
-                      {{ steps[currentIndex].primaryButton }}
+                      {{ steps()[currentIndex].primaryButton }}
                     </button>
                   </div>
                 </div>
                 <img
-                  [src]="steps[currentIndex]?.imageDesktop"
+                  [src]="steps()[currentIndex]?.imageDesktop"
                   alt=""
                   class="bmb-bienvenida_image"
                 />
               </div>
               <bmb-dot-paginator
                 [activeDotIndex]="currentIndex"
-                [totalDots]="steps.length"
+                [totalDots]="steps().length"
                 (onDotPress)="handleDotPress($event)"
               />
             </div>
@@ -184,8 +184,8 @@ export interface OnboardingStep {
 })
 class StorybookLayoutBienvenida implements AfterViewInit, OnChanges {
   @ViewChild('contentTemplate') contentTemplate!: TemplateRef<any>;
-  @Input() steps: OnboardingStep[] = [];
-  @Input() startIndex = 0;
+  steps = input<OnboardingStep[]>([]);
+  startIndex = input<number>(0);
   currentIndex = 0;
 
   constructor(private contentProjected: BmbProjectionContentService) {}
@@ -202,7 +202,7 @@ class StorybookLayoutBienvenida implements AfterViewInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['startIndex']) {
-      this.currentIndex = this.startIndex;
+      this.currentIndex = this.startIndex();
     }
   }
 
@@ -215,7 +215,7 @@ class StorybookLayoutBienvenida implements AfterViewInit, OnChanges {
   }
 
   next() {
-    const lastIndex = this.steps.length - 1;
+    const lastIndex = this.steps().length - 1;
 
     if (this.currentIndex === lastIndex) {
       this.closeOnboarding();
@@ -298,8 +298,8 @@ import { BmbModalComponent, ModalDataConfig } from '@ti-tecnologico-de-monterrey
 })
 class StorybookLayoutBienvenida implements AfterViewInit, OnChanges {
   @ViewChild('contentTemplate') contentTemplate!: TemplateRef<any>;
-  @Input() steps: OnboardingStep[] = [];
-  @Input() startIndex = 0;
+  steps = input<OnboardingStep[]>([]);
+  startIndex = input<number>(0);
   currentIndex = 0;
 
   constructor(private contentProjected: BmbProjectionContentService) {}
@@ -329,7 +329,7 @@ class StorybookLayoutBienvenida implements AfterViewInit, OnChanges {
   }
 
   next() {
-    const lastIndex = this.steps.length - 1;
+    const lastIndex = this.steps().length - 1;
 
     if (this.currentIndex === lastIndex) {
       this.closeOnboarding();
@@ -369,7 +369,7 @@ Below is an example of how you can use the components needed for this organizati
       <div class="bmb-bienvenida">
         <bmb-container [appearance]="'secondary-container'">
           <section class="bmb-bienvenida_mobile">
-            <ng-container *ngFor="let step of steps; let i = index">
+            <ng-container *ngFor="let step of steps(); let i = index">
               <article
                 class="bmb-bienvenida_step"
                 [class.bmb-bienvenida_step-active]="i === currentIndex"
@@ -445,21 +445,21 @@ Below is an example of how you can use the components needed for this organizati
                 <div class="bmb-bienvenida_desktop-content">
                   <div class="bmb-bienvenida_desktop-header">
                     <h2 class="font-bold-11">
-                      {{ steps[currentIndex].title }}
+                      {{ steps()[currentIndex].title }}
                     </h2>
                     <bmb-icon
-                      [icon]="steps[currentIndex].icon"
-                      [size]="steps[currentIndex].iconSize"
+                      [icon]="steps()[currentIndex].icon"
+                      [size]="steps()[currentIndex].iconSize"
                     ></bmb-icon>
                   </div>
-                  <p class="font-bold-9" *ngIf="steps[currentIndex].subtitle">
-                    {{ steps[currentIndex].subtitle }}
+                  <p class="font-bold-9" *ngIf="steps()[currentIndex].subtitle">
+                    {{ steps()[currentIndex].subtitle }}
                   </p>
                   <p
                     class="font-regular-4 bmb-bienvenida_desktop-description"
-                    [innerHTML]="steps[currentIndex].description"
+                    [innerHTML]="steps()[currentIndex].description"
                   ></p>
-                  <div *ngIf="steps[currentIndex].showCheckbox">
+                  <div *ngIf="steps()[currentIndex].showCheckbox">
                     <bmb-checkbox
                       name="desktopNoShow"
                       label="No mostrar este tutorial nuevamente"
@@ -468,28 +468,28 @@ Below is an example of how you can use the components needed for this organizati
                   </div>
                   <div class="bmb-bienvenida_actions">
                     <button
-                      *ngIf="steps[currentIndex].secondaryButton"
+                      *ngIf="steps()[currentIndex].secondaryButton"
                       bmbButton
                       appearance="secondary-outlined"
                       (click)="back()"
                     >
-                      {{ steps[currentIndex].secondaryButton }}
+                      {{ steps()[currentIndex].secondaryButton }}
                     </button>
 
                     <button bmbButton (click)="next()">
-                      {{ steps[currentIndex].primaryButton }}
+                      {{ steps()[currentIndex].primaryButton }}
                     </button>
                   </div>
                 </div>
                 <img
-                  [src]="steps[currentIndex]?.imageDesktop"
+                  [src]="steps()[currentIndex]?.imageDesktop"
                   alt=""
                   class="bmb-bienvenida_image"
                 />
               </div>
               <bmb-dot-paginator
                 [activeDotIndex]="currentIndex"
-                [totalDots]="steps.length"
+                [totalDots]="steps().length"
                 (onDotPress)="handleDotPress($event)"
               />
             </div>
