@@ -1,0 +1,12 @@
+.bmb-chat-bubbles-lts-icon {
+  color: var(--general-contrasts-50);
+  cursor: pointer;
+
+  &:hover {
+    color: var(--general-contrasts-100);
+  }
+
+  &-active {
+    color: var(--general-contrasts-100);
+  }
+}
