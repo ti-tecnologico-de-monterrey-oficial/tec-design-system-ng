@@ -1,6 +1,6 @@
 import {
   Component,
-  Input,
+  input,
   ViewEncapsulation,
   ChangeDetectionStrategy,
 } from '@angular/core';
@@ -15,5 +15,5 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BmbSelectItemComponent {
-  @Input() value: string | number = '';
+  value = input<string | number>('');
 }
