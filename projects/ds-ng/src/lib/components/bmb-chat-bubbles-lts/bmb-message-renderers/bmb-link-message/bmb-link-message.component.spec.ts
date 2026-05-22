@@ -54,31 +54,33 @@ describe('LinkMessageComponent', () => {
   it('should pass correct textLink input', () => {
     const element = fixture.debugElement.query(By.css('bmb-text-link'));
 
-    expect(element.componentInstance.textLink).toBe(mockMessage.content.text!);
+    expect(element.componentInstance.textLink()).toBe(
+      mockMessage.content.text!,
+    );
   });
 
   it('should pass correct link input', () => {
     const element = fixture.debugElement.query(By.css('bmb-text-link'));
 
-    expect(element.componentInstance.link).toBe(mockMessage.content.href!);
+    expect(element.componentInstance.link()).toBe(mockMessage.content.href!);
   });
 
   it('should pass correct target input', () => {
     const element = fixture.debugElement.query(By.css('bmb-text-link'));
 
-    expect(element.componentInstance.target).toBe(mockMessage.content.target);
+    expect(element.componentInstance.target()).toBe(mockMessage.content.target);
   });
 
   it('should use underlined style', () => {
     const element = fixture.debugElement.query(By.css('bmb-text-link'));
 
-    expect(element.componentInstance.textLinkStyle).toBe('underlined');
+    expect(element.componentInstance.textLinkStyle()).toBe('underlined');
   });
 
   it('should set disabled as false', () => {
     const element = fixture.debugElement.query(By.css('bmb-text-link'));
 
-    expect(element.componentInstance.disabled).toBeFalse();
+    expect(element.componentInstance.disabled()).toBeFalse();
   });
 
   it('should fallback target to _blank', () => {
@@ -96,6 +98,6 @@ describe('LinkMessageComponent', () => {
 
     const element = fixture.debugElement.query(By.css('bmb-text-link'));
 
-    expect(element.componentInstance.target).toBe('_blank');
+    expect(element.componentInstance.target()).toBe('_blank');
   });
 });
