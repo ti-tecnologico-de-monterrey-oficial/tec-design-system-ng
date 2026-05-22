@@ -65,7 +65,7 @@ export class BmbPushNotificationItemComponent {
         );
       }
 
-      if (this.notification().isFullColor && !this.isValidVariant()) {
+      if (!this.notification().isFullColor && !this.isValidVariant()) {
         throw new Error(
           `"${this.notification().type}" type is not valid for this variant. Please provide a valid type.`,
         );
@@ -79,12 +79,12 @@ export class BmbPushNotificationItemComponent {
       `bmb_push-notification-item-type-${this.notification()?.type}`,
     ];
 
-    if (
-      (this.notification()?.isFullColor && this.isValidForFullVariant()) ||
-      (!this.notification()?.isFullColor && !this.isValidVariant())
-    )
+    if (this.notification()?.isFullColor && this.isValidForFullVariant()) {
       classList.push('bmb_push-notification-item-full-color');
-    else classList.push('bmb_push-notification-item-regular-tmp');
+    } else {
+      if (!this.notification()?.isFullColor && this.isValidVariant())
+        classList.push('bmb_push-notification-item-regular-tmp');
+    }
 
     if (!this.isExpanded)
       classList.push('bmb_push-notification-item-contracted');
