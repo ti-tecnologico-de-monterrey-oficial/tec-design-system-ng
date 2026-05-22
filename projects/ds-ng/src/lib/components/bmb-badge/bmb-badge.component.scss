@@ -68,7 +68,7 @@ $badge_appearance: colorFn.map-merged(
       background-color: $color;
       //Bullet and text color for container
       &.bmb_badge-container {
-        $color: map-get(colors.$font_color, $name);
+        $color: map-get(colors.$font_colors, $name);
         //Container variant bullet color
         .bmb_badge-bullet {
           background-color: $color;
