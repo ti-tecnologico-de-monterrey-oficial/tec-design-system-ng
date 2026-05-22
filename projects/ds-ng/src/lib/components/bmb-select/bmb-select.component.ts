@@ -2,11 +2,10 @@ import {
   Component,
   ViewEncapsulation,
   ChangeDetectionStrategy,
-  Input,
   HostListener,
   ElementRef,
-  Output,
-  EventEmitter,
+  input,
+  output,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
@@ -21,9 +20,9 @@ import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BmbSelectComponent {
-  @Input() value: unknown = null;
+  value = input<unknown>(null);
 
-  @Output() onValueChange: EventEmitter<string> = new EventEmitter<string>();
+  onValueChange = output<string>();
 
   constructor(private elementRef: ElementRef) {}
 
