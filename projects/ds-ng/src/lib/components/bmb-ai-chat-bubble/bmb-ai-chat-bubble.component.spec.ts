@@ -127,7 +127,7 @@ describe('BmbAiChatBubbleComponent', () => {
   });
 
   it('should emit action event', () => {
-    spyOn(component.action, 'emit');
+    spyOn(component.getAction, 'emit');
 
     const mockEvent: BmbChatActionEvent = {
       action: 'copy',
@@ -137,7 +137,7 @@ describe('BmbAiChatBubbleComponent', () => {
 
     component['onAction'](mockEvent);
 
-    expect(component.action.emit).toHaveBeenCalledWith(mockEvent);
+    expect(component.getAction.emit).toHaveBeenCalledWith(mockEvent);
   });
 
   it('should render text message component', () => {
