@@ -141,7 +141,7 @@ ${getAlertBlockquote(
     isRelevantTitle: true,
   },
 )}
-> <br/><br/>
+>
 ### Configuration
 Add the **BmbNotificationService** to your App providers:
 \`\`\`typescript
