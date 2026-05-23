@@ -26,7 +26,6 @@ import {
   IBmbHomeCardChatMode,
   IBotType,
   IBmbSearchCardItemResult,
-  BmbProfileComponent,
 } from '../../projects/ds-ng/src/public-api';
 import { MatDialog } from '@angular/material/dialog';
 import { Subject } from 'rxjs';

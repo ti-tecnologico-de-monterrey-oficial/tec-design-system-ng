@@ -1,6 +1,22 @@
 <header class="bmb_template-header">
   <h3>Home</h3>
   <bmb-icon alt="whats" [icon]="'assets/img/whats.svg'"></bmb-icon>
+  <div class="test">
+    <div [style.color]="'var(' + claseColorActual + ')'">
+      <!-- @for (idx of arrBarras; track $index) { -->
+      <!-- <span>{{ fillIcon($index) + '-' + idx }}</span>
+        {{ barrasLlenas }} -->
+      <bmb-icon icon="crop_9_16" [isFill]="true" [size]="24" />
+      <bmb-icon icon="crop_9_16" [isFill]="true" [size]="24" />
+      <bmb-icon icon="crop_9_16" [isFill]="false" [size]="24" />
+      <bmb-icon icon="crop_9_16" [isFill]="false" [size]="24" />
+      <!-- } -->
+    </div>
+
+    <span class="logro-label" style="color: var(--general-contrasts-100)">{{
+      nombre_grado_logro
+    }}</span>
+  </div>
 </header>
 
 <div class="bmb_template-margin-for-sidebar">

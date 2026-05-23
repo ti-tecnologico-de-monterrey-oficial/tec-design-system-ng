@@ -68,7 +68,7 @@ export class BmbAiChatBubbleComponent {
   /**
    * Emits action events.
    */
-  readonly action = output<BmbChatActionEvent>();
+  readonly getAction = output<BmbChatActionEvent>();
 
   /**
    * Bubble dynamic classes.
@@ -80,6 +80,6 @@ export class BmbAiChatBubbleComponent {
   }));
 
   protected onAction(event: BmbChatActionEvent) {
-    this.action.emit(event);
+    this.getAction.emit(event);
   }
 }
