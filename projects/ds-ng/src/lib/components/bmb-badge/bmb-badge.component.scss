@@ -68,14 +68,24 @@ $badge_appearance: colorFn.map-merged(
       background-color: $color;
       //Bullet and text color for container
       &.bmb_badge-container {
-        $color: map-get(colors.$font_colors, $name);
-        //Container variant bullet color
-        .bmb_badge-bullet {
-          background-color: $color;
+        @if $name == 'strong' or $name == 'success' {
+          .bmb_badge-bullet {
+            background-color: var(--general-contrasts-dark-complementary);
+          }
+          .bmb_badge-content {
+            color: var(--general-contrasts-dark-complementary);
+          }
         }
-        //Container variant text color
-        .bmb_badge-content {
-          color: $color;
+        @else {
+          $color: map-get(colors.$font_colors, $name);
+          //Container variant bullet color
+          .bmb_badge-bullet {
+            background-color: $color;
+          }
+          //Container variant text color
+          .bmb_badge-content {
+            color: $color;
+          }
         }
       }
     }
