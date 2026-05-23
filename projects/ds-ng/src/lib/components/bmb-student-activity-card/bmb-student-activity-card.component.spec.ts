@@ -65,7 +65,7 @@ describe('BmbStudentActivityCardComponent', () => {
 
   it('should return correct badge type', () => {
     componentRef.setInput('type', 'academic');
-    expect(component.getBadgeType()).toBe('strong');
+    expect(component.getBadgeType()).toBe('creative-use-strong');
 
     componentRef.setInput('type', 'life');
     expect(component.getBadgeType()).toBe('mitec_green');
