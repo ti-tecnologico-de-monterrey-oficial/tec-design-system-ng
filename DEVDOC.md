@@ -179,7 +179,7 @@ Types: `fix`, `feat`, `build`, `chore`, `docs`, `style`, `refactor`, `test`
 
 **Example**:
 
-`feat: Added a new component`
+`feat(component / componente name): Added a new component`
 
 More details: [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/)
 
