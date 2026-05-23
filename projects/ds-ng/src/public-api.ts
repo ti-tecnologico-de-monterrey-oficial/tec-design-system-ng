@@ -147,6 +147,7 @@ export * from './lib/components/bmb-list-items/bmb-list-items.component';
 export * from './lib/components/bmb-image/bmb-image.component';
 export * from './lib/components/bmb-icon-status/bmb-icon-status.component';
 export * from './lib/components/bmb-chat-bubbles/bmb-chat-bubbles.component';
+export * from './lib/components/bmb-ai-chat-bubble/bmb-ai-chat-bubble.component';
 export * from './lib/components/bmb-digital-id/bmb-digital-id.component';
 export * from './lib/components/bmb-sounds-card/bmb-sounds-card.component';
 export * from './lib/components/bmb-chevron-title-selector/bmb-chevron-title-selector.component';

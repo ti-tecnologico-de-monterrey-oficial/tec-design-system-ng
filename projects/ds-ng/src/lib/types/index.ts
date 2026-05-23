@@ -8,6 +8,7 @@ export * from '../components/bmb-login-onboarding/types';
 export * from '../components/bmb-filter-card/bmb-filter-card.interface';
 export * from '../components/bmb-alert-center/types';
 export * from '../components/bmb-chat-bubbles/types';
+export * from '../components/bmb-ai-chat-bubble/types';
 export * from '../components/bmb-sidebar/bmb-sidebar.interface';
 export * from '../components/bmb-grades/types';
 export * from '../components/bmb-tables/bmb-tables.interface';

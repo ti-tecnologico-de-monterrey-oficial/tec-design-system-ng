@@ -3,9 +3,9 @@
   [text]="this.text()"
 >
   @if (icon() && size()) {
-    <bmb-action-icon
+    <bmb-icon
       idElement="tooltip_element"
-      [iconSize]="size()"
+      [size]="size()"
       [icon]="icon()"
       [isFill]="isFill()"
       [alt]="componentTitle() || title() || 'Tooltip icon'"

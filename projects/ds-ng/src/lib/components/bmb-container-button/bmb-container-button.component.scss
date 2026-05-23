@@ -86,6 +86,9 @@
     box-orient: vertical;
     -webkit-line-clamp: 3;
     line-clamp: 3;
+    @include mixins.check-for-mobile() {
+      @include fonts.font(5, regular);
+    }
   }
 
   &-text {
@@ -135,13 +138,23 @@
   &-square.bmb_container-button-wrapper {
     &:not(.bmb_container-button-disabled):not(.bmb_container-button-error) {
       @include button-class() {
-        flex-flow: column;
-        justify-content: center;
-        min-height: rem.rem_calc(148);
-        min-width: rem.rem_calc(148);
-        padding: rem.rem_calc(32 48);
-        width: auto;
+        @include mixins.check-for-mobile() {
+          padding: rem.rem_calc(24);
+          min-height: auto;
+        }
       }
+      .bmb_check-external-link-button-element {
+        width: auto;
+        @include mixins.check-for-mobile() {
+          width: 100%;
+        }
+      }
+      flex-flow: column;
+      justify-content: center;
+      min-height: rem.rem_calc(148);
+      min-width: rem.rem_calc(148);
+      padding: rem.rem_calc(32 48);
+      width: auto;
     }
 
     .bmb_layout {
@@ -149,15 +162,28 @@
       gap: 0;
       height: 100%;
       justify-content: center;
+      @include mixins.check-for-mobile() {
+        align-items: flex-start;
+        height: auto;
+      }
 
       .bmb_container-button-left {
         flex-flow: column;
         gap: rem.rem_calc(8);
+        @include mixins.check-for-mobile() {
+          flex-flow: row;
+          gap: rem.rem_calc(16);
+        }
 
         &-icon {
           font-size: rem.rem_calc(48);
           height: rem.rem_calc(48);
           width: rem.rem_calc(48);
+          @include mixins.check-for-mobile() {
+            font-size: rem.rem_calc(24);
+            height: rem.rem_calc(24);
+            width: rem.rem_calc(24);
+          }
 
           i {
             width: rem.rem_calc(48);

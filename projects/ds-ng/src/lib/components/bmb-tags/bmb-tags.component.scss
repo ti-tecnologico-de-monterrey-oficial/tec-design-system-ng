@@ -56,6 +56,7 @@ $colors: (
   &:hover:not(.bmb_tag-activity):not(.bmb_tag-disabled) {
     background-color: var(--menu-select-on-surface-hovered);
     border-color: var(--menu-select-on-surface-hovered);
+    color: var(--menu-select-label-menu-inactive);
     outline: 0 none;
   }
 

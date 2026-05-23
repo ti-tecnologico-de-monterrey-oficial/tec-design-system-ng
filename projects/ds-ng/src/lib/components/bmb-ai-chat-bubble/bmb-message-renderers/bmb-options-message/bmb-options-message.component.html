@@ -1,0 +1,24 @@
+<div class="bmb-ai-chat-bubble-options">
+  @if (message().content.text) {
+    <p class="bmb-ai-chat-bubble-options-text">
+      {{ message().content.text }}
+    </p>
+  }
+
+  <div class="bmb-ai-chat-bubble-options-actions">
+    @for (option of message().content.options; track option.id) {
+      <bmb-container-button
+        class="bmb-ai-chat-bubble-options__button"
+        [componentTitle]="option.label"
+        [target]="option.target || '_self'"
+        [link]="option.href || ''"
+        [small]="true"
+        [square]="true"
+        iconLeft=""
+        iconRight=""
+        [attr.data-testid]="'chat-option-' + option.id"
+        (onButton)="option.action?.()"
+      />
+    }
+  </div>
+</div>

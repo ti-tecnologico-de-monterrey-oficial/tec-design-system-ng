@@ -72,12 +72,40 @@ $notification_appearance: colorFn.map-merged(
     }
 
     .bmb_push-notification-item-icon {
-      background-color: rgb(var(--white-primary));
-
       @each $name, $color in $notification_appearance {
         &-#{$name} {
-          color: $color;
+          @if $name == 'semantic-warning' or $name == 'semantic-success' {
+            color: rgb(var(--black-primary));
+          } @else {
+            background-color: rgb(var(--white-primary));
+            color: $color;
+          }
         }
+      }
+    }
+
+    &.bmb_push-notification-item-type-semantic-warning,
+    &.bmb_push-notification-item-type-semantic-success {
+      color: rgb(var(--black-primary));
+
+      .bmb_push-notification-item-title,
+      .bmb_push-notification-item-button,
+      .bmb_input-validator-label {
+        color: rgb(var(--black-primary));
+      }
+
+      .bmb_push-notification-item-title-date,
+      .bmb_push-notification-item-subtitle {
+        color: var(--black-tint);
+      }
+
+      .bmb_push-notification-item-content,
+      .bmb_push-notification-item-user-mail {
+        color: var(--black-light);
+      }
+
+      .bmb_push-notification-item-dont-ask-again .bmb_checkbox-mark {
+        border-color: var(--black-light);
       }
     }
   }
@@ -254,5 +282,9 @@ $notification_appearance: colorFn.map-merged(
       grid-area: mail;
       color: var(--white-tint);
     }
+  }
+
+  &-revition {
+    margin-left: var(--bmb-spacing-m);
   }
 }

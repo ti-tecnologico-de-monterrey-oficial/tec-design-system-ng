@@ -23,24 +23,24 @@ describe('BmbBadgeComponent', () => {
     componentRef.setInput('container', true);
     expect(component.getClasses()).toEqual([
       'bmb_badge',
-      'bmb_badge-normal',
       'bmb_badge-container',
+      'bmb_badge-normal',
     ]);
   });
 
   it('should return classes without container', () => {
     componentRef.setInput('appearance', 'normal');
     componentRef.setInput('container', false);
-    expect(component.getClasses()).toEqual(['bmb_badge', 'bmb_badge-normal']);
+    expect(component.getClasses()).toEqual(['bmb_badge']);
   });
 
   it('should return classes with different appearance', () => {
-    componentRef.setInput('appearance', 'highlight');
+    componentRef.setInput('appearance', 'mitec-blue');
     componentRef.setInput('container', true);
     expect(component.getClasses()).toEqual([
       'bmb_badge',
-      'bmb_badge-highlight',
       'bmb_badge-container',
+      'bmb_badge-mitec-blue',
     ]);
   });
 

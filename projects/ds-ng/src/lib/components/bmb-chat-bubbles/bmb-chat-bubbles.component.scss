@@ -43,7 +43,7 @@
       border-radius: var(--bmb-radius-full);
       width: rem.rem_calc(32);
       height: rem.rem_calc(32);
-      background-color: var(--general-contrasts-50);
+      background-color: var(--general-contrasts-60);
       color: var(--general-contrasts-25);
     }
   }
@@ -53,8 +53,10 @@
     min-height: rem.rem_calc(45);
     width: fit-content;
     border-radius: rem.rem_calc(16) rem.rem_calc(16) rem.rem_calc(16) 0;
+    border: rem.rem_calc(1) solid var(--general-contrasts-50);
     padding: var(--bmb-padding-m);
     box-shadow: rem.rem_calc(0 2 5) rgba(var(--black-primary), 0.1);
+    background-color: var(--general-contrasts-5);
 
     &-container {
       max-width: 70%;
@@ -135,6 +137,7 @@
     width: 100%;
     gap: 0.5rem;
     height: rem.rem_calc(20);
+    color: var(--general-contrasts-60);
 
     p {
       margin: 0;

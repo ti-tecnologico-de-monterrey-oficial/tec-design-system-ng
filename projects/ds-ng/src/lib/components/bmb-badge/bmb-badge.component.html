@@ -1,4 +1,7 @@
 <section [ngClass]="getClasses()">
-  <span class="bmb_badge-bullet"></span>
-  <span class="bmb_badge-content">{{ text() }}</span>
+  <span
+    class="bmb_badge-bullet"
+    [ngClass]="!container() ? getBulletColor() : ''"
+  ></span>
+  <span class="bmb_badge-content"> {{ text() }} </span>
 </section>

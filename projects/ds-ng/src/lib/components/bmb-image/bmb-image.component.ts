@@ -14,6 +14,7 @@ import { SizeNames } from '../../types';
 import { IBmbMediaCardLoading } from '../bmb-media-card/bmb-media-card.component';
 import { BmbImageItem } from './types';
 import { BmbButtonIconComponent } from '../bmb-button-icon/bmb-button-icon.component';
+import { TranslatePipe } from '../../pipes/translations';
 
 export interface BmbImageHeight {
   s: string;
@@ -30,7 +31,7 @@ export type IBmbImageObjectFit =
 @Component({
   selector: 'bmb-image',
   standalone: true,
-  imports: [CommonModule, BmbButtonIconComponent],
+  imports: [CommonModule, BmbButtonIconComponent, TranslatePipe],
   templateUrl: './bmb-image.component.html',
   styleUrl: './bmb-image.component.scss',
   host: {
