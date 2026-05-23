@@ -27,7 +27,9 @@
 }
 
 .bmb_container-button {
-  display: inline-flex;
+  &:has(.bmb_container-button-square) {
+    display: inline-flex;
+  }
 
   &-error.bmb_container-button-wrapper {
     @include button-class() {
@@ -152,6 +154,7 @@
 
       .bmb_check-external-link-button-element {
         width: auto;
+        padding: rem.rem_calc(32 48);
         @include mixins.check-for-mobile() {
           width: 100%;
         }
