@@ -5,18 +5,36 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { BmbAiChatBubbleComponent } from './bmb-ai-chat-bubble.component';
 import { CommonModule } from '@angular/common';
 import {
+  BlockquoteType,
+  getAlertBlockquote,
+  getBasicExampleBlock,
   getGeneralComponentDescription,
   getGeneralDescription,
   getSpecialSpecifications,
   RELEVANT_TITLE,
 } from '../../utils/doc/utils';
 
-const IMPORTANT_DESCRIPTION: string = `${RELEVANT_TITLE.important}
-The \`action\` event emits an object containing the triggered action, the related message information, and the native browser event.
-
+const GET_ACTION_DESCRIPTION: string = `
+${getAlertBlockquote(
+  `The \`getAction\` event emits an object containing the triggered action, the related message information, and the native browser event.
+>
 Example:
 \`{ action: "dislike", messageId: "1", message: Object, nativeEvent: Object }\`
-`;
+`,
+  {
+    title: RELEVANT_TITLE.configuration,
+    blockquoteType: BlockquoteType.important,
+  },
+)}
+`,
+  SUPPORTED_MESSAGES_TYPE: string = `
+Supported message types include:
+- text messages
+- images
+- mixed
+- links
+- selectable options
+- custom templates<br/><br/>`;
 
 export default {
   title: 'Components/Containers/AI Chat Bubble',
@@ -41,25 +59,24 @@ export default {
       description: {
         component: `
     ${getGeneralDescription(
-      `${getGeneralComponentDescription({ name: 'ai-chat-bubble' })} is used to render user and assistant chat messages with support for interactive actions and multiple content types. It supports [AI icons](https://bamboo.tec.mx/latest/componentes/ai-chat-bar/ai-icons-PPp7SNig), and allows configuration of available [***AI Chat bar***](/docs/components-inputs-ai-chat-bar--documentation) actions.
-
-Supported message types include:
-- text messages
-- images
-- links
-- selectable options
-- custom templates
-
-Additional features include:
-- thinking/loading states
-- action interactions such as repeat, voice, copy, like, and dislike
-- customizable user and assistant icons`,
+      `${getGeneralComponentDescription({ name: 'ai-chat-bubble' })} is used to render user and assistant chat messages with support for interactive actions and multiple content types. It supports [AI icons](https://bamboo.tec.mx/latest/componentes/ai-chat-bar/ai-icons-PPp7SNig), and allows configuration of available [***AI Chat bar***](/docs/components-inputs-ai-chat-bar--documentation) actions.`,
       {
         generalDocLink:
           'https://bamboo.tec.mx/latest/componentes/ai-chat-bubble/descripcion-general-kum7HyJA',
       },
     )}
-    ${getSpecialSpecifications(`### ${IMPORTANT_DESCRIPTION}`)}
+    ${getSpecialSpecifications(
+      `### ${GET_ACTION_DESCRIPTION}
+>${SUPPORTED_MESSAGES_TYPE}
+>
+Additional features include:
+- thinking/loading states
+- action interactions such as repeat, voice, copy, like, and dislike
+- customizable user and assistant icons
+`,
+      { showAdditionalBlockquote: true },
+    )}
+${getBasicExampleBlock('BmbAiChatBubbleComponent')}
   `,
       },
     },
@@ -69,7 +86,7 @@ Additional features include:
       control: 'text',
       description: 'Bot icon token used for assistant messages.',
       table: {
-        category: 'Inputs',
+        category: 'Properties',
         type: {
           summary: 'string',
         },
@@ -78,12 +95,11 @@ Additional features include:
         },
       },
     },
-
     testId: {
       control: 'text',
       description: 'Testing identifier used for automation selectors.',
       table: {
-        category: 'Inputs',
+        category: 'Properties',
         type: {
           summary: 'string',
         },
@@ -92,33 +108,25 @@ Additional features include:
         },
       },
     },
-
     message: {
       control: 'object',
       description: `
 Chat message rendered inside the bubble.
 
-Supported message types:
-- text
-- image
-- mixed
-- link
-- options
-- template
+${SUPPORTED_MESSAGES_TYPE}
       `,
       table: {
-        category: 'Inputs',
+        category: 'Properties',
         type: {
           summary: 'BmbChatMessage',
         },
       },
     },
-
     isThinking: {
       control: 'boolean',
       description: 'Displays typing/loading animation state.',
       table: {
-        category: 'Inputs',
+        category: 'Properties',
         type: {
           summary: 'boolean',
         },
@@ -141,7 +149,7 @@ Available actions:
 - dislike
       `,
       table: {
-        category: 'Inputs',
+        category: 'Properties',
         type: {
           summary: 'boolean',
         },
@@ -151,22 +159,11 @@ Available actions:
       },
     },
 
-    action: {
-      action: 'actionTriggered',
-      description: `
-Emits whenever a chat action is triggered.
-
-Example payload:
-
-{
-  action: 'copy',
-  messageId: '1',
-  message,
-  nativeEvent
-}
-      `,
+    getAction: {
+      control: false,
+      description: GET_ACTION_DESCRIPTION,
       table: {
-        category: 'Outputs',
+        category: 'Events',
         type: {
           summary: 'BmbChatActionEvent',
         },
