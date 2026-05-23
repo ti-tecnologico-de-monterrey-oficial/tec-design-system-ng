@@ -207,7 +207,7 @@ export class ColorsComponent {
     '--general-contrasts-20',
     '--general-contrasts-15',
     '--general-contrasts-5',
-    '--general-contrasts-main-complimentary',
+    '--general-contrasts-main-complementary',
     '--general-contrasts-main-selection',
     '--general-contrasts-icon-selection',
     '--general-contrasts-main-selection-alternative',

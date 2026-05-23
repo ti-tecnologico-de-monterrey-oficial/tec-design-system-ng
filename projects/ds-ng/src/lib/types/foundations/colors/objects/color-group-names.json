@@ -1,7 +1,7 @@
 {
   "font_colors": {
     "creative-use-violet": "var(--general-contrasts-5)",
-    "creative-use-strong": "var(--general-contrasts-dark-complimentary)",
+    "creative-use-strong": "var(--general-contrasts-dark-complementary)",
     "creative-use-indigo": "var(--general-contrasts-5)",
     "creative-use-emerald": "var(--general-contrasts-5)",
     "creative-use-licorice": "var(--general-contrasts-5)",
@@ -17,11 +17,11 @@
     "creative-use-hibiscus": "var(--general-contrasts-5)",
     "semantic-success": "var(--general-contrasts-5)",
     "semantic-info-event": "var(--general-contrasts-5)",
-    "semantic-warning": "var(--general-contrasts-dark-complimentary)",
+    "semantic-warning": "var(--general-contrasts-dark-complementary)",
     "semantic-error": "var(--general-contrasts-5)",
     "semantic-brand": "var(--general-contrasts-5)",
     "semantic-alert": "var(--general-contrasts-5)",
-    "semantic-neutral": "var(--general-contrasts-dark-complimentary)",
+    "semantic-neutral": "var(--general-contrasts-dark-complementary)",
     "mitec-blue": "rgb(var(--white-primary))",
     "mitec-red": "rgb(var(--white-primary))",
     "mitec-green": "var(--general-contrasts-5)",
