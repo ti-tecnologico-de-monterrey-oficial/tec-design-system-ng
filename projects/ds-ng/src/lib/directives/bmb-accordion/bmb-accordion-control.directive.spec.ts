@@ -77,9 +77,10 @@ describe('BmbAccordionControlDirective', () => {
     expect(hostComponent.states.a2).toBe(true);
   });
 
-  it('should update accordion states when accordionStates input changes', () => {
+  it('should update accordion states when accordionStates input changes', async () => {
     hostComponent.states = { a1: false, a2: true };
     fixture.detectChanges();
+    await fixture.whenStable();
     const accordions = hostComponent.accordions.toArray();
     expect(accordions[0]._expanded()).toBe(false);
     expect(accordions[1]._expanded()).toBe(true);
@@ -97,20 +98,23 @@ describe('BmbAccordionControlDirective', () => {
     expect(accordions[1]._active()).toBe(false);
   });
 
-  it('should handle multiple state changes', () => {
+  it('should handle multiple state changes', async () => {
     const accordions = hostComponent.accordions.toArray();
 
     hostComponent.states = { a1: false, a2: true };
     fixture.detectChanges();
+    await fixture.whenStable();
+
     expect(accordions[0]._expanded()).toBe(false);
     expect(accordions[1]._expanded()).toBe(true);
 
     hostComponent.states = { a1: true, a2: false };
     fixture.detectChanges();
+    await fixture.whenStable();
+
     expect(accordions[0]._expanded()).toBe(true);
     expect(accordions[1]._expanded()).toBe(false);
   });
-
   it('should unsubscribe from accordion events on destroy', () => {
     const directive = fixture.debugElement
       .query(By.directive(BmbAccordionControlDirective))

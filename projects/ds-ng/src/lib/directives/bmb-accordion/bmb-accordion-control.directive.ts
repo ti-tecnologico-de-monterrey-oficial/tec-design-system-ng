@@ -9,7 +9,9 @@ import {
   ContentChildren,
   QueryList,
   input,
-  effect
+  effect,
+  OnChanges,
+  SimpleChanges,
 } from '@angular/core';
 import { BmbAccordionComponent } from '../../components/bmb-accordion/bmb-accordion.component';
 
@@ -18,31 +20,25 @@ import { BmbAccordionComponent } from '../../components/bmb-accordion/bmb-accord
   standalone: true,
 })
 export class BmbAccordionControlDirective
-  implements AfterContentInit, OnDestroy
+  implements AfterContentInit, OnDestroy, OnChanges
 {
   accordionStates = input<{ [id: string]: boolean }>({});
+
+  private contentInitialized = false;
 
   @ContentChildren(BmbAccordionComponent)
   accordions!: QueryList<BmbAccordionComponent>;
 
   private subscriptions: OutputRefSubscription[] = [];
   
-  constructor() {
-    effect(() => {
-      const states = this.accordionStates();
-
-      if (!this.accordions) return;
-
-      this.applyControlledStates();
-    });
-  }
 
   ngAfterContentInit(): void {
+    this.contentInitialized = true;
+
     this.subscriptions = this.accordions.map((accordion) => {
       return accordion.opened.subscribe(() => {
         const states = this.accordionStates();
-        const hasControlledStates =
-          !!states && Object.keys(states).length > 0;
+        const hasControlledStates = !!states && Object.keys(states).length > 0;
 
         if (!hasControlledStates) {
           this.closeOthers(String(accordion.accordionId()));
@@ -55,6 +51,12 @@ export class BmbAccordionControlDirective
     this.applyControlledStates();
   }
 
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['accordionStates'] && this.contentInitialized) {
+      this.applyControlledStates();
+    }
+  }
+
   ngOnDestroy(): void {
     this.subscriptions.forEach((sub) => sub.unsubscribe());
   }
@@ -65,16 +67,15 @@ export class BmbAccordionControlDirective
     if (!states || Object.keys(states).length === 0) {
       this.accordions.forEach((accordion, index) => {
         accordion._disabled.set(false);
-
         accordion._expanded.set(index === 0);
         accordion._active.set(index === 0);
       });
-
       return;
     }
 
     this.accordions.forEach((accordion) => {
-      const state = !!states[String(accordion.accordionId())];
+      const id = String(accordion.accordionId());
+      const state = !!states[id];
 
       accordion._disabled.set(!state);
       accordion._expanded.set(state);
@@ -105,10 +106,10 @@ export class BmbAccordionControlDirective
 
     if (!states) return;
 
-    const newStates = { ...states };
-
     Object.keys(states).forEach((id) => {
       states[id] = id === openId;
     });
+
+    this.applyControlledStates();
   }
 }
