@@ -1,0 +1,1 @@
+{"version":3,"file":"delete_docs.d.ts","sourceRoot":"","sources":["../../src/connect/delete_docs.ts"],"names":[],"mappings":"AAKA,UAAU,iBAAiB;IACzB,SAAS,EAAE,MAAM,CAAA;IACjB,KAAK,EAAE,MAAM,CAAA;CACd;AAED,UAAU,IAAI;IACZ,WAAW,EAAE,MAAM,CAAA;IACnB,IAAI,EAAE,iBAAiB,EAAE,CAAA;CAC1B;AAED,wBAAsB,WAAW,CAAC,EAAE,WAAW,EAAE,IAAI,EAAE,EAAE,IAAI,iBAgC5D"}

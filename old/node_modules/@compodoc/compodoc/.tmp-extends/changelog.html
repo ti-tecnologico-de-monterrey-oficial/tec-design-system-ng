@@ -1,0 +1,1349 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>@compodoc/compodoc documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="./images/favicon.ico">
+	   <link rel="stylesheet" href="./styles/style.css">
+        <link rel="stylesheet" href="./styles/dark.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top d-block d-sm-none">
+            <a href="./" class="navbar-brand">@compodoc/compodoc documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content getting-started">
+                   <div class="content-data">
+
+<p><a name="1.1.21"></a></p>
+<h2><a href="https://github.com/compodoc/compodoc/compare/1.1.20...1.1.21">1.1.21</a></h2>
+<h3>Bug fixes</h3>
+<ul>
+<li>feat(app): downgrade Marked version (<a href="https://github.com/compodoc/compodoc/commit/e0a4b78">e0a4b78</a>), closes <a href="https://github.com/compodoc/compodoc/issues/1349">#1349</a></li>
+</ul>
+<p><a name="1.1.20"></a></p>
+<h2><a href="https://github.com/compodoc/compodoc/compare/1.1.19...1.1.20">1.1.20</a> - 2023-05-23</h2>
+<h3>Merged</h3>
+<ul>
+<li>fix(Input): Add support for Object Expressions in Input decorators <a href="https://github.com/compodoc/compodoc/pull/1326">#1326</a>, Thanks <a href="https://github.com/valentinpalkovic">valentinpalkovic</a></li>
+<li>fix(app): overview depth <a href="https://github.com/compodoc/compodoc/pull/1310">#1310</a>, Thanks <a href="https://github.com/albeniraouf">albeniraouf</a></li>
+<li>Translates to Bulgarian <a href="https://github.com/compodoc/compodoc/pull/1312">#1312</a>, Thanks <a href="https://github.com/3phase">3phase</a></li>
+</ul>
+<h3>Bug fixes</h3>
+<ul>
+<li>feat(app): Directive composition API for directives and components (<a href="https://github.com/compodoc/compodoc/commit/127076a">127076a</a>), closes <a href="https://github.com/compodoc/compodoc/issues/1340">#1340</a></li>
+<li>feat(app): Required Inputs (<a href="https://github.com/compodoc/compodoc/commit/e1a5396">e1a5396</a>), closes <a href="https://github.com/compodoc/compodoc/issues/1340">#1340</a></li>
+<li>feat(app): Standalone components, directives and pipes support (<a href="https://github.com/compodoc/compodoc/commit/cb02ca0">cb02ca0</a>), closes <a href="https://github.com/compodoc/compodoc/issues/1323">#1323</a></li>
+<li>fix(app): support exportAs for directives (<a href="https://github.com/compodoc/compodoc/commit/76a8f34">76a8f34</a>), closes <a href="https://github.com/compodoc/compodoc/issues/1328">#1328</a></li>
+<li>feat(app): bump @compodoc/ngd-transformer (<a href="https://github.com/compodoc/compodoc/commit/ef9bd94">ef9bd94</a>), closes <a href="https://github.com/compodoc/compodoc/issues/1311">#1311</a></li>
+<li>fix(app): service/injectable export in module providers (<a href="https://github.com/compodoc/compodoc/commit/34967a9">34967a9</a>), closes <a href="https://github.com/compodoc/compodoc/issues/1290">#1290</a></li>
+<li>fix(app): missing rel attribute with _blank links (<a href="https://github.com/compodoc/compodoc/commit/c8379e0">c8379e0</a>), closes <a href="https://github.com/compodoc/compodoc/issues/1282">#1282</a></li>
+<li>feat(app): Add specific id in each html section (<a href="https://github.com/compodoc/compodoc/commit/03ac1ad">03ac1ad</a>), closes <a href="https://github.com/compodoc/compodoc/issues/1241">#1241</a></li>
+<li>fix(app): Invalid links to a class when the class name includes an interface name (<a href="https://github.com/compodoc/compodoc/commit/047cedb">047cedb</a>), closes <a href="https://github.com/compodoc/compodoc/issues/1239">#1239</a></li>
+<li>fix(routing): path wrongly resolved during routing analysis (<a href="https://github.com/compodoc/compodoc/commit/1722ca3">1722ca3</a>), closes <a href="https://github.com/compodoc/compodoc/issues/1170">#1170</a></li>
+</ul>
+<p><a name="1.1.19"></a></p>
+<h2><a href="https://github.com/compodoc/compodoc/compare/1.1.18...1.1.19">1.1.19</a> (2022-01-10)</h2>
+<h3>Merged</h3>
+<ul>
+<li>feat: fully parse set accessor type <a href="https://github.com/compodoc/compodoc/pull/1194">#1194</a>, thanks <a href="https://github.com/Killusions">Killusions</a></li>
+</ul>
+<h3>Bug fixes</h3>
+<ul>
+<li>fix(menu): custom-logo links are broken for doc deployments with a path (<a href="https://github.com/compodoc/compodoc/commit/bd28dd0">bd28dd0</a>), closes <a href="https://github.com/compodoc/compodoc/issues/1203">#1203</a></li>
+<li>feat(app): display project properties from package.json file (<a href="https://github.com/compodoc/compodoc/commit/b091e19">b091e19</a>), closes <a href="https://github.com/compodoc/compodoc/issues/1198">#1198</a></li>
+<li>fix(app): Nestjs controllers class inheritance (<a href="https://github.com/compodoc/compodoc/commit/06dad8c">06dad8c</a>), closes <a href="https://github.com/compodoc/compodoc/issues/1140">#1140</a></li>
+<li>fix(app): Directive class inheritance (<a href="https://github.com/compodoc/compodoc/commit/765f496">765f496</a>), closes <a href="https://github.com/compodoc/compodoc/issues/1140">#1140</a></li>
+<li>feat(app): JSDoc tag @internal correct support (<a href="https://github.com/compodoc/compodoc/commit/18da1fe">18da1fe</a>), closes <a href="https://github.com/compodoc/compodoc/issues/1101">#1101</a></li>
+<li>fix(app): @example correct support (<a href="https://github.com/compodoc/compodoc/commit/9a1a7e1">9a1a7e1</a>), closes <a href="https://github.com/compodoc/compodoc/issues/1099">#1099</a></li>
+<li>fix(app): double layer spread support for modules (<a href="https://github.com/compodoc/compodoc/commit/e25a4ee">e25a4ee</a>), closes <a href="https://github.com/compodoc/compodoc/issues/979">#979</a></li>
+</ul>
+<p><a name="1.1.18"></a></p>
+<h2><a href="https://github.com/compodoc/compodoc/compare/1.1.17...1.1.18">1.1.18</a> (2022-01-10)</h2>
+<p>Fix for colors dependency.</p>
+<p><a name="1.1.17"></a></p>
+<h2><a href="https://github.com/compodoc/compodoc/compare/1.1.16...1.1.17">1.1.17</a> (2022-01-09)</h2>
+<h3>Features</h3>
+<ul>
+<li>feat(app): Nest @entity support (<a href="https://github.com/compodoc/compodoc/commit/2dfe88a">2dfe88a</a>), closes <a href="https://github.com/compodoc/compodoc/issues/1131">#1131</a></li>
+<li>feat(app): ng-add schematics (<a href="https://github.com/compodoc/compodoc/commit/7a414d4">7a414d4</a>), closes <a href="https://github.com/compodoc/compodoc/issues/1155">#1155</a></li>
+</ul>
+<h3>Merged</h3>
+<ul>
+<li>fix(app): Fix enum member types parsing <a href="https://github.com/compodoc/compodoc/pull/1159">#1159</a></li>
+<li>fix(app): Fix reading class decorators <a href="https://github.com/compodoc/compodoc/pull/1158">#1158</a></li>
+</ul>
+<h3>Bug fixes</h3>
+<ul>
+<li>fix(UI): Dark mode toggle doesn&#39;t persist when switching pages (<a href="https://github.com/compodoc/compodoc/commit/1013cda">1013cda</a>), closes <a href="https://github.com/compodoc/compodoc/issues/1167">#1167</a></li>
+<li>fix(app): custom-logo links are broken for child content (<a href="https://github.com/compodoc/compodoc/commit/db47436">db47436</a>), closes <a href="https://github.com/compodoc/compodoc/issues/1147">#1147</a></li>
+<li>fix(app): support for backtick in Routing lazy-loading syntax (<a href="https://github.com/compodoc/compodoc/commit/cff2ca5">cff2ca5</a>), closes <a href="https://github.com/compodoc/compodoc/issues/1164">#1164</a></li>
+<li>fix(app): wrong additional folder provided, exit with code 0 (<a href="https://github.com/compodoc/compodoc/commit/15fd3de">15fd3de</a>), closes <a href="https://github.com/compodoc/compodoc/issues/1146">#1146</a></li>
+<li>fix(app): link in description to class (<a href="https://github.com/compodoc/compodoc/commit/2b6af73">2b6af73</a>), closes <a href="https://github.com/compodoc/compodoc/issues/1157">#1157</a></li>
+</ul>
+<p><a name="1.1.16"></a></p>
+<h2><a href="https://github.com/compodoc/compodoc/compare/1.1.15...1.1.16">1.1.16</a> (2021-11-23)</h2>
+<h3>Features</h3>
+<ul>
+<li>feat(app): dark mode toggle button (<a href="https://github.com/compodoc/compodoc/commit/97d2763">97d2763</a>), closes <a href="https://github.com/compodoc/compodoc/issues/1127">#1127</a></li>
+</ul>
+<h3>Merged</h3>
+<ul>
+<li>fix: Routing aliases <a href="https://github.com/compodoc/compodoc/pull/1148">#1148</a>, Thanks <a href="https://github.com/Bengejd">Bengejd</a></li>
+<li>feat(i18n): Traditional Chinese language <a href="https://github.com/compodoc/compodoc/pull/1151">#1151</a>, Thanks <a href="https://github.com/doggy8088">doggy8088</a></li>
+<li>fix(link-parser): avoid crashing with invalid links <a href="https://github.com/compodoc/compodoc/pull/1136">#1136</a>, Thanks <a href="https://github.com/sandrafreihofer">sandrafreihofer</a></li>
+<li>feat: add decorators to class inputs <a href="https://github.com/compodoc/compodoc/pull/1135">#1135</a>, Thanks <a href="https://github.com/sandrafreihofer">sandrafreihofer</a></li>
+<li>fix(app): change layout in modules template <a href="https://github.com/compodoc/compodoc/pull/1132">#1132</a>, Thanks <a href="https://github.com/ddubrava">ddubrava</a></li>
+</ul>
+<h3>Bug fixes</h3>
+<ul>
+<li>fix(app): multi decorators support (<a href="https://github.com/compodoc/compodoc/commit/3814299">3814299</a>), closes <a href="https://github.com/compodoc/compodoc/issues/1128">#1128</a></li>
+<li>fix(app): URL parsing when using @link for @inputs (<a href="https://github.com/compodoc/compodoc/commit/95e4945">95e4945</a>), closes <a href="https://github.com/compodoc/compodoc/issues/1125">#1125</a></li>
+</ul>
+<p><a name="1.1.15"></a></p>
+<h2><a href="https://github.com/compodoc/compodoc/compare/1.1.14...1.1.15">1.1.15</a> (2021-09-17)</h2>
+<h3>Merged</h3>
+<ul>
+<li>fix(app): fixes a bug in CORS that only allows specific content types, Fi… <a href="https://github.com/compodoc/compodoc/pull/1120">#1120</a></li>
+<li>fix(i18n): fix misspeling in pt-BR translation <a href="https://github.com/compodoc/compodoc/pull/1107">#1107</a></li>
+<li>fix(app): show custom logo even when in dark mode <a href="https://github.com/compodoc/compodoc/pull/1103">#1103</a></li>
+</ul>
+<h3>Bug fixes</h3>
+<ul>
+<li>fix(app): @link in @see JSDoc tag (<a href="https://github.com/compodoc/compodoc/commit/ba13a85">ba13a85</a>), closes <a href="https://github.com/compodoc/compodoc/issues/1104">#1104</a></li>
+<li>fix(app): component template import parsing (<a href="https://github.com/compodoc/compodoc/commit/b31604c">b31604c</a>), closes <a href="https://github.com/compodoc/compodoc/issues/1121">#1121</a></li>
+<li>fix(app): Fixes a bug in CORS that only allows specific content types, Fixes #1109 (<a href="https://github.com/compodoc/compodoc/commit/71ab9d3">71ab9d3</a>), closes <a href="https://github.com/compodoc/compodoc/issues/1109">#1109</a></li>
+<li>fix(app): last sentences, exporting html with locale option (<a href="https://github.com/compodoc/compodoc/commit/85d183e">85d183e</a>), closes <a href="https://github.com/compodoc/compodoc/issues/365">#365</a></li>
+<li>fix(app): use normalized paths in unit test coverage (<a href="https://github.com/compodoc/compodoc/commit/43bbc3b">43bbc3b</a>), closes <a href="https://github.com/compodoc/compodoc/issues/664">#664</a></li>
+<li>fix(app): JSDoc @param tag with @link (<a href="https://github.com/compodoc/compodoc/commit/55eb258">55eb258</a>), closes <a href="https://github.com/compodoc/compodoc/issues/294">#294</a></li>
+<li>fix(app): ES6 destructuring assignment support (<a href="https://github.com/compodoc/compodoc/commit/254e8cd">254e8cd</a>), closes <a href="https://github.com/compodoc/compodoc/issues/502">#502</a></li>
+<li>fix(app): webcomponent menu transpilation with Babel and missing filename config for @babel/preset-env (<a href="https://github.com/compodoc/compodoc/commit/10f73a5">10f73a5</a>), closes <a href="https://github.com/compodoc/compodoc/issues/1100">#1100</a></li>
+<li>fix(app): lazy routing with async - await (<a href="https://github.com/compodoc/compodoc/commit/150d97a">150d97a</a>), closes <a href="https://github.com/compodoc/compodoc/issues/1042">#1042</a></li>
+</ul>
+<p><a name="1.1.14"></a></p>
+<h2><a href="https://github.com/compodoc/compodoc/compare/1.1.13...1.1.14">1.1.14</a> (2021-07-14)</h2>
+<p>Use now TypeScript 4.3.5</p>
+<h3>Bug fixes</h3>
+<ul>
+<li>fix(app): support for Type Reference and template literal (<a href="https://github.com/compodoc/compodoc/commit/c1282d2">c1282d2</a>), closes <a href="https://github.com/compodoc/compodoc/issues/1053">#1053</a></li>
+<li>fix(app): @input/@ouput not duplicated with properties (<a href="https://github.com/compodoc/compodoc/commit/f42fc69">f42fc69</a>), closes <a href="https://github.com/compodoc/compodoc/issues/1095">#1095</a></li>
+<li>fix(routing): Angular Import does not support return type (<a href="https://github.com/compodoc/compodoc/commit/f324108">f324108</a>), closes <a href="https://github.com/compodoc/compodoc/issues/1097">#1097</a></li>
+<li>fix(routing): async lazy -load should not fail (<a href="https://github.com/compodoc/compodoc/commit/0cc736b">0cc736b</a>), closes <a href="https://github.com/compodoc/compodoc/issues/1096">#1096</a></li>
+<li>fix(app): TypeScript private APIs mapping + ECMAScript Private Fields and methods (<a href="https://github.com/compodoc/compodoc/commit/8b71b59">8b71b59</a>), closes <a href="https://github.com/compodoc/compodoc/issues/1094">#1094</a></li>
+<li>fix(app): drop usage of ts-simple-ast for ts-morph <a href="https://github.com/compodoc/compodoc/commit/7bb9a409ad4e7a30226656198fd38c6028662020">7bb9a40</a></li>
+<li>fix(theme): dark mode support <a href="https://github.com/compodoc/compodoc/commit/0c7a0522b91d6837888cedf46a5b3af51561b192">0c7a052</a></li>
+</ul>
+<p><a name="1.1.13"></a></p>
+<h2><a href="https://github.com/compodoc/compodoc/compare/1.1.12...1.1.13">1.1.13</a> (2021-07-09)</h2>
+<h3>Features</h3>
+<ul>
+<li>feat(cli): Support --watch with --exportFormat json (<a href="https://github.com/compodoc/compodoc/commit/fdfe925">fdfe925</a>), closes <a href="https://github.com/compodoc/compodoc/issues/1087">#1087</a></li>
+</ul>
+<h3>Bug fixes</h3>
+<ul>
+<li>fix(dark): better dark mode (<a href="https://github.com/compodoc/compodoc/commit/f93090b">f93090b</a>), closes <a href="https://github.com/compodoc/compodoc/issues/1092">#1092</a></li>
+<li>fix(cli): remove sleep package | wait 10s if --inspect flag in CONTRIBUTING.md and docs/README.md (<a href="https://github.com/compodoc/compodoc/commit/a1d5a1a">a1d5a1a</a>), closes <a href="https://github.com/compodoc/compodoc/issues/1090">#1090</a></li>
+</ul>
+<p><a name="1.1.12"></a></p>
+<h2><a href="https://github.com/compodoc/compodoc/compare/1.1.11...1.1.12">1.1.12</a> (2021-07-07)</h2>
+<p>Thanks to all contributors ! 👏</p>
+<h3>Features</h3>
+<ul>
+<li>feat(app): @deprecated support <a href="https://github.com/compodoc/compodoc/commit/0b2ecdee790996c887826fdf2b8a2c6edaea2211">0b2ecde</a> <a href="https://github.com/compodoc/compodoc/pull/1032">#1032</a></li>
+<li>feat(i18n): Korean language <a href="https://github.com/compodoc/compodoc/pull/1030">#1030</a></li>
+<li>feat(i18n): Polish language <a href="https://github.com/compodoc/compodoc/pull/991">#991</a></li>
+<li>feat(app): add support for inferred input types <a href="https://github.com/compodoc/compodoc/pull/998">#998</a></li>
+<li>feat(app): Dark mode support (<a href="https://github.com/compodoc/compodoc/commit/2bb51cb">2bb51cb</a>), closes <a href="https://github.com/compodoc/compodoc/issues/1064">#1064</a></li>
+<li>feat(app): add support for inferred input types (<a href="https://github.com/compodoc/compodoc/commit/11c4a68">11c4a68</a>), closes <a href="https://github.com/compodoc/compodoc/issues/896">#896</a></li>
+</ul>
+<h3>Merged</h3>
+<ul>
+<li>HTTPS link in .editorconfig <a href="https://github.com/compodoc/compodoc/pull/1083">#1083</a></li>
+<li>fix(app): fix some bug reports with angular &gt;= 9 and extended classes in components <a href="https://github.com/compodoc/compodoc/pull/1037">#1037</a></li>
+<li>fix(app): merge overridden with inherited class members so they are not duplicated in the generated docs <a href="https://github.com/compodoc/compodoc/pull/1035">#1035</a></li>
+<li>provide jsdoctags <a href="https://github.com/compodoc/compodoc/pull/1001">#1001</a></li>
+<li>Add raw descriptions <a href="https://github.com/compodoc/compodoc/pull/949">#949</a></li>
+<li>Angular lazy loading fix - extra undefined check in router-parser <a href="https://github.com/compodoc/compodoc/pull/924">#924</a></li>
+<li>fix: generating documentation on project including inacessible folders <a href="https://github.com/compodoc/compodoc/pull/916">#916</a></li>
+<li>fix(cli): tsx files not considered in include entries <a href="https://github.com/compodoc/compodoc/pull/906">#906</a></li>
+<li>Fix: Added missing guards and interceptors to the json exporter. <a href="https://github.com/compodoc/compodoc/pull/847">#847</a></li>
+<li>updates locales for de-DE <a href="https://github.com/compodoc/compodoc/pull/861">#861</a></li>
+<li>update(angular-util): update findApi to reduce runtime <a href="https://github.com/compodoc/compodoc/pull/858">#858</a></li>
+</ul>
+<h3>Bug fixes</h3>
+<ul>
+<li>fix(app): directive with no option, and inheritance between component and directives (<a href="https://github.com/compodoc/compodoc/commit/a6c678c">a6c678c</a>), closes <a href="https://github.com/compodoc/compodoc/issues/984">#984</a></li>
+<li>fix(app): main comment parsing for ``` (<a href="https://github.com/compodoc/compodoc/commit/3226d01">3226d01</a>), closes <a href="https://github.com/compodoc/compodoc/issues/1059">#1059</a></li>
+<li>fix(app): setters arguments correctly documented (<a href="https://github.com/compodoc/compodoc/commit/8190df5">8190df5</a>), closes <a href="https://github.com/compodoc/compodoc/issues/1062">#1062</a></li>
+<li>Merge pull request #1032 from Killusions/feat/parse-jsdoc-deprecated (<a href="https://github.com/compodoc/compodoc/commit/2ff7c21">2ff7c21</a>), closes <a href="https://github.com/compodoc/compodoc/issues/937">#937</a></li>
+<li>fix(app): generic support in function arguments (<a href="https://github.com/compodoc/compodoc/commit/6b9a1d0">6b9a1d0</a>), closes <a href="https://github.com/compodoc/compodoc/issues/1076">#1076</a></li>
+<li>fix(app): inheritance &amp; Properties and methods are being duplicate (<a href="https://github.com/compodoc/compodoc/commit/3dd3e27">3dd3e27</a>), closes <a href="https://github.com/compodoc/compodoc/issues/1034">#1034</a></li>
+<li>fix(app): multiple hostlisteners support (<a href="https://github.com/compodoc/compodoc/commit/2837cea">2837cea</a>), closes <a href="https://github.com/compodoc/compodoc/issues/1022">#1022</a></li>
+<li>fix(app): more prism languages support (<a href="https://github.com/compodoc/compodoc/commit/816f6e1">816f6e1</a>), closes <a href="https://github.com/compodoc/compodoc/issues/1048">#1048</a></li>
+<li>fix(app): spread and tuple type support (<a href="https://github.com/compodoc/compodoc/commit/c7cd839">c7cd839</a>), closes <a href="https://github.com/compodoc/compodoc/issues/1052">#1052</a></li>
+<li>fix(app): Overview page not scrolling (<a href="https://github.com/compodoc/compodoc/commit/fe9cd04">fe9cd04</a>), closes <a href="https://github.com/compodoc/compodoc/issues/997">#997</a></li>
+<li>fix(app): Directives missing &quot;rawdescription&quot; in JSON output (<a href="https://github.com/compodoc/compodoc/commit/7d7e1a9">7d7e1a9</a>), closes <a href="https://github.com/compodoc/compodoc/issues/875">#875</a></li>
+<li>fix(coverage): function links in documentation coverage are broken (<a href="https://github.com/compodoc/compodoc/commit/59f2902">59f2902</a>), closes <a href="https://github.com/compodoc/compodoc/issues/859">#859</a></li>
+<li>fix(cli): tsconfig with files and include entries (<a href="https://github.com/compodoc/compodoc/commit/baf122c">baf122c</a>), closes <a href="https://github.com/compodoc/compodoc/issues/860">#860</a></li>
+</ul>
+<p><a name="1.1.11"></a></p>
+<h1><a href="https://github.com/compodoc/compodoc/compare/1.1.10...1.1.11">1.1.11</a> (2019-10-15)</h1>
+<h3>Features</h3>
+<ul>
+<li>feat(i18n): de-DE language <a href="https://github.com/compodoc/compodoc/pull/810">#810</a> Thanks <a href="https://github.com/hueppee">hueppee</a></li>
+<li>feat(i18n): sk-SK language <a href="https://github.com/compodoc/compodoc/pull/830">#830</a> Thanks <a href="https://github.com/emzet">Marek Závacký</a></li>
+<li>feat(routes): support new lazy loading syntax in Angular 8 <a href="https://github.com/compodoc/compodoc/pull/819">#819</a> Thanks <a href="https://github.com/astanley218">Adam Stanley</a></li>
+</ul>
+<h3>Bug fixes</h3>
+<ul>
+<li>fix(app): max-search-result in options (<a href="https://github.com/compodoc/compodoc/commit/d759b4f">d759b4f</a>), closes <a href="https://github.com/compodoc/compodoc/issues/816">#816</a> Thanks <a href="https://github.com/tzinckgraf">tzinckgraf</a></li>
+<li>fix(app): fix path separator replace on Windows during route processing <a href="https://github.com/compodoc/compodoc/pull/827">#827</a> Thanks <a href="https://github.com/AdamStanley">Adam Stanley</a></li>
+<li>fix(app): fix unit tests failing on Windows <a href="https://github.com/compodoc/compodoc/pull/826">#826</a> Thanks <a href="https://github.com/AdamStanley">Adam Stanley</a></li>
+</ul>
+<p><a name="1.1.10"></a></p>
+<h1><a href="https://github.com/compodoc/compodoc/compare/1.1.9...1.1.10">1.1.10</a> (2019-07-09)</h1>
+<h3>Features</h3>
+<ul>
+<li>feat(CLI): disableDependencies flag <a href="https://github.com/compodoc/compodoc/pull/798">#798</a></li>
+</ul>
+<h3>Merged</h3>
+<ul>
+<li>Upgrade to opencollective-postinstall <a href="https://github.com/compodoc/compodoc/pull/804">#804</a> Thanks <a href="https://github.com/emanuelbuholzer">Emanuel</a></li>
+<li>Update postinstall so that it doesn&#39;t cause failures <a href="https://github.com/compodoc/compodoc/pull/758">#758</a> Thanks <a href="https://github.com/mattezell">Matt Ezell</a></li>
+<li>Avoid pathological out of memory on large datasets <a href="https://github.com/compodoc/compodoc/pull/778">#778</a> Thanks <a href="https://github.com/ofrobots">Ali Ijaz Sheikh</a></li>
+<li>fix(Engine): Code blocks in Markdown not work as expected <a href="https://github.com/compodoc/compodoc/pull/755">#755</a> Thanks <a href="https://github.com/berikin">José Antonio Yáñez Jiménez</a></li>
+<li>feat(i18n): Spanish language <a href="https://github.com/compodoc/compodoc/pull/753">#753</a> Thanks <a href="https://github.com/berikin">José Antonio Yáñez Jiménez</a></li>
+<li>feat(i18n): Italian language <a href="https://github.com/compodoc/compodoc/pull/748">#748</a> Thanks <a href="https://github.com/predorock">Marco</a></li>
+<li>feat(i18n): add hungarian language <a href="https://github.com/compodoc/compodoc/pull/796">#796</a> Thanks <a href="https://github.com/mercury83">Nagy, Gábor</a></li>
+<li>feat(i18n): add japanese language translations <a href="https://github.com/compodoc/compodoc/pull/794">#794</a> Thanks <a href="https://github.com/tkt989">tkt989</a></li>
+<li>feat(i18n): add dutch language translations <a href="https://github.com/compodoc/compodoc/pull/792">#792</a> Thanks <a href="https://github.com/magikMaker">Bjørn Wikkeling</a></li>
+</ul>
+<h3>Bug fixes</h3>
+<ul>
+<li>fix(app): toggleMenuItems (<a href="https://github.com/compodoc/compodoc/commit/d759b4f">d759b4f</a>), closes <a href="https://github.com/compodoc/compodoc/issues/790">#790</a></li>
+<li>fix(app): Code blocks in Markdown not work as expected (<a href="https://github.com/compodoc/compodoc/commit/9b829ed">9b829ed</a>), closes <a href="https://github.com/compodoc/compodoc/issues/750">#750</a></li>
+<li>fix(export): disableSourceCode flag for json format (<a href="https://github.com/compodoc/compodoc/commit/171862d">171862d</a>), closes <a href="https://github.com/compodoc/compodoc/issues/785">#785</a></li>
+<li>fix(CLI): rendering with --disableCoverage (<a href="https://github.com/compodoc/compodoc/commit/55944ff">55944ff</a>), closes <a href="https://github.com/compodoc/compodoc/issues/786">#786</a></li>
+<li>feat(CLI): disableDependencies flag (<a href="https://github.com/compodoc/compodoc/commit/399054e">399054e</a>), closes <a href="https://github.com/compodoc/compodoc/issues/797">#797</a></li>
+<li>fix(CLI): flag for host url (<a href="https://github.com/compodoc/compodoc/commit/b2ec5b9">b2ec5b9</a>), closes <a href="https://github.com/compodoc/compodoc/issues/787">#787</a></li>
+<li>fix(CLI): output + serve (<a href="https://github.com/compodoc/compodoc/commit/94e2f82">94e2f82</a>), closes <a href="https://github.com/compodoc/compodoc/issues/742">#742</a></li>
+<li>fix(CLI): Hide banner in silent mode (<a href="https://github.com/compodoc/compodoc/commit/fea00d3">fea00d3</a>), closes <a href="https://github.com/compodoc/compodoc/issues/747">#747</a></li>
+</ul>
+<p><a name="1.1.9"></a></p>
+<h1><a href="https://github.com/compodoc/compodoc/compare/1.1.8...1.1.9">1.1.9</a> (2019-03-01)</h1>
+<h3>Features</h3>
+<ul>
+<li>feat(app): documentation coverage for files with lint-staged tools (<a href="https://github.com/compodoc/compodoc/commit/59ff58e">59ff58e</a>), closes <a href="https://github.com/compodoc/compodoc/issues/546">#546</a></li>
+</ul>
+<h3>Merged</h3>
+<ul>
+<li>fix(UI): a few issues with the src on customLogo img <a href="https://github.com/compodoc/compodoc/pull/688">#688</a> Thanks <a href="https://github.com/feldmanz66">Zachary Feldman</a></li>
+<li>fix: use consistent semver range specifiers <a href="https://github.com/compodoc/compodoc/pull/733">#733</a> Thanks <a href="https://github.com/JustinBeckwith">Justin Beckwith</a></li>
+</ul>
+<h3>Bug fixes</h3>
+<ul>
+<li>fix(app): output + serve (<a href="https://github.com/compodoc/compodoc/commit/8332344">8332344</a>), closes <a href="https://github.com/compodoc/compodoc/issues/742">#742</a></li>
+<li>fix(deps): jsdoc param comment for accessor (<a href="https://github.com/compodoc/compodoc/commit/655be32">655be32</a>), closes <a href="https://github.com/compodoc/compodoc/issues/735">#735</a></li>
+<li>fix(deps): injectables inheritance (<a href="https://github.com/compodoc/compodoc/commit/35da83e">35da83e</a>), closes <a href="https://github.com/compodoc/compodoc/issues/738">#738</a></li>
+<li>fix(deps): no link if ignored data (<a href="https://github.com/compodoc/compodoc/commit/242e42d">242e42d</a>), closes <a href="https://github.com/compodoc/compodoc/issues/737">#737</a></li>
+<li>fix(deps): multiple inheritance class support (<a href="https://github.com/compodoc/compodoc/commit/62f1bd0">62f1bd0</a>), closes <a href="https://github.com/compodoc/compodoc/issues/728">#728</a></li>
+<li>fix(deps): Type casting inside decorator (<a href="https://github.com/compodoc/compodoc/commit/f597531">f597531</a>), closes <a href="https://github.com/compodoc/compodoc/issues/727">#727</a></li>
+</ul>
+<p><a name="1.1.8"></a></p>
+<h1><a href="https://github.com/compodoc/compodoc/compare/1.1.7...1.1.8">1.1.8</a> (2019-02-08)</h1>
+<h3>Bug fixes</h3>
+<ul>
+<li><strong>coverage:</strong> guards, interceptors not in page (<a href="https://github.com/compodoc/compodoc/commit/82fe257">82fe257</a>), closes <a href="https://github.com/compodoc/compodoc/issues/722">#722</a></li>
+<li><strong>search:</strong> remove Lunr.js stemmer for indexing (<a href="https://github.com/compodoc/compodoc/commit/d73c649">d73c649</a>), closes <a href="https://github.com/compodoc/compodoc/issues/619">#619</a></li>
+<li><strong>deps:</strong> Literal type information for typealias is generated incorrectly (<a href="https://github.com/compodoc/compodoc/commit/9db3197">9db3197</a>), closes <a href="https://github.com/compodoc/compodoc/issues/711">#711</a></li>
+<li><strong>app:</strong> disable AnguarJS project WIP support (<a href="https://github.com/compodoc/compodoc/commit/2b779a0">2b779a0</a>), closes <a href="https://github.com/compodoc/compodoc/issues/667">#667</a></li>
+<li><strong>menu:</strong> additional menu entries with children collapsed (first level only) (<a href="https://github.com/compodoc/compodoc/commit/d6086b4">d6086b4</a>), closes <a href="https://github.com/compodoc/compodoc/issues/714">#714</a></li>
+<li><strong>menu:</strong> error js with custom logo (<a href="https://github.com/compodoc/compodoc/commit/e70eded">e70eded</a>), closes <a href="https://github.com/compodoc/compodoc/issues/713">#713</a></li>
+<li><strong>deps:</strong> properties with long arrow function declared (<a href="https://github.com/compodoc/compodoc/commit/d5d5e11">d5d5e11</a>), closes <a href="https://github.com/compodoc/compodoc/issues/706">#706</a></li>
+<li><strong>UI:</strong> Inconsistent table formatting for inputs/outputs, method &amp; properties (<a href="https://github.com/compodoc/compodoc/commit/01e1167">01e1167</a>), closes <a href="https://github.com/compodoc/compodoc/issues/709">#709</a></li>
+<li><strong>deps:</strong> modules declarations link with global variables (<a href="https://github.com/compodoc/compodoc/commit/92949ce">92949ce</a>), closes <a href="https://github.com/compodoc/compodoc/issues/710">#710</a></li>
+<li><strong>deps:</strong> @private and miscellaneous functions (<a href="https://github.com/compodoc/compodoc/commit/88e0380">88e0380</a>), closes <a href="https://github.com/compodoc/compodoc/issues/671">#671</a></li>
+<li><strong>deps:</strong> miscellaneous functions return type missing (<a href="https://github.com/compodoc/compodoc/commit/1171ea5">1171ea5</a>), closes <a href="https://github.com/compodoc/compodoc/issues/700">#700</a></li>
+<li><strong>CLI:</strong> Wrong version of typescript shown (<a href="https://github.com/compodoc/compodoc/commit/e5bcd5e">e5bcd5e</a>), closes <a href="https://github.com/compodoc/compodoc/issues/683">#683</a></li>
+</ul>
+<p><a name="1.1.7"></a></p>
+<h1><a href="https://github.com/compodoc/compodoc/compare/1.1.6...1.1.7">1.1.7</a> (2018-11-27)</h1>
+<h3>Bug fixes</h3>
+<ul>
+<li><strong>live-server:</strong> update to fix vulnerability (<a href="https://github.com/compodoc/compodoc/commit/f76f80a7">f76f80a7</a>), closes <a href="https://github.com/compodoc/compodoc/issues/665">#665</a> Thanks <a href="https://github.com/sibiraj-s">Sibiraj</a></li>
+<li><strong>menu:</strong> fr-FR issue during rendering (<a href="https://github.com/compodoc/compodoc/commit/a6e4a44b">a6e4a44b</a>), closes <a href="https://github.com/compodoc/compodoc/issues/691">#691</a></li>
+</ul>
+<h3>Features</h3>
+<ul>
+<li><strong>deps:</strong> symbol support (<a href="https://github.com/compodoc/compodoc/commit/079ef44b">079ef44b</a>), closes <a href="https://github.com/compodoc/compodoc/issues/694">#694</a></li>
+<li><strong>modules:</strong> display methods (<a href="https://github.com/compodoc/compodoc/commit/23a401ac">23a401ac</a>), closes <a href="https://github.com/compodoc/compodoc/issues/340">#340</a></li>
+</ul>
+<p><a name="1.1.6"></a></p>
+<h1><a href="https://github.com/compodoc/compodoc/compare/1.1.5...1.1.6">1.1.6</a> (2018-10-30)</h1>
+<h3>Bug fixes</h3>
+<ul>
+<li><strong>engine:</strong> watch mode (<a href="https://github.com/compodoc/compodoc/commit/cc9c887a">cc9c887a</a>), closes <a href="https://github.com/compodoc/compodoc/issues/644">#644</a></li>
+<li><strong>deps:</strong> anonymous function for function argument (<a href="https://github.com/compodoc/compodoc/commit/c80504a5">c80504a5</a>), closes <a href="https://github.com/compodoc/compodoc/issues/643">#643</a></li>
+<li><strong>deps:</strong> unnamed function (<a href="https://github.com/compodoc/compodoc/commit/a8881b41">a8881b41</a>), closes <a href="https://github.com/compodoc/compodoc/issues/668">#668</a></li>
+<li><strong>engine:</strong> IE11 support (<a href="https://github.com/compodoc/compodoc/commit/6d482398">6d482398</a>), closes <a href="https://github.com/compodoc/compodoc/issues/673">#673</a></li>
+<li><strong>deps:</strong> custom syntax in main.ts (<a href="https://github.com/compodoc/compodoc/commit/241024b7">241024b7</a>), closes <a href="https://github.com/compodoc/compodoc/issues/677">#677</a></li>
+</ul>
+<h3>Features</h3>
+<ul>
+<li><strong>UI:</strong> add custom logo to where the title name is located (<a href="https://github.com/compodoc/compodoc/commit/f68475b1">f68475b1</a>), closes <a href="https://github.com/compodoc/compodoc/issues/134">#134</a> Thanks <a href="https://github.com/feldmanz66">Zach Feldman</a></li>
+<li><strong>UI:</strong> Add style url data to component documentation (<a href="https://github.com/compodoc/compodoc/commit/bcc0dcf5">bcc0dcf5</a>), closes <a href="https://github.com/compodoc/compodoc/issues/648">#648</a> Thanks <a href="https://github.com/danielleroux">Daniel Leroux</a></li>
+<li><strong>UI:</strong> decorators arguments listing (<a href="https://github.com/compodoc/compodoc/commit/bd23ec89">bd23ec89</a>), closes <a href="https://github.com/compodoc/compodoc/issues/630">#630</a> <a href="https://github.com/compodoc/compodoc/issues/640">#640</a></li>
+<li><strong>i18n:</strong> pt-BR (<a href="https://github.com/compodoc/compodoc/commit/0b366da4">0b366da4</a>), Thanks <a href="https://github.com/lsfgrd">Laís Figueiredo</a></li>
+</ul>
+<p><a name="1.1.5"></a></p>
+<h1><a href="https://github.com/compodoc/compodoc/compare/1.1.4...1.1.5">1.1.5</a> (2018-08-29)</h1>
+<h3>Bug fixes</h3>
+<ul>
+<li><strong>overview:</strong> typo in page (<a href="https://github.com/compodoc/compodoc/commit/a21f7b98">a21f7b98</a>)</li>
+</ul>
+<p><a name="1.1.4"></a></p>
+<h1><a href="https://github.com/compodoc/compodoc/compare/1.1.3...1.1.4">1.1.4</a> (2018-08-29)</h1>
+<h3>Features</h3>
+<ul>
+<li><strong>i18n:</strong> language flag (<a href="https://github.com/compodoc/compodoc/commit/9d47e2b4">9d47e2b4</a>), closes <a href="https://github.com/compodoc/compodoc/issues/611">#611</a> Thanks <a href="https://github.com/lichangfeng">lichangfeng</a></li>
+<li><strong>nest:</strong> Nest projects support (<a href="https://github.com/compodoc/compodoc/commit/1a5f5fe3">1a5f5fe3</a>), closes <a href="https://github.com/compodoc/compodoc/issues/625">#611</a></li>
+<li><strong>guard:</strong> support (<a href="https://github.com/compodoc/compodoc/commit/0c85e715">0c85e715</a>), closes <a href="https://github.com/compodoc/compodoc/issues/578">#578</a> Thanks <a href="https://github.com/ValentinGot">Valentin GOT</a></li>
+<li><strong>CLI:</strong> minimal mode (<a href="https://github.com/compodoc/compodoc/commit/9c85bcba">9c85bcba</a>), closes <a href="https://github.com/compodoc/compodoc/issues/572">#572</a></li>
+<li><strong>CLI:</strong> disableSearch flag (<a href="https://github.com/compodoc/compodoc/commit/0a8efe98">0a8efe98</a>), closes <a href="https://github.com/compodoc/compodoc/issues/571">#571</a></li>
+<li><strong>unit-test:</strong> unit test coverage summary page (<a href="https://github.com/compodoc/compodoc/commit/0a1e248b">0a1e248b</a>) Thanks <a href="https://github.com/bhofmei">Brigitte Hofmeister</a></li>
+<li><strong>templates:</strong> override handlebars templates with flag (<a href="https://github.com/compodoc/compodoc/commit/e83b126b">e83b126b</a>) Thanks <a href="https://github.com/bhofmei">Brigitte Hofmeister</a></li>
+<li><strong>coverage:</strong> --coverageTestShowOnlyFailed (<a href="https://github.com/compodoc/compodoc/commit/3b4e8a5d">3b4e8a5d</a>), closes <a href="https://github.com/compodoc/compodoc/issues/606">#606</a></li>
+</ul>
+<h3>Improvements</h3>
+<ul>
+<li><strong>menu:</strong> compile the menu as a custom-element to improve performance (<a href="https://github.com/compodoc/compodoc/commit/d59761e5">d59761e5</a>) Thanks <a href="https://github.com/manekinekko">Wassim CHEGHAM</a></li>
+</ul>
+<h3>Bug fixes</h3>
+<ul>
+<li><strong>CLI:</strong> JSON Configuration File JSON Schema (<a href="https://github.com/compodoc/compodoc/commit/d8e48d57">d8e48d57</a>), closes <a href="https://github.com/compodoc/compodoc/issues/577">#577</a></li>
+<li><strong>CLI:</strong> handle ../ in includes in tsconfig includes/excludes (<a href="https://github.com/compodoc/compodoc/commit/4a445050">4a445050</a>), closes <a href="https://github.com/compodoc/compodoc/issues/596">#596</a></li>
+<li><strong>UI:</strong> Address double scrollbar on example tabs for directive, pipe, and injectable (<a href="https://github.com/compodoc/compodoc/commit/81e33988">81e33988</a>) Thanks <a href="https://github.com/Blakesalot">Blake Simmon</a></li>
+<li><strong>UI:</strong> move to ionicons (<a href="https://github.com/compodoc/compodoc/commit/f81b42ec">f81b42ec</a>), closes <a href="https://github.com/compodoc/compodoc/issues/592">#592</a></li>
+<li><strong>UI:</strong> Accessors section in top index pages (<a href="https://github.com/compodoc/compodoc/commit/aa4a4929">aa4a4929</a>), closes <a href="https://github.com/compodoc/compodoc/issues/615">#615</a></li>
+<li><strong>menu:</strong> overview href is generated twice (<a href="https://github.com/compodoc/compodoc/commit/5479515a">5479515a</a>), closes <a href="https://github.com/compodoc/compodoc/issues/575">#575</a></li>
+<li><strong>deps:</strong> barrel file support for import finding strategy (<a href="https://github.com/compodoc/compodoc/commit/780c0653">780c0653</a>), closes <a href="https://github.com/compodoc/compodoc/issues/556">#566</a></li>
+<li><strong>deps:</strong> interfaces with custom names (<a href="https://github.com/compodoc/compodoc/commit/78c59ea1">78c59ea1</a>), closes <a href="https://github.com/compodoc/compodoc/issues/580">#580</a></li>
+<li><strong>deps:</strong> duplicates for more than 2 files (<a href="https://github.com/compodoc/compodoc/commit/bf6e9238">bf6e9238</a>), closes <a href="https://github.com/compodoc/compodoc/issues/590">#590</a></li>
+<li><strong>deps:</strong> Duplicate pages for injectables with custom decorators (<a href="https://github.com/compodoc/compodoc/commit/80417826">80417826</a>), closes <a href="https://github.com/compodoc/compodoc/issues/591">#591</a></li>
+<li><strong>deps:</strong> generic support for Map&lt;K, V&gt; (<a href="https://github.com/compodoc/compodoc/commit/8f3ef941">8f3ef941</a>), closes <a href="https://github.com/compodoc/compodoc/issues/622">#622</a></li>
+<li><strong>deps:</strong> abstract modifier (<a href="https://github.com/compodoc/compodoc/commit/1e6eecba">1e6eecba</a>), closes <a href="https://github.com/compodoc/compodoc/issues/626">#626</a></li>
+<li><strong>graph:</strong> special character in module name (<a href="https://github.com/compodoc/compodoc/commit/00075366">00075366</a>), closes <a href="https://github.com/compodoc/compodoc/issues/591">#591</a></li>
+</ul>
+<p><a name="1.1.3"></a></p>
+<h1><a href="https://github.com/compodoc/compodoc/compare/1.1.2...1.1.3">1.1.3</a> (2018-05-16)</h1>
+<h3>Features</h3>
+<ul>
+<li><strong>UI:</strong> disableTemplateTab flag (<a href="https://github.com/compodoc/compodoc/commit/fed52f1">fed52f1</a>), closes <a href="https://github.com/compodoc/compodoc/issues/545">#545</a></li>
+<li><strong>config:</strong> add config management support with custom file (<a href="https://github.com/compodoc/compodoc/commit/bd249fb">bd249fb</a>), closes <a href="https://github.com/compodoc/compodoc/issues/379">#379</a></li>
+<li><strong>UI</strong> Add ability to specify tab ordering and custom tab labels (<a href="https://github.com/compodoc/compodoc/commit/e1bdc2e">e1bdc2e</a>), closes <a href="https://github.com/compodoc/compodoc/issues/522">#522</a> Thanks <a href="https://github.com/Blakesalot">Blake Simmon</a></li>
+</ul>
+<h3>Bug fixes</h3>
+<ul>
+<li><strong>CLI:</strong> Uniqid for entities between two documentation generation (<a href="https://github.com/compodoc/compodoc/commit/1ce6543">1ce6543</a>), closes <a href="https://github.com/compodoc/compodoc/issues/550">#550</a></li>
+<li><strong>CLI:</strong> absolute path with d flag (<a href="https://github.com/compodoc/compodoc/commit/f86f11b">f86f11b</a>), closes <a href="https://github.com/compodoc/compodoc/issues/559">#559</a></li>
+<li><strong>CLI:</strong> exclude parser with duplicate file names (<a href="https://github.com/compodoc/compodoc/commit/568af47">568af47</a>), closes <a href="https://github.com/compodoc/compodoc/issues/551">#551</a></li>
+<li><strong>CLI:</strong> Using absolute path for -p/--tsconfig (<a href="https://github.com/compodoc/compodoc/commit/7d8566c">7d8566c</a>), closes <a href="https://github.com/compodoc/compodoc/issues/558">#558</a></li>
+<li><strong>menu:</strong> Navigation is broken with watch mode (<a href="https://github.com/compodoc/compodoc/commit/616e469">616e469</a>), closes <a href="https://github.com/compodoc/compodoc/issues/548">#548</a></li>
+<li><strong>UI:</strong> sort modules import/exports/declarations/providers in ascending order (<a href="https://github.com/compodoc/compodoc/commit/9449574">9449574</a>), closes <a href="https://github.com/compodoc/compodoc/issues/538">#538</a></li>
+<li><strong>UI:</strong> back button handling (<a href="https://github.com/compodoc/compodoc/commit/b5e16e8">b5e16e8</a>), closes <a href="https://github.com/compodoc/compodoc/issues/557">#557</a></li>
+<li><strong>UI:</strong> additional url + regular entity (<a href="https://github.com/compodoc/compodoc/commit/3464b0c">3464b0c</a>), closes <a href="https://github.com/compodoc/compodoc/issues/554">#554</a></li>
+<li><strong>UI:</strong> ensure examples tab has only one scrollbar (<a href="https://github.com/compodoc/compodoc/commit/d60b406">d60b406</a>), closes <a href="https://github.com/compodoc/compodoc/issues/562">#562</a> Thanks <a href="https://github.com/Blakesalot">Blake Simmon</a></li>
+<li><strong>deps:</strong> async functions documented with empty badge (<a href="https://github.com/compodoc/compodoc/commit/3049781">3049781</a>), closes <a href="https://github.com/compodoc/compodoc/issues/556">#556</a></li>
+<li><strong>deps:</strong> modules spread elements with global variables (<a href="https://github.com/compodoc/compodoc/commit/9576cc6">9576cc6</a>), closes <a href="https://github.com/compodoc/compodoc/issues/494">#494</a></li>
+<li><strong>deps:</strong> Generic array types support (<a href="https://github.com/compodoc/compodoc/commit/0ad79de">0ad79de</a>), closes <a href="https://github.com/compodoc/compodoc/issues/552">#552</a></li>
+<li><strong>deps:</strong> generic type parameters for functions (<a href="https://github.com/compodoc/compodoc/commit/db9167b">db9167b</a>), closes <a href="https://github.com/compodoc/compodoc/issues/555">#555</a></li>
+<li><strong>deps:</strong> routing with bootstrapModule in if statement (<a href="https://github.com/compodoc/compodoc/commit/19109ff">19109ff</a>), closes <a href="https://github.com/compodoc/compodoc/issues/560">#560</a></li>
+<li><strong>deps:</strong> empty @example JSDoc tag (<a href="https://github.com/compodoc/compodoc/commit/db48253">db48253</a>), closes <a href="https://github.com/compodoc/compodoc/issues/543">#543</a></li>
+<li><strong>deps:</strong> routes data with function call (<a href="https://github.com/compodoc/compodoc/commit/ccc13ce">ccc13ce</a>), closes <a href="https://github.com/compodoc/compodoc/issues/525">#525</a></li>
+<li><strong>deps:</strong> tuples types support (<a href="https://github.com/compodoc/compodoc/commit/dc540c5">dc540c5</a>), closes <a href="https://github.com/compodoc/compodoc/issues/540">#540</a></li>
+<li><strong>deps:</strong> extendMerger (<a href="https://github.com/compodoc/compodoc/commit/a7448c9">a7448c9</a>), closes <a href="https://github.com/compodoc/compodoc/issues/542">#542</a></li>
+<li><strong>deps:</strong> JSDoc param inside constructor (<a href="https://github.com/compodoc/compodoc/commit/c01484c">c01484c</a>), closes <a href="https://github.com/compodoc/compodoc/issues/541">#541</a></li>
+<li><strong>search:</strong> better results display + enable wildcards (<a href="https://github.com/compodoc/compodoc/commit/43c6d5d">43c6d5d</a>), closes <a href="https://github.com/compodoc/compodoc/issues/537">#537</a> <a href="https://github.com/compodoc/compodoc/issues/447">#447</a></li>
+<li><strong>routing:</strong> routes without routing module (<a href="https://github.com/compodoc/compodoc/commit/11a742c">11a742c</a>), closes <a href="https://github.com/compodoc/compodoc/issues/518">#518</a> <a href="https://github.com/compodoc/compodoc/issues/488">#488</a></li>
+</ul>
+<p><a name="1.1.2"></a></p>
+<h1><a href="https://github.com/compodoc/compodoc/compare/1.1.1...1.1.2">1.1.2</a> (2018-04-09)</h1>
+<p>Performance improvements of pages rendering | +20% in speed generation :tada:</p>
+<h3>Features</h3>
+<ul>
+<li><strong>html-engine:</strong> Split menu rendering for speeding pages rendering (<a href="https://github.com/compodoc/compodoc/commit/ab57beed">ab57beed</a>), closes <a href="https://github.com/compodoc/compodoc/issues/533">#533</a>
+Thanks <a href="https://github.com/manekinekko">Wassim Chegham</a></li>
+</ul>
+<h3>Bug fixes</h3>
+<ul>
+<li><strong>app:</strong> Handlebars JavaScript heap out of memory (<a href="https://github.com/compodoc/compodoc/commit/c8d29167">c8d29167</a>), closes <a href="https://github.com/compodoc/compodoc/issues/521">#521</a></li>
+<li><strong>theme:</strong> correct path if no README in root folder (<a href="https://github.com/compodoc/compodoc/commit/78ceab38">78ceab38</a>), closes <a href="https://github.com/compodoc/compodoc/issues/524">#524</a></li>
+<li><strong>dependencies:</strong> coverage for file even with no hostlisteners for example (<a href="https://github.com/compodoc/compodoc/commit/c7a32643">c7a32643</a>), closes <a href="https://github.com/compodoc/compodoc/issues/527">#527</a></li>
+<li><strong>dependencies:</strong> --disableLifeCycleHooks with @ignore on component/directive (<a href="https://github.com/compodoc/compodoc/commit/eb9fddf2">eb9fddf2</a>), closes <a href="https://github.com/compodoc/compodoc/issues/526">#526</a></li>
+<li><strong>dependencies:</strong> replace callExpressions in routes definitions with text (<a href="https://github.com/compodoc/compodoc/commit/2b22fa63">2b22fa63</a>), closes <a href="https://github.com/compodoc/compodoc/issues/525">#525</a> <a href="https://github.com/compodoc/compodoc/issues/467">#467</a></li>
+<li><strong>dependencies:</strong> module imports forRoot/forChild cleaning (<a href="https://github.com/compodoc/compodoc/commit/3e473791">3e473791</a>), closes <a href="https://github.com/compodoc/compodoc/issues/531">#531</a></li>
+</ul>
+<p><a name="1.1.1"></a></p>
+<h1><a href="https://github.com/compodoc/compodoc/compare/1.1.0...1.1.1">1.1.1</a> (2018-03-30)</h1>
+<h3>Bug fixes</h3>
+<ul>
+<li><strong>npm:</strong> uuid not in dependencies (<a href="https://github.com/compodoc/compodoc/commit/bd1d20">bd1d20</a>), closes <a href="https://github.com/compodoc/compodoc/issues/523">#523</a></li>
+</ul>
+<p><a name="1.1.0"></a></p>
+<h1><a href="https://github.com/compodoc/compodoc/compare/1.0.9...1.1.0">1.1.0</a> (2018-03-30)</h1>
+<p><strong>Main feature :</strong></p>
+<p>New menu organisation : components, directives or injectables of a module are displayed directly in the module menu entry</p>
+<p><strong>Main structural change :</strong></p>
+<p>Drop direct TypeScript dependency, Compodoc now relies on ts-simple-ast TypeScript dependency.</p>
+<h3>Features</h3>
+<ul>
+<li><strong>UI:</strong> Component, directive, pipe and injectable not linked inside a module should appear in the menu alone (<a href="https://github.com/compodoc/compodoc/commit/b0106382">b0106382</a>), closes <a href="https://github.com/compodoc/compodoc/issues/510">#510</a></li>
+<li><strong>UI:</strong> Display filename in index of miscellaneous (<a href="https://github.com/compodoc/compodoc/commit/4ddeda4f">4ddeda4f</a>), closes <a href="https://github.com/compodoc/compodoc/issues/520">#520</a></li>
+<li><strong>CLI:</strong> disableDomTree option (<a href="https://github.com/compodoc/compodoc/commit/c71ca965">c71ca965</a>), closes <a href="https://github.com/compodoc/compodoc/issues/517">#517</a></li>
+</ul>
+<h3>Bug Fixes</h3>
+<ul>
+<li><strong>UI:</strong> group components, directives, injectables, pipes based on module (<a href="https://github.com/compodoc/compodoc/commit/46cbb07a">46cbb07a</a>), closes <a href="https://github.com/compodoc/compodoc/issues/145">#145</a> <a href="https://github.com/compodoc/compodoc/issues/258">#258</a></li>
+<li><strong>UI:</strong> Dependency-Link not shown in side-nav if no dependencies and peerDependencies (<a href="https://github.com/compodoc/compodoc/commit/5ffe9d22">5ffe9d22</a>), closes <a href="https://github.com/compodoc/compodoc/issues/506">#506</a></li>
+<li><strong>dependencies:</strong> return&#39;s comment of method is missing (<a href="https://github.com/compodoc/compodoc/commit/05cd3a4c">05cd3a4c</a>), closes <a href="https://github.com/compodoc/compodoc/issues/512">#512</a></li>
+<li><strong>dependencies:</strong> Display component providers (<a href="https://github.com/compodoc/compodoc/commit/78045092">78045092</a>), closes <a href="https://github.com/compodoc/compodoc/issues/514">#514</a></li>
+<li><strong>dependencies:</strong> component inheritance with simple base class + disabledLifeCycleHooks support (<a href="https://github.com/compodoc/compodoc/commit/bd940053">bd940053</a>), closes <a href="https://github.com/compodoc/compodoc/issues/505">#505</a></li>
+<li><strong>dependencies:</strong> support entity with same name (<a href="https://github.com/compodoc/compodoc/commit/01ac07a3">01ac07a3</a>), closes <a href="https://github.com/compodoc/compodoc/issues/474">#474</a> <a href="https://github.com/compodoc/compodoc/issues/233">#233</a></li>
+</ul>
+<p><a name="1.0.9"></a></p>
+<h1><a href="https://github.com/compodoc/compodoc/compare/1.0.8...1.0.9">1.0.9</a> (2018-03-09)</h1>
+<h3>Features</h3>
+<ul>
+<li><strong>dependencies:</strong> display peer dependencies in dependencies page (<a href="https://github.com/compodoc/compodoc/commit/eece547f">eece547f</a>), closes <a href="https://github.com/compodoc/compodoc/issues/478">#478</a></li>
+<li><strong>dependencies:</strong> inheritance support for components and classes (<a href="https://github.com/compodoc/compodoc/commit/b94e9c75">b94e9c75</a>), closes <a href="https://github.com/compodoc/compodoc/issues/324">#324</a> <a href="https://github.com/compodoc/compodoc/issues/152">#152</a></li>
+<li><strong>dependencies:</strong> @ignore JSDoc tag support (<a href="https://github.com/compodoc/compodoc/commit/98326bdf">98326bdf</a>), closes <a href="https://github.com/compodoc/compodoc/issues/486">#486</a></li>
+<li><strong>UI:</strong> Link to code line issue with multiple code blocks (<a href="https://github.com/compodoc/compodoc/commit/aec0014a">aec0014a</a>), closes <a href="https://github.com/compodoc/compodoc/issues/466">#466</a></li>
+</ul>
+<h3>Bug Fixes</h3>
+<ul>
+<li><strong>dependencies:</strong> Optional methods/property for TS interfaces/classes (<a href="https://github.com/compodoc/compodoc/commit/a3ce87fc">a3ce87fc</a>), closes <a href="https://github.com/compodoc/compodoc/issues/484">#484</a></li>
+<li><strong>dependencies:</strong> union types with array (<a href="https://github.com/compodoc/compodoc/commit/9b0be6dd">9b0be6dd</a>), closes <a href="https://github.com/compodoc/compodoc/issues/496">#496</a></li>
+<li><strong>dependencies:</strong> union types with generics (<a href="https://github.com/compodoc/compodoc/commit/eec9c4be">eec9c4be</a>), closes <a href="https://github.com/compodoc/compodoc/issues/501">#501</a></li>
+<li><strong>additional:</strong> external docs change sorting (<a href="https://github.com/compodoc/compodoc/commit/646d7ecc">646d7ecc</a>), closes <a href="https://github.com/compodoc/compodoc/issues/471">#471</a> <a href="https://github.com/compodoc/compodoc/issues/482">#482</a></li>
+<li><strong>dependencies:</strong> multiple union types with array (<a href="https://github.com/compodoc/compodoc/commit/182a1593">182a1593</a>), closes <a href="https://github.com/compodoc/compodoc/issues/498">#498</a> <a href="https://github.com/compodoc/compodoc/issues/499">#499</a></li>
+</ul>
+<p><a name="1.0.8"></a></p>
+<h1><a href="https://github.com/compodoc/compodoc/compare/1.0.7...1.0.8">1.0.8</a> (2018-03-01)</h1>
+<h3>Features</h3>
+<ul>
+<li><strong>routing:</strong> option to disable routes graph (<a href="https://github.com/compodoc/compodoc/commit/62073b">62073b</a>), closes <a href="https://github.com/compodoc/compodoc/issues/472">#472</a> <a href="https://github.com/compodoc/compodoc/issues/485">#485</a></li>
+</ul>
+<h3>Bug Fixes</h3>
+<ul>
+<li><strong>jsdoc:</strong> @link for external url broken (<a href="https://github.com/compodoc/compodoc/commit/6775ef">6775ef</a>), closes <a href="https://github.com/compodoc/compodoc/issues/305">#305</a></li>
+</ul>
+<p><a name="1.0.7"></a></p>
+<h1><a href="https://github.com/compodoc/compodoc/compare/1.0.6...1.0.7">1.0.7</a> (2018-02-15)</h1>
+<h3>Bug Fixes</h3>
+<ul>
+<li><strong>accessors:</strong> Accessors not parsing all data correctly (<a href="https://github.com/compodoc/compodoc/commit/80af63b">80af63b</a>), closes <a href="https://github.com/compodoc/compodoc/issues/468">#468</a></li>
+<li><strong>routing:</strong> Routes not scanned for Node.js 7 &amp; 6 (<a href="https://github.com/compodoc/compodoc/commit/9435422">9435422</a>), closes <a href="https://github.com/compodoc/compodoc/issues/463">#463</a></li>
+<li><strong>templates:</strong> hide cells for function parameters if field is empty (<a href="https://github.com/compodoc/compodoc/commit/5d32cbb">5d32cbb</a>), closes <a href="https://github.com/compodoc/compodoc/issues/464">#464</a></li>
+</ul>
+<p><a name="1.0.6"></a></p>
+<h1><a href="https://github.com/compodoc/compodoc/compare/1.0.5...1.0.6">1.0.6</a> (2018-02-12)</h1>
+<h3>Features</h3>
+<ul>
+<li><strong>prism:</strong> Added SCSS support for code blocks (<a href="https://github.com/compodoc/compodoc/commit/2b983cc">2b983cc</a>), closes <a href="https://github.com/compodoc/compodoc/issues/398">#398</a>
+Thanks <a href="https://github.com/Epenance">Martin Hobert</a></li>
+<li><strong>additional-doc:</strong> prepareExternalIncludes parses children recursively (<a href="https://github.com/compodoc/compodoc/commit/51aeae24a03c0287ca68cadf317294c5422c4fc7">51aeae2</a>)
+Thanks <a href="https://github.com/jabiinfante">jabiinfante</a></li>
+<li><strong>example-tab:</strong> Added examples tab to services (<a href="https://github.com/compodoc/compodoc/commit/687b04ccc79521684063ebfc4c3d1f32956ec20c">687b04c</a>)
+Thanks <a href="https://github.com/rprotsyk">rprotsyk</a></li>
+<li><strong>core:</strong> downgrade TypeScript version (<a href="https://github.com/compodoc/compodoc/commit/fa74be96ffdeaa383b98d8708f0311edbf5b4640">fa74be9</a>), closes <a href="https://github.com/compodoc/compodoc/issues/359">#359</a></li>
+<li><strong>core:</strong> display project dependencies (<a href="https://github.com/compodoc/compodoc/commit/15ce12c8fcc7a768960f7329800f449a5d08e64e5d0ad0744347be929865a21a8131ab035e8c80ae">c7a7689</a>), closes <a href="https://github.com/compodoc/compodoc/issues/441">#441</a></li>
+<li><strong>theme:</strong> Support Google Analytics (<a href="https://github.com/compodoc/compodoc/commit/f126115763246c399e682ae79158ef0314395716">f126115</a>), closes <a href="https://github.com/compodoc/compodoc/issues/461">#461</a></li>
+<li><strong>theme:</strong> Material design theme (<a href="https://github.com/compodoc/compodoc/commit/d3f17301f92936932dabf2cc5d9bc24100faeb4e">d3f1730</a>), closes <a href="https://github.com/compodoc/compodoc/issues/418">#418</a></li>
+<li><strong>coverage:</strong> --coverageTestThresholdFail (<a href="https://github.com/compodoc/compodoc/commit/f79f280115abb66874e9bc707fab15f68d1bf114">f79f280</a>), closes <a href="https://github.com/compodoc/compodoc/issues/428">#428</a></li>
+</ul>
+<h3>Bug Fixes</h3>
+<ul>
+<li><strong>cli:</strong> display error message for empty -p (<a href="https://github.com/compodoc/compodoc/commit/674772504abdc0984dce43de4b8b054fe9ac32e0">6747725</a>), closes <a href="https://github.com/compodoc/compodoc/issues/422">#422</a></li>
+<li><strong>cli:</strong> remove duplicate code (<a href="https://github.com/compodoc/compodoc/commit/eb25e1a5fe4650e69f3b2e90c66a1280ee217ccf">eb25e1a</a>)
+Thanks <a href="https://github.com/alan-agius4">Alan Agius</a></li>
+<li><strong>dependencies:</strong> Error if HTTP_INTERCEPTORS registered via providers (<a href="https://github.com/compodoc/compodoc/commit/89c333555b8b6a07fea9ec3a2e1cabf3d7da13a5">89c3335</a>), closes <a href="https://github.com/compodoc/compodoc/issues/456">#456</a></li>
+<li><strong>dependencies:</strong> show default values for function parameters (<a href="https://github.com/compodoc/compodoc/commit/163dc693b8dfd09671cd10e44de7cfa56237f574">163dc69</a>), closes <a href="https://github.com/compodoc/compodoc/issues/453">#453</a></li>
+<li><strong>dependencies:</strong> private modifier for constructor (<a href="https://github.com/compodoc/compodoc/commit/016f96386a209c4d01214b3e2f93193d7d1db587">016f963</a>), closes <a href="https://github.com/compodoc/compodoc/issues/458">#458</a></li>
+<li><strong>dependencies:</strong> optional for interfaces (<a href="https://github.com/compodoc/compodoc/commit/5e0845ecbb3ebad3037bbd81bb05015132d78945">5e0845e</a>), closes <a href="https://github.com/compodoc/compodoc/issues/455">#455</a></li>
+<li><strong>dependencies:</strong> detect type annotation based on default values (<a href="https://github.com/compodoc/compodoc/commit/c80d15519e8bfa07625ba72f11f8771ef07308ee">c80d155</a>), closes <a href="https://github.com/compodoc/compodoc/issues/419">#419</a></li>
+<li><strong>dependencies:</strong> optional field in parameter table could be yes or no (<a href="https://github.com/compodoc/compodoc/commit/96f3a0b1c9d3d00fde7a21afddde525619c4a39b">96f3a0b</a>), closes <a href="https://github.com/compodoc/compodoc/issues/420">#420</a></li>
+<li><strong>dependencies:</strong> @link to all miscellaneous (<a href="https://github.com/compodoc/compodoc/commit/0194c1b78cb64b6f6b705e3af4072698f21d8f34">0194c1b</a>), closes <a href="https://github.com/compodoc/compodoc/issues/416">#416</a></li>
+<li><strong>dependencies:</strong> shorthand metadatas support for components/directives (<a href="https://github.com/compodoc/compodoc/commit/295a029e69011ab8346dd12be7284809291d1638">295a029</a>), closes <a href="https://github.com/compodoc/compodoc/issues/407">#407</a></li>
+<li><strong>dependencies:</strong> useExisting support for interceptors (<a href="https://github.com/compodoc/compodoc/commit/7c8794a">7c8794a</a>), closes <a href="https://github.com/compodoc/compodoc/issues/406">#406</a></li>
+<li><strong>search:</strong> prevent lunr call stack size exceeded for huge file (<a href="https://github.com/compodoc/compodoc/commit/f495cd">f495cd</a>), closes <a href="https://github.com/compodoc/compodoc/issues/410">#410</a> <a href="https://github.com/compodoc/compodoc/issues/378">#378</a></li>
+<li><strong>core:</strong> add package-lock.json (<a href="https://github.com/compodoc/compodoc/commit/15ce12c8fc47be929865a21a8131ab035e8c80ae">15ce12c</a>), closes <a href="https://github.com/compodoc/compodoc/issues/413">#413</a></li>
+<li><strong>core:</strong> rollback to marked (<a href="https://github.com/compodoc/compodoc/commit/c5eb16d99057bdbfdf7c134b3613d8d0266c882d">c5eb16</a>), closes <a href="https://github.com/compodoc/compodoc/issues/349">#349</a></li>
+<li><strong>core:</strong> bump dependencies (<a href="https://github.com/compodoc/compodoc/commit/99be40081ce51bd636ef38eb4b21788621f09e70">99be400</a>), closes <a href="https://github.com/compodoc/compodoc/issues/430">#430</a></li>
+<li><strong>routing:</strong> spread &amp; dynamic value first support (<a href="https://github.com/compodoc/compodoc/commit/47fd133136903efe2f4148b93cafc53fd104e92c">47fd133</a>), closes <a href="https://github.com/compodoc/compodoc/issues/452">#452</a></li>
+<li><strong>routing:</strong> recursive dynamic variable support (<a href="https://github.com/compodoc/compodoc/commit/5a98b56e15da9040d5bdac967408f49a526b46bc">5a98b56</a>), closes <a href="https://github.com/compodoc/compodoc/issues/417">#417</a> <a href="https://github.com/compodoc/compodoc/issues/400">#400</a> <a href="https://github.com/compodoc/compodoc/issues/394">#394</a> <a href="https://github.com/compodoc/compodoc/issues/361">#361</a> <a href="https://github.com/compodoc/compodoc/issues/364">#364</a> <a href="https://github.com/compodoc/compodoc/issues/459">#459</a></li>
+<li><strong>routing:</strong> support for ModuleWithProviders definition (<a href="https://github.com/compodoc/compodoc/commit/dbdb6a61736cc97943fd5ea22ed20be5c4228974">dbdb6a6</a>), closes <a href="https://github.com/compodoc/compodoc/issues/257">#257</a></li>
+<li><strong>routing:</strong> scan also static value in class (<a href="https://github.com/compodoc/compodoc/commit/26dd154de242796737bbb2239c5b4e4e9e2e4bf2">26dd154</a>), closes <a href="https://github.com/compodoc/compodoc/issues/394">#394</a></li>
+<li><strong>coverage:</strong> src folder not parsed (<a href="https://github.com/compodoc/compodoc/commit/7b32ac67debe9fc90047db4fd4a285336d3391d5">7b32ac6</a>), closes <a href="https://github.com/compodoc/compodoc/issues/431">#431</a></li>
+<li><strong>template:</strong> Removed relative URL helper function from logo img tag (<a href="https://github.com/compodoc/compodoc/commit/3f18d0c7f51054f8d2c962a782e1dfdf0207d061">3f18d0c</a>)
+Thanks <a href="https://github.com/ainsleybc">ainsleybc</a></li>
+<li><strong>template:</strong> Fixing ordered lists in README.md files (<a href="https://github.com/compodoc/compodoc/commit/bf227874266a1e29647128f061dc099ab8ae3c21">bf22787</a>), closes <a href="https://github.com/compodoc/compodoc/issues/435">#435</a>
+Thanks <a href="https://github.com/michael-letcher">Michael Letcher</a></li>
+</ul>
+<p><a name="1.0.5"></a></p>
+<h1><a href="https://github.com/compodoc/compodoc/compare/1.0.4...1.0.5">1.0.5</a> (2017-12-02)</h1>
+<h3>Features</h3>
+<ul>
+<li><strong>code-highlightning:</strong> copy button (<a href="https://github.com/compodoc/compodoc/commit/15ad139d">15ad139d</a>), closes <a href="https://github.com/compodoc/compodoc/issues/373">#373</a></li>
+<li><strong>dependencies:</strong> entryComponents support for modules (<a href="https://github.com/compodoc/compodoc/commit/4774f9e3">4774f9e3</a>)</li>
+</ul>
+<h3>Bug Fixes</h3>
+<ul>
+<li><strong>dependencies:</strong> accessors documentation (<a href="https://github.com/compodoc/compodoc/commit/84857c2b">84857c2b</a>), closes <a href="https://github.com/compodoc/compodoc/issues/393">#393</a></li>
+<li><strong>dependencies:</strong> function parameter undefined in Miscellaneous - Functions (<a href="https://github.com/compodoc/compodoc/commit/e29a56c8">e29a56c8</a>), closes <a href="https://github.com/compodoc/compodoc/issues/389">#389</a></li>
+<li><strong>dependencies:</strong> Empty description for accessors (<a href="https://github.com/compodoc/compodoc/commit/45181513">45181513</a>), closes <a href="https://github.com/compodoc/compodoc/issues/385">#385</a></li>
+<li><strong>dependencies:</strong> wrong generated links of module declarations (<a href="https://github.com/compodoc/compodoc/commit/ab1af5b0">ab1af5b0</a>), closes <a href="https://github.com/compodoc/compodoc/issues/372">#372</a></li>
+<li><strong>dependencies:</strong> Dom tree tab - component with inline template (<a href="https://github.com/compodoc/compodoc/commit/9ff83a90">9ff83a90</a>), closes <a href="https://github.com/compodoc/compodoc/issues/370">#370</a></li>
+<li><strong>dependencies:</strong> static modifier (<a href="https://github.com/compodoc/compodoc/commit/6cd80868">6cd80868</a>), closes <a href="https://github.com/compodoc/compodoc/issues/367">#367</a></li>
+<li><strong>dependencies:</strong> disableLifeCycleHooks ignored for Directives (<a href="https://github.com/compodoc/compodoc/commit/c2b5f75f">c2b5f75f</a>), closes <a href="https://github.com/compodoc/compodoc/issues/363">#363</a></li>
+<li><strong>dependencies:</strong> dynamic import support for path and pathMatch routes definition (<a href="https://github.com/compodoc/compodoc/commit/633ea2f8">633ea2f8</a>), closes <a href="https://github.com/compodoc/compodoc/issues/216">#216</a></li>
+<li><strong>tabs:</strong> conflict with readme titles (<a href="https://github.com/compodoc/compodoc/commit/230d96a6">230d96a6</a>), closes <a href="https://github.com/compodoc/compodoc/issues/381">#381</a></li>
+<li><strong>links:</strong> the generated href to angular api doc is wrong (<a href="https://github.com/compodoc/compodoc/commit/153b38d9">153b38d9</a>), closes <a href="https://github.com/compodoc/compodoc/issues/368">#368</a></li>
+<li><strong>markdown:</strong> image tag not correctly closed (<a href="https://github.com/compodoc/compodoc/commit/43c86a17">43c86a17</a>), closes <a href="https://github.com/compodoc/compodoc/issues/384">#384</a></li>
+<li><strong>coverage:</strong> add misc functions and variables (<a href="https://github.com/compodoc/compodoc/commit/04e0c038">04e0c038</a>), closes <a href="https://github.com/compodoc/compodoc/issues/388">#388</a></li>
+<li><strong>routes:</strong> support for outlet dynamic imports, + enums (<a href="https://github.com/compodoc/compodoc/commit/d3b9b9e9">d3b9b9e9</a>), closes <a href="https://github.com/compodoc/compodoc/issues/394">#394</a></li>
+<li><strong>core:</strong> typescript errors (<a href="https://github.com/compodoc/compodoc/commit/96426902">96426902</a>), closes <a href="https://github.com/compodoc/compodoc/issues/369">#369</a>
+Thanks <a href="https://github.com/dp-1a">daniel.preussner</a></li>
+</ul>
+<p><a name="1.0.4"></a></p>
+<h1><a href="https://github.com/compodoc/compodoc/compare/1.0.3...1.0.4">1.0.4</a> (2017-11-07)</h1>
+<h3>Features</h3>
+<ul>
+<li><strong>pipes:</strong> add metadata + functions and properties (<a href="https://github.com/compodoc/compodoc/commit/7ccb04b2">7ccb04b2</a>), closes <a href="https://github.com/compodoc/compodoc/issues/336">#336</a></li>
+<li><strong>export:</strong> beautify formats JSON output (<a href="https://github.com/compodoc/compodoc/commit/562455ab">562455ab</a>) thanks <a href="https://github.com/realappie">realappie</a></li>
+<li><strong>cli:</strong> Add support for specifying a favicon (<a href="https://github.com/compodoc/compodoc/commit/8cfe576f">8cfe576f</a>), closes <a href="https://github.com/compodoc/compodoc/issues/310">#310</a></li>
+<li><strong>dependencies:</strong> interceptors support (<a href="https://github.com/compodoc/compodoc/commit/7efd812e">7efd812e</a>), closes <a href="https://github.com/compodoc/compodoc/issues/334">#334</a></li>
+</ul>
+<h3>Bug Fixes</h3>
+<ul>
+<li><strong>dependencies:</strong> decorators metadatas resolve with imports (<a href="https://github.com/compodoc/compodoc/commit/a5a3027c">a5a3027c</a>), closes <a href="https://github.com/compodoc/compodoc/issues/94">#94</a></li>
+<li><strong>dependencies:</strong> spread operator support for module metadatas (<a href="https://github.com/compodoc/compodoc/commit/8e098086">8e098086</a>), closes <a href="https://github.com/compodoc/compodoc/issues/298">#298</a></li>
+<li><strong>core:</strong> split disablePrivateOrInternalSupport (<a href="https://github.com/compodoc/compodoc/commit/9e4222ed">9e4222ed</a>), closes <a href="https://github.com/compodoc/compodoc/issues/241">#241</a> <a href="https://github.com/compodoc/compodoc/issues/271">#271</a></li>
+</ul>
+<p><a name="1.0.3"></a></p>
+<h1><a href="https://github.com/compodoc/compodoc/compare/1.0.2...1.0.3">1.0.3</a> (2017-10-31)</h1>
+<h3>Features</h3>
+<ul>
+<li><strong>generation:</strong> return a Promise (<a href="https://github.com/compodoc/compodoc/commit/2792967">2792967</a>), closes <a href="https://github.com/compodoc/gulp-compodoc/issues/4">#4</a></li>
+</ul>
+<h3>Bug Fixes</h3>
+<ul>
+<li><strong>configuration:</strong> missing properties (<a href="https://github.com/compodoc/compodoc/commit/c55d2496">c55d2496</a>)</li>
+<li><strong>process:</strong> correct listening of unhandledRejection &amp; uncaughtException (<a href="https://github.com/compodoc/compodoc/commit/a0c4f688">a0c4f688</a>)</li>
+</ul>
+<p><a name="1.0.2"></a></p>
+<h1><a href="https://github.com/compodoc/compodoc/compare/1.0.1...1.0.2">1.0.2</a> (2017-10-30)</h1>
+<p><strong>Main features :</strong></p>
+<ul>
+<li>export option : json and html, pdf coming soon</li>
+<li>es6 accessors support</li>
+</ul>
+<h3>Features</h3>
+<ul>
+<li><strong>coverage:</strong> per-file minimum coverage (<a href="https://github.com/compodoc/compodoc/commit/185465eb">185465eb</a>), closes <a href="https://github.com/compodoc/compodoc/issues/306">#306</a></li>
+<li><strong>dependencies:</strong> accessors support (<a href="https://github.com/compodoc/compodoc/commit/bed46c93">bed46c93</a>), closes <a href="https://github.com/compodoc/compodoc/issues/274">#274</a></li>
+<li><strong>app:</strong> export option (<a href="https://github.com/compodoc/compodoc/commit/93df1075">93df1075</a>), closes <a href="https://github.com/compodoc/compodoc/issues/196">#196</a></li>
+<li><strong>module:</strong> graph fullscreen button
+(<a href="https://github.com/compodoc/compodoc/commit/8161ea40">8161ea40</a>), closes <a href="https://github.com/compodoc/compodoc/issues/337">#337</a></li>
+</ul>
+<h3>Bug Fixes</h3>
+<ul>
+<li><strong>interface:</strong> fix relative link for properties (<a href="https://github.com/compodoc/compodoc/commit/4751f602">4751f602</a>), closes <a href="https://github.com/compodoc/compodoc/issues/311">#311</a></li>
+<li><strong>menu:</strong> URLs for CHANGELOG, CONTRIBUTING, LICENSE in pages with depth = 1 (<a href="https://github.com/compodoc/compodoc/commit/8de9a9f3">8de9a9f3</a>), closes <a href="https://github.com/compodoc/compodoc/issues/328">#328</a></li>
+<li><strong>dependencies:</strong> handling QualifiedName types ex: Highcharts.Options (<a href="https://github.com/compodoc/compodoc/commit/6bdd6345">6bdd6345</a>), closes <a href="https://github.com/compodoc/compodoc/issues/335">#335</a></li>
+<li><strong>coverage:</strong> correctly ignore private members
+(<a href="https://github.com/compodoc/compodoc/commit/19d8e5c2">19d8e5c2</a>), closes <a href="https://github.com/compodoc/compodoc/issues/332">#332</a></li>
+<li><strong>dependencies:</strong> namespace support
+(<a href="https://github.com/compodoc/compodoc/commit/46e3601f">46e3601f</a>), closes <a href="https://github.com/compodoc/compodoc/issues/341">#341</a></li>
+<li><strong>cli:</strong> use tsconfig include attribute
+(<a href="https://github.com/compodoc/compodoc/commit/69fa771c">69fa771c</a>), closes <a href="https://github.com/compodoc/compodoc/issues/307">#307</a></li>
+<li><strong>coverage:</strong> restore very-good status
+(<a href="https://github.com/compodoc/compodoc/commit/37d1965c">37d1965c</a>), closes <a href="https://github.com/compodoc/compodoc/issues/309">#309</a></li>
+</ul>
+<p><a name="1.0.1"></a></p>
+<h1><a href="https://github.com/compodoc/compodoc/compare/1.0.0-beta.15...1.0.1">1.0.1</a> (2017-09-08)</h1>
+<p>Stopping beta period. The release cycle will be more quicker than before, when between 5 to 10 bugs are ready to ship, i will submit a new patch version.</p>
+<h3>Features</h3>
+<ul>
+<li><strong>coverage:</strong> Sort coverage table (<a href="https://github.com/compodoc/compodoc/commit/30923878">30923878</a>), closes <a href="https://github.com/compodoc/compodoc/issues/292">#292</a></li>
+<li><strong>link:</strong> anchor support for @link (<a href="https://github.com/compodoc/compodoc/commit/d9b75567">d9b75567</a>), closes <a href="https://github.com/compodoc/compodoc/issues/211">#211</a></li>
+<li><strong>pages:</strong> anchor for name of variables and functions (<a href="https://github.com/compodoc/compodoc/commit/d9869a6f">d9869a6f</a>)</li>
+</ul>
+<h3>Bug Fixes</h3>
+<ul>
+<li><strong>deps:</strong> support self-defined type (<a href="https://github.com/compodoc/compodoc/commit/104b82fa">104b82fa</a>), closes <a href="https://github.com/compodoc/compodoc/issues/267">#267</a></li>
+<li><strong>deps:</strong> Array of custom interface not showing in documentation (<a href="https://github.com/compodoc/compodoc/commit/469f0945">469f0945</a>), closes <a href="https://github.com/compodoc/compodoc/issues/300">#300</a></li>
+<li><strong>deps:</strong> decorator with simple argument string (<a href="https://github.com/compodoc/compodoc/commit/8eb13c52">8eb13c52</a>), closes <a href="https://github.com/compodoc/compodoc/issues/299">#299</a></li>
+<li><strong>doc:</strong> links to Angular documentation for modules import, export etc (<a href="https://github.com/compodoc/compodoc/commit/b9b9d419">b9b9d419</a>), closes <a href="https://github.com/compodoc/compodoc/issues/297">#297</a></li>
+</ul>
+<p><a name="1.0.0-beta.15"></a></p>
+<h1><a href="https://github.com/compodoc/compodoc/compare/1.0.0-beta.14...1.0.0-beta.15">1.0.0-beta.15</a> (2017-09-04)</h1>
+<h2>Changes</h2>
+<ul>
+<li>main graph for huge projects with more than 200 modules is disabled, and viz.js error catched.</li>
+<li>@HostBinding &amp; @HostListener support</li>
+</ul>
+<h3>Features</h3>
+<ul>
+<li><strong>deps:</strong> optional support for parameter (<a href="https://github.com/compodoc/compodoc/commit/5bcef12">5bcef12</a>), closes <a href="https://github.com/compodoc/compodoc/issues/288">#288</a></li>
+<li><strong>app:</strong> <a href="https://github.com/HostBinding">@HostBinding</a> &amp; <a href="https://github.com/HostListener">@HostListener</a> support (<a href="https://github.com/compodoc/compodoc/commit/1ab4311">1ab4311</a>), closes <a href="https://github.com/compodoc/compodoc/issues/277">#277</a></li>
+<li><strong>misc:</strong> Linking directly to correct enumeration, variable etc (<a href="https://github.com/compodoc/compodoc/commit/902c8f2">902c8f2</a>), closes <a href="https://github.com/compodoc/compodoc/issues/278">#278</a></li>
+</ul>
+<h3>Bug Fixes</h3>
+<ul>
+<li><strong>symbols:</strong> lock icon just for private or protected (<a href="https://github.com/compodoc/compodoc/commit/884eb9f">884eb9f</a>), closes <a href="https://github.com/compodoc/compodoc/issues/291">#291</a></li>
+<li><strong>deps:</strong> invalid provider config (<a href="https://github.com/compodoc/compodoc/commit/77cc525">77cc525</a>), closes <a href="https://github.com/compodoc/compodoc/issues/293">#293</a></li>
+<li><strong>deps:</strong> extends for interfaces (<a href="https://github.com/compodoc/compodoc/commit/8ba84a8">8ba84a8</a>), closes <a href="https://github.com/compodoc/compodoc/issues/281">#281</a></li>
+<li><strong>graph:</strong> Not able to generate graph on large projects (<a href="https://github.com/compodoc/compodoc/commit/9ee7775">9ee7775</a>), closes <a href="https://github.com/compodoc/compodoc/issues/283">#283</a></li>
+<li><strong>output:</strong> absolute path in cwd (<a href="https://github.com/compodoc/compodoc/commit/97953e3">97953e3</a>), closes <a href="https://github.com/compodoc/compodoc/issues/279">#279</a></li>
+<li><strong>deps:</strong> return with union type &amp; null (<a href="https://github.com/compodoc/compodoc/commit/b7d3406">b7d3406</a>), closes <a href="https://github.com/compodoc/compodoc/issues/287">#287</a></li>
+<li><strong>deps:</strong> JSDoc tag for property in constructor (<a href="https://github.com/compodoc/compodoc/commit/b8965f6">b8965f6</a>), closes <a href="https://github.com/compodoc/compodoc/issues/286">#286</a></li>
+<li><strong>deps:</strong> support typealias with LiteralType (<a href="https://github.com/compodoc/compodoc/commit/8c284e7">8c284e7</a>), closes <a href="https://github.com/compodoc/compodoc/issues/285">#285</a></li>
+<li><strong>cli:</strong> Error with watch flag (<a href="https://github.com/compodoc/compodoc/commit/ae727ec">ae727ec</a>), closes <a href="https://github.com/compodoc/compodoc/issues/284">#284</a></li>
+<li><strong>deps:</strong> support class with custom decorator (<a href="https://github.com/compodoc/compodoc/commit/059b3c9">059b3c9</a>), closes <a href="https://github.com/compodoc/compodoc/issues/245">#245</a></li>
+</ul>
+<p><a name="1.0.0-beta.14"></a></p>
+<h1><a href="https://github.com/compodoc/compodoc/compare/1.0.0-beta.13...1.0.0-beta.14">1.0.0-beta.14</a> (2017-08-11)</h1>
+<h2>Changes</h2>
+<ul>
+<li>main graph for huge projects with more than 200 modules is disabled</li>
+<li>index for functions, variables, inputs etc</li>
+<li>speed parsing for huge projects</li>
+</ul>
+<h3>Bug Fixes</h3>
+<ul>
+<li><strong>additional-doc:</strong> incorrect filenames in additional-documentation (<a href="https://github.com/compodoc/compodoc/commit/68f80c60">68f80c60</a>), closes <a href="https://github.com/compodoc/compodoc/issues/228">#228</a></li>
+<li><strong>chore:</strong> -d + absolute folder (<a href="https://github.com/compodoc/compodoc/commit/2830c086">2830c086</a>), closes <a href="https://github.com/compodoc/compodoc/issues/235">#235</a></li>
+<li><strong>modules:</strong> Empty NgModule produce an empty graph (<a href="https://github.com/compodoc/compodoc/commit/d6d8388b">d6d8388b</a>), closes <a href="https://github.com/compodoc/compodoc/issues/236">#236</a></li>
+<li><strong>routes:</strong> iOS 8 routes graph rendering - innerHTML + SVG (<a href="https://github.com/compodoc/compodoc/commit/128d33a1">128d33a1</a>), closes <a href="https://github.com/compodoc/compodoc/issues/229">#229</a></li>
+<li><strong>links:</strong> Url for @link is not always right (<a href="https://github.com/compodoc/compodoc/commit/6be60bcb">6be60bcb</a>), closes <a href="https://github.com/compodoc/compodoc/issues/237">#237</a></li>
+<li><strong>links:</strong> Wrong URL generated for inline {@link} doc in constructor (<a href="https://github.com/compodoc/compodoc/commit/73285b51">73285b51</a>), closes <a href="https://github.com/compodoc/compodoc/issues/264">#264</a></li>
+<li><strong>graph:</strong> render again in sequence (<a href="https://github.com/compodoc/compodoc/commit/75ea0c96">75ea0c96</a>), closes <a href="https://github.com/compodoc/compodoc/issues/238">#238</a></li>
+<li><strong>routes:</strong> Routes page not working with null route (<a href="https://github.com/compodoc/compodoc/commit/a62e7487">a62e7487</a>), closes <a href="https://github.com/compodoc/compodoc/issues/201">#201</a></li>
+<li><strong>parsing:</strong> files scanning rewritten, huge main graph disabled (<a href="https://github.com/compodoc/compodoc/commit/cd03eddf">cd03eddf</a>), closes <a href="https://github.com/compodoc/compodoc/issues/226">#226</a> <a href="https://github.com/compodoc/compodoc/issues/231">#231</a></li>
+<li><strong>overview:</strong> don&#39;t display empty graph if no modules (<a href="https://github.com/compodoc/compodoc/commit/8c1ffe3b">8c1ffe3b</a>)</li>
+<li><strong>markdown:</strong> Images in README rendered in block (<a href="https://github.com/compodoc/compodoc/commit/7c695473">7c695473</a>), closes <a href="https://github.com/compodoc/compodoc/issues/261">#261</a></li>
+<li><strong>opts:</strong> disablePrivateOrInternalSupport public methods in component (<a href="https://github.com/compodoc/compodoc/commit/a897a191">a897a191</a>), closes <a href="https://github.com/compodoc/compodoc/issues/265">#265</a></li>
+<li><strong>templates:</strong> html tag bcode not balanced (<a href="https://github.com/compodoc/compodoc/commit/8d96a5aa">8d96a5aa</a>), closes <a href="https://github.com/compodoc/compodoc/issues/276">#276</a></li>
+<li><strong>deps:</strong> UTF8-BOM parsing (<a href="https://github.com/compodoc/compodoc/commit/3f4707cb">3f4707cb</a>), closes <a href="https://github.com/compodoc/compodoc/issues/230">#230</a></li>
+<li><strong>deps:</strong> live-server issue with Node.js 8 (<a href="https://github.com/compodoc/compodoc/commit/38710eaa">38710eaa</a>), closes <a href="https://github.com/compodoc/compodoc/issues/232">#232</a></li>
+<li><strong>deps:</strong> empty module decorator (<a href="https://github.com/compodoc/compodoc/commit/00889ab6">00889ab6</a>), closes <a href="https://github.com/compodoc/compodoc/issues/248">#248</a></li>
+<li><strong>deps:</strong> component @param missing in the generated documentation (<a href="https://github.com/compodoc/compodoc/commit/5b94056d">5b94056d</a>), closes <a href="https://github.com/compodoc/compodoc/issues/225">#225</a></li>
+<li><strong>deps:</strong> @example for functions (<a href="https://github.com/compodoc/compodoc/commit/6b3f262c">6b3f262c</a>), closes <a href="https://github.com/compodoc/compodoc/issues/253">#253</a></li>
+<li><strong>deps:</strong> c-style typed arrays support (<a href="https://github.com/compodoc/compodoc/commit/91f23f38">91f23f38</a>), closes <a href="https://github.com/compodoc/compodoc/issues/256">#256</a></li>
+<li><strong>deps:</strong> indexable for class (<a href="https://github.com/compodoc/compodoc/commit/a12c120f">a12c120f</a>), closes <a href="https://github.com/compodoc/compodoc/issues/255">#255</a></li>
+<li><strong>deps:</strong> coverage and constructor properties (<a href="https://github.com/compodoc/compodoc/commit/0653fb23">0653fb23</a>), closes <a href="https://github.com/compodoc/compodoc/issues/259">#259</a></li>
+<li><strong>deps:</strong> inherit return type (<a href="https://github.com/compodoc/compodoc/commit/d468ee8d">d468ee8d</a>), closes <a href="https://github.com/compodoc/compodoc/issues/268">#268</a></li>
+<li><strong>deps:</strong> support class with custom decorator (<a href="https://github.com/compodoc/compodoc/commit/059b3c9e">059b3c9e</a>), closes <a href="https://github.com/compodoc/compodoc/issues/245">#245</a></li>
+</ul>
+<h3>Features</h3>
+<ul>
+<li><strong>app:</strong> display link to MDN or TypeScript doc for basic types (<a href="https://github.com/compodoc/compodoc/commit/1cfa58e2">1cfa58e2</a>)</li>
+<li><strong>app:</strong> better params display (<a href="https://github.com/compodoc/compodoc/commit/0fb9e93c">0fb9e93c</a>)</li>
+<li><strong>deps:</strong> support of function type parameter (<a href="https://github.com/compodoc/compodoc/commit/e8b1c0fd">e8b1c0fd</a>)</li>
+<li><strong>deps:</strong> link to enums, split misc pages (<a href="https://github.com/compodoc/compodoc/commit/37ec7ba4">37ec7ba4</a>), closes <a href="https://github.com/compodoc/compodoc/issues/266">#266</a></li>
+<li><strong>deps:</strong> @internal for main class decorator (<a href="https://github.com/compodoc/compodoc/commit/bafc1878">bafc1878</a>), closes <a href="https://github.com/compodoc/compodoc/issues/262">#262</a></li>
+<li><strong>deps:</strong> Override JSDOC params types with TypeScript ones (<a href="https://github.com/compodoc/compodoc/commit/7492c45a">7492c45a</a>), closes <a href="https://github.com/compodoc/compodoc/issues/254">#254</a></li>
+</ul>
+<p><a name="1.0.0-beta.13"></a></p>
+<h1><a href="https://github.com/compodoc/compodoc/compare/1.0.0-beta.12...1.0.0-beta.13">1.0.0-beta.13</a> (2017-07-15)</h1>
+<h3>Bug Fixes</h3>
+<ul>
+<li><strong>deps:</strong> Resolve array declaration in modules (<a href="https://github.com/compodoc/compodoc/commit/619842d">619842d</a>), closes <a href="https://github.com/compodoc/compodoc/issues/210">#210</a> <a href="https://github.com/compodoc/compodoc/issues/15">#15</a></li>
+<li><strong>routes:</strong> Routes names required to be unique (<a href="https://github.com/compodoc/compodoc/commit/7f17ecb">7f17ecb</a>), closes <a href="https://github.com/compodoc/compodoc/issues/193">#193</a></li>
+<li><strong>deps:</strong> RangeError: Invalid array length / @input/@output parsing (<a href="https://github.com/compodoc/compodoc/commit/048fd20">048fd20</a>), closes <a href="https://github.com/compodoc/compodoc/issues/209">#209</a></li>
+<li><strong>html:</strong> Type in &quot;Infos&quot; tab - should be &quot;Info&quot; (<a href="https://github.com/compodoc/compodoc/commit/1ceee52">1ceee52</a>), closes <a href="https://github.com/compodoc/compodoc/issues/224">#224</a></li>
+<li><strong>html:</strong> Source code not rendered (<a href="https://github.com/compodoc/compodoc/commit/bfe4708">bfe4708</a>), closes <a href="https://github.com/compodoc/compodoc/issues/223">#223</a></li>
+</ul>
+<h3>Features</h3>
+<ul>
+<li><strong>chore:</strong> Add an interactive examples tab (<a href="https://github.com/compodoc/compodoc/commit/34de4f0">34de4f0</a>), closes <a href="https://github.com/compodoc/compodoc/issues/188">#188</a> Thanks rprotsyk.</li>
+<li><strong>doc:</strong> support to display the changelog.md, contributing, license, todo (<a href="https://github.com/compodoc/compodoc/commit/272a0ad">272a0ad</a>), closes <a href="https://github.com/compodoc/compodoc/issues/215">#215</a></li>
+<li><strong>watch:</strong> Watch README.md, and other root markdown files (<a href="https://github.com/compodoc/compodoc/commit/ed05424">ed05424</a>), closes <a href="https://github.com/compodoc/compodoc/issues/221">#221</a></li>
+<li><strong>chore:</strong> Markdown file support for modules, services, etc (<a href="https://github.com/compodoc/compodoc/commit/918a521">918a521</a>), closes <a href="https://github.com/compodoc/compodoc/issues/204">#204</a></li>
+</ul>
+<p><a name="1.0.0-beta.12"></a></p>
+<h1><a href="https://github.com/compodoc/compodoc/compare/1.0.0-beta.11...1.0.0-beta.12">1.0.0-beta.12</a> (2017-07-09)</h1>
+<h3>Bug Fixes</h3>
+<ul>
+<li><strong>chore:</strong> Cannot find module &#39;json5&#39; (<a href="https://github.com/compodoc/compodoc/commit/04fb75f">04fb75f</a>), closes <a href="https://github.com/compodoc/compodoc/issues/219">#219</a></li>
+<li><strong>dependencies:</strong> All types display in the doc as void (incorrect types) (<a href="https://github.com/compodoc/compodoc/commit/c586b32">c586b32</a>), closes <a href="https://github.com/compodoc/compodoc/issues/218">#218</a></li>
+</ul>
+<p><a name="1.0.0-beta.11"></a></p>
+<h1><a href="https://github.com/compodoc/compodoc/compare/1.0.0-beta.10...1.0.0-beta.11">1.0.0-beta.11</a> (2017-07-08)</h1>
+<h3>Bug Fixes</h3>
+<ul>
+<li><strong>options:</strong> Link correct options with CLI flags (<a href="https://github.com/compodoc/compodoc/commit/82af585">82af585</a>), closes <a href="https://github.com/compodoc/compodoc/issues/205">#205</a></li>
+<li><strong>watch:</strong> Watch mode not working properly (<a href="https://github.com/compodoc/compodoc/commit/4264b5e">4264b5e</a>), closes <a href="https://github.com/compodoc/compodoc/issues/141">#141</a></li>
+<li><strong>search-engine:</strong> Invalid JSON is creating an issue when rendering the object to the template (<a href="https://github.com/compodoc/compodoc/commit/8042af5">8042af5</a>), closes <a href="https://github.com/compodoc/compodoc/issues/187">#187</a></li>
+<li><strong>routes:</strong> Trailing commas throw error when parsing routes (<a href="https://github.com/compodoc/compodoc/commit/7bc1e05">7bc1e05</a>), closes <a href="https://github.com/compodoc/compodoc/issues/192">#192</a> <a href="https://github.com/compodoc/compodoc/issues/173">#173</a></li>
+<li><strong>misc:</strong> Miscellaneous sections Functions not showing documentation (<a href="https://github.com/compodoc/compodoc/commit/235f1d0">235f1d0</a>), closes <a href="https://github.com/compodoc/compodoc/issues/142">#142</a></li>
+<li><strong>deps:</strong> add @default support (<a href="https://github.com/compodoc/compodoc/commit/78257cc">78257cc</a>), closes <a href="https://github.com/compodoc/compodoc/issues/212">#212</a></li>
+<li><strong>deps:</strong> Bespoke types and Promise being converted to any type in output documentation (<a href="https://github.com/compodoc/compodoc/commit/35af038">35af038</a>), closes <a href="https://github.com/compodoc/compodoc/issues/208">#208</a></li>
+<li><strong>output:</strong> Linux unix like environments: Absolute paths generates fonts, images, js and styles in the wrong directory (<a href="https://github.com/compodoc/compodoc/commit/e0a3c60">e0a3c60</a>), closes <a href="https://github.com/compodoc/compodoc/issues/206">#206</a></li>
+</ul>
+<h3>Features</h3>
+<ul>
+<li><strong>log:</strong> add more logs on silent mode (<a href="https://github.com/compodoc/compodoc/commit/1c858c7">1c858c7</a>)</li>
+<li><strong>chore:</strong> run files generation in // +20% in speed generation :tada: (<a href="https://github.com/compodoc/compodoc/commit/832b20d">832b20d</a>)</li>
+</ul>
+<p><a name="1.0.0-beta.10"></a></p>
+<h1><a href="https://github.com/compodoc/compodoc/compare/1.0.0-beta.9...1.0.0-beta.10">1.0.0-beta.10</a> (2017-06-19)</h1>
+<h3>Bug Fixes</h3>
+<ul>
+<li><strong>menu:</strong> Make the entire list item clickable for a section toggle (<a href="https://github.com/compodoc/compodoc/commit/4f4c1f5">4f4c1f5</a>), closes <a href="https://github.com/compodoc/compodoc/issues/194">#194</a></li>
+<li><strong>chore:</strong> kind icon issue for properties and functions (<a href="https://github.com/compodoc/compodoc/commit/4b9f496">4b9f496</a>)</li>
+<li><strong>menu:</strong> Navigation: clicking on a sub element (page) inside the expandable category expands all categories (<a href="https://github.com/compodoc/compodoc/commit/86ac1b4">86ac1b4</a>), closes <a href="https://github.com/compodoc/compodoc/issues/186">#186</a></li>
+<li><strong>markdown:</strong> At sign replaced by a brace in markdown code blocks (<a href="https://github.com/compodoc/compodoc/commit/41c6b0d">41c6b0d</a>), closes <a href="https://github.com/compodoc/compodoc/issues/189">#189</a></li>
+<li><strong>dependencies:</strong> Multiple classes in the same file get the same description (<a href="https://github.com/compodoc/compodoc/commit/8a679f0">8a679f0</a>), closes <a href="https://github.com/compodoc/compodoc/issues/118">#118</a></li>
+<li><strong>exclude:</strong> Not able to exclude files from documentation (<a href="https://github.com/compodoc/compodoc/commit/a88023c">a88023c</a>), closes <a href="https://github.com/compodoc/compodoc/issues/175">#175</a></li>
+<li><strong>source:</strong> Hide some elements if source code is disabled (<a href="https://github.com/compodoc/compodoc/commit/0e81c15">0e81c15</a>), closes <a href="https://github.com/compodoc/compodoc/issues/185">#185</a></li>
+<li><strong>badge:</strong> Documentation coverage badge size should match common badges (<a href="https://github.com/compodoc/compodoc/commit/21f5abe">21f5abe</a>), closes <a href="https://github.com/compodoc/compodoc/issues/200">#200</a></li>
+<li><strong>dependencies:</strong> Interface generation missing w/o errors. (<a href="https://github.com/compodoc/compodoc/commit/2b7d4e7">2b7d4e7</a>), closes <a href="https://github.com/compodoc/compodoc/issues/198">#198</a></li>
+<li><strong>dependencies:</strong> Please Support @private JSDoc. (<a href="https://github.com/compodoc/compodoc/commit/6c7ce67">6c7ce67</a>), closes <a href="https://github.com/compodoc/compodoc/issues/183">#183</a></li>
+<li><strong>comments:</strong> Newline markdown (<a href="https://github.com/compodoc/compodoc/commit/74f64d2">74f64d2</a>), closes <a href="https://github.com/compodoc/compodoc/issues/195">#195</a></li>
+</ul>
+<h3>Features</h3>
+<ul>
+<li><strong>version</strong> Detect angular version and link to the correct version of the documentation (<a href="https://github.com/compodoc/compodoc/commit/f270af7">f270af7</a>), closes <a href="https://github.com/compodoc/compodoc/issues/180">#180</a></li>
+<li><strong>dependencies:</strong> Parsing refactoring, huge speed boost +75% ! (<a href="https://github.com/compodoc/compodoc/commit/65744ed">65744ed</a>)</li>
+</ul>
+<p><a name="1.0.0-beta.9"></a></p>
+<h1><a href="https://github.com/compodoc/compodoc/compare/1.0.0-beta.8...1.0.0-beta.9">1.0.0-beta.9</a> (2017-05-11)</h1>
+<h3>Bug Fixes</h3>
+<ul>
+<li><strong>markdown:</strong> Fix escaping of html entities in code blocks (<a href="https://github.com/compodoc/compodoc/commit/e816cbe">e816cbe</a>), thanks Thomas Mair</li>
+<li><strong>config:</strong> Allow for comments in tsconfig.json (<a href="https://github.com/compodoc/compodoc/commit/2796de5">2796de5</a>), closes <a href="https://github.com/compodoc/compodoc/issues/177">#177</a></li>
+<li><strong>chore:</strong> Problem with resources file when providing absolute output path (<a href="https://github.com/compodoc/compodoc/commit/b52a40e7">b52a40e7</a>), closes <a href="https://github.com/compodoc/compodoc/issues/176">#176</a></li>
+<li><strong>watch:</strong> Watch for additional doc too (<a href="https://github.com/compodoc/compodoc/commit/52801f4b">52801f4b</a>), closes <a href="https://github.com/compodoc/compodoc/issues/163">#163</a></li>
+<li><strong>dependencies:</strong> decorators support (<a href="https://github.com/compodoc/compodoc/commit/65bbabc7">65bbabc7</a>), closes <a href="https://github.com/compodoc/compodoc/issues/171">#171</a></li>
+<li><strong>markdown:</strong> Set marked break option to false (<a href="https://github.com/compodoc/compodoc/commit/0e6ac342">0e6ac342</a>), closes <a href="https://github.com/compodoc/compodoc/issues/181">#181</a></li>
+<li><strong>dependencies:</strong> UTF8 Bom support (<a href="https://github.com/compodoc/compodoc/commit/a3d5bec7">a3d5bec7</a>), closes <a href="https://github.com/compodoc/compodoc/issues/170">#170</a></li>
+</ul>
+<h3>Features</h3>
+<ul>
+<li><strong>app</strong> exclude with glob patterns (<a href="https://github.com/compodoc/compodoc/commit/6310735">6310735</a>), closes <a href="https://github.com/compodoc/compodoc/issues/174">#174</a></li>
+<li><strong>cli</strong> display Node.js and OS infos after banner (<a href="https://github.com/compodoc/compodoc/commit/c0f60561">c0f60561</a>)</li>
+</ul>
+<p><a name="1.0.0-beta.8"></a></p>
+<h1><a href="https://github.com/compodoc/compodoc/compare/1.0.0-beta.7...1.0.0-beta.8">1.0.0-beta.8</a> (2017-04-26)</h1>
+<h3>Bug Fixes</h3>
+<ul>
+<li><strong>dependencies:</strong> custom decorators breaks (<a href="https://github.com/compodoc/compodoc/commit/50578ec">50578ec</a>), closes <a href="https://github.com/compodoc/compodoc/issues/169">#169</a></li>
+<li><strong>UI:</strong> Open menu when item selected (<a href="https://github.com/compodoc/compodoc/commit/70d38c7">70d38c7</a>), closes <a href="https://github.com/compodoc/compodoc/issues/168">#168</a></li>
+<li><strong>graph:</strong> No Declarations or Providers being added to module graphs (<a href="https://github.com/compodoc/compodoc/commit/bf776f4">bf776f4</a>), closes <a href="https://github.com/compodoc/compodoc/issues/167">#167</a></li>
+</ul>
+<h3>Features</h3>
+<ul>
+<li><strong>files:</strong> Better error reporting for template file reading (<a href="https://github.com/compodoc/compodoc/commit/6f2d783">6f2d783</a>)</li>
+</ul>
+<p><a name="1.0.0-beta.7"></a></p>
+<h1><a href="https://github.com/compodoc/compodoc/compare/1.0.0-beta.6...1.0.0-beta.7">1.0.0-beta.7</a> (2017-04-25)</h1>
+<h3>Bug Fixes</h3>
+<ul>
+<li><strong>overview:</strong> Main overview graph is shifted on right side (<a href="https://github.com/compodoc/compodoc/commit/8fe238d">8fe238d</a>), closes <a href="https://github.com/compodoc/compodoc/issues/166">#166</a></li>
+</ul>
+<p><a name="1.0.0-beta.6"></a></p>
+<h1><a href="https://github.com/compodoc/compodoc/compare/1.0.0-beta.5...1.0.0-beta.6">1.0.0-beta.6</a> (2017-04-25)</h1>
+<h3>Bug Fixes</h3>
+<ul>
+<li><strong>dependencies:</strong> Unhandled promise rejection with &quot;use strict&quot; (<a href="https://github.com/compodoc/compodoc/commit/f56c01a">f56c01a</a>), closes <a href="https://github.com/compodoc/compodoc/issues/165">#165</a></li>
+<li><strong>links:</strong> Interface Linking is wrong (<a href="https://github.com/compodoc/compodoc/commit/152c722">152c722</a>), closes <a href="https://github.com/compodoc/compodoc/issues/157">#157</a></li>
+</ul>
+<h3>Features</h3>
+<ul>
+<li><strong>component:</strong> Expand on the Readme.md for component to use component.md (actual name of component) (<a href="https://github.com/compodoc/compodoc/commit/c246ffb">c246ffb</a>), closes <a href="https://github.com/compodoc/compodoc/issues/164">#164</a></li>
+<li><strong>coverage:</strong> Coverage test command (<a href="https://github.com/compodoc/compodoc/commit/e15f238">e15f238</a>), closes <a href="https://github.com/compodoc/compodoc/issues/156">#156</a></li>
+</ul>
+<p><a name="1.0.0-beta.5"></a></p>
+<h1><a href="https://github.com/compodoc/compodoc/compare/1.0.0-beta.4...1.0.0-beta.5">1.0.0-beta.5</a> (2017-04-22)</h1>
+<h3>Bug Fixes</h3>
+<ul>
+<li><strong>modules:</strong> module graph controls JS error with file:// (<a href="https://github.com/compodoc/compodoc/commit/6d4be23">6d4be23</a>), closes <a href="https://github.com/compodoc/compodoc/issues/153">#153</a> <a href="https://github.com/compodoc/compodoc/issues/159">#159</a></li>
+<li><strong>component:</strong> custom treatment of the metadata field <code>template</code> (<a href="https://github.com/compodoc/compodoc/commit/1bbda74">1bbda74</a>), closes <a href="https://github.com/compodoc/compodoc/issues/137">#137</a></li>
+<li><strong>component:</strong> loading template from another component fails (<a href="https://github.com/compodoc/compodoc/commit/1bbda74">1bbda74</a>), closes <a href="https://github.com/compodoc/compodoc/issues/147">#147</a></li>
+</ul>
+<p><a name="1.0.0-beta.4"></a></p>
+<h1><a href="https://github.com/compodoc/compodoc/compare/1.0.0-beta.3...1.0.0-beta.4">1.0.0-beta.4</a> (2017-04-20)</h1>
+<h3>Bug Fixes</h3>
+<ul>
+<li><strong>directives:</strong> &quot;Implements&quot; support for directives. (<a href="https://github.com/compodoc/compodoc/commit/6138070">6138070</a>), closes <a href="https://github.com/compodoc/compodoc/issues/155">#155</a></li>
+<li><strong>links:</strong> Link to &quot;Getting started&quot; / &quot;README&quot; should be ./index.html (<a href="https://github.com/compodoc/compodoc/commit/8d30fd9">8d30fd9</a>), closes <a href="https://github.com/compodoc/compodoc/issues/158">#158</a></li>
+<li><strong>dependencies:</strong> Main modules graph seems too confuse (<a href="https://github.com/compodoc/compodoc/commit/ef7b04f">ef7b04f</a>), closes <a href="https://github.com/compodoc/compodoc/issues/150">#150</a></li>
+</ul>
+<h3>Features</h3>
+<ul>
+<li><strong>app:</strong> Link directly to the README of a component (<a href="https://github.com/compodoc/compodoc/commit/3636ce3">3636ce3</a>), closes <a href="https://github.com/compodoc/compodoc/issues/154">#154</a></li>
+</ul>
+<p><a name="1.0.0-beta.3"></a></p>
+<h1><a href="https://github.com/compodoc/compodoc/compare/1.0.0-beta.2...1.0.0-beta.3">1.0.0-beta.3</a> (2017-04-05)</h1>
+<h3>Bug Fixes</h3>
+<ul>
+<li><strong>coverage:</strong> Documentation coverage issue. (<a href="https://github.com/compodoc/compodoc/commit/a01ee06">a01ee06</a>), closes <a href="https://github.com/compodoc/compodoc/issues/148">#143</a></li>
+<li><strong>search:</strong> Search links are broken. (<a href="https://github.com/compodoc/compodoc/commit/e81a0f7">e81a0f7</a>), closes <a href="https://github.com/compodoc/compodoc/issues/146">#140</a></li>
+</ul>
+<p><a name="1.0.0-beta.2"></a></p>
+<h1><a href="https://github.com/compodoc/compodoc/compare/1.0.0-beta.1...1.0.0-beta.2">1.0.0-beta.2</a> (2017-04-04)</h1>
+<h3>Bug Fixes</h3>
+<ul>
+<li><strong>dom-tree:</strong> Unable to view DOMTree nodes image correctly. (<a href="https://github.com/compodoc/compodoc/commit/2b5f275">2b5f275</a>), closes <a href="https://github.com/compodoc/compodoc/issues/143">#143</a></li>
+<li><strong>app:</strong> Links are broken for static doc. (<a href="https://github.com/compodoc/compodoc/commit/da2e18e">da2e18e</a>), closes <a href="https://github.com/compodoc/compodoc/issues/140">#140</a></li>
+</ul>
+<h3>Features</h3>
+<ul>
+<li><strong>app:</strong> toggleMenuItems for additionalPages (<a href="https://github.com/compodoc/compodoc/commit/692cfa0">692cfa0</a>)</li>
+</ul>
+<p><a name="1.0.0-beta.1"></a></p>
+<h1><a href="https://github.com/compodoc/compodoc/compare/0.0.41...1.0.0-beta.1">1.0.0-beta.1</a> (2017-04-03)</h1>
+<h3>Breaking changes</h3>
+<ul>
+<li>@compodoc/compodoc : move compodoc to @compodoc/compodoc</li>
+</ul>
+<h3>Features</h3>
+<ul>
+<li><strong>app:</strong> add component DOM tree graph in tab (<a href="https://github.com/compodoc/compodoc/commit/318d0c6">318d0c6</a>), closes <a href="https://github.com/compodoc/compodoc/issues/108">#108</a></li>
+<li><strong>app:</strong> add outlet routes detail, cleaning (<a href="https://github.com/compodoc/compodoc/commit/a859976">a859976</a>)</li>
+<li><strong>app:</strong> additional documentation support (<a href="https://github.com/compodoc/compodoc/commit/8792b3a">8792b3a</a>)</li>
+<li><strong>app:</strong> component DOM tree clickable and link to known components (<a href="https://github.com/compodoc/compodoc/commit/ea5df1e">ea5df1e</a>)</li>
+<li><strong>app:</strong> details on unique names for routes (<a href="https://github.com/compodoc/compodoc/commit/6d0df01">6d0df01</a>)</li>
+<li><strong>app:</strong> display lazy-loaded modules infos / WIP (<a href="https://github.com/compodoc/compodoc/commit/5bc21dc">5bc21dc</a>)</li>
+<li><strong>app:</strong> link component DOM tree with directives founded (<a href="https://github.com/compodoc/compodoc/commit/3a8010a">3a8010a</a>)</li>
+<li><strong>app:</strong> misc type first support (<a href="https://github.com/compodoc/compodoc/commit/1db6781">1db6781</a>)</li>
+<li><strong>app:</strong> move to prism.js for syntax highlighting + &quot;Defined in&quot; link (<a href="https://github.com/compodoc/compodoc/commit/c252d6e">c252d6e</a>)</li>
+<li><strong>app:</strong> new routes page (<a href="https://github.com/compodoc/compodoc/commit/169730a">169730a</a>), closes <a href="https://github.com/compodoc/compodoc/issues/39">#39</a> <a href="https://github.com/compodoc/compodoc/issues/17">#17</a></li>
+<li><strong>app:</strong> routes guards (<a href="https://github.com/compodoc/compodoc/commit/aa27e65">aa27e65</a>)</li>
+<li><strong>app:</strong> routes page with modules support (<a href="https://github.com/compodoc/compodoc/commit/1a6a390">1a6a390</a>)</li>
+<li><strong>app:</strong> templateUrl file read (<a href="https://github.com/compodoc/compodoc/commit/53ceeb8">53ceeb8</a>)</li>
+<li><strong>app:</strong> toggleMenuItems option (<a href="https://github.com/compodoc/compodoc/commit/52891da">52891da</a>)</li>
+<li><strong>app:</strong> watch flag (<a href="https://github.com/compodoc/compodoc/commit/dbe7cb6">dbe7cb6</a>), closes <a href="https://github.com/compodoc/compodoc/issues/20">#20</a></li>
+<li><strong>app:</strong> watch flag | add/remove support (<a href="https://github.com/compodoc/compodoc/commit/a276dac">a276dac</a>), closes <a href="https://github.com/compodoc/compodoc/issues/20">#20</a></li>
+<li><strong>menu:</strong> display routes after all general items (<a href="https://github.com/compodoc/compodoc/commit/09a1caf">09a1caf</a>)</li>
+<li><strong>routing:</strong> display lazy loading routes (<a href="https://github.com/compodoc/compodoc/commit/075670e">075670e</a>)</li>
+<li><strong>routing:</strong> display routes length in overview (<a href="https://github.com/compodoc/compodoc/commit/a713aec">a713aec</a>)</li>
+</ul>
+<h3>Bug Fixes</h3>
+<ul>
+<li><strong>app:</strong> <a href="https://github.com/link">@link</a> parsing (<a href="https://github.com/compodoc/compodoc/commit/55564d6">55564d6</a>)</li>
+<li><strong>app:</strong> add support for inheritanceand extends (<a href="https://github.com/compodoc/compodoc/commit/97cff59">97cff59</a>), closes <a href="https://github.com/compodoc/compodoc/issues/116">#116</a></li>
+<li><strong>app:</strong> components don&#39;t have the correct data depth (<a href="https://github.com/compodoc/compodoc/commit/b6f20e5">b6f20e5</a>), closes <a href="https://github.com/compodoc/compodoc/issues/111">#111</a></li>
+<li><strong>app:</strong> doesn&#39;t display routes pages if no routes (<a href="https://github.com/compodoc/compodoc/commit/d31d634">d31d634</a>)</li>
+<li><strong>app:</strong> functionSignature args 0 (<a href="https://github.com/compodoc/compodoc/commit/d93a39d">d93a39d</a>)</li>
+<li><strong>app:</strong> group misc by file, support of enums (<a href="https://github.com/compodoc/compodoc/commit/8031223">8031223</a>), closes <a href="https://github.com/compodoc/compodoc/issues/101">#101</a></li>
+<li><strong>app:</strong> menu modules page link (<a href="https://github.com/compodoc/compodoc/commit/f92f871">f92f871</a>)</li>
+<li><strong>app:</strong> Multiple classes in the same file get the same description (<a href="https://github.com/compodoc/compodoc/commit/516ce47">516ce47</a>), closes <a href="https://github.com/compodoc/compodoc/issues/118">#118</a></li>
+<li><strong>app:</strong> node 4 spread support (<a href="https://github.com/compodoc/compodoc/commit/aa53770">aa53770</a>)</li>
+<li><strong>app:</strong> promise sequential &amp; node 4 (<a href="https://github.com/compodoc/compodoc/commit/354c0df">354c0df</a>)</li>
+<li><strong>app:</strong> Promise TS support (<a href="https://github.com/compodoc/compodoc/commit/8eeccb9">8eeccb9</a>)</li>
+<li><strong>app:</strong> Recognize ngOnInit() as a method | Angular Lifecycle hooks (<a href="https://github.com/compodoc/compodoc/commit/2f0d5c0">2f0d5c0</a>), closes <a href="https://github.com/compodoc/compodoc/issues/114">#114</a></li>
+<li><strong>app:</strong> support of functions (<a href="https://github.com/compodoc/compodoc/commit/fe4ecf8">fe4ecf8</a>), closes <a href="https://github.com/compodoc/compodoc/issues/110">#110</a></li>
+<li><strong>app:</strong> syntax highlightning / themes (<a href="https://github.com/compodoc/compodoc/commit/0822550">0822550</a>), closes <a href="https://github.com/compodoc/compodoc/issues/123">#123</a></li>
+<li><strong>app:</strong> watch changed file strategy details (<a href="https://github.com/compodoc/compodoc/commit/3544cd9">3544cd9</a>)</li>
+<li><strong>dependencies:</strong> visitType error (<a href="https://github.com/compodoc/compodoc/commit/be6258d">be6258d</a>), closes <a href="https://github.com/compodoc/compodoc/issues/103">#103</a></li>
+<li><strong>doc-coverage:</strong> ignore private, handle constructor (<a href="https://github.com/compodoc/compodoc/commit/d4b7274">d4b7274</a>), closes <a href="https://github.com/compodoc/compodoc/issues/122">#122</a></li>
+<li><strong>misc:</strong> display file path (<a href="https://github.com/compodoc/compodoc/commit/8cd7a2e">8cd7a2e</a>), closes <a href="https://github.com/compodoc/compodoc/issues/101">#101</a></li>
+<li><strong>routes:</strong> handle no lazy module (<a href="https://github.com/compodoc/compodoc/commit/aa85c63">aa85c63</a>)</li>
+</ul>
+<p><a name="0.0.41"></a></p>
+<h2><a href="https://github.com/compodoc/compodoc/compare/0.0.40...0.0.41">0.0.41</a> (2017-02-10)</h2>
+<h3>Bug Fixes</h3>
+<ul>
+<li><strong>app:</strong> remove TypeScript dependency for JSDoc tags (<a href="https://github.com/compodoc/compodoc/commit/3a30eb7">3a30eb7</a>)</li>
+<li><strong>app:</strong> jsdoc tag example for component decorator (<a href="https://github.com/compodoc/compodoc/commit/786aea2">786aea2</a>), closes <a href="https://github.com/compodoc/compodoc/issues/100">#100</a>, <a href="https://github.com/compodoc/compodoc/issues/90">#90</a></li>
+<li><strong>app:</strong> UnhandledPromiseRejectionWarning (<a href="https://github.com/compodoc/compodoc/commit/e9fdea5">e9fdea5</a>), closes <a href="https://github.com/compodoc/compodoc/issues/100">#100</a>, <a href="https://github.com/compodoc/compodoc/issues/103">#103</a></li>
+</ul>
+<h3>Features</h3>
+<ul>
+<li><strong>app</strong> @example for pipe, component and directive decorators (<a href="https://github.com/compodoc/compodoc/commit/706322d">706322d</a>)</li>
+</ul>
+<p><a name="0.0.40"></a></p>
+<h2><a href="https://github.com/compodoc/compodoc/compare/0.0.39...0.0.40">0.0.40</a> (2017-02-08)</h2>
+<h3>Bug Fixes</h3>
+<ul>
+<li><strong>app:</strong> ts.getJSDocTags availability (<a href="https://github.com/compodoc/compodoc/commit/b3af872">b3af872</a>), closes <a href="https://github.com/compodoc/compodoc/issues/104">#104</a>, <a href="https://github.com/compodoc/compodoc/issues/105">#105</a></li>
+<li><strong>app:</strong> exclude part of the project from documentation generation (<a href="https://github.com/compodoc/compodoc/commit/a7374a9">a7374a9</a>), closes <a href="https://github.com/compodoc/compodoc/issues/102">#102</a></li>
+</ul>
+<p><a name="0.0.39"></a></p>
+<h2><a href="https://github.com/compodoc/compodoc/compare/0.0.38...0.0.39">0.0.39</a> (2017-02-06)</h2>
+<h3>Bug Fixes</h3>
+<ul>
+<li><strong>app:</strong> Private methods and properties are skipped / align to typedoc (<a href="https://github.com/compodoc/compodoc/commit/8490983">8490983</a>), closes <a href="https://github.com/compodoc/compodoc/issues/99">#99</a></li>
+<li><strong>app:</strong> @link does not seem to be getting parsed for properties (<a href="https://github.com/compodoc/compodoc/commit/d1fd592">d1fd592</a>), closes <a href="https://github.com/compodoc/compodoc/issues/98">#98</a></li>
+<li><strong>app:</strong> support indexable object (<a href="https://github.com/compodoc/compodoc/commit/cceb933">cceb933</a>), closes <a href="https://github.com/compodoc/compodoc/issues/97">#97</a></li>
+<li><strong>app:</strong> Support @internal in the module level as well (<a href="https://github.com/compodoc/compodoc/commit/750cd63">750cd63</a>), closes <a href="https://github.com/compodoc/compodoc/issues/87">#87</a></li>
+<li><strong>app:</strong> miscellaneous support | variables and functions (<a href="https://github.com/compodoc/compodoc/commit/d758840">d758840</a>), closes <a href="https://github.com/compodoc/compodoc/issues/55">#55</a></li>
+<li><strong>app:</strong> remove base html tag, file:// support (<a href="https://github.com/compodoc/compodoc/commit/0e5227d">0e5227d</a>), closes <a href="https://github.com/compodoc/compodoc/issues/47">#47</a> <a href="https://github.com/compodoc/compodoc/issues/35">#35</a></li>
+</ul>
+<h3>Features</h3>
+<ul>
+<li><strong>app:</strong> move to @compodoc/ngd (<a href="https://github.com/compodoc/compodoc/commit/311facb">311facb</a>)</li>
+<li><strong>app:</strong> disablePrivateOrInternalSupport flag (<a href="https://github.com/compodoc/compodoc/commit/294d4e2">294d4e2</a>)</li>
+</ul>
+<h3>Breaking changes</h3>
+<ul>
+<li>base tag removed. The documentation can now be opened directly with a browser.</li>
+</ul>
+<p><a name="0.0.38"></a></p>
+<h2><a href="https://github.com/compodoc/compodoc/compare/0.0.36...0.0.37">0.0.38</a> (2017-01-27)</h2>
+<h3>Bug Fixes</h3>
+<ul>
+<li><strong>app:</strong> ngd call for output path with spaces (<a href="https://github.com/compodoc/compodoc/commit/37fe0a6">37fe0a6</a>), closes <a href="https://github.com/compodoc/compodoc/issues/44">#44</a></li>
+<li><strong>app:</strong> class constructor test (<a href="https://github.com/compodoc/compodoc/commit/54b7c8e">54b7c8e</a>), closes <a href="https://github.com/compodoc/compodoc/issues/95">#95</a></li>
+<li><strong>app:</strong> test if constructor available (<a href="https://github.com/compodoc/compodoc/commit/bd1cb92">bd1cb92</a>)</li>
+</ul>
+<p><a name="0.0.37"></a></p>
+<h2><a href="https://github.com/compodoc/compodoc/compare/0.0.36...0.0.37">0.0.37</a> (2017-01-26)</h2>
+<h3>Features</h3>
+<ul>
+<li><strong>app:</strong> extend directive documentation (<a href="https://github.com/compodoc/compodoc/commit/1637178">1637178</a>), closes <a href="https://github.com/compodoc/compodoc/issues/91">#91</a></li>
+<li><strong>app:</strong> Support for @example from JSDoc (<a href="https://github.com/compodoc/compodoc/commit/51cd282">51cd282</a>), closes <a href="https://github.com/compodoc/compodoc/issues/90">#90</a></li>
+<li><strong>app:</strong> Support for @link from JSDoc (<a href="https://github.com/compodoc/compodoc/commit/f05b7e7">f05b7e7</a>), closes <a href="https://github.com/compodoc/compodoc/issues/92">#92</a></li>
+<li><strong>app:</strong> include constructor method in docs (<a href="https://github.com/compodoc/compodoc/commit/ddd00dc">ddd00dc</a>), closes <a href="https://github.com/compodoc/compodoc/issues/94">#94</a></li>
+</ul>
+<p><a name="0.0.36"></a></p>
+<h2><a href="https://github.com/compodoc/compodoc/compare/0.0.35...0.0.36">0.0.36</a> (2017-01-23)</h2>
+<h3>Bug Fixes</h3>
+<ul>
+<li><p><strong>app:</strong> differentiate static members from instance members (<a href="https://github.com/compodoc/compodoc/commit/c8460eb">c8460eb</a>), closes <a href="https://github.com/compodoc/compodoc/issues/88">#88</a></p>
+</li>
+<li><p><strong>app:</strong> modules menu items shows even if no modules (<a href="https://github.com/compodoc/compodoc/commit/af72453">af72453</a>), closes <a href="https://github.com/compodoc/compodoc/issues/89">#89</a></p>
+</li>
+<li><p><strong>app:</strong> Image should resize to fit viewport (<a href="https://github.com/compodoc/compodoc/commit/2b24237">2b24237</a>), closes <a href="https://github.com/compodoc/compodoc/issues/83">#83</a></p>
+</li>
+<li><p><strong>app:</strong> @input without type (<a href="https://github.com/compodoc/compodoc/commit/0f92ca4">0f92ca4</a>)</p>
+</li>
+<li><p><strong>app:</strong> file parsed doesn&#39;t exist (<a href="https://github.com/compodoc/compodoc/commit/eda183d">eda183d</a>)</p>
+</li>
+<li><p><strong>app:</strong> interface keys sorting with [key: string]: string; (<a href="https://github.com/compodoc/compodoc/commit/4e4c5cd">4e4c5cd</a>)</p>
+</li>
+<li><p><strong>app:</strong> component output type issue with NewExpression (<a href="https://github.com/compodoc/compodoc/commit/4e49d22">4e49d22</a>)</p>
+</li>
+<li><p><strong>app:</strong> parsing .d.ts (<a href="https://github.com/compodoc/compodoc/commit/e38b571">e38b571</a>)</p>
+</li>
+</ul>
+<p><a name="0.0.35"></a></p>
+<h2><a href="https://github.com/compodoc/compodoc/compare/0.0.34...0.0.35">0.0.35</a> (2017-01-20)</h2>
+<h3>Bug Fixes</h3>
+<ul>
+<li><p><strong>app:</strong> multi-line in description and code hightlight in jsdocs params (<a href="https://github.com/compodoc/compodoc/commit/816027e">816027e</a>), closes <a href="https://github.com/compodoc/compodoc/issues/79">#79</a> <a href="https://github.com/compodoc/compodoc/issues/77">#77</a> <a href="https://github.com/compodoc/compodoc/issues/76">#76</a></p>
+</li>
+<li><p><strong>app:</strong> coverage report breaks (<a href="https://github.com/compodoc/compodoc/commit/462cf95">462cf95</a>), closes <a href="https://github.com/compodoc/compodoc/issues/65">#65</a> <a href="https://github.com/compodoc/compodoc/issues/80">#80</a></p>
+</li>
+<li><p><strong>app:</strong> dont link to files excluded via tsconfig (<a href="https://github.com/compodoc/compodoc/commit/3063f10">3063f10</a>), closes <a href="https://github.com/compodoc/compodoc/issues/59">#59</a></p>
+</li>
+</ul>
+<h3>Features</h3>
+<ul>
+<li><strong>app:</strong> show component output <code>$event</code> type (<a href="https://github.com/compodoc/compodoc/commit/fa894f0">fa894f0</a>), closes <a href="https://github.com/compodoc/compodoc/issues/60">#60</a></li>
+</ul>
+<p><a name="0.0.34"></a></p>
+<h2><a href="https://github.com/compodoc/compodoc/compare/0.0.33...0.0.34">0.0.34</a> (2017-01-19)</h2>
+<h3>Bug Fixes</h3>
+<ul>
+<li><strong>app:</strong> nvm or nodejs / windows support (<a href="https://github.com/compodoc/compodoc/commit/0512c899">0512c899</a>), closes <a href="https://github.com/compodoc/compodoc/issues/44">#44</a></li>
+</ul>
+<h3>Features</h3>
+<ul>
+<li><strong>app:</strong> support external assets folder (<a href="https://github.com/compodoc/compodoc/commit/90ba24d">90ba24d</a>), closes <a href="https://github.com/compodoc/compodoc/issues/71">#71</a></li>
+</ul>
+<p><a name="0.0.33"></a></p>
+<h2><a href="https://github.com/compodoc/compodoc/compare/0.0.32...0.0.33">0.0.33</a> (2017-01-17)</h2>
+<h3>Bug Fixes</h3>
+<ul>
+<li><strong>app:</strong> handle path with spaces for ngd call (<a href="https://github.com/compodoc/compodoc/commit/8037285">8037285</a>), closes <a href="https://github.com/compodoc/compodoc/issues/44">#44</a></li>
+<li><strong>app:</strong> nvm-windows path issue (<a href="https://github.com/compodoc/compodoc/commit/7ac7373">7ac7373</a>), closes <a href="https://github.com/compodoc/compodoc/issues/65">#65</a></li>
+<li><strong>app:</strong> disable highlightjs line-numbers on bash code blocks (<a href="https://github.com/compodoc/compodoc/commit/96a6ff4">96a6ff4</a>), closes <a href="https://github.com/compodoc/compodoc/issues/64">#64</a></li>
+<li><strong>app:</strong> Cannot read property &#39;configuration&#39; of undefined during external theme copy (<a href="https://github.com/compodoc/compodoc/commit/2127408">2127408</a>), closes <a href="https://github.com/compodoc/compodoc/issues/69">#69</a></li>
+</ul>
+<h3>Features</h3>
+<ul>
+<li><strong>app:</strong> JSDoc tags support (<a href="https://github.com/compodoc/compodoc/commit/bc5b01f">bc5b01f</a>), closes <a href="https://github.com/compodoc/compodoc/issues/68">#68</a></li>
+<li><strong>app:</strong> documentation coverage (<a href="https://github.com/compodoc/compodoc/commit/ddca8d4">ddca8d4</a>), closes <a href="https://github.com/compodoc/compodoc/issues/67">#67</a></li>
+</ul>
+<p><a name="0.0.32"></a></p>
+<h2><a href="https://github.com/compodoc/compodoc/compare/0.0.31...0.0.32">0.0.32</a> (2017-01-12)</h2>
+<h3>Bug Fix</h3>
+<ul>
+<li><strong>app:</strong> src argument handling (<a href="https://github.com/compodoc/compodoc/commit/14550f3">14550f3</a>), closes <a href="https://github.com/compodoc/compodoc/issues/63">#63</a></li>
+</ul>
+<p><a name="0.0.31"></a></p>
+<h2><a href="https://github.com/compodoc/compodoc/compare/0.0.30...0.0.31">0.0.31</a> (2017-01-11)</h2>
+<h3>Bug Fixes</h3>
+<ul>
+<li><strong>app:</strong> private properties in constructors (<a href="https://github.com/compodoc/compodoc/commit/2222446">2222446</a>), closes <a href="https://github.com/compodoc/compodoc/issues/61">#61</a></li>
+<li><strong>app:</strong> functionSignature with Angular APIs (<a href="https://github.com/compodoc/compodoc/commit/58316dd">58316dd</a>)</li>
+</ul>
+<h3>Features</h3>
+<ul>
+<li><strong>app:</strong> link to Angular types (<a href="https://github.com/compodoc/compodoc/commit/0b33f74">0b33f74</a>), closes <a href="https://github.com/compodoc/compodoc/issues/57">#57</a></li>
+</ul>
+<p><a name="0.0.30"></a></p>
+<h2><a href="https://github.com/compodoc/compodoc/compare/0.0.29...0.0.30">0.0.30</a> (2017-01-10)</h2>
+<h3>Bug Fixes</h3>
+<ul>
+<li><strong>app:</strong> exclude internal members from generated documentation (<a href="https://github.com/compodoc/compodoc/commit/fc795c8">fc795c8</a>)</li>
+<li><strong>app:</strong> passing src and ngd error (<a href="https://github.com/compodoc/compodoc/commit/c0cfb2f">c0cfb2f</a>)</li>
+</ul>
+<h3>Features</h3>
+<ul>
+<li><strong>app:</strong> add an option to disable the graph (<a href="https://github.com/compodoc/compodoc/commit/927ed12">927ed12</a>)</li>
+<li><strong>app:</strong> Link to others types (<a href="https://github.com/compodoc/compodoc/commit/10f72f7">10f72f7</a>), closes <a href="https://github.com/compodoc/compodoc/issues/58">#58</a></li>
+<li><strong>app:</strong> support TS shorthand for properties defined in constructor (<a href="https://github.com/compodoc/compodoc/commit/2965762">2965762</a>), closes <a href="https://github.com/compodoc/compodoc/issues/56">#56</a></li>
+</ul>
+<p><a name="0.0.29"></a></p>
+<h2><a href="https://github.com/compodoc/compodoc/compare/0.0.28...0.0.29">0.0.29</a> (2017-01-07)</h2>
+<h3>Bug Fixes</h3>
+<ul>
+<li><strong>app:</strong> handlebars breaking comments and highlightjs (<a href="https://github.com/compodoc/compodoc/commit/1347b74">1347b74</a>), closes <a href="https://github.com/compodoc/compodoc/issues/49">#49</a></li>
+<li><strong>app:</strong> Syntax highlighting issue with tabs (<a href="https://github.com/compodoc/compodoc/commit/54edaa0">54edaa0</a>), closes <a href="https://github.com/compodoc/compodoc/issues/50">#50</a></li>
+</ul>
+<h3>Features</h3>
+<ul>
+<li><strong>cli:</strong> Source folder option handling (<a href="https://github.com/compodoc/compodoc/commit/c3e86c6">c3e86c6</a>), closes <a href="https://github.com/compodoc/compodoc/issues/48">#48</a></li>
+</ul>
+<p><a name="0.0.28"></a></p>
+<h2><a href="https://github.com/compodoc/compodoc/compare/0.0.27...0.0.28">0.0.28</a> (2017-01-03)</h2>
+<h3>Bug Fixes</h3>
+<ul>
+<li><strong>app:</strong> open and port flag (<a href="https://github.com/compodoc/compodoc/commit/a34b39a">a34b39a</a>), closes <a href="https://github.com/compodoc/compodoc/issues/45">#45</a></li>
+<li><strong>design:</strong> search input color (<a href="https://github.com/compodoc/compodoc/commit/a0fd0fe">a0fd0fe</a>)</li>
+</ul>
+<p><a name="0.0.27"></a></p>
+<h2><a href="https://github.com/compodoc/compodoc/compare/0.0.26...0.0.27">0.0.27</a> (2017-01-03)</h2>
+<h3>Bug Fixes</h3>
+<ul>
+<li><strong>app:</strong> graph generation with path with spaces (<a href="https://github.com/compodoc/compodoc/commit/e833251">e833251</a>), closes <a href="https://github.com/compodoc/compodoc/issues/43">#43</a>, <a href="https://github.com/compodoc/compodoc/issues/44">#44</a></li>
+</ul>
+<p><a name="0.0.26"></a></p>
+<h2><a href="https://github.com/compodoc/compodoc/compare/0.0.25...0.0.26">0.0.26</a> (2016-12-31)</h2>
+<h3>Bug Fixes</h3>
+<ul>
+<li><strong>app:</strong> bin renaming (<a href="https://github.com/compodoc/compodoc/commit/557a0d1">557a0d1</a>)</li>
+</ul>
+<p><a name="0.0.25"></a></p>
+<h2><a href="https://github.com/compodoc/compodoc/compare/0.0.24...0.0.25">0.0.25</a> (2016-12-31)</h2>
+<h3>Features</h3>
+<ul>
+<li><strong>app:</strong> source code tab (<a href="https://github.com/compodoc/compodoc/commit/8824e75">8824e75</a>)</li>
+<li><strong>app:</strong> toggle buttons for menu (<a href="https://github.com/compodoc/compodoc/commit/4037259">4037259</a>)</li>
+</ul>
+<p><a name="0.0.24"></a></p>
+<h2><a href="https://github.com/compodoc/compodoc/compare/0.0.23...0.0.24">0.0.24</a> (2016-12-28)</h2>
+<h3>Bug Fixes</h3>
+<ul>
+<li><strong>dependencies:</strong> handle @injectable and @component at the same time for metadata (<a href="https://github.com/compodoc/compodoc/commit/f4d5ce8">f4d5ce8</a>), closes <a href="https://github.com/compodoc/compodoc/issues/41">#41</a></li>
+</ul>
+<h3>Features</h3>
+<ul>
+<li><strong>app:</strong> library mode support, for gulp-compodoc (<a href="https://github.com/compodoc/compodoc/commit/5a65d87">5a65d87</a>)</li>
+</ul>
+<p><a name="0.0.23"></a></p>
+<h2><a href="https://github.com/compodoc/compodoc/compare/0.0.22...0.0.23">0.0.23</a> (2016-12-15)</h2>
+<h3>Bug Fixes</h3>
+<ul>
+<li><strong>dependencies:</strong> multiple class declarations in one file (<a href="https://github.com/compodoc/compodoc/commit/fbc0d7b">fbc0d7b</a>), closes <a href="https://github.com/compodoc/compodoc/issues/37">#37</a></li>
+</ul>
+<h3>Features</h3>
+<ul>
+<li><strong>doc:</strong> details for supported comments (<a href="https://github.com/compodoc/compodoc/commit/86851ca">86851ca</a>), closes <a href="https://github.com/compodoc/compodoc/issues/36">#36</a></li>
+</ul>
+<p><a name="0.0.22"></a></p>
+<h2><a href="https://github.com/compodoc/compodoc/compare/0.0.21...0.0.22">0.0.22</a> (2016-12-12)</h2>
+<h3>Bug Fixes</h3>
+<ul>
+<li><strong>routes:</strong> support for multiple components for same route (<a href="https://github.com/compodoc/compodoc/commit/5782415">5782415</a>), closes <a href="https://github.com/compodoc/compodoc/issues/33">#33</a></li>
+</ul>
+<h3>Features</h3>
+<ul>
+<li><strong>routes:</strong> extend routes page : empty path, pathMatch (<a href="https://github.com/compodoc/compodoc/commit/4474973">4474973</a>)</li>
+</ul>
+<p><a name="0.0.21"></a></p>
+<h2><a href="https://github.com/compodoc/compodoc/compare/0.0.20...0.0.21">0.0.21</a> (2016-12-12)</h2>
+<h3>Bug Fixes</h3>
+<ul>
+<li><strong>app:</strong> es6 object.assign support (<a href="https://github.com/compodoc/compodoc/commit/6c25f59">6c25f59</a>)</li>
+</ul>
+<p><a name="0.0.20"></a></p>
+<h2><a href="https://github.com/compodoc/compodoc/compare/0.0.19...0.0.20">0.0.20</a> (2016-12-12)</h2>
+<h3>Features</h3>
+<ul>
+<li><strong>search:</strong> search bar (<a href="https://github.com/compodoc/compodoc/commit/3e3c8d0">3e3c8d0</a>)</li>
+<li><strong>app:</strong> add interfaces management (<a href="https://github.com/compodoc/compodoc/commit/896f233">896f233</a>)</li>
+</ul>
+<p><a name="0.0.19"></a></p>
+<h2><a href="https://github.com/compodoc/compodoc/compare/0.0.18...0.0.19">0.0.19</a> (2016-12-08)</h2>
+<h3>Bug Fixes</h3>
+<ul>
+<li><strong>menu:</strong> scroll to active link (<a href="https://github.com/compodoc/compodoc/commit/1c1ef1f">1c1ef1f</a>), closes <a href="https://github.com/compodoc/compodoc/issues/27">#27</a></li>
+<li><strong>menu:</strong> simple routes or modules entry active class (<a href="https://github.com/compodoc/compodoc/commit/ec81568">ec81568</a>)</li>
+<li><strong>dependencies:</strong> don&#39;t stop on routes parsing errors (<a href="https://github.com/compodoc/compodoc/commit/cef716b">cef716b</a>), closes <a href="https://github.com/compodoc/compodoc/issues/26">#26</a></li>
+<li><strong>app:</strong> default serving port flag (<a href="https://github.com/compodoc/compodoc/commit/ea5ec23">ea5ec23</a>), closes <a href="https://github.com/compodoc/compodoc/issues/29">#29</a></li>
+</ul>
+<p><a name="0.0.18"></a></p>
+<h2><a href="https://github.com/compodoc/compodoc/compare/0.0.17...0.0.18">0.0.18</a> (2016-12-05)</h2>
+<h3>Features</h3>
+<ul>
+<li><strong>design:</strong> 7 new themes (<a href="https://github.com/compodoc/compodoc/commit/740e165">740e165</a>)</li>
+</ul>
+<p><a name="0.0.17"></a></p>
+<h2><a href="https://github.com/compodoc/compodoc/compare/0.0.16...0.0.17">0.0.17</a> (2016-12-01)</h2>
+<h3>Bug Fixes</h3>
+<ul>
+<li><strong>chore:</strong> update supported version to Node.js 7+ (<a href="https://github.com/compodoc/compodoc/commit/8a8e0f6">8a8e0f6</a>), closes <a href="https://github.com/compodoc/compodoc/issues/18">#18</a></li>
+</ul>
+<p><a name="0.0.16"></a></p>
+<h2><a href="https://github.com/compodoc/compodoc/compare/0.0.15...0.0.16">0.0.16</a> (2016-11-29)</h2>
+<h3>Bug Fixes</h3>
+<ul>
+<li><strong>app:</strong> support old Node.js versions using babel (<a href="https://github.com/compodoc/compodoc/commit/8b9139c">8b9139c</a>), closes <a href="https://github.com/compodoc/compodoc/issues/25">#25</a></li>
+</ul>
+<h3>Features</h3>
+<ul>
+<li><strong>app:</strong> delete top navbar, prepare for next design release (<a href="https://github.com/compodoc/compodoc/commit/9c1d7c2">9c1d7c2</a>)</li>
+</ul>
+<p><a name="0.0.15"></a></p>
+<h2><a href="https://github.com/compodoc/compodoc/compare/0.0.14...0.0.15">0.0.15</a> (2016-11-16)</h2>
+<h3>Bug Fixes</h3>
+<ul>
+<li><strong>overview:</strong> blocks alignment (<a href="https://github.com/compodoc/compodoc/commit/6738c22">6738c22</a>)</li>
+<li><strong>parsing:</strong> class methods issue (<a href="https://github.com/compodoc/compodoc/commit/05316cb">05316cb</a>)</li>
+<li><strong>parsing:</strong> don&#39;t create ts program for each child on a file, 300% boost ! (<a href="https://github.com/compodoc/compodoc/commit/9f754cd">9f754cd</a>)</li>
+</ul>
+<p><a name="0.0.14"></a></p>
+<h2><a href="https://github.com/compodoc/compodoc/compare/0.0.13...0.0.14">0.0.14</a> (2016-11-15)</h2>
+<h3>Bug Fixes</h3>
+<ul>
+<li><strong>dependencies:</strong> display uncommented functions or variables (<a href="https://github.com/compodoc/compodoc/commit/a9b47c2">a9b47c2</a>), closes <a href="https://github.com/compodoc/compodoc/issues/21">#21</a></li>
+</ul>
+<h3>Features</h3>
+<ul>
+<li><strong>app:</strong> syntax highlighting for markdowns files (<a href="https://github.com/compodoc/compodoc/commit/c4800a7">c4800a7</a>), closes <a href="https://github.com/compodoc/compodoc/issues/19">#19</a></li>
+</ul>
+<p><a name="0.0.13"></a></p>
+<h2><a href="https://github.com/compodoc/compodoc/compare/0.0.12...0.0.13">0.0.13</a> (2016-11-15)</h2>
+<h3>Features</h3>
+<ul>
+<li><strong>app:</strong> support of one README.md file for each component (<a href="https://github.com/compodoc/compodoc/commit/f1c626d">f1c626d</a>), closes <a href="https://github.com/compodoc/compodoc/issues/10">#10</a></li>
+</ul>
+<p><a name="0.0.12"></a></p>
+<h2><a href="https://github.com/compodoc/compodoc/compare/0.0.11...0.0.12">0.0.12</a> (2016-11-13)</h2>
+<h3>Features</h3>
+<ul>
+<li><strong>app:</strong> provide external styling theme file (<a href="https://github.com/compodoc/compodoc/commit/3e4f98c">3e4f98c</a>), closes <a href="https://github.com/compodoc/compodoc/issues/9">#9</a></li>
+</ul>
+<p><a name="0.0.11"></a></p>
+<h2><a href="https://github.com/compodoc/compodoc/compare/0.0.10...0.0.11">0.0.11</a> (2016-11-13)</h2>
+<h3>Bug Fixes</h3>
+<ul>
+<li><strong>dependencies:</strong> windows file path issue (<a href="https://github.com/compodoc/compodoc/commit/2567f87">2567f87</a>), closes <a href="https://github.com/compodoc/compodoc/issues/14">#14</a></li>
+</ul>
+<p><a name="0.0.10"></a></p>
+<h2><a href="https://github.com/compodoc/compodoc/compare/0.0.9...0.0.10">0.0.10</a> (2016-11-12)</h2>
+<h3>Bug Fixes</h3>
+<ul>
+<li><strong>app:</strong> logo is overlaying menu (<a href="https://github.com/compodoc/compodoc/commit/71aad4b">71aad4b</a>), closes <a href="https://github.com/compodoc/compodoc/issues/13">#13</a></li>
+</ul>
+<p><a name="0.0.9"></a></p>
+<h2><a href="https://github.com/compodoc/compodoc/compare/0.0.8...0.0.9">0.0.9</a> (2016-11-12)</h2>
+<h3>Bug Fixes</h3>
+<ul>
+<li><strong>app:</strong> exclude by default node_modules folder (<a href="https://github.com/compodoc/compodoc/commit/69b1e4d">69b1e4d</a>), closes <a href="https://github.com/compodoc/compodoc/issues/11">#11</a></li>
+<li><strong>app:</strong> handle ; after function in class (<a href="https://github.com/compodoc/compodoc/commit/eb7c7e1">eb7c7e1</a>), closes <a href="https://github.com/compodoc/compodoc/issues/12">#12</a></li>
+</ul>
+<h3>Features</h3>
+<ul>
+<li><strong>app:</strong> add nyc and codecovfeat (<a href="https://github.com/compodoc/compodoc/commit/775875b">775875b</a>)</li>
+<li><strong>routes:</strong> display redirectTo (<a href="https://github.com/compodoc/compodoc/commit/e7448e7">e7448e7</a>)</li>
+<li><strong>app:</strong> display error for routes parsing (<a href="https://github.com/compodoc/compodoc/commit/69a52d7">69a52d7</a>)</li>
+</ul>
+<p><a name="0.0.8"></a></p>
+<h2><a href="https://github.com/compodoc/compodoc/compare/0.0.7...0.0.8">0.0.8</a> (2016-11-11)</h2>
+<h3>Bug Fixes</h3>
+<ul>
+<li><strong>app:</strong> isGlobal npm context test (<a href="https://github.com/compodoc/compodoc/commit/3ddc9ce">3ddc9ce</a>)</li>
+</ul>
+<p><a name="0.0.7"></a></p>
+<h2><a href="https://github.com/compodoc/compodoc/compare/0.0.6...0.0.7">0.0.7</a> (2016-11-11)</h2>
+<h3>Bug Fixes</h3>
+<ul>
+<li><strong>app:</strong> local call of ngd, even compodoc installed globally or locally (<a href="https://github.com/compodoc/compodoc/commit/8393fc0">8393fc0</a>), closes <a href="https://github.com/compodoc/compodoc/issues/5">#5</a></li>
+<li><strong>app:</strong> local/global call of ngd (<a href="https://github.com/compodoc/compodoc/commit/b9163a7">b9163a7</a>)</li>
+<li><strong>app:</strong> handle -s -d and -p correctly (<a href="https://github.com/compodoc/compodoc/commit/dc0b388">dc0b388</a>), closes <a href="https://github.com/compodoc/compodoc/issues/6">#6</a></li>
+</ul>
+<h3>Features</h3>
+<ul>
+<li><strong>app:</strong> rename file flag to tsconfig flag, details for base flag (<a href="https://github.com/compodoc/compodoc/commit/3b21bc0">3b21bc0</a>)</li>
+<li><strong>app:</strong> specify Node.js version (<a href="https://github.com/compodoc/compodoc/commit/c394caf">c394caf</a>)</li>
+</ul>
+<h3>Breaking changes</h3>
+<ul>
+<li>-f flag is now -p flag. More similar to tsc flags.</li>
+</ul>
+<p><a name="0.0.6"></a></p>
+<h2><a href="https://github.com/compodoc/compodoc/compare/0.0.5...0.0.6">0.0.6</a> (2016-11-10)</h2>
+<h3>Bug Fixes</h3>
+<ul>
+<li><strong>app:</strong> handlebars not in the dependencies list (<a href="https://github.com/compodoc/compodoc/commit/38aa0d6d">38aa0d6d</a>)</li>
+</ul>
+<p><a name="0.0.5"></a></p>
+<h2><a href="https://github.com/compodoc/compodoc/compare/0.0.4...0.0.5">0.0.5</a> (2016-11-09)</h2>
+<h3>Bug Fixes</h3>
+<ul>
+<li><strong>app:</strong> handle false-positives (<a href="https://github.com/compodoc/compodoc/commit/f4e9d8a2">f4e9d8a2</a>)</li>
+<li><strong>app:</strong> fix class items (<a href="https://github.com/compodoc/compodoc/commit/295e9f81">295e9f81</a>)</li>
+</ul>
+<p><a name="0.0.4"></a></p>
+<h2><a href="https://github.com/compodoc/compodoc/compare/0.0.3...0.0.4">0.0.4</a> (2016-11-08)</h2>
+<h3>Bug Fixes</h3>
+<ul>
+<li><strong>overview:</strong> syntax (<a href="https://github.com/compodoc/compodoc/commit/995696ea">995696ea</a>)</li>
+</ul>
+<h3>Features</h3>
+<ul>
+<li><strong>app:</strong> routes support (<a href="https://github.com/compodoc/compodoc/commit/8fe00e6f">8fe00e6f</a>)</li>
+</ul>
+<p><a name="0.0.3"></a></p>
+<h2><a href="https://github.com/compodoc/compodoc/compare/0.0.2...0.0.3">0.0.3</a> (2016-11-08)</h2>
+<h3>Bug Fixes</h3>
+<ul>
+<li><strong>app:</strong> title argument (<a href="https://github.com/compodoc/compodoc/commit/4b37cf2">4b37cf2</a>)</li>
+<li><strong>app:</strong> css for menu, scroll bounce, mobile main height (<a href="https://github.com/compodoc/compodoc/commit/839a49a">839a49a</a>)</li>
+</ul>
+<h3>Features</h3>
+<ul>
+<li><strong>app:</strong> simple classes support (<a href="https://github.com/compodoc/compodoc/commit/35f2cc5">35f2cc5</a>)</li>
+</ul>
+<p><a name="0.0.2"></a></p>
+<h2><a href="https://github.com/compodoc/compodoc/compare/0.0.1...0.0.2">0.0.2</a> (2016-11-07)</h2>
+<h3>Bug Fixes</h3>
+<ul>
+<li><strong>modules:</strong> link to each module page (<a href="https://github.com/compodoc/compodoc/commit/5673341">5673341</a>)</li>
+<li><strong>module:</strong> exclude Angular2 modules, WIP... (<a href="https://github.com/compodoc/compodoc/commit/0bc5dff3">0bc5dff3</a>)</li>
+<li><strong>deps:</strong> cleaning (<a href="https://github.com/compodoc/compodoc/commit/c817d4d">c817d4d</a>)</li>
+</ul>
+<h3>Features</h3>
+<ul>
+<li><strong>app:</strong> details on local server while serving (<a href="https://github.com/compodoc/compodoc/commit/0bc5dff">0bc5dff</a>)</li>
+<li><strong>app:</strong> display elapsed time for generation (<a href="https://github.com/compodoc/compodoc/commit/14c5bfd">14c5bfd</a>)</li>
+<li><strong>html-engine:</strong> put main page in cache (<a href="https://github.com/compodoc/compodoc/commit/d2a9937">d2a9937</a>)</li>
+<li><strong>app:</strong> silent mode (<a href="https://github.com/compodoc/compodoc/commit/005e64b">005e64b</a>)</li>
+<li><strong>app:</strong> update screenshots (<a href="https://github.com/compodoc/compodoc/commit/c33b729">c33b729</a>)</li>
+<li><strong>app:</strong> vectorised logo (<a href="https://github.com/compodoc/compodoc/commit/5de613b">5de613b</a>)</li>
+<li><strong>app:</strong> mobile menu (<a href="https://github.com/compodoc/compodoc/commit/b7ab594">b7ab594</a>)</li>
+</ul>
+<p><a name="0.0.1"></a></p>
+<h2>0.0.1 (2016-11-07)</h2>
+<p>Initial release</p>
+<h3>Features</h3>
+<p>Support of :</p>
+<ul>
+<li>components</li>
+<li>modules</li>
+<li>directives</li>
+<li>pipes</li>
+<li>injectables</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 0;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'getting-started';
+            var COMPODOC_CURRENT_PAGE_URL = 'changelog.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="./js/libs/custom-elements.min.js"></script>
+       <script src="./js/libs/lit-html.js"></script>
+
+       <script src="./js/menu-wc.js" defer></script>
+       <script nomodule src="./js/menu-wc_es5.js" defer></script>
+
+       <script src="./js/libs/bootstrap-native.js"></script>
+
+       <script src="./js/libs/es6-shim.min.js"></script>
+       <script src="./js/libs/EventDispatcher.js"></script>
+       <script src="./js/libs/promise.min.js"></script>
+       <script src="./js/libs/zepto.min.js"></script>
+
+       <script src="./js/compodoc.js"></script>
+
+       <script src="./js/tabs.js"></script>
+       <script src="./js/menu.js"></script>
+       <script src="./js/libs/clipboard.min.js"></script>
+       <script src="./js/libs/prism.js"></script>
+       <script src="./js/sourceCode.js"></script>
+          <script src="./js/search/search.js"></script>
+          <script src="./js/search/lunr.min.js"></script>
+          <script src="./js/search/search-lunr.js"></script>
+          <script src="./js/search/search_index.js"></script>
+       <script src="./js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

@@ -1,0 +1,11 @@
+{
+  "name": "app-angular-e2e",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "sourceRoot": "apps/app-angular-e2e/src",
+  "implicitDependencies": [
+    "app-angular"
+  ],
+  "// targets": "to see all targets run: nx show project app-angular-e2e --web",
+  "targets": {}
+}

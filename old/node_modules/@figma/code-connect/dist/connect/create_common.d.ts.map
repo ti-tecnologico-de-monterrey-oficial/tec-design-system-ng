@@ -1,0 +1,1 @@
+{"version":3,"file":"create_common.d.ts","sourceRoot":"","sources":["../../src/connect/create_common.ts"],"names":[],"mappings":"AAEA,wBAAgB,cAAc,CAAC,EAC7B,OAAO,EACP,MAAM,EACN,cAAc,EACd,SAAS,GACV,EAAE;IACD,OAAO,EAAE,MAAM,GAAG,SAAS,CAAA;IAC3B,MAAM,EAAE,MAAM,CAAA;IACd,cAAc,EAAE,MAAM,CAAA;IACtB,SAAS,EAAE,MAAM,CAAA;CAClB,GAAG,MAAM,CAYT"}

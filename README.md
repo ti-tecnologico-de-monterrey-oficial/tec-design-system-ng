@@ -1,77 +1,105 @@
-![Bamboo](https://studio-assets.supernova.io/design-systems/74407/a2f82e86-1d59-4c28-8212-6e724b560249.png)
+# New Nx Repository
 
-# Design System oficial del Tecnológico de Monterrey
+<a alt="Nx logo" href="https://nx.dev" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png" width="45"></a>
 
-Descubre cómo nuestro Design System no solo da forma a la estética, sino que también impulsa la consistencia en cada rincón de nuestro diseño, proporcionando una base sólida para construir experiencias memorables y coherentes. Únete a nosotros en este viaje donde la creatividad, coherencia y elegancia se encuentran para dar vida a un mundo visualmente armonioso y funcionalmente fluido.
+✨ Your new, shiny [Nx workspace](https://nx.dev) is ready ✨.
 
----
+[Learn more about this workspace setup and its capabilities](https://nx.dev/nx-api/js?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) or run `npx nx graph` to visually explore what was created. Now, let's get you up to speed!
+## Try the full Nx platform
+🚀 If you haven't connected to Nx Cloud yet, [complete your setup here](https://cloud.nx.app/setup/connect-workspace/guide). Get faster builds with remote caching, distributed task execution, and self-healing CI. [See how your workspace can benefit](#nx-cloud).
+## Generate a library
 
-> [!WARNING]
-> Angular 18 saldrá de soporte el 31 de Mayo de 2026, por favor actualiza a una versión de Angular más reciente.
+```sh
+npx nx g @nx/js:lib packages/pkg1 --publishable --importPath=@my-org/pkg1
+```
 
----
+## Run tasks
 
-# Release Notes - Sistema de Diseño TEC
+To build the library use:
 
-# 🚀 Bamboo Design System · Versión v1.6.3
+```sh
+npx nx build pkg1
+```
 
-**📅 13 de Abril de 2026**
-Esta versión se enfoca en hacer más claras las notificaciones, los menús de acción y los componentes interactivos clave. Es el resultado del trabajo colaborativo de varios equipos para reducir fricciones en flujos cotidianos y mejorar la legibilidad visual. Las personas se benefician de una experiencia más consistente, predecible y accesible en situaciones de uso intensivo.
+To run any task with Nx use:
 
-### 🆕 Nuevas Funcionalidades
+```sh
+npx nx <target> <project-name>
+```
 
-- El componente de perfil ahora permite cambiar de rol y emite eventos claros para reaccionar a estos cambios, facilitando a las personas alternar entre distintos contextos (por ejemplo, estudiante y colaborador) sin salir del flujo actual.
-- Se incorpora una tarjeta de notificación dedicada para mostrar avisos importantes de forma más visible y estructurada, ayudando a que las personas identifiquen rápidamente información prioritaria.
-- Los íconos interactivos ahora pueden utilizar un fondo blanco adicional, mejorando el contraste y la legibilidad en interfaces con fondos complejos.
+These targets are either [inferred automatically](https://nx.dev/concepts/inferred-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) or defined in the `project.json` or `package.json` files.
 
-### ✅ Problemas Resueltos
+[More about running tasks in the docs &raquo;](https://nx.dev/features/run-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
 
-- Se ajustó el comportamiento del menú desplegable para que, al cerrar un modal, solo se cierre el dropdown relacionado, evitando cierres inesperados de otros elementos y manteniendo el control en manos de las personas.
-- Se corrigió la validación del tamaño de archivo en el componente de selección, mostrando ahora mensajes de error acordes a la situación real y evitando confusión al cargar documentos.
-- Se mejoró el comportamiento responsivo del componente de imagen cuando se utiliza junto con el paginador de múltiples puntos, asegurando que las imágenes se muestren completas y sin recortes en diferentes tamaños de pantalla.
-- Se actualizaron los estilos de la tarjeta “Home card” para que la sombra y el relieve visual se apliquen de forma consistente en todos los lugares donde se utiliza, facilitando reconocer elementos interactivos.
-- Se corrigieron las medidas de la credencial digital para que se muestre con proporciones adecuadas, lo que mejora la legibilidad de los datos personales y evita recortes visuales.
+## Versioning and releasing
 
-### ⚡ Optimizaciones
+To version and release the library use
 
-- Se refinaron los estilos y la organización visual de los menús de acción, especialmente en variantes como “Profile switch menu” y textos informativos, para hacer más clara la jerarquía de opciones y reducir errores al seleccionar acciones.
+```
+npx nx release
+```
 
-_Esta versión es el resultado del esfuerzo colaborativo del equipo de diseño y desarrollo, trabajando para ofrecer experiencias digitales de calidad para toda la comunidad._
+Pass `--dry-run` to see what would happen without actually releasing the library.
 
----
+[Learn more about Nx release &raquo;](https://nx.dev/features/manage-releases?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
 
-Puedes ver todos los componentes aqui: [Bamboo](https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/getting-started--documentation)
+## Keep TypeScript project references up to date
 
----
+Nx automatically updates TypeScript [project references](https://www.typescriptlang.org/docs/handbook/project-references.html) in `tsconfig.json` files to ensure they remain accurate based on your project dependencies (`import` or `require` statements). This sync is automatically done when running tasks such as `build` or `typecheck`, which require updated references to function correctly.
 
-## Recursos
+To manually trigger the process to sync the project graph dependencies information to the TypeScript project references, run the following command:
 
-Maximiza la influencia de tus proyectos al ajustarlos ágil y eficientemente a las necesidades de todas las personas.
+```sh
+npx nx sync
+```
 
-Exploraremos minuciosamente cada componente, utilizando ejemplos concretos del diseño de productos para aplicación y web. El propósito es brindarte una guía visual detallada que te permita iniciar con éxito la creación de tus propios desarrollos.
+You can enforce that the TypeScript project references are always in the correct state when running in CI by adding a step to your CI job configuration that runs the following command:
 
-| Diseñadores                                                                                                              | Desarrolladores                                                                                                                    |
-| ------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------- |
-| ![Diseñadores](https://studio-assets.supernova.io/design-systems/74407/3883cf69-c8c2-4c8d-9991-f413c5589a91.png)         | ![Desarrolladores](https://studio-assets.supernova.io/design-systems/74407/292a0cb0-3f8c-4e07-82c0-95acbb6919fb.png)               |
-| Encuentra todas los componentes de diseño en Figma:                                                                      | Encuentra ejemplos de componentes y accede a la librería en Github:                                                                |
-| [Figma](https://www.figma.com/file/LYk8AJb5RjQhRfPmRIdEQ9/Bamboo-Design-System?type=design&node-id=191-2353&mode=design) | [Github](https://github.com/ti-tecnologico-de-monterrey-oficial/tec-design-system-ng/)                                             |
-| [Guía de uso de recursos.](https://bamboo.tec.mx/latest/recursos/recursos-ui-ux-56ET5g5G)                                | **Angular** [Guía de instalación de Bamboo.](https://bamboo.tec.mx/latest/recursos/angular-guia-de-instalacion-de-bamboo-W3qVyi3x) |
-|                                                                                                                          | **Ionic** [Guía de instalación de Bamboo.](https://bamboo.tec.mx/latest/recursos/ionic-guia-de-instalacion-de-bamboo-ReyuzhoX)     |
+```sh
+npx nx sync:check
+```
 
-## Herramientas que utilizamos
+[Learn more about nx sync](https://nx.dev/reference/nx-commands#sync)
 
-En Bamboo Design System, utilizamos una variedad de herramientas en nuestro ecosistema para optimizar nuestro trabajo.
+## Nx Cloud
 
-Para el diseño, Figma es nuestra elección preferida.
+Nx Cloud ensures a [fast and scalable CI](https://nx.dev/ci/intro/why-nx-cloud?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) pipeline. It includes features such as:
 
-Para la documentación y la publicación, confiamos en Supernova.
+- [Remote caching](https://nx.dev/ci/features/remote-cache?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+- [Task distribution across multiple machines](https://nx.dev/ci/features/distribute-task-execution?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+- [Automated e2e test splitting](https://nx.dev/ci/features/split-e2e-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+- [Task flakiness detection and rerunning](https://nx.dev/ci/features/flaky-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
 
-Github es nuestro repositorio de elección para gestionar nuestros proyectos.
+### Set up CI (non-Github Actions CI)
 
-![Herramientas](https://studio-assets.supernova.io/design-systems/74407/35a31c92-3d2f-4a75-bab5-bd88793132e1.png)
+**Note:** This is only required if your CI provider is not GitHub Actions.
 
-## ¿Necesitas ayuda?
+Use the following command to configure a CI workflow for your workspace:
 
-Te ofrecemos asistencia para cualquier necesidad de diseño que tengas, ya sea para crear un componente, definir un patrón o documentar un proceso. Nuestro equipo de Design System está listo para ayudarte. ¡Contáctanos!
+```sh
+npx nx g ci-workflow
+```
 
-> Actualizamos las herramientas periódicamente. Encuentra las últimas novedades aquí.
+[Learn more about Nx on CI](https://nx.dev/ci/intro/ci-with-nx#ready-get-started-with-your-provider?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+
+## Install Nx Console
+
+Nx Console is an editor extension that enriches your developer experience. It lets you run tasks, generate code, and improves code autocompletion in your IDE. It is available for VSCode and IntelliJ.
+
+[Install Nx Console &raquo;](https://nx.dev/getting-started/editor-setup?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+
+## Useful links
+
+Learn more:
+
+- [Learn more about this workspace setup](https://nx.dev/nx-api/js?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+- [Learn about Nx on CI](https://nx.dev/ci/intro/ci-with-nx?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+- [Releasing Packages with Nx release](https://nx.dev/features/manage-releases?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+- [What are Nx plugins?](https://nx.dev/concepts/nx-plugins?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+
+And join the Nx community:
+
+- [Discord](https://go.nx.dev/community)
+- [Follow us on X](https://twitter.com/nxdevtools) or [LinkedIn](https://www.linkedin.com/company/nrwl)
+- [Our Youtube channel](https://www.youtube.com/@nxdevtools)
+- [Our blog](https://nx.dev/blog?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
