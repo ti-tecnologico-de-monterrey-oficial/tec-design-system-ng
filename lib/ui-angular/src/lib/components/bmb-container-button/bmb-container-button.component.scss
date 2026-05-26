@@ -1,0 +1,328 @@
+@use '../../../assets/styles/base/fonts' as fonts;
+@use '../../../assets/styles/base/rem' as rem;
+@use '../../../assets/styles/base/mixins' as mixins;
+
+@mixin button-class() {
+  > .bmb_check-external-link-button > .bmb_check-external-link-button-element {
+    @content;
+  }
+}
+
+@mixin button-container() {
+  align-items: center;
+  display: flex;
+  gap: rem.rem_calc(16);
+
+  &-icon {
+    align-items: center;
+    display: flex;
+    font-size: rem.rem_calc(24);
+    height: rem.rem_calc(24);
+    width: rem.rem_calc(24);
+
+    i {
+      width: rem.rem_calc(24);
+    }
+  }
+}
+
+.bmb_container-button {
+  &:has(.bmb_container-button-square) {
+    display: inline-flex;
+  }
+
+  &-error.bmb_container-button-wrapper {
+    @include button-class() {
+      border-color: var(--buttons-destructive);
+      color: var(--buttons-destructive);
+      cursor: not-allowed;
+
+      .bmb_grade-value-main {
+        fill: var(--buttons-destructive);
+      }
+
+      .bmb_container-button-subtitle {
+        color: var(--buttons-destructive);
+      }
+
+      .bmb_container-button-right-icon {
+        color: var(--general-contrasts-100);
+      }
+    }
+  }
+
+  .bmb_check-external-link-button {
+    display: flex;
+  }
+
+  &-disabled.bmb_container-button-wrapper {
+    @include button-class() {
+      background-color: var(--containers-main);
+      color: var(--general-contrasts-50);
+      cursor: not-allowed;
+    }
+  }
+
+  &-content {
+    flex-flow: row nowrap;
+    width: 100%;
+  }
+
+  &-header {
+    display: flex;
+    flex-flow: column;
+    gap: rem.rem_calc(4);
+    overflow: hidden;
+  }
+
+  &-title {
+    font-weight: 300;
+    text-align: left;
+    hyphens: auto;
+    overflow-wrap: break-word;
+    @include fonts.font(4, regular);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -moz-box;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    // NOSONAR: Needed for line clamping
+    box-orient: vertical;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    @include mixins.check-for-mobile() {
+      @include fonts.font(5, regular);
+    }
+  }
+
+  &-text {
+    display: flex;
+    flex-flow: column;
+    margin-right: rem.rem_calc(16);
+  }
+
+  &-subtitle {
+    color: var(--general-contrasts-75);
+    font-weight: 300;
+    text-align: left;
+    word-break: break-word;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    @include fonts.font(3, regular);
+  }
+
+  &-left {
+    flex: 1;
+    overflow: hidden;
+    @include button-container();
+
+    .bmb_icon-figure {
+      width: 100%;
+
+      img {
+        height: 100%;
+        width: 100%;
+      }
+    }
+  }
+
+  &-right {
+    @include button-container();
+
+    &:empty {
+      display: none;
+    }
+
+    &-menu {
+      display: flex;
+    }
+  }
+
+  &-square.bmb_container-button-wrapper {
+    &:not(.bmb_container-button-disabled):not(.bmb_container-button-error) {
+      @include button-class() {
+        @include mixins.check-for-mobile() {
+          padding: rem.rem_calc(24);
+          min-height: auto;
+        }
+      }
+      display: inline-flex;
+      flex-flow: column;
+      justify-content: center;
+      width: max-content;
+
+      .bmb_check-external-link-button-element {
+        width: auto;
+        padding: rem.rem_calc(32 48);
+        @include mixins.check-for-mobile() {
+          width: 100%;
+        }
+      }
+    }
+
+    .bmb_layout {
+      flex-direction: column;
+      gap: 0;
+      height: 100%;
+      justify-content: center;
+      @include mixins.check-for-mobile() {
+        align-items: flex-start;
+        height: auto;
+      }
+
+      .bmb_container-button-left {
+        flex-flow: column;
+        gap: rem.rem_calc(8);
+        @include mixins.check-for-mobile() {
+          flex-flow: row;
+          gap: rem.rem_calc(16);
+        }
+
+        &-icon {
+          font-size: rem.rem_calc(48);
+          height: rem.rem_calc(48);
+          width: rem.rem_calc(48);
+          @include mixins.check-for-mobile() {
+            font-size: rem.rem_calc(24);
+            height: rem.rem_calc(24);
+            width: rem.rem_calc(24);
+          }
+
+          i {
+            width: rem.rem_calc(48);
+          }
+        }
+
+        &-small-no-icon {
+          justify-content: center;
+        }
+      }
+    }
+  }
+
+  &-square-no-icon.bmb_container-button-wrapper {
+    &:not(.bmb_container-button-disabled):not(.bmb_container-button-error) {
+      @include button-class() {
+        min-height: rem.rem_calc(118);
+        min-width: rem.rem_calc(169);
+      }
+    }
+
+    .bmb_layout {
+      .bmb_container-button-left {
+        justify-content: center;
+      }
+    }
+  }
+
+  &-small.bmb_container-button-wrapper {
+    @include button-class() {
+      min-width: rem.rem_calc(160);
+      padding: rem.rem_calc(16);
+      width: auto;
+    }
+
+    .bmb_container-button-title {
+      @include fonts.font(3, regular);
+
+      &--small-no-icon {
+        text-align: center;
+      }
+    }
+  }
+
+  &-alternative.bmb_container-button-wrapper {
+    &:not(.bmb_container-button-disabled):not(.bmb_container-button-error) {
+      @include button-class() {
+        &:hover {
+          background-color: var(--general-contrasts-15);
+        }
+      }
+    }
+
+    &.bmb_container-button-disabled.bmb_container-button-wrapper {
+      @include button-class() {
+        background-color: var(--general-contrasts-15);
+      }
+    }
+
+    &.bmb_container-button-disabled.bmb_container-button-wrapper {
+      @include button-class() {
+        background-color: var(--general-contrasts-15);
+      }
+    }
+
+    @include button-class() {
+      background-color: var(--general-contrasts-25);
+    }
+  }
+
+  &-wrapper {
+    &:not(.bmb_container-button-disabled):not(.bmb_container-button-error) {
+      @include button-class() {
+        &:hover {
+          background-color: var(--general-contrasts-50);
+          outline: 0 solid transparent;
+        }
+
+        &:focus:not(:disabled),
+        &:focus-visible:not(:disabled),
+        &:active:not(:disabled) {
+          background-color: var(--buttons-primary-select);
+          color: var(--buttons-alternative-normal);
+          outline: rem.rem_calc(1) solid var(--buttons-stroke-primary-selected);
+
+          .bmb_grade-value-main {
+            fill: rgb(var(--white-primary));
+          }
+        }
+      }
+    }
+
+    @include button-class() {
+      align-items: center;
+      background-color: var(--containers-container-button);
+      border: rem.rem_calc(1) solid var(--general-contrasts-50);
+      border-radius: var(--bmb-radius-4);
+      color: var(--general-contrasts-100);
+      display: inline-flex;
+      min-height: rem.rem_calc(80);
+      padding: rem.rem_calc(24);
+      width: 100%;
+
+      &:focus-visible {
+        outline: 0 solid transparent;
+      }
+    }
+  }
+
+  .bmb_container-button-right-action {
+    &:not(.bmb_container-button-wrapper) {
+      @include button-class() {
+        align-items: center;
+        background-color: inherit;
+        border: none;
+        border-radius: inherit;
+        color: inherit;
+        display: inline-flex;
+        min-height: auto;
+        min-width: auto;
+        padding: rem.rem_calc(3);
+        width: auto;
+
+        &:focus-visible {
+          outline: 0 solid transparent;
+        }
+      }
+    }
+  }
+
+  .bmb_grade-value-main {
+    fill: var(--general-contrasts-100);
+  }
+
+  .bmb_bookmark {
+    padding: 0;
+  }
+}

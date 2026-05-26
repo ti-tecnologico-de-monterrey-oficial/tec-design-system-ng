@@ -1,0 +1,43 @@
+<section class="bmb_search-card-item" bmbLayout alignItems="center">
+  <button
+    (click)="handleClick()"
+    bmbLayoutItem
+    [isDynamicItem]="true"
+    [colGrow]="1"
+    class="bmb_search-card-item-button"
+  >
+    <span bmbLayout margin="none" alignItems="center">
+      <div bmbLayoutItem [isDynamicItem]="true">
+        @if (isService()) {
+          <bmb-box-icon
+            [iconName]="icon()"
+            [boxColor]="backgroundColorIcon()"
+            boxSize="regular"
+          />
+        } @else {
+          <bmb-user-image [image]="icon()" size="desktop-small" />
+        }
+      </div>
+      <section bmbLayoutItem [isDynamicItem]="true" [colGrow]="1">
+        @if (name()) {
+          <h2 class="bmb_search-card-item-title">
+            {{ name() }}
+          </h2>
+        }
+        @if (subtitle()) {
+          <h3 class="bmb_search-card-item-subtitle">
+            {{ subtitle() }}
+          </h3>
+        }
+      </section>
+    </span>
+  </button>
+  @if (isService()) {
+    <div bmbLayoutItem [isDynamicItem]="true">
+      <bmb-bookmark
+        [isActive]="isBookmarkActive()"
+        (isActiveChange)="handleBookmarkClick()"
+      ></bmb-bookmark>
+    </div>
+  }
+</section>

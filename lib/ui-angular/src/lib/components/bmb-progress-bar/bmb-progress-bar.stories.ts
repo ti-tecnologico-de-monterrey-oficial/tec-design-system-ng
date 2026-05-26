@@ -1,0 +1,159 @@
+import type { Meta, StoryObj } from '@storybook/angular';
+import { BmbProgressBarComponent } from './bmb-progress-bar.component';
+import {
+  getBasicExampleBlock,
+  getGeneralComponentDescription,
+  getGeneralDescription,
+  getStoryLink,
+} from '../../utils/doc/utils';
+import {
+  DBmbGenericParamDesc,
+  getDefaultValueControl,
+  getAppearanceParam,
+  getPropertyParamDesc,
+  DBmbIconParamDesc,
+  getPropertyForType,
+  DBmbProgressBar,
+} from '../../utils/doc/parameterDescriptions';
+import * as actionIconStory from '../bmb-action-icon/bmp-action-icon.stories';
+
+export default {
+  title: 'Components/Status indicators/Progress bar',
+  component: BmbProgressBarComponent,
+  parameters: {
+    docs: {
+      controls: { exclude: ['getFormattedText', 'progressValue'] },
+      description: {
+        component: `
+${getGeneralDescription(`${getGeneralComponentDescription({ name: 'progress-bar' })} to show how complete a process is, visually indicating the progression gradually.`, { generalDocLink: 'https://bamboo.tec.mx/latest/componentes/progress-bar/descripcion-general-EZrYlLVQ' })}
+${getBasicExampleBlock('BmbProgressBarComponent')}
+        `,
+      },
+    },
+  },
+  argTypes: {
+    type: {
+      control: {
+        type: 'radio',
+      },
+      options: ['simple', 'counter', 'container'],
+      description: 'Sets the type of progress bar to display.',
+      table: {
+        category: 'Properties',
+        type: {
+          summary: 'IBmbProgressBarTypes',
+          detail: `IBmbProgressBarTypes = 'simple' | 'counter' | 'container'`,
+        },
+        defaultValue: getDefaultValueControl('simple'),
+      },
+    },
+    statusColor: {
+      control: {
+        type: 'radio',
+      },
+      options: ['info', 'warning', 'error', 'success'],
+      description: 'Sets the status color of the progress bar.',
+      table: {
+        category: 'Properties',
+        type: {
+          summary: 'IBmbProgressBarStatusColor',
+          detail: `IBmbProgressBarStatusColor = 'info' | 'warning' | 'error' | 'success'`,
+        },
+        defaultValue: getDefaultValueControl('info'),
+      },
+    },
+    totalCount: {
+      control: {
+        type: 'number',
+      },
+      description: `Sets the total value to calculate the percentage. ${getPropertyForType()}`,
+      table: {
+        category: 'Properties',
+        type: { summary: 'number' },
+        defaultValue: getDefaultValueControl(0),
+      },
+    },
+    counter: {
+      control: {
+        type: 'number',
+      },
+      description: `Sets the amount of the total to calculate the percentage. ${getPropertyForType()}`,
+      table: {
+        category: 'Properties',
+        type: { summary: 'number' },
+        defaultValue: getDefaultValueControl(0),
+      },
+    },
+    componentTitle: getPropertyParamDesc('progress bar', {
+      additionalDescription: getPropertyForType(false),
+    }),
+    appearance: getAppearanceParam(
+      'progress bar',
+      ['info', 'warning', 'error'],
+      'info',
+      getPropertyForType(true, true),
+    ),
+    textLink: {
+      name: 'Text link',
+      control: {
+        type: 'text',
+      },
+      description: `Sets the text for the link ${getPropertyForType(false)}`,
+      table: {
+        category: 'Events',
+        type: { summary: 'string' },
+        defaultValue: getDefaultValueControl(),
+      },
+    },
+    href: {
+      ...DBmbGenericParamDesc.link,
+      description: DBmbGenericParamDesc.link.description.concat(
+        getPropertyForType(false),
+      ),
+    },
+    target: {
+      ...DBmbGenericParamDesc.target,
+      description: DBmbGenericParamDesc.target.description.concat(
+        getPropertyForType(false),
+      ),
+    },
+    textFormat: DBmbProgressBar.textFormat,
+    avatarIcon: DBmbIconParamDesc.icon,
+    isContainer: getPropertyParamDesc('**Container progress - Anatomy**', {
+      controlType: 'boolean',
+      defaultSummary: false,
+    }),
+    actionIcon: getPropertyParamDesc('', {
+      alternativeDescription: `Sets an ${getStoryLink({
+        title: actionIconStory.default.title!,
+        isPreURL: true,
+      })} to the right of the ***Progress bar*** when the **Container progress - Anatomy** is active.`,
+    }),
+    title: {
+      control: null,
+      description:
+        'Please use `componentTitle` instead of `title` to set the component title.',
+      table: {
+        category: 'Deprecated',
+        type: { summary: 'string' },
+        defaultValue: '',
+      },
+    },
+  },
+  args: {
+    type: 'container',
+    statusColor: 'info',
+    totalCount: 1000,
+    counter: 560,
+    componentTitle: 'Creditos ocupados para esta iniciativa',
+    appearance: 'info',
+    textLink: 'Aumentar Creditos',
+    href: 'https://www.google.com',
+    target: '_blank',
+    textFormat: (value: string, total: string) => `$${value}/$${total}MXN`,
+  },
+} as Meta<typeof BmbProgressBarComponent>;
+
+type Story = StoryObj<BmbProgressBarComponent>;
+
+export const Default: Story = {};

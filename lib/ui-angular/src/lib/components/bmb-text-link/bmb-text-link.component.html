@@ -1,0 +1,36 @@
+<span
+  class="bmb_text-link"
+  [ngClass]="{
+    disabled: disabled()
+  }"
+  [attr.data-automation-id]="testId()"
+>
+  <bmb-check-external-link-button [link]="link()" [target]="target()">
+    <span
+      class="bmb_text-link-item"
+      [ngClass]="{
+        'bmb_text-link-item-reverse':
+          textLinkStyle() === 'icon' && iconPosition() === 'right'
+      }"
+    >
+      @if (textLinkStyle() === 'icon' && !!icon()) {
+        <bmb-icon
+          class="bmb_text-link-item-icon"
+          [icon]="icon()"
+          [size]="20"
+          [alt]="textLink() || icon()"
+          [testId]="testId() + '-icon'"
+        />
+      }
+      <span
+        class="bmb_text-link-item-text"
+        [ngClass]="{
+          underlined: textLinkStyle() === 'underlined'
+        }"
+      >
+        {{ textLink() }}
+        <ng-content></ng-content>
+      </span>
+    </span>
+  </bmb-check-external-link-button>
+</span>

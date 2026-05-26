@@ -1,0 +1,15 @@
+{
+  "name": "@ti-tecnologico-de-monterrey-oficial/ui-react",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "targets": {
+    "build": {
+      "dependsOn": [
+        {
+          "target": "compile-styles",
+          "projects": "@ti-tecnologico-de-monterrey-oficial/core"
+        },
+        "^build"
+      ]
+    }
+  }
+}

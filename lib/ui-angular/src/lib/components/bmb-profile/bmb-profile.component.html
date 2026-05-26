@@ -1,0 +1,307 @@
+<ng-template #student>
+  <section class="bmb_profile-info">
+    <bmb-icon-item
+      icon="calendar_month"
+      label="Semestre"
+      [value]="_studentData.period"
+    />
+
+    <bmb-icon-item
+      icon="location_on"
+      label="Campus"
+      [value]="_studentData.campus"
+    />
+
+    <bmb-icon-item
+      icon="library_books"
+      label="Programa"
+      [value]="_studentData.program"
+    />
+
+    @if (_studentData.isExatec && _studentData.linkedin) {
+      <bmb-icon-item
+        icon="work_history"
+        label="Historial Laboral"
+        [value]="_studentData.linkedin"
+      />
+    } @else if (!_studentData.isExatec && _studentData.curp) {
+      <bmb-icon-item
+        icon="assignment_ind"
+        label="Curp"
+        [value]="_studentData.curp"
+      />
+    }
+  </section>
+</ng-template>
+
+<ng-template #collaborator>
+  <section class="bmb_profile-info">
+    @if (collaboratorData()?.enableRolSwitch) {
+      <bmb-check-external-link-button
+        class="bmb_profile-info-change-role bmb_item-wrapper"
+        (buttonClick)="handleRoleSwitch()"
+      >
+        <bmb-icon [icon]="'work'" [size]="24" />
+        <span class="bmb_profile-info-change-role-item-role">
+          {{ this.currentRole() }}
+        </span>
+        <span class="bmb_profile-info-change-role-item">
+          Cambia de perfil
+        </span>
+        <bmb-icon [icon]="'keyboard_arrow_right'" [size]="24" />
+      </bmb-check-external-link-button>
+    }
+    <bmb-icon-item
+      icon="id_card"
+      label="Puesto"
+      [value]="collaboratorData()?.position!"
+    />
+    <bmb-icon-item
+      icon="location_on"
+      label="Área"
+      [value]="collaboratorData()?.area!"
+      [showDivider]="false"
+    />
+  </section>
+  <section class="bmb_profile-access">
+    @if (collaboratorData()?.leader) {
+      <h2 class="bmb_profile-title">{{ 'profile.leader' | translate }}</h2>
+      <bmb-card margin="none" borderColor="contrasts-50">
+        <bmb-card-content padding="l">
+          <section
+            bmbLayout
+            margin="none"
+            alignItems="center"
+            justify="spaceBetween"
+          >
+            <bmb-user-image
+              size="desktop-small"
+              altImage="Image of icon left"
+              bmbLayoutItem
+              [isDynamicItem]="true"
+              [image]="collaboratorData()?.leader?.userData?.userImg!"
+            />
+            <div
+              class="bmb_container-button-header"
+              bmbLayoutItem
+              [isDynamicItem]="true"
+              [colGrow]="1"
+            >
+              <h2 class="bmb_container-button-title">
+                {{ collaboratorData()?.leader?.userData?.name! }}
+              </h2>
+              <h4 class="bmb_container-button-subtitle">
+                {{ collaboratorData()?.leader?.userData?.email! }}
+              </h4>
+            </div>
+          </section>
+        </bmb-card-content>
+      </bmb-card>
+    }
+    @if (collaboratorData()?.generalist) {
+      <h2 class="bmb_profile-title">{{ 'profile.generalist' | translate }}</h2>
+      <bmb-card margin="none" borderColor="contrasts-50">
+        <bmb-card-content padding="l">
+          <section
+            bmbLayout
+            margin="none"
+            alignItems="center"
+            justify="spaceBetween"
+          >
+            <bmb-user-image
+              size="desktop-small"
+              altImage="Image of icon left"
+              bmbLayoutItem
+              [isDynamicItem]="true"
+              [image]="collaboratorData()?.generalist?.userData?.userImg!"
+            />
+            <div
+              class="bmb_container-button-header"
+              bmbLayoutItem
+              [isDynamicItem]="true"
+              [colGrow]="1"
+            >
+              <h2 class="bmb_container-button-title">
+                {{ collaboratorData()?.generalist?.userData?.name! }}
+              </h2>
+              <h4 class="bmb_container-button-subtitle">
+                {{ collaboratorData()?.generalist?.userData?.email! }}
+              </h4>
+            </div>
+          </section>
+        </bmb-card-content>
+      </bmb-card>
+    }
+  </section>
+</ng-template>
+
+<ng-template #content>
+  <section class="bmb_profile">
+    <bmb-user-summary-content
+      [isProfile]="true"
+      [name]="getUserData().name!"
+      [userId]="getUserData().registration!"
+      [image]="getUserData().userImg"
+      [email]="getUserData().email"
+      contentLayout="row"
+      [isImageBordered]="false"
+      [idDigital]="getUserData().idDigital"
+    />
+    @if (!isStandAlone()) {
+      @if (isStudent()) {
+        <ng-container [ngTemplateOutlet]="student" />
+      } @else {
+        <ng-container [ngTemplateOutlet]="collaborator" />
+      }
+    }
+    @if (enableLangChange() && isStandAlone()) {
+      <section class="bmb_profile-info-container theme">
+        <div class="bmb_profile-info-container-item">
+          <bmb-icon [icon]="'language'" [size]="24" />
+          <span class="bmb_profile-info-container-item-text">Idioma</span>
+        </div>
+        <div class="bmb_profile-lang-container">
+          <bmb-radial
+            id="es"
+            value="es"
+            name="language"
+            label="ES"
+            [checked]="true"
+            [required]="true"
+            [disabled]="false"
+            [control]="langFormControl"
+            (change)="handleRadial('es')"
+          />
+          <bmb-radial
+            id="en"
+            value="en"
+            name="language"
+            label="EN"
+            [checked]="false"
+            [required]="true"
+            [disabled]="false"
+            [control]="langFormControl"
+            (change)="handleRadial('en')"
+          />
+        </div>
+      </section>
+      <bmb-divider />
+    }
+    <section class="bmb_profile-info-container theme">
+      <div class="bmb_profile-info-container-item">
+        <bmb-icon [icon]="'palette'" [size]="24" />
+        <span class="bmb_profile-info-container-item-text">Tema</span>
+      </div>
+      <bmb-theme leftText="Light" rightText="Dark" [showControls]="true" />
+    </section>
+
+    @if (enableVersionBack()) {
+      <section class="bmb_profile-info-container version-back">
+        <bmb-check-external-link-button
+          class="bmb_profile-info-container-link"
+          (buttonClick)="handleBackClick($event)"
+        >
+          <div class="bmb_profile-info-container-item">
+            <bmb-icon [icon]="'compare_arrows'" [size]="24" />
+            <span class="bmb_profile-info-container-item-text">{{
+              versionBackText()
+            }}</span>
+          </div>
+
+          <bmb-icon [icon]="'keyboard_arrow_right'" [size]="24" />
+        </bmb-check-external-link-button>
+      </section>
+    }
+
+    @if (isMobile() && !isStandAlone()) {
+      <section class="bmb_profile-access">
+        <bmb-container-button
+          componentTitle="ID Digital"
+          iconLeft="person"
+          iconRight="chevron_right"
+          [link]="idDigitalLink()"
+          [target]="targetLinks()!"
+        />
+        <bmb-container-button
+          componentTitle="Acceso a Campus"
+          iconLeft="qr_code"
+          iconRight="chevron_right"
+          [link]="campusAcessLink()"
+          [target]="targetLinks()!"
+        />
+        <bmb-container-button
+          componentTitle="TecServices"
+          iconLeft="forum"
+          iconRight="chevron_right"
+          [link]="tecServicesLink()"
+          [target]="targetLinks()!"
+        />
+      </section>
+      <div class="bmb_profile-version">
+        {{ versionLabel() }}
+      </div>
+    }
+    <section class="bmb_profile-close">
+      <button
+        bmbButton
+        appearance="destructive"
+        icon="logout"
+        size="large"
+        position="left"
+        (click)="closeSession()"
+      >
+        Cerrar Sesión
+      </button>
+    </section>
+  </section>
+</ng-template>
+
+@if (isStandAlone()) {
+  <section class="bmb_profile-stand_alone">
+    @if (isLoading()) {
+      <bmb-loader
+        componentTitle="Cargando perfil"
+        [showInline]="true"
+      ></bmb-loader>
+    } @else {
+      <ng-container [ngTemplateOutlet]="content" />
+    }
+  </section>
+} @else if (isMobile()) {
+  <bmb-mobile-templates
+    [componentTitle]="'Mi Perfil'"
+    (externalLinkOnClose)="closeProfile()"
+    (handleRightClick)="handleRight($event)"
+  >
+    <ng-template #bmbTemplateMain>
+      @if (isLoading()) {
+        <bmb-loader
+          componentTitle="Cargando perfil"
+          [showInline]="true"
+        ></bmb-loader>
+      } @else {
+        <ng-container [ngTemplateOutlet]="content" />
+      }
+    </ng-template>
+  </bmb-mobile-templates>
+} @else {
+  <bmb-home-card
+    icon="person"
+    bgIconAppearance="green-light"
+    componentTitle="Mi perfil"
+    contentPadding="l"
+    [showRightButton]="enableExpandButton()"
+    (onBack)="handleBack($event)"
+    [(isExpanded)]="isExpanded"
+    class="bmb_profile-home-card"
+  >
+    @if (isLoading()) {
+      <bmb-loader
+        componentTitle="Cargando perfil"
+        [showInline]="true"
+      ></bmb-loader>
+    } @else {
+      <ng-container [ngTemplateOutlet]="content" />
+    }
+  </bmb-home-card>
+}

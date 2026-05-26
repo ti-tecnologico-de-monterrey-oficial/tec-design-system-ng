@@ -1,0 +1,31 @@
+<section class="bmb_focus-element">
+  <section [ngClass]="getCircleClass()">
+    @if (icon()) {
+      <bmb-icon
+        class="bmb_focus-element-icon"
+        [ngClass]="{
+          'bmb_focus-element-icon-normal': !isCurrentColor(),
+          'bmb_focus-element-icon-focused': isFocused(),
+          'bmb_focus-element-inherit': isCurrentColor()
+        }"
+        [icon]="icon()"
+        [size]="24"
+        alt="Focus element icon"
+      />
+    } @else {
+      <span
+        class="bmb_focus-element-number"
+        [ngClass]="{
+          'bmb_focus-element-number-normal': !isCurrentColor(),
+          'bmb_focus-element-number-focused': isFocused(),
+          'bmb_focus-element-inherit': isCurrentColor()
+        }"
+      >
+        {{ number() }}
+      </span>
+    }
+  </section>
+  @if (componentTitle() || title()) {
+    <h5 class="bmb_focus-element-title">{{ componentTitle() || title() }}</h5>
+  }
+</section>

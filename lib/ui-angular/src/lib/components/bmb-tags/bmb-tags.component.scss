@@ -1,0 +1,77 @@
+@use '../../../assets/styles/base/fonts' as fonts;
+@use '../../../assets/styles/base/rem' as rem;
+
+$colors: (
+  // normal is the default color, so is not necessary to define it
+  'mitec_blue': rgb(var(--mitec-blue)),
+  'mitec_red': rgb(var(--mitec-red)),
+  'mitec_green': rgb(var(--mitec-green)),
+  'mitec_orange': rgb(var(--mitec-orange)),
+  'mitec_light_green': rgb(var(--green-light)),
+  'mitec_purple': rgb(var(--mitec-purple)),
+  'creative_violet': var(--creative-use-violet),
+  'creative_indigo': var(--creative-use-indigo),
+  'creative_emerald': var(--creative-use-emerald),
+  'creative_licorice': var(--creative-use-licorice),
+  'creative_darkteal': var(--creative-use-dark-teal),
+  'creative_peach': var(--creative-use-peach),
+  'creative_sepia': var(--creative-use-sepia),
+  'creative_softred': var(--creative-use-soft-red),
+  'creative_wattle': var(--creative-use-wattle),
+  'creative_shipcove': var(--creative-use-ship-cove),
+  'creative_plantation': var(--creative-use-plantation),
+  'creative_rum': var(--creative-use-rum),
+  'creative_hibiscus': var(--creative-use-hibiscus),
+  'creative_ripelemon': var(--creative-use-ripe-lemon)
+);
+
+@mixin tag-variant($name, $color) {
+  background-color: $color;
+  border-color: $color;
+  color: var(--general-contrasts-5);
+}
+
+.bmb_tag {
+  @include fonts.font(3, regular);
+  align-items: center;
+  background-color: var(--containers-background);
+  border: rem.rem_calc(1) solid var(--general-contrasts-50);
+  color: var(--general-contrasts-100);
+  display: inline-flex;
+  gap: rem.rem_calc(8);
+  padding: rem.rem_calc(4 16);
+  max-height: rem.rem_calc(26);
+  user-select: none;
+
+  &:focus,
+  &:focus-visible,
+  &-active,
+  &:active:not(.bmb_tag-activity) {
+    background-color: var(--menu-select-surface-activated);
+    border-color: var(--menu-select-surface-activated);
+    color: var(--menu-select-label-menu-active);
+    outline: 0 none;
+  }
+
+  &:hover:not(.bmb_tag-activity):not(.bmb_tag-disabled) {
+    background-color: var(--menu-select-on-surface-hovered);
+    border-color: var(--menu-select-on-surface-hovered);
+    color: var(--menu-select-label-menu-inactive);
+    outline: 0 none;
+  }
+
+  &.disabled,
+  &-disabled {
+    opacity: 0.5;
+  }
+
+  &-rounded {
+    border-radius: rem.rem_calc(16);
+  }
+
+  @each $name, $color in $colors {
+    &-#{$name} {
+      @include tag-variant($name, $color);
+    }
+  }
+}

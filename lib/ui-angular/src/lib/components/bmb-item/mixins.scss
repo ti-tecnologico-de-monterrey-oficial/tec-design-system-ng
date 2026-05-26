@@ -1,0 +1,43 @@
+@use '../../../assets/styles/base/fonts' as fonts;
+@use '../../../assets/styles/base/rem' as rem;
+
+@mixin item-wrapper() {
+  padding: var(--bmb-spacing-s) var(--bmb-spacing-m);
+  @include fonts.font(5, regular);
+  line-height: rem.rem_calc(24);
+  color: var(--general-contrasts-100);
+
+  * > span:last-child {
+    @include fonts.font(4, regular);
+    line-height: rem.rem_calc(21);
+  }
+}
+
+@mixin action-item($add_padding: true) {
+  display: inline-flex;
+  width: 100%;
+  color: var(--general-contrasts-100);
+
+  @if $add_padding == true {
+    padding: var(--bmb-spacing-s) var(--bmb-spacing-m);
+  }
+
+  &:hover:not(:disabled) {
+    background-color: var(--buttons-primary-normal);
+    border-radius: var(--bmb-radius-s);
+    color: var(--buttons-alternative-normal);
+
+    .bmb_title-wrapper-subtitle {
+      opacity: 1;
+    }
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+
+  .bmb_title-wrapper-subtitle {
+    opacity: 0.5;
+  }
+}

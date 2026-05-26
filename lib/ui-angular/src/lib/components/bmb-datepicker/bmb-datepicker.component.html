@@ -1,0 +1,49 @@
+<div class="bmb_datepicker">
+  <section class="bmb-datepicker-container">
+    <bmb-input-validator
+      class="bmb_datepicker_validator"
+      [inputId]="inputId()"
+      [name]="name()"
+      [value]="control().value"
+      [label]="label()!"
+      [errorMessage]="errorMessage()"
+      [helperMessage]="helperMessage()"
+      [isRequired]="isRequired()"
+      [isDisabled]="disabled()"
+      [control]="control()"
+      [showError]="shouldShowError"
+      [tooltip]="tooltip()"
+      [customValidation]="customValidation()"
+    >
+      <div #contentDiv>
+        <bmb-input-content
+          class="bmb_dropdown-field"
+          type="text"
+          [inputId]="inputId()"
+          [name]="name()"
+          [icon]="icon()"
+          [control]="control()"
+          [isReadOnly]="true"
+          [isClearable]="true"
+          [placeholder]="placeholder()"
+          [isError]="shouldShowError"
+          (click)="handleFocusedEvent($event)"
+          (onKeyDown)="handleFocusedEvent($event)"
+        >
+        </bmb-input-content>
+      </div>
+    </bmb-input-validator>
+    <ng-template #modalTemplate>
+      <bmb-datepicker-modal
+        [now]="now"
+        [isWindowOpen]="isWindowOpen"
+        (onValueChange)="handleValueChange($event)"
+        [value]="control().valid && control().value"
+        [dateFormat]="dateFormat()"
+        [stepYearPicker]="stepYearPicker()"
+        [disableDatesBefore]="convertToDate(disableDatesBefore())"
+        [disableDatesAfter]="convertToDate(disableDatesAfter())"
+      />
+    </ng-template>
+  </section>
+</div>

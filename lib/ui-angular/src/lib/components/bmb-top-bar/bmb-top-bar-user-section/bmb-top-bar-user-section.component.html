@@ -1,0 +1,91 @@
+<section
+  bmbLayout
+  margin="none"
+  gapSize="m"
+  justify="center"
+  alignItems="center"
+  [dynamicCols]="true"
+  class="bmb_top-bar-user-section"
+  [ngClass]="{ 'bmb_top-bar-user-section-mitec': mitec() }"
+>
+  @if (mitec()) {
+    @if (showRoleButton() || showNotifications()) {
+      <bmb-dropdown-menu
+        bmbLayoutItem
+        class="bmb_top-bar-user-section bmb_top-bar-user-section-menu bmb_top-bar-user-section-mobile"
+        [items]="getMenu()"
+      />
+    }
+    @if (showSearchButton()) {
+      <bmb-action-icon
+        bmbLayoutItem
+        class="bmb_top-bar-user-section-no-mobile"
+        icon="search"
+        [iconSize]="32"
+        (buttonClick)="handleSearchChange($event)"
+        [alt]="'top_bar.search' | translate"
+      />
+    } @else if (showRoleButton()) {
+      <bmb-action-icon
+        bmbLayoutItem
+        class="bmb_top-bar-user-section-no-mobile"
+        icon="compare_arrows"
+        [iconSize]="32"
+        (buttonClick)="handleRoleChange($event)"
+        [alt]="'top_bar.role_switch' | translate"
+      />
+    }
+    @if (showNotifications()) {
+      <bmb-action-icon
+        bmbLayoutItem
+        class="bmb_top-bar-user-section-no-mobile"
+        icon="notifications"
+        [iconSize]="32"
+        (buttonClick)="openNotifications($event)"
+        [dotNotification]="totalNotifications()"
+        [alt]="'top_bar.notifications' | translate"
+      />
+    }
+  } @else if (showRoleButton()) {
+    <bmb-action-icon
+      bmbLayoutItem
+      icon="compare_arrows"
+      [iconSize]="32"
+      (buttonClick)="handleRoleChange($event)"
+      [alt]="'top_bar.role_switch' | translate"
+    />
+  }
+  @if (showHelpButton() || mitec()) {
+    <bmb-button-icon
+      bmbLayoutItem
+      [ngClass]="{
+        'bmb_top-bar-user-section-no-mobile':
+          mitec() && (showRoleButton() || showNotifications())
+      }"
+      icon="help"
+      [showContainer]="false"
+      (onButtonClick)="handleHelpButtonClick($event)"
+      [alt]="'top_bar.help' | translate"
+    />
+  }
+  @if (!!userInformation()) {
+    <bmb-check-external-link-button
+      [disabled]="false"
+      (buttonClick)="handleUserClick($event)"
+      class="bmb_top-bar-user-section-button"
+    >
+      <bmb-user-summary-content
+        bmbLayoutItem
+        [image]="userInformation().image"
+        [altImage]="userInformation.name"
+        [name]="mitec() ? userInformation().name : ''"
+        imageSize="mobile-small"
+        [isImageBordered]="false"
+        [role]="mitec() ? userInformation().role : ''"
+        contentLayout="row"
+        salutation=""
+        (onUserClick)="handleUserClick($event)"
+      />
+    </bmb-check-external-link-button>
+  }
+</section>

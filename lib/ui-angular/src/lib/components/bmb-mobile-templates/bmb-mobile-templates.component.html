@@ -1,0 +1,146 @@
+<section [ngClass]="getSectionClass()">
+  @switch (template()) {
+    @case ('single-header') {
+      <ng-container [ngTemplateOutlet]="singleHeader" />
+    }
+    @case ('header-with-footer') {
+      <ng-container [ngTemplateOutlet]="headerWithFooter" />
+    }
+    @case ('card-header-with-footer') {
+      <ng-container [ngTemplateOutlet]="cardHeaderWithFooter" />
+    }
+    @case ('header-with-button-list') {
+      <ng-container [ngTemplateOutlet]="headerWithButtonList" />
+    }
+    @case ('header-with-card-list') {
+      <ng-container [ngTemplateOutlet]="headerWithButtonList" />
+    }
+    @case ('login') {
+      <ng-container [ngTemplateOutlet]="login" />
+    }
+    @case ('calendar') {
+      <ng-container [ngTemplateOutlet]="calendar" />
+    }
+    @case ('external-link') {
+      <ng-container [ngTemplateOutlet]="externalLink" />
+    }
+  }
+</section>
+
+<ng-template #singleHeader>
+  <bmb-inner-header
+    [componentTitle]="componentTitle() || title()"
+    [showClose]="true"
+    [trailingIconSecondary]="this.headerIconRight()"
+    (onHandleClose)="handleLeftClick($event)"
+    (onHandleTrailingSecondary)="handleRightClick($event)"
+    (onHandleBack)="handleClose($event)"
+  />
+  <main class="bmb_mobile-template-main">
+    <ng-container [ngTemplateOutlet]="mainContent() ?? null"></ng-container>
+  </main>
+</ng-template>
+
+<ng-template #headerWithFooter>
+  <bmb-inner-header
+    [componentTitle]="componentTitle() || title()"
+    [showClose]="true"
+    [trailingIconSecondary]="this.headerIconRight()"
+    (onHandleClose)="handleLeftClick($event)"
+    (onHandleTrailingSecondary)="handleRightClick($event)"
+  />
+  <main class="bmb_mobile-template-main">
+    <ng-container [ngTemplateOutlet]="mainContent() ?? null"></ng-container>
+  </main>
+  <footer class="bmb_mobile-template-footer">
+    @for (action of footerActions(); track $index) {
+      <button
+        bmbButton
+        [appearance]="action.type ?? 'secondary-outlined'"
+        (click)="handleAction(action)"
+        size="large"
+        [icon]="action.icon || ''"
+      >
+        {{ action.title }}
+      </button>
+    }
+  </footer>
+</ng-template>
+
+<ng-template #cardHeaderWithFooter>
+  <bmb-inner-header
+    [componentTitle]="componentTitle() || title()"
+    [showClose]="true"
+    [trailingIconSecondary]="this.headerIconRight()"
+    (onHandleClose)="handleLeftClick($event)"
+    (onHandleTrailingSecondary)="handleRightClick($event)"
+  />
+  <main class="bmb_mobile-template-main">
+    <bmb-card>
+      <bmb-card-content>
+        <ng-container [ngTemplateOutlet]="mainContent() ?? null"></ng-container>
+      </bmb-card-content>
+    </bmb-card>
+  </main>
+  <footer class="bmb_mobile-template-footer">
+    @for (action of footerActions(); track $index) {
+      <button
+        bmbButton
+        [appearance]="action.type ?? 'secondary-outlined'"
+        (click)="handleAction(action)"
+        size="large"
+        [icon]="action.icon || ''"
+      >
+        {{ action.title }}
+      </button>
+    }
+  </footer>
+</ng-template>
+
+<ng-template #headerWithButtonList>
+  <bmb-inner-header
+    [componentTitle]="componentTitle() || title()"
+    [showClose]="true"
+    [trailingIconSecondary]="this.headerIconRight()"
+    (onHandleClose)="handleLeftClick($event)"
+    (onHandleTrailingSecondary)="handleRightClick($event)"
+  />
+  <main class="bmb_mobile-template-main">
+    @for (button of buttonList(); track $index) {
+      <bmb-container-button
+        [componentTitle]="button.title"
+        [target]="button.target || '_blank'"
+        [link]="button.link || ''"
+        [subtitle]="button.subtitle || ''"
+        [iconLeft]="button.iconLeft"
+        iconRight="chevron_right"
+        (onButton)="(button.onButton)"
+        [square]="template() === 'header-with-card-list'"
+      />
+    }
+    <ng-container [ngTemplateOutlet]="mainContent() ?? null"></ng-container>
+  </main>
+</ng-template>
+
+<ng-template #login>
+  <bmb-login-onboarding (handleRequest)="handleLoginRequest($event)" />
+</ng-template>
+
+<ng-template #calendar>
+  <bmb-calendar
+    [calendarTimezone]="calendarTimezone()"
+    [clientTimezone]="clientTimezone()"
+    [lang]="lang()"
+    [height]="height"
+  />
+</ng-template>
+
+<ng-template #externalLink>
+  <bmb-external-link
+    [componentTitle]="componentTitle() || title()"
+    [subtitle]="externalLinkSubtitle()"
+    (onClose)="handleClose($event)"
+    (menuEvent)="handleMenuEvent($event)"
+    (footerEvent)="handleFooterEvent($event)"
+  />
+</ng-template>

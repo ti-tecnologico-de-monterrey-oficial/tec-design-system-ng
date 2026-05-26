@@ -1,0 +1,48 @@
+<section class="bmb_chevron">
+  <bmb-three-cols>
+    <ng-template #bmbLeftContent>
+      @if (!!leadingIcon()) {
+        <span class="bmb_chevron-button">
+          <bmb-action-icon
+            [icon]="leadingIcon()"
+            [iconSize]="24"
+            [disabled]="isDisabledLeadingIcon()"
+            (buttonClick)="handleLeadingClick($event)"
+            [alt]="
+              alternativeTextLeadingIcon() ||
+              ('chevron_title_selector.prev' | translate)
+            "
+          />
+        </span>
+      }
+    </ng-template>
+    <ng-template #bmbMainContent>
+      <bmb-title-content
+        [componentTitle]="componentTitle() || title() || ''"
+        titleSize="4"
+        titleFontWeight="300"
+        [subtitle]="subtitle()"
+        subtitleSize="4"
+        subtitleFontWeight="300"
+        [subtitleIcon]="iconSubtitle()"
+        [transparentBgC]="true"
+      />
+    </ng-template>
+    <ng-template #bmbRightContent>
+      @if (trailingIcon()) {
+        <span class="bmb_chevron-button">
+          <bmb-action-icon
+            [icon]="trailingIcon()"
+            [iconSize]="24"
+            [disabled]="isDisabledTrailingIcon()"
+            (buttonClick)="handleTrailingClick($event)"
+            [alt]="
+              alternativeTextTrailingIcon() ||
+              ('chevron_title_selector.next' | translate)
+            "
+          />
+        </span>
+      }
+    </ng-template>
+  </bmb-three-cols>
+</section>

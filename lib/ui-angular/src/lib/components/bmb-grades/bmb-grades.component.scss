@@ -1,0 +1,30 @@
+@use '../../../assets/styles/base/fonts' as fonts;
+@use '../../../assets/styles/base/rem' as rem;
+
+.bmb_grades {
+  height: 100%;
+  display: flex;
+  flex-flow: column;
+
+  &-modal {
+    &-title {
+      color: var(--general-contrasts-100);
+      @include fonts.font(4, regular);
+    }
+  }
+
+  &-content {
+    padding: rem.rem_calc(16);
+    flex: 1;
+    display: flex;
+    flex-flow: column;
+    gap: rem.rem_calc(16);
+    overflow: auto;
+  }
+
+  &-micro > .bmb_container {
+    border-radius: var(--bmb-radius-4);
+    border: rem.rem_calc(1) solid var(--general-contrasts-50);
+    background: var(--containers-main);
+  }
+}

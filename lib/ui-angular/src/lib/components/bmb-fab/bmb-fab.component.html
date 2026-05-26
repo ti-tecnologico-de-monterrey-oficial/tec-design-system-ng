@@ -1,0 +1,18 @@
+<section class="bmb_fab" [ngClass]="{ 'bmb_fab-mitec': mitec() }">
+  <button type="button" [class]="className" (click)="handleFabClick($event)">
+    @if (!mitec() && type() === 'extended') {
+      <span>{{ text() || 'FAB' }}</span>
+    }
+    <bmb-icon
+      [ngClass]="{
+        'bmb_fab-main-action': !mitec() && type() === 'normal'
+      }"
+      [icon]="iconName"
+      [size]="mitec() ? 32 : type() === 'extended' ? 24 : 48"
+      alt="FAB icon"
+    />
+  </button>
+  @if (mitec() && !!text()) {
+    <span class="bmb_fab-mitec-text">{{ text() }}</span>
+  }
+</section>

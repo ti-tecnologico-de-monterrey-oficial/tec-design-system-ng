@@ -1,0 +1,37 @@
+@use '../../../assets/styles/base/rem' as rem;
+@use '../../../assets/styles/base/fonts' as fonts;
+
+.bmb_notification-counter {
+  $_height: rem.rem_calc(12);
+  display: flex;
+  position: relative;
+  cursor: pointer;
+  gap: rem.rem_calc(4); //For plain appearance
+  align-items: center; //For plain appearance
+
+  &-number {
+    max-height: $_height;
+    min-width: $_height;
+    padding: rem.rem_calc(0 2);
+    width: fit-content;
+    @include fonts.font(1, bold);
+    color: var(--general-contrasts-80);
+    text-align: center;
+    line-height: 1.2;
+  }
+
+  &-bullet {
+    display: inline-block;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    color: rgb(var(--white-primary));
+    background-color: var(--buttons-destructive);
+    border-radius: rem.rem_calc(40);
+  }
+
+  &-plain {
+    display: inline-flex;
+    position: relative;
+  }
+}

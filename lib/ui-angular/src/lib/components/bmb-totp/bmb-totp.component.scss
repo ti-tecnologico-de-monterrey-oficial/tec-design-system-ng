@@ -1,0 +1,96 @@
+@use '../../../assets/styles/base/fonts' as fonts;
+@use '../../../assets/styles/base/mixins' as mixins;
+@use '../../../assets/styles/base/rem' as rem;
+
+.bmb_totp {
+  width: 100%;
+
+  &-container {
+    .bmb_container-contrast-box-container {
+      min-width: rem.rem_calc(344);
+      border: 0;
+      margin: 0;
+      padding: var(--bmb-spacing-xl);
+      gap: var(--bmb-spacing-m);
+    }
+  }
+
+  &-form {
+    display: flex;
+    justify-content: center;
+  }
+
+  &-title {
+    color: var(--general-contrasts-100);
+    @include fonts.font(9, bold);
+  }
+
+  &-subtitle {
+    color: var(--general-contrasts-75);
+    @include fonts.font(3, light);
+  }
+
+  &-code {
+    display: flex;
+    gap: var(--bmb-spacing-m);
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &-input {
+    .bmb_field {
+      padding: var(--bmb-spacing-xs);
+
+      &.normal {
+        height: rem.rem_calc(32);
+        width: rem.rem_calc(32);
+        background-color: rgb(var(--white-primary));
+
+        > input {
+          appearance: textfield;
+          text-align: center;
+          color: var(--black-light);
+          @include fonts.font(5, regular);
+
+          &:focus,
+          &:focus-visible {
+            border-style: solid;
+            border-bottom-color: var(--buttons-primary-select);
+          }
+        }
+      }
+    }
+
+    &:last-child {
+      padding-right: 0;
+    }
+  }
+
+  &-circle {
+    background-color: var(--general-contrasts-input-outline);
+    border-radius: var(--bmb-radius-full);
+    display: block;
+    height: rem.rem_calc(4);
+    bottom: rem.rem_calc(50);
+    width: rem.rem_calc(4);
+
+    &:last-child {
+      display: none;
+    }
+  }
+
+  &-button {
+    .bmb_btn {
+      padding: rem.rem_calc(8 16);
+      max-height: rem.rem_calc(40);
+    }
+  }
+
+  &-helper {
+    @include mixins.normal-helper-text();
+  }
+
+  &-error {
+    @include mixins.error-helper-text();
+  }
+}

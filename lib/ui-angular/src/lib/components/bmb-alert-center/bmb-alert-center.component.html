@@ -1,0 +1,106 @@
+<section class="bmb_alert-center" #container bmbLayout margin="none">
+  <div
+    bmbLayoutItem
+    [colSm]="4"
+    [colLg]="showMobileVersion() ? 12 : 5"
+    class="bmb_alert-center-main"
+    [ngClass]="{ 'bmb_alert-center-main-no-border': showMobileVersion() }"
+  >
+    @if (isLoading()) {
+      <bmb-loader
+        [componentTitle]="
+          translationsService.translate('alert_center.loader.loading')
+        "
+        [subtitle]="
+          translationsService.translate('alert_center.loader.subtitle')
+        "
+        [overlay]="false"
+        [isVisible]="true"
+        [errorState]="false"
+        appearance="normal"
+        icon="wifi_off"
+        [actions]="false"
+        [buttonPrimary]="
+          translationsService.translate('alert_center.loader.primary_button')
+        "
+        [buttonSecondary]="
+          translationsService.translate('alert_center.loader.secondary_button')
+        "
+        [showInline]="true"
+      />
+    } @else {
+      @if (!hideTabs()) {
+        <bmb-tabs [tabs]="tabs()" [(selectedTabId)]="selectedTab" />
+      }
+      @if (selectedTab() === 1) {
+        <bmb-alert-center-form
+          (showAlertDetail)="handleShowAlert($event)"
+          [eventsInCategories]="eventsInCategories()"
+          [enableMultipleSelection]="enableMultipleSelection()"
+          (changeAlertStatus)="handleChangeAlertStatus($event)"
+          [emptyStateData]="emptyStateData()"
+          (navigationBarEvents)="handleNavigationBarEvents($event)"
+          filterBy="all"
+          [(selectionState)]="notificationSelectionState"
+          [enabledOptions]="enabledFooterOptions()"
+        />
+      } @else if (selectedTab() === 2) {
+        <bmb-alert-center-form
+          (showAlertDetail)="handleShowAlert($event)"
+          [eventsInCategories]="eventsInCategories()"
+          [enableMultipleSelection]="enableMultipleSelection()"
+          (changeAlertStatus)="handleChangeAlertStatus($event)"
+          [emptyStateData]="emptyStateData()"
+          (navigationBarEvents)="handleNavigationBarEvents($event)"
+          filterBy="unread"
+          [(selectionState)]="notificationSelectionState"
+          [enabledOptions]="enabledFooterOptions()"
+        />
+      } @else if (selectedTab() === 3) {
+        <bmb-alert-center-form
+          (showAlertDetail)="handleShowAlert($event)"
+          [eventsInCategories]="eventsInCategories()"
+          [enableMultipleSelection]="enableMultipleSelection()"
+          (changeAlertStatus)="handleChangeAlertStatus($event)"
+          [emptyStateData]="emptyStateData()"
+          (navigationBarEvents)="handleNavigationBarEvents($event)"
+          filterBy="favorites"
+          [(selectionState)]="notificationSelectionState"
+          [enabledOptions]="enabledFooterOptions()"
+        />
+      } @else if (selectedTab() === 4) {
+        <bmb-alert-center-form
+          (showAlertDetail)="handleShowAlert($event)"
+          [eventsInCategories]="eventsInCategories()"
+          (changeAlertStatus)="handleChangeAlertStatus($event)"
+          [emptyStateData]="emptyStateData()"
+          (navigationBarEvents)="handleNavigationBarEvents($event)"
+          filterBy="archived"
+        />
+      } @else if (selectedTab() === 5) {
+        <bmb-alert-center-ads
+          [advertisements]="advertisementsList()"
+          (alertEvent)="handleAlertEvent($event)"
+        />
+      } @else {
+        <section bmbLayoutItem [colSm]="4" [colLg]="12">
+          <bmb-alert-center-empty [data]="emptyStateData()" />
+        </section>
+      }
+    }
+  </div>
+  @if (!showMobileVersion() && alertList().length) {
+    <section class="bmb_alert-center-content" bmbLayoutItem [colLg]="7">
+      <ng-container [ngTemplateOutlet]="detailContent" />
+    </section>
+  }
+</section>
+
+<ng-template #detailContent>
+  @if (visibleAlert) {
+    <bmb-alert-center-detail
+      [alert]="visibleAlert"
+      (alertEvent)="handleAlertEvent($event)"
+    />
+  }
+</ng-template>

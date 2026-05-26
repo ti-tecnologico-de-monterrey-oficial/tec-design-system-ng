@@ -14,7 +14,14 @@
       "default": "./dist/index.js"
     }
   },
+  "scripts": {
+    "compile-styles": "npm run build:TEC && npm run build:TECMI && npm run build:GED",
+    "build:TEC": "sass src/styles/mainTEC.scss dist/styles/mainTEC.min.css --style=compressed",
+    "build:GED": "sass src/styles/mainGED.scss dist/styles/mainGED.min.css --style=compressed",
+    "build:TECMI": "sass src/styles/mainTECMI.scss dist/styles/mainTECMI.min.css --style=compressed"
+  },
   "dependencies": {
-    "tslib": "^2.3.0"
+    "tslib": "^2.3.0",
+    "sass": "^1.100.0"
   }
 }

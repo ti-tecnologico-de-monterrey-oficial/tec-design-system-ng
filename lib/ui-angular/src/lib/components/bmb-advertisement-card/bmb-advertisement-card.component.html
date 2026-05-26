@@ -1,0 +1,107 @@
+<ng-template #container let-container="container">
+  <div class="bmb_advertisement-card-container">
+    <div
+      [ngClass]="{
+        'bmb_advertisement-card-content-image-full': expanded
+      }"
+      class="bmb_advertisement-card-content-image"
+    >
+      <figure class="bmb_advertisement-card-image-container-figure">
+        <picture>
+          <source media="(min-width: 100px)" [srcset]="container.imgData.url" />
+          <img
+            [loading]="'lazy'"
+            class="bmb_advertisement-card-image-container-figure-image"
+            [srcset]="container.imgData.url"
+            [alt]="container.imgData.alt"
+          />
+        </picture>
+      </figure>
+    </div>
+    <section
+      [ngClass]="{
+        'bmb_advertisement-card-content-description-hide': !expanded
+      }"
+      class="bmb_advertisement-card-content-description"
+    >
+      <div class="bmb_advertisement-card-content-description-title">
+        <h3>{{ container.content.title }}</h3>
+      </div>
+      <div class="bmb_advertisement-card-content-description-text">
+        <p>{{ container.content.description }}</p>
+      </div>
+      <div class="bmb_advertisement-card-content-description-btn">
+        <a
+          [href]="container.content.linkBtn"
+          target="_blank"
+          class="bmb_advertisement-card-content-description-btn-action"
+          bmbButton
+          appearance="primary"
+          size="small"
+        >
+          {{ container.content.labelBtn }}
+        </a>
+      </div>
+    </section>
+  </div>
+</ng-template>
+
+<ng-template #tab let-tab="tab">
+  <bmb-carousel>
+    @for (data of tab; track $index) {
+      <div #carouselItem>
+        <ng-container
+          *ngTemplateOutlet="container; context: { container: data }"
+        />
+      </div>
+    }
+  </bmb-carousel>
+</ng-template>
+
+<div
+  class="bmb_advertisement-card"
+  [ngClass]="{ 'bmb_advertisement-card-expanded': expanded }"
+>
+  <bmb-home-card
+    leftIcon="chevron_left"
+    icon="assignment"
+    bgIconAppearance="mitec-green"
+    [componentTitle]="
+      componentTitle() || title() || ('advertisement_card.title' | translate)
+    "
+    [subtitle]="subtitle()"
+    [(isExpanded)]="expanded"
+  >
+    <div class="bmb_advertisement-card-tabs">
+      <bmb-tabs
+        format="uppercase"
+        [tabs]="tabsData"
+        [(selectedTabId)]="selectedTabId"
+      >
+        <section class="bmb_advertisement-card-content">
+          @if (selectedTabId === 1) {
+            <ng-container
+              *ngTemplateOutlet="
+                tab;
+                context: { tab: this.data()?.promociones }
+              "
+            />
+          }
+          @if (selectedTabId === 2) {
+            <ng-container
+              *ngTemplateOutlet="tab; context: { tab: this.data()?.avisos }"
+            />
+          }
+          @if (selectedTabId === 3) {
+            <ng-container
+              *ngTemplateOutlet="
+                tab;
+                context: { tab: this.data()?.informacion }
+              "
+            />
+          }
+        </section>
+      </bmb-tabs>
+    </div>
+  </bmb-home-card>
+</div>

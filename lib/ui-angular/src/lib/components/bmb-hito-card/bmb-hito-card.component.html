@@ -1,0 +1,42 @@
+<div [ngClass]="getClassList()">
+  <bmb-card margin="none">
+    <bmb-card-content>
+      <div (click)="handleEventChange()" class="bmb_hito-card-content">
+        @if (icon()) {
+          <section
+            class="bmb_hito-card-content-icon"
+            [ngClass]="'bmb_hito-card-content-icon-' + getHitoIconClass()"
+          >
+            <bmb-icon [icon]="icon() ?? ''" alt="Hito card icon" />
+          </section>
+        }
+        <div class="bmb_hito-card-content-center">
+          <h3 class="bmb_hito-card-content-title">
+            {{ titleDisplayed() }}
+          </h3>
+          @if (short_description()) {
+            <p class="bmb_hito-card-content-description">
+              {{ short_description() }}
+            </p>
+          }
+        </div>
+        <div class="bmb_hito-card-content-right">
+          @if (type()) {
+            <div class="bmb_hito-card-content-type">
+              <bmb-badge
+                [text]="formatBadgeText(type())"
+                [appearance]="appearanceBadge()"
+                [container]="false"
+              />
+            </div>
+          }
+          @if (sub_content()) {
+            <p class="bmb_hito-card-content-duration">
+              {{ sub_content() }}
+            </p>
+          }
+        </div>
+      </div>
+    </bmb-card-content>
+  </bmb-card>
+</div>

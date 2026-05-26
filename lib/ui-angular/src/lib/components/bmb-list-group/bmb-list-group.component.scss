@@ -1,0 +1,50 @@
+@use 'sass:map';
+@use '../../../assets/styles/base/fonts' as fonts;
+@use '../../../assets/styles/base/rem' as rem;
+@use '../../../assets/styles/base/mixins' as mixins;
+
+.bmb_list-group {
+  @include fonts.font(3, regular);
+  display: flex;
+  flex-flow: column;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  &-row {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+
+    @include mixins.media-query(768, 'min') {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @include mixins.media-query(992, 'min') {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    @include mixins.media-query(1200, 'min') {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+  &-flush .bmb_list-group-item {
+    border-width: 0 0 rem.rem_calc(1);
+
+    &-selected {
+      border-color: var(--general-contrasts-main-selection);
+    }
+  }
+
+  &-rounded .bmb_list-group-item {
+    border-radius: var(--bmb-list-group-item-radius);
+  }
+
+  &-no-controls
+    .bmb_list-group-item:not(.bmb_list-group-item-selected):not(
+      .bmb_list-group-item-disabled
+    ) {
+    cursor: pointer;
+    gap: 0;
+  }
+}

@@ -1,0 +1,17 @@
+<bmb-tooltip-base
+  [componentTitle]="this.componentTitle() || this.title()"
+  [text]="this.text()"
+>
+  @if (icon() && size()) {
+    <bmb-icon
+      idElement="tooltip_element"
+      [size]="size()"
+      [icon]="icon()"
+      [isFill]="isFill()"
+      [alt]="componentTitle() || title() || 'Tooltip icon'"
+      aria-describedby="tooltip-icon"
+    />
+  } @else {
+    <ng-content />
+  }
+</bmb-tooltip-base>

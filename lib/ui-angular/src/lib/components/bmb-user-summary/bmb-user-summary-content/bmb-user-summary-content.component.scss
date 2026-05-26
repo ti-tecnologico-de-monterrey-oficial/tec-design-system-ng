@@ -1,0 +1,72 @@
+@use '../../../../assets/styles/base/fonts' as fonts;
+@use '../../../../assets/styles/base/rem' as rem;
+
+.bmb_user-summary_content {
+  align-items: center;
+  display: flex;
+  background-color: transparent;
+
+  &-column {
+    flex-direction: column;
+  }
+
+  &-row {
+    flex-direction: row;
+  }
+
+  &-wrapper {
+    display: flex;
+    flex-direction: column;
+
+    &-column {
+      margin-top: rem.rem_calc(16);
+    }
+
+    &-row {
+      margin-left: rem.rem_calc(16);
+    }
+
+    &-title {
+      color: var(--general-contrasts-100);
+      @include fonts.font(5, regular);
+      word-wrap: break-word;
+      overflow-wrap: break-word;
+      text-align: center;
+
+      &-column {
+        @include fonts.font(6, regular);
+        margin-bottom: rem.rem_calc(4);
+      }
+
+      &-row {
+        @include fonts.font(6, bold);
+        text-align: start;
+      }
+
+      &-salutation {
+        font-style: italic;
+        max-width: rem.rem_calc(160);
+      }
+    }
+
+    &-general-text {
+      color: var(--general-contrasts-75);
+      @include fonts.font(4, regular);
+    }
+
+    &-campus {
+      color: var(--general-contrasts-75);
+      @include fonts.font(4, regular);
+    }
+
+    &-role {
+      color: var(--general-contrasts-75);
+      @include fonts.font(4, regular);
+    }
+
+    &-email {
+      color: var(--general-contrasts-75);
+      @include fonts.font(2, regular);
+    }
+  }
+}

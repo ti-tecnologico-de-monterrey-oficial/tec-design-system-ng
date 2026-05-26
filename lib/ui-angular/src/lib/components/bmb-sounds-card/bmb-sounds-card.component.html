@@ -1,0 +1,64 @@
+<section class="bmb_sounds-card">
+  <bmb-media-card
+    [bgColor]="'--blue-mariner-950'"
+    [alt]="'Alt'"
+    [width]="width()"
+    [ratio]="ratio()"
+    [borderRadius]="'m'"
+    [type]="'inline'"
+    [fullmediaCard]="true"
+    [boxShadow]="true"
+  >
+    <section class="bmb_sounds-card-content">
+      <div class="bmb_sounds-card-content-icon">
+        <button
+          class="bmb_sounds-card-content-icon-btn"
+          [ngClass]="{ 'bmb_sounds-card-content-icon-btn-playing': isPlaying }"
+          (click)="this.handlePlayPause()"
+        >
+          <bmb-icon
+            class="bmb_sounds-card-content-icon-btn-icon"
+            [ngClass]="{
+              'bmb_sounds-card-content-icon-btn-icon-playing': isPlaying
+            }"
+            [icon]="isPlaying ? 'pause_circle' : 'play_circle'"
+            [isFill]="true"
+            [size]="100"
+          />
+        </button>
+      </div>
+      <div class="bmb_sounds-card-info">
+        <div class="bmb_sounds-card-info-title">
+          <span class="bmb_sounds-card-info-title-text">{{
+            componentTitle() || title()
+          }}</span>
+        </div>
+        <div class="bmb_sounds-card-info-subtitle">
+          <span class="bmb_sounds-card-info-subtitle-text">{{
+            subtitle()
+          }}</span>
+        </div>
+        <div class="bmb_sounds-card-info-volume">
+          <button
+            class="bmb_sounds-card-info-volume-btn"
+            (click)="this.handleMuteVolume()"
+          >
+            <bmb-icon
+              [icon]="isMuted ? 'volume_off' : 'volume_up'"
+              [size]="28"
+            />
+          </button>
+          <input
+            #rangeVolume
+            class="bmb_sounds-card-info-volume-range"
+            type="range"
+            min="0"
+            max="100"
+            [value]="internalVolume"
+            (input)="onVolumeChange($event)"
+          />
+        </div>
+      </div>
+    </section>
+  </bmb-media-card>
+</section>

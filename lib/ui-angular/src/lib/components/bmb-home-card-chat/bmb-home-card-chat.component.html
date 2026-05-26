@@ -1,0 +1,91 @@
+<ng-template #chatContent>
+  <section class="bmb_chat-card">
+    <bmb-home-card
+      [leftIcon]="mode() === 'chat' ? undefined : leftIcon()"
+      [componentTitle]="
+        componentTitle() || title() || ('home_card_chat.title' | translate)
+      "
+      [subtitle]="subtitle() || ('home_card_chat.subtitle' | translate)"
+      [isMobile]="isMobile()"
+      [actionHeaders]="chatActionHeaders()"
+      [bgIconAppearance]="bgIconAppearance()"
+      [contentPadding]="'xs'"
+      [isExpanded]="isChatCardOpen()"
+      [(currentBot)]="currentBot"
+      (onExpandClick)="handleChat()"
+      (onClose)="handleClose()"
+      (onBack)="handleBack()"
+    >
+      <div class="bmb_chat-card-container">
+        @for (message of messagesHistory(); track message.id || $index) {
+          <bmb-chat-bubble
+            [message]="message"
+            [gptIcons]="resolveGptIcons(message)"
+            [gptBot]="resolveGptBot(message)"
+            [isThinking]="resolveThinking(message, $index)"
+            [testId]="resolveTestId(message, $index)"
+            (getAction)="getBubbleAction.emit($event)"
+          />
+        }
+      </div>
+      <div class="bmb_chat-card-chatBar">
+        <bmb-chat-bar
+          [placeholder]="placeholder()"
+          [botList]="botList()"
+          [(currentBot)]="currentBot"
+          [(isLoading)]="isLoading"
+          (onSendMessage)="handleSend($event)"
+        />
+      </div>
+    </bmb-home-card>
+  </section>
+</ng-template>
+
+@if (mode() === 'expanded') {
+  <ng-container *ngTemplateOutlet="chatContent" />
+}
+
+<ng-template #contentTemplate>
+  <div class="bmb_chat-card-chat-content">
+    <ng-container *ngTemplateOutlet="chatContent" />
+  </div>
+</ng-template>
+
+@if (currentBot() && mode() === 'compact') {
+  <bmb-action-icon
+    class="bmb_chat-card-bot"
+    [icon]="currentBot().icon"
+    [alt]="currentBot().name"
+    [iconSize]="40"
+    [isSVGTemplate]="true"
+    (buttonClick)="openChatFromCompact()"
+  >
+    <ng-template #customActionIcon>
+      <!-- @if (currentBot() && currentBot().icon) {} -->
+      <bmb-bot-icon [iconName]="currentBot().icon" />
+    </ng-template>
+  </bmb-action-icon>
+}
+
+<ng-template #chatBarActionsTemplate>
+  <bmb-action-menu
+    class="bmb_chat-card-chat-actions"
+    [showHeader]="false"
+    componentTitle="Selecciona una opción"
+  >
+    <ng-template>
+      <bmb-item
+        label="Expandir Chat"
+        [isButton]="true"
+        (action)="handleExpand()"
+      />
+    </ng-template>
+    <ng-template>
+      <bmb-item
+        label="Iniciar nuevo chat"
+        [isButton]="true"
+        (action)="handleExpand()"
+      />
+    </ng-template>
+  </bmb-action-menu>
+</ng-template>

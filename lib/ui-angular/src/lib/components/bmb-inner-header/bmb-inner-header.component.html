@@ -1,0 +1,91 @@
+<header class="bmb_inner_header">
+  <bmb-container>
+    <span class="bmb_inner_header-container">
+      @if (toggleSearch()) {
+        <form [formGroup]="searchForm" class="bmb_inner_header-form">
+          <span class="bmb_inner_header-button">
+            <bmb-action-icon
+              icon="close"
+              [iconSize]="24"
+              (buttonClick)="handleSearch()"
+              [alt]="'inner_header.close' | translate"
+            />
+          </span>
+          <bmb-input
+            [placeholder]="placeholderSearch()"
+            icon="search"
+            (isBlur)="onSubmit()"
+            [control]="getFormControl('search')"
+          />
+        </form>
+      } @else if (
+        trailingIconSecondary() !== '' ||
+        trailingIconPrimary() !== '' ||
+        showSearch() ||
+        componentTitle() !== '' ||
+        title() !== ''
+      ) {
+        <bmb-three-cols
+          [ngClass]="{
+            'bmb_inner_header-container-space': !!trailingIconSecondary()
+          }"
+        >
+          <ng-template #bmbLeftContent>
+            @if (getLeftIcon()) {
+              <bmb-action-icon
+                [icon]="getLeftIcon()"
+                [iconSize]="24"
+                (buttonClick)="handleBack($event)"
+                [alt]="'inner_header.back' | translate"
+              />
+            }
+          </ng-template>
+          <ng-template #bmbMainContent>
+            @if (componentTitle() || title()) {
+              <bmb-title-content
+                [componentTitle]="componentTitle() || title()"
+                titleSize="6"
+                [isCenterContent]="true"
+                [transparentBgC]="true"
+              />
+            }
+          </ng-template>
+          <ng-template #bmbRightContent>
+            <span class="bmb_inner_header-actions">
+              @if (trailingIconSecondary() !== '') {
+                <bmb-action-icon
+                  [icon]="trailingIconSecondary()"
+                  [disabled]="disableTrailingIconSecondary()"
+                  [iconSize]="24"
+                  (buttonClick)="handleTrailingIconSecondary($event)"
+                  [alt]="alternativeTextTrailingIconSecondary()"
+                />
+              }
+              @if (!!trailingIconPrimary() || showSearch()) {
+                @if (showSearch()) {
+                  <bmb-action-icon
+                    icon="search"
+                    [iconSize]="24"
+                    (buttonClick)="handleSearch()"
+                    [alt]="'inner_header.search' | translate"
+                  />
+                } @else {
+                  <bmb-action-icon
+                    [icon]="trailingIconPrimary()"
+                    [iconSize]="24"
+                    [disabled]="disableTrailingIconPrimary()"
+                    (buttonClick)="handleTrailingIconPrimary($event)"
+                    [alt]="alternativeTextTrailingIconPrimary()"
+                  />
+                }
+              }
+            </span>
+          </ng-template>
+        </bmb-three-cols>
+      }
+    </span>
+    <section class="bmb_inner_header-content">
+      <ng-content></ng-content>
+    </section>
+  </bmb-container>
+</header>

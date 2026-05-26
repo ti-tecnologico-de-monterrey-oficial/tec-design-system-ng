@@ -1,0 +1,16 @@
+<div class="bmb_alert-center-ads">
+  @if (!advertisements().length) {
+    <section bmbLayoutItem [colSm]="4" [colLg]="12">
+      <bmb-alert-center-empty [data]="emptyStateData()" />
+    </section>
+  } @else {
+    <bmb-carousel>
+      @for (advertisement of advertisements(); track $index) {
+        <bmb-alert-center-detail
+          [alert]="advertisement"
+          (alertEvent)="handleAlertEvent($event)"
+        />
+      }
+    </bmb-carousel>
+  }
+</div>

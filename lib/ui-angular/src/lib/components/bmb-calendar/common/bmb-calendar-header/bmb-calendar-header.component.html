@@ -1,0 +1,64 @@
+<section
+  class="bmb_calendar-header"
+  bmbLayout
+  [dynamicCols]="true"
+  margin="none"
+  alignItems="center"
+>
+  <div
+    bmbLayoutItem
+    [isDynamicItem]="true"
+    bmbButtonGroup
+    appearance="transparent"
+    size="large"
+  >
+    <button type="button" (click)="goToToday()">
+      {{ 'calendar.today' | translate }}
+    </button>
+    <button type="button" (click)="handleChangeDate('-')">
+      <bmb-icon [icon]="'arrow_back_ios'" />
+    </button>
+    <button type="button" (click)="handleChangeDate('+')">
+      <bmb-icon [icon]="'arrow_forward_ios'" />
+    </button>
+  </div>
+  <h1
+    bmbLayoutItem
+    [isDynamicItem]="true"
+    [colGrow]="1"
+    class="bmb_calendar-header-title"
+  >
+    {{ getTitle() }}
+  </h1>
+  <div bmbButtonGroup appearance="secondary-outlined" size="large">
+    <button
+      type="button"
+      (click)="handleRangeChange('day')"
+      [ngClass]="{ 'bmb_button-selected': view() === 'day' }"
+    >
+      {{ 'calendar.day' | translate }}
+    </button>
+    <button
+      type="button"
+      (click)="handleRangeChange('week')"
+      [ngClass]="{ 'bmb_button-selected': view() === 'week' }"
+    >
+      {{ 'calendar.week' | translate }}
+    </button>
+    <button
+      type="button"
+      (click)="handleRangeChange('month')"
+      [ngClass]="{ 'bmb_button-selected': view() === 'month' }"
+    >
+      {{ 'calendar.month' | translate }}
+    </button>
+  </div>
+  @if (showFilterButton()) {
+    <bmb-action-icon
+      [icon]="'tune'"
+      (buttonClick)="handleShowFilters()"
+      [iconSize]="24"
+      [alt]="'calendar.filter' | translate"
+    ></bmb-action-icon>
+  }
+</section>

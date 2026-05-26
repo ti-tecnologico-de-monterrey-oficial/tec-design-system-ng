@@ -1,0 +1,34 @@
+<bmb-header-mitec
+  [headerLabel]="headerLabel() || ('login.header_label' | translate)"
+  [actionHeaderLinks]="actionHeaderLinks()"
+>
+  <bmb-login-content
+    [forgottenPasswordLabel]="
+      forgottenPasswordLabel() || ('login.forgotten_password' | translate)
+    "
+    [forgottenPasswordLink]="forgottenPasswordLink()"
+    [forgottenPasswordTarget]="forgottenPasswordTarget()"
+    [showRememberMeCheckbox]="showRememberMeCheckbox()"
+    [rememberMeCheckboxLabel]="
+      rememberMeCheckboxLabel() || ('login.remember_me' | translate)
+    "
+    [showLoginAsGuest]="showLoginAsGuest()"
+    [loginAsGuestLabel]="
+      loginAsGuestLabel() || ('login.login_as_guest' | translate)
+    "
+    [loginAsGuestLink]="loginAsGuestLink()"
+    [loginAsGuestTarget]="loginAsGuestTarget()"
+    (onRememberMeChecked)="handleRememberMe($event)"
+    [(onContinue)]="isEnabled"
+    (onFormGroup)="handleFormGroup($event)"
+  />
+  <button
+    bmbButton
+    [disabled]="!isEnabled"
+    size="large"
+    (click)="handleContinue()"
+    type="button"
+  >
+    {{ buttonLabel() || ('login.button_label' | translate) }}
+  </button>
+</bmb-header-mitec>

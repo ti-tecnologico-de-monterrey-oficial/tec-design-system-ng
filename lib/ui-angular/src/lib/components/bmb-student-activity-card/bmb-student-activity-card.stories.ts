@@ -1,0 +1,223 @@
+import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
+import { CommonModule } from '@angular/common';
+import { BmbStudentActivityCardComponent } from './bmb-student-activity-card.component';
+import { DBmbGenericParamDesc } from '../../utils/doc/parameterDescriptions';
+import {
+  getBasicExampleBlock,
+  getGeneralComponentDescription,
+  getGeneralDescription,
+} from '../../utils/doc/utils';
+
+export default {
+  title: 'Components/Containers/Student activity card',
+  component: BmbStudentActivityCardComponent,
+  decorators: [
+    moduleMetadata({
+      imports: [CommonModule, BmbStudentActivityCardComponent],
+    }),
+  ],
+  parameters: {
+    docs: {
+      controls: {
+        exclude: [
+          'getBadgeType',
+          'getCardClasses',
+          'parsedEndDate',
+          'parsedStartDate',
+          'ngOnInit',
+          '',
+          '',
+        ],
+      },
+      description: {
+        component: `
+${getGeneralDescription(`${getGeneralComponentDescription({ name: 'student-activity-card' })} to display information about a student activity, such as title, location, responsible person, type, and date range.
+<br/><br/>Supports different visual styles based on the activity type and whether it is displayed as a list item.`)}
+${getBasicExampleBlock('BmbStudentActivityCardComponent')}
+        `,
+      },
+    },
+  },
+  argTypes: {
+    startDate: {
+      control: null,
+      description: 'Sets the start date label <luxon DateTime>.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'DateTime' },
+      },
+    },
+    endDate: {
+      control: null,
+      description: 'Sets the end date label <luxon DateTime>.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'DateTime' },
+      },
+    },
+    componentTitle: {
+      control: {
+        type: 'text',
+      },
+      description: 'Sets the title on the top of the modal content.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'string' },
+        defaultValue: { summary: '' },
+      },
+    },
+    location: {
+      control: {
+        type: 'text',
+        description: 'Sets the location text in the card.',
+      },
+      table: {
+        category: 'Properties',
+        type: { summary: 'string' },
+        defaultValue: { summary: '' },
+      },
+    },
+    responsible: {
+      control: {
+        type: 'text',
+        description: 'Sets the responsible text in the card.',
+      },
+      table: {
+        category: 'Properties',
+        type: { summary: 'string' },
+        defaultValue: { summary: '' },
+      },
+    },
+    type: {
+      control: 'select',
+      options: ['academic', 'life', 'events', 'save_the_date'],
+      description: 'Sets the color schema for the modal.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'string' },
+        defaultValue: { summary: 'academic' },
+      },
+    },
+    isListItem: {
+      control: 'boolean',
+      description: 'Sets the card as a list item.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
+    },
+    image: {
+      control: 'text',
+      description: 'Sets the image URL.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'string' },
+        defaultValue: { summary: '' },
+      },
+    },
+    dateFormat: {
+      control: 'text',
+      description: 'Sets the date format.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'string' },
+        defaultValue: { summary: 'yyyy-MM-dd HH:mm:ss' },
+      },
+    },
+    badgeText: {
+      control: 'text',
+      description: 'Sets the badge text.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'string' },
+        defaultValue: { summary: '' },
+      },
+    },
+    title: {
+      control: null,
+      description:
+        'Please use `componentTitle` instead of `title` to set the component title.',
+      table: {
+        category: 'Deprecated',
+        type: { summary: 'string' },
+        defaultValue: '',
+      },
+    },
+    disableImage: {
+      control: 'boolean',
+      description: 'Disable the image and show a colored bullet instead.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
+    },
+    bulletColor: {
+      control: 'select',
+      options: [
+        'success-primary',
+        'success-light',
+        'success-thin',
+        'success-primary-alternative',
+        'success-tint-alternative',
+        'warning-primary',
+        'warning-light',
+        'warning-tint',
+        'warning-primary-alternative',
+        'error-primary',
+        'error-light',
+        'error-tint',
+        'info-primary',
+        'info-light',
+        'info-tint',
+        'branding-primary',
+        'branding-tint',
+        'branding-tint',
+        'alert-primary',
+        'alert-light',
+        'alert-tint',
+      ],
+      description: 'Sets the color of the bullet when image is disabled.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'IBmbColorSemantics' },
+        defaultValue: { summary: 'success-primary' },
+      },
+    },
+  },
+
+  args: {
+    startDate: '2021-12-24 10:00:00',
+    endDate: '2021-12-24 11:00:00',
+    componentTitle: 'Activity title',
+    type: 'academic',
+    location: 'Activity location',
+    responsible: 'Activity responsible',
+    isListItem: false,
+    image: 'https://picsum.photos/id/64/200/300',
+    dateFormat: 'yyyy-MM-dd HH:mm:ss',
+    badgeText: 'Badge text',
+    disableImage: false,
+    bulletColor: 'success-primary',
+  },
+} as Meta<typeof BmbStudentActivityCardComponent>;
+
+type Story = StoryObj<BmbStudentActivityCardComponent>;
+export const Default: Story = {};
+
+export const ListItem: Story = {
+  args: {
+    ...Default.args,
+    isListItem: true,
+  },
+};
+
+export const ListItemNoImage: Story = {
+  args: {
+    ...Default.args,
+    isListItem: true,
+    disableImage: true,
+    bulletColor: 'warning-primary',
+  },
+};

@@ -1,0 +1,85 @@
+@use '../../../assets/styles/base/rem' as rem;
+@use '../../../assets/styles/base/mixins' as mixins;
+
+$modalSize: (
+  'x-small': rem.rem_calc(472),
+  'small': rem.rem_calc(654),
+  'medium': rem.rem_calc(760),
+  'large': rem.rem_calc(920),
+  'x-large': rem.rem_calc(1080),
+);
+
+.bmb_native-modal {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100dvw;
+  height: 100dvh;
+  z-index: 90;
+  border: 0;
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+
+  &[open] {
+    animation: fadein 0.3s ease-in forwards;
+  }
+
+  &-container {
+    padding: rem.rem_calc(32);
+    width: calc(100% - rem.rem_calc(32));
+    background-color: var(--containers-modal);
+    border-radius: var(--bmb-radius-4);
+    border: rem.rem_calc(1) solid var(--general-contrasts-25);
+    color: var(--general-contrasts-100);
+    max-height: calc(100dvh - rem.rem_calc(32));
+    display: flex;
+    flex-direction: column;
+    gap: var(--bmb-spacing-xl);
+
+    @each $size, $value in $modalSize {
+      &-#{$size} {
+        max-width: $value;
+      }
+    }
+
+    &-header-icon_close {
+      padding-top: rem.rem_calc(7);
+    }
+  }
+
+  &-content {
+    overflow: auto;
+    flex: 1;
+  }
+
+  &-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: var(--bmb-spacing-m);
+    flex-wrap: wrap;
+
+    @include mixins.check-for-mobile() {
+      .bmb_btn {
+        flex: 1 1 100%;
+      }
+    }
+  }
+}
+
+@keyframes fadein {
+  0% {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  50% {
+    opacity: 0.5;
+    transform: scale(1.05);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}

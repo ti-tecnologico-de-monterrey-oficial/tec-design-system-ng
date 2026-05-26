@@ -1,0 +1,40 @@
+<div class="bmb_header_mobile">
+  <bmb-container
+    appearance="primary-header"
+    class="bmb_header_mobile-container"
+  >
+    <div class="bmb_header_mobile-left">
+      <bmb-logo
+        size="small"
+        [image]="logo()"
+        [altImage]="altLogo()"
+        [link]="logoLink()"
+        [target]="logoTarget()"
+        (buttonClick)="handleLogoClick($event)"
+      />
+    </div>
+    <h2 class="bmb_header_mobile-text">{{ text() }}</h2>
+    <div class="bmb_header_mobile-right">
+      <button type="button" (click)="handleTrailingIconClick($event)">
+        <bmb-icon
+          [icon]="trailingIcon()"
+          alt="Trailing icon"
+          [dotNotification]="trailingIconNotifications()"
+        />
+      </button>
+      <bmb-user-image
+        size="mobile-small"
+        [image]="userImage()"
+        [altImage]="userAltImage()"
+        [link]="userLink()"
+        [target]="userTarget()"
+        (click)="handleUserImageClick($event)"
+        *ngIf="userImage()"
+        (buttonClick)="handleUserImageClick($event)"
+      />
+    </div>
+    <section class="bmb_header_mobile-content">
+      <ng-content />
+    </section>
+  </bmb-container>
+</div>

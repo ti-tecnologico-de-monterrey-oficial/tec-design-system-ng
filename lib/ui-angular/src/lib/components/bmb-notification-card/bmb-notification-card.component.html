@@ -1,0 +1,51 @@
+<section
+  class="bmb_home-notification-card"
+  [ngStyle]="{ '--maxHeight': maxHeight() }"
+>
+  <bmb-home-card
+    [icon]="leftIcon()"
+    bgIconAppearance="red-primary"
+    [componentTitle]="
+      componentTitle() || ('notification_card.title' | translate)
+    "
+    [isMobile]="false"
+    (onExpandClick)="onExpandClick.emit()"
+    [showRightButton]="!hideExpandBtn()"
+    contentPadding="none"
+  >
+    <div class="bmb_home-notification-card-content">
+      @if (showAdvertisements()) {
+        <bmb-tabs
+          [tabs]="tabsConfig()"
+          [(selectedTabId)]="selectedTab"
+        ></bmb-tabs>
+        @switch (selectedTab()) {
+          @case (1) {
+            <bmb-alert-center-list
+              [alerts]="parsedData()"
+              [enableMultipleSelection]="false"
+              [enableRowClick]="enableRowClick()"
+              (alertSelected)="handleAlertSelected($event)"
+            />
+          }
+          @case (2) {
+            <bmb-alert-center-ads
+              [advertisements]="advertisements()"
+              (alertEvent)="handleAlertEvent($event)"
+            />
+          }
+          @default {
+            <div>Invalid ID selected</div>
+          }
+        }
+      } @else {
+        <bmb-alert-center-list
+          [alerts]="parsedData()"
+          [enableMultipleSelection]="false"
+          [enableRowClick]="enableRowClick()"
+          (alertSelected)="handleAlertSelected($event)"
+        />
+      }
+    </div>
+  </bmb-home-card>
+</section>

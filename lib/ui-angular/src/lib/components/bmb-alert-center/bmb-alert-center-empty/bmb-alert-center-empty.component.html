@@ -1,0 +1,40 @@
+<div
+  class="bmb_alert-center-empty"
+  [ngClass]="'bmb_alert-center-empty_' + data().size"
+>
+  <div class="bmb_alert-center-empty_icon">
+    <bmb-icon
+      icon="quiz"
+      [size]="
+        data().size === 'large' ? 120 : data().size === 'medium' ? 80 : 48
+      "
+      alt="Alert center empty icon"
+    ></bmb-icon>
+  </div>
+
+  <h2 class="bmb_alert-center-empty_primary">
+    {{
+      data().primaryText ||
+        ('alert_center.empty_state.primary_text' | translate)
+    }}
+  </h2>
+
+  @if (data().secondaryText) {
+    <p class="bmb_alert-center-empty_secondary">{{ data().secondaryText }}</p>
+  }
+
+  @if (data().showButton) {
+    <button
+      bmbButton
+      appearance="primary"
+      class="bmb_alert-center-empty_button"
+      (click)="data().onClick?.()"
+    >
+      {{ data().buttonText }}
+    </button>
+  }
+
+  @if (data().tertiaryText) {
+    <p class="bmb_alert-center-empty_tertiary">{{ data().tertiaryText }}</p>
+  }
+</div>

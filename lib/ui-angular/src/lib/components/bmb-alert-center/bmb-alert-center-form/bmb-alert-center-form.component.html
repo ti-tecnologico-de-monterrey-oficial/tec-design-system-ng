@@ -1,0 +1,79 @@
+<div class="bmb_alert-center-form">
+  <section class="bmb_alert-center-form-content">
+    @if (
+      enableMultipleSelection() &&
+      (filteredEvents().recent.length ||
+        filteredEvents().sevenDays.length ||
+        filteredEvents().month.length ||
+        filteredEvents().rest.length)
+    ) {
+      <header class="bmb_alert-center-form-content-header">
+        <bmb-checkbox
+          name="selectAll"
+          [label]="'alert_center.list.select_all_button' | translate"
+          id="selectAll"
+          value="selectAll"
+          (change)="handleSelectAll($event)"
+          [indeterminate]="
+            isSomeAlertSelected().some && !isSomeAlertSelected().all
+          "
+        />
+      </header>
+    }
+    @if (filteredEvents().recent.length) {
+      <h3 class="bmb_alert-center-form-title">Recientes</h3>
+      <bmb-alert-center-list
+        (alertSelected)="alertSelected($event)"
+        [alerts]="filteredEvents().recent"
+        [(selectionState)]="selectionState"
+        [enableMultipleSelection]="enableMultipleSelection()"
+      />
+    }
+    @if (filteredEvents().sevenDays.length) {
+      <h3 class="bmb_alert-center-form-title">Últimos 7 días</h3>
+      <bmb-alert-center-list
+        (alertSelected)="alertSelected($event)"
+        [alerts]="filteredEvents().sevenDays"
+        [enableMultipleSelection]="enableMultipleSelection()"
+        [(selectionState)]="selectionState"
+      />
+    }
+    @if (filteredEvents().month.length) {
+      <h3 class="bmb_alert-center-form-title">Últimos 30 días</h3>
+      <bmb-alert-center-list
+        (alertSelected)="alertSelected($event)"
+        [alerts]="filteredEvents().month"
+        [enableMultipleSelection]="enableMultipleSelection()"
+        [(selectionState)]="selectionState"
+      />
+    }
+    @if (filteredEvents().rest.length) {
+      <h3 class="bmb_alert-center-form-title">Restantes</h3>
+      <bmb-alert-center-list
+        (alertSelected)="alertSelected($event)"
+        [alerts]="filteredEvents().rest"
+        [enableMultipleSelection]="enableMultipleSelection()"
+        [(selectionState)]="selectionState"
+      />
+    }
+    @if (
+      !filteredEvents().recent.length &&
+      !filteredEvents().sevenDays.length &&
+      !filteredEvents().month.length &&
+      !filteredEvents().rest.length
+    ) {
+      <section bmbLayoutItem [colSm]="4" [colLg]="12">
+        <bmb-alert-center-empty [data]="emptyStateData()" />
+      </section>
+    }
+  </section>
+  @if (isSomeAlertSelected().some) {
+    <footer class="bmb_alert-center-form-footer">
+      <bmb-navigation-bar
+        [actionHeaders]="navigationBarIcons()"
+        [iconSize]="24"
+        justify="spaceAround"
+      />
+    </footer>
+  }
+</div>

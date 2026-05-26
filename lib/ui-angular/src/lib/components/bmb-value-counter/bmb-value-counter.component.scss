@@ -1,0 +1,14 @@
+@use '../../../assets/styles/base/fonts' as fonts;
+
+.bmb_value-counter {
+  @include fonts.font(4, regular);
+
+  &-label {
+    @include fonts.font(4, regular);
+    font-weight: 400;
+  }
+
+  &-value {
+    color: var(--general-contrasts-75);
+  }
+}

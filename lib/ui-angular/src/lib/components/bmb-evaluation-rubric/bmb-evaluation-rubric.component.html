@@ -1,0 +1,124 @@
+<section class="bmb_evaluation-rubric">
+  <bmb-container>
+    <header class="bmb_evaluation-rubric-header">
+      <bmb-three-cols>
+        <ng-template #bmbLeftContent>
+          <bmb-icon [icon]="icon()" [size]="24" alt="Left icon" />
+        </ng-template>
+        <ng-template #bmbMainContent>
+          <bmb-title-content
+            [componentTitle]="componentTitle() || title() || ''"
+            titleSize="6"
+            titleFontWeight="600"
+            [transparentBgC]="true"
+          />
+        </ng-template>
+        <ng-template #bmbRightContent>
+          <span class="bmb_evaluation-rubric-header-button">
+            <bmb-action-icon
+              [icon]="rightIcon()"
+              [iconSize]="24"
+              (buttonClick)="handleClose()"
+              [alt]="'evaluation_rubric.close' | translate"
+            />
+          </span>
+        </ng-template>
+      </bmb-three-cols>
+    </header>
+  </bmb-container>
+  <section class="bmb_evaluation-rubric-container">
+    @for (item of evaluationRubricList(); track $index) {
+      <section class="bmb_evaluation-rubric-container-criterion">
+        <section class="bmb_evaluation-rubric-container-criterion-title">
+          <h3 class="bmb_evaluation-rubric-container-criterion-title-name">
+            {{ item.criterion }}
+          </h3>
+          <bmb-tooltip
+            [componentTitle]="item.criterion"
+            [text]="item.tooltip"
+            [size]="20"
+          />
+        </section>
+        <section
+          class="bmb_evaluation-rubric-container-criterion-eval"
+          bmbLayout
+          margin="none"
+          gapSize="m"
+          alignItems="center"
+          justify="start"
+          [dynamicCols]="true"
+        >
+          @for (element of getEvalList(); track $index) {
+            <button
+              [ngClass]="
+                getButtonClass(
+                  'bmb_evaluation-rubric-container-criterion-eval',
+                  item,
+                  element
+                )
+              "
+              type="button"
+              (click)="handleEval(item.criterion, element)"
+              bmbLayoutItem
+            >
+              <bmb-focus-element
+                [number]="element"
+                [isInheritedBg]="true"
+                [isNormal]="true"
+              />
+            </button>
+          }
+        </section>
+      </section>
+    }
+    <bmb-divider
+      class="bmb_evaluation-rubric-container-divider"
+      [removeMargin]="true"
+    />
+    <section class="bmb_evaluation-rubric-container-summary">
+      <h3 class="bmb_evaluation-rubric-container-summary-label">
+        {{ summaryLabel() }}
+      </h3>
+      <section class="bmb_evaluation-rubric-container-summary-eval">
+        {{ summary }}
+      </section>
+    </section>
+    <bmb-input
+      class="bmb_evaluation-rubric-container-comment"
+      [label]="commentEvalRubric().label"
+      type="text-area"
+      [tooltip]="commentEvalRubric().tooltip"
+      [placeholder]="commentEvalRubric().placeHolder"
+      [icon]="commentEvalRubric().icon!"
+      [errorMessage]="commentEvalRubric().errorMessage!"
+      [helperMessage]="commentEvalRubric().helperMessage!"
+      [appearance]="commentEvalRubric().appearance!"
+      [disabled]="commentEvalRubric().disabled!"
+      [isRequired]="commentEvalRubric().isRequired!"
+      [showError]="commentEvalRubric().showError!"
+      [showMaxTextLength]="false"
+    />
+    <section class="bmb_evaluation-rubric-container-buttons">
+      <button
+        bmbButton
+        appearance="primary"
+        [icon]="evalRubricButtons().rightIcon!"
+        size="large"
+        position="left"
+        type="button"
+      >
+        {{ evalRubricButtons().rightLabel }}
+      </button>
+      <button
+        bmbButton
+        appearance="destructive"
+        [icon]="evalRubricButtons().leftIcon!"
+        size="large"
+        position="left"
+        type="button"
+      >
+        {{ evalRubricButtons().leftLabel }}
+      </button>
+    </section>
+  </section>
+</section>

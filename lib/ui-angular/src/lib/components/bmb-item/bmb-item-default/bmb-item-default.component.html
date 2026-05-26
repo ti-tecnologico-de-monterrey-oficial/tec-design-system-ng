@@ -1,0 +1,15 @@
+<section class="bmb_item-default" bmbLayout margin="none" alignItems="center">
+  @if (icon()) {
+    <bmb-icon [icon]="icon()" [size]="24" alt="Item icon" bmbLayoutItem />
+  }
+  <section bmbLayoutItem [isDynamicItem]="true" [colGrow]="1">
+    <section bmbLayout margin="none" justify="spaceBetween">
+      <span bmbLayoutItem>
+        {{ label() }}
+      </span>
+      <span bmbLayoutItem>
+        {{ value() }}
+      </span>
+    </section>
+  </section>
+</section>

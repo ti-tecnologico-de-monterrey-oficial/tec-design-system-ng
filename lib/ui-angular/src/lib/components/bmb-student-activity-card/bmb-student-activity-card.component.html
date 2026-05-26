@@ -1,0 +1,40 @@
+<div [ngClass]="getCardClasses()">
+  @if (isListItem() && image() && !disableImage()) {
+    <figure class="bmb_student-activity-card-image">
+      <img
+        class="bmb_student-activity-card-image-pic"
+        [src]="image()"
+        [alt]="componentTitle() || title()"
+        [title]="componentTitle() || title()"
+      />
+    </figure>
+  }
+  @if (isListItem() && disableImage()) {
+    <div
+      class="bmb_student-activity-card-bullet"
+      [ngStyle]="getBulletStyles()"
+    ></div>
+  }
+  <div class="bmb_student-activity-card-badge">
+    <bmb-badge
+      [appearance]="getBadgeType()"
+      [text]="badgeText()"
+      [container]="true"
+    />
+  </div>
+  <h4 class="bmb_student-activity-card-title">
+    {{ componentTitle() || title() }}
+  </h4>
+  <section class="bmb_student-activity-card-content">
+    <strong class="bmb_student-activity-card-content-time">
+      {{ parsedStartDate.toFormat(isListItem() ? 'hh:mm' : 'hh:mm a') }} -
+      {{ parsedEndDate.toFormat(isListItem() ? 'hh:mm' : 'hh:mm a') }}
+    </strong>
+    <p class="bmb_student-activity-card-content-location">
+      {{ location() }}<br />
+      @if (!isListItem()) {
+        {{ responsible() }}
+      }
+    </p>
+  </section>
+</div>

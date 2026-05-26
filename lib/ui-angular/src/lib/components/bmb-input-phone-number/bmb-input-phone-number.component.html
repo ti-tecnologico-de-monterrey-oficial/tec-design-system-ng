@@ -1,0 +1,59 @@
+<bmb-input-validator
+  [name]="name()"
+  [label]="label()"
+  [value]="!!defaultCountryCode() ? value() : ''"
+  [errorMessage]="getErrorMessage()"
+  [helperMessage]="helperMessage()"
+  [isRequired]="isRequired()"
+  [isDisabled]="disabled()"
+  [control]="control()"
+  [showError]="shouldShowError"
+  [tooltip]="tooltip()"
+  [customValidation]="handleCustomValidator()"
+  [inputId]="inputId()"
+>
+  <section class="bmb_input-phone">
+    <section
+      class="bmb_input-phone-container"
+      [ngClass]="{
+        'bmb_input-phone-container-error': shouldShowError,
+        'bmb_input-phone-container-focus': isFocused()
+      }"
+    >
+      <bmb-dropdown
+        class="bmb_input-phone-lada"
+        [name]="getUUID('lada')"
+        [value]="ladaControl.value"
+        [required]="true"
+        [disabled]="disabled()"
+        [showIcon]="false"
+        [options]="countryFiltering"
+        [preferredOptions]="preferredCountries()"
+        [control]="ladaControl"
+        (onValueChange)="onValueChange($event)"
+        (onFocus)="handleFocus($event)"
+      />
+      <bmb-input-content
+        class="bmb_input-phone-number"
+        [name]="getUUID('phone')"
+        pattern="^\d+$"
+        [control]="phoneControl"
+        [inputId]="inputId()"
+        [placeholder]="placeholder()"
+        [maxLength]="getSelectedCountryLength(ladaControl.value)"
+        [minLength]="getSelectedCountryLength(ladaControl.value)"
+        [isRequired]="isRequired()"
+        (onFocus)="handleFocus($event)"
+        (onBlur)="handleValidity()"
+      />
+    </section>
+    <input
+      hidden
+      type="text"
+      [name]="name()"
+      [required]="isRequired()"
+      [formControl]="control()"
+      [tabindex]="-1"
+    />
+  </section>
+</bmb-input-validator>

@@ -1,0 +1,28 @@
+<section
+  class="bmb_value-counter"
+  bmbLayout
+  [dynamicCols]="true"
+  margin="none"
+  alignItems="center"
+  justify="spaceBetween"
+>
+  <h3 class="bmb_value-counter-label" bmbLayoutItem>{{ label() }}</h3>
+  <section
+    bmbLayoutItem
+    bmbLayout
+    [dynamicCols]="true"
+    margin="none"
+    gapSize="xs"
+    alignItems="center"
+  >
+    @if (!!progressValue) {
+      <span class="bmb_value-counter-progress" bmbLayoutItem>
+        {{ progressValue }}
+      </span>
+      <span class="bmb_value-counter-slash" bmbLayoutItem>/</span>
+    }
+    <span class="bmb_value-counter-value" bmbLayoutItem>
+      {{ totalValue }}
+    </span>
+  </section>
+</section>

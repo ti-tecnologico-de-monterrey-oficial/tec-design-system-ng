@@ -1,0 +1,121 @@
+<bmb-input-validator
+  type="file"
+  [name]="name()"
+  [control]="control()"
+  [inputId]="inputId()"
+  [isMultipleFile]="multiple()"
+  [customValidation]="customValidation()"
+>
+  <section class="bmb_drop-zone" bmbVerticalLayout gapSize="l">
+    <section
+      class="bmb_drop-zone-container"
+      [ngClass]="getDropZoneClass()"
+      (dragover)="handleDragOver($event)"
+      (dragleave)="handleDragLeave($event)"
+      (drop)="handleDrop($event)"
+      bmbVerticalLayoutItem
+      bmbVerticalLayout
+      gapSize="m"
+      justify="center"
+      alignItems="center"
+    >
+      <bmb-icon
+        class="bmb_drop-zone-icon"
+        [ngClass]="{
+          'bmb_drop-zone-icon-error': isErrorFiles()
+        }"
+        [icon]="mainIcon()"
+        [size]="48"
+        alt="Drop zone icon"
+        bmbVerticalLayoutItem
+        [isFullWidth]="false"
+      />
+
+      <p
+        class="bmb_drop-zone-label"
+        bmbVerticalLayoutItem
+        [isFullWidth]="false"
+      >
+        {{ formatFilesLabel() || ('dropzone.format_files_label' | translate) }}
+      </p>
+      <p
+        class="bmb_drop-zone-label-instruction"
+        bmbVerticalLayoutItem
+        [isFullWidth]="false"
+      >
+        {{ dropInstruction() || ('dropzone.drop_instructions' | translate) }}
+        <label
+          class="bmb_drop-zone-input bmb_drop-zone-input-underlined"
+          [for]="inputId()"
+          bmbVerticalLayoutItem
+          [isFullWidth]="false"
+        >
+          {{ dropLabel() || ('dropzone.drop_label' | translate) }}
+          <input
+            hidden
+            type="file"
+            [id]="inputId()"
+            [name]="name()"
+            [accept]="getAcceptAttribute()"
+            [attr.multiple]="multiple() || null"
+            [tabindex]="-1"
+            (change)="handleFileSelected($event)"
+          />
+        </label>
+      </p>
+      @if (isErrorFiles()) {
+        <p
+          class="bmb_drop-zone-label-error"
+          bmbVerticalLayoutItem
+          [isFullWidth]="false"
+        >
+          {{ errorMessageLabel }}
+        </p>
+        @if (!!linkFilesSupported() && !!linkLabel()) {
+          <bmb-text-link
+            textLinkStyle="underlined"
+            [link]="linkFilesSupported()"
+            [textLink]="linkLabel() || ('dropzone.link_label' | translate)"
+            bmbVerticalLayoutItem
+            [isFullWidth]="false"
+          />
+        }
+      }
+    </section>
+    @if (!!fileDataList.length) {
+      @for (file of organizedFiles; track file.name) {
+        <bmb-progress-bar
+          class="bmb-drop-zone-file"
+          [ngClass]="{
+            'bmb_drop-zone-icon-animated': isUploadInProgress(file)
+          }"
+          type="container"
+          [totalCount]="
+            isUploadInProgress(file) ? 100 : getFileSizeInMB(file.size)
+          "
+          [textFormat]="
+            file.error || isUploadCompleted(file)
+              ? !isValidFileSize(file.size)
+                ? getFormatSizeError
+                : getFormatSize
+              : getFormatProgress
+          "
+          [textFormatSeparator]="isUploadInProgress(file) ? '' : '/'"
+          [counter]="
+            isUploadInProgress(file)
+              ? getProgress(file)
+              : getFileSizeInMB(file.size)
+          "
+          [componentTitle]="getFileName(file)"
+          [appearance]="file.error ? 'error' : 'info'"
+          [isContainer]="true"
+          [avatarIcon]="getAvatarIcon(file)"
+          [actionIcon]="file.error ? 'close' : 'delete'"
+          [showStatusIcon]="isUploadCompleted(file)"
+          (actionClick)="handleRemoveFile(file.name)"
+          bmbVerticalLayoutItem
+        />
+      }
+    }
+  </section>
+</bmb-input-validator>

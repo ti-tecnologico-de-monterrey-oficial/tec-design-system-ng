@@ -1,0 +1,250 @@
+import { moduleMetadata, type Meta, type StoryFn } from '@storybook/angular';
+import { BmbLoginOnboardingComponent } from './bmb-login-onboarding.component';
+import { Component } from '@angular/core';
+import { IBmbLoginOnboarding, IBmbUserInfo } from '../../types';
+import {
+  BlockquoteType,
+  getAlertBlockquote,
+  getBasicExampleBlock,
+  getGeneralComponentDescription,
+  getGeneralDescription,
+  getSpecialSpecifications,
+  getTECParticularitiesMessage,
+  RELEVANT_TITLE,
+} from '../../utils/doc/utils';
+
+@Component({
+  standalone: true,
+  imports: [BmbLoginOnboardingComponent],
+  selector: 'storybook-toast-wrapper',
+  template: `
+    <div style="max-width: 500px; margin: 0 auto">
+      <bmb-login-onboarding (handleRequest)="handleRequest($event)">
+        <p>custom content</p>
+      </bmb-login-onboarding>
+      <bmb-theme initialTheme="dark" [showControls]="false" />
+    </div>
+  `,
+})
+class StorybookToastWrapperComponent {
+  auth(data: unknown): boolean {
+    return true;
+  }
+
+  toTPCode(data: unknown): boolean {
+    return data === '123456';
+  }
+
+  biometricData(): boolean {
+    return true;
+  }
+
+  activate(): boolean {
+    return true;
+  }
+
+  getUserInfo(data: unknown): IBmbUserInfo {
+    return {
+      id: 'A00123456',
+      fullName: 'Borrego Perez',
+      profilePicture:
+        'https://studio-assets.supernova.io/design-systems/74407/16b3da66-1d17-46fe-be94-a01dea059580.svg',
+    };
+  }
+
+  init(): void {
+    console.log('init');
+  }
+
+  handleRequest(event: IBmbLoginOnboarding) {
+    const { data, action, callback } = event;
+
+    switch (action) {
+      case 'auth':
+        setTimeout(() => {
+          callback(this.auth(data));
+        }, 1000);
+        break;
+      case 'toTP':
+        callback(this.toTPCode(data));
+        break;
+      case 'biometric':
+        callback(this.biometricData());
+        break;
+      case 'activate':
+        callback(this.activate());
+        break;
+      case 'getUserInfo':
+        callback(this.getUserInfo(data));
+        break;
+      case 'init':
+        setTimeout(() => {
+          callback(this.init());
+        }, 1000);
+        break;
+      default:
+        console.log('Invalid action');
+    }
+  }
+}
+
+export default {
+  title: 'Organisms/Login onboarding mobile',
+  component: BmbLoginOnboardingComponent,
+  tags: ['tec'],
+  decorators: [
+    moduleMetadata({
+      imports: [StorybookToastWrapperComponent, BmbLoginOnboardingComponent],
+      providers: [],
+    }),
+  ],
+  parameters: {
+    docs: {
+      description: {
+        component: `
+${getGeneralDescription(`${getGeneralComponentDescription({ name: 'login', type: 'organism' })} to log in to the web platform. It includes fields for credentials and password recovery.`, { generalDocLink: 'https://bamboo.tec.mx/latest/organisms/login-layout-web/descripcion-general-uYEtF9vq' })}
+${getSpecialSpecifications(
+  `${getTECParticularitiesMessage('organism')}
+<br/>
+  ${getAlertBlockquote(
+    `This component **does not have support** for the *light* theme.`,
+    {
+      title: `###${RELEVANT_TITLE.deprecated}`,
+      blockquoteType: BlockquoteType.note,
+    },
+  )}
+  `,
+  {
+    showAdditionalBlockquote: true,
+  },
+)}
+${getBasicExampleBlock(
+  `BmbLoginOnboardingComponent,
+  IBmbLoginOnboarding,
+   IBmbUserInfo`,
+  '',
+  `
+  auth(data: unknown): boolean {
+    data;
+    return true;
+  }
+
+  toTPCode(data: unknown): boolean {
+    return data === '123456';
+  }
+
+  biometricData(): boolean {
+    return true;
+  }
+
+  activate(): boolean {
+    return true;
+  }
+
+  getUserInfo(data: unknown): IBmbUserInfo {
+    data;
+    return {
+      id: 'A00123456',
+      fullName: 'Borrego Perez',
+      profilePicture: 'https://studio-assets.supernova.io/design-systems/74407/16b3da66-1d17-46fe-be94-a01dea059580.svg',
+    };
+  }
+
+  init(): void {
+    console.log('init');
+  }
+
+  handleRequest(event: IBmbLoginOnboarding) {
+    const { data, action, callback } = event;
+
+    switch (action) {
+      case 'auth':
+        setTimeout(() => {
+          callback(this.auth(data));
+        }, 1000);
+        break;
+      case 'toTP':
+        callback(this.toTPCode(data));
+        break;
+      case 'biometric':
+        callback(this.biometricData());
+        break;
+      case 'activate':
+        callback(this.activate());
+        break;
+      case 'getUserInfo':
+        callback(this.getUserInfo(data));
+        break;
+      case 'init':
+        setTimeout(() => {
+          callback(this.init());
+        }, 1000);
+        break;
+      default:
+        console.log('Invalid action');
+    }
+  }
+}
+`,
+)}
+\`\`\`html
+<bmb-login-onboarding (handleRequet)="handleRequet($event)">
+  <p>custom content</p>
+</bmb-login-onboarding>
+\`\`\`
+        `,
+      },
+    },
+  },
+  argTypes: {
+    loginOnBoardingCustomization: {
+      name: 'Customization',
+      control: 'object',
+      description: `
+Sets the customization of the steps.
+
+    IBmbLoginOnBoardingCustomization {
+      anotherAccount: IBmbLinkConfiguration;
+      forgottenPassword: IBmbLinkConfiguration;
+    }
+
+    IBmbLinkConfiguration {
+      label: string;
+      link: string;
+      target?: IBmbTargetLink;
+    }
+      `,
+      table: {
+        category: 'properties',
+        type: { summary: 'IBmbLoginOnBoardingCustomization' },
+      },
+    },
+    handleRequest: {
+      name: 'Handle Request',
+      control: null,
+      description: 'Output function',
+      table: {
+        category: 'Events',
+        type: { summary: 'function' },
+      },
+    },
+  },
+} as Meta<typeof BmbLoginOnboardingComponent>;
+
+export const Default: StoryFn<typeof StorybookToastWrapperComponent> = (
+  args,
+) => {
+  return {
+    props: args,
+    template: `
+      <!-- Instruction to users: This component is used for internal Storybook logic and should not be copied -->
+      <storybook-toast-wrapper></storybook-toast-wrapper>
+      <!-- Start copying from here -->
+      <div class="actions">
+        <bmb-login-onboarding (handleRequest)="handleRequest($event)">
+          <p>custom content</p>
+        </bmb-login-onboarding>
+      </div>
+      `,
+  };
+};

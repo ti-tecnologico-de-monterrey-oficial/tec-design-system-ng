@@ -1,0 +1,20 @@
+<section class="bmb_action-menu">
+  @if (showHeader()) {
+    <bmb-home-card-header
+      [componentTitle]="componentTitle() || title() || ''"
+      [subtitle]="subtitle()"
+      [icon]="icon()"
+      [iconSize]="iconSize()!"
+      [bgIconAppearance]="bgIconAppearance()"
+      [showRightButton]="false"
+    />
+  }
+  <section class="bmb_action-menu-list" [ngClass]="{ action: !showHeader() }">
+    @for (element of menuContentList; track $index) {
+      <ng-container [ngTemplateOutlet]="element" />
+      @if (showHeader() && $index + 1 < menuContentList.length) {
+        <bmb-divider class="bmb_item-divider" />
+      }
+    }
+  </section>
+</section>

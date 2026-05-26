@@ -29,7 +29,7 @@
 @use 'components/organism';
 @use 'components/table';
 
-@use '../../../../../node_modules/@angular/cdk/overlay-prebuilt.css';
+@use '../../../../node_modules/@angular/cdk/overlay-prebuilt.css';
 
 // Import and register the design tokens like colors and theme
 @use 'tokens/brand/core/colors';

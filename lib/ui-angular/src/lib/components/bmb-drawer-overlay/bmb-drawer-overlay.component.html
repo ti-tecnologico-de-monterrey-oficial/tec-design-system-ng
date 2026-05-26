@@ -1,0 +1,44 @@
+<section class="bmb_drawer" [class.open]="isOpen">
+  @if (isOpen) {
+    <div class="bmb_drawer-overlay" (click)="closeDrawer($event)"></div>
+    <section class="bmb_drawer-menu" (click)="$event.stopPropagation()">
+      @for (item of menu().slice(0, 4); track $index) {
+        <bmb-interactive-icon
+          [appearance]="item.appearance"
+          [componentTitle]="item.title"
+          [icon]="item.icon"
+          [target]="item?.target!"
+          [link]="item?.link!"
+          [layout]="'app_drawer'"
+          (buttonClick)="toggleFullDrawer($event, item)"
+        />
+      }
+    </section>
+  }
+  @if (isFull) {
+    <section class="bmb_drawer-full">
+      <bmb-inner-header
+        [componentTitle]="componentTitle() || title()"
+        [showReturn]="true"
+        (onHandleBack)="toggleFullDrawer($event)"
+        (searchData)="handleValueChange($event)"
+        [showSearch]="true"
+      />
+      <bmb-tabs [tabs]="tabs()" (selected)="selectNavItem($event.id)" />
+      <section class="bmb_drawer-apps">
+        @for (app of appsActive; track $index) {
+          <bmb-interactive-icon
+            [appearance]="app.appearance"
+            [componentTitle]="app.title"
+            [icon]="app.icon"
+            [target]="app?.target!"
+            [link]="app?.link!"
+            [layout]="'regular'"
+          />
+        }
+      </section>
+    </section>
+  }
+
+  <bmb-fab icon="apps" size="large" type="normal" (fabClick)="toggleDrawer()" />
+</section>

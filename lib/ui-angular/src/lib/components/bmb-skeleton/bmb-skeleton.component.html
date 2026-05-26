@@ -1,0 +1,194 @@
+<div class="bmb_skeleton">
+  @switch (type()) {
+    @case ('stray') {
+      <div
+        class="bmb_skeleton-stray"
+        bmbLayoutGrid
+        colGapSize="m"
+        rowGapSize="m"
+        [columnSize]="['4rem', '2fr']"
+        rowSize="auto"
+        [columns]="2"
+        [rows]="2"
+      >
+        <section
+          class="bmb_skeleton-circle bmb_skeleton-item"
+          bmbLayoutGridItem
+          [colStart]="1"
+          [rowStart]="1"
+          [numberOfColumns]="1"
+          [numberOfRows]="2"
+        ></section>
+        <section
+          class="bmb_skeleton-headline bmb_skeleton-item"
+          bmbLayoutGridItem
+          [colStart]="2"
+          [rowStart]="1"
+          [numberOfColumns]="1"
+          [numberOfRows]="1"
+        ></section>
+        <section
+          class="bmb_skeleton-headline bmb_skeleton-item"
+          bmbLayoutGridItem
+          [colStart]="2"
+          [rowStart]="2"
+          [numberOfColumns]="1"
+          [numberOfRows]="1"
+        ></section>
+      </div>
+    }
+    @case ('generic1') {
+      <div
+        class="bmb_skeleton-generic1"
+        bmbLayoutGrid
+        colGapSize="m"
+        rowGapSize="m"
+        columnSize="auto"
+        rowSize="auto"
+        [columns]="1"
+        [rows]="4"
+      >
+        <section
+          class="bmb_skeleton-headline bmb_skeleton-item"
+          bmbLayoutGridItem
+          [colStart]="1"
+          [rowStart]="1"
+          [numberOfColumns]="1"
+          [numberOfRows]="1"
+        ></section>
+        <section
+          class="bmb_skeleton-headline bmb_skeleton-item"
+          bmbLayoutGridItem
+          [colStart]="1"
+          [rowStart]="2"
+          [numberOfColumns]="1"
+          [numberOfRows]="1"
+        ></section>
+        <section
+          class="bmb_skeleton-headline bmb_skeleton-item"
+          bmbLayoutGridItem
+          [colStart]="1"
+          [rowStart]="3"
+          [numberOfColumns]="1"
+          [numberOfRows]="1"
+        ></section>
+        <section
+          class="bmb_skeleton-headline bmb_skeleton-item"
+          bmbLayoutGridItem
+          [colStart]="1"
+          [rowStart]="4"
+          [numberOfColumns]="1"
+          [numberOfRows]="1"
+        ></section>
+      </div>
+    }
+    @case ('generic2') {
+      <div
+        class="bmb_skeleton-generic2"
+        bmbLayoutGrid
+        colGapSize="xl"
+        rowGapSize="xl"
+        columnSize="auto"
+        rowSize="auto"
+        [columns]="1"
+        [rows]="3"
+      >
+        <section
+          class="bmb_skeleton-box"
+          bmbLayoutGridItem
+          [colStart]="1"
+          [rowStart]="1"
+          [numberOfColumns]="1"
+          [numberOfRows]="1"
+        ></section>
+        <section
+          class="bmb_skeleton-headline bmb_skeleton-item"
+          bmbLayoutGridItem
+          [colStart]="1"
+          [rowStart]="2"
+          [numberOfColumns]="1"
+          [numberOfRows]="1"
+        ></section>
+        <section
+          class="bmb_skeleton-headline bmb_skeleton-item"
+          bmbLayoutGridItem
+          [colStart]="1"
+          [rowStart]="3"
+          [numberOfColumns]="1"
+          [numberOfRows]="1"
+        ></section>
+      </div>
+    }
+    @case ('generic3') {
+      <div
+        class="bmb_skeleton-generic3"
+        bmbLayoutGrid
+        colGapSize="none"
+        rowGapSize="none"
+        columnSize="auto"
+        rowSize="auto"
+        [columns]="1"
+        [rows]="3"
+      >
+        <section
+          class="bmb_skeleton-box-header"
+          bmbLayoutGridItem
+          [colStart]="1"
+          [rowStart]="1"
+          [numberOfColumns]="1"
+          [numberOfRows]="1"
+        ></section>
+        <section
+          class="bmb_skeleton-headline bmb_skeleton-item"
+          bmbLayoutGridItem
+          [colStart]="1"
+          [rowStart]="2"
+          [numberOfColumns]="1"
+          [numberOfRows]="1"
+        ></section>
+      </div>
+    }
+    @case ('input') {
+      <div class="bmb_skeleton-input">
+        <section class="bmb_skeleton-headline bmb_skeleton-item"></section>
+      </div>
+    }
+    @default {
+      <div
+        class="bmb_skeleton-header"
+        bmbLayoutGrid
+        colGapSize="m"
+        rowGapSize="m"
+        [columnSize]="['1.5rem', '2fr', '1.5rem']"
+        rowSize="auto"
+        [columns]="3"
+        [rows]="1"
+      >
+        <section
+          class="bmb_skeleton-circle bmb_skeleton-item"
+          bmbLayoutGridItem
+          [colStart]="1"
+          [rowStart]="1"
+          [numberOfColumns]="1"
+          [numberOfRows]="1"
+        ></section>
+        <section
+          class="bmb_skeleton-headline bmb_skeleton-item"
+          bmbLayoutGridItem
+          [colStart]="2"
+          [rowStart]="1"
+          [numberOfColumns]="1"
+          [numberOfRows]="1"
+        ></section>
+        <section
+          class="bmb_skeleton-circle bmb_skeleton-item"
+          bmbLayoutGridItem
+          [colStart]="3"
+          [rowStart]="1"
+          [numberOfColumns]="1"
+          [numberOfRows]="1"
+        ></section>
+      </div>
+    }
+  }
+</div>

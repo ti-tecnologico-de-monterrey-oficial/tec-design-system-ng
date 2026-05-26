@@ -1,0 +1,15 @@
+.bmb_bookmark {
+  color: var(--black-tint);
+
+  &.active {
+    color: rgb(var(--red-light));
+  }
+
+  &:hover {
+    opacity: 50%;
+  }
+}
+
+:host {
+  display: inline-flex;
+}

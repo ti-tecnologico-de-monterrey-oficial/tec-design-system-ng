@@ -1,0 +1,80 @@
+@use '../../../assets/styles/base/rem' as rem;
+@use '../../../assets/styles/base/fonts' as fonts;
+@use '../../../assets/styles/base/mixins' as mixins;
+
+.bmb_drop-zone {
+  color: var(--general-contrasts-80);
+  @include fonts.font(4, regular);
+  width: 100%;
+
+  &-container {
+    border: rem.rem_calc(2) dashed var(--general-contrasts-container-outline);
+    border-radius: var(--bmb-radius-3);
+    box-sizing: border-box;
+    padding: var(--bmb-spacing-m) var(--bmb-spacing-m);
+
+    &-primary {
+      background-color: var(--containers-background);
+    }
+
+    &-alternative {
+      background-color: var(--containers-main);
+    }
+
+    &-error {
+      border-color: var(--buttons-destructive);
+      background-color: transparent;
+    }
+
+    &-uploading-file {
+      color: var(--general-contrasts-primary);
+      background-color: var(--menu-select-on-surface-hovered-w-checkbox);
+      border-color: currentColor;
+
+      .bmb_drop-zone-icon {
+        color: currentColor;
+      }
+    }
+
+    > p {
+      margin: 0;
+    }
+  }
+
+  &-label {
+    &-instruction {
+      color: var(--general-contrasts-100);
+    }
+
+    &-error {
+      color: var(--buttons-destructive);
+    }
+  }
+
+  &-icon {
+    color: var(--general-contrasts-80);
+
+    &-animated {
+      .bmb_progress-bar-icon {
+        animation: spin 1.5s ease infinite;
+      }
+    }
+
+    &-error {
+      color: var(--buttons-destructive);
+    }
+  }
+
+  &-input {
+    @include mixins.text-link-appearance();
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(359deg);
+  }
+}

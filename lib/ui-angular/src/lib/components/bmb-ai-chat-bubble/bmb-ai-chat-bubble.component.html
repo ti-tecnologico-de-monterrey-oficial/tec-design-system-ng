@@ -1,0 +1,96 @@
+@if (message(); as message) {
+  <section
+    class="bmb-ai-chat-bubble"
+    role="article"
+    aria-label="Chat"
+    [attr.data-automation-id]="testId()"
+  >
+    <div class="bmb-ai-chat-bubble-wrapper" [ngClass]="bubbleClasses()">
+      <div class="bmb-ai-chat-bubble-profile">
+        @if (message.isUser) {
+          <bmb-user-image
+            [size]="'mobile-small'"
+            [image]="message.userProfile!"
+            [altImage]="'Imagen de perfil del usuario'"
+            [bordered]="false"
+          ></bmb-user-image>
+        } @else {
+          <bmb-icon
+            class="bmb-ai-chat-bubble-profile-bot"
+            [size]="20"
+            alt="bot"
+            [isSVGTemplate]="true"
+          >
+            <ng-template #customIcon>
+              <bmb-bot-icon [iconName]="botIcon()" />
+            </ng-template>
+          </bmb-icon>
+        }
+      </div>
+      <div class="bmb-ai-chat-bubble-container">
+        <div
+          class="bmb-ai-chat-bubble-msg"
+          [attr.data-testid]="testId() + '-message'"
+        >
+          @if (isThinking()) {
+            <div class="bmb-ai-chat-bubble-thinking-dots">
+              <span class="bmb-ai-chat-bubble-thinking-dot"></span>
+              <span class="bmb-ai-chat-bubble-thinking-dot"></span>
+              <span class="bmb-ai-chat-bubble-thinking-dot"></span>
+            </div>
+          } @else {
+            @switch (message.type) {
+              @case ('text') {
+                <bmb-text-message [message]="message" />
+              }
+
+              @case ('image') {
+                <bmb-image-message [message]="message" />
+              }
+
+              @case ('mixed') {
+                <bmb-mixed-message [message]="message" />
+              }
+
+              @case ('link') {
+                <bmb-link-message [message]="message" />
+              }
+
+              @case ('options') {
+                <bmb-options-message [message]="message" />
+              }
+
+              @case ('template') {
+                <bmb-template-message [message]="message" />
+              }
+
+              @default {
+                <bmb-text-message [message]="message" />
+              }
+            }
+          }
+        </div>
+
+        <div class="bmb-ai-chat-bubble-extra">
+          @if (message.isUser) {
+            <p class="bmb-ai-chat-bubble-extra-time">
+              {{ message.timestamp | date: 'hh:mm a' }}
+            </p>
+          } @else {
+            <div class="bmb-ai-chat-bubble-extra-container">
+              @if (showActions() && !message.isUser) {
+                <bmb-chat-actions
+                  [message]="message"
+                  (actionTriggered)="onAction($event)"
+                />
+              }
+            </div>
+            <p class="bmb-ai-chat-bubble-extra-time">
+              {{ message.timestamp | date: 'hh:mm a' }}
+            </p>
+          }
+        </div>
+      </div>
+    </div>
+  </section>
+}

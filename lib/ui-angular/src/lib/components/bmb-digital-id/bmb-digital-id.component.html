@@ -1,0 +1,74 @@
+<section class="bmb_digital-id">
+  <bmb-image
+    class="bmb_digital-id-top-image"
+    [mobileSrc]="imgBackground()"
+    alt="Background Img"
+    borderRadius="none"
+  />
+  <div class="bmb_digital-id-top">
+    <bmb-image
+      class="bmb_digital-id-top-logo"
+      [mobileSrc]="logoSrc()"
+      alt="Tec de Monterrey"
+      borderRadius="none"
+      objectFit="contain"
+    />
+  </div>
+  <bmb-action-icon
+    class="bmb_digital-id-top-btn"
+    icon="close"
+    [iconSize]="24"
+    (buttonClick)="closeDigitalId($event)"
+    [alt]="'digital_id.close' | translate"
+  />
+
+  <div class="bmb_digital-id-mid">
+    <bmb-user-summary-content
+      [isProfile]="true"
+      [name]="getFullName()"
+      [userId]="registration()"
+      [image]="imgProfile()"
+      imageSize="mobile-xlarge"
+      [campus]="campus()"
+      [infoCareer]="career()"
+      [role]="role()"
+    />
+  </div>
+  <div class="bmb_digital-id-bottom-btn">
+    @if (!hideSecondaryButton()) {
+      <button
+        type="button"
+        class="bmb_digital-id-btnAccess"
+        bmbButton
+        appearance="secondary-outlined"
+        [icon]="secondaryIconButton()"
+        [iconSize]="0"
+        size="large"
+        position="left"
+        [disabled]="disableSecondaryButton()"
+        (click)="handleSecondaryClick($event)"
+      >
+        {{
+          secondaryTextButton() ||
+            ('digital_id.secondary_button_label' | translate)
+        }}
+      </button>
+    }
+    @if (!hideMainButton()) {
+      <button
+        type="button"
+        class="bmb_digital-id-btnAccess"
+        bmbButton
+        appearance="primary"
+        [icon]="icon()"
+        [iconSize]="0"
+        size="large"
+        position="left"
+        [disabled]="disableMainButton()"
+        (click)="clickAccess($event)"
+      >
+        {{ textButton() }}
+      </button>
+    }
+  </div>
+</section>

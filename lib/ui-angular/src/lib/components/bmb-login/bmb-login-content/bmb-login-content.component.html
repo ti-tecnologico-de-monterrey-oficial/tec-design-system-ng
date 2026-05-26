@@ -1,0 +1,58 @@
+<section class="bmb_login-content">
+  <span class="bmb_login-content-input">
+    <bmb-input
+      placeholder="Usuario"
+      icon="account_circle"
+      errorMessage="El usuario es requerido"
+      appearance="normal"
+      [disabled]="false"
+      [control]="getFormControl('user')"
+      [showError]="showErrors['user']"
+      (isBlur)="onSubmit()"
+    />
+  </span>
+  <span class="bmb_login-content-input">
+    <bmb-input
+      type="password"
+      placeholder="Contraseña"
+      icon="lock"
+      additionalAction="showHide"
+      errorMessage="La contraseña es requerida"
+      appearance="normal"
+      [disabled]="false"
+      [control]="getFormControl('password')"
+      [showError]="showErrors['password']"
+      (isBlur)="onSubmit()"
+    />
+  </span>
+  @if (showRememberMeCheckbox()) {
+    <span class="bmb_login-content-input">
+      <bmb-checkbox
+        id="checkbox1"
+        [label]="rememberMeCheckboxLabel()"
+        value="checked"
+        (change)="handleRememberMe($event)"
+      />
+    </span>
+  }
+  <section class="bmb_login-content-sublabel">
+    <bmb-text-link
+      [textLink]="forgottenPasswordLabel()"
+      icon=""
+      [link]="forgottenPasswordLink()"
+      textLink="forgotten password"
+      [target]="forgottenPasswordTarget()"
+    />
+  </section>
+  @if (showLoginAsGuest()) {
+    <section class="bmb_login-content-sublabel">
+      <bmb-text-link
+        [textLink]="loginAsGuestLabel()"
+        icon=""
+        [link]="loginAsGuestLink()"
+        textLink="guest"
+        [target]="loginAsGuestTarget()"
+      />
+    </section>
+  }
+</section>

@@ -1,0 +1,20 @@
+@use '../../../../../assets/styles/base/fonts' as fonts;
+@use '../../../../../assets/styles/base/rem' as rem;
+@use '../../../../../assets/styles/base/mixins' as mixins;
+
+.bmb_calendar-header {
+  padding-bottom: rem.rem_calc(16);
+  @include mixins.check-for-mobile() {
+    display: none;
+  }
+
+  .bmb_button-group-transparent > * {
+    color: var(--general-contrasts-100);
+  }
+
+  &-title {
+    @include fonts.font(7, bold);
+    text-align: center;
+    text-transform: capitalize;
+  }
+}

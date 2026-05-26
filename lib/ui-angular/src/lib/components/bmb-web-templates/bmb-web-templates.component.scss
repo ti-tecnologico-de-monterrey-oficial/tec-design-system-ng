@@ -1,0 +1,20 @@
+@use '../../../assets/styles/base/fonts' as fonts;
+@use '../../../assets/styles/base/rem' as rem;
+@use '../../../assets/styles/base/mixins' as mixins;
+@use './styles/full-width-card.scss';
+@use './styles/justify-width-card.scss';
+@use './styles/single-column-card.scss';
+@use './styles/aside-first-card.scss';
+@use './styles/aside-light-card.scss';
+@use './styles/two-aside-card.scss';
+
+.bmb_web-template {
+  background-color: var(--general-contrasts-25);
+  display: grid;
+  gap: 0;
+  min-height: 100dvh;
+  @include mixins.check-for-mobile(false) {
+    height: 100dvh;
+    overflow: hidden;
+  }
+}

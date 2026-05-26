@@ -1,0 +1,39 @@
+<header class="bmb_home-card-header">
+  <bmb-container
+    class="bmb_home-card-header-wrapper"
+    [ngClass]="{ left: !!leftIcon() }"
+  >
+    <span class="bmb_home-card-header-container">
+      <bmb-three-cols [expandMainColumn]="true">
+        <ng-template #bmbLeftContent>
+          @if (!!leftIcon()) {
+            <bmb-action-icon
+              [icon]="leftIcon()!"
+              [iconSize]="24"
+              (buttonClick)="handleBack()"
+              [alt]="'home_card.back' | translate"
+            />
+          }
+        </ng-template>
+        <ng-template #bmbMainContent>
+          <bmb-title-content
+            [componentTitle]="componentTitle() || title()"
+            [subtitle]="subtitle()"
+            [icon]="getIconName()"
+            [iconSize]="iconSize()!"
+            [bgIconAppearance]="bgIconAppearance()"
+            [dataLocalNav]="getDataLocalNav()"
+            [(currentBot)]="currentBot"
+          />
+        </ng-template>
+        <ng-template #bmbRightContent>
+          <bmb-navigation-bar
+            [actionHeaders]="actionHeaderList()"
+            [iconSize]="24"
+            alignItems="center"
+          />
+        </ng-template>
+      </bmb-three-cols>
+    </span>
+  </bmb-container>
+</header>

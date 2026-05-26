@@ -1,0 +1,45 @@
+@use '../../../assets/styles/base/fonts' as fonts;
+@use '../../../assets/styles/base/rem' as rem;
+
+.bmb_inner_header {
+  &-container {
+    width: 100%;
+    color: var(--general-contrasts-100);
+
+    &-space {
+      .bmb_three-cols-child:first-child {
+        width: rem.rem_calc(64);
+      }
+    }
+  }
+
+  &-form {
+    width: 100%;
+    position: relative;
+    padding: rem.rem_calc(8 0);
+
+    .bmb_inner_header-button {
+      position: absolute;
+      top: rem.rem_calc(20);
+      right: rem.rem_calc(10);
+      color: var(--general-contrasts-100);
+      z-index: 1;
+    }
+  }
+
+  &-actions {
+    display: inline-flex;
+    gap: var(--bmb-spacing-m);
+    color: var(--general-contrasts-100);
+  }
+
+  .bmb_container {
+    border-radius: var(--bmb-radius-none) var(--bmb-radius-none)
+      var(--bmb-radius-3) var(--bmb-radius-3);
+    display: block;
+  }
+
+  .bmb_title-content-container-wrapper-title {
+    color: var(--general-contrasts-100);
+  }
+}

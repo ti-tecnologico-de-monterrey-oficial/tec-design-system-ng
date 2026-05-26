@@ -1,0 +1,201 @@
+@use '../../../assets/styles/base/fonts' as fonts;
+@use '../../../assets/styles/base/rem' as rem;
+@use '../../../assets/styles/base/mixins' as mixins;
+@use '../../../assets/styles/tokens/bgAppearance' as appearance;
+
+$circleTypes: (
+  'under_review': rgb(var(--yellow-primary)),
+  'active': rgb(var(--blue-mariner-500)),
+  'done': rgb(var(--green-primary)),
+  'pending': var(--general-contrasts-100),
+  'canceled': rgb(var(--red-primary)),
+);
+
+.bmb_hito-card {
+  container-type: inline-size;
+  padding: var(--bmb-spacing-m);
+  position: relative;
+
+  &-bullet::after {
+    background-color: rgb(var(--gray-charade-500));
+    border: rem.rem_calc(2) solid var(--containers-background);
+    border-radius: var(--bmb-radius-full);
+    content: '';
+    height: rem.rem_calc(9);
+    left: rem.rem_calc(-23);
+    margin-top: rem.rem_calc(-7);
+    position: absolute;
+    top: 50%;
+    width: rem.rem_calc(9);
+  }
+
+  .bmb_card {
+    box-shadow: var(--bmb-box-shadow-2);
+  }
+
+  &-active {
+    .bmb_card.bmb_card-type-normal {
+      border: rem.rem_calc(2) solid var(--general-contrasts-main-selection);
+    }
+
+    .bmb_card-content {
+      padding: calc(var(--bmb-spacing-m) - rem.rem_calc(1));
+    }
+
+    &::after {
+      background-color: var(--general-contrasts-main-selection);
+    }
+  }
+
+  &-content {
+    align-items: center;
+    cursor: pointer;
+    display: flex;
+    gap: rem.rem_calc(16);
+
+    &-icon {
+      align-items: center;
+      align-self: center;
+      border-radius: var(--bmb-radius-full);
+      color: rgb(var(--white-primary));
+      display: flex;
+      grid-area: icon;
+      height: rem.rem_calc(32);
+      justify-content: center;
+      width: rem.rem_calc(32);
+      @include fonts.font(5, regular);
+
+      @each $type, $value in $circleTypes {
+        &-#{$type} {
+          background-color: $value;
+          @if ($type == 'pending') {
+            color: var(--general-contrasts-5);
+          }
+        }
+      }
+
+      @each $name, $color in appearance.$colors {
+        &-#{$name} {
+          background-color: $color;
+        }
+      }
+    }
+
+    &-title {
+      @include fonts.font(3, regular);
+      font-weight: 400;
+      word-break: break-word;
+      grid-area: title;
+    }
+
+    &-center {
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    &-right {
+      align-self: flex-start;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      text-align: right;
+      flex: 1;
+    }
+
+    &-description {
+      @include fonts.font(1, regular);
+      grid-area: description;
+      margin: 0;
+      display: none;
+      word-break: break-word;
+
+      @include mixins.container-query(780, 'min') {
+        display: block;
+      }
+    }
+
+    .bmb_badge {
+      text-transform: capitalize;
+    }
+
+    &-type {
+      grid-area: type;
+      text-align: right;
+    }
+
+    &-duration {
+      display: none;
+      grid-area: date;
+      margin: 0;
+      word-break: break-word;
+
+      @include mixins.container-query(780, 'min') {
+        display: block;
+      }
+    }
+  }
+
+  &-alternative {
+    padding: 0;
+
+    .bmb_card.bmb_card-type-normal {
+      background-color: var(--containers-main);
+      border: rem.rem_calc(1) solid var(--general-contrasts-25);
+      box-shadow: 6px 6px 4px 0px rgba(var(--black-primary), 0.15);
+    }
+
+    .bmb_hito-card-content {
+      grid-template-areas: 'icon title';
+
+      &-type {
+        display: none;
+      }
+
+      &.bmb_padding-m {
+        padding: var(--bmb-spacing-s) var(--bmb-spacing-m);
+      }
+
+      &-title {
+        align-self: center;
+        margin: 0;
+      }
+    }
+  }
+
+  &-compact {
+    padding: var(--bmb-spacing-s);
+
+    .bmb_hito-card-content-icon {
+      height: rem.rem_calc(16);
+      width: rem.rem_calc(16);
+      @include fonts.font(1, regular);
+
+      @include mixins.container-query(780, 'min') {
+        height: rem.rem_calc(32);
+        width: rem.rem_calc(32);
+        @include fonts.font(5, regular);
+      }
+    }
+
+    .bmb_card-content {
+      @include mixins.container-query(779, 'max') {
+        padding: var(--bmb-spacing-s) var(--bmb-spacing-m);
+      }
+    }
+
+    .bmb_hito-card-content {
+      grid-template-areas:
+        'icon title type'
+        'icon description date';
+      @include mixins.container-query(779, 'max') {
+        grid-template-columns: 1rem 1fr auto;
+      }
+    }
+  }
+}
+
+.bmb_timestream-micro .bmb_hito-card-active .bmb_card.bmb_card-type-normal {
+  border-color: var(--general-contrasts-25);
+}
