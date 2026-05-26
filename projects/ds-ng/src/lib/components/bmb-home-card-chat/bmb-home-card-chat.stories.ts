@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, input } from '@angular/core';
 import { Meta, StoryFn, moduleMetadata } from '@storybook/angular';
 import {
   BlockquoteType,
@@ -45,24 +45,24 @@ const HTMLtemplate: string = `<div class="bmb_template-single-home-card">
 />
 <main class="bmb_template-single-home-card-main">
   <bmb-home-card-chat
-    [leftIcon]="args.leftIcon"
-    [bgIconAppearance]="args.bgIconAppearance"
-    [componentTitle]="args.componentTitle"
-    [subtitle]="args.subtitle"
-    [placeholder]="args.placeholder"
-    [messagesHistory]="args.messages"
-    [botList]="args.botList"
-    [isMobile]="args.isMobile"
-    [testId]="args.testId"
-    [mode]="args.mode"
-    [(currentBot)]="args.currentBot"
-    [(isLoading)]="args.isLoading"
-    (getBubbleAction)="args.getBubbleAction?.($event)"
-    (getSendMessage)="args.getSendMessage?.($event)"
-    (getClose)="args.getClose?.()"
-    (getBack)="args.getBack?.()"
-    (getExpand)="args.getExpand?.($event)"
-    (getNewChat)="args.getNewChat?.($event)"
+    [leftIcon]="args().leftIcon"
+    [bgIconAppearance]="args().bgIconAppearance"
+    [componentTitle]="args().componentTitle"
+    [subtitle]="args().subtitle"
+    [placeholder]="args().placeholder"
+    [messagesHistory]="args().messages"
+    [botList]="args().botList"
+    [isMobile]="args().isMobile"
+    [testId]="args().testId"
+    [mode]="args().mode"
+    [currentBot]="args().currentBot"
+    [isLoading]="args().isLoading"
+    (getBubbleAction)="args().getBubbleAction?.($event)"
+    (getSendMessage)="args().getSendMessage?.($event)"
+    (getClose)="args().getClose?.()"
+    (getBack)="args().getBack?.()"
+    (getExpand)="args().getExpand?.($event)"
+    (getNewChat)="args().getNewChat?.($event)"
   >
   </bmb-home-card-chat>
   </main>
@@ -92,7 +92,7 @@ const HTMLtemplate: string = `<div class="bmb_template-single-home-card">
   template: HTMLtemplate,
 })
 class StorybookModalWrapperComponent {
-  @Input() args!: any;
+  args = input<any>();
 }
 
 export default {

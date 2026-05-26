@@ -1,7 +1,7 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  Input,
+  input,
   ViewEncapsulation,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -48,23 +48,23 @@ export type IBmbBoxShadowStyle =
   encapsulation: ViewEncapsulation.None,
 })
 export class BmbCardComponent {
-  @Input() borderRadius: SizeNames | SizeNames[] = 'm';
-  @Input() margin: SizeNames | SizeNames[] = 'm';
-  @Input() type: IBmbCardType = 'normal';
-  @Input() state: 'disabled' | 'error' | 'normal' = 'normal';
-  @Input() boxShadowStyle: IBmbBoxShadowStyle | 'none' = 'none';
-  @Input() borderColor: IBmbBgColor | 'default' = 'default';
+  borderRadius = input<SizeNames | SizeNames[]>('m');
+  margin = input<SizeNames | SizeNames[]>('m');
+  type = input<IBmbCardType>('normal');
+  state = input<'disabled' | 'error' | 'normal'>('normal');
+  boxShadowStyle = input<IBmbBoxShadowStyle | 'none'>('none');
+  borderColor = input<IBmbBgColor | 'default'>('default');
 
   getClasses() {
     const classNames = [];
-    if (typeof this.borderRadius === 'string')
-      classNames.push(`bmb_radius-${this.borderRadius}`);
-    if (typeof this.margin === 'string')
-      classNames.push(`bmb_margin-${this.margin}`);
-    classNames.push(`bmb_card-type-${this.type}`);
+    if (typeof this.borderRadius() === 'string')
+      classNames.push(`bmb_radius-${this.borderRadius()}`);
+    if (typeof this.margin() === 'string')
+      classNames.push(`bmb_margin-${this.margin()}`);
+    classNames.push(`bmb_card-type-${this.type()}`);
 
-    if (this.boxShadowStyle !== 'none') {
-      classNames.push(`bmb_card-${this.boxShadowStyle}`);
+    if (this.boxShadowStyle() !== 'none') {
+      classNames.push(`bmb_card-${this.boxShadowStyle()}`);
     }
 
     return classNames;
@@ -72,12 +72,14 @@ export class BmbCardComponent {
 
   getStyles() {
     const styles: any = {};
-    if (typeof this.borderRadius !== 'string')
-      styles['border-radius'] = calculateSize(this.borderRadius);
-    if (typeof this.margin !== 'string')
-      styles.margin = calculateSize(this.margin);
-    if (this.borderColor !== 'default')
-      styles.borderColor = `var(--general_${this.borderColor})`;
+    if (typeof this.borderRadius() !== 'string')
+      styles['border-radius'] = calculateSize(
+      this.borderRadius() as string[],
+    );
+    if (typeof this.margin() !== 'string')
+      styles.margin = calculateSize(this.margin() as string[]);
+    if (this.borderColor() !== 'default')
+      styles.borderColor = `var(--general_${this.borderColor()})`;
 
     return styles;
   }
@@ -92,24 +94,24 @@ export class BmbCardComponent {
   encapsulation: ViewEncapsulation.None,
 })
 export class BmbCardHeaderComponent {
-  @Input() padding: SizeNames | SizeNames[] = 'm';
-  @Input() colorBackground: IBmbBgColor | null = null;
+  padding = input<SizeNames | SizeNames[]>('m');
+  colorBackground = input<IBmbBgColor | null>(null);
 
   getClasses() {
     const classNames = [];
-    if (typeof this.padding === 'string')
-      classNames.push(`bmb_padding-${this.padding}`);
+    if (typeof this.padding() === 'string')
+      classNames.push(`bmb_padding-${this.padding()}`);
 
     return classNames;
   }
 
   getStyles() {
     const styles: any = {};
-    if (typeof this.padding !== 'string')
-      styles['padding'] = calculateSize(this.padding);
+    if (typeof this.padding() !== 'string')
+      styles['padding'] = calculateSize(this.padding() as string[])
 
-    if (this.colorBackground !== null) {
-      styles['background-color'] = `var(--general_${this.colorBackground})`;
+    if (this.colorBackground() !== null) {
+      styles['background-color'] = `var(--general_${this.colorBackground()})`;
     }
 
     return styles;
@@ -125,24 +127,24 @@ export class BmbCardHeaderComponent {
   encapsulation: ViewEncapsulation.None,
 })
 export class BmbCardFooterComponent {
-  @Input() padding: SizeNames | SizeNames[] = 'm';
-  @Input() colorBackground: IBmbBgColor | null = null;
+  padding = input<SizeNames | SizeNames[]>('m');
+  colorBackground = input<IBmbBgColor | null>(null);
 
   getClasses() {
     const classNames = [];
-    if (typeof this.padding === 'string')
-      classNames.push(`bmb_padding-${this.padding}`);
+    if (typeof this.padding() === 'string')
+      classNames.push(`bmb_padding-${this.padding()}`);
 
     return classNames;
   }
 
   getStyles() {
     const styles: any = {};
-    if (typeof this.padding !== 'string')
-      styles['padding'] = calculateSize(this.padding);
+    if (typeof this.padding() !== 'string')
+      styles['padding'] = calculateSize(this.padding() as string[])
 
-    if (this.colorBackground !== null) {
-      styles['background-color'] = `var(--general_${this.colorBackground})`;
+    if (this.colorBackground() !== null) {
+      styles['background-color'] = `var(--general_${this.colorBackground()})`;
     }
 
     return styles;
@@ -158,26 +160,26 @@ export class BmbCardFooterComponent {
   encapsulation: ViewEncapsulation.None,
 })
 export class BmbCardContentComponent {
-  @Input() padding: SizeNames | SizeNames[] = 'm';
-  @Input() colorBackground: IBmbBgColor | null = null;
-  @Input() setBorderRadius: boolean = false;
+  padding = input<SizeNames | SizeNames[]>('m');
+  colorBackground = input<IBmbBgColor | null>(null);
+  setBorderRadius = input<boolean>(false);
 
   getClasses() {
     const classNames = [];
-    if (typeof this.padding === 'string')
-      classNames.push(`bmb_padding-${this.padding}`);
-    if (this.setBorderRadius) classNames.push('bmb_card-content-with-radius');
+    if (typeof this.padding() === 'string')
+      classNames.push(`bmb_padding-${this.padding()}`);
+    if (this.setBorderRadius()) classNames.push('bmb_card-content-with-radius');
 
     return classNames;
   }
 
   getStyles() {
     const styles: any = {};
-    if (typeof this.padding !== 'string')
-      styles['padding'] = calculateSize(this.padding);
+    if (typeof this.padding() !== 'string')
+      styles['padding'] = calculateSize(this.padding() as string[])
 
-    if (this.colorBackground !== null) {
-      styles['background-color'] = `var(--general_${this.colorBackground})`;
+    if (this.colorBackground() !== null) {
+      styles['background-color'] = `var(--general_${this.colorBackground()})`;
     }
     return styles;
   }

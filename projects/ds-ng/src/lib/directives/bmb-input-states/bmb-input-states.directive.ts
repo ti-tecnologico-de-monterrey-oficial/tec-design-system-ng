@@ -1,20 +1,20 @@
-import { Directive, ElementRef, HostListener, Input } from '@angular/core';
+import { Directive, ElementRef, HostListener, input } from '@angular/core';
 
 @Directive({
   selector: '[bmb-input-states]',
 })
 export class BmbInputStatesDirective {
-  @Input() focus: unknown = () => {};
-  @Input() blur: unknown = () => {};
+  focus = input<() => void>(() => {});
+  blur = input<() => void>(() => {});
   constructor(private el: ElementRef) {}
 
   @HostListener('focus')
   onFocus() {
-    focus();
+    this.focus()();
   }
 
   @HostListener('blur')
   onBlur() {
-    blur();
+    this.blur()();
   }
 }

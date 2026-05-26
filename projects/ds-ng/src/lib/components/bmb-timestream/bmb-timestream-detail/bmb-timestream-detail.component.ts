@@ -7,6 +7,8 @@ import {
   ElementRef,
   EventEmitter,
   input,
+  output,
+  effect,
   OnChanges,
   Output,
   SimpleChanges,
@@ -27,7 +29,7 @@ import { BmbTextLinkComponent } from '../../bmb-text-link/bmb-text-link.componen
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class BmbTimestreamDetailsComponent implements AfterViewInit, OnChanges {
+export class BmbTimestreamDetailsComponent implements AfterViewInit {
   lang = input<string>('es');
   now = input<DateTime>(DateTime.now());
   selectedDate = input<ISelectedDate>({
@@ -38,12 +40,21 @@ export class BmbTimestreamDetailsComponent implements AfterViewInit, OnChanges {
   orderedEvents = input<ITimelineEventParsed[]>([]);
   isMicro = input<boolean>(false);
 
-  @Output() changeSelectedEvent: EventEmitter<ITimelineEvent> =
-    new EventEmitter<ITimelineEvent>();
+  changeSelectedEvent = output<ITimelineEvent>();
 
   @ViewChild('monthDetailList') monthList!: ElementRef;
 
-  constructor(private cdr: ChangeDetectorRef) {}
+  constructor(private cdr: ChangeDetectorRef) {
+    effect(() => {
+      const selectedDate = this.selectedDate();
+
+      if (selectedDate?.day) {
+        setTimeout(() => {
+          this.scrollToItem();
+        }, 1);
+      }
+    });
+  }
 
   ngAfterViewInit(): void {
     setTimeout(() => {
@@ -51,19 +62,6 @@ export class BmbTimestreamDetailsComponent implements AfterViewInit, OnChanges {
     }, 1);
   }
 
-  ngOnChanges(changes: SimpleChanges) {
-    const selectedDateChange = changes['selectedDate'];
-
-    if (
-      selectedDateChange.previousValue &&
-      selectedDateChange.previousValue.day !==
-        selectedDateChange.currentValue?.day
-    ) {
-      setTimeout(() => {
-        this.scrollToItem();
-      }, 1);
-    }
-  }
 
   getCurrentMonth(date: string): boolean {
     const parsedDate = DateTime.fromFormat(date, 'yyyy/MM');

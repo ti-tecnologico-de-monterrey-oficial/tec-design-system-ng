@@ -2,12 +2,11 @@ import { CommonModule } from '@angular/common';
 import {
   Component,
   OnInit,
-  Output,
-  EventEmitter,
   TemplateRef,
   ViewEncapsulation,
   ChangeDetectionStrategy,
   input,
+  output,
   OnChanges,
   effect,
   SimpleChanges,
@@ -114,12 +113,12 @@ export class BmbTableLiteComponent implements OnInit, OnChanges {
   // -----------------------------------------------------------------------------
   // 📤 OUTPUTS (eventos que emite la tabla)
   // -----------------------------------------------------------------------------
-  @Output() select = new EventEmitter<any>(); // Cambio de selección
-  @Output() clickedRow = new EventEmitter<any>(); // Click en una fila
-  @Output() searchChange = new EventEmitter<string>(); // Texto del buscador
-  @Output() filtersChange = new EventEmitter<Record<string, any>>(); // Filtros aplicados
-  @Output() searchModeChange = new EventEmitter<'client' | 'server'>(); // Modo de búsqueda
-  @Output() pageChange = new EventEmitter<{
+  select = output<any>(); // Cambio de selección
+  clickedRow = output<any>(); // Click en una fila
+  searchChange = output<string>(); // Texto del buscador
+  filtersChange = output<Record<string, any>>(); // Filtros aplicados
+  searchModeChange = output<'client' | 'server'>(); // Modo de búsqueda
+  pageChange = output<{
     pageIndex: number;
     pageSize: number;
   }>(); // Cambio de página
