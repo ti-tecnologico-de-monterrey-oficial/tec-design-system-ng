@@ -42,7 +42,7 @@ ${getArchitectureSection(`<section class="bmb_badge"> <!-- conditional classes b
 ${getSpecialSpecifications(
   `
 ${getAlertBlockquote(
-  `Follow name colors are deprecated:
+  `Follow name colors are LTS:
  - 'strong',
  - 'success',
  - 'info',
@@ -72,8 +72,8 @@ ${getAlertBlockquote(
  - 'creative_ripelemon',
 <br/><br/>Please do not use them because they will be removed in future versions.`,
   {
-    title: '###'.concat(RELEVANT_TITLE.deprecated),
-    blockquoteType: BlockquoteType.warning,
+    title: '###'.concat(RELEVANT_TITLE.lts),
+    blockquoteType: BlockquoteType.important,
     isRelevantTitle: true,
   },
 )}
