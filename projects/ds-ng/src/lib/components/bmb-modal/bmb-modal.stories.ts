@@ -1,5 +1,5 @@
 import { ModalDataConfig } from './bmb-modal.interface';
-import { Component, Input } from '@angular/core';
+import { Component, input } from '@angular/core';
 import {
   Meta,
   StoryFn,
@@ -42,37 +42,42 @@ import {
   `,
 })
 class StorybookModalWrapperComponent {
-  @Input() title?: string;
-  @Input() subtitle?: string;
-  @Input() content?: string;
-  @Input() size?: 'small' | 'medium' | 'large';
-  @Input() type?: 'alert' | 'action' | 'informative';
-  @Input() alertStyle?: 'error' | 'event' | 'neutral' | 'warning' | 'success';
-  @Input() primaryBtnLabel?: string;
-  @Input() secondaryBtnLabel?: string;
-  @Input() hidePrimaryButton?: boolean;
-  @Input() hideSecondaryButton?: boolean;
-  @Input() extendButtons?: boolean;
-  @Input() primaryAction?: () => void;
-  @Input() secondaryAction?: () => void;
-  @Input() closeAction?: () => void;
+  title = input<string>();
+  subtitle = input<string>();
+  content = input<string>();
+  size = input<'small' | 'medium' | 'large'>();
+  type = input<'alert' | 'action' | 'informative'>();
+  alertStyle = input<
+    'error' | 'event' | 'neutral' | 'warning' | 'success'
+  >();
+
+  primaryBtnLabel = input<string>();
+  secondaryBtnLabel = input<string>();
+
+  hidePrimaryButton = input<boolean>();
+  hideSecondaryButton = input<boolean>();
+  extendButtons = input<boolean>();
+
+  primaryAction = input<() => void>();
+  secondaryAction = input<() => void>();
+  closeAction = input<() => void>();
 
   constructor(private matDialog: MatDialog) {}
 
   openModalComponent() {
     const updatedData: ModalDataConfig = {
-      title: this.title,
-      subtitle: this.subtitle,
-      content: this.content,
-      size: this.size ?? 'large',
-      type: this.type ?? 'action',
-      alertStyle: this.alertStyle || 'error',
-      primaryBtnLabel: this.primaryBtnLabel ?? 'OK',
-      secondaryBtnLabel: this.secondaryBtnLabel ?? 'Cancel',
-      hidePrimaryButton: this.hidePrimaryButton,
-      hideSecondaryButton: this.hideSecondaryButton,
+      title: this.title(),
+      subtitle: this.subtitle(),
+      content: this.content(),
+      size: this.size() ?? 'large',
+      type: this.type() ?? 'action',
+      alertStyle: this.alertStyle() || 'error',
+      primaryBtnLabel: this.primaryBtnLabel() ?? 'OK',
+      secondaryBtnLabel: this.secondaryBtnLabel() ?? 'Cancel',
+      hidePrimaryButton: this.hidePrimaryButton(),
+      hideSecondaryButton: this.hideSecondaryButton(),
       scrollable: false,
-      extendButtons: this.extendButtons,
+      extendButtons: this.extendButtons(),
       primaryAction: this.primaryActionFunction.bind(this),
       secondaryAction: this.secondaryActionFunction.bind(this),
       closeAction: this.closeActionFunction.bind(this),
