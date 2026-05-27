@@ -3,15 +3,15 @@
     class="bmb_stat_counter-item"
     *ngFor="let i of getStepsArray()"
     [attr.data-bs-slide-to]="i"
-    [ngClass]="{ active: activeStep === i, completed: activeStep > i }"
+    [ngClass]="{ active: activeStep() === i, completed: activeStep() > i }"
     (click)="onStepClicked(i)"
   >
     <div
       class="bmb_stat_counter-step"
-      [ngClass]="{ active: activeStep === i, completed: activeStep > i }"
+      [ngClass]="{ active: activeStep() === i, completed: activeStep() > i }"
     >
-      <span *ngIf="activeStep == i || activeStep < i">{{ i + 1 }}</span>
-      @if (activeStep > i) {
+      <span *ngIf="activeStep() == i || activeStep() < i">{{ i + 1 }}</span>
+      @if (activeStep() > i) {
         <bmb-icon icon="check" class="bmb_stat_counter-icon" [size]="24" />
       }
     </div>

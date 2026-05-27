@@ -4,6 +4,7 @@
 @use '../../../assets/styles/tokens/bgAppearance' as appearance;
 @use '../../../assets/styles/base/color-group-name' as colors;
 @use '../../../assets/styles/base/color-functions' as colorFn;
+@use 'sass:map';
 
 $badge_appearance: colorFn.map-merged(
   colors.$bmb_badge_type,
@@ -68,14 +69,41 @@ $badge_appearance: colorFn.map-merged(
       background-color: $color;
       //Bullet and text color for container
       &.bmb_badge-container {
-        $color: map-get(colors.$font_colors, $name);
-        //Container variant bullet color
-        .bmb_badge-bullet {
-          background-color: $color;
-        }
-        //Container variant text color
-        .bmb_badge-content {
-          color: $color;
+        @if $name == 'strong' or $name == 'warning' or $name == 'neutral' {
+          .bmb_badge-bullet {
+            background-color: var(--general-contrasts-dark-complementary);
+          }
+          .bmb_badge-content {
+            color: var(--general-contrasts-dark-complementary);
+          }
+        } @else if $name == 'mitec_red' or $name == 'mitec_blue' {
+          .bmb_badge-bullet {
+            background-color: rgb(var(--white-primary));
+          }
+          //Normal container variant text color
+          .bmb_badge-content {
+            color: rgb(var(--white-primary));
+          }
+        } @else {
+          $color: map.get(colors.$font_colors, $name);
+
+          @if $color == null {
+            .bmb_badge-bullet {
+              background-color: var(--general-contrasts-5);
+            }
+            .bmb_badge-content {
+              color: var(--general-contrasts-5);
+            }
+          } @else {
+            //Container variant bullet color
+            .bmb_badge-bullet {
+              background-color: $color;
+            }
+            //Container variant text color
+            .bmb_badge-content {
+              color: $color;
+            }
+          }
         }
       }
     }

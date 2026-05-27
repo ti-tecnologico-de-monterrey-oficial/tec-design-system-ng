@@ -13,6 +13,7 @@ import { BmbBadgeComponent } from '../bmb-badge/bmb-badge.component';
 import { IBbmBgAppearance } from '../bmb-advertisement-card/types';
 import { logDeprecatedInput } from '../../utils/logDeprecatedInput';
 import { IBmbColorSemantics } from '../../types';
+import { IBmbBadgeColors } from '../../types/foundations/colors/color-type';
 
 @Component({
   selector: 'bmb-student-activity-card',
@@ -71,10 +72,10 @@ export class BmbStudentActivityCardComponent {
     return classes;
   }
 
-  getBadgeType(): IBbmBgAppearance {
+  getBadgeType(): IBbmBgAppearance | IBmbBadgeColors {
     switch (this.type()) {
       case 'academic':
-        return 'strong';
+        return 'creative-use-strong';
       case 'life':
         return 'mitec_green';
       case 'events':

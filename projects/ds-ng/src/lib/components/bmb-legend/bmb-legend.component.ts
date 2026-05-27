@@ -1,7 +1,7 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  Input,
+  input,
   ViewEncapsulation,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -25,7 +25,7 @@ export type IBmbLegendVariations =
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BmbLegendComponent {
-  @Input() label: string = '';
-  @Input() value: string = '';
-  @Input() indicatorAppearance: IBmbLegendVariations = 'normal';
+  label = input<string>('');
+  value = input<string>('');
+  indicatorAppearance = input<IBmbLegendVariations>('normal');
 }

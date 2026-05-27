@@ -2,7 +2,7 @@ import {
   Component,
   ViewEncapsulation,
   ChangeDetectionStrategy,
-  Input,
+  input,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -20,10 +20,10 @@ import { CommonModule } from '@angular/common';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BmbTopBarItemComponent {
-  @Input() isActive: boolean = false;
+  isActive = input<boolean>(false);
 
   isElementActive(): string {
-    if (this.isActive) return 'bmb_top-bar-item-active';
+    if (this.isActive()) return 'bmb_top-bar-item-active';
     return '';
   }
 }

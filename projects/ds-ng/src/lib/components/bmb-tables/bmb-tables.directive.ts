@@ -1,10 +1,10 @@
-import { Directive, Input, TemplateRef } from '@angular/core';
+import { Directive, input, TemplateRef } from '@angular/core';
 
 @Directive({
   selector: '[templateName]',
 })
 export class TemplateNameDirective {
-  @Input() templateName!: string;
+  templateName = input.required<string>();
 
   constructor(public template: TemplateRef<any>) {}
 }
