@@ -14,7 +14,7 @@
 // export * from '../components/bmb-tables/bmb-tables.interface';
 // export * from '../components/bmb-image/types';
 // export * from './colors';
-export * from './foundations/colors/color-type';
+export * from './foundations/colors/color-type.js';
 
 export type SizeNames = 'xs' | 's' | 'm' | 'l' | 'xl' | 'xxl' | 'none' | 'auto';
 export type IButtonAppearance =

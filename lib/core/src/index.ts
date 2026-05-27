@@ -1,1 +1,2 @@
-export * from './lib/core.js';
+export * from './types/index.js';
+export * from './logic/index.js';

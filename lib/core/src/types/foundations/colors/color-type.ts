@@ -1,4 +1,4 @@
-import COLOR_GROUP_NAMES from './objects/color-group-names.json';
+import COLOR_GROUP_NAMES from './objects/color-group-names.json' with { type: 'json' };
 export type IBmbInstitutionalColors = 'blue-tec' | 'white-primary';
 
 export type IBmbBaseColors =

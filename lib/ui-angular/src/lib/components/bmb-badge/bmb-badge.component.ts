@@ -5,8 +5,12 @@ import {
   input,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import {
+  getBadgeClasses,
+  getBadgeBulletColor,
+  type IBmbBadgeAppearanceColors,
+} from '@ti-tecnologico-de-monterrey-oficial/core/component/badge';
 import { IBbmBgAppearance } from '../bmb-advertisement-card/types';
-import { IBmbBadgeColors } from '../../../../../core/src/types/foundations/colors/color-type';
 
 @Component({
   selector: 'bmb-badge',
@@ -18,30 +22,18 @@ import { IBmbBadgeColors } from '../../../../../core/src/types/foundations/color
   encapsulation: ViewEncapsulation.None,
 })
 export class BmbBadgeComponent {
-  appearance = input<IBmbBadgeColors | IBbmBgAppearance>('normal');
+  appearance = input<IBmbBadgeAppearanceColors>('normal');
   text = input<string>('');
   container = input<boolean>(true);
 
   getClasses(): string[] {
-    const baseClassName: string = 'bmb_badge';
-    const classes: string[] = [baseClassName];
-
-    if (this.container()) {
-      classes.push(`${baseClassName}-container`);
-
-      if (!!this.appearance()) {
-        classes.push(`${baseClassName}-${this.appearance()}`);
-      }
-    } else if (this.appearance() === 'disabled') {
-      classes.push(`${baseClassName}-${this.appearance()}`);
-    }
-
-    return classes;
+    return getBadgeClasses({
+      container: this.container(),
+      appearance: this.appearance(),
+    });
   }
 
   getBulletColor(): string {
-    if (this.appearance() === 'disabled') return '';
-
-    return `bmb_badge-${this.appearance()}`;
+    return getBadgeBulletColor(this.appearance());
   }
 }

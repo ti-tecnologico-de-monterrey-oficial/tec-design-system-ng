@@ -17,6 +17,12 @@
     },
     {
       "path": "./apps/app-angular-e2e"
+    },
+    {
+      "path": "./apps/app-angular"
+    },
+    {
+      "path": "./lib/ui-angular"
     }
   ]
 }
