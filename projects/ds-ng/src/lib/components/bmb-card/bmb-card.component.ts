@@ -73,9 +73,7 @@ export class BmbCardComponent {
   getStyles() {
     const styles: any = {};
     if (typeof this.borderRadius() !== 'string')
-      styles['border-radius'] = calculateSize(
-      this.borderRadius() as string[],
-    );
+      styles['border-radius'] = calculateSize(this.borderRadius() as string[]);
     if (typeof this.margin() !== 'string')
       styles.margin = calculateSize(this.margin() as string[]);
     if (this.borderColor() !== 'default')
@@ -108,7 +106,7 @@ export class BmbCardHeaderComponent {
   getStyles() {
     const styles: any = {};
     if (typeof this.padding() !== 'string')
-      styles['padding'] = calculateSize(this.padding() as string[])
+      styles['padding'] = calculateSize(this.padding() as string[]);
 
     if (this.colorBackground() !== null) {
       styles['background-color'] = `var(--general_${this.colorBackground()})`;
@@ -141,7 +139,7 @@ export class BmbCardFooterComponent {
   getStyles() {
     const styles: any = {};
     if (typeof this.padding() !== 'string')
-      styles['padding'] = calculateSize(this.padding() as string[])
+      styles['padding'] = calculateSize(this.padding() as string[]);
 
     if (this.colorBackground() !== null) {
       styles['background-color'] = `var(--general_${this.colorBackground()})`;
@@ -176,7 +174,7 @@ export class BmbCardContentComponent {
   getStyles() {
     const styles: any = {};
     if (typeof this.padding() !== 'string')
-      styles['padding'] = calculateSize(this.padding() as string[])
+      styles['padding'] = calculateSize(this.padding() as string[]);
 
     if (this.colorBackground() !== null) {
       styles['background-color'] = `var(--general_${this.colorBackground()})`;

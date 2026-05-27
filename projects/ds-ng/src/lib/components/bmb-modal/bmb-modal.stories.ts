@@ -47,9 +47,7 @@ class StorybookModalWrapperComponent {
   content = input<string>();
   size = input<'small' | 'medium' | 'large'>();
   type = input<'alert' | 'action' | 'informative'>();
-  alertStyle = input<
-    'error' | 'event' | 'neutral' | 'warning' | 'success'
-  >();
+  alertStyle = input<'error' | 'event' | 'neutral' | 'warning' | 'success'>();
 
   primaryBtnLabel = input<string>();
   secondaryBtnLabel = input<string>();

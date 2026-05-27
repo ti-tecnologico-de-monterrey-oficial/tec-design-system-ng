@@ -62,7 +62,6 @@ export class BmbTimestreamDetailsComponent implements AfterViewInit {
     }, 1);
   }
 
-
   getCurrentMonth(date: string): boolean {
     const parsedDate = DateTime.fromFormat(date, 'yyyy/MM');
     return (
