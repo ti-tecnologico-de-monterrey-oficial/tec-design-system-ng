@@ -30,7 +30,6 @@ export class BmbAccordionControlDirective
   accordions!: QueryList<BmbAccordionComponent>;
 
   private subscriptions: OutputRefSubscription[] = [];
-  
 
   ngAfterContentInit(): void {
     this.contentInitialized = true;
