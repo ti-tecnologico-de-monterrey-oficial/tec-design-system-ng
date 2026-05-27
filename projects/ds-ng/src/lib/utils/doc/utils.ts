@@ -41,6 +41,7 @@ export const RELEVANT_TITLE = {
   configuration: '⚙️**Configuration**<br/>',
   example: '⭐**Example**<br/>',
   deprecated: '⛔**Deprecated**<br/>',
+  lts: '**LTS (Long-Term Support)',
 };
 
 export const BlockquoteType = {

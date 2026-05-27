@@ -41,7 +41,7 @@ import { getUUID } from '../../utils/utils';
 })
 export class BmbIconComponent implements OnInit {
   icon = input<string | BmbCustomIconListType>('');
-  isFill = input<boolean>(true);
+  isFill = input<boolean>(true); //Deprecated
   size = input<number>();
   alt = input<string>('');
   dotNotification = input<number>();
@@ -103,10 +103,7 @@ export class BmbIconComponent implements OnInit {
     if (this.isImage(name)) return null;
 
     try {
-      const svgContent = await this.iconService.loadIconSvg(
-        name,
-        this.isFill(),
-      );
+      const svgContent = await this.iconService.loadIconSvg(name, true);
 
       if (!svgContent) {
         console.warn(`Icon "${name}" not found`);
@@ -139,7 +136,7 @@ export class BmbIconComponent implements OnInit {
   }
 
   getFontVariationSettings(): string {
-    const fill = this.isFill() ? "'FILL' 1" : "'FILL' 0";
+    const fill = "'FILL' 1";
     const weight = 'wght 400';
     return `${fill}, ${weight}`;
   }
