@@ -1,0 +1,35 @@
+<div class="board">
+
+  <bmb-card>
+    <bmb-card-content
+      bmbDropzone
+      (itemDropped)="moveItem($event, 'left')">
+
+      @for (item of leftItems(); track item.id) {
+        <bmb-item
+          bmbDraggable
+          [dragData]="item"
+          [label]="item.label">
+        </bmb-item>
+      }
+
+    </bmb-card-content>
+  </bmb-card>
+
+  <bmb-card>
+    <bmb-card-content
+      bmbDropzone
+      (itemDropped)="moveItem($event, 'right')">
+
+      @for (item of rightItems(); track item.id) {
+        <bmb-item
+          bmbDraggable
+          [dragData]="item"
+          [label]="item.label">
+        </bmb-item>
+      }
+
+    </bmb-card-content>
+  </bmb-card>
+
+</div>
