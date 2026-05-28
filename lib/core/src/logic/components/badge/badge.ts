@@ -1,5 +1,37 @@
-import { IBmbBadgeColors } from '../types/foundations/colors/color-type.js';
-import { IBbmBgAppearance } from '../../ui-angular/src/lib/components/bmb-advertisement-card/types.js';
+import { IBmbBadgeColors } from '../../../types/foundations/colors/color-type.js';
+
+export type IBbmBgAppearance =
+  | 'normal'
+  | 'strong'
+  | 'success'
+  | 'info'
+  | 'warning'
+  | 'error'
+  | 'brand'
+  | 'alert'
+  | 'background'
+  | 'disabled'
+  | 'mitec_blue'
+  | 'mitec_red'
+  | 'mitec_green'
+  | 'mitec_orange'
+  | 'mitec_light_green'
+  | 'mitec_purple'
+  | 'creative_violet'
+  | 'creative_indigo'
+  | 'creative_emerald'
+  | 'creative_licorice'
+  | 'creative_darkteal'
+  | 'creative_peach'
+  | 'creative_sepia'
+  | 'creative_softred'
+  | 'creative_wattle'
+  | 'creative_shipcove'
+  | 'creative_plantation'
+  | 'creative_rum'
+  | 'creative_hibiscus'
+  | 'creative_ripelemon'
+  | 'creative_use_strong';
 
 export type IBmbBadgeAppearanceColors = IBmbBadgeColors | IBbmBgAppearance;
 

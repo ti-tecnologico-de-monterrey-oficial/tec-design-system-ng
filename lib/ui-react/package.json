@@ -12,5 +12,8 @@
       "import": "./dist/index.esm.js",
       "default": "./dist/index.esm.js"
     }
+  },
+  "dependencies": {
+    "@ti-tecnologico-de-monterrey-oficial/core": "0.0.1"
   }
 }

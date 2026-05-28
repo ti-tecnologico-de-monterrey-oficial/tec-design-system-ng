@@ -3,6 +3,7 @@ import {
   getBadgeBulletColor,
   type IBmbBadgeAppearanceColors,
 } from '@ti-tecnologico-de-monterrey-oficial/core/component/badge';
+import './bmb-badge.scss';
 
 export interface BmbBadgeProps {
   appearance?: IBmbBadgeAppearanceColors;

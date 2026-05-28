@@ -3,12 +3,20 @@
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "targets": {
     "build": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "rollup -c build.rollup.cjs",
+        "cwd": "lib/ui-react"
+      },
       "dependsOn": [
         {
           "target": "compile-styles",
           "projects": "@ti-tecnologico-de-monterrey-oficial/core"
         },
         "^build"
+      ],
+      "outputs": [
+        "{projectRoot}/dist"
       ]
     }
   }

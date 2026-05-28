@@ -10,7 +10,6 @@ import {
   getBadgeBulletColor,
   type IBmbBadgeAppearanceColors,
 } from '@ti-tecnologico-de-monterrey-oficial/core/component/badge';
-import { IBbmBgAppearance } from '../bmb-advertisement-card/types';
 
 @Component({
   selector: 'bmb-badge',
