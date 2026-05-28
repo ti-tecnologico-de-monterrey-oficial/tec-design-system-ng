@@ -155,7 +155,7 @@ describe('ChatActionsComponent', () => {
     fixture.detectChanges();
 
     const activeElement = fixture.debugElement.query(
-      By.css('.bmb-chat-bubbles-lts-icon-active'),
+      By.css('.bmb-ai-chat-bubble-icon-active'),
     );
 
     expect(activeElement).toBeTruthy();

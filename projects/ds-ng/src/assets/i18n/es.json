@@ -192,7 +192,8 @@
     },
     "empty_state": {
       "primary_text": "No tienes elementos para mostrar"
-    }
+    },
+    "title": "Mis notificaciones"
   },
   "notification_center": {
     "actions": {

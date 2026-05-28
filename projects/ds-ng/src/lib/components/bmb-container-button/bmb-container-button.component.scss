@@ -27,6 +27,10 @@
 }
 
 .bmb_container-button {
+  &:has(.bmb_container-button-square) {
+    display: inline-flex;
+  }
+
   &-error.bmb_container-button-wrapper {
     @include button-class() {
       border-color: var(--buttons-destructive);
@@ -143,18 +147,18 @@
           min-height: auto;
         }
       }
-      .bmb_check-external-link-button-element{
+      display: inline-flex;
+      flex-flow: column;
+      justify-content: center;
+      width: max-content;
+
+      .bmb_check-external-link-button-element {
         width: auto;
+        padding: rem.rem_calc(32 48);
         @include mixins.check-for-mobile() {
           width: 100%;
         }
       }
-        flex-flow: column;
-        justify-content: center;
-        min-height: rem.rem_calc(148);
-        min-width: rem.rem_calc(148);
-        padding: rem.rem_calc(32 48);
-        width: auto;
     }
 
     .bmb_layout {

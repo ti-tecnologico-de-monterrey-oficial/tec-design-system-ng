@@ -2,16 +2,14 @@
 @use '../../../assets/styles/base/mixins' as mixins;
 @use '../../../assets/styles/base/rem' as rem;
 @use '../../../assets/styles/tokens/bgAppearance' as appearance;
+@use '../../../assets/styles/base/color-group-name' as colors;
+@use '../../../assets/styles/base/color-functions' as colorFn;
+@use 'sass:map';
 
-@mixin bullet($name, $color) {
-  .bmb_badge-bullet {
-    background-color: $color;
-  }
-}
-
-@mixin container($color) {
-  background-color: $color;
-}
+$badge_appearance: colorFn.map-merged(
+  colors.$bmb_badge_type,
+  appearance.$colors
+);
 
 .bmb_badge {
   @include fonts.font(3, regular);
@@ -20,13 +18,16 @@
   justify-content: center;
   min-height: rem.rem_calc(20);
   width: fit-content;
-
+  background-color: transparent;
+  user-select: none;
+  //Badge text
   &-content {
     display: inline-block;
+    //Normal variant text color
     color: var(--general-contrasts-100);
     flex: 1;
   }
-
+  //No container variant
   &-bullet {
     border-radius: var(--bmb-radius-full);
     display: inline-block;
@@ -34,90 +35,75 @@
     margin-right: rem.rem_calc(8);
     vertical-align: middle;
     width: rem.rem_calc(8);
+    //Normal variant text color
+    background-color: var(--general-contrasts-100);
   }
-
-  @each $name, $color in appearance.$colors {
-    &-#{$name} {
-      @include bullet($name, $color);
-    }
-  }
-
-  &-disabled {
-    .bmb_badge-content {
-      color: var(--general-contrasts-50);
-    }
-  }
-
+  //Container variant
   &-container {
     border-radius: rem.rem_calc(40);
     min-height: rem.rem_calc(24);
     padding: rem.rem_calc(0 12);
+    //Normal container variant
+    background-color: var(--general-contrasts-50);
 
+    //Normal container variant bullet color
     .bmb_badge-bullet {
-      background-color: var(--general-contrasts-5);
+      background-color: rgb(var(--white-primary));
     }
-
+    //Normal container variant text color
     .bmb_badge-content {
-      color: var(--general-contrasts-5);
+      color: rgb(var(--white-primary));
     }
+  }
 
-    &.bmb_badge {
-      @each $name, $color in appearance.$containers {
-        &-#{$name} {
-          @include container($color);
-        }
-      }
+  &-disabled {
+    .bmb_badge-content,
+    .bmb_badge-bullet,
+    .bmb_badge-container {
+      opacity: 0.5;
+    }
+  }
 
-      &-strong {
-        .bmb_badge-bullet {
-          background-color: rgb(var(--gray-charade-900));
-        }
+  @each $name, $color in $badge_appearance {
+    &-#{$name} {
+      background-color: $color;
+      //Bullet and text color for container
+      &.bmb_badge-container {
+        @if $name == 'strong' or $name == 'warning' or $name == 'neutral' {
+          .bmb_badge-bullet {
+            background-color: var(--general-contrasts-dark-complementary);
+          }
+          .bmb_badge-content {
+            color: var(--general-contrasts-dark-complementary);
+          }
+        } @else if $name == 'mitec_red' or $name == 'mitec_blue' {
+          .bmb_badge-bullet {
+            background-color: rgb(var(--white-primary));
+          }
+          //Normal container variant text color
+          .bmb_badge-content {
+            color: rgb(var(--white-primary));
+          }
+        } @else {
+          $color: map.get(colors.$font_colors, $name);
 
-        .bmb_badge-content {
-          color: rgb(var(--gray-charade-900));
-        }
-      }
-
-      &-normal,
-      &-mitec_blue,
-      &-mitec_red {
-        .bmb_badge-bullet {
-          background-color: rgb(var(--white-primary));
-        }
-
-        .bmb_badge-content {
-          color: rgb(var(--white-primary));
-        }
-      }
-
-      &-warning {
-        .bmb_badge-bullet {
-          background-color: rgb(var(--black-primary));
-        }
-
-        .bmb_badge-content {
-          color: rgb(var(--black-primary));
-        }
-      }
-
-      &-disabled {
-        background-color: var(--general-contrasts-15);
-        .bmb_badge-bullet {
-          background-color: var(--general-contrasts-50);
-        }
-
-        .bmb_badge-content {
-          color: var(--general-contrasts-50);
-        }
-      }
-
-      &-background {
-        .bmb_badge-bullet {
-          display: none;
-        }
-
-        .bmb_badge-content {
-          display: none;
+          @if $color == null {
+            .bmb_badge-bullet {
+              background-color: var(--general-contrasts-5);
+            }
+            .bmb_badge-content {
+              color: var(--general-contrasts-5);
+            }
+          } @else {
+            //Container variant bullet color
+            .bmb_badge-bullet {
+              background-color: $color;
+            }
+            //Container variant text color
+            .bmb_badge-content {
+              color: $color;
+            }
+          }
         }
       }
     }

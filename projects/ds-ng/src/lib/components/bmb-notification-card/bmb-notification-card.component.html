@@ -5,7 +5,9 @@
   <bmb-home-card
     [icon]="leftIcon()"
     bgIconAppearance="red-primary"
-    componentTitle="Mis Notificaciones"
+    [componentTitle]="
+      componentTitle() || ('notification_card.title' | translate)
+    "
     [isMobile]="false"
     (onExpandClick)="onExpandClick.emit()"
     [showRightButton]="!hideExpandBtn()"

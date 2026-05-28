@@ -2,38 +2,91 @@ import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
 
 import { RouterTestingModule } from '@angular/router/testing';
 
-import { BmbChatBubblesLtsComponent } from './bmb-chat-bubbles-lts.component';
+import { BmbAiChatBubbleComponent } from './bmb-ai-chat-bubble.component';
+import { CommonModule } from '@angular/common';
+import {
+  BlockquoteType,
+  getAlertBlockquote,
+  getBasicExampleBlock,
+  getGeneralComponentDescription,
+  getGeneralDescription,
+  getSpecialSpecifications,
+  RELEVANT_TITLE,
+} from '../../utils/doc/utils';
+
+const GET_ACTION_DESCRIPTION: string = `
+${getAlertBlockquote(
+  `The \`getAction\` event emits an object containing the triggered action, the related message information, and the native browser event.
+>
+Example:
+\`{ action: "dislike", messageId: "1", message: Object, nativeEvent: Object }\`
+`,
+  {
+    title: RELEVANT_TITLE.configuration,
+    blockquoteType: BlockquoteType.important,
+  },
+)}
+`,
+  SUPPORTED_MESSAGES_TYPE: string = `
+Supported message types include:
+- text messages
+- images
+- mixed
+- links
+- selectable options
+- custom templates<br/><br/>`;
 
 export default {
-  title: 'Components/Containers/AI Chat Bubble LTS',
-  component: BmbChatBubblesLtsComponent,
+  title: 'Components/Containers/AI Chat Bubble',
+  component: BmbAiChatBubbleComponent,
+  tags: ['!autodocs'],
   decorators: [
     moduleMetadata({
-      imports: [RouterTestingModule],
+      imports: [CommonModule, RouterTestingModule],
     }),
   ],
-  args: {
-    botIcon: 'bot_tecStandar',
-    testId: 'chat-bubble',
-    isThinking: false,
-    showActions: true,
-    message: {
-      id: '1',
-      type: 'text',
-      timestamp: new Date(),
-      isUser: false,
-      content: {
-        text: 'Hello! How can I help you today?',
+  parameters: {
+    docs: {
+      controls: {
+        exclude: [
+          // internal logic
+          'bubbleClasses',
+          'enableFeedback',
+          'loading',
+          'onAction',
+        ],
+      },
+      description: {
+        component: `
+    ${getGeneralDescription(
+      `${getGeneralComponentDescription({ name: 'ai-chat-bubble' })} is used to render user and assistant chat messages with support for interactive actions and multiple content types. It supports [AI icons](https://bamboo.tec.mx/latest/componentes/ai-chat-bar/ai-icons-PPp7SNig), and allows configuration of available [***AI Chat bar***](/docs/components-inputs-ai-chat-bar--documentation) actions.`,
+      {
+        generalDocLink:
+          'https://bamboo.tec.mx/latest/componentes/ai-chat-bubble/descripcion-general-kum7HyJA',
+      },
+    )}
+    ${getSpecialSpecifications(
+      `### ${GET_ACTION_DESCRIPTION}
+>${SUPPORTED_MESSAGES_TYPE}
+>
+Additional features include:
+- thinking/loading states
+- action interactions such as repeat, voice, copy, like, and dislike
+- customizable user and assistant icons
+`,
+      { showAdditionalBlockquote: true },
+    )}
+${getBasicExampleBlock('BmbAiChatBubbleComponent')}
+  `,
       },
     },
   },
-
   argTypes: {
     botIcon: {
       control: 'text',
       description: 'Bot icon token used for assistant messages.',
       table: {
-        category: 'Inputs',
+        category: 'Properties',
         type: {
           summary: 'string',
         },
@@ -42,12 +95,11 @@ export default {
         },
       },
     },
-
     testId: {
       control: 'text',
       description: 'Testing identifier used for automation selectors.',
       table: {
-        category: 'Inputs',
+        category: 'Properties',
         type: {
           summary: 'string',
         },
@@ -56,33 +108,25 @@ export default {
         },
       },
     },
-
     message: {
       control: 'object',
       description: `
 Chat message rendered inside the bubble.
 
-Supported message types:
-- text
-- image
-- mixed
-- link
-- options
-- template
+${SUPPORTED_MESSAGES_TYPE}
       `,
       table: {
-        category: 'Inputs',
+        category: 'Properties',
         type: {
           summary: 'BmbChatMessage',
         },
       },
     },
-
     isThinking: {
       control: 'boolean',
       description: 'Displays typing/loading animation state.',
       table: {
-        category: 'Inputs',
+        category: 'Properties',
         type: {
           summary: 'boolean',
         },
@@ -105,7 +149,7 @@ Available actions:
 - dislike
       `,
       table: {
-        category: 'Inputs',
+        category: 'Properties',
         type: {
           summary: 'boolean',
         },
@@ -115,59 +159,35 @@ Available actions:
       },
     },
 
-    action: {
-      action: 'actionTriggered',
-      description: `
-Emits whenever a chat action is triggered.
-
-Example payload:
-
-{
-  action: 'copy',
-  messageId: '1',
-  message,
-  nativeEvent
-}
-      `,
+    getAction: {
+      control: false,
+      description: GET_ACTION_DESCRIPTION,
       table: {
-        category: 'Outputs',
+        category: 'Events',
         type: {
           summary: 'BmbChatActionEvent',
         },
       },
     },
   },
-
-  parameters: {
-    docs: {
-      description: {
-        component: `
-AI chat bubble component used to render user and assistant messages.
-
-Supports:
-- text messages
-- images
-- links
-- selectable options
-- custom templates
-- thinking/loading states
-- action interactions
-        `,
-      },
-      controls: {
-        exclude: [
-          // internal logic
-          'bubbleClasses',
-          'enableFeedback',
-          'loading',
-          'onAction',
-        ],
+  args: {
+    botIcon: 'bot_tecStandar',
+    testId: 'chat-bubble',
+    isThinking: false,
+    showActions: true,
+    message: {
+      id: '1',
+      type: 'text',
+      timestamp: new Date(),
+      isUser: false,
+      content: {
+        text: 'Hello! How can I help you today?',
       },
     },
   },
-} as Meta<BmbChatBubblesLtsComponent>;
+} as Meta<BmbAiChatBubbleComponent>;
 
-type Story = StoryObj<BmbChatBubblesLtsComponent>;
+type Story = StoryObj<BmbAiChatBubbleComponent>;
 
 export const Default: Story = {};
 
@@ -348,7 +368,7 @@ export const TemplateMessage: Story = {
         </div>
       </ng-template>
 
-      <bmb-chat-bubbles-lts
+      <bmb-ai-chat-bubble
         [message]="{
           id: '11',
           type: 'template',

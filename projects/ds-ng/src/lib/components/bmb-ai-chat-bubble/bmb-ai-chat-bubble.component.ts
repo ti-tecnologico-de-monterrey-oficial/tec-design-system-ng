@@ -20,7 +20,7 @@ import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { BmbBotIconComponent } from '../bmb-bot-icon/bmb-bot-icon.component';
 
 @Component({
-  selector: 'bmb-chat-bubbles-lts',
+  selector: 'bmb-ai-chat-bubble',
   standalone: true,
   imports: [
     CommonModule,
@@ -35,11 +35,11 @@ import { BmbBotIconComponent } from '../bmb-bot-icon/bmb-bot-icon.component';
     BmbIconComponent,
     BmbBotIconComponent,
   ],
-  templateUrl: './bmb-chat-bubbles-lts.component.html',
-  styleUrl: './bmb-chat-bubbles-lts.component.scss',
+  templateUrl: './bmb-ai-chat-bubble.component.html',
+  styleUrl: './bmb-ai-chat-bubble.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class BmbChatBubblesLtsComponent {
+export class BmbAiChatBubbleComponent {
   /**
    * Bot icon token used for assistant messages.
    */
@@ -68,18 +68,18 @@ export class BmbChatBubblesLtsComponent {
   /**
    * Emits action events.
    */
-  readonly action = output<BmbChatActionEvent>();
+  readonly getAction = output<BmbChatActionEvent>();
 
   /**
    * Bubble dynamic classes.
    */
   readonly bubbleClasses = computed(() => ({
-    'bmb-chat-bubbles-lts-user': this.message().isUser,
-    'bmb-chat-bubbles-lts-bot': !this.message().isUser,
-    'bmb-chat-bubbles-lts-thinking': this.isThinking(),
+    'bmb-ai-chat-bubble-user': this.message().isUser,
+    'bmb-ai-chat-bubble-bot': !this.message().isUser,
+    'bmb-ai-chat-bubble-thinking': this.isThinking(),
   }));
 
   protected onAction(event: BmbChatActionEvent) {
-    this.action.emit(event);
+    this.getAction.emit(event);
   }
 }

@@ -12,11 +12,11 @@ import {
   getOnEventParam,
 } from '../../utils/doc/parameterDescriptions';
 import { RouterTestingModule } from '@angular/router/testing';
-import { IBmbChatActionEvent } from './types';
+import { CommonModule } from '@angular/common';
 
 const DEPRECATED_DESC = `
-⛔ Deprecated  
-This property will not be maintainable. This will be removed in future versions.  
+⛔ Deprecated
+This property will not be maintainable. This will be removed in future versions.
 Use "getAction" instead.
 `;
 
@@ -33,11 +33,12 @@ const getOnClickAndImportantParam = (
   );
 
 export default {
-  title: 'Components/Containers/AI Chat bubble',
+  title: 'Components/Containers/AI Chat Bubble/AI Chat bubble (deprecated)',
+  tags: ['!autodocs'],
   component: BmbChatBubblesComponent,
   decorators: [
     moduleMetadata({
-      imports: [RouterTestingModule],
+      imports: [CommonModule, RouterTestingModule],
     }),
   ],
   parameters: {
@@ -69,9 +70,10 @@ It supports [AI icons](https://bamboo.tec.mx/latest/componentes/ai-chat-bar/ai-i
   {
     generalDocLink:
       'https://bamboo.tec.mx/latest/componentes/ai-chat-bubble/descripcion-general-kum7HyJA',
+    isSubStory: true,
   },
 )}
-${getSpecialSpecifications(`### ${IMPORTANT_DESCRIPTION}`)}
+${getSpecialSpecifications(`### ${IMPORTANT_DESCRIPTION}`, { isSubStory: true })}
         `,
       },
     },
@@ -207,7 +209,7 @@ ${DEPRECATED_DESC}`,
 type Story = StoryObj<BmbChatBubblesComponent>;
 
 export const Default: Story = {};
-
+/*
 export const UserMsg: Story = {
   args: {
     message: {
@@ -424,3 +426,4 @@ export const ChatUsingGetAction: Story = {
     },
   },
 };
+*/

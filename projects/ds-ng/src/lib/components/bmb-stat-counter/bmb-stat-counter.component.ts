@@ -1,8 +1,7 @@
 import {
   Component,
-  Input,
-  Output,
-  EventEmitter,
+  input,
+  output,
   ViewEncapsulation,
   ChangeDetectionStrategy,
 } from '@angular/core';
@@ -19,16 +18,16 @@ import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
   encapsulation: ViewEncapsulation.None,
 })
 export class BmbStatCounterComponent {
-  @Input() activeStep: number = 0;
-  @Input() totalSteps?: number = 0;
-  @Output() onStepPress: EventEmitter<number> = new EventEmitter<number>();
+  activeStep = input<number>(0);
+  totalSteps = input<number>(0);
+
+  onStepPress = output<number>();
 
   getStepsArray(): number[] {
-    return new Array(this.totalSteps || 0).fill(0).map((_, i) => i);
+    return new Array(this.totalSteps() || 0).fill(0).map((_, i) => i);
   }
 
   onStepClicked(index: number): void {
-    this.activeStep = index;
     this.onStepPress.emit(index);
   }
 }

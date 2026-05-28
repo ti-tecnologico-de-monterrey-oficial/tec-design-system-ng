@@ -1,8 +1,9 @@
 import { CommonModule } from '@angular/common';
 import {
   Component,
-  Input,
-  Output,
+  input,
+  output,
+  computed,
   EventEmitter,
   ChangeDetectionStrategy,
   ViewEncapsulation,
@@ -19,38 +20,40 @@ import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
   encapsulation: ViewEncapsulation.None,
 })
 export class BmbPaginatorComponent {
-  @Input() totalItems: number = 0;
-  @Input() itemsPerPage: number = 5;
-  @Input() currentPage: number = 1;
-  @Output() pageChange = new EventEmitter<number>();
+  totalItems = input<number>(0);
+  itemsPerPage = input<number>(5);
+  currentPage = input<number>(1);
 
-  get totalPages(): number {
-    return Math.ceil(this.totalItems / this.itemsPerPage);
-  }
+  pageChange = output<number>();
+
+  totalPages = computed(() =>
+    Math.ceil(this.totalItems() / this.itemsPerPage()),
+  );
 
   onPageChange(page: number): void {
-    if (page < 1 || page > this.totalPages) return;
-    this.currentPage = page;
-    this.pageChange.emit(this.currentPage);
+    if (page < 1 || page > this.totalPages()) return;
+    this.pageChange.emit(page);
   }
 
-  get pages(): number[] {
+  pages = computed(() => {
     const pages = [];
-    for (let i = 1; i <= this.totalPages; i++) {
+
+    for (let i = 1; i <= this.totalPages(); i++) {
       pages.push(i);
     }
+
     return pages;
-  }
+  });
 
   getPaginationText(): string {
-    if (this.totalItems == 0) {
-      return `0 de ${this.totalPages || 0}`;
+    if (this.totalItems() == 0) {
+      return `0 de ${this.totalPages() || 0}`;
     }
-    const startIndex = (this.currentPage - 1) * this.itemsPerPage + 1;
+    const startIndex = (this.currentPage() - 1) * this.itemsPerPage() + 1;
     const endIndex = Math.min(
-      this.currentPage * this.itemsPerPage,
-      this.totalItems,
+      this.currentPage() * this.itemsPerPage(),
+      this.totalItems(),
     );
-    return `${startIndex} - ${endIndex} de ${this.totalItems}`;
+    return `${startIndex} - ${endIndex} de ${this.totalItems()}`;
   }
 }

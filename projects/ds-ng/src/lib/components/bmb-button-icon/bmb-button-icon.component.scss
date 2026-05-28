@@ -19,9 +19,9 @@
     } @else {
       @include container(
         rem.rem_calc(1),
-        var(--general-contrasts-main-complimentary),
+        var(--general-contrasts-main-complementary),
         var(--general-contrasts-50),
-        var(--general-contrasts-main-complimentary)
+        var(--general-contrasts-main-complementary)
       );
     }
   } @else {

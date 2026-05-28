@@ -45,7 +45,7 @@ describe('TextMessageComponent', () => {
 
   it('should render text container', () => {
     const textElement = fixture.debugElement.query(
-      By.css('.bmb-chat-bubbles-lts-text'),
+      By.css('.bmb-ai-chat-bubble-text'),
     );
 
     expect(textElement).toBeTruthy();
@@ -53,7 +53,7 @@ describe('TextMessageComponent', () => {
 
   it('should render correct text content', () => {
     const textElement: HTMLElement = fixture.debugElement.query(
-      By.css('.bmb-chat-bubbles-lts-text'),
+      By.css('.bmb-ai-chat-bubble-text'),
     ).nativeElement;
 
     expect(textElement.textContent?.trim()).toBe(mockMessage.content.text);
@@ -72,7 +72,7 @@ describe('TextMessageComponent', () => {
     fixture.detectChanges();
 
     const textElement: HTMLElement = fixture.debugElement.query(
-      By.css('.bmb-chat-bubbles-lts-text'),
+      By.css('.bmb-ai-chat-bubble-text'),
     ).nativeElement;
 
     expect(textElement.textContent?.trim()).toBe('Updated message');
@@ -91,7 +91,7 @@ describe('TextMessageComponent', () => {
     fixture.detectChanges();
 
     const textElement: HTMLElement = fixture.debugElement.query(
-      By.css('.bmb-chat-bubbles-lts-text'),
+      By.css('.bmb-ai-chat-bubble-text'),
     ).nativeElement;
 
     expect(textElement.textContent?.trim()).toBe('');
