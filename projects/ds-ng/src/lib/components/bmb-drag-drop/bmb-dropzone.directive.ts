@@ -13,7 +13,7 @@ import { BmbDragDropService } from '../bmb-drag-drop/bmb-drag-drop.service';
   standalone: true,
 })
 export class BmbDropzoneDirective {
-  itemDropped = output<any>();
+  itemDropped = output<unknown>();
 
   private dragDrop = inject(BmbDragDropService);
 

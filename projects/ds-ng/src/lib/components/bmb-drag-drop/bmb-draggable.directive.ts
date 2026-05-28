@@ -14,7 +14,7 @@ import { BmbDragDropService } from '../bmb-drag-drop/bmb-drag-drop.service';
   standalone: true,
 })
 export class BmbDraggableDirective {
-  dragData = input.required<any>();
+  dragData = input.required<unknown>();
 
   private element = inject(ElementRef<HTMLElement>);
   private dragDrop = inject(BmbDragDropService);

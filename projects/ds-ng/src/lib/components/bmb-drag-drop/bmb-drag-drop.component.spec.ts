@@ -17,9 +17,9 @@ import { BmbDragDropService } from './bmb-drag-drop.service';
   `,
 })
 class TestHostComponent {
-  droppedItem: any = null;
+  droppedItem: unknown = null;
 
-  onDrop(item: any) {
+  onDrop(item: unknown) {
     this.droppedItem = item;
   }
 }

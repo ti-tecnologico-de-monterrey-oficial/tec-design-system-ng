@@ -5,12 +5,7 @@ import { BmbDragDropComponent } from './bmb-drag-drop.component';
 const meta: Meta<BmbDragDropComponent> = {
   title: 'Components/Drag Drop',
   component: BmbDragDropComponent,
-  tags: ['hideInSidebar'],
-  parameters: {
-    docs: {
-      hidden: true,
-    },
-  },
+  tags: ['!autodocs']
 };
 
 export default meta;
