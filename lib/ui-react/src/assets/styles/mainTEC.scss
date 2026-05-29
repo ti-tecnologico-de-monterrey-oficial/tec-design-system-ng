@@ -1,0 +1,7 @@
+// TEC
+@use 'core';
+
+// Import and register the design tokens like colors and theme
+@use 'tokens/brand/TEC/colors';
+@use 'tokens/brand/TEC/namedColors';
+@use 'tokens/brand/TEC/radius';
