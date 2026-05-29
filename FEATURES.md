@@ -6,8 +6,6 @@
 *
 formato
 *
-vq.6.3-k
-*
 chat bubble lts
 *
 formato
@@ -15,6 +13,8 @@ formato
 Formato
 *
 Formato
+*
+chat bucard bubble like and dislike
 *
 Button container mobile created
 *
@@ -134,7 +134,7 @@ version 1.6.3-j
 *
 chat bubble lts
 *
-Formato
+vq.6.3-k
 *
 Formato
 *
@@ -250,9 +250,9 @@ chat bubble lts
 *
 Formato
 *
-formato
-*
 bubble chat
+*
+Formato
 *
 feat(component / dropdown): Se corrigió la posición del menú
 *
@@ -346,7 +346,7 @@ fix(component / top bar): Se corrigió el comportamiento de dos líneas en el to
 *
 chore: se actualizó el color de la variable '--general-contrasts-input-background' para la marca 'tecmi' para el tema claro según Figma.
 *
-chore: se actualizó el color de la variable '--menu-select-on-surface-hovered-w-checkbox' para la marca de grupo educativo en el tema claro.
+chore: se actualizó el color de la variable '--green-tecmi-100' para la marca 'tecmi' para el tema claro.
 *
 chore: se actualizó el color de la variable '--containers-main' para la marca 'tecmi' para el tema claro.
 *
@@ -360,7 +360,7 @@ Update
 *
 chore: se actualizó el color de la variable '--general-contrasts-25' para la marca 'tecmi' para el tema claro según Figma.
 *
-chore: se actualizó el color de la variable '--green-tecmi-100' para la marca 'tecmi' para el tema claro.
+chore: se actualizó el color de la variable '--menu-select-on-surface-hovered-w-checkbox' para la marca de grupo educativo en el tema claro.
 *
 chore: se ocultó elemento de las propiedades.
 *
@@ -371,6 +371,8 @@ Formato
 new config
 *
 build
+*
+formato
 *
 Formato
 *
@@ -498,8 +500,6 @@ chore: se eliminó código que no se utiliza
 
 - **formato**:
 formato
-- **vq.6.3-k**:
-vq.6.3-k
 - **chat bubble lts**:
 chat bubble lts
 - **formato**:
@@ -508,6 +508,8 @@ formato
 Formato
 - **Formato**:
 Formato
+- **chat bucard bubble like and dislike**:
+chat bucard bubble like and dislike
 - **Button container mobile created**:
 Button container mobile created
 - **feat(component/tags): se realizo ajuste en color de CSS según Figma. Cambios de contraste para Tec milenio.**:
@@ -626,8 +628,8 @@ format
 version 1.6.3-j
 - **chat bubble lts**:
 chat bubble lts
-- **Formato**:
-Formato
+- **vq.6.3-k**:
+vq.6.3-k
 - **Formato**:
 Formato
 - **Formato**:
@@ -742,10 +744,10 @@ feat(component / simple header): Se agregaron traducciones a los tooltips
 chat bubble lts
 - **Formato**:
 Formato
-- **formato**:
-formato
 - **bubble chat**:
 bubble chat
+- **Formato**:
+Formato
 - **feat(component / dropdown): Se corrigió la posición del menú**:
 feat(component / dropdown): Se corrigió la posición del menú
 - **formato**:
@@ -838,8 +840,8 @@ chore: se realizó cambio de color para homologar con Figma.
 fix(component / top bar): Se corrigió el comportamiento de dos líneas en el top bar
 - **chore: se actualizó el color de la variable '--general-contrasts-input-background' para la marca 'tecmi' para el tema claro según Figma.**:
 chore: se actualizó el color de la variable '--general-contrasts-input-background' para la marca 'tecmi' para el tema claro según Figma.
-- **chore: se actualizó el color de la variable '--menu-select-on-surface-hovered-w-checkbox' para la marca de grupo educativo en el tema claro.**:
-chore: se actualizó el color de la variable '--menu-select-on-surface-hovered-w-checkbox' para la marca de grupo educativo en el tema claro.
+- **chore: se actualizó el color de la variable '--green-tecmi-100' para la marca 'tecmi' para el tema claro.**:
+chore: se actualizó el color de la variable '--green-tecmi-100' para la marca 'tecmi' para el tema claro.
 - **chore: se actualizó el color de la variable '--containers-main' para la marca 'tecmi' para el tema claro.**:
 chore: se actualizó el color de la variable '--containers-main' para la marca 'tecmi' para el tema claro.
 - **chore: se actualizó el color de la variable '--buttons-inactive-step' para la marca 'tecmi' para el tema claro.**:
@@ -852,8 +854,8 @@ top bar
 Update
 - **chore: se actualizó el color de la variable '--general-contrasts-25' para la marca 'tecmi' para el tema claro según Figma.**:
 chore: se actualizó el color de la variable '--general-contrasts-25' para la marca 'tecmi' para el tema claro según Figma.
-- **chore: se actualizó el color de la variable '--green-tecmi-100' para la marca 'tecmi' para el tema claro.**:
-chore: se actualizó el color de la variable '--green-tecmi-100' para la marca 'tecmi' para el tema claro.
+- **chore: se actualizó el color de la variable '--menu-select-on-surface-hovered-w-checkbox' para la marca de grupo educativo en el tema claro.**:
+chore: se actualizó el color de la variable '--menu-select-on-surface-hovered-w-checkbox' para la marca de grupo educativo en el tema claro.
 - **chore: se ocultó elemento de las propiedades.**:
 chore: se ocultó elemento de las propiedades.
 - **bubble chat**:
@@ -864,6 +866,8 @@ Formato
 new config
 - **build**:
 build
+- **formato**:
+formato
 - **Formato**:
 Formato
 - **Formato**:
@@ -991,8 +995,6 @@ chore: se eliminó código que no se utiliza
 
 - **formato**:
 formato
-- **vq.6.3-k**:
-vq.6.3-k
 - **chat bubble lts**:
 chat bubble lts
 - **formato**:
@@ -1001,6 +1003,8 @@ formato
 Formato
 - **Formato**:
 Formato
+- **chat bucard bubble like and dislike**:
+chat bucard bubble like and dislike
 - **Button container mobile created**:
 Button container mobile created
 - **feat(component/tags): se realizo ajuste en color de CSS según Figma. Cambios de contraste para Tec milenio.**:
@@ -1119,8 +1123,8 @@ format
 version 1.6.3-j
 - **chat bubble lts**:
 chat bubble lts
-- **Formato**:
-Formato
+- **vq.6.3-k**:
+vq.6.3-k
 - **Formato**:
 Formato
 - **Formato**:
@@ -1235,10 +1239,10 @@ feat(component / simple header): Se agregaron traducciones a los tooltips
 chat bubble lts
 - **Formato**:
 Formato
-- **formato**:
-formato
 - **bubble chat**:
 bubble chat
+- **Formato**:
+Formato
 - **feat(component / dropdown): Se corrigió la posición del menú**:
 feat(component / dropdown): Se corrigió la posición del menú
 - **formato**:
@@ -1331,8 +1335,8 @@ chore: se realizó cambio de color para homologar con Figma.
 fix(component / top bar): Se corrigió el comportamiento de dos líneas en el top bar
 - **chore: se actualizó el color de la variable '--general-contrasts-input-background' para la marca 'tecmi' para el tema claro según Figma.**:
 chore: se actualizó el color de la variable '--general-contrasts-input-background' para la marca 'tecmi' para el tema claro según Figma.
-- **chore: se actualizó el color de la variable '--menu-select-on-surface-hovered-w-checkbox' para la marca de grupo educativo en el tema claro.**:
-chore: se actualizó el color de la variable '--menu-select-on-surface-hovered-w-checkbox' para la marca de grupo educativo en el tema claro.
+- **chore: se actualizó el color de la variable '--green-tecmi-100' para la marca 'tecmi' para el tema claro.**:
+chore: se actualizó el color de la variable '--green-tecmi-100' para la marca 'tecmi' para el tema claro.
 - **chore: se actualizó el color de la variable '--containers-main' para la marca 'tecmi' para el tema claro.**:
 chore: se actualizó el color de la variable '--containers-main' para la marca 'tecmi' para el tema claro.
 - **chore: se actualizó el color de la variable '--buttons-inactive-step' para la marca 'tecmi' para el tema claro.**:
@@ -1345,8 +1349,8 @@ top bar
 Update
 - **chore: se actualizó el color de la variable '--general-contrasts-25' para la marca 'tecmi' para el tema claro según Figma.**:
 chore: se actualizó el color de la variable '--general-contrasts-25' para la marca 'tecmi' para el tema claro según Figma.
-- **chore: se actualizó el color de la variable '--green-tecmi-100' para la marca 'tecmi' para el tema claro.**:
-chore: se actualizó el color de la variable '--green-tecmi-100' para la marca 'tecmi' para el tema claro.
+- **chore: se actualizó el color de la variable '--menu-select-on-surface-hovered-w-checkbox' para la marca de grupo educativo en el tema claro.**:
+chore: se actualizó el color de la variable '--menu-select-on-surface-hovered-w-checkbox' para la marca de grupo educativo en el tema claro.
 - **chore: se ocultó elemento de las propiedades.**:
 chore: se ocultó elemento de las propiedades.
 - **bubble chat**:
@@ -1357,6 +1361,8 @@ Formato
 new config
 - **build**:
 build
+- **formato**:
+formato
 - **Formato**:
 Formato
 - **Formato**:

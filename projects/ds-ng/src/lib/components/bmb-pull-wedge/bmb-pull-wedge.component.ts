@@ -75,7 +75,10 @@ export class BmbPullWedgeComponent implements AfterViewInit {
   onDragMoved(event: CdkDragMove) {
     const newHeight = this.initialDragHeight + event.distance.y;
 
-    if (newHeight >= this.minContentHeight() && newHeight <= this.initialHeight()) {
+    if (
+      newHeight >= this.minContentHeight() &&
+      newHeight <= this.initialHeight()
+    ) {
       this.contentHeight = newHeight;
       this.updateHeight();
     }
@@ -100,9 +103,7 @@ export class BmbPullWedgeComponent implements AfterViewInit {
 
     this.isOpen.set(open);
 
-    this.contentHeight = open
-      ? this.initialHeight()
-      : this.minContentHeight();
+    this.contentHeight = open ? this.initialHeight() : this.minContentHeight();
 
     this.updateHeight();
   }
