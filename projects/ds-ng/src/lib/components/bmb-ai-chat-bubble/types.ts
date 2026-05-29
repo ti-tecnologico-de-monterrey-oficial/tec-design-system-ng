@@ -17,6 +17,8 @@ export interface BmbChatBaseMessage {
   isUser: boolean;
   userProfile?: string;
   status?: BmbChatStatus;
+  like?: boolean;
+  dislike?: boolean;
 }
 
 export interface BmbTextMessage extends BmbChatBaseMessage {
