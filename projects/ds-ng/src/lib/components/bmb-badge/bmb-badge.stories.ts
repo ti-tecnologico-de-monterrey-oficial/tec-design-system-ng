@@ -79,7 +79,7 @@ ${getAlertBlockquote(
 <br/><br/>Please do not use them because they will be removed in future versions.`,
   {
     title: '###'.concat(RELEVANT_TITLE.lts),
-    blockquoteType: BlockquoteType.important,
+    blockquoteType: BlockquoteType.note,
     isRelevantTitle: true,
   },
 )}
