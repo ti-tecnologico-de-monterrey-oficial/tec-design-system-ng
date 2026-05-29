@@ -9,6 +9,7 @@
 /apps/app-angular/dist
 /apps/app-react/dist
 /apps/app-react/public
+/apps/app-angular/public
 
 # Node
 /node_modules
