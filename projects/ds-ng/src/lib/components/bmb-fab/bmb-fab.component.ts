@@ -23,7 +23,10 @@ export class BmbFabComponent {
   isActive: boolean = false;
 
   handleFabClick(event: MouseEvent): void {
-    this.isActive = !this.isActive;
+    if (this.activeState) {
+      this.isActive = !this.isActive;
+    }
+
     this.fabClick.emit(event);
   }
 
@@ -36,11 +39,15 @@ export class BmbFabComponent {
   }
 
   get iconName(): string {
-    if (!this.mitec() && this.type() === 'normal' && this.size() === 'large') {
+    if (this.activeState) {
       if (this.isActive) return 'close';
       return this.icon() || 'apps';
     }
 
     return this.icon();
+  }
+
+  get activeState(): boolean {
+    return !this.mitec() && this.type() === 'normal' && this.size() === 'large';
   }
 }

@@ -1,9 +1,4 @@
-import {
-  Component,
-  input,
-  output,
-  effect,
-} from '@angular/core';
+import { Component, input, output, effect } from '@angular/core';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
