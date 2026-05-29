@@ -6,6 +6,9 @@
 /out-tsc
 /bazel-out
 /lib/core/dist
+/apps/app-angular/dist
+/apps/app-react/dist
+/apps/app-react/public
 
 # Node
 /node_modules

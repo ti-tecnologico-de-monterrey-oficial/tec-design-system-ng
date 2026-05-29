@@ -22,9 +22,6 @@
       "@org/source"
     ],
     "paths": {
-      "@ti-tecnologico-de-monterrey-oficial/core/component/badge": [
-        "./lib/core/dist/component/badge.d.ts"
-      ],
       "@ti-tecnologico-de-monterrey-oficial/ui-angular": [
         "./lib/ui-angular/src/index.ts"
       ]

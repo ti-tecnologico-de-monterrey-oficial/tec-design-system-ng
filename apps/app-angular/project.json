@@ -20,6 +20,11 @@
           {
             "glob": "**/*",
             "input": "apps/app-angular/public"
+          },
+          {
+            "glob": "**/*.svg",
+            "input": "node_modules/@material-symbols/svg-400/rounded/",
+            "output": "assets/icons/material-rounded/"
           }
         ],
         "styles": [

@@ -13,6 +13,9 @@
       "default": "./dist/index.esm.js"
     }
   },
+  "peerDependencies": {
+    "@material-symbols/svg-400": "^0.39.1"
+  },
   "dependencies": {
     "@ti-tecnologico-de-monterrey-oficial/core": "0.0.1"
   }

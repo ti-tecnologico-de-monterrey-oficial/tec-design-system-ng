@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { NxWelcome } from './nx-welcome';
-import { ButtonComponent } from '@ti-tecnologico-de-monterrey-oficial/ui-angular';
+import { BmbBadgeComponent } from '@ti-tecnologico-de-monterrey-oficial/ui-angular';
 
 @Component({
-  imports: [NxWelcome, ButtonComponent],
+  imports: [NxWelcome, BmbBadgeComponent],
   selector: 'app-root',
   templateUrl: './app.html',
   styleUrl: './app.css',
