@@ -114,9 +114,7 @@ export class BmbDropdownComponent implements OnInit, OnChanges {
 
   @ViewChild('contentDiv', { static: true }) contentRef!: ElementRef<any>;
 
-  constructor(
-    private readonly projectionService: BmbProjectionContentService,
-  ) {
+  constructor(private readonly projectionService: BmbProjectionContentService) {
     effect(() => {
       const isOpen = this.isOpenList;
 
