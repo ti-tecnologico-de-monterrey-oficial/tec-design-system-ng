@@ -21,7 +21,7 @@ import { BmbTooltipComponent } from './bmb-tooltip.component';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 
 export default {
-  title: 'Components/Status indicators/ToolTip',
+  title: 'Components/Status indicators/Tooltip',
   component: BmbTooltipComponent,
   decorators: [
     moduleMetadata({

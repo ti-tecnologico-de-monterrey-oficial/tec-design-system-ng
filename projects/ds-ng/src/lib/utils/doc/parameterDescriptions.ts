@@ -7,6 +7,7 @@ import {
   RELEVANT_TITLE,
   getAlertBlockquote,
   BlockquoteType,
+  getGeneralDocDescription,
 } from './utils';
 
 type IBmbButtonEventType = 'clicked' | 'pressed';
@@ -664,14 +665,9 @@ ${RELEVANT_TITLE.note} <= 0 will be inherited.`,
     },
   },
   isIconFill: {
-    control: { type: 'boolean' },
-    description:
-      'Determines whether the icon is filled (***true***) or outlined (***false***).',
-    table: {
-      category: 'Properties',
-      defaultValue: getDefaultValueControl('true'),
-      type: { summary: 'boolean' },
-    },
+    ...DBmbGenericParamDesc.deprecated,
+    description: ` ${DBmbGenericParamDesc.deprecated.description}
+${getGeneralDocDescription('https://bamboo.tec.mx/latest/foundations/icon/iconos-wukxE19q')} Visit the best practices section.`,
   },
   iconDotNotification: {
     control: { type: 'number' },
