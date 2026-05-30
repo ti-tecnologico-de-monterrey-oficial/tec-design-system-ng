@@ -9,7 +9,6 @@ import {
 } from '../../utils/doc/utils';
 import {
   GOOGLE_FONTS_LINK,
-  DBmbGenericParamDesc,
   DBmbIconParamDesc,
   ICON_IMAGE_DETAIL,
 } from '../../utils/doc/parameterDescriptions';
@@ -35,6 +34,10 @@ export default {
         'customIcon',
         'isSVGTemplate',
         'loadIcon',
+        'customIconName',
+        'isCustomIcon',
+        'testId',
+        'sanitizedHtml',
       ],
     },
     docs: {
