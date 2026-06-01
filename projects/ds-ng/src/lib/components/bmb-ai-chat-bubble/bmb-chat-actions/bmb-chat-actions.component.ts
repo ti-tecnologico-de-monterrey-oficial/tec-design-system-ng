@@ -2,6 +2,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   computed,
+  effect,
   input,
   output,
   signal,
@@ -26,9 +27,34 @@ import { BmbTranslationsService } from '../../../services/translations/translati
 })
 export class ChatActionsComponent {
   readonly message = input.required<BmbChatMessage>();
+  constructor(private translationService: BmbTranslationsService) {
+    effect(
+      () => {
+        const message = this.message();
 
-  constructor(private translationService: BmbTranslationsService) {}
+        this.internalActions.update((actions) =>
+          actions.map((action) => {
+            if (action.action === 'like') {
+              return {
+                ...action,
+                active: message.like ?? false,
+              };
+            }
 
+            if (action.action === 'dislike') {
+              return {
+                ...action,
+                active: message.dislike ?? false,
+              };
+            }
+
+            return action;
+          }),
+        );
+      },
+      { allowSignalWrites: true },
+    );
+  }
   /**
    * Configurable actions.
    */
