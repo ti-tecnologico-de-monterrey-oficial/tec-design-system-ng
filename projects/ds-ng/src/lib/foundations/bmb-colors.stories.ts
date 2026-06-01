@@ -944,4 +944,12 @@ background: radial-gradient(circle, var(--gradient-blue));
 
 type Story = StoryObj<typeof StorybookColorsPlaygroundComponent>;
 
-export const Default: Story = {};
+export const Default: Story = {
+  parameters: {
+    docs: {
+      canvas: {
+        sourceState: 'none',
+      },
+    },
+  },
+};
