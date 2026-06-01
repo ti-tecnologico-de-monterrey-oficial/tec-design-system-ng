@@ -89,7 +89,6 @@ ${getBasicExampleBlock('BmbIconComponent')}
   },
   args: {
     icon: 'home',
-    isFill: true,
     size: 24,
     alt: 'Default alt text for image',
   },
