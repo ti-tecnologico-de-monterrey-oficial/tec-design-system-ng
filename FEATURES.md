@@ -1,4 +1,4 @@
-# Novedades ## [v1.6.3-m] -
+# Novedades ## [v1.6.3-n] -
 2026-06-01
 
 ### 🚀 Novedades
@@ -17,6 +17,8 @@ formato
 Formato
 *
 Formato
+*
+changelog
 *
 Button container mobile created
 *
@@ -162,8 +164,6 @@ feat(component / home card): Se agregaron traducciones a los tooltips
 *
 chore: se agregó ejemplo de uso de las variables de colores nombras.
 *
-feat(component / list items): Se agregaron traducciones a los tooltips
-*
 feat(component / top bar): Se agregaron traducciones a los tooltips
 *
 feat(component / calendar): Se agregaron traducciones a los tooltips
@@ -222,8 +222,6 @@ chore: se agregó documentación de ejemplo para implementar rangos de fechas.
 *
 top bar
 *
-feat(utils): Se agregaron funciones beforeClose y afterClose a los servicios de Modal y ProjectedContent
-*
 bubble chat
 *
 top bar
@@ -231,6 +229,8 @@ top bar
 chore: se agregaron variables, se depuraron variables para homologar con Figma.
 *
 bubble chat
+*
+fix(component / date range): Se optimizó la destrucción del código
 *
 fix(component / date range): Se corrigió el formato de la fecha
 *
@@ -281,6 +281,8 @@ Formato
 Formato
 *
 fix(component/sidebar): Se realizo refactorización de código para depurar elementos y simplificar estructura. La navegación ahora es en su mayoría manejo con CSS.
+*
+feat(component / interactive icon): se agregó el tooltip al interactive icon
 *
 feat(component/multi-dot-paginator): se agrego el botón como último índice. Se implementó funcionalidad para que permita seleccionar solo un índice.
 *
@@ -352,13 +354,13 @@ Formato
 *
 fix(component / portal): Se agregó un parche de seguridad
 *
-feat(component / interactive icon): se agregó el tooltip al interactive icon
-*
 feat(component / icon): Se agregaron iconos personalizados
 *
 chore: se implemento códogo para evitar errores por "typo". Los tipos de datos se generan a partir de objetos json  al igual que los listados con los nombres para la documentación.
 *
 feat(component/sidebar): se realizaron ajustes para manejar las versión móvil o de escritorio mediante consultar de CSS.
+*
+feat(utils): Se agregaron funciones beforeClose y afterClose a los servicios de Modal y ProjectedContent
 *
 fix(component / Projection service): Se agregó un parche de seguridad
 *
@@ -373,8 +375,6 @@ topbar user
 chore: se cambiaron los tipos de datos a un archivo más específico donde se generaran datos a nivel grupo y componente.
 *
 test: Add unit tests for BmbFilterCardComponent, along with related dependency updates.
-*
-fix(component / date range): Se optimizó la destrucción del código
 *
 roll back user summary changes
 *
@@ -445,6 +445,8 @@ chore: se agregaron nuevas variables de color complementarias '--general-contras
 feat(component / dot paginator): Se agregaron traducciones a los tooltips
 *
 feat(component / dropdown): Se agregaron traducciones a los tooltips
+*
+feat(component / list items): Se agregaron traducciones a los tooltips
 *
 chore se elimino variables "--bmb-calendar-button-selected-background" ahora se usará "--buttons-alternative-normal" para homologar con Figma.
 *
@@ -538,6 +540,8 @@ formato
 Formato
 - **Formato**:
 Formato
+- **changelog**:
+changelog
 - **Button container mobile created**:
 Button container mobile created
 - **feat(component/tags): se realizo ajuste en color de CSS según Figma. Cambios de contraste para Tec milenio.**:
@@ -682,8 +686,6 @@ feat(component / multi dot paginator): Se agregaron traducciones a los tooltips
 feat(component / home card): Se agregaron traducciones a los tooltips
 - **chore: se agregó ejemplo de uso de las variables de colores nombras.**:
 chore: se agregó ejemplo de uso de las variables de colores nombras.
-- **feat(component / list items): Se agregaron traducciones a los tooltips**:
-feat(component / list items): Se agregaron traducciones a los tooltips
 - **feat(component / top bar): Se agregaron traducciones a los tooltips**:
 feat(component / top bar): Se agregaron traducciones a los tooltips
 - **feat(component / calendar): Se agregaron traducciones a los tooltips**:
@@ -742,8 +744,6 @@ top bar
 chore: se agregó documentación de ejemplo para implementar rangos de fechas.
 - **top bar**:
 top bar
-- **feat(utils): Se agregaron funciones beforeClose y afterClose a los servicios de Modal y ProjectedContent**:
-feat(utils): Se agregaron funciones beforeClose y afterClose a los servicios de Modal y ProjectedContent
 - **bubble chat**:
 bubble chat
 - **top bar**:
@@ -752,6 +752,8 @@ top bar
 chore: se agregaron variables, se depuraron variables para homologar con Figma.
 - **bubble chat**:
 bubble chat
+- **fix(component / date range): Se optimizó la destrucción del código**:
+fix(component / date range): Se optimizó la destrucción del código
 - **fix(component / date range): Se corrigió el formato de la fecha**:
 fix(component / date range): Se corrigió el formato de la fecha
 - **fix(component / tooltip): Se agregó soporte a SSR**:
@@ -802,6 +804,8 @@ Formato
 Formato
 - **fix(component/sidebar): Se realizo refactorización de código para depurar elementos y simplificar estructura. La navegación ahora es en su mayoría manejo con CSS.**:
 fix(component/sidebar): Se realizo refactorización de código para depurar elementos y simplificar estructura. La navegación ahora es en su mayoría manejo con CSS.
+- **feat(component / interactive icon): se agregó el tooltip al interactive icon**:
+feat(component / interactive icon): se agregó el tooltip al interactive icon
 - **feat(component/multi-dot-paginator): se agrego el botón como último índice. Se implementó funcionalidad para que permita seleccionar solo un índice.**:
 feat(component/multi-dot-paginator): se agrego el botón como último índice. Se implementó funcionalidad para que permita seleccionar solo un índice.
 - **utils(app): Actualización de la app demo**:
@@ -872,14 +876,14 @@ formato
 Formato
 - **fix(component / portal): Se agregó un parche de seguridad**:
 fix(component / portal): Se agregó un parche de seguridad
-- **feat(component / interactive icon): se agregó el tooltip al interactive icon**:
-feat(component / interactive icon): se agregó el tooltip al interactive icon
 - **feat(component / icon): Se agregaron iconos personalizados**:
 feat(component / icon): Se agregaron iconos personalizados
 - **chore: se implemento códogo para evitar errores por "typo". Los tipos de datos se generan a partir de objetos json  al igual que los listados con los nombres para la documentación.**:
 chore: se implemento códogo para evitar errores por "typo". Los tipos de datos se generan a partir de objetos json  al igual que los listados con los nombres para la documentación.
 - **feat(component/sidebar): se realizaron ajustes para manejar las versión móvil o de escritorio mediante consultar de CSS.**:
 feat(component/sidebar): se realizaron ajustes para manejar las versión móvil o de escritorio mediante consultar de CSS.
+- **feat(utils): Se agregaron funciones beforeClose y afterClose a los servicios de Modal y ProjectedContent**:
+feat(utils): Se agregaron funciones beforeClose y afterClose a los servicios de Modal y ProjectedContent
 - **fix(component / Projection service): Se agregó un parche de seguridad**:
 fix(component / Projection service): Se agregó un parche de seguridad
 - **fix(component / native modal): Se agregó un parche de seguridad**:
@@ -894,8 +898,6 @@ topbar user
 chore: se cambiaron los tipos de datos a un archivo más específico donde se generaran datos a nivel grupo y componente.
 - **test: Add unit tests for BmbFilterCardComponent, along with related dependency updates.**:
 test: Add unit tests for BmbFilterCardComponent, along with related dependency updates.
-- **fix(component / date range): Se optimizó la destrucción del código**:
-fix(component / date range): Se optimizó la destrucción del código
 - **roll back user summary changes**:
 roll back user summary changes
 - **fix(component / multi dot paginator): Se agregaron animaciones a los puntos del multi dot paginator**:
@@ -966,6 +968,8 @@ chore: se agregaron nuevas variables de color complementarias '--general-contras
 feat(component / dot paginator): Se agregaron traducciones a los tooltips
 - **feat(component / dropdown): Se agregaron traducciones a los tooltips**:
 feat(component / dropdown): Se agregaron traducciones a los tooltips
+- **feat(component / list items): Se agregaron traducciones a los tooltips**:
+feat(component / list items): Se agregaron traducciones a los tooltips
 - **chore se elimino variables "--bmb-calendar-button-selected-background" ahora se usará "--buttons-alternative-normal" para homologar con Figma.**:
 chore se elimino variables "--bmb-calendar-button-selected-background" ahora se usará "--buttons-alternative-normal" para homologar con Figma.
 - **Formato**:
@@ -1059,6 +1063,8 @@ formato
 Formato
 - **Formato**:
 Formato
+- **changelog**:
+changelog
 - **Button container mobile created**:
 Button container mobile created
 - **feat(component/tags): se realizo ajuste en color de CSS según Figma. Cambios de contraste para Tec milenio.**:
@@ -1203,8 +1209,6 @@ feat(component / multi dot paginator): Se agregaron traducciones a los tooltips
 feat(component / home card): Se agregaron traducciones a los tooltips
 - **chore: se agregó ejemplo de uso de las variables de colores nombras.**:
 chore: se agregó ejemplo de uso de las variables de colores nombras.
-- **feat(component / list items): Se agregaron traducciones a los tooltips**:
-feat(component / list items): Se agregaron traducciones a los tooltips
 - **feat(component / top bar): Se agregaron traducciones a los tooltips**:
 feat(component / top bar): Se agregaron traducciones a los tooltips
 - **feat(component / calendar): Se agregaron traducciones a los tooltips**:
@@ -1263,8 +1267,6 @@ top bar
 chore: se agregó documentación de ejemplo para implementar rangos de fechas.
 - **top bar**:
 top bar
-- **feat(utils): Se agregaron funciones beforeClose y afterClose a los servicios de Modal y ProjectedContent**:
-feat(utils): Se agregaron funciones beforeClose y afterClose a los servicios de Modal y ProjectedContent
 - **bubble chat**:
 bubble chat
 - **top bar**:
@@ -1273,6 +1275,8 @@ top bar
 chore: se agregaron variables, se depuraron variables para homologar con Figma.
 - **bubble chat**:
 bubble chat
+- **fix(component / date range): Se optimizó la destrucción del código**:
+fix(component / date range): Se optimizó la destrucción del código
 - **fix(component / date range): Se corrigió el formato de la fecha**:
 fix(component / date range): Se corrigió el formato de la fecha
 - **fix(component / tooltip): Se agregó soporte a SSR**:
@@ -1323,6 +1327,8 @@ Formato
 Formato
 - **fix(component/sidebar): Se realizo refactorización de código para depurar elementos y simplificar estructura. La navegación ahora es en su mayoría manejo con CSS.**:
 fix(component/sidebar): Se realizo refactorización de código para depurar elementos y simplificar estructura. La navegación ahora es en su mayoría manejo con CSS.
+- **feat(component / interactive icon): se agregó el tooltip al interactive icon**:
+feat(component / interactive icon): se agregó el tooltip al interactive icon
 - **feat(component/multi-dot-paginator): se agrego el botón como último índice. Se implementó funcionalidad para que permita seleccionar solo un índice.**:
 feat(component/multi-dot-paginator): se agrego el botón como último índice. Se implementó funcionalidad para que permita seleccionar solo un índice.
 - **utils(app): Actualización de la app demo**:
@@ -1393,14 +1399,14 @@ formato
 Formato
 - **fix(component / portal): Se agregó un parche de seguridad**:
 fix(component / portal): Se agregó un parche de seguridad
-- **feat(component / interactive icon): se agregó el tooltip al interactive icon**:
-feat(component / interactive icon): se agregó el tooltip al interactive icon
 - **feat(component / icon): Se agregaron iconos personalizados**:
 feat(component / icon): Se agregaron iconos personalizados
 - **chore: se implemento códogo para evitar errores por "typo". Los tipos de datos se generan a partir de objetos json  al igual que los listados con los nombres para la documentación.**:
 chore: se implemento códogo para evitar errores por "typo". Los tipos de datos se generan a partir de objetos json  al igual que los listados con los nombres para la documentación.
 - **feat(component/sidebar): se realizaron ajustes para manejar las versión móvil o de escritorio mediante consultar de CSS.**:
 feat(component/sidebar): se realizaron ajustes para manejar las versión móvil o de escritorio mediante consultar de CSS.
+- **feat(utils): Se agregaron funciones beforeClose y afterClose a los servicios de Modal y ProjectedContent**:
+feat(utils): Se agregaron funciones beforeClose y afterClose a los servicios de Modal y ProjectedContent
 - **fix(component / Projection service): Se agregó un parche de seguridad**:
 fix(component / Projection service): Se agregó un parche de seguridad
 - **fix(component / native modal): Se agregó un parche de seguridad**:
@@ -1415,8 +1421,6 @@ topbar user
 chore: se cambiaron los tipos de datos a un archivo más específico donde se generaran datos a nivel grupo y componente.
 - **test: Add unit tests for BmbFilterCardComponent, along with related dependency updates.**:
 test: Add unit tests for BmbFilterCardComponent, along with related dependency updates.
-- **fix(component / date range): Se optimizó la destrucción del código**:
-fix(component / date range): Se optimizó la destrucción del código
 - **roll back user summary changes**:
 roll back user summary changes
 - **fix(component / multi dot paginator): Se agregaron animaciones a los puntos del multi dot paginator**:
@@ -1487,6 +1491,8 @@ chore: se agregaron nuevas variables de color complementarias '--general-contras
 feat(component / dot paginator): Se agregaron traducciones a los tooltips
 - **feat(component / dropdown): Se agregaron traducciones a los tooltips**:
 feat(component / dropdown): Se agregaron traducciones a los tooltips
+- **feat(component / list items): Se agregaron traducciones a los tooltips**:
+feat(component / list items): Se agregaron traducciones a los tooltips
 - **chore se elimino variables "--bmb-calendar-button-selected-background" ahora se usará "--buttons-alternative-normal" para homologar con Figma.**:
 chore se elimino variables "--bmb-calendar-button-selected-background" ahora se usará "--buttons-alternative-normal" para homologar con Figma.
 - **Formato**:
