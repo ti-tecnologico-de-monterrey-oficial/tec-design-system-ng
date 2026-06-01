@@ -22,6 +22,9 @@
       "@org/source"
     ],
     "paths": {
+      "@ti-tecnologico-de-monterrey-oficial/ui-react": [
+        "./lib/ui-react/src/index.ts"
+      ],
       "@ti-tecnologico-de-monterrey-oficial/ui-angular": [
         "./lib/ui-angular/src/index.ts"
       ]

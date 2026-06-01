@@ -22,13 +22,18 @@
             "input": "apps/app-angular/public"
           },
           {
+            "glob": "**/*",
+            "input": "lib/ui-angular/src/assets/fonts",
+            "output": "assets/fonts"
+          },
+          {
             "glob": "**/*.svg",
             "input": "node_modules/@material-symbols/svg-400/rounded/",
             "output": "assets/icons/material-rounded/"
           }
         ],
         "styles": [
-          "apps/app-angular/src/styles.css"
+          "lib/core/src/styles/mainGED.scss"
         ]
       },
       "configurations": {

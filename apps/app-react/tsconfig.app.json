@@ -30,6 +30,9 @@
   "include": ["src/**/*.js", "src/**/*.jsx", "src/**/*.ts", "src/**/*.tsx"],
   "references": [
     {
+      "path": "../../lib/core/tsconfig.lib.json"
+    },
+    {
       "path": "../../lib/ui-react/tsconfig.lib.json"
     }
   ]

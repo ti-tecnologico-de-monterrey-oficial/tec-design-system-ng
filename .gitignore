@@ -62,3 +62,6 @@ storybook-static
 
 vite.config.*.timestamp*
 test-output
+
+.claude/worktrees
+.claude/settings.local.json

@@ -28,9 +28,40 @@ function copyMaterialSymbols() {
   cpSync(sourceDir, targetDir, { recursive: true });
 }
 
+function poppinsFontsCopyPlugin() {
+  return {
+    name: 'poppins-fonts-copy',
+    configureServer() {
+      copyPoppinsFonts();
+    },
+    buildStart() {
+      copyPoppinsFonts();
+    },
+  };
+}
+
+function copyPoppinsFonts() {
+  const sourceDir = resolve(import.meta.dirname, '../../lib/ui-react/src/assets/fonts/Poppins');
+  const targetDir = resolve(import.meta.dirname, 'public/assets/fonts/Poppins');
+
+  if (!existsSync(sourceDir)) {
+    return;
+  }
+
+  mkdirSync(targetDir, { recursive: true });
+  cpSync(sourceDir, targetDir, { recursive: true });
+}
+
 export default defineConfig(() => ({
   root: import.meta.dirname,
   cacheDir: '../../node_modules/.vite/apps/app-react',
+  resolve: {
+    alias: {
+      '@ti-tecnologico-de-monterrey-oficial/ui-react': resolve(import.meta.dirname, '../../lib/ui-react/src/index.ts'),
+      '@ti-tecnologico-de-monterrey-oficial/core/component/badge': resolve(import.meta.dirname, '../../lib/core/src/component/badge.ts'),
+      '@ti-tecnologico-de-monterrey-oficial/core': resolve(import.meta.dirname, '../../lib/core/src/index.ts'),
+    },
+  },
   server:{
     port: 4200,
     host: 'localhost',
@@ -39,7 +70,7 @@ export default defineConfig(() => ({
     port: 4200,
     host: 'localhost',
   },
-  plugins: [react(), materialSymbolsCopyPlugin()],
+  plugins: [react(), materialSymbolsCopyPlugin(), poppinsFontsCopyPlugin()],
   // Uncomment this if you are using workers.
   // worker: {
   //  plugins: [],
