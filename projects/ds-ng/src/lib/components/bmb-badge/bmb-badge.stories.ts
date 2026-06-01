@@ -166,4 +166,11 @@ export const AllColors = {
       appearances: appearanceOptions,
     },
   }),
+  parameters: {
+    docs: {
+      canvas: {
+        sourceState: 'none',
+      },
+    },
+  },
 };
