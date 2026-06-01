@@ -8,6 +8,7 @@ $status: (
   'error': var(--semantic-error),
   'warning': var(--semantic-warning),
 );
+//map-get($font-sizes, "small")
 
 .bmb_progress-circle {
   grid-area: 1 / 1 / 2 / 2;
