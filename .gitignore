@@ -65,7 +65,3 @@ test-output
 
 .claude/worktrees
 .claude/settings.local.json
-
-# Restricted by repository rules
-.github/agents/ci-monitor-subagent.agent.md
-.github/agents/Convertidor de componentes.md
