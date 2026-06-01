@@ -46,13 +46,17 @@ export class BmbPushNotificationItemComponent {
       ) ||
       BMB_CREATIVE_COLOR_LIST.some(
         (element) => this.notification().type === element,
-      ),
+      ) ||
+      this.notification().type === 'black-primary' ||
+      this.notification().type === 'blue-tec',
   );
   isValidVariant = computed<boolean>(
     () =>
       !BMB_SEMANTIC_COLOR_LIST.some(
         (element) => this.notification().type === element,
-      ),
+      ) ||
+      this.notification().type === 'black-primary' ||
+      this.notification().type === 'neon-primary',
   );
 
   isExpanded: boolean = true;
