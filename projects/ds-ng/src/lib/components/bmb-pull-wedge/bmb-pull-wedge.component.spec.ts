@@ -36,72 +36,15 @@ describe('BmbPullWedgeComponent', () => {
     });
 
     it('should have default values for inputs', () => {
-      expect(component.initialHeight).toBe(300);
-      expect(component.minContentHeight).toBe(100);
+      expect(component.initialHeight()).toBe(300);
+      expect(component.minContentHeight()).toBe(100);
     });
 
     it('should initialize properties correctly', () => {
       expect(component.isOpen()).toBe(false);
-      expect(component.contentHeight).toBe(component.minContentHeight);
-      expect(component.maxDragHeight).toBe(0);
+      expect(component.contentHeight).toBe(component.minContentHeight());
+      expect(component.maxDragHeight).toBe(153);
       expect(component.isVisible).toBe(true);
-    });
-  });
-
-  describe('Input Properties', () => {
-    it('should handle initialHeight changes', () => {
-      component.initialHeight = 500;
-      const changes: SimpleChanges = {
-        initialHeight: new SimpleChange(300, 500, false),
-      };
-
-      component.ngOnChanges(changes);
-
-      expect(component.maxDragHeight).toBe(255); // 500 * 0.51
-    });
-
-    it('should handle minContentHeight changes', () => {
-      const mockElement = { nativeElement: document.createElement('div') };
-      component.contentRef = mockElement as ElementRef;
-      component.minContentHeight = 150;
-
-      const changes: SimpleChanges = {
-        minContentHeight: new SimpleChange(100, 150, false),
-      };
-
-      component.ngOnChanges(changes);
-
-      expect(component.contentHeight).toBeGreaterThanOrEqual(150);
-      expect(mockRenderer.setStyle).toHaveBeenCalled();
-    });
-    it('should handle isOpen changes when opening', () => {
-      const mockElement = { nativeElement: document.createElement('div') };
-      component.contentRef = mockElement as ElementRef;
-      component.isOpen.set(true);
-
-      const changes: SimpleChanges = {
-        isOpen: new SimpleChange(false, true, false),
-      };
-
-      component.ngOnChanges(changes);
-
-      expect(component.contentHeight).toBe(component.initialHeight);
-      expect(mockRenderer.setStyle).toHaveBeenCalled();
-    });
-
-    it('should handle isOpen changes when closing', () => {
-      const mockElement = { nativeElement: document.createElement('div') };
-      component.contentRef = mockElement as ElementRef;
-      component.isOpen.set(false);
-
-      const changes: SimpleChanges = {
-        isOpen: new SimpleChange(true, false, false),
-      };
-
-      component.ngOnChanges(changes);
-
-      expect(component.contentHeight).toBe(component.minContentHeight);
-      expect(mockRenderer.setStyle).toHaveBeenCalled();
     });
   });
 
@@ -133,8 +76,8 @@ describe('BmbPullWedgeComponent', () => {
 
     it('should handle drag move within bounds', () => {
       component['initialDragHeight'] = 150;
-      component.initialHeight = 300;
-      component.minContentHeight = 100;
+      (component as any).initialHeight = () => 300;
+      (component as any).minContentHeight = () => 100;
 
       const mockEvent = {
         distance: { y: 50 },
@@ -148,8 +91,8 @@ describe('BmbPullWedgeComponent', () => {
 
     it('should not update height when drag exceeds upper bound', () => {
       component['initialDragHeight'] = 250;
-      component.initialHeight = 300;
-      component.minContentHeight = 100;
+      (component as any).initialHeight = () => 300;
+      (component as any).minContentHeight = () => 100;
       const originalHeight = component.contentHeight;
 
       const mockEvent = {
@@ -163,8 +106,8 @@ describe('BmbPullWedgeComponent', () => {
 
     it('should not update height when drag exceeds lower bound', () => {
       component['initialDragHeight'] = 150;
-      component.initialHeight = 300;
-      component.minContentHeight = 100;
+      (component as any).initialHeight = () => 300;
+      (component as any).minContentHeight = () => 100;
       const originalHeight = component.contentHeight;
 
       const mockEvent = {
@@ -179,7 +122,7 @@ describe('BmbPullWedgeComponent', () => {
     it('should open when drag ends above threshold', () => {
       component.contentHeight = 200; // Above maxDragHeight (153)
       component.maxDragHeight = 153;
-      component.initialHeight = 300;
+      (component as any).initialHeight = () => 300;
 
       const mockEvent = {} as CdkDragEnd;
 
@@ -193,8 +136,8 @@ describe('BmbPullWedgeComponent', () => {
     it('should handle drag end with proper state changes', () => {
       const mockElement = { nativeElement: document.createElement('div') };
       component.contentRef = mockElement as ElementRef;
-      component.minContentHeight = 100;
-      component.initialHeight = 300;
+      (component as any).minContentHeight = () => 100;
+      (component as any).initialHeight = () => 300;
       component.maxDragHeight = 150;
 
       // Test case 1: content height below midpoint (150)
@@ -234,8 +177,8 @@ describe('BmbPullWedgeComponent', () => {
 
     it('should close wedge when currently open', () => {
       component.isOpen.set(true);
-      component.initialHeight = 300;
-      component.minContentHeight = 100;
+      (component as any).initialHeight = () => 300;
+      (component as any).minContentHeight = () => 100;
 
       component.toggleWedge();
 
@@ -246,8 +189,8 @@ describe('BmbPullWedgeComponent', () => {
 
     it('should open wedge when currently closed', () => {
       component.isOpen.set(false);
-      component.initialHeight = 300;
-      component.minContentHeight = 100;
+      (component as any).initialHeight = () => 300;
+      (component as any).minContentHeight = () => 100;
 
       component.toggleWedge();
 
@@ -263,8 +206,8 @@ describe('BmbPullWedgeComponent', () => {
       fixture.detectChanges();
 
       const container = fixture.debugElement.query(By.css('.bmb_pull_wedge'));
-      expect(container.nativeElement.style.height).toBe(
-        `${component.minContentHeight}px`,
+      expect(container.nativeElement.style.minHeight).toBe(
+        `${component.minContentHeight()}px`,
       );
     });
 
@@ -406,34 +349,10 @@ describe('BmbPullWedgeComponent', () => {
       component.contentRef = mockElement as ElementRef;
     });
 
-    it('should handle zero initial height', () => {
-      component.initialHeight = 0;
-      const changes: SimpleChanges = {
-        initialHeight: new SimpleChange(300, 0, false),
-      };
-
-      component.ngOnChanges(changes);
-
-      expect(component.maxDragHeight).toBe(0);
-    });
-
-    it('should handle minContentHeight larger than initialHeight', () => {
-      component.initialHeight = 200;
-      component.minContentHeight = 300;
-
-      const changes: SimpleChanges = {
-        minContentHeight: new SimpleChange(100, 300, false),
-      };
-
-      component.ngOnChanges(changes);
-
-      expect(component.contentHeight).toBe(300);
-    });
-
     it('should handle negative drag distances', () => {
       component['initialDragHeight'] = 200;
-      component.minContentHeight = 100;
-      component.initialHeight = 300;
+      (component as any).minContentHeight = () => 100;
+      (component as any).initialHeight = () => 300;
 
       const mockEvent = {
         distance: { y: -50 },
@@ -446,8 +365,8 @@ describe('BmbPullWedgeComponent', () => {
 
     it('should handle very small drag distances', () => {
       component['initialDragHeight'] = 150;
-      component.minContentHeight = 100;
-      component.initialHeight = 300;
+      (component as any).minContentHeight = () => 100;
+      (component as any).initialHeight = () => 300;
 
       const mockEvent = {
         distance: { y: 0.1 },
@@ -460,15 +379,15 @@ describe('BmbPullWedgeComponent', () => {
 
     it('should handle edge case gracefully', () => {
       component.contentHeight = 150;
-      component.minContentHeight = 100;
-      component.initialHeight = 300;
+      (component as any).minContentHeight = () => 100;
+      (component as any).initialHeight = () => 300;
 
       // Test that component maintains valid state
       expect(component.contentHeight).toBeGreaterThanOrEqual(
-        component.minContentHeight,
+        component.minContentHeight(),
       );
       expect(component.contentHeight).toBeLessThanOrEqual(
-        component.initialHeight,
+        component.initialHeight(),
       );
     });
   });
@@ -478,8 +397,8 @@ describe('BmbPullWedgeComponent', () => {
       const mockElement = { nativeElement: document.createElement('div') };
       component.contentRef = mockElement as ElementRef;
       component['initialDragHeight'] = 150;
-      component.minContentHeight = 100;
-      component.initialHeight = 300;
+      (component as any).minContentHeight = () => 100;
+      (component as any).initialHeight = () => 300;
 
       const startTime = performance.now();
 

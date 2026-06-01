@@ -16,7 +16,7 @@ import {
 } from '../../utils/doc/parameterDescriptions';
 
 export default {
-  title: 'Particularities/mitec app/FAB Overlay drawer',
+  title: 'Components/Menus/FAB Overlay drawer',
   component: BmbDrawerOverlayComponent,
   tags: ['ged'],
   decorators: [

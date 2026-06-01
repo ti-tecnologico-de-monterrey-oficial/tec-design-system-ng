@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
+  effect,
   OnInit,
   ViewEncapsulation,
   input,
@@ -109,12 +110,21 @@ export class BmbDropdownComponent implements OnInit, OnChanges {
   parsedOptions = computed(() => this.initOptions(this.options()));
   selectedItem: IDropdownItem | null = null;
   dialogID: string = `dialog_id_${this.uuid}`;
+  private wasOpen = false;
 
   @ViewChild('contentDiv', { static: true }) contentRef!: ElementRef<any>;
 
-  constructor(
-    private readonly projectionService: BmbProjectionContentService,
-  ) {}
+  constructor(private readonly projectionService: BmbProjectionContentService) {
+    effect(() => {
+      const isOpen = this.isOpenList;
+
+      if (this.wasOpen && !isOpen) {
+        this.handleCloseList();
+      }
+
+      this.wasOpen = isOpen;
+    });
+  }
 
   ngOnInit() {
     if (!this.control()) {
@@ -297,5 +307,8 @@ export class BmbDropdownComponent implements OnInit, OnChanges {
 
   get tagValue(): string {
     return `+${this.selectedOptionCounter}`;
+  }
+  handleCloseList(): void {
+    handleValidity(this.control());
   }
 }

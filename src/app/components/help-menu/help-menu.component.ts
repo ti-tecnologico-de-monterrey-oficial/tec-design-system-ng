@@ -13,7 +13,7 @@ import {
 })
 export class HelpMenuComponent {
   title = input<string>('');
-  @Input() subtitle: string = '';
+  subtitle = input<string>('');
 
   helpClicked = output<string>();
 }

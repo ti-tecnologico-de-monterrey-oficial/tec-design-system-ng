@@ -76,7 +76,6 @@ export type IBmbInteractiveIconType = 'regular' | 'button' | 'app_drawer';
 export class BmbInteractiveIconComponent {
   appearanceContrast = input<IBmbContrast>('default');
   appearance = input<
-    | IBmbInteractiveIconAppearance
     | IBmbBaseColors
     | IBmbmitecBaseColors
     | IBmbCreativeBaseColors
@@ -85,6 +84,7 @@ export class BmbInteractiveIconComponent {
     | IBmbMitecInstitutionalColors
     | IBmbCreativeUseColors
     | IBmbAlertColors
+    | IBmbInteractiveIconAppearance
   >('red');
   description = input<string>('');
   icon = input<string>('face');

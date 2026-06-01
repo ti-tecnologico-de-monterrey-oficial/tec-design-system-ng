@@ -6,8 +6,13 @@ describe('BmbLegendComponent', () => {
   let fixture: ComponentFixture<BmbLegendComponent>;
 
   beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      imports: [BmbLegendComponent],
+    }).compileComponents();
+
     fixture = TestBed.createComponent(BmbLegendComponent);
     component = fixture.componentInstance;
+
     fixture.detectChanges();
   });
 
@@ -16,9 +21,8 @@ describe('BmbLegendComponent', () => {
   });
 
   it('should render with default values', () => {
-    const component = new BmbLegendComponent();
-    expect(component.label).toEqual('');
-    expect(component.value).toEqual('');
-    expect(component.indicatorAppearance).toEqual('normal');
+    expect(component.label()).toEqual('');
+    expect(component.value()).toEqual('');
+    expect(component.indicatorAppearance()).toEqual('normal');
   });
 });

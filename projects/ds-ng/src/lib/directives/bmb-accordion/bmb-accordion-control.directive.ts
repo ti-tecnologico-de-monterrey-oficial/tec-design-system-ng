@@ -8,7 +8,10 @@ import {
   OutputRefSubscription,
   ContentChildren,
   QueryList,
-  Input,
+  input,
+  effect,
+  OnChanges,
+  SimpleChanges,
 } from '@angular/core';
 import { BmbAccordionComponent } from '../../components/bmb-accordion/bmb-accordion.component';
 
@@ -17,23 +20,26 @@ import { BmbAccordionComponent } from '../../components/bmb-accordion/bmb-accord
   standalone: true,
 })
 export class BmbAccordionControlDirective
-  implements AfterContentInit, DoCheck, OnDestroy
+  implements AfterContentInit, OnDestroy, OnChanges
 {
-  @Input() accordionStates?: { [id: string]: boolean };
+  accordionStates = input<{ [id: string]: boolean }>({});
+
+  private contentInitialized = false;
 
   @ContentChildren(BmbAccordionComponent)
   accordions!: QueryList<BmbAccordionComponent>;
 
-  private differ?: KeyValueDiffer<string, boolean>;
   private subscriptions: OutputRefSubscription[] = [];
-  private contentReady = false;
-
-  constructor(private differs: KeyValueDiffers) {}
 
   ngAfterContentInit(): void {
+    this.contentInitialized = true;
+
     this.subscriptions = this.accordions.map((accordion) => {
       return accordion.opened.subscribe(() => {
-        if (!this.accordionStates) {
+        const states = this.accordionStates();
+        const hasControlledStates = !!states && Object.keys(states).length > 0;
+
+        if (!hasControlledStates) {
           this.closeOthers(String(accordion.accordionId()));
         } else {
           this.updateExternalState(String(accordion.accordionId()));
@@ -41,18 +47,11 @@ export class BmbAccordionControlDirective
       });
     });
 
-    if (this.accordionStates) {
-      this.differ = this.differs.find({}).create();
-      this.applyControlledStates();
-    }
-    this.contentReady = true;
+    this.applyControlledStates();
   }
 
-  ngDoCheck(): void {
-    if (!this.contentReady || !this.accordionStates || !this.differ) return;
-
-    const changes = this.differ.diff(this.accordionStates);
-    if (changes) {
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['accordionStates'] && this.contentInitialized) {
       this.applyControlledStates();
     }
   }
@@ -62,38 +61,54 @@ export class BmbAccordionControlDirective
   }
 
   private applyControlledStates(): void {
+    const states = this.accordionStates();
+
+    if (!states || Object.keys(states).length === 0) {
+      this.accordions.forEach((accordion, index) => {
+        accordion._disabled.set(false);
+        accordion._expanded.set(index === 0);
+        accordion._active.set(index === 0);
+      });
+      return;
+    }
+
     this.accordions.forEach((accordion) => {
-      const state = this.accordionStates![accordion.accordionId()!];
-      accordion._disabled.set(false);
-      if (!state) {
-        accordion._disabled.set(true);
-      }
+      const id = String(accordion.accordionId());
+      const state = !!states[id];
+
+      accordion._disabled.set(!state);
       accordion._expanded.set(state);
       accordion._active.set(state);
     });
   }
 
   private closeOthers(openId: string): void {
+    const hasControlledStates =
+      !!this.accordionStates() &&
+      Object.keys(this.accordionStates()).length > 0;
+
     this.accordions.forEach((accordion) => {
       if (String(accordion.accordionId()) !== openId) {
         accordion._expanded.set(false);
         accordion._active.set(false);
-
-        if (this.accordionStates) {
-          accordion._disabled.set(true);
-        } else {
-          accordion._disabled.set(false);
-        }
+        accordion._disabled.set(hasControlledStates);
       } else {
         accordion._active.set(true);
+        accordion._expanded.set(true);
+        accordion._disabled.set(false);
       }
     });
   }
 
   private updateExternalState(openId: string): void {
-    if (!this.accordionStates) return;
-    Object.keys(this.accordionStates).forEach((id) => {
-      this.accordionStates![id] = id === openId;
+    const states = this.accordionStates();
+
+    if (!states) return;
+
+    Object.keys(states).forEach((id) => {
+      states[id] = id === openId;
     });
+
+    this.applyControlledStates();
   }
 }

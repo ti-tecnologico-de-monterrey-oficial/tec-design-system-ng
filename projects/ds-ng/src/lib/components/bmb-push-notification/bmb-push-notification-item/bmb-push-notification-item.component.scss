@@ -51,6 +51,7 @@ $notification_appearance: colorFn.map-merged(
   background-color: var(--general-contrasts-5);
   color: var(--general-contrasts-100);
   padding: var(--bmb-spacing-m);
+  user-select: none;
 
   .bmb_checkbox-label {
     color: var(--general-contrasts-5);

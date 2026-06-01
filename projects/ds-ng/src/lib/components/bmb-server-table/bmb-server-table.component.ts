@@ -1,12 +1,4 @@
-import {
-  Component,
-  EventEmitter,
-  Input,
-  Output,
-  OnChanges,
-  SimpleChanges,
-  OnInit,
-} from '@angular/core';
+import { Component, input, output, effect } from '@angular/core';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
@@ -29,31 +21,38 @@ export interface IBmbServerTableColumn {
   templateUrl: './bmb-server-table.component.html',
   styleUrl: './bmb-server-table.component.scss',
 })
-export class BmbServerTableComponent implements OnChanges {
-  @Input() columns: IBmbServerTableColumn[] = [];
-  @Input() data: any[] = [];
-  @Input() totalRecords: number = 0;
-  @Input() pageSize: number = 10;
-  @Input() pageSizeOptions: number[] = [];
-  @Input() loading: boolean = false;
-  @Output() pageChange = new EventEmitter<number>();
-  @Output() dataChange = new EventEmitter<any[]>();
-  @Output() onClickRow = new EventEmitter<any>();
+export class BmbServerTableComponent {
+  columns = input<IBmbServerTableColumn[]>([]);
+  data = input<any[]>([]);
+  totalRecords = input<number>(0);
+  pageSize = input<number>(10);
+  pageSizeOptions = input<number[]>([]);
+  loading = input<boolean>(false);
+
+  pageChange = output<number>();
+  dataChange = output<any[]>();
+  onClickRow = output<any>();
   displayedColumns: string[] = [];
   selectedRow: any = null;
 
-  ngOnChanges(changes: SimpleChanges): void {
-    if (changes['columns']) {
-      this.validateColumns();
-    }
-    if (changes['data']) {
-      this.dataChange.emit(this.data || []);
-    }
+  constructor() {
+    effect(() => {
+      const columns = this.columns();
+
+      if (columns) {
+        this.validateColumns();
+      }
+    });
+
+    effect(() => {
+      this.dataChange.emit(this.data() || []);
+    });
   }
 
   validateColumns(): void {
-    if (this.columns && this.columns.length > 0) {
-      this.displayedColumns = this.columns.map((col) => col.key);
+    const columns = this.columns();
+    if (columns && columns.length > 0) {
+      this.displayedColumns = columns.map((col) => col.key);
     } else {
       console.warn('Las columnas están vacías o mal configuradas.');
       this.displayedColumns = [];

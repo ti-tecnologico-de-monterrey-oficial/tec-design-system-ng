@@ -20,16 +20,16 @@ describe('BmbCardComponent', () => {
   });
 
   it('should have default values for inputs', () => {
-    expect(component.borderRadius).toBe('m');
-    expect(component.margin).toBe('m');
-    expect(component.type).toBe('normal');
-    expect(component.state).toBe('normal');
+    expect(component.borderRadius()).toBe('m');
+    expect(component.margin()).toBe('m');
+    expect(component.type()).toBe('normal');
+    expect(component.state()).toBe('normal');
   });
 
   it('should return correct classes', () => {
-    component.borderRadius = 'l';
-    component.margin = 's';
-    component.type = 'primary';
+    fixture.componentRef.setInput('borderRadius', 'l');
+    fixture.componentRef.setInput('margin', 's');
+    fixture.componentRef.setInput('type', 'primary');
     fixture.detectChanges();
 
     const classes = component.getClasses();
@@ -39,8 +39,8 @@ describe('BmbCardComponent', () => {
   });
 
   it('should return correct styles', () => {
-    component.borderRadius = ['s', 'm'];
-    component.margin = ['l', 'xl'];
+    fixture.componentRef.setInput('borderRadius', ['s', 'm']);
+    fixture.componentRef.setInput('margin', ['l', 'xl']);
     fixture.detectChanges();
 
     const styles = component.getStyles();

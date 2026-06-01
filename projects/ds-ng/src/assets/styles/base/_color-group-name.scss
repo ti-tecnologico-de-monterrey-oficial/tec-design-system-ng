@@ -89,8 +89,9 @@ $bmb_push_notification_type: (
   'mitec-green': var(--mitec-green),
   'mitec-orange': var(--mitec-orange),
   'mitec-purple': var(--mitec-purple),
-  'black-primary': var(--black-primary),
-  'neon-primary': var(--neon-primary),
+  'blue-tec': rgb(var(--blue-tec)),
+  'black-primary': rgb(var(--black-primary)),
+  'neon-primary': rgb(var(--neon-primary)),
 );
 $bmb_badge_type: (
   'creative-use-violet': var(--creative-use-violet),

@@ -114,7 +114,13 @@ ${getBasicExampleBlock('BmbAiChatBubbleComponent')}
 Chat message rendered inside the bubble.
 
 ${SUPPORTED_MESSAGES_TYPE}
-      `,
+
+Additional supported properties:
+- \`like?: boolean\` Displays the like action as active.
+- \`dislike?: boolean\` Displays the dislike action as active.
+
+These properties can be used to render previously stored feedback when loading a conversation.
+  `,
       table: {
         category: 'Properties',
         type: {
@@ -385,4 +391,44 @@ export const TemplateMessage: Story = {
       timestamp: new Date(),
     },
   }),
+};
+
+export const ChatGPTMessageLiked: Story = {
+  args: {
+    showActions: true,
+    message: {
+      id: '11',
+      type: 'text',
+      timestamp: new Date(),
+      isUser: false,
+      like: true,
+      dislike: false,
+      content: {
+        text: `
+This message already contains positive feedback.
+The thumbs up icon should appear active.
+        `,
+      },
+    },
+  },
+};
+
+export const ChatGPTMessageDisliked: Story = {
+  args: {
+    showActions: true,
+    message: {
+      id: '12',
+      type: 'text',
+      timestamp: new Date(),
+      isUser: false,
+      like: false,
+      dislike: true,
+      content: {
+        text: `
+This message already contains negative feedback.
+The thumbs down icon should appear active.
+        `,
+      },
+    },
+  },
 };

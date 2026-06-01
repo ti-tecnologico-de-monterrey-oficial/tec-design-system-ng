@@ -35,7 +35,7 @@ export class BmbActionIconComponent {
   icon = input.required<string>();
   alt = input<string>('');
   iconSize = input<number | undefined>();
-  isFill = input<boolean>(true);
+  isFill = input<boolean>(true); //Deprecated
   toggleIconActive = input<string | undefined>();
   isToggleActive = model<boolean | undefined>(false);
   isAccentColor = model<boolean | undefined>(true);

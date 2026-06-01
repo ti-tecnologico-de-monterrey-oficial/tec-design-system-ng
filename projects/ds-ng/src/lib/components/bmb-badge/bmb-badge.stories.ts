@@ -20,7 +20,13 @@ import { BMB_BADGE_COLOR_LIST } from '../../types/foundations/colors/color-type'
 
 const defaultAppearanceValue: string = 'normal';
 
-const appearanceOptions = [...BMB_BADGE_COLOR_LIST, 'disabled', 'success', 'warning', 'mitec_red'];
+const appearanceOptions = [
+  ...BMB_BADGE_COLOR_LIST,
+  'disabled',
+  'success',
+  'warning',
+  'mitec_red',
+];
 
 export default {
   title: 'Components/Visual labels/Badge',
@@ -42,7 +48,7 @@ ${getArchitectureSection(`<section class="bmb_badge"> <!-- conditional classes b
 ${getSpecialSpecifications(
   `
 ${getAlertBlockquote(
-  `Follow name colors are deprecated:
+  `Follow name colors are LTS:
  - 'strong',
  - 'success',
  - 'info',
@@ -72,8 +78,8 @@ ${getAlertBlockquote(
  - 'creative_ripelemon',
 <br/><br/>Please do not use them because they will be removed in future versions.`,
   {
-    title: '###'.concat(RELEVANT_TITLE.deprecated),
-    blockquoteType: BlockquoteType.warning,
+    title: '###'.concat(RELEVANT_TITLE.lts),
+    blockquoteType: BlockquoteType.note,
     isRelevantTitle: true,
   },
 )}
@@ -160,4 +166,11 @@ export const AllColors = {
       appearances: appearanceOptions,
     },
   }),
+  parameters: {
+    docs: {
+      canvas: {
+        sourceState: 'none',
+      },
+    },
+  },
 };
