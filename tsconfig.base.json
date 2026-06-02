@@ -1,0 +1,33 @@
+{
+  "compilerOptions": {
+    "composite": true,
+    "declarationMap": true,
+    "importHelpers": true,
+    "isolatedModules": true,
+    "lib": [
+      "es2022",
+      "dom"
+    ],
+    "module": "nodenext",
+    "moduleResolution": "nodenext",
+    "noEmitOnError": true,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitOverride": true,
+    "noImplicitReturns": true,
+    "noUnusedLocals": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "target": "es2022",
+    "customConditions": [
+      "@org/source"
+    ],
+    "paths": {
+      "@ti-tecnologico-de-monterrey-oficial/ui-react": [
+        "./lib/ui-react/src/index.ts"
+      ],
+      "@ti-tecnologico-de-monterrey-oficial/ui-angular": [
+        "./lib/ui-angular/src/index.ts"
+      ]
+    }
+  }
+}

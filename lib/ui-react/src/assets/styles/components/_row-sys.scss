@@ -1,0 +1,21 @@
+@use '../base/rem' as rem;
+
+.bmb_vertical-layout {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+
+  &-item {
+    &-full {
+      width: 100%;
+    }
+
+    &-scroll {
+      overflow-y: auto;
+
+      > .bmb_card {
+        overflow: auto;
+      }
+    }
+  }
+}

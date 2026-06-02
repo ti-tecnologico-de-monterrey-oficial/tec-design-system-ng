@@ -1,0 +1,95 @@
+@use 'sass:map';
+@use 'rem' as rem;
+
+// Poppins
+
+@font-face {
+  font-family: 'Poppins-Light';
+  font-style: normal;
+  font-weight: 300;
+  src: url('/assets/fonts/Poppins/Poppins-Light.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Poppins-Regular';
+  font-style: normal;
+  font-weight: 400;
+  src: url('/assets/fonts/Poppins/Poppins-Regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Poppins-Bold';
+  font-style: normal;
+  font-weight: 700;
+  src: url('/assets/fonts/Poppins/Poppins-Bold.ttf') format('truetype');
+}
+
+// $font-poppins-thin: 'Poppins-Thin', sans-serif;
+$font-poppins-light: 'Poppins-Light', sans-serif;
+$font-poppins-regular: 'Poppins-Regular', sans-serif;
+// $font-poppins-medium: 'Poppins-Medium', sans-serif;
+// $font-poppins-semibold: 'Poppins-Semibold', sans-serif;
+$font-poppins-bold: 'Poppins-Bold', sans-serif;
+
+$font-map: (
+  // thin: $font-poppins-thin,
+  light: $font-poppins-light,
+  regular: $font-poppins-regular,
+  // medium: $font-poppins-medium,
+  // semibold: $font-poppins-semibold,
+  bold: $font-poppins-bold
+);
+
+:root,
+:host {
+  --font-display: 'Poppins-Regular', sans-serif;
+}
+
+$sizes: (
+  //1
+  1: rem.rem_calc(10),
+  //2
+  2: rem.rem_calc(11),
+  //3
+  3: rem.rem_calc(12),
+  //4
+  4: rem.rem_calc(14),
+  //4_5
+  4_5: rem.rem_calc(15),
+  //5
+  5: rem.rem_calc(16),
+  //6
+  6: rem.rem_calc(18),
+  //7
+  7: rem.rem_calc(20),
+  //8
+  8: rem.rem_calc(22),
+  //9
+  9: rem.rem_calc(24),
+  //10
+  10: rem.rem_calc(26),
+  //11
+  11: rem.rem_calc(36),
+  //12
+  12: rem.rem_calc(48)
+);
+
+// Method 1: Mixin
+// font styles can be include in classes via @include font(2, medium)
+@mixin font($i, $type) {
+  $size: map.get($sizes, $i);
+  $font-family: map.get($font-map, $type);
+  font-family: $font-family;
+  font-size: $size;
+}
+
+// Method 2: Classes
+// font styles can be used as individual classes .font-thin-2
+@each $name, $size in $sizes {
+  @each $type in light, regular, bold {
+    .font-#{$type}-#{$name} {
+      font-family: map.get($font-map, $type);
+      font-size: $size;
+    }
+  }
+}

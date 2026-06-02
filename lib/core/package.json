@@ -1,0 +1,32 @@
+{
+  "name": "@ti-tecnologico-de-monterrey-oficial/core",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    },
+    "./component/badge": {
+      "types": "./dist/component/badge.d.ts",
+      "import": "./dist/component/badge.js",
+      "default": "./dist/component/badge.js"
+    }
+  },
+  "scripts": {
+    "compile-styles": "npm run build:TEC && npm run build:TECMI && npm run build:GED",
+    "build:TEC": "sass src/styles/mainTEC.scss dist/styles/mainTEC.min.css --style=compressed",
+    "build:GED": "sass src/styles/mainGED.scss dist/styles/mainGED.min.css --style=compressed",
+    "build:TECMI": "sass src/styles/mainTECMI.scss dist/styles/mainTECMI.min.css --style=compressed"
+  },
+  "dependencies": {
+    "tslib": "^2.3.0",
+    "sass": "^1.100.0"
+  }
+}

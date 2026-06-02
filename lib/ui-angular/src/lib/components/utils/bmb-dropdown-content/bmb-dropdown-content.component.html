@@ -1,0 +1,92 @@
+<div class="bmb_dropdown-content-modal" [tabindex]="1">
+  <ul class="bmb_dropdown-content-container" [tabindex]="-1">
+    @if (enableFilter()) {
+      <li class="bmb_dropdown-content-item bmb_dropdown-content-item-filter">
+        <section class="bmb_field bmb_dropdown-content-item-filter-input">
+          <bmb-icon icon="search" [size]="24" />
+          <input
+            type="text"
+            [placeholder]="'dropdown.menu.filter_placeholder' | translate"
+            (input)="filterList($event)"
+          />
+        </section>
+      </li>
+    } @else if (isMultiSelect()) {
+      <li class="bmb_dropdown-content-item" id="select_all">
+        <button
+          class="bmb_check-external-link-button bmb_check-external-link-button-element"
+          (click)="handleSelectedAll()"
+        >
+          <ng-container
+            *ngTemplateOutlet="
+              itemMenu;
+              context: {
+                item: {
+                  showIndicator: true,
+                  text: 'dropdown.select_all' | translate
+                },
+                isIndeterminate: isIndeterminate,
+                isSelected: isAllSelected
+              }
+            "
+          />
+        </button>
+        <bmb-divider [removeMargin]="true" />
+      </li>
+    }
+    @for (item of filteredItems(); track $index) {
+      <li
+        class="bmb_dropdown-content-item"
+        [ngClass]="{
+          'bmb_dropdown-content-item-selected':
+            !isMultiSelect() && isSelected(item.value!)
+        }"
+        [id]="item.idItem"
+      >
+        <bmb-check-external-link-button
+          [link]="item.url!"
+          [target]="item.target!"
+          (buttonClick)="handleDropdown(item)"
+        >
+          <ng-container
+            *ngTemplateOutlet="
+              itemMenu;
+              context: { item, isSelected: isSelected(item.value!) }
+            "
+          />
+        </bmb-check-external-link-button>
+      </li>
+    }
+    @if (!filteredItems().length) {
+      <li class="bmb_dropdown-content-item bmb_dropdown-content-item-empty">
+        {{ 'dropdown.no_result' | translate }}
+      </li>
+    }
+  </ul>
+</div>
+
+<ng-template
+  #itemMenu
+  let-item="item"
+  let-isSelected="isSelected"
+  let-isIndeterminate="isIndeterminate"
+>
+  <section class="bmb_dropdown-content-element">
+    @if (!!item.icon) {
+      <bmb-icon
+        class="bmb_dropdown-content-element-icon"
+        [icon]="item.icon"
+        [size]="24"
+        [dotNotification]="item.dotNotification"
+      />
+    } @else if (item.showIndicator) {
+      <div
+        class="bmb_dropdown-content-element-indicator"
+        [ngClass]="{ selected: isSelected, indeterminate: isIndeterminate }"
+      ></div>
+    }
+    <span class="bmb_dropdown-content-element-text">
+      {{ item.text }}
+    </span>
+  </section>
+</ng-template>

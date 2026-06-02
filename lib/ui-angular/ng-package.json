@@ -1,0 +1,29 @@
+{
+  "$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
+  "dest": "../../dist/lib/ui-angular",
+  "lib": {
+    "entryFile": "src/index.ts"
+  },
+  "assets": [
+    {
+      "glob": "**/*",
+      "input": "src/assets/fonts",
+      "output": "./assets/fonts"
+    },
+    {
+      "glob": "**/*",
+      "input": "src/assets/images",
+      "output": "./assets/images"
+    },
+    {
+      "glob": "**/*",
+      "input": "src/assets/svg",
+      "output": "./assets/svg"
+    },
+    {
+      "glob": "**/*",
+      "input": "src/assets/i18n",
+      "output": "./assets/i18n"
+    }
+  ]
+}

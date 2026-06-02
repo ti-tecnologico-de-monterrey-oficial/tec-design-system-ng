@@ -1,0 +1,141 @@
+@mixin fixed-names {
+  /*Fix names*/
+  //old name = new name
+  --color-blue-tec: var(--blue-tec);
+  --color-white-primary: var(--white-primary);
+
+  --mitec_blue: var(--mitec-blue);
+  --color-mitec-blue: var(--mitec-blue-light);
+  --mitec_blue-primary: var(--mitec-blue-primary);
+  --mitec_blue-light: var(--mitec-blue-light);
+
+  --mitec_green: var(--mitec-green);
+  --color-mitec-green: var(--mitec-green-light);
+  --mitec_green-primary: var(--mitec-green-primary);
+  --mitec_green-light: var(--mitec-green-light);
+
+  --mitec_red: var(--mitec-red);
+  --color-mitec-red: var(--mitec-red-light);
+  --mitec_red-primary: var(--mitec-red-primary);
+  --mitec_red-light: var(--mitec-red-light);
+
+  --mitec_orange: var(--mitec-orange);
+  --color-mitec-orange: var(--mitec-orange-light);
+  --mitec_orange-primary: var(--mitec-orange-primary);
+  --mitec_orange-light: var(--mitec-orange-light);
+  --mitec_orange-tint: var(--mitec-orange-tint);
+
+  --mitec_purple: var(--mitec-purple);
+  --color-mitec-purple: var(--mitec-purple-light);
+  --mitec_purple-primary: var(--mitec-purple-primary);
+  --mitec_purple-tint: var(--mitec-purple-tint);
+
+  --color-charade-50: var(--gray-charade-50);
+  --color-charade-100: var(--gray-charade-100);
+  --color-charade-200: var(--gray-charade-200);
+  --color-charade-300: var(--gray-charade-300);
+  --color-charade-500: var(--gray-charade-500);
+  --color-charade-600: var(--gray-charade-600);
+  --color-charade-700: var(--gray-charade-700);
+  --color-charade-800: var(--gray-charade-800);
+  --color-charade-950: var(--gray-charade-950);
+  --color-charade-900: var(--gray-charade-900);
+
+  --color-mariner-50: var(--blue-mariner-50);
+  --color-mariner-100: var(--blue-mariner-100);
+  --color-mariner-200: var(--blue-mariner-200);
+  --color-mariner-300: var(--blue-mariner-300);
+  --color-mariner-400: var(--blue-mariner-400);
+  --color-mariner-500: var(--blue-mariner-500);
+  --color-mariner-700: var(--blue-mariner-700);
+  --color-mariner-800: var(--blue-mariner-800);
+  --color-mariner-900: var(--blue-mariner-800);
+  --color-mariner-950: var(--blue-mariner-950);
+
+  --color-black-primary: var(--black-primary);
+
+  --color-blue-primary: var(--blue-primary);
+  --color-blue-light: var(--blue-light);
+  --color-blue-tint: var(--blue-tint);
+  --color-blue-gradient: var(--blue-gradient);
+
+  --color-green-primary: var(--green-primary);
+  --color-green-light: var(--green-light);
+  --color-green-tint: var(--green-tint);
+  --color-green-gradient: var(--green-gradient);
+
+  --color-purple-light: var(--purple-light);
+  --color-purple-primary: var(--purple-primary);
+  --color-purple-tint: var(--purple-tint);
+  --color-purple-gradient: var(--purple-gradient);
+
+  --color-red-primary: var(--red-primary);
+  --color-red-light: var(--red-light);
+  --color-red-tint: var(--red-tint);
+
+  --color-yellow-primary: var(--yellow-primary);
+  --color-yellow-light: var(--yellow-light);
+  --color-yellow-tint: var(--yellow-tint);
+
+  --color-teal-primary: var(--teal-primary);
+  --color-teal-light: var(--teal-light);
+  --color-teal-tint: var(--teal-tint);
+
+  --color-black-light: var(--black-light);
+  --color-black-tint: var(--black-tint);
+  --color-black-min: var(--black-min);
+  --color-white-light: var(--white-ligh);
+  --color-white-tint: var(--white-tint);
+  --color-white-min: var(--white-min);
+
+  --semantic-normal: var(--semantic-neutral);
+  --semantic-strong: var(--semantic-neutral);
+
+  --alert_primary-alert-primary: var(--alert-primary-alert-primary);
+
+  --creative-use-darkteal: var(--creative-use-dark-teal);
+  --creative-use-softred: var(--creative-use-soft-red);
+  --creative-use-shipcove: var(--creative-use-ship-cove);
+  --creative-use-ripelemon: var(--creative-use-ripe-lemon);
+
+  --general_contrasts: var(--general-contrasts);
+  --general_contrasts-100: var(--general-contrasts-100);
+  --general_contrasts-90: var(--general-contrasts-90);
+  --general_contrasts-80: var(--general-contrasts-80);
+  --general_contrasts-75: var(--general-contrasts-75);
+  --general_contrasts-60: var(--general-contrasts-60);
+  --general_contrasts-50: var(--general-contrasts-50);
+  --general_contrasts-25: var(--general-contrasts-25);
+  --general_contrasts-20: var(--general-contrasts-20);
+  --general_contrasts-15: var(--general-contrasts-15);
+  --general_contrasts-5: var(--general-contrasts-5);
+  --general_contrasts-main-complementary: var(
+    --general-contrasts-main-complementary
+  );
+  --general_contrasts-main-selection: var(--general-contrasts-main-selection);
+  --general_contrasts-main-selection-alternative: var(
+    --general-contrasts-main-selection-alternative
+  );
+  --general_contrasts-input-background: var(
+    --general-contrasts-input-background
+  );
+  --general_contrasts-input-outline: var(--general-contrasts-input-outline);
+  --general_contrasts-container: var(--general-contrasts-container-outline);
+  --general_contrasts-container-outline: var(
+    --general-contrasts-container-outline
+  );
+  --general_contrasts-text-sidebar: var(--general-contrasts-text-sidebar);
+  --general_contrasts-primary: var(--general-contrasts-primary);
+
+  --menu_select-surface-activated: var(--menu-select-surface-activated);
+  --menu_select-label-menu-active: var(--menu-select-label-menu-active);
+  --menu_select-label-menu-inactive: var(--menu-select-label-menu-inactive);
+  --menu_select-activated-w-checkbox: var(--menu-select-activated-w-checkbox);
+  --menu_select-alternative-focus-label: var(
+    --menu-select-alternative-focus-label
+  );
+  --menu_select-on-surface-hovered-w-checkbox: var(
+    --menu-select-on-surface-hovered-w-checkbox
+  );
+  --menu_select-on-surface-hovered: var(--menu-select-on-surface-hovered);
+}

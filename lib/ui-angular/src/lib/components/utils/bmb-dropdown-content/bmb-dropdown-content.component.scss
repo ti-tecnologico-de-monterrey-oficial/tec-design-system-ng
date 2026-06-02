@@ -1,0 +1,117 @@
+@use '../../../../assets/styles/base/rem' as rem;
+@use '../../../../assets/styles/base/fonts' as fonts;
+@use '../../../../assets/styles/base/mixins' as mixins;
+
+.bmb_dropdown-content {
+  outline-style: none;
+
+  &-modal {
+    background-color: var(--containers-main);
+    border: 0;
+    z-index: 1;
+    box-shadow: var(--bmb-box-shadow-3);
+    max-height: clamp(0px, rem.rem_calc(48 * 6), 40dvh);
+    overflow: auto;
+    width: 100%;
+    border-radius: var(--bmb-radius-2);
+    padding: 0;
+    outline-style: none;
+  }
+
+  &-container {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  &-element {
+    display: flex;
+    width: 100%;
+    height: rem.rem_calc(48);
+    padding: var(--bmb-spacing-s) var(--bmb-spacing-m);
+    gap: var(--bmb-spacing-m);
+    align-items: center;
+    background-color: inherit;
+    color: currentColor;
+
+    &-text {
+      max-width: 100%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    &-indicator {
+      @include mixins.checkbox-mark();
+
+      &.selected {
+        @include mixins.checkbox-mark('selected');
+      }
+
+      &.indeterminate {
+        @include mixins.checkbox-mark('indeterminate');
+      }
+    }
+  }
+
+  &-item {
+    @include fonts.font(4, regular);
+    color: var(--menu-select-label-menu-inactive);
+
+    .bmb_check-external-link-button {
+      display: block;
+
+      &-element {
+        text-decoration: none;
+        width: 100%;
+        height: rem.rem_calc(48);
+
+        &:hover,
+        &:focus,
+        &:focus-visible {
+          .bmb_dropdown-content-element {
+            background-color: var(--menu-select-on-surface-hovered);
+          }
+          outline: 0 none;
+        }
+      }
+    }
+
+    &-selected {
+      color: var(--menu-select-label-menu-active);
+      .bmb_check-external-link-button-element {
+        .bmb_dropdown-content-element {
+          background-color: var(--menu-select-surface-activated);
+        }
+
+        &:hover,
+        &:focus,
+        &:focus-visible {
+          color: var(--menu-select-label-menu-inactive);
+        }
+      }
+    }
+
+    &-filter {
+      position: sticky;
+      top: 0;
+      left: 0;
+      background-color: var(--containers-main);
+
+      &-input {
+        @include mixins.normal-input();
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+
+        > input {
+          @include mixins.input-features();
+        }
+      }
+    }
+
+    &-empty {
+      padding: var(--bmb-spacing-s) var(--bmb-spacing-m);
+      text-align: center;
+    }
+  }
+}

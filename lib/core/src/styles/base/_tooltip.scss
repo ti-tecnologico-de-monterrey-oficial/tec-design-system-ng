@@ -1,0 +1,71 @@
+@use './fonts' as fonts;
+@use './rem' as rem;
+
+.cdk {
+  &-visually-hidden {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: rem.rem_calc(1);
+    left: 0;
+    margin: rem.rem_calc(-1);
+    outline: 0;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    white-space: nowrap;
+    width: rem.rem_calc(1);
+  }
+
+  &-overlay {
+    &-container {
+      height: 100%;
+      left: 0;
+      pointer-events: none;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+
+      &:empty {
+        display: none;
+      }
+    }
+
+    &-connected-position-bounding-box {
+      display: flex;
+      flex-direction: column;
+      min-height: rem.rem_calc(1);
+      min-width: rem.rem_calc(1);
+      position: absolute;
+      z-index: 1000;
+    }
+
+    &-pane {
+      box-sizing: border-box;
+      display: flex;
+      max-height: 100%;
+      max-width: 100%;
+      pointer-events: auto;
+      position: absolute;
+      z-index: 1000;
+    }
+  }
+}
+
+[dir='rtl'] .cdk-visually-hidden {
+  left: auto;
+  right: 0;
+}
+
+.mat-mdc-tooltip {
+  &.mdc-tooltip {
+    .mdc-tooltip__surface {
+      background-color: var(--general-contrasts-100);
+      border-radius: var(--bmb-radius-1);
+      color: var(--general-contrasts-5);
+      @include fonts.font(3, regular);
+    }
+  }
+}
