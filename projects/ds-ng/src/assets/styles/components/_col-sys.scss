@@ -118,10 +118,6 @@ $alignItemsOptions: (
     justify-content: center;
     align-items: flex-start;
   }
-
-  &-no-wrap {
-    flex-wrap: nowrap;
-  }
 }
 
 @for $i from 1 through 4 {
