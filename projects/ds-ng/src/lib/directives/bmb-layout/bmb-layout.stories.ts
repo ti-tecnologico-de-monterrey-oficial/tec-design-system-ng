@@ -119,6 +119,15 @@ ${RELEVANT_TITLE.configuration}
         type: { summary: 'boolean' },
       },
     },
+    avoidRowWrap: {
+      control: { type: 'boolean' },
+      description: 'Prevents items from wrapping to the next row when true.',
+      table: {
+        category: 'Properties',
+        defaultValue: { summary: 'false' },
+        type: { summary: 'boolean' },
+      },
+    },
   },
   args: {
     gapSize: 'm',
@@ -126,6 +135,7 @@ ${RELEVANT_TITLE.configuration}
     dynamicCols: false,
     justify: 'start',
     alignItems: 'start',
+    avoidRowWrap: false,
   },
 };
 
