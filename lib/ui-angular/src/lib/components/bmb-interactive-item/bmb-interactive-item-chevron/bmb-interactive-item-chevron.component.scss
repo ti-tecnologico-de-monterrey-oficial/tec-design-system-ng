@@ -1,9 +1,0 @@
-@use './../../bmb-item/mixins.scss' as mixins;
-
-.bmb_interactive-item-chevron {
-  @include mixins.action-item();
-}
-
-:host {
-  display: flex;
-}
