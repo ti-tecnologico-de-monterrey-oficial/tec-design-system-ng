@@ -1,0 +1,103 @@
+<section
+  class="bmb_image"
+  [ngClass]="['bmb_image-carousel', carouselClass()]"
+  [ngStyle]="{ width: width(), 'aspect-ratio': ratio() }"
+>
+  @if (isBlurredBackdrop() && !isCarousel()) {
+    <figure
+      class="bmb_image-figure bmb_image-figure-backdrop"
+      [ngClass]="getClasses()"
+      [ngStyle]="{ 'aspect-ratio': ratio() }"
+    >
+      <picture>
+        <source media="(min-width: 1000px)" [srcset]="encodedURL()" />
+        @if (encodedMobileURL()) {
+          <source [srcset]="encodedMobileURL()" />
+        }
+        <img
+          [srcset]="encodedURL()"
+          [alt]="alt()"
+          [loading]="loading()"
+          class="bmb_image-figure-image"
+          [style]="{ 'object-fit': objectFit() }"
+        />
+      </picture>
+    </figure>
+  }
+
+  @if (!isCarousel()) {
+    <figure
+      class="bmb_image-figure"
+      [ngClass]="getClasses()"
+      [ngStyle]="{ 'aspect-ratio': ratio() }"
+    >
+      <picture>
+        <source media="(min-width: 1000px)" [srcset]="encodedURL()" />
+        @if (encodedMobileURL()) {
+          <source [srcset]="encodedMobileURL()" />
+        }
+        <img
+          [srcset]="encodedURL()"
+          [alt]="alt()"
+          [loading]="loading()"
+          class="bmb_image-figure-image"
+          role="button"
+          tabindex="0"
+          (click)="handleSingleImageClick()"
+          (keydown.enter)="handleSingleImageClick()"
+          (keydown.space)="handleSingleImageClick()"
+          [style]="{
+            'object-fit': objectFit(),
+            cursor: enableCursorPointer() ? 'pointer' : 'default'
+          }"
+        />
+      </picture>
+    </figure>
+  } @else {
+    @if (images() && images()!.length > 1) {
+      <div class="bmb_image-arrow bmb_image-arrow--left">
+        <bmb-button-icon
+          icon="chevron_left"
+          [showContainer]="true"
+          (onButtonClick)="prev()"
+          appearanceContrast="solid"
+          [alt]="'image.previous' | translate"
+        />
+      </div>
+      <div class="bmb_image-arrow bmb_image-arrow--right">
+        <bmb-button-icon
+          icon="chevron_right"
+          [showContainer]="true"
+          (onButtonClick)="next()"
+          appearanceContrast="solid"
+          [alt]="'image.next' | translate"
+        />
+      </div>
+    }
+    @for (img of images(); track $index) {
+      <figure
+        class="bmb_image-figure bmb_image-figure-images"
+        [ngClass]="getClasses()"
+        [ngStyle]="getImageStyle($index)"
+      >
+        <picture>
+          <source media="(min-width: 1000px)" [srcset]="img.src" />
+          @if (img.mobileSrc) {
+            <source [srcset]="img.mobileSrc" />
+          }
+          <img
+            [src]="img.src"
+            [alt]="img.alt || alt()"
+            [loading]="loading()"
+            class="bmb_image-figure-image"
+            role="button"
+            tabindex="0"
+            (click)="handleImageClick(img, $index)"
+            (keydown)="handleImageKeyDown($event, img, $index)"
+            [style]="{ 'object-fit': objectFit() }"
+          />
+        </picture>
+      </figure>
+    }
+  }
+</section>
