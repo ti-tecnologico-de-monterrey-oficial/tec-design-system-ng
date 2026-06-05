@@ -7,6 +7,7 @@ import {
   AfterViewInit,
   output,
   input,
+  signal,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
@@ -58,6 +59,8 @@ export class BmbTagComponent implements AfterViewInit {
   closedTag = output<string>();
   clickedTag = output<string>();
 
+  private active = false;
+
   groupedTags = [];
 
   constructor(
@@ -88,10 +91,19 @@ export class BmbTagComponent implements AfterViewInit {
       `bmb_tag-${this.appearance()}`,
     ];
 
+    const active = this.enableClick() ? this.active : this.isActive();
+
     if (this.dismissible() || this.enableClick()) {
-      if (this.isActive()) classes.push('bmb_tag-active');
-      if (this.isDisabled()) classes.push('bmb_tag-disabled');
-    } else classes.push('bmb_tag-activity');
+      if (active) {
+        classes.push('bmb_tag-active');
+      }
+
+      if (this.isDisabled()) {
+        classes.push('bmb_tag-disabled');
+      }
+    } else {
+      classes.push('bmb_tag-activity');
+    }
 
     return classes;
   }
@@ -101,6 +113,10 @@ export class BmbTagComponent implements AfterViewInit {
   }
 
   clickTag(text: string) {
+    if (this.enableClick() && !this.isDisabled()) {
+      this.active = !this.active;
+    }
+
     this.clickedTag.emit(text);
   }
 }
