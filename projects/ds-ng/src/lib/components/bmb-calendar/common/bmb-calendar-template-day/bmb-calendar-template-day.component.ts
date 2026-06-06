@@ -4,11 +4,10 @@ import {
   ViewEncapsulation,
   input,
   computed,
-  output,
 } from '@angular/core';
 import { BmbCalendarHourViewComponent } from '../bmb-calendar-hour-view/bmb-calendar-hour-view.component';
 import { CommonModule } from '@angular/common';
-import { IBmbCalendarEvent, IBmbCalendarEventClick } from '../../types';
+import { IBmbCalendarEvent } from '../../types';
 import { DateTime } from 'luxon';
 import { BmbCalendarScheduleCardsComponent } from '../bmb-calendar-schedule-cards/bmb-calendar-schedule-cards.component';
 import { DEFAULT_DATE_FORMAT, layoutEvents } from '../../utils';
@@ -33,7 +32,6 @@ export class BmbCalendarTemplateDayComponent {
   now = input<DateTime>(DateTime.now());
   events = input<IBmbCalendarEvent[]>([]);
   currentTime = input<DateTime>(DateTime.now());
-  startBusinessHour = input<number>(8);
   dateFormat = input<string>(DEFAULT_DATE_FORMAT);
 
   eventsWithLayout = computed<IBmbCalendarEvent[]>(() => {

@@ -1,6 +1,5 @@
 import {
   Component,
-  Input,
   ChangeDetectionStrategy,
   ViewEncapsulation,
   input,
@@ -8,7 +7,8 @@ import {
   AfterViewInit,
 } from '@angular/core';
 import { IBmbCalendarEvent } from '../../types';
-import { HOUR_HEIGHT } from '../../utils';
+import { DateTime } from 'luxon';
+import { getUUID } from '../../../../utils/utils';
 
 @Component({
   selector: 'bmb-calendar-hour-view',
@@ -21,7 +21,10 @@ import { HOUR_HEIGHT } from '../../utils';
 })
 export class BmbCalendarHourViewComponent implements OnChanges, AfterViewInit {
   events = input<IBmbCalendarEvent[]>([]);
-  startBusinessHour = input<number>(8);
+
+  scrollToHour = DateTime.now().hour - 1;
+  uuid = getUUID();
+  hours = this.createHoursRows();
 
   createHoursRows() {
     const placeholderArray = new Array(24).fill(0);
@@ -39,16 +42,14 @@ export class BmbCalendarHourViewComponent implements OnChanges, AfterViewInit {
     });
   }
 
-  hours = this.createHoursRows();
-
-  ngOnChanges(): void {
-    this.hours = this.createHoursRows();
-  }
-
   ngAfterViewInit() {
-    const startElement = document.getElementById('BmbCalendarHourViewStart');
+    const startElement = document.getElementById(`bmbCalendarHourViewHour_${this.uuid}_${this.scrollToHour}`);
     if (startElement) {
       startElement.scrollIntoView({ behavior: 'smooth' });
     }
+  }
+
+  ngOnChanges(): void {
+    this.hours = this.createHoursRows();
   }
 }
