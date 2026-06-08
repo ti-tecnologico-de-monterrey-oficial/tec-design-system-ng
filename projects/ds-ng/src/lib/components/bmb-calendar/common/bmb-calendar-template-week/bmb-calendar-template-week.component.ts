@@ -44,7 +44,6 @@ export class BmbCalendarTemplateWeekComponent {
   dateFormat = input<string>(DEFAULT_DATE_FORMAT);
   events = input<IBmbParsedDates>({});
   currentTime = input<DateTime>(DateTime.now());
-  startBusinessHour = input<number>(8);
   selectedWeek = input<number>(0);
 
   eventsOnWeek = computed<IBmbCalendarEvent[][]>(() => {

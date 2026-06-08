@@ -179,8 +179,6 @@ class MockCalendarService {
   }
 
   getEventList(): IBmbCalendarEvent[] {
-    console.log(this.eventList());
-
     return this.eventList();
   }
 }

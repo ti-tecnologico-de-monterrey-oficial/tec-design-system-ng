@@ -6,6 +6,7 @@
   [alignItems]="alignItems()"
   [gapSize]="gapSize()"
   [dynamicCols]="true"
+  [avoidRowWrap]="true"
 >
   @if (leftContent().length) {
     @for (leftItem of leftContent(); track $index) {

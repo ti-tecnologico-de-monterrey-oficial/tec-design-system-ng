@@ -23,7 +23,19 @@ const LINK_DESCRIPTION: string =
   'Sets the link for redirection to another or same page.';
 export const ON_CLICK_DESCRIPTION: string =
   ', this event is only emitted if the *link* property is empty';
-export const GOOGLE_FONTS_LINK: string = `Please refer to [Google Fonts](https://fonts.google.com/icons?icon.size=24&icon.color=%23e8eaed&selected=Material+Symbols+Outlined:more_vert:FILL@0;wght@400;GRAD@0;opsz@24) for more icons.`;
+export const GOOGLE_FONTS_LINK: string = `${getAlertBlockquote(
+  `Please refer to [Google Fonts](https://fonts.google.com/icons?icon.size=24&icon.color=%23e8eaed&icon.style=Rounded&icon.set=Material+Symbols) for more icons and make sure that you have selected the filters:
+- Fill
+- Style:
+ - Material Symbols
+ - Rounded
+<br/><br/>‼️These filters are important to ensure that you are choosing an icon that meets the guidelines of ${DESIGN_SYSTEM_TITLE}‼️.
+`,
+  {
+    title: '###'.concat(RELEVANT_TITLE.configuration),
+    blockquoteType: BlockquoteType.important,
+  },
+)}`;
 export const ICON_IMAGE_DETAIL: string = `${getAlertBlockquote(
   `Images are also supported; instead of the icon name, enter the URL or path of the image to use.`,
   {
@@ -42,8 +54,9 @@ Look for the property to set the alt, if it does not exist in the component it i
   },
 )}`;
 export const SIMPLE_ICON_DESCRIPTION: string = `Sets the icon name that will be shown.
-<br/><br/>${GOOGLE_FONTS_LINK}`;
-export const ICON_DESCRIPTION: string = `${SIMPLE_ICON_DESCRIPTION}<br/><br/>${ICON_IMAGE_DETAIL.replaceAll('###', '')}`;
+<br/><br/>${GOOGLE_FONTS_LINK.replaceAll('###', '')}
+`;
+export const ICON_DESCRIPTION: string = `${SIMPLE_ICON_DESCRIPTION}<br/>${ICON_IMAGE_DETAIL.replaceAll('###', '')}`;
 export const DEFAULT_VALUE_DESC: string = `It is not necessary to explicitly set default values, the property can be omitted.<br/><br/>
   Properties can be omitted if they are not required and do not contain a default value.`;
 export const DEFAULT_VALUE_DETAIL: string = `${RELEVANT_TITLE.note.replace(/(<br\/>)|(\*)/g, '')}

@@ -22,6 +22,7 @@ export class BmbLayoutDirective {
   justify = input<IJustifyOptions>('start');
   alignItems = input<IAlignItemsOptions>('start');
   isContainerQuery = input<boolean>();
+  avoidRowWrap = input<boolean>(false);
 
   @HostBinding('class') get elementClass(): string[] {
     const baseClassName: string = 'bmb_layout';
@@ -35,6 +36,7 @@ export class BmbLayoutDirective {
     if (this.dynamicCols()) classes.push(`${baseClassName}-smart`);
     if (this.isContainerQuery()) classes.push(`${baseClassName}-container`);
     else classes.push(baseClassName);
+    if (this.avoidRowWrap()) classes.push(`${baseClassName}-no-row-wrap`);
 
     return classes;
   }
