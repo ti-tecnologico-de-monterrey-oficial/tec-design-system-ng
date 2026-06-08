@@ -57,11 +57,12 @@ ${getArchitectureSection(
 </i>`,
 )}
 ${getSpecialSpecifications(
-  `${ICON_IMAGE_DETAIL}
+  `${GOOGLE_FONTS_LINK}
+<br/>
+${ICON_IMAGE_DETAIL}
 >
 - Use the icons as a visual guide.
 - Check out the icon library in the documentation [here](https://bamboo.tec.mx/latest/foundations/icon/iconos-wukxE19q#section-buenas-practicas-de-uso-14)
-- ${GOOGLE_FONTS_LINK}
 - Custom icons list:
   - bmb_android
   - bmb_apple
