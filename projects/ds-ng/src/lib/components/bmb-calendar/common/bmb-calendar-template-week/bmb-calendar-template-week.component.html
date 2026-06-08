@@ -1,5 +1,5 @@
 <div class="bmb_calendar-week-view">
-  <bmb-calendar-hour-view [startBusinessHour]="startBusinessHour()" />
+  <bmb-calendar-hour-view />
   @for (day of dayNames; track $index) {
     @if (
       ($index && $index < 6) ||
@@ -29,4 +29,3 @@
   }
   <bmb-calendar-time-indicator [currentTime]="currentTime()" />
 </div>
-{{ eventsOnWeek()[6].length | json }}

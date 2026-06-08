@@ -12,8 +12,8 @@ $types: 'academic', 'life', 'event', 'save_the_date';
   border: rem.rem_calc(1) solid var(--general-contrasts-25);
   @include fonts.font(3, regular);
   display: grid;
-  gap: 0 0;
-  grid-template-columns: rem.rem_calc(16) 1fr;
+  gap: 0 rem.rem-calc(8);
+  grid-template-columns: rem.rem_calc(8) 1fr;
   grid-template-rows: 1fr auto;
   grid-template-areas:
     'indicator title'
@@ -104,7 +104,6 @@ $types: 'academic', 'life', 'event', 'save_the_date';
   &-indicator {
     grid-area: indicator;
     background-color: rgb(var(--blue-mariner-700));
-    margin-right: rem.rem-calc(8);
   }
 
   &-header {
@@ -130,7 +129,7 @@ $types: 'academic', 'life', 'event', 'save_the_date';
     text-overflow: ellipsis;
     overflow: hidden;
     padding: rem.rem_calc(16) rem.rem_calc(5) 0 0;
-    word-break: break-all;
+    overflow-wrap: break-word;
     display: -webkit-box;
     display: box;
     -webkit-line-clamp: 3;
@@ -138,6 +137,7 @@ $types: 'academic', 'life', 'event', 'save_the_date';
     -webkit-box-orient: vertical;
     box-orient: vertical;
     flex: 1;
+    hyphens: auto;
   }
 
   &-time {

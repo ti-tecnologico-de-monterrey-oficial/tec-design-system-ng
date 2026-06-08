@@ -87,7 +87,6 @@ export class BmbCalendarComponent implements OnInit, AfterViewInit {
     Intl.DateTimeFormat().resolvedOptions().timeZone,
   );
   height = input<number | string>('100%');
-  startBusinessHour = input<number>(8);
   calendarTitle = input<string>();
   dateFormat = input<string>(DEFAULT_DATE_FORMAT);
   events = computed<IBmbCalendarEvent[]>(() =>
@@ -96,6 +95,7 @@ export class BmbCalendarComponent implements OnInit, AfterViewInit {
   showFilterButton = input<boolean>(false);
   disableMobileFilter = input<boolean>(false);
   visibleDate = model<DateTime>(DateTime.now()); // internal
+  startBusinessHour = input<number>(8); // deprecated
 
   onDateChange = output<any>();
   onClose = output<any>();
