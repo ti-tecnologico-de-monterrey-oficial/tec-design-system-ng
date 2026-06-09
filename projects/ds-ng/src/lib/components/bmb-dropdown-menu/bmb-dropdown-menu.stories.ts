@@ -54,7 +54,7 @@ ${getBasicExampleBlock('BmbDropdownMenuComponent', '', '', false, '', 'Activated
     icon: DBmbDropdownMenuParamDesc.icon,
     clickedItem: getOnEventParam(
       {
-        name: 'clickedItem',
+        name: 'clickedItem',   
         handleExample: '(item) => console.log("Clicked item:", item)',
         propertyValue: 'EventEmitter<IDropdownItem>',
         type: 'EventEmitter',
