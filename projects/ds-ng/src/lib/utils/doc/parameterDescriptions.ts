@@ -931,6 +931,23 @@ IBmbTargetLink = '_blank' | '_parent' | '_self' | '_top';
       defaultValue: { summary: '[]' },
     },
   },
+    icon: {
+    control: { type: 'text' },
+    description: `
+Sets the icon displayed in the dropdown menu trigger button.
+
+This icon is used to open the dropdown menu. Any icon supported by the icon library can be used.
+    `,
+    table: {
+      category: 'Properties',
+      type: {
+        summary: 'string',
+      },
+      defaultValue: {
+        summary: 'more_vert',
+      },
+    },
+  },
 };
 
 export const DBmbTooltipParamDesc = {

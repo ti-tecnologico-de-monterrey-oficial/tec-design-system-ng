@@ -26,6 +26,8 @@ import { TranslatePipe } from '../../pipes/translations';
 export class BmbDropdownMenuComponent {
   items = input<IDropdownItem[]>([]);
 
+  icon = input<string>('more_vert');
+
   clickedItem = output<IDropdownItem>();
   contentID = signal<string>('');
 
