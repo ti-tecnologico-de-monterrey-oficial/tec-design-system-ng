@@ -8,13 +8,11 @@
         <bmb-user-image [image]="icon()" [size]="avatarSize()" />
       </span>
     } @else if (!!icon()) {
-      <span class="bmb_title-content-container-icon" [ngStyle]="getStyles()">
-        <bmb-icon
-          [icon]="icon()"
-          [size]="iconSize()"
-          [alt]="componentTitle() || title() || 'icon'"
-        />
-      </span>
+      <bmb-box-icon
+        [iconName]="icon()"
+        [boxColor]="bgIconAppearance()"
+        boxSize="regular"
+      />
     } @else if (!!currentBot()) {
       <span class="bmb_title-content-container-icon" [ngStyle]="getStyles()">
         <bmb-icon
