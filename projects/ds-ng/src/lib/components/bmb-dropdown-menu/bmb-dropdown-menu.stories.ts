@@ -51,9 +51,10 @@ ${getBasicExampleBlock('BmbDropdownMenuComponent', '', '', false, '', 'Activated
   },
   argTypes: {
     items: DBmbDropdownMenuParamDesc.items,
+    icon: DBmbDropdownMenuParamDesc.icon,
     clickedItem: getOnEventParam(
       {
-        name: 'clickedItem',
+        name: 'clickedItem',   
         handleExample: '(item) => console.log("Clicked item:", item)',
         propertyValue: 'EventEmitter<IDropdownItem>',
         type: 'EventEmitter',
@@ -63,6 +64,7 @@ ${getBasicExampleBlock('BmbDropdownMenuComponent', '', '', false, '', 'Activated
     ),
   },
   args: {
+    icon: 'more_vert',
     items: [
       {
         icon: 'link',

@@ -931,6 +931,22 @@ IBmbTargetLink = '_blank' | '_parent' | '_self' | '_top';
       defaultValue: { summary: '[]' },
     },
   },
+    icon: {
+    control: { type: 'radio' },
+    options: ['more_vert', 'more_horiz'],
+    description: `
+  Sets the icon displayed in the dropdown menu trigger button.
+      `,
+    table: {
+      category: 'Properties',
+      type: {
+        summary: `'more_vert' | 'more_horiz'`,
+      },
+      defaultValue: {
+        summary: 'more_vert',
+      },
+    },
+  },
 };
 
 export const DBmbTooltipParamDesc = {
