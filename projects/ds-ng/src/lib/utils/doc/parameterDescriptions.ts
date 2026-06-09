@@ -932,16 +932,15 @@ IBmbTargetLink = '_blank' | '_parent' | '_self' | '_top';
     },
   },
     icon: {
-    control: { type: 'text' },
+    control: { type: 'radio' },
+    options: ['more_vert', 'more_horiz'],
     description: `
-Sets the icon displayed in the dropdown menu trigger button.
-
-This icon is used to open the dropdown menu. Any icon supported by the icon library can be used.
-    `,
+  Sets the icon displayed in the dropdown menu trigger button.
+      `,
     table: {
       category: 'Properties',
       type: {
-        summary: 'string',
+        summary: `'more_vert' | 'more_horiz'`,
       },
       defaultValue: {
         summary: 'more_vert',

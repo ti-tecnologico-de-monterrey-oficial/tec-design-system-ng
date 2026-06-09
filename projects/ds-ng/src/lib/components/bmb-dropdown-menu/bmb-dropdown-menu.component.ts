@@ -14,6 +14,8 @@ import { IDropdownItem } from '../../types';
 import { BmbProjectionContentService } from '../../services/projection/projection.service';
 import { TranslatePipe } from '../../pipes/translations';
 
+export type IBmbDropdownMenuIcon = 'more_vert' | 'more_horiz';
+
 @Component({
   selector: 'bmb-dropdown-menu',
   standalone: true,
@@ -26,7 +28,7 @@ import { TranslatePipe } from '../../pipes/translations';
 export class BmbDropdownMenuComponent {
   items = input<IDropdownItem[]>([]);
 
-  icon = input<string>('more_vert');
+  icon = input<IBmbDropdownMenuIcon>('more_vert');
 
   clickedItem = output<IDropdownItem>();
   contentID = signal<string>('');
