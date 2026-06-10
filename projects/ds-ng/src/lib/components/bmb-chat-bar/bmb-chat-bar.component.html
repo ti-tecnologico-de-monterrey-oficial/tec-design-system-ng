@@ -52,18 +52,25 @@
         </ng-template>
       </bmb-action-icon>
       @if (!onDragFiles) {
-        <textarea
-          rows="2"
-          (input)="autoResize()"
-          #textareaRef
-          id="bmbChatBarBot"
-          name="bmbChatBarBot"
-          class="bmb_chat-bar-input"
-          [placeholder]="placeholder() || ('chat_bar.placeholder' | translate)"
-          [formControl]="control"
-          (keydown)="handleKeyDown($event)"
-          autocomplete="off"
-        ></textarea>
+        <div class="bmb_chat-bar-wrapper">
+          <textarea
+            rows="2"
+            (input)="autoResize()"
+            #textareaRef
+            id="bmbChatBarBot"
+            name="bmbChatBarBot"
+            class="bmb_chat-bar-input"
+            [formControl]="control"
+            (keydown)="handleKeyDown($event)"
+            autocomplete="off"
+          ></textarea>
+
+          @if (!control.value?.trim()) {
+            <span class="bmb_chat-bar-input-placeholder">
+              {{ placeholder() || ('chat_bar.placeholder' | translate) }}
+            </span>
+          }
+        </div>
         @if (showMicControls) {
           <bmb-action-icon
             class="bmb_chat-bar-pause"
