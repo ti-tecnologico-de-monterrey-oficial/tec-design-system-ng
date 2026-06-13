@@ -365,6 +365,7 @@ export class BmbDropzoneComponent implements OnInit, OnChanges {
         this.getFileAndValidate(this.multiple() ? Array.from(files) : files[0]);
       }
     }
+    _input.value = '';
   }
 
   protected handleRemoveFile(fileName: string): void {
