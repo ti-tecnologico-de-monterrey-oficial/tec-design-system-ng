@@ -71,6 +71,8 @@ export class BmbCalendarScheduleCardsComponent {
     else newClasses.push('bmb_calendar-event-micro');
     if (this.event().status === 'disabled')
       newClasses.push('bmb_calendar-event-disabled');
+    if ((this.event()?.microProgram?.length ?? 0) > 0)
+      newClasses.push('bmb_calendar-event-microprogram');
     const diff = (this.event()?.endDate ?? DateTime.now()).diff(
       this.event()?.startDate ?? DateTime.now(),
       ['minutes'],

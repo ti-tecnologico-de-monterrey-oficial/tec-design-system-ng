@@ -1,19 +1,15 @@
 import {
   Component,
-  Input,
   ChangeDetectionStrategy,
   ViewEncapsulation,
-  Output,
-  EventEmitter,
   input,
-  output,
   computed,
+  inject,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Info, DateTime } from 'luxon';
 import {
   IBmbCalendarEvent,
-  IBmbCalendarEventClick,
   IBmbCalendarRenderEvents,
   IBmbParsedDates,
 } from '../../types';
@@ -23,6 +19,7 @@ import { BmbCalendarScheduleCardsComponent } from '../bmb-calendar-schedule-card
 import { orderDayNames } from '../../../../utils/utils';
 import { BmbTranslationsService } from '../../../../services/translations/translations.service';
 import { BmbCalendarTimeIndicatorComponent } from '../bmb-calendar-time-indicator/bmb-calendar-time-indicator.component';
+import { BmbCalendarComponentService } from '../../bmb-calendar.service';
 
 @Component({
   selector: 'bmb-calendar-template-week',
@@ -39,11 +36,7 @@ import { BmbCalendarTimeIndicatorComponent } from '../bmb-calendar-time-indicato
   encapsulation: ViewEncapsulation.None,
 })
 export class BmbCalendarTemplateWeekComponent {
-  weekDays = input<DateTime[]>([]);
-  now = input<DateTime>(DateTime.now());
   dateFormat = input<string>(DEFAULT_DATE_FORMAT);
-  events = input<IBmbParsedDates>({});
-  currentTime = input<DateTime>(DateTime.now());
   selectedWeek = input<number>(0);
 
   eventsOnWeek = computed<IBmbCalendarEvent[][]>(() => {
@@ -54,10 +47,16 @@ export class BmbCalendarTemplateWeekComponent {
     });
   });
 
-  constructor(private translationsService: BmbTranslationsService) {}
+  private readonly calendarService = inject(BmbCalendarComponentService);
+  private readonly translationsService = inject(BmbTranslationsService);
 
-  locale = computed(() => this.translationsService.getCurrentLanguage());
-  defaultDayOrder = Info.weekdays('short', { locale: this.locale() });
+  now = computed(() => this.calendarService.getVisibleDate());
+  events = computed(() => this.calendarService.getFilteredEvents());
+  weekDays = computed(() => this.calendarService.getRenderWeekDays());
+  currentTime = computed(() => this.calendarService.getCurrentTime());
+
+  locale = this.translationsService.getCurrentLanguage();
+  defaultDayOrder = Info.weekdays('short', { locale: this.locale });
   dayNames = orderDayNames(this.defaultDayOrder);
   rows = new Array(25).fill(0);
 

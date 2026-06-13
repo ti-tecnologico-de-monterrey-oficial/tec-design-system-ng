@@ -143,6 +143,10 @@ $types: 'academic', 'life', 'event', 'save_the_date';
   &-time {
     grid-area: time;
   }
+
+  &-microprogram {
+    background-color: var(--generic-contrasts-25);
+  }
 }
 
 .bmb_calendar-event-modal-text {

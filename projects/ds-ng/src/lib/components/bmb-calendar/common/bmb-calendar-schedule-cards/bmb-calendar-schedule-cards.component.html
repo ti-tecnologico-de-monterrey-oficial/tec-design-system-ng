@@ -6,18 +6,24 @@
     (click)="handleSelectEvent()"
     title="{{ event().title }} - {{ event().detail }}"
   >
-    <div class="bmb_calendar-event-indicator"></div>
-    <header class="bmb_calendar-event-header">
-      <span
-        class="bmb_calendar-event-header-circle"
-        [ngStyle]="getBulletStyle()"
-      ></span>
-      <h3 class="bmb_calendar-event-title">
-        {{ event().title }}
-      </h3>
-    </header>
-    @if (extendedContent()) {
-      <p class="bmb_calendar-event-content">{{ event().detail }}</p>
+    @if (event().microProgram?.length) {
+      <div class="bmb_calendar-event-microprogram">
+        is microprogram
+      </div>
+    } @else {
+      <div class="bmb_calendar-event-indicator"></div>
+      <header class="bmb_calendar-event-header">
+        <span
+          class="bmb_calendar-event-header-circle"
+          [ngStyle]="getBulletStyle()"
+        ></span>
+        <h3 class="bmb_calendar-event-title">
+          {{ event().title }}
+        </h3>
+      </header>
+      @if (extendedContent()) {
+        <p class="bmb_calendar-event-content">{{ event().detail }}</p>
+      }
     }
   </div>
 }

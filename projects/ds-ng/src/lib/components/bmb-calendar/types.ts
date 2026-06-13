@@ -2,6 +2,21 @@ import { DateTime, Interval } from 'luxon';
 import { IBbmBgAppearance } from '../bmb-advertisement-card/types';
 import { IBmbColorSemantics } from '../../types/colors';
 
+export type IBmbMicroProgram = {
+  title: string;
+  code: string;
+  module: string;
+  tag?: {
+    appearance: IBbmBgAppearance;
+    text: string;
+  };
+  startDate: string;
+  endDate: string;
+  location?: string;
+  repetition?: string[];
+  campus?: string;
+}
+
 export type IBmbCalendarEvent = {
   title: string;
   subtitle?: string;
@@ -27,6 +42,7 @@ export type IBmbCalendarEvent = {
   bulletColor?: IBmbColorSemantics;
   daysRepetition?: string;
   campus?: string;
+  microProgram?: IBmbMicroProgram[];
 };
 
 export type IBmbCalendarView = 'week' | 'month' | 'day';
