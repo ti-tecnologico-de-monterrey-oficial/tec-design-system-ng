@@ -100,7 +100,6 @@ export class BmbCalendarModalComponent implements OnInit {
   }
 
   private onCalendarFormChange(formValue: Record<string, boolean>): void {
-    console.log('Form value changed:', formValue, this.calendarForm.value);
     this.calendarService.setTemporalFilters(formValue);
   }
 
