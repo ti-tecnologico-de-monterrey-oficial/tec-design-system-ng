@@ -106,6 +106,7 @@ export class BmbCalendarComponentService {
           });
         }
       }
+    }
 
     this.orderedEvents.set(orderedDates);
   }
