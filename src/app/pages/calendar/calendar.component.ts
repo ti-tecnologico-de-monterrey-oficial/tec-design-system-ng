@@ -35,7 +35,7 @@ export class CalendarComponent implements OnInit {
 
     const events: IBmbCalendarEvent[] = [
       {
-        title: `Event custom`,
+        title: `Event custom with microprogram`,
         start: today.toISO() as string,
         end: today.plus({ hours: 2 }).toISO() as string,
         detail: `Event custom detail`,
@@ -46,23 +46,26 @@ export class CalendarComponent implements OnInit {
         calendar: 'academic',
         microProgram: [
           {
-            title: 'Microprogram 1',
+            title: 'Microprogram 1 title that is very long and should be truncated',
             code: 'MP1',
             module: 'Module 1',
-            tag: {
-              appearance: 'mitec_blue',
-              text: 'Microprogram 1 tag',
-            },
+            tags: [
+              {
+                appearance: 'mitec_blue',
+                text: 'Microprogram 1 tag',
+              }
+            ],
             startDate: today.plus({ minutes: 30 }).toISO() as string,
             endDate: today.plus({ minutes: 60 }).toISO() as string,
-            location: 'Location 1',
-            repetition: ['Monday', 'Wednesday'],
+            location: 'VII - 334',
+            daysRepetition: ['Lu', 'Mi', 'Vi'],
             campus: 'Campus A',
+            group: '20020',
           }
         ]
       },
       {
-        title: `Event custom 2`,
+        title: `Event custom without microprogram`,
         start: today.plus({ hours: 2 }).toISO() as string,
         end: today.plus({ hours: 3 }).toISO() as string,
         detail: `Event custom detail`,

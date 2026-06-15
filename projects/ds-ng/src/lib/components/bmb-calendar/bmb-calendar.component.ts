@@ -105,6 +105,12 @@ export class BmbCalendarComponent implements OnInit, AfterViewInit {
 
       this.calendarService.setOrderedEvents(events, this.dateFormat());
     }, { allowSignalWrites: true });
+
+    effect(() => {
+      const dateFormat = this.dateFormat();
+
+      this.calendarService.setDateFormat(dateFormat);
+    }, { allowSignalWrites: true });
   }
 
   private timerId: any;

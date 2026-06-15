@@ -3,11 +3,13 @@ import {
   ChangeDetectionStrategy,
   ViewEncapsulation,
   input,
-  output,
   ViewChild,
   TemplateRef,
+  inject,
+  computed,
+  signal,
 } from '@angular/core';
-import { IBmbCalendarEvent, IBmbCalendarEventClick } from '../../types';
+import { IBmbCalendarEvent, IBmbCalendarMicroProgram } from '../../types';
 import { DateTime } from 'luxon';
 import { getTimeRange, HOUR_HEIGHT } from '../../utils';
 import { CommonModule } from '@angular/common';
@@ -19,6 +21,9 @@ import {
 } from '../../../../directives/bmb-layout-grid/bmb-layout-grid.directive';
 import { BmbBadgeComponent } from '../../../bmb-badge/bmb-badge.component';
 import { BmbDividerComponent } from '../../../bmb-divider/bmb-divider.component';
+import { BmbCalendarComponentService } from '../../bmb-calendar.service';
+import { TranslatePipe } from '../../../../pipes/translations';
+import { ɵEmptyOutletComponent } from "@angular/router";
 
 @Component({
   selector: 'bmb-calendar-schedule-cards',
@@ -29,7 +34,9 @@ import { BmbDividerComponent } from '../../../bmb-divider/bmb-divider.component'
     BmbLayoutGridItemDirective,
     BmbBadgeComponent,
     BmbDividerComponent,
-  ],
+    TranslatePipe,
+    ɵEmptyOutletComponent
+],
   templateUrl: './bmb-calendar-schedule-cards.component.html',
   styleUrl: './bmb-calendar-schedule-cards.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -40,14 +47,19 @@ export class BmbCalendarScheduleCardsComponent {
   isPositionAbsolute = input<boolean>(true);
   extendedContent = input<boolean>(true);
 
+  modalService = inject(BmbNativeModalService);
+  calendarService = inject(BmbCalendarComponentService);
+
   now = DateTime.now();
   @ViewChild('detailContent', { read: TemplateRef })
   detailContent?: TemplateRef<any>;
+  @ViewChild('microDetailContent', { read: TemplateRef })
+  microDetailContent?: TemplateRef<any>;
+  dateFormat = computed(() => this.calendarService.getDateFormat());
+  selectedMicroProgram = signal<IBmbCalendarMicroProgram | null>(null);
 
-  constructor(private readonly modalService: BmbNativeModalService) {}
-
-  getPosition(): string {
-    if (!this.isPositionAbsolute()) return '';
+  getPosition(): object {
+    if (!this.isPositionAbsolute()) return {};
 
     const startMin =
       (this.event()?.startDate?.hour ?? 0) * HOUR_HEIGHT +
@@ -61,7 +73,12 @@ export class BmbCalendarScheduleCardsComponent {
     const left = column ? (100 / columnSize) * column + 1 : 0;
     const width = columnSize ? 100 / columnSize : 100;
 
-    return `top: ${startMin}px; height: ${endMin}px; left: calc(${left}% + ${8 / (columnSize + 1)}px); width: calc(${width}% - ${8 / (columnSize + 1)}px)`;
+    return {
+      top: `${startMin}px`,
+      height: `${endMin}px`,
+      left: `calc(${left}% + ${8 / (columnSize + 1)}px)`,
+      width: `calc(${width}% - ${8 / (columnSize + 1)}px)`,
+    };
   }
 
   getClassNames(): string[] {
@@ -108,9 +125,15 @@ export class BmbCalendarScheduleCardsComponent {
     };
   }
 
-  getDuration() {
+  getDuration(isMicroEvent = false): string {
     if (!this.event()) return '';
-    return `${DateTime.fromISO(this.event().start).toFormat('hh:mm a')} - ${DateTime.fromISO(this.event().end).toFormat('hh:mm a')}`;
+    const microProgram = this.selectedMicroProgram();
+    if (isMicroEvent && microProgram !== null) {
+      const start = this.parseFromFormat(microProgram.startDate ?? '', this.dateFormat());
+      const end = this.parseFromFormat(microProgram.endDate ?? '', this.dateFormat());
+      return `${start.toFormat('hh:mm a')} - ${end.toFormat('hh:mm a')}`;
+    }
+    return `${this.parseFromFormat(this.event().start, this.dateFormat()).toFormat('hh:mm a')} - ${this.parseFromFormat(this.event().end, this.dateFormat()).toFormat('hh:mm a')}`;
   }
 
   handleSelectEvent(): void {
@@ -123,6 +146,49 @@ export class BmbCalendarScheduleCardsComponent {
       title: modalTitle,
       subtitle: event.subtitle,
       content: this.detailContent,
+      size: 'small',
+    };
+    this.modalService.openModal(data);
+  }
+
+  parseFromFormat = (dateString: string, format: string): DateTime => {
+    if (format.toLowerCase() === 'iso') return DateTime.fromISO(dateString);
+
+    return DateTime.fromFormat(dateString, format);
+  };
+
+  getMicroPosition(microEvent: IBmbCalendarMicroProgram): object {
+    const startMin =
+      (this.event()?.startDate?.hour ?? 0) * HOUR_HEIGHT +
+      (this.event()?.startDate?.minute ?? 0) * 2;
+    const microEventStartDate = this.parseFromFormat(
+      microEvent.startDate,
+      this.dateFormat(),
+    );
+    const microEventEndDate = this.parseFromFormat(
+      microEvent.endDate,
+      this.dateFormat(),
+    );
+
+    const microStartMin =
+      (microEventStartDate.hour ?? 0) * HOUR_HEIGHT +
+      (microEventStartDate.minute ?? 0) * 2;
+    const top = microStartMin - startMin;
+    const height =
+      (microEventEndDate.diff(microEventStartDate, 'minutes').toObject()
+        .minutes ?? 0) * 2;
+
+    return {
+      top: `${top}px`,
+      height: `${height}px`,
+    };
+  }
+
+  handleSelectMicroEvent(event: IBmbCalendarMicroProgram): void {
+    this.selectedMicroProgram.set(event);
+    const data: IBmbNativeModal = {
+      title: `${event.code} - ${event.title} - ${event.module}`,
+      content: this.microDetailContent,
       size: 'small',
     };
     this.modalService.openModal(data);

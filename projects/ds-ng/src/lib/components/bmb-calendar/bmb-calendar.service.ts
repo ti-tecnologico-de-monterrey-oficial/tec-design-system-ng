@@ -2,7 +2,7 @@ import { computed, Injectable, signal } from '@angular/core';
 import { DateTime, Interval } from 'luxon';
 import { IBmbCalendarEvent, IBmbParsedDates } from './types';
 import { IBmbColorSemantics } from '../../types';
-import { getWeekDays } from './utils';
+import { DEFAULT_DATE_FORMAT, getWeekDays } from './utils';
 
 const parseFromFormat = (dateString: string, format: string): DateTime => {
   if (format.toLowerCase() === 'iso') return DateTime.fromISO(dateString);
@@ -20,6 +20,7 @@ export class BmbCalendarComponentService {
   readonly currentTime = signal<DateTime>(DateTime.now());
   readonly filters = signal<Record<string, boolean>>({});
   readonly temporalFilters = signal<Record<string, boolean>>({});
+  readonly dateFormat = signal<string>(DEFAULT_DATE_FORMAT);
 
   getVisibleDate() {
     return this.visibleDate();
@@ -155,5 +156,13 @@ export class BmbCalendarComponentService {
 
   setTemporalFilters(filters: Record<string, boolean>) {
     this.temporalFilters.set(filters);
+  }
+
+  setDateFormat(dateFormat: string) {
+    this.dateFormat.set(dateFormat);
+  }
+
+  getDateFormat(): string {
+    return this.dateFormat();
   }
 }
