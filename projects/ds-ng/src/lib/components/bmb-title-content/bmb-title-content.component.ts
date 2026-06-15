@@ -19,7 +19,7 @@ import { getRGBColorKeyValue } from '../../utils/utils';
 import { BmbUserImageComponent } from '../bmb-user-image/bmb-user-image.component';
 import { IBmbUserImageSize } from '../../types';
 import { logDeprecatedInput } from '../../utils/logDeprecatedInput';
-
+import { BmbBoxIconComponent } from '../bmb-box-icon/bmb-box-icon.component';
 import { BmbBotIconComponent } from '../bmb-bot-icon/bmb-bot-icon.component';
 import { IBotType } from '../bmb-chat-bar/types';
 
@@ -44,6 +44,7 @@ export type IBmbFontWeightContent =
     BmbBreadcrumbComponent,
     BmbUserImageComponent,
     BmbBotIconComponent,
+    BmbBoxIconComponent,
   ],
   templateUrl: './bmb-title-content.component.html',
   styleUrl: './bmb-title-content.component.scss',

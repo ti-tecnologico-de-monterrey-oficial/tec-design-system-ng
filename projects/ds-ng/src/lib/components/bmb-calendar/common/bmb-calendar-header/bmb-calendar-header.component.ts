@@ -6,6 +6,7 @@ import {
   input,
   output,
   computed,
+  inject,
 } from '@angular/core';
 import { BmbIconComponent } from '../../../bmb-icon/bmb-icon.component';
 import { DateTime } from 'luxon';
@@ -16,6 +17,10 @@ import { BmbLayoutItemDirective } from '../../../../directives/bmb-layout/bmb-la
 import { BmbActionIconComponent } from '../../../bmb-action-icon/bmb-action-icon.component';
 import { TranslatePipe } from '../../../../pipes/translations';
 import { BmbTranslationsService } from '../../../../services/translations/translations.service';
+import { BmbCalendarComponentService } from '../../bmb-calendar.service';
+import { getUUID } from '../../../../utils/utils';
+import { BmbNativeModalService } from '../../../../services/modal/native-modal.service';
+import { BmbCalendarModalComponent } from '../bmb-calendar-modal/bmb-calendar-modal.component';
 
 @Component({
   selector: 'bmb-calendar-header',
@@ -35,18 +40,21 @@ import { BmbTranslationsService } from '../../../../services/translations/transl
   encapsulation: ViewEncapsulation.None,
 })
 export class BmbCalendarHeaderComponent {
-  weekDays = input<DateTime[]>([]);
   view = input<IBmbCalendarView>('week');
-  currentDate = input<DateTime>(DateTime.now());
   showFilterButton = input<boolean>(false);
 
   onRangeChange = output<any>();
-  onCurrentDateChange = output<DateTime>();
   showFilters = output<void>();
 
-  constructor(private translationsService: BmbTranslationsService) {}
+  private readonly calendarService = inject(BmbCalendarComponentService);
+  private readonly translationsService = inject(BmbTranslationsService);
+  private readonly modalService = inject(BmbNativeModalService);
 
+  currentDate = computed(() => this.calendarService.getVisibleDate());
+  weekDays = computed(() => this.calendarService.getRenderWeekDays());
   locale = computed(() => this.translationsService.getCurrentLanguage());
+
+  filterModalId = getUUID();
 
   getTitle(): string {
     if (this.view() === 'week') {
@@ -75,7 +83,7 @@ export class BmbCalendarHeaderComponent {
         day: 1,
       });
 
-      this.onCurrentDateChange.emit(newDate);
+      this.calendarService.setVisibleDate(newDate);
     }
     this.onRangeChange.emit(event);
   }
@@ -83,9 +91,9 @@ export class BmbCalendarHeaderComponent {
   handleChangeDate(event: string): void {
     const modifyDate = ({ config, date }: any) => {
       if (event === '+') {
-        this.onCurrentDateChange.emit(date.plus(config));
+        this.calendarService.setVisibleDate(date.plus(config));
       } else {
-        this.onCurrentDateChange.emit(date.minus(config));
+        this.calendarService.setVisibleDate(date.minus(config));
       }
     };
 
@@ -113,10 +121,29 @@ export class BmbCalendarHeaderComponent {
   }
 
   goToToday(): void {
-    this.onCurrentDateChange.emit(DateTime.now());
+    this.calendarService.setVisibleDate(DateTime.now());
   }
 
   handleShowFilters() {
-    this.showFilters.emit();
+    this.modalService.openModal({
+      title: this.translationsService.translate('calendar.modal.title'),
+      subtitle: this.translationsService.translate('calendar.subtitle'),
+      content: BmbCalendarModalComponent,
+      size: 'x-small',
+      closeModalClicked: () => {
+        this.calendarService.setFilters({});
+        this.calendarService.setTemporalFilters({});
+      },
+      actions: [
+        {
+          buttonName: 'save',
+          appearance: 'primary',
+          label: this.translationsService.translate('calendar.filter_save'),
+          action: () => {
+            this.calendarService.applyFilters();
+          },
+        },
+      ],
+    });
   }
 }

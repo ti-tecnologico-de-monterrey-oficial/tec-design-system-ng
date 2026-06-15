@@ -1,60 +1,35 @@
 <div class="bmb_calendar" [ngStyle]="{ height: getHeight(height()) }">
   @if (isMobileHeader) {
     <bmb-calendar-template-mobile
-      [now]="visibleDate()"
-      [events]="filteredEvents()"
-      (onCurrentDateChange)="handleCurrentDateChange($event)"
-      [weekDays]="renderWeekDays()"
       [calendarTitle]="calendarTitle()"
       [disableMobileFilter]="disableMobileFilter()"
       (onClose)="handleClose()"
-      (showFilters)="handleShowModalFilter()"
     />
   } @else {
     <bmb-calendar-header
-      [weekDays]="renderWeekDays()"
       [view]="view()"
-      [currentDate]="visibleDate()"
       (onRangeChange)="handleDateChange($event, visibleDate())"
-      (onCurrentDateChange)="handleCurrentDateChange($event)"
       [showFilterButton]="showFilterButton()"
-      (showFilters)="handleShowModalFilter()"
     />
   }
   @switch (view()) {
     @case ('day') {
       <bmb-calendar-template-day
-        [now]="visibleDate()"
-        [events]="getDayEvents()"
-        [currentTime]="currentTime()"
         [dateFormat]="dateFormat()"
         class="bmb_calendar-content"
       />
     }
     @case ('week') {
       <bmb-calendar-template-week
-        [weekDays]="renderWeekDays()"
-        [now]="visibleDate()"
-        [events]="filteredEvents()"
-        [currentTime]="currentTime()"
         [selectedWeek]="selectedWeek()"
         class="bmb_calendar-content"
       />
     }
     @case ('month') {
-      <bmb-calendar-template-month
-        [now]="visibleDate()"
-        [events]="filteredEvents()"
-        class="bmb_calendar-content"
-      />
+      <bmb-calendar-template-month class="bmb_calendar-content" />
     }
     @default {
-      <bmb-calendar-template-week
-        [weekDays]="renderWeekDays()"
-        [now]="visibleDate()"
-        [events]="filteredEvents()"
-        class="bmb_calendar-content"
-      />
+      <bmb-calendar-template-week class="bmb_calendar-content" />
     }
   }
 
@@ -65,39 +40,6 @@
   }
 </div>
 
-<ng-template #modalTemplate>
-  <form [formGroup]="calendarForm">
-    @for (item of filteredEvents().calendars; track $index) {
-      <div bmbLayout gapSize="m" alignItems="center">
-        <bmb-checkbox
-          bmbLayoutItem
-          [isDynamicItem]="true"
-          [inputId]="'checkbox_' + item"
-          [name]="'checkbox_' + item"
-          [control]="getFormControl(item)"
-        />
-        <div
-          bmbLayoutItem
-          [isDynamicItem]="true"
-          [ngClass]="getBulletClass(item)"
-        ></div>
-        <label
-          bmbLayoutItem
-          [isDynamicItem]="true"
-          [colGrow]="1"
-          [htmlFor]="'checkbox_' + item"
-          >{{ getCalendarName(item) }}</label
-        >
-      </div>
-    }
-    <bmb-divider type="simple"></bmb-divider>
-    <bmb-switch
-      [isChecked]="true"
-      [ariaLabel]="'calendar.modal.notification_label' | translate"
-      [rightText]="'calendar.modal.notification_label' | translate"
-      name="enable_notifications"
-      inputId="enable_notifications"
-      [control]="getFormControl('enable_notifications')"
-    ></bmb-switch>
-  </form>
-</ng-template>
+<!-- <ng-template #modalTemplate>
+
+</ng-template> -->

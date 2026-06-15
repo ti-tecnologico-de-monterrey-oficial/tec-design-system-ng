@@ -6,10 +6,10 @@
 @mixin bot() {
   background-color: var(--general-contrasts-80);
   border-radius: var(--bmb-radius-full);
-  width: rem.rem_calc(60);
+  color: var(--general-contrasts-25);
   height: rem.rem_calc(60);
   padding: rem.rem_calc(10);
-  color: var(--general-contrasts-25);
+  width: rem.rem_calc(60);
 }
 
 .bmb_chat-bar {
@@ -46,8 +46,8 @@
     }
 
     &-button {
-      display: inline-flex;
       box-shadow: var(--bmb-box-shadow-3);
+      display: inline-flex;
       @include bot();
 
       &-active {
@@ -63,9 +63,9 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+    overflow: hidden;
     position: relative;
     z-index: 2;
-    overflow: hidden;
 
     &-btns {
       align-items: center;
@@ -78,8 +78,8 @@
       align-items: center;
       color: var(--buttons-primary-select);
       display: flex;
-      justify-content: center;
       flex: 1;
+      justify-content: center;
 
       &-text {
         margin: 0;
@@ -97,36 +97,56 @@
     display: flex;
     flex-wrap: wrap;
     gap: rem.rem_calc(8);
-    width: 100%;
-    position: relative;
     padding: rem.rem_calc(16);
+    position: relative;
+    width: 100%;
   }
 
   &-bot {
     @include bot();
   }
 
+  &-wrapper {
+    flex: 1;
+    min-width: 0;
+    position: relative;
+  }
+
   &-input {
     background-color: transparent;
     border: none;
     color: var(--general-contrasts-80);
+    field-sizing: content;
     flex: 1;
     font-size: 1rem;
     height: calc(1lh + rem.rem_calc(32));
+    margin: 0;
     max-height: 12lh;
     outline: none;
     overflow-y: auto;
     padding: rem.rem_calc(16 0);
     resize: none;
-    margin: 0;
-    field-sizing: content;
+    width: 100%;
+
+    &-placeholder {
+      left: 0;
+      color: var(--general-contrasts-80);
+      overflow: hidden;
+      pointer-events: none;
+      position: absolute;
+      right: 0;
+      text-overflow: ellipsis;
+      top: rem.rem_calc(16);
+      white-space: nowrap;
+    }
   }
 
   &-add {
     color: var(--general-contrasts-80);
+
     &-dialog {
-      width: max-content;
       max-width: rem.rem_calc(350);
+      width: max-content;
     }
   }
 
@@ -171,9 +191,9 @@
       align-items: center;
       display: flex;
       flex-direction: column;
-      padding: rem.rem_calc(10 36 0);
       max-height: rem.rem_calc(200);
       overflow: auto;
+      padding: rem.rem_calc(10 36 0);
 
       @include mixins.check-for-mobile(false) {
         flex-direction: row;
@@ -194,10 +214,10 @@
       }
 
       &-text {
+        flex: 1;
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
-        flex: 1;
 
         @include mixins.check-for-mobile(false) {
           max-width: rem.rem_calc(200);
@@ -213,21 +233,21 @@
 
   &-mobile-bot-dialog {
     &-body {
-      list-style: none;
-      margin: 0;
-      padding: 0;
       display: flex;
       flex-wrap: wrap;
       gap: var(--bmb-spacing-m);
       justify-content: center;
+      list-style: none;
+      margin: 0;
+      padding: 0;
     }
 
     &-option {
-      width: calc(50% - var(--bmb-spacing-s));
-      display: flex;
-      justify-content: center;
-      flex-flow: column;
       align-items: center;
+      display: flex;
+      flex-flow: column;
+      justify-content: center;
+      width: calc(50% - var(--bmb-spacing-s));
     }
   }
 }
