@@ -61,6 +61,10 @@
     "modal": {
       "title": "Calendars and Notifications",
       "notification_label": "Enable schedule notifications (you will receive a notification 10 minutes before your next class)"
+    },
+    "micro_programs": {
+      "group": "Group:",
+      "classroom": "Classroom:"
     }
   },
   "chat_bar": {

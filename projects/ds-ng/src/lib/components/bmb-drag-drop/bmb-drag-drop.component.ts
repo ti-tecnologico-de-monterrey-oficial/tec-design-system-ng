@@ -28,25 +28,18 @@ interface DragItem {
   templateUrl: './bmb-drag-drop.component.html',
   styleUrl: './bmb-drag-drop.component.scss',
 })
-
 export class BmbDragDropComponent {
   leftItems = signal<DragItem[]>([
     { id: 1, label: 'Item A' },
     { id: 2, label: 'Item B' },
   ]);
 
-  rightItems = signal<DragItem[]>([
-    { id: 3, label: 'Item C' },
-  ]);
+  rightItems = signal<DragItem[]>([{ id: 3, label: 'Item C' }]);
 
   moveItem(item: DragItem, target: 'left' | 'right') {
-    this.leftItems.update((items) =>
-      items.filter((i) => i.id !== item.id),
-    );
+    this.leftItems.update((items) => items.filter((i) => i.id !== item.id));
 
-    this.rightItems.update((items) =>
-      items.filter((i) => i.id !== item.id),
-    );
+    this.rightItems.update((items) => items.filter((i) => i.id !== item.id));
 
     if (target === 'left') {
       this.leftItems.update((items) => [...items, item]);

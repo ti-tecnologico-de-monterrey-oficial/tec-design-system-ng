@@ -1,24 +1,17 @@
 import {
   Component,
-  Input,
   ChangeDetectionStrategy,
   ViewEncapsulation,
-  Output,
-  EventEmitter,
-  input,
   computed,
+  inject,
 } from '@angular/core';
-import {
-  IBmbCalendarEvent,
-  IBmbCalendarEventClick,
-  IBmbCalendarRenderEvents,
-  IBmbParsedDates,
-} from '../../types';
+import { IBmbCalendarEvent, IBmbCalendarRenderEvents } from '../../types';
 import { DateTime } from 'luxon';
 import { eventsInDate, dayName, weeksAndDays } from '../../utils';
 import { CommonModule } from '@angular/common';
 import { BmbCalendarScheduleCardsComponent } from '../bmb-calendar-schedule-cards/bmb-calendar-schedule-cards.component';
 import { BmbTranslationsService } from '../../../../services/translations/translations.service';
+import { BmbCalendarComponentService } from '../../bmb-calendar.service';
 
 @Component({
   selector: 'bmb-calendar-template-month',
@@ -30,11 +23,11 @@ import { BmbTranslationsService } from '../../../../services/translations/transl
   encapsulation: ViewEncapsulation.None,
 })
 export class BmbCalendarTemplateMonthComponent {
-  now = input<DateTime>(DateTime.now());
-  events = input<IBmbParsedDates>({});
+  private readonly calendarService = inject(BmbCalendarComponentService);
+  private readonly translationsService = inject(BmbTranslationsService);
 
-  constructor(private translationsService: BmbTranslationsService) {}
-
+  now = computed(() => this.calendarService.getVisibleDate());
+  events = computed(() => this.calendarService.getFilteredEvents());
   locale = computed(() => this.translationsService.getCurrentLanguage());
 
   weeksAndDaysList = computed<DateTime[]>(() => weeksAndDays(this.now()));

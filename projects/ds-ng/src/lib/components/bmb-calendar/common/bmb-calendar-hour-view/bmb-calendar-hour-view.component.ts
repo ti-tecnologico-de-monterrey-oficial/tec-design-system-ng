@@ -43,7 +43,9 @@ export class BmbCalendarHourViewComponent implements OnChanges, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    const startElement = document.getElementById(`bmbCalendarHourViewHour_${this.uuid}_${this.scrollToHour}`);
+    const startElement = document.getElementById(
+      `bmbCalendarHourViewHour_${this.uuid}_${this.scrollToHour}`,
+    );
     if (startElement) {
       startElement.scrollIntoView({ behavior: 'smooth' });
     }
