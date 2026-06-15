@@ -139,7 +139,9 @@ export class BmbCalendarHeaderComponent {
           buttonName: 'save',
           appearance: 'primary',
           label: this.translationsService.translate('calendar.filter_save'),
-          action: () => { this.calendarService.applyFilters() },
+          action: () => {
+            this.calendarService.applyFilters();
+          },
         },
       ],
     });

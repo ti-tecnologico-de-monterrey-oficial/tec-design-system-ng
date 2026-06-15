@@ -931,7 +931,7 @@ IBmbTargetLink = '_blank' | '_parent' | '_self' | '_top';
       defaultValue: { summary: '[]' },
     },
   },
-    icon: {
+  icon: {
     control: { type: 'radio' },
     options: ['more_vert', 'more_horiz'],
     description: `

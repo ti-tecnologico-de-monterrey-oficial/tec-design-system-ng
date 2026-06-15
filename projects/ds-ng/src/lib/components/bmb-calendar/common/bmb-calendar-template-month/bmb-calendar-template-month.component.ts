@@ -5,10 +5,7 @@ import {
   computed,
   inject,
 } from '@angular/core';
-import {
-  IBmbCalendarEvent,
-  IBmbCalendarRenderEvents,
-} from '../../types';
+import { IBmbCalendarEvent, IBmbCalendarRenderEvents } from '../../types';
 import { DateTime } from 'luxon';
 import { eventsInDate, dayName, weeksAndDays } from '../../utils';
 import { CommonModule } from '@angular/common';

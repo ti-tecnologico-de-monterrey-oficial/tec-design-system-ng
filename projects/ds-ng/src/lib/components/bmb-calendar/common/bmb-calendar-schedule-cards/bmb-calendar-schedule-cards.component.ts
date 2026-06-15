@@ -23,7 +23,7 @@ import { BmbBadgeComponent } from '../../../bmb-badge/bmb-badge.component';
 import { BmbDividerComponent } from '../../../bmb-divider/bmb-divider.component';
 import { BmbCalendarComponentService } from '../../bmb-calendar.service';
 import { TranslatePipe } from '../../../../pipes/translations';
-import { ɵEmptyOutletComponent } from "@angular/router";
+import { ɵEmptyOutletComponent } from '@angular/router';
 
 @Component({
   selector: 'bmb-calendar-schedule-cards',
@@ -35,8 +35,8 @@ import { ɵEmptyOutletComponent } from "@angular/router";
     BmbBadgeComponent,
     BmbDividerComponent,
     TranslatePipe,
-    ɵEmptyOutletComponent
-],
+    ɵEmptyOutletComponent,
+  ],
   templateUrl: './bmb-calendar-schedule-cards.component.html',
   styleUrl: './bmb-calendar-schedule-cards.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -129,8 +129,14 @@ export class BmbCalendarScheduleCardsComponent {
     if (!this.event()) return '';
     const microProgram = this.selectedMicroProgram();
     if (isMicroEvent && microProgram !== null) {
-      const start = this.parseFromFormat(microProgram.startDate ?? '', this.dateFormat());
-      const end = this.parseFromFormat(microProgram.endDate ?? '', this.dateFormat());
+      const start = this.parseFromFormat(
+        microProgram.startDate ?? '',
+        this.dateFormat(),
+      );
+      const end = this.parseFromFormat(
+        microProgram.endDate ?? '',
+        this.dateFormat(),
+      );
       return `${start.toFormat('hh:mm a')} - ${end.toFormat('hh:mm a')}`;
     }
     return `${this.parseFromFormat(this.event().start, this.dateFormat()).toFormat('hh:mm a')} - ${this.parseFromFormat(this.event().end, this.dateFormat()).toFormat('hh:mm a')}`;

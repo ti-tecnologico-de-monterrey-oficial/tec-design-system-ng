@@ -116,8 +116,7 @@ export class BmbCalendarComponentService {
   getDayEvents(): IBmbCalendarEvent[] {
     const visibleDateStr = this.visibleDate().toFormat('yyyy-MM-dd');
     const currentWeek = this.visibleDate().weekNumber;
-    const events =
-      this.filteredEvents()[currentWeek]?.[visibleDateStr] ?? [];
+    const events = this.filteredEvents()[currentWeek]?.[visibleDateStr] ?? [];
     return events;
   }
 

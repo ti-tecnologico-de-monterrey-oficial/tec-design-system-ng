@@ -94,23 +94,32 @@ export class BmbCalendarComponent implements OnInit, AfterViewInit {
   }
 
   constructor() {
-    effect(() => {
-      const filters = this.filters();
+    effect(
+      () => {
+        const filters = this.filters();
 
-      this.calendarService.setFilteredEvents(filters);
-    }, { allowSignalWrites: true });
+        this.calendarService.setFilteredEvents(filters);
+      },
+      { allowSignalWrites: true },
+    );
 
-    effect(() => {
-      const events = this.events();
+    effect(
+      () => {
+        const events = this.events();
 
-      this.calendarService.setOrderedEvents(events, this.dateFormat());
-    }, { allowSignalWrites: true });
+        this.calendarService.setOrderedEvents(events, this.dateFormat());
+      },
+      { allowSignalWrites: true },
+    );
 
-    effect(() => {
-      const dateFormat = this.dateFormat();
+    effect(
+      () => {
+        const dateFormat = this.dateFormat();
 
-      this.calendarService.setDateFormat(dateFormat);
-    }, { allowSignalWrites: true });
+        this.calendarService.setDateFormat(dateFormat);
+      },
+      { allowSignalWrites: true },
+    );
   }
 
   private timerId: any;

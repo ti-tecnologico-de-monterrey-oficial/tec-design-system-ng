@@ -3,7 +3,10 @@
     <h2>-</h2>
   </header>
   @for (item of hours; track $index) {
-    <div class="bmb_calendar-hours-row" [attr.id]="'bmbCalendarHourViewHour_' + uuid + '_' + $index">
+    <div
+      class="bmb_calendar-hours-row"
+      [attr.id]="'bmbCalendarHourViewHour_' + uuid + '_' + $index"
+    >
       {{ item }}
     </div>
   }

@@ -26,20 +26,24 @@
             </header>
             <footer class="bmb_calendar-event-microprogram-item-footer">
               <div class="bmb_calendar-event-microprogram-item-footer-group">
-                <span class="bmb_calendar-event-microprogram-item-footer-label">{{
-                  'calendar.micro_programs.group' | translate
-                }}</span>
-                <span class="bmb_calendar-event-microprogram-item-footer-text">{{
-                  item.group
-                }}</span>
+                <span
+                  class="bmb_calendar-event-microprogram-item-footer-label"
+                  >{{ 'calendar.micro_programs.group' | translate }}</span
+                >
+                <span
+                  class="bmb_calendar-event-microprogram-item-footer-text"
+                  >{{ item.group }}</span
+                >
               </div>
               <div class="bmb_calendar-event-microprogram-item-footer-location">
-                <span class="bmb_calendar-event-microprogram-item-footer-label">{{
-                  'calendar.micro_programs.classroom' | translate
-                }}</span>
-                <span class="bmb_calendar-event-microprogram-item-footer-text">{{
-                  item.location
-                }}</span>
+                <span
+                  class="bmb_calendar-event-microprogram-item-footer-label"
+                  >{{ 'calendar.micro_programs.classroom' | translate }}</span
+                >
+                <span
+                  class="bmb_calendar-event-microprogram-item-footer-text"
+                  >{{ item.location }}</span
+                >
               </div>
             </footer>
           </div>
@@ -136,7 +140,9 @@
       [numberOfRows]="1"
     >
       @if (selectedMicroProgram()?.location) {
-        <p class="bmb_calendar-event-modal-text">{{ selectedMicroProgram()?.location }}</p>
+        <p class="bmb_calendar-event-modal-text">
+          {{ selectedMicroProgram()?.location }}
+        </p>
       }
     </section>
 
@@ -148,7 +154,9 @@
       [numberOfRows]="1"
     >
       @if (selectedMicroProgram()?.campus) {
-        <span class="bmb_calendar-event-modal-text">{{ selectedMicroProgram()?.campus }}</span>
+        <span class="bmb_calendar-event-modal-text">{{
+          selectedMicroProgram()?.campus
+        }}</span>
       }
     </section>
   </div>

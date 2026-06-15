@@ -16,7 +16,7 @@ export type IBmbCalendarMicroProgram = {
   daysRepetition?: string[];
   campus?: string;
   group?: string;
-}
+};
 
 export type IBmbCalendarEvent = {
   title: string;

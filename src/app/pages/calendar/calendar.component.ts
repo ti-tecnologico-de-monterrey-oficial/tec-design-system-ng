@@ -46,14 +46,15 @@ export class CalendarComponent implements OnInit {
         calendar: 'academic',
         microProgram: [
           {
-            title: 'Microprogram 1 title that is very long and should be truncated',
+            title:
+              'Microprogram 1 title that is very long and should be truncated',
             code: 'MP1',
             module: 'Module 1',
             tags: [
               {
                 appearance: 'mitec_blue',
                 text: 'Microprogram 1 tag',
-              }
+              },
             ],
             startDate: today.plus({ minutes: 30 }).toISO() as string,
             endDate: today.plus({ minutes: 60 }).toISO() as string,
@@ -61,8 +62,8 @@ export class CalendarComponent implements OnInit {
             daysRepetition: ['Lu', 'Mi', 'Vi'],
             campus: 'Campus A',
             group: '20020',
-          }
-        ]
+          },
+        ],
       },
       {
         title: `Event custom without microprogram`,
