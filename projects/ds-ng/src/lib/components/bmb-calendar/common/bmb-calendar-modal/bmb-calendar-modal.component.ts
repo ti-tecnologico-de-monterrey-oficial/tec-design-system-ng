@@ -7,7 +7,7 @@ import {
   OnInit,
   ViewEncapsulation,
 } from '@angular/core';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { Subject, takeUntil } from 'rxjs';
 import { BmbCheckboxComponent } from '../../../bmb-checkbox/bmb-checkbox.component';
 import { BmbLayoutDirective } from '../../../../directives/bmb-layout/bmb-layout.directive';
 import { BmbLayoutItemDirective } from '../../../../directives/bmb-layout/bmb-layout-item.directive';
@@ -71,6 +71,7 @@ import { BmbCalendarComponentService } from '../../bmb-calendar.service';
 export class BmbCalendarModalComponent implements OnInit {
   private readonly calendarService = inject(BmbCalendarComponentService);
   private readonly destroyRef = inject(DestroyRef);
+  private readonly destroy$ = new Subject<void>();
   filteredEvents = this.calendarService.getFilteredEvents();
   calendarForm: FormGroup<{ [key: string]: FormControl<any> }> = new FormGroup(
     {},
@@ -78,6 +79,11 @@ export class BmbCalendarModalComponent implements OnInit {
   filters = this.calendarService.getFilters();
 
   constructor() {
+    this.destroyRef.onDestroy(() => {
+      this.destroy$.next();
+      this.destroy$.complete();
+    });
+
     effect(() => {
       const calendars = this.filteredEvents.calendars || [];
       calendars.forEach((calendar) => {
@@ -91,7 +97,7 @@ export class BmbCalendarModalComponent implements OnInit {
 
   ngOnInit() {
     this.calendarForm.valueChanges
-      .pipe(takeUntilDestroyed(this.destroyRef))
+      .pipe(takeUntil(this.destroy$))
       .subscribe((formValue) => {
         this.onCalendarFormChange(formValue as Record<string, boolean>);
       });
