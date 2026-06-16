@@ -17,6 +17,7 @@ import {
   IBmbSemanticColors,
 } from '../../types/foundations/colors/color-type';
 import { IBmbInteractiveIconAppearance } from '../bmb-interactive-icon/bmb-interactive-icon.component';
+import { IBmbColor } from '../../types';
 
 export type IBmbBoxIconSize = 'regular' | 'small';
 
@@ -43,6 +44,7 @@ export class BmbBoxIconComponent {
     | IBmbCreativeUseColors
     | IBmbAlertColors
     | IBmbInteractiveIconAppearance
+    | IBmbColor
   >();
   boxSize = input<IBmbBoxIconSize>('small');
 
