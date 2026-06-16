@@ -43,6 +43,7 @@
   }
 
   bmb-box-icon,
+  .bmb_title-content-container-icon,
   .bmb_title-content-container-wrapper-subtitle,
   .bmb_title-content-container-wrapper-breadcrumb {
     @include mixins.container-query(559, 'max') {
