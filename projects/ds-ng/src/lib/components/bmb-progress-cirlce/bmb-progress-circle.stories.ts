@@ -8,11 +8,13 @@ import {
 } from '../../utils/doc/utils';
 import {
   DBmbGenericParamDesc,
+  DBmbInputParamDesc,
   getDefaultValueControl,
   getPropertyParamDesc,
 } from '../../utils/doc/parameterDescriptions';
 
 const IMPORTANT_DESCRIPTION = `<br/><br/>${RELEVANT_TITLE.important} The gray fill path (fillPathStatus) does not work for the full state (fullFillPathStatus).`;
+
 export default {
   title: 'Components/Status indicators/Progress circle',
   component: BmbProgressCircleComponent,
@@ -125,15 +127,47 @@ ${IMPORTANT_DESCRIPTION}
       },
     },
     showBackground: DBmbGenericParamDesc.deprecated,
+    icon: DBmbInputParamDesc.icon,
+    size: {
+      control: {
+        type: 'select',
+      },
+      options: ['default', 'small'],
+      description:
+        'Defines the size variant of the progress circle. Use "default" for the standard size or "small" for a more compact version.',
+      table: {
+        category: 'Properties',
+        type: { summary: "'default' | 'small'" },
+        defaultValue: getDefaultValueControl('default'),
+      },
+    },
+    showOperationState: {
+      control: {
+        type: 'boolean',
+      },
+      description:
+        'Displays an operation state indicator for success or error statuses when the progress circle is fully filled.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'boolean' },
+        defaultValue: getDefaultValueControl(false),
+      },
+    },
+    emptyState: {
+      control: {
+        type: 'boolean',
+      },
+      description:
+        'Displays the empty state variant of the progress circle, hiding the progress indicator and showing the empty-state content.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'boolean' },
+        defaultValue: getDefaultValueControl(false),
+      },
+    },
   },
   args: {
-    fullFillPathStatus: false,
-    percent: 85,
-    componentTitle: ['Total a pagar', 'este mes'],
-    showTitle: false,
-    valueLabel: '$10000',
-    showValueLabel: false,
-    fillPathStatus: 'success',
+    fillPathStatus: 'gray',
   },
 } as Meta<typeof BmbProgressCircleComponent>;
 
@@ -141,22 +175,154 @@ type Story = StoryObj<BmbProgressCircleComponent>;
 
 export const Default = {};
 
-export const WithValueLabel: Story = {
-  args: {
-    showValueLabel: true,
-  },
-};
-
-export const WithTitle: Story = {
+export const WithLabelAndTitle: Story = {
   args: {
     showTitle: true,
-    componentTitle: ['Total a pagar', 'este mes'],
+    showValueLabel: true,
+    componentTitle: ['Título'],
+    valueLabel: '75%',
+    percent: 75,
   },
 };
 
-export const WithBackground: Story = {
+export const WithLabel: Story = {
+  args: {
+    showValueLabel: true,
+    valueLabel: '75%',
+    percent: 75,
+  },
+};
+
+export const WithLabelTitleAndIcon: Story = {
+  args: {
+    showTitle: true,
+    showValueLabel: true,
+    componentTitle: ['Título'],
+    valueLabel: '75%',
+    percent: 75,
+    icon: 'home',
+  },
+};
+
+export const SemanticStatusError: Story = {
   args: {
     fillPathStatus: 'error',
-    percent: 0,
+    showTitle: true,
+    componentTitle: ['Alto'],
+  },
+};
+
+export const SemanticStatusWarning: Story = {
+  args: {
+    fillPathStatus: 'warning',
+    showTitle: true,
+    componentTitle: ['Medio'],
+  },
+};
+
+export const SemanticStatusSuccess: Story = {
+  args: {
+    fillPathStatus: 'success',
+    showTitle: true,
+    componentTitle: ['Bajo'],
+  },
+};
+
+export const OperationStateSuccessWithLabelIconTitle: Story = {
+  args: {
+    showTitle: true,
+    showValueLabel: true,
+    componentTitle: ['Completado'],
+    showOperationState: true,
+    fullFillPathStatus: true,
+    fillPathStatus: 'success',
+    valueLabel: '100%',
+    icon: 'check_circle',
+  },
+};
+
+export const OperationStateSuccessWithLabelIcon: Story = {
+  args: {
+    showValueLabel: true,
+    showOperationState: true,
+    fullFillPathStatus: true,
+    fillPathStatus: 'success',
+    valueLabel: '100%',
+    icon: 'check_circle',
+  },
+};
+
+export const OperationStateSuccessWithTitleIcon: Story = {
+  args: {
+    showTitle: true,
+    componentTitle: ['Completado'],
+    showOperationState: true,
+    fullFillPathStatus: true,
+    fillPathStatus: 'success',
+    icon: 'check_circle',
+  },
+};
+
+export const OperationStateErrorWithLabelIconTitle: Story = {
+  args: {
+    showTitle: true,
+    showValueLabel: true,
+    componentTitle: ['Error'],
+    showOperationState: true,
+    fullFillPathStatus: true,
+    fillPathStatus: 'error',
+    valueLabel: 'N/A',
+    icon: 'error',
+  },
+};
+
+export const OperationStateErrorWithLabelIcon: Story = {
+  args: {
+    showValueLabel: true,
+    showOperationState: true,
+    fullFillPathStatus: true,
+    fillPathStatus: 'error',
+    valueLabel: 'N/A',
+    icon: 'error',
+  },
+};
+
+export const OperationStateErrorWithTitleIcon: Story = {
+  args: {
+    showTitle: true,
+    componentTitle: ['Error'],
+    showOperationState: true,
+    fullFillPathStatus: true,
+    fillPathStatus: 'error',
+    icon: 'error',
+  },
+};
+
+export const EmptyStateWithTitleAndIcon: Story = {
+  args: {
+    emptyState: true,
+    showTitle: true,
+    icon: 'home',
+    componentTitle: ['Sin movimientos'],
+  },
+};
+
+export const EmptyStateWithTitleIconAndValue: Story = {
+  args: {
+    emptyState: true,
+    showTitle: true,
+    componentTitle: ['Sin movimientos'],
+    icon: 'home',
+    showValueLabel: true,
+    valueLabel: '---',
+  },
+};
+
+export const Size: Story = {
+  args: {
+    showValueLabel: true,
+    valueLabel: '000',
+    size: 'small',
+    percent: 75,
   },
 };

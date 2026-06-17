@@ -1,3 +1,4 @@
+export type BmbProgressCircleSize = 'default' | 'small';
 export interface BmbProgressCircleOptionsInterface {
   valueLabel: string;
   showValueLabel: boolean;
@@ -12,4 +13,5 @@ export interface BmbProgressCircleOptionsInterface {
   backgroundPadding: number;
   outerStrokeLinecap: string;
   innerStrokeWidth: number;
+  size: BmbProgressCircleSize;
 }
