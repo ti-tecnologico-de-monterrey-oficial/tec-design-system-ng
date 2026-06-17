@@ -8,13 +8,7 @@ import { BmbDragDropService } from './bmb-drag-drop.service';
 @Component({
   standalone: true,
   imports: [BmbDropzoneDirective],
-  template: `
-    <div
-      bmbDropzone
-      (itemDropped)="onDrop($event)">
-      Dropzone
-    </div>
-  `,
+  template: ` <div bmbDropzone (itemDropped)="onDrop($event)">Dropzone</div> `,
 })
 class TestHostComponent {
   droppedItem: unknown = null;
@@ -62,9 +56,7 @@ describe('BmbDropzoneDirective', () => {
 
     fixture.detectChanges();
 
-    expect(element.nativeElement.classList).toContain(
-      'bmb-dropzone-active',
-    );
+    expect(element.nativeElement.classList).toContain('bmb-dropzone-active');
   });
 
   it('should remove active class on dragleave', () => {

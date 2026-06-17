@@ -2,10 +2,10 @@ import {
   Component,
   ChangeDetectionStrategy,
   ViewEncapsulation,
+  inject,
   input,
   output,
   computed,
-  model,
   signal,
 } from '@angular/core';
 import { DateTime } from 'luxon';
@@ -20,6 +20,7 @@ import { BmbChevronTitleSelectorComponent } from '../../../bmb-chevron-title-sel
 import { BmbPullWedgeComponent } from '../../../bmb-pull-wedge/bmb-pull-wedge.component';
 import { BmbTranslationsService } from '../../../../services/translations/translations.service';
 import { TranslatePipe } from '../../../../pipes/translations';
+import { BmbCalendarComponentService } from '../../bmb-calendar.service';
 
 @Component({
   selector: 'bmb-calendar-template-mobile',
@@ -38,20 +39,20 @@ import { TranslatePipe } from '../../../../pipes/translations';
   encapsulation: ViewEncapsulation.None,
 })
 export class BmbCalendarTemplateMobileComponent {
-  weekDays = input<DateTime[]>([]);
-  now = input<DateTime>(DateTime.now());
-  events = input<IBmbParsedDates>({});
   calendarTitle = input<string>();
   disableMobileFilter = input<boolean>(false);
 
   onClose = output<any>();
-  onCurrentDateChange = output<DateTime>();
-  showFilters = output<void>();
 
+  private readonly calendarService = inject(BmbCalendarComponentService);
+
+  now = computed(() => this.calendarService.getVisibleDate());
+  events = computed(() => this.calendarService.getFilteredEvents());
   locale = computed(() => this.translationsService.getCurrentLanguage());
-  monthsNames = Info.months('long', { locale: this.locale() });
-  month = this.monthsNames[this.now().month - 1];
-  year = this.now().year;
+  weekDays = computed(() => this.calendarService.getRenderWeekDays());
+  monthsNames = computed(() => Info.months('long', { locale: this.locale() }));
+  month = signal<string>(this.monthsNames()[this.now().month - 1]);
+  year = signal<number>(this.now().year);
   isCalendarOpen = false;
   defaultDayOrder = computed(() =>
     Info.weekdays('narrow', { locale: this.locale() }),
@@ -84,9 +85,9 @@ export class BmbCalendarTemplateMobileComponent {
   handleMonthChange(event: string): void {
     const modifyDate = ({ config, date }: any) => {
       if (event === '+') {
-        this.onCurrentDateChange.emit(date.plus(config));
+        this.syncVisibleDate(date.plus(config));
       } else {
-        this.onCurrentDateChange.emit(date.minus(config));
+        this.syncVisibleDate(date.minus(config));
       }
     };
 
@@ -99,7 +100,7 @@ export class BmbCalendarTemplateMobileComponent {
 
       modifyDate({ config: { month: 1 }, date: newDate });
     } else {
-      modifyDate({ config: { days: 7 }, date: this.now() });
+      modifyDate({ config: { days: 7 }, date: this.now });
     }
   }
 
@@ -108,15 +109,19 @@ export class BmbCalendarTemplateMobileComponent {
   }
 
   handleDayChange(date: DateTime): void {
-    this.onCurrentDateChange.emit(date);
-    this.month = this.monthsNames[date.month - 1];
-    this.year = date.year;
+    this.syncVisibleDate(date);
+    this.month.set(this.monthsNames()[date.month - 1]);
+    this.year.set(date.year);
     this.isCalendarOpen = false;
     this.isWedgeOpen = false;
   }
 
+  private syncVisibleDate(date: DateTime): void {
+    this.calendarService.setVisibleDate(date);
+  }
+
   handleViewTypeChange() {
-    this.showFilters.emit();
+    // this.showFilters.emit();
   }
 
   findEventsForToday(date: DateTime) {

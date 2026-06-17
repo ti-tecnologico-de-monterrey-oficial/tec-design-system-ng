@@ -61,6 +61,10 @@
     "modal": {
       "title": "Calendarios y notificaciones",
       "notification_label": "Activar notificaciones de horario (recibirás una notificación 10 minutos antes de tu próxima clase)"
+    },
+    "micro_programs": {
+      "group": "Grupo:",
+      "classroom": "Aula:"
     }
   },
   "chat_bar": {
