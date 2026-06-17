@@ -28,7 +28,16 @@ ${getBasicExampleBlock('BmbLegendComponent')}
     value: getLabelParamDesc('bottom', 'value'),
     indicatorAppearance: getAppearanceParam(
       'legend',
-      ['normal', 'strong', 'success', 'info', 'warning', 'error', 'brand'],
+      [
+        'normal',
+        'strong',
+        'success',
+        'info',
+        'warning',
+        'error',
+        'brand',
+        'empty',
+      ],
       'normal',
     ),
   },

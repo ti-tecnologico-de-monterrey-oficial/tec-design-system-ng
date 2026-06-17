@@ -343,5 +343,8 @@
   "image": {
     "previous": "Imagen anterior",
     "next": "Siguiente imagen"
+  },
+  "bmb_progress_circle": {
+    "icon": "Ícono de círculo de progreso"
   }
 }

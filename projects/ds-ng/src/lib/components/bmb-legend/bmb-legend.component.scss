@@ -15,6 +15,7 @@ $variants: (
   'warning': rgb(var(--yellow-tint)),
   'error': rgb(var(--red-light)),
   'brand': rgb(var(--blue-primary)),
+  'empty': var(--general-contrasts-90),
 );
 
 .bmb_legend {
@@ -53,5 +54,13 @@ $variants: (
   &-value {
     grid-area: value;
     @include font-style();
+
+    &-success {
+      color: rgb(var(--green-light));
+    }
+
+    &-error {
+      color: rgb(var(--red-light));
+    }
   }
 }

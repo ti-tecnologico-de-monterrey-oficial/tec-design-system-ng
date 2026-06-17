@@ -1,8 +1,10 @@
-import { BmbProgressCircleOptionsInterface } from './bmb-progress-circle.interface';
+import {
+  BmbProgressCircleOptionsInterface,
+  BmbProgressCircleSize,
+} from './bmb-progress-circle.interface';
 import { CommonModule } from '@angular/common';
 import {
   Component,
-  Input,
   OnChanges,
   SimpleChanges,
   ViewEncapsulation,
@@ -10,6 +12,8 @@ import {
   input,
   computed,
 } from '@angular/core';
+import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
+import { TranslatePipe } from '../../pipes/translations';
 
 export type BmbProgressCirclePathStatus =
   | 'gray'
@@ -44,7 +48,7 @@ interface SvgConfig {
 @Component({
   selector: 'bmb-progress-circle',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, BmbIconComponent, TranslatePipe],
   templateUrl: './bmb-progress-circle.component.html',
   styleUrl: './bmb-progress-circle.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -60,6 +64,10 @@ export class BmbProgressCircleComponent implements OnChanges {
   showRestBackground = input<boolean>(false);
   fillPathStatus = input<BmbProgressCirclePathStatus>('success');
   fullFillPathStatus = input<boolean>(false);
+  size = input<BmbProgressCircleSize>('default');
+  icon = input<string>('');
+  showOperationState = input<boolean>(false);
+  emptyState = input<boolean>(false);
 
   title = input<string | string[]>(''); // deprecated
 
@@ -81,6 +89,7 @@ export class BmbProgressCircleComponent implements OnChanges {
       valueLabel: this.valueLabel() ?? '',
       title: this.validTitle() ?? '',
       showBackground: this.showBackground() ?? true,
+      size: this.size() ?? 'default',
     };
     return opts;
   });
@@ -241,10 +250,51 @@ export class BmbProgressCircleComponent implements OnChanges {
   }
 
   shouldShowProgressPath(): boolean {
+    if (this.emptyState()) {
+      return false;
+    }
+
     return !!this.percent() && !this.isFullColored();
   }
 
   shouldShowValueLabel(): boolean {
+    if (
+      this.showOperationState() &&
+      (this.fillPathStatus() === 'success' || this.fillPathStatus() === 'error')
+    ) {
+      return this.options().showValueLabel;
+    }
+
     return this.options().showValueLabel && !this.isFullColored();
+  }
+
+  displayIcon = computed(() => {
+    if (this.fullFillPathStatus() && this.fillPathStatus() === 'success') {
+      return 'check_circle';
+    }
+
+    if (this.fullFillPathStatus() && this.fillPathStatus() === 'error') {
+      return 'error';
+    }
+
+    return this.icon();
+  });
+
+  getContainerClasses(): string[] {
+    const classes: string[] = [];
+
+    if (this.emptyState()) {
+      classes.push('bmb_progress-circle-empty');
+    }
+
+    if (this.showOperationState() && this.fillPathStatus() === 'success') {
+      classes.push('bmb_progress-circle-operation-success');
+    }
+
+    if (this.showOperationState() && this.fillPathStatus() === 'error') {
+      classes.push('bmb_progress-circle-operation-error');
+    }
+
+    return classes;
   }
 }

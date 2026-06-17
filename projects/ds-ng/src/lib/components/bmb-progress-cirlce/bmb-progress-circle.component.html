@@ -1,4 +1,7 @@
-<section class="bmb_progress-circle-container">
+<section
+  class="bmb_progress-circle-container"
+  [class.bmb_progress-circle-container-small]="options().size === 'small'"
+>
   <svg
     xmlns="http://www.w3.org/2000/svg"
     onkeypress=""
@@ -10,7 +13,7 @@
   >
     <circle
       class="bmb_progress-circle-fill"
-      [ngClass]="getFillPathStatus()"
+      [ngClass]="!emptyState() ? getFillPathStatus() : ''"
       [attr.cx]="svg?.circle?.cx"
       [attr.cy]="svg?.circle?.cy"
       [attr.r]="svg?.circle?.r"
@@ -36,11 +39,22 @@
       }
     }
   </svg>
-  @if (options().showTitle || options().showValueLabel) {
-    <div class="bmb_progress-circle-text-container">
+
+  @if (options().showTitle || options().showValueLabel || displayIcon()) {
+    <div
+      class="bmb_progress-circle-text-container"
+      [ngClass]="getContainerClasses()"
+    >
       <p
         class="bmb_progress-circle-text-content bmb_progress-circle-background"
       >
+        @if (displayIcon()) {
+          <bmb-icon
+            [icon]="displayIcon()!"
+            [size]="24"
+            [alt]="'bmb_progress_circle.icon' | translate"
+          />
+        }
         @if (options().showTitle) {
           <h2 class="bmb_progress-circle-title-container">
             @if (isTitleString()) {
