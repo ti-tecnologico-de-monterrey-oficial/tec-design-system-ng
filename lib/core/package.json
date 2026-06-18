@@ -26,7 +26,7 @@
     "build:TECMI": "sass src/styles/mainTECMI.scss dist/styles/mainTECMI.min.css --style=compressed"
   },
   "dependencies": {
-    "tslib": "^2.3.0",
-    "sass": "^1.100.0"
+    "tslib": "2.3.0",
+    "sass": "1.100.0"
   }
 }
