@@ -1,0 +1,155 @@
+import { CustomTOC } from '../../../DocComponents/CustomTOC.mdx';
+import { Meta, Source } from '@storybook/addon-docs/blocks';
+import {
+  SPECIAL_SPECIFICATIONS_TITLE,
+  DESCRIPTION_TITLE,
+  DESIGN_SYSTEM_TITLE,
+  RELEVANT_TITLE,
+} from '../../utils/doc/utils';
+
+<Meta title="Dev tools/Theme service" />
+
+<CustomTOC headingSelector="h2, h3, h4">
+  <div className="sb-container">
+    <div className='sb-section-title'>
+      # Theme service
+    </div>
+
+    ## {DESCRIPTION_TITLE}
+
+    <blockquote>
+      <p>
+        The Theme Service is responsible for managing the visual theme used by ***{DESIGN_SYSTEM_TITLE}*** (for example, <strong>light</strong> or <strong>dark</strong>).
+      </p>
+      <p>
+        It centralizes how the current theme is determined, persisted, and applied to the document so that components and applications remain visually consistent.
+      </p>
+    </blockquote>
+
+    <br />
+    ## {SPECIAL_SPECIFICATIONS_TITLE}
+
+    <blockquote>
+      <h3>⚙️ Service methods</h3>
+
+      <ul>
+        <li>
+          <strong>getInitialTheme(): string</strong>:
+          Returns the initial theme. It first checks <code>localStorage</code> using the key <code>"theme"</code>; if no value is found, it falls back to the configured default theme.
+        </li>
+        <li>
+          <strong>setInitialTheme(newInitialTheme?: string): void</strong>:
+          Sets the initial theme when the application starts. If a value exists in <code>localStorage</code>, it is used; otherwise it uses the provided <code>newInitialTheme</code> or the default theme.
+          It also updates the <code>data-theme</code> attribute on <code>document.documentElement</code>.
+        </li>
+        <li>
+          <strong>setThemeAndSaveInLocal(theme: string): void</strong>:
+          Updates the current theme, saves it in <code>localStorage</code> (under the <code>"theme"</code> key) and updates the <code>data-theme</code> attribute on the document.
+        </li>
+        <li>
+          <strong>getTheme(): string</strong>:
+          Returns the current theme value managed internally by an Angular <code>signal</code>.
+        </li>
+        <li>
+          <strong>getDefaultTheme(): string</strong>:
+          Returns the default theme configured through the <code>BMB_DEFAULT_THEME</code> injection token (by default, <code>"light"</code>).
+        </li>
+      </ul>
+
+      <blockquote className="markdown-alert-warning">
+        <h3>{RELEVANT_TITLE.warning.replaceAll('*', '').replaceAll('<br/>', '')}</h3>
+        <p>
+          This service uses <code>window.localStorage</code> and <code>document.documentElement</code>, so it must be used in browser contexts. For server-side rendering scenarios, guard calls so they only run in the browser.
+        </p>
+      </blockquote>
+
+      <br />
+      <h3>⚙️ Usage</h3>
+
+      <p>
+        To use the Theme Service, inject it into your root component or a shared service and call the corresponding methods to initialize and change the current theme.
+      </p>
+
+      <br />
+      <h4>🟣 Initialize the theme on app startup</h4>
+
+      <Source
+        code={`import { Component, OnInit } from '@angular/core';
+
+import { ThemeService } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
+
+@Component({
+selector: 'app-root',
+template: '<router-outlet />',
+})
+export class AppComponent implements OnInit {
+constructor(private themeService: ThemeService) {}
+
+ngOnInit(): void {
+// This will set the theme from localStorage if present,
+// otherwise it will use the default or the one you pass in.
+this.themeService.setInitialTheme();
+}
+}
+`}
+/>
+
+      <br />
+      <h4>🟢 Toggle and persist the theme</h4>
+
+      <Source
+        code={`import { Component } from '@angular/core';
+
+import { ThemeService } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
+
+@Component({
+selector: 'app-theme-toggle',
+template: ` + "`" + `<button (click)="toggleTheme()">
+Toggle theme (current: {{ currentTheme }})
+
+</button>` + "`" + `,
+})
+export class ThemeToggleComponent {
+  currentTheme = this.themeService.getTheme();
+
+constructor(private themeService: ThemeService) {}
+
+toggleTheme(): void {
+const current = this.themeService.getTheme();
+const next = current === 'light' ? 'dark' : 'light';
+
+    this.themeService.setThemeAndSaveInLocal(next);
+    this.currentTheme = this.themeService.getTheme();
+
+}
+}
+`}
+/>
+
+      <br />
+      <h4>🔵 Configure a custom default theme</h4>
+
+      <p>
+        You can change the default theme used by the service by providing the <code>BMB_DEFAULT_THEME</code> injection token at the application level.
+      </p>
+
+      <Source
+        code={`import { ApplicationConfig } from '@angular/core';
+
+import { provideRouter } from '@angular/router';
+import { BMB_DEFAULT_THEME } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
+
+export const appConfig: ApplicationConfig = {
+  providers: [
+    provideRouter([]),
+    {
+      provide: BMB_DEFAULT_THEME,
+      useValue: 'dark', // Sets 'dark' as the default theme
+    },
+  ],
+};
+        `}
+      />
+    </blockquote>
+  </div>
+</CustomTOC>
