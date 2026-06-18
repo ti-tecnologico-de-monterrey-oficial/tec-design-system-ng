@@ -24,7 +24,7 @@
     "**/*.scss"
   ],
   "peerDependencies": {
-    "@material-symbols/svg-400": "^0.39.1",
+    "@material-symbols/svg-400": "0.39.1",
     "react": ">=19",
     "react-dom": ">=19"
   },
