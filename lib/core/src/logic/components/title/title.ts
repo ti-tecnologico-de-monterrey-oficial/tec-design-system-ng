@@ -1,5 +1,3 @@
-import { IBmbFontWeightContent } from './types';
-
 export interface IBmbTitleClassNamesProps {
   mainName: string;
   size?: string;

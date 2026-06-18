@@ -3,6 +3,7 @@ import {
   getBadgeBulletColor,
   type IBmbBadgeAppearanceColors,
 } from '@ti-tecnologico-de-monterrey-oficial/core/component/badge';
+import { type ReactNode } from 'react';
 import './bmb-badge.scss';
 
 export interface BmbBadgeProps {
@@ -10,6 +11,7 @@ export interface BmbBadgeProps {
   text?: string;
   container?: boolean;
   className?: string;
+  children?: ReactNode;
 }
 
 export function BmbBadge({
@@ -17,6 +19,7 @@ export function BmbBadge({
   text = '',
   container = true,
   className = '',
+  children,
 }: BmbBadgeProps) {
   const sectionClasses = [
     ...getBadgeClasses({
@@ -32,10 +35,12 @@ export function BmbBadge({
     .filter(Boolean)
     .join(' ');
 
+  const content = children ?? text;
+
   return (
     <section className={sectionClasses}>
       <span className={bulletClasses} />
-      <span className="bmb_badge-content">{text}</span>
+      <span className="bmb_badge-content">{content}</span>
     </section>
   );
 }
