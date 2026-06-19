@@ -43,7 +43,7 @@
           padding-left: rem.rem_calc(16);
         }
 
-        @include mixins.media-web-templates() {
+        @include mixins.media-desktop-templates() {
           padding-left: rem.rem_calc(80);
         }
       }
@@ -78,7 +78,7 @@
         gap: 0 0 var(--bmb-spacing-m);
       }
 
-      @include mixins.media-web-templates() {
+      @include mixins.media-desktop-templates() {
         padding-left: rem.rem_calc(100);
       }
     }

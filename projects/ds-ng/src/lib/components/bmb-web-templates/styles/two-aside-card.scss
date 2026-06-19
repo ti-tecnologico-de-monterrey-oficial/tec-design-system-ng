@@ -43,7 +43,7 @@
           padding-left: rem.rem_calc(16);
         }
 
-        @include mixins.media-web-templates() {
+        @include mixins.media-desktop-templates() {
           padding-left: rem.rem_calc(80);
         }
       }
@@ -81,7 +81,7 @@
         padding: 0;
       }
 
-      @include mixins.media-web-templates() {
+      @include mixins.media-desktop-templates() {
         padding-left: rem.rem_calc(100);
       }
     }
