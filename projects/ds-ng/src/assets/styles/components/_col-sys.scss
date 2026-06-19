@@ -75,10 +75,7 @@ $alignItemsOptions: (
         @include one-column();
       }
 
-      @include mixins.media-range-query(
-        vars.$breakpoint_min_desktop,
-        vars.$breakpoint_max_desktop
-      ) {
+      @include mixins.media-query(vars.$breakpoint_min_desktop, 'min') {
         @include columns($i);
       }
     }
@@ -87,15 +84,8 @@ $alignItemsOptions: (
   @for $i from 1 through 12 {
     .bmb_layout-item.bmb_col-xl-#{$i} {
       overflow: visible;
-      @include mixins.media-query(vars.$breakpoint_max_mobile, 'max') {
+      @include mixins.media-query(vars.$breakpoint_max_desktop, 'max') {
         @include one-column();
-      }
-
-      @include mixins.media-range-query(
-        vars.$breakpoint_min_desktop,
-        vars.$breakpoint_max_desktop
-      ) {
-        @include columns($i);
       }
 
       @include mixins.media-query(vars.$breakpoint_min_xl, 'min') {
