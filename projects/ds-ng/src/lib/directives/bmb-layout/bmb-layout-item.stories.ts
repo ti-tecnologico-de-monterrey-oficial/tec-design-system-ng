@@ -42,7 +42,7 @@ ${getSpecialSpecifications(
 ${getReferenceRecommendationForVariable('size reference in CSS')}
 >
 This component is used to create a layout for your application. It allows you to define the size of the columns for different screen sizes (mobile and full resolution). You can also set margins for the left and right sides of the columns. The \`isDynamicItem\` property allows you to enable dynamic sizing for the columns, and the \`colGrow\` property sets how much of the flex container positive free space should be assigned to the flex item main size.<br/><br/>
-The \`colSm\` and \`colLg\` properties determine the size of the columns for mobile and full resolution devices, respectively. The \`marginLeft\` and \`marginRight\` properties set the margin areas on the left and right sides of the columns.
+The \`colSm\`, \`colLg\` and \`colXl\` properties determine the size of the columns for mobile and full resolution devices, respectively. The \`marginLeft\` and \`marginRight\` properties set the margin areas on the left and right sides of the columns.
 `,
   { isSubStory: true, showAdditionalBlockquote: true },
 )}
@@ -65,6 +65,18 @@ ${getBasicExampleBlock('BmbLayoutDirective, BmbLayoutItemDirective', '', '', tru
       description: 'Determines the size of the space between elements.',
     },
     colLg: {
+      control: {
+        type: 'select',
+      },
+      options: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+      table: {
+        type: { summary: 'number' },
+        category: 'Properties',
+        defaultValue: { summary: '0' },
+      },
+      description: 'Determines the size of the space between elements.',
+    },
+    colXl: {
       control: {
         type: 'select',
       },
@@ -99,7 +111,7 @@ ${getBasicExampleBlock('BmbLayoutDirective, BmbLayoutItemDirective', '', '', tru
     isDynamicItem: {
       control: { type: 'boolean' },
       description:
-        'Enable dinamyc size for the column, if you enable this property the colLg and colSm will be disabled',
+        'Enable dinamyc size for the column, if you enable this property the colLg, colSm and colXl will be disabled',
       table: {
         category: 'Properties',
         defaultValue: { summary: 'false' },
@@ -120,8 +132,8 @@ ${getBasicExampleBlock('BmbLayoutDirective, BmbLayoutItemDirective', '', '', tru
   args: {
     colSm: 1,
     colLg: 1,
-    marginLeft: { sm: 0, lg: 0 },
-    marginRight: { sm: 0, lg: 0 },
+    marginLeft: { sm: 0, lg: 0, xl: 0 },
+    marginRight: { sm: 0, lg: 0, xl: 0 },
     isDynamicItem: false,
     colGrow: 0,
   },
