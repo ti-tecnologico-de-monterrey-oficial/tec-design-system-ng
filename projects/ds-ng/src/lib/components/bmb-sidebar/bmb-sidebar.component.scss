@@ -78,7 +78,7 @@ $_min_width: rem.rem_calc(88);
 }
 
 @mixin check-for-desktop {
-  @media (width >= #{rem.rem_calc(vars.$breakpoint_min_web)}) and (height > #{rem.rem_calc(vars.$breakpoint_max_height_mobile)}) {
+  @media (width >= #{rem.rem_calc(vars.$breakpoint_min_desktop)}) and (height > #{rem.rem_calc(vars.$breakpoint_max_height_mobile)}) {
     @content;
   }
 }

@@ -50,6 +50,13 @@ $status: (
     justify-items: center;
     grid-template-columns: 100%;
     grid-template-rows: 100%;
+    width: rem.rem_calc(264);
+    height: rem.rem_calc(264);
+
+    &-small {
+      width: rem.rem_calc(122);
+      height: rem.rem_calc(122);
+    }
   }
 
   &-background {
@@ -57,7 +64,7 @@ $status: (
   }
 
   &-fill {
-    stroke: var(--general-contrasts-5);
+    stroke: var(--general-contrasts-input-background);
     fill: transparent;
 
     @each $nameStatus, $colorStatus in $status {
@@ -78,7 +85,7 @@ $status: (
   }
 
   &-title {
-    @include fonts.font(4, regular);
+    @include fonts.font(5, medium);
     color: var(--general-contrasts-100);
     font-size: clamp(0.875rem, 7.35cqw, 10rem);
     line-height: clamp(0.875rem, 7.35cqw, 10rem);
@@ -90,10 +97,32 @@ $status: (
     width: 90%;
 
     &-text {
-      @include fonts.font(7, bold);
+      @include fonts.font(9, bold);
       fill: var(--general-contrasts-100);
       font-size: clamp(1rem, 11.2cqw, 10rem);
       word-wrap: break-word;
+    }
+  }
+
+  &-operation-error {
+    bmb-icon,
+    .bmb_progress-circle-value-label-text {
+      color: var(--semantic-error);
+    }
+  }
+
+  &-operation-success {
+    bmb-icon,
+    .bmb_progress-circle-value-label-text {
+      color: var(--semantic-success);
+    }
+  }
+
+  &-empty {
+    bmb-icon,
+    .bmb_progress-circle-value-label-text,
+    .bmb_progress-circle-title {
+      color: var(--general-contrasts-90);
     }
   }
 }

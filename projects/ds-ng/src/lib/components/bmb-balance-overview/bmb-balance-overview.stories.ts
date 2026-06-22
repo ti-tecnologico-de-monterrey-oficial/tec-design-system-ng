@@ -4,7 +4,16 @@ import {
   getBasicExampleBlock,
   getGeneralComponentDescription,
   getGeneralDescription,
+  RELEVANT_TITLE,
 } from '../../utils/doc/utils';
+import {
+  DBmbInputParamDesc,
+  getAppearanceParam,
+  getDefaultValueControl,
+  getPropertyParamDesc,
+} from '../../utils/doc/parameterDescriptions';
+
+const IMPORTANT_DESCRIPTION = `<br/><br/>${RELEVANT_TITLE.important} The gray fill path (progressCircleFillPathStatus) does not work for the full state (progressCircleFullFillPathStatus).`;
 
 export default {
   title: 'Components/Containers/Balance overview',
@@ -140,25 +149,127 @@ ${getBasicExampleBlock('BmbBalanceOverviewComponent')}
         defaultValue: { summary: true },
       },
     },
+    icon: DBmbInputParamDesc.icon,
+    progressCircleFillPathStatus: {
+      control: {
+        type: 'select',
+      },
+      options: ['gray', 'success', 'error', 'warning'],
+      description: `Sets the color of the path that fills the circle. ${IMPORTANT_DESCRIPTION}`,
+      table: {
+        category: 'Properties',
+        type: { summary: 'BmbProgressCirclePathStatus' },
+        defaultValue: getDefaultValueControl('success'),
+      },
+    },
+    progressCircleFullFillPathStatus: getPropertyParamDesc('full state', {
+      controlType: 'boolean',
+      defaultSummary: false,
+      additionalDescription: `<br/><br/>The progress circle will display in a full state and the percentage path and value content will be hidden. ${IMPORTANT_DESCRIPTION}`,
+    }),
+    showProgressCircleOperationState: {
+      control: {
+        type: 'boolean',
+      },
+      description:
+        'Displays an operation state indicator for success or error statuses when the progress circle is fully filled.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'boolean' },
+        defaultValue: getDefaultValueControl(false),
+      },
+    },
+    indicatorAppearance: getAppearanceParam(
+      'legend',
+      [
+        'normal',
+        'strong',
+        'success',
+        'info',
+        'warning',
+        'error',
+        'brand',
+        'empty',
+      ],
+      'normal',
+    ),
+    emptyState: {
+      control: {
+        type: 'boolean',
+      },
+      description:
+        'Displays the empty state variant of the progress circle, hiding the progress indicator and showing the empty-state content.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'boolean' },
+        defaultValue: getDefaultValueControl(false),
+      },
+    },
   },
-  args: {
-    progressCirclePercent: 75,
-    progressCircleValue: '$10,000',
-    showProgressCircleValue: true,
-    progressCircleTitle: ['Total a pagar', 'este mes'],
-    labelPrimary: 'Cuota Mensual',
-    valuePrimary: '$7,500.00',
-    labelSecondary: 'Pendiente',
-    valueSecondary: '$2,500.00',
-  },
+  args: {},
 } as Meta<typeof BmbBalanceOverviewComponent>;
 
 type Story = StoryObj<BmbBalanceOverviewComponent>;
 
 export const Default: Story = {};
 
-export const WithProgressCircle = {
+export const DefaultProgress = {
   args: {
-    showProgressCircleValue: false,
+    progressCirclePercent: 75,
+    progressCircleValue: '$10,000',
+    progressCircleTitle: ['Total a pagar este mes'],
+    labelPrimary: 'Cuota Mensual',
+    valuePrimary: '$2,500.00',
+    labelSecondary: 'Penalidad',
+    valueSecondary: '$2,500.00',
+    icon: 'home',
+    progressCircleFillPathStatus: 'success',
+  },
+};
+
+export const OperationStateError = {
+  args: {
+    progressCircleValue: 'N/A',
+    progressCircleTitle: ['Error'],
+    labelPrimary: 'Cuota Mensual',
+    valuePrimary: '$2,500.00',
+    labelSecondary: 'Penalidad',
+    valueSecondary: '$2,500.00',
+    icon: 'error',
+    progressCircleFillPathStatus: 'error',
+    progressCircleFullFillPathStatus: true,
+    showProgressCircleOperationState: true,
+    indicatorAppearance: 'error',
+  },
+};
+
+export const OperationStateSuccess = {
+  args: {
+    progressCircleValue: '$10000',
+    progressCircleTitle: ['Pagado'],
+    labelPrimary: 'Cuota Mensual',
+    valuePrimary: '$2,500.00',
+    labelSecondary: 'Penalidad',
+    valueSecondary: '$2,500.00',
+    icon: 'success',
+    progressCircleFillPathStatus: 'success',
+    progressCircleFullFillPathStatus: true,
+    showProgressCircleOperationState: true,
+    indicatorAppearance: 'success',
+  },
+};
+
+export const EmptyState = {
+  args: {
+    progressCircleValue: '---',
+    progressCircleTitle: ['Sin movimientos'],
+    labelPrimary: 'Legend',
+    valuePrimary: '---',
+    labelSecondary: 'Legend',
+    valueSecondary: '---',
+    icon: 'home',
+    progressCircleFillPathStatus: 'gray',
+    indicatorAppearance: 'empty',
+    emptyState: true,
   },
 };

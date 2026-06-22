@@ -13,7 +13,8 @@ export type IBmbLegendVariations =
   | 'info'
   | 'warning'
   | 'error'
-  | 'brand';
+  | 'brand'
+  | 'empty';
 
 @Component({
   selector: 'bmb-legend',
@@ -28,4 +29,5 @@ export class BmbLegendComponent {
   label = input<string>('');
   value = input<string>('');
   indicatorAppearance = input<IBmbLegendVariations>('normal');
+  isOperationState = input<boolean>(false);
 }

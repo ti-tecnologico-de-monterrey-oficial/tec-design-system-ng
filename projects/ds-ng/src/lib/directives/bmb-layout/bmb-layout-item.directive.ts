@@ -25,6 +25,7 @@ export type IColumSizeFull =
 export interface IMargin {
   sm: number;
   lg?: number;
+  xl?: number;
 }
 
 @Directive({
@@ -34,8 +35,9 @@ export interface IMargin {
 export class BmbLayoutItemDirective implements OnInit, AfterViewInit {
   colSm = input<IColumSizeMobile>(0);
   colLg = input<IColumSizeFull>(0);
-  marginLeft = input<IMargin>({ sm: 0, lg: 0 });
-  marginRight = input<IMargin>({ sm: 0, lg: 0 });
+  colXl = input<IColumSizeFull>(0);
+  marginLeft = input<IMargin>({ sm: 0, lg: 0, xl: 0 });
+  marginRight = input<IMargin>({ sm: 0, lg: 0, xl: 0 });
   colGrow = input<number>(0);
   isDynamicItem = input<boolean>(false);
 
@@ -46,17 +48,24 @@ export class BmbLayoutItemDirective implements OnInit, AfterViewInit {
 
     if (this.colSm()) classes.push(`bmb_col-sm-${this.colSm()}`);
     if (this.colLg()) classes.push(`bmb_col-lg-${this.colLg()}`);
+    if (this.colXl()) classes.push(`bmb_col-xl-${this.colXl()}`);
     if (this.marginLeft()) {
       classes.push(`bmb_space-sm-left-${this.marginLeft().sm}`);
 
-      if (this.marginLeft().lg)
+      if (this.marginLeft().xl) {
+        classes.push(`bmb_space-xl-left-${this.marginLeft().xl}`);
+      } else if (this.marginLeft().lg) {
         classes.push(`bmb_space-lg-left-${this.marginLeft().lg}`);
+      }
     }
     if (this.marginRight()) {
       classes.push(`bmb_space-sm-right-${this.marginRight().sm}`);
 
-      if (this.marginRight().lg)
+      if (this.marginRight().xl) {
+        classes.push(`bmb_space-xl-right-${this.marginRight().xl}`);
+      } else if (this.marginRight().lg) {
         classes.push(`bmb_space-lg-right-${this.marginRight().lg}`);
+      }
     }
     return classes;
   }

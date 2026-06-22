@@ -2,11 +2,16 @@
   <div class="bmb_balance-overview-circle-container">
     <bmb-progress-circle
       [percent]="progressCirclePercent()"
+      [emptyState]="emptyState()"
+      [icon]="icon()"
       [valueLabel]="
         progressCircleValue() ||
         ('balance_overview.progress_circle_value' | translate)
       "
+      [showOperationState]="showProgressCircleOperationState()"
       [showValueLabel]="showProgressCircleValue()"
+      [fillPathStatus]="progressCircleFillPathStatus()"
+      [fullFillPathStatus]="progressCircleFullFillPathStatus()"
       [componentTitle]="
         progressCircleTitle() ||
         ('balance_overview.progress_circle_title' | translate)
@@ -18,8 +23,9 @@
   <div class="bmb_balance-overview-legend-main-container">
     <div class="bmb_balance-overview-legend-success">
       <bmb-legend
+        [isOperationState]="showProgressCircleOperationState()"
         class="bmb_balance-overview-legend-text"
-        [indicatorAppearance]="'success'"
+        [indicatorAppearance]="indicatorAppearance() || 'success'"
         [label]="
           labelPrimary() || ('balance_overview.label_primary' | translate)
         "
@@ -31,7 +37,8 @@
     <div class="bmb_balance-overview-legend-strong">
       <bmb-legend
         class="bmb_balance-overview-legend-text"
-        [indicatorAppearance]="'strong'"
+        [isOperationState]="showProgressCircleOperationState()"
+        [indicatorAppearance]="indicatorAppearance() || 'strong'"
         [label]="
           labelSecondary() || ('balance_overview.label_secondary' | translate)
         "

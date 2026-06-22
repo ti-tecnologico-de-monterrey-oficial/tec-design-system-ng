@@ -30,7 +30,11 @@ const preview: Preview = {
     viewport: {
       options: {
         small: { name: 'Small', styles: { width: '375px', height: '568px' } },
-        large: { name: 'Large', styles: { width: '1001px', height: '1024px' } },
+        large: { name: 'Large', styles: { width: '1001px', height: '1399px' } },
+        extra: {
+          name: 'Extra large',
+          styles: { width: '1400px', height: '2000px' },
+        },
       },
     },
     ally: {
