@@ -1,0 +1,30 @@
+name: Build & SonarCloud
+
+on:
+  push:
+    branches:
+      - nx-bamboo
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  build-check:
+    name: Build Library
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Run Tests
+        run: npx nx run-many --target=test --projects=ui-angular,@ti-tecnologico-de-monterrey-oficial/ui-react --passWithNoTests
+
+      - name: Build All Libraries
+        run: npx nx run-many --target=build --projects=ui-angular,@ti-tecnologico-de-monterrey-oficial/ui-react --parallel

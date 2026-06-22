@@ -1,4 +1,4 @@
-import { SizeNames } from '../../../../types';
+import { SizeNames } from '../../../types/index.js';
 
 export interface BmbImageHeight {
   s: string;

@@ -4,3 +4,4 @@ export * from './components/divider/divider.js';
 export * from './components/container/container.js';
 export * from './components/title/title.js';
 export * from './components/legend/legend.js';
+export * from './context/theme/theme.js';
