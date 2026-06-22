@@ -44,9 +44,7 @@ $alignItemsOptions: (
 }
 
 @mixin one-column() {
-  &:not(.bmb_col-sm-1):not(.bmb_col-sm-2):not(.bmb_col-sm-3):not(
-      .bmb_col-sm-4
-    ) {
+  &:not([class^="bmb_col-sm-"]) {
     flex: 0 0 100%;
     max-width: 100%;
   }
@@ -64,35 +62,34 @@ $alignItemsOptions: (
   ) !important;
 }
 
+@mixin columns-builder($columnCount, $prefix, $query) {
+  @for $i from 1 through $columnCount {
+    @if $query == null {
+      .bmb_col-#{$prefix}-#{$i} {
+        @include columns($i);
+      }
+    } @else {
+      @include mixins.media-query(vars.$breakpoint_min_desktop, 'min') {
+        .bmb_col-#{$prefix}-#{$i} {
+          @include columns($i);
+        }
+      }
+    }
+  }
+}
+
 .bmb_layout {
   display: flex;
   flex-wrap: wrap;
 
-  @for $i from 1 through 12 {
-    .bmb_layout-item.bmb_col-lg-#{$i} {
-      overflow: visible;
-      @include mixins.media-query(vars.$breakpoint_max_mobile, 'max') {
-        @include one-column();
-      }
-
-      @include mixins.media-query(vars.$breakpoint_min_desktop, 'min') {
-        @include columns($i);
-      }
-    }
+  *[class*='bmb_col-'] {
+    overflow: visible;
+    width: 100%;
   }
 
-  @for $i from 1 through 12 {
-    .bmb_layout-item.bmb_col-xl-#{$i} {
-      overflow: visible;
-      @include mixins.media-query(vars.$breakpoint_max_desktop, 'max') {
-        @include one-column();
-      }
-
-      @include mixins.media-query(vars.$breakpoint_min_xl, 'min') {
-        @include columns($i);
-      }
-    }
-  }
+  @include columns-builder(4, 'sm', null);
+  @include columns-builder(12, 'lg', vars.$breakpoint_min_desktop);
+  @include columns-builder(12, 'xl', vars.$breakpoint_min_xl);
 
   &-container {
     display: flex;
@@ -138,20 +135,6 @@ $alignItemsOptions: (
 
   &-no-row-wrap {
     flex-wrap: nowrap;
-  }
-}
-
-@for $i from 1 through 4 {
-  .bmb_col-sm-#{$i} {
-    overflow: visible;
-    flex: 0
-      0
-      calc(
-        #{math.percentage(math.div($i, 4))} - var(--bmb-gap) / 4 * #{4 - $i}
-      ) !important;
-    max-width: calc(
-      #{math.percentage(math.div($i, 4))} - var(--bmb-gap) / 4 * #{4 - $i}
-    ) !important;
   }
 }
 

@@ -68,4 +68,9 @@ export class BmbCalendarTemplateWeekComponent {
   renderEvents(events: IBmbCalendarRenderEvents): any[] {
     return eventsInDate(events);
   }
+
+  isToday(date: DateTime): boolean {
+    const today = DateTime.now();
+    return date.hasSame(today, 'day');
+  }
 }
