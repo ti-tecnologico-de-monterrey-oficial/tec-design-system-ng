@@ -62,6 +62,22 @@ $alignItemsOptions: (
   ) !important;
 }
 
+@mixin columns-builder($columnCount, $prefix, $query) {
+  @for $i from 1 through $columnCount {
+    @if $query == null {
+      .bmb_col-#{$prefix}-#{$i} {
+        @include columns($i);
+      }
+    } @else {
+      @include mixins.media-query(vars.$breakpoint_min_desktop, 'min') {
+        .bmb_col-#{$prefix}-#{$i} {
+          @include columns($i);
+        }
+      }
+    }
+  }
+}
+
 .bmb_layout {
   display: flex;
   flex-wrap: wrap;
@@ -71,34 +87,9 @@ $alignItemsOptions: (
     width: 100%;
   }
 
-  @for $i from 1 through 4 {
-    .bmb_col-sm-#{$i} {
-      flex: 0
-        0
-        calc(
-          #{math.percentage(math.div($i, 4))} - var(--bmb-gap) / 4 * #{4 - $i}
-        ) !important;
-      max-width: calc(
-        #{math.percentage(math.div($i, 4))} - var(--bmb-gap) / 4 * #{4 - $i}
-      ) !important;
-    }
-  }
-
-  @for $i from 1 through 12 {
-    .bmb_layout-item.bmb_col-lg-#{$i} {
-      @include mixins.media-query(vars.$breakpoint_min_desktop, 'min') {
-        @include columns($i);
-      }
-    }
-  }
-
-  @for $i from 1 through 12 {
-    .bmb_layout-item.bmb_col-xl-#{$i} {
-      @include mixins.media-query(vars.$breakpoint_min_xl, 'min') {
-        @include columns($i);
-      }
-    }
-  }
+  @include columns-builder(4, 'sm', null);
+  @include columns-builder(12, 'lg', vars.$breakpoint_min_desktop);
+  @include columns-builder(12, 'xl', vars.$breakpoint_min_xl);
 
   &-container {
     display: flex;
