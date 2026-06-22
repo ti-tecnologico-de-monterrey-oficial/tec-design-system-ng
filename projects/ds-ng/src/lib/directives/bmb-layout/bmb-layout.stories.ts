@@ -64,6 +64,8 @@ The \`BmbLayoutItem\` directive can be used to define the size of each column wi
 1 Sm column = 1/4 of the available width space, this is valid for maximum 1000px screen width, if the screen is bigger than 1000px, the column will be 3/12 of the available width space.
 ><br/><br/>
 1 Lg column = 1/12 of the available width space, this is valid for minimum 1001px screen width, if the screen is smaller than 1001px, the column will be 4/4 of the available width space.
+><br/><br/>
+1 Xl column = 1/12 of the available width space, this is valid for minimum 1400px screen width.
 ><br/><br/><br/>
 ### Dynamic Columns
 >
@@ -339,6 +341,133 @@ export const ColumnLgSizes = {
           </bmb-card-content>
         </bmb-card>
         <bmb-card bmbLayoutItem margin="none" [colLg]="11">
+          <bmb-card-content padding="m">
+            11/12
+          </bmb-card-content>
+        </bmb-card>
+      </section>
+    `,
+  }),
+};
+
+export const ColumnXlSizes = {
+  name: 'Column Sizes Xl',
+  args: {},
+  render: (args: any) => ({
+    props: args,
+    template: `
+      <section bmbLayout>
+        <bmb-card bmbLayoutItem margin="none" [colXl]="12" type="primary">
+          <bmb-card-content padding="m">
+            12/12
+          </bmb-card-content>
+        </bmb-card>
+        <bmb-card bmbLayoutItem margin="none" [colXl]="11" type="primary">
+          <bmb-card-content padding="m">
+            11/12
+          </bmb-card-content>
+        </bmb-card>
+        <bmb-card bmbLayoutItem margin="none" [colXl]="1">
+          <bmb-card-content padding="m">
+            1/12
+          </bmb-card-content>
+        </bmb-card>
+        <bmb-card bmbLayoutItem margin="none" [colXl]="10" type="primary">
+          <bmb-card-content padding="m">
+            10/12
+          </bmb-card-content>
+        </bmb-card>
+        <bmb-card bmbLayoutItem margin="none" [colXl]="2">
+          <bmb-card-content padding="m">
+            2/12
+          </bmb-card-content>
+        </bmb-card>
+        <bmb-card bmbLayoutItem margin="none" [colXl]="9" type="primary">
+          <bmb-card-content padding="m">
+            9/12
+          </bmb-card-content>
+        </bmb-card>
+        <bmb-card bmbLayoutItem margin="none" [colXl]="3">
+          <bmb-card-content padding="m">
+            3/12
+          </bmb-card-content>
+        </bmb-card>
+        <bmb-card bmbLayoutItem margin="none" [colXl]="8" type="primary">
+          <bmb-card-content padding="m">
+            8/12
+          </bmb-card-content>
+        </bmb-card>
+        <bmb-card bmbLayoutItem margin="none" [colXl]="4">
+          <bmb-card-content padding="m">
+            4/12
+          </bmb-card-content>
+        </bmb-card>
+        <bmb-card bmbLayoutItem margin="none" [colXl]="7" type="primary">
+          <bmb-card-content padding="m">
+            7/12
+          </bmb-card-content>
+        </bmb-card>
+        <bmb-card bmbLayoutItem margin="none" [colXl]="5">
+          <bmb-card-content padding="m">
+            5/12
+          </bmb-card-content>
+        </bmb-card>
+        <bmb-card bmbLayoutItem margin="none" [colXl]="6" type="primary">
+          <bmb-card-content padding="m">
+            6/12
+          </bmb-card-content>
+        </bmb-card>
+        <bmb-card bmbLayoutItem margin="none" [colXl]="6">
+          <bmb-card-content padding="m">
+            6/12
+          </bmb-card-content>
+        </bmb-card>
+        <bmb-card bmbLayoutItem margin="none" [colXl]="5" type="primary">
+          <bmb-card-content padding="m">
+            5/12
+          </bmb-card-content>
+        </bmb-card>
+        <bmb-card bmbLayoutItem margin="none" [colXl]="7">
+          <bmb-card-content padding="m">
+            7/12
+          </bmb-card-content>
+        </bmb-card>
+        <bmb-card bmbLayoutItem margin="none" [colXl]="4" type="primary">
+          <bmb-card-content padding="m">
+            4/12
+          </bmb-card-content>
+        </bmb-card>
+        <bmb-card bmbLayoutItem margin="none" [colXl]="8">
+          <bmb-card-content padding="m">
+            8/12
+          </bmb-card-content>
+        </bmb-card>
+        <bmb-card bmbLayoutItem margin="none" [colXl]="3" type="primary">
+          <bmb-card-content padding="m">
+            3/12
+          </bmb-card-content>
+        </bmb-card>
+        <bmb-card bmbLayoutItem margin="none" [colXl]="9">
+          <bmb-card-content padding="m">
+            9/12
+          </bmb-card-content>
+        </bmb-card>
+        <bmb-card bmbLayoutItem margin="none" [colXl]="2" type="primary">
+          <bmb-card-content padding="m">
+            2/12
+          </bmb-card-content>
+        </bmb-card>
+        <bmb-card bmbLayoutItem margin="none" [colXl]="10">
+          <bmb-card-content padding="m">
+            10/12
+          </bmb-card-content>
+        </bmb-card>
+        <bmb-card bmbLayoutItem margin="none" [colXl]="1" type="primary">
+          <bmb-card-content padding="m">
+            1/12
+          </bmb-card-content>
+        </bmb-card>
+        <bmb-card bmbLayoutItem margin="none" [colXl]="11">
           <bmb-card-content padding="m">
             11/12
           </bmb-card-content>

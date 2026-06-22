@@ -12,7 +12,7 @@
 }
 
 @mixin desktop-styles {
-  @media (height > #{rem.rem_calc(vars.$breakpoint_max_height_mobile)}) and (width >= #{rem.rem_calc(vars.$breakpoint_min_web)}) {
+  @media (height > #{rem.rem_calc(vars.$breakpoint_max_height_mobile)}) and (width >= #{rem.rem_calc(vars.$breakpoint_min_desktop)}) {
     @content;
   }
 }
@@ -380,8 +380,8 @@
   color: rgb(var(--red-light));
 }
 
-@mixin media-web-templates() {
-  @include media-range-query(vars.$breakpoint_min_web, 1800) {
+@mixin media-desktop-templates() {
+  @include media-range-query(vars.$breakpoint_min_desktop, 1800) {
     @content;
   }
 }
@@ -399,7 +399,7 @@
       @content;
     }
   } @else {
-    @include media-query(vars.$breakpoint_min_web, 'min') {
+    @include media-query(vars.$breakpoint_min_desktop, 'min') {
       @content;
     }
   }
