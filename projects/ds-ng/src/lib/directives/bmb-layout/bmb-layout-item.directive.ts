@@ -61,10 +61,10 @@ export class BmbLayoutItemDirective implements OnInit, AfterViewInit {
     if (this.marginRight()) {
       classes.push(`bmb_space-sm-right-${this.marginRight().sm}`);
 
-      if (this.marginRight().lg) {
-        classes.push(`bmb_space-lg-right-${this.marginRight().lg}`);
-      } else if (this.marginRight().xl) {
+      if (this.marginRight().xl) {
         classes.push(`bmb_space-xl-right-${this.marginRight().xl}`);
+      } else if (this.marginRight().lg) {
+        classes.push(`bmb_space-lg-right-${this.marginRight().lg}`);
       }
     }
     return classes;
