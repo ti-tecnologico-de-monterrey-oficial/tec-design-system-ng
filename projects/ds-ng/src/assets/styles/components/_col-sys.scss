@@ -62,16 +62,28 @@ $alignItemsOptions: (
   ) !important;
 }
 
+@mixin column-builder($index, $columnCount: 12) {
+  flex: 0 0
+    calc(
+      #{math.percentage(math.div($index, $columnCount))} - (var(--bmb-gap) /
+            $columnCount * #{$columnCount - $index})
+    ) !important;
+  max-width: calc(
+    #{math.percentage(math.div($index, $columnCount))} - (var(--bmb-gap) /
+          $columnCount * #{$columnCount - $index})
+  ) !important;
+}
+
 @mixin columns-builder($columnCount, $prefix, $minWidth) {
   @for $i from 1 through $columnCount {
     @if $minWidth == null {
       .bmb_col-#{$prefix}-#{$i} {
-        @include columns($i);
+        @include column-builder($i, $columnCount);
       }
     } @else {
       @include mixins.media-query($minWidth, 'min') {
         .bmb_col-#{$prefix}-#{$i} {
-          @include columns($i);
+          @include column-builder($i, $columnCount);
         }
       }
     }
