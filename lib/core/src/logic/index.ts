@@ -3,4 +3,5 @@ export * from './components/card/card.js';
 export * from './components/divider/divider.js';
 export * from './components/container/container.js';
 export * from './components/title/title.js';
+export * from './components/bottom-navigation-bar/bottom-navigation-bar.js';
 export * from './context/theme/theme.js';
