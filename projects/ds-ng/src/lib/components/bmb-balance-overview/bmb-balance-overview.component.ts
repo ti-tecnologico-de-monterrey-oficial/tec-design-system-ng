@@ -3,7 +3,6 @@ import {
   ChangeDetectionStrategy,
   Component,
   input,
-  Input,
   ViewEncapsulation,
 } from '@angular/core';
 import {
@@ -42,7 +41,7 @@ export class BmbBalanceOverviewComponent {
   labelSecondary = input<string>('');
   valueSecondary = input<string>('');
   icon = input<string>('');
-  progressCircleFillPathStatus = input<BmbProgressCirclePathStatus>('error');
+  progressCircleFillPathStatus = input<BmbProgressCirclePathStatus>('success');
   progressCircleFullFillPathStatus = input<boolean>(false);
   showProgressCircleOperationState = input<boolean>(false);
   indicatorAppearance = input<IBmbLegendVariations | null>(null);

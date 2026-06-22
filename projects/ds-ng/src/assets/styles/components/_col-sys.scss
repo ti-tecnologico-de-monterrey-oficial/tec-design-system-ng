@@ -62,14 +62,14 @@ $alignItemsOptions: (
   ) !important;
 }
 
-@mixin columns-builder($columnCount, $prefix, $query) {
+@mixin columns-builder($columnCount, $prefix, $minWidth) {
   @for $i from 1 through $columnCount {
-    @if $query == null {
+    @if $minWidth == null {
       .bmb_col-#{$prefix}-#{$i} {
         @include columns($i);
       }
     } @else {
-      @include mixins.media-query(vars.$breakpoint_min_desktop, 'min') {
+      @include mixins.media-query($minWidth, 'min') {
         .bmb_col-#{$prefix}-#{$i} {
           @include columns($i);
         }
