@@ -44,7 +44,7 @@ $alignItemsOptions: (
 }
 
 @mixin one-column() {
-  &:not([class^="bmb_col-sm-"]) {
+  &:not([class^='bmb_col-sm-']) {
     flex: 0 0 100%;
     max-width: 100%;
   }

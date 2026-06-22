@@ -6,7 +6,12 @@
       ($index === 6 && eventsOnWeek()[$index].length > 0)
     ) {
       <section class="bmb_calendar-col">
-        <header class="bmb_calendar-detail-header" [ngClass]="{ 'bmb_calendar-detail-header-today': isToday(weekDays()[$index]) }">
+        <header
+          class="bmb_calendar-detail-header"
+          [ngClass]="{
+            'bmb_calendar-detail-header-today': isToday(weekDays()[$index])
+          }"
+        >
           <h2>{{ day }}</h2>
           <span
             >{{ weekDays()[$index].month }}/{{ weekDays()[$index].day }}</span
