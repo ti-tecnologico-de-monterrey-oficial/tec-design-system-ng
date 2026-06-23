@@ -24,8 +24,13 @@ import { BmbLayoutItemDirective } from '../directives/bmb-layout/bmb-layout-item
 import { BmbVerticalLayoutDirective } from '../directives/bmb-layout/bmb-vertical-layout/bmb-vertical-layout.directive';
 import { BmbVerticalLayoutItemDirective } from '../directives/bmb-layout/bmb-vertical-layout/bmb-vertical-layout-item.directive';
 import {
+  BMB_ALERT_COLOR_LIST,
+  BMB_BASE_COLOR_LIST,
+  BMB_CREATIVE_BASE_COLOR_LIST,
   BMB_CREATIVE_COLOR_LIST,
+  BMB_MITEC_BASE_COLOR_LIST,
   BMB_MITEC_COLOR_LIST,
+  BMB_SEMANTIC_BASE_COLOR_LIST,
   BMB_SEMANTIC_COLOR_LIST,
 } from '../types/foundations/colors/color-type';
 
@@ -565,16 +570,7 @@ class StorybookColorsPlaygroundComponent {
 
   institutionalColors: string[] = ['--blue-tec', '--white-primary'];
 
-  baseColors = [
-    ['--neon-primary', '--neon-tint', '--neon-light'],
-    ['--blue-primary', '--blue-light', '--blue-tint'],
-    ['--teal-primary', '--teal-light', '--teal-tint'],
-    ['--red-primary', '--red-light', '--red-tint'],
-    ['--green-primary', '--green-light', '--green-tint'],
-    ['--purple-primary', '--purple-light', '--purple-tint'],
-    ['--yellow-primary', '--yellow-light', '--yellow-tint'],
-    '--black-primary',
-  ];
+  baseColors = this.parseColors(BMB_BASE_COLOR_LIST);
 
   baseOpacityColors: string[] = [
     '--black-light',
@@ -591,62 +587,13 @@ class StorybookColorsPlaygroundComponent {
     '--purple-gradient',
   ];
 
-  mitecBaseColors: string[][] = [
-    ['--mitec-blue-primary', '--mitec-blue-light', '--mitec-blue-tint'],
-    ['--mitec-red-primary', '--mitec-red-light', '--mitec-red-tint'],
-    ['--mitec-green-primary', '--mitec-green-light', '--mitec-green-tint'],
-    ['--mitec-orange-primary', '--mitec-orange-light', '--mitec-orange-tint'],
-    ['--mitec-purple-primary', '--mitec-purple-light', '--mitec-purple-tint'],
-  ];
+  mitecBaseColors: string[] = this.parseColors(BMB_MITEC_BASE_COLOR_LIST);
 
-  creativeBaseColors: string[][] = [
-    ['--violet-primary', '--violet-light', '--violet-tint'],
-    ['--indigo-primary', '--indigo-light', '--indigo-tint'],
-    ['--emerald-primary', '--emerald-light', '--emerald-tint'],
-    ['--licorice-primary', '--licorice-light', '--licorice-tint'],
-    ['--dark-teal-primary', '--dark-teal-light', '--dark-teal-tint'],
-    ['--peach-primary', '--peach-light', '--peach-tint'],
-    ['--sepia-primary', '--sepia-light', '--sepia-tint'],
-    ['--soft-red-primary', '--soft-red-light', '--soft-red-tint'],
-    [
-      '--wattle-primary',
-      '--wattle-primary-alternative',
-      '--wattle-light',
-      '--wattle-tint',
-    ],
-    ['--ship-cove-primary', '--ship-cove-light', '--ship-cove-tint'],
-    ['--plantation-primary', '--plantation-light', '--plantation-tint'],
-    ['--rum-primary', '--rum-light', '--rum-tint'],
-    [
-      '--ripe-lemon-primary',
-      '--ripe-lemon-primary-alternative',
-      '--ripe-lemon-light',
-      '--ripe-lemon-tint',
-    ],
-    ['--hibiscus-primary', '--hibiscus-light', '--hibiscus-tint'],
-  ];
+  creativeBaseColors: string[] = this.parseColors(BMB_CREATIVE_BASE_COLOR_LIST);
 
   creativeGradients: string[] = ['--gradient-bg-tec'];
 
-  semanticBaseColors: string[][] = [
-    [
-      '--success-primary',
-      '--success-light',
-      '--success-thin',
-      '--success-primary-alternative',
-      '--success-tint-alternative',
-    ],
-    [
-      '--warning-primary',
-      '--warning-light',
-      '--warning-tint',
-      '--warning-primary-alternative',
-    ],
-    ['--error-primary', '--error-light', '--error-tint'],
-    ['--info-primary', '--info-light', '--info-tint'],
-    ['--branding-primary', '--branding-tint', '--branding-tint'],
-    ['--alert-primary', '--alert-light', '--alert-tint'],
-  ];
+  semanticBaseColors: string[] = this.parseColors(BMB_SEMANTIC_BASE_COLOR_LIST);
 
   blueMariner: string[] = [
     '--blue-mariner-50',
@@ -789,14 +736,7 @@ class StorybookColorsPlaygroundComponent {
 
   tecmilenioColors: string[] = ['--tecmi-green', '--tecmi-green-2'];
 
-  alertColors: string[] = [
-    '--alert-successful',
-    '--alert-event',
-    '--alert-neutral',
-    '--alert-primary-alert-primary',
-    '--alert-warning',
-    '--alert-error',
-  ];
+  alertColors: string[] = this.parseColors(BMB_ALERT_COLOR_LIST);
 
   grayCharade: string[] = [
     '--gray-charade-50',
