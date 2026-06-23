@@ -1,4 +1,4 @@
-# Novedades ## [v1.6.3-r] -
+# Novedades ## [v1.6.3-s] -
 2026-06-23
 
 ### 🚀 Novedades
@@ -12,11 +12,11 @@ Minor formatting, styles and calendar test fixes
 *
 formato
 *
-update
-*
 Progress Circle: Aplicar mejoras en el componente.
 *
 tag
+*
+progress circle changes
 *
 Se agregó soporte a la micro programación
 *
@@ -126,13 +126,13 @@ feat(component/input-states): migrate inputs and outputs to signals
 *
 feat(component/select): migrate inputs and outputs to signals
 *
+fix(component / tooltip): Se removió el tooltip duplicado
+*
 chore: se cambio el nombre según estandar.
 *
 feat(component/top-bar-item): migrate inputs and outputs to signals
 *
 feat(component/chat-bubble): se realizo ajuste en color de CSS según Figma. Cambios de contraste para Tec milenio.
-*
-feat(component/calentar-standar): se realizo ajuste en color de CSS según Figma. Cambios de contraste para Tec milenio.
 *
 feat(component/help-menu): migrate inputs and outputs to signals
 *
@@ -151,6 +151,8 @@ format
 formato
 *
 Formato
+*
+update
 *
 chat bubble lts
 *
@@ -202,8 +204,6 @@ feat(component / multi dot paginator): Se agregaron traducciones a los tooltips
 *
 feat(component / home card): Se agregaron traducciones a los tooltips
 *
-feat(component / container button): Se agregaron traducciones a los tooltips
-*
 feat(component/card): migrate inputs and outputs to signals fix tests
 *
 chore: validaciones de colores permitidos según Figma.
@@ -217,8 +217,6 @@ Update bmb-notification-card.stories.ts
 feat(component / dropdown): Se agregaron traducciones a los tooltips
 *
 feat(component / list items): Se agregaron traducciones a los tooltips
-*
-fix(component / tooltip): Se removió el tooltip duplicado
 *
 chore: preparación para objetos json.
 *
@@ -235,6 +233,8 @@ Update services.json
 feat(component / table): Se agregaron traducciones a los tooltips
 *
 chore: se ocultaron eventos y variables.
+*
+feat(component/calentar-standar): se realizo ajuste en color de CSS según Figma. Cambios de contraste para Tec milenio.
 *
 feat(component / tags): Se agregaron traducciones a los tooltips
 *
@@ -310,8 +310,6 @@ version 1.6.3-j
 *
 Formato
 *
-top bar
-*
 bubble chat
 *
 Formato
@@ -326,29 +324,25 @@ fix(component / Date range): Se adoptó la fecha de inicio y fin del date picker
 *
 formato
 *
-fix(component / portal): Se agregó un parche de seguridad
-*
-fix(component / tooltip): Se corrigieron los estilos de salto de línea y se corrigió la posición del tooltip
-*
-top bar
-*
-chore: se agregó documentación de ejemplo para implementar rangos de fechas.
-*
-chore: se implemento códogo para evitar errores por "typo". Los tipos de datos se generan a partir de objetos json  al igual que los listados con los nombres para la documentación.
-*
 top bar
 *
 feat(utils): Se agregaron funciones beforeClose y afterClose a los servicios de Modal y ProjectedContent
 *
+bubble chat
+*
+fix(component / search box): se corrigieron los contrastes de los iconos
+*
+top bar
+*
+top bar
+*
 fix(component / Projection service): Se agregó un parche de seguridad
 *
-bubble chat
-*
-bubble chat
+fix(component / native modal): Se agregó un parche de seguridad
 *
 Fix(component / totp): Se corrigieron los bullets en la parte inferior
 *
-chore: se agregó nueva variable de color '--gray-tecmi-450' para la marca 'Tec milenio', también se agregó la variable '--general-contrasts-85' para cada una de las marcas.
+chore: se agregaron nuevas variables de color complementarias '--general-contrasts-light-complimentary' y '--general-contrasts-dark-complimentary' para cada una de las marcas.
 *
 Angular 21 note
 *
@@ -356,7 +350,15 @@ fix(component / top bar): Se corrigió el comportamiento de dos líneas en el to
 *
 Update
 *
-fix(component / native modal): Se agregó un parche de seguridad
+fix(component / portal): Se agregó un parche de seguridad
+*
+fix(component / tooltip): Se corrigieron los estilos de salto de línea y se corrigió la posición del tooltip
+*
+chore: se agregó documentación de ejemplo para implementar rangos de fechas.
+*
+chore: se implemento códogo para evitar errores por "typo". Los tipos de datos se generan a partir de objetos json  al igual que los listados con los nombres para la documentación.
+*
+bubble chat
 *
 top bar
 *
@@ -384,10 +386,6 @@ Update bmb-date-range.component.ts
 *
 chore: se eliminaron nuevas variables porque no se utilizan en ningún componente de acuerdo a la revisión en Figma.
 *
-fix(component / search box): se corrigieron los contrastes de los iconos
-*
-chore: se agregó nueva variable de color para cada una de las marcas.
-*
 feat(component/sidebar): se agregó la misma animación para todos los menús y submenús.
 *
 feat(component / chevron title): Se agregaron traducciones a los tooltips
@@ -396,13 +394,15 @@ feat(test): Se actualizaron los componentes para soportar testID
 *
 fix(component / focus element): Se agregó la posibilidad de mostrar el 0
 *
-chore: se agregaron nuevas variables de color complementarias '--general-contrasts-light-complimentary' y '--general-contrasts-dark-complimentary' para cada una de las marcas.
+feat(component / container button): Se agregaron traducciones a los tooltips
 *
 chore: se agregó opacidad para correcto funcionamiento del componente "Media card".
 *
 chore: se agregó nueva variable a todas las marcas para homologar con Figma
 *
 chore se elimino variables "--bmb-calendar-button-selected-background" ahora se usará "--buttons-alternative-normal" para homologar con Figma.
+*
+chore: se agregó nueva variable de color '--gray-tecmi-450' para la marca 'Tec milenio', también se agregó la variable '--general-contrasts-85' para cada una de las marcas.
 *
 feat(component / chatbar): Se agregaron traducciones a los tooltips
 *
@@ -542,13 +542,11 @@ feat(component/fab): se ealizaron modificaciones para que la versión 'mitec' se
 *
 fix(component / image): se actualizaron los estilos para permitir cambiar el cursor si hay un evento click
 *
+chore: se agregó nueva variable de color para cada una de las marcas.
+*
 fix(component / profile): Se corrigieron los estilos del profile
 *
 actualizacion de paquetes
-*
-topbar user
-*
-topbar user
 *
 feat(component/container-button): se agregó la documentación de variantes 'Square' como pestaña en el componente principal.
 *
@@ -560,23 +558,27 @@ chore: se agregaron ejemplos para soporte de la aplicación.
 *
 feat: `bmb-filter-card`.
 *
+topbar user
+*
 fix(component / notification card): Se corrigió el tamaño de las notificaciones
 *
 fix(component / dropdown): Se corrigió el desface de menú del dropdown
 *
+Update preview.ts
+*
+chore: refactorización de código para detener la propagación.
+*
+topbar user
+*
 Formato
 *
 fix(component / tooltip): Se solucionó el problema del contenido del tooltip
-*
-Update preview.ts
 *
 utils(workflows): Se actualizaron los sistemas base de node
 *
 chore: se agregó nueva variable para punto de ruptura para dispositivos móviles.
 *
 chore: se implementó consulta más especifica para evitar impacto en elementos que no son del 'Sidebar'.
-*
-chore: refactorización de código para detener la propagación.
 *
 chore: se actualizo la organización de pestañas para los casos en que se contengan varias de estas.
 *
@@ -618,12 +620,12 @@ Minor formatting, styles and calendar test fixes
 Cleanup and small updates across the repo: tidy up CHANGELOG formatting (remove extra spaces and escape underscores), update FEATURES.md, adjust column system styles (_col-sys.scss), update calendar unit test and week template (bmb-calendar.component.spec.ts and bmb-calendar-template-week.component.html), replace regenerated micro.min.css, and apply a small change to the flex page template (flex.component.html). These are non-functional formatting/style/test tweaks to improve readability and keep assets in sync.
 - **formato**:
 formato
-- **update**:
-update
 - **Progress Circle: Aplicar mejoras en el componente.**:
 Progress Circle: Aplicar mejoras en el componente.
 - **tag**:
 tag
+- **progress circle changes**:
+progress circle changes
 - **Se agregó soporte a la micro programación**:
 Se agregó soporte a la micro programación
 - **fix broken pr**:
@@ -744,14 +746,14 @@ feat(component / notification card): Se agregó la posibilidad de modificar el t
 feat(component/input-states): migrate inputs and outputs to signals
 - **feat(component/select): migrate inputs and outputs to signals**:
 feat(component/select): migrate inputs and outputs to signals
+- **fix(component / tooltip): Se removió el tooltip duplicado**:
+fix(component / tooltip): Se removió el tooltip duplicado
 - **chore: se cambio el nombre según estandar.**:
 chore: se cambio el nombre según estandar.
 - **feat(component/top-bar-item): migrate inputs and outputs to signals**:
 feat(component/top-bar-item): migrate inputs and outputs to signals
 - **feat(component/chat-bubble): se realizo ajuste en color de CSS según Figma. Cambios de contraste para Tec milenio.**:
 feat(component/chat-bubble): se realizo ajuste en color de CSS según Figma. Cambios de contraste para Tec milenio.
-- **feat(component/calentar-standar): se realizo ajuste en color de CSS según Figma. Cambios de contraste para Tec milenio.**:
-feat(component/calentar-standar): se realizo ajuste en color de CSS según Figma. Cambios de contraste para Tec milenio.
 - **feat(component/help-menu): migrate inputs and outputs to signals**:
 feat(component/help-menu): migrate inputs and outputs to signals
 - **feat(component/select-item): migrate inputs and outputs to signals**:
@@ -770,6 +772,8 @@ format
 formato
 - **Formato**:
 Formato
+- **update**:
+update
 - **chat bubble lts**:
 chat bubble lts
 - **vq.6.3-k**:
@@ -820,8 +824,6 @@ chore: se oculto el bloque de código para no generar confusión en el uso del c
 feat(component / multi dot paginator): Se agregaron traducciones a los tooltips
 - **feat(component / home card): Se agregaron traducciones a los tooltips**:
 feat(component / home card): Se agregaron traducciones a los tooltips
-- **feat(component / container button): Se agregaron traducciones a los tooltips**:
-feat(component / container button): Se agregaron traducciones a los tooltips
 - **feat(component/card): migrate inputs and outputs to signals fix tests**:
 feat(component/card): migrate inputs and outputs to signals fix tests
 - **chore: validaciones de colores permitidos según Figma.**:
@@ -836,8 +838,6 @@ Update bmb-notification-card.stories.ts
 feat(component / dropdown): Se agregaron traducciones a los tooltips
 - **feat(component / list items): Se agregaron traducciones a los tooltips**:
 feat(component / list items): Se agregaron traducciones a los tooltips
-- **fix(component / tooltip): Se removió el tooltip duplicado**:
-fix(component / tooltip): Se removió el tooltip duplicado
 - **chore: preparación para objetos json.**:
 chore: preparación para objetos json.
 - **feat(component / top bar): Se agregaron traducciones a los tooltips**:
@@ -854,6 +854,8 @@ Update services.json
 feat(component / table): Se agregaron traducciones a los tooltips
 - **chore: se ocultaron eventos y variables.**:
 chore: se ocultaron eventos y variables.
+- **feat(component/calentar-standar): se realizo ajuste en color de CSS según Figma. Cambios de contraste para Tec milenio.**:
+feat(component/calentar-standar): se realizo ajuste en color de CSS según Figma. Cambios de contraste para Tec milenio.
 - **feat(component / tags): Se agregaron traducciones a los tooltips**:
 feat(component / tags): Se agregaron traducciones a los tooltips
 - **feat(component / sidebar): Se agregaron traducciones a los tooltips**:
@@ -936,8 +938,6 @@ chat bubble lts
 version 1.6.3-j
 - **Formato**:
 Formato
-- **top bar**:
-top bar
 - **bubble chat**:
 bubble chat
 - **Formato**:
@@ -952,38 +952,42 @@ feat(component / dropdown): Se corrigió la posición del menú
 fix(component / Date range): Se adoptó la fecha de inicio y fin del date picker
 - **formato**:
 formato
-- **fix(component / portal): Se agregó un parche de seguridad**:
-fix(component / portal): Se agregó un parche de seguridad
-- **fix(component / tooltip): Se corrigieron los estilos de salto de línea y se corrigió la posición del tooltip**:
-fix(component / tooltip): Se corrigieron los estilos de salto de línea y se corrigió la posición del tooltip
-- **top bar**:
-top bar
-- **chore: se agregó documentación de ejemplo para implementar rangos de fechas.**:
-chore: se agregó documentación de ejemplo para implementar rangos de fechas.
-- **chore: se implemento códogo para evitar errores por "typo". Los tipos de datos se generan a partir de objetos json  al igual que los listados con los nombres para la documentación.**:
-chore: se implemento códogo para evitar errores por "typo". Los tipos de datos se generan a partir de objetos json  al igual que los listados con los nombres para la documentación.
 - **top bar**:
 top bar
 - **feat(utils): Se agregaron funciones beforeClose y afterClose a los servicios de Modal y ProjectedContent**:
 feat(utils): Se agregaron funciones beforeClose y afterClose a los servicios de Modal y ProjectedContent
+- **bubble chat**:
+bubble chat
+- **fix(component / search box): se corrigieron los contrastes de los iconos**:
+fix(component / search box): se corrigieron los contrastes de los iconos
+- **top bar**:
+top bar
+- **top bar**:
+top bar
 - **fix(component / Projection service): Se agregó un parche de seguridad**:
 fix(component / Projection service): Se agregó un parche de seguridad
-- **bubble chat**:
-bubble chat
-- **bubble chat**:
-bubble chat
+- **fix(component / native modal): Se agregó un parche de seguridad**:
+fix(component / native modal): Se agregó un parche de seguridad
 - **Fix(component / totp): Se corrigieron los bullets en la parte inferior**:
 Fix(component / totp): Se corrigieron los bullets en la parte inferior
-- **chore: se agregó nueva variable de color '--gray-tecmi-450' para la marca 'Tec milenio', también se agregó la variable '--general-contrasts-85' para cada una de las marcas.**:
-chore: se agregó nueva variable de color '--gray-tecmi-450' para la marca 'Tec milenio', también se agregó la variable '--general-contrasts-85' para cada una de las marcas.
+- **chore: se agregaron nuevas variables de color complementarias '--general-contrasts-light-complimentary' y '--general-contrasts-dark-complimentary' para cada una de las marcas.**:
+chore: se agregaron nuevas variables de color complementarias '--general-contrasts-light-complimentary' y '--general-contrasts-dark-complimentary' para cada una de las marcas.
 - **Angular 21 note**:
 Angular 21 note
 - **fix(component / top bar): Se corrigió el comportamiento de dos líneas en el top bar**:
 fix(component / top bar): Se corrigió el comportamiento de dos líneas en el top bar
 - **Update**:
 Update
-- **fix(component / native modal): Se agregó un parche de seguridad**:
-fix(component / native modal): Se agregó un parche de seguridad
+- **fix(component / portal): Se agregó un parche de seguridad**:
+fix(component / portal): Se agregó un parche de seguridad
+- **fix(component / tooltip): Se corrigieron los estilos de salto de línea y se corrigió la posición del tooltip**:
+fix(component / tooltip): Se corrigieron los estilos de salto de línea y se corrigió la posición del tooltip
+- **chore: se agregó documentación de ejemplo para implementar rangos de fechas.**:
+chore: se agregó documentación de ejemplo para implementar rangos de fechas.
+- **chore: se implemento códogo para evitar errores por "typo". Los tipos de datos se generan a partir de objetos json  al igual que los listados con los nombres para la documentación.**:
+chore: se implemento códogo para evitar errores por "typo". Los tipos de datos se generan a partir de objetos json  al igual que los listados con los nombres para la documentación.
+- **bubble chat**:
+bubble chat
 - **top bar**:
 top bar
 - **chore: se agregaron variables, se depuraron variables para homologar con Figma.**:
@@ -1010,10 +1014,6 @@ Update bmb-profile.component.html
 Update bmb-date-range.component.ts
 - **chore: se eliminaron nuevas variables porque no se utilizan en ningún componente de acuerdo a la revisión en Figma.**:
 chore: se eliminaron nuevas variables porque no se utilizan en ningún componente de acuerdo a la revisión en Figma.
-- **fix(component / search box): se corrigieron los contrastes de los iconos**:
-fix(component / search box): se corrigieron los contrastes de los iconos
-- **chore: se agregó nueva variable de color para cada una de las marcas.**:
-chore: se agregó nueva variable de color para cada una de las marcas.
 - **feat(component/sidebar): se agregó la misma animación para todos los menús y submenús.**:
 feat(component/sidebar): se agregó la misma animación para todos los menús y submenús.
 - **feat(component / chevron title): Se agregaron traducciones a los tooltips**:
@@ -1022,14 +1022,16 @@ feat(component / chevron title): Se agregaron traducciones a los tooltips
 feat(test): Se actualizaron los componentes para soportar testID
 - **fix(component / focus element): Se agregó la posibilidad de mostrar el 0**:
 fix(component / focus element): Se agregó la posibilidad de mostrar el 0
-- **chore: se agregaron nuevas variables de color complementarias '--general-contrasts-light-complimentary' y '--general-contrasts-dark-complimentary' para cada una de las marcas.**:
-chore: se agregaron nuevas variables de color complementarias '--general-contrasts-light-complimentary' y '--general-contrasts-dark-complimentary' para cada una de las marcas.
+- **feat(component / container button): Se agregaron traducciones a los tooltips**:
+feat(component / container button): Se agregaron traducciones a los tooltips
 - **chore: se agregó opacidad para correcto funcionamiento del componente "Media card".**:
 chore: se agregó opacidad para correcto funcionamiento del componente "Media card".
 - **chore: se agregó nueva variable a todas las marcas para homologar con Figma**:
 chore: se agregó nueva variable a todas las marcas para homologar con Figma
 - **chore se elimino variables "--bmb-calendar-button-selected-background" ahora se usará "--buttons-alternative-normal" para homologar con Figma.**:
 chore se elimino variables "--bmb-calendar-button-selected-background" ahora se usará "--buttons-alternative-normal" para homologar con Figma.
+- **chore: se agregó nueva variable de color '--gray-tecmi-450' para la marca 'Tec milenio', también se agregó la variable '--general-contrasts-85' para cada una de las marcas.**:
+chore: se agregó nueva variable de color '--gray-tecmi-450' para la marca 'Tec milenio', también se agregó la variable '--general-contrasts-85' para cada una de las marcas.
 - **feat(component / chatbar): Se agregaron traducciones a los tooltips**:
 feat(component / chatbar): Se agregaron traducciones a los tooltips
 - **fix(component / search card): Se corrigieron los colores de los servicios**:
@@ -1168,14 +1170,12 @@ feat(component / image): se agregó la posibilidad de evitar el encoding en la f
 feat(component/fab): se ealizaron modificaciones para que la versión 'mitec' sea fija (según diseño en Figma)  y no pueda ser modificada.
 - **fix(component / image): se actualizaron los estilos para permitir cambiar el cursor si hay un evento click**:
 fix(component / image): se actualizaron los estilos para permitir cambiar el cursor si hay un evento click
+- **chore: se agregó nueva variable de color para cada una de las marcas.**:
+chore: se agregó nueva variable de color para cada una de las marcas.
 - **fix(component / profile): Se corrigieron los estilos del profile**:
 fix(component / profile): Se corrigieron los estilos del profile
 - **actualizacion de paquetes**:
 actualizacion de paquetes
-- **topbar user**:
-topbar user
-- **topbar user**:
-topbar user
 - **feat(component/container-button): se agregó la documentación de variantes 'Square' como pestaña en el componente principal.**:
 feat(component/container-button): se agregó la documentación de variantes 'Square' como pestaña en el componente principal.
 - **feat: Add `bmb-filter-card` component with dynamic visibility and option rules.**:
@@ -1186,24 +1186,28 @@ feat: Add BmbFilterCard component with dynamic filtering capabilities.
 chore: se agregaron ejemplos para soporte de la aplicación.
 - **feat: `bmb-filter-card`.**:
 feat: `bmb-filter-card`.
+- **topbar user**:
+topbar user
 - **fix(component / notification card): Se corrigió el tamaño de las notificaciones**:
 fix(component / notification card): Se corrigió el tamaño de las notificaciones
 - **fix(component / dropdown): Se corrigió el desface de menú del dropdown**:
 fix(component / dropdown): Se corrigió el desface de menú del dropdown
+- **Update preview.ts**:
+Update preview.ts
+- **chore: refactorización de código para detener la propagación.**:
+chore: refactorización de código para detener la propagación.
+- **topbar user**:
+topbar user
 - **Formato**:
 Formato
 - **fix(component / tooltip): Se solucionó el problema del contenido del tooltip**:
 fix(component / tooltip): Se solucionó el problema del contenido del tooltip
-- **Update preview.ts**:
-Update preview.ts
 - **utils(workflows): Se actualizaron los sistemas base de node**:
 utils(workflows): Se actualizaron los sistemas base de node
 - **chore: se agregó nueva variable para punto de ruptura para dispositivos móviles.**:
 chore: se agregó nueva variable para punto de ruptura para dispositivos móviles.
 - **chore: se implementó consulta más especifica para evitar impacto en elementos que no son del 'Sidebar'.**:
 chore: se implementó consulta más especifica para evitar impacto en elementos que no son del 'Sidebar'.
-- **chore: refactorización de código para detener la propagación.**:
-chore: refactorización de código para detener la propagación.
 - **chore: se actualizo la organización de pestañas para los casos en que se contengan varias de estas.**:
 chore: se actualizo la organización de pestañas para los casos en que se contengan varias de estas.
 - **fix(component / dropdown): Se agergó un ancho minimo al dropdown**:
@@ -1245,12 +1249,12 @@ Minor formatting, styles and calendar test fixes
 Cleanup and small updates across the repo: tidy up CHANGELOG formatting (remove extra spaces and escape underscores), update FEATURES.md, adjust column system styles (_col-sys.scss), update calendar unit test and week template (bmb-calendar.component.spec.ts and bmb-calendar-template-week.component.html), replace regenerated micro.min.css, and apply a small change to the flex page template (flex.component.html). These are non-functional formatting/style/test tweaks to improve readability and keep assets in sync.
 - **formato**:
 formato
-- **update**:
-update
 - **Progress Circle: Aplicar mejoras en el componente.**:
 Progress Circle: Aplicar mejoras en el componente.
 - **tag**:
 tag
+- **progress circle changes**:
+progress circle changes
 - **Se agregó soporte a la micro programación**:
 Se agregó soporte a la micro programación
 - **fix broken pr**:
@@ -1371,14 +1375,14 @@ feat(component / notification card): Se agregó la posibilidad de modificar el t
 feat(component/input-states): migrate inputs and outputs to signals
 - **feat(component/select): migrate inputs and outputs to signals**:
 feat(component/select): migrate inputs and outputs to signals
+- **fix(component / tooltip): Se removió el tooltip duplicado**:
+fix(component / tooltip): Se removió el tooltip duplicado
 - **chore: se cambio el nombre según estandar.**:
 chore: se cambio el nombre según estandar.
 - **feat(component/top-bar-item): migrate inputs and outputs to signals**:
 feat(component/top-bar-item): migrate inputs and outputs to signals
 - **feat(component/chat-bubble): se realizo ajuste en color de CSS según Figma. Cambios de contraste para Tec milenio.**:
 feat(component/chat-bubble): se realizo ajuste en color de CSS según Figma. Cambios de contraste para Tec milenio.
-- **feat(component/calentar-standar): se realizo ajuste en color de CSS según Figma. Cambios de contraste para Tec milenio.**:
-feat(component/calentar-standar): se realizo ajuste en color de CSS según Figma. Cambios de contraste para Tec milenio.
 - **feat(component/help-menu): migrate inputs and outputs to signals**:
 feat(component/help-menu): migrate inputs and outputs to signals
 - **feat(component/select-item): migrate inputs and outputs to signals**:
@@ -1397,6 +1401,8 @@ format
 formato
 - **Formato**:
 Formato
+- **update**:
+update
 - **chat bubble lts**:
 chat bubble lts
 - **vq.6.3-k**:
@@ -1447,8 +1453,6 @@ chore: se oculto el bloque de código para no generar confusión en el uso del c
 feat(component / multi dot paginator): Se agregaron traducciones a los tooltips
 - **feat(component / home card): Se agregaron traducciones a los tooltips**:
 feat(component / home card): Se agregaron traducciones a los tooltips
-- **feat(component / container button): Se agregaron traducciones a los tooltips**:
-feat(component / container button): Se agregaron traducciones a los tooltips
 - **feat(component/card): migrate inputs and outputs to signals fix tests**:
 feat(component/card): migrate inputs and outputs to signals fix tests
 - **chore: validaciones de colores permitidos según Figma.**:
@@ -1463,8 +1467,6 @@ Update bmb-notification-card.stories.ts
 feat(component / dropdown): Se agregaron traducciones a los tooltips
 - **feat(component / list items): Se agregaron traducciones a los tooltips**:
 feat(component / list items): Se agregaron traducciones a los tooltips
-- **fix(component / tooltip): Se removió el tooltip duplicado**:
-fix(component / tooltip): Se removió el tooltip duplicado
 - **chore: preparación para objetos json.**:
 chore: preparación para objetos json.
 - **feat(component / top bar): Se agregaron traducciones a los tooltips**:
@@ -1481,6 +1483,8 @@ Update services.json
 feat(component / table): Se agregaron traducciones a los tooltips
 - **chore: se ocultaron eventos y variables.**:
 chore: se ocultaron eventos y variables.
+- **feat(component/calentar-standar): se realizo ajuste en color de CSS según Figma. Cambios de contraste para Tec milenio.**:
+feat(component/calentar-standar): se realizo ajuste en color de CSS según Figma. Cambios de contraste para Tec milenio.
 - **feat(component / tags): Se agregaron traducciones a los tooltips**:
 feat(component / tags): Se agregaron traducciones a los tooltips
 - **feat(component / sidebar): Se agregaron traducciones a los tooltips**:
@@ -1563,8 +1567,6 @@ chat bubble lts
 version 1.6.3-j
 - **Formato**:
 Formato
-- **top bar**:
-top bar
 - **bubble chat**:
 bubble chat
 - **Formato**:
@@ -1579,38 +1581,42 @@ feat(component / dropdown): Se corrigió la posición del menú
 fix(component / Date range): Se adoptó la fecha de inicio y fin del date picker
 - **formato**:
 formato
-- **fix(component / portal): Se agregó un parche de seguridad**:
-fix(component / portal): Se agregó un parche de seguridad
-- **fix(component / tooltip): Se corrigieron los estilos de salto de línea y se corrigió la posición del tooltip**:
-fix(component / tooltip): Se corrigieron los estilos de salto de línea y se corrigió la posición del tooltip
-- **top bar**:
-top bar
-- **chore: se agregó documentación de ejemplo para implementar rangos de fechas.**:
-chore: se agregó documentación de ejemplo para implementar rangos de fechas.
-- **chore: se implemento códogo para evitar errores por "typo". Los tipos de datos se generan a partir de objetos json  al igual que los listados con los nombres para la documentación.**:
-chore: se implemento códogo para evitar errores por "typo". Los tipos de datos se generan a partir de objetos json  al igual que los listados con los nombres para la documentación.
 - **top bar**:
 top bar
 - **feat(utils): Se agregaron funciones beforeClose y afterClose a los servicios de Modal y ProjectedContent**:
 feat(utils): Se agregaron funciones beforeClose y afterClose a los servicios de Modal y ProjectedContent
+- **bubble chat**:
+bubble chat
+- **fix(component / search box): se corrigieron los contrastes de los iconos**:
+fix(component / search box): se corrigieron los contrastes de los iconos
+- **top bar**:
+top bar
+- **top bar**:
+top bar
 - **fix(component / Projection service): Se agregó un parche de seguridad**:
 fix(component / Projection service): Se agregó un parche de seguridad
-- **bubble chat**:
-bubble chat
-- **bubble chat**:
-bubble chat
+- **fix(component / native modal): Se agregó un parche de seguridad**:
+fix(component / native modal): Se agregó un parche de seguridad
 - **Fix(component / totp): Se corrigieron los bullets en la parte inferior**:
 Fix(component / totp): Se corrigieron los bullets en la parte inferior
-- **chore: se agregó nueva variable de color '--gray-tecmi-450' para la marca 'Tec milenio', también se agregó la variable '--general-contrasts-85' para cada una de las marcas.**:
-chore: se agregó nueva variable de color '--gray-tecmi-450' para la marca 'Tec milenio', también se agregó la variable '--general-contrasts-85' para cada una de las marcas.
+- **chore: se agregaron nuevas variables de color complementarias '--general-contrasts-light-complimentary' y '--general-contrasts-dark-complimentary' para cada una de las marcas.**:
+chore: se agregaron nuevas variables de color complementarias '--general-contrasts-light-complimentary' y '--general-contrasts-dark-complimentary' para cada una de las marcas.
 - **Angular 21 note**:
 Angular 21 note
 - **fix(component / top bar): Se corrigió el comportamiento de dos líneas en el top bar**:
 fix(component / top bar): Se corrigió el comportamiento de dos líneas en el top bar
 - **Update**:
 Update
-- **fix(component / native modal): Se agregó un parche de seguridad**:
-fix(component / native modal): Se agregó un parche de seguridad
+- **fix(component / portal): Se agregó un parche de seguridad**:
+fix(component / portal): Se agregó un parche de seguridad
+- **fix(component / tooltip): Se corrigieron los estilos de salto de línea y se corrigió la posición del tooltip**:
+fix(component / tooltip): Se corrigieron los estilos de salto de línea y se corrigió la posición del tooltip
+- **chore: se agregó documentación de ejemplo para implementar rangos de fechas.**:
+chore: se agregó documentación de ejemplo para implementar rangos de fechas.
+- **chore: se implemento códogo para evitar errores por "typo". Los tipos de datos se generan a partir de objetos json  al igual que los listados con los nombres para la documentación.**:
+chore: se implemento códogo para evitar errores por "typo". Los tipos de datos se generan a partir de objetos json  al igual que los listados con los nombres para la documentación.
+- **bubble chat**:
+bubble chat
 - **top bar**:
 top bar
 - **chore: se agregaron variables, se depuraron variables para homologar con Figma.**:
@@ -1637,10 +1643,6 @@ Update bmb-profile.component.html
 Update bmb-date-range.component.ts
 - **chore: se eliminaron nuevas variables porque no se utilizan en ningún componente de acuerdo a la revisión en Figma.**:
 chore: se eliminaron nuevas variables porque no se utilizan en ningún componente de acuerdo a la revisión en Figma.
-- **fix(component / search box): se corrigieron los contrastes de los iconos**:
-fix(component / search box): se corrigieron los contrastes de los iconos
-- **chore: se agregó nueva variable de color para cada una de las marcas.**:
-chore: se agregó nueva variable de color para cada una de las marcas.
 - **feat(component/sidebar): se agregó la misma animación para todos los menús y submenús.**:
 feat(component/sidebar): se agregó la misma animación para todos los menús y submenús.
 - **feat(component / chevron title): Se agregaron traducciones a los tooltips**:
@@ -1649,14 +1651,16 @@ feat(component / chevron title): Se agregaron traducciones a los tooltips
 feat(test): Se actualizaron los componentes para soportar testID
 - **fix(component / focus element): Se agregó la posibilidad de mostrar el 0**:
 fix(component / focus element): Se agregó la posibilidad de mostrar el 0
-- **chore: se agregaron nuevas variables de color complementarias '--general-contrasts-light-complimentary' y '--general-contrasts-dark-complimentary' para cada una de las marcas.**:
-chore: se agregaron nuevas variables de color complementarias '--general-contrasts-light-complimentary' y '--general-contrasts-dark-complimentary' para cada una de las marcas.
+- **feat(component / container button): Se agregaron traducciones a los tooltips**:
+feat(component / container button): Se agregaron traducciones a los tooltips
 - **chore: se agregó opacidad para correcto funcionamiento del componente "Media card".**:
 chore: se agregó opacidad para correcto funcionamiento del componente "Media card".
 - **chore: se agregó nueva variable a todas las marcas para homologar con Figma**:
 chore: se agregó nueva variable a todas las marcas para homologar con Figma
 - **chore se elimino variables "--bmb-calendar-button-selected-background" ahora se usará "--buttons-alternative-normal" para homologar con Figma.**:
 chore se elimino variables "--bmb-calendar-button-selected-background" ahora se usará "--buttons-alternative-normal" para homologar con Figma.
+- **chore: se agregó nueva variable de color '--gray-tecmi-450' para la marca 'Tec milenio', también se agregó la variable '--general-contrasts-85' para cada una de las marcas.**:
+chore: se agregó nueva variable de color '--gray-tecmi-450' para la marca 'Tec milenio', también se agregó la variable '--general-contrasts-85' para cada una de las marcas.
 - **feat(component / chatbar): Se agregaron traducciones a los tooltips**:
 feat(component / chatbar): Se agregaron traducciones a los tooltips
 - **fix(component / search card): Se corrigieron los colores de los servicios**:
@@ -1795,14 +1799,12 @@ feat(component / image): se agregó la posibilidad de evitar el encoding en la f
 feat(component/fab): se ealizaron modificaciones para que la versión 'mitec' sea fija (según diseño en Figma)  y no pueda ser modificada.
 - **fix(component / image): se actualizaron los estilos para permitir cambiar el cursor si hay un evento click**:
 fix(component / image): se actualizaron los estilos para permitir cambiar el cursor si hay un evento click
+- **chore: se agregó nueva variable de color para cada una de las marcas.**:
+chore: se agregó nueva variable de color para cada una de las marcas.
 - **fix(component / profile): Se corrigieron los estilos del profile**:
 fix(component / profile): Se corrigieron los estilos del profile
 - **actualizacion de paquetes**:
 actualizacion de paquetes
-- **topbar user**:
-topbar user
-- **topbar user**:
-topbar user
 - **feat(component/container-button): se agregó la documentación de variantes 'Square' como pestaña en el componente principal.**:
 feat(component/container-button): se agregó la documentación de variantes 'Square' como pestaña en el componente principal.
 - **feat: Add `bmb-filter-card` component with dynamic visibility and option rules.**:
@@ -1813,24 +1815,28 @@ feat: Add BmbFilterCard component with dynamic filtering capabilities.
 chore: se agregaron ejemplos para soporte de la aplicación.
 - **feat: `bmb-filter-card`.**:
 feat: `bmb-filter-card`.
+- **topbar user**:
+topbar user
 - **fix(component / notification card): Se corrigió el tamaño de las notificaciones**:
 fix(component / notification card): Se corrigió el tamaño de las notificaciones
 - **fix(component / dropdown): Se corrigió el desface de menú del dropdown**:
 fix(component / dropdown): Se corrigió el desface de menú del dropdown
+- **Update preview.ts**:
+Update preview.ts
+- **chore: refactorización de código para detener la propagación.**:
+chore: refactorización de código para detener la propagación.
+- **topbar user**:
+topbar user
 - **Formato**:
 Formato
 - **fix(component / tooltip): Se solucionó el problema del contenido del tooltip**:
 fix(component / tooltip): Se solucionó el problema del contenido del tooltip
-- **Update preview.ts**:
-Update preview.ts
 - **utils(workflows): Se actualizaron los sistemas base de node**:
 utils(workflows): Se actualizaron los sistemas base de node
 - **chore: se agregó nueva variable para punto de ruptura para dispositivos móviles.**:
 chore: se agregó nueva variable para punto de ruptura para dispositivos móviles.
 - **chore: se implementó consulta más especifica para evitar impacto en elementos que no son del 'Sidebar'.**:
 chore: se implementó consulta más especifica para evitar impacto en elementos que no son del 'Sidebar'.
-- **chore: refactorización de código para detener la propagación.**:
-chore: refactorización de código para detener la propagación.
 - **chore: se actualizo la organización de pestañas para los casos en que se contengan varias de estas.**:
 chore: se actualizo la organización de pestañas para los casos en que se contengan varias de estas.
 - **fix(component / dropdown): Se agergó un ancho minimo al dropdown**:
