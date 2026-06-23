@@ -1,8 +1,10 @@
 import {
   Component,
+  DestroyRef,
   OnInit,
   ViewEncapsulation,
   ChangeDetectionStrategy,
+  inject,
   input,
   model,
   signal,
@@ -16,6 +18,7 @@ import {
   ValidatorFn,
 } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { Subscription } from 'rxjs';
 import {
   BmbDropdownComponent,
   IBmbDropdownItem,
@@ -89,6 +92,14 @@ export class BmbInputPhoneNumberComponent implements OnInit {
   countryFiltering: IBmbDropdownItem[] = [];
   isControlNull: boolean = false;
   customValidationMessage: string = '';
+  private readonly destroyRef = inject(DestroyRef);
+  private readonly subscriptions = new Subscription();
+
+  constructor() {
+    this.destroyRef.onDestroy(() => {
+      this.subscriptions.unsubscribe();
+    });
+  }
 
   ngOnInit(): void {
     if (!this.control()) {
@@ -125,25 +136,29 @@ export class BmbInputPhoneNumberComponent implements OnInit {
     this.phoneControl.setValue(this.getNumberValue());
     this.countryFiltering = this.getOptions();
 
-    this.phoneControl.valueChanges.subscribe((value) => {
-      if (!!value) {
-        this.setControlValue(
-          this.getSelectedCountryLada(this.ladaControl.value),
-          value,
-        );
-      }
-    });
+    this.subscriptions.add(
+      this.phoneControl.valueChanges.subscribe((value) => {
+        if (!!value) {
+          this.setControlValue(
+            this.getSelectedCountryLada(this.ladaControl.value),
+            value,
+          );
+        }
+      }),
+    );
 
-    this.control().valueChanges.subscribe((value) => {
-      if (value === null) {
-        this.phoneControl.reset('');
-        this.ladaControl.reset(
-          this.getSelectedCountryCode(
-            this.defaultCountryCode().toLocaleLowerCase(),
-          ),
-        );
-      }
-    });
+    this.subscriptions.add(
+      this.control().valueChanges.subscribe((value) => {
+        if (value === null) {
+          this.phoneControl.reset('');
+          this.ladaControl.reset(
+            this.getSelectedCountryCode(
+              this.defaultCountryCode().toLocaleLowerCase(),
+            ),
+          );
+        }
+      }),
+    );
   }
 
   handleFocus(value: boolean): void {

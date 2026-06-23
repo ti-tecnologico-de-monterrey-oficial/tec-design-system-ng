@@ -1,6 +1,8 @@
 import {
   Component,
   computed,
+  DestroyRef,
+  inject,
   input,
   model,
   output,
@@ -12,6 +14,7 @@ import { BmbInputComponent } from '../bmb-input/bmb-input.component';
 import { BmbTabsComponent, IBmbTab } from '../bmb-tabs/bmb-tabs.component';
 import { FormControl } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { Subscription } from 'rxjs';
 import { BmbSearchCardEmptyStateComponent } from './bmb-search-card-empty-state/bmb-search-card-empty-state.component';
 import { BmbTranslationsService } from '../../services/translations/translations.service';
 import { BmbSearchCardItemComponent } from './bmb-search-card-item/bmb-search-card-item.component';
@@ -57,6 +60,8 @@ export class BmbSearchCardComponent {
   triggerSearch = output<string>();
   searchItemClick = output<IBmbSearchCardItemResult>();
   getBookmarkItemClick = output<IBmbSearchCardItemResult>();
+  private readonly destroyRef = inject(DestroyRef);
+  private readonly subscriptions = new Subscription();
 
   inputSearchControl = new FormControl('');
   computedResults = computed<{
@@ -100,9 +105,15 @@ export class BmbSearchCardComponent {
   ]);
 
   constructor(private translationsService: BmbTranslationsService) {
-    this.inputSearchControl.valueChanges.subscribe((value) => {
-      this.triggerSearch.emit(value || '');
+    this.destroyRef.onDestroy(() => {
+      this.subscriptions.unsubscribe();
     });
+
+    this.subscriptions.add(
+      this.inputSearchControl.valueChanges.subscribe((value) => {
+        this.triggerSearch.emit(value || '');
+      }),
+    );
   }
 
   handleBookmarkClick(item: IBmbSearchCardItemResult): void {
