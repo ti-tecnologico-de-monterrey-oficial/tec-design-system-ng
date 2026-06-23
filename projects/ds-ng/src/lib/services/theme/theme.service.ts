@@ -17,8 +17,6 @@ export class ThemeService {
   }
 
   setInitialTheme(newInitialTheme?: string): void {
-    console.log('setInitialTheme');
-
     const savedTheme = localStorage.getItem('theme');
     if (newInitialTheme && !savedTheme) {
       this.theme.set(newInitialTheme);
@@ -32,8 +30,6 @@ export class ThemeService {
   }
 
   setThemeAndSaveInLocal(theme: string): void {
-    console.log('setThemeAndSaveInLocal');
-
     this.theme.set(theme);
     localStorage.setItem('theme', theme);
     document.documentElement.setAttribute('data-theme', this.theme());

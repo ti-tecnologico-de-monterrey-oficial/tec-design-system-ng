@@ -111,7 +111,7 @@ ${getBasicExampleBlock('BmbLayoutDirective, BmbLayoutItemDirective', '', '', tru
     isDynamicItem: {
       control: { type: 'boolean' },
       description:
-        'Enable dinamyc size for the column, if you enable this property the colLg, colSm and colXl will be disabled',
+        'Enable dynamic size for the column, if you enable this property the colLg, colSm and colXl will be disabled',
       table: {
         category: 'Properties',
         defaultValue: { summary: 'false' },

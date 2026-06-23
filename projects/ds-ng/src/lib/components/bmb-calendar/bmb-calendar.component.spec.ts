@@ -111,7 +111,7 @@ describe('BmbCalendarComponent', () => {
 
   it('should disable mobile header on resize when width is greater than or equal to 1000', () => {
     component.isMobileHeader = true;
-    spyOnProperty(window, 'innerWidth', 'get').and.returnValue(1200);
+    spyOnProperty(window, 'innerWidth', 'get').and.returnValue(1000);
 
     component.resize();
 
