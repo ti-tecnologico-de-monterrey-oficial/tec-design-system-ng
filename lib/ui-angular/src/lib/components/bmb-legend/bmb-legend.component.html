@@ -1,0 +1,17 @@
+<div class="bmb_legend">
+  <span class="bmb_legend-indicator">
+    <span
+      [class]="getBulletClass()"
+    ></span>
+  </span>
+  <h3 class="bmb_legend-label">
+    {{ label() }}
+  </h3>
+
+  <span
+    class="bmb_legend-value"
+    [ngClass]="getValueClass()"
+  >
+    {{ value() }}
+  </span>
+</div>
