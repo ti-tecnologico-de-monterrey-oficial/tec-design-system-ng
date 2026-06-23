@@ -48,14 +48,13 @@
       <p
         class="bmb_progress-circle-text-content bmb_progress-circle-background"
       >
-        @if (displayIcon()) {
+        @if (options().size !== 'small' && displayIcon()) {
           <bmb-icon
             [icon]="displayIcon()!"
-            [size]="24"
             [alt]="'bmb_progress_circle.icon' | translate"
           />
         }
-        @if (options().showTitle) {
+        @if (options().size !== 'small' && options().showTitle) {
           <h2 class="bmb_progress-circle-title-container">
             @if (isTitleString()) {
               <span class="bmb_progress-circle-title">

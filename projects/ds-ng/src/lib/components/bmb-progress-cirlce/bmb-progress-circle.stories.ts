@@ -39,6 +39,9 @@ export default {
           'svg',
           'showRestBackground',
           'isTitleString',
+          'validTitle',
+          'displayIcon',
+          'getContainerClasses',
         ],
       },
       description: {
