@@ -8,3 +8,4 @@ export * from './components/bottom-navigation-bar/bottom-navigation-bar.js';
 export * from './context/theme/theme.js';
 export * from './components/bot-icon/bot-icon.js';
 export * from './components/grade-value/grade-value.js';
+export * from './components/iframe/iframe.js';
