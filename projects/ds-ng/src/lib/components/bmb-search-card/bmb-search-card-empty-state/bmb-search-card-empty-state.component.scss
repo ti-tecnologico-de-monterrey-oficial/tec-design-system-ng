@@ -3,6 +3,10 @@
 .bmb_search-card-empty-state {
   height: 100%;
 
+  &_icon {
+    opacity: 0.5;
+  }
+
   &_primary {
     @include fonts.font(7, regular);
     font-weight: 400;
