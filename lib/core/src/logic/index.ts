@@ -10,3 +10,4 @@ export * from './components/bot-icon/bot-icon.js';
 export * from './components/grade-value/grade-value.js';
 export * from './components/iframe/iframe.js';
 export * from './components/mitec-logo-animation/mitec-logo-animation.js';
+export * from './components/notification-counter/notification-counter.js';
