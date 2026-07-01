@@ -50,28 +50,28 @@ type Story = StoryObj<BmbBoxIconComponent>;
 
 export const Default: Story = {};
 
-export const AllColors = {
-  render: () => ({
-    template: `
-      <div style="display: flex; flex-direction: row; gap: 12px; flex-wrap: wrap;">
-        @for (appearance of appearances; track $index) {
-          <bmb-box-icon
-            [boxColor]="appearance"
-            [iconName]="'apps'"
-          />
-        }
-      </div>
-    `,
-    props: {
-      appearances: colorList,
-      iconList: ['face', 'apps', 'chevron_right', 'chevron_left', 'home'],
-    },
-  }),
-  parameters: {
-    docs: {
-      canvas: {
-        sourceState: 'none',
-      },
-    },
-  },
-};
+// export const AllColors = {
+//   render: () => ({
+//     template: `
+//       <div style="display: flex; flex-direction: row; gap: 12px; flex-wrap: wrap;">
+//         @for (appearance of appearances; track $index) {
+//           <bmb-box-icon
+//             [boxColor]="appearance"
+//             [iconName]="'home'"
+//           />
+//         }
+//       </div>
+//     `,
+//     props: {
+//       appearances: colorList,
+//       iconList: ['face', 'apps', 'chevron_right', 'chevron_left', 'home'],
+//     },
+//   }),
+//   parameters: {
+//     docs: {
+//       canvas: {
+//         sourceState: 'none',
+//       },
+//     },
+//   },
+// };
