@@ -11,3 +11,5 @@ export * from './components/grade-value/grade-value.js';
 export * from './components/iframe/iframe.js';
 export * from './components/mitec-logo-animation/mitec-logo-animation.js';
 export * from './components/notification-counter/notification-counter.js';
+export * from './components/server-table/server-table.js';
+export * from './components/pull-wedge/pull-wedge.js';
