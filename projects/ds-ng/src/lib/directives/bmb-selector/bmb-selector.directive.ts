@@ -9,8 +9,8 @@ export class BmbSelectorDirective {
   activeSelectorID = input.required<number | string>();
 
   @HostBinding('class') get elementClass(): string[] {
-    const classList        = ['bmb_selector'];
-    const idSelector       = String(this.idSelector());
+    const classList = ['bmb_selector'];
+    const idSelector = String(this.idSelector());
     const activeSelectorID = String(this.activeSelectorID());
 
     if (idSelector !== activeSelectorID) {

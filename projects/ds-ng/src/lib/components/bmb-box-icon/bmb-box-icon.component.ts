@@ -49,6 +49,6 @@ export class BmbBoxIconComponent {
   boxSize = input<IBmbBoxIconSize>('small');
 
   get colorName(): string {
-    return `color-${this.boxColor() || 'transparent'}`;
+    return `${this.boxColor() || 'transparent'}`;
   }
 }
