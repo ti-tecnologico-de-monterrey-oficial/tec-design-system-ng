@@ -9,6 +9,7 @@ $box_icon_appearance: colorFn.map-merged(
   colors.$creative_base_colors,
   colors.$creative_use_colors,
   colors.$mitec_base_colors,
+  colors.$mitec_institutional_colors,
   colors.$semantic_base_colors,
   colors.$semantic_colors,
   maps.$box_icon_map
@@ -32,17 +33,15 @@ $box_icon_appearance: colorFn.map-merged(
     border-radius: var(--bmb-radius-m);
   }
 
-  &.color {
-    @each $name, $color in $box_icon_appearance {
-      &-#{$name} {
-        background-color: $color;
-      }
+  @each $name, $color in $box_icon_appearance {
+    &.#{$name} {
+      background-color: $color;
     }
   }
 
-  &.color-white,
-  &.color-white_primary,
-  &.color-white-primary {
+  &.white,
+  &.white_primary,
+  &.white-primary {
     color: rgb(var(--black-primary));
   }
 }
