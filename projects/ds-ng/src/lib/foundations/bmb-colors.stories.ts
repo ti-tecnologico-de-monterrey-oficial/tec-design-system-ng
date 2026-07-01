@@ -24,8 +24,13 @@ import { BmbLayoutItemDirective } from '../directives/bmb-layout/bmb-layout-item
 import { BmbVerticalLayoutDirective } from '../directives/bmb-layout/bmb-vertical-layout/bmb-vertical-layout.directive';
 import { BmbVerticalLayoutItemDirective } from '../directives/bmb-layout/bmb-vertical-layout/bmb-vertical-layout-item.directive';
 import {
+  BMB_ALERT_COLOR_LIST,
+  BMB_BASE_COLOR_LIST,
+  BMB_CREATIVE_BASE_COLOR_LIST,
   BMB_CREATIVE_COLOR_LIST,
+  BMB_MITEC_BASE_COLOR_LIST,
   BMB_MITEC_COLOR_LIST,
+  BMB_SEMANTIC_BASE_COLOR_LIST,
   BMB_SEMANTIC_COLOR_LIST,
 } from '../types/foundations/colors/color-type';
 
@@ -106,7 +111,7 @@ import {
                   "
                   (click)="copyToClipboard(item)"
                 >
-                  {{ item }}
+                  {{ '--'.concat(item) }}
                 </button>
               }
             </li>
@@ -489,7 +494,7 @@ import {
               *ngTemplateOutlet="
                 content;
                 context: {
-                  list: mitecInstitutionalColors,
+                  list: creativeUseColors,
                   title: tabList[selectedTab - 1].title,
                   isNameStyle: true
                 }
@@ -505,7 +510,7 @@ import {
               *ngTemplateOutlet="
                 content;
                 context: {
-                  list: creativeUseColors,
+                  list: mitecInstitutionalColors,
                   title: tabList[selectedTab - 1].title,
                   isNameStyle: true
                 }
@@ -515,22 +520,6 @@ import {
           <section
             bmbSelector
             [idSelector]="8"
-            [activeSelectorID]="selectedTab"
-          >
-            <ng-template
-              *ngTemplateOutlet="
-                content;
-                context: {
-                  list: tecmilenioColors,
-                  title: tabList[selectedTab - 1].title,
-                  isNameStyle: true
-                }
-              "
-            />
-          </section>
-          <section
-            bmbSelector
-            [idSelector]="9"
             [activeSelectorID]="selectedTab"
           >
             <ng-template
@@ -557,292 +546,269 @@ class StorybookColorsPlaygroundComponent {
     { id: 3, title: 'Buttons' },
     { id: 4, title: 'Menu' },
     { id: 5, title: 'Semantic' },
-    { id: 6, title: 'mitec' },
-    { id: 7, title: 'Creative use' },
-    { id: 8, title: 'Tecmilenio' },
-    { id: 9, title: 'Alert' },
+    { id: 6, title: 'Creative use' },
+    { id: 7, title: 'mitec' },
   ];
 
-  institutionalColors: string[] = ['--blue-tec', '--white-primary'];
+  institutionalColors: string[] = ['blue-tec', 'white-primary'];
 
-  baseColors = [
-    ['--neon-primary', '--neon-tint', '--neon-light'],
-    ['--blue-primary', '--blue-light', '--blue-tint'],
-    ['--teal-primary', '--teal-light', '--teal-tint'],
-    ['--red-primary', '--red-light', '--red-tint'],
-    ['--green-primary', '--green-light', '--green-tint'],
-    ['--purple-primary', '--purple-light', '--purple-tint'],
-    ['--yellow-primary', '--yellow-light', '--yellow-tint'],
-    '--black-primary',
-  ];
+  baseColors = this.parseMultiArrayColors(BMB_BASE_COLOR_LIST);
 
   baseOpacityColors: string[] = [
-    '--black-light',
-    '--black-tint',
-    '--black-min',
-    '--white-light',
-    '--white-tint',
-    '--white-min',
+    'black-light',
+    'black-tint',
+    'black-min',
+    'white-light',
+    'white-tint',
+    'white-min',
   ];
 
   baseColorGradients: string[] = [
-    '--blue-gradient',
-    '--green-gradient',
-    '--purple-gradient',
+    'blue-gradient',
+    'green-gradient',
+    'purple-gradient',
   ];
 
-  mitecBaseColors: string[][] = [
-    ['--mitec-blue-primary', '--mitec-blue-light', '--mitec-blue-tint'],
-    ['--mitec-red-primary', '--mitec-red-light', '--mitec-red-tint'],
-    ['--mitec-green-primary', '--mitec-green-light', '--mitec-green-tint'],
-    ['--mitec-orange-primary', '--mitec-orange-light', '--mitec-orange-tint'],
-    ['--mitec-purple-primary', '--mitec-purple-light', '--mitec-purple-tint'],
-  ];
+  mitecBaseColors: string[][] = this.parseMultiArrayColors(
+    BMB_MITEC_BASE_COLOR_LIST,
+  );
 
-  creativeBaseColors: string[][] = [
-    ['--violet-primary', '--violet-light', '--violet-tint'],
-    ['--indigo-primary', '--indigo-light', '--indigo-tint'],
-    ['--emerald-primary', '--emerald-light', '--emerald-tint'],
-    ['--licorice-primary', '--licorice-light', '--licorice-tint'],
-    ['--dark-teal-primary', '--dark-teal-light', '--dark-teal-tint'],
-    ['--peach-primary', '--peach-light', '--peach-tint'],
-    ['--sepia-primary', '--sepia-light', '--sepia-tint'],
-    ['--soft-red-primary', '--soft-red-light', '--soft-red-tint'],
-    [
-      '--wattle-primary',
-      '--wattle-primary-alternative',
-      '--wattle-light',
-      '--wattle-tint',
-    ],
-    ['--ship-cove-primary', '--ship-cove-light', '--ship-cove-tint'],
-    ['--plantation-primary', '--plantation-light', '--plantation-tint'],
-    ['--rum-primary', '--rum-light', '--rum-tint'],
-    [
-      '--ripe-lemon-primary',
-      '--ripe-lemon-primary-alternative',
-      '--ripe-lemon-light',
-      '--ripe-lemon-tint',
-    ],
-    ['--hibiscus-primary', '--hibiscus-light', '--hibiscus-tint'],
-  ];
+  creativeBaseColors: string[][] = this.parseMultiArrayColors(
+    BMB_CREATIVE_BASE_COLOR_LIST,
+  );
 
-  creativeGradients: string[] = ['--gradient-bg-tec'];
+  creativeGradients: string[] = ['gradient-bg-tec'];
 
-  semanticBaseColors: string[][] = [
-    [
-      '--success-primary',
-      '--success-light',
-      '--success-thin',
-      '--success-primary-alternative',
-      '--success-tint-alternative',
-    ],
-    [
-      '--warning-primary',
-      '--warning-light',
-      '--warning-tint',
-      '--warning-primary-alternative',
-    ],
-    ['--error-primary', '--error-light', '--error-tint'],
-    ['--info-primary', '--info-light', '--info-tint'],
-    ['--branding-primary', '--branding-tint', '--branding-tint'],
-    ['--alert-primary', '--alert-light', '--alert-tint'],
-  ];
+  semanticBaseColors: string[][] = this.parseMultiArrayColors(
+    BMB_SEMANTIC_BASE_COLOR_LIST,
+  );
 
   blueMariner: string[] = [
-    '--blue-mariner-50',
-    '--blue-mariner-100',
-    '--blue-mariner-200',
-    '--blue-mariner-300',
-    '--blue-mariner-400',
-    '--blue-mariner-500',
-    '--blue-mariner-700',
-    '--blue-mariner-800',
-    '--blue-mariner-900',
-    '--blue-mariner-950',
+    'blue-mariner-50',
+    'blue-mariner-100',
+    'blue-mariner-200',
+    'blue-mariner-300',
+    'blue-mariner-400',
+    'blue-mariner-500',
+    'blue-mariner-700',
+    'blue-mariner-800',
+    'blue-mariner-900',
+    'blue-mariner-950',
   ];
 
   blueGED: string[] = [
-    '--blue-ged-50',
-    '--blue-ged-100',
-    '--blue-ged-200',
-    '--blue-ged-300',
-    '--blue-ged-400',
-    '--blue-ged-500',
-    '--blue-ged-600',
-    '--blue-ged-700',
-    '--blue-ged-800',
-    '--blue-ged-900',
-    '--blue-ged-950',
+    'blue-ged-50',
+    'blue-ged-100',
+    'blue-ged-200',
+    'blue-ged-300',
+    'blue-ged-400',
+    'blue-ged-500',
+    'blue-ged-600',
+    'blue-ged-700',
+    'blue-ged-800',
+    'blue-ged-900',
+    'blue-ged-950',
   ];
 
   greenTECMI: string[] = [
-    '--green-tecmi-50',
-    '--green-tecmi-100',
-    '--green-tecmi-200',
-    '--green-tecmi-300',
-    '--green-tecmi-400',
-    '--green-tecmi-500',
-    '--green-tecmi-600',
-    '--green-tecmi-700',
-    '--green-tecmi-800',
-    '--green-tecmi-900',
-    '--green-tecmi-950',
+    'green-tecmi-50',
+    'green-tecmi-100',
+    'green-tecmi-200',
+    'green-tecmi-300',
+    'green-tecmi-400',
+    'green-tecmi-500',
+    'green-tecmi-600',
+    'green-tecmi-700',
+    'green-tecmi-800',
+    'green-tecmi-900',
+    'green-tecmi-950',
   ];
 
   institutionalTECMI: string[] = [
-    '--tecmi-primary',
-    '--tecmi-secondary',
-    '--tecmi-auxiliar-one',
-    '--tecmi-auxiliar-two',
-    '--tecmi-auxiliar-three',
+    'tecmi-primary',
+    'tecmi-secondary',
+    'tecmi-auxiliar-one',
+    'tecmi-auxiliar-two',
+    'tecmi-auxiliar-three',
   ];
 
   generalContrasts: string[][] = [
     [
-      '--general-contrasts',
-      '--general-contrasts-100',
-      '--general-contrasts-90',
-      '--general-contrasts-80',
-      '--general-contrasts-75',
-      '--general-contrasts-60',
-      '--general-contrasts-50',
-      '--general-contrasts-40',
-      '--general-contrasts-25',
-      '--general-contrasts-20',
-      '--general-contrasts-15',
-      '--general-contrasts-10',
-      '--general-contrasts-5',
+      'general-contrasts',
+      'general-contrasts-100',
+      'general-contrasts-90',
+      'general-contrasts-80',
+      'general-contrasts-75',
+      'general-contrasts-60',
+      'general-contrasts-50',
+      'general-contrasts-40',
+      'general-contrasts-25',
+      'general-contrasts-20',
+      'general-contrasts-15',
+      'general-contrasts-10',
+      'general-contrasts-5',
     ],
     [
-      '--general-contrasts-main-complementary',
-      '--general-contrasts-light-complementary',
-      '--general-contrasts-dark-complementary',
-      '--general-contrasts-main-selection',
-      '--general-contrasts-icon-selection',
-      '--general-contrasts-main-selection-alternative',
+      'general-contrasts-main-complementary',
+      'general-contrasts-light-complementary',
+      'general-contrasts-dark-complementary',
+      'general-contrasts-main-selection',
+      'general-contrasts-icon-selection',
+      'general-contrasts-main-selection-alternative',
     ],
     [
-      '--general-contrasts-input-background',
-      '--general-contrasts-input-outline',
-      '--general-contrasts-container-outline',
+      'general-contrasts-input-background',
+      'general-contrasts-input-outline',
+      'general-contrasts-container-outline',
     ],
-    ['--general-contrasts-text-sidebar', '--general-contrasts-primary'],
+    ['general-contrasts-text-sidebar', 'general-contrasts-primary'],
   ];
 
   containers: string[][] = [
     [
-      '--containers-background',
-      '--containers-main',
-      '--containers-modal',
-      '--containers-container-button',
+      'containers-background',
+      'containers-main',
+      'containers-modal',
+      'containers-container-button',
     ],
     [
-      '--containers-top-bar',
-      '--containers-media-card-background',
-      '--containers-background-fade',
-      '--containers-media-card-background-fade',
+      'containers-top-bar',
+      'containers-media-card-background',
+      'containers-background-fade',
+      'containers-media-card-background-fade',
     ],
   ];
 
-  containerGradients: string[] = ['--media-card-gradient-default'];
+  containerGradients: string[] = ['media-card-gradient-default'];
 
   buttons: string[] = [
-    '--buttons-primary-normal',
-    '--buttons-primary-hover',
-    '--buttons-primary-select',
-    '--buttons-alternative-normal',
-    '--buttons-alternative-hover',
-    '--buttons-alternative-text',
-    '--buttons-alternative-select-text',
-    '--buttons-alternative-text-hover',
-    '--buttons-primary-text',
-    '--buttons-fab-text',
-    '--buttons-active-switch',
-    '--buttons-inactive-step',
-    '--buttons-stroke-alternative-normal',
-    '--buttons-stroke-primary-selected',
-    '--buttons-blur-primary-select',
-    '--buttons-stroke-primary-hover',
-    '--buttons-destructive',
-    '--buttons-text-link',
+    'buttons-primary-normal',
+    'buttons-primary-hover',
+    'buttons-primary-select',
+    'buttons-alternative-normal',
+    'buttons-alternative-hover',
+    'buttons-alternative-text',
+    'buttons-alternative-select-text',
+    'buttons-alternative-text-hover',
+    'buttons-primary-text',
+    'buttons-fab-text',
+    'buttons-active-switch',
+    'buttons-inactive-step',
+    'buttons-stroke-alternative-normal',
+    'buttons-stroke-primary-selected',
+    'buttons-blur-primary-select',
+    'buttons-stroke-primary-hover',
+    'buttons-destructive',
+    'buttons-text-link',
   ];
 
   menuSelect: string[][] = [
     [
-      '--menu-select-surface-activated',
-      '--menu-select-label-menu-active',
-      '--menu-select-label-menu-inactive',
-      '--menu-select-activated-w-checkbox',
-      '--menu-select-alternative-focus-label',
+      'menu-select-surface-activated',
+      'menu-select-label-menu-active',
+      'menu-select-label-menu-inactive',
+      'menu-select-activated-w-checkbox',
+      'menu-select-alternative-focus-label',
     ],
     [
-      '--menu-select-on-surface-hovered-w-checkbox',
-      '--menu-select-on-surface-hovered',
+      'menu-select-on-surface-hovered-w-checkbox',
+      'menu-select-on-surface-hovered',
     ],
   ];
 
-  semanticColors: string[] = this.parseColors(BMB_SEMANTIC_COLOR_LIST);
+  semanticColors: string[] = BMB_SEMANTIC_COLOR_LIST;
 
-  mitecInstitutionalColors: string[] = this.parseColors(BMB_MITEC_COLOR_LIST);
+  mitecInstitutionalColors: string[] = BMB_MITEC_COLOR_LIST;
 
-  creativeUseColors: string[] = this.parseColors(BMB_CREATIVE_COLOR_LIST);
+  creativeUseColors: string[] = BMB_CREATIVE_COLOR_LIST;
 
-  tecmilenioColors: string[] = ['--tecmi-green', '--tecmi-green-2'];
-
-  alertColors: string[] = [
-    '--alert-successful',
-    '--alert-event',
-    '--alert-neutral',
-    '--alert-primary-alert-primary',
-    '--alert-warning',
-    '--alert-error',
-  ];
+  alertColors: string[] = BMB_ALERT_COLOR_LIST;
 
   grayCharade: string[] = [
-    '--gray-charade-50',
-    '--gray-charade-100',
-    '--gray-charade-200',
-    '--gray-charade-300',
-    '--gray-charade-500',
-    '--gray-charade-600',
-    '--gray-charade-700',
-    '--gray-charade-800',
-    '--gray-charade-900',
-    '--gray-charade-950',
+    'gray-charade-50',
+    'gray-charade-100',
+    'gray-charade-200',
+    'gray-charade-300',
+    'gray-charade-500',
+    'gray-charade-600',
+    'gray-charade-700',
+    'gray-charade-800',
+    'gray-charade-900',
+    'gray-charade-950',
   ];
 
   grayTECMI: string[] = [
-    '--gray-tecmi-25',
-    '--gray-tecmi-50',
-    '--gray-tecmi-100',
-    '--gray-tecmi-150',
-    '--gray-tecmi-200',
-    '--gray-tecmi-300',
-    '--gray-tecmi-400',
-    '--gray-tecmi-500',
-    '--gray-tecmi-600',
-    '--gray-tecmi-700',
-    '--gray-tecmi-800',
-    '--gray-tecmi-900',
-    '--gray-tecmi-950',
+    'gray-tecmi-25',
+    'gray-tecmi-50',
+    'gray-tecmi-100',
+    'gray-tecmi-150',
+    'gray-tecmi-200',
+    'gray-tecmi-300',
+    'gray-tecmi-400',
+    'gray-tecmi-500',
+    'gray-tecmi-600',
+    'gray-tecmi-700',
+    'gray-tecmi-800',
+    'gray-tecmi-900',
+    'gray-tecmi-950',
   ];
 
   grayGED: string[] = [
-    '--gray-ged-50',
-    '--gray-ged-100',
-    '--gray-ged-200',
-    '--gray-ged-300',
-    '--gray-ged-400',
-    '--gray-ged-500',
-    '--gray-ged-600',
-    '--gray-ged-700',
-    '--gray-ged-800',
-    '--gray-ged-900',
-    '--gray-ged-950',
+    'gray-ged-50',
+    'gray-ged-100',
+    'gray-ged-200',
+    'gray-ged-300',
+    'gray-ged-400',
+    'gray-ged-500',
+    'gray-ged-600',
+    'gray-ged-700',
+    'gray-ged-800',
+    'gray-ged-900',
+    'gray-ged-950',
   ];
 
-  parseColors(colorList: string[]): string[] {
-    return [...colorList.map((element: string) => `--${element}`)];
+  parseMultiArrayColors(colorList: string[]): string[][] {
+    let lastKey: string = '',
+      _list: string[] = [],
+      _subList: string[] = [];
+
+    return colorList.reduce(
+      (acc: string[][], current: string, index: number, list: Array<any>) => {
+        let key: string = current.substring(0, current.indexOf('-'));
+
+        if (index === 0 || lastKey !== key) {
+          _list = list.filter(
+            (element: string) =>
+              element.substring(0, element.indexOf('-')) === key,
+          );
+
+          if (_list.length === list.length) {
+            key = current.substring(0, current.lastIndexOf('-'));
+
+            if (index === 0 || lastKey !== key) {
+              _list = list.filter(
+                (element: string) =>
+                  element.substring(0, element.lastIndexOf('-')) === key,
+              );
+            }
+          }
+          lastKey = key;
+          if (_list.length === 1) {
+            _subList = [..._subList, current];
+          }
+
+          if (_list.length > 1 && _list.length < list.length) {
+            return [...acc, _list];
+          }
+
+          if (index + 1 === list.length && !!_subList.length) {
+            return [...acc, _subList];
+          }
+        }
+        return acc;
+      },
+      [],
+    );
   }
 
   isList(element: any): boolean {
@@ -872,20 +838,22 @@ class StorybookColorsPlaygroundComponent {
   }
 
   parseColorNamedStyle(color: string) {
-    return this.parseBGColorStyle(`rgb(var(${color}))`);
+    return this.parseBGColorStyle(`rgb(var(--${color}))`);
   }
 
   parseNamedStyle(color: string) {
-    return this.parseBGColorStyle(`var(${color})`);
+    return this.parseBGColorStyle(`var(--${color})`);
   }
 
   parseGradientStyle(color: string) {
-    return this.parseBGColorStyle(`linear-gradient(var(${color}))`);
+    return this.parseBGColorStyle(`linear-gradient(var(--${color}))`);
   }
 
   copyToClipboard(item: any) {
-    window.navigator.clipboard.writeText(item.name || item);
-    window.alert('Color copied to clipboard: ' + (item.name || item));
+    window.navigator.clipboard.writeText('--'.concat(item.name || item));
+    window.alert(
+      'Color copied to clipboard: ' + '--'.concat(item.name || item),
+    );
   }
 }
 
