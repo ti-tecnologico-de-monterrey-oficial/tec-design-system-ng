@@ -25,7 +25,7 @@ import {
   getMaxDragHeight,
   getToggleState,
   isValidDragHeight,
-} from '@ti-tecnologico-de-monterrey-oficial/core/component/pull-wedge';
+} from '../../_core/logic/components/pull-wedge/pull-wedge';
 
 @Component({
   selector: 'bmb-pull-wedge',

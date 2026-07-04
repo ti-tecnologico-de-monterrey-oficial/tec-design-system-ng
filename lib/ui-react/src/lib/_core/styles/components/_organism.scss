@@ -1,0 +1,34 @@
+@use '../base/rem' as rem;
+@use '../base/mixins' as mixins;
+
+.bmb_organism-identity-spectrum {
+  display: flex;
+  flex-direction: column;
+  height: 100dvh;
+
+  &-main {
+    @include mixins.check-for-mobile(false) {
+      padding: rem.rem_calc(48 152);
+    }
+
+    @include mixins.check-for-mobile() {
+      padding: rem.rem_calc(8);
+    }
+  }
+
+  &-form-buttons {
+    padding-top: rem.rem_calc(16);
+  }
+
+  .bmb_home-card-wrapper {
+    @include mixins.check-for-mobile(false) {
+      //64px (top bar height) + 48px (main padding-top) =  102px
+      height: calc(100% - rem.rem_calc(102));
+    }
+
+    @include mixins.check-for-mobile(false) {
+      //64px (top bar height) + 8px (main padding-top) =  102px
+      height: calc(100% - rem.rem_calc(72));
+    }
+  }
+}

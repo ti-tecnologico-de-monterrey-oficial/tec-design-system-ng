@@ -1,0 +1,50 @@
+.table-container {
+  position: relative;
+  width: 100%;
+}
+
+.spinner-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.8); // Fondo semitransparente
+  z-index: 10; // Capa superior
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse; // Asegura que las celdas no tengan bordes duplicados
+  box-shadow: none;
+
+  tr {
+    transition: background-color 0.2s ease-in-out; // Efecto suave al hacer hover y clic
+    cursor: pointer; // Cambia el cursor a pointer}
+    height: 30px;
+
+    &:hover {
+      background-color: #ebedf3; // Color al hacer hover
+    }
+
+    &.selected-row {
+      background-color: #ddeefc !important; // Color al seleccionar el row
+    }
+  }
+}
+
+.mat-header-cell,
+.mat-cell {
+  text-align: left;
+  padding: 8px;
+}
+
+.no-columns-message {
+  text-align: center;
+  color: red;
+  font-weight: bold;
+  margin: 20px;
+}

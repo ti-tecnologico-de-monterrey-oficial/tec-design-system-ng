@@ -16,7 +16,7 @@ import {
   buildNavigationElements,
   type IBmbFooterEvent,
   type IBmbNavigationBarIcons,
-} from '@ti-tecnologico-de-monterrey-oficial/core/component/bottom-navigation-bar';
+} from '../../_core/logic/components/bottom-navigation-bar/bottom-navigation-bar';
 
 @Component({
   selector: 'bmb-bottom-navigation-bar',

@@ -11,6 +11,7 @@
   "scripts": {},
   "private": false,
   "devDependencies": {
+    "@angular/animations": "21.2.0",
     "@angular-devkit/build-angular": "21.2.0",
     "@angular-devkit/core": "21.2.0",
     "@angular-devkit/schematics": "21.2.0",
@@ -18,6 +19,7 @@
     "@angular/cli": "21.2.0",
     "@angular/compiler-cli": "21.2.0",
     "@angular/language-service": "21.2.0",
+    "@angular/platform-browser-dynamic": "21.2.0",
     "@babel/core": "7.14.5",
     "@babel/preset-react": "7.14.5",
     "@babel/runtime": "7.29.7",
@@ -61,7 +63,8 @@
     "tslib": "2.3.0",
     "typescript": "5.9.2",
     "vite": "8.0.0",
-    "vitest": "4.1.0"
+    "vitest": "4.1.0",
+    "zone.js": "0.15.1"
   },
   "workspaces": [
     "packages/*",

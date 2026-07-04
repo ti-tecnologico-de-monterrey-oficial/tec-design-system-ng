@@ -10,7 +10,7 @@ import {
   getLegendBulletClass,
   getLegendValueClass,
   type IBmbLegendVariations,
-} from '@ti-tecnologico-de-monterrey-oficial/core/component/legend';
+} from '../../_core/logic/components/legend/legend';
 
 @Component({
   selector: 'bmb-legend',

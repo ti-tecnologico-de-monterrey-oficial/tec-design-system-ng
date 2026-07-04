@@ -14,7 +14,7 @@ import {
   type IBmbBgColor,
   type IBmbBoxShadowStyle,
   type IBmbCardType,
-} from '@ti-tecnologico-de-monterrey-oficial/core/component/card';
+} from '../../_core/logic/components/card/card';
 
 
 

@@ -9,7 +9,7 @@ import {
 import {
   getCounter,
   type IBmbNotificationCounterType,
-} from '@ti-tecnologico-de-monterrey-oficial/core/component/notification-counter';
+} from '../../_core/logic/components/notification-counter/notification-counter';
 
 @Component({
   selector: 'bmb-notification-counter',

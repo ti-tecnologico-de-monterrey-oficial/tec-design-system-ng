@@ -1,0 +1,54 @@
+@use 'sass:list';
+@use 'sass:math';
+@use 'sass:meta';
+$global-font-size: 16px;
+
+@function strip-unit($num) {
+  $divisor: ($num * 0 + 1);
+
+  @return calc($num / $divisor);
+}
+
+@function -btsp-to-rem($value, $base: null) {
+  @if meta.type-of($value) != 'number' {
+    @warn meta.inspect($value) + ' was passed to rem_calc(), which is not a number.';
+
+    @return $value;
+  }
+
+  @if math.unit($value) != 'rem' {
+    $value: calc(strip-unit($value) / strip-unit($base)) * 1rem;
+  }
+
+  @if $value == 0rem {
+    $value: 0;
+  }
+
+  @return $value;
+}
+
+@function rem_calc($values, $base: null) {
+  $rem-values: ();
+  $count: list.length($values);
+
+  @if $base == null {
+    $base: $global-font-size;
+  }
+
+  @if math.unit($base) == '%' {
+    $base: ($base / 100%) * 10px;
+  }
+
+  @if $count == 1 {
+    @return -btsp-to-rem($values, $base);
+  }
+
+  @for $i from 1 through $count {
+    $rem-values: list.append(
+      $rem-values,
+      -btsp-to-rem(list.nth($values, $i), $base)
+    );
+  }
+
+  @return $rem-values;
+}

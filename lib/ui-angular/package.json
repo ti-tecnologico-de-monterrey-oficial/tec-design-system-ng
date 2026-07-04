@@ -2,7 +2,7 @@
   "name": "@ti-tecnologico-de-monterrey-oficial/ui-angular",
   "version": "0.0.1",
   "peerDependencies": {
-    "@material-symbols/svg-400": "0.39.1",
+    "@material-symbols/svg-400": "0.39.4",
     "@angular/common": "21.2.0",
     "@angular/core": "21.2.0"
   },
