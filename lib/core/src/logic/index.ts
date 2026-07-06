@@ -14,3 +14,5 @@ export * from './components/notification-counter/notification-counter.js';
 export * from './components/server-table/server-table.js';
 export * from './components/pull-wedge/pull-wedge.js';
 export * from './components/balance-overview/balance-overview.js';
+export * from './components/bookmark/bookmark.js';
+export * from './components/box-icon/box-icon.js';
