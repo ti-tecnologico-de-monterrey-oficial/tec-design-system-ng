@@ -3,7 +3,7 @@
   [target]="target()!"
   (buttonClick)="handleClick($event)"
 >
-  <bmb-tooltip-base [componentTitle]="componentTitle() || title() || ''">
+  <bmb-tooltip-base [text]="componentTitle() || title() || ''">
     <section [ngClass]="getClasses()">
       <bmb-box-icon
         [iconName]="icon()"
