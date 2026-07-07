@@ -188,7 +188,7 @@ export class BmbAccordionComponent implements OnInit, OnChanges {
   }
 
   getIconToggle(): string {
-    return this.isOpen() ? 'expand_less' : 'expand_more';
+    return this.isOpen() ? 'keyboard_arrow_up' : 'keyboard_arrow_down';
   }
 
   handleToggleKeyboard(event: KeyboardEvent): void {
