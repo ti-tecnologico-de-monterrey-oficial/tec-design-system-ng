@@ -74,9 +74,9 @@ describe('BmbAccordionComponent', () => {
 
   it('should return correct icon toggle', () => {
     component.toggle(event);
-    expect(component.getIconToggle()).toBe('expand_less');
+    expect(component.getIconToggle()).toBe('keyboard_arrow_up');
 
     component.toggle(event);
-    expect(component.getIconToggle()).toBe('expand_more');
+    expect(component.getIconToggle()).toBe('keyboard_arrow_down');
   });
 });
