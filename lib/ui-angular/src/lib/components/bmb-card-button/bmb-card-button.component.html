@@ -1,0 +1,183 @@
+<section class="bmb_card_button">
+  @if (isSmall()) {
+    <button
+      type="button"
+      class="bmb_card_button-small"
+      [ngClass]="{ 'bmb_card_button-small-flipped': isFlipped }"
+      (click)="handleSmallClick($event)"
+    >
+      <div class="bmb_card_button-small-front">
+        <bmb-icon
+          [icon]="smallIcon()"
+          [size]="24"
+          class="bmb_card_button-small-top-icon"
+          alt="Small icon"
+        />
+        @if (isABotTemplate(botImage()?.src!)) {
+          <bmb-icon [size]="48" [alt]="botImage()?.alt!" [isSVGTemplate]="true">
+            <ng-template #customIcon>
+              <bmb-bot-icon [iconName]="botImage()?.src!" />
+            </ng-template>
+          </bmb-icon>
+        } @else {
+          <bmb-icon
+            [size]="48"
+            [alt]="botImage()?.alt!"
+            [icon]="botImage()?.src!"
+          ></bmb-icon>
+        }
+        <h3 class="bmb_card_button-small-title">{{ smallTitle() }}</h3>
+      </div>
+      <div class="bmb_card_button-small-back">
+        <bmb-icon
+          icon="close"
+          [size]="24"
+          class="bmb_card_button-small-close-icon"
+        />
+        <div class="bmb_card_button-small-text">
+          {{ smallDescription() }}
+        </div>
+      </div>
+    </button>
+  } @else if (isFullInteractive()) {
+    <section
+      tabindex="0"
+      class="bmb_card_button-wrapper"
+      [ngClass]="{
+        'bmb_card_button-wrapper-button':
+          leftContent() &&
+          !leftContentIcon() &&
+          leftContentImage() &&
+          !textLink(),
+        disabled: isDisabled()
+      }"
+      aria-label="button"
+      (click)="handleAddContent($event)"
+      (keypress)="handleAddContent($event)"
+    >
+      @if (leftContent() || isTemplate() || hasMenu()) {
+        <section class="bmb_card_button-box">
+          @if (leftContent()) {
+            <section
+              class="bmb_card_button-left"
+              [ngClass]="{
+                'bmb_card_button-top-header': !leftContentIcon(),
+                'bmb_card_button-top-header-start':
+                  !leftContentIcon() && !!badge()
+              }"
+            >
+              @if (!!leftContentIcon()) {
+                <div class="bmb_card_button-circle">
+                  <bmb-icon
+                    [icon]="leftContentIcon()"
+                    [size]="32"
+                    class="bmb_card_button-circle-icon"
+                    [alt]="componentTitle() || title() || ''"
+                  />
+                </div>
+              } @else {
+                <img
+                  class="bmb_card_button-top-header-image"
+                  [src]="leftContentImage()?.src"
+                  [alt]="leftContentImage()?.alt"
+                />
+                <section class="bmb_card_button-top-header-container">
+                  @if (!!badge()) {
+                    <bmb-badge
+                      class="bmb_card_button-top-header-container-title"
+                      [text]="badge()?.text!"
+                      [appearance]="badge()?.appearance ?? 'normal'"
+                      [container]="badge()?.container ?? true"
+                    />
+                  }
+                  <h2 class="bmb_card_button-top-header-container-title">
+                    {{ componentTitle() || title() || '' }}
+                  </h2>
+                </section>
+              }
+            </section>
+          }
+          <section class="bmb_card_button-leading">
+            @if (isTemplate()) {
+              <div class="bmb_card_button-template">
+                <ng-content />
+              </div>
+            }
+
+            @if (hasMenu()) {
+              <bmb-dropdown-menu
+                class="bmb_card_button-menu"
+                [items]="menuItems()"
+              />
+            }
+          </section>
+        </section>
+      }
+      @if (!!leftContentIcon() && !leftContentImage()) {
+        <section
+          tabindex="0"
+          class="bmb_card_button-header"
+          (click)="handleTitleClick($event)"
+          aria-label="button"
+          (keypress)="handleTitleClick($event)"
+        >
+          <h2 class="bmb_card_button-header-text">
+            {{ componentTitle() || title() || '' }}
+          </h2>
+          <bmb-icon
+            [icon]="icon()"
+            [size]="16"
+            class="bmb_card_button-header-icon"
+          />
+        </section>
+      }
+
+      @if (
+        (leftContent() &&
+          !leftContentIcon() &&
+          leftContentImage() &&
+          textLink()) ||
+        body()
+      ) {
+        <section class="bmb_card_button-body">
+          {{ body() }}
+
+          @if (
+            leftContent() &&
+            !leftContentIcon() &&
+            leftContentImage() &&
+            textLink()
+          ) {
+            <bmb-text-link
+              [textLink]="textLink()?.label!"
+              icon=""
+              [link]="textLink()?.link!"
+              [target]="textLink()?.target!"
+            />
+          }
+        </section>
+      }
+      <div class="bmb_card_button-custom-content">
+        <ng-container [ngTemplateOutlet]="customContent() ?? null" />
+      </div>
+    </section>
+  } @else {
+    <button
+      type="button"
+      class="bmb_card_button-add"
+      [disabled]="isDisabled()"
+      (click)="handleAddContent($event)"
+    >
+      <bmb-icon
+        [icon]="icon()"
+        [size]="48"
+        class="bmb_card_button-add-icon"
+        [isFill]="false"
+        [alt]="componentTitle() || title() || ''"
+      />
+      <div class="bmb_card_button-add-title">
+        {{ componentTitle() || title() || '' }}
+      </div>
+    </button>
+  }
+</section>
