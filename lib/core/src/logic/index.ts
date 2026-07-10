@@ -18,3 +18,4 @@ export * from './components/bookmark/bookmark.js';
 export * from './components/box-icon/box-icon.js';
 export * from './components/icon/icon.js';
 export * from './components/check-external-link-button/check-external-link-button.js';
+export * from './components/checkbox/checkbox.js';
