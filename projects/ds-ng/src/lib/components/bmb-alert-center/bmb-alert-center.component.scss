@@ -27,7 +27,7 @@
   &-main {
     position: relative;
 
-    @include mixins.check-for-mobile(false) {
+    @include mixins.check-for-desktop() {
       border-right: rem.rem_calc(1) solid var(--general-contrasts-15);
     }
 

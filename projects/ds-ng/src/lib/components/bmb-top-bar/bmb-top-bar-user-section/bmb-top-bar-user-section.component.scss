@@ -19,7 +19,7 @@
     display: block;
     line-height: 0;
 
-    @include mixins.hidden-for-no-mobile();
+    @include mixins.hidden-for-desktop();
   }
 
   .bmb_user-summary_content-wrapper {

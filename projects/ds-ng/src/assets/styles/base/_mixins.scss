@@ -146,7 +146,7 @@
     padding: rem.rem_calc(11 15);
     transition: none;
 
-    @include check-for-mobile(false) {
+    @include check-for-desktop() {
       padding: rem.rem_calc(7 39);
     }
 
@@ -155,7 +155,7 @@
       border-width: rem.rem_calc(2);
       padding: rem.rem_calc(10 14);
 
-      @include check-for-mobile(false) {
+      @include check-for-desktop() {
         padding: rem.rem_calc(6 38);
       }
     }
@@ -169,7 +169,7 @@
       color: var(--general-contrasts-5);
       background: var(--general-contrasts-100);
 
-      @include check-for-mobile(false) {
+      @include check-for-desktop() {
         padding: rem.rem_calc(6 38);
       }
     }
@@ -180,7 +180,7 @@
     color: var(--buttons-destructive);
     padding: rem.rem_calc(11 15);
 
-    @include check-for-mobile(false) {
+    @include check-for-desktop() {
       padding: rem.rem_calc(7 39);
     }
 
@@ -189,7 +189,7 @@
       border-width: rem.rem_calc(2);
       padding: rem.rem_calc(10 14);
 
-      @include check-for-mobile(false) {
+      @include check-for-desktop() {
         padding: rem.rem_calc(6 38);
       }
     }
@@ -202,7 +202,7 @@
       border-width: rem.rem_calc(2);
       box-shadow: rem.rem_calc(0 0 20) rgb(var(--red-primary));
 
-      @include check-for-mobile(false) {
+      @include check-for-desktop() {
         padding: rem.rem_calc(6 38);
       }
     }
@@ -393,15 +393,15 @@
   text-decoration: none;
 }
 
-@mixin check-for-mobile($condition: true) {
-  @if $condition == true {
-    @include media-query(vars.$breakpoint_max_mobile, 'max') {
-      @content;
-    }
-  } @else {
-    @include media-query(vars.$breakpoint_min_desktop, 'min') {
-      @content;
-    }
+@mixin check-for-mobile() {
+  @include media-query(vars.$breakpoint_max_mobile, 'max') {
+    @content;
+  }
+}
+
+@mixin check-for-desktop() {
+  @include media-query(vars.$breakpoint_min_desktop, 'min') {
+    @content;
   }
 }
 
@@ -411,8 +411,8 @@
   }
 }
 
-@mixin hidden-for-no-mobile() {
-  @include check-for-mobile(false) {
+@mixin hidden-for-desktop() {
+  @include check-for-desktop() {
     display: none;
   }
 }

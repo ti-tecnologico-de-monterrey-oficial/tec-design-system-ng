@@ -11,7 +11,7 @@
   box-sizing: border-box;
   container-type: inline-size;
 
-  @include mixins.check-for-mobile(false) {
+  @include mixins.check-for-desktop() {
     height: 100%;
   }
 
@@ -36,7 +36,7 @@
 
     &-top,
     &-bottom {
-      @include mixins.check-for-mobile(false) {
+      @include mixins.check-for-desktop() {
         .bmb_table-header {
           height: 30%;
           width: 100%;
@@ -50,7 +50,7 @@
 
     &-left,
     &-right {
-      @include mixins.check-for-mobile(false) {
+      @include mixins.check-for-desktop() {
         flex-flow: row;
 
         .bmb_table-header {
@@ -64,7 +64,7 @@
     }
 
     &-right {
-      @include mixins.check-for-mobile(false) {
+      @include mixins.check-for-desktop() {
         flex-flow: row-reverse;
       }
     }

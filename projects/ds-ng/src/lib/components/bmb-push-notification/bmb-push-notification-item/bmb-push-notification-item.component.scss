@@ -9,7 +9,7 @@
   text-overflow: ellipsis;
   overflow: hidden;
 
-  @include mixins.check-for-mobile(false) {
+  @include mixins.check-for-desktop() {
     white-space: initial;
     text-overflow: initial;
   }
@@ -60,7 +60,7 @@ $notification_appearance: colorFn.map-merged(
   &-full-color {
     border-radius: rem.rem_calc(50);
 
-    @include mixins.check-for-mobile(false) {
+    @include mixins.check-for-desktop() {
       border-radius: var(--bmb-radius-s);
     }
 
@@ -234,7 +234,7 @@ $notification_appearance: colorFn.map-merged(
       line-height: 0;
       white-space: nowrap;
 
-      @include mixins.check-for-mobile(false) {
+      @include mixins.check-for-desktop() {
         line-height: inherit;
         opacity: 1;
         white-space: initial;
