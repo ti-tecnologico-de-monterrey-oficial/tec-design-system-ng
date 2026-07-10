@@ -17,5 +17,7 @@ export * from './components/balance-overview/balance-overview.js';
 export * from './components/bookmark/bookmark.js';
 export * from './components/box-icon/box-icon.js';
 export * from './components/icon/icon.js';
+export * from './components/card-button/card-button.js';
+export * from './components/carousel/carousel.js';
 export * from './components/breadcrumb/breadcrumb.js';
 export * from './components/button-icon/button-icon.js';
