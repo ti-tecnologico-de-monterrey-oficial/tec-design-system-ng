@@ -1,0 +1,14 @@
+<span
+  class="bmb_button_icon"
+  [ngClass]="getClasses()"
+>
+  <bmb-action-icon
+    [idElement]="idElement()"
+    [icon]="icon()"
+    [iconSize]="showContainer() ? 24 : 32"
+    [disabled]="disabled()!"
+    (buttonPress)="handlePress()"
+    (buttonClick)="handleClick($event)"
+    [alt]="alt()"
+  />
+</span>
