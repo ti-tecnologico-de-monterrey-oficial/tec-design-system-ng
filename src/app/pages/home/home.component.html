@@ -1,34 +1,8 @@
 <header class="bmb_template-header">
   <h3>Home</h3>
-  <bmb-icon alt="whats" [icon]="'assets/img/whats.svg'"></bmb-icon>
-  <div class="test">
-    <div [style.color]="'var(' + claseColorActual + ')'">
-      <!-- @for (idx of arrBarras; track $index) { -->
-      <!-- <span>{{ fillIcon($index) + '-' + idx }}</span>
-        {{ barrasLlenas }} -->
-      <bmb-icon icon="crop_9_16" [isFill]="true" [size]="24" />
-      <bmb-icon icon="crop_9_16" [isFill]="true" [size]="24" />
-      <bmb-icon icon="crop_9_16" [isFill]="false" [size]="24" />
-      <bmb-icon icon="crop_9_16" [isFill]="false" [size]="24" />
-      <!-- } -->
-    </div>
-
-    <span class="logro-label" style="color: var(--general-contrasts-100)">{{
-      nombre_grado_logro
-    }}</span>
-  </div>
 </header>
 
 <div class="bmb_template-margin-for-sidebar">
-  <button (click)="handleModalWithDropdown()">Open Modal</button>
-  <bmb-tooltip [text]="'texto de prueba'" [componentTitle]="'Titlo de prueba'">
-    <bmb-action-icon
-      [idElement]="'1'"
-      (buttonClick)="printPaymentDetails($event)"
-      [icon]="'download'"
-      [iconSize]="24"
-    />
-  </bmb-tooltip>
   <section
     bmbLayout
     margin="none"
@@ -36,30 +10,6 @@
     justify="stretch"
     alignItems="stretch"
   >
-    <div>
-      <bmb-filter-card
-        [modalTitle]="'Opciones Filtrado'"
-        [primaryBtnLabel]="'Aplicar Filtros'"
-        [secondaryBtnLabel]="'Limpiar Filtros'"
-        [icon]="'tune'"
-        [showGlobalSearch]="true"
-        [showDropdown]="true"
-        [dropdownOptions]="['Apple', 'Banana', 'Orange', 'Pear', 'Grape']"
-        [placeholderSearch]="'Search'"
-      ></bmb-filter-card>
-    </div>
-
-    <bmb-container-button
-      bmbLayoutItem
-      [colLg]="4"
-      [componentTitle]="'Enviar correo'"
-      [square]="false"
-      [small]="true"
-      [iconLeft]="'mail'"
-      [iconRight]="''"
-      (link)="('https://linkedin.com')"
-    />
-
     <bmb-container-button
       bmbLayoutItem
       [colLg]="4"
@@ -68,7 +18,21 @@
       [iconLeft]="'sms'"
       [iconRight]="''"
       (link)="('https://linkedin.com')"
-    ></bmb-container-button>
+    />
+    <bmb-container-button-complex-alternative
+      bmbLayoutItem
+      [colLg]="6"
+      [componentTitle]="'Title container button'"
+      [subtitle]="'sub title'"
+      [leftIconName]="'menu_open'"
+      [iconImageAlt]="''"
+      [leftIconBoxColor]="'general-contrasts-main-selection'"
+      [isDisabled]="false"
+      [isError]="false"
+      [isBookmarkActive]="true"
+      (getClickButton)="getClickButton($event)"
+      (getClickBookmark)="getClickBookmark($event)"
+    />
     <div bmbVerticalLayout bmbLayoutItem [colSm]="4" [colLg]="6" gapSize="m">
       <section bmbVerticalLayoutItem [rowGrow]="1">
         <bmb-image
