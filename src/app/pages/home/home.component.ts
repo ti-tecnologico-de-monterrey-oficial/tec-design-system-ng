@@ -33,7 +33,7 @@ import {
   ThemeService,
   BmbActionIconComponent,
   BmbTooltipComponent,
-  BmbIconComponent,
+  BmbContainerButtonComplexAlternativeComponent,
 } from '../../../../projects/ds-ng/src/public-api';
 import { HelpMenuComponent } from '../../components/help-menu/help-menu.component';
 import { ModalWDropdownComponent } from '../../components/modal-w-dropdown/modal-w-dropdown.component';
@@ -58,9 +58,9 @@ import { ModalWDropdownComponent } from '../../components/modal-w-dropdown/modal
     BmbMediaCardComponent,
     BmbImageComponent,
     BmbFilterCardComponent,
-    BmbIconComponent,
     BmbActionIconComponent,
     BmbTooltipComponent,
+    BmbContainerButtonComplexAlternativeComponent,
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
@@ -211,5 +211,13 @@ export class HomeComponent {
 
   public fillIcon(index: number): boolean {
     return index <= this.barrasLlenas;
+  }
+
+  protected getClickButton(event: MouseEvent): void {
+    console.info('getClickButton container');
+  }
+
+  protected getClickBookmark(event: MouseEvent): void {
+    console.info('getClickButton bookmark');
   }
 }

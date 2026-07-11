@@ -86,14 +86,14 @@
       }
 
       &-remove {
-        @include mixins.check-for-mobile(false) {
+        @include mixins.check-for-desktop() {
           display: none;
         }
       }
     }
 
     &-desktop {
-      @include mixins.check-for-mobile(false) {
+      @include mixins.check-for-desktop() {
         display: block;
       }
 

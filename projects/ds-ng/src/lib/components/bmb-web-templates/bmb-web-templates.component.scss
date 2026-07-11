@@ -13,7 +13,7 @@
   display: grid;
   gap: 0;
   min-height: 100dvh;
-  @include mixins.check-for-mobile(false) {
+  @include mixins.check-for-desktop() {
     height: 100dvh;
     overflow: hidden;
   }

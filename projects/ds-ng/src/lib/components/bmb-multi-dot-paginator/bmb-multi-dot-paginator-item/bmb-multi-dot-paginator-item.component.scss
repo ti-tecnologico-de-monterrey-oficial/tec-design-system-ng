@@ -9,7 +9,7 @@
 bmb-multi-dot-paginator-item {
   display: block;
 
-  @include mixins.check-for-mobile(false) {
+  @include mixins.check-for-desktop() {
     width: calc((50% / var(--numberOfElements)) - 3rem);
     height: 100%;
 
