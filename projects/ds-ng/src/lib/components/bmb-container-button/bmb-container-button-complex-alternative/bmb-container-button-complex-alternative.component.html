@@ -17,6 +17,9 @@
   </ng-template>
 
   <ng-template #bmbContainerRight>
-    <bmb-bookmark [isActive]="isBookmarkActive()" />
+    <bmb-bookmark
+      [isActive]="isBookmarkActive()"
+      (isActiveChange)="handleClickBookmark($event)"
+    />
   </ng-template>
 </bmb-container-button-base>
