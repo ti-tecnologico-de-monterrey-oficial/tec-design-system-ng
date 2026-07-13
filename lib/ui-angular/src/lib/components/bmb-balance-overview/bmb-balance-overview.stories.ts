@@ -5,13 +5,13 @@ import {
   getGeneralComponentDescription,
   getGeneralDescription,
   RELEVANT_TITLE,
-} from '../../utils/doc/utils';
+} from '../../../../../../doc/utils/utils';
 import {
   DBmbInputParamDesc,
   getAppearanceParam,
   getDefaultValueControl,
   getPropertyParamDesc,
-} from '../../utils/doc/parameterDescriptions';
+} from '../../../../../../doc/utils/parameterDescriptions';
 
 const IMPORTANT_DESCRIPTION = `<br/><br/>${RELEVANT_TITLE.important} The gray fill path (progressCircleFillPathStatus) does not work for the full state (progressCircleFullFillPathStatus).`;
 

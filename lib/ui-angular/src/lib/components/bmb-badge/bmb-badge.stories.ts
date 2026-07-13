@@ -9,14 +9,14 @@ import {
   getGeneralDescription,
   getSpecialSpecifications,
   RELEVANT_TITLE,
-} from '../../utils/doc/utils';
+} from '../../../../../../doc/utils/utils';
 import {
   getAppearanceParam,
   getPropertyParamDesc,
   getWidthIncreaseDesc,
-} from '../../utils/doc/parameterDescriptions';
+} from '../../../../../../doc/utils/parameterDescriptions';
 import { BmbDividerComponent } from '../bmb-divider/bmb-divider.component';
-import { BMB_BADGE_COLOR_LIST } from '../../types/foundations/colors/color-type';
+import { BMB_BADGE_COLOR_LIST } from '../../../../../../types/foundations/colors/color-type';
 
 const defaultAppearanceValue: string = 'normal';
 
