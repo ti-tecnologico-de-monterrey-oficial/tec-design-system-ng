@@ -11,11 +11,10 @@
 
   &-header {
     border-bottom: rem.rem_calc(1) solid var(--general-contrasts-50);
-    padding: var(--bmb-spacing-s);
+    padding: var(--bmb-spacing-xs);
     display: flex;
     flex-wrap: nowrap;
     align-items: center;
-    gap: var(--bmb-spacing-m);
     overflow: auto;
 
     &-select {
@@ -30,9 +29,10 @@
       align-items: center;
       flex-wrap: nowrap;
       height: rem.rem_calc(40);
+      padding: var(--bmb-spacing-s);
+      gap: var(--bmb-spacing-m);
 
       &:not(:last-child) {
-        padding-right: var(--bmb-spacing-m);
         border-right: rem.rem_calc(1) solid var(--general-contrasts-50);
       }
 

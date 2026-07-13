@@ -17,36 +17,27 @@
       </select>
     </span>
     <span class="bmb_text-editor-header-group hide-on-mobile">
-      <button
-        bmbButton
-        appearance="transparent"
-        size="micro"
-        type="button"
-        (click)="execCommand('bold')"
+      <bmb-action-icon
+        idElement="text_editor_bold"
+        icon="format_bold"
+        [iconSize]="24"
         [title]="'text_editor.bold' | translate"
-      >
-        <bmb-icon icon="format_bold" [size]="24" />
-      </button>
-      <button
-        bmbButton
-        appearance="transparent"
-        size="micro"
-        type="button"
-        (click)="execCommand('italic')"
+        (buttonClick)="execCommand('bold')"
+      />
+      <bmb-action-icon
+        idElement="text_editor_italic"
+        icon="format_italic"
+        [iconSize]="24"
         [title]="'text_editor.italic' | translate"
-      >
-        <bmb-icon icon="format_italic" [size]="24" />
-      </button>
-      <button
-        bmbButton
-        appearance="transparent"
-        size="micro"
-        type="button"
-        (click)="execCommand('underline')"
+        (buttonClick)="execCommand('italic')"
+      />
+      <bmb-action-icon
+        idElement="text_editor_underline"
+        icon="format_underlined"
+        [iconSize]="24"
         [title]="'text_editor.underline' | translate"
-      >
-        <bmb-icon icon="format_underlined" [size]="24" />
-      </button>
+        (buttonClick)="execCommand('underline')"
+      />
       <input
         id="BmbTextEditorColor"
         type="color"
@@ -62,12 +53,14 @@
         [title]="'text_editor.fore_color' | translate"
       />
       <bmb-action-icon
+        idElement="text_editor_text_format"
         icon="text_format"
         [iconSize]="24"
         (buttonClick)="handleInsertDialog($event)"
         [alt]="'text_editor.text_format' | translate"
       />
       <bmb-action-icon
+        idElement="text_editor.more"
         icon="more_horiz"
         [iconSize]="24"
         (buttonClick)="handleMoreDialog($event)"
@@ -75,121 +68,91 @@
       />
     </span>
     <span class="bmb_text-editor-header-group hide-on-mobile">
-      <button
-        bmbButton
-        appearance="transparent"
-        size="micro"
-        type="button"
-        (click)="applyAlignment('left')"
-        [class.active]="currentAlignment === 'left'"
+      <bmb-action-icon
+        [ngClass]="{ active: currentAlignment === 'left' }"
+        idElement="text_editor_left"
+        icon="format_align_left"
+        [iconSize]="24"
         [title]="'text_editor.left' | translate"
-      >
-        <bmb-icon icon="format_align_left" [size]="24" />
-      </button>
-      <button
-        bmbButton
-        appearance="transparent"
-        size="micro"
-        type="button"
-        (click)="applyAlignment('center')"
+        (buttonClick)="applyAlignment('left')"
+      />
+      <bmb-action-icon
+        [ngClass]="{ active: currentAlignment === 'center' }"
+        idElement="text_editor_center"
+        icon="format_align_center"
+        [iconSize]="24"
         [title]="'text_editor.center' | translate"
-        [class.active]="currentAlignment === 'center'"
-      >
-        <bmb-icon icon="format_align_center" [size]="24" />
-      </button>
-      <button
-        bmbButton
-        appearance="transparent"
-        size="micro"
-        type="button"
-        (click)="applyAlignment('right')"
+        (buttonClick)="applyAlignment('center')"
+      />
+      <bmb-action-icon
+        [ngClass]="{ active: currentAlignment === 'right' }"
+        idElement="text_editor_right"
+        icon="format_align_right"
+        [iconSize]="24"
         [title]="'text_editor.right' | translate"
-        [class.active]="currentAlignment === 'right'"
-      >
-        <bmb-icon icon="format_align_right" [size]="24" />
-      </button>
+        (buttonClick)="applyAlignment('right')"
+      />
     </span>
 
     <span class="bmb_text-editor-header-group hide-on-mobile">
-      <button
-        bmbButton
-        appearance="transparent"
-        size="micro"
-        type="button"
-        (click)="execCommand('insertOrderedList')"
+      <bmb-action-icon
+        idElement="text_editor_insert_ordered_list"
+        icon="format_list_numbered"
+        [iconSize]="24"
         [title]="'text_editor.insert_ordered_list' | translate"
-      >
-        <bmb-icon icon="format_list_numbered" [size]="24" />
-      </button>
-      <button
-        bmbButton
-        appearance="transparent"
-        size="micro"
-        type="button"
-        (click)="execCommand('insertUnorderedList')"
+        (buttonClick)="execCommand('insertOrderedList')"
+      />
+      <bmb-action-icon
+        idElement="text_editor_insert_unordered_list"
+        icon="format_list_bulleted"
+        [iconSize]="24"
         [title]="'text_editor.insert_unordered_list' | translate"
-      >
-        <bmb-icon icon="format_list_bulleted" [size]="24" />
-      </button>
+        (buttonClick)="execCommand('insertUnorderedList')"
+      />
     </span>
 
     <span class="bmb_text-editor-header-group hide-on-mobile">
-      <button
-        bmbButton
-        appearance="transparent"
-        size="micro"
-        type="button"
-        (click)="execCommand('indent')"
+      <bmb-action-icon
+        idElement="text_editor_indent"
+        icon="format_indent_increase"
+        [iconSize]="24"
         [title]="'text_editor.indent' | translate"
-      >
-        <bmb-icon icon="format_indent_increase" [size]="24" />
-      </button>
-      <button
-        bmbButton
-        appearance="transparent"
-        size="micro"
-        type="button"
-        (click)="execCommand('outdent')"
+        (buttonClick)="execCommand('indent')"
+      />
+      <bmb-action-icon
+        idElement="text_editor_outdent"
+        icon="format_indent_decrease"
+        [iconSize]="24"
         [title]="'text_editor.outdent' | translate"
-      >
-        <bmb-icon icon="format_indent_decrease" [size]="24" />
-      </button>
+        (buttonClick)="execCommand('outdent')"
+      />
     </span>
 
     <span class="bmb_text-editor-header-group">
-      <button
-        bmbButton
-        appearance="transparent"
-        size="micro"
-        type="button"
+      <bmb-action-icon
+        idElement="text_editor_insert_link"
+        icon="link"
+        [iconSize]="24"
         [title]="'text_editor.insert_link' | translate"
-        (click)="openPrompt('link', $event)"
-      >
-        <bmb-icon icon="link" [size]="24" />
-      </button>
-      <button
-        bmbButton
-        appearance="transparent"
-        size="micro"
-        type="button"
+        (buttonClick)="openPrompt('link', $event)"
+      />
+      <bmb-action-icon
+        idElement="text_editor_insert_image"
+        icon="image"
+        [iconSize]="24"
         [title]="'text_editor.insert_image' | translate"
-        (click)="openPrompt('image', $event)"
-      >
-        <bmb-icon icon="image" [size]="24" />
-      </button>
+        (buttonClick)="openPrompt('image', $event)"
+      />
     </span>
 
     <span class="bmb_text-editor-header-group">
-      <button
-        bmbButton
-        appearance="transparent"
-        size="micro"
-        type="button"
-        (click)="clearFormatting()"
+      <bmb-action-icon
+        idElement="text_editor_clear_formatting"
+        icon="format_clear"
+        [iconSize]="24"
         [title]="'text_editor.clear_formatting' | translate"
-      >
-        <bmb-icon icon="format_clear" [size]="24" />
-      </button>
+        (buttonClick)="clearFormatting()"
+      />
     </span>
   </header>
 
