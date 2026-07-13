@@ -1,4 +1,4 @@
-import { isImage } from '../../../../utils/utils';
+import { isImage } from '../../utils/utils.js';
 
 export const getSVGName = (iconName: string): string => {
   if (isImage(iconName)) {

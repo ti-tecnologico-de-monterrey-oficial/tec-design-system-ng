@@ -1,5 +1,3 @@
-import { IBmbContrast } from '../../../../types/colors';
-
 export type IBmbGradeType =
   | 'main-grade'
   | 'partial-grade';

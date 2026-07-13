@@ -13,5 +13,10 @@
     "src/**/*.test.ts",
     "**/*.stories.ts",
     "**/*.stories.js"
+  ],
+  "references": [
+    {
+      "path": "../core/tsconfig.lib.json"
+    }
   ]
 }

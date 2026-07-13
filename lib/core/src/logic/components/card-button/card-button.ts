@@ -1,4 +1,4 @@
-import { isABotIcon } from '../../../utils/botIcon';
+import { isABotIcon } from '../../utils/botIcon.js';
 
 export interface ICardButton {
   title: string;
