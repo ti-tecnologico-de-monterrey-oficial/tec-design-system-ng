@@ -195,7 +195,7 @@
       overflow: auto;
       padding: rem.rem_calc(10 36 0);
 
-      @include mixins.check-for-mobile(false) {
+      @include mixins.check-for-desktop() {
         flex-direction: row;
       }
     }
@@ -209,7 +209,7 @@
       padding: rem.rem_calc(16);
       width: 100%;
 
-      @include mixins.check-for-mobile(false) {
+      @include mixins.check-for-desktop() {
         width: max-content;
       }
 
@@ -219,7 +219,7 @@
         text-overflow: ellipsis;
         white-space: nowrap;
 
-        @include mixins.check-for-mobile(false) {
+        @include mixins.check-for-desktop() {
           max-width: rem.rem_calc(200);
         }
       }

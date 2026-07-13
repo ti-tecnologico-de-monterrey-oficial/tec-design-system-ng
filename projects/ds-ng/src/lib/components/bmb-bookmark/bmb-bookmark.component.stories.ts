@@ -1,9 +1,12 @@
 import { Meta, StoryObj } from '@storybook/angular';
 import { BmbBookmarkComponent } from './bmb-bookmark.component';
 import {
+  BlockquoteType,
+  getAlertBlockquote,
   getBasicExampleBlock,
   getGeneralComponentDescription,
   getGeneralDescription,
+  RELEVANT_TITLE,
 } from '../../utils/doc/utils';
 import { getDefaultValueControl } from '../../utils/doc/parameterDescriptions';
 
@@ -26,8 +29,15 @@ ${getBasicExampleBlock('BmbBookmarkComponent')}
       control: {
         type: 'boolean',
       },
-      description:
-        'Sets the active state of the bookmark, this input is a model so you can detect a change in the state in the same place.',
+      description: `Sets the active state of the bookmark.
+${getAlertBlockquote(
+  `This is a model so you can detect a change in the state in the same place.<br/><br/>
+\`[(isActive)]="isActive"\` or \`[isActive]="false" (isActiveChange)="yourHandle...()"\``,
+  {
+    title: RELEVANT_TITLE.configuration,
+    blockquoteType: BlockquoteType.important,
+  },
+)}`,
       table: {
         category: 'Properties',
         type: { summary: 'boolean' },

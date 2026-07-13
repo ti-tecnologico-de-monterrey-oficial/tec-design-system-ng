@@ -31,7 +31,7 @@
 
     &-top,
     &-bottom {
-      @include mixins.check-for-mobile(false) {
+      @include mixins.check-for-desktop() {
         .bmb_table_lite-header {
           height: 30%;
           width: 100%;
@@ -44,7 +44,7 @@
 
     &-left,
     &-right {
-      @include mixins.check-for-mobile(false) {
+      @include mixins.check-for-desktop() {
         flex-flow: row;
 
         .bmb_table_lite-header {
@@ -57,7 +57,7 @@
     }
 
     &-right {
-      @include mixins.check-for-mobile(false) {
+      @include mixins.check-for-desktop() {
         flex-flow: row-reverse;
       }
     }
