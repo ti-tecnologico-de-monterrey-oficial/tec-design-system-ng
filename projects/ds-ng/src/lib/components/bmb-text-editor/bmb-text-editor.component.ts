@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import {
   AfterViewInit,
   ChangeDetectionStrategy,
@@ -34,6 +35,7 @@ import {
   selector: 'bmb-text-editor',
   standalone: true,
   imports: [
+    CommonModule,
     BmbButtonDirective,
     BmbIconComponent,
     BmbActionIconComponent,
