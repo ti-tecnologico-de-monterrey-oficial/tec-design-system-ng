@@ -644,7 +644,7 @@ TableColum {
       control: {
         type: 'boolean',
       },
-      description: 'Diable all columns at the left side.',
+      description: 'Disable sticky behavior for the first (leftmost) column.',
       table: {
         category: 'Properties',
         type: { summary: 'boolean' },
