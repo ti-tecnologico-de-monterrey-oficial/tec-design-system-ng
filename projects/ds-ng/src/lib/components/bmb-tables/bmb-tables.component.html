@@ -164,7 +164,7 @@
               matTooltipPosition="below"
               matTooltipClass="bmb_tooltip"
               [ngClass]="{
-                'bmb_table-sticky': (i === 0 && !disableStickyColumn),
+                'bmb_table-sticky': (i === 0 && !disableStickyColumn()),
                 truncated: truncate(),
                 wrapped: wrap()
               }"
