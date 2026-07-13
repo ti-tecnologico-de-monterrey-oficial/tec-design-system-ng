@@ -4,8 +4,8 @@ import {
   getBasicExampleBlock,
   getGeneralComponentDescription,
   getGeneralDescription,
-} from '../../utils/doc/utils';
-import { getDefaultValueControl } from '../../utils/doc/parameterDescriptions';
+} from '../../../../../../doc/utils/utils';
+import { getDefaultValueControl } from '../../../../../../doc/utils/parameterDescriptions';
 
 export default {
   title: 'Components/Buttons/Bookmark',

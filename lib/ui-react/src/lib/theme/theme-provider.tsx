@@ -10,7 +10,7 @@ import {
   getInitialTheme_core,
   getLocalTheme,
   setLocalTheme,
-} from '@ti-tecnologico-de-monterrey-oficial/core';
+} from '../_core/index';
 
 export interface ThemeContextValue {
   theme: string;

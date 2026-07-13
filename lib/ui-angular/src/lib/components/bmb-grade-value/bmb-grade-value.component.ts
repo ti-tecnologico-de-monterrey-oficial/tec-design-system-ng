@@ -12,7 +12,7 @@ import { IBmbContrast } from '../../types/colors';
 import {
   getTruncatedScore,
   type IBmbGradeType,
-} from '@ti-tecnologico-de-monterrey-oficial/core/component/grade-value';
+} from '../../_core/logic/components/grade-value/grade-value';
 
 @Component({
   selector: 'bmb-grade-value',

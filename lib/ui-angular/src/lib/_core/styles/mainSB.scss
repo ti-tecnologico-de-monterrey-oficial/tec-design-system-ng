@@ -1,0 +1,7 @@
+//Storybook
+@use 'core';
+
+// Import and register the design tokens like colors and theme
+@use './mainGED.scss' as ged;
+@use './mainTECMI.scss' as tecmi;
+@use './mainTEC.scss' as tec;

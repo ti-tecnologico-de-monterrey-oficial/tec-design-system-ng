@@ -10,7 +10,7 @@ import {
   getTitleClassNames,
   type IBmbFontWeightContent,
   type IBmbTitleSize,
-} from '@ti-tecnologico-de-monterrey-oficial/core/component/title';
+} from '../../_core/logic/components/title/title';
 
 @Component({
   selector: 'bmb-title',

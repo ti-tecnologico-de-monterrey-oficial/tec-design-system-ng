@@ -8,7 +8,7 @@ import {
   IBmbServerTableColumn,
   getDisplayedColumns,
   isSelectedRow,
-} from '@ti-tecnologico-de-monterrey-oficial/core/component/server-table';
+} from '../../_core/logic/components/server-table/server-table';
 
 @Component({
   selector: 'bmb-server-table',

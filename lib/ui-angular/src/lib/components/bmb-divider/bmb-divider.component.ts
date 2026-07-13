@@ -8,7 +8,7 @@ import { CommonModule } from '@angular/common';
 import {
   getDividerClasses,
   type BmbDividerType,
-} from '@ti-tecnologico-de-monterrey-oficial/core/component/divider';
+} from '../../_core/logic/components/divider/divider';
 
 
 @Component({

@@ -9,7 +9,7 @@ import { CommonModule } from '@angular/common';
 import {
   getContainerClasses,
   type IBmbAppearanceType,
-} from '@ti-tecnologico-de-monterrey-oficial/core/component/container';
+} from '../../_core/logic/components/container/container';
 
 @Component({
   selector: 'bmb-container',

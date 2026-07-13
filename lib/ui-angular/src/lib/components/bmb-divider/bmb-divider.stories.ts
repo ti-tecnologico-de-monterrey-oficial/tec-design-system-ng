@@ -5,7 +5,7 @@ import {
   getBasicExampleBlock,
   getGeneralComponentDescription,
   getGeneralDescription,
-} from '../../utils/doc/utils';
+} from '../../../../../../doc/utils/utils';
 
 export default {
   title: 'Components/Containers/Divider',

@@ -9,7 +9,7 @@ import {
   getBadgeClasses,
   getBadgeBulletColor,
   type IBmbBadgeAppearanceColors,
-} from '@ti-tecnologico-de-monterrey-oficial/core/component/badge';
+} from '../../_core/logic/components/badge/badge';
 
 @Component({
   selector: 'bmb-badge',

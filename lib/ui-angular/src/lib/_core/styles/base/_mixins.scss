@@ -1,0 +1,418 @@
+@use 'sass:meta';
+@use 'sass:string';
+@use 'fonts' as fonts;
+@use 'rem' as rem;
+@use '../base/vars' as vars;
+
+// Media query
+@mixin mobile-styles {
+  @media (height <= #{rem.rem_calc(vars.$breakpoint_max_height_mobile)}) or (width <= #{rem.rem_calc(vars.$breakpoint_max_mobile)}) {
+    @content;
+  }
+}
+
+@mixin desktop-styles {
+  @media (height > #{rem.rem_calc(vars.$breakpoint_max_height_mobile)}) and (width >= #{rem.rem_calc(vars.$breakpoint_min_web)}) {
+    @content;
+  }
+}
+
+@mixin media-query($breakpoint, $condition) {
+  $breakpoint_value: if(
+    meta.type-of($breakpoint) == number,
+    $breakpoint,
+    string.slice($breakpoint, 1, -2)
+  );
+
+  @media (#{$condition}-width: #{rem.rem_calc($breakpoint_value)}) {
+    @content;
+  }
+}
+
+@mixin media-range-query($breakpoint_min, $breakpoint_max) {
+  @media (width >= #{rem.rem_calc($breakpoint_min)}) and (width <= #{rem.rem_calc($breakpoint_max)}) {
+    @content;
+  }
+}
+
+@mixin container-query($breakpoint, $condition, $container_name: '') {
+  /*
+  Add this property to parent style:
+  container-type: inline-size;
+
+  container-name: [container-name];
+
+  container: [container-name] / inline-size;
+  */
+  @if $container_name != '' {
+    @container #{$container_name} (#{$condition}-width: #{rem.rem_calc($breakpoint)}) {
+      @content;
+    }
+  } @else {
+    @container (#{$condition}-width: #{rem.rem_calc($breakpoint)}) {
+      @content;
+    }
+  }
+}
+
+@mixin container-range-query(
+  $breakpoint_min,
+  $breakpoint_max,
+  $container_name: ''
+) {
+  /*
+  Add this property to parent style:
+  container-type: inline-size;
+
+  container-name: [container-name];
+
+  container: [container-name] / inline-size;
+  */
+  @if $container_name != '' {
+    @container #{$container_name} (width >= #{rem.rem_calc($breakpoint_min)}) and (width <= #{rem.rem_calc($breakpoint_max)}) {
+      @content;
+    }
+  } @else {
+    @container (width >= #{rem.rem_calc($breakpoint_min)}) and (width <= #{rem.rem_calc($breakpoint_max)}) {
+      @content;
+    }
+  }
+}
+
+// Reset Element
+@mixin reset-element() {
+  box-sizing: border-box;
+  line-height: 1.5;
+
+  &:focus {
+    @include focus-element();
+  }
+}
+
+// Focus for button
+@mixin focus-element($inset: outset) {
+  outline: 0;
+}
+
+// Button styles
+@mixin button($appearance: primary) {
+  @if $appearance == primary {
+    outline: 0 solid transparent;
+    background: var(--buttons-primary-normal);
+    color: var(--buttons-alternative-normal);
+    border: rem.rem_calc(1) solid transparent;
+    padding-block: rem.rem_calc(7);
+    box-sizing: border-box;
+
+    &:hover:not(:disabled),
+    &:focus-visible:not(:disabled) {
+      background: var(--buttons-primary-hover);
+      border-color: var(--buttons-stroke-primary-hover);
+      color: var(--buttons-fab-text);
+    }
+
+    &:active:not(:disabled),
+    &:active:hover:not(:disabled),
+    &:active:focus:not(:disabled),
+    &.bmb_btn-toggle-active {
+      background: var(--buttons-primary-select);
+      border-color: var(--buttons-primary-select);
+      outline-width: rem.rem_calc(1);
+      outline-color: var(--buttons-primary-select);
+      box-shadow: rem.rem_calc(0 0 20) var(--buttons-blur-primary-select);
+      color: var(--buttons-alternative-normal);
+    }
+  } @else if $appearance == secondary-filled {
+    background: var(--buttons-alternative-normal);
+    color: var(--buttons-alternative-text);
+    outline: 0;
+
+    &:hover:not(:disabled),
+    &:focus-visible:not(:disabled) {
+      background: var(--buttons-alternative-hover);
+      color: var(--buttons-alternative-text-hover);
+    }
+
+    &:active:not(:disabled),
+    &.bmb_btn-toggle-active {
+      background: var(--general-contrasts-50);
+      box-shadow: 0 0 rem.rem_calc(25) var(--general-contrasts-50);
+      color: var(--buttons-alternative-select-text);
+    }
+  } @else if $appearance == secondary-outlined {
+    background: transparent;
+    border: rem.rem_calc(1) solid var(--general-contrasts-100);
+    color: var(--general-contrasts-100);
+    padding: rem.rem_calc(11 15);
+    transition: none;
+
+    @include check-for-mobile(false) {
+      padding: rem.rem_calc(7 39);
+    }
+
+    &:hover:not(:disabled),
+    &:focus-visible:not(:disabled) {
+      border-width: rem.rem_calc(2);
+      padding: rem.rem_calc(10 14);
+
+      @include check-for-mobile(false) {
+        padding: rem.rem_calc(6 38);
+      }
+    }
+
+    &:active:not(:disabled),
+    &.bmb_btn-toggle-active {
+      border-color: var(--general-contrasts-input-background);
+      box-shadow: 0 0 rem.rem_calc(25) var(--general-contrasts-50);
+      text-shadow: none;
+      padding: rem.rem_calc(10 14);
+      color: var(--general-contrasts-5);
+      background: var(--general-contrasts-100);
+
+      @include check-for-mobile(false) {
+        padding: rem.rem_calc(6 38);
+      }
+    }
+  } @else if $appearance == destructive {
+    background: transparent;
+    border: var(--bmb-border-inherit-1-solid);
+    border-color: var(--buttons-destructive);
+    color: var(--buttons-destructive);
+    padding: rem.rem_calc(11 15);
+
+    @include check-for-mobile(false) {
+      padding: rem.rem_calc(7 39);
+    }
+
+    &:hover:not(:disabled),
+    &:focus-visible:not(:disabled) {
+      border-width: rem.rem_calc(2);
+      padding: rem.rem_calc(10 14);
+
+      @include check-for-mobile(false) {
+        padding: rem.rem_calc(6 38);
+      }
+    }
+
+    &:active:not(:disabled),
+    &.bmb_btn-toggle-active {
+      background: rgb(var(--red-primary));
+      color: rgb(var(--white-primary));
+      padding: rem.rem_calc(10 14);
+      border-width: rem.rem_calc(2);
+      box-shadow: rem.rem_calc(0 0 20) rgb(var(--red-primary));
+
+      @include check-for-mobile(false) {
+        padding: rem.rem_calc(6 38);
+      }
+    }
+  } @else if $appearance == transparent {
+    background: transparent;
+    padding: rem.rem_calc(0 10);
+    color: var(--general-contrasts-100);
+
+    &:disabled {
+      opacity: 0.5;
+    }
+  }
+}
+
+@mixin shadow-mark($color_name, $opacity: 0.1) {
+  content: '';
+  height: rem.rem_calc(42);
+  width: rem.rem_calc(42);
+  border-radius: var(--bmb-radius-full);
+  opacity: $opacity;
+  background: $color_name;
+  position: absolute;
+  display: block;
+  margin: auto;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: rem.rem_calc(-14);
+}
+
+@mixin error-input() {
+  box-sizing: inherit;
+  border-color: rgb(var(--red-light));
+  outline-color: rgb(var(--red-light));
+}
+
+@mixin input-checked($height, $width) {
+  display: block;
+  position: relative;
+  margin: rem.rem_calc(2) auto 0;
+  height: rem.rem_calc($height);
+  width: rem.rem_calc($width);
+}
+
+@mixin checkbox-mark($mark_type: 'normal', $show_shadow: false) {
+  @if $mark_type == 'normal' {
+    @include input-mark(var(--general-contrasts-75), var(--bmb-radius-xs));
+  } @else {
+    background-color: var(--buttons-active-switch);
+    border-color: var(--buttons-active-switch);
+
+    @if $show_shadow == true {
+      @include input-shadow(var(--buttons-active-switch));
+    }
+  }
+
+  @if $mark_type == 'selected' {
+    &::after {
+      @include input-checked(10, 4);
+      border: solid rgb(var(--white-primary));
+      border-width: rem.rem_calc(0 2 2 0);
+      transform: rotate(45deg);
+      top: rem.rem_calc(-2);
+    }
+  } @else if $mark_type == 'indeterminate' {
+    &::after {
+      @include input-checked(2, 12);
+      position: absolute;
+      background-color: rgb(var(--white-primary));
+      margin: 0;
+      top: rem.rem_calc(6);
+      left: rem.rem_calc(1);
+    }
+  }
+}
+
+@mixin input-shadow($color_name) {
+  &:hover {
+    &::before {
+      @include shadow-mark($color_name);
+    }
+  }
+}
+
+@mixin input-mark($color_name, $border_radius) {
+  cursor: pointer;
+  display: flex;
+  position: relative;
+  height: rem.rem_calc(18);
+  width: rem.rem_calc(18);
+  margin: rem.rem_calc(3);
+  background: transparent;
+  border: rem.rem_calc(2) solid $color_name;
+  border-radius: $border_radius;
+
+  &::after {
+    content: '';
+    display: none;
+    position: absolute;
+  }
+
+  &-error {
+    @include error-input();
+  }
+}
+
+@mixin input-placeholder() {
+  @include fonts.font(4, regular);
+  color: var(--general-contrasts-50);
+}
+
+@mixin normal-input() {
+  box-sizing: border-box;
+  border: rem.rem_calc(1) solid var(--general-contrasts-50);
+  outline: rem.rem_calc(1) solid transparent;
+  border-radius: var(--bmb-radius-2);
+  width: 100%;
+  background: var(--general-contrasts-input-background);
+  height: rem.rem_calc(48);
+  transition: all 0.3s ease;
+}
+
+@mixin input-features() {
+  flex: 1;
+  border-color: transparent;
+  background-color: transparent;
+  color: currentColor;
+  width: 100%;
+
+  &::placeholder {
+    @include input-placeholder();
+  }
+
+  &:focus,
+  &:focus-visible {
+    outline-style: none;
+  }
+}
+
+@mixin input-focused() {
+  box-sizing: inherit;
+  border-color: var(--general-contrasts-input-outline);
+  outline-color: var(--general-contrasts-input-outline);
+}
+
+@mixin truncated-string($max-block-size, $line-clamp) {
+  display: -webkit-box;
+  max-block-size: rem.rem_calc($max-block-size);
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: $line-clamp;
+  line-clamp: $line-clamp;
+  white-space: normal;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@mixin truncated-string-line() {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@mixin helper-text() {
+  @include fonts.font(4, regular);
+  margin: 0;
+}
+
+@mixin normal-helper-text() {
+  @include helper-text();
+  color: var(--general-contrasts-80);
+}
+
+@mixin error-helper-text() {
+  @include helper-text();
+  color: rgb(var(--red-light));
+}
+
+@mixin media-web-templates() {
+  @include media-range-query(vars.$breakpoint_min_web, 1800) {
+    @content;
+  }
+}
+
+@mixin text-link-appearance() {
+  @include fonts.font(4, regular);
+  color: var(--buttons-text-link);
+  line-height: 2;
+  text-decoration: none;
+}
+
+@mixin check-for-mobile($condition: true) {
+  @if $condition == true {
+    @include media-query(vars.$breakpoint_max_mobile, 'max') {
+      @content;
+    }
+  } @else {
+    @include media-query(vars.$breakpoint_min_web, 'min') {
+      @content;
+    }
+  }
+}
+
+@mixin hidden-for-mobile() {
+  @include check-for-mobile() {
+    display: none;
+  }
+}
+
+@mixin hidden-for-no-mobile() {
+  @include check-for-mobile(false) {
+    display: none;
+  }
+}

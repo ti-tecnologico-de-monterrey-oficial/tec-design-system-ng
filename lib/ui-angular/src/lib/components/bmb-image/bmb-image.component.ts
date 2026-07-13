@@ -23,7 +23,7 @@ import {
   getCarouselClass,
   getImageStyle as getImageStyleHelper,
   encodeImageUrl,
-} from '@ti-tecnologico-de-monterrey-oficial/core/component/image';
+} from '../../_core/logic/components/image/image';
 
 @Component({
   selector: 'bmb-image',

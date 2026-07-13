@@ -6,7 +6,7 @@ import {
 } from '@angular/core';
 import { BmbIframePipeTransform } from './bmb-iframe.pipe';
 
-import { type BmbIframeReferrerPolicy } from '@ti-tecnologico-de-monterrey-oficial/core/component/iframe';
+import { type BmbIframeReferrerPolicy } from '../../_core/logic/components/iframe/iframe';
 
 @Component({
   selector: 'bmb-iframe',

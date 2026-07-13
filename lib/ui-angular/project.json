@@ -8,12 +8,7 @@
   "targets": {
     "build": {
       "executor": "@nx/angular:ng-packagr-lite",
-      "dependsOn": [
-        {
-          "target": "compile-styles",
-          "projects": "@ti-tecnologico-de-monterrey-oficial/core"
-        }
-      ],
+      "dependsOn": [],
       "outputs": [
         "{workspaceRoot}/dist/{projectRoot}"
       ],

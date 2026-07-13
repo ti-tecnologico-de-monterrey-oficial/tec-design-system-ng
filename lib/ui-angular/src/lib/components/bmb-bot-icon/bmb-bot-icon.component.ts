@@ -6,7 +6,7 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 
-import { getSVGName } from '@ti-tecnologico-de-monterrey-oficial/core/component/bot-icon';
+import { getSVGName } from '../../_core/logic/components/bot-icon/bot-icon';
 
 @Component({
   selector: 'bmb-bot-icon',
