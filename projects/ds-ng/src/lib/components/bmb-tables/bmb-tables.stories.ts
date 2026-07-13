@@ -640,6 +640,17 @@ TableColum {
         defaultValue: { summary: 'false' },
       },
     },
+    disableStickyColumn: {
+      control: {
+        type: 'boolean',
+      },
+      description: 'Diable all columns at the left side.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      }
+    },
     selectionMode: {
       control: {
         type: 'select',
