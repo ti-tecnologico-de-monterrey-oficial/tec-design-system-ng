@@ -147,6 +147,7 @@ export class BmbTablesComponent implements AfterViewInit, OnInit, OnChanges {
   filtersModel = model<Record<string, any>>({});
   selectionMode = input<'page' | 'all'>('all');
   clearSelectionWhenPageChanges = input<boolean>(false);
+  disableStickyColumn = input<boolean>(false);
 
   select = output<any>();
   clickedRow = output<any>();
@@ -608,7 +609,7 @@ export class BmbTablesComponent implements AfterViewInit, OnInit, OnChanges {
   getCellClasses(row: any, columnKey: string, index: number): any {
     const semanticType = row[columnKey + 'Type'];
     const classes: { [key: string]: boolean } = {
-      'bmb_table-sticky': index === 0,
+      'bmb_table-sticky': (index === 0 && !this.disableStickyColumn()),
       truncated: this.truncate(),
       wrapped: this.wrap(),
       [`bmb_table-${semanticType}`]: !!semanticType,
