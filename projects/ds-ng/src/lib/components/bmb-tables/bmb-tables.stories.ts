@@ -649,7 +649,7 @@ TableColum {
         category: 'Properties',
         type: { summary: 'boolean' },
         defaultValue: { summary: 'false' },
-      }
+      },
     },
     selectionMode: {
       control: {
