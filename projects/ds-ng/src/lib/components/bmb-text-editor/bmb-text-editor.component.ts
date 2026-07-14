@@ -13,8 +13,6 @@ import {
 } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
-import { BmbButtonDirective } from '../../directives/bmb-button/button.directive';
-import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
 import {
   BmbProjectionContentService,
@@ -36,8 +34,6 @@ import {
   standalone: true,
   imports: [
     CommonModule,
-    BmbButtonDirective,
-    BmbIconComponent,
     BmbActionIconComponent,
     BmbActionMenuComponent,
     BmbItemComponent,
