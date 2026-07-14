@@ -1,6 +1,6 @@
 import { Meta, StoryObj } from '@storybook/angular';
 import { BmbTitleComponent } from './bmb-title.component';
-import { getBasicExampleBlock } from '../../utils/doc/utils';
+import { getBasicExampleBlock } from '../utils/doc/utils';
 
 export default {
   title: 'Dev tools/Title template',
