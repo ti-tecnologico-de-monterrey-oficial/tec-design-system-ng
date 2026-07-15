@@ -5,11 +5,11 @@ import {
   getGeneralComponentDescription,
   getGeneralDescription,
   RELEVANT_TITLE,
-} from '../../utils/doc/utils';
+} from '../utils/doc/utils';
 import {
   getDefaultValueControl,
   getPropertyParamDesc,
-} from '../../utils/doc/parameterDescriptions';
+} from '../utils/doc/parameterDescriptions';
 
 export default {
   title: 'Components/Visual labels/Header pull wedge',

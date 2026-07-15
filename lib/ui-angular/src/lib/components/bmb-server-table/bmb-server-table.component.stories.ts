@@ -6,7 +6,7 @@ import {
   getBasicExampleBlock,
   getGeneralComponentDescription,
   getGeneralDescription,
-} from '../../utils/doc/utils';
+} from '../utils/doc/utils';
 
 export default {
   title: 'Components/Containers/Table/Server table',
