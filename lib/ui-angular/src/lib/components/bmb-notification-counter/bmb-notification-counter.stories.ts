@@ -8,11 +8,11 @@ import {
   getPageStructureForFoundationStories,
   getSpecialSpecifications,
   RELEVANT_TITLE,
-} from '../../utils/doc/utils';
+} from '../utils/doc/utils';
 import {
   DBmbIconParamDesc,
   getAppearanceParam,
-} from '../../utils/doc/parameterDescriptions';
+} from '../utils/doc/parameterDescriptions';
 
 export default {
   title: 'Internals/Notification counter',

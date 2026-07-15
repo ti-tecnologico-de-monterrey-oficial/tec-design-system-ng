@@ -2,6 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { BmbImageComponent } from './bmb-image.component';
 import { ComponentRef } from '@angular/core';
 import { BmbImageItem } from './types';
+import { beforeEach, describe, it } from 'node:test';
 
 describe('BmbImageComponent', () => {
   let component: BmbImageComponent;

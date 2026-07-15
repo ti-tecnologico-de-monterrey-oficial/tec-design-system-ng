@@ -11,7 +11,7 @@ import {
   getGeneralDescription,
   getSpecialSpecifications,
   getTECParticularitiesMessage,
-} from '../../utils/doc/utils';
+} from '../utils/doc/utils';
 
 export default {
   title: 'Dev tools/Mitec logo animation',
