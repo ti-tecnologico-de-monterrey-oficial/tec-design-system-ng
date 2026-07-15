@@ -52,6 +52,30 @@ function copyPoppinsFonts() {
   cpSync(sourceDir, targetDir, { recursive: true });
 }
 
+function sharedI18nCopyPlugin() {
+  return {
+    name: 'shared-i18n-copy',
+    configureServer() {
+      copySharedI18n();
+    },
+    buildStart() {
+      copySharedI18n();
+    },
+  };
+}
+
+function copySharedI18n() {
+  const sourceDir = resolve(import.meta.dirname, '../../packages/shared-assets/i18n');
+  const targetDir = resolve(import.meta.dirname, 'public/assets/i18n');
+
+  if (!existsSync(sourceDir)) {
+    return;
+  }
+
+  mkdirSync(targetDir, { recursive: true });
+  cpSync(sourceDir, targetDir, { recursive: true });
+}
+
 export default defineConfig(() => ({
   root: import.meta.dirname,
   cacheDir: '../../node_modules/.vite/apps/app-react',
@@ -70,7 +94,7 @@ export default defineConfig(() => ({
     port: 4200,
     host: 'localhost',
   },
-  plugins: [react(), materialSymbolsCopyPlugin(), poppinsFontsCopyPlugin()],
+  plugins: [react(), materialSymbolsCopyPlugin(), poppinsFontsCopyPlugin(), sharedI18nCopyPlugin()],
   // Uncomment this if you are using workers.
   // worker: {
   //  plugins: [],

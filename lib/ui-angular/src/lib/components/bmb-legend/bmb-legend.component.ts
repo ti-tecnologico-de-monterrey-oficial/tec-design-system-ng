@@ -10,7 +10,7 @@ import {
   getLegendBulletClass,
   getLegendValueClass,
   type IBmbLegendVariations,
-} from '../../_core/logic/components/legend/legend';
+} from '../../../../../core/src/logic/components/legend/legend';
 
 @Component({
   selector: 'bmb-legend',

@@ -4,11 +4,11 @@ import {
   getBasicExampleBlock,
   getGeneralComponentDescription,
   getGeneralDescription,
-} from '../../utils/doc/utils';
+} from '../../../../../../doc/utils/utils';
 import {
   getAppearanceParam,
   getLabelParamDesc,
-} from '../../utils/doc/parameterDescriptions';
+} from '../../../../../../doc/utils/parameterDescriptions';
 
 export default {
   title: 'Components/Visual labels/Legend',

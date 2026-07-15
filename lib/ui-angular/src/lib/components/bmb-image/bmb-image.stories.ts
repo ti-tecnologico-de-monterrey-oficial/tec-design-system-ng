@@ -5,8 +5,8 @@ import {
   getArchitectureSection,
   getBasicExampleBlock,
   getGeneralDescription,
-} from '../../utils/doc/utils';
-import { DBmbImageParamDesc } from '../../utils/doc/parameterDescriptions';
+} from '../../../../../../doc/utils/utils';
+import { DBmbImageParamDesc } from '../../../../../../doc/utils/parameterDescriptions';
 import { BmbImageItem } from './types';
 import { Component, signal } from '@angular/core';
 
