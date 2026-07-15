@@ -640,6 +640,17 @@ TableColum {
         defaultValue: { summary: 'false' },
       },
     },
+    disableStickyColumn: {
+      control: {
+        type: 'boolean',
+      },
+      description: 'Disable sticky behavior for the first (leftmost) column.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
+    },
     selectionMode: {
       control: {
         type: 'select',

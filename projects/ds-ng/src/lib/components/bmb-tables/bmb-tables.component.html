@@ -155,7 +155,7 @@
 
         <!-- Display Columns -->
         @for (column of tableColumns; track column; let i = $index) {
-          <ng-container [matColumnDef]="column.def" [sticky]="i === 0">
+          <ng-container [matColumnDef]="column.def" [sticky]="i === 0 && !disableStickyColumn()">
             <th
               mat-header-cell
               *matHeaderCellDef
@@ -164,7 +164,7 @@
               matTooltipPosition="below"
               matTooltipClass="bmb_tooltip"
               [ngClass]="{
-                'bmb_table-sticky': i === 0,
+                'bmb_table-sticky': (i === 0 && !disableStickyColumn()),
                 truncated: truncate(),
                 wrapped: wrap()
               }"

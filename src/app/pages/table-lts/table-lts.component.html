@@ -6,19 +6,21 @@
   <button (click)="handleResetFilters()">reset</button>
   <button (click)="handleApplyFilters()">apply</button>
   <bmb-table
-    [pageSize]="20"
+    [pageSize]="5"
     [data]="data()"
     [columns]="columns"
     [config]="{
-      isSelectable: true,
+      isSelectable: false,
       isExpandible: false,
       isPaginable: true,
-      showActions: true
+      showActions: false
     }"
     filtersPosition="top"
-    [showFilters]="true"
+    [showFilters]="false"
     [(filtersModel)]="filtersModel"
-  ></bmb-table>
+    [disableStickyColumn]="true"
+  />
+
   <div>
     {{ filtersModel() | json }}
   </div>
