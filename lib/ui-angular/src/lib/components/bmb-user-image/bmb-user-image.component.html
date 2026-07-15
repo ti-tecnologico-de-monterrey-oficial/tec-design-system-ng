@@ -1,0 +1,27 @@
+<ng-template #commonTemplate>
+  <img
+    [ngClass]="getClasses('bmb_user_image-image', '', bordered())"
+    [src]="image()"
+    [alt]="altImage()"
+  />
+</ng-template>
+@if (!!link()) {
+  <bmb-check-external-link-button
+    [ngClass]="getClasses('bmb_user_image', size()!, bordered())"
+    [link]="link()"
+    [target]="target()!"
+  >
+    <ng-container [ngTemplateOutlet]="commonTemplate" />
+  </bmb-check-external-link-button>
+} @else {
+  <span
+    [ngClass]="getClasses('bmb_user_image', size()!, bordered())"
+    (click)="handleClick($event)"
+    (mousedown)="handlePress($event)"
+    (keypress)="handleKeyPress($event)"
+    role="button"
+    tabindex="0"
+  >
+    <ng-container [ngTemplateOutlet]="commonTemplate" />
+  </span>
+}
