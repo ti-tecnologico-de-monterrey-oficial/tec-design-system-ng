@@ -1,0 +1,310 @@
+const COLOR_GROUP_NAMES: Record<string, Record<string, unknown>> = {
+  "font_colors": {
+    "creative-use-violet": "var(--general-contrasts-5)",
+    "creative-use-strong": "var(--general-contrasts-dark-complementary)",
+    "creative-use-indigo": "var(--general-contrasts-5)",
+    "creative-use-emerald": "var(--general-contrasts-5)",
+    "creative-use-licorice": "var(--general-contrasts-5)",
+    "creative-use-dark-teal": "var(--general-contrasts-5)",
+    "creative-use-peach": "var(--general-contrasts-5)",
+    "creative-use-sepia": "var(--general-contrasts-5)",
+    "creative-use-soft-red": "var(--general-contrasts-5)",
+    "creative-use-wattle": "var(--general-contrasts-5)",
+    "creative-use-ship-cove": "var(--general-contrasts-5)",
+    "creative-use-plantation": "var(--general-contrasts-5)",
+    "creative-use-rum": "var(--general-contrasts-5)",
+    "creative-use-ripe-lemon": "var(--general-contrasts-5)",
+    "creative-use-hibiscus": "var(--general-contrasts-5)",
+    "semantic-success": "var(--general-contrasts-5)",
+    "semantic-info-event": "var(--general-contrasts-5)",
+    "semantic-warning": "var(--general-contrasts-dark-complementary)",
+    "semantic-error": "var(--general-contrasts-5)",
+    "semantic-brand": "var(--general-contrasts-5)",
+    "semantic-alert": "var(--general-contrasts-5)",
+    "semantic-neutral": "var(--general-contrasts-dark-complementary)",
+    "mitec-blue": "rgb(var(--white-primary))",
+    "mitec-red": "rgb(var(--white-primary))",
+    "mitec-green": "var(--general-contrasts-5)",
+    "mitec-orange": "var(--general-contrasts-5)",
+    "mitec-purple": "var(--general-contrasts-5)"
+  },
+  "base_colors": {
+    "neon-primary": "rgb(var(--neon-primary))",
+    "neon-tint": "rgb(var(--neon-tint))",
+    "neon-light": "rgb(var(--neon-light))",
+    "blue-primary": "rgb(var(--blue-primary))",
+    "blue-light": "rgb(var(--blue-light))",
+    "blue-tint": "rgb(var(--blue-tint))",
+    "teal-primary": "rgb(var(--teal-primary))",
+    "teal-light": "rgb(var(--teal-light))",
+    "teal-tint": "rgb(var(--teal-tint))",
+    "red-primary": "rgb(var(--red-primary))",
+    "red-light": "rgb(var(--red-light))",
+    "red-tint": "rgb(var(--red-tint))",
+    "green-primary": "rgb(var(--green-primary))",
+    "green-light": "rgb(var(--green-light))",
+    "green-tint": "rgb(var(--green-tint))",
+    "purple-primary": "rgb(var(--purple-primary))",
+    "purple-light": "rgb(var(--purple-light))",
+    "purple-tint": "rgb(var(--purple-tint))",
+    "yellow-primary": "rgb(var(--yellow-primary))",
+    "yellow-light": "rgb(var(--yellow-light))",
+    "yellow-tint": "rgb(var(--yellow-tint))",
+    "white-primary": "rgb(var(--white-primary))",
+    "black-primary": "rgb(var(--black-primary))"
+  },
+  "creative_base_colors": {
+    "violet-primary": "rgb(var(--violet-primary))",
+    "violet-light": "rgb(var(--violet-light))",
+    "violet-tint": "rgb(var(--violet-tint))",
+    "indigo-primary": "rgb(var(--indigo-primary))",
+    "indigo-light": "rgb(var(--indigo-light))",
+    "indigo-tint": "rgb(var(--indigo-tint))",
+    "emerald-primary": "rgb(var(--emerald-primary))",
+    "emerald-light": "rgb(var(--emerald-light))",
+    "emerald-tint": "rgb(var(--emerald-tint))",
+    "licorice-primary": "rgb(var(--licorice-primary))",
+    "licorice-light": "rgb(var(--licorice-light))",
+    "licorice-tint": "rgb(var(--licorice-tint))",
+    "dark-teal-primary": "rgb(var(--dark-teal-primary))",
+    "dark-teal-light": "rgb(var(--dark-teal-light))",
+    "dark-teal-tint": "rgb(var(--dark-teal-tint))",
+    "peach-primary": "rgb(var(--peach-primary))",
+    "peach-light": "rgb(var(--peach-light))",
+    "peach-tint": "rgb(var(--peach-tint))",
+    "sepia-primary": "rgb(var(--sepia-primary))",
+    "sepia-light": "rgb(var(--sepia-light))",
+    "sepia-tint": "rgb(var(--sepia-tint))",
+    "soft-red-primary": "rgb(var(--soft-red-primary))",
+    "soft-red-light": "rgb(var(--soft-red-light))",
+    "soft-red-tint": "rgb(var(--soft-red-tint))",
+    "wattle-primary": "rgb(var(--wattle-primary))",
+    "wattle-primary-alternative": "rgb(var(--wattle-primary-alternative))",
+    "wattle-light": "rgb(var(--wattle-light))",
+    "wattle-tint": "rgb(var(--wattle-tint))",
+    "ship-cove-primary": "rgb(var(--ship-cove-primary))",
+    "ship-cove-light": "rgb(var(--ship-cove-light))",
+    "ship-cove-tint": "rgb(var(--ship-cove-tint))",
+    "plantation-primary": "rgb(var(--plantation-primary))",
+    "plantation-light": "rgb(var(--plantation-light))",
+    "plantation-tint": "rgb(var(--plantation-tint))",
+    "rum-primary": "rgb(var(--rum-primary))",
+    "rum-light": "rgb(var(--rum-light))",
+    "rum-tint": "rgb(var(--rum-tint))",
+    "ripe-lemon-primary": "rgb(var(--ripe-lemon-primary))",
+    "ripe-lemon-primary-alternative": "rgb(var(--ripe-lemon-primary-alternative))",
+    "ripe-lemon-light": "rgb(var(--ripe-lemon-light))",
+    "ripe-lemon-tint": "rgb(var(--ripe-lemon-tint))",
+    "hibiscus-primary": "rgb(var(--hibiscus-primary))",
+    "hibiscus-light": "rgb(var(--hibiscus-light))",
+    "hibiscus-tint": "rgb(var(--hibiscus-tint))"
+  },
+  "mitec_base_colors": {
+    "mitec-blue-primary": "rgb(var(--mitec-blue-primary))",
+    "mitec-blue-light": "rgb(var(--mitec-blue-light))",
+    "mitec-blue-tint": "rgb(var(--mitec-blue-tint))",
+    "mitec-red-primary": "rgb(var(--mitec-red-primary))",
+    "mitec-red-light": "rgb(var(--mitec-red-light))",
+    "mitec-red-tint": "rgb(var(--mitec-red-tint))",
+    "mitec-green-primary": "rgb(var(--mitec-green-primary))",
+    "mitec-green-light": "rgb(var(--mitec-green-light))",
+    "mitec-green-tint": "rgb(var(--mitec-green-tint))",
+    "mitec-orange-primary": "rgb(var(--mitec-orange-primary))",
+    "mitec-orange-light": "rgb(var(--mitec-orange-light))",
+    "mitec-orange-tint": "rgb(var(--mitec-orange-tint))",
+    "mitec-purple-primary": "rgb(var(--mitec-purple-primary))",
+    "mitec-purple-light": "rgb(var(--mitec-purple-light))",
+    "mitec-purple-tint": "rgb(var(--mitec-purple-tint))"
+  },
+  "semantic_base_colors": {
+    "success-primary": "rgb(var(--success-primary))",
+    "success-light": "rgb(var(--success-light))",
+    "success-thin": "rgb(var(--success-thin))",
+    "success-primary-alternative": "rgb(var(--success-primary-alternative))",
+    "success-tint-alternative": "rgb(var(--success-tint-alternative))",
+    "warning-primary": "rgb(var(--warning-primary))",
+    "warning-light": "rgb(var(--warning-light))",
+    "warning-tint": "rgb(var(--warning-tint))",
+    "warning-primary-alternative": "rgb(var(--warning-primary-alternative))",
+    "error-primary": "rgb(var(--error-primary))",
+    "error-light": "rgb(var(--error-light))",
+    "error-tint": "rgb(var(--error-tint))",
+    "info-primary": "rgb(var(--info-primary))",
+    "info-light": "rgb(var(--info-light))",
+    "info-tint": "rgb(var(--info-tint))",
+    "branding-primary": "rgb(var(--branding-primary))",
+    "branding-light": "rgb(var(--branding-tint))",
+    "branding-tint": "rgb(var(--branding-tint))",
+    "alert-primary": "rgb(var(--alert-primary))",
+    "alert-light": "rgb(var(--alert-light))",
+    "alert-tint": "rgb(var(--alert-tint))"
+  },
+  "creative_use_colors": {
+    "creative-use-violet": "var(--creative-use-violet)",
+    "creative-use-strong": "var(--creative-use-strong)",
+    "creative-use-indigo": "var(--creative-use-indigo)",
+    "creative-use-emerald": "var(--creative-use-emerald)",
+    "creative-use-licorice": "var(--creative-use-licorice)",
+    "creative-use-dark-teal": "var(--creative-use-dark-teal)",
+    "creative-use-peach": "var(--creative-use-peach)",
+    "creative-use-sepia": "var(--creative-use-sepia)",
+    "creative-use-soft-red": "var(--creative-use-soft-red)",
+    "creative-use-wattle": "var(--creative-use-wattle)",
+    "creative-use-ship-cove": "var(--creative-use-ship-cove)",
+    "creative-use-plantation": "var(--creative-use-plantation)",
+    "creative-use-rum": "var(--creative-use-rum)",
+    "creative-use-ripe-lemon": "var(--creative-use-ripe-lemon)",
+    "creative-use-hibiscus": "var(--creative-use-hibiscus)"
+  },
+  "semantic_colors": {
+    "semantic-success": "var(--semantic-success)",
+    "semantic-info-event": "var(--semantic-info-event)",
+    "semantic-warning": "var(--semantic-warning)",
+    "semantic-error": "var(--semantic-error)",
+    "semantic-brand": "var(--semantic-brand)",
+    "semantic-alert": "var(--semantic-alert)",
+    "semantic-neutral": "var(--semantic-neutral)"
+  },
+  "mitec_institutional_colors": {
+    "mitec-blue": "var(--mitec-blue)",
+    "mitec-red": "var(--mitec-red)",
+    "mitec-green": "var(--mitec-green)",
+    "mitec-orange": "var(--mitec-orange)",
+    "mitec-purple": "var(--mitec-purple)"
+  },
+  "alert_colors": {
+    "alert-successful": "var(--alert-successful)",
+    "alert-event": "var(--alert-event)",
+    "alert-neutral": "var(--alert-neutral)",
+    "alert-primary-alert-primary": "var(--alert-primary-alert-primary)",
+    "alert-warning": "var(--alert-warning)",
+    "alert-error": "var(--alert-error)"
+  },
+  "bmb_push_notification_type": {
+    "creative-use-violet": "var(--creative-use-violet)",
+    "creative-use-strong": "var(--creative-use-strong)",
+    "creative-use-indigo": "var(--creative-use-indigo)",
+    "creative-use-emerald": "var(--creative-use-emerald)",
+    "creative-use-licorice": "var(--creative-use-licorice)",
+    "creative-use-dark-teal": "var(--creative-use-dark-teal)",
+    "creative-use-peach": "var(--creative-use-peach)",
+    "creative-use-sepia": "var(--creative-use-sepia)",
+    "creative-use-soft-red": "var(--creative-use-soft-red)",
+    "creative-use-wattle": "var(--creative-use-wattle)",
+    "creative-use-ship-cove": "var(--creative-use-ship-cove)",
+    "creative-use-plantation": "var(--creative-use-plantation)",
+    "creative-use-rum": "var(--creative-use-rum)",
+    "creative-use-ripe-lemon": "var(--creative-use-ripe-lemon)",
+    "creative-use-hibiscus": "var(--creative-use-hibiscus)",
+    "semantic-success": "var(--semantic-success)",
+    "semantic-info-event": "var(--semantic-info-event)",
+    "semantic-warning": "var(--semantic-warning)",
+    "semantic-error": "var(--semantic-error)",
+    "semantic-brand": "var(--semantic-brand)",
+    "semantic-alert": "var(--semantic-alert)",
+    "semantic-neutral": "var(--semantic-neutral)",
+    "mitec-blue": "var(--mitec-blue)",
+    "mitec-red": "var(--mitec-red)",
+    "mitec-green": "var(--mitec-green)",
+    "mitec-orange": "var(--mitec-orange)",
+    "mitec-purple": "var(--mitec-purple)",
+    "blue-tec": "rgb(var(--blue-tec))",
+    "black-primary": "rgb(var(--black-primary))",
+    "neon-primary": "rgb(var(--neon-primary))"
+  },
+  "bmb_badge_type": {
+    "creative-use-violet": "var(--creative-use-violet)",
+    "creative-use-strong": "var(--creative-use-strong)",
+    "creative-use-indigo": "var(--creative-use-indigo)",
+    "creative-use-emerald": "var(--creative-use-emerald)",
+    "creative-use-licorice": "var(--creative-use-licorice)",
+    "creative-use-dark-teal": "var(--creative-use-dark-teal)",
+    "creative-use-peach": "var(--creative-use-peach)",
+    "creative-use-sepia": "var(--creative-use-sepia)",
+    "creative-use-soft-red": "var(--creative-use-soft-red)",
+    "creative-use-wattle": "var(--creative-use-wattle)",
+    "creative-use-ship-cove": "var(--creative-use-ship-cove)",
+    "creative-use-plantation": "var(--creative-use-plantation)",
+    "creative-use-rum": "var(--creative-use-rum)",
+    "creative-use-ripe-lemon": "var(--creative-use-ripe-lemon)",
+    "creative-use-hibiscus": "var(--creative-use-hibiscus)",
+    "semantic-success": "var(--semantic-success)",
+    "semantic-info-event": "var(--semantic-info-event)",
+    "semantic-warning": "var(--semantic-warning)",
+    "semantic-error": "var(--semantic-error)",
+    "semantic-brand": "var(--semantic-brand)",
+    "semantic-alert": "var(--semantic-alert)",
+    "semantic-neutral": "var(--semantic-neutral)",
+    "mitec-blue": "var(--mitec-blue)",
+    "mitec-red": "var(--mitec-red)",
+    "mitec-green": "var(--mitec-green)",
+    "mitec-orange": "var(--mitec-orange)",
+    "mitec-purple": "var(--mitec-purple)"
+  }
+
+};
+
+export type IBmbInstitutionalColors = 'blue-tec' | 'white-primary';
+
+export const BMB_BASE_COLOR_LIST: string[] = [
+  ...Object.keys(COLOR_GROUP_NAMES['base_colors']),
+] as const;
+
+export type IBmbBaseColors = (typeof BMB_BASE_COLOR_LIST)[number];
+
+export const BMB_MITEC_BASE_COLOR_LIST: string[] = [
+  ...Object.keys(COLOR_GROUP_NAMES['mitec_base_colors']),
+] as const;
+
+export type IBmbmitecBaseColors = (typeof BMB_MITEC_BASE_COLOR_LIST)[number];
+
+export const BMB_CREATIVE_BASE_COLOR_LIST: string[] = [
+  ...Object.keys(COLOR_GROUP_NAMES['creative_base_colors']),
+] as const;
+
+export type IBmbCreativeBaseColors =
+  (typeof BMB_CREATIVE_BASE_COLOR_LIST)[number];
+
+export const BMB_SEMANTIC_BASE_COLOR_LIST: string[] = [
+  ...Object.keys(COLOR_GROUP_NAMES['semantic_base_colors']),
+] as const;
+
+export type IBmbSemanticBaseColors = (typeof BMB_SEMANTIC_BASE_COLOR_LIST)[number];
+
+export const BMB_SEMANTIC_COLOR_LIST: string[] = [
+  ...Object.keys(COLOR_GROUP_NAMES['semantic_colors']),
+] as const;
+
+export type IBmbSemanticColors = (typeof BMB_SEMANTIC_COLOR_LIST)[number];
+
+export const BMB_MITEC_COLOR_LIST: string[] = [
+  ...Object.keys(COLOR_GROUP_NAMES['mitec_institutional_colors']),
+] as const;
+
+export type IBmbMitecInstitutionalColors =
+  (typeof BMB_MITEC_COLOR_LIST)[number];
+
+export const BMB_CREATIVE_COLOR_LIST: string[] = [
+  ...Object.keys(COLOR_GROUP_NAMES['creative_use_colors']),
+] as const;
+
+export type IBmbCreativeUseColors = (typeof BMB_CREATIVE_COLOR_LIST)[number];
+
+export const BMB_ALERT_COLOR_LIST: string[] = [
+  ...Object.keys(COLOR_GROUP_NAMES['alert_colors']),
+] as const;
+
+export type IBmbAlertColors = (typeof BMB_ALERT_COLOR_LIST)[number];
+
+export const BMB_PUSH_NOTIFICATION_COLOR_LIST: string[] = [
+  ...Object.keys(COLOR_GROUP_NAMES['bmb_push_notification_type']),
+] as const;
+
+export type IBmbPushNotificationColors =
+  (typeof BMB_PUSH_NOTIFICATION_COLOR_LIST)[number];
+
+export const BMB_BADGE_COLOR_LIST: string[] = [
+  ...Object.keys(COLOR_GROUP_NAMES['bmb_badge_type']),
+] as const;
+
+export type IBmbBadgeColors = (typeof BMB_BADGE_COLOR_LIST)[number];
