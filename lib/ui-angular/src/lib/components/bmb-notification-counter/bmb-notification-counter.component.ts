@@ -9,7 +9,7 @@ import {
 import {
   getCounter,
   type IBmbNotificationCounterType,
-} from '../../_core/logic/components/notification-counter/notification-counter';
+} from '../../../../../core/src/logic/components/notification-counter/notification-counter';
 
 @Component({
   selector: 'bmb-notification-counter',
