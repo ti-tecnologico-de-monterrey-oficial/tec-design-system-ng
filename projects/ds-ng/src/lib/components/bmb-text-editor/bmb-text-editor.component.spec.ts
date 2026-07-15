@@ -206,10 +206,10 @@ describe('BmbTextEditorComponent', () => {
       spyOn(window, 'getSelection').and.returnValue(mockSelection as any);
     });
 
-    it('should open link prompt', () => {
+    it('should not open link prompt', () => {
       component.openPrompt('link', mockEvent);
 
-      expect(mockProjectionService.openContent).toHaveBeenCalled();
+      expect(mockProjectionService.openContent).not.toHaveBeenCalled();
       expect(component.userSelection).toBeDefined();
     });
 

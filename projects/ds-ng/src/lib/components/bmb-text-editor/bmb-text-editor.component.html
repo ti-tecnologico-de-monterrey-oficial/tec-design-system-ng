@@ -22,21 +22,21 @@
         icon="format_bold"
         [iconSize]="24"
         [title]="'text_editor.bold' | translate"
-        (buttonClick)="execCommand('bold')"
+        (buttonClick)="addTextFormat('bold')"
       />
       <bmb-action-icon
         idElement="text_editor_italic"
         icon="format_italic"
         [iconSize]="24"
         [title]="'text_editor.italic' | translate"
-        (buttonClick)="execCommand('italic')"
+        (buttonClick)="addTextFormat('italic')"
       />
       <bmb-action-icon
         idElement="text_editor_underline"
         icon="format_underlined"
         [iconSize]="24"
         [title]="'text_editor.underline' | translate"
-        (buttonClick)="execCommand('underline')"
+        (buttonClick)="addTextFormat('underline')"
       />
       <input
         id="BmbTextEditorColor"
