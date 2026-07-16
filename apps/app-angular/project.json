@@ -22,6 +22,11 @@
             "input": "apps/app-angular/public"
           },
           {
+            "glob": "**/*.json",
+            "input": "packages/shared-assets/i18n",
+            "output": "assets/i18n"
+          },
+          {
             "glob": "**/*",
             "input": "lib/ui-angular/src/assets/fonts",
             "output": "assets/fonts"

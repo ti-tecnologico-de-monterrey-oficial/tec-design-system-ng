@@ -1,4 +1,4 @@
-import { IBmbContrast } from '../../../types/colors';
+import { IBmbContrast } from '../../../types/colors.js';
 
 export interface IBmbButtonIconClassesProps {
   active: boolean;

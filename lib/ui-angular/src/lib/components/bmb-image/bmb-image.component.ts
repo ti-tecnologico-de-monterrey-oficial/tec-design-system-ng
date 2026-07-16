@@ -23,7 +23,7 @@ import {
   getCarouselClass,
   getImageStyle as getImageStyleHelper,
   encodeImageUrl,
-} from '../../_core/logic/components/image/image';
+} from '../../../../../core/src/logic/components/image/image';
 
 @Component({
   selector: 'bmb-image',

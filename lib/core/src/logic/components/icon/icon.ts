@@ -1,4 +1,4 @@
-import { isImage } from '../../utils/utils';
+import { isImage } from '../../utils/utils.js';
 
 export class BmbIconLogic {
   static isImage(icon: string): boolean {

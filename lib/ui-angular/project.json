@@ -30,6 +30,9 @@
         "port": 4400,
         "configDir": "lib/ui-angular/.storybook",
         "browserTarget": "ui-angular:build-storybook",
+        "styles": [
+          "lib/core/src/styles/mainTEC.scss"
+        ],
         "compodoc": false
       },
       "configurations": {
@@ -47,6 +50,9 @@
         "outputDir": "dist/storybook/ui-angular",
         "configDir": "lib/ui-angular/.storybook",
         "browserTarget": "ui-angular:build-storybook",
+        "styles": [
+          "lib/core/src/styles/mainTEC.scss"
+        ],
         "compodoc": false
       },
       "configurations": {

@@ -1,6 +1,6 @@
 import { inject, Injectable, signal } from '@angular/core';
 import { BMB_DEFAULT_THEME } from './theme-config';
-import { getInitialTheme_core, getLocalTheme, setLocalTheme } from '../../_core/index';
+import { getInitialTheme_core, getLocalTheme, setLocalTheme } from '../../../../../core/src/logic/context/theme/theme';
 
 @Injectable({
   providedIn: 'root',
