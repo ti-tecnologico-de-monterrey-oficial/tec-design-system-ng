@@ -2,7 +2,10 @@
   <ng-content />
 </ng-template>
 
-<span class="bmb_check-external-link-button">
+<span
+  class="bmb_check-external-link-button"
+  [ngClass]="{ simple: !isTextLink() }"
+>
   @if (isButton(!!link())) {
     <button
       type="button"

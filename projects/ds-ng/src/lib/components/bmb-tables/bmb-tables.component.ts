@@ -609,7 +609,7 @@ export class BmbTablesComponent implements AfterViewInit, OnInit, OnChanges {
   getCellClasses(row: any, columnKey: string, index: number): any {
     const semanticType = row[columnKey + 'Type'];
     const classes: { [key: string]: boolean } = {
-      'bmb_table-sticky': (index === 0 && !this.disableStickyColumn()),
+      'bmb_table-sticky': index === 0 && !this.disableStickyColumn(),
       truncated: this.truncate(),
       wrapped: this.wrap(),
       [`bmb_table-${semanticType}`]: !!semanticType,

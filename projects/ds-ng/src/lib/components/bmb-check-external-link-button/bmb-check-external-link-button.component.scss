@@ -7,11 +7,8 @@
 
   &-element {
     padding: 0;
-    text-decoration: none;
-    cursor: pointer;
     display: inline-flex;
     color: currentColor;
-    align-items: center;
 
     &-disabled {
       cursor: not-allowed;
@@ -26,6 +23,15 @@
     &:focus,
     &:focus-visible {
       outline: 0 none;
+    }
+  }
+
+  &.simple {
+    a {
+      text-decoration: none;
+      :hover::before {
+        transform: scaleX(0);
+      }
     }
   }
 }
