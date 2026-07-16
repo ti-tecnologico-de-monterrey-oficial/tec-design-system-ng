@@ -5,32 +5,28 @@
   }"
   [attr.data-automation-id]="testId()"
 >
-  <bmb-check-external-link-button [link]="link()" [target]="target()">
-    <span
-      class="bmb_text-link-item"
-      [ngClass]="{
-        'bmb_text-link-item-reverse':
-          textLinkStyle() === 'icon' && iconPosition() === 'right'
-      }"
-    >
-      @if (textLinkStyle() === 'icon' && !!icon()) {
-        <bmb-icon
-          class="bmb_text-link-item-icon"
-          [icon]="icon()"
-          [size]="20"
-          [alt]="textLink() || icon()"
-          [testId]="testId() + '-icon'"
-        />
-      }
-      <span
-        class="bmb_text-link-item-text"
-        [ngClass]="{
-          underlined: textLinkStyle() === 'underlined'
-        }"
-      >
-        {{ textLink() }}
-        <ng-content></ng-content>
-      </span>
+  <bmb-check-external-link-button
+    class="bmb_text-link-item"
+    [ngClass]="{
+      icon: textLinkStyle() === 'icon',
+      reverse: textLinkStyle() === 'icon' && iconPosition() === 'right'
+    }"
+    [link]="link()"
+    [target]="target()"
+    [isTextLink]="true"
+  >
+    @if (textLinkStyle() === 'icon' && !!icon()) {
+      <bmb-icon
+        class="bmb_text-link-icon"
+        [icon]="icon()"
+        [size]="20"
+        [alt]="textLink() || icon()"
+        [testId]="testId() + '-icon'"
+      />
+    }
+    <span class="bmb_text-link-text">
+      {{ textLink() }}
+      <ng-content></ng-content>
     </span>
   </bmb-check-external-link-button>
 </span>
