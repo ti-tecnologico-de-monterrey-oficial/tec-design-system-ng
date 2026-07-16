@@ -1,6 +1,4 @@
 @use '../../../assets/styles/base/fonts' as fonts;
-@use '../../../assets/styles/base/rem' as rem;
-@use '../../../assets/styles/base/mixins' as mixins;
 
 .bmb_item {
   display: inline-block;
@@ -39,14 +37,6 @@
 
   &-support {
     width: 100%;
-
-    > a {
-      @include mixins.text-link-appearance();
-
-      &:hover {
-        text-decoration: underline;
-      }
-    }
   }
 }
 
