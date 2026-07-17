@@ -11,8 +11,8 @@ import {
 } from '../bmb-progress-cirlce/bmb-progress-circle.component';
 import {
   BmbLegendComponent,
-  IBmbLegendVariations,
 } from '../bmb-legend/bmb-legend.component';
+import { IBmbLegendVariations } from '../../../../../core/src/logic/components/legend/legend'
 import { TranslatePipe } from '../../pipes/translations';
 
 @Component({
