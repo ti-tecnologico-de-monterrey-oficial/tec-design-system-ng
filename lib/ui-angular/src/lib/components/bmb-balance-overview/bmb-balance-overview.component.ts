@@ -7,8 +7,9 @@ import {
 } from '@angular/core';
 import {
   BmbProgressCircleComponent,
-  BmbProgressCirclePathStatus,
-} from '../bmb-progress-cirlce/bmb-progress-circle.component';
+} from '../bmb-progress-circle/bmb-progress-circle.component';
+
+import { BmbProgressCirclePathStatus } from '../../_core/logic/components/progress-circle/types';
 import {
   BmbLegendComponent,
 } from '../bmb-legend/bmb-legend.component';
