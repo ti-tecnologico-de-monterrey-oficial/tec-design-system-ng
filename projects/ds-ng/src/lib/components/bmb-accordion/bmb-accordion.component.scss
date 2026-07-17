@@ -34,7 +34,11 @@
   }
 
   &-content {
-    @include fonts.font(3, regular);
+    &,
+    p {
+      @include fonts.font(3, regular);
+    }
+
     border-top: rem.rem_calc(1) solid var(--buttons-inactive-step);
     display: none;
     max-height: 0;

@@ -7,7 +7,7 @@
   box-shadow: var(--bmb-box-shadow-3);
 }
 
-@mixin small-selected() {
+@mixin small-selected {
   .bmb_card_button-small-back {
     background-color: var(--menu-select-surface-activated);
     color: var(--general-contrasts-main-complementary);
@@ -19,7 +19,7 @@
   }
 }
 
-@mixin body_content() {
+@mixin body_content {
   @include fonts.font(3, regular);
   padding: rem.rem_calc(8 0);
   @include mixins.truncated-string(64, 3);
@@ -184,7 +184,7 @@
   }
 
   &-body {
-    @include body_content();
+    @include body_content;
     color: var(--general-contrasts-80);
 
     .bmb_text-link-item-text {
@@ -193,7 +193,9 @@
   }
 
   &-custom-content {
-    @include body_content();
+    p {
+      @include body_content;
+    }
     color: var(--general-contrasts-75);
   }
 
@@ -247,7 +249,7 @@
     justify-content: flex-start;
 
     &:active:not(:disabled) {
-      @include small-selected();
+      @include small-selected;
     }
 
     &:hover {
@@ -258,7 +260,7 @@
 
     &-flipped {
       transform: rotateY(180deg);
-      @include small-selected();
+      @include small-selected;
     }
 
     &-front,
