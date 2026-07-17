@@ -87,7 +87,8 @@ Below is an example of how you can use this component in HTML:
         'https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/assets/images/placeholders/user-icon-test.svg',
     },
     anotherAccountLabel: 'Ingresar con otra cuenta',
-    anotherAccountLink: '',
+    anotherAccountLink:
+      'https://bamboo.tec.mx/latest/te-damos-la-bienvenida-a-bamboo/bamboo-fcOzIS8B-fcOzIS8B',
     anotherAccountTarget: '_blank',
   },
 } as Meta<typeof BmbUserProfileContentComponent>;

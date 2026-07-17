@@ -25,13 +25,10 @@
       outline: 0 none;
     }
   }
+}
 
-  &.simple {
-    a {
-      text-decoration: none;
-      :hover::before {
-        transform: scaleX(0);
-      }
-    }
+:not(.bmb_text-link-item) {
+  a {
+    text-decoration: none;
   }
 }
