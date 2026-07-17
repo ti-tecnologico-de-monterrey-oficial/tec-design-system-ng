@@ -27,7 +27,6 @@ export class BmbCheckExternalLinkButtonComponent {
   target = input<IBmbTargetLink>('_blank');
   disabled = input<boolean>(false);
   buttonName = input<string>('button');
-  isTextLink = input<boolean>(false);
 
   buttonPress = output<MouseEvent>();
   buttonClick = output<MouseEvent>();

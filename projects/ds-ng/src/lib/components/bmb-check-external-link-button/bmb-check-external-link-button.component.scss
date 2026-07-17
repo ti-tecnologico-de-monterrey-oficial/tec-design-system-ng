@@ -25,10 +25,10 @@
       outline: 0 none;
     }
   }
+}
 
-  &.simple {
-    a {
-      text-decoration: none;
-    }
+:not(.bmb_text-link-item) {
+  a {
+    text-decoration: none;
   }
 }
