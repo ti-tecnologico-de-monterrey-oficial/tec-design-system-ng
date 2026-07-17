@@ -29,9 +29,6 @@
   &.simple {
     a {
       text-decoration: none;
-      :hover::before {
-        transform: scaleX(0);
-      }
     }
   }
 }
