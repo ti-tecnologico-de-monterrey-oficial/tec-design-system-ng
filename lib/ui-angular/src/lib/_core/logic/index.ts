@@ -15,3 +15,4 @@ export * from './components/server-table/server-table.js';
 export * from './components/pull-wedge/pull-wedge.js';
 export * from './components/user-image/user-image.js';
 export * from './components/media-card/media-card.js';
+export * from './components/progress-circle/progress-circle.js';

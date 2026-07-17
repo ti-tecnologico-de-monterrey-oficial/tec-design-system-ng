@@ -13,7 +13,7 @@ import { BmbProgressCirclePathStatus } from '../../_core/logic/components/progre
 import {
   BmbLegendComponent,
 } from '../bmb-legend/bmb-legend.component';
-import { IBmbLegendVariations } from '../../../../../core/src/logic/components/legend/legend'
+import { IBmbLegendVariations } from '../../_core/logic/components/legend/legend';
 import { TranslatePipe } from '../../pipes/translations';
 
 @Component({

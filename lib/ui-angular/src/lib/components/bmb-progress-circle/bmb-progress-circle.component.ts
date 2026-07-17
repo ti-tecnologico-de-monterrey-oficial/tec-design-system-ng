@@ -77,7 +77,6 @@ export class BmbProgressCircleComponent
   );
 
   svg: SvgConfig | null = null;
-  private _lastPercent = 0;
 
   ngOnInit(): void {
     this.render();
@@ -95,7 +94,6 @@ export class BmbProgressCircleComponent
       valueLabel: this.valueLabel(),
     });
 
-    this._lastPercent = this.options().percent;
   }
 
   isTitleString(): boolean {
