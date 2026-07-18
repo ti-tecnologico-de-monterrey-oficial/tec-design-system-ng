@@ -61,6 +61,10 @@ export interface IBmbNativeModal
     modalId: string;
     reason: 'single' | 'all';
   }) => void;
+  afterOpenModal?: (event: {
+    modalId: string;
+    reason: 'single' | 'all';
+  }) => void;
   inputContext?: { [key: string]: any };
   outputContext?: { [key: string]: (value: any) => void };
   content?: string | TemplateRef<any> | null | Type<any>;
