@@ -117,6 +117,14 @@ blockquote {
 }
 
 a {
-  @include text-link.base;
   @include text-link.appearance;
+  @include text-link.animation;
+}
+
+a:has(:empty) {
+  text-decoration: none;
+
+  &::after {
+    border-bottom-width: 0;
+  }
 }

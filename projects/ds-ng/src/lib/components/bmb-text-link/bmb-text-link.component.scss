@@ -3,7 +3,6 @@
 @use '../../../assets/styles/base/text-link' as text-link;
 
 .bmb_text-link {
-  @include text-link.appearance;
   display: inline-flex;
 
   &.disabled {
@@ -12,7 +11,8 @@
   }
 
   &-item {
-    display: inline-flex;
+    @include text-link.appearance;
+    text-decoration: none;
 
     * .bmb_check-external-link-button-element {
       display: inline-flex;
@@ -26,7 +26,6 @@
         flex-direction: row;
         align-items: center;
         translate: rem.rem_calc(0 2);
-        text-decoration: none;
       }
     }
 
