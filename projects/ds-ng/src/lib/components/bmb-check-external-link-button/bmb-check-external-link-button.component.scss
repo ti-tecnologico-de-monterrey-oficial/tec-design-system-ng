@@ -9,6 +9,7 @@
     padding: 0;
     display: inline-flex;
     color: currentColor;
+    align-items: center;
 
     &-disabled {
       cursor: not-allowed;

@@ -1,6 +1,5 @@
 @use 'sass:map';
 @use 'rem' as rem;
-@use 'text-link' as text-link;
 
 // Poppins
 
@@ -92,39 +91,5 @@ $sizes: (
       font-family: map.get($font-map, $type);
       font-size: $size;
     }
-  }
-}
-
-h1 {
-  @include font(9, bold);
-}
-
-h2 {
-  @include font(7, bold);
-}
-
-h3 {
-  @include font(6, bold);
-}
-
-p,
-a {
-  @include font(4, regular);
-}
-
-blockquote {
-  @include font(3, regular);
-}
-
-a {
-  @include text-link.appearance;
-  @include text-link.animation;
-}
-
-a:has(:empty) {
-  text-decoration: none;
-
-  &::after {
-    border-bottom-width: 0;
   }
 }

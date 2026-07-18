@@ -184,4 +184,8 @@
     color: var(--general-contrasts-main-selection);
     font-size: rem.rem_calc(20);
   }
+
+  a::after {
+    border-bottom-width: 0;
+  }
 }

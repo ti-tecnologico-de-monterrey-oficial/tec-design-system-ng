@@ -10,12 +10,16 @@
 }
 
 @mixin animation {
+  &:hover {
+    text-decoration: none;
+  }
+
   &::after {
     content: '';
     width: 100%;
     border-bottom: rem.rem_calc(2) solid currentColor;
     position: absolute;
-    bottom: rem.rem_calc(2);
+    bottom: 0;
     left: 0;
     opacity: 0;
     transform: scaleX(0);
