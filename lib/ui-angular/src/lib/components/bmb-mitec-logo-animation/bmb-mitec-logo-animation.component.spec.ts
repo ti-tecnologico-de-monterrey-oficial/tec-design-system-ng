@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { BmbMitecLogoAnimationComponent } from './bmb-mitec-logo-animation.component';
+import { beforeEach, describe, it } from 'node:test';
 
 describe('BmbMitecLogoAnimationComponent', () => {
   let component: BmbMitecLogoAnimationComponent;

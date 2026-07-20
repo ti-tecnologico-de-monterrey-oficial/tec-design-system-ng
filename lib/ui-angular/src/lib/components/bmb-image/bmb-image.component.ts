@@ -10,7 +10,7 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SizeNames } from '../../types';
+import { SizeNames } from '../types';
 import { IBmbMediaCardLoading } from '../bmb-media-card/bmb-media-card.component';
 import { BmbImageItem } from './types';
 import { BmbButtonIconComponent } from '../bmb-button-icon/bmb-button-icon.component';
