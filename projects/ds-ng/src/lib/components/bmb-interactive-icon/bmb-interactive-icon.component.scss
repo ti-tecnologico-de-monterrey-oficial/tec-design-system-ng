@@ -109,6 +109,7 @@ $backgrounds: (
     box-orient: vertical;
     text-overflow: ellipsis;
     overflow: hidden;
+    line-height: rem.rem_calc(18);
   }
 
   &-description {

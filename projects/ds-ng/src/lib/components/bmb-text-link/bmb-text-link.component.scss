@@ -1,9 +1,8 @@
 @use '../../../assets/styles/base/fonts' as fonts;
 @use '../../../assets/styles/base/rem' as rem;
-@use '../../../assets/styles/base/mixins' as mixins;
+@use '../../../assets/styles/base/text-link' as text-link;
 
 .bmb_text-link {
-  @include mixins.text-link-appearance();
   display: inline-flex;
 
   &.disabled {
@@ -12,41 +11,34 @@
   }
 
   &-item {
-    display: flex;
-    position: relative;
-    flex-direction: row;
-    align-items: center;
-    translate: rem.rem_calc(0 2);
+    display: inline-flex;
 
-    &-reverse {
-      flex-direction: row-reverse;
-      translate: 0;
+    // &:hover {
+    //   text-decoration: none;
+    // }
+
+    * .bmb_check-external-link-button-element {
+      // display: inline-flex;
+      // position: relative;
+      @include text-link.appearance;
+      @include text-link.animation;
     }
 
-    &-text {
-      display: inline-flex;
-      line-height: rem.rem_calc(22);
+    &.icon {
+      text-decoration: none;
 
-      &.underlined {
-        line-height: rem.rem_calc(16);
-        text-decoration: underline;
-        translate: none;
+      * .bmb_check-external-link-button-element {
+        text-decoration: none;
+        flex-direction: row;
+        align-items: center;
+        translate: rem.rem_calc(0 2);
       }
+    }
 
-      &::after {
-        content: '';
-        position: absolute;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        height: rem.rem_calc(1);
-        background: currentColor;
-        transform: scaleX(0);
-        transition: transform 0.2s ease;
-      }
-
-      &:hover::after {
-        transform: scaleX(1);
+    &.reverse {
+      * .bmb_check-external-link-button-element {
+        flex-direction: row-reverse;
+        translate: 0;
       }
     }
   }

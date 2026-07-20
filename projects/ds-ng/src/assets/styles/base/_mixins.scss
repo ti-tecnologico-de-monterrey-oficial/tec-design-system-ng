@@ -386,13 +386,6 @@
   }
 }
 
-@mixin text-link-appearance() {
-  @include fonts.font(4, regular);
-  color: var(--buttons-text-link);
-  line-height: 2;
-  text-decoration: none;
-}
-
 @mixin check-for-mobile() {
   @include media-query(vars.$breakpoint_max_mobile, 'max') {
     @content;

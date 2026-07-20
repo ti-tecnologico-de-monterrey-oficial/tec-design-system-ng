@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import {
   AfterViewInit,
   ChangeDetectionStrategy,
@@ -12,8 +13,6 @@ import {
 } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
-import { BmbButtonDirective } from '../../directives/bmb-button/button.directive';
-import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
 import {
   BmbProjectionContentService,
@@ -34,8 +33,7 @@ import {
   selector: 'bmb-text-editor',
   standalone: true,
   imports: [
-    BmbButtonDirective,
-    BmbIconComponent,
+    CommonModule,
     BmbActionIconComponent,
     BmbActionMenuComponent,
     BmbItemComponent,
@@ -115,6 +113,7 @@ export class BmbTextEditorComponent implements AfterViewInit, OnInit {
   handleChange(event: Event, type: string) {
     const target = event.target as HTMLSelectElement;
     if (target?.value) {
+      this.execCommand('unlink');
       this.execCommand(type, target.value);
     }
   }
@@ -134,8 +133,29 @@ export class BmbTextEditorComponent implements AfterViewInit, OnInit {
     this.userSelection = null;
   }
 
+  addTextFormat(command: string) {
+    this.execCommand('unlink');
+    this.execCommand(command);
+  }
+
   openPrompt(type: IBmbTextEditorPromptType, event: MouseEvent | null) {
+    //Removes the possible format because it only allow Bamboo Text link styles
+    if (type === 'link') this.execCommand('removeFormat');
+
     this.userSelection = globalThis.getSelection()?.getRangeAt(0) || null;
+
+    //Does not open the modal if there is no selection for text link
+    if (type === 'link') {
+      const userSelection = this.userSelection as Range;
+      if (
+        userSelection !== null &&
+        userSelection.startOffset === userSelection.endOffset
+      ) {
+        //For no selection
+        return;
+      }
+    }
+
     const buttonNode = event?.currentTarget as HTMLElement;
     this.contentProjected.openContent({
       content: BmbTextEditorPromptComponent,
@@ -161,7 +181,7 @@ export class BmbTextEditorComponent implements AfterViewInit, OnInit {
   insertLink(values: Record<string, unknown>) {
     const selection = globalThis.getSelection();
 
-    if (!selection || selection.rangeCount === 0 || !values['prompt_url']) {
+    if (!selection || !values['prompt_url']) {
       return;
     }
 
