@@ -9,6 +9,7 @@
     padding: 0;
     display: inline-flex;
     color: currentColor;
+    align-items: center;
 
     &-disabled {
       cursor: not-allowed;
@@ -24,11 +25,5 @@
     &:focus-visible {
       outline: 0 none;
     }
-  }
-}
-
-:not(.bmb_text-link-item) {
-  a {
-    text-decoration: none;
   }
 }

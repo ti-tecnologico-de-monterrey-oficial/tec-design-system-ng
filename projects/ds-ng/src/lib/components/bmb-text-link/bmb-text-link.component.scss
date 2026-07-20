@@ -3,7 +3,6 @@
 @use '../../../assets/styles/base/text-link' as text-link;
 
 .bmb_text-link {
-  @include text-link.appearance;
   display: inline-flex;
 
   &.disabled {
@@ -14,19 +13,25 @@
   &-item {
     display: inline-flex;
 
-    * .bmb_check-external-link-button-element {
-      display: inline-flex;
-      position: relative;
+    // &:hover {
+    //   text-decoration: none;
+    // }
 
+    * .bmb_check-external-link-button-element {
+      // display: inline-flex;
+      // position: relative;
+      @include text-link.appearance;
       @include text-link.animation;
     }
 
     &.icon {
+      text-decoration: none;
+
       * .bmb_check-external-link-button-element {
+        text-decoration: none;
         flex-direction: row;
         align-items: center;
         translate: rem.rem_calc(0 2);
-        text-decoration: none;
       }
     }
 

@@ -66,8 +66,8 @@
   }
 
   &-input {
-    @include text-link.base;
     @include text-link.appearance;
+    @include text-link.animation;
   }
 }
 
