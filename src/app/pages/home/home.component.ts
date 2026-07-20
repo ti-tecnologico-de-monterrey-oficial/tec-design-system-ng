@@ -146,6 +146,15 @@ export class HomeComponent {
         isFilterable: false,
       },
       size: 'medium',
+      beforeCloseModal: (event) => {
+        console.log(event);
+      },
+      afterCloseModal: (event) => {
+        console.log(event);
+      },
+      afterOpenModal: (event) => {
+        console.log(event);
+      },
     });
   }
 
