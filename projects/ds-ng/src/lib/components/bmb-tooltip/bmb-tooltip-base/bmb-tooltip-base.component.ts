@@ -24,6 +24,7 @@ import { DOCUMENT, isPlatformBrowser } from '@angular/common';
 export class BmbTooltipBaseComponent {
   text = input<string>('');
   componentTitle = input<string>();
+  language = input<string>('es');
 
   @ViewChild('tooltipContainer', { static: true })
   tooltipContainer!: ElementRef<HTMLElement>;
@@ -38,6 +39,7 @@ export class BmbTooltipBaseComponent {
     effect(() => {
       this.componentTitle();
       this.text();
+      this.language();
 
       if (!this.tooltipElement || !this.isBrowserEnvironment()) {
         return;
@@ -158,6 +160,7 @@ export class BmbTooltipBaseComponent {
   private createTooltipElement(): HTMLDialogElement {
     const dialog = this.document.createElement('dialog');
     dialog.className = 'bmb_tooltip-dialog bmb_tooltip-dialog--floating';
+    dialog.lang = this.language();
     dialog.setAttribute('open', 'true');
     dialog.setAttribute('aria-hidden', 'true');
 
@@ -191,6 +194,7 @@ export class BmbTooltipBaseComponent {
       return;
     }
 
+    this.tooltipElement.lang = this.language();
     this.tooltipElement.replaceChildren(this.createTooltipContent());
   }
 
