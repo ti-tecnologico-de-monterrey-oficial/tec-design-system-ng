@@ -17,13 +17,13 @@ import {
   IBmbMitecInstitutionalColors,
   IBmbSemanticBaseColors,
   IBmbSemanticColors,
-} from '../../types/foundations/colors/color-type';
+} from '../types/foundations/colors/color-type';
 
 import { IBmbInteractiveIconAppearance } from '../bmb-interactive-icon/bmb-interactive-icon.component';
 import { IBmbColor } from '../../types';
 
-import { getColorName } from '../../logic/components/box-icon/box-icon';
-import { IBmbBoxIconSize } from '../../logic/components/box-icon/types';
+import { getColorName } from '../../_core/logic/components/box-icon/box-icon';
+import { IBmbBoxIconSize } from '../../_core/logic/components/box-icon/types';
 
 @Component({
   selector: 'bmb-box-icon',
