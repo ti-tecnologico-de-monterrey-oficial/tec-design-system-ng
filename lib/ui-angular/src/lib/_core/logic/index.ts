@@ -16,3 +16,7 @@ export * from './components/pull-wedge/pull-wedge.js';
 export * from './components/user-image/user-image.js';
 export * from './components/media-card/media-card.js';
 export * from './components/progress-circle/progress-circle.js';
+export * from './components/action-icon/action-icon.js';
+export * from './components/bookmark/bookmark.js';
+export * from './components/box-icon/box-icon.js';
+export * from './components/tooltip/tooltip.js';

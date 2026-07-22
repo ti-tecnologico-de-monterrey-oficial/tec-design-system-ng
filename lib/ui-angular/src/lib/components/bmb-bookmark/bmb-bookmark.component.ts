@@ -10,7 +10,7 @@ import { TranslatePipe } from '../../pipes/translations';
 import {
   stopPropagation,
   toggleBookmark,
-} from '../../logic/bookmark/bookmark';
+} from '../../_core/logic/components/bookmark/bookmark';
 
 @Component({
   selector: 'bmb-bookmark',
