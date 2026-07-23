@@ -24,7 +24,8 @@
 
 <ng-template #lastNameTemplate let-row="row">
   <bmb-icon icon="face" [size]="20"></bmb-icon>
-  <span> {{ row.lastName }}</span>
+  {{ row | json }}
+  <span> {{ row.lastName }} </span>
   <button (click)="clickButton($event)" size="small">
     <bmb-icon icon="edit" [size]="20" color="white" />
   </button>
@@ -50,14 +51,15 @@
 </ng-template>
 
 <ng-template #headerNameTemplate let-column="column" let-i="index">
-  <span>{{ column.label }} Title</span>
+  <span>{{ column.label }} Title </span>
   <bmb-icon icon="face" class="bmb_table-data-icon" />
 </ng-template>
 
 <ng-template #detailTemplate let-row="row">
-  <div *ngIf="isString(row.detail)">
-    {{ row.detail }}
-  </div>
+  @if (row.detail) {
+    {{ row | json }}
+    <div>{{ row.detail }}</div>
+  }
 
   <bmb-table-lite
     *ngIf="isObject(row.detail)"

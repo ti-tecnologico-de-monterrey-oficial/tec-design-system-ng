@@ -109,12 +109,20 @@ export const routes: Routes = [
         (k) => k.TableLtsComponent,
       ),
   },
+  // {
+  //   path: 'table-html',
+  //   title: 'Table HTML',
+  //   loadComponent: () =>
+  //     import('./pages/table-html/table-html.component').then(
+  //       (l) => l.TableHtmlComponent,
+  //     ),
+  // },
   {
-    path: 'table-html',
-    title: 'Table HTML',
+    path: 'table-main',
+    title: 'Table TEST',
     loadComponent: () =>
-      import('./pages/table-html/table-html.component').then(
-        (l) => l.TableHtmlComponent,
+      import('./pages/table-main/table-main.component').then(
+        (ll) => ll.TableMainComponent,
       ),
   },
   {
