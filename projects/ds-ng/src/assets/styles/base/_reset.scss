@@ -71,14 +71,18 @@ ion-content {
 }
 
 h1 {
-  @include fonts.font(9, bold);
+  @include fonts.font(11, bold);
 }
 
 h2 {
-  @include fonts.font(7, bold);
+  @include fonts.font(9, bold);
 }
 
 h3 {
+  @include fonts.font(7, bold);
+}
+
+h4 {
   @include fonts.font(6, bold);
 }
 

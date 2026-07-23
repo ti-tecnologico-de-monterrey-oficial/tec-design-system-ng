@@ -741,17 +741,19 @@ To use the regular family of Poppins with the 4th size, your HTML element should
 ### Sizes reference:
 - **Size 1**: 10px
 - **Size 2**: 11px
-- **Size 3**: 12px
-- **Size 4**: 14px
+- **Size 3**: 12px (quote - blockquote tag)
+- **Size 4**: 14px (paragraph - p and a tag)
 - **Size 4_5**: 15px
 - **Size 5**: 16px
-- **Size 6**: 18px
-- **Size 7**: 20px
+- **Size 6**: 18px (Heading 4 - h4 tag)
+- **Size 7**: 20px (Heading 3 - h3 tag)
 - **Size 8**: 22px
-- **Size 9**: 24px
+- **Size 9**: 24px (Heading 2 - h2 tag)
 - **Size 10**: 26px
-- **Size 11**: 36px
+- **Size 11**: 36px (Heading 1 - h1 tag)
 - **Size 12**: 48px
+>
+\`h1, h2, h3, h4, p, a, and blockquote\` tags take the corresponding font size by default.
 >
 ${
   isCompleteDetail
