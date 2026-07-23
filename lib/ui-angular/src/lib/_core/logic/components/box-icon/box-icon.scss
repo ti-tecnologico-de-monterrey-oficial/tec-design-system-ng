@@ -1,0 +1,47 @@
+@use '../../../assets/styles/base/rem' as rem;
+@use '../../../assets/styles/base/color-group-name' as colors;
+@use '../../../assets/styles/base/alias_maps' as maps;
+@use '../../../assets/styles/base/color-functions' as colorFn;
+
+$box_icon_appearance: colorFn.map-merged(
+  colors.$alert_colors,
+  colors.$base_colors,
+  colors.$creative_base_colors,
+  colors.$creative_use_colors,
+  colors.$mitec_base_colors,
+  colors.$mitec_institutional_colors,
+  colors.$semantic_base_colors,
+  colors.$semantic_colors,
+  maps.$box_icon_map
+);
+
+.bmb_box-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: rgb(var(--white-primary));
+
+  &.small {
+    height: rem.rem_calc(48);
+    width: rem.rem_calc(48);
+    border-radius: var(--bmb-radius-3);
+  }
+
+  &.regular {
+    height: rem.rem_calc(64);
+    width: rem.rem_calc(64);
+    border-radius: var(--bmb-radius-m);
+  }
+
+  @each $name, $color in $box_icon_appearance {
+    &.#{$name} {
+      background-color: $color;
+    }
+  }
+
+  &.white,
+  &.white_primary,
+  &.white-primary {
+    color: rgb(var(--black-primary));
+  }
+}
