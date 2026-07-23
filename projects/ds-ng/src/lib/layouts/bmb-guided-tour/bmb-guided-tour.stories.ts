@@ -17,9 +17,9 @@ import {
   BmbIconComponent,
   BmbProjectionContentService,
   IBmbProjectionContent,
-} from '../../public-api';
+} from '../../../public-api';
 import { CommonModule } from '@angular/common';
-import { attributes } from '../utils/doc/utils';
+import { attributes } from '../../utils/doc/utils';
 
 export interface OnboardingStep {
   description: string;
@@ -250,7 +250,8 @@ class StorybookLayoutBienvenida implements AfterViewInit, OnChanges {
 }
 
 export default {
-  title: 'Templates/Guided tour',
+  title: 'Templates/Guided tour/Modal',
+  tags: ['!autodocs'],
   decorators: [
     moduleMetadata({
       imports: [StorybookLayoutBienvenida],
