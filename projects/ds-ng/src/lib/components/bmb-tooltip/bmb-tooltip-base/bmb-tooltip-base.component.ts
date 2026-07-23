@@ -1,6 +1,7 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  computed,
   DestroyRef,
   ElementRef,
   effect,
@@ -11,6 +12,7 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { DOCUMENT, isPlatformBrowser } from '@angular/common';
+import { BmbTranslationsService } from '../../../services/translations/translations.service';
 
 @Component({
   selector: 'bmb-tooltip-base',
@@ -24,11 +26,14 @@ import { DOCUMENT, isPlatformBrowser } from '@angular/common';
 export class BmbTooltipBaseComponent {
   text = input<string>('');
   componentTitle = input<string>();
-  language = input<string>('es');
+  language = computed(() =>
+    this.bmbTranslationsService.getCurrentLanguage(),
+  );
 
   @ViewChild('tooltipContainer', { static: true })
   tooltipContainer!: ElementRef<HTMLElement>;
 
+  private readonly bmbTranslationsService = inject(BmbTranslationsService);
   private readonly destroyRef = inject(DestroyRef);
   private readonly document = inject<Document>(DOCUMENT);
   private readonly platformId = inject(PLATFORM_ID);

@@ -28,7 +28,6 @@ export class BmbTooltipComponent {
   size = input<number>();
   isFill = input<boolean>(true);
   componentTitle = input<string>();
-  language = input<string>('es');
 
   title = input<string>(); // deprecated
   align = input<string>(); // deprecated
