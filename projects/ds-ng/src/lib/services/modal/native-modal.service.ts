@@ -83,9 +83,7 @@ export class BmbNativeModalService {
   }
 
   closeModal(id: string) {
-    const modalToClose = this.modalList().find(
-      modal => modal.modalId === id
-    );
+    const modalToClose = this.modalList().find((modal) => modal.modalId === id);
 
     if (!modalToClose) return;
     this.runModalHook(modalToClose, 'beforeCloseModal', 'single');
@@ -98,11 +96,11 @@ export class BmbNativeModalService {
   closeAllModals() {
     const modalsToClose = [...this.modalList()];
 
-    modalsToClose.forEach(modal => {
+    modalsToClose.forEach((modal) => {
       this.runModalHook(modal, 'beforeCloseModal', 'all');
     });
     this.modalList.set([]);
-    modalsToClose.forEach(modal => {
+    modalsToClose.forEach((modal) => {
       this.runModalHook(modal, 'afterCloseModal', 'all');
     });
   }
