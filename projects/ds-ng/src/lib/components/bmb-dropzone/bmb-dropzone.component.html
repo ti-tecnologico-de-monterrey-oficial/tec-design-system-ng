@@ -83,7 +83,7 @@
       }
     </section>
     @if (!!fileDataList.length) {
-      @for (file of organizedFiles; track file.name) {
+      @for (file of organizedFiles; track $index) {
         <bmb-progress-bar
           class="bmb-drop-zone-file"
           [ngClass]="{

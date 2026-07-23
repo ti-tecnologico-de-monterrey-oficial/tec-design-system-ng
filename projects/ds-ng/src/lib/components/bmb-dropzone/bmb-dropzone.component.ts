@@ -38,12 +38,13 @@ interface FileData {
   size: number;
   base64?: string;
   error?: boolean;
-  errorType?: 'format' | 'size' | null;
+  errorType?: 'format' | 'size' | 'name' | 'duplicate' | null;
 }
 
 interface IBmbFileValidation {
   isValidFormat: boolean;
   isValidSize: boolean;
+  isValidName: boolean;
 }
 
 @Component({
@@ -74,6 +75,8 @@ export class BmbDropzoneComponent implements OnInit, OnChanges {
   errorMessage = input<string>(); //Deprecated
   errorMessageFormat = input<string>();
   errorMessageSize = input<string>();
+  errorMessageInvalidName = input<string>();
+  errorMessageDuplicate = input<string>();
   fileSize = input<number>(2);
   formatFilesLabel = input<string>();
   linkFilesSupported = input<string>('');
@@ -150,21 +153,38 @@ export class BmbDropzoneComponent implements OnInit, OnChanges {
   }
 
   protected get errorMessageLabel(): string {
-    return `${
-      this.isFormatErrorFiles()
-        ? (
-            this.errorMessageFormat()! ||
-            this.translationService.translate('dropzone.error_message_format')
-          ).concat('* ')
-        : ''
-    }${
-      this.isSizeErrorFiles()
-        ? (
-            this.errorMessageSize() ||
-            this.translationService.translate('dropzone.error_message_size')
-          ).concat(' MB*')
-        : ''
-    }`;
+    const messages: string[] = [];
+
+    if (this.isFormatErrorFiles()) {
+      messages.push(
+        this.errorMessageFormat() ||
+          this.translationService.translate('dropzone.error_message_format'),
+      );
+    }
+    if (this.isSizeErrorFiles()) {
+      messages.push(
+        `${
+          this.errorMessageSize() ||
+          this.translationService.translate('dropzone.error_message_size')
+        } ${this.fileSize()} MB`,
+      );
+    }
+    if (this.isNameErrorFiles()) {
+      messages.push(
+        this.errorMessageInvalidName() ||
+          this.translationService.translate(
+            'dropzone.error_message_invalid_name',
+          ),
+      );
+    }
+    if (this.isDuplicateErrorFiles()) {
+      messages.push(
+        this.errorMessageDuplicate() ||
+          this.translationService.translate('dropzone.error_message_duplicate'),
+      );
+    }
+
+    return messages.map((message) => `${message}*`).join(' ');
   }
 
   protected getAvatarIcon(file: FileData): string {
@@ -175,7 +195,7 @@ export class BmbDropzoneComponent implements OnInit, OnChanges {
   }
 
   protected getFileName(file: FileData): string {
-    return this.isFormatError(file) ? file.name.concat('*') : file.name;
+    return file.error ? file.name.concat('*') : file.name;
   }
 
   protected getFormatProgress(value: string, total: string): string {
@@ -227,22 +247,40 @@ export class BmbDropzoneComponent implements OnInit, OnChanges {
 
     for (const singleFile of fileList) {
       if (this.isFileDuplicate(singleFile.name)) {
+        this.fileDataList.push({
+          name: singleFile.name,
+          size: this.getFileSizeInMB(singleFile.size),
+          error: true,
+          errorType: 'duplicate',
+        });
         continue;
       }
 
       const fileValidation: IBmbFileValidation = {
         isValidFormat: this.isValidFileFormat(singleFile.type, singleFile.name),
         isValidSize: this.isValidFileSize(singleFile.size),
+        isValidName: this.isValidFileName(singleFile.name),
       };
       const fileData: FileData = {
         name: singleFile.name,
         size: this.getFileSizeInMB(singleFile.size),
-        error: !fileValidation.isValidFormat || !fileValidation.isValidSize,
-        errorType: !fileValidation.isValidFormat ? 'format' : 'size',
+        error:
+          !fileValidation.isValidFormat ||
+          !fileValidation.isValidSize ||
+          !fileValidation.isValidName,
+        errorType: !fileValidation.isValidName
+          ? 'name'
+          : !fileValidation.isValidFormat
+            ? 'format'
+            : 'size',
       };
 
       this.fileDataList.push(fileData);
-      if (fileValidation.isValidFormat && fileValidation.isValidSize)
+      if (
+        fileValidation.isValidFormat &&
+        fileValidation.isValidSize &&
+        fileValidation.isValidName
+      )
         validFiles.push(singleFile);
     }
 
@@ -297,6 +335,10 @@ export class BmbDropzoneComponent implements OnInit, OnChanges {
     return this.getFileSizeInMB(fileSize) <= this.fileSize();
   }
 
+  private isValidFileName(fileName: string): boolean {
+    return /^[a-zA-Z0-9._-]+$/.test(fileName);
+  }
+
   private isFileDuplicate(fileName: string): boolean {
     return this.fileDataList.some((existing) => existing.name === fileName);
   }
@@ -327,6 +369,18 @@ export class BmbDropzoneComponent implements OnInit, OnChanges {
 
   protected isSizeErrorFiles(): boolean {
     return this.fileDataList.some((file) => this.isSizeError(file));
+  }
+
+  protected isNameErrorFiles(): boolean {
+    return this.fileDataList.some(
+      (file) => file.error && file.errorType === 'name',
+    );
+  }
+
+  protected isDuplicateErrorFiles(): boolean {
+    return this.fileDataList.some(
+      (file) => file.error && file.errorType === 'duplicate',
+    );
   }
 
   protected handleDragOver(event: DragEvent) {

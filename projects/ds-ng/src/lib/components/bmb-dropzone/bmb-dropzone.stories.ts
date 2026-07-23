@@ -344,6 +344,25 @@ ${RELEVANT_TITLE.example} ***image/**** is for all image types:
         type: { summary: 'string' },
       },
     },
+    errorMessageInvalidName: {
+      control: { type: 'text' },
+      description:
+        'Sets the message shown when a file name contains unsupported characters.',
+      table: {
+        category: 'Properties',
+        defaultValue: getDefaultValueControl('Nombre de archivo no valido'),
+        type: { summary: 'string' },
+      },
+    },
+    errorMessageDuplicate: {
+      control: { type: 'text' },
+      description: 'Sets the message shown when a duplicate file is selected.',
+      table: {
+        category: 'Properties',
+        defaultValue: getDefaultValueControl('Archivo duplicado no valido'),
+        type: { summary: 'string' },
+      },
+    },
     name: DBmbInputParamDesc.name,
     fileSize: {
       control: { type: 'number' },
@@ -387,6 +406,8 @@ ${RELEVANT_TITLE.example} ***image/**** is for all image types:
     mainIcon: 'image',
     errorMessageFormat: 'Format not compatible',
     errorMessageSize: 'File exceeds the maximum allowed size.',
+    errorMessageInvalidName: 'Invalid file name',
+    errorMessageDuplicate: 'Invalid duplicate file',
     fileSize: 2,
     multiple: false,
   },
@@ -395,3 +416,15 @@ ${RELEVANT_TITLE.example} ***image/**** is for all image types:
 type Story = StoryObj<BmbDropzoneComponent>;
 
 export const Default: Story = {};
+
+export const FileNameValidation: Story = {
+  args: {
+    acceptedExtensions: ['pdf', 'application/pdf', 'csv', 'text/csv'],
+    formatFilesLabel:
+      'Prueba nombres con #, @, %, acentos, espacios o paréntesis.',
+    errorMessageInvalidName: 'Nombre de archivo no valido',
+    errorMessageDuplicate: 'Archivo duplicado no valido',
+    multiple: true,
+    progress: {},
+  },
+};
