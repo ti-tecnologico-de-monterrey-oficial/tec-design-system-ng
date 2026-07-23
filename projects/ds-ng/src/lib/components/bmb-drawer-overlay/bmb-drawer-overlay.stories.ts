@@ -61,7 +61,8 @@ ${getBasicExampleBlock('BmbDrawerOverlayComponent')}
   argTypes: {
     menu: {
       control: { type: 'object' },
-      description: 'Sets the data of the menu items.',
+      description:
+        'Sets the data of the menu items. The menu allows a maximum of five items.',
       table: {
         category: 'Properties',
         defaultValue: {
@@ -70,28 +71,36 @@ ${getBasicExampleBlock('BmbDrawerOverlayComponent')}
 ${RELEVANT_TITLE.example}
 [
   {
-    appearance: 'red',
+    appearance: 'green-primary',
     title: 'App 1',
     icon: 'https://img.freepik.com/premium-vector/approved-icon-with-thumb-up-approved-label-quality-control_349999-1321.jpg?w=2000',
     target: '_blank',
     link: 'https://www.example.com/',
   },
   {
-    appearance: 'blue',
+    appearance: 'green-light',
     title: 'App 2',
     icon: 'face',
     target: '_blank',
     link: 'https://www.example.com/',
   },
   {
-    appearance: 'green',
+    appearance: 'teal-primary',
     title: 'App 3',
     icon: 'face',
     target: '_blank',
     link: 'https://www.example.com/',
   },
+
   {
-    appearance: 'blue',
+    appearance: 'teal-light',
+    title: 'App 4',
+    icon: 'face',
+    target: '_blank',
+    link: 'https://www.example.com/',
+  },
+  {
+    appearance: 'teal-tint',
     title: 'Menú de servicios',
     icon: 'lists',
     buttonClick: () => {
@@ -279,28 +288,36 @@ IBmbInteractiveIconAppearance =
   args: {
     menu: [
       {
-        appearance: 'red',
+        appearance: 'green-primary',
         title: 'App 1',
         icon: 'https://img.freepik.com/premium-vector/approved-icon-with-thumb-up-approved-label-quality-control_349999-1321.jpg?w=2000',
         target: '_blank',
         link: 'https://www.example.com/',
       },
       {
-        appearance: 'blue',
+        appearance: 'green-light',
         title: 'App 2',
         icon: 'face',
         target: '_blank',
         link: 'https://www.example.com/',
       },
       {
-        appearance: 'green',
+        appearance: 'teal-primary',
         title: 'App 3',
         icon: 'face',
         target: '_blank',
         link: 'https://www.example.com/',
       },
+
       {
-        appearance: 'blue',
+        appearance: 'teal-light',
+        title: 'App 4',
+        icon: 'face',
+        target: '_blank',
+        link: 'https://www.example.com/',
+      },
+      {
+        appearance: 'teal-tint',
         title: 'Menú de servicios',
         icon: 'lists',
         buttonClick: () => {
