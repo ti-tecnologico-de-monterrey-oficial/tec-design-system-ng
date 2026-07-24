@@ -20,3 +20,4 @@ export * from './components/action-icon/action-icon.js';
 export * from './components/bookmark/bookmark.js';
 export * from './components/box-icon/box-icon.js';
 export * from './components/tooltip/tooltip.js';
+export * from './components/navigation-bar/navigation-bar.js';
