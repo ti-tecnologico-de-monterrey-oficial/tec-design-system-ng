@@ -40,6 +40,26 @@
 | `searchModeChange` | `'client' \| 'server'`                    | Se emite al cambiar el modo de búsqueda   |
 | `pageChange`       | `{ pageIndex: number; pageSize: number }` | Se emite al cambiar de página             |
 
+### Templates personalizados por celda
+
+`TableColum` acepta un `cellTemplate?: TemplateRef<any>` para definir el template de una columna directamente en su definición (aplica a todas las filas de esa columna). El contexto expuesto es `{ row, column, index }`:
+
+```html
+<bmb-table [columns]="columns" [data]="usuarios" />
+
+<ng-template #estadoTemplate let-row="row">
+  <bmb-badge [text]="row.estado" />
+</ng-template>
+```
+
+```ts
+this.columns = [
+  { def: 'estado', label: 'Estado', dataKey: 'estado', cellTemplate: this.estadoTemplate },
+];
+```
+
+También es posible definir un template por fila (tiene prioridad sobre `column.cellTemplate`), asignando dinámicamente una propiedad `<dataKey>Template` en cada objeto de `data`, por ejemplo `row.estadoTemplate = miTemplateRef`. Esto es útil cuando el template debe variar según el contenido de la fila.
+
 ---
 
 ## Ejemplo de uso

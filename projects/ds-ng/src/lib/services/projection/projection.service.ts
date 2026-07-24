@@ -55,7 +55,7 @@ export class BmbProjectionContentService {
     if (!content[hook]) return;
 
     try {
-      content[hook]({
+      content?.[hook]({
         contentId: content.id ?? '',
         reason,
       })
