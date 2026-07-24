@@ -1,217 +1,163 @@
-import {
-  AfterViewInit,
-  Component,
-  input,
-  OnChanges,
-  SimpleChanges,
-  TemplateRef,
-  ViewChild,
-} from '@angular/core';
+import { Component, input, OnChanges, SimpleChanges } from '@angular/core';
 import { Meta, StoryFn, moduleMetadata } from '@storybook/angular';
 import {
-  BmbButtonDirective,
-  BmbButtonIconComponent,
-  BmbCheckboxComponent,
-  BmbContainerComponent,
-  BmbDotPaginatorComponent,
+  BmbHomeCardComponent,
   BmbIconComponent,
+  BmbCheckboxComponent,
+  BmbImageComponent,
+  BmbButtonDirective,
+  BmbDotPaginatorComponent,
+  BmbLayoutDirective,
+  BmbLayoutItemDirective,
+  BmbVerticalLayoutDirective,
+  BmbVerticalLayoutItemDirective,
   BmbProjectionContentService,
-  IBmbProjectionContent,
+  OnboardingStep,
 } from '../../../public-api';
-import { CommonModule } from '@angular/common';
 import { attributes } from '../../utils/doc/utils';
-
-export interface OnboardingStep {
-  description: string;
-  icon?: string;
-  iconSize?: string;
-  imageDesktop: string;
-  imageMobile: string;
-  primaryButton: string;
-  secondaryButton?: string;
-  shortDescription: string;
-  showCheckbox?: boolean;
-  subtitle?: string;
-  title: string;
-}
 
 @Component({
   standalone: true,
   imports: [
-    CommonModule,
-    BmbButtonDirective,
-    BmbContainerComponent,
-    BmbCheckboxComponent,
-    BmbDotPaginatorComponent,
+    BmbHomeCardComponent,
     BmbIconComponent,
-    BmbButtonIconComponent,
+    BmbCheckboxComponent,
+    BmbImageComponent,
+    BmbButtonDirective,
+    BmbDotPaginatorComponent,
+    BmbLayoutDirective,
+    BmbLayoutItemDirective,
+    BmbVerticalLayoutDirective,
+    BmbVerticalLayoutItemDirective,
   ],
   selector: 'storybook-guided-tour',
   template: `
-    <ng-template #contentTemplate>
-      <div class="bmb-bienvenida">
-        <bmb-container [appearance]="'secondary-container'">
-          <section class="bmb-bienvenida_mobile">
-            <ng-container *ngFor="let step of steps(); let i = index">
-              <article
-                class="bmb-bienvenida_step"
-                [class.bmb-bienvenida_step-active]="i === currentIndex"
-                [class.bmb-bienvenida_prev]="i < currentIndex"
-                [class.bmb-bienvenida_next]="i > currentIndex"
-              >
-                <div class="bmb-bienvenida_content">
-                  <div class="bmb-bienvenida_header">
-                    <h2 class="font-bold-9">{{ step.title }}</h2>
-                    <bmb-button-icon
-                      [idElement]="''"
-                      [icon]="'close'"
-                      [showContainer]="false"
-                      [disabled]="false"
-                      [active]="false"
-                      (onButtonClick)="closeOnboarding($event)"
-                    ></bmb-button-icon>
-                  </div>
-                  <p class="font-regular-4" *ngIf="step.subtitle">
-                    {{ step.subtitle }}
-                  </p>
-                  <img
-                    [src]="step.imageMobile"
-                    alt=""
-                    class="bmb-bienvenida_image"
-                  />
-                  <p class="font-regular-5">{{ step.shortDescription }}</p>
-                  <div *ngIf="step.showCheckbox">
-                    <bmb-checkbox
-                      [name]="'noShow'"
-                      [label]="'No mostrar este tutorial nuevamente'"
-                      (change)="change($event)"
-                    ></bmb-checkbox>
-                  </div>
-                </div>
-                <div class="bmb-bienvenida_actions">
-                  <button
-                    *ngIf="step.secondaryButton"
-                    bmbButton
-                    (click)="back()"
-                    appearance="secondary-outlined"
-                    [isMobile]="true"
-                    size="large"
-                  >
-                    {{ step.secondaryButton }}
-                  </button>
-
-                  <button
-                    (click)="next()"
-                    bmbButton
-                    size="small"
-                    [isMobile]="true"
-                    size="large"
-                  >
-                    {{ step.primaryButton }}
-                  </button>
-                </div>
-              </article>
-            </ng-container>
-          </section>
-          <section class="bmb-bienvenida_desktop">
-            <div class="bmb-bienvenida_desktop-wrapper">
-              <bmb-button-icon
-                [idElement]="''"
-                [icon]="'close'"
-                [showContainer]="false"
-                [disabled]="false"
-                [active]="false"
-                class="bmb-bienvenida_desktop-close"
-                (onButtonClick)="closeOnboarding($event)"
-              ></bmb-button-icon>
-              <div class="bmb-bienvenida_desktop-container">
-                <div class="bmb-bienvenida_desktop-content">
-                  <div class="bmb-bienvenida_desktop-header">
-                    <h2 class="font-bold-11">
-                      {{ steps()[currentIndex].title }}
-                    </h2>
-                    <bmb-icon
-                      [icon]="steps()[currentIndex].icon"
-                      [size]="steps()[currentIndex].iconSize"
-                    ></bmb-icon>
-                  </div>
-                  <p class="font-bold-9" *ngIf="steps()[currentIndex].subtitle">
-                    {{ steps()[currentIndex].subtitle }}
-                  </p>
-                  <p
-                    class="font-regular-4 bmb-bienvenida_desktop-description"
-                    [innerHTML]="steps()[currentIndex].description"
-                  ></p>
-                  <div *ngIf="steps()[currentIndex].showCheckbox">
-                    <bmb-checkbox
-                      name="desktopNoShow"
-                      label="No mostrar este tutorial nuevamente"
-                      (change)="change($event)"
-                    ></bmb-checkbox>
-                  </div>
-                  <div class="bmb-bienvenida_actions">
-                    <button
-                      *ngIf="steps()[currentIndex].secondaryButton"
-                      bmbButton
-                      appearance="secondary-outlined"
-                      (click)="back()"
-                    >
-                      {{ steps()[currentIndex].secondaryButton }}
-                    </button>
-
-                    <button bmbButton (click)="next()">
-                      {{ steps()[currentIndex].primaryButton }}
-                    </button>
-                  </div>
-                </div>
-                <img
-                  [src]="steps()[currentIndex]?.imageDesktop"
-                  alt=""
-                  class="bmb-bienvenida_image"
+    <bmb-home-card
+      leftIcon="chevron_left"
+      icon="emoji_objects"
+      bgIconAppearance="info-primary"
+      title="TEC-IDEA"
+      subtitle="Bienvenida"
+    >
+      <bmb-carousel>
+        <section bmbLayout margin="none" alignItems="stretch">
+          <section
+            bmbLayoutItem
+            [colSm]="4"
+            [colLg]="6"
+            bmbVerticalLayout
+            gapSize="l"
+          >
+            <section
+              style="display: flex;  gap: var(--bmb-spacing-l); align-items: center;"
+              bmbVerticalLayoutItem
+            >
+              <h1>{{ steps()[currentIndex].title }}</h1>
+              @if (steps()[currentIndex].icon) {
+                <bmb-icon
+                  [icon]="steps()[currentIndex].icon"
+                  [size]="steps()[currentIndex].iconSize || 32"
                 />
-              </div>
-              <bmb-dot-paginator
-                [activeDotIndex]="currentIndex"
-                [totalDots]="steps().length"
-                (onDotPress)="handleDotPress($event)"
+              }
+            </section>
+            @if (steps()[currentIndex].subtitle) {
+              <h2 bmbVerticalLayoutItem>
+                {{ steps()[currentIndex].subtitle }}
+              </h2>
+            }
+
+            <p bmbVerticalLayoutItem [rowGrow]="1">
+              {{ steps()[currentIndex].description }}
+            </p>
+            @if (steps()[currentIndex].showCheckbox) {
+              <bmb-checkbox
+                name="desktopNoShow"
+                label="No mostrar este tutorial nuevamente"
+                (change)="change($event)"
+                bmbVerticalLayoutItem
               />
-            </div>
+            }
           </section>
-        </bmb-container>
-      </div>
-    </ng-template>
+
+          <bmb-image
+            [src]="steps()[currentIndex]?.imageDesktop"
+            [mobileSrc]="steps()[currentIndex]?.imageMobile"
+            [alt]="'guide_tour_'.concat(currentIndex)"
+            borderRadius="m"
+            loading="eager"
+            bmbLayoutItem
+            [colSm]="4"
+            [colLg]="6"
+          />
+        </section>
+      </bmb-carousel>
+      <section
+        class="bmb_sticky"
+        bmbLayout
+        margin="none"
+        gapSize="none"
+        justify="end"
+      >
+        <bmb-dot-paginator
+          [activeDotIndex]="currentIndex"
+          [totalDots]="steps().length"
+          [targets]="[
+            { target: '#item1', index: 0 },
+            { target: '#item2', index: 1 },
+            { target: '#item3', index: 2 },
+            { target: '#item4', index: 3 }
+          ]"
+          (onDotPress)="handleDotPress($event)"
+          bmbLayoutItem
+          [colSm]="4"
+          [colLg]="12"
+        />
+        <section
+          bmbLayoutItem
+          [colSm]="4"
+          [colLg]="6"
+          bmbLayout
+          margin="none"
+          justify="end"
+        >
+          @if (steps()[currentIndex].secondaryButton) {
+            <button
+              bmbButton
+              appearance="secondary-outlined"
+              (click)="back()"
+              bmbLayoutItem
+              [colSm]="4"
+              [colLg]="6"
+            >
+              {{ steps()[currentIndex].secondaryButton }}
+            </button>
+          }
+
+          <button
+            bmbButton
+            (click)="next()"
+            bmbLayoutItem
+            [colSm]="4"
+            [colLg]="6"
+          >
+            {{ steps()[currentIndex].primaryButton }}
+          </button>
+        </section>
+      </section>
+    </bmb-home-card>
   `,
 })
-class StorybookLayoutBienvenida implements AfterViewInit, OnChanges {
-  @ViewChild('contentTemplate') contentTemplate!: TemplateRef<any>;
+class StorybookGuidedTourHC implements OnChanges {
   steps = input<OnboardingStep[]>([]);
   startIndex = input<number>(0);
   currentIndex = 0;
 
   constructor(private contentProjected: BmbProjectionContentService) {}
 
-  ngAfterViewInit() {
-    const hide = localStorage.getItem('hideOnboarding');
-
-    if (hide === 'true') {
-      return;
-    }
-
-    this.openContent();
-  }
-
   ngOnChanges(changes: SimpleChanges) {
     if (changes['startIndex']) {
       this.currentIndex = this.startIndex();
     }
-  }
-
-  openContent() {
-    const data: IBmbProjectionContent = {
-      content: this.contentTemplate,
-    };
-
-    this.contentProjected.openContent(data);
   }
 
   next() {
@@ -254,7 +200,7 @@ export default {
   tags: ['!autodocs'],
   decorators: [
     moduleMetadata({
-      imports: [StorybookLayoutBienvenida],
+      imports: [StorybookGuidedTourHC],
       providers: [],
     }),
   ],
@@ -262,242 +208,6 @@ export default {
     docs: {
       description: {
         component: `
-Below is an example of how you can use the components needed
- TypeScript:
-
-\`\`\`typescript
-export interface OnboardingStep {
-  description: string;
-  icon?: string;
-  iconSize?: string;
-  imageDesktop: string;
-  imageMobile: string;
-  primaryButton: string;
-  secondaryButton?: string;
-  shortDescription: string;
-  showCheckbox?: boolean;
-  subtitle?: string;
-  title: string;
-}
-
-import { MatDialog } from '@angular/material/dialog';
-import { BmbModalComponent, ModalDataConfig } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
-@Component({
-  selector: 'component',
-  standalone: true,
-  imports: [
-    CommonModule,
-    BmbButtonDirective,
-    BmbContainerComponent,
-    BmbCheckboxComponent,
-    BmbDotPaginatorComponent,
-    BmbIconComponent,
-    BmbButtonIconComponent,
-  ],
-  template: '',
-  styleUrl: './component.scss',
-})
-class StorybookLayoutBienvenida implements AfterViewInit, OnChanges {
-  @ViewChild('contentTemplate') contentTemplate!: TemplateRef<any>;
-  steps = input<OnboardingStep[]>([]);
-  startIndex = input<number>(0);
-  currentIndex = 0;
-
-  constructor(private contentProjected: BmbProjectionContentService) {}
-
-  ngAfterViewInit() {
-    const hide = localStorage.getItem('hideOnboarding');
-
-    if (hide === 'true') {
-      return;
-    }
-
-    this.openContent();
-  }
-
-  ngOnChanges(changes: SimpleChanges) {
-    if (changes['startIndex']) {
-      this.currentIndex = this.startIndex;
-    }
-  }
-
-  openContent() {
-    const data: IBmbProjectionContent = {
-      content: this.contentTemplate,
-    };
-
-    this.contentProjected.openContent(data);
-  }
-
-  next() {
-    const lastIndex = this.steps().length - 1;
-
-    if (this.currentIndex === lastIndex) {
-      this.closeOnboarding();
-      return;
-    }
-
-    this.currentIndex++;
-  }
-
-  back() {
-    if (this.currentIndex > 0) {
-      this.currentIndex--;
-    }
-  }
-
-  closeOnboarding() {
-    this.contentProjected.closeContent?.();
-  }
-
-  change(event: any) {
-    const checked = event?.target?.checked;
-    if (checked) {
-      localStorage.setItem('hideOnboarding', 'true');
-    } else {
-      localStorage.removeItem('hideOnboarding');
-    }
-  }
-
-  handleDotPress(index: number): void {
-    this.currentIndex = index;
-  }
-}
-\`\`\`
-
-Below is an example of how you can use the components needed for this organization in HTML:
-<ng-template #contentTemplate>
-      <div class="bmb-bienvenida">
-        <bmb-container [appearance]="'secondary-container'">
-          <section class="bmb-bienvenida_mobile">
-            <ng-container *ngFor="let step of steps(); let i = index">
-              <article
-                class="bmb-bienvenida_step"
-                [class.bmb-bienvenida_step-active]="i === currentIndex"
-                [class.bmb-bienvenida_prev]="i < currentIndex"
-                [class.bmb-bienvenida_next]="i > currentIndex"
-              >
-                <div class="bmb-bienvenida_content">
-                  <div class="bmb-bienvenida_header">
-                    <h2 class="font-bold-9">{{ step.title }}</h2>
-                    <bmb-button-icon
-                      [idElement]="''"
-                      [icon]="'close'"
-                      [showContainer]="false"
-                      [disabled]="false"
-                      [active]="false"
-                      (onButtonClick)="closeOnboarding($event)"
-                    ></bmb-button-icon>
-                  </div>
-                  <p class="font-regular-4" *ngIf="step.subtitle">
-                    {{ step.subtitle }}
-                  </p>
-                  <img
-                    [src]="step.imageMobile"
-                    alt=""
-                    class="bmb-bienvenida_image"
-                  />
-                  <p class="font-regular-5">{{ step.shortDescription }}</p>
-                  <div *ngIf="step.showCheckbox">
-                    <bmb-checkbox
-                      [name]="'noShow'"
-                      [label]="'No mostrar este tutorial nuevamente'"
-                      (change)="change($event)"
-                    ></bmb-checkbox>
-                  </div>
-                </div>
-                <div class="bmb-bienvenida_actions">
-                  <button
-                    *ngIf="step.secondaryButton"
-                    bmbButton
-                    (click)="back()"
-                    appearance="secondary-outlined"
-                    [isMobile]="true"
-                    size="large"
-                  >
-                    {{ step.secondaryButton }}
-                  </button>
-
-                  <button
-                    (click)="next()"
-                    bmbButton
-                    size="small"
-                    [isMobile]="true"
-                    size="large"
-                  >
-                    {{ step.primaryButton }}
-                  </button>
-                </div>
-              </article>
-            </ng-container>
-          </section>
-          <section class="bmb-bienvenida_desktop">
-            <div class="bmb-bienvenida_desktop-wrapper">
-              <bmb-button-icon
-                [idElement]="''"
-                [icon]="'close'"
-                [showContainer]="false"
-                [disabled]="false"
-                [active]="false"
-                class="bmb-bienvenida_desktop-close"
-                (onButtonClick)="closeOnboarding($event)"
-              ></bmb-button-icon>
-              <div class="bmb-bienvenida_desktop-container">
-                <div class="bmb-bienvenida_desktop-content">
-                  <div class="bmb-bienvenida_desktop-header">
-                    <h2 class="font-bold-11">
-                      {{ steps()[currentIndex].title }}
-                    </h2>
-                    <bmb-icon
-                      [icon]="steps()[currentIndex].icon"
-                      [size]="steps()[currentIndex].iconSize"
-                    ></bmb-icon>
-                  </div>
-                  <p class="font-bold-9" *ngIf="steps()[currentIndex].subtitle">
-                    {{ steps()[currentIndex].subtitle }}
-                  </p>
-                  <p
-                    class="font-regular-4 bmb-bienvenida_desktop-description"
-                    [innerHTML]="steps()[currentIndex].description"
-                  ></p>
-                  <div *ngIf="steps()[currentIndex].showCheckbox">
-                    <bmb-checkbox
-                      name="desktopNoShow"
-                      label="No mostrar este tutorial nuevamente"
-                      (change)="change($event)"
-                    ></bmb-checkbox>
-                  </div>
-                  <div class="bmb-bienvenida_actions">
-                    <button
-                      *ngIf="steps()[currentIndex].secondaryButton"
-                      bmbButton
-                      appearance="secondary-outlined"
-                      (click)="back()"
-                    >
-                      {{ steps()[currentIndex].secondaryButton }}
-                    </button>
-
-                    <button bmbButton (click)="next()">
-                      {{ steps()[currentIndex].primaryButton }}
-                    </button>
-                  </div>
-                </div>
-                <img
-                  [src]="steps()[currentIndex]?.imageDesktop"
-                  alt=""
-                  class="bmb-bienvenida_image"
-                />
-              </div>
-              <bmb-dot-paginator
-                [activeDotIndex]="currentIndex"
-                [totalDots]="steps().length"
-                (onDotPress)="handleDotPress($event)"
-              />
-            </div>
-          </section>
-        </bmb-container>
-      </div>
-    </ng-template>
         `,
       },
     },
@@ -517,16 +227,16 @@ Below is an example of how you can use the components needed for this organizati
     steps: [
       {
         description:
-          'Con la plataforma de mitec podrás descubrir una nueva forma de vivir tu experiencia dentro del Tecnológico de Monterrey. <br/> Diseñada de manera modular para mostrar diferentes niveles de contenido de manera sencilla, esta aplicación te brinda acceso automático a todos los servicios esenciales e información importante en tu estancia.',
-        icon: 'waving_hand',
-        iconSize: '32',
-        imageDesktop: '../assets/images/bienvenida/step_1_desktop.png',
-        imageMobile: '../assets/images/bienvenida/step_1.png',
+          'Con la plataforma de mitec podrás descubrir una nueva forma de vivir tu experiencia dentro del Tecnológico de Monterrey. Diseñada de manera modular para mostrar diferentes niveles de contenido de manera sencilla, esta aplicación te brinda acceso automático a todos los servicios esenciales e información importante en tu estancia.',
+        icon: '',
+        iconSize: '',
+        imageDesktop: '../assets/doc/guided-tour/step_1_desktop.png',
+        imageMobile: '../assets/doc/guided-tour/step_1.png',
         primaryButton: 'Empezar el tour',
         shortDescription: 'Este es tu tour introductorio a la app.',
         showCheckbox: true,
-        subtitle: 'Bienvenida a MiTec',
-        title: 'Hola, Paloma',
+        subtitle: '',
+        title: 'Te damos la bienvenida a TEC - IDEA ',
       },
       {
         description:
@@ -570,7 +280,7 @@ export const Default: StoryFn = (args) => {
     props: args,
     template: `
       <!-- Instruction to users: This component is used for internal Storybook logic and should not be copied -->
-      <storybook-storybook-guided-tour ${attributes(args)}/>
+      <storybook-guided-tour ${attributes(args)}/>
     `,
   };
 };
