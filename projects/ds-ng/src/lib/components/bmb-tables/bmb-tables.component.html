@@ -191,7 +191,7 @@
 
             <td
               mat-cell
-              *matCellDef="let row; let a = index"
+              *matCellDef="let row; let a = dataIndex"
               #cell
               [matTooltip]="hasEllipsis(cell) ? row[column.dataKey] : ''"
               tooltipClass="bmb_tooltip"
@@ -200,7 +200,20 @@
               @if (isTemplateRef(row[column.dataKey + 'Template'])) {
                 <ng-template
                   [ngTemplateOutlet]="row[column.dataKey + 'Template']"
-                  [ngTemplateOutletContext]="{ row: row }"
+                  [ngTemplateOutletContext]="{
+                    row: row,
+                    column: column,
+                    index: a
+                  }"
+                ></ng-template>
+              } @else if (column.cellTemplate) {
+                <ng-template
+                  [ngTemplateOutlet]="column.cellTemplate"
+                  [ngTemplateOutletContext]="{
+                    row: row,
+                    column: column,
+                    index: a
+                  }"
                 ></ng-template>
               } @else {
                 {{ row[column.dataKey]?.propertyName || row[column.dataKey] }}
