@@ -79,13 +79,11 @@ export class TableLtsComponent implements OnInit, AfterViewInit {
     // Reasignamos una NUEVA referencia de array (y del objeto columna)
     // para que el @Input `columns` del bmb-table (OnPush) detecte el cambio
     // y vuelva a parsear las columnas con el template ya resuelto.
-    Promise.resolve().then(() => {
-      this.columns = this.columns.map((col) =>
-        col.def === 'first_name'
-          ? { ...col, cellTemplate: this.conceptTemplate }
-          : col,
-      );
-    });
+    this.columns = this.columns.map((col) =>
+      col.def === 'first_name'
+        ? { ...col, cellTemplate: this.conceptTemplate }
+        : col,
+    );
   }
 
   ngOnInit() {

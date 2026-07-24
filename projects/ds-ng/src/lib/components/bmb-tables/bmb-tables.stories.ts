@@ -22,6 +22,7 @@ const additionalBlock: string = `
     @ViewChild('actionTemplate') actionTemplate!: TemplateRef<any>;
     @ViewChild('detailTemplate') detailTemplate!: TemplateRef<any>;
     @ViewChild('headerNameTemplate') headerNameTemplate!: TemplateRef<any>;
+    @ViewChild('customLastName') customLastName: TemplateRef<any>;
 
     constructor(private cdr: ChangeDetectorRef) {}
 
@@ -179,7 +180,7 @@ const additionalBlock: string = `
     }
 
     ngAfterViewInit(): void {
-      // Asignar templates a columnas
+      // Asignar templates al encabezado de la columna
       this.columns = this.columns.map((col) => {
         if (col.def === 'name') {
           return { ...col, htmlLabel: this.headerNameTemplate };
@@ -187,7 +188,14 @@ const additionalBlock: string = `
         return col;
       });
 
-      // Asignar templates a datos
+      // Asignar template a las celdas de la columna
+      this.columns = this.columns.map((col) =>
+        col.def === 'last_name'
+          ? { ...col, cellTemplate: this.customLastName }
+          : col,
+      );
+
+      // Aunque es posible definir el template a nivel de renglón, no recomendamos esta opción debido a la constante iteración que requiere.
       this.data = this.data.map((row) => {
         return {
           ...row,
@@ -196,7 +204,7 @@ const additionalBlock: string = `
         };
       });
 
-      // Forzar renderizado porque los ViewChild no están disponibles en ngOnInit
+      // De ser necesario es posible forzar renderizado cuando los ViewChild no están disponibles en ngOnInit
       this.cdr.detectChanges();
     }
 
