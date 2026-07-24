@@ -89,6 +89,7 @@
     "error_message": "Archivo no compatible",
     "error_message_format": "Formato no soportado",
     "error_message_size": "El archivo supera el tamaño permitido",
+    "error_message_invalid_name": "Nombre de archivo no valido",
     "format_files_label": "Especificación de formatos y peso",
     "link_label": "Ver más información de formatos de archivo aceptados."
   },

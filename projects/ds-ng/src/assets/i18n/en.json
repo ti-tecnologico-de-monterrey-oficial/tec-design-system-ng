@@ -89,6 +89,7 @@
     "error_message": "Unsupported file",
     "error_message_format": "Unsupported format",
     "error_message_size": "File size exceeds the allowed limit",
+    "error_message_invalid_name": "Invalid file name",
     "format_files_label": "Specification of formats and weight",
     "link_label": "View more information about accepted file formats."
   },
