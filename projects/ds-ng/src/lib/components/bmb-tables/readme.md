@@ -47,14 +47,24 @@
 ```html
 <bmb-table [columns]="columns" [data]="usuarios" />
 
-<ng-template #estadoTemplate let-row="row">
+<ng-template
+  #estadoTemplate
+  let-row="row"
+  let-column="column"
+  let-index="index"
+>
   <bmb-badge [text]="row.estado" />
 </ng-template>
 ```
 
 ```ts
 this.columns = [
-  { def: 'estado', label: 'Estado', dataKey: 'estado', cellTemplate: this.estadoTemplate },
+  {
+    def: 'estado',
+    label: 'Estado',
+    dataKey: 'estado',
+    cellTemplate: this.estadoTemplate,
+  },
 ];
 ```
 

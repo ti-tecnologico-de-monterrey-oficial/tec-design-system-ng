@@ -22,7 +22,7 @@ const additionalBlock: string = `
     @ViewChild('actionTemplate') actionTemplate!: TemplateRef<any>;
     @ViewChild('detailTemplate') detailTemplate!: TemplateRef<any>;
     @ViewChild('headerNameTemplate') headerNameTemplate!: TemplateRef<any>;
-    @ViewChild('customLastName') customLastName: TemplateRef<any>;
+    @ViewChild('customLastName') customLastName!: TemplateRef<any>;
 
     constructor(private cdr: ChangeDetectorRef) {}
 
