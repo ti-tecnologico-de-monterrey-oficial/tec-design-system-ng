@@ -90,7 +90,6 @@
     "error_message_format": "Unsupported format",
     "error_message_size": "File size exceeds the allowed limit",
     "error_message_invalid_name": "Invalid file name",
-    "error_message_duplicate": "Invalid duplicate file",
     "format_files_label": "Specification of formats and weight",
     "link_label": "View more information about accepted file formats."
   },

@@ -63,14 +63,16 @@
           />
         </label>
       </p>
-      @if (isErrorFiles()) {
-        <p
-          class="bmb_drop-zone-label-error"
-          bmbVerticalLayoutItem
-          [isFullWidth]="false"
-        >
-          {{ errorMessageLabel }}
-        </p>
+      @if (visibleErrorMessages.length) {
+        @for (message of visibleErrorMessages; track $index) {
+          <p
+            class="bmb_drop-zone-label-error"
+            bmbVerticalLayoutItem
+            [isFullWidth]="false"
+          >
+            {{ message }}
+          </p>
+        }
         @if (!!linkFilesSupported() && !!linkLabel()) {
           <bmb-text-link
             textLinkStyle="underlined"
@@ -83,7 +85,7 @@
       }
     </section>
     @if (!!fileDataList.length) {
-      @for (file of organizedFiles; track $index) {
+      @for (file of organizedFiles; track file.id) {
         <bmb-progress-bar
           class="bmb-drop-zone-file"
           [ngClass]="{
@@ -112,7 +114,7 @@
           [avatarIcon]="getAvatarIcon(file)"
           [actionIcon]="file.error ? 'close' : 'delete'"
           [showStatusIcon]="isUploadCompleted(file)"
-          (actionClick)="handleRemoveFile(file.name)"
+          (actionClick)="handleRemoveFile(file)"
           bmbVerticalLayoutItem
         />
       }
