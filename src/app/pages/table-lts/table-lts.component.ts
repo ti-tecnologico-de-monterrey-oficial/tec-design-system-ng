@@ -1,4 +1,5 @@
 import {
+  AfterViewInit,
   Component,
   model,
   OnInit,
@@ -20,7 +21,7 @@ import { CommonModule } from '@angular/common';
   templateUrl: './table-lts.component.html',
   styleUrl: './table-lts.component.scss',
 })
-export class TableLtsComponent implements OnInit {
+export class TableLtsComponent implements OnInit, AfterViewInit {
   data = signal<any[]>([]);
   @ViewChild('conceptTemplate') conceptTemplate!: TemplateRef<any>;
 
@@ -74,6 +75,17 @@ export class TableLtsComponent implements OnInit {
     first_name_contains: 'jj',
   });
 
+  ngAfterViewInit() {
+    // Reasignamos una NUEVA referencia de array (y del objeto columna)
+    // para que el @Input `columns` del bmb-table (OnPush) detecte el cambio
+    // y vuelva a parsear las columnas con el template ya resuelto.
+    this.columns = this.columns.map((col) =>
+      col.def === 'first_name'
+        ? { ...col, cellTemplate: this.conceptTemplate }
+        : col,
+    );
+  }
+
   ngOnInit() {
     setTimeout(() => {
       this.data.set([
@@ -85,7 +97,7 @@ export class TableLtsComponent implements OnInit {
           country: 'Latvia',
           birthday: '17/10/2001',
           balance: 9424,
-          last_nameTemplate: this.conceptTemplate,
+          // last_nameTemplate: this.conceptTemplate,
         },
         {
           id: 2,

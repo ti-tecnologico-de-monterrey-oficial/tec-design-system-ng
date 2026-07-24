@@ -41,6 +41,7 @@ export class BmbDrawerOverlayComponent {
   isOpen: boolean = false;
   isFull: boolean = false;
   activeNavItemIndex: number = 0;
+  menuItemLimit: number = 5;
 
   toggleDrawer() {
     this.isOpen = !this.isOpen;

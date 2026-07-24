@@ -55,14 +55,12 @@ export class BmbProjectionContentService {
     if (!content[hook]) return;
 
     try {
-      content[hook]({
+      content?.[hook]({
         contentId: content.id ?? '',
         reason,
-      })
+      });
     } catch {
-      console.warn(
-        `Error executing ${hook} for modal with id ${content.id}`,
-      )
+      console.warn(`Error executing ${hook} for modal with id ${content.id}`);
     }
   }
 
@@ -117,12 +115,12 @@ export class BmbProjectionContentService {
     if (!id && this.contentList() !== null) {
       const list = [...this.contentStack()];
 
-      list.forEach(content => {
+      list.forEach((content) => {
         this.runContentHook(content, 'beforeCloseContent', 'all');
       });
       this.contentStack.set([]);
       this.contentList.set(null);
-      list.forEach(content => {
+      list.forEach((content) => {
         this.runContentHook(content, 'afterCloseContent', 'all');
       });
 
