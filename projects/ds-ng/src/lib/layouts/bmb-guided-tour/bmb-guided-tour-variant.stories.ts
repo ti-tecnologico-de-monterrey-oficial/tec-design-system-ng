@@ -6,7 +6,7 @@ import {
   BmbCheckboxComponent,
   BmbImageComponent,
   BmbButtonDirective,
-  BmbDotPaginatorComponent,
+  BmbCarouselComponent,
   BmbLayoutDirective,
   BmbLayoutItemDirective,
   BmbVerticalLayoutDirective,
@@ -15,16 +15,18 @@ import {
   OnboardingStep,
 } from '../../../public-api';
 import { attributes } from '../../utils/doc/utils';
+import { CommonModule } from '@angular/common';
 
 @Component({
   standalone: true,
   imports: [
+    CommonModule,
     BmbHomeCardComponent,
     BmbIconComponent,
     BmbCheckboxComponent,
     BmbImageComponent,
     BmbButtonDirective,
-    BmbDotPaginatorComponent,
+    BmbCarouselComponent,
     BmbLayoutDirective,
     BmbLayoutItemDirective,
     BmbVerticalLayoutDirective,
@@ -39,57 +41,63 @@ import { attributes } from '../../utils/doc/utils';
       title="TEC-IDEA"
       subtitle="Bienvenida"
     >
-      <bmb-carousel>
-        <section bmbLayout margin="none" alignItems="stretch">
+      <bmb-carousel [(selectedIndex)]="currentIndex">
+        @for (step of steps(); track $index) {
           <section
-            bmbLayoutItem
-            [colSm]="4"
-            [colLg]="6"
-            bmbVerticalLayout
-            gapSize="l"
+            [id]="'carousel_'.concat($index)"
+            #carouselItem
+            bmbLayout
+            margin="none"
+            alignItems="stretch"
           >
             <section
-              style="display: flex;  gap: var(--bmb-spacing-l); align-items: center;"
-              bmbVerticalLayoutItem
+              class="bmb_card-scroll"
+              bmbLayoutItem
+              [colSm]="4"
+              [colLg]="6"
+              bmbVerticalLayout
+              gapSize="l"
             >
-              <h1>{{ steps()[currentIndex].title }}</h1>
-              @if (steps()[currentIndex].icon) {
-                <bmb-icon
-                  [icon]="steps()[currentIndex].icon"
-                  [size]="steps()[currentIndex].iconSize || 32"
+              <section
+                style="display: flex;  gap: var(--bmb-spacing-l); align-items: center;"
+                bmbVerticalLayoutItem
+              >
+                <h1>{{ step.title }}</h1>
+                @if (step.icon) {
+                  <bmb-icon [icon]="step.icon" [size]="step.iconSize || 32" />
+                }
+              </section>
+              @if (step.subtitle) {
+                <h2 bmbVerticalLayoutItem>
+                  {{ step.subtitle }}
+                </h2>
+              }
+
+              <p bmbVerticalLayoutItem [rowGrow]="1">
+                {{ step.description }}
+              </p>
+              @if (step.showCheckbox) {
+                <bmb-checkbox
+                  name="desktopNoShow"
+                  label="No mostrar este tutorial nuevamente"
+                  (change)="change($event)"
+                  bmbVerticalLayoutItem
                 />
               }
             </section>
-            @if (steps()[currentIndex].subtitle) {
-              <h2 bmbVerticalLayoutItem>
-                {{ steps()[currentIndex].subtitle }}
-              </h2>
-            }
 
-            <p bmbVerticalLayoutItem [rowGrow]="1">
-              {{ steps()[currentIndex].description }}
-            </p>
-            @if (steps()[currentIndex].showCheckbox) {
-              <bmb-checkbox
-                name="desktopNoShow"
-                label="No mostrar este tutorial nuevamente"
-                (change)="change($event)"
-                bmbVerticalLayoutItem
-              />
-            }
+            <bmb-image
+              [src]="step?.imageDesktop"
+              [mobileSrc]="step?.imageMobile"
+              [alt]="'guide_tour_'.concat(currentIndex)"
+              borderRadius="m"
+              loading="eager"
+              bmbLayoutItem
+              [colSm]="4"
+              [colLg]="6"
+            />
           </section>
-
-          <bmb-image
-            [src]="steps()[currentIndex]?.imageDesktop"
-            [mobileSrc]="steps()[currentIndex]?.imageMobile"
-            [alt]="'guide_tour_'.concat(currentIndex)"
-            borderRadius="m"
-            loading="eager"
-            bmbLayoutItem
-            [colSm]="4"
-            [colLg]="6"
-          />
-        </section>
+        }
       </bmb-carousel>
       <section
         class="bmb_sticky"
@@ -98,20 +106,6 @@ import { attributes } from '../../utils/doc/utils';
         gapSize="none"
         justify="end"
       >
-        <bmb-dot-paginator
-          [activeDotIndex]="currentIndex"
-          [totalDots]="steps().length"
-          [targets]="[
-            { target: '#item1', index: 0 },
-            { target: '#item2', index: 1 },
-            { target: '#item3', index: 2 },
-            { target: '#item4', index: 3 }
-          ]"
-          (onDotPress)="handleDotPress($event)"
-          bmbLayoutItem
-          [colSm]="4"
-          [colLg]="12"
-        />
         <section
           bmbLayoutItem
           [colSm]="4"
@@ -150,7 +144,7 @@ import { attributes } from '../../utils/doc/utils';
 class StorybookGuidedTourHC implements OnChanges {
   steps = input<OnboardingStep[]>([]);
   startIndex = input<number>(0);
-  currentIndex = 0;
+  currentIndex: number = 0;
 
   constructor(private contentProjected: BmbProjectionContentService) {}
 
