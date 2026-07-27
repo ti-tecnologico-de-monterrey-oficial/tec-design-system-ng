@@ -39,12 +39,12 @@ ${getBasicExampleBlock('BmbBoxIconComponent', ON_BUTTON_CLICK.handleExample)}
     iconImageAlt: DBmbIconParamDesc.alt,
     isIconFilled: DBmbIconParamDesc.isIconFill,
     boxColor: getAppearanceParam('the box icon', colorList),
-    boxShape: {
-      control: 'select',
-      options: ['square', 'circle'],
-      description:
-        'Defines the box shape. Square keeps the radius associated with the box size and circle applies a 50% border radius.',
-    },
+    boxShape: getAppearanceParam(
+      'the box shape',
+      ['square', 'circle'],
+      'square',
+      '<br/><br/>Square keeps the radius associated with the box size and circle applies a 50% border radius.',
+    ),
     boxSize: getAppearanceParam('the box size', ['small', 'regular'], 'small'),
   },
   args: {
