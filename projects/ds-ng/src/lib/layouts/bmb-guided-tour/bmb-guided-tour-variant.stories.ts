@@ -5,8 +5,8 @@ import {
   BmbIconComponent,
   BmbCheckboxComponent,
   BmbImageComponent,
-  BmbButtonDirective,
   BmbCarouselComponent,
+  BmbButtonDirective,
   BmbLayoutDirective,
   BmbLayoutItemDirective,
   BmbVerticalLayoutDirective,
@@ -14,27 +14,28 @@ import {
   BmbProjectionContentService,
   OnboardingStep,
 } from '../../../public-api';
-import { attributes } from '../../utils/doc/utils';
-import { CommonModule } from '@angular/common';
+import {
+  attributes,
+  BlockquoteType,
+  DESIGN_SYSTEM_TITLE,
+  getAlertBlockquote,
+  getBasicExampleBlock,
+  getGeneralDescription,
+  getSpecialSpecifications,
+  getTechnicalDocReferences,
+  RELEVANT_TITLE,
+} from '../../utils/doc/utils';
+import * as homeCard from '../../components/bmb-home-card/bmp-home-card.stories';
+import * as icon from '../../components/bmb-icon/bmb-icon.stories';
+import * as checkbox from '../../components/bmb-checkbox/bmb-checkbox.stories';
+import * as image from '../../components/bmb-image/bmb-image.stories';
+import * as carousel from '../../components/bmb-carousel/bmb-carousel.stories';
+import * as button from '../../directives/bmb-button/button.stories';
+import * as layout from '../../directives/bmb-layout/bmb-layout.stories';
+import * as verticalLayout from '../../directives/bmb-layout/bmb-vertical-layout/bmb-vertical-layout.stories';
 
-@Component({
-  standalone: true,
-  imports: [
-    CommonModule,
-    BmbHomeCardComponent,
-    BmbIconComponent,
-    BmbCheckboxComponent,
-    BmbImageComponent,
-    BmbButtonDirective,
-    BmbCarouselComponent,
-    BmbLayoutDirective,
-    BmbLayoutItemDirective,
-    BmbVerticalLayoutDirective,
-    BmbVerticalLayoutItemDirective,
-  ],
-  selector: 'storybook-guided-tour',
-  template: `
-    <bmb-home-card
+const htmlTemplate: string = `
+<bmb-home-card
       leftIcon="chevron_left"
       icon="emoji_objects"
       bgIconAppearance="info-primary"
@@ -139,7 +140,24 @@ import { CommonModule } from '@angular/common';
         </section>
       </section>
     </bmb-home-card>
-  `,
+`;
+
+@Component({
+  standalone: true,
+  imports: [
+    BmbHomeCardComponent,
+    BmbIconComponent,
+    BmbCheckboxComponent,
+    BmbImageComponent,
+    BmbCarouselComponent,
+    BmbButtonDirective,
+    BmbLayoutDirective,
+    BmbLayoutItemDirective,
+    BmbVerticalLayoutDirective,
+    BmbVerticalLayoutItemDirective,
+  ],
+  selector: 'storybook-guided-tour',
+  template: htmlTemplate,
 })
 class StorybookGuidedTourHC implements OnChanges {
   steps = input<OnboardingStep[]>([]);
@@ -202,7 +220,50 @@ export default {
     docs: {
       description: {
         component: `
-        `,
+        ${getGeneralDescription(`**Guided tour - Home card** is a template that helps implement a guided tour with the elements stipulated in the related documentation in ${DESIGN_SYSTEM_TITLE}.`, { generalDocLink: 'https://bamboo.tec.mx/latest/templates/guided-tour/descripcion-general-mMTQU3SK' })}
+        ${getSpecialSpecifications(
+          `${getAlertBlockquote(
+            `This is just an example; you need to add the actual application data.`,
+            {
+              blockquoteType: BlockquoteType.important,
+              title: RELEVANT_TITLE.example,
+            },
+          )}
+
+>
+${getTechnicalDocReferences({
+  references: [
+    { title: homeCard.default.title! },
+    { title: icon.default.title! },
+    { title: checkbox.default.title! },
+    { title: image.default.title! },
+    { title: carousel.default.title! },
+    { title: button.default.title! },
+    { title: layout.default.title! },
+    { title: verticalLayout.default.title! },
+  ],
+})}`,
+          { showAdditionalBlockquote: true },
+        )}
+        ${getBasicExampleBlock(
+          `
+BmbHomeCardComponent,
+BmbIconComponent,
+BmbCheckboxComponent,
+BmbImageComponent,
+BmbCarouselComponent,
+BmbButtonDirective,
+BmbLayoutDirective,
+BmbLayoutItemDirective,
+BmbVerticalLayoutDirective,
+BmbVerticalLayoutItemDirective`,
+          ``,
+          ``,
+        )}
+\`\`\`html
+${htmlTemplate}
+\`\`\`
+                `,
       },
     },
   },
