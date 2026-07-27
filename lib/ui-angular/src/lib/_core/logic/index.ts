@@ -21,3 +21,6 @@ export * from './components/bookmark/bookmark.js';
 export * from './components/box-icon/box-icon.js';
 export * from './components/tooltip/tooltip.js';
 export * from './components/navigation-bar/navigation-bar.js';
+export * from './components/interactive-icon/interactive-icon.js';
+export * from './components/button-icon/button-icon.js';
+export * from './components/breadcrumb/breadcrumb.js';

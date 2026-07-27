@@ -8,9 +8,9 @@ import {
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
-import { IBmbContrast } from '../../types/colors';
+import { IBmbContrast } from '../types/colors';
 
-import { getButtonIconClasses } from '@ti-tecnologico-de-monterrey-oficial/core/component/button-icon';
+import { getButtonIconClasses } from '../../_core/logic/components/button-icon/button-icon';
 
 @Component({
   selector: 'bmb-button-icon',

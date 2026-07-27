@@ -18,7 +18,7 @@ import {
   getClasses,
   getDropdownItems,
   getPenultimateLink,
-} from '@ti-tecnologico-de-monterrey-oficial/core/component/breadcrumb';
+} from '../../_core/logic/components/breadcrumb/breadcrumb';
 
 @Component({
   selector: 'bmb-breadcrumb',

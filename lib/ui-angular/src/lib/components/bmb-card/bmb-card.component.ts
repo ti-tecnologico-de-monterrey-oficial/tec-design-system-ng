@@ -5,7 +5,7 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SizeNames } from '../../types';
+import { SizeNames } from '../types';
 import {
   getCardClasses,
   getCardStyles,

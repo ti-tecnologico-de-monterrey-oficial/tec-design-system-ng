@@ -20,7 +20,7 @@ import {
 } from '../types/foundations/colors/color-type';
 
 import { IBmbInteractiveIconAppearance } from '../bmb-interactive-icon/bmb-interactive-icon.component';
-import { IBmbColor } from '../../types';
+import { IBmbColor } from '../types/colors';
 
 import { getColorName } from '../../_core/logic/components/box-icon/box-icon';
 import { IBmbBoxIconSize } from '../../_core/logic/components/box-icon/types';
