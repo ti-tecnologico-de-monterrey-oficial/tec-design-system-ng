@@ -39,16 +39,29 @@ ${getBasicExampleBlock('BmbBoxIconComponent', ON_BUTTON_CLICK.handleExample)}
     iconImageAlt: DBmbIconParamDesc.alt,
     isIconFilled: DBmbIconParamDesc.isIconFill,
     boxColor: getAppearanceParam('the box icon', colorList),
+    boxShape: {
+      control: 'select',
+      options: ['square', 'circle'],
+      description:
+        'Defines the box shape. Square keeps the radius associated with the box size and circle applies a 48px border radius.',
+    },
   },
   args: {
     iconName: 'face',
     boxColor: 'semantic-success',
+    boxShape: 'square',
   },
 } as Meta<typeof BmbBoxIconComponent>;
 
 type Story = StoryObj<BmbBoxIconComponent>;
 
 export const Default: Story = {};
+
+export const Circle: Story = {
+  args: {
+    boxShape: 'circle',
+  }
+};
 
 // export const AllColors = {
 //   render: () => ({
