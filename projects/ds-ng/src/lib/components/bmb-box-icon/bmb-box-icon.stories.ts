@@ -43,13 +43,15 @@ ${getBasicExampleBlock('BmbBoxIconComponent', ON_BUTTON_CLICK.handleExample)}
       control: 'select',
       options: ['square', 'circle'],
       description:
-        'Defines the box shape. Square keeps the radius associated with the box size and circle applies a 48px border radius.',
+        'Defines the box shape. Square keeps the radius associated with the box size and circle applies a 50% border radius.',
     },
+    boxSize: getAppearanceParam('the box size', ['small', 'regular'], 'small'),
   },
   args: {
     iconName: 'face',
     boxColor: 'semantic-success',
     boxShape: 'square',
+    boxSize: 'small',
   },
 } as Meta<typeof BmbBoxIconComponent>;
 
@@ -60,7 +62,8 @@ export const Default: Story = {};
 export const Circle: Story = {
   args: {
     boxShape: 'circle',
-  }
+    boxSize: 'small',
+  },
 };
 
 // export const AllColors = {
