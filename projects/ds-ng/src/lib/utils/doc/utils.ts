@@ -157,11 +157,6 @@ export const getFormatName = (
     : _name;
 };
 
-export const getModelDescription = (
-  propertyName: string,
-): string => `This is a model signal, so it is possible to use it as:
-    [(${propertyName})]="${propertyName}"`;
-
 export const getOnEvent = (
   name: string,
   paramName: string,
@@ -475,8 +470,8 @@ export const getAlertBlockquote = (
   {
     title,
     blockquoteType,
-    isRelevantTitle = true,
-    isHeader = true,
+    isRelevantTitle = false,
+    isHeader = false,
     isSubStory,
     subStoryChart = '-',
   }: {
@@ -488,7 +483,7 @@ export const getAlertBlockquote = (
     subStoryChart?: string;
   },
 ): string => {
-  let _title: string = isRelevantTitle ? title.replaceAll('*', '') : title;
+  let _title: string = isRelevantTitle ? `<b>${title}</b>` : title;
   _title = isHeader ? '###'.concat(title) : _title;
   return `
 ${blockquoteType}
