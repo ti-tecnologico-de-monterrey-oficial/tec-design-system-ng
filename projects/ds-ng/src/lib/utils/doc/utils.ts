@@ -488,9 +488,8 @@ export const getAlertBlockquote = (
     subStoryChart?: string;
   },
 ): string => {
-  const _title: string = isHeader
-    ? `${isRelevantTitle ? title.replaceAll('*', '') : title} `
-    : title;
+  let _title: string = isRelevantTitle ? title.replaceAll('*', '') : title;
+  _title = isHeader ? '###'.concat(title) : _title;
   return `
 ${blockquoteType}
 ${getSubStoryIdentifier(isSubStory, subStoryChart).concat(_title)}
