@@ -24,4 +24,14 @@ describe('BmbBoxIconComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should apply the circle box shape class', () => {
+    componentRef.setInput('boxShape', 'circle');
+    fixture.detectChanges();
+
+    const boxIcon = fixture.nativeElement.querySelector('.bmb_box-icon');
+
+    expect(boxIcon.classList).toContain('circle');
+  });
+
 });
