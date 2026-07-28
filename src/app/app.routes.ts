@@ -29,6 +29,14 @@ export const routes: Routes = [
       ),
   },
   {
+    path: 'test-card-button',
+    title: 'Card Button Test',
+    loadComponent: () =>
+      import('./pages/test-card-button/test-card-button.component').then(
+        (component) => component.TestCardButtonComponent,
+      ),
+  },
+  {
     path: 'form-validator',
     title: 'Form Validator Test',
     loadComponent: () =>
