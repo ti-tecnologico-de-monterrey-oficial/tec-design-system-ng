@@ -225,8 +225,10 @@ export default {
           `${getAlertBlockquote(
             `This is just an example; you need to add the actual application data.`,
             {
-              blockquoteType: BlockquoteType.important,
               title: RELEVANT_TITLE.example,
+              blockquoteType: BlockquoteType.important,
+              isHeader: false,
+              isRelevantTitle: true,
             },
           )}
 
@@ -257,8 +259,111 @@ BmbLayoutDirective,
 BmbLayoutItemDirective,
 BmbVerticalLayoutDirective,
 BmbVerticalLayoutItemDirective`,
-          ``,
-          ``,
+          `import { OnChanges, SimpleChanges } from '@angular/core';`,
+          `/* OnboardingStep {
+  description: string;
+  icon?: string;
+  iconSize?: string;
+  imageDesktop: string;
+  imageMobile: string;
+  primaryButton: string;
+  secondaryButton?: string;
+  shortDescription: string;
+  showCheckbox?: boolean;
+  subtitle?: string;
+  title: string;
+} */
+steps: OnboardingStep[] = [
+      {
+        description:
+          'Con la plataforma de mitec podrás descubrir una nueva forma de vivir tu experiencia dentro del Tecnológico de Monterrey. Diseñada de manera modular para mostrar diferentes niveles de contenido de manera sencilla, esta aplicación te brinda acceso automático a todos los servicios esenciales e información importante en tu estancia.',
+        icon: '',
+        iconSize: '',
+        imageDesktop: '../assets/doc/guided-tour/step_1_desktop.png',
+        imageMobile: '../assets/doc/guided-tour/step_1.png',
+        primaryButton: 'Empezar el tour',
+        shortDescription: 'Este es tu tour introductorio a la app.',
+        showCheckbox: true,
+        subtitle: '',
+        title: 'Te damos la bienvenida a TEC - IDEA ',
+      },
+      {
+        description:
+          'TECBot es el asistente virtual diseñado para todos los usuarios, que resuelve toda clase de dudas dentro de mitec sobre consulta de datos, servicios, información importante, horarios, realización de trámites, entre otros, para que tu experiencia sea más ágil y directa. ',
+        imageDesktop: '../assets/images/bienvenida/step_2_desktop.gif',
+        imageMobile: '../assets/images/bienvenida/step_2.gif',
+        primaryButton: 'Siguiente',
+        secondaryButton: 'Regresar',
+        shortDescription:
+          'Diseñada de manera modular para mostrar información. Diseñada de manera modular para mostrar información.',
+        title: 'Navegación intuitiva',
+      },
+      {
+        description:
+          'Para lograr una mejor experiencia, la navegación es en modo horizontal; para navegar selecciona las tarjetas semiocultas del lado derecho y arrastra hacia la izquierda para revelar el resto de secciones. <br/>Al final de la navegación en Home, verás un botón denominado “Regresar al inicio”, que permite regresar a la parte inicial del recorrido del Home.',
+        imageDesktop: '../assets/images/bienvenida/step_3_desktop.gif',
+        imageMobile: '../assets/images/bienvenida/step_3.gif',
+        primaryButton: 'Siguiente',
+        secondaryButton: 'Regresar',
+        shortDescription:
+          'Al dar click en una sección, se expande en su totalidad.',
+        title: 'Descubriendo secciones',
+      },
+      {
+        description:
+          'En la parte superior, al dar click en el icono “Notificaciones” nos llevará al Notification Center, un espacio donde podrás ver todas tus notificaciones en un solo lugar, de manera ordenada y fácil de revisar. <br /> ¡Es el momento! ¡Ahora ya estás preparado para empezar a descubrir todo lo que tenemos para ti en mitec! ',
+        imageDesktop: '../assets/images/bienvenida/step_4_desktop.gif',
+        imageMobile: '../assets/images/bienvenida/step_4.gif',
+        primaryButton: 'Empezar',
+        secondaryButton: 'Regresar',
+        shortDescription:
+          'El ícono de “Notificaciones” te lleva al Notification Center.',
+        title: 'Acceso a tus notificaciones',
+      },
+    ];
+  currentIndex: number = 0;
+
+  constructor(private contentProjected: BmbProjectionContentService) {}
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['startIndex']) {
+      this.currentIndex = this.startIndex();
+    }
+  }
+
+  next() {
+    const lastIndex = this.steps().length - 1;
+
+    if (this.currentIndex === lastIndex) {
+      this.closeOnboarding();
+      return;
+    }
+
+    this.currentIndex++;
+  }
+
+  back() {
+    if (this.currentIndex > 0) {
+      this.currentIndex--;
+    }
+  }
+
+  closeOnboarding() {
+    this.contentProjected.closeContent?.();
+  }
+
+  change(event: any) {
+    const checked = event?.target?.checked;
+    if (checked) {
+      localStorage.setItem('hideOnboarding', 'true');
+    } else {
+      localStorage.removeItem('hideOnboarding');
+    }
+  }
+
+  handleDotPress(index: number): void {
+    this.currentIndex = index;
+  }`,
         )}
 \`\`\`html
 ${htmlTemplate}
