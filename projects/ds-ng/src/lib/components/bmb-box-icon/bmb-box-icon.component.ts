@@ -20,6 +20,7 @@ import { IBmbInteractiveIconAppearance } from '../bmb-interactive-icon/bmb-inter
 import { IBmbColor } from '../../types';
 
 export type IBmbBoxIconSize = 'regular' | 'small';
+export type IBmbBoxIconShape = 'square' | 'circle';
 
 @Component({
   selector: 'bmb-box-icon',
@@ -47,6 +48,7 @@ export class BmbBoxIconComponent {
     | IBmbColor
   >();
   boxSize = input<IBmbBoxIconSize>('small');
+  boxShape = input<IBmbBoxIconShape>('square');
 
   get colorName(): string {
     return `${this.boxColor() || 'transparent'}`;
