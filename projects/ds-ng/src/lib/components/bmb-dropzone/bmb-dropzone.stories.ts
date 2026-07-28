@@ -1,6 +1,12 @@
 import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
 import { CommonModule } from '@angular/common';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {
+  AbstractControl,
+  FormsModule,
+  ReactiveFormsModule,
+  ValidationErrors,
+  ValidatorFn,
+} from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BmbDropzoneComponent } from './bmb-dropzone.component';
 import {
@@ -17,6 +23,22 @@ import {
   getDefaultValueControl,
   getOnEventParam,
 } from '../../utils/doc/parameterDescriptions';
+
+const duplicateFileNameValidator: ValidatorFn = (
+  control: AbstractControl,
+): ValidationErrors | null => {
+  const fileNames = (
+    Array.isArray(control.value) ? control.value : [control.value]
+  ).filter(Boolean);
+
+  return new Set(fileNames).size !== fileNames.length
+    ? { duplicateFileName: true }
+    : null;
+};
+
+const reviewRequiredValidator: ValidatorFn = (): ValidationErrors => ({
+  reviewRequired: true,
+});
 
 export default {
   title: 'Components/Inputs/Dropzone',
@@ -344,6 +366,16 @@ ${RELEVANT_TITLE.example} ***image/**** is for all image types:
         type: { summary: 'string' },
       },
     },
+    errorMessageInvalidName: {
+      control: { type: 'text' },
+      description:
+        'Sets the message shown when a file name contains unsupported characters.',
+      table: {
+        category: 'Properties',
+        defaultValue: getDefaultValueControl('Nombre de archivo no valido'),
+        type: { summary: 'string' },
+      },
+    },
     name: DBmbInputParamDesc.name,
     fileSize: {
       control: { type: 'number' },
@@ -361,6 +393,26 @@ ${RELEVANT_TITLE.example} ***image/**** is for all image types:
         category: 'Properties',
         type: { summary: 'boolean' },
         defaultValue: getDefaultValueControl(false),
+      },
+    },
+    allowDuplicateFiles: {
+      control: { type: 'boolean' },
+      description:
+        'Allows files with the same name. It is disabled by default to preserve the existing behavior.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'boolean' },
+        defaultValue: getDefaultValueControl(false),
+      },
+    },
+    customErrorMessages: {
+      control: { type: 'object' },
+      description:
+        'Maps custom validation error keys to the messages displayed by the dropzone.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'Record<string, string>' },
+        defaultValue: { summary: '{}' },
       },
     },
     newFile: getOnEventParam(
@@ -387,11 +439,67 @@ ${RELEVANT_TITLE.example} ***image/**** is for all image types:
     mainIcon: 'image',
     errorMessageFormat: 'Format not compatible',
     errorMessageSize: 'File exceeds the maximum allowed size.',
+    errorMessageInvalidName: 'Invalid file name',
     fileSize: 2,
     multiple: false,
+    allowDuplicateFiles: false,
+    customErrorMessages: {},
   },
 } as Meta<typeof BmbDropzoneComponent>;
 
 type Story = StoryObj<BmbDropzoneComponent>;
 
 export const Default: Story = {};
+
+export const FileNameValidation: Story = {
+  args: {
+    acceptedExtensions: ['pdf', 'application/pdf', 'csv', 'text/csv'],
+    formatFilesLabel:
+      'Prueba nombres con #, @, %, acentos, espacios o paréntesis.',
+    errorMessageInvalidName: 'Nombre de archivo no valido',
+    multiple: true,
+    progress: {},
+  },
+};
+
+export const DuplicateFilesAllowed: Story = {
+  args: {
+    acceptedExtensions: ['pdf', 'application/pdf'],
+    formatFilesLabel:
+      'Los archivos con el mismo nombre están permitidos en este escenario.',
+    multiple: true,
+    allowDuplicateFiles: true,
+    progress: {},
+  },
+};
+
+export const DuplicateFilesRejectedByCustomValidation: Story = {
+  args: {
+    acceptedExtensions: ['pdf', 'application/pdf'],
+    formatFilesLabel:
+      'Selecciona dos veces un PDF con el mismo nombre para activar el error.',
+    multiple: true,
+    allowDuplicateFiles: true,
+    customValidation: duplicateFileNameValidator,
+    customErrorMessages: {
+      duplicateFileName: 'Archivo duplicado no válido',
+    },
+    progress: {},
+  },
+};
+
+export const MultipleCustomErrors: Story = {
+  args: {
+    acceptedExtensions: ['pdf', 'application/pdf'],
+    formatFilesLabel:
+      'Los errores personalizados se muestran en líneas independientes.',
+    multiple: true,
+    allowDuplicateFiles: true,
+    customValidation: [duplicateFileNameValidator, reviewRequiredValidator],
+    customErrorMessages: {
+      duplicateFileName: 'Archivo duplicado no válido',
+      reviewRequired: 'Los archivos requieren revisión manual',
+    },
+    progress: {},
+  },
+};
