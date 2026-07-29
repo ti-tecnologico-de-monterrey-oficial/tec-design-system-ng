@@ -1,0 +1,30 @@
+:host {
+  display: block;
+  padding: 32px;
+}
+
+.simple-template,
+.card-button-example {
+  margin-top: 40px;
+
+  h3 {
+    margin: 0 0 16px;
+  }
+}
+
+.card-button-default-examples {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 320px));
+  justify-content: center;
+  gap: 24px;
+}
+
+@media (max-width: 767px) {
+  :host {
+    padding: 16px;
+  }
+
+  .card-button-default-examples {
+    grid-template-columns: minmax(0, 320px);
+  }
+}

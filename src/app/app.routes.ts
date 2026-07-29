@@ -32,8 +32,8 @@ export const routes: Routes = [
     path: 'test-card-button',
     title: 'Card Button Test',
     loadComponent: () =>
-      import('./pages/test-card-button/test-card-button.component').then(
-        (component) => component.TestCardButtonComponent,
+      import('./pages/card-button/card-button.component').then(
+        (component) => component.CardButton,
       ),
   },
   {
