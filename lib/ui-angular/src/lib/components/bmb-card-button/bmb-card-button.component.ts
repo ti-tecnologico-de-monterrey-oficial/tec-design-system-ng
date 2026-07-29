@@ -18,13 +18,13 @@ import {
   isBotTemplate,
   shouldEmitAddContent,
   truncateCardButtonText,
-} from '@ti-tecnologico-de-monterrey-oficial/core/component/card-button';
+} from '../../_core/logic/components/card-button/card-button';
 import {
   IBmbBadgeInfo,
   IBmbImageInfo,
   IBmbLinkConfiguration,
   IDropdownItem,
-} from '../../types';
+} from '../types';
 import { BmbTextLinkComponent } from '../bmb-text-link/bmb-text-link.component';
 import { BmbBotIconComponent } from '../bmb-bot-icon/bmb-bot-icon.component';
 
