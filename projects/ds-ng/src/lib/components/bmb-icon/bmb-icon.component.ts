@@ -10,6 +10,7 @@ import {
   ViewEncapsulation,
   contentChild,
   computed,
+  output,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { buildErrorMessage, isImage } from '../../utils/utils';
@@ -47,6 +48,8 @@ export class BmbIconComponent implements OnInit {
   dotNotification = input<number>();
   isSVGTemplate = input<boolean>();
   testId = input<string>(getUUID());
+
+  notFoundError = output<Event>();
 
   styleIconGoogle = 'material-symbols-rounded';
   iconSvg = signal<SafeHtml | null>(null);
@@ -159,5 +162,9 @@ export class BmbIconComponent implements OnInit {
     const clean = sanitizeContent(this.customIcon()?.toString() ?? '');
 
     return this.sanitizer.bypassSecurityTrustHtml(clean); // NOSONAR Content is sanitized with DOMPurify - safe to bypass Angular sanitization
+  }
+
+  handleImageNotFoundError(event: Event): void {
+    this.notFoundError.emit(event);
   }
 }
