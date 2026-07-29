@@ -26,9 +26,7 @@ import { BmbTranslationsService } from '../../../services/translations/translati
 export class BmbTooltipBaseComponent {
   text = input<string>('');
   componentTitle = input<string>();
-  language = computed(() =>
-    this.bmbTranslationsService.getCurrentLanguage(),
-  );
+  language = computed(() => this.bmbTranslationsService.getCurrentLanguage());
 
   @ViewChild('tooltipContainer', { static: true })
   tooltipContainer!: ElementRef<HTMLElement>;

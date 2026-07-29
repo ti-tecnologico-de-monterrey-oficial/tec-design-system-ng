@@ -6,7 +6,7 @@
         '--numberOfElements: ' +
         contentChildren().length +
         '; --selected-child: ' +
-        selectedIndex +
+        selectedIndex() +
         ';'
       "
     >
@@ -17,13 +17,13 @@
   <footer class="bmb_carousel-footer">
     <ul
       class="bmb_carousel-list"
-      [style]="'--selected-child: ' + selectedIndex + ';'"
+      [style]="'--selected-child: ' + selectedIndex() + ';'"
     >
       @for (dot of contentChildren(); track $index) {
         <li
           class="bmb_carousel-list-item"
           [ngClass]="{
-            'bmb_carousel-list-item-active': selectedIndex === $index
+            'bmb_carousel-list-item-active': selectedIndex() === $index
           }"
         >
           <button
@@ -31,7 +31,9 @@
             class="bmb_carousel-dot"
             (click)="selectItem($index)"
             [title]="'Slide ' + ($index + 1)"
-            [ngClass]="{ 'bmb_carousel-dot-active': selectedIndex === $index }"
+            [ngClass]="{
+              'bmb_carousel-dot-active': selectedIndex() === $index
+            }"
           ></button>
         </li>
       }

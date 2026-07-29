@@ -9,12 +9,14 @@ import {
   getEmptyStateMessage,
   getGeneralComponentDescription,
   getGeneralDescription,
-  getModelDescription,
   getOnEvent,
   getSpecialSpecifications,
   RELEVANT_TITLE,
 } from '../../utils/doc/utils';
-import { getOnEventParam } from '../../utils/doc/parameterDescriptions';
+import {
+  getModelDescription,
+  getOnEventParam,
+} from '../../utils/doc/parameterDescriptions';
 
 const additionalBlock: string = `
     @ViewChild('infoTemplate') infoTemplate!: TemplateRef<any>;
@@ -528,7 +530,7 @@ TableColum {
       control: {
         type: 'boolean',
       },
-      description: `Shows or hide the filters section. This property is a Model.<br/><br/>${getModelDescription('filtersVisible')}`,
+      description: `Shows or hide the filters section. ${getModelDescription('filtersVisible')}`,
       table: {
         category: 'Properties',
         type: { summary: 'boolean' },

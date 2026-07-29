@@ -4,13 +4,19 @@ import { CommonModule } from '@angular/common';
 import { moduleMetadata } from '@storybook/angular';
 import { BmbHomeCardComponent } from '../bmb-home-card/bmb-home-card.component';
 import {
+  BlockquoteType,
   DESIGN_SYSTEM_TITLE,
+  getAlertBlockquote,
   getBasicExampleBlock,
   getGeneralComponentDescription,
   getGeneralDescription,
   getSpecialSpecifications,
   RELEVANT_TITLE,
 } from '../../utils/doc/utils';
+import {
+  getModelDescription,
+  getPropertyParamDesc,
+} from '../../utils/doc/parameterDescriptions';
 
 export default {
   title: 'Components/Status indicators/Carousel',
@@ -25,7 +31,6 @@ export default {
       controls: {
         exclude: [
           'numberOfElements',
-          'selectedIndex',
           'swipeThreshold',
           'touchEndX',
           'touchStartX',
@@ -74,6 +79,13 @@ ${getBasicExampleBlock('BmbCarouselComponent')}
         category: 'Properties',
       },
     },
+    selectedIndex: getPropertyParamDesc('', {
+      controlType: 'model<number>',
+      alternativeDescription: `Sets and gets the actual carousel selected index.
+${getModelDescription('selectedIndex')}
+ `,
+      defaultSummary: 'none',
+    }),
   },
   args: {},
 } as Meta<typeof BmbCarouselComponent>;
