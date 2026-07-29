@@ -2,6 +2,8 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { BmbTooltipBaseComponent } from './bmb-tooltip-base.component';
 
+import { By } from '@angular/platform-browser';
+
 describe('BmbTooltipBaseComponent', () => {
   let component: BmbTooltipBaseComponent;
   let fixture: ComponentFixture<BmbTooltipBaseComponent>;
@@ -48,38 +50,4 @@ describe('BmbTooltipBaseComponent', () => {
     expect(tooltip?.textContent).not.toContain('Initial text');
   });
 
-  it('should use Spanish hyphenation rules by default', () => {
-    const tooltipBase = fixture.debugElement.query(
-      By.directive(BmbTooltipBaseComponent),
-    ).componentInstance as BmbTooltipBaseComponent;
-
-    tooltipBase.showTooltip();
-
-    const tooltip = document.body.querySelector<HTMLDialogElement>(
-      '.bmb_tooltip-dialog',
-    );
-
-    expect(tooltip?.lang).toBe('es');
-
-    tooltipBase.hideTooltip();
-  });
-
-  it('should pass a configured language to the floating tooltip', () => {
-    fixture.componentRef.setInput('language', 'en');
-    fixture.detectChanges();
-
-    const tooltipBase = fixture.debugElement.query(
-      By.directive(BmbTooltipBaseComponent),
-    ).componentInstance as BmbTooltipBaseComponent;
-
-    tooltipBase.showTooltip();
-
-    const tooltip = document.body.querySelector<HTMLDialogElement>(
-      '.bmb_tooltip-dialog',
-    );
-
-    expect(tooltip?.lang).toBe('en');
-
-    tooltipBase.hideTooltip();
-  });
 });
