@@ -2,8 +2,6 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { BmbTooltipBaseComponent } from './bmb-tooltip-base.component';
 
-import { By } from '@angular/platform-browser';
-
 describe('BmbTooltipBaseComponent', () => {
   let component: BmbTooltipBaseComponent;
   let fixture: ComponentFixture<BmbTooltipBaseComponent>;
