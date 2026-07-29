@@ -1,4 +1,4 @@
-
+import { IBbmBgAppearance } from '../components/bmb-advertisement-card/types';
 
 export * from '../bmb-image/types';
 
@@ -124,6 +124,11 @@ export interface IBmbImageInfo {
   alt: string;
 }
 
+export interface IBmbBadgeInfo {
+  text: string;
+  appearance: IBbmBgAppearance;
+  container?: boolean;
+}
 
 export interface IDropdownItem {
   idItem?: string;

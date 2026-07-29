@@ -11,7 +11,7 @@ import {
 import { BmbDropdownContentComponent } from '../utils/bmb-dropdown-content/bmb-dropdown-content.component';
 import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
 import { IDropdownItem } from '../types';
-import { BmbProjectionContentService } from '../services/projection/projection.service';
+import { BmbProjectionContentService } from '../../services/projection/projection.service';
 import { TranslatePipe } from '../../pipes/translations';
 import {
   openDropdownMenu,

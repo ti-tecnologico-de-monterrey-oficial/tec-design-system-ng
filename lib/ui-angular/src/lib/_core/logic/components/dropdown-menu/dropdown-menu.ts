@@ -1,6 +1,6 @@
 import {
   BmbDropdownContentComponent,
-} from '../../../../utils/bmb-dropdown-content/bmb-dropdown-content.component';
+} from '../../../../components/utils/bmb-dropdown-content/bmb-dropdown-content.component';
 
 import {
   IDropdownItem,
@@ -8,7 +8,7 @@ import {
 
 import {
   BmbProjectionContentService,
-} from '../../../../services/translations';
+} from '../../../../services/projection/projection.service';
 
 /**
  * Opens the dropdown menu.
