@@ -1,0 +1,14 @@
+<bmb-card-button
+  class="flat-card-host"
+  [isFullInteractive]="isFullInteractive()"
+  [componentTitle]="componentTitle()"
+  [body]="complementaryText()"
+  [icon]="trailingIcon()"
+  [leftContentIcon]="leftContentIcon()"
+  [leftContent]="leftContent()"
+  [hasMenu]="hasMenu()"
+  [menuItems]="menuItems()"
+  [isDisabled]="isDisabled()"
+  (onAddContentClick)="cardClick.emit($event)"
+  (onTitleClick)="titleClick.emit($event)"
+/>

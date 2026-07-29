@@ -1,0 +1,167 @@
+:host,
+.home-card-host {
+  display: block;
+  width: 370px;
+  max-width: 100%;
+}
+
+:host ::ng-deep .home-card-host {
+  .bmb_card_button {
+    width: 100%;
+    height: 590px;
+    border: 0;
+    border-radius: 22px;
+  }
+
+  .bmb_card_button-wrapper {
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    overflow: hidden;
+    border: 1px solid var(--general-contrasts-container-outline);
+    border-radius: 22px;
+    background-color: var(--containers-modal);
+  }
+
+  .bmb_card_button-box,
+  .bmb_card_button-leading,
+  .bmb_card_button-template {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: visible;
+  }
+
+  .bmb_card_button-leading {
+    margin-left: 0;
+  }
+
+  .bmb_card_button-template {
+    display: block;
+    color: var(--general-contrasts-100);
+  }
+
+  .bmb_list-group-item {
+    background-color: var(--containers-container-button);
+  }
+}
+
+.home-card {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  flex-direction: column;
+
+  &__header {
+    min-height: 54px;
+    padding: 14px 22px;
+    border-bottom: 1px solid var(--general-contrasts-container-outline);
+    background-color: var(--containers-container-button);
+
+    h2 {
+      margin: 0;
+      font-size: 1rem;
+      line-height: 1.5;
+      font-weight: 500;
+    }
+  }
+
+  &__content {
+    display: flex;
+    min-height: 0;
+    padding: 20px 14px 14px;
+    flex: 1;
+    flex-direction: column;
+  }
+
+  &__summary {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 18px;
+    font-size: 0.875rem;
+    line-height: 1.3;
+  }
+
+  &__scroll {
+    min-height: 0;
+    padding-right: 7px;
+    flex: 1;
+    overflow-y: auto;
+    scrollbar-color: #596581 transparent;
+    scrollbar-width: thin;
+
+    &::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      border-radius: 999px;
+      background: #596581;
+    }
+  }
+
+  &__item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 62px;
+    gap: 12px;
+
+    &--action {
+      min-height: 44px;
+    }
+  }
+
+  &__item-content {
+    min-width: 0;
+    flex: 1;
+
+    h3 {
+      margin: 0 0 5px;
+      font-size: 1rem;
+      line-height: 1.35;
+      font-weight: 600;
+    }
+
+    p {
+      margin: 0;
+      color: var(--general-contrasts-75);
+      font-size: 0.75rem;
+      line-height: 1.3;
+    }
+  }
+
+  &__leading-icon,
+  &__action,
+  bmb-badge {
+    flex: 0 0 auto;
+  }
+}
+
+@media (max-width: 767px) {
+  :host,
+  .home-card-host {
+    width: 100%;
+    max-width: 370px;
+  }
+
+  :host ::ng-deep .home-card-host .bmb_card_button {
+    height: min(590px, calc(100vh - 120px));
+    min-height: 480px;
+  }
+
+  .home-card {
+    &__content {
+      padding: 18px 14px 12px;
+    }
+
+    &__scroll {
+      padding-right: 5px;
+    }
+  }
+}

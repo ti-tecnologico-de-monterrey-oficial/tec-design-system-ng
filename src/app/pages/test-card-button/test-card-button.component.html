@@ -1,309 +1,197 @@
-<main class="card-button-demo">
-  <header class="card-button-demo__header">
-    <p class="card-button-demo__eyebrow">Bamboo Design System</p>
-    <h1>Pruebas de CardButton</h1>
-    <p>
-      Ejemplos independientes de las variantes y combinaciones principales del
-      componente. Interactúa con las tarjetas para comprobar sus outputs.
-    </p>
-    <output class="card-button-demo__event" aria-live="polite">
-      Último evento: {{ lastEvent() }}
-    </output>
-  </header>
+<div class="">
 
-  <section class="card-button-demo__section card-button-demo__reference">
-    <div class="card-button-demo__section-heading">
-      <h2>Card Button</h2>
-      <p>Combinaciones de referencia para comparar las variantes principales.</p>
-    </div>
+  <h3 style="text-align: center; margin: 2rem auto;">Informative</h3>
 
-    <div class="card-button-demo__reference-grid">
-      <article class="card-button-demo__reference-example">
-        <h3>Add content</h3>
-        <bmb-card-button
-          [isFullInteractive]="false"
-          icon="add"
-          componentTitle="Crear nuevo skill"
-          (onAddContentClick)="registerEvent('Crear nuevo skill')"
-        />
-      </article>
+  <bmb-card-button-informative
+    componentTitle="Title"
+    complementaryText="Complementary text"
+    body="Lorem ipsum dolor sit amet, consectetur adipiscing elit, Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce volutpat rhoncus leo vel pharetra. Donec feugiat enim pharetra ipsum euismod, sed maximus justo pharetra."
+    [badge]="{
+      text: 'Badge',
+      appearance: 'creative_violet',
+      container: true
+    }"
+    [leftContent]="true"
+    [leftContentImage]="{
+      src: 'https://studio-assets.supernova.io/design-systems/74407/a2f82e86-1d59-4c28-8212-6e724b560249.png',
+      alt: 'Edificio del Tecnológico de Monterrey'
+    }"
+    leftContentIcon=""
+    icon=""
+    [hasMenu]="false"
+    [menuItems]="[]"
+    [isDisabled]="false"
+    primaryButtonText="Button"
+    secondaryButtonText="Secondary button"
+  />
 
-      <article class="card-button-demo__reference-example">
-        <h3>Icono y menú</h3>
-        <bmb-card-button
-          [leftContent]="true"
-          leftContentIcon="note_add"
-          componentTitle="Resumen de Texto"
-          icon="group"
-          body="Resumen de texto en diferentes idiomas con las consideraciones especificadas para más contenido."
-          [hasMenu]="true"
-          [menuItems]="menuItems"
-          (onTitleClick)="registerEvent('Clic en Resumen de Texto')"
-        />
-      </article>
+  <h3 style="text-align: center; margin: 2rem auto;">Flat</h3>
 
-      <article class="card-button-demo__reference-example">
-        <h3>Imagen, badge y link</h3>
-        <bmb-card-button
-          [leftContent]="true"
-          [leftContentImage]="{
-            src: 'https://picsum.photos/id/91/160/160',
-            alt: 'Estudiantes trabajando en arquitectura'
-          }"
-          componentTitle="Arquitectura"
-          [badge]="{
-            text: 'Info',
-            appearance: 'mitec_purple',
-            container: true
-          }"
-          body="Resumen de texto en diferentes idiomas con las consideraciones especificadas para más contenido."
-          [textLink]="{
-            label: 'Ver más',
-            link: '/test-card-button',
-            target: '_self'
-          }"
-        />
-      </article>
+  <bmb-card-button-flat
+    componentTitle="Title"
+    complementaryText="Complementary text"
+    leftContentIcon="crop_16_9"
+    trailingIcon=""
+    [leftContent]="true"
+    [isFullInteractive]="true"
+    [isDisabled]="false"
+    [hasMenu]="false"
+    [menuItems]="[]"
+  />
 
-      <article class="card-button-demo__reference-example card-button-demo__reference-small">
-        <h3>Small</h3>
-        <bmb-card-button
-          [isSmall]="true"
-          smallIcon="info"
-          [botImage]="chatTecImage"
-          smallTitle="Chat Tec"
-          smallDescription="Obtén acceso a información precisa sobre cualquier tema relacionado con la institución."
-          (onSmallClick)="registerEvent('Small card de referencia: Chat Tec')"
-        />
-      </article>
-    </div>
+  <h3 style="text-align: center; margin: 2rem auto;">Action</h3>
 
-    <div class="card-button-demo__reference-small-section">
-      <h3>Small</h3>
-      <p>Haz clic en cada tarjeta para alternar entre frente y reverso.</p>
-      <div class="card-button-demo__reference-small-grid">
-        <bmb-card-button
-          [isSmall]="true"
-          smallIcon="info"
-          [botImage]="chatTecImage"
-          smallTitle="Chat Tec"
-          smallDescription="Obtén acceso a información precisa sobre cualquier tema relacionado con la institución."
-          (onSmallClick)="registerEvent('Small 1: Chat Tec')"
-        />
-        <bmb-card-button
-          [isSmall]="true"
-          smallIcon="close"
-          [botImage]="chatTecImage"
-          smallTitle="Chat Tec"
-          smallDescription="Obtén acceso a información precisa sobre cualquier tema relacionado con la institución."
-          (onSmallClick)="registerEvent('Small 2: reverso informativo')"
-        />
-        <bmb-card-button
-          [isSmall]="true"
-          smallIcon="close"
-          [botImage]="chatTecImage"
-          smallTitle="Chat Tec"
-          smallDescription="Obtén acceso a información precisa sobre cualquier tema relacionado con la institución."
-          (onSmallClick)="registerEvent('Small 3: estado seleccionado')"
-        />
-      </div>
-    </div>
-  </section>
+  <bmb-card-button-actions
+    componentTitle="Title"
+    body="Text content"
+    leftContentIcon="crop_16_9"
+    trailingIcon=""
+    [leftContent]="true"
+    [isFullInteractive]="true"
+    [isDisabled]="false"
+    [hasMenu]="false"
+    [menuItems]="[]"
+    buttonText="Button"
+  />
 
-  <section class="card-button-demo__section">
-    <div class="card-button-demo__section-heading">
-      <h2>Full interactive</h2>
-      <p>Tarjetas completas con icono, imagen, badge, menú y templates.</p>
-    </div>
+  <h3 style="text-align: center; margin: 2rem auto;">Home</h3>
 
-    <div class="card-button-demo__grid">
-      <article class="card-button-demo__example">
-        <h3>Icono, título y body</h3>
-        <p><code>leftContentIcon + componentTitle + body</code></p>
-        <bmb-card-button
-          [leftContent]="true"
-          leftContentIcon="note_add"
-          componentTitle="Resumen de actividad"
-          icon="chevron_right"
-          body="Consulta las actividades recientes y revisa los pendientes de esta semana."
-          (onTitleClick)="registerEvent('Clic en el título con icono')"
-        />
-      </article>
+  <bmb-card-button-home
+    componentTitle="Title"
+    summaryText="Lorem ipsum"
+    [currentCount]="0"
+    totalCount="00"
+    [showBadge]="true"
+    defaultBadgeText="Badge"
+    defaultBadgeAppearance="mitec_blue"
+    [isFullInteractive]="true"
+    [isDisabled]="false"
+    [hasMenu]="false"
+    [menuItems]="[]"
+    [items]="[
+      {
+        id: 'badge-item-1',
+        title: 'Lorem ipsum dolor sit amet, consectetur',
+        subtitle: 'Subtitle',
+        badgeText: 'Badge',
+        badgeAppearance: 'mitec_blue'
+      },
+      {
+        id: 'badge-item-2',
+        title: 'Lorem ipsum dolor sit amet, consectetur',
+        subtitle: 'Subtitle',
+        badgeText: 'Badge',
+        badgeAppearance: 'mitec_blue'
+      },
+      {
+        id: 'badge-item-3',
+        title: 'Lorem ipsum dolor sit amet, consectetur',
+        subtitle: 'Subtitle',
+        badgeText: 'Badge',
+        badgeAppearance: 'mitec_blue'
+      },
+      {
+        id: 'badge-item-4',
+        title: 'Lorem ipsum dolor sit amet, consectetur',
+        subtitle: 'Subtitle',
+        badgeText: 'Badge',
+        badgeAppearance: 'mitec_blue'
+      }
+    ]"
+  />
 
-      <article class="card-button-demo__example">
-        <h3>Menú de acciones</h3>
-        <p><code>hasMenu + menuItems</code></p>
-        <bmb-card-button
-          [leftContent]="true"
-          leftContentIcon="folder"
-          componentTitle="Documentos"
-          icon="open_in_new"
-          body="Administra tus archivos desde el menú de acciones."
-          [hasMenu]="true"
-          [menuItems]="menuItems"
-          (onTitleClick)="registerEvent('Clic en Documentos')"
-        />
-      </article>
+  <bmb-card-button-home
+    componentTitle="Title"
+    summaryText="Lorem ipsum"
+    [currentCount]="0"
+    totalCount="00"
+    [showBadge]="false"
+    defaultLeadingIcon="image"
+    defaultActionIcon="file_open"
+    [isFullInteractive]="true"
+    [isDisabled]="false"
+    [hasMenu]="false"
+    [menuItems]="[]"
+    [items]="[
+      {
+        id: 'action-item-1',
+        title: 'Nombre_Archivo.png',
+        subtitle: 'Descripción del documento agregado'
+      },
+      {
+        id: 'action-item-2',
+        title: 'Nombre_Archivo.png',
+        subtitle: 'Descripción del documento agregado'
+      },
+      {
+        id: 'action-item-3',
+        title: 'Nombre_Archivo.png',
+        subtitle: 'Descripción del documento agregado'
+      },
+      {
+        id: 'action-item-4',
+        title: 'Nombre_Archivo.png',
+        subtitle: 'Descripción del documento agregado'
+      },
+      {
+        id: 'action-item-5',
+        title: 'Nombre_Archivo.png',
+        subtitle: 'Descripción del documento agregado'
+      }
+    ]"
+  />
 
-      <article class="card-button-demo__example">
-        <h3>Imagen, badge y enlace</h3>
-        <p><code>leftContentImage + badge + textLink</code></p>
-        <bmb-card-button
-          [leftContent]="true"
-          [leftContentImage]="{
-            src: 'https://picsum.photos/id/20/160/160',
-            alt: 'Escritorio con una computadora'
-          }"
-          componentTitle="Curso recomendado"
-          [badge]="{
-            text: 'Nuevo',
-            appearance: 'mitec_purple',
-            container: true
-          }"
-          body="Desarrolla nuevas habilidades con este contenido."
-          [textLink]="{
-            label: 'Ver más',
-            link: '/test-card-button',
-            target: '_self'
-          }"
-        />
-      </article>
+  <h3 style="text-align: center; margin: 2rem auto;">Alert</h3>
 
-      <article class="card-button-demo__example">
-        <h3>Imagen como acción</h3>
-        <p><code>leftContentImage sin textLink</code></p>
-        <bmb-card-button
-          [leftContent]="true"
-          [leftContentImage]="{
-            src: 'https://picsum.photos/id/48/160/160',
-            alt: 'Equipo de trabajo'
-          }"
-          componentTitle="Equipo de proyecto"
-          [badge]="{
-            text: '8 integrantes',
-            appearance: 'info',
-            container: false
-          }"
-          body="Toda la tarjeta emite onAddContentClick."
-          (onAddContentClick)="registerEvent('Clic en tarjeta con imagen')"
-        />
-      </article>
+  <bmb-card-button-alert
+    componentTitle="Title"
+    body="Complementary text"
+    appearance="warning"
+    leftContentIcon="warning"
+    trailingIcon=""
+    [leftContent]="true"
+    [isFullInteractive]="true"
+    [isDisabled]="false"
+    [hasMenu]="false"
+    [menuItems]="[]"
+  />
 
-      <article class="card-button-demo__example">
-        <h3>Acciones proyectadas</h3>
-        <p><code>isTemplate + ng-content</code></p>
-        <bmb-card-button
-          [leftContent]="true"
-          leftContentIcon="campaign"
-          componentTitle="Publicación"
-          icon="chevron_right"
-          body="Los controles proyectados aparecen en la esquina superior."
-          [isTemplate]="true"
-          (onTitleClick)="registerEvent('Clic en Publicación')"
-        >
-          <div class="card-button-demo__projected-actions">
-            <bmb-action-icon
-              icon="favorite"
-              [iconSize]="24"
-              (buttonClick)="registerEvent('Acción proyectada: Favorito')"
-            />
-            <bmb-icon icon="share" [size]="24" alt="Compartir" />
-          </div>
-        </bmb-card-button>
-      </article>
+  <bmb-card-button-alert
+    componentTitle="Title"
+    body="Complementary text"
+    appearance="error"
+    leftContentIcon="error"
+    trailingIcon=""
+    [leftContent]="true"
+    [isFullInteractive]="true"
+    [isDisabled]="false"
+    [hasMenu]="false"
+    [menuItems]="[]"
+  />
 
-      <article class="card-button-demo__example">
-        <h3>Template personalizado</h3>
-        <p><code>ng-template #customContent</code></p>
-        <bmb-card-button
-          [leftContent]="true"
-          [leftContentImage]="{
-            src: 'https://picsum.photos/id/42/160/160',
-            alt: 'Espacio de reunión'
-          }"
-          componentTitle="Sala Norte"
-          [badge]="{
-            text: 'Disponible',
-            appearance: 'success',
-            container: false
-          }"
-          (onAddContentClick)="registerEvent('Clic en Sala Norte')"
-        >
-          <ng-template #customContent>
-            <p>
-              <strong>Hoy, 3:00 p. m. – 3:30 p. m.</strong><br />
-              Edificio D · Piso 1 · Capacidad: 8
-            </p>
-          </ng-template>
-        </bmb-card-button>
-      </article>
-    </div>
-  </section>
+  <bmb-card-button-alert
+    componentTitle="Title"
+    body="Complementary text"
+    appearance="success"
+    leftContentIcon="check_circle"
+    trailingIcon=""
+    [leftContent]="true"
+    [isFullInteractive]="true"
+    [isDisabled]="false"
+    [hasMenu]="false"
+    [menuItems]="[]"
+  />
 
-  <section class="card-button-demo__section">
-    <div class="card-button-demo__section-heading">
-      <h2>Add content</h2>
-      <p>Botón primario con estado normal y deshabilitado.</p>
-    </div>
-
-    <div class="card-button-demo__grid">
-      <article class="card-button-demo__example">
-        <h3>Acción disponible</h3>
-        <p><code>isFullInteractive=false</code></p>
-        <bmb-card-button
-          [isFullInteractive]="false"
-          icon="add_circle"
-          componentTitle="Crear contenido"
-          (onAddContentClick)="registerEvent('Crear contenido')"
-        />
-      </article>
-
-      <article class="card-button-demo__example">
-        <h3>Acción deshabilitada</h3>
-        <p><code>isDisabled=true</code></p>
-        <bmb-card-button
-          [isFullInteractive]="false"
-          [isDisabled]="true"
-          icon="add_circle"
-          componentTitle="Sin permisos"
-        />
-      </article>
-    </div>
-  </section>
-
-  <section class="card-button-demo__section">
-    <div class="card-button-demo__section-heading">
-      <h2>Small card</h2>
-      <p>Haz clic o pasa el cursor para ver el reverso.</p>
-    </div>
-
-    <div class="card-button-demo__small-grid">
-      <article class="card-button-demo__example">
-        <h3>Icono del catálogo</h3>
-        <bmb-card-button
-          [isSmall]="true"
-          smallIcon="info"
-          [botImage]="{ src: 'school', alt: 'Educación' }"
-          smallTitle="Aprendizaje"
-          smallDescription="Explora recursos y rutas de aprendizaje."
-          (onSmallClick)="registerEvent('Small card: Aprendizaje')"
-        />
-      </article>
-
-      <article class="card-button-demo__example">
-        <h3>Imagen externa</h3>
-        <bmb-card-button
-          [isSmall]="true"
-          smallIcon="info"
-          [botImage]="{
-            src: 'https://picsum.photos/id/64/96/96',
-            alt: 'Perfil'
-          }"
-          smallTitle="Mi perfil"
-          smallDescription="Consulta y actualiza tu información personal."
-          (onSmallClick)="registerEvent('Small card: Mi perfil')"
-        />
-      </article>
-    </div>
-  </section>
-</main>
+  <bmb-card-button-alert
+    componentTitle="Title"
+    body="Complementary text"
+    appearance="info"
+    leftContentIcon="info"
+    trailingIcon=""
+    [leftContent]="true"
+    [isFullInteractive]="true"
+    [isDisabled]="false"
+    [hasMenu]="false"
+    [menuItems]="[]"
+  />
+</div>
