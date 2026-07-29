@@ -25,3 +25,4 @@ export * from './components/interactive-icon/interactive-icon.js';
 export * from './components/button-icon/button-icon.js';
 export * from './components/breadcrumb/breadcrumb.js';
 export * from './components/dropdown-menu/dropdown-menu.js';
+export * from './components/text-link/text-link.js';
