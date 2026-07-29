@@ -31,6 +31,9 @@ export default {
           'toggle',
           'ngOnChanges',
           'ngOnInit',
+          'bmbAccordionContent',
+          'bmbAccordionHeader',
+          'handleToggleKeyboard',
         ],
       },
       description: {
