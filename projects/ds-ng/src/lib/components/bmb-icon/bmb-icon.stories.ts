@@ -38,6 +38,7 @@ export default {
         'isCustomIcon',
         'testId',
         'sanitizedHtml',
+        'handleImageNotFoundError',
       ],
     },
     docs: {
@@ -87,6 +88,7 @@ ${getBasicExampleBlock('BmbIconComponent')}
     dotNotification: DBmbIconParamDesc.iconDotNotification,
     size: DBmbIconParamDesc.iconSize,
     alt: DBmbIconParamDesc.alt,
+    imageNotFoundError: DBmbIconParamDesc.imageNotFoundError,
   },
   args: {
     icon: 'home',

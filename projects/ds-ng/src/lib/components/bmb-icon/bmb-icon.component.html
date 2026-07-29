@@ -42,6 +42,8 @@
       [alt]="alt()"
       [attr.data-automation-id]="testId()"
       [ngStyle]="getImageStyles()"
+      onerror="this.onerror=null;this.src='../assets/images/empty-state/broken-image.jpg'"
+      (error)="handleImageNotFoundError(icon())"
     />
   </figure>
 } @else if (!!dotNotification()) {

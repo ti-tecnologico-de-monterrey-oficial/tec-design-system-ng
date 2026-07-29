@@ -49,7 +49,7 @@ export class BmbIconComponent implements OnInit {
   isSVGTemplate = input<boolean>();
   testId = input<string>(getUUID());
 
-  notFoundError = output<Event>();
+  imageNotFoundError = output<void>();
 
   styleIconGoogle = 'material-symbols-rounded';
   iconSvg = signal<SafeHtml | null>(null);
@@ -164,7 +164,8 @@ export class BmbIconComponent implements OnInit {
     return this.sanitizer.bypassSecurityTrustHtml(clean); // NOSONAR Content is sanitized with DOMPurify - safe to bypass Angular sanitization
   }
 
-  handleImageNotFoundError(event: Event): void {
-    this.notFoundError.emit(event);
+  handleImageNotFoundError(iconName: string): void {
+    console.error('Image not found error:', iconName);
+    this.imageNotFoundError.emit();
   }
 }
