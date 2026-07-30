@@ -23,7 +23,14 @@ export default {
   component: BmbActionIconComponent,
   parameters: {
     controls: {
-      exclude: ['getIcon', 'handleClick', 'handlePress'],
+      exclude: [
+        'getIcon',
+        'handleClick',
+        'handlePress',
+        'isSVGTemplate',
+        'handleImageNotFoundError',
+        'customActionIcon',
+      ],
     },
     docs: {
       description: {
@@ -87,6 +94,7 @@ This property switches the \`isToggleActive\` when \`isToggleActive\` is true`,
     ),
     buttonPress: getOnClickParam(onButtonPress, ON_CLICK_DESCRIPTION),
     disabled: DBmbGenericParamDesc.disabled,
+    imageNotFoundError: DBmbIconParamDesc.imageNotFoundError,
   },
   args: {
     idElement: '',
