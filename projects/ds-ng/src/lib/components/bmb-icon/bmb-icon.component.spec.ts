@@ -17,4 +17,21 @@ describe('BmbIconComponent', () => {
   it('should have a default icon value', () => {
     expect(component.icon()).toBe('');
   });
+
+  it('should update the icon value when the input is set', () => {
+    fixture.componentRef.setInput('icon', 'home');
+    fixture.detectChanges();
+
+    expect(component.icon()).toBe('home');
+  });
+
+  it('should allow changing the icon value multiple times', () => {
+    fixture.componentRef.setInput('icon', 'home');
+    fixture.detectChanges();
+
+    fixture.componentRef.setInput('icon', 'close');
+    fixture.detectChanges();
+
+    expect(component.icon()).toBe('close');
+  });
 });
