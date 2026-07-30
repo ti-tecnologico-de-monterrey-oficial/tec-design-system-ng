@@ -27,9 +27,18 @@
   <button (click)="updateColumns()">hide columns</button>
 </div>
 
-<ng-template #conceptTemplate let-row="row">
+<ng-template
+  #conceptTemplate
+  let-row="row"
+  let-column="column"
+  let-index="index"
+>
   <div class="concept-template">
-    <span>{{ row.concept }}</span>
+    {{ index }}
+    <div>{{ column.def }} - {{ column.label }}</div>
+    <div>
+      {{ row | json }}
+    </div>
     <bmb-tooltip
       title="Tooltip example"
       icon="info"

@@ -9,6 +9,7 @@
       [isFill]="true"
       [size]="24"
       [alt]="iconImageAlt() || leftIconName()"
+      (imageNotFoundError)="handleImageNotFoundError()"
     />
   </ng-template>
 
@@ -28,6 +29,7 @@
       [icon]="rightIconName()"
       [size]="24"
       [alt]="rightIconImageAlt() || rightIconName()"
+      (imageNotFoundError)="handleImageNotFoundError()"
     />
   </ng-template>
 </bmb-container-button-base>

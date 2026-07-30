@@ -54,6 +54,7 @@ export class BmbAccordionComponent implements OnInit, OnChanges {
   closed = output<void>();
   opened = output<void>();
   onClick = output<MouseEvent>();
+  imageNotFoundError = output<void>();
 
   _expanded = signal(false);
   _active = signal(false);
@@ -196,5 +197,9 @@ export class BmbAccordionComponent implements OnInit, OnChanges {
       this.toggle(new MouseEvent('click'));
       event.preventDefault();
     }
+  }
+
+  handleImageNotFoundError(): void {
+    this.imageNotFoundError.emit();
   }
 }

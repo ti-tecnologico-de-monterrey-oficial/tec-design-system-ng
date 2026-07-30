@@ -25,6 +25,18 @@ export interface IBmbProjectionContent {
   focusOnOpen?: boolean;
   dialogClass?: string | string[] | Record<string, boolean>;
   forceMobileCenter?: boolean;
+  beforeCloseContent?: (event: {
+    contentId: string;
+    reason: 'single' | 'all';
+  }) => void;
+  afterCloseContent?: (event: {
+    contentId: string;
+    reason: 'single' | 'all';
+  }) => void;
+  afterOpenContent?: (event: {
+    contentId: string;
+    reason: 'single' | 'all';
+  }) => void;
 }
 
 @Injectable({
@@ -34,6 +46,23 @@ export class BmbProjectionContentService {
   readonly contentList = signal<IBmbProjectionContent | null>(null);
   readonly contentStack = signal<IBmbProjectionContent[]>([]);
   private portalComponentRef: ComponentRef<BmbPortalComponent> | null = null;
+
+  runContentHook(
+    content: IBmbProjectionContent,
+    hook: 'afterOpenContent' | 'beforeCloseContent' | 'afterCloseContent',
+    reason: 'all' | 'single',
+  ): void {
+    if (!content[hook]) return;
+
+    try {
+      content?.[hook]({
+        contentId: content.id ?? '',
+        reason,
+      });
+    } catch {
+      console.warn(`Error executing ${hook} for modal with id ${content.id}`);
+    }
+  }
 
   constructor(
     private appRef: ApplicationRef,
@@ -76,25 +105,40 @@ export class BmbProjectionContentService {
     };
 
     this.contentStack.update((list) => [...list, normalizedContent]);
-
     this.contentList.set(normalizedContent);
+    this.runContentHook(content, 'afterOpenContent', 'single');
 
     return id;
   }
 
   closeContent(id?: string) {
-    if (!id) {
+    if (!id && this.contentList() !== null) {
+      const list = [...this.contentStack()];
+
+      list.forEach((content) => {
+        this.runContentHook(content, 'beforeCloseContent', 'all');
+      });
       this.contentStack.set([]);
       this.contentList.set(null);
+      list.forEach((content) => {
+        this.runContentHook(content, 'afterCloseContent', 'all');
+      });
+
       return;
     }
 
+    const content = this.contentStack()?.find((item) => item.id !== id);
+
+    if (!content) return;
+
+    this.runContentHook(content, 'beforeCloseContent', 'single');
     this.contentStack.update((list) => list.filter((item) => item.id !== id));
 
     const remaining = this.contentStack();
     this.contentList.set(
       remaining.length ? remaining[remaining.length - 1] : null,
     );
+    this.runContentHook(content, 'afterCloseContent', 'single');
   }
 
   getProjectedContent() {

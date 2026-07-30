@@ -9,6 +9,7 @@ import {
   getGeneralDescription,
   getSpecialSpecifications,
 } from '../../utils/doc/utils';
+import { DBmbIconParamDesc } from '../../utils/doc/parameterDescriptions';
 
 export default {
   title: 'Components/Containers/Accordion',
@@ -30,6 +31,9 @@ export default {
           'toggle',
           'ngOnChanges',
           'ngOnInit',
+          'bmbAccordionContent',
+          'bmbAccordionHeader',
+          'handleToggleKeyboard',
         ],
       },
       description: {
@@ -209,6 +213,7 @@ ${getBasicExampleBlock('BmbAccordionComponent')}
         type: { summary: 'function' },
       },
     },
+    imageNotFoundError: DBmbIconParamDesc.imageNotFoundError,
   },
   args: {
     appearanceContrast: 'default',

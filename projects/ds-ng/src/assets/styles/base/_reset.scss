@@ -71,14 +71,19 @@ ion-content {
 }
 
 h1 {
-  @include fonts.font(9, bold);
+  @include fonts.font(11, bold);
+  line-height: rem.rem_calc(36);
 }
 
 h2 {
-  @include fonts.font(7, bold);
+  @include fonts.font(9, bold);
 }
 
 h3 {
+  @include fonts.font(7, bold);
+}
+
+h4 {
   @include fonts.font(6, bold);
 }
 
@@ -89,6 +94,10 @@ a {
 
 blockquote {
   @include fonts.font(3, regular);
+}
+
+p {
+  margin: 0;
 }
 
 a {

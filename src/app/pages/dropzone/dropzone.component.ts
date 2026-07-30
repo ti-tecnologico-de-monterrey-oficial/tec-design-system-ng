@@ -1,12 +1,19 @@
-import { Component, signal } from '@angular/core';
+import { Component, signal, ViewChild } from '@angular/core';
 import {
   BmbDropzoneComponent,
   BmbButtonDirective,
   BmbFilterCardComponent,
   IBmbControlType,
   BmbFormValidatorComponent,
+  BmbSwitchComponent,
 } from '../../../../projects/ds-ng/src/public-api';
-import { FormControl, FormGroup } from '@angular/forms';
+import {
+  AbstractControl,
+  FormControl,
+  FormGroup,
+  ValidationErrors,
+  ValidatorFn,
+} from '@angular/forms';
 
 @Component({
   selector: 'bmb-dropzone-page',
@@ -17,18 +24,67 @@ import { FormControl, FormGroup } from '@angular/forms';
     BmbDropzoneComponent,
     BmbButtonDirective,
     BmbFilterCardComponent,
+    BmbSwitchComponent,
   ],
 })
 export class DropzonePageComponent {
+  @ViewChild(BmbDropzoneComponent) dropzone?: BmbDropzoneComponent;
+
   userForm: FormGroup = new FormGroup({
     dropzone: new FormControl(),
   });
   progressFiles = signal<Record<string, number>>({});
+  multipleFiles = signal<boolean>(true);
+  allowDuplicateFiles = signal<boolean>(false);
+  validateDuplicateFiles = signal<boolean>(false);
+
+  readonly duplicateFileValidation: ValidatorFn = (
+    control: AbstractControl,
+  ): ValidationErrors | null => {
+    if (!this.validateDuplicateFiles()) return null;
+
+    const fileNames = (
+      Array.isArray(control.value) ? control.value : [control.value]
+    ).filter(Boolean);
+
+    return new Set(fileNames).size !== fileNames.length
+      ? { duplicateFileName: true }
+      : null;
+  };
+
+  readonly customErrorMessages: Record<string, string> = {
+    duplicateFileName: 'Archivo duplicado no válido',
+  };
+  readonly noCustomErrorMessages: Record<string, string> = {};
 
   _isLoading = signal<boolean>(false);
 
   getFormControl(name: string): FormControl {
     return this.userForm.get(name) as FormControl;
+  }
+
+  handleMultipleFilesChange(enabled: boolean): void {
+    this.multipleFiles.set(enabled);
+    if (!enabled) {
+      this.allowDuplicateFiles.set(false);
+      this.validateDuplicateFiles.set(false);
+    }
+    this.updateDropzoneValidity();
+  }
+
+  handleAllowDuplicateFilesChange(enabled: boolean): void {
+    this.allowDuplicateFiles.set(enabled);
+    if (!enabled) this.validateDuplicateFiles.set(false);
+    this.updateDropzoneValidity();
+  }
+
+  handleDuplicateValidationChange(enabled: boolean): void {
+    this.validateDuplicateFiles.set(enabled);
+    this.updateDropzoneValidity();
+  }
+
+  private updateDropzoneValidity(): void {
+    this.dropzone?.control().updateValueAndValidity();
   }
 
   onSubmit() {

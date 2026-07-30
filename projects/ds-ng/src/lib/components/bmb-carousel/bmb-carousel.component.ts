@@ -5,6 +5,7 @@ import {
   ViewEncapsulation,
   HostListener,
   contentChildren,
+  model,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -19,14 +20,14 @@ import { CommonModule } from '@angular/common';
 })
 export class BmbCarouselComponent {
   contentChildren = contentChildren<ElementRef>('carouselItem');
+  selectedIndex = model<number>(0);
 
-  selectedIndex = 0;
   private touchStartX = 0;
   private touchEndX = 0;
   private swipeThreshold = 50;
 
   selectItem(index: number) {
-    this.setClassActive(index, this.selectedIndex);
+    this.setClassActive(index, this.selectedIndex());
   }
 
   setClassActive(newIndex: number, oldIndex: number = 0) {
@@ -56,7 +57,7 @@ export class BmbCarouselComponent {
       }, 700);
     }
 
-    this.selectedIndex = newIndex;
+    this.selectedIndex.set(newIndex);
   }
 
   @HostListener('touchstart', ['$event'])
@@ -76,11 +77,11 @@ export class BmbCarouselComponent {
     if (Math.abs(deltaX) > this.swipeThreshold) {
       if (
         deltaX > 0 &&
-        this.selectedIndex < this.contentChildren().length - 1
+        this.selectedIndex() < this.contentChildren().length - 1
       ) {
-        this.selectItem(this.selectedIndex + 1);
-      } else if (deltaX < 0 && this.selectedIndex > 0) {
-        this.selectItem(this.selectedIndex - 1);
+        this.selectItem(this.selectedIndex() + 1);
+      } else if (deltaX < 0 && this.selectedIndex() > 0) {
+        this.selectItem(this.selectedIndex() - 1);
       }
     }
   }
