@@ -16,14 +16,15 @@ The `BmbChatBubblesComponent` is a standalone Angular component designed to disp
 
 The component accepts the following inputs to customize its behavior and appearance:
 
-| Input            | Type               | Default                                                                | Description                                           |
-| ---------------- | ------------------ | ---------------------------------------------------------------------- | ----------------------------------------------------- |
-| `iconBot`        | `string`           | `'bot_tecStandar'`                                                     | The icon displayed for the bot.                       |
-| `message`        | `IBmbChatMessage`  | `undefined`                                                            | The chat message to display (required).               |
-| `gptBot`         | `boolean`          | `false`                                                                | Indicates whether the message is from a GPT-like bot. |
-| `gptIcons`       | `boolean`          | `false`                                                                | Enables GPT-specific icons for actions.               |
-| `isThinking`     | `boolean`          | `false`                                                                | Displays a "thinking" animation for the bot.          |
-| `gptActiveIcons` | `IBmbChatGptIcons` | `{ repeat: true, voice: true, copy: true, like: true, dislike: true }` | Configures which GPT-specific icons are active.       |
+| Input             | Type                      | Default                                                                | Description                                           |
+| ----------------- | ------------------------- | ---------------------------------------------------------------------- | ----------------------------------------------------- |
+| `iconBot`         | `string`                  | `'bot_tecStandar'`                                                     | The icon displayed for the bot.                       |
+| `message`         | `IBmbChatMessage`         | `undefined`                                                            | The chat message to display (required).               |
+| `gptBot`          | `boolean`                 | `false`                                                                | Indicates whether the message is from a GPT-like bot. |
+| `gptIcons`        | `boolean`                 | `false`                                                                | Enables GPT-specific icons for actions.               |
+| `isThinking`      | `boolean`                 | `false`                                                                | Displays a "thinking" animation for the bot.          |
+| `gptActiveIcons`  | `IBmbChatGptIcons`        | `{ repeat: true, voice: true, copy: true, like: true, dislike: true }` | Configures which GPT-specific icons are active.       |
+| `userActiveIcons` | `BmbChatUserActionConfig` | `{ copy: { visible: true } }`                                          | Configures the actions displayed for user messages.   |
 
 ---
 
@@ -123,3 +124,5 @@ The component relies on the following modules and components:
 - The `gptBot` input enables GPT-specific behavior, such as displaying a custom bot icon and enabling GPT-specific actions.
 - The `isThinking` input can be used to display a "typing" or "thinking" animation for the bot.
 - The `gptActiveIcons` input allows fine-grained control over which GPT-specific icons are displayed.
+- Copy is performed by the component for both user and bot messages. A successful copy displays a `check` icon for three seconds; an error displays `close`. The action is disabled while either result is visible.
+- On pointer devices, user actions are displayed on hover or keyboard focus. On touch devices, actions are displayed after selecting the message.
