@@ -47,5 +47,4 @@ describe('BmbTooltipBaseComponent', () => {
     expect(tooltip?.textContent).not.toContain('Initial title');
     expect(tooltip?.textContent).not.toContain('Initial text');
   });
-
 });
