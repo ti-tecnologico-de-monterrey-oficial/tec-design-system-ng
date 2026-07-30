@@ -74,6 +74,17 @@ export const getDefaultValueDesc = (defaultValue: any): string => `
 ${RELEVANT_TITLE.note}
 The default value is ${defaultValue}. ${DEFAULT_VALUE_DESC}`;
 
+export const getModelDescription = (propertyName: string): string =>
+  getAlertBlockquote(
+    `
+Remember that model is two-way binding (signal), it is possible to use it as:
+    \`[(${propertyName})]="${propertyName}"\``,
+    {
+      title: RELEVANT_TITLE.configuration,
+      blockquoteType: BlockquoteType.important,
+    },
+  );
+
 export const getDefaultValueControl = (summary: any = '""') => {
   const _summary: string =
     typeof summary === 'string'
