@@ -21,9 +21,17 @@
     </div>
     <div bmbLayoutItem margin="none" [isDynamicItem]="true">
       @if (icon()) {
-        <bmb-icon [icon]="icon()" alt="Accordion icon" />
+        <bmb-icon
+          [icon]="icon()"
+          alt="Accordion icon"
+          (imageNotFoundError)="handleImageNotFoundError()"
+        />
       } @else if (!hideToggle()) {
-        <bmb-icon [icon]="getIconToggle()" alt="Accordion toggle icon" />
+        <bmb-icon
+          [icon]="getIconToggle()"
+          alt="Accordion toggle icon"
+          (imageNotFoundError)="handleImageNotFoundError()"
+        />
       }
     </div>
   </header>

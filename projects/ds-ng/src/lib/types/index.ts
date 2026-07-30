@@ -162,3 +162,17 @@ export interface IDropdownItem {
   target?: IBmbTargetLink;
   action?: (event?: unknown) => void;
 }
+
+export interface OnboardingStep {
+  description: string;
+  icon?: string;
+  iconSize?: string;
+  imageDesktop: string;
+  imageMobile: string;
+  primaryButton: string;
+  secondaryButton?: string;
+  shortDescription: string;
+  showCheckbox?: boolean;
+  subtitle?: string;
+  title: string;
+}
