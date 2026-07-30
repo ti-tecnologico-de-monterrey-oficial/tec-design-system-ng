@@ -18,7 +18,9 @@ export default {
   component: BmbBoxIconComponent,
   parameters: {
     docs: {
-      controls: { exclude: ['handleClick', 'getClasses'] },
+      controls: {
+        exclude: ['handleClick', 'getClasses', 'handleImageNotFoundError'],
+      },
       description: {
         component: `
 ${getGeneralDescription(

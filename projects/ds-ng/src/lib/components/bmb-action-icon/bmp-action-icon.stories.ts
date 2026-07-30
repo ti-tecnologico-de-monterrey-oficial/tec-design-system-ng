@@ -30,6 +30,7 @@ export default {
         'isSVGTemplate',
         'handleImageNotFoundError',
         'customActionIcon',
+        'isImage',
       ],
     },
     docs: {
