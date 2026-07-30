@@ -46,6 +46,7 @@ ${getBasicExampleBlock('BmbBoxIconComponent', ON_BUTTON_CLICK.handleExample)}
       '<br/><br/>Square keeps the radius associated with the box size and circle applies a 50% border radius.',
     ),
     boxSize: getAppearanceParam('the box size', ['small', 'regular'], 'small'),
+    imageNotFoundError: DBmbIconParamDesc.imageNotFoundError,
   },
   args: {
     iconName: 'face',

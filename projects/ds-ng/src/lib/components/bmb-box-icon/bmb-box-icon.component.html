@@ -4,5 +4,6 @@
     [size]="boxSize() === 'small' ? 24 : 32"
     [alt]="iconImageAlt() || iconName()"
     [isFill]="true"
+    (imageNotFoundError)="handleImageNotFoundError()"
   />
 </span>
