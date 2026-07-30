@@ -24,13 +24,13 @@
         <bmb-icon
           [icon]="icon()"
           alt="Accordion icon"
-          (imageNotFoundError)="handleImageNotFoundError(icon())"
+          (imageNotFoundError)="handleImageNotFoundError()"
         />
       } @else if (!hideToggle()) {
         <bmb-icon
           [icon]="getIconToggle()"
           alt="Accordion toggle icon"
-          (imageNotFoundError)="handleImageNotFoundError(icon())"
+          (imageNotFoundError)="handleImageNotFoundError()"
         />
       }
     </div>

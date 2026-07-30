@@ -199,7 +199,7 @@ export class BmbAccordionComponent implements OnInit, OnChanges {
     }
   }
 
-  handleImageNotFoundError(iconName: string): void {
+  handleImageNotFoundError(): void {
     this.imageNotFoundError.emit();
   }
 }
