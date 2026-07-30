@@ -10,7 +10,7 @@ import {
 } from '@angular/core';
 import { BmbCheckExternalLinkButtonComponent } from '../../bmb-check-external-link-button/bmb-check-external-link-button.component';
 import { BmbIconComponent } from '../../bmb-icon/bmb-icon.component';
-import { IDropdownItem } from '../../../types';
+import { IDropdownItem } from '../../types';
 import { CommonModule } from '@angular/common';
 import { TranslatePipe } from '../../../pipes/translations';
 import { BmbDividerComponent } from '../../bmb-divider/bmb-divider.component';

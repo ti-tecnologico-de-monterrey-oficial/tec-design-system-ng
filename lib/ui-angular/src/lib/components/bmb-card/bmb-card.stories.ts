@@ -15,7 +15,7 @@ import {
   getGeneralComponentDescription,
   getGeneralDescription,
   getSpecialSpecifications,
-} from '../../utils/doc/utils';
+} from '../utils/doc/utils';
 
 const meta: Meta<BmbCardComponent> = {
   title: 'Components/Containers/Generic card',
