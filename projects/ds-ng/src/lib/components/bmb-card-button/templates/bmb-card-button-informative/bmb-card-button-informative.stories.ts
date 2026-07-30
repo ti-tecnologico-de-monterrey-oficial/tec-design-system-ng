@@ -33,6 +33,11 @@ export class ExampleComponent {}
   [badge]="{ text: 'Badge', appearance: 'creative_violet' }"
   [leftContent]="true"
   [leftContentImage]="{ src: imageUrl, alt: 'Building' }"
+  tooltipTitle="Information"
+  tooltipText="Additional information about this card."
+  tooltipIcon="info"
+  [tooltipSize]="20"
+  [tooltipMobileOnly]="false"
   primaryButtonText="Button"
   secondaryButtonText="Secondary button"
 />
@@ -57,6 +62,14 @@ export class ExampleComponent {}
     menuItems: { control: 'object', table: { category: 'Properties' } },
     isDisabled: { control: 'boolean', table: { category: 'States' } },
     textLink: { control: 'object', table: { category: 'Properties' } },
+    tooltipTitle: { control: 'text', table: { category: 'Tooltip' } },
+    tooltipText: { control: 'text', table: { category: 'Tooltip' } },
+    tooltipIcon: { control: 'text', table: { category: 'Tooltip' } },
+    tooltipSize: { control: 'number', table: { category: 'Tooltip' } },
+    tooltipMobileOnly: {
+      control: 'boolean',
+      table: { category: 'Tooltip' },
+    },
     primaryButtonText: {
       control: 'text',
       table: { category: 'Properties' },
@@ -79,8 +92,7 @@ export class ExampleComponent {}
   args: {
     componentTitle: 'Title',
     complementaryText: 'Complementary text',
-    body:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce volutpat rhoncus leo vel pharetra.',
+    body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce volutpat rhoncus leo vel pharetra.',
     badge: {
       text: 'Badge',
       appearance: 'creative_violet',
@@ -96,6 +108,11 @@ export class ExampleComponent {}
     hasMenu: false,
     menuItems: [],
     isDisabled: false,
+    tooltipTitle: 'Information',
+    tooltipText: 'Additional information about this card.',
+    tooltipIcon: 'info',
+    tooltipSize: 20,
+    tooltipMobileOnly: false,
     primaryButtonText: 'Button',
     secondaryButtonText: 'Secondary button',
   },
@@ -103,7 +120,9 @@ export class ExampleComponent {}
 
 type Story = StoryObj<BmbCardButtonInformativeComponent>;
 
-export const Default: Story = {};
+export const Default: Story = {
+  name: 'Desktop',
+};
 
 export const Mobile: Story = {
   parameters: {

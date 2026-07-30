@@ -7,7 +7,7 @@ import {
 import { IBbmBgAppearance } from '../../../bmb-advertisement-card/types';
 import { BmbBadgeComponent } from '../../../bmb-badge/bmb-badge.component';
 import { BmbButtonIconComponent } from '../../../bmb-button-icon/bmb-button-icon.component';
-import { BmbIconComponent } from '../../../bmb-icon/bmb-icon.component';
+import { BmbBoxIconComponent } from '../../../bmb-box-icon/bmb-box-icon.component';
 import { BmbListGroupComponent } from '../../../bmb-list-group/bmb-list-group.component';
 import { BmbListGroupItemComponent } from '../../../bmb-list-group/bmb-list-group-item/bmb-list-group-item.component';
 import { IDropdownItem } from '../../../../types';
@@ -30,7 +30,7 @@ export interface ICardButtonHomeItem {
     BmbBadgeComponent,
     BmbButtonIconComponent,
     BmbCardButtonComponent,
-    BmbIconComponent,
+    BmbBoxIconComponent,
     BmbListGroupComponent,
     BmbListGroupItemComponent,
   ],

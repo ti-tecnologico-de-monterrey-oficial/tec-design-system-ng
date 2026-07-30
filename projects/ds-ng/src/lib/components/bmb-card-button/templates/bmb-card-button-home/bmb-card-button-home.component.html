@@ -38,11 +38,12 @@
                 [class.home-card__item--action]="!showBadge()"
               >
                 @if (!showBadge()) {
-                  <bmb-icon
+                  <bmb-box-icon
                     class="home-card__leading-icon"
-                    [icon]="item.leadingIcon ?? defaultLeadingIcon()"
-                    [size]="20"
-                    alt=""
+                    [iconName]="item.leadingIcon ?? defaultLeadingIcon()"
+                    iconImageAlt=""
+                    boxSize="small"
+                    boxShape="circle"
                   />
                 }
 
