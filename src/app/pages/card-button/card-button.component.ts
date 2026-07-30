@@ -3,6 +3,7 @@ import {
   BmbCardButtonComponent,
   BmbCardButtonAction,
   BmbCardButtonAlert,
+  BmbCardButtonEmpty,
   BmbCardButtonFlat,
   BmbCardButtonHome,
   BmbCardButtonInformativeComponent,
@@ -15,6 +16,7 @@ import {
     BmbCardButtonComponent,
     BmbCardButtonAction,
     BmbCardButtonAlert,
+    BmbCardButtonEmpty,
     BmbCardButtonFlat,
     BmbCardButtonHome,
     BmbCardButtonInformativeComponent,
@@ -24,5 +26,6 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CardButton {
-  readonly informativeImage = 'https://studio-assets.supernova.io/design-systems/74407/a2f82e86-1d59-4c28-8212-6e724b560249.png';
+  readonly informativeImage =
+    'https://studio-assets.supernova.io/design-systems/74407/a2f82e86-1d59-4c28-8212-6e724b560249.png';
 }

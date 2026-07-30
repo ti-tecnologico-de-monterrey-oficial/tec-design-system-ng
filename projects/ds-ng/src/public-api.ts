@@ -43,6 +43,7 @@ export * from './lib/components/bmb-card-button/templates/bmb-card-button-flat/b
 export * from './lib/components/bmb-card-button/templates/bmb-card-button-actions/bmb-card-button-actions.component';
 export * from './lib/components/bmb-card-button/templates/bmb-card-button-home/bmb-card-button-home.component';
 export * from './lib/components/bmb-card-button/templates/bmb-card-button-alert/bmb-card-button-alert.component';
+export * from './lib/components/bmb-card-button/templates/bmb-card-button-empty/bmb-card-button-empty.component';
 export * from './lib/components/bmb-dropdown-menu/bmb-dropdown-menu.component';
 export * from './lib/components/bmb-filter-card/bmb-filter-card.component';
 export * from './lib/components/bmb-inner-header/bmb-inner-header.component';

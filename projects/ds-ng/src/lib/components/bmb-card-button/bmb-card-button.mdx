@@ -5,6 +5,7 @@ import * as flatStory from './templates/bmb-card-button-flat/bmb-card-button-fla
 import * as actionsStory from './templates/bmb-card-button-actions/bmb-card-button-actions.stories';
 import * as homeStory from './templates/bmb-card-button-home/bmb-card-button-home.stories';
 import * as alertStory from './templates/bmb-card-button-alert/bmb-card-button-alert.stories';
+import * as emptyStory from './templates/bmb-card-button-empty/bmb-card-button-empty.stories';
 import * as ltsStory from './bmb-card-button.stories';
 import { ListTemplate } from '../../../DocComponents/ListTemplate.mdx';
 import { getFormatName } from '../../utils/doc/utils';
@@ -18,6 +19,7 @@ import { getFormatName } from '../../utils/doc/utils';
     flatStory,
     actionsStory,
     homeStory,
+    emptyStory,
     alertStory,
   ]}
   context={{
@@ -47,6 +49,14 @@ import { getFormatName } from '../../utils/doc/utils';
     },
     [getFormatName(
       homeStory.default.title,
+      /(\/)|( )/g,
+      '_',
+    ).toLocaleLowerCase()]: {
+      showStories: true,
+      showControls: true,
+    },
+    [getFormatName(
+      emptyStory.default.title,
       /(\/)|( )/g,
       '_',
     ).toLocaleLowerCase()]: {
