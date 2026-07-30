@@ -2,6 +2,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   input,
+  output,
   ViewEncapsulation,
 } from '@angular/core';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
@@ -50,7 +51,13 @@ export class BmbBoxIconComponent {
   boxSize = input<IBmbBoxIconSize>('small');
   boxShape = input<IBmbBoxIconShape>('square');
 
+  imageNotFoundError = output<void>();
+
   get colorName(): string {
     return `${this.boxColor() || 'transparent'}`;
+  }
+
+  handleImageNotFoundError(): void {
+    this.imageNotFoundError.emit();
   }
 }

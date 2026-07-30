@@ -709,6 +709,18 @@ ${getGeneralDocDescription('https://bamboo.tec.mx/latest/foundations/icon/iconos
       'for the icon when it is an image',
     ),
   },
+  imageNotFoundError: {
+    control: false,
+    description: `Emits the event to handle the img - onerror`,
+    table: {
+      category: 'Events',
+      defaultValue: false,
+      type: {
+        summary: 'imageNotFoundError(string)',
+        detail: '(imageNotFoundError)=handleImageNotFoundError([string])',
+      },
+    },
+  },
 };
 
 export const DBmbButtonParamDesc = {

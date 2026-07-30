@@ -39,8 +39,13 @@ export class BmbContainerButtonBadgeComponent {
   isError = input<boolean>(false);
 
   getClickButton = output<MouseEvent>();
+  imageNotFoundError = output<void>();
 
   handleClick(event: any): void {
     this.getClickButton.emit(event);
+  }
+
+  handleImageNotFoundError(): void {
+    this.imageNotFoundError.emit();
   }
 }
