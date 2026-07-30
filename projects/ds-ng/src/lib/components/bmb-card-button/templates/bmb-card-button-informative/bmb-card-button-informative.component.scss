@@ -4,6 +4,23 @@
   width: 100%;
 }
 
+:host {
+  container-type: inline-size;
+  position: relative;
+}
+
+.informative-card__tooltip {
+  position: absolute;
+  z-index: 1;
+  top: 16px;
+  left: 14px;
+  display: inline-flex;
+}
+
+.informative-card__tooltip--mobile-only {
+  display: none;
+}
+
 :host ::ng-deep .informative-card-host {
   .bmb_card_button {
     width: 100%;
@@ -66,6 +83,7 @@
 
   bmb-badge.bmb_card_button-top-header-container-title {
     justify-self: start;
+    margin-left: 28px;
     font-weight: 400;
   }
 
@@ -118,6 +136,15 @@
 }
 
 @media (max-width: 767px) {
+  .informative-card__tooltip {
+    top: calc(60.095cqi + 13.58px);
+    left: 24px;
+  }
+
+  .informative-card__tooltip--mobile-only {
+    display: inline-flex;
+  }
+
   :host ::ng-deep .informative-card-host {
     .bmb_card_button-wrapper {
       grid-template-columns: minmax(0, 1fr);

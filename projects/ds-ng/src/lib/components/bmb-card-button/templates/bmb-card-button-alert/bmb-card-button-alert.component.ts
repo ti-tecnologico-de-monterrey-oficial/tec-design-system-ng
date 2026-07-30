@@ -7,11 +7,7 @@ import {
 import { IDropdownItem } from '../../../../types';
 import { BmbCardButtonComponent } from '../../bmb-card-button.component';
 
-export type CardButtonAlertAppearance =
-  | 'warning'
-  | 'error'
-  | 'success'
-  | 'info';
+export type CardButtonAlertAppearance = | 'warning' | 'error' | 'success' | 'info';
 
 @Component({
   selector: 'bmb-card-button-alert',

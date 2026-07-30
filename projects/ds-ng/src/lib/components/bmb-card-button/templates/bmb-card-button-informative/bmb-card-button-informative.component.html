@@ -1,3 +1,14 @@
+@if (!!tooltipTitle() || !!tooltipText()) {
+  <bmb-tooltip
+    class="informative-card__tooltip"
+    [class.informative-card__tooltip--mobile-only]="tooltipMobileOnly()"
+    [componentTitle]="tooltipTitle()"
+    [text]="tooltipText()"
+    [icon]="tooltipIcon()"
+    [size]="tooltipSize()"
+  />
+}
+
 <bmb-card-button
   class="informative-card-host"
   [isFullInteractive]="true"
