@@ -89,10 +89,9 @@ export const Default: Story = {
       <bmb-box-icon
         [iconName]="'home'"
         [boxColor]="'black-primary'"
-        bmbLayoutItem
-        [isDynamicItem]="true"
+        bmbLayoutItemF
       />
-      <section bmbLayoutItem [isDynamicItem]="true" [colGrow]="1" [colLg]="12">
+      <section bmbLayoutItem [isDynamicItem]="true" [colGrow]="1">
         <section bmbVerticalLayout gapSize="xs">
           <h4 class="font-regular-4" bmbVerticalLayoutItem>
             {{ 'Title' }}
