@@ -19,6 +19,7 @@ import {
 
 const meta: Meta<BmbCardComponent> = {
   title: 'Components/Containers/Generic card',
+  tags: ['!autodocs'],
   component: BmbCardComponent,
   subcomponents: {
     BmbCardFooterComponent,
@@ -169,7 +170,7 @@ export default meta;
 
 type Story = StoryObj<BmbCardComponent>;
 
-export const OneItem: Story = {
+export const Default: Story = {
   args: {},
   render: (args) => ({
     props: args,
