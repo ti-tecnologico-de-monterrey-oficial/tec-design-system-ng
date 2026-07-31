@@ -55,17 +55,20 @@
 
 <ng-template #detailTemplate let-row="row">
   <!-- Caso 1: solo texto -->
-  <div *ngIf="isString(row.detail)">
-    {{ row.detail }}
-  </div>
+  @if (isString(row.detail)) {
+    <div>
+      {{ row.detail }}
+    </div>
+  }
 
   <!-- Caso 2: es un objeto con tabla -->
-  <bmb-table
-    *ngIf="isObject(row.detail)"
-    [data]="row.detail.data"
-    [columns]="row.detail.columns"
-    [config]="row.detail.config"
-    [truncate]="false"
-    [wrap]="false"
-  ></bmb-table>
+  @if (isObject(row.detail)) {
+    <bmb-table
+      [data]="row.detail.data"
+      [columns]="row.detail.columns"
+      [config]="row.detail.config"
+      [truncate]="false"
+      [wrap]="false"
+    />
+  }
 </ng-template>
