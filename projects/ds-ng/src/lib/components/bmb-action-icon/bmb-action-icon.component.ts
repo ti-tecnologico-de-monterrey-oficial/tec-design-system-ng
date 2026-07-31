@@ -45,6 +45,7 @@ export class BmbActionIconComponent {
   link = input<string>();
   disabled = input<boolean>(false);
   isSVGTemplate = input<boolean>();
+  tooltipText = input<string>(''); //Internal
 
   imageNotFoundError = output<void>();
 
