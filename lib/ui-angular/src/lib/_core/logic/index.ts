@@ -26,3 +26,5 @@ export * from './components/button-icon/button-icon.js';
 export * from './components/breadcrumb/breadcrumb.js';
 export * from './components/dropdown-menu/dropdown-menu.js';
 export * from './components/text-link/text-link.js';
+export * from './components/portal/portal.js';
+export * from './components/projected-content/projected-content.js';
