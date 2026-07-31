@@ -37,6 +37,14 @@ export const routes: Routes = [
       ),
   },
   {
+    path: 'templates',
+    title: 'Generic Card Templates',
+    loadComponent: () =>
+      import('./pages/templates/generic-card.component').then(
+        (component) => component.GenericCard,
+      ),
+  },
+  {
     path: 'form-validator',
     title: 'Form Validator Test',
     loadComponent: () =>

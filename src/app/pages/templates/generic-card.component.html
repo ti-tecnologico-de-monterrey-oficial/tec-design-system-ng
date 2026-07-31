@@ -1,0 +1,144 @@
+<main class="generic-card-page">
+  <h1>Generic cards</h1>
+
+  <section class="template-example">
+    <h2>Informative</h2>
+    <bmb-card class="generic-card" type="normal" borderRadius="m" margin="none" boxShadowStyle="none" aria-labelledby="informative-title">
+      <div class="informative-card">
+      <div class="informative-card__content">
+        <div class="informative-card__labels">
+          <bmb-tooltip componentTitle="Information" text="Additional information" icon="info" [size]="20" />
+          <bmb-badge text="Badge" appearance="creative-violet" />
+        </div>
+        <h3 id="informative-title">Title</h3>
+        <p class="complementary-text">Complementary text</p>
+        <hr />
+        <p class="body-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce volutpat rhoncus leo vel pharetra. Donec feugiat enim pharetra ipsum euismod, sed maximus justo pharetra.</p>
+        <div class="informative-card__actions">
+          <button bmbButton appearance="secondary-outlined" type="button" (click)="handleButtonClick($event, 'Informative primary')">Button</button>
+          <button bmbButton appearance="secondary-outlined" type="button" (click)="handleButtonClick($event, 'Informative secondary')">Secondary button</button>
+        </div>
+      </div>
+      <bmb-image class="informative-card__image" [src]="informativeImage" [mobileSrc]="informativeImage" alt="Bamboo building" ratio="16 / 7" borderRadius="m" objectFit="cover" />
+      </div>
+    </bmb-card>
+    <section class="implementation-guide" aria-label="Implementacion de Informative">
+      <h3>Componentes Bamboo</h3><ul>@for (component of examples['informative'].components; track component) { <li><code>{{ component }}</code></li> }</ul>
+      <div class="code-grid"><details open><summary>HTML</summary><pre><code>{{ examples['informative'].html }}</code></pre></details><details><summary>SCSS</summary><pre><code>{{ examples['informative'].scss }}</code></pre></details><details><summary>TypeScript</summary><pre><code>{{ examples['informative'].typescript }}</code></pre></details></div>
+    </section>
+  </section>
+
+  <section class="template-example">
+    <h2>Flat</h2>
+    <bmb-card class="generic-card" type="normal" borderRadius="m" margin="none" boxShadowStyle="none" aria-labelledby="flat-title">
+      <div class="flat-card">
+      <bmb-box-icon iconName="crop_16_9" boxShape="circle" boxSize="regular" boxColor="black-primary" />
+      <div><h3 id="flat-title"><span class="flat-card__number">1. </span>Title</h3><p>Complementary text+</p></div>
+      </div>
+    </bmb-card>
+    <section class="implementation-guide" aria-label="Implementacion de Flat">
+      <h3>Componentes Bamboo</h3><ul>@for (component of examples['flat'].components; track component) { <li><code>{{ component }}</code></li> }</ul>
+      <div class="code-grid"><details open><summary>HTML</summary><pre><code>{{ examples['flat'].html }}</code></pre></details><details><summary>SCSS</summary><pre><code>{{ examples['flat'].scss }}</code></pre></details><details><summary>TypeScript</summary><pre><code>{{ examples['flat'].typescript }}</code></pre></details></div>
+    </section>
+  </section>
+
+  <section class="template-example">
+    <h2>Actions</h2>
+    <bmb-card class="generic-card" type="normal" borderRadius="m" margin="none" boxShadowStyle="none" aria-labelledby="actions-title">
+      <div class="actions-card">
+      <bmb-box-icon iconName="crop_16_9" boxShape="circle" boxSize="regular" boxColor="black-primary" />
+      <div class="actions-card__content"><h3 id="actions-title">Title</h3><p>Text<br />content</p></div>
+      <button bmbButton appearance="secondary-outlined" type="button" (click)="handleButtonClick($event, 'Actions button')">Button</button>
+      </div>
+    </bmb-card>
+    <section class="implementation-guide" aria-label="Implementacion de Actions">
+      <h3>Componentes Bamboo</h3><ul>@for (component of examples['actions'].components; track component) { <li><code>{{ component }}</code></li> }</ul>
+      <div class="code-grid"><details open><summary>HTML</summary><pre><code>{{ examples['actions'].html }}</code></pre></details><details><summary>SCSS</summary><pre><code>{{ examples['actions'].scss }}</code></pre></details><details><summary>TypeScript</summary><pre><code>{{ examples['actions'].typescript }}</code></pre></details></div>
+    </section>
+  </section>
+
+  <section class="template-example">
+    <h2>Home</h2>
+    <div class="home-grid">
+      <bmb-card class="generic-card home-card" type="normal" borderRadius="xl" margin="none" boxShadowStyle="box-shadow-3" aria-labelledby="home-badge-title">
+        <bmb-card-header padding="none"><h3 id="home-badge-title" class="panel-header">Title</h3></bmb-card-header>
+        <bmb-card-content padding="none"><div class="panel-body">
+          <div class="panel-summary"><span>Lorem ipsum</span><span>0 / <small>00</small></span></div>
+          <div class="home-card__list">
+            <bmb-list-group borderType="rounded" borderRadius="m" margin="m" padding="none" (selectionChange)="handleListSelection($event)">
+              @for (item of homeItems; track item.id) {
+                <bmb-list-group-item [id]="item.id" [personalizedTemplate]="true">
+                  <div class="home-item"><div><h4>{{ item.title }}</h4><p>&bull;&nbsp; {{ item.description }}</p></div><bmb-badge text="Badge" appearance="blue-light" /></div>
+                </bmb-list-group-item>
+              }
+            </bmb-list-group>
+          </div>
+        </div></bmb-card-content>
+      </bmb-card>
+
+      <bmb-card class="generic-card home-card" type="normal" borderRadius="xl" margin="none" boxShadowStyle="box-shadow-3" aria-labelledby="home-file-title">
+        <bmb-card-header padding="none"><h3 id="home-file-title" class="panel-header">Title</h3></bmb-card-header>
+        <bmb-card-content padding="none"><div class="panel-body">
+          <div class="panel-summary"><span>Lorem ipsum</span><span>0 / <small>00</small></span></div>
+          <div class="home-card__list">
+            <bmb-list-group borderType="rounded" borderRadius="m" margin="m" padding="none" (selectionChange)="handleListSelection($event)">
+              @for (item of fileItems; track item.id) {
+                <bmb-list-group-item [id]="item.id" [personalizedTemplate]="true">
+                  <div class="home-item home-item--file">
+                    <bmb-box-icon iconName="image" boxShape="circle" boxColor="transparent" />
+                    <div><h4>{{ item.title }}</h4><p>{{ item.description }}</p></div>
+                    <bmb-button-icon icon="file_open" alt="Open file" appearanceContrast="default" (onButtonClick)="handleIconButtonClick($event, item)" />
+                  </div>
+                </bmb-list-group-item>
+              }
+            </bmb-list-group>
+          </div>
+        </div></bmb-card-content>
+      </bmb-card>
+    </div>
+    <section class="implementation-guide" aria-label="Implementacion de Home">
+      <h3>Componentes Bamboo</h3><ul>@for (component of examples['home'].components; track component) { <li><code>{{ component }}</code></li> }</ul>
+      <div class="code-grid"><details open><summary>HTML</summary><pre><code>{{ examples['home'].html }}</code></pre></details><details><summary>SCSS</summary><pre><code>{{ examples['home'].scss }}</code></pre></details><details><summary>TypeScript</summary><pre><code>{{ examples['home'].typescript }}</code></pre></details></div>
+    </section>
+  </section>
+
+  <section class="template-example">
+    <h2>Empty</h2>
+    <bmb-card class="generic-card empty-card" type="normal" borderRadius="xl" margin="none" boxShadowStyle="box-shadow-3" aria-labelledby="empty-content-title">
+      <bmb-card-header padding="none"><h3 class="panel-header">Title</h3></bmb-card-header>
+      <bmb-card-content padding="none"><div class="panel-body">
+        <div class="panel-summary"><span>Lorem ipsum</span><span>0 / <small>10</small></span></div>
+        <div class="empty-card__content">
+          <bmb-box-icon iconName="thumb_up" boxShape="circle" boxSize="regular" boxColor="transparent" />
+          <h3 id="empty-content-title">Title</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur<br />adipiscing elit,</p>
+          <button bmbButton appearance="primary" type="button" (click)="handleButtonClick($event, 'Empty button')">Button</button>
+        </div>
+      </div></bmb-card-content>
+    </bmb-card>
+    <section class="implementation-guide" aria-label="Implementacion de Empty">
+      <h3>Componentes Bamboo</h3><ul>@for (component of examples['empty'].components; track component) { <li><code>{{ component }}</code></li> }</ul>
+      <div class="code-grid"><details open><summary>HTML</summary><pre><code>{{ examples['empty'].html }}</code></pre></details><details><summary>SCSS</summary><pre><code>{{ examples['empty'].scss }}</code></pre></details><details><summary>TypeScript</summary><pre><code>{{ examples['empty'].typescript }}</code></pre></details></div>
+    </section>
+  </section>
+
+  <section class="template-example">
+    <h2>Alert</h2>
+    <div class="alert-list">
+      @for (alert of alerts; track alert.appearance) {
+        <bmb-card class="generic-card" type="transparent" borderRadius="none" margin="none" [attr.aria-labelledby]="'alert-' + alert.appearance">
+          <div class="alert-card alert-card--{{ alert.appearance }}">
+            <bmb-box-icon [iconName]="alert.icon" boxShape="circle" boxColor="transparent" />
+            <div><h3 [id]="'alert-' + alert.appearance">{{ alert.title }}</h3><p>{{ alert.text }}</p></div>
+          </div>
+        </bmb-card>
+      }
+    </div>
+    <section class="implementation-guide" aria-label="Implementacion de Alert">
+      <h3>Componentes Bamboo</h3><ul>@for (component of examples['alert'].components; track component) { <li><code>{{ component }}</code></li> }</ul>
+      <div class="code-grid"><details open><summary>HTML</summary><pre><code>{{ examples['alert'].html }}</code></pre></details><details><summary>SCSS</summary><pre><code>{{ examples['alert'].scss }}</code></pre></details><details><summary>TypeScript</summary><pre><code>{{ examples['alert'].typescript }}</code></pre></details></div>
+    </section>
+  </section>
+
+  @if (lastAction) { <output class="event-output" aria-live="polite">Ultimo evento: {{ lastAction }}</output> }
+</main>
