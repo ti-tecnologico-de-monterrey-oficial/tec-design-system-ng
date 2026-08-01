@@ -1,109 +1,48 @@
-import { Meta, StoryObj } from '@storybook/angular';
-import {
-  BmbCardComponent,
-  BmbCardContentComponent,
-} from '../bmb-card.component';
-import { moduleMetadata } from '@storybook/angular';
-import {
-  getBasicExampleBlock,
-  getEmptyStateMessage,
-  getGeneralComponentDescription,
-  getGeneralDescription,
-  getSpecialSpecifications,
-} from '../../../utils/doc/utils';
-import { BmbBoxIconComponent } from '../../bmb-box-icon/bmb-box-icon.component';
-
-import { BmbLayoutDirective } from '../../../directives/bmb-layout/bmb-layout.directive';
-import { BmbLayoutItemDirective } from '../../../directives/bmb-layout/bmb-layout-item.directive';
-import { BmbVerticalLayoutDirective } from '../../../directives/bmb-layout/bmb-vertical-layout/bmb-vertical-layout.directive';
-import { BmbVerticalLayoutItemDirective } from '../../../directives/bmb-layout/bmb-vertical-layout/bmb-vertical-layout-item.directive';
+import { Meta, moduleMetadata } from '@storybook/angular';
+import { BmbCardComponent } from '../bmb-card.component';
+import { BmbBadgeComponent } from '../../bmb-badge/bmb-badge.component';
+import { BmbImageComponent } from '../../bmb-image/bmb-image.component';
+import { BmbTooltipComponent } from '../../bmb-tooltip/bmb-tooltip.component';
+import { BmbButtonDirective } from '../../../directives/bmb-button/button.directive';
+import { staticCardStory } from './bmb-card-template-story.utils';
 
 const meta: Meta<BmbCardComponent> = {
   title: 'Components/Containers/Generic card/Informative',
-  tags: ['!autodocs'],
   component: BmbCardComponent,
+  tags: ['!autodocs'],
   decorators: [
     moduleMetadata({
-      declarations: [],
       imports: [
         BmbCardComponent,
-        BmbCardContentComponent,
-        BmbBoxIconComponent,
-        BmbLayoutDirective,
-        BmbLayoutItemDirective,
-        BmbVerticalLayoutDirective,
-        BmbVerticalLayoutItemDirective,
+        BmbBadgeComponent,
+        BmbImageComponent,
+        BmbTooltipComponent,
+        BmbButtonDirective,
       ],
     }),
   ],
-  parameters: {
-    docs: {
-      controls: {
-        exclude: ['alternative', 'state', 'getStyles', 'getClasses'],
-      },
-      description: {
-        component: `
-${getGeneralDescription(
-  `${getGeneralComponentDescription({ name: 'card' })} to present whether type of content in an orderly manner with card features.`,
-  {
-    generalDocLink:
-      'https://bamboo.tec.mx/latest/components/generic-card/descripcion-general-ArPVPcRB',
-  },
-)}
-${getSpecialSpecifications(getEmptyStateMessage(), { showAdditionalBlockquote: true, isSubStory: true })}
-${getBasicExampleBlock(`
-        BmbCardComponent,
-        BmbCardContentComponent,
-        BmbBoxIconComponent,
-        BmbLayoutDirective,
-        BmbLayoutItemDirective,
-        BmbVerticalLayoutDirective,
-        BmbVerticalLayoutItemDirective,
-      `)}
-        `,
-      },
-    },
-  },
-  argTypes: {},
-  args: {},
 };
-
 export default meta;
 
-type Story = StoryObj<BmbCardComponent>;
+const image =
+  'https://conecta.tec.mx/sites/default/files/inline-images/tec-de-monterrey.webp';
+const content = () => `<div class="bmb-card-template__content">
+      <div class="bmb-card-template__labels"><bmb-tooltip icon="info" text="Additional information" componentTitle="Information" [size]="20" /><bmb-badge text="Badge" appearance="creative-violet" /></div>
+      <h3>Title</h3>
+      <p class="bmb-card-template__complementary">Complementary text</p>
+      <hr />
+      <p class="bmb-card-template__body">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce volutpat rhoncus leo vel pharetra. Donec feugiat enim pharetra ipsum euismod, sed maximus justo pharetra.</p>
+      <div class="bmb-card-template__actions"><button bmbButton appearance="secondary-outlined">Button</button><button bmbButton appearance="secondary-outlined">Secondary button</button></div>
+    </div>`;
+const picture = () =>
+  `<bmb-image class="bmb-card-template__image" src="${image}" alt="Edificio de Rectoría del Tecnológico de Monterrey" borderRadius="none" objectFit="cover" />`;
+const template = (
+  mobile = false,
+) => `<div class="bmb-card-template bmb-card-template--informative${mobile ? ' bmb-card-template--mobile' : ''}">
+  <bmb-card type="normal" borderRadius="${mobile ? 'l' : 'm'}" margin="none">
+    <div class="bmb-card-template__surface">${content()}${picture()}</div>
+  </bmb-card>
+</div>`;
 
-export const Default: Story = {
-  args: {},
-  render: (args) => ({
-    props: args,
-    template: `
-<bmb-card>
-  <bmb-card-content padding="m">
-    <section
-      bmbLayout
-      margin="none"
-      gapSize="3"
-      alignItems="center"
-      justify="center"
-    >
-      <bmb-box-icon
-        [iconName]="'home'"
-        [boxColor]="'black-primary'"
-        bmbLayoutItemF
-      />
-      <section bmbLayoutItem [isDynamicItem]="true" [colGrow]="1">
-        <section bmbVerticalLayout gapSize="xs">
-          <h4 class="font-regular-4" bmbVerticalLayoutItem>
-            {{ 'Title' }}
-          </h4>
-          <p class="font-regular-1" bmbVerticalLayoutItem>
-            {{ 'Complementary text...' }}
-          </p>
-        </section>
-      </section>
-    </section>
-  </bmb-card-content>
-</bmb-card>
-    `,
-  }),
-};
+export const Desktop = staticCardStory(template());
+export const Mobile = staticCardStory(template(true), true);
