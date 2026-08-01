@@ -24,6 +24,12 @@ import { BmbBotIconComponent } from '../bmb-bot-icon/bmb-bot-icon.component';
 import { BmbContainerButtonComponent } from '../bmb-container-button/bmb-container-button.component';
 import { BmbTranslationsService } from '../../services/translations/translations.service';
 
+export interface IBmbChatBubblesActions {
+  key: TChatAction;
+  icon: string;
+  label: string;
+}
+
 @Component({
   selector: 'bmb-chat-bubble',
   standalone: true,
@@ -47,30 +53,29 @@ export class BmbChatBubblesComponent {
   gptIcons = input<boolean>(false);
   isThinking = input<boolean>(false);
   testId = input<string>('chat-bubble');
-
-  actions = computed(() => [
+  actions = input<IBmbChatBubblesActions[]>([
     {
-      key: 'repeat' as TChatAction,
+      key: 'repeat',
       icon: 'repeat',
       label: this.translationService.translate('chat_bubbles.repeat'),
     },
     {
-      key: 'voice' as TChatAction,
+      key: 'voice',
       icon: 'record_voice_over',
       label: this.translationService.translate('chat_bubbles.voice'),
     },
     {
-      key: 'copy' as TChatAction,
+      key: 'copy',
       icon: 'content_copy',
       label: this.translationService.translate('chat_bubbles.copy'),
     },
     {
-      key: 'like' as TChatAction,
+      key: 'like',
       icon: 'thumb_up',
       label: this.translationService.translate('chat_bubbles.like'),
     },
     {
-      key: 'dislike' as TChatAction,
+      key: 'dislike',
       icon: 'thumb_down',
       label: this.translationService.translate('chat_bubbles.dislike'),
     },
