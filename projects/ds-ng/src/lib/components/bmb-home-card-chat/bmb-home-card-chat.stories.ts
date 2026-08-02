@@ -145,6 +145,10 @@ export default {
           'handleSearchChange',
           'handleUserClick',
           'ngOnInit',
+          'getLogoClick',
+          'getLogoLink',
+          'getLogoTarget',
+          'handleLogoClick',
         ],
       },
       description: {
@@ -302,7 +306,7 @@ Controls how the chat is rendered.
 - **expanded**: Renders the chat inline
     `,
       table: {
-        category: 'State',
+        category: 'Properties',
         type: { summary: `'compact' | 'chat' | 'expanded'` },
         defaultValue: { summary: 'chat' },
       },
@@ -318,7 +322,7 @@ This is a **model signal**, so it can be used as:
 - \`(currentBotChange)="handleCurrentBotChange($event)"\`
     `,
       table: {
-        category: 'State',
+        category: 'Properties',
         type: { summary: 'IBotType' },
         defaultValue: {
           summary: `{ name: 'TecBot', icon: 'bot_tecStandar' }`,
@@ -334,7 +338,7 @@ Controls the loading state of the chat.
 When enabled, the last bot message will display a "thinking" animation.
     `,
       table: {
-        category: 'State',
+        category: 'Properties',
         type: { summary: 'boolean' },
         defaultValue: { summary: 'false' },
       },
@@ -345,7 +349,7 @@ When enabled, the last bot message will display a "thinking" animation.
       control: 'text',
       description: `Main title displayed in the chat header.`,
       table: {
-        category: 'Content',
+        category: 'Properties',
         type: { summary: 'string' },
       },
     },
@@ -354,7 +358,7 @@ When enabled, the last bot message will display a "thinking" animation.
       control: 'text',
       description: `Secondary text displayed below the title.`,
       table: {
-        category: 'Content',
+        category: 'Properties',
         type: { summary: 'string' },
       },
     },
@@ -363,7 +367,7 @@ When enabled, the last bot message will display a "thinking" animation.
       control: 'text',
       description: `Placeholder text shown in the chat input field.`,
       table: {
-        category: 'Content',
+        category: 'Properties',
         type: { summary: 'string' },
       },
     },
@@ -383,7 +387,7 @@ Each item represents a message and determines how it is rendered:
 - **template** → custom content
   `,
       table: {
-        category: 'Data',
+        category: 'Properties',
         type: {
           summary: 'IBmbChatMessage[]',
           detail: `
@@ -419,7 +423,7 @@ type IBmbChatMessage = {
 List of available bots that can be selected in the chat.
     `,
       table: {
-        category: 'Data',
+        category: 'Properties',
         type: {
           summary: 'IBotType[]',
           detail: `
@@ -433,13 +437,11 @@ type IBotType = {
         },
       },
     },
-
-    // ===== APPEARANCE =====
     leftIcon: {
       control: 'text',
       description: `Icon displayed on the left side of the header.`,
       table: {
-        category: 'Appearance',
+        category: 'Properties',
         type: { summary: 'string' },
       },
     },
@@ -448,7 +450,7 @@ type IBotType = {
       control: 'text',
       description: `Background color token used for the bot icon.`,
       table: {
-        category: 'Appearance',
+        category: 'Properties',
         type: { summary: 'IBmbColor' },
       },
     },
@@ -457,7 +459,7 @@ type IBotType = {
       control: 'boolean',
       description: `Forces mobile layout behavior.`,
       table: {
-        category: 'Layout',
+        category: 'Properties',
         type: { summary: 'boolean' },
       },
     },
@@ -466,12 +468,17 @@ type IBotType = {
       control: 'text',
       description: `Base test id used for automation and testing selectors.`,
       table: {
-        category: 'Testing',
+        category: 'Properties',
         type: { summary: 'string' },
       },
     },
-
-    // ===== EVENTS =====
+    botActions: {
+      control: 'object',
+      description: 'Enables the actions for the bot bubbles',
+      table: {
+        category: 'Properties'
+      }
+    },
     getBubbleAction: {
       action: 'bubbleAction',
       control: false,
@@ -506,7 +513,16 @@ handleBubbleAction(event) {
         },
       },
     },
-
+    getSendMessage: {
+      control: false,
+      description: 'Emmit when the user send a message or a bot has a new response',
+      table: {
+        category: 'Events',
+        type: {
+          summary: '(message) => void',
+        },
+      }
+    },
     getClose: {
       action: 'close',
       control: false,
@@ -642,6 +658,9 @@ handleNewChat() {
         isUserMessage: false,
         time: new Date(),
       },
+    ],
+    botActions: [
+      'copy', 'dislike', 'like', 'repeat', 'voice'
     ],
 
     // ===== EVENTS =====

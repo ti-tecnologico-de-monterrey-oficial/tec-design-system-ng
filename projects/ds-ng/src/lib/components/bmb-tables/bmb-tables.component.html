@@ -154,7 +154,7 @@
         </ng-container>
 
         <!-- Display Columns -->
-        @for (column of tableColumns; track column; let i = $index) {
+        @for (column of tableColumns; track column.def; let i = $index) {
           <ng-container
             [matColumnDef]="column.def"
             [sticky]="i === 0 && !disableStickyColumn()"

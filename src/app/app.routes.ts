@@ -185,5 +185,13 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./pages/menu/menu.component').then((t) => t.MenuPageComponent),
   },
+  {
+    path: 'avatar',
+    title: 'Avatar List',
+    loadComponent: () =>
+      import('./pages/avatars/avatars.component').then(
+        (t) => t.AvatarsComponent
+      ),
+  },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
 ];
