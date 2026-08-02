@@ -1,5 +1,5 @@
 import { Component, input, OnChanges, SimpleChanges } from '@angular/core';
-import { Meta, StoryFn, moduleMetadata } from '@storybook/angular';
+import { Meta, StoryFn, componentWrapperDecorator, moduleMetadata } from '@storybook/angular';
 import {
   BmbHomeCardComponent,
   BmbIconComponent,
@@ -36,6 +36,7 @@ import * as verticalLayout from '../../directives/bmb-layout/bmb-vertical-layout
 
 const htmlTemplate: string = `
 <bmb-home-card
+      class="bmb_template-guided-tour-container"
       leftIcon="chevron_left"
       icon="emoji_objects"
       bgIconAppearance="info-primary"
@@ -215,6 +216,11 @@ export default {
       imports: [StorybookGuidedTourHC],
       providers: [],
     }),
+    componentWrapperDecorator((story: string) => {
+      return `<div style="height: 100dvh;">
+        ${story}
+      </div>`;
+    }),
   ],
   parameters: {
     docs: {
@@ -279,8 +285,8 @@ steps: OnboardingStep[] = [
           'Con la plataforma de mitec podrás descubrir una nueva forma de vivir tu experiencia dentro del Tecnológico de Monterrey. Diseñada de manera modular para mostrar diferentes niveles de contenido de manera sencilla, esta aplicación te brinda acceso automático a todos los servicios esenciales e información importante en tu estancia.',
         icon: '',
         iconSize: '',
-        imageDesktop: '../assets/doc/guided-tour/step_1_desktop.png',
-        imageMobile: '../assets/doc/guided-tour/step_1.png',
+        imageDesktop: '../../../assets/doc/guided-tour/step_1_desktop.png',
+        imageMobile: '../../../assets/doc/guided-tour/step_1.png',
         primaryButton: 'Empezar el tour',
         shortDescription: 'Este es tu tour introductorio a la app.',
         showCheckbox: true,
@@ -290,8 +296,8 @@ steps: OnboardingStep[] = [
       {
         description:
           'TECBot es el asistente virtual diseñado para todos los usuarios, que resuelve toda clase de dudas dentro de mitec sobre consulta de datos, servicios, información importante, horarios, realización de trámites, entre otros, para que tu experiencia sea más ágil y directa. ',
-        imageDesktop: '../assets/images/bienvenida/step_2_desktop.gif',
-        imageMobile: '../assets/images/bienvenida/step_2.gif',
+        imageDesktop: '../../../assets/images/bienvenida/step_2_desktop.gif',
+        imageMobile: '../../../assets/images/bienvenida/step_2.gif',
         primaryButton: 'Siguiente',
         secondaryButton: 'Regresar',
         shortDescription:
@@ -301,8 +307,8 @@ steps: OnboardingStep[] = [
       {
         description:
           'Para lograr una mejor experiencia, la navegación es en modo horizontal; para navegar selecciona las tarjetas semiocultas del lado derecho y arrastra hacia la izquierda para revelar el resto de secciones. <br/>Al final de la navegación en Home, verás un botón denominado “Regresar al inicio”, que permite regresar a la parte inicial del recorrido del Home.',
-        imageDesktop: '../assets/images/bienvenida/step_3_desktop.gif',
-        imageMobile: '../assets/images/bienvenida/step_3.gif',
+        imageDesktop: '../../../assets/images/bienvenida/step_3_desktop.gif',
+        imageMobile: '../../../assets/images/bienvenida/step_3.gif',
         primaryButton: 'Siguiente',
         secondaryButton: 'Regresar',
         shortDescription:
@@ -312,8 +318,8 @@ steps: OnboardingStep[] = [
       {
         description:
           'En la parte superior, al dar click en el icono “Notificaciones” nos llevará al Notification Center, un espacio donde podrás ver todas tus notificaciones en un solo lugar, de manera ordenada y fácil de revisar. <br /> ¡Es el momento! ¡Ahora ya estás preparado para empezar a descubrir todo lo que tenemos para ti en mitec! ',
-        imageDesktop: '../assets/images/bienvenida/step_4_desktop.gif',
-        imageMobile: '../assets/images/bienvenida/step_4.gif',
+        imageDesktop: '../../../assets/images/bienvenida/step_4_desktop.gif',
+        imageMobile: '../../../assets/images/bienvenida/step_4.gif',
         primaryButton: 'Empezar',
         secondaryButton: 'Regresar',
         shortDescription:
@@ -387,11 +393,14 @@ ${htmlTemplate}
     steps: [
       {
         description:
-          'Con la plataforma de mitec podrás descubrir una nueva forma de vivir tu experiencia dentro del Tecnológico de Monterrey. Diseñada de manera modular para mostrar diferentes niveles de contenido de manera sencilla, esta aplicación te brinda acceso automático a todos los servicios esenciales e información importante en tu estancia.',
+          `Con la plataforma de mitec podrás descubrir una nueva forma de vivir tu experiencia dentro del Tecnológico de Monterrey. Diseñada de manera modular para mostrar diferentes niveles de contenido de manera sencilla, esta aplicación te brinda acceso automático a todos los servicios esenciales e información importante en tu estancia.
+          Más allá del ámbito académico, la herramienta se convierte en tu centro de interacción con la vida universitaria. A través de sus tarjetas dinámicas, podrás explorar la agenda cultural y deportiva del campus, conectarte con grupos estudiantiles, descubrir convocatorias de voluntariado y mantenerte al día con los avisos más relevantes de la comunidad del Tec.
+          La flexibilidad de su arquitectura modular permite adaptarse a cada etapa de tu vida dentro de la institución, ya seas alumno, docente o colaborador. Cada usuario dispone de un tablero inteligente que sugiere recursos relevantes según sus actividades diarias, integrando de manera fluida servicios como la biblioteca digital, los sistemas de pago y el acceso a plataformas educativas complementarias.
+          De esta manera, mitec redefine la conectividad institucional al transformar la interacción cotidiana en un ecosistema digital eficiente y accesible desde cualquier dispositivo. La plataforma reafirma el compromiso del Tecnológico de Monterrey con la innovación tecnológica, acompañándote a lo largo de toda tu vivencia universitaria con seguridad y agilidad.`,
         icon: '',
         iconSize: '',
-        imageDesktop: '../assets/doc/guided-tour/step_1_desktop.png',
-        imageMobile: '../assets/doc/guided-tour/step_1.png',
+        imageDesktop: 'https://editorialtelevisa.brightspotcdn.com/dims4/default/db8f1be/2147483647/strip/true/crop/1194x672+3+0/resize/1000x563!/quality/90/?url=https:%2F%2Fk2-prod-editorial-televisa.s3.us-east-1.amazonaws.com%2Fbrightspot%2F35%2F6e%2Fb9c82c1e4b49a2500146c4721d7c%2Fsnacks-muy-divertidos-para-tu-perrito.jpg',
+        imageMobile: 'https://editorialtelevisa.brightspotcdn.com/dims4/default/db8f1be/2147483647/strip/true/crop/1194x672+3+0/resize/1000x563!/quality/90/?url=https:%2F%2Fk2-prod-editorial-televisa.s3.us-east-1.amazonaws.com%2Fbrightspot%2F35%2F6e%2Fb9c82c1e4b49a2500146c4721d7c%2Fsnacks-muy-divertidos-para-tu-perrito.jpg',
         primaryButton: 'Empezar el tour',
         shortDescription: 'Este es tu tour introductorio a la app.',
         showCheckbox: true,
@@ -401,8 +410,8 @@ ${htmlTemplate}
       {
         description:
           'TECBot es el asistente virtual diseñado para todos los usuarios, que resuelve toda clase de dudas dentro de mitec sobre consulta de datos, servicios, información importante, horarios, realización de trámites, entre otros, para que tu experiencia sea más ágil y directa. ',
-        imageDesktop: '../assets/images/bienvenida/step_2_desktop.gif',
-        imageMobile: '../assets/images/bienvenida/step_2.gif',
+        imageDesktop: '../../../assets/images/bienvenida/step_2_desktop.gif',
+        imageMobile: '../../../assets/images/bienvenida/step_2.gif',
         primaryButton: 'Siguiente',
         secondaryButton: 'Regresar',
         shortDescription:
@@ -412,8 +421,8 @@ ${htmlTemplate}
       {
         description:
           'Para lograr una mejor experiencia, la navegación es en modo horizontal; para navegar selecciona las tarjetas semiocultas del lado derecho y arrastra hacia la izquierda para revelar el resto de secciones. <br/>Al final de la navegación en Home, verás un botón denominado “Regresar al inicio”, que permite regresar a la parte inicial del recorrido del Home.',
-        imageDesktop: '../assets/images/bienvenida/step_3_desktop.gif',
-        imageMobile: '../assets/images/bienvenida/step_3.gif',
+        imageDesktop: '../../../assets/images/bienvenida/step_3_desktop.gif',
+        imageMobile: '../../../assets/images/bienvenida/step_3.gif',
         primaryButton: 'Siguiente',
         secondaryButton: 'Regresar',
         shortDescription:
@@ -423,8 +432,8 @@ ${htmlTemplate}
       {
         description:
           'En la parte superior, al dar click en el icono “Notificaciones” nos llevará al Notification Center, un espacio donde podrás ver todas tus notificaciones en un solo lugar, de manera ordenada y fácil de revisar. <br /> ¡Es el momento! ¡Ahora ya estás preparado para empezar a descubrir todo lo que tenemos para ti en mitec! ',
-        imageDesktop: '../assets/images/bienvenida/step_4_desktop.gif',
-        imageMobile: '../assets/images/bienvenida/step_4.gif',
+        imageDesktop: '../../../assets/images/bienvenida/step_4_desktop.gif',
+        imageMobile: '../../../assets/images/bienvenida/step_4.gif',
         primaryButton: 'Empezar',
         secondaryButton: 'Regresar',
         shortDescription:
