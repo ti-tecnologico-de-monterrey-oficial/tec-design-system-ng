@@ -50,6 +50,7 @@ export class BmbTextEditorPromptComponent {
 
   formValues = output<Record<string, unknown>>();
   cancelForm = output<void>();
+  selectedColor = output<string>();
 
   formGroup: FormGroup = new FormGroup({});
 
@@ -69,5 +70,7 @@ export class BmbTextEditorPromptComponent {
     }
   }
 
-  handleChangeColor(): void {}
+  handleChangeColor(colorName: string): void {
+    this.selectedColor.emit(colorName);
+  }
 }

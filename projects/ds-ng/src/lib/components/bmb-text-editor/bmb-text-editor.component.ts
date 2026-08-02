@@ -72,6 +72,7 @@ export class BmbTextEditorComponent implements AfterViewInit, OnInit {
     private readonly sanitizer: DomSanitizer,
   ) {}
   userSelection: Range | null = null;
+  selectedColor: string = '';
 
   ngOnInit(): void {
     this.sanitizedContent.set(
@@ -191,6 +192,7 @@ export class BmbTextEditorComponent implements AfterViewInit, OnInit {
         formValues: (values: Record<string, unknown>) =>
           this.handleClosePrompt({ ...values, type }),
         cancelForm: () => this.contentProjected.closeContent(),
+        selectedColor: (colorName: string) => (this.selectedColor = colorName),
       },
       targetRef: buttonNode ?? null,
     });
