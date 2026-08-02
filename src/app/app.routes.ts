@@ -190,7 +190,7 @@ export const routes: Routes = [
     title: 'Avatar List',
     loadComponent: () =>
       import('./pages/avatars/avatars.component').then(
-        (t) => t.AvatarsComponent
+        (t) => t.AvatarsComponent,
       ),
   },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
