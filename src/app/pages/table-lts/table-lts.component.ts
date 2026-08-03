@@ -25,51 +25,7 @@ export class TableLtsComponent implements OnInit, AfterViewInit {
   data = signal<any[]>([]);
   @ViewChild('conceptTemplate') conceptTemplate!: TemplateRef<any>;
 
-  columns: TableColum[] = [
-    {
-      def: 'first_name',
-      label: 'Nombre',
-      dataKey: 'first_name',
-      icon: 'face',
-      labelEn: 'Name',
-      type: 'string',
-    },
-    {
-      def: 'last_name',
-      label: 'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
-      dataKey: 'last_name',
-      icon: 'face',
-      labelEn: 'Last Name',
-      type: 'string',
-      width: 200,
-    },
-    {
-      def: 'email',
-      label: 'Correo Electrónico',
-      dataKey: 'email',
-      icon: 'email',
-      labelEn: 'Email',
-      type: 'string',
-      isFilterable: false,
-      width: 500,
-    },
-    {
-      def: 'birthday',
-      label: 'Cumpleaños',
-      dataKey: 'birthday',
-      labelEn: 'Birthday',
-      type: 'date',
-      dateFormat: 'dd/MM/yyyy',
-    },
-    { def: 'country', label: 'País', dataKey: 'country', labelEn: 'Country' },
-    {
-      def: 'balance',
-      label: 'Saldo',
-      dataKey: 'balance',
-      labelEn: 'Balance',
-      type: 'number',
-    },
-  ];
+  columns: TableColum[] = [];
 
   filtersModel = model<{ [key: string]: any }>({
     first_name_contains: 'jj',
@@ -632,6 +588,51 @@ export class TableLtsComponent implements OnInit, AfterViewInit {
         },
       ]);
     }, 2000);
+    this.columns = [
+      {
+        def: 'first_name',
+        label: 'Nombre',
+        dataKey: 'first_name',
+        icon: 'face',
+        labelEn: 'Name',
+        type: 'string',
+      },
+      {
+        def: 'last_name',
+        label: 'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+        dataKey: 'last_name',
+        icon: 'face',
+        labelEn: 'Last Name',
+        type: 'string',
+        width: 200,
+      },
+      {
+        def: 'email',
+        label: 'Correo Electrónico',
+        dataKey: 'email',
+        icon: 'email',
+        labelEn: 'Email',
+        type: 'string',
+        isFilterable: false,
+        width: 500,
+      },
+      {
+        def: 'birthday',
+        label: 'Cumpleaños',
+        dataKey: 'birthday',
+        labelEn: 'Birthday',
+        type: 'date',
+        dateFormat: 'dd/MM/yyyy',
+      },
+      { def: 'country', label: 'País', dataKey: 'country', labelEn: 'Country' },
+      {
+        def: 'balance',
+        label: 'Saldo',
+        dataKey: 'balance',
+        labelEn: 'Balance',
+        type: 'number',
+      },
+    ];
   }
 
   handleApplyFilters() {

@@ -3,6 +3,7 @@ import {
   Component,
   computed,
   effect,
+  inject,
   input,
   model,
   output,
@@ -21,8 +22,9 @@ import { IBmbColor } from '../../types/colors';
 import {
   IBmbChatActionEvent,
   IBmbChatMessage,
+  TChatAction,
 } from '../bmb-chat-bubbles/types';
-import { BmbChatBubblesComponent } from '../bmb-chat-bubbles/bmb-chat-bubbles.component';
+import { BmbChatBubblesComponent, IBmbChatBubblesActions } from '../bmb-chat-bubbles/bmb-chat-bubbles.component';
 import { TranslatePipe } from '../../pipes/translations';
 import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
 import { BmbProjectionContentService } from '../../services/projection/projection.service';
@@ -31,8 +33,10 @@ import { BmbBotIconComponent } from '../bmb-bot-icon/bmb-bot-icon.component';
 import { IBmbActionHeader } from '../../types';
 import { BmbActionMenuComponent } from '../bmb-action-menu/bmb-action-menu.component';
 import { BmbItemComponent } from '../bmb-item/bmb-item.component';
+import { BmbTranslationsService } from '../../services/translations/translations.service';
 
 export type IBmbHomeCardChatMode = 'compact' | 'chat' | 'expanded';
+
 @Component({
   selector: 'bmb-home-card-chat',
   standalone: true,
@@ -63,6 +67,9 @@ export class BmbHomeCardChatComponent {
   actionsList = input<IChatBarActions[]>([]);
   componentTitle = input<string>('');
   testId = input<string>('chat-bubble');
+  botActions = input<TChatAction[]>([
+    'copy', 'dislike', 'like', 'repeat', 'voice'
+  ]);
 
   title = input<string>(''); // deprecated
 
@@ -73,13 +80,55 @@ export class BmbHomeCardChatComponent {
   });
   isLoading = model<boolean>(false);
   mode = model<'compact' | 'chat' | 'expanded'>('expanded');
-  getBubbleAction = output<IBmbChatActionEvent>();
 
+  getBubbleAction = output<IBmbChatActionEvent>();
   getClose = output();
   getBack = output();
   getSendMessage = output<string>();
   getNewChat = output<boolean>();
   getExpand = output<any>();
+
+  translationService = inject(BmbTranslationsService);
+
+  parsedBotActions = computed<IBmbChatBubblesActions[]>(() => {
+    const newActions = this.botActions();
+    return newActions.map((action) => {
+      switch (action) {
+        case 'repeat':
+          return {
+            key: 'repeat',
+            icon: 'repeat',
+            label: this.translationService.translate('chat_bubbles.repeat'),
+          }
+        case 'voice':
+          return {
+            key: 'voice',
+            icon: 'record_voice_over',
+            label: this.translationService.translate('chat_bubbles.voice'),
+          }
+        case 'copy':
+          return {
+            key: 'copy',
+            icon: 'content_copy',
+            label: this.translationService.translate('chat_bubbles.copy'),
+          }
+        case 'like':
+          return {
+            key: 'like',
+            icon: 'thumb_up',
+            label: this.translationService.translate('chat_bubbles.like'),
+          }
+        case 'dislike':
+          return {
+            key: 'dislike',
+            icon: 'thumb_down',
+            label: this.translationService.translate('chat_bubbles.dislike'),
+          }
+        default:
+          throw new Error('Action name not supported');
+      }
+    });
+  })
 
   @ViewChild('contentTemplate') contentTemplate!: TemplateRef<any>;
   @ViewChild('chatBarActionsTemplate', { static: true })

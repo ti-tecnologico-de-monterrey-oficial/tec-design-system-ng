@@ -45,8 +45,8 @@ describe('BmbProjectionContentService', () => {
     service.closeContent(); // Reset state before each test
   });
 
-  it('debe inicializar con contenido proyectado nulo', () => {
-    expect(service.getProjectedContent()).toBeNull();
+  it('debe inicializar sin contenido proyectado', () => {
+    expect(service.getProjectedContent()).toEqual([]);
     expect(service.isThereContentProjected()).toBe(false);
   });
 
@@ -62,8 +62,9 @@ describe('BmbProjectionContentService', () => {
 
     const projected = service.getProjectedContent();
 
-    expect(projected).toEqual(jasmine.objectContaining(content));
-    expect(projected?.id).toBeDefined();
+    expect(projected.length).toBe(1);
+    expect(projected[0]).toEqual(jasmine.objectContaining(content));
+    expect(projected[0].id).toBeDefined();
     expect(service.isThereContentProjected()).toBe(true);
   });
 
@@ -72,21 +73,22 @@ describe('BmbProjectionContentService', () => {
     service.openContent(content);
     expect(service.isThereContentProjected()).toBe(true);
     service.closeContent();
-    expect(service.getProjectedContent()).toBeNull();
+    expect(service.getProjectedContent()).toEqual([]);
     expect(service.isThereContentProjected()).toBe(false);
   });
 
-  it('debe sobrescribir el contenido proyectado si se abre uno nuevo', () => {
+  it('debe agregar cada contenido nuevo a la lista', () => {
     const content1: IBmbProjectionContent = { content: null, mode: 'over' };
     const content2: IBmbProjectionContent = { content: null, mode: 'partial' };
 
-    service.openContent(content2);
     service.openContent(content1);
-    const firstId = service.getProjectedContent()?.id;
+    const firstId = service.getProjectedContent()[0].id;
 
     service.openContent(content2);
-    const secondId = service.getProjectedContent()?.id;
+    const projected = service.getProjectedContent();
+    const secondId = projected[1].id;
 
     expect(firstId).not.toEqual(secondId);
+    expect(projected.length).toBe(2);
   });
 });

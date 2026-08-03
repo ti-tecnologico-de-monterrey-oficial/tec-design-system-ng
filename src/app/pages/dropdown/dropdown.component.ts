@@ -40,10 +40,11 @@ export class DropdownPageComponent implements OnInit {
     //Add your code
   }
 
-  options = computed(() => {
-    const elements = this.animeService.topAnime();
-    return elements.data.map((anime) => anime.title);
-  });
+  // options = computed(() => {
+  //   const elements = this.animeService.topAnime();
+  //   return elements.data.map((anime) => anime.title);
+  // });
+  options = ['banana', 'apple'];
 
   handleBookmarkChange(isActive: boolean) {
     console.log('Bookmark active state changed:', isActive);
