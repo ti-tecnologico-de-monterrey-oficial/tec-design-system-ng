@@ -38,11 +38,13 @@
         [title]="'text_editor.underline' | translate"
         (buttonClick)="addTextFormat('underline')"
       />
-      <input
-        id="BmbTextEditorColor"
-        type="color"
-        (change)="handleChange($event, 'foreColor')"
-        [title]="'text_editor.fore_color' | translate"
+      <bmb-action-icon
+        [style]="'color: var(--' + selectedColor() + ')'"
+        idElement="color"
+        icon="rectangle"
+        [iconSize]="24"
+        [tooltipText]="'text_editor.fore_color' | translate"
+        (buttonClick)="openPrompt('color', $event)"
       />
     </span>
     <span class="bmb_text-editor-header-group bmb_text-editor-header-actions">

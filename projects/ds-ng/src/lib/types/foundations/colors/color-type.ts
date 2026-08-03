@@ -51,6 +51,13 @@ export const BMB_ALERT_COLOR_LIST: string[] = [
 
 export type IBmbAlertColors = (typeof BMB_ALERT_COLOR_LIST)[number];
 
+export const BMB_BASE_GENERAL_CONTRAST_LIST: string[] = [
+  ...Object.keys(COLOR_GROUP_NAMES['base_general_contrast']),
+] as const;
+
+export type IBmbBaseGeneralContrastColors =
+  (typeof BMB_BASE_GENERAL_CONTRAST_LIST)[number];
+
 export const BMB_PUSH_NOTIFICATION_COLOR_LIST: string[] = [
   ...Object.keys(COLOR_GROUP_NAMES['bmb_push_notification_type']),
 ] as const;
