@@ -21,7 +21,7 @@ import {
 } from '../../../types/foundations/colors/color-type';
 import { BmbActionIconComponent } from '../../bmb-action-icon/bmb-action-icon.component';
 
-export type IBmbTextEditorPromptType = 'link' | 'image' | 'colors';
+export type IBmbTextEditorPromptType = 'link' | 'image' | 'color';
 
 @Component({
   selector: 'app-bmb-text-editor-prompt',

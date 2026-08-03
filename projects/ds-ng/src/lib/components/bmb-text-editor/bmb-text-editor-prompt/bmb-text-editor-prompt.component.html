@@ -1,5 +1,5 @@
 <bmb-card>
-  <bmb-card-content [padding]="type() === 'colors' ? 's' : 'l'">
+  <bmb-card-content [padding]="type() === 'color' ? 's' : 'l'">
     @switch (type()) {
       @case ('link') {
         <div class="bmb_text-editor-prompt">
@@ -15,7 +15,7 @@
           />
         </div>
       }
-      @case ('colors') {
+      @case ('color') {
         <section
           class="bmb_radius-s"
           style="

@@ -72,7 +72,7 @@ export class BmbTextEditorComponent implements AfterViewInit, OnInit {
     private readonly sanitizer: DomSanitizer,
   ) {}
   userSelection: Range | null = null;
-  selectedColor: string = '';
+  selectedColor = signal<string>('');
 
   ngOnInit(): void {
     this.sanitizedContent.set(
@@ -122,7 +122,6 @@ export class BmbTextEditorComponent implements AfterViewInit, OnInit {
   }
 
   execCommand(command: string, value: string | null = null): void {
-    // const userSelection = window.getSelection();
     if (this.userSelection) {
       const selection = globalThis.getSelection();
       if (selection) {
@@ -131,31 +130,8 @@ export class BmbTextEditorComponent implements AfterViewInit, OnInit {
       }
     }
 
-    // navigator.clipboard
-    //       .writeText(textToCopy.toString())
-    //       .then(() => console.info('Text copied to clipboard!'))
-    //       .catch((err) => console.error('Error copying text: ', err));
-    // navigator.clipboard
-    //   .readText()
-    //   .then( clipText => document.querySelector("#yourTarget").innerText += clipText );
-    // if (userSelection) {
-    //   const selectedTextRange = userSelection.getRangeAt(0);
-
-    //   switch (command) {
-    //     case 'bold':
-    //       selectedTextRange.surroundContents(document.createElement('strong'));
-    //       break;
-    //     case 'italic':
-    //       selectedTextRange.surroundContents(document.createElement('i'));
-    //       break;
-    //     case 'underline':
-    //       selectedTextRange.surroundContents(document.createElement('u'));
-    //       break;
-    //     default:
-    console.info('execCommand', command, value);
     document.execCommand(command, false, value || undefined);
-    //   }
-    // }
+
     this.updateContent();
 
     this.userSelection = null;
@@ -192,7 +168,11 @@ export class BmbTextEditorComponent implements AfterViewInit, OnInit {
         formValues: (values: Record<string, unknown>) =>
           this.handleClosePrompt({ ...values, type }),
         cancelForm: () => this.contentProjected.closeContent(),
-        selectedColor: (colorName: string) => (this.selectedColor = colorName),
+        selectedColor: (colorName: string) => {
+          this.contentProjected.closeContent();
+          this.selectedColor.set(colorName);
+          this.handleClosePrompt({ colorName, type });
+        },
       },
       targetRef: buttonNode ?? null,
     });
@@ -203,6 +183,8 @@ export class BmbTextEditorComponent implements AfterViewInit, OnInit {
       this.insertLink(values);
     } else if (values['type'] === 'image' && values['prompt_url']) {
       this.insertImage(values);
+    } else if (values['type'] === 'color') {
+      this.addColor(values['colorName'] as string);
     }
     this.contentProjected.closeContent();
   }
@@ -242,21 +224,20 @@ export class BmbTextEditorComponent implements AfterViewInit, OnInit {
         if (values['prompt_img_width'] && values['unit_size']) {
           imageNode.style.width = `${values['prompt_img_width']}${values['unit_size']}`;
         }
+
         if (values['prompt_img_height'] && values['unit_size']) {
           imageNode.style.height = `${values['prompt_img_height']}${values['unit_size']}`;
         }
+
         if (values['prompt_alt']) {
           imageNode.alt = values['prompt_alt'] as string;
         }
-        // imageNode.onerror =
-        //   `${values['onerror']}${values["this.onerror=null;this.src='../assets/images/empty-state/broken-image.jpg'"]}` as string;
 
         if (values['alignment_type']) {
           imageNode.style.objectFit = values['alignment_type'] as string;
         }
       }
     });
-    console.info('insertImage', imageNode, range);
   }
 
   updateContent(): void {
@@ -361,11 +342,22 @@ export class BmbTextEditorComponent implements AfterViewInit, OnInit {
           `;
   }
 
-  getColor(name: string): string {
-    return `color: var(--${name});`;
-  }
-
   addColor(name: string): void {
-    console.info('addColor', name);
+    const selection = globalThis.getSelection();
+
+    if (!selection) {
+      return;
+    }
+
+    const range = selection.getRangeAt(0);
+    const parentNode = range.commonAncestorContainer.parentNode as HTMLElement;
+
+    if (!parentNode) {
+      return;
+    }
+
+    parentNode.style.setProperty('color', `var(--${name})`);
+    console.info('addColor parentNode', parentNode.style);
+    this.updateContent();
   }
 }

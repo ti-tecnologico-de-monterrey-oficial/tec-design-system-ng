@@ -39,12 +39,12 @@
         (buttonClick)="addTextFormat('underline')"
       />
       <bmb-action-icon
-        [style]="'color: var(--' + selectedColor + ')'"
+        [style]="'color: var(--' + selectedColor() + ')'"
         idElement="color"
         icon="rectangle"
         [iconSize]="24"
         [tooltipText]="'text_editor.fore_color' | translate"
-        (buttonClick)="openPrompt('colors', $event)"
+        (buttonClick)="openPrompt('color', $event)"
       />
     </span>
     <span class="bmb_text-editor-header-group bmb_text-editor-header-actions">
@@ -161,7 +161,6 @@
     (input)="updateContent()"
     [innerHTML]="sanitizedContent()"
   ></div>
-  <!-- <ng-template *ngTemplateOutlet="colors" /> -->
 </section>
 
 <!-- Diálogo para definir filas y columnas -->
