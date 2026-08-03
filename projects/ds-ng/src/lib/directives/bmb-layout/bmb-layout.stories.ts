@@ -19,6 +19,7 @@ import {
 } from '../../utils/doc/utils';
 import { DBmbLayoutParamDesc } from '../../utils/doc/parameterDescriptions';
 import { BmbInteractiveIconComponent } from '../../components/bmb-interactive-icon/bmb-interactive-icon.component';
+import { str } from 'storybook/internal/docs-tools';
 
 const meta: Meta<BmbLayoutDirective> = {
   title: 'Foundations/Layouts/Layout',
@@ -121,6 +122,16 @@ ${RELEVANT_TITLE.configuration}
         type: { summary: 'boolean' },
       },
     },
+    flow: {
+      control: 'select',
+      options: ['row', 'reverse'],
+      description: 'Sets the flex-flow to the grid',
+      table: {
+        category: 'Properties',
+        defaultValue: { summary: 'row' },
+        type: { summary: 'ILayoutFlow | ILayoutFlowResponsive' }
+      }
+    },
     avoidRowWrap: {
       control: { type: 'boolean' },
       description: 'Prevents items from wrapping to the next row when true.',
@@ -138,6 +149,7 @@ ${RELEVANT_TITLE.configuration}
     justify: 'start',
     alignItems: 'start',
     avoidRowWrap: false,
+    flow: 'row',
   },
 };
 
@@ -151,24 +163,24 @@ export const Default = {
     props: args,
     template: `
       <section bmbLayout ${attributes(args)}>
-        <bmb-card bmbLayoutItem margin="none" [colSm]="2" [colLg]="3">
+        <bmb-card bmbLayoutItem margin="none" [colSm]="4" [colLg]="3">
           <bmb-card-content padding="m">
-            <span>Column</span>
+            <span>Column 1</span>
           </bmb-card-content>
         </bmb-card>
         <bmb-card bmbLayoutItem margin="none" [colSm]="2" [colLg]="3">
           <bmb-card-content padding="m">
-            <span>Column</span>
+            <span>Column 2</span>
           </bmb-card-content>
         </bmb-card>
         <bmb-card bmbLayoutItem margin="none" [colSm]="2" [colLg]="3">
           <bmb-card-content padding="m">
-            <span>Column</span>
+            <span>Column 3</span>
           </bmb-card-content>
         </bmb-card>
-        <bmb-card bmbLayoutItem margin="none" [colSm]="2" [colLg]="3">
+        <bmb-card bmbLayoutItem margin="none" [colSm]="4" [colLg]="3">
           <bmb-card-content padding="m">
-            <span>Column</span>
+            <span>Column 4</span>
           </bmb-card-content>
         </bmb-card>
       </section>
