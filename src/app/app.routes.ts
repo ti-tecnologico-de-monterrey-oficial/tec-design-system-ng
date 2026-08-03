@@ -32,8 +32,8 @@ export const routes: Routes = [
     path: 'test-card-button',
     title: 'Card Button Test',
     loadComponent: () =>
-      import('./pages/card-button/card-button.component').then(
-        (component) => component.CardButton,
+      import('./pages/templates/generic-card.component').then(
+        (component) => component.GenericCard,
       ),
   },
   {
@@ -192,6 +192,14 @@ export const routes: Routes = [
     title: 'Menu',
     loadComponent: () =>
       import('./pages/menu/menu.component').then((t) => t.MenuPageComponent),
+  },
+  {
+    path: 'avatar',
+    title: 'Avatar List',
+    loadComponent: () =>
+      import('./pages/avatars/avatars.component').then(
+        (t) => t.AvatarsComponent
+      ),
   },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
 ];
