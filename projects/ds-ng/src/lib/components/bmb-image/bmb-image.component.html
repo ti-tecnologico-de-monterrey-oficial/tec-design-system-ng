@@ -20,7 +20,7 @@
           [loading]="loading()"
           class="bmb_image-figure-image"
           [style]="{ 'object-fit': objectFit() }"
-          onerror="this.onerror=null;this.src='../assets/images/empty-state/broken-image.jpg'"
+          onerror="this.onerror=null;this.src='assets/images/empty-state/broken-image.jpg'"
           (error)="handleImageNotFoundError(encodedURL())"
         />
       </picture>
@@ -52,7 +52,7 @@
             'object-fit': objectFit(),
             cursor: enableCursorPointer() ? 'pointer' : 'default'
           }"
-          onerror="this.onerror=null;this.src='../assets/images/empty-state/broken-image.jpg'"
+          onerror="this.onerror=null;this.src='assets/images/empty-state/broken-image.jpg'"
           (error)="handleImageNotFoundError(encodedURL())"
         />
       </picture>
@@ -99,8 +99,8 @@
             (click)="handleImageClick(img, $index)"
             (keydown)="handleImageKeyDown($event, img, $index)"
             [style]="{ 'object-fit': objectFit() }"
-            onerror="this.onerror=null;this.src='../assets/images/empty-state/broken-image.jpg'"
-            (error)="handleImageNotFoundError(encodedURL())"
+            onerror="this.onerror=null;this.src='assets/images/empty-state/broken-image.jpg'"
+            (error)="handleImageNotFoundError(img.src)"
           />
         </picture>
       </figure>
