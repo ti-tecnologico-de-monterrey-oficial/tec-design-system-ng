@@ -503,3 +503,147 @@ export const SmallCardExample = {
     },
   },
 };
+
+const templateStyles = `
+  <style>
+    .story-card { display: block; width: min(100%, 680px); }
+    .story-card__content { box-sizing: border-box; padding: 16px; }
+    .story-card__summary { display: flex; justify-content: space-between; margin-bottom: 16px; font-size: .875rem; }
+    .story-card__list { display: grid; gap: 8px; margin: 0; padding: 0; list-style: none; }
+    .story-card__item { display: flex; align-items: center; gap: 12px; padding: 12px; border-radius: 8px; background: var(--containers-background); }
+    .story-card__item-copy { min-width: 0; flex: 1; }
+    .story-card__item-copy strong, .story-card__item-copy small { display: block; }
+    .story-card__badge { padding: 4px 10px; border-radius: 999px; background: var(--semantic-blue-light); font-size: .75rem; }
+    .story-card__empty { display: grid; justify-items: center; gap: 12px; padding: 36px 16px; text-align: center; }
+    .story-card__icon { display: grid; width: 48px; height: 48px; place-items: center; border-radius: 50%; background: var(--semantic-blue-light); font-size: 24px; }
+    .story-card__button { min-height: 40px; padding: 8px 20px; border: 1px solid currentColor; border-radius: 8px; background: transparent; color: inherit; cursor: pointer; }
+    .story-card__actions { display: flex; gap: 12px; margin-top: 16px; }
+    .story-card__divider { height: 1px; margin: 12px 0; background: var(--general-contrasts-container-outline); }
+    @media (max-width: 767px) { .story-card__actions { flex-direction: column; } }
+  </style>
+`;
+
+export const FlatTemplate = {
+  name: 'Template - Flat',
+  args: {
+    componentTitle: 'Title',
+    body: 'Complementary text',
+    leftContent: true,
+    leftContentIcon: 'crop_16_9',
+  },
+};
+
+export const AlertTemplate = {
+  name: 'Template - Alert',
+  args: {
+    componentTitle: 'Title',
+    body: 'Complementary text',
+    leftContent: true,
+    leftContentIcon: 'warning',
+  },
+};
+
+export const ActionsTemplate = {
+  name: 'Template - Actions',
+  args: {
+    componentTitle: 'Title',
+    body: 'Text content',
+    leftContent: true,
+    leftContentIcon: 'crop_16_9',
+  },
+  render: (args: any) => ({
+    props: args,
+    template: `
+      ${templateStyles}
+      <bmb-card-button class="story-card" [componentTitle]="componentTitle" [body]="body"
+        [leftContent]="leftContent" [leftContentIcon]="leftContentIcon">
+        <ng-template #customContent>
+          <button class="story-card__button" type="button">Button</button>
+        </ng-template>
+      </bmb-card-button>
+    `,
+  }),
+};
+
+export const InformativeTemplate = {
+  name: 'Template - Informative',
+  args: {
+    componentTitle: 'Title',
+    body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+    badge: { text: 'Badge', appearance: 'creative_violet', container: true },
+    leftContent: true,
+    leftContentImage: {
+      src: 'https://picsum.photos/id/25/600/360',
+      alt: 'Building',
+    },
+  },
+  render: (args: any) => ({
+    props: args,
+    template: `
+      ${templateStyles}
+      <bmb-card-button class="story-card" [componentTitle]="componentTitle" [body]="body"
+        [badge]="badge" [leftContent]="leftContent" [leftContentImage]="leftContentImage">
+        <ng-template #customContent>
+          <p>Complementary text</p>
+          <div class="story-card__divider"></div>
+          <div class="story-card__actions">
+            <button class="story-card__button" type="button">Button</button>
+            <button class="story-card__button" type="button">Secondary button</button>
+          </div>
+        </ng-template>
+      </bmb-card-button>
+    `,
+  }),
+};
+
+export const HomeTemplate = {
+  name: 'Template - Home',
+  args: {
+    componentTitle: 'Title',
+    isTemplate: true,
+  },
+  render: (args: any) => ({
+    props: args,
+    template: `
+      ${templateStyles}
+      <bmb-card-button class="story-card" [componentTitle]="componentTitle" [isTemplate]="isTemplate">
+        <section class="story-card__content">
+          <div class="story-card__summary"><span>Lorem ipsum</span><span>5 / 05</span></div>
+          <ul class="story-card__list">
+            @for (item of ['First item', 'Second item', 'Third item', 'Fourth item', 'Fifth item']; track item) {
+              <li class="story-card__item">
+                <div class="story-card__item-copy"><strong>{{ item }}</strong><small>Subtitle</small></div>
+                <span class="story-card__badge">Badge</span>
+              </li>
+            }
+          </ul>
+        </section>
+      </bmb-card-button>
+    `,
+  }),
+};
+
+export const EmptyTemplate = {
+  name: 'Template - Empty',
+  args: {
+    componentTitle: 'Title',
+    isTemplate: true,
+  },
+  render: (args: any) => ({
+    props: args,
+    template: `
+      ${templateStyles}
+      <bmb-card-button class="story-card" [componentTitle]="componentTitle" [isTemplate]="isTemplate">
+        <section class="story-card__content">
+          <div class="story-card__summary"><span>Lorem ipsum</span><span>0 / 10</span></div>
+          <div class="story-card__empty">
+            <span class="story-card__icon" aria-hidden="true">+</span>
+            <strong>Title</strong>
+            <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</span>
+            <button class="story-card__button" type="button">Button</button>
+          </div>
+        </section>
+      </bmb-card-button>
+    `,
+  }),
+};

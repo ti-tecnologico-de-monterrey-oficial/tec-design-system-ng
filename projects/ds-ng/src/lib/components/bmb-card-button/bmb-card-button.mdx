@@ -1,11 +1,5 @@
 import { Meta } from '@storybook/addon-docs/blocks';
 
-import * as informativeStory from './templates/bmb-card-button-informative/bmb-card-button-informative.stories';
-import * as flatStory from './templates/bmb-card-button-flat/bmb-card-button-flat.stories';
-import * as actionsStory from './templates/bmb-card-button-actions/bmb-card-button-actions.stories';
-import * as homeStory from './templates/bmb-card-button-home/bmb-card-button-home.stories';
-import * as alertStory from './templates/bmb-card-button-alert/bmb-card-button-alert.stories';
-import * as emptyStory from './templates/bmb-card-button-empty/bmb-card-button-empty.stories';
 import * as ltsStory from './bmb-card-button.stories';
 import { ListTemplate } from '../../../DocComponents/ListTemplate.mdx';
 import { getFormatName } from '../../utils/doc/utils';
@@ -13,64 +7,8 @@ import { getFormatName } from '../../utils/doc/utils';
 <Meta title="Components/Buttons/Card button" />
 
 <ListTemplate
-  content={[
-    ltsStory,
-    informativeStory,
-    flatStory,
-    actionsStory,
-    homeStory,
-    emptyStory,
-    alertStory,
-  ]}
+  content={[ltsStory]}
   context={{
-    [getFormatName(
-      informativeStory.default.title,
-      /(\/)|( )/g,
-      '_',
-    ).toLocaleLowerCase()]: {
-      showStories: true,
-      showControls: true,
-    },
-    [getFormatName(
-      flatStory.default.title,
-      /(\/)|( )/g,
-      '_',
-    ).toLocaleLowerCase()]: {
-      showStories: true,
-      showControls: true,
-    },
-    [getFormatName(
-      actionsStory.default.title,
-      /(\/)|( )/g,
-      '_',
-    ).toLocaleLowerCase()]: {
-      showStories: true,
-      showControls: true,
-    },
-    [getFormatName(
-      homeStory.default.title,
-      /(\/)|( )/g,
-      '_',
-    ).toLocaleLowerCase()]: {
-      showStories: true,
-      showControls: true,
-    },
-    [getFormatName(
-      emptyStory.default.title,
-      /(\/)|( )/g,
-      '_',
-    ).toLocaleLowerCase()]: {
-      showStories: true,
-      showControls: true,
-    },
-    [getFormatName(
-      alertStory.default.title,
-      /(\/)|( )/g,
-      '_',
-    ).toLocaleLowerCase()]: {
-      showStories: true,
-      showControls: true,
-    },
     [getFormatName(
       ltsStory.default.title,
       /(\/)|( )/g,
