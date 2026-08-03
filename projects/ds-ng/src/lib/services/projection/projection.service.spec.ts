@@ -16,7 +16,10 @@ describe('BmbProjectionContentService', () => {
 
     mockEnvironmentInjector = {} as any;
 
-    service = new BmbProjectionContentService(mockAppRef, mockEnvironmentInjector);
+    service = new BmbProjectionContentService(
+      mockAppRef,
+      mockEnvironmentInjector,
+    );
     spyOn<any>(service, 'getOrCreatePortal').and.returnValue(null);
     service.closeContent();
   });
