@@ -1,9 +1,7 @@
 import { Meta, moduleMetadata } from '@storybook/angular';
-import { BmbCardComponent } from '../bmb-card.component';
-import { BmbCheckboxComponent } from '../../bmb-checkbox/bmb-checkbox.component';
+import { BmbCardComponent, BmbCardContentComponent, BmbCardHeaderComponent } from '../bmb-card.component';
 import { BmbIconComponent } from '../../bmb-icon/bmb-icon.component';
-import { BmbListGroupComponent } from '../../bmb-list-group/bmb-list-group.component';
-import { BmbListGroupItemComponent } from '../../bmb-list-group/bmb-list-group-item/bmb-list-group-item.component';
+import { BmbTitleComponent } from '../../bmb-title/bmb-title.component';
 import { BmbLayoutDirective } from '../../../directives/bmb-layout/bmb-layout.directive';
 import { BmbLayoutItemDirective } from '../../../directives/bmb-layout/bmb-layout-item.directive';
 import { BmbVerticalLayoutDirective } from '../../../directives/bmb-layout/bmb-vertical-layout/bmb-vertical-layout.directive';
@@ -11,59 +9,29 @@ import { BmbVerticalLayoutItemDirective } from '../../../directives/bmb-layout/b
 import { staticCardStory } from './bmb-card-template-story.utils';
 
 const meta: Meta<BmbCardComponent> = {
-  title: 'Components/Containers/Generic card/Home',
-  component: BmbCardComponent,
-  tags: ['!autodocs'],
-  decorators: [
-    moduleMetadata({
-      imports: [
-        BmbCardComponent,
-        BmbCheckboxComponent,
-        BmbIconComponent,
-        BmbListGroupComponent,
-        BmbListGroupItemComponent,
-        BmbLayoutDirective,
-        BmbLayoutItemDirective,
-        BmbVerticalLayoutDirective,
-        BmbVerticalLayoutItemDirective,
-      ],
-    }),
-  ],
+  title: 'Components/Containers/Generic card/Home', component: BmbCardComponent, tags: ['!autodocs'],
+  decorators: [moduleMetadata({ imports: [BmbCardComponent, BmbCardContentComponent, BmbCardHeaderComponent, BmbIconComponent, BmbTitleComponent, BmbLayoutDirective, BmbLayoutItemDirective, BmbVerticalLayoutDirective, BmbVerticalLayoutItemDirective] })],
 };
 export default meta;
 
-const item = (id: string, checked: boolean) => `
-  <bmb-list-group-item id="${id}" [personalizedTemplate]="true">
-    <div bmbLayout margin="none" gapSize="l" alignItems="center" [avoidRowWrap]="true">
-      <bmb-checkbox bmbLayoutItem ariaLabel="Select file" [checked]="${checked}" />
-      <div bmbLayout bmbLayoutItem class="bmb-card-template__home-file" margin="none" gapSize="l" alignItems="center" [avoidRowWrap]="true" [colGrow]="1" [isDynamicItem]="true">
-        <bmb-icon bmbLayoutItem icon="image" [size]="24" alt="Document image" />
-        <div bmbVerticalLayout bmbLayoutItem margin="none" gapSize="none" [colGrow]="1" [isDynamicItem]="true">
-          <h4 class="font-bold-6">Nombre_Archivo.doc</h4>
-          <p class="font-regular-4">Descripción del documento agregado</p>
-        </div>
-        <bmb-icon bmbLayoutItem icon="file_open" [size]="24" alt="Open file" />
-      </div>
-    </div>
-  </bmb-list-group-item>`;
+const file = () => `<div bmbVerticalLayoutItem><bmb-card type="normal" borderRadius="m" margin="none"><bmb-card-content padding="l">
+  <div bmbLayout margin="none" gapSize="m" alignItems="center" [avoidRowWrap]="true">
+    <bmb-icon bmbLayoutItem icon="image" [size]="24" alt="Archivo de imagen" />
+    <bmb-title bmbLayoutItem [isDynamicItem]="true" [colGrow]="1" componentTitle="Nombre_Archivo.png" titleSize="5" titleFontWeight="500" subtitle="Descripción del documento agregado" subtitleSize="4" subtitleFontWeight="400" />
+    <bmb-icon bmbLayoutItem icon="file_open" [size]="24" alt="Abrir archivo" />
+  </div>
+</bmb-card-content></bmb-card></div>`;
 
-const template = (mobile = false) => `
-  <div class="bmb-card-template--home${mobile ? ' bmb-card-template--mobile' : ''}">
-    <bmb-card type="normal" borderRadius="xl" margin="none">
-      <div bmbVerticalLayout class="bmb_padding-7" layoutHeight="32.25rem" margin="none" gapSize="none">
-        <h3 bmbVerticalLayoutItem>Title</h3>
-        <p bmbVerticalLayoutItem class="font-regular-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit, Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce volutpat rhoncus leo vel pharetra. Donec feugiat enim</p>
-        <hr bmbVerticalLayoutItem />
-        <div bmbVerticalLayoutItem [rowGrow]="1">
-          <bmb-list-group padding="none" margin="none">
-            ${item('home-file-1', true)}
-            ${item('home-file-2', false)}
-            ${item('home-file-3', true)}
-          </bmb-list-group>
-        </div>
+const template = () => `<div bmbLayout margin="none" gapSize="m" alignItems="stretch"><div bmbLayoutItem [colSm]="4" [colLg]="4" [colXl]="4">
+  <bmb-card type="normal" borderRadius="l" margin="none" boxShadowStyle="box-shadow-3">
+    <bmb-card-header padding="l">Title</bmb-card-header><bmb-card-content padding="l">
+      <div bmbVerticalLayout margin="none" gapSize="l" alignItems="stretch" layoutHeight="34rem">
+        <div bmbVerticalLayoutItem><div bmbLayout margin="none" gapSize="m" justify="spaceBetween" alignItems="center" [avoidRowWrap]="true"><span bmbLayoutItem>Lorem ipsum</span><span bmbLayoutItem>0 / 00</span></div></div>
+        <div bmbVerticalLayoutItem [rowGrow]="1"><div bmbVerticalLayout margin="none" gapSize="l" alignItems="stretch">${[1, 2, 3, 4, 5].map(() => file()).join('')}</div></div>
       </div>
-    </bmb-card>
-  </div>`;
+    </bmb-card-content>
+  </bmb-card>
+</div></div>`;
 
 export const Desktop = staticCardStory(template());
-export const Mobile = staticCardStory(template(true), true);
+export const Mobile = staticCardStory(template(), true);

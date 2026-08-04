@@ -30,8 +30,7 @@ const getTemplateVariantsSection = (): string => `
 <p>
   The Generic card documentation includes reusable examples built with
   <code>BmbCardComponent</code>, Bamboo components and Bamboo layout directives.
-  Typography uses the Bamboo <code>font-regular-*</code> and
-  <code>font-bold-*</code> utilities whenever their scale matches the design.
+  Typography is configured through Bamboo component inputs.
   Every template provides Desktop and Mobile previews with copy-ready HTML.
 </p>
 <ul>
