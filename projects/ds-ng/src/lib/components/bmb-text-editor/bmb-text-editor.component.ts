@@ -357,7 +357,6 @@ export class BmbTextEditorComponent implements AfterViewInit, OnInit {
     }
 
     parentNode.style.setProperty('color', `var(--${name})`);
-    console.info('addColor parentNode', parentNode.style);
     this.updateContent();
   }
 }

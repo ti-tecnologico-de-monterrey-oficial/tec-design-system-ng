@@ -19,7 +19,6 @@ import {
 } from '../../utils/doc/utils';
 import { DBmbLayoutParamDesc } from '../../utils/doc/parameterDescriptions';
 import { BmbInteractiveIconComponent } from '../../components/bmb-interactive-icon/bmb-interactive-icon.component';
-import { str } from 'storybook/internal/docs-tools';
 
 const meta: Meta<BmbLayoutDirective> = {
   title: 'Foundations/Layouts/Layout',
