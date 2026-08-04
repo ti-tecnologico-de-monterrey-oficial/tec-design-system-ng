@@ -1,37 +1,30 @@
 import {
-  ChangeDetectorRef,
   Component,
+  ChangeDetectionStrategy,
   TemplateRef,
   ViewChild,
+  ChangeDetectorRef,
 } from '@angular/core';
 import {
   BmbBadgeComponent,
   BmbIconComponent,
-  BmbTableLiteComponent,
+  BmbTablesComponent,
 } from '../../../../projects/ds-ng/src/public-api';
-import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-table-lite',
+  selector: 'table-main',
   standalone: true,
-  imports: [
-    CommonModule,
-    BmbIconComponent,
-    BmbTableLiteComponent,
-    CommonModule,
-    BmbBadgeComponent,
-  ],
-  templateUrl: './table-lite.component.html',
-  styleUrl: './table-lite.component.scss',
+  imports: [BmbBadgeComponent, BmbIconComponent, BmbTablesComponent],
+  templateUrl: './table-main.component.html',
+  styleUrl: './table-main.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TableLiteComponent {
+export class TableMainComponent {
   @ViewChild('infoTemplate') infoTemplate!: TemplateRef<any>;
   @ViewChild('lastNameTemplate') lastNameTemplate!: TemplateRef<any>;
   @ViewChild('actionTemplate') actionTemplate!: TemplateRef<any>;
   @ViewChild('detailTemplate') detailTemplate!: TemplateRef<any>;
   @ViewChild('headerNameTemplate') headerNameTemplate!: TemplateRef<any>;
-
-  clearSelectionFlag = false;
 
   constructor(private cdr: ChangeDetectorRef) {}
 
@@ -61,7 +54,7 @@ export class TableLiteComponent {
         name: 'Edgar',
         birthday: '02/23/2020',
         info: 'Info text',
-        gorem: 'Gorem Ipsum Gorem Ipsum Gorem Ipsum',
+        gorem: 'Gorem Ipsum',
         goremType: 'success',
         country: 'Francia',
         detail: 'Detalle A',
@@ -74,26 +67,7 @@ export class TableLiteComponent {
         gorem: 'Gorem Ipsum',
         goremType: 'success',
         country: 'Mexico',
-        detail: {
-          columns: [
-            { def: 'id', label: 'ID', dataKey: 'id' },
-            {
-              def: 'description',
-              label: 'Description',
-              dataKey: 'description',
-            },
-          ],
-          data: [
-            { id: 1, description: 'Detalle A' },
-            { id: 2, description: 'Detalle B' },
-          ],
-          config: {
-            isSelectable: false,
-            isExpandible: false,
-            isPaginable: false,
-            showActions: false,
-          },
-        },
+        detail: 'Detalle A',
       },
       {
         lastName: 'Benitez',
@@ -135,6 +109,7 @@ export class TableLiteComponent {
         country: 'Mexico',
         detail: 'Detalle A',
       },
+
       {
         lastName: 'Nava',
         name: 'Jesus',
@@ -163,60 +138,6 @@ export class TableLiteComponent {
             showActions: false,
           },
         },
-      },
-      {
-        lastName: 'Benitez',
-        name: 'Romina',
-        birthday: '02/02/2000',
-        info: 'buscar',
-        gorem: 'Gorem Ipsum',
-        goremType: 'success',
-        country: 'Mexico',
-      },
-      {
-        lastName: 'Benitez',
-        name: 'Romina',
-        birthday: '02/02/2000',
-        info: 'buscar',
-        gorem: 'Gorem Ipsum',
-        goremType: 'success',
-        country: 'Mexico',
-      },
-      {
-        lastName: 'Benitez',
-        name: 'Romina',
-        birthday: '02/02/2000',
-        info: 'buscar',
-        gorem: 'Gorem Ipsum',
-        goremType: 'success',
-        country: 'Mexico',
-      },
-      {
-        lastName: 'Benitez',
-        name: 'Romina',
-        birthday: '02/02/2000',
-        info: 'buscar',
-        gorem: 'Gorem Ipsum',
-        goremType: 'success',
-        country: 'Mexico',
-      },
-      {
-        lastName: 'Benitez',
-        name: 'Romina',
-        birthday: '02/02/2000',
-        info: 'buscar',
-        gorem: 'Gorem Ipsum',
-        goremType: 'success',
-        country: 'Mexico',
-      },
-      {
-        lastName: 'Benitez',
-        name: 'Romina',
-        birthday: '02/02/2000',
-        info: 'buscar',
-        gorem: 'Gorem Ipsum',
-        goremType: 'success',
-        country: 'Mexico',
       },
     ];
 
@@ -261,6 +182,7 @@ export class TableLiteComponent {
   }
 
   ngAfterViewInit(): void {
+    // Asignar templates a columnas
     this.columns = this.columns.map((col) => {
       if (col.def === 'name') {
         return { ...col, htmlLabel: this.headerNameTemplate };
@@ -268,6 +190,7 @@ export class TableLiteComponent {
       return col;
     });
 
+    // Asignar templates a datos
     this.data = this.data.map((row) => {
       return {
         ...row,
@@ -276,15 +199,16 @@ export class TableLiteComponent {
       };
     });
 
+    // Forzar renderizado porque los ViewChild no están disponibles en ngOnInit
     this.cdr.detectChanges();
   }
 
   onSelect(selected: any) {
-    console.log('Selected rows', selected);
+    // Maneja la selección
   }
 
   clickButton(event: any) {
-    console.log('Button clicked', event);
+    // Maneja el click del botón
   }
 
   isString(value: any): value is string {
@@ -293,13 +217,5 @@ export class TableLiteComponent {
 
   isObject(value: any): value is object {
     return typeof value === 'object' && value !== null;
-  }
-
-  onClickRow(event: any) {
-    console.log('Button clicked', event);
-  }
-
-  resetSelection() {
-    this.clearSelectionFlag = true;
   }
 }

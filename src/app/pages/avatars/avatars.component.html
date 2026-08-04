@@ -16,8 +16,13 @@
 </div>
 
 <!-- Image column -->
- <ng-template #conceptTemplate let-row="row">
+<ng-template #conceptTemplate let-row="row">
   <div style="display: flex; align-items: center; gap: 4px">
-    <bmb-user-image [size]="'mobile-small'" [image]="row.avatarCell" [altImage]="row.name" [bordered]="false"></bmb-user-image>
+    <bmb-user-image
+      [size]="'mobile-small'"
+      [image]="row.avatarCell"
+      [altImage]="row.name"
+      [bordered]="false"
+    ></bmb-user-image>
   </div>
 </ng-template>

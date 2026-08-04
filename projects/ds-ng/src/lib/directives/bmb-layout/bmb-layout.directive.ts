@@ -10,6 +10,12 @@ export type IJustifyOptions =
   | 'spaceBetween'
   | 'spaceEvenly';
 export type IAlignItemsOptions = 'center' | 'end' | 'start' | 'stretch';
+export type ILayoutFlow = 'row' | 'reverse';
+export interface ILayoutFlowResponsive {
+  m: ILayoutFlow;
+  l: ILayoutFlow;
+  xl: ILayoutFlow;
+}
 
 @Directive({
   selector: '[bmbLayout]',
@@ -23,6 +29,7 @@ export class BmbLayoutDirective {
   alignItems = input<IAlignItemsOptions>('start');
   isContainerQuery = input<boolean>();
   avoidRowWrap = input<boolean>(false);
+  flow = input<ILayoutFlow | ILayoutFlowResponsive>('row');
 
   @HostBinding('class') get elementClass(): string[] {
     const baseClassName: string = 'bmb_layout';
@@ -33,6 +40,16 @@ export class BmbLayoutDirective {
       `bmb_align-items-${this.alignItems()}`,
     ];
 
+    const flow = this.flow();
+    if (typeof flow === 'string') {
+      classes.push(`${baseClassName}-flow-${flow}`);
+    } else {
+      (Object.keys(flow) as (keyof ILayoutFlowResponsive)[]).forEach(
+        (device) => {
+          classes.push(`${baseClassName}-flow-${device}-${flow[device]}`);
+        },
+      );
+    }
     if (this.dynamicCols()) classes.push(`${baseClassName}-smart`);
     if (this.isContainerQuery()) classes.push(`${baseClassName}-container`);
     else classes.push(baseClassName);

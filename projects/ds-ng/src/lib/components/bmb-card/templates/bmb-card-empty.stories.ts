@@ -29,19 +29,19 @@ const meta: Meta<BmbCardComponent> = {
 export default meta;
 
 const template = (mobile = false) => `
-  <div class="bmb-card-template bmb-card-template--empty${mobile ? ' bmb-card-template--mobile' : ''}">
+  <div class="bmb-card-template--empty${mobile ? ' bmb-card-template--mobile' : ''}">
     <bmb-card type="normal" borderRadius="xl" margin="none" boxShadowStyle="box-shadow-3">
       <div bmbVerticalLayout layoutHeight="48rem" margin="none" gapSize="none">
         <div bmbLayoutItem bmbLayout margin="none" alignItems="center">Title</div>
         <div bmbVerticalLayoutItem bmbVerticalLayout class="bmb_padding-7" margin="none" gapSize="none" [rowGrow]="1" [disableScroll]="true">
           <div bmbLayoutItem bmbLayout margin="none" justify="spaceBetween" alignItems="center" [avoidRowWrap]="true">
-            <span bmbLayoutItem>Lorem ipsum</span>
-            <span bmbLayoutItem>0 / <small>10</small></span>
+            <span bmbLayoutItem class="font-regular-5">Lorem ipsum</span>
+            <span bmbLayoutItem class="font-regular-5">0 / <small class="font-regular-3">10</small></span>
           </div>
           <div bmbVerticalLayoutItem bmbVerticalLayout class="bmb-card-template__empty-content" margin="none" gapSize="none" justify="center" alignItems="center" [rowGrow]="1" [disableScroll]="true">
             <bmb-icon bmbLayoutItem icon="thumb_up" [size]="80" alt="Empty state" />
-            <h3 bmbLayoutItem>Title</h3>
-            <p bmbLayoutItem>Lorem ipsum dolor sit amet, consectetur<br />adipiscing elit,</p>
+            <h3 bmbLayoutItem class="font-bold-9">Title</h3>
+            <p bmbLayoutItem class="font-regular-5">Lorem ipsum dolor sit amet, consectetur<br />adipiscing elit,</p>
             <button bmbButton bmbLayoutItem appearance="primary">Button</button>
           </div>
         </div>

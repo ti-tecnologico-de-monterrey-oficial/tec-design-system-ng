@@ -14,13 +14,20 @@ import { BmbLayoutItemDirective } from '../../../directives/bmb-layout/bmb-layou
 import { BmbVerticalLayoutDirective } from '../../../directives/bmb-layout/bmb-vertical-layout/bmb-vertical-layout.directive';
 import { BmbVerticalLayoutItemDirective } from '../../../directives/bmb-layout/bmb-vertical-layout/bmb-vertical-layout-item.directive';
 import { BmbRadialComponent } from '../../bmb-radial/bmb-radial.component';
+import { CommonModule } from '@angular/common';
+import {
+  BMB_BASE_GENERAL_CONTRAST_LIST,
+  BMB_SEMANTIC_COLOR_LIST,
+} from '../../../types/foundations/colors/color-type';
+import { BmbActionIconComponent } from '../../bmb-action-icon/bmb-action-icon.component';
 
-export type IBmbTextEditorPromptType = 'link' | 'image';
+export type IBmbTextEditorPromptType = 'link' | 'image' | 'color';
 
 @Component({
   selector: 'app-bmb-text-editor-prompt',
   standalone: true,
   imports: [
+    CommonModule,
     BmbCardComponent,
     BmbFormValidatorComponent,
     BmbButtonDirective,
@@ -28,11 +35,12 @@ export type IBmbTextEditorPromptType = 'link' | 'image';
     BmbInputComponent,
     TranslatePipe,
     BmbCheckboxComponent,
+    BmbRadialComponent,
+    BmbActionIconComponent,
     BmbLayoutDirective,
     BmbLayoutItemDirective,
     BmbVerticalLayoutDirective,
     BmbVerticalLayoutItemDirective,
-    BmbRadialComponent,
   ],
   templateUrl: './bmb-text-editor-prompt.component.html',
   styleUrl: './bmb-text-editor-prompt.component.scss',
@@ -42,8 +50,14 @@ export class BmbTextEditorPromptComponent {
 
   formValues = output<Record<string, unknown>>();
   cancelForm = output<void>();
+  selectedColor = output<string>();
 
   formGroup: FormGroup = new FormGroup({});
+
+  colorLists: string[] = [
+    ...BMB_SEMANTIC_COLOR_LIST,
+    ...BMB_BASE_GENERAL_CONTRAST_LIST,
+  ];
 
   getFormControl(name: string): FormControl {
     return this.formGroup.get(name) as FormControl;
@@ -54,5 +68,9 @@ export class BmbTextEditorPromptComponent {
       const values = this.formGroup.getRawValue();
       this.formValues.emit(values);
     }
+  }
+
+  handleChangeColor(colorName: string): void {
+    this.selectedColor.emit(colorName);
   }
 }

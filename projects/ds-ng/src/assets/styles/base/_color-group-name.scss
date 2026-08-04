@@ -28,6 +28,21 @@ $font_colors: (
   'mitec-orange': var(--general-contrasts-5),
   'mitec-purple': var(--general-contrasts-5),
 );
+$base_general_contrast: (
+  'general-contrasts': var(--general-contrasts),
+  'general-contrasts-100': var(--general-contrasts-100),
+  'general-contrasts-90': var(--general-contrasts-90),
+  'general-contrasts-80': var(--general-contrasts-80),
+  'general-contrasts-75': var(--general-contrasts-75),
+  'general-contrasts-60': var(--general-contrasts-60),
+  'general-contrasts-50': var(--general-contrasts-50),
+  'general-contrasts-40': var(--general-contrasts-40),
+  'general-contrasts-25': var(--general-contrasts-25),
+  'general-contrasts-20': var(--general-contrasts-20),
+  'general-contrasts-15': var(--general-contrasts-15),
+  'general-contrasts-10': var(--general-contrasts-10),
+  'general-contrasts-5': var(--general-contrasts-5),
+);
 $base_colors: (
   'neon-primary': rgb(var(--neon-primary)),
   'neon-tint': rgb(var(--neon-tint)),

@@ -1,412 +1,123 @@
-<main class="generic-card-page">
-  <h1>Generic cards</h1>
+<main>
+  <h1>Informative</h1>
 
-  <section class="template-example">
-    <h2>Informative</h2>
-    <div class="bmb-card-template bmb-card-template--informative">
-      <bmb-card type="normal" borderRadius="m" margin="none">
-        <div class="bmb-card-template__surface">
-          <div class="bmb-card-template__content">
-            <div class="bmb-card-template__labels">
-              <bmb-tooltip
-                icon="info"
-                text="Additional information"
-                componentTitle="Information"
-                [size]="20"
-              />
-              <bmb-badge text="Badge" appearance="creative-violet" />
-            </div>
-            <h3>Title</h3>
-            <p class="bmb-card-template__complementary">Complementary text</p>
-            <hr />
-            <p class="bmb-card-template__body">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce
-              volutpat rhoncus leo vel pharetra. Donec feugiat enim pharetra
-              ipsum euismod, sed maximus justo pharetra.
-            </p>
-            <div class="bmb-card-template__actions">
-              <button
-                bmbButton
-                appearance="secondary-outlined"
-                (click)="handleButtonClick($event, 'Informative primary')"
-              >
-                Button
-              </button>
-              <button
-                bmbButton
-                appearance="secondary-outlined"
-                (click)="handleButtonClick($event, 'Informative secondary')"
-              >
-                Secondary button
-              </button>
-            </div>
-          </div>
+  <section>
+    <bmb-card type="normal" borderRadius="l" margin="none">
+      <bmb-card-content padding="l">
+        <div
+          bmbLayout
+          margin="none"
+          gapSize="xl"
+          alignItems="stretch"
+          [flow]="{ m: 'row', l: 'reverse', xl: 'reverse' }"
+        >
           <bmb-image
-            class="bmb-card-template__image"
+            bmbLayoutItem
+            [colSm]="4"
+            [colLg]="5"
+            [colXl]="5"
             [src]="informativeImage"
             alt="Edificio de Rectoría del Tecnológico de Monterrey"
-            borderRadius="none"
+            ratio="16 / 9"
+            borderRadius="m"
             objectFit="cover"
+            [minHeight]="{ s: '14rem', l: '18rem' }"
           />
-        </div>
-      </bmb-card>
-    </div>
-    <section
-      class="implementation-guide"
-      aria-label="Implementación de Informative"
-    >
-      <h3>Componentes Bamboo</h3>
-      <ul>
-        @for (
-          component of examples['informative'].components;
-          track component
-        ) {
-          <li>
-            <code>{{ component }}</code>
-          </li>
-        }
-      </ul>
-      <div class="code-grid">
-        <details open>
-          <summary>HTML</summary>
-          <pre><code>{{ examples['informative'].html }}</code></pre>
-        </details>
-        <details>
-          <summary>SCSS</summary>
-          <pre><code>{{ examples['informative'].scss }}</code></pre>
-        </details>
-        <details>
-          <summary>TypeScript</summary>
-          <pre><code>{{ examples['informative'].typescript }}</code></pre>
-        </details>
-      </div>
-    </section>
-  </section>
 
-  <section class="template-example">
-    <h2>Flat</h2>
-    <div class="bmb-card-template bmb-card-template--flat">
-      <bmb-card type="normal" borderRadius="m" margin="none">
-        <div
-          bmbVerticalLayout
-          margin="none"
-          gapSize="m"
-          justify="center"
-          alignItems="center"
-        >
-          <bmb-box-icon
-            bmbVerticalLayoutItem
-            iconName="crop_16_9"
-            boxSize="small"
-            boxShape="circle"
-            boxColor="black-primary"
-          />
-          <div bmbVerticalLayoutItem>
-            <h3>Title</h3>
-            <p>Complementary text</p>
-          </div>
-        </div>
-      </bmb-card>
-    </div>
-    <section class="implementation-guide" aria-label="Implementación de Flat">
-      <h3>Componentes Bamboo</h3>
-      <ul>
-        @for (component of examples['flat'].components; track component) {
-          <li>
-            <code>{{ component }}</code>
-          </li>
-        }
-      </ul>
-      <div class="code-grid">
-        <details open>
-          <summary>HTML</summary>
-          <pre><code>{{ examples['flat'].html }}</code></pre>
-        </details>
-        <details>
-          <summary>SCSS</summary>
-          <pre><code>{{ examples['flat'].scss }}</code></pre>
-        </details>
-        <details>
-          <summary>TypeScript</summary>
-          <pre><code>{{ examples['flat'].typescript }}</code></pre>
-        </details>
-      </div>
-    </section>
-  </section>
+          <div bmbLayoutItem [colSm]="4" [colLg]="7" [colXl]="7">
+            <div
+              bmbVerticalLayout
+              margin="none"
+              gapSize="m"
+              justify="spaceBetween"
+              alignItems="stretch"
+              layoutHeight="100%"
+            >
+              <div bmbVerticalLayoutItem>
+                <div
+                  bmbLayout
+                  margin="none"
+                  gapSize="s"
+                  alignItems="center"
+                  [avoidRowWrap]="true"
+                >
+                  <bmb-tooltip
+                    bmbLayoutItem
+                    icon="info"
+                    text="Additional information"
+                    componentTitle="Information"
+                    [size]="20"
+                  />
+                  <bmb-badge
+                    bmbLayoutItem
+                    text="Badge"
+                    appearance="creative-violet"
+                  />
+                </div>
+              </div>
 
-  <section class="template-example">
-    <h2>Actions</h2>
-    <div class="bmb-card-template bmb-card-template--actions">
-      <bmb-card type="normal" borderRadius="m" margin="none">
-        <div
-          bmbVerticalLayout
-          margin="none"
-          gapSize="m"
-          justify="center"
-          alignItems="center"
-        >
-          <bmb-box-icon
-            bmbLayoutItem
-            iconName="home"
-            boxSize="small"
-            boxShape="circle"
-            boxColor="black-primary"
-          />
-          <div bmbLayoutItem>
-            <h3>Title</h3>
-            <p>Text<br />content</p>
-          </div>
-          <button
-            bmbButton
-            bmbLayoutItem
-            appearance="secondary-outlined"
-            (click)="handleButtonClick($event, 'Actions button')"
-          >
-            Button
-          </button>
-        </div>
-      </bmb-card>
-    </div>
-    <section
-      class="implementation-guide"
-      aria-label="Implementación de Actions"
-    >
-      <h3>Componentes Bamboo</h3>
-      <ul>
-        @for (component of examples['actions'].components; track component) {
-          <li>
-            <code>{{ component }}</code>
-          </li>
-        }
-      </ul>
-      <div class="code-grid">
-        <details open>
-          <summary>HTML</summary>
-          <pre><code>{{ examples['actions'].html }}</code></pre>
-        </details>
-        <details>
-          <summary>SCSS</summary>
-          <pre><code>{{ examples['actions'].scss }}</code></pre>
-        </details>
-        <details>
-          <summary>TypeScript</summary>
-          <pre><code>{{ examples['actions'].typescript }}</code></pre>
-        </details>
-      </div>
-    </section>
-  </section>
+              <bmb-title
+                bmbVerticalLayoutItem
+                componentTitle="Title"
+                titleSize="10"
+                titleFontWeight="700"
+                subtitle="Complementary text"
+                subtitleSize="6"
+                subtitleFontWeight="400"
+              />
 
-  <section class="template-example">
-    <h2>Home</h2>
-    <div class="bmb-card-template bmb-card-template--home">
-      <bmb-card type="normal" borderRadius="xl" margin="none">
-        <div
-          bmbVerticalLayout
-          class="bmb_padding-7"
-          layoutHeight="32.25rem"
-          margin="none"
-          gapSize="none"
-        >
-          <h3 bmbVerticalLayoutItem>Title</h3>
-          <p bmbVerticalLayoutItem>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, Lorem ipsum
-            dolor sit amet, consectetur adipiscing elit. Fusce volutpat rhoncus
-            leo vel pharetra. Donec feugiat enim
-          </p>
-          <hr bmbVerticalLayoutItem />
-          <div bmbVerticalLayoutItem [rowGrow]="1">
-            <bmb-list-group padding="none" margin="none">
-              @for (
-                item of fileItems.slice(0, 3);
-                track item.id;
-                let index = $index
-              ) {
-                <bmb-list-group-item
-                  [id]="item.id"
-                  [personalizedTemplate]="true"
+              <hr bmbVerticalLayoutItem />
+
+              <p bmbVerticalLayoutItem>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, Lorem
+                ipsum dolor sit amet, consectetur adipiscing elit. Fusce
+                volutpat rhoncus leo vel pharetra. Donec feugiat enim pharetra
+                ipsum euismod, sed maximus justo pharetra.
+              </p>
+
+              <div bmbVerticalLayoutItem>
+                <div
+                  bmbLayout
+                  margin="none"
+                  gapSize="l"
+                  alignItems="center"
                 >
                   <div
-                    bmbLayout
-                    margin="none"
-                    gapSize="l"
-                    alignItems="center"
-                    [avoidRowWrap]="true"
+                    bmbLayoutItem
+                    [colSm]="4"
+                    [colLg]="2"
+                    [colXl]="2"
                   >
-                    <bmb-checkbox
-                      bmbLayoutItem
-                      ariaLabel="Select file"
-                      [checked]="index !== 1"
-                    />
-                    <div
-                      bmbLayout
-                      bmbLayoutItem
-                      class="bmb-card-template__home-file"
-                      margin="none"
-                      gapSize="l"
-                      alignItems="center"
-                      [avoidRowWrap]="true"
-                      [colGrow]="1"
-                      [isDynamicItem]="true"
+                    <button
+                      bmbButton
+                      appearance="secondary-outlined"
+                      size="large"
+                      (click)="handleButtonClick($event)"
                     >
-                      <bmb-icon
-                        bmbLayoutItem
-                        icon="image"
-                        [size]="24"
-                        alt="Document image"
-                      />
-                      <div
-                        bmbVerticalLayout
-                        bmbLayoutItem
-                        margin="none"
-                        gapSize="none"
-                        [colGrow]="1"
-                        [isDynamicItem]="true"
-                      >
-                        <h4>Nombre_Archivo.doc</h4>
-                        <p>Descripción del documento agregado</p>
-                      </div>
-                      <bmb-icon
-                        bmbLayoutItem
-                        icon="file_open"
-                        [size]="24"
-                        alt="Open file"
-                      />
-                    </div>
+                      Button
+                    </button>
                   </div>
-                </bmb-list-group-item>
-              }
-            </bmb-list-group>
-          </div>
-        </div>
-      </bmb-card>
-    </div>
-    <section class="implementation-guide" aria-label="Implementación de Home">
-      <h3>Componentes Bamboo</h3>
-      <ul>
-        @for (component of examples['home'].components; track component) {
-          <li>
-            <code>{{ component }}</code>
-          </li>
-        }
-      </ul>
-      <div class="code-grid">
-        <details open>
-          <summary>HTML</summary>
-          <pre><code>{{ examples['home'].html }}</code></pre>
-        </details>
-        <details>
-          <summary>SCSS</summary>
-          <pre><code>{{ examples['home'].scss }}</code></pre>
-        </details>
-        <details>
-          <summary>TypeScript</summary>
-          <pre><code>{{ examples['home'].typescript }}</code></pre>
-        </details>
-      </div>
-    </section>
-  </section>
-
-  <section class="template-example">
-    <h2>Empty</h2>
-    <div class="bmb-card-template bmb-card-template--empty">
-      <bmb-card
-        type="normal"
-        borderRadius="xl"
-        margin="none"
-        boxShadowStyle="box-shadow-3"
-      >
-        <div
-          bmbVerticalLayout
-          layoutHeight="48rem"
-          margin="none"
-          gapSize="none"
-        >
-          <div bmbLayoutItem bmbLayout margin="none" alignItems="center">
-            Title
-          </div>
-          <div
-            bmbVerticalLayoutItem
-            bmbVerticalLayout
-            class="bmb_padding-7"
-            margin="none"
-            gapSize="none"
-            [rowGrow]="1"
-            [disableScroll]="true"
-          >
-            <div
-              bmbLayoutItem
-              bmbLayout
-              margin="none"
-              justify="spaceBetween"
-              alignItems="center"
-              [avoidRowWrap]="true"
-            >
-              <span bmbLayoutItem>Lorem ipsum</span>
-              <span bmbLayoutItem>0 / <small>10</small></span>
-            </div>
-            <div
-              bmbVerticalLayoutItem
-              bmbVerticalLayout
-              class="bmb-card-template__empty-content"
-              margin="none"
-              gapSize="none"
-              justify="center"
-              alignItems="center"
-              [rowGrow]="1"
-              [disableScroll]="true"
-            >
-              <bmb-icon
-                bmbLayoutItem
-                icon="thumb_up"
-                [size]="80"
-                alt="Empty state"
-              />
-              <h3 bmbLayoutItem>Title</h3>
-              <p bmbLayoutItem>
-                Lorem ipsum dolor sit amet, consectetur<br />adipiscing elit,
-              </p>
-              <button
-                bmbButton
-                bmbLayoutItem
-                appearance="primary"
-                (click)="handleButtonClick($event, 'Empty button')"
-              >
-                Button
-              </button>
+                  <div
+                    bmbLayoutItem
+                    [colSm]="4"
+                    [colLg]="4"
+                    [colXl]="4"
+                  >
+                    <button
+                      bmbButton
+                      appearance="secondary-outlined"
+                      size="large"
+                      (click)="handleButtonClick($event)"
+                    >
+                      Secondary button
+                    </button>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
-      </bmb-card>
-    </div>
-    <section class="implementation-guide" aria-label="Implementación de Empty">
-      <h3>Componentes Bamboo</h3>
-      <ul>
-        @for (component of examples['empty'].components; track component) {
-          <li>
-            <code>{{ component }}</code>
-          </li>
-        }
-      </ul>
-      <div class="code-grid">
-        <details open>
-          <summary>HTML</summary>
-          <pre><code>{{ examples['empty'].html }}</code></pre>
-        </details>
-        <details>
-          <summary>SCSS</summary>
-          <pre><code>{{ examples['empty'].scss }}</code></pre>
-        </details>
-        <details>
-          <summary>TypeScript</summary>
-          <pre><code>{{ examples['empty'].typescript }}</code></pre>
-        </details>
-      </div>
-    </section>
+      </bmb-card-content>
+    </bmb-card>
   </section>
-
-  @if (lastAction) {
-    <output class="event-output" aria-live="polite"
-      >Último evento: {{ lastAction }}</output
-    >
-  }
 </main>

@@ -39,8 +39,8 @@ const item = (id: string, checked: boolean) => `
       <div bmbLayout bmbLayoutItem class="bmb-card-template__home-file" margin="none" gapSize="l" alignItems="center" [avoidRowWrap]="true" [colGrow]="1" [isDynamicItem]="true">
         <bmb-icon bmbLayoutItem icon="image" [size]="24" alt="Document image" />
         <div bmbVerticalLayout bmbLayoutItem margin="none" gapSize="none" [colGrow]="1" [isDynamicItem]="true">
-          <h4>Nombre_Archivo.doc</h4>
-          <p>Descripción del documento agregado</p>
+          <h4 class="font-bold-6">Nombre_Archivo.doc</h4>
+          <p class="font-regular-4">Descripción del documento agregado</p>
         </div>
         <bmb-icon bmbLayoutItem icon="file_open" [size]="24" alt="Open file" />
       </div>
@@ -48,11 +48,11 @@ const item = (id: string, checked: boolean) => `
   </bmb-list-group-item>`;
 
 const template = (mobile = false) => `
-  <div class="bmb-card-template bmb-card-template--home${mobile ? ' bmb-card-template--mobile' : ''}">
+  <div class="bmb-card-template--home${mobile ? ' bmb-card-template--mobile' : ''}">
     <bmb-card type="normal" borderRadius="xl" margin="none">
       <div bmbVerticalLayout class="bmb_padding-7" layoutHeight="32.25rem" margin="none" gapSize="none">
         <h3 bmbVerticalLayoutItem>Title</h3>
-        <p bmbVerticalLayoutItem>Lorem ipsum dolor sit amet, consectetur adipiscing elit, Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce volutpat rhoncus leo vel pharetra. Donec feugiat enim</p>
+        <p bmbVerticalLayoutItem class="font-regular-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit, Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce volutpat rhoncus leo vel pharetra. Donec feugiat enim</p>
         <hr bmbVerticalLayoutItem />
         <div bmbVerticalLayoutItem [rowGrow]="1">
           <bmb-list-group padding="none" margin="none">

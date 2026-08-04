@@ -31,6 +31,7 @@ export default {
         'handleImageNotFoundError',
         'customActionIcon',
         'isImage',
+        'tooltipText',
       ],
     },
     docs: {

@@ -6,14 +6,12 @@ import {
   IBmbTab,
 } from '../components/bmb-tabs/bmb-tabs.component';
 import {
-  BlockquoteType,
   DESIGN_SYSTEM_TITLE,
   getFoundationDescriptions,
   getGeneralDescription,
   getPageStructureForTemplateStories,
   getSandboxConsiderationsDocumentation,
   getSpecialSpecifications,
-  RELEVANT_TITLE,
   SANDBOX_TITLE,
 } from '../utils/doc/utils';
 import { BmbDividerComponent } from '../components/bmb-divider/bmb-divider.component';
@@ -26,6 +24,7 @@ import { BmbVerticalLayoutItemDirective } from '../directives/bmb-layout/bmb-ver
 import {
   BMB_ALERT_COLOR_LIST,
   BMB_BASE_COLOR_LIST,
+  BMB_BASE_GENERAL_CONTRAST_LIST,
   BMB_CREATIVE_BASE_COLOR_LIST,
   BMB_CREATIVE_COLOR_LIST,
   BMB_MITEC_BASE_COLOR_LIST,
@@ -633,21 +632,7 @@ class StorybookColorsPlaygroundComponent {
   ];
 
   generalContrasts: string[][] = [
-    [
-      'general-contrasts',
-      'general-contrasts-100',
-      'general-contrasts-90',
-      'general-contrasts-80',
-      'general-contrasts-75',
-      'general-contrasts-60',
-      'general-contrasts-50',
-      'general-contrasts-40',
-      'general-contrasts-25',
-      'general-contrasts-20',
-      'general-contrasts-15',
-      'general-contrasts-10',
-      'general-contrasts-5',
-    ],
+    BMB_BASE_GENERAL_CONTRAST_LIST,
     [
       'general-contrasts-main-complementary',
       'general-contrasts-light-complementary',

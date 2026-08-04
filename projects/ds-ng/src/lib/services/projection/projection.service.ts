@@ -102,7 +102,7 @@ export class BmbProjectionContentService {
     };
 
     this.contentList.update((list) => [...list, normalizedContent]);
-    this.runContentHook(content, 'afterOpenContent', 'single');
+    this.runContentHook(normalizedContent, 'afterOpenContent', 'single');
 
     return id;
   }
@@ -140,7 +140,7 @@ export class BmbProjectionContentService {
   }
 
   isThereContentProjected() {
-    return this.contentList() !== null;
+    return this.contentList().length > 0;
   }
 
   isContentOpen(id: string) {

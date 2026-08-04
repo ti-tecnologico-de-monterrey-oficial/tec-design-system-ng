@@ -24,13 +24,13 @@ const meta: Meta<BmbCardComponent> = {
 };
 export default meta;
 const template = (mobile = false) =>
-  `<div class="bmb-card-template bmb-card-template--actions${mobile ? ' bmb-card-template--mobile' : ''}">
+  `<div class="bmb-card-template--actions${mobile ? ' bmb-card-template--mobile' : ''}">
     <bmb-card type="normal" borderRadius="m" margin="none">
       <div bmbVerticalLayout margin="none" gapSize="m" justify="center" alignItems="center">
         <bmb-box-icon bmbLayoutItem iconName="home" boxSize="small" boxShape="circle" boxColor="black-primary" />
         <div bmbLayoutItem>
           <h3>Title</h3>
-          <p>Text<br />content</p>
+          <p class="font-regular-4">Text<br />content</p>
         </div>
         <button bmbButton bmbLayoutItem appearance="secondary-outlined">Button</button>
       </div>
