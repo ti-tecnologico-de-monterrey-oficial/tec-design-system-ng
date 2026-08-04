@@ -14,6 +14,7 @@
             class="bmb_advertisement-card-image-container-figure-image"
             [srcset]="container.imgData.url"
             [alt]="container.imgData.alt"
+            (error)="handleImageNotFoundError(container.imgData.url, $event)"
           />
         </picture>
       </figure>
