@@ -146,6 +146,16 @@ export class BmbChatBubblesComponent implements OnDestroy {
 
   getAction = output<IBmbChatActionEvent>();
   iconsState = model<IBmbChatGptIcons>(this.buildState());
+  userIconsState = computed<BmbChatUserActionConfig>(() => {
+    const config = this.userActiveIcons();
+
+    return Object.fromEntries(
+      Object.entries(config).map(([key, value]) => [
+        key,
+        this.normalize(value),
+      ]),
+    ) as BmbChatUserActionConfig;
+  });
 
   private normalize(icon: BmbChatGptIconInput): IBmbChatGptIconState {
     if (typeof icon === 'boolean') {
@@ -342,7 +352,6 @@ export class BmbChatBubblesComponent implements OnDestroy {
         throw new Error('Error al copiar contenido de mensaje');
       }
     }
-
     await navigator.clipboard.writeText(text);
   }
 
