@@ -69,6 +69,8 @@ export const Circle: Story = {
   },
 };
 
+/*
+
 export const AllColors = {
   render: () => ({
     template: `
@@ -95,3 +97,5 @@ export const AllColors = {
     },
   },
 };
+
+*/
