@@ -3,6 +3,7 @@
     [ngClass]="getClasses('bmb_user_image-image', '', bordered())"
     [src]="image()"
     [alt]="altImage()"
+    (error)="handleImageNotFoundError(image(), $event)"
   />
 </ng-template>
 @if (!!link()) {

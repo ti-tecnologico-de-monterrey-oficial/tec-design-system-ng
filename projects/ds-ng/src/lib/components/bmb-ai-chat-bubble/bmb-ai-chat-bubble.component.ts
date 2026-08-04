@@ -71,6 +71,11 @@ export class BmbAiChatBubbleComponent {
   readonly getAction = output<BmbChatActionEvent>();
 
   /**
+   * Emits image not found events.
+   */
+  readonly imageNotFoundError = output<void>();
+
+  /**
    * Bubble dynamic classes.
    */
   readonly bubbleClasses = computed(() => ({

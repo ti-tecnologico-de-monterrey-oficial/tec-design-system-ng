@@ -1,6 +1,12 @@
-import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  input,
+  output,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BmbMixedMessage } from '../../types';
+import { handleImageNotFoundError } from '../../../../utils/utils';
 
 @Component({
   selector: 'bmb-mixed-message',
@@ -12,4 +18,11 @@ import { BmbMixedMessage } from '../../types';
 })
 export class MixedMessageComponent {
   readonly message = input.required<BmbMixedMessage>();
+
+  imageNotFoundError = output<void>();
+
+  handleImageNotFoundError(imageName: string, event: Event): void {
+    handleImageNotFoundError(imageName, event);
+    this.imageNotFoundError.emit();
+  }
 }

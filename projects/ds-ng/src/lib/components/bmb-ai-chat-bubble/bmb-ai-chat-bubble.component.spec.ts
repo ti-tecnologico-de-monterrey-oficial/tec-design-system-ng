@@ -3,6 +3,7 @@ import { ComponentRef } from '@angular/core';
 import { By } from '@angular/platform-browser';
 
 import { BmbAiChatBubbleComponent } from './bmb-ai-chat-bubble.component';
+import { BmbUserImageComponent } from '../bmb-user-image/bmb-user-image.component';
 import {
   BmbChatActionEvent,
   BmbImageMessage,
@@ -245,5 +246,21 @@ describe('BmbAiChatBubbleComponent', () => {
         minute: '2-digit',
       }).format(mockBotMessage.timestamp),
     );
+  });
+
+  it('should emit imageNotFoundError when user image reports an error', () => {
+    spyOn(component.imageNotFoundError, 'emit');
+
+    componentRef.setInput('message', mockUserMessage);
+    fixture.detectChanges();
+
+    const userImage = fixture.debugElement.query(
+      By.directive(BmbUserImageComponent),
+    );
+    expect(userImage).toBeTruthy();
+
+    userImage.triggerEventHandler('imageNotFoundError', null);
+
+    expect(component.imageNotFoundError.emit).toHaveBeenCalled();
   });
 });

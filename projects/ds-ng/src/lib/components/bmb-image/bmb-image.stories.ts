@@ -6,7 +6,10 @@ import {
   getBasicExampleBlock,
   getGeneralDescription,
 } from '../../utils/doc/utils';
-import { DBmbImageParamDesc } from '../../utils/doc/parameterDescriptions';
+import {
+  DBmbIconParamDesc,
+  DBmbImageParamDesc,
+} from '../../utils/doc/parameterDescriptions';
 import { BmbImageItem } from './types';
 import { Component, signal } from '@angular/core';
 
@@ -64,6 +67,15 @@ export default {
           'animationClass',
           'autoplayTimer',
           'currentImage',
+          'getImageContainerStyle',
+          'getImageStyle',
+          'handleImageClick',
+          'handleImageKeyDown',
+          'handleImageNotFoundError',
+          'handleSingleImageClick',
+          'next',
+          'ngOnDestroy',
+          'prev',
         ],
       },
       description: {
@@ -109,6 +121,7 @@ ${getBasicExampleBlock('BmbImageComponent')}
         type: { summary: 'EventEmitter<{ img: BmbImageItem; index: number }>' },
       },
     },
+    imageNotFoundError: DBmbIconParamDesc.imageNotFoundError,
     objectFit: {
       control: 'select',
       options: ['cover', 'contain', 'fill', 'none', 'scale-down'],
