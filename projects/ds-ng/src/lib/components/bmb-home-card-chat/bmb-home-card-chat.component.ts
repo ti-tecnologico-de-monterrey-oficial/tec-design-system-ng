@@ -24,7 +24,10 @@ import {
   IBmbChatMessage,
   TChatAction,
 } from '../bmb-chat-bubbles/types';
-import { BmbChatBubblesComponent, IBmbChatBubblesActions } from '../bmb-chat-bubbles/bmb-chat-bubbles.component';
+import {
+  BmbChatBubblesComponent,
+  IBmbChatBubblesActions,
+} from '../bmb-chat-bubbles/bmb-chat-bubbles.component';
 import { TranslatePipe } from '../../pipes/translations';
 import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
 import { BmbProjectionContentService } from '../../services/projection/projection.service';
@@ -68,7 +71,11 @@ export class BmbHomeCardChatComponent {
   componentTitle = input<string>('');
   testId = input<string>('chat-bubble');
   botActions = input<TChatAction[]>([
-    'copy', 'dislike', 'like', 'repeat', 'voice'
+    'copy',
+    'dislike',
+    'like',
+    'repeat',
+    'voice',
   ]);
 
   title = input<string>(''); // deprecated
@@ -99,36 +106,36 @@ export class BmbHomeCardChatComponent {
             key: 'repeat',
             icon: 'repeat',
             label: this.translationService.translate('chat_bubbles.repeat'),
-          }
+          };
         case 'voice':
           return {
             key: 'voice',
             icon: 'record_voice_over',
             label: this.translationService.translate('chat_bubbles.voice'),
-          }
+          };
         case 'copy':
           return {
             key: 'copy',
             icon: 'content_copy',
             label: this.translationService.translate('chat_bubbles.copy'),
-          }
+          };
         case 'like':
           return {
             key: 'like',
             icon: 'thumb_up',
             label: this.translationService.translate('chat_bubbles.like'),
-          }
+          };
         case 'dislike':
           return {
             key: 'dislike',
             icon: 'thumb_down',
             label: this.translationService.translate('chat_bubbles.dislike'),
-          }
+          };
         default:
           throw new Error('Action name not supported');
       }
     });
-  })
+  });
 
   @ViewChild('contentTemplate') contentTemplate!: TemplateRef<any>;
   @ViewChild('chatBarActionsTemplate', { static: true })

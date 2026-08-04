@@ -3,7 +3,11 @@
 </header>
 
 <div class="bmb_template-margin-for-sidebar">
-  <section
+  <bmb-divider [type]="'simple'" />
+  <a href="https://www.youtube.com/" target="_blank"> enlace </a>
+  <bmb-divider [type]="'simple'" />
+  <bmb-text-editor [control]="textEditorControl" />
+  <!-- <section
     bmbLayout
     margin="none"
     gapSize="m"
@@ -353,7 +357,9 @@
         </ng-template>
       </bmb-accordion>
     </div>
-  </section>
+  </section> -->
+  <bmb-divider [type]="'simple'" />
+  {{ textEditorControl.value | json }}
 </div>
 
 <ng-template #modalTemplate>

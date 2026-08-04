@@ -1,5 +1,8 @@
 @if (content() !== null && !showBackdrop()) {
-  <div class="bmb_projected-backdrop" (click)="removeContent.emit(contentId())"></div>
+  <div
+    class="bmb_projected-backdrop"
+    (click)="removeContent.emit(contentId())"
+  ></div>
 } @else {
   <bmb-overlay
     [active]="content() !== null && showBackdrop()"

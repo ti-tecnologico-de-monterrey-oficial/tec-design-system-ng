@@ -23,7 +23,6 @@ import {
 } from '../../../../projects/ds-ng/src/public-api';
 import { FormsModule } from '@angular/forms';
 
-
 @Component({
   selector: 'app-avatars',
   standalone: true,
@@ -36,7 +35,7 @@ import { FormsModule } from '@angular/forms';
     BmbContainerComponent,
     BmbIconComponent,
     BmbThemeComponent,
-    BmbDropzoneComponent
+    BmbDropzoneComponent,
   ],
   templateUrl: './avatars.component.html',
   styleUrls: ['./avatars.component.scss'],
@@ -95,16 +94,65 @@ export class AvatarsComponent {
     );
 
     this.avatars = [
-      { "id": 1, "name": "Lorrin", "avatarCell": "https://robohash.org/blanditiisassumendavoluptas.png?size=50x50&set=set1" },
-      { "id": 2, "name": "Hall", "avatarCell": "https://robohash.org/odiosimiliquequia.png?size=50x50&set=set1" },
-      { "id": 3, "name": "Ediva", "avatarCell": "https://robohash.org/sapienteutvel.png?size=50x50&set=set1" },
-      { "id": 4, "name": "Prent", "avatarCell": "https://robohash.org/reiciendisquasid.png?size=50x50&set=set1" },
-      { "id": 5, "name": "Theda", "avatarCell": "https://robohash.org/utomnisnesciunt.png?size=50x50&set=set1" },
-      { "id": 6, "name": "Liz", "avatarCell": "https://robohash.org/voluptatemetperferendis.png?size=50x50&set=set1" },
-      { "id": 7, "name": "Jourdain", "avatarCell": "https://robohash.org/ducimusavoluptatum.png?size=50x50&set=set1" },
-      { "id": 8, "name": "Trent", "avatarCell": "https://robohash.org/adipisciquodearum.png?size=50x50&set=set1" },
-      { "id": 9, "name": "Urbain", "avatarCell": "https://robohash.org/suntvoluptasquia.png?size=50x50&set=set1" },
-      { "id": 10, "name": "Reggi", "avatarCell": "https://robohash.org/solutaeumvel.png?size=50x50&set=set1" }
+      {
+        id: 1,
+        name: 'Lorrin',
+        avatarCell:
+          'https://robohash.org/blanditiisassumendavoluptas.png?size=50x50&set=set1',
+      },
+      {
+        id: 2,
+        name: 'Hall',
+        avatarCell:
+          'https://robohash.org/odiosimiliquequia.png?size=50x50&set=set1',
+      },
+      {
+        id: 3,
+        name: 'Ediva',
+        avatarCell:
+          'https://robohash.org/sapienteutvel.png?size=50x50&set=set1',
+      },
+      {
+        id: 4,
+        name: 'Prent',
+        avatarCell:
+          'https://robohash.org/reiciendisquasid.png?size=50x50&set=set1',
+      },
+      {
+        id: 5,
+        name: 'Theda',
+        avatarCell:
+          'https://robohash.org/utomnisnesciunt.png?size=50x50&set=set1',
+      },
+      {
+        id: 6,
+        name: 'Liz',
+        avatarCell:
+          'https://robohash.org/voluptatemetperferendis.png?size=50x50&set=set1',
+      },
+      {
+        id: 7,
+        name: 'Jourdain',
+        avatarCell:
+          'https://robohash.org/ducimusavoluptatum.png?size=50x50&set=set1',
+      },
+      {
+        id: 8,
+        name: 'Trent',
+        avatarCell:
+          'https://robohash.org/adipisciquodearum.png?size=50x50&set=set1',
+      },
+      {
+        id: 9,
+        name: 'Urbain',
+        avatarCell:
+          'https://robohash.org/suntvoluptasquia.png?size=50x50&set=set1',
+      },
+      {
+        id: 10,
+        name: 'Reggi',
+        avatarCell: 'https://robohash.org/solutaeumvel.png?size=50x50&set=set1',
+      },
     ];
 
     // OnPush: forzar la re-evaluación de los bindings (p. ej. [columns] en el

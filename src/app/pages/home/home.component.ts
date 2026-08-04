@@ -34,9 +34,11 @@ import {
   BmbActionIconComponent,
   BmbTooltipComponent,
   BmbContainerButtonComplexAlternativeComponent,
+  BmbTextEditorComponent,
 } from '../../../../projects/ds-ng/src/public-api';
 import { HelpMenuComponent } from '../../components/help-menu/help-menu.component';
 import { ModalWDropdownComponent } from '../../components/modal-w-dropdown/modal-w-dropdown.component';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'bmb-home',
@@ -61,6 +63,7 @@ import { ModalWDropdownComponent } from '../../components/modal-w-dropdown/modal
     BmbActionIconComponent,
     BmbTooltipComponent,
     BmbContainerButtonComplexAlternativeComponent,
+    BmbTextEditorComponent,
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
@@ -74,6 +77,7 @@ export class HomeComponent {
   @ViewChild('modalTemplate') modalTemplate!: TemplateRef<unknown>;
   @ViewChild('notificationTemplate')
   notificationTemplate!: TemplateRef<unknown>;
+  textEditorControl: FormControl = new FormControl('');
 
   constructor(
     private router: Router,

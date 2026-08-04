@@ -476,8 +476,8 @@ type IBotType = {
       control: 'object',
       description: 'Enables the actions for the bot bubbles',
       table: {
-        category: 'Properties'
-      }
+        category: 'Properties',
+      },
     },
     getBubbleAction: {
       action: 'bubbleAction',
@@ -515,13 +515,14 @@ handleBubbleAction(event) {
     },
     getSendMessage: {
       control: false,
-      description: 'Emmit when the user send a message or a bot has a new response',
+      description:
+        'Emmit when the user send a message or a bot has a new response',
       table: {
         category: 'Events',
         type: {
           summary: '(message) => void',
         },
-      }
+      },
     },
     getClose: {
       action: 'close',
@@ -659,9 +660,7 @@ handleNewChat() {
         time: new Date(),
       },
     ],
-    botActions: [
-      'copy', 'dislike', 'like', 'repeat', 'voice'
-    ],
+    botActions: ['copy', 'dislike', 'like', 'repeat', 'voice'],
 
     // ===== EVENTS =====
     getBubbleAction: (event: IBmbChatActionEvent) => {

@@ -1,5 +1,10 @@
 import { Component, input, OnChanges, SimpleChanges } from '@angular/core';
-import { Meta, StoryFn, componentWrapperDecorator, moduleMetadata } from '@storybook/angular';
+import {
+  Meta,
+  StoryFn,
+  componentWrapperDecorator,
+  moduleMetadata,
+} from '@storybook/angular';
 import {
   BmbHomeCardComponent,
   BmbIconComponent,
@@ -392,15 +397,16 @@ ${htmlTemplate}
     startIndex: 0,
     steps: [
       {
-        description:
-          `Con la plataforma de mitec podrás descubrir una nueva forma de vivir tu experiencia dentro del Tecnológico de Monterrey. Diseñada de manera modular para mostrar diferentes niveles de contenido de manera sencilla, esta aplicación te brinda acceso automático a todos los servicios esenciales e información importante en tu estancia.
+        description: `Con la plataforma de mitec podrás descubrir una nueva forma de vivir tu experiencia dentro del Tecnológico de Monterrey. Diseñada de manera modular para mostrar diferentes niveles de contenido de manera sencilla, esta aplicación te brinda acceso automático a todos los servicios esenciales e información importante en tu estancia.
           Más allá del ámbito académico, la herramienta se convierte en tu centro de interacción con la vida universitaria. A través de sus tarjetas dinámicas, podrás explorar la agenda cultural y deportiva del campus, conectarte con grupos estudiantiles, descubrir convocatorias de voluntariado y mantenerte al día con los avisos más relevantes de la comunidad del Tec.
           La flexibilidad de su arquitectura modular permite adaptarse a cada etapa de tu vida dentro de la institución, ya seas alumno, docente o colaborador. Cada usuario dispone de un tablero inteligente que sugiere recursos relevantes según sus actividades diarias, integrando de manera fluida servicios como la biblioteca digital, los sistemas de pago y el acceso a plataformas educativas complementarias.
           De esta manera, mitec redefine la conectividad institucional al transformar la interacción cotidiana en un ecosistema digital eficiente y accesible desde cualquier dispositivo. La plataforma reafirma el compromiso del Tecnológico de Monterrey con la innovación tecnológica, acompañándote a lo largo de toda tu vivencia universitaria con seguridad y agilidad.`,
         icon: '',
         iconSize: '',
-        imageDesktop: 'https://editorialtelevisa.brightspotcdn.com/dims4/default/db8f1be/2147483647/strip/true/crop/1194x672+3+0/resize/1000x563!/quality/90/?url=https:%2F%2Fk2-prod-editorial-televisa.s3.us-east-1.amazonaws.com%2Fbrightspot%2F35%2F6e%2Fb9c82c1e4b49a2500146c4721d7c%2Fsnacks-muy-divertidos-para-tu-perrito.jpg',
-        imageMobile: 'https://editorialtelevisa.brightspotcdn.com/dims4/default/db8f1be/2147483647/strip/true/crop/1194x672+3+0/resize/1000x563!/quality/90/?url=https:%2F%2Fk2-prod-editorial-televisa.s3.us-east-1.amazonaws.com%2Fbrightspot%2F35%2F6e%2Fb9c82c1e4b49a2500146c4721d7c%2Fsnacks-muy-divertidos-para-tu-perrito.jpg',
+        imageDesktop:
+          'https://editorialtelevisa.brightspotcdn.com/dims4/default/db8f1be/2147483647/strip/true/crop/1194x672+3+0/resize/1000x563!/quality/90/?url=https:%2F%2Fk2-prod-editorial-televisa.s3.us-east-1.amazonaws.com%2Fbrightspot%2F35%2F6e%2Fb9c82c1e4b49a2500146c4721d7c%2Fsnacks-muy-divertidos-para-tu-perrito.jpg',
+        imageMobile:
+          'https://editorialtelevisa.brightspotcdn.com/dims4/default/db8f1be/2147483647/strip/true/crop/1194x672+3+0/resize/1000x563!/quality/90/?url=https:%2F%2Fk2-prod-editorial-televisa.s3.us-east-1.amazonaws.com%2Fbrightspot%2F35%2F6e%2Fb9c82c1e4b49a2500146c4721d7c%2Fsnacks-muy-divertidos-para-tu-perrito.jpg',
         primaryButton: 'Empezar el tour',
         shortDescription: 'Este es tu tour introductorio a la app.',
         showCheckbox: true,

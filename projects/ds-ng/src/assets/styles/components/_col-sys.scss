@@ -148,6 +148,58 @@ $alignItemsOptions: (
   &-no-row-wrap {
     flex-wrap: nowrap;
   }
+
+  &-flow {
+    &-row {
+      flex-direction: row;
+    }
+
+    &-reverse {
+      flex-direction: row-reverse;
+      flex-wrap: wrap-reverse;
+    }
+
+    &-m {
+      @include mixins.media-query(1000, 'max') {
+        &-row {
+          flex-direction: row;
+        }
+
+        &-reverse {
+          flex-direction: row-reverse;
+          flex-wrap: wrap-reverse;
+        }
+      }
+    }
+
+    &-l {
+      @include mixins.media-query(1001, 'min') {
+        &-row {
+          flex-direction: row;
+        }
+
+        &-reverse {
+          flex-direction: row-reverse;
+          flex-wrap: wrap-reverse;
+        }
+      }
+    }
+
+    &-xl {
+      @include mixins.media-query(1400, 'min') {
+        &-row {
+          flex-direction: row;
+        }
+
+        &-reverse {
+          flex-direction: row-reverse;
+          flex-wrap: wrap-reverse;
+        }
+      }
+    }
+  }
+
+
 }
 
 @each $side in $namesOfSides {
