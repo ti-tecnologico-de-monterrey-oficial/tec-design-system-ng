@@ -15,6 +15,7 @@ import { IBmbMediaCardLoading } from '../bmb-media-card/bmb-media-card.component
 import { BmbImageItem } from './types';
 import { BmbButtonIconComponent } from '../bmb-button-icon/bmb-button-icon.component';
 import { TranslatePipe } from '../../pipes/translations';
+import { handleImageNotFoundError } from '../../utils/utils';
 
 export interface BmbImageHeight {
   s: string;
@@ -238,8 +239,8 @@ export class BmbImageComponent implements OnDestroy {
     return {};
   }
 
-  handleImageNotFoundError(imageName: string): void {
-    console.error('Image not found error:', imageName);
+  handleImageNotFoundError(imageName: string, event: Event): void {
+    handleImageNotFoundError(imageName, event);
     this.imageNotFoundError.emit();
   }
 }

@@ -15,13 +15,13 @@
           <source [srcset]="encodedMobileURL()" />
         }
         <img
+          [src]="encodedURL()"
           [srcset]="encodedURL()"
           [alt]="alt()"
           [loading]="loading()"
           class="bmb_image-figure-image"
           [style]="{ 'object-fit': objectFit() }"
-          onerror="this.onerror=null;this.srcset='assets/images/empty-state/broken-image.jpg'"
-          (error)="handleImageNotFoundError(encodedURL())"
+          (error)="handleImageNotFoundError(encodedURL(), $event)"
         />
       </picture>
     </figure>
@@ -39,6 +39,7 @@
           <source [srcset]="encodedMobileURL()" />
         }
         <img
+          [src]="encodedURL()"
           [srcset]="encodedURL()"
           [alt]="alt()"
           [loading]="loading()"
@@ -52,8 +53,7 @@
             'object-fit': objectFit(),
             cursor: enableCursorPointer() ? 'pointer' : 'default'
           }"
-          onerror="this.onerror=null;this.srcset='assets/images/empty-state/broken-image.jpg'"
-          (error)="handleImageNotFoundError(encodedURL())"
+          (error)="handleImageNotFoundError(encodedURL(), $event)"
         />
       </picture>
     </figure>
@@ -99,8 +99,7 @@
             (click)="handleImageClick(img, $index)"
             (keydown)="handleImageKeyDown($event, img, $index)"
             [style]="{ 'object-fit': objectFit() }"
-            onerror="this.onerror=null;this.src='assets/images/empty-state/broken-image.jpg'"
-            (error)="handleImageNotFoundError(img.src)"
+            (error)="handleImageNotFoundError(img.src, $event)"
           />
         </picture>
       </figure>
