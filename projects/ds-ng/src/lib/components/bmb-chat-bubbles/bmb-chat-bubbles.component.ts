@@ -339,7 +339,7 @@ export class BmbChatBubblesComponent implements OnDestroy {
         ]);
         return;
       } catch {
-        // Fall back to plain text when rich clipboard content is unsupported.
+        throw new Error('Error al copiar contenido de mensaje');
       }
     }
 
