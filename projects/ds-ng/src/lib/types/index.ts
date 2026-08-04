@@ -15,7 +15,26 @@ export * from '../components/bmb-tables/bmb-tables.interface';
 export * from '../components/bmb-image/types';
 export * from './colors';
 
-export type SizeNames = 'xs' | 's' | 'm' | 'l' | 'xl' | 'xxl' | 'none' | 'auto';
+export type SizeNames =
+  | 'xs'
+  | 's'
+  | 'm'
+  | 'l'
+  | 'xl'
+  | 'xxl'
+  | 'none'
+  | 'auto'
+  | '0'
+  | '1'
+  | '2'
+  | '3'
+  | '4'
+  | '5'
+  | '6'
+  | '7'
+  | '8'
+  | '9'
+  | '10';
 export type IButtonAppearance =
   | 'primary'
   | 'secondary-filled'
@@ -161,4 +180,18 @@ export interface IDropdownItem {
   url?: string;
   target?: IBmbTargetLink;
   action?: (event?: unknown) => void;
+}
+
+export interface OnboardingStep {
+  description: string;
+  icon?: string;
+  iconSize?: string;
+  imageDesktop: string;
+  imageMobile: string;
+  primaryButton: string;
+  secondaryButton?: string;
+  shortDescription: string;
+  showCheckbox?: boolean;
+  subtitle?: string;
+  title: string;
 }

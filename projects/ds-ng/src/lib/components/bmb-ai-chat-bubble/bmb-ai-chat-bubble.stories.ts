@@ -3,6 +3,7 @@ import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
 import { RouterTestingModule } from '@angular/router/testing';
 
 import { BmbAiChatBubbleComponent } from './bmb-ai-chat-bubble.component';
+import { BmbChatBubblesComponent } from '../bmb-chat-bubbles/bmb-chat-bubbles.component';
 import { CommonModule } from '@angular/common';
 import {
   BlockquoteType,
@@ -13,6 +14,7 @@ import {
   getSpecialSpecifications,
   RELEVANT_TITLE,
 } from '../../utils/doc/utils';
+import { DBmbIconParamDesc } from '../../utils/doc/parameterDescriptions';
 
 const GET_ACTION_DESCRIPTION: string = `
 ${getAlertBlockquote(
@@ -42,7 +44,7 @@ export default {
   tags: ['!autodocs'],
   decorators: [
     moduleMetadata({
-      imports: [CommonModule, RouterTestingModule],
+      imports: [CommonModule, RouterTestingModule, BmbChatBubblesComponent],
     }),
   ],
   parameters: {
@@ -164,6 +166,8 @@ Available actions:
         },
       },
     },
+
+    imageNotFoundError: DBmbIconParamDesc.imageNotFoundError,
 
     getAction: {
       control: false,
@@ -320,20 +324,48 @@ export const MixedMessage: Story = {
 };
 
 export const ChatGPTMessage: Story = {
-  args: {
-    showActions: true,
+  render: () => ({
+    template: `
+      <div style="display: flex; flex-direction: column; gap: 1rem; width: 100%;">
+        <bmb-chat-bubble
+          [message]="assistantMessage"
+          [gptBot]="true"
+          [gptIcons]="true"
+        />
 
-    message: {
-      id: '10',
-      type: 'text',
-      timestamp: new Date(),
-      isUser: false,
-      content: {
-        text: `
-You can migrate your Angular application to Signals gradually.
-A common approach is starting with local component state before
-moving shared services.
-        `,
+        <bmb-chat-bubble
+          [message]="userMessage"
+          [userActiveIcons]="{ copy: { visible: true } }"
+        />
+      </div>
+    `,
+    props: {
+      assistantMessage: {
+        id: 'assistant-message',
+        isUserMessage: false,
+        type: 'text',
+        content: {
+          text: 'Ya está',
+        },
+        time: new Date(),
+      },
+      userMessage: {
+        id: 'user-message-copy',
+        isUserMessage: true,
+        userProfile: 'https://picsum.photos/id/64/200/300',
+        type: 'text',
+        content: {
+          text: '¿Puedes compartir esta respuesta en otro canal?',
+        },
+        time: new Date(),
+      },
+    },
+  }),
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Conversación de prueba. Coloca el cursor sobre el mensaje del usuario —o selecciónalo en móvil— para mostrar y probar la acción de copiar.',
       },
     },
   },

@@ -13,6 +13,7 @@
             [image]="message.userProfile!"
             [altImage]="'Imagen de perfil del usuario'"
             [bordered]="false"
+            (imageNotFoundError)="imageNotFoundError.emit()"
           ></bmb-user-image>
         } @else {
           <bmb-icon
@@ -45,11 +46,17 @@
               }
 
               @case ('image') {
-                <bmb-image-message [message]="message" />
+                <bmb-image-message
+                  [message]="message"
+                  (imageNotFoundError)="imageNotFoundError.emit()"
+                />
               }
 
               @case ('mixed') {
-                <bmb-mixed-message [message]="message" />
+                <bmb-mixed-message
+                  [message]="message"
+                  (imageNotFoundError)="imageNotFoundError.emit()"
+                />
               }
 
               @case ('link') {

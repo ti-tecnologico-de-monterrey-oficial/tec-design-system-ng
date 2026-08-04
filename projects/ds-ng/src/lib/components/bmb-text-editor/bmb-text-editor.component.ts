@@ -28,6 +28,7 @@ import {
   BmbTextEditorPromptComponent,
   IBmbTextEditorPromptType,
 } from './bmb-text-editor-prompt/bmb-text-editor-prompt.component';
+import { CdkTableModule } from '@angular/cdk/table';
 
 @Component({
   selector: 'bmb-text-editor',
@@ -38,6 +39,7 @@ import {
     BmbActionMenuComponent,
     BmbItemComponent,
     TranslatePipe,
+    CdkTableModule,
   ],
   templateUrl: './bmb-text-editor.component.html',
   styleUrl: './bmb-text-editor.component.scss',
@@ -70,29 +72,9 @@ export class BmbTextEditorComponent implements AfterViewInit, OnInit {
     private readonly sanitizer: DomSanitizer,
   ) {}
   userSelection: Range | null = null;
+  selectedColor = signal<string>('');
 
-  detectAlignment() {
-    const selection = globalThis.getSelection();
-    if (selection && selection.rangeCount > 0) {
-      const element = selection.getRangeAt(0)
-        .commonAncestorContainer as HTMLElement;
-      const parentElement = element.parentElement;
-
-      if (parentElement) {
-        const textAlign = parentElement.style.textAlign || 'left';
-        this.currentAlignment = textAlign;
-      }
-    }
-  }
-
-  applyAlignment(alignment: string) {
-    this.execCommand('styleWithCSS', 'true');
-    this.execCommand(
-      'justify' + alignment.charAt(0).toUpperCase() + alignment.slice(1),
-    );
-  }
-
-  ngOnInit() {
+  ngOnInit(): void {
     this.sanitizedContent.set(
       // NOSONAR: Initial content sanitization
       this.sanitizer.bypassSecurityTrustHtml(this.control().value || ''),
@@ -106,11 +88,32 @@ export class BmbTextEditorComponent implements AfterViewInit, OnInit {
     });
   }
 
-  ngAfterViewInit() {
+  ngAfterViewInit(): void {
     this.editor.nativeElement.focus();
   }
 
-  handleChange(event: Event, type: string) {
+  detectAlignment(): void {
+    const selection = globalThis.getSelection();
+    if (selection && selection.rangeCount > 0) {
+      const element = selection.getRangeAt(0)
+        .commonAncestorContainer as HTMLElement;
+      const parentElement = element.parentElement;
+
+      if (parentElement) {
+        const textAlign = parentElement.style.textAlign || 'left';
+        this.currentAlignment = textAlign;
+      }
+    }
+  }
+
+  applyAlignment(alignment: string): void {
+    this.execCommand('styleWithCSS', 'true');
+    this.execCommand(
+      'justify' + alignment.charAt(0).toUpperCase() + alignment.slice(1),
+    );
+  }
+
+  handleChange(event: Event, type: string): void {
     const target = event.target as HTMLSelectElement;
     if (target?.value) {
       this.execCommand('unlink');
@@ -118,7 +121,7 @@ export class BmbTextEditorComponent implements AfterViewInit, OnInit {
     }
   }
 
-  execCommand(command: string, value: string | null = null) {
+  execCommand(command: string, value: string | null = null): void {
     if (this.userSelection) {
       const selection = globalThis.getSelection();
       if (selection) {
@@ -128,17 +131,18 @@ export class BmbTextEditorComponent implements AfterViewInit, OnInit {
     }
 
     document.execCommand(command, false, value || undefined);
+
     this.updateContent();
 
     this.userSelection = null;
   }
 
-  addTextFormat(command: string) {
+  addTextFormat(command: string): void {
     this.execCommand('unlink');
     this.execCommand(command);
   }
 
-  openPrompt(type: IBmbTextEditorPromptType, event: MouseEvent | null) {
+  openPrompt(type: IBmbTextEditorPromptType, event: MouseEvent | null): void {
     //Removes the possible format because it only allow Bamboo Text link styles
     if (type === 'link') this.execCommand('removeFormat');
 
@@ -164,21 +168,28 @@ export class BmbTextEditorComponent implements AfterViewInit, OnInit {
         formValues: (values: Record<string, unknown>) =>
           this.handleClosePrompt({ ...values, type }),
         cancelForm: () => this.contentProjected.closeContent(),
+        selectedColor: (colorName: string) => {
+          this.contentProjected.closeContent();
+          this.selectedColor.set(colorName);
+          this.handleClosePrompt({ colorName, type });
+        },
       },
       targetRef: buttonNode ?? null,
     });
   }
 
-  handleClosePrompt(values: Record<string, unknown>) {
+  handleClosePrompt(values: Record<string, unknown>): void {
     if (values['type'] === 'link' && values['prompt_url']) {
       this.insertLink(values);
     } else if (values['type'] === 'image' && values['prompt_url']) {
       this.insertImage(values);
+    } else if (values['type'] === 'color') {
+      this.addColor(values['colorName'] as string);
     }
     this.contentProjected.closeContent();
   }
 
-  insertLink(values: Record<string, unknown>) {
+  insertLink(values: Record<string, unknown>): void {
     const selection = globalThis.getSelection();
 
     if (!selection || !values['prompt_url']) {
@@ -197,7 +208,7 @@ export class BmbTextEditorComponent implements AfterViewInit, OnInit {
     }
   }
 
-  insertImage(values: Record<string, unknown>) {
+  insertImage(values: Record<string, unknown>): void {
     const selection = globalThis.getSelection();
 
     if (!selection || selection.rangeCount === 0 || !values['prompt_url']) {
@@ -208,38 +219,37 @@ export class BmbTextEditorComponent implements AfterViewInit, OnInit {
     const range = selection.getRangeAt(0);
     let imageNode: HTMLImageElement | null = null;
     range.commonAncestorContainer.childNodes.forEach((node) => {
-      if (
-        node instanceof HTMLImageElement &&
-        !node.classList.contains('bmb-old-node')
-      ) {
+      if (node instanceof HTMLImageElement) {
         imageNode = node as HTMLImageElement;
         if (values['prompt_img_width'] && values['unit_size']) {
           imageNode.style.width = `${values['prompt_img_width']}${values['unit_size']}`;
         }
+
         if (values['prompt_img_height'] && values['unit_size']) {
           imageNode.style.height = `${values['prompt_img_height']}${values['unit_size']}`;
         }
+
         if (values['prompt_alt']) {
           imageNode.alt = values['prompt_alt'] as string;
         }
+
         if (values['alignment_type']) {
           imageNode.style.objectFit = values['alignment_type'] as string;
         }
-        imageNode.classList.add('bmb-old-node');
       }
     });
   }
 
-  updateContent() {
+  updateContent(): void {
     this.control().setValue(this.editor.nativeElement.innerHTML);
   }
 
-  clearFormatting() {
+  clearFormatting(): void {
     this.execCommand('removeFormat');
     this.execCommand('unlink');
   }
 
-  getCurrentState() {
+  getCurrentState(): void {
     return this.control().value;
   }
 
@@ -253,17 +263,17 @@ export class BmbTextEditorComponent implements AfterViewInit, OnInit {
   }
 
   // Método para abrir el diálogo de la tabla
-  openTableDialog() {
+  openTableDialog(): void {
     this.showTableDialog = true;
   }
 
   // Método para cerrar el diálogo de la tabla
-  closeTableDialog() {
+  closeTableDialog(): void {
     this.showTableDialog = false;
   }
 
   // Método para insertar la tabla
-  insertTable() {
+  insertTable(): void {
     const rows = this.tableRows;
     const columns = this.tableColumns;
 
@@ -288,7 +298,7 @@ export class BmbTextEditorComponent implements AfterViewInit, OnInit {
   }
 
   // Método para insertar HTML en el editor
-  insertHtml(html: string) {
+  insertHtml(html: string): void {
     const selection = globalThis.getSelection();
     if (selection && selection.rangeCount > 0) {
       const range = selection.getRangeAt(0);
@@ -321,5 +331,32 @@ export class BmbTextEditorComponent implements AfterViewInit, OnInit {
 
   closeProjectedContent() {
     this.contentProjected.closeContent();
+  }
+
+  getContainerColor(name: string): string {
+    return `border: 1px solid var(--${name});
+          border-radius: var(--bmb-radius-xs);
+          width: 1.5rem;
+          height: 1.5rem;
+          background: var(--${name});
+          `;
+  }
+
+  addColor(name: string): void {
+    const selection = globalThis.getSelection();
+
+    if (!selection) {
+      return;
+    }
+
+    const range = selection.getRangeAt(0);
+    const parentNode = range.commonAncestorContainer.parentNode as HTMLElement;
+
+    if (!parentNode) {
+      return;
+    }
+
+    parentNode.style.setProperty('color', `var(--${name})`);
+    this.updateContent();
   }
 }

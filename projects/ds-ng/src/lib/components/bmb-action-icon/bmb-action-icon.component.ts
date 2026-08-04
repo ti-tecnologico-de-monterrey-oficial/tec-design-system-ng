@@ -15,6 +15,7 @@ import { IBmbTargetLink } from '../../types';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { sanitizeContent } from '../../utils/sanitizeContent';
 import { BmbTooltipBaseComponent } from '../bmb-tooltip/bmb-tooltip-base/bmb-tooltip-base.component';
+import { isImage } from '../../utils/utils';
 
 @Component({
   selector: 'bmb-action-icon',
@@ -44,6 +45,9 @@ export class BmbActionIconComponent {
   link = input<string>();
   disabled = input<boolean>(false);
   isSVGTemplate = input<boolean>();
+  tooltipText = input<string>(''); //Internal
+
+  imageNotFoundError = output<void>();
 
   customActionIcon = contentChild<TemplateRef<any>>('customActionIcon');
 
@@ -80,5 +84,13 @@ export class BmbActionIconComponent {
 
     const clean = sanitizeContent((this.customActionIcon() ?? '').toString());
     return this.sanitizer.bypassSecurityTrustHtml(clean); // NOSONAR Content is sanitized with DOMPurify - safe to bypass Angular sanitization
+  }
+
+  isImage(icon: string): boolean {
+    return isImage(icon);
+  }
+
+  handleImageNotFoundError(): void {
+    this.imageNotFoundError.emit();
   }
 }

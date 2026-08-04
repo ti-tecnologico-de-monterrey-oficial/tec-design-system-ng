@@ -59,8 +59,6 @@ export class BmbTagComponent implements AfterViewInit {
   closedTag = output<string>();
   clickedTag = output<string>();
 
-  private active = false;
-
   groupedTags = [];
 
   constructor(
@@ -91,10 +89,8 @@ export class BmbTagComponent implements AfterViewInit {
       `bmb_tag-${this.appearance()}`,
     ];
 
-    const active = this.enableClick() ? this.active : this.isActive();
-
     if (this.dismissible() || this.enableClick()) {
-      if (active) {
+      if (this.isActive()) {
         classes.push('bmb_tag-active');
       }
 
@@ -113,10 +109,6 @@ export class BmbTagComponent implements AfterViewInit {
   }
 
   clickTag(text: string) {
-    if (this.enableClick() && !this.isDisabled()) {
-      this.active = !this.active;
-    }
-
     this.clickedTag.emit(text);
   }
 }

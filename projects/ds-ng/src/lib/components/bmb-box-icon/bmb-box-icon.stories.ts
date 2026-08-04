@@ -18,7 +18,9 @@ export default {
   component: BmbBoxIconComponent,
   parameters: {
     docs: {
-      controls: { exclude: ['handleClick', 'getClasses'] },
+      controls: {
+        exclude: ['handleClick', 'getClasses', 'handleImageNotFoundError'],
+      },
       description: {
         component: `
 ${getGeneralDescription(
@@ -39,10 +41,20 @@ ${getBasicExampleBlock('BmbBoxIconComponent', ON_BUTTON_CLICK.handleExample)}
     iconImageAlt: DBmbIconParamDesc.alt,
     isIconFilled: DBmbIconParamDesc.isIconFill,
     boxColor: getAppearanceParam('the box icon', colorList),
+    boxShape: getAppearanceParam(
+      'the box shape',
+      ['square', 'circle'],
+      'square',
+      '<br/><br/>Square keeps the radius associated with the box size and circle applies a 50% border radius.',
+    ),
+    boxSize: getAppearanceParam('the box size', ['small', 'regular'], 'small'),
+    imageNotFoundError: DBmbIconParamDesc.imageNotFoundError,
   },
   args: {
     iconName: 'face',
     boxColor: 'semantic-success',
+    boxShape: 'square',
+    boxSize: 'small',
   },
 } as Meta<typeof BmbBoxIconComponent>;
 
@@ -50,28 +62,36 @@ type Story = StoryObj<BmbBoxIconComponent>;
 
 export const Default: Story = {};
 
-// export const AllColors = {
-//   render: () => ({
-//     template: `
-//       <div style="display: flex; flex-direction: row; gap: 12px; flex-wrap: wrap;">
-//         @for (appearance of appearances; track $index) {
-//           <bmb-box-icon
-//             [boxColor]="appearance"
-//             [iconName]="'home'"
-//           />
-//         }
-//       </div>
-//     `,
-//     props: {
-//       appearances: colorList,
-//       iconList: ['face', 'apps', 'chevron_right', 'chevron_left', 'home'],
-//     },
-//   }),
-//   parameters: {
-//     docs: {
-//       canvas: {
-//         sourceState: 'none',
-//       },
-//     },
-//   },
-// };
+export const Circle: Story = {
+  args: {
+    boxShape: 'circle',
+    boxColor: 'black-primary',
+  },
+};
+
+export const AllColors = {
+  render: () => ({
+    template: `
+      <div style="display: flex; flex-direction: row; gap: 12px; flex-wrap: wrap;">
+        @for (appearance of appearances; track $index) {
+          <bmb-box-icon
+            [boxColor]="appearance"
+            [iconName]="'home'"
+            [title]="appearance"
+          />
+        }
+      </div>
+    `,
+    props: {
+      appearances: colorList,
+      iconList: ['face', 'apps', 'chevron_right', 'chevron_left', 'home'],
+    },
+  }),
+  parameters: {
+    docs: {
+      canvas: {
+        sourceState: 'none',
+      },
+    },
+  },
+};

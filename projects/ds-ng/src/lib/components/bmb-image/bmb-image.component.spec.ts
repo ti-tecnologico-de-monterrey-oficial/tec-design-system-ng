@@ -276,4 +276,11 @@ describe('BmbImageComponent', () => {
       cbParams: {},
     });
   });
+
+  it('should emit imageNotFoundError when image loading fails', () => {
+    const spy = spyOn(component.imageNotFoundError, 'emit');
+    component.handleImageNotFoundError('broken-image.jpg', new Event('error'));
+
+    expect(spy).toHaveBeenCalled();
+  });
 });

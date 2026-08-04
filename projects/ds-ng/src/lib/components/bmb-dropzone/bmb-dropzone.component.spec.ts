@@ -27,16 +27,17 @@ describe('DropzoneComponent', () => {
   });
 
   it('should reject a file with invalid characters and show its error message', () => {
+    componentRef.setInput(
+      'errorMessageInvalidName',
+      'Nombre de archivo no valido',
+    );
     fixture.detectChanges();
     const newFileSpy = spyOn(component.newFile, 'emit');
     const invalidFile = new File(['content'], 'reporte#final.pdf', {
       type: 'application/pdf',
     });
 
-    (component as any).handleFileSelected({
-      target: { files: [invalidFile], value: 'selected-file' },
-    } as unknown as Event);
-    fixture.detectChanges();
+    selectFiles([invalidFile]);
 
     expect(newFileSpy).not.toHaveBeenCalled();
     expect(fixture.nativeElement.textContent).toContain(
@@ -73,7 +74,9 @@ describe('DropzoneComponent', () => {
     const duplicateValidator: ValidatorFn = (
       control: AbstractControl,
     ): ValidationErrors | null => {
-      const names = control.value as string[];
+      const names = (
+        Array.isArray(control.value) ? control.value : [control.value]
+      ).filter(Boolean);
       return new Set(names).size !== names.length
         ? { duplicateFileName: true }
         : null;
@@ -112,9 +115,13 @@ describe('DropzoneComponent', () => {
   }
 
   function selectFiles(files: File[]): void {
-    (component as any).handleFileSelected({
-      target: { files, value: 'selected-files' },
-    } as unknown as Event);
+    const input: HTMLInputElement =
+      fixture.nativeElement.querySelector('input[type="file"]');
+    Object.defineProperty(input, 'files', {
+      configurable: true,
+      value: files,
+    });
+    input.dispatchEvent(new Event('change'));
     fixture.detectChanges();
   }
 });

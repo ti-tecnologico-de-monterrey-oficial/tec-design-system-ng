@@ -26,6 +26,7 @@ import { IBmbProjectedContentMode } from '../../../services/projection/projectio
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BmbProjectedContentComponent {
+  contentId = input<string>('');
   content = input<TemplateRef<any> | null | Type<any>>(null);
   htmlRef = input<HTMLElement | null>(null);
   mode = input<IBmbProjectedContentMode>('outside');
@@ -37,7 +38,7 @@ export class BmbProjectedContentComponent {
   dialogClass = input<string | string[] | Record<string, boolean>>('');
   forceMobileCenter = input<boolean>(false);
 
-  removeContent = output<void>();
+  removeContent = output<string>();
 
   @ViewChild('container', { read: ViewContainerRef, static: true })
   container!: ViewContainerRef;

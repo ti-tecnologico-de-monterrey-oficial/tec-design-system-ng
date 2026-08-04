@@ -17,23 +17,10 @@ import {
   BmbIconComponent,
   BmbProjectionContentService,
   IBmbProjectionContent,
-} from '../../public-api';
+  OnboardingStep,
+} from '../../../public-api';
 import { CommonModule } from '@angular/common';
-import { attributes } from '../utils/doc/utils';
-
-export interface OnboardingStep {
-  description: string;
-  icon?: string;
-  iconSize?: string;
-  imageDesktop: string;
-  imageMobile: string;
-  primaryButton: string;
-  secondaryButton?: string;
-  shortDescription: string;
-  showCheckbox?: boolean;
-  subtitle?: string;
-  title: string;
-}
+import { attributes } from '../../utils/doc/utils';
 
 @Component({
   standalone: true,
@@ -172,6 +159,12 @@ export interface OnboardingStep {
               </div>
               <bmb-dot-paginator
                 [activeDotIndex]="currentIndex"
+                [targets]="[
+                  { target: '#item1', index: 0 },
+                  { target: '#item2', index: 1 },
+                  { target: '#item3', index: 2 },
+                  { target: '#item4', index: 3 }
+                ]"
                 [totalDots]="steps().length"
                 (onDotPress)="handleDotPress($event)"
               />
@@ -250,7 +243,8 @@ class StorybookLayoutBienvenida implements AfterViewInit, OnChanges {
 }
 
 export default {
-  title: 'Templates/Guided tour',
+  title: 'Templates/Guided tour/Modal',
+  tags: ['!autodocs'],
   decorators: [
     moduleMetadata({
       imports: [StorybookLayoutBienvenida],

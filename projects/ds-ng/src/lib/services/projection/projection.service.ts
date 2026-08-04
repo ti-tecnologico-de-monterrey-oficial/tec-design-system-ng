@@ -43,8 +43,7 @@ export interface IBmbProjectionContent {
   providedIn: 'root',
 })
 export class BmbProjectionContentService {
-  readonly contentList = signal<IBmbProjectionContent | null>(null);
-  readonly contentStack = signal<IBmbProjectionContent[]>([]);
+  readonly contentList = signal<IBmbProjectionContent[]>([]);
   private portalComponentRef: ComponentRef<BmbPortalComponent> | null = null;
 
   runContentHook(
@@ -83,7 +82,6 @@ export class BmbProjectionContentService {
     this.portalComponentRef = createComponent(BmbPortalComponent, {
       environmentInjector: this.environmentInjector,
     });
-
     this.appRef.attachView(this.portalComponentRef.hostView);
 
     const hostDomElem = (
@@ -98,28 +96,25 @@ export class BmbProjectionContentService {
     this.getOrCreatePortal();
 
     const id = content.id ?? crypto.randomUUID();
-
     const normalizedContent: IBmbProjectionContent = {
       ...content,
       id,
     };
 
-    this.contentStack.update((list) => [...list, normalizedContent]);
-    this.contentList.set(normalizedContent);
-    this.runContentHook(content, 'afterOpenContent', 'single');
+    this.contentList.update((list) => [...list, normalizedContent]);
+    this.runContentHook(normalizedContent, 'afterOpenContent', 'single');
 
     return id;
   }
 
   closeContent(id?: string) {
-    if (!id && this.contentList() !== null) {
-      const list = [...this.contentStack()];
+    if (!id) {
+      const list = [...this.contentList()];
 
       list.forEach((content) => {
         this.runContentHook(content, 'beforeCloseContent', 'all');
       });
-      this.contentStack.set([]);
-      this.contentList.set(null);
+      this.contentList.set([]);
       list.forEach((content) => {
         this.runContentHook(content, 'afterCloseContent', 'all');
       });
@@ -127,17 +122,12 @@ export class BmbProjectionContentService {
       return;
     }
 
-    const content = this.contentStack()?.find((item) => item.id !== id);
+    const content = this.contentList()?.find((item) => item.id === id);
 
     if (!content) return;
 
     this.runContentHook(content, 'beforeCloseContent', 'single');
-    this.contentStack.update((list) => list.filter((item) => item.id !== id));
-
-    const remaining = this.contentStack();
-    this.contentList.set(
-      remaining.length ? remaining[remaining.length - 1] : null,
-    );
+    this.contentList.update((list) => list.filter((item) => item.id !== id));
     this.runContentHook(content, 'afterCloseContent', 'single');
   }
 
@@ -146,14 +136,14 @@ export class BmbProjectionContentService {
   }
 
   getAllProjectedContents() {
-    return this.contentStack();
+    return this.contentList();
   }
 
   isThereContentProjected() {
-    return this.contentList() !== null;
+    return this.contentList().length > 0;
   }
 
   isContentOpen(id: string) {
-    return this.contentStack().some((item) => item.id === id);
+    return this.contentList().some((item) => item.id === id);
   }
 }

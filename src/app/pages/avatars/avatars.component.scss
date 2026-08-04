@@ -1,0 +1,15 @@
+.divtitle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  .title {
+    font-size: 48px;
+  }
+}
+
+::ng-deep button[appearance='primary'] {
+  background-color: #065c4c !important;
+  color: #ffffff !important;
+  border-color: #065c4c !important;
+}

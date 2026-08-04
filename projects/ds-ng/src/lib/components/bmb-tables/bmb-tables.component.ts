@@ -206,6 +206,25 @@ export class BmbTablesComponent implements AfterViewInit, OnInit, OnChanges {
       }
     });
 
+    // `data` and `columns` are signal-based inputs, so `ngOnChanges` never
+    // fires for them (OnChanges only tracks decorator-based @Input()s).
+    // Re-parse reactively whenever the signals change instead of relying
+    // solely on ngOnChanges.
+    effect(() => {
+      this.parseData(this.data());
+    });
+
+    effect(() => {
+      this.parseColumns(this.columns());
+    });
+
+    effect(() => {
+      const config = this.config();
+      if (config) {
+        this.setConfig(config);
+      }
+    });
+
     effect(() => {
       const filtersModelValue = this.filtersModel();
       const hasControls =
@@ -279,9 +298,6 @@ export class BmbTablesComponent implements AfterViewInit, OnInit, OnChanges {
     }
 
     this._rawConfig = this.config() || {};
-
-    this.parseData(this.data());
-    this.parseColumns(this.columns());
   }
 
   updateFiltersModel() {

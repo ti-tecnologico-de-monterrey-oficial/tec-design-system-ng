@@ -1,56 +1,35 @@
+import { ApplicationRef, EnvironmentInjector } from '@angular/core';
 import {
   BmbProjectionContentService,
   IBmbProjectionContent,
 } from './projection.service';
 
-import { TestBed } from '@angular/core/testing';
-import { RendererFactory2, Renderer2 } from '@angular/core';
-
 describe('BmbProjectionContentService', () => {
   let service: BmbProjectionContentService;
-  let mockRenderer: Renderer2;
-  let mockRendererFactory2: RendererFactory2;
-  let mockAppRef: any;
+  let mockAppRef: ApplicationRef;
+  let mockEnvironmentInjector: EnvironmentInjector;
 
   beforeEach(() => {
-    mockRenderer = {
-      setAttribute: () => {},
-      removeAttribute: () => {},
-      appendChild: () => {},
-      removeChild: () => {},
-      destroy: () => {},
-      createElement: (tag: string) => document.createElement(tag),
-      createComment: (text: string) => document.createComment(text),
-      listen: () => () => {}, // Mock listen method
-      // Add other methods as needed
-    } as any;
-
-    mockRendererFactory2 = {
-      createRenderer: () => mockRenderer,
-    } as any;
-
     mockAppRef = {
       attachView: () => {},
     } as any;
 
-    TestBed.configureTestingModule({
-      providers: [
-        { provide: RendererFactory2, useValue: mockRendererFactory2 },
-        // Remove AppRef provider if not available
-        BmbProjectionContentService,
-      ],
-    });
+    mockEnvironmentInjector = {} as any;
 
-    service = TestBed.inject(BmbProjectionContentService);
-    service.closeContent(); // Reset state before each test
+    service = new BmbProjectionContentService(
+      mockAppRef,
+      mockEnvironmentInjector,
+    );
+    spyOn<any>(service, 'getOrCreatePortal').and.returnValue(null);
+    service.closeContent();
   });
 
-  it('debe inicializar con contenido proyectado nulo', () => {
-    expect(service.getProjectedContent()).toBeNull();
+  it('debe inicializar sin contenido proyectado', () => {
+    expect(service.getProjectedContent()).toEqual([]);
     expect(service.isThereContentProjected()).toBe(false);
   });
 
-  it('debe abrir contenido proyectado', () => {
+  it('debe abrir contenido proyectado y generar un id', () => {
     const content: IBmbProjectionContent = {
       content: null,
       mode: 'over',
@@ -58,35 +37,92 @@ describe('BmbProjectionContentService', () => {
       showBackdrop: true,
     };
 
-    service.openContent(content);
-
+    const id = service.openContent(content);
     const projected = service.getProjectedContent();
 
-    expect(projected).toEqual(jasmine.objectContaining(content));
-    expect(projected?.id).toBeDefined();
+    expect(typeof id).toBe('string');
+    expect(service.isContentOpen(id)).toBe(true);
     expect(service.isThereContentProjected()).toBe(true);
+    expect(projected.length).toBe(1);
+    expect(projected[0]).toEqual(
+      jasmine.objectContaining({
+        id,
+        mode: 'over',
+        inputContext: { test: 'valor' },
+        showBackdrop: true,
+      }),
+    );
   });
 
   it('debe cerrar el contenido proyectado', () => {
     const content: IBmbProjectionContent = { content: null };
     service.openContent(content);
     expect(service.isThereContentProjected()).toBe(true);
+
     service.closeContent();
-    expect(service.getProjectedContent()).toBeNull();
+    expect(service.getProjectedContent()).toEqual([]);
     expect(service.isThereContentProjected()).toBe(false);
   });
 
-  it('debe sobrescribir el contenido proyectado si se abre uno nuevo', () => {
+  it('debe agregar cada contenido nuevo a la lista', () => {
     const content1: IBmbProjectionContent = { content: null, mode: 'over' };
     const content2: IBmbProjectionContent = { content: null, mode: 'partial' };
 
-    service.openContent(content2);
     service.openContent(content1);
-    const firstId = service.getProjectedContent()?.id;
+    const firstId = service.getProjectedContent()[0].id;
 
     service.openContent(content2);
-    const secondId = service.getProjectedContent()?.id;
+    const projected = service.getProjectedContent();
+    const secondId = projected[1].id;
 
     expect(firstId).not.toEqual(secondId);
+    expect(projected.length).toBe(2);
+  });
+
+  it('debe cerrar contenido proyectado por id y mantener contenidos restantes', () => {
+    const first: IBmbProjectionContent = { id: 'first', content: null };
+    const second: IBmbProjectionContent = { id: 'second', content: null };
+
+    service.openContent(first);
+    service.openContent(second);
+    service.closeContent('first');
+
+    expect(service.isContentOpen('first')).toBe(false);
+    expect(service.isContentOpen('second')).toBe(true);
+    expect(service.getProjectedContent()).toEqual([
+      jasmine.objectContaining({ id: 'second' }),
+    ]);
+  });
+
+  it('debe ejecutar los hooks al abrir y cerrar contenido', () => {
+    const afterOpen = jasmine.createSpy('afterOpen');
+    const beforeClose = jasmine.createSpy('beforeClose');
+    const afterClose = jasmine.createSpy('afterClose');
+
+    const content: IBmbProjectionContent = {
+      id: 'hooked',
+      content: null,
+      afterOpenContent: afterOpen,
+      beforeCloseContent: beforeClose,
+      afterCloseContent: afterClose,
+    };
+
+    service.openContent(content);
+
+    expect(afterOpen).toHaveBeenCalledWith({
+      contentId: 'hooked',
+      reason: 'single',
+    });
+
+    service.closeContent('hooked');
+
+    expect(beforeClose).toHaveBeenCalledWith({
+      contentId: 'hooked',
+      reason: 'single',
+    });
+    expect(afterClose).toHaveBeenCalledWith({
+      contentId: 'hooked',
+      reason: 'single',
+    });
   });
 });

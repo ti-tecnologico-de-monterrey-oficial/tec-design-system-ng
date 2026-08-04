@@ -7,6 +7,7 @@ import {
 } from '../../utils/doc/utils';
 import {
   DBmbGenericParamDesc,
+  DBmbIconParamDesc,
   DBmbImageParamDesc,
   getDefaultValueControl,
 } from '../../utils/doc/parameterDescriptions';
@@ -17,7 +18,14 @@ export default {
   parameters: {
     docs: {
       controls: {
-        exclude: ['getClasses', 'handleClick', 'handleKeyPress', 'handlePress'],
+        exclude: [
+          'getClasses',
+          'handleClick',
+          'handleKeyPress',
+          'handlePress',
+          'buttonKeyPress',
+          'handleImageNotFoundError',
+        ],
       },
       description: {
         component: `
@@ -66,6 +74,7 @@ ${getBasicExampleBlock('BmbUserImageComponent')}
     buttonClick: DBmbGenericParamDesc.onButtonClick,
     buttonPress: DBmbGenericParamDesc.onButtonPress,
     onButtonKeyPress: DBmbGenericParamDesc.onButtonKeyPress,
+    imageNotFoundError: DBmbIconParamDesc.imageNotFoundError,
   },
   args: {
     image: 'https://picsum.photos/id/64/200/300',

@@ -31,7 +31,7 @@ export default {
   parameters: {
     docs: {
       controls: {
-        exclude: ['handleClick'],
+        exclude: ['handleClick', 'handleImageNotFoundError'],
       },
       description: {
         component: `
@@ -84,6 +84,7 @@ ${getContainerButtonComponentDescription({
     isDisabled: DBmbGenericParamDesc.disabled,
     isError: DBmbContainerButton.isError,
     getClickButton: DBmbContainerButton.getClickButton,
+    imageNotFoundError: DBmbIconParamDesc.imageNotFoundError,
   },
   args: {
     componentTitle: 'Title container button',

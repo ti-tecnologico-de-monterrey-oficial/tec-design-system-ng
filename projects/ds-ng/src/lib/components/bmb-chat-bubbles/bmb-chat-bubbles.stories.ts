@@ -7,10 +7,7 @@ import {
   getSpecialSpecifications,
   RELEVANT_TITLE,
 } from '../../utils/doc/utils';
-import {
-  getOnClickParam,
-  getOnEventParam,
-} from '../../utils/doc/parameterDescriptions';
+import { getOnEventParam } from '../../utils/doc/parameterDescriptions';
 import { RouterTestingModule } from '@angular/router/testing';
 import { CommonModule } from '@angular/common';
 
@@ -23,14 +20,6 @@ Use "getAction" instead.
 const IMPORTANT_DESCRIPTION: string = `${RELEVANT_TITLE.important}
 The event only returns a signal to indicates the click event.
 `;
-const getOnClickAndImportantParam = (
-  elementName: string,
-  additionalDescription: string,
-) =>
-  getOnClickParam(
-    getOnEvent(elementName, additionalDescription),
-    `<br/><br/>${IMPORTANT_DESCRIPTION}`,
-  );
 
 export default {
   title: 'Components/Containers/AI Chat Bubble/AI Chat bubble (deprecated)',
@@ -52,6 +41,9 @@ export default {
           'handleRepeat',
           'handleVoice',
           'iconBotDefault',
+          'testId',
+          'isFeedbackAction',
+          'normalize',
 
           // internal logic
           'gptActiveIcons',
@@ -124,6 +116,15 @@ ${getSpecialSpecifications(`### ${IMPORTANT_DESCRIPTION}`, { isSubStory: true })
         category: 'Properties',
         defaultValue: { summary: 'false' },
         type: { summary: 'boolean' },
+      },
+    },
+    userActiveIcons: {
+      control: { type: 'object' },
+      description: 'Configures the actions displayed for user messages.',
+      table: {
+        category: 'Properties',
+        defaultValue: { summary: '{ copy: { visible: true } }' },
+        type: { summary: 'BmbChatUserActionConfig' },
       },
     },
     isThinking: {
@@ -209,6 +210,45 @@ ${DEPRECATED_DESC}`,
 type Story = StoryObj<BmbChatBubblesComponent>;
 
 export const Default: Story = {};
+
+export const UserMessageWithCopy: Story = {
+  args: {
+    message: {
+      id: 'user-message-copy',
+      isUserMessage: true,
+      userProfile: 'https://picsum.photos/id/64/200/300',
+      type: 'text',
+      content: {
+        text: '¿Puedes compartir esta pregunta en otro canal?',
+      },
+      time: new Date(),
+    },
+    userActiveIcons: { copy: { visible: true } },
+  },
+  decorators: [
+    (story) => ({
+      ...story(),
+      styles: [
+        `
+          :host {
+            display: block;
+            min-height: 12rem;
+            padding: 2rem;
+          }
+        `,
+      ],
+    }),
+  ],
+  parameters: {
+    docs: {
+      description: {
+        story: `Mensaje de usuario para validar la acción de copiar.
+
+En escritorio, coloca el cursor sobre la burbuja para mostrar el icono. En dispositivos táctiles, selecciona la burbuja. Al copiar correctamente, el icono cambia a **check** durante tres segundos; si ocurre un error, cambia a **close**.`,
+      },
+    },
+  },
+};
 /*
 export const UserMsg: Story = {
   args: {

@@ -29,8 +29,8 @@ export const sidebarOptions: SidebarElement[][] = [
         {
           id: 3,
           icon: 'table',
-          title: 'Table HTML',
-          link: '/table-html',
+          title: 'Table main',
+          link: '/table-main',
         },
       ],
     },

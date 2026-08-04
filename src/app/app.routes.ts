@@ -29,6 +29,22 @@ export const routes: Routes = [
       ),
   },
   {
+    path: 'test-card-button',
+    title: 'Card Button Test',
+    loadComponent: () =>
+      import('./pages/templates/generic-card.component').then(
+        (component) => component.GenericCard,
+      ),
+  },
+  {
+    path: 'templates',
+    title: 'Generic Card Templates',
+    loadComponent: () =>
+      import('./pages/templates/generic-card.component').then(
+        (component) => component.GenericCard,
+      ),
+  },
+  {
     path: 'form-validator',
     title: 'Form Validator Test',
     loadComponent: () =>
@@ -109,12 +125,20 @@ export const routes: Routes = [
         (k) => k.TableLtsComponent,
       ),
   },
+  // {
+  //   path: 'table-html',
+  //   title: 'Table HTML',
+  //   loadComponent: () =>
+  //     import('./pages/table-html/table-html.component').then(
+  //       (l) => l.TableHtmlComponent,
+  //     ),
+  // },
   {
-    path: 'table-html',
-    title: 'Table HTML',
+    path: 'table-main',
+    title: 'Table TEST',
     loadComponent: () =>
-      import('./pages/table-html/table-html.component').then(
-        (l) => l.TableHtmlComponent,
+      import('./pages/table-main/table-main.component').then(
+        (ll) => ll.TableMainComponent,
       ),
   },
   {
@@ -176,6 +200,14 @@ export const routes: Routes = [
     title: 'Menu',
     loadComponent: () =>
       import('./pages/menu/menu.component').then((t) => t.MenuPageComponent),
+  },
+  {
+    path: 'avatar',
+    title: 'Avatar List',
+    loadComponent: () =>
+      import('./pages/avatars/avatars.component').then(
+        (t) => t.AvatarsComponent,
+      ),
   },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
 ];

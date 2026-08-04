@@ -1,4 +1,9 @@
-<section class="bmb_chat-bubble" [attr.data-automation-id]="testId()">
+<section
+  class="bmb_chat-bubble"
+  [class.bmb_chat-bubble-selected]="isSelected()"
+  [attr.data-automation-id]="testId()"
+  (click)="selectMessage()"
+>
   <section class="bmb_chat-bubble-main">
     <div
       class="bmb_chat-bubble-main-info"
@@ -35,6 +40,7 @@
       </div>
       <div class="bmb_chat-bubble-msg-container">
         <div
+          #messageContent
           class="bmb_chat-bubble-msg"
           [attr.data-testid]="testId() + '-message'"
           [ngClass]="{
@@ -108,6 +114,30 @@
           }"
         >
           @if (message().isUserMessage) {
+            <div
+              class="bmb_chat-bubble-extra-container bmb_chat-bubble-extra-container-user"
+              [class.is-copy-result-container]="copyState() !== 'idle'"
+            >
+              @for (action of userActions(); track action.key) {
+                <bmb-icon
+                  class="bmb_chat-bubble-extra-icon"
+                  [icon]="getActionIcon(action.key, action.icon)"
+                  [isFill]="true"
+                  [size]="24"
+                  role="button"
+                  [attr.tabindex]="copyState() === 'idle' ? 0 : -1"
+                  [attr.aria-label]="action.label"
+                  [attr.aria-disabled]="copyState() !== 'idle'"
+                  [ngClass]="{
+                    'is-disabled': copyState() !== 'idle',
+                    'is-copy-result': copyState() !== 'idle'
+                  }"
+                  (click)="handleAction(action.key, $event)"
+                  (keydown.enter)="handleAction(action.key, $event)"
+                  (keydown.space)="handleAction(action.key, $event)"
+                />
+              }
+            </div>
             <p class="bmb_chat-bubble-extra-time">
               {{ message().time | date: 'hh:mm a' }}
             </p>
@@ -118,17 +148,26 @@
                   @if (iconsState()[action.key].visible) {
                     <bmb-icon
                       class="bmb_chat-bubble-extra-icon"
-                      [icon]="action.icon"
+                      [icon]="getActionIcon(action.key, action.icon)"
                       [isFill]="true"
                       [size]="24"
                       role="button"
-                      tabindex="0"
+                      [attr.tabindex]="
+                        action.key === 'copy' && copyState() !== 'idle' ? -1 : 0
+                      "
                       (click)="handleAction(action.key, $event)"
                       (keydown.enter)="handleAction(action.key, $event)"
                       (keydown.space)="handleAction(action.key, $event)"
                       [attr.aria-label]="action.label"
+                      [attr.aria-disabled]="
+                        action.key === 'copy' && copyState() !== 'idle'
+                      "
                       [ngClass]="{
-                        'is-active': iconsState()[action.key].active
+                        'is-active': iconsState()[action.key].active,
+                        'is-disabled':
+                          action.key === 'copy' && copyState() !== 'idle',
+                        'is-copy-result':
+                          action.key === 'copy' && copyState() !== 'idle'
                       }"
                     ></bmb-icon>
                   }

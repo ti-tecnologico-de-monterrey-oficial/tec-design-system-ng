@@ -8,6 +8,7 @@ import {
 import { CommonModule } from '@angular/common';
 import { IBmbTargetLink, IBmbUserImageSize } from '../../types';
 import { BmbCheckExternalLinkButtonComponent } from '../bmb-check-external-link-button/bmb-check-external-link-button.component';
+import { handleImageNotFoundError } from '../../utils/utils';
 
 @Component({
   selector: 'bmb-user-image',
@@ -29,6 +30,7 @@ export class BmbUserImageComponent {
   buttonPress = output<MouseEvent>();
   buttonClick = output<MouseEvent>();
   buttonKeyPress = output<KeyboardEvent>();
+  imageNotFoundError = output<void>();
 
   getClasses(
     principalClassName: string,
@@ -56,5 +58,10 @@ export class BmbUserImageComponent {
 
   handleKeyPress(event: KeyboardEvent): void {
     this.buttonKeyPress.emit(event);
+  }
+
+  handleImageNotFoundError(imageName: string, event: Event): void {
+    handleImageNotFoundError(imageName, event);
+    this.imageNotFoundError.emit();
   }
 }

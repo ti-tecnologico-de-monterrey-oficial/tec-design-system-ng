@@ -74,7 +74,7 @@
   *ngFor="let dialog of projectedContents(); trackBy: trackByDialogId"
 >
   <bmb-projected-content
-    [id]="dialog.id ?? null"
+    [contentId]="dialog.id ?? ''"
     [content]="dialog.content ?? null"
     [htmlRef]="dialog.targetRef ?? null"
     [mode]="dialog.mode ?? 'outside'"

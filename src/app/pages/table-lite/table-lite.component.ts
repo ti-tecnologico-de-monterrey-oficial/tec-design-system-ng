@@ -15,6 +15,7 @@ import { CommonModule } from '@angular/common';
   selector: 'app-table-lite',
   standalone: true,
   imports: [
+    CommonModule,
     BmbIconComponent,
     BmbTableLiteComponent,
     CommonModule,
