@@ -17,8 +17,29 @@ import {
   getSpecialSpecifications,
 } from '../../utils/doc/utils';
 
+const templateVariants = [
+  'Informative',
+  'Flat',
+  'Actions',
+  'Home',
+  'Empty',
+];
+
+const getTemplateVariantsSection = (): string => `
+<h2>Template variants</h2>
+<p>
+  The Generic card documentation includes reusable examples built with
+  <code>BmbCardComponent</code>, Bamboo components and Bamboo layout directives.
+  Typography is configured through Bamboo component inputs.
+  Every template provides Desktop and Mobile previews with copy-ready HTML.
+</p>
+<ul>
+  ${templateVariants.map((template) => `<li>${template}</li>`).join('')}
+</ul>`;
+
 const meta: Meta<BmbCardComponent> = {
   title: 'Components/Containers/Generic card',
+  tags: ['!autodocs'],
   component: BmbCardComponent,
   subcomponents: {
     BmbCardFooterComponent,
@@ -62,6 +83,7 @@ ${getArchitectureSection(`<section class="bmb_card" <!-- conditional class bmb_r
     <ng-content></ng-content>
   </footer>
 </section>`)}
+${getTemplateVariantsSection()}
 ${getSpecialSpecifications(getEmptyStateMessage(), { showAdditionalBlockquote: true })}
 ${getBasicExampleBlock('BmbCardComponent')}
         `,
@@ -169,7 +191,7 @@ export default meta;
 
 type Story = StoryObj<BmbCardComponent>;
 
-export const OneItem: Story = {
+export const Default: Story = {
   args: {},
   render: (args) => ({
     props: args,

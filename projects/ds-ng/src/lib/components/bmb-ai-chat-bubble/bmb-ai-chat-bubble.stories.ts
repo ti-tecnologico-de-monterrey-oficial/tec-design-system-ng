@@ -14,6 +14,7 @@ import {
   getSpecialSpecifications,
   RELEVANT_TITLE,
 } from '../../utils/doc/utils';
+import { DBmbIconParamDesc } from '../../utils/doc/parameterDescriptions';
 
 const GET_ACTION_DESCRIPTION: string = `
 ${getAlertBlockquote(
@@ -165,6 +166,8 @@ Available actions:
         },
       },
     },
+
+    imageNotFoundError: DBmbIconParamDesc.imageNotFoundError,
 
     getAction: {
       control: false,

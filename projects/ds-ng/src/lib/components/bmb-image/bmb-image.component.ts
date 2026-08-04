@@ -15,6 +15,7 @@ import { IBmbMediaCardLoading } from '../bmb-media-card/bmb-media-card.component
 import { BmbImageItem } from './types';
 import { BmbButtonIconComponent } from '../bmb-button-icon/bmb-button-icon.component';
 import { TranslatePipe } from '../../pipes/translations';
+import { handleImageNotFoundError } from '../../utils/utils';
 
 export interface BmbImageHeight {
   s: string;
@@ -60,6 +61,7 @@ export class BmbImageComponent implements OnDestroy {
   enableCursorPointer = input<boolean>(false);
 
   imageClick = output<{ img: BmbImageItem; index: number; cbParams: any }>();
+  imageNotFoundError = output<void>();
 
   animationClass = computed(() => `bmb-carousel-${this.animation()}`);
 
@@ -74,6 +76,45 @@ export class BmbImageComponent implements OnDestroy {
   private autoplayTimer?: ReturnType<typeof setInterval>;
   autoplay = input<boolean>(false);
   autoplayInterval = input<number>(5000);
+
+  currentImage = computed(() => {
+    const carouselImages = this.images();
+
+    if (
+      this.isCarousel() &&
+      carouselImages &&
+      carouselImages.length > 0 &&
+      carouselImages[this.currentIndex()]
+    ) {
+      return carouselImages[this.currentIndex()];
+    }
+
+    return {
+      src: this.src(),
+      mobileSrc: this.mobileSrc(),
+      alt: this.alt(),
+    };
+  });
+
+  encodedURL = computed(() => {
+    if (this.avoidEncoding()) {
+      return this.currentImage().src || '';
+    }
+    return encodeURI(this.currentImage().src || '');
+  });
+
+  encodedMobileURL = computed(() => {
+    if (this.avoidEncoding()) {
+      return this.currentImage().mobileSrc || '';
+    }
+    return encodeURI(this.currentImage().mobileSrc || '');
+  });
+
+  carouselClass = computed(() => {
+    if (!this.isCarousel()) return '';
+
+    return `bmb_image-carousel-${this.animation()}`;
+  });
 
   constructor() {
     effect(
@@ -114,44 +155,11 @@ export class BmbImageComponent implements OnDestroy {
     );
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     if (this.autoplayTimer) {
       clearInterval(this.autoplayTimer);
     }
   }
-
-  currentImage = computed(() => {
-    const carouselImages = this.images();
-
-    if (
-      this.isCarousel() &&
-      carouselImages &&
-      carouselImages.length > 0 &&
-      carouselImages[this.currentIndex()]
-    ) {
-      return carouselImages[this.currentIndex()];
-    }
-
-    return {
-      src: this.src(),
-      mobileSrc: this.mobileSrc(),
-      alt: this.alt(),
-    };
-  });
-
-  encodedURL = computed(() => {
-    if (this.avoidEncoding()) {
-      return this.currentImage().src || '';
-    }
-    return encodeURI(this.currentImage().src || '');
-  });
-
-  encodedMobileURL = computed(() => {
-    if (this.avoidEncoding()) {
-      return this.currentImage().mobileSrc || '';
-    }
-    return encodeURI(this.currentImage().mobileSrc || '');
-  });
 
   next(): void {
     if (!this.isCarousel()) return;
@@ -201,13 +209,7 @@ export class BmbImageComponent implements OnDestroy {
     }
   }
 
-  carouselClass = computed(() => {
-    if (!this.isCarousel()) return '';
-
-    return `bmb_image-carousel-${this.animation()}`;
-  });
-
-  getImageStyle(index: number) {
+  getImageStyle(index: number): object {
     const position = index - this.currentIndex();
 
     if (this.animation() === 'parallax') {
@@ -233,7 +235,12 @@ export class BmbImageComponent implements OnDestroy {
     return {};
   }
 
-  getImageContainerStyle() {
+  getImageContainerStyle(): object {
     return {};
+  }
+
+  handleImageNotFoundError(imageName: string, event: Event): void {
+    handleImageNotFoundError(imageName, event);
+    this.imageNotFoundError.emit();
   }
 }

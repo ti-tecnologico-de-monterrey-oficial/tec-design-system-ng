@@ -15,11 +15,13 @@
           <source [srcset]="encodedMobileURL()" />
         }
         <img
+          [src]="encodedURL()"
           [srcset]="encodedURL()"
           [alt]="alt()"
           [loading]="loading()"
           class="bmb_image-figure-image"
           [style]="{ 'object-fit': objectFit() }"
+          (error)="handleImageNotFoundError(encodedURL(), $event)"
         />
       </picture>
     </figure>
@@ -37,6 +39,7 @@
           <source [srcset]="encodedMobileURL()" />
         }
         <img
+          [src]="encodedURL()"
           [srcset]="encodedURL()"
           [alt]="alt()"
           [loading]="loading()"
@@ -50,6 +53,7 @@
             'object-fit': objectFit(),
             cursor: enableCursorPointer() ? 'pointer' : 'default'
           }"
+          (error)="handleImageNotFoundError(encodedURL(), $event)"
         />
       </picture>
     </figure>
@@ -95,6 +99,7 @@
             (click)="handleImageClick(img, $index)"
             (keydown)="handleImageKeyDown($event, img, $index)"
             [style]="{ 'object-fit': objectFit() }"
+            (error)="handleImageNotFoundError(img.src, $event)"
           />
         </picture>
       </figure>

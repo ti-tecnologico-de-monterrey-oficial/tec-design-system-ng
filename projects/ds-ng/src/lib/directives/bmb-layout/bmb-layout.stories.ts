@@ -129,8 +129,8 @@ ${RELEVANT_TITLE.configuration}
       table: {
         category: 'Properties',
         defaultValue: { summary: 'row' },
-        type: { summary: 'ILayoutFlow | ILayoutFlowResponsive' }
-      }
+        type: { summary: 'ILayoutFlow | ILayoutFlowResponsive' },
+      },
     },
     avoidRowWrap: {
       control: { type: 'boolean' },

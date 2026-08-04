@@ -44,9 +44,11 @@ export class BmbLayoutDirective {
     if (typeof flow === 'string') {
       classes.push(`${baseClassName}-flow-${flow}`);
     } else {
-      (Object.keys(flow) as (keyof ILayoutFlowResponsive)[]).forEach((device) => {
-        classes.push(`${baseClassName}-flow-${device}-${flow[device]}`);
-      });
+      (Object.keys(flow) as (keyof ILayoutFlowResponsive)[]).forEach(
+        (device) => {
+          classes.push(`${baseClassName}-flow-${device}-${flow[device]}`);
+        },
+      );
     }
     if (this.dynamicCols()) classes.push(`${baseClassName}-smart`);
     if (this.isContainerQuery()) classes.push(`${baseClassName}-container`);

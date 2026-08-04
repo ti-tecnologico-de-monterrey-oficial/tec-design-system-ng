@@ -15,7 +15,26 @@ export * from '../components/bmb-tables/bmb-tables.interface';
 export * from '../components/bmb-image/types';
 export * from './colors';
 
-export type SizeNames = 'xs' | 's' | 'm' | 'l' | 'xl' | 'xxl' | 'none' | 'auto';
+export type SizeNames =
+  | 'xs'
+  | 's'
+  | 'm'
+  | 'l'
+  | 'xl'
+  | 'xxl'
+  | 'none'
+  | 'auto'
+  | '0'
+  | '1'
+  | '2'
+  | '3'
+  | '4'
+  | '5'
+  | '6'
+  | '7'
+  | '8'
+  | '9'
+  | '10';
 export type IButtonAppearance =
   | 'primary'
   | 'secondary-filled'
