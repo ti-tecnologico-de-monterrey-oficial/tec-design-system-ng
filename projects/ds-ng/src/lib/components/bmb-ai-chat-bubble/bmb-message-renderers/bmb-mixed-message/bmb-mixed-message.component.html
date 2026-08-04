@@ -8,5 +8,6 @@
     [src]="message().content.imageUrl"
     [attr.alt]="message().content.text || 'Message image'"
     loading="lazy"
+    (error)="handleImageNotFoundError(message().content.imageUrl, $event)"
   />
 </div>

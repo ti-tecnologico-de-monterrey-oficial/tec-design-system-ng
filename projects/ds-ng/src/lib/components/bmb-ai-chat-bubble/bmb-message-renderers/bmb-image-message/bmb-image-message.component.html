@@ -4,5 +4,6 @@
     [src]="message().content.imageUrl"
     [alt]="message().content.alt || 'Chat image'"
     loading="lazy"
+    (error)="handleImageNotFoundError(message().content.imageUrl, $event)"
   />
 </div>

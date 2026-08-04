@@ -7,10 +7,7 @@ import {
   getSpecialSpecifications,
   RELEVANT_TITLE,
 } from '../../utils/doc/utils';
-import {
-  getOnClickParam,
-  getOnEventParam,
-} from '../../utils/doc/parameterDescriptions';
+import { getOnEventParam } from '../../utils/doc/parameterDescriptions';
 import { RouterTestingModule } from '@angular/router/testing';
 import { CommonModule } from '@angular/common';
 
@@ -23,14 +20,6 @@ Use "getAction" instead.
 const IMPORTANT_DESCRIPTION: string = `${RELEVANT_TITLE.important}
 The event only returns a signal to indicates the click event.
 `;
-const getOnClickAndImportantParam = (
-  elementName: string,
-  additionalDescription: string,
-) =>
-  getOnClickParam(
-    getOnEvent(elementName, additionalDescription),
-    `<br/><br/>${IMPORTANT_DESCRIPTION}`,
-  );
 
 export default {
   title: 'Components/Containers/AI Chat Bubble/AI Chat bubble (deprecated)',
@@ -52,6 +41,9 @@ export default {
           'handleRepeat',
           'handleVoice',
           'iconBotDefault',
+          'testId',
+          'isFeedbackAction',
+          'normalize',
 
           // internal logic
           'gptActiveIcons',
