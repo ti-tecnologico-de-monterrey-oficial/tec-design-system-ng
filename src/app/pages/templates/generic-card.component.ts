@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import {
   BmbBadgeComponent,
+  BmbBoxIconComponent,
   BmbButtonDirective,
   BmbCardComponent,
   BmbCardContentComponent,
@@ -18,6 +19,7 @@ import { BmbTitleComponent } from '../../../../projects/ds-ng/src/lib/components
   standalone: true,
   imports: [
     BmbBadgeComponent,
+    BmbBoxIconComponent,
     BmbButtonDirective,
     BmbCardComponent,
     BmbCardContentComponent,
