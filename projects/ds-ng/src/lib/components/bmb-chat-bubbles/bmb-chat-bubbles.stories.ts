@@ -118,6 +118,15 @@ ${getSpecialSpecifications(`### ${IMPORTANT_DESCRIPTION}`, { isSubStory: true })
         type: { summary: 'boolean' },
       },
     },
+    userActiveIcons: {
+      control: { type: 'object' },
+      description: 'Configures the actions displayed for user messages.',
+      table: {
+        category: 'Properties',
+        defaultValue: { summary: '{ copy: { visible: true } }' },
+        type: { summary: 'BmbChatUserActionConfig' },
+      },
+    },
     isThinking: {
       control: { type: 'boolean' },
       description:
@@ -201,6 +210,45 @@ ${DEPRECATED_DESC}`,
 type Story = StoryObj<BmbChatBubblesComponent>;
 
 export const Default: Story = {};
+
+export const UserMessageWithCopy: Story = {
+  args: {
+    message: {
+      id: 'user-message-copy',
+      isUserMessage: true,
+      userProfile: 'https://picsum.photos/id/64/200/300',
+      type: 'text',
+      content: {
+        text: '¿Puedes compartir esta pregunta en otro canal?',
+      },
+      time: new Date(),
+    },
+    userActiveIcons: { copy: { visible: true } },
+  },
+  decorators: [
+    (story) => ({
+      ...story(),
+      styles: [
+        `
+          :host {
+            display: block;
+            min-height: 12rem;
+            padding: 2rem;
+          }
+        `,
+      ],
+    }),
+  ],
+  parameters: {
+    docs: {
+      description: {
+        story: `Mensaje de usuario para validar la acción de copiar.
+
+En escritorio, coloca el cursor sobre la burbuja para mostrar el icono. En dispositivos táctiles, selecciona la burbuja. Al copiar correctamente, el icono cambia a **check** durante tres segundos; si ocurre un error, cambia a **close**.`,
+      },
+    },
+  },
+};
 /*
 export const UserMsg: Story = {
   args: {

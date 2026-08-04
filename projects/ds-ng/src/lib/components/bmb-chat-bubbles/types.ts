@@ -47,6 +47,9 @@ export interface IBmbChatActionEvent {
 }
 
 export type BmbChatGptIconInput = boolean | IBmbChatGptIconState;
+export type BmbChatUserActionConfig = Partial<
+  Record<TChatAction, BmbChatGptIconInput>
+>;
 
 export interface IBmbChatGptIcons {
   repeat: IBmbChatGptIconState;

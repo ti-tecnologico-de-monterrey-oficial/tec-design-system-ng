@@ -42,6 +42,7 @@ describe('BmbProjectionContentService', () => {
 
     expect(typeof id).toBe('string');
     expect(service.isContentOpen(id)).toBe(true);
+    expect(service.isThereContentProjected()).toBe(true);
     expect(projected.length).toBe(1);
     expect(projected[0]).toEqual(
       jasmine.objectContaining({
@@ -59,9 +60,23 @@ describe('BmbProjectionContentService', () => {
     expect(service.isThereContentProjected()).toBe(true);
 
     service.closeContent();
-
     expect(service.getProjectedContent()).toEqual([]);
     expect(service.isThereContentProjected()).toBe(false);
+  });
+
+  it('debe agregar cada contenido nuevo a la lista', () => {
+    const content1: IBmbProjectionContent = { content: null, mode: 'over' };
+    const content2: IBmbProjectionContent = { content: null, mode: 'partial' };
+
+    service.openContent(content1);
+    const firstId = service.getProjectedContent()[0].id;
+
+    service.openContent(content2);
+    const projected = service.getProjectedContent();
+    const secondId = projected[1].id;
+
+    expect(firstId).not.toEqual(secondId);
+    expect(projected.length).toBe(2);
   });
 
   it('debe cerrar contenido proyectado por id y mantener contenidos restantes', () => {
