@@ -111,27 +111,30 @@ export class BmbFilterCardComponent implements OnInit {
   @ViewChild('modalTemplate') modalTemplate!: TemplateRef<any>;
 
   constructor(private modalService: BmbNativeModalService) {
-    effect(() => {
-      const visMap = this.visibleControlIds();
-      if (visMap) {
-        visMap.forEach((visible, name) => {
-          if (!visible) this.clearControl(name);
-        });
-      }
+    effect(
+      () => {
+        const visMap = this.visibleControlIds();
+        if (visMap) {
+          visMap.forEach((visible, name) => {
+            if (!visible) this.clearControl(name);
+          });
+        }
 
-      this.dynamicOptionsMap().forEach((options, name) => {
-        const current = this.filterForm.get(name)?.value;
-        if (!current || (Array.isArray(current) && current.length === 0))
-          return;
-        const validValues = options.map((o) =>
-          typeof o === 'string' ? o : o.value,
-        );
-        const isValid = Array.isArray(current)
-          ? current.every((v: string) => validValues.includes(v))
-          : validValues.includes(current);
-        if (!isValid) this.clearControl(name);
-      });
-    });
+        this.dynamicOptionsMap().forEach((options, name) => {
+          const current = this.filterForm.get(name)?.value;
+          if (!current || (Array.isArray(current) && current.length === 0))
+            return;
+          const validValues = options.map((o) =>
+            typeof o === 'string' ? o : o.value,
+          );
+          const isValid = Array.isArray(current)
+            ? current.every((v: string) => validValues.includes(v))
+            : validValues.includes(current);
+          if (!isValid) this.clearControl(name);
+        });
+      },
+      { allowSignalWrites: true },
+    );
   }
 
   ngOnInit(): void {
@@ -217,13 +220,13 @@ export class BmbFilterCardComponent implements OnInit {
       actions: [
         {
           label: this.primaryBtnLabel(),
-          action: this.handleSubmit.bind(this),
+          action: () => this.handleSubmit(),
           appearance: 'primary',
           buttonName: this.primaryBtnLabel(),
         },
         {
           label: this.secondaryBtnLabel(),
-          action: this.onReset.bind(this),
+          action: () => this.clearAllFilters(),
           appearance: 'secondary-outlined',
           buttonName: this.secondaryBtnLabel(),
         },
@@ -321,7 +324,7 @@ export class BmbFilterCardComponent implements OnInit {
     this.applyFilters.emit(formData);
   }
 
-  onReset() {
+  clearAllFilters() {
     this.filterForm.reset();
     this.filterValues.set({});
     Object.keys(this.storedValues).forEach((name) => {
@@ -342,6 +345,10 @@ export class BmbFilterCardComponent implements OnInit {
       };
     });
     this.resetFilters.emit();
+  }
+
+  isTagSelected(name: string): boolean {
+    return this.filterValues()[name] === true;
   }
 
   private ruleMatches(

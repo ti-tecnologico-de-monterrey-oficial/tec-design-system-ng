@@ -31,7 +31,8 @@ export default {
         exclude: [
           'getFormControl',
           'onControlChange',
-          'onReset',
+          'clearAllFilters',
+          'isTagSelected',
           'onSubmit',
           'onValueChange',
           'openModalComponent',

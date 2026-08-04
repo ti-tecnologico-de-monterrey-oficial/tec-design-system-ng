@@ -213,7 +213,7 @@ describe('BmbFilterCardComponent', () => {
       expect(component.isSectionVisible(deptosSection)).toBeFalse();
     });
 
-    it('should reset visibility when onReset is called', () => {
+    it('should reset visibility when clearAllFilters is called', () => {
       const fixture = TestBed.createComponent(BmbFilterCardComponent);
       const component = fixture.componentInstance;
       fixture.componentRef.setInput('controlTypes', baseControlTypes);
@@ -226,7 +226,7 @@ describe('BmbFilterCardComponent', () => {
       );
       fixture.detectChanges();
 
-      component.onReset();
+      component.clearAllFilters();
       fixture.detectChanges();
 
       expect(component.isControlVisible('tipoEval')).toBeTrue();
@@ -588,6 +588,29 @@ describe('BmbFilterCardComponent', () => {
       component.controlChange({ name: 'tag1', type: 'tag' }, null);
       expect(component.filterForm.get('tag1')?.value).toBeTrue();
       expect(component.storedValues['tag1'].checked).toBeTrue();
+      expect(component.isTagSelected('tag1')).toBeTrue();
+    });
+
+    it('should clear tag selection with clearAllFilters', () => {
+      const fixture = TestBed.createComponent(BmbFilterCardComponent);
+      const component = fixture.componentInstance;
+      fixture.componentRef.setInput('controlTypes', [
+        {
+          title: 'Tags',
+          control: [
+            { name: 'tag-1', type: 'tag', label: 'Tag 1', checked: true },
+            { name: 'tag-2', type: 'tag', label: 'Tag 2', checked: true },
+          ],
+        },
+      ]);
+      fixture.detectChanges();
+
+      expect(component.isTagSelected('tag-1')).toBeTrue();
+      component.clearAllFilters();
+
+      expect(component.isTagSelected('tag-1')).toBeFalse();
+      expect(component.isTagSelected('tag-2')).toBeFalse();
+      expect(component.storedValues['tag-1'].checked).toBeFalse();
     });
 
     it('should handle multiple radial inputs with the same name in ngOnInit', () => {
@@ -655,13 +678,13 @@ describe('BmbFilterCardComponent', () => {
       expect(component.filterForm.get('chk')).toBeNull();
     });
 
-    it('should explicitly emit reset event on onReset', () => {
+    it('should explicitly emit reset event on clearAllFilters', () => {
       const fixture = TestBed.createComponent(BmbFilterCardComponent);
       const component = fixture.componentInstance;
       const emitSpy = spyOn(component.resetFilters, 'emit');
       fixture.detectChanges();
 
-      component.onReset();
+      component.clearAllFilters();
       expect(emitSpy).toHaveBeenCalled();
     });
   });
