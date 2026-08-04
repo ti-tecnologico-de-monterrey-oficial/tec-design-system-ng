@@ -48,11 +48,13 @@
       />
     </span>
     <span class="bmb_text-editor-header-group bmb_text-editor-header-actions">
-      <input
-        id="BmbTextEditorColorExt"
-        type="color"
-        (change)="handleChange($event, 'foreColor')"
-        [title]="'text_editor.fore_color' | translate"
+      <bmb-action-icon
+        [style]="'color: var(--' + selectedColor() + ')'"
+        idElement="color"
+        icon="rectangle"
+        [iconSize]="24"
+        [tooltipText]="'text_editor.fore_color' | translate"
+        (buttonClick)="openPrompt('color', $event)"
       />
       <bmb-action-icon
         idElement="text_editor_text_format"
