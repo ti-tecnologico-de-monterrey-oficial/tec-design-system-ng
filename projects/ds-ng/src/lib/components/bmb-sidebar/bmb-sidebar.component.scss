@@ -1,3 +1,4 @@
+@use 'sass:math';
 @use '../../../assets/styles/base/fonts' as fonts;
 @use '../../../assets/styles/base/rem' as rem;
 @use '../../../assets/styles/base/mixins' as mixins;
@@ -8,7 +9,7 @@ $_max_width: rem.rem_calc(280);
 $_min_width: rem.rem_calc(88);
 
 @mixin sidebar-width {
-  @media (width <= #{rem.rem_calc(vars.$breakpoint_max_mobile/2)}) {
+  @media (width <= #{rem.rem_calc(math.div(vars.$breakpoint_max_mobile, 2))}) {
     width: 100%;
   }
 }

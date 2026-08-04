@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import {
   Component,
   computed,
@@ -9,7 +10,6 @@ import {
   ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import {
   BmbLayoutDirective,
