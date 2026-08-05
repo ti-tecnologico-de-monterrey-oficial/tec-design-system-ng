@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Meta, StoryFn, moduleMetadata } from '@storybook/angular';
 import { BmbOverlayComponent } from './bmb-overlay.component';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
-import { BmbButtonDirective } from '../../directives/bmb-button/button.directive';
+import { BmbButtonDirective } from '../../../directives/old/bmb-button/button.directive';
 import {
   getBasicExampleBlock,
   getGeneralComponentDescription,

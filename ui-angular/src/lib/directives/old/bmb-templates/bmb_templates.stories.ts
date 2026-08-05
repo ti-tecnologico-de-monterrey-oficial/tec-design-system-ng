@@ -1,5 +1,5 @@
 import { Meta, StoryFn, StoryObj } from '@storybook/angular';
-import { BmbSidebarComponent } from '../../../public-api';
+import { BmbSidebarComponent } from '../../../components/old/bmb-sidebar/bmb-sidebar.component';
 
 export default {
   title: 'Hidden/Templates',

@@ -9,7 +9,7 @@ import {
   getSpecialSpecifications,
 } from '@docs/utils/utils';
 import { BmbTableLiteComponent } from './bmb-table-lite.component';
-import { BmbBadgeComponent } from '../bmb-badge/bmb-badge.component';
+import { BmbBadgeComponent } from '../../bmb-badge/bmb-badge.component';
 
 const additionalBlock: string = `
   @ViewChild('infoTemplate') infoTemplate!: TemplateRef<any>;

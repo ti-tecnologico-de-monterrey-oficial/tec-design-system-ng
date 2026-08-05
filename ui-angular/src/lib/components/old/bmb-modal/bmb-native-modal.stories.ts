@@ -1,5 +1,5 @@
 import { applicationConfig, Meta, StoryObj } from '@storybook/angular';
-import { BmbNativeModalService } from '../../services/modal/native-modal.service';
+import { BmbNativeModalService } from '../../../services/old/modal/native-modal.service';
 import {
   Component,
   computed,
@@ -8,7 +8,7 @@ import {
   signal,
   TemplateRef,
 } from '@angular/core';
-import { BmbButtonDirective } from '../../directives/bmb-button/button.directive';
+import { BmbButtonDirective } from '../../../directives/old/bmb-button/button.directive';
 import {
   IBmbActionButton,
   IBmbNativeModalSize,

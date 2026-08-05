@@ -6,17 +6,17 @@ import {
   getBasicExampleBlock,
   getGeneralDescription,
 } from '@docs/utils/utils';
+import { BmbVerticalLayoutItemDirective } from './bmb-vertical-layout-item.directive';
+import { BmbIconStatusComponent } from '../../../../components/old/bmb-icon-status/bmb-icon-status.component';
+import { BmbInnerHeaderComponent } from '../../../../components/old/bmb-inner-header/bmb-inner-header.component';
 import {
-  BmbIconStatusComponent,
-  BmbInnerHeaderComponent,
-  BmbVerticalLayoutItemDirective,
   BmbCardComponent,
   BmbCardContentComponent,
-  BmbProgressBarComponent,
-  BmbChevronTitleSelectorComponent,
-  BmbLayoutDirective,
-  BmbLayoutItemDirective,
-} from '../../../../public-api';
+} from '../../../../components/old/bmb-card/bmb-card.component';
+import { BmbProgressBarComponent } from '../../../../components/old/bmb-progress-bar/bmb-progress-bar.component';
+import { BmbChevronTitleSelectorComponent } from '../../../../components/old/bmb-chevron-title-selector/bmb-chevron-title-selector.component';
+import { BmbLayoutDirective } from '../bmb-layout.directive';
+import { BmbLayoutItemDirective } from '../bmb-layout-item.directive';
 
 export default {
   title: 'Foundations/Layouts/Vertical layout container',

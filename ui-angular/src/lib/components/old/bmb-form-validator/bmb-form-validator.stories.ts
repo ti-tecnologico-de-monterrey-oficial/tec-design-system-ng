@@ -17,16 +17,14 @@ import {
   getOnEvent,
   getStoryLink,
 } from '@docs/utils/utils';
-import {
-  BmbButtonDirective,
-  BmbCheckboxComponent,
-  BmbDatepickerComponent,
-  BmbDateRangeComponent,
-  BmbDropdownComponent,
-  BmbInputComponent,
-  BmbInputPhoneNumberComponent,
-  BmbInputTagsComponent,
-} from '../../../public-api';
+import { BmbButtonDirective } from '../../../directives/old/bmb-button/button.directive';
+import { BmbCheckboxComponent } from '../bmb-checkbox/bmb-checkbox.component';
+import { BmbDatepickerComponent } from '../bmb-datepicker/bmb-datepicker.component';
+import { BmbDateRangeComponent } from '../bmb-date-range/bmb-date-range.component';
+import { BmbDropdownComponent } from '../bmb-dropdown/bmb-dropdown.component';
+import { BmbInputComponent } from '../bmb-input/bmb-input.component';
+import { BmbInputPhoneNumberComponent } from '../bmb-input-phone-number/bmb-input-phone-number.component';
+import { BmbInputTagsComponent } from '../bmb-input-tags/bmb-input-tags.component';
 import {
   getFormControlConsiderations,
   getFormControlDescription,

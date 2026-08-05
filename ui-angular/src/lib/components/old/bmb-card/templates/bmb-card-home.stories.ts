@@ -2,10 +2,10 @@ import { Meta, moduleMetadata } from '@storybook/angular';
 import { BmbCardComponent, BmbCardContentComponent, BmbCardHeaderComponent } from '../bmb-card.component';
 import { BmbIconComponent } from '../../bmb-icon/bmb-icon.component';
 import { BmbTitleComponent } from '../../bmb-title/bmb-title.component';
-import { BmbLayoutDirective } from '../../../directives/bmb-layout/bmb-layout.directive';
-import { BmbLayoutItemDirective } from '../../../directives/bmb-layout/bmb-layout-item.directive';
-import { BmbVerticalLayoutDirective } from '../../../directives/bmb-layout/bmb-vertical-layout/bmb-vertical-layout.directive';
-import { BmbVerticalLayoutItemDirective } from '../../../directives/bmb-layout/bmb-vertical-layout/bmb-vertical-layout-item.directive';
+import { BmbLayoutDirective } from '../../../../directives/old/bmb-layout/bmb-layout.directive';
+import { BmbLayoutItemDirective } from '../../../../directives/old/bmb-layout/bmb-layout-item.directive';
+import { BmbVerticalLayoutDirective } from '../../../../directives/old/bmb-layout/bmb-vertical-layout/bmb-vertical-layout.directive';
+import { BmbVerticalLayoutItemDirective } from '../../../../directives/old/bmb-layout/bmb-vertical-layout/bmb-vertical-layout-item.directive';
 import { staticCardStory } from './bmb-card-template-story.utils';
 
 const meta: Meta<BmbCardComponent> = {

@@ -10,7 +10,7 @@ import {
   getStoryLink,
   RELEVANT_TITLE,
 } from '@docs/utils/utils';
-import * as tabStory from '../../components/bmb-tabs/bmb-tabs.component.stories';
+import * as tabStory from '../../../components/old/bmb-tabs/bmb-tabs.component.stories';
 
 const TITLE = {
   tab: getStoryLink({ title: tabStory.default.title! }),

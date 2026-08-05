@@ -6,7 +6,7 @@ import { CommonModule } from '@angular/common';
 import {
   BmbCardComponent,
   BmbCardContentComponent,
-} from '../../components/bmb-card/bmb-card.component';
+} from '../../../components/old/bmb-card/bmb-card.component';
 import {
   attributes,
   getAuxiliaryDescription,

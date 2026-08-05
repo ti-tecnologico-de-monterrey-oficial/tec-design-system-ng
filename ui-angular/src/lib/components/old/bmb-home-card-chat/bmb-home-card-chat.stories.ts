@@ -9,10 +9,10 @@ import {
   RELEVANT_TITLE,
 } from '@docs/utils/utils';
 import { CommonModule } from '@angular/common';
-import { BmbTopBarComponent } from '../../components/bmb-top-bar/bmb-top-bar.component';
-import { BmbSidebarComponent } from '../../components/bmb-sidebar/bmb-sidebar.component';
-import { BmbHomeCardChatComponent } from '../../components/bmb-home-card-chat/bmb-home-card-chat.component';
-import { IBmbChatActionEvent, IBmbChatMessage } from '../../types';
+import { BmbTopBarComponent } from '../bmb-top-bar/bmb-top-bar.component';
+import { BmbSidebarComponent } from '../bmb-sidebar/bmb-sidebar.component';
+import { BmbHomeCardChatComponent } from './bmb-home-card-chat.component';
+import { IBmbChatActionEvent, IBmbChatMessage } from '../bmb-chat-bubbles/types';
 
 const CHAT_BEHAVIOR_DOC = `
 ### 💡 Dynamic Message Behavior

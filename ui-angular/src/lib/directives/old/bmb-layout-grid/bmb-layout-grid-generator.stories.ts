@@ -3,7 +3,7 @@ import {
   BmbLayoutGridDirective,
   BmbLayoutGridItemDirective,
 } from './bmb-layout-grid.directive';
-import { SizeNames } from '../../types';
+import { SizeNames } from '@shared/types/utils';
 import { Meta, moduleMetadata, StoryFn } from '@storybook/angular';
 import {
   attributes,
@@ -13,8 +13,8 @@ import {
   SANDBOX_TITLE,
 } from '@docs/utils/utils';
 import { CommonModule } from '@angular/common';
-import { BmbAccordionComponent } from '../../components/bmb-accordion/bmb-accordion.component';
-import { BmbActionIconComponent } from '../../components/bmb-action-icon/bmb-action-icon.component';
+import { BmbAccordionComponent } from '../../../components/old/bmb-accordion/bmb-accordion.component';
+import { BmbActionIconComponent } from '../../../components/old/bmb-action-icon/bmb-action-icon.component';
 import { BmbLayoutDirective } from '../bmb-layout/bmb-layout.directive';
 import { BmbLayoutItemDirective } from '../bmb-layout/bmb-layout-item.directive';
 

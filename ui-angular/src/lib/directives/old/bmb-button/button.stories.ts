@@ -1,6 +1,6 @@
 import { Meta, StoryObj } from '@storybook/angular';
 import { BmbButtonDirective } from './button.directive';
-import { BmbIconComponent } from '../../components/bmb-icon/bmb-icon.component';
+import { BmbIconComponent } from '../../../components/old/bmb-icon/bmb-icon.component';
 import {
   attributes,
   attributesText,
@@ -16,7 +16,7 @@ import {
   DBmbIconParamDesc,
   getDefaultValueControl,
 } from '@docs/utils/parameterDescriptions';
-import { IButtonAppearance } from '../../types';
+import { IButtonAppearance } from '@shared/types/utils';
 
 const appearanceOptions: IButtonAppearance[] = [
   'primary',

@@ -17,7 +17,7 @@ import {
   getDefaultValueControl,
   getPropertyParamDesc,
 } from '@docs/utils/parameterDescriptions';
-import { IBmbColor } from '../../types/colors';
+import { IBmbColor } from '@shared/types/colors';
 
 const color_names: IBmbColor[] = [
   'blue-mariner-50',

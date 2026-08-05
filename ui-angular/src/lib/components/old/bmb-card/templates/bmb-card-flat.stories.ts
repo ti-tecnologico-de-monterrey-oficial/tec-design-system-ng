@@ -2,8 +2,8 @@ import { Meta, moduleMetadata } from '@storybook/angular';
 import { BmbCardComponent, BmbCardContentComponent } from '../bmb-card.component';
 import { BmbBoxIconComponent } from '../../bmb-box-icon/bmb-box-icon.component';
 import { BmbTitleComponent } from '../../bmb-title/bmb-title.component';
-import { BmbLayoutDirective } from '../../../directives/bmb-layout/bmb-layout.directive';
-import { BmbLayoutItemDirective } from '../../../directives/bmb-layout/bmb-layout-item.directive';
+import { BmbLayoutDirective } from '../../../../directives/old/bmb-layout/bmb-layout.directive';
+import { BmbLayoutItemDirective } from '../../../../directives/old/bmb-layout/bmb-layout-item.directive';
 import { staticCardStory } from './bmb-card-template-story.utils';
 
 const meta: Meta<BmbCardComponent> = {

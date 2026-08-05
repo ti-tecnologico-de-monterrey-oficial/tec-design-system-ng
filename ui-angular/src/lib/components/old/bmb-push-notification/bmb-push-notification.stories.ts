@@ -1,8 +1,8 @@
 import { Component, input } from '@angular/core';
 import { Meta, StoryFn, moduleMetadata } from '@storybook/angular';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
-import { BmbButtonDirective } from '../../directives/bmb-button/button.directive';
-import { BmbNotificationService } from '../../services/notification/notification.service';
+import { BmbButtonDirective } from '../../../directives/old/bmb-button/button.directive';
+import { BmbNotificationService } from '../../../services/old/notification/notification.service';
 import { BmbPushNotificationComponent } from './bmb-push-notification.component';
 import { NotificationType } from './types';
 import {
@@ -23,7 +23,7 @@ import {
   getOnEventParam,
   getPropertyParamDesc,
 } from '@docs/utils/parameterDescriptions';
-import { BMB_PUSH_NOTIFICATION_COLOR_LIST } from '../../types/foundations/colors/color-type';
+import { BMB_PUSH_NOTIFICATION_COLOR_LIST } from '@shared/types/foundations/colors/color-type';
 
 const TITLE_PROPERTY_DESCRIPTION = getPropertyParamDesc('notification');
 @Component({

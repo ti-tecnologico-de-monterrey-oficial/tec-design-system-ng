@@ -14,7 +14,7 @@ import {
 } from '@docs/utils/utils';
 import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
 import { InputSignal } from '@angular/core';
-import { IDropdownItem } from '../../types';
+import { IDropdownItem } from '@shared/types/utils';
 import {
   DBmbBadgeType,
   DBmbDropdownMenuParamDesc,

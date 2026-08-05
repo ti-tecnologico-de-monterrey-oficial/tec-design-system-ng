@@ -1,7 +1,7 @@
 import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
 import { BmbAccordionControlDirective } from './bmb-accordion-control.directive';
 import { CommonModule } from '@angular/common';
-import { BmbAccordionComponent } from '../../../public-api';
+import { BmbAccordionComponent } from '../../../components/old/bmb-accordion/bmb-accordion.component';
 import {
   BlockquoteType,
   getAlertBlockquote,
