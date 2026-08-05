@@ -1,0 +1,1 @@
+export type BmbDividerType = 'simple' | 'dashed' | 'dotted';

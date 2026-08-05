@@ -1,0 +1,12 @@
+@use './rem' as rem;
+
+:root {
+  --bmb-card-max-width: 30rem;
+}
+
+.bmb_main-container {
+  height: 100dvh;
+  overflow: auto;
+  padding: 0;
+  margin: 0;
+}

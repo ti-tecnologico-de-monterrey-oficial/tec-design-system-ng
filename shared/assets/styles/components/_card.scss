@@ -1,0 +1,56 @@
+.bmb_card {
+  display: block;
+  overflow: hidden;
+  border: 1px solid var(--general-contrasts-25);
+  background-color: var(--general-contrasts-5);
+}
+
+.bmb_card-header,
+.bmb_card-content,
+.bmb_card-footer {
+  display: block;
+}
+
+.bmb_card-content-with-radius {
+  border-radius: inherit;
+}
+
+.bmb_card-type-primary,
+.bmb_card-type-secondary,
+.bmb_card-type-success,
+.bmb_card-type-succes,
+.bmb_card-type-info,
+.bmb_card-type-warning,
+.bmb_card-type-error,
+.bmb_card-type-normal,
+.bmb_card-type-transparent {
+  border-style: solid;
+}
+
+.bmb_card-type-transparent {
+  background-color: transparent;
+}
+
+.bmb_card-box-shadow-1 {
+  box-shadow: var(--bmb-box-shadow-1);
+}
+
+.bmb_card-box-shadow-2 {
+  box-shadow: var(--bmb-box-shadow-2);
+}
+
+.bmb_card-box-shadow-3 {
+  box-shadow: var(--bmb-box-shadow-3);
+}
+
+.bmb_card-box-shadow-4 {
+  box-shadow: var(--bmb-box-shadow-4);
+}
+
+.bmb_card-box-shadow-5 {
+  box-shadow: var(--bmb-box-shadow-5);
+}
+
+.bmb_card-box-shadow-6 {
+  box-shadow: var(--bmb-box-shadow-6);
+}
