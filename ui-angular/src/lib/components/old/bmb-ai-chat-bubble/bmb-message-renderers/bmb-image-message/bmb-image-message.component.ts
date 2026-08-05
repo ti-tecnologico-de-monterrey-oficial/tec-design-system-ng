@@ -6,6 +6,7 @@ import {
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BmbImageMessage } from '../../types';
+import { handleImageNotFoundError } from '@shared/logic/utils';
 
 
 @Component({

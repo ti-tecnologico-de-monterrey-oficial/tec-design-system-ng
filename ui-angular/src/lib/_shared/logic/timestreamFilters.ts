@@ -1,4 +1,4 @@
-import { ITimelineEvent, IBmbTimestreamFilters } from '../types';
+import { ITimelineEvent, IBmbTimestreamFilters } from '../../components/old/bmb-timestream/types';
 
 const checkFilters = (
   event: ITimelineEvent,

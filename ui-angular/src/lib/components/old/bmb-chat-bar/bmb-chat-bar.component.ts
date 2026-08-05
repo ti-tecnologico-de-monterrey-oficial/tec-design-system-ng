@@ -31,7 +31,7 @@ import { TranslatePipe } from '../../../pipes/translations';
 import { BmbBotIconComponent } from '../bmb-bot-icon/bmb-bot-icon.component';
 
 export { defaultBotList, defaultActionList } from './bot_list';
-export { IBotType, IChatBarActions } from './types';
+export type { IBotType, IChatBarActions } from './types';
 
 @Component({
   selector: 'bmb-chat-bar',

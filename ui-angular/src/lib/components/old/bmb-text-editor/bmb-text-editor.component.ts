@@ -4,6 +4,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   ElementRef,
+  inject,
   input,
   TemplateRef,
   OnInit,
@@ -58,6 +59,7 @@ export class BmbTextEditorComponent implements AfterViewInit, OnInit {
   showTableDialog: boolean = false;
   tableRows: number = 2;
   tableColumns: number = 2;
+  private readonly translations = inject(BmbTranslationsService);
   settingsItems = input<IActions[]>(
     getSettingsList(this as any, this.translations),
   );
@@ -68,7 +70,6 @@ export class BmbTextEditorComponent implements AfterViewInit, OnInit {
 
   constructor(
     private readonly contentProjected: BmbProjectionContentService,
-    private readonly translations: BmbTranslationsService,
     private readonly sanitizer: DomSanitizer,
   ) {}
   userSelection: Range | null = null;

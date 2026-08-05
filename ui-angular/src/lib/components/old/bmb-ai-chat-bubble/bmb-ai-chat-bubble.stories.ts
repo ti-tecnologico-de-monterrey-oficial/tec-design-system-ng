@@ -195,7 +195,7 @@ Available actions:
       },
     },
   },
-} as Meta<BmbAiChatBubbleComponent>;
+} as Meta<typeof BmbAiChatBubbleComponent>;
 
 type Story = StoryObj<BmbAiChatBubbleComponent>;
 

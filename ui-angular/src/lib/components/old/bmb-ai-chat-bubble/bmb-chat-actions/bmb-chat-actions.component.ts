@@ -3,6 +3,7 @@ import {
   Component,
   computed,
   effect,
+  inject,
   input,
   output,
   signal,
@@ -27,7 +28,8 @@ import { BmbTranslationsService } from '../../../../services/translations/transl
 })
 export class ChatActionsComponent {
   readonly message = input.required<BmbChatMessage>();
-  constructor(private translationService: BmbTranslationsService) {
+  private readonly translationService = inject(BmbTranslationsService);
+  constructor() {
     effect(
       () => {
         const message = this.message();

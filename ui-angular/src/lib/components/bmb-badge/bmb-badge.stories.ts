@@ -15,7 +15,7 @@ import {
   getPropertyParamDesc,
   getWidthIncreaseDesc,
 } from '@docs/utils/parameterDescriptions';
-import { BmbDividerComponent } from '../bmb-divider/bmb-divider.component';
+import { BmbDividerComponent } from '../old/bmb-divider/bmb-divider.component';
 import { BMB_BADGE_COLOR_LIST } from '@shared/types/foundations/colors/color-type';
 
 const defaultAppearanceValue = 'normal';

@@ -11,12 +11,10 @@ import {
   getGeneralComponentDescription,
   getGeneralDescription,
   getSpecialSpecifications,
+  getModelDescription,
   RELEVANT_TITLE,
 } from '@docs/utils/utils';
-import {
-  getModelDescription,
-  getPropertyParamDesc,
-} from '@docs/utils/parameterDescriptions';
+import { getPropertyParamDesc } from '@docs/utils/parameterDescriptions';
 
 export default {
   title: 'Components/Status indicators/Carousel',

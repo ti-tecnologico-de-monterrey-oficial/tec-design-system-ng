@@ -694,6 +694,10 @@ ${getGeneralDocDescription('https://bamboo.tec.mx/latest/foundations/icon/iconos
       'for the icon when it is an image',
     ),
   },
+  imageNotFoundError: getOnEventParam(
+    getOnEvent('the icon', 'imageNotFoundError', 'void'),
+    ' the image used as icon could not be found or loaded.',
+  ),
 };
 
 export const DBmbButtonParamDesc = {

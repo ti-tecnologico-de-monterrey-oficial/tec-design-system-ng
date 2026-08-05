@@ -15,7 +15,7 @@ import { getMobileResolutionSize } from '@shared/logic/utils';
 import { BmbCheckExternalLinkButtonComponent } from '../bmb-check-external-link-button/bmb-check-external-link-button.component';
 import { IBmbTargetLink } from '@shared/types';
 
-export { IUserInformation } from './types';
+export type { IUserInformation } from './types';
 
 @Component({
   selector: 'bmb-top-bar',

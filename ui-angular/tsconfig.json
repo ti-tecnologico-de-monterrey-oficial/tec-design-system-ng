@@ -3,6 +3,7 @@
   "compilerOptions": {
     "isolatedModules": true,
     "target": "es2022",
+    "lib": ["es2022", "dom"],
     "strict": true,
     "noImplicitOverride": true,
     "noPropertyAccessFromIndexSignature": true,

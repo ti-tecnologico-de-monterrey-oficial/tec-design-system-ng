@@ -11,7 +11,7 @@ import {
   MAT_DIALOG_DATA,
   MatDialog,
 } from '@angular/material/dialog';
-import { ModalDataConfig } from './bmb-modal.interface';
+import type { ModalDataConfig } from './bmb-modal.interface';
 import { BmbButtonDirective } from '../../../directives/old/bmb-button/button.directive';
 import { BmbThreeColsComponent } from '../bmb-three-cols/bmb-three-cols.component';
 import { BmbTitleContentComponent } from '../bmb-title-content/bmb-title-content.component';

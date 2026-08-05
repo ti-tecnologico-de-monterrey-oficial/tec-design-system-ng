@@ -29,7 +29,7 @@ import { getWeekDays, getMonthDays, DEFAULT_DATE_FORMAT } from './utils';
 import { BmbCalendarService } from '../../../services/old/calendar/calendar.service';
 import { BmbCalendarComponentService } from './bmb-calendar.service';
 
-export {
+export type {
   IBmbCalendarEvent,
   IBmbCalendarEventClick,
   IBmbEventType,

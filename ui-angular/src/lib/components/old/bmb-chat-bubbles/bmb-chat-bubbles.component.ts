@@ -5,6 +5,7 @@ import {
   ElementRef,
   effect,
   HostListener,
+  inject,
   input,
   model,
   OnDestroy,
@@ -68,7 +69,8 @@ export class BmbChatBubblesComponent implements OnDestroy {
   @ViewChild('messageContent')
   private messageContent?: ElementRef<HTMLElement>;
 
-  private copyStateTimer?: ReturnType<typeof setTimeout>;
+    private copyStateTimer?: ReturnType<typeof setTimeout>;
+  private readonly translationService = inject(BmbTranslationsService);
   actions = input<IBmbChatBubblesActions[]>([
     {
       key: 'repeat',
@@ -181,7 +183,6 @@ export class BmbChatBubblesComponent implements OnDestroy {
   }
 
   constructor(
-    private translationService: BmbTranslationsService,
     private elementRef: ElementRef<HTMLElement>,
   ) {
     effect(
