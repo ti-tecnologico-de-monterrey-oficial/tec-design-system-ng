@@ -11,8 +11,8 @@ import { BmbLoginOnboardingService } from './bmb-login-onboarding.service';
 import { BmbLoginOnboardingLogoutComponent } from './bmb-login-onboarding-logout/bmb-login-onboarding-logout.component';
 import { BmbLoginOnboardingLoggedComponent } from './bmb-login-onboarding-logged/bmb-login-onboarding-logged.component';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
-import { IBmbLinkConfiguration } from '../../types';
-import { BmbTranslationsService } from '../../services/translations/translations.service';
+import { IBmbLinkConfiguration } from '@shared/types';
+import { BmbTranslationsService } from '../../../services/translations/translations.service';
 
 export interface IBmbLoginOnBoardingCustomization {
   anotherAccount: IBmbLinkConfiguration;

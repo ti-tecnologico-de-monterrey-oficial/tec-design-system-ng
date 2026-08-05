@@ -18,16 +18,16 @@ import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { BmbDotPaginatorComponent } from '../bmb-dot-paginator/bmb-dot-paginator.component';
 import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
-import { ClickOutsideDirective } from '../../directives/utils/clickoutside.directive';
+import { ClickOutsideDirective } from '../../../directives/old/utils/clickoutside.directive';
 import { BmbActionMenuComponent } from '../bmb-action-menu/bmb-action-menu.component';
 import { BmbItemComponent } from '../bmb-item/bmb-item.component';
-import { BmbNativeModalService } from '../../services/modal/native-modal.service';
+import { BmbNativeModalService } from '../../../services/old/modal/native-modal.service';
 import {
   BmbProjectionContentService,
   IBmbProjectionContent,
-} from '../../services/projection/projection.service';
+} from '../../../services/old/projection/projection.service';
 import { IBmbNativeModal } from '../bmb-modal/bmb-modal.interface';
-import { TranslatePipe } from '../../pipes/translations';
+import { TranslatePipe } from '../../../pipes/translations';
 import { BmbBotIconComponent } from '../bmb-bot-icon/bmb-bot-icon.component';
 
 export { defaultBotList, defaultActionList } from './bot_list';

@@ -12,8 +12,8 @@ import {
 } from '@angular/core';
 import { BmbTabsComponent, IBmbTab } from '../bmb-tabs/bmb-tabs.component';
 import { CommonModule } from '@angular/common';
-import { BmbLayoutDirective } from '../../directives/bmb-layout/bmb-layout.directive';
-import { BmbLayoutItemDirective } from '../../directives/bmb-layout/bmb-layout-item.directive';
+import { BmbLayoutDirective } from '../../../directives/old/bmb-layout/bmb-layout.directive';
+import { BmbLayoutItemDirective } from '../../../directives/old/bmb-layout/bmb-layout-item.directive';
 import { DateTime } from 'luxon';
 import { BmbAlertCenterFormComponent } from './bmb-alert-center-form/bmb-alert-center-form.component';
 import {
@@ -32,9 +32,9 @@ import { BmbAlertCenterAdsComponent } from './bmb-alert-center-ads/bmb-alert-cen
 import { BmbAlertCenterEmptyComponent } from './bmb-alert-center-empty/bmb-alert-center-empty.component';
 import { BmbAlertCenterService } from './bmb-alert-center.service';
 import { BmbLoaderComponent } from '../bmb-loader/bmb-loader.component';
-import { BmbNativeModalService } from '../../services/modal/native-modal.service';
+import { BmbNativeModalService } from '../../../services/old/modal/native-modal.service';
 import { IBmbNativeModal } from '../bmb-modal/bmb-modal.interface';
-import { BmbTranslationsService } from '../../services/translations/translations.service';
+import { BmbTranslationsService } from '../../../services/translations/translations.service';
 import { BmbAlertCenterDetailComponent } from '../utils/bmb-alert-center-detail/bmb-alert-center-detail.component';
 
 @Component({

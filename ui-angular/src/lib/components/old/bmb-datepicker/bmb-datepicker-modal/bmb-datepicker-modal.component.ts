@@ -7,16 +7,17 @@ import {
   output,
   ViewEncapsulation,
 } from '@angular/core';
-import { BmbLayoutDirective } from '../../../directives/bmb-layout/bmb-layout.directive';
-import { BmbLayoutItemDirective } from '../../../directives/bmb-layout/bmb-layout-item.directive';
+import { BmbLayoutDirective } from '../../../../directives/old/bmb-layout/bmb-layout.directive';
+import { BmbLayoutItemDirective } from '../../../../directives/old/bmb-layout/bmb-layout-item.directive';
 import { DateTime, Info } from 'luxon';
-import { weeksAndDays } from '../../bmb-calendar/utils';
-import { BmbButtonDirective } from '../../../directives/bmb-button/button.directive';
+
+import { BmbButtonDirective } from '../../../../directives/old/bmb-button/button.directive';
 import { CommonModule } from '@angular/common';
-import { orderDayNames } from '../../../utils/utils';
+import { orderDayNames } from '@shared/logic/utils';
+import { weeksAndDays } from '../../bmb-calendar/utils';
 import { BmbActionIconComponent } from '../../bmb-action-icon/bmb-action-icon.component';
-import { BmbTranslationsService } from '../../../services/translations/translations.service';
-import { TranslatePipe } from '../../../pipes/translations';
+import { BmbTranslationsService } from '../../../../services/translations/translations.service';
+import { TranslatePipe } from '../../../../pipes/translations';
 
 @Component({
   selector: 'bmb-datepicker-modal',

@@ -14,7 +14,7 @@ import {
 } from '@angular/core';
 import { BmbMediaCardComponent } from '../bmb-media-card/bmb-media-card.component';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
-import { logDeprecatedInput } from '../../utils/logDeprecatedInput';
+import { logDeprecatedInput } from '../../../_shared/logic/logDeprecatedInput';
 
 @Component({
   selector: 'bmb-sounds-card',

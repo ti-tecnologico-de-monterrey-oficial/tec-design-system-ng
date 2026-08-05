@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Meta, StoryFn, moduleMetadata } from '@storybook/angular';
-import { BmbTopBarComponent } from '../../public-api';
+import { BmbTopBarComponent } from '../../index';
 import {
   attributes,
   getBasicExampleBlock,
@@ -8,7 +8,7 @@ import {
   getSpecialSpecifications,
   getStandaloneGeneralDesc,
   getTechnicalOneReference,
-} from '../utils/doc/utils';
+} from '@docs/utils/utils';
 import * as topBarStory from '../components/bmb-top-bar/bmb-top-bar.stories';
 
 @Component({

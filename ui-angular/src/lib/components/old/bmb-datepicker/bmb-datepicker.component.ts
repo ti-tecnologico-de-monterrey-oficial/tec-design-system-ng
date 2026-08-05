@@ -24,19 +24,14 @@ import {
   IBmbInputError,
   IBmbInputTooltipPosition,
 } from '../bmb-input/bmb-input.component';
-import { BmbProjectionContentService } from '../../services/projection/projection.service';
+import { BmbProjectionContentService } from '../../../services/old/projection/projection.service';
 import { BmbDatepickerModalComponent } from './bmb-datepicker-modal/bmb-datepicker-modal.component';
-import {
-  getCustomValidation,
-  getCustomValidationMessage,
-  getUUID,
-  isErrorMessageSet,
-} from '../../utils/utils';
+import { getCustomValidation, getCustomValidationMessage, getUUID, isErrorMessageSet } from '@shared/logic/utils';
 import {
   assignNewFormControl,
   newFormControlByType,
   showError,
-} from '../../utils/formControl';
+} from '../../../_shared/logic/formControl';
 import { BmbInputContentComponent } from '../bmb-input/bmb-input-content/bmb-input-content.component';
 import { BmbInputValidatorComponent } from '../bmb-input/bmb-input-validator/bmb-input-validator.component';
 

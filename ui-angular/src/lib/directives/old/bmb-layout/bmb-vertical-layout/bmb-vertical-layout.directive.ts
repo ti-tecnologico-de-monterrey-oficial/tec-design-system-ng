@@ -1,5 +1,5 @@
 import { Directive, HostBinding, input } from '@angular/core';
-import { SizeNames } from '../../../types';
+import { SizeNames } from '@shared/types';
 import { IAlignItemsOptions, IJustifyOptions } from '../bmb-layout.directive';
 
 @Directive({

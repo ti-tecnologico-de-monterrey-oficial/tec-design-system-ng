@@ -7,7 +7,7 @@ import {
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BmbCheckExternalLinkButtonComponent } from '../bmb-check-external-link-button/bmb-check-external-link-button.component';
-import { IBmbTargetLink } from '../../types';
+import { IBmbTargetLink } from '@shared/types';
 
 @Component({
   selector: 'bmb-logo',

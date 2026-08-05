@@ -20,10 +20,10 @@ import {
   ValidatorFn,
   Validators,
 } from '@angular/forms';
-import { IBbmSidePosition } from '../../../types';
+import { IBbmSidePosition } from '@shared/types';
 import { CommonModule } from '@angular/common';
 import { BmbTooltipComponent } from '../../bmb-tooltip/bmb-tooltip.component';
-import { getPositionClass } from '../../../utils/utils';
+import { getPositionClass } from '@shared/logic/utils';
 
 export type IBmbInputValType =
   | 'radio'

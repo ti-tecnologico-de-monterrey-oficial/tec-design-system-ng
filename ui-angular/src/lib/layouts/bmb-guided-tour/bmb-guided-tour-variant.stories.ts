@@ -18,7 +18,7 @@ import {
   BmbVerticalLayoutItemDirective,
   BmbProjectionContentService,
   OnboardingStep,
-} from '../../../public-api';
+} from '../../../index';
 import {
   attributes,
   BlockquoteType,
@@ -29,7 +29,7 @@ import {
   getSpecialSpecifications,
   getTechnicalDocReferences,
   RELEVANT_TITLE,
-} from '../../utils/doc/utils';
+} from '../@docs/utils/utils';
 import * as homeCard from '../../components/bmb-home-card/bmp-home-card.stories';
 import * as icon from '../../components/bmb-icon/bmb-icon.stories';
 import * as checkbox from '../../components/bmb-checkbox/bmb-checkbox.stories';

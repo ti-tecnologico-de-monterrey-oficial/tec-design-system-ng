@@ -31,7 +31,7 @@ import {
   BmbToastComponent,
   BmbNativeModalService,
   BmbButtonDirective,
-} from '../../public-api';
+} from '../../index';
 
 import {
   getBasicExampleBlock,
@@ -40,7 +40,7 @@ import {
   getSpecialSpecifications,
   getTechnicalDocReferences,
   getTECParticularitiesMessage,
-} from '../utils/doc/utils';
+} from '@docs/utils/utils';
 
 import * as topBarStory from '../components/bmb-top-bar/bmb-top-bar.stories';
 import * as sideBarStory from '../components/bmb-sidebar/bmb-sidebar.stories';

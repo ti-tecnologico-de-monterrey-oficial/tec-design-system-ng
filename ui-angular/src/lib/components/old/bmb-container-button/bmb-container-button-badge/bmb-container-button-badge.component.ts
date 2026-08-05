@@ -9,8 +9,8 @@ import {
 import { BmbContainerButtonBaseComponent } from '../bmb-container-button-base/bmb-container-button-base.component';
 import { BmbIconComponent } from '../../bmb-icon/bmb-icon.component';
 import { BmbTitleComponent } from '../../bmb-title/bmb-title.component';
-import { BmbBadgeComponent } from '../../bmb-badge/bmb-badge.component';
-import { IBmbBadgeInfo } from '../../../types';
+import { BmbBadgeComponent } from '../../../bmb-badge/bmb-badge.component';
+import { IBmbBadgeInfo } from '@shared/types';
 
 @Component({
   selector: 'bmb-container-button-badge',

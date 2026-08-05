@@ -13,7 +13,7 @@ import {
   BmbAccordionComponent,
   BmbAccordionControlDirective,
   BmbIconComponent,
-} from '../../public-api';
+} from '../../index';
 import { CommonModule } from '@angular/common';
 import {
   getBasicExampleBlock,
@@ -22,19 +22,19 @@ import {
   getSpecialSpecifications,
   getTechnicalDocReferences,
   getTECParticularitiesMessage,
-} from '../utils/doc/utils';
+} from '@docs/utils/utils';
 
-import * as topBarStory from '../components/bmb-top-bar/bmb-top-bar.stories';
-import * as sideBarStory from '../components/bmb-sidebar/bmb-sidebar.stories';
-import * as homeCardStory from '../components/bmb-home-card/bmp-home-card.stories';
-import * as layoutStory from '../directives/bmb-layout/bmb-layout.stories';
-import * as layoutItemStory from '../directives/bmb-layout/bmb-layout.stories';
-import * as cardStory from '../components/bmb-card/bmb-card.stories';
-import * as accordionStory from '../components/bmb-accordion/bmb-accordion.stories';
-import * as cardHeaderStory from '../components/bmb-card/bmb-card.stories';
-import * as cardContentStory from '../components/bmb-card/bmb-card.stories';
-import * as accordionControlStory from '../directives/bmb-accordion/bmb-accordion-control.stories';
-import * as iconStory from '../components/bmb-icon/bmb-icon.stories';
+import * as topBarStory from '../components/old/bmb-top-bar/bmb-top-bar.stories';
+import * as sideBarStory from '../components/old/bmb-sidebar/bmb-sidebar.stories';
+import * as homeCardStory from '../components/old/bmb-home-card/bmp-home-card.stories';
+import * as layoutStory from '../directives/old/bmb-layout/bmb-layout.stories';
+import * as layoutItemStory from '../directives/old/bmb-layout/bmb-layout.stories';
+import * as cardStory from '../components/old/bmb-card/bmb-card.stories';
+import * as accordionStory from '../components/old/bmb-accordion/bmb-accordion.stories';
+import * as cardHeaderStory from '../components/old/bmb-card/bmb-card.stories';
+import * as cardContentStory from '../components/old/bmb-card/bmb-card.stories';
+import * as accordionControlStory from '../directives/old/bmb-accordion/bmb-accordion-control.stories';
+import * as iconStory from '../components/old/bmb-icon/bmb-icon.stories';
 
 @Component({
   standalone: true,

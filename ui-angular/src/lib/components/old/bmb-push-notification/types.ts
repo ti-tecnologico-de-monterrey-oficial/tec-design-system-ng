@@ -1,7 +1,7 @@
 import { TemplateRef } from '@angular/core';
-import { IButtonAppearance } from '../../types';
+import { IButtonAppearance } from '@shared/types';
 import { BmbToastAppearance } from '../bmb-toast/bmb-toast.component';
-import { IBmbPushNotificationColors } from '../../types/foundations/colors/color-type';
+import { IBmbPushNotificationColors } from '@shared/types/foundations/colors/color-type';
 
 export interface INotification
   extends IMinimalNotification,

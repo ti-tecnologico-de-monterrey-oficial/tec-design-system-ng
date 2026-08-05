@@ -7,7 +7,7 @@ import {
   output,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SizeNames } from '../../types';
+import { SizeNames } from '@shared/types';
 import { BorderType } from './types';
 import { BmbListGroupStatusService } from './bmb-list-group.service';
 

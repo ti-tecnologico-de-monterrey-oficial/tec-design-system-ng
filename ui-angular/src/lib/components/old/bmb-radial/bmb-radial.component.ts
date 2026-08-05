@@ -7,17 +7,17 @@ import {
   model,
   OnInit,
 } from '@angular/core';
-import { IBbmSidePosition } from '../../types';
+import { IBbmSidePosition } from '@shared/types';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { BmbInputValidatorComponent } from '../bmb-input/bmb-input-validator/bmb-input-validator.component';
 import { CommonModule } from '@angular/common';
-import { getUUID } from '../../utils/utils';
+import { getUUID } from '@shared/logic/utils';
 import { IBmbInputError } from '../bmb-input/bmb-input.component';
 import {
   assignNewFormControl,
   newFormControlByType,
   showError,
-} from '../../utils/formControl';
+} from '../../../_shared/logic/formControl';
 
 @Component({
   selector: 'bmb-radial',

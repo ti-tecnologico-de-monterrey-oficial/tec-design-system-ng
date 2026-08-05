@@ -12,8 +12,8 @@ import { BmbMultiDotPaginatorItemComponent } from './bmb-multi-dot-paginator-ite
 import { CommonModule } from '@angular/common';
 import { BmbFabComponent } from '../bmb-fab/bmb-fab.component';
 import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
-import { logDeprecatedInput } from '../../utils/logDeprecatedInput';
-import { TranslatePipe } from '../../pipes/translations';
+import { logDeprecatedInput } from '../../../_shared/logic/logDeprecatedInput';
+import { TranslatePipe } from '../../../pipes/translations';
 
 @Component({
   selector: 'bmb-multi-dot-paginator',

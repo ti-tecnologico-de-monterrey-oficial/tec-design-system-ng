@@ -16,13 +16,13 @@ import type {
   IBmbJustifyTooltip,
 } from '../bmb-tooltip/bmb-tooltip.component';
 import { BmbInputValidatorComponent } from './bmb-input-validator/bmb-input-validator.component';
-import { getUUID } from '../../utils/utils';
+import { getUUID } from '@shared/logic/utils';
 import { BmbInputContentComponent } from './bmb-input-content/bmb-input-content.component';
 import {
   assignNewFormControl,
   newFormControlByType,
   showError,
-} from '../../utils/formControl';
+} from '../../../_shared/logic/formControl';
 
 export type IBmbInputType = 'text' | 'password' | 'number' | 'text-area';
 export type IBmbInputAppearance = 'main' | 'normal' | 'simple';

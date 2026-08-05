@@ -11,15 +11,15 @@ import {
 import { BmbIconComponent } from '../../../bmb-icon/bmb-icon.component';
 import { DateTime } from 'luxon';
 import { IBmbCalendarView } from '../../types';
-import { BmbButtonGroupDirective } from '../../../../directives/bmb-button-group/bmb-button-group.directive';
-import { BmbLayoutDirective } from '../../../../directives/bmb-layout/bmb-layout.directive';
-import { BmbLayoutItemDirective } from '../../../../directives/bmb-layout/bmb-layout-item.directive';
+import { BmbButtonGroupDirective } from '../../../../../directives/old/bmb-button-group/bmb-button-group.directive';
+import { BmbLayoutDirective } from '../../../../../directives/old/bmb-layout/bmb-layout.directive';
+import { BmbLayoutItemDirective } from '../../../../../directives/old/bmb-layout/bmb-layout-item.directive';
 import { BmbActionIconComponent } from '../../../bmb-action-icon/bmb-action-icon.component';
-import { TranslatePipe } from '../../../../pipes/translations';
-import { BmbTranslationsService } from '../../../../services/translations/translations.service';
+import { TranslatePipe } from '../../../../../pipes/translations';
+import { BmbTranslationsService } from '../../../../../services/translations/translations.service';
 import { BmbCalendarComponentService } from '../../bmb-calendar.service';
-import { getUUID } from '../../../../utils/utils';
-import { BmbNativeModalService } from '../../../../services/modal/native-modal.service';
+import { getUUID } from '@shared/logic/utils';
+import { BmbNativeModalService } from '../../../../../services/old/modal/native-modal.service';
 import { BmbCalendarModalComponent } from '../bmb-calendar-modal/bmb-calendar-modal.component';
 
 @Component({

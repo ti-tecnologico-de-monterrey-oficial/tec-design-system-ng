@@ -12,10 +12,10 @@ import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import {
   assignNewFormControl,
   newFormControlByType,
-} from '../../utils/formControl';
-import { getUUID } from '../../utils/utils';
+} from '../../../_shared/logic/formControl';
+import { getUUID } from '@shared/logic/utils';
 import { BmbInputValidatorComponent } from '../bmb-input/bmb-input-validator/bmb-input-validator.component';
-import { TranslatePipe } from '../../pipes/translations';
+import { TranslatePipe } from '../../../pipes/translations';
 
 @Component({
   selector: 'bmb-switch',

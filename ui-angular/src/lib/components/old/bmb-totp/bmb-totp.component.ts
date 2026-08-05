@@ -10,7 +10,7 @@ import {
 import { Subject } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
-import { BmbButtonDirective } from '../../directives/bmb-button/button.directive';
+import { BmbButtonDirective } from '../../../directives/old/bmb-button/button.directive';
 import {
   FormGroup,
   FormBuilder,
@@ -20,8 +20,8 @@ import {
 } from '@angular/forms';
 import { BmbInputContentComponent } from '../bmb-input/bmb-input-content/bmb-input-content.component';
 import { BmbContainerComponent } from '../bmb-container/bmb-container.component';
-import { getUUID } from '../../utils/utils';
-import { TranslatePipe } from '../../pipes/translations';
+import { getUUID } from '@shared/logic/utils';
+import { TranslatePipe } from '../../../pipes/translations';
 
 @Component({
   selector: 'bmb-totp',

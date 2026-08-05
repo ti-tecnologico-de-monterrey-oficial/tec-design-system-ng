@@ -13,7 +13,7 @@ import {
   BmbLegendComponent,
   IBmbLegendVariations,
 } from '../bmb-legend/bmb-legend.component';
-import { TranslatePipe } from '../../pipes/translations';
+import { TranslatePipe } from '../../../pipes/translations';
 
 @Component({
   selector: 'bmb-balance-overview',

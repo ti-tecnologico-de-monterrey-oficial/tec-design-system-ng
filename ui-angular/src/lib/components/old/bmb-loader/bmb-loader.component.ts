@@ -10,9 +10,9 @@ import {
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
-import { BmbButtonDirective } from '../../directives/bmb-button/button.directive';
+import { BmbButtonDirective } from '../../../directives/old/bmb-button/button.directive';
 import { IBbmBgAppearance } from '../bmb-advertisement-card/types';
-import { logDeprecatedInput } from '../../utils/logDeprecatedInput';
+import { logDeprecatedInput } from '../../../_shared/logic/logDeprecatedInput';
 
 @Component({
   selector: 'bmb-loader',

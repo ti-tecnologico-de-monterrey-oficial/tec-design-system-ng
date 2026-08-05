@@ -15,7 +15,7 @@ import {
   BmbChatMessage,
 } from '../types';
 import { BmbIconComponent } from '../../bmb-icon/bmb-icon.component';
-import { BmbTranslationsService } from '../../../services/translations/translations.service';
+import { BmbTranslationsService } from '../../../../services/translations/translations.service';
 
 @Component({
   selector: 'bmb-chat-actions',

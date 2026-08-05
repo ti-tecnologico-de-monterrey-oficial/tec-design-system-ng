@@ -13,7 +13,7 @@ import {
   computed,
 } from '@angular/core';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
-import { TranslatePipe } from '../../pipes/translations';
+import { TranslatePipe } from '../../../pipes/translations';
 
 export type BmbProgressCirclePathStatus =
   | 'gray'

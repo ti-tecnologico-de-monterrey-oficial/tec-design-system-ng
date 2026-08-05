@@ -6,9 +6,9 @@ import {
   output,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { IBmbTargetLink, IBmbUserImageSize } from '../../types';
+import { IBmbTargetLink, IBmbUserImageSize } from '@shared/types';
 import { BmbCheckExternalLinkButtonComponent } from '../bmb-check-external-link-button/bmb-check-external-link-button.component';
-import { handleImageNotFoundError } from '../../utils/utils';
+
 
 @Component({
   selector: 'bmb-user-image',

@@ -6,8 +6,8 @@ import {
 import { CommonModule } from '@angular/common';
 import { DomSanitizer } from '@angular/platform-browser';
 import { BmbImageComponent } from '../../bmb-image/bmb-image.component';
-import { BmbButtonDirective } from '../../../directives/bmb-button/button.directive';
-import { sanitizeContent } from '../../../utils/sanitizeContent';
+import { BmbButtonDirective } from '../../../../directives/old/bmb-button/button.directive';
+import { sanitizeContent } from '../../../../_shared/logic/sanitizeContent';
 
 @Component({
   selector: 'bmb-alert-center-detail',

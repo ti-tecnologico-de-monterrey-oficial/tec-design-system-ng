@@ -13,20 +13,20 @@ import {
 import { BmbChevronTitleSelectorComponent } from '../bmb-chevron-title-selector/bmb-chevron-title-selector.component';
 import { BmbContainerButtonComponent } from '../bmb-container-button/bmb-container-button.component';
 import { BmbDividerComponent } from '../bmb-divider/bmb-divider.component';
-import { BmbLayoutItemDirective } from '../../directives/bmb-layout/bmb-layout-item.directive';
-import { BmbLayoutDirective } from '../../directives/bmb-layout/bmb-layout.directive';
+import { BmbLayoutItemDirective } from '../../../directives/old/bmb-layout/bmb-layout-item.directive';
+import { BmbLayoutDirective } from '../../../directives/old/bmb-layout/bmb-layout.directive';
 import { IBmbGrades, IBmbPartial } from './types';
 import { CommonModule } from '@angular/common';
 import { BmbGradeValueComponent } from '../bmb-grade-value/bmb-grade-value.component';
 import { BmbInnerHeaderComponent } from '../bmb-inner-header/bmb-inner-header.component';
 import { BmbAcademicProgressComponent } from '../bmb-academic-progress/bmb-academic-progress.component';
-import { IBmbNameValuePair } from '../../types';
+import { IBmbNameValuePair } from '@shared/types';
 import { BmbContainerComponent } from '../bmb-container/bmb-container.component';
-import { buildErrorMessage } from '../../utils/utils';
+import { buildErrorMessage } from '@shared/logic/utils';
 import { BmbTitleContentComponent } from '../bmb-title-content/bmb-title-content.component';
 import { IBmbNativeModal } from '../bmb-modal/bmb-modal.interface';
-import { BmbNativeModalService } from '../../services/modal/native-modal.service';
-import { logDeprecatedInput } from '../../utils/logDeprecatedInput';
+import { BmbNativeModalService } from '../../../services/old/modal/native-modal.service';
+import { logDeprecatedInput } from '../../../_shared/logic/logDeprecatedInput';
 
 @Component({
   selector: 'bmb-grades',

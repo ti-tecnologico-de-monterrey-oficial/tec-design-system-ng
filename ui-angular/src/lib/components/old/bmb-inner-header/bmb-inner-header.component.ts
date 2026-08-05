@@ -14,8 +14,8 @@ import { BmbThreeColsComponent } from '../bmb-three-cols/bmb-three-cols.componen
 import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
 import { BmbTitleContentComponent } from '../bmb-title-content/bmb-title-content.component';
 import { BmbContainerComponent } from '../bmb-container/bmb-container.component';
-import { logDeprecatedInput } from '../../utils/logDeprecatedInput';
-import { TranslatePipe } from '../../pipes/translations';
+import { logDeprecatedInput } from '../../../_shared/logic/logDeprecatedInput';
+import { TranslatePipe } from '../../../pipes/translations';
 
 @Component({
   selector: 'bmb-inner-header',

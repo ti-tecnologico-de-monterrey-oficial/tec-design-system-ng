@@ -6,7 +6,7 @@ import {
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BmbMixedMessage } from '../../types';
-import { handleImageNotFoundError } from '../../../../utils/utils';
+
 
 @Component({
   selector: 'bmb-mixed-message',

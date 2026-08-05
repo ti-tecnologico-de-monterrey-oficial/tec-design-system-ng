@@ -19,14 +19,14 @@ import {
 import { BmbProgressBarComponent } from '../bmb-progress-bar/bmb-progress-bar.component';
 import { DateTime } from 'luxon';
 import { BmbDividerComponent } from '../bmb-divider/bmb-divider.component';
-import { BmbButtonDirective } from '../../directives/bmb-button/button.directive';
+import { BmbButtonDirective } from '../../../directives/old/bmb-button/button.directive';
 import { BmbRadialComponent } from '../bmb-radial/bmb-radial.component';
-import { currencyFormat } from '../../utils/currencyFormat';
-import { BmbLayoutDirective } from '../../directives/bmb-layout/bmb-layout.directive';
-import { BmbLayoutItemDirective } from '../../directives/bmb-layout/bmb-layout-item.directive';
+import { currencyFormat } from '../../../_shared/logic/currencyFormat';
+import { BmbLayoutDirective } from '../../../directives/old/bmb-layout/bmb-layout.directive';
+import { BmbLayoutItemDirective } from '../../../directives/old/bmb-layout/bmb-layout-item.directive';
 import { BmbInputComponent } from '../bmb-input/bmb-input.component';
 import { BmbInnerHeaderComponent } from '../bmb-inner-header/bmb-inner-header.component';
-import { BmbNativeModalService } from '../../services/modal/native-modal.service';
+import { BmbNativeModalService } from '../../../services/old/modal/native-modal.service';
 import {
   FormControl,
   FormGroup,
@@ -35,8 +35,8 @@ import {
 } from '@angular/forms';
 import { IBmbNativeModal } from '../bmb-modal/bmb-modal.interface';
 import { CommonModule } from '@angular/common';
-import { TranslatePipe } from '../../pipes/translations';
-import { logDeprecatedInput } from '../../utils/logDeprecatedInput';
+import { TranslatePipe } from '../../../pipes/translations';
+import { logDeprecatedInput } from '../../../_shared/logic/logDeprecatedInput';
 
 @Component({
   selector: 'bmb-account-statement',

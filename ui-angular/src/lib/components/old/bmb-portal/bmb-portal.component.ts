@@ -4,19 +4,19 @@ import {
   computed,
   ViewEncapsulation,
 } from '@angular/core';
-import { BmbNotificationService } from '../../services/notification/notification.service';
+import { BmbNotificationService } from '../../../services/old/notification/notification.service';
 import { INotification } from '../bmb-push-notification/types';
 import { BmbPushNotificationItemComponent } from '../bmb-push-notification/bmb-push-notification-item/bmb-push-notification-item.component';
 import { BmbToastComponent } from '../bmb-toast/bmb-toast.component';
 import { CommonModule } from '@angular/common';
 import { BmbNoticeCardComponent } from '../bmb-notice-card/bmb-notice-card.component';
-import { BmbNativeModalService } from '../../services/modal/native-modal.service';
+import { BmbNativeModalService } from '../../../services/old/modal/native-modal.service';
 import { BmbNativeModalComponent } from '../bmb-modal/bmb-native-modal.component';
 import { IBmbNativeModal } from '../bmb-modal/bmb-modal.interface';
 import {
   BmbProjectionContentService,
   IBmbProjectionContent,
-} from '../../services/projection/projection.service';
+} from '../../../services/old/projection/projection.service';
 import { BmbProjectedContentComponent } from './bmb-projected-content/bmb-projected-content.component';
 
 @Component({

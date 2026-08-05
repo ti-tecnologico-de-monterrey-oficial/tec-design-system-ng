@@ -53,7 +53,7 @@ import {
   getStoryTitle,
   getTechnicalDocReferences,
   RELEVANT_TITLE,
-} from '../utils/doc/utils';
+} from '@docs/utils/utils';
 import { BmbActionMenuComponent } from '../components/bmb-action-menu/bmb-action-menu.component';
 import { BmbItemComponent } from '../components/bmb-item/bmb-item.component';
 import { BmbDropzoneComponent } from '../components/bmb-dropzone/bmb-dropzone.component';

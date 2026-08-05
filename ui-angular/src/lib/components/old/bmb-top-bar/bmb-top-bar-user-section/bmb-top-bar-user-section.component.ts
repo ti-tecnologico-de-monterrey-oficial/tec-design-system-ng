@@ -9,14 +9,14 @@ import { IUserInformation } from '../types';
 import { CommonModule } from '@angular/common';
 import { IBmbDataAlert } from '../../bmb-alert-center/types';
 import { BmbActionIconComponent } from '../../bmb-action-icon/bmb-action-icon.component';
-import { BmbLayoutItemDirective } from '../../../directives/bmb-layout/bmb-layout-item.directive';
-import { BmbLayoutDirective } from '../../../directives/bmb-layout/bmb-layout.directive';
+import { BmbLayoutItemDirective } from '../../../../directives/old/bmb-layout/bmb-layout-item.directive';
+import { BmbLayoutDirective } from '../../../../directives/old/bmb-layout/bmb-layout.directive';
 import { BmbUserSummaryContentComponent } from '../../bmb-user-summary/bmb-user-summary-content/bmb-user-summary-content.component';
 import { BmbDropdownMenuComponent } from '../../bmb-dropdown-menu/bmb-dropdown-menu.component';
-import { IDropdownItem } from '../../../types';
+import { IDropdownItem } from '@shared/types';
 import { BmbButtonIconComponent } from '../../bmb-button-icon/bmb-button-icon.component';
 import { BmbCheckExternalLinkButtonComponent } from '../../bmb-check-external-link-button/bmb-check-external-link-button.component';
-import { TranslatePipe } from '../../../pipes/translations';
+import { TranslatePipe } from '../../../../pipes/translations';
 
 @Component({
   selector: 'bmb-top-bar-user-section',

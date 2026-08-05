@@ -7,13 +7,13 @@ import {
 } from '@angular/core';
 import { BmbUserImageComponent } from '../../bmb-user-image/bmb-user-image.component';
 import { CommonModule } from '@angular/common';
-import { BmbLayoutItemDirective } from '../../../directives/bmb-layout/bmb-layout-item.directive';
-import { BmbLayoutDirective } from '../../../directives/bmb-layout/bmb-layout.directive';
+import { BmbLayoutItemDirective } from '../../../../directives/old/bmb-layout/bmb-layout-item.directive';
+import { BmbLayoutDirective } from '../../../../directives/old/bmb-layout/bmb-layout.directive';
 import {
   IBmbLinkConfiguration,
   IBmbUserImageSize,
   SizeNames,
-} from '../../../types';
+} from '@shared/types';
 import { BmbTextLinkComponent } from '../../bmb-text-link/bmb-text-link.component';
 import { BmbIconComponent } from '../../bmb-icon/bmb-icon.component';
 

@@ -13,14 +13,14 @@ import {
   OnInit,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { BmbTranslationsService } from '../../services/translations/translations.service';
+import { BmbTranslationsService } from '../../../services/translations/translations.service';
 import { BmbFocusElementComponent } from '../bmb-focus-element/bmb-focus-element.component';
-import { BmbLayoutDirective } from '../../directives/bmb-layout/bmb-layout.directive';
-import { BmbLayoutItemDirective } from '../../directives/bmb-layout/bmb-layout-item.directive';
+import { BmbLayoutDirective } from '../../../directives/old/bmb-layout/bmb-layout.directive';
+import { BmbLayoutItemDirective } from '../../../directives/old/bmb-layout/bmb-layout-item.directive';
 import { ɵEmptyOutletComponent } from '@angular/router';
-import { BmbVerticalLayoutDirective } from '../../directives/bmb-layout/bmb-vertical-layout/bmb-vertical-layout.directive';
-import { BmbVerticalLayoutItemDirective } from '../../directives/bmb-layout/bmb-vertical-layout/bmb-vertical-layout-item.directive';
-import { BmbSelectorDirective } from '../../directives/bmb-selector/bmb-selector.directive';
+import { BmbVerticalLayoutDirective } from '../../../directives/old/bmb-layout/bmb-vertical-layout/bmb-vertical-layout.directive';
+import { BmbVerticalLayoutItemDirective } from '../../../directives/old/bmb-layout/bmb-vertical-layout/bmb-vertical-layout-item.directive';
+import { BmbSelectorDirective } from '../../../directives/old/bmb-selector/bmb-selector.directive';
 
 const MOBILE_TABLET_QUERY = '(max-width: 992px)';
 

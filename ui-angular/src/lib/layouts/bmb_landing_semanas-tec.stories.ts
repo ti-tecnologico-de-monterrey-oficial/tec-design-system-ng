@@ -7,7 +7,7 @@ import {
   getSpecialSpecifications,
   getTechnicalDocReferences,
   getTECParticularitiesMessage,
-} from '../utils/doc/utils';
+} from '@docs/utils/utils';
 import {
   BmbHomeCardComponent,
   BmbLayoutDirective,
@@ -29,7 +29,7 @@ import {
   BmbTextLinkComponent,
   BmbCheckboxComponent,
   BmbDividerComponent,
-} from '../../public-api';
+} from '../../index';
 import * as topBarStory from '../components/bmb-top-bar/bmb-top-bar.stories';
 import * as sideBarStory from '../components/bmb-sidebar/bmb-sidebar.stories';
 import * as homeCardStory from '../components/bmb-home-card/bmp-home-card.stories';

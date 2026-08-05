@@ -5,16 +5,16 @@ import {
   output,
   ViewEncapsulation,
 } from '@angular/core';
-import { BmbButtonDirective } from '../../directives/bmb-button/button.directive';
+import { BmbButtonDirective } from '../../../directives/old/bmb-button/button.directive';
 import { FormGroup } from '@angular/forms';
-import { BmbUserProfileService } from '../../services/user/profile.service';
+import { BmbUserProfileService } from '../../../services/old/user/profile.service';
 import {
   BmbHeaderMitecComponent,
   IBmbActionHeaderLinks,
 } from '../bmb-header-mitec/bmb-header-mitec.component';
-import { IBmbTargetLink } from '../../types';
+import { IBmbTargetLink } from '@shared/types';
 import { BmbLoginContentComponent } from './bmb-login-content/bmb-login-content.component';
-import { TranslatePipe } from '../../pipes/translations';
+import { TranslatePipe } from '../../../pipes/translations';
 
 @Component({
   selector: 'bmb-login',

@@ -17,7 +17,7 @@ import {
   IBmbInputAppearance,
   IBmbInputType,
 } from '../bmb-input.component';
-import { TranslatePipe } from '../../../pipes/translations';
+import { TranslatePipe } from '../../../../pipes/translations';
 
 @Component({
   selector: 'bmb-input-content',

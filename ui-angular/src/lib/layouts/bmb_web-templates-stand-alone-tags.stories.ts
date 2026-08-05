@@ -8,7 +8,7 @@ import {
   BmbInvoiceComponent,
   BmbUserSummaryComponent,
   BmbButtonDirective,
-} from '../../public-api';
+} from '../../index';
 import {
   attributes,
   getBasicExampleBlock,
@@ -16,7 +16,7 @@ import {
   getSpecialSpecifications,
   getStandaloneGeneralDesc,
   getTechnicalDocReferences,
-} from '../utils/doc/utils';
+} from '@docs/utils/utils';
 import * as topBarStory from '../components/bmb-top-bar/bmb-top-bar.stories';
 import * as sideBarStory from '../components/bmb-sidebar/bmb-sidebar.stories';
 import * as badgeStory from '../components/bmb-badge/bmb-badge.stories';

@@ -56,8 +56,8 @@ import { ReactiveFormsModule, FormControl, FormGroup } from '@angular/forms';
 import { BmbDateRangeComponent } from '../bmb-date-range/bmb-date-range.component';
 import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
 import { DateTime } from 'luxon';
-import { sanitizeContent } from '../../utils/sanitizeContent';
-import { TranslatePipe } from '../../pipes/translations';
+import { sanitizeContent } from '../../../_shared/logic/sanitizeContent';
+import { TranslatePipe } from '../../../pipes/translations';
 
 export type BmbTableLang = 'en' | 'es';
 

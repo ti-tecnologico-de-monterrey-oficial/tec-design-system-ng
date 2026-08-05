@@ -1,5 +1,5 @@
 import { Injectable, signal } from '@angular/core';
-import { IBmbUserInfo } from '../../types';
+import { IBmbUserInfo } from '@shared/types';
 import { IBmbLoginOnBoardingCustomization } from './bmb-login-onboarding.component';
 
 @Injectable({

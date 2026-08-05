@@ -9,8 +9,8 @@ import {
   TemplateRef,
   ViewEncapsulation,
 } from '@angular/core';
-import { IBmbButtonAction } from '../../types';
-import { BmbButtonDirective } from '../../directives/bmb-button/button.directive';
+import { IBmbButtonAction } from '@shared/types';
+import { BmbButtonDirective } from '../../../directives/old/bmb-button/button.directive';
 import {
   BmbCardComponent,
   BmbCardContentComponent,
@@ -24,8 +24,8 @@ import {
 } from '../bmb-external-link/bmb-external-link.component';
 import { IBmbFooterEvent } from '../bmb-bottom-navigation-bar/bmb-bottom-navigation-bar.component';
 import { BmbInnerHeaderComponent } from '../bmb-inner-header/bmb-inner-header.component';
-import { IBmbTargetLink } from '../../types';
-import { logDeprecatedInput } from '../../utils/logDeprecatedInput';
+import { IBmbTargetLink } from '@shared/types';
+import { logDeprecatedInput } from '../../../_shared/logic/logDeprecatedInput';
 
 export type IBmbMobileTemplateName =
   | 'single-header'

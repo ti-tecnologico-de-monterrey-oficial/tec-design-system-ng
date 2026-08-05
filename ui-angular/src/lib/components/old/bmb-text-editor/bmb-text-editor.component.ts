@@ -17,13 +17,13 @@ import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.compo
 import {
   BmbProjectionContentService,
   IBmbProjectionContent,
-} from '../../services/projection/projection.service';
+} from '../../../services/old/projection/projection.service';
 import { BmbActionMenuComponent } from '../bmb-action-menu/bmb-action-menu.component';
 import { BmbItemComponent } from '../bmb-item/bmb-item.component';
 import { IActions } from './types';
 import { getInsertList, getSettingsList } from './list';
-import { TranslatePipe } from '../../pipes/translations';
-import { BmbTranslationsService } from '../../services/translations/translations.service';
+import { TranslatePipe } from '../../../pipes/translations';
+import { BmbTranslationsService } from '../../../services/translations/translations.service';
 import {
   BmbTextEditorPromptComponent,
   IBmbTextEditorPromptType,

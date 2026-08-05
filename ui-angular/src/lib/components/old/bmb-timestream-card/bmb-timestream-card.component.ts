@@ -7,7 +7,7 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { BmbHomeCardComponent } from '../bmb-home-card/bmb-home-card.component';
-import { IBmbColor } from '../../types/colors';
+import { IBmbColor } from '@shared/types/colors';
 import { IBmbDataTopBar } from '../bmb-breadcrumb/bmb-breadcrumb.component';
 import {
   BmbTimestreamComponent,
@@ -21,10 +21,10 @@ import {
 } from '../bmb-card/bmb-card.component';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { IBmbControlType } from '../bmb-filter-card/bmb-filter-card.interface';
-import { timestreamFilter } from '../../utils/timestreamFilters';
+import { timestreamFilter } from '../../../_shared/logic/timestreamFilters';
 import { CommonModule } from '@angular/common';
-import { IBmbActionHeader } from '../../types';
-import { logDeprecatedInput } from '../../utils/logDeprecatedInput';
+import { IBmbActionHeader } from '@shared/types';
+import { logDeprecatedInput } from '../../../_shared/logic/logDeprecatedInput';
 
 @Component({
   selector: 'bmb-timestream-card',

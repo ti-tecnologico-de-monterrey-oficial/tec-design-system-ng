@@ -11,7 +11,7 @@ import {
   getSpecialSpecifications,
   getVariableAndClassesSizes,
   SANDBOX_TITLE,
-} from '../utils/doc/utils';
+} from '@docs/utils/utils';
 
 @Component({
   standalone: true,

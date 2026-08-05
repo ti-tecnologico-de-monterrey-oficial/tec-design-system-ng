@@ -18,7 +18,7 @@ import {
   IBotType,
   IChatBarActions,
 } from '../bmb-chat-bar/bmb-chat-bar.component';
-import { IBmbColor } from '../../types/colors';
+import { IBmbColor } from '@shared/types/colors';
 import {
   IBmbChatActionEvent,
   IBmbChatMessage,
@@ -28,15 +28,15 @@ import {
   BmbChatBubblesComponent,
   IBmbChatBubblesActions,
 } from '../bmb-chat-bubbles/bmb-chat-bubbles.component';
-import { TranslatePipe } from '../../pipes/translations';
+import { TranslatePipe } from '../../../pipes/translations';
 import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
-import { BmbProjectionContentService } from '../../services/projection/projection.service';
+import { BmbProjectionContentService } from '../../../services/old/projection/projection.service';
 import { CommonModule } from '@angular/common';
 import { BmbBotIconComponent } from '../bmb-bot-icon/bmb-bot-icon.component';
-import { IBmbActionHeader } from '../../types';
+import { IBmbActionHeader } from '@shared/types';
 import { BmbActionMenuComponent } from '../bmb-action-menu/bmb-action-menu.component';
 import { BmbItemComponent } from '../bmb-item/bmb-item.component';
-import { BmbTranslationsService } from '../../services/translations/translations.service';
+import { BmbTranslationsService } from '../../../services/translations/translations.service';
 
 export type IBmbHomeCardChatMode = 'compact' | 'chat' | 'expanded';
 

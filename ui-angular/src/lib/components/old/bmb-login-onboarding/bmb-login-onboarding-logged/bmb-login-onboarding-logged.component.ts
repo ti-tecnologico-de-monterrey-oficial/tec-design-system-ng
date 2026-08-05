@@ -4,9 +4,9 @@ import {
   output,
   ViewEncapsulation,
 } from '@angular/core';
-import { BmbButtonDirective } from '../../../directives/bmb-button/button.directive';
+import { BmbButtonDirective } from '../../../../directives/old/bmb-button/button.directive';
 import { BmbLoginOnboardingService } from '../bmb-login-onboarding.service';
-import { IBmbLinkConfiguration, IBmbUserInfo } from '../../../types';
+import { IBmbLinkConfiguration, IBmbUserInfo } from '@shared/types';
 import { BmbUserProfileContentComponent } from '../../bmb-user-profile/bmb-user-profile-content/bmb-user-profile-content.component';
 import { BmbMitecLogoAnimationComponent } from '../../bmb-mitec-logo-animation/bmb-mitec-logo-animation.component';
 

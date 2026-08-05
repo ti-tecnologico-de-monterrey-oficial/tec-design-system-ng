@@ -13,7 +13,7 @@ import {
   OnChanges,
   SimpleChanges,
 } from '@angular/core';
-import { BmbAccordionComponent } from '../../components/bmb-accordion/bmb-accordion.component';
+import { BmbAccordionComponent } from '../../../components/old/bmb-accordion/bmb-accordion.component';
 
 @Directive({
   selector: '[bmbAccordionControl]',

@@ -12,9 +12,9 @@ import {
   BmbLayoutDirective,
   IAlignItemsOptions,
   IJustifyOptions,
-} from '../../directives/bmb-layout/bmb-layout.directive';
-import { BmbLayoutItemDirective } from '../../directives/bmb-layout/bmb-layout-item.directive';
-import { SizeNames } from '../../types';
+} from '../../../directives/old/bmb-layout/bmb-layout.directive';
+import { BmbLayoutItemDirective } from '../../../directives/old/bmb-layout/bmb-layout-item.directive';
+import { SizeNames } from '@shared/types';
 
 @Component({
   selector: 'bmb-three-cols',

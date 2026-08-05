@@ -8,7 +8,7 @@ import {
 } from '@angular/core';
 import { BmbFabComponent } from '../bmb-fab/bmb-fab.component';
 import { BmbInteractiveIconComponent } from '../bmb-interactive-icon/bmb-interactive-icon.component';
-import { IBmbApp } from '../../types';
+import { IBmbApp } from '@shared/types';
 import { BmbInnerHeaderComponent } from '../bmb-inner-header/bmb-inner-header.component';
 import { BmbTabsComponent, IBmbTab } from '../bmb-tabs/bmb-tabs.component';
 

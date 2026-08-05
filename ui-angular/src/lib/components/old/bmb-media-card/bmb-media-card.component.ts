@@ -7,10 +7,10 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SizeNames, IBmbTargetLink } from '../../types';
+import { SizeNames, IBmbTargetLink } from '@shared/types';
 import { BmbUserImageComponent } from '../bmb-user-image/bmb-user-image.component';
-import { isExternalLink } from '../../utils/utils';
-import { logDeprecatedInput } from '../../utils/logDeprecatedInput';
+import { isExternalLink } from '@shared/logic/utils';
+import { logDeprecatedInput } from '../../../_shared/logic/logDeprecatedInput';
 
 export type IBmbMediaCardType = 'inline' | 'floating' | 'author_detail';
 export type IBmbMediaCardLoading = 'lazy' | 'eager';

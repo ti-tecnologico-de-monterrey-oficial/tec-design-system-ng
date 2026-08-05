@@ -7,9 +7,9 @@ import {
   effect,
   contentChildren,
 } from '@angular/core';
-import { IBmbColor } from '../../types/colors';
+import { IBmbColor } from '@shared/types/colors';
 import { CommonModule } from '@angular/common';
-import { logDeprecatedInput } from '../../utils/logDeprecatedInput';
+import { logDeprecatedInput } from '../../../_shared/logic/logDeprecatedInput';
 import { BmbHomeCardHeaderComponent } from '../bmb-home-card/bmb-home-card-header/bmb-home-card-header.component';
 import { BmbDividerComponent } from '../bmb-divider/bmb-divider.component';
 

@@ -13,7 +13,7 @@ import {
   getSandboxConsiderationsDocumentation,
   getSpecialSpecifications,
   SANDBOX_TITLE,
-} from '../utils/doc/utils';
+} from '@docs/utils/utils';
 import { BmbDividerComponent } from '../components/bmb-divider/bmb-divider.component';
 import { BmbAccordionComponent } from '../components/bmb-accordion/bmb-accordion.component';
 import { BmbSelectorDirective } from '../directives/bmb-selector/bmb-selector.directive';

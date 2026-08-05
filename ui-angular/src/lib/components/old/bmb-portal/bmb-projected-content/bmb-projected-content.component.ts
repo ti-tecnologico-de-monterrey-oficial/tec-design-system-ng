@@ -14,7 +14,7 @@ import {
 } from '@angular/core';
 import { BmbOverlayComponent } from '../../bmb-overlay/bmb-overlay.component';
 import { CommonModule } from '@angular/common';
-import { IBmbProjectedContentMode } from '../../../services/projection/projection.service';
+import { IBmbProjectedContentMode } from '../../../../services/old/projection/projection.service';
 
 @Component({
   selector: 'bmb-projected-content',

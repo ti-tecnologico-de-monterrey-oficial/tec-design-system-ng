@@ -25,11 +25,11 @@ import {
   IBmbVisibilityRule,
 } from './bmb-filter-card.interface';
 import { IBmbDropdownItem } from '../bmb-dropdown/bmb-dropdown.component';
-import { BmbButtonDirective } from '../../directives/bmb-button/button.directive';
+import { BmbButtonDirective } from '../../../directives/old/bmb-button/button.directive';
 import { BmbDropdownComponent } from '../bmb-dropdown/bmb-dropdown.component';
 import { BmbTagComponent } from '../bmb-tags/bmb-tags.component';
-import { BmbNativeModalService } from '../../services/modal/native-modal.service';
-import { TranslatePipe } from '../../pipes/translations';
+import { BmbNativeModalService } from '../../../services/old/modal/native-modal.service';
+import { TranslatePipe } from '../../../pipes/translations';
 
 @Component({
   selector: 'bmb-filter-card',

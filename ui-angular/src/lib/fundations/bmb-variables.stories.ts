@@ -10,7 +10,7 @@ import {
   getTypographyDetail,
   SANDBOX_TITLE,
   SPACING_DESCRIPTION,
-} from '../utils/doc/utils';
+} from '@docs/utils/utils';
 
 export default {
   title: 'Foundations/Variables',

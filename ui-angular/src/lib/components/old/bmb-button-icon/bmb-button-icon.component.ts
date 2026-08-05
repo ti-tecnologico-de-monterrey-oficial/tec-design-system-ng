@@ -8,7 +8,7 @@ import {
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
-import { IBmbContrast } from '../../types/colors';
+import { IBmbContrast } from '@shared/types/colors';
 
 @Component({
   selector: 'bmb-button-icon',

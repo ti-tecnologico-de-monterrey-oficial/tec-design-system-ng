@@ -8,7 +8,7 @@ import {
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
-import { logDeprecatedInput } from '../../utils/logDeprecatedInput';
+import { logDeprecatedInput } from '../../../_shared/logic/logDeprecatedInput';
 
 export type BmbToastAppearance =
   | 'neutral'

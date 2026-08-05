@@ -9,13 +9,13 @@ import {
 import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
 import { BmbDividerComponent } from '../bmb-divider/bmb-divider.component';
 import { BmbDotPaginatorComponent } from '../bmb-dot-paginator/bmb-dot-paginator.component';
-import { BmbButtonDirective } from '../../directives/bmb-button/button.directive';
+import { BmbButtonDirective } from '../../../directives/old/bmb-button/button.directive';
 import { CommonModule } from '@angular/common';
-import { TranslatePipe } from '../../pipes/translations';
+import { TranslatePipe } from '../../../pipes/translations';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
-import { logDeprecatedInput } from '../../utils/logDeprecatedInput';
+import { logDeprecatedInput } from '../../../_shared/logic/logDeprecatedInput';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
-import { sanitizeContent } from '../../utils/sanitizeContent';
+import { sanitizeContent } from '../../../_shared/logic/sanitizeContent';
 
 export interface IBmbCardNoticeDescription {
   pageOne?: string | SafeHtml;

@@ -13,18 +13,18 @@ import {
   output,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { buildErrorMessage, isImage } from '../../utils/utils';
+import { buildErrorMessage, isImage } from '@shared/logic/utils';
 import { BmbNotificationCounterComponent } from '../bmb-notification-counter/bmb-notification-counter.component';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
-import { BmbIconService } from '../../services/icon/icon.service';
-import { sanitizeContent } from '../../utils/sanitizeContent';
+import { BmbIconService } from '../../../services/icon/icon.service';
+import { sanitizeContent } from '../../../_shared/logic/sanitizeContent';
 import {
   BmbCustomIconList,
   BmbCustomIconListType,
   BmbCustomIconsComponent,
 } from './bmb-custom-icons/bmb-custom-icons.component';
 import { A11yModule } from '@angular/cdk/a11y';
-import { getUUID } from '../../utils/utils';
+import { getUUID } from '@shared/logic/utils';
 
 @Component({
   selector: 'bmb-icon',

@@ -7,8 +7,8 @@ import {
 import { CommonModule } from '@angular/common';
 import { BmbIconComponent } from '../../bmb-icon/bmb-icon.component';
 import { IBmbAlertEmptyState } from '../types';
-import { BmbButtonDirective } from '../../../directives/bmb-button/button.directive';
-import { TranslatePipe } from '../../../pipes/translations';
+import { BmbButtonDirective } from '../../../../directives/old/bmb-button/button.directive';
+import { TranslatePipe } from '../../../../pipes/translations';
 
 @Component({
   selector: 'bmb-alert-center-empty',

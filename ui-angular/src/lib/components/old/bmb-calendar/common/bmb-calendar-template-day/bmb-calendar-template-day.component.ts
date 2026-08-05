@@ -12,7 +12,7 @@ import { IBmbCalendarEvent } from '../../types';
 import { BmbCalendarScheduleCardsComponent } from '../bmb-calendar-schedule-cards/bmb-calendar-schedule-cards.component';
 import { DEFAULT_DATE_FORMAT, layoutEvents } from '../../utils';
 import { BmbCalendarTimeIndicatorComponent } from '../bmb-calendar-time-indicator/bmb-calendar-time-indicator.component';
-import { BmbTranslationsService } from '../../../../services/translations/translations.service';
+import { BmbTranslationsService } from '../../../../../services/translations/translations.service';
 import { BmbCalendarComponentService } from '../../bmb-calendar.service';
 
 @Component({

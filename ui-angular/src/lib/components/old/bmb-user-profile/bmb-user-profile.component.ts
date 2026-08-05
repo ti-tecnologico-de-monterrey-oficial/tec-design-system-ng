@@ -5,14 +5,14 @@ import {
   output,
   ViewEncapsulation,
 } from '@angular/core';
-import { BmbButtonDirective } from '../../directives/bmb-button/button.directive';
-import { IBmbActionHeader, IBmbTargetLink, IBmbUserInfo } from '../../types';
+import { BmbButtonDirective } from '../../../directives/old/bmb-button/button.directive';
+import { IBmbActionHeader, IBmbTargetLink, IBmbUserInfo } from '@shared/types';
 import {
   BmbHeaderMitecComponent,
   IBmbActionHeaderLinks,
 } from '../bmb-header-mitec/bmb-header-mitec.component';
 import { BmbUserProfileContentComponent } from './bmb-user-profile-content/bmb-user-profile-content.component';
-import { TranslatePipe } from '../../pipes/translations';
+import { TranslatePipe } from '../../../pipes/translations';
 
 @Component({
   selector: 'bmb-user-profile',

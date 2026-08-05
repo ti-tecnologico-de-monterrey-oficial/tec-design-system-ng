@@ -1,5 +1,5 @@
 import { Component, input } from '@angular/core';
-import { getUUID } from '../../../utils/utils';
+import { getUUID } from '@shared/logic/utils';
 
 export type BmbCustomIconListType =
   | 'bmb_android'

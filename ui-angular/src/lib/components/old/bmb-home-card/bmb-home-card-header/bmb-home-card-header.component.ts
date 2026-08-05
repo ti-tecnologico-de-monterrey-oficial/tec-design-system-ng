@@ -9,8 +9,8 @@ import {
   effect,
 } from '@angular/core';
 import { IBmbDataTopBar } from '../../bmb-breadcrumb/bmb-breadcrumb.component';
-import { IBmbColor } from '../../../types/colors';
-import { IBmbActionHeader } from '../../../types';
+import { IBmbColor } from '@shared/types/colors';
+import { IBmbActionHeader } from '@shared/types';
 import { BmbTitleContentComponent } from '../../bmb-title-content/bmb-title-content.component';
 import { BmbThreeColsComponent } from '../../bmb-three-cols/bmb-three-cols.component';
 import { BmbActionIconComponent } from '../../bmb-action-icon/bmb-action-icon.component';
@@ -18,9 +18,9 @@ import { BmbNavigationBarComponent } from '../../bmb-navigation-bar/bmb-navigati
 import { BmbContainerComponent } from '../../bmb-container/bmb-container.component';
 import { CommonModule } from '@angular/common';
 import { IBotType } from '../../bmb-chat-bar/types';
-import { logDeprecatedInput } from '../../../utils/logDeprecatedInput';
-import { TranslatePipe } from '../../../pipes/translations';
-import { BmbTranslationsService } from '../../../services/translations/translations.service';
+import { logDeprecatedInput } from '../../../../_shared/logic/logDeprecatedInput';
+import { TranslatePipe } from '../../../../pipes/translations';
+import { BmbTranslationsService } from '../../../../services/translations/translations.service';
 
 @Component({
   selector: 'bmb-home-card-header',

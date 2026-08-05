@@ -5,7 +5,7 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SizeNames } from '../../types';
+import { SizeNames } from '@shared/types';
 
 const calculateSize = (pixels: string[]): string => {
   return pixels.map((size) => `var(--bmb-radius-${size})`).join(' ');

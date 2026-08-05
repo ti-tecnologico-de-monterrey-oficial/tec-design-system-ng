@@ -12,14 +12,14 @@ import { DateTime } from 'luxon';
 import { getWeeksInMonth, weeksAndDays } from '../../utils';
 import { CommonModule } from '@angular/common';
 import { IBmbParsedDates } from '../../types';
-import { BmbButtonDirective } from '../../../../directives/bmb-button/button.directive';
+import { BmbButtonDirective } from '../../../../../directives/old/bmb-button/button.directive';
 import { Info } from 'luxon';
-import { orderDayNames } from '../../../../utils/utils';
+import { orderDayNames } from '@shared/logic/utils';
 import { BmbInnerHeaderComponent } from '../../../bmb-inner-header/bmb-inner-header.component';
 import { BmbChevronTitleSelectorComponent } from '../../../bmb-chevron-title-selector/bmb-chevron-title-selector.component';
 import { BmbPullWedgeComponent } from '../../../bmb-pull-wedge/bmb-pull-wedge.component';
-import { BmbTranslationsService } from '../../../../services/translations/translations.service';
-import { TranslatePipe } from '../../../../pipes/translations';
+import { BmbTranslationsService } from '../../../../../services/translations/translations.service';
+import { TranslatePipe } from '../../../../../pipes/translations';
 import { BmbCalendarComponentService } from '../../bmb-calendar.service';
 
 @Component({

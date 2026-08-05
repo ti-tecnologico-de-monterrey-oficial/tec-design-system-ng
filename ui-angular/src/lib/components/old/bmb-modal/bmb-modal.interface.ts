@@ -1,5 +1,5 @@
 import { TemplateRef, Type } from '@angular/core';
-import { IButtonAppearance } from '../../types';
+import { IButtonAppearance } from '@shared/types';
 
 export type IBmbModalSize = 'small' | 'medium' | 'large';
 export type IBmbModalType = 'informative' | 'action' | 'alert';

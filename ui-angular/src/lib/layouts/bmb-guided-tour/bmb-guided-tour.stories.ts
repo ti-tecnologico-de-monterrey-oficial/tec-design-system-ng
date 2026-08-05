@@ -18,9 +18,9 @@ import {
   BmbProjectionContentService,
   IBmbProjectionContent,
   OnboardingStep,
-} from '../../../public-api';
+} from '../../../index';
 import { CommonModule } from '@angular/common';
-import { attributes } from '../../utils/doc/utils';
+import { attributes } from '../@docs/utils/utils';
 
 @Component({
   standalone: true,

@@ -9,15 +9,15 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { INotification, INotificationAction } from '../types';
+import { INotification, INotificationAction } from '@shared/types';
 import { BmbIconComponent } from '../../bmb-icon/bmb-icon.component';
 import { BmbUserImageComponent } from '../../bmb-user-image/bmb-user-image.component';
 import { BmbCheckboxComponent } from '../../bmb-checkbox/bmb-checkbox.component';
-import { BmbButtonDirective } from '../../../directives/bmb-button/button.directive';
+import { BmbButtonDirective } from '../../../../directives/old/bmb-button/button.directive';
 import {
   BMB_CREATIVE_COLOR_LIST,
   BMB_SEMANTIC_COLOR_LIST,
-} from '../../../types/foundations/colors/color-type';
+} from '@shared/types/foundations/colors/color-type';
 
 @Component({
   selector: 'bmb-push-notification-item',

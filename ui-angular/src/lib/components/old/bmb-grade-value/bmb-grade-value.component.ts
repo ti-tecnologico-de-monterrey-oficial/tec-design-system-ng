@@ -6,7 +6,7 @@ import {
   ViewEncapsulation,
   computed,
 } from '@angular/core';
-import { IBmbContrast } from '../../types/colors';
+import { IBmbContrast } from '@shared/types/colors';
 
 export type IBmbGradeType = 'main-grade' | 'partial-grade';
 

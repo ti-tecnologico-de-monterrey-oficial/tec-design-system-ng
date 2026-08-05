@@ -14,12 +14,12 @@ import {
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { BmbTextLinkComponent } from '../bmb-text-link/bmb-text-link.component';
 import { BmbProgressBarComponent } from '../bmb-progress-bar/bmb-progress-bar.component';
-import { getUUID } from '../../utils/utils';
-import { IBmbContrast } from '../../types/colors';
-import { TranslatePipe } from '../../pipes/translations';
-import { BmbVerticalLayoutDirective } from '../../directives/bmb-layout/bmb-vertical-layout/bmb-vertical-layout.directive';
-import { BmbVerticalLayoutItemDirective } from '../../directives/bmb-layout/bmb-vertical-layout/bmb-vertical-layout-item.directive';
-import { BmbTranslationsService } from '../../services/translations/translations.service';
+import { getUUID } from '@shared/logic/utils';
+import { IBmbContrast } from '@shared/types/colors';
+import { TranslatePipe } from '../../../pipes/translations';
+import { BmbVerticalLayoutDirective } from '../../../directives/old/bmb-layout/bmb-vertical-layout/bmb-vertical-layout.directive';
+import { BmbVerticalLayoutItemDirective } from '../../../directives/old/bmb-layout/bmb-vertical-layout/bmb-vertical-layout-item.directive';
+import { BmbTranslationsService } from '../../../services/translations/translations.service';
 import {
   FormControl,
   FormsModule,
@@ -30,7 +30,7 @@ import {
   assignNewFormControl,
   handleValidity,
   newFormControlByType,
-} from '../../utils/formControl';
+} from '../../../_shared/logic/formControl';
 import { BmbInputValidatorComponent } from '../bmb-input/bmb-input-validator/bmb-input-validator.component';
 
 interface FileData {

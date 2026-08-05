@@ -17,7 +17,7 @@ import {
   getVariableDetail,
   SANDBOX_TITLE,
   SPACING_DESCRIPTION,
-} from '../utils/doc/utils';
+} from '@docs/utils/utils';
 
 @Component({
   standalone: true,

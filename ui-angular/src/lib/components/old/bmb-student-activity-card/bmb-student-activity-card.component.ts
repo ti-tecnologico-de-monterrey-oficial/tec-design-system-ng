@@ -9,11 +9,11 @@ import {
 } from '@angular/core';
 import { DateTime } from 'luxon';
 import { IBmbEventType } from '../bmb-calendar/types';
-import { BmbBadgeComponent } from '../bmb-badge/bmb-badge.component';
+import { BmbBadgeComponent } from '../../bmb-badge/bmb-badge.component';
 import { IBbmBgAppearance } from '../bmb-advertisement-card/types';
-import { logDeprecatedInput } from '../../utils/logDeprecatedInput';
-import { IBmbColorSemantics } from '../../types';
-import { IBmbBadgeColors } from '../../types/foundations/colors/color-type';
+import { logDeprecatedInput } from '../../../_shared/logic/logDeprecatedInput';
+import { IBmbColorSemantics } from '@shared/types';
+import { IBmbBadgeColors } from '@shared/types/foundations/colors/color-type';
 
 @Component({
   selector: 'bmb-student-activity-card',

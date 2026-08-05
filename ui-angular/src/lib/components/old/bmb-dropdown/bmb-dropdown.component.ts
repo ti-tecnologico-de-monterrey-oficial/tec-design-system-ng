@@ -19,29 +19,29 @@ import {
   convertListToSelectList,
   getSelectedValues,
   getValidInitialValues,
-} from '../../utils/dropdown';
+} from '../../../_shared/logic/dropdown';
 import {
   IBmbInputError,
   IBmbInputTooltipPosition,
 } from '../bmb-input/bmb-input.component';
 import { BmbDropdownContentComponent } from '../utils/bmb-dropdown-content/bmb-dropdown-content.component';
-import { IDropdownItem } from '../../types';
+import { IDropdownItem } from '@shared/types';
 import { BmbInputContentComponent } from '../bmb-input/bmb-input-content/bmb-input-content.component';
 import { startWith } from 'rxjs';
-import { getUUID } from '../../utils/utils';
+import { getUUID } from '@shared/logic/utils';
 import {
   assignNewFormControl,
   handleValidity,
   newFormControlByType,
   showError,
-} from '../../utils/formControl';
+} from '../../../_shared/logic/formControl';
 import { BmbInputValidatorComponent } from '../bmb-input/bmb-input-validator/bmb-input-validator.component';
-import { BmbProjectionContentService } from '../../services/projection/projection.service';
-import { BmbLayoutDirective } from '../../directives/bmb-layout/bmb-layout.directive';
-import { BmbLayoutItemDirective } from '../../directives/bmb-layout/bmb-layout-item.directive';
+import { BmbProjectionContentService } from '../../../services/old/projection/projection.service';
+import { BmbLayoutDirective } from '../../../directives/old/bmb-layout/bmb-layout.directive';
+import { BmbLayoutItemDirective } from '../../../directives/old/bmb-layout/bmb-layout-item.directive';
 import { BmbTagComponent } from '../bmb-tags/bmb-tags.component';
 import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
-import { TranslatePipe } from '../../pipes/translations';
+import { TranslatePipe } from '../../../pipes/translations';
 
 export interface IBmbDropdownItem {
   name: string;

@@ -5,7 +5,7 @@ import {
   input,
   ViewEncapsulation,
 } from '@angular/core';
-import { isImage } from '../../utils/utils';
+import { isImage } from '@shared/logic/utils';
 
 @Component({
   selector: 'bmb-bot-icon',

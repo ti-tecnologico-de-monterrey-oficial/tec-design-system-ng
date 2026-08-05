@@ -4,9 +4,9 @@ import {
   output,
   ViewEncapsulation,
 } from '@angular/core';
-import { BmbButtonDirective } from '../../../directives/bmb-button/button.directive';
+import { BmbButtonDirective } from '../../../../directives/old/bmb-button/button.directive';
 import { BmbLoginOnboardingService } from '../bmb-login-onboarding.service';
-import { IBmbUserInfo } from '../../../types';
+import { IBmbUserInfo } from '@shared/types';
 
 @Component({
   selector: 'bmb-login-onboarding-logout',

@@ -15,15 +15,15 @@ import {
 } from '../bmb-alert-center/types';
 import { IBmbTab } from '../bmb-tabs/bmb-tabs.component';
 import { BmbHomeCardComponent } from '../bmb-home-card/bmb-home-card.component';
-import { BmbTranslationsService } from '../../services/translations/translations.service';
+import { BmbTranslationsService } from '../../../services/translations/translations.service';
 import { BmbTabsComponent } from '../bmb-tabs/bmb-tabs.component';
 import { BmbAlertCenterAdsComponent } from '../bmb-alert-center/bmb-alert-center-ads/bmb-alert-center-ads.component';
 import { BmbAlertCenterListComponent } from '../bmb-alert-center/bmb-alert-center-list/bmb-alert-center-list.component';
 import { DateTime } from 'luxon';
-import { BmbProjectionContentService } from '../../services/projection/projection.service';
-import { BmbNativeModalService } from '../../services/modal/native-modal.service';
+import { BmbProjectionContentService } from '../../../services/old/projection/projection.service';
+import { BmbNativeModalService } from '../../../services/old/modal/native-modal.service';
 import { BmbNotificationCardModalComponent } from './bmb-notification-card-modal/bmb-notification-card-modal.component';
-import { TranslatePipe } from '../../pipes/translations';
+import { TranslatePipe } from '../../../pipes/translations';
 
 @Component({
   selector: 'bmb-notification-card',

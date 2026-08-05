@@ -9,7 +9,7 @@ import {
   getSandboxConsiderationsDocumentation,
   getSpecialSpecifications,
   SANDBOX_TITLE,
-} from '../utils/doc/utils';
+} from '@docs/utils/utils';
 
 @Component({
   selector: 'storybook-border-stories',

@@ -9,7 +9,7 @@ import {
   getTypographyDetail,
   SANDBOX_TITLE,
   TYPOGRAPHY_DESCRIPTION,
-} from '../utils/doc/utils';
+} from '@docs/utils/utils';
 
 export default {
   title: 'Foundations/Typography',

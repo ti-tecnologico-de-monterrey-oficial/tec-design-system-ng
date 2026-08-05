@@ -7,13 +7,13 @@ import {
   output,
   ViewEncapsulation,
 } from '@angular/core';
-import { BmbButtonDirective } from '../../directives/bmb-button/button.directive';
+import { BmbButtonDirective } from '../../../directives/old/bmb-button/button.directive';
 import { IBmbAdvertisementData } from './types';
 import { BmbHomeCardComponent } from '../bmb-home-card/bmb-home-card.component';
 import { BmbCarouselComponent } from '../bmb-carousel/bmb-carousel.component';
 import { BmbTabsComponent, IBmbTab } from '../bmb-tabs/bmb-tabs.component';
-import { TranslatePipe } from '../../pipes/translations';
-import { handleImageNotFoundError } from '../../utils/utils';
+import { TranslatePipe } from '../../../pipes/translations';
+
 
 @Component({
   selector: 'bmb-advertisement-card',

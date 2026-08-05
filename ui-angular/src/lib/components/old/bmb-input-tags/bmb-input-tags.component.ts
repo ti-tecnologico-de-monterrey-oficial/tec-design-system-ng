@@ -19,25 +19,25 @@ import {
   IBmbInputError,
   IBmbInputTooltipPosition,
 } from '../bmb-input/bmb-input.component';
-import { ClickOutsideDirective } from '../../directives/utils/clickoutside.directive';
+import { ClickOutsideDirective } from '../../../directives/old/utils/clickoutside.directive';
 import { debounceTime } from 'rxjs';
 import {
   convertListToSelectList,
   filteredValue,
   getSelectedValues,
   getValidInitialValues,
-} from '../../utils/dropdown';
+} from '../../../_shared/logic/dropdown';
 import { BmbInputValidatorComponent } from '../bmb-input/bmb-input-validator/bmb-input-validator.component';
 import { BmbDropdownContentComponent } from '../utils/bmb-dropdown-content/bmb-dropdown-content.component';
-import { IDropdownItem } from '../../types';
+import { IDropdownItem } from '@shared/types';
 import { BmbInputContentComponent } from '../bmb-input/bmb-input-content/bmb-input-content.component';
-import { getUUID } from '../../utils/utils';
+import { getUUID } from '@shared/logic/utils';
 import {
   assignNewFormControl,
   handleValidity,
   newFormControlByType,
   showError,
-} from '../../utils/formControl';
+} from '../../../_shared/logic/formControl';
 
 @Component({
   selector: 'bmb-input-tags',

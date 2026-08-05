@@ -9,11 +9,11 @@ import { BmbRadialComponent } from '../../bmb-radial/bmb-radial.component';
 import { BmbCheckboxComponent } from '../../bmb-checkbox/bmb-checkbox.component';
 import { BmbIconComponent } from '../../bmb-icon/bmb-icon.component';
 import { BmbTooltipComponent } from '../../bmb-tooltip/bmb-tooltip.component';
-import { BmbBadgeComponent } from '../../bmb-badge/bmb-badge.component';
+import { BmbBadgeComponent } from '../../../bmb-badge/bmb-badge.component';
 import { BmbImageComponent } from '../../bmb-image/bmb-image.component';
 import { IBbmBgAppearance } from '../../bmb-advertisement-card/types';
 import { BmbListGroupStatusService } from '../bmb-list-group.service';
-import { IBmbContrast } from '../../../types/colors';
+import { IBmbContrast } from '@shared/types/colors';
 
 @Component({
   selector: 'bmb-list-group-item',

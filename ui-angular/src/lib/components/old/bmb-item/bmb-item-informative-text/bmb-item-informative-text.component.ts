@@ -4,13 +4,13 @@ import {
   input,
   ViewEncapsulation,
 } from '@angular/core';
-import { IBmbTargetLink } from '../../../types';
+import { IBmbTargetLink } from '@shared/types';
 import { BmbIconComponent } from '../../bmb-icon/bmb-icon.component';
 import { BmbTextLinkComponent } from '../../bmb-text-link/bmb-text-link.component';
-import { BmbLayoutDirective } from '../../../directives/bmb-layout/bmb-layout.directive';
-import { BmbLayoutItemDirective } from '../../../directives/bmb-layout/bmb-layout-item.directive';
-import { BmbVerticalLayoutDirective } from '../../../directives/bmb-layout/bmb-vertical-layout/bmb-vertical-layout.directive';
-import { BmbVerticalLayoutItemDirective } from '../../../directives/bmb-layout/bmb-vertical-layout/bmb-vertical-layout-item.directive';
+import { BmbLayoutDirective } from '../../../../directives/old/bmb-layout/bmb-layout.directive';
+import { BmbLayoutItemDirective } from '../../../../directives/old/bmb-layout/bmb-layout-item.directive';
+import { BmbVerticalLayoutDirective } from '../../../../directives/old/bmb-layout/bmb-vertical-layout/bmb-vertical-layout.directive';
+import { BmbVerticalLayoutItemDirective } from '../../../../directives/old/bmb-layout/bmb-vertical-layout/bmb-vertical-layout-item.directive';
 
 @Component({
   selector: 'bmb-item-informative-text',

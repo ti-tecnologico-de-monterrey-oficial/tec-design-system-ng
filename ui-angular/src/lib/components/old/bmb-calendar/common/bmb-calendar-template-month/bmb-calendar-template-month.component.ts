@@ -10,7 +10,7 @@ import { DateTime } from 'luxon';
 import { eventsInDate, dayName, weeksAndDays } from '../../utils';
 import { CommonModule } from '@angular/common';
 import { BmbCalendarScheduleCardsComponent } from '../bmb-calendar-schedule-cards/bmb-calendar-schedule-cards.component';
-import { BmbTranslationsService } from '../../../../services/translations/translations.service';
+import { BmbTranslationsService } from '../../../../../services/translations/translations.service';
 import { BmbCalendarComponentService } from '../../bmb-calendar.service';
 
 @Component({

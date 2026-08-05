@@ -16,8 +16,8 @@ import { IBmbInputError } from '../bmb-input/bmb-input.component';
 import {
   assignNewFormControl,
   newFormControlByType,
-} from '../../utils/formControl';
-import { getUUID } from '../../utils/utils';
+} from '../../../_shared/logic/formControl';
+import { getUUID } from '@shared/logic/utils';
 import { DateTime } from 'luxon';
 
 @Component({

@@ -8,7 +8,7 @@ import { CommonModule } from '@angular/common';
 import {
   BmbLayoutGridDirective,
   BmbLayoutGridItemDirective,
-} from '../../directives/bmb-layout-grid/bmb-layout-grid.directive';
+} from '../../../directives/old/bmb-layout-grid/bmb-layout-grid.directive';
 
 export type BmbSkeletonType =
   | 'header'

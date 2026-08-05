@@ -4,15 +4,15 @@ import {
   input,
   ViewEncapsulation,
 } from '@angular/core';
-import { IBmbActionHeader, SizeNames } from '../../types';
+import { IBmbActionHeader, SizeNames } from '@shared/types';
 import { CommonModule } from '@angular/common';
 import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
 import {
   BmbLayoutDirective,
   IAlignItemsOptions,
   IJustifyOptions,
-} from '../../directives/bmb-layout/bmb-layout.directive';
-import { BmbLayoutItemDirective } from '../../directives/bmb-layout/bmb-layout-item.directive';
+} from '../../../directives/old/bmb-layout/bmb-layout.directive';
+import { BmbLayoutItemDirective } from '../../../directives/old/bmb-layout/bmb-layout-item.directive';
 
 @Component({
   selector: 'bmb-navigation-bar',

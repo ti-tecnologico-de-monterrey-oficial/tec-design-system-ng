@@ -1,6 +1,6 @@
 import { DateTime } from 'luxon';
 import { IBbmBgAppearance } from '../bmb-advertisement-card/types';
-import { IButtonAppearance } from '../../types';
+import { IButtonAppearance } from '@shared/types';
 
 export interface IBmbAlertTag {
   text: string;

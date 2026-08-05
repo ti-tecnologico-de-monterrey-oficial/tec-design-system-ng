@@ -11,11 +11,11 @@ import {
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { BmbCheckExternalLinkButtonComponent } from '../bmb-check-external-link-button/bmb-check-external-link-button.component';
 import { CommonModule } from '@angular/common';
-import { IBmbTargetLink } from '../../types';
+import { IBmbTargetLink } from '@shared/types';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
-import { sanitizeContent } from '../../utils/sanitizeContent';
+import { sanitizeContent } from '../../../_shared/logic/sanitizeContent';
 import { BmbTooltipBaseComponent } from '../bmb-tooltip/bmb-tooltip-base/bmb-tooltip-base.component';
-import { isImage } from '../../utils/utils';
+import { isImage } from '@shared/logic/utils';
 
 @Component({
   selector: 'bmb-action-icon',

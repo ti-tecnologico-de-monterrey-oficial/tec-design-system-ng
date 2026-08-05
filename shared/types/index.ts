@@ -1,18 +1,18 @@
-import { IBmbInteractiveIconAppearance } from '../components/bmb-interactive-icon/bmb-interactive-icon.component';
-import { IBbmBgAppearance } from '../components/bmb-advertisement-card/types';
+import { IBmbInteractiveIconAppearance } from '../../ui-angular/src/lib/components/old/bmb-interactive-icon/bmb-interactive-icon.component';
+import { IBbmBgAppearance } from '../../ui-angular/src/lib/components/old/bmb-advertisement-card/types';
 
-export * from '../components/bmb-timestream/types';
-export * from '../components/bmb-push-notification/types';
-export * from '../components/bmb-advertisement-card/types';
-export * from '../components/bmb-login-onboarding/types';
-export * from '../components/bmb-filter-card/bmb-filter-card.interface';
-export * from '../components/bmb-alert-center/types';
-export * from '../components/bmb-chat-bubbles/types';
-export * from '../components/bmb-ai-chat-bubble/types';
-export * from '../components/bmb-sidebar/bmb-sidebar.interface';
-export * from '../components/bmb-grades/types';
-export * from '../components/bmb-tables/bmb-tables.interface';
-export * from '../components/bmb-image/types';
+export * from '../../ui-angular/src/lib/components/old/bmb-timestream/types';
+export * from '../../ui-angular/src/lib/components/old/bmb-push-notification/types';
+export * from '../../ui-angular/src/lib/components/old/bmb-advertisement-card/types';
+export * from '../../ui-angular/src/lib/components/old/bmb-login-onboarding/types';
+export * from '../../ui-angular/src/lib/components/old/bmb-filter-card/bmb-filter-card.interface';
+export * from '../../ui-angular/src/lib/components/old/bmb-alert-center/types';
+export * from '../../ui-angular/src/lib/components/old/bmb-chat-bubbles/types';
+export * from '../../ui-angular/src/lib/components/old/bmb-ai-chat-bubble/types';
+export * from '../../ui-angular/src/lib/components/old/bmb-sidebar/bmb-sidebar.interface';
+export * from '../../ui-angular/src/lib/components/old/bmb-grades/types';
+export * from '../../ui-angular/src/lib/components/old/bmb-tables/bmb-tables.interface';
+export * from '../../ui-angular/src/lib/components/old/bmb-image/types';
 export * from './colors';
 
 export type SizeNames =

@@ -1,6 +1,6 @@
 import { IActions } from './types';
 import { BmbTextEditorComponent } from './bmb-text-editor.component';
-import { BmbTranslationsService } from '../../services/translations/translations.service';
+import { BmbTranslationsService } from '../../../services/translations/translations.service';
 
 export function getSettingsList(
   ctx: BmbTextEditorComponent,

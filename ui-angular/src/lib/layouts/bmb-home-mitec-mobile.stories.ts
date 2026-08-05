@@ -16,7 +16,7 @@ import {
   IBmbApp,
   IBmbHome,
   IBmbUserInfo,
-} from '../../public-api';
+} from '../../index';
 import { CommonModule } from '@angular/common';
 import {
   attributes,
@@ -25,7 +25,7 @@ import {
   getSpecialSpecifications,
   getTECParticularitiesMessage,
   RELEVANT_TITLE,
-} from '../utils/doc/utils';
+} from '@docs/utils/utils';
 import { BmbCarouselComponent } from '../components/bmb-carousel/bmb-carousel.component';
 
 @Component({
