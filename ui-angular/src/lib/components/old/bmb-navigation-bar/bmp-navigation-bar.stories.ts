@@ -5,12 +5,12 @@ import {
   DBmbGenericParamDesc,
   DBmbIconParamDesc,
   DBmbLayoutParamDesc,
-} from '../../utils/doc/parameterDescriptions';
+} from '@docs/utils/parameterDescriptions';
 import {
   getBasicExampleBlock,
   getGeneralComponentDescription,
   getGeneralDescription,
-} from '../../utils/doc/utils';
+} from '@docs/utils/utils';
 
 export default {
   title: 'Components/Menus/Navigation bar',

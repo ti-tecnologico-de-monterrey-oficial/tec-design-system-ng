@@ -5,11 +5,11 @@ import {
   getGeneralDescription,
   getOnEvent,
   IBmbOnEvent,
-} from '../../utils/doc/utils';
+} from '@docs/utils/utils';
 import {
   DBmbGenericParamDesc,
   getOnClickParam,
-} from '../../utils/doc/parameterDescriptions';
+} from '@docs/utils/parameterDescriptions';
 
 const onLeftIconEvent: IBmbOnEvent = getOnEvent(
     'left icon',

@@ -9,13 +9,13 @@ import {
   getGeneralComponentDescription,
   getGeneralDescription,
   RELEVANT_TITLE,
-} from '../../utils/doc/utils';
+} from '@docs/utils/utils';
 import {
   DBmbButtonParamDesc,
   DBmbGenericParamDesc,
   DBmbIconParamDesc,
   getDefaultValueControl,
-} from '../../utils/doc/parameterDescriptions';
+} from '@docs/utils/parameterDescriptions';
 import { IButtonAppearance } from '../../types';
 
 const appearanceOptions: IButtonAppearance[] = [

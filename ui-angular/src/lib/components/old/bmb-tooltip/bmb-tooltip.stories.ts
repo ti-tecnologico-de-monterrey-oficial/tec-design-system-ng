@@ -8,7 +8,7 @@ import {
   getBasicExampleBlock,
   getGeneralComponentDescription,
   getGeneralDescription,
-} from '../../utils/doc/utils';
+} from '@docs/utils/utils';
 import {
   DBmbGenericParamDesc,
   DBmbIconParamDesc,
@@ -16,7 +16,7 @@ import {
   getDefaultValueControl,
   getPropertyParamDesc,
   SIMPLE_ICON_DESCRIPTION,
-} from '../../utils/doc/parameterDescriptions';
+} from '@docs/utils/parameterDescriptions';
 import { BmbTooltipComponent } from './bmb-tooltip.component';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 

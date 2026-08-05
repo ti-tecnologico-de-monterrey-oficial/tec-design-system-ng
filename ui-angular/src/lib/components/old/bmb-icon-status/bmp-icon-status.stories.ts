@@ -4,11 +4,11 @@ import {
   getBasicExampleBlock,
   getGeneralComponentDescription,
   getGeneralDescription,
-} from '../../utils/doc/utils';
+} from '@docs/utils/utils';
 import {
   getAppearanceParam,
   SIMPLE_ICON_DESCRIPTION,
-} from '../../utils/doc/parameterDescriptions';
+} from '@docs/utils/parameterDescriptions';
 
 export default {
   title: 'Components/Status indicators/Status icon',

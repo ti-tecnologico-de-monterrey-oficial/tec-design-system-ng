@@ -10,8 +10,8 @@ import {
   getStoryLink,
   IBmbOnEvent,
   RELEVANT_TITLE,
-} from '../../utils/doc/utils';
-import { getOnClickParam } from '../../utils/doc/parameterDescriptions';
+} from '@docs/utils/utils';
+import { getOnClickParam } from '@docs/utils/parameterDescriptions';
 import * as stepProgressBarStory from '../bmb-step-progress-bar/bmb-step-progress-bar.stories';
 
 const onStepEvent: IBmbOnEvent = getOnEvent('step number', 'onStepPress');

@@ -12,7 +12,7 @@ import {
   getGeneralDescription,
   getSpecialSpecifications,
   RELEVANT_TITLE,
-} from '../../utils/doc/utils';
+} from '@docs/utils/utils';
 
 export default {
   title: 'Internals/Three column content template',

@@ -5,12 +5,12 @@ import {
   getGeneralComponentDescription,
   getGeneralDescription,
   getOnEvent,
-} from '../../utils/doc/utils';
+} from '@docs/utils/utils';
 import {
   getDefaultValueControl,
   getOnClickParam,
   getPropertyParamDesc,
-} from '../../utils/doc/parameterDescriptions';
+} from '@docs/utils/parameterDescriptions';
 
 export default {
   title: 'Organisms/Account statement',

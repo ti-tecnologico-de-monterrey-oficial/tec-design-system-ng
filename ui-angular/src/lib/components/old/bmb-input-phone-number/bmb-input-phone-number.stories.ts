@@ -18,12 +18,12 @@ import {
   getFieldDescription,
   getFormExampleBlock,
   getSpecialSpecifications,
-} from '../../utils/doc/utils';
+} from '@docs/utils/utils';
 import {
   DBmbGenericParamDesc,
   DBmbInputParamDesc,
-} from '../../utils/doc/parameterDescriptions';
-import { IBmbCountryCode, IBmbCountryCodes } from '../../utils/countryCodes';
+} from '@docs/utils/parameterDescriptions';
+import { IBmbCountryCode, IBmbCountryCodes } from '@shared/logic/countryCodes';
 
 const inputName = 'input_phone_number';
 const inputExample = `<bmb-input-phone-number

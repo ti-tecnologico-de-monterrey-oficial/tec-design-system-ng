@@ -8,9 +8,9 @@ import {
   getGeneralComponentDescription,
   getGeneralDescription,
   getOnEvent,
-} from '../../utils/doc/utils';
+} from '@docs/utils/utils';
 import { BmbListGroupItemComponent } from './bmb-list-group-item/bmb-list-group-item.component';
-import { getOnEventParam } from '../../utils/doc/parameterDescriptions';
+import { getOnEventParam } from '@docs/utils/parameterDescriptions';
 
 export default {
   title: 'Components/Containers/List group',

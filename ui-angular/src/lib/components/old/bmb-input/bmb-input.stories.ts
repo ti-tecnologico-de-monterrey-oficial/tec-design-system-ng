@@ -10,13 +10,13 @@ import {
   getOnEvent,
   IBmbOnEvent,
   RELEVANT_TITLE,
-} from '../../utils/doc/utils';
+} from '@docs/utils/utils';
 import {
   DBmbInputParamDesc,
   getOnEventParam,
   getDefaultValueControl,
   getAppearanceParam,
-} from '../../utils/doc/parameterDescriptions';
+} from '@docs/utils/parameterDescriptions';
 
 const additionalDescription = `input various types of data, such as:
 >

@@ -5,7 +5,7 @@ import {
   getGeneralComponentDescription,
   getGeneralDescription,
   getStoryLink,
-} from '../../utils/doc/utils';
+} from '@docs/utils/utils';
 import {
   DBmbGenericParamDesc,
   getDefaultValueControl,
@@ -14,7 +14,7 @@ import {
   DBmbIconParamDesc,
   getPropertyForType,
   DBmbProgressBar,
-} from '../../utils/doc/parameterDescriptions';
+} from '@docs/utils/parameterDescriptions';
 import * as actionIconStory from '../bmb-action-icon/bmp-action-icon.stories';
 
 export default {

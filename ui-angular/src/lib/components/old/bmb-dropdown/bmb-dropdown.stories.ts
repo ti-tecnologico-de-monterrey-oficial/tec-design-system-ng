@@ -14,13 +14,13 @@ import {
   RELEVANT_TITLE,
   getAlertBlockquote,
   BlockquoteType,
-} from '../../utils/doc/utils';
+} from '@docs/utils/utils';
 import { BmbFormValidatorComponent } from '../bmb-form-validator/bmb-form-validator.component';
 import {
   DBmbInputParamDesc,
   getDefaultValueControl,
   getOnEventParam,
-} from '../../utils/doc/parameterDescriptions';
+} from '@docs/utils/parameterDescriptions';
 
 const inputName = 'dropdown';
 const formatName: string = getFormatName(inputName, '_');

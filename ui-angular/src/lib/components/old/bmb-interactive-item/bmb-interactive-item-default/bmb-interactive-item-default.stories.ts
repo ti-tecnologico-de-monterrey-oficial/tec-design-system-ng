@@ -4,13 +4,13 @@ import {
   getActionMenuItemComponentDescription,
   getAlertBlockquote,
   RELEVANT_TITLE,
-} from '../../../utils/doc/utils';
+} from '@docs/utils/utils';
 import {
   DBmbGenericParamDesc,
   DBmbIconParamDesc,
   DBmbItemActionMenu,
   getPropertyParamDesc,
-} from '../../../utils/doc/parameterDescriptions';
+} from '@docs/utils/parameterDescriptions';
 import { BmbInteractiveItemDefaultComponent } from './bmb-interactive-item-default.component';
 
 export default {

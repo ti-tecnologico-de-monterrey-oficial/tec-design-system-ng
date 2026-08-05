@@ -5,11 +5,11 @@ import {
   getBasicExampleBlock,
   getGeneralComponentDescription,
   getGeneralDescription,
-} from '../../utils/doc/utils';
+} from '@docs/utils/utils';
 import {
   DBmbButtonParamDesc,
   DBmbGenericParamDesc,
-} from '../../utils/doc/parameterDescriptions';
+} from '@docs/utils/parameterDescriptions';
 
 export default {
   title: 'Components/Buttons/Button group',

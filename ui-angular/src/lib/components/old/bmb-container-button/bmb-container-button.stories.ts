@@ -9,7 +9,7 @@ import {
   getGeneralDescription,
   getOnEvent,
   getSpecialSpecifications,
-} from '../../utils/doc/utils';
+} from '@docs/utils/utils';
 import {
   DBmbDropdownMenuParamDesc,
   DBmbGenericParamDesc,
@@ -18,7 +18,7 @@ import {
   getDefaultValueControl,
   getOnClickParam,
   ON_CLICK_DESCRIPTION,
-} from '../../utils/doc/parameterDescriptions';
+} from '@docs/utils/parameterDescriptions';
 
 const appearanceOptions: IBbmBgAppearance[] = [
   'normal',

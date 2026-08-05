@@ -15,14 +15,14 @@ import {
   getOnEvent,
   getSpecialSpecifications,
   RELEVANT_TITLE,
-} from '../../utils/doc/utils';
+} from '@docs/utils/utils';
 import {
   DBmbIconParamDesc,
   getDefaultValueControl,
   getAppearanceParam,
   getOnEventParam,
   getPropertyParamDesc,
-} from '../../utils/doc/parameterDescriptions';
+} from '@docs/utils/parameterDescriptions';
 import { BMB_PUSH_NOTIFICATION_COLOR_LIST } from '../../types/foundations/colors/color-type';
 
 const TITLE_PROPERTY_DESCRIPTION = getPropertyParamDesc('notification');

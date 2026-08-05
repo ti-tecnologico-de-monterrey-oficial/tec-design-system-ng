@@ -6,13 +6,13 @@ import {
   getGeneralComponentDescription,
   getGeneralDescription,
   getOnEvent,
-} from '../../utils/doc/utils';
+} from '@docs/utils/utils';
 import {
   DBmbIconParamDesc,
   getDefaultValueControl,
   getOnClickParam,
   getPropertyParamDesc,
-} from '../../utils/doc/parameterDescriptions';
+} from '@docs/utils/parameterDescriptions';
 
 const getIconParamDescription = (name: string, defaultValue: string = '""') => {
   return {

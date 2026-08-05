@@ -5,12 +5,12 @@ import {
   getGeneralComponentDescription,
   getGeneralDescription,
   RELEVANT_TITLE,
-} from '../../utils/doc/utils';
+} from '@docs/utils/utils';
 import {
   DBmbIconParamDesc,
   getDefaultValueControl,
   getPropertyParamDesc,
-} from '../../utils/doc/parameterDescriptions';
+} from '@docs/utils/parameterDescriptions';
 
 export default {
   title: 'Components/Status indicators/Focus element',

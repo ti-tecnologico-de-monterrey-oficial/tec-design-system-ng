@@ -6,8 +6,8 @@ import {
   getGeneralComponentDescription,
   getGeneralDescription,
   getSpecialSpecifications,
-} from '../../utils/doc/utils';
-import { getAppearanceParam } from '../../utils/doc/parameterDescriptions';
+} from '@docs/utils/utils';
+import { getAppearanceParam } from '@docs/utils/parameterDescriptions';
 
 export default {
   title: 'Components/Visual labels/Invoice',

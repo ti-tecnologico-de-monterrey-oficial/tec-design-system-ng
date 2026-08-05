@@ -10,12 +10,12 @@ import {
   getOnEvent,
   IBmbOnEvent,
   RELEVANT_TITLE,
-} from '../../utils/doc/utils';
+} from '@docs/utils/utils';
 import {
   DBmbIconParamDesc,
   getDefaultValueControl,
   getOnClickParam,
-} from '../../utils/doc/parameterDescriptions';
+} from '@docs/utils/parameterDescriptions';
 
 const onEvent: IBmbOnEvent = getOnEvent('', 'fabClick');
 export default {

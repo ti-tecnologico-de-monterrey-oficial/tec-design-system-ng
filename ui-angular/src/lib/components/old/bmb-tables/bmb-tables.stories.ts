@@ -12,11 +12,11 @@ import {
   getOnEvent,
   getSpecialSpecifications,
   RELEVANT_TITLE,
-} from '../../utils/doc/utils';
+} from '@docs/utils/utils';
 import {
   getModelDescription,
   getOnEventParam,
-} from '../../utils/doc/parameterDescriptions';
+} from '@docs/utils/parameterDescriptions';
 
 const additionalBlock: string = `
     @ViewChild('infoTemplate') infoTemplate!: TemplateRef<any>;

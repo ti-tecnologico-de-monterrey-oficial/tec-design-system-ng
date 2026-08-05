@@ -6,7 +6,7 @@ import {
   getBasicExampleBlock,
   getGeneralDescription,
   getPageStructureForTemplateStories,
-} from '../../utils/doc/utils';
+} from '@docs/utils/utils';
 import { BmbTableLiteComponent } from './bmb-table-lite.component';
 
 export default {

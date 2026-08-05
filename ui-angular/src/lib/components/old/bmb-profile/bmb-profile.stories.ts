@@ -16,11 +16,11 @@ import {
   getSpecialSpecifications,
   IBmbOnEvent,
   RELEVANT_TITLE,
-} from '../../utils/doc/utils';
+} from '@docs/utils/utils';
 import {
   DBmbGenericParamDesc,
   getOnClickParam,
-} from '../../utils/doc/parameterDescriptions';
+} from '@docs/utils/parameterDescriptions';
 import { isStandalone } from '@angular/core';
 
 const onCloseSession: IBmbOnEvent = getOnEvent(

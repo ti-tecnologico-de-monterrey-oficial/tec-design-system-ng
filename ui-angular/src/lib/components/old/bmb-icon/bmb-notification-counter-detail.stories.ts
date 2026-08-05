@@ -1,8 +1,8 @@
 import { Meta, StoryObj } from '@storybook/angular';
-import { getPageStructureForFoundationStories } from '../../utils/doc/utils';
+import { getPageStructureForFoundationStories } from '@docs/utils/utils';
 import { BmbIconComponent } from './bmb-icon.component';
 import * as notificationCounter from '../bmb-notification-counter/bmb-notification-counter.stories';
-import { DBmbIconParamDesc } from '../../utils/doc/parameterDescriptions';
+import { DBmbIconParamDesc } from '@docs/utils/parameterDescriptions';
 
 export default {
   title: 'Foundations/Icon/Notification counter',

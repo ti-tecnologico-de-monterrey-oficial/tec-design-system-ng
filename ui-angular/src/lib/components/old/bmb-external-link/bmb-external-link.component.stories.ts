@@ -7,13 +7,13 @@ import {
   getGeneralDescription,
   getOnEvent,
   getSpecialSpecifications,
-} from '../../utils/doc/utils';
+} from '@docs/utils/utils';
 import {
   getDefaultValueControl,
   getOnClickParam,
   getOnEventParam,
   getPropertyParamDesc,
-} from '../../utils/doc/parameterDescriptions';
+} from '@docs/utils/parameterDescriptions';
 
 export default {
   title: 'Organisms/Access to external link',

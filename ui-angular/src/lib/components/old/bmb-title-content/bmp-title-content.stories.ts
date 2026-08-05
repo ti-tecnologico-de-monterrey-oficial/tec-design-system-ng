@@ -1,7 +1,7 @@
 import { Meta, StoryObj } from '@storybook/angular';
 import { BmbTitleContentComponent } from './bmb-title-content.component';
-import { RELEVANT_TITLE } from '../../utils/doc/utils';
-import { DBmbIconParamDesc } from '../../utils/doc/parameterDescriptions';
+import { RELEVANT_TITLE } from '@docs/utils/utils';
+import { DBmbIconParamDesc } from '@docs/utils/parameterDescriptions';
 
 export default {
   title: 'Internals/Title content template',

@@ -9,7 +9,7 @@ import {
   getSpecialSpecifications,
   getStoryLink,
   RELEVANT_TITLE,
-} from '../../utils/doc/utils';
+} from '@docs/utils/utils';
 import * as tabStory from '../../components/bmb-tabs/bmb-tabs.component.stories';
 
 const TITLE = {

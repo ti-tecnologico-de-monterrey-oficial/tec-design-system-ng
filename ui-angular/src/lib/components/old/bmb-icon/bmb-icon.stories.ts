@@ -6,12 +6,12 @@ import {
   getGeneralComponentDescription,
   getGeneralDescription,
   getSpecialSpecifications,
-} from '../../utils/doc/utils';
+} from '@docs/utils/utils';
 import {
   GOOGLE_FONTS_LINK,
   DBmbIconParamDesc,
   ICON_IMAGE_DETAIL,
-} from '../../utils/doc/parameterDescriptions';
+} from '@docs/utils/parameterDescriptions';
 import { provideHttpClient } from '@angular/common/http';
 
 export default {

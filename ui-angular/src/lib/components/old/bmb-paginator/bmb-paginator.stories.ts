@@ -5,8 +5,8 @@ import {
   getGeneralComponentDescription,
   getGeneralDescription,
   getOnEvent,
-} from '../../utils/doc/utils';
-import { getOnEventParam } from '../../utils/doc/parameterDescriptions';
+} from '@docs/utils/utils';
+import { getOnEventParam } from '@docs/utils/parameterDescriptions';
 
 export default {
   title: 'Components/Status indicators/Paginator',

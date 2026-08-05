@@ -8,12 +8,12 @@ import {
   getSpecialSpecifications,
   getTECParticularitiesMessage,
   IBmbOnEvent,
-} from '../../utils/doc/utils';
+} from '@docs/utils/utils';
 import {
   DBmbIconParamDesc,
   getDefaultValueControl,
   getOnClickParam,
-} from '../../utils/doc/parameterDescriptions';
+} from '@docs/utils/parameterDescriptions';
 
 const onCloseEvent: IBmbOnEvent = getOnEvent('close', 'onClose', 'void');
 

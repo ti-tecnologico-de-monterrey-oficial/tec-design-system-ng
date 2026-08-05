@@ -5,11 +5,11 @@ import {
   getArchitectureSection,
   getBasicExampleBlock,
   getGeneralDescription,
-} from '../../utils/doc/utils';
+} from '@docs/utils/utils';
 import {
   DBmbIconParamDesc,
   DBmbImageParamDesc,
-} from '../../utils/doc/parameterDescriptions';
+} from '@docs/utils/parameterDescriptions';
 import { BmbImageItem } from './types';
 import { Component, signal } from '@angular/core';
 

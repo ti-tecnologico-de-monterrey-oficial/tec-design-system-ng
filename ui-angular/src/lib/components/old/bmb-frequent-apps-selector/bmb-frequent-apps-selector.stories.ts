@@ -8,14 +8,14 @@ import {
   getGeneralDescription,
   getOnEvent,
   getSpecialSpecifications,
-} from '../../utils/doc/utils';
+} from '@docs/utils/utils';
 import {
   getDefaultValueControl,
   getAppearanceDescription,
   getOnClickParam,
   getPropertyParamDesc,
   ON_CLICK_DESCRIPTION,
-} from '../../utils/doc/parameterDescriptions';
+} from '@docs/utils/parameterDescriptions';
 
 export default {
   title: 'Components/Menus/Frequent apps selector',

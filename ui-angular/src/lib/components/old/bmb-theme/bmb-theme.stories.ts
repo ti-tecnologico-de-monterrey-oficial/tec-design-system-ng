@@ -6,12 +6,12 @@ import {
   getGeneralComponentDescription,
   getGeneralDescription,
   getSpecialSpecifications,
-} from '../../utils/doc/utils';
+} from '@docs/utils/utils';
 import {
   getLabelDescription,
   DBmbInputParamDesc,
   DBmbGenericParamDesc,
-} from '../../utils/doc/parameterDescriptions';
+} from '@docs/utils/parameterDescriptions';
 
 const labelDescription = getLabelDescription('left to', 'theme')
   .replace('the label', 'one of the labels')

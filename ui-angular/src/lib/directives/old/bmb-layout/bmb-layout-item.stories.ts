@@ -14,7 +14,7 @@ import {
   getGeneralDescription,
   getReferenceRecommendationForVariable,
   getSpecialSpecifications,
-} from '../../utils/doc/utils';
+} from '@docs/utils/utils';
 
 const meta: Meta<BmbLayoutItemDirective> = {
   title: 'Foundations/Layouts/Layout/Layout item',

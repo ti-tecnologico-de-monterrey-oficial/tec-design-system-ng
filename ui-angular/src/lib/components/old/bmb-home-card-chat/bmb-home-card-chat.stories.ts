@@ -7,7 +7,7 @@ import {
   getGeneralDescription,
   getSpecialSpecifications,
   RELEVANT_TITLE,
-} from '../../utils/doc/utils';
+} from '@docs/utils/utils';
 import { CommonModule } from '@angular/common';
 import { BmbTopBarComponent } from '../../components/bmb-top-bar/bmb-top-bar.component';
 import { BmbSidebarComponent } from '../../components/bmb-sidebar/bmb-sidebar.component';

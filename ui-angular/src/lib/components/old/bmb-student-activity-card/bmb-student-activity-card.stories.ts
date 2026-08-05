@@ -1,12 +1,12 @@
 import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
 import { CommonModule } from '@angular/common';
 import { BmbStudentActivityCardComponent } from './bmb-student-activity-card.component';
-import { DBmbGenericParamDesc } from '../../utils/doc/parameterDescriptions';
+import { DBmbGenericParamDesc } from '@docs/utils/parameterDescriptions';
 import {
   getBasicExampleBlock,
   getGeneralComponentDescription,
   getGeneralDescription,
-} from '../../utils/doc/utils';
+} from '@docs/utils/utils';
 
 export default {
   title: 'Components/Containers/Student activity card',

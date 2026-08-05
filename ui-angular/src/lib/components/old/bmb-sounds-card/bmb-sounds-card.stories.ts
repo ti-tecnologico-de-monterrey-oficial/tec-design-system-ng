@@ -8,8 +8,8 @@ import {
   getSpecialSpecifications,
   getTECParticularitiesMessage,
   IBmbOnEvent,
-} from '../../utils/doc/utils';
-import { getOnEventParam } from '../../utils/doc/parameterDescriptions';
+} from '@docs/utils/utils';
+import { getOnEventParam } from '@docs/utils/parameterDescriptions';
 
 const onVolumeEvent: IBmbOnEvent = getOnEvent(
     'the level of volume of the card',

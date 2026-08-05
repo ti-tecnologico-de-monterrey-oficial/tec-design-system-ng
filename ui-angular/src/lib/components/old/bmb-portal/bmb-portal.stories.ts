@@ -19,7 +19,7 @@ import {
   getSpecialSpecifications,
   RELEVANT_TITLE,
   TOC_TITLE,
-} from '../../utils/doc/utils';
+} from '@docs/utils/utils';
 
 @Component({
   standalone: true,

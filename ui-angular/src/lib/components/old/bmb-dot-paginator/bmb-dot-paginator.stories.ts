@@ -7,11 +7,11 @@ import {
   getGeneralComponentDescription,
   getGeneralDescription,
   getOnEvent,
-} from '../../utils/doc/utils';
+} from '@docs/utils/utils';
 import {
   getAppearanceParam,
   getOnClickParam,
-} from '../../utils/doc/parameterDescriptions';
+} from '@docs/utils/parameterDescriptions';
 
 export interface Target {
   target: string;

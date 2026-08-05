@@ -13,14 +13,14 @@ import {
   getSpecialSpecifications,
   getTECParticularitiesMessage,
   IBmbOnEvent,
-} from '../../utils/doc/utils';
+} from '@docs/utils/utils';
 import {
   DBmbIconParamDesc,
   DBmbImageParamDesc,
   getDefaultValueControl,
   getOnClickParam,
   getPropertyParamDesc,
-} from '../../utils/doc/parameterDescriptions';
+} from '@docs/utils/parameterDescriptions';
 
 const onCloseEvent: IBmbOnEvent = getOnEvent('close', 'close'),
   onAccessEvent: IBmbOnEvent = getOnEvent('access', 'access'),

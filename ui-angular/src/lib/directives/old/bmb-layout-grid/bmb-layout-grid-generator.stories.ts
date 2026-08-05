@@ -11,7 +11,7 @@ import {
   getPageStructureForFoundationStories,
   getSpecialSpecifications,
   SANDBOX_TITLE,
-} from '../../utils/doc/utils';
+} from '@docs/utils/utils';
 import { CommonModule } from '@angular/common';
 import { BmbAccordionComponent } from '../../components/bmb-accordion/bmb-accordion.component';
 import { BmbActionIconComponent } from '../../components/bmb-action-icon/bmb-action-icon.component';

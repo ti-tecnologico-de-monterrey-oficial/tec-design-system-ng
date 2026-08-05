@@ -8,14 +8,14 @@ import {
   getBasicExampleBlock,
   getGeneralComponentDescription,
   getGeneralDescription,
-} from '../../utils/doc/utils';
+} from '@docs/utils/utils';
 import {
   DBmbGenericParamDesc,
   DBmbIconParamDesc,
   getAppearanceParam,
   getDefaultValueControl,
   ON_BUTTON_CLICK,
-} from '../../utils/doc/parameterDescriptions';
+} from '@docs/utils/parameterDescriptions';
 
 const interactiveIconAppearanceOptions: IBmbInteractiveIconAppearance[] = [
   'red',

@@ -3,7 +3,7 @@ import {
   colorList,
   getContainerButtonComponentDescription,
   getOnEvent,
-} from '../../../utils/doc/utils';
+} from '@docs/utils/utils';
 import {
   DBmbContainerButton,
   DBmbGenericParamDesc,
@@ -12,7 +12,7 @@ import {
   getAppearanceParam,
   getOnClickParam,
   getPropertyParamDesc,
-} from '../../../utils/doc/parameterDescriptions';
+} from '@docs/utils/parameterDescriptions';
 import { BmbContainerButtonComplexAlternativeComponent } from './bmb-container-button-complex-alternative.component';
 
 export default {

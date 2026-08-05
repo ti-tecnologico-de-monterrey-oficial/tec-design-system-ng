@@ -1,6 +1,6 @@
 import { Meta, StoryFn } from '@storybook/angular';
 import { BmbDropdownContentComponent } from './bmb-dropdown-content.component';
-import { attributes, getEmptyStateMessage } from '../../../utils/doc/utils';
+import { attributes, getEmptyStateMessage } from '@docs/utils/utils';
 
 export default {
   title: 'Internals/Dropdown content',

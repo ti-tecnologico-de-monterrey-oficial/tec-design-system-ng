@@ -9,12 +9,12 @@ import {
   getOutOfModalUseMessage,
   getSpecialSpecifications,
   IBmbOnEvent,
-} from '../../utils/doc/utils';
+} from '@docs/utils/utils';
 import {
   DBmbInputParamDesc,
   getDefaultValueControl,
   getOnEventParam,
-} from '../../utils/doc/parameterDescriptions';
+} from '@docs/utils/parameterDescriptions';
 
 const onChange: IBmbOnEvent = getOnEvent(
   'state of the checkbox',

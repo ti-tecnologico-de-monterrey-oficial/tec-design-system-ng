@@ -6,7 +6,7 @@ import {
   getGeneralDescription,
   getOnEvent,
   IBmbOnEvent,
-} from '../../utils/doc/utils';
+} from '@docs/utils/utils';
 import {
   DBmbGenericParamDesc,
   DBmbIconParamDesc,
@@ -14,7 +14,7 @@ import {
   getOnClickParam,
   ON_BUTTON_CLICK,
   ON_CLICK_DESCRIPTION,
-} from '../../utils/doc/parameterDescriptions';
+} from '@docs/utils/parameterDescriptions';
 
 const onButtonPress: IBmbOnEvent = getOnEvent('', 'buttonPress');
 

@@ -5,7 +5,7 @@ import {
   getGeneralComponentDescription,
   getGeneralDescription,
   getOnEvent,
-} from '../../utils/doc/utils';
+} from '@docs/utils/utils';
 import { BmbLoaderComponent } from './bmb-loader.component';
 import { IBbmBgAppearance } from '../bmb-advertisement-card/types';
 import {
@@ -13,7 +13,7 @@ import {
   getAppearanceParam,
   getOnClickParam,
   getPropertyParamDesc,
-} from '../../utils/doc/parameterDescriptions';
+} from '@docs/utils/parameterDescriptions';
 
 const appearanceOptions: IBbmBgAppearance[] = [
   'normal',

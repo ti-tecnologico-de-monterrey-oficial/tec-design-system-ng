@@ -8,12 +8,12 @@ import {
   getSpecialSpecifications,
   getTECParticularitiesMessage,
   RELEVANT_TITLE,
-} from '../../utils/doc/utils';
+} from '@docs/utils/utils';
 import {
   DBmbGenericParamDesc,
   getDefaultValueControl,
   getOnEventParam,
-} from '../../utils/doc/parameterDescriptions';
+} from '@docs/utils/parameterDescriptions';
 
 export default {
   title: 'Organisms/Login layout web',

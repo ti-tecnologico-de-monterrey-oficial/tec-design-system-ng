@@ -11,7 +11,7 @@ import {
   getSpecialSpecifications,
   IBmbOnEvent,
   RELEVANT_TITLE,
-} from '../../utils/doc/utils';
+} from '@docs/utils/utils';
 import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
 import { InputSignal } from '@angular/core';
 import { IDropdownItem } from '../../types';
@@ -22,7 +22,7 @@ import {
   getDefaultValueControl,
   getOnClickParam,
   ON_CLICK_DESCRIPTION,
-} from '../../utils/doc/parameterDescriptions';
+} from '@docs/utils/parameterDescriptions';
 
 const onEvent: IBmbOnEvent = getOnEvent('small card', 'onSmallClick');
 

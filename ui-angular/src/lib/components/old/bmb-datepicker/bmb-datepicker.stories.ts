@@ -4,7 +4,7 @@ import {
   DBmbInputParamDesc,
   getDefaultValueControl,
   getOnEventParam,
-} from '../../utils/doc/parameterDescriptions';
+} from '@docs/utils/parameterDescriptions';
 import {
   getArchitectureSection,
   getBasicExampleBlock,
@@ -13,7 +13,7 @@ import {
   getFormExampleBlock,
   getOnEvent,
   IBmbOnEvent,
-} from '../../utils/doc/utils';
+} from '@docs/utils/utils';
 
 const inputName = 'date_picker';
 const formatName: string = getFormatName(inputName, '_');

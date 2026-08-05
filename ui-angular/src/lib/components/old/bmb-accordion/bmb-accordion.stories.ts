@@ -8,8 +8,8 @@ import {
   getGeneralComponentDescription,
   getGeneralDescription,
   getSpecialSpecifications,
-} from '../../utils/doc/utils';
-import { DBmbIconParamDesc } from '../../utils/doc/parameterDescriptions';
+} from '@docs/utils/utils';
+import { DBmbIconParamDesc } from '@docs/utils/parameterDescriptions';
 
 export default {
   title: 'Components/Containers/Accordion',

@@ -7,13 +7,13 @@ import {
   getOnEvent,
   IBmbOnEvent,
   RELEVANT_TITLE,
-} from '../../utils/doc/utils';
+} from '@docs/utils/utils';
 import {
   GOOGLE_FONTS_LINK,
   DBmbInputParamDesc,
   getOnEventParam,
   getDefaultValueControl,
-} from '../../utils/doc/parameterDescriptions';
+} from '@docs/utils/parameterDescriptions';
 
 const getIndex = (isRightPosition: boolean): number =>
   isRightPosition ? 0 : 1;

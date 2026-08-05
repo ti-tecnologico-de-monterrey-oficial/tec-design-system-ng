@@ -8,12 +8,12 @@ import {
   getSpecialSpecifications,
   getTECParticularitiesMessage,
   RELEVANT_TITLE,
-} from '../../utils/doc/utils';
+} from '@docs/utils/utils';
 import {
   DBmbGenericParamDesc,
   getDefaultValueControl,
   getOnClickParam,
-} from '../../utils/doc/parameterDescriptions';
+} from '@docs/utils/parameterDescriptions';
 
 const getShowButton = (name: string) => {
   return {

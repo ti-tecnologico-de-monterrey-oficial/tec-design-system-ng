@@ -15,7 +15,7 @@ import {
   getGeneralDescription,
   getOnEvent,
   RELEVANT_TITLE,
-} from '../../utils/doc/utils';
+} from '@docs/utils/utils';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import {
   DBmbGenericParamDesc,
@@ -24,7 +24,7 @@ import {
   getDefaultValueControl,
   getOnClickParam,
   getPropertyParamDesc,
-} from '../../utils/doc/parameterDescriptions';
+} from '@docs/utils/parameterDescriptions';
 
 export default {
   title: 'Internals/Item',

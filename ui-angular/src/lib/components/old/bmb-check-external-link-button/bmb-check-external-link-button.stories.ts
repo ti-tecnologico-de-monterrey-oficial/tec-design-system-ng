@@ -5,8 +5,8 @@ import {
   attributes,
   getBasicExampleBlock,
   getGeneralDescription,
-} from '../../utils/doc/utils';
-import { DBmbGenericParamDesc } from '../../utils/doc/parameterDescriptions';
+} from '@docs/utils/utils';
+import { DBmbGenericParamDesc } from '@docs/utils/parameterDescriptions';
 
 export default {
   title: 'Internals/Check link (external, internal) or button',

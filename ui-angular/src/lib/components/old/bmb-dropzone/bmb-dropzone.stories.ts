@@ -15,14 +15,14 @@ import {
   getGeneralDescription,
   getOnEvent,
   RELEVANT_TITLE,
-} from '../../utils/doc/utils';
+} from '@docs/utils/utils';
 import {
   DBmbGenericParamDesc,
   DBmbInputParamDesc,
   getAppearanceParam,
   getDefaultValueControl,
   getOnEventParam,
-} from '../../utils/doc/parameterDescriptions';
+} from '@docs/utils/parameterDescriptions';
 
 const duplicateFileNameValidator: ValidatorFn = (
   control: AbstractControl,

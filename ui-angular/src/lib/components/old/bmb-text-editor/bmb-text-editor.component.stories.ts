@@ -5,8 +5,8 @@ import {
   getFormExampleBlock,
   getGeneralComponentDescription,
   getGeneralDescription,
-} from '../../utils/doc/utils';
-import { getDefaultValueControl } from '../../utils/doc/parameterDescriptions';
+} from '@docs/utils/utils';
+import { getDefaultValueControl } from '@docs/utils/parameterDescriptions';
 
 const inputName = 'text_editor';
 const inputExample = `<bmb-text-editor

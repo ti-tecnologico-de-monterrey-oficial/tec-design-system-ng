@@ -9,12 +9,12 @@ import {
   getOnEvent,
   getSpecialSpecifications,
   getTechnicalDocReferences,
-} from '../../utils/doc/utils';
+} from '@docs/utils/utils';
 import {
   DBmbButtonParamDesc,
   DBmbModalParamDesc,
   getOnClickParam,
-} from '../../utils/doc/parameterDescriptions';
+} from '@docs/utils/parameterDescriptions';
 import * as checkboxStory from './../bmb-checkbox/bmb-checkbox.stories';
 import * as switchStory from './../bmb-switch/bmb-switch.stories';
 import * as radialStory from './../bmb-radial/bmb-radial.stories';

@@ -5,8 +5,8 @@ import {
   getGeneralComponentDescription,
   getGeneralDescription,
   getOnEvent,
-} from '../../utils/doc/utils';
-import { getOnClickParam } from '../../utils/doc/parameterDescriptions';
+} from '@docs/utils/utils';
+import { getOnClickParam } from '@docs/utils/parameterDescriptions';
 
 export default {
   title: 'Components/Containers/User summary',

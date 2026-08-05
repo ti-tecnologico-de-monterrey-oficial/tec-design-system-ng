@@ -1,11 +1,11 @@
 import { Meta, StoryObj } from '@storybook/angular';
-import { getContainerButtonComponentDescription } from '../../../utils/doc/utils';
+import { getContainerButtonComponentDescription } from '@docs/utils/utils';
 import {
   DBmbContainerButton,
   DBmbGenericParamDesc,
   DBmbIconParamDesc,
   DBmbImageParamDesc,
-} from '../../../utils/doc/parameterDescriptions';
+} from '@docs/utils/parameterDescriptions';
 import { BmbContainerButtonComplexComponent } from './bmb-container-button-complex.component';
 
 export default {

@@ -4,7 +4,7 @@ import {
   getBasicExampleBlock,
   getGeneralComponentDescription,
   getGeneralDescription,
-} from '../../../utils/doc/utils';
+} from '@docs/utils/utils';
 import {
   BMB_CREATIVE_COLOR_LIST,
   BMB_MITEC_COLOR_LIST,

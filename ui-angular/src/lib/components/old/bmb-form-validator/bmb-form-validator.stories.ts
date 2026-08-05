@@ -16,7 +16,7 @@ import {
   getBasicExampleBlock,
   getOnEvent,
   getStoryLink,
-} from '../../utils/doc/utils';
+} from '@docs/utils/utils';
 import {
   BmbButtonDirective,
   BmbCheckboxComponent,
@@ -31,7 +31,7 @@ import {
   getFormControlConsiderations,
   getFormControlDescription,
   getOnEventParam,
-} from '../../utils/doc/parameterDescriptions';
+} from '@docs/utils/parameterDescriptions';
 import * as calendarDatePicker from '../bmb-datepicker/bmb-datepicker.stories';
 import * as checkbox from '../bmb-checkbox/bmb-checkbox.stories';
 import * as datepickerRange from '../bmb-date-range/bmb-date-range.component.stories';

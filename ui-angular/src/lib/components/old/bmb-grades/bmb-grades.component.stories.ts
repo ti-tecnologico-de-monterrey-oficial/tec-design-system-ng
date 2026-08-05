@@ -7,12 +7,12 @@ import {
   getOnEvent,
   getSpecialSpecifications,
   RELEVANT_TITLE,
-} from '../../utils/doc/utils';
+} from '@docs/utils/utils';
 import {
   DEFAULT_VALUE_DESC,
   getOnClickParam,
   getPropertyParamDesc,
-} from '../../utils/doc/parameterDescriptions';
+} from '@docs/utils/parameterDescriptions';
 
 const REQUIRED_MICRO_DESC: string = `<br/><br/>${RELEVANT_TITLE.note}Required when \`isMicro\` property is true.`;
 const getPropertyDescription = (name: string) => {

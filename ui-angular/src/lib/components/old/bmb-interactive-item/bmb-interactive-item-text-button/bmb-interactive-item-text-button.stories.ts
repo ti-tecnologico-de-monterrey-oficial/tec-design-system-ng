@@ -1,10 +1,10 @@
 import { Meta, StoryObj, componentWrapperDecorator } from '@storybook/angular';
-import { getActionMenuItemComponentDescription } from '../../../utils/doc/utils';
+import { getActionMenuItemComponentDescription } from '@docs/utils/utils';
 import {
   DBmbGenericParamDesc,
   DBmbIconParamDesc,
   DBmbItemActionMenu,
-} from '../../../utils/doc/parameterDescriptions';
+} from '@docs/utils/parameterDescriptions';
 import { BmbInteractiveItemTextButtonComponent } from './bmb-interactive-item-text-button.component';
 
 export default {

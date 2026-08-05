@@ -3,13 +3,13 @@ import { BmbTotpComponent } from './bmb-totp.component';
 import {
   DBmbInputParamDesc,
   getOnClickParam,
-} from '../../utils/doc/parameterDescriptions';
+} from '@docs/utils/parameterDescriptions';
 import {
   getBasicExampleBlock,
   getGeneralComponentDescription,
   getGeneralDescription,
   getOnEvent,
-} from '../../utils/doc/utils';
+} from '@docs/utils/utils';
 
 const additionalBlock: string = `
     correctCodes: { [key: string]: string } = {

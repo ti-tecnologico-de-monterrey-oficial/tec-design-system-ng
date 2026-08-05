@@ -17,13 +17,13 @@ import {
 import {
   DBmbModalParamDesc,
   getAppearanceParam,
-} from '../../utils/doc/parameterDescriptions';
+} from '@docs/utils/parameterDescriptions';
 import {
   DESIGN_SYSTEM_TITLE,
   getGeneralDescription,
   getSpecialSpecifications,
   RELEVANT_TITLE,
-} from '../../utils/doc/utils';
+} from '@docs/utils/utils';
 
 @Component({
   selector: 'bmb-native-modal-story',

@@ -17,7 +17,7 @@ import * as mainStory from './bmb-step-progress-bar.stories';
 import {
   getBasicExampleBlock,
   getGeneralDescription,
-} from '../../utils/doc/utils';
+} from '@docs/utils/utils';
 
 const example = `
 <ng-template #step0>

@@ -3,11 +3,11 @@ import { BmbChatBarComponent } from './bmb-chat-bar.component';
 import {
   getBasicExampleBlock,
   getGeneralDescription,
-} from '../../utils/doc/utils';
+} from '@docs/utils/utils';
 import {
   DBmbIconParamDesc,
   DBmbInputParamDesc,
-} from '../../utils/doc/parameterDescriptions';
+} from '@docs/utils/parameterDescriptions';
 
 const importComments = `// optional you can customize the bot list from:
 // import { defaultBotList, IBotType } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';

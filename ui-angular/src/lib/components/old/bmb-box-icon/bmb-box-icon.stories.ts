@@ -5,12 +5,12 @@ import {
   getBasicExampleBlock,
   getGeneralComponentDescription,
   getGeneralDescription,
-} from '../../utils/doc/utils';
+} from '@docs/utils/utils';
 import {
   DBmbIconParamDesc,
   getAppearanceParam,
   ON_BUTTON_CLICK,
-} from '../../utils/doc/parameterDescriptions';
+} from '@docs/utils/parameterDescriptions';
 import { BmbBoxIconComponent } from './bmb-box-icon.component';
 
 export default {

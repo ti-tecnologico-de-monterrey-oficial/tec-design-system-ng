@@ -1,12 +1,12 @@
 import { Meta, moduleMetadata, StoryObj } from '@storybook/angular';
-import { getContainerButtonComponentDescription } from '../../../utils/doc/utils';
+import { getContainerButtonComponentDescription } from '@docs/utils/utils';
 import {
   DBmbBadgeType,
   DBmbContainerButton,
   DBmbGenericParamDesc,
   DBmbIconParamDesc,
   DBmbImageParamDesc,
-} from '../../../utils/doc/parameterDescriptions';
+} from '@docs/utils/parameterDescriptions';
 import { BmbContainerButtonBadgeComponent } from './bmb-container-button-badge.component';
 import { IBmbBadgeInfo } from '../../../types';
 import { BmbBadgeComponent } from '../../bmb-badge/bmb-badge.component';

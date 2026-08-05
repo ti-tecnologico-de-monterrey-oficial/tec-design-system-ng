@@ -7,12 +7,12 @@ import {
   getOnEvent,
   getSpecialSpecifications,
   RELEVANT_TITLE,
-} from '../../utils/doc/utils';
+} from '@docs/utils/utils';
 import {
   DBmbHomeCardParamDesc,
   DBmbIconParamDesc,
   getOnClickParam,
-} from '../../utils/doc/parameterDescriptions';
+} from '@docs/utils/parameterDescriptions';
 
 const typeDetail: string = `
 event: IBmbDataAlert

@@ -10,12 +10,12 @@ import {
   getOnEvent,
   IBmbOnEvent,
   RELEVANT_TITLE,
-} from '../../utils/doc/utils';
+} from '@docs/utils/utils';
 import {
   DBmbInputParamDesc,
   getDefaultValueControl,
   getOnEventParam,
-} from '../../utils/doc/parameterDescriptions';
+} from '@docs/utils/parameterDescriptions';
 
 const inputName = 'checkbox';
 const formatName: string = getFormatName(inputName, '_');

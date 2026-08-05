@@ -5,7 +5,7 @@ import {
   getAuxiliaryDescription,
   getBasicExampleBlock,
   getGeneralDescription,
-} from '../../../utils/doc/utils';
+} from '@docs/utils/utils';
 import {
   BmbIconStatusComponent,
   BmbInnerHeaderComponent,

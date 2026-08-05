@@ -10,7 +10,7 @@ import {
   getGeneralDescription,
   getGridGeneratorLink,
   getSpecialSpecifications,
-} from '../../utils/doc/utils';
+} from '@docs/utils/utils';
 import { CommonModule } from '@angular/common';
 import {
   BmbCardComponent,

@@ -15,14 +15,14 @@ import {
   getOutOfModalUseMessage,
   getSpecialSpecifications,
   IBmbOnEvent,
-} from '../../utils/doc/utils';
+} from '@docs/utils/utils';
 import { BmbInputTagsComponent } from './bmb-input-tags.component';
 import {
   DBmbGenericParamDesc,
   DBmbInputParamDesc,
   getDefaultValueControl,
   getOnEventParam,
-} from '../../utils/doc/parameterDescriptions';
+} from '@docs/utils/parameterDescriptions';
 
 const inputName: string = 'input_with_tags';
 const formatName: string = getFormatName(inputName, '_');

@@ -1,12 +1,12 @@
 import { Meta, StoryObj, componentWrapperDecorator } from '@storybook/angular';
-import { getActionMenuItemComponentDescription } from '../../../utils/doc/utils';
+import { getActionMenuItemComponentDescription } from '@docs/utils/utils';
 
 import { BmbInteractiveItemChevronComponent } from './bmb-interactive-item-chevron.component';
 import {
   DBmbGenericParamDesc,
   DBmbItemActionMenu,
   getPropertyParamDesc,
-} from '../../../utils/doc/parameterDescriptions';
+} from '@docs/utils/parameterDescriptions';
 
 export default {
   title: 'Dev tools/Item/Chevron',

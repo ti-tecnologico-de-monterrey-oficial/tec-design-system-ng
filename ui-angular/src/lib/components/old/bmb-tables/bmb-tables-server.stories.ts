@@ -7,7 +7,7 @@ import {
   getBasicExampleBlock,
   getGeneralDescription,
   getPageStructureForTemplateStories,
-} from '../../utils/doc/utils';
+} from '@docs/utils/utils';
 
 export default {
   title: 'Components/Containers/Table/Server side table',

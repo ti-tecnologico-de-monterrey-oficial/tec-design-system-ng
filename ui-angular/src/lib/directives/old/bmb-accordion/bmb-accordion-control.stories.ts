@@ -11,7 +11,7 @@ import {
   getGeneralDescription,
   getSpecialSpecifications,
   RELEVANT_TITLE,
-} from '../../utils/doc/utils';
+} from '@docs/utils/utils';
 
 const meta: Meta<BmbAccordionControlDirective> = {
   title: 'Components/Containers/Accordion/Accordion control',

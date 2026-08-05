@@ -8,8 +8,8 @@ import {
   getGeneralDescription,
   getSpecialSpecifications,
   getTechnicalOneReference,
-} from '../../utils/doc/utils';
-import { DBmbActionMenu } from '../../utils/doc/parameterDescriptions';
+} from '@docs/utils/utils';
+import { DBmbActionMenu } from '@docs/utils/parameterDescriptions';
 import { BmbInteractiveItemDefaultComponent } from '../bmb-interactive-item/children';
 
 export default {

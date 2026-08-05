@@ -8,7 +8,7 @@ import {
   getGeneralDescription,
   getOnEvent,
   IBmbOnEvent,
-} from '../../utils/doc/utils';
+} from '@docs/utils/utils';
 import { BmbChevronTitleSelectorComponent } from '../bmb-chevron-title-selector/bmb-chevron-title-selector.component';
 import {
   DBmbGenericParamDesc,
@@ -16,7 +16,7 @@ import {
   getDefaultValueControl,
   getOnClickParam,
   getPropertyParamDesc,
-} from '../../utils/doc/parameterDescriptions';
+} from '@docs/utils/parameterDescriptions';
 
 const onSearchEvent: IBmbOnEvent = getOnEvent('search', 'searchData', 'string');
 const getButtonDesc = (isCloseButton: boolean) => {

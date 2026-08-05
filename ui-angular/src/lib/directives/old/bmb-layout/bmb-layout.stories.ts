@@ -16,8 +16,8 @@ import {
   getReferenceRecommendationForVariable,
   getSpecialSpecifications,
   RELEVANT_TITLE,
-} from '../../utils/doc/utils';
-import { DBmbLayoutParamDesc } from '../../utils/doc/parameterDescriptions';
+} from '@docs/utils/utils';
+import { DBmbLayoutParamDesc } from '@docs/utils/parameterDescriptions';
 import { BmbInteractiveIconComponent } from '../../components/bmb-interactive-icon/bmb-interactive-icon.component';
 
 const meta: Meta<BmbLayoutDirective> = {

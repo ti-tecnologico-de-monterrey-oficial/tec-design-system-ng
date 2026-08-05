@@ -6,8 +6,8 @@ import {
   getBasicExampleBlock,
   getGeneralComponentDescription,
   getGeneralDescription,
-} from '../../utils/doc/utils';
-import { DBmbStepProgressBar } from '../../utils/doc/parameterDescriptions';
+} from '@docs/utils/utils';
+import { DBmbStepProgressBar } from '@docs/utils/parameterDescriptions';
 
 export default {
   title: 'Components/Status indicators/Step progress bar',

@@ -6,8 +6,8 @@ import {
   getOnEvent,
   getSpecialSpecifications,
   RELEVANT_TITLE,
-} from '../../utils/doc/utils';
-import { getOnEventParam } from '../../utils/doc/parameterDescriptions';
+} from '@docs/utils/utils';
+import { getOnEventParam } from '@docs/utils/parameterDescriptions';
 import { RouterTestingModule } from '@angular/router/testing';
 import { CommonModule } from '@angular/common';
 

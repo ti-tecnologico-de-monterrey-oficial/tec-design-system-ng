@@ -25,7 +25,7 @@ import {
   getSpecialSpecifications,
   getTechnicalDocReferences,
   RELEVANT_TITLE,
-} from '../../utils/doc/utils';
+} from '@docs/utils/utils';
 import { BmbDatepickerComponent } from '../bmb-datepicker/bmb-datepicker.component';
 import { BmbButtonDirective } from '../../directives/bmb-button/button.directive';
 import { BmbLayoutDirective } from '../../directives/bmb-layout/bmb-layout.directive';

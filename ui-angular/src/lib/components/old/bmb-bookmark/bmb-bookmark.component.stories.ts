@@ -7,8 +7,8 @@ import {
   getGeneralComponentDescription,
   getGeneralDescription,
   RELEVANT_TITLE,
-} from '../../utils/doc/utils';
-import { getDefaultValueControl } from '../../utils/doc/parameterDescriptions';
+} from '@docs/utils/utils';
+import { getDefaultValueControl } from '@docs/utils/parameterDescriptions';
 
 export default {
   title: 'Components/Buttons/Bookmark',

@@ -6,12 +6,12 @@ import {
   getBasicExampleBlock,
   getFieldDescription,
   getFormExampleBlock,
-} from '../../utils/doc/utils';
+} from '@docs/utils/utils';
 import {
   getControlDescription,
   DBmbInputParamDesc,
   getDefaultValueControl,
-} from '../../utils/doc/parameterDescriptions';
+} from '@docs/utils/parameterDescriptions';
 
 const inputName = 'date_range';
 const label = generateLabel(inputName);

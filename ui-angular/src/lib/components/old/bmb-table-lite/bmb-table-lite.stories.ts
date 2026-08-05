@@ -7,7 +7,7 @@ import {
   getGeneralComponentDescription,
   getGeneralDescription,
   getSpecialSpecifications,
-} from '../../utils/doc/utils';
+} from '@docs/utils/utils';
 import { BmbTableLiteComponent } from './bmb-table-lite.component';
 import { BmbBadgeComponent } from '../bmb-badge/bmb-badge.component';
 

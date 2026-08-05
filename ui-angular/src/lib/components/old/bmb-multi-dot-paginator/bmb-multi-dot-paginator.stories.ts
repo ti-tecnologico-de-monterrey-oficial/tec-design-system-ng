@@ -13,8 +13,8 @@ import {
   getGeneralDescription,
   getSpecialSpecifications,
   RELEVANT_TITLE,
-} from '../../utils/doc/utils';
-import { getPropertyParamDesc } from '../../utils/doc/parameterDescriptions';
+} from '@docs/utils/utils';
+import { getPropertyParamDesc } from '@docs/utils/parameterDescriptions';
 
 export default {
   title: 'Components/Status indicators/Multi dot paginator',

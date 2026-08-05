@@ -9,8 +9,8 @@ import {
   getGeneralDescription,
   getSpecialSpecifications,
   getTechnicalDocReferences,
-} from '../../utils/doc/utils';
-import { DBmbActionMenu } from '../../utils/doc/parameterDescriptions';
+} from '@docs/utils/utils';
+import { DBmbActionMenu } from '@docs/utils/parameterDescriptions';
 import { BmbItemDefaultComponent } from '../bmb-item/bmb-item-default/bmb-item-default.component';
 import { BmbItemHyperlinkComponent } from '../bmb-item/bmb-item-hyperlink/bmb-item-hyperlink.component';
 import { BmbItemActionsComponent } from '../bmb-item/bmb-item-actions/bmb-item-actions.component';

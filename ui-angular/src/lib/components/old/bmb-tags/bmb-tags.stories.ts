@@ -7,7 +7,7 @@ import {
   getGeneralDocDescription,
   getOnEvent,
   IBmbOnEvent,
-} from '../../utils/doc/utils';
+} from '@docs/utils/utils';
 import {
   DBmbGenericParamDesc,
   getAppearanceParam,
@@ -15,7 +15,7 @@ import {
   getOnClickParam,
   getPropertyParamDesc,
   getWidthIncreaseDesc,
-} from '../../utils/doc/parameterDescriptions';
+} from '@docs/utils/parameterDescriptions';
 
 const onClickedTagEvent: IBmbOnEvent = getOnEvent(
   'tag',
