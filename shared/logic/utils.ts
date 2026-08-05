@@ -1,5 +1,6 @@
 import { FormControl, ValidationErrors, ValidatorFn } from '@angular/forms';
-import { IBmbInputError } from '../types/input';
+import { IBmbInputError } from '../../public-api';
+import { BROKEN_IMAGE } from './constants/paths';
 
 export const isExternalLink = (link: string): boolean => {
   return (
@@ -25,13 +26,48 @@ export const isImage = (url: string): boolean => {
   return regx.test(url);
 };
 
+export const handleImageNotFoundError = (
+  imageName: string,
+  event: Event,
+): void => {
+  const target = event.target as HTMLImageElement | null;
+  const fallback = BROKEN_IMAGE;
+
+  if (target && target.tagName === 'IMG') {
+    if (!target.src.includes('broken-image.jpg')) {
+      target.onerror = null;
+      const parentElement = target.parentElement as HTMLImageElement;
+
+      if (
+        parentElement &&
+        parentElement?.childElementCount &&
+        parentElement?.firstElementChild?.tagName === 'SOURCE'
+      ) {
+        Array.from(parentElement.children).forEach((element) => {
+          element.setAttribute('srcset', fallback);
+          if (element.hasAttribute('src')) {
+            element.setAttribute('src', fallback);
+          }
+        });
+      } else {
+        target.setAttribute('src', fallback);
+        if (target.hasAttribute('srcset')) {
+          target.setAttribute('srcset', fallback);
+        }
+      }
+    }
+  }
+
+  console.error('Image not found error:', imageName);
+};
+
 export const getListingOnOneLine = (
   elements: string[],
-  template = '',
+  template: string = '',
 ): string => {
   let listingOnOneLine = '';
   elements.forEach((element, index) => {
-    listingOnOneLine += `${template ? template.replace(/\[__\]/g, element) : element}`;
+    listingOnOneLine += `${!!template ? template.replaceAll('[__]', element) : element}`;
     listingOnOneLine +=
       index == elements.length - 2
         ? ' and '
@@ -57,9 +93,9 @@ export const buildErrorMessage = (inputs: string[]): string => {
 
 export const getPositionClass = (
   className: string,
-  labelPosition: string,
+  labelPosition: String,
 ): string => {
-  if (labelPosition) return `${className}-${labelPosition}`;
+  if (!!labelPosition) return `${className}-${labelPosition}`;
   return '';
 };
 
@@ -78,7 +114,8 @@ export const getCustomValidation = (
   formControl: FormControl,
 ): ValidationErrors | null => {
   if (typeof customValidation === 'function') {
-    return customValidation(formControl);
+    const functionValidation = customValidation ?? ((_: any) => null);
+    return functionValidation(formControl);
   }
   return null;
 };
@@ -98,7 +135,7 @@ export const getCustomValidationMessage = (
   return '';
 };
 
-export const getMobileResolutionSize = (isMobile = true): string => {
+export const getMobileResolutionSize = (isMobile: boolean = true): string => {
   if (isMobile) return '(max-width: 1000px)';
   return '(min-width: 1001px)';
 };
