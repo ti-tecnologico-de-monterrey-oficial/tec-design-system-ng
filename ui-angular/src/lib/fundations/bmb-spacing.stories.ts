@@ -1,11 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { Component, input } from '@angular/core';
 import { Meta, moduleMetadata, StoryObj } from '@storybook/angular';
-import { BmbDividerComponent } from '../components/bmb-divider/bmb-divider.component';
+import { BmbDividerComponent } from '../components/old/bmb-divider/bmb-divider.component';
 import {
   BmbCardComponent,
   BmbCardContentComponent,
-} from '../components/bmb-card/bmb-card.component';
+} from '../components/old/bmb-card/bmb-card.component';
 import {
   getFoundationDescriptions,
   getGeneralDescription,

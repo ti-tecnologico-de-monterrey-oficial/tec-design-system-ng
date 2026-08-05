@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import {
   BmbTabsComponent,
   IBmbTab,
-} from '../components/bmb-tabs/bmb-tabs.component';
+} from '../components/old/bmb-tabs/bmb-tabs.component';
 import {
   DESIGN_SYSTEM_TITLE,
   getFoundationDescriptions,
@@ -14,13 +14,13 @@ import {
   getSpecialSpecifications,
   SANDBOX_TITLE,
 } from '@docs/utils/utils';
-import { BmbDividerComponent } from '../components/bmb-divider/bmb-divider.component';
-import { BmbAccordionComponent } from '../components/bmb-accordion/bmb-accordion.component';
-import { BmbSelectorDirective } from '../directives/bmb-selector/bmb-selector.directive';
-import { BmbLayoutDirective } from '../directives/bmb-layout/bmb-layout.directive';
-import { BmbLayoutItemDirective } from '../directives/bmb-layout/bmb-layout-item.directive';
-import { BmbVerticalLayoutDirective } from '../directives/bmb-layout/bmb-vertical-layout/bmb-vertical-layout.directive';
-import { BmbVerticalLayoutItemDirective } from '../directives/bmb-layout/bmb-vertical-layout/bmb-vertical-layout-item.directive';
+import { BmbDividerComponent } from '../components/old/bmb-divider/bmb-divider.component';
+import { BmbAccordionComponent } from '../components/old/bmb-accordion/bmb-accordion.component';
+import { BmbSelectorDirective } from '../directives/old/bmb-selector/bmb-selector.directive';
+import { BmbLayoutDirective } from '../directives/old/bmb-layout/bmb-layout.directive';
+import { BmbLayoutItemDirective } from '../directives/old/bmb-layout/bmb-layout-item.directive';
+import { BmbVerticalLayoutDirective } from '../directives/old/bmb-layout/bmb-vertical-layout/bmb-vertical-layout.directive';
+import { BmbVerticalLayoutItemDirective } from '../directives/old/bmb-layout/bmb-vertical-layout/bmb-vertical-layout-item.directive';
 import {
   BMB_ALERT_COLOR_LIST,
   BMB_BASE_COLOR_LIST,
@@ -31,7 +31,7 @@ import {
   BMB_MITEC_COLOR_LIST,
   BMB_SEMANTIC_BASE_COLOR_LIST,
   BMB_SEMANTIC_COLOR_LIST,
-} from '../types/foundations/colors/color-type';
+} from '@shared/types/foundations/colors/color-type';
 
 @Component({
   standalone: true,
