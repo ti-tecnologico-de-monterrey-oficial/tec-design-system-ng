@@ -1,8 +1,8 @@
-@use '../../../../assets/styles/base/rem' as rem;
-@use '../../../../assets/styles/base/fonts' as fonts;
-@use '../../../../assets/styles/base/mixins' as mixins;
-@use '../../../../assets/styles/base/color-group-name' as colors;
-@use '../../../../assets/styles/base/color-functions' as colorFn;
+@use '../../../../../../../shared/assets/styles/base/rem' as rem;
+@use '../../../../../../../shared/assets/styles/base/fonts' as fonts;
+@use '../../../../../../../shared/assets/styles/base/mixins' as mixins;
+@use '../../../../../../../shared/assets/styles/base/color-group-name' as colors;
+@use '../../../../../../../shared/assets/styles/base/color-functions' as colorFn;
 
 @mixin text-ellipsis() {
   white-space: nowrap;

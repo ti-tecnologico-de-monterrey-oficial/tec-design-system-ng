@@ -1,7 +1,7 @@
-@use '../../../assets/styles/base/fonts' as fonts;
-@use '../../../assets/styles/base/rem' as rem;
-@use '../../../assets/styles/base/mixins' as mixins;
-@use '../../../assets/styles/tokens/bgAppearance' as appearance;
+@use '../../../../../../shared/assets/styles/base/fonts' as fonts;
+@use '../../../../../../shared/assets/styles/base/rem' as rem;
+@use '../../../../../../shared/assets/styles/base/mixins' as mixins;
+@use '../../../../../../shared/assets/styles/tokens/bgAppearance' as appearance;
 
 @mixin icon($name, $color) {
   .bmb_loader-icon {

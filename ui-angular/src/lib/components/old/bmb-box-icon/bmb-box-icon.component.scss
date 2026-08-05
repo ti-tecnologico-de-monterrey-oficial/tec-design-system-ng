@@ -1,7 +1,7 @@
-@use '../../../assets/styles/base/rem' as rem;
-@use '../../../assets/styles/base/color-group-name' as colors;
-@use '../../../assets/styles/base/alias_maps' as maps;
-@use '../../../assets/styles/base/color-functions' as colorFn;
+@use '../../../../../../shared/assets/styles/base/rem' as rem;
+@use '../../../../../../shared/assets/styles/base/color-group-name' as colors;
+@use '../../../../../../shared/assets/styles/base/alias_maps' as maps;
+@use '../../../../../../shared/assets/styles/base/color-functions' as colorFn;
 
 $box_icon_appearance: colorFn.map-merged(
   colors.$alert_colors,

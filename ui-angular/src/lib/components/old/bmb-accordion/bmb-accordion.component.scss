@@ -1,6 +1,6 @@
 @use 'sass:map';
-@use '../../../assets/styles/base/fonts' as fonts;
-@use '../../../assets/styles/base/rem' as rem;
+@use '../../../../../../shared/assets/styles/base/fonts' as fonts;
+@use '../../../../../../shared/assets/styles/base/rem' as rem;
 
 .bmb_accordion {
   @include fonts.font(3, regular);

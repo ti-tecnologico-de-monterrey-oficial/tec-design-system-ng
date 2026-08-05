@@ -1,4 +1,4 @@
-@use '../../../../assets/styles/base/mixins' as mixins;
+@use '../../../../../../../shared/assets/styles/base/mixins' as mixins;
 
 body:has(.bmb_projected-backdrop) {
   overflow: hidden;

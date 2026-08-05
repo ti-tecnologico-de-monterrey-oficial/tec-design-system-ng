@@ -1,5 +1,5 @@
 @use '../mixins.scss' as mixins;
-@use '../../../../assets/styles/base/fonts' as fonts;
+@use '../../../../../../../shared/assets/styles/base/fonts' as fonts;
 
 .bmb_item-actions {
   @include fonts.font(5, regular);

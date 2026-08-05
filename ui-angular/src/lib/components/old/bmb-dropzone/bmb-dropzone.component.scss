@@ -1,6 +1,6 @@
-@use '../../../assets/styles/base/rem' as rem;
-@use '../../../assets/styles/base/fonts' as fonts;
-@use '../../../assets/styles/base/text-link' as text-link;
+@use '../../../../../../shared/assets/styles/base/rem' as rem;
+@use '../../../../../../shared/assets/styles/base/fonts' as fonts;
+@use '../../../../../../shared/assets/styles/components/text-link' as text-link;
 
 .bmb_drop-zone {
   color: var(--general-contrasts-80);
