@@ -30,24 +30,24 @@ import {
   BmbCheckboxComponent,
   BmbDividerComponent,
 } from '../../index';
-import * as topBarStory from '../components/bmb-top-bar/bmb-top-bar.stories';
-import * as sideBarStory from '../components/bmb-sidebar/bmb-sidebar.stories';
-import * as homeCardStory from '../components/bmb-home-card/bmp-home-card.stories';
-import * as layoutStory from '../directives/bmb-layout/bmb-layout.stories';
-import * as layoutItemStory from '../directives/bmb-layout/bmb-layout.stories';
-import * as cardStory from '../components/bmb-card/bmb-card.stories';
-import * as tabsStory from '../components/bmb-tabs/bmb-tabs.component.stories';
-import * as accordionStory from '../components/bmb-accordion/bmb-accordion.stories';
-import * as cardHeaderStory from '../components/bmb-card/bmb-card.stories';
-import * as cardContentStory from '../components/bmb-card/bmb-card.stories';
-import * as containerButtonStory from '../components/bmb-container-button/bmb-container-button.stories';
-import * as imageStory from '../components/bmb-image/bmb-image.stories';
-import * as buttonDirectiveStory from '../directives/bmb-button/button.stories';
-import * as verticalLayoutStory from '../directives/bmb-layout/bmb-vertical-layout/bmb-vertical-layout.stories';
-import * as verticalLayoutItemStory from '../directives/bmb-layout/bmb-vertical-layout/bmb-vertical-layout-item.stories';
-import * as textLinkStory from '../components/bmb-text-link/bmb-text-link.stories';
-import * as checkboxStory from '../components/bmb-checkbox/bmb-checkbox.stories';
-import * as dividerStory from '../components/bmb-divider/bmb-divider.stories';
+import * as topBarStory from '../components/old/bmb-top-bar/bmb-top-bar.stories';
+import * as sideBarStory from '../components/old/bmb-sidebar/bmb-sidebar.stories';
+import * as homeCardStory from '../components/old/bmb-home-card/bmp-home-card.stories';
+import * as layoutStory from '../directives/old/bmb-layout/bmb-layout.stories';
+import * as layoutItemStory from '../directives/old/bmb-layout/bmb-layout.stories';
+import * as cardStory from '../components/old/bmb-card/bmb-card.stories';
+import * as tabsStory from '../components/old/bmb-tabs/bmb-tabs.component.stories';
+import * as accordionStory from '../components/old/bmb-accordion/bmb-accordion.stories';
+import * as cardHeaderStory from '../components/old/bmb-card/bmb-card.stories';
+import * as cardContentStory from '../components/old/bmb-card/bmb-card.stories';
+import * as containerButtonStory from '../components/old/bmb-container-button/bmb-container-button.stories';
+import * as imageStory from '../components/old/bmb-image/bmb-image.stories';
+import * as buttonDirectiveStory from '../directives/old/bmb-button/button.stories';
+import * as verticalLayoutStory from '../directives/old/bmb-layout/bmb-vertical-layout/bmb-vertical-layout.stories';
+import * as verticalLayoutItemStory from '../directives/old/bmb-layout/bmb-vertical-layout/bmb-vertical-layout-item.stories';
+import * as textLinkStory from '../components/old/bmb-text-link/bmb-text-link.stories';
+import * as checkboxStory from '../components/old/bmb-checkbox/bmb-checkbox.stories';
+import * as dividerStory from '../components/old/bmb-divider/bmb-divider.stories';
 
 @Component({
   standalone: true,

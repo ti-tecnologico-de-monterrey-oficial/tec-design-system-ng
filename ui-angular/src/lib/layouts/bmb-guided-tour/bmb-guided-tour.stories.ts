@@ -20,7 +20,7 @@ import {
   OnboardingStep,
 } from '../../../index';
 import { CommonModule } from '@angular/common';
-import { attributes } from '../@docs/utils/utils';
+import { attributes } from '../../../../../docs/utils/utils';
 
 @Component({
   standalone: true,

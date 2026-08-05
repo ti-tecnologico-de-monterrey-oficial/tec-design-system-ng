@@ -2,44 +2,44 @@ import { componentWrapperDecorator, Meta, StoryObj } from '@storybook/angular';
 import { Component, TemplateRef, ViewChild } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 
-import { BmbTopBarComponent } from '../components/bmb-top-bar/bmb-top-bar.component';
-import { BmbSidebarComponent } from '../components/bmb-sidebar/bmb-sidebar.component';
-import { BmbHomeCardComponent } from '../components/bmb-home-card/bmb-home-card.component';
-import { BmbTabsComponent } from '../components/bmb-tabs/bmb-tabs.component';
-import { BmbUserSummaryContentComponent } from '../components/bmb-user-summary/bmb-user-summary-content/bmb-user-summary-content.component';
+import { BmbTopBarComponent } from '../components/old/bmb-top-bar/bmb-top-bar.component';
+import { BmbSidebarComponent } from '../components/old/bmb-sidebar/bmb-sidebar.component';
+import { BmbHomeCardComponent } from '../components/old/bmb-home-card/bmb-home-card.component';
+import { BmbTabsComponent } from '../components/old/bmb-tabs/bmb-tabs.component';
+import { BmbUserSummaryContentComponent } from '../components/old/bmb-user-summary/bmb-user-summary-content/bmb-user-summary-content.component';
 import {
   BmbCardComponent,
   BmbCardContentComponent,
-} from '../components/bmb-card/bmb-card.component';
-import { BmbFormValidatorComponent } from '../components/bmb-form-validator/bmb-form-validator.component';
-import { BmbInputComponent } from '../components/bmb-input/bmb-input.component';
+} from '../components/old/bmb-card/bmb-card.component';
+import { BmbFormValidatorComponent } from '../components/old/bmb-form-validator/bmb-form-validator.component';
+import { BmbInputComponent } from '../components/old/bmb-input/bmb-input.component';
 
-import { IBmbNativeModal } from '../components/bmb-modal/bmb-modal.interface';
-import { BmbNativeModalService } from '../services/modal/native-modal.service';
-import { IBmbActionHeader } from '../types';
+import { IBmbNativeModal } from '../components/old/bmb-modal/bmb-modal.interface';
+import { BmbNativeModalService } from '../services/old/modal/native-modal.service';
+import { IBmbActionHeader } from '@shared/types';
 
-import { BmbButtonDirective } from '../directives/bmb-button/button.directive';
-import { BmbLayoutDirective } from '../directives/bmb-layout/bmb-layout.directive';
-import { BmbLayoutItemDirective } from '../directives/bmb-layout/bmb-layout-item.directive';
-import { BmbVerticalLayoutDirective } from '../directives/bmb-layout/bmb-vertical-layout/bmb-vertical-layout.directive';
-import { BmbVerticalLayoutItemDirective } from '../directives/bmb-layout/bmb-vertical-layout/bmb-vertical-layout-item.directive';
-import { BmbSelectorDirective } from '../directives/bmb-selector/bmb-selector.directive';
+import { BmbButtonDirective } from '../directives/old/bmb-button/button.directive';
+import { BmbLayoutDirective } from '../directives/old/bmb-layout/bmb-layout.directive';
+import { BmbLayoutItemDirective } from '../directives/old/bmb-layout/bmb-layout-item.directive';
+import { BmbVerticalLayoutDirective } from '../directives/old/bmb-layout/bmb-vertical-layout/bmb-vertical-layout.directive';
+import { BmbVerticalLayoutItemDirective } from '../directives/old/bmb-layout/bmb-vertical-layout/bmb-vertical-layout-item.directive';
+import { BmbSelectorDirective } from '../directives/old/bmb-selector/bmb-selector.directive';
 
-import * as topBarStory from '../components/bmb-top-bar/bmb-top-bar.stories';
-import * as sideBarStory from '../components/bmb-sidebar/bmb-sidebar.stories';
-import * as homeCardStory from '../components/bmb-home-card/bmp-home-card.stories';
-import * as tabsStory from '../components/bmb-tabs/bmb-tabs.component.stories';
-import * as genericCardStory from '../components/bmb-card/bmb-card.stories';
-import * as userSummaryContentStory from '../components/bmb-user-summary/bmb-user-summary-content/bmb-user-summary-content.stories';
-import * as inputStory from '../components/bmb-input/bmb-input.stories';
-import * as itemItemStory from '../components/bmb-item/bmb-item.stories';
-import * as actionMenuStory from '../components/bmb-action-menu/bmb-action-menu.stories';
-import * as nativeModalStory from '../components/bmb-modal/bmb-native-modal.stories';
+import * as topBarStory from '../components/old/bmb-top-bar/bmb-top-bar.stories';
+import * as sideBarStory from '../components/old/bmb-sidebar/bmb-sidebar.stories';
+import * as homeCardStory from '../components/old/bmb-home-card/bmp-home-card.stories';
+import * as tabsStory from '../components/old/bmb-tabs/bmb-tabs.component.stories';
+import * as genericCardStory from '../components/old/bmb-card/bmb-card.stories';
+import * as userSummaryContentStory from '../components/old/bmb-user-summary/bmb-user-summary-content/bmb-user-summary-content.stories';
+import * as inputStory from '../components/old/bmb-input/bmb-input.stories';
+import * as itemItemStory from '../components/old/bmb-item/bmb-item.stories';
+import * as actionMenuStory from '../components/old/bmb-action-menu/bmb-action-menu.stories';
+import * as nativeModalStory from '../components/old/bmb-modal/bmb-native-modal.stories';
 
-import * as buttonDirectiveStory from '../directives/bmb-button/button.stories';
-import * as layoutDirectiveStory from '../directives/bmb-layout/bmb-layout.stories';
-import * as verticalLayoutDirectiveStory from '../directives/bmb-layout/bmb-vertical-layout/bmb-vertical-layout.stories';
-import * as selectorDirectiveStory from '../directives/bmb-selector/bmb-selector.stories';
+import * as buttonDirectiveStory from '../directives/old/bmb-button/button.stories';
+import * as layoutDirectiveStory from '../directives/old/bmb-layout/bmb-layout.stories';
+import * as verticalLayoutDirectiveStory from '../directives/old/bmb-layout/bmb-vertical-layout/bmb-vertical-layout.stories';
+import * as selectorDirectiveStory from '../directives/old/bmb-selector/bmb-selector.stories';
 
 import {
   BlockquoteType,
@@ -53,8 +53,8 @@ import {
   getTechnicalDocReferences,
   RELEVANT_TITLE,
 } from '@docs/utils/utils';
-import { BmbActionMenuComponent } from '../components/bmb-action-menu/bmb-action-menu.component';
-import { BmbItemComponent } from '../components/bmb-item/bmb-item.component';
+import { BmbActionMenuComponent } from '../components/old/bmb-action-menu/bmb-action-menu.component';
+import { BmbItemComponent } from '../components/old/bmb-item/bmb-item.component';
 
 const HTML_TEMPLATE: string = `
 <div class="bmb_organism-identity-spectrum">
