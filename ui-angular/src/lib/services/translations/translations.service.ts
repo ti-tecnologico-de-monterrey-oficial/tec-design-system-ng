@@ -84,9 +84,11 @@ export class BmbTranslationsService {
   }
 
   translate(keyList: string): string {
-    const translatedValue = keyList?.split('.').reduce((acc: any, key: string) => {
-      return acc && acc[key] !== undefined ? acc[key] : undefined;
-    }, this.selectedDictionary());
+    const translatedValue = keyList
+      ?.split('.')
+      .reduce((acc: any, key: string) => {
+        return acc && acc[key] !== undefined ? acc[key] : undefined;
+      }, this.selectedDictionary());
 
     return typeof translatedValue === 'string' ? translatedValue : keyList;
   }

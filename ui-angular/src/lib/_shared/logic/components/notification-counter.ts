@@ -7,10 +7,7 @@ export const getCounter = ({
   counter?: number;
   appearance: IBmbNotificationCounterType;
 }): string => {
-  const formattedCounter =
-    (counter ?? 0) > 99 ? '99+' : String(counter ?? 0);
+  const formattedCounter = (counter ?? 0) > 99 ? '99+' : String(counter ?? 0);
 
-  return appearance === 'plain'
-    ? `(${formattedCounter})`
-    : formattedCounter;
+  return appearance === 'plain' ? `(${formattedCounter})` : formattedCounter;
 };

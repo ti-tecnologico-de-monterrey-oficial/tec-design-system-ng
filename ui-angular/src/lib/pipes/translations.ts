@@ -7,7 +7,9 @@ import { BmbTranslationsService } from '../services/translations/translations.se
   pure: false,
 })
 export class TranslatePipe implements PipeTransform {
-  private translationService: BmbTranslationsService = inject(BmbTranslationsService);
+  private translationService: BmbTranslationsService = inject(
+    BmbTranslationsService,
+  );
 
   transform(key: string): string {
     return this.translationService.translate(key) || key;

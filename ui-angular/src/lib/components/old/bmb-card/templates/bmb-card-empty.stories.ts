@@ -1,5 +1,9 @@
 import { Meta, moduleMetadata } from '@storybook/angular';
-import { BmbCardComponent, BmbCardContentComponent, BmbCardHeaderComponent } from '../bmb-card.component';
+import {
+  BmbCardComponent,
+  BmbCardContentComponent,
+  BmbCardHeaderComponent,
+} from '../bmb-card.component';
 import { BmbIconComponent } from '../../bmb-icon/bmb-icon.component';
 import { BmbTitleComponent } from '../../bmb-title/bmb-title.component';
 import { BmbButtonDirective } from '../../../../directives/old/bmb-button/button.directive';
@@ -10,12 +14,30 @@ import { BmbVerticalLayoutItemDirective } from '../../../../directives/old/bmb-l
 import { staticCardStory } from './bmb-card-template-story.utils';
 
 const meta: Meta<BmbCardComponent> = {
-  title: 'Components/Containers/Generic card/Empty', component: BmbCardComponent, tags: ['!autodocs'],
-  decorators: [moduleMetadata({ imports: [BmbCardComponent, BmbCardContentComponent, BmbCardHeaderComponent, BmbIconComponent, BmbTitleComponent, BmbButtonDirective, BmbLayoutDirective, BmbLayoutItemDirective, BmbVerticalLayoutDirective, BmbVerticalLayoutItemDirective] })],
+  title: 'Components/Containers/Generic card/Empty',
+  component: BmbCardComponent,
+  tags: ['!autodocs'],
+  decorators: [
+    moduleMetadata({
+      imports: [
+        BmbCardComponent,
+        BmbCardContentComponent,
+        BmbCardHeaderComponent,
+        BmbIconComponent,
+        BmbTitleComponent,
+        BmbButtonDirective,
+        BmbLayoutDirective,
+        BmbLayoutItemDirective,
+        BmbVerticalLayoutDirective,
+        BmbVerticalLayoutItemDirective,
+      ],
+    }),
+  ],
 };
 export default meta;
 
-const template = () => `<div bmbLayout margin="none" gapSize="m" alignItems="stretch"><div bmbLayoutItem [colSm]="4" [colLg]="4" [colXl]="4">
+const template =
+  () => `<div bmbLayout margin="none" gapSize="m" alignItems="stretch"><div bmbLayoutItem [colSm]="4" [colLg]="4" [colXl]="4">
   <bmb-card type="normal" borderRadius="l" margin="none" boxShadowStyle="box-shadow-3">
     <bmb-card-header padding="l">Title</bmb-card-header><bmb-card-content padding="l">
       <div bmbVerticalLayout margin="none" gapSize="l" alignItems="stretch" layoutHeight="36rem">

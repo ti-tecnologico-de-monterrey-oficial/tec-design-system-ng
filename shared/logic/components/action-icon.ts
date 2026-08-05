@@ -30,7 +30,5 @@ export const getSanitizedSvg = ({
     return null;
   }
 
-  return sanitizeContent(
-    (customActionIcon ?? '').toString(),
-  );
+  return sanitizeContent((customActionIcon ?? '').toString());
 };

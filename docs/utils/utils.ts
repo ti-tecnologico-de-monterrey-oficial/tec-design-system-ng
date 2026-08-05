@@ -69,8 +69,7 @@ export const TITLE_OF_CONTROLS = 'Properties / Events';
 export const PREVIEW_TITLE = '👁 Preview';
 export const TOC_TITLE = 'On this page';
 export const DESCRIPTION_TITLE = 'Description';
-export const SPECIAL_SPECIFICATIONS_TITLE =
-  'Considerations / Restrictions';
+export const SPECIAL_SPECIFICATIONS_TITLE = 'Considerations / Restrictions';
 export const SANDBOX_TITLE = 'Sandbox';
 export const SPACING_DESCRIPTION =
   'Spacing is used to give space to components and their sections.';
@@ -725,9 +724,7 @@ export const getHelpDescriptionForGeneratingVariables = (
   `${isControl ? `This is the collection of *${element}* that can be used.<br/><br/>` : ''}
 Please use this ${isControl ? 'help' : 'interactive tool'} to generate the *${element}* variables to use.`;
 
-export const getTypographyDetail = (
-  isCompleteDetail = true,
-): string => `
+export const getTypographyDetail = (isCompleteDetail = true): string => `
 >### Font Family:
 ${
   isCompleteDetail
@@ -824,7 +821,9 @@ const getSubList = (
   const result =
     typeof list[0] === 'string'
       ? template
-        ? list.map((element) => replaceOccurrences(template, '[__]', element as string))
+        ? list.map((element) =>
+            replaceOccurrences(template, '[__]', element as string),
+          )
         : list
       : list.map((element) => {
           const _element = element as IBmbVariableDesc;

@@ -17,7 +17,6 @@ import { BmbImageItem } from './types';
 import { BmbButtonIconComponent } from '../bmb-button-icon/bmb-button-icon.component';
 import { TranslatePipe } from '../../../pipes/translations';
 
-
 export interface BmbImageHeight {
   s: string;
   l: string;

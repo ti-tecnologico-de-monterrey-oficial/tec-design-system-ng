@@ -143,9 +143,7 @@ The possible positions to indicate where the label should be displayed in relati
   };
 };
 
-export const getFormControlConsiderations = (
-  replaceChar = '',
-): string =>
+export const getFormControlConsiderations = (replaceChar = ''): string =>
   `__
 __It is essential to assign the property \`name\` for correct behavior of the field.
 __
@@ -1571,10 +1569,7 @@ export const DBmbContainerButton = {
   ),
 };
 
-export const getPropertyForType = (
-  isCounter = true,
-  isSimple = false,
-) => `
+export const getPropertyForType = (isCounter = true, isSimple = false) => `
 <br/><br/>This property is displayed for the property type:
 ${isSimple ? '- simple' : ''}
 ${isCounter ? '- counter' : ''}

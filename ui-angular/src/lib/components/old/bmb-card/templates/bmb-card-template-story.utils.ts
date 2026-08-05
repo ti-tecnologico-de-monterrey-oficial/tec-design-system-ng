@@ -10,9 +10,7 @@ export const staticCardStory = (
   render: () => ({ template }),
   parameters: {
     layout: 'padded',
-    ...(mobile
-      ? { viewport: { defaultViewport: 'mobile1' } }
-      : {}),
+    ...(mobile ? { viewport: { defaultViewport: 'mobile1' } } : {}),
     docs: { source: { code: template, language: 'html' } },
   },
 });

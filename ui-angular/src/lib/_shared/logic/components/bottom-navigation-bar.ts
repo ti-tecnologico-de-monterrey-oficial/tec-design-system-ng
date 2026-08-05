@@ -2,9 +2,8 @@ import { IBmbActionHeader } from '../../types/utils';
 import {
   IBmbFooterEvent,
   IBmbNavigationBarIcon,
-  IBmbNavigationBarIcons
+  IBmbNavigationBarIcons,
 } from '../../types/components/bottom-navigation-bar';
-
 
 export const buildNavigationElement = (
   element: IBmbNavigationBarIcon,

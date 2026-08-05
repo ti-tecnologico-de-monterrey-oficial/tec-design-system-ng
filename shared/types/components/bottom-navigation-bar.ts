@@ -1,8 +1,4 @@
-export type IBmbFooterEvent =
-  | 'back'
-  | 'forward'
-  | 'share'
-  | 'reload';
+export type IBmbFooterEvent = 'back' | 'forward' | 'share' | 'reload';
 
 export type IBmbNavigationBarIcon = {
   name: string;

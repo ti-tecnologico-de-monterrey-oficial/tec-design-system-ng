@@ -1,5 +1,8 @@
 import { Meta, moduleMetadata } from '@storybook/angular';
-import { BmbCardComponent, BmbCardContentComponent } from '../bmb-card.component';
+import {
+  BmbCardComponent,
+  BmbCardContentComponent,
+} from '../bmb-card.component';
 import { BmbBadgeComponent } from '../../../bmb-badge/bmb-badge.component';
 import { BmbImageComponent } from '../../bmb-image/bmb-image.component';
 import { BmbTitleComponent } from '../../bmb-title/bmb-title.component';
@@ -12,13 +15,33 @@ import { BmbVerticalLayoutItemDirective } from '../../../../directives/old/bmb-l
 import { staticCardStory } from './bmb-card-template-story.utils';
 
 const meta: Meta<BmbCardComponent> = {
-  title: 'Components/Containers/Generic card/Informative', component: BmbCardComponent, tags: ['!autodocs'],
-  decorators: [moduleMetadata({ imports: [BmbBadgeComponent, BmbButtonDirective, BmbCardComponent, BmbCardContentComponent, BmbImageComponent, BmbLayoutDirective, BmbLayoutItemDirective, BmbTitleComponent, BmbTooltipComponent, BmbVerticalLayoutDirective, BmbVerticalLayoutItemDirective] })],
+  title: 'Components/Containers/Generic card/Informative',
+  component: BmbCardComponent,
+  tags: ['!autodocs'],
+  decorators: [
+    moduleMetadata({
+      imports: [
+        BmbBadgeComponent,
+        BmbButtonDirective,
+        BmbCardComponent,
+        BmbCardContentComponent,
+        BmbImageComponent,
+        BmbLayoutDirective,
+        BmbLayoutItemDirective,
+        BmbTitleComponent,
+        BmbTooltipComponent,
+        BmbVerticalLayoutDirective,
+        BmbVerticalLayoutItemDirective,
+      ],
+    }),
+  ],
 };
 export default meta;
 
-const image = 'https://conecta.tec.mx/sites/default/files/inline-images/tec-de-monterrey.webp';
-const template = () => `<bmb-card type="normal" borderRadius="l" margin="none"><bmb-card-content padding="l">
+const image =
+  'https://conecta.tec.mx/sites/default/files/inline-images/tec-de-monterrey.webp';
+const template =
+  () => `<bmb-card type="normal" borderRadius="l" margin="none"><bmb-card-content padding="l">
   <div bmbLayout margin="none" gapSize="xl" alignItems="stretch" [flow]="{ m: 'row', l: 'reverse', xl: 'reverse' }">
     <bmb-image bmbLayoutItem [colSm]="4" [colLg]="5" [colXl]="5" src="${image}" alt="Edificio de Rectoría del Tecnológico de Monterrey" ratio="16 / 9" borderRadius="m" objectFit="cover" [minHeight]="{ s: '14rem', l: '18rem' }" />
     <div bmbLayoutItem [colSm]="4" [colLg]="7" [colXl]="7"><div bmbVerticalLayout margin="none" gapSize="m" justify="spaceBetween" alignItems="stretch" layoutHeight="100%">

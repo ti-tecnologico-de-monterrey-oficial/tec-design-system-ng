@@ -17,13 +17,7 @@ import {
   getSpecialSpecifications,
 } from '@docs/utils/utils';
 
-const templateVariants = [
-  'Informative',
-  'Flat',
-  'Actions',
-  'Home',
-  'Empty',
-];
+const templateVariants = ['Informative', 'Flat', 'Actions', 'Home', 'Empty'];
 
 const getTemplateVariantsSection = (): string => `
 <h2>Template variants</h2>

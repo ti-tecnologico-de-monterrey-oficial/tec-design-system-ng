@@ -4,7 +4,7 @@ import {
   ProgressCircleText,
   DrawProgressCircleParams,
   BmbProgressCirclePathStatus,
-  BmbProgressCircleOptionsInterface
+  BmbProgressCircleOptionsInterface,
 } from '../../types/components/progress-circle';
 
 /**
@@ -27,10 +27,7 @@ export const polarToCartesian = (
 /**
  * Calculates the vertical offset for SVG tspans.
  */
-export const getRelativeY = (
-  rowNum: number,
-  rowCount: number,
-): string => {
+export const getRelativeY = (rowNum: number, rowCount: number): string => {
   const initialOffset = -0.18;
   const offset = 1.2;
 
@@ -49,8 +46,7 @@ export const drawProgressCircle = ({
   const safePercent = Math.abs(percent);
   const circlePercent = safePercent > 100 ? 100 : safePercent;
 
-  const boxSize =
-    options.radius * 2 + options.outerStrokeWidth * 2;
+  const boxSize = options.radius * 2 + options.outerStrokeWidth * 2;
 
   const centre = {
     x: boxSize / 2,
@@ -178,7 +174,7 @@ export const buildProgressCircleOptions = ({
   showValueLabel,
   valueLabel,
   title,
- showBackground,
+  showBackground,
   size,
 }: {
   percent: number;
@@ -246,10 +242,7 @@ export const shouldShowProgressPath = ({
 
   return (
     !!percent &&
-    !isProgressCircleFullColored(
-      fullFillPathStatus,
-      fillPathStatus,
-    )
+    !isProgressCircleFullColored(fullFillPathStatus, fillPathStatus)
   );
 };
 
@@ -269,18 +262,14 @@ export const shouldShowValueLabel = ({
 }): boolean => {
   if (
     showOperationState &&
-    (fillPathStatus === 'success' ||
-      fillPathStatus === 'error')
+    (fillPathStatus === 'success' || fillPathStatus === 'error')
   ) {
     return showValueLabel;
   }
 
   return (
     showValueLabel &&
-    !isProgressCircleFullColored(
-      fullFillPathStatus,
-      fillPathStatus,
-    )
+    !isProgressCircleFullColored(fullFillPathStatus, fillPathStatus)
   );
 };
 
@@ -296,17 +285,11 @@ export const getDisplayIcon = ({
   fillPathStatus: BmbProgressCirclePathStatus;
   icon: string;
 }): string => {
-  if (
-    fullFillPathStatus &&
-    fillPathStatus === 'success'
-  ) {
+  if (fullFillPathStatus && fillPathStatus === 'success') {
     return 'check_circle';
   }
 
-  if (
-    fullFillPathStatus &&
-    fillPathStatus === 'error'
-  ) {
+  if (fullFillPathStatus && fillPathStatus === 'error') {
     return 'error';
   }
 
@@ -331,22 +314,12 @@ export const getContainerClasses = ({
     classes.push('bmb_progress-circle-empty');
   }
 
-  if (
-    showOperationState &&
-    fillPathStatus === 'success'
-  ) {
-    classes.push(
-      'bmb_progress-circle-operation-success',
-    );
+  if (showOperationState && fillPathStatus === 'success') {
+    classes.push('bmb_progress-circle-operation-success');
   }
 
-  if (
-    showOperationState &&
-    fillPathStatus === 'error'
-  ) {
-    classes.push(
-      'bmb_progress-circle-operation-error',
-    );
+  if (showOperationState && fillPathStatus === 'error') {
+    classes.push('bmb_progress-circle-operation-error');
   }
 
   return classes;

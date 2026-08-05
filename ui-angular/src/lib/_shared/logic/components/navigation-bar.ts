@@ -1,7 +1,4 @@
-import {
-  IBmbActionHeader,
-  SizeNames,
-} from '../../types/utils';
+import { IBmbActionHeader, SizeNames } from '../../types/utils';
 import {
   IAlignItemsOptions,
   IJustifyOptions,

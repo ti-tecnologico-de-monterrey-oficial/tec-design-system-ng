@@ -76,18 +76,8 @@
               </p>
 
               <div bmbVerticalLayoutItem>
-                <div
-                  bmbLayout
-                  margin="none"
-                  gapSize="l"
-                  alignItems="center"
-                >
-                  <div
-                    bmbLayoutItem
-                    [colSm]="4"
-                    [colLg]="2"
-                    [colXl]="2"
-                  >
+                <div bmbLayout margin="none" gapSize="l" alignItems="center">
+                  <div bmbLayoutItem [colSm]="4" [colLg]="2" [colXl]="2">
                     <button
                       bmbButton
                       appearance="secondary-outlined"
@@ -97,12 +87,7 @@
                       Button
                     </button>
                   </div>
-                  <div
-                    bmbLayoutItem
-                    [colSm]="4"
-                    [colLg]="4"
-                    [colXl]="4"
-                  >
+                  <div bmbLayoutItem [colSm]="4" [colLg]="4" [colXl]="4">
                     <button
                       bmbButton
                       appearance="secondary-outlined"
@@ -135,12 +120,7 @@
               justify="center"
               alignItems="center"
             >
-              <div
-                bmbLayoutItem
-                [colSm]="1"
-                [colLg]="12"
-                [colXl]="12"
-              >
+              <div bmbLayoutItem [colSm]="1" [colLg]="12" [colXl]="12">
                 <div
                   bmbLayout
                   margin="none"
@@ -191,12 +171,7 @@
               justify="center"
               alignItems="center"
             >
-              <div
-                bmbLayoutItem
-                [colSm]="1"
-                [colLg]="12"
-                [colXl]="12"
-              >
+              <div bmbLayoutItem [colSm]="1" [colLg]="12" [colXl]="12">
                 <div
                   bmbLayout
                   margin="none"
@@ -227,12 +202,7 @@
                 [isCenterContent]="true"
               />
 
-              <div
-                bmbLayoutItem
-                [colSm]="2"
-                [colLg]="12"
-                [colXl]="12"
-              >
+              <div bmbLayoutItem [colSm]="2" [colLg]="12" [colXl]="12">
                 <button
                   bmbButton
                   appearance="secondary-outlined"
@@ -292,46 +262,42 @@
                 >
                   @for (file of [1, 2, 3, 4, 5]; track file) {
                     <div bmbVerticalLayoutItem>
-                      <bmb-card
-                        type="normal"
-                        borderRadius="m"
-                        margin="none"
-                      >
-                            <bmb-card-content padding="l">
-                              <div
-                                bmbLayout
-                                margin="none"
-                                gapSize="m"
-                                alignItems="center"
-                                [avoidRowWrap]="true"
-                              >
-                                <bmb-icon
-                                  bmbLayoutItem
-                                  icon="image"
-                                  [size]="24"
-                                  alt="Archivo de imagen"
-                                />
+                      <bmb-card type="normal" borderRadius="m" margin="none">
+                        <bmb-card-content padding="l">
+                          <div
+                            bmbLayout
+                            margin="none"
+                            gapSize="m"
+                            alignItems="center"
+                            [avoidRowWrap]="true"
+                          >
+                            <bmb-icon
+                              bmbLayoutItem
+                              icon="image"
+                              [size]="24"
+                              alt="Archivo de imagen"
+                            />
 
-                                <bmb-title
-                                  bmbLayoutItem
-                                  [isDynamicItem]="true"
-                                  [colGrow]="1"
-                                  componentTitle="Nombre_Archivo.png"
-                                  titleSize="5"
-                                  titleFontWeight="500"
-                                  subtitle="Descripción del documento agregado"
-                                  subtitleSize="4"
-                                  subtitleFontWeight="400"
-                                />
+                            <bmb-title
+                              bmbLayoutItem
+                              [isDynamicItem]="true"
+                              [colGrow]="1"
+                              componentTitle="Nombre_Archivo.png"
+                              titleSize="5"
+                              titleFontWeight="500"
+                              subtitle="Descripción del documento agregado"
+                              subtitleSize="4"
+                              subtitleFontWeight="400"
+                            />
 
-                                <bmb-icon
-                                  bmbLayoutItem
-                                  icon="file_open"
-                                  [size]="24"
-                                  alt="Abrir archivo"
-                                />
-                              </div>
-                            </bmb-card-content>
+                            <bmb-icon
+                              bmbLayoutItem
+                              icon="file_open"
+                              [size]="24"
+                              alt="Abrir archivo"
+                            />
+                          </div>
+                        </bmb-card-content>
                       </bmb-card>
                     </div>
                   }
@@ -379,11 +345,7 @@
                 </div>
               </div>
 
-              <div
-                bmbVerticalLayoutItem
-                [rowGrow]="1"
-                [disableScroll]="true"
-              >
+              <div bmbVerticalLayoutItem [rowGrow]="1" [disableScroll]="true">
                 <div
                   bmbVerticalLayout
                   margin="none"

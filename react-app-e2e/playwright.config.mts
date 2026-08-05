@@ -34,22 +34,22 @@ export default defineConfig({
     command: 'npx nx run react-app:preview',
     url: 'http://localhost:4200',
     reuseExistingServer: true,
-    cwd: workspaceRoot
+    cwd: workspaceRoot,
   },
   projects: [
     {
-      name: "chromium",
-      use: { ...devices["Desktop Chrome"] },
+      name: 'chromium',
+      use: { ...devices['Desktop Chrome'] },
     },
 
     {
-      name: "firefox",
-      use: { ...devices["Desktop Firefox"] },
+      name: 'firefox',
+      use: { ...devices['Desktop Firefox'] },
     },
 
     {
-      name: "webkit",
-      use: { ...devices["Desktop Safari"] },
+      name: 'webkit',
+      use: { ...devices['Desktop Safari'] },
     },
 
     // Uncomment for mobile browsers support

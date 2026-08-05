@@ -1,3 +1,1 @@
-export type IBmbNotificationCounterType =
-  | 'notification'
-  | 'plain';
+export type IBmbNotificationCounterType = 'notification' | 'plain';

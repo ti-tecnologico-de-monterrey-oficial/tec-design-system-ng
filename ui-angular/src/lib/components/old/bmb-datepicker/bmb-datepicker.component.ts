@@ -26,7 +26,12 @@ import {
 } from '../bmb-input/bmb-input.component';
 import { BmbProjectionContentService } from '../../../services/old/projection/projection.service';
 import { BmbDatepickerModalComponent } from './bmb-datepicker-modal/bmb-datepicker-modal.component';
-import { getCustomValidation, getCustomValidationMessage, getUUID, isErrorMessageSet } from '@shared/logic/utils';
+import {
+  getCustomValidation,
+  getCustomValidationMessage,
+  getUUID,
+  isErrorMessageSet,
+} from '@shared/logic/utils';
 import {
   assignNewFormControl,
   newFormControlByType,
