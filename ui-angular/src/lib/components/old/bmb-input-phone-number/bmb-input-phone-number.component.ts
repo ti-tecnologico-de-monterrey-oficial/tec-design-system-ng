@@ -23,14 +23,22 @@ import {
   BmbDropdownComponent,
   IBmbDropdownItem,
 } from '../bmb-dropdown/bmb-dropdown.component';
-import { IBmbCountryCode, IBmbCountryCodes } from '../../../_shared/logic/countryCodes';
+import {
+  IBmbCountryCode,
+  IBmbCountryCodes,
+} from '../../../_shared/logic/countryCodes';
 import {
   IBmbInputAppearance,
   IBmbInputError,
   IBmbInputTooltipPosition,
 } from '../bmb-input/bmb-input.component';
 import { BmbInputValidatorComponent } from '../bmb-input/bmb-input-validator/bmb-input-validator.component';
-import { buildErrorMessage, getCustomValidation, getCustomValidationMessage, getUUID } from '@shared/logic/utils';
+import {
+  buildErrorMessage,
+  getCustomValidation,
+  getCustomValidationMessage,
+  getUUID,
+} from '@shared/logic/utils';
 import { BmbInputContentComponent } from '../bmb-input/bmb-input-content/bmb-input-content.component';
 import {
   assignNewFormControl,

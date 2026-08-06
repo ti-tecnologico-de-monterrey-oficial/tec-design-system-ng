@@ -4,7 +4,8 @@ import {
   type UseMaterialRoundedIconOptions,
 } from './use-material-rounded-icon';
 
-export interface MaterialRoundedIconProps extends UseMaterialRoundedIconOptions {
+export interface MaterialRoundedIconProps
+  extends UseMaterialRoundedIconOptions {
   className?: string;
   style?: CSSProperties;
   title?: string;

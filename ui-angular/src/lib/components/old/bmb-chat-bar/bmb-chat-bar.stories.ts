@@ -1,9 +1,6 @@
 import { componentWrapperDecorator, Meta, StoryObj } from '@storybook/angular';
 import { BmbChatBarComponent } from './bmb-chat-bar.component';
-import {
-  getBasicExampleBlock,
-  getGeneralDescription,
-} from '@docs/utils/utils';
+import { getBasicExampleBlock, getGeneralDescription } from '@docs/utils/utils';
 import {
   DBmbIconParamDesc,
   DBmbInputParamDesc,

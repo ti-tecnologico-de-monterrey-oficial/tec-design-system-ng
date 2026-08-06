@@ -14,10 +14,7 @@ import {
   ReactiveFormsModule,
 } from '@angular/forms';
 import * as mainStory from './bmb-step-progress-bar.stories';
-import {
-  getBasicExampleBlock,
-  getGeneralDescription,
-} from '@docs/utils/utils';
+import { getBasicExampleBlock, getGeneralDescription } from '@docs/utils/utils';
 
 const example = `
 <ng-template #step0>

@@ -7,11 +7,7 @@ export type IJustifyOptions =
   | 'spaceBetween'
   | 'spaceEvenly';
 
-export type IAlignItemsOptions =
-  | 'center'
-  | 'end'
-  | 'start'
-  | 'stretch';
+export type IAlignItemsOptions = 'center' | 'end' | 'start' | 'stretch';
 export type IColumSizeMobile = 0 | 1 | 2 | 3 | 4;
 export type IColumSizeFull =
   | 0

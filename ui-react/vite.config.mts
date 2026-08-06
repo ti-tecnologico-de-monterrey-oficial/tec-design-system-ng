@@ -18,7 +18,10 @@ export default defineConfig(() => ({
       name: 'copy-shared-assets',
       closeBundle() {
         const source = path.resolve(import.meta.dirname, '../shared/assets');
-        const target = path.resolve(import.meta.dirname, '../dist/ui-react/assets/shared');
+        const target = path.resolve(
+          import.meta.dirname,
+          '../dist/ui-react/assets/shared',
+        );
 
         if (!fs.existsSync(source)) {
           return;

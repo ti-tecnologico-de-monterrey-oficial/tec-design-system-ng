@@ -8,7 +8,6 @@ import { CommonModule } from '@angular/common';
 import { BmbMixedMessage } from '../../types';
 import { handleImageNotFoundError } from '@shared/logic/utils';
 
-
 @Component({
   selector: 'bmb-mixed-message',
   standalone: true,
