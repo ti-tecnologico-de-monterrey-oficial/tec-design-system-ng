@@ -7,7 +7,6 @@ import {
   ValidationErrors,
   ValidatorFn,
 } from '@angular/forms';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BmbDropzoneComponent } from './bmb-dropzone.component';
 import {
   getBasicExampleBlock,
@@ -49,7 +48,6 @@ export default {
         CommonModule,
         FormsModule,
         ReactiveFormsModule,
-        BrowserAnimationsModule,
         BmbDropzoneComponent,
       ],
     }),

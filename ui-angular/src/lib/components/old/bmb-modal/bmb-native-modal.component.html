@@ -14,14 +14,16 @@
       >
         <ng-template #bmbMainContent>
           <span class="bmb_modal-container-header-title">
-            <bmb-title-content
-              [componentTitle]="componentTitle()"
-              titleSize="9"
-              [subtitle]="subtitle()"
-              [icon]="modalIcon()"
-              [iconSize]="48"
-              [transparentBgC]="true"
-            />
+            @if (componentTitle() || subtitle() || modalIcon()) {
+              <bmb-title-content
+                [componentTitle]="componentTitle()"
+                titleSize="9"
+                [subtitle]="subtitle()"
+                [icon]="modalIcon()"
+                [iconSize]="48"
+                [transparentBgC]="true"
+              />
+            }
           </span>
         </ng-template>
         <ng-template #bmbRightContent>

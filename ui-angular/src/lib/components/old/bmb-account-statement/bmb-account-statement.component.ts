@@ -3,6 +3,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   effect,
+  inject,
   input,
   OnInit,
   output,
@@ -94,9 +95,9 @@ export class BmbAccountStatementComponent implements AfterViewInit, OnInit {
   modalTemplate?: TemplateRef<any>;
 
   newModal: TemplateRef<any> | null = null;
-  customAmount: number = 0;
-  isEnableCustomAmount: boolean = false;
-  maxAmount: number = 0;
+  customAmount = 0;
+  isEnableCustomAmount = false;
+  maxAmount = 0;
   modalID = signal<string | null>(null);
 
   amountForm: FormGroup = new FormGroup({
@@ -104,7 +105,9 @@ export class BmbAccountStatementComponent implements AfterViewInit, OnInit {
   });
   showErrors: { [key: string]: boolean } = {};
 
-  constructor(private modalService: BmbNativeModalService) {
+  modalService: BmbNativeModalService = inject(BmbNativeModalService);
+
+  constructor() {
     effect(() => {
       const deprecatedTitle = this.title();
       const newTitle = this.componentTitle();

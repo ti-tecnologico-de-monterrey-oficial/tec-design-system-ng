@@ -6,7 +6,6 @@ import {
 } from '@storybook/angular';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BmbInputPhoneNumberComponent } from './bmb-input-phone-number.component';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import {
@@ -20,7 +19,6 @@ import {
   getSpecialSpecifications,
 } from '@docs/utils/utils';
 import {
-  DBmbGenericParamDesc,
   DBmbInputParamDesc,
 } from '@docs/utils/parameterDescriptions';
 import { IBmbCountryCode, IBmbCountryCodes } from '@shared/logic/countryCodes';
@@ -62,7 +60,6 @@ export default {
         CommonModule,
         FormsModule,
         ReactiveFormsModule,
-        BrowserAnimationsModule,
         BmbIconComponent,
       ],
     }),
