@@ -10,5 +10,13 @@ export const appRoutes: Route[] = [
         ({ CarouselPage }) => CarouselPage,
       ),
   },
+  {
+    path: 'components/container',
+    title: 'BmbContainer | Bamboo migration dashboard',
+    loadComponent: () =>
+      import('./components/container-page').then(
+        ({ ContainerPage }) => ContainerPage,
+      ),
+  },
   { path: '**', redirectTo: 'components/carousel' },
 ];

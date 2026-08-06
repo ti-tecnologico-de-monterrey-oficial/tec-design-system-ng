@@ -5,14 +5,12 @@ import {
   input,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import {
+  getContainerClasses,
+  type IBmbAppearanceType,
+} from '../../_shared/logic/components/container';
 
-export type IBmbAppearanceType =
-  | 'primary-container'
-  | 'primary-home'
-  | 'primary-header'
-  | 'secondary-container'
-  | 'contrast-box-container'
-  | 'button-container';
+export type { IBmbAppearanceType } from '../../_shared/logic/components/container';
 
 @Component({
   selector: 'bmb-container',
@@ -28,15 +26,9 @@ export class BmbContainerComponent {
   isHidden = input<boolean>(false);
 
   getClasses(): string[] {
-    const className = 'bmb_container';
-    const classes: string[] = [className];
-
-    if (this.isHidden()) return [className + '-hidden'];
-
-    if (this.appearance()) {
-      classes.push(className + '-' + this.appearance());
-    }
-
-    return classes;
+    return getContainerClasses({
+      appearance: this.appearance(),
+      isHidden: this.isHidden(),
+    });
   }
 }

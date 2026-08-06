@@ -2,7 +2,7 @@ import { Meta, moduleMetadata, StoryObj } from '@storybook/angular';
 import { BmbThreeColsComponent } from './bmb-three-cols.component';
 import { BmbTitleComponent } from '../bmb-title/bmb-title.component';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
-import { BmbContainerComponent } from '../bmb-container/bmb-container.component';
+import { BmbContainerComponent } from '../../bmb-container/bmb-container.component';
 import {
   attributes,
   BlockquoteType,
