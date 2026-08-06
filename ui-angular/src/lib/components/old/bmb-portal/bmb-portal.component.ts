@@ -3,6 +3,7 @@ import {
   Component,
   computed,
   ViewEncapsulation,
+  inject,
 } from '@angular/core';
 import { BmbNotificationService } from '../../../services/old/notification/notification.service';
 import { INotification } from '../bmb-push-notification/types';
@@ -36,11 +37,9 @@ import { BmbProjectedContentComponent } from './bmb-projected-content/bmb-projec
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BmbPortalComponent {
-  constructor(
-    private notificationSignal: BmbNotificationService,
-    private modalService: BmbNativeModalService,
-    private projectionService: BmbProjectionContentService,
-  ) {}
+  private notificationSignal = inject(BmbNotificationService);
+  private modalService = inject(BmbNativeModalService);
+  private projectionService = inject(BmbProjectionContentService);
 
   modalSignal = computed(() => this.modalService.getModalList());
   projectedContent = computed(() =>

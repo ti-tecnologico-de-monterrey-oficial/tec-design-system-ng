@@ -9,6 +9,7 @@ import {
   ViewEncapsulation,
   computed,
   model,
+  inject,
 } from '@angular/core';
 import { BmbTabsComponent, IBmbTab } from '../bmb-tabs/bmb-tabs.component';
 import { CommonModule } from '@angular/common';
@@ -97,11 +98,9 @@ export class BmbAlertCenterComponent {
   detailContent?: TemplateRef<any>;
   @ViewChild('container') container!: ElementRef;
 
-  constructor(
-    private readonly nativeModalService: BmbNativeModalService,
-    private readonly bmbAlertCenterService: BmbAlertCenterService,
-    public readonly translationsService: BmbTranslationsService,
-  ) {}
+  nativeModalService: BmbNativeModalService = inject(BmbNativeModalService);
+  bmbAlertCenterService: BmbAlertCenterService = inject(BmbAlertCenterService);
+  translationsService: BmbTranslationsService = inject(BmbTranslationsService);
 
   alertList = computed<IBmbDataAlert[]>(() => {
     const alertsOnInput = this.alerts();

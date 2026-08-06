@@ -28,7 +28,6 @@ import {
   IBmbCountryCodes,
 } from '../../../_shared/logic/countryCodes';
 import {
-  IBmbInputAppearance,
   IBmbInputError,
   IBmbInputTooltipPosition,
 } from '../bmb-input/bmb-input.component';
@@ -93,8 +92,8 @@ export class BmbInputPhoneNumberComponent implements OnInit {
     disabled: this.disabled(),
   });
   countryFiltering: IBmbDropdownItem[] = [];
-  isControlNull: boolean = false;
-  customValidationMessage: string = '';
+  isControlNull = false;
+  customValidationMessage = '';
   private readonly destroyRef = inject(DestroyRef);
   private readonly subscriptions = new Subscription();
 

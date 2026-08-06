@@ -9,8 +9,6 @@ export class BmbAlertCenterService {
   private advertisements = signal<IBmbDataAlert[]>([]);
   private isLoading = signal<boolean>(false);
 
-  constructor() {}
-
   // Methods to manage alerts
 
   setAlerts(alerts: IBmbDataAlert[]) {
