@@ -13,6 +13,7 @@ import {
   computed,
   ViewChild,
   ElementRef,
+  inject,
 } from '@angular/core';
 import { FormControl, ReactiveFormsModule, ValidatorFn } from '@angular/forms';
 import {
@@ -103,18 +104,20 @@ export class BmbDropdownComponent implements OnInit, OnChanges {
 
   uuid: string = getUUID();
   isModalOpen = model<boolean>(false);
-  selectionControl: FormControl = new FormControl(new FormControl());
-  selectedIcon: string = '';
-  isKeyboardEvent: boolean = false;
-  isControlNull: boolean = false;
+  selectionControl = new FormControl(new FormControl());
+  selectedIcon = '';
+  isKeyboardEvent = false;
+  isControlNull = false;
   parsedOptions = computed(() => this.initOptions(this.options()));
   selectedItem: IDropdownItem | null = null;
-  dialogID: string = `dialog_id_${this.uuid}`;
+  dialogID = `dialog_id_${this.uuid}`;
   private wasOpen = false;
 
   @ViewChild('contentDiv', { static: true }) contentRef!: ElementRef<any>;
 
-  constructor(private readonly projectionService: BmbProjectionContentService) {
+  private readonly projectionService: BmbProjectionContentService = inject(BmbProjectionContentService);
+
+  constructor() {
     effect(() => {
       const isOpen = this.isOpenList;
 

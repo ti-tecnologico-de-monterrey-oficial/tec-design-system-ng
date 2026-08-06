@@ -11,7 +11,6 @@ import {
 import { DateTime } from 'luxon';
 import { getWeeksInMonth, weeksAndDays } from '../../utils';
 import { CommonModule } from '@angular/common';
-import { IBmbParsedDates } from '../../types';
 import { BmbButtonDirective } from '../../../../../directives/old/bmb-button/button.directive';
 import { Info } from 'luxon';
 import { orderDayNames } from '@shared/logic/utils';
@@ -76,7 +75,7 @@ export class BmbCalendarTemplateMobileComponent {
 
   modalId = signal<string | null>(null);
 
-  constructor(private translationsService: BmbTranslationsService) {}
+  private translationsService: BmbTranslationsService = inject(BmbTranslationsService);
 
   handleClose() {
     this.onClose.emit('close');
@@ -100,7 +99,7 @@ export class BmbCalendarTemplateMobileComponent {
 
       modifyDate({ config: { month: 1 }, date: newDate });
     } else {
-      modifyDate({ config: { days: 7 }, date: this.now });
+      modifyDate({ config: { days: 7 }, date: this.now() });
     }
   }
 

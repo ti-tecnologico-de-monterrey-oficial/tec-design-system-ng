@@ -3,6 +3,7 @@ import {
   Component,
   computed,
   ElementRef,
+  inject,
   input,
   model,
   output,
@@ -11,6 +12,7 @@ import {
   ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
+import type { OnInit } from '@angular/core';
 import { IBotType, IChatBarActions } from './types';
 import { defaultBotList } from './bot_list';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
@@ -53,7 +55,7 @@ export type { IBotType, IChatBarActions } from './types';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class BmbChatBarComponent {
+export class BmbChatBarComponent implements OnInit {
   placeholder = input<string>('');
   botList = input<IBotType[]>(defaultBotList);
   actionsList = input<IChatBarActions[]>([]);
@@ -72,8 +74,8 @@ export class BmbChatBarComponent {
   files: File[] = [];
   control = new FormControl();
   isDialogOpen = signal<boolean>(false);
-  showMicControls: boolean = false;
-  onDragFiles: boolean = false;
+  showMicControls = false;
+  onDragFiles = false;
   arrayThumbnail: string[] = [];
   botChunks = computed(() => {
     const chunks: IBotType[][] = [];
@@ -83,22 +85,20 @@ export class BmbChatBarComponent {
     return chunks;
   });
   totalDots = computed(() => this.botChunks()?.length ?? 0);
-  activeDot: number = 0;
+  activeDot = 0;
   actionListPagination: any[] = [];
   modalID = signal<string | null>(null);
 
-  windowWidth: number = window.innerWidth;
-  windowHeight: number = window.innerHeight;
+  windowWidth = window.innerWidth;
+  windowHeight = window.innerHeight;
 
   @ViewChild('textareaRef') textareaRef!: ElementRef<HTMLTextAreaElement>;
   @ViewChild('chatBarTemplate') chatBarTemplate!: TemplateRef<unknown>;
   @ViewChild('mobileBotSelectorTemplate')
   mobileBotSelectorTemplate!: TemplateRef<unknown>;
 
-  constructor(
-    private readonly contentProjected: BmbProjectionContentService,
-    private readonly nativeModalService: BmbNativeModalService,
-  ) {}
+  private readonly contentProjected: BmbProjectionContentService = inject(BmbProjectionContentService);
+  private readonly nativeModalService: BmbNativeModalService = inject(BmbNativeModalService);
 
   ngOnInit(): void {
     this.currentBot.update(
