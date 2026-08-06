@@ -2,6 +2,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   ElementRef,
+  inject,
   input,
   model,
   OnInit,
@@ -86,15 +87,15 @@ export class BmbDatepickerComponent implements OnInit {
   now = DateTime.now();
   defaultDate = new Date();
   isWindowOpen = false;
-  isControlNull: boolean = false;
-  customValidationMessage: string = '';
+  isControlNull = false;
+  customValidationMessage = '';
   uuid: string = getUUID();
 
   @ViewChild('contentDiv', { static: true }) contentRef!: ElementRef<any>;
   @ViewChild('modalTemplate', { static: true })
   modalTemplateRef!: TemplateRef<any>;
 
-  constructor(private projectionService: BmbProjectionContentService) {}
+  private projectionService: BmbProjectionContentService = inject(BmbProjectionContentService);
 
   ngOnInit(): void {
     if (!this.control()) {

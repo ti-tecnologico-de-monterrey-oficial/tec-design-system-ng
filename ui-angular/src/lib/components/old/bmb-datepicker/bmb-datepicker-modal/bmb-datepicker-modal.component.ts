@@ -2,6 +2,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   computed,
+  inject,
   input,
   OnInit,
   output,
@@ -62,10 +63,10 @@ export class BmbDatepickerModalComponent implements OnInit {
   view = 'calendar';
   selectedDate: DateTime | null = null;
 
-  constructor(private translateService: BmbTranslationsService) {}
+  private translateService: BmbTranslationsService = inject(BmbTranslationsService);
 
   ngOnInit() {
-    if (!!this.value()) {
+    if (this.value()) {
       const formattedDate = DateTime.fromFormat(
         this.value(),
         this.dateFormat(),

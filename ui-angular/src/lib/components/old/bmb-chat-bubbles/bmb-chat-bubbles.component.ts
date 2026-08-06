@@ -182,7 +182,9 @@ export class BmbChatBubblesComponent implements OnDestroy {
     };
   }
 
-  constructor(private elementRef: ElementRef<HTMLElement>) {
+  private elementRef: ElementRef<HTMLElement> = inject(ElementRef);
+
+  constructor() {
     effect(
       () => {
         this.iconsState.set(this.buildState());
