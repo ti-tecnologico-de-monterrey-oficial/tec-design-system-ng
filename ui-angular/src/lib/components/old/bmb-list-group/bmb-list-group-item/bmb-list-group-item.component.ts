@@ -4,6 +4,8 @@ import {
   Component,
   input,
   ViewEncapsulation,
+  inject,
+  OnInit,
 } from '@angular/core';
 import { BmbRadialComponent } from '../../bmb-radial/bmb-radial.component';
 import { BmbCheckboxComponent } from '../../bmb-checkbox/bmb-checkbox.component';
@@ -32,7 +34,7 @@ import { IBmbContrast } from '@shared/types/colors';
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
-export class BmbListGroupItemComponent {
+export class BmbListGroupItemComponent implements OnInit {
   appearanceContrast = input<IBmbContrast>('default');
   id = input.required<string>();
   isDisabled = input<boolean>(false);
@@ -48,10 +50,10 @@ export class BmbListGroupItemComponent {
   badgeAppearance = input<IBbmBgAppearance>('mitec_purple');
   badgeText = input<string>('');
 
-  inputRadioName: string = '';
+  inputRadioName = '';
   defaultWidthImage = '40px';
 
-  constructor(private bmbListGroupStatusService: BmbListGroupStatusService) {}
+  private bmbListGroupStatusService: BmbListGroupStatusService = inject(BmbListGroupStatusService);
 
   ngOnInit() {
     if (this.isActive()) {

@@ -7,6 +7,7 @@ import {
   input,
   output,
   effect,
+  inject,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
@@ -41,10 +42,10 @@ export class BmbLoaderComponent {
   onButtonPrimary = output<MouseEvent>();
   onButtonSecondary = output<MouseEvent>();
 
-  constructor(
-    private renderer: Renderer2,
-    private elRef: ElementRef,
-  ) {
+  private renderer: Renderer2 = inject(Renderer2);
+  private elRef: ElementRef = inject(ElementRef);
+
+  constructor() {
     effect(() => {
       const deprecatedTitle = this.title();
       const newTitle = this.componentTitle();

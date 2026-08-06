@@ -20,6 +20,7 @@ export interface BmbDictionaries {
 export class BmbTranslationsService {
   private currentLanguage = signal<string>('es');
   private dictionaries = signal<{ [key: string]: BmbDictionaries }>({});
+  private translationsVersion = signal<number>(0);
   private selectedDictionary = computed<BmbDictionaries>(() => {
     return this.dictionaries()[this.currentLanguage()] ?? {};
   });
@@ -33,8 +34,20 @@ export class BmbTranslationsService {
     return this.currentLanguage();
   }
 
+  getTranslationVersion() {
+    return this.translationsVersion();
+  }
+
   setLanguage(lang: string) {
+    if (this.currentLanguage() === lang) {
+      if (!this.dictionaries()[lang]) {
+        void this.loadDictionaryFromAssets(lang);
+      }
+      return;
+    }
+
     this.currentLanguage.set(lang);
+    this.bumpTranslationsVersion();
 
     if (!this.dictionaries()[lang]) {
       void this.loadDictionaryFromAssets(lang);
@@ -68,19 +81,31 @@ export class BmbTranslationsService {
 
   updateDictionary(lang: string, dictionary: BmbDictionaries) {
     this.dictionaries.update((dicts) => {
-      dicts[lang] = {
+      const updatedDictionary = {
         ...dicts[lang],
         ...dictionary,
       };
-      return dicts;
+
+      return {
+        ...dicts,
+        [lang]: updatedDictionary,
+      };
     });
+    this.bumpTranslationsVersion();
   }
 
   addDictionary(lang: string, dictionary: BmbDictionaries) {
     this.dictionaries.update((dicts) => {
-      dicts[lang] = dictionary;
-      return dicts;
+      return {
+        ...dicts,
+        [lang]: dictionary,
+      };
     });
+    this.bumpTranslationsVersion();
+  }
+
+  private bumpTranslationsVersion() {
+    this.translationsVersion.update((version) => version + 1);
   }
 
   translate(keyList: string): string {

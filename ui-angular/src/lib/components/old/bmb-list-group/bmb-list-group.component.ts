@@ -5,6 +5,8 @@ import {
   input,
   effect,
   output,
+  inject,
+  OnInit,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SizeNames } from '@shared/types';
@@ -21,7 +23,7 @@ import { BmbListGroupStatusService } from './bmb-list-group.service';
   providers: [BmbListGroupStatusService],
   imports: [CommonModule],
 })
-export class BmbListGroupComponent {
+export class BmbListGroupComponent implements OnInit {
   borderRadius = input<SizeNames | SizeNames[]>('m');
   borderType = input<BorderType>('rounded');
   margin = input<SizeNames>('m');
@@ -33,7 +35,9 @@ export class BmbListGroupComponent {
 
   selectionChange = output<string[]>();
 
-  constructor(private bmbListGroupStatusService: BmbListGroupStatusService) {
+  private bmbListGroupStatusService: BmbListGroupStatusService = inject(BmbListGroupStatusService);
+
+  constructor() {
     effect(() => {
       this.selectionChange.emit(
         this.bmbListGroupStatusService.getListGroupStatus(),
@@ -49,7 +53,7 @@ export class BmbListGroupComponent {
     this.bmbListGroupStatusService.setListGroupId(this.listGroupId());
   }
 
-  getVarStyles(size: SizeNames | SizeNames[], unit: string = 'spacing') {
+  getVarStyles(size: SizeNames | SizeNames[], unit = 'spacing') {
     if (Array.isArray(size)) {
       return size.map((s) => `var(--bmb-${unit}-${s})`).join(' ');
     } else {

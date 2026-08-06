@@ -4,6 +4,7 @@ import {
   input,
   output,
   ViewEncapsulation,
+  inject,
 } from '@angular/core';
 import { BmbButtonDirective } from '../../../directives/old/bmb-button/button.directive';
 import { FormGroup } from '@angular/forms';
@@ -48,11 +49,11 @@ export class BmbLoginComponent {
   onContinue = output();
   onRememberMeChecked = output<any>();
 
-  isEnabled: boolean = false;
-  isLoading: boolean = false;
+  isEnabled = false;
+  isLoading = false;
   userForm: FormGroup = new FormGroup({});
 
-  constructor(private userProfileService: BmbUserProfileService) {}
+  private userProfileService: BmbUserProfileService = inject(BmbUserProfileService);
 
   handleFormGroup(event: FormGroup): void {
     this.userForm = event;

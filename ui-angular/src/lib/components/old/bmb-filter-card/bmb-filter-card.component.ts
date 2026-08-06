@@ -10,6 +10,7 @@ import {
   ViewChild,
   output,
   signal,
+  inject,
 } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
@@ -110,7 +111,9 @@ export class BmbFilterCardComponent implements OnInit {
 
   @ViewChild('modalTemplate') modalTemplate!: TemplateRef<any>;
 
-  constructor(private modalService: BmbNativeModalService) {
+  private modalService: BmbNativeModalService = inject(BmbNativeModalService);
+
+  constructor() {
     effect(
       () => {
         const visMap = this.visibleControlIds();
@@ -154,7 +157,7 @@ export class BmbFilterCardComponent implements OnInit {
               originalControl: control,
             };
             break;
-          case 'radial':
+          case 'radial': {
             const controlName = this.filterForm.get(control.name);
             if (controlName) {
               controlName.setValue(
@@ -181,6 +184,8 @@ export class BmbFilterCardComponent implements OnInit {
                 originalControl: [control],
               };
             }
+            break;
+          }
             break;
           case 'dropdown':
             this.filterForm.addControl(
@@ -241,7 +246,7 @@ export class BmbFilterCardComponent implements OnInit {
     const formControl = this.filterForm.get(control.name);
     if (formControl) {
       switch (control.type) {
-        case 'switch':
+        case 'switch': {
           formControl.setValue(event);
           this.updateFilterValues(control.name, formControl.value);
           const switchValue = {
@@ -250,7 +255,8 @@ export class BmbFilterCardComponent implements OnInit {
           };
           this.storedValues[control.name] = switchValue;
           break;
-        case 'checkbox':
+        }
+        case 'checkbox': {
           formControl.setValue(event.target.checked);
           this.updateFilterValues(control.name, formControl.value);
           const checkboxValue = {
@@ -259,7 +265,8 @@ export class BmbFilterCardComponent implements OnInit {
           };
           this.storedValues[control.name] = checkboxValue;
           break;
-        case 'radial':
+        }
+        case 'radial': {
           formControl.setValue(control.label);
           this.updateFilterValues(control.name, control.value ?? control.label);
           const radialValue = {
@@ -270,7 +277,8 @@ export class BmbFilterCardComponent implements OnInit {
           };
           this.storedValues[control.name] = radialValue;
           break;
-        case 'dropdown':
+        }
+        case 'dropdown': {
           formControl.setValue(event);
           this.updateFilterValues(control.name, formControl.value);
           this.storedValues[control.name] = {
@@ -278,7 +286,9 @@ export class BmbFilterCardComponent implements OnInit {
             value: formControl.value,
           };
           break;
-        default: //for the tag option or any other option that does not have an activated control
+        }
+        default: {
+          //for the tag option or any other option that does not have an activated control
           const updatedValue = !this.storedValues[control.name]?.checked;
           formControl.setValue(updatedValue);
           this.updateFilterValues(control.name, formControl.value);
@@ -288,6 +298,7 @@ export class BmbFilterCardComponent implements OnInit {
           };
           this.storedValues[control.name] = elementValue;
           break;
+        }
       }
     }
   }
