@@ -6,6 +6,5 @@ export const getLegendBulletClass = (
 
 export const getLegendValueClass = (
   indicatorAppearance: IBmbLegendVariations,
-  isOperationState: boolean,
 ): string =>
-  isOperationState ? `bmb_legend-value-${indicatorAppearance}` : '';
+  `bmb_legend-value-${indicatorAppearance}`;

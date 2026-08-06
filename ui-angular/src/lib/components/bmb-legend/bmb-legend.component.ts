@@ -5,16 +5,8 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
-export type IBmbLegendVariations =
-  | 'normal'
-  | 'strong'
-  | 'success'
-  | 'info'
-  | 'warning'
-  | 'error'
-  | 'brand'
-  | 'empty';
+import { getLegendBulletClass, getLegendValueClass } from '../../_shared/logic/components/legend';
+import { IBmbLegendVariations } from '../../_shared/types/components/legend';
 
 @Component({
   selector: 'bmb-legend',
@@ -30,4 +22,12 @@ export class BmbLegendComponent {
   value = input<string>('');
   indicatorAppearance = input<IBmbLegendVariations>('normal');
   isOperationState = input<boolean>(false);
+
+  getBulletClass(): string {
+    return getLegendBulletClass(this.indicatorAppearance());
+  }
+
+  getValueClass(): string {
+    return this.isOperationState() ? getLegendValueClass(this.indicatorAppearance()) : '';
+  }
 }
