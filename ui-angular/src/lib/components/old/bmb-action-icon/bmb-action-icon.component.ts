@@ -2,6 +2,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   contentChild,
+  inject,
   input,
   model,
   output,
@@ -48,13 +49,11 @@ export class BmbActionIconComponent {
   tooltipText = input<string>(''); //Internal
 
   imageNotFoundError = output<void>();
-
-  customActionIcon = contentChild<TemplateRef<any>>('customActionIcon');
-
-  constructor(private sanitizer: DomSanitizer) {}
-
   buttonPress = output<MouseEvent>();
   buttonClick = output<MouseEvent>();
+
+  customActionIcon = contentChild<TemplateRef<any>>('customActionIcon');
+  sanitizer: DomSanitizer = inject(DomSanitizer);
 
   getIcon(): string {
     if (this.isToggleActive() && !!this.toggleIconActive())
@@ -67,7 +66,7 @@ export class BmbActionIconComponent {
   }
 
   handleClick(event?: MouseEvent) {
-    if (!!this.toggleIconActive()) {
+    if (this.toggleIconActive()) {
       this.isToggleActive.update((value) => !value);
     }
 
