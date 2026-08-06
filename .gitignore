@@ -55,3 +55,7 @@ storybook-static
 
 .claude/worktrees
 .claude/settings.local.json
+
+# Libraries assets
+ui-angular/src/assets
+ui-react/src/assets
