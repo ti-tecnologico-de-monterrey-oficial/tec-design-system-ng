@@ -7,6 +7,7 @@ import {
   ViewChild,
   ElementRef,
   output,
+  inject,
 } from '@angular/core';
 import { BmbDropdownContentComponent } from '../utils/bmb-dropdown-content/bmb-dropdown-content.component';
 import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
@@ -35,7 +36,7 @@ export class BmbDropdownMenuComponent {
 
   @ViewChild('contentDiv', { static: true }) contentRef!: ElementRef<any>;
 
-  constructor(private projectionService: BmbProjectionContentService) {}
+  private projectionService: BmbProjectionContentService = inject(BmbProjectionContentService);
 
   openDropdown() {
     const data = {

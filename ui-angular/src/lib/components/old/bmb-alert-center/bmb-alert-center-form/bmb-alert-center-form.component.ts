@@ -3,6 +3,7 @@ import {
   Component,
   computed,
   effect,
+  inject,
   input,
   model,
   output,
@@ -129,7 +130,6 @@ export class BmbAlertCenterFormComponent {
     );
     return summarySelection;
   });
-
   navigationBarIcons = computed<IBmbActionHeader[]>(() => {
     const actions: IBmbActionHeader[] = [
       {
@@ -178,7 +178,9 @@ export class BmbAlertCenterFormComponent {
     return actions;
   });
 
-  constructor(private translationsService: BmbTranslationsService) {
+  private translationsService: BmbTranslationsService = inject(BmbTranslationsService);
+
+  constructor() {
     effect(() => {
       const alertList = this.eventsInCategories();
       const flatAlerts = Object.values(alertList).flat();
@@ -218,7 +220,7 @@ export class BmbAlertCenterFormComponent {
     this.selectionState.update((state) => {
       const updatedState: Record<string, boolean> = {};
       for (const key in state) {
-        if (state.hasOwnProperty(key)) {
+        if (Object.prototype.hasOwnProperty.call(state, key)) {
           updatedState[key] = isChecked;
         }
       }

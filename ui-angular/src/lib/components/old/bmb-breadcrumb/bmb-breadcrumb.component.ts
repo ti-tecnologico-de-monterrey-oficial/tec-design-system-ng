@@ -1,9 +1,7 @@
 import {
   Component,
-  OnInit,
   input,
   signal,
-  OnDestroy,
   ChangeDetectionStrategy,
   ViewEncapsulation,
 } from '@angular/core';
@@ -26,18 +24,12 @@ export interface IBmbDataTopBar {
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
-export class BmbBreadcrumbComponent implements OnInit, OnDestroy {
+export class BmbBreadcrumbComponent {
   dataTopBar = input<IBmbDataTopBar[]>([]);
   dataLocalNav = input<IBmbDataTopBar[]>([]);
   isTopBar = input<boolean>(false);
   isInactive = input<boolean>(false);
   dropdownOpen = signal<boolean>(false);
-
-  constructor(private router: Router) {}
-
-  ngOnInit(): void {}
-
-  ngOnDestroy(): void {}
 
   getLinkClass(length: number): string {
     if (length > 4) {

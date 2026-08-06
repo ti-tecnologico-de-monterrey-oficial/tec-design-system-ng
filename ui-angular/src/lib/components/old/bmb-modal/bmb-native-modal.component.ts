@@ -4,6 +4,7 @@ import {
   ComponentRef,
   computed,
   effect,
+  inject,
   input,
   output,
   TemplateRef,
@@ -63,7 +64,9 @@ export class BmbNativeModalComponent {
   actionsClicked = output<{ buttonName: string; event: MouseEvent }>();
   closeModalClicked = output<{ modalId: string; event: MouseEvent }>();
 
-  constructor(private modalService: BmbNativeModalService) {
+  private modalService = inject(BmbNativeModalService);
+
+  constructor() {
     effect(() => {
       this.renderContent();
     });
