@@ -64,7 +64,7 @@ import { logDeprecatedInput } from '../../../_shared/logic/logDeprecatedInput';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BmbAccountStatementComponent implements AfterViewInit, OnInit {
-  progressCircleTitle = input<string[]>([]);
+  progressCircleTitle = input<string | string[]>('');
   labelPrimary = input<string>();
   labelSecondary = input<string>();
   totalCount = input<number>(0);

@@ -3,6 +3,7 @@ import {
   Component,
   effect,
   ElementRef,
+  inject,
   input,
   output,
   ViewChild,
@@ -54,7 +55,9 @@ export class BmbExternalLinkComponent {
 
   title = input<string>(); // deprecated
 
-  constructor(private projectionService: BmbProjectionContentService) {
+  private projectionService: BmbProjectionContentService = inject(BmbProjectionContentService);
+
+  constructor() {
     effect(() => {
       const deprecatedTitle = this.title();
       const newTitle = this.componentTitle();
