@@ -18,13 +18,11 @@
 }
 
 @mixin media-query($breakpoint, $condition) {
-  $breakpoint_value: null;
-
-  @if meta.type-of($breakpoint) == number {
-    $breakpoint_value: $breakpoint;
-  } @else {
-    $breakpoint_value: string.slice($breakpoint, 1, -2);
-  }
+  $breakpoint_value: if(
+    meta.type-of($breakpoint) == number,
+    $breakpoint,
+    string.slice($breakpoint, 1, -2)
+  );
 
   @media (#{$condition}-width: #{rem.rem_calc($breakpoint_value)}) {
     @content;
@@ -386,13 +384,6 @@
   @include media-range-query(vars.$breakpoint_min_desktop, 1800) {
     @content;
   }
-}
-
-@mixin text-link-appearance() {
-  @include fonts.font(4, regular);
-  color: var(--buttons-text-link);
-  line-height: 2;
-  text-decoration: none;
 }
 
 @mixin check-for-mobile() {

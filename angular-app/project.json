@@ -22,7 +22,7 @@
           {
             "glob": "**/*",
             "input": "shared/assets",
-            "output": "assets/shared"
+            "output": "assets"
           }
         ],
         "styles": ["angular-app/src/styles.css"]
@@ -66,12 +66,14 @@
           {
             "glob": "**/*",
             "input": "shared/assets",
-            "output": "assets/shared"
+            "output": "assets"
           }
         ],
         "styles": [
           "angular-app/src/styles.css",
-          "shared/assets/styles/storybook-theme.scss"
+          "shared/assets/styles/storybook-theme.scss",
+          "shared/assets/styles/mainSB.scss",
+          "shared/assets/styles/tokens/theme.scss"
         ],
         "scripts": []
       },
