@@ -12,7 +12,7 @@ import {
 } from '../bmb-breadcrumb/bmb-breadcrumb.component';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { CommonModule } from '@angular/common';
-import { BmbContainerComponent } from '../bmb-container/bmb-container.component';
+import { BmbContainerComponent } from '../../bmb-container/bmb-container.component';
 import { isImage } from '@shared/logic/utils';
 import { IBmbColor } from '@shared/types/colors';
 import { getRGBColorKeyValue } from '@shared/logic/utils';
