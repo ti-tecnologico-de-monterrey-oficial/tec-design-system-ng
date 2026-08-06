@@ -10,7 +10,7 @@
       "executor": "nx:run-commands",
       "outputs": ["{projectRoot}/src/lib/_shared"],
       "options": {
-        "command": "rm -rf ui-angular/src/lib/_shared ui-angular/src/assets && mkdir -p ui-angular/src/lib/_shared && cp -R shared/logic ui-angular/src/lib/_shared/logic && cp -R shared/types ui-angular/src/lib/_shared/types && cp -R shared/assets ui-angular/src/assets && node -e \"const fs=require('fs');const files=['ui-angular/src/lib/_shared/types/index.ts','ui-angular/src/lib/_shared/logic/utils.ts','ui-angular/src/lib/_shared/logic/timestreamFilters.ts'];for(const f of files){let t=fs.readFileSync(f,'utf8');t=t.replaceAll('../../ui-angular/src/lib/','../../');fs.writeFileSync(f,t);}\"",
+        "command": "node scripts/sync-angular-shared.mjs",
         "cwd": "{workspaceRoot}"
       }
     },

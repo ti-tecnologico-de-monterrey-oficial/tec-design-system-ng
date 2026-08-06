@@ -1,6 +1,4 @@
-@use '../../../../../../shared/assets/styles/base/fonts' as fonts;
-@use '../../../../../../shared/assets/styles/base/rem' as rem;
-@use '../../../../../../shared/assets/styles/base/mixins' as mixins;
+@use '../../../../../shared/assets/styles/base/rem' as rem;
 
 @keyframes bounce {
   0% {
@@ -35,7 +33,7 @@
     &-list {
       display: flex;
       width: 100%;
-      transition: transform 0.5s ease; // 🔹 Hace que el cambio de slide sea suave
+      transition: transform 0.5s ease;
       transform: translateX(calc(-100% * var(--selected-child)));
 
       > * {

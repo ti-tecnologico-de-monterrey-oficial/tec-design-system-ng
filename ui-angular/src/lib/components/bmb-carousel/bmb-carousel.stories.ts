@@ -2,7 +2,7 @@ import { Meta, StoryObj } from '@storybook/angular';
 import { BmbCarouselComponent } from './bmb-carousel.component';
 import { CommonModule } from '@angular/common';
 import { moduleMetadata } from '@storybook/angular';
-import { BmbHomeCardComponent } from '../bmb-home-card/bmb-home-card.component';
+import { BmbHomeCardComponent } from '../old/bmb-home-card/bmb-home-card.component';
 import {
   BlockquoteType,
   DESIGN_SYSTEM_TITLE,

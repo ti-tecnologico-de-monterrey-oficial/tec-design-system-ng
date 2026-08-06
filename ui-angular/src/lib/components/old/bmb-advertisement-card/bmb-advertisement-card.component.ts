@@ -11,7 +11,7 @@ import {
 import { BmbButtonDirective } from '../../../directives/old/bmb-button/button.directive';
 import { IBmbAdvertisementData } from './types';
 import { BmbHomeCardComponent } from '../bmb-home-card/bmb-home-card.component';
-import { BmbCarouselComponent } from '../bmb-carousel/bmb-carousel.component';
+import { BmbCarouselComponent } from '../../bmb-carousel/bmb-carousel.component';
 import { BmbTabsComponent, IBmbTab } from '../bmb-tabs/bmb-tabs.component';
 import { TranslatePipe } from '../../../pipes/translations';
 
