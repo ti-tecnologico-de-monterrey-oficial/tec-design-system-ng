@@ -5,7 +5,15 @@
     "declaration": true,
     "declarationMap": true,
     "inlineSources": true,
-    "types": []
+    "ignoreDeprecations": "6.0",
+    "types": [],
+    "baseUrl": ".",
+    "paths": {
+      "@shared/logic": ["src/lib/_shared/logic/index.ts"],
+      "@shared/logic/*": ["src/lib/_shared/logic/*"],
+      "@shared/types": ["src/lib/_shared/types/index.ts"],
+      "@shared/types/*": ["src/lib/_shared/types/*"]
+    }
   },
   "include": [
     "src/**/*.ts",

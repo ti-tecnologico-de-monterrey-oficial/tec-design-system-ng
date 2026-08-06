@@ -52,3 +52,6 @@ storybook-static
 # Playwright
 /playwright-report
 /test-results
+
+.claude/worktrees
+.claude/settings.local.json
