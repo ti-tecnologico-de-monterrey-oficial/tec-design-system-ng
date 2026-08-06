@@ -8,6 +8,10 @@ import {
   model,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import {
+  getCarouselIndexAfterSwipe,
+  isCarouselIndexValid,
+} from '../../_shared/logic/components/carousel';
 
 @Component({
   selector: 'bmb-carousel',
@@ -24,13 +28,14 @@ export class BmbCarouselComponent {
 
   private touchStartX = 0;
   private touchEndX = 0;
-  private swipeThreshold = 50;
+  private readonly swipeThreshold = 50;
 
-  selectItem(index: number) {
+  selectItem(index: number): void {
+    if (!isCarouselIndexValid(index, this.contentChildren().length)) return;
     this.setClassActive(index, this.selectedIndex());
   }
 
-  setClassActive(newIndex: number, oldIndex: number = 0) {
+  setClassActive(newIndex: number, oldIndex: number = 0): void {
     const activeItem = this.contentChildren()[newIndex]?.nativeElement;
     const oldItem = this.contentChildren()[oldIndex]?.nativeElement;
 
@@ -61,28 +66,26 @@ export class BmbCarouselComponent {
   }
 
   @HostListener('touchstart', ['$event'])
-  onTouchStart(event: TouchEvent) {
+  onTouchStart(event: TouchEvent): void {
     this.touchStartX = event.touches[0].clientX;
+    this.touchEndX = this.touchStartX;
   }
 
   @HostListener('touchmove', ['$event'])
-  onTouchMove(event: TouchEvent) {
+  onTouchMove(event: TouchEvent): void {
     this.touchEndX = event.touches[0].clientX;
   }
 
   @HostListener('touchend')
-  onTouchEnd() {
-    const deltaX = this.touchStartX - this.touchEndX;
+  onTouchEnd(): void {
+    const nextIndex = getCarouselIndexAfterSwipe({
+      touchStartX: this.touchStartX,
+      touchEndX: this.touchEndX,
+      selectedIndex: this.selectedIndex(),
+      itemCount: this.contentChildren().length,
+      threshold: this.swipeThreshold,
+    });
 
-    if (Math.abs(deltaX) > this.swipeThreshold) {
-      if (
-        deltaX > 0 &&
-        this.selectedIndex() < this.contentChildren().length - 1
-      ) {
-        this.selectItem(this.selectedIndex() + 1);
-      } else if (deltaX < 0 && this.selectedIndex() > 0) {
-        this.selectItem(this.selectedIndex() - 1);
-      }
-    }
+    if (nextIndex !== this.selectedIndex()) this.selectItem(nextIndex);
   }
 }

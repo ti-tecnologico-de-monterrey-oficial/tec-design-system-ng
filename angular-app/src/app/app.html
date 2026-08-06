@@ -1,2 +1,7 @@
-<app-nx-welcome></app-nx-welcome>
-<router-outlet></router-outlet>
+<header class="app-header">
+  <a class="brand" routerLink="/">Bamboo · Migración Angular</a>
+  <nav aria-label="Componentes migrados">
+    <a routerLink="/components/carousel" routerLinkActive="active">Carousel</a>
+  </nav>
+</header>
+<main><router-outlet /></main>

@@ -151,7 +151,7 @@ export * from './lib/components/old/bmb-sounds-card/bmb-sounds-card.component';
 export * from './lib/components/old/bmb-chevron-title-selector/bmb-chevron-title-selector.component';
 export * from './lib/components/old/bmb-overlay/bmb-overlay.component';
 export * from './lib/components/old/bmb-icon-item/bmb-icon-item.component';
-export * from './lib/components/old/bmb-carousel/bmb-carousel.component';
+export * from './lib/components/bmb-carousel/bmb-carousel.component';
 export * from './lib/components/old/bmb-action-menu/bmb-action-menu.component';
 export * from './lib/components/old/bmb-button-icon/bmb-button-icon.component';
 export * from './lib/components/old/bmb-action-icon/bmb-action-icon.component';

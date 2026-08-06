@@ -26,7 +26,7 @@ import {
   getTECParticularitiesMessage,
   RELEVANT_TITLE,
 } from '@docs/utils/utils';
-import { BmbCarouselComponent } from '../components/old/bmb-carousel/bmb-carousel.component';
+import { BmbCarouselComponent } from '../components/bmb-carousel/bmb-carousel.component';
 
 @Component({
   standalone: true,
