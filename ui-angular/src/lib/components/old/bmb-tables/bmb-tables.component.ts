@@ -18,6 +18,7 @@ import {
   model,
   ChangeDetectorRef,
   computed,
+  inject,
 } from '@angular/core';
 import {
   MatPaginator,
@@ -29,13 +30,13 @@ import {
   MatTableModule,
   MatTable,
 } from '@angular/material/table';
-import {
-  animate,
-  state,
-  style,
-  transition,
-  trigger,
-} from '@angular/animations';
+// import {
+//   animate,
+//   state,
+//   style,
+//   transition,
+//   trigger,
+// } from '@angular/animations';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
@@ -86,16 +87,6 @@ export type BmbTableLang = 'en' | 'es';
   styleUrl: './bmb-tables.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
-  animations: [
-    trigger('detailExpand', [
-      state('collapsed,void', style({ height: '0px', minHeight: '0' })),
-      state('expanded', style({ height: '*' })),
-      transition(
-        'expanded <=> collapsed',
-        animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)'),
-      ),
-    ]),
-  ],
 })
 export class BmbTablesComponent implements AfterViewInit, OnInit, OnChanges {
   private _rawColumns: TableColum[] = [];
@@ -174,11 +165,11 @@ export class BmbTablesComponent implements AfterViewInit, OnInit, OnChanges {
     this.columns().filter((column) => column.isFilterable !== false),
   );
 
-  constructor(
-    private renderer: Renderer2,
-    private sanitizer: DomSanitizer,
-    private cdr: ChangeDetectorRef,
-  ) {
+  renderer: Renderer2 = inject(Renderer2);
+  sanitizer: DomSanitizer = inject(DomSanitizer);
+  cdr: ChangeDetectorRef = inject(ChangeDetectorRef);
+
+  constructor() {
     effect(() => {
       const total = this.totalItems();
       const size = this.pageSize();
@@ -312,7 +303,7 @@ export class BmbTablesComponent implements AfterViewInit, OnInit, OnChanges {
     Object.keys(this.filterForm.controls).forEach((controlName) => {
       const control = this.filterForm.get(controlName);
       if (control) {
-        const modelValue = filtersModelValue.hasOwnProperty(controlName)
+        const modelValue = Object.prototype.hasOwnProperty.call(filtersModelValue, controlName)
           ? filtersModelValue[controlName]
           : null; // Clear control if not in model
 

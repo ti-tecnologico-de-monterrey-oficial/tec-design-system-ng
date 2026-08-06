@@ -3,6 +3,7 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
+  inject,
   input,
   model,
   OnChanges,
@@ -96,12 +97,9 @@ export class BmbDropzoneComponent implements OnInit, OnChanges {
   fileRemoved = output<string>();
 
   fileDataList: FileData[] = [];
-  isControlNull: boolean = false;
-
-  constructor(
-    private cdr: ChangeDetectorRef,
-    private translationService: BmbTranslationsService,
-  ) {}
+  isControlNull = false;
+  cdr: ChangeDetectorRef = inject(ChangeDetectorRef);
+  translationService: BmbTranslationsService = inject(BmbTranslationsService);
 
   ngOnInit(): void {
     if (!this.control()) {
@@ -292,7 +290,7 @@ export class BmbDropzoneComponent implements OnInit, OnChanges {
         validFiles.push(singleFile);
     }
 
-    if (!!validFiles.length) {
+    if (validFiles.length) {
       if (this.multiple()) {
         const newFileNames = validFiles.map((_file: File) => _file.name);
         const currentFileNames = Array.isArray(this.control().value)

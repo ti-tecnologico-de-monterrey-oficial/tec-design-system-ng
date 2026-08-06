@@ -12,7 +12,6 @@
   "peerDependencies": {
     "rxjs": "*",
     "@angular/core": "^{angularVersion}.0.0",
-    "@angular/animations": "^{angularVersion}.0.0",
     "@angular/cdk": "^{angularVersion}.0.0",
     "@angular/material": "^{angularVersion}.0.0"
   },
