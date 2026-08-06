@@ -1,5 +1,8 @@
 import { Meta, moduleMetadata } from '@storybook/angular';
-import { BmbCardComponent, BmbCardContentComponent } from '../bmb-card.component';
+import {
+  BmbCardComponent,
+  BmbCardContentComponent,
+} from '../bmb-card.component';
 import { BmbBoxIconComponent } from '../../bmb-box-icon/bmb-box-icon.component';
 import { BmbTitleComponent } from '../../bmb-title/bmb-title.component';
 import { BmbLayoutDirective } from '../../../../directives/old/bmb-layout/bmb-layout.directive';
@@ -7,12 +10,26 @@ import { BmbLayoutItemDirective } from '../../../../directives/old/bmb-layout/bm
 import { staticCardStory } from './bmb-card-template-story.utils';
 
 const meta: Meta<BmbCardComponent> = {
-  title: 'Components/Containers/Generic card/Flat', component: BmbCardComponent, tags: ['!autodocs'],
-  decorators: [moduleMetadata({ imports: [BmbCardComponent, BmbCardContentComponent, BmbBoxIconComponent, BmbTitleComponent, BmbLayoutDirective, BmbLayoutItemDirective] })],
+  title: 'Components/Containers/Generic card/Flat',
+  component: BmbCardComponent,
+  tags: ['!autodocs'],
+  decorators: [
+    moduleMetadata({
+      imports: [
+        BmbCardComponent,
+        BmbCardContentComponent,
+        BmbBoxIconComponent,
+        BmbTitleComponent,
+        BmbLayoutDirective,
+        BmbLayoutItemDirective,
+      ],
+    }),
+  ],
 };
 export default meta;
 
-const template = () => `<div bmbLayout margin="none" gapSize="m" alignItems="stretch">
+const template =
+  () => `<div bmbLayout margin="none" gapSize="m" alignItems="stretch">
   <div bmbLayoutItem [colSm]="4" [colLg]="2" [colXl]="2">
     <bmb-card type="normal" borderRadius="m" margin="none"><bmb-card-content padding="l">
       <div bmbLayout margin="none" gapSize="m" justify="center" alignItems="center">

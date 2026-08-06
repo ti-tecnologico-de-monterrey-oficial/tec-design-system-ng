@@ -12,7 +12,10 @@ import { CommonModule } from '@angular/common';
 import { BmbTopBarComponent } from '../bmb-top-bar/bmb-top-bar.component';
 import { BmbSidebarComponent } from '../bmb-sidebar/bmb-sidebar.component';
 import { BmbHomeCardChatComponent } from './bmb-home-card-chat.component';
-import { IBmbChatActionEvent, IBmbChatMessage } from '../bmb-chat-bubbles/types';
+import {
+  IBmbChatActionEvent,
+  IBmbChatMessage,
+} from '../bmb-chat-bubbles/types';
 
 const CHAT_BEHAVIOR_DOC = `
 ### 💡 Dynamic Message Behavior

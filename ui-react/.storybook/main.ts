@@ -20,19 +20,25 @@ const config: StorybookConfig = {
   },
   viteFinal: async (config) => {
     config.plugins ||= [];
-    
+
     // Plugin para copiar assets antes del build
     config.plugins.push({
       name: 'copy-storybook-assets',
       closeBundle() {
         const assets = [
           { from: '../../shared/assets', to: 'assets' },
-          { from: '../node_modules/@material-symbols/svg-400/rounded', to: 'assets/icons/material-rounded' },
+          {
+            from: '../node_modules/@material-symbols/svg-400/rounded',
+            to: 'assets/icons/material-rounded',
+          },
         ];
 
         assets.forEach(({ from, to }) => {
           const source = path.resolve(import.meta.dirname, from);
-          const target = path.resolve(import.meta.dirname, `../../dist/storybook/${to}`);
+          const target = path.resolve(
+            import.meta.dirname,
+            `../../dist/storybook/${to}`,
+          );
 
           if (!fs.existsSync(source)) {
             console.warn(`⚠️ Source not found: ${source}`);

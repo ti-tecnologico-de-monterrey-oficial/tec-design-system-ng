@@ -9,7 +9,7 @@ export class BmbIconLogic {
   }
 
   static getFontVariationSettings(): string {
-    return "wght 400, grad 200, opsz 40";
+    return 'wght 400, grad 200, opsz 40';
   }
 
   static getImageStyles(size?: number): Record<string, string> {

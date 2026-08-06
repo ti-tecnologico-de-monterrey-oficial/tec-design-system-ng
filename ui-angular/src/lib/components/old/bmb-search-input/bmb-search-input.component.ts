@@ -17,7 +17,10 @@ import { BmbDropdownContentComponent } from '../utils/bmb-dropdown-content/bmb-d
 import { BmbInputContentComponent } from '../bmb-input/bmb-input-content/bmb-input-content.component';
 import { ClickOutsideDirective } from '../../../directives/old/utils/clickoutside.directive';
 import { IDropdownItem } from '@shared/types';
-import { convertListToSelectList, filteredValue } from '../../../_shared/logic/dropdown';
+import {
+  convertListToSelectList,
+  filteredValue,
+} from '../../../_shared/logic/dropdown';
 
 @Component({
   selector: 'bmb-search-input',

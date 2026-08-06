@@ -118,7 +118,9 @@ export function useMaterialRoundedIcon({
       setSvg(svgContent);
     } catch (caughtError) {
       setSvg(null);
-      setError(caughtError instanceof Error ? caughtError : new Error('Unknown error'));
+      setError(
+        caughtError instanceof Error ? caughtError : new Error('Unknown error'),
+      );
     } finally {
       setLoading(false);
     }
@@ -154,7 +156,9 @@ export function useMaterialRoundedIcon({
         if (active) {
           setSvg(null);
           setError(
-            caughtError instanceof Error ? caughtError : new Error('Unknown error'),
+            caughtError instanceof Error
+              ? caughtError
+              : new Error('Unknown error'),
           );
         }
       } finally {

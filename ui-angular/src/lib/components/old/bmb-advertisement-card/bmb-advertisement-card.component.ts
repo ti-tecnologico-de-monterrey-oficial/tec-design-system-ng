@@ -15,7 +15,6 @@ import { BmbCarouselComponent } from '../bmb-carousel/bmb-carousel.component';
 import { BmbTabsComponent, IBmbTab } from '../bmb-tabs/bmb-tabs.component';
 import { TranslatePipe } from '../../../pipes/translations';
 
-
 @Component({
   selector: 'bmb-advertisement-card',
   standalone: true,

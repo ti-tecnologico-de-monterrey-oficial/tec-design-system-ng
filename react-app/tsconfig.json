@@ -4,10 +4,7 @@
     "allowJs": false,
     "allowSyntheticDefaultImports": true,
     "strict": true,
-    "types": [
-      "vite/client",
-      "node"
-    ]
+    "types": ["vite/client", "node"]
   },
   "files": [],
   "include": [],

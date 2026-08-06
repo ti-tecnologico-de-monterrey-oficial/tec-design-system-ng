@@ -8,7 +8,6 @@ import { CommonModule } from '@angular/common';
 import { BmbImageMessage } from '../../types';
 import { handleImageNotFoundError } from '@shared/logic/utils';
 
-
 @Component({
   selector: 'bmb-image-message',
   standalone: true,

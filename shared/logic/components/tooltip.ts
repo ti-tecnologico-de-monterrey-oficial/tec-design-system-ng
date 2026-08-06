@@ -41,10 +41,7 @@ export const calculateTooltipPosition = ({
         ? `${Math.max(windowHeight - targetPosition.top + spacing, 0)}px`
         : null;
 
-    const centerLeft = Math.max(
-      (windowWidth - tooltipWidth) / 2,
-      spacing,
-    );
+    const centerLeft = Math.max((windowWidth - tooltipWidth) / 2, spacing);
 
     left = `${centerLeft}px`;
   } else {
@@ -52,31 +49,20 @@ export const calculateTooltipPosition = ({
       if (targetPosition.left <= windowWidth / 2) {
         left = `${targetPosition.right + spacing}px`;
       } else {
-        right = `${Math.max(
-          windowWidth - targetPosition.left + spacing,
-          0,
-        )}px`;
+        right = `${Math.max(windowWidth - targetPosition.left + spacing, 0)}px`;
       }
     } else if (canShowOnLeft) {
-      right = `${Math.max(
-        windowWidth - targetPosition.left + spacing,
-        0,
-      )}px`;
+      right = `${Math.max(windowWidth - targetPosition.left + spacing, 0)}px`;
     } else {
       left = `${targetPosition.right + spacing}px`;
     }
 
     top =
-      targetPosition.top <= windowHeight / 2
-        ? `${targetPosition.top}px`
-        : null;
+      targetPosition.top <= windowHeight / 2 ? `${targetPosition.top}px` : null;
 
     bottom =
       targetPosition.top > windowHeight / 2
-        ? `${Math.max(
-            windowHeight - targetPosition.bottom,
-            0,
-          )}px`
+        ? `${Math.max(windowHeight - targetPosition.bottom, 0)}px`
         : null;
   }
 
@@ -99,10 +85,7 @@ export const createTooltipContent = ({
   const section = document.createElement('section');
 
   section.className = 'bmb_tooltip';
-  section.setAttribute(
-    'aria-describedby',
-    'tooltip-content',
-  );
+  section.setAttribute('aria-describedby', 'tooltip-content');
 
   if (title) {
     const titleElement = document.createElement('strong');
@@ -122,9 +105,7 @@ export const createTooltipContent = ({
 /**
  * Returns the CSS style object for positioning the tooltip.
  */
-export const buildTooltipStyle = (
-  position: TooltipPosition,
-): TooltipStyle => {
+export const buildTooltipStyle = (position: TooltipPosition): TooltipStyle => {
   const style: TooltipStyle = {
     position: 'fixed',
     top: 'auto',

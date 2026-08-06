@@ -65,7 +65,10 @@ const preview: Preview = {
           createElement(Primary, null),
           createElement(Heading, null, TITLE_OF_CONTROLS),
           createElement(Controls, null),
-          createElement(Stories, { title: STORIES_TITLE, includePrimary: false })
+          createElement(Stories, {
+            title: STORIES_TITLE,
+            includePrimary: false,
+          }),
         );
       },
       controls: {

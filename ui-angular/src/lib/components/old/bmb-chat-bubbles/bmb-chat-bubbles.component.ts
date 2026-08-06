@@ -69,7 +69,7 @@ export class BmbChatBubblesComponent implements OnDestroy {
   @ViewChild('messageContent')
   private messageContent?: ElementRef<HTMLElement>;
 
-    private copyStateTimer?: ReturnType<typeof setTimeout>;
+  private copyStateTimer?: ReturnType<typeof setTimeout>;
   private readonly translationService = inject(BmbTranslationsService);
   actions = input<IBmbChatBubblesActions[]>([
     {
@@ -182,9 +182,7 @@ export class BmbChatBubblesComponent implements OnDestroy {
     };
   }
 
-  constructor(
-    private elementRef: ElementRef<HTMLElement>,
-  ) {
+  constructor(private elementRef: ElementRef<HTMLElement>) {
     effect(
       () => {
         this.iconsState.set(this.buildState());
