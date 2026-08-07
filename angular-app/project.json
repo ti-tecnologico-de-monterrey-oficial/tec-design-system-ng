@@ -25,7 +25,7 @@
             "output": "assets"
           }
         ],
-        "styles": ["angular-app/src/styles.css"]
+        "styles": ["angular-app/src/styles.scss"]
       },
       "configurations": {
         "production": {
@@ -70,7 +70,7 @@
           }
         ],
         "styles": [
-          "angular-app/src/styles.css",
+          "angular-app/src/styles.scss",
           "shared/assets/styles/mainSB.scss",
           "shared/assets/styles/tokens/theme.scss"
         ],

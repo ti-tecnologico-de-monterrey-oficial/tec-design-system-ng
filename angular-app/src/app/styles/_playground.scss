@@ -1,0 +1,83 @@
+$mobile-breakpoint: 700px;
+$surface: #fff;
+$border-color: #d8dee8;
+$control-border-color: #8b96a8;
+$eyebrow-color: #356f5b;
+
+@mixin page(
+  $controls-min: 12rem,
+  $controls-max: 16rem,
+  $preview-min-height: 18rem
+) {
+  :host {
+    display: block;
+  }
+
+  .page-header {
+    margin-bottom: 2rem;
+
+    h1 {
+      font-size: 2rem;
+      margin: 0.25rem 0;
+    }
+  }
+
+  .eyebrow {
+    color: $eyebrow-color;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    margin: 0;
+    text-transform: uppercase;
+  }
+
+  .playground {
+    display: grid;
+    gap: 2rem;
+    grid-template-columns:
+      minmax($controls-min, $controls-max)
+      minmax(0, 1fr);
+  }
+
+  .controls,
+  .preview {
+    background: $surface;
+    border: 1px solid $border-color;
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+  }
+
+  .controls {
+    align-self: start;
+    display: grid;
+    gap: 0.75rem;
+
+    h2 {
+      margin: 0 0 0.5rem;
+    }
+
+    input,
+    select {
+      border: 1px solid $control-border-color;
+      border-radius: 0.375rem;
+      padding: 0.625rem;
+    }
+  }
+
+  .preview {
+    min-height: $preview-min-height;
+    min-width: 0;
+  }
+
+  .toggle {
+    align-items: center;
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  @media (max-width: $mobile-breakpoint) {
+    .playground {
+      grid-template-columns: 1fr;
+    }
+  }
+}

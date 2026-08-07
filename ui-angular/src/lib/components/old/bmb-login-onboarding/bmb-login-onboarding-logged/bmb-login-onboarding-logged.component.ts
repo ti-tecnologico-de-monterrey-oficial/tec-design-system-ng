@@ -9,7 +9,7 @@ import { BmbButtonDirective } from '../../../../directives/old/bmb-button/button
 import { BmbLoginOnboardingService } from '../bmb-login-onboarding.service';
 import { IBmbLinkConfiguration, IBmbUserInfo } from '@shared/types';
 import { BmbUserProfileContentComponent } from '../../bmb-user-profile/bmb-user-profile-content/bmb-user-profile-content.component';
-import { BmbMitecLogoAnimationComponent } from '../../bmb-mitec-logo-animation/bmb-mitec-logo-animation.component';
+import { BmbMitecLogoAnimationComponent } from '../../../bmb-mitec-logo-animation/bmb-mitec-logo-animation.component';
 
 @Component({
   selector: 'bmb-login-onboarding-logged',
@@ -29,7 +29,9 @@ export class BmbLoginOnboardingLoggedComponent {
 
   tecLogoImage = '../assets/images/tec-logo.svg';
 
-  private loginOnboardingService: BmbLoginOnboardingService = inject(BmbLoginOnboardingService);
+  private loginOnboardingService: BmbLoginOnboardingService = inject(
+    BmbLoginOnboardingService,
+  );
 
   getUserInfo(): IBmbUserInfo {
     return this.loginOnboardingService.userInfo();

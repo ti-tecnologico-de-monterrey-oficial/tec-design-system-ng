@@ -5,7 +5,7 @@ import { BmbContainerComponent, type IBmbAppearanceType } from 'ui-angular';
   selector: 'app-container-page',
   imports: [BmbContainerComponent],
   templateUrl: './container-page.html',
-  styleUrl: './container-page.css',
+  styleUrl: './container-page.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ContainerPage {
