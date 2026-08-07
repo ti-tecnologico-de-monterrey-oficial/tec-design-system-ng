@@ -5,12 +5,14 @@ import { BmbIframeComponent, type BmbIframeLoading } from 'ui-angular';
   selector: 'app-iframe-page',
   imports: [BmbIframeComponent],
   templateUrl: './iframe-page.html',
-  styleUrl: './iframe-page.css',
+  styleUrl: './iframe-page.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class IframePage {
   readonly loadingOptions: BmbIframeLoading[] = ['eager', 'lazy'];
-  readonly src = signal('https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/components-containers-ai-chat-bubble--documentation');
+  readonly src = signal(
+    'https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/components-containers-ai-chat-bubble--documentation',
+  );
   readonly width = signal('100%');
   readonly height = signal('360');
   readonly loading = signal<BmbIframeLoading>('lazy');

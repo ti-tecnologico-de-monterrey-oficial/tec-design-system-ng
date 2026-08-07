@@ -1,0 +1,33 @@
+<header class="page-header">
+  <p class="eyebrow">Componente migrado</p>
+  <h1>BmbMitecLogoAnimation</h1>
+  <p>
+    Modifica la etiqueta y el tamaño del contenedor para validar la animación.
+  </p>
+</header>
+<section class="playground" aria-labelledby="mitec-logo-demo-title">
+  <div class="controls">
+    <h2 id="mitec-logo-demo-title">Propiedades</h2>
+    <label for="mitec-logo-label">label</label>
+    <input
+      id="mitec-logo-label"
+      [value]="label()"
+      (input)="setLabel($any($event.target).value)"
+    />
+    <label for="mitec-logo-width">Ancho del contenedor: {{ width() }} px</label>
+    <input
+      id="mitec-logo-width"
+      type="range"
+      min="180"
+      max="600"
+      step="20"
+      [value]="width()"
+      (input)="setWidth(+$any($event.target).value)"
+    />
+  </div>
+  <div class="preview">
+    <div class="logo-container" [style.width.px]="width()">
+      <bmb-mitec-logo-animation [label]="label()" />
+    </div>
+  </div>
+</section>

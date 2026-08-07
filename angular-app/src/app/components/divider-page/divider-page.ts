@@ -5,7 +5,7 @@ import { BmbDividerComponent, type BmbDividerType } from 'ui-angular';
   selector: 'app-divider-page',
   imports: [BmbDividerComponent],
   templateUrl: './divider-page.html',
-  styleUrl: './divider-page.css',
+  styleUrl: './divider-page.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DividerPage {

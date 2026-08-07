@@ -5,8 +5,10 @@ import {
   input,
   ViewEncapsulation,
 } from '@angular/core';
+import { getCounter } from '../../_shared/logic/components/notification-counter';
+import type { IBmbNotificationCounterType } from '../../_shared/types/components/notification-counter';
 
-export type IBmbNotificationCounterType = 'notification' | 'plain';
+export type { IBmbNotificationCounterType } from '../../_shared/types/components/notification-counter';
 
 @Component({
   selector: 'bmb-notification-counter',
@@ -22,10 +24,9 @@ export class BmbNotificationCounterComponent {
   appearance = input<IBmbNotificationCounterType>('notification');
 
   getCounter(): string {
-    const _counter: string =
-      this.counter()! > 99 ? '99+' : this.counter()?.toString()!;
-
-    if (this.appearance() === 'plain') return `(${_counter})`;
-    return `${_counter}`;
+    return getCounter({
+      counter: this.counter(),
+      appearance: this.appearance(),
+    });
   }
 }

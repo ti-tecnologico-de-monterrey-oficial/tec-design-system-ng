@@ -6,7 +6,7 @@ export const appRoutes: Route[] = [
     path: 'components/carousel',
     title: 'BmbCarousel | Bamboo migration dashboard',
     loadComponent: () =>
-      import('./components/carousel-page').then(
+      import('./components/carousel-page/carousel-page').then(
         ({ CarouselPage }) => CarouselPage,
       ),
   },
@@ -14,7 +14,7 @@ export const appRoutes: Route[] = [
     path: 'components/container',
     title: 'BmbContainer | Bamboo migration dashboard',
     loadComponent: () =>
-      import('./components/container-page').then(
+      import('./components/container-page/container-page').then(
         ({ ContainerPage }) => ContainerPage,
       ),
   },
@@ -22,15 +22,33 @@ export const appRoutes: Route[] = [
     path: 'components/divider',
     title: 'BmbDivider | Bamboo migration dashboard',
     loadComponent: () =>
-      import('./components/divider-page').then(
+      import('./components/divider-page/divider-page').then(
         ({ DividerPage }) => DividerPage,
       ),
+  },
+  {
+    path: 'components/mitec-logo-animation',
+    title: 'BmbMitecLogoAnimation | Bamboo migration dashboard',
+    loadComponent: () =>
+      import(
+        './components/mitec-logo-animation-page/mitec-logo-animation-page'
+      ).then(({ MitecLogoAnimationPage }) => MitecLogoAnimationPage),
+  },
+  {
+    path: 'components/notification-counter',
+    title: 'BmbNotificationCounter | Bamboo migration dashboard',
+    loadComponent: () =>
+      import(
+        './components/notification-counter-page/notification-counter-page'
+      ).then(({ NotificationCounterPage }) => NotificationCounterPage),
   },
   {
     path: 'components/iframe',
     title: 'BmbIframe | Bamboo migration dashboard',
     loadComponent: () =>
-      import('./components/iframe-page').then(({ IframePage }) => IframePage),
+      import('./components/iframe-page/iframe-page').then(
+        ({ IframePage }) => IframePage,
+      ),
   },
   { path: '**', redirectTo: 'components/carousel' },
 ];

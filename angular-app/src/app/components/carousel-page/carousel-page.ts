@@ -5,7 +5,7 @@ import { BmbCarouselComponent } from 'ui-angular';
   selector: 'app-carousel-page',
   imports: [BmbCarouselComponent],
   templateUrl: './carousel-page.html',
-  styleUrl: './carousel-page.css',
+  styleUrl: './carousel-page.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CarouselPage {

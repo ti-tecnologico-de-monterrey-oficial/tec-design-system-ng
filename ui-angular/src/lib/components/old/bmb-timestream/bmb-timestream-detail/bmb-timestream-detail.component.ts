@@ -19,12 +19,11 @@ import {
 import { DateTime } from 'luxon';
 import { ISelectedDate, ITimelineEvent, ITimelineEventParsed } from '../types';
 import { BmbHitoCardComponent } from '../../bmb-hito-card/bmb-hito-card.component';
-import { BmbTextLinkComponent } from '../../bmb-text-link/bmb-text-link.component';
 
 @Component({
   selector: 'bmb-timestream-detail',
   standalone: true,
-  imports: [CommonModule, BmbHitoCardComponent, BmbTextLinkComponent],
+  imports: [CommonModule, BmbHitoCardComponent],
   templateUrl: './bmb-timestream-detail.component.html',
   styleUrl: './bmb-timestream-detail.component.scss',
   encapsulation: ViewEncapsulation.None,

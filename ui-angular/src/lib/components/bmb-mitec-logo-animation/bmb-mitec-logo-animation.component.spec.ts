@@ -19,4 +19,24 @@ describe('BmbMitecLogoAnimationComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should render the configured label', () => {
+    fixture.componentRef.setInput('label', 'COLABORADORES');
+    fixture.detectChanges();
+
+    expect(
+      fixture.nativeElement.querySelector(
+        '.bmb_mitec-logo-animation-subtitle text',
+      ).textContent,
+    ).toContain('COLABORADORES');
+  });
+
+  it('should hide the subtitle when label is empty', () => {
+    fixture.componentRef.setInput('label', '');
+    fixture.detectChanges();
+
+    expect(
+      fixture.nativeElement.querySelector('.bmb_mitec-logo-animation-subtitle'),
+    ).toBeNull();
+  });
 });
