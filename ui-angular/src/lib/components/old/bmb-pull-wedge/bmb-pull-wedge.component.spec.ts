@@ -287,7 +287,7 @@ describe('BmbPullWedgeComponent', () => {
 
   describe('Event Handlers Integration', () => {
     it('should call toggleWedge when button is clicked', () => {
-      spyOn(component, 'toggleWedge');
+      jest.spyOn(component, 'toggleWedge');
 
       const button = fixture.debugElement.query(
         By.css('.bmb_pull_wedge-button'),
@@ -298,9 +298,9 @@ describe('BmbPullWedgeComponent', () => {
     });
 
     it('should handle drag events through template', () => {
-      spyOn(component, 'onDragStarted');
-      spyOn(component, 'onDragMoved');
-      spyOn(component, 'onDragEnded');
+      jest.spyOn(component, 'onDragStarted');
+      jest.spyOn(component, 'onDragMoved');
+      jest.spyOn(component, 'onDragEnded');
 
       const dragHandle = fixture.debugElement.query(
         By.css('.bmb_pull_wedge-drag'),

@@ -33,7 +33,7 @@ describe('BmbListGroupComponent', () => {
   });
 
   it('should return correct class names', () => {
-    spyOn(component, 'showControls').and.returnValue(false);
+    jest.spyOn(component, 'showControls').and.returnValue(false);
     expect(component.getClassNames()).toEqual([
       'bmb_list-group',
       'bmb_list-group-rounded',
@@ -42,7 +42,7 @@ describe('BmbListGroupComponent', () => {
   });
 
   it('should return correct styles', () => {
-    spyOn(component, 'getVarStyles').and.callThrough();
+    jest.spyOn(component, 'getVarStyles').and.callThrough();
     const styles = component.getStyles();
     expect(styles).toEqual({
       '--bmb-list-group-item-radius': 'var(--bmb-radius-m)',
@@ -78,7 +78,7 @@ describe('BmbListGroupItemComponent', () => {
   it('should update list group status on init if active', () => {
     componentRef.setInput('isActive', true);
 
-    spyOn(bmbListGroupStatusService, 'updateListGroupStatus');
+    jest.spyOn(bmbListGroupStatusService, 'updateListGroupStatus');
     component.ngOnInit();
     expect(
       bmbListGroupStatusService.updateListGroupStatus,
@@ -87,7 +87,7 @@ describe('BmbListGroupItemComponent', () => {
 
   it('should not update list group status on init if not active', () => {
     componentRef.setInput('isActive', false);
-    spyOn(bmbListGroupStatusService, 'updateListGroupStatus');
+    jest.spyOn(bmbListGroupStatusService, 'updateListGroupStatus');
     component.ngOnInit();
     expect(
       bmbListGroupStatusService.updateListGroupStatus,
@@ -95,7 +95,7 @@ describe('BmbListGroupItemComponent', () => {
   });
 
   it('should return correct class names', () => {
-    spyOn(bmbListGroupStatusService, 'getListGroupStatus').and.returnValue([
+    jest.spyOn(bmbListGroupStatusService, 'getListGroupStatus').and.returnValue([
       'test-id',
     ]);
     componentRef.setInput('isDisabled', true);
@@ -107,7 +107,7 @@ describe('BmbListGroupItemComponent', () => {
 
   it('should return correct configuration', () => {
     const config = { isMultipleSelection: true, showControls: true };
-    spyOn(
+    jest.spyOn(
       bmbListGroupStatusService,
       'getListGroupConfiguration',
     ).and.returnValue(config);
@@ -115,7 +115,7 @@ describe('BmbListGroupItemComponent', () => {
   });
 
   it('should return correct selection length', () => {
-    spyOn(bmbListGroupStatusService, 'getListGroupStatus').and.returnValue([
+    jest.spyOn(bmbListGroupStatusService, 'getListGroupStatus').and.returnValue([
       'test-id',
     ]);
     expect(component.getSelectionLength()).toBe(1);
@@ -123,7 +123,7 @@ describe('BmbListGroupItemComponent', () => {
 
   it('should show controls', () => {
     const config = { isMultipleSelection: true, showControls: true };
-    spyOn(
+    jest.spyOn(
       bmbListGroupStatusService,
       'getListGroupConfiguration',
     ).and.returnValue(config);

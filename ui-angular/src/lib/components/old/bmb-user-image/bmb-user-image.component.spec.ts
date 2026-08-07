@@ -22,7 +22,7 @@ describe('BmbUserImageComponent', () => {
   });
 
   it('should emit imageNotFoundError when image fails to load', () => {
-    const spy = spyOn(component.imageNotFoundError, 'emit');
+    const spy = jest.spyOn(component.imageNotFoundError, 'emit');
 
     component.handleImageNotFoundError('broken-image.jpg', new Event('error'));
 

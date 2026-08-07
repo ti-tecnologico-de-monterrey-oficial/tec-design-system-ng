@@ -128,7 +128,7 @@ describe('BmbAiChatBubbleComponent', () => {
   });
 
   it('should emit action event', () => {
-    spyOn(component.getAction, 'emit');
+    jest.spyOn(component.getAction, 'emit');
 
     const mockEvent: BmbChatActionEvent = {
       action: 'copy',
@@ -249,7 +249,7 @@ describe('BmbAiChatBubbleComponent', () => {
   });
 
   it('should emit imageNotFoundError when user image reports an error', () => {
-    spyOn(component.imageNotFoundError, 'emit');
+    jest.spyOn(component.imageNotFoundError, 'emit');
 
     componentRef.setInput('message', mockUserMessage);
     fixture.detectChanges();

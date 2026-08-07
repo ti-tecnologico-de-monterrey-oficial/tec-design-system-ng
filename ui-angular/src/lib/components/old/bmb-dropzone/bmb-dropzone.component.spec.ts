@@ -32,7 +32,7 @@ describe('DropzoneComponent', () => {
       'Nombre de archivo no valido',
     );
     fixture.detectChanges();
-    const newFileSpy = spyOn(component.newFile, 'emit');
+    const newFileSpy = jest.spyOn(component.newFile, 'emit');
     const invalidFile = new File(['content'], 'reporte#final.pdf', {
       type: 'application/pdf',
     });
@@ -47,23 +47,25 @@ describe('DropzoneComponent', () => {
 
   it('should preserve the default behavior and ignore duplicate files', () => {
     fixture.detectChanges();
-    const newFileSpy = spyOn(component.newFile, 'emit');
+    const newFileSpy = jest.spyOn(component.newFile, 'emit');
     const file = createPdfFile('archivo-valido.pdf');
 
     selectFiles([file, file]);
 
-    expect(newFileSpy).toHaveBeenCalledOnceWith([file]);
+    expect(newFileSpy).toHaveBeenCalledTimes(1);
+    expect(newFileSpy).toHaveBeenCalledWith([file]);
   });
 
   it('should allow duplicate files when allowDuplicateFiles is true', () => {
     componentRef.setInput('allowDuplicateFiles', true);
     fixture.detectChanges();
-    const newFileSpy = spyOn(component.newFile, 'emit');
+    const newFileSpy = jest.spyOn(component.newFile, 'emit');
     const file = createPdfFile('archivo-valido.pdf');
 
     selectFiles([file, file]);
 
-    expect(newFileSpy).toHaveBeenCalledOnceWith([file, file]);
+    expect(newFileSpy).toHaveBeenCalledTimes(1);
+    expect(newFileSpy).toHaveBeenCalledWith([file, file]);
     expect(component.control().value).toEqual([
       'archivo-valido.pdf',
       'archivo-valido.pdf',

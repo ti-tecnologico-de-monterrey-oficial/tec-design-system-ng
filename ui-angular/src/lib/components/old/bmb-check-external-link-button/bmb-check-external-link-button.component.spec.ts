@@ -31,7 +31,7 @@ describe('BmbCheckExternalLinkButtonComponent', () => {
   });
 
   it('should show external link when an external link is provided', () => {
-    spyOn(component, 'isExternalLink').and.returnValue(true);
+    jest.spyOn(component, 'isExternalLink').and.returnValue(true);
     componentRef.setInput('link', 'https://external.com');
     fixture.detectChanges();
     const anchor = fixture.nativeElement.querySelector('a');
@@ -40,7 +40,7 @@ describe('BmbCheckExternalLinkButtonComponent', () => {
   });
 
   // it('should show internal link when an internal link is provided', () => {
-  //   spyOn(component, 'isExternalLink').and.returnValue(false);
+  //   jest.spyOn(component, 'isExternalLink').and.returnValue(false);
   //   componentRef.setInput('link', '/internal');
   //   fixture.detectChanges();
   //   const navLink = fixture.nativeElement.querySelector('a');
@@ -51,14 +51,14 @@ describe('BmbCheckExternalLinkButtonComponent', () => {
   it('should emit buttonClick event when button is clicked', () => {
     componentRef.setInput('link', '');
     fixture.detectChanges();
-    spyOn(component.buttonClick, 'emit');
+    jest.spyOn(component.buttonClick, 'emit');
     const button = fixture.nativeElement.querySelector('button');
     button.click();
     expect(component.buttonClick.emit).toHaveBeenCalled();
   });
 
   it('should set target to _blank for external links', () => {
-    spyOn(component, 'isExternalLink').and.returnValue(true);
+    jest.spyOn(component, 'isExternalLink').and.returnValue(true);
     componentRef.setInput('link', 'https://external.com');
     componentRef.setInput('target', '_self');
     fixture.detectChanges();

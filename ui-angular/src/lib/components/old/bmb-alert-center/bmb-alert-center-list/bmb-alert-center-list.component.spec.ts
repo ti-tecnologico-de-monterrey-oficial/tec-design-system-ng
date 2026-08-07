@@ -55,7 +55,7 @@ describe('BmbAlertCenterListComponent', () => {
   ];
 
   beforeEach(() => {
-    spyOn(DateTime, 'now').and.returnValue(
+    jest.spyOn(DateTime, 'now').and.returnValue(
       DateTime.fromISO('2023-01-01T00:00:00') as DateTime<true>,
     );
   });
@@ -195,7 +195,7 @@ describe('BmbAlertCenterListComponent', () => {
 
   describe('Event Handling', () => {
     it('should emit alertSelected when handleRowClick is called', () => {
-      spyOn(component.alertSelected, 'emit');
+      jest.spyOn(component.alertSelected, 'emit');
 
       component.handleRowClick(mockAlerts[0]);
 
@@ -203,7 +203,7 @@ describe('BmbAlertCenterListComponent', () => {
     });
 
     it('should emit alertSelected when row is clicked', () => {
-      spyOn(component.alertSelected, 'emit');
+      jest.spyOn(component.alertSelected, 'emit');
 
       const contentElement = fixture.debugElement.query(
         By.css('.bmb_alert-center-list-item-content'),
@@ -214,7 +214,7 @@ describe('BmbAlertCenterListComponent', () => {
     });
 
     it('should emit selectedAlert when handleSelection is called', () => {
-      spyOn(component.selectedAlert, 'emit');
+      jest.spyOn(component.selectedAlert, 'emit');
       const mockEvent = { target: { checked: true } } as any;
 
       component.handleSelection(mockEvent, mockAlerts[0]);
@@ -226,7 +226,7 @@ describe('BmbAlertCenterListComponent', () => {
     });
 
     it('should emit selectedAlert when checkbox changes', () => {
-      spyOn(component.selectedAlert, 'emit');
+      jest.spyOn(component.selectedAlert, 'emit');
 
       const checkbox = fixture.debugElement.query(By.css('bmb-checkbox'));
       const changeEvent = { target: { checked: true } } as any;
@@ -328,7 +328,7 @@ describe('BmbAlertCenterListComponent', () => {
     });
 
     it('should handle keyboard events on alert content', () => {
-      spyOn(component.alertSelected, 'emit');
+      jest.spyOn(component.alertSelected, 'emit');
 
       const contentElement = fixture.debugElement.query(
         By.css('.bmb_alert-center-list-item-content'),

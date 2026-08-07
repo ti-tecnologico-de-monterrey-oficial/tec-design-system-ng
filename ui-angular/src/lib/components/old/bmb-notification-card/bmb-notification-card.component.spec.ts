@@ -154,7 +154,7 @@ describe('BmbNotificationCardComponent', () => {
 
   describe('handleAlertEvent', () => {
     it('should emit alertEvent', () => {
-      const spy = spyOn(component.alertEvent, 'emit');
+      const spy = jest.spyOn(component.alertEvent, 'emit');
       component.handleAlertEvent(mockAlert);
       expect(spy).toHaveBeenCalledWith(mockAlert);
     });
@@ -162,9 +162,9 @@ describe('BmbNotificationCardComponent', () => {
 
   describe('handleAlertSelected', () => {
     it('should emit showAlertDetail, close existing projection, and open modal', () => {
-      const emitSpy = spyOn(component.showAlertDetail, 'emit');
-      const closeSpy = spyOn(projectionService, 'closeContent');
-      const openModalSpy = spyOn(modalService, 'openModal');
+      const emitSpy = jest.spyOn(component.showAlertDetail, 'emit');
+      const closeSpy = jest.spyOn(projectionService, 'closeContent');
+      const openModalSpy = jest.spyOn(modalService, 'openModal');
 
       component.handleAlertSelected(mockParsedAlert);
 
