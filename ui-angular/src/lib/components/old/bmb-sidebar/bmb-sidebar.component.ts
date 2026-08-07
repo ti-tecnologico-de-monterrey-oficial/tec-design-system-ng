@@ -12,7 +12,7 @@ import { BmbCheckExternalLinkButtonComponent } from '../bmb-check-external-link-
 import { IPositionButtonMenu } from '../bmb-top-bar/types';
 import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
 import { logDeprecatedInput } from '../../../_shared/logic/logDeprecatedInput';
-import { BmbDividerComponent } from '../bmb-divider/bmb-divider.component';
+import { BmbDividerComponent } from '../../bmb-divider/bmb-divider.component';
 import { TranslatePipe } from '../../../pipes/translations';
 
 @Component({

@@ -20,7 +20,7 @@ import {
   BmbLayoutGridItemDirective,
 } from '../../../../../directives/old/bmb-layout-grid/bmb-layout-grid.directive';
 import { BmbBadgeComponent } from '../../../../bmb-badge/bmb-badge.component';
-import { BmbDividerComponent } from '../../../bmb-divider/bmb-divider.component';
+import { BmbDividerComponent } from '../../../../bmb-divider/bmb-divider.component';
 import { BmbCalendarComponentService } from '../../bmb-calendar.service';
 import { TranslatePipe } from '../../../../../pipes/translations';
 import { ɵEmptyOutletComponent } from '@angular/router';

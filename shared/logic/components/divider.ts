@@ -1,4 +1,4 @@
-import { BmbDividerType } from '../../types/components/divider';
+import type { BmbDividerType } from '../../types/components/divider';
 
 export const getDividerClasses = ({
   type,

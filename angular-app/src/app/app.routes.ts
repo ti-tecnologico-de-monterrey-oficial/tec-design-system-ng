@@ -18,5 +18,13 @@ export const appRoutes: Route[] = [
         ({ ContainerPage }) => ContainerPage,
       ),
   },
+  {
+    path: 'components/divider',
+    title: 'BmbDivider | Bamboo migration dashboard',
+    loadComponent: () =>
+      import('./components/divider-page').then(
+        ({ DividerPage }) => DividerPage,
+      ),
+  },
   { path: '**', redirectTo: 'components/carousel' },
 ];
