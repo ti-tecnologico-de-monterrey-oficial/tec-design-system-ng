@@ -1,6 +1,6 @@
 import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
-import { BmbContainerComponent } from '../bmb-container/bmb-container.component';
+import { BmbContainerComponent } from '../../bmb-container/bmb-container.component';
 import { BmbHomeSectionComponent } from './bmb-home-section.component';
 import {
   getBasicExampleBlock,

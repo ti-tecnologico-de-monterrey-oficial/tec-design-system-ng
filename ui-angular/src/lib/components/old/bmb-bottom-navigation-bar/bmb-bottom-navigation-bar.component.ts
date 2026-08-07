@@ -7,7 +7,7 @@ import {
 } from '@angular/core';
 import { IBmbActionHeader } from '@shared/types';
 import { BmbNavigationBarComponent } from '../bmb-navigation-bar/bmb-navigation-bar.component';
-import { BmbContainerComponent } from '../bmb-container/bmb-container.component';
+import { BmbContainerComponent } from '../../bmb-container/bmb-container.component';
 
 export type IBmbFooterEvent = 'back' | 'forward' | 'share' | 'reload';
 export type IBmbNavigationBarIcon = {

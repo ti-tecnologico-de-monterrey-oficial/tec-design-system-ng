@@ -23,7 +23,7 @@ import { BmbGradeValueComponent } from '../bmb-grade-value/bmb-grade-value.compo
 import { BmbInnerHeaderComponent } from '../bmb-inner-header/bmb-inner-header.component';
 import { BmbAcademicProgressComponent } from '../bmb-academic-progress/bmb-academic-progress.component';
 import { IBmbNameValuePair } from '@shared/types';
-import { BmbContainerComponent } from '../bmb-container/bmb-container.component';
+import { BmbContainerComponent } from '../../bmb-container/bmb-container.component';
 import { buildErrorMessage } from '@shared/logic/utils';
 import { BmbTitleContentComponent } from '../bmb-title-content/bmb-title-content.component';
 import { IBmbNativeModal } from '../bmb-modal/bmb-modal.interface';

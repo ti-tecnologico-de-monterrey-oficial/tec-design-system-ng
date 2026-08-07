@@ -1,0 +1,48 @@
+<header class="page-header">
+  <p class="eyebrow">Componente migrado</p>
+  <h1>BmbContainer</h1>
+  <p>
+    Modifica su apariencia y visibilidad para validar el contenido proyectado.
+  </p>
+</header>
+
+<section class="playground" aria-labelledby="container-demo-title">
+  <div class="controls">
+    <h2 id="container-demo-title">Propiedades</h2>
+    <label for="appearance">appearance</label>
+    <select
+      id="appearance"
+      [value]="appearance()"
+      (change)="selectAppearance($any($event.target).value)"
+    >
+      @for (option of appearances; track option) {
+      <option [value]="option">{{ option }}</option>
+      }
+    </select>
+    <label class="toggle">
+      <input
+        type="checkbox"
+        [checked]="isHidden()"
+        (change)="setHidden($any($event.target).checked)"
+      />
+      isHidden
+    </label>
+    <output
+      >{{ appearance() }} · {{ isHidden() ? 'oculto' : 'visible' }}</output
+    >
+  </div>
+
+  <div class="preview">
+    <bmb-container [appearance]="appearance()" [isHidden]="isHidden()">
+      <article class="projected-content">
+        <strong>Contenido proyectado</strong>
+        <span>Este contenido vive dentro de &lt;bmb-container&gt;.</span>
+      </article>
+    </bmb-container>
+    @if (isHidden()) {
+    <p class="hidden-message">
+      El componente está oculto por su propiedad <code>isHidden</code>.
+    </p>
+    }
+  </div>
+</section>

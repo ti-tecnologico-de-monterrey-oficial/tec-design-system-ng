@@ -21,7 +21,7 @@ import { BmbButtonDirective } from '../../../directives/old/bmb-button/button.di
 import { BmbThreeColsComponent } from '../bmb-three-cols/bmb-three-cols.component';
 import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
 import { BmbTitleContentComponent } from '../bmb-title-content/bmb-title-content.component';
-import { BmbContainerComponent } from '../bmb-container/bmb-container.component';
+import { BmbContainerComponent } from '../../bmb-container/bmb-container.component';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { logDeprecatedInput } from '../../../_shared/logic/logDeprecatedInput';
 import { TranslatePipe } from '../../../pipes/translations';

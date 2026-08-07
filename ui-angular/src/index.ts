@@ -45,7 +45,7 @@ export * from './lib/components/old/bmb-tags/bmb-tags.component';
 export * from './lib/components/old/bmb-toast/bmb-toast.component';
 export * from './lib/components/old/bmb-input/bmb-input.component';
 export * from './lib/components/old/bmb-divider/bmb-divider.component';
-export * from './lib/components/old/bmb-container/bmb-container.component';
+export * from './lib/components/bmb-container/bmb-container.component';
 export * from './lib/components/old/bmb-user-image/bmb-user-image.component';
 export * from './lib/components/old/bmb-header-mobile/bmb-header-mobile.component';
 export * from './lib/components/old/bmb-dot-paginator/bmb-dot-paginator.component';

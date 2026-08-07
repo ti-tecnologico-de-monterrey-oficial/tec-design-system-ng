@@ -16,7 +16,7 @@ import { BmbTitleContentComponent } from '../../bmb-title-content/bmb-title-cont
 import { BmbThreeColsComponent } from '../../bmb-three-cols/bmb-three-cols.component';
 import { BmbActionIconComponent } from '../../bmb-action-icon/bmb-action-icon.component';
 import { BmbNavigationBarComponent } from '../../bmb-navigation-bar/bmb-navigation-bar.component';
-import { BmbContainerComponent } from '../../bmb-container/bmb-container.component';
+import { BmbContainerComponent } from '../../../bmb-container/bmb-container.component';
 import { CommonModule } from '@angular/common';
 import { IBotType } from '../../bmb-chat-bar/types';
 import { logDeprecatedInput } from '../../../../_shared/logic/logDeprecatedInput';
