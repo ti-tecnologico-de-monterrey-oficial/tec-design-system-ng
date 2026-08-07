@@ -67,7 +67,7 @@ export * from './lib/components/old/bmb-home-section/bmb-home-section.component'
 export * from './lib/components/old/bmb-loader/bmb-loader.component';
 export * from './lib/components/old/bmb-login-onboarding/bmb-login-onboarding.service';
 export * from './lib/components/old/bmb-switch/bmb-switch.component';
-export * from './lib/components/old/bmb-legend/bmb-legend.component';
+export * from './lib/components/bmb-legend/bmb-legend.component';
 export * from './lib/components/old/bmb-value-counter/bmb-value-counter.component';
 export * from './lib/components/old/bmb-step-progress-bar/bmb-step-progress-bar.component';
 export * from './lib/components/old/bmb-focus-element/bmb-focus-element.component';

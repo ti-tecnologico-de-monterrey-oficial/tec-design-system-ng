@@ -10,10 +10,8 @@ import {
   BmbProgressCircleComponent,
   BmbProgressCirclePathStatus,
 } from '../bmb-progress-cirlce/bmb-progress-circle.component';
-import {
-  BmbLegendComponent,
-  IBmbLegendVariations,
-} from '../bmb-legend/bmb-legend.component';
+import { BmbLegendComponent } from '../../bmb-legend/bmb-legend.component';
+import { IBmbLegendVariations } from '../../../_shared/types/components/legend';
 import { TranslatePipe } from '../../../pipes/translations';
 
 @Component({
