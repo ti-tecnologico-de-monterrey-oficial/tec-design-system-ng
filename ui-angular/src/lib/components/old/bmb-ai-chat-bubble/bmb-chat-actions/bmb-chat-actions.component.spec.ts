@@ -4,7 +4,7 @@ import { By } from '@angular/platform-browser';
 
 import { ChatActionsComponent } from './bmb-chat-actions.component';
 import { BmbTextMessage } from '../types';
-import { BmbTranslationsService } from '../../../services/translations/translations.service';
+import { BmbTranslationsService } from '../../../../services/translations/translations.service';
 
 let componentRef: ComponentRef<ChatActionsComponent>;
 
