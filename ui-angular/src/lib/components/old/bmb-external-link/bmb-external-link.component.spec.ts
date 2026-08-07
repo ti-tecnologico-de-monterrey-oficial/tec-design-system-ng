@@ -32,21 +32,21 @@ describe('BmbExternalLinkComponent', () => {
   });
 
   it('should emit onClose event when handleClose is called', () => {
-    spyOn(component.onClose, 'emit');
+    jest.spyOn(component.onClose, 'emit');
     const event = { some: 'data' };
     component.handleClose(event);
     expect(component.onClose.emit).toHaveBeenCalledWith(event);
   });
 
   it('should emit menuEvent on menu option click', () => {
-    spyOn(component.menuEvent, 'emit');
+    jest.spyOn(component.menuEvent, 'emit');
     const event: IBmbMenuEvent = 'link';
     component.onMenuOptionClick(event);
     expect(component.menuEvent.emit).toHaveBeenCalledWith(event);
   });
 
   it('should emit footerEvent on footer option click', () => {
-    spyOn(component.footerEvent, 'emit');
+    jest.spyOn(component.footerEvent, 'emit');
     const event: IBmbFooterEvent = 'back';
     component.onFooterOptionClick(event);
     expect(component.footerEvent.emit).toHaveBeenCalledWith(event);
@@ -75,7 +75,7 @@ describe('BmbExternalLinkComponent', () => {
   });
 
   it('should call projectionService.openContent when handleOpenMenu is called', () => {
-    const openContentSpy = spyOn(projectionService, 'openContent');
+    const openContentSpy = jest.spyOn(projectionService, 'openContent');
     // Mock contentRef
     component.contentRef = {
       nativeElement: document.createElement('div'),
@@ -101,7 +101,7 @@ describe('BmbExternalLinkComponent', () => {
   });
 
   it('should call menu item actions', () => {
-    const spy = spyOn(component, 'onMenuOptionClick');
+    const spy = jest.spyOn(component, 'onMenuOptionClick');
     component.menuItems.forEach((item) => {
       if (item?.action) {
         item.action();

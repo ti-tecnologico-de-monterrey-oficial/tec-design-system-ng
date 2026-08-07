@@ -72,7 +72,7 @@ describe('BmbTranslationsService', () => {
     });
 
     it('should not change language if dictionary does not exist', () => {
-      spyOn(console, 'warn');
+      jest.spyOn(console, 'warn');
       const initialLang = service.getCurrentLanguage();
 
       service.setLanguage('fr');
@@ -84,7 +84,7 @@ describe('BmbTranslationsService', () => {
     });
 
     it('should warn when trying to set non-existent language', () => {
-      spyOn(console, 'warn');
+      jest.spyOn(console, 'warn');
 
       service.setLanguage('invalid');
 

@@ -33,7 +33,7 @@ describe('BmbDigitalIdComponent', () => {
   });
 
   it('should emit close event when closeDigitalId is called', () => {
-    spyOn(component.close, 'emit');
+    jest.spyOn(component.close, 'emit');
     component.closeDigitalId();
     expect(component.close.emit).toHaveBeenCalled();
   });

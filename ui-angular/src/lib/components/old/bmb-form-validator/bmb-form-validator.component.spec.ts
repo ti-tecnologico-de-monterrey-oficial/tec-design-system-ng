@@ -27,7 +27,7 @@ describe('BmbFormValidatorComponent', () => {
   });
 
   it('should emit formGroupState on submit', () => {
-    spyOn(component.formGroupState, 'emit');
+    jest.spyOn(component.formGroupState, 'emit');
     component.onSubmit();
     expect(component.formGroupState.emit).toHaveBeenCalledWith(
       component.formGroup(),

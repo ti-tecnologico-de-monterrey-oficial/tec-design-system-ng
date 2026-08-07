@@ -28,8 +28,8 @@ describe('BmbAccordionComponent', () => {
   });
 
   it('should emit opened and closed events', () => {
-    spyOn(component.opened, 'emit');
-    spyOn(component.closed, 'emit');
+    jest.spyOn(component.opened, 'emit');
+    jest.spyOn(component.closed, 'emit');
 
     component.toggle(event);
     expect(component.opened.emit).toHaveBeenCalled();
@@ -142,7 +142,7 @@ describe('BmbAccordionComponent', () => {
   });
 
   it('should emit opened event only when toggling to expanded', () => {
-    spyOn(component.opened, 'emit');
+    jest.spyOn(component.opened, 'emit');
 
     component.toggle(event);
     expect(component.opened.emit).toHaveBeenCalledTimes(1);
@@ -152,7 +152,7 @@ describe('BmbAccordionComponent', () => {
   });
 
   it('should emit closed event only when toggling to collapsed', () => {
-    spyOn(component.closed, 'emit');
+    jest.spyOn(component.closed, 'emit');
 
     component.toggle(event);
     expect(component.closed.emit).toHaveBeenCalledTimes(0);

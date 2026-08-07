@@ -30,7 +30,7 @@ describe('BmbCalendarHourViewComponent', () => {
   });
 
   it('should regenerate hours on changes', () => {
-    const createHoursRowsSpy = spyOn(
+    const createHoursRowsSpy = jest.spyOn(
       component,
       'createHoursRows',
     ).and.callThrough();
@@ -47,7 +47,7 @@ describe('BmbCalendarHourViewComponent', () => {
 
     const row = document.createElement('div');
     row.id = 'bmbCalendarHourViewHour_unit-test-uuid_6';
-    const scrollSpy = spyOn(row, 'scrollIntoView');
+    const scrollSpy = jest.spyOn(row, 'scrollIntoView');
     document.body.appendChild(row);
 
     component.ngAfterViewInit();

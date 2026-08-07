@@ -35,7 +35,7 @@ describe('BmbCalendarComponent', () => {
   });
 
   it('should emit week visible dates on handleDateChange', () => {
-    spyOn(component.onDateChange, 'emit');
+    jest.spyOn(component.onDateChange, 'emit');
     const now = DateTime.now();
 
     component.handleDateChange('week', now);
@@ -55,7 +55,7 @@ describe('BmbCalendarComponent', () => {
   });
 
   it('should emit month visible dates on handleDateChange', () => {
-    spyOn(component.onDateChange, 'emit');
+    jest.spyOn(component.onDateChange, 'emit');
     const now = DateTime.now();
 
     component.handleDateChange('month', now);
@@ -68,7 +68,7 @@ describe('BmbCalendarComponent', () => {
   });
 
   it('should emit day visible dates on handleDateChange', () => {
-    spyOn(component.onDateChange, 'emit');
+    jest.spyOn(component.onDateChange, 'emit');
     const now = DateTime.now();
 
     component.handleDateChange('day', now);
@@ -129,7 +129,7 @@ describe('BmbCalendarComponent', () => {
   });
 
   it('should update current time in calendar service', () => {
-    spyOn(component.calendarService, 'setCurrentTime');
+    jest.spyOn(component.calendarService, 'setCurrentTime');
 
     component.updateTime();
 
@@ -137,7 +137,7 @@ describe('BmbCalendarComponent', () => {
   });
 
   it('should emit onClose when handleClose is called', () => {
-    spyOn(component.onClose, 'emit');
+    jest.spyOn(component.onClose, 'emit');
     component.handleClose();
     expect(component.onClose.emit).toHaveBeenCalledWith('close');
   });

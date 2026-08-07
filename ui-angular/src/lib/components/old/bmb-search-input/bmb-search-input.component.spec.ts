@@ -109,7 +109,7 @@ describe('BmbSearchInputComponent', () => {
   }));
 
   it('should emit onValueChange when an item is selected (client-side)', () => {
-    spyOn(component.onValueChange, 'emit');
+    jest.spyOn(component.onValueChange, 'emit');
     const item: IDropdownItem = { text: 'Apple', value: 'Apple', icon: '' };
     componentRef.setInput('isServerSideFilter', false);
 
@@ -120,7 +120,7 @@ describe('BmbSearchInputComponent', () => {
   });
 
   it('should emit onServerSideFilterEvent when an item is selected (server-side)', () => {
-    spyOn(component.onServerSideFilterEvent, 'emit');
+    jest.spyOn(component.onServerSideFilterEvent, 'emit');
     const item: IDropdownItem = { text: 'Apple', value: 'Apple', icon: '' };
     componentRef.setInput('isServerSideFilter', true);
 
@@ -148,7 +148,7 @@ describe('BmbSearchInputComponent', () => {
   });
 
   it('should emit onClearField when handleClearFilter is called', () => {
-    spyOn(component.onClearField, 'emit');
+    jest.spyOn(component.onClearField, 'emit');
     component.handleClearFilter();
     expect(component.onClearField.emit).toHaveBeenCalledWith(true);
   });
@@ -173,14 +173,14 @@ describe('BmbSearchInputComponent', () => {
       },
     });
 
-    spyOn(component, 'setSelectedValue');
+    jest.spyOn(component, 'setSelectedValue');
     component.filterControl.setValue('App');
 
     // Mock filteredData since it's updated in debounceTime which we are skipping here or we can use fakeAsync
     component.filteredData = [{ text: 'Apple', value: 'Apple', icon: '' }];
 
     const event = new KeyboardEvent('keydown', { key: 'Enter' });
-    spyOn(event, 'preventDefault');
+    jest.spyOn(event, 'preventDefault');
 
     component.handleKeyDown(event);
 
