@@ -7,6 +7,7 @@ import {
   model,
   computed,
   effect,
+  inject,
 } from '@angular/core';
 import { IBmbDataTopBar } from '../../bmb-breadcrumb/bmb-breadcrumb.component';
 import { IBmbColor } from '@shared/types/colors';
@@ -59,7 +60,9 @@ export class BmbHomeCardHeaderComponent {
   onBack = output();
   onExpandClick = output();
 
-  constructor(private translationsService: BmbTranslationsService) {
+  private translationsService: BmbTranslationsService = inject(BmbTranslationsService);
+
+  constructor() {
     effect(() => {
       const deprecatedTitle = this.title();
       const newTitle = this.componentTitle();

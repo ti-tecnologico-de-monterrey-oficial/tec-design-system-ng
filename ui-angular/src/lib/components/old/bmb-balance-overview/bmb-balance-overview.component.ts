@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
+  computed,
   Component,
   input,
   ViewEncapsulation,
@@ -34,6 +35,10 @@ export class BmbBalanceOverviewComponent {
   progressCircleValue = input<string>('');
   showProgressCircleValue = input<boolean>(true);
   progressCircleTitle = input<string | string[]>('');
+  resolvedProgressCircleTitle = computed<string | string[]>(() => {
+    const title = this.progressCircleTitle();
+    return Array.isArray(title) && title.length === 0 ? '' : title;
+  });
   showProgressCircleTitle = input<boolean>(true);
   showProgressCircleBackground = input<boolean>(true);
   labelPrimary = input<string>('');
