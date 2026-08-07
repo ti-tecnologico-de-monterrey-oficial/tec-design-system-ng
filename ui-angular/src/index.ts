@@ -126,7 +126,7 @@ export * from './lib/components/old/bmb-multi-dot-paginator/bmb-multi-dot-pagina
 export * from './lib/components/old/bmb-accordion/bmb-accordion.component';
 export * from './lib/components/old/bmb-alert-center/bmb-alert-center.component';
 export * from './lib/components/old/bmb-portal/bmb-portal.component';
-export * from './lib/components/old/bmb-iframe/bmb-iframe.component';
+export * from './lib/components/bmb-iframe/bmb-iframe.component';
 export * from './lib/components/old/bmb-login/bmb-login.component';
 export * from './lib/components/old/bmb-user-profile/bmb-user-profile.component';
 export * from './lib/components/old/bmb-academic-progress/bmb-academic-progress.component';

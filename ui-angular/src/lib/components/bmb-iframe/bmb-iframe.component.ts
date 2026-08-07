@@ -5,14 +5,12 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { BmbIframePipeTransform } from './bmb-iframe.pipe';
+import type {
+  BmbIframeLoading,
+  BmbIframeReferrerPolicy,
+} from '../../_shared/types/components/iframe';
 
-export type BmbIframeReferrerPolicy =
-  | 'no-referrer'
-  | 'origin'
-  | 'same-origin'
-  | 'strict-origin'
-  | 'strict-origin-when-cross-origin'
-  | 'unsafe-url';
+export type { BmbIframeLoading, BmbIframeReferrerPolicy };
 
 @Component({
   selector: 'bmb-iframe',
@@ -27,6 +25,6 @@ export class BmbIframeComponent {
   height = input<string | number>('100%');
   src = input.required<string>();
   width = input<string | number>('100%');
-  loading = input<'eager' | 'lazy'>('eager');
+  loading = input<BmbIframeLoading>('eager');
   name = input<string>('');
 }

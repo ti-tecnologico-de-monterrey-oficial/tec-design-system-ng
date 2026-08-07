@@ -1,0 +1,56 @@
+<header class="page-header">
+  <p class="eyebrow">Componente migrado</p>
+  <h1>BmbIframe</h1>
+  <p>Modifica sus propiedades y valida la carga de una fuente confiable.</p>
+</header>
+
+<section class="playground" aria-labelledby="iframe-demo-title">
+  <div class="controls">
+    <h2 id="iframe-demo-title">Propiedades</h2>
+    <label for="iframe-src">src</label>
+    <input
+      id="iframe-src"
+      type="url"
+      [value]="src()"
+      (input)="setSrc($any($event.target).value)"
+    />
+    <label for="iframe-width">width</label>
+    <input
+      id="iframe-width"
+      [value]="width()"
+      (input)="setWidth($any($event.target).value)"
+    />
+    <label for="iframe-height">height</label>
+    <input
+      id="iframe-height"
+      [value]="height()"
+      (input)="setHeight($any($event.target).value)"
+    />
+    <label for="iframe-loading">loading</label>
+    <select
+      id="iframe-loading"
+      [value]="loading()"
+      (change)="setLoading($any($event.target).value)"
+    >
+      @for (option of loadingOptions; track option) {
+      <option [value]="option">{{ option }}</option>
+      }
+    </select>
+    <label for="iframe-name">name</label>
+    <input
+      id="iframe-name"
+      [value]="name()"
+      (input)="setName($any($event.target).value)"
+    />
+    <small>Usa únicamente URLs de contenido confiable.</small>
+  </div>
+  <div class="preview">
+    <bmb-iframe
+      [src]="src()"
+      [width]="width()"
+      [height]="height()"
+      [loading]="loading()"
+      [name]="name()"
+    />
+  </div>
+</section>
