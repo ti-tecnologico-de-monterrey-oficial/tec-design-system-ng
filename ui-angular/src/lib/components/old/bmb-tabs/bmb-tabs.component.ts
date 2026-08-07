@@ -12,6 +12,7 @@ import {
   NgZone,
   OnDestroy,
   signal,
+  inject,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TabsService } from '../../../services/old/tabs/tabs.service';
@@ -58,10 +59,8 @@ export class BmbTabsComponent implements OnInit, AfterViewInit, OnDestroy {
   scrollRight = signal<number>(999999);
   @ViewChild('tabsItems', { static: true }) tabsItems!: ElementRef;
 
-  constructor(
-    private tabsService: TabsService,
-    private zone: NgZone,
-  ) {}
+  private tabsService: TabsService = inject(TabsService);
+  private zone: NgZone = inject(NgZone);
 
   ngOnInit(): void {
     const initialActiveTab = this.tabs().findIndex(

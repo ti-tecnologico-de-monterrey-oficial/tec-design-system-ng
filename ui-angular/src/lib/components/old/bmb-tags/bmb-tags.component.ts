@@ -7,7 +7,7 @@ import {
   AfterViewInit,
   output,
   input,
-  signal,
+  inject,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
@@ -61,10 +61,8 @@ export class BmbTagComponent implements AfterViewInit {
 
   groupedTags = [];
 
-  constructor(
-    private el: ElementRef,
-    private renderer: Renderer2,
-  ) {}
+  private el: ElementRef = inject(ElementRef);
+  private renderer: Renderer2 = inject(Renderer2);
 
   ngAfterViewInit() {
     if (this.grouped()) {

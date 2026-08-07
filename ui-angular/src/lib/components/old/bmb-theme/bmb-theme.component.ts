@@ -5,7 +5,6 @@ import {
   ViewEncapsulation,
   input,
   model,
-  signal,
   computed,
 } from '@angular/core';
 import { ThemeService } from '../../../services/old/theme/theme.service';
@@ -29,7 +28,7 @@ export class BmbThemeComponent implements OnInit {
   leftIcon = model<string>('light_mode');
   rightIcon = model<string>('dark_mode');
 
-  constructor(private themeService: ThemeService) {}
+  private themeService: ThemeService = inject(ThemeService);
 
   ngOnInit(): void {
     this.themeService.setInitialTheme(this.initialTheme());

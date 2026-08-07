@@ -55,11 +55,14 @@ export class BmbTextEditorComponent implements AfterViewInit, OnInit {
   @ViewChild('insertTemplate') insertTemplate!: TemplateRef<unknown>;
 
   sanitizedContent = signal<SafeHtml>('');
-  currentAlignment: string = 'left';
-  showTableDialog: boolean = false;
-  tableRows: number = 2;
-  tableColumns: number = 2;
+  currentAlignment = 'left';
+  showTableDialog = false;
+  tableRows = 2;
+  tableColumns = 2;
   private readonly translations = inject(BmbTranslationsService);
+  private readonly contentProjected: BmbProjectionContentService = inject(BmbProjectionContentService);
+  private readonly sanitizer: DomSanitizer = inject(DomSanitizer);
+
   settingsItems = input<IActions[]>(
     getSettingsList(this as any, this.translations),
   );
@@ -68,10 +71,6 @@ export class BmbTextEditorComponent implements AfterViewInit, OnInit {
     getInsertList(this as any, this.translations),
   );
 
-  constructor(
-    private readonly contentProjected: BmbProjectionContentService,
-    private readonly sanitizer: DomSanitizer,
-  ) {}
   userSelection: Range | null = null;
   selectedColor = signal<string>('');
 

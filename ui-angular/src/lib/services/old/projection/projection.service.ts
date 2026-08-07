@@ -4,6 +4,7 @@ import {
   createComponent,
   EmbeddedViewRef,
   EnvironmentInjector,
+  inject,
   Injectable,
   signal,
   TemplateRef,
@@ -63,10 +64,8 @@ export class BmbProjectionContentService {
     }
   }
 
-  constructor(
-    private appRef: ApplicationRef,
-    private environmentInjector: EnvironmentInjector,
-  ) {}
+  private appRef: ApplicationRef = inject(ApplicationRef);
+  private environmentInjector: EnvironmentInjector = inject(EnvironmentInjector);
 
   private getOrCreatePortal() {
     if (this.portalComponentRef) {

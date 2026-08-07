@@ -8,9 +8,8 @@ import {
   ViewChild,
   ElementRef,
   Renderer2,
-  OnChanges,
-  SimpleChanges,
   model,
+  inject,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
@@ -36,13 +35,14 @@ export class BmbPullWedgeComponent implements AfterViewInit {
   isOpen = model<boolean>(false);
   @ViewChild('content', { static: true }) contentRef!: ElementRef;
 
-  contentHeight: number = this.minContentHeight();
-  maxDragHeight: number = 0;
-  // isOpen = false;
+  contentHeight = this.minContentHeight();
+  maxDragHeight = 0;
   isVisible = true;
   private initialDragHeight = 0;
 
-  constructor(private renderer: Renderer2) {
+  private renderer: Renderer2 = inject(Renderer2);
+
+  constructor() {
     effect(() => {
       this.maxDragHeight = this.initialHeight() * 0.51;
 

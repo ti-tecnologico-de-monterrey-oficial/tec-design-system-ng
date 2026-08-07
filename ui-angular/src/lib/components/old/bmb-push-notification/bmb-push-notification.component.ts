@@ -1,6 +1,7 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  inject,
   ViewEncapsulation,
 } from '@angular/core';
 import { BmbPushNotificationItemComponent } from './bmb-push-notification-item/bmb-push-notification-item.component';
@@ -17,7 +18,7 @@ import { INotification } from './types';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BmbPushNotificationComponent {
-  constructor(private notificationSignal: BmbNotificationService) {}
+  private notificationSignal: BmbNotificationService = inject(BmbNotificationService);
 
   getNotifications() {
     return this.notificationSignal.getNotificationList();

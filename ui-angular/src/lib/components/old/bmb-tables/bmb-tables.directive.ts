@@ -1,4 +1,4 @@
-import { Directive, input, TemplateRef } from '@angular/core';
+import { Directive, inject, input, TemplateRef } from '@angular/core';
 
 @Directive({
   selector: '[templateName]',
@@ -6,5 +6,5 @@ import { Directive, input, TemplateRef } from '@angular/core';
 export class TemplateNameDirective {
   templateName = input.required<string>();
 
-  constructor(public template: TemplateRef<any>) {}
+  public template: TemplateRef<any> = inject(TemplateRef);
 }

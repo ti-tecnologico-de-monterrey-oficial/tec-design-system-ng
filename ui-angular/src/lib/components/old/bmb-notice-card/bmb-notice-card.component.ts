@@ -2,6 +2,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   effect,
+  inject,
   input,
   output,
   ViewEncapsulation,
@@ -56,7 +57,9 @@ export class BmbNoticeCardComponent {
 
   activeIndex = 0;
 
-  constructor(private readonly sanitizer: DomSanitizer) {
+  private readonly sanitizer: DomSanitizer = inject(DomSanitizer);
+
+  constructor() {
     effect(() => {
       const deprecatedTitle = this.title();
       const newTitle = this.componentTitle();

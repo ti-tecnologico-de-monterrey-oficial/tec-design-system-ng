@@ -3,6 +3,7 @@ import {
   Directive,
   ElementRef,
   HostBinding,
+  inject,
   input,
   OnInit,
 } from '@angular/core';
@@ -41,7 +42,7 @@ export class BmbLayoutItemDirective implements OnInit, AfterViewInit {
   colGrow = input<number>(0);
   isDynamicItem = input<boolean>(false);
 
-  constructor(private el: ElementRef) {}
+  private el: ElementRef = inject(ElementRef);
 
   @HostBinding('class') get elementClass(): string[] {
     const classes = ['bmb_layout-item'];

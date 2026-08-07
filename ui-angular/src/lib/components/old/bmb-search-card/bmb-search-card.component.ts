@@ -62,6 +62,7 @@ export class BmbSearchCardComponent {
   getBookmarkItemClick = output<IBmbSearchCardItemResult>();
   private readonly destroyRef = inject(DestroyRef);
   private readonly subscriptions = new Subscription();
+  private translationsService: BmbTranslationsService = inject(BmbTranslationsService);
 
   inputSearchControl = new FormControl('');
   computedResults = computed<{
@@ -104,7 +105,7 @@ export class BmbSearchCardComponent {
     },
   ]);
 
-  constructor(private translationsService: BmbTranslationsService) {
+  constructor() {
     this.destroyRef.onDestroy(() => {
       this.subscriptions.unsubscribe();
     });

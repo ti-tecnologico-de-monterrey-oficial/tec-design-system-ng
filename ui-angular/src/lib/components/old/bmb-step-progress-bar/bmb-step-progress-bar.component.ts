@@ -57,6 +57,7 @@ export class BmbStepProgressBarComponent implements OnInit {
   onStepPanelPress = output<number>();
 
   private destroyRef = inject(DestroyRef);
+  private translateService: BmbTranslationsService = inject(BmbTranslationsService);
   private mql =
     typeof window !== 'undefined'
       ? window.matchMedia(MOBILE_TABLET_QUERY)
@@ -65,7 +66,7 @@ export class BmbStepProgressBarComponent implements OnInit {
 
   readonly isMobileOrTablet = signal<boolean>(!!this.mql?.matches);
 
-  constructor(private translateService: BmbTranslationsService) {
+  constructor() {
     this.mql?.addEventListener(
       'change',
       (e) => this.isMobileOrTablet.set((e as MediaQueryListEvent).matches),
