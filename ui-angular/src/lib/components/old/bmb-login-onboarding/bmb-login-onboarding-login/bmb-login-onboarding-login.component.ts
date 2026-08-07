@@ -5,7 +5,7 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { BmbButtonDirective } from '../../../../directives/old/bmb-button/button.directive';
-import { BmbMitecLogoAnimationComponent } from '../../bmb-mitec-logo-animation/bmb-mitec-logo-animation.component';
+import { BmbMitecLogoAnimationComponent } from '../../../bmb-mitec-logo-animation/bmb-mitec-logo-animation.component';
 
 @Component({
   selector: 'bmb-login-onboarding-login',

@@ -18,7 +18,7 @@ import { CommonModule } from '@angular/common';
 import { TabsService } from '../../../services/old/tabs/tabs.service';
 import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
 import { IBmbContrast } from '@shared/types/colors';
-import { BmbNotificationCounterComponent } from '../bmb-notification-counter/bmb-notification-counter.component';
+import { BmbNotificationCounterComponent } from '../../bmb-notification-counter/bmb-notification-counter.component';
 import { TranslatePipe } from '../../../pipes/translations';
 
 export interface IBmbTab {

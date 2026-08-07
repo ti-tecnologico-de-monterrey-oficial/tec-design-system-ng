@@ -1,0 +1,9 @@
+@use '../../styles/playground';
+
+@include playground.page;
+
+.preview {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}

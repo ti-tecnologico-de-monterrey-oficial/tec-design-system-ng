@@ -1,0 +1,23 @@
+@use '../../styles/playground';
+
+@include playground.page($controls-min: 14rem, $controls-max: 20rem);
+
+.preview {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+.notification-icon {
+  align-items: center;
+  background: #243147;
+  border-radius: 50%;
+  color: #fff;
+  display: inline-flex;
+  font-weight: 700;
+  height: 1rem;
+  justify-content: center;
+  margin: 0 1rem;
+  position: relative;
+  width: 1rem;
+}

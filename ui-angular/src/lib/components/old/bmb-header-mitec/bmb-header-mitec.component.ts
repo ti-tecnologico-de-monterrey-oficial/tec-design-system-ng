@@ -6,7 +6,7 @@ import {
 } from '@angular/core';
 import { IBmbActionHeader, IBmbLinkInfo } from '@shared/types';
 import { BmbNavigationBarComponent } from '../bmb-navigation-bar/bmb-navigation-bar.component';
-import { BmbMitecLogoAnimationComponent } from '../bmb-mitec-logo-animation/bmb-mitec-logo-animation.component';
+import { BmbMitecLogoAnimationComponent } from '../../bmb-mitec-logo-animation/bmb-mitec-logo-animation.component';
 import { TranslatePipe } from '../../../pipes/translations';
 
 export interface IBmbActionHeaderLinks {
