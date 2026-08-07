@@ -24,7 +24,7 @@ import { CommonModule } from '@angular/common';
 import { BmbHomeCardComponent } from '../bmb-home-card/bmb-home-card.component';
 import { buildErrorMessage } from '@shared/logic/utils';
 import { BmbIconItemComponent } from '../bmb-icon-item/bmb-icon-item.component';
-import { BmbDividerComponent } from '../bmb-divider/bmb-divider.component';
+import { BmbDividerComponent } from '../../bmb-divider/bmb-divider.component';
 import { BmbRadialComponent } from '../bmb-radial/bmb-radial.component';
 import { FormControl } from '@angular/forms';
 import { TranslatePipe } from '../../../pipes/translations';

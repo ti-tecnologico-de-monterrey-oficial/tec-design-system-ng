@@ -1,13 +1,14 @@
 import {
   Component,
-  Input,
   ChangeDetectionStrategy,
   ViewEncapsulation,
   input,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { getDividerClasses } from '../../_shared/logic/components/divider';
+import type { BmbDividerType } from '../../_shared/types/components/divider';
 
-export type BmbDividerType = 'simple' | 'dashed' | 'dotted';
+export type { BmbDividerType } from '../../_shared/types/components/divider';
 
 @Component({
   selector: 'bmb-divider',
@@ -23,10 +24,9 @@ export class BmbDividerComponent {
   removeMargin = input<boolean>(false);
 
   getClasses(): string[] {
-    return [
-      'bmb_divider',
-      `bmb_divider-${this.type}`,
-      this.removeMargin() ? 'bmb_divider-no-margin' : '',
-    ];
+    return getDividerClasses({
+      type: this.type(),
+      removeMargin: this.removeMargin(),
+    });
   }
 }

@@ -14,7 +14,7 @@ import {
 } from '@angular/core';
 import { BmbChevronTitleSelectorComponent } from '../bmb-chevron-title-selector/bmb-chevron-title-selector.component';
 import { BmbContainerButtonComponent } from '../bmb-container-button/bmb-container-button.component';
-import { BmbDividerComponent } from '../bmb-divider/bmb-divider.component';
+import { BmbDividerComponent } from '../../bmb-divider/bmb-divider.component';
 import { BmbLayoutItemDirective } from '../../../directives/old/bmb-layout/bmb-layout-item.directive';
 import { BmbLayoutDirective } from '../../../directives/old/bmb-layout/bmb-layout.directive';
 import { IBmbGrades, IBmbPartial } from './types';

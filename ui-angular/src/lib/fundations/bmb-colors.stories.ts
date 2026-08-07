@@ -14,7 +14,7 @@ import {
   getSpecialSpecifications,
   SANDBOX_TITLE,
 } from '@docs/utils/utils';
-import { BmbDividerComponent } from '../components/old/bmb-divider/bmb-divider.component';
+import { BmbDividerComponent } from '../components/bmb-divider/bmb-divider.component';
 import { BmbAccordionComponent } from '../components/old/bmb-accordion/bmb-accordion.component';
 import { BmbSelectorDirective } from '../directives/old/bmb-selector/bmb-selector.directive';
 import { BmbLayoutDirective } from '../directives/old/bmb-layout/bmb-layout.directive';
@@ -89,7 +89,7 @@ import {
                       title: $index,
                       isNameStyle,
                       isGradientStyle,
-                      isJustifyStart
+                      isJustifyStart,
                     }
                   "
                 />
@@ -153,7 +153,7 @@ import {
                   title,
                   isNameStyle,
                   isGradientStyle,
-                  isJustifyStart
+                  isJustifyStart,
                 }
               "
             />
@@ -168,7 +168,7 @@ import {
               context: {
                 list: institutionalColors,
                 title: 'Institutional colors',
-                isJustifyStart: true
+                isJustifyStart: true,
               }
             "
           />
@@ -224,7 +224,7 @@ import {
                   content;
                   context: {
                     list: baseColors,
-                    title: 'Base colors'
+                    title: 'Base colors',
                   }
                 "
               />
@@ -235,7 +235,7 @@ import {
                   context: {
                     list: baseOpacityColors,
                     title: 'Base opacity colors',
-                    isNameStyle: true
+                    isNameStyle: true,
                   }
                 "
               />
@@ -246,7 +246,7 @@ import {
                   context: {
                     list: baseColorGradients,
                     title: 'Base gradient colors',
-                    isGradientStyle: true
+                    isGradientStyle: true,
                   }
                 "
               />
@@ -263,7 +263,7 @@ import {
                   content;
                   context: {
                     list: blueMariner,
-                    title: 'Blue (TEC)'
+                    title: 'Blue (TEC)',
                   }
                 "
               />
@@ -282,7 +282,7 @@ import {
                   content;
                   context: {
                     list: greenTECMI,
-                    title: 'Green (TECMI)'
+                    title: 'Green (TECMI)',
                   }
                 "
               />
@@ -292,7 +292,7 @@ import {
                   content;
                   context: {
                     list: institutionalTECMI,
-                    title: 'Institutional / Tecmilenio branding'
+                    title: 'Institutional / Tecmilenio branding',
                   }
                 "
               />
@@ -309,7 +309,7 @@ import {
                   content;
                   context: {
                     list: blueGED,
-                    title: 'Blue (GED)'
+                    title: 'Blue (GED)',
                   }
                 "
               />
@@ -328,7 +328,7 @@ import {
                   content;
                   context: {
                     list: mitecBaseColors,
-                    title: 'Base colors'
+                    title: 'Base colors',
                   }
                 "
               />
@@ -347,7 +347,7 @@ import {
                   content;
                   context: {
                     list: semanticBaseColors,
-                    title: 'Base colors'
+                    title: 'Base colors',
                   }
                 "
               />
@@ -366,7 +366,7 @@ import {
                   content;
                   context: {
                     list: creativeBaseColors,
-                    title: 'Base colors'
+                    title: 'Base colors',
                   }
                 "
               />
@@ -377,7 +377,7 @@ import {
                   context: {
                     list: creativeGradients,
                     title: 'Complementary colors',
-                    isGradientStyle: true
+                    isGradientStyle: true,
                   }
                 "
               />
@@ -403,7 +403,7 @@ import {
                 context: {
                   list: generalContrasts,
                   title: tabList[selectedTab - 1].title,
-                  isNameStyle: true
+                  isNameStyle: true,
                 }
               "
             />
@@ -415,7 +415,7 @@ import {
                 context: {
                   list: containerGradients,
                   title: 'Complementary containers',
-                  isGradientStyle: true
+                  isGradientStyle: true,
                 }
               "
             />
@@ -431,7 +431,7 @@ import {
                 context: {
                   list: containers,
                   title: tabList[selectedTab - 1].title,
-                  isNameStyle: true
+                  isNameStyle: true,
                 }
               "
             />
@@ -447,7 +447,7 @@ import {
                 context: {
                   list: buttons,
                   title: tabList[selectedTab - 1].title,
-                  isNameStyle: true
+                  isNameStyle: true,
                 }
               "
             />
@@ -463,7 +463,7 @@ import {
                 context: {
                   list: menuSelect,
                   title: tabList[selectedTab - 1].title,
-                  isNameStyle: true
+                  isNameStyle: true,
                 }
               "
             />
@@ -479,7 +479,7 @@ import {
                 context: {
                   list: semanticColors,
                   title: tabList[selectedTab - 1].title,
-                  isNameStyle: true
+                  isNameStyle: true,
                 }
               "
             />
@@ -495,7 +495,7 @@ import {
                 context: {
                   list: creativeUseColors,
                   title: tabList[selectedTab - 1].title,
-                  isNameStyle: true
+                  isNameStyle: true,
                 }
               "
             />
@@ -511,7 +511,7 @@ import {
                 context: {
                   list: mitecInstitutionalColors,
                   title: tabList[selectedTab - 1].title,
-                  isNameStyle: true
+                  isNameStyle: true,
                 }
               "
             />
@@ -527,7 +527,7 @@ import {
                 context: {
                   list: alertColors,
                   title: tabList[selectedTab - 1].title,
-                  isNameStyle: true
+                  isNameStyle: true,
                 }
               "
             />

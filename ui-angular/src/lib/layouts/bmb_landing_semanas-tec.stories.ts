@@ -47,7 +47,7 @@ import * as verticalLayoutStory from '../directives/old/bmb-layout/bmb-vertical-
 import * as verticalLayoutItemStory from '../directives/old/bmb-layout/bmb-vertical-layout/bmb-vertical-layout-item.stories';
 import * as textLinkStory from '../components/old/bmb-text-link/bmb-text-link.stories';
 import * as checkboxStory from '../components/old/bmb-checkbox/bmb-checkbox.stories';
-import * as dividerStory from '../components/old/bmb-divider/bmb-divider.stories';
+import * as dividerStory from '../components/bmb-divider/bmb-divider.stories';
 
 @Component({
   standalone: true,
@@ -58,7 +58,7 @@ import * as dividerStory from '../components/old/bmb-divider/bmb-divider.stories
         [userInformation]="{
           name: 'Santiago Hernández',
           image: 'https://picsum.photos/id/64/200/300',
-          role: 'Alumno'
+          role: 'Alumno',
         }"
         appPowered="Powered by Bamboo Design"
         [showHelpButton]="true"
@@ -82,13 +82,13 @@ import * as dividerStory from '../components/old/bmb-divider/bmb-divider.stories
               {
                 id: 1,
                 title: 'Semanas TEC obligatorias (establecidas)',
-                isActive: true
+                isActive: true,
               },
               {
                 id: 2,
                 title: 'Semanas TEC optativas (por elegir)',
-                isActive: false
-              }
+                isActive: false,
+              },
             ]"
             (selected)="handleSelectedTab($event)"
           ></bmb-tabs>
@@ -120,15 +120,15 @@ import * as dividerStory from '../components/old/bmb-divider/bmb-divider.stories
                     {
                       icon: 'link',
                       text: 'External Link External Link External Link',
-                      url: 'https://example.com'
+                      url: 'https://example.com',
                     },
                     {
                       icon: 'link',
                       text: 'internal Link',
-                      url: 'https://example.com'
+                      url: 'https://example.com',
                     },
                     { icon: 'delete', text: 'Delete' },
-                    { icon: 'settings', text: 'Settings' }
+                    { icon: 'settings', text: 'Settings' },
                   ]"
                 />
                 <bmb-container-button
@@ -143,15 +143,15 @@ import * as dividerStory from '../components/old/bmb-divider/bmb-divider.stories
                     {
                       icon: 'link',
                       text: 'External Link External Link External Link',
-                      url: 'https://example.com'
+                      url: 'https://example.com',
                     },
                     {
                       icon: 'link',
                       text: 'internal Link',
-                      url: 'https://example.com'
+                      url: 'https://example.com',
                     },
                     { icon: 'delete', text: 'Delete' },
-                    { icon: 'settings', text: 'Settings' }
+                    { icon: 'settings', text: 'Settings' },
                   ]"
                 />
                 <bmb-container-button
@@ -166,15 +166,15 @@ import * as dividerStory from '../components/old/bmb-divider/bmb-divider.stories
                     {
                       icon: 'link',
                       text: 'External Link External Link External Link',
-                      url: 'https://example.com'
+                      url: 'https://example.com',
                     },
                     {
                       icon: 'link',
                       text: 'internal Link',
-                      url: 'https://example.com'
+                      url: 'https://example.com',
                     },
                     { icon: 'delete', text: 'Delete' },
-                    { icon: 'settings', text: 'Settings' }
+                    { icon: 'settings', text: 'Settings' },
                   ]"
                 />
                 <bmb-container-button
@@ -189,15 +189,15 @@ import * as dividerStory from '../components/old/bmb-divider/bmb-divider.stories
                     {
                       icon: 'link',
                       text: 'External Link External Link External Link',
-                      url: 'https://example.com'
+                      url: 'https://example.com',
                     },
                     {
                       icon: 'link',
                       text: 'internal Link',
-                      url: 'https://example.com'
+                      url: 'https://example.com',
                     },
                     { icon: 'delete', text: 'Delete' },
-                    { icon: 'settings', text: 'Settings' }
+                    { icon: 'settings', text: 'Settings' },
                   ]"
                 />
                 <bmb-container-button
@@ -212,15 +212,15 @@ import * as dividerStory from '../components/old/bmb-divider/bmb-divider.stories
                     {
                       icon: 'link',
                       text: 'External Link External Link External Link',
-                      url: 'https://example.com'
+                      url: 'https://example.com',
                     },
                     {
                       icon: 'link',
                       text: 'internal Link',
-                      url: 'https://example.com'
+                      url: 'https://example.com',
                     },
                     { icon: 'delete', text: 'Delete' },
-                    { icon: 'settings', text: 'Settings' }
+                    { icon: 'settings', text: 'Settings' },
                   ]"
                 />
                 <bmb-container-button
@@ -235,15 +235,15 @@ import * as dividerStory from '../components/old/bmb-divider/bmb-divider.stories
                     {
                       icon: 'link',
                       text: 'External Link External Link External Link',
-                      url: 'https://example.com'
+                      url: 'https://example.com',
                     },
                     {
                       icon: 'link',
                       text: 'internal Link',
-                      url: 'https://example.com'
+                      url: 'https://example.com',
                     },
                     { icon: 'delete', text: 'Delete' },
-                    { icon: 'settings', text: 'Settings' }
+                    { icon: 'settings', text: 'Settings' },
                   ]"
                 />
               </section>
@@ -587,9 +587,9 @@ import * as dividerStory from '../components/old/bmb-divider/bmb-divider.stories
               id: 2,
               icon: 'task',
               title: 'Agregar firmantes',
-              link: 'https://www.youtube.com/watch?v=beh56CrNRsQ'
-            }
-          ]
+              link: 'https://www.youtube.com/watch?v=beh56CrNRsQ',
+            },
+          ],
         ]"
         [componentTitle]="'Navegacion para mobiles'"
       ></bmb-sidebar>
