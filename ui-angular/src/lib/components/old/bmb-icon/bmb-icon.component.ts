@@ -11,6 +11,7 @@ import {
   contentChild,
   computed,
   output,
+  inject,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { buildErrorMessage, isImage } from '@shared/logic/utils';
@@ -66,10 +67,10 @@ export class BmbIconComponent implements OnInit {
       : 'bmb_android';
   });
 
-  constructor(
-    private sanitizer: DomSanitizer,
-    private iconService: BmbIconService,
-  ) {
+  private sanitizer: DomSanitizer = inject(DomSanitizer);
+  private iconService: BmbIconService = inject(BmbIconService);
+
+  constructor() {
     effect(() => {
       if (this.icon()) {
         const svgIcon = this.loadIcon(this.icon());
@@ -85,7 +86,7 @@ export class BmbIconComponent implements OnInit {
   }
 
   ngOnInit() {
-    let inputs: string[] = [];
+    const inputs: string[] = [];
     if (this.isImage(this.icon()) && !this.alt()) inputs.push('alt');
 
     if (inputs.length) {
@@ -146,8 +147,8 @@ export class BmbIconComponent implements OnInit {
 
   getImageStyles() {
     return {
-      width: !!this.size() ? `${this.size()}px` : '1em',
-      height: !!this.size() ? `${this.size()}px` : '1em',
+      width: this.size() ? `${this.size()}px` : '1em',
+      height: this.size() ? `${this.size()}px` : '1em',
     };
   }
 

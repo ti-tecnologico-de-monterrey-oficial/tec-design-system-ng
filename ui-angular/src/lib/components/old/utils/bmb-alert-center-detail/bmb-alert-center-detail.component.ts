@@ -1,4 +1,4 @@
-import { Component, input, output } from '@angular/core';
+import { Component, inject, input, output } from '@angular/core';
 import {
   IBmbDataAlert,
   IBmbDataAlertsParsed,
@@ -21,7 +21,7 @@ export class BmbAlertCenterDetailComponent {
 
   alertEvent = output<IBmbDataAlertsParsed | IBmbDataAlert>();
 
-  constructor(private readonly sanitizer: DomSanitizer) {}
+  private readonly sanitizer: DomSanitizer = inject(DomSanitizer);
 
   sanitizedHtml(html: string) {
     const clean = sanitizeContent(html);

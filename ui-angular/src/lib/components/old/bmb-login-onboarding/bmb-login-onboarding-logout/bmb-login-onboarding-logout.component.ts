@@ -1,6 +1,7 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  inject,
   output,
   ViewEncapsulation,
 } from '@angular/core';
@@ -21,9 +22,9 @@ export class BmbLoginOnboardingLogoutComponent {
   handleRequest = output<any>();
   handleContinuePage = output();
 
-  checkCircleImage: string = '../assets/images/placeholders/check-circle.svg';
+  checkCircleImage = '../assets/images/placeholders/check-circle.svg';
 
-  constructor(private loginOnboardingService: BmbLoginOnboardingService) {}
+  private loginOnboardingService: BmbLoginOnboardingService = inject(BmbLoginOnboardingService);
 
   _handleContinuePage(): void {
     this.loginOnboardingService.setIsLoading(true);

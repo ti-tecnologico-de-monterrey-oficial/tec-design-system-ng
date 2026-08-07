@@ -3,6 +3,7 @@ import {
   ChangeDetectorRef,
   Component,
   forwardRef,
+  inject,
   input,
   model,
   OnInit,
@@ -74,7 +75,7 @@ export class BmbInputValidatorComponent implements OnInit {
   showError = model<boolean>(false);
   control = model<FormControl>();
 
-  constructor(private cdr: ChangeDetectorRef) {}
+  private cdr: ChangeDetectorRef = inject(ChangeDetectorRef);
 
   ngOnInit(): void {
     if (!!this.min() && !!this.max() && this.max()! < this.min()!) {
@@ -146,7 +147,7 @@ export class BmbInputValidatorComponent implements OnInit {
       this.control()?.addValidators(this.validatorError('jsonValidation'));
     }
 
-    if (!!customValidation) {
+    if (customValidation) {
       if (Array.isArray(customValidation)) {
         customValidation.forEach((currentValidation: ValidatorFn) =>
           this.control()?.addValidators(this.validatorError(currentValidation)),
@@ -194,7 +195,7 @@ export class BmbInputValidatorComponent implements OnInit {
   ): void {
     if (type === 'checkbox' || type === 'radio') {
       if (checked) {
-        if (!!value) control.setValue(value);
+        if (value) control.setValue(value);
         else control.setValue(checked);
       }
       return;

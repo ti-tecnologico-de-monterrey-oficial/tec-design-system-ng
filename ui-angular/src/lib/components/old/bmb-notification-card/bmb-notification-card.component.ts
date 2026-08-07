@@ -2,6 +2,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   computed,
+  inject,
   input,
   model,
   output,
@@ -58,10 +59,9 @@ export class BmbNotificationCardComponent {
   showAlertDetail = output<IBmbDataAlert>();
   onExpandClick = output<void>();
 
-  expanded: boolean = false;
-  activeData: any = [];
-  activeTab: number = 1;
-  activeDot: number = 0;
+  expanded = false;
+  activeTab = 1;
+  activeDot = 0;
   parsedData = computed<IBmbDataAlertsParsed[]>(() => {
     return this.data().map((alert) => {
       const date =
@@ -76,11 +76,9 @@ export class BmbNotificationCardComponent {
   });
   visibleAlert: IBmbDataAlertsParsed | null = null;
 
-  constructor(
-    private translationsService: BmbTranslationsService,
-    private projectionService: BmbProjectionContentService,
-    private modalService: BmbNativeModalService,
-  ) {}
+  private translationsService: BmbTranslationsService = inject(BmbTranslationsService);
+  private projectionService: BmbProjectionContentService = inject(BmbProjectionContentService);
+  private modalService: BmbNativeModalService = inject(BmbNativeModalService);
 
   getEmptyStateData(): IBmbAlertEmptyState {
     if (Object.keys(this.emptyStateData() || {}).length) {

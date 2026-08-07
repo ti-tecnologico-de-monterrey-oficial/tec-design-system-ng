@@ -6,6 +6,8 @@ import {
   ElementRef,
   input,
   output,
+  inject,
+  AfterViewInit,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
@@ -19,12 +21,12 @@ import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class BmbSelectComponent {
+export class BmbSelectComponent implements AfterViewInit {
   value = input<unknown>(null);
 
   onValueChange = output<string>();
 
-  constructor(private elementRef: ElementRef) {}
+  private elementRef: ElementRef = inject(ElementRef);
 
   @HostListener('document:click', ['$event'])
   onClick(event: MouseEvent) {
@@ -52,7 +54,7 @@ export class BmbSelectComponent {
     this.customTemplate = true;
   }
 
-  isExpanded: boolean = false;
+  isExpanded = false;
 
   getClassName(): string {
     if (this.isExpanded) return 'bmb_select-list-open';

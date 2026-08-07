@@ -1,6 +1,7 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  inject,
   output,
   signal,
   ViewEncapsulation,
@@ -38,7 +39,10 @@ export class BmbLoginOnboardingStepperStepFourComponent {
 
   modalId = signal<string | null>(null);
 
-  credentialExample: string = '../assets/images/placeholders/credential.svg';
+  private loginOnboardingService: BmbLoginOnboardingService = inject(BmbLoginOnboardingService);
+  private modalService: BmbNativeModalService = inject(BmbNativeModalService);
+
+  credentialExample = '../assets/images/placeholders/credential.svg';
   data: IBmbNativeModal = {
     title: 'Entrada a campus',
     content: 'Podrás cambiar esta configuración en cualquier momento',
@@ -55,11 +59,6 @@ export class BmbLoginOnboardingStepperStepFourComponent {
       },
     ],
   };
-
-  constructor(
-    private loginOnboardingService: BmbLoginOnboardingService,
-    private modalService: BmbNativeModalService,
-  ) {}
 
   openModalComponent(): void {
     this.modalId.set(this.modalService.openModal(this.data));

@@ -95,7 +95,8 @@ export class BmbHomeCardChatComponent {
   getNewChat = output<boolean>();
   getExpand = output<any>();
 
-  translationService = inject(BmbTranslationsService);
+  private translationService = inject(BmbTranslationsService);
+  private contentProjected: BmbProjectionContentService = inject(BmbProjectionContentService);
 
   parsedBotActions = computed<IBmbChatBubblesActions[]>(() => {
     const newActions = this.botActions();
@@ -140,7 +141,7 @@ export class BmbHomeCardChatComponent {
   @ViewChild('contentTemplate') contentTemplate!: TemplateRef<any>;
   @ViewChild('chatBarActionsTemplate', { static: true })
   chatBarTemplate!: TemplateRef<any>;
-  private chatCardChatId: string = 'chatCardChat';
+  private chatCardChatId = 'chatCardChat';
 
   chatActionHeaders = computed<IBmbActionHeader[]>(() => {
     if (this.mode() !== 'chat') {
@@ -155,7 +156,7 @@ export class BmbHomeCardChatComponent {
     ];
   });
 
-  constructor(private contentProjected: BmbProjectionContentService) {
+  constructor() {
     effect(
       () => {
         if (this.mode() === 'chat') {

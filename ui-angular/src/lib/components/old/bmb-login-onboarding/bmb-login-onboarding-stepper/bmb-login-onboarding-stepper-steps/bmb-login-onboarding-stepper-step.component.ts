@@ -2,6 +2,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   effect,
+  inject,
   input,
   output,
   ViewEncapsulation,
@@ -32,7 +33,9 @@ export class BmbLoginOnboardingStepperStepComponent {
 
   handleContinue = output<any>();
 
-  constructor(private loginOnboardingService: BmbLoginOnboardingService) {
+  private loginOnboardingService: BmbLoginOnboardingService = inject(BmbLoginOnboardingService);
+
+  constructor() {
     effect(() => {
       const deprecatedTitle = this.title();
       const newTitle = this.componentTitle();

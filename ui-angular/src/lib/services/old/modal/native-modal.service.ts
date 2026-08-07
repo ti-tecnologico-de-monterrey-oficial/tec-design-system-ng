@@ -4,6 +4,7 @@ import {
   createComponent,
   EmbeddedViewRef,
   EnvironmentInjector,
+  inject,
   Injectable,
   signal,
 } from '@angular/core';
@@ -18,10 +19,8 @@ export class BmbNativeModalService {
   readonly modalList = signal<IBmbNativeModal[]>([]);
   private portalComponentRef: ComponentRef<BmbPortalComponent> | null = null;
 
-  constructor(
-    private appRef: ApplicationRef,
-    private environmentInjector: EnvironmentInjector,
-  ) {}
+  private appRef: ApplicationRef = inject(ApplicationRef);
+  private environmentInjector: EnvironmentInjector = inject(EnvironmentInjector);
 
   private getOrCreatePortal() {
     if (this.portalComponentRef) {

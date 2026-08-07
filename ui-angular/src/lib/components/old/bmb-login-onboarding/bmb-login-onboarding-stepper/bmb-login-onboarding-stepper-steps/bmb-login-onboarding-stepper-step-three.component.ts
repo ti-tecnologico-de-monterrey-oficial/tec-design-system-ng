@@ -1,6 +1,7 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  inject,
   output,
   ViewEncapsulation,
 } from '@angular/core';
@@ -29,7 +30,7 @@ export class BmbLoginOnboardingStepperStepThreeComponent {
   handleRequest = output<any>();
   handleContinueStep = output();
 
-  constructor(private loginOnboardingService: BmbLoginOnboardingService) {}
+  private loginOnboardingService: BmbLoginOnboardingService = inject(BmbLoginOnboardingService);
 
   _handleContinueStep(): void {
     this.loginOnboardingService.setIsLoading(true);
