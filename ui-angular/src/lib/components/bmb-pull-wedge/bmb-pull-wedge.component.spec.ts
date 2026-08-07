@@ -13,7 +13,7 @@ import { BmbPullWedgeComponent } from './bmb-pull-wedge.component';
 describe('BmbPullWedgeComponent', () => {
   let component: BmbPullWedgeComponent;
   let fixture: ComponentFixture<BmbPullWedgeComponent>;
-  let mockRenderer: jasmine.SpyObj<Renderer2>;
+  let mockRenderer: Pick<Renderer2, 'setStyle'>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -24,7 +24,7 @@ describe('BmbPullWedgeComponent', () => {
     component = fixture.componentInstance;
 
     // Create spy after component is created to override the injected Renderer2
-    mockRenderer = jasmine.createSpyObj('Renderer2', ['setStyle']);
+    mockRenderer = { setStyle: jest.fn() };
     (component as any).renderer = mockRenderer;
 
     fixture.detectChanges();
@@ -287,7 +287,7 @@ describe('BmbPullWedgeComponent', () => {
 
   describe('Event Handlers Integration', () => {
     it('should call toggleWedge when button is clicked', () => {
-      spyOn(component, 'toggleWedge');
+      jest.spyOn(component, 'toggleWedge');
 
       const button = fixture.debugElement.query(
         By.css('.bmb_pull_wedge-button'),
@@ -298,9 +298,9 @@ describe('BmbPullWedgeComponent', () => {
     });
 
     it('should handle drag events through template', () => {
-      spyOn(component, 'onDragStarted');
-      spyOn(component, 'onDragMoved');
-      spyOn(component, 'onDragEnded');
+      jest.spyOn(component, 'onDragStarted');
+      jest.spyOn(component, 'onDragMoved');
+      jest.spyOn(component, 'onDragEnded');
 
       const dragHandle = fixture.debugElement.query(
         By.css('.bmb_pull_wedge-drag'),

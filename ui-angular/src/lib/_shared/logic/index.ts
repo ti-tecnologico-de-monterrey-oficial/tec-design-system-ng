@@ -3,3 +3,5 @@ export * from './components/badge';
 export * from './components/carousel';
 export * from './components/container';
 export * from './components/divider';
+export * from './components/pull-wedge';
+export * from './components/server-table';
