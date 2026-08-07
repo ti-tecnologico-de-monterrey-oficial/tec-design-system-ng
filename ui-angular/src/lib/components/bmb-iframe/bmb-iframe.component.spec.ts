@@ -1,7 +1,7 @@
+import { ComponentRef } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { BmbIframeComponent } from './bmb-iframe.component';
-import { ComponentRef } from '@angular/core';
 
 describe('BmbIframeComponent', () => {
   let component: BmbIframeComponent;
@@ -43,5 +43,14 @@ describe('BmbIframeComponent', () => {
     expect(component.loading()).toBe('lazy');
     expect(component.name()).toBe('iframeName');
     expect(component.src()).toBe('https://example.com');
+
+    fixture.detectChanges();
+    const iframe: HTMLIFrameElement =
+      fixture.nativeElement.querySelector('iframe');
+
+    expect(iframe.getAttribute('height')).toBe('500px');
+    expect(iframe.getAttribute('width')).toBe('500px');
+    expect(iframe.getAttribute('loading')).toBe('lazy');
+    expect(iframe.getAttribute('name')).toBe('iframeName');
   });
 });

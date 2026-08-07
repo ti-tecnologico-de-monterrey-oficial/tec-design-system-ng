@@ -64,7 +64,7 @@
     />
   </section>
   <section class="bmb_profile-access">
-    @if (collaboratorData()?.leader) {
+    @if (collaboratorData()?.leader; as leader) {
       <h2 class="bmb_profile-title">{{ 'profile.leader' | translate }}</h2>
       <bmb-card margin="none" borderColor="contrasts-50">
         <bmb-card-content padding="l">
@@ -79,7 +79,7 @@
               altImage="Image of icon left"
               bmbLayoutItem
               [isDynamicItem]="true"
-              [image]="collaboratorData()?.leader?.userData?.userImg!"
+              [image]="leader.userData.userImg"
             />
             <div
               class="bmb_container-button-header"
@@ -88,17 +88,17 @@
               [colGrow]="1"
             >
               <h2 class="bmb_container-button-title">
-                {{ collaboratorData()?.leader?.userData?.name! }}
+                {{ leader.userData.name }}
               </h2>
               <h4 class="bmb_container-button-subtitle">
-                {{ collaboratorData()?.leader?.userData?.email! }}
+                {{ leader.userData.email }}
               </h4>
             </div>
           </section>
         </bmb-card-content>
       </bmb-card>
     }
-    @if (collaboratorData()?.generalist) {
+    @if (collaboratorData()?.generalist; as generalist) {
       <h2 class="bmb_profile-title">{{ 'profile.generalist' | translate }}</h2>
       <bmb-card margin="none" borderColor="contrasts-50">
         <bmb-card-content padding="l">
@@ -113,7 +113,7 @@
               altImage="Image of icon left"
               bmbLayoutItem
               [isDynamicItem]="true"
-              [image]="collaboratorData()?.generalist?.userData?.userImg!"
+              [image]="generalist.userData.userImg"
             />
             <div
               class="bmb_container-button-header"
@@ -122,10 +122,10 @@
               [colGrow]="1"
             >
               <h2 class="bmb_container-button-title">
-                {{ collaboratorData()?.generalist?.userData?.name! }}
+                {{ generalist.userData.name }}
               </h2>
               <h4 class="bmb_container-button-subtitle">
-                {{ collaboratorData()?.generalist?.userData?.email! }}
+                {{ generalist.userData.email }}
               </h4>
             </div>
           </section>

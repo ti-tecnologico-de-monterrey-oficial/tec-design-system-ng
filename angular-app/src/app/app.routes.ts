@@ -42,5 +42,13 @@ export const appRoutes: Route[] = [
         './components/notification-counter-page/notification-counter-page'
       ).then(({ NotificationCounterPage }) => NotificationCounterPage),
   },
+  {
+    path: 'components/iframe',
+    title: 'BmbIframe | Bamboo migration dashboard',
+    loadComponent: () =>
+      import('./components/iframe-page/iframe-page').then(
+        ({ IframePage }) => IframePage,
+      ),
+  },
   { path: '**', redirectTo: 'components/carousel' },
 ];

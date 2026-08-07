@@ -15,6 +15,10 @@ export * from '../../components/old/bmb-tables/bmb-tables.interface';
 export * from '../../components/old/bmb-image/types';
 export * from './colors';
 export type { IBmbNotificationCounterType } from './components/notification-counter';
+export type {
+  BmbIframeLoading,
+  BmbIframeReferrerPolicy,
+} from './components/iframe';
 
 export type SizeNames =
   | 'xs'

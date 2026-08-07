@@ -23,7 +23,6 @@ import { BmbBadgeComponent } from '../../../../bmb-badge/bmb-badge.component';
 import { BmbDividerComponent } from '../../../../bmb-divider/bmb-divider.component';
 import { BmbCalendarComponentService } from '../../bmb-calendar.service';
 import { TranslatePipe } from '../../../../../pipes/translations';
-import { ɵEmptyOutletComponent } from '@angular/router';
 
 @Component({
   selector: 'bmb-calendar-schedule-cards',
@@ -35,7 +34,6 @@ import { ɵEmptyOutletComponent } from '@angular/router';
     BmbBadgeComponent,
     BmbDividerComponent,
     TranslatePipe,
-    ɵEmptyOutletComponent,
   ],
   templateUrl: './bmb-calendar-schedule-cards.component.html',
   styleUrl: './bmb-calendar-schedule-cards.component.scss',
