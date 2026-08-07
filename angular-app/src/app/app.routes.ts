@@ -26,5 +26,11 @@ export const appRoutes: Route[] = [
         ({ DividerPage }) => DividerPage,
       ),
   },
+  {
+    path: 'components/iframe',
+    title: 'BmbIframe | Bamboo migration dashboard',
+    loadComponent: () =>
+      import('./components/iframe-page').then(({ IframePage }) => IframePage),
+  },
   { path: '**', redirectTo: 'components/carousel' },
 ];
