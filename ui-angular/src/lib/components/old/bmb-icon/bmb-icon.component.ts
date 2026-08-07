@@ -86,7 +86,7 @@ export class BmbIconComponent implements OnInit {
   }
 
   ngOnInit() {
-    let inputs: string[] = [];
+    const inputs: string[] = [];
     if (this.isImage(this.icon()) && !this.alt()) inputs.push('alt');
 
     if (inputs.length) {
@@ -147,8 +147,8 @@ export class BmbIconComponent implements OnInit {
 
   getImageStyles() {
     return {
-      width: !!this.size() ? `${this.size()}px` : '1em',
-      height: !!this.size() ? `${this.size()}px` : '1em',
+      width: this.size() ? `${this.size()}px` : '1em',
+      height: this.size() ? `${this.size()}px` : '1em',
     };
   }
 

@@ -1,6 +1,7 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  inject,
   output,
   ViewEncapsulation,
 } from '@angular/core';
@@ -26,9 +27,9 @@ import { BmbMitecLogoAnimationComponent } from '../../bmb-mitec-logo-animation/b
 export class BmbLoginOnboardingLoggedComponent {
   handleRequest = output<any>();
 
-  tecLogoImage: string = '../assets/images/tec-logo.svg';
+  tecLogoImage = '../assets/images/tec-logo.svg';
 
-  constructor(private loginOnboardingService: BmbLoginOnboardingService) {}
+  private loginOnboardingService: BmbLoginOnboardingService = inject(BmbLoginOnboardingService);
 
   getUserInfo(): IBmbUserInfo {
     return this.loginOnboardingService.userInfo();

@@ -1,6 +1,7 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  inject,
   input,
   output,
   ViewEncapsulation,
@@ -47,10 +48,8 @@ export class BmbLoginOnboardingComponent {
   });
   handleRequest = output<any>();
 
-  constructor(
-    private loginOnboardingService: BmbLoginOnboardingService,
-    private translationService: BmbTranslationsService,
-  ) {}
+  private loginOnboardingService: BmbLoginOnboardingService = inject(BmbLoginOnboardingService);
+  private translationService: BmbTranslationsService = inject(BmbTranslationsService);
 
   ngOnInit(): void {
     const anotherAccountLabel =
