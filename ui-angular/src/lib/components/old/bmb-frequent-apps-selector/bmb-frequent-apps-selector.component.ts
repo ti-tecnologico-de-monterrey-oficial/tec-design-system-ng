@@ -10,7 +10,7 @@ import {
   BmbInteractiveIconComponent,
   IBmbInteractiveIconType,
 } from '../bmb-interactive-icon/bmb-interactive-icon.component';
-import { IBmbApp } from '@shared/types';
+import { IBmbApp } from '../../../_shared/types';
 
 @Component({
   selector: 'bmb-frequent-apps-selector',

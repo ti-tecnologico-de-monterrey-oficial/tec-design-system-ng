@@ -7,10 +7,10 @@ import {
   TemplateRef,
   ViewEncapsulation,
 } from '@angular/core';
-import { isExternalLink } from '@shared/logic/utils';
+import { isExternalLink } from '../../../_shared/logic/utils';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { IBmbTargetLink } from '@shared/types';
+import { IBmbTargetLink } from '../../../_shared/types';
 
 @Component({
   selector: 'bmb-check-external-link-button',

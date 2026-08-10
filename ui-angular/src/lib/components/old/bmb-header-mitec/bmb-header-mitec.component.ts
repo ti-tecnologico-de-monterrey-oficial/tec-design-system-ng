@@ -4,7 +4,7 @@ import {
   input,
   ViewEncapsulation,
 } from '@angular/core';
-import { IBmbActionHeader, IBmbLinkInfo } from '@shared/types';
+import { IBmbActionHeader, IBmbLinkInfo } from '../../../_shared/types';
 import { BmbNavigationBarComponent } from '../bmb-navigation-bar/bmb-navigation-bar.component';
 import { BmbMitecLogoAnimationComponent } from '../../bmb-mitec-logo-animation/bmb-mitec-logo-animation.component';
 import { TranslatePipe } from '../../../pipes/translations';

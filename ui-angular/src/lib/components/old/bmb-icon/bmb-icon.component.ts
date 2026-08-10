@@ -14,7 +14,7 @@ import {
   inject,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { buildErrorMessage, isImage } from '@shared/logic/utils';
+import { buildErrorMessage, isImage } from '../../../_shared/logic/utils';
 import { BmbNotificationCounterComponent } from '../../bmb-notification-counter/bmb-notification-counter.component';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { BmbIconService } from '../../../services/icon/icon.service';
@@ -25,7 +25,7 @@ import {
   BmbCustomIconsComponent,
 } from './bmb-custom-icons/bmb-custom-icons.component';
 import { A11yModule } from '@angular/cdk/a11y';
-import { getUUID } from '@shared/logic/utils';
+import { getUUID } from '../../../_shared/logic/utils';
 
 @Component({
   selector: 'bmb-icon',

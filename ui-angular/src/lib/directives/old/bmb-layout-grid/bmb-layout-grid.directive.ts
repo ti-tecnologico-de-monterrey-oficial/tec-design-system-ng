@@ -1,5 +1,5 @@
 import { Directive, HostBinding, input } from '@angular/core';
-import { SizeNames } from '@shared/types';
+import { SizeNames } from '../../../_shared/types';
 
 @Directive({
   selector: '[bmbLayoutGrid]',

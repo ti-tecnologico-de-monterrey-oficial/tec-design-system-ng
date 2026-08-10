@@ -16,7 +16,7 @@ import type {
   IBmbJustifyTooltip,
 } from '../bmb-tooltip/bmb-tooltip.component';
 import { BmbInputValidatorComponent } from './bmb-input-validator/bmb-input-validator.component';
-import { getUUID } from '@shared/logic/utils';
+import { getUUID } from '../../../_shared/logic/utils';
 import { BmbInputContentComponent } from './bmb-input-content/bmb-input-content.component';
 import {
   assignNewFormControl,

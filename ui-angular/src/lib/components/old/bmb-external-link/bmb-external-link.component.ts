@@ -18,9 +18,9 @@ import { BmbDropdownContentComponent } from '../utils/bmb-dropdown-content/bmb-d
 import { BmbThreeColsComponent } from '../bmb-three-cols/bmb-three-cols.component';
 import { BmbTitleContentComponent } from '../bmb-title-content/bmb-title-content.component';
 import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
-import { isExternalLink } from '@shared/logic/utils';
+import { isExternalLink } from '../../../_shared/logic/utils';
 import { BmbContainerComponent } from '../../bmb-container/bmb-container.component';
-import { IDropdownItem } from '@shared/types';
+import { IDropdownItem } from '../../../_shared/types';
 import { BmbProjectionContentService } from '../../../services/old/projection/projection.service';
 import { logDeprecatedInput } from '../../../_shared/logic/logDeprecatedInput';
 import { TranslatePipe } from '../../../pipes/translations';

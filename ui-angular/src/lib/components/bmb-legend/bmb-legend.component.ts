@@ -28,6 +28,6 @@ export class BmbLegendComponent {
   }
 
   getValueClass(): string {
-    return getLegendValueClass(this.indicatorAppearance(), this.isOperationState());
+    return getLegendValueClass(this.indicatorAppearance());
   }
 }
