@@ -10,6 +10,30 @@
   color: #596579;
 }
 
+.controls h2:not(:first-child) {
+  margin-top: 1rem;
+}
+
+.controls textarea {
+  min-height: 7rem;
+  resize: vertical;
+}
+
+.checkbox-control {
+  align-items: center;
+  display: flex;
+  gap: 0.5rem;
+
+  input {
+    margin: 0;
+    width: auto;
+  }
+}
+
 .preview {
   overflow: auto;
+}
+
+.load-status {
+  margin: 0 0 0.75rem;
 }

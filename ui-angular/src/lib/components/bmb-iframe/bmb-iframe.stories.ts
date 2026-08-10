@@ -60,7 +60,8 @@ ${getBasicExampleBlock('BmbIframeComponent')}
       control: {
         type: 'text',
       },
-      description: 'The source of the iframe. **This property is required**.',
+      description:
+        'The source of the iframe. Optional when `srcdoc` is provided.',
       table: {
         category: 'Properties',
         type: { summary: 'string' },
@@ -88,6 +89,62 @@ ${getBasicExampleBlock('BmbIframeComponent')}
         type: { summary: 'string' },
       },
     },
+    srcdoc: {
+      control: { type: 'text' },
+      description:
+        'Inline HTML rendered by the iframe. It takes precedence over `src`.',
+      table: { category: 'Properties', type: { summary: 'string' } },
+    },
+    title: {
+      control: { type: 'text' },
+      description: 'Accessible title for the embedded document.',
+      table: { category: 'Properties', type: { summary: 'string' } },
+    },
+    sandbox: {
+      control: { type: 'text' },
+      description: 'Space-separated sandbox permission tokens.',
+      table: { category: 'Security', type: { summary: 'string | null' } },
+    },
+    allow: {
+      control: { type: 'text' },
+      description: 'Permissions policy applied to the embedded document.',
+      table: { category: 'Security', type: { summary: 'string | null' } },
+    },
+    allowFullscreen: {
+      control: { type: 'boolean' },
+      description: 'Allows the embedded document to enter fullscreen mode.',
+      table: { category: 'Security', type: { summary: 'boolean' } },
+    },
+    credentialless: {
+      control: { type: 'boolean' },
+      description: 'Loads cross-origin content without credentials.',
+      table: { category: 'Security', type: { summary: 'boolean' } },
+    },
+    csp: {
+      control: { type: 'text' },
+      description: 'Content Security Policy required for the iframe response.',
+      table: { category: 'Security', type: { summary: 'string | null' } },
+    },
+    referrerPolicy: {
+      control: { type: 'select' },
+      options: [
+        'no-referrer',
+        'no-referrer-when-downgrade',
+        'origin',
+        'origin-when-cross-origin',
+        'same-origin',
+        'strict-origin',
+        'strict-origin-when-cross-origin',
+        'unsafe-url',
+      ],
+      description: 'Controls the referrer information sent by the iframe.',
+      table: { category: 'Security', type: { summary: 'string | null' } },
+    },
+    iframeLoad: {
+      action: 'iframeLoad',
+      description: 'Emitted when the native iframe fires its load event.',
+      table: { category: 'Events' },
+    },
   },
   args: {
     height: '100%',
@@ -95,6 +152,7 @@ ${getBasicExampleBlock('BmbIframeComponent')}
     src: 'https://www.openstreetmap.org/export/embed.html?bbox=-0.004017949104309083%2C51.47612752641776%2C0.00030577182769775396%2C51.478569861898606&layer=mapnik',
     loading: 'eager',
     name: 'test',
+    title: 'Embedded OpenStreetMap map',
   },
 } as Meta<typeof BmbIframeComponent>;
 
