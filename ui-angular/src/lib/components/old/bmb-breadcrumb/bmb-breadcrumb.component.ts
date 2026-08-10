@@ -8,7 +8,7 @@ import {
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
+import { BmbIconComponent } from '../../bmb-icon/bmb-icon.component';
 
 export interface IBmbDataTopBar {
   text: string;

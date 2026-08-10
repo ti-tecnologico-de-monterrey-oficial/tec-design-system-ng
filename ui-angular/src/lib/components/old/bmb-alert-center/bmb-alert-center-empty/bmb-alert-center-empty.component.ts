@@ -5,7 +5,7 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { BmbIconComponent } from '../../bmb-icon/bmb-icon.component';
+import { BmbIconComponent } from '../../../bmb-icon/bmb-icon.component';
 import { IBmbAlertEmptyState } from '../types';
 import { BmbButtonDirective } from '../../../../directives/old/bmb-button/button.directive';
 import { TranslatePipe } from '../../../../pipes/translations';

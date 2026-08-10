@@ -9,7 +9,7 @@ import {
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
+import { BmbIconComponent } from '../../bmb-icon/bmb-icon.component';
 import { BmbBadgeComponent } from '../../bmb-badge/bmb-badge.component';
 import { IBbmBgAppearance } from '../bmb-advertisement-card/types';
 import { BmbDropdownMenuComponent } from '../bmb-dropdown-menu/bmb-dropdown-menu.component';

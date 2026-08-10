@@ -53,7 +53,7 @@ import * as accordionStory from '../components/old/bmb-accordion/bmb-accordion.s
 import * as cardHeaderStory from '../components/old/bmb-card/bmb-card.stories';
 import * as cardContentStory from '../components/old/bmb-card/bmb-card.stories';
 import * as accordionControlStory from '../directives/old/bmb-accordion/bmb-accordion-control.stories';
-import * as iconStory from '../components/old/bmb-icon/bmb-icon.stories';
+import * as iconStory from '../components/bmb-icon/bmb-icon.stories';
 import * as toastStory from '../components/old/bmb-toast/bmb-toast.stories';
 import * as buttonStory from '../directives/old/bmb-button/button.stories';
 import { Router } from '@angular/router';

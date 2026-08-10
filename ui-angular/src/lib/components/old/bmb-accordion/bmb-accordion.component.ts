@@ -14,7 +14,7 @@ import {
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SizeNames } from '@shared/types';
-import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
+import { BmbIconComponent } from '../../bmb-icon/bmb-icon.component';
 import { BmbLayoutItemDirective } from '../../../directives/old/bmb-layout/bmb-layout-item.directive';
 import { BmbLayoutDirective } from '../../../directives/old/bmb-layout/bmb-layout.directive';
 import { IBmbContrast } from '@shared/types/colors';

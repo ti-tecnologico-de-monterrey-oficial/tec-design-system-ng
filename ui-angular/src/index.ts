@@ -32,7 +32,7 @@ export * from './lib/directives/old/bmb-layout-grid/bmb-layout-grid.directive';
 // Components
 export * from './lib/components/old/bmb-tooltip/bmb-tooltip.component';
 export * from './lib/components/old/bmb-logo/bmb-logo.component';
-export * from './lib/components/old/bmb-icon/bmb-icon.component';
+export * from './lib/components/bmb-icon/bmb-icon.component';
 export * from './lib/components/bmb-notification-counter/bmb-notification-counter.component';
 export * from './lib/components/bmb-badge/bmb-badge.component';
 export * from './lib/components/old/bmb-breadcrumb/bmb-breadcrumb.component';

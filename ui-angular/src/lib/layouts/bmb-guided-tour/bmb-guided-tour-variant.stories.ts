@@ -31,7 +31,7 @@ import {
   RELEVANT_TITLE,
 } from '../../../../../docs/utils/utils';
 import * as homeCard from '../../components/old/bmb-home-card/bmp-home-card.stories';
-import * as icon from '../../components/old/bmb-icon/bmb-icon.stories';
+import * as icon from '../../components/bmb-icon/bmb-icon.stories';
 import * as checkbox from '../../components/old/bmb-checkbox/bmb-checkbox.stories';
 import * as image from '../../components/old/bmb-image/bmb-image.stories';
 import * as carousel from '../../components/bmb-carousel/bmb-carousel.stories';

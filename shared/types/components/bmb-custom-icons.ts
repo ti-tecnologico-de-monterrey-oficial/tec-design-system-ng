@@ -1,6 +1,3 @@
-import { Component, input } from '@angular/core';
-import { getUUID } from '@shared/logic/utils';
-
 export type BmbCustomIconListType =
   | 'bmb_android'
   | 'bmb_apple'
@@ -23,15 +20,3 @@ export const BmbCustomIconList: BmbCustomIconListType[] = [
   'bmb_whatsapp',
   'bmb_youtube',
 ];
-
-@Component({
-  selector: 'bmb-custom-icons',
-  standalone: true,
-  imports: [],
-  templateUrl: './bmb-custom-icons.component.html',
-})
-export class BmbCustomIconsComponent {
-  icon = input.required<BmbCustomIconListType>();
-  size = input<number | undefined>();
-  testId = input<string>(getUUID());
-}

@@ -12,7 +12,7 @@ import {
   SimpleChanges,
   ViewEncapsulation,
 } from '@angular/core';
-import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
+import { BmbIconComponent } from '../../bmb-icon/bmb-icon.component';
 import { BmbTextLinkComponent } from '../bmb-text-link/bmb-text-link.component';
 import { BmbProgressBarComponent } from '../bmb-progress-bar/bmb-progress-bar.component';
 import { getUUID } from '@shared/logic/utils';

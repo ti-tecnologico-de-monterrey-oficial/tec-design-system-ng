@@ -33,7 +33,7 @@ import * as layoutItemStory from '../directives/old/bmb-layout/bmb-layout.storie
 import * as cardStory from '../components/old/bmb-card/bmb-card.stories';
 import * as cardHeaderStory from '../components/old/bmb-card/bmb-card.stories';
 import * as cardContentStory from '../components/old/bmb-card/bmb-card.stories';
-import * as iconStory from '../components/old/bmb-icon/bmb-icon.stories';
+import * as iconStory from '../components/bmb-icon/bmb-icon.stories';
 import * as buttonStory from '../directives/old/bmb-button/button.stories';
 import * as dropdownStory from '../components/old/bmb-dropdown/bmb-dropdown.stories';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';

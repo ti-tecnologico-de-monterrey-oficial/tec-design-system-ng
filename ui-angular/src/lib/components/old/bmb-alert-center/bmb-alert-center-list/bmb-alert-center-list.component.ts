@@ -19,7 +19,7 @@ import {
   BmbLayoutGridDirective,
   BmbLayoutGridItemDirective,
 } from '../../../../directives/old/bmb-layout-grid/bmb-layout-grid.directive';
-import { BmbIconComponent } from '../../bmb-icon/bmb-icon.component';
+import { BmbIconComponent } from '../../../bmb-icon/bmb-icon.component';
 import { CommonModule } from '@angular/common';
 
 @Component({
