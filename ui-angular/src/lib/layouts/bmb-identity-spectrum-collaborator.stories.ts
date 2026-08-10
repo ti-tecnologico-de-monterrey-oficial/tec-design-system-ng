@@ -10,7 +10,7 @@ import { BmbUserSummaryContentComponent } from '../components/old/bmb-user-summa
 import {
   BmbCardComponent,
   BmbCardContentComponent,
-} from '../components/old/bmb-card/bmb-card.component';
+} from '../components/bmb-card/bmb-card.component';
 import { BmbFormValidatorComponent } from '../components/old/bmb-form-validator/bmb-form-validator.component';
 import { BmbInputComponent } from '../components/old/bmb-input/bmb-input.component';
 
@@ -29,7 +29,7 @@ import * as topBarStory from '../components/old/bmb-top-bar/bmb-top-bar.stories'
 import * as sideBarStory from '../components/old/bmb-sidebar/bmb-sidebar.stories';
 import * as homeCardStory from '../components/old/bmb-home-card/bmp-home-card.stories';
 import * as tabsStory from '../components/old/bmb-tabs/bmb-tabs.component.stories';
-import * as genericCardStory from '../components/old/bmb-card/bmb-card.stories';
+import * as genericCardStory from '../components/bmb-card/bmb-card.stories';
 import * as userSummaryContentStory from '../components/old/bmb-user-summary/bmb-user-summary-content/bmb-user-summary-content.stories';
 import * as inputStory from '../components/old/bmb-input/bmb-input.stories';
 import * as itemItemStory from '../components/old/bmb-item/bmb-item.stories';

@@ -50,5 +50,21 @@ export const appRoutes: Route[] = [
         ({ IframePage }) => IframePage,
       ),
   },
+  {
+    path: 'components/grade-value',
+    title: 'BmbGradeValue | Bamboo migration dashboard',
+    loadComponent: () =>
+      import('./components/grade-value-page/grade-value-page').then(
+        ({ GradeValuePage }) => GradeValuePage,
+      ),
+  },
+  {
+    path: 'components/card',
+    title: 'BmbCard | Bamboo migration dashboard',
+    loadComponent: () =>
+      import('./components/card-page/card-page').then(
+        ({ CardPage }) => CardPage,
+      ),
+  },
   { path: '**', redirectTo: 'components/carousel' },
 ];

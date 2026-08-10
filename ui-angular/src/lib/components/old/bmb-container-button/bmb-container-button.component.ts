@@ -13,7 +13,7 @@ import {
 import { CommonModule } from '@angular/common';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { BmbBadgeComponent } from '../../bmb-badge/bmb-badge.component';
-import { BmbGradeValueComponent } from '../bmb-grade-value/bmb-grade-value.component';
+import { BmbGradeValueComponent } from '../../bmb-grade-value/bmb-grade-value.component';
 import { BmbLayoutItemDirective } from '../../../directives/old/bmb-layout/bmb-layout-item.directive';
 import { BmbLayoutDirective } from '../../../directives/old/bmb-layout/bmb-layout.directive';
 import { IBbmBgAppearance, IBmbTargetLink, IDropdownItem } from '@shared/types';

@@ -16,7 +16,7 @@ import { BmbBalanceOverviewComponent } from '../bmb-balance-overview/bmb-balance
 import {
   BmbCardComponent,
   BmbCardContentComponent,
-} from '../bmb-card/bmb-card.component';
+} from '../../bmb-card/bmb-card.component';
 import { BmbProgressBarComponent } from '../bmb-progress-bar/bmb-progress-bar.component';
 import { DateTime } from 'luxon';
 import { BmbDividerComponent } from '../../bmb-divider/bmb-divider.component';
