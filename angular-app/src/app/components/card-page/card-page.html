@@ -1,0 +1,170 @@
+<header class="page-header">
+  <p class="eyebrow">Componente migrado</p>
+  <h1>BmbCard</h1>
+  <p>Prueba la apariencia, sombra y composición de una tarjeta.</p>
+</header>
+
+<section class="playground" aria-labelledby="card-demo-heading">
+  <div class="controls">
+    <h2 id="card-demo-heading">Propiedades</h2>
+
+    <label for="card-type">type</label>
+    <select
+      id="card-type"
+      [value]="type()"
+      (change)="setType($any($event.target).value)"
+    >
+      @for (option of types; track option) {
+        <option [value]="option">{{ option }}</option>
+      }
+    </select>
+
+    <label for="card-radius">borderRadius</label>
+    <select
+      id="card-radius"
+      [value]="borderRadius()"
+      (change)="setBorderRadius($any($event.target).value)"
+    >
+      @for (option of sizes; track option) {
+        <option [value]="option">{{ option }}</option>
+      }
+    </select>
+
+    <label for="card-margin">margin</label>
+    <select
+      id="card-margin"
+      [value]="margin()"
+      (change)="setMargin($any($event.target).value)"
+    >
+      @for (option of sizes; track option) {
+        <option [value]="option">{{ option }}</option>
+      }
+    </select>
+
+    <label for="card-state">state</label>
+    <select
+      id="card-state"
+      [value]="state()"
+      (change)="setState($any($event.target).value)"
+    >
+      @for (option of states; track option) {
+        <option [value]="option">{{ option }}</option>
+      }
+    </select>
+
+    <label for="card-border-color">borderColor</label>
+    <select
+      id="card-border-color"
+      [value]="borderColor()"
+      (change)="setBorderColor($any($event.target).value)"
+    >
+      @for (option of borderColors; track option) {
+        <option [value]="option">{{ option }}</option>
+      }
+    </select>
+
+    <fieldset>
+      <legend>Card header</legend>
+
+      <label for="header-padding">padding</label>
+      <select
+        id="header-padding"
+        [value]="headerPadding()"
+        (change)="setHeaderPadding($any($event.target).value)"
+      >
+        @for (option of sizes; track option) {
+          <option [value]="option">{{ option }}</option>
+        }
+      </select>
+
+      <label for="header-color">colorBackground</label>
+      <select
+        id="header-color"
+        [value]="headerColor()"
+        (change)="setHeaderColor($any($event.target).value)"
+      >
+        @for (option of sectionColors; track option) {
+          <option [value]="option">{{ option }}</option>
+        }
+      </select>
+    </fieldset>
+
+    <fieldset>
+      <legend>Card footer</legend>
+
+      <label for="footer-padding">padding</label>
+      <select
+        id="footer-padding"
+        [value]="footerPadding()"
+        (change)="setFooterPadding($any($event.target).value)"
+      >
+        @for (option of sizes; track option) {
+          <option [value]="option">{{ option }}</option>
+        }
+      </select>
+
+      <label for="footer-color">colorBackground</label>
+      <select
+        id="footer-color"
+        [value]="footerColor()"
+        (change)="setFooterColor($any($event.target).value)"
+      >
+        @for (option of sectionColors; track option) {
+          <option [value]="option">{{ option }}</option>
+        }
+      </select>
+    </fieldset>
+
+    <label for="card-shadow">boxShadowStyle</label>
+    <select
+      id="card-shadow"
+      [value]="shadow()"
+      (change)="setShadow($any($event.target).value)"
+    >
+      @for (option of shadows; track option) {
+        <option [value]="option">{{ option }}</option>
+      }
+    </select>
+
+    <label class="checkbox" for="rounded-content">
+      <input
+        id="rounded-content"
+        type="checkbox"
+        [checked]="roundedContent()"
+        (change)="setRoundedContent($any($event.target).checked)"
+      />
+      Radio en el contenido
+    </label>
+  </div>
+
+  <div class="preview">
+    <bmb-card
+      [type]="type()"
+      [boxShadowStyle]="shadow()"
+      [borderRadius]="borderRadius()"
+      [margin]="margin()"
+      [state]="state()"
+      [borderColor]="borderColor()"
+    >
+      <bmb-card-header
+        [padding]="headerPadding()"
+        [colorBackground]="toSectionColor(headerColor())"
+      >
+        <strong>Encabezado de tarjeta</strong>
+      </bmb-card-header>
+      <bmb-card-content padding="l" [setBorderRadius]="roundedContent()">
+        <h2>Contenido configurable</h2>
+        <p>
+          Esta vista permite validar la composición con header, content y
+          footer.
+        </p>
+      </bmb-card-content>
+      <bmb-card-footer
+        [padding]="footerPadding()"
+        [colorBackground]="toSectionColor(footerColor())"
+      >
+        Estado actual: {{ type() }}
+      </bmb-card-footer>
+    </bmb-card>
+  </div>
+</section>
