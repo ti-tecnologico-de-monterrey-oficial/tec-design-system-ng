@@ -38,7 +38,8 @@
     "format": "prettier --write .",
     "format-check": "prettier --check \"src/**/*.ts\"",
     "build:micro": "sass projects/ds-ng/src/assets/styles/micro.scss dist/ds-ng/assets/styles/micro.min.css --style=compressed",
-    "sync:docs": "node scripts/sync-docs.mjs"
+    "sync:docs": "node scripts/sync-docs.mjs",
+    "postinstall": "node scripts/patch-typescript-referenced-files.mjs"
   },
   "auto-changelog": {
     "output": "CHANGELOG.md",
@@ -68,7 +69,6 @@
     "react-dom": "19.0.0",
     "rollup-plugin-copy": "3.5.0",
     "rxjs": "7.8.0",
-    "sass": "1.86.0",
     "tslib": "2.3.0",
     "zone.js": "~0.16.2"
   },
@@ -76,10 +76,12 @@
     "@angular-devkit/build-angular": "22.0.4",
     "@angular-devkit/core": "22.0.4",
     "@angular-devkit/schematics": "22.0.4",
+    "@angular/animations": "22.0.4",
     "@angular/build": "22.0.4",
     "@angular/cli": "22.0.4",
     "@angular/compiler-cli": "22.0.4",
     "@angular/language-service": "22.0.4",
+    "@angular/platform-browser-dynamic": "22.0.4",
     "@babel/core": "7.14.5",
     "@babel/preset-react": "7.14.5",
     "@eslint/js": "9.8.0",
@@ -129,6 +131,7 @@
     "ng-packagr": "22.0.1",
     "nx": "23.1.0",
     "prettier": "3.6.2",
+    "sass": "1.86.0",
     "storybook": "10.5.3",
     "ts-jest": "29.4.7",
     "ts-node": "10.9.1",
