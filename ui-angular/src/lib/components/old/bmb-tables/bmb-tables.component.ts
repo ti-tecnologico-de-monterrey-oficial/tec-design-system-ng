@@ -30,13 +30,6 @@ import {
   MatTableModule,
   MatTable,
 } from '@angular/material/table';
-// import {
-//   animate,
-//   state,
-//   style,
-//   transition,
-//   trigger,
-// } from '@angular/animations';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
@@ -140,6 +133,7 @@ export class BmbTablesComponent implements AfterViewInit, OnInit, OnChanges {
   clearSelectionWhenPageChanges = input<boolean>(false);
   disableStickyColumn = input<boolean>(false);
 
+  // eslint-disable-next-line @angular-eslint/no-output-native
   select = output<any>();
   clickedRow = output<any>();
   searchChange = output<string>();

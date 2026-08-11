@@ -3,8 +3,8 @@ import { DateTime } from 'luxon';
 
 import { BmbAlertCenterComponent } from './bmb-alert-center.component';
 import { BmbAlertCenterService } from './bmb-alert-center.service';
-import { BmbNativeModalService } from '../../services/modal/native-modal.service';
-import { BmbTranslationsService } from '../../services/translations/translations.service';
+import { BmbNativeModalService } from '../../../services/old/modal/native-modal.service';
+import { BmbTranslationsService } from '../../../services/translations/translations.service';
 import {
   IBmbDataAlert,
   IBmbDataAlertsParsed,

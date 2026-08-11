@@ -7,7 +7,7 @@ import {
 import { BmbSearchInputComponent } from './bmb-search-input.component';
 import { ComponentRef } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { IDropdownItem } from '../../types';
+import { IDropdownItem } from '../../../_shared/types';
 
 describe('BmbSearchInputComponent', () => {
   let component: BmbSearchInputComponent;

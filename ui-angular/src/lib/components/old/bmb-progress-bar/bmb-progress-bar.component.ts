@@ -8,7 +8,7 @@ import {
   output,
   effect,
 } from '@angular/core';
-import { IBmbTargetLink } from '@shared/types';
+import { IBmbTargetLink } from '../../../_shared/types';
 import { BmbTextLinkComponent } from '../bmb-text-link/bmb-text-link.component';
 import { BmbValueCounterComponent } from '../bmb-value-counter/bmb-value-counter.component';
 import { BmbLayoutDirective } from '../../../directives/old/bmb-layout/bmb-layout.directive';

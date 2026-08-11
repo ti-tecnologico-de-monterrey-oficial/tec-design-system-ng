@@ -23,6 +23,9 @@
     "jest.config.cts",
     "src/test-setup.ts",
     "**/*.stories.ts",
-    "**/*.stories.js"
+    "**/*.stories.js",
+    "**/*.figma.ts",
+    "**/*-story.utils.ts",
+    "**/*.story.ts"
   ]
 }

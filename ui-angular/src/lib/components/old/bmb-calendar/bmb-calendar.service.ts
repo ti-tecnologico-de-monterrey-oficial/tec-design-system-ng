@@ -1,7 +1,7 @@
 import { computed, Injectable, signal } from '@angular/core';
 import { DateTime, Interval } from 'luxon';
 import { IBmbCalendarEvent, IBmbParsedDates } from './types';
-import { IBmbColorSemantics } from '@shared/types';
+import { IBmbColorSemantics } from '../../../_shared/types';
 import { DEFAULT_DATE_FORMAT, getWeekDays } from './utils';
 
 const parseFromFormat = (dateString: string, format: string): DateTime => {

@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, output, input } from '@angular/core';
 import { OverlayModule } from '@angular/cdk/overlay';
-import { getUUID } from '@shared/logic/utils';
+import { getUUID } from '../../../_shared/logic/utils';
 
 @Component({
   selector: 'bmb-overlay',

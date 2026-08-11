@@ -13,11 +13,11 @@ import {
   contentChild,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SizeNames } from '@shared/types';
+import { SizeNames } from '../../../_shared/types/utils';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { BmbLayoutItemDirective } from '../../../directives/old/bmb-layout/bmb-layout-item.directive';
 import { BmbLayoutDirective } from '../../../directives/old/bmb-layout/bmb-layout.directive';
-import { IBmbContrast } from '@shared/types/colors';
+import { IBmbContrast } from '../../../_shared/types/colors';
 
 const calculateSize: any = (pixels: string[]): string => {
   return pixels.map((size) => `var(--bmb-radius-${size})`).join(' ');
@@ -53,6 +53,7 @@ export class BmbAccordionComponent implements OnInit, OnChanges {
 
   closed = output<void>();
   opened = output<void>();
+  // eslint-disable-next-line @angular-eslint/no-output-native
   onClick = output<MouseEvent>();
   imageNotFoundError = output<void>();
 

@@ -11,15 +11,12 @@ describe('BmbProjectionContentService', () => {
 
   beforeEach(() => {
     mockAppRef = {
-      attachView: () => {},
+      attachView: () => undefined,
     } as any;
 
     mockEnvironmentInjector = {} as any;
 
-    service = new BmbProjectionContentService(
-      mockAppRef,
-      mockEnvironmentInjector,
-    );
+    service = new BmbProjectionContentService();
     spyOn<any>(service, 'getOrCreatePortal').and.returnValue(null);
     service.closeContent();
   });

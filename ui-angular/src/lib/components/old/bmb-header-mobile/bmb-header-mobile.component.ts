@@ -10,7 +10,7 @@ import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { BmbContainerComponent } from '../../bmb-container/bmb-container.component';
 import { BmbLogoComponent } from '../bmb-logo/bmb-logo.component';
 import { BmbUserImageComponent } from '../bmb-user-image/bmb-user-image.component';
-import { IBmbTargetLink } from '@shared/types';
+import { IBmbTargetLink } from '../../../_shared/types';
 @Component({
   selector: 'bmb-header-mobile',
   standalone: true,

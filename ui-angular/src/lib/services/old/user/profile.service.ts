@@ -1,5 +1,5 @@
 import { Injectable, signal } from '@angular/core';
-import { IBmbUserInfo } from '@shared/types';
+import { IBmbUserInfo } from '../../../_shared/types';
 
 @Injectable({
   providedIn: 'root',

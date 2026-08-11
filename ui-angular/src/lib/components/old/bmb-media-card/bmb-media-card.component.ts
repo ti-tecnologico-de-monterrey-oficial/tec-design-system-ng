@@ -7,9 +7,9 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SizeNames, IBmbTargetLink } from '@shared/types';
+import { SizeNames, IBmbTargetLink } from '../../../_shared/types';
 import { BmbUserImageComponent } from '../bmb-user-image/bmb-user-image.component';
-import { isExternalLink } from '@shared/logic/utils';
+import { isExternalLink } from '../../../_shared/logic/utils';
 import { logDeprecatedInput } from '../../../_shared/logic/logDeprecatedInput';
 
 export type IBmbMediaCardType = 'inline' | 'floating' | 'author_detail';

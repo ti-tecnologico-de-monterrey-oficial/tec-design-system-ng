@@ -1,5 +1,5 @@
 import { TemplateRef } from '@angular/core';
-import { IBmbTargetLink } from '@shared/types';
+import { IBmbTargetLink } from '../../../_shared/types';
 
 export type TBmbMessageType =
   | 'text'
