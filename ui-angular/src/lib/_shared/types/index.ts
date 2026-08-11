@@ -13,6 +13,8 @@ export * from '../../components/old/bmb-sidebar/bmb-sidebar.interface';
 export * from '../../components/old/bmb-grades/types';
 export * from '../../components/old/bmb-tables/bmb-tables.interface';
 export * from '../../components/old/bmb-image/types';
+export * from '../types/components/grade-value';
+
 export * from './colors';
 export type { IBmbServerTableColumn } from './components/server-table';
 export type { IBmbNotificationCounterType } from './components/notification-counter';

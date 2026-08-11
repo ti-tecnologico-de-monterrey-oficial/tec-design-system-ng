@@ -67,6 +67,22 @@ export const appRoutes: Route[] = [
       ),
   },
   {
+    path: 'components/overlay',
+    title: 'BmbOverlay | Bamboo migration dashboard',
+    loadComponent: () =>
+      import('./components/overlay-page/overlay-page').then(
+        ({ OverlayPage }) => OverlayPage,
+      ),
+  },
+  {
+    path: 'components/check-external-link-button',
+    title: 'BmbCheckExternalLinkButton | Bamboo migration dashboard',
+    loadComponent: () =>
+      import(
+        './components/check-external-link-button-page/check-external-link-button-page'
+      ).then(({ CheckExternalLinkButtonPage }) => CheckExternalLinkButtonPage),
+  },
+  {
     path: 'components/pull-wedge',
     title: 'BmbPullWedge | Bamboo migration dashboard',
     loadComponent: () =>

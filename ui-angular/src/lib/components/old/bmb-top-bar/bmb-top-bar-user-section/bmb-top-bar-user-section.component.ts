@@ -15,7 +15,7 @@ import { BmbUserSummaryContentComponent } from '../../bmb-user-summary/bmb-user-
 import { BmbDropdownMenuComponent } from '../../bmb-dropdown-menu/bmb-dropdown-menu.component';
 import { IDropdownItem } from '@shared/types';
 import { BmbButtonIconComponent } from '../../bmb-button-icon/bmb-button-icon.component';
-import { BmbCheckExternalLinkButtonComponent } from '../../bmb-check-external-link-button/bmb-check-external-link-button.component';
+import { BmbCheckExternalLinkButtonComponent } from '../../../bmb-check-external-link-button/bmb-check-external-link-button.component';
 import { TranslatePipe } from '../../../../pipes/translations';
 
 @Component({
