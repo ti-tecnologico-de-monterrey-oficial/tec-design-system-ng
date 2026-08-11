@@ -40,7 +40,7 @@ export * from './lib/components/old/bmb-card-button/bmb-card-button.component';
 export * from './lib/components/old/bmb-dropdown-menu/bmb-dropdown-menu.component';
 export * from './lib/components/old/bmb-filter-card/bmb-filter-card.component';
 export * from './lib/components/old/bmb-inner-header/bmb-inner-header.component';
-export * from './lib/components/old/bmb-pull-wedge/bmb-pull-wedge.component';
+export * from './lib/components/bmb-pull-wedge/bmb-pull-wedge.component';
 export * from './lib/components/old/bmb-skeleton/bmb-skeleton.component';
 export * from './lib/components/old/bmb-tags/bmb-tags.component';
 export * from './lib/components/old/bmb-toast/bmb-toast.component';
@@ -136,7 +136,7 @@ export * from './lib/components/bmb-mitec-logo-animation/bmb-mitec-logo-animatio
 export * from './lib/components/old/bmb-profile/bmb-profile.component';
 export * from './lib/components/old/bmb-bookmark/bmb-bookmark.component';
 export * from './lib/components/old/bmb-text-editor/bmb-text-editor.component';
-export * from './lib/components/old/bmb-server-table/bmb-server-table.component';
+export * from './lib/components/bmb-server-table/bmb-server-table.component';
 export * from './lib/components/old/bmb-list-items/bmb-list-items.component';
 export * from './lib/components/old/bmb-image/bmb-image.component';
 export * from './lib/components/old/bmb-icon-status/bmb-icon-status.component';

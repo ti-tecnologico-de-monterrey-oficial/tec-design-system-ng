@@ -18,6 +18,11 @@ import {
   CdkDragEnd,
   CdkDragStart,
 } from '@angular/cdk/drag-drop';
+import {
+  getPullWedgeContentHeight,
+  getPullWedgeDragHeight,
+  getPullWedgeMaxDragHeight,
+} from '../../_shared/logic/components/pull-wedge';
 
 @Component({
   selector: 'bmb-pull-wedge',
@@ -44,11 +49,13 @@ export class BmbPullWedgeComponent implements AfterViewInit {
 
   constructor() {
     effect(() => {
-      this.maxDragHeight = this.initialHeight() * 0.51;
+      this.maxDragHeight = getPullWedgeMaxDragHeight(this.initialHeight());
 
-      this.contentHeight = this.isOpen()
-        ? this.initialHeight()
-        : this.minContentHeight();
+      this.contentHeight = getPullWedgeContentHeight(
+        this.isOpen(),
+        this.initialHeight(),
+        this.minContentHeight(),
+      );
 
       this.updateHeight();
     });
@@ -73,12 +80,14 @@ export class BmbPullWedgeComponent implements AfterViewInit {
   }
 
   onDragMoved(event: CdkDragMove) {
-    const newHeight = this.initialDragHeight + event.distance.y;
+    const newHeight = getPullWedgeDragHeight(
+      this.initialDragHeight,
+      event.distance.y,
+      this.initialHeight(),
+      this.minContentHeight(),
+    );
 
-    if (
-      newHeight >= this.minContentHeight() &&
-      newHeight <= this.initialHeight()
-    ) {
+    if (newHeight !== null) {
       this.contentHeight = newHeight;
       this.updateHeight();
     }
@@ -103,7 +112,11 @@ export class BmbPullWedgeComponent implements AfterViewInit {
 
     this.isOpen.set(open);
 
-    this.contentHeight = open ? this.initialHeight() : this.minContentHeight();
+    this.contentHeight = getPullWedgeContentHeight(
+      open,
+      this.initialHeight(),
+      this.minContentHeight(),
+    );
 
     this.updateHeight();
   }

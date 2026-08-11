@@ -6,9 +6,11 @@ import {
   ViewEncapsulation,
   computed,
 } from '@angular/core';
-import { IBmbContrast } from '../../_shared/types/colors';
 import { truncateGradeValue } from '../../_shared/logic';
-import { IBmbGradeType } from '../../_shared/types/components/grade-value';
+import type { IBmbContrast } from '../../_shared/types/colors';
+import type { IBmbGradeType } from '../../_shared/types/components/grade-value';
+
+export type { IBmbGradeType } from '../../_shared/types/components/grade-value';
 
 @Component({
   selector: 'bmb-grade-value',

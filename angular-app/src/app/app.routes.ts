@@ -82,5 +82,21 @@ export const appRoutes: Route[] = [
         './components/check-external-link-button-page/check-external-link-button-page'
       ).then(({ CheckExternalLinkButtonPage }) => CheckExternalLinkButtonPage),
   },
+  {
+    path: 'components/pull-wedge',
+    title: 'BmbPullWedge | Bamboo migration dashboard',
+    loadComponent: () =>
+      import('./components/pull-wedge/pull-wedge').then(
+        ({ PullWedgePage }) => PullWedgePage,
+      ),
+  },
+  {
+    path: 'components/server-table',
+    title: 'BmbServerTable | Bamboo migration dashboard',
+    loadComponent: () =>
+      import('./components/server-table/server-table').then(
+        ({ ServerTablePage }) => ServerTablePage,
+      ),
+  },
   { path: '**', redirectTo: 'components/carousel' },
 ];
