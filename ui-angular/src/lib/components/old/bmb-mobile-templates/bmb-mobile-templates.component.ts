@@ -14,7 +14,7 @@ import { BmbButtonDirective } from '../../../directives/old/bmb-button/button.di
 import {
   BmbCardComponent,
   BmbCardContentComponent,
-} from '../bmb-card/bmb-card.component';
+} from '../../bmb-card/bmb-card.component';
 import { BmbContainerButtonComponent } from '../bmb-container-button/bmb-container-button.component';
 import { BmbLoginOnboardingComponent } from '../bmb-login-onboarding/bmb-login-onboarding.component';
 import { BmbCalendarComponent } from '../bmb-calendar/bmb-calendar.component';

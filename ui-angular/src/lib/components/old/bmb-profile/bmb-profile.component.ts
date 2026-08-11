@@ -32,7 +32,7 @@ import { BmbCheckExternalLinkButtonComponent } from '../bmb-check-external-link-
 import {
   BmbCardComponent,
   BmbCardContentComponent,
-} from '../bmb-card/bmb-card.component';
+} from '../../bmb-card/bmb-card.component';
 import { BmbLayoutDirective } from '../../../directives/old/bmb-layout/bmb-layout.directive';
 import { BmbLayoutItemDirective } from '../../../directives/old/bmb-layout/bmb-layout-item.directive';
 import { BmbUserImageComponent } from '../bmb-user-image/bmb-user-image.component';

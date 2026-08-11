@@ -4,7 +4,7 @@ import { BmbIconStatusComponent } from '../../../../components/old/bmb-icon-stat
 import {
   BmbCardComponent,
   BmbCardContentComponent,
-} from '../../../../components/old/bmb-card/bmb-card.component';
+} from '../../../../components/bmb-card/bmb-card.component';
 import { BmbVerticalLayoutDirective } from './bmb-vertical-layout.directive';
 import { BmbLayoutDirective } from '../bmb-layout.directive';
 import { BmbLayoutItemDirective } from '../bmb-layout-item.directive';

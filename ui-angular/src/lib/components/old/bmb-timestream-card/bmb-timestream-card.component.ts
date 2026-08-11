@@ -18,7 +18,7 @@ import { BmbFilterCardComponent } from '../bmb-filter-card/bmb-filter-card.compo
 import {
   BmbCardComponent,
   BmbCardContentComponent,
-} from '../bmb-card/bmb-card.component';
+} from '../../bmb-card/bmb-card.component';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { IBmbControlType } from '../bmb-filter-card/bmb-filter-card.interface';
 import { timestreamFilter } from '../../../_shared/logic/timestreamFilters';

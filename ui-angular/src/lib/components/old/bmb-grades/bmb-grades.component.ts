@@ -19,7 +19,7 @@ import { BmbLayoutItemDirective } from '../../../directives/old/bmb-layout/bmb-l
 import { BmbLayoutDirective } from '../../../directives/old/bmb-layout/bmb-layout.directive';
 import { IBmbGrades, IBmbPartial } from './types';
 import { CommonModule } from '@angular/common';
-import { BmbGradeValueComponent } from '../bmb-grade-value/bmb-grade-value.component';
+import { BmbGradeValueComponent } from '../../bmb-grade-value/bmb-grade-value.component';
 import { BmbInnerHeaderComponent } from '../bmb-inner-header/bmb-inner-header.component';
 import { BmbAcademicProgressComponent } from '../bmb-academic-progress/bmb-academic-progress.component';
 import { IBmbNameValuePair } from '../../../_shared/types';

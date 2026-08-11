@@ -5,7 +5,7 @@ import { BmbDividerComponent } from '../components/bmb-divider/bmb-divider.compo
 import {
   BmbCardComponent,
   BmbCardContentComponent,
-} from '../components/old/bmb-card/bmb-card.component';
+} from '../components/bmb-card/bmb-card.component';
 import {
   getFoundationDescriptions,
   getGeneralDescription,

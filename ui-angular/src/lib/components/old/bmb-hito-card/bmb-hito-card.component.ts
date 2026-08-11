@@ -13,7 +13,7 @@ import {
 import {
   BmbCardComponent,
   BmbCardContentComponent,
-} from '../bmb-card/bmb-card.component';
+} from '../../bmb-card/bmb-card.component';
 import { CommonModule } from '@angular/common';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import {

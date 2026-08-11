@@ -6,9 +6,9 @@ import {
   ViewEncapsulation,
   computed,
 } from '@angular/core';
-import { IBmbContrast } from '../../../_shared/types/colors';
-
-export type IBmbGradeType = 'main-grade' | 'partial-grade';
+import { IBmbContrast } from '../../_shared/types/colors';
+import { truncateGradeValue } from '../../_shared/logic';
+import { IBmbGradeType } from '../../_shared/types/components/grade-value';
 
 @Component({
   selector: 'bmb-grade-value',
@@ -25,7 +25,6 @@ export class BmbGradeValueComponent {
   score = input<number | string | undefined>(0);
 
   truncatedScore = computed(() => {
-    const score = this.score();
-    return String(score ?? '').substring(0, 4);
+    return truncateGradeValue(this.score());
   });
 }

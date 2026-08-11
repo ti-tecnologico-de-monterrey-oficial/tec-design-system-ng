@@ -6,7 +6,7 @@ import {
 import {
   BmbCardComponent,
   BmbCardContentComponent,
-} from '../../bmb-card/bmb-card.component';
+} from '../../../bmb-card/bmb-card.component';
 import { BmbIconComponent } from '../../bmb-icon/bmb-icon.component';
 
 @Component({

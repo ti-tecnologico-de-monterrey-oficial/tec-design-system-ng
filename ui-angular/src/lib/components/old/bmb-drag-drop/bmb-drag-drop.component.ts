@@ -4,7 +4,7 @@ import { Component, signal } from '@angular/core';
 import {
   BmbCardComponent,
   BmbCardContentComponent,
-} from '../bmb-card/bmb-card.component';
+} from '../../bmb-card/bmb-card.component';
 
 import { BmbItemComponent } from '../bmb-item/bmb-item.component';
 
