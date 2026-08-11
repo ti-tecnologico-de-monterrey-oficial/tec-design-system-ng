@@ -12,7 +12,7 @@ import {
   ViewContainerRef,
   ViewEncapsulation,
 } from '@angular/core';
-import { BmbOverlayComponent } from '../../bmb-overlay/bmb-overlay.component';
+import { BmbOverlayComponent } from '../../../bmb-overlay/bmb-overlay.component';
 import { CommonModule } from '@angular/common';
 import { IBmbProjectedContentMode } from '../../../../services/old/projection/projection.service';
 

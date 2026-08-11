@@ -66,5 +66,21 @@ export const appRoutes: Route[] = [
         ({ CardPage }) => CardPage,
       ),
   },
+  {
+    path: 'components/overlay',
+    title: 'BmbOverlay | Bamboo migration dashboard',
+    loadComponent: () =>
+      import('./components/overlay-page/overlay-page').then(
+        ({ OverlayPage }) => OverlayPage,
+      ),
+  },
+  {
+    path: 'components/check-external-link-button',
+    title: 'BmbCheckExternalLinkButton | Bamboo migration dashboard',
+    loadComponent: () =>
+      import(
+        './components/check-external-link-button-page/check-external-link-button-page'
+      ).then(({ CheckExternalLinkButtonPage }) => CheckExternalLinkButtonPage),
+  },
   { path: '**', redirectTo: 'components/carousel' },
 ];

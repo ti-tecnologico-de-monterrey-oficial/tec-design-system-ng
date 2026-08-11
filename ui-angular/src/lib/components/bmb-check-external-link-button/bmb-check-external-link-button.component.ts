@@ -1,16 +1,14 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  contentChild,
   input,
   output,
-  TemplateRef,
   ViewEncapsulation,
 } from '@angular/core';
-import { isExternalLink } from '@shared/logic/utils';
+import { isButton, isButtonExternalLink } from '@shared/logic';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { IBmbTargetLink } from '@shared/types';
+import type { IBmbTargetLink } from '@shared/types';
 
 @Component({
   selector: 'bmb-check-external-link-button',
@@ -32,14 +30,12 @@ export class BmbCheckExternalLinkButtonComponent {
   buttonClick = output<MouseEvent>();
   buttonKeyPress = output<KeyboardEvent>();
 
-  commonTemplate = contentChild<TemplateRef<any>>('commonTemplate');
-
   isExternalLink(link: string): boolean {
-    return (!!link && isExternalLink(link)) || false;
+    return isButtonExternalLink(link);
   }
 
   isButton(isLink: boolean): boolean {
-    return !isLink;
+    return isButton(isLink);
   }
 
   handlePress(event: MouseEvent): void {

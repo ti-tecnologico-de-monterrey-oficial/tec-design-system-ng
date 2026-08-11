@@ -150,7 +150,7 @@ export * from './lib/components/old/bmb-ai-chat-bubble/bmb-ai-chat-bubble.compon
 export * from './lib/components/old/bmb-digital-id/bmb-digital-id.component';
 export * from './lib/components/old/bmb-sounds-card/bmb-sounds-card.component';
 export * from './lib/components/old/bmb-chevron-title-selector/bmb-chevron-title-selector.component';
-export * from './lib/components/old/bmb-overlay/bmb-overlay.component';
+export * from './lib/components/bmb-overlay/bmb-overlay.component';
 export * from './lib/components/old/bmb-icon-item/bmb-icon-item.component';
 export * from './lib/components/bmb-carousel/bmb-carousel.component';
 export * from './lib/components/old/bmb-action-menu/bmb-action-menu.component';
