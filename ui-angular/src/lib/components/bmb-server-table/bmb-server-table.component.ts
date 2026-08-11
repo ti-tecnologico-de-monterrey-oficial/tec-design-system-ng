@@ -1,13 +1,19 @@
-import { Component, input, output, effect } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  input,
+  output,
+  effect,
+} from '@angular/core';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { CommonModule } from '@angular/common';
 
-export interface IBmbServerTableColumn {
-  key: string;
-  label: string;
-}
+import { getServerTableDisplayedColumns } from '../../_shared/logic/components/server-table';
+import type { IBmbServerTableColumn } from '../../_shared/types/components/server-table';
+
+export type { IBmbServerTableColumn } from '../../_shared/types/components/server-table';
 
 @Component({
   selector: 'bmb-server-table',
@@ -20,6 +26,7 @@ export interface IBmbServerTableColumn {
   ],
   templateUrl: './bmb-server-table.component.html',
   styleUrl: './bmb-server-table.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BmbServerTableComponent {
   columns = input<IBmbServerTableColumn[]>([]);
@@ -51,12 +58,7 @@ export class BmbServerTableComponent {
 
   validateColumns(): void {
     const columns = this.columns();
-    if (columns && columns.length > 0) {
-      this.displayedColumns = columns.map((col) => col.key);
-    } else {
-      console.warn('Las columnas están vacías o mal configuradas.');
-      this.displayedColumns = [];
-    }
+    this.displayedColumns = getServerTableDisplayedColumns(columns);
   }
 
   onPageChange(event: any): void {
