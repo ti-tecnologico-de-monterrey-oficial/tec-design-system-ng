@@ -3,7 +3,7 @@ import { BmbContainerButtonComponent } from './bmb-container-button.component';
 import { CommonModule } from '@angular/common';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { BmbBadgeComponent } from '../bmb-badge/bmb-badge.component';
-import { BmbGradeValueComponent } from '../bmb-grade-value/bmb-grade-value.component';
+import { BmbGradeValueComponent } from '../../bmb-grade-value/bmb-grade-value.component';
 import { BmbLayoutItemDirective } from '../../directives/bmb-layout/bmb-layout-item.directive';
 import { BmbLayoutDirective } from '../../directives/bmb-layout/bmb-layout.directive';
 import { ComponentRef } from '@angular/core';
