@@ -7,3 +7,4 @@ export * from './components/pull-wedge';
 export * from './components/server-table';
 export * from './components/card';
 export * from './components/grade-value';
+export * from './components/check-external-link-button';

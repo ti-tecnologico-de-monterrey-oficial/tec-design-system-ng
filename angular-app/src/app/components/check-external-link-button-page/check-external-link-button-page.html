@@ -1,0 +1,66 @@
+<header class="page-header">
+  <p class="eyebrow">Componente migrado</p>
+  <h1>BmbCheckExternalLinkButton</h1>
+  <p>Compara su comportamiento como boton, enlace interno y enlace externo.</p>
+</header>
+
+<section class="playground" aria-labelledby="link-button-demo-heading">
+  <div class="controls">
+    <h2 id="link-button-demo-heading">Propiedades</h2>
+    <label for="link-mode">Modo</label>
+    <select
+      id="link-mode"
+      [value]="mode()"
+      (change)="setMode($any($event.target).value)"
+    >
+      @for (option of modes; track option) {
+      <option [value]="option">{{ option }}</option>
+      }
+    </select>
+    <label for="element-id">idElement</label>
+    <input
+      id="element-id"
+      [value]="id()"
+      (input)="setId($any($event.target).value)"
+    />
+    <label for="button-name">buttonName</label>
+    <input
+      id="button-name"
+      [value]="buttonName()"
+      (input)="setButtonName($any($event.target).value)"
+    />
+    <label for="target">target</label>
+    <select
+      id="target"
+      [value]="target()"
+      (change)="setTarget($any($event.target).value)"
+    >
+      @for (option of targets; track option) {
+      <option [value]="option">{{ option }}</option>
+      }
+    </select>
+    <label class="toggle">
+      <input
+        type="checkbox"
+        [checked]="disabled()"
+        (change)="setDisabled($any($event.target).checked)"
+      />
+      disabled
+    </label>
+    <p><strong>link:</strong> {{ link() || '(vacio)' }}</p>
+    <p><strong>Evento:</strong> {{ lastEvent() }}</p>
+  </div>
+  <div class="preview">
+    <bmb-check-external-link-button
+      [idElement]="id()"
+      [link]="link()"
+      [target]="target()"
+      [disabled]="disabled()"
+      [buttonName]="buttonName()"
+      (buttonPress)="registerEvent('buttonPress')"
+      (buttonClick)="registerEvent('buttonClick')"
+      (buttonKeyPress)="registerEvent('buttonKeyPress')"
+      >Probar {{ mode() }}</bmb-check-external-link-button
+    >
+  </div>
+</section>

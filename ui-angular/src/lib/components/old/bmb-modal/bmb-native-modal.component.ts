@@ -13,7 +13,7 @@ import {
   ViewContainerRef,
   ViewEncapsulation,
 } from '@angular/core';
-import { BmbOverlayComponent } from '../bmb-overlay/bmb-overlay.component';
+import { BmbOverlayComponent } from '../../bmb-overlay/bmb-overlay.component';
 import { BmbButtonDirective } from '../../../directives/old/bmb-button/button.directive';
 import { CommonModule } from '@angular/common';
 import { BmbThreeColsComponent } from '../bmb-three-cols/bmb-three-cols.component';

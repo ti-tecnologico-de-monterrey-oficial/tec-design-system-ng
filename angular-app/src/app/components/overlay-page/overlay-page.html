@@ -1,0 +1,27 @@
+<header class="page-header">
+  <p class="eyebrow">Componente migrado</p>
+  <h1>BmbOverlay</h1>
+  <p>Activa el overlay y valida su evento de seleccion.</p>
+</header>
+
+<section class="playground" aria-labelledby="overlay-demo-heading">
+  <div class="controls">
+    <h2 id="overlay-demo-heading">Propiedades</h2>
+    <label for="overlay-uid">uid</label>
+    <input
+      id="overlay-uid"
+      [value]="uid()"
+      (input)="setUid($any($event.target).value)"
+    />
+    <button type="button" (click)="open()">Abrir overlay</button>
+    <p><strong>active:</strong> {{ active() }}</p>
+    <p><strong>Evento:</strong> {{ lastClick() }}</p>
+  </div>
+  <div class="preview">
+    <p>
+      Usa el boton para mostrar el overlay. Haz clic sobre el para cerrarlo.
+    </p>
+  </div>
+</section>
+
+<bmb-overlay [active]="active()" [uid]="uid()" (onClick)="close($event)" />

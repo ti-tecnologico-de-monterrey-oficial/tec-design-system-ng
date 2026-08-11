@@ -28,7 +28,7 @@ import { BmbDividerComponent } from '../../bmb-divider/bmb-divider.component';
 import { BmbRadialComponent } from '../bmb-radial/bmb-radial.component';
 import { FormControl } from '@angular/forms';
 import { TranslatePipe } from '../../../pipes/translations';
-import { BmbCheckExternalLinkButtonComponent } from '../bmb-check-external-link-button/bmb-check-external-link-button.component';
+import { BmbCheckExternalLinkButtonComponent } from '../../bmb-check-external-link-button/bmb-check-external-link-button.component';
 import {
   BmbCardComponent,
   BmbCardContentComponent,
