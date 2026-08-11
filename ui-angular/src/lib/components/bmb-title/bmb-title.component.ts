@@ -5,8 +5,8 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { getClassNames as computeClassNames } from '../../../../../shared/logic/components/bmb-title';
-import type { IBmbFontWeightContent } from '../../../../../shared/types/components/bmb-title';
+import { getClassNames as computeClassNames } from '@shared/logic/components/bmb-title';
+import type { IBmbFontWeightContent } from '@shared/types/components/bmb-title';
 
 export type { IBmbFontWeightContent };
 

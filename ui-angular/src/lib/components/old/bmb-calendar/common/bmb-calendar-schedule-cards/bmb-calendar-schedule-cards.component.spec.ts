@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { BmbCalendarScheduleCardsComponent } from './bmb-calendar-schedule-cards.component';
 import { ComponentRef } from '@angular/core';
 import { DateTime } from 'luxon';
-import { BmbNativeModalService } from '../../../../services/modal/native-modal.service';
+import { BmbNativeModalService } from '../../../../../services/old/modal/native-modal.service';
 import { BmbCalendarComponentService } from '../../bmb-calendar.service';
 import { IBmbCalendarEvent } from '../../types';
 

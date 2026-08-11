@@ -5,10 +5,10 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
-import { IBmbTargetLink } from '@shared/types';
+import { IBmbTargetLink } from '../../../_shared/types';
 import { BmbCheckExternalLinkButtonComponent } from '../../bmb-check-external-link-button/bmb-check-external-link-button.component';
 import { CommonModule } from '@angular/common';
-import { getUUID } from '@shared/logic/utils';
+import { getUUID } from '../../../_shared/logic/utils';
 
 export type IBmbIconPosition = 'left' | 'right';
 export type IBmbTextLinkStyle = 'icon' | 'underlined';

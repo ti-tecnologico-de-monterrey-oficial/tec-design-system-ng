@@ -13,7 +13,7 @@ import {
   assignNewFormControl,
   newFormControlByType,
 } from '../../../_shared/logic/formControl';
-import { getUUID } from '@shared/logic/utils';
+import { getUUID } from '../../../_shared/logic/utils';
 import { BmbInputValidatorComponent } from '../bmb-input/bmb-input-validator/bmb-input-validator.component';
 import { TranslatePipe } from '../../../pipes/translations';
 

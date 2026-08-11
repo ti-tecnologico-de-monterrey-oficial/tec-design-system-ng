@@ -37,7 +37,7 @@ import {
   getCustomValidation,
   getCustomValidationMessage,
   getUUID,
-} from '@shared/logic/utils';
+} from '../../../_shared/logic/utils';
 import { BmbInputContentComponent } from '../bmb-input/bmb-input-content/bmb-input-content.component';
 import {
   assignNewFormControl,

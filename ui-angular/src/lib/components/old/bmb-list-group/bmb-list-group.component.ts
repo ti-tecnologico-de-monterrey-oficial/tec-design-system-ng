@@ -9,7 +9,7 @@ import {
   OnInit,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SizeNames } from '@shared/types';
+import { SizeNames } from '../../../_shared/types';
 import { BorderType } from './types';
 import { BmbListGroupStatusService } from './bmb-list-group.service';
 

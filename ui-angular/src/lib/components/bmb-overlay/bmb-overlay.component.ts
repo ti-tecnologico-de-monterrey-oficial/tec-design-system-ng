@@ -4,7 +4,7 @@ import {
   output,
   input,
 } from '@angular/core';
-import { getUUID } from '@shared/logic/utils';
+import { getUUID } from '../../_shared/logic/utils';
 
 @Component({
   selector: 'bmb-overlay',

@@ -17,7 +17,7 @@ import {
   assignNewFormControl,
   newFormControlByType,
 } from '../../../_shared/logic/formControl';
-import { getUUID } from '@shared/logic/utils';
+import { getUUID } from '../../../_shared/logic/utils';
 import { DateTime } from 'luxon';
 
 @Component({

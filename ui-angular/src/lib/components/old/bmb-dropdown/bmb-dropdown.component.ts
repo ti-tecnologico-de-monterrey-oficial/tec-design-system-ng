@@ -26,10 +26,10 @@ import {
   IBmbInputTooltipPosition,
 } from '../bmb-input/bmb-input.component';
 import { BmbDropdownContentComponent } from '../utils/bmb-dropdown-content/bmb-dropdown-content.component';
-import { IDropdownItem } from '@shared/types';
+import { IDropdownItem } from '../../../_shared/types';
 import { BmbInputContentComponent } from '../bmb-input/bmb-input-content/bmb-input-content.component';
 import { startWith } from 'rxjs';
-import { getUUID } from '@shared/logic/utils';
+import { getUUID } from '../../../_shared/logic/utils';
 import {
   assignNewFormControl,
   handleValidity,

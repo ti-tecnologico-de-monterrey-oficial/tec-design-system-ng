@@ -11,7 +11,7 @@ import {
   signal,
 } from '@angular/core';
 import { INotification } from '../../../components/old/bmb-push-notification/types';
-import { getUUID } from '@shared/logic/utils';
+import { getUUID } from '../../../_shared/logic/utils';
 import { BmbPortalComponent } from '../../../components/old/bmb-portal/bmb-portal.component';
 
 export type NotificationPositionX = 'left' | 'right';

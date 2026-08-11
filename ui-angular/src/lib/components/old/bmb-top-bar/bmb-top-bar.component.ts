@@ -11,9 +11,9 @@ import { CommonModule } from '@angular/common';
 import { IUserInformation } from './types';
 import { BmbTopBarUserSectionComponent } from './bmb-top-bar-user-section/bmb-top-bar-user-section.component';
 import { IBmbDataAlert } from '../bmb-alert-center/types';
-import { getMobileResolutionSize } from '@shared/logic/utils';
+import { getMobileResolutionSize } from '../../../_shared/logic/utils';
 import { BmbCheckExternalLinkButtonComponent } from '../../bmb-check-external-link-button/bmb-check-external-link-button.component';
-import { IBmbTargetLink } from '@shared/types';
+import { IBmbTargetLink } from '../../../_shared/types';
 
 export type { IUserInformation } from './types';
 

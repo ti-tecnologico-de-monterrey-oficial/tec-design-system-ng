@@ -9,8 +9,8 @@ import {
 } from '@angular/core';
 import { BmbHomeCardHeaderComponent } from './bmb-home-card-header/bmb-home-card-header.component';
 import { IBmbDataTopBar } from '../bmb-breadcrumb/bmb-breadcrumb.component';
-import { IBmbColor } from '@shared/types/colors';
-import { IBmbActionHeader, SizeNames } from '@shared/types';
+import { IBmbColor } from '../../../_shared/types/colors';
+import { IBmbActionHeader, SizeNames } from '../../../_shared/types';
 import { CommonModule } from '@angular/common';
 import { IBotType } from '../bmb-chat-bar/types';
 import { logDeprecatedInput } from '../../../_shared/logic/logDeprecatedInput';
