@@ -23,7 +23,7 @@ import { BmbCustomIconsComponent } from '../bmb-custom-icons/bmb-custom-icons.co
 import type { BmbCustomIconListType } from '../../../../../shared/types/components/bmb-custom-icons';
 import { BmbCustomIconList } from '../../../../../shared/types/components/bmb-custom-icons';
 import { A11yModule } from '@angular/cdk/a11y';
-import { getUUID } from '@shared/logic/utils';
+import { getUUID } from '../../../../../shared/logic/utils';
 import { BmbIconLogic } from '../../../../../shared/logic/components/icon';
 
 @Component({
