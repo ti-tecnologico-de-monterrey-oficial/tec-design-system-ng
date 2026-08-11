@@ -15,7 +15,7 @@ import {
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { buildErrorMessage, isImage } from '@shared/logic/utils';
-import { BmbNotificationCounterComponent } from '../bmb-notification-counter/bmb-notification-counter.component';
+import { BmbNotificationCounterComponent } from '../../bmb-notification-counter/bmb-notification-counter.component';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { BmbIconService } from '../../../services/icon/icon.service';
 import { sanitizeContent } from '../../../_shared/logic/sanitizeContent';

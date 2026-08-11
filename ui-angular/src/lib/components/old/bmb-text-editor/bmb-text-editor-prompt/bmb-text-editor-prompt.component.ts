@@ -2,7 +2,7 @@ import { Component, input, output } from '@angular/core';
 import {
   BmbCardComponent,
   BmbCardContentComponent,
-} from '../../bmb-card/bmb-card.component';
+} from '../../../bmb-card/bmb-card.component';
 import { BmbFormValidatorComponent } from '../../bmb-form-validator/bmb-form-validator.component';
 import { FormControl, FormGroup } from '@angular/forms';
 import { BmbButtonDirective } from '../../../../directives/old/bmb-button/button.directive';

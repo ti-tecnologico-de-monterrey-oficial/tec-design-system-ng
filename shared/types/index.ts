@@ -15,6 +15,7 @@ export * from '../../ui-angular/src/lib/components/old/bmb-tables/bmb-tables.int
 export * from '../../ui-angular/src/lib/components/old/bmb-image/types';
 export * from './colors';
 export type { IBmbServerTableColumn } from './components/server-table';
+export type { IBmbNotificationCounterType } from './components/notification-counter';
 export type {
   BmbIframeLoading,
   BmbIframeReferrerPolicy,

@@ -37,7 +37,7 @@ describe('BmbBottomNavigationBarComponent', () => {
   });
 
   it('should emit navigationBarEvents on option click', () => {
-    spyOn(component.navigationBarEvents, 'emit');
+    jest.spyOn(component.navigationBarEvents, 'emit');
     const event: any = 'back';
     component.onNavigationBarOptionClick(event);
     expect(component.navigationBarEvents.emit).toHaveBeenCalledWith(event);

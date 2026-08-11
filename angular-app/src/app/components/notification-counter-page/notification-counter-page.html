@@ -1,0 +1,38 @@
+<header class="page-header">
+  <p class="eyebrow">Componente migrado</p>
+  <h1>BmbNotificationCounter</h1>
+  <p>Cambia la cantidad y la apariencia para validar el contador.</p>
+</header>
+
+<section class="playground" aria-labelledby="notification-counter-demo-title">
+  <div class="controls">
+    <h2 id="notification-counter-demo-title">Propiedades</h2>
+
+    <label for="notification-counter-value">counter: {{ counter() }}</label>
+    <input
+      id="notification-counter-value"
+      type="range"
+      min="1"
+      max="150"
+      [value]="counter()"
+      (input)="setCounter(+$any($event.target).value)"
+    />
+
+    <label for="notification-counter-appearance">appearance</label>
+    <select
+      id="notification-counter-appearance"
+      [value]="appearance()"
+      (change)="setAppearance($any($event.target).value)"
+    >
+      @for (option of appearances; track option) {
+      <option [value]="option">{{ option }}</option>
+      }
+    </select>
+  </div>
+
+  <div class="preview">
+    <bmb-notification-counter [counter]="counter()" [appearance]="appearance()">
+      <span class="notification-icon" aria-hidden="true">!</span>
+    </bmb-notification-counter>
+  </div>
+</section>

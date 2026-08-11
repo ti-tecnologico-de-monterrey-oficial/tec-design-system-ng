@@ -234,7 +234,7 @@ describe('BmbDropdownContentComponent', () => {
     });
 
     it('should handle dropdown item click', () => {
-      spyOn(component.clickedItem, 'emit');
+      jest.spyOn(component.clickedItem, 'emit');
 
       component.handleDropdown(mockItems[0]);
 
@@ -243,7 +243,7 @@ describe('BmbDropdownContentComponent', () => {
     });
 
     it('should not emit or call action when item has no action', () => {
-      spyOn(component.clickedItem, 'emit');
+      jest.spyOn(component.clickedItem, 'emit');
       const itemWithoutAction = { ...mockItems[0], action: undefined };
 
       component.handleDropdown(itemWithoutAction);
@@ -252,7 +252,7 @@ describe('BmbDropdownContentComponent', () => {
     });
 
     it('should handle null/undefined item', () => {
-      spyOn(component.clickedItem, 'emit');
+      jest.spyOn(component.clickedItem, 'emit');
 
       component.handleDropdown(null as any);
       component.handleDropdown(undefined as any);
