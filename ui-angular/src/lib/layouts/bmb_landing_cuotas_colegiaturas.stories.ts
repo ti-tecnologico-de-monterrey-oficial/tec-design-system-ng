@@ -30,9 +30,9 @@ import * as sideBarStory from '../components/old/bmb-sidebar/bmb-sidebar.stories
 import * as homeCardStory from '../components/old/bmb-home-card/bmp-home-card.stories';
 import * as layoutStory from '../directives/old/bmb-layout/bmb-layout.stories';
 import * as layoutItemStory from '../directives/old/bmb-layout/bmb-layout.stories';
-import * as cardStory from '../components/old/bmb-card/bmb-card.stories';
-import * as cardHeaderStory from '../components/old/bmb-card/bmb-card.stories';
-import * as cardContentStory from '../components/old/bmb-card/bmb-card.stories';
+import * as cardStory from '../components/bmb-card/bmb-card.stories';
+import * as cardHeaderStory from '../components/bmb-card/bmb-card.stories';
+import * as cardContentStory from '../components/bmb-card/bmb-card.stories';
 import * as iconStory from '../components/bmb-icon/bmb-icon.stories';
 import * as buttonStory from '../directives/old/bmb-button/button.stories';
 import * as dropdownStory from '../components/old/bmb-dropdown/bmb-dropdown.stories';

@@ -5,7 +5,10 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { getLegendBulletClass, getLegendValueClass } from '../../_shared/logic/components/legend';
+import {
+  getLegendBulletClass,
+  getLegendValueClass,
+} from '../../_shared/logic/components/legend';
 import { IBmbLegendVariations } from '../../_shared/types/components/legend';
 
 @Component({
@@ -28,6 +31,6 @@ export class BmbLegendComponent {
   }
 
   getValueClass(): string {
-    return getLegendValueClass(this.indicatorAppearance(), this.isOperationState());
+    return getLegendValueClass(this.indicatorAppearance());
   }
 }

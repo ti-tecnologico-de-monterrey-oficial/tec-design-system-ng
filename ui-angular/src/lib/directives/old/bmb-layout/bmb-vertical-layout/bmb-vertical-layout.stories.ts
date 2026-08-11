@@ -12,7 +12,7 @@ import { BmbInnerHeaderComponent } from '../../../../components/old/bmb-inner-he
 import {
   BmbCardComponent,
   BmbCardContentComponent,
-} from '../../../../components/old/bmb-card/bmb-card.component';
+} from '../../../../components/bmb-card/bmb-card.component';
 import { BmbProgressBarComponent } from '../../../../components/old/bmb-progress-bar/bmb-progress-bar.component';
 import { BmbChevronTitleSelectorComponent } from '../../../../components/old/bmb-chevron-title-selector/bmb-chevron-title-selector.component';
 import { BmbLayoutDirective } from '../bmb-layout.directive';

@@ -64,4 +64,11 @@ describe('BmbGradeValueComponent', () => {
     expect(component.type()).toBe('partial-grade');
     expect(component.score()).toBe(75);
   });
+
+  it('should truncate long scores through shared logic', () => {
+    componentRef.setInput('score', '100.50');
+    fixture.detectChanges();
+
+    expect(component.truncatedScore()).toBe('100.');
+  });
 });
