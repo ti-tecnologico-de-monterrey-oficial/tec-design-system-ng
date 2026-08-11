@@ -16,7 +16,7 @@ import {
   IBmbHorizontalPosition,
   IButtonAppearance,
   IButtonSize,
-} from '@shared/types';
+} from '../../../_shared/types';
 
 @Directive({
   selector: '[bmbButton]',

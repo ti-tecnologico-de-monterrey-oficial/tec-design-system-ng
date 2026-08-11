@@ -32,7 +32,7 @@ import {
   getCustomValidationMessage,
   getUUID,
   isErrorMessageSet,
-} from '@shared/logic/utils';
+} from '../../../_shared/logic/utils';
 import {
   assignNewFormControl,
   newFormControlByType,

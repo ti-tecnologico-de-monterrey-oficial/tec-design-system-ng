@@ -20,7 +20,7 @@ import {
   IBmbImageInfo,
   IBmbLinkConfiguration,
   IDropdownItem,
-} from '@shared/types';
+} from '../../../_shared/types';
 import { BmbTextLinkComponent } from '../bmb-text-link/bmb-text-link.component';
 import { BmbBotIconComponent } from '../bmb-bot-icon/bmb-bot-icon.component';
 

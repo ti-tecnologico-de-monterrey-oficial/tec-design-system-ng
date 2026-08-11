@@ -1,6 +1,6 @@
 import { DateTime, Interval } from 'luxon';
 import { IBbmBgAppearance } from '../bmb-advertisement-card/types';
-import { IBmbColorSemantics } from '@shared/types/colors';
+import { IBmbColorSemantics } from '../../../_shared/types/colors';
 
 export type IBmbCalendarMicroProgram = {
   title: string;

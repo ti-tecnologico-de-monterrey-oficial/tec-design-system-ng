@@ -1,8 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { BmbDropdownContentComponent } from './bmb-dropdown-content.component';
-import { IDropdownItem } from '../../../types';
-import { TranslatePipe } from '../../../pipes/translations';
+import { IDropdownItem } from '../../../../_shared/types';
+import { TranslatePipe } from '../../../../pipes/translations';
 
 class MockTranslatePipe {
   transform(value: string): string {

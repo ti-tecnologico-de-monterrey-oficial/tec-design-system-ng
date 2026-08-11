@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { handleImageNotFoundError } from '@shared/logic/utils';
+import { handleImageNotFoundError } from '../../../_shared/logic/utils';
 import {
   ChangeDetectionStrategy,
   Component,
