@@ -7,7 +7,7 @@ import {
   IBmbStudentProfileData,
   IBmbTargetLink,
   IBmbUserData,
-} from '../../types';
+} from '../../../_shared/types';
 
 describe('BmbProfileComponent', () => {
   let component: BmbProfileComponent;

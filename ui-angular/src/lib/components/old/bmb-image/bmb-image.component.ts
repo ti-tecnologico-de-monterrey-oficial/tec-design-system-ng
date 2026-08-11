@@ -10,8 +10,8 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SizeNames } from '@shared/types';
-import { handleImageNotFoundError } from '@shared/logic/utils';
+import { SizeNames } from '../../../_shared/types';
+import { handleImageNotFoundError } from '../../../_shared/logic/utils';
 import { IBmbMediaCardLoading } from '../bmb-media-card/bmb-media-card.component';
 import { BmbImageItem } from './types';
 import { BmbButtonIconComponent } from '../bmb-button-icon/bmb-button-icon.component';

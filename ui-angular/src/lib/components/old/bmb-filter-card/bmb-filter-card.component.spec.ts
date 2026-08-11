@@ -8,7 +8,7 @@ import {
   IBmbOptionRule,
   IBmbVisibilityRule,
 } from './bmb-filter-card.interface';
-import { BmbNativeModalService } from '../../services/modal/native-modal.service';
+import { BmbNativeModalService } from '../../../services/old/modal/native-modal.service';
 
 describe('BmbFilterCardComponent', () => {
   beforeEach(async () => {

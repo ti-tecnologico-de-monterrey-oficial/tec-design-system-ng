@@ -1,8 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { BmbNotificationCardComponent } from './bmb-notification-card.component';
-import { BmbTranslationsService } from '../../services/translations/translations.service';
-import { BmbProjectionContentService } from '../../services/projection/projection.service';
-import { BmbNativeModalService } from '../../services/modal/native-modal.service';
+import { BmbTranslationsService } from '../../../services/translations/translations.service';
+import { BmbProjectionContentService } from '../../../services/old/projection/projection.service';
+import { BmbNativeModalService } from '../../../services/old/modal/native-modal.service';
 import { IBmbDataAlert, IBmbDataAlertsParsed } from '../bmb-alert-center/types';
 import { ComponentRef } from '@angular/core';
 import { DateTime } from 'luxon';

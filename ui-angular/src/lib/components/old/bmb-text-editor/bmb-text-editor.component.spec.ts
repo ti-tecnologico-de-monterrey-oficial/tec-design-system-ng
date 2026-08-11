@@ -3,7 +3,7 @@ import { FormControl } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ElementRef } from '@angular/core';
 import { BmbTextEditorComponent } from './bmb-text-editor.component';
-import { BmbProjectionContentService } from '../../services/projection/projection.service';
+import { BmbProjectionContentService } from '../../../services/old/projection/projection.service';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('BmbTextEditorComponent', () => {

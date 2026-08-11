@@ -4,7 +4,7 @@ import {
   input,
   ViewEncapsulation,
 } from '@angular/core';
-import { IBmbActionHeader, SizeNames } from '@shared/types';
+import { IBmbActionHeader, SizeNames } from '../../../_shared/types';
 import { CommonModule } from '@angular/common';
 import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
 import {

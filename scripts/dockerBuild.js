@@ -1,7 +1,7 @@
 const { spawn } = require('child_process');
 const fs = require('fs');
 
-const supportedVersions = ['18', '19', '20', '21'];
+const supportedVersions = ['20', '21', '22'];
 
 function runCommand(command, args) {
   return new Promise((resolve, reject) => {
@@ -32,7 +32,7 @@ async function runDockerCommands(version) {
       '-t',
       `angular-lib-${version}`,
       '-f',
-      `Dockerfile-${version}`,
+      `dockers/Dockerfile-${version}`,
       '.',
     ]);
     console.log('Docker image built successfully');
