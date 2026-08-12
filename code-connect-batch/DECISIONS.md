@@ -246,3 +246,18 @@ Every component assessed in this queue has a confirmed Angular equivalent. Previ
 
 - Figma node `5787:120268` exposes only `State=Full|Preview`, while public `BmbAdvertisementCardComponent` takes structured advertisement data plus title/subtitle. The Figma state represents internal expanded-card rendering, not a public Angular API.
 - Published facade intentionally emits no data. A truthful populated snippet needs semantic title/subtitle properties and repeatable advertisement data or slots; do not manufacture image URLs, destination links, or tab data from visible children.
+
+## Iframe — approximate coverage (published)
+
+- Figma node `596:122793` exposes only `Variant=Document|Img`; public `BmbIframeComponent` exposes required `src` plus optional `height`, `width`, `loading`, and `name`. Neither Figma variant represents a public Angular input.
+- Published canonical snippet supplies `src="https://example.com"`, a neutral documented URL required to render a valid iframe because Figma has no source property. It deliberately omits the visual `Document`/`Img` axis and nested header, icon, scrollbar, and controller composition. To make the mapping dynamic, Figma needs `Src`, `Name`, `Width`, `Height`, and `Loading` properties.
+
+## Push notification — composition coverage (published)
+
+- Figma node `158:44494` exposes `Type=Full Color|Simple` and extensive nested notification-item controls. Public `BmbPushNotificationComponent` has no inputs; it obtains items from `BmbNotificationService`.
+- Published facade is `<bmb-push-notification />`. `Type`, nested labels, actions, icon swaps, and visibility toggles cannot truthfully be emitted as public attributes. A populated template requires a canonical public notification payload/service example or a separately connectable notification-item API.
+
+## Sidebar — composition coverage (published)
+
+- Figma node `299:51502` exposes `Expanded=False|True`; public `BmbSidebarComponent` exposes `elements`, `position`, `componentTitle`, and `showHeaderForChildren`, but its `isOpen` state is internal and has no public `expanded` input.
+- Published facade is `<bmb-sidebar />`. Do not invent `[expanded]` from Figma. The visible menu rows represent structured `SidebarElement[][]` data, and Figma supplies neither a semantic data contract nor a true item slot. Add a data/slot contract and an API-aligned open-state property only if Engineering elects to make that state public.
