@@ -1,0 +1,8 @@
+{
+  "codeConnect": {
+    "include": ["**/*.figma.ts"],
+    "defaultBranch": "develop",
+    "label": "Angular",
+    "language": "html"
+  }
+}
