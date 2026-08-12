@@ -218,8 +218,8 @@ describe('BmbImageComponent', () => {
       { src: 'image2.jpg', alt: 'Image 2' },
     ];
 
-    const nextSpy = spyOn(component, 'next').and.callThrough();
-    const prevSpy = spyOn(component, 'prev').and.callThrough();
+    const nextSpy = jest.spyOn(component, 'next').and.callThrough();
+    const prevSpy = jest.spyOn(component, 'prev').and.callThrough();
 
     componentRef.setInput('images', images);
     componentRef.setInput('enableZoom', false);
@@ -278,7 +278,7 @@ describe('BmbImageComponent', () => {
   });
 
   it('should emit imageNotFoundError when image loading fails', () => {
-    const spy = spyOn(component.imageNotFoundError, 'emit');
+    const spy = jest.spyOn(component.imageNotFoundError, 'emit');
     component.handleImageNotFoundError('broken-image.jpg', new Event('error'));
 
     expect(spy).toHaveBeenCalled();

@@ -12,12 +12,12 @@ import {
 } from '../bmb-breadcrumb/bmb-breadcrumb.component';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { CommonModule } from '@angular/common';
-import { BmbContainerComponent } from '../bmb-container/bmb-container.component';
-import { isImage } from '@shared/logic/utils';
-import { IBmbColor } from '@shared/types/colors';
-import { getRGBColorKeyValue } from '@shared/logic/utils';
+import { BmbContainerComponent } from '../../bmb-container/bmb-container.component';
+import { isImage } from '../../../_shared/logic/utils';
+import { IBmbColor } from '../../../_shared/types/colors';
+import { getRGBColorKeyValue } from '../../../_shared/logic/utils';
 import { BmbUserImageComponent } from '../bmb-user-image/bmb-user-image.component';
-import { IBmbUserImageSize } from '@shared/types';
+import { IBmbUserImageSize } from '../../../_shared/types';
 import { logDeprecatedInput } from '../../../_shared/logic/logDeprecatedInput';
 import { BmbBoxIconComponent } from '../bmb-box-icon/bmb-box-icon.component';
 import { BmbBotIconComponent } from '../bmb-bot-icon/bmb-bot-icon.component';

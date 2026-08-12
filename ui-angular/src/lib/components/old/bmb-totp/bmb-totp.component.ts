@@ -6,6 +6,8 @@ import {
   input,
   output,
   computed,
+  inject,
+  OnInit,
 } from '@angular/core';
 import { Subject } from 'rxjs';
 import { CommonModule } from '@angular/common';
@@ -19,8 +21,8 @@ import {
   ReactiveFormsModule,
 } from '@angular/forms';
 import { BmbInputContentComponent } from '../bmb-input/bmb-input-content/bmb-input-content.component';
-import { BmbContainerComponent } from '../bmb-container/bmb-container.component';
-import { getUUID } from '@shared/logic/utils';
+import { BmbContainerComponent } from '../../bmb-container/bmb-container.component';
+import { getUUID } from '../../../_shared/logic/utils';
 import { TranslatePipe } from '../../../pipes/translations';
 
 @Component({
@@ -40,7 +42,7 @@ import { TranslatePipe } from '../../../pipes/translations';
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
-export class BmbTotpComponent {
+export class BmbTotpComponent implements OnInit{
   private destroy$ = new Subject<void>();
   subtitle = input<string>();
   instanceId = input<string>(getUUID());
@@ -57,19 +59,19 @@ export class BmbTotpComponent {
   handleSubmit = output<string>();
 
   codeForm!: FormGroup;
-  _maxCode: number = 6;
+  _maxCode = 6;
   codesArray = computed(() => {
     return Array.from({ length: this._maxCode }, (_, i) => i);
   });
 
-  constructor(private formBuilder: FormBuilder) {}
+  private formBuilder: FormBuilder = inject(FormBuilder);
 
   ngOnInit(): void {
     this.buildForm();
   }
 
   buildForm() {
-    let group: { [key: string]: FormControl } = {};
+    const group: { [key: string]: FormControl } = {};
     for (let i = 0; i < this._maxCode; i++) {
       group[`name_${this.instanceId()}_${i}`] = new FormControl('', [
         Validators.required,
@@ -135,7 +137,7 @@ export class BmbTotpComponent {
 
   @HostListener('paste', ['$event'])
   handlePaste(event: ClipboardEvent) {
-    let pasteData = event.clipboardData?.getData('text/plain');
+    const pasteData = event.clipboardData?.getData('text/plain');
     if (pasteData && pasteData.length === this._maxCode) {
       for (let i = 0; i < this._maxCode; i++) {
         const control = this.getFormControl(`name_${this.instanceId()}_${i}`);

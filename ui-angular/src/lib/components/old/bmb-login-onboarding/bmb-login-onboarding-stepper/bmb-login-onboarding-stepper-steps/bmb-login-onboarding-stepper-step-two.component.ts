@@ -3,6 +3,7 @@ import {
   Component,
   output,
   ViewEncapsulation,
+  inject,
 } from '@angular/core';
 import { BmbLoginOnboardingStepperStepComponent } from './bmb-login-onboarding-stepper-step.component';
 import { BmbTotpComponent } from '../../../bmb-totp/bmb-totp.component';
@@ -40,11 +41,11 @@ export class BmbLoginOnboardingStepperStepTwoComponent {
   handleContinueStep = output();
 
   error: IBmbError = { codeError: false, errorMessage: '' };
-  code: string = '';
-  maxCode: number = 6;
-  isContinueDisable: boolean = true;
+  code = '';
+  maxCode = 6;
+  isContinueDisable = true;
 
-  constructor(private loginOnboardingService: BmbLoginOnboardingService) {}
+  private loginOnboardingService: BmbLoginOnboardingService = inject(BmbLoginOnboardingService);
 
   getCodeError(): boolean {
     return this.error && this.error.codeError;

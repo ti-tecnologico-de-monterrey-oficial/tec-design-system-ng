@@ -13,11 +13,11 @@ import {
 import { CommonModule } from '@angular/common';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { BmbBadgeComponent } from '../../bmb-badge/bmb-badge.component';
-import { BmbGradeValueComponent } from '../bmb-grade-value/bmb-grade-value.component';
+import { BmbGradeValueComponent } from '../../bmb-grade-value/bmb-grade-value.component';
 import { BmbLayoutItemDirective } from '../../../directives/old/bmb-layout/bmb-layout-item.directive';
 import { BmbLayoutDirective } from '../../../directives/old/bmb-layout/bmb-layout.directive';
-import { IBbmBgAppearance, IBmbTargetLink, IDropdownItem } from '@shared/types';
-import { BmbCheckExternalLinkButtonComponent } from '../bmb-check-external-link-button/bmb-check-external-link-button.component';
+import { IBbmBgAppearance, IBmbTargetLink, IDropdownItem } from '../../../_shared/types';
+import { BmbCheckExternalLinkButtonComponent } from '../../bmb-check-external-link-button/bmb-check-external-link-button.component';
 import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
 import { BmbBookmarkComponent } from '../bmb-bookmark/bmb-bookmark.component';
 import { BmbUserImageComponent } from '../bmb-user-image/bmb-user-image.component';

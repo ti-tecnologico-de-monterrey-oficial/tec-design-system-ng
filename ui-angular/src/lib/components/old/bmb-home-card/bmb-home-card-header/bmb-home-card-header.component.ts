@@ -7,6 +7,7 @@ import {
   model,
   computed,
   effect,
+  inject,
 } from '@angular/core';
 import { IBmbDataTopBar } from '../../bmb-breadcrumb/bmb-breadcrumb.component';
 import { IBmbColor } from '@shared/types/colors';
@@ -15,7 +16,7 @@ import { BmbTitleContentComponent } from '../../bmb-title-content/bmb-title-cont
 import { BmbThreeColsComponent } from '../../bmb-three-cols/bmb-three-cols.component';
 import { BmbActionIconComponent } from '../../bmb-action-icon/bmb-action-icon.component';
 import { BmbNavigationBarComponent } from '../../bmb-navigation-bar/bmb-navigation-bar.component';
-import { BmbContainerComponent } from '../../bmb-container/bmb-container.component';
+import { BmbContainerComponent } from '../../../bmb-container/bmb-container.component';
 import { CommonModule } from '@angular/common';
 import { IBotType } from '../../bmb-chat-bar/types';
 import { logDeprecatedInput } from '../../../../_shared/logic/logDeprecatedInput';
@@ -59,7 +60,9 @@ export class BmbHomeCardHeaderComponent {
   onBack = output();
   onExpandClick = output();
 
-  constructor(private translationsService: BmbTranslationsService) {
+  private translationsService: BmbTranslationsService = inject(BmbTranslationsService);
+
+  constructor() {
     effect(() => {
       const deprecatedTitle = this.title();
       const newTitle = this.componentTitle();

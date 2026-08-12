@@ -1,8 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { BmbDropdownContentComponent } from './bmb-dropdown-content.component';
-import { IDropdownItem } from '../../../types';
-import { TranslatePipe } from '../../../pipes/translations';
+import { IDropdownItem } from '../../../../_shared/types';
+import { TranslatePipe } from '../../../../pipes/translations';
 
 class MockTranslatePipe {
   transform(value: string): string {
@@ -234,7 +234,7 @@ describe('BmbDropdownContentComponent', () => {
     });
 
     it('should handle dropdown item click', () => {
-      spyOn(component.clickedItem, 'emit');
+      jest.spyOn(component.clickedItem, 'emit');
 
       component.handleDropdown(mockItems[0]);
 
@@ -243,7 +243,7 @@ describe('BmbDropdownContentComponent', () => {
     });
 
     it('should not emit or call action when item has no action', () => {
-      spyOn(component.clickedItem, 'emit');
+      jest.spyOn(component.clickedItem, 'emit');
       const itemWithoutAction = { ...mockItems[0], action: undefined };
 
       component.handleDropdown(itemWithoutAction);
@@ -252,7 +252,7 @@ describe('BmbDropdownContentComponent', () => {
     });
 
     it('should handle null/undefined item', () => {
-      spyOn(component.clickedItem, 'emit');
+      jest.spyOn(component.clickedItem, 'emit');
 
       component.handleDropdown(null as any);
       component.handleDropdown(undefined as any);

@@ -2,9 +2,10 @@ import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
-  Inject,
+  inject,
   TemplateRef,
   ViewEncapsulation,
+  OnInit,
 } from '@angular/core';
 import {
   MatDialogRef,
@@ -33,14 +34,12 @@ import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.compo
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class BmbModalComponent {
-  svgUrl: string = 'assets/svg/';
+export class BmbModalComponent implements OnInit {
+  svgUrl = 'assets/svg/';
   modalTemplate: TemplateRef<any> | null = null;
 
-  constructor(
-    public dialogRef: MatDialogRef<BmbModalComponent>,
-    @Inject(MAT_DIALOG_DATA) public modalData: ModalDataConfig,
-  ) {}
+  public dialogRef: MatDialogRef<BmbModalComponent> = inject(MatDialogRef<BmbModalComponent>);
+  public modalData: ModalDataConfig = inject(MAT_DIALOG_DATA);
 
   ngOnInit() {
     const data: ModalDataConfig = this.getData();
@@ -70,10 +69,10 @@ export class BmbModalComponent {
   }
 
   getModalClasses(): string[] {
-    const baseClassName: string = 'bmb_modal';
+    const baseClassName = 'bmb_modal';
     const classNames: string[] = [baseClassName];
 
-    if (!!this.getData().size) {
+    if (this.getData().size) {
       return [...classNames, `${baseClassName}-size-${this.getData().size}`];
     }
 
@@ -81,10 +80,10 @@ export class BmbModalComponent {
   }
 
   getDescriptionClasses(sectionName: string): string[] {
-    const baseClassName: string = 'bmb_modal-content';
+    const baseClassName = 'bmb_modal-content';
     const classNames: string[] = [`${baseClassName}-${sectionName}`];
 
-    if (!!this.getData().scrollable) {
+    if (this.getData().scrollable) {
       return [...classNames, `${baseClassName}-scrollable`];
     }
 
@@ -92,9 +91,9 @@ export class BmbModalComponent {
   }
 
   getButtonClass(isSecondaryButton: boolean): string[] {
-    const data: ModalDataConfig = this.getData();
-    const footerClassName: string = 'bmb_modal-footer';
-    const baseClassName: string = `${footerClassName}-button`;
+    const data = this.getData();
+    const footerClassName = 'bmb_modal-footer';
+    const baseClassName = `${footerClassName}-button`;
     const classNames: string[] = [baseClassName];
 
     if (isSecondaryButton) {
@@ -103,7 +102,7 @@ export class BmbModalComponent {
     }
 
     if (data.type === 'alert') {
-      if (!!data.alertStyle) {
+      if (data.alertStyle) {
         return [...classNames, `${baseClassName}-${data.alertStyle}`];
       }
       return [...classNames, `${baseClassName}-neutral`];

@@ -3,6 +3,7 @@ import {
   Component,
   effect,
   ElementRef,
+  inject,
   input,
   output,
   ViewChild,
@@ -17,9 +18,9 @@ import { BmbDropdownContentComponent } from '../utils/bmb-dropdown-content/bmb-d
 import { BmbThreeColsComponent } from '../bmb-three-cols/bmb-three-cols.component';
 import { BmbTitleContentComponent } from '../bmb-title-content/bmb-title-content.component';
 import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
-import { isExternalLink } from '@shared/logic/utils';
-import { BmbContainerComponent } from '../bmb-container/bmb-container.component';
-import { IDropdownItem } from '@shared/types';
+import { isExternalLink } from '../../../_shared/logic/utils';
+import { BmbContainerComponent } from '../../bmb-container/bmb-container.component';
+import { IDropdownItem } from '../../../_shared/types';
 import { BmbProjectionContentService } from '../../../services/old/projection/projection.service';
 import { logDeprecatedInput } from '../../../_shared/logic/logDeprecatedInput';
 import { TranslatePipe } from '../../../pipes/translations';
@@ -54,7 +55,9 @@ export class BmbExternalLinkComponent {
 
   title = input<string>(); // deprecated
 
-  constructor(private projectionService: BmbProjectionContentService) {
+  private projectionService: BmbProjectionContentService = inject(BmbProjectionContentService);
+
+  constructor() {
     effect(() => {
       const deprecatedTitle = this.title();
       const newTitle = this.componentTitle();

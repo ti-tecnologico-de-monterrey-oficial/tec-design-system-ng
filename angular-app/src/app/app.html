@@ -1,2 +1,34 @@
-<app-nx-welcome></app-nx-welcome>
-<router-outlet></router-outlet>
+<header class="app-header">
+  <a class="brand" routerLink="/">Bamboo · Migración Angular</a>
+  <nav aria-label="Componentes migrados">
+    <a routerLink="/components/carousel" routerLinkActive="active">Carousel</a>
+    <a routerLink="/components/container" routerLinkActive="active"
+      >Container</a
+    >
+    <a routerLink="/components/divider" routerLinkActive="active">Divider</a>
+    <a routerLink="/components/mitec-logo-animation" routerLinkActive="active"
+      >MiTec logo</a
+    >
+    <a routerLink="/components/notification-counter" routerLinkActive="active"
+      >Notification counter</a
+    >
+    <a routerLink="/components/iframe" routerLinkActive="active">Iframe</a>
+    <a routerLink="/components/pull-wedge" routerLinkActive="active"
+      >Pull wedge</a
+    >
+    <a routerLink="/components/server-table" routerLinkActive="active"
+      >Server table</a
+    >
+    <a routerLink="/components/grade-value" routerLinkActive="active"
+      >Grade value</a
+    >
+    <a routerLink="/components/card" routerLinkActive="active">Card</a>
+    <a routerLink="/components/overlay" routerLinkActive="active">Overlay</a>
+    <a
+      routerLink="/components/check-external-link-button"
+      routerLinkActive="active"
+      >External link button</a
+    >
+  </nav>
+</header>
+<main><router-outlet /></main>

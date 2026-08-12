@@ -1,5 +1,5 @@
 import { BmbUserProfileService } from './profile.service';
-import { IBmbUserInfo } from '../../types';
+import { IBmbUserInfo } from '../../../_shared/types';
 
 describe('BmbUserProfileService', () => {
   let service: BmbUserProfileService;

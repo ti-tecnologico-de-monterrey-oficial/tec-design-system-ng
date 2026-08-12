@@ -1,6 +1,7 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  inject,
   output,
   ViewEncapsulation,
 } from '@angular/core';
@@ -40,9 +41,9 @@ export class BmbLoginOnboardingStepperStepOneComponent {
   handleContinueStep = output();
 
   userForm: FormGroup = new FormGroup({});
-  isEnabled: boolean = false;
+  isEnabled = false;
 
-  constructor(private loginOnboardingService: BmbLoginOnboardingService) {}
+  private loginOnboardingService: BmbLoginOnboardingService = inject(BmbLoginOnboardingService);
 
   getForgottenPassword(): IBmbLinkConfiguration {
     return this.loginOnboardingService.getLoginOnBoardingCustomization()

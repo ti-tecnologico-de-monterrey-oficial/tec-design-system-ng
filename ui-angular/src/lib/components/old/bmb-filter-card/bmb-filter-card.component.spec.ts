@@ -8,7 +8,7 @@ import {
   IBmbOptionRule,
   IBmbVisibilityRule,
 } from './bmb-filter-card.interface';
-import { BmbNativeModalService } from '../../services/modal/native-modal.service';
+import { BmbNativeModalService } from '../../../services/old/modal/native-modal.service';
 
 describe('BmbFilterCardComponent', () => {
   beforeEach(async () => {
@@ -478,7 +478,7 @@ describe('BmbFilterCardComponent', () => {
     it('should open modal when openModalComponent is called', () => {
       const fixture = TestBed.createComponent(BmbFilterCardComponent);
       const component = fixture.componentInstance;
-      const modalSpy = spyOn(
+      const modalSpy = jest.spyOn(
         component['modalService'],
         'openModal',
       ).and.returnValue('modal-123');
@@ -492,8 +492,8 @@ describe('BmbFilterCardComponent', () => {
     it('should submit form data and close modal on handleSubmit', () => {
       const fixture = TestBed.createComponent(BmbFilterCardComponent);
       const component = fixture.componentInstance;
-      const closeSpy = spyOn(component['modalService'], 'closeModal');
-      const emitSpy = spyOn(component.applyFilters, 'emit');
+      const closeSpy = jest.spyOn(component['modalService'], 'closeModal');
+      const emitSpy = jest.spyOn(component.applyFilters, 'emit');
 
       // Need to invoke detectChanges to initialize the form
       fixture.detectChanges();
@@ -651,7 +651,7 @@ describe('BmbFilterCardComponent', () => {
     });
 
     it('should log error for unsupported control type', () => {
-      const consoleSpy = spyOn(console, 'error');
+      const consoleSpy = jest.spyOn(console, 'error');
       const fixture = TestBed.createComponent(BmbFilterCardComponent);
       const component = fixture.componentInstance;
       fixture.componentRef.setInput('controlTypes', [
@@ -681,7 +681,7 @@ describe('BmbFilterCardComponent', () => {
     it('should explicitly emit reset event on clearAllFilters', () => {
       const fixture = TestBed.createComponent(BmbFilterCardComponent);
       const component = fixture.componentInstance;
-      const emitSpy = spyOn(component.resetFilters, 'emit');
+      const emitSpy = jest.spyOn(component.resetFilters, 'emit');
       fixture.detectChanges();
 
       component.clearAllFilters();

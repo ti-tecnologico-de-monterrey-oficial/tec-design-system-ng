@@ -16,7 +16,7 @@ import { Info } from 'luxon';
 import { orderDayNames } from '@shared/logic/utils';
 import { BmbInnerHeaderComponent } from '../../../bmb-inner-header/bmb-inner-header.component';
 import { BmbChevronTitleSelectorComponent } from '../../../bmb-chevron-title-selector/bmb-chevron-title-selector.component';
-import { BmbPullWedgeComponent } from '../../../bmb-pull-wedge/bmb-pull-wedge.component';
+import { BmbPullWedgeComponent } from '../../../../bmb-pull-wedge/bmb-pull-wedge.component';
 import { BmbTranslationsService } from '../../../../../services/translations/translations.service';
 import { TranslatePipe } from '../../../../../pipes/translations';
 import { BmbCalendarComponentService } from '../../bmb-calendar.service';
@@ -75,7 +75,9 @@ export class BmbCalendarTemplateMobileComponent {
 
   modalId = signal<string | null>(null);
 
-  private translationsService: BmbTranslationsService = inject(BmbTranslationsService);
+  private translationsService: BmbTranslationsService = inject(
+    BmbTranslationsService,
+  );
 
   handleClose() {
     this.onClose.emit('close');

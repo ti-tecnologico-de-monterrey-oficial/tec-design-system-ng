@@ -2,12 +2,13 @@ import {
   ChangeDetectionStrategy,
   Component,
   effect,
+  inject,
   input,
   output,
   ViewEncapsulation,
 } from '@angular/core';
 import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
-import { BmbDividerComponent } from '../bmb-divider/bmb-divider.component';
+import { BmbDividerComponent } from '../../bmb-divider/bmb-divider.component';
 import { BmbDotPaginatorComponent } from '../bmb-dot-paginator/bmb-dot-paginator.component';
 import { BmbButtonDirective } from '../../../directives/old/bmb-button/button.directive';
 import { CommonModule } from '@angular/common';
@@ -56,7 +57,9 @@ export class BmbNoticeCardComponent {
 
   activeIndex = 0;
 
-  constructor(private readonly sanitizer: DomSanitizer) {
+  private readonly sanitizer: DomSanitizer = inject(DomSanitizer);
+
+  constructor() {
     effect(() => {
       const deprecatedTitle = this.title();
       const newTitle = this.componentTitle();

@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { BmbTotpComponent } from './bmb-totp.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
-import { BmbButtonDirective } from '../../directives/bmb-button/button.directive';
+import { BmbButtonDirective } from '../../../directives/old/bmb-button/button.directive';
 import { CommonModule } from '@angular/common';
 import { ComponentRef } from '@angular/core';
 
@@ -38,7 +38,7 @@ describe('BmbTotpComponent', () => {
   });
 
   it('should emit handleSubmit with code on valid form submission', () => {
-    spyOn(component.handleSubmit, 'emit');
+    jest.spyOn(component.handleSubmit, 'emit');
     component.codeForm.setValue({
       name_totp_0: '1',
       name_totp_1: '2',
@@ -52,7 +52,7 @@ describe('BmbTotpComponent', () => {
   });
 
   it('should emit handleSubmit with empty string on invalid form submission', () => {
-    spyOn(component.handleSubmit, 'emit');
+    jest.spyOn(component.handleSubmit, 'emit');
     component.codeForm.setValue({
       name_totp_0: '',
       name_totp_1: '',
@@ -80,7 +80,7 @@ describe('BmbTotpComponent', () => {
       clipboardData: new DataTransfer(),
     });
     clipboardEvent.clipboardData?.setData('text/plain', '123456');
-    spyOn(clipboardEvent, 'preventDefault');
+    jest.spyOn(clipboardEvent, 'preventDefault');
     component.handlePaste(clipboardEvent);
     expect(component.codeForm.value).toEqual({
       name_totp_0: '1',

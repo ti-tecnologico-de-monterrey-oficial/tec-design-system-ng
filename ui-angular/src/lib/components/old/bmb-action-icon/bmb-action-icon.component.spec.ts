@@ -24,13 +24,13 @@ describe('BmbActionIconComponent', () => {
   });
 
   it('should emit buttonPress on handlePress', () => {
-    spyOn(component.buttonPress, 'emit');
+    jest.spyOn(component.buttonPress, 'emit');
     component.handlePress();
     expect(component.buttonPress.emit).toHaveBeenCalled();
   });
 
   it('should emit buttonClick on handleClick', () => {
-    spyOn(component.buttonClick, 'emit');
+    jest.spyOn(component.buttonClick, 'emit');
     component.handleClick();
     expect(component.buttonClick.emit).toHaveBeenCalled();
   });

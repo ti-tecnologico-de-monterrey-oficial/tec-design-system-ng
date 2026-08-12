@@ -4,13 +4,14 @@ import {
   createComponent,
   EmbeddedViewRef,
   EnvironmentInjector,
-  Inject,
+  inject,
+  Injector,
   Injectable,
-  Optional,
+  ProviderToken,
   signal,
 } from '@angular/core';
 import { INotification } from '../../../components/old/bmb-push-notification/types';
-import { getUUID } from '@shared/logic/utils';
+import { getUUID } from '../../../_shared/logic/utils';
 import { BmbPortalComponent } from '../../../components/old/bmb-portal/bmb-portal.component';
 
 export type NotificationPositionX = 'left' | 'right';
@@ -23,15 +24,19 @@ export class BmbNotificationService {
   readonly notificationList = signal<INotification[]>([]);
   private portalComponentRef: ComponentRef<BmbPortalComponent> | null = null;
 
-  constructor(
-    private appRef: ApplicationRef,
-    private environmentInjector: EnvironmentInjector,
-    @Inject('positionX') @Optional() public positionX?: NotificationPositionX,
-    @Inject('positionY') @Optional() public positionY?: NotificationPositionY,
-  ) {
-    this.positionX = positionX || 'right';
-    this.positionY = positionY || 'top';
-  }
+  private readonly appRef: ApplicationRef = inject(ApplicationRef);
+  private readonly environmentInjector: EnvironmentInjector = inject(EnvironmentInjector);
+  private readonly injector: Injector = inject(Injector);
+  public readonly positionX: NotificationPositionX =
+    this.injector.get<NotificationPositionX>(
+      'positionX' as unknown as ProviderToken<NotificationPositionX>,
+      'right',
+    );
+  public readonly positionY: NotificationPositionY =
+    this.injector.get<NotificationPositionY>(
+      'positionY' as unknown as ProviderToken<NotificationPositionY>,
+      'top',
+    );
 
   private getOrCreatePortal(): BmbPortalComponent {
     if (this.portalComponentRef) {
@@ -56,7 +61,7 @@ export class BmbNotificationService {
     this.appRef.attachView(this.portalComponentRef.hostView);
 
     const hostDomElem = (
-      this.portalComponentRef.hostView as EmbeddedViewRef<any>
+      this.portalComponentRef.hostView as EmbeddedViewRef<unknown>
     ).rootNodes[0] as HTMLElement;
     document.body.appendChild(hostDomElem);
     return this.portalComponentRef.instance;

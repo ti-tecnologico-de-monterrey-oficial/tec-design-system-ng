@@ -4,25 +4,27 @@ import {
   effect,
   input,
   OnInit,
+  AfterViewInit,
   output,
   signal,
   TemplateRef,
   ViewChild,
   ViewEncapsulation,
+  inject,
 } from '@angular/core';
 import { BmbChevronTitleSelectorComponent } from '../bmb-chevron-title-selector/bmb-chevron-title-selector.component';
 import { BmbContainerButtonComponent } from '../bmb-container-button/bmb-container-button.component';
-import { BmbDividerComponent } from '../bmb-divider/bmb-divider.component';
+import { BmbDividerComponent } from '../../bmb-divider/bmb-divider.component';
 import { BmbLayoutItemDirective } from '../../../directives/old/bmb-layout/bmb-layout-item.directive';
 import { BmbLayoutDirective } from '../../../directives/old/bmb-layout/bmb-layout.directive';
 import { IBmbGrades, IBmbPartial } from './types';
 import { CommonModule } from '@angular/common';
-import { BmbGradeValueComponent } from '../bmb-grade-value/bmb-grade-value.component';
+import { BmbGradeValueComponent } from '../../bmb-grade-value/bmb-grade-value.component';
 import { BmbInnerHeaderComponent } from '../bmb-inner-header/bmb-inner-header.component';
 import { BmbAcademicProgressComponent } from '../bmb-academic-progress/bmb-academic-progress.component';
-import { IBmbNameValuePair } from '@shared/types';
-import { BmbContainerComponent } from '../bmb-container/bmb-container.component';
-import { buildErrorMessage } from '@shared/logic/utils';
+import { IBmbNameValuePair } from '../../../_shared/types';
+import { BmbContainerComponent } from '../../bmb-container/bmb-container.component';
+import { buildErrorMessage } from '../../../_shared/logic/utils';
 import { BmbTitleContentComponent } from '../bmb-title-content/bmb-title-content.component';
 import { IBmbNativeModal } from '../bmb-modal/bmb-modal.interface';
 import { BmbNativeModalService } from '../../../services/old/modal/native-modal.service';
@@ -49,7 +51,7 @@ import { logDeprecatedInput } from '../../../_shared/logic/logDeprecatedInput';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class BmbGradesComponent implements OnInit {
+export class BmbGradesComponent implements OnInit, AfterViewInit {
   grades = input<IBmbGrades[]>([]);
   isMicro = input<boolean>();
   gradeTitle = input<string>();
@@ -62,7 +64,7 @@ export class BmbGradesComponent implements OnInit {
 
   closeGrades = output();
 
-  showPrincipalDetail: boolean = false;
+  showPrincipalDetail = false;
   partials!: IBmbPartial[];
   gradeIndex = signal<number>(0);
   periodIndex = signal<number>(0);
@@ -73,7 +75,7 @@ export class BmbGradesComponent implements OnInit {
 
   ngOnInit() {
     if (this.isMicro()) {
-      let inputs: string[] = [];
+      const inputs: string[] = [];
 
       if (!this.gradeTitle()) inputs.push('gradeTitle');
       if (!this.componentTitle() && !this.title()) inputs.push('title');
@@ -97,7 +99,9 @@ export class BmbGradesComponent implements OnInit {
     }
   }
 
-  constructor(private modalService: BmbNativeModalService) {
+  private modalService = inject(BmbNativeModalService);
+
+  constructor() {
     effect(() => {
       const deprecatedTitle = this.title();
       const newTitle = this.componentTitle();

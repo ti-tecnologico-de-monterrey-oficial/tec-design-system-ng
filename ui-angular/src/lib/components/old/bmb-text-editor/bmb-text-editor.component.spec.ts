@@ -3,7 +3,7 @@ import { FormControl } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ElementRef } from '@angular/core';
 import { BmbTextEditorComponent } from './bmb-text-editor.component';
-import { BmbProjectionContentService } from '../../services/projection/projection.service';
+import { BmbProjectionContentService } from '../../../services/old/projection/projection.service';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('BmbTextEditorComponent', () => {
@@ -87,7 +87,7 @@ describe('BmbTextEditorComponent', () => {
     });
 
     it('should update form control when content changes', () => {
-      spyOn(component, 'updateContent').and.callThrough();
+      jest.spyOn(component, 'updateContent').and.callThrough();
 
       // Mock the editor element
       const mockEditor = {
@@ -107,8 +107,8 @@ describe('BmbTextEditorComponent', () => {
   describe('Editor Commands', () => {
     beforeEach(() => {
       fixture.detectChanges();
-      spyOn(document, 'execCommand').and.returnValue(true);
-      spyOn(component, 'updateContent');
+      jest.spyOn(document, 'execCommand').and.returnValue(true);
+      jest.spyOn(component, 'updateContent');
     });
 
     it('should execute bold command', () => {
@@ -152,7 +152,7 @@ describe('BmbTextEditorComponent', () => {
   describe('Alignment Methods', () => {
     beforeEach(() => {
       fixture.detectChanges();
-      spyOn(component, 'execCommand');
+      jest.spyOn(component, 'execCommand');
     });
 
     it('should apply left alignment', () => {
@@ -203,7 +203,7 @@ describe('BmbTextEditorComponent', () => {
           .createSpy('getRangeAt')
           .and.returnValue(new Range()),
       };
-      spyOn(window, 'getSelection').and.returnValue(mockSelection as any);
+      jest.spyOn(window, 'getSelection').and.returnValue(mockSelection as any);
     });
 
     it('should not open link prompt', () => {
@@ -221,7 +221,7 @@ describe('BmbTextEditorComponent', () => {
     });
 
     it('should handle close prompt for link', () => {
-      spyOn(component, 'insertLink');
+      jest.spyOn(component, 'insertLink');
 
       const values = {
         type: 'link',
@@ -249,7 +249,7 @@ describe('BmbTextEditorComponent', () => {
   describe('Link Insertion', () => {
     beforeEach(() => {
       fixture.detectChanges();
-      spyOn(component, 'execCommand');
+      jest.spyOn(component, 'execCommand');
     });
 
     it('should not insert link without URL', () => {
@@ -261,7 +261,7 @@ describe('BmbTextEditorComponent', () => {
     });
 
     it('should not insert link without selection', () => {
-      spyOn(window, 'getSelection').and.returnValue(null);
+      jest.spyOn(window, 'getSelection').and.returnValue(null);
 
       const values = { prompt_url: 'https://example.com' };
 
@@ -328,8 +328,8 @@ describe('BmbTextEditorComponent', () => {
     });
 
     it('should insert table when valid dimensions', () => {
-      spyOn(component, 'insertHtml');
-      spyOn(component, 'closeTableDialog');
+      jest.spyOn(component, 'insertHtml');
+      jest.spyOn(component, 'closeTableDialog');
 
       component.tableRows = 2;
       component.tableColumns = 3;
@@ -344,7 +344,7 @@ describe('BmbTextEditorComponent', () => {
   describe('Event Handlers', () => {
     beforeEach(() => {
       fixture.detectChanges();
-      spyOn(component, 'execCommand');
+      jest.spyOn(component, 'execCommand');
     });
 
     it('should handle select change events', () => {
@@ -392,7 +392,7 @@ describe('BmbTextEditorComponent', () => {
         getRangeAt: jasmine.createSpy('getRangeAt'),
       };
 
-      spyOn(window, 'getSelection').and.returnValue(mockSelection as any);
+      jest.spyOn(window, 'getSelection').and.returnValue(mockSelection as any);
 
       component.detectAlignment();
 

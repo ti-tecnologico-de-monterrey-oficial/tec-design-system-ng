@@ -8,12 +8,12 @@ import {
   signal,
   ViewEncapsulation,
 } from '@angular/core';
-import { BmbCheckExternalLinkButtonComponent } from '../../bmb-check-external-link-button/bmb-check-external-link-button.component';
+import { BmbCheckExternalLinkButtonComponent } from '../../../bmb-check-external-link-button/bmb-check-external-link-button.component';
 import { BmbIconComponent } from '../../bmb-icon/bmb-icon.component';
 import { IDropdownItem } from '@shared/types';
 import { CommonModule } from '@angular/common';
 import { TranslatePipe } from '../../../../pipes/translations';
-import { BmbDividerComponent } from '../../bmb-divider/bmb-divider.component';
+import { BmbDividerComponent } from '../../../bmb-divider/bmb-divider.component';
 
 @Component({
   selector: 'bmb-dropdown-content',

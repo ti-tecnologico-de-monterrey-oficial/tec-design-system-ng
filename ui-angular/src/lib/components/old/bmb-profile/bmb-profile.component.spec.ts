@@ -7,7 +7,7 @@ import {
   IBmbStudentProfileData,
   IBmbTargetLink,
   IBmbUserData,
-} from '../../types';
+} from '../../../_shared/types';
 
 describe('BmbProfileComponent', () => {
   let component: BmbProfileComponent;
@@ -49,7 +49,7 @@ describe('BmbProfileComponent', () => {
   });
 
   it('should emit handleCloseSession when closeSession is called', () => {
-    spyOn(component.handleCloseSession, 'emit');
+    jest.spyOn(component.handleCloseSession, 'emit');
     component.closeSession();
     expect(component.handleCloseSession.emit).toHaveBeenCalled();
   });

@@ -1,11 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { Component, input } from '@angular/core';
 import { Meta, moduleMetadata, StoryObj } from '@storybook/angular';
-import { BmbDividerComponent } from '../components/old/bmb-divider/bmb-divider.component';
+import { BmbDividerComponent } from '../components/bmb-divider/bmb-divider.component';
 import {
   BmbCardComponent,
   BmbCardContentComponent,
-} from '../components/old/bmb-card/bmb-card.component';
+} from '../components/bmb-card/bmb-card.component';
 import {
   getFoundationDescriptions,
   getGeneralDescription,
@@ -35,7 +35,7 @@ import {
       [ngStyle]="{
         padding: 'var(--bmb-padding-' + padding() + ')',
         margin: 'var(--bmb-margin-' + margin() + ')',
-        gap: 'var(--bmb-gap-' + gap() + ')'
+        gap: 'var(--bmb-gap-' + gap() + ')',
       }"
       style="border: var(--bmb-border-general-contrasts-50-1-solid); text-align: center; display: flex; flex-wrap: wrap;"
     >

@@ -11,7 +11,7 @@ import { CommonModule } from '@angular/common';
 import { BmbFocusElementComponent } from '../bmb-focus-element/bmb-focus-element.component';
 import { BmbLayoutDirective } from '../../../directives/old/bmb-layout/bmb-layout.directive';
 import { BmbLayoutItemDirective } from '../../../directives/old/bmb-layout/bmb-layout-item.directive';
-import { BmbDividerComponent } from '../bmb-divider/bmb-divider.component';
+import { BmbDividerComponent } from '../../bmb-divider/bmb-divider.component';
 import { BmbTooltipComponent } from '../bmb-tooltip/bmb-tooltip.component';
 import {
   BmbInputComponent,
@@ -21,7 +21,7 @@ import { BmbButtonDirective } from '../../../directives/old/bmb-button/button.di
 import { BmbThreeColsComponent } from '../bmb-three-cols/bmb-three-cols.component';
 import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
 import { BmbTitleContentComponent } from '../bmb-title-content/bmb-title-content.component';
-import { BmbContainerComponent } from '../bmb-container/bmb-container.component';
+import { BmbContainerComponent } from '../../bmb-container/bmb-container.component';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { logDeprecatedInput } from '../../../_shared/logic/logDeprecatedInput';
 import { TranslatePipe } from '../../../pipes/translations';

@@ -5,17 +5,12 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
+// import { getClassNames as computeClassNames } from '@shared/logic/components/bmb-title';
+// import type { IBmbFontWeightContent } from '@shared/types/components/bmb-title';
+import { getClassNames as computeClassNames } from '../../../_shared/logic/components/bmb-title';
+import type { IBmbFontWeightContent } from '../../../_shared/types/components/bmb-title';
 
-export type IBmbFontWeightContent =
-  | '100'
-  | '200'
-  | '300'
-  | '400'
-  | '500'
-  | '600'
-  | '700'
-  | '800'
-  | '900';
+export type { IBmbFontWeightContent };
 
 @Component({
   selector: 'bmb-title',
@@ -37,17 +32,14 @@ export class BmbTitleComponent {
 
   getClassNames(
     mainName: string,
-    size: string = '',
-    fontWeight: string = '',
+    size = '',
+    fontWeight = '',
   ): string[] {
-    const classes = [];
-
-    if (size) classes.push(`${mainName}-${size}`);
-
-    if (fontWeight) classes.push(`${mainName}-${fontWeight}`);
-
-    if (this.isCenterContent()) classes.push(`${mainName}-centered`);
-
-    return classes;
+    return computeClassNames(
+      mainName,
+      size,
+      fontWeight as IBmbFontWeightContent,
+      this.isCenterContent(),
+    );
   }
 }

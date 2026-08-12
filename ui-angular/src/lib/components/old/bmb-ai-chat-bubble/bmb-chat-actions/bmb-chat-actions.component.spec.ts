@@ -4,7 +4,7 @@ import { By } from '@angular/platform-browser';
 
 import { ChatActionsComponent } from './bmb-chat-actions.component';
 import { BmbTextMessage } from '../types';
-import { BmbTranslationsService } from '../../../services/translations/translations.service';
+import { BmbTranslationsService } from '../../../../services/translations/translations.service';
 
 let componentRef: ComponentRef<ChatActionsComponent>;
 
@@ -80,7 +80,7 @@ describe('ChatActionsComponent', () => {
   });
 
   it('should emit action event', () => {
-    spyOn(component.actionTriggered, 'emit');
+    jest.spyOn(component.actionTriggered, 'emit');
 
     const event = new MouseEvent('click');
 
@@ -162,7 +162,7 @@ describe('ChatActionsComponent', () => {
   });
 
   it('should trigger action on click', () => {
-    spyOn(component, 'triggerAction' as never);
+    jest.spyOn(component, 'triggerAction' as never);
 
     const icon = fixture.debugElement.query(By.css('bmb-icon'));
 
@@ -172,7 +172,7 @@ describe('ChatActionsComponent', () => {
   });
 
   it('should trigger action on enter keydown', () => {
-    spyOn(component, 'triggerAction' as never);
+    jest.spyOn(component, 'triggerAction' as never);
 
     const icon = fixture.debugElement.query(By.css('bmb-icon'));
 
@@ -187,7 +187,7 @@ describe('ChatActionsComponent', () => {
   });
 
   it('should trigger action on space keydown', () => {
-    spyOn(component, 'triggerAction' as never);
+    jest.spyOn(component, 'triggerAction' as never);
 
     const icon = fixture.debugElement.query(By.css('bmb-icon'));
 

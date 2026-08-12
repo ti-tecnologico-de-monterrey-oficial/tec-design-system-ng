@@ -1,0 +1,38 @@
+<header class="page-header">
+  <p class="eyebrow">Componente migrado</p>
+  <h1>BmbDivider</h1>
+  <p>Cambia el tipo de línea y su margen para validar cada variante.</p>
+</header>
+
+<section class="playground" aria-labelledby="divider-demo-title">
+  <div class="controls">
+    <h2 id="divider-demo-title">Propiedades</h2>
+    <label for="divider-type">type</label>
+    <select
+      id="divider-type"
+      [value]="type()"
+      (change)="selectType($any($event.target).value)"
+    >
+      @for (option of types; track option) {
+      <option [value]="option">{{ option }}</option>
+      }
+    </select>
+    <label class="toggle">
+      <input
+        type="checkbox"
+        [checked]="removeMargin()"
+        (change)="setRemoveMargin($any($event.target).checked)"
+      />
+      removeMargin
+    </label>
+    <output
+      >{{ type() }} · {{ removeMargin() ? 'sin margen' : 'con margen' }}</output
+    >
+  </div>
+
+  <div class="preview">
+    <span>Contenido anterior</span>
+    <bmb-divider [type]="type()" [removeMargin]="removeMargin()" />
+    <span>Contenido posterior</span>
+  </div>
+</section>

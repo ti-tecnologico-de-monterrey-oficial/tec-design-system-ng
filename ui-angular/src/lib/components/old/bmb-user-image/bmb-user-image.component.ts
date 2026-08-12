@@ -6,8 +6,8 @@ import {
   output,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { IBmbTargetLink, IBmbUserImageSize } from '@shared/types';
-import { BmbCheckExternalLinkButtonComponent } from '../bmb-check-external-link-button/bmb-check-external-link-button.component';
+import { IBmbTargetLink, IBmbUserImageSize } from '../../../_shared/types/utils';
+import { BmbCheckExternalLinkButtonComponent } from '../../bmb-check-external-link-button/bmb-check-external-link-button.component';
 import { handleImageNotFoundError } from '../../../_shared/logic/utils';
 
 @Component({

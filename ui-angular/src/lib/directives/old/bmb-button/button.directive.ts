@@ -7,19 +7,22 @@ import {
   Renderer2,
   SimpleChanges,
   input,
+  inject,
+  OnInit,
+  OnChanges,
 } from '@angular/core';
 import { BmbIconComponent } from '../../../components/old/bmb-icon/bmb-icon.component';
 import {
   IBmbHorizontalPosition,
   IButtonAppearance,
   IButtonSize,
-} from '@shared/types';
+} from '../../../_shared/types';
 
 @Directive({
   selector: '[bmbButton]',
   standalone: true,
 })
-export class BmbButtonDirective {
+export class BmbButtonDirective implements OnInit, OnChanges {
   icon = input<string>('');
   iconSize = input<number | undefined>(16);
   position = input<IBmbHorizontalPosition>('left');
@@ -34,12 +37,10 @@ export class BmbButtonDirective {
 
   private providedInputs: Set<string> = new Set();
 
-  constructor(
-    private el: ElementRef,
-    private viewContainerRef: ViewContainerRef,
-    private cdr: ChangeDetectorRef,
-    private renderer: Renderer2,
-  ) {}
+  private el: ElementRef = inject(ElementRef);
+  private viewContainerRef: ViewContainerRef = inject(ViewContainerRef);
+  private cdr: ChangeDetectorRef = inject(ChangeDetectorRef);
+  private renderer: Renderer2 = inject(Renderer2);
 
   ngOnInit(): void {
     this.addContent();

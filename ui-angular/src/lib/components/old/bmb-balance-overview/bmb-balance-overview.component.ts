@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
+  computed,
   Component,
   input,
   ViewEncapsulation,
@@ -9,10 +10,8 @@ import {
   BmbProgressCircleComponent,
   BmbProgressCirclePathStatus,
 } from '../bmb-progress-cirlce/bmb-progress-circle.component';
-import {
-  BmbLegendComponent,
-  IBmbLegendVariations,
-} from '../bmb-legend/bmb-legend.component';
+import { BmbLegendComponent } from '../../bmb-legend/bmb-legend.component';
+import { IBmbLegendVariations } from '../../../_shared/types/components/legend';
 import { TranslatePipe } from '../../../pipes/translations';
 
 @Component({
@@ -34,6 +33,10 @@ export class BmbBalanceOverviewComponent {
   progressCircleValue = input<string>('');
   showProgressCircleValue = input<boolean>(true);
   progressCircleTitle = input<string | string[]>('');
+  resolvedProgressCircleTitle = computed<string | string[]>(() => {
+    const title = this.progressCircleTitle();
+    return Array.isArray(title) && title.length === 0 ? '' : title;
+  });
   showProgressCircleTitle = input<boolean>(true);
   showProgressCircleBackground = input<boolean>(true);
   labelPrimary = input<string>('');

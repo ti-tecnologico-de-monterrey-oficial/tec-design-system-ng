@@ -5,9 +5,10 @@ import {
   input,
   output,
   ViewEncapsulation,
+  inject,
 } from '@angular/core';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
-import { IBmbTargetLink } from '@shared/types';
+import { IBmbTargetLink } from '../../../_shared/types';
 import { CommonModule } from '@angular/common';
 import { BmbLayoutDirective } from '../../../directives/old/bmb-layout/bmb-layout.directive';
 import { BmbLayoutItemDirective } from '../../../directives/old/bmb-layout/bmb-layout-item.directive';
@@ -48,7 +49,9 @@ export class BmbItemComponent {
 
   action = output<MouseEvent>();
 
-  constructor(private sanitizer: DomSanitizer) {
+  private sanitizer: DomSanitizer = inject(DomSanitizer);
+
+  constructor() {
     effect(() => {
       console.warn(
         'This component is not longer supported, please use bmb-item-[variant] or bmb-interactive-item-[variant]',

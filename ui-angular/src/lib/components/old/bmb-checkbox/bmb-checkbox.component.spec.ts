@@ -25,8 +25,8 @@ describe('BmbCheckboxComponent', () => {
       writable: false,
     });
 
-    spyOn(component.change, 'emit');
-    spyOn(event, 'stopPropagation');
+    jest.spyOn(component.change, 'emit');
+    jest.spyOn(event, 'stopPropagation');
 
     component.handleChange(event);
 
@@ -42,8 +42,8 @@ describe('BmbCheckboxComponent', () => {
       writable: false,
     });
 
-    spyOn(component.change, 'emit');
-    spyOn(event, 'stopPropagation');
+    jest.spyOn(component.change, 'emit');
+    jest.spyOn(event, 'stopPropagation');
 
     component.handleChange(event);
 

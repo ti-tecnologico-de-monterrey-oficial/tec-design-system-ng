@@ -1,6 +1,7 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  inject,
   input,
   signal,
   SimpleChanges,
@@ -24,7 +25,7 @@ import { IBmbNativeModal } from '../bmb-modal/bmb-modal.interface';
 import { BmbUserImageComponent } from '../bmb-user-image/bmb-user-image.component';
 import { BmbTabsComponent } from '../bmb-tabs/bmb-tabs.component';
 import { BmbButtonDirective } from '../../../directives/old/bmb-button/button.directive';
-import { BmbDividerComponent } from '../bmb-divider/bmb-divider.component';
+import { BmbDividerComponent } from '../../bmb-divider/bmb-divider.component';
 import { BmbHitoCardComponent } from '../bmb-hito-card/bmb-hito-card.component';
 import { BmbBadgeComponent } from '../../bmb-badge/bmb-badge.component';
 import { IBbmBgAppearance } from '../bmb-advertisement-card/types';
@@ -97,7 +98,7 @@ export class BmbTimestreamComponent {
   ];
   tabSelected = 1;
 
-  constructor(private modalService: BmbNativeModalService) {}
+  private modalService: BmbNativeModalService = inject(BmbNativeModalService);
 
   ngOnChanges(changes: SimpleChanges) {
     this.parsedEvents = this.prepareEvents(changes['events'].currentValue);
@@ -290,7 +291,7 @@ export class BmbTimestreamComponent {
     return `Duración: ${event.originalStart?.day} - ${event.endEvent?.setLocale(this.lang()).toFormat('dd LLLL yyyy')} (${(event.diff || 0) + 1} Días)`;
   }
 
-  getDiffString(diff: number = 0): string {
+  getDiffString(diff = 0): string {
     return diff + 1 > 1 ? `${diff + 1} Días` : `${diff + 1} Día`;
   }
 

@@ -1,0 +1,15 @@
+@use '../../styles/playground';
+
+@include playground.page;
+
+.projected-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+.hidden-message {
+  color: #5f6878;
+  margin: 1rem 0 0;
+}

@@ -14,6 +14,7 @@ import {
   ChangeDetectorRef,
   computed,
   HostBinding,
+  inject,
 } from '@angular/core';
 import { ReactiveFormsModule, FormControl, FormGroup } from '@angular/forms';
 import { DateTime } from 'luxon';
@@ -134,7 +135,9 @@ export class BmbTableLiteComponent implements OnInit, OnChanges {
   // 🧠 CICLO DE VIDA Y EFECTOS REACTIVOS
   // -----------------------------------------------------------------------------
 
-  constructor(private cdr: ChangeDetectorRef) {
+  private cdr: ChangeDetectorRef = inject(ChangeDetectorRef);
+
+  constructor() {
     // 🧩 Efecto: controla la página actual en modo servidor, asegurando que
     // no exceda los límites (0 → lastPage)
     effect(() => {

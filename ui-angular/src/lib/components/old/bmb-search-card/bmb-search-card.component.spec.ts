@@ -4,7 +4,7 @@ import {
   BmbSearchCardComponent,
   IBmbSearchCardItemResult,
 } from './bmb-search-card.component';
-import { BmbTranslationsService } from '../../services/translations/translations.service';
+import { BmbTranslationsService } from '../../../services/translations/translations.service';
 
 describe('BmbSearchCardComponent', () => {
   let component: BmbSearchCardComponent;

@@ -7,7 +7,7 @@ import {
   effect,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { BmbCheckExternalLinkButtonComponent } from '../bmb-check-external-link-button/bmb-check-external-link-button.component';
+import { BmbCheckExternalLinkButtonComponent } from '../../bmb-check-external-link-button/bmb-check-external-link-button.component';
 import {
   IBmbAlertColors,
   IBmbBaseColors,
@@ -17,11 +17,11 @@ import {
   IBmbMitecInstitutionalColors,
   IBmbSemanticBaseColors,
   IBmbSemanticColors,
-} from '@shared/types/foundations/colors/color-type';
-import { IBmbContrast } from '@shared/types/colors';
+} from '../../../_shared/types/foundations/colors/color-type';
+import { IBmbContrast } from '../../../_shared/types/colors';
 import { logDeprecatedInput } from '../../../_shared/logic/logDeprecatedInput';
 import { BmbBoxIconComponent } from '../bmb-box-icon/bmb-box-icon.component';
-import { IBmbTargetLink } from '@shared/types';
+import { IBmbTargetLink } from '../../../_shared/types';
 import { BmbTooltipBaseComponent } from '../bmb-tooltip/bmb-tooltip-base/bmb-tooltip-base.component';
 
 export type IBmbInteractiveIconAppearance =

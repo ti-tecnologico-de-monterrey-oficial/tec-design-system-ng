@@ -15,7 +15,7 @@ import { BmbUserSummaryContentComponent } from '../../bmb-user-summary/bmb-user-
 import { BmbDropdownMenuComponent } from '../../bmb-dropdown-menu/bmb-dropdown-menu.component';
 import { IDropdownItem } from '@shared/types';
 import { BmbButtonIconComponent } from '../../bmb-button-icon/bmb-button-icon.component';
-import { BmbCheckExternalLinkButtonComponent } from '../../bmb-check-external-link-button/bmb-check-external-link-button.component';
+import { BmbCheckExternalLinkButtonComponent } from '../../../bmb-check-external-link-button/bmb-check-external-link-button.component';
 import { TranslatePipe } from '../../../../pipes/translations';
 
 @Component({
@@ -69,7 +69,8 @@ export class BmbTopBarUserSectionComponent {
         idItem: 'help',
         icon: 'help',
         text: 'TECServices',
-        action: (event) => this.handleHelpButtonClick(event as MouseEvent),
+        action: (event?: unknown) =>
+          this.handleHelpButtonClick(event as MouseEvent),
       },
     ];
     const notification: IDropdownItem = {
@@ -77,19 +78,19 @@ export class BmbTopBarUserSectionComponent {
       icon: 'notifications',
       dotNotification: this.notificationNotification().length,
       text: 'Notificaciones',
-      action: (event) => this.openNotifications(event as MouseEvent),
+      action: (event?: unknown) => this.openNotifications(event as MouseEvent),
     };
     const changeUser: IDropdownItem = {
       idItem: 'change_user',
       icon: 'compare_arrows',
       text: 'Cambio de usuario',
-      action: (event) => this.handleRoleChange(event as MouseEvent),
+      action: (event?: unknown) => this.handleRoleChange(event as MouseEvent),
     };
     const search: IDropdownItem = {
       idItem: 'search',
       icon: 'search',
       text: 'Buscar',
-      action: (event) => this.handleSearchChange(event as MouseEvent),
+      action: (event?: unknown) => this.handleSearchChange(event as MouseEvent),
     };
 
     if (this.showRoleButton()) menu.unshift(changeUser);

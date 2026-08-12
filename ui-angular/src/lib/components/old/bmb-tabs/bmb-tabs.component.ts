@@ -12,12 +12,13 @@ import {
   NgZone,
   OnDestroy,
   signal,
+  inject,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TabsService } from '../../../services/old/tabs/tabs.service';
 import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
-import { IBmbContrast } from '@shared/types/colors';
-import { BmbNotificationCounterComponent } from '../bmb-notification-counter/bmb-notification-counter.component';
+import { IBmbContrast } from '../../../_shared/types/colors';
+import { BmbNotificationCounterComponent } from '../../bmb-notification-counter/bmb-notification-counter.component';
 import { TranslatePipe } from '../../../pipes/translations';
 
 export interface IBmbTab {
@@ -58,10 +59,8 @@ export class BmbTabsComponent implements OnInit, AfterViewInit, OnDestroy {
   scrollRight = signal<number>(999999);
   @ViewChild('tabsItems', { static: true }) tabsItems!: ElementRef;
 
-  constructor(
-    private tabsService: TabsService,
-    private zone: NgZone,
-  ) {}
+  private tabsService: TabsService = inject(TabsService);
+  private zone: NgZone = inject(NgZone);
 
   ngOnInit(): void {
     const initialActiveTab = this.tabs().findIndex(

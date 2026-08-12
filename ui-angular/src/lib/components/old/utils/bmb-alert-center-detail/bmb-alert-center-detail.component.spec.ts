@@ -6,7 +6,7 @@ import {
   IBmbDataAlertDetails,
 } from '../../bmb-alert-center/types';
 import DOMPurify from 'dompurify';
-import { forbidTagsAndAttributes } from '../../../utils/utils';
+import { forbidTagsAndAttributes } from '../../../../_shared/logic/utils';
 
 describe('BmbAlertCenterDetailComponent', () => {
   let component: BmbAlertCenterDetailComponent;
@@ -42,8 +42,8 @@ describe('BmbAlertCenterDetailComponent', () => {
     const dirtyHtml = '<div><script>alert("x")</script><p>ok</p></div>';
     const cleanedHtml = '<div><p>ok</p></div>';
 
-    spyOn(DOMPurify, 'sanitize' as any).and.returnValue(cleanedHtml);
-    const sanitizerSpy = spyOn(
+    jest.spyOn(DOMPurify, 'sanitize' as any).and.returnValue(cleanedHtml);
+    const sanitizerSpy = jest.spyOn(
       (component as any).sanitizer,
       'bypassSecurityTrustHtml',
     ).and.callThrough();
@@ -60,7 +60,7 @@ describe('BmbAlertCenterDetailComponent', () => {
 
   it('should emit alertEvent when handleAlertEvent is called', () => {
     const testAlert = { id: 'test-alert', title: 'Test' } as any;
-    const emitSpy = spyOn(component.alertEvent, 'emit').and.callThrough();
+    const emitSpy = jest.spyOn(component.alertEvent, 'emit').and.callThrough();
 
     component.handleAlertEvent(testAlert);
 

@@ -4,7 +4,7 @@ import { Component, signal } from '@angular/core';
 import {
   BmbCardComponent,
   BmbCardContentComponent,
-} from '../bmb-card/bmb-card.component';
+} from '../../bmb-card/bmb-card.component';
 
 import { BmbItemComponent } from '../bmb-item/bmb-item.component';
 
@@ -36,7 +36,11 @@ export class BmbDragDropComponent {
 
   rightItems = signal<DragItem[]>([{ id: 3, label: 'Item C' }]);
 
-  moveItem(item: DragItem, target: 'left' | 'right') {
+  moveItem(item: unknown, target: 'left' | 'right') {
+    if (!this.isDragItem(item)) {
+      return;
+    }
+
     this.leftItems.update((items) => items.filter((i) => i.id !== item.id));
 
     this.rightItems.update((items) => items.filter((i) => i.id !== item.id));
@@ -46,5 +50,16 @@ export class BmbDragDropComponent {
     } else {
       this.rightItems.update((items) => [...items, item]);
     }
+  }
+
+  private isDragItem(item: unknown): item is DragItem {
+    return (
+      typeof item === 'object' &&
+      item !== null &&
+      'id' in item &&
+      typeof item.id === 'number' &&
+      'label' in item &&
+      typeof item.label === 'string'
+    );
   }
 }

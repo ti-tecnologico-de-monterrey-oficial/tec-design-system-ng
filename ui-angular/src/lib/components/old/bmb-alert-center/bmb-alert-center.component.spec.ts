@@ -3,8 +3,8 @@ import { DateTime } from 'luxon';
 
 import { BmbAlertCenterComponent } from './bmb-alert-center.component';
 import { BmbAlertCenterService } from './bmb-alert-center.service';
-import { BmbNativeModalService } from '../../services/modal/native-modal.service';
-import { BmbTranslationsService } from '../../services/translations/translations.service';
+import { BmbNativeModalService } from '../../../services/old/modal/native-modal.service';
+import { BmbTranslationsService } from '../../../services/translations/translations.service';
 import {
   IBmbDataAlert,
   IBmbDataAlertsParsed,
@@ -137,7 +137,7 @@ describe('BmbAlertCenterComponent', () => {
       const mockDate = DateTime.fromISO(
         '2023-11-20T12:00:00',
       ) as DateTime<true>;
-      spyOn(DateTime, 'now').and.returnValue(mockDate);
+      jest.spyOn(DateTime, 'now').and.returnValue(mockDate);
       component.now = mockDate;
     });
 
@@ -249,7 +249,7 @@ describe('BmbAlertCenterComponent', () => {
     });
 
     it('should emit showAlertDetail event', () => {
-      spyOn(component.showAlertDetail, 'emit');
+      jest.spyOn(component.showAlertDetail, 'emit');
       const alertWithParsedDate: IBmbDataAlertsParsed = {
         ...mockAlerts[0],
         pDate: DateTime.now() as DateTime<true>,
@@ -291,7 +291,7 @@ describe('BmbAlertCenterComponent', () => {
 
   describe('handleCloseDetail', () => {
     it('should emit closeAlertDetail and close modals', () => {
-      spyOn(component.closeAlertDetail, 'emit');
+      jest.spyOn(component.closeAlertDetail, 'emit');
       const alertWithParsedDate: IBmbDataAlertsParsed = {
         ...mockAlerts[0],
         pDate: DateTime.now() as DateTime<true>,
@@ -308,7 +308,7 @@ describe('BmbAlertCenterComponent', () => {
 
   describe('handleAlertEvent', () => {
     it('should emit alert event', () => {
-      spyOn(component.alertEvent, 'emit');
+      jest.spyOn(component.alertEvent, 'emit');
 
       component.handleAlertEvent(mockAlerts[0]);
 
@@ -318,7 +318,7 @@ describe('BmbAlertCenterComponent', () => {
 
   describe('handleChangeAlertStatus', () => {
     it('should emit change alert status event', () => {
-      spyOn(component.onChangeAlertStatus, 'emit');
+      jest.spyOn(component.onChangeAlertStatus, 'emit');
       const statusChange = { type: 'read', data: ['1'] };
 
       component.handleChangeAlertStatus(statusChange);
@@ -335,7 +335,7 @@ describe('BmbAlertCenterComponent', () => {
     });
 
     it('should handle tags event correctly', () => {
-      spyOn(component.navigationBarEvents, 'emit');
+      jest.spyOn(component.navigationBarEvents, 'emit');
       const event: IBmbAlertCenterProtoEventFooter = {
         event: 'tags',
         alerts: ['1', '2'],
@@ -350,7 +350,7 @@ describe('BmbAlertCenterComponent', () => {
     });
 
     it('should handle add_read event when some alerts are unread', () => {
-      spyOn(component.navigationBarEvents, 'emit');
+      jest.spyOn(component.navigationBarEvents, 'emit');
       const event: IBmbAlertCenterProtoEventFooter = {
         event: 'isRead',
         alerts: ['1'], // mockAlerts[0] is unread
@@ -365,7 +365,7 @@ describe('BmbAlertCenterComponent', () => {
     });
 
     it('should handle remove_read event when all alerts are read', () => {
-      spyOn(component.navigationBarEvents, 'emit');
+      jest.spyOn(component.navigationBarEvents, 'emit');
       const event: IBmbAlertCenterProtoEventFooter = {
         event: 'isRead',
         alerts: ['2'], // mockAlerts[1] is read
@@ -380,7 +380,7 @@ describe('BmbAlertCenterComponent', () => {
     });
 
     it('should handle favorite events correctly', () => {
-      spyOn(component.navigationBarEvents, 'emit');
+      jest.spyOn(component.navigationBarEvents, 'emit');
       const event: IBmbAlertCenterProtoEventFooter = {
         event: 'isFavorite',
         alerts: ['1'], // mockAlerts[0] is not favorite
@@ -395,7 +395,7 @@ describe('BmbAlertCenterComponent', () => {
     });
 
     it('should handle archived events correctly', () => {
-      spyOn(component.navigationBarEvents, 'emit');
+      jest.spyOn(component.navigationBarEvents, 'emit');
       const event: IBmbAlertCenterProtoEventFooter = {
         event: 'isArchived',
         alerts: ['3'], // mockAlerts[2] is archived
@@ -410,7 +410,7 @@ describe('BmbAlertCenterComponent', () => {
     });
 
     it('should return early when no matching alerts found', () => {
-      spyOn(component.navigationBarEvents, 'emit');
+      jest.spyOn(component.navigationBarEvents, 'emit');
       const event: IBmbAlertCenterProtoEventFooter = {
         event: 'isRead',
         alerts: ['999'], // non-existent alert ID

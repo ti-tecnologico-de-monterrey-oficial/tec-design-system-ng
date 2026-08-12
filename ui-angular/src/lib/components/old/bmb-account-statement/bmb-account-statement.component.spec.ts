@@ -19,19 +19,19 @@ describe('BmbAccountStatementComponent', () => {
   });
 
   it('should emit closeEvent on handleClose', () => {
-    spyOn(component.closeEvent, 'emit');
+    jest.spyOn(component.closeEvent, 'emit');
     component.handleClose();
     expect(component.closeEvent.emit).toHaveBeenCalled();
   });
 
   it('should emit backEvent on handleBack', () => {
-    spyOn(component.backEvent, 'emit');
+    jest.spyOn(component.backEvent, 'emit');
     component.handleBack();
     expect(component.backEvent.emit).toHaveBeenCalled();
   });
 
   it('should not emit payEvent on handlePay when custom amount is invalid', () => {
-    spyOn(component.payEvent, 'emit');
+    jest.spyOn(component.payEvent, 'emit');
     component.isEnableCustomAmount = true;
     component.amountForm.controls['amount'].setValue(60);
     component.maxAmount = 50;

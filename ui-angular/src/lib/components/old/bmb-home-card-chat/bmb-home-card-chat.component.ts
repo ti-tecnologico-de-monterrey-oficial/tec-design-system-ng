@@ -18,7 +18,7 @@ import {
   IBotType,
   IChatBarActions,
 } from '../bmb-chat-bar/bmb-chat-bar.component';
-import { IBmbColor } from '@shared/types/colors';
+import { IBmbColor } from '../../../_shared/types/colors';
 import {
   IBmbChatActionEvent,
   IBmbChatMessage,
@@ -33,7 +33,7 @@ import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.compo
 import { BmbProjectionContentService } from '../../../services/old/projection/projection.service';
 import { CommonModule } from '@angular/common';
 import { BmbBotIconComponent } from '../bmb-bot-icon/bmb-bot-icon.component';
-import { IBmbActionHeader } from '@shared/types';
+import { IBmbActionHeader } from '../../../_shared/types';
 import { BmbActionMenuComponent } from '../bmb-action-menu/bmb-action-menu.component';
 import { BmbItemComponent } from '../bmb-item/bmb-item.component';
 import { BmbTranslationsService } from '../../../services/translations/translations.service';
@@ -95,7 +95,8 @@ export class BmbHomeCardChatComponent {
   getNewChat = output<boolean>();
   getExpand = output<any>();
 
-  translationService = inject(BmbTranslationsService);
+  private translationService = inject(BmbTranslationsService);
+  private contentProjected: BmbProjectionContentService = inject(BmbProjectionContentService);
 
   parsedBotActions = computed<IBmbChatBubblesActions[]>(() => {
     const newActions = this.botActions();
@@ -140,7 +141,7 @@ export class BmbHomeCardChatComponent {
   @ViewChild('contentTemplate') contentTemplate!: TemplateRef<any>;
   @ViewChild('chatBarActionsTemplate', { static: true })
   chatBarTemplate!: TemplateRef<any>;
-  private chatCardChatId: string = 'chatCardChat';
+  private chatCardChatId = 'chatCardChat';
 
   chatActionHeaders = computed<IBmbActionHeader[]>(() => {
     if (this.mode() !== 'chat') {
@@ -155,7 +156,7 @@ export class BmbHomeCardChatComponent {
     ];
   });
 
-  constructor(private contentProjected: BmbProjectionContentService) {
+  constructor() {
     effect(
       () => {
         if (this.mode() === 'chat') {

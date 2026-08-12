@@ -11,7 +11,7 @@ import { Subject, takeUntil } from 'rxjs';
 import { BmbCheckboxComponent } from '../../../bmb-checkbox/bmb-checkbox.component';
 import { BmbLayoutDirective } from '../../../../../directives/old/bmb-layout/bmb-layout.directive';
 import { BmbLayoutItemDirective } from '../../../../../directives/old/bmb-layout/bmb-layout-item.directive';
-import { BmbDividerComponent } from '../../../bmb-divider/bmb-divider.component';
+import { BmbDividerComponent } from '../../../../bmb-divider/bmb-divider.component';
 import { BmbSwitchComponent } from '../../../bmb-switch/bmb-switch.component';
 import { TranslatePipe } from '../../../../../pipes/translations';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';

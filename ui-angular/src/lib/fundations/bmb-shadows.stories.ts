@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, input } from '@angular/core';
 import { moduleMetadata, Meta, StoryObj } from '@storybook/angular';
-import { BmbDividerComponent } from '../components/old/bmb-divider/bmb-divider.component';
+import { BmbDividerComponent } from '../components/bmb-divider/bmb-divider.component';
 import {
   getFoundationDescriptions,
   getGeneralDescription,

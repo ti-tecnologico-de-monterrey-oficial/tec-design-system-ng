@@ -7,14 +7,14 @@ import {
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
-import { BmbContainerComponent } from '../bmb-container/bmb-container.component';
-import { getRGBColorKeyValue, isImage } from '@shared/logic/utils';
+import { BmbContainerComponent } from '../../bmb-container/bmb-container.component';
+import { getRGBColorKeyValue, isImage } from '../../../_shared/logic/utils';
 import {
   BmbBreadcrumbComponent,
   IBmbDataTopBar,
 } from '../bmb-breadcrumb/bmb-breadcrumb.component';
-import { IBmbColor } from '@shared/types/colors';
-import { IBmbActionHeader } from '@shared/types';
+import { IBmbColor } from '../../../_shared/types/colors';
+import { IBmbActionHeader } from '../../../_shared/types';
 import { BmbNavigationBarComponent } from '../bmb-navigation-bar/bmb-navigation-bar.component';
 import { getClassNameByConditional } from '../../../_shared/logic/getClassName';
 import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';

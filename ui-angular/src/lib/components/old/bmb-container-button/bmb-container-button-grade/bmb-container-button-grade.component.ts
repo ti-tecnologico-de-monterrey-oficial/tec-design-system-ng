@@ -9,7 +9,7 @@ import {
 import { BmbContainerButtonBaseComponent } from '../bmb-container-button-base/bmb-container-button-base.component';
 import { BmbIconComponent } from '../../bmb-icon/bmb-icon.component';
 import { BmbTitleComponent } from '../../bmb-title/bmb-title.component';
-import { BmbGradeValueComponent } from '../../bmb-grade-value/bmb-grade-value.component';
+import { BmbGradeValueComponent } from '../../../bmb-grade-value/bmb-grade-value.component';
 
 @Component({
   selector: 'bmb-container-button-grade',

@@ -16,10 +16,10 @@ import { BmbBalanceOverviewComponent } from '../bmb-balance-overview/bmb-balance
 import {
   BmbCardComponent,
   BmbCardContentComponent,
-} from '../bmb-card/bmb-card.component';
+} from '../../bmb-card/bmb-card.component';
 import { BmbProgressBarComponent } from '../bmb-progress-bar/bmb-progress-bar.component';
 import { DateTime } from 'luxon';
-import { BmbDividerComponent } from '../bmb-divider/bmb-divider.component';
+import { BmbDividerComponent } from '../../bmb-divider/bmb-divider.component';
 import { BmbButtonDirective } from '../../../directives/old/bmb-button/button.directive';
 import { BmbRadialComponent } from '../bmb-radial/bmb-radial.component';
 import { currencyFormat } from '../../../_shared/logic/currencyFormat';
@@ -64,7 +64,7 @@ import { logDeprecatedInput } from '../../../_shared/logic/logDeprecatedInput';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BmbAccountStatementComponent implements AfterViewInit, OnInit {
-  progressCircleTitle = input<string[]>([]);
+  progressCircleTitle = input<string | string[]>('');
   labelPrimary = input<string>();
   labelSecondary = input<string>();
   totalCount = input<number>(0);

@@ -12,6 +12,7 @@ import {
   signal,
   SimpleChanges,
   OnChanges,
+  inject,
 } from '@angular/core';
 import { FormControl, ReactiveFormsModule, ValidatorFn } from '@angular/forms';
 import { IBmbDropdownItem } from '../bmb-dropdown/bmb-dropdown.component';
@@ -29,9 +30,9 @@ import {
 } from '../../../_shared/logic/dropdown';
 import { BmbInputValidatorComponent } from '../bmb-input/bmb-input-validator/bmb-input-validator.component';
 import { BmbDropdownContentComponent } from '../utils/bmb-dropdown-content/bmb-dropdown-content.component';
-import { IDropdownItem } from '@shared/types';
+import { IDropdownItem } from '../../../_shared/types';
 import { BmbInputContentComponent } from '../bmb-input/bmb-input-content/bmb-input-content.component';
-import { getUUID } from '@shared/logic/utils';
+import { getUUID } from '../../../_shared/logic/utils';
 import {
   assignNewFormControl,
   handleValidity,
@@ -83,16 +84,16 @@ export class BmbInputTagsComponent implements OnInit, OnChanges {
   onChange = output<string[]>();
 
   uuid: string = getUUID();
-  showDropdown: boolean = false;
+  showDropdown = false;
   selectedTags: IDropdownItem[] = [];
   filteredOptions: IDropdownItem[] = [];
   filterControl = new FormControl();
   items: IDropdownItem[] = [];
   isFocused = signal<boolean>(false);
-  isKeyboardEvent: boolean = false;
-  isControlNull: boolean = false;
+  isKeyboardEvent = false;
+  isControlNull = false;
 
-  constructor(private cdr: ChangeDetectorRef) {}
+  private cdr: ChangeDetectorRef = inject(ChangeDetectorRef);
 
   ngOnInit(): void {
     if (this.disabled()) this.filterControl.disable();
@@ -181,14 +182,14 @@ export class BmbInputTagsComponent implements OnInit, OnChanges {
   }
 
   selectOptionWithKey(value: string): void {
-    if (!!value) {
+    if (value) {
       const selectedLength: number = this.filteredOptions.length;
       const listOfValues: string[] = value
         .split(',')
         .map((item) => item.trim());
 
       listOfValues.forEach((val) => {
-        if (!!selectedLength) {
+        if (selectedLength) {
           this.setSelectedValue(this.filteredOptions[0]);
         } else if (this.enableCustomTags() && !selectedLength) {
           this.addOption(val);

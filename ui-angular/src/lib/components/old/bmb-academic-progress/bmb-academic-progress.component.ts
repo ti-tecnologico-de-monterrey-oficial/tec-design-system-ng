@@ -11,9 +11,9 @@ import {
 import { BmbFocusElementComponent } from '../bmb-focus-element/bmb-focus-element.component';
 import { BmbLayoutDirective } from '../../../directives/old/bmb-layout/bmb-layout.directive';
 import { BmbLayoutItemDirective } from '../../../directives/old/bmb-layout/bmb-layout-item.directive';
-import { BmbContainerComponent } from '../bmb-container/bmb-container.component';
-import { IBmbNameValuePair } from '@shared/types';
-import { buildErrorMessage } from '@shared/logic/utils';
+import { BmbContainerComponent } from '../../bmb-container/bmb-container.component';
+import { IBmbNameValuePair } from '../../../_shared/types/index';
+import { buildErrorMessage } from '../../../_shared/logic/utils';
 import { CommonModule } from '@angular/common';
 
 @Component({

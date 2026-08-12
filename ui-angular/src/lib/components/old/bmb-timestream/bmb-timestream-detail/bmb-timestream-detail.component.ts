@@ -14,16 +14,16 @@ import {
   SimpleChanges,
   ViewChild,
   ViewEncapsulation,
+  inject,
 } from '@angular/core';
 import { DateTime } from 'luxon';
 import { ISelectedDate, ITimelineEvent, ITimelineEventParsed } from '../types';
 import { BmbHitoCardComponent } from '../../bmb-hito-card/bmb-hito-card.component';
-import { BmbTextLinkComponent } from '../../bmb-text-link/bmb-text-link.component';
 
 @Component({
   selector: 'bmb-timestream-detail',
   standalone: true,
-  imports: [CommonModule, BmbHitoCardComponent, BmbTextLinkComponent],
+  imports: [CommonModule, BmbHitoCardComponent],
   templateUrl: './bmb-timestream-detail.component.html',
   styleUrl: './bmb-timestream-detail.component.scss',
   encapsulation: ViewEncapsulation.None,
@@ -44,7 +44,9 @@ export class BmbTimestreamDetailsComponent implements AfterViewInit {
 
   @ViewChild('monthDetailList') monthList!: ElementRef;
 
-  constructor(private cdr: ChangeDetectorRef) {
+  private cdr: ChangeDetectorRef = inject(ChangeDetectorRef);
+
+  constructor() {
     effect(() => {
       const selectedDate = this.selectedDate();
 
@@ -75,7 +77,7 @@ export class BmbTimestreamDetailsComponent implements AfterViewInit {
   }
 
   scrollToItem() {
-    let currentMonthElement = this.monthList.nativeElement.querySelector(
+    const currentMonthElement = this.monthList.nativeElement.querySelector(
       '.bmb_timestream-detail-item-current',
     );
 

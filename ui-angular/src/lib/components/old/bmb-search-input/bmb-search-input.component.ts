@@ -8,15 +8,16 @@ import {
   OnChanges,
   SimpleChanges,
   AfterViewInit,
+  inject,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { debounceTime } from 'rxjs/operators';
-import { getUUID } from '@shared/logic/utils';
+import { getUUID } from '../../../_shared/logic/utils';
 import { BmbDropdownContentComponent } from '../utils/bmb-dropdown-content/bmb-dropdown-content.component';
 import { BmbInputContentComponent } from '../bmb-input/bmb-input-content/bmb-input-content.component';
 import { ClickOutsideDirective } from '../../../directives/old/utils/clickoutside.directive';
-import { IDropdownItem } from '@shared/types';
+import { IDropdownItem } from '../../../_shared/types';
 import {
   convertListToSelectList,
   filteredValue,
@@ -50,14 +51,14 @@ export class BmbSearchInputComponent implements AfterViewInit, OnChanges {
   onServerSideFilterEvent = output<string>();
   onClearField = output<boolean>();
 
-  value: string = '';
+  value = '';
   filteredData: IDropdownItem[] = [];
-  uid: string = getUUID();
-  isDialogOpen: boolean = false;
+  uid = getUUID();
+  isDialogOpen = false;
   filterControl = new FormControl();
   items: IDropdownItem[] = [];
 
-  constructor(private cdr: ChangeDetectorRef) {}
+  private cdr: ChangeDetectorRef = inject(ChangeDetectorRef);
 
   ngAfterViewInit(): void {
     this.filterControl.valueChanges
@@ -146,10 +147,10 @@ export class BmbSearchInputComponent implements AfterViewInit, OnChanges {
 
     if (keyboardValuesToAddOption.includes(event.key)) {
       event.preventDefault();
-      if (!!this.filterControl.value) {
+      if (this.filterControl.value) {
         const selectedLength: number = this.filteredData.length;
 
-        if (!!selectedLength) {
+        if (selectedLength) {
           this.setSelectedValue(this.filteredData[0]);
         }
       }

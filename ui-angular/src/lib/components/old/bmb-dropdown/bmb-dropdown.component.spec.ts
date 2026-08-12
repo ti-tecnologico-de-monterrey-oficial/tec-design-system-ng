@@ -4,7 +4,7 @@ import {
   BmbDropdownComponent,
   IBmbDropdownItem,
 } from './bmb-dropdown.component';
-import { BmbProjectionContentService } from '../../services/projection/projection.service';
+import { BmbProjectionContentService } from '../../../services/old/projection/projection.service';
 
 describe('BmbDropdownComponent', () => {
   let component: BmbDropdownComponent;
@@ -241,7 +241,7 @@ describe('BmbDropdownComponent', () => {
     });
 
     it('should emit value change on selection for single select', () => {
-      spyOn(component.onValueChange, 'emit');
+      jest.spyOn(component.onValueChange, 'emit');
 
       const element = component.parsedOptions()[0];
       component.setSelectedValue(element);
@@ -253,7 +253,7 @@ describe('BmbDropdownComponent', () => {
     it('should handle multi select value changes', () => {
       fixture.componentRef.setInput('isMultiSelect', true);
       fixture.detectChanges();
-      spyOn(component.onValueChange, 'emit');
+      jest.spyOn(component.onValueChange, 'emit');
 
       const element = component.parsedOptions()[0];
       component.setSelectedValue(element);
@@ -308,7 +308,7 @@ describe('BmbDropdownComponent', () => {
 
   describe('Keyboard Events', () => {
     it('should open list on space key', () => {
-      spyOn(component, 'openList');
+      jest.spyOn(component, 'openList');
 
       const event = new KeyboardEvent('keydown', { key: ' ' });
       component.onKeyDown(event);
@@ -317,7 +317,7 @@ describe('BmbDropdownComponent', () => {
     });
 
     it('should open list on arrow down key', () => {
-      spyOn(component, 'openList');
+      jest.spyOn(component, 'openList');
 
       const event = new KeyboardEvent('keydown', { key: 'ArrowDown' });
       component.onKeyDown(event);
@@ -326,7 +326,7 @@ describe('BmbDropdownComponent', () => {
     });
 
     it('should open list on Down key', () => {
-      spyOn(component, 'openList');
+      jest.spyOn(component, 'openList');
 
       const event = new KeyboardEvent('keydown', { key: 'Down' });
       component.onKeyDown(event);
@@ -335,7 +335,7 @@ describe('BmbDropdownComponent', () => {
     });
 
     it('should not open list on other keys', () => {
-      spyOn(component, 'openList');
+      jest.spyOn(component, 'openList');
 
       const event = new KeyboardEvent('keydown', { key: 'Enter' });
       component.onKeyDown(event);
@@ -346,7 +346,7 @@ describe('BmbDropdownComponent', () => {
 
   describe('Focus Handling', () => {
     it('should emit focus events', () => {
-      spyOn(component.onFocus, 'emit');
+      jest.spyOn(component.onFocus, 'emit');
 
       component.handleFocus(true);
 

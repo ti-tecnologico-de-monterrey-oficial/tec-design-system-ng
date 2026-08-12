@@ -8,10 +8,10 @@ import {
   OnInit,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { IBbmSidePosition } from '@shared/types';
+import { IBbmSidePosition } from '../../../_shared/types';
 import { FormControl, ReactiveFormsModule, ValidatorFn } from '@angular/forms';
 import { BmbInputValidatorComponent } from '../bmb-input/bmb-input-validator/bmb-input-validator.component';
-import { getUUID } from '@shared/logic/utils';
+import { getUUID } from '../../../_shared/logic/utils';
 import { IBmbInputError } from '../bmb-input/bmb-input.component';
 import {
   assignNewFormControl,

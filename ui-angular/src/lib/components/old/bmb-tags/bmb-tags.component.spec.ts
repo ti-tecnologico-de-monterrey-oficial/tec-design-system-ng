@@ -58,7 +58,7 @@ describe('BmbTagComponent', () => {
     componentRef.setInput('isActive', true);
     fixture.detectChanges();
 
-    const emitSpy = spyOn(component.clickedTag, 'emit');
+    const emitSpy = jest.spyOn(component.clickedTag, 'emit');
     component.clickTag('Depto');
 
     expect(emitSpy).toHaveBeenCalledWith('Depto');
