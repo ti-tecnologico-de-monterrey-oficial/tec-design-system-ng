@@ -98,5 +98,21 @@ export const appRoutes: Route[] = [
         ({ ServerTablePage }) => ServerTablePage,
       ),
   },
+  {
+    path: 'components/skeleton',
+    title: 'BmbSkeleton | Bamboo migration dashboard',
+    loadComponent: () =>
+      import('./components/skeleton-page/skeleton-page').then(
+        ({ SkeletonPage }) => SkeletonPage,
+      ),
+  },
+  {
+    path: 'components/value-counter',
+    title: 'BmbValueCounter | Bamboo migration dashboard',
+    loadComponent: () =>
+      import('./components/value-counter-page/value-counter-page').then(
+        ({ ValueCounterPage }) => ValueCounterPage,
+      ),
+  },
   { path: '**', redirectTo: 'components/carousel' },
 ];
