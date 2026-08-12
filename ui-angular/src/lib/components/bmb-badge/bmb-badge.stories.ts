@@ -20,13 +20,7 @@ import { BMB_BADGE_COLOR_LIST } from '../../_shared/types/foundations/colors/col
 
 const defaultAppearanceValue = 'normal';
 
-const appearanceOptions = [
-  ...BMB_BADGE_COLOR_LIST,
-  'disabled',
-  'success',
-  'warning',
-  'mitec_red',
-];
+const appearanceOptions = [...BMB_BADGE_COLOR_LIST, 'disabled', 'normal'];
 
 export default {
   title: 'Components/Visual labels/Badge',
