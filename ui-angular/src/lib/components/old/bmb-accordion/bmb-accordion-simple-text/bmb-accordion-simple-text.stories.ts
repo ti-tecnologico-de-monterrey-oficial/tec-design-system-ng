@@ -51,7 +51,7 @@ ${getBasicExampleBlock('BmbAccordionComponent')}
       ultricies. Etiam fringilla venenatis nulla, gravida finibus nulla
       faucibus fringilla. Morbi luctus porta orci eu iaculis.`,
     disabled: false,
-    expanded: true,
+    expanded: false,
   },
 } as Meta<typeof BmbAccordionSimpleTextComponent>;
 
