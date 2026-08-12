@@ -122,6 +122,7 @@ export * from './lib/components/old/bmb-invoice/bmb-invoice.component';
 export * from './lib/components/old/bmb-multi-dot-paginator/bmb-multi-dot-paginator.component';
 export * from './lib/components/old/bmb-multi-dot-paginator/bmb-multi-dot-paginator-item/bmb-multi-dot-paginator-item.component';
 export * from './lib/components/old/bmb-accordion/bmb-accordion.component';
+export * from './lib/components/old/bmb-accordion/bmb-accordion-simple-text/bmb-accordion-simple-text.component';
 export * from './lib/components/old/bmb-alert-center/bmb-alert-center.component';
 export * from './lib/components/old/bmb-portal/bmb-portal.component';
 export * from './lib/components/bmb-iframe/bmb-iframe.component';

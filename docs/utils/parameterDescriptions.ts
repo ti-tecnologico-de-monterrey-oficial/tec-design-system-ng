@@ -54,9 +54,9 @@ Look for the property to set the alt, if it does not exist in the component it i
   },
 )}`;
 export const SIMPLE_ICON_DESCRIPTION = `Sets the icon name that will be shown.
-<br/><br/>${GOOGLE_FONTS_LINK.replace(/###/g, '')}
+<br/><br/>${GOOGLE_FONTS_LINK.replaceAll('###', '')}
 `;
-export const ICON_DESCRIPTION = `${SIMPLE_ICON_DESCRIPTION}<br/>${ICON_IMAGE_DETAIL.replace(/###/g, '')}`;
+export const ICON_DESCRIPTION = `${SIMPLE_ICON_DESCRIPTION}<br/>${ICON_IMAGE_DETAIL.replaceAll('###', '')}`;
 export const DEFAULT_VALUE_DESC = `It is not necessary to explicitly set default values, the property can be omitted.<br/><br/>
   Properties can be omitted if they are not required and do not contain a default value.`;
 export const DEFAULT_VALUE_DETAIL = `${RELEVANT_TITLE.note.replace(/(<br\/>)|(\*)/g, '')}
@@ -70,17 +70,32 @@ export const getWidthIncreaseDesc = (
 ): string => `${RELEVANT_TITLE.note}
 The width of the ${name} will increase depending on the length of the text.`;
 
-export const getDefaultValueDesc = (defaultValue: unknown): string => `
+export const getDefaultValueDesc = (
+  defaultValue: string | number | boolean,
+): string => `
 ${RELEVANT_TITLE.note}
 The default value is ${defaultValue}. ${DEFAULT_VALUE_DESC}`;
 
-export const getDefaultValueControl = (summary: unknown = '""') => {
+export const getModelDescription = (propertyName: string): string =>
+  getAlertBlockquote(
+    `
+Remember that model is two-way binding (signal), it is possible to use it as:
+    \`[(${propertyName})]="${propertyName}"\``,
+    {
+      title: RELEVANT_TITLE.configuration,
+      blockquoteType: BlockquoteType.important,
+    },
+  );
+
+export const getDefaultValueControl = (
+  summary: string | number | boolean = '""',
+) => {
   const _summary: string =
     typeof summary === 'string'
       ? summary === ''
         ? '""'
         : summary
-      : String(summary);
+      : summary.toString();
   const isLong: boolean = _summary.length > 10;
   return {
     summary: isLong ? _summary.substring(0, 10).concat('...') : _summary,
@@ -143,7 +158,9 @@ The possible positions to indicate where the label should be displayed in relati
   };
 };
 
-export const getFormControlConsiderations = (replaceChar = ''): string =>
+export const getFormControlConsiderations = (
+  replaceChar = '',
+): string =>
   `__
 __It is essential to assign the property \`name\` for correct behavior of the field.
 __
@@ -157,8 +174,8 @@ __- **minlength**: adds \`Validators.minLength\` to the \`FormControl\`
 __- **maxlength**: adds \`Validators.maxLength\` to the \`FormControl\`
 __- **max**: adds \`Validators.max\` to the \`FormControl\`
 __- **min**: adds \`Validators.min\` to the \`FormControl\`
-__- **pattern**: adds \`Validators.pattern\` to the \`FormControl\``.replace(
-    /__/g,
+__- **pattern**: adds \`Validators.pattern\` to the \`FormControl\``.replaceAll(
+    '__',
     replaceChar,
   );
 
@@ -166,8 +183,8 @@ export const getFormControlDescription = (replaceChar = ''): string =>
   `__In ${DESIGN_SYSTEM_TITLE}, it is possible to implement automatic field validation using the \`bmb-form-validator\` component.
 __
 __<br/>
-__The \`bmb-form-validator\` component contains the state of the form by collecting the form fields and adding them to a \`FormGroup\`.`.replace(
-    /__/g,
+__The \`bmb-form-validator\` component contains the state of the form by collecting the form fields and adding them to a \`FormGroup\`.`.replaceAll(
+    '__',
     replaceChar,
   );
 
@@ -204,7 +221,7 @@ export const getPropertyParamDesc = (
     summaryType = '',
   }: {
     controlType?: IBmbControlType | boolean | string;
-    defaultSummary?: unknown;
+    defaultSummary?: string | number | boolean;
     additionalDescription?: string;
     alternativeDescription?: string;
     alternativePropName?: string;
@@ -252,7 +269,11 @@ export const getAppearanceParam = (
   defaultSummary = '',
   additionalDescription = '',
 ) => {
-  const detailType: string = options.toString().replace(/,/g, '\n');
+  const detailType: string = options.toString().replaceAll(
+    ',',
+    `
+`,
+  );
   return {
     control: {
       type: 'select',
@@ -692,10 +713,17 @@ ${getGeneralDocDescription('https://bamboo.tec.mx/latest/foundations/icon/iconos
       'for the icon when it is an image',
     ),
   },
-  imageNotFoundError: getOnEventParam(
-    getOnEvent('the icon', 'imageNotFoundError', 'void'),
-    ' the image used as icon could not be found or loaded.',
-  ),
+  imageNotFoundError: {
+    control: false,
+    description: `Emits the event to handle the img - onerror`,
+    table: {
+      category: 'Events',
+      type: {
+        summary: 'imageNotFoundError(string)',
+        detail: '(imageNotFoundError)=handleImageNotFoundError([string])',
+      },
+    },
+  },
 };
 
 export const DBmbButtonParamDesc = {
@@ -1569,7 +1597,10 @@ export const DBmbContainerButton = {
   ),
 };
 
-export const getPropertyForType = (isCounter = true, isSimple = false) => `
+export const getPropertyForType = (
+  isCounter = true,
+  isSimple = false,
+) => `
 <br/><br/>This property is displayed for the property type:
 ${isSimple ? '- simple' : ''}
 ${isCounter ? '- counter' : ''}

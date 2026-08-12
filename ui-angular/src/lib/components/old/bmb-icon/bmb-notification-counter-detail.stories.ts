@@ -32,7 +32,7 @@ export default {
         ],
       },
       description: {
-        component: `${notificationCounter.default?.parameters?.['docs']?.description?.component!}`,
+        component: `${notificationCounter.default?.parameters?.['docs']?.description?.component}`,
       },
     },
   },
