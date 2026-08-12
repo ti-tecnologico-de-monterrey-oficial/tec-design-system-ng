@@ -5,8 +5,6 @@ import {
   Primary,
   Title,
 } from '@storybook/addon-docs/blocks';
-import { createElement } from 'react';
-import { getListingOnOneLine } from '../../../_shared/logicred/logic/utils';
 import {
   BMB_ALERT_COLOR_LIST,
   BMB_BASE_COLOR_LIST,
@@ -17,6 +15,8 @@ import {
   BMB_SEMANTIC_BASE_COLOR_LIST,
   BMB_SEMANTIC_COLOR_LIST,
 } from '../../types/foundations/colors/color-type';
+import { createElement } from 'react';
+import { getListingOnOneLine } from '../../shared/logic/utils';
 
 interface IBmbVariableDesc {
   element: string;
@@ -84,39 +84,22 @@ export const TOC_OBJ = {
   headingSelector: 'h2, h3',
 };
 
-const replaceOccurrences = (
-  value: string,
-  search: string | RegExp,
-  replacement: string,
-): string => {
-  if (typeof search === 'string') {
-    return value.split(search).join(replacement);
-  }
-
-  const flags = search.flags.includes('g') ? search.flags : `${search.flags}g`;
-  return value.replace(new RegExp(search.source, flags), replacement);
-};
-
-export const getPageStructureForFoundationStories = (): ReturnType<
-  typeof createElement
->[] => {
+export const getPageStructureForFoundationStories = (): unknown[] => {
   return [
-    createElement(Title),
-    createElement(Description),
-    createElement(Heading, { children: PREVIEW_TITLE }),
-    createElement(Primary),
-    createElement(Controls),
+    createElement(Title, null),
+    createElement(Description, null),
+    createElement(Heading, null, PREVIEW_TITLE),
+    createElement(Primary, null),
+    createElement(Controls, null),
   ];
 };
 
-export const getPageStructureForTemplateStories = (): ReturnType<
-  typeof createElement
->[] => {
+export const getPageStructureForTemplateStories = (): unknown[] => {
   return [
-    createElement(Title),
-    createElement(Description),
-    createElement(Heading, { children: PREVIEW_TITLE }),
-    createElement(Primary),
+    createElement(Title, null),
+    createElement(Description, null),
+    createElement(Heading, null, PREVIEW_TITLE),
+    createElement(Primary, null),
   ];
 };
 
@@ -166,18 +149,13 @@ export const getFormatName = (
       ?.split(separator)
       .map((element) => getProperName(element))
       .toString()
-      .replace(/,/g, '');
+      .replaceAll(',', '');
   }
 
   return !!separator && !!replace
-    ? replaceOccurrences(_name, separator, replace)
+    ? _name.replaceAll(separator, replace)
     : _name;
 };
-
-export const getModelDescription = (
-  propertyName: string,
-): string => `This is a model signal, so it is possible to use it as:
-    [(${propertyName})]="${propertyName}"`;
 
 export const getOnEvent = (
   name: string,
@@ -205,7 +183,7 @@ export const getOnEvent = (
 export const getStoryTitle = (fullTitle: string): string =>
   getFormatName(
     fullTitle,
-    fullTitle?.substring(0, fullTitle?.lastIndexOf('/') + 1),
+    fullTitle.substring(0, fullTitle.lastIndexOf('/') + 1),
     '',
   );
 
@@ -368,8 +346,8 @@ __  standalone: true,
 __  imports: [ ${
     additionalImportName
       ? `
-    ${inputName.concat(', ', additionalImportName).replace(
-      /,/g,
+    ${inputName.concat(', ', additionalImportName).replaceAll(
+      ',',
       `,
     `,
     )},
@@ -384,7 +362,7 @@ __export class AppComponent {
 __  ${additionalBlock || '//Add your code'}
 __}
 \`\`\`
-__`.replace(/__/g, replaceChar);
+__`.replaceAll('__', replaceChar);
 
 export const getTypescriptExampleTextBlock = (
   inputName: string,
@@ -403,7 +381,7 @@ export const getTypescriptExampleTextBlock = (
   `
 __${getDescribeTypeTextBlock('TypeScript', additionalTitle, isLevel3, additionalText, isSubStory, subStoryChart)}
 __${getTypescriptExampleBlock(inputName, additionalAngularCommonImportName, additionalImportName, additionalImportFrom, importComments, additionalBlock, replaceChar)}
-__`.replace(/__/g, replaceChar);
+__`.replaceAll('__', replaceChar);
 
 export const getReactiveFormTitle = (
   bmbInputName: string,
@@ -492,8 +470,8 @@ export const getAlertBlockquote = (
   {
     title,
     blockquoteType,
-    isRelevantTitle = true,
-    isHeader = true,
+    isRelevantTitle = false,
+    isHeader = false,
     isSubStory,
     subStoryChart = '-',
   }: {
@@ -505,9 +483,8 @@ export const getAlertBlockquote = (
     subStoryChart?: string;
   },
 ): string => {
-  const _title: string = isHeader
-    ? `${isRelevantTitle ? title.replace(/\*/g, '') : title} `
-    : title;
+  let _title: string = isRelevantTitle ? `<b>${title}</b>` : title;
+  _title = isHeader ? '###'.concat(title) : _title;
   return `
 ${blockquoteType}
 ${getSubStoryIdentifier(isSubStory, subStoryChart).concat(_title)}
@@ -599,7 +576,7 @@ ${TECHNICAL_DOC_REFERENCES}<br/>
 <ul>${references
   .map((ref) => '<li>'.concat(getStoryLink(ref), '</li>'))
   .toString()
-  .replace(/,/g, ' ')}</ul>
+  .replaceAll(',', ' ')}</ul>
 `;
 
 export const getTechnicalOneReference = (title: string): string =>
@@ -756,17 +733,19 @@ To use the regular family of Poppins with the 4th size, your HTML element should
 ### Sizes reference:
 - **Size 1**: 10px
 - **Size 2**: 11px
-- **Size 3**: 12px
-- **Size 4**: 14px
+- **Size 3**: 12px (quote - 'blockquote' tag)
+- **Size 4**: 14px (paragraph - 'p' and 'a' tag)
 - **Size 4_5**: 15px
 - **Size 5**: 16px
-- **Size 6**: 18px
-- **Size 7**: 20px
+- **Size 6**: 18px (Heading 4 - 'h4' tag)
+- **Size 7**: 20px (Heading 3 - 'h3' tag)
 - **Size 8**: 22px
-- **Size 9**: 24px
+- **Size 9**: 24px (Heading 2 - 'h2' tag)
 - **Size 10**: 26px
-- **Size 11**: 36px
+- **Size 11**: 36px (Heading 1 - 'h1' tag)
 - **Size 12**: 48px
+>
+\`h1, h2, h3, h4, p, a, and blockquote\` tags take the corresponding font size by default.
 >
 ${
   isCompleteDetail
@@ -804,7 +783,7 @@ ${
 \`\`\`html
 <div class="${classes}" ${_style.trimEnd()}>
   <div style="${stylesVar}">
-    The child element has access to the ${list} of the parent element's size through the ${variableDescription.replace(/`/g, '')}.
+    The child element has access to the ${list} of the parent element's size through the ${variableDescription.replaceAll('`', '')}.
   </div>
 </div>
 \`\`\`
@@ -821,19 +800,17 @@ const getSubList = (
   const result =
     typeof list[0] === 'string'
       ? template
-        ? list.map((element) =>
-            replaceOccurrences(template, '[__]', element as string),
-          )
+        ? list.map((element) => template.replaceAll('[__]', element as string))
         : list
       : list.map((element) => {
           const _element = element as IBmbVariableDesc;
           if (elementName === 'element') {
             return template
-              ? replaceOccurrences(template, '[__]', _element.element)
+              ? template.replaceAll('[__]', _element.element)
               : _element.element;
           } else if (elementName === 'name') {
             return template
-              ? replaceOccurrences(template, '[__]', _element.name)
+              ? template.replaceAll('[__]', _element.name)
               : _element.name;
           } else {
             throw new Error(`Invalid elementName: ${elementName}`);
@@ -853,7 +830,7 @@ const getMergeList = (
     element.concat(': var(--', styles[index]?.trim(), ');'),
   );
 
-  return mergeList.toString().replace(/,/g, ' ');
+  return mergeList.toString().replaceAll(',', ' ');
 };
 
 export const getVariableAndClassesSizes = (element: string): string => `
@@ -905,21 +882,21 @@ export const getSandboxConsiderationsDocumentation = (
       elementList as string[],
       '`--bmb_[__]-{[__]}`',
     );
-    const definitionClass: string = definition.replace(/--/g, '');
+    const definitionClass: string = definition.replaceAll('--', '');
     const _definition: string = getListingOnOneLine(
       varList as string[],
       '`--bmb_[__]-4`',
     );
-    const definitionVar: string = _definition.replace(/_/g, '-');
+    const definitionVar: string = _definition.replaceAll('_', '-');
     const size: string = getListingOnOneLine(elementList as string[], '{[__]}');
-    const variableDescription = `the ${definitionVar.replace(/-4/g, '')} variable${(varList as string[]).length > 1 ? 's' : ''}`;
+    const variableDescription = `the ${definitionVar.replaceAll('-4', '')} variable${(varList as string[]).length > 1 ? 's' : ''}`;
     const list: string = getListingOnOneLine(elementList as string[]);
     const _classes: string[] = getSubList(
       implementationDetails,
       'element',
       'bmb_[__]-4',
     );
-    const classes: string = _classes.toLocaleString().replace(/,/g, ' ');
+    const classes: string = _classes.toLocaleString().replaceAll(',', ' ');
     const variableInheritStyles = `${style.concat(
       style ? ' ' : '',
       getMergeList(
@@ -934,7 +911,7 @@ export const getSandboxConsiderationsDocumentation = (
       style ? ' ' : '',
       getMergeList(
         varList,
-        classes.replace(/_/g, '-').replace(/ /g, splitChar),
+        classes.replaceAll('_', '-').replaceAll(' ', splitChar),
         splitChar,
       ),
     )}`;
@@ -945,7 +922,7 @@ export const getSandboxConsiderationsDocumentation = (
 >${getVariableDetail(element, classes, list, definitionClass, size, style, isInherit, variableDescription, variableInheritStyles)}
 ><br/>
 ### CSS Variable
->${getVariableDetail(element, '', list, definition.replace(/_/g, '-'), size, variableStyles)}
+>${getVariableDetail(element, '', list, definition.replaceAll('_', '-'), size, variableStyles)}
 ><br/>
     `;
   }

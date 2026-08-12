@@ -4,17 +4,14 @@ import { CommonModule } from '@angular/common';
 import { moduleMetadata } from '@storybook/angular';
 import { BmbHomeCardComponent } from '../old/bmb-home-card/bmb-home-card.component';
 import {
-  BlockquoteType,
   DESIGN_SYSTEM_TITLE,
-  getAlertBlockquote,
   getBasicExampleBlock,
   getGeneralComponentDescription,
   getGeneralDescription,
   getSpecialSpecifications,
-  getModelDescription,
   RELEVANT_TITLE,
 } from '@docs/utils/utils';
-import { getPropertyParamDesc } from '@docs/utils/parameterDescriptions';
+import { getModelDescription, getPropertyParamDesc } from '@docs/utils/parameterDescriptions';
 
 export default {
   title: 'Components/Status indicators/Carousel',
