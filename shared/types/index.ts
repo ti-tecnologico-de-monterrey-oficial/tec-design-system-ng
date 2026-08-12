@@ -18,6 +18,11 @@ export * from '../types/components/grade-value';
 export * from './colors';
 export type { IBmbServerTableColumn } from './components/server-table';
 export type { IBmbNotificationCounterType } from './components/notification-counter';
+export type { BmbSkeletonType } from './components/skeleton';
+export type {
+  BmbValueCounterFormatter,
+  BmbValueCounterParts,
+} from './components/value-counter';
 export type {
   BmbIframeLoading,
   BmbIframeReferrerPolicy,

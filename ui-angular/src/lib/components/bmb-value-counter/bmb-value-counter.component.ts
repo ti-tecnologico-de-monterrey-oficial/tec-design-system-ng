@@ -14,8 +14,6 @@ import {
 } from '../../_shared/logic/components/value-counter';
 import type { BmbValueCounterFormatter } from '../../_shared/types/components/value-counter';
 
-export type { BmbValueCounterFormatter } from '../../_shared/types/components/value-counter';
-
 @Component({
   selector: 'bmb-value-counter',
   standalone: true,
