@@ -201,3 +201,18 @@ Every component assessed in this queue has a confirmed Angular equivalent. Previ
 
 - Figma node `4070:156265` has no editable component properties. `BmbAcademicProgressComponent` requires `accredited`, `average`, and `summary` objects.
 - The published snippet uses its documented Storybook values: Materias Acreditadas/7, Promedio Semestre/99, and Horas Servicio/45. No values are claimed to originate in Figma; expose semantic metric properties in Figma to make this dynamic.
+
+## Overlay — approximate coverage (published)
+
+- Figma node `82:30374` has no component properties. `BmbOverlayComponent` exposes `active` and an internal/generated `uid`; only `active` is relevant to a canonical usage snippet.
+- Published canonical example: `[active]="true"`. The value truthfully represents the visible Figma overlay and is documented because Figma does not expose a semantic `Active` property. The generated `uid` and click output are intentionally omitted.
+
+## Dropdown menu — composition coverage (published)
+
+- Figma node `4070:158930` exposes `Usos=Dropdown|Menu` and `Show ScrollBar`, but public `BmbDropdownMenuComponent` exposes only the `items` data collection and trigger `icon`; neither Figma property maps to that API.
+- Published facade: `<bmb-dropdown-menu />`. Do not invent a data array from the child row or icon layers. Figma needs a repeatable item SLOT/data contract plus a semantic trigger icon property before producing a populated snippet.
+
+## Modal — composition coverage (published)
+
+- Figma node `82:27913` maps `ModalContent_text → ModalDataConfig.content`, `Scroll Bar → scrollable`, and `Button Secondary → hideSecondaryButton` (inverted). Its `Modals` values map exhaustively to the supported Angular `informative`, `action`, or `alert` types.
+- `BmbModalComponent` is opened through Angular Material `MatDialog`, not rendered as a standalone HTML element. The snippet therefore shows the verified `matDialog.open(BmbModalComponent, { data })` API and supplies the neutral title `Modal title` because Figma does not expose it as a TEXT property. Device, complementary content, icons, nested controls, and detailed visual layouts remain composition/visual-only.
