@@ -14,7 +14,7 @@ import {
   BMB_MITEC_COLOR_LIST,
   BMB_SEMANTIC_BASE_COLOR_LIST,
   BMB_SEMANTIC_COLOR_LIST,
-} from '../../types/foundations/colors/color-type';
+} from '../../shared/types/foundations/colors/color-type';
 import { createElement } from 'react';
 import { getListingOnOneLine } from '../../shared/logic/utils';
 

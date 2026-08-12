@@ -8,7 +8,7 @@ import {
   ValidatorFn,
 } from '@angular/forms';
 
-import { DateTime, DateTimeMaybeValid } from 'luxon';
+import { DateTime } from 'luxon';
 
 import { BmbFormValidatorComponent } from '../bmb-form-validator/bmb-form-validator.component';
 
@@ -146,14 +146,14 @@ export class StorybookDateTimeRange {
     return this.dateFormat.concat('-').concat(this.timeFormat);
   }
 
-  getDate(dateControl: FormControl): DateTimeMaybeValid {
+  getDate(dateControl: FormControl): DateTime {
     return DateTime.fromFormat(dateControl?.value || '', this.dateFormat);
   }
 
   getDateTime(
     dateControl: FormControl,
     timeControl: FormControl,
-  ): DateTimeMaybeValid {
+  ): DateTime {
     if (dateControl?.value!) {
       return DateTime.fromFormat(
         dateControl.value.concat('-').concat(timeControl?.value || '00:00'),
@@ -276,7 +276,7 @@ import {
   ValidationErrors,
   ValidatorFn,
 } from '@angular/forms';
-import { DateTime, DateTimeMaybeValid } from 'luxon';
+import { DateTime } from 'luxon';
 
   `,
   `formGroup: FormGroup = new FormGroup({});
@@ -302,14 +302,14 @@ import { DateTime, DateTimeMaybeValid } from 'luxon';
     return this.dateFormat.concat('-').concat(this.timeFormat);
   }
 
-  getDate(dateControl: FormControl): DateTimeMaybeValid {
+  getDate(dateControl: FormControl): DateTime {
     return DateTime.fromFormat(dateControl?.value || '', this.dateFormat);
   }
 
   getDateTime(
     dateControl: FormControl,
     timeControl: FormControl,
-  ): DateTimeMaybeValid {
+  ): DateTime {
     if (dateControl?.value!) {
       return DateTime.fromFormat(
         dateControl.value.concat('-').concat(timeControl?.value || '00:00'),
