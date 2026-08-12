@@ -31,7 +31,7 @@ export * from './lib/directives/old/bmb-layout-grid/bmb-layout-grid.directive';
 
 // Components
 export * from './lib/components/old/bmb-tooltip/bmb-tooltip.component';
-export * from './lib/components/old/bmb-logo/bmb-logo.component';
+export * from './lib/components/bmb-logo/bmb-logo.component';
 export * from './lib/components/old/bmb-icon/bmb-icon.component';
 export * from './lib/components/bmb-notification-counter/bmb-notification-counter.component';
 export * from './lib/components/bmb-badge/bmb-badge.component';
@@ -47,7 +47,7 @@ export * from './lib/components/old/bmb-toast/bmb-toast.component';
 export * from './lib/components/old/bmb-input/bmb-input.component';
 export * from './lib/components/bmb-divider/bmb-divider.component';
 export * from './lib/components/bmb-container/bmb-container.component';
-export * from './lib/components/old/bmb-user-image/bmb-user-image.component';
+export * from './lib/components/bmb-user-image/bmb-user-image.component';
 export * from './lib/components/old/bmb-header-mobile/bmb-header-mobile.component';
 export * from './lib/components/old/bmb-dot-paginator/bmb-dot-paginator.component';
 export * from './lib/components/old/bmb-container-button/bmb-container-button.component';

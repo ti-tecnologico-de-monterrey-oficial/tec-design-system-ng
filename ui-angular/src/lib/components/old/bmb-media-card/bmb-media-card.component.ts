@@ -8,7 +8,7 @@ import {
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SizeNames, IBmbTargetLink } from '../../../_shared/types';
-import { BmbUserImageComponent } from '../bmb-user-image/bmb-user-image.component';
+import { BmbUserImageComponent } from '../../bmb-user-image/bmb-user-image.component';
 import { isExternalLink } from '../../../_shared/logic/utils';
 import { logDeprecatedInput } from '../../../_shared/logic/logDeprecatedInput';
 

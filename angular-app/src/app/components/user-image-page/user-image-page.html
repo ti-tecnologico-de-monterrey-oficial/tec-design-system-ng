@@ -1,0 +1,73 @@
+<header class="page-header">
+  <p class="eyebrow">Componente migrado</p>
+  <h1>BmbUserImage</h1>
+  <p>Prueba dimensiones, borde, imagen, enlace y eventos del avatar.</p>
+</header>
+
+<section class="playground" aria-labelledby="user-image-demo-heading">
+  <div class="controls">
+    <h2 id="user-image-demo-heading">Propiedades</h2>
+    <label for="user-image-size">size</label>
+    <select
+      id="user-image-size"
+      [value]="size()"
+      (change)="setSize($any($event.target).value)"
+    >
+      @for (option of sizes; track option) {
+      <option [value]="option">{{ option }}</option>
+      }
+    </select>
+    <label for="user-image-src">image</label>
+    <input
+      id="user-image-src"
+      [value]="image()"
+      (input)="setImage($any($event.target).value)"
+    />
+    <label for="user-image-alt">altImage</label>
+    <input
+      id="user-image-alt"
+      [value]="altImage()"
+      (input)="setAltImage($any($event.target).value)"
+    />
+    <label for="user-image-link">link</label>
+    <input
+      id="user-image-link"
+      [value]="link()"
+      (input)="setLink($any($event.target).value)"
+    />
+    <label for="user-image-target">target</label>
+    <select
+      id="user-image-target"
+      [value]="target()"
+      (change)="setTarget($any($event.target).value)"
+    >
+      @for (option of targets; track option) {
+      <option [value]="option">{{ option }}</option>
+      }
+    </select>
+    <label class="toggle">
+      <input
+        type="checkbox"
+        [checked]="bordered()"
+        (change)="setBordered($any($event.target).checked)"
+      />
+      bordered
+    </label>
+    <p><strong>Evento:</strong> {{ lastEvent() }}</p>
+  </div>
+
+  <div class="preview">
+    <bmb-user-image
+      [size]="size()"
+      [image]="image()"
+      [altImage]="altImage()"
+      [link]="link()"
+      [target]="target()"
+      [bordered]="bordered()"
+      (buttonPress)="registerEvent('buttonPress')"
+      (buttonClick)="registerEvent('buttonClick')"
+      (buttonKeyPress)="registerEvent('buttonKeyPress')"
+      (imageNotFoundError)="registerEvent('imageNotFoundError')"
+    />
+  </div>
+</section>
