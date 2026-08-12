@@ -1,0 +1,121 @@
+@use 'sass:map';
+@use '../../../../../../shared/assets/styles/base/fonts' as fonts;
+@use '../../../../../../shared/assets/styles/base/rem' as rem;
+@use './utils.scss' as utils;
+
+@mixin base {
+  @include fonts.font(4, regular);
+  border-radius: var(--bmb-radius-4);
+  color: var(--general-contrasts-75);
+  cursor: pointer;
+}
+
+.bmb_accordion {
+  user-select: none;
+  border: rem.rem_calc(1) solid var(--general-contrasts-container-outline);
+  position: relative;
+
+  &-basic {
+    &-content {
+      max-height: utils.$max-height;
+
+      &.expanded {
+        max-height: max-content;
+        cursor: pointer;
+      }
+
+      &.closed {
+        cursor: pointer;
+      }
+    }
+  }
+
+  &-header {
+    @include base;
+
+    &-icon {
+      @include base;
+    }
+
+    &-open {
+      background-color: var(--menu-select-on-surface-hovered-w-checkbox);
+      border-radius: var(--bmb-radius-4) var(--bmb-radius-4) 0 0;
+    }
+  }
+
+  &-content {
+    &,
+    p {
+      @include base;
+      cursor: auto;
+    }
+
+    border-top: rem.rem_calc(1) solid var(--buttons-inactive-step);
+    display: none;
+    max-height: 0;
+    opacity: 0;
+    transition:
+      max-height 0.5s ease,
+      opacity 0.5s ease;
+
+    &.bmb_accordion-content-open {
+      display: block;
+      max-height: 100%;
+      opacity: 1;
+      border-radius: 0 0 var(--bmb-radius-4) var(--bmb-radius-4);
+    }
+
+    &-init-open {
+      display: block;
+      max-height: 100%;
+      opacity: 1;
+    }
+  }
+
+  &-overlay {
+    cursor: not-allowed;
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 10;
+  }
+
+  &.disabled {
+    opacity: 0.5;
+  }
+
+  &.active {
+    border-color: var(--general-contrasts-main-selection);
+
+    .bmb_accordion-header,
+    .bmb_accordion-header-icon {
+      background-color: var(--menu-select-on-surface-hovered-w-checkbox);
+    }
+
+    .bmb_accordion-content {
+      border-top-color: var(--general-contrasts-main-selection);
+    }
+  }
+
+  &:hover {
+    &:not(.active):not(.disabled):not(.notHovered) {
+      border-color: var(--general-contrasts-main-selection);
+    }
+  }
+
+  &-primary {
+    .bmb_accordion-header,
+    .bmb_accordion-header-icon {
+      background-color: var(--containers-background);
+    }
+  }
+
+  &-alternative {
+    .bmb_accordion-header,
+    .bmb_accordion-header-icon {
+      background-color: var(--containers-main);
+    }
+  }
+}

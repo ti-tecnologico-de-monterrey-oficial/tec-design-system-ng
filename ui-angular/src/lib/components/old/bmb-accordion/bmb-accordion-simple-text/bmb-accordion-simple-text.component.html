@@ -1,0 +1,27 @@
+<bmb-accordion
+  class="bmb_accordion-simple-text"
+  [appearanceContrast]="appearanceContrast()"
+  borderRadius="3"
+  [disabled]="!!disabled()"
+  [expanded]="expanded()"
+  margin="none"
+>
+  <ng-template #bmbAccordionBasic>
+    <section id="wrapper_id" class="bmb_accordion-simple-text-wrapper">
+      @if (titleContent()) {
+        <h5
+          id="accordion_title_id"
+          class="bmb_accordion-simple-text-wrapper-content"
+        >
+          {{ titleContent() }}
+        </h5>
+      }
+      <p
+        id="accordion_content_id"
+        class="bmb_accordion-simple-text-wrapper-content"
+      >
+        {{ textContent() }}
+      </p>
+    </section>
+  </ng-template>
+</bmb-accordion>

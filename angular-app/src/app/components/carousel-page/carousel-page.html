@@ -1,0 +1,35 @@
+<header class="page-header">
+  <p class="eyebrow">Componente migrado</p>
+  <h1>BmbCarousel</h1>
+  <p>
+    Usa los puntos, los controles o un gesto horizontal para cambiar de slide.
+  </p>
+</header>
+
+<section class="playground" aria-labelledby="carousel-demo-title">
+  <div class="controls">
+    <h2 id="carousel-demo-title">Propiedades</h2>
+    <label for="selected-index">selectedIndex</label>
+    <select
+      id="selected-index"
+      [value]="selectedIndex()"
+      (change)="select(+$any($event.target).value)"
+    >
+      @for (slide of slides; track $index) {
+      <option [value]="$index">{{ $index }} — {{ slide }}</option>
+      }
+    </select>
+    <output>Valor actual: {{ selectedIndex() }}</output>
+  </div>
+
+  <div class="preview">
+    <bmb-carousel [(selectedIndex)]="selectedIndex">
+      @for (slide of slides; track slide; let index = $index) {
+      <article #carouselItem class="slide" [class]="'slide slide-' + index">
+        <span>Slide {{ index + 1 }}</span>
+        <strong>{{ slide }}</strong>
+      </article>
+      }
+    </bmb-carousel>
+  </div>
+</section>

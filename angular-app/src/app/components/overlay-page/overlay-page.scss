@@ -1,0 +1,12 @@
+@use '../../styles/playground';
+
+@include playground.page($controls-min: 16rem, $controls-max: 22rem);
+
+.controls button {
+  cursor: pointer;
+  padding: 0.625rem;
+}
+.preview {
+  display: grid;
+  place-items: center;
+}
