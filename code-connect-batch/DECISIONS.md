@@ -216,3 +216,18 @@ Every component assessed in this queue has a confirmed Angular equivalent. Previ
 
 - Figma node `82:27913` maps `ModalContent_text → ModalDataConfig.content`, `Scroll Bar → scrollable`, and `Button Secondary → hideSecondaryButton` (inverted). Its `Modals` values map exhaustively to the supported Angular `informative`, `action`, or `alert` types.
 - `BmbModalComponent` is opened through Angular Material `MatDialog`, not rendered as a standalone HTML element. The snippet therefore shows the verified `matDialog.open(BmbModalComponent, { data })` API and supplies the neutral title `Modal title` because Figma does not expose it as a TEXT property. Device, complementary content, icons, nested controls, and detailed visual layouts remain composition/visual-only.
+
+## Global container — approximate coverage (published)
+
+- Figma node `61:5663` maps its `Type` values exhaustively to the public `appearance` API: Primary, Header, Home, Secondary, Button, and Contrast each have a verified Angular value.
+- Figma `Variant` is an overlapping visual axis but Angular has only one appearance input, so it is intentionally omitted. `isHidden` has no Figma semantic property and retains its public default.
+
+## Multi dot paginator — composition coverage (published)
+
+- Figma node `152:40344` has no outer component properties; its visible dots are nested `BB_6_6` implementation parts. Public `BmbMultiDotPaginatorComponent` requires `componentTitle` and renders projected `BmbMultiDotPaginatorItemComponent` children.
+- Published facade supplies the documented neutral required title `Example title`. It intentionally does not hardcode projected children or derive `selectedIndex` from the internal dot representation. Figma needs an outer title property and a true item SLOT before it can generate a populated paginator.
+
+## Simple header — approximate coverage (published)
+
+- Figma node `4070:156930` maps `Title Home → componentTitle` directly. Its `Show Trailing Icon` boolean only controls a nested Figma icon whose identifier is not exposed as a compatible Angular string.
+- Published snippet maps the title and omits `icon` and `iconAlternativeColor`; emitting an icon from the child layer would invent an unsupported identifier. Figma should expose an icon INSTANCE_SWAP or semantic icon-name property, plus an API-aligned visibility choice.
