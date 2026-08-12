@@ -186,3 +186,18 @@ Every component assessed in this queue has a confirmed Angular equivalent. Previ
 
 - Figma node `1933:100481` exposes only a non-semantic `Property 1` visual variant. Public `BmbCarouselComponent` has no inputs and receives items through Angular content projection marked `#carouselItem`.
 - Published facade is intentionally empty. Do not hardcode projected slide children: Figma exposes no SLOT or semantically editable item content. Add an explicit Figma SLOT before generating a carousel composition snippet.
+
+## Accordion — composition coverage (published)
+
+- Figma node `55:9576` maps `Container color` to `appearanceContrast`; `State=Disabled` maps to `disabled`, and `Selected` maps to the public `expanded` input. Hovered and Enabled stay non-persistent.
+- The Figma `Type`, `Device`, leading-asset, and extra-slot controls describe nested visual composition; Angular receives header/content through named projected templates, but Figma exposes no compatible outer SLOT. The published facade intentionally does not hardcode projected children.
+
+## Container button — approximate coverage (published)
+
+- Figma node `16:4087` maps `Title` and `Subtitle` directly; `State=Disabled|Error` maps to the public `state`, while Enabled/Hovered/Focused are interaction-only. `Variant=Alternative` maps to `alternative`.
+- `Type=Small|Vertical Small` maps to the verified `small` input. Icon, menu, badge, user-profile, chevron, transition, and remaining type composition are omitted because Figma supplies no public Angular-compatible identifiers or required data.
+
+## Academic progress — approximate coverage (published)
+
+- Figma node `4070:156265` has no editable component properties. `BmbAcademicProgressComponent` requires `accredited`, `average`, and `summary` objects.
+- The published snippet uses its documented Storybook values: Materias Acreditadas/7, Promedio Semestre/99, and Horas Servicio/45. No values are claimed to originate in Figma; expose semantic metric properties in Figma to make this dynamic.
