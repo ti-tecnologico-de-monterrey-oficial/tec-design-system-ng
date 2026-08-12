@@ -11,16 +11,22 @@ import {
   OnChanges,
   SimpleChanges,
   contentChild,
+  ElementRef,
+  ViewChild,
+  AfterViewInit,
+  OnDestroy,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SizeNames } from '@shared/types';
+import { SizeNames } from '@shared/types/utils';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { BmbLayoutItemDirective } from '../../../directives/old/bmb-layout/bmb-layout-item.directive';
 import { BmbLayoutDirective } from '../../../directives/old/bmb-layout/bmb-layout.directive';
 import { IBmbContrast } from '@shared/types/colors';
 
-const calculateSize: any = (pixels: string[]): string => {
-  return pixels.map((size) => `var(--bmb-radius-${size})`).join(' ');
+const calculateSize = (pixels: SizeNames | SizeNames[]): string => {
+  return Array.isArray(pixels)
+    ? pixels.map((size) => `var(--bmb-radius-${size})`).join(' ')
+    : `var(--bmb-radius-${pixels})`;
 };
 
 @Component({
@@ -37,7 +43,9 @@ const calculateSize: any = (pixels: string[]): string => {
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
-export class BmbAccordionComponent implements OnInit, OnChanges {
+export class BmbAccordionComponent
+  implements OnInit, OnChanges, AfterViewInit, OnDestroy
+{
   appearanceContrast = input<IBmbContrast>('default');
   borderRadius = input<SizeNames | SizeNames[]>('m');
   margin = input<SizeNames | SizeNames[]>('m');
@@ -56,9 +64,20 @@ export class BmbAccordionComponent implements OnInit, OnChanges {
   onClick = output<MouseEvent>();
   imageNotFoundError = output<void>();
 
+  bmbAccordionContent = contentChild<TemplateRef<unknown>>(
+    'bmbAccordionContent',
+  );
+  bmbAccordionHeader = contentChild<TemplateRef<unknown>>('bmbAccordionHeader');
+  bmbAccordionBasic = contentChild<TemplateRef<unknown>>('bmbAccordionBasic');
+  @ViewChild('basicContent', { read: ElementRef })
+  basicContent!: ElementRef<HTMLElement>;
+
+  private resizeObserver?: ResizeObserver;
+
   _expanded = signal(false);
   _active = signal(false);
   _disabled = signal(false);
+  allowExpand = signal<boolean>(false);
   isOpen = computed<boolean | undefined>(() => {
     if (this.expanded() != undefined) {
       if (this.expanded()) {
@@ -72,9 +91,6 @@ export class BmbAccordionComponent implements OnInit, OnChanges {
       return this._expanded();
     }
   });
-
-  bmbAccordionContent = contentChild<TemplateRef<any>>('bmbAccordionContent');
-  bmbAccordionHeader = contentChild<TemplateRef<any>>('bmbAccordionHeader');
 
   ngOnInit(): void {
     this._expanded.update((current) => this.expanded() || current);
@@ -93,6 +109,40 @@ export class BmbAccordionComponent implements OnInit, OnChanges {
 
     if (changes['disabled']) {
       this._disabled.update(() => this.disabled() || false);
+    }
+  }
+
+  ngAfterViewInit(): void {
+    this.checkAllowExpand();
+
+    const element = this.basicContent?.nativeElement;
+    if (element) {
+      this.resizeObserver = new ResizeObserver(() => {
+        if (!this._expanded()) this.checkAllowExpand();
+      });
+      this.resizeObserver.observe(element);
+    }
+  }
+
+  ngOnDestroy(): void {
+    if (this.resizeObserver) {
+      this.resizeObserver.disconnect();
+      this.resizeObserver = undefined;
+    }
+  }
+
+  private checkAllowExpand(): void {
+    const el = this.basicContent?.nativeElement as HTMLElement;
+
+    if (el) {
+      if (el.childElementCount) {
+        this.allowExpand.set(
+          el.children[0].children[1].scrollHeight >
+            el.children[0].children[1].clientHeight,
+        );
+      } else {
+        this.allowExpand.set(el.scrollHeight > el.clientHeight);
+      }
     }
   }
 
@@ -118,8 +168,12 @@ export class BmbAccordionComponent implements OnInit, OnChanges {
     if (this._disabled()) {
       classNames.push('disabled');
     } else {
-      if (this._active()) {
+      if (!this.bmbAccordionBasic() && this._active()) {
         classNames.push('active');
+      }
+
+      if (this.bmbAccordionBasic() && !this.allowExpand()) {
+        classNames.push('notHovered');
       }
     }
 
@@ -156,15 +210,15 @@ export class BmbAccordionComponent implements OnInit, OnChanges {
     return classNames;
   }
 
-  getStyles(): any {
-    const styles: any = {};
+  getStyles(): Record<string, string> {
+    const styles: Record<string, string> = {};
 
     if (typeof this.borderRadius() !== 'string') {
       styles['border-radius'] = calculateSize(this.borderRadius());
     }
 
     if (typeof this.margin() !== 'string') {
-      styles.margin = calculateSize(this.margin());
+      styles['margin'] = calculateSize(this.margin());
     }
 
     return styles;
@@ -178,7 +232,7 @@ export class BmbAccordionComponent implements OnInit, OnChanges {
       this._active.update((current) => !current);
       this.onClick.emit(event);
 
-      if (this.expanded() == undefined) {
+      if (this.expanded() === undefined) {
         if (this.isOpen()) {
           this.opened.emit();
         } else {
@@ -189,7 +243,9 @@ export class BmbAccordionComponent implements OnInit, OnChanges {
   }
 
   getIconToggle(): string {
-    return this.isOpen() ? 'keyboard_arrow_up' : 'keyboard_arrow_down';
+    return this.isOpen() || (this.bmbAccordionBasic() && this._expanded())
+      ? 'keyboard_arrow_up'
+      : 'keyboard_arrow_down';
   }
 
   handleToggleKeyboard(event: KeyboardEvent): void {

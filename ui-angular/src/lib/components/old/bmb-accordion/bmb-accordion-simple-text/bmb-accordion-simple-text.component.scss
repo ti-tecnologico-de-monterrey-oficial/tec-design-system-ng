@@ -1,0 +1,27 @@
+@use '../../../../../../../shared/assets/styles/base/mixins' as mixins;
+@use '../utils.scss' as utils;
+
+.bmb_accordion-simple-text {
+  &-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: var(--bmb-spacing-xs);
+
+    &-content {
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: utils.$line_number;
+      line-clamp: utils.$line_number;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+
+  .bmb_accordion-basic-content.expanded {
+    .bmb_accordion-simple-text-wrapper-content {
+      max-height: max-content;
+      -webkit-line-clamp: inherit;
+      line-clamp: inherit;
+    }
+  }
+}
