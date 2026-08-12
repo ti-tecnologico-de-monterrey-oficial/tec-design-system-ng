@@ -231,3 +231,18 @@ Every component assessed in this queue has a confirmed Angular equivalent. Previ
 
 - Figma node `4070:156930` maps `Title Home → componentTitle` directly. Its `Show Trailing Icon` boolean only controls a nested Figma icon whose identifier is not exposed as a compatible Angular string.
 - Published snippet maps the title and omits `icon` and `iconAlternativeColor`; emitting an icon from the child layer would invent an unsupported identifier. Figma should expose an icon INSTANCE_SWAP or semantic icon-name property, plus an API-aligned visibility choice.
+
+## Home section — composition coverage (published)
+
+- Figma node `523:213644` has no outer title property. Its fixed `Simple header` child exposes `Title Home`, which appears as the semantic title in the rendered home-section hierarchy; the template reads that bound child text dynamically.
+- Published mapping emits `componentTitle` only. The outer `Change Slot` is a layout child for Figma content, while Angular uses generic projection; icon, link, target, and projected body have no compatible Figma contract. Add outer `Title`, `Href`, `Target`, icon, and `Content` SLOT properties to make this a fully composable mapping.
+
+## Home card — composition coverage (published)
+
+- Figma node `474:95724` has only visual size variants. Its title is bound inside the fixed `Gcard_Header` child, so the template resolves the dynamic child text and maps it to the required Angular `componentTitle` input.
+- The Figma size/fullscreen and nested action/header variations do not correspond to public `BmbHomeCardComponent` inputs; they are intentionally omitted. Do not infer icon identifiers, actions, or projected body content from internal children.
+
+## Advertisement card — composition coverage (published)
+
+- Figma node `5787:120268` exposes only `State=Full|Preview`, while public `BmbAdvertisementCardComponent` takes structured advertisement data plus title/subtitle. The Figma state represents internal expanded-card rendering, not a public Angular API.
+- Published facade intentionally emits no data. A truthful populated snippet needs semantic title/subtitle properties and repeatable advertisement data or slots; do not manufacture image URLs, destination links, or tab data from visible children.
