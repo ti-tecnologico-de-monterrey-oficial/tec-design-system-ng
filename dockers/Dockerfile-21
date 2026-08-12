@@ -5,19 +5,17 @@ FROM node:22-alpine  AS builder
 WORKDIR /app
 
 # Copiar los archivos de configuración de dependencias
+COPY . .
 COPY package/v21/package.json ./
 
 # Instalar Angular CLI y dependencias
-RUN npm add --global nx && npm install
-
-# Copiar todo el código del proyecto
-COPY . .
+RUN rm -f package-lock.json && npm add --global nx && npm install
 
 # Construye la librería de Angular (ajusta el nombre de tu librería)
-RUN npm run docker-build
+RUN sed -i 's/"ignoreDeprecations": "6.0"/"ignoreDeprecations": "5.0"/' ui-angular/tsconfig.lib.json && npm run docker-build
 
 # --- Extrae el resultado ---
 FROM alpine:latest AS output
 
 # Copia los archivos construidos desde la etapa anterior
-COPY --from=builder /app/dist/ds-ng /ds-ng
+COPY --from=builder /app/dist/ui-angular /ds-ng
