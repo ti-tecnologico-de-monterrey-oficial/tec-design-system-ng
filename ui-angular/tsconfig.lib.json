@@ -15,6 +15,9 @@
       "@shared/types/*": ["src/lib/_shared/types/*"]
     }
   },
+  "angularCompilerOptions": {
+    "compilationMode": "partial"
+  },
   "include": ["src/**/*.ts"],
   "exclude": [
     "src/**/*.spec.ts",
