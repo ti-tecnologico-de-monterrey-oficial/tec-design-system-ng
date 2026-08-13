@@ -328,3 +328,9 @@ Every component assessed in this queue has a confirmed Angular equivalent. Previ
 
 - Figma node `152:46103` exposes `Variante=Horizontal|Vertical Small|Wizard`; public `BmbStepProgressBarComponent` exposes `type`, `size`, `totalSteps`, `activeStep`, and label arrays.
 - Canonical mapping: Horizontal → `horizontal`/`normal`, Vertical Small → `vertical`/`small`, Wizard → `step-panel`/`normal`. Figma does not provide a stable outer total-step or label contract, so the canonical Storybook-neutral values are three steps, active index zero, and `Paso 1…3`; nested visual BB step states and the inner slot remain composition/visual-only.
+
+## Reverse batch review — list and navigation families (not published)
+
+- `List group` (`82:26226`) is a Figma list-item composition, while public `BmbListGroupComponent` is a container API (`borderRadius`, `borderType`, spacing, and selection controls). Its `List group state`, leading/trailing children, and container colors do not establish those container inputs or a projected item SLOT. Do not connect it to the container under the same name; first identify/publish the matching Angular list-item API or split the Figma component.
+- `Navigation bar` (`4070:156220`) has no component properties and only fixed visual icon descendants. Public `BmbNavigationBarComponent` requires `IBmbActionHeader[]` action records; no semantic icon identifiers, labels, or actions are exposed. A canonical populated snippet needs repeatable action data or a true action-item SLOT.
+- `Bottom navigation bar` (`11836:53649`) exposes only `Show Label`, but public `BmbBottomNavigationBarComponent` requires four `IBmbNavigationBarIcon` records (name, label, optional notification/event). The visible icon layers do not provide those records. Add a repeatable icon/action contract before publishing; `Show Label` has no public counterpart.
