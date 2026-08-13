@@ -9,7 +9,7 @@ import {
   TemplateRef,
   ViewEncapsulation,
 } from '@angular/core';
-import { IBmbButtonAction } from '../../../_shared/types';
+import { IBmbButtonAction } from '../bmb-push-notification/types';
 import { BmbButtonDirective } from '../../../directives/old/bmb-button/button.directive';
 import {
   BmbCardComponent,
@@ -22,7 +22,7 @@ import {
   BmbExternalLinkComponent,
   IBmbMenuEvent,
 } from '../bmb-external-link/bmb-external-link.component';
-import { IBmbFooterEvent } from '../bmb-bottom-navigation-bar/bmb-bottom-navigation-bar.component';
+import { IBmbFooterEvent } from '../../../_shared/types/index';
 import { BmbInnerHeaderComponent } from '../bmb-inner-header/bmb-inner-header.component';
 import { IBmbTargetLink } from '../../../_shared/types';
 import { logDeprecatedInput } from '../../../_shared/logic/logDeprecatedInput';
@@ -91,7 +91,7 @@ export class BmbMobileTemplatesComponent implements OnInit {
   title = input<string>(); // deprecated
 
   mainContent = contentChild<TemplateRef<any>>('bmbTemplateMain');
-  height: number = 0;
+  height = 0;
 
   constructor() {
     effect(() => {

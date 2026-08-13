@@ -14,7 +14,7 @@ import { DateTime, Info } from 'luxon';
 
 import { BmbButtonDirective } from '../../../../directives/old/bmb-button/button.directive';
 import { CommonModule } from '@angular/common';
-import { orderDayNames } from '@shared/logic/utils';
+import { orderDayNames } from '../../../../_shared/logic/utils';
 import { weeksAndDays } from '../../bmb-calendar/utils';
 import { BmbActionIconComponent } from '../../bmb-action-icon/bmb-action-icon.component';
 import { BmbTranslationsService } from '../../../../services/translations/translations.service';

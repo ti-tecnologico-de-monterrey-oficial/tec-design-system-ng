@@ -5,6 +5,7 @@ import {
   input,
   output,
   ViewEncapsulation,
+  OnInit,
 } from '@angular/core';
 import { BmbLoginOnboardingLoginComponent } from './bmb-login-onboarding-login/bmb-login-onboarding-login.component';
 import { BmbLoginOnboardingStepperComponent } from './bmb-login-onboarding-stepper/bmb-login-onboarding-stepper.component';
@@ -14,6 +15,8 @@ import { BmbLoginOnboardingLoggedComponent } from './bmb-login-onboarding-logged
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { IBmbLinkConfiguration } from '../../../_shared/types';
 import { BmbTranslationsService } from '../../../services/translations/translations.service';
+
+export * from './types';
 
 export interface IBmbLoginOnBoardingCustomization {
   anotherAccount: IBmbLinkConfiguration;
@@ -35,7 +38,7 @@ export interface IBmbLoginOnBoardingCustomization {
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class BmbLoginOnboardingComponent {
+export class BmbLoginOnboardingComponent implements OnInit {
   loginOnBoardingCustomization = input<IBmbLoginOnBoardingCustomization>({
     anotherAccount: {
       label: '',

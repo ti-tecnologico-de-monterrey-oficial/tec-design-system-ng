@@ -17,7 +17,7 @@ import {
   IBmbSemanticBaseColors,
   IBmbSemanticColors,
 } from '../../../_shared/types/foundations/colors/color-type';
-import { IBmbInteractiveIconAppearance } from '../bmb-interactive-icon/bmb-interactive-icon.component';
+import { IBmbInteractiveIconAppearance } from '../../../_shared/types/components/interactive-icon';
 import { IBmbColor } from '../../../_shared/types';
 
 export type IBmbBoxIconSize = 'regular' | 'small';

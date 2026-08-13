@@ -38,6 +38,8 @@ import { IBmbNativeModal } from '../bmb-modal/bmb-modal.interface';
 import { BmbTranslationsService } from '../../../services/translations/translations.service';
 import { BmbAlertCenterDetailComponent } from '../utils/bmb-alert-center-detail/bmb-alert-center-detail.component';
 
+export * from './types';
+
 @Component({
   selector: 'bmb-alert-center',
   standalone: true,

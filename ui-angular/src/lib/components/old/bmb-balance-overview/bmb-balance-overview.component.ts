@@ -8,10 +8,10 @@ import {
 } from '@angular/core';
 import {
   BmbProgressCircleComponent,
-  BmbProgressCirclePathStatus,
 } from '../bmb-progress-cirlce/bmb-progress-circle.component';
 import { BmbLegendComponent } from '../../bmb-legend/bmb-legend.component';
 import { IBmbLegendVariations } from '../../../_shared/types/components/legend';
+import { BmbProgressCirclePathStatus } from '../../../_shared/types/components/progress-circle';
 import { TranslatePipe } from '../../../pipes/translations';
 
 @Component({

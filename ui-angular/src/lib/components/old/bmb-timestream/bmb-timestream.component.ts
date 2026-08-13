@@ -47,6 +47,8 @@ export interface IBmbClamp {
   size: number | string;
 }
 
+export * from './types';
+
 @Component({
   selector: 'bmb-timestream',
   standalone: true,

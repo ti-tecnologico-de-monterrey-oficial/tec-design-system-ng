@@ -8,21 +8,7 @@ import {
 import { IBmbActionHeader } from '../../../_shared/types';
 import { BmbNavigationBarComponent } from '../bmb-navigation-bar/bmb-navigation-bar.component';
 import { BmbContainerComponent } from '../../bmb-container/bmb-container.component';
-
-export type IBmbFooterEvent = 'back' | 'forward' | 'share' | 'reload';
-export type IBmbNavigationBarIcon = {
-  name: string;
-  label: string;
-  eventName?: IBmbFooterEvent;
-  dotNotification?: number;
-};
-
-export type IBmbNavigationBarIcons = {
-  one: IBmbNavigationBarIcon;
-  two: IBmbNavigationBarIcon;
-  three: IBmbNavigationBarIcon;
-  four: IBmbNavigationBarIcon;
-};
+import { IBmbFooterEvent, IBmbNavigationBarIcon, IBmbNavigationBarIcons } from '../../../_shared/types/components/bottom-navigation-bar';
 
 @Component({
   selector: 'bmb-bottom-navigation-bar',

@@ -9,7 +9,7 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { INotification, INotificationAction } from '@shared/types';
+import { INotification, INotificationAction } from '../types';
 import { BmbIconComponent } from '../../bmb-icon/bmb-icon.component';
 import { BmbUserImageComponent } from '../../bmb-user-image/bmb-user-image.component';
 import { BmbCheckboxComponent } from '../../bmb-checkbox/bmb-checkbox.component';
@@ -17,7 +17,7 @@ import { BmbButtonDirective } from '../../../../directives/old/bmb-button/button
 import {
   BMB_CREATIVE_COLOR_LIST,
   BMB_SEMANTIC_COLOR_LIST,
-} from '@shared/types/foundations/colors/color-type';
+} from '../../../../_shared/types/foundations/colors/color-type';
 
 @Component({
   selector: 'bmb-push-notification-item',
@@ -59,8 +59,8 @@ export class BmbPushNotificationItemComponent {
       this.notification().type === 'neon-primary',
   );
 
-  isExpanded: boolean = true;
-  dontAskAgain: boolean = false;
+  isExpanded = true;
+  dontAskAgain = false;
   constructor() {
     effect(() => {
       if (this.notification().isFullColor && !this.isValidForFullVariant()) {

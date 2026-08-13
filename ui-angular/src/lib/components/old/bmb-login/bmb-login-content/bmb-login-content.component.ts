@@ -9,7 +9,7 @@ import {
 import { BmbInputComponent } from '../../bmb-input/bmb-input.component';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { BmbTextLinkComponent } from '../../bmb-text-link/bmb-text-link.component';
-import { IBmbTargetLink } from '@shared/types';
+import { IBmbTargetLink } from '../../../../_shared/types/index';
 import { BmbCheckboxComponent } from '../../bmb-checkbox/bmb-checkbox.component';
 
 @Component({

@@ -19,6 +19,8 @@ import { BmbUserImageComponent } from '../bmb-user-image/bmb-user-image.componen
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { BmbBotIconComponent } from '../bmb-bot-icon/bmb-bot-icon.component';
 
+export * from './types';
+
 @Component({
   selector: 'bmb-ai-chat-bubble',
   standalone: true,
