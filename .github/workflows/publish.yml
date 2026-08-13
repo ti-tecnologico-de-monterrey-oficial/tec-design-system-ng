@@ -3,6 +3,7 @@ name: Publish Multi-version Bamboo
 on:
   release:
     types: [published]
+  workflow_dispatch:
 
 jobs:
   build-and-publish-20:
