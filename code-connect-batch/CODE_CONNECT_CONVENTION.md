@@ -19,6 +19,19 @@ A `confirmed` mapping is parsed and published once its snippet is valid. `approx
 
 For an Angular required input absent from Figma (for example, a link destination), a neutral, documented example value is permitted. It must be visibly recorded in `DECISIONS.md` and never presented as a value inferred from the design.
 
+### Published-component scope
+
+The Figma page name is not an API classification. A component published in the Bamboo library is eligible when it has a stable main node, a confirmed public Angular export, and a canonical useful snippet. This includes components stored on pages labelled `Main Components - (Admin Only)`: that label controls Figma authoring access, not the consumers of the published library.
+
+Still exclude the following from public-template discovery:
+
+- `🧩 Playground`, prototype, test, and `DONOTUSE` assets.
+- `BB_*` and other internal parts, except as a documented `nestable` adapter required by an eligible public parent.
+- A child/wrapper API already represented by a connected public parent, unless it has its own stable Figma component and a useful independent Angular usage.
+- Infrastructure-only Angular exports that have no visual public Figma component (for example form validation or portal primitives).
+
+The deterministic disposition for each remaining export is recorded in [REMAINING_COMPONENTS.md](REMAINING_COMPONENTS.md). Components requiring semantic data, projection, or service configuration are governed by [CONTRACT_BACKLOG.md](CONTRACT_BACKLOG.md), rather than being published as empty hosts.
+
 ## Required Figma property contract
 
 Use Figma component properties, not layer names, for all user-configurable values. Names below are canonical; the visible layer may retain its design name.

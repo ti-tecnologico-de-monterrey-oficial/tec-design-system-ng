@@ -41,4 +41,4 @@ This prevents internal `BB_*` helpers, stale suggestion IDs, and visually simila
 
 ## Next priority queue
 
-The automation should now select candidates from this inventory, favoring public documented components with a small API, then validate them against the official Bamboo library before inspecting broad Figma selections.
+The automation selects the deterministic candidates and terminal dispositions in [REMAINING_COMPONENTS.md](REMAINING_COMPONENTS.md). A published component on a Figma `Main Components - (Admin Only)` page remains eligible when its Angular API is public; Playground, test, prototype, and `BB_*` assets remain excluded. Contract-bound components are routed to [CONTRACT_BACKLOG.md](CONTRACT_BACKLOG.md) rather than being retried as empty templates.
