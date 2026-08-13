@@ -4,29 +4,28 @@ Last reconciled: 2026-08-13
 
 ## Counting rule
 
-`projects/ds-ng/src/public-api.ts` exports 128 Angular components. The current templates cover 65 of those component classes; Button and Button group are two additional public directive mappings recorded in [INVENTORY.md](INVENTORY.md). Three `BB_1_4*` templates are internal adapters and do not count as public coverage.
+`projects/ds-ng/src/public-api.ts` exports 128 Angular components. The current templates cover 66 of those component classes; Button and Button group are two additional public directive mappings recorded in [INVENTORY.md](INVENTORY.md). Three `BB_1_4*` templates are internal adapters and do not count as public coverage.
 
-This leaves **63 public Angular component exports** without an independent template. This is a triage list, not a mandate to create 63 snippets.
+This leaves **62 public Angular component exports** without an independent template. This is a triage list, not a mandate to create 62 snippets.
 
 | Disposition | Count | Batch action |
 | --- | ---: | --- |
-| Candidate — validate and connect | 2 | Select at most three per run, inspect the stable published Figma node and Storybook, then publish only a canonical useful snippet. |
-| Contract required | 39 | Do not publish until the smallest listed design/code contract exists. See [CONTRACT_BACKLOG.md](CONTRACT_BACKLOG.md). |
+| Candidate — validate and connect | 0 | Select at most three per run, inspect the stable published Figma node and Storybook, then publish only a canonical useful snippet. |
+| Contract required | 40 | Do not publish until the smallest listed design/code contract exists. See [CONTRACT_BACKLOG.md](CONTRACT_BACKLOG.md). |
 | Parent/child composition | 10 | Keep as a child or wrapper of a connected parent unless an independent Figma API and useful standalone usage emerges. |
 | Blocked / out of scope | 11 | Do not retry without a stable published Figma target or a scope/API change. |
 
-## Candidate — validate and connect (2)
+## Candidate — validate and connect (0)
 
 These have a documented public Angular API and a plausible stable published Bamboo component. The Figma page being labelled `Admin Only` does **not** disqualify them; Playground remains excluded.
 
 | Angular selector | Figma candidate | Why it is eligible for a validation pass |
 | --- | --- | --- |
-| `bmb-profile` | `Profile card` `3716:50775` | Stable profile set; only connect if its structured data can be truthfully represented. |
-| `bmb-user-summary` | `User summary` `100:31309` | Stable summary set; public identity fields have a canonical neutral example. |
+No current candidates. The remaining work is contract, composition or blocked triage; do not create façade snippets merely to increase coverage.
 
-## Contract required (39)
+## Contract required (40)
 
-`account-statement`, `action-menu`, `alert-center`, `bottom-navigation-bar`, `calendar`, `card-button`, `chat-bar`, `chat-bubble`, `date-range`, `datepicker`, `digital-id`, `drawer-overlay`, `evaluation-rubric`, `grades`, `header-mobile`, `home-card-chat`, `input-tags`, `item`, `list-group`, `list-group-item`, `list-items`, `login`, `login-onboarding`, `mobile-templates`, `navigation-bar`, `notification-card`, `search-card`, `search-input`, `server-table`, `sounds-card`, `student-activity-card`, `table`, `table-lite`, `text-editor`, `timestream`, `title-content`, `user-profile`, `user-summary-content`, and `web-templates`.
+`account-statement`, `action-menu`, `alert-center`, `bottom-navigation-bar`, `calendar`, `card-button`, `chat-bar`, `chat-bubble`, `date-range`, `datepicker`, `digital-id`, `drawer-overlay`, `evaluation-rubric`, `grades`, `header-mobile`, `home-card-chat`, `input-tags`, `item`, `list-group`, `list-group-item`, `list-items`, `login`, `login-onboarding`, `mobile-templates`, `navigation-bar`, `notification-card`, `profile`, `search-card`, `search-input`, `server-table`, `sounds-card`, `student-activity-card`, `table`, `table-lite`, `text-editor`, `timestream`, `title-content`, `user-profile`, `user-summary-content`, and `web-templates`.
 
 They have source code and most have Figma counterparts; the blocker is semantic data, projection, service configuration, or an ambiguous component boundary — not a missing implementation.
 

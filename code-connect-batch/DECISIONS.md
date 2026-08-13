@@ -407,6 +407,16 @@ Every component assessed in this queue has a confirmed Angular equivalent. Previ
 - Published Figma node `1440:53909` is `Loader_Icon` and exposes only `Size=128|48|24`. Public `BmbLoaderComponent` is a Loading screen API (`componentTitle`, subtitle, overlay, error/action and visibility behavior) and has no size input.
 - This icon primitive is not a confirmed Figma main component for the public loader. Do not connect it to the screen component; re-open only when Design publishes the Loading screen set or confirms a separate public loader-icon API.
 
+## User summary — approximate coverage (pending publish)
+
+- Figma node `100:31309` exposes `Variation=Login|Profile|Profile no box` and stable visible identity text. Public `BmbUserSummaryComponent` exposes name, id, image, career text, salutation, `isProfile` and `noBox`.
+- Canonical mapping maps Login to `isProfile=false`, Profile to `isProfile=true`, and Profile no box to both `isProfile=true` and `noBox=true`. Name, identifier and career are read from visible text layers. The documented Storybook image and salutation are neutral values because Figma has no semantic media or greeting properties.
+
+## Profile card — contract required
+
+- Figma node `3716:50775` exposes only `Profile` visual variants and device layout. Public `BmbProfileComponent` requires one of several structured profile objects (`IBmbUserData`, student or collaborator data) plus role/contact/action configuration.
+- Its nested layers mix unrelated screen and modal compositions, so a source example cannot safely infer person data, links, hierarchy records or actions. Required contract: published semantic profile-data child/SLOT with named identity, academic/collaborator fields, media/link properties and explicitly named action controls. No mapping was published.
+
 ## Date range and datepicker — contract required
 
 - `Date picker range` (`4474:86349`) and `Calendar date picker` (`109:33585`) are stable published Figma components, but neither exposes the public Angular field contract (`label`, placeholder, disabled/required/clearable state, date format, value/range, and constraints). The date-range component also has no colocated Storybook file from which a canonical usage fixture can be verified.
