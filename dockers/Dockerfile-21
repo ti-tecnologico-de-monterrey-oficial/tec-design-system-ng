@@ -18,4 +18,4 @@ RUN sed -i 's/"ignoreDeprecations": "6.0"/"ignoreDeprecations": "5.0"/' ui-angul
 FROM alpine:latest AS output
 
 # Copia los archivos construidos desde la etapa anterior
-COPY --from=builder /app/dist/ui-angular /ds-ng
+COPY --from=builder /app/dist/ui-angular /ui-angular
