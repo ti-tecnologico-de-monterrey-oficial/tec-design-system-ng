@@ -8,6 +8,7 @@ import {
   getGeneralDescription,
   getOnEvent,
   getSpecialSpecifications,
+  getStoryLink,
   IBmbOnEvent,
   RELEVANT_TITLE,
 } from '@docs/utils/utils';
@@ -82,7 +83,10 @@ ${getGeneralDescription(
 ${getSpecialSpecifications(
   `${getAlertBlockquote(
     `
-Please consider using this component to implement switching between two languages. Look for the example that uses toggle icon without a accent color.`,
+Please consider using this component to implement switching between two languages. Look for the example that uses toggle icon without a accent color.
+>
+Remember to consult the documentation for ${getStoryLink({ title: 'Dev tools/Translations service' })} for further details.
+`,
     {
       title: RELEVANT_TITLE.configuration.replace(
         '<br/>',
@@ -132,7 +136,7 @@ ${getAlertBlockquote('Please remember that this must be a brief text.', { title:
       description: DBmbIconParamDesc.icon.description
         .replace('icon', 'alternative icon')
         .concat(`<br/>${getModelDescription('toggleIconActive')}`),
-        table: {
+      table: {
         ...DBmbIconParamDesc.icon.table,
         type: { summary: 'model<string> (optional)' },
       },
