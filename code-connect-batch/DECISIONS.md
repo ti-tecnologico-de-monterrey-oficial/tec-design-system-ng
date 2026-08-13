@@ -261,3 +261,18 @@ Every component assessed in this queue has a confirmed Angular equivalent. Previ
 
 - Figma node `299:51502` exposes `Expanded=False|True`; public `BmbSidebarComponent` exposes `elements`, `position`, `componentTitle`, and `showHeaderForChildren`, but its `isOpen` state is internal and has no public `expanded` input.
 - Published facade is `<bmb-sidebar />`. Do not invent `[expanded]` from Figma. The visible menu rows represent structured `SidebarElement[][]` data, and Figma supplies neither a semantic data contract nor a true item slot. Add a data/slot contract and an API-aligned open-state property only if Engineering elects to make that state public.
+
+## AI Chat bubble — approximate coverage (published)
+
+- Figma node `528:59470` exposes `Platform`, `Role`, `Chatbubble type`, and `Error State`. Public `BmbAiChatBubbleComponent` requires a typed `message` object and exposes `isThinking`, `showActions`, and `botIcon`.
+- Canonical mapping maps `Role=Chatbot|User` to `message.isUser`, and maps `Chatbubble type=Writing` to `isThinking=true`; all other listed type values set it to false. The neutral `Example message` and ISO timestamp are documented because Figma exposes neither as stable outer properties. Platform and Error State are visual-only at this component boundary; image, attachment, options, and template messages require structured data or a template reference and are intentionally not fabricated.
+
+## Frequent app selector — composition coverage (published)
+
+- Figma node `151:37955` exposes five interactive-icon INSTANCE_SWAP properties, visibility booleans, and `Type=Default|Example|Container_Button`. Public `BmbFrequentAppsSelectorComponent` instead consumes an `IBmbApp[]` data collection and exposes the semantic `layout` API.
+- Published facade is `<bmb-frequent-apps-selector />`. The child swaps cannot be converted into `IBmbApp` records without inventing icon names, titles, links, and targets. `Type` is omitted because its `Example` option has no confirmed `layout` equivalent. Add a repeatable app-data/slot contract and API-aligned layout values in Figma before producing a populated snippet.
+
+## Timestream card — composition coverage (published)
+
+- Figma node `427:10276` has no outer component properties. Public `BmbTimestreamCardComponent` requires a runtime `componentTitle` and accepts structured navigation and timeline-event arrays.
+- Published canonical snippet uses the documented neutral title `Timeline`; the empty default event list remains implicit. It does not infer dates, statuses, navigation links, icons, filters, or event data from implementation descendants. Figma needs an outer title property and a semantic event-data or SLOT contract to generate a populated component.
