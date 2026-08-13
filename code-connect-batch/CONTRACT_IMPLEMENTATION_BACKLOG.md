@@ -30,10 +30,19 @@ Convert the 40 `Contract required` public Angular components into truthful Figma
 
 This wave is the highest-leverage initial scope: two reusable contracts can unlock ten public components. Status starts as `Discovery`; no Figma mutation occurs until the Phase 0 checks below have passed.
 
+### Product-design reference
+
+Use [MiTec 4.0 — Entregable Colaboradores, Territorio Core](https://www.figma.com/design/Jf8Nd71tihhPZdv9xm6PnN/Mitec-4.0-Entregable-Colaboradores?node-id=15686-164499) as the canonical **usage reference** for this wave. It is an application file, not the Code Connect publication target: its `TopBar4.0Switcher`, `Sidebar4.0Switcher`, Action menu and List group nodes are instances, and the component IDs returned from them are not persistent source-library nodes. Code Connect mappings and contract mutations remain anchored to the stable published Bamboo library components in `Q4t8qIM5fklC9I3Atc1BrZ`.
+
+Observed product evidence:
+
+- `TopBar4.0Switcher` and `Sidebar4.0Switcher` recur in the intermediate MiTec screens, confirming that navigation is composed from reusable parent/child elements rather than a single screen-only asset.
+- In `Mis Eventos`, the visible list rows include title, badge, supporting metadata, leading actions/links and trailing actions. This confirms COL-01 needs semantic repeated item content; raw visual children cannot be collapsed into a generic Figma text property.
+
 | ID | Contract | Candidate public parents | Proposed semantic surface | Status |
 | --- | --- | --- | --- | --- |
-| NAV-01 | `Navigation item` | `bottom-navigation-bar`, `drawer-overlay`, `navigation-bar`, `title-content`, `web-templates` | Item `id`, `label`, icon `INSTANCE_SWAP`, optional `href`/`target`, `active` BOOLEAN; parent `Items` SLOT | Discovery |
-| COL-01 | `Menu/List item` | `action-menu`, `card-button`, `list-group`, `list-group-item`, `list-items` | Item title/description, optional leading/trailing semantic content, disabled/selected only where public; parent `Items`/`Content` SLOT | Discovery |
+| NAV-01 | `Navigation item` | `bottom-navigation-bar`, `drawer-overlay`, `navigation-bar`, `title-content`, `web-templates` | Item `id`, `label`, icon `INSTANCE_SWAP`, optional `href`/`target`, `active` BOOLEAN; parent `Items` SLOT | Discovery — product evidence captured |
+| COL-01 | `Menu/List item` | `action-menu`, `card-button`, `list-group`, `list-group-item`, `list-items` | Item title/description, optional leading/trailing semantic content, disabled/selected only where public; parent `Items`/`Content` SLOT | Discovery — product evidence captured |
 
 ### Phase 0 — discovery and scope lock
 
