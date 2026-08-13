@@ -313,3 +313,18 @@ Every component assessed in this queue has a confirmed Angular equivalent. Previ
 - Reviewed every published empty/facade public template against its Figma Code Connect context and confirmed Angular source. The result is recorded in [BB_RETROACTIVE_AUDIT.md](BB_RETROACTIVE_AUDIT.md).
 - `Button group` is the only additional eligible family: `BB_1_4_2`, `BB_1_4_3`, and `BB_1_4` map to the public `BmbButtonDirective` and are published as dynamic nested adapters.
 - The remaining candidates have confirmed public Angular equivalents but lack an API-compatible Figma data contract or genuine SLOT. No extra BB adapters were published, because that would require inventing collections, service payloads, projected children, icon identifiers, or size conversions.
+
+## Image — approximate coverage (published)
+
+- Figma node `2102:56629` exposes `Style=Default|Blurred backdrop|Straight`; public `BmbImageComponent` exposes `isBlurredBackdrop` plus semantic media inputs not present in Figma.
+- Canonical mapping: `Blurred backdrop → isBlurredBackdrop=true`; Default and Straight emit false. `src` and `alt` use the documented Image Storybook example, because the Figma node exposes no media URL or accessible description. Remaining image behavior uses Angular defaults.
+
+## Toast — approximate coverage (published)
+
+- Figma node `152:46854` exposes the full appearance family, `Show close`, `Show description`, and a visual link toggle. `BmbToastComponent` exposes `appearance`, `isClosable`, `componentTitle`, and optional `description`.
+- Canonical mapping exhaustively normalizes the Figma type spelling/casing to the public appearance union; `Show close → isClosable`, and `Show description` conditionally emits the dynamic description text. The Figma link visibility and Size are omitted: they do not have a matching public Toast input. Titles/descriptions are read from their actual text layers because this published Figma component predates semantic TEXT properties.
+
+## Step progress bar — approximate coverage (published)
+
+- Figma node `152:46103` exposes `Variante=Horizontal|Vertical Small|Wizard`; public `BmbStepProgressBarComponent` exposes `type`, `size`, `totalSteps`, `activeStep`, and label arrays.
+- Canonical mapping: Horizontal → `horizontal`/`normal`, Vertical Small → `vertical`/`small`, Wizard → `step-panel`/`normal`. Figma does not provide a stable outer total-step or label contract, so the canonical Storybook-neutral values are three steps, active index zero, and `Paso 1…3`; nested visual BB step states and the inner slot remain composition/visual-only.
