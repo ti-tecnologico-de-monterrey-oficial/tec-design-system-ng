@@ -39,6 +39,9 @@ jobs:
       - name: Install Dependencies
         run: npm add --global nx && npm install
 
+      - name: Clean dist
+        run: rm -rf dist/ui-angular
+
       - name: Build Library
         run: |
           sed -i 's/"ignoreDeprecations": "6.0"/"ignoreDeprecations": "5.0"/' ui-angular/tsconfig.lib.json && npm run docker-build
@@ -87,6 +90,9 @@ jobs:
       - name: Install Dependencies
         run: npm add --global nx && npm install
 
+      - name: Clean dist
+        run: rm -rf dist/ui-angular
+
       - name: Build Library
         run: |
           sed -i 's/"ignoreDeprecations": "6.0"/"ignoreDeprecations": "5.0"/' ui-angular/tsconfig.lib.json && npm run docker-build
@@ -134,6 +140,9 @@ jobs:
 
       - name: Install Dependencies
         run: npm add --global nx && npm install
+
+      - name: Clean dist
+        run: rm -rf dist/ui-angular
 
       - name: Build Library
         run: npm run docker-build
