@@ -391,6 +391,22 @@ Every component assessed in this queue has a confirmed Angular equivalent. Previ
 - Figma node `6865:91699` only exposes `Show Input Text` and device/layout presentation. Public `BmbEvaluationRubricComponent` requires a structured rubric collection plus summary, comment and button configuration.
 - No canonical array, rubric criterion, comment payload, or button arrangement can be inferred from its visual child layers. Required contract: a genuine `Criteria` SLOT with published semantic criterion items, plus Summary, Comment prompt, and action-label properties. This is tracked in [CONTRACT_BACKLOG.md](CONTRACT_BACKLOG.md); no mapping was published.
 
+## Phone number — approximate coverage (pending publish)
+
+- Figma node `109:37834` exposes label/helper visibility, a populated/empty visual state and interaction state. Public `BmbInputPhoneNumberComponent` exposes `label`, `value`, `helperMessage`, country lists/default and `disabled`.
+- Canonical mapping reads the visible label and input text, maps `State=Disabled` to `disabled=true`, and uses the documented Storybook country fixture (`mx`, `us`, `ca`; default `mx`). Helper visibility maps to a documented neutral helper message when present.
+- Country-menu visibility, focused/hover/error appearance and the visual populated/empty axis do not have matching persistent public APIs, so they are intentionally omitted.
+
+## List group — contract required
+
+- Figma node `82:26226` is a published individual list-row composition (`List group type`, state and leading/trailing visual children), while public `BmbListGroupComponent` is the outer container with border, spacing and selection controls.
+- The node has no true outer item SLOT and its visual children do not establish the container's `borderRadius`, `borderType`, margin/padding or selection policy. Required contract: a published container with an `Items` SLOT and semantic list-item children, or an independently named/mapped Figma list-item component. No parent mapping was published.
+
+## Loader — blocked by component boundary
+
+- Published Figma node `1440:53909` is `Loader_Icon` and exposes only `Size=128|48|24`. Public `BmbLoaderComponent` is a Loading screen API (`componentTitle`, subtitle, overlay, error/action and visibility behavior) and has no size input.
+- This icon primitive is not a confirmed Figma main component for the public loader. Do not connect it to the screen component; re-open only when Design publishes the Loading screen set or confirms a separate public loader-icon API.
+
 ## Date range and datepicker — contract required
 
 - `Date picker range` (`4474:86349`) and `Calendar date picker` (`109:33585`) are stable published Figma components, but neither exposes the public Angular field contract (`label`, placeholder, disabled/required/clearable state, date format, value/range, and constraints). The date-range component also has no colocated Storybook file from which a canonical usage fixture can be verified.

@@ -4,32 +4,29 @@ Last reconciled: 2026-08-13
 
 ## Counting rule
 
-`projects/ds-ng/src/public-api.ts` exports 128 Angular components. The current templates cover 64 of those component classes; Button and Button group are two additional public directive mappings recorded in [INVENTORY.md](INVENTORY.md). Three `BB_1_4*` templates are internal adapters and do not count as public coverage.
+`projects/ds-ng/src/public-api.ts` exports 128 Angular components. The current templates cover 65 of those component classes; Button and Button group are two additional public directive mappings recorded in [INVENTORY.md](INVENTORY.md). Three `BB_1_4*` templates are internal adapters and do not count as public coverage.
 
-This leaves **64 public Angular component exports** without an independent template. This is a triage list, not a mandate to create 64 snippets.
+This leaves **63 public Angular component exports** without an independent template. This is a triage list, not a mandate to create 63 snippets.
 
 | Disposition | Count | Batch action |
 | --- | ---: | --- |
-| Candidate — validate and connect | 5 | Select at most three per run, inspect the stable published Figma node and Storybook, then publish only a canonical useful snippet. |
-| Contract required | 38 | Do not publish until the smallest listed design/code contract exists. See [CONTRACT_BACKLOG.md](CONTRACT_BACKLOG.md). |
+| Candidate — validate and connect | 2 | Select at most three per run, inspect the stable published Figma node and Storybook, then publish only a canonical useful snippet. |
+| Contract required | 39 | Do not publish until the smallest listed design/code contract exists. See [CONTRACT_BACKLOG.md](CONTRACT_BACKLOG.md). |
 | Parent/child composition | 10 | Keep as a child or wrapper of a connected parent unless an independent Figma API and useful standalone usage emerges. |
 | Blocked / out of scope | 11 | Do not retry without a stable published Figma target or a scope/API change. |
 
-## Candidate — validate and connect (5)
+## Candidate — validate and connect (2)
 
 These have a documented public Angular API and a plausible stable published Bamboo component. The Figma page being labelled `Admin Only` does **not** disqualify them; Playground remains excluded.
 
 | Angular selector | Figma candidate | Why it is eligible for a validation pass |
 | --- | --- | --- |
-| `bmb-input-phone-number` | `Phone number` `109:37834` | Stable field component with a documented form API. |
-| `bmb-list-group` | `List group` `82:26226` | Published main component; validate a canonical group/selection example. |
-| `bmb-loader` | `Loader_Icon` `1440:53909` | Published loader visual; validate its parent-level API before using it. |
 | `bmb-profile` | `Profile card` `3716:50775` | Stable profile set; only connect if its structured data can be truthfully represented. |
 | `bmb-user-summary` | `User summary` `100:31309` | Stable summary set; public identity fields have a canonical neutral example. |
 
-## Contract required (38)
+## Contract required (39)
 
-`account-statement`, `action-menu`, `alert-center`, `bottom-navigation-bar`, `calendar`, `card-button`, `chat-bar`, `chat-bubble`, `date-range`, `datepicker`, `digital-id`, `drawer-overlay`, `evaluation-rubric`, `grades`, `header-mobile`, `home-card-chat`, `input-tags`, `item`, `list-group-item`, `list-items`, `login`, `login-onboarding`, `mobile-templates`, `navigation-bar`, `notification-card`, `search-card`, `search-input`, `server-table`, `sounds-card`, `student-activity-card`, `table`, `table-lite`, `text-editor`, `timestream`, `title-content`, `user-profile`, `user-summary-content`, and `web-templates`.
+`account-statement`, `action-menu`, `alert-center`, `bottom-navigation-bar`, `calendar`, `card-button`, `chat-bar`, `chat-bubble`, `date-range`, `datepicker`, `digital-id`, `drawer-overlay`, `evaluation-rubric`, `grades`, `header-mobile`, `home-card-chat`, `input-tags`, `item`, `list-group`, `list-group-item`, `list-items`, `login`, `login-onboarding`, `mobile-templates`, `navigation-bar`, `notification-card`, `search-card`, `search-input`, `server-table`, `sounds-card`, `student-activity-card`, `table`, `table-lite`, `text-editor`, `timestream`, `title-content`, `user-profile`, `user-summary-content`, and `web-templates`.
 
 They have source code and most have Figma counterparts; the blocker is semantic data, projection, service configuration, or an ambiguous component boundary — not a missing implementation.
 
@@ -39,7 +36,7 @@ They have source code and most have Figma counterparts; the blocker is semantic 
 
 Their public Angular APIs are useful inside connected parents, but a separate public Code Connect mapping would duplicate a parent’s composition or expose an internal visual child. Admit one only if Design publishes a stable independent component with an independent usage contract.
 
-## Blocked / out of scope (11)
+## Blocked / out of scope (12)
 
 | Export | Reason |
 | --- | --- |
@@ -48,6 +45,7 @@ Their public Angular APIs are useful inside connected parents, but a separate pu
 | `bmb-form-validator` | Infrastructure API (`FormGroup`), not a visual Figma component. |
 | `bmb-icon` | Individual suggested icon nodes were non-persistent; the component name alone is not a stable Figma asset contract. |
 | `bmb-logo` | Figma visual logo variants do not yet identify the public image/link/button API. |
+| `bmb-loader` | Published `Loader_Icon` is an icon primitive with only a visual Size axis; it is not a confirmed Figma main component for the public Loading screen API. |
 | `bmb-mitec-logo-animation` | Matching `Mitec_Logo` belongs to the documentation/external library, not this Bamboo main file. |
 | `bmb-portal` | Infrastructure primitive with no visual Figma component. |
 | `bmb-skeleton` | Multiple visual skeleton parts but no canonical public component set. |
