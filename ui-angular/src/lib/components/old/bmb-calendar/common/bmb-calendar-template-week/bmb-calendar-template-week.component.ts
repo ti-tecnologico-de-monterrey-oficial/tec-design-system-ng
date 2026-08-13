@@ -16,7 +16,7 @@ import {
 import { BmbCalendarHourViewComponent } from '../bmb-calendar-hour-view/bmb-calendar-hour-view.component';
 import { DEFAULT_DATE_FORMAT, eventsInDate, layoutEvents } from '../../utils';
 import { BmbCalendarScheduleCardsComponent } from '../bmb-calendar-schedule-cards/bmb-calendar-schedule-cards.component';
-import { orderDayNames } from '@shared/logic/utils';
+import { orderDayNames } from '../../../../../_shared/logic/utils';
 import { BmbTranslationsService } from '../../../../../services/translations/translations.service';
 import { BmbCalendarTimeIndicatorComponent } from '../bmb-calendar-time-indicator/bmb-calendar-time-indicator.component';
 import { BmbCalendarComponentService } from '../../bmb-calendar.service';

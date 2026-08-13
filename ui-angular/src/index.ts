@@ -167,3 +167,4 @@ export * from './lib/components/old/bmb-search-card/bmb-search-card.component';
 
 // types
 export * from './lib/_shared/types';
+export * from './lib/components/old/bmb-modal/bmb-modal.interface';

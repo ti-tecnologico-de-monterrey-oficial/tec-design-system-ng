@@ -13,7 +13,7 @@ import {
   IBmbLinkConfiguration,
   IBmbUserImageSize,
   SizeNames,
-} from '@shared/types';
+} from '../../../../_shared/types/index';
 import { BmbTextLinkComponent } from '../../bmb-text-link/bmb-text-link.component';
 import { BmbIconComponent } from '../../bmb-icon/bmb-icon.component';
 

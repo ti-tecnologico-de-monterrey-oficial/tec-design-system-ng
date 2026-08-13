@@ -5,23 +5,18 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import type { SizeNames } from '@shared/types';
+import type { SizeNames } from '../../_shared/types';
 import {
   getCardClasses,
   getCardStyles,
   getPaddingClasses,
   getPaddingStyles,
-} from '@shared/logic';
+} from '../../_shared/logic/components/card';
 import type {
   IBmbBgColor,
   IBmbBoxShadowStyle,
   IBmbCardType,
-} from '@shared/types/components/card';
-export type {
-  IBmbBgColor,
-  IBmbBoxShadowStyle,
-  IBmbCardType,
-} from '@shared/types/components/card';
+} from '../../_shared/types/components/card';
 
 @Component({
   selector: 'bmb-card',

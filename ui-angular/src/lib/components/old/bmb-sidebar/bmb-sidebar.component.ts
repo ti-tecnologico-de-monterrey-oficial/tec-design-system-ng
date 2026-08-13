@@ -15,6 +15,8 @@ import { logDeprecatedInput } from '../../../_shared/logic/logDeprecatedInput';
 import { BmbDividerComponent } from '../../bmb-divider/bmb-divider.component';
 import { TranslatePipe } from '../../../pipes/translations';
 
+export * from './bmb-sidebar.interface';
+
 @Component({
   selector: 'bmb-sidebar',
   standalone: true,
@@ -39,8 +41,8 @@ export class BmbSidebarComponent {
 
   title = input<string>(); // deprecated
 
-  isOpen: boolean = false;
-  maxChildrenLevel: number = 2;
+  isOpen = false;
+  maxChildrenLevel = 2;
   error = false;
 
   constructor() {

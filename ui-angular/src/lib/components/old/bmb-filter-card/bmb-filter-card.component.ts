@@ -32,6 +32,8 @@ import { BmbTagComponent } from '../bmb-tags/bmb-tags.component';
 import { BmbNativeModalService } from '../../../services/old/modal/native-modal.service';
 import { TranslatePipe } from '../../../pipes/translations';
 
+export * from './bmb-filter-card.interface';
+
 @Component({
   selector: 'bmb-filter-card',
   templateUrl: './bmb-filter-card.component.html',

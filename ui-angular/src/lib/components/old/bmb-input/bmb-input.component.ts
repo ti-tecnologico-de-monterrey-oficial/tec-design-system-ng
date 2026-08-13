@@ -11,10 +11,6 @@ import {
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormControl, ValidatorFn } from '@angular/forms';
-import type {
-  IBmbAlignTooltip,
-  IBmbJustifyTooltip,
-} from '../bmb-tooltip/bmb-tooltip.component';
 import { BmbInputValidatorComponent } from './bmb-input-validator/bmb-input-validator.component';
 import { getUUID } from '../../../_shared/logic/utils';
 import { BmbInputContentComponent } from './bmb-input-content/bmb-input-content.component';
@@ -23,26 +19,11 @@ import {
   newFormControlByType,
   showError,
 } from '../../../_shared/logic/formControl';
+import { IBmbInputError, IBmbInputTooltipPosition } from '../../../_shared/types/input';
 
 export type IBmbInputType = 'text' | 'password' | 'number' | 'text-area';
 export type IBmbInputAppearance = 'main' | 'normal' | 'simple';
 export type IBmbAdditionalAction = 'copy' | 'showHide' | 'none';
-
-export interface IBmbInputError {
-  required?: string;
-  min?: string;
-  max?: string;
-  minLength?: string;
-  maxLength?: string;
-  pattern?: string;
-  jsonFormat?: string;
-  customValidation?: string;
-}
-
-export interface IBmbInputTooltipPosition {
-  align: IBmbAlignTooltip;
-  justify: IBmbJustifyTooltip;
-}
 
 @Component({
   selector: 'bmb-input',
@@ -97,7 +78,7 @@ export class BmbInputComponent implements OnInit {
   }); // Deprecated
 
   customInputContent = contentChild<TemplateRef<any>>('customInputContent');
-  isControlNull: boolean = false;
+  isControlNull = false;
 
   ngOnInit() {
     if (!this.control()) {

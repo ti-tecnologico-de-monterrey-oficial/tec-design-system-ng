@@ -11,7 +11,6 @@ import {
 } from '@angular/core';
 import {
   IBmbInputAppearance,
-  IBmbInputError,
   IBmbInputType,
 } from '../bmb-input.component';
 import {
@@ -21,10 +20,11 @@ import {
   ValidatorFn,
   Validators,
 } from '@angular/forms';
-import { IBbmSidePosition } from '@shared/types';
+import { IBbmSidePosition } from '../../../../_shared/types/utils';
+import { IBmbInputError } from '../../../../_shared/types/input';
 import { CommonModule } from '@angular/common';
 import { BmbTooltipComponent } from '../../bmb-tooltip/bmb-tooltip.component';
-import { getPositionClass } from '@shared/logic/utils';
+import { getPositionClass } from '../../../../_shared/logic/utils';
 
 export type IBmbInputValType =
   | 'radio'

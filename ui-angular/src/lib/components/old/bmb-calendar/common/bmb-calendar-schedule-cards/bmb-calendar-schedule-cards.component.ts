@@ -80,7 +80,7 @@ export class BmbCalendarScheduleCardsComponent {
   }
 
   getClassNames(): string[] {
-    let newClasses = [`bmb_calendar-event-type-${this.event().type}`];
+    const newClasses = [`bmb_calendar-event-type-${this.event().type}`];
     if (this.isPositionAbsolute())
       newClasses.push('bmb_calendar-event-absolute');
     else newClasses.push('bmb_calendar-event-micro');

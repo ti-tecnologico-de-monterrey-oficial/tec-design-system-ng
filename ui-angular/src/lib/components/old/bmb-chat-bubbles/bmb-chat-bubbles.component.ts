@@ -37,6 +37,8 @@ export interface IBmbChatBubblesActions {
   label: string;
 }
 
+export * from './types';
+
 @Component({
   selector: 'bmb-chat-bubble',
   standalone: true,

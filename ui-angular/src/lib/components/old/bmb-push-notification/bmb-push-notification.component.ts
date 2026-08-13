@@ -8,6 +8,8 @@ import { BmbPushNotificationItemComponent } from './bmb-push-notification-item/b
 import { BmbNotificationService } from '../../../services/old/notification/notification.service';
 import { INotification } from './types';
 
+export * from './types';
+
 @Component({
   selector: 'bmb-push-notification',
   standalone: true,

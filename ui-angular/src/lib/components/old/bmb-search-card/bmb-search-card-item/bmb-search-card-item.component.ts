@@ -5,14 +5,14 @@ import {
   output,
   ViewEncapsulation,
 } from '@angular/core';
-import { getRGBColorKeyValue } from '@shared/logic/utils';
+import { getRGBColorKeyValue } from '../../../../_shared/logic/utils';
 import { CommonModule } from '@angular/common';
 import { BmbLayoutDirective } from '../../../../directives/old/bmb-layout/bmb-layout.directive';
 import { BmbLayoutItemDirective } from '../../../../directives/old/bmb-layout/bmb-layout-item.directive';
 import { BmbUserImageComponent } from '../../bmb-user-image/bmb-user-image.component';
 import { BmbBookmarkComponent } from '../../bmb-bookmark/bmb-bookmark.component';
 import { BmbBoxIconComponent } from '../../bmb-box-icon/bmb-box-icon.component';
-import { IBmbInteractiveIconAppearance } from '../../bmb-interactive-icon/bmb-interactive-icon.component';
+import { IBmbInteractiveIconAppearance } from '../../../../_shared/types/components/interactive-icon';
 
 @Component({
   selector: 'bmb-search-card-item',

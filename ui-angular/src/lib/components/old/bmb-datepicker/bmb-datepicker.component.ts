@@ -21,10 +21,9 @@ import {
 } from '@angular/forms';
 import { DateTime } from 'luxon';
 import {
-  IBmbInputAppearance,
   IBmbInputError,
   IBmbInputTooltipPosition,
-} from '../bmb-input/bmb-input.component';
+} from '../../../_shared/types/input';
 import { BmbProjectionContentService } from '../../../services/old/projection/projection.service';
 import { BmbDatepickerModalComponent } from './bmb-datepicker-modal/bmb-datepicker-modal.component';
 import {
