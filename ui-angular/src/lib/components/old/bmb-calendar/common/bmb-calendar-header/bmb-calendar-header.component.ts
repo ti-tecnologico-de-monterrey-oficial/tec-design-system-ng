@@ -7,6 +7,10 @@ import {
   output,
   computed,
   inject,
+  TemplateRef,
+  ViewChild,
+  OnInit,
+  effect,
 } from '@angular/core';
 import { BmbIconComponent } from '../../../bmb-icon/bmb-icon.component';
 import { DateTime } from 'luxon';
@@ -20,7 +24,10 @@ import { BmbTranslationsService } from '../../../../../services/translations/tra
 import { BmbCalendarComponentService } from '../../bmb-calendar.service';
 import { getUUID } from '../../../../../_shared/logic/utils';
 import { BmbNativeModalService } from '../../../../../services/old/modal/native-modal.service';
-import { BmbCalendarModalComponent } from '../bmb-calendar-modal/bmb-calendar-modal.component';
+import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { BmbCheckboxComponent } from '../../../bmb-checkbox/bmb-checkbox.component';
+import { BmbDividerComponent } from '../../../../bmb-divider/bmb-divider.component';
+import { BmbSwitchComponent } from '../../../bmb-switch/bmb-switch.component';
 
 @Component({
   selector: 'bmb-calendar-header',
@@ -33,28 +40,56 @@ import { BmbCalendarModalComponent } from '../bmb-calendar-modal/bmb-calendar-mo
     BmbLayoutItemDirective,
     BmbActionIconComponent,
     TranslatePipe,
+    ReactiveFormsModule,
+    BmbCheckboxComponent,
+    BmbDividerComponent,
+    BmbSwitchComponent,
   ],
   templateUrl: './bmb-calendar-header.component.html',
   styleUrl: './bmb-calendar-header.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
-export class BmbCalendarHeaderComponent {
+export class BmbCalendarHeaderComponent  implements OnInit {
   view = input<IBmbCalendarView>('week');
   showFilterButton = input<boolean>(false);
 
+  // eslint-disable-next-line @angular-eslint/no-output-on-prefix
   onRangeChange = output<any>();
   showFilters = output<void>();
 
   private readonly calendarService = inject(BmbCalendarComponentService);
   private readonly translationsService = inject(BmbTranslationsService);
   private readonly modalService = inject(BmbNativeModalService);
+  @ViewChild('filterModalTemplate') filterModalTemplate!: TemplateRef<any>;
 
   currentDate = computed(() => this.calendarService.getVisibleDate());
   weekDays = computed(() => this.calendarService.getRenderWeekDays());
   locale = computed(() => this.translationsService.getCurrentLanguage());
+  events = computed(() => this.calendarService.getFilteredEvents());
+  filters = computed(() => this.calendarService.getFilters());
+
+  calendarForm: FormGroup<{ [key: string]: FormControl<any> }> = new FormGroup(
+    {},
+  );
 
   filterModalId = getUUID();
+
+  constructor() {
+    effect(() => {
+      const calendars = this.events().calendars || [];
+      calendars.forEach((calendar) => {
+        this.calendarForm.addControl(
+          calendar,
+          new FormControl(this.filters()[calendar] || true),
+        );
+      });
+    });
+  }
+
+  ngOnInit() {
+    this.calendarForm.addControl('enable_notifications', new FormControl(true));
+  }
 
   getTitle(): string {
     if (this.view() === 'week') {
@@ -125,14 +160,13 @@ export class BmbCalendarHeaderComponent {
   }
 
   handleShowFilters() {
-    this.modalService.openModal({
+    const newModalId = this.modalService.openModal({
       title: this.translationsService.translate('calendar.modal.title'),
       subtitle: this.translationsService.translate('calendar.subtitle'),
-      content: BmbCalendarModalComponent,
+      content: this.filterModalTemplate,
       size: 'x-small',
       closeModalClicked: () => {
         this.calendarService.setFilters({});
-        this.calendarService.setTemporalFilters({});
       },
       actions: [
         {
@@ -140,10 +174,34 @@ export class BmbCalendarHeaderComponent {
           appearance: 'primary',
           label: this.translationsService.translate('calendar.filter_save'),
           action: () => {
-            this.calendarService.applyFilters();
+            this.calendarService.applyFilters(this.calendarForm.value);
+            this.modalService.closeModal(newModalId || '');
           },
         },
       ],
     });
+  }
+
+  getBulletClass(name: string): string[] {
+    return ['bmb_calendar-event-bullet', `bmb_calendar-event-bullet-${name}`];
+  }
+
+  getFormControl(name: string): FormControl {
+    return this.calendarForm.get(name) as FormControl;
+  }
+
+  getCalendarName(name: string): string {
+    switch (name) {
+      case 'academic':
+        return 'Horario de clases';
+      case 'life':
+        return 'Vida';
+      case 'events':
+        return 'Eventos';
+      case 'save_the_date':
+        return 'Save the date';
+      default:
+        return name;
+    }
   }
 }

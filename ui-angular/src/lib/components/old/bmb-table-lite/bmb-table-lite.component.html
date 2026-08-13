@@ -17,7 +17,7 @@
             [icon]="'filter_list'"
             [iconSize]="24"
             (buttonClick)="toggleFilters()"
-            [alt]="'table.filters.filter' | translate"
+            [tooltipText]="'table.filters.filter' | translate"
           ></bmb-action-icon>
         </section>
       }
@@ -106,9 +106,11 @@
               lang() === 'es' ? column.label : column.labelEn || column.label
             "
           >
-            <ng-container *ngIf="column.icon">
-              <bmb-icon [icon]="column.icon"></bmb-icon>
-            </ng-container>
+            @if (column.icon) {
+              <ng-container>
+                <bmb-icon [icon]="column.icon"></bmb-icon>
+              </ng-container>
+            }
 
             @if (column.htmlLabel) {
               <ng-template
@@ -228,11 +230,13 @@
             class="bmb_table_lite-row bmb_table_lite-details"
             [class.bmb_table_lite-expanded]="expandedElement === row"
           >
-            <div class="bmb_table_lite-detail" *ngIf="expandedElement === row">
-              <ng-container
-                *ngTemplateOutlet="detailTemplate(); context: { row: row }"
-              ></ng-container>
-            </div>
+            @if (expandedElement === row) {
+              <div class="bmb_table_lite-detail">
+                <ng-container
+                  *ngTemplateOutlet="detailTemplate(); context: { row: row }"
+                ></ng-container>
+              </div>
+            }
           </div>
         }
       }

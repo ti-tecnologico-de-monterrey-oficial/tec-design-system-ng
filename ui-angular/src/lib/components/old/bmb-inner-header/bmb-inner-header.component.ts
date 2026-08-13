@@ -69,12 +69,15 @@ export class BmbInnerHeaderComponent {
   });
 
   // Event handlers
+  // eslint-disable-next-line @angular-eslint/no-output-on-prefix
   onHandleTrailingPrimary = output<any>();
+  // eslint-disable-next-line @angular-eslint/no-output-on-prefix
   onHandleTrailingSecondary = output<any>();
+  // eslint-disable-next-line @angular-eslint/no-output-on-prefix
   onHandleBack = output<MouseEvent>();
+  // eslint-disable-next-line @angular-eslint/no-output-on-prefix
   onHandleClose = output<MouseEvent>();
   searchData = output<string>();
-
   getLeftIcon(): string {
     if (!this.showClose() && this.showReturn()) return 'arrow_back';
     if (this.showClose() && !this.showReturn()) return 'close';
