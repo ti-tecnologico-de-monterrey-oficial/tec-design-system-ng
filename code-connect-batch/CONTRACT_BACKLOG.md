@@ -2,7 +2,7 @@
 
 Last reconciled: 2026-08-13
 
-This backlog turns the 34 public APIs marked `Contract required` into small, testable changes. It does not ask Design to encode whole TypeScript objects in a Figma text property and it does not authorize inventing records in templates.
+This backlog turns the 40 public APIs marked `Contract required` into small, testable changes. It does not ask Design to encode whole TypeScript objects in a Figma text property and it does not authorize inventing records in templates.
 
 ## Contract patterns
 
@@ -24,7 +24,8 @@ This backlog turns the 34 public APIs marked `Contract required` into small, tes
 | Chat/search/alerts: `alert-center`, `chat-bar`, `chat-bubble`, `home-card-chat`, `notification-card`, `search-card`, `search-input` | Published `Message`, `Alert`, or `Result` item component with text, role/type, image/icon swap, link, and action visibility; outer `Items` SLOT | The container connects only after its item API can be dynamically resolved. |
 | Calendars/timeline: `calendar`, `timestream`, `grades` | A published `Event`/`Grade` child and outer `Events` SLOT; semantic dates/statuses as TEXT/VARIANT, not only visual layout | Engineering documents a minimal fixture and source data shape. |
 | Forms and editors: `date-range`, `datepicker`, `input-tags`, `text-editor`, `login`, `login-onboarding` | Label, placeholder, helper/error text, required/disabled booleans, date format/value constraints, and true field/action SLOT where multiple inputs/actions are projected | Individual field can connect first; screen/container stays contract-required until slots exist. |
-| Tables: `server-table`, `table`, `table-lite`, `list-group-item`, `list-items`, `item` | Published `Column` and `Row` child components plus `Columns`/`Rows` SLOT; `Loading`, selection, pagination semantic properties | No snippets for sample table rows until a repeatable row contract exists. |
+| Tables: `server-table`, `table`, `table-lite`, `item` | Published `Column` and `Row` child components plus `Columns`/`Rows` SLOT; `Loading`, selection, pagination semantic properties | No snippets for sample table rows until a repeatable row contract exists. |
+| Header and template shells: `header-mobile`, `mobile-templates` | A stable outer API with named header, content and action properties, plus genuine slots for each composed region | Keep as contract-required rather than emitting a screen façade. |
 
 ## Code-only decisions required
 

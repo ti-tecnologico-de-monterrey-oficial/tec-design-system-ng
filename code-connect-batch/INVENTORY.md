@@ -1,6 +1,6 @@
 # Bamboo Code Connect inventory
 
-Last verified: 2026-08-12
+Last verified: 2026-08-13
 
 This inventory covers mappings created by the `code-connect-batch` workflow in the Bamboo Figma library (`Q4t8qIM5fklC9I3Atc1BrZ`) for the Angular label. A component is listed as **Connected** only after the Figma MCP returns `hasTemplate: true`.
 
@@ -82,6 +82,10 @@ This inventory covers mappings created by the `code-connect-batch` workflow in t
 **Internal composition adapters:** 3 published `BB_1_4*` templates. They support the public Button group composition and are tracked separately in [BB_ADAPTERS.md](BB_ADAPTERS.md); they are not user-facing Angular component inventory entries.
 
 **Retroactive composition audit:** [BB_RETROACTIVE_AUDIT.md](BB_RETROACTIVE_AUDIT.md) records every current empty/facade template, its Figma and Angular evidence, and the exact contract needed before it can become a populated dynamic example. Button group is the sole eligible BB adapter family found in that pass.
+
+## Remaining public inventory
+
+The 128 public Angular component exports reconcile to **66 connected components** and **62 components still without an independent template**. The remaining set is fully triaged: **40 Contract required**, **10 Parent/child composition**, and **12 Blocked / out of scope**. There are no open candidates. The complete per-export disposition and the smallest next contract are maintained in [REMAINING_COMPONENTS.md](REMAINING_COMPONENTS.md) and [CONTRACT_BACKLOG.md](CONTRACT_BACKLOG.md).
 
 ## Angular equivalents confirmed; coverage pending
 

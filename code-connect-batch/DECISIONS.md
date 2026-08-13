@@ -391,7 +391,7 @@ Every component assessed in this queue has a confirmed Angular equivalent. Previ
 - Figma node `6865:91699` only exposes `Show Input Text` and device/layout presentation. Public `BmbEvaluationRubricComponent` requires a structured rubric collection plus summary, comment and button configuration.
 - No canonical array, rubric criterion, comment payload, or button arrangement can be inferred from its visual child layers. Required contract: a genuine `Criteria` SLOT with published semantic criterion items, plus Summary, Comment prompt, and action-label properties. This is tracked in [CONTRACT_BACKLOG.md](CONTRACT_BACKLOG.md); no mapping was published.
 
-## Phone number — approximate coverage (pending publish)
+## Phone number — approximate coverage (published)
 
 - Figma node `109:37834` exposes label/helper visibility, a populated/empty visual state and interaction state. Public `BmbInputPhoneNumberComponent` exposes `label`, `value`, `helperMessage`, country lists/default and `disabled`.
 - Canonical mapping reads the visible label and input text, maps `State=Disabled` to `disabled=true`, and uses the documented Storybook country fixture (`mx`, `us`, `ca`; default `mx`). Helper visibility maps to a documented neutral helper message when present.
@@ -407,7 +407,7 @@ Every component assessed in this queue has a confirmed Angular equivalent. Previ
 - Published Figma node `1440:53909` is `Loader_Icon` and exposes only `Size=128|48|24`. Public `BmbLoaderComponent` is a Loading screen API (`componentTitle`, subtitle, overlay, error/action and visibility behavior) and has no size input.
 - This icon primitive is not a confirmed Figma main component for the public loader. Do not connect it to the screen component; re-open only when Design publishes the Loading screen set or confirms a separate public loader-icon API.
 
-## User summary — approximate coverage (pending publish)
+## User summary — approximate coverage (published)
 
 - Figma node `100:31309` exposes `Variation=Login|Profile|Profile no box` and stable visible identity text. Public `BmbUserSummaryComponent` exposes name, id, image, career text, salutation, `isProfile` and `noBox`.
 - Canonical mapping maps Login to `isProfile=false`, Profile to `isProfile=true`, and Profile no box to both `isProfile=true` and `noBox=true`. Name, identifier and career are read from visible text layers. The documented Storybook image and salutation are neutral values because Figma has no semantic media or greeting properties.

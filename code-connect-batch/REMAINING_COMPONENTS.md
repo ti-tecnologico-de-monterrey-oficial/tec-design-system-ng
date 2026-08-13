@@ -13,7 +13,7 @@ This leaves **62 public Angular component exports** without an independent templ
 | Candidate — validate and connect | 0 | Select at most three per run, inspect the stable published Figma node and Storybook, then publish only a canonical useful snippet. |
 | Contract required | 40 | Do not publish until the smallest listed design/code contract exists. See [CONTRACT_BACKLOG.md](CONTRACT_BACKLOG.md). |
 | Parent/child composition | 10 | Keep as a child or wrapper of a connected parent unless an independent Figma API and useful standalone usage emerges. |
-| Blocked / out of scope | 11 | Do not retry without a stable published Figma target or a scope/API change. |
+| Blocked / out of scope | 12 | Do not retry without a stable published Figma target or a scope/API change. |
 
 ## Candidate — validate and connect (0)
 
@@ -25,15 +25,35 @@ No current candidates. The remaining work is contract, composition or blocked tr
 
 ## Contract required (40)
 
-`account-statement`, `action-menu`, `alert-center`, `bottom-navigation-bar`, `calendar`, `card-button`, `chat-bar`, `chat-bubble`, `date-range`, `datepicker`, `digital-id`, `drawer-overlay`, `evaluation-rubric`, `grades`, `header-mobile`, `home-card-chat`, `input-tags`, `item`, `list-group`, `list-group-item`, `list-items`, `login`, `login-onboarding`, `mobile-templates`, `navigation-bar`, `notification-card`, `profile`, `search-card`, `search-input`, `server-table`, `sounds-card`, `student-activity-card`, `table`, `table-lite`, `text-editor`, `timestream`, `title-content`, `user-profile`, `user-summary-content`, and `web-templates`.
+Each export below has a confirmed public Angular API. It is intentionally not connected until the smallest named contract is present in the published Figma component; no empty-host snippets are allowed.
 
-They have source code and most have Figma counterparts; the blocker is semantic data, projection, service configuration, or an ambiguous component boundary — not a missing implementation.
+| Contract family | Exports | Smallest missing contract |
+| --- | --- | --- |
+| Navigation collections | `bottom-navigation-bar`, `drawer-overlay`, `navigation-bar`, `title-content`, `web-templates` | A published `Navigation item` plus `Items` SLOT, semantic label/icon/link/active properties. |
+| Projected collections | `action-menu`, `card-button`, `list-group`, `list-group-item`, `list-items` | A genuine `Items`/`Content` SLOT with published semantic item children. |
+| Data cards, profiles and rubrics | `account-statement`, `digital-id`, `evaluation-rubric`, `profile`, `sounds-card`, `student-activity-card`, `user-profile`, `user-summary-content` | Named identity/content/media properties and semantic repeated children; rubric also needs criterion, summary, comment and action-label properties. |
+| Chat, search and alerts | `alert-center`, `chat-bar`, `chat-bubble`, `home-card-chat`, `notification-card`, `search-card`, `search-input` | Published Message/Alert/Result item plus outer `Items` SLOT; service-owned flows need a public payload/factory recipe. |
+| Calendars and timeline | `calendar`, `grades`, `timestream` | Published Event/Grade child plus `Events` SLOT and semantic date/status properties. |
+| Forms and editors | `date-range`, `datepicker`, `input-tags`, `login`, `login-onboarding`, `text-editor` | Field semantics (label, placeholder, helper/error, required/disabled, value/constraints) plus an action/field SLOT when projected. |
+| Tables | `item`, `server-table`, `table`, `table-lite` | Published Column/Row children, `Columns`/`Rows` SLOT and semantic loading, selection and pagination properties. |
+| Header and template shells | `header-mobile`, `mobile-templates` | Stable outer API with named header/content/action properties and genuine slots for the composed regions. |
 
 ## Parent/child composition (10)
 
-`container-button-badge`, `container-button-complex`, `container-button-complex-alternative`, `container-button-default`, `container-button-grade`, `container-button-square`, `container-button-user-image`, `multi-dot-paginator-item`, `native-modal`, and `top-bar-item`.
+| Export | Current disposition |
+| --- | --- |
+| `container-button-badge` | Child of the connected Container button family; no independent published Figma API. |
+| `container-button-complex` | Child of the connected Container button family; no independent published Figma API. |
+| `container-button-complex-alternative` | Child of the connected Container button family; no independent published Figma API. |
+| `container-button-default` | Child of the connected Container button family; no independent published Figma API. |
+| `container-button-grade` | Child of the connected Container button family; no independent published Figma API. |
+| `container-button-square` | Child of the connected Container button family; no independent published Figma API. |
+| `container-button-user-image` | Child of the connected Container button family; no independent published Figma API. |
+| `multi-dot-paginator-item` | Repeated child of the connected paginator; cannot render independently without an item contract. |
+| `native-modal` | Implementation child of the connected Modal, not a standalone visual public component. |
+| `top-bar-item` | Repeated child of the connected Top bar; its semantic action contract is still missing. |
 
-Their public Angular APIs are useful inside connected parents, but a separate public Code Connect mapping would duplicate a parent’s composition or expose an internal visual child. Admit one only if Design publishes a stable independent component with an independent usage contract.
+Admit a child only if Design publishes a stable independent component with an independent usage contract.
 
 ## Blocked / out of scope (12)
 
