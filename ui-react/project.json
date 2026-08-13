@@ -1,0 +1,17 @@
+{
+  "name": "ui-react",
+  "$schema": "../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "ui-react/src",
+  "projectType": "library",
+  "tags": [],
+  "// targets": "to see all targets run: nx show project ui-react --web",
+  "targets": {
+    "sync-shared": {
+      "executor": "nx:run-commands",
+      "outputs": ["{workspaceRoot}/dist/ui-react/assets/shared"],
+      "options": {
+        "command": "rm -rf dist/ui-react/assets/shared && mkdir -p dist/ui-react/assets && cp -R shared/assets dist/ui-react/assets/shared"
+      }
+    }
+  }
+}

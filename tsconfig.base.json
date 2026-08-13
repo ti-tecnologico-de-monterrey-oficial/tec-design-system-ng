@@ -1,0 +1,29 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "rootDir": ".",
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "bundler",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "target": "es2015",
+    "module": "esnext",
+    "lib": ["es2020", "dom"],
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "strict": false,
+    "paths": {
+      "@shared/logic": ["./shared/logic/index.ts"],
+      "@shared/logic/*": ["./shared/logic/*"],
+      "@shared/types": ["./shared/types/index.ts"],
+      "@shared/types/*": ["./shared/types/*"],
+      "@docs/*": ["./docs/*"],
+      "@bamboo/types/*": ["./types/*"],
+      "ui-react": ["./ui-react/src/index.ts"],
+      "ui-angular": ["./ui-angular/src/index.ts"]
+    }
+  },
+  "exclude": ["node_modules", "tmp"]
+}

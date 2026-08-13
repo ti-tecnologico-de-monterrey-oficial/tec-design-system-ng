@@ -1,0 +1,30 @@
+<header class="page-header">
+  <p class="eyebrow">Componente migrado</p>
+  <h1>BmbServerTable</h1>
+  <p>Valida selección, paginación y estado de carga.</p>
+</header>
+<section class="playground" aria-labelledby="server-table-title">
+  <div class="controls">
+    <h2 id="server-table-title">Propiedades</h2>
+    <label class="toggle"
+      ><input
+        type="checkbox"
+        [checked]="loading()"
+        (change)="setLoading($any($event.target).checked)"
+      />loading</label
+    ><output>Página: {{ page() }}</output
+    ><output>Fila: {{ selectedName() }}</output>
+  </div>
+  <div class="preview">
+    <bmb-server-table
+      [columns]="columns"
+      [data]="data"
+      [totalRecords]="30"
+      [pageSize]="10"
+      [pageSizeOptions]="[5, 10, 20]"
+      [loading]="loading()"
+      (pageChange)="handlePageChange($event)"
+      (onClickRow)="handleRowClick($event)"
+    />
+  </div>
+</section>

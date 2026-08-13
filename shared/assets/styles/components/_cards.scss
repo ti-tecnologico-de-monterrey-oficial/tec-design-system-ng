@@ -1,0 +1,10 @@
+.bmb_sticky {
+  position: sticky;
+  top: 0;
+}
+
+.bmb_card-scroll {
+  .bmb_vertical-layout-item-scroll {
+    overflow-y: hidden;
+  }
+}
