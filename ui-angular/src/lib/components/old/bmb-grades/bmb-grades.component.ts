@@ -30,6 +30,8 @@ import { IBmbNativeModal } from '../bmb-modal/bmb-modal.interface';
 import { BmbNativeModalService } from '../../../services/old/modal/native-modal.service';
 import { logDeprecatedInput } from '../../../_shared/logic/logDeprecatedInput';
 
+export * from './types';
+
 @Component({
   selector: 'bmb-grades',
   standalone: true,

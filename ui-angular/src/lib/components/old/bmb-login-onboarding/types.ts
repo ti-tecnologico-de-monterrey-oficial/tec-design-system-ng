@@ -1,13 +1,3 @@
-export interface IBmbError {
-  codeError: boolean;
-  errorMessage: string;
-}
-
-export interface IBmbAuthenticateInfo {
-  user: string;
-  password: string;
-}
-
 export interface IBmbLoginOnboarding {
   data: {
     [x: string]: unknown;

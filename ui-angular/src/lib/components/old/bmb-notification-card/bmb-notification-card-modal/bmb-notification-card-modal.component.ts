@@ -5,7 +5,7 @@ import {
   output,
   ViewEncapsulation,
 } from '@angular/core';
-import { IBmbDataAlert, IBmbDataAlertsParsed } from '@shared/types';
+import { IBmbDataAlert, IBmbDataAlertsParsed } from '../../bmb-alert-center/types';
 import { CommonModule } from '@angular/common';
 import { BmbAlertCenterDetailComponent } from '../../utils/bmb-alert-center-detail/bmb-alert-center-detail.component';
 

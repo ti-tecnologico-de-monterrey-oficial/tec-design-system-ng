@@ -17,7 +17,6 @@ import {
   BmbVerticalLayoutDirective,
   BmbVerticalLayoutItemDirective,
   BmbProjectionContentService,
-  OnboardingStep,
 } from '../../../index';
 import {
   attributes,
@@ -29,7 +28,7 @@ import {
   getSpecialSpecifications,
   getTechnicalDocReferences,
   RELEVANT_TITLE,
-} from '../../../../../docs/utils/utils';
+} from '@docs/utils/utils';
 import * as homeCard from '../../components/old/bmb-home-card/bmp-home-card.stories';
 import * as icon from '../../components/old/bmb-icon/bmb-icon.stories';
 import * as checkbox from '../../components/old/bmb-checkbox/bmb-checkbox.stories';
@@ -38,6 +37,20 @@ import * as carousel from '../../components/bmb-carousel/bmb-carousel.stories';
 import * as button from '../../directives/old/bmb-button/button.stories';
 import * as layout from '../../directives/old/bmb-layout/bmb-layout.stories';
 import * as verticalLayout from '../../directives/old/bmb-layout/bmb-vertical-layout/bmb-vertical-layout.stories';
+
+interface OnboardingStep {
+  description: string;
+  icon?: string;
+  iconSize?: string;
+  imageDesktop: string;
+  imageMobile: string;
+  primaryButton: string;
+  secondaryButton?: string;
+  shortDescription: string;
+  showCheckbox?: boolean;
+  subtitle?: string;
+  title: string;
+}
 
 const htmlTemplate: string = `
 <bmb-home-card

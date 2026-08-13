@@ -11,15 +11,11 @@ import {
   ChangeDetectionStrategy,
   input,
   computed,
+  OnInit,
 } from '@angular/core';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { TranslatePipe } from '../../../pipes/translations';
-
-export type BmbProgressCirclePathStatus =
-  | 'gray'
-  | 'success'
-  | 'error'
-  | 'warning';
+import { BmbProgressCirclePathStatus } from '../../../_shared/types/components/progress-circle';
 
 // Add this interface at the top of your file or in a suitable place
 interface SvgConfig {
@@ -54,7 +50,7 @@ interface SvgConfig {
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
-export class BmbProgressCircleComponent implements OnChanges {
+export class BmbProgressCircleComponent implements OnChanges, OnInit {
   valueLabel = input<string>();
   percent = input<number>(0);
   showValueLabel = input<boolean>(false);
@@ -94,14 +90,14 @@ export class BmbProgressCircleComponent implements OnChanges {
     return opts;
   });
 
-  _lastPercent: number = 0;
+  _lastPercent = 0;
   svg: SvgConfig | null = null;
 
   ngOnInit() {
     this.render();
   }
 
-  ngOnChanges(changes: SimpleChanges) {
+  ngOnChanges() {
     this.render();
   }
 
@@ -120,9 +116,9 @@ export class BmbProgressCircleComponent implements OnChanges {
     radius: number,
     angleInDegrees: number,
   ) {
-    let angleInRadius = (angleInDegrees * Math.PI) / 180;
-    let x = centerX + Math.sin(angleInRadius) * radius;
-    let y = centerY - Math.cos(angleInRadius) * radius;
+    const angleInRadius = (angleInDegrees * Math.PI) / 180;
+    const x = centerX + Math.sin(angleInRadius) * radius;
+    const y = centerY - Math.cos(angleInRadius) * radius;
     return { x: x, y: y };
   }
 
@@ -139,7 +135,8 @@ export class BmbProgressCircleComponent implements OnChanges {
       this.options().radius,
       (360 * circlePercent) / 100,
     );
-    let largeArcFlag: any, sweepFlag: any;
+    let largeArcFlag: any;
+    let sweepFlag: any;
     if (circlePercent > 50) {
       [largeArcFlag, sweepFlag] = [1, 0];
     } else {

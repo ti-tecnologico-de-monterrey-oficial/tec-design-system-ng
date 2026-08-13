@@ -1,5 +1,5 @@
 import { FormControl, ValidationErrors, ValidatorFn } from '@angular/forms';
-import { IBmbInputError } from '../../ui-angular/src/lib/components/old/bmb-input/bmb-input.component';
+import { IBmbInputError } from '../types/input';
 export const BROKEN_IMAGE = 'assets/images/empty-state/broken-image.jpg';
 
 export const isExternalLink = (link: string): boolean => {

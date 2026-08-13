@@ -77,7 +77,7 @@ export class BmbNativeModalComponent {
 
   private componentRef: ComponentRef<any> | null = null;
 
-  svgUrl: string = 'assets/svg/';
+  svgUrl = 'assets/svg/';
   modalIcon = computed(() => {
     if (this.iconStyle()) {
       return `${this.svgUrl}${this.iconStyle()}_fill.svg`;

@@ -3,6 +3,7 @@ name: Publish Multi-version Bamboo
 on:
   release:
     types: [published]
+  workflow_dispatch:
 
 jobs:
   build-and-publish-20:
@@ -36,19 +37,23 @@ jobs:
         run: npm cache clean --force
 
       - name: Install Dependencies
-        run: npm install
+        run: npm add --global nx && npm install
+
+      - name: Clean dist
+        run: rm -rf dist/ui-angular
 
       - name: Build Library
-        run: npm run build:lib
+        run: |
+          sed -i 's/"ignoreDeprecations": "6.0"/"ignoreDeprecations": "5.0"/' ui-angular/tsconfig.lib.json && npm run docker-build
 
       - name: Update version in package.json
         run: |
-          VERSION_FILE="./dist/ds-ng/package.json"
+          VERSION_FILE="./dist/ui-angular/package.json"
           sed -i "s/{angularVersion}/${{ env.ANGULAR_VERSION }}/g" $VERSION_FILE
 
       - name: Publish to NPM
         run: |
-          npm publish ./dist/ds-ng --tag a${{ env.ANGULAR_VERSION }} --access public
+          npm publish ./dist/ui-angular --tag a${{ env.ANGULAR_VERSION }} --access public
         env:
           NPM_CONFIG_PROVENANCE: false
 
@@ -83,19 +88,23 @@ jobs:
         run: npm cache clean --force
 
       - name: Install Dependencies
-        run: npm install
+        run: npm add --global nx && npm install
+
+      - name: Clean dist
+        run: rm -rf dist/ui-angular
 
       - name: Build Library
-        run: npm run build:lib
+        run: |
+          sed -i 's/"ignoreDeprecations": "6.0"/"ignoreDeprecations": "5.0"/' ui-angular/tsconfig.lib.json && npm run docker-build
 
       - name: Update version in package.json
         run: |
-          VERSION_FILE="./dist/ds-ng/package.json"
+          VERSION_FILE="./dist/ui-angular/package.json"
           sed -i "s/{angularVersion}/${{ env.ANGULAR_VERSION }}/g" $VERSION_FILE
 
       - name: Publish to NPM
         run: |
-          npm publish ./dist/ds-ng --tag a${{ env.ANGULAR_VERSION }} --access public
+          npm publish ./dist/ui-angular --tag a${{ env.ANGULAR_VERSION }} --access public
         env:
           NPM_CONFIG_PROVENANCE: false
 
@@ -130,18 +139,21 @@ jobs:
         run: npm cache clean --force
 
       - name: Install Dependencies
-        run: npm install
+        run: npm add --global nx && npm install
+
+      - name: Clean dist
+        run: rm -rf dist/ui-angular
 
       - name: Build Library
-        run: npm run build:lib
+        run: npm run docker-build
 
       - name: Update version in package.json
         run: |
-          VERSION_FILE="./dist/ds-ng/package.json"
+          VERSION_FILE="./dist/ui-angular/package.json"
           sed -i "s/{angularVersion}/${{ env.ANGULAR_VERSION }}/g" $VERSION_FILE
 
       - name: Publish to NPM
         run: |
-          npm publish ./dist/ds-ng --tag a${{ env.ANGULAR_VERSION }} --access public
+          npm publish ./dist/ui-angular --tag a${{ env.ANGULAR_VERSION }} --access public
         env:
           NPM_CONFIG_PROVENANCE: false

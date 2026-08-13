@@ -6,7 +6,7 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { BmbAccordionComponent } from '../bmb-accordion.component';
-import { IBmbContrast } from '@shared/types';
+import { IBmbContrast } from '../../../../_shared/types/colors';
 
 @Component({
   selector: 'bmb-accordion-simple-text',

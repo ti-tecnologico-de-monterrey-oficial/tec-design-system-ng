@@ -8,7 +8,7 @@ import {
 import { BmbLoginOnboardingStepperStepComponent } from './bmb-login-onboarding-stepper-step.component';
 import { BmbTotpComponent } from '../../../bmb-totp/bmb-totp.component';
 import { BmbLoginOnboardingService } from '../../bmb-login-onboarding.service';
-import { IBmbError } from '../../types';
+import { IBmbError } from '../../../../../_shared/types/utils';
 
 @Component({
   selector: 'bmb-login-onboarding-stepper-step-two',

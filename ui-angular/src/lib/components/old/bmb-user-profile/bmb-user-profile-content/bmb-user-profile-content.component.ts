@@ -6,7 +6,7 @@ import {
 } from '@angular/core';
 import { BmbTextLinkComponent } from '../../bmb-text-link/bmb-text-link.component';
 import { BmbUserSummaryComponent } from '../../bmb-user-summary/bmb-user-summary.component';
-import { IBmbTargetLink, IBmbUserInfo } from '@shared/types';
+import { IBmbTargetLink, IBmbUserInfo } from '../../../../_shared/types/index';
 
 @Component({
   selector: 'bmb-user-profile-content',

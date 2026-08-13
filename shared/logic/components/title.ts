@@ -1,8 +1,8 @@
-import type { IBmbFontWeightContent } from '../../types/components/bmb-title';
+import type { IBmbFontWeightContent } from '../../types/components/title';
 
 export function getClassNames(
   mainName: string,
-  size: string = '',
+  size = '',
   fontWeight: IBmbFontWeightContent | string = '',
   isCenterContent = false,
 ): string[] {
