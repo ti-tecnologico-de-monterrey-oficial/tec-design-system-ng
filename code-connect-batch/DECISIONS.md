@@ -307,3 +307,9 @@ Every component assessed in this queue has a confirmed Angular equivalent. Previ
 
 - Figma node `107:34907` exposes `Size=Sm|Md|Lg|XL|nm`; public `BmbUserImageComponent` accepts six explicitly named values such as `desktop-small` and `mobile-xlarge`, plus image/link/alt/border APIs.
 - Published facade is `<bmb-user-image />`. The two size vocabularies lack a verified one-to-one mapping, and Figma does not expose semantic image, alt, destination, target, or border properties. Do not guess size conversions or image URLs; rename Figma size options to the Angular union and add those properties to make the mapping dynamic.
+
+## Retroactive BB composition audit — 2026-08-13
+
+- Reviewed every published empty/facade public template against its Figma Code Connect context and confirmed Angular source. The result is recorded in [BB_RETROACTIVE_AUDIT.md](BB_RETROACTIVE_AUDIT.md).
+- `Button group` is the only additional eligible family: `BB_1_4_2`, `BB_1_4_3`, and `BB_1_4` map to the public `BmbButtonDirective` and are published as dynamic nested adapters.
+- The remaining candidates have confirmed public Angular equivalents but lack an API-compatible Figma data contract or genuine SLOT. No extra BB adapters were published, because that would require inventing collections, service payloads, projected children, icon identifiers, or size conversions.

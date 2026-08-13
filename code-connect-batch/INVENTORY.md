@@ -68,6 +68,8 @@ This inventory covers mappings created by the `code-connect-batch` workflow in t
 
 **Internal composition adapters:** 3 published `BB_1_4*` templates. They support the public Button group composition and are tracked separately in [BB_ADAPTERS.md](BB_ADAPTERS.md); they are not user-facing Angular component inventory entries.
 
+**Retroactive composition audit:** [BB_RETROACTIVE_AUDIT.md](BB_RETROACTIVE_AUDIT.md) records every current empty/facade template, its Figma and Angular evidence, and the exact contract needed before it can become a populated dynamic example. Button group is the sole eligible BB adapter family found in that pass.
+
 ## Angular equivalents confirmed; coverage pending
 
 Every item below has a confirmed Angular equivalent. The previous `partial` label described property coverage, not missing code; it is now tracked separately under the revised [CODE_CONNECT_CONVENTION.md](CODE_CONNECT_CONVENTION.md).
