@@ -334,3 +334,13 @@ Every component assessed in this queue has a confirmed Angular equivalent. Previ
 - `List group` (`82:26226`) is a Figma list-item composition, while public `BmbListGroupComponent` is a container API (`borderRadius`, `borderType`, spacing, and selection controls). Its `List group state`, leading/trailing children, and container colors do not establish those container inputs or a projected item SLOT. Do not connect it to the container under the same name; first identify/publish the matching Angular list-item API or split the Figma component.
 - `Navigation bar` (`4070:156220`) has no component properties and only fixed visual icon descendants. Public `BmbNavigationBarComponent` requires `IBmbActionHeader[]` action records; no semantic icon identifiers, labels, or actions are exposed. A canonical populated snippet needs repeatable action data or a true action-item SLOT.
 - `Bottom navigation bar` (`11836:53649`) exposes only `Show Label`, but public `BmbBottomNavigationBarComponent` requires four `IBmbNavigationBarIcon` records (name, label, optional notification/event). The visible icon layers do not provide those records. Add a repeatable icon/action contract before publishing; `Show Label` has no public counterpart.
+
+## Notice card — approximate coverage (published)
+
+- Figma node `6939:96312` exposes `Type=Button|Paginator`, with stable visible title/description text layers and a nested button only in the Button structure. Public `BmbNoticeCardComponent` accepts `componentTitle`, a `description` object, and optional `buttonText`.
+- Canonical mapping reads the visible title and the type-specific description dynamically, then emits `description.pageOne`; Button also emits its configured visible button text. Figma type itself is structural, so it is not rendered as an Angular attribute. Image, icon, link, close color, second page, and paginator interactions are not exposed as semantic Figma properties and retain Angular defaults.
+
+## Media card — approximate coverage (published)
+
+- Figma node `107:31699` exposes `Type=Floating|InlineDefault|TimestreamDetail|Image Only|Mobile Banner|InlineHover|InlineSelect`, while public `BmbMediaCardComponent` only supports `inline`, `floating`, and `author_detail` plus semantic media and copy fields.
+- Canonical mapping: Floating → `floating`; InlineDefault and the remaining visual-only layouts normalize to the documented Angular default `inline`. `author_detail` is intentionally not inferred from `TimestreamDetail`. `src` and `alt` use documented Storybook-neutral values because Figma exposes no media fields or accessible description.
