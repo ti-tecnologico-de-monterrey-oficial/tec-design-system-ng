@@ -39,6 +39,7 @@ The product design can prove what a consumer composition needs, but it cannot by
 | `Sidebar#6890:0` | BOOLEAN | not referenced by any descendant in the default variant snapshot returned | `allowSidebarForMobile` (guess) | Low — unverified, may only appear in an unsampled variant |
 
 5. **Decision fork — must ask Carlos before writing `.figma.ts`**: none of the 4 uncertain properties above map to an Angular input by exact name. `bmb-top-bar`'s real inputs are already booleans/strings that plausibly correspond (`showHelpButton`, `showRoleButton`, `allowSidebarForMobile`, `appName`), but the correspondence is inferred from layout position, not from a documented contract. Per Fase 0 rule 5 (no aproximar datos estructurados) this needs explicit sign-off, or the properties must be omitted from the template rather than guessed.
+6. **Resolved 2026-09-02**: Carlos declined to sign off on the 4 inferred properties. Keep the existing bare `<bmb-top-bar />` facade as-is — do not add `showHelpButton`/`showRoleButton`/`allowSidebarForMobile`/`appName` to `TopBar.figma.ts`. TopBar is closed; no further action needed on this contract.
 6. **Not attempted**: `BmbTopBarItemComponent` (`bmb-top-bar-item`, ng-content projection, `isActive` input) — no stable "Top Bar Item" / "Nav Item" component was found published in `Q4…` (`Sidebar`/`Sidebar mobile` component sets exist but only expose an `Expanded`/`Type` variant, no item-level component tagged for reuse from TopBar). Leaving unresolved; do not invent a target.
 
 ### Sidebar → `BmbSidebarComponent` — Contract required

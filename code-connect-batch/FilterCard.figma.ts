@@ -1,5 +1,5 @@
 // url=https://www.figma.com/design/Q4t8qIM5fklC9I3Atc1BrZ/Bamboo-Design-System---Components?node-id=107-31067
-// source=projects/ds-ng/src/lib/components/bmb-filter-card/bmb-filter-card.component.ts
+// source=ui-angular/src/lib/components/bmb-filter-card/bmb-filter-card.component.ts
 // component=BmbFilterCardComponent
 import figma from 'figma'
 

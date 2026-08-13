@@ -1,5 +1,5 @@
 // url=https://www.figma.com/design/Q4t8qIM5fklC9I3Atc1BrZ/Bamboo-Design-System---Components?node-id=159-44357
-// source=projects/ds-ng/src/lib/components/bmb-tabs/bmb-tabs.component.ts
+// source=ui-angular/src/lib/components/bmb-tabs/bmb-tabs.component.ts
 // component=BmbTabsComponent
 import figma from 'figma'
 

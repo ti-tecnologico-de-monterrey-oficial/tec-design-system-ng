@@ -1,5 +1,5 @@
 // url=https://www.figma.com/design/Q4t8qIM5fklC9I3Atc1BrZ/Bamboo-Design-System---Components?node-id=4474-86349
-// source=projects/ds-ng/src/lib/components/bmb-date-range/bmb-date-range.component.ts
+// source=ui-angular/src/lib/components/bmb-date-range/bmb-date-range.component.ts
 // component=BmbDateRangeComponent
 import figma from 'figma'
 

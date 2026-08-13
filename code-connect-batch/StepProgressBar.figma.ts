@@ -1,5 +1,5 @@
 // url=https://www.figma.com/design/Q4t8qIM5fklC9I3Atc1BrZ/Bamboo-Design-System---Components?node-id=152-46103
-// source=projects/ds-ng/src/lib/components/bmb-step-progress-bar/bmb-step-progress-bar.component.ts
+// source=ui-angular/src/lib/components/bmb-step-progress-bar/bmb-step-progress-bar.component.ts
 // component=BmbStepProgressBarComponent
 import figma from 'figma'
 

@@ -1,5 +1,5 @@
 // url=https://www.figma.com/design/Q4t8qIM5fklC9I3Atc1BrZ/Bamboo-Design-System---Components?node-id=109-36648
-// source=projects/ds-ng/src/lib/components/bmb-dropzone/bmb-dropzone.component.ts
+// source=ui-angular/src/lib/components/bmb-dropzone/bmb-dropzone.component.ts
 // component=BmbDropzoneComponent
 import figma from 'figma'
 

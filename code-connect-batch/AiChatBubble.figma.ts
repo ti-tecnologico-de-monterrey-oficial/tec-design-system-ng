@@ -1,5 +1,5 @@
 // url=https://www.figma.com/design/Q4t8qIM5fklC9I3Atc1BrZ/Bamboo-Design-System---Components?node-id=528-59470
-// source=projects/ds-ng/src/lib/components/bmb-ai-chat-bubble/bmb-ai-chat-bubble.component.ts
+// source=ui-angular/src/lib/components/bmb-ai-chat-bubble/bmb-ai-chat-bubble.component.ts
 // component=BmbAiChatBubbleComponent
 import figma from 'figma'
 

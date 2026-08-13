@@ -1,5 +1,5 @@
 // url=https://www.figma.com/design/Q4t8qIM5fklC9I3Atc1BrZ/Bamboo-Design-System---Components?node-id=2102-56629
-// source=projects/ds-ng/src/lib/components/bmb-image/bmb-image.component.ts
+// source=ui-angular/src/lib/components/bmb-image/bmb-image.component.ts
 // component=BmbImageComponent
 import figma from 'figma'
 

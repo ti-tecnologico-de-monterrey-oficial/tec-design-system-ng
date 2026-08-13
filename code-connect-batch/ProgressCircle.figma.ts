@@ -1,5 +1,5 @@
 // url=https://www.figma.com/design/Q4t8qIM5fklC9I3Atc1BrZ/Bamboo-Design-System---Components?node-id=4694-85975
-// source=projects/ds-ng/src/lib/components/bmb-progress-cirlce/bmb-progress-circle.component.ts
+// source=ui-angular/src/lib/components/bmb-progress-cirlce/bmb-progress-circle.component.ts
 // component=BmbProgressCircleComponent
 import figma from 'figma'
 
