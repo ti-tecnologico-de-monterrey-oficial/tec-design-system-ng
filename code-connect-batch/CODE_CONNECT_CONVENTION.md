@@ -57,6 +57,16 @@ For a composition recipe:
 3. Resolve children dynamically with `getInstanceSwap()` or `findInstance()` and `executeTemplate()`.
 4. Do not hardcode child icon names, labels, or implementation imports in the parent template.
 
+### Figma `BB_*` implementation components
+
+`BB_*` names identify implementation building blocks in this Figma library; they are not automatically Angular components. A published public parent may use a `BB_*` adapter only when the adapter has a verified public Angular equivalent. The adapter must be parserless, carry `metadata: { nestable: true }`, and dynamically resolve its configured children.
+
+- Public parents are the primary Code Connect entries and must render resolved child snippets instead of an empty host.
+- `BB_*` adapters may map only the child properties proven by the Angular API. For example, `Disabled` may become `disabled` on a button child; `Hovered` and `Focused` remain visual-only.
+- `BB_*` wrappers that merely contain another BB forward that child through `findInstance()` and `executeTemplate()`; they do not add speculative attributes.
+- A BB with no stable published node, no confirmed Angular equivalent, or only decorative layout responsibility is not mapped.
+- Record every admitted family and its evidence in [BB_ADAPTERS.md](BB_ADAPTERS.md). Track public empty-host mappings in [COMPOSITION_REMEDIATION.md](COMPOSITION_REMEDIATION.md).
+
 ## Naming and variant hygiene
 
 - Use one canonical spelling and casing for each option. Do not mix `Dash`/`Dashed`, `NotContainer`/`not container`, or translated property names for the same API.

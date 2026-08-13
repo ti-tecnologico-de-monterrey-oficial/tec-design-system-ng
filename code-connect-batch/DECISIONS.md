@@ -37,8 +37,9 @@ Every component assessed in this queue has a confirmed Angular equivalent. Previ
 ## Button group — composition coverage (published)
 
 - Figma node `20:13644` has outer `Variation` values `Base`, `Simple`, and `Chevron`, with nested BB components, labels, icons, chevron swaps, and disabled states.
-- The Angular `[bmbButtonGroup]` directive only exposes `size: 'small' | 'large'`; it cannot represent the Figma composition, child semantics, or its variations.
-- Published public-facade snippet: `<section bmbButtonGroup></section>`. The directive owns grouping and size styling only; the Figma variations remain child compositions rather than directive inputs. Follow-up: establish reusable child composition examples without claiming an unsupported group API.
+- The Angular `[bmbButtonGroup]` directive only exposes `size: 'small' | 'large'`; it cannot represent the Figma child semantics or variations itself. The public parent now resolves the selected `BB_1_4*` child dynamically instead of emitting an empty host.
+- `BB_1_4_2` is admitted as an internal `BmbButtonDirective` adapter: its `Label` text, `States=Disabled`, and `Type=left|right` map to public button content, `disabled`, and `position`. Hovered/focused stay visual-only. Configured icon swaps are resolved dynamically as nested snippets; their unavailable/stale standalone Figma main-node IDs are not fabricated as independent mappings.
+- `BB_1_4_3` and `BB_1_4` are forwarding adapters. They resolve their real `BB_1_4_2` child with `executeTemplate()` so `Simple` and `Chevron` variants retain the actual composition. See [BB_ADAPTERS.md](BB_ADAPTERS.md).
 
 ## Interactive icon — composition coverage (published)
 
