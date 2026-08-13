@@ -31,7 +31,7 @@
     "build:TEC": "sass shared/assets/styles/mainTEC.scss dist/ui-angular/assets/styles/mainTEC.min.css --style=compressed",
     "build:GED": "sass shared/assets/styles/mainGED.scss dist/ui-angular/assets/styles/mainGED.min.css --style=compressed",
     "build:TECMI": "sass shared/assets/styles/mainTECMI.scss dist/ui-angular/assets/styles/mainTECMI.min.css --style=compressed",
-    "docker-build": "npm run json2sass && node scripts/sync-angular-shared.mjs && npm exec -- ng-packagr -p ui-angular/ng-package.json -c ui-angular/tsconfig.lib.json && npm run build:styles",
+    "docker-build": "npm run json2sass && node scripts/sync-angular-shared.mjs && npm exec -- ng-packagr -p ui-angular/ng-package.json -c ui-angular/tsconfig.lib.prod.json && npm run build:styles",
     "changelog:default": "auto-changelog -p --output CHANGELOG.md --template keepachangelog",
     "changelog:custom": "auto-changelog -p --unreleased-only --output FEATURES.md --template changelog-template.hbs",
     "version": "npm run changelog:default && npm run changelog:custom && git add CHANGELOG.md FEATURES.md",
