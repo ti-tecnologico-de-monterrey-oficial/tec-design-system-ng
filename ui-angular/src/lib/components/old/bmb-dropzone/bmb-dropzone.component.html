@@ -93,20 +93,20 @@
           }"
           type="container"
           [totalCount]="
-            isUploadInProgress(file) ? 100 : getFileSizeInMB(file.size)
+            isUploadInProgress(file) ? 100 : getFileSize(file.size).value
           "
           [textFormat]="
             file.error || isUploadCompleted(file)
               ? !isValidFileSize(file.size)
-                ? getFormatSizeError
-                : getFormatSize
+                ? getFileSizeFormat(file.size, true)
+                : getFileSizeFormat(file.size)
               : getFormatProgress
           "
           [textFormatSeparator]="isUploadInProgress(file) ? '' : '/'"
           [counter]="
             isUploadInProgress(file)
               ? getProgress(file)
-              : getFileSizeInMB(file.size)
+              : getFileSize(file.size).value
           "
           [componentTitle]="getFileName(file)"
           [appearance]="file.error ? 'error' : 'info'"

@@ -112,8 +112,34 @@ describe('DropzoneComponent', () => {
     ]);
   });
 
+  it('should display the completed file size in MB', () => {
+    const file = createPdfFileWithSize('archivo-2mb.pdf', 2 * 1024 * 1024);
+    componentRef.setInput('progress', { [file.name]: 100 });
+    fixture.detectChanges();
+
+    selectFiles([file]);
+
+    expect(fixture.nativeElement.textContent).toContain('2.00MB');
+  });
+
+  it('should display the completed file size in KB when it is under 1 MB', () => {
+    const file = createPdfFileWithSize('archivo-512kb.pdf', 512 * 1024);
+    componentRef.setInput('progress', { [file.name]: 100 });
+    fixture.detectChanges();
+
+    selectFiles([file]);
+
+    expect(fixture.nativeElement.textContent).toContain('512.00KB');
+  });
+
   function createPdfFile(name: string): File {
     return new File(['content'], name, { type: 'application/pdf' });
+  }
+
+  function createPdfFileWithSize(name: string, size: number): File {
+    return new File([new Uint8Array(size)], name, {
+      type: 'application/pdf',
+    });
   }
 
   function selectFiles(files: File[]): void {

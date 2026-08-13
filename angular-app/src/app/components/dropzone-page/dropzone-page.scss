@@ -1,0 +1,13 @@
+.playground {
+  display: flex;
+  gap: 24px;
+}
+.controls {
+  min-width: 260px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.preview {
+  flex: 1;
+}
