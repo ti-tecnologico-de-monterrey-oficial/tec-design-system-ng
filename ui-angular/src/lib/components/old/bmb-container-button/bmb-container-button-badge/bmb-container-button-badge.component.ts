@@ -10,7 +10,7 @@ import { BmbContainerButtonBaseComponent } from '../bmb-container-button-base/bm
 import { BmbIconComponent } from '../../bmb-icon/bmb-icon.component';
 import { BmbTitleComponent } from '../../bmb-title/bmb-title.component';
 import { BmbBadgeComponent } from '../../../bmb-badge/bmb-badge.component';
-import { IBmbBadgeInfo } from '@shared/types';
+import { IBmbBadgeInfo } from '../../../../_shared/types/components/badge';
 
 @Component({
   selector: 'bmb-container-button-badge',

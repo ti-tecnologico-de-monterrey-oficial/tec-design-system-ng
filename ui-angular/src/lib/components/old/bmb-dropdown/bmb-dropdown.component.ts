@@ -24,7 +24,7 @@ import {
 import {
   IBmbInputError,
   IBmbInputTooltipPosition,
-} from '../bmb-input/bmb-input.component';
+} from '../../../_shared/types/input';
 import { BmbDropdownContentComponent } from '../utils/bmb-dropdown-content/bmb-dropdown-content.component';
 import { IDropdownItem } from '../../../_shared/types';
 import { BmbInputContentComponent } from '../bmb-input/bmb-input-content/bmb-input-content.component';

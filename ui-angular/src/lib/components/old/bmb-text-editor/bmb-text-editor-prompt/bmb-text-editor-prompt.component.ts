@@ -18,13 +18,13 @@ import { CommonModule } from '@angular/common';
 import {
   BMB_BASE_GENERAL_CONTRAST_LIST,
   BMB_SEMANTIC_COLOR_LIST,
-} from '@shared/types/foundations/colors/color-type';
+} from '../../../../_shared/types/foundations/colors/color-type';
 import { BmbActionIconComponent } from '../../bmb-action-icon/bmb-action-icon.component';
 
 export type IBmbTextEditorPromptType = 'link' | 'image' | 'color';
 
 @Component({
-  selector: 'app-bmb-text-editor-prompt',
+  selector: 'bmb-text-editor-prompt',
   standalone: true,
   imports: [
     CommonModule,

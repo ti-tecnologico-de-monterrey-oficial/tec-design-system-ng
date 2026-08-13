@@ -20,7 +20,7 @@ import {
   IBmbMitecInstitutionalColors,
   IBmbSemanticBaseColors,
   IBmbSemanticColors,
-} from '@shared/types/foundations/colors/color-type';
+} from '../../../../_shared/types/foundations/colors/color-type';
 
 @Component({
   selector: 'bmb-container-button-complex-alternative',

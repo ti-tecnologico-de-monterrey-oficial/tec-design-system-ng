@@ -85,9 +85,6 @@ Transforma los cambios dentro del CHANGELOG.md en release notes profesionales co
 5. **Exclusiones:**
    - Omite `chore`, `test` y cambios internos sin impacto visible
 
-6. **Contacto**
-   - Agrega un pequeno párrafo explicando que pueden solicitar soporte al siguiente correo ejemplo@tec.com
-
 ### Estructura de salida:
 ```markdown
 ## 🚀 [Versión] 🎉 - Fecha
@@ -95,13 +92,13 @@ Transforma los cambios dentro del CHANGELOG.md en release notes profesionales co
 [Párrafo introductorio]
 
 ### 🆕 Nuevas Funcionalidades
-- [Descripción centrada en beneficios] (REF-123)
+- [Descripción centrada en beneficios]
 
 ### ✅ Problemas Resueltos
-- [Explicación de impacto resuelto] (REF-456)
+- [Explicación de impacto resuelto]
 
 ### ⚡ Optimizaciones
-- [Beneficio de rendimiento/experiencia] (REF-789)
+- [Beneficio de rendimiento/experiencia]
 
 ### 👋 Contacto
 - [Párrafo de contacto]

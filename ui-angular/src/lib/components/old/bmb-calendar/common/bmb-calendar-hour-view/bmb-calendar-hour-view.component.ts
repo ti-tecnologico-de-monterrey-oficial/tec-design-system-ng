@@ -8,7 +8,7 @@ import {
 } from '@angular/core';
 import { IBmbCalendarEvent } from '../../types';
 import { DateTime } from 'luxon';
-import { getUUID } from '@shared/logic/utils';
+import { getUUID } from '../../../../../_shared/logic/utils';
 
 @Component({
   selector: 'bmb-calendar-hour-view',

@@ -13,7 +13,7 @@ import { getWeeksInMonth, weeksAndDays } from '../../utils';
 import { CommonModule } from '@angular/common';
 import { BmbButtonDirective } from '../../../../../directives/old/bmb-button/button.directive';
 import { Info } from 'luxon';
-import { orderDayNames } from '@shared/logic/utils';
+import { orderDayNames } from '../../../../../_shared/logic/utils';
 import { BmbInnerHeaderComponent } from '../../../bmb-inner-header/bmb-inner-header.component';
 import { BmbChevronTitleSelectorComponent } from '../../../bmb-chevron-title-selector/bmb-chevron-title-selector.component';
 import { BmbPullWedgeComponent } from '../../../../bmb-pull-wedge/bmb-pull-wedge.component';

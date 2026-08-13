@@ -9,7 +9,7 @@ import { BmbLoginOnboardingStepperStepComponent } from './bmb-login-onboarding-s
 import { FormGroup } from '@angular/forms';
 import { BmbLoginOnboardingService } from '../../bmb-login-onboarding.service';
 import { BmbLoginContentComponent } from '../../../bmb-login/bmb-login-content/bmb-login-content.component';
-import { IBmbLinkConfiguration } from '@shared/types';
+import { IBmbLinkConfiguration } from '../../../../../_shared/types/index';
 
 @Component({
   selector: 'bmb-login-onboarding-stepper-step-one',

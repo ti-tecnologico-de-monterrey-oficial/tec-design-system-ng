@@ -29,6 +29,8 @@ export type IBmbImageObjectFit =
   | 'none'
   | 'scale-down';
 
+export * from './types';
+
 @Component({
   selector: 'bmb-image',
   standalone: true,

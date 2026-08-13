@@ -1,3 +1,5 @@
+import { IBmbInteractiveIconAppearance } from './components/interactive-icon';
+
 export type SizeNames =
   | 'none'
   | 'xxs'
@@ -7,8 +9,8 @@ export type SizeNames =
   | 'l'
   | 'xl'
   | 'xxl'
+  | 'none'
   | 'auto'
-  | 'full'
   | '0'
   | '1'
   | '2'
@@ -65,14 +67,14 @@ export interface IBmbHome {
   callback: (result: unknown) => void;
 }
 
-// export interface IBmbApp {
-//   icon: string;
-//   title: string;
-//   link?: string;
-//   target?: IBmbTargetLink;
-//   appearance: IBmbInteractiveIconAppearance;
-//   callbackParam?: any;
-// }
+export interface IBmbApp {
+  icon: string;
+  title: string;
+  link?: string;
+  target?: IBmbTargetLink;
+  appearance: IBmbInteractiveIconAppearance;
+  callbackParam?: any;
+}
 
 export interface IBmbNameValuePair {
   name: string;

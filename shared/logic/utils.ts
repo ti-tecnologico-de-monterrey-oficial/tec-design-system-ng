@@ -1,7 +1,6 @@
 import { FormControl, ValidationErrors, ValidatorFn } from '@angular/forms';
-import { IBmbInputError } from '../../ui-angular/src/lib/components/old/bmb-input/bmb-input.component';
-export const BROKEN_IMAGE: string =
-  'assets/images/empty-state/broken-image.jpg';
+import { IBmbInputError } from '../types/input';
+export const BROKEN_IMAGE = 'assets/images/empty-state/broken-image.jpg';
 
 export const isExternalLink = (link: string): boolean => {
   return (
@@ -64,11 +63,11 @@ export const handleImageNotFoundError = (
 
 export const getListingOnOneLine = (
   elements: string[],
-  template: string = '',
+  template = '',
 ): string => {
   let listingOnOneLine = '';
   elements.forEach((element, index) => {
-    listingOnOneLine += `${!!template ? template.replaceAll('[__]', element) : element}`;
+    listingOnOneLine += `${template ? template.replaceAll('[__]', element) : element}`;
     listingOnOneLine +=
       index == elements.length - 2
         ? ' and '
@@ -94,9 +93,9 @@ export const buildErrorMessage = (inputs: string[]): string => {
 
 export const getPositionClass = (
   className: string,
-  labelPosition: String,
+  labelPosition: string,
 ): string => {
-  if (!!labelPosition) return `${className}-${labelPosition}`;
+  if (labelPosition) return `${className}-${labelPosition}`;
   return '';
 };
 
@@ -115,8 +114,7 @@ export const getCustomValidation = (
   formControl: FormControl,
 ): ValidationErrors | null => {
   if (typeof customValidation === 'function') {
-    const functionValidation = customValidation ?? ((_: any) => null);
-    return functionValidation(formControl);
+    return customValidation(formControl);
   }
   return null;
 };
@@ -136,7 +134,7 @@ export const getCustomValidationMessage = (
   return '';
 };
 
-export const getMobileResolutionSize = (isMobile: boolean = true): string => {
+export const getMobileResolutionSize = (isMobile = true): string => {
   if (isMobile) return '(max-width: 1000px)';
   return '(min-width: 1001px)';
 };

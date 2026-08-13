@@ -18,7 +18,7 @@ import { BmbActionIconComponent } from '../../../bmb-action-icon/bmb-action-icon
 import { TranslatePipe } from '../../../../../pipes/translations';
 import { BmbTranslationsService } from '../../../../../services/translations/translations.service';
 import { BmbCalendarComponentService } from '../../bmb-calendar.service';
-import { getUUID } from '@shared/logic/utils';
+import { getUUID } from '../../../../../_shared/logic/utils';
 import { BmbNativeModalService } from '../../../../../services/old/modal/native-modal.service';
 import { BmbCalendarModalComponent } from '../bmb-calendar-modal/bmb-calendar-modal.component';
 

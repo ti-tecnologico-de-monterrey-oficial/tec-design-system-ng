@@ -4,7 +4,7 @@ import {
   input,
   ViewEncapsulation,
 } from '@angular/core';
-import { IBmbTargetLink } from '@shared/types';
+import { IBmbTargetLink } from '../../../../_shared/types/index';
 import { BmbIconComponent } from '../../bmb-icon/bmb-icon.component';
 import { BmbTextLinkComponent } from '../../bmb-text-link/bmb-text-link.component';
 import { BmbLayoutDirective } from '../../../../directives/old/bmb-layout/bmb-layout.directive';

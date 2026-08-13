@@ -10,8 +10,8 @@ import {
   inject,
 } from '@angular/core';
 import { IBmbDataTopBar } from '../../bmb-breadcrumb/bmb-breadcrumb.component';
-import { IBmbColor } from '@shared/types/colors';
-import { IBmbActionHeader } from '@shared/types';
+import { IBmbColor } from '../../../../_shared/types/colors';
+import { IBmbActionHeader } from '../../../../_shared/types/utils';
 import { BmbTitleContentComponent } from '../../bmb-title-content/bmb-title-content.component';
 import { BmbThreeColsComponent } from '../../bmb-three-cols/bmb-three-cols.component';
 import { BmbActionIconComponent } from '../../bmb-action-icon/bmb-action-icon.component';
