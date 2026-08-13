@@ -1,17 +1,17 @@
 # Remaining public Angular ↔ Figma inventory
 
-Last reconciled: 2026-08-13
+Last reconciled: 2026-08-13 (Forms/editors family added)
 
 ## Counting rule
 
-`projects/ds-ng/src/public-api.ts` exports 128 Angular components. The current templates cover 69 of those component classes (`grades`, `table`, `server-table` confirmed 2026-08-12); Button and Button group are two additional public directive mappings recorded in [INVENTORY.md](INVENTORY.md). Three `BB_1_4*` templates are internal adapters and do not count as public coverage. `calendar` was also published today (CLI success) but Figma MCP verification is still timing out — excluded from the count above until confirmed.
+`projects/ds-ng/src/public-api.ts` exports 128 Angular components. The current templates cover 74 of those component classes (`grades`, `table`, `server-table` confirmed 2026-08-12; `datepicker`, `date-range`, `input-tags`, `text-editor`, `login` confirmed 2026-08-13); Button and Button group are two additional public directive mappings recorded in [INVENTORY.md](INVENTORY.md). Three `BB_1_4*` templates are internal adapters and do not count as public coverage. `calendar` was also published (CLI success) but Figma MCP verification is still timing out — excluded from the count above until confirmed.
 
-This leaves **59 public Angular component exports** without a confirmed template: 58 fully triaged below, plus `calendar` in its own pending-verification state (see `INVENTORY.md`). This is a triage list, not a mandate to create every remaining snippet.
+This leaves **53 public Angular component exports** without a confirmed template: 52 fully triaged below, plus `calendar` in its own pending-verification state (see `INVENTORY.md`). `login-onboarding` remains contract-required — see the Forms and editors row below. This is a triage list, not a mandate to create every remaining snippet.
 
 | Disposition | Count | Batch action |
 | --- | ---: | --- |
 | Candidate — validate and connect | 0 | Select at most three per run, inspect the stable published Figma node and Storybook, then publish only a canonical useful snippet. |
-| Contract required | 36 | Do not publish until the smallest listed design/code contract exists, OR the same "documented Storybook fixture / composition facade" precedent used for `grades`/`table`/`server-table`/`calendar` applies. See [CONTRACT_BACKLOG.md](CONTRACT_BACKLOG.md). |
+| Contract required | 30 | Do not publish until the smallest listed design/code contract exists, OR the same "documented Storybook fixture / composition facade" precedent used for `grades`/`table`/`server-table`/`calendar`/`datepicker`/`date-range`/`input-tags`/`text-editor`/`login` applies. See [CONTRACT_BACKLOG.md](CONTRACT_BACKLOG.md). |
 | Parent/child composition | 10 | Keep as a child or wrapper of a connected parent unless an independent Figma API and useful standalone usage emerges. |
 | Blocked / out of scope | 12 | Do not retry without a stable published Figma target or a scope/API change. |
 
@@ -34,7 +34,7 @@ Each export below has a confirmed public Angular API. It is intentionally not co
 | Data cards, profiles and rubrics | `account-statement`, `digital-id`, `evaluation-rubric`, `profile`, `sounds-card`, `student-activity-card`, `user-profile`, `user-summary-content` | Named identity/content/media properties and semantic repeated children; rubric also needs criterion, summary, comment and action-label properties. |
 | Chat, search and alerts | `alert-center`, `chat-bar`, `chat-bubble`, `home-card-chat`, `notification-card`, `search-card`, `search-input` | Published Message/Alert/Result item plus outer `Items` SLOT; service-owned flows need a public payload/factory recipe. |
 | Calendars and timeline | `timestream` | The outer `bmb-timestream` container has no independent stable Bamboo node — MiTec assembles it ad hoc from already-connected pieces (`Timestream card`, `Timestream Index`, `Hito list`). `grades` connected 2026-08-12 via documented Storybook fixture (no Figma properties needed); `calendar` connected via composition facade (service-driven, no required input) — both moved to `INVENTORY.md`. |
-| Forms and editors | `date-range`, `datepicker`, `input-tags`, `login`, `login-onboarding`, `text-editor` | Field semantics (label, placeholder, helper/error, required/disabled, value/constraints) plus an action/field SLOT when projected. |
+| Forms and editors | `login-onboarding` | `date-range`, `datepicker`, `input-tags`, `login`, `text-editor` connected 2026-08-13 as composition facades / documented Storybook fixtures — see `INVENTORY.md`. `login-onboarding` stays contract-required: its Figma candidates (`Login_boardingintro`, `Login_boardingintro1a/1b/2/3a/3b/4`, `Login_boardingintro_(Loading)`) are seven separate step screens with no single stable "container" node matching the Angular component's own service-driven page-switching, so the correct target is ambiguous, not a guess. |
 | Tables | `item`, `table-lite` | `item` is deprecated in favor of `bmb-item-[variant]`/`bmb-interactive-item-[variant]` — low priority. `table-lite` shares `bmb-table`'s data/columns shape but its correct Figma target is ambiguous among several near-duplicate `Template_Table_*` variants (Status, FilterOptions, EditActions_Badge, etc.) — needs a deliberate visual comparison, not a guess. `table` and `server-table` connected 2026-08-12 via documented Storybook fixtures — see `INVENTORY.md`. |
 | Header and template shells | `header-mobile`, `mobile-templates` | Stable outer API with named header/content/action properties and genuine slots for the composed regions. |
 
