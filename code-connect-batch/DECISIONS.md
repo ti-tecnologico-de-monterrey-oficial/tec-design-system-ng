@@ -375,6 +375,22 @@ Every component assessed in this queue has a confirmed Angular equivalent. Previ
 - Canonical mapping: Default uses the documented `DefaultProgress` fixture; Empty maps to `emptyState=true`, gray fill, and `indicatorAppearance=empty`; Error and Success map to their public full-operation inputs and semantic fill/indicator values.
 - Monetary labels, values, title, and icon use the documented Storybook fixtures because Figma does not expose those fields as component properties. Device type is intentionally omitted.
 
+## Dropzone — approximate coverage (published)
+
+- Figma node `109:36648` exposes `Container color=Default|Primary|Alternative`, `Show Uploads`, and runtime visual states. Public `BmbDropzoneComponent` exposes `appearanceContrast` and requires an accepted-extension collection plus labels and upload configuration.
+- Canonical mapping: `Container color → appearanceContrast`. The required accepted extensions, labels, icon, maximum file size and help-link values are the documented neutral Dropzone Storybook fixture, because the Figma root does not expose semantic file metadata.
+- `Show Uploads` and `State=Uploading|Success|Error` remain intentionally omitted: they are driven by the chosen files/control state, not matching persistent public inputs.
+
+## Inner header — approximate coverage (published)
+
+- Figma node `61:9239` has no root component properties. Its visible `Header` text supplies the public `componentTitle`, and a resolved published `Header Close/Return` child confirms the canonical close composition.
+- Canonical mapping emits `componentTitle` dynamically and the documented `[showClose]="true"` state. Search, return/back controls and trailing icon actions are omitted because the root does not provide semantic properties that distinguish their Angular APIs.
+
+## Evaluation rubric — contract required
+
+- Figma node `6865:91699` only exposes `Show Input Text` and device/layout presentation. Public `BmbEvaluationRubricComponent` requires a structured rubric collection plus summary, comment and button configuration.
+- No canonical array, rubric criterion, comment payload, or button arrangement can be inferred from its visual child layers. Required contract: a genuine `Criteria` SLOT with published semantic criterion items, plus Summary, Comment prompt, and action-label properties. This is tracked in [CONTRACT_BACKLOG.md](CONTRACT_BACKLOG.md); no mapping was published.
+
 ## Date range and datepicker — contract required
 
 - `Date picker range` (`4474:86349`) and `Calendar date picker` (`109:33585`) are stable published Figma components, but neither exposes the public Angular field contract (`label`, placeholder, disabled/required/clearable state, date format, value/range, and constraints). The date-range component also has no colocated Storybook file from which a canonical usage fixture can be verified.
