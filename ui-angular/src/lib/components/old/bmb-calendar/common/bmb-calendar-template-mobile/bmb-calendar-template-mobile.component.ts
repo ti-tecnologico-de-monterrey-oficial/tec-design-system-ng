@@ -7,6 +7,10 @@ import {
   output,
   computed,
   signal,
+  ViewChild,
+  TemplateRef,
+  effect,
+  OnInit,
 } from '@angular/core';
 import { DateTime } from 'luxon';
 import { getWeeksInMonth, weeksAndDays } from '../../utils';
@@ -20,6 +24,13 @@ import { BmbPullWedgeComponent } from '../../../../bmb-pull-wedge/bmb-pull-wedge
 import { BmbTranslationsService } from '../../../../../services/translations/translations.service';
 import { TranslatePipe } from '../../../../../pipes/translations';
 import { BmbCalendarComponentService } from '../../bmb-calendar.service';
+import { BmbNativeModalService } from '../../../../../services/old/modal/native-modal.service';
+import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { BmbCheckboxComponent } from '../../../bmb-checkbox/bmb-checkbox.component';
+import { BmbLayoutItemDirective } from '../../../../../directives/old/bmb-layout/bmb-layout-item.directive';
+import { BmbLayoutDirective } from '../../../../../directives/old/bmb-layout/bmb-layout.directive';
+import { BmbDividerComponent } from '../../../../bmb-divider/bmb-divider.component';
+import { BmbSwitchComponent } from '../../../bmb-switch/bmb-switch.component';
 
 @Component({
   selector: 'bmb-calendar-template-mobile',
@@ -31,23 +42,35 @@ import { BmbCalendarComponentService } from '../../bmb-calendar.service';
     BmbChevronTitleSelectorComponent,
     BmbPullWedgeComponent,
     TranslatePipe,
+    ReactiveFormsModule,
+    BmbCheckboxComponent,
+    BmbLayoutItemDirective,
+    BmbLayoutDirective,
+    BmbDividerComponent,
+    BmbSwitchComponent,
   ],
   templateUrl: './bmb-calendar-template-mobile.component.html',
   styleUrl: './bmb-calendar-template-mobile.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
-export class BmbCalendarTemplateMobileComponent {
+export class BmbCalendarTemplateMobileComponent implements OnInit {
   calendarTitle = input<string>();
   disableMobileFilter = input<boolean>(false);
 
+  // eslint-disable-next-line @angular-eslint/no-output-on-prefix
   onClose = output<any>();
 
   private readonly calendarService = inject(BmbCalendarComponentService);
+  private readonly translationsService = inject(BmbTranslationsService);
+  private readonly modalService = inject(BmbNativeModalService);
+  @ViewChild('filterModalTemplate') filterModalTemplate!: TemplateRef<any>;
 
   now = computed(() => this.calendarService.getVisibleDate());
   events = computed(() => this.calendarService.getFilteredEvents());
-  locale = computed(() => this.translationsService.getCurrentLanguage());
+  locale = computed(
+    () => this.translationsService.getCurrentLanguage() || 'es',
+  );
   weekDays = computed(() => this.calendarService.getRenderWeekDays());
   monthsNames = computed(() => Info.months('long', { locale: this.locale() }));
   month = signal<string>(this.monthsNames()[this.now().month - 1]);
@@ -73,11 +96,28 @@ export class BmbCalendarTemplateMobileComponent {
     return weeks;
   });
 
-  modalId = signal<string | null>(null);
+  filters = computed(() => this.calendarService.getFilters());
 
-  private translationsService: BmbTranslationsService = inject(
-    BmbTranslationsService,
+  modalId = signal<string | null>(null);
+  calendarForm: FormGroup<{ [key: string]: FormControl<any> }> = new FormGroup(
+    {},
   );
+
+  constructor() {
+    effect(() => {
+      const calendars = this.events().calendars || [];
+      calendars.forEach((calendar) => {
+        this.calendarForm.addControl(
+          calendar,
+          new FormControl(this.filters()[calendar] || true),
+        );
+      });
+    });
+  }
+
+  ngOnInit() {
+    this.calendarForm.addControl('enable_notifications', new FormControl(true));
+  }
 
   handleClose() {
     this.onClose.emit('close');
@@ -122,7 +162,26 @@ export class BmbCalendarTemplateMobileComponent {
   }
 
   handleViewTypeChange() {
-    // this.showFilters.emit();
+    const newModalId = this.modalService.openModal({
+      title: this.translationsService.translate('calendar.modal.title'),
+      subtitle: this.translationsService.translate('calendar.subtitle'),
+      content: this.filterModalTemplate,
+      size: 'x-small',
+      closeModalClicked: () => {
+        this.calendarService.setFilters({});
+      },
+      actions: [
+        {
+          buttonName: 'save',
+          appearance: 'primary',
+          label: this.translationsService.translate('calendar.filter_save'),
+          action: () => {
+            this.calendarService.applyFilters(this.calendarForm.value);
+            this.modalService.closeModal(newModalId || '');
+          },
+        },
+      ],
+    });
   }
 
   findEventsForToday(date: DateTime) {
@@ -131,5 +190,28 @@ export class BmbCalendarTemplateMobileComponent {
     return !!this.events()?.[weekNumber]?.[stringDate]?.some(
       (event) => event.isVisible,
     );
+  }
+
+  getBulletClass(name: string): string[] {
+    return ['bmb_calendar-event-bullet', `bmb_calendar-event-bullet-${name}`];
+  }
+
+  getFormControl(name: string): FormControl {
+    return this.calendarForm.get(name) as FormControl;
+  }
+
+  getCalendarName(name: string): string {
+    switch (name) {
+      case 'academic':
+        return 'Horario de clases';
+      case 'life':
+        return 'Vida';
+      case 'events':
+        return 'Eventos';
+      case 'save_the_date':
+        return 'Save the date';
+      default:
+        return name;
+    }
   }
 }

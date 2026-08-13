@@ -56,7 +56,7 @@
   <bmb-action-icon
     class="bmb_chat-card-bot"
     [icon]="currentBot().icon"
-    [alt]="currentBot().name"
+    [tooltipText]="currentBot().name"
     [iconSize]="40"
     [isSVGTemplate]="true"
     (buttonClick)="openChatFromCompact()"

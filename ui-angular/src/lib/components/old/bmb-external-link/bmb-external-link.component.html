@@ -7,7 +7,7 @@
             icon="close"
             [iconSize]="24"
             (buttonClick)="handleClose($event)"
-            [alt]="'external_link.close' | translate"
+            [tooltipText]="'external_link.close' | translate"
           />
         </ng-template>
         <ng-template #bmbMainContent>
@@ -31,7 +31,7 @@
               icon="more_horiz"
               [iconSize]="24"
               (buttonClick)="handleOpenMenu()"
-              [alt]="'external_link.open_menu' | translate"
+              [tooltipText]="'external_link.open_menu' | translate"
             />
           </section>
         </ng-template>

@@ -23,12 +23,14 @@
         [iconSize]="24"
         [title]="'text_editor.bold' | translate"
         (buttonClick)="addTextFormat('bold')"
+        [tooltipText]="'text_editor.bold' | translate"
       />
       <bmb-action-icon
         idElement="text_editor_italic"
         icon="format_italic"
         [iconSize]="24"
         [title]="'text_editor.italic' | translate"
+        [tooltipText]="'text_editor.italic' | translate"
         (buttonClick)="addTextFormat('italic')"
       />
       <bmb-action-icon
@@ -36,6 +38,7 @@
         icon="format_underlined"
         [iconSize]="24"
         [title]="'text_editor.underline' | translate"
+        [tooltipText]="'text_editor.underline' | translate"
         (buttonClick)="addTextFormat('underline')"
       />
       <bmb-action-icon
@@ -61,14 +64,14 @@
         icon="text_format"
         [iconSize]="24"
         (buttonClick)="handleInsertDialog($event)"
-        [alt]="'text_editor.text_format' | translate"
+        [tooltipText]="'text_editor.text_format' | translate"
       />
       <bmb-action-icon
         idElement="text_editor.more"
         icon="more_horiz"
         [iconSize]="24"
         (buttonClick)="handleMoreDialog($event)"
-        [alt]="'text_editor.more' | translate"
+        [tooltipText]="'text_editor.more' | translate"
       />
     </span>
     <span class="bmb_text-editor-header-group hide-on-mobile">
@@ -78,6 +81,7 @@
         icon="format_align_left"
         [iconSize]="24"
         [title]="'text_editor.left' | translate"
+        [tooltipText]="'text_editor.left' | translate"
         (buttonClick)="applyAlignment('left')"
       />
       <bmb-action-icon
@@ -86,6 +90,7 @@
         icon="format_align_center"
         [iconSize]="24"
         [title]="'text_editor.center' | translate"
+        [tooltipText]="'text_editor.center' | translate"
         (buttonClick)="applyAlignment('center')"
       />
       <bmb-action-icon
@@ -94,6 +99,7 @@
         icon="format_align_right"
         [iconSize]="24"
         [title]="'text_editor.right' | translate"
+        [tooltipText]="'text_editor.right' | translate"
         (buttonClick)="applyAlignment('right')"
       />
     </span>
@@ -103,6 +109,7 @@
         icon="format_list_numbered"
         [iconSize]="24"
         [title]="'text_editor.insert_ordered_list' | translate"
+        [tooltipText]="'text_editor.insert_ordered_list' | translate"
         (buttonClick)="execCommand('insertOrderedList')"
       />
       <bmb-action-icon
@@ -110,6 +117,7 @@
         icon="format_list_bulleted"
         [iconSize]="24"
         [title]="'text_editor.insert_unordered_list' | translate"
+        [tooltipText]="'text_editor.insert_unordered_list' | translate"
         (buttonClick)="execCommand('insertUnorderedList')"
       />
     </span>
@@ -119,6 +127,7 @@
         icon="format_indent_increase"
         [iconSize]="24"
         [title]="'text_editor.indent' | translate"
+        [tooltipText]="'text_editor.indent' | translate"
         (buttonClick)="execCommand('indent')"
       />
       <bmb-action-icon
@@ -126,6 +135,7 @@
         icon="format_indent_decrease"
         [iconSize]="24"
         [title]="'text_editor.outdent' | translate"
+        [tooltipText]="'text_editor.outdent' | translate"
         (buttonClick)="execCommand('outdent')"
       />
     </span>
@@ -135,6 +145,7 @@
         icon="link"
         [iconSize]="24"
         [title]="'text_editor.insert_link' | translate"
+        [tooltipText]="'text_editor.insert_link' | translate"
         (buttonClick)="openPrompt('link', $event)"
       />
       <bmb-action-icon
@@ -142,6 +153,7 @@
         icon="image"
         [iconSize]="24"
         [title]="'text_editor.insert_image' | translate"
+        [tooltipText]="'text_editor.insert_image' | translate"
         (buttonClick)="openPrompt('image', $event)"
       />
     </span>
@@ -151,6 +163,7 @@
         icon="format_clear"
         [iconSize]="24"
         [title]="'text_editor.clear_formatting' | translate"
+        [tooltipText]="'text_editor.clear_formatting' | translate"
         (buttonClick)="clearFormatting()"
       />
     </span>
