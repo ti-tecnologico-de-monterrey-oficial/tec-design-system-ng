@@ -7,8 +7,8 @@
       [idElement]="idElement()"
       [link]="link()!"
       [target]="target()!"
-      (buttonPress)="handlePress($event)"
-      (buttonClick)="handleClick($event)"
+      (buttonPress)="handlePress({ event: $event, name: getIcon() })"
+      (buttonClick)="handleClick({ event: $event, name: getIcon() })"
       [disabled]="disabled()"
       [buttonName]="getIcon()"
     >
@@ -16,10 +16,10 @@
         class="bmb_action_icon-icon"
         [ngClass]="{
           'bmb_action_icon-icon-toggle_icon':
-            !!toggleIconActive() && isAccentColor()
+            toggleIconActive() && isAccentColor(),
         }"
       >
-        @if (isSVGTemplate() && !!safeSVG) {
+        @if (isSVGTemplate() && safeSVG) {
           <bmb-icon
             [size]="iconSize()"
             [isSVGTemplate]="true"
