@@ -20,7 +20,7 @@
     <bmb-action-icon
       [icon]="actionIconName()!"
       [iconSize]="24"
-      [alt]="actionIconImageAlt() || actionIconName()!"
+      [tooltipText]="actionIconImageAlt() || actionIconName()!"
       [disabled]="isDisabled()"
       (buttonClick)="handleTrailingContent($event)"
     />

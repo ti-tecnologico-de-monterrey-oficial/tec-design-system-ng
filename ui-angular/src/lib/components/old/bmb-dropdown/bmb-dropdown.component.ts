@@ -147,7 +147,7 @@ export class BmbDropdownComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (this.control() !== null) {
+    if (this.control()) {
       if (changes['options']) {
         this.control().setValue(this.getValidInitialValues());
       }
@@ -173,7 +173,7 @@ export class BmbDropdownComponent implements OnInit, OnChanges {
       } as IDropdownItem;
     });
 
-    if (!!this.preferredOptions().length) {
+    if (this.preferredOptions().length) {
       const preferredItems: IDropdownItem[] = parsedItems.filter((element) =>
         this.preferredOptions().includes(element.value!),
       );
@@ -209,7 +209,7 @@ export class BmbDropdownComponent implements OnInit, OnChanges {
   }
 
   setSelectionControl(controlValue: string | string[]): void {
-    if (!!controlValue) {
+    if (controlValue) {
       if (this.isMultiSelect()) {
         const selectedItems = this.parsedOptions().filter(({ value }) =>
           controlValue.includes(value!),

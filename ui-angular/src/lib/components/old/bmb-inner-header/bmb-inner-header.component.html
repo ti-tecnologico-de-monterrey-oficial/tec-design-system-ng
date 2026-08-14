@@ -8,7 +8,7 @@
               icon="close"
               [iconSize]="24"
               (buttonClick)="handleSearch()"
-              [alt]="'inner_header.close' | translate"
+              [tooltipText]="'inner_header.close' | translate"
             />
           </span>
           <bmb-input
@@ -36,7 +36,7 @@
                 [icon]="getLeftIcon()"
                 [iconSize]="24"
                 (buttonClick)="handleBack($event)"
-                [alt]="'inner_header.back' | translate"
+                [tooltipText]="'inner_header.back' | translate"
               />
             }
           </ng-template>
@@ -58,7 +58,7 @@
                   [disabled]="disableTrailingIconSecondary()"
                   [iconSize]="24"
                   (buttonClick)="handleTrailingIconSecondary($event)"
-                  [alt]="alternativeTextTrailingIconSecondary()"
+                  [tooltipText]="alternativeTextTrailingIconSecondary() || trailingIconSecondary()"
                 />
               }
               @if (!!trailingIconPrimary() || showSearch()) {
@@ -67,7 +67,7 @@
                     icon="search"
                     [iconSize]="24"
                     (buttonClick)="handleSearch()"
-                    [alt]="'inner_header.search' | translate"
+                    [tooltipText]="'inner_header.search' | translate"
                   />
                 } @else {
                   <bmb-action-icon
@@ -75,7 +75,7 @@
                     [iconSize]="24"
                     [disabled]="disableTrailingIconPrimary()"
                     (buttonClick)="handleTrailingIconPrimary($event)"
-                    [alt]="alternativeTextTrailingIconPrimary()"
+                    [tooltipText]="alternativeTextTrailingIconPrimary()"
                   />
                 }
               }

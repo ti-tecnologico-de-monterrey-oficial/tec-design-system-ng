@@ -1,0 +1,62 @@
+<header class="page-header">
+  <h1>BmbDropzone</h1>
+  <p>Playground para probar propiedades y comportamiento del componente.</p>
+</header>
+
+<section class="playground">
+  <div class="controls">
+    <h2>Propiedades</h2>
+
+    <label for="dropzone-accepted-extensions">
+      acceptedExtensions (coma-separadas)
+    </label>
+    <input
+      id="dropzone-accepted-extensions"
+      type="text"
+      [value]="acceptedExtensions().join(',')"
+      (change)="setAcceptedExtensions($any($event.target).value)"
+    />
+
+    <label for="dropzone-file-size">fileSize (MB)</label>
+    <input
+      id="dropzone-file-size"
+      type="number"
+      [value]="fileSize()"
+      (change)="setFileSize($any($event.target).value)"
+    />
+
+    <label class="toggle">
+      <input type="checkbox" [checked]="multiple()" (change)="toggleMultiple()" />
+      multiple
+    </label>
+
+    <label class="toggle">
+      <input type="checkbox" [checked]="allowDuplicateFiles()" (change)="allowDuplicateFiles.set($any($event.target).checked)" />
+      allowDuplicateFiles
+    </label>
+
+    <label class="toggle">
+      <input
+        type="checkbox"
+        [checked]="simulatedUploadEnabled()"
+        (change)="toggleSimulatedUpload($any($event.target).checked)"
+      />
+      Habilitar carga simulada
+    </label>
+
+    <button (click)="resetDropzone()">Reset</button>
+  </div>
+
+  <div class="preview">
+    <bmb-dropzone
+      [acceptedExtensions]="acceptedExtensions()"
+      [fileSize]="fileSize()"
+      [multiple]="multiple()"
+      [allowDuplicateFiles]="allowDuplicateFiles()"
+      [formatFilesLabel]="formatFilesLabel()"
+      [progress]="simulatedUploadEnabled() ? progress() : {}"
+      (newFile)="simulateUpload($event)"
+      (fileRemoved)="removeFileProgress($event)"
+    />
+  </div>
+</section>
