@@ -55,12 +55,14 @@ export class BmbHomeCardHeaderComponent {
   componentTitle = input<string>(); // once title is removed, this should be required
 
   title = input<string>(); // deprecated
-
-  onClose = output();
-  onBack = output();
+  // eslint-disable-next-line @angular-eslint/no-output-on-prefix
+  onClose = output(); // eslint-disable-next-line @angular-eslint/no-output-on-prefix
+  onBack = output(); // eslint-disable-next-line @angular-eslint/no-output-on-prefix
   onExpandClick = output();
 
-  private translationsService: BmbTranslationsService = inject(BmbTranslationsService);
+  private translationsService: BmbTranslationsService = inject(
+    BmbTranslationsService,
+  );
 
   constructor() {
     effect(() => {
