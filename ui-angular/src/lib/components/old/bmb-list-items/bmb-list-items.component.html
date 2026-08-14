@@ -20,7 +20,7 @@
     <bmb-action-icon
       [icon]="addButtonIcon()"
       [iconSize]="24"
-      (buttonClick)="handleAddButtonClick($event)"
+      (buttonClick)="handleAddButtonClick($event.event)"
       [tooltipText]="'list_items.add' | translate"
     />
   </header>

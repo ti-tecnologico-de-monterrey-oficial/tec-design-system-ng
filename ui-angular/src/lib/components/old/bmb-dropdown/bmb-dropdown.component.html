@@ -52,7 +52,7 @@
             <bmb-action-icon
               [icon]="isOpenList ? 'keyboard_arrow_up' : 'keyboard_arrow_down'"
               [iconSize]="24"
-              (buttonClick)="$event.preventDefault(); openList()"
+              (buttonClick)="$event.event.preventDefault(); openList()"
               bmbLayoutItem
               [tooltipText]="
                 (isOpenList

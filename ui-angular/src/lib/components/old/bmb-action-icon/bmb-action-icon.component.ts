@@ -50,8 +50,8 @@ export class BmbActionIconComponent {
   tooltipText = input<string>('');
 
   imageNotFoundError = output<void>();
-  buttonPress = output<MouseEvent | IBmbActionIconEventType>();
-  buttonClick = output<MouseEvent | IBmbActionIconEventType>();
+  buttonPress = output<IBmbActionIconEventType>();
+  buttonClick = output<IBmbActionIconEventType>();
 
   customActionIcon = contentChild<TemplateRef<undefined>>('customActionIcon');
   sanitizer: DomSanitizer = inject(DomSanitizer);
@@ -63,9 +63,7 @@ export class BmbActionIconComponent {
   }
 
   handlePress(event?: MouseEvent | IBmbActionIconEventType): void {
-    this.buttonPress.emit(
-      event || { name: this.getIcon(), event: new MouseEvent('press') },
-    );
+    this.buttonPress.emit(this.getActionEvent(event, 'press'));
   }
 
   handleClick(event?: MouseEvent | IBmbActionIconEventType) {
@@ -75,9 +73,21 @@ export class BmbActionIconComponent {
       this.isToggleActive.update((value) => !value);
     }
 
-    this.buttonClick.emit(
-      event || { name: this.getIcon(), event: new MouseEvent('click') },
-    );
+    this.buttonClick.emit(this.getActionEvent(event, 'click'));
+  }
+
+  private getActionEvent(
+    event: MouseEvent | IBmbActionIconEventType | undefined,
+    eventType: 'click' | 'press',
+  ): IBmbActionIconEventType {
+    if (event instanceof MouseEvent) {
+      return { name: this.getIcon(), event };
+    }
+
+    return event ?? {
+      name: this.getIcon(),
+      event: new MouseEvent(eventType),
+    };
   }
 
   get safeSVG(): SafeHtml | null {
