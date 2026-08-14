@@ -26,8 +26,8 @@
           }
         ],
         "styles": [
-          "angular-app/src/styles.scss",
-          "shared/assets/styles/mainTEC.scss"
+          "shared/assets/styles/mainTEC.scss",
+          "angular-app/src/styles.scss"
         ]
       },
       "configurations": {

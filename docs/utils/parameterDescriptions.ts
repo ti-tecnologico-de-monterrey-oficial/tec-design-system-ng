@@ -53,7 +53,7 @@ Look for the property to set the alt, if it does not exist in the component it i
     blockquoteType: BlockquoteType.warning,
   },
 )}`;
-export const SIMPLE_ICON_DESCRIPTION = `Sets the icon name that will be shown.
+export const SIMPLE_ICON_DESCRIPTION = `Sets the name of the icon to be displayed.
 <br/><br/>${GOOGLE_FONTS_LINK.replaceAll('###', '')}
 `;
 export const ICON_DESCRIPTION = `${SIMPLE_ICON_DESCRIPTION}<br/>${ICON_IMAGE_DETAIL.replaceAll('###', '')}`;
@@ -158,9 +158,7 @@ The possible positions to indicate where the label should be displayed in relati
   };
 };
 
-export const getFormControlConsiderations = (
-  replaceChar = '',
-): string =>
+export const getFormControlConsiderations = (replaceChar = ''): string =>
   `__
 __It is essential to assign the property \`name\` for correct behavior of the field.
 __
@@ -1597,10 +1595,7 @@ export const DBmbContainerButton = {
   ),
 };
 
-export const getPropertyForType = (
-  isCounter = true,
-  isSimple = false,
-) => `
+export const getPropertyForType = (isCounter = true, isSimple = false) => `
 <br/><br/>This property is displayed for the property type:
 ${isSimple ? '- simple' : ''}
 ${isCounter ? '- counter' : ''}
