@@ -47,7 +47,7 @@
         icon="rectangle"
         [iconSize]="24"
         [tooltipText]="'text_editor.fore_color' | translate"
-        (buttonClick)="openPrompt('color', $event)"
+        (buttonClick)="openPrompt('color', $any($event).event || $event)"
       />
     </span>
     <span class="bmb_text-editor-header-group bmb_text-editor-header-actions">
@@ -57,20 +57,20 @@
         icon="rectangle"
         [iconSize]="24"
         [tooltipText]="'text_editor.fore_color' | translate"
-        (buttonClick)="openPrompt('color', $event)"
+        (buttonClick)="openPrompt('color', $any($event).event || $event)"
       />
       <bmb-action-icon
         idElement="text_editor_text_format"
         icon="text_format"
         [iconSize]="24"
-        (buttonClick)="handleInsertDialog($event)"
+        (buttonClick)="handleInsertDialog($any($event).event || $event)"
         [tooltipText]="'text_editor.text_format' | translate"
       />
       <bmb-action-icon
         idElement="text_editor.more"
         icon="more_horiz"
         [iconSize]="24"
-        (buttonClick)="handleMoreDialog($event)"
+        (buttonClick)="handleMoreDialog($any($event).event || $event)"
         [tooltipText]="'text_editor.more' | translate"
       />
     </span>
@@ -146,7 +146,7 @@
         [iconSize]="24"
         [title]="'text_editor.insert_link' | translate"
         [tooltipText]="'text_editor.insert_link' | translate"
-        (buttonClick)="openPrompt('link', $event)"
+        (buttonClick)="openPrompt('link', $any($event).event || $event)"
       />
       <bmb-action-icon
         idElement="text_editor_insert_image"
@@ -154,7 +154,7 @@
         [iconSize]="24"
         [title]="'text_editor.insert_image' | translate"
         [tooltipText]="'text_editor.insert_image' | translate"
-        (buttonClick)="openPrompt('image', $event)"
+        (buttonClick)="openPrompt('image', $any($event).event || $event)"
       />
     </span>
     <span class="bmb_text-editor-header-group">

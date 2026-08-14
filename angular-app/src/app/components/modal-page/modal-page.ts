@@ -4,7 +4,16 @@ import {
   inject,
   signal,
 } from '@angular/core';
-import { BmbNativeModalService, type IBmbActionButton } from 'ui-angular';
+import {
+  BmbNativeModalService,
+  type IBmbActionButton,
+  type IBmbModalAlertStyle,
+} from 'ui-angular';
+
+interface ModalIconOption {
+  value: IBmbModalAlertStyle;
+  label: string;
+}
 
 @Component({
   selector: 'app-modal-page',
@@ -17,8 +26,22 @@ export class ModalPage {
   private readonly modalService = inject(BmbNativeModalService);
 
   readonly status = signal('Cerrado');
+  readonly selectedIcon = signal<IBmbModalAlertStyle>('warning');
+  readonly iconOptions: readonly ModalIconOption[] = [
+    { value: 'warning', label: 'Warning' },
+    { value: 'neutral', label: 'Neutral' },
+    { value: 'primary', label: 'Primary' },
+    { value: 'event', label: 'Event' },
+    { value: 'success', label: 'Success' },
+    { value: 'error', label: 'Error' },
+  ];
 
-  openWarningModal(): void {
+  selectIcon(event: Event): void {
+    const select = event.target as HTMLSelectElement;
+    this.selectedIcon.set(select.value as IBmbModalAlertStyle);
+  }
+
+  openModal(): void {
     const actions: IBmbActionButton[] = [
       {
         buttonName: 'cancel',
@@ -39,7 +62,7 @@ export class ModalPage {
       subtitle: 'Subtitulo (Optional)',
       content:
         'Cuerpo de texto que da mas informacion sobre lo que plantea el modal',
-      iconStyle: 'warning',
+      iconStyle: this.selectedIcon(),
       size: 'medium',
       actions,
       afterCloseModal: () => {

@@ -22,15 +22,16 @@ describe('ModalPage', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should open the warning modal used by DS01-3722', () => {
+  it('should open the selected modal variant used by DS01-3722', () => {
     const openModal = jest.spyOn(modalService, 'openModal');
+    component.selectedIcon.set('success');
 
-    component.openWarningModal();
+    component.openModal();
 
     expect(openModal).toHaveBeenCalledWith(
       expect.objectContaining({
         title: 'Modal title',
-        iconStyle: 'warning',
+        iconStyle: 'success',
         size: 'medium',
       }),
     );
