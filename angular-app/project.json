@@ -25,7 +25,10 @@
             "output": "assets"
           }
         ],
-        "styles": ["angular-app/src/styles.scss"]
+        "styles": [
+          "angular-app/src/styles.scss",
+          "shared/assets/styles/mainTEC.scss"
+        ]
       },
       "configurations": {
         "production": {
