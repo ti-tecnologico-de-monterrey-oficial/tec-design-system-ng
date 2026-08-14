@@ -1,4 +1,4 @@
-import { Meta, StoryFn } from '@storybook/angular';
+import { Meta, StoryObj } from '@storybook/angular';
 import { BmbHomeCardComponent } from './bmb-home-card.component';
 import {
   attributes,
@@ -6,15 +6,12 @@ import {
   getBasicExampleBlock,
   getGeneralComponentDescription,
   getGeneralDescription,
-  getOnEvent,
   getSpecialSpecifications,
   RELEVANT_TITLE,
 } from '@docs/utils/utils';
 import {
   DBmbGenericParamDesc,
-  DBmbHomeCardParamDesc,
-  DBmbIconParamDesc,
-  getOnClickParam,
+  DBmbHomeCardHeaderParamDesc,
 } from '@docs/utils/parameterDescriptions';
 
 export default {
@@ -49,76 +46,19 @@ ${getBasicExampleBlock(
     },
   },
   argTypes: {
-    leftIcon: {
-      ...DBmbIconParamDesc.icon,
-      description: DBmbIconParamDesc.icon.description.replace(
-        'icon',
-        'left header icon',
-      ),
-      table: {
-        ...DBmbIconParamDesc.icon.table,
-        type: {
-          summary:
-            DBmbIconParamDesc.icon.table.type.summary.concat(' (optional)'),
-        },
-      },
-    },
-    icon: DBmbHomeCardParamDesc.icon,
-    iconSize: DBmbHomeCardParamDesc.iconSize,
-    bgIconAppearance: DBmbHomeCardParamDesc.bgIconAppearance,
-    title: DBmbHomeCardParamDesc.title,
-    subtitle: DBmbHomeCardParamDesc.subtitle,
-    dataLocalNav: {
-      control: { type: 'object' },
-      description: 'Sets the array of breadcrumb data for Local Navigation.',
-      table: {
-        category: 'Properties',
-        defaultValue: { summary: '[]' },
-        type: {
-          summary: 'IBmbDataTopBar[] (optional)',
-          detail: `IBmbDataTopBar {
-  text: string;
-  link?: string;
-}`,
-        },
-      },
-    },
+    leftIcon: DBmbHomeCardHeaderParamDesc.leftIcon,
+    icon: DBmbHomeCardHeaderParamDesc.icon,
+    iconSize: DBmbHomeCardHeaderParamDesc.iconSize,
+    bgIconAppearance: DBmbHomeCardHeaderParamDesc.bgIconAppearance,
+    title: DBmbHomeCardHeaderParamDesc.title,
+    subtitle: DBmbHomeCardHeaderParamDesc.subtitle,
+    dataLocalNav: DBmbHomeCardHeaderParamDesc.dataLocalNav,
     actionHeaders: DBmbGenericParamDesc.actionHeaders,
-    showRightButton: {
-      control: { type: 'boolean' },
-      description:
-        'Sets a flag to indicate whether the card should show the right button or buttons.',
-      table: {
-        category: 'Properties',
-        defaultValue: { summary: 'true' },
-        type: { summary: 'boolean' },
-      },
-    },
-    isMobile: {
-      control: { type: 'boolean' },
-      description:
-        'Sets a flag to indicate whether the card should adapt to mobile view.',
-      table: {
-        category: 'Properties',
-        defaultValue: { summary: 'false' },
-        type: { summary: 'boolean' },
-      },
-    },
-    contentPadding: {
-      control: { type: 'text' },
-      description:
-        "Sets the he padding size for the card's content. Uses predefined size names (e.g., 'xs','s','m','l','xl','none','auto')",
-      table: {
-        category: 'Properties',
-        defaultValue: { summary: 'l' },
-        type: {
-          summary: 'SizeNames (optional)',
-          detail: `SizeNames = 'xs' | 's' | 'm' | 'l' | 'xl' | 'none' | 'auto'`,
-        },
-      },
-    },
-    onClose: getOnClickParam(getOnEvent('close icon (x)', 'onClose')),
-    onBack: getOnClickParam(getOnEvent('left icon (<)', 'onBack')),
+    showRightButton: DBmbHomeCardHeaderParamDesc.showRightButton,
+    isMobile: DBmbHomeCardHeaderParamDesc.isMobile,
+    contentPadding: DBmbHomeCardHeaderParamDesc.contentPadding,
+    onClose: DBmbHomeCardHeaderParamDesc.onClose,
+    onBack: DBmbHomeCardHeaderParamDesc.onBack,
     test_text: {
       name: 'Text',
       description: 'Header content example.',
@@ -127,20 +67,8 @@ ${getBasicExampleBlock(
         type: { summary: 'string' },
       },
     },
-    isExpanded: {
-      control: { type: 'boolean' },
-      description:
-        'Sets a flag to indicate whether the card is expanded or collapsed.',
-      table: {
-        category: 'Properties',
-        defaultValue: { summary: 'false' },
-        type: { summary: 'boolean' },
-      },
-    },
-    onExpandClick: getOnClickParam(
-      getOnEvent('expand or collapse icon', 'onExpandClick'),
-      '. This should be used as a navigation action.',
-    ),
+    isExpanded: DBmbHomeCardHeaderParamDesc.isExpanded,
+    onExpandClick: DBmbHomeCardHeaderParamDesc.onExpandClick,
   },
   args: {
     leftIcon: 'chevron_left',
@@ -166,15 +94,16 @@ ${getBasicExampleBlock(
   },
 } as Meta<typeof BmbHomeCardComponent>;
 
-const customizable = (): StoryFn => (args) => ({
-  props: args,
-  template: `
+type Story = StoryObj<BmbHomeCardComponent>;
+
+export const Default: Story = {
+  render: (args) => ({
+    template: `
     <bmb-home-card
       ${attributes(args)}
     >
       <p>${attributesText(args)}</p>
     </bmb-home-card>
-  `,
-});
-
-export const Default = customizable();
+    `,
+  }),
+};
