@@ -98,5 +98,13 @@ export const appRoutes: Route[] = [
         ({ ServerTablePage }) => ServerTablePage,
       ),
   },
+  {
+    path: 'components/dropzone',
+    title: 'BmbDropzone | Bamboo migration dashboard',
+    loadComponent: () =>
+      import('./components/dropzone-page/dropzone-page').then(
+        ({ DropzonePage }) => DropzonePage,
+      ),
+  },
   { path: '**', redirectTo: 'components/carousel' },
 ];
