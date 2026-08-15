@@ -1,4 +1,11 @@
-import { Component, input, OnChanges, SimpleChanges } from '@angular/core';
+/* eslint-disable @typescript-eslint/no-non-null-assertion, @typescript-eslint/no-explicit-any*/
+import {
+  Component,
+  input,
+  OnChanges,
+  SimpleChanges,
+  inject,
+} from '@angular/core';
 import {
   Meta,
   StoryFn,
@@ -52,7 +59,7 @@ interface OnboardingStep {
   title: string;
 }
 
-const htmlTemplate: string = `
+const htmlTemplate = `
 <bmb-home-card
       class="bmb_template-guided-tour-container"
       leftIcon="chevron_left"
@@ -181,9 +188,9 @@ const htmlTemplate: string = `
 class StorybookGuidedTourHC implements OnChanges {
   steps = input<OnboardingStep[]>([]);
   startIndex = input<number>(0);
-  currentIndex: number = 0;
+  currentIndex = 0;
 
-  constructor(private contentProjected: BmbProjectionContentService) {}
+  private readonly contentProjected = inject(BmbProjectionContentService);
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['startIndex']) {
@@ -309,7 +316,7 @@ steps: OnboardingStep[] = [
         shortDescription: 'Este es tu tour introductorio a la app.',
         showCheckbox: true,
         subtitle: '',
-        title: 'Te damos la bienvenida a TEC - IDEA ',
+        title: 'Te damos la bienvenida a TEC - IDEA',
       },
       {
         description:
@@ -347,7 +354,7 @@ steps: OnboardingStep[] = [
     ];
   currentIndex: number = 0;
 
-  constructor(private contentProjected: BmbProjectionContentService) {}
+  private readonly contentProjected = inject(BmbProjectionContentService);
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['startIndex']) {

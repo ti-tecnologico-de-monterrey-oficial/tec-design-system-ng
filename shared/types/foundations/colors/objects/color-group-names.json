@@ -21,7 +21,6 @@
     "semantic-error": "var(--general-contrasts-5)",
     "semantic-brand": "var(--general-contrasts-5)",
     "semantic-alert": "var(--general-contrasts-5)",
-    "semantic-neutral": "var(--general-contrasts-dark-complementary)",
     "mitec-blue": "rgb(var(--white-primary))",
     "mitec-red": "rgb(var(--white-primary))",
     "mitec-green": "var(--general-contrasts-5)",
@@ -177,8 +176,7 @@
     "semantic-warning": "var(--semantic-warning)",
     "semantic-error": "var(--semantic-error)",
     "semantic-brand": "var(--semantic-brand)",
-    "semantic-alert": "var(--semantic-alert)",
-    "semantic-neutral": "var(--semantic-neutral)"
+    "semantic-alert": "var(--semantic-alert)"
   },
   "mitec_institutional_colors": {
     "mitec-blue": "var(--mitec-blue)",
@@ -217,7 +215,6 @@
     "semantic-error": "var(--semantic-error)",
     "semantic-brand": "var(--semantic-brand)",
     "semantic-alert": "var(--semantic-alert)",
-    "semantic-neutral": "var(--semantic-neutral)",
     "mitec-blue": "var(--mitec-blue)",
     "mitec-red": "var(--mitec-red)",
     "mitec-green": "var(--mitec-green)",
@@ -249,7 +246,6 @@
     "semantic-error": "var(--semantic-error)",
     "semantic-brand": "var(--semantic-brand)",
     "semantic-alert": "var(--semantic-alert)",
-    "semantic-neutral": "var(--semantic-neutral)",
     "mitec-blue": "var(--mitec-blue)",
     "mitec-red": "var(--mitec-red)",
     "mitec-green": "var(--mitec-green)",
