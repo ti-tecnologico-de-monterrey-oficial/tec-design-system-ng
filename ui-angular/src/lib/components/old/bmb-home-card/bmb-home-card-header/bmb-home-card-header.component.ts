@@ -97,7 +97,7 @@ export class BmbHomeCardHeaderComponent {
         {
           icon: mainIcon,
           isToggleActive: false,
-          iconActiveToggle: mainIcon,
+          iconActiveToggle: this.isMobile() ? '' : mainIcon,
           alt: this.isMobile()
             ? this.translationsService.translate('home_card.close')
             : this.isExpanded()
