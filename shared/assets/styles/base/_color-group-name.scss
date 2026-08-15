@@ -21,7 +21,6 @@ $font_colors: (
   'semantic-error': var(--general-contrasts-5),
   'semantic-brand': var(--general-contrasts-5),
   'semantic-alert': var(--general-contrasts-5),
-  'semantic-neutral': var(--general-contrasts-dark-complementary),
   'mitec-blue': rgb(var(--white-primary)),
   'mitec-red': rgb(var(--white-primary)),
   'mitec-green': var(--general-contrasts-5),
@@ -178,7 +177,6 @@ $semantic_colors: (
   'semantic-error': var(--semantic-error),
   'semantic-brand': var(--semantic-brand),
   'semantic-alert': var(--semantic-alert),
-  'semantic-neutral': var(--semantic-neutral),
 );
 $mitec_institutional_colors: (
   'mitec-blue': var(--mitec-blue),
@@ -217,7 +215,6 @@ $bmb_push_notification_type: (
   'semantic-error': var(--semantic-error),
   'semantic-brand': var(--semantic-brand),
   'semantic-alert': var(--semantic-alert),
-  'semantic-neutral': var(--semantic-neutral),
   'mitec-blue': var(--mitec-blue),
   'mitec-red': var(--mitec-red),
   'mitec-green': var(--mitec-green),
@@ -249,7 +246,6 @@ $bmb_badge_type: (
   'semantic-error': var(--semantic-error),
   'semantic-brand': var(--semantic-brand),
   'semantic-alert': var(--semantic-alert),
-  'semantic-neutral': var(--semantic-neutral),
   'mitec-blue': var(--mitec-blue),
   'mitec-red': var(--mitec-red),
   'mitec-green': var(--mitec-green),

@@ -12,7 +12,7 @@ export default [
         'error',
         {
           type: 'attribute',
-          prefix: 'bmb',
+          prefix: ['bmb', 'storybook'],
           style: 'camelCase',
         },
       ],
@@ -20,7 +20,7 @@ export default [
         'error',
         {
           type: 'element',
-          prefix: 'bmb',
+          prefix: ['bmb', 'storybook'],
           style: 'kebab-case',
         },
       ],
