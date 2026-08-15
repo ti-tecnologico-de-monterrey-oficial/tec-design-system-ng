@@ -2,6 +2,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   input,
+  output,
   ViewEncapsulation,
 } from '@angular/core';
 import {
@@ -14,6 +15,7 @@ import { CommonModule } from '@angular/common';
 import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
 import { BmbLayoutDirective } from '../../../directives/old/bmb-layout/bmb-layout.directive';
 import { BmbLayoutItemDirective } from '../../../directives/old/bmb-layout/bmb-layout-item.directive';
+import { IBmbActionIconEventType } from '../../../_shared/types/components/action-icon';
 
 @Component({
   selector: 'bmb-navigation-bar',
@@ -37,7 +39,13 @@ export class BmbNavigationBarComponent {
   alignItems = input<IAlignItemsOptions>('start');
   isMitecHeader = input<boolean>(false);
 
-  handleClick(actionHeader: IBmbActionHeader): void {
+  getActionClick = output<IBmbActionIconEventType>();
+
+  handleClick(
+    actionHeader: IBmbActionHeader,
+    event: IBmbActionIconEventType,
+  ): void {
     actionHeader.action();
+    this.getActionClick.emit(event);
   }
 }

@@ -9,12 +9,12 @@ import {
   RELEVANT_TITLE,
 } from '@docs/utils/utils';
 import {
-  DBmbHomeCardParamDesc,
+  DBmbHomeCardHeaderParamDesc,
   DBmbIconParamDesc,
   getOnClickParam,
 } from '@docs/utils/parameterDescriptions';
 
-const typeDetail: string = `
+const typeDetail = `
 event: IBmbDataAlert
 
 IBmbDataAlert {
@@ -130,7 +130,7 @@ ${getBasicExampleBlock(
   },
   argTypes: {
     leftIcon: {
-      ...DBmbHomeCardParamDesc.icon,
+      ...DBmbHomeCardHeaderParamDesc.icon,
       description: DBmbIconParamDesc.icon.description.replace(
         'icon',
         'left header icon. If not provided, the interactive icon will not be rendered',

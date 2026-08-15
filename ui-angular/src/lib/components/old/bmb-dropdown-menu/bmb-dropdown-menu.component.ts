@@ -29,14 +29,16 @@ export type IBmbDropdownMenuIcon = 'more_vert' | 'more_horiz';
 export class BmbDropdownMenuComponent {
   items = input<IDropdownItem[]>([]);
 
-  icon = input<IBmbDropdownMenuIcon>('more_vert');
+  icon = input<IBmbDropdownMenuIcon>('more_vert'); //Deprecated
 
   clickedItem = output<IDropdownItem>();
   contentID = signal<string>('');
 
-  @ViewChild('contentDiv', { static: true }) contentRef!: ElementRef<any>;
+  @ViewChild('contentDiv', { static: true }) contentRef!: ElementRef<undefined>;
 
-  private projectionService: BmbProjectionContentService = inject(BmbProjectionContentService);
+  private projectionService: BmbProjectionContentService = inject(
+    BmbProjectionContentService,
+  );
 
   openDropdown() {
     const data = {

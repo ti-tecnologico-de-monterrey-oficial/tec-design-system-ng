@@ -99,7 +99,6 @@
   --semantic-error: rgb(var(--red-primary));
   --semantic-brand: rgb(var(--branding-primary));
   --semantic-alert: rgb(var(--alert-primary));
-  --semantic-neutral: rgb(var(--blue-ged-300));
 
   // Creative use
   --creative-use-violet: rgb(var(--violet-light));
@@ -119,15 +118,15 @@
   --creative-use-hibiscus: rgb(var(--hibiscus-primary));
 
   //Containers backgrounds (gradients)
-  --media-card-gradient-default: var(--containers-media-card-background-fade)
-      33.5%,
+  --media-card-gradient-default:
+    var(--containers-media-card-background-fade) 33.5%,
     var(--containers-media-card-background) 81.33%;
   --media-card-gradient-hover: var(--black-min) 0%, var(--black-min) 100%;
   --media-card-gradient-select: var(--black-min) 0%, var(--black-min) 100%;
 
   //Complementary backgrounds (gradients)
-  --gradient-bg-tec: rgb(var(--blue-ged-50)) 56.25%,
-    rgb(var(--blue-ged-100)) 100%;
+  --gradient-bg-tec:
+    rgb(var(--blue-ged-50)) 56.25%, rgb(var(--blue-ged-100)) 100%;
 
   // variables for buttons
   --bmb-evaluation-rubric-radius-circle: 0;
@@ -259,7 +258,6 @@
   --semantic-error: rgb(var(--red-light));
   --semantic-brand: rgb(var(--branding-tint));
   --semantic-alert: rgb(var(--alert-light));
-  --semantic-neutral: rgb(var(--gray-ged-200));
 
   // Creative use
   --creative-use-violet: rgb(var(--violet-tint));
@@ -279,16 +277,16 @@
   --creative-use-hibiscus: rgb(var(--hibiscus-tint));
 
   //Containers backgrounds (gradients)
-  --media-card-gradient-hover: var(--containers-media-card-background-fade)
-      33.5%,
+  --media-card-gradient-hover:
+    var(--containers-media-card-background-fade) 33.5%,
     var(--containers-media-card-background) 81.33%;
-  --media-card-gradient-select: var(--containers-media-card-background-fade)
-      33.5%,
+  --media-card-gradient-select:
+    var(--containers-media-card-background-fade) 33.5%,
     var(--containers-media-card-background) 81.33%;
 
   //Complementary backgrounds (gradients)
-  --gradient-bg-tec: rgb(var(--gray-ged-950)) 56.25%,
-    rgb(var(--gray-ged-900)) 100%;
+  --gradient-bg-tec:
+    rgb(var(--gray-ged-950)) 56.25%, rgb(var(--gray-ged-900)) 100%;
 
   // variables for buttons
   --bmb-evaluation-rubric-radius-circle: 0;
