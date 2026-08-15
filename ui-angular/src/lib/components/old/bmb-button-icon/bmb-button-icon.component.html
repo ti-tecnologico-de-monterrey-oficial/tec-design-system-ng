@@ -17,7 +17,7 @@
     [iconSize]="showContainer() ? 24 : 32"
     [disabled]="disabled()!"
     (buttonPress)="handlePress()"
-    (buttonClick)="handleClick($any($event).event || $event)"
+    (buttonClick)="handleClick($event)"
     [tooltipText]="alt()"
   />
 </span>

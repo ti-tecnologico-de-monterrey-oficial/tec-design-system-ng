@@ -22,7 +22,7 @@
         class="bmb_top-bar-user-section-no-mobile"
         icon="search"
         [iconSize]="32"
-        (buttonClick)="handleSearchChange($any($event).event || $event)"
+        (buttonClick)="handleSearchChange($event)"
         [tooltipText]="'top_bar.search' | translate"
       />
     } @else if (showRoleButton()) {
@@ -31,7 +31,7 @@
         class="bmb_top-bar-user-section-no-mobile"
         icon="compare_arrows"
         [iconSize]="32"
-        (buttonClick)="handleRoleChange($any($event).event || $event)"
+        (buttonClick)="handleRoleChange($event)"
         [tooltipText]="'top_bar.role_switch' | translate"
       />
     }
@@ -41,7 +41,7 @@
         class="bmb_top-bar-user-section-no-mobile"
         icon="notifications"
         [iconSize]="32"
-        (buttonClick)="openNotifications($any($event).event || $event)"
+        (buttonClick)="openNotifications($event)"
         [dotNotification]="totalNotifications()"
         [tooltipText]="'top_bar.notifications' | translate"
       />
@@ -51,7 +51,7 @@
       bmbLayoutItem
       icon="compare_arrows"
       [iconSize]="32"
-      (buttonClick)="handleRoleChange($any($event).event || $event)"
+      (buttonClick)="handleRoleChange($event)"
       [tooltipText]="'top_bar.role_switch' | translate"
     />
   }
