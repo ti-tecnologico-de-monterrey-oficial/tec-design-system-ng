@@ -125,6 +125,7 @@ export interface IBmbCollaboratorProfileData {
 export interface IBmbActionHeader {
   icon: string;
   alt?: string;
+  tooltipText?: string;
   iconSize?: number;
   iconActiveToggle?: string;
   isToggleActive?: boolean;
