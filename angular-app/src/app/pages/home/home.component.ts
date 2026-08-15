@@ -35,6 +35,7 @@ import {
   BmbTooltipComponent,
   BmbContainerButtonComplexAlternativeComponent,
   BmbTextEditorComponent,
+  IBmbActionHeader
 } from 'ui-angular';
 import { HelpMenuComponent } from '../../components/help-menu/help-menu.component';
 import { ModalWDropdownComponent } from '../../components/modal-w-dropdown/modal-w-dropdown.component';
@@ -233,4 +234,21 @@ export class HomeComponent {
   protected getClickBookmark(event: MouseEvent): void {
     console.info('getClickButton bookmark');
   }
+
+  homeCardActions: IBmbActionHeader[] = [
+    {
+      icon: 'edit',
+      alt: 'Edit',
+      action: (event) => {
+        console.info('Edit action clicked', event);
+      },
+    },
+    {
+      icon: 'delete',
+      alt: 'Delete',
+      action: (event) => {
+        console.info('Delete action clicked', event);
+      },
+    },
+  ]
 }
