@@ -6,13 +6,13 @@ import {
   TemplateRef,
   ViewChild,
   signal,
+  AfterViewInit,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import {
   BmbButtonDirective,
   BmbNativeModalService,
-  IBmbNativeModal,
   BmbUserImageComponent,
   BmbTablesComponent,
   BmbContainerComponent,
@@ -41,14 +41,12 @@ import { FormsModule } from '@angular/forms';
   styleUrls: ['./avatars.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AvatarsComponent {
+export class AvatarsComponent implements AfterViewInit {
   router = inject(Router);
+  route = inject(ActivatedRoute);
+  modalService = inject(BmbNativeModalService);
+  cdr = inject(ChangeDetectorRef);
 
-  constructor(
-    private route: ActivatedRoute,
-    private modalService: BmbNativeModalService,
-    private cdr: ChangeDetectorRef,
-  ) {}
   @ViewChild('conceptTemplate') conceptTemplate!: TemplateRef<any>;
 
   avatars: unknown[] = [];
@@ -58,7 +56,7 @@ export class AvatarsComponent {
   };
   newAvatar: any;
   id = this.route.snapshot.paramMap.get('id');
-  loading: boolean = true;
+  loading = true;
   columns: TableColum[] = [
     {
       def: 'name',
@@ -83,7 +81,7 @@ export class AvatarsComponent {
   selectedFile: File | null = null;
   imageUrl: string | null = null;
   previewUrl: string | null = null;
-  isReadOnly: boolean = false;
+  isReadOnly = false;
   progress = signal<Record<string, number>>({});
 
   ngAfterViewInit(): void {
@@ -154,10 +152,6 @@ export class AvatarsComponent {
         avatarCell: 'https://robohash.org/solutaeumvel.png?size=50x50&set=set1',
       },
     ];
-
-    // OnPush: forzar la re-evaluación de los bindings (p. ej. [columns] en el
-    // bmb-table) ya que la asignación anterior ocurre fuera de un evento de plantilla.
-    this.cdr.markForCheck();
 
     this.cdr.markForCheck();
   }

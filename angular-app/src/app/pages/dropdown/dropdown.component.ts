@@ -8,10 +8,9 @@ import {
   BmbBookmarkComponent,
   BmbFormValidatorComponent,
 } from 'ui-angular';
-import { AnimeService } from '../../services/anime.service';
 
 @Component({
-  selector: 'bmb-dropdown-page',
+  selector: 'app-dropdown-page',
   templateUrl: './dropdown.component.html',
   standalone: true,
   imports: [
@@ -23,14 +22,8 @@ import { AnimeService } from '../../services/anime.service';
     BmbBookmarkComponent,
   ],
 })
-export class DropdownPageComponent implements OnInit {
+export class DropdownPageComponent {
   userForm: FormGroup = new FormGroup({});
-
-  constructor(private animeService: AnimeService) {}
-
-  ngOnInit() {
-    this.animeService.fetchTopAnime();
-  }
 
   getFormControl(name: string): FormControl {
     return this.userForm.get(name) as FormControl;
@@ -44,7 +37,53 @@ export class DropdownPageComponent implements OnInit {
   //   const elements = this.animeService.topAnime();
   //   return elements.data.map((anime) => anime.title);
   // });
-  options = ['banana', 'apple'];
+  options = [
+    { name: 'Apple name', value: '_apple', icon: 'home', id: 'apple_' },
+    { name: 'Banana name', value: '_banana', icon: 'bolt', id: 'banana_' },
+    { name: 'Orange name', value: '_orange', icon: 'bolt', id: 'orange_' },
+    { name: 'Pear name', value: '_pear', icon: 'info', id: 'pear_' },
+    { name: 'Grape name', value: '_grape', icon: 'bolt', id: 'grape_' },
+    { name: 'Mango name', value: '_mango', icon: 'star', id: 'mango_' },
+    {
+      name: 'Strawberry name',
+      value: '_strawberry',
+      icon: 'favorite',
+      id: 'strawberry_',
+    },
+    {
+      name: 'Blueberry name',
+      value: '_blueberry',
+      icon: 'circle',
+      id: 'blueberry_',
+    },
+    {
+      name: 'Watermelon name',
+      value: '_watermelon',
+      icon: 'water_drop',
+      id: 'watermelon_',
+    },
+    {
+      name: 'Pineapple name',
+      value: '_pineapple',
+      icon: 'sunny',
+      id: 'pineapple_',
+    },
+    {
+      name: 'Cherry name',
+      value: '_cherry',
+      icon: 'heart_broken',
+      id: 'cherry_',
+    },
+    { name: 'Peach name', value: '_peach', icon: 'spa', id: 'peach_' },
+    { name: 'Lemon name', value: '_lemon', icon: 'wb_sunny', id: 'lemon_' },
+    { name: 'Kiwi name', value: '_kiwi', icon: 'eco', id: 'kiwi_' },
+    {
+      name: 'Coconut name',
+      value: '_coconut',
+      icon: 'beach_access',
+      id: 'coconut_',
+    },
+  ];
 
   handleBookmarkChange(isActive: boolean) {
     console.log('Bookmark active state changed:', isActive);

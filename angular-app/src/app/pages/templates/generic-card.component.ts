@@ -13,8 +13,8 @@ import {
   BmbTooltipComponent,
   BmbVerticalLayoutDirective,
   BmbVerticalLayoutItemDirective,
+  BmbTitleContentComponent
 } from 'ui-angular';
-import { BmbTitleComponent } from '../../../../projects/ds-ng/src/lib/components/bmb-title/bmb-title.component';
 
 @Component({
   selector: 'app-generic-card',
@@ -30,7 +30,7 @@ import { BmbTitleComponent } from '../../../../projects/ds-ng/src/lib/components
     BmbImageComponent,
     BmbLayoutDirective,
     BmbLayoutItemDirective,
-    BmbTitleComponent,
+    BmbTitleContentComponent,
     BmbTooltipComponent,
     BmbVerticalLayoutDirective,
     BmbVerticalLayoutItemDirective,
