@@ -4,16 +4,28 @@ import {
   input,
   output,
   ViewEncapsulation,
+  computed,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IBmbActionHeader } from '../../../_shared/types/utils';
-import { BmbNavigationBarComponent } from '../bmb-navigation-bar/bmb-navigation-bar.component';
+import { IDropdownItem } from '../../../_shared/types';
 import { IBmbActionIconEventType } from '../../../_shared/types/components/action-icon';
+import { BmbDropdownMenuComponent } from '../bmb-dropdown-menu/bmb-dropdown-menu.component';
+import { getUUID } from '@shared/logic/utils';
+import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
+import { BmbLayoutDirective } from '../../../directives/old/bmb-layout/bmb-layout.directive';
+import { BmbLayoutItemDirective } from '../../../directives/old/bmb-layout/bmb-layout-item.directive';
 
 @Component({
   selector: 'bmb-header-actions',
   standalone: true,
-  imports: [CommonModule, BmbNavigationBarComponent],
+  imports: [
+    CommonModule,
+    BmbActionIconComponent,
+    BmbDropdownMenuComponent,
+    BmbLayoutDirective,
+    BmbLayoutItemDirective,
+  ],
   templateUrl: './bmb-header-actions.component.html',
   styleUrls: ['./bmb-header-actions.component.scss'],
   encapsulation: ViewEncapsulation.None,
@@ -24,11 +36,33 @@ export class BmbHeaderActionsComponent {
 
   getActionClick = output<IBmbActionIconEventType>();
 
+  useDropdown = computed<boolean>(
+    () => (this.headerActions()?.length ?? 0) > 2,
+  );
+
+  // dropdownItems = computed<IDropdownItem[]>(() =>
+  //   (this.headerActions() ?? []).map((h) => ({
+  //     idItem: getUUID(),
+  //     icon: h.icon,
+  //     text: h.alt ?? '',
+  //     url: h.link,
+  //     action: h.action,
+  //   })),
+  // );
+
+  // onDropdownSelect(item: IDropdownItem): void {
+  //   item.action?.();
+  //   this.getActionClick.emit({
+  //     name: item.icon,
+  //     event: new MouseEvent(),
+  //   } as IBmbActionIconEventType);
+  // }
+
   protected handleAction(
     headerAction: IBmbActionHeader,
     event: IBmbActionIconEventType,
   ): void {
-    headerAction.action();
+    headerAction.action?.();
     this.getActionClick.emit(event);
   }
 }

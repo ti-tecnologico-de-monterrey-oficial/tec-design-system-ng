@@ -1,5 +1,36 @@
-<bmb-navigation-bar
-  [actionHeaders]="headerActions()"
-  [iconSize]="24"
+<!-- @if (useDropdown()) {
+  <bmb-dropdown-menu
+    [items]="dropdownItems()"
+    (clickedItem)="onDropdownSelect($event)"
+  />
+} @else { -->
+
+<span
+  class="bmb_navigation-bar"
+  bmbLayout
+  margin="none"
+  justify="spaceBetween"
+  gapSize="m"
   alignItems="center"
-/>
+  [dynamicCols]="true"
+>
+  @for (headerAction of headerActions(); track $index) {
+    <bmb-action-icon
+      class="bmb_navigation-bar-icon"
+      bmbLayoutItem
+      [isDynamicItem]="true"
+      [idElement]="$index.toString()"
+      [icon]="headerAction.icon"
+      [tooltipText]="headerAction.alt || headerAction.icon"
+      [iconSize]="24"
+      [toggleIconActive]="headerAction.iconActiveToggle"
+      [(isToggleActive)]="headerAction.isToggleActive"
+      [link]="headerAction.link"
+      [target]="headerAction.target"
+      (buttonClick)="
+        handleAction(headerAction, { name: headerAction.icon, event: $event })
+      "
+    />
+  }
+</span>
+<!-- } -->
