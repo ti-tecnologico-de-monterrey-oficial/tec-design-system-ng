@@ -19,9 +19,7 @@
         [iconSize]="iconSize() || actionHeader.iconSize"
         icon=""
         [isSVGTemplate]="true"
-        (buttonClick)="
-          handleClick(actionHeader, { name: actionHeader.icon, event: $event })
-        "
+        (buttonClick)="handleClick(actionHeader)"
       >
       </bmb-action-icon>
     } @else {
@@ -37,9 +35,7 @@
         [(isToggleActive)]="actionHeader.isToggleActive"
         [link]="actionHeader.link"
         [target]="actionHeader.target"
-        (buttonClick)="
-          handleClick(actionHeader, { name: actionHeader.icon, event: $event })
-        "
+        (buttonClick)="handleClick(actionHeader)"
       />
     }
   }
