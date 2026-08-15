@@ -15,8 +15,10 @@ import { IBmbActionHeader } from '../../../../_shared/types/utils';
 import { BmbTitleContentComponent } from '../../bmb-title-content/bmb-title-content.component';
 import { BmbThreeColsComponent } from '../../bmb-three-cols/bmb-three-cols.component';
 import { BmbActionIconComponent } from '../../bmb-action-icon/bmb-action-icon.component';
-import { BmbHeaderActionsComponent } from '../../bmb-header-actions/bmb-header-actions.component';
 import { BmbContainerComponent } from '../../../bmb-container/bmb-container.component';
+import { BmbLayoutDirective } from '../../../../directives/old/bmb-layout/bmb-layout.directive';
+import { BmbLayoutItemDirective } from '../../../../directives/old/bmb-layout/bmb-layout-item.directive';
+
 import { CommonModule } from '@angular/common';
 import { IBotType } from '../../bmb-chat-bar/types';
 import { logDeprecatedInput } from '../../../../_shared/logic/logDeprecatedInput';
@@ -32,7 +34,8 @@ import { BmbTranslationsService } from '../../../../services/translations/transl
     BmbThreeColsComponent,
     BmbActionIconComponent,
     BmbTitleContentComponent,
-    BmbHeaderActionsComponent,
+    BmbLayoutDirective,
+    BmbLayoutItemDirective,
     TranslatePipe,
   ],
   templateUrl: './bmb-home-card-header.component.html',
@@ -56,8 +59,10 @@ export class BmbHomeCardHeaderComponent {
 
   title = input<string>(); // deprecated
   // eslint-disable-next-line @angular-eslint/no-output-on-prefix
-  onClose = output(); // eslint-disable-next-line @angular-eslint/no-output-on-prefix
-  onBack = output(); // eslint-disable-next-line @angular-eslint/no-output-on-prefix
+  onClose = output();
+  // eslint-disable-next-line @angular-eslint/no-output-on-prefix
+  onBack = output();
+  // eslint-disable-next-line @angular-eslint/no-output-on-prefix
   onExpandClick = output();
 
   private translationsService: BmbTranslationsService = inject(
@@ -127,7 +132,10 @@ export class BmbHomeCardHeaderComponent {
     }
   }
 
-  handleHeaderActionClick (event: MouseEvent, headerAction: IBmbActionHeader): void {
+  handleHeaderActionClick(
+    event: MouseEvent,
+    headerAction: IBmbActionHeader,
+  ): void {
     if (headerAction.action) {
       headerAction.action(event, headerAction);
     }

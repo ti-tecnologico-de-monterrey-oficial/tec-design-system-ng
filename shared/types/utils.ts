@@ -125,13 +125,14 @@ export interface IBmbCollaboratorProfileData {
 export interface IBmbActionHeader {
   icon: string;
   alt?: string;
+  tooltipText?: string;
   iconSize?: number;
   iconActiveToggle?: string;
   isToggleActive?: boolean;
   isAccentColor?: boolean;
   link?: string;
   target?: IBmbTargetLink;
-  action: (event?: Event) => void;
+  action: (event?: Event, data?: any) => void;
 }
 
 export interface IBmbLinkConfiguration extends IBmbLinkInfo {
