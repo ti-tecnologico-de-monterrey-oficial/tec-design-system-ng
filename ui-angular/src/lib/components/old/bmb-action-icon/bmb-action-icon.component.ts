@@ -17,7 +17,6 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { sanitizeContent } from '../../../_shared/logic/sanitizeContent';
 import { BmbTooltipBaseComponent } from '../bmb-tooltip/bmb-tooltip-base/bmb-tooltip-base.component';
 import { isImage } from '../../../_shared/logic/utils';
-import { IBmbActionIconEventType } from '../../../_shared/logic/components/action-icon';
 
 @Component({
   selector: 'bmb-action-icon',
@@ -50,8 +49,8 @@ export class BmbActionIconComponent {
   tooltipText = input<string>('');
 
   imageNotFoundError = output<void>();
-  buttonPress = output<MouseEvent | IBmbActionIconEventType>();
-  buttonClick = output<MouseEvent | IBmbActionIconEventType>();
+  buttonPress = output<MouseEvent>();
+  buttonClick = output<MouseEvent>();
 
   customActionIcon = contentChild<TemplateRef<undefined>>('customActionIcon');
   sanitizer: DomSanitizer = inject(DomSanitizer);
@@ -62,22 +61,16 @@ export class BmbActionIconComponent {
     return this.icon();
   }
 
-  handlePress(event?: MouseEvent | IBmbActionIconEventType): void {
-    this.buttonPress.emit(
-      event || { name: this.getIcon(), event: new MouseEvent('press') },
-    );
+  handlePress(event?: MouseEvent): void {
+    this.buttonPress.emit(event || new MouseEvent('press'));
   }
 
-  handleClick(event?: MouseEvent | IBmbActionIconEventType) {
-    console.info('handleClick', (event as IBmbActionIconEventType)?.name);
-
+  handleClick(event?: MouseEvent) {
     if (this.toggleIconActive()) {
       this.isToggleActive.update((value) => !value);
     }
 
-    this.buttonClick.emit(
-      event || { name: this.getIcon(), event: new MouseEvent('click') },
-    );
+    this.buttonClick.emit(event || new MouseEvent('click'));
   }
 
   get safeSVG(): SafeHtml | null {

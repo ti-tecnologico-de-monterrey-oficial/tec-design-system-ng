@@ -19,3 +19,4 @@ export * from './components/tooltip';
 export * from './colors';
 export * from './input';
 export * from './utils';
+export * from './components/action-icon';
