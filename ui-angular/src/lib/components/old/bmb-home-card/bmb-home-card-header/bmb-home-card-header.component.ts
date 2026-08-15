@@ -126,4 +126,10 @@ export class BmbHomeCardHeaderComponent {
       this.onExpandClick.emit();
     }
   }
+
+  handleHeaderActionClick (event: MouseEvent, headerAction: IBmbActionHeader): void {
+    if (headerAction.action) {
+      headerAction.action(event, headerAction);
+    }
+  }
 }

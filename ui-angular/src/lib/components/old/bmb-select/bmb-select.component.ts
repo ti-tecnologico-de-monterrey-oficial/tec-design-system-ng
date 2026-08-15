@@ -24,6 +24,7 @@ import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 export class BmbSelectComponent implements AfterViewInit {
   value = input<unknown>(null);
 
+  // eslint-disable-next-line @angular-eslint/no-output-on-prefix
   onValueChange = output<string>();
 
   private elementRef: ElementRef = inject(ElementRef);

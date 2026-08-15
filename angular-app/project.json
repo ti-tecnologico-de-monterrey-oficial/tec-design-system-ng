@@ -26,8 +26,8 @@
           },
           {
             "glob": "**/*.svg",
-            "input": "node_modules/@material-symbols/svg-400/rounded/",
-            "output": "/assets/icons/material-rounded/"
+            "input": "node_modules/@material-symbols/svg-400/rounded",
+            "output": "assets/icons/material-rounded"
           }
         ],
         "styles": [
@@ -75,6 +75,11 @@
             "glob": "**/*",
             "input": "shared/assets",
             "output": "assets"
+          },
+          {
+            "glob": "**/*.svg",
+            "input": "node_modules/@material-symbols/svg-400/rounded",
+            "output": "assets/icons/material-rounded"
           }
         ],
         "styles": [

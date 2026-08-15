@@ -86,16 +86,6 @@ export class BmbDropdownContentComponent {
     effect(() => {
       this.selectionState.set(this.selectedOption());
     }, { allowSignalWrites: true });
-    console.log(
-      'BmbDropdownContentComponent constructor',
-      this.selectedOption(),
-      this.selectionState(),
-      this.items(),
-      this.isIndeterminate(),
-      this.isAllSelected(),
-      this.items().length > this.selectionState()?.length &&
-        this.selectionState()?.length > 0,
-    );
   }
 
   filterList(event: Event) {
