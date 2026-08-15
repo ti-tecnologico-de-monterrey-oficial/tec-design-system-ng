@@ -277,6 +277,14 @@ export const appRoutes: Route[] = [
       ),
   },
   {
+    path: 'components/modal',
+    title: 'BmbModal | Bamboo migration dashboard',
+    loadComponent: () =>
+      import('./components/modal-page/modal-page').then(
+        ({ ModalPage }) => ModalPage,
+      ),
+  },
+  {
     path: 'components/check-external-link-button',
     title: 'BmbCheckExternalLinkButton | Bamboo migration dashboard',
     loadComponent: () =>
