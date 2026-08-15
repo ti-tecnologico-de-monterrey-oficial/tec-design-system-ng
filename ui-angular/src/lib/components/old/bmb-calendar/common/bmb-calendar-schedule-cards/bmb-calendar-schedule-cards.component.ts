@@ -118,8 +118,9 @@ export class BmbCalendarScheduleCardsComponent {
   getBulletStyle() {
     return {
       'background-color':
-        `rgb(var(--${this.event().bulletColor}))` ||
-        'var(--bmb-color-success-primary)',
+        this.event().bulletColor
+          ? `rgb(var(--${this.event().bulletColor}))`
+          : 'var(--bmb-color-success-primary)',
     };
   }
 

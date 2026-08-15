@@ -61,7 +61,7 @@ export class BmbAccordionComponent
 
   closed = output<void>();
   opened = output<void>();
-  // eslint-disable-next-line @angular-eslint/no-output-native
+  // eslint-disable-next-line @angular-eslint/no-output-on-prefix
   onClick = output<MouseEvent>();
   imageNotFoundError = output<void>();
 

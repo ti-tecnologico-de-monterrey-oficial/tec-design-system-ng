@@ -90,6 +90,7 @@ export class BmbAlertCenterComponent {
   });
   notificationSelectionState = model<{ [key: string]: boolean }>({});
 
+  // eslint-disable-next-line @angular-eslint/no-output-on-prefix
   onChangeAlertStatus = output<IBmbDataAlertsOutput>();
   alertEvent = output<IBmbDataAlert>();
   showAlertDetail = output<IBmbDataAlert>();

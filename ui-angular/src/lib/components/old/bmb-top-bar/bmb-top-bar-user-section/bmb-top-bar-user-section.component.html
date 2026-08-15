@@ -23,7 +23,7 @@
         icon="search"
         [iconSize]="32"
         (buttonClick)="handleSearchChange($event)"
-        [alt]="'top_bar.search' | translate"
+        [tooltipText]="'top_bar.search' | translate"
       />
     } @else if (showRoleButton()) {
       <bmb-action-icon
@@ -32,7 +32,7 @@
         icon="compare_arrows"
         [iconSize]="32"
         (buttonClick)="handleRoleChange($event)"
-        [alt]="'top_bar.role_switch' | translate"
+        [tooltipText]="'top_bar.role_switch' | translate"
       />
     }
     @if (showNotifications()) {
@@ -43,7 +43,7 @@
         [iconSize]="32"
         (buttonClick)="openNotifications($event)"
         [dotNotification]="totalNotifications()"
-        [alt]="'top_bar.notifications' | translate"
+        [tooltipText]="'top_bar.notifications' | translate"
       />
     }
   } @else if (showRoleButton()) {
@@ -52,7 +52,7 @@
       icon="compare_arrows"
       [iconSize]="32"
       (buttonClick)="handleRoleChange($event)"
-      [alt]="'top_bar.role_switch' | translate"
+      [tooltipText]="'top_bar.role_switch' | translate"
     />
   }
   @if (showHelpButton() || mitec()) {

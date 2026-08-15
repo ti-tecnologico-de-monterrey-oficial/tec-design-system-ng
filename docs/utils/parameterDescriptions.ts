@@ -8,6 +8,7 @@ import {
   getAlertBlockquote,
   BlockquoteType,
   getGeneralDocDescription,
+  colorList,
 } from './utils';
 
 type IBmbButtonEventType = 'clicked' | 'pressed';
@@ -53,7 +54,7 @@ Look for the property to set the alt, if it does not exist in the component it i
     blockquoteType: BlockquoteType.warning,
   },
 )}`;
-export const SIMPLE_ICON_DESCRIPTION = `Sets the icon name that will be shown.
+export const SIMPLE_ICON_DESCRIPTION = `Sets the name of the icon to be displayed.
 <br/><br/>${GOOGLE_FONTS_LINK.replaceAll('###', '')}
 `;
 export const ICON_DESCRIPTION = `${SIMPLE_ICON_DESCRIPTION}<br/>${ICON_IMAGE_DETAIL.replaceAll('###', '')}`;
@@ -158,9 +159,7 @@ The possible positions to indicate where the label should be displayed in relati
   };
 };
 
-export const getFormControlConsiderations = (
-  replaceChar = '',
-): string =>
+export const getFormControlConsiderations = (replaceChar = ''): string =>
   `__
 __It is essential to assign the property \`name\` for correct behavior of the field.
 __
@@ -805,7 +804,32 @@ export const DBmbModalParamDesc = {
   },
 };
 
-export const DBmbHomeCardParamDesc = {
+export const DBmbBoxIcon = {
+  boxColor: getAppearanceParam('the box icon', colorList),
+  boxShape: getAppearanceParam(
+    'the box shape',
+    ['square', 'circle'],
+    'square',
+    '<br/><br/>Square keeps the radius associated with the box size and circle applies a 50% border radius.',
+  ),
+  boxSize: getAppearanceParam('the box size', ['small', 'regular'], 'small'),
+};
+
+export const DBmbHomeCardHeaderParamDesc = {
+  leftIcon: {
+    ...DBmbIconParamDesc.icon,
+    description: DBmbIconParamDesc.icon.description.replace(
+      'icon',
+      'left header icon',
+    ),
+    table: {
+      ...DBmbIconParamDesc.icon.table,
+      type: {
+        summary:
+          DBmbIconParamDesc.icon.table.type.summary.concat(' (optional)'),
+      },
+    },
+  },
   icon: {
     ...DBmbIconParamDesc.icon,
     table: {
@@ -828,73 +852,7 @@ export const DBmbHomeCardParamDesc = {
       },
     },
   },
-  bgIconAppearance: {
-    control: { type: 'text' },
-    description: 'Sets icon background color.',
-    table: {
-      category: 'Properties',
-      defaultValue: getDefaultValueControl(),
-      type: {
-        summary: 'IBmbColor (optional)',
-        detail: `IBmbColor =
-  | 'blue-mariner-50'
-  | 'blue-mariner-100'
-  | 'blue-mariner-200'
-  | 'blue-mariner-300'
-  | 'blue-mariner-400'
-  | 'blue-mariner-500'
-  | 'blue-mariner-700'
-  | 'blue-mariner-800'
-  | 'blue-mariner-900'
-  | 'blue-mariner-950'
-  | 'gray-charade-50'
-  | 'gray-charade-100'
-  | 'gray-charade-200'
-  | 'gray-charade-300'
-  | 'gray-charade-500'
-  | 'gray-charade-600'
-  | 'gray-charade-700'
-  | 'gray-charade-800'
-  | 'gray-charade-900'
-  | 'gray-charade-950'
-  | 'white-primary'
-  | 'blue-tec'
-  | 'mitec-blue'
-  | 'mitec-green'
-  | 'mitec-red'
-  | 'mitec-orange'
-  | 'black-primary'
-  | 'black-light'
-  | 'black-tint'
-  | 'black-min'
-  | 'white-light'
-  | 'white-tint'
-  | 'white-min'
-  | 'neon-primary'
-  | 'neon-light'
-  | 'neon-tint'
-  | 'blue-primary'
-  | 'blue-light'
-  | 'blue-tint'
-  | 'green-primary'
-  | 'green-light'
-  | 'green-tint'
-  | 'purple-primary'
-  | 'purple-light'
-  | 'purple-tint'
-  | 'red-primary'
-  | 'red-light'
-  | 'red-tint'
-  | 'yellow-primary'
-  | 'yellow-light'
-  | 'yellow-tint'
-  | 'teal-primary'
-  | 'teal-light'
-  | 'teal-tint';
-`,
-      },
-    },
-  },
+  bgIconAppearance: DBmbBoxIcon.boxColor,
   title: {
     control: { type: 'text' },
     description: 'Sets the title of the card.',
@@ -913,6 +871,70 @@ export const DBmbHomeCardParamDesc = {
       type: { summary: 'string (optional)' },
     },
   },
+  dataLocalNav: {
+    control: { type: 'object' },
+    description: 'Sets the array of breadcrumb data for Local Navigation.',
+    table: {
+      category: 'Properties',
+      defaultValue: { summary: '[]' },
+      type: {
+        summary: 'IBmbDataTopBar[] (optional)',
+        detail: `IBmbDataTopBar {
+  text: string;
+  link?: string;
+}`,
+      },
+    },
+  },
+  showRightButton: {
+    control: { type: 'boolean' },
+    description:
+      'Sets a flag to indicate whether the card should show the right button or buttons.',
+    table: {
+      category: 'Properties',
+      defaultValue: { summary: 'true' },
+      type: { summary: 'boolean' },
+    },
+  },
+  isMobile: {
+    control: { type: 'boolean' },
+    description:
+      'Sets a flag to indicate whether the card should adapt to mobile view.',
+    table: {
+      category: 'Properties',
+      defaultValue: { summary: 'false' },
+      type: { summary: 'boolean' },
+    },
+  },
+  contentPadding: {
+    control: { type: 'text' },
+    description:
+      "Sets the he padding size for the card's content. Uses predefined size names (e.g., 'xs','s','m','l','xl','none','auto')",
+    table: {
+      category: 'Properties',
+      defaultValue: { summary: 'l' },
+      type: {
+        summary: 'SizeNames (optional)',
+        detail: `SizeNames = 'xs' | 's' | 'm' | 'l' | 'xl' | 'none' | 'auto'`,
+      },
+    },
+  },
+  onClose: getOnClickParam(getOnEvent('close icon (x)', 'onClose')),
+  onBack: getOnClickParam(getOnEvent('left icon (<)', 'onBack')),
+  isExpanded: {
+    control: { type: 'boolean' },
+    description:
+      'Sets a flag to indicate whether the card is expanded or collapsed.',
+    table: {
+      category: 'Properties',
+      defaultValue: { summary: 'false' },
+      type: { summary: 'boolean' },
+    },
+  },
+  onExpandClick: getOnClickParam(
+    getOnEvent('expand or collapse icon', 'onExpandClick'),
+    '. This should be used as a navigation action.',
+  ),
 };
 
 export const DBmbDropdownMenuParamDesc = {
@@ -1597,10 +1619,7 @@ export const DBmbContainerButton = {
   ),
 };
 
-export const getPropertyForType = (
-  isCounter = true,
-  isSimple = false,
-) => `
+export const getPropertyForType = (isCounter = true, isSimple = false) => `
 <br/><br/>This property is displayed for the property type:
 ${isSimple ? '- simple' : ''}
 ${isCounter ? '- counter' : ''}
@@ -1720,11 +1739,11 @@ ${getAlertBlockquote(
 };
 
 export const DBmbActionMenu = {
-  icon: DBmbHomeCardParamDesc.icon,
-  iconSize: DBmbHomeCardParamDesc.iconSize,
-  bgIconAppearance: DBmbHomeCardParamDesc.bgIconAppearance,
-  componentTitle: DBmbHomeCardParamDesc.title,
-  subtitle: DBmbHomeCardParamDesc.subtitle,
+  icon: DBmbHomeCardHeaderParamDesc.icon,
+  iconSize: DBmbHomeCardHeaderParamDesc.iconSize,
+  bgIconAppearance: DBmbHomeCardHeaderParamDesc.bgIconAppearance,
+  componentTitle: DBmbHomeCardHeaderParamDesc.title,
+  subtitle: DBmbHomeCardHeaderParamDesc.subtitle,
   showHeader: {
     control: { type: 'boolean' },
     description:

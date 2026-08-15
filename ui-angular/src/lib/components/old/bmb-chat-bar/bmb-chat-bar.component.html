@@ -33,7 +33,7 @@
             icon="close"
             [iconSize]="24"
             (buttonClick)="deleteFile($index)"
-            [alt]="'chat_bar.close' | translate"
+            [tooltipText]="'chat_bar.close' | translate"
           />
         </div>
       }
@@ -42,7 +42,7 @@
       <bmb-action-icon
         class="bmb_chat-bar-bot"
         [icon]="currentBot()?.icon!"
-        [alt]="currentBot()?.name!"
+        [tooltipText]="currentBot()?.name!"
         [iconSize]="40"
         [isSVGTemplate]="true"
         (buttonClick)="handleDialog()"
@@ -77,14 +77,14 @@
             icon="pause"
             [iconSize]="40"
             (buttonClick)="handleStopMic()"
-            [alt]="'chat_bar.pause' | translate"
+            [tooltipText]="'chat_bar.pause' | translate"
           />
           <bmb-action-icon
             class="bmb_chat-bar-record bmb_chat-bar-record-animated"
             icon="graphic_eq"
             [iconSize]="40"
             (buttonClick)="handleRecord()"
-            [alt]="'chat_bar.record' | translate"
+            [tooltipText]="'chat_bar.record' | translate"
           />
         } @else {
           @if (showEmoji()) {
@@ -93,7 +93,7 @@
               [icon]="emojiIcon()"
               [iconSize]="32"
               (buttonClick)="handleEmoji()"
-              [alt]="'chat_bar.emoji' | translate"
+              [tooltipText]="'chat_bar.emoji' | translate"
             />
           }
           @if (actionsList().length) {
@@ -102,7 +102,7 @@
               icon="add"
               [iconSize]="32"
               (buttonClick)="handleAddDialog($event)"
-              [alt]="'chat_bar.add' | translate"
+              [tooltipText]="'chat_bar.add' | translate"
             />
           }
           @if (enableMicInput()) {
@@ -111,7 +111,7 @@
               icon="mic"
               [iconSize]="32"
               (buttonClick)="handleMic()"
-              [alt]="'chat_bar.mic' | translate"
+              [tooltipText]="'chat_bar.mic' | translate"
             />
           }
         }
@@ -121,11 +121,11 @@
           [icon]="isLoading() ? 'progress_activity' : 'send'"
           [iconSize]="32"
           [disabled]="
-            (this.files.length == 0 && this.control.value == null) ||
+            (this.files.length === 0 && this.control.value === null) ||
             this.isLoading()!
           "
           (buttonClick)="handleSend()"
-          [alt]="
+          [tooltipText]="
             isLoading()
               ? ('chat_bar.loading' | translate)
               : ('chat_bar.send_message' | translate)
@@ -155,7 +155,7 @@
                 bot.name === currentBot()?.name
             }"
             [icon]="bot.icon"
-            [alt]="bot.name"
+            [tooltipText]="bot.name"
             [iconSize]="40"
             [isSVGTemplate]="true"
             (buttonClick)="handleChangeBot(bot)"
@@ -209,7 +209,7 @@
                 bot.name === currentBot()?.name
             }"
             [icon]="bot.icon"
-            [alt]="bot.name"
+            [tooltipText]="bot.name"
             [iconSize]="40"
             [isSVGTemplate]="true"
             (buttonClick)="handleMobileChangeBot(bot)"

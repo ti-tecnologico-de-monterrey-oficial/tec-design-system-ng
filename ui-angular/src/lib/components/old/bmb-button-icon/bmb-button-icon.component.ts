@@ -29,6 +29,7 @@ export class BmbButtonIconComponent {
   isOutline = model<boolean>(false);
   alt = input<string>('');
 
+  // eslint-disable-next-line @angular-eslint/no-output-on-prefix
   onButtonClick = output<MouseEvent>();
 
   handlePress(): void {

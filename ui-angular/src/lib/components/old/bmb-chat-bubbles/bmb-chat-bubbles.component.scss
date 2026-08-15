@@ -22,6 +22,12 @@
     > .bmb_chat-bubble-profile {
       order: 3;
     }
+
+    > .bmb_chat-bubble-msg-container {
+      align-items: flex-end;
+      display: flex;
+      flex-direction: column;
+    }
   }
 
   &-profile {
@@ -144,8 +150,9 @@
     }
 
     &-user {
+      align-self: flex-end;
       justify-content: flex-end;
-      margin-right: rem.rem_calc(45);
+      width: fit-content;
     }
 
     &-icon {
@@ -181,6 +188,24 @@
         opacity: 0;
         visibility: hidden;
         transition: opacity 150ms ease;
+      }
+    }
+
+    &-container-user &-icon {
+      align-items: center;
+      background-color: transparent;
+      border: 0;
+      border-radius: var(--bmb-radius-full);
+      box-sizing: border-box;
+      color: var(--general-contrasts-60);
+      display: inline-flex;
+      height: rem.rem_calc(32);
+      justify-content: center;
+      width: rem.rem_calc(32);
+
+      &:hover,
+      &:focus-visible {
+        color: var(--general-contrasts-100);
       }
     }
 

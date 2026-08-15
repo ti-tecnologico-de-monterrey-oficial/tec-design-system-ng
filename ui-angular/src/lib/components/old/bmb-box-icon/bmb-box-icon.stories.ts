@@ -1,14 +1,13 @@
 import { Meta, StoryObj } from '@storybook/angular';
 
 import {
-  colorList,
   getBasicExampleBlock,
   getGeneralComponentDescription,
   getGeneralDescription,
 } from '@docs/utils/utils';
 import {
+  DBmbBoxIcon,
   DBmbIconParamDesc,
-  getAppearanceParam,
   ON_BUTTON_CLICK,
 } from '@docs/utils/parameterDescriptions';
 import { BmbBoxIconComponent } from './bmb-box-icon.component';
@@ -40,14 +39,9 @@ ${getBasicExampleBlock('BmbBoxIconComponent', ON_BUTTON_CLICK.handleExample)}
     iconName: DBmbIconParamDesc.icon,
     iconImageAlt: DBmbIconParamDesc.alt,
     isIconFilled: DBmbIconParamDesc.isIconFill,
-    boxColor: getAppearanceParam('the box icon', colorList),
-    boxShape: getAppearanceParam(
-      'the box shape',
-      ['square', 'circle'],
-      'square',
-      '<br/><br/>Square keeps the radius associated with the box size and circle applies a 50% border radius.',
-    ),
-    boxSize: getAppearanceParam('the box size', ['small', 'regular'], 'small'),
+    boxColor: DBmbBoxIcon.boxColor,
+    boxShape: DBmbBoxIcon.boxShape,
+    boxSize: DBmbBoxIcon.boxSize,
     imageNotFoundError: DBmbIconParamDesc.imageNotFoundError,
   },
   args: {

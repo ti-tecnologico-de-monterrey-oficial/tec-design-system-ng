@@ -59,6 +59,10 @@ storybook-static
 
 # Libraries assets
 ui-angular/src/assets
+ui-angular/src/assets/*
 ui-angular/src/lib/_shared
+ui-angular/src/lib/_shared/*
 ui-react/src/assets
+ui-react/src/assets/*
 ui-react/src/lib/_shared
+ui-react/src/lib/_shared/*

@@ -31,7 +31,7 @@ import { logDeprecatedInput } from '../../../_shared/logic/logDeprecatedInput';
           [icon]="icon()"
           [iconSize]="24"
           (buttonClick)="handleClick($event)"
-          [alt]="componentTitle() || title() || ''"
+          [tooltipText]="componentTitle() || title() || ''"
         />
       </span>
     </section>
@@ -46,6 +46,7 @@ export class BmbSimpleHeaderComponent {
 
   title = input<string>(); // deprecated
 
+  // eslint-disable-next-line @angular-eslint/no-output-on-prefix
   onIconClick = output<any>();
 
   constructor() {
