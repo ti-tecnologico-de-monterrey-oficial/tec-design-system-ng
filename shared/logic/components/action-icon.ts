@@ -1,10 +1,5 @@
 import { sanitizeContent } from '../sanitizeContent';
 
-export interface IBmbActionIconEventType {
-  event: MouseEvent;
-  name: string;
-}
-
 export const getActionIcon = ({
   icon,
   toggleIconActive,

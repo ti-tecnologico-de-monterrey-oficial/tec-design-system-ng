@@ -27,11 +27,14 @@
           />
         </ng-template>
         <ng-template #bmbRightContent>
-          <bmb-navigation-bar
-            [actionHeaders]="actionHeaderList()"
-            [iconSize]="24"
-            alignItems="center"
-          />
+          @for (headerAction of headerActionsList(); track $index) {
+            <bmb-action-icon
+              [icon]="headerAction.icon"
+              [iconSize]="24"
+              [tooltipText]="headerAction.alt || headerAction.icon"
+              (buttonClick)="handleHeaderActionClick($event, headerAction)"
+            />
+          }
         </ng-template>
       </bmb-three-cols>
     </span>

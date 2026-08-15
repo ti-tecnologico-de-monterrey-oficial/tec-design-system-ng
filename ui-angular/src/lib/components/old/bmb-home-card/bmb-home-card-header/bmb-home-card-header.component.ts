@@ -15,7 +15,7 @@ import { IBmbActionHeader } from '../../../../_shared/types/utils';
 import { BmbTitleContentComponent } from '../../bmb-title-content/bmb-title-content.component';
 import { BmbThreeColsComponent } from '../../bmb-three-cols/bmb-three-cols.component';
 import { BmbActionIconComponent } from '../../bmb-action-icon/bmb-action-icon.component';
-import { BmbNavigationBarComponent } from '../../bmb-navigation-bar/bmb-navigation-bar.component';
+import { BmbHeaderActionsComponent } from '../../bmb-header-actions/bmb-header-actions.component';
 import { BmbContainerComponent } from '../../../bmb-container/bmb-container.component';
 import { CommonModule } from '@angular/common';
 import { IBotType } from '../../bmb-chat-bar/types';
@@ -32,7 +32,7 @@ import { BmbTranslationsService } from '../../../../services/translations/transl
     BmbThreeColsComponent,
     BmbActionIconComponent,
     BmbTitleContentComponent,
-    BmbNavigationBarComponent,
+    BmbHeaderActionsComponent,
     TranslatePipe,
   ],
   templateUrl: './bmb-home-card-header.component.html',
@@ -55,12 +55,14 @@ export class BmbHomeCardHeaderComponent {
   componentTitle = input<string>(); // once title is removed, this should be required
 
   title = input<string>(); // deprecated
-
-  onClose = output();
-  onBack = output();
+  // eslint-disable-next-line @angular-eslint/no-output-on-prefix
+  onClose = output(); // eslint-disable-next-line @angular-eslint/no-output-on-prefix
+  onBack = output(); // eslint-disable-next-line @angular-eslint/no-output-on-prefix
   onExpandClick = output();
 
-  private translationsService: BmbTranslationsService = inject(BmbTranslationsService);
+  private translationsService: BmbTranslationsService = inject(
+    BmbTranslationsService,
+  );
 
   constructor() {
     effect(() => {
@@ -79,7 +81,7 @@ export class BmbHomeCardHeaderComponent {
     });
   }
 
-  actionHeaderList = computed<IBmbActionHeader[]>(() => {
+  headerActionsList = computed<IBmbActionHeader[]>(() => {
     if (this.showRightButton()) {
       const webIcon: string = this.isExpanded()
         ? 'zoom_in_map'
@@ -122,6 +124,12 @@ export class BmbHomeCardHeaderComponent {
       this.onClose.emit();
     } else {
       this.onExpandClick.emit();
+    }
+  }
+
+  handleHeaderActionClick (event: MouseEvent, headerAction: IBmbActionHeader): void {
+    if (headerAction.action) {
+      headerAction.action(event, headerAction);
     }
   }
 }

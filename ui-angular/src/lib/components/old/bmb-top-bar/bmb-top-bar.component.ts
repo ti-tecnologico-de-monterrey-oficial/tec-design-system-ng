@@ -56,7 +56,7 @@ export class BmbTopBarComponent implements OnInit {
   getLogoClick = output<void>();
   searchButtonClick = output<MouseEvent>();
 
-  showAnimation: boolean = true;
+  showAnimation = true;
   imageDefault = 'assets/images/tec-logo.svg';
   mobileImageDefault = 'assets/images/tec-logo-mob.svg';
   mobileImageMitecDefault = 'assets/images/logos-mitec/logo_mitec.png';
