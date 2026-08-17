@@ -557,3 +557,17 @@ Carlos supplied three references for this family: TEC.mobi "Calendar_FadeTransit
 - **Canonical mapping:** the snippet uses one complete event copied from that Default fixture, preserving `isMicro=false`, `lang=es` and `dateFormat=yyyy-MM-dd`. The sample is deliberately trimmed to one event for legibility, following the existing table/grades fixture precedent. No view-specific fake attribute is emitted.
 - **Publication:** `Timestream.figma.ts` passed official CLI 1.5.3 parse and publish without `--dry-run` or `--force`. Figma MCP returned `hasTemplate: true` and the expected canonical snippet for all four variants.
 - **Backlog effect:** `TIME-01` is resolved. Consolidated state becomes 98 connected classes, 102 verified public mappings and 6 active contracts.
+
+## Calendar — delayed MCP verification resolved (2026-08-17)
+
+- **Figma:** `Calendar standard_Web` component set `2640:89850`; verified variants are Day/Responsive Off `474:94937`, Day/Responsive On `12977:92957`, Week/Off `2642:54263`, Week/On `12977:93489`, Month/Off `2642:56679` and Month/On `12977:94720`.
+- **Verification:** Figma MCP now returns `BmbCalendarComponent`, the migrated `ui-angular/src/lib/components/old/bmb-calendar/bmb-calendar.component.ts` source and `hasTemplate: true` for all six variants. The existing canonical snippet is `<bmb-calendar />`.
+- **Publication:** no republish was attempted; the earlier official CLI upload was already successful and the issue was delayed MCP visibility.
+- **Backlog effect:** Calendar leaves `Pending verification`. Consolidated state becomes 99 connected classes, 103 verified public mappings, 6 active contracts and no pending publication verification.
+
+## ITEM-01 — deprecated compatibility API removed from active contracts (2026-08-17)
+
+- **Angular evidence:** `BmbItemComponent` remains exported for compatibility, but its constructor emits the runtime warning: `This component is not longer supported, please use bmb-item-[variant] or bmb-interactive-item-[variant]`. Its Storybook location is `Internals/Item`.
+- **Replacement evidence:** the maintained public variants (`bmb-item-*` and `bmb-interactive-item-*`) are the APIs already used by the verified `BB_5_1_1` adapter and Action menu composition.
+- **Decision:** classify the legacy `item` export as `Blocked / out of scope`, not `Contract required`. Publishing the same Figma item family against both the supported variants and the deprecated wrapper would create ambiguous code guidance.
+- **Backlog effect:** active contracts decrease from 6 to 5; blocked/out-of-scope increases from 12 to 13. Public mapping count remains 103.

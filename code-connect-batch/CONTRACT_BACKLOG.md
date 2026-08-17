@@ -9,14 +9,13 @@ Este es el **único backlog activo**. El estado general y las reglas de ejecuci�
 | Disposición | Cantidad | Acción |
 | --- | ---: | --- |
 | Candidate | 0 | No crear fachadas para aumentar cobertura. |
-| Contract required | 6 | Resolver el contrato mínimo de una familia por ciclo. |
+| Contract required | 5 | Resolver el contrato mínimo de una familia por ciclo. |
 | Parent/child composition | 13 | Mantener cubierto por el padre salvo que Design publique un API independiente. |
-| Blocked / out of scope | 12 | No reintentar sin un cambio real de nodo, API o alcance. |
-| Pending verification | 1 | Reconsultar Calendar por MCP; no republicar sin evidencia nueva. |
+| Blocked / out of scope | 13 | No reintentar sin un cambio real de nodo, API o alcance. |
 
-## Contratos activos (6 exports)
+## Contratos activos (5 exports)
 
-Orden recomendado: `COL-01`, `NAV-01`, `PROFILE-01`, `CHAT-01`, `ITEM-01`. `COL-01` tiene el mayor potencial de reutilización y evidencia real de producto; los demás dependen de una decisión más específica.
+Orden recomendado: `COL-01`, `NAV-01`, `PROFILE-01`, `CHAT-01`. `COL-01` tiene el mayor potencial de reutilización y evidencia real de producto; los demás dependen de una decisión más específica.
 
 | ID | Exports | Evidencia confirmada | Contrato mínimo / decisión requerida | Estado |
 | --- | --- | --- | --- | --- |
@@ -24,7 +23,6 @@ Orden recomendado: `COL-01`, `NAV-01`, `PROFILE-01`, `CHAT-01`, `ITEM-01`. `COL-
 | `NAV-01` | `title-content` | `navigation-bar`, `bottom-navigation-bar`, `drawer-overlay` y `web-templates` ya están conectados. `title-content` exige título y compone breadcrumb + identidad/avatar + icono. `Simple header` no representa esa estructura. | Design publica un nodo dedicado o confirma explícitamente un target que exponga título, breadcrumb e identidad. Engineering documenta el mínimo `title`/`componentTitle`. | Requiere decisión Design/API; no hay target estable equivalente. |
 | `PROFILE-01` | `user-profile` | El export exige `userInfo`; búsquedas dirigidas no encontraron un nodo Bamboo estable que modele la misma identidad. | Nodo publicado con `id`, `fullName`, imagen/alt y las propiedades públicas realmente requeridas, o una fixture Storybook neutral y oficialmente documentada. | Requiere target estable y contrato de contenido. |
 | `CHAT-01` | `chat-bubble`, `home-card-chat` | Ambos consumen `IBmbChatMessage`/`IBmbChatMessage[]`; `time` es `Date`. Angular template syntax no puede expresar `new Date(...)` inline. | Engineering publica una factory/pipe/const o receta canónica importable para construir el mensaje mínimo. Figma no puede resolver este bloqueo por sí solo. | Code API required. |
-| `ITEM-01` | `item` | API deprecada, reemplazada por `bmb-item-[variant]` / `bmb-interactive-item-[variant]`. | Engineering confirma retiro/no conexión, o Design publica un target estable para el API legado. | Baja prioridad; decisión de deprecación. |
 
 ## Regla de implementación por contrato
 
@@ -67,10 +65,11 @@ Estos exports ya están representados dentro de un padre conectado. No son traba
 | `native-modal` | Implementación interna del Modal conectado. |
 | `top-bar-item` | Hijo repetido de Top bar, sin contrato independiente. |
 
-## Blocked / out of scope (12)
+## Blocked / out of scope (13)
 
 | Export | Motivo para no reintentar |
 | --- | --- |
+| `item` | API legada y no soportada: su runtime dirige a `bmb-item-[variant]` / `bmb-interactive-item-[variant]`, y Storybook la clasifica como `Internals/Item`. Las variantes públicas modernas ya participan en la composición conectada de Action menu; no se duplica ese target para el wrapper legado. |
 | `bmb-card` | No hay main component canónico confirmado. |
 | `bmb-external-link` | Sólo existe uso dentro de templates, no target standalone estable. |
 | `bmb-form-validator` | Infraestructura basada en `FormGroup`, no componente visual. |
@@ -84,12 +83,6 @@ Estos exports ya están representados dentro de un padre conectado. No son traba
 | `bmb-theme` | No hay target Figma publicado estable. |
 | `bmb-three-cols` | Primitive de layout sin contrato visual standalone. |
 
-## Pending verification
-
-| Export | Figma node | Estado | Próxima acción |
-| --- | --- | --- | --- |
-| `calendar` | `2640:89850` | `Calendar.figma.ts` pasó parse y el CLI confirmó upload, pero MCP devuelve cero mappings. | Reconsultar `get_code_connect_map` con label `Angular`. Si sigue ausente, registrar incidente Figma; no crear otro template ni republicar en bucle. |
-
 ## Deuda de cobertura en mappings ya conectados
 
 La cola de [COMPOSITION_REMEDIATION.md](COMPOSITION_REMEDIATION.md) no significa “sin conexión”. Sus filas están publicadas, pero el snippet puede ser una fachada limitada. Mantener dos ejes separados:
@@ -97,4 +90,4 @@ La cola de [COMPOSITION_REMEDIATION.md](COMPOSITION_REMEDIATION.md) no significa
 - `publication state`: Connected / Pending / Blocked.
 - `coverage debt`: None / Contract required / Code API required.
 
-Button group y Action menu son las dos familias remediadas con adaptadores internos confirmados. El resto permanece conectado con deuda documentada; no se descuenta de los 102 mappings verificados.
+Button group y Action menu son las dos familias remediadas con adaptadores internos confirmados. El resto permanece conectado con deuda documentada; no se descuenta de los 103 mappings verificados.

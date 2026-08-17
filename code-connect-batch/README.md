@@ -9,16 +9,15 @@ Este archivo es la **fuente de verdad operativa** del lote. Si otro documento co
 | Métrica | Estado confirmado |
 | --- | ---: |
 | Componentes exportados por `ui-angular/src/index.ts` | 130 |
-| Clases Angular con template independiente confirmado | 98 |
-| Mappings públicos publicados y verificados por MCP | 102 |
-| Template publicado pendiente de visibilidad MCP | 1 (`Calendar`) |
+| Clases Angular con template independiente confirmado | 99 |
+| Mappings públicos publicados y verificados por MCP | 103 |
 | Adaptadores internos `BB_*` | 4 |
-| Contract required | 6 |
+| Contract required | 5 |
 | Parent/child composition | 13 |
-| Blocked / out of scope | 12 |
+| Blocked / out of scope | 13 |
 | Candidatos directos abiertos | 0 |
 
-La conciliación es: **98 clases conectadas + 32 sin template independiente confirmado = 130**. Las 32 restantes son 6 contratos + 13 composiciones padre/hijo + 12 bloqueados + Calendar pendiente. Los 102 mappings superan las 98 clases porque `StudentActivityCard` y `MobileTemplates` tienen dos destinos Figma cada uno, y Button/Button group son directivas públicas. Los cuatro adaptadores internos (`BB_1_4*` y `BB_5_1_1`) no cuentan como cobertura pública.
+La conciliación es: **99 clases conectadas + 31 sin template independiente confirmado = 130**. Las 31 restantes son 5 contratos + 13 composiciones padre/hijo + 13 bloqueados/fuera de alcance. Los 103 mappings superan las 99 clases porque `StudentActivityCard` y `MobileTemplates` tienen dos destinos Figma cada uno, y Button/Button group son directivas públicas. Los cuatro adaptadores internos (`BB_1_4*` y `BB_5_1_1`) no cuentan como cobertura pública.
 
 ## Qué queda por hacer
 
@@ -30,9 +29,6 @@ No quedan candidatos directos que puedan publicarse honestamente con la evidenci
 | `COL-01` | `list-group` | 1 | `action-menu`, `list-items`, `list-group-item` y `card-button` ya están conectados; falta un outer Figma que represente el contenedor Angular. |
 | `PROFILE-01` | `user-profile` | 1 | Nodo estable con contrato para `userInfo`. |
 | `CHAT-01` | `chat-bubble`, `home-card-chat` | 2 | Factory/pipe/fixture pública que exprese `IBmbChatMessage.time: Date`. |
-| `ITEM-01` | `item` | 1 | Decidir retiro definitivo o publicar un contrato para el API deprecado. |
-
-`Calendar.figma.ts` no pertenece a ese backlog: el CLI confirmó su publicación, pero Figma MCP todavía no devuelve mappings para el component set `2640:89850`. Sólo requiere reintentar la verificación; no debe republicarse repetidamente sin evidencia nueva.
 
 ## Fuentes y límites
 
