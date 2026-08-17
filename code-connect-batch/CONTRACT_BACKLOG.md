@@ -9,18 +9,18 @@ Este es el **único backlog activo**. El estado general y las reglas de ejecuci�
 | Disposición | Cantidad | Acción |
 | --- | ---: | --- |
 | Candidate | 0 | No crear fachadas para aumentar cobertura. |
-| Contract required | 10 | Resolver el contrato mínimo de una familia por ciclo. |
+| Contract required | 9 | Resolver el contrato mínimo de una familia por ciclo. |
 | Parent/child composition | 13 | Mantener cubierto por el padre salvo que Design publique un API independiente. |
 | Blocked / out of scope | 12 | No reintentar sin un cambio real de nodo, API o alcance. |
 | Pending verification | 1 | Reconsultar Calendar por MCP; no republicar sin evidencia nueva. |
 
-## Contratos activos (10 exports)
+## Contratos activos (9 exports)
 
 Orden recomendado: `COL-01`, `NAV-01`, `PROFILE-01`, `CHAT-01`, `TIME-01`, `ITEM-01`. `COL-01` tiene el mayor potencial de reutilización y evidencia real de producto; los demás dependen de una decisión más específica.
 
 | ID | Exports | Evidencia confirmada | Contrato mínimo / decisión requerida | Estado |
 | --- | --- | --- | --- | --- |
-| `COL-01` | `action-menu`, `card-button`, `list-group`, `list-items` | `list-group-item` quedó conectado al component set Bamboo `List group` (`82:26226`): el nodo es visualmente un item individual, no el contenedor. Las filas de “Mis Eventos” en MiTec (`9050:55418`, `9050:55440`) confirman que los padres necesitan contenido repetible. | Reutilizar el hijo ya conectado y exponer un `Items`/`Content` SLOT verdadero en cada padre compatible. Resolver hijos con `getSlot()`/`executeTemplate()`; nunca fabricar arrays. | Hijo verificado; Phase 0 pendiente para el contenedor `list-group` y demás padres. |
+| `COL-01` | `action-menu`, `list-group`, `list-items` | `list-group-item` quedó conectado al set `List group` (`82:26226`) y `card-button` al set `Card button` (`4281:218969`). Las filas de “Mis Eventos” en MiTec (`9050:55418`, `9050:55440`) confirman que los tres exports restantes son contenedores de contenido repetible. | Exponer un `Items`/`Content` SLOT verdadero en cada padre compatible y resolver hijos con `getSlot()`/`executeTemplate()`; nunca fabricar arrays. Para `action-menu`, el slot debe producir `#actionMenuItem` o una receta Angular equivalente. | Dos componentes de la familia verificados; quedan tres contratos de colección/proyección. |
 | `NAV-01` | `title-content` | `navigation-bar`, `bottom-navigation-bar`, `drawer-overlay` y `web-templates` ya están conectados. `title-content` exige título y compone breadcrumb + identidad/avatar + icono. `Simple header` no representa esa estructura. | Design publica un nodo dedicado o confirma explícitamente un target que exponga título, breadcrumb e identidad. Engineering documenta el mínimo `title`/`componentTitle`. | Requiere decisión Design/API; no hay target estable equivalente. |
 | `PROFILE-01` | `user-profile` | El export exige `userInfo`; búsquedas dirigidas no encontraron un nodo Bamboo estable que modele la misma identidad. | Nodo publicado con `id`, `fullName`, imagen/alt y las propiedades públicas realmente requeridas, o una fixture Storybook neutral y oficialmente documentada. | Requiere target estable y contrato de contenido. |
 | `CHAT-01` | `chat-bubble`, `home-card-chat` | Ambos consumen `IBmbChatMessage`/`IBmbChatMessage[]`; `time` es `Date`. Angular template syntax no puede expresar `new Date(...)` inline. | Engineering publica una factory/pipe/const o receta canónica importable para construir el mensaje mínimo. Figma no puede resolver este bloqueo por sí solo. | Code API required. |

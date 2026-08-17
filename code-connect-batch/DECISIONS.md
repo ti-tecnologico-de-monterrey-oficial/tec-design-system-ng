@@ -517,3 +517,11 @@ Carlos supplied three references for this family: TEC.mobi "Calendar_FadeTransit
 - **Publication:** `ListGroupItem.figma.ts` passed official CLI 1.5.3 parse and publish without `--force`; Figma MCP returned `hasTemplate: true` for variant `82:26227` with source `ui-angular/src/lib/components/old/bmb-list-group/bmb-list-group-item/bmb-list-group-item.component.ts`.
 - **Backlog effect:** `list-group-item` leaves `COL-01`. `list-group`, `action-menu`, `card-button` and `list-items` remain contract-required because none has a genuine repeatable item SLOT/collection contract yet.
 - **Calendar:** the component-set MCP lookup timed out again and still returned no map; no republication was attempted.
+
+## COL-01 — Card button connected (2026-08-17)
+
+- **Figma:** published component set `Card button`, node `4281:218969`, asset key `1a218151bed5a60c7aacf15aa1d066817b8f6984`, 43 instances. It exposes only `Size=Default|Small`; the verified variants are `4281:218968` and `4281:218967`. Their nested editable `Title` layers produce `Crear nuevo skill` and `Chat Tec` respectively.
+- **Angular:** `BmbCardButtonComponent`, selector `bmb-card-button`, is exported from `ui-angular/src/index.ts`. The `Default` variant matches the documented Storybook `AddContentExample`: `[isFullInteractive]="false"`, `componentTitle` from Figma and `icon="add_circle"`. The `Small` variant maps to `[isSmall]="true"`, `smallTitle` from Figma, `smallIcon="info"` and the Storybook-documented TecGPT `botImage` fixture.
+- **Intentional omissions:** the set does not expose menu items, badge data, body, custom content, disabled state or interaction events, so none is emitted. The nested `BB_1_6` and `BB_1_6_4` remain Figma implementation details and were not published as public APIs or adapters.
+- **Publication:** `CardButton.figma.ts` passed the official CLI 1.5.3 parse and was published alone with `--file`, without `--dry-run` or `--force`. Figma MCP returned `hasTemplate: true` for both variants and generated the expected source path `ui-angular/src/lib/components/old/bmb-card-button/bmb-card-button.component.ts`.
+- **Backlog effect:** `card-button` leaves `COL-01`. The active contract count changes from 10 to 9; `action-menu`, `list-group` and `list-items` remain because they require a genuine repeatable content/projection contract.
