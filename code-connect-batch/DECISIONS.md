@@ -571,3 +571,19 @@ Carlos supplied three references for this family: TEC.mobi "Calendar_FadeTransit
 - **Replacement evidence:** the maintained public variants (`bmb-item-*` and `bmb-interactive-item-*`) are the APIs already used by the verified `BB_5_1_1` adapter and Action menu composition.
 - **Decision:** classify the legacy `item` export as `Blocked / out of scope`, not `Contract required`. Publishing the same Figma item family against both the supported variants and the deprecated wrapper would create ambiguous code guidance.
 - **Backlog effect:** active contracts decrease from 6 to 5; blocked/out-of-scope increases from 12 to 13. Public mapping count remains 103.
+
+## CHAT-01 — legacy chat-bubble removed from active contracts (2026-08-17)
+
+- **Angular evidence:** Storybook publishes `BmbChatBubblesComponent` under `Components/Containers/AI Chat Bubble/AI Chat bubble (deprecated)`. Its maintained replacement, `BmbAiChatBubbleComponent`, is a separate public export with a current message contract.
+- **Figma evidence:** stable `AI Chat bubble` set `528:59470` is already connected and MCP-verified against `BmbAiChatBubbleComponent`; reusing it for the deprecated export would create two competing Angular recommendations for one design component.
+- **Remaining contract:** `BmbHomeCardChatComponent` has a strong target in `AI Chat Card` (`9268:46409`), but its required `messagesHistory: IBmbChatMessage[]` still needs `time: Date`. The 1.6.4-b source and Storybook expose only inline `new Date()` examples, not an importable factory/fixture usable from Angular template syntax.
+- **Decision:** move only legacy `chat-bubble` to `Blocked / out of scope`; retain `home-card-chat` as the single `CHAT-01` contract.
+- **Backlog effect:** active contracts decrease from 5 to 4; blocked/out-of-scope increases from 13 to 14. Public mapping count remains 103.
+
+## COL-01 — outer List group Phase 0 contract locked (2026-08-17)
+
+- **Angular truth:** `BmbListGroupComponent` renders `<ul><ng-content></ng-content></ul>`. Its persistent public surface is `borderType`, `isMultipleSelection`, `isRowView`, `showControls` and `listGroupId`; spacing/radius defaults are `m`. Storybook's canonical example projects three `BmbListGroupItemComponent` children.
+- **Figma truth:** `List group` set `82:26226` contains 72 row variants and is already connected to `BmbListGroupItemComponent`. The exact library search returns no separate outer container. Read-only inspection confirmed the family lives in section `82:27546`, frame `82:26224`, on page `5:67` and already follows the library's token/component conventions.
+- **Locked Figma contract:** create one sibling component named `List group container`, reusing instances of `82:26226`. Expose three instance-swap slots (`Item 1`, `Item 2`, `Item 3`), visibility booleans for items 2/3, `Border type=Rounded|Flush`, plus booleans `Multiple selection`, `Row view` and `Show controls`. Do not create variables, BB components or reconstructed rows.
+- **Locked Code Connect contract:** a parserless parent resolves the three connected row instances with `executeTemplate()`, preserves order and wraps them in `<bmb-list-group>`. Map only the persistent public booleans/variant; use Storybook-neutral `listGroupId="list-group-1"` and default spacing/radius.
+- **Status:** Phase 0 is complete and implementation-ready. No Figma mutation was performed in this pass.

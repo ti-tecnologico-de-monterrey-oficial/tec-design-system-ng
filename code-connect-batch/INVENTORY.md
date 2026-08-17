@@ -122,7 +122,7 @@ This inventory covers mappings created by the `code-connect-batch` workflow in t
 
 ## Remaining public inventory
 
-The 130 public Angular component exports reconcile to **99 connected components** and 31 components still without an independent template. The remaining set is fully triaged: **5 Contract required**, **13 Parent/child composition** and **13 Blocked / out of scope**. `accordion-simple-text` and `notification-counter` are classified as children of already-connected families; deprecated `item` is out of scope because its runtime explicitly directs consumers to the already-public `bmb-item-[variant]` / `bmb-interactive-item-[variant]` APIs. There are no open direct candidates. The complete per-export disposition and the smallest next contract are maintained only in [CONTRACT_BACKLOG.md](CONTRACT_BACKLOG.md).
+The 130 public Angular component exports reconcile to **99 connected components** and 31 components still without an independent template. The remaining set is fully triaged: **4 Contract required**, **13 Parent/child composition** and **14 Blocked / out of scope**. `accordion-simple-text` and `notification-counter` are classified as children of already-connected families; deprecated `item` and legacy `chat-bubble` are out of scope because their maintained replacement APIs are already represented. There are no open direct candidates. The complete per-export disposition and the smallest next contract are maintained only in [CONTRACT_BACKLOG.md](CONTRACT_BACKLOG.md).
 
 ## Angular equivalents confirmed; coverage pending
 

@@ -12,12 +12,12 @@ Este archivo es la **fuente de verdad operativa** del lote. Si otro documento co
 | Clases Angular con template independiente confirmado | 99 |
 | Mappings públicos publicados y verificados por MCP | 103 |
 | Adaptadores internos `BB_*` | 4 |
-| Contract required | 5 |
+| Contract required | 4 |
 | Parent/child composition | 13 |
-| Blocked / out of scope | 13 |
+| Blocked / out of scope | 14 |
 | Candidatos directos abiertos | 0 |
 
-La conciliación es: **99 clases conectadas + 31 sin template independiente confirmado = 130**. Las 31 restantes son 5 contratos + 13 composiciones padre/hijo + 13 bloqueados/fuera de alcance. Los 103 mappings superan las 99 clases porque `StudentActivityCard` y `MobileTemplates` tienen dos destinos Figma cada uno, y Button/Button group son directivas públicas. Los cuatro adaptadores internos (`BB_1_4*` y `BB_5_1_1`) no cuentan como cobertura pública.
+La conciliación es: **99 clases conectadas + 31 sin template independiente confirmado = 130**. Las 31 restantes son 4 contratos + 13 composiciones padre/hijo + 14 bloqueados/fuera de alcance. Los 103 mappings superan las 99 clases porque `StudentActivityCard` y `MobileTemplates` tienen dos destinos Figma cada uno, y Button/Button group son directivas públicas. Los cuatro adaptadores internos (`BB_1_4*` y `BB_5_1_1`) no cuentan como cobertura pública.
 
 ## Qué queda por hacer
 
@@ -28,7 +28,7 @@ No quedan candidatos directos que puedan publicarse honestamente con la evidenci
 | `NAV-01` | `title-content` | 1 | Design debe publicar/confirmar un nodo que represente breadcrumb + identidad/avatar + título; `Simple header` no es equivalente suficiente. |
 | `COL-01` | `list-group` | 1 | `action-menu`, `list-items`, `list-group-item` y `card-button` ya están conectados; falta un outer Figma que represente el contenedor Angular. |
 | `PROFILE-01` | `user-profile` | 1 | Nodo estable con contrato para `userInfo`. |
-| `CHAT-01` | `chat-bubble`, `home-card-chat` | 2 | Factory/pipe/fixture pública que exprese `IBmbChatMessage.time: Date`. |
+| `CHAT-01` | `home-card-chat` | 1 | Factory/pipe/fixture pública que exprese `IBmbChatMessage.time: Date`; el `chat-bubble` legado ya quedó fuera de alcance. |
 
 ## Fuentes y límites
 
