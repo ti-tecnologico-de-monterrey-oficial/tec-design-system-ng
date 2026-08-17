@@ -595,3 +595,10 @@ Carlos supplied three references for this family: TEC.mobi "Calendar_FadeTransit
 - **Figma evidence:** exact library search finds the public Breadcrumb family and an internal `BB_5_3_4`, but no standalone `Title content` main component. `Simple header` remains structurally different.
 - **Decision:** move `title-content` from `Contract required` to `Parent/child composition`. A new Figma main component would expose an implementation detail and duplicate parent-level guidance.
 - **Backlog effect:** active contracts decrease from 4 to 3; parent/child composition increases from 13 to 14. Public mapping count remains 103.
+
+## PROFILE-01 — MiTec product evidence disambiguates Profile card (2026-08-17)
+
+- **Product evidence:** read-only inspection of MiTec `Jf8Nd71tihhPZdv9xm6PnN`, page `650:11574`, found repeated `Profile card` instances (for example `6465:49812`, `10231:150096`, `9379:95293`) composed with `User Summary` and the actions `Mi Perfil` / `Cambiar de perfil`.
+- **Bamboo evidence:** exact library search returns the published `Profile card` family plus `ORG_Component_MiPerfil*`; the exact `User profile` search returns no main component with the onboarding/header/button structure required by `BmbUserProfileComponent`.
+- **Angular evidence:** `BmbUserProfileComponent` is documented under `Dev tools/User profile` and requires `{ id, fullName, profilePicture }`. Its header, alternate-account link and continue button distinguish it from the already-connected `BmbProfileComponent`/`Profile card` surface.
+- **Decision:** do not map `user-profile` to `Profile card`. Keep `PROFILE-01` active until Design publishes the dedicated target or Engineering explicitly marks the export as legacy. Storybook already supplies a type-correct neutral `userInfo`, so the remaining gap is target identity, not fixture syntax.
