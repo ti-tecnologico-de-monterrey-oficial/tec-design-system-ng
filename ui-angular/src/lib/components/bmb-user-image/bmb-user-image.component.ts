@@ -6,9 +6,13 @@ import {
   output,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { IBmbTargetLink, IBmbUserImageSize } from '../../../_shared/types/utils';
-import { BmbCheckExternalLinkButtonComponent } from '../../bmb-check-external-link-button/bmb-check-external-link-button.component';
-import { handleImageNotFoundError } from '../../../_shared/logic/utils';
+import type {
+  IBmbTargetLink,
+  IBmbUserImageSize,
+} from '../../_shared/types/utils';
+import { BmbCheckExternalLinkButtonComponent } from '../bmb-check-external-link-button/bmb-check-external-link-button.component';
+import { getUserImageClasses } from '../../_shared/logic/components/user-image';
+import { handleImageNotFoundError } from '../../_shared/logic/utils';
 
 @Component({
   selector: 'bmb-user-image',
@@ -34,16 +38,10 @@ export class BmbUserImageComponent {
 
   getClasses(
     principalClassName: string,
-    size: string,
+    size: string | undefined,
     isBordered: boolean,
   ): string[] {
-    const classes: string[] = [principalClassName];
-
-    if (!!size) classes.push(`${principalClassName}-${this.size()}`);
-
-    if (isBordered) classes.push(`${principalClassName}-bordered`);
-
-    return classes;
+    return getUserImageClasses(principalClassName, size, isBordered);
   }
 
   handlePress(event: MouseEvent): void {

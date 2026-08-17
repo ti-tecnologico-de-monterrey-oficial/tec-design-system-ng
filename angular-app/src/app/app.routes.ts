@@ -293,6 +293,22 @@ export const appRoutes: Route[] = [
       ).then(({ CheckExternalLinkButtonPage }) => CheckExternalLinkButtonPage),
   },
   {
+    path: 'components/logo',
+    title: 'BmbLogo | Bamboo migration dashboard',
+    loadComponent: () =>
+      import('./components/logo-page/logo-page').then(
+        ({ LogoPage }) => LogoPage,
+      ),
+  },
+  {
+    path: 'components/user-image',
+    title: 'BmbUserImage | Bamboo migration dashboard',
+    loadComponent: () =>
+      import('./components/user-image-page/user-image-page').then(
+        ({ UserImagePage }) => UserImagePage,
+      ),
+  },
+  {
     path: 'components/pull-wedge',
     title: 'BmbPullWedge | Bamboo migration dashboard',
     loadComponent: () =>

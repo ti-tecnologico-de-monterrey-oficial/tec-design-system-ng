@@ -5,7 +5,7 @@ import {
   output,
   ViewEncapsulation,
 } from '@angular/core';
-import { BmbUserImageComponent } from '../../bmb-user-image/bmb-user-image.component';
+import { BmbUserImageComponent } from '../../../bmb-user-image/bmb-user-image.component';
 import { CommonModule } from '@angular/common';
 import { BmbLayoutItemDirective } from '../../../../directives/old/bmb-layout/bmb-layout-item.directive';
 import { BmbLayoutDirective } from '../../../../directives/old/bmb-layout/bmb-layout.directive';

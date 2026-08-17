@@ -1,0 +1,77 @@
+<header class="page-header">
+  <p class="eyebrow">Componente migrado</p>
+  <h1>BmbLogo</h1>
+  <p>Prueba el tamaño, imagen, enlace y eventos del logotipo.</p>
+</header>
+
+<section class="playground" aria-labelledby="logo-demo-heading">
+  <div class="controls">
+    <h2 id="logo-demo-heading">Propiedades</h2>
+
+    <label for="logo-size">size</label>
+    <select
+      id="logo-size"
+      [value]="size()"
+      (change)="setSize($any($event.target).value)"
+    >
+      @for (option of sizes; track option) {
+      <option [value]="option">{{ option }}</option>
+      }
+    </select>
+
+    <label for="logo-image">image</label>
+    <input
+      id="logo-image"
+      [value]="image()"
+      (input)="setImage($any($event.target).value)"
+    />
+
+    <label for="logo-alt">altImage</label>
+    <input
+      id="logo-alt"
+      [value]="altImage()"
+      (input)="setAltImage($any($event.target).value)"
+    />
+
+    <label for="logo-link">link</label>
+    <input
+      id="logo-link"
+      [value]="link()"
+      (input)="setLink($any($event.target).value)"
+    />
+
+    <label for="logo-target">target</label>
+    <select
+      id="logo-target"
+      [value]="target()"
+      (change)="setTarget($any($event.target).value)"
+    >
+      @for (option of targets; track option) {
+      <option [value]="option">{{ option }}</option>
+      }
+    </select>
+
+    <label for="logo-button-name">buttonName</label>
+    <input
+      id="logo-button-name"
+      [value]="buttonName()"
+      (input)="setButtonName($any($event.target).value)"
+    />
+
+    <p><strong>Evento:</strong> {{ lastEvent() }}</p>
+  </div>
+
+  <div class="preview">
+    <bmb-logo
+      [size]="size()"
+      [image]="image()"
+      [altImage]="altImage()"
+      [link]="link()"
+      [target]="target()"
+      [buttonName]="buttonName()"
+      (buttonPress)="registerEvent('buttonPress')"
+      (buttonClick)="registerEvent('buttonClick')"
+      (buttonKeyPress)="registerEvent('buttonKeyPress')"
+    />
+  </div>
+</section>

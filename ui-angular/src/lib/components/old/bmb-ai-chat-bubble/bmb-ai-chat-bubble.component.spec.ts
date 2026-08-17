@@ -3,7 +3,7 @@ import { ComponentRef } from '@angular/core';
 import { By } from '@angular/platform-browser';
 
 import { BmbAiChatBubbleComponent } from './bmb-ai-chat-bubble.component';
-import { BmbUserImageComponent } from '../bmb-user-image/bmb-user-image.component';
+import { BmbUserImageComponent } from '../../bmb-user-image/bmb-user-image.component';
 import {
   BmbChatActionEvent,
   BmbImageMessage,
