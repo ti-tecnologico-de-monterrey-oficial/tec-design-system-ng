@@ -1,3 +1,10 @@
+html.storybook-dark-theme,
+html.storybook-light-theme {
+  body.sb-main-padded.sb-show-main {
+    padding: 0;
+  }
+}
+
 #storybook-docs {
   .sbdocs {
     background-color: rgb(var(--gray-charade-600));
