@@ -1,6 +1,8 @@
 import { IBmbInteractiveIconAppearance } from './components/interactive-icon';
 
 export type SizeNames =
+  | 'none'
+  | 'xxs'
   | 'xs'
   | 's'
   | 'm'
@@ -19,7 +21,11 @@ export type SizeNames =
   | '7'
   | '8'
   | '9'
-  | '10';
+  | '10'
+  | '12'
+  | '16'
+  | '20'
+  | '24';
 export type IButtonAppearance =
   | 'primary'
   | 'secondary-filled'

@@ -6,8 +6,9 @@ import {
   output,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { BmbCheckExternalLinkButtonComponent } from '../../bmb-check-external-link-button/bmb-check-external-link-button.component';
-import { IBmbTargetLink } from '../../../_shared/types';
+import { BmbCheckExternalLinkButtonComponent } from '../bmb-check-external-link-button/bmb-check-external-link-button.component';
+import { getLogoClasses } from '../../_shared/logic/components/logo';
+import type { IBmbTargetLink } from '../../_shared/types';
 
 @Component({
   selector: 'bmb-logo',
@@ -45,12 +46,6 @@ export class BmbLogoComponent {
   }
 
   getClasses(): string[] {
-    const classes: string[] = ['bmb_logo'];
-
-    if (this.size) {
-      classes.push('bmb_logo-' + this.size());
-    }
-
-    return classes;
+    return getLogoClasses(this.size());
   }
 }

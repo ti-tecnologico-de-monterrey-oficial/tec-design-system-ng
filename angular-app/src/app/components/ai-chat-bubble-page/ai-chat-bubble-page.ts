@@ -1,9 +1,15 @@
-import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  signal,
+} from '@angular/core';
 import {
   BmbChatBubblesComponent,
   type IBmbChatActionEvent,
   type IBmbChatMessage,
 } from 'ui-angular';
+import { CHAT_USER_IMAGE_OPTIONS } from './chat-user-image-options';
 
 @Component({
   selector: 'app-ai-chat-bubble-page',
@@ -15,7 +21,9 @@ import {
 export class AiChatBubblePage {
   readonly userCopyEnabled = signal(true);
   readonly conversationEvent = signal('Sin interacciones');
-  readonly conversation: IBmbChatMessage[] = [
+  readonly userImageOptions = CHAT_USER_IMAGE_OPTIONS;
+  readonly selectedUserImage = signal(CHAT_USER_IMAGE_OPTIONS[0].value);
+  private readonly baseConversation: IBmbChatMessage[] = [
     {
       id: 'assistant-welcome',
       isUserMessage: false,
@@ -26,7 +34,6 @@ export class AiChatBubblePage {
     {
       id: 'user-short',
       isUserMessage: true,
-      userProfile: 'assets/images/placeholders/user-icon-test.svg',
       type: 'text',
       content: { text: 'Explícame Angular Signals.' },
       time: new Date(),
@@ -43,7 +50,6 @@ export class AiChatBubblePage {
     {
       id: 'user-long',
       isUserMessage: true,
-      userProfile: 'assets/images/placeholders/user-icon-test.svg',
       type: 'text',
       content: {
         text: '¿Puedes mostrarme un ejemplo más completo donde un signal almacene una lista y un computed obtenga el total de elementos?',
@@ -51,6 +57,18 @@ export class AiChatBubblePage {
       time: new Date(),
     },
   ];
+
+  readonly conversation = computed<IBmbChatMessage[]>(() =>
+    this.baseConversation.map((message) =>
+      message.isUserMessage
+        ? { ...message, userProfile: this.selectedUserImage() }
+        : message,
+    ),
+  );
+
+  selectUserImage(event: Event): void {
+    this.selectedUserImage.set((event.target as HTMLSelectElement).value);
+  }
 
   handleConversationAction(event: IBmbChatActionEvent): void {
     this.conversationEvent.set(`${event.action} · mensaje ${event.messageId}`);

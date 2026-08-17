@@ -11,6 +11,9 @@
     [ngClass]="getClasses('bmb_user_image', size()!, bordered())"
     [link]="link()"
     [target]="target()!"
+    (buttonPress)="handlePress($event)"
+    (buttonClick)="handleClick($event)"
+    (buttonKeyPress)="handleKeyPress($event)"
   >
     <ng-container [ngTemplateOutlet]="commonTemplate" />
   </bmb-check-external-link-button>

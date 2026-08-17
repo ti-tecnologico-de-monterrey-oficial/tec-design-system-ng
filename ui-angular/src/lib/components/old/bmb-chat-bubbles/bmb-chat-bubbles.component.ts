@@ -23,7 +23,7 @@ import {
   IBmbChatGptIconState,
   BmbChatUserActionConfig,
 } from './types';
-import { BmbUserImageComponent } from '../bmb-user-image/bmb-user-image.component';
+import { BmbUserImageComponent } from '../../bmb-user-image/bmb-user-image.component';
 import { CommonModule } from '@angular/common';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { BmbTextLinkComponent } from '../bmb-text-link/bmb-text-link.component';
