@@ -1,4 +1,4 @@
-<section class="bmb_datepicker-modal" (keydown)="onDayKeydown($event)">
+<section class="bmb_datepicker-modal" (keydown)="onDayKeydown($event)" tabindex="0">
   <nav
     class="bmb_datepicker-modal-nav"
     bmbLayout
@@ -13,7 +13,7 @@
         icon="keyboard_arrow_left"
         [iconSize]="24"
         (buttonClick)="handleChevronClick('less')"
-        [alt]="'calendar_date_picker.prev' | translate"
+        [tooltipText]="'calendar_date_picker.prev' | translate"
       />
     </li>
     <li
@@ -55,7 +55,7 @@
         icon="keyboard_arrow_right"
         [iconSize]="24"
         (buttonClick)="handleChevronClick('plus')"
-        [alt]="'calendar_date_picker.next' | translate"
+        [tooltipText]="'calendar_date_picker.next' | translate"
       />
     </li>
   </nav>

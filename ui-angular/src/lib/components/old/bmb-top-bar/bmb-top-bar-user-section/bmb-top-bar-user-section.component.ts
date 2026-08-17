@@ -56,7 +56,7 @@ export class BmbTopBarUserSectionComponent {
   roleButtonClick = output<MouseEvent>();
   searchButtonClick = output<MouseEvent>();
 
-  isOpenNotifications: boolean = false;
+  isOpenNotifications = false;
   dialogPosition: { top: string; left: string } | null = {
     top: '0px',
     left: '0px',

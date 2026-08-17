@@ -52,6 +52,26 @@ class MockCalendarService {
         place: `Event custom place`,
         calendar: 'events',
         bulletColor: 'success-thin',
+        microProgram: [
+          {
+            title:
+              'Microprogram 1 title that is very long and should be truncated',
+            code: 'MP1',
+            module: 'Module 1',
+            tags: [
+              {
+                appearance: 'mitec_blue',
+                text: 'Microprogram 1 tag',
+              },
+            ],
+            startDate: today.plus({ minutes: 30 }).toISO() as string,
+            endDate: today.plus({ minutes: 60 }).toISO() as string,
+            location: 'VII - 334',
+            daysRepetition: ['Lu', 'Mi', 'Vi'],
+            campus: 'Campus A',
+            group: '20020',
+          },
+        ],
       },
       {
         title: `Event custom 3`,
@@ -90,77 +110,77 @@ class MockCalendarService {
         calendar: 'academic',
       },
     ];
-    for (let i = 0; i < 183; i++) {
-      for (let e = 0; e < 8; e++) {
-        events.push({
-          title: `Event ${i}`,
-          start: today.plus({ days: i - 91, hours: e - 3 }).toISO() as string,
-          end: today.plus({ days: i - 91, hours: e - 2 }).toISO() as string,
-          detail: `Event ${i} detail`,
-          daysRepetition: e % 2 === 0 ? 'L,X,V' : 'M,J',
-          campus:
-            'Campus ' +
-            (i % 3 === 0
-              ? 'Monterrey'
-              : i % 3 === 1
-                ? 'Santa Fe'
-                : 'Guadalajara'),
-          // status: i % 2 === 0 ? 'active' : 'disabled',
-          type:
-            i % 4 === 0
-              ? 'academic'
-              : i % 4 === 1
-                ? 'life'
-                : i % 4 === 2
-                  ? 'events'
-                  : 'save_the_date',
-          tags: [
-            {
-              appearance:
-                i % 4 === 0
-                  ? 'mitec_blue'
-                  : i % 4 === 1
-                    ? 'mitec_red'
-                    : i % 4 === 2
-                      ? 'mitec_green'
-                      : 'mitec_orange',
-              text: `Event ${i} tag`,
-            },
-            {
-              appearance:
-                i % 4 === 0
-                  ? 'mitec_blue'
-                  : i % 4 === 1
-                    ? 'mitec_red'
-                    : i % 4 === 2
-                      ? 'mitec_green'
-                      : 'mitec_orange',
-              text: `Event ${i} tag`,
-            },
-            {
-              appearance:
-                i % 4 === 0
-                  ? 'mitec_blue'
-                  : i % 4 === 1
-                    ? 'mitec_red'
-                    : i % 4 === 2
-                      ? 'mitec_green'
-                      : 'mitec_orange',
-              text: `Event ${i} tag`,
-            },
-          ],
-          place: `Event ${i} place`,
-          calendar:
-            i % 4 === 0
-              ? 'academic'
-              : i % 4 === 1
-                ? 'life'
-                : i % 4 === 2
-                  ? 'events'
-                  : 'save_the_date',
-        });
-      }
-    }
+    // for (let i = 0; i < 183; i++) {
+    //   for (let e = 0; e < 8; e++) {
+    //     events.push({
+    //       title: `Event ${i}`,
+    //       start: today.plus({ days: i - 91, hours: e - 3 }).toISO() as string,
+    //       end: today.plus({ days: i - 91, hours: e - 2 }).toISO() as string,
+    //       detail: `Event ${i} detail`,
+    //       daysRepetition: e % 2 === 0 ? 'L,X,V' : 'M,J',
+    //       campus:
+    //         'Campus ' +
+    //         (i % 3 === 0
+    //           ? 'Monterrey'
+    //           : i % 3 === 1
+    //             ? 'Santa Fe'
+    //             : 'Guadalajara'),
+    //       // status: i % 2 === 0 ? 'active' : 'disabled',
+    //       type:
+    //         i % 4 === 0
+    //           ? 'academic'
+    //           : i % 4 === 1
+    //             ? 'life'
+    //             : i % 4 === 2
+    //               ? 'events'
+    //               : 'save_the_date',
+    //       tags: [
+    //         {
+    //           appearance:
+    //             i % 4 === 0
+    //               ? 'mitec_blue'
+    //               : i % 4 === 1
+    //                 ? 'mitec_red'
+    //                 : i % 4 === 2
+    //                   ? 'mitec_green'
+    //                   : 'mitec_orange',
+    //           text: `Event ${i} tag`,
+    //         },
+    //         {
+    //           appearance:
+    //             i % 4 === 0
+    //               ? 'mitec_blue'
+    //               : i % 4 === 1
+    //                 ? 'mitec_red'
+    //                 : i % 4 === 2
+    //                   ? 'mitec_green'
+    //                   : 'mitec_orange',
+    //           text: `Event ${i} tag`,
+    //         },
+    //         {
+    //           appearance:
+    //             i % 4 === 0
+    //               ? 'mitec_blue'
+    //               : i % 4 === 1
+    //                 ? 'mitec_red'
+    //                 : i % 4 === 2
+    //                   ? 'mitec_green'
+    //                   : 'mitec_orange',
+    //           text: `Event ${i} tag`,
+    //         },
+    //       ],
+    //       place: `Event ${i} place`,
+    //       calendar:
+    //         i % 4 === 0
+    //           ? 'academic'
+    //           : i % 4 === 1
+    //             ? 'life'
+    //             : i % 4 === 2
+    //               ? 'events'
+    //               : 'save_the_date',
+    //     });
+    //   }
+    // }
     return this.shuffleArray(events);
   }
 

@@ -55,7 +55,6 @@ export class BmbNativeModalComponent {
   modalId = input.required<string>();
   size = input<IBmbNativeModalSize>('medium');
   iconStyle = input<IBmbModalAlertStyle>();
-  // autoFocus = input<boolean>(false);
   disableBackdropClose = input<boolean>(true);
   hasBackdrop = input<boolean>(true);
   inputContext = input<{ [key: string]: any }>({});
@@ -72,7 +71,7 @@ export class BmbNativeModalComponent {
     });
   }
 
-  @ViewChild('container', { read: ViewContainerRef })
+  @ViewChild('container', { read: ViewContainerRef, static: true })
   container!: ViewContainerRef;
 
   private componentRef: ComponentRef<any> | null = null;

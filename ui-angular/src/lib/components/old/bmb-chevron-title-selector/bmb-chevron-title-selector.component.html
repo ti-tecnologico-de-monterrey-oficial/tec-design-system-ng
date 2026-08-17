@@ -8,7 +8,7 @@
             [iconSize]="24"
             [disabled]="isDisabledLeadingIcon()"
             (buttonClick)="handleLeadingClick($event)"
-            [alt]="
+            [tooltipText]="
               alternativeTextLeadingIcon() ||
               ('chevron_title_selector.prev' | translate)
             "
@@ -36,7 +36,7 @@
             [iconSize]="24"
             [disabled]="isDisabledTrailingIcon()"
             (buttonClick)="handleTrailingClick($event)"
-            [alt]="
+            [tooltipText]="
               alternativeTextTrailingIcon() ||
               ('chevron_title_selector.next' | translate)
             "

@@ -10,6 +10,11 @@
       .bmb_three-cols-child:first-child {
         width: rem.rem_calc(64);
       }
+      .bmb_three-cols-child:last-child {
+        width: rem.rem_calc(64);
+        display: flex;
+        justify-content: flex-end;
+      }
     }
   }
 

@@ -1,279 +1,87 @@
-# Novedades ## [v1.6.4] -
-2026-08-12
+# Novedades ## [v1.6.4-b] -
+2026-08-15
 
 ### 🚀 Novedades
 
 *
-feat(docker): update Dockerfiles for Angular versions 20, 21, and 22; add package.json for version 22
+fix(component / calendar): Se corrigió el error de los filtros y los botones en responsivo
 *
-feat(merge) conflict resulto
+feat(component/action-icon): se implementó la emisión del evento especificando el nombre del ícono para distinguir entre el ícono principal y el  alternativo. Se agregó también documentación para uso del componente en cambio de idioma.
 *
-feat(component) merge y shurtcut @types
+docs: update release notes and prompts for version 1.6.4, enhancing clarity and adding new component details
 *
-feat(component) merge comlictos
+fix: update Dockerfiles and publish workflow to use ui-angular directory and adjust build paths
 *
-migracion
+ci(styles): ensure build:styles outputs to dist/ui-angular so CSS is included in published package
 *
-Formato
+fix: update TypeScript configuration for production builds and add new tsconfig file
 *
-Remove ui-angular _shared folder from git tracking
+ci(publish): remove dist/ui-angular before build to avoid publishing full-compiled artifacts
 *
-chore(component) BmbCard & BmbGradeValue
+fix: update package version format to include '-a' suffix for consistency
 *
-Refactor imports to use relative paths from _shared directory
-*
-migracion
-*
-chore(component) BmbCard & BmbGradeValue
-*
-migracion
-*
-migracion
-*
-migracion
-*
-migracion
-*
-migracion
-*
-chore: update Dockerfiles and package configurations for Angular versions 20-22
-*
-chore: update package dependencies and add postinstall script for TypeScript patching
-*
-refactor: replace constructor injection with inject() for improved dependency management
-*
-chore: se agregaron estilos de bamboo al Strorybook, se actualizaron los assets.
-*
-migracion
-*
-migracion
-*
-migracion
-*
-fix: refactor components to use inject for services and streamline constructor definitions
-*
-fix: enable emitDecoratorMetadata in Storybook tsconfig and refactor modal title rendering
-*
-fix: update .gitignore and project configurations for asset management and style imports
-*
-feat(component) eliminar shorcut @shared
-*
-feat(merge) merge resuelto
-*
-refactor: update import paths in component specs and workflows
-*
-fix(merge) resolver merge con últimos cambios en new-bamboo components
-*
-chore(componet) migración bmb-mitect-logo y notification-counter
-*
-refactor: use inject for services in multiple components
-*
-fix: refactor components to use inject for services and streamline constructor definitions
-*
-refactor: replace constructor injection with inject() in multiple components
-*
-fix: disable emitDecoratorMetadata in Storybook tsconfig
-*
-refactor: update service injection to use inject() in BmbHomeCardChatComponent and BmbIconComponent
-*
-migracion
-*
-fix: se regresó al file original de _shared
-*
-fix: remove unused BrowserAnimationsModule imports from story files
-*
-chore: se corrigió la ubicación del archivo overlay-prebuilt.
-*
-fix: add missing import for base/cards in global styles
+fix(ui-angular): build with partial compilation mode for package publish
 
 ### 🆕 Nuevos Componentes
 
-- **feat(docker): update Dockerfiles for Angular versions 20, 21, and 22; add package.json for version 22**:
-feat(docker): update Dockerfiles for Angular versions 20, 21, and 22; add package.json for version 22
-- **feat(merge) conflict resulto**:
-feat(merge) conflict resulto
-- **feat(component) merge y shurtcut @types**:
-feat(component) merge y shurtcut @types
-- **feat(component) merge comlictos**:
-feat(component) merge comlictos
-- **migracion**:
-migracion
-- **Formato**:
-Formato
-- **Remove ui-angular _shared folder from git tracking**:
-Remove ui-angular _shared folder from git tracking
-- **chore(component) BmbCard & BmbGradeValue**:
-chore(component) BmbCard & BmbGradeValue
-- **Refactor imports to use relative paths from _shared directory**:
-Refactor imports to use relative paths from _shared directory
+- **fix(component / calendar): Se corrigió el error de los filtros y los botones en responsivo**:
+fix(component / calendar): Se corrigió el error de los filtros y los botones en responsivo
+- **feat(component/action-icon): se implementó la emisión del evento especificando el nombre del ícono para distinguir entre el ícono principal y el  alternativo. Se agregó también documentación para uso del componente en cambio de idioma.**:
+feat(component/action-icon): se implementó la emisión del evento especificando el nombre del ícono para distinguir entre el ícono principal y el  alternativo. Se agregó también documentación para uso del componente en cambio de idioma.
+- **docs: update release notes and prompts for version 1.6.4, enhancing clarity and adding new component details**:
+docs: update release notes and prompts for version 1.6.4, enhancing clarity and adding new component details
+- **fix: update Dockerfiles and publish workflow to use ui-angular directory and adjust build paths**:
+fix: update Dockerfiles and publish workflow to use ui-angular directory and adjust build paths
+- **ci(styles): ensure build:styles outputs to dist/ui-angular so CSS is included in published package**:
+ci(styles): ensure build:styles outputs to dist/ui-angular so CSS is included in published package
 
-- Updated import paths in multiple components and services to reference types and utilities from the new _shared directory structure.
-- Adjusted TypeScript configuration to include additional story file patterns for better organization.
-- **migracion**:
-migracion
-- **chore(component) BmbCard & BmbGradeValue**:
-chore(component) BmbCard & BmbGradeValue
-- **migracion**:
-migracion
-- **migracion**:
-migracion
-- **migracion**:
-migracion
-- **migracion**:
-migracion
-- **migracion**:
-migracion
-- **chore: update Dockerfiles and package configurations for Angular versions 20-22**:
-chore: update Dockerfiles and package configurations for Angular versions 20-22
-- **chore: update package dependencies and add postinstall script for TypeScript patching**:
-chore: update package dependencies and add postinstall script for TypeScript patching
-- **refactor: replace constructor injection with inject() for improved dependency management**:
-refactor: replace constructor injection with inject() for improved dependency management
+Co-authored-by: Copilot &lt;223556219+Copilot@users.noreply.github.com&gt;
+- **fix: update TypeScript configuration for production builds and add new tsconfig file**:
+fix: update TypeScript configuration for production builds and add new tsconfig file
+- **ci(publish): remove dist/ui-angular before build to avoid publishing full-compiled artifacts**:
+ci(publish): remove dist/ui-angular before build to avoid publishing full-compiled artifacts
 
-- Updated multiple components and services to use the inject() function for dependency injection instead of constructor parameters.
-- This change enhances readability and aligns with the latest Angular practices.
-- Components affected include BmbLoginOnboardingStepperStepThreeComponent, BmbLoginOnboardingStepperStepTwoComponent, BmbModalComponent, BmbNoticeCardComponent, BmbNotificationCardComponent, BmbPullWedgeComponent, BmbPushNotificationComponent, BmbSearchCardComponent, BmbSearchInputComponent, BmbSelectComponent, BmbStepProgressBarComponent, BmbTableLiteComponent, BmbTimestreamDetailsComponent, BmbTimestreamComponent, BmbTotpComponent, BmbAlertCenterDetailComponent, BmbButtonDirective, BmbInputStatesDirective, BmbLayoutItemDirective, ClickOutsideDirective, BmbNativeModalService, BmbNotificationService, and BmbProjectionContentService.
-- **chore: se agregaron estilos de bamboo al Strorybook, se actualizaron los assets.**:
-chore: se agregaron estilos de bamboo al Strorybook, se actualizaron los assets.
-- **migracion**:
-migracion
-- **migracion**:
-migracion
-- **migracion**:
-migracion
-- **fix: refactor components to use inject for services and streamline constructor definitions**:
-fix: refactor components to use inject for services and streamline constructor definitions
-- **fix: enable emitDecoratorMetadata in Storybook tsconfig and refactor modal title rendering**:
-fix: enable emitDecoratorMetadata in Storybook tsconfig and refactor modal title rendering
-- **fix: update .gitignore and project configurations for asset management and style imports**:
-fix: update .gitignore and project configurations for asset management and style imports
-- **feat(component) eliminar shorcut @shared**:
-feat(component) eliminar shorcut @shared
-- **feat(merge) merge resuelto**:
-feat(merge) merge resuelto
-- **refactor: update import paths in component specs and workflows**:
-refactor: update import paths in component specs and workflows
-- **fix(merge) resolver merge con últimos cambios en new-bamboo components**:
-fix(merge) resolver merge con últimos cambios en new-bamboo components
-- **chore(componet) migración bmb-mitect-logo y notification-counter**:
-chore(componet) migración bmb-mitect-logo y notification-counter
-- **refactor: use inject for services in multiple components**:
-refactor: use inject for services in multiple components
-- **fix: refactor components to use inject for services and streamline constructor definitions**:
-fix: refactor components to use inject for services and streamline constructor definitions
-- **refactor: replace constructor injection with inject() in multiple components**:
-refactor: replace constructor injection with inject() in multiple components
-- **fix: disable emitDecoratorMetadata in Storybook tsconfig**:
-fix: disable emitDecoratorMetadata in Storybook tsconfig
-- **refactor: update service injection to use inject() in BmbHomeCardChatComponent and BmbIconComponent**:
-refactor: update service injection to use inject() in BmbHomeCardChatComponent and BmbIconComponent
-- **migracion**:
-migracion
-- **fix: se regresó al file original de _shared**:
-fix: se regresó al file original de _shared
-- **fix: remove unused BrowserAnimationsModule imports from story files**:
-fix: remove unused BrowserAnimationsModule imports from story files
-- **chore: se corrigió la ubicación del archivo overlay-prebuilt.**:
-chore: se corrigió la ubicación del archivo overlay-prebuilt.
-- **fix: add missing import for base/cards in global styles**:
-fix: add missing import for base/cards in global styles
+Co-authored-by: Copilot &lt;223556219+Copilot@users.noreply.github.com&gt;
+- **fix: update package version format to include '-a' suffix for consistency**:
+fix: update package version format to include '-a' suffix for consistency
+- **fix(ui-angular): build with partial compilation mode for package publish**:
+fix(ui-angular): build with partial compilation mode for package publish
+
+Co-authored-by: Copilot &lt;223556219+Copilot@users.noreply.github.com&gt;
 
 ### 🔄 Componentes Actualizados
 
-- **feat(docker): update Dockerfiles for Angular versions 20, 21, and 22; add package.json for version 22**:
-feat(docker): update Dockerfiles for Angular versions 20, 21, and 22; add package.json for version 22
-- **feat(merge) conflict resulto**:
-feat(merge) conflict resulto
-- **feat(component) merge y shurtcut @types**:
-feat(component) merge y shurtcut @types
-- **feat(component) merge comlictos**:
-feat(component) merge comlictos
-- **migracion**:
-migracion
-- **Formato**:
-Formato
-- **Remove ui-angular _shared folder from git tracking**:
-Remove ui-angular _shared folder from git tracking
-- **chore(component) BmbCard & BmbGradeValue**:
-chore(component) BmbCard & BmbGradeValue
-- **Refactor imports to use relative paths from _shared directory**:
-Refactor imports to use relative paths from _shared directory
+- **fix(component / calendar): Se corrigió el error de los filtros y los botones en responsivo**:
+fix(component / calendar): Se corrigió el error de los filtros y los botones en responsivo
+- **feat(component/action-icon): se implementó la emisión del evento especificando el nombre del ícono para distinguir entre el ícono principal y el  alternativo. Se agregó también documentación para uso del componente en cambio de idioma.**:
+feat(component/action-icon): se implementó la emisión del evento especificando el nombre del ícono para distinguir entre el ícono principal y el  alternativo. Se agregó también documentación para uso del componente en cambio de idioma.
+- **docs: update release notes and prompts for version 1.6.4, enhancing clarity and adding new component details**:
+docs: update release notes and prompts for version 1.6.4, enhancing clarity and adding new component details
+- **fix: update Dockerfiles and publish workflow to use ui-angular directory and adjust build paths**:
+fix: update Dockerfiles and publish workflow to use ui-angular directory and adjust build paths
+- **ci(styles): ensure build:styles outputs to dist/ui-angular so CSS is included in published package**:
+ci(styles): ensure build:styles outputs to dist/ui-angular so CSS is included in published package
 
-- Updated import paths in multiple components and services to reference types and utilities from the new _shared directory structure.
-- Adjusted TypeScript configuration to include additional story file patterns for better organization.
-- **migracion**:
-migracion
-- **chore(component) BmbCard & BmbGradeValue**:
-chore(component) BmbCard & BmbGradeValue
-- **migracion**:
-migracion
-- **migracion**:
-migracion
-- **migracion**:
-migracion
-- **migracion**:
-migracion
-- **migracion**:
-migracion
-- **chore: update Dockerfiles and package configurations for Angular versions 20-22**:
-chore: update Dockerfiles and package configurations for Angular versions 20-22
-- **chore: update package dependencies and add postinstall script for TypeScript patching**:
-chore: update package dependencies and add postinstall script for TypeScript patching
-- **refactor: replace constructor injection with inject() for improved dependency management**:
-refactor: replace constructor injection with inject() for improved dependency management
+Co-authored-by: Copilot &lt;223556219+Copilot@users.noreply.github.com&gt;
+- **fix: update TypeScript configuration for production builds and add new tsconfig file**:
+fix: update TypeScript configuration for production builds and add new tsconfig file
+- **ci(publish): remove dist/ui-angular before build to avoid publishing full-compiled artifacts**:
+ci(publish): remove dist/ui-angular before build to avoid publishing full-compiled artifacts
 
-- Updated multiple components and services to use the inject() function for dependency injection instead of constructor parameters.
-- This change enhances readability and aligns with the latest Angular practices.
-- Components affected include BmbLoginOnboardingStepperStepThreeComponent, BmbLoginOnboardingStepperStepTwoComponent, BmbModalComponent, BmbNoticeCardComponent, BmbNotificationCardComponent, BmbPullWedgeComponent, BmbPushNotificationComponent, BmbSearchCardComponent, BmbSearchInputComponent, BmbSelectComponent, BmbStepProgressBarComponent, BmbTableLiteComponent, BmbTimestreamDetailsComponent, BmbTimestreamComponent, BmbTotpComponent, BmbAlertCenterDetailComponent, BmbButtonDirective, BmbInputStatesDirective, BmbLayoutItemDirective, ClickOutsideDirective, BmbNativeModalService, BmbNotificationService, and BmbProjectionContentService.
-- **chore: se agregaron estilos de bamboo al Strorybook, se actualizaron los assets.**:
-chore: se agregaron estilos de bamboo al Strorybook, se actualizaron los assets.
-- **migracion**:
-migracion
-- **migracion**:
-migracion
-- **migracion**:
-migracion
-- **fix: refactor components to use inject for services and streamline constructor definitions**:
-fix: refactor components to use inject for services and streamline constructor definitions
-- **fix: enable emitDecoratorMetadata in Storybook tsconfig and refactor modal title rendering**:
-fix: enable emitDecoratorMetadata in Storybook tsconfig and refactor modal title rendering
-- **fix: update .gitignore and project configurations for asset management and style imports**:
-fix: update .gitignore and project configurations for asset management and style imports
-- **feat(component) eliminar shorcut @shared**:
-feat(component) eliminar shorcut @shared
-- **feat(merge) merge resuelto**:
-feat(merge) merge resuelto
-- **refactor: update import paths in component specs and workflows**:
-refactor: update import paths in component specs and workflows
-- **fix(merge) resolver merge con últimos cambios en new-bamboo components**:
-fix(merge) resolver merge con últimos cambios en new-bamboo components
-- **chore(componet) migración bmb-mitect-logo y notification-counter**:
-chore(componet) migración bmb-mitect-logo y notification-counter
-- **refactor: use inject for services in multiple components**:
-refactor: use inject for services in multiple components
-- **fix: refactor components to use inject for services and streamline constructor definitions**:
-fix: refactor components to use inject for services and streamline constructor definitions
-- **refactor: replace constructor injection with inject() in multiple components**:
-refactor: replace constructor injection with inject() in multiple components
-- **fix: disable emitDecoratorMetadata in Storybook tsconfig**:
-fix: disable emitDecoratorMetadata in Storybook tsconfig
-- **refactor: update service injection to use inject() in BmbHomeCardChatComponent and BmbIconComponent**:
-refactor: update service injection to use inject() in BmbHomeCardChatComponent and BmbIconComponent
-- **migracion**:
-migracion
-- **fix: se regresó al file original de _shared**:
-fix: se regresó al file original de _shared
-- **fix: remove unused BrowserAnimationsModule imports from story files**:
-fix: remove unused BrowserAnimationsModule imports from story files
-- **chore: se corrigió la ubicación del archivo overlay-prebuilt.**:
-chore: se corrigió la ubicación del archivo overlay-prebuilt.
-- **fix: add missing import for base/cards in global styles**:
-fix: add missing import for base/cards in global styles
+Co-authored-by: Copilot &lt;223556219+Copilot@users.noreply.github.com&gt;
+- **fix: update package version format to include '-a' suffix for consistency**:
+fix: update package version format to include '-a' suffix for consistency
+- **fix(ui-angular): build with partial compilation mode for package publish**:
+fix(ui-angular): build with partial compilation mode for package publish
+
+Co-authored-by: Copilot &lt;223556219+Copilot@users.noreply.github.com&gt;
 
 ### 🗑️ Eliminaciones y
 Deprecaciones
 
-- **fix: remove unused BrowserAnimationsModule imports from story files**:
-fix: remove unused BrowserAnimationsModule imports from story files
+- **ci(publish): remove dist/ui-angular before build to avoid publishing full-compiled artifacts**:
+ci(publish): remove dist/ui-angular before build to avoid publishing full-compiled artifacts
+
+Co-authored-by: Copilot &lt;223556219+Copilot@users.noreply.github.com&gt;
 
 ---
