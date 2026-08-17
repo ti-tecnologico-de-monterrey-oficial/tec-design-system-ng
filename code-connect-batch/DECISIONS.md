@@ -549,3 +549,11 @@ Carlos supplied three references for this family: TEC.mobi "Calendar_FadeTransit
 - **Canonical mapping:** Empty emits `items=[]`; Populated emits the documented three-item array verbatim. The remaining scalar values also come from that same official recipe. No row data was reconstructed from decorative Figma children, and no unsupported projection/SLOT was invented.
 - **Publication:** `ListItems.figma.ts` passed official CLI 1.5.3 parse and publish without `--dry-run` or `--force`. Figma MCP returned `hasTemplate: true` and the expected state-specific snippets for both variants.
 - **Backlog effect:** `list-items` leaves `COL-01`. Consolidated state becomes 97 connected classes, 101 verified public mappings and 7 active contracts; only the outer `list-group` container remains in this family.
+
+## TIME-01 — Timestream connected from typed Storybook fixture (2026-08-17)
+
+- **Figma:** `Timestream mobile` (`474:32260`) is a stable published component set. Screenshots confirm its four variants are views of the same timeline experience: Hito `474:32261`, Index `474:32290`, Detail `474:32318` and Filter `474:32348`.
+- **Angular:** public `BmbTimestreamComponent` consumes `ITimelineEvent[]`; `View` and `Scroll Bar` are not public inputs. The official Storybook Default supplies a complete type-correct collection and scalar defaults.
+- **Canonical mapping:** the snippet uses one complete event copied from that Default fixture, preserving `isMicro=false`, `lang=es` and `dateFormat=yyyy-MM-dd`. The sample is deliberately trimmed to one event for legibility, following the existing table/grades fixture precedent. No view-specific fake attribute is emitted.
+- **Publication:** `Timestream.figma.ts` passed official CLI 1.5.3 parse and publish without `--dry-run` or `--force`. Figma MCP returned `hasTemplate: true` and the expected canonical snippet for all four variants.
+- **Backlog effect:** `TIME-01` is resolved. Consolidated state becomes 98 connected classes, 102 verified public mappings and 6 active contracts.
