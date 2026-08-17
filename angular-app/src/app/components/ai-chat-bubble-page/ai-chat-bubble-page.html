@@ -8,6 +8,19 @@
   <div class="demo-grid">
     <aside class="controls">
       <h2>Propiedades</h2>
+      <label class="field">
+        <span>Logo del chat de usuario</span>
+        <select
+          [value]="selectedUserImage()"
+          (change)="selectUserImage($event)"
+        >
+          @for (imageOption of userImageOptions; track imageOption.label) {
+            <option [value]="imageOption.value">
+              {{ imageOption.label }}
+            </option>
+          }
+        </select>
+      </label>
       <label class="check">
         <input
           type="checkbox"
@@ -27,7 +40,7 @@
       </header>
 
       <div class="conversation" data-testid="chat-conversation">
-        @for (chatMessage of conversation; track chatMessage.id) {
+        @for (chatMessage of conversation(); track chatMessage.id) {
           <bmb-chat-bubble
             [message]="chatMessage"
             [gptBot]="!chatMessage.isUserMessage"
