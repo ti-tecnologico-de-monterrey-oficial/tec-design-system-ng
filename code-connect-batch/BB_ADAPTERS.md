@@ -1,5 +1,7 @@
 # BB adapter registry
 
+> Anexo especializado. El estado consolidado y los conteos públicos están en [README.md](README.md); estos tres adaptadores no cuentan como APIs públicas.
+
 `BB_*` is a Figma implementation name, not a public Angular API. An adapter exists only to let a public parent template resolve its real Figma children dynamically. It is always parserless and `nestable`; consumers should select the public parent component instead.
 
 | Figma BB | Stable node | Public Angular API | Trusted correspondence | Status |

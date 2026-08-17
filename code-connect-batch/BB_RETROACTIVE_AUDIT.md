@@ -1,5 +1,7 @@
 # Retroactive BB composition audit
 
+> Evidencia histórica de deuda de composición. Las filas auditadas pueden estar publicadas como `Connected`; su contrato pendiente describe cobertura, no ausencia de mapping. Consulta [COMPOSITION_REMEDIATION.md](COMPOSITION_REMEDIATION.md) y [README.md](README.md).
+
 **Audited:** 2026-08-13
 **Scope:** every currently published public template whose canonical example is an empty host or lacks its primary composition. The audit starts from the published Figma main component, inspects its real BB descendants through the Figma Code Connect context, and then checks the public Angular API.
 

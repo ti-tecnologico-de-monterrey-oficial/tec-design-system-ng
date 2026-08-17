@@ -1,5 +1,7 @@
 # Code Connect migration to v1.6.4-b
 
+> Migration evidence appendix. Current status and execution rules live in [README.md](README.md).
+
 Migration date: 2026-08-17
 
 ## Remote baseline
@@ -33,7 +35,7 @@ GitHub at the exact target SHA was the source of truth. The dirty historical wor
 
 ## Parse and publication evidence
 
-- Official CLI: `@figma/code-connect` 1.5.3 from the pinned executable documented in [HANDOFF.md](HANDOFF.md).
+- Official CLI: `@figma/code-connect` 1.5.3 from the pinned executable documented in [README.md](README.md).
 - Full parse: 101 templates, exit code 0, no unreadable files.
 - Pilot: Button (`6:4892`) published without `--force` or `--dry-run`; Figma MCP confirmed `hasTemplate: true` and the new `ui-angular` source.
 - Full publication: 101 nodes validated and uploaded in six batches of at most 20. The final batch received one transient HTTP 429; the official CLI retried and completed with exit code 0.
@@ -53,4 +55,4 @@ No `--force`, delete, detach or destructive Git operation was used.
 - Calendar is one additional published template pending MCP visibility.
 - Three `BB_1_4*` templates are internal Button group composition adapters and do not count as public API coverage.
 
-Contract, parent/child and blocked dispositions are unchanged by this path migration. Continue them from [REMAINING_COMPONENTS.md](REMAINING_COMPONENTS.md) and [CONTRACT_IMPLEMENTATION_BACKLOG.md](CONTRACT_IMPLEMENTATION_BACKLOG.md).
+Contract, parent/child and blocked dispositions are unchanged by this path migration. Continue them only from [CONTRACT_BACKLOG.md](CONTRACT_BACKLOG.md).

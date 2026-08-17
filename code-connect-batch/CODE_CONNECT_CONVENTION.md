@@ -30,7 +30,7 @@ Still exclude the following from public-template discovery:
 - A child/wrapper API already represented by a connected public parent, unless it has its own stable Figma component and a useful independent Angular usage.
 - Infrastructure-only Angular exports that have no visual public Figma component (for example form validation or portal primitives).
 
-The deterministic disposition for each remaining export is recorded in [REMAINING_COMPONENTS.md](REMAINING_COMPONENTS.md). Components requiring semantic data, projection, or service configuration are governed by [CONTRACT_BACKLOG.md](CONTRACT_BACKLOG.md), rather than being published as empty hosts.
+The deterministic disposition for each remaining export is recorded in [CONTRACT_BACKLOG.md](CONTRACT_BACKLOG.md). Components requiring semantic data, projection, or service configuration stay there rather than being published as empty hosts. [README.md](README.md) is the operational entry point.
 
 ## Required Figma property contract
 
