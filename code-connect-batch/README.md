@@ -9,16 +9,16 @@ Este archivo es la **fuente de verdad operativa** del lote. Si otro documento co
 | Métrica | Estado confirmado |
 | --- | ---: |
 | Componentes exportados por `ui-angular/src/index.ts` | 130 |
-| Clases Angular con template independiente confirmado | 96 |
-| Mappings públicos publicados y verificados por MCP | 100 |
+| Clases Angular con template independiente confirmado | 97 |
+| Mappings públicos publicados y verificados por MCP | 101 |
 | Template publicado pendiente de visibilidad MCP | 1 (`Calendar`) |
 | Adaptadores internos `BB_*` | 4 |
-| Contract required | 8 |
+| Contract required | 7 |
 | Parent/child composition | 13 |
 | Blocked / out of scope | 12 |
 | Candidatos directos abiertos | 0 |
 
-La conciliación es: **96 clases conectadas + 34 sin template independiente confirmado = 130**. Las 34 restantes son 8 contratos + 13 composiciones padre/hijo + 12 bloqueados + Calendar pendiente. Los 100 mappings superan las 96 clases porque `StudentActivityCard` y `MobileTemplates` tienen dos destinos Figma cada uno, y Button/Button group son directivas públicas. Los cuatro adaptadores internos (`BB_1_4*` y `BB_5_1_1`) no cuentan como cobertura pública.
+La conciliación es: **97 clases conectadas + 33 sin template independiente confirmado = 130**. Las 33 restantes son 7 contratos + 13 composiciones padre/hijo + 12 bloqueados + Calendar pendiente. Los 101 mappings superan las 97 clases porque `StudentActivityCard` y `MobileTemplates` tienen dos destinos Figma cada uno, y Button/Button group son directivas públicas. Los cuatro adaptadores internos (`BB_1_4*` y `BB_5_1_1`) no cuentan como cobertura pública.
 
 ## Qué queda por hacer
 
@@ -27,7 +27,7 @@ No quedan candidatos directos que puedan publicarse honestamente con la evidenci
 | ID | Alcance | Exports | Bloqueo mínimo |
 | --- | --- | ---: | --- |
 | `NAV-01` | `title-content` | 1 | Design debe publicar/confirmar un nodo que represente breadcrumb + identidad/avatar + título; `Simple header` no es equivalente suficiente. |
-| `COL-01` | `list-group`, `list-items` | 2 | `action-menu`, `list-group-item` y `card-button` ya están conectados; los dos contenedores restantes necesitan un contrato de colección real. |
+| `COL-01` | `list-group` | 1 | `action-menu`, `list-items`, `list-group-item` y `card-button` ya están conectados; falta un outer Figma que represente el contenedor Angular. |
 | `PROFILE-01` | `user-profile` | 1 | Nodo estable con contrato para `userInfo`. |
 | `CHAT-01` | `chat-bubble`, `home-card-chat` | 2 | Factory/pipe/fixture pública que exprese `IBmbChatMessage.time: Date`. |
 | `TIME-01` | `timestream` | 1 | `Timestream mobile` es estable, pero falta el contrato de `ITimelineEvent[]` o una fixture pública importable. |

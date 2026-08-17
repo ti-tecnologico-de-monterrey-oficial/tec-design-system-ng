@@ -1,6 +1,6 @@
 # Composition remediation queue
 
-> **Deuda de cobertura, no inventario de desconectados.** Todas las filas públicas de esta tabla ya están publicadas y cuentan dentro de los 100 mappings verificados. `Contract required` aquí describe la calidad/completitud de la composición, no su `publication state`. El backlog de componentes sin template está en [CONTRACT_BACKLOG.md](CONTRACT_BACKLOG.md).
+> **Deuda de cobertura, no inventario de desconectados.** Todas las filas públicas de esta tabla ya están publicadas y cuentan dentro de los 101 mappings verificados. `Contract required` aquí describe la calidad/completitud de la composición, no su `publication state`. El backlog de componentes sin template está en [CONTRACT_BACKLOG.md](CONTRACT_BACKLOG.md).
 
 Published Code Connect snippets must be useful source examples, not empty hosts. This queue tracks existing façade mappings that need a child-composition audit.
 

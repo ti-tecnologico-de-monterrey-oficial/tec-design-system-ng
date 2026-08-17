@@ -9,18 +9,18 @@ Este es el **único backlog activo**. El estado general y las reglas de ejecuci�
 | Disposición | Cantidad | Acción |
 | --- | ---: | --- |
 | Candidate | 0 | No crear fachadas para aumentar cobertura. |
-| Contract required | 8 | Resolver el contrato mínimo de una familia por ciclo. |
+| Contract required | 7 | Resolver el contrato mínimo de una familia por ciclo. |
 | Parent/child composition | 13 | Mantener cubierto por el padre salvo que Design publique un API independiente. |
 | Blocked / out of scope | 12 | No reintentar sin un cambio real de nodo, API o alcance. |
 | Pending verification | 1 | Reconsultar Calendar por MCP; no republicar sin evidencia nueva. |
 
-## Contratos activos (8 exports)
+## Contratos activos (7 exports)
 
 Orden recomendado: `COL-01`, `NAV-01`, `PROFILE-01`, `CHAT-01`, `TIME-01`, `ITEM-01`. `COL-01` tiene el mayor potencial de reutilización y evidencia real de producto; los demás dependen de una decisión más específica.
 
 | ID | Exports | Evidencia confirmada | Contrato mínimo / decisión requerida | Estado |
 | --- | --- | --- | --- | --- |
-| `COL-01` | `list-group`, `list-items` | `action-menu` quedó conectado al set `Action menu` (`2109:71690`) mediante el adaptador interno `BB_5_1_1` (`6751:92478`); `list-group-item` y `card-button` también están conectados. `List group` (`82:26226`) representa una fila, no el contenedor Angular. `BuildingBlocks_Items list` (`1644:67872`) representa el agrupador temporal, pero no expone datos repetibles serializables. | Para `list-group`, publicar un outer container con SLOT real de items. Para `list-items`, exponer datos repetibles compatibles con `IBmbListItemsElement[]` o añadir una API Angular pública de proyección; un SLOT Figma por sí solo no sirve porque el componente actual no proyecta hijos. | Tres componentes de la familia verificados; quedan dos contratos de colección. |
+| `COL-01` | `list-group` | `action-menu`, `list-items`, `list-group-item` y `card-button` están conectados. `List items` usa `BuildingBlocks_Items list` (`1644:67872`): Empty respeta `items=[]` y Populated usa literalmente la receta oficial del README. `List group` (`82:26226`) sigue representando una fila, no el contenedor Angular. | Publicar un outer container con SLOT real de items que componga el `List group`/`BmbListGroupItemComponent` ya conectado, o confirmar que el contenedor de código no requiere target independiente. | Cuatro componentes de la familia verificados; queda un contrato de contenedor. |
 | `NAV-01` | `title-content` | `navigation-bar`, `bottom-navigation-bar`, `drawer-overlay` y `web-templates` ya están conectados. `title-content` exige título y compone breadcrumb + identidad/avatar + icono. `Simple header` no representa esa estructura. | Design publica un nodo dedicado o confirma explícitamente un target que exponga título, breadcrumb e identidad. Engineering documenta el mínimo `title`/`componentTitle`. | Requiere decisión Design/API; no hay target estable equivalente. |
 | `PROFILE-01` | `user-profile` | El export exige `userInfo`; búsquedas dirigidas no encontraron un nodo Bamboo estable que modele la misma identidad. | Nodo publicado con `id`, `fullName`, imagen/alt y las propiedades públicas realmente requeridas, o una fixture Storybook neutral y oficialmente documentada. | Requiere target estable y contrato de contenido. |
 | `CHAT-01` | `chat-bubble`, `home-card-chat` | Ambos consumen `IBmbChatMessage`/`IBmbChatMessage[]`; `time` es `Date`. Angular template syntax no puede expresar `new Date(...)` inline. | Engineering publica una factory/pipe/const o receta canónica importable para construir el mensaje mínimo. Figma no puede resolver este bloqueo por sí solo. | Code API required. |
@@ -98,4 +98,4 @@ La cola de [COMPOSITION_REMEDIATION.md](COMPOSITION_REMEDIATION.md) no significa
 - `publication state`: Connected / Pending / Blocked.
 - `coverage debt`: None / Contract required / Code API required.
 
-Button group y Action menu son las dos familias remediadas con adaptadores internos confirmados. El resto permanece conectado con deuda documentada; no se descuenta de los 100 mappings verificados.
+Button group y Action menu son las dos familias remediadas con adaptadores internos confirmados. El resto permanece conectado con deuda documentada; no se descuenta de los 101 mappings verificados.

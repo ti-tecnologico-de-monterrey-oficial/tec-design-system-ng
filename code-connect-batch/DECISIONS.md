@@ -541,3 +541,11 @@ Carlos supplied three references for this family: TEC.mobi "Calendar_FadeTransit
 
 - **List items:** `BuildingBlocks_Items list` (`1644:67872`) is a stable visual match for `BmbListItemsComponent`: Empty/Populated variants group temporal list rows with action children. The Angular component, however, renders from `items: IBmbListItemsElement[]` and does not project arbitrary children. Therefore a generic Figma SLOT alone would not close the contract. The minimum is repeatable serializable data compatible with that public type, or a new public Angular projected-child API/official importable fixture.
 - **Timestream:** the earlier statement that no outer target exists is superseded. `Timestream mobile` (`474:32260`) is stable, but `View=Hito|Detail|Index|Filter` and `Scroll Bar` have no public Angular equivalents. `BmbTimestreamComponent` needs `events: ITimelineEvent[]` to render. The remaining contract is semantic event data or an officially importable fixture; mapping view names to nonexistent attributes or publishing a data-empty host remains disallowed.
+
+## COL-01 — List items connected from official component recipe (2026-08-17)
+
+- **Figma:** published component set `BuildingBlocks_Items list`, node `1644:67872`, exposes exactly `State=Populated|Empty`. Figma MCP verification targets were Populated `1644:67873` and Empty `1644:67906`.
+- **Angular:** public `BmbListItemsComponent` has defaults for `items=[]`, `addButtonIcon`, `showAddButton` and `dateFormat`. Its colocated `readme.md` documents the canonical `Historial de actividades` example with three dated items and the `add_circle` icon.
+- **Canonical mapping:** Empty emits `items=[]`; Populated emits the documented three-item array verbatim. The remaining scalar values also come from that same official recipe. No row data was reconstructed from decorative Figma children, and no unsupported projection/SLOT was invented.
+- **Publication:** `ListItems.figma.ts` passed official CLI 1.5.3 parse and publish without `--dry-run` or `--force`. Figma MCP returned `hasTemplate: true` and the expected state-specific snippets for both variants.
+- **Backlog effect:** `list-items` leaves `COL-01`. Consolidated state becomes 97 connected classes, 101 verified public mappings and 7 active contracts; only the outer `list-group` container remains in this family.
