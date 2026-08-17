@@ -353,6 +353,8 @@ Every component assessed in this queue has a confirmed Angular equivalent. Previ
 - Public `BmbActionMenuComponent` receives its menu through Angular `TemplateRef` projection (`#actionMenuItem`), so publishing an empty host or reconstructing the rows from layers would be misleading.
 - Required contract: expose a genuine `Items`/`Content` SLOT with published semantic menu-item children. It is tracked in [CONTRACT_BACKLOG.md](CONTRACT_BACKLOG.md); no mapping was published.
 
+> Superseded on 2026-08-17 by the verified internal-adapter composition recorded at the end of this file. No Figma mutation or new SLOT was required because the stable `BB_5_1_1` variants map to existing public Angular item APIs and the parent already projects `#actionMenuItem` templates.
+
 ## Chevron title selector — approximate coverage (published)
 
 - Figma node `5566:99250` exposes `States=Default|Disabled-Further options|Disabled-Previous options` and `Container color=Default|Alternative`. Its visible `Header` layer supplies the public `componentTitle`.
@@ -525,3 +527,17 @@ Carlos supplied three references for this family: TEC.mobi "Calendar_FadeTransit
 - **Intentional omissions:** the set does not expose menu items, badge data, body, custom content, disabled state or interaction events, so none is emitted. The nested `BB_1_6` and `BB_1_6_4` remain Figma implementation details and were not published as public APIs or adapters.
 - **Publication:** `CardButton.figma.ts` passed the official CLI 1.5.3 parse and was published alone with `--file`, without `--dry-run` or `--force`. Figma MCP returned `hasTemplate: true` for both variants and generated the expected source path `ui-angular/src/lib/components/old/bmb-card-button/bmb-card-button.component.ts`.
 - **Backlog effect:** `card-button` leaves `COL-01`. The active contract count changes from 10 to 9; `action-menu`, `list-group` and `list-items` remain because they require a genuine repeatable content/projection contract.
+
+## COL-01 — Action menu connected by verified composition (2026-08-17)
+
+- **Figma parent:** published component set `Action menu`, node `2109:71690`. Verified variants cover raw actions (`2109:71670`), informative rows (`9912:49726`), chevron (`2109:71583`), text button (`2109:71620`), checkmark (`2109:71636`), text link (`2109:71599`) and profile switch (`11085:49491`). Header title comes from the bound `BB_2_12_4` text when present; device and transient interaction state remain visual-only.
+- **Angular parent:** `BmbActionMenuComponent`, selector `bmb-action-menu`, is public and renders projected `TemplateRef`s named `#actionMenuItem`. The parent template now emits those real templates instead of an empty host.
+- **Internal child contract:** stable published set `BB_5_1_1` (`6751:92478`) maps its exhaustive `Type` variants to existing public APIs: `BmbInteractiveItemChevronComponent`, `BmbInteractiveItemDefaultComponent`, `BmbInteractiveItemTextButtonComponent` and `BmbItemHyperlinkComponent`. Only verified title/support/value text, active/disabled state and leading icon are emitted. The parserless `nestable` adapter is internal and does not count as a public mapping.
+- **Composition:** `ActionMenu.figma.ts` resolves connected `BB_5_1_1` descendants with `findConnectedInstances()` and `executeTemplate()`, wraps them in `#actionMenuItem`, and preserves visual order. Raw action and informative variants use their visible semantic text directly because they do not contain the BB child set.
+- **Publication and verification:** both files passed official CLI 1.5.3 parse and publish without `--dry-run` or `--force`. Figma MCP returned `hasTemplate: true` and populated canonical snippets for all seven checked variants, including the ordered profile rows `Colaborador`, `Egresado`, `Padre`.
+- **Backlog effect:** `action-menu` leaves `COL-01`. Consolidated state becomes 96 connected classes, 100 verified public mappings, 8 active contracts and 4 internal adapters.
+
+## Remaining contract Phase 0 refresh — List items and Timestream (2026-08-17)
+
+- **List items:** `BuildingBlocks_Items list` (`1644:67872`) is a stable visual match for `BmbListItemsComponent`: Empty/Populated variants group temporal list rows with action children. The Angular component, however, renders from `items: IBmbListItemsElement[]` and does not project arbitrary children. Therefore a generic Figma SLOT alone would not close the contract. The minimum is repeatable serializable data compatible with that public type, or a new public Angular projected-child API/official importable fixture.
+- **Timestream:** the earlier statement that no outer target exists is superseded. `Timestream mobile` (`474:32260`) is stable, but `View=Hito|Detail|Index|Filter` and `Scroll Bar` have no public Angular equivalents. `BmbTimestreamComponent` needs `events: ITimelineEvent[]` to render. The remaining contract is semantic event data or an officially importable fixture; mapping view names to nonexistent attributes or publishing a data-empty host remains disallowed.

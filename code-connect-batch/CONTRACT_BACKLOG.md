@@ -9,22 +9,22 @@ Este es el **único backlog activo**. El estado general y las reglas de ejecuci�
 | Disposición | Cantidad | Acción |
 | --- | ---: | --- |
 | Candidate | 0 | No crear fachadas para aumentar cobertura. |
-| Contract required | 9 | Resolver el contrato mínimo de una familia por ciclo. |
+| Contract required | 8 | Resolver el contrato mínimo de una familia por ciclo. |
 | Parent/child composition | 13 | Mantener cubierto por el padre salvo que Design publique un API independiente. |
 | Blocked / out of scope | 12 | No reintentar sin un cambio real de nodo, API o alcance. |
 | Pending verification | 1 | Reconsultar Calendar por MCP; no republicar sin evidencia nueva. |
 
-## Contratos activos (9 exports)
+## Contratos activos (8 exports)
 
 Orden recomendado: `COL-01`, `NAV-01`, `PROFILE-01`, `CHAT-01`, `TIME-01`, `ITEM-01`. `COL-01` tiene el mayor potencial de reutilización y evidencia real de producto; los demás dependen de una decisión más específica.
 
 | ID | Exports | Evidencia confirmada | Contrato mínimo / decisión requerida | Estado |
 | --- | --- | --- | --- | --- |
-| `COL-01` | `action-menu`, `list-group`, `list-items` | `list-group-item` quedó conectado al set `List group` (`82:26226`) y `card-button` al set `Card button` (`4281:218969`). Las filas de “Mis Eventos” en MiTec (`9050:55418`, `9050:55440`) confirman que los tres exports restantes son contenedores de contenido repetible. | Exponer un `Items`/`Content` SLOT verdadero en cada padre compatible y resolver hijos con `getSlot()`/`executeTemplate()`; nunca fabricar arrays. Para `action-menu`, el slot debe producir `#actionMenuItem` o una receta Angular equivalente. | Dos componentes de la familia verificados; quedan tres contratos de colección/proyección. |
+| `COL-01` | `list-group`, `list-items` | `action-menu` quedó conectado al set `Action menu` (`2109:71690`) mediante el adaptador interno `BB_5_1_1` (`6751:92478`); `list-group-item` y `card-button` también están conectados. `List group` (`82:26226`) representa una fila, no el contenedor Angular. `BuildingBlocks_Items list` (`1644:67872`) representa el agrupador temporal, pero no expone datos repetibles serializables. | Para `list-group`, publicar un outer container con SLOT real de items. Para `list-items`, exponer datos repetibles compatibles con `IBmbListItemsElement[]` o añadir una API Angular pública de proyección; un SLOT Figma por sí solo no sirve porque el componente actual no proyecta hijos. | Tres componentes de la familia verificados; quedan dos contratos de colección. |
 | `NAV-01` | `title-content` | `navigation-bar`, `bottom-navigation-bar`, `drawer-overlay` y `web-templates` ya están conectados. `title-content` exige título y compone breadcrumb + identidad/avatar + icono. `Simple header` no representa esa estructura. | Design publica un nodo dedicado o confirma explícitamente un target que exponga título, breadcrumb e identidad. Engineering documenta el mínimo `title`/`componentTitle`. | Requiere decisión Design/API; no hay target estable equivalente. |
 | `PROFILE-01` | `user-profile` | El export exige `userInfo`; búsquedas dirigidas no encontraron un nodo Bamboo estable que modele la misma identidad. | Nodo publicado con `id`, `fullName`, imagen/alt y las propiedades públicas realmente requeridas, o una fixture Storybook neutral y oficialmente documentada. | Requiere target estable y contrato de contenido. |
 | `CHAT-01` | `chat-bubble`, `home-card-chat` | Ambos consumen `IBmbChatMessage`/`IBmbChatMessage[]`; `time` es `Date`. Angular template syntax no puede expresar `new Date(...)` inline. | Engineering publica una factory/pipe/const o receta canónica importable para construir el mensaje mínimo. Figma no puede resolver este bloqueo por sí solo. | Code API required. |
-| `TIME-01` | `timestream` | MiTec compone la experiencia con `Timestream card`, `Timestream Index` y `Hito list`, que ya tienen cobertura; no existe un nodo exterior estable equivalente. | Design publica un outer component semántico o confirma que `timestream` no requiere conexión independiente. Si se publica, debe exponer composición/eventos sin serializar objetos como texto. | Decisión de alcance/target. |
+| `TIME-01` | `timestream` | Existe el set estable `Timestream mobile` (`474:32260`), pero sus propiedades `View=Hito|Detail|Index|Filter` y `Scroll Bar` son visuales. El Angular público necesita `events: ITimelineEvent[]` para renderizar y no expone inputs equivalentes para seleccionar esas vistas. | Exponer datos/eventos semánticos repetibles compatibles con `ITimelineEvent[]`, o una receta/fixture Angular pública importable. No mapear `View`/`Scroll Bar` a atributos inexistentes ni publicar un host sin eventos. | Target confirmado; falta contrato de datos/API. |
 | `ITEM-01` | `item` | API deprecada, reemplazada por `bmb-item-[variant]` / `bmb-interactive-item-[variant]`. | Engineering confirma retiro/no conexión, o Design publica un target estable para el API legado. | Baja prioridad; decisión de deprecación. |
 
 ## Regla de implementación por contrato
@@ -98,4 +98,4 @@ La cola de [COMPOSITION_REMEDIATION.md](COMPOSITION_REMEDIATION.md) no significa
 - `publication state`: Connected / Pending / Blocked.
 - `coverage debt`: None / Contract required / Code API required.
 
-Button group es la única familia remediada con adaptadores internos confirmados. El resto permanece conectado con deuda documentada; no se descuenta de los 98 mappings verificados.
+Button group y Action menu son las dos familias remediadas con adaptadores internos confirmados. El resto permanece conectado con deuda documentada; no se descuenta de los 100 mappings verificados.

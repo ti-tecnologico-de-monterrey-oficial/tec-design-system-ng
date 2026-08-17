@@ -1,6 +1,6 @@
 # Composition remediation queue
 
-> **Deuda de cobertura, no inventario de desconectados.** Todas las filas públicas de esta tabla ya están publicadas y cuentan dentro de los 98 mappings verificados. `Contract required` aquí describe la calidad/completitud de la composición, no su `publication state`. El backlog de componentes sin template está en [CONTRACT_BACKLOG.md](CONTRACT_BACKLOG.md).
+> **Deuda de cobertura, no inventario de desconectados.** Todas las filas públicas de esta tabla ya están publicadas y cuentan dentro de los 100 mappings verificados. `Contract required` aquí describe la calidad/completitud de la composición, no su `publication state`. El backlog de componentes sin template está en [CONTRACT_BACKLOG.md](CONTRACT_BACKLOG.md).
 
 Published Code Connect snippets must be useful source examples, not empty hosts. This queue tracks existing façade mappings that need a child-composition audit.
 
@@ -9,6 +9,7 @@ The retroactive audit completed on 2026-08-13. Its evidence and the smallest via
 | Public Figma component | Publication state | Coverage debt | Next action |
 | --- | --- | --- | --- |
 | Button group | Connected | **Remediated** | Uses the `BB_1_4*` adapter chain and dynamically renders the selected child. |
+| Action menu | Connected | **Remediated** | Uses the `BB_5_1_1` adapter to project real `#actionMenuItem` children; raw actions and informative rows map visible semantic text. |
 | Advertisement card | Connected | Contract required | Needs serializable `IBmbAdvertisementData` plus title/subtitle; see audit. |
 | Dropdown menu | Connected | Contract required | Needs repeatable `IDropdownItem` data and semantic trigger icon. |
 | Carousel | Connected | Contract required | Requires a true Figma item SLOT before projected slides can be emitted. |

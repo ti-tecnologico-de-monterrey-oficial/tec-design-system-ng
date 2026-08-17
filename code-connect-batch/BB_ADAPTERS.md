@@ -1,6 +1,6 @@
 # BB adapter registry
 
-> Anexo especializado. El estado consolidado y los conteos públicos están en [README.md](README.md); estos tres adaptadores no cuentan como APIs públicas.
+> Anexo especializado. El estado consolidado y los conteos públicos están en [README.md](README.md); estos cuatro adaptadores no cuentan como APIs públicas.
 
 `BB_*` is a Figma implementation name, not a public Angular API. An adapter exists only to let a public parent template resolve its real Figma children dynamically. It is always parserless and `nestable`; consumers should select the public parent component instead.
 
@@ -9,6 +9,7 @@
 | `BB_1_4_2` | `20:13358` | `BmbButtonDirective` | `Label` text, `States=Disabled`, `Type=left|right`, and configured icon swaps | Active adapter |
 | `BB_1_4_3` | `20:16372` | `BmbButtonDirective` via `BB_1_4_2` | Wrapper forwards its actual child with `executeTemplate()` | Active adapter |
 | `BB_1_4` | `8:7959` | `BmbButtonDirective` via `BB_1_4_2` | Wrapper forwards its actual child with `executeTemplate()` | Active adapter |
+| `BB_5_1_1` | `6751:92478` | `BmbInteractiveItemChevronComponent`, `BmbInteractiveItemDefaultComponent`, `BmbInteractiveItemTextButtonComponent`, `BmbItemHyperlinkComponent` | `Type` selects the public child API; verified title/support/value text, disabled/active state and leading icon are mapped. `Action menu` resolves each instance with `findConnectedInstances()` + `executeTemplate()` and projects it through `#actionMenuItem`. | Active adapter |
 
 ## Admission rule
 

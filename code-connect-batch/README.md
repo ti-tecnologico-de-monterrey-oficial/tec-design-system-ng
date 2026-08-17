@@ -9,16 +9,16 @@ Este archivo es la **fuente de verdad operativa** del lote. Si otro documento co
 | Métrica | Estado confirmado |
 | --- | ---: |
 | Componentes exportados por `ui-angular/src/index.ts` | 130 |
-| Clases Angular con template independiente confirmado | 95 |
-| Mappings públicos publicados y verificados por MCP | 99 |
+| Clases Angular con template independiente confirmado | 96 |
+| Mappings públicos publicados y verificados por MCP | 100 |
 | Template publicado pendiente de visibilidad MCP | 1 (`Calendar`) |
-| Adaptadores internos `BB_*` | 3 |
-| Contract required | 9 |
+| Adaptadores internos `BB_*` | 4 |
+| Contract required | 8 |
 | Parent/child composition | 13 |
 | Blocked / out of scope | 12 |
 | Candidatos directos abiertos | 0 |
 
-La conciliación es: **95 clases conectadas + 35 sin template independiente confirmado = 130**. Las 35 restantes son 9 contratos + 13 composiciones padre/hijo + 12 bloqueados + Calendar pendiente. Los 99 mappings superan las 95 clases porque `StudentActivityCard` y `MobileTemplates` tienen dos destinos Figma cada uno, y Button/Button group son directivas públicas. Los tres adaptadores `BB_1_4*` no cuentan como cobertura pública.
+La conciliación es: **96 clases conectadas + 34 sin template independiente confirmado = 130**. Las 34 restantes son 8 contratos + 13 composiciones padre/hijo + 12 bloqueados + Calendar pendiente. Los 100 mappings superan las 96 clases porque `StudentActivityCard` y `MobileTemplates` tienen dos destinos Figma cada uno, y Button/Button group son directivas públicas. Los cuatro adaptadores internos (`BB_1_4*` y `BB_5_1_1`) no cuentan como cobertura pública.
 
 ## Qué queda por hacer
 
@@ -27,10 +27,10 @@ No quedan candidatos directos que puedan publicarse honestamente con la evidenci
 | ID | Alcance | Exports | Bloqueo mínimo |
 | --- | --- | ---: | --- |
 | `NAV-01` | `title-content` | 1 | Design debe publicar/confirmar un nodo que represente breadcrumb + identidad/avatar + título; `Simple header` no es equivalente suficiente. |
-| `COL-01` | `action-menu`, `list-group`, `list-items` | 3 | `list-group-item` y `card-button` ya están conectados; los tres contenedores restantes necesitan un `Items`/`Content` SLOT o contrato de colección real. |
+| `COL-01` | `list-group`, `list-items` | 2 | `action-menu`, `list-group-item` y `card-button` ya están conectados; los dos contenedores restantes necesitan un contrato de colección real. |
 | `PROFILE-01` | `user-profile` | 1 | Nodo estable con contrato para `userInfo`. |
 | `CHAT-01` | `chat-bubble`, `home-card-chat` | 2 | Factory/pipe/fixture pública que exprese `IBmbChatMessage.time: Date`. |
-| `TIME-01` | `timestream` | 1 | Nodo exterior estable o contrato explícito de composición. |
+| `TIME-01` | `timestream` | 1 | `Timestream mobile` es estable, pero falta el contrato de `ITimelineEvent[]` o una fixture pública importable. |
 | `ITEM-01` | `item` | 1 | Decidir retiro definitivo o publicar un contrato para el API deprecado. |
 
 `Calendar.figma.ts` no pertenece a ese backlog: el CLI confirmó su publicación, pero Figma MCP todavía no devuelve mappings para el component set `2640:89850`. Sólo requiere reintentar la verificación; no debe republicarse repetidamente sin evidencia nueva.
@@ -80,7 +80,7 @@ El token se carga desde el `.env` del checkout histórico sin imprimirlo. El CLI
 | [SOURCE_PATH_MIGRATION.md](SOURCE_PATH_MIGRATION.md) | Manifest completo de rutas antiguas → `ui-angular`. |
 | [REMOTE_API_AUDIT.md](REMOTE_API_AUDIT.md) | Revalidación de API contra GitHub remoto. |
 | [CODEBASE_INVENTORY.md](CODEBASE_INVENTORY.md) | Método y snapshot del inventario inverso. |
-| [BB_ADAPTERS.md](BB_ADAPTERS.md) | Registro de los tres adaptadores internos admitidos. |
+| [BB_ADAPTERS.md](BB_ADAPTERS.md) | Registro de los cuatro adaptadores internos admitidos. |
 | [COMPOSITION_REMEDIATION.md](COMPOSITION_REMEDIATION.md) | Deuda de calidad de mappings ya publicados; no es inventario de desconectados. |
 | [BB_RETROACTIVE_AUDIT.md](BB_RETROACTIVE_AUDIT.md) | Evidencia del audit retroactivo de fachadas/composición. |
 
