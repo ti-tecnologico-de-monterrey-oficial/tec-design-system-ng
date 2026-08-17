@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/angular';
-import { BmbTagComponent, IBmbActivityTags } from './bmb-tags.component';
+import { BmbTagComponent } from './bmb-tags.component';
+import { IBmbActivityTags } from '../../../../../../shared/types/components/tags';
 import {
   getBasicExampleBlock,
   getGeneralComponentDescription,
