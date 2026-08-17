@@ -1,8 +1,11 @@
 import type { StorybookConfig } from '@storybook/angular';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import dotenv from 'dotenv';
 
 const dirname = path.dirname(fileURLToPath(import.meta.url));
+dotenv.config({ path: path.resolve(dirname, '../../.env') });
+
 
 const config: StorybookConfig = {
   stories: ['../src/lib/**/*.@(mdx|stories.@(js|jsx|ts|tsx))'],
@@ -22,6 +25,10 @@ const config: StorybookConfig = {
   framework: {
     name: '@storybook/angular',
     options: {},
+  },
+  docs: {
+    docsMode: process.env.STORYBOOK_DOCS_MODE === 'true',
+    defaultName: 'Documentation',
   },
   webpackFinal: async (config) => {
     config.resolve ||= {};
