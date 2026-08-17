@@ -9,18 +9,17 @@ Este es el **único backlog activo**. El estado general y las reglas de ejecuci�
 | Disposición | Cantidad | Acción |
 | --- | ---: | --- |
 | Candidate | 0 | No crear fachadas para aumentar cobertura. |
-| Contract required | 4 | Resolver el contrato mínimo de una familia por ciclo. |
-| Parent/child composition | 13 | Mantener cubierto por el padre salvo que Design publique un API independiente. |
+| Contract required | 3 | Resolver el contrato mínimo de una familia por ciclo. |
+| Parent/child composition | 14 | Mantener cubierto por el padre salvo que Design publique un API independiente. |
 | Blocked / out of scope | 14 | No reintentar sin un cambio real de nodo, API o alcance. |
 
-## Contratos activos (4 exports)
+## Contratos activos (3 exports)
 
-Orden recomendado: `COL-01`, `NAV-01`, `PROFILE-01`, `CHAT-01`. `COL-01` tiene el mayor potencial de reutilización y evidencia real de producto; los demás dependen de una decisión más específica.
+Orden recomendado: `COL-01`, `PROFILE-01`, `CHAT-01`. `COL-01` ya tiene Phase 0 y contrato exacto; los demás dependen de una decisión más específica.
 
 | ID | Exports | Evidencia confirmada | Contrato mínimo / decisión requerida | Estado |
 | --- | --- | --- | --- | --- |
 | `COL-01` | `list-group` | `action-menu`, `list-items`, `list-group-item` y `card-button` están conectados. `List group` (`82:26226`) representa una fila y el source Angular confirma que el padre es un `<ul>` con `<ng-content>`. Phase 0 verificó que no existe otro outer publicado. | Crear `List group container` en la misma sección, sin tokens nuevos: tres `INSTANCE_SWAP` (`Item 1..3`) con preferred value de la fila publicada, booleanos `Show item 2/3`, `Border type=Rounded|Flush`, `Multiple selection`, `Row view` y `Show controls`. El Code Connect padre ejecutará los templates hijos dentro de `<bmb-list-group>`. | Phase 0 completo y contrato exacto; falta la mutación/publicación Figma y después Code Connect. |
-| `NAV-01` | `title-content` | `navigation-bar`, `bottom-navigation-bar`, `drawer-overlay` y `web-templates` ya están conectados. `title-content` exige título y compone breadcrumb + identidad/avatar + icono. `Simple header` no representa esa estructura. | Design publica un nodo dedicado o confirma explícitamente un target que exponga título, breadcrumb e identidad. Engineering documenta el mínimo `title`/`componentTitle`. | Requiere decisión Design/API; no hay target estable equivalente. |
 | `PROFILE-01` | `user-profile` | El export exige `userInfo`; búsquedas dirigidas no encontraron un nodo Bamboo estable que modele la misma identidad. | Nodo publicado con `id`, `fullName`, imagen/alt y las propiedades públicas realmente requeridas, o una fixture Storybook neutral y oficialmente documentada. | Requiere target estable y contrato de contenido. |
 | `CHAT-01` | `home-card-chat` | `AI Chat Card` (`9268:46409`) es un target estable, pero `messagesHistory` es requerido y consume `IBmbChatMessage[]`; `time` es `Date`. Angular template syntax no puede expresar `new Date(...)` inline. | Engineering publica una factory/pipe/const o receta canónica importable para construir el mensaje mínimo. Figma no puede resolver este bloqueo por sí solo. | Code API required. |
 
@@ -45,12 +44,13 @@ Después se puede modificar **una familia Figma por ciclo**, validar metadata + 
 | Estado persistente | BOOLEAN/VARIANT sólo si existe input público equivalente | Hover/focus/pressed/transiciones se omiten. |
 | Servicio/objeto runtime | Factory, item público o receta importable | Snippet muestra la API soportada, no un host vacío. |
 
-## Parent/child composition (13)
+## Parent/child composition (14)
 
 Estos exports ya están representados dentro de un padre conectado. No son trabajo activo salvo que aparezca un nodo y uso independiente.
 
 | Export | Padre / razón |
 | --- | --- |
+| `title-content` | Storybook lo clasifica como `Internals/Title content template`; el source lo usa como hijo de Grades, Evaluation rubric, Modal/Native modal, Home card header, Inner header, Chevron title selector y External link. Sus padres públicos ya representan las superficies de producto, por lo que no requiere target principal independiente. |
 | `accordion-simple-text` | Wrapper documentado de la familia Accordion ya conectada; renderiza `BmbAccordionComponent` y no tiene target Figma independiente confirmado. |
 | `notification-counter` | Primitive interno usado por Icon/Tabs; Storybook lo clasifica como `Internals/Notification counter` y no hay target standalone confirmado. |
 | `user-summary-content` | Hijo único de `user-summary`. |

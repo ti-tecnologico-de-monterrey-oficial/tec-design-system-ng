@@ -587,3 +587,11 @@ Carlos supplied three references for this family: TEC.mobi "Calendar_FadeTransit
 - **Locked Figma contract:** create one sibling component named `List group container`, reusing instances of `82:26226`. Expose three instance-swap slots (`Item 1`, `Item 2`, `Item 3`), visibility booleans for items 2/3, `Border type=Rounded|Flush`, plus booleans `Multiple selection`, `Row view` and `Show controls`. Do not create variables, BB components or reconstructed rows.
 - **Locked Code Connect contract:** a parserless parent resolves the three connected row instances with `executeTemplate()`, preserves order and wraps them in `<bmb-list-group>`. Map only the persistent public booleans/variant; use Storybook-neutral `listGroupId="list-group-1"` and default spacing/radius.
 - **Status:** Phase 0 is complete and implementation-ready. No Figma mutation was performed in this pass.
+
+## NAV-01 — title-content reclassified as internal composition (2026-08-17)
+
+- **Storybook evidence:** `BmbTitleContentComponent` is documented under `Internals/Title content template`, not as a standalone product component.
+- **Code evidence:** direct consumers include Grades, Evaluation rubric, Modal, Native modal, Home card header, Inner header, Chevron title selector and External link. It provides the shared title/subtitle/icon/breadcrumb template inside those parents.
+- **Figma evidence:** exact library search finds the public Breadcrumb family and an internal `BB_5_3_4`, but no standalone `Title content` main component. `Simple header` remains structurally different.
+- **Decision:** move `title-content` from `Contract required` to `Parent/child composition`. A new Figma main component would expose an implementation detail and duplicate parent-level guidance.
+- **Backlog effect:** active contracts decrease from 4 to 3; parent/child composition increases from 13 to 14. Public mapping count remains 103.
