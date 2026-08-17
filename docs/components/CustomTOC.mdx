@@ -20,6 +20,8 @@ export const CustomTOC = ({
     }
   }, [status]);
 
+  const contentId = (contentsSelector || '#content').replace('#','');
+
 return (
 
 <div className="sbdocs-wrapper css-3rewwu">
@@ -31,7 +33,7 @@ return (
     />
   )}
   <div className="css-x28zkw">
-    <div id="content">{children}</div>
+    <div id={contentId}>{children}</div>
   </div>
 </div>
 )};

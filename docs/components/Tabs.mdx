@@ -1,13 +1,13 @@
 import { useState } from 'react';
 import { CustomTOC } from './CustomTOC.mdx';
 
-export const ContentTab = ({ children, status, showTableOfContents }) => (
+export const ContentTab = ({ children, status, showTableOfContents, contentsSelector = '#content' }) => (
   <CustomTOC
     showTableOfContents={showTableOfContents}
-    contentsSelector="#tab_active"
+    contentsSelector={contentsSelector}
     status={status}
   >
-    <div id={`tab_${status}`}>{children}</div>
+    <div id={contentsSelector.replace('#','')}>{children}</div>
   </CustomTOC>
 );
 
@@ -41,6 +41,7 @@ return (
         <br />
         <ContentTab
           status={selectedTab === index ? 'active' : 'inactive'}
+          contentsSelector={`#tab_${index}`}
           showTableOfContents={showTableOfContents}
         >
           {item}
