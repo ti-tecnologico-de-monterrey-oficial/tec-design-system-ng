@@ -12,10 +12,7 @@ import { CommonModule } from '@angular/common';
 import { BmbTopBarComponent } from '../bmb-top-bar/bmb-top-bar.component';
 import { BmbSidebarComponent } from '../bmb-sidebar/bmb-sidebar.component';
 import { BmbHomeCardChatComponent } from './bmb-home-card-chat.component';
-import {
-  IBmbChatActionEvent,
-  IBmbChatMessage,
-} from '../bmb-chat-bubbles/types';
+import { IBmbChatActionEvent } from '../bmb-chat-bubbles/types';
 
 const CHAT_BEHAVIOR_DOC = `
 ### 💡 Dynamic Message Behavior
@@ -34,7 +31,7 @@ This ensures a more realistic chat experience without requiring manual configura
 - Last bot message while loading → shows thinking animation
 `;
 
-const HTMLtemplate: string = `<div class="bmb_template-single-home-card">
+const HTMLtemplate = `<div class="bmb_template-single-home-card">
 <bmb-top-bar
   [userInformation]="{
     name: 'Santiago Hernández',
@@ -95,7 +92,7 @@ const HTMLtemplate: string = `<div class="bmb_template-single-home-card">
   template: HTMLtemplate,
 })
 class StorybookModalWrapperComponent {
-  args = input<any>();
+  args = input<undefined>();
 }
 
 export default {
