@@ -52,7 +52,9 @@ export class BmbNoticeCardComponent {
 
   title = input<string>(); // deprecated
 
+  // eslint-disable-next-line @angular-eslint/no-output-on-prefix
   onClose = output<void>();
+  // eslint-disable-next-line @angular-eslint/no-output-on-prefix
   onClickBtn = output<void>();
 
   activeIndex = 0;
