@@ -79,6 +79,54 @@ ${getBasicExampleBlock('BmbIframeComponent')}
         defaultValue: { summary: 'eager' },
       },
     },
+    importance: {
+      control: { type: 'select' },
+      options: ['auto', 'high', 'low'],
+      description: 'Indicates the relative fetch priority of the iframe.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'auto | high | low' },
+        defaultValue: { summary: 'auto' },
+      },
+    },
+    frameborder: {
+      control: { type: 'text' },
+      description: 'Controls whether the legacy iframe border is displayed.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'string | number' },
+        defaultValue: { summary: '0' },
+      },
+    },
+    scrolling: {
+      control: { type: 'select' },
+      options: ['auto', 'yes', 'no'],
+      description: 'Controls the legacy iframe scrollbar behavior.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'auto | yes | no' },
+        defaultValue: { summary: 'auto' },
+      },
+    },
+    align: {
+      control: { type: 'select' },
+      options: [null, 'top', 'middle', 'bottom', 'left', 'right'],
+      description: 'Controls the legacy alignment of the iframe.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'top | middle | bottom | left | right | null' },
+        defaultValue: { summary: 'null' },
+      },
+    },
+    longdesc: {
+      control: { type: 'text' },
+      description: 'URL containing a long description of the iframe content.',
+      table: {
+        category: 'Accessibility',
+        type: { summary: 'string | null' },
+        defaultValue: { summary: 'null' },
+      },
+    },
     name: {
       control: {
         type: 'text',
@@ -93,7 +141,7 @@ ${getBasicExampleBlock('BmbIframeComponent')}
       control: { type: 'text' },
       description:
         'Inline HTML rendered by the iframe. It takes precedence over `src`.',
-      table: { category: 'Properties', type: { summary: 'string' } },
+      table: { category: 'Properties', type: { summary: 'string | null' } },
     },
     title: {
       control: { type: 'text' },
@@ -149,8 +197,13 @@ ${getBasicExampleBlock('BmbIframeComponent')}
   args: {
     height: '100%',
     width: '100%',
-    src: 'https://www.openstreetmap.org/export/embed.html?bbox=-0.004017949104309083%2C51.47612752641776%2C0.00030577182769775396%2C51.478569861898606&layer=mapnik',
+    src: 'https://www.openstreetmap.org/export/embed.html?bbox=-118.5%2C14.3%2C-86.5%2C32.8&layer=mapnik',
     loading: 'eager',
+    importance: 'auto',
+    frameborder: '0',
+    scrolling: 'auto',
+    align: null,
+    longdesc: null,
     name: 'test',
     title: 'Embedded OpenStreetMap map',
   },

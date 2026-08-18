@@ -12,25 +12,39 @@ import {
 } from '@angular/core';
 import type {
   BmbIframeAttributes,
+  BmbIframeAlign,
+  BmbIframeImportance,
   BmbIframeLoading,
   BmbIframeReferrerPolicy,
+  BmbIframeScrolling,
 } from '../../_shared/types/components/iframe';
 
-export type { BmbIframeAttributes, BmbIframeLoading, BmbIframeReferrerPolicy };
+export type {
+  BmbIframeAttributes,
+  BmbIframeAlign,
+  BmbIframeImportance,
+  BmbIframeLoading,
+  BmbIframeReferrerPolicy,
+  BmbIframeScrolling,
+};
 
 const MANAGED_ATTRIBUTES = new Set([
   'allow',
   'allowfullscreen',
+  'align',
   'class',
   'credentialless',
   'csp',
   'frameborder',
   'height',
   'id',
+  'importance',
   'loading',
+  'longdesc',
   'name',
   'referrerpolicy',
   'sandbox',
+  'scrolling',
   'src',
   'srcdoc',
   'style',
@@ -56,6 +70,11 @@ export class BmbIframeComponent {
   srcdoc = input<string | null>(null);
   width = input<string | number>('100%');
   loading = input<BmbIframeLoading>('eager');
+  importance = input<BmbIframeImportance>('auto');
+  frameborder = input<string | number>('0');
+  scrolling = input<BmbIframeScrolling>('auto');
+  align = input<BmbIframeAlign | null>(null);
+  longdesc = input<string | null>(null);
   name = input<string>('');
   title = input<string>('');
   sandbox = input<string | null>(null);
@@ -94,10 +113,18 @@ export class BmbIframeComponent {
         this.referrerPolicy(),
       );
 
-      this.renderer.setAttribute(iframe, 'frameborder', '0');
+      this.renderer.setAttribute(
+        iframe,
+        'frameborder',
+        String(this.frameborder()),
+      );
+      this.renderer.setAttribute(iframe, 'scrolling', this.scrolling());
+      this.setNullableAttribute(iframe, 'align', this.align());
+      this.setNullableAttribute(iframe, 'longdesc', this.longdesc());
       this.renderer.setAttribute(iframe, 'width', String(this.width()));
       this.renderer.setAttribute(iframe, 'height', String(this.height()));
       this.renderer.setAttribute(iframe, 'loading', this.loading());
+      this.renderer.setAttribute(iframe, 'importance', this.importance());
       this.setOptionalAttribute(iframe, 'name', this.name());
       this.setOptionalAttribute(iframe, 'title', this.title());
       this.setOptionalAttribute(iframe, 'id', this.iframeId());

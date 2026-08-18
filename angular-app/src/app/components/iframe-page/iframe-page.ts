@@ -6,8 +6,11 @@ import {
 } from '@angular/core';
 import {
   BmbIframeComponent,
+  type BmbIframeAlign,
+  type BmbIframeImportance,
   type BmbIframeLoading,
   type BmbIframeReferrerPolicy,
+  type BmbIframeScrolling,
 } from 'ui-angular';
 
 @Component({
@@ -19,6 +22,15 @@ import {
 })
 export class IframePage {
   readonly loadingOptions: BmbIframeLoading[] = ['eager', 'lazy'];
+  readonly importanceOptions: BmbIframeImportance[] = ['auto', 'high', 'low'];
+  readonly scrollingOptions: BmbIframeScrolling[] = ['auto', 'yes', 'no'];
+  readonly alignOptions: BmbIframeAlign[] = [
+    'top',
+    'middle',
+    'bottom',
+    'left',
+    'right',
+  ];
   readonly referrerPolicyOptions: BmbIframeReferrerPolicy[] = [
     'no-referrer',
     'no-referrer-when-downgrade',
@@ -30,7 +42,7 @@ export class IframePage {
     'unsafe-url',
   ];
   readonly src = signal(
-    'https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/components-containers-ai-chat-bubble--documentation',
+    'https://www.openstreetmap.org/export/embed.html?bbox=-118.5%2C14.3%2C-86.5%2C32.8&layer=mapnik',
   );
   readonly useSrcdoc = signal(false);
   readonly srcdoc = signal(
@@ -39,6 +51,11 @@ export class IframePage {
   readonly width = signal('100%');
   readonly height = signal('360');
   readonly loading = signal<BmbIframeLoading>('lazy');
+  readonly importance = signal<BmbIframeImportance>('auto');
+  readonly frameborder = signal<string | number>('0');
+  readonly scrolling = signal<BmbIframeScrolling>('auto');
+  readonly align = signal<BmbIframeAlign | null>(null);
+  readonly longdesc = signal<string | null>(null);
   readonly name = signal('Bamboo iframe demo');
   readonly title = signal('Bamboo component preview');
   readonly sandbox = signal<string | null>(null);
@@ -59,6 +76,36 @@ export class IframePage {
     'aria-label': this.ariaLabel(),
     'data-demo': this.dataDemo(),
   }));
+  readonly configurationJson = computed(() =>
+    JSON.stringify(
+      {
+        src: this.useSrcdoc() ? null : this.src(),
+        srcdoc: this.useSrcdoc() ? this.srcdoc() : null,
+        width: this.width(),
+        height: this.height(),
+        loading: this.loading(),
+        importance: this.importance(),
+        frameborder: this.frameborder(),
+        scrolling: this.scrolling(),
+        align: this.align(),
+        longdesc: this.longdesc(),
+        name: this.name(),
+        title: this.title(),
+        sandbox: this.sandbox(),
+        allow: this.allow(),
+        allowFullscreen: this.allowFullscreen(),
+        credentialless: this.credentialless(),
+        csp: this.csp(),
+        referrerPolicy: this.referrerPolicy(),
+        iframeId: this.iframeId(),
+        iframeClass: this.iframeClass(),
+        iframeStyle: this.iframeStyle(),
+        iframeAttributes: this.iframeAttributes(),
+      },
+      null,
+      2,
+    ),
+  );
 
   setSrc(value: string): void {
     this.src.set(value);
@@ -82,6 +129,26 @@ export class IframePage {
 
   setLoading(value: BmbIframeLoading): void {
     this.loading.set(value);
+  }
+
+  setImportance(value: BmbIframeImportance): void {
+    this.importance.set(value);
+  }
+
+  setFrameborder(value: string): void {
+    this.frameborder.set(value);
+  }
+
+  setScrolling(value: BmbIframeScrolling): void {
+    this.scrolling.set(value);
+  }
+
+  setAlign(value: string): void {
+    this.align.set(value ? (value as BmbIframeAlign) : null);
+  }
+
+  setLongdesc(value: string): void {
+    this.longdesc.set(value || null);
   }
 
   setName(value: string): void {

@@ -9,7 +9,6 @@ describe('IframePage', () => {
     await TestBed.configureTestingModule({
       imports: [IframePage],
     }).compileComponents();
-
     fixture = TestBed.createComponent(IframePage);
     component = fixture.componentInstance;
     fixture.detectChanges();
@@ -20,18 +19,22 @@ describe('IframePage', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should update the iframe controls', () => {
+  it('should update all iframe controls', () => {
     component.setSrc('https://example.com/embed');
     component.setUseSrcdoc(true);
     component.setSrcdoc('<p>Inline demo</p>');
     component.setWidth('640');
     component.setHeight('480');
     component.setLoading('eager');
+    component.setImportance('high');
+    component.setFrameborder('1');
+    component.setScrolling('no');
+    component.setAlign('right');
+    component.setLongdesc('https://example.com/description');
     component.setName('Example iframe');
     component.setTitle('Example title');
     component.setSandboxEnabled(true);
     component.setSandbox('allow-scripts');
-    component.setAllowEnabled(true);
     component.setAllow('fullscreen; camera');
     component.setAllowFullscreen(false);
     component.setCredentialless(true);
@@ -43,7 +46,6 @@ describe('IframePage', () => {
     component.iframeStyle.set('border: 0;');
     component.ariaLabel.set('Example preview');
     component.dataDemo.set('example');
-    fixture.detectChanges();
 
     expect(component.src()).toBe('https://example.com/embed');
     expect(component.useSrcdoc()).toBe(true);
@@ -51,6 +53,11 @@ describe('IframePage', () => {
     expect(component.width()).toBe('640');
     expect(component.height()).toBe('480');
     expect(component.loading()).toBe('eager');
+    expect(component.importance()).toBe('high');
+    expect(component.frameborder()).toBe('1');
+    expect(component.scrolling()).toBe('no');
+    expect(component.align()).toBe('right');
+    expect(component.longdesc()).toBe('https://example.com/description');
     expect(component.name()).toBe('Example iframe');
     expect(component.title()).toBe('Example title');
     expect(component.sandbox()).toBe('allow-scripts');
@@ -66,19 +73,26 @@ describe('IframePage', () => {
   });
 
   it('should expose every loading and referrer policy option', () => {
-    const loadingOptions = Array.from(
-      fixture.nativeElement.querySelectorAll<HTMLSelectElement>(
-        '#iframe-loading option',
-      ),
-    ).map((option) => option.value);
-    const referrerPolicyOptions = Array.from(
-      fixture.nativeElement.querySelectorAll<HTMLSelectElement>(
-        '#iframe-referrer-policy option',
-      ),
-    ).map((option) => option.value);
-
-    expect(loadingOptions).toEqual(['eager', 'lazy']);
-    expect(referrerPolicyOptions).toEqual([
+    const values = (selector: string) =>
+      Array.from(fixture.nativeElement.querySelectorAll(selector)).map(
+        (option: unknown) => (option as HTMLOptionElement).value,
+      );
+    expect(values('#iframe-loading option')).toEqual(['eager', 'lazy']);
+    expect(values('#iframe-importance option')).toEqual([
+      'auto',
+      'high',
+      'low',
+    ]);
+    expect(values('#iframe-scrolling option')).toEqual(['auto', 'yes', 'no']);
+    expect(values('#iframe-align option')).toEqual([
+      '',
+      'top',
+      'middle',
+      'bottom',
+      'left',
+      'right',
+    ]);
+    expect(values('#iframe-referrer-policy option')).toEqual([
       '',
       'no-referrer',
       'no-referrer-when-downgrade',
@@ -97,6 +111,11 @@ describe('IframePage', () => {
     component.setWidth('720');
     component.setHeight('405');
     component.setLoading('lazy');
+    component.setImportance('low');
+    component.setFrameborder('1');
+    component.setScrolling('yes');
+    component.setAlign('left');
+    component.setLongdesc('https://example.com/long-description');
     component.setName('bound-frame');
     component.setTitle('Bound frame');
     component.setSandboxEnabled(true);
@@ -120,6 +139,13 @@ describe('IframePage', () => {
     expect(iframe.getAttribute('width')).toBe('720');
     expect(iframe.getAttribute('height')).toBe('405');
     expect(iframe.getAttribute('loading')).toBe('lazy');
+    expect(iframe.getAttribute('importance')).toBe('low');
+    expect(iframe.getAttribute('frameborder')).toBe('1');
+    expect(iframe.getAttribute('scrolling')).toBe('yes');
+    expect(iframe.getAttribute('align')).toBe('left');
+    expect(iframe.getAttribute('longdesc')).toBe(
+      'https://example.com/long-description',
+    );
     expect(iframe.getAttribute('name')).toBe('bound-frame');
     expect(iframe.getAttribute('title')).toBe('Bound frame');
     expect(iframe.getAttribute('sandbox')).toBe(
@@ -139,20 +165,48 @@ describe('IframePage', () => {
     expect(iframe.getAttribute('data-demo')).toBe('bound');
   });
 
+  it('should show the effective configuration in the diagnostic panel', () => {
+    component.setUseSrcdoc(true);
+    component.setSrcdoc('<p>Diagnostic content</p>');
+    component.setSandboxEnabled(true);
+    component.setSandbox('allow-scripts');
+    component.setReferrerPolicy('strict-origin');
+    component.setCredentialless(true);
+    fixture.detectChanges();
+
+    const configuration = JSON.parse(
+      fixture.nativeElement.querySelector(
+        '[data-testid="iframe-configuration"]',
+      ).textContent,
+    );
+
+    expect(configuration.src).toBeNull();
+    expect(configuration.srcdoc).toBe('<p>Diagnostic content</p>');
+    expect(configuration.importance).toBe('auto');
+    expect(configuration.frameborder).toBe('0');
+    expect(configuration.scrolling).toBe('auto');
+    expect(configuration.align).toBeNull();
+    expect(configuration.longdesc).toBeNull();
+    expect(configuration.sandbox).toBe('allow-scripts');
+    expect(configuration.referrerPolicy).toBe('strict-origin');
+    expect(configuration.credentialless).toBe(true);
+    expect(configuration.iframeAttributes).toEqual({
+      'aria-label': 'Interactive Bamboo iframe preview',
+      'data-demo': 'iframe-page',
+    });
+  });
+
   it('should add and remove nullable security attributes', () => {
     component.setSandboxEnabled(true);
     component.setAllowEnabled(true);
     component.setCspEnabled(true);
-
     expect(component.sandbox()).toBe('');
     expect(component.allow()).toBe('');
     expect(component.csp()).toBe('');
-
     component.setSandboxEnabled(false);
     component.setAllowEnabled(false);
     component.setCspEnabled(false);
     component.setReferrerPolicy('');
-
     expect(component.sandbox()).toBeNull();
     expect(component.allow()).toBeNull();
     expect(component.csp()).toBeNull();
@@ -161,10 +215,8 @@ describe('IframePage', () => {
 
   it('should count iframe load events', () => {
     const initialLoadCount = component.loadCount();
-
     getIframe().dispatchEvent(new Event('load'));
     fixture.detectChanges();
-
     expect(component.loadCount()).toBe(initialLoadCount + 1);
     expect(
       fixture.nativeElement.querySelector('[role="status"]').textContent,
