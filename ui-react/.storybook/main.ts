@@ -1,6 +1,9 @@
 import type { StorybookConfig } from '@storybook/react-vite';
 import path from 'node:path';
 import fs from 'node:fs';
+import dotenv from 'dotenv';
+
+dotenv.config({ path: path.resolve(import.meta.dirname, '../../.env') });
 
 const config: StorybookConfig = {
   stories: ['../src/lib/**/*.mdx', '../src/**/*.stories.@(js|jsx|mjs|ts|tsx)'],

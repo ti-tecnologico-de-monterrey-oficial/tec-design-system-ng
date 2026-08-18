@@ -31,6 +31,25 @@
   gap: 0.5rem;
 }
 
+.field {
+  display: grid;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+
+  span {
+    font-weight: 600;
+  }
+
+  select {
+    background: var(--general-contrasts-5);
+    border: 1px solid var(--general-contrasts-25);
+    border-radius: 0.5rem;
+    color: inherit;
+    padding: 0.625rem 0.75rem;
+    width: 100%;
+  }
+}
+
 .event {
   border-left: 0.25rem solid var(--general-contrasts-main-selection);
   margin-top: 1.5rem;

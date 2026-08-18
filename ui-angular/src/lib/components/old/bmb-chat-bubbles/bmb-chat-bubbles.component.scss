@@ -197,10 +197,13 @@
       border: 0;
       border-radius: var(--bmb-radius-full);
       box-sizing: border-box;
-      color: var(--general-contrasts-60);
+      color: var(--general-contrasts-50);
       display: inline-flex;
       height: rem.rem_calc(32);
       justify-content: center;
+      transition:
+        color 150ms ease,
+        opacity 150ms ease;
       width: rem.rem_calc(32);
 
       &:hover,
@@ -227,6 +230,11 @@
     &-extra-container {
       opacity: 0;
       visibility: hidden;
+    }
+
+    &-extra-container-user {
+      opacity: 1;
+      visibility: visible;
     }
 
     &-selected &-extra-container,
