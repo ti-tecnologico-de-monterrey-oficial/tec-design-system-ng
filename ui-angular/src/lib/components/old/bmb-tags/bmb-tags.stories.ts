@@ -1,7 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/angular';
-import { BmbTagComponent } from './bmb-tags.component';
-import { IBmbActivityTags } from '../../../_shared/types/components/tags';
-import { IBmbTagColors } from '../../../_shared/types/foundations/colors/color-type';
+import { BmbTagComponent, IBmbActivityTags } from './bmb-tags.component';
 import {
   getBasicExampleBlock,
   getGeneralComponentDescription,
@@ -30,33 +28,28 @@ const onCloseTagEvent: IBmbOnEvent = getOnEvent(
   'string',
 );
 
-const appearanceOptions: IBmbTagColors[] = [
-  'creative-use-violet',
-  'creative-use-strong',
-  'creative-use-indigo',
-  'creative-use-emerald',
-  'creative-use-licorice',
-  'creative-use-dark-teal',
-  'creative-use-peach',
-  'creative-use-sepia',
-  'creative-use-soft-red',
-  'creative-use-wattle',
-  'creative-use-ship-cove',
-  'creative-use-plantation',
-  'creative-use-rum',
-  'creative-use-ripe-lemon',
-  'creative-use-hibiscus',
-  'semantic-success',
-  'semantic-info-event',
-  'semantic-warning',
-  'semantic-error',
-  'semantic-brand',
-  'semantic-alert',
-  'mitec-blue',
-  'mitec-red',
-  'mitec-green',
-  'mitec-orange',
-  'mitec-purple',
+const appearanceOptions: IBmbActivityTags[] = [
+  'normal',
+  'mitec_blue',
+  'mitec_red',
+  'mitec_green',
+  'mitec_orange',
+  'mitec_light_green',
+  'mitec_purple',
+  'creative_violet',
+  'creative_indigo',
+  'creative_emerald',
+  'creative_licorice',
+  'creative_darkteal',
+  'creative_peach',
+  'creative_sepia',
+  'creative_softred',
+  'creative_wattle',
+  'creative_shipcove',
+  'creative_plantation',
+  'creative_rum',
+  'creative_hibiscus',
+  'creative_ripelemon',
 ];
 const GENERAL_DOCUMENTATION_LINK: string =
   'https://bamboo.tec.mx/latest/componentes/tag/descripcion-general-hqSuz4Cb';

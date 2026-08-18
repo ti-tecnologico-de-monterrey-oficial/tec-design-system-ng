@@ -70,9 +70,3 @@ export const BMB_BADGE_COLOR_LIST: string[] = [
 ] as const;
 
 export type IBmbBadgeColors = (typeof BMB_BADGE_COLOR_LIST)[number];
-
-export const BMB_TAG_COLOR_LIST: string[] = [
-  ...Object.keys(COLOR_GROUP_NAMES['bmb_tag_type']),
-] as const;
-
-export type IBmbTagColors = (typeof BMB_TAG_COLOR_LIST)[number];

@@ -12,8 +12,29 @@ import {
 import { CommonModule } from '@angular/common';
 import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
 import { TranslatePipe } from '../../../pipes/translations';
-import { getTagClasses } from '../../../_shared/logic/components/tags';
-import { IBmbActivityTags } from '../../../_shared/types/components/tags';
+
+export type IBmbActivityTags =
+  | 'normal'
+  | 'mitec_blue'
+  | 'mitec_red'
+  | 'mitec_green'
+  | 'mitec_orange'
+  | 'mitec_light_green'
+  | 'mitec_purple'
+  | 'creative_violet'
+  | 'creative_indigo'
+  | 'creative_emerald'
+  | 'creative_licorice'
+  | 'creative_darkteal'
+  | 'creative_peach'
+  | 'creative_sepia'
+  | 'creative_softred'
+  | 'creative_wattle'
+  | 'creative_shipcove'
+  | 'creative_plantation'
+  | 'creative_rum'
+  | 'creative_hibiscus'
+  | 'creative_ripelemon';
 
 @Component({
   selector: 'bmb-tag',
@@ -60,13 +81,25 @@ export class BmbTagComponent implements AfterViewInit {
   }
 
   getClasses(): string[] {
-    return getTagClasses({
-      appearance: this.appearance(),
-      dismissible: this.dismissible(),
-      enableClick: this.enableClick(),
-      isActive: this.isActive(),
-      isDisabled: this.isDisabled(),
-    });
+    const classes = [
+      'bmb_tag',
+      'bmb_tag-rounded',
+      `bmb_tag-${this.appearance()}`,
+    ];
+
+    if (this.dismissible() || this.enableClick()) {
+      if (this.isActive()) {
+        classes.push('bmb_tag-active');
+      }
+
+      if (this.isDisabled()) {
+        classes.push('bmb_tag-disabled');
+      }
+    } else {
+      classes.push('bmb_tag-activity');
+    }
+
+    return classes;
   }
 
   closeTag(text: string) {
