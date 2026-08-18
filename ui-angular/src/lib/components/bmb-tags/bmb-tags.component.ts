@@ -12,8 +12,9 @@ import {
 import { CommonModule } from '@angular/common';
 import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
 import { TranslatePipe } from '../../../pipes/translations';
-import { getTagClasses } from '../../../_shared/logic/components/tags';
-import { IBmbActivityTags } from '../../../_shared/types/components/tags';
+import { getTagClasses } from '../../_shared/logic/components/tags';
+import { IBmbActivityTags } from '../../_shared/types/components/tags';
+import { IBmbTagColors } from '../../_shared/types/foundations/colors/color-type';
 
 @Component({
   selector: 'bmb-tag',
@@ -25,7 +26,7 @@ import { IBmbActivityTags } from '../../../_shared/types/components/tags';
   encapsulation: ViewEncapsulation.None,
 })
 export class BmbTagComponent implements AfterViewInit {
-  appearance = input<IBmbActivityTags>('normal');
+  appearance = input<IBmbActivityTags | IBmbTagColors>('normal');
   text = input<string>('');
   grouped = input<boolean>(false);
   dismissible = input<boolean>(false);
