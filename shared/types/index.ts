@@ -1,18 +1,27 @@
-import { IBmbInteractiveIconAppearance } from '../../ui-angular/src/lib/components/old/bmb-interactive-icon/bmb-interactive-icon.component';
-import { IBbmBgAppearance } from '../../ui-angular/src/lib/components/old/bmb-advertisement-card/types';
+import type { IBbmBgAppearance } from './components/advertisement-card';
+import type { IBmbInteractiveIconAppearance } from './components/interactive-icon';
 
-export * from '../../ui-angular/src/lib/components/old/bmb-timestream/types';
-export * from '../../ui-angular/src/lib/components/old/bmb-push-notification/types';
-export * from '../../ui-angular/src/lib/components/old/bmb-advertisement-card/types';
-export * from '../../ui-angular/src/lib/components/old/bmb-login-onboarding/types';
-export * from '../../ui-angular/src/lib/components/old/bmb-filter-card/bmb-filter-card.interface';
-export * from '../../ui-angular/src/lib/components/old/bmb-alert-center/types';
-export * from '../../ui-angular/src/lib/components/old/bmb-chat-bubbles/types';
-export * from '../../ui-angular/src/lib/components/old/bmb-ai-chat-bubble/types';
-export * from '../../ui-angular/src/lib/components/old/bmb-sidebar/bmb-sidebar.interface';
-export * from '../../ui-angular/src/lib/components/old/bmb-grades/types';
-export * from '../../ui-angular/src/lib/components/old/bmb-tables/bmb-tables.interface';
-export * from '../../ui-angular/src/lib/components/old/bmb-image/types';
+// components
+// export * from './components/advertisement-card';
+export * from './components/badge';
+export * from './components/bottom-navigation-bar';
+export * from './components/card';
+export * from './components/divider';
+export * from './components/grade-value';
+export * from './components/iframe';
+export * from './components/interactive-icon';
+export * from './components/layout';
+export * from './components/legend';
+export * from './components/notification-counter';
+export * from './components/progress-circle';
+export * from './components/server-table';
+export * from './components/title';
+export * from './components/tooltip';
+export * from './input';
+export * from './utils';
+export * from './components/action-icon';
+
+// types
 export * from './colors';
 export type { IBmbNotificationCounterType } from './components/notification-counter';
 export type {

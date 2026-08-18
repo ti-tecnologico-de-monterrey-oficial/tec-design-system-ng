@@ -1,7 +1,7 @@
 import { computed, Injectable, signal } from '@angular/core';
 import { DateTime, Interval } from 'luxon';
 import { IBmbCalendarEvent, IBmbParsedDates } from './types';
-import { IBmbColorSemantics } from '@shared/types';
+import { IBmbColorSemantics } from '../../../_shared/types';
 import { DEFAULT_DATE_FORMAT, getWeekDays } from './utils';
 
 const parseFromFormat = (dateString: string, format: string): DateTime => {
@@ -13,14 +13,25 @@ const parseFromFormat = (dateString: string, format: string): DateTime => {
 @Injectable()
 export class BmbCalendarComponentService {
   readonly visibleDate = signal<DateTime>(DateTime.now());
-  readonly filteredEvents = signal<IBmbParsedDates>({});
   readonly orderedEvents = signal<IBmbParsedDates>({});
   readonly selectedWeek = signal<number>(this.visibleDate().weekNumber);
   readonly renderWeekDays = computed(() => getWeekDays(this.visibleDate()));
   readonly currentTime = signal<DateTime>(DateTime.now());
   readonly filters = signal<Record<string, boolean>>({});
-  readonly temporalFilters = signal<Record<string, boolean>>({});
   readonly dateFormat = signal<string>(DEFAULT_DATE_FORMAT);
+  readonly filteredEvents = computed<IBmbParsedDates>(() => {
+    const _orderedEvents = this.orderedEvents();
+    const _filters = this.filters();
+
+    if (!_orderedEvents || Object.keys(_orderedEvents).length === 0) {
+      return {};
+    }
+
+    return this.setFilteredEvents({
+      orderedEvents: _orderedEvents,
+      filters: _filters,
+    });
+  });
 
   getVisibleDate() {
     return this.visibleDate();
@@ -34,13 +45,19 @@ export class BmbCalendarComponentService {
     return this.filteredEvents();
   }
 
-  setFilteredEvents(filters: Record<string, boolean>) {
+  setFilteredEvents({
+    orderedEvents,
+    filters,
+  }: {
+    orderedEvents: IBmbParsedDates;
+    filters: Record<string, boolean>;
+  }): IBmbParsedDates {
     const newEvents = {} as IBmbParsedDates;
-    for (const week in this.orderedEvents()) {
+    for (const week in orderedEvents) {
       if (week !== 'calendars') {
         newEvents[week] = {};
-        for (const date in this.orderedEvents()[week]) {
-          newEvents[week][date] = this.orderedEvents()[week][date].map(
+        for (const date in orderedEvents[week]) {
+          newEvents[week][date] = orderedEvents[week][date].map(
             (event) => ({
               ...event,
               isVisible:
@@ -52,8 +69,9 @@ export class BmbCalendarComponentService {
       }
     }
 
-    newEvents.calendars = this.orderedEvents().calendars;
-    this.filteredEvents.set(newEvents);
+    newEvents.calendars = orderedEvents.calendars;
+
+    return newEvents;
   }
 
   getOrderedEvents() {
@@ -146,13 +164,8 @@ export class BmbCalendarComponentService {
     return this.filters();
   }
 
-  applyFilters() {
-    this.setFilters(this.temporalFilters());
-    this.setTemporalFilters({});
-  }
-
-  setTemporalFilters(filters: Record<string, boolean>) {
-    this.temporalFilters.set(filters);
+  applyFilters(filters: Record<string, boolean>) {
+    this.setFilters(filters);
   }
 
   setDateFormat(dateFormat: string) {

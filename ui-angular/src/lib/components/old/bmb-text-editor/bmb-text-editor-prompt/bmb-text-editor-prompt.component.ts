@@ -2,7 +2,7 @@ import { Component, input, output } from '@angular/core';
 import {
   BmbCardComponent,
   BmbCardContentComponent,
-} from '../../bmb-card/bmb-card.component';
+} from '../../../bmb-card/bmb-card.component';
 import { BmbFormValidatorComponent } from '../../bmb-form-validator/bmb-form-validator.component';
 import { FormControl, FormGroup } from '@angular/forms';
 import { BmbButtonDirective } from '../../../../directives/old/bmb-button/button.directive';
@@ -18,13 +18,13 @@ import { CommonModule } from '@angular/common';
 import {
   BMB_BASE_GENERAL_CONTRAST_LIST,
   BMB_SEMANTIC_COLOR_LIST,
-} from '@shared/types/foundations/colors/color-type';
+} from '../../../../_shared/types/foundations/colors/color-type';
 import { BmbActionIconComponent } from '../../bmb-action-icon/bmb-action-icon.component';
 
 export type IBmbTextEditorPromptType = 'link' | 'image' | 'color';
 
 @Component({
-  selector: 'app-bmb-text-editor-prompt',
+  selector: 'bmb-text-editor-prompt',
   standalone: true,
   imports: [
     CommonModule,

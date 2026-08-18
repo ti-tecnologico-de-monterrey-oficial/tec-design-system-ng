@@ -1,0 +1,47 @@
+<header class="page-header">
+  <p class="eyebrow">Componente migrado</p>
+  <h1>BmbPullWedge</h1>
+  <p>Modifica las alturas y abre o cierra el contenido deslizable.</p>
+</header>
+<section class="playground" aria-labelledby="pull-wedge-title">
+  <div class="controls">
+    <h2 id="pull-wedge-title">Propiedades</h2>
+    <label
+      >initialHeight: {{ initialHeight() }}<input
+        type="range"
+        min="220"
+        max="500"
+        step="20"
+        [value]="initialHeight()"
+        (input)="setInitialHeight(+$any($event.target).value)"
+    /></label>
+    <label
+      >minContentHeight: {{ minContentHeight() }}<input
+        type="range"
+        min="60"
+        max="180"
+        step="10"
+        [value]="minContentHeight()"
+        (input)="setMinContentHeight(+$any($event.target).value)"
+    /></label>
+    <label class="toggle"
+      ><input
+        type="checkbox"
+        [checked]="isOpen()"
+        (change)="setOpen($any($event.target).checked)"
+      />isOpen</label
+    >
+  </div>
+  <div class="preview">
+    <bmb-pull-wedge
+      [initialHeight]="initialHeight()"
+      [minContentHeight]="minContentHeight()"
+      [isOpen]="isOpen()"
+      (isOpenChange)="setOpen($event)"
+      ><article collapsible>
+        <h2>Contenido expandible</h2>
+        <p>Arrastra o presiona el control para interactuar.</p>
+      </article></bmb-pull-wedge
+    >
+  </div>
+</section>

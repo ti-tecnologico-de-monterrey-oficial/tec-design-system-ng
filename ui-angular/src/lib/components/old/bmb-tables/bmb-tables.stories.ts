@@ -11,18 +11,20 @@ import {
   getGeneralDescription,
   getOnEvent,
   getSpecialSpecifications,
-  getModelDescription,
   RELEVANT_TITLE,
 } from '@docs/utils/utils';
-import { getOnEventParam } from '@docs/utils/parameterDescriptions';
+import {
+  getModelDescription,
+  getOnEventParam,
+} from '@docs/utils/parameterDescriptions';
 
-const additionalBlock: string = `
-    @ViewChild('infoTemplate') infoTemplate!: TemplateRef<any>;
-    @ViewChild('lastNameTemplate') lastNameTemplate!: TemplateRef<any>;
-    @ViewChild('actionTemplate') actionTemplate!: TemplateRef<any>;
-    @ViewChild('detailTemplate') detailTemplate!: TemplateRef<any>;
-    @ViewChild('headerNameTemplate') headerNameTemplate!: TemplateRef<any>;
-    @ViewChild('customLastName') customLastName!: TemplateRef<any>;
+const additionalBlock = `
+    @ViewChild('infoTemplate') infoTemplate!: TemplateRef<undefined>;
+    @ViewChild('lastNameTemplate') lastNameTemplate!: TemplateRef<undefined>;
+    @ViewChild('actionTemplate') actionTemplate!: TemplateRef<undefined>;
+    @ViewChild('detailTemplate') detailTemplate!: TemplateRef<undefined>;
+    @ViewChild('headerNameTemplate') headerNameTemplate!: TemplateRef<undefined>;
+    @ViewChild('customLastName') customLastName!: TemplateRef<undefined>;
 
     constructor(private cdr: ChangeDetectorRef) {}
 
@@ -33,8 +35,8 @@ const additionalBlock: string = `
       showActions: true,
     };
 
-    data: any[] = [];
-    columns: any[] = [];
+    data: undefined[] = [];
+    columns: undefined[] = [];
 
     ngOnInit(): void {
       this.data = [
@@ -208,24 +210,24 @@ const additionalBlock: string = `
       this.cdr.detectChanges();
     }
 
-    onSelect(selected: any) {
+    onSelect(selected: undefined) {
       // Maneja la selección
     }
 
-    clickButton(event: any) {
+    clickButton(event: undefined) {
       // Maneja el click del botón
     }
 
-    isString(value: any): value is string {
+    isString(value: undefined): value is string {
       return typeof value === 'string';
     }
 
-    isObject(value: any): value is object {
+    isObject(value: undefined): value is object {
       return typeof value === 'object' && value !== null;
     }
 `;
 
-const SELECTED_ROW_DESCRIPTION: string =
+const SELECTED_ROW_DESCRIPTION =
   '<br/><br/>This can be used to save the row selected.';
 
 export default {
@@ -491,8 +493,8 @@ TableColum {
   labelEn?: string;
   def: string;
   dataKey: string;
-  htmlLabel?: TemplateRef<any>;
-  templateActions?: TemplateRef<any>;
+  htmlLabel?: TemplateRef<undefined>;
+  templateActions?: TemplateRef<undefined>;
   width?: number;
   type?: 'string' | 'number' | 'date';
   icon?: string;
@@ -613,7 +615,7 @@ TableColum {
       description: `Sets the current filters applied to the table.<br/><br/>${getModelDescription('filtersModel')}`,
       table: {
         category: 'Properties',
-        type: { summary: 'Record<string, any>' },
+        type: { summary: 'Record<string, undefined>' },
         defaultValue: { summary: '{}' },
       },
     },
@@ -634,7 +636,7 @@ TableColum {
       getOnEvent(
         'whether of the filters',
         'filtersChange',
-        'Record<string, any>',
+        'Record<string, undefined>',
       ),
     ),
     clearSelectionWhenPageChanges: {

@@ -13,7 +13,7 @@ import {
   ViewContainerRef,
   ViewEncapsulation,
 } from '@angular/core';
-import { BmbOverlayComponent } from '../bmb-overlay/bmb-overlay.component';
+import { BmbOverlayComponent } from '../../bmb-overlay/bmb-overlay.component';
 import { BmbButtonDirective } from '../../../directives/old/bmb-button/button.directive';
 import { CommonModule } from '@angular/common';
 import { BmbThreeColsComponent } from '../bmb-three-cols/bmb-three-cols.component';
@@ -55,7 +55,6 @@ export class BmbNativeModalComponent {
   modalId = input.required<string>();
   size = input<IBmbNativeModalSize>('medium');
   iconStyle = input<IBmbModalAlertStyle>();
-  // autoFocus = input<boolean>(false);
   disableBackdropClose = input<boolean>(true);
   hasBackdrop = input<boolean>(true);
   inputContext = input<{ [key: string]: any }>({});
@@ -72,12 +71,12 @@ export class BmbNativeModalComponent {
     });
   }
 
-  @ViewChild('container', { read: ViewContainerRef })
+  @ViewChild('container', { read: ViewContainerRef, static: true })
   container!: ViewContainerRef;
 
   private componentRef: ComponentRef<any> | null = null;
 
-  svgUrl: string = 'assets/svg/';
+  svgUrl = 'assets/svg/';
   modalIcon = computed(() => {
     if (this.iconStyle()) {
       return `${this.svgUrl}${this.iconStyle()}_fill.svg`;

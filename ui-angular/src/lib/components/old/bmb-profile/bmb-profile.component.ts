@@ -18,24 +18,24 @@ import {
   IBmbStudentProfileData,
   IBmbTargetLink,
   IBmbUserData,
-} from '@shared/types';
+} from '../../../_shared/types';
 import { BmbUserSummaryContentComponent } from '../bmb-user-summary/bmb-user-summary-content/bmb-user-summary-content.component';
 import { CommonModule } from '@angular/common';
 import { BmbHomeCardComponent } from '../bmb-home-card/bmb-home-card.component';
-import { buildErrorMessage } from '@shared/logic/utils';
+import { buildErrorMessage } from '../../../_shared/logic/utils';
 import { BmbIconItemComponent } from '../bmb-icon-item/bmb-icon-item.component';
 import { BmbDividerComponent } from '../../bmb-divider/bmb-divider.component';
 import { BmbRadialComponent } from '../bmb-radial/bmb-radial.component';
 import { FormControl } from '@angular/forms';
 import { TranslatePipe } from '../../../pipes/translations';
-import { BmbCheckExternalLinkButtonComponent } from '../bmb-check-external-link-button/bmb-check-external-link-button.component';
+import { BmbCheckExternalLinkButtonComponent } from '../../bmb-check-external-link-button/bmb-check-external-link-button.component';
 import {
   BmbCardComponent,
   BmbCardContentComponent,
-} from '../bmb-card/bmb-card.component';
+} from '../../bmb-card/bmb-card.component';
 import { BmbLayoutDirective } from '../../../directives/old/bmb-layout/bmb-layout.directive';
 import { BmbLayoutItemDirective } from '../../../directives/old/bmb-layout/bmb-layout-item.directive';
-import { BmbUserImageComponent } from '../bmb-user-image/bmb-user-image.component';
+import { BmbUserImageComponent } from '../../bmb-user-image/bmb-user-image.component';
 import { BmbLoaderComponent } from '../bmb-loader/bmb-loader.component';
 
 @Component({

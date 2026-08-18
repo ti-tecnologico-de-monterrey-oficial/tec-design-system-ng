@@ -15,6 +15,9 @@
       "@shared/types/*": ["src/lib/_shared/types/*"]
     }
   },
+  "angularCompilerOptions": {
+    "compilationMode": "partial"
+  },
   "include": ["src/**/*.ts"],
   "exclude": [
     "src/**/*.spec.ts",
@@ -23,6 +26,9 @@
     "jest.config.cts",
     "src/test-setup.ts",
     "**/*.stories.ts",
-    "**/*.stories.js"
+    "**/*.stories.js",
+    "**/*.figma.ts",
+    "**/*-story.utils.ts",
+    "**/*.story.ts"
   ]
 }

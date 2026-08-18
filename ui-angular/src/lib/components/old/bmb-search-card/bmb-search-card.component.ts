@@ -18,7 +18,7 @@ import { Subscription } from 'rxjs';
 import { BmbSearchCardEmptyStateComponent } from './bmb-search-card-empty-state/bmb-search-card-empty-state.component';
 import { BmbTranslationsService } from '../../../services/translations/translations.service';
 import { BmbSearchCardItemComponent } from './bmb-search-card-item/bmb-search-card-item.component';
-import { IBmbInteractiveIconAppearance } from '../bmb-interactive-icon/bmb-interactive-icon.component';
+import { IBmbInteractiveIconAppearance } from '../../../_shared/types/components/interactive-icon';
 
 export interface IBmbSearchCardItemResult {
   id: string;

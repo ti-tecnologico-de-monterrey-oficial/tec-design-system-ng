@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { handleImageNotFoundError } from '@shared/logic/utils';
+import { handleImageNotFoundError } from '../../../_shared/logic/utils';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -14,6 +14,8 @@ import { BmbHomeCardComponent } from '../bmb-home-card/bmb-home-card.component';
 import { BmbCarouselComponent } from '../../bmb-carousel/bmb-carousel.component';
 import { BmbTabsComponent, IBmbTab } from '../bmb-tabs/bmb-tabs.component';
 import { TranslatePipe } from '../../../pipes/translations';
+
+export * from './types';
 
 @Component({
   selector: 'bmb-advertisement-card',
@@ -40,8 +42,8 @@ export class BmbAdvertisementCardComponent {
 
   imageNotFoundError = output<void>();
 
-  expanded: boolean = false;
-  selectedTabId: number = 0;
+  expanded = false;
+  selectedTabId = 0;
   tabsData: IBmbTab[] = [
     { id: 1, title: 'Promociones', isActive: true },
     { id: 2, title: 'Avisos' },

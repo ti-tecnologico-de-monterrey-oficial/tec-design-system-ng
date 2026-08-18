@@ -2,7 +2,6 @@ import {
   cpSync,
   mkdirSync,
   readFileSync,
-  rmSync,
   writeFileSync,
 } from 'node:fs';
 
@@ -12,9 +11,10 @@ const targets = {
   assets: 'ui-angular/src/assets',
 };
 
-rmSync('ui-angular/src/lib/_shared', { recursive: true, force: true });
-rmSync(targets.assets, { recursive: true, force: true });
 mkdirSync('ui-angular/src/lib/_shared', { recursive: true });
+mkdirSync(targets.logic, { recursive: true });
+mkdirSync(targets.types, { recursive: true });
+mkdirSync(targets.assets, { recursive: true });
 cpSync('shared/logic', targets.logic, { recursive: true });
 cpSync('shared/types', targets.types, { recursive: true });
 cpSync('shared/assets', targets.assets, { recursive: true });

@@ -13,7 +13,7 @@ import {
   BmbHeaderMitecComponent,
   IBmbActionHeaderLinks,
 } from '../bmb-header-mitec/bmb-header-mitec.component';
-import { IBmbTargetLink } from '@shared/types';
+import { IBmbTargetLink } from '../../../_shared/types';
 import { BmbLoginContentComponent } from './bmb-login-content/bmb-login-content.component';
 import { TranslatePipe } from '../../../pipes/translations';
 

@@ -7,10 +7,11 @@ import {
   output,
   signal,
   ViewEncapsulation,
+  effect,
 } from '@angular/core';
-import { BmbCheckExternalLinkButtonComponent } from '../../bmb-check-external-link-button/bmb-check-external-link-button.component';
+import { BmbCheckExternalLinkButtonComponent } from '../../../bmb-check-external-link-button/bmb-check-external-link-button.component';
 import { BmbIconComponent } from '../../bmb-icon/bmb-icon.component';
-import { IDropdownItem } from '@shared/types';
+import { IDropdownItem } from '../../../../_shared/types/index';
 import { CommonModule } from '@angular/common';
 import { TranslatePipe } from '../../../../pipes/translations';
 import { BmbDividerComponent } from '../../../bmb-divider/bmb-divider.component';
@@ -31,7 +32,7 @@ import { BmbDividerComponent } from '../../../bmb-divider/bmb-divider.component'
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BmbDropdownContentComponent {
-  selectedOption = input<string | string[]>(); //Internal
+  selectedOption = input<string | string[]>([]); //Internal
   items = model<IDropdownItem[]>([]);
   isKeyboardEvent = model<boolean>(false); //Internal
   enableFilter = input<boolean>(false);
@@ -63,7 +64,29 @@ export class BmbDropdownContentComponent {
 
     return this.items();
   });
+  isIndeterminate = computed(() => {
+    if (typeof this.selectionState() === 'string') return true;
+
+    return (
+      this.items().length > this.selectionState()?.length &&
+      this.selectionState()?.length > 0
+    );
+  });
+  isAllSelected = computed(() => {
+    if (typeof this.selectionState() === 'string') return false;
+    return (
+      this.items().length === this.selectionState()?.length &&
+      this.items().length > 0
+    );
+  });
+  selectionState = signal<string[] | string>([]);
   filterString = signal<string>('');
+
+  constructor() {
+    effect(() => {
+      this.selectionState.set(this.selectedOption());
+    }, { allowSignalWrites: true });
+  }
 
   filterList(event: Event) {
     const input = event.target as HTMLInputElement;
@@ -72,13 +95,26 @@ export class BmbDropdownContentComponent {
   }
 
   isSelected(item: string): boolean {
-    if (typeof this.selectedOption() === 'string')
-      return item === this.selectedOption();
+    if (typeof this.selectionState() === 'string')
+      return item === this.selectionState();
 
-    return this.selectedOption()?.includes(item) || false;
+    return this.selectionState()?.includes(item) || false;
   }
 
   handleDropdown(item: IDropdownItem) {
+    if (this.isMultiSelect()) {
+      if (this.isSelected(item.value!)) {
+        this.selectionState.update((value) => {
+          if (typeof value === 'string') return [];
+          return value.filter((selectedItem) => selectedItem !== item.value);
+        });
+      } else {
+        this.selectionState.update((value) => {
+          if (typeof value === 'string') return [item.value!];
+          return [...value, item.value!];
+        });
+      }
+    }
     if (item?.action) {
       item.action();
       this.clickedItem.emit(item);
@@ -86,31 +122,27 @@ export class BmbDropdownContentComponent {
   }
 
   handleSelectedAll() {
-    this.items().forEach((item) => {
-      if (this.isIndeterminate && this.isSelected(item.value!)) {
-        return;
-      }
-
-      this.handleDropdown(item);
-    });
-  }
-
-  get totalSelectedOptions(): number {
-    if (Array.isArray(this.selectedOption())) {
-      return this.selectedOption()?.length || 0;
+    if (this.isAllSelected()) {
+      this.selectionState.set([]);
+      this.items().forEach((item) => {
+        if (item?.action) {
+          item.action();
+          this.clickedItem.emit(item);
+        }
+      });
+    } else {
+      const allValues = this.items().map((item) => item.value!);
+      const currentSelectedValues = [...this.selectionState()];
+      this.selectionState.set(allValues);
+      this.items().forEach((item) => {
+        const hasSelection = currentSelectedValues.includes(item.value!);
+        if (!hasSelection) {
+          if (item?.action) {
+            item.action();
+            this.clickedItem.emit(item);
+          }
+        }
+      });
     }
-
-    return 0;
-  }
-
-  get isIndeterminate(): boolean {
-    return (
-      !!this.totalSelectedOptions &&
-      this.items().length > this.totalSelectedOptions
-    );
-  }
-
-  get isAllSelected(): boolean {
-    return this.items().length === this.totalSelectedOptions;
   }
 }

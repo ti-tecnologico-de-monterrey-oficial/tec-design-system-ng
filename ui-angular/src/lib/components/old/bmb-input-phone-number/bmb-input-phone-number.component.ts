@@ -30,14 +30,14 @@ import {
 import {
   IBmbInputError,
   IBmbInputTooltipPosition,
-} from '../bmb-input/bmb-input.component';
+} from '../../../_shared/types/input';
 import { BmbInputValidatorComponent } from '../bmb-input/bmb-input-validator/bmb-input-validator.component';
 import {
   buildErrorMessage,
   getCustomValidation,
   getCustomValidationMessage,
   getUUID,
-} from '@shared/logic/utils';
+} from '../../../_shared/logic/utils';
 import { BmbInputContentComponent } from '../bmb-input/bmb-input-content/bmb-input-content.component';
 import {
   assignNewFormControl,
@@ -110,7 +110,7 @@ export class BmbInputPhoneNumberComponent implements OnInit {
     }
 
     if (!!this.value() || !!this.control().value) {
-      let inputs: string[] = [];
+      const inputs: string[] = [];
 
       if (!this.defaultCountryCode()) {
         inputs.push('defaultCountry');
@@ -140,7 +140,7 @@ export class BmbInputPhoneNumberComponent implements OnInit {
 
     this.subscriptions.add(
       this.phoneControl.valueChanges.subscribe((value) => {
-        if (!!value) {
+        if (value) {
           this.setControlValue(
             this.getSelectedCountryLada(this.ladaControl.value),
             value,
@@ -236,7 +236,7 @@ export class BmbInputPhoneNumberComponent implements OnInit {
   getSelectedCountryCode(value: string): string {
     const selectedCountry = this.getSelectedCountry(value);
 
-    if (!!selectedCountry) {
+    if (selectedCountry) {
       return selectedCountry.country_code.toLocaleLowerCase();
     }
 
@@ -246,7 +246,7 @@ export class BmbInputPhoneNumberComponent implements OnInit {
   getSelectedCountryLada(value: string): string {
     const selectedCountry = this.getSelectedCountry(value);
 
-    if (!!selectedCountry) {
+    if (selectedCountry) {
       return selectedCountry.lada;
     }
 
@@ -256,7 +256,7 @@ export class BmbInputPhoneNumberComponent implements OnInit {
   getSelectedCountryLength(value: string): number {
     const selectedCountry = this.getSelectedCountry(value);
 
-    if (!!selectedCountry) {
+    if (selectedCountry) {
       return selectedCountry.length;
     }
 
@@ -264,7 +264,7 @@ export class BmbInputPhoneNumberComponent implements OnInit {
   }
 
   onValueChange(value: string) {
-    if (!!this.phoneControl.value) {
+    if (this.phoneControl.value) {
       this.setControlValue(
         this.getSelectedCountryLada(value),
         this.phoneControl.value,
@@ -305,7 +305,7 @@ export class BmbInputPhoneNumberComponent implements OnInit {
     const minLength = `Por favor ingresa ${this.getSelectedCountryLength(
       this.ladaControl.value,
     )} caracteres numéricos`;
-    if (!!this.errorMessage()) {
+    if (this.errorMessage()) {
       if (typeof this.errorMessage() === 'string')
         return {
           required: this.errorMessage().toString(),

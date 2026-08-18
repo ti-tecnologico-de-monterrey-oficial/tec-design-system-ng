@@ -8,7 +8,7 @@ import {
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
-import { IBmbContrast } from '@shared/types/colors';
+import { IBmbContrast } from '../../../_shared/types/colors';
 
 @Component({
   selector: 'bmb-button-icon',
@@ -29,6 +29,7 @@ export class BmbButtonIconComponent {
   isOutline = model<boolean>(false);
   alt = input<string>('');
 
+  // eslint-disable-next-line @angular-eslint/no-output-on-prefix
   onButtonClick = output<MouseEvent>();
 
   handlePress(): void {

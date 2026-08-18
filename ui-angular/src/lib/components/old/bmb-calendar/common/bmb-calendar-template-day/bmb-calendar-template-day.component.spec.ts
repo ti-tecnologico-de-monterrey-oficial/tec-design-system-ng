@@ -3,7 +3,7 @@ import { BmbCalendarTemplateDayComponent } from './bmb-calendar-template-day.com
 import { BmbCalendarComponentService } from '../../bmb-calendar.service';
 import { DateTime, Interval } from 'luxon';
 import { IBmbCalendarEvent } from '../../types';
-import { BmbTranslationsService } from '../../../../services/translations/translations.service';
+import { BmbTranslationsService } from '../../../../../services/translations/translations.service';
 
 describe('BmbCalendarTemplateDayComponent', () => {
   let component: BmbCalendarTemplateDayComponent;

@@ -1,4 +1,31 @@
-export type SizeNames = 'xs' | 's' | 'm' | 'l' | 'xl' | 'xxl' | 'none' | 'auto';
+import { IBmbInteractiveIconAppearance } from './components/interactive-icon';
+
+export type SizeNames =
+  | 'none'
+  | 'xxs'
+  | 'xs'
+  | 's'
+  | 'm'
+  | 'l'
+  | 'xl'
+  | 'xxl'
+  | 'none'
+  | 'auto'
+  | '0'
+  | '1'
+  | '2'
+  | '3'
+  | '4'
+  | '5'
+  | '6'
+  | '7'
+  | '8'
+  | '9'
+  | '10'
+  | '12'
+  | '16'
+  | '20'
+  | '24';
 export type IButtonAppearance =
   | 'primary'
   | 'secondary-filled'
@@ -40,14 +67,14 @@ export interface IBmbHome {
   callback: (result: unknown) => void;
 }
 
-// export interface IBmbApp {
-//   icon: string;
-//   title: string;
-//   link?: string;
-//   target?: IBmbTargetLink;
-//   appearance: IBmbInteractiveIconAppearance;
-//   callbackParam?: any;
-// }
+export interface IBmbApp {
+  icon: string;
+  title: string;
+  link?: string;
+  target?: IBmbTargetLink;
+  appearance: IBmbInteractiveIconAppearance;
+  callbackParam?: any;
+}
 
 export interface IBmbNameValuePair {
   name: string;
@@ -104,13 +131,14 @@ export interface IBmbCollaboratorProfileData {
 export interface IBmbActionHeader {
   icon: string;
   alt?: string;
+  tooltipText?: string;
   iconSize?: number;
   iconActiveToggle?: string;
   isToggleActive?: boolean;
   isAccentColor?: boolean;
   link?: string;
   target?: IBmbTargetLink;
-  action: (event?: Event) => void;
+  action: (event?: Event, data?: any) => void;
 }
 
 export interface IBmbLinkConfiguration extends IBmbLinkInfo {

@@ -15,7 +15,7 @@ import { CommonModule } from '@angular/common';
 import {
   BmbCardComponent,
   BmbCardContentComponent,
-} from '../../../components/old/bmb-card/bmb-card.component';
+} from '../../../components/bmb-card/bmb-card.component';
 
 const meta: Meta<BmbLayoutGridDirective> = {
   title: 'Foundations/Layouts/Layout grid',

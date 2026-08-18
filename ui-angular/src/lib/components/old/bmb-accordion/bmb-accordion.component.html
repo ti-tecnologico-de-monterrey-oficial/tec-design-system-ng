@@ -7,42 +7,86 @@
   @if (disabled()) {
     <section class="bmb_accordion-overlay"></section>
   }
-  <header
-    [ngClass]="getClassesHeader()"
-    (click)="toggle($event)"
-    (keyup)="handleToggleKeyboard($event)"
-    bmbLayout
-    margin="none"
-    alignItems="center"
-    justify="spaceBetween"
-  >
-    <div bmbLayoutItem margin="none" [isDynamicItem]="true" [colGrow]="1">
-      <ng-container [ngTemplateOutlet]="bmbAccordionHeader() ?? null" />
-    </div>
-    <div bmbLayoutItem margin="none" [isDynamicItem]="true">
-      @if (icon()) {
-        <bmb-icon
-          [icon]="icon()"
-          alt="Accordion icon"
-          (imageNotFoundError)="handleImageNotFoundError()"
-        />
-      } @else if (!hideToggle()) {
-        <bmb-icon
-          [icon]="getIconToggle()"
-          alt="Accordion toggle icon"
-          (imageNotFoundError)="handleImageNotFoundError()"
-        />
-      }
-    </div>
-  </header>
-  @if (!disabled()) {
-    <section
-      [class]="getClassesContent()"
-      [ngClass]="{
-        'bmb_accordion-content-open': this._expanded()
-      }"
+  @if (bmbAccordionBasic()) {
+    @if (!hideToggle()) {
+      <section
+        class="bmb_accordion-basic"
+        tabindex="0"
+        (click)="toggle($event)"
+        (keyup)="handleToggleKeyboard($event)"
+        bmbLayout
+        margin="m"
+        gapSize="m"
+        alignItems="center"
+      >
+        <div
+          #basicContent
+          id="accordion_basic_content_id"
+          class="bmb_accordion-basic-content"
+          [ngClass]="{
+            closed: allowExpand() && !_expanded(),
+            expanded: allowExpand() && _expanded(),
+          }"
+          bmbLayoutItem
+          margin="none"
+          [isDynamicItem]="true"
+          [colGrow]="1"
+        >
+          <ng-container [ngTemplateOutlet]="bmbAccordionBasic() ?? null" />
+        </div>
+        @if (allowExpand()) {
+          <bmb-icon
+            class="bmb_accordion-basic-icon"
+            [icon]="getIconToggle()"
+            [size]="24"
+            alt="Accordion toggle icon"
+            bmbLayoutItem
+            margin="none"
+            [isDynamicItem]="true"
+          />
+        }
+      </section>
+    }
+  } @else {
+    <header
+      [ngClass]="getClassesHeader()"
+      (click)="toggle($event)"
+      (keyup)="handleToggleKeyboard($event)"
+      tabindex="0"
+      bmbLayout
+      margin="none"
+      alignItems="center"
+      justify="spaceBetween"
     >
-      <ng-container [ngTemplateOutlet]="bmbAccordionContent() ?? null" />
-    </section>
+      <div bmbLayoutItem margin="none" [isDynamicItem]="true" [colGrow]="1">
+        <ng-container [ngTemplateOutlet]="bmbAccordionHeader() ?? null" />
+      </div>
+      <div bmbLayoutItem margin="none" [isDynamicItem]="true">
+        @if (icon()) {
+          <bmb-icon
+            [icon]="icon()"
+            [size]="24"
+            alt="Accordion icon"
+            (imageNotFoundError)="handleImageNotFoundError()"
+          />
+        } @else if (!hideToggle()) {
+          <bmb-icon
+            [icon]="getIconToggle()"
+            alt="Accordion toggle icon"
+            (imageNotFoundError)="handleImageNotFoundError()"
+          />
+        }
+      </div>
+    </header>
+    @if (!disabled()) {
+      <section
+        [class]="getClassesContent()"
+        [ngClass]="{
+          'bmb_accordion-content-open': _expanded(),
+        }"
+      >
+        <ng-container [ngTemplateOutlet]="bmbAccordionContent() ?? null" />
+      </section>
+    }
   }
 </section>

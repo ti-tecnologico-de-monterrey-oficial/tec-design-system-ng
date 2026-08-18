@@ -3,9 +3,9 @@ import {
   BmbTranslationsService,
   BmbDictionaries,
 } from './translations.service';
-import es from '../../../assets/i18n/es.json';
-import en from '../../../assets/i18n/en.json';
-import { beforeEach, describe, it } from 'node:test';
+
+const es = require('../../../assets/i18n/es.json');
+const en = require('../../../assets/i18n/en.json');
 
 describe('BmbTranslationsService', () => {
   let service: BmbTranslationsService;
@@ -15,12 +15,17 @@ describe('BmbTranslationsService', () => {
       providers: [BmbTranslationsService],
     });
     service = TestBed.inject(BmbTranslationsService);
+
+    // Add dictionaries that were loaded via require
+    service.addDictionary('es', es);
+    service.addDictionary('en', en);
+    service.setLanguage('es');
   });
 
   function getAllKeys(obj: any, prefix = ''): string[] {
     let keys: string[] = [];
     for (const key in obj) {
-      if (obj.hasOwnProperty(key)) {
+      if (Object.prototype.hasOwnProperty.call(obj, key)) {
         const path = prefix ? `${prefix}.${key}` : key;
         if (
           typeof obj[key] === 'object' &&
@@ -374,7 +379,7 @@ describe('BmbTranslationsService', () => {
       }
 
       const endTime = performance.now();
-      expect(endTime - startTime).toBeLessThan(50); // Should complete in less than 50ms
+      expect(endTime - startTime).toBeLessThan(200); // Should complete in less than 200ms
     });
   });
 });

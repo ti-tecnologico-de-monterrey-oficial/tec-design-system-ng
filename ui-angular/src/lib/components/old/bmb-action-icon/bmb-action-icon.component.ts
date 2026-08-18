@@ -10,13 +10,13 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
-import { BmbCheckExternalLinkButtonComponent } from '../bmb-check-external-link-button/bmb-check-external-link-button.component';
+import { BmbCheckExternalLinkButtonComponent } from '../../bmb-check-external-link-button/bmb-check-external-link-button.component';
 import { CommonModule } from '@angular/common';
-import { IBmbTargetLink } from '@shared/types';
+import { IBmbTargetLink } from '../../../_shared/types/utils';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { sanitizeContent } from '../../../_shared/logic/sanitizeContent';
 import { BmbTooltipBaseComponent } from '../bmb-tooltip/bmb-tooltip-base/bmb-tooltip-base.component';
-import { isImage } from '@shared/logic/utils';
+import { isImage } from '../../../_shared/logic/utils';
 
 @Component({
   selector: 'bmb-action-icon',
@@ -46,23 +46,23 @@ export class BmbActionIconComponent {
   link = input<string>();
   disabled = input<boolean>(false);
   isSVGTemplate = input<boolean>();
-  tooltipText = input<string>(''); //Internal
+  tooltipText = input<string>('');
 
   imageNotFoundError = output<void>();
   buttonPress = output<MouseEvent>();
   buttonClick = output<MouseEvent>();
 
-  customActionIcon = contentChild<TemplateRef<any>>('customActionIcon');
+  customActionIcon = contentChild<TemplateRef<undefined>>('customActionIcon');
   sanitizer: DomSanitizer = inject(DomSanitizer);
 
   getIcon(): string {
-    if (this.isToggleActive() && !!this.toggleIconActive())
-      return this.toggleIconActive()!;
+    if (this.isToggleActive() && this.toggleIconActive())
+      return this.toggleIconActive() || '';
     return this.icon();
   }
 
   handlePress(event?: MouseEvent): void {
-    this.buttonPress.emit(event || new MouseEvent('click'));
+    this.buttonPress.emit(event || new MouseEvent('press'));
   }
 
   handleClick(event?: MouseEvent) {

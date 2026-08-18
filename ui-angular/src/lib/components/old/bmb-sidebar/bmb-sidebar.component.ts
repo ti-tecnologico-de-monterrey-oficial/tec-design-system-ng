@@ -8,12 +8,14 @@ import {
 import { CommonModule } from '@angular/common';
 import { SidebarElement } from './bmb-sidebar.interface';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
-import { BmbCheckExternalLinkButtonComponent } from '../bmb-check-external-link-button/bmb-check-external-link-button.component';
+import { BmbCheckExternalLinkButtonComponent } from '../../bmb-check-external-link-button/bmb-check-external-link-button.component';
 import { IPositionButtonMenu } from '../bmb-top-bar/types';
 import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
 import { logDeprecatedInput } from '../../../_shared/logic/logDeprecatedInput';
 import { BmbDividerComponent } from '../../bmb-divider/bmb-divider.component';
 import { TranslatePipe } from '../../../pipes/translations';
+
+export * from './bmb-sidebar.interface';
 
 @Component({
   selector: 'bmb-sidebar',
@@ -39,8 +41,8 @@ export class BmbSidebarComponent {
 
   title = input<string>(); // deprecated
 
-  isOpen: boolean = false;
-  maxChildrenLevel: number = 2;
+  isOpen = false;
+  maxChildrenLevel = 2;
   error = false;
 
   constructor() {

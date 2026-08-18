@@ -6,7 +6,7 @@
   let-level="level"
 >
   @for (element of elements; track $index) {
-    <li class="bmb_sidebar-list-item" (click)="closeSidebar(element)">
+    <li class="bmb_sidebar-list-item" (click)="closeSidebar(element)" tabindex="0">
       <bmb-check-external-link-button
         class="bmb_sidebar-element"
         [idElement]="'element' + element.id!"
@@ -83,7 +83,7 @@
             icon="chevron_left"
             [iconSize]="24"
             (buttonClick)="toggleChildren(selectedElement)"
-            [alt]="'sidebar.back' | translate"
+            [tooltipText]="'sidebar.back' | translate"
           />
         }
 
@@ -98,7 +98,7 @@
           [iconSize]="24"
           [isAccentColor]="false"
           (buttonClick)="closeSidebar(selectedElement)"
-          [alt]="'sidebar.close' | translate"
+          [tooltipText]="'sidebar.close' | translate"
         />
       </section>
       <bmb-divider />
@@ -149,7 +149,7 @@
     [isAccentColor]="false"
     [(isToggleActive)]="isOpen"
     (buttonClick)="handleClose()"
-    [alt]="'sidebar.open_menu' | translate"
+    [tooltipText]="'sidebar.open_menu' | translate"
   />
   <nav
     #sideNav

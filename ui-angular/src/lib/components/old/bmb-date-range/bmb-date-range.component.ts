@@ -12,12 +12,12 @@ import { FormControl, ValidatorFn } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { BmbDatepickerComponent } from '../bmb-datepicker/bmb-datepicker.component';
 import { CommonModule } from '@angular/common';
-import { IBmbInputError } from '../bmb-input/bmb-input.component';
+import { IBmbInputError } from '../../../_shared/types/input';
 import {
   assignNewFormControl,
   newFormControlByType,
 } from '../../../_shared/logic/formControl';
-import { getUUID } from '@shared/logic/utils';
+import { getUUID } from '../../../_shared/logic/utils';
 import { DateTime } from 'luxon';
 
 @Component({
@@ -52,10 +52,10 @@ export class BmbDateRangeComponent implements OnInit {
   disableDatesBefore = input<string>('');
   disableDatesAfter = input<string>('');
 
-  disableDatesBeforeCurrent: string = '';
-  disableDatesAfterCurrent: string = '';
-  isControlStartNull: boolean = false;
-  isControlEndNull: boolean = false;
+  disableDatesBeforeCurrent = '';
+  disableDatesAfterCurrent = '';
+  isControlStartNull = false;
+  isControlEndNull = false;
   private readonly destroyRef = inject(DestroyRef);
   private readonly subscriptions = new Subscription();
 
@@ -82,7 +82,7 @@ export class BmbDateRangeComponent implements OnInit {
 
     const controlStartSubscription =
       this.controlStart()?.valueChanges.subscribe((value) => {
-        if (!!value) {
+        if (value) {
           const parsedDate = DateTime.fromFormat(value, this.dateFormat());
 
           if (!parsedDate.isValid) {
@@ -97,7 +97,7 @@ export class BmbDateRangeComponent implements OnInit {
 
     const controlEndSubscription = this.controlEnd()?.valueChanges.subscribe(
       (value) => {
-        if (!!value) {
+        if (value) {
           this.disableDatesAfterCurrent = value;
         }
       },

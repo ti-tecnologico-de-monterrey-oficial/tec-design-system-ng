@@ -11,7 +11,7 @@ import {
 } from '@angular/core';
 import { BmbDropdownContentComponent } from '../utils/bmb-dropdown-content/bmb-dropdown-content.component';
 import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
-import { IDropdownItem } from '@shared/types';
+import { IDropdownItem } from '../../../_shared/types';
 import { BmbProjectionContentService } from '../../../services/old/projection/projection.service';
 import { TranslatePipe } from '../../../pipes/translations';
 
@@ -29,14 +29,16 @@ export type IBmbDropdownMenuIcon = 'more_vert' | 'more_horiz';
 export class BmbDropdownMenuComponent {
   items = input<IDropdownItem[]>([]);
 
-  icon = input<IBmbDropdownMenuIcon>('more_vert');
+  icon = input<IBmbDropdownMenuIcon>('more_vert'); //Deprecated
 
   clickedItem = output<IDropdownItem>();
   contentID = signal<string>('');
 
-  @ViewChild('contentDiv', { static: true }) contentRef!: ElementRef<any>;
+  @ViewChild('contentDiv', { static: true }) contentRef!: ElementRef<undefined>;
 
-  private projectionService: BmbProjectionContentService = inject(BmbProjectionContentService);
+  private projectionService: BmbProjectionContentService = inject(
+    BmbProjectionContentService,
+  );
 
   openDropdown() {
     const data = {

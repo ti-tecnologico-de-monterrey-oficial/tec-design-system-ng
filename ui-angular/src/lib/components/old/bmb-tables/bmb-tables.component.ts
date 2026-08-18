@@ -30,13 +30,6 @@ import {
   MatTableModule,
   MatTable,
 } from '@angular/material/table';
-// import {
-//   animate,
-//   state,
-//   style,
-//   transition,
-//   trigger,
-// } from '@angular/animations';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
@@ -59,6 +52,8 @@ import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.compo
 import { DateTime } from 'luxon';
 import { sanitizeContent } from '../../../_shared/logic/sanitizeContent';
 import { TranslatePipe } from '../../../pipes/translations';
+
+export * from './bmb-tables.interface';
 
 export type BmbTableLang = 'en' | 'es';
 
@@ -140,6 +135,7 @@ export class BmbTablesComponent implements AfterViewInit, OnInit, OnChanges {
   clearSelectionWhenPageChanges = input<boolean>(false);
   disableStickyColumn = input<boolean>(false);
 
+  // eslint-disable-next-line @angular-eslint/no-output-native
   select = output<any>();
   clickedRow = output<any>();
   searchChange = output<string>();

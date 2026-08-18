@@ -2,16 +2,18 @@ import {
   ChangeDetectionStrategy,
   Component,
   input,
+  output,
   ViewEncapsulation,
 } from '@angular/core';
-import { IBmbActionHeader, SizeNames } from '@shared/types';
-import { CommonModule } from '@angular/common';
-import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
 import {
-  BmbLayoutDirective,
+  IBmbActionHeader,
+  SizeNames,
   IAlignItemsOptions,
   IJustifyOptions,
-} from '../../../directives/old/bmb-layout/bmb-layout.directive';
+} from '../../../_shared/types';
+import { CommonModule } from '@angular/common';
+import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
+import { BmbLayoutDirective } from '../../../directives/old/bmb-layout/bmb-layout.directive';
 import { BmbLayoutItemDirective } from '../../../directives/old/bmb-layout/bmb-layout-item.directive';
 
 @Component({

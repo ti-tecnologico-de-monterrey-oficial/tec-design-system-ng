@@ -15,7 +15,7 @@ import { BmbBadgeComponent } from '../../../bmb-badge/bmb-badge.component';
 import { BmbImageComponent } from '../../bmb-image/bmb-image.component';
 import { IBbmBgAppearance } from '../../bmb-advertisement-card/types';
 import { BmbListGroupStatusService } from '../bmb-list-group.service';
-import { IBmbContrast } from '@shared/types/colors';
+import { IBmbContrast } from '../../../../_shared/types/colors';
 
 @Component({
   selector: 'bmb-list-group-item',

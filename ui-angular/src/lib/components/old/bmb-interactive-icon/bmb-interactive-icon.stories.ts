@@ -1,8 +1,8 @@
 import { Meta, StoryObj } from '@storybook/angular';
 import {
   BmbInteractiveIconComponent,
-  IBmbInteractiveIconAppearance,
 } from './bmb-interactive-icon.component';
+import { IBmbInteractiveIconAppearance } from '../../../_shared/types/components/interactive-icon';
 import {
   colorList,
   getBasicExampleBlock,

@@ -22,7 +22,7 @@ import {
 } from '@angular/forms';
 import { BmbInputContentComponent } from '../bmb-input/bmb-input-content/bmb-input-content.component';
 import { BmbContainerComponent } from '../../bmb-container/bmb-container.component';
-import { getUUID } from '@shared/logic/utils';
+import { getUUID } from '../../../_shared/logic/utils';
 import { TranslatePipe } from '../../../pipes/translations';
 
 @Component({

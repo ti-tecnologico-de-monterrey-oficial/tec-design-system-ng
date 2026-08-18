@@ -7,7 +7,7 @@ import {
   effect,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { BmbCheckExternalLinkButtonComponent } from '../bmb-check-external-link-button/bmb-check-external-link-button.component';
+import { BmbCheckExternalLinkButtonComponent } from '../../bmb-check-external-link-button/bmb-check-external-link-button.component';
 import {
   IBmbAlertColors,
   IBmbBaseColors,
@@ -17,45 +17,12 @@ import {
   IBmbMitecInstitutionalColors,
   IBmbSemanticBaseColors,
   IBmbSemanticColors,
-} from '@shared/types/foundations/colors/color-type';
-import { IBmbContrast } from '@shared/types/colors';
+} from '../../../_shared/types/foundations/colors/color-type';
+import { IBmbContrast } from '../../../_shared/types/colors';
 import { logDeprecatedInput } from '../../../_shared/logic/logDeprecatedInput';
 import { BmbBoxIconComponent } from '../bmb-box-icon/bmb-box-icon.component';
-import { IBmbTargetLink } from '@shared/types';
+import { IBmbTargetLink, IBmbInteractiveIconAppearance } from '../../../_shared/types';
 import { BmbTooltipBaseComponent } from '../bmb-tooltip/bmb-tooltip-base/bmb-tooltip-base.component';
-
-export type IBmbInteractiveIconAppearance =
-  | 'red'
-  | 'blue'
-  | 'green'
-  | 'yellow'
-  | 'purple'
-  | 'none'
-  | 'mitec_blue'
-  | 'mitec_red'
-  | 'mitec_green'
-  | 'mitec_orange'
-  | 'mitec_light_green'
-  | 'mitec_purple'
-  | 'creative_violet'
-  | 'creative_indigo'
-  | 'creative_emerald'
-  | 'creative_licorice'
-  | 'creative_darkteal'
-  | 'creative_peach'
-  | 'creative_sepia'
-  | 'creative_softred'
-  | 'creative_wattle'
-  | 'creative_shipcove'
-  | 'creative_plantation'
-  | 'creative_rum'
-  | 'creative_hibiscus'
-  | 'creative_ripelemon'
-  | 'buttons-primary-normal'
-  | 'purple-primary'
-  | 'general_contrasts-main-selection'
-  | 'general_contrasts-main-selection-alternative'
-  | 'white_primary';
 
 export type IBmbInteractiveIconType = 'regular' | 'button' | 'app_drawer';
 

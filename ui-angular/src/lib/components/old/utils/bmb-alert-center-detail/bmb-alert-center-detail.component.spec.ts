@@ -6,7 +6,7 @@ import {
   IBmbDataAlertDetails,
 } from '../../bmb-alert-center/types';
 import DOMPurify from 'dompurify';
-import { forbidTagsAndAttributes } from '../../../utils/utils';
+import { forbidTagsAndAttributes } from '../../../../_shared/logic/utils';
 
 describe('BmbAlertCenterDetailComponent', () => {
   let component: BmbAlertCenterDetailComponent;

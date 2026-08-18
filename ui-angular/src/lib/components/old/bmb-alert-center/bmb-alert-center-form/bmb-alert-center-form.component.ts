@@ -18,7 +18,8 @@ import {
   IBmbDataAlertsEventType,
   IBmbDataAlertsOutput,
   IBmbDataAlertsParsed,
-} from '@shared/types';
+} from '../types';
+import { IBmbActionHeader } from '../../../../_shared/types/index';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { BmbAlertCenterListComponent } from '../bmb-alert-center-list/bmb-alert-center-list.component';
@@ -27,7 +28,6 @@ import { BmbLayoutItemDirective } from '../../../../directives/old/bmb-layout/bm
 import { BmbCheckboxComponent } from '../../bmb-checkbox/bmb-checkbox.component';
 import { TranslatePipe } from '../../../../pipes/translations';
 import { BmbNavigationBarComponent } from '../../bmb-navigation-bar/bmb-navigation-bar.component';
-import { IBmbActionHeader } from '@shared/types';
 import { BmbTranslationsService } from '../../../../services/translations/translations.service';
 
 @Component({

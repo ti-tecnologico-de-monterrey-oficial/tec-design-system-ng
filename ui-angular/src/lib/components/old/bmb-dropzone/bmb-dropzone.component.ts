@@ -15,8 +15,8 @@ import {
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { BmbTextLinkComponent } from '../bmb-text-link/bmb-text-link.component';
 import { BmbProgressBarComponent } from '../bmb-progress-bar/bmb-progress-bar.component';
-import { getUUID } from '@shared/logic/utils';
-import { IBmbContrast } from '@shared/types/colors';
+import { getUUID } from '../../../_shared/logic/utils';
+import { IBmbContrast } from '../../../_shared/types/colors';
 import { TranslatePipe } from '../../../pipes/translations';
 import { BmbVerticalLayoutDirective } from '../../../directives/old/bmb-layout/bmb-vertical-layout/bmb-vertical-layout.directive';
 import { BmbVerticalLayoutItemDirective } from '../../../directives/old/bmb-layout/bmb-vertical-layout/bmb-vertical-layout-item.directive';
@@ -47,6 +47,11 @@ interface IBmbFileValidation {
   isValidFormat: boolean;
   isValidSize: boolean;
   isValidName: boolean;
+}
+
+interface FileSizeDisplay {
+  value: number;
+  unit: 'KB' | 'MB';
 }
 
 @Component({
@@ -210,20 +215,35 @@ export class BmbDropzoneComponent implements OnInit, OnChanges {
     return `${value}%/${total}%`;
   }
 
-  protected getFormatSize(_: any, total: string): string {
-    return `${Intl.NumberFormat('en-US', {
-      minimumFractionDigits: 2,
-    }).format(Number(total))}MB`;
-  }
-
-  protected getFormatSizeError(_: any, total: string): string {
-    return `${Intl.NumberFormat('en-US', {
-      minimumFractionDigits: 2,
-    }).format(Number(total))}MB*`;
-  }
-
   protected getFileSizeInMB(fileSize: number): number {
     return fileSize / 1048576;
+  }
+
+  protected getFileSizeInKB(fileSize: number): number {
+    return fileSize / 1024;
+  }
+
+  protected getFileSize(fileSize: number): FileSizeDisplay {
+    const sizeInMB = this.getFileSizeInMB(fileSize);
+
+    if (Math.floor(sizeInMB) === 0) {
+      return { value: this.getFileSizeInKB(fileSize), unit: 'KB' };
+    }
+
+    return { value: sizeInMB, unit: 'MB' };
+  }
+
+  protected getFileSizeFormat(
+    fileSize: number,
+    hasError = false,
+  ): (_: string, total: string) => string {
+    const { unit } = this.getFileSize(fileSize);
+
+    return (_, total) =>
+      `${Intl.NumberFormat('en-US', {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2,
+      }).format(Number(total))}${unit}${hasError ? '*' : ''}`;
   }
 
   protected getProgress(file: FileData): number {
@@ -269,7 +289,7 @@ export class BmbDropzoneComponent implements OnInit, OnChanges {
       const fileData: FileData = {
         id: getUUID(),
         name: singleFile.name,
-        size: this.getFileSizeInMB(singleFile.size),
+        size: singleFile.size,
         error:
           !fileValidation.isValidFormat ||
           !fileValidation.isValidSize ||

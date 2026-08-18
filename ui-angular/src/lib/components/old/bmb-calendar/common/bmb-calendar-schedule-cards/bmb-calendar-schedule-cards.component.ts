@@ -80,7 +80,7 @@ export class BmbCalendarScheduleCardsComponent {
   }
 
   getClassNames(): string[] {
-    let newClasses = [`bmb_calendar-event-type-${this.event().type}`];
+    const newClasses = [`bmb_calendar-event-type-${this.event().type}`];
     if (this.isPositionAbsolute())
       newClasses.push('bmb_calendar-event-absolute');
     else newClasses.push('bmb_calendar-event-micro');
@@ -118,8 +118,9 @@ export class BmbCalendarScheduleCardsComponent {
   getBulletStyle() {
     return {
       'background-color':
-        `rgb(var(--${this.event().bulletColor}))` ||
-        'var(--bmb-color-success-primary)',
+        this.event().bulletColor
+          ? `rgb(var(--${this.event().bulletColor}))`
+          : 'var(--bmb-color-success-primary)',
     };
   }
 

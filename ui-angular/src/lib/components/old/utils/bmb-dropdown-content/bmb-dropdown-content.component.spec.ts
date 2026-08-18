@@ -1,8 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { BmbDropdownContentComponent } from './bmb-dropdown-content.component';
-import { IDropdownItem } from '../../../types';
-import { TranslatePipe } from '../../../pipes/translations';
+import { IDropdownItem } from '../../../../_shared/types';
+import { TranslatePipe } from '../../../../pipes/translations';
 
 class MockTranslatePipe {
   transform(value: string): string {
@@ -21,7 +21,7 @@ describe('BmbDropdownContentComponent', () => {
       selectedText: 'First Option',
       value: 'first',
       icon: 'home',
-      action: jasmine.createSpy('action1'),
+      action: jest.fn(),
     },
     {
       idItem: '2',
@@ -30,7 +30,7 @@ describe('BmbDropdownContentComponent', () => {
       value: 'second',
       icon: 'star',
       dotNotification: 3,
-      action: jasmine.createSpy('action2'),
+      action: jest.fn(),
     },
     {
       idItem: '3',
@@ -40,7 +40,7 @@ describe('BmbDropdownContentComponent', () => {
       icon: 'favorite',
       url: 'https://example.com',
       target: '_blank',
-      action: jasmine.createSpy('action3'),
+      action: jest.fn(),
     },
   ];
 
@@ -64,8 +64,8 @@ describe('BmbDropdownContentComponent', () => {
       fixture.detectChanges();
 
       expect(component.items()).toEqual([]);
-      expect(component.isKeyboardEvent()).toBeFalse();
-      expect(component.enableFilter()).toBeFalse();
+      expect(component.isKeyboardEvent()).toBe(false);
+      expect(component.enableFilter()).toBe(false);
       expect(component.customFilterFunction()).toBeNull();
       expect(component.filterString()).toBe('');
     });
@@ -97,7 +97,7 @@ describe('BmbDropdownContentComponent', () => {
       fixture.componentRef.setInput('enableFilter', true);
       fixture.detectChanges();
 
-      expect(component.enableFilter()).toBeTrue();
+      expect(component.enableFilter()).toBe(true);
     });
 
     it('should set custom filter function', () => {
@@ -114,7 +114,7 @@ describe('BmbDropdownContentComponent', () => {
       component.isKeyboardEvent.set(true);
       fixture.detectChanges();
 
-      expect(component.isKeyboardEvent()).toBeTrue();
+      expect(component.isKeyboardEvent()).toBe(true);
     });
   });
 
@@ -128,28 +128,28 @@ describe('BmbDropdownContentComponent', () => {
       fixture.componentRef.setInput('selectedOption', 'first');
       fixture.detectChanges();
 
-      expect(component.isSelected('first')).toBeTrue();
-      expect(component.isSelected('second')).toBeFalse();
+      expect(component.isSelected('first')).toBe(true);
+      expect(component.isSelected('second')).toBe(false);
     });
 
     it('should identify selected items with array selection', () => {
       fixture.componentRef.setInput('selectedOption', ['first', 'third']);
       fixture.detectChanges();
 
-      expect(component.isSelected('first')).toBeTrue();
-      expect(component.isSelected('second')).toBeFalse();
-      expect(component.isSelected('third')).toBeTrue();
+      expect(component.isSelected('first')).toBe(true);
+      expect(component.isSelected('second')).toBe(false);
+      expect(component.isSelected('third')).toBe(true);
     });
 
     it('should return false when no selection', () => {
-      expect(component.isSelected('first')).toBeFalse();
+      expect(component.isSelected('first')).toBe(false);
     });
 
     it('should handle undefined selectedOption', () => {
       fixture.componentRef.setInput('selectedOption', undefined);
       fixture.detectChanges();
 
-      expect(component.isSelected('first')).toBeFalse();
+      expect(component.isSelected('first')).toBe(false);
     });
   });
 
@@ -168,7 +168,7 @@ describe('BmbDropdownContentComponent', () => {
       component.filterString.set('first');
 
       const filtered = component.filteredItems();
-      expect(filtered).toHaveSize(1);
+      expect(filtered).toHaveLength(1);
       expect(filtered[0].text).toBe('First Option');
     });
 
@@ -176,7 +176,7 @@ describe('BmbDropdownContentComponent', () => {
       component.filterString.set('second');
 
       const filtered = component.filteredItems();
-      expect(filtered).toHaveSize(1);
+      expect(filtered).toHaveLength(1);
       expect(filtered[0].value).toBe('second');
     });
 
@@ -184,7 +184,7 @@ describe('BmbDropdownContentComponent', () => {
       component.filterString.set('third option');
 
       const filtered = component.filteredItems();
-      expect(filtered).toHaveSize(1);
+      expect(filtered).toHaveLength(1);
       expect(filtered[0].selectedText).toBe('Third Option');
     });
 
@@ -192,20 +192,18 @@ describe('BmbDropdownContentComponent', () => {
       component.filterString.set('first');
 
       const filtered = component.filteredItems();
-      expect(filtered).toHaveSize(1);
+      expect(filtered).toHaveLength(1);
       expect(filtered[0].text).toBe('First Option');
     });
 
     it('should return empty array when no matches', () => {
       component.filterString.set('nonexistent');
 
-      expect(component.filteredItems()).toHaveSize(0);
+      expect(component.filteredItems()).toHaveLength(0);
     });
 
     it('should use custom filter function when provided', () => {
-      const customFilter = jasmine
-        .createSpy('customFilter')
-        .and.returnValue(true);
+      const customFilter = jest.fn(() => true);
       fixture.componentRef.setInput('customFilterFunction', customFilter);
       fixture.detectChanges();
 
@@ -273,7 +271,7 @@ describe('BmbDropdownContentComponent', () => {
           '.bmb_dropdown-content-item:not(.bmb_dropdown-content-item-filter)',
         ),
       );
-      expect(items).toHaveSize(3);
+      expect(items).toHaveLength(3);
     });
 
     it('should render filter input when enableFilter is true', () => {
@@ -310,14 +308,14 @@ describe('BmbDropdownContentComponent', () => {
       const icons = fixture.debugElement.queryAll(
         By.css('.bmb_dropdown-content-element-icon'),
       );
-      expect(icons).toHaveSize(3);
+      expect(icons).toHaveLength(3);
     });
 
     it('should render item text', () => {
       const textElements = fixture.debugElement.queryAll(
         By.css('.bmb_dropdown-content-element-text'),
       );
-      expect(textElements).toHaveSize(3);
+      expect(textElements).toHaveLength(3);
       expect(textElements[0].nativeElement.textContent.trim()).toBe(
         'First Option',
       );
@@ -327,7 +325,7 @@ describe('BmbDropdownContentComponent', () => {
       const itemIcons = fixture.debugElement.queryAll(
         By.css('.bmb_dropdown-content-element-icon'),
       );
-      expect(itemIcons).toHaveSize(3);
+      expect(itemIcons).toHaveLength(3);
       expect(itemIcons[1].componentInstance.dotNotification()).toBe(3);
     });
   });
@@ -372,7 +370,7 @@ describe('BmbDropdownContentComponent', () => {
           '.bmb_dropdown-content-item:has(.bmb_dropdown-content-item-empty)',
         ),
       );
-      expect(items).toHaveSize(0);
+      expect(items).toHaveLength(0);
     });
 
     it('should handle items without optional properties', () => {
@@ -396,7 +394,7 @@ describe('BmbDropdownContentComponent', () => {
 
       component.filterString.set('!@#$%');
 
-      expect(component.filteredItems()).toHaveSize(0);
+      expect(component.filteredItems()).toHaveLength(0);
     });
   });
 });

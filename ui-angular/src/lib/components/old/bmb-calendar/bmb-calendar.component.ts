@@ -69,7 +69,9 @@ export class BmbCalendarComponent implements OnInit, AfterViewInit {
   disableMobileFilter = input<boolean>(false);
   startBusinessHour = input<number>(8); // deprecated
 
+  // eslint-disable-next-line @angular-eslint/no-output-on-prefix
   onDateChange = output<any>();
+  // eslint-disable-next-line @angular-eslint/no-output-on-prefix
   onClose = output<any>();
 
   calendarService = inject(BmbCalendarComponentService);
@@ -81,7 +83,7 @@ export class BmbCalendarComponent implements OnInit, AfterViewInit {
   selectedWeek = computed(() => this.visibleDate().weekNumber);
   weekNumber = computed(() => this.visibleDate().weekNumber);
   selectedEvent: IBmbCalendarEvent | null = null;
-  isMobileHeader: boolean = false;
+  isMobileHeader = false;
 
   @HostListener('window:resize')
   resize() {
@@ -94,14 +96,6 @@ export class BmbCalendarComponent implements OnInit, AfterViewInit {
   }
 
   constructor() {
-    effect(
-      () => {
-        const filters = this.filters();
-
-        this.calendarService.setFilteredEvents(filters);
-      },
-      { allowSignalWrites: true },
-    );
 
     effect(
       () => {

@@ -22,21 +22,21 @@
       class="bmb_notice-card-header-icon"
       [ngStyle]="{
         color:
-          closeBtnColor() == 'white'
+          closeBtnColor() === 'white'
             ? 'rgb(var(--gray-charade-50))'
             : 'rgb(var(--gray-charade-950))'
       }"
       [icon]="'close'"
       [iconSize]="28"
       (buttonClick)="handleClose()"
-      [alt]="'notice_card.close' | translate"
+      [tooltipText]="'notice_card.close' | translate"
     />
   </section>
   <section class="bmb_notice-card-content">
     <div class="bmb_notice-card-content-title">
       <h3>{{ componentTitle() || title() }}</h3>
     </div>
-    @if (activeIndex == 0) {
+    @if (activeIndex === 0) {
       <div class="bmb_notice-card-content-description-one">
         <p
           class="bmb_notice-card-content-description-text"
@@ -63,7 +63,7 @@
           [icon]="'chevron_left'"
           [iconSize]="28"
           (buttonClick)="onDotPress(0)"
-          [alt]="'notice_card.previous' | translate"
+          [tooltipText]="'notice_card.previous' | translate"
         />
       }
     </div>
@@ -116,7 +116,7 @@
           [icon]="'chevron_right'"
           [iconSize]="28"
           (buttonClick)="onDotPress(1)"
-          [alt]="'notice_card.next' | translate"
+          [tooltipText]="'notice_card.next' | translate"
         />
       }
     </div>

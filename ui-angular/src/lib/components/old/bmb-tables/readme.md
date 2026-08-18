@@ -112,7 +112,6 @@ También es posible definir un template por fila (tiene prioridad sobre `column.
 - `@angular/material/button` (MatButtonModule)
 - `@angular/material/checkbox` (MatCheckboxModule)
 - `@angular/material/tooltip` (MatTooltipModule)
-- `@angular/animations` (trigger, state, style, transition, animate)
 - `@angular/cdk/collections` (SelectionModel)
 - `luxon` (DateTime)
 - `BmbIconComponent`

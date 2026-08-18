@@ -8,6 +8,7 @@ import {
   getAlertBlockquote,
   BlockquoteType,
   getGeneralDocDescription,
+  colorList,
 } from './utils';
 
 type IBmbButtonEventType = 'clicked' | 'pressed';
@@ -53,10 +54,10 @@ Look for the property to set the alt, if it does not exist in the component it i
     blockquoteType: BlockquoteType.warning,
   },
 )}`;
-export const SIMPLE_ICON_DESCRIPTION = `Sets the icon name that will be shown.
-<br/><br/>${GOOGLE_FONTS_LINK.replace(/###/g, '')}
+export const SIMPLE_ICON_DESCRIPTION = `Sets the name of the icon to be displayed.
+<br/><br/>${GOOGLE_FONTS_LINK.replaceAll('###', '')}
 `;
-export const ICON_DESCRIPTION = `${SIMPLE_ICON_DESCRIPTION}<br/>${ICON_IMAGE_DETAIL.replace(/###/g, '')}`;
+export const ICON_DESCRIPTION = `${SIMPLE_ICON_DESCRIPTION}<br/>${ICON_IMAGE_DETAIL.replaceAll('###', '')}`;
 export const DEFAULT_VALUE_DESC = `It is not necessary to explicitly set default values, the property can be omitted.<br/><br/>
   Properties can be omitted if they are not required and do not contain a default value.`;
 export const DEFAULT_VALUE_DETAIL = `${RELEVANT_TITLE.note.replace(/(<br\/>)|(\*)/g, '')}
@@ -70,17 +71,32 @@ export const getWidthIncreaseDesc = (
 ): string => `${RELEVANT_TITLE.note}
 The width of the ${name} will increase depending on the length of the text.`;
 
-export const getDefaultValueDesc = (defaultValue: unknown): string => `
+export const getDefaultValueDesc = (
+  defaultValue: string | number | boolean,
+): string => `
 ${RELEVANT_TITLE.note}
 The default value is ${defaultValue}. ${DEFAULT_VALUE_DESC}`;
 
-export const getDefaultValueControl = (summary: unknown = '""') => {
+export const getModelDescription = (propertyName: string): string =>
+  getAlertBlockquote(
+    `
+Remember that model is two-way binding (signal), it is possible to use it as:
+    \`[(${propertyName})]="${propertyName}"\``,
+    {
+      title: RELEVANT_TITLE.configuration,
+      blockquoteType: BlockquoteType.important,
+    },
+  );
+
+export const getDefaultValueControl = (
+  summary: string | number | boolean = '""',
+) => {
   const _summary: string =
     typeof summary === 'string'
       ? summary === ''
         ? '""'
         : summary
-      : String(summary);
+      : summary.toString();
   const isLong: boolean = _summary.length > 10;
   return {
     summary: isLong ? _summary.substring(0, 10).concat('...') : _summary,
@@ -157,8 +173,8 @@ __- **minlength**: adds \`Validators.minLength\` to the \`FormControl\`
 __- **maxlength**: adds \`Validators.maxLength\` to the \`FormControl\`
 __- **max**: adds \`Validators.max\` to the \`FormControl\`
 __- **min**: adds \`Validators.min\` to the \`FormControl\`
-__- **pattern**: adds \`Validators.pattern\` to the \`FormControl\``.replace(
-    /__/g,
+__- **pattern**: adds \`Validators.pattern\` to the \`FormControl\``.replaceAll(
+    '__',
     replaceChar,
   );
 
@@ -166,8 +182,8 @@ export const getFormControlDescription = (replaceChar = ''): string =>
   `__In ${DESIGN_SYSTEM_TITLE}, it is possible to implement automatic field validation using the \`bmb-form-validator\` component.
 __
 __<br/>
-__The \`bmb-form-validator\` component contains the state of the form by collecting the form fields and adding them to a \`FormGroup\`.`.replace(
-    /__/g,
+__The \`bmb-form-validator\` component contains the state of the form by collecting the form fields and adding them to a \`FormGroup\`.`.replaceAll(
+    '__',
     replaceChar,
   );
 
@@ -204,7 +220,7 @@ export const getPropertyParamDesc = (
     summaryType = '',
   }: {
     controlType?: IBmbControlType | boolean | string;
-    defaultSummary?: unknown;
+    defaultSummary?: string | number | boolean;
     additionalDescription?: string;
     alternativeDescription?: string;
     alternativePropName?: string;
@@ -252,7 +268,11 @@ export const getAppearanceParam = (
   defaultSummary = '',
   additionalDescription = '',
 ) => {
-  const detailType: string = options.toString().replace(/,/g, '\n');
+  const detailType: string = options.toString().replaceAll(
+    ',',
+    `
+`,
+  );
   return {
     control: {
       type: 'select',
@@ -692,10 +712,17 @@ ${getGeneralDocDescription('https://bamboo.tec.mx/latest/foundations/icon/iconos
       'for the icon when it is an image',
     ),
   },
-  imageNotFoundError: getOnEventParam(
-    getOnEvent('the icon', 'imageNotFoundError', 'void'),
-    ' the image used as icon could not be found or loaded.',
-  ),
+  imageNotFoundError: {
+    control: false,
+    description: `Emits the event to handle the img - onerror`,
+    table: {
+      category: 'Events',
+      type: {
+        summary: 'imageNotFoundError(string)',
+        detail: '(imageNotFoundError)=handleImageNotFoundError([string])',
+      },
+    },
+  },
 };
 
 export const DBmbButtonParamDesc = {
@@ -777,7 +804,32 @@ export const DBmbModalParamDesc = {
   },
 };
 
-export const DBmbHomeCardParamDesc = {
+export const DBmbBoxIcon = {
+  boxColor: getAppearanceParam('the box icon', colorList),
+  boxShape: getAppearanceParam(
+    'the box shape',
+    ['square', 'circle'],
+    'square',
+    '<br/><br/>Square keeps the radius associated with the box size and circle applies a 50% border radius.',
+  ),
+  boxSize: getAppearanceParam('the box size', ['small', 'regular'], 'small'),
+};
+
+export const DBmbHomeCardHeaderParamDesc = {
+  leftIcon: {
+    ...DBmbIconParamDesc.icon,
+    description: DBmbIconParamDesc.icon.description.replace(
+      'icon',
+      'left header icon',
+    ),
+    table: {
+      ...DBmbIconParamDesc.icon.table,
+      type: {
+        summary:
+          DBmbIconParamDesc.icon.table.type.summary.concat(' (optional)'),
+      },
+    },
+  },
   icon: {
     ...DBmbIconParamDesc.icon,
     table: {
@@ -800,73 +852,7 @@ export const DBmbHomeCardParamDesc = {
       },
     },
   },
-  bgIconAppearance: {
-    control: { type: 'text' },
-    description: 'Sets icon background color.',
-    table: {
-      category: 'Properties',
-      defaultValue: getDefaultValueControl(),
-      type: {
-        summary: 'IBmbColor (optional)',
-        detail: `IBmbColor =
-  | 'blue-mariner-50'
-  | 'blue-mariner-100'
-  | 'blue-mariner-200'
-  | 'blue-mariner-300'
-  | 'blue-mariner-400'
-  | 'blue-mariner-500'
-  | 'blue-mariner-700'
-  | 'blue-mariner-800'
-  | 'blue-mariner-900'
-  | 'blue-mariner-950'
-  | 'gray-charade-50'
-  | 'gray-charade-100'
-  | 'gray-charade-200'
-  | 'gray-charade-300'
-  | 'gray-charade-500'
-  | 'gray-charade-600'
-  | 'gray-charade-700'
-  | 'gray-charade-800'
-  | 'gray-charade-900'
-  | 'gray-charade-950'
-  | 'white-primary'
-  | 'blue-tec'
-  | 'mitec-blue'
-  | 'mitec-green'
-  | 'mitec-red'
-  | 'mitec-orange'
-  | 'black-primary'
-  | 'black-light'
-  | 'black-tint'
-  | 'black-min'
-  | 'white-light'
-  | 'white-tint'
-  | 'white-min'
-  | 'neon-primary'
-  | 'neon-light'
-  | 'neon-tint'
-  | 'blue-primary'
-  | 'blue-light'
-  | 'blue-tint'
-  | 'green-primary'
-  | 'green-light'
-  | 'green-tint'
-  | 'purple-primary'
-  | 'purple-light'
-  | 'purple-tint'
-  | 'red-primary'
-  | 'red-light'
-  | 'red-tint'
-  | 'yellow-primary'
-  | 'yellow-light'
-  | 'yellow-tint'
-  | 'teal-primary'
-  | 'teal-light'
-  | 'teal-tint';
-`,
-      },
-    },
-  },
+  bgIconAppearance: DBmbBoxIcon.boxColor,
   title: {
     control: { type: 'text' },
     description: 'Sets the title of the card.',
@@ -885,6 +871,70 @@ export const DBmbHomeCardParamDesc = {
       type: { summary: 'string (optional)' },
     },
   },
+  dataLocalNav: {
+    control: { type: 'object' },
+    description: 'Sets the array of breadcrumb data for Local Navigation.',
+    table: {
+      category: 'Properties',
+      defaultValue: { summary: '[]' },
+      type: {
+        summary: 'IBmbDataTopBar[] (optional)',
+        detail: `IBmbDataTopBar {
+  text: string;
+  link?: string;
+}`,
+      },
+    },
+  },
+  showRightButton: {
+    control: { type: 'boolean' },
+    description:
+      'Sets a flag to indicate whether the card should show the right button or buttons.',
+    table: {
+      category: 'Properties',
+      defaultValue: { summary: 'true' },
+      type: { summary: 'boolean' },
+    },
+  },
+  isMobile: {
+    control: { type: 'boolean' },
+    description:
+      'Sets a flag to indicate whether the card should adapt to mobile view.',
+    table: {
+      category: 'Properties',
+      defaultValue: { summary: 'false' },
+      type: { summary: 'boolean' },
+    },
+  },
+  contentPadding: {
+    control: { type: 'text' },
+    description:
+      "Sets the he padding size for the card's content. Uses predefined size names (e.g., 'xs','s','m','l','xl','none','auto')",
+    table: {
+      category: 'Properties',
+      defaultValue: { summary: 'l' },
+      type: {
+        summary: 'SizeNames (optional)',
+        detail: `SizeNames = 'xs' | 's' | 'm' | 'l' | 'xl' | 'none' | 'auto'`,
+      },
+    },
+  },
+  onClose: getOnClickParam(getOnEvent('close icon (x)', 'onClose')),
+  onBack: getOnClickParam(getOnEvent('left icon (<)', 'onBack')),
+  isExpanded: {
+    control: { type: 'boolean' },
+    description:
+      'Sets a flag to indicate whether the card is expanded or collapsed.',
+    table: {
+      category: 'Properties',
+      defaultValue: { summary: 'false' },
+      type: { summary: 'boolean' },
+    },
+  },
+  onExpandClick: getOnClickParam(
+    getOnEvent('expand or collapse icon', 'onExpandClick'),
+    '. This should be used as a navigation action.',
+  ),
 };
 
 export const DBmbDropdownMenuParamDesc = {
@@ -1689,11 +1739,11 @@ ${getAlertBlockquote(
 };
 
 export const DBmbActionMenu = {
-  icon: DBmbHomeCardParamDesc.icon,
-  iconSize: DBmbHomeCardParamDesc.iconSize,
-  bgIconAppearance: DBmbHomeCardParamDesc.bgIconAppearance,
-  componentTitle: DBmbHomeCardParamDesc.title,
-  subtitle: DBmbHomeCardParamDesc.subtitle,
+  icon: DBmbHomeCardHeaderParamDesc.icon,
+  iconSize: DBmbHomeCardHeaderParamDesc.iconSize,
+  bgIconAppearance: DBmbHomeCardHeaderParamDesc.bgIconAppearance,
+  componentTitle: DBmbHomeCardHeaderParamDesc.title,
+  subtitle: DBmbHomeCardHeaderParamDesc.subtitle,
   showHeader: {
     control: { type: 'boolean' },
     description:

@@ -1,5 +1,4 @@
 import { Directive, HostBinding, input } from '@angular/core';
-import { IButtonAppearance } from '@shared/types';
 
 export type IBbmButtonGroupType = 'small' | 'large';
 
