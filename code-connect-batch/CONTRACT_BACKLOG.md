@@ -11,7 +11,7 @@ Este es el **único backlog activo**. El estado general y las reglas de ejecuci�
 | Candidate | 0 | No crear fachadas para aumentar cobertura. |
 | Contract required | 2 | Resolver el contrato mínimo de una familia por ciclo. |
 | Parent/child composition | 14 | Mantener cubierto por el padre salvo que Design publique un API independiente. |
-| Blocked / out of scope | 14 | No reintentar sin un cambio real de nodo, API o alcance. |
+| Blocked / out of scope | 13 | No reintentar sin un cambio real de nodo, API o alcance. |
 
 ## Contratos activos (2 exports)
 
@@ -27,6 +27,7 @@ Orden recomendado: `COL-01`, `PROFILE-01`. `COL-01` ya tiene Phase 0 y contrato 
 | ID | Resultado | Verificación |
 | --- | --- | --- |
 | `CHAT-01` | `AI Chat Card` se conectó a `BmbHomeCardChatComponent` con el título canónico de Storybook, Web/Mobile y la colección neutral type-safe `[messagesHistory]="[]"`. La conversación visual permanece como deuda de cobertura, no como bloqueo de publicación: convertir sus capas a `IBmbChatMessage[]` inventaría datos y un `Date`. | `HomeCardChat.figma.ts` pasó parse/publish; MCP confirmó `hasTemplate: true`, label Angular y source `ui-angular` para Web y Mobile. |
+| `LOADER-01` | El parent semántico estable `Loading screen` (`152:38092`) se conectó a `BmbLoaderComponent` con el texto fijo visible `Cargando...`. | `LoadingScreen.figma.ts` pasó parse/publish; MCP confirmó `hasTemplate: true`, label Angular y source `ui-angular`. `Loader_Icon` y `BB_6_5_2` permanecen fuera del API público. |
 
 ## Regla de implementación por contrato
 
@@ -70,7 +71,7 @@ Estos exports ya están representados dentro de un padre conectado. No son traba
 | `native-modal` | Implementación interna del Modal conectado. |
 | `top-bar-item` | Hijo repetido de Top bar, sin contrato independiente. |
 
-## Blocked / out of scope (14)
+## Blocked / out of scope (13)
 
 | Export | Motivo para no reintentar |
 | --- | --- |
@@ -81,7 +82,6 @@ Estos exports ya están representados dentro de un padre conectado. No son traba
 | `bmb-form-validator` | Infraestructura basada en `FormGroup`, no componente visual. |
 | `bmb-icon` | Los nodos sugeridos no fueron persistentes; falta asset contract estable. |
 | `bmb-logo` | Las variantes visuales no identifican el API público de imagen/link/button. |
-| `bmb-loader` | `Loader_Icon` es primitive visual, no equivalente del Loading screen público. |
 | `bmb-mitec-logo-animation` | El match pertenece a otra librería/documentación. |
 | `bmb-portal` | Primitive de infraestructura sin representación visual propia. |
 | `bmb-skeleton` | Hay partes visuales, pero no un component set canónico. |
@@ -96,4 +96,4 @@ La cola de [COMPOSITION_REMEDIATION.md](COMPOSITION_REMEDIATION.md) no significa
 - `publication state`: Connected / Pending / Blocked.
 - `coverage debt`: None / Contract required / Code API required.
 
-Button group y Action menu son las dos familias remediadas con adaptadores internos confirmados. El resto permanece conectado con deuda documentada; no se descuenta de los 103 mappings verificados.
+Button group y Action menu son las dos familias remediadas con adaptadores internos confirmados. El resto permanece conectado con deuda documentada; no se descuenta de los 114 mappings públicos verificados.

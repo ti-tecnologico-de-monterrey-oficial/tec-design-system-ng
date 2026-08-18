@@ -9,20 +9,20 @@ Este archivo es la **fuente de verdad operativa** del lote. Si otro documento co
 | Métrica | Estado confirmado |
 | --- | ---: |
 | Componentes exportados por `ui-angular/src/index.ts` | 130 |
-| Clases Angular con template independiente confirmado | 100 |
-| Mappings públicos publicados y verificados por MCP | 109 |
+| Clases Angular con template independiente confirmado | 101 |
+| Mappings públicos publicados y verificados por MCP | 114 |
 | Adaptadores internos `BB_*` | 5 |
 | Assets publicados en Bamboo Components | 475 |
-| Targets Figma con mapping local publicado | 117 |
+| Targets Figma con mapping local publicado | 119 |
 | Targets Figma marcados `Skipped` y verificados en UI/MCP | 15 |
-| Targets Figma publicados todavía sin mapping | 358 |
+| Targets Figma publicados todavía sin mapping | 356 |
 | Contract required | 2 |
 | Parent/child composition | 14 |
-| Blocked / out of scope | 14 |
+| Blocked / out of scope | 13 |
 | Candidatos directos abiertos en el inventario Angular-first anterior | 0 |
-| Targets Figma-first pendientes de disposición explícita | 324 |
+| Targets Figma-first pendientes de disposición explícita | 322 |
 
-La conciliación Angular pasa a **100 clases conectadas + 30 sin template independiente confirmado = 130**. Sin embargo, ésa no es la cobertura que muestra la interfaz de Figma. La librería publica 475 targets y 117 tienen mapping del lote: **24.6%**. Los dos denominadores deben mantenerse separados.
+La conciliación Angular pasa a **101 clases conectadas + 29 sin template independiente confirmado = 130**. Sin embargo, ésa no es la cobertura que muestra la interfaz de Figma. La librería publica 475 targets y 119 tienen mapping del lote: **25.1%**. Los dos denominadores deben mantenerse separados.
 
 ## Qué queda por hacer
 
@@ -36,8 +36,8 @@ Línea base MCP del 2026-08-17. `Local publicado sin mapping` cuenta targets de 
 | 2 | Containers | `14050:20207` | 62 | 27 | 35 |
 | 3 | Imágenes | `14050:20466` | 5 | 3 | 2 |
 | 4 | Inputs | `14058:4731` | 28 | 14 | 14 |
-| 5 | Menús | `14058:12162` | 85 | 35 | 50 |
-| 6 | Status indicators | `14058:17391` | 64 | 46 | 18 |
+| 5 | Menús | `14058:12162` | 66 | 18 | 48 |
+| 6 | Status indicators | `14058:17391` | 44 | 29 | 15 |
 | 7 | Visual labels | `14058:20327` | 33 | 28 | 5 |
 
 El prefijo `BB_*` sí decide el resultado desde el 2026-08-17: significa **Building Block** de Figma y queda fuera del inventario conectable. Los targets que sólo representan iconos también quedan fuera de alcance. Carlos gestionará sus `Skipped` directamente en Figma; el batch no los clasifica uno por uno, no espera su remediación UI y continúa con componentes públicos consumibles. Los cinco adaptadores BB ya publicados permanecen como legado hasta una auditoría de retiro separada; no se crean nuevos.
@@ -71,6 +71,8 @@ El prefijo `BB_*` sí decide el resultado desde el 2026-08-17: significa **Build
 **Imágenes — target público conectado y referencia stale detectada el 2026-08-17:** el component set vigente `Image Carrousel` (`9258:67822`, resuelto por component key) quedó publicado como target secundario compuesto de `BmbCarouselComponent`. `Slide=Default|2|3` mapea a `selectedIndex=0|1|2`, y sus tres instancias ya conectadas de `BmbImageComponent` se proyectan dinámicamente dentro de elementos `#carouselItem`. MCP confirmó `hasTemplate: true` y snippets completos en las tres variantes. La sección todavía devuelve cinco sugerencias porque conserva una instancia del nodo histórico inválido `9034:46087`; esa fila no puede publicarse por CLI y requiere reemplazarla por el set vigente o marcarla `Skipped`. Las otras cuatro filas son dos BB y dos iconos externos.
 
 **Inputs — conciliación siguiente:** la consulta actual devuelve **28** sugerencias: **14 locales** y **14 externas**. El único nombre público aparente, `Phone number` (`109:37835`), es otra referencia no persistente; su set estable `109:37834` ya está conectado y verificado. No se publica un duplicado contra un nodo inválido. Los demás locales son `BB_*`, `ProgressBar_Full` (cuyo set real es BB) o `SlotRow`.
+
+**Menús / Status indicators — lote público del 2026-08-17:** `Sidebar mobile` (`299:51512`) quedó publicado como target secundario de `BmbSidebarComponent`, y el mapping principal `Sidebar` (`299:51502`) dejó de ser una fachada vacía: ambos muestran la receta de dos grupos documentada por Storybook. `Loading screen` (`152:38092`) quedó conectado a `BmbLoaderComponent` con el texto visible fijo `Cargando...`; el antiguo bloqueo basado únicamente en `Loader_Icon` queda resuelto porque apareció el parent semántico estable. MCP confirmó `hasTemplate: true`, label Angular y source `ui-angular` en los tres targets. La conciliación nueva devuelve **66** sugerencias en Menús (18 locales, 48 externas) y **44** en Status indicators (29 locales, 15 externas). `Breadcrumb_topBar`, `LocalNavigation` y `PageLink_2` resuelven a sets `BB_5_3_*`; `Sidebar mobile - pull` es icon-only. Conforme al alcance vigente no reciben mappings falsos.
 
 ## Disposiciones `Skipped` verificadas en Figma
 
