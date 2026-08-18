@@ -19,7 +19,7 @@ Este archivo es la **fuente de verdad operativa** del lote. Si otro documento co
 | Parent/child composition | 14 |
 | Blocked / out of scope | 14 |
 | Candidatos directos abiertos en el inventario Angular-first anterior | 0 |
-| Targets Figma-first pendientes de disposición explícita | 355 |
+| Targets Figma-first pendientes de disposición explícita | 352 |
 
 La conciliación Angular sigue siendo: **99 clases conectadas + 31 sin template independiente confirmado = 130**. Sin embargo, ésa no es la cobertura que muestra la interfaz de Figma. La librería publica 475 targets y 111 tienen mapping del lote: **23.4%**. Los dos denominadores deben mantenerse separados.
 
@@ -44,6 +44,8 @@ El prefijo `BB_*` no decide el resultado: puede ser un adaptador necesario para 
 **Botones — sección triaged el 2026-08-17:** tres targets adicionales de la familia pública Card button quedaron publicados y verificados (`BB_1_6`, `BB_1_6_4`, `Card Button Small`). Los siete locales restantes tienen disposición `Internal/helper`: `IndexLabel`, `IndexHeader`, `BB_6_2`, `BB_1_9`, `BB_7_2`, `BB_1_6_2` y `BB_5_5`. No tienen API Angular pública independiente y sus padres públicos correspondientes ya están conectados. La siguiente sección activa es Containers.
 
 **Containers — lote 1 del 2026-08-17:** `AI Chat bar` (`413:72922`) quedó publicado como target adicional de `BmbChatBarComponent`; `Loading` es la única propiedad con correspondencia pública inequívoca (`isLoading`). `BotIcon_Select` (`423:7684`) queda `Internal/helper`: su estado Selected/Enabled/Hover pertenece a la composición de AI Chat bar y `BmbBotIconComponent` ni siquiera es export público. `Template_BoxTable` (`62:10544`) queda `Internal/helper`: es una celda configurable utilizada por `Template_RowTable`, no una tabla Angular independiente. Containers continúa activa con 76 targets locales pendientes de disposición tras este lote (78 todavía sin mapping).
+
+**Containers — lote 2 del 2026-08-17:** los tres siguientes targets por uso quedaron `Internal/helper`. `Slot` (`12879:134374`) es el placeholder genérico de contenido —incluye el texto de autoría “Change me for a component”— usado por grids, Modal, Card button y otros padres ya conectados; no representa una API Angular. `BB_2_18` (`1486:108383`) es la fila interna de la familia ya conectada Notification card y sus estados/preview/checkbox no constituyen un componente público independiente. `BB_2_10` (`61:9376`) es el status-bar visual de iPhone compuesto dentro de Header mobile, Inner header, Calendar y Login onboarding; sus variantes no tienen selector ni export Angular. Containers continúa activa con 73 targets locales pendientes de disposición (78 todavía sin mapping).
 
 Los contratos conocidos siguen vigentes como cola secundaria en [CONTRACT_BACKLOG.md](CONTRACT_BACKLOG.md):
 
