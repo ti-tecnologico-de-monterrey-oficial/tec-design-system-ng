@@ -11,17 +11,17 @@ Este archivo es la **fuente de verdad operativa** del lote. Si otro documento co
 | Componentes exportados por `ui-angular/src/index.ts` | 130 |
 | Clases Angular con template independiente confirmado | 99 |
 | Mappings públicos publicados y verificados por MCP | 108 |
-| Adaptadores internos `BB_*` | 4 |
+| Adaptadores internos `BB_*` | 5 |
 | Assets publicados en Bamboo Components | 475 |
-| Targets Figma con mapping local publicado | 112 |
-| Targets Figma publicados todavía sin mapping | 363 |
+| Targets Figma con mapping local publicado | 113 |
+| Targets Figma publicados todavía sin mapping | 362 |
 | Contract required | 3 |
 | Parent/child composition | 14 |
 | Blocked / out of scope | 14 |
 | Candidatos directos abiertos en el inventario Angular-first anterior | 0 |
-| Targets Figma-first pendientes de disposición explícita | 346 |
+| Targets Figma-first pendientes de disposición explícita | 343 |
 
-La conciliación Angular sigue siendo: **99 clases conectadas + 31 sin template independiente confirmado = 130**. Sin embargo, ésa no es la cobertura que muestra la interfaz de Figma. La librería publica 475 targets y 112 tienen mapping del lote: **23.6%**. Los dos denominadores deben mantenerse separados.
+La conciliación Angular sigue siendo: **99 clases conectadas + 31 sin template independiente confirmado = 130**. Sin embargo, ésa no es la cobertura que muestra la interfaz de Figma. La librería publica 475 targets y 113 tienen mapping del lote: **23.8%**. Los dos denominadores deben mantenerse separados.
 
 ## Qué queda por hacer
 
@@ -32,7 +32,7 @@ Línea base MCP del 2026-08-17. `Local publicado sin mapping` cuenta targets de 
 | Orden | Sección | Nodo | Únicos sin conexión observados | Local publicado sin mapping | Dependencia externa/no publicada |
 | ---: | --- | --- | ---: | ---: | ---: |
 | 1 | Botones | `14050:2707` | 20 | 7 | 13 |
-| 2 | Containers | `14050:20207` | 114 | 77 | 37 |
+| 2 | Containers | `14050:20207` | 113 | 76 | 37 |
 | 3 | Imágenes | `14050:20466` | 12 | 8 | 4 |
 | 4 | Inputs | `14058:4731` | 40 | 24 | 16 |
 | 5 | Menús | `14058:12162` | 86 | 36 | 50 |
@@ -52,6 +52,8 @@ El prefijo `BB_*` no decide el resultado: puede ser un adaptador necesario para 
 **Containers — lote 4 del 2026-08-17:** `Generic card` (`99:28392`) quedó publicado y verificado contra `BmbCardComponent`, incluyendo su SLOT genuino sólo en las ocho variantes Inner Slot y `Style → type` para Primary/Secondary; los estilos de composición sin equivalente conservan `normal`. `BB_2_8` (`99:31713`) es la cuadrícula interna de slots usada por múltiples padres, y `BB_8_4_2` (`474:94211`) es el marcador día/mes de Calendar/Timestream; ambos quedan `Internal/helper`. Containers continúa activa con 67 targets locales pendientes de disposición (77 todavía sin mapping).
 
 **Containers — reconciliación de interfaz del 2026-08-17:** una lectura nueva de `get_code_connect_suggestions` devuelve **114** targets únicos todavía sin conexión: **77 locales publicados** por Bamboo y **37 dependencias externas/no pertenecientes al inventario de esta librería**. Entre los 77 locales hay **13 targets previamente diagnosticados pero todavía visibles como no conectados** y **64 sin triage**. Esto reemplaza el supuesto de que una disposición local `Internal/helper` equivalía a resolver la fila. La cifra `84 not connected` mostrada por la interfaz usa su propio alcance/filtrado y no debe reconciliarse por resta con el resultado MCP; ambos coinciden en que Containers no está cerrada.
+
+**Containers — lote 5 del 2026-08-17:** `BB_2_11_2` (`62:9624`) quedó publicado como adaptador `nestable` de `BmbBadgeComponent`. Sus seis estados producen apariencias y textos públicos canónicos: Pendiente/normal, Iniciado/strong, En revisión/warning, Finalizado/success, Cancelado/error y Lorem Ipsum/strong. MCP verificó `hasTemplate: true` en las seis variantes y el target desapareció de sugerencias. `BB_2_11_3` (`62:9618`) es únicamente el bloque de descripción/duración del Hito card y `BB_2_11_4` (`62:9612`) únicamente su marcador activo; ambos quedan `Skip required in UI`, porque mapearlos como cards o badges completos sería falso. Containers queda con **113** sugerencias: **76 locales**, de los cuales **15 ya tienen diagnóstico y requieren Skipped en UI** y **61 continúan sin triage**, más 37 dependencias externas.
 
 Los contratos conocidos siguen vigentes como cola secundaria en [CONTRACT_BACKLOG.md](CONTRACT_BACKLOG.md):
 
