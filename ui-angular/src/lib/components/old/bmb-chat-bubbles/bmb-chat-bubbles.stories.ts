@@ -8,7 +8,6 @@ import {
   RELEVANT_TITLE,
 } from '@docs/utils/utils';
 import { getOnEventParam } from '@docs/utils/parameterDescriptions';
-import { RouterTestingModule } from '@angular/router/testing';
 import { CommonModule } from '@angular/common';
 
 const DEPRECATED_DESC = `
@@ -17,17 +16,17 @@ This property will not be maintainable. This will be removed in future versions.
 Use "getAction" instead.
 `;
 
-const IMPORTANT_DESCRIPTION: string = `${RELEVANT_TITLE.important}
+const IMPORTANT_DESCRIPTION = `${RELEVANT_TITLE.important}
 The event only returns a signal to indicates the click event.
 `;
 
 export default {
-  title: 'Components/Containers/AI Chat Bubble/AI Chat bubble (deprecated)',
+  title: 'Components/Containers/AI Chat Bubble/AI Chat bubble LTS',
   tags: ['!autodocs'],
   component: BmbChatBubblesComponent,
   decorators: [
     moduleMetadata({
-      imports: [CommonModule, RouterTestingModule],
+      imports: [CommonModule],
     }),
   ],
   parameters: {
