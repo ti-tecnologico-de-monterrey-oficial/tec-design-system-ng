@@ -29,13 +29,10 @@ import {
   BmbMediaCardComponent,
   BmbImageComponent,
   BmbNativeModalService,
-  BmbFilterCardComponent,
   ThemeService,
-  BmbActionIconComponent,
-  BmbTooltipComponent,
   BmbContainerButtonComplexAlternativeComponent,
   BmbTextEditorComponent,
-  IBmbActionHeader
+  IBmbActionHeader,
 } from 'ui-angular';
 import { HelpMenuComponent } from '../../components/help-menu/help-menu.component';
 import { ModalWDropdownComponent } from '../../components/modal-w-dropdown/modal-w-dropdown.component';
@@ -60,9 +57,6 @@ import { FormControl } from '@angular/forms';
     BmbHomeCardComponent,
     BmbMediaCardComponent,
     BmbImageComponent,
-    BmbFilterCardComponent,
-    BmbActionIconComponent,
-    BmbTooltipComponent,
     BmbContainerButtonComplexAlternativeComponent,
     BmbTextEditorComponent,
   ],
@@ -250,5 +244,5 @@ export class HomeComponent {
         console.info('Delete action clicked', event);
       },
     },
-  ]
+  ];
 }

@@ -7,8 +7,6 @@ import {
   BmbChatBarComponent,
   BmbVerticalLayoutDirective,
   BmbVerticalLayoutItemDirective,
-  BmbCardComponent,
-  BmbCardContentComponent,
   IChatBarActions,
 } from 'ui-angular';
 import { CommonModule } from '@angular/common';
@@ -21,8 +19,6 @@ import { CommonModule } from '@angular/common';
     BmbVerticalLayoutDirective,
     BmbVerticalLayoutItemDirective,
     CommonModule,
-    BmbCardComponent,
-    BmbCardContentComponent,
   ],
   templateUrl: './ia.component.html',
   styleUrl: './ia.component.scss',
