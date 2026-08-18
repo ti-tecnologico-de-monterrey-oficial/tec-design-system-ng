@@ -747,3 +747,11 @@ Carlos supplied three references for this family: TEC.mobi "Calendar_FadeTransit
 - **Search Card parent:** the updated `SearchCard.figma.ts` passed the same parse/publish path. MCP returns `hasTemplate: true` across all nine variants; `Empty (loading)` emits `[isLoading]="true"`, the remaining variants emit `false`, and the visible title resolves to `Encuentra servicios o personas`.
 - **Search Card children:** `Search Card Item` (`9038:60994`) and `Search Section` (`9039:46220`) are verified `Skipped`. Their exact suggestion queries omit the target IDs and retain only independently published icon/layout dependencies.
 - **Containers reconciliation:** a final section query correlated with the published-file graph returns 87 unresolved targets: 50 local Bamboo targets and 37 external/non-owned dependencies. This sequence added one mapping target and eight verified skips; it did not change any public Angular API or design node.
+
+## Global `BB_*` disposition rule (2026-08-17)
+
+- **Product clarification:** Bamboo confirms that the `BB_` prefix means Figma Building Block. These targets are authoring/implementation pieces, not independently consumable Angular APIs.
+- **Rule:** every unresolved `BB_*` and every icon-only target is outside the connection scope. Do not create templates, adapters or speculative parent mappings for them.
+- **Parent responsibility:** the public parent remains connected and owns the generated Angular recipe. Non-BB descendants and external dependencies retain independent dispositions.
+- **Legacy boundary:** five BB adapters were already published before this clarification. They are not deleted or overwritten in this batch; removal requires a separate explicit audit because unpublishing would alter existing Code Connect behavior.
+- **Operational owner:** Carlos will mark BB/icon targets `Skipped` directly in Figma. The autonomous batch records the exclusion and immediately advances to the next public, non-BB, non-icon component; UI skip verification is no longer a gating condition for those two categories.

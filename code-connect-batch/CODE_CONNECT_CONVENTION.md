@@ -63,7 +63,8 @@ The Figma page name is not an API classification. A component published in the B
 Still exclude the following from public-template discovery:
 
 - `🧩 Playground`, prototype, test, and `DONOTUSE` assets.
-- `BB_*` and other internal parts, except as a documented `nestable` adapter required by an eligible public parent.
+- Every unresolved `BB_*`: Bamboo confirms that this prefix means a Figma building block, not a consumable API. It is outside the mapping scope and its semantics remain represented by the public parent.
+- Icon-only targets and icon-library dependencies: they are outside this component-to-Angular mapping scope. Do not search for, connect or block on them.
 - A child/wrapper API already represented by a connected public parent, unless it has its own stable Figma component and a useful independent Angular usage.
 - Infrastructure-only Angular exports that have no visual public Figma component (for example form validation or portal primitives).
 
@@ -109,13 +110,13 @@ For a composition recipe:
 
 ### Figma `BB_*` implementation components
 
-`BB_*` names identify implementation building blocks in this Figma library; they are not automatically Angular components. A published public parent may use a `BB_*` adapter only when the adapter has a verified public Angular equivalent. The adapter must be parserless, carry `metadata: { nestable: true }`, and dynamically resolve its configured children.
+`BB_*` means **Building Block** in Bamboo Figma. It is implementation/authoring infrastructure and is never a new public Code Connect target, even when a similarly shaped Angular directive or component exists.
 
-- Public parents are the primary Code Connect entries and must render resolved child snippets instead of an empty host.
-- `BB_*` adapters may map only the child properties proven by the Angular API. For example, `Disabled` may become `disabled` on a button child; `Hovered` and `Focused` remain visual-only.
-- `BB_*` wrappers that merely contain another BB forward that child through `findInstance()` and `executeTemplate()`; they do not add speculative attributes.
-- A BB with no stable published node, no confirmed Angular equivalent, or only decorative layout responsibility is not mapped.
-- Record every admitted family and its evidence in [BB_ADAPTERS.md](BB_ADAPTERS.md). Track public empty-host mappings in [COMPOSITION_REMEDIATION.md](COMPOSITION_REMEDIATION.md).
+- Every unresolved `BB_*` is excluded immediately; no Storybook/API matching is required beyond confirming the prefix.
+- Public parents remain the primary Code Connect entries and must express the consumable Angular API without publishing their BB children independently.
+- Existing BB adapters published before this convention change remain untouched until a separate removal audit is explicitly authorized; do not delete or overwrite them during normal batches.
+- The design-system owner handles `Skipped` dispositions for BB and icon targets in Figma UI. The Code Connect batch records them as out of scope and continues; it does not wait for UI verification.
+- `BB_ADAPTERS.md` is now a legacy register for the existing adapters, not an allowlist for creating new ones.
 
 ## Naming and variant hygiene
 

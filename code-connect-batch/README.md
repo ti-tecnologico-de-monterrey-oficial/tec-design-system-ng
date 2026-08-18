@@ -40,7 +40,7 @@ Línea base MCP del 2026-08-17. `Local publicado sin mapping` cuenta targets de 
 | 6 | Status indicators | `14058:17391` | 64 | 46 | 18 |
 | 7 | Visual labels | `14058:20327` | 33 | 28 | 5 |
 
-El prefijo `BB_*` no decide el resultado: puede ser un adaptador necesario para que un padre genere código útil o un detalle estrictamente visual. Debe resolverse por composición, API pública y uso real. `IndexLabel`, `IndexHeader`, prototipos, anotaciones y dependencias externas tampoco se publican por reflejo; se clasifican con evidencia.
+El prefijo `BB_*` sí decide el resultado desde el 2026-08-17: significa **Building Block** de Figma y queda fuera del inventario conectable. Los targets que sólo representan iconos también quedan fuera de alcance. Carlos gestionará sus `Skipped` directamente en Figma; el batch no los clasifica uno por uno, no espera su remediación UI y continúa con componentes públicos consumibles. Los cinco adaptadores BB ya publicados permanecen como legado hasta una auditoría de retiro separada; no se crean nuevos.
 
 **Botones — cerrada para targets locales el 2026-08-17:** tres targets adicionales de la familia pública Card button quedaron publicados y verificados (`BB_1_6`, `BB_1_6_4`, `Card Button Small`). `BB_6_2`, `IndexLabel`, `IndexHeader`, `BB_1_9`, `BB_7_2`, `BB_1_6_2` y `BB_5_5` quedaron `Skipped` con evidencia. La consulta final devuelve únicamente 13 dependencias externas/no publicadas; no queda ningún target local de Botones sin disposición.
 
@@ -115,7 +115,7 @@ La estrategia es **Figma-first para inventario y Storybook-first para resolver**
 2. Resolver primero el target principal; después sus hijos publicados configurables. No marcar la sección completa mientras Figma siga mostrando un target local como `not connected`: debe quedar `Connected` verificado o `Skipped` explícito.
 3. Buscar el target/familia en el `index.json` de Storybook; leer la story canónica (`component`, `args`, `render`, decoradores/MDX) y revisar el render cuando la composición sea manual o ambigua.
 4. Confirmar después el export Angular público, selector/directiva, source, inputs, outputs y tipos. Storybook prueba el uso; Angular autoriza los atributos; ninguno sustituye al nodo estable de Figma.
-5. Clasificar auxiliares y dependencias sin ocultarlos. Un `BB_*` sólo se publica como target secundario o adaptador parserless `nestable` cuando representa fielmente una API pública o hace posible una composición pública real. Un helper puramente visual se propone como `Skipped`; documentarlo sin reflejar ese estado en Figma no cuenta como avance de cobertura.
+5. Excluir de inmediato `BB_*` e icon-only targets; Carlos maneja sus `Skipped` en Figma. No detener la secuencia ni crear mappings para ellos. Los demás helpers no-BB se resuelven por evidencia y los componentes públicos deben quedar `Connected` y verificados.
 6. Si el snippet requiere arrays, objetos, `Date`, servicio o proyección sin SLOT, usar sólo una fixture neutral documentada por Storybook cuando sea suficiente y fiel; en caso contrario registrar `Contract required` y continuar.
 7. Registrar en `DECISIONS.md` la relación `Figma node -> Story ID/file -> Angular export/selector -> disposición`.
 8. Crear o actualizar exclusivamente parserless `.figma.ts` dentro de esta carpeta, siguiendo [CODE_CONNECT_CONVENTION.md](CODE_CONNECT_CONVENTION.md).
