@@ -14,13 +14,13 @@ Este archivo es la **fuente de verdad operativa** del lote. Si otro documento co
 | Adaptadores internos `BB_*` | 5 |
 | Assets publicados en Bamboo Components | 475 |
 | Targets Figma con mapping local publicado | 113 |
-| Targets Figma marcados `Skipped` y verificados en UI/MCP | 4 |
+| Targets Figma marcados `Skipped` y verificados en UI/MCP | 7 |
 | Targets Figma publicados todavía sin mapping | 362 |
 | Contract required | 3 |
 | Parent/child composition | 14 |
 | Blocked / out of scope | 14 |
 | Candidatos directos abiertos en el inventario Angular-first anterior | 0 |
-| Targets Figma-first pendientes de disposición explícita | 339 |
+| Targets Figma-first pendientes de disposición explícita | 336 |
 
 La conciliación Angular sigue siendo: **99 clases conectadas + 31 sin template independiente confirmado = 130**. Sin embargo, ésa no es la cobertura que muestra la interfaz de Figma. La librería publica 475 targets y 113 tienen mapping del lote: **23.8%**. Los dos denominadores deben mantenerse separados.
 
@@ -33,12 +33,12 @@ Línea base MCP del 2026-08-17. `Local publicado sin mapping` cuenta targets de 
 | Orden | Sección | Nodo | Únicos sin conexión observados | Local publicado sin mapping | Dependencia externa/no publicada |
 | ---: | --- | --- | ---: | ---: | ---: |
 | 1 | Botones | `14050:2707` | 19 | 6 | 13 |
-| 2 | Containers | `14050:20207` | 109 | 72 | 37 |
-| 3 | Imágenes | `14050:20466` | 12 | 8 | 4 |
-| 4 | Inputs | `14058:4731` | 40 | 24 | 16 |
-| 5 | Menús | `14058:12162` | 86 | 36 | 50 |
-| 6 | Status indicators | `14058:17391` | 65 | 47 | 18 |
-| 7 | Visual labels | `14058:20327` | 34 | 29 | 5 |
+| 2 | Containers | `14050:20207` | 106 | 69 | 37 |
+| 3 | Imágenes | `14050:20466` | 11 | 7 | 4 |
+| 4 | Inputs | `14058:4731` | 39 | 23 | 16 |
+| 5 | Menús | `14058:12162` | 85 | 35 | 50 |
+| 6 | Status indicators | `14058:17391` | 64 | 46 | 18 |
+| 7 | Visual labels | `14058:20327` | 33 | 28 | 5 |
 
 El prefijo `BB_*` no decide el resultado: puede ser un adaptador necesario para que un padre genere código útil o un detalle estrictamente visual. Debe resolverse por composición, API pública y uso real. `IndexLabel`, `IndexHeader`, prototipos, anotaciones y dependencias externas tampoco se publican por reflejo; se clasifican con evidencia.
 
@@ -60,6 +60,8 @@ El prefijo `BB_*` no decide el resultado: puede ser un adaptador necesario para 
 
 **Containers — lote autónomo de `Skipped` 1 del 2026-08-17:** `BB_2_11_4` (`62:9612`), `BB_2_11_5` (`62:9606`) y el helper compartido `BB_6_2` (`151:38706`) fueron marcados `Skipped` después de registrar su evidencia. La interfaz mostró `Skipped` para los tres y sus consultas MCP exactas devolvieron “No additional mappings needed”. Containers queda con **109** sugerencias: **72 locales**, de los cuales **11 ya tienen diagnóstico pendiente de remediación UI** y **61 continúan sin triage**, más 37 dependencias externas. El skip global de `BB_6_2` también reduce Botones a 19 sugerencias: 6 locales y 13 externas.
 
+**Containers — lote autónomo de `Skipped` 2 del 2026-08-17:** `BotIcon_Select` (`423:7684`), `Template_BoxTable` (`62:10544`) y `Slot` (`12879:134374`) quedaron `Skipped` con evidencia previa. La interfaz confirmó los tres estados; MCP dejó de devolver esos IDs exactos, aunque las selecciones de los dos primeros todavía muestran descendientes independientes que deberán resolverse por separado. Containers queda con **106** sugerencias: **69 locales**, de los cuales **8 ya tienen diagnóstico pendiente de remediación UI** y **61 continúan sin triage**, más 37 externas. Como `Slot` es infraestructura compartida, también desapareció de Imágenes, Inputs, Menús, Status indicators y Visual labels; Botones no cambió.
+
 ## Disposiciones `Skipped` verificadas en Figma
 
 Esta tabla registra sólo cambios ejecutados y verificados en la interfaz. Un diagnóstico local no entra aquí hasta que Figma muestre `Skipped` y el MCP deje de devolver el target como no conectado.
@@ -70,6 +72,9 @@ Esta tabla registra sólo cambios ejecutados y verificados en la interfaz. Un di
 | Containers | `BB_2_11_4` | `62:9612` | Marcador Neutral/Active del Hito card; sus únicos estados corresponden a la presentación de `enable_bullet`/`is_active` del padre. | UI `Skipped`; `get_code_connect_suggestions(62:9612)` devolvió “No additional mappings needed”. |
 | Containers | `BB_2_11_5` | `62:9606` | Encabezado temporal generado por `BmbHitoListComponent`; no existe selector o export Angular público independiente. | UI `Skipped`; `get_code_connect_suggestions(62:9606)` devolvió “No additional mappings needed”. |
 | Containers / Botones | `BB_6_2` | `151:38706` | Indicador visual compartido por Badge, Legend, paginadores y otros padres; no existe una API Angular independiente. | UI `Skipped`; `get_code_connect_suggestions(151:38706)` devolvió “No additional mappings needed”. |
+| Containers | `BotIcon_Select` | `423:7684` | Estado visual Selected/Enabled/Hover dentro de AI Chat bar; el `BmbBotIconComponent` legado no es export público ni expone esos estados. | UI `Skipped`; el ID `423:7684` desapareció de su consulta MCP exacta. `BotIcon_Round` y `BotIcon_Transparent` siguen como targets independientes. |
+| Containers | `Template_BoxTable` | `62:10544` | Plantilla de celda polimórfica; no equivale a los componentes públicos de tabla completa. | UI `Skipped`; el ID `62:10544` desapareció de su consulta MCP exacta. Sus descendientes aún no conectados permanecen en la cola por separado. |
+| Compartido: Containers, Imágenes, Inputs, Menús, Status indicators y Visual labels | `Slot` | `12879:134374` | Placeholder genérico de autoría reutilizado por composiciones no relacionadas; no tiene selector Angular propio. | UI `Skipped`; `get_code_connect_suggestions(12879:134374)` devolvió “No additional mappings needed”. |
 
 Los contratos conocidos siguen vigentes como cola secundaria en [CONTRACT_BACKLOG.md](CONTRACT_BACKLOG.md):
 

@@ -689,3 +689,18 @@ Carlos supplied three references for this family: TEC.mobi "Calendar_FadeTransit
 - **Exact MCP result:** `get_code_connect_suggestions` for `62:9612`, `62:9606` and `151:38706` returned “All component instances in this selection are already connected to code via Code Connect. No additional mappings needed.”
 - **Section reconciliation:** Containers dropped from 112 to 109 unresolved targets and from 75 to 72 local targets; its 37 external dependencies are unchanged. Botones dropped from 20 to 19 unresolved targets and from 7 to 6 local targets; its 13 external dependencies are unchanged because `BB_6_2` was shared by both sections.
 - **Coverage accounting:** Code Connect mappings remain 113/475. Verified UI skips increase from 1 to 4 and the Figma-first disposition queue decreases from 342 to 339; skips are not counted as mappings.
+
+## Figma-first — Containers autonomous skip batch 2 / pre-action evidence (2026-08-17)
+
+- **State before mutation:** exact MCP suggestions still report `BotIcon_Select` (`423:7684`), `Template_BoxTable` (`62:10544`) and `Slot` (`12879:134374`) as not connected. The section baseline is 109 unresolved targets: 72 local and 37 external.
+- **`BotIcon_Select`:** the published set exposes only transient presentation state `Selected|Enabled|Hover` and nests `BotIcon_Round`. The nearest class, legacy `BmbBotIconComponent`, accepts `iconName`, is not exported by `ui-angular/src/index.ts` and cannot represent those states as a public API. Its containing `AI Chat bar` already has a verified mapping.
+- **`Template_BoxTable`:** the published set is a polymorphic table-cell template with text fields, one instance swap and `Contenido` variants such as text, component, icon, edit actions, checkbox, user image, badge and header. Public `BmbTablesComponent`/`BmbTableLiteComponent` consume complete rows and data; mapping this cell to either full table would emit a structurally false snippet.
+- **`Slot`:** the published helper exposes a generic Figma `SLOT`, `Default|InnerSlot` and the authoring instruction “Change me for a component”. It is shared by unrelated cards, modal, grids and AI compositions and has no single Angular selector or consumable API.
+- **Decision:** the three targets are visual/composition infrastructure with sufficient evidence for Figma `Skipped`. Each must display `Skipped` in UI and its own node ID must disappear from the exact MCP suggestion list before it is counted as resolved; independently published descendants remain separate queue items.
+
+### Post-action verification
+
+- **UI result:** Figma Code Connect displayed `Skipped` for `BotIcon_Select`, `Template_BoxTable` and `Slot`, with the reversible `Connect now` state. No design layer, public Angular API or mapping file changed.
+- **Exact MCP result:** the target IDs `423:7684`, `62:10544` and `12879:134374` are absent from their own refreshed suggestion lists. `Slot` has no remaining suggestion. The first two selections still surface independently published descendants (`BotIcon_Round`, `BotIcon_Transparent`, checkbox/icon/slot helpers); those descendants remain unresolved and were not silently treated as part of this skip.
+- **Section reconciliation:** Containers dropped from 109 to 106 unresolved targets and from 72 to 69 local targets; 37 external dependencies are unchanged. Because `Slot` is shared, Imágenes is now 11/7/4, Inputs 39/23/16, Menús 85/35/50, Status indicators 64/46/18 and Visual labels 33/28/5 (`total/local/external`). Botones remains 19/6/13.
+- **Coverage accounting:** mappings remain 113/475. Verified UI skips increase from 4 to 7 and the Figma-first disposition queue decreases from 339 to 336. Containers retains eight diagnosed skip candidates plus 61 untriaged local targets.
