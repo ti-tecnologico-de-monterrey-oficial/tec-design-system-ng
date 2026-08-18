@@ -665,3 +665,12 @@ Carlos supplied three references for this family: TEC.mobi "Calendar_FadeTransit
 - **BB_2_11_4:** `Skip required in UI`. Its Neutral/Active variants are only the timeline bullet presentation controlled by the parent Hito-card inputs. Mapping the dot to `BmbBadgeComponent` would incorrectly expose a visual implementation detail as a standalone component.
 - **Validation:** `HitoStatusBadge.figma.ts` passed official CLI 1.5.3 `parse --verbose` and published without `--dry-run` or `--force`. MCP returned `hasTemplate: true`, correct `ui-angular` source and canonical snippets for all six variants; the target no longer appears in Containers suggestions.
 - **Coverage effect:** mapped published targets increase from 112 to 113; internal adapters from 4 to 5; global Figma coverage becomes 113/475 = 23.8%. Containers now has 76 local unmapped targets: 15 diagnosed `Skip required in UI` and 61 untriaged.
+
+## Autonomous watchdog and first verified UI skip (2026-08-17)
+
+- **Operating mode:** an active Goal owns the continuous Figma-first run. The existing `bamboo-code-connect-contract-monitor` automation now runs every 30 minutes only as a watchdog: it does not start a second writer while the Goal or the local lock is active.
+- **Concurrency guard:** `/Users/csolares/Documents/5 - CODEX/tec.design/Codebase/.codex-locks/bamboo-code-connect.lock` is intentionally outside Git. A lock may be recovered only when it is older than 120 minutes and no Goal is active.
+- **Smoke-test target:** `BB_2_11_3` (`62:9618`), previously `not_connected`. The target is the editable description/duration block inside Hito card; repository, public exports and Storybook confirm there is no independent Angular selector or component API for it.
+- **Action:** opened the exact component in Figma Code Connect and used `Skip connection`; no Figma node, property or Angular API was modified.
+- **Verification:** the UI changed to `Skipped` and exposed “This design component has been skipped, but you can connect it now.” A subsequent MCP call for `62:9618` returned “All component instances in this selection are already connected to code via Code Connect. No additional mappings needed.” A section-level refresh dropped Containers from 113 to 112 suggestions, with `BB_2_11_3` absent.
+- **Queue effect:** Containers now has 75 local unresolved targets plus 37 external dependencies. Fourteen local targets are already diagnosed for UI skip and 61 remain untriaged. Mapping coverage remains 113/475; resolved UI dispositions increase by one.

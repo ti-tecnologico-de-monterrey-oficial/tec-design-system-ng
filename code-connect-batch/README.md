@@ -14,12 +14,13 @@ Este archivo es la **fuente de verdad operativa** del lote. Si otro documento co
 | Adaptadores internos `BB_*` | 5 |
 | Assets publicados en Bamboo Components | 475 |
 | Targets Figma con mapping local publicado | 113 |
+| Targets Figma marcados `Skipped` y verificados en UI/MCP | 1 |
 | Targets Figma publicados todavía sin mapping | 362 |
 | Contract required | 3 |
 | Parent/child composition | 14 |
 | Blocked / out of scope | 14 |
 | Candidatos directos abiertos en el inventario Angular-first anterior | 0 |
-| Targets Figma-first pendientes de disposición explícita | 343 |
+| Targets Figma-first pendientes de disposición explícita | 342 |
 
 La conciliación Angular sigue siendo: **99 clases conectadas + 31 sin template independiente confirmado = 130**. Sin embargo, ésa no es la cobertura que muestra la interfaz de Figma. La librería publica 475 targets y 113 tienen mapping del lote: **23.8%**. Los dos denominadores deben mantenerse separados.
 
@@ -32,7 +33,7 @@ Línea base MCP del 2026-08-17. `Local publicado sin mapping` cuenta targets de 
 | Orden | Sección | Nodo | Únicos sin conexión observados | Local publicado sin mapping | Dependencia externa/no publicada |
 | ---: | --- | --- | ---: | ---: | ---: |
 | 1 | Botones | `14050:2707` | 20 | 7 | 13 |
-| 2 | Containers | `14050:20207` | 113 | 76 | 37 |
+| 2 | Containers | `14050:20207` | 112 | 75 | 37 |
 | 3 | Imágenes | `14050:20466` | 12 | 8 | 4 |
 | 4 | Inputs | `14058:4731` | 40 | 24 | 16 |
 | 5 | Menús | `14058:12162` | 86 | 36 | 50 |
@@ -53,7 +54,17 @@ El prefijo `BB_*` no decide el resultado: puede ser un adaptador necesario para 
 
 **Containers — reconciliación de interfaz del 2026-08-17:** una lectura nueva de `get_code_connect_suggestions` devuelve **114** targets únicos todavía sin conexión: **77 locales publicados** por Bamboo y **37 dependencias externas/no pertenecientes al inventario de esta librería**. Entre los 77 locales hay **13 targets previamente diagnosticados pero todavía visibles como no conectados** y **64 sin triage**. Esto reemplaza el supuesto de que una disposición local `Internal/helper` equivalía a resolver la fila. La cifra `84 not connected` mostrada por la interfaz usa su propio alcance/filtrado y no debe reconciliarse por resta con el resultado MCP; ambos coinciden en que Containers no está cerrada.
 
-**Containers — lote 5 del 2026-08-17:** `BB_2_11_2` (`62:9624`) quedó publicado como adaptador `nestable` de `BmbBadgeComponent`. Sus seis estados producen apariencias y textos públicos canónicos: Pendiente/normal, Iniciado/strong, En revisión/warning, Finalizado/success, Cancelado/error y Lorem Ipsum/strong. MCP verificó `hasTemplate: true` en las seis variantes y el target desapareció de sugerencias. `BB_2_11_3` (`62:9618`) es únicamente el bloque de descripción/duración del Hito card y `BB_2_11_4` (`62:9612`) únicamente su marcador activo; ambos quedan `Skip required in UI`, porque mapearlos como cards o badges completos sería falso. Containers queda con **113** sugerencias: **76 locales**, de los cuales **15 ya tienen diagnóstico y requieren Skipped en UI** y **61 continúan sin triage**, más 37 dependencias externas.
+**Containers — lote 5 del 2026-08-17:** `BB_2_11_2` (`62:9624`) quedó publicado como adaptador `nestable` de `BmbBadgeComponent`. Sus seis estados producen apariencias y textos públicos canónicos: Pendiente/normal, Iniciado/strong, En revisión/warning, Finalizado/success, Cancelado/error y Lorem Ipsum/strong. MCP verificó `hasTemplate: true` en las seis variantes y el target desapareció de sugerencias. `BB_2_11_3` (`62:9618`) es únicamente el bloque de descripción/duración del Hito card y `BB_2_11_4` (`62:9612`) únicamente su marcador activo; mapearlos como cards o badges completos sería falso.
+
+**Containers — prueba autónoma de `Skipped` del 2026-08-17:** `BB_2_11_3` (`62:9618`) fue marcado `Skipped` desde la interfaz de Code Connect. Figma mostró el estado `Skipped` y el MCP respondió que la selección ya no necesita mappings. Containers queda con **112** sugerencias: **75 locales**, de los cuales **14 tienen diagnóstico y requieren `Skipped` en UI** y **61 continúan sin triage**, más 37 dependencias externas.
+
+## Disposiciones `Skipped` verificadas en Figma
+
+Esta tabla registra sólo cambios ejecutados y verificados en la interfaz. Un diagnóstico local no entra aquí hasta que Figma muestre `Skipped` y el MCP deje de devolver el target como no conectado.
+
+| Sección | Target | Nodo | Evidencia | Verificación |
+| --- | --- | --- | --- | --- |
+| Containers | `BB_2_11_3` | `62:9618` | Bloque interno de descripción/duración de `BmbHitoCardComponent`; no existe selector o export Angular público independiente. | UI `Skipped`; `get_code_connect_suggestions(62:9618)` devolvió “No additional mappings needed”. |
 
 Los contratos conocidos siguen vigentes como cola secundaria en [CONTRACT_BACKLOG.md](CONTRACT_BACKLOG.md):
 
@@ -74,6 +85,8 @@ Los contratos conocidos siguen vigentes como cola secundaria en [CONTRACT_BACKLO
 | Rama de trabajo | `code-connect-v1.6.4-b` | Editar, commitear y subir únicamente `code-connect-batch/`. |
 
 ## Flujo operativo
+
+La ejecución autónoma usa un Goal persistente y el heartbeat `bamboo-code-connect-contract-monitor` como watchdog cada 30 minutos. El lock local fuera de Git vive en `/Users/csolares/Documents/5 - CODEX/tec.design/Codebase/.codex-locks/bamboo-code-connect.lock`: si está vigente, ningún segundo ciclo escribe; sólo un lock con más de 120 minutos y sin Goal activo puede recuperarse. Cada ciclo procesa hasta tres targets y deja estado durable en este archivo y `DECISIONS.md`.
 
 1. Seleccionar la primera sección incompleta de la tabla anterior y enumerar sus targets publicados sin mapping desde Figma MCP.
 2. Resolver primero el target principal; después sus hijos publicados configurables. No marcar la sección completa mientras Figma siga mostrando un target local como `not connected`: debe quedar `Connected` verificado o `Skipped` explícito.
