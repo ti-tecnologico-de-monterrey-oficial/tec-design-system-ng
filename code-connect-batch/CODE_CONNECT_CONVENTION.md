@@ -6,6 +6,43 @@ This is the design-to-code contract for Bamboo Angular Code Connect templates. I
 
 The public code API is authoritative for emitted Angular attributes. Figma property coverage and code equivalence are independent: a confirmed Angular equivalent is eligible for a canonical mapping even when Figma has visual-only variants or lacks an editable property. Those gaps are recorded as coverage, not as absence of a component.
 
+## Evidence strategy: Figma-first inventory, Storybook-first resolution
+
+The section inventory remains **Figma-first**: Figma defines which published targets still need an explicit disposition. Resolving each target is **Storybook-first**: the canonical Storybook story establishes how consumers actually assemble and configure the Angular API, and the Angular source then validates every selector, input, type, output, service and public export before a snippet is written.
+
+| Evidence | Authoritative for | Not authoritative for |
+| --- | --- | --- |
+| Bamboo Components Figma (`Q4t8qIM5fklC9I3Atc1BrZ`) | Published target identity, stable node ID, properties, variants, nested instances and final `hasTemplate` state. | Angular attribute names, required object shapes or service setup. |
+| Published Angular Storybook | Canonical usage, representative `args`, documented fixtures, projected composition and rendered states. | Whether an API is publicly exported or the exact TypeScript contract when source disagrees. |
+| Angular source and `ui-angular/src/index.ts` | Public export, selector/directive, inputs, outputs, types, required values and runtime composition. | Which Figma target is canonical. |
+| Figma Code Connect CLI/MCP | Parse, publish, suggestion reconciliation and post-publish verification. | Deciding a semantic match without Storybook/source evidence. |
+
+Current Storybook sources:
+
+- Published catalog: `https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/index.json`.
+- Rendered stories: the same Chromatic deployment.
+- Source stories: `ui-angular/src/lib/**/*.stories.ts` and adjacent MDX discovered by `ui-angular/.storybook/main.ts`.
+
+### Storybook MCP decision
+
+Do **not** install or register `@storybook/addon-mcp` for this Angular batch yet. As of 2026-08-17, the [official Storybook MCP documentation](https://storybook.js.org/docs/ai/mcp/overview) states that its manifests and MCP capabilities are in preview and supported only for React projects. In particular, the documentation toolset needed here (`list-all-documentation`, `get-documentation`, and `get-documentation-for-story`) cannot currently be treated as an authoritative Angular inventory.
+
+The Storybook MCP would be an evidence adapter, not a publisher: even after Angular support arrives, Figma MCP and the Code Connect CLI remain responsible for mapping and verification. Reconsider the addon only when the official documentation declares Angular manifest support and a smoke test against this Storybook successfully lists Bamboo components and returns their Angular stories/props. Until then, read the live `index.json`, story source and rendered Storybook directly.
+
+### Deterministic resolution procedure
+
+For every Figma target selected from a section:
+
+1. Resolve the stable main component node and record its Figma properties and published children.
+2. Search the live Storybook `index.json` for the exact component/family, then locate the corresponding story file. A name-only hit is a candidate, not proof.
+3. Read the story's `component`, `args`, `render`, decorators and MDX. Use the rendered story when structure or composition cannot be understood safely from source alone.
+4. Verify the referenced class/directive in `ui-angular/src/index.ts` and its source. Every emitted attribute must exist in this public API.
+5. Record the evidence row as `Figma node -> Story ID/file -> Angular export/selector -> disposition` in `DECISIONS.md` before publishing or skipping.
+6. Choose exactly one disposition: `Connected`, `Skipped`, `Contract required`, or `Blocked/external owner`.
+7. For `Connected`, create the parserless `.figma.ts`, parse, publish and verify. For `Skipped`, verify the UI state and suggestion disappearance. The other outcomes remain documented and do not receive synthetic mappings.
+
+For components consumers assemble manually, prefer the smallest canonical composition shown by Storybook. Use the public parent facade when one exists; otherwise connect independently useful public children and resolve them dynamically. A Storybook fixture may supply a required neutral value or a reduced representative object only when it is copied from a documented story and recorded as such. Never infer arrays, objects, slots or attributes merely from the rendered design.
+
 ## Eligibility and coverage
 
 Record two independent dimensions for every candidate.

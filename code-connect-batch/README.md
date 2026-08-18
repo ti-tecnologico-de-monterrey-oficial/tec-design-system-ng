@@ -89,6 +89,7 @@ Los contratos conocidos siguen vigentes como cola secundaria en [CONTRACT_BACKLO
 | Rol | Fuente | Regla |
 | --- | --- | --- |
 | Angular vigente | GitHub `develop`, entrada pública `ui-angular/src/index.ts` | Es la fuente de verdad para exports, selectores e inputs. La migración se auditó contra SHA `94e14c2ca61c9cf011a017335f6c710d1cb5e777`. |
+| Storybook Angular | `https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com` + `/index.json` + `ui-angular/src/lib/**/*.stories.ts` | Fuente de verdad de uso: stories, `args`, fixtures, proyección y composiciones que los consumidores arman manualmente. El source Angular prevalece para tipos y API pública. |
 | Figma de publicación | Bamboo `Q4t8qIM5fklC9I3Atc1BrZ` | Único destino permitido para contratos y Code Connect. |
 | Documentación Bamboo | `LYk8AJb5RjQhRfPmRIdEQ9` | Evidencia de anatomía, uso y composición; no sustituye al target maestro de Components. |
 | Evidencia de producto | MiTec `Jf8Nd71tihhPZdv9xm6PnN`, desde `15686:164499` | Sirve para probar composiciones reales; sus instancias no son destinos persistentes. |
@@ -98,14 +99,18 @@ Los contratos conocidos siguen vigentes como cola secundaria en [CONTRACT_BACKLO
 
 La ejecución autónoma usa un Goal persistente y el heartbeat `bamboo-code-connect-contract-monitor` como watchdog cada 30 minutos. El lock local fuera de Git vive en `/Users/csolares/Documents/5 - CODEX/tec.design/Codebase/.codex-locks/bamboo-code-connect.lock`: si está vigente, ningún segundo ciclo escribe; sólo un lock con más de 120 minutos y sin Goal activo puede recuperarse. Cada ciclo procesa hasta tres targets y deja estado durable en este archivo y `DECISIONS.md`.
 
+La estrategia es **Figma-first para inventario y Storybook-first para resolver**. Figma decide qué target sigue pendiente; Storybook demuestra la receta canónica y Angular confirma que el selector, inputs y tipos son públicos. El MCP oficial de Storybook no se instala en este lote porque sus manifests/herramientas de documentación siguen soportando sólo React; para Angular se usa el `index.json` publicado, el source de las stories y su render en Chromatic. Esta limitación no detiene el batch y no cambia el mecanismo de publicación, que sigue siendo Figma Code Connect.
+
 1. Seleccionar la primera sección incompleta de la tabla anterior y enumerar sus targets publicados sin mapping desde Figma MCP.
 2. Resolver primero el target principal; después sus hijos publicados configurables. No marcar la sección completa mientras Figma siga mostrando un target local como `not connected`: debe quedar `Connected` verificado o `Skipped` explícito.
-3. Contrastar cada target con export Angular público, source, inputs y Storybook. La búsqueda en código confirma el match; no define el universo inicial.
-4. Clasificar auxiliares y dependencias sin ocultarlos. Un `BB_*` sólo se publica como target secundario o adaptador parserless `nestable` cuando representa fielmente una API pública o hace posible una composición pública real. Un helper puramente visual se propone como `Skipped`; documentarlo sin reflejar ese estado en Figma no cuenta como avance de cobertura.
-5. Si el snippet requiere arrays, objetos, `Date`, servicio o proyección sin SLOT, registrar `Contract required` y continuar con el siguiente target de la sección.
-6. Crear o actualizar exclusivamente parserless `.figma.ts` dentro de esta carpeta, siguiendo [CODE_CONNECT_CONVENTION.md](CODE_CONNECT_CONVENTION.md).
-7. Ejecutar `parse --verbose`; publicar sin `--dry-run`, sin `--force`; verificar `hasTemplate: true` con Figma MCP.
-8. Sólo después de verificar: actualizar [INVENTORY.md](INVENTORY.md), esta tabla, [CONTRACT_BACKLOG.md](CONTRACT_BACKLOG.md) cuando aplique y [DECISIONS.md](DECISIONS.md).
+3. Buscar el target/familia en el `index.json` de Storybook; leer la story canónica (`component`, `args`, `render`, decoradores/MDX) y revisar el render cuando la composición sea manual o ambigua.
+4. Confirmar después el export Angular público, selector/directiva, source, inputs, outputs y tipos. Storybook prueba el uso; Angular autoriza los atributos; ninguno sustituye al nodo estable de Figma.
+5. Clasificar auxiliares y dependencias sin ocultarlos. Un `BB_*` sólo se publica como target secundario o adaptador parserless `nestable` cuando representa fielmente una API pública o hace posible una composición pública real. Un helper puramente visual se propone como `Skipped`; documentarlo sin reflejar ese estado en Figma no cuenta como avance de cobertura.
+6. Si el snippet requiere arrays, objetos, `Date`, servicio o proyección sin SLOT, usar sólo una fixture neutral documentada por Storybook cuando sea suficiente y fiel; en caso contrario registrar `Contract required` y continuar.
+7. Registrar en `DECISIONS.md` la relación `Figma node -> Story ID/file -> Angular export/selector -> disposición`.
+8. Crear o actualizar exclusivamente parserless `.figma.ts` dentro de esta carpeta, siguiendo [CODE_CONNECT_CONVENTION.md](CODE_CONNECT_CONVENTION.md).
+9. Ejecutar `parse --verbose`; publicar sin `--dry-run`, sin `--force`; verificar `hasTemplate: true` con Figma MCP.
+10. Sólo después de verificar: actualizar [INVENTORY.md](INVENTORY.md), esta tabla, [CONTRACT_BACKLOG.md](CONTRACT_BACKLOG.md) cuando aplique y [DECISIONS.md](DECISIONS.md).
 
 El token se carga desde el `.env` del checkout histórico sin imprimirlo. El CLI oficial fijado para este lote es:
 
