@@ -10,18 +10,18 @@ Este archivo es la **fuente de verdad operativa** del lote. Si otro documento co
 | --- | ---: |
 | Componentes exportados por `ui-angular/src/index.ts` | 130 |
 | Clases Angular con template independiente confirmado | 99 |
-| Mappings públicos publicados y verificados por MCP | 103 |
+| Mappings públicos publicados y verificados por MCP | 106 |
 | Adaptadores internos `BB_*` | 4 |
 | Assets publicados en Bamboo Components | 475 |
-| Targets Figma con mapping local publicado | 107 |
-| Targets Figma publicados todavía sin mapping | 368 |
+| Targets Figma con mapping local publicado | 110 |
+| Targets Figma publicados todavía sin mapping | 365 |
 | Contract required | 3 |
 | Parent/child composition | 14 |
 | Blocked / out of scope | 14 |
 | Candidatos directos abiertos en el inventario Angular-first anterior | 0 |
-| Targets Figma-first pendientes de disposición explícita | 368 |
+| Targets Figma-first pendientes de disposición explícita | 358 |
 
-La conciliación Angular sigue siendo: **99 clases conectadas + 31 sin template independiente confirmado = 130**. Sin embargo, ésa no es la cobertura que muestra la interfaz de Figma. La librería publica 475 targets y sólo 107 tienen mapping del lote: **22.5%, redondeado por Figma a 23%**. Los dos denominadores deben mantenerse separados.
+La conciliación Angular sigue siendo: **99 clases conectadas + 31 sin template independiente confirmado = 130**. Sin embargo, ésa no es la cobertura que muestra la interfaz de Figma. La librería publica 475 targets y 110 tienen mapping del lote: **23.2%**. Los dos denominadores deben mantenerse separados.
 
 ## Qué queda por hacer
 
@@ -31,7 +31,7 @@ Línea base MCP del 2026-08-17. `Local publicado sin mapping` cuenta targets de 
 
 | Orden | Sección | Nodo | Únicos sin conexión observados | Local publicado sin mapping | Dependencia externa/no publicada |
 | ---: | --- | --- | ---: | ---: | ---: |
-| 1 | Botones | `14050:2707` | 23 | 10 | 13 |
+| 1 | Botones | `14050:2707` | 20 | 7 | 13 |
 | 2 | Containers | `14050:20207` | 116 | 79 | 37 |
 | 3 | Imágenes | `14050:20466` | 12 | 8 | 4 |
 | 4 | Inputs | `14058:4731` | 40 | 24 | 16 |
@@ -40,6 +40,8 @@ Línea base MCP del 2026-08-17. `Local publicado sin mapping` cuenta targets de 
 | 7 | Visual labels | `14058:20327` | 34 | 29 | 5 |
 
 El prefijo `BB_*` no decide el resultado: puede ser un adaptador necesario para que un padre genere código útil o un detalle estrictamente visual. Debe resolverse por composición, API pública y uso real. `IndexLabel`, `IndexHeader`, prototipos, anotaciones y dependencias externas tampoco se publican por reflejo; se clasifican con evidencia.
+
+**Botones — sección triaged el 2026-08-17:** tres targets adicionales de la familia pública Card button quedaron publicados y verificados (`BB_1_6`, `BB_1_6_4`, `Card Button Small`). Los siete locales restantes tienen disposición `Internal/helper`: `IndexLabel`, `IndexHeader`, `BB_6_2`, `BB_1_9`, `BB_7_2`, `BB_1_6_2` y `BB_5_5`. No tienen API Angular pública independiente y sus padres públicos correspondientes ya están conectados. La siguiente sección activa es Containers.
 
 Los contratos conocidos siguen vigentes como cola secundaria en [CONTRACT_BACKLOG.md](CONTRACT_BACKLOG.md):
 
