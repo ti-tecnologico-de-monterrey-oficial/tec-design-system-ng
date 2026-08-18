@@ -14,13 +14,13 @@ Este archivo es la **fuente de verdad operativa** del lote. Si otro documento co
 | Adaptadores internos `BB_*` | 5 |
 | Assets publicados en Bamboo Components | 475 |
 | Targets Figma con mapping local publicado | 113 |
-| Targets Figma marcados `Skipped` y verificados en UI/MCP | 1 |
+| Targets Figma marcados `Skipped` y verificados en UI/MCP | 4 |
 | Targets Figma publicados todavía sin mapping | 362 |
 | Contract required | 3 |
 | Parent/child composition | 14 |
 | Blocked / out of scope | 14 |
 | Candidatos directos abiertos en el inventario Angular-first anterior | 0 |
-| Targets Figma-first pendientes de disposición explícita | 342 |
+| Targets Figma-first pendientes de disposición explícita | 339 |
 
 La conciliación Angular sigue siendo: **99 clases conectadas + 31 sin template independiente confirmado = 130**. Sin embargo, ésa no es la cobertura que muestra la interfaz de Figma. La librería publica 475 targets y 113 tienen mapping del lote: **23.8%**. Los dos denominadores deben mantenerse separados.
 
@@ -32,8 +32,8 @@ Línea base MCP del 2026-08-17. `Local publicado sin mapping` cuenta targets de 
 
 | Orden | Sección | Nodo | Únicos sin conexión observados | Local publicado sin mapping | Dependencia externa/no publicada |
 | ---: | --- | --- | ---: | ---: | ---: |
-| 1 | Botones | `14050:2707` | 20 | 7 | 13 |
-| 2 | Containers | `14050:20207` | 112 | 75 | 37 |
+| 1 | Botones | `14050:2707` | 19 | 6 | 13 |
+| 2 | Containers | `14050:20207` | 109 | 72 | 37 |
 | 3 | Imágenes | `14050:20466` | 12 | 8 | 4 |
 | 4 | Inputs | `14058:4731` | 40 | 24 | 16 |
 | 5 | Menús | `14058:12162` | 86 | 36 | 50 |
@@ -42,7 +42,7 @@ Línea base MCP del 2026-08-17. `Local publicado sin mapping` cuenta targets de 
 
 El prefijo `BB_*` no decide el resultado: puede ser un adaptador necesario para que un padre genere código útil o un detalle estrictamente visual. Debe resolverse por composición, API pública y uso real. `IndexLabel`, `IndexHeader`, prototipos, anotaciones y dependencias externas tampoco se publican por reflejo; se clasifican con evidencia.
 
-**Botones — conciliación semántica completada el 2026-08-17, cierre UI pendiente:** tres targets adicionales de la familia pública Card button quedaron publicados y verificados (`BB_1_6`, `BB_1_6_4`, `Card Button Small`). Los siete locales restantes tienen diagnóstico `Internal/helper`: `IndexLabel`, `IndexHeader`, `BB_6_2`, `BB_1_9`, `BB_7_2`, `BB_1_6_2` y `BB_5_5`. No tienen API Angular pública independiente y sus padres públicos correspondientes ya están conectados, pero la sección no se considera cerrada hasta que esos targets queden `Skipped` explícitamente en Figma.
+**Botones — conciliación semántica completada el 2026-08-17, cierre UI pendiente:** tres targets adicionales de la familia pública Card button quedaron publicados y verificados (`BB_1_6`, `BB_1_6_4`, `Card Button Small`). `BB_6_2` quedó `Skipped` globalmente durante la remediación de Containers. Los seis locales restantes tienen diagnóstico `Internal/helper`: `IndexLabel`, `IndexHeader`, `BB_1_9`, `BB_7_2`, `BB_1_6_2` y `BB_5_5`. No tienen API Angular pública independiente y sus padres públicos correspondientes ya están conectados, pero la sección no se considera cerrada hasta que esos targets queden `Skipped` explícitamente en Figma.
 
 **Containers — lote 1 del 2026-08-17:** `AI Chat bar` (`413:72922`) quedó publicado como target adicional de `BmbChatBarComponent`; `Loading` es la única propiedad con correspondencia pública inequívoca (`isLoading`). `BotIcon_Select` (`423:7684`) queda `Internal/helper`: su estado Selected/Enabled/Hover pertenece a la composición de AI Chat bar y `BmbBotIconComponent` ni siquiera es export público. `Template_BoxTable` (`62:10544`) queda `Internal/helper`: es una celda configurable utilizada por `Template_RowTable`, no una tabla Angular independiente. Containers continúa activa con 76 targets locales pendientes de disposición tras este lote (78 todavía sin mapping).
 
@@ -58,6 +58,8 @@ El prefijo `BB_*` no decide el resultado: puede ser un adaptador necesario para 
 
 **Containers — prueba autónoma de `Skipped` del 2026-08-17:** `BB_2_11_3` (`62:9618`) fue marcado `Skipped` desde la interfaz de Code Connect. Figma mostró el estado `Skipped` y el MCP respondió que la selección ya no necesita mappings. Containers queda con **112** sugerencias: **75 locales**, de los cuales **14 tienen diagnóstico y requieren `Skipped` en UI** y **61 continúan sin triage**, más 37 dependencias externas.
 
+**Containers — lote autónomo de `Skipped` 1 del 2026-08-17:** `BB_2_11_4` (`62:9612`), `BB_2_11_5` (`62:9606`) y el helper compartido `BB_6_2` (`151:38706`) fueron marcados `Skipped` después de registrar su evidencia. La interfaz mostró `Skipped` para los tres y sus consultas MCP exactas devolvieron “No additional mappings needed”. Containers queda con **109** sugerencias: **72 locales**, de los cuales **11 ya tienen diagnóstico pendiente de remediación UI** y **61 continúan sin triage**, más 37 dependencias externas. El skip global de `BB_6_2` también reduce Botones a 19 sugerencias: 6 locales y 13 externas.
+
 ## Disposiciones `Skipped` verificadas en Figma
 
 Esta tabla registra sólo cambios ejecutados y verificados en la interfaz. Un diagnóstico local no entra aquí hasta que Figma muestre `Skipped` y el MCP deje de devolver el target como no conectado.
@@ -65,6 +67,9 @@ Esta tabla registra sólo cambios ejecutados y verificados en la interfaz. Un di
 | Sección | Target | Nodo | Evidencia | Verificación |
 | --- | --- | --- | --- | --- |
 | Containers | `BB_2_11_3` | `62:9618` | Bloque interno de descripción/duración de `BmbHitoCardComponent`; no existe selector o export Angular público independiente. | UI `Skipped`; `get_code_connect_suggestions(62:9618)` devolvió “No additional mappings needed”. |
+| Containers | `BB_2_11_4` | `62:9612` | Marcador Neutral/Active del Hito card; sus únicos estados corresponden a la presentación de `enable_bullet`/`is_active` del padre. | UI `Skipped`; `get_code_connect_suggestions(62:9612)` devolvió “No additional mappings needed”. |
+| Containers | `BB_2_11_5` | `62:9606` | Encabezado temporal generado por `BmbHitoListComponent`; no existe selector o export Angular público independiente. | UI `Skipped`; `get_code_connect_suggestions(62:9606)` devolvió “No additional mappings needed”. |
+| Containers / Botones | `BB_6_2` | `151:38706` | Indicador visual compartido por Badge, Legend, paginadores y otros padres; no existe una API Angular independiente. | UI `Skipped`; `get_code_connect_suggestions(151:38706)` devolvió “No additional mappings needed”. |
 
 Los contratos conocidos siguen vigentes como cola secundaria en [CONTRACT_BACKLOG.md](CONTRACT_BACKLOG.md):
 

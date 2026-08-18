@@ -674,3 +674,18 @@ Carlos supplied three references for this family: TEC.mobi "Calendar_FadeTransit
 - **Action:** opened the exact component in Figma Code Connect and used `Skip connection`; no Figma node, property or Angular API was modified.
 - **Verification:** the UI changed to `Skipped` and exposed “This design component has been skipped, but you can connect it now.” A subsequent MCP call for `62:9618` returned “All component instances in this selection are already connected to code via Code Connect. No additional mappings needed.” A section-level refresh dropped Containers from 113 to 112 suggestions, with `BB_2_11_3` absent.
 - **Queue effect:** Containers now has 75 local unresolved targets plus 37 external dependencies. Fourteen local targets are already diagnosed for UI skip and 61 remain untriaged. Mapping coverage remains 113/475; resolved UI dispositions increase by one.
+
+## Figma-first — Containers autonomous skip batch 1 / pre-action evidence (2026-08-17)
+
+- **State before mutation:** fresh MCP suggestions report `BB_2_11_4` (`62:9612`), `BB_2_11_5` (`62:9606`) and `BB_6_2` (`151:38706`) as not connected. None has a local Code Connect template.
+- **`BB_2_11_4`:** published component set with only `Property 1=Neutral|Active` and a nested `BB_6_2`. Angular exposes those visuals exclusively through `BmbHitoCardComponent.enable_bullet` and `is_active`; Storybook documents them as “Shows a bullet” and “Change the color of the bullet”. There is no independent selector/export for the dot.
+- **`BB_2_11_5`:** published date/group header with `Title`, `Subtitle`, `Ver más` and a visibility boolean. In code, the temporal heading and event counts are generated inside `BmbHitoListComponent` from `events`, `orderedMonths` and `selectedDate`; Storybook documents the whole list data contract, not a header component. There is no independent selector/export.
+- **`BB_6_2`:** published shared visual indicator with only `State=Active|Inactive (Small)|Inactive (Large)` and no descendants. It is reused inside Badge, Legend, paginator dots and other parents; repository/public-export search confirms no independent Angular API. Mapping it to Badge, Hito card or paginator would emit a structurally false component.
+- **Decision:** all three are eligible for Figma `Skipped`. The operation will change only Code Connect disposition, not design nodes or Angular APIs. Each target must show `Skipped` and disappear from its exact MCP suggestions before it is recorded as resolved.
+
+### Post-action verification
+
+- **UI result:** Figma Code Connect displayed `Skipped` for `BB_2_11_4`, `BB_2_11_5` and `BB_6_2`, including the reversible “Connect now” action. No design node, property or Angular source was modified.
+- **Exact MCP result:** `get_code_connect_suggestions` for `62:9612`, `62:9606` and `151:38706` returned “All component instances in this selection are already connected to code via Code Connect. No additional mappings needed.”
+- **Section reconciliation:** Containers dropped from 112 to 109 unresolved targets and from 75 to 72 local targets; its 37 external dependencies are unchanged. Botones dropped from 20 to 19 unresolved targets and from 7 to 6 local targets; its 13 external dependencies are unchanged because `BB_6_2` was shared by both sections.
+- **Coverage accounting:** Code Connect mappings remain 113/475. Verified UI skips increase from 1 to 4 and the Figma-first disposition queue decreases from 342 to 339; skips are not counted as mappings.
