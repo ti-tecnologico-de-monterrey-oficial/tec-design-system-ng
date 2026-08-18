@@ -25,14 +25,14 @@ La conciliación Angular sigue siendo: **99 clases conectadas + 31 sin template 
 
 ## Qué queda por hacer
 
-La cola principal pasa a ser **Figma-first por sección**. Un export Angular conectado no cierra una sección: cada target publicado visible en ella debe quedar `Connected`, `Public candidate`, `Adapter candidate`, `Internal/helper`, `External foundation`, `Duplicate/deprecated` o `Contract required`.
+La cola principal pasa a ser **Figma-first por sección**. Un export Angular conectado no cierra una sección. Tampoco la cierra una clasificación exclusivamente local: `Internal/helper`, `External foundation` y `Duplicate/deprecated` son diagnósticos, no estados resueltos en la interfaz de Figma. Un target sólo deja la cola visible cuando queda `Connected` y verificado, o `Skipped` explícitamente en Figma con evidencia de por qué no representa una API consumible.
 
 Línea base MCP del 2026-08-17. `Local publicado sin mapping` cuenta targets de esta librería encontrados en la selección; `Dependencia externa/no publicada` evita confundir iconos u otros hijos con el inventario local. Las filas se traslapan y no deben sumarse como total global.
 
 | Orden | Sección | Nodo | Únicos sin conexión observados | Local publicado sin mapping | Dependencia externa/no publicada |
 | ---: | --- | --- | ---: | ---: | ---: |
 | 1 | Botones | `14050:2707` | 20 | 7 | 13 |
-| 2 | Containers | `14050:20207` | 116 | 79 | 37 |
+| 2 | Containers | `14050:20207` | 114 | 77 | 37 |
 | 3 | Imágenes | `14050:20466` | 12 | 8 | 4 |
 | 4 | Inputs | `14058:4731` | 40 | 24 | 16 |
 | 5 | Menús | `14058:12162` | 86 | 36 | 50 |
@@ -41,7 +41,7 @@ Línea base MCP del 2026-08-17. `Local publicado sin mapping` cuenta targets de 
 
 El prefijo `BB_*` no decide el resultado: puede ser un adaptador necesario para que un padre genere código útil o un detalle estrictamente visual. Debe resolverse por composición, API pública y uso real. `IndexLabel`, `IndexHeader`, prototipos, anotaciones y dependencias externas tampoco se publican por reflejo; se clasifican con evidencia.
 
-**Botones — sección triaged el 2026-08-17:** tres targets adicionales de la familia pública Card button quedaron publicados y verificados (`BB_1_6`, `BB_1_6_4`, `Card Button Small`). Los siete locales restantes tienen disposición `Internal/helper`: `IndexLabel`, `IndexHeader`, `BB_6_2`, `BB_1_9`, `BB_7_2`, `BB_1_6_2` y `BB_5_5`. No tienen API Angular pública independiente y sus padres públicos correspondientes ya están conectados. La siguiente sección activa es Containers.
+**Botones — conciliación semántica completada el 2026-08-17, cierre UI pendiente:** tres targets adicionales de la familia pública Card button quedaron publicados y verificados (`BB_1_6`, `BB_1_6_4`, `Card Button Small`). Los siete locales restantes tienen diagnóstico `Internal/helper`: `IndexLabel`, `IndexHeader`, `BB_6_2`, `BB_1_9`, `BB_7_2`, `BB_1_6_2` y `BB_5_5`. No tienen API Angular pública independiente y sus padres públicos correspondientes ya están conectados, pero la sección no se considera cerrada hasta que esos targets queden `Skipped` explícitamente en Figma.
 
 **Containers — lote 1 del 2026-08-17:** `AI Chat bar` (`413:72922`) quedó publicado como target adicional de `BmbChatBarComponent`; `Loading` es la única propiedad con correspondencia pública inequívoca (`isLoading`). `BotIcon_Select` (`423:7684`) queda `Internal/helper`: su estado Selected/Enabled/Hover pertenece a la composición de AI Chat bar y `BmbBotIconComponent` ni siquiera es export público. `Template_BoxTable` (`62:10544`) queda `Internal/helper`: es una celda configurable utilizada por `Template_RowTable`, no una tabla Angular independiente. Containers continúa activa con 76 targets locales pendientes de disposición tras este lote (78 todavía sin mapping).
 
@@ -50,6 +50,8 @@ El prefijo `BB_*` no decide el resultado: puede ser un adaptador necesario para 
 **Containers — lote 3 del 2026-08-17:** `BB_2_11_5` (`62:9606`), `BB_2_11` (`62:9636`) y `BB_2_12_3` (`474:96299`) quedaron `Internal/helper`. Son, respectivamente, encabezado de agrupación temporal, contenido interno de Hito card y encabezado compartido de Gcard; sus padres públicos Hito list, Hito card, Timestream, Home/Profile/AI Chat card ya representan la API consumible. Containers continúa activa con 70 targets locales pendientes de disposición (78 todavía sin mapping).
 
 **Containers — lote 4 del 2026-08-17:** `Generic card` (`99:28392`) quedó publicado y verificado contra `BmbCardComponent`, incluyendo su SLOT genuino sólo en las ocho variantes Inner Slot y `Style → type` para Primary/Secondary; los estilos de composición sin equivalente conservan `normal`. `BB_2_8` (`99:31713`) es la cuadrícula interna de slots usada por múltiples padres, y `BB_8_4_2` (`474:94211`) es el marcador día/mes de Calendar/Timestream; ambos quedan `Internal/helper`. Containers continúa activa con 67 targets locales pendientes de disposición (77 todavía sin mapping).
+
+**Containers — reconciliación de interfaz del 2026-08-17:** una lectura nueva de `get_code_connect_suggestions` devuelve **114** targets únicos todavía sin conexión: **77 locales publicados** por Bamboo y **37 dependencias externas/no pertenecientes al inventario de esta librería**. Entre los 77 locales hay **13 targets previamente diagnosticados pero todavía visibles como no conectados** y **64 sin triage**. Esto reemplaza el supuesto de que una disposición local `Internal/helper` equivalía a resolver la fila. La cifra `84 not connected` mostrada por la interfaz usa su propio alcance/filtrado y no debe reconciliarse por resta con el resultado MCP; ambos coinciden en que Containers no está cerrada.
 
 Los contratos conocidos siguen vigentes como cola secundaria en [CONTRACT_BACKLOG.md](CONTRACT_BACKLOG.md):
 
@@ -72,9 +74,9 @@ Los contratos conocidos siguen vigentes como cola secundaria en [CONTRACT_BACKLO
 ## Flujo operativo
 
 1. Seleccionar la primera sección incompleta de la tabla anterior y enumerar sus targets publicados sin mapping desde Figma MCP.
-2. Resolver primero el target principal; después sus hijos publicados configurables. No marcar la sección completa mientras quede un target sin disposición explícita.
+2. Resolver primero el target principal; después sus hijos publicados configurables. No marcar la sección completa mientras Figma siga mostrando un target local como `not connected`: debe quedar `Connected` verificado o `Skipped` explícito.
 3. Contrastar cada target con export Angular público, source, inputs y Storybook. La búsqueda en código confirma el match; no define el universo inicial.
-4. Clasificar auxiliares y dependencias sin ocultarlos. Un `BB_*` sólo se publica como adaptador parserless `nestable` cuando hace posible una composición pública real.
+4. Clasificar auxiliares y dependencias sin ocultarlos. Un `BB_*` sólo se publica como target secundario o adaptador parserless `nestable` cuando representa fielmente una API pública o hace posible una composición pública real. Un helper puramente visual se propone como `Skipped`; documentarlo sin reflejar ese estado en Figma no cuenta como avance de cobertura.
 5. Si el snippet requiere arrays, objetos, `Date`, servicio o proyección sin SLOT, registrar `Contract required` y continuar con el siguiente target de la sección.
 6. Crear o actualizar exclusivamente parserless `.figma.ts` dentro de esta carpeta, siguiendo [CODE_CONNECT_CONVENTION.md](CODE_CONNECT_CONVENTION.md).
 7. Ejecutar `parse --verbose`; publicar sin `--dry-run`, sin `--force`; verificar `hasTemplate: true` con Figma MCP.
