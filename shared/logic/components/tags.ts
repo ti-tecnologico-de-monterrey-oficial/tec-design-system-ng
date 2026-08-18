@@ -1,4 +1,5 @@
 import { IBmbActivityTags } from '../../types/components/tags';
+import { IBmbTagColors } from '../../types/foundations/colors/color-type';
 
 export function getTagClasses({
   appearance,
@@ -7,7 +8,7 @@ export function getTagClasses({
   isActive,
   isDisabled,
 }: {
-  appearance: IBmbActivityTags;
+  appearance: IBmbActivityTags | IBmbTagColors;
   dismissible: boolean;
   enableClick: boolean;
   isActive: boolean;

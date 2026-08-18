@@ -12,8 +12,8 @@ import {
 import { CommonModule } from '@angular/common';
 import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
 import { TranslatePipe } from '../../../pipes/translations';
-import { getTagClasses } from '../../../../../../shared/logic/components/tags';
-import { IBmbActivityTags } from '../../../../../../shared/types/components/tags';
+import { getTagClasses } from '../../../_shared/logic/components/tags';
+import { IBmbActivityTags } from '../../../_shared/types/components/tags';
 
 @Component({
   selector: 'bmb-tag',

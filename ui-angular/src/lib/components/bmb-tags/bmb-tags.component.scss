@@ -1,5 +1,9 @@
 @use '../../../../../../shared/assets/styles/base/fonts' as fonts;
 @use '../../../../../../shared/assets/styles/base/rem' as rem;
+@use 'sass:map';
+
+@use '../../../../../../shared/assets/styles/base/color-group-name' as colors;
+@use '../../../../../../shared/assets/styles/base/color-functions' as colorFn;
 
 $colors: (
   // normal is the default color, so is not necessary to define it
@@ -74,6 +78,22 @@ $colors: (
   @each $name, $color in $colors {
     &-#{$name} {
       @include tag-variant($name, $color);
+    }
+  }
+}
+$tag_appearance: colorFn.map-merged(
+  colors.$bmb_tag_type
+);
+@each $name, $color in $tag_appearance {
+  &-#{$name} {
+    background-color: $color;
+
+    $font-color: map.get(colors.$font_colors, $name);
+
+    @if $font-color == null {
+      color: var(--general-contrasts-5);
+    } @else {
+      color: $font-color;
     }
   }
 }
