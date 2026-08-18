@@ -13,16 +13,16 @@ Este archivo es la **fuente de verdad operativa** del lote. Si otro documento co
 | Mappings públicos publicados y verificados por MCP | 108 |
 | Adaptadores internos `BB_*` | 5 |
 | Assets publicados en Bamboo Components | 475 |
-| Targets Figma con mapping local publicado | 114 |
+| Targets Figma con mapping local publicado | 115 |
 | Targets Figma marcados `Skipped` y verificados en UI/MCP | 15 |
-| Targets Figma publicados todavía sin mapping | 361 |
+| Targets Figma publicados todavía sin mapping | 360 |
 | Contract required | 3 |
 | Parent/child composition | 14 |
 | Blocked / out of scope | 14 |
 | Candidatos directos abiertos en el inventario Angular-first anterior | 0 |
-| Targets Figma-first pendientes de disposición explícita | 327 |
+| Targets Figma-first pendientes de disposición explícita | 326 |
 
-La conciliación Angular sigue siendo: **99 clases conectadas + 31 sin template independiente confirmado = 130**. Sin embargo, ésa no es la cobertura que muestra la interfaz de Figma. La librería publica 475 targets y 114 tienen mapping del lote: **24.0%**. Los dos denominadores deben mantenerse separados.
+La conciliación Angular sigue siendo: **99 clases conectadas + 31 sin template independiente confirmado = 130**. Sin embargo, ésa no es la cobertura que muestra la interfaz de Figma. La librería publica 475 targets y 115 tienen mapping del lote: **24.2%**. Los dos denominadores deben mantenerse separados.
 
 ## Qué queda por hacer
 
@@ -33,7 +33,7 @@ Línea base MCP del 2026-08-17. `Local publicado sin mapping` cuenta targets de 
 | Orden | Sección | Nodo | Únicos sin conexión observados | Local publicado sin mapping | Dependencia externa/no publicada |
 | ---: | --- | --- | ---: | ---: | ---: |
 | 1 | Botones | `14050:2707` | 13 | 0 | 13 |
-| 2 | Containers | `14050:20207` | 87 | 50 | 37 |
+| 2 | Containers | `14050:20207` | 63 | 28 | 35 |
 | 3 | Imágenes | `14050:20466` | 11 | 7 | 4 |
 | 4 | Inputs | `14058:4731` | 39 | 23 | 16 |
 | 5 | Menús | `14058:12162` | 85 | 35 | 50 |
@@ -63,6 +63,8 @@ El prefijo `BB_*` sí decide el resultado desde el 2026-08-17: significa **Build
 **Containers — lote autónomo de `Skipped` 2 del 2026-08-17:** `BotIcon_Select` (`423:7684`), `Template_BoxTable` (`62:10544`) y `Slot` (`12879:134374`) quedaron `Skipped` con evidencia previa. La interfaz confirmó los tres estados; MCP dejó de devolver esos IDs exactos, aunque las selecciones de los dos primeros todavía muestran descendientes independientes que deberán resolverse por separado. Containers queda con **106** sugerencias: **69 locales**, de los cuales **8 ya tienen diagnóstico pendiente de remediación UI** y **61 continúan sin triage**, más 37 externas. Como `Slot` es infraestructura compartida, también desapareció de Imágenes, Inputs, Menús, Status indicators y Visual labels; Botones no cambió.
 
 **Containers / Search Card — cierre dirigido del 2026-08-17:** `HomeCard_Mobile` (`523:213638`) quedó publicado como target secundario de `BmbHomeCardComponent`, con título visible e `[isMobile]="true"`. El mapping de `Search Card` (`9038:61107`) ahora emite el título visible y `[isLoading]` únicamente para `Empty (loading)`; no inventa resultados ni API móvil. `Search Card Item` y `Search Section` quedaron `Skipped` porque son implementación interna del arreglo público `results`. Junto con los seis helpers compartidos de Botones, la selección Containers queda en una lectura final de **87** sugerencias: **50 locales** y **37 externas**.
+
+**Containers — reanudación posterior a la regla BB/icon del 2026-08-17:** `List item with actions` (`1643:64262`) quedó publicado como target secundario `nestable` de `BmbListGroupItemComponent`. `Text` alimenta `headerText`, `State=Disabled` alimenta `isDisabled` y `State=Selected` alimenta `isActive`; Hover permanece visual. El `id="list-group-item-1"` y `[personalizedTemplate]="false"` provienen de la story canónica. MCP confirmó `hasTemplate: true` y el source `ui-angular` en las cuatro variantes. La lectura posterior devuelve **63** sugerencias: **28 targets locales** y **35 dependencias externas/no publicadas**. Entre los locales restantes predominan `BB_*`, iconos, slots/prototipos/layout helpers; `AI Chat Card` conserva el contrato `CHAT-01`. No queda otro target público directo confirmado en este snapshot.
 
 ## Disposiciones `Skipped` verificadas en Figma
 
