@@ -9,20 +9,20 @@ Este archivo es la **fuente de verdad operativa** del lote. Si otro documento co
 | Métrica | Estado confirmado |
 | --- | ---: |
 | Componentes exportados por `ui-angular/src/index.ts` | 130 |
-| Clases Angular con template independiente confirmado | 101 |
-| Mappings públicos publicados y verificados por MCP | 114 |
+| Clases Angular con template independiente confirmado | 102 |
+| Mappings públicos publicados y verificados por MCP | 120 |
 | Adaptadores internos `BB_*` | 5 |
 | Assets publicados en Bamboo Components | 475 |
-| Targets Figma con mapping local publicado | 119 |
+| Targets Figma con mapping local publicado | 125 |
 | Targets Figma marcados `Skipped` y verificados en UI/MCP | 15 |
-| Targets Figma publicados todavía sin mapping | 356 |
+| Targets Figma publicados todavía sin mapping | 350 |
 | Contract required | 2 |
 | Parent/child composition | 14 |
-| Blocked / out of scope | 13 |
+| Blocked / out of scope | 12 |
 | Candidatos directos abiertos en el inventario Angular-first anterior | 0 |
-| Targets Figma-first pendientes de disposición explícita | 322 |
+| Targets Figma-first pendientes de disposición explícita | 316 |
 
-La conciliación Angular pasa a **101 clases conectadas + 29 sin template independiente confirmado = 130**. Sin embargo, ésa no es la cobertura que muestra la interfaz de Figma. La librería publica 475 targets y 119 tienen mapping del lote: **25.1%**. Los dos denominadores deben mantenerse separados.
+La conciliación Angular pasa a **102 clases conectadas + 28 sin template independiente confirmado = 130**. Sin embargo, ésa no es la cobertura que muestra la interfaz de Figma. La librería publica 475 targets y 125 tienen mapping del lote: **26.3%**. Los dos denominadores deben mantenerse separados.
 
 ## Qué queda por hacer
 
@@ -37,7 +37,7 @@ Línea base MCP del 2026-08-17. `Local publicado sin mapping` cuenta targets de 
 | 3 | Imágenes | `14050:20466` | 5 | 3 | 2 |
 | 4 | Inputs | `14058:4731` | 28 | 14 | 14 |
 | 5 | Menús | `14058:12162` | 66 | 18 | 48 |
-| 6 | Status indicators | `14058:17391` | 44 | 29 | 15 |
+| 6 | Status indicators | `14058:17391` | 39 | 24 | 15 |
 | 7 | Visual labels | `14058:20327` | 33 | 28 | 5 |
 
 El prefijo `BB_*` sí decide el resultado desde el 2026-08-17: significa **Building Block** de Figma y queda fuera del inventario conectable. Los targets que sólo representan iconos también quedan fuera de alcance. Carlos gestionará sus `Skipped` directamente en Figma; el batch no los clasifica uno por uno, no espera su remediación UI y continúa con componentes públicos consumibles. Los cinco adaptadores BB ya publicados permanecen como legado hasta una auditoría de retiro separada; no se crean nuevos.
@@ -73,6 +73,8 @@ El prefijo `BB_*` sí decide el resultado desde el 2026-08-17: significa **Build
 **Inputs — conciliación siguiente:** la consulta actual devuelve **28** sugerencias: **14 locales** y **14 externas**. El único nombre público aparente, `Phone number` (`109:37835`), es otra referencia no persistente; su set estable `109:37834` ya está conectado y verificado. No se publica un duplicado contra un nodo inválido. Los demás locales son `BB_*`, `ProgressBar_Full` (cuyo set real es BB) o `SlotRow`.
 
 **Menús / Status indicators — lote público del 2026-08-17:** `Sidebar mobile` (`299:51512`) quedó publicado como target secundario de `BmbSidebarComponent`, y el mapping principal `Sidebar` (`299:51502`) dejó de ser una fachada vacía: ambos muestran la receta de dos grupos documentada por Storybook. `Loading screen` (`152:38092`) quedó conectado a `BmbLoaderComponent` con el texto visible fijo `Cargando...`; el antiguo bloqueo basado únicamente en `Loader_Icon` queda resuelto porque apareció el parent semántico estable. MCP confirmó `hasTemplate: true`, label Angular y source `ui-angular` en los tres targets. La conciliación nueva devuelve **66** sugerencias en Menús (18 locales, 48 externas) y **44** en Status indicators (29 locales, 15 externas). `Breadcrumb_topBar`, `LocalNavigation` y `PageLink_2` resuelven a sets `BB_5_3_*`; `Sidebar mobile - pull` es icon-only. Conforme al alcance vigente no reciben mappings falsos.
+
+**Status indicators — familia Skeleton del 2026-08-17:** el export público `BmbSkeletonComponent` y su Storybook `Dev tools/Skeleton` definen exactamente seis valores de `type`: `header`, `input`, `stray`, `generic1`, `generic2` y `generic3`. Los seis targets publicados equivalentes quedaron conectados con snippets directos; el set que la sección presenta como `Skeleton_Generic3` conserva internamente el nombre `Skeleton_Container2`, pero su screenshot y sus dos frames corresponden a la estructura `generic3`. MCP confirmó `hasTemplate: true` y source `ui-angular` para todos. Status indicators queda en **39** sugerencias: **24 locales** y **15 externas**; las cuatro piezas `Skeleton_Container`, `Skeleton_Headline` y dos `Skeleton_Circle/Item` son implementación interna y no se conectan como componentes completos.
 
 ## Disposiciones `Skipped` verificadas en Figma
 
