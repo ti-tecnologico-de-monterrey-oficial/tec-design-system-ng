@@ -13,16 +13,16 @@ Este archivo es la **fuente de verdad operativa** del lote. Si otro documento co
 | Mappings públicos publicados y verificados por MCP | 109 |
 | Adaptadores internos `BB_*` | 5 |
 | Assets publicados en Bamboo Components | 475 |
-| Targets Figma con mapping local publicado | 116 |
+| Targets Figma con mapping local publicado | 117 |
 | Targets Figma marcados `Skipped` y verificados en UI/MCP | 15 |
-| Targets Figma publicados todavía sin mapping | 359 |
+| Targets Figma publicados todavía sin mapping | 358 |
 | Contract required | 2 |
 | Parent/child composition | 14 |
 | Blocked / out of scope | 14 |
 | Candidatos directos abiertos en el inventario Angular-first anterior | 0 |
-| Targets Figma-first pendientes de disposición explícita | 325 |
+| Targets Figma-first pendientes de disposición explícita | 324 |
 
-La conciliación Angular pasa a **100 clases conectadas + 30 sin template independiente confirmado = 130**. Sin embargo, ésa no es la cobertura que muestra la interfaz de Figma. La librería publica 475 targets y 116 tienen mapping del lote: **24.4%**. Los dos denominadores deben mantenerse separados.
+La conciliación Angular pasa a **100 clases conectadas + 30 sin template independiente confirmado = 130**. Sin embargo, ésa no es la cobertura que muestra la interfaz de Figma. La librería publica 475 targets y 117 tienen mapping del lote: **24.6%**. Los dos denominadores deben mantenerse separados.
 
 ## Qué queda por hacer
 
@@ -34,8 +34,8 @@ Línea base MCP del 2026-08-17. `Local publicado sin mapping` cuenta targets de 
 | ---: | --- | --- | ---: | ---: | ---: |
 | 1 | Botones | `14050:2707` | 13 | 0 | 13 |
 | 2 | Containers | `14050:20207` | 62 | 27 | 35 |
-| 3 | Imágenes | `14050:20466` | 11 | 7 | 4 |
-| 4 | Inputs | `14058:4731` | 39 | 23 | 16 |
+| 3 | Imágenes | `14050:20466` | 5 | 3 | 2 |
+| 4 | Inputs | `14058:4731` | 28 | 14 | 14 |
 | 5 | Menús | `14058:12162` | 85 | 35 | 50 |
 | 6 | Status indicators | `14058:17391` | 64 | 46 | 18 |
 | 7 | Visual labels | `14058:20327` | 33 | 28 | 5 |
@@ -67,6 +67,10 @@ El prefijo `BB_*` sí decide el resultado desde el 2026-08-17: significa **Build
 **Containers — reanudación posterior a la regla BB/icon del 2026-08-17:** `List item with actions` (`1643:64262`) quedó publicado como target secundario `nestable` de `BmbListGroupItemComponent`. `Text` alimenta `headerText`, `State=Disabled` alimenta `isDisabled` y `State=Selected` alimenta `isActive`; Hover permanece visual. El `id="list-group-item-1"` y `[personalizedTemplate]="false"` provienen de la story canónica. MCP confirmó `hasTemplate: true` y el source `ui-angular` en las cuatro variantes. La lectura posterior devuelve **63** sugerencias: **28 targets locales** y **35 dependencias externas/no publicadas**. Entre los locales restantes predominan `BB_*`, iconos, slots/prototipos/layout helpers; `AI Chat Card` conserva el contrato `CHAT-01`. No queda otro target público directo confirmado en este snapshot.
 
 **Containers — cierre aproximado de `CHAT-01` del 2026-08-17:** `AI Chat Card` (`9268:46409`) quedó publicado y verificado contra `BmbHomeCardChatComponent`. El snippet usa el título canónico de Storybook `Asistente TECbot`, mapea `Web|Mobile → isMobile` y satisface el input requerido con la colección type-safe `[messagesHistory]="[]"`. No convierte la burbuja visual interna en un objeto `IBmbChatMessage`, porque Figma no expone un contrato de datos y Angular exige `time: Date`; el título anidado tampoco es una propiedad semántica de la raíz. MCP confirmó `hasTemplate: true` en Web y Mobile, label Angular y source `ui-angular`. Containers queda en **62** sugerencias: **27 locales** y **35 externas**. Ya no queda ningún componente público directo o `Contract required` dentro de esta sección; los 27 locales visibles son BB/building blocks o helpers/prototipos/layout sin API independiente.
+
+**Imágenes — target público conectado y referencia stale detectada el 2026-08-17:** el component set vigente `Image Carrousel` (`9258:67822`, resuelto por component key) quedó publicado como target secundario compuesto de `BmbCarouselComponent`. `Slide=Default|2|3` mapea a `selectedIndex=0|1|2`, y sus tres instancias ya conectadas de `BmbImageComponent` se proyectan dinámicamente dentro de elementos `#carouselItem`. MCP confirmó `hasTemplate: true` y snippets completos en las tres variantes. La sección todavía devuelve cinco sugerencias porque conserva una instancia del nodo histórico inválido `9034:46087`; esa fila no puede publicarse por CLI y requiere reemplazarla por el set vigente o marcarla `Skipped`. Las otras cuatro filas son dos BB y dos iconos externos.
+
+**Inputs — conciliación siguiente:** la consulta actual devuelve **28** sugerencias: **14 locales** y **14 externas**. El único nombre público aparente, `Phone number` (`109:37835`), es otra referencia no persistente; su set estable `109:37834` ya está conectado y verificado. No se publica un duplicado contra un nodo inválido. Los demás locales son `BB_*`, `ProgressBar_Full` (cuyo set real es BB) o `SlotRow`.
 
 ## Disposiciones `Skipped` verificadas en Figma
 
