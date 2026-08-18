@@ -10,18 +10,18 @@ Este archivo es la **fuente de verdad operativa** del lote. Si otro documento co
 | --- | ---: |
 | Componentes exportados por `ui-angular/src/index.ts` | 130 |
 | Clases Angular con template independiente confirmado | 99 |
-| Mappings públicos publicados y verificados por MCP | 106 |
+| Mappings públicos publicados y verificados por MCP | 107 |
 | Adaptadores internos `BB_*` | 4 |
 | Assets publicados en Bamboo Components | 475 |
-| Targets Figma con mapping local publicado | 110 |
-| Targets Figma publicados todavía sin mapping | 365 |
+| Targets Figma con mapping local publicado | 111 |
+| Targets Figma publicados todavía sin mapping | 364 |
 | Contract required | 3 |
 | Parent/child composition | 14 |
 | Blocked / out of scope | 14 |
 | Candidatos directos abiertos en el inventario Angular-first anterior | 0 |
-| Targets Figma-first pendientes de disposición explícita | 358 |
+| Targets Figma-first pendientes de disposición explícita | 355 |
 
-La conciliación Angular sigue siendo: **99 clases conectadas + 31 sin template independiente confirmado = 130**. Sin embargo, ésa no es la cobertura que muestra la interfaz de Figma. La librería publica 475 targets y 110 tienen mapping del lote: **23.2%**. Los dos denominadores deben mantenerse separados.
+La conciliación Angular sigue siendo: **99 clases conectadas + 31 sin template independiente confirmado = 130**. Sin embargo, ésa no es la cobertura que muestra la interfaz de Figma. La librería publica 475 targets y 111 tienen mapping del lote: **23.4%**. Los dos denominadores deben mantenerse separados.
 
 ## Qué queda por hacer
 
@@ -42,6 +42,8 @@ Línea base MCP del 2026-08-17. `Local publicado sin mapping` cuenta targets de 
 El prefijo `BB_*` no decide el resultado: puede ser un adaptador necesario para que un padre genere código útil o un detalle estrictamente visual. Debe resolverse por composición, API pública y uso real. `IndexLabel`, `IndexHeader`, prototipos, anotaciones y dependencias externas tampoco se publican por reflejo; se clasifican con evidencia.
 
 **Botones — sección triaged el 2026-08-17:** tres targets adicionales de la familia pública Card button quedaron publicados y verificados (`BB_1_6`, `BB_1_6_4`, `Card Button Small`). Los siete locales restantes tienen disposición `Internal/helper`: `IndexLabel`, `IndexHeader`, `BB_6_2`, `BB_1_9`, `BB_7_2`, `BB_1_6_2` y `BB_5_5`. No tienen API Angular pública independiente y sus padres públicos correspondientes ya están conectados. La siguiente sección activa es Containers.
+
+**Containers — lote 1 del 2026-08-17:** `AI Chat bar` (`413:72922`) quedó publicado como target adicional de `BmbChatBarComponent`; `Loading` es la única propiedad con correspondencia pública inequívoca (`isLoading`). `BotIcon_Select` (`423:7684`) queda `Internal/helper`: su estado Selected/Enabled/Hover pertenece a la composición de AI Chat bar y `BmbBotIconComponent` ni siquiera es export público. `Template_BoxTable` (`62:10544`) queda `Internal/helper`: es una celda configurable utilizada por `Template_RowTable`, no una tabla Angular independiente. Containers continúa activa con 76 targets locales pendientes de disposición tras este lote (78 todavía sin mapping).
 
 Los contratos conocidos siguen vigentes como cola secundaria en [CONTRACT_BACKLOG.md](CONTRACT_BACKLOG.md):
 
