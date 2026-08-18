@@ -629,3 +629,21 @@ Carlos supplied three references for this family: TEC.mobi "Calendar_FadeTransit
 - **BB_2_18:** `Internal/helper`. The set composes the already-connected Badge, Checkbox and Divider inside `Notification card` (`106:31504`), its only published parent. The nearest public Angular API is the parent `BmbNotificationCardComponent`, which consumes structured notification/advertisement collections; it does not export a row component matching this BB. Publishing the parent selector for an individual row would be semantically incorrect.
 - **BB_2_10:** `Internal/helper`. The node contains only carrier/time/battery text and variants `Normal|iPhoneContainer|iPhoneBlank`. It is shared visual status-bar chrome inside already-connected Header mobile, Inner header, Calendar and Login onboarding families. No public standalone Angular export or input contract exists.
 - **Coverage effect:** mapping count remains 111/475. Three additional targets now have an explicit disposition, reducing the untriaged Figma-first queue from 355 to 352 without fabricating coverage.
+
+## Figma-first — Containers batch 3 (2026-08-17)
+
+- **Selection:** `BB_2_11_5` (`62:9606`, 62 instances), `BB_2_11` (`62:9636`, 33) and `BB_2_12_3` (`474:96299`, 33).
+- **BB_2_11_5:** `Internal/helper`. Its editable date/title/subtitle and “Ver más” control are a temporal group header reused by Hito list, HitoListMicro, Timestream card/mobile and guided-tour compositions. There is no standalone Angular selector; the connected parent APIs own their event collections.
+- **BB_2_11:** `Internal/helper`. It composes icon, badge and description building blocks and is used exclusively by the already-connected Hito card (`62:9757`). Mapping this inner content node again to `BmbHitoCardComponent` would recommend a whole card for a partial layer.
+- **BB_2_12_3:** `Internal/helper`. This action/title header is consumed by Gcard_Header, AI Chat Card, Profile card, Timestream card and IDDigital. Its product-specific variants (`Mis acciones`, `Horario`, `CONECTA`, `TECbot`) do not define one Angular component API. The public parents remain authoritative.
+- **Coverage effect:** mappings remain 111/475; the untriaged queue decreases from 352 to 349.
+
+## Figma-first — Containers batch 4 (2026-08-17)
+
+- **Selection:** `Generic card` (`99:28392`, 32 instances), `BB_2_8` (`99:31713`, 25) and `BB_8_4_2` (`474:94211`, 25).
+- **Generic card:** direct match to exported `BmbCardComponent`. Figma exposes a true `SLOT`, matching Angular content projection. The exhaustive Style mapping preserves `Primary → primary` and `Secondary → secondary`; layout/composite styles with no public type use the Storybook default `normal`. Only the eight variants explicitly named Inner Slot interpolate `getSlot('Slot')`; the other eight emit an empty card host.
+- **SLOT QA:** the first generic interpolation exposed Figma's `Missing snippet for undefined` comment on non-slot variants. The final template branches exhaustively by Style before interpolating content. MCP verification returned 16/16 `hasTemplate: true`, correct source, and no undefined/missing-snippet output.
+- **BB_2_8:** `Internal/helper`. It is a 1–12-column slot grid shared by Generic card, Modal, Media card, Notification card, templates and action menus. Those layout variants have no standalone public selector; content is already represented through the parent SLOT where applicable.
+- **BB_8_4_2:** `Internal/helper`. Day/month plus Event/Regular/Start and Active/Inactive are internal date-marker presentation inside Calendar standard Mobile and related calendar/timestream building blocks. The connected Calendar/Timestream parents own the consumable APIs.
+- **Verification:** `GenericCard.figma.ts` passed CLI 1.5.3 parse and publish without `--dry-run` or `--force`; Figma MCP confirmed `hasTemplate: true` across 16 variants.
+- **Coverage effect:** public targets increase from 107 to 108; mapped published targets increase from 111 to 112; global coverage becomes 112/475 = 23.6%. The untriaged queue decreases from 349 to 346.

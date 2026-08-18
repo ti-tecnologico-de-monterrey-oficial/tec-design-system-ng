@@ -10,18 +10,18 @@ Este archivo es la **fuente de verdad operativa** del lote. Si otro documento co
 | --- | ---: |
 | Componentes exportados por `ui-angular/src/index.ts` | 130 |
 | Clases Angular con template independiente confirmado | 99 |
-| Mappings públicos publicados y verificados por MCP | 107 |
+| Mappings públicos publicados y verificados por MCP | 108 |
 | Adaptadores internos `BB_*` | 4 |
 | Assets publicados en Bamboo Components | 475 |
-| Targets Figma con mapping local publicado | 111 |
-| Targets Figma publicados todavía sin mapping | 364 |
+| Targets Figma con mapping local publicado | 112 |
+| Targets Figma publicados todavía sin mapping | 363 |
 | Contract required | 3 |
 | Parent/child composition | 14 |
 | Blocked / out of scope | 14 |
 | Candidatos directos abiertos en el inventario Angular-first anterior | 0 |
-| Targets Figma-first pendientes de disposición explícita | 352 |
+| Targets Figma-first pendientes de disposición explícita | 346 |
 
-La conciliación Angular sigue siendo: **99 clases conectadas + 31 sin template independiente confirmado = 130**. Sin embargo, ésa no es la cobertura que muestra la interfaz de Figma. La librería publica 475 targets y 111 tienen mapping del lote: **23.4%**. Los dos denominadores deben mantenerse separados.
+La conciliación Angular sigue siendo: **99 clases conectadas + 31 sin template independiente confirmado = 130**. Sin embargo, ésa no es la cobertura que muestra la interfaz de Figma. La librería publica 475 targets y 112 tienen mapping del lote: **23.6%**. Los dos denominadores deben mantenerse separados.
 
 ## Qué queda por hacer
 
@@ -46,6 +46,10 @@ El prefijo `BB_*` no decide el resultado: puede ser un adaptador necesario para 
 **Containers — lote 1 del 2026-08-17:** `AI Chat bar` (`413:72922`) quedó publicado como target adicional de `BmbChatBarComponent`; `Loading` es la única propiedad con correspondencia pública inequívoca (`isLoading`). `BotIcon_Select` (`423:7684`) queda `Internal/helper`: su estado Selected/Enabled/Hover pertenece a la composición de AI Chat bar y `BmbBotIconComponent` ni siquiera es export público. `Template_BoxTable` (`62:10544`) queda `Internal/helper`: es una celda configurable utilizada por `Template_RowTable`, no una tabla Angular independiente. Containers continúa activa con 76 targets locales pendientes de disposición tras este lote (78 todavía sin mapping).
 
 **Containers — lote 2 del 2026-08-17:** los tres siguientes targets por uso quedaron `Internal/helper`. `Slot` (`12879:134374`) es el placeholder genérico de contenido —incluye el texto de autoría “Change me for a component”— usado por grids, Modal, Card button y otros padres ya conectados; no representa una API Angular. `BB_2_18` (`1486:108383`) es la fila interna de la familia ya conectada Notification card y sus estados/preview/checkbox no constituyen un componente público independiente. `BB_2_10` (`61:9376`) es el status-bar visual de iPhone compuesto dentro de Header mobile, Inner header, Calendar y Login onboarding; sus variantes no tienen selector ni export Angular. Containers continúa activa con 73 targets locales pendientes de disposición (78 todavía sin mapping).
+
+**Containers — lote 3 del 2026-08-17:** `BB_2_11_5` (`62:9606`), `BB_2_11` (`62:9636`) y `BB_2_12_3` (`474:96299`) quedaron `Internal/helper`. Son, respectivamente, encabezado de agrupación temporal, contenido interno de Hito card y encabezado compartido de Gcard; sus padres públicos Hito list, Hito card, Timestream, Home/Profile/AI Chat card ya representan la API consumible. Containers continúa activa con 70 targets locales pendientes de disposición (78 todavía sin mapping).
+
+**Containers — lote 4 del 2026-08-17:** `Generic card` (`99:28392`) quedó publicado y verificado contra `BmbCardComponent`, incluyendo su SLOT genuino sólo en las ocho variantes Inner Slot y `Style → type` para Primary/Secondary; los estilos de composición sin equivalente conservan `normal`. `BB_2_8` (`99:31713`) es la cuadrícula interna de slots usada por múltiples padres, y `BB_8_4_2` (`474:94211`) es el marcador día/mes de Calendar/Timestream; ambos quedan `Internal/helper`. Containers continúa activa con 67 targets locales pendientes de disposición (77 todavía sin mapping).
 
 Los contratos conocidos siguen vigentes como cola secundaria en [CONTRACT_BACKLOG.md](CONTRACT_BACKLOG.md):
 
