@@ -9,19 +9,24 @@ Este es el **único backlog activo**. El estado general y las reglas de ejecuci�
 | Disposición | Cantidad | Acción |
 | --- | ---: | --- |
 | Candidate | 0 | No crear fachadas para aumentar cobertura. |
-| Contract required | 3 | Resolver el contrato mínimo de una familia por ciclo. |
+| Contract required | 2 | Resolver el contrato mínimo de una familia por ciclo. |
 | Parent/child composition | 14 | Mantener cubierto por el padre salvo que Design publique un API independiente. |
 | Blocked / out of scope | 14 | No reintentar sin un cambio real de nodo, API o alcance. |
 
-## Contratos activos (3 exports)
+## Contratos activos (2 exports)
 
-Orden recomendado: `COL-01`, `PROFILE-01`, `CHAT-01`. `COL-01` ya tiene Phase 0 y contrato exacto; los demás dependen de una decisión más específica.
+Orden recomendado: `COL-01`, `PROFILE-01`. `COL-01` ya tiene Phase 0 y contrato exacto; `PROFILE-01` depende de una decisión de identidad/legado.
 
 | ID | Exports | Evidencia confirmada | Contrato mínimo / decisión requerida | Estado |
 | --- | --- | --- | --- | --- |
 | `COL-01` | `list-group` | `action-menu`, `list-items`, `list-group-item` y `card-button` están conectados. `List group` (`82:26226`) representa una fila y el source Angular confirma que el padre es un `<ul>` con `<ng-content>`. Phase 0 verificó que no existe otro outer publicado. | Crear `List group container` en la misma sección, sin tokens nuevos: tres `INSTANCE_SWAP` (`Item 1..3`) con preferred value de la fila publicada, booleanos `Show item 2/3`, `Border type=Rounded|Flush`, `Multiple selection`, `Row view` y `Show controls`. El Code Connect padre ejecutará los templates hijos dentro de `<bmb-list-group>`. | Phase 0 completo y contrato exacto; falta la mutación/publicación Figma y después Code Connect. |
 | `PROFILE-01` | `user-profile` | El export exige `userInfo`. La evidencia MiTec usa `Profile card`/`User Summary`, ya representados por APIs distintas; la búsqueda exacta en Bamboo no devuelve un main component `User profile`. | Design publica el target de onboarding/perfil con `id`, `fullName` y `profilePicture`, o Engineering marca formalmente el export `Dev tools/User profile` como legado/fuera de alcance. No reutilizar `Profile card`. | Requiere target estable o decisión explícita de retiro; el objeto neutral sí está documentado en Storybook. |
-| `CHAT-01` | `home-card-chat` | `AI Chat Card` (`9268:46409`) es un target estable, pero `messagesHistory` es requerido y consume `IBmbChatMessage[]`; `time` es `Date`. Angular template syntax no puede expresar `new Date(...)` inline. | Engineering publica una factory/pipe/const o receta canónica importable para construir el mensaje mínimo. Figma no puede resolver este bloqueo por sí solo. | Code API required. |
+
+## Contratos resueltos
+
+| ID | Resultado | Verificación |
+| --- | --- | --- |
+| `CHAT-01` | `AI Chat Card` se conectó a `BmbHomeCardChatComponent` con el título canónico de Storybook, Web/Mobile y la colección neutral type-safe `[messagesHistory]="[]"`. La conversación visual permanece como deuda de cobertura, no como bloqueo de publicación: convertir sus capas a `IBmbChatMessage[]` inventaría datos y un `Date`. | `HomeCardChat.figma.ts` pasó parse/publish; MCP confirmó `hasTemplate: true`, label Angular y source `ui-angular` para Web y Mobile. |
 
 ## Regla de implementación por contrato
 
