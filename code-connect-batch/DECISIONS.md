@@ -712,3 +712,38 @@ Carlos supplied three references for this family: TEC.mobi "Calendar_FadeTransit
 - **MCP decision:** do not add `@storybook/addon-mcp` to this branch. The official Storybook MCP documentation currently marks manifests/MCP as preview and React-only, so its documentation toolset cannot provide authoritative Angular component/prop discovery for Bamboo. The addon can be reconsidered only after official Angular manifest support and a successful `list-all-documentation`/`get-documentation` smoke test.
 - **Practical workflow:** enumerate from Figma MCP, locate the exact Storybook entry and source, use `args`/`render`/MDX plus the rendered story for canonical or manually assembled recipes, then validate all emitted selectors/attributes/types against `ui-angular/src/index.ts` and component source. Storybook fixtures may supply neutral required values only when copied and recorded; they never authorize invented API.
 - **Publication boundary:** Storybook remains evidence, not a Code Connect publisher. Parserless `.figma.ts`, official CLI parse/publish and Figma MCP `hasTemplate:true` remain the required connection path.
+
+## Buttons closure — six local helpers / pre-action evidence (2026-08-17)
+
+- **Live state:** a fresh suggestion query on Buttons (`14050:2707`) returns 19 unresolved targets: the six local Bamboo helpers below and 13 external icon/dependency targets. All six local node IDs remain `not connected` before this action.
+- **`IndexLabel` (`6:4830`):** Figma exposes no component properties and only a static `Label` text descendant. It is documentation-index chrome, not a public Angular component or Storybook surface.
+- **`IndexHeader` (`8:4130`):** Figma exposes a documentation `Title` plus nested Divider and already-public Container button. No independent Angular selector/export exists; connecting it would duplicate its children and turn file-navigation chrome into product API.
+- **`BB_1_9` (`20:3163`):** static `Button` text plus an `Icon_base`, with no properties, reverse product contract or public Angular export. It is not a configurable button API.
+- **`BB_7_2` (`152:47817`):** a single editable score label used inside the connected Grade value family. Angular exposes the score through the public parent, not through an independent selector.
+- **`BB_1_6_2` (`16:1013`):** visual Icon/Image/No-fill and size carrier used by Card button and other connected parents. Its content is implementation fill infrastructure and has no standalone public Angular/Storybook API.
+- **`BB_5_5` (`109:35204`):** internal list/input row with leading/trailing icon visibility and visual `OnSurface|Enable|Selected` state. Public Search/Dropdown parents own the consumable data and interaction APIs; no independent selector/export exists.
+- **Decision:** all six qualify for reversible Figma `Skipped`. Each must display `Skipped` in Code Connect and disappear from its exact suggestion query before being counted. The 13 external targets remain `Blocked/external owner`; this operation does not modify or silently resolve them.
+
+## HomeCard_Mobile — secondary public target / pre-publication evidence (2026-08-17)
+
+- **Figma:** `HomeCard_Mobile` (`523:213638`) is a stable published component with a `Gcard_Header` child containing editable title text and a connected `Generic card` body. Its identity is explicitly mobile; it does not expose an independent public property at the root.
+- **Storybook:** `Components/Containers/Home card` documents `BmbHomeCardComponent`, `componentTitle`, and the public `isMobile` input. The same story is the canonical usage surface for the already-connected desktop Home card.
+- **Angular:** `BmbHomeCardComponent` is exported by `ui-angular/src/index.ts`; selector `bmb-home-card`; `componentTitle` is the non-deprecated title API and `isMobile` is a public boolean input.
+- **Decision:** publish `HomeCard_Mobile` as a secondary target of the same public component, reading its visible nested title and emitting `[isMobile]="true"`. Do not duplicate internal Gcard/slot children or invent projected content.
+
+## Search Card family sanitation / pre-action evidence (2026-08-17)
+
+- **Public parent:** `Search Card` (`9038:61107`) is already connected to `BmbSearchCardComponent`, but its current snippet is an empty `<bmb-search-card />` facade. Figma exposes nine visual variants; `Empty (loading)` has a direct public correspondence to `isLoading`, and the nested `BB_2_12_4` supplies the visible component title.
+- **Storybook/API boundary:** Storybook `Components/Containers/Search card` documents `componentTitle`, `isLoading`, `inputPlaceholder` and `results`, but its canonical `results` value is `[]`. Angular confirms the same API. Therefore the parent mapping may add title/loading semantics but must not invent result records for the three Results variants or an `isMobile` input that the component does not expose.
+- **`Search Section` (`9039:46220`):** published internal grouping of Services/Persons and repeated Search Card Item children. Its data is computed inside `BmbSearchCardComponent` from `results`; no independently exported Angular selector represents a section.
+- **`Search Card Item` (`9038:60994`):** has configurable App/Person, size, transient state and Bookmark visibility, but `BmbSearchCardItemComponent` is an internal implementation class and is not exported by `ui-angular/src/index.ts`. Its public data contract is `IBmbSearchCardItemResult[]` on the parent.
+- **Decision:** update the parent mapping to emit `componentTitle` and exhaustive `isLoading`; keep result collections and mobile presentation omitted. Mark Search Section and Search Card Item `Skipped` only after the parent update is published and verified, because their behavior remains represented by the public parent rather than standalone APIs.
+
+### Sequence completion and verification
+
+- **Buttons helpers:** Figma UI now marks `IndexLabel` (`6:4830`), `IndexHeader` (`8:4130`), `BB_1_9` (`20:3163`), `BB_7_2` (`152:47817`), `BB_1_6_2` (`16:1013`) and `BB_5_5` (`109:35204`) as `Skipped`. Exact MCP queries no longer return those target IDs; independently published descendants remain separate when applicable.
+- **Buttons closure:** section `14050:2707` now returns 13 unresolved dependencies, all external/non-published in the Bamboo Components graph. Local unresolved count is zero, so Botones is closed without false mappings.
+- **HomeCard_Mobile:** `HomeCardMobile.figma.ts` passed Code Connect CLI 1.5.3 validation and was published without `--dry-run` or `--force`. MCP returns `hasTemplate: true`, source `ui-angular/src/lib/components/old/bmb-home-card/bmb-home-card.component.ts` and snippet `<bmb-home-card componentTitle="Title Home" [isMobile]="true" />`.
+- **Search Card parent:** the updated `SearchCard.figma.ts` passed the same parse/publish path. MCP returns `hasTemplate: true` across all nine variants; `Empty (loading)` emits `[isLoading]="true"`, the remaining variants emit `false`, and the visible title resolves to `Encuentra servicios o personas`.
+- **Search Card children:** `Search Card Item` (`9038:60994`) and `Search Section` (`9039:46220`) are verified `Skipped`. Their exact suggestion queries omit the target IDs and retain only independently published icon/layout dependencies.
+- **Containers reconciliation:** a final section query correlated with the published-file graph returns 87 unresolved targets: 50 local Bamboo targets and 37 external/non-owned dependencies. This sequence added one mapping target and eight verified skips; it did not change any public Angular API or design node.

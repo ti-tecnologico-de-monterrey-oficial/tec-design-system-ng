@@ -13,16 +13,16 @@ Este archivo es la **fuente de verdad operativa** del lote. Si otro documento co
 | Mappings públicos publicados y verificados por MCP | 108 |
 | Adaptadores internos `BB_*` | 5 |
 | Assets publicados en Bamboo Components | 475 |
-| Targets Figma con mapping local publicado | 113 |
-| Targets Figma marcados `Skipped` y verificados en UI/MCP | 7 |
-| Targets Figma publicados todavía sin mapping | 362 |
+| Targets Figma con mapping local publicado | 114 |
+| Targets Figma marcados `Skipped` y verificados en UI/MCP | 15 |
+| Targets Figma publicados todavía sin mapping | 361 |
 | Contract required | 3 |
 | Parent/child composition | 14 |
 | Blocked / out of scope | 14 |
 | Candidatos directos abiertos en el inventario Angular-first anterior | 0 |
-| Targets Figma-first pendientes de disposición explícita | 336 |
+| Targets Figma-first pendientes de disposición explícita | 327 |
 
-La conciliación Angular sigue siendo: **99 clases conectadas + 31 sin template independiente confirmado = 130**. Sin embargo, ésa no es la cobertura que muestra la interfaz de Figma. La librería publica 475 targets y 113 tienen mapping del lote: **23.8%**. Los dos denominadores deben mantenerse separados.
+La conciliación Angular sigue siendo: **99 clases conectadas + 31 sin template independiente confirmado = 130**. Sin embargo, ésa no es la cobertura que muestra la interfaz de Figma. La librería publica 475 targets y 114 tienen mapping del lote: **24.0%**. Los dos denominadores deben mantenerse separados.
 
 ## Qué queda por hacer
 
@@ -32,8 +32,8 @@ Línea base MCP del 2026-08-17. `Local publicado sin mapping` cuenta targets de 
 
 | Orden | Sección | Nodo | Únicos sin conexión observados | Local publicado sin mapping | Dependencia externa/no publicada |
 | ---: | --- | --- | ---: | ---: | ---: |
-| 1 | Botones | `14050:2707` | 19 | 6 | 13 |
-| 2 | Containers | `14050:20207` | 106 | 69 | 37 |
+| 1 | Botones | `14050:2707` | 13 | 0 | 13 |
+| 2 | Containers | `14050:20207` | 87 | 50 | 37 |
 | 3 | Imágenes | `14050:20466` | 11 | 7 | 4 |
 | 4 | Inputs | `14058:4731` | 39 | 23 | 16 |
 | 5 | Menús | `14058:12162` | 85 | 35 | 50 |
@@ -42,7 +42,7 @@ Línea base MCP del 2026-08-17. `Local publicado sin mapping` cuenta targets de 
 
 El prefijo `BB_*` no decide el resultado: puede ser un adaptador necesario para que un padre genere código útil o un detalle estrictamente visual. Debe resolverse por composición, API pública y uso real. `IndexLabel`, `IndexHeader`, prototipos, anotaciones y dependencias externas tampoco se publican por reflejo; se clasifican con evidencia.
 
-**Botones — conciliación semántica completada el 2026-08-17, cierre UI pendiente:** tres targets adicionales de la familia pública Card button quedaron publicados y verificados (`BB_1_6`, `BB_1_6_4`, `Card Button Small`). `BB_6_2` quedó `Skipped` globalmente durante la remediación de Containers. Los seis locales restantes tienen diagnóstico `Internal/helper`: `IndexLabel`, `IndexHeader`, `BB_1_9`, `BB_7_2`, `BB_1_6_2` y `BB_5_5`. No tienen API Angular pública independiente y sus padres públicos correspondientes ya están conectados, pero la sección no se considera cerrada hasta que esos targets queden `Skipped` explícitamente en Figma.
+**Botones — cerrada para targets locales el 2026-08-17:** tres targets adicionales de la familia pública Card button quedaron publicados y verificados (`BB_1_6`, `BB_1_6_4`, `Card Button Small`). `BB_6_2`, `IndexLabel`, `IndexHeader`, `BB_1_9`, `BB_7_2`, `BB_1_6_2` y `BB_5_5` quedaron `Skipped` con evidencia. La consulta final devuelve únicamente 13 dependencias externas/no publicadas; no queda ningún target local de Botones sin disposición.
 
 **Containers — lote 1 del 2026-08-17:** `AI Chat bar` (`413:72922`) quedó publicado como target adicional de `BmbChatBarComponent`; `Loading` es la única propiedad con correspondencia pública inequívoca (`isLoading`). `BotIcon_Select` (`423:7684`) queda `Internal/helper`: su estado Selected/Enabled/Hover pertenece a la composición de AI Chat bar y `BmbBotIconComponent` ni siquiera es export público. `Template_BoxTable` (`62:10544`) queda `Internal/helper`: es una celda configurable utilizada por `Template_RowTable`, no una tabla Angular independiente. Containers continúa activa con 76 targets locales pendientes de disposición tras este lote (78 todavía sin mapping).
 
@@ -62,6 +62,8 @@ El prefijo `BB_*` no decide el resultado: puede ser un adaptador necesario para 
 
 **Containers — lote autónomo de `Skipped` 2 del 2026-08-17:** `BotIcon_Select` (`423:7684`), `Template_BoxTable` (`62:10544`) y `Slot` (`12879:134374`) quedaron `Skipped` con evidencia previa. La interfaz confirmó los tres estados; MCP dejó de devolver esos IDs exactos, aunque las selecciones de los dos primeros todavía muestran descendientes independientes que deberán resolverse por separado. Containers queda con **106** sugerencias: **69 locales**, de los cuales **8 ya tienen diagnóstico pendiente de remediación UI** y **61 continúan sin triage**, más 37 externas. Como `Slot` es infraestructura compartida, también desapareció de Imágenes, Inputs, Menús, Status indicators y Visual labels; Botones no cambió.
 
+**Containers / Search Card — cierre dirigido del 2026-08-17:** `HomeCard_Mobile` (`523:213638`) quedó publicado como target secundario de `BmbHomeCardComponent`, con título visible e `[isMobile]="true"`. El mapping de `Search Card` (`9038:61107`) ahora emite el título visible y `[isLoading]` únicamente para `Empty (loading)`; no inventa resultados ni API móvil. `Search Card Item` y `Search Section` quedaron `Skipped` porque son implementación interna del arreglo público `results`. Junto con los seis helpers compartidos de Botones, la selección Containers queda en una lectura final de **87** sugerencias: **50 locales** y **37 externas**.
+
 ## Disposiciones `Skipped` verificadas en Figma
 
 Esta tabla registra sólo cambios ejecutados y verificados en la interfaz. Un diagnóstico local no entra aquí hasta que Figma muestre `Skipped` y el MCP deje de devolver el target como no conectado.
@@ -75,6 +77,14 @@ Esta tabla registra sólo cambios ejecutados y verificados en la interfaz. Un di
 | Containers | `BotIcon_Select` | `423:7684` | Estado visual Selected/Enabled/Hover dentro de AI Chat bar; el `BmbBotIconComponent` legado no es export público ni expone esos estados. | UI `Skipped`; el ID `423:7684` desapareció de su consulta MCP exacta. `BotIcon_Round` y `BotIcon_Transparent` siguen como targets independientes. |
 | Containers | `Template_BoxTable` | `62:10544` | Plantilla de celda polimórfica; no equivale a los componentes públicos de tabla completa. | UI `Skipped`; el ID `62:10544` desapareció de su consulta MCP exacta. Sus descendientes aún no conectados permanecen en la cola por separado. |
 | Compartido: Containers, Imágenes, Inputs, Menús, Status indicators y Visual labels | `Slot` | `12879:134374` | Placeholder genérico de autoría reutilizado por composiciones no relacionadas; no tiene selector Angular propio. | UI `Skipped`; `get_code_connect_suggestions(12879:134374)` devolvió “No additional mappings needed”. |
+| Botones / Containers | `IndexLabel` | `6:4830` | Índice documental sin propiedades ni API Angular consumible. | UI `Skipped`; la consulta exacta devolvió “No additional mappings needed”. |
+| Botones / Containers | `IndexHeader` | `8:4130` | Encabezado documental; sus hijos públicos ya tienen conexión propia. | UI `Skipped`; el target desapareció de la consulta exacta, que conserva únicamente su icono externo. |
+| Botones | `BB_1_9` | `20:3163` | Helper estático de texto/icono sin selector o export Angular independiente. | UI `Skipped`; el target desapareció de la consulta exacta, que conserva únicamente `Icon_base` externo. |
+| Botones | `BB_7_2` | `152:47817` | Etiqueta de score interna de Grade value; el padre representa la API pública. | UI `Skipped`; la consulta exacta devolvió “No additional mappings needed”. |
+| Botones | `BB_1_6_2` | `16:1013` | Carrier visual de relleno/tamaño para Card button; no es una API pública. | UI `Skipped`; el target desapareció y sus descendientes publicados permanecen independientes. |
+| Botones | `BB_5_5` | `109:35204` | Fila interna de búsqueda/dropdown; estados visuales sin selector público. | UI `Skipped`; el target desapareció de la consulta exacta, que conserva únicamente su icono externo. |
+| Containers / Search Card | `Search Card Item` | `9038:60994` | Implementación interna no exportada; el padre público recibe `IBmbSearchCardItemResult[]`. | UI `Skipped`; el target desapareció de la consulta exacta y sus dependencias independientes permanecen visibles. |
+| Containers / Search Card | `Search Section` | `9039:46220` | Agrupación interna derivada de `results`; no existe selector/export público. | UI `Skipped`; el target desapareció de la consulta exacta y sus dependencias independientes permanecen visibles. |
 
 Los contratos conocidos siguen vigentes como cola secundaria en [CONTRACT_BACKLOG.md](CONTRACT_BACKLOG.md):
 
