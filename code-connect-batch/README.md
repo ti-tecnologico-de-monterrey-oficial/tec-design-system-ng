@@ -12,16 +12,36 @@ Este archivo es la **fuente de verdad operativa** del lote. Si otro documento co
 | Clases Angular con template independiente confirmado | 99 |
 | Mappings públicos publicados y verificados por MCP | 103 |
 | Adaptadores internos `BB_*` | 4 |
+| Assets publicados en Bamboo Components | 475 |
+| Targets Figma con mapping local publicado | 107 |
+| Targets Figma publicados todavía sin mapping | 368 |
 | Contract required | 3 |
 | Parent/child composition | 14 |
 | Blocked / out of scope | 14 |
-| Candidatos directos abiertos | 0 |
+| Candidatos directos abiertos en el inventario Angular-first anterior | 0 |
+| Targets Figma-first pendientes de disposición explícita | 368 |
 
-La conciliación es: **99 clases conectadas + 31 sin template independiente confirmado = 130**. Las 31 restantes son 3 contratos + 14 composiciones padre/hijo + 14 bloqueados/fuera de alcance. Los 103 mappings superan las 99 clases porque `StudentActivityCard` y `MobileTemplates` tienen dos destinos Figma cada uno, y Button/Button group son directivas públicas. Los cuatro adaptadores internos (`BB_1_4*` y `BB_5_1_1`) no cuentan como cobertura pública.
+La conciliación Angular sigue siendo: **99 clases conectadas + 31 sin template independiente confirmado = 130**. Sin embargo, ésa no es la cobertura que muestra la interfaz de Figma. La librería publica 475 targets y sólo 107 tienen mapping del lote: **22.5%, redondeado por Figma a 23%**. Los dos denominadores deben mantenerse separados.
 
 ## Qué queda por hacer
 
-No quedan candidatos directos que puedan publicarse honestamente con la evidencia actual. La única cola activa es [CONTRACT_BACKLOG.md](CONTRACT_BACKLOG.md):
+La cola principal pasa a ser **Figma-first por sección**. Un export Angular conectado no cierra una sección: cada target publicado visible en ella debe quedar `Connected`, `Public candidate`, `Adapter candidate`, `Internal/helper`, `External foundation`, `Duplicate/deprecated` o `Contract required`.
+
+Línea base MCP del 2026-08-17. `Local publicado sin mapping` cuenta targets de esta librería encontrados en la selección; `Dependencia externa/no publicada` evita confundir iconos u otros hijos con el inventario local. Las filas se traslapan y no deben sumarse como total global.
+
+| Orden | Sección | Nodo | Únicos sin conexión observados | Local publicado sin mapping | Dependencia externa/no publicada |
+| ---: | --- | --- | ---: | ---: | ---: |
+| 1 | Botones | `14050:2707` | 23 | 10 | 13 |
+| 2 | Containers | `14050:20207` | 116 | 79 | 37 |
+| 3 | Imágenes | `14050:20466` | 12 | 8 | 4 |
+| 4 | Inputs | `14058:4731` | 40 | 24 | 16 |
+| 5 | Menús | `14058:12162` | 86 | 36 | 50 |
+| 6 | Status indicators | `14058:17391` | 65 | 47 | 18 |
+| 7 | Visual labels | `14058:20327` | 34 | 29 | 5 |
+
+El prefijo `BB_*` no decide el resultado: puede ser un adaptador necesario para que un padre genere código útil o un detalle estrictamente visual. Debe resolverse por composición, API pública y uso real. `IndexLabel`, `IndexHeader`, prototipos, anotaciones y dependencias externas tampoco se publican por reflejo; se clasifican con evidencia.
+
+Los contratos conocidos siguen vigentes como cola secundaria en [CONTRACT_BACKLOG.md](CONTRACT_BACKLOG.md):
 
 | ID | Alcance | Exports | Bloqueo mínimo |
 | --- | --- | ---: | --- |
@@ -35,18 +55,20 @@ No quedan candidatos directos que puedan publicarse honestamente con la evidenci
 | --- | --- | --- |
 | Angular vigente | GitHub `develop`, entrada pública `ui-angular/src/index.ts` | Es la fuente de verdad para exports, selectores e inputs. La migración se auditó contra SHA `94e14c2ca61c9cf011a017335f6c710d1cb5e777`. |
 | Figma de publicación | Bamboo `Q4t8qIM5fklC9I3Atc1BrZ` | Único destino permitido para contratos y Code Connect. |
+| Documentación Bamboo | `LYk8AJb5RjQhRfPmRIdEQ9` | Evidencia de anatomía, uso y composición; no sustituye al target maestro de Components. |
 | Evidencia de producto | MiTec `Jf8Nd71tihhPZdv9xm6PnN`, desde `15686:164499` | Sirve para probar composiciones reales; sus instancias no son destinos persistentes. |
 | Rama de trabajo | `code-connect-v1.6.4-b` | Editar, commitear y subir únicamente `code-connect-batch/`. |
 
 ## Flujo operativo
 
-1. Seleccionar un solo ID de [CONTRACT_BACKLOG.md](CONTRACT_BACKLOG.md).
-2. Confirmar nodo Bamboo estable, export Angular público y ejemplo canónico de Storybook.
-3. Documentar la correspondencia exacta. Si requiere arrays, objetos, `Date`, servicio o proyección sin SLOT, detenerse en `Contract required`; no inventar datos.
-4. Si se modifica Figma, hacerlo en una sola familia y validar metadata + screenshot antes de publicar la librería.
-5. Crear o actualizar exclusivamente un parserless `.figma.ts` dentro de esta carpeta, siguiendo [CODE_CONNECT_CONVENTION.md](CODE_CONNECT_CONVENTION.md).
-6. Ejecutar `parse --verbose`; publicar sin `--dry-run`, sin `--force`; verificar `hasTemplate: true` con Figma MCP.
-7. Sólo después de verificar: actualizar [INVENTORY.md](INVENTORY.md), [CONTRACT_BACKLOG.md](CONTRACT_BACKLOG.md) y [DECISIONS.md](DECISIONS.md).
+1. Seleccionar la primera sección incompleta de la tabla anterior y enumerar sus targets publicados sin mapping desde Figma MCP.
+2. Resolver primero el target principal; después sus hijos publicados configurables. No marcar la sección completa mientras quede un target sin disposición explícita.
+3. Contrastar cada target con export Angular público, source, inputs y Storybook. La búsqueda en código confirma el match; no define el universo inicial.
+4. Clasificar auxiliares y dependencias sin ocultarlos. Un `BB_*` sólo se publica como adaptador parserless `nestable` cuando hace posible una composición pública real.
+5. Si el snippet requiere arrays, objetos, `Date`, servicio o proyección sin SLOT, registrar `Contract required` y continuar con el siguiente target de la sección.
+6. Crear o actualizar exclusivamente parserless `.figma.ts` dentro de esta carpeta, siguiendo [CODE_CONNECT_CONVENTION.md](CODE_CONNECT_CONVENTION.md).
+7. Ejecutar `parse --verbose`; publicar sin `--dry-run`, sin `--force`; verificar `hasTemplate: true` con Figma MCP.
+8. Sólo después de verificar: actualizar [INVENTORY.md](INVENTORY.md), esta tabla, [CONTRACT_BACKLOG.md](CONTRACT_BACKLOG.md) cuando aplique y [DECISIONS.md](DECISIONS.md).
 
 El token se carga desde el `.env` del checkout histórico sin imprimirlo. El CLI oficial fijado para este lote es:
 
@@ -62,7 +84,7 @@ El token se carga desde el `.env` del checkout histórico sin imprimirlo. El CLI
 | --- | --- |
 | [README.md](README.md) | Estado, conteos, prioridades y flujo vigente. |
 | [INVENTORY.md](INVENTORY.md) | Registro completo de mappings publicados y su evidencia MCP. |
-| [CONTRACT_BACKLOG.md](CONTRACT_BACKLOG.md) | Única cola de contratos, composiciones y bloqueos restantes. |
+| [CONTRACT_BACKLOG.md](CONTRACT_BACKLOG.md) | Cola secundaria de contratos, composiciones y bloqueos que surjan del barrido Figma-first. |
 | [CODE_CONNECT_CONVENTION.md](CODE_CONNECT_CONVENTION.md) | Contrato técnico Figma → Angular y reglas de snippets. |
 | [DECISIONS.md](DECISIONS.md) | Bitácora append-only. Sus entradas antiguas pueden estar reemplazadas por decisiones posteriores. |
 
