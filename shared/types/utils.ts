@@ -9,6 +9,7 @@ export type SizeNames =
   | 'l'
   | 'xl'
   | 'xxl'
+  | 'none'
   | 'auto'
   | 'full'
   | '0'
