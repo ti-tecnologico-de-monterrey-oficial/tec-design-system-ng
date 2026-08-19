@@ -47,7 +47,7 @@ _Esta versión es el resultado del esfuerzo colaborativo del equipo de diseño y
 
 ---
 
-Puedes ver todos los componentes aqui: [Bamboo](https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/getting-started--documentation)
+Puedes ver todos los componentes aqui: [Bamboo](https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/getting-started--docs)
 
 ---
 
