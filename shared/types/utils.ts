@@ -1,8 +1,5 @@
-<<<<<<< HEAD
-=======
 import { IBmbInteractiveIconAppearance } from './components/interactive-icon';
 
->>>>>>> feature-prod
 export type SizeNames =
   | 'none'
   | 'xxs'
@@ -12,13 +9,8 @@ export type SizeNames =
   | 'l'
   | 'xl'
   | 'xxl'
-<<<<<<< HEAD
   | 'auto'
   | 'full'
-=======
-  | 'none'
-  | 'auto'
->>>>>>> feature-prod
   | '0'
   | '1'
   | '2'

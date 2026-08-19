@@ -325,7 +325,6 @@ export const appRoutes: Route[] = [
       ),
   },
   {
-<<<<<<< HEAD
     path: 'components/skeleton',
     title: 'BmbSkeleton | Bamboo migration dashboard',
     loadComponent: () =>
@@ -341,9 +340,8 @@ export const appRoutes: Route[] = [
         ({ ValueCounterPage }) => ValueCounterPage,
       ),
   },
-  { path: '**', redirectTo: 'components/carousel' },
-=======
-    path: 'components/ai-chat-bubble',
+  {
+  path: 'components/ai-chat-bubble',
     title: 'BmbAiChatBubble | Bamboo migration dashboard',
     loadComponent: () =>
       import('./components/ai-chat-bubble-page/ai-chat-bubble-page').then(
@@ -358,6 +356,5 @@ export const appRoutes: Route[] = [
         ({ DropzonePage }) => DropzonePage,
       ),
   },
-  { path: '', redirectTo: 'home', pathMatch: 'full' },
->>>>>>> feature-prod
+  { path: '**', redirectTo: 'components/carousel' },
 ];
