@@ -31,7 +31,7 @@ export default {
       description: {
         component: `
 ${getGeneralDescription(`${getGeneralComponentDescription({ name: 'frequent-apps-selector' })} the implementation of a carousel-type selector to quickly identify and access the most frequently used applications.`, { generalDocLink: 'https://bamboo.tec.mx/latest/componentes/frequent-apps-selector/descripcion-general-x3K6Mm3k' })}
-${getSpecialSpecifications(`Please refer to [Interactive icon](/docs/components-buttons-interactive-icon--docs) documentation for more details.
+${getSpecialSpecifications(`Please refer to [Interactive icon](/docs/components-buttons-interactive-icon--documentation) documentation for more details.
 `)}
 ${getBasicExampleBlock(
   'BmbFrequentAppsSelectorComponent',

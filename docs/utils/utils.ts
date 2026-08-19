@@ -196,7 +196,7 @@ export const getStoryLink = ({
   showFullLinkName?: boolean;
   isPreURL?: boolean;
 }): string => {
-  const basisURL = `/docs/${getFormatName(title, /(\/)|( )/g, '-').toLocaleLowerCase()}--docs)`;
+  const basisURL = `/docs/${getFormatName(title, /(\/)|( )/g, '-').toLocaleLowerCase()}--documentation)`;
   const _title: string = showFullLinkName ? title : getStoryTitle(title);
   const preURL: string = isPreURL ? '/?path=' : '';
 
@@ -272,7 +272,7 @@ ${getAlertBlockquote(
 
 export const getGridGeneratorLink = (): string =>
   `### Grid generator
-[Grid generator](/docs/dev-tools-grid-generator--docs) is a tool that can be used to generate custom grids.`;
+[Grid generator](/docs/dev-tools-grid-generator--documentation) is a tool that can be used to generate custom grids.`;
 
 export const getAuxiliaryDescription = (
   principal: string,
@@ -537,7 +537,7 @@ export const getReferenceRecommendationForVariable = (
   element: string,
 ): string =>
   getAlertBlockquote(
-    `Please refer to the [Variables documentation](/docs/foundations-variables--docs&globals=#dom-architecture) for details on how to implement ${element} in CSS, where it is detailed that these can be implemented through variables.<br/>`,
+    `Please refer to the [Variables documentation](/docs/foundations-variables--documentation&globals=#dom-architecture) for details on how to implement ${element} in CSS, where it is detailed that these can be implemented through variables.<br/>`,
     {
       title: '###'.concat(RELEVANT_TITLE.important),
       blockquoteType: BlockquoteType.important,
@@ -633,7 +633,7 @@ export const getDOMArchitectureLink = (
   bmbNameLink = '',
   documentationLink = '',
 ): string => `
-[bmb-${bmbNameLink} - DOM Architecture](/docs/${documentationLink}--docs&globals=#dom-architecture)
+[bmb-${bmbNameLink} - DOM Architecture](/docs/${documentationLink}--documentation&globals=#dom-architecture)
 <br/>
 `;
 
