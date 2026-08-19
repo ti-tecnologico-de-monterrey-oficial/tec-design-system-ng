@@ -4,24 +4,18 @@ import {
   ViewEncapsulation,
   input,
 } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import {
   BmbLayoutGridDirective,
   BmbLayoutGridItemDirective,
-} from '../../../directives/old/bmb-layout-grid/bmb-layout-grid.directive';
+} from '../../directives/old/bmb-layout-grid/bmb-layout-grid.directive';
+import type { BmbSkeletonType } from '../../_shared/types/components/skeleton';
 
-export type BmbSkeletonType =
-  | 'header'
-  | 'input'
-  | 'stray'
-  | 'generic1'
-  | 'generic2'
-  | 'generic3';
+export type { BmbSkeletonType } from '../../_shared/types/components/skeleton';
 
 @Component({
   selector: 'bmb-skeleton',
   standalone: true,
-  imports: [CommonModule, BmbLayoutGridDirective, BmbLayoutGridItemDirective],
+  imports: [BmbLayoutGridDirective, BmbLayoutGridItemDirective],
   styleUrl: './bmb-skeleton.component.scss',
   templateUrl: './bmb-skeleton.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,

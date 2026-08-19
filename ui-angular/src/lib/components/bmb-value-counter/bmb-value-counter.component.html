@@ -15,14 +15,16 @@
     gapSize="xs"
     alignItems="center"
   >
-    @if (!!progressValue) {
+    @if (progressValue()) {
       <span class="bmb_value-counter-progress" bmbLayoutItem>
-        {{ progressValue }}
+        {{ progressValue() }}
       </span>
-      <span class="bmb_value-counter-slash" bmbLayoutItem>/</span>
+      <span class="bmb_value-counter-slash" bmbLayoutItem>{{
+        separator()
+      }}</span>
     }
     <span class="bmb_value-counter-value" bmbLayoutItem>
-      {{ totalValue }}
+      {{ totalValue() }}
     </span>
   </section>
 </section>

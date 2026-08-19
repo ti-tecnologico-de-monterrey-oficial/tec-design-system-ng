@@ -24,6 +24,11 @@ export * from './components/action-icon';
 // types
 export * from './colors';
 export type { IBmbNotificationCounterType } from './components/notification-counter';
+export type { BmbSkeletonType } from './components/skeleton';
+export type {
+  BmbValueCounterFormatter,
+  BmbValueCounterParts,
+} from './components/value-counter';
 export type {
   BmbIframeAttributes,
   BmbIframeLoading,

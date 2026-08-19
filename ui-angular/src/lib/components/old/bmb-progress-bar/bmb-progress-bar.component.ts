@@ -10,7 +10,7 @@ import {
 } from '@angular/core';
 import { IBmbTargetLink } from '../../../_shared/types';
 import { BmbTextLinkComponent } from '../bmb-text-link/bmb-text-link.component';
-import { BmbValueCounterComponent } from '../bmb-value-counter/bmb-value-counter.component';
+import { BmbValueCounterComponent } from '../../bmb-value-counter/bmb-value-counter.component';
 import { BmbLayoutDirective } from '../../../directives/old/bmb-layout/bmb-layout.directive';
 import { BmbLayoutItemDirective } from '../../../directives/old/bmb-layout/bmb-layout-item.directive';
 import { BmbVerticalLayoutDirective } from '../../../directives/old/bmb-layout/bmb-vertical-layout/bmb-vertical-layout.directive';

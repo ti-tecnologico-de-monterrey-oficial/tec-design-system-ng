@@ -1,0 +1,11 @@
+@use '../../styles/playground';
+
+@include playground.page($controls-min: 16rem, $controls-max: 22rem);
+
+.preview {
+  align-content: center;
+}
+bmb-value-counter {
+  display: block;
+  width: 100%;
+}
