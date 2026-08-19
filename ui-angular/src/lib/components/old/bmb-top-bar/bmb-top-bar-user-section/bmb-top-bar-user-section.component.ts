@@ -13,7 +13,7 @@ import { BmbLayoutItemDirective } from '../../../../directives/old/bmb-layout/bm
 import { BmbLayoutDirective } from '../../../../directives/old/bmb-layout/bmb-layout.directive';
 import { BmbUserSummaryContentComponent } from '../../bmb-user-summary/bmb-user-summary-content/bmb-user-summary-content.component';
 import { BmbDropdownMenuComponent } from '../../bmb-dropdown-menu/bmb-dropdown-menu.component';
-import { IDropdownItem } from '@shared/types';
+import { IDropdownItem } from '../../../../_shared/types/index';
 import { BmbButtonIconComponent } from '../../bmb-button-icon/bmb-button-icon.component';
 import { BmbCheckExternalLinkButtonComponent } from '../../../bmb-check-external-link-button/bmb-check-external-link-button.component';
 import { TranslatePipe } from '../../../../pipes/translations';
@@ -56,7 +56,7 @@ export class BmbTopBarUserSectionComponent {
   roleButtonClick = output<MouseEvent>();
   searchButtonClick = output<MouseEvent>();
 
-  isOpenNotifications: boolean = false;
+  isOpenNotifications = false;
   dialogPosition: { top: string; left: string } | null = {
     top: '0px',
     left: '0px',

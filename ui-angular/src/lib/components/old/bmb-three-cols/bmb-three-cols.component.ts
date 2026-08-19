@@ -8,13 +8,13 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { BmbLayoutDirective } from '../../../directives/old/bmb-layout/bmb-layout.directive';
+import { BmbLayoutItemDirective } from '../../../directives/old/bmb-layout/bmb-layout-item.directive';
 import {
-  BmbLayoutDirective,
+  SizeNames,
   IAlignItemsOptions,
   IJustifyOptions,
-} from '../../../directives/old/bmb-layout/bmb-layout.directive';
-import { BmbLayoutItemDirective } from '../../../directives/old/bmb-layout/bmb-layout-item.directive';
-import { SizeNames } from '../../../_shared/types';
+} from '../../../_shared/types';
 
 @Component({
   selector: 'bmb-three-cols',

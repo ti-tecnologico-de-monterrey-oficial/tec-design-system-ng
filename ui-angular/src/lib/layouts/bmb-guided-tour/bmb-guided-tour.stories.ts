@@ -17,10 +17,23 @@ import {
   BmbIconComponent,
   BmbProjectionContentService,
   IBmbProjectionContent,
-  OnboardingStep,
 } from '../../../index';
 import { CommonModule } from '@angular/common';
-import { attributes } from '../../../../../docs/utils/utils';
+import { attributes } from '@docs/utils/utils';
+
+interface OnboardingStep {
+  description: string;
+  icon?: string;
+  iconSize?: string;
+  imageDesktop: string;
+  imageMobile: string;
+  primaryButton: string;
+  secondaryButton?: string;
+  shortDescription: string;
+  showCheckbox?: boolean;
+  subtitle?: string;
+  title: string;
+}
 
 @Component({
   standalone: true,

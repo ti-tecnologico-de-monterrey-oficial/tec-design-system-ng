@@ -16,23 +16,12 @@ import { BmbContainerComponent } from '../../bmb-container/bmb-container.compone
 import { isImage } from '../../../_shared/logic/utils';
 import { IBmbColor } from '../../../_shared/types/colors';
 import { getRGBColorKeyValue } from '../../../_shared/logic/utils';
-import { BmbUserImageComponent } from '../bmb-user-image/bmb-user-image.component';
-import { IBmbUserImageSize } from '../../../_shared/types';
+import { BmbUserImageComponent } from '../../bmb-user-image/bmb-user-image.component';
+import { IBmbUserImageSize, IBmbFontWeightContent } from '../../../_shared/types';
 import { logDeprecatedInput } from '../../../_shared/logic/logDeprecatedInput';
 import { BmbBoxIconComponent } from '../bmb-box-icon/bmb-box-icon.component';
 import { BmbBotIconComponent } from '../bmb-bot-icon/bmb-bot-icon.component';
 import { IBotType } from '../bmb-chat-bar/types';
-
-export type IBmbFontWeightContent =
-  | '100'
-  | '200'
-  | '300'
-  | '400'
-  | '500'
-  | '600'
-  | '700'
-  | '800'
-  | '900';
 
 @Component({
   selector: 'bmb-title-content',
@@ -53,10 +42,10 @@ export type IBmbFontWeightContent =
 })
 export class BmbTitleContentComponent {
   titleSize = input<string>('5');
-  titleFontWeight = input<string>('600');
+  titleFontWeight = input<IBmbFontWeightContent>('600');
   subtitle = input<string | undefined>('');
   subtitleSize = input<string>('3');
-  subtitleFontWeight = input<string>('400');
+  subtitleFontWeight = input<IBmbFontWeightContent>('400');
   subtitleIcon = input<string>('');
   subtitleIconSize = input<number>(0);
   isCenterContent = input<boolean>(false);
@@ -102,7 +91,7 @@ export class BmbTitleContentComponent {
     ) {
       return { 'background-color': 'transparent' };
     }
-    if (!!this.bgIconAppearance()) {
+    if (this.bgIconAppearance()) {
       return getRGBColorKeyValue(this.bgIconAppearance() as string);
     }
     return {};

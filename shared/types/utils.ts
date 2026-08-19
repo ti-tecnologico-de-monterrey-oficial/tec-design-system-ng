@@ -1,3 +1,8 @@
+<<<<<<< HEAD
+=======
+import { IBmbInteractiveIconAppearance } from './components/interactive-icon';
+
+>>>>>>> feature-prod
 export type SizeNames =
   | 'none'
   | 'xxs'
@@ -7,8 +12,13 @@ export type SizeNames =
   | 'l'
   | 'xl'
   | 'xxl'
+<<<<<<< HEAD
   | 'auto'
   | 'full'
+=======
+  | 'none'
+  | 'auto'
+>>>>>>> feature-prod
   | '0'
   | '1'
   | '2'
@@ -65,14 +75,14 @@ export interface IBmbHome {
   callback: (result: unknown) => void;
 }
 
-// export interface IBmbApp {
-//   icon: string;
-//   title: string;
-//   link?: string;
-//   target?: IBmbTargetLink;
-//   appearance: IBmbInteractiveIconAppearance;
-//   callbackParam?: any;
-// }
+export interface IBmbApp {
+  icon: string;
+  title: string;
+  link?: string;
+  target?: IBmbTargetLink;
+  appearance: IBmbInteractiveIconAppearance;
+  callbackParam?: any;
+}
 
 export interface IBmbNameValuePair {
   name: string;
@@ -129,13 +139,14 @@ export interface IBmbCollaboratorProfileData {
 export interface IBmbActionHeader {
   icon: string;
   alt?: string;
+  tooltipText?: string;
   iconSize?: number;
   iconActiveToggle?: string;
   isToggleActive?: boolean;
   isAccentColor?: boolean;
   link?: string;
   target?: IBmbTargetLink;
-  action: (event?: Event) => void;
+  action: (event?: Event, data?: any) => void;
 }
 
 export interface IBmbLinkConfiguration extends IBmbLinkInfo {

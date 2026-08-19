@@ -10,8 +10,6 @@ import { truncateGradeValue } from '../../_shared/logic';
 import type { IBmbContrast } from '../../_shared/types/colors';
 import type { IBmbGradeType } from '../../_shared/types/components/grade-value';
 
-export type { IBmbGradeType } from '../../_shared/types/components/grade-value';
-
 @Component({
   selector: 'bmb-grade-value',
   standalone: true,

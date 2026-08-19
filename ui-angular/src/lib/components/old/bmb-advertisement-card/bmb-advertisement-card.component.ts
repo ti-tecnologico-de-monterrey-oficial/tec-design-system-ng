@@ -15,6 +15,8 @@ import { BmbCarouselComponent } from '../../bmb-carousel/bmb-carousel.component'
 import { BmbTabsComponent, IBmbTab } from '../bmb-tabs/bmb-tabs.component';
 import { TranslatePipe } from '../../../pipes/translations';
 
+export * from './types';
+
 @Component({
   selector: 'bmb-advertisement-card',
   standalone: true,
@@ -40,8 +42,8 @@ export class BmbAdvertisementCardComponent {
 
   imageNotFoundError = output<void>();
 
-  expanded: boolean = false;
-  selectedTabId: number = 0;
+  expanded = false;
+  selectedTabId = 0;
   tabsData: IBmbTab[] = [
     { id: 1, title: 'Promociones', isActive: true },
     { id: 2, title: 'Avisos' },

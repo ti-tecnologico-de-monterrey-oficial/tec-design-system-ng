@@ -1,15 +1,7 @@
 import { Directive, HostBinding, input } from '@angular/core';
 import { SizeNames } from '../../../_shared/types';
+import { IAlignItemsOptions, IJustifyOptions } from '../../../_shared/types/components/layout';
 
-export type IJustifyOptions =
-  | 'center'
-  | 'end'
-  | 'start'
-  | 'stretch'
-  | 'spaceAround'
-  | 'spaceBetween'
-  | 'spaceEvenly';
-export type IAlignItemsOptions = 'center' | 'end' | 'start' | 'stretch';
 export type ILayoutFlow = 'row' | 'reverse';
 export interface ILayoutFlowResponsive {
   m: ILayoutFlow;
@@ -32,7 +24,7 @@ export class BmbLayoutDirective {
   flow = input<ILayoutFlow | ILayoutFlowResponsive>('row');
 
   @HostBinding('class') get elementClass(): string[] {
-    const baseClassName: string = 'bmb_layout';
+    const baseClassName = 'bmb_layout';
     const classes = [
       `bmb_gap-${this.gapSize()}`,
       `bmb_margin-${this.margin()}`,

@@ -10,9 +10,6 @@ import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { logDeprecatedInput } from '../../../_shared/logic/logDeprecatedInput';
 import { BmbTooltipBaseComponent } from './bmb-tooltip-base/bmb-tooltip-base.component';
 
-export type IBmbAlignTooltip = 'above' | 'below' | 'left' | 'right'; //Deprecated
-export type IBmbJustifyTooltip = 'centered' | 'before' | 'after'; //Deprecated
-
 @Component({
   selector: 'bmb-tooltip',
   standalone: true,

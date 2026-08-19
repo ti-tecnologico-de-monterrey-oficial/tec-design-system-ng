@@ -1,0 +1,36 @@
+<header class="page-header">
+  <p class="eyebrow">Componente migrado</p>
+  <h1>BmbModal</h1>
+  <p>
+    Selecciona una variante para comparar el icono y el espaciado del header
+    contra el dise&ntilde;o de Figma.
+  </p>
+</header>
+
+<section class="playground" aria-labelledby="modal-demo-heading">
+  <div class="controls">
+    <h2 id="modal-demo-heading">Prueba DS01-3722</h2>
+    <label for="modal-icon">Icono del modal</label>
+    <select
+      id="modal-icon"
+      [value]="selectedIcon()"
+      (change)="selectIcon($event)"
+    >
+      @for (option of iconOptions; track option.value) {
+        <option [value]="option.value">{{ option.label }}</option>
+      }
+    </select>
+    <button type="button" (click)="openModal()">
+      Abrir modal {{ selectedIcon() }}
+    </button>
+    <p><strong>Estado:</strong> {{ status() }}</p>
+  </div>
+  <div class="preview">
+    <h2>Referencia esperada</h2>
+    <ul>
+      <li>Área del icono: 48 × 48 px</li>
+      <li>Separación entre header y contenido: 32 px</li>
+      <li>Icono de cierre: 24 px</li>
+    </ul>
+  </div>
+</section>

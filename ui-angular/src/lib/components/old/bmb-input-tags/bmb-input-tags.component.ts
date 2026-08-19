@@ -19,7 +19,7 @@ import { IBmbDropdownItem } from '../bmb-dropdown/bmb-dropdown.component';
 import {
   IBmbInputError,
   IBmbInputTooltipPosition,
-} from '../bmb-input/bmb-input.component';
+} from '../../../_shared/types/input';
 import { ClickOutsideDirective } from '../../../directives/old/utils/clickoutside.directive';
 import { debounceTime } from 'rxjs';
 import {

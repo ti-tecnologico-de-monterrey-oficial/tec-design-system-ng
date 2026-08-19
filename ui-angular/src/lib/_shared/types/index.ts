@@ -1,22 +1,28 @@
-import { IBmbInteractiveIconAppearance } from '../../components/old/bmb-interactive-icon/bmb-interactive-icon.component';
-import { IBbmBgAppearance } from '../../components/old/bmb-advertisement-card/types';
+import type { IBbmBgAppearance } from './components/advertisement-card';
+import type { IBmbInteractiveIconAppearance } from './components/interactive-icon';
 
-export * from '../../components/old/bmb-timestream/types';
-export * from '../../components/old/bmb-push-notification/types';
-export * from '../../components/old/bmb-advertisement-card/types';
-export * from '../../components/old/bmb-login-onboarding/types';
-export * from '../../components/old/bmb-filter-card/bmb-filter-card.interface';
-export * from '../../components/old/bmb-alert-center/types';
-export * from '../../components/old/bmb-chat-bubbles/types';
-export * from '../../components/old/bmb-ai-chat-bubble/types';
-export * from '../../components/old/bmb-sidebar/bmb-sidebar.interface';
-export * from '../../components/old/bmb-grades/types';
-export * from '../../components/old/bmb-tables/bmb-tables.interface';
-export * from '../../components/old/bmb-image/types';
-export * from '../types/components/grade-value';
+// components
+// export * from './components/advertisement-card';
+export * from './components/badge';
+export * from './components/bottom-navigation-bar';
+export * from './components/card';
+export * from './components/divider';
+export * from './components/grade-value';
+export * from './components/iframe';
+export * from './components/interactive-icon';
+export * from './components/layout';
+export * from './components/legend';
+export * from './components/notification-counter';
+export * from './components/progress-circle';
+export * from './components/server-table';
+export * from './components/title';
+export * from './components/tooltip';
+export * from './input';
+export * from './utils';
+export * from './components/action-icon';
 
+// types
 export * from './colors';
-export type { IBmbServerTableColumn } from './components/server-table';
 export type { IBmbNotificationCounterType } from './components/notification-counter';
 export type { BmbSkeletonType } from './components/skeleton';
 export type {
@@ -24,6 +30,7 @@ export type {
   BmbValueCounterParts,
 } from './components/value-counter';
 export type {
+  BmbIframeAttributes,
   BmbIframeLoading,
   BmbIframeReferrerPolicy,
 } from './components/iframe';

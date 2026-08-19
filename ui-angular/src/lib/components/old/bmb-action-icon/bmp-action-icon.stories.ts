@@ -1,22 +1,55 @@
 import { Meta, StoryObj } from '@storybook/angular';
 import { BmbActionIconComponent } from './bmb-action-icon.component';
 import {
+  BlockquoteType,
+  getAlertBlockquote,
   getBasicExampleBlock,
   getGeneralComponentDescription,
   getGeneralDescription,
   getOnEvent,
+  getSpecialSpecifications,
+  getStoryLink,
   IBmbOnEvent,
+  RELEVANT_TITLE,
 } from '@docs/utils/utils';
 import {
   DBmbGenericParamDesc,
   DBmbIconParamDesc,
   getDefaultValueControl,
+  getModelDescription,
   getOnClickParam,
-  ON_BUTTON_CLICK,
   ON_CLICK_DESCRIPTION,
 } from '@docs/utils/parameterDescriptions';
 
-const onButtonPress: IBmbOnEvent = getOnEvent('', 'buttonPress');
+const configDetail = `${getAlertBlockquote(
+  `Please remember to get the event name using the IBmbActionIconEventType type.
+>
+    IBmbActionIconEventType {
+      name: string;
+      event: MouseEvent;
+    }
+>
+`,
+  {
+    title: RELEVANT_TITLE.configuration,
+    blockquoteType: BlockquoteType.important,
+    isRelevantTitle: true,
+  },
+)}`;
+
+const eventTypeDescription = 'MouseEvent | IBmbActionIconEventType';
+
+const onButtonClick: IBmbOnEvent = getOnEvent(
+  '',
+  'buttonPress',
+  eventTypeDescription,
+);
+
+const onButtonPress: IBmbOnEvent = getOnEvent(
+  '',
+  'buttonPress',
+  eventTypeDescription,
+);
 
 export default {
   title: 'Components/Buttons/Action icon',
@@ -31,18 +64,46 @@ export default {
         'handleImageNotFoundError',
         'customActionIcon',
         'isImage',
-        'tooltipText',
       ],
     },
     docs: {
       description: {
         component: `
-${getGeneralDescription(`${getGeneralComponentDescription({ name: 'action-icon', type: 'component', additional: 'interactive' })} to use icons as buttons to execute actions`, { generalDocLink: 'https://bamboo.tec.mx/latest/componentes/action-icon/descripcion-general-FzB28S1H' })}
+${getGeneralDescription(
+  `${getGeneralComponentDescription({
+    name: 'action-icon',
+    type: 'component',
+    additional: 'interactive',
+  })} to use icons as buttons to execute actions`,
+  {
+    generalDocLink:
+      'https://bamboo.tec.mx/latest/componentes/action-icon/descripcion-general-FzB28S1H',
+  },
+)}
+${getSpecialSpecifications(
+  `${getAlertBlockquote(
+    `
+Please consider using this component to implement switching between two languages. Look for the example that uses toggle icon without a accent color.
+>
+Remember to consult the documentation for ${getStoryLink({ title: 'Dev tools/Translations service' })} for further details.
+`,
+    {
+      title: RELEVANT_TITLE.configuration.replace(
+        '<br/>',
+        ' - Switching languages<br/>',
+      ),
+      blockquoteType: BlockquoteType.important,
+      isRelevantTitle: true,
+      isHeader: true,
+    },
+  )}`,
+  { showAdditionalBlockquote: true },
+)}
 ${getBasicExampleBlock(
   'BmbActionIconComponent',
   '',
   `${onButtonPress.handleExample}
-  ${ON_BUTTON_CLICK.handleExample}`,
+  ${onButtonClick.handleExample}`,
 )}
         `,
       },
@@ -53,21 +114,49 @@ ${getBasicExampleBlock(
     icon: DBmbIconParamDesc.icon,
     alt: DBmbIconParamDesc.alt,
     iconSize: DBmbIconParamDesc.iconSize,
+    tooltipText: {
+      control: {
+        type: 'text',
+      },
+      description: `
+Sets a tooltip base to be displayed when hovering the icon.
+Please use it to provide additional details or context.
+
+${getAlertBlockquote('Please remember that this must be a brief text.', { title: RELEVANT_TITLE.important, isRelevantTitle: true, blockquoteType: BlockquoteType.important })}
+      `,
+      table: {
+        category: 'Properties',
+        defaultValue: getDefaultValueControl(''),
+        type: { summary: 'string (optional)' },
+      },
+    },
     isFill: DBmbIconParamDesc.isIconFill,
     toggleIconActive: {
       ...DBmbIconParamDesc.icon,
-      description: `${DBmbIconParamDesc.icon.description}<br/><br/> This icon will be used in the toggle functionality, as long as \`isToggleActive\` is *true*. `,
+      description: DBmbIconParamDesc.icon.description
+        .replace('icon', 'alternative icon')
+        .concat(`<br/>${getModelDescription('toggleIconActive')}`),
+      table: {
+        ...DBmbIconParamDesc.icon.table,
+        type: { summary: 'model<string> (optional)' },
+      },
     },
     isToggleActive: {
       control: {
         type: 'boolean',
       },
       description: `
-Sets the toggle functionality to be activated when *true*, to change the icons depending on whether it is active or inactive.
+Displays the alternative icon when \`true\`.
 
-The toggle needs the following properties for correct operation:
-- \`icon\`
-- \`toggleIconActive\`.
+${getAlertBlockquote(
+  `
+Please remember to set the alternative icon in \`toggleIconActive\` to complete the configuration of this property`,
+  {
+    title: RELEVANT_TITLE.important,
+    blockquoteType: BlockquoteType.important,
+    isRelevantTitle: true,
+  },
+)}.
       `,
       table: {
         category: 'Properties',
@@ -90,11 +179,15 @@ The toggle needs the following properties for correct operation:
     link: DBmbGenericParamDesc.linkOrButton,
     target: DBmbGenericParamDesc.target,
     buttonClick: getOnClickParam(
-      ON_BUTTON_CLICK,
+      onButtonClick,
       `${ON_CLICK_DESCRIPTION}.<br/><br/>
-This property switches the \`isToggleActive\` when \`isToggleActive\` is true`,
+This event toggles the value (\`true\` | \`false\`) of the \`isToggleActive\` property and, at same time, changes the displayed icon.
+${configDetail}`,
     ),
-    buttonPress: getOnClickParam(onButtonPress, ON_CLICK_DESCRIPTION),
+    buttonPress: getOnClickParam(
+      onButtonPress,
+      ON_CLICK_DESCRIPTION.concat(configDetail),
+    ),
     disabled: DBmbGenericParamDesc.disabled,
     imageNotFoundError: DBmbIconParamDesc.imageNotFoundError,
   },
@@ -117,18 +210,11 @@ export const Default: Story = {
   name: 'Default example',
 };
 
-export const OutlineExample = {
-  name: 'Example of an icon with outline',
-  args: {
-    isFill: false,
-  },
-};
-
 export const ToggleAccentColorExample = {
   name: 'Toggle icon example (accent color)',
   args: {
-    icon: 'fit_screen',
-    toggleIconActive: 'close_fullscreen',
+    icon: 'zoom_out_map',
+    toggleIconActive: 'zoom_in_map',
     iconSize: 24,
   },
 };
@@ -136,8 +222,9 @@ export const ToggleAccentColorExample = {
 export const ToggleExample = {
   name: 'Example of a toggle icon without accent color',
   args: {
-    ...ToggleAccentColorExample.args,
     isAccentColor: false,
+    icon: 'language_spanish',
+    toggleIconActive: 'language_us',
   },
 };
 

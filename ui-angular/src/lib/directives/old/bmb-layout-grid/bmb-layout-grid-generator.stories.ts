@@ -79,7 +79,7 @@ import { BmbLayoutItemDirective } from '../bmb-layout/bmb-layout-item.directive'
               [iconSize]="24"
               (buttonClick)="copyCode()"
               componentTitle="Copy code"
-              [alt]="'Copy code' | translate"
+              [tooltipText]="'Copy code' | translate"
             />
           </div>
         </section>

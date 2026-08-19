@@ -1,4 +1,11 @@
-import { Component, input, OnChanges, SimpleChanges } from '@angular/core';
+/* eslint-disable @typescript-eslint/no-non-null-assertion, @typescript-eslint/no-explicit-any*/
+import {
+  Component,
+  input,
+  OnChanges,
+  SimpleChanges,
+  inject,
+} from '@angular/core';
 import {
   Meta,
   StoryFn,
@@ -17,7 +24,6 @@ import {
   BmbVerticalLayoutDirective,
   BmbVerticalLayoutItemDirective,
   BmbProjectionContentService,
-  OnboardingStep,
 } from '../../../index';
 import {
   attributes,
@@ -29,7 +35,7 @@ import {
   getSpecialSpecifications,
   getTechnicalDocReferences,
   RELEVANT_TITLE,
-} from '../../../../../docs/utils/utils';
+} from '@docs/utils/utils';
 import * as homeCard from '../../components/old/bmb-home-card/bmp-home-card.stories';
 import * as icon from '../../components/old/bmb-icon/bmb-icon.stories';
 import * as checkbox from '../../components/old/bmb-checkbox/bmb-checkbox.stories';
@@ -39,7 +45,21 @@ import * as button from '../../directives/old/bmb-button/button.stories';
 import * as layout from '../../directives/old/bmb-layout/bmb-layout.stories';
 import * as verticalLayout from '../../directives/old/bmb-layout/bmb-vertical-layout/bmb-vertical-layout.stories';
 
-const htmlTemplate: string = `
+interface OnboardingStep {
+  description: string;
+  icon?: string;
+  iconSize?: string;
+  imageDesktop: string;
+  imageMobile: string;
+  primaryButton: string;
+  secondaryButton?: string;
+  shortDescription: string;
+  showCheckbox?: boolean;
+  subtitle?: string;
+  title: string;
+}
+
+const htmlTemplate = `
 <bmb-home-card
       class="bmb_template-guided-tour-container"
       leftIcon="chevron_left"
@@ -168,9 +188,9 @@ const htmlTemplate: string = `
 class StorybookGuidedTourHC implements OnChanges {
   steps = input<OnboardingStep[]>([]);
   startIndex = input<number>(0);
-  currentIndex: number = 0;
+  currentIndex = 0;
 
-  constructor(private contentProjected: BmbProjectionContentService) {}
+  private readonly contentProjected = inject(BmbProjectionContentService);
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['startIndex']) {
@@ -296,7 +316,7 @@ steps: OnboardingStep[] = [
         shortDescription: 'Este es tu tour introductorio a la app.',
         showCheckbox: true,
         subtitle: '',
-        title: 'Te damos la bienvenida a TEC - IDEA ',
+        title: 'Te damos la bienvenida a TEC - IDEA',
       },
       {
         description:
@@ -334,7 +354,7 @@ steps: OnboardingStep[] = [
     ];
   currentIndex: number = 0;
 
-  constructor(private contentProjected: BmbProjectionContentService) {}
+  private readonly contentProjected = inject(BmbProjectionContentService);
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['startIndex']) {

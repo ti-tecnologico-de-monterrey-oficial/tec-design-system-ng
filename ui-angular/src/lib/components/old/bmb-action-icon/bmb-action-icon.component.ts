@@ -46,23 +46,23 @@ export class BmbActionIconComponent {
   link = input<string>();
   disabled = input<boolean>(false);
   isSVGTemplate = input<boolean>();
-  tooltipText = input<string>(''); //Internal
+  tooltipText = input<string>('');
 
   imageNotFoundError = output<void>();
   buttonPress = output<MouseEvent>();
   buttonClick = output<MouseEvent>();
 
-  customActionIcon = contentChild<TemplateRef<any>>('customActionIcon');
+  customActionIcon = contentChild<TemplateRef<undefined>>('customActionIcon');
   sanitizer: DomSanitizer = inject(DomSanitizer);
 
   getIcon(): string {
-    if (this.isToggleActive() && !!this.toggleIconActive())
-      return this.toggleIconActive()!;
+    if (this.isToggleActive() && this.toggleIconActive())
+      return this.toggleIconActive() || '';
     return this.icon();
   }
 
   handlePress(event?: MouseEvent): void {
-    this.buttonPress.emit(event || new MouseEvent('click'));
+    this.buttonPress.emit(event || new MouseEvent('press'));
   }
 
   handleClick(event?: MouseEvent) {

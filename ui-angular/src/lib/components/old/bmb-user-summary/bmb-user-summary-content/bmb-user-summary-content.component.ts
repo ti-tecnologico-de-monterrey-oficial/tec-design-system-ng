@@ -5,7 +5,7 @@ import {
   output,
   ViewEncapsulation,
 } from '@angular/core';
-import { BmbUserImageComponent } from '../../bmb-user-image/bmb-user-image.component';
+import { BmbUserImageComponent } from '../../../bmb-user-image/bmb-user-image.component';
 import { CommonModule } from '@angular/common';
 import { BmbLayoutItemDirective } from '../../../../directives/old/bmb-layout/bmb-layout-item.directive';
 import { BmbLayoutDirective } from '../../../../directives/old/bmb-layout/bmb-layout.directive';
@@ -13,7 +13,7 @@ import {
   IBmbLinkConfiguration,
   IBmbUserImageSize,
   SizeNames,
-} from '@shared/types';
+} from '../../../../_shared/types/index';
 import { BmbTextLinkComponent } from '../../bmb-text-link/bmb-text-link.component';
 import { BmbIconComponent } from '../../bmb-icon/bmb-icon.component';
 

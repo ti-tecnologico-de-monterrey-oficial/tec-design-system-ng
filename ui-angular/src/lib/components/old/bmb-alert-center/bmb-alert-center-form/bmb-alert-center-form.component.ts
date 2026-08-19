@@ -18,8 +18,8 @@ import {
   IBmbDataAlertsEventType,
   IBmbDataAlertsOutput,
   IBmbDataAlertsParsed,
-  IBmbActionHeader
-} from '../../../../_shared/types';
+} from '../types';
+import { IBmbActionHeader } from '../../../../_shared/types/index';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { BmbAlertCenterListComponent } from '../bmb-alert-center-list/bmb-alert-center-list.component';

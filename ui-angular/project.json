@@ -20,11 +20,11 @@
       "dependsOn": ["sync-shared"],
       "options": {
         "project": "ui-angular/ng-package.json",
-        "tsConfig": "ui-angular/tsconfig.lib.json"
+        "tsConfig": "ui-angular/tsconfig.lib.prod.json"
       },
       "configurations": {
         "production": {
-          "tsConfig": "ui-angular/tsconfig.lib.json"
+          "tsConfig": "ui-angular/tsconfig.lib.prod.json"
         }
       },
       "defaultConfiguration": "production"

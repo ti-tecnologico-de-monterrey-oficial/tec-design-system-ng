@@ -24,7 +24,7 @@ import {
 import {
   IBmbInputError,
   IBmbInputTooltipPosition,
-} from '../bmb-input/bmb-input.component';
+} from '../../../_shared/types/input';
 import { BmbDropdownContentComponent } from '../utils/bmb-dropdown-content/bmb-dropdown-content.component';
 import { IDropdownItem } from '../../../_shared/types';
 import { BmbInputContentComponent } from '../bmb-input/bmb-input-content/bmb-input-content.component';
@@ -99,7 +99,9 @@ export class BmbDropdownComponent implements OnInit, OnChanges {
 
   control = model<FormControl>(newFormControlByType());
 
+  // eslint-disable-next-line @angular-eslint/no-output-on-prefix
   onValueChange = output<any>();
+  // eslint-disable-next-line @angular-eslint/no-output-on-prefix
   onFocus = output<boolean>();
 
   uuid: string = getUUID();
@@ -147,7 +149,7 @@ export class BmbDropdownComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (this.control() !== null) {
+    if (this.control()) {
       if (changes['options']) {
         this.control().setValue(this.getValidInitialValues());
       }
@@ -168,12 +170,14 @@ export class BmbDropdownComponent implements OnInit, OnChanges {
         showIndicator: this.isMultiSelect(),
         action: () => {
           this.setSelectedValue(element);
-          this.projectionService.closeContent();
+          if (!this.isMultiSelect()) {
+            this.projectionService.closeContent(this.dialogID);
+          }
         },
       } as IDropdownItem;
     });
 
-    if (!!this.preferredOptions().length) {
+    if (this.preferredOptions().length) {
       const preferredItems: IDropdownItem[] = parsedItems.filter((element) =>
         this.preferredOptions().includes(element.value!),
       );
@@ -209,7 +213,7 @@ export class BmbDropdownComponent implements OnInit, OnChanges {
   }
 
   setSelectionControl(controlValue: string | string[]): void {
-    if (!!controlValue) {
+    if (controlValue) {
       if (this.isMultiSelect()) {
         const selectedItems = this.parsedOptions().filter(({ value }) =>
           controlValue.includes(value!),
@@ -222,7 +226,7 @@ export class BmbDropdownComponent implements OnInit, OnChanges {
       const item = this.parsedOptions().find(
         ({ value }) => value === controlValue,
       );
-      if (!!item) {
+      if (item) {
         this.selectionControl.setValue(item?.selectedText);
         if (this.showIcon()) this.selectedIcon = item.icon;
         this.selectedItem = item;

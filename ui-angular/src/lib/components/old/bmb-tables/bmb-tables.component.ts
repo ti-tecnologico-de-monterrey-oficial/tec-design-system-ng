@@ -53,6 +53,8 @@ import { DateTime } from 'luxon';
 import { sanitizeContent } from '../../../_shared/logic/sanitizeContent';
 import { TranslatePipe } from '../../../pipes/translations';
 
+export * from './bmb-tables.interface';
+
 export type BmbTableLang = 'en' | 'es';
 
 @Component({
