@@ -1,5 +1,6 @@
 import {
   Controls,
+  Canvas,
   Description,
   Meta,
   Primary,
@@ -26,6 +27,12 @@ export const GeneralTemplate = ({
     {showControls && <TitleOfControls />}
     {(children && showControls && <Controls of={children.Default} />) ||
       (showControls && <Controls />)}
-    {showStories && <Stories title={STORIES_TITLE} includePrimary={false} />}
+    {children && showStories &&
+      Object.entries(children)
+        .filter(([name]) => name !== 'default' && name !== '__namedExportsOrder')
+        .map(([name, story]) => <Canvas key={name} of={story} />)}
+    {!children && showStories && (
+      <Stories title={STORIES_TITLE} includePrimary={false} />
+    )}
   </section>
 );
