@@ -20,6 +20,7 @@ export * from './components/tooltip';
 export * from './input';
 export * from './utils';
 export * from './components/action-icon';
+export * from './components/skeleton';
 
 // types
 export * from './colors';
