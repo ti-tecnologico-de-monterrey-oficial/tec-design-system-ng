@@ -1,0 +1,23 @@
+@use '../../styles/playground';
+
+@include playground.page($controls-min: 14rem, $controls-max: 20rem);
+
+.preview {
+  min-height: 26rem;
+}
+.gallery {
+  margin-top: 2rem;
+}
+.gallery-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
+
+  article {
+    background: #fff;
+    border: 1px solid #d8dee8;
+    border-radius: 0.75rem;
+    min-width: 0;
+    padding: 1rem;
+  }
+}

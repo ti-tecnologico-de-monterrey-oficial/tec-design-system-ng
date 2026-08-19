@@ -8,15 +8,18 @@ import {
 const targets = {
   logic: 'ui-angular/src/lib/_shared/logic',
   types: 'ui-angular/src/lib/_shared/types',
+  styles: 'ui-angular/src/lib/_shared/styles',
   assets: 'ui-angular/src/assets',
 };
 
 mkdirSync('ui-angular/src/lib/_shared', { recursive: true });
 mkdirSync(targets.logic, { recursive: true });
 mkdirSync(targets.types, { recursive: true });
+mkdirSync(targets.styles, { recursive: true });
 mkdirSync(targets.assets, { recursive: true });
 cpSync('shared/logic', targets.logic, { recursive: true });
 cpSync('shared/types', targets.types, { recursive: true });
+cpSync('shared/assets/styles', targets.styles, { recursive: true });
 cpSync('shared/assets', targets.assets, { recursive: true });
 
 for (const file of [
