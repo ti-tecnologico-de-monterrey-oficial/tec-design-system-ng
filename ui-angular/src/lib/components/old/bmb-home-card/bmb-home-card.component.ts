@@ -8,7 +8,7 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { BmbHomeCardHeaderComponent } from './bmb-home-card-header/bmb-home-card-header.component';
-import { IBmbDataTopBar } from '../bmb-breadcrumb/bmb-breadcrumb.component';
+import type { IBmbDataTopBar } from '../../../_shared/types';
 import { IBmbColor } from '../../../_shared/types/colors';
 import { IBmbActionHeader, SizeNames } from '../../../_shared/types';
 import { CommonModule } from '@angular/common';

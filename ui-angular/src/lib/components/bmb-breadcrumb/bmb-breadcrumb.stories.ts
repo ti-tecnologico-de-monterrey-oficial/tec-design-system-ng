@@ -1,10 +1,11 @@
-import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
+import { moduleMetadata } from '@storybook/angular';
+import type { Meta, StoryObj } from '@storybook/angular';
 import { BmbBreadcrumbComponent } from './bmb-breadcrumb.component';
 import { RouterTestingModule } from '@angular/router/testing';
 import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 import { of } from 'rxjs';
 import { CommonModule } from '@angular/common';
-import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
+import { BmbIconComponent } from '../old/bmb-icon/bmb-icon.component';
 import {
   getBasicExampleBlock,
   getGeneralComponentDescription,

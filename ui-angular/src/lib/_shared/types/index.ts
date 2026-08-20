@@ -20,6 +20,7 @@ export * from './components/tooltip';
 export * from './input';
 export * from './utils';
 export * from './components/action-icon';
+export type { IBmbDataTopBar } from './components/breadcrumb';
 
 // types
 export * from './colors';

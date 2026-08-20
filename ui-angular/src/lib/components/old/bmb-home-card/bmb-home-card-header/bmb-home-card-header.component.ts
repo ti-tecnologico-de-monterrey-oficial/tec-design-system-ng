@@ -9,7 +9,7 @@ import {
   effect,
   inject,
 } from '@angular/core';
-import { IBmbDataTopBar } from '../../bmb-breadcrumb/bmb-breadcrumb.component';
+import type { IBmbDataTopBar } from '../../../../_shared/types';
 import { IBmbColor } from '../../../../_shared/types/colors';
 import { IBmbActionHeader } from '../../../../_shared/types/utils';
 import { BmbTitleContentComponent } from '../../bmb-title-content/bmb-title-content.component';

@@ -19,21 +19,22 @@
       }
     </div>
   } @else {
-    <a
-      *ngIf="getPenultimateLink()"
-      class="bmb_breadcrumb-back"
-      [routerLink]="getPenultimateLink()"
-      routerLinkActive="bmb_breadcrumb-active"
-      [routerLinkActiveOptions]="{ exact: true }"
-    >
-      <bmb-icon icon="chevron_left" class="bmb_breadcrumb-icon" />
-    </a>
+    @if (getPenultimateLink()) {
+      <a
+        class="bmb_breadcrumb-back"
+        [routerLink]="getPenultimateLink()"
+        routerLinkActive="bmb_breadcrumb-active"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
+        <bmb-icon icon="chevron_left" class="bmb_breadcrumb-icon" />
+      </a>
+    }
 
     @for (item of dataLocalNav(); track $index) {
       @if (
         $index === 0 ||
         $index >= dataLocalNav().length - 2 ||
-        (dataLocalNav().length == 4 && $index == 1)
+        (dataLocalNav().length === 4 && $index === 1)
       ) {
         <span
           class="bmb_breadcrumb-text"
@@ -102,7 +103,7 @@
                     [ngClass]="{
                       'bmb_breadcrumb-text-active': isInactive()
                     }"
-                    >{{ item.text }}</span
+                    >{{ dropdownItem.text }}</span
                   >
                   <a
                     [ngClass]="{

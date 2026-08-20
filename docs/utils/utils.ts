@@ -17,9 +17,6 @@ import {
   BMB_SEMANTIC_BASE_COLOR_LIST,
   BMB_SEMANTIC_COLOR_LIST,
 } from '../../shared/types/foundations/colors/color-type';
-import { createElement } from 'react';
-import { getListingOnOneLine } from '../../shared/logic/utils';
-
 interface IBmbVariableDesc {
   element: string;
   name: string;
