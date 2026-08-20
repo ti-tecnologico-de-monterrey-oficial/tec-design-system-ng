@@ -1,3 +1,4 @@
+/* eslint-disable @angular-eslint/no-output-on-prefix */
 import {
   ChangeDetectionStrategy,
   Component,
@@ -8,10 +9,14 @@ import {
   computed,
   effect,
   inject,
+  OnInit,
 } from '@angular/core';
 import { IBmbDataTopBar } from '../../bmb-breadcrumb/bmb-breadcrumb.component';
 import { IBmbColor } from '../../../../_shared/types/colors';
-import { IBmbActionHeader } from '../../../../_shared/types/utils';
+import {
+  IBmbActionHeader,
+  IDropdownItem,
+} from '../../../../_shared/types/utils';
 import { BmbTitleContentComponent } from '../../bmb-title-content/bmb-title-content.component';
 import { BmbThreeColsComponent } from '../../bmb-three-cols/bmb-three-cols.component';
 import { BmbActionIconComponent } from '../../bmb-action-icon/bmb-action-icon.component';
@@ -24,6 +29,7 @@ import { IBotType } from '../../bmb-chat-bar/types';
 import { logDeprecatedInput } from '../../../../_shared/logic/logDeprecatedInput';
 import { TranslatePipe } from '../../../../pipes/translations';
 import { BmbTranslationsService } from '../../../../services/translations/translations.service';
+import { BmbDropdownContentComponent } from '../../utils/bmb-dropdown-content/bmb-dropdown-content.component';
 
 @Component({
   selector: 'bmb-home-card-header',
@@ -34,6 +40,7 @@ import { BmbTranslationsService } from '../../../../services/translations/transl
     BmbThreeColsComponent,
     BmbActionIconComponent,
     BmbTitleContentComponent,
+    BmbDropdownContentComponent,
     BmbLayoutDirective,
     BmbLayoutItemDirective,
     TranslatePipe,
@@ -43,7 +50,7 @@ import { BmbTranslationsService } from '../../../../services/translations/transl
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class BmbHomeCardHeaderComponent {
+export class BmbHomeCardHeaderComponent implements OnInit {
   subtitle = input<string>();
   dataLocalNav = input<IBmbDataTopBar[]>([]);
   leftIcon = input<string>();
@@ -58,12 +65,17 @@ export class BmbHomeCardHeaderComponent {
   componentTitle = input<string>(); // once title is removed, this should be required
 
   title = input<string>(); // deprecated
-  // eslint-disable-next-line @angular-eslint/no-output-on-prefix
+
   onClose = output();
-  // eslint-disable-next-line @angular-eslint/no-output-on-prefix
   onBack = output();
-  // eslint-disable-next-line @angular-eslint/no-output-on-prefix
   onExpandClick = output();
+
+  actionLimit = 3;
+  isGreaterThanLimit = false;
+
+  ngOnInit(): void {
+    this.isGreaterThanLimit = !!this.actionHeaders().length;
+  }
 
   private translationsService: BmbTranslationsService = inject(
     BmbTranslationsService,
@@ -139,5 +151,18 @@ export class BmbHomeCardHeaderComponent {
     if (headerAction.action) {
       headerAction.action(event, headerAction);
     }
+  }
+
+  handleActionItemClick(item: IDropdownItem): void {
+    console.info('handleActionItemClick', item);
+    //     headerAction.action(new MouseEvent(),  {
+    //  icon: string;
+    //  alt?: string;
+    //  tooltipText?: string;
+    //  iconSize?: number;
+    //  iconActiveToggle?: string;
+    //  isToggleActive?: boolean;
+    //  isAccentColor?: boolean;
+    //  link?: string;});
   }
 }

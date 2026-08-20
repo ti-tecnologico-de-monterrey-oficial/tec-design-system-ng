@@ -36,26 +36,28 @@
             alignItems="center"
             [dynamicCols]="true"
           >
-            @for (headerAction of headerActionsList(); track $index) {
-              <bmb-action-icon
-                class="bmb_navigation-bar-icon"
-                bmbLayoutItem
-                [isDynamicItem]="true"
-                [idElement]="$index.toString()"
-                [icon]="headerAction.icon"
-                [alt]="headerAction.alt || headerAction.icon"
-                [tooltipText]="
-                  headerAction.tooltipText ||
-                  headerAction.alt ||
-                  headerAction.icon
-                "
-                [iconSize]="24"
-                [toggleIconActive]="headerAction.iconActiveToggle"
-                [(isToggleActive)]="headerAction.isToggleActive"
-                [link]="headerAction.link"
-                [target]="headerAction.target"
-                (buttonClick)="handleHeaderActionClick($event, headerAction)"
-              />
+            @if (!isGreaterThanLimit) {
+              @for (headerAction of headerActionsList(); track $index) {
+                <bmb-action-icon
+                  class="bmb_navigation-bar-icon"
+                  bmbLayoutItem
+                  [isDynamicItem]="true"
+                  [idElement]="$index.toString()"
+                  [icon]="headerAction.icon"
+                  [alt]="headerAction.alt || headerAction.icon"
+                  [tooltipText]="
+                    headerAction.tooltipText ||
+                    headerAction.alt ||
+                    headerAction.icon
+                  "
+                  [iconSize]="24"
+                  [toggleIconActive]="headerAction.iconActiveToggle"
+                  [(isToggleActive)]="headerAction.isToggleActive"
+                  [link]="headerAction.link"
+                  [target]="headerAction.target"
+                  (buttonClick)="handleHeaderActionClick($event, headerAction)"
+                />
+              }
             }
           </span>
         </ng-template>
