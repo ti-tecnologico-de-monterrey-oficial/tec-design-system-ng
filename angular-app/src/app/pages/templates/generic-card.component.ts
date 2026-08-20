@@ -13,7 +13,6 @@ import {
   BmbTooltipComponent,
   BmbVerticalLayoutDirective,
   BmbVerticalLayoutItemDirective,
-  BmbTitleContentComponent
 } from 'ui-angular';
 
 @Component({
@@ -30,7 +29,6 @@ import {
     BmbImageComponent,
     BmbLayoutDirective,
     BmbLayoutItemDirective,
-    BmbTitleContentComponent,
     BmbTooltipComponent,
     BmbVerticalLayoutDirective,
     BmbVerticalLayoutItemDirective,

@@ -31,7 +31,7 @@ export * from './lib/directives/old/bmb-layout-grid/bmb-layout-grid.directive';
 
 // Components
 export * from './lib/components/old/bmb-tooltip/bmb-tooltip.component';
-export * from './lib/components/old/bmb-logo/bmb-logo.component';
+export * from './lib/components/bmb-logo/bmb-logo.component';
 export * from './lib/components/old/bmb-icon/bmb-icon.component';
 export * from './lib/components/bmb-notification-counter/bmb-notification-counter.component';
 export * from './lib/components/bmb-badge/bmb-badge.component';
@@ -41,13 +41,13 @@ export * from './lib/components/old/bmb-dropdown-menu/bmb-dropdown-menu.componen
 export * from './lib/components/old/bmb-filter-card/bmb-filter-card.component';
 export * from './lib/components/old/bmb-inner-header/bmb-inner-header.component';
 export * from './lib/components/bmb-pull-wedge/bmb-pull-wedge.component';
-export * from './lib/components/old/bmb-skeleton/bmb-skeleton.component';
+export * from './lib/components/bmb-skeleton/bmb-skeleton.component';
 export * from './lib/components/old/bmb-tags/bmb-tags.component';
 export * from './lib/components/old/bmb-toast/bmb-toast.component';
 export * from './lib/components/old/bmb-input/bmb-input.component';
 export * from './lib/components/bmb-divider/bmb-divider.component';
 export * from './lib/components/bmb-container/bmb-container.component';
-export * from './lib/components/old/bmb-user-image/bmb-user-image.component';
+export * from './lib/components/bmb-user-image/bmb-user-image.component';
 export * from './lib/components/old/bmb-header-mobile/bmb-header-mobile.component';
 export * from './lib/components/old/bmb-dot-paginator/bmb-dot-paginator.component';
 export * from './lib/components/old/bmb-container-button/bmb-container-button.component';
@@ -67,7 +67,7 @@ export * from './lib/components/old/bmb-home-section/bmb-home-section.component'
 export * from './lib/components/old/bmb-loader/bmb-loader.component';
 export * from './lib/components/old/bmb-switch/bmb-switch.component';
 export * from './lib/components/bmb-legend/bmb-legend.component';
-export * from './lib/components/old/bmb-value-counter/bmb-value-counter.component';
+export * from './lib/components/bmb-value-counter/bmb-value-counter.component';
 export * from './lib/components/old/bmb-step-progress-bar/bmb-step-progress-bar.component';
 export * from './lib/components/old/bmb-focus-element/bmb-focus-element.component';
 export * from './lib/components/old/bmb-user-summary/bmb-user-summary.component';

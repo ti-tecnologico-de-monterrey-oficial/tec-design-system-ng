@@ -2,7 +2,6 @@ import { Component, signal, ViewChild } from '@angular/core';
 import {
   BmbDropzoneComponent,
   BmbButtonDirective,
-  BmbFilterCardComponent,
   IBmbControlType,
   BmbFormValidatorComponent,
   BmbSwitchComponent,
@@ -23,7 +22,6 @@ import {
     BmbFormValidatorComponent,
     BmbDropzoneComponent,
     BmbButtonDirective,
-    BmbFilterCardComponent,
     BmbSwitchComponent,
   ],
 })

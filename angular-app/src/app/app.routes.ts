@@ -277,12 +277,36 @@ export const appRoutes: Route[] = [
       ),
   },
   {
+    path: 'components/modal',
+    title: 'BmbModal | Bamboo migration dashboard',
+    loadComponent: () =>
+      import('./components/modal-page/modal-page').then(
+        ({ ModalPage }) => ModalPage,
+      ),
+  },
+  {
     path: 'components/check-external-link-button',
     title: 'BmbCheckExternalLinkButton | Bamboo migration dashboard',
     loadComponent: () =>
       import(
         './components/check-external-link-button-page/check-external-link-button-page'
       ).then(({ CheckExternalLinkButtonPage }) => CheckExternalLinkButtonPage),
+  },
+  {
+    path: 'components/logo',
+    title: 'BmbLogo | Bamboo migration dashboard',
+    loadComponent: () =>
+      import('./components/logo-page/logo-page').then(
+        ({ LogoPage }) => LogoPage,
+      ),
+  },
+  {
+    path: 'components/user-image',
+    title: 'BmbUserImage | Bamboo migration dashboard',
+    loadComponent: () =>
+      import('./components/user-image-page/user-image-page').then(
+        ({ UserImagePage }) => UserImagePage,
+      ),
   },
   {
     path: 'components/pull-wedge',
@@ -301,7 +325,23 @@ export const appRoutes: Route[] = [
       ),
   },
   {
-    path: 'components/ai-chat-bubble',
+    path: 'components/skeleton',
+    title: 'BmbSkeleton | Bamboo migration dashboard',
+    loadComponent: () =>
+      import('./components/skeleton-page/skeleton-page').then(
+        ({ SkeletonPage }) => SkeletonPage,
+      ),
+  },
+  {
+    path: 'components/value-counter',
+    title: 'BmbValueCounter | Bamboo migration dashboard',
+    loadComponent: () =>
+      import('./components/value-counter-page/value-counter-page').then(
+        ({ ValueCounterPage }) => ValueCounterPage,
+      ),
+  },
+  {
+  path: 'components/ai-chat-bubble',
     title: 'BmbAiChatBubble | Bamboo migration dashboard',
     loadComponent: () =>
       import('./components/ai-chat-bubble-page/ai-chat-bubble-page').then(
@@ -316,5 +356,5 @@ export const appRoutes: Route[] = [
         ({ DropzonePage }) => DropzonePage,
       ),
   },
-  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: '**', redirectTo: 'components/carousel' },
 ];
