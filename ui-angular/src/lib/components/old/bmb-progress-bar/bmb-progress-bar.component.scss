@@ -39,7 +39,7 @@ $colorType: (
       min-width: 0;
       margin: 0;
       overflow: hidden;
-      text-overflow: clip;
+      text-overflow: ellipsis;
       white-space: nowrap;
     }
 
