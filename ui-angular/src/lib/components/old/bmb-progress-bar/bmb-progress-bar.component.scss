@@ -9,11 +9,73 @@ $colorType: (
 );
 
 .bmb_progress-bar {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto auto;
+  column-gap: var(--bmb-spacing-m);
+  row-gap: var(--bmb-spacing-s);
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+  overflow: hidden;
   padding: var(--bmb-spacing-m);
   border: rem.rem_calc(1) solid var(--general-contrasts-25);
   border-radius: rem.rem_calc(8);
   background-color: var(--containers-modal);
   color: var(--general-contrasts-100);
+
+  > .bmb_progress-bar-wrapper {
+    display: contents;
+
+    > bmb-value-counter,
+    > bmb-value-counter > .bmb_value-counter {
+      display: contents;
+    }
+  }
+
+  .bmb_value-counter {
+    &-label {
+      grid-column: 1 / -1;
+      grid-row: 1;
+      min-width: 0;
+      margin: 0;
+      overflow: hidden;
+      text-overflow: clip;
+      white-space: nowrap;
+    }
+
+    > .bmb_layout {
+      grid-column: 1 / -1;
+      grid-row: 2;
+      justify-self: center;
+      flex-wrap: nowrap;
+      white-space: nowrap;
+    }
+  }
+
+  > .bmb_progress-bar-icon {
+    grid-column: 1;
+    grid-row: 2;
+  }
+
+  > .bmb_progress-bar-icon-successful {
+    grid-column: 3;
+    grid-row: 2;
+  }
+
+  > .bmb_progress-bar-icon-action {
+    grid-column: 4;
+    grid-row: 2;
+  }
+
+  .bmb_progress-bar-wrapper-bar {
+    grid-column: 1 / -1;
+    grid-row: 3;
+    min-width: 0;
+  }
+
+  .bmb_progress-bar-info {
+    grid-column: 1 / -1;
+  }
 
   &-container {
     margin: var(--bmb-spacing-s) 0;
@@ -42,8 +104,8 @@ $colorType: (
 
   &-track {
     flex: 1;
+    min-width: 0;
     height: rem.rem_calc(8);
-    min-width: rem.rem_calc(48);
     border-radius: rem.rem_calc(8);
     background-color: var(--buttons-inactive-step);
   }
