@@ -1,3 +1,4 @@
+/*eslint-disable @typescript-eslint/no-non-null-assertion */
 import {
   ChangeDetectionStrategy,
   Component,
@@ -83,9 +84,12 @@ export class BmbDropdownContentComponent {
   filterString = signal<string>('');
 
   constructor() {
-    effect(() => {
-      this.selectionState.set(this.selectedOption());
-    }, { allowSignalWrites: true });
+    effect(
+      () => {
+        this.selectionState.set(this.selectedOption());
+      },
+      { allowSignalWrites: true },
+    );
   }
 
   filterList(event: Event) {
