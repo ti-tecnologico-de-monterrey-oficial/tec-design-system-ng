@@ -42,7 +42,7 @@ export * from './lib/components/old/bmb-filter-card/bmb-filter-card.component';
 export * from './lib/components/old/bmb-inner-header/bmb-inner-header.component';
 export * from './lib/components/bmb-pull-wedge/bmb-pull-wedge.component';
 export * from './lib/components/bmb-skeleton/bmb-skeleton.component';
-export * from './lib/components/old/bmb-tags/bmb-tags.component';
+export * from './lib/components/bmb-tags/bmb-tags.component';
 export * from './lib/components/old/bmb-toast/bmb-toast.component';
 export * from './lib/components/old/bmb-input/bmb-input.component';
 export * from './lib/components/bmb-divider/bmb-divider.component';
