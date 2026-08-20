@@ -28,7 +28,7 @@ import {
 import { IBmbDropdownItem } from '../bmb-dropdown/bmb-dropdown.component';
 import { BmbButtonDirective } from '../../../directives/old/bmb-button/button.directive';
 import { BmbDropdownComponent } from '../bmb-dropdown/bmb-dropdown.component';
-import { BmbTagComponent } from '../bmb-tags/bmb-tags.component';
+import { BmbTagComponent } from '../../bmb-tags/bmb-tags.component';
 import { BmbNativeModalService } from '../../../services/old/modal/native-modal.service';
 import { TranslatePipe } from '../../../pipes/translations';
 
@@ -159,35 +159,38 @@ export class BmbFilterCardComponent implements OnInit {
               originalControl: control,
             };
             break;
-          case 'radial': {
-            const controlName = this.filterForm.get(control.name);
-            if (controlName) {
-              controlName.setValue(
-                control.checked ? control.label : controlName.value,
-              );
-              const storedValue = this.storedValues[control.name];
-              this.storedValues[control.name] = {
-                ...storedValue,
-                checked: control.checked || storedValue.checked,
-                value: control.checked
-                  ? control.value ?? control.label
-                  : storedValue.value,
-                originalControl: [...storedValue.originalControl, control],
-              };
-            } else {
-              this.filterForm.addControl(
-                control.name,
-                new FormControl<string>(control.checked ? control.label : ''),
-              );
-              this.storedValues[control.name] = {
-                ...control,
-                checked: control.checked ?? false,
-                value: control.checked ? control.value ?? control.label : '',
-                originalControl: [control],
-              };
+          case 'radial':
+            {
+              const controlName = this.filterForm.get(control.name);
+              if (controlName) {
+                controlName.setValue(
+                  control.checked ? control.label : controlName.value,
+                );
+                const storedValue = this.storedValues[control.name];
+                this.storedValues[control.name] = {
+                  ...storedValue,
+                  checked: control.checked || storedValue.checked,
+                  value: control.checked
+                    ? (control.value ?? control.label)
+                    : storedValue.value,
+                  originalControl: [...storedValue.originalControl, control],
+                };
+              } else {
+                this.filterForm.addControl(
+                  control.name,
+                  new FormControl<string>(control.checked ? control.label : ''),
+                );
+                this.storedValues[control.name] = {
+                  ...control,
+                  checked: control.checked ?? false,
+                  value: control.checked
+                    ? (control.value ?? control.label)
+                    : '',
+                  originalControl: [control],
+                };
+              }
+              break;
             }
-            break;
-          }
             break;
           case 'dropdown':
             this.filterForm.addControl(
@@ -212,7 +215,7 @@ export class BmbFilterCardComponent implements OnInit {
         const stored = this.storedValues[c.name];
         initial[c.name] =
           stored?.type === 'radial'
-            ? stored.value ?? this.filterForm.get(c.name)?.value
+            ? (stored.value ?? this.filterForm.get(c.name)?.value)
             : this.filterForm.get(c.name)?.value;
       }),
     );
