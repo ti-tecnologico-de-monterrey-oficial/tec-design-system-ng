@@ -36,21 +36,38 @@
             [dynamicCols]="true"
           >
             @if (isMobile()) {
-              <ng-container
-                [ngTemplateOutlet]="moreAction"
-                bmbLayoutItem
-                [isDynamicItem]="true"
-              />
-              @if (showRightButton() && actionHeaders().length === 0) {
-                <bmb-action-icon
-                  idElement="home_card.close"
-                  icon="close"
-                  [tooltipText]="'home_card.close' | translate"
-                  [iconSize]="24"
-                  (buttonClick)="handleCloseChange()"
-                  bmbLayoutItem
-                  [isDynamicItem]="true"
-                />
+              @if (actionHeaders().length === 0) {
+                @if (showRightButton()) {
+                  <bmb-action-icon
+                    idElement="home_card.close"
+                    icon="close"
+                    [tooltipText]="'home_card.close' | translate"
+                    [iconSize]="24"
+                    (buttonClick)="handleCloseChange()"
+                    bmbLayoutItem
+                    [isDynamicItem]="true"
+                  />
+                }
+              } @else {
+                @if (actionHeaders().length === 1 && !showRightButton()) {
+                  <ng-container
+                    *ngTemplateOutlet="
+                      itemByIndex;
+                      context: {
+                        headerAction: getHeaderAction(0),
+                        idElement: 0,
+                      }
+                    "
+                    bmbLayoutItem
+                    [isDynamicItem]="true"
+                  />
+                } @else {
+                  <ng-container
+                    [ngTemplateOutlet]="moreAction"
+                    bmbLayoutItem
+                    [isDynamicItem]="true"
+                  />
+                }
               }
             } @else {
               @if (isGreaterThanLimit) {
@@ -181,8 +198,19 @@
         />
       </ng-template>
     }
+
     @for (headerAction of actionHeaders(); track $index) {
-      @if (!isMobile() && $index !== 0) {
+      @if (isMobile()) {
+        <ng-template #actionMenuItem>
+          <bmb-item-actions
+            [icon]="headerAction.icon"
+            [label]="
+              headerAction.tooltipText || headerAction.alt || headerAction.icon
+            "
+            (getActionClick)="handleCloseActionMenu($event, headerAction)"
+          />
+        </ng-template>
+      } @else if ($index) {
         <ng-template #actionMenuItem>
           <bmb-item-actions
             [icon]="headerAction.icon"

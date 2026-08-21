@@ -89,16 +89,22 @@ ${getBasicExampleBlock('BmbHomeCardHeaderComponent')}
     dataLocalNav: [],
     actionHeaders: [
       {
+        icon: 'language_spanish',
+        toggleIconActive: 'language_us',
+        isAccentColor: 'false',
+        tooltipText: 'Language',
+      },
+      {
         icon: 'edit',
-        alt: 'Edit',
+        tooltipText: 'Edit',
       },
       {
         icon: 'delete',
-        alt: 'Delete',
+        tooltipText: 'Delete',
       },
       {
         icon: 'info',
-        alt: 'Info',
+        tooltipText: 'Info',
       },
     ],
     showRightButton: true,

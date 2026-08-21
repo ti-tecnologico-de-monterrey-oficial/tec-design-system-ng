@@ -157,19 +157,6 @@ export interface IBmbCollaboratorProfileData {
   enableRolSwitch?: boolean;
 }
 
-export interface IBmbActionHeader {
-  icon: string;
-  alt?: string;
-  toggleIconActive?: string;
-  iconSize?: number;
-  iconActiveToggle?: string;
-  isToggleActive?: boolean;
-  isAccentColor?: boolean;
-  link?: string;
-  target?: IBmbTargetLink;
-  action: (event?: Event) => void;
-}
-
 export interface IBmbLinkConfiguration extends IBmbLinkInfo {
   label: string;
 }
