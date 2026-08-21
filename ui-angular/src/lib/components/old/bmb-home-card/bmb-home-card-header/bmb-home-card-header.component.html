@@ -41,7 +41,7 @@
                 bmbLayoutItem
                 [isDynamicItem]="true"
               />
-              @if (showRightButton()) {
+              @if (showRightButton() && actionHeaders().length === 0) {
                 <bmb-action-icon
                   idElement="home_card.close"
                   icon="close"
@@ -58,8 +58,8 @@
                   *ngTemplateOutlet="
                     itemByIndex;
                     context: {
-                      headerAction: getHeaderAction(1),
-                      idElement: 1,
+                      headerAction: getHeaderAction(0),
+                      idElement: 0,
                     }
                   "
                   bmbLayoutItem
@@ -172,16 +172,27 @@
     [showHeader]="false"
     [componentTitle]="'text_editor.select_option' | translate"
   >
-    @for (headerAction of actionHeaders(); track $index) {
+    @if (showRightButton() && isMobile()) {
       <ng-template #actionMenuItem>
         <bmb-item-actions
-          [icon]="headerAction.icon"
-          [label]="
-            headerAction.tooltipText || headerAction.alt || headerAction.icon
-          "
-          (getActionClick)="handleCloseActionMenu($event, headerAction)"
+          icon="close"
+          [label]="'home_card.close' | translate"
+          (getActionClick)="handleCloseChange()"
         />
       </ng-template>
+    }
+    @for (headerAction of actionHeaders(); track $index) {
+      @if (!isMobile() && $index !== 0) {
+        <ng-template #actionMenuItem>
+          <bmb-item-actions
+            [icon]="headerAction.icon"
+            [label]="
+              headerAction.tooltipText || headerAction.alt || headerAction.icon
+            "
+            (getActionClick)="handleCloseActionMenu($event, headerAction)"
+          />
+        </ng-template>
+      }
     }
   </bmb-action-menu>
 </ng-template>
