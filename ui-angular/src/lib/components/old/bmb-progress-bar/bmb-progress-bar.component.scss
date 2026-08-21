@@ -15,6 +15,10 @@ $colorType: (
   background-color: var(--containers-modal);
   color: var(--general-contrasts-100);
 
+  &-wrapper {
+    overflow: hidden;
+  }
+
   &-container {
     margin: var(--bmb-spacing-s) 0;
   }
