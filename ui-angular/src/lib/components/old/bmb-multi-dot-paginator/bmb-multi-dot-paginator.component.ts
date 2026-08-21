@@ -67,10 +67,9 @@ export class BmbMultiDotPaginatorComponent implements AfterContentInit {
 
   protected selectItem(index: number) {
     this.setClassActive(index, this.selectedIndex());
-    console.info('selectItem index', index, this.selectedIndex());
   }
 
-  protected setClassActive(newIndex: number, oldIndex: number = 0) {
+  protected setClassActive(newIndex: number, oldIndex = 0) {
     const activeItem = this.childrenItems()[
       newIndex === this.numberOfElements.length
         ? this.numberOfElements.length - 1
@@ -125,7 +124,6 @@ export class BmbMultiDotPaginatorComponent implements AfterContentInit {
   protected nextItem() {
     if (this.selectedIndex() < this.numberOfElements.length) {
       this.setClassActive(this.selectedIndex() + 1, this.selectedIndex());
-      console.info('nextItem', this.selectedIndex());
     }
   }
 }

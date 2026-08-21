@@ -359,7 +359,7 @@
   text-overflow: ellipsis;
 }
 
-@mixin truncated-string-line() {
+@mixin truncated-string-line {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;

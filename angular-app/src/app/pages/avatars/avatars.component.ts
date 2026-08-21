@@ -15,10 +15,6 @@ import {
   BmbNativeModalService,
   BmbUserImageComponent,
   BmbTablesComponent,
-  BmbContainerComponent,
-  BmbIconComponent,
-  BmbThemeComponent,
-  BmbDropzoneComponent,
   TableColum,
 } from 'ui-angular';
 import { FormsModule } from '@angular/forms';
@@ -32,10 +28,6 @@ import { FormsModule } from '@angular/forms';
     BmbButtonDirective,
     BmbUserImageComponent,
     BmbTablesComponent,
-    BmbContainerComponent,
-    BmbIconComponent,
-    BmbThemeComponent,
-    BmbDropzoneComponent,
   ],
   templateUrl: './avatars.component.html',
   styleUrls: ['./avatars.component.scss'],

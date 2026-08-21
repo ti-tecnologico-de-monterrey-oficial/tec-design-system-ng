@@ -13,7 +13,7 @@
     (searchButtonClick)="handleSearchButtonClick($event)"
     [alertNotification]="[
       {
-        id: 10,
+        id: '10',
         title: 'Alerta 10',
         description: [
           { text: 'Descripción de la alerta 10', type: 'title' },
@@ -36,7 +36,7 @@
         isArchived: false
       },
       {
-        id: 1,
+        id: '1',
         title: 'Alerta 1',
         description: [
           { text: 'Descripción de la alerta 10', type: 'title' },
@@ -60,7 +60,7 @@
         isArchived: false
       },
       {
-        id: 2,
+        id: '2',
         title: 'Alerta 2',
         description: [
           { text: 'Descripción de la alerta 10', type: 'title' },
@@ -79,7 +79,7 @@
         isArchived: true
       },
       {
-        id: 3,
+        id: '3',
         title: 'Alerta 3',
         description: [
           {
@@ -97,7 +97,7 @@
         isArchived: false
       },
       {
-        id: 4,
+        id: '4',
         title: 'Alerta 4',
         description: [
           {
@@ -115,7 +115,7 @@
         isArchived: false
       },
       {
-        id: 4,
+        id: '5',
         title: 'Alerta 40',
         description: [
           { text: 'Descripción de la alerta 10', type: 'title' },
@@ -216,6 +216,7 @@
     [results]="resultList()"
     (triggerSearch)="handleSearchChange($event)"
     [isLoading]="isSearchLoading()"
+    [favorites]="searchCardFavorites"
     (searchItemClick)="handleServiceClick($event)"
   ></bmb-search-card>
 </ng-template>
@@ -240,6 +241,10 @@
     >
     <a routerLink="/components/server-table" routerLinkActive="active"
       >Server table</a
+    >
+    <a routerLink="/components/skeleton" routerLinkActive="active">Skeleton</a>
+    <a routerLink="/components/value-counter" routerLinkActive="active"
+      >Value counter</a
     >
     <a routerLink="/components/grade-value" routerLinkActive="active"
       >Grade value</a

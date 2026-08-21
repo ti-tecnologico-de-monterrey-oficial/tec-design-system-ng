@@ -4,11 +4,8 @@ import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import {
-  BmbFormValidatorComponent,
   BmbButtonDirective,
   BmbDropdownComponent,
-  BmbLayoutDirective,
-  BmbLayoutItemDirective,
   IBmbDropdownItem,
   BmbTextEditorComponent,
   BmbSearchInputComponent,
@@ -24,9 +21,6 @@ import services from './services.json';
   selector: 'bmb-form-validator-test',
   imports: [
     CommonModule,
-    BmbFormValidatorComponent,
-    BmbLayoutDirective,
-    BmbLayoutItemDirective,
     BmbButtonDirective,
     BmbDropdownComponent,
     BmbInputComponent,

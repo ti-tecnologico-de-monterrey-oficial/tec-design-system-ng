@@ -235,12 +235,16 @@
     "input_placeholder": "Escribe para buscar",
     "empty_state": {
       "new_search_card_title": "Empieza a buscar para encontrar resultados",
-      "no_results_title": "No se encontraron resultados"
+      "no_results_title": "No se encontraron resultados",
+      "no_favorites_title": "Aún no tienes favoritos",
+      "no_favorites_paragraph": "Guarda tus servicios favoritos para acceder a ellos rápidamente",
+      "no_favorites_found": "No se encontraron favoritos"
     },
     "tabs": {
       "services": "Servicios",
       "people": "Personas",
-      "all": "Todos"
+      "all": "Todos",
+      "favorites": "Favoritos"
     }
   },
   "input": {
@@ -305,7 +309,8 @@
     "back": "Volver",
     "expand": "Expandir",
     "collapse": "Colapsar",
-    "close": "Cerrar"
+    "close": "Cerrar",
+    "more": "Más"
   },
   "inner_header": {
     "close": "Cerrar",
