@@ -1,4 +1,5 @@
-@use '../../_shared/styles/base/fonts' as fonts;
+@use '../../../../../shared/assets/styles/base/fonts' as fonts;
+@use '../../../../../shared/assets/styles/base/mixins' as mixins;
 
 .bmb_value-counter {
   @include fonts.font(4, regular);
@@ -6,6 +7,7 @@
   &-label {
     @include fonts.font(4, regular);
     font-weight: 400;
+    @include mixins.truncated-string-line;
   }
 
   &-value {

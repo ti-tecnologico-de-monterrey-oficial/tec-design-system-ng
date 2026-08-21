@@ -28,7 +28,6 @@
         </ng-template>
         <ng-template #bmbRightContent>
           <span
-            class="bmb_navigation-bar"
             bmbLayout
             margin="none"
             justify="spaceBetween"
@@ -36,27 +35,77 @@
             alignItems="center"
             [dynamicCols]="true"
           >
-            @for (headerAction of headerActionsList(); track $index) {
-              <bmb-action-icon
-                class="bmb_navigation-bar-icon"
+            @if (isMobile()) {
+              <ng-container
+                [ngTemplateOutlet]="moreAction"
                 bmbLayoutItem
                 [isDynamicItem]="true"
-                [idElement]="$index.toString()"
-                [icon]="headerAction.icon"
-                [alt]="headerAction.alt || headerAction.icon"
-                [tooltipText]="
-                  headerAction.tooltipText ||
-                  headerAction.alt ||
-                  headerAction.icon
-                "
-                [isAccentColor]="headerAction.isAccentColor"
-                [iconSize]="24"
-                [toggleIconActive]="headerAction.iconActiveToggle"
-                [(isToggleActive)]="headerAction.isToggleActive"
-                [link]="headerAction.link"
-                [target]="headerAction.target"
-                (buttonClick)="handleHeaderActionClick($event, headerAction)"
               />
+              @if (showRightButton() && actionHeaders().length === 0) {
+                <bmb-action-icon
+                  idElement="home_card.close"
+                  icon="close"
+                  [tooltipText]="'home_card.close' | translate"
+                  [iconSize]="24"
+                  (buttonClick)="handleCloseChange()"
+                  bmbLayoutItem
+                  [isDynamicItem]="true"
+                />
+              }
+            } @else {
+              @if (isGreaterThanLimit) {
+                <ng-container
+                  *ngTemplateOutlet="
+                    itemByIndex;
+                    context: {
+                      headerAction: getHeaderAction(0),
+                      idElement: 0,
+                    }
+                  "
+                  bmbLayoutItem
+                  [isDynamicItem]="true"
+                />
+                <ng-container
+                  [ngTemplateOutlet]="moreAction"
+                  bmbLayoutItem
+                  [isDynamicItem]="true"
+                />
+                <ng-container
+                  [ngTemplateOutlet]="expandAction"
+                  bmbLayoutItem
+                  [isDynamicItem]="true"
+                />
+              } @else {
+                @for (headerAction of actionHeaders(); track $index) {
+                  <bmb-action-icon
+                    class="bmb_navigation-bar-icon"
+                    [idElement]="$index.toString()"
+                    [icon]="headerAction.icon"
+                    [alt]="headerAction.alt || headerAction.icon"
+                    [tooltipText]="
+                      headerAction.tooltipText ||
+                      headerAction.alt ||
+                      headerAction.icon
+                    "
+                    [isAccentColor]="headerAction.isAccentColor"
+                    [iconSize]="24"
+                    [toggleIconActive]="headerAction.iconActiveToggle"
+                    [(isToggleActive)]="headerAction.isToggleActive"
+                    [link]="headerAction.link"
+                    [target]="headerAction.target"
+                    (buttonClick)="
+                      handleHeaderActionClick($event, headerAction)
+                    "
+                    bmbLayoutItem
+                    [isDynamicItem]="true"
+                  />
+                }
+                <ng-container
+                  [ngTemplateOutlet]="expandAction"
+                  bmbLayoutItem
+                  [isDynamicItem]="true"
+                />
+              }
             }
           </span>
         </ng-template>
@@ -64,3 +113,86 @@
     </span>
   </bmb-container>
 </header>
+
+<ng-template #expandAction>
+  @if (showRightButton()) {
+    <bmb-action-icon
+      idElement="expand"
+      icon="zoom_out_map"
+      [(isToggleActive)]="isExpanded"
+      toggleIconActive="zoom_in_map"
+      [tooltipText]="
+        isExpanded()
+          ? ('home_card.collapse' | translate)
+          : ('home_card.expand' | translate)
+      "
+      [iconSize]="24"
+      (buttonClick)="handleExpandChange()"
+    />
+  }
+</ng-template>
+
+<ng-template #moreAction>
+  <bmb-action-icon
+    idElement="home_card.more"
+    icon="more_horiz"
+    [iconSize]="24"
+    (buttonClick)="handleOpenActionMenu($event)"
+    [tooltipText]="'home_card.more' | translate"
+  />
+</ng-template>
+
+<ng-template
+  #itemByIndex
+  let-headerAction="headerAction"
+  let-idElement="idElement"
+>
+  <bmb-action-icon
+    class="bmb_navigation-bar-icon"
+    [idElement]="idElement"
+    [icon]="headerAction.icon"
+    [alt]="headerAction.alt || headerAction.icon"
+    [tooltipText]="
+      headerAction.tooltipText || headerAction.alt || headerAction.icon
+    "
+    [isAccentColor]="headerAction.isAccentColor"
+    [iconSize]="24"
+    [toggleIconActive]="headerAction.iconActiveToggle"
+    [(isToggleActive)]="headerAction.isToggleActive"
+    [link]="headerAction.link"
+    [target]="headerAction.target"
+    (buttonClick)="handleHeaderActionClick($event, headerAction)"
+    bmbLayoutItem
+    [isDynamicItem]="true"
+  />
+</ng-template>
+
+<ng-template #actionMenu>
+  <bmb-action-menu
+    [showHeader]="false"
+    [componentTitle]="'text_editor.select_option' | translate"
+  >
+    @if (showRightButton() && isMobile()) {
+      <ng-template #actionMenuItem>
+        <bmb-item-actions
+          icon="close"
+          [label]="'home_card.close' | translate"
+          (getActionClick)="handleCloseChange()"
+        />
+      </ng-template>
+    }
+    @for (headerAction of actionHeaders(); track $index) {
+      @if (!isMobile() && $index !== 0) {
+        <ng-template #actionMenuItem>
+          <bmb-item-actions
+            [icon]="headerAction.icon"
+            [label]="
+              headerAction.tooltipText || headerAction.alt || headerAction.icon
+            "
+            (getActionClick)="handleCloseActionMenu($event, headerAction)"
+          />
+        </ng-template>
+      }
+    }
+  </bmb-action-menu>
+</ng-template>

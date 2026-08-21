@@ -1,13 +1,15 @@
 <section class="bmb_action-menu">
   @if (showHeader()) {
-    <bmb-home-card-header
-      [componentTitle]="componentTitle() || title() || ''"
-      [subtitle]="subtitle()"
-      [icon]="icon()"
-      [iconSize]="iconSize()!"
-      [bgIconAppearance]="bgIconAppearance()"
-      [showRightButton]="false"
-    />
+    <header class="bmb_action-menu-header">
+      <bmb-container class="bmb_action-menu-header-wrapper">
+        <bmb-title-content
+          [componentTitle]="componentTitle() || title() || ''"
+          [icon]="icon()"
+          [iconSize]="iconSize()!"
+          [bgIconAppearance]="bgIconAppearance()"
+        />
+      </bmb-container>
+    </header>
   }
   <section class="bmb_action-menu-list" [ngClass]="{ action: !showHeader() }">
     @for (element of menuContentList; track $index) {

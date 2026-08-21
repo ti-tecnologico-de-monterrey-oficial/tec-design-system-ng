@@ -109,5 +109,13 @@
       align-items: center;
       width: 10%;
     }
+
+    &-button {
+      text-decoration: none;
+
+      &::after {
+        display: none;
+      }
+    }
   }
 }

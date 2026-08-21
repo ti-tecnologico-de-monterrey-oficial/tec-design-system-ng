@@ -1,10 +1,10 @@
 import type { StorybookConfig } from '@storybook/angular';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import dotenv from 'dotenv';
+// import dotenv from 'dotenv';
 
 const dirname = path.dirname(fileURLToPath(import.meta.url));
-dotenv.config({ path: path.resolve(dirname, '../../.env') });
+// dotenv.config({ path: path.resolve(dirname, '../../.env') });
 
 
 const config: StorybookConfig = {
