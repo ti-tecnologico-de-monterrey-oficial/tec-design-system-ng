@@ -1,5 +1,5 @@
-@use '../../_shared/styles/base/fonts' as fonts;
-@use '../../_shared/styles/base/mixins' as mixins;
+@use '../../../../../shared/assets/styles/base/fonts' as fonts;
+@use '../../../../../shared/assets/styles/base/mixins' as mixins;
 
 .bmb_value-counter {
   @include fonts.font(4, regular);

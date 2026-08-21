@@ -309,7 +309,8 @@
     "back": "Back",
     "expand": "Expand",
     "collapse": "Collapse",
-    "close": "Close"
+    "close": "Close",
+    "more": "More"
   },
   "inner_header": {
     "close": "Close",

@@ -1,3 +1,4 @@
+/* eslint-disable @angular-eslint/no-output-on-prefix */
 import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
@@ -70,8 +71,8 @@ export class BmbInputContentComponent {
 
   customContent = contentChild<TemplateRef<any>>('customContent');
 
-  isHide: boolean = true;
-  isFocused: boolean = false;
+  isHide = true;
+  isFocused = false;
 
   handleFocus() {
     this.isFocused = true;

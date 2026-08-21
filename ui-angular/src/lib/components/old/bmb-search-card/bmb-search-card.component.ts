@@ -75,7 +75,6 @@ export class BmbSearchCardComponent {
     favorites: IBmbSearchCardItemResult[];
   }>(() => {
     const newResults = this.results();
-    console.log('New Results:', newResults);
 
     if (this.inputSearchControl.value === '') {
       return {

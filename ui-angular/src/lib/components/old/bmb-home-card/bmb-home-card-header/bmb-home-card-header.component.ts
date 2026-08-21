@@ -124,13 +124,12 @@ export class BmbHomeCardHeaderComponent implements OnInit {
   }
 
   handleExpandChange(): void {
-    console.info('handleExpandChange');
     this.onExpandClick.emit();
   }
 
   handleCloseChange(): void {
-    console.info('handleCloseChange');
     this.onClose.emit();
+    this.contentProjected.closeContent(this.idActionMenu());
   }
 
   handleHeaderActionClick(

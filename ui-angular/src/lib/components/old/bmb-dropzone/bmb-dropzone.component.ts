@@ -284,7 +284,7 @@ export class BmbDropzoneComponent implements OnInit, OnChanges {
       const fileValidation: IBmbFileValidation = {
         isValidFormat: this.isValidFileFormat(singleFile.type, singleFile.name),
         isValidSize: this.isValidFileSize(singleFile.size),
-        isValidName: this.isValidFileName(singleFile.name),
+        isValidName: true, // this validation should be implemented as custom validation function, as it may vary depending on the use case!
       };
       const fileData: FileData = {
         id: getUUID(),
@@ -294,9 +294,8 @@ export class BmbDropzoneComponent implements OnInit, OnChanges {
           !fileValidation.isValidFormat ||
           !fileValidation.isValidSize ||
           !fileValidation.isValidName,
-        errorType: !fileValidation.isValidName
-          ? 'name'
-          : !fileValidation.isValidFormat
+        errorType:
+          !fileValidation.isValidFormat
             ? 'format'
             : 'size',
       };
@@ -370,9 +369,10 @@ export class BmbDropzoneComponent implements OnInit, OnChanges {
     return this.getFileSizeInMB(fileSize) <= this.fileSize();
   }
 
-  private isValidFileName(fileName: string): boolean {
-    return /^[a-zA-Z0-9._-]+$/.test(fileName);
-  }
+  // private isValidFileName(fileName: string): boolean {
+  //   debugger;
+  //   return /^[a-zA-Z0-9._-]+$/.test(fileName);
+  // }
 
   private isFileDuplicate(fileName: string): boolean {
     return this.fileDataList.some((existing) => existing.name === fileName);

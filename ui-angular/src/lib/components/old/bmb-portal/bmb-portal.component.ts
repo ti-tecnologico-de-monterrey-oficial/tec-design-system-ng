@@ -61,7 +61,6 @@ export class BmbPortalComponent {
       const modals = this.modalList();
 
       const popstateHandler = () => {
-        console.log('popstate event triggered');
         if (modals.length > 0) {
           this.modalService.closeAllModals();
         }
