@@ -244,5 +244,12 @@ export class HomeComponent {
         console.info('Delete action clicked', event);
       },
     },
+    {
+      icon: 'info',
+      alt: 'Info',
+      action: (event) => {
+        console.info('Delete action clicked', event);
+      },
+    },
   ];
 }

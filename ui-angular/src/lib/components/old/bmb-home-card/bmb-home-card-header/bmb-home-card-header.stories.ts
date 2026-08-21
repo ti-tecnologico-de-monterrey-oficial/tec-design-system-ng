@@ -87,7 +87,20 @@ ${getBasicExampleBlock('BmbHomeCardHeaderComponent')}
     componentTitle: 'Header title',
     subtitle: 'Subtitle',
     dataLocalNav: [],
-    actionHeaders: [],
+    actionHeaders: [
+      {
+        icon: 'edit',
+        alt: 'Edit',
+      },
+      {
+        icon: 'delete',
+        alt: 'Delete',
+      },
+      {
+        icon: 'info',
+        alt: 'Info',
+      },
+    ],
     showRightButton: true,
     isMobile: false,
     test_text: 'hello world',
