@@ -27,7 +27,6 @@ import {
   IBotType,
   IBmbSearchCardItemResult,
 } from 'ui-angular';
-import { MatDialog } from '@angular/material/dialog';
 import { Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { sidebarOptions } from './sidebarOptions';
@@ -54,15 +53,15 @@ import { BmbDelayProfileComponent } from './components/bmb-delay-profile/bmb-del
 })
 export class App {
   private router = inject(Router);
+  private modalService = inject(BmbNativeModalService);
+  private projectionService = inject(BmbProjectionContentService);
+
   private searchSubject = new Subject<string>();
 
   _isLoading = signal<boolean>(false);
 
-  constructor(
-    private modalService: BmbNativeModalService,
-    private projectionService: BmbProjectionContentService,
-    private matDialog: MatDialog,
-  ) {
+
+  constructor() {
     this.searchSubject
       .pipe(debounceTime(1000), distinctUntilChanged())
       .subscribe((searchTerm) => {
@@ -89,10 +88,6 @@ export class App {
         this.resultList.set([...filteredPersons, ...filteredServices]);
         this.isSearchLoading.set(false);
       });
-
-    // effect(() => {
-    //   const status =
-    // })
   }
 
   @ViewChild('modalTemplate') modalTemplate!: TemplateRef<unknown>;
@@ -148,6 +143,58 @@ export class App {
       userProfile: 'https://picsum.photos/id/64/200/301',
       isUserMessage: true,
       time: new Date('2025-02-19T14:34:00'),
+    },
+  ];
+  searchCardFavorites: IBmbSearchCardItemResult[] = [
+    {
+      id: '1',
+      isBookmarkActive: true,
+      country_code: 'mx',
+      type: 'service',
+      name: 'Sooji (Semolina)',
+      subtitle: 'Food - Baking',
+      avatarOrIcon: 'https://robohash.org/quamitaquea.png?size=50x50&set=set1',
+      backgroundColorIcon: 'white_primary',
+    },
+    {
+      id: '2',
+      isBookmarkActive: true,
+      country_code: 'mx',
+      type: 'service',
+      name: 'Fitness Resistance Bands',
+      subtitle: 'Fitness',
+      avatarOrIcon: 'https://robohash.org/nemofugitqui.png?size=50x50&set=set1',
+      backgroundColorIcon: 'white_primary',
+    },
+    {
+      id: '3',
+      isBookmarkActive: true,
+      country_code: 'mx',
+      type: 'service',
+      name: 'Nutty Granola Clusters',
+      subtitle: 'Food - Cereal',
+      avatarOrIcon: 'home',
+      backgroundColorIcon: 'creative_ripelemon',
+    },
+    {
+      id: '4',
+      isBookmarkActive: true,
+      country_code: 'mx',
+      type: 'service',
+      name: 'Pet Grooming Brush',
+      subtitle: 'Pets',
+      avatarOrIcon:
+        'https://robohash.org/deseruntconsecteturdignissimos.png?size=50x50&set=set1',
+    },
+    {
+      id: '5',
+      isBookmarkActive: true,
+      country_code: 'mx',
+      type: 'service',
+      name: 'Frozen Chicken Nuggets',
+      subtitle: 'Food - Frozen Foods',
+      avatarOrIcon:
+        'https://robohash.org/dolordistinctioquaerat.png?size=50x50&set=set1',
     },
   ];
 
@@ -512,16 +559,7 @@ https://live.tec.mx/cbweek</p><p>¡Te esperamos!`,
   }
 
   handleHelpButtonClick(): void {
-    const modalData: ModalDataConfig = {
-      title: 'My Modal',
-      content: this.modalLTSTemplate,
-      primaryBtnLabel: 'Ok',
-      secondaryBtnLabel: 'Cancel',
-      hidePrimaryButton: false,
-      hideSecondaryButton: true,
-    };
-
-    this.matDialog.open(BmbModalComponent, { data: modalData });
+    console.log('Help button clicked');
   }
 
   resultList = signal<IBmbSearchCardItemResult[]>([]);
@@ -554,35 +592,19 @@ https://live.tec.mx/cbweek</p><p>¡Te esperamos!`,
           type: service.type as 'person' | 'service',
         }));
 
-      console.log([...filteredPersons, ...filteredServices]);
-
-      this.resultList.set([...filteredPersons, ...filteredServices]);
-      this.isSearchLoading.set(false);
+      setTimeout(() => {
+        this.resultList.set([...filteredPersons, ...filteredServices]);
+        this.isSearchLoading.set(false);
+      }, 1000);
     }
   }
 
   handleSearchButtonClick(event: MouseEvent): void {
-    console.log('Search button clicked', event);
-
-    const contentID = this.projectionService.openContent({
+    this.projectionService.openContent({
       content: this.searchTemplate,
       // content: BmbSearchCardComponent,
       targetRef: event ? (event.currentTarget as HTMLElement) : null,
       showBackdrop: false,
-      inputContext: {
-        title: 'Search',
-        inputPlaceholder: 'Type to search...',
-        results: this.resultList(),
-        isLoading: this.isSearchLoading(),
-      },
-      outputContext: {
-        triggerSearch: (value: string) => {
-          this.handleSearchChange(value);
-        },
-        searchItemClick: (event: IBmbSearchCardItemResult) => {
-          this.handleServiceClick(event);
-        },
-      },
     });
 
     // this.contentID.set(contentID);

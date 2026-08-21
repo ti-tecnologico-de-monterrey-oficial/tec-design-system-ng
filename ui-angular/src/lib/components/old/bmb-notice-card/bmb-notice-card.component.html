@@ -24,7 +24,7 @@
         color:
           closeBtnColor() === 'white'
             ? 'rgb(var(--gray-charade-50))'
-            : 'rgb(var(--gray-charade-950))'
+            : 'rgb(var(--gray-charade-950))',
       }"
       [icon]="'close'"
       [iconSize]="28"
@@ -74,19 +74,15 @@
       ) {
         @if (link()) {
           <a
-            class="bmb_notice-card-footer-center-link"
+            class="bmb_notice-card-footer-center-link bmb_notice-card-footer-button"
             [href]="link()"
             target="_blank"
             rel="noopener noreferrer"
+            bmbButton
+            [appearance]="'secondary-outlined'"
+            [size]="'large'"
           >
-            <button
-              bmbButton
-              [appearance]="'secondary-outlined'"
-              [size]="'large'"
-              (click)="handleClickBtn()"
-            >
-              {{ buttonText() || ('notice_card.button_text' | translate) }}
-            </button>
+            {{ buttonText() || ('notice_card.button_text' | translate) }}
           </a>
         } @else {
           <button
