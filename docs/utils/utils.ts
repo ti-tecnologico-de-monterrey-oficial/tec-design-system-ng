@@ -5,6 +5,8 @@ import {
   Primary,
   Title,
 } from '@storybook/addon-docs/blocks';
+import { createElement } from 'react';
+import { getListingOnOneLine } from '../../shared/logic/utils';
 import {
   BMB_ALERT_COLOR_LIST,
   BMB_BASE_COLOR_LIST,
@@ -15,8 +17,6 @@ import {
   BMB_SEMANTIC_BASE_COLOR_LIST,
   BMB_SEMANTIC_COLOR_LIST,
 } from '../../shared/types/foundations/colors/color-type';
-import { createElement } from 'react';
-import { getListingOnOneLine } from '../../shared/logic/utils';
 
 interface IBmbVariableDesc {
   element: string;

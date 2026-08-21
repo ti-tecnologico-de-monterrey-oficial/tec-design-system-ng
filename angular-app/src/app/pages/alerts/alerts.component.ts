@@ -3,10 +3,7 @@ import {
   BmbAlertCenterComponent,
   BmbAlertCenterService,
   IBmbDataAlert,
-  BmbButtonDirective,
   IBmbAlertCenterFooterEvent,
-  BmbNotificationCardComponent,
-  BmbAccountStatementComponent,
   BmbTranslationsService,
 } from 'ui-angular';
 
@@ -14,12 +11,7 @@ import {
   selector: 'bmb-alerts-page',
   templateUrl: './alerts.component.html',
   standalone: true,
-  imports: [
-    BmbAlertCenterComponent,
-    BmbButtonDirective,
-    BmbNotificationCardComponent,
-    BmbAccountStatementComponent,
-  ],
+  imports: [BmbAlertCenterComponent],
 })
 export class AlertsPageComponent implements OnInit {
   alerts = signal<IBmbDataAlert[]>([]);

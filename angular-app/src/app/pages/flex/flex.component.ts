@@ -2,8 +2,6 @@ import { Component } from '@angular/core';
 import {
   BmbLayoutDirective,
   BmbLayoutItemDirective,
-  BmbVerticalLayoutDirective,
-  BmbVerticalLayoutItemDirective,
   BmbInteractiveIconComponent,
   BmbTooltipComponent,
   BmbCardContentComponent,
@@ -13,8 +11,6 @@ import {
   selector: 'bmb-flex',
   templateUrl: './flex.component.html',
   imports: [
-    BmbVerticalLayoutDirective,
-    BmbVerticalLayoutItemDirective,
     BmbLayoutDirective,
     BmbLayoutItemDirective,
     BmbInteractiveIconComponent,
