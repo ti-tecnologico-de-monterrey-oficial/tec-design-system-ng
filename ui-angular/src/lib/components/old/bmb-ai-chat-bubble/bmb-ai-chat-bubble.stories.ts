@@ -16,7 +16,7 @@ import {
 } from '@docs/utils/utils';
 import { DBmbIconParamDesc } from '@docs/utils/parameterDescriptions';
 
-const GET_ACTION_DESCRIPTION: string = `
+const GET_ACTION_DESCRIPTION = `
 ${getAlertBlockquote(
   `The \`getAction\` event emits an object containing the triggered action, the related message information, and the native browser event.
 >
@@ -29,7 +29,7 @@ Example:
   },
 )}
 `,
-  SUPPORTED_MESSAGES_TYPE: string = `
+  SUPPORTED_MESSAGES_TYPE = `
 Supported message types include:
 - text messages
 - images
