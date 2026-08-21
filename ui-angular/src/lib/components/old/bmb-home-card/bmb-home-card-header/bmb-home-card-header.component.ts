@@ -15,7 +15,7 @@ import {
   signal,
 } from '@angular/core';
 
-import { IBmbDataTopBar } from '../../bmb-breadcrumb/bmb-breadcrumb.component';
+import { IBmbDataTopBar } from '../../../bmb-breadcrumb/bmb-breadcrumb.component';
 import { IBmbColor } from '../../../../_shared/types/colors';
 import { IBmbActionHeader } from '../../../../_shared/types/utils';
 import { IBotType } from '../../bmb-chat-bar/types';
