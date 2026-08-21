@@ -232,7 +232,7 @@ export class HomeComponent {
   homeCardActions = [
     {
       icon: 'language_spanish',
-      toggleIconActive: 'language_us',
+      iconActiveToggle: 'language_us',
       alt: 'Language',
       // action: (event) => {
       //   console.info('Edit action clicked', event);

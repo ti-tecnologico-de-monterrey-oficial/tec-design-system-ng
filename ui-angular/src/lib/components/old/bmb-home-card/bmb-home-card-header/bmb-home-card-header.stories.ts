@@ -90,7 +90,7 @@ ${getBasicExampleBlock('BmbHomeCardHeaderComponent')}
     actionHeaders: [
       {
         icon: 'language_spanish',
-        toggleIconActive: 'language_us',
+        iconActiveToggle: 'language_us',
         isAccentColor: 'false',
         tooltipText: 'Language',
       },
