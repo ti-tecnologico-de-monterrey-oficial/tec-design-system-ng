@@ -231,6 +231,14 @@ export class HomeComponent {
 
   homeCardActions: IBmbActionHeader[] = [
     {
+      icon: 'language_spanish',
+      toggleIconActive: 'language_us',
+      alt: 'Language',
+      action: (event) => {
+        console.info('Edit action clicked', event);
+      },
+    },
+    {
       icon: 'edit',
       alt: 'Edit',
       action: (event) => {
