@@ -61,11 +61,6 @@ export class BmbActionMenuComponent {
   }
 
   protected get menuContentList() {
-    console.log(
-      'menuContentList',
-      this.menuContent().length,
-      this.genericMenuContent().length,
-    );
     return this.menuContent().length
       ? this.menuContent()
       : this.genericMenuContent();
