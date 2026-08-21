@@ -10,13 +10,12 @@ import {
 import { IBmbColor } from '../../../_shared/types/colors';
 import { CommonModule } from '@angular/common';
 import { logDeprecatedInput } from '../../../_shared/logic/logDeprecatedInput';
-import { BmbHomeCardHeaderComponent } from '../bmb-home-card/bmb-home-card-header/bmb-home-card-header.component';
 import { BmbDividerComponent } from '../../bmb-divider/bmb-divider.component';
 
 @Component({
   selector: 'bmb-action-menu',
   standalone: true,
-  imports: [CommonModule, BmbHomeCardHeaderComponent, BmbDividerComponent],
+  imports: [CommonModule, BmbDividerComponent],
   templateUrl: './bmb-action-menu.component.html',
   styleUrl: './bmb-action-menu.component.scss',
   encapsulation: ViewEncapsulation.None,

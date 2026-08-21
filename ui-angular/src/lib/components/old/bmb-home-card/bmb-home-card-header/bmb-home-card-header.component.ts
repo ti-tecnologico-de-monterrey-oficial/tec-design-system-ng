@@ -1,4 +1,5 @@
 /* eslint-disable @angular-eslint/no-output-on-prefix */
+import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -6,30 +7,34 @@ import {
   output,
   ViewEncapsulation,
   model,
-  computed,
   effect,
-  inject,
   OnInit,
+  TemplateRef,
+  ViewChild,
+  inject,
+  signal,
 } from '@angular/core';
+
 import { IBmbDataTopBar } from '../../bmb-breadcrumb/bmb-breadcrumb.component';
 import { IBmbColor } from '../../../../_shared/types/colors';
-import {
-  IBmbActionHeader,
-  IDropdownItem,
-} from '../../../../_shared/types/utils';
+import { IBmbActionHeader } from '../../../../_shared/types/utils';
+import { IBotType } from '../../bmb-chat-bar/types';
+
 import { BmbTitleContentComponent } from '../../bmb-title-content/bmb-title-content.component';
 import { BmbThreeColsComponent } from '../../bmb-three-cols/bmb-three-cols.component';
 import { BmbActionIconComponent } from '../../bmb-action-icon/bmb-action-icon.component';
 import { BmbContainerComponent } from '../../../bmb-container/bmb-container.component';
+import { BmbActionMenuComponent } from '../../bmb-action-menu/bmb-action-menu.component';
+import { BmbItemActionsComponent } from '../../bmb-item/bmb-item-actions/bmb-item-actions.component';
 import { BmbLayoutDirective } from '../../../../directives/old/bmb-layout/bmb-layout.directive';
 import { BmbLayoutItemDirective } from '../../../../directives/old/bmb-layout/bmb-layout-item.directive';
 
-import { CommonModule } from '@angular/common';
-import { IBotType } from '../../bmb-chat-bar/types';
 import { logDeprecatedInput } from '../../../../_shared/logic/logDeprecatedInput';
 import { TranslatePipe } from '../../../../pipes/translations';
-import { BmbTranslationsService } from '../../../../services/translations/translations.service';
-import { BmbDropdownContentComponent } from '../../utils/bmb-dropdown-content/bmb-dropdown-content.component';
+import {
+  BmbProjectionContentService,
+  IBmbProjectionContent,
+} from '../../../../services/old/projection/projection.service';
 
 @Component({
   selector: 'bmb-home-card-header',
@@ -40,7 +45,8 @@ import { BmbDropdownContentComponent } from '../../utils/bmb-dropdown-content/bm
     BmbThreeColsComponent,
     BmbActionIconComponent,
     BmbTitleContentComponent,
-    BmbDropdownContentComponent,
+    BmbActionMenuComponent,
+    BmbItemActionsComponent,
     BmbLayoutDirective,
     BmbLayoutItemDirective,
     TranslatePipe,
@@ -70,15 +76,13 @@ export class BmbHomeCardHeaderComponent implements OnInit {
   onBack = output();
   onExpandClick = output();
 
-  actionLimit = 3;
+  @ViewChild('actionMenu') actionMenu!: TemplateRef<unknown>;
+
+  actionLimit = 2;
   isGreaterThanLimit = false;
-
-  ngOnInit(): void {
-    this.isGreaterThanLimit = !!this.actionHeaders().length;
-  }
-
-  private translationsService: BmbTranslationsService = inject(
-    BmbTranslationsService,
+  idActionMenu = signal<string>('');
+  private readonly contentProjected: BmbProjectionContentService = inject(
+    BmbProjectionContentService,
   );
 
   constructor() {
@@ -98,30 +102,13 @@ export class BmbHomeCardHeaderComponent implements OnInit {
     });
   }
 
-  headerActionsList = computed<IBmbActionHeader[]>(() => {
-    if (this.showRightButton()) {
-      const webIcon: string = this.isExpanded()
-        ? 'zoom_in_map'
-        : 'zoom_out_map';
-      const mainIcon: string = this.isMobile() ? 'close' : webIcon;
-      return [
-        ...this.actionHeaders(),
-        {
-          icon: mainIcon,
-          isToggleActive: false,
-          iconActiveToggle: this.isMobile() ? '' : mainIcon,
-          alt: this.isMobile()
-            ? this.translationsService.translate('home_card.close')
-            : this.isExpanded()
-              ? this.translationsService.translate('home_card.collapse')
-              : this.translationsService.translate('home_card.expand'),
-          action: () => this.handleExpandChange(),
-        },
-      ];
-    }
+  ngOnInit(): void {
+    this.isGreaterThanLimit = this.actionHeaders().length > this.actionLimit;
+  }
 
-    return [];
-  });
+  protected getHeaderAction(index: number): IBmbActionHeader {
+    return this.actionHeaders()[index];
+  }
 
   getIconName(): string {
     return (!this.isMobile() && this.icon()) || '';
@@ -137,11 +124,13 @@ export class BmbHomeCardHeaderComponent implements OnInit {
   }
 
   handleExpandChange(): void {
-    if (this.isMobile()) {
-      this.onClose.emit();
-    } else {
-      this.onExpandClick.emit();
-    }
+    console.info('handleExpandChange');
+    this.onExpandClick.emit();
+  }
+
+  handleCloseChange(): void {
+    console.info('handleCloseChange');
+    this.onClose.emit();
   }
 
   handleHeaderActionClick(
@@ -153,16 +142,24 @@ export class BmbHomeCardHeaderComponent implements OnInit {
     }
   }
 
-  handleActionItemClick(item: IDropdownItem): void {
-    console.info('handleActionItemClick', item);
-    //     headerAction.action(new MouseEvent(),  {
-    //  icon: string;
-    //  alt?: string;
-    //  tooltipText?: string;
-    //  iconSize?: number;
-    //  iconActiveToggle?: string;
-    //  isToggleActive?: boolean;
-    //  isAccentColor?: boolean;
-    //  link?: string;});
+  handleOpenActionMenu(event: MouseEvent | KeyboardEvent): void {
+    if (!event.target) return;
+    const data: IBmbProjectionContent = {
+      content: this.actionMenu,
+      targetRef: event.target as HTMLElement,
+    };
+
+    this.idActionMenu.set(this.contentProjected.openContent(data));
+  }
+
+  handleCloseActionMenu(
+    event: MouseEvent,
+    headerAction: IBmbActionHeader,
+  ): void {
+    if (headerAction.action) {
+      headerAction.action(event, headerAction);
+    }
+
+    this.contentProjected.closeContent(this.idActionMenu());
   }
 }
