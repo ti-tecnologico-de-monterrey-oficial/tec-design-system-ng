@@ -12,4 +12,10 @@
     font-weight: 400;
     text-align: center;
   }
+
+  &_secondary {
+    @include fonts.font(5, regular);
+    font-weight: 400;
+    text-align: center;
+  }
 }

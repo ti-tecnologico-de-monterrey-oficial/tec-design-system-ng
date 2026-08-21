@@ -235,12 +235,16 @@
     "input_placeholder": "Type to search",
     "empty_state": {
       "new_search_card_title": "Start searching to find results",
-      "no_results_title": "No results found"
+      "no_results_title": "No results found",
+      "no_favorites_title": "You don't have any favorites yet",
+      "no_favorites_paragraph": "Save your favorite services to access them quickly",
+      "no_favorites_found": "No favorites found"
     },
     "tabs": {
       "services": "Services",
       "people": "People",
-      "all": "All"
+      "all": "All",
+      "favorites": "Favorites"
     }
   },
   "input": {
