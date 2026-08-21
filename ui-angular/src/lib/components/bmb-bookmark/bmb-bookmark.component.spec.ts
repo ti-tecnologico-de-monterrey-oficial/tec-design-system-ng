@@ -7,6 +7,13 @@ describe('BmbBookmarkComponent', () => {
   let fixture: ComponentFixture<BmbBookmarkComponent>;
 
   beforeEach(async () => {
+    (globalThis as any).fetch = jest.fn().mockResolvedValue({
+      ok: true,
+      status: 200,
+      text: async () => '<svg width="24" height="24"></svg>',
+      json: async () => ({}),
+    });
+
     await TestBed.configureTestingModule({
       imports: [BmbBookmarkComponent],
     }).compileComponents();
@@ -21,10 +28,13 @@ describe('BmbBookmarkComponent', () => {
   });
 
   it('should toggle isActive when handleClick is called', () => {
-    expect(component.isActive()).toBeFalse();
+    const event = { stopPropagation: jest.fn() };
+
+    expect(component.isActive()).toBe(false);
     component.handleClick(event);
-    expect(component.isActive()).toBeTrue();
+    expect(component.isActive()).toBe(true);
     component.handleClick(event);
-    expect(component.isActive()).toBeFalse();
+    expect(component.isActive()).toBe(false);
+    expect(event.stopPropagation).toHaveBeenCalledTimes(2);
   });
 });

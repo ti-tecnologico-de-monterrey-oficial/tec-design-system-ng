@@ -9,10 +9,8 @@ import { CommonModule } from '@angular/common';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { BmbContainerComponent } from '../../bmb-container/bmb-container.component';
 import { getRGBColorKeyValue, isImage } from '../../../_shared/logic/utils';
-import {
-  BmbBreadcrumbComponent,
-  IBmbDataTopBar,
-} from '../bmb-breadcrumb/bmb-breadcrumb.component';
+import { BmbBreadcrumbComponent } from '../../bmb-breadcrumb/bmb-breadcrumb.component';
+import type { IBmbDataTopBar } from '../../../_shared/types';
 import { IBmbColor } from '../../../_shared/types/colors';
 import { IBmbActionHeader } from '../../../_shared/types';
 import { BmbNavigationBarComponent } from '../bmb-navigation-bar/bmb-navigation-bar.component';

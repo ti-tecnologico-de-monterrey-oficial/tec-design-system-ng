@@ -1,0 +1,61 @@
+<header class="page-header">
+  <p class="eyebrow">Componente migrado</p>
+  <h1>BmbBreadcrumb</h1>
+  <p>Prueba navegación local, top bar, estado inactivo y dropdown.</p>
+</header>
+
+<section class="playground" aria-labelledby="breadcrumb-properties-heading">
+  <aside class="controls">
+    <h2 id="breadcrumb-properties-heading">Propiedades</h2>
+    <label class="toggle">
+      <input
+        type="checkbox"
+        [checked]="isTopBar()"
+        (change)="setTopBar($any($event.target).checked)"
+      />
+      isTopBar
+    </label>
+    <label class="toggle">
+      <input
+        type="checkbox"
+        [checked]="isInactive()"
+        (change)="setInactive($any($event.target).checked)"
+      />
+      isInactive
+    </label>
+    <label class="toggle">
+      <input
+        type="checkbox"
+        [checked]="dropdownOpen()"
+        (change)="setDropdownOpen($any($event.target).checked)"
+        [disabled]="isTopBar() || itemCount() <= 4"
+      />
+      dropdownOpen
+    </label>
+    <label for="breadcrumb-count">Cantidad de elementos</label>
+    <select
+      id="breadcrumb-count"
+      [value]="itemCount()"
+      (change)="setItemCount(+$any($event.target).value)"
+      [disabled]="isTopBar()"
+    >
+      @for (count of availableCounts; track count) {
+      <option [value]="count">{{ count }}</option>
+      }
+    </select>
+    <p class="helper-text">
+      Con más de cuatro elementos, selecciona <strong>...</strong> para probar
+      el dropdown.
+    </p>
+  </aside>
+
+  <div class="preview" [class.preview-top-bar]="isTopBar()">
+    <bmb-breadcrumb
+      [dataTopBar]="dataTopBar"
+      [dataLocalNav]="dataLocalNav()"
+      [isTopBar]="isTopBar()"
+      [isInactive]="isInactive()"
+      [(dropdownOpen)]="dropdownOpen"
+    />
+  </div>
+</section>
