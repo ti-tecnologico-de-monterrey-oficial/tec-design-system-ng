@@ -81,9 +81,9 @@ export class BmbAiChatBubbleComponent {
    * Bubble dynamic classes.
    */
   readonly bubbleClasses = computed(() => ({
-    'bmb-ai-chat-bubble-user': this.message().isUser,
-    'bmb-ai-chat-bubble-bot': !this.message().isUser,
-    'bmb-ai-chat-bubble-thinking': this.isThinking(),
+    'bmb_ai-chat-bubble-user': this.message().isUser,
+    'bmb_ai-chat-bubble-bot': !this.message().isUser,
+    'bmb_ai-chat-bubble-thinking': this.isThinking(),
   }));
 
   protected onAction(event: BmbChatActionEvent) {

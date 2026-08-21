@@ -71,7 +71,7 @@ describe('BmbAiChatBubbleComponent', () => {
 
   it('should render bot message class', () => {
     const element = fixture.debugElement.query(
-      By.css('.bmb-ai-chat-bubble-bot'),
+      By.css('.bmb_ai-chat-bubble-bot'),
     );
 
     expect(element).toBeTruthy();
@@ -83,7 +83,7 @@ describe('BmbAiChatBubbleComponent', () => {
     fixture.detectChanges();
 
     const element = fixture.debugElement.query(
-      By.css('.bmb-ai-chat-bubble-user'),
+      By.css('.bmb_ai-chat-bubble-user'),
     );
 
     expect(element).toBeTruthy();
@@ -95,7 +95,7 @@ describe('BmbAiChatBubbleComponent', () => {
     fixture.detectChanges();
 
     const element = fixture.debugElement.query(
-      By.css('.bmb-ai-chat-bubble-thinking-dots'),
+      By.css('.bmb_ai-chat-bubble-thinking-dots'),
     );
 
     expect(element).toBeTruthy();

@@ -2,13 +2,13 @@
   <bmb-icon
     role="button"
     tabindex="0"
-    class="bmb-ai-chat-bubble-icon"
+    class="bmb_ai-chat-bubble-icon"
     [icon]="action.icon"
     [size]="24"
     [isFill]="true"
     [attr.aria-label]="action.label"
     [ngClass]="{
-      'bmb-ai-chat-bubble-icon-active': action.active
+      'bmb_ai-chat-bubble-icon-active': action.active
     }"
     (click)="triggerAction(action.action, $event)"
     (keydown.enter)="triggerAction(action.action, $event)"
