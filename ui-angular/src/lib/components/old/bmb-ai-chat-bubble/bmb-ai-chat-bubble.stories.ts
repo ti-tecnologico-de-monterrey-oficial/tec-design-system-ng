@@ -18,7 +18,6 @@ import {
 import {
   DBmbIconParamDesc,
   getOnClickParam,
-  getOnEventParam,
 } from '@docs/utils/parameterDescriptions';
 
 const GET_ACTION_DESCRIPTION = `

@@ -10,7 +10,6 @@ import { CommonModule } from '@angular/common';
 import {
   BmbChatActionEvent,
   BmbChatMessage,
-  BmbChatOption,
   IBmbChatOptionEvent,
 } from './types';
 import { ChatActionsComponent } from './bmb-chat-actions/bmb-chat-actions.component';
