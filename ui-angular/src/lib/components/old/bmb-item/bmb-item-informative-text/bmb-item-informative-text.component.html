@@ -3,6 +3,7 @@
   bmbLayout
   margin="none"
   alignItems="center"
+  gapSize="s"
 >
   @if (icon()) {
     <bmb-icon
@@ -15,9 +16,11 @@
   }
   <section bmbLayoutItem [isDynamicItem]="true" [colGrow]="1">
     <section bmbVerticalLayout gapSize="xs">
-      <span bmbVerticalLayoutItem>
-        {{ itemTitle() }}
-      </span>
+      @if (itemTitle()) {
+        <span bmbVerticalLayoutItem>
+          {{ itemTitle() }}
+        </span>
+      }
       @if (supportText() || (supportTextLinkLabel() && supportTextLink())) {
         <span bmbVerticalLayoutItem>
           {{ supportText() }}
