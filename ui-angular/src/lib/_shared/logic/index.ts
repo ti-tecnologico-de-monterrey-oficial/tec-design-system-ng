@@ -9,3 +9,5 @@ export * from './components/card';
 export * from './components/grade-value';
 export * from './components/check-external-link-button';
 export * from './components/value-counter';
+export * from './components/bookmark';
+export * from './components/breadcrumb';

@@ -4,12 +4,24 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 import { of } from 'rxjs';
 import { CommonModule } from '@angular/common';
-import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
+import { BmbIconComponent } from '../old/bmb-icon/bmb-icon.component';
 
 describe('BmbBreadcrumbComponent', () => {
   beforeEach(async () => {
+    (globalThis as any).fetch = jest.fn().mockResolvedValue({
+      ok: true,
+      status: 200,
+      text: async () => '<svg width="24" height="24"></svg>',
+      json: async () => ({}),
+    });
+
     await TestBed.configureTestingModule({
-      imports: [RouterTestingModule, CommonModule, BmbIconComponent],
+      imports: [
+        BmbBreadcrumbComponent,
+        RouterTestingModule,
+        CommonModule,
+        BmbIconComponent,
+      ],
       providers: [
         {
           provide: Router,
@@ -75,5 +87,34 @@ describe('BmbBreadcrumbComponent', () => {
       '.bmb_breadcrumb-link',
     );
     expect(localNavElement).toBeTruthy();
+  });
+
+  it('should toggle and expose dropdown items for long paths', () => {
+    const fixture = TestBed.createComponent(BmbBreadcrumbComponent);
+    const component = fixture.componentInstance;
+    const items = [
+      { text: 'One', link: '/one' },
+      { text: 'Two', link: '/two' },
+      { text: 'Three', link: '/three' },
+      { text: 'Four', link: '/four' },
+      { text: 'Five', link: '/five' },
+    ];
+
+    expect(component.getDropdownItems(items)).toEqual(items.slice(1, 3));
+    expect(component.dropdownOpen()).toBe(false);
+    component.toggleDropdown();
+    expect(component.dropdownOpen()).toBe(true);
+  });
+
+  it('should return the penultimate link without changing the input contract', () => {
+    const fixture = TestBed.createComponent(BmbBreadcrumbComponent);
+    const component = fixture.componentInstance;
+    fixture.componentRef.setInput('dataLocalNav', [
+      { text: 'One', link: '/one' },
+      { text: 'Two', link: '/two' },
+      { text: 'Three' },
+    ]);
+
+    expect(component.getPenultimateLink()).toBe('/two');
   });
 });

@@ -20,6 +20,7 @@ export * from './components/tooltip';
 export * from './input';
 export * from './utils';
 export * from './components/action-icon';
+export type { IBmbDataTopBar } from './components/breadcrumb';
 
 // types
 export * from './colors';
@@ -155,18 +156,6 @@ export interface IBmbCollaboratorProfileData {
   leader: IBmbHierarchyProfileData | null;
   generalist: IBmbHierarchyProfileData | null;
   enableRolSwitch?: boolean;
-}
-
-export interface IBmbActionHeader {
-  icon: string;
-  alt?: string;
-  iconSize?: number;
-  iconActiveToggle?: string;
-  isToggleActive?: boolean;
-  isAccentColor?: boolean;
-  link?: string;
-  target?: IBmbTargetLink;
-  action: (event?: Event) => void;
 }
 
 export interface IBmbLinkConfiguration extends IBmbLinkInfo {
