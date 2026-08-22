@@ -71,13 +71,16 @@ ${getBasicExampleBlock('BmbHomeCardHeaderComponent')}
     onClose: DBmbHomeCardHeaderParamDesc.onClose,
     onBack: DBmbHomeCardHeaderParamDesc.onBack,
     onExpandClick: DBmbHomeCardHeaderParamDesc.onExpandClick,
-    test_text: {
-      name: 'Text',
-      description: 'Header content example.',
+    showExpandAndCollapseButton: {
+      title: 'Show expand and collapse button',
+      description:
+        'If true, the expand and collapse button will be shown. If false, it will be hidden.',
       table: {
-        category: 'Example',
-        type: { summary: 'string' },
+        category: 'Properties',
+        type: { summary: 'boolean' },
+        defaultValue: { summary: true },
       },
+      control: { type: 'boolean' },
     },
   },
   args: {
@@ -103,8 +106,8 @@ ${getBasicExampleBlock('BmbHomeCardHeaderComponent')}
     ],
     showRightButton: true,
     isMobile: false,
-    test_text: 'hello world',
     isExpanded: false,
+    showExpandAndCollapseButton: true,
     onExpandClick: () => console.log('Expand clicked'),
     onClose: () => console.log('Close clicked'),
     onBack: () => console.log('Back clicked'),
