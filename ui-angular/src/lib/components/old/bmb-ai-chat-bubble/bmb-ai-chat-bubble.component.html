@@ -64,7 +64,10 @@
               }
 
               @case ('options') {
-                <bmb-options-message [message]="message" />
+                <bmb-options-message
+                  [message]="message"
+                  (getOptionClicked)="handleOptionClick($event)"
+                />
               }
 
               @case ('template') {
