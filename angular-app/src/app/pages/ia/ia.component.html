@@ -18,7 +18,7 @@
       [currentBot]="{
         name: 'TecBot',
         label: 'Tecbot Standard',
-        icon: 'bot_tecStandar'
+        icon: 'bot_tecStandar',
       }"
       [isLoading]="false"
       [showEmoji]="true"
@@ -26,6 +26,15 @@
       [actionsList]="actionsList"
       bmbVerticalLayoutItem
     ></bmb-chat-bar>
+    <bmb-ai-chat-bubble
+      [botIcon]="'bot_tecStandar'"
+      [testId]="'chat-bubble'"
+      [message]="message"
+      [isThinking]="false"
+      [showActions]="true"
+      (getAction)="getAction($event)"
+      (getOptionClicked)="getOptionClicked($event)"
+    ></bmb-ai-chat-bubble>
   </section>
 </div>
 

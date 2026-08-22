@@ -32,6 +32,7 @@ import {
   ThemeService,
   BmbContainerButtonComplexAlternativeComponent,
   BmbTextEditorComponent,
+  IBmbActionHeader,
 } from 'ui-angular';
 
 import { HelpMenuComponent } from '../../components/help-menu/help-menu.component';
@@ -229,35 +230,35 @@ export class HomeComponent {
     console.info('getClickButton bookmark');
   }
 
-  homeCardActions = [
+  homeCardActions: IBmbActionHeader[] = [
     {
       icon: 'language_spanish',
-      toggleIconActive: 'language_us',
+      iconActiveToggle: 'language_us',
       alt: 'Language',
-      // action: (event) => {
-      //   console.info('Edit action clicked', event);
-      // },
+      action: (event) => {
+        console.info('Edit action clicked', event);
+      },
     },
     {
       icon: 'edit',
       alt: 'Edit',
-      // action: (event) => {
-      //   console.info('Edit action clicked', event);
-      // },
+      action: (event) => {
+        console.info('Edit action clicked', event);
+      },
     },
     {
       icon: 'delete',
       alt: 'Delete',
-      // action: (event) => {
-      //   console.info('Delete action clicked', event);
-      // },
+      action: (event) => {
+        console.info('Delete action clicked', event);
+      },
     },
     {
       icon: 'info',
       alt: 'Info',
-      // action: (event) => {
-      //   console.info('Delete action clicked', event);
-      // },
+      action: (event) => {
+        console.info('Info action clicked', event);
+      },
     },
   ];
 }

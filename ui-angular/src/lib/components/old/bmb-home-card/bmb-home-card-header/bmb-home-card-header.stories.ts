@@ -90,21 +90,33 @@ ${getBasicExampleBlock('BmbHomeCardHeaderComponent')}
     actionHeaders: [
       {
         icon: 'language_spanish',
-        toggleIconActive: 'language_us',
-        isAccentColor: 'false',
+        iconActiveToggle: 'language_us',
+        isAccentColor: false,
         tooltipText: 'Language',
+        action: () => {
+          console.info('Language');
+        },
       },
       {
         icon: 'edit',
         tooltipText: 'Edit',
+        action: () => {
+          console.info('Edit');
+        },
       },
       {
         icon: 'delete',
         tooltipText: 'Delete',
+        action: () => {
+          console.info('Delete');
+        },
       },
       {
         icon: 'info',
         tooltipText: 'Info',
+        action: () => {
+          console.info('Info');
+        },
       },
     ],
     showRightButton: true,

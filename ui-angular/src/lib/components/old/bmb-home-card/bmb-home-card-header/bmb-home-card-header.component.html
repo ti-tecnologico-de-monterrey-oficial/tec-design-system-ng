@@ -95,8 +95,7 @@
               } @else {
                 @for (headerAction of actionHeaders(); track $index) {
                   <bmb-action-icon
-                    class="bmb_navigation-bar-icon"
-                    [idElement]="$index.toString()"
+                    [idElement]="headerAction.icon.concat($index.toString())"
                     [icon]="headerAction.icon"
                     [alt]="headerAction.alt || headerAction.icon"
                     [tooltipText]="
@@ -165,8 +164,7 @@
   let-idElement="idElement"
 >
   <bmb-action-icon
-    class="bmb_navigation-bar-icon"
-    [idElement]="idElement"
+    [idElement]="headerAction.icon.concat(idElement)"
     [icon]="headerAction.icon"
     [alt]="headerAction.alt || headerAction.icon"
     [tooltipText]="
@@ -179,8 +177,6 @@
     [link]="headerAction.link"
     [target]="headerAction.target"
     (buttonClick)="handleHeaderActionClick($event, headerAction)"
-    bmbLayoutItem
-    [isDynamicItem]="true"
   />
 </ng-template>
 
