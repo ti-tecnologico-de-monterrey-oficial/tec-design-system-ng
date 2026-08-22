@@ -1,4 +1,4 @@
-import { Component, viewChild, signal, ElementRef } from '@angular/core';
+import { ElementRef } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { BmbLayoutItemDirective } from './bmb-layout-item.directive';
 
