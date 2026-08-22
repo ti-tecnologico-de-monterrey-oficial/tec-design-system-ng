@@ -1,0 +1,39 @@
+@use '../../styles/playground';
+
+@include playground.page($controls-min: 16rem, $controls-max: 22rem);
+
+:host {
+  background: #f4f6f9;
+  color: #1f2937;
+  min-height: 100%;
+  padding: 2rem;
+}
+
+.preview {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+.bookmark-example {
+  align-items: center;
+  background: #f8fafc;
+  border: 1px dashed #8b96a8;
+  border-radius: 0.75rem;
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
+  max-width: 30rem;
+  padding: 1.5rem;
+  width: 100%;
+
+  p {
+    margin: 0;
+  }
+}
+
+@media (max-width: 700px) {
+  :host {
+    padding: 1rem;
+  }
+}

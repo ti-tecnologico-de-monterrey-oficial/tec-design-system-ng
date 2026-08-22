@@ -92,16 +92,34 @@ ${getBasicExampleBlock('BmbHomeCardHeaderComponent')}
     dataLocalNav: [],
     actionHeaders: [
       {
+        icon: 'language_spanish',
+        iconActiveToggle: 'language_us',
+        isAccentColor: false,
+        tooltipText: 'Language',
+        action: () => {
+          console.info('Language');
+        },
+      },
+      {
         icon: 'edit',
-        alt: 'Edit',
+        tooltipText: 'Edit',
+        action: () => {
+          console.info('Edit');
+        },
       },
       {
         icon: 'delete',
-        alt: 'Delete',
+        tooltipText: 'Delete',
+        action: () => {
+          console.info('Delete');
+        },
       },
       {
         icon: 'info',
-        alt: 'Info',
+        tooltipText: 'Info',
+        action: () => {
+          console.info('Info');
+        },
       },
     ],
     showRightButton: true,

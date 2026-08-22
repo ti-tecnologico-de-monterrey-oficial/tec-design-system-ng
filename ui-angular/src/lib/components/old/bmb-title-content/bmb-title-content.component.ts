@@ -6,10 +6,8 @@ import {
   model,
   ViewEncapsulation,
 } from '@angular/core';
-import {
-  BmbBreadcrumbComponent,
-  IBmbDataTopBar,
-} from '../bmb-breadcrumb/bmb-breadcrumb.component';
+import { BmbBreadcrumbComponent } from '../../bmb-breadcrumb/bmb-breadcrumb.component';
+import type { IBmbDataTopBar } from '../../../_shared/types';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { CommonModule } from '@angular/common';
 import { BmbContainerComponent } from '../../bmb-container/bmb-container.component';
@@ -17,7 +15,10 @@ import { isImage } from '../../../_shared/logic/utils';
 import { IBmbColor } from '../../../_shared/types/colors';
 import { getRGBColorKeyValue } from '../../../_shared/logic/utils';
 import { BmbUserImageComponent } from '../../bmb-user-image/bmb-user-image.component';
-import { IBmbUserImageSize, IBmbFontWeightContent } from '../../../_shared/types';
+import {
+  IBmbUserImageSize,
+  IBmbFontWeightContent,
+} from '../../../_shared/types';
 import { logDeprecatedInput } from '../../../_shared/logic/logDeprecatedInput';
 import { BmbBoxIconComponent } from '../bmb-box-icon/bmb-box-icon.component';
 import { BmbBotIconComponent } from '../bmb-bot-icon/bmb-bot-icon.component';

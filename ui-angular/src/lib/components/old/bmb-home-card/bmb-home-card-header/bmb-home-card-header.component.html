@@ -53,7 +53,7 @@
                 />
               }
             } @else {
-              @if (isGreaterThanLimit && showRightButton()) {
+              @if (isGreaterThanLimit) {
                 <ng-container
                   *ngTemplateOutlet="
                     itemByIndex;
@@ -76,31 +76,29 @@
                   [isDynamicItem]="true"
                 />
               } @else {
-                @if (showRightButton()) {
-                  @for (headerAction of actionHeaders(); track $index) {
-                    <bmb-action-icon
-                      class="bmb_navigation-bar-icon"
-                      [idElement]="$index.toString()"
-                      [icon]="headerAction.icon"
-                      [alt]="headerAction.alt || headerAction.icon"
-                      [tooltipText]="
-                        headerAction.tooltipText ||
-                        headerAction.alt ||
-                        headerAction.icon
-                      "
-                      [isAccentColor]="headerAction.isAccentColor"
-                      [iconSize]="24"
-                      [toggleIconActive]="headerAction.iconActiveToggle"
-                      [(isToggleActive)]="headerAction.isToggleActive"
-                      [link]="headerAction.link"
-                      [target]="headerAction.target"
-                      (buttonClick)="
-                        handleHeaderActionClick($event, headerAction)
-                      "
-                      bmbLayoutItem
-                      [isDynamicItem]="true"
-                    />
-                  }
+                @for (headerAction of actionHeaders(); track $index) {
+                  <bmb-action-icon
+                    class="bmb_navigation-bar-icon"
+                    [idElement]="$index.toString()"
+                    [icon]="headerAction.icon"
+                    [alt]="headerAction.alt || headerAction.icon"
+                    [tooltipText]="
+                      headerAction.tooltipText ||
+                      headerAction.alt ||
+                      headerAction.icon
+                    "
+                    [isAccentColor]="headerAction.isAccentColor"
+                    [iconSize]="24"
+                    [toggleIconActive]="headerAction.iconActiveToggle"
+                    [(isToggleActive)]="headerAction.isToggleActive"
+                    [link]="headerAction.link"
+                    [target]="headerAction.target"
+                    (buttonClick)="
+                      handleHeaderActionClick($event, headerAction)
+                    "
+                    bmbLayoutItem
+                    [isDynamicItem]="true"
+                  />
                 }
                 <ng-container
                   [ngTemplateOutlet]="expandAction"
@@ -117,7 +115,7 @@
 </header>
 
 <ng-template #expandAction>
-  @if (showExpandAndCollapseButton() && showRightButton()) {
+  @if (showRightButton()) {
     <bmb-action-icon
       idElement="expand"
       icon="zoom_out_map"
@@ -135,15 +133,13 @@
 </ng-template>
 
 <ng-template #moreAction>
-  @if (showRightButton()) {
-    <bmb-action-icon
-      idElement="home_card.more"
-      icon="more_horiz"
-      [iconSize]="24"
-      (buttonClick)="handleOpenActionMenu($event)"
-      [tooltipText]="'home_card.more' | translate"
-    />
-  }
+  <bmb-action-icon
+    idElement="home_card.more"
+    icon="more_horiz"
+    [iconSize]="24"
+    (buttonClick)="handleOpenActionMenu($event)"
+    [tooltipText]="'home_card.more' | translate"
+  />
 </ng-template>
 
 <ng-template

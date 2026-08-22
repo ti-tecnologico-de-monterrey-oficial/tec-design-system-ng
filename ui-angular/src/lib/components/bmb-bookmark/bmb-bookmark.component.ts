@@ -5,8 +5,12 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
-import { TranslatePipe } from '../../../pipes/translations';
+import { BmbActionIconComponent } from '../old/bmb-action-icon/bmb-action-icon.component';
+import { TranslatePipe } from '../../pipes/translations';
+import {
+  stopPropagation,
+  toggleBookmark,
+} from '../../_shared/logic/components/bookmark';
 
 @Component({
   selector: 'bmb-bookmark',
@@ -20,8 +24,8 @@ import { TranslatePipe } from '../../../pipes/translations';
 export class BmbBookmarkComponent {
   isActive = model<boolean>(false);
 
-  handleClick(event: any) {
-    event?.stopPropagation();
-    this.isActive.update((value) => !value);
+  handleClick(event: any | MouseEvent): void {
+    stopPropagation(event);
+    this.isActive.update(toggleBookmark);
   }
 }

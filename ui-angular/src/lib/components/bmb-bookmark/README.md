@@ -32,7 +32,7 @@ The component maintains an internal state (`isActive`) to track whether the book
 
 ## Methods
 
-### `handleClick(event: any): void`
+### `handleClick(event: any | MouseEvent): void`
 
 Handles the click event on the bookmark. It toggles the `isActive` state and prevents event propagation.
 
