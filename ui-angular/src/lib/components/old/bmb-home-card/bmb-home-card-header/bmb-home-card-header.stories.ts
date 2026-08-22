@@ -71,14 +71,6 @@ ${getBasicExampleBlock('BmbHomeCardHeaderComponent')}
     onClose: DBmbHomeCardHeaderParamDesc.onClose,
     onBack: DBmbHomeCardHeaderParamDesc.onBack,
     onExpandClick: DBmbHomeCardHeaderParamDesc.onExpandClick,
-    test_text: {
-      name: 'Text',
-      description: 'Header content example.',
-      table: {
-        category: 'Example',
-        type: { summary: 'string' },
-      },
-    },
   },
   args: {
     leftIcon: 'chevron_left',
@@ -121,7 +113,6 @@ ${getBasicExampleBlock('BmbHomeCardHeaderComponent')}
     ],
     showRightButton: true,
     isMobile: false,
-    test_text: 'hello world',
     isExpanded: false,
     onExpandClick: () => console.log('Expand clicked'),
     onClose: () => console.log('Close clicked'),
