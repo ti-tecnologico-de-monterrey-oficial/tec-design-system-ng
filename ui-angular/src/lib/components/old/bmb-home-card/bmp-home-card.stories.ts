@@ -69,17 +69,6 @@ ${getBasicExampleBlock(
     },
     isExpanded: DBmbHomeCardHeaderParamDesc.isExpanded,
     onExpandClick: DBmbHomeCardHeaderParamDesc.onExpandClick,
-    showExpandAndCollapseButton: {
-      title: 'Show expand and collapse button',
-      description:
-        'If true, the expand and collapse button will be shown. If false, it will be hidden.',
-      table: {
-        category: 'Properties',
-        type: { summary: 'boolean' },
-        defaultValue: { summary: true },
-      },
-      control: { type: 'boolean' },
-    },
   },
   args: {
     leftIcon: 'chevron_left',

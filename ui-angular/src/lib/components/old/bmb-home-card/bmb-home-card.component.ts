@@ -38,7 +38,6 @@ export class BmbHomeCardComponent {
   showRightButton = input<boolean>(true);
   isExpanded = model<boolean>(false);
   currentBot = model<IBotType>();
-  showExpandAndCollapseButton = input<boolean>(true);
   componentTitle = input<string>(); // once title is removed, this should be required
 
   title = input<string>(); // deprecated

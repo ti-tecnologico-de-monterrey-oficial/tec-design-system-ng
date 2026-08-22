@@ -889,7 +889,7 @@ export const DBmbHomeCardHeaderParamDesc = {
   showRightButton: {
     control: { type: 'boolean' },
     description:
-      'Sets a flag to indicate whether the card should show the right button or buttons.',
+      'Sets a flag to indicate whether the card should show to the right "close" (mobile) or "expand/collapse" (web) button. This flag does not affect the action headers buttons.',
     table: {
       category: 'Properties',
       defaultValue: { summary: 'true' },
