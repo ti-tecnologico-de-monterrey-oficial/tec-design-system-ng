@@ -4,10 +4,25 @@
       {{ message().content.text }}
     </p>
   }
-
-
-    @for (option of message().content.options; track option.id) {
-
+  <section>
+    @for (option of message().content.options; track $index) {
+      @if (option.href) {
+        <bmb-item-informative-text
+          icon="prompt_suggestion"
+          [supportTextLinkLabel]="option.label"
+          [supportTextLink]="option.href"
+          [supportTextTarget]="option.target!"
+        />
+      } @else {
+        <bmb-item-actions
+          icon="prompt_suggestion"
+          [label]="option.label"
+          (getActionClick)="handleOptionClick($event, option)"
+        />
+      }
+      @if ($index < message().content.options.length - 1) {
+        <bmb-divider [removeMargin]="true" />
+      }
     }
-
+  </section>
 </section>
