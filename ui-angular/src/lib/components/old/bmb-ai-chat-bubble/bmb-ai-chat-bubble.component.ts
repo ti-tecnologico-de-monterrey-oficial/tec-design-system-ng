@@ -2,13 +2,19 @@ import {
   ChangeDetectionStrategy,
   Component,
   computed,
+  ElementRef,
   input,
+  OnDestroy,
   output,
+  signal,
+  ViewChild,
 } from '@angular/core';
 
 import { CommonModule } from '@angular/common';
 import {
   BmbChatActionEvent,
+  BmbChatAction,
+  BmbChatCopyState,
   BmbChatMessage,
   BmbChatOption,
   IBmbChatOptionEvent,
@@ -46,7 +52,7 @@ export * from './types';
   styleUrl: './bmb-ai-chat-bubble.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class BmbAiChatBubbleComponent {
+export class BmbAiChatBubbleComponent implements OnDestroy {
   /**
    * Bot icon token used for assistant messages.
    */
@@ -72,6 +78,16 @@ export class BmbAiChatBubbleComponent {
    */
   readonly showActions = input(true);
 
+  /** Actions displayed for user messages. */
+  readonly userActions = input<BmbChatAction[]>(['copy']);
+
+  readonly copyState = signal<BmbChatCopyState>('idle');
+
+  @ViewChild('messageContent')
+  private messageContent?: ElementRef<HTMLElement>;
+
+  private copyStateTimer?: ReturnType<typeof setTimeout>;
+
   /**
    * Emits action events.
    */
@@ -92,11 +108,106 @@ export class BmbAiChatBubbleComponent {
     'bmb_ai-chat-bubble-thinking': this.isThinking(),
   }));
 
-  protected onAction(event: BmbChatActionEvent) {
+  protected async onAction(event: BmbChatActionEvent): Promise<void> {
+    if (event.action === 'copy') {
+      if (this.copyState() !== 'idle') return;
+
+      await this.copyMessageContent(event);
+      return;
+    }
+
     this.getAction.emit(event);
   }
 
   protected handleOptionClick(event: IBmbChatOptionEvent): void {
     this.getOptionClicked.emit(event);
+  }
+
+  ngOnDestroy(): void {
+    if (this.copyStateTimer) clearTimeout(this.copyStateTimer);
+  }
+
+  private async copyMessageContent(event: BmbChatActionEvent): Promise<void> {
+    this.copyState.set('pending');
+
+    try {
+      const plainText = this.buildPlainText();
+      const html = this.messageContent?.nativeElement.innerHTML.trim();
+      await this.writeToClipboard(plainText, html || undefined);
+      this.setTemporaryCopyState('success');
+    } catch {
+      this.setTemporaryCopyState('error');
+    } finally {
+      this.getAction.emit(event);
+    }
+  }
+
+  private buildPlainText(): string {
+    const message = this.message();
+
+    switch (message.type) {
+      case 'text':
+      case 'mixed':
+        return message.content.text.trim();
+      case 'image':
+        return (message.content.alt ?? '').trim();
+      case 'link':
+        return [message.content.text, message.content.href]
+          .filter(Boolean)
+          .join('\n\n')
+          .trim();
+      case 'options': {
+        const options = message.content.options
+          .map((option) =>
+            [`- ${option.label}`, option.href].filter(Boolean).join('\n'),
+          )
+          .join('\n');
+        return [message.content.text, options]
+          .filter(Boolean)
+          .join('\n\n')
+          .trim();
+      }
+      case 'template':
+        return this.messageContent?.nativeElement.innerText.trim() ?? '';
+    }
+  }
+
+  private async writeToClipboard(
+    plainText: string,
+    html?: string,
+  ): Promise<void> {
+    if (!navigator.clipboard) {
+      throw new Error('Clipboard API is unavailable');
+    }
+
+    if (
+      html &&
+      typeof ClipboardItem !== 'undefined' &&
+      typeof navigator.clipboard.write === 'function'
+    ) {
+      try {
+        await navigator.clipboard.write([
+          new ClipboardItem({
+            'text/plain': new Blob([plainText], { type: 'text/plain' }),
+            'text/html': new Blob([html], { type: 'text/html' }),
+          }),
+        ]);
+        return;
+      } catch {
+        // Fall through to plain text for browsers that reject rich content.
+      }
+    }
+
+    await navigator.clipboard.writeText(plainText);
+  }
+
+  private setTemporaryCopyState(state: 'success' | 'error'): void {
+    this.copyState.set(state);
+    if (this.copyStateTimer) clearTimeout(this.copyStateTimer);
+
+    this.copyStateTimer = setTimeout(() => {
+      this.copyState.set('idle');
+      this.copyStateTimer = undefined;
+    }, 3000);
   }
 }
