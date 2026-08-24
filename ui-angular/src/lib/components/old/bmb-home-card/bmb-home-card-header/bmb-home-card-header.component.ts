@@ -15,17 +15,10 @@ import {
   signal,
 } from '@angular/core';
 
-<<<<<<< HEAD
-import type { IBmbDataTopBar } from '../../../../_shared/types';
-import type { IBmbColor } from '../../../../_shared/types/colors';
-import type { IBmbActionHeader } from '../../../../_shared/types/utils';
-import type { IBotType } from '../../bmb-chat-bar/types';
-=======
 import { IBmbDataTopBar } from '../../../bmb-breadcrumb/bmb-breadcrumb.component';
 import { IBmbColor } from '../../../../_shared/types/colors';
 import { IBmbActionHeader } from '../../../../_shared/types/utils';
 import { IBotType } from '../../bmb-chat-bar/types';
->>>>>>> 68c7e29f82c2312132cc8b7f43cc5336c159226c
 
 import { BmbTitleContentComponent } from '../../bmb-title-content/bmb-title-content.component';
 import { BmbThreeColsComponent } from '../../bmb-three-cols/bmb-three-cols.component';
