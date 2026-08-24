@@ -91,6 +91,8 @@ export type BmbChatMessage =
 
 export type BmbChatAction = 'repeat' | 'voice' | 'copy' | 'like' | 'dislike';
 
+export type BmbChatCopyState = 'idle' | 'pending' | 'success' | 'error';
+
 export interface BmbChatActionEvent {
   /**
    * Triggered action.
