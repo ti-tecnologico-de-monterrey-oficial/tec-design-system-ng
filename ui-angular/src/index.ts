@@ -86,6 +86,7 @@ export * from './lib/components/old/bmb-tables/bmb-tables.component';
 export * from './lib/components/old/bmb-progress-bar/bmb-progress-bar.component';
 export * from './lib/components/old/bmb-modal/bmb-modal.component';
 export * from './lib/components/bmb-card/bmb-card.component';
+export * from './lib/components/bmb-generic-card-button/bmb-generic-card-button.component';
 export * from './lib/components/old/bmb-dropdown/bmb-dropdown.component';
 export * from './lib/components/old/bmb-balance-overview/bmb-balance-overview.component';
 export * from './lib/components/old/bmb-frequent-apps-selector/bmb-frequent-apps-selector.component';

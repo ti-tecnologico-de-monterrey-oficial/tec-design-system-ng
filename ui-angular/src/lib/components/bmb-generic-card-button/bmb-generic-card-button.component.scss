@@ -1,0 +1,134 @@
+@use '../../../../../shared/assets/styles/base/rem' as rem;
+
+// The host tag has no built-in display, so without this the inner section's
+// width/height: 100% has nothing definite to resolve against — the card
+// would render at its content's natural size instead of filling whatever
+// box a consumer's layout actually gives it.
+bmb-generic-card-button {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-width: rem.rem_calc(328); // narrowest reference size: S/M's width
+  min-height: rem.rem_calc(152); // shortest reference size: S's height
+}
+
+// The card owns sizing/state/chrome and one thing about layout: which of the
+// consumer's declared layouts is currently showing. It still prescribes no
+// anatomy — the consumer's own [bmbLayoutGrid]/[bmbLayoutGridItem] content
+// decides everything about what's inside; the card just picks which whole
+// block of that content is visible, based on its own real rendered size.
+.bmb_generic_card_button {
+  container-type: size;
+  container-name: bmb-generic-card-button;
+  box-sizing: border-box;
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-width: rem.rem_calc(328);
+  min-height: rem.rem_calc(152);
+  padding: rem.rem_calc(16);
+  border: rem.rem_calc(1) solid var(--general-contrasts-container-outline);
+  border-radius: var(--bmb-radius-m);
+  background-color: var(--containers-modal);
+  box-shadow: var(--bmb-box-shadow-3);
+  cursor: pointer;
+  user-select: none;
+  overflow: hidden;
+
+  &:hover:not(.bmb_generic_card_button-disabled) {
+    background-color: var(--general-contrasts-15);
+  }
+
+  &:active:not(.bmb_generic_card_button-disabled) {
+    background-color: var(--general-contrasts-50);
+  }
+
+  &:focus-visible {
+    outline: rem.rem_calc(2) solid var(--general-contrasts-100);
+    outline-offset: rem.rem_calc(2);
+  }
+
+  &-disabled {
+    pointer-events: none;
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+
+  &-selected {
+    outline: rem.rem_calc(2) solid var(--buttons-stroke-primary-selected);
+    outline-offset: rem.rem_calc(-2);
+  }
+
+  // bmb-button-icon with showContainer=false hardcodes a white icon color
+  // (it's meant for icons overlaid on images), so on a plain card background
+  // it needs to be told to use the theme-adaptive text color instead —
+  // except while pressed/toggled, where its own active-state color should win.
+  .bmb_button_icon:not(.bmb_button_icon-container):not(
+      .bmb_button_icon-active
+    ) {
+    color: var(--general-contrasts-100);
+  }
+}
+
+// Custom responsiveness: S is just whatever the consumer projects by default
+// (no declaration needed). Declaring a medium/large override is opt-in — an
+// empty slot (nothing projected into it) always falls back to the default,
+// so "declare nothing" genuinely means "the same layout at every size."
+// M and L are each independent: an undeclared L does NOT fall back to a
+// declared M, it falls straight back to default, same as if M didn't exist.
+.bmb_generic_card_button-slot {
+  width: 100%;
+  height: 100%;
+}
+
+.bmb_generic_card_button-slot-medium,
+.bmb_generic_card_button-slot-large {
+  display: none;
+}
+
+.bmb_generic_card_button-slot-default {
+  display: block;
+}
+
+// M — reference size 328x208, threshold at the midpoint with S's 152px height.
+@container bmb-generic-card-button (min-height: 180px) {
+  .bmb_generic_card_button-slot-medium:not(:empty) {
+    display: block;
+  }
+
+  .bmb_generic_card_button-slot-medium:not(:empty)
+    ~ .bmb_generic_card_button-slot-default {
+    display: none;
+  }
+}
+
+// L — reference size 676x208 (width-driven, overrides M regardless of height:
+// a wide-and-short-enough-to-also-match-M card is still L, never M). Threshold
+// at the midpoint between M's 328px and L's 676px width.
+//
+// !important here is deliberate, not sloppy: at 676x208 the M block above is
+// ALSO active (208px clears its 180px threshold), so without a stronger claim
+// its "hide default" rule would keep winning by specificity even once L's
+// rules decide medium shouldn't be showing anymore — leaving nothing visible
+// at all when only a medium override was declared (no large). Every
+// declaration in this block is important so this block always fully and
+// consistently owns all three slots whenever it's active, regardless of what
+// the M block above independently decided.
+@container bmb-generic-card-button (min-width: 502px) {
+  .bmb_generic_card_button-slot-medium {
+    display: none !important;
+  }
+
+  .bmb_generic_card_button-slot-default {
+    display: block !important;
+  }
+
+  .bmb_generic_card_button-slot-large:not(:empty) {
+    display: block !important;
+  }
+
+  .bmb_generic_card_button-slot-large:not(:empty)
+    ~ .bmb_generic_card_button-slot-default {
+    display: none !important;
+  }
+}
