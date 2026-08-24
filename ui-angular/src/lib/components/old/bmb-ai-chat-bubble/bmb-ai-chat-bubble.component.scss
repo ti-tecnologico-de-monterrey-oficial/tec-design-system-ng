@@ -26,6 +26,10 @@
   &-user {
     justify-content: flex-end;
 
+    .bmb_ai-chat-bubble-container {
+      align-items: flex-end;
+    }
+
     .bmb_ai-chat-bubble-profile {
       align-items: flex-end;
       margin-bottom: rem.rem_calc(36);
@@ -38,8 +42,7 @@
     }
 
     .bmb_ai-chat-bubble-extra {
-      justify-content: flex-start;
-      margin-right: rem.rem_calc(45);
+      justify-content: flex-end;
     }
   }
 
@@ -129,6 +132,29 @@
         align-items: center;
         gap: 0.5rem;
       }
+
+      &-user {
+        min-width: rem.rem_calc(24);
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 150ms ease;
+      }
+    }
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    &-user:hover &-extra-container-user,
+    &-user:focus-within &-extra-container-user,
+    &-extra-container-user.is-copy-result-container {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+
+  @media (hover: none), (pointer: coarse) {
+    &-extra-container-user {
+      opacity: 1;
+      visibility: visible;
     }
   }
 }

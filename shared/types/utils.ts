@@ -138,7 +138,7 @@ export interface IBmbActionHeader {
   isAccentColor?: boolean;
   link?: string;
   target?: IBmbTargetLink;
-  action: (event?: Event, data?: any) => void;
+  action?: (event?: Event, data?: any) => void;
 }
 
 export interface IBmbLinkConfiguration extends IBmbLinkInfo {
