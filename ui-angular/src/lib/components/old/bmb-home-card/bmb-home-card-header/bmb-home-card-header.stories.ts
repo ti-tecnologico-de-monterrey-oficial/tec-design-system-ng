@@ -71,14 +71,6 @@ ${getBasicExampleBlock('BmbHomeCardHeaderComponent')}
     onClose: DBmbHomeCardHeaderParamDesc.onClose,
     onBack: DBmbHomeCardHeaderParamDesc.onBack,
     onExpandClick: DBmbHomeCardHeaderParamDesc.onExpandClick,
-    test_text: {
-      name: 'Text',
-      description: 'Header content example.',
-      table: {
-        category: 'Example',
-        type: { summary: 'string' },
-      },
-    },
   },
   args: {
     leftIcon: 'chevron_left',
@@ -91,25 +83,36 @@ ${getBasicExampleBlock('BmbHomeCardHeaderComponent')}
       {
         icon: 'language_spanish',
         iconActiveToggle: 'language_us',
-        isAccentColor: 'false',
+        isAccentColor: false,
         tooltipText: 'Language',
+        action: () => {
+          console.info('Language');
+        },
       },
       {
         icon: 'edit',
         tooltipText: 'Edit',
+        action: () => {
+          console.info('Edit');
+        },
       },
       {
         icon: 'delete',
         tooltipText: 'Delete',
+        action: () => {
+          console.info('Delete');
+        },
       },
       {
         icon: 'info',
         tooltipText: 'Info',
+        action: () => {
+          console.info('Info');
+        },
       },
     ],
     showRightButton: true,
     isMobile: false,
-    test_text: 'hello world',
     isExpanded: false,
     onExpandClick: () => console.log('Expand clicked'),
     onClose: () => console.log('Close clicked'),

@@ -30,8 +30,8 @@ import { BmbVerticalLayoutItemDirective } from '../../../../directives/old/bmb-l
 })
 export class BmbItemInformativeTextComponent {
   icon = input<string>('');
-  itemTitle = input.required<string>();
-  supportText = input.required<string>();
+  itemTitle = input<string>();
+  supportText = input<string>();
   supportTextLinkLabel = input<string>();
   supportTextLink = input<string>();
   supportTextTarget = input<IBmbTargetLink>('_blank');

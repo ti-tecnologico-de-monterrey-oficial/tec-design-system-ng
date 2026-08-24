@@ -11,12 +11,17 @@ import {
   getBasicExampleBlock,
   getGeneralComponentDescription,
   getGeneralDescription,
+  getOnEvent,
   getSpecialSpecifications,
   RELEVANT_TITLE,
 } from '@docs/utils/utils';
-import { DBmbIconParamDesc } from '@docs/utils/parameterDescriptions';
+import {
+  DBmbIconParamDesc,
+  getOnClickParam,
+  getOnEventParam,
+} from '@docs/utils/parameterDescriptions';
 
-const GET_ACTION_DESCRIPTION: string = `
+const GET_ACTION_DESCRIPTION = `
 ${getAlertBlockquote(
   `The \`getAction\` event emits an object containing the triggered action, the related message information, and the native browser event.
 >
@@ -29,7 +34,7 @@ Example:
   },
 )}
 `,
-  SUPPORTED_MESSAGES_TYPE: string = `
+  SUPPORTED_MESSAGES_TYPE = `
 Supported message types include:
 - text messages
 - images
@@ -179,6 +184,9 @@ Available actions:
         },
       },
     },
+    getOptionClicked: getOnClickParam(
+      getOnEvent('prompt option', 'getOptionClicked', 'IBmbChatOptionEvent'),
+    ),
   },
   args: {
     botIcon: 'bot_tecStandar',
@@ -193,6 +201,12 @@ Available actions:
       content: {
         text: 'Hello! How can I help you today?',
       },
+    },
+    getAction: ($event: undefined) => {
+      console.info('getAction', $event);
+    },
+    getOptionClicked: ($event: undefined) => {
+      console.info('getOptionClicked', $event);
     },
   },
 } as Meta<typeof BmbAiChatBubbleComponent>;
@@ -246,13 +260,14 @@ export const Options: Story = {
         options: [
           {
             id: '1',
-            label: 'Retry',
+            label: 'Option for conversational text-based prompts 1',
+            action: () => {
+              console.info('option');
+            },
           },
           {
             id: '2',
-            label: 'Documentation',
-            href: 'https://angular.dev',
-            target: '_blank',
+            label: 'Option for conversational text-based prompts 2',
           },
         ],
       },
