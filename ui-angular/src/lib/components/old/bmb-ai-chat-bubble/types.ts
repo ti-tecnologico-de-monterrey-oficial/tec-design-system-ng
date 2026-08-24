@@ -53,6 +53,11 @@ export interface BmbLinkMessage extends BmbChatBaseMessage {
   };
 }
 
+export interface IBmbChatOptionEvent {
+  option: BmbChatOption;
+  event: Event;
+}
+
 export interface BmbChatOption {
   id: string;
   label: string;

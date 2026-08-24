@@ -82,7 +82,7 @@ export class BmbDropzoneComponent implements OnInit, OnChanges {
   errorMessage = input<string>(); //Deprecated
   errorMessageFormat = input<string>();
   errorMessageSize = input<string>();
-  errorMessageInvalidName = input<string>();
+  errorMessageInvalidName = input<string>(); // Deprecated
   fileSize = input<number>(2);
   formatFilesLabel = input<string>();
   linkFilesSupported = input<string>('');

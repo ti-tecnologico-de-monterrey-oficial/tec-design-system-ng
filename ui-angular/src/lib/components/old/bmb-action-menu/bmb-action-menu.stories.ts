@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Meta, moduleMetadata, StoryObj } from '@storybook/angular';
 import { BmbActionMenuComponent } from './bmb-action-menu.component';
 import {

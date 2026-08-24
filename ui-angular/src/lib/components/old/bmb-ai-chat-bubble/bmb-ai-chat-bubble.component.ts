@@ -7,7 +7,12 @@ import {
 } from '@angular/core';
 
 import { CommonModule } from '@angular/common';
-import { BmbChatActionEvent, BmbChatMessage } from './types';
+import {
+  BmbChatActionEvent,
+  BmbChatMessage,
+  BmbChatOption,
+  IBmbChatOptionEvent,
+} from './types';
 import { ChatActionsComponent } from './bmb-chat-actions/bmb-chat-actions.component';
 import { TextMessageComponent } from './bmb-message-renderers/bmb-text-message/bmb-text-message.component';
 import { ImageMessageComponent } from './bmb-message-renderers/bmb-image-message/bmb-image-message.component';
@@ -71,6 +76,7 @@ export class BmbAiChatBubbleComponent {
    * Emits action events.
    */
   readonly getAction = output<BmbChatActionEvent>();
+  getOptionClicked = output<IBmbChatOptionEvent>();
 
   /**
    * Emits image not found events.
@@ -81,12 +87,16 @@ export class BmbAiChatBubbleComponent {
    * Bubble dynamic classes.
    */
   readonly bubbleClasses = computed(() => ({
-    'bmb-ai-chat-bubble-user': this.message().isUser,
-    'bmb-ai-chat-bubble-bot': !this.message().isUser,
-    'bmb-ai-chat-bubble-thinking': this.isThinking(),
+    'bmb_ai-chat-bubble-user': this.message().isUser,
+    'bmb_ai-chat-bubble-bot': !this.message().isUser,
+    'bmb_ai-chat-bubble-thinking': this.isThinking(),
   }));
 
   protected onAction(event: BmbChatActionEvent) {
     this.getAction.emit(event);
+  }
+
+  protected handleOptionClick(event: IBmbChatOptionEvent): void {
+    this.getOptionClicked.emit(event);
   }
 }
