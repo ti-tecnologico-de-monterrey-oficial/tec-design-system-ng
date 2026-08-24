@@ -1,4 +1,5 @@
-import { Meta, componentWrapperDecorator, StoryObj } from '@storybook/angular';
+import { componentWrapperDecorator } from '@storybook/angular';
+import type { Meta, StoryObj } from '@storybook/angular';
 import { BmbFabComponent } from './bmb-fab.component';
 import {
   attributes,
