@@ -248,7 +248,7 @@ export const Thinking: Story = {
   },
 };
 
-export const Options: Story = {
+export const PromptOptions: Story = {
   args: {
     message: {
       id: '5',
@@ -262,12 +262,36 @@ export const Options: Story = {
             id: '1',
             label: 'Option for conversational text-based prompts 1',
             action: () => {
-              console.info('option');
+              console.info('option 1');
             },
           },
           {
             id: '2',
             label: 'Option for conversational text-based prompts 2',
+            action: () => {
+              console.info('option 2');
+            },
+          },
+          {
+            id: '3',
+            label: 'Option for conversational text-based prompts 3',
+            action: () => {
+              console.info('option 3');
+            },
+          },
+          {
+            id: '4',
+            label: 'Option for conversational text-based prompts 4',
+            action: () => {
+              console.info('option 4');
+            },
+          },
+          {
+            id: '5',
+            label: 'Option for conversational text-based prompts 5',
+            action: () => {
+              console.info('option 5');
+            },
           },
         ],
       },
