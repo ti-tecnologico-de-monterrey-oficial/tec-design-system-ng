@@ -1,11 +1,6 @@
 import { DateTime } from 'luxon';
 import { IBbmBgAppearance } from '../bmb-advertisement-card/types';
-
-export interface ISelectedDate {
-  day: string;
-  month: string;
-  date: DateTime;
-}
+export type { ISelectedDate } from '@shared/types/components/hito-list';
 
 export interface ITimelineDayEvent {
   date: DateTime;

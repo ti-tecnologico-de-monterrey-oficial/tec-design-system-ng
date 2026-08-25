@@ -357,6 +357,22 @@ export const appRoutes: Route[] = [
       ),
   },
   {
+    path: 'components/hito-list',
+    title: 'BmbHitoList | Bamboo migration dashboard',
+    loadComponent: () =>
+      import('./components/hito-list-page/hito-list-page').then(
+        ({ HitoListPage }) => HitoListPage,
+      ),
+  },
+  {
+    path: 'components/icon-item',
+    title: 'BmbIconItem | Bamboo migration dashboard',
+    loadComponent: () =>
+      import('./components/icon-item-page/icon-item-page').then(
+        ({ IconItemPage }) => IconItemPage,
+      ),
+  },
+  {
     path: 'components/ai-chat-bubble',
     title: 'BmbAiChatBubble | Bamboo migration dashboard',
     loadComponent: () =>

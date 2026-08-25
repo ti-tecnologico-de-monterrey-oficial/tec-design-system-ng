@@ -4,8 +4,9 @@ import {
   input,
   ViewEncapsulation,
 } from '@angular/core';
-import { BmbItemComponent } from '../bmb-item/bmb-item.component';
+import { BmbItemComponent } from '../old/bmb-item/bmb-item.component';
 import { CommonModule } from '@angular/common';
+import { getIconItemClasses } from '@shared/logic/components/icon-item';
 
 @Component({
   selector: 'bmb-icon-item',
@@ -22,4 +23,8 @@ export class BmbIconItemComponent {
   label = input.required<string>();
   value = input.required<string>();
   showDivider = input<boolean>(true);
+
+  getClasses(showDivider: boolean): ReturnType<typeof getIconItemClasses> {
+    return getIconItemClasses(showDivider);
+  }
 }

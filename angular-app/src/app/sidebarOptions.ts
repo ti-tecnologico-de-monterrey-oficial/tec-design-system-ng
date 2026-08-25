@@ -180,6 +180,18 @@ export const sidebarOptions: SidebarElement[][] = [
           title: 'Breadcrumb',
           link: '/components/breadcrumb',
         },
+        {
+          id: 19,
+          icon: 'step',
+          title: 'Hito list',
+          link: '/components/hito-list',
+        },
+        {
+          id: 20,
+          icon: 'list',
+          title: 'Icon item',
+          link: '/components/icon-item',
+        },
       ],
     },
   ],

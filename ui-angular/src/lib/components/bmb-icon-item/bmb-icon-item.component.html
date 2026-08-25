@@ -1,6 +1,6 @@
 <bmb-item
   class="bmb_icon-item"
-  [ngClass]="{ no_divider: !showDivider() }"
+  [ngClass]="getClasses(showDivider())"
   [label]="label()"
   [icon]="icon()"
   [iconSize]="iconSize()"

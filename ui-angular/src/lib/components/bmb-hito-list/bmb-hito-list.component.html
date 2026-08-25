@@ -21,7 +21,11 @@
             >
               <h3
                 class="bmb_hito_list-content-item-title"
+                role="button"
+                tabindex="0"
                 (click)="handleDateChange({ event, month })"
+                (keydown.enter)="handleDateChange({ event, month })"
+                (keydown.space)="handleDateChange({ event, month })"
               >
                 {{ parseEvent(month, event) }}
               </h3>
@@ -37,9 +41,7 @@
                   ) {
                     <span
                       class="bmb_hito_list-content-item-circle"
-                      [ngClass]="
-                        'bmb_hito_list-content-item-circle-' + circle.type
-                      "
+                      [ngClass]="getEventTypeClass(circle.type)"
                     ></span>
                   }
                 }

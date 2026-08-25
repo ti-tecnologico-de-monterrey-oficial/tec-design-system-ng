@@ -10,7 +10,16 @@ import {
 } from '@angular/core';
 import { DateTime } from 'luxon';
 import { CommonModule } from '@angular/common';
-import { ISelectedDate } from '../bmb-timestream/types';
+import type {
+  IBmbHitoListEvents,
+  ISelectedDate,
+} from '@shared/types/components/hito-list';
+import {
+  formatHitoEventDate,
+  getHitoEventTypeClass,
+  getHitoMonthTitle,
+  getHitoSelectedDate,
+} from '@shared/logic/components/hito-list';
 
 @Component({
   selector: 'bmb-hito-list',
@@ -25,7 +34,7 @@ export class BmbHitoListComponent implements AfterViewInit {
   dateFormat = input<string>('dd/MM/yyyy');
   lang = input<string>('es');
   now = input<DateTime>(DateTime.now());
-  events = input<any>([]);
+  events = input<IBmbHitoListEvents>({});
   selectedDate = input<ISelectedDate>({
     day: '',
     month: '',
@@ -40,37 +49,43 @@ export class BmbHitoListComponent implements AfterViewInit {
     this.scrollToItem();
   }
 
-  scrollToItem() {
+  scrollToItem(): void {
     let currentMonthElement = this.monthList.nativeElement.querySelector(
       '.bmb_hito_list-content-item-current',
     );
     if (currentMonthElement) {
-      currentMonthElement.scrollIntoView();
+      currentMonthElement.scrollIntoView?.();
       this.monthList.nativeElement.scrollTop =
         this.monthList.nativeElement.scrollTop - 45;
     } else {
       currentMonthElement = this.monthList.nativeElement.querySelector(
         '.bmb_hito_list-item-current',
       );
-      currentMonthElement?.scrollIntoView();
+      currentMonthElement?.scrollIntoView?.();
     }
   }
 
-  getMonthTitle(month: string) {
-    return `${this.events()[month].name} ${this.events()[month].year}`;
+  getMonthTitle(month: string): string {
+    return getHitoMonthTitle(this.events(), month);
   }
 
   handleDateChange({ event, month }: { event: string; month: string }): void {
-    this.changeSelectedDate.emit({
-      month,
-      day: event,
-      date: this.events()[month].events[event].date,
-    });
+    this.changeSelectedDate.emit(
+      getHitoSelectedDate(this.events(), month, event),
+    );
   }
 
-  parseEvent(month: string, date: string) {
-    return this.events()
-      [month].events[date].date.setLocale(this.lang())
-      .toFormat('dd LLL yyyy');
+  parseEvent(month: string, date: string): string {
+    return formatHitoEventDate(
+      this.events(),
+      month,
+      date,
+      this.lang(),
+      this.dateFormat(),
+    );
+  }
+
+  getEventTypeClass(type: unknown): string {
+    return getHitoEventTypeClass(type);
   }
 }
