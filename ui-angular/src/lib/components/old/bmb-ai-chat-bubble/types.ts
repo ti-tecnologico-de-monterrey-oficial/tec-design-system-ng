@@ -53,6 +53,11 @@ export interface BmbLinkMessage extends BmbChatBaseMessage {
   };
 }
 
+export interface IBmbChatOptionEvent {
+  option: BmbChatOption;
+  event: Event;
+}
+
 export interface BmbChatOption {
   id: string;
   label: string;
@@ -85,6 +90,8 @@ export type BmbChatMessage =
   | BmbTemplateMessage;
 
 export type BmbChatAction = 'repeat' | 'voice' | 'copy' | 'like' | 'dislike';
+
+export type BmbChatCopyState = 'idle' | 'pending' | 'success' | 'error';
 
 export interface BmbChatActionEvent {
   /**

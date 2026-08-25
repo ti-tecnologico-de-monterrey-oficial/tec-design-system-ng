@@ -1,12 +1,24 @@
-.bmb-ai-chat-bubble-icon {
+.bmb_ai-chat-bubble-icon {
   color: var(--general-contrasts-50);
   cursor: pointer;
+  transition:
+    color 150ms ease,
+    opacity 150ms ease;
 
   &:hover {
     color: var(--general-contrasts-100);
   }
 
   &-active {
+    color: var(--general-contrasts-100);
+  }
+
+  &.is-disabled {
+    cursor: default;
+    pointer-events: none;
+  }
+
+  &.is-copy-result {
     color: var(--general-contrasts-100);
   }
 }

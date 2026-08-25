@@ -13,15 +13,20 @@ export const ContentTab = ({ children, status, showTableOfContents, contentsSele
 
 export const Tabs = ({ tabs = [], content = [], showTableOfContents }) => {
   const [selectedTab, setSelectedTab] = useState(0);
+  const selectedContent = content[selectedTab];
 
 return (
 
 <div className="bmb_doc-tabs">
   <ul role="tablist" className="bmb_doc-tabs-header">
     {tabs.map((tab, index) => (
-      <li role="tab" key={index} className="bmb_doc-tabs-item">
+      <li role="presentation" key={index} className="bmb_doc-tabs-item">
         <button
-          role="button"
+          type="button"
+          role="tab"
+          id={`tab_${index}`}
+          aria-controls={`tabpanel_${index}`}
+          aria-selected={selectedTab === index}
           className={`bmb_doc-tabs-button ${selectedTab === index ? 'active' : ''}`}
           onClick={() => setSelectedTab(index)}
         >
@@ -31,23 +36,23 @@ return (
     ))}
   </ul>
   <section className="bmb_doc-tabs-content">
-    {content.map((item, index) => (
+    {selectedContent && (
       <div
         role="tabpanel"
-        key={index}
-        hidden={selectedTab !== index}
+        id={`tabpanel_${selectedTab}`}
+        aria-labelledby={`tab_${selectedTab}`}
         className="bmb_doc-tabs-panel"
       >
         <br />
         <ContentTab
-          status={selectedTab === index ? 'active' : 'inactive'}
-          contentsSelector={`#tab_${index}`}
+          status="active"
+          contentsSelector={`#tab_content_${selectedTab}`}
           showTableOfContents={showTableOfContents}
         >
-          {item}
+          {selectedContent}
         </ContentTab>
       </div>
-    ))}
+    )}
   </section>
 </div>
 ); }

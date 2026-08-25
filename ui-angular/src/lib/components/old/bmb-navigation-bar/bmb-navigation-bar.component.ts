@@ -2,7 +2,6 @@ import {
   ChangeDetectionStrategy,
   Component,
   input,
-  output,
   ViewEncapsulation,
 } from '@angular/core';
 import {
@@ -39,6 +38,6 @@ export class BmbNavigationBarComponent {
   isMitecHeader = input<boolean>(false);
 
   handleClick(actionHeader: IBmbActionHeader): void {
-    actionHeader.action();
+    actionHeader.action?.();
   }
 }

@@ -21,7 +21,11 @@ yarn-error.log
 .settings/
 *.sublime-workspace
 .env
-/.nx
+/.nx/installation
+/.nx/cache
+/.nx/workspace-data
+/.nx/self-healing
+/.nx/migrate-runs
 
 # Visual Studio Code
 .vscode/*

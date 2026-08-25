@@ -7,6 +7,8 @@ export * from './components/badge';
 export * from './components/bottom-navigation-bar';
 export * from './components/card';
 export * from './components/divider';
+export * from './components/dot-paginator';
+export * from './components/fab';
 export * from './components/grade-value';
 export * from './components/iframe';
 export * from './components/interactive-icon';
@@ -20,7 +22,7 @@ export * from './components/tooltip';
 export * from './input';
 export * from './utils';
 export * from './components/action-icon';
-export * from './components/skeleton';
+export type { IBmbDataTopBar } from './components/breadcrumb';
 
 // types
 export * from './colors';
@@ -156,18 +158,6 @@ export interface IBmbCollaboratorProfileData {
   leader: IBmbHierarchyProfileData | null;
   generalist: IBmbHierarchyProfileData | null;
   enableRolSwitch?: boolean;
-}
-
-export interface IBmbActionHeader {
-  icon: string;
-  alt?: string;
-  iconSize?: number;
-  iconActiveToggle?: string;
-  isToggleActive?: boolean;
-  isAccentColor?: boolean;
-  link?: string;
-  target?: IBmbTargetLink;
-  action: (event?: Event) => void;
 }
 
 export interface IBmbLinkConfiguration extends IBmbLinkInfo {

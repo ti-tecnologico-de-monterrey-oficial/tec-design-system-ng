@@ -8,7 +8,7 @@ import {
 } from '@angular/core';
 import { BmbHomeCardComponent } from '../bmb-home-card/bmb-home-card.component';
 import { IBmbColor } from '../../../_shared/types/colors';
-import { IBmbDataTopBar } from '../bmb-breadcrumb/bmb-breadcrumb.component';
+import type { IBmbDataTopBar } from '../../../_shared/types';
 import {
   BmbTimestreamComponent,
   IBmbClamp,

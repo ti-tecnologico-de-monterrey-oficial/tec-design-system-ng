@@ -341,7 +341,37 @@ export const appRoutes: Route[] = [
       ),
   },
   {
-  path: 'components/ai-chat-bubble',
+    path: 'components/bookmark',
+    title: 'BmbBookmark | Bamboo migration dashboard',
+    loadComponent: () =>
+      import('./components/bookmark-page/bookmark-page').then(
+        ({ BookmarkPage }) => BookmarkPage,
+      ),
+  },
+  {
+    path: 'components/breadcrumb',
+    title: 'BmbBreadcrumb | Bamboo migration dashboard',
+    loadComponent: () =>
+      import('./components/breadcrumb-page/breadcrumb-page').then(
+        ({ BreadcrumbPage }) => BreadcrumbPage,
+      ),
+  },
+  {
+    path: 'components/dot-paginator',
+    title: 'BmbDotPaginator | Bamboo migration dashboard',
+    loadComponent: () =>
+      import('./components/dot-paginator-page/dot-paginator-page').then(
+        ({ DotPaginatorPage }) => DotPaginatorPage,
+      ),
+  },
+  {
+    path: 'components/fab',
+    title: 'BmbFab | Bamboo migration dashboard',
+    loadComponent: () =>
+      import('./components/fab-page/fab-page').then(({ FabPage }) => FabPage),
+  },
+  {
+    path: 'components/ai-chat-bubble',
     title: 'BmbAiChatBubble | Bamboo migration dashboard',
     loadComponent: () =>
       import('./components/ai-chat-bubble-page/ai-chat-bubble-page').then(

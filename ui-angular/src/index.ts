@@ -35,7 +35,7 @@ export * from './lib/components/bmb-logo/bmb-logo.component';
 export * from './lib/components/old/bmb-icon/bmb-icon.component';
 export * from './lib/components/bmb-notification-counter/bmb-notification-counter.component';
 export * from './lib/components/bmb-badge/bmb-badge.component';
-export * from './lib/components/old/bmb-breadcrumb/bmb-breadcrumb.component';
+export * from './lib/components/bmb-breadcrumb/bmb-breadcrumb.component';
 export * from './lib/components/old/bmb-card-button/bmb-card-button.component';
 export * from './lib/components/old/bmb-dropdown-menu/bmb-dropdown-menu.component';
 export * from './lib/components/old/bmb-filter-card/bmb-filter-card.component';
@@ -49,7 +49,7 @@ export * from './lib/components/bmb-divider/bmb-divider.component';
 export * from './lib/components/bmb-container/bmb-container.component';
 export * from './lib/components/bmb-user-image/bmb-user-image.component';
 export * from './lib/components/old/bmb-header-mobile/bmb-header-mobile.component';
-export * from './lib/components/old/bmb-dot-paginator/bmb-dot-paginator.component';
+export * from './lib/components/bmb-dot-paginator/bmb-dot-paginator.component';
 export * from './lib/components/old/bmb-container-button/bmb-container-button.component';
 export * from './lib/components/old/bmb-container-button/bmb-container-button-default/bmb-container-button-default.component';
 export * from './lib/components/old/bmb-container-button/bmb-container-button-grade/bmb-container-button-grade.component';
@@ -61,7 +61,7 @@ export * from './lib/components/old/bmb-container-button/bmb-container-button-us
 export * from './lib/components/old/bmb-box-icon/bmb-box-icon.component';
 
 export * from './lib/components/old/bmb-interactive-icon/bmb-interactive-icon.component';
-export * from './lib/components/old/bmb-fab/bmb-fab.component';
+export * from './lib/components/bmb-fab/bmb-fab.component';
 export * from './lib/components/old/bmb-theme/bmb-theme.component';
 export * from './lib/components/old/bmb-home-section/bmb-home-section.component';
 export * from './lib/components/old/bmb-loader/bmb-loader.component';
@@ -135,7 +135,7 @@ export * from './lib/components/old/bmb-simple-header/bmb-simple-header.componen
 export * from './lib/components/old/bmb-drawer-overlay/bmb-drawer-overlay.component';
 export * from './lib/components/bmb-mitec-logo-animation/bmb-mitec-logo-animation.component';
 export * from './lib/components/old/bmb-profile/bmb-profile.component';
-export * from './lib/components/old/bmb-bookmark/bmb-bookmark.component';
+export * from './lib/components/bmb-bookmark/bmb-bookmark.component';
 export * from './lib/components/old/bmb-text-editor/bmb-text-editor.component';
 export * from './lib/components/bmb-server-table/bmb-server-table.component';
 export * from './lib/components/old/bmb-list-items/bmb-list-items.component';
@@ -164,6 +164,7 @@ export * from './lib/components/old/bmb-modal/bmb-native-modal.component';
 export * from './lib/directives/old/bmb-selector/bmb-selector.directive';
 export * from './lib/components/old/bmb-table-lite/bmb-table-lite.component';
 export * from './lib/components/old/bmb-search-card/bmb-search-card.component';
+export * from './lib/components/old/bmb-ai-chat-card/bmb-ai-chat-card.component';
 
 // types
 export * from './lib/_shared/types';

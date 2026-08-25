@@ -10,13 +10,19 @@ import {
 import { IBmbColor } from '../../../_shared/types/colors';
 import { CommonModule } from '@angular/common';
 import { logDeprecatedInput } from '../../../_shared/logic/logDeprecatedInput';
-import { BmbHomeCardHeaderComponent } from '../bmb-home-card/bmb-home-card-header/bmb-home-card-header.component';
 import { BmbDividerComponent } from '../../bmb-divider/bmb-divider.component';
+import { BmbTitleContentComponent } from '../bmb-title-content/bmb-title-content.component';
+import { BmbContainerComponent } from '../../bmb-container/bmb-container.component';
 
 @Component({
   selector: 'bmb-action-menu',
   standalone: true,
-  imports: [CommonModule, BmbHomeCardHeaderComponent, BmbDividerComponent],
+  imports: [
+    CommonModule,
+    BmbDividerComponent,
+    BmbTitleContentComponent,
+    BmbContainerComponent,
+  ],
   templateUrl: './bmb-action-menu.component.html',
   styleUrl: './bmb-action-menu.component.scss',
   encapsulation: ViewEncapsulation.None,
@@ -24,13 +30,13 @@ import { BmbDividerComponent } from '../../bmb-divider/bmb-divider.component';
 })
 export class BmbActionMenuComponent {
   componentTitle = input<string>(); // once title is removed, this should be required
-  subtitle = input<string>();
   icon = input<string>('');
   iconSize = input<number>(24);
   bgIconAppearance = input<IBmbColor>();
   showHeader = input<boolean>(true);
 
   title = input<string>(); // deprecated
+  subtitle = input<string>(); // deprecated
 
   protected genericMenuContent = contentChildren<TemplateRef<any>>(
     TemplateRef<any>,

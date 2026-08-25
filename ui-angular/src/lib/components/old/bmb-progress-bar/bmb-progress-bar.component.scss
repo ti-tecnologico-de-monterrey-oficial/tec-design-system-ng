@@ -1,3 +1,4 @@
+@use 'sass:map';
 @use '../../../../../../shared/assets/styles/base/rem' as rem;
 @use '../../../../../../shared/assets/styles/base/fonts' as fonts;
 
@@ -14,6 +15,10 @@ $colorType: (
   border-radius: rem.rem_calc(8);
   background-color: var(--containers-modal);
   color: var(--general-contrasts-100);
+
+  &-wrapper {
+    overflow: hidden;
+  }
 
   &-container {
     margin: var(--bmb-spacing-s) 0;
@@ -54,7 +59,7 @@ $colorType: (
     transition: 0.3s linear;
     transition-property: width, background-color;
 
-    background-color: map-get($colorType, 'info');
+    background-color: map.get($colorType, 'info');
 
     @each $name, $color in $colorType {
       &-#{$name} {

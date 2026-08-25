@@ -18,7 +18,7 @@ import { defaultBotList } from './bot_list';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { BmbDotPaginatorComponent } from '../bmb-dot-paginator/bmb-dot-paginator.component';
+import { BmbDotPaginatorComponent } from '../../bmb-dot-paginator/bmb-dot-paginator.component';
 import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
 import { ClickOutsideDirective } from '../../../directives/old/utils/clickoutside.directive';
 import { BmbActionMenuComponent } from '../bmb-action-menu/bmb-action-menu.component';
@@ -97,8 +97,12 @@ export class BmbChatBarComponent implements OnInit {
   @ViewChild('mobileBotSelectorTemplate')
   mobileBotSelectorTemplate!: TemplateRef<unknown>;
 
-  private readonly contentProjected: BmbProjectionContentService = inject(BmbProjectionContentService);
-  private readonly nativeModalService: BmbNativeModalService = inject(BmbNativeModalService);
+  private readonly contentProjected: BmbProjectionContentService = inject(
+    BmbProjectionContentService,
+  );
+  private readonly nativeModalService: BmbNativeModalService = inject(
+    BmbNativeModalService,
+  );
 
   ngOnInit(): void {
     this.currentBot.update(

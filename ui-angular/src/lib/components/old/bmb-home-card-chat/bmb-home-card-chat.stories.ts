@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Component, input } from '@angular/core';
 import { Meta, StoryFn, moduleMetadata } from '@storybook/angular';
 import {
@@ -96,7 +97,7 @@ class StorybookModalWrapperComponent {
 }
 
 export default {
-  title: 'Components/Containers/AI Chat card',
+  title: 'Deprecated/Home card chat',
   component: BmbTopBarComponent,
   tags: ['autodocs'],
   decorators: [

@@ -13,6 +13,7 @@ import {
   BmbChatAction,
   BmbChatActionConfig,
   BmbChatActionEvent,
+  BmbChatCopyState,
   BmbChatMessage,
 } from '../types';
 import { BmbIconComponent } from '../../bmb-icon/bmb-icon.component';
@@ -28,6 +29,8 @@ import { BmbTranslationsService } from '../../../../services/translations/transl
 })
 export class ChatActionsComponent {
   readonly message = input.required<BmbChatMessage>();
+  readonly actions = input<BmbChatAction[] | null>(null);
+  readonly copyState = input<BmbChatCopyState>('idle');
   private readonly translationService = inject(BmbTranslationsService);
   constructor() {
     effect(
@@ -94,7 +97,11 @@ export class ChatActionsComponent {
    * Visible actions.
    */
   readonly visibleActions = computed(() =>
-    this.internalActions().filter((action) => action.visible !== false),
+    this.internalActions().filter(
+      (action) =>
+        action.visible !== false &&
+        (this.actions() === null || this.actions()!.includes(action.action)),
+    ),
   );
 
   /**
@@ -103,6 +110,11 @@ export class ChatActionsComponent {
   readonly actionTriggered = output<BmbChatActionEvent>();
 
   protected triggerAction(action: BmbChatAction, event: Event) {
+    event.preventDefault();
+    event.stopPropagation();
+
+    if (action === 'copy' && this.copyState() !== 'idle') return;
+
     if (action === 'like' || action === 'dislike') {
       this.internalActions.update((actions) =>
         actions.map((item) => {
@@ -131,5 +143,12 @@ export class ChatActionsComponent {
       message: this.message(),
       nativeEvent: event,
     });
+  }
+
+  protected getActionIcon(action: BmbChatActionConfig): string {
+    if (action.action !== 'copy') return action.icon;
+    if (this.copyState() === 'success') return 'check';
+    if (this.copyState() === 'error') return 'close';
+    return action.icon;
   }
 }

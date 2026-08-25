@@ -14,26 +14,20 @@ import { Router } from '@angular/router';
 import {
   BmbLayoutDirective,
   BmbLayoutItemDirective,
-  BmbAccordionComponent,
-  BmbInputComponent,
-  BmbFormValidatorComponent,
   BmbButtonDirective,
   BmbVerticalLayoutDirective,
   BmbVerticalLayoutItemDirective,
-  BmbContainerButtonComponent,
-  BmbTextLinkComponent,
   BmbDividerComponent,
   BmbHomeCardComponent,
   IBmbProjectionContent,
   BmbProjectionContentService,
-  BmbMediaCardComponent,
   BmbImageComponent,
   BmbNativeModalService,
   ThemeService,
-  BmbContainerButtonComplexAlternativeComponent,
   BmbTextEditorComponent,
   IBmbActionHeader,
 } from 'ui-angular';
+
 import { HelpMenuComponent } from '../../components/help-menu/help-menu.component';
 import { ModalWDropdownComponent } from '../../components/modal-w-dropdown/modal-w-dropdown.component';
 import { FormControl } from '@angular/forms';
@@ -45,19 +39,12 @@ import { FormControl } from '@angular/forms';
     CommonModule,
     BmbLayoutDirective,
     BmbLayoutItemDirective,
-    BmbAccordionComponent,
-    BmbInputComponent,
-    BmbFormValidatorComponent,
     BmbButtonDirective,
     BmbVerticalLayoutDirective,
     BmbVerticalLayoutItemDirective,
-    BmbContainerButtonComponent,
-    BmbTextLinkComponent,
     BmbDividerComponent,
     BmbHomeCardComponent,
-    BmbMediaCardComponent,
     BmbImageComponent,
-    BmbContainerButtonComplexAlternativeComponent,
     BmbTextEditorComponent,
   ],
   templateUrl: './home.component.html',
@@ -231,6 +218,14 @@ export class HomeComponent {
 
   homeCardActions: IBmbActionHeader[] = [
     {
+      icon: 'language_spanish',
+      iconActiveToggle: 'language_us',
+      alt: 'Language',
+      action: (event) => {
+        console.info('Edit action clicked', event);
+      },
+    },
+    {
       icon: 'edit',
       alt: 'Edit',
       action: (event) => {
@@ -242,6 +237,13 @@ export class HomeComponent {
       alt: 'Delete',
       action: (event) => {
         console.info('Delete action clicked', event);
+      },
+    },
+    {
+      icon: 'info',
+      alt: 'Info',
+      action: (event) => {
+        console.info('Info action clicked', event);
       },
     },
   ];

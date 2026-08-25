@@ -4,6 +4,7 @@ import {
   computed,
   ViewEncapsulation,
   inject,
+  effect,
 } from '@angular/core';
 import { BmbNotificationService } from '../../../services/old/notification/notification.service';
 import { INotification } from '../bmb-push-notification/types';
@@ -48,6 +49,34 @@ export class BmbPortalComponent {
   notificationsList = computed(() =>
     this.notificationSignal.getNotificationList(),
   );
+  projectedContents = computed(() =>
+    this.projectionService.getAllProjectedContents(),
+  );
+  modalList = computed(() => this.modalService.getModalList());
+
+
+  constructor() {
+    effect((onCleanup) => {
+      const projectedContent = this.projectedContent();
+      const modals = this.modalList();
+
+      const popstateHandler = () => {
+        if (modals.length > 0) {
+          this.modalService.closeAllModals();
+        }
+
+        if (projectedContent.length > 0) {
+          this.projectionService.closeContent();
+        }
+      };
+
+      window.addEventListener('popstate', popstateHandler);
+
+      onCleanup(() => {
+        window.removeEventListener('popstate', popstateHandler);
+      });
+    });
+  }
 
   closeNotification(notification: INotification) {
     if (notification.id) {
@@ -87,8 +116,4 @@ export class BmbPortalComponent {
   hasToast(): boolean {
     return this.notificationsList().some((n) => n.component === 'toast');
   }
-
-  projectedContents = computed(() =>
-    this.projectionService.getAllProjectedContents(),
-  );
 }

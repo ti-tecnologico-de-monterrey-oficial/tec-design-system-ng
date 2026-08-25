@@ -1,5 +1,8 @@
 import { Meta, moduleMetadata, StoryObj } from '@storybook/angular';
-import { BmbChatBubblesComponent } from './bmb-chat-bubbles.component';
+import {
+  BmbChatBubblesComponent,
+  IBmbChatActionEvent,
+} from './bmb-chat-bubbles.component';
 import {
   getGeneralComponentDescription,
   getGeneralDescription,
@@ -21,8 +24,7 @@ The event only returns a signal to indicates the click event.
 `;
 
 export default {
-  title: 'Components/Containers/AI Chat Bubble/AI Chat bubble LTS',
-  tags: ['!autodocs'],
+  title: 'Deprecated/Chat bubble',
   component: BmbChatBubblesComponent,
   decorators: [
     moduleMetadata({
@@ -248,7 +250,7 @@ En escritorio, coloca el cursor sobre la burbuja para mostrar el icono. En dispo
     },
   },
 };
-/*
+
 export const UserMsg: Story = {
   args: {
     message: {
@@ -465,4 +467,3 @@ export const ChatUsingGetAction: Story = {
     },
   },
 };
-*/

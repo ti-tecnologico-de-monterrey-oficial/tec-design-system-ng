@@ -79,6 +79,37 @@ describe('ChatActionsComponent', () => {
     expect(component.visibleActions().length).toBe(0);
   });
 
+  it('should filter actions using the configured action list', () => {
+    componentRef.setInput('actions', ['copy']);
+
+    fixture.detectChanges();
+
+    expect(component.visibleActions().map((action) => action.action)).toEqual([
+      'copy',
+    ]);
+  });
+
+  it('should display copy result icons for success and error', () => {
+    const copyAction = component
+      .internalActions()
+      .find((action) => action.action === 'copy')!;
+
+    componentRef.setInput('copyState', 'success');
+    expect(component['getActionIcon'](copyAction)).toBe('check');
+
+    componentRef.setInput('copyState', 'error');
+    expect(component['getActionIcon'](copyAction)).toBe('close');
+  });
+
+  it('should ignore copy while a result state is active', () => {
+    jest.spyOn(component.actionTriggered, 'emit');
+    componentRef.setInput('copyState', 'success');
+
+    component['triggerAction']('copy', new MouseEvent('click'));
+
+    expect(component.actionTriggered.emit).not.toHaveBeenCalled();
+  });
+
   it('should emit action event', () => {
     jest.spyOn(component.actionTriggered, 'emit');
 
@@ -155,7 +186,7 @@ describe('ChatActionsComponent', () => {
     fixture.detectChanges();
 
     const activeElement = fixture.debugElement.query(
-      By.css('.bmb-ai-chat-bubble-icon-active'),
+      By.css('.bmb_ai-chat-bubble-icon-active'),
     );
 
     expect(activeElement).toBeTruthy();
