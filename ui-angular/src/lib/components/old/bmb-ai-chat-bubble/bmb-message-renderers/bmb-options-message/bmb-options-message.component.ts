@@ -13,6 +13,8 @@ import {
 import { BmbItemInformativeTextComponent } from '../../../bmb-item/bmb-item-informative-text/bmb-item-informative-text.component';
 import { BmbItemActionsComponent } from '../../../bmb-item/bmb-item-actions/bmb-item-actions.component';
 import { BmbDividerComponent } from '../../../../bmb-divider/bmb-divider.component';
+import { BmbVerticalLayoutDirective } from '../../../../../directives/old/bmb-layout/bmb-vertical-layout/bmb-vertical-layout.directive';
+import { BmbVerticalLayoutItemDirective } from '../../../../../directives/old/bmb-layout/bmb-vertical-layout/bmb-vertical-layout-item.directive';
 
 @Component({
   selector: 'bmb-options-message',
@@ -21,7 +23,9 @@ import { BmbDividerComponent } from '../../../../bmb-divider/bmb-divider.compone
     CommonModule,
     BmbItemInformativeTextComponent,
     BmbItemActionsComponent,
-    BmbDividerComponent
+    BmbDividerComponent,
+    BmbVerticalLayoutDirective,
+    BmbVerticalLayoutItemDirective,
   ],
   templateUrl: './bmb-options-message.component.html',
   styleUrl: './bmb-options-message.component.scss',

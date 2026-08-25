@@ -3,7 +3,6 @@ import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
 import { RouterTestingModule } from '@angular/router/testing';
 
 import { BmbAiChatBubbleComponent } from './bmb-ai-chat-bubble.component';
-import { BmbChatBubblesComponent } from '../bmb-chat-bubbles/bmb-chat-bubbles.component';
 import { CommonModule } from '@angular/common';
 import {
   BlockquoteType,
@@ -18,7 +17,6 @@ import {
 import {
   DBmbIconParamDesc,
   getOnClickParam,
-  getOnEventParam,
 } from '@docs/utils/parameterDescriptions';
 
 const GET_ACTION_DESCRIPTION = `
@@ -46,10 +44,9 @@ Supported message types include:
 export default {
   title: 'Components/Containers/AI Chat Bubble',
   component: BmbAiChatBubbleComponent,
-  tags: ['!autodocs'],
   decorators: [
     moduleMetadata({
-      imports: [CommonModule, RouterTestingModule, BmbChatBubblesComponent],
+      imports: [CommonModule, RouterTestingModule],
     }),
   ],
   parameters: {
@@ -172,6 +169,21 @@ Available actions:
       },
     },
 
+    userActions: {
+      control: 'object',
+      description:
+        'Actions displayed for user messages. Copy is enabled by default.',
+      table: {
+        category: 'Properties',
+        type: {
+          summary: 'BmbChatAction[]',
+        },
+        defaultValue: {
+          summary: "['copy']",
+        },
+      },
+    },
+
     imageNotFoundError: DBmbIconParamDesc.imageNotFoundError,
 
     getAction: {
@@ -193,6 +205,7 @@ Available actions:
     testId: 'chat-bubble',
     isThinking: false,
     showActions: true,
+    userActions: ['copy'],
     message: {
       id: '1',
       type: 'text',
@@ -217,7 +230,8 @@ export const Default: Story = {};
 
 export const UserMessage: Story = {
   args: {
-    showActions: false,
+    showActions: true,
+    userActions: ['copy'],
 
     message: {
       id: '2',
@@ -248,7 +262,7 @@ export const Thinking: Story = {
   },
 };
 
-export const Options: Story = {
+export const PromptOptions: Story = {
   args: {
     message: {
       id: '5',
@@ -262,12 +276,36 @@ export const Options: Story = {
             id: '1',
             label: 'Option for conversational text-based prompts 1',
             action: () => {
-              console.info('option');
+              console.info('option 1');
             },
           },
           {
             id: '2',
             label: 'Option for conversational text-based prompts 2',
+            action: () => {
+              console.info('option 2');
+            },
+          },
+          {
+            id: '3',
+            label: 'Option for conversational text-based prompts 3',
+            action: () => {
+              console.info('option 3');
+            },
+          },
+          {
+            id: '4',
+            label: 'Option for conversational text-based prompts 4',
+            action: () => {
+              console.info('option 4');
+            },
+          },
+          {
+            id: '5',
+            label: 'Option for conversational text-based prompts 5',
+            action: () => {
+              console.info('option 5');
+            },
           },
         ],
       },
@@ -341,18 +379,38 @@ export const MixedMessage: Story = {
 export const ChatGPTMessage: Story = {
   render: () => ({
     template: `
-      <div style="display: flex; flex-direction: column; gap: 1rem; width: 100%;">
-        <bmb-chat-bubble
-          [message]="assistantMessage"
-          [gptBot]="true"
-          [gptIcons]="true"
-        />
+    <div style="display: flex; flex-direction: column; gap: 1rem; width: 100%;">
+      <bmb-ai-chat-bubble
+        [botIcon]="'bot_tecStandar'"
+        [testId]="'chat-bubble'"
+        [message]="{
+          id: '5', type: 'options', timestamp: '2026-08-25T01:28:13.313Z',
+          isUser: false,
+          content: {text: 'Choose one option:',
+          options: [{id: '1', label: 'Option for conversational text-based prompts 1'}, {id: '2', label: 'Option for conversational text-based prompts 2'}, {id: '3', label: 'Option for conversational text-based prompts 3'}, {id: '4', label: 'Option for conversational text-based prompts 4'}, {id: '5', label: 'Option for conversational text-based prompts 5'}]}}"
+          [isThinking]="false"
+          [showActions]="true"
+          (getAction)="getAction($event)"
+          (getOptionClicked)="getOptionClicked($event)"
+      />
 
-        <bmb-chat-bubble
-          [message]="userMessage"
-          [userActiveIcons]="{ copy: { visible: true } }"
-        />
-      </div>
+      <bmb-ai-chat-bubble
+        [botIcon]="'bot_tecStandar'"
+        [testId]="'chat-bubble'"
+        [message]="{
+          id: '2',
+          type: 'text',
+          timestamp: '2026-08-25T01:25:05.172Z',
+          isUser: true,
+          userProfile: 'https://picsum.photos/id/64/200/300',
+          content: {text: 'I need help with Angular signals.'},
+        }"
+        [isThinking]="false"
+        [showActions]="false"
+        (getAction)="getAction($event)"
+        (getOptionClicked)="getOptionClicked($event)"
+      />
+    </div>
     `,
     props: {
       assistantMessage: {
