@@ -13,6 +13,7 @@ import {
   signal,
   ViewChild,
   ViewEncapsulation,
+  OnInit,
 } from '@angular/core';
 import {
   IBmbChatMessage,
@@ -30,6 +31,7 @@ import { BmbTextLinkComponent } from '../bmb-text-link/bmb-text-link.component';
 import { BmbBotIconComponent } from '../bmb-bot-icon/bmb-bot-icon.component';
 import { BmbContainerButtonComponent } from '../bmb-container-button/bmb-container-button.component';
 import { BmbTranslationsService } from '../../../services/translations/translations.service';
+import { deprecatedComponentLog } from '@shared/logic/deprecatedComponent';
 
 export interface IBmbChatBubblesActions {
   key: TChatAction;
@@ -55,7 +57,7 @@ export * from './types';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class BmbChatBubblesComponent implements OnDestroy {
+export class BmbChatBubblesComponent implements OnDestroy, OnInit {
   iconBot = input<string>('bot_tecStandar');
   message = input.required<IBmbChatMessage>();
   gptBot = input<boolean>(false);
@@ -192,6 +194,19 @@ export class BmbChatBubblesComponent implements OnDestroy {
         this.iconsState.set(this.buildState());
       },
       { allowSignalWrites: true },
+    );
+  }
+
+  ngOnInit() {
+    deprecatedComponentLog(
+      {
+        componentName: 'BmbChatBubblesComponent',
+        selector: 'bmb-chat-bubble',
+      },
+      {
+        componentName: 'BmbAiChatBubbleComponent',
+        selector: 'bmb-ai-chat-bubble',
+      },
     );
   }
 

@@ -1,7 +1,7 @@
 <section class="page-shell">
   <header>
-    <span class="eyebrow">COMPONENTE LEGACY · AI</span>
-    <h1>BmbChatBubble</h1>
+    <span class="eyebrow">COMPONENTE AI</span>
+    <h1>BmbAiChatBubble</h1>
     <p>Prueba la distribución y las acciones de los mensajes del chat.</p>
   </header>
 
@@ -15,9 +15,7 @@
           (change)="selectUserImage($event)"
         >
           @for (imageOption of userImageOptions; track imageOption.label) {
-            <option [value]="imageOption.value">
-              {{ imageOption.label }}
-            </option>
+          <option [value]="imageOption.value">{{ imageOption.label }}</option>
           }
         </select>
       </label>
@@ -29,7 +27,9 @@
         />
         Mostrar copiar en usuario
       </label>
-      <p class="event"><strong>Última acción:</strong> {{ conversationEvent() }}</p>
+      <p class="event">
+        <strong>Última acción:</strong> {{ conversationEvent() }}
+      </p>
     </aside>
 
     <article class="preview">
@@ -41,16 +41,12 @@
 
       <div class="conversation" data-testid="chat-conversation">
         @for (chatMessage of conversation(); track chatMessage.id) {
-          <bmb-chat-bubble
-            [message]="chatMessage"
-            [gptBot]="!chatMessage.isUserMessage"
-            [gptIcons]="!chatMessage.isUserMessage"
-            [userActiveIcons]="{
-              copy: { visible: userCopyEnabled() },
-            }"
-            [testId]="chatMessage.id"
-            (getAction)="handleConversationAction($event)"
-          />
+        <bmb-ai-chat-bubble
+          [message]="chatMessage"
+          [userActions]="userCopyEnabled() ? ['copy'] : []"
+          [testId]="chatMessage.id"
+          (getAction)="handleConversationAction($event)"
+        />
         }
       </div>
     </article>

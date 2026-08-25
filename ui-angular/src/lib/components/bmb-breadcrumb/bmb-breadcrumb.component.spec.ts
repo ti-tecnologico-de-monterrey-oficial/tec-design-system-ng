@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-empty-function */
 import { TestBed } from '@angular/core/testing';
 import { BmbBreadcrumbComponent } from './bmb-breadcrumb.component';
 import { RouterTestingModule } from '@angular/router/testing';
