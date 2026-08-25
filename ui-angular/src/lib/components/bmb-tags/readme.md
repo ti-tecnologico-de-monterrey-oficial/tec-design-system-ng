@@ -8,17 +8,19 @@
 
 ## Props / Parámetros
 
-| Propiedad     | Tipo               | Descripción                                         | Valor por defecto | Obligatorio |
-| ------------- | ------------------ | --------------------------------------------------- | ----------------- | ----------- |
-| `appearance`  | `IBmbActivityTags` | Apariencia/color de la etiqueta                     | `'normal'`        | No          |
-| `text`        | `string`           | Texto a mostrar en la etiqueta                      | `''`              | No          |
-| `grouped`     | `boolean`          | Agrupa la etiqueta con otras en el mismo contenedor | `false`           | No          |
-| `dismissible` | `boolean`          | Permite cerrar (eliminar) la etiqueta               | `false`           | No          |
-| `rounded`     | `boolean`          | Muestra la etiqueta con bordes redondeados          | `false`           | No          |
-| `activityTag` | `boolean`          | (Obsoleto) Indica si es una etiqueta de actividad   | `false`           | No          |
-| `isDisabled`  | `boolean`          | Deshabilita la interacción con la etiqueta          | `false`           | No          |
-| `isActive`    | `boolean`          | Marca la etiqueta como activa                       | `false`           | No          |
-| `enableClick` | `boolean`          | Permite interacción por clic en la etiqueta         | `false`           | No          |
+| Propiedad     | Tipo            | Descripción                                         | Valor por defecto | Obligatorio |
+| ------------- | --------------- | --------------------------------------------------- | ----------------- | ----------- |
+| `appearance`  | `IBmbTagColors` | Apariencia/color de la etiqueta\*                   | `'normal'`        | No          |
+| `text`        | `string`        | Texto a mostrar en la etiqueta                      | `''`              | No          |
+| `grouped`     | `boolean`       | Agrupa la etiqueta con otras en el mismo contenedor | `false`           | No          |
+| `dismissible` | `boolean`       | Permite cerrar (eliminar) la etiqueta               | `false`           | No          |
+| `rounded`     | `boolean`       | Muestra la etiqueta con bordes redondeados          | `false`           | No          |
+| `activityTag` | `boolean`       | (Deprecado) No se usa actualmente                   | `false`           | No          |
+| `isDisabled`  | `boolean`       | Deshabilita la interacción con la etiqueta          | `false`           | No          |
+| `isActive`    | `boolean`       | Marca la etiqueta como activa                       | `false`           | No          |
+| `enableClick` | `boolean`       | Permite interacción por clic en la etiqueta         | `false`           | No          |
+
+\*Ver sección "Valores válidos para `appearance`" para la lista completa de colores disponibles.
 
 ### Outputs
 
@@ -27,13 +29,41 @@
 | `closedTag`  | `string` | Se emite al cerrar (eliminar) la etiqueta |
 | `clickedTag` | `string` | Se emite al hacer clic en la etiqueta     |
 
+### Valores válidos para `appearance`
+
+Valores de color MITEC:
+
+- `'normal'`
+- `'mitec-blue'`
+- `'mitec-red'`
+- `'mitec-green'`
+- `'mitec-orange'`
+- `'mitec-purple'`
+
+Valores de color Creative:
+
+- `'creative-use-violet'`
+- `'creative-use-indigo'`
+- `'creative-use-emerald'`
+- `'creative-use-licorice'`
+- `'creative-use-dark-teal'`
+- `'creative-use-peach'`
+- `'creative-use-sepia'`
+- `'creative-use-soft-red'`
+- `'creative-use-wattle'`
+- `'creative-use-ship-cove'`
+- `'creative-use-plantation'`
+- `'creative-use-rum'`
+- `'creative-use-ripe-lemon'`
+- `'creative-use-hibiscus'`
+
 ---
 
 ## Ejemplo de uso
 
 ```html
 <bmb-tag
-  [appearance]="'mitec_blue'"
+  [appearance]="'mitec-blue'"
   [text]="'Inscrito'"
   [rounded]="true"
   [dismissible]="true"
@@ -55,8 +85,7 @@
 ## Dependencias
 
 - `@angular/common` (CommonModule)
-- `BmbIconComponent`
-- `BmbActionIconComponent`
+- `BmbActionIconComponent` (para el icono de cierre)
 - Angular core: `ElementRef`, `Renderer2`, `ViewEncapsulation`, `ChangeDetectionStrategy`, `AfterViewInit`
 
 ---

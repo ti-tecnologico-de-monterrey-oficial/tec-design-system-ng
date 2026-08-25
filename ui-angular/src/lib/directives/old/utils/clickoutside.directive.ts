@@ -1,3 +1,4 @@
+/* eslint-disable @angular-eslint/directive-selector*/
 import { DOCUMENT } from '@angular/common';
 import {
   AfterViewInit,

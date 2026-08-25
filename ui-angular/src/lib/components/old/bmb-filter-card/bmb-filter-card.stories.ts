@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
 import { BmbFilterCardComponent } from './bmb-filter-card.component';
 import { CommonModule } from '@angular/common';
@@ -19,7 +20,7 @@ import * as checkboxStory from './../bmb-checkbox/bmb-checkbox.stories';
 import * as switchStory from './../bmb-switch/bmb-switch.stories';
 import * as radialStory from './../bmb-radial/bmb-radial.stories';
 import * as dropdownStory from './../bmb-dropdown/bmb-dropdown.stories';
-import * as tagsStory from './../bmb-tags/bmb-tags.stories';
+import * as tagsStory from './../../bmb-tags/bmb-tags.stories';
 
 export default {
   title: 'Components/Containers/Filter card',
@@ -189,7 +190,7 @@ Data descriptions:
     },
     showGlobalSearch: {
       control: 'boolean',
-      Description:
+      description:
         'Determines if the global search is visible (input or dropdown).',
       table: {
         category: 'Properties',

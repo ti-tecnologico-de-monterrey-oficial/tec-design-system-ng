@@ -1,5 +1,8 @@
 import { Meta, moduleMetadata, StoryObj } from '@storybook/angular';
-import { BmbChatBubblesComponent } from './bmb-chat-bubbles.component';
+import {
+  BmbChatBubblesComponent,
+  IBmbChatActionEvent,
+} from './bmb-chat-bubbles.component';
 import {
   getGeneralComponentDescription,
   getGeneralDescription,
@@ -247,7 +250,7 @@ En escritorio, coloca el cursor sobre la burbuja para mostrar el icono. En dispo
     },
   },
 };
-/*
+
 export const UserMsg: Story = {
   args: {
     message: {
@@ -464,4 +467,3 @@ export const ChatUsingGetAction: Story = {
     },
   },
 };
-*/

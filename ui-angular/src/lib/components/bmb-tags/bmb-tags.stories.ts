@@ -1,14 +1,16 @@
-import type { Meta, StoryObj } from '@storybook/angular';
+import { moduleMetadata, type Meta, type StoryObj } from '@storybook/angular';
 import { BmbTagComponent } from './bmb-tags.component';
-import { IBmbActivityTags } from '../../../_shared/types/components/tags';
-import { IBmbTagColors } from '../../../_shared/types/foundations/colors/color-type';
+import { BMB_TAG_COLOR_LIST } from '../../_shared/types/foundations/colors/color-type';
 import {
+  BlockquoteType,
+  getAlertBlockquote,
   getBasicExampleBlock,
   getGeneralComponentDescription,
   getGeneralDescription,
   getGeneralDocDescription,
   getOnEvent,
   IBmbOnEvent,
+  RELEVANT_TITLE,
 } from '@docs/utils/utils';
 import {
   DBmbGenericParamDesc,
@@ -18,6 +20,7 @@ import {
   getPropertyParamDesc,
   getWidthIncreaseDesc,
 } from '@docs/utils/parameterDescriptions';
+import { TranslatePipe } from '../../pipes/translations';
 
 const onClickedTagEvent: IBmbOnEvent = getOnEvent(
   'tag',
@@ -30,40 +33,18 @@ const onCloseTagEvent: IBmbOnEvent = getOnEvent(
   'string',
 );
 
-const appearanceOptions: IBmbTagColors[] = [
-  'creative-use-violet',
-  'creative-use-strong',
-  'creative-use-indigo',
-  'creative-use-emerald',
-  'creative-use-licorice',
-  'creative-use-dark-teal',
-  'creative-use-peach',
-  'creative-use-sepia',
-  'creative-use-soft-red',
-  'creative-use-wattle',
-  'creative-use-ship-cove',
-  'creative-use-plantation',
-  'creative-use-rum',
-  'creative-use-ripe-lemon',
-  'creative-use-hibiscus',
-  'semantic-success',
-  'semantic-info-event',
-  'semantic-warning',
-  'semantic-error',
-  'semantic-brand',
-  'semantic-alert',
-  'mitec-blue',
-  'mitec-red',
-  'mitec-green',
-  'mitec-orange',
-  'mitec-purple',
-];
-const GENERAL_DOCUMENTATION_LINK: string =
+const appearanceOptions = ['normal', ...BMB_TAG_COLOR_LIST];
+const GENERAL_DOCUMENTATION_LINK =
   'https://bamboo.tec.mx/latest/componentes/tag/descripcion-general-hqSuz4Cb';
 
 export default {
   title: 'Components/Visual labels/Tag',
   component: BmbTagComponent,
+  decorators: [
+    moduleMetadata({
+      imports: [TranslatePipe],
+    }),
+  ],
   parameters: {
     docs: {
       controls: {
@@ -80,6 +61,35 @@ export default {
 ${getGeneralDescription(
   `${getGeneralComponentDescription({ name: 'tag' })} to create content such as keywords, categories, organizations, or searches.`,
   { generalDocLink: GENERAL_DOCUMENTATION_LINK },
+)}
+${getAlertBlockquote(
+  `Follow name colors are LTS:
+ - 'mitec_blue',
+ - 'mitec_red',
+ - 'mitec_green',
+ - 'mitec_orange',
+ - 'mitec_light_green',
+ - 'mitec_purple',
+ - 'creative_violet',
+ - 'creative_indigo',
+ - 'creative_emerald',
+ - 'creative_licorice',
+ - 'creative_darkteal',
+ - 'creative_peach',
+ - 'creative_sepia',
+ - 'creative_softred',
+ - 'creative_wattle',
+ - 'creative_shipcove',
+ - 'creative_plantation',
+ - 'creative_rum',
+ - 'creative_hibiscus',
+ - 'creative_ripelemon',
+<br/><br/>Please do not use them because they will be removed in future versions.`,
+  {
+    title: '###'.concat(RELEVANT_TITLE.lts),
+    blockquoteType: BlockquoteType.note,
+    isRelevantTitle: true,
+  },
 )}
 ${getBasicExampleBlock('BmbTagComponent')}
         `,
