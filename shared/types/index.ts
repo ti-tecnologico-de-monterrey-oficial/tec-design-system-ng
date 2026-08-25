@@ -23,6 +23,7 @@ export * from './input';
 export * from './utils';
 export * from './components/action-icon';
 export type { IBmbDataTopBar } from './components/breadcrumb';
+export * from './components/skeleton';
 
 // types
 export * from './colors';
