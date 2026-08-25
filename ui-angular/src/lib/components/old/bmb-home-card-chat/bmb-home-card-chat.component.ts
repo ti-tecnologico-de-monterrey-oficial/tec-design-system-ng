@@ -6,6 +6,7 @@ import {
   inject,
   input,
   model,
+  OnInit,
   output,
   TemplateRef,
   ViewChild,
@@ -37,6 +38,7 @@ import { IBmbActionHeader } from '../../../_shared/types';
 import { BmbActionMenuComponent } from '../bmb-action-menu/bmb-action-menu.component';
 import { BmbItemComponent } from '../bmb-item/bmb-item.component';
 import { BmbTranslationsService } from '../../../services/translations/translations.service';
+import { deprecatedComponentLog } from '../../../_shared/logic/deprecatedComponent';
 
 export type IBmbHomeCardChatMode = 'compact' | 'chat' | 'expanded';
 
@@ -59,7 +61,7 @@ export type IBmbHomeCardChatMode = 'compact' | 'chat' | 'expanded';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class BmbHomeCardChatComponent {
+export class BmbHomeCardChatComponent implements OnInit {
   subtitle = input<string>();
   isMobile = input<boolean>(false);
   placeholder = input<string>('');
@@ -96,7 +98,9 @@ export class BmbHomeCardChatComponent {
   getExpand = output<any>();
 
   private translationService = inject(BmbTranslationsService);
-  private contentProjected: BmbProjectionContentService = inject(BmbProjectionContentService);
+  private contentProjected: BmbProjectionContentService = inject(
+    BmbProjectionContentService,
+  );
 
   parsedBotActions = computed<IBmbChatBubblesActions[]>(() => {
     const newActions = this.botActions();
@@ -175,6 +179,16 @@ export class BmbHomeCardChatComponent {
         }
       },
       { allowSignalWrites: true },
+    );
+  }
+
+  ngOnInit() {
+    deprecatedComponentLog(
+      {
+        componentName: 'BmbHomeCardChatComponent',
+        selector: 'bmb-home-card-chat',
+      },
+      { componentName: 'BmbAIChatCardComponent', selector: 'bmb-ai-chat-card' },
     );
   }
 
