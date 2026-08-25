@@ -16,7 +16,6 @@ import {
   BmbChatAction,
   BmbChatCopyState,
   BmbChatMessage,
-  BmbChatOption,
   IBmbChatOptionEvent,
 } from './types';
 import { ChatActionsComponent } from './bmb-chat-actions/bmb-chat-actions.component';
