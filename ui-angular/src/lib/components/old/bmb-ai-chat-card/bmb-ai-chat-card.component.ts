@@ -27,7 +27,7 @@ import { BmbBotIconComponent } from '../bmb-bot-icon/bmb-bot-icon.component';
 import { IBmbActionHeader } from '../../../_shared/types';
 import { BmbAiChatBubbleComponent } from '../bmb-ai-chat-bubble/bmb-ai-chat-bubble.component';
 
-export type IBmbHomeCardChatMode = 'compact' | 'chat' | 'expanded';
+export type IBmbAIChatCardMode = 'compact' | 'chat' | 'expanded';
 
 @Component({
   selector: 'bmb-ai-chat-card',
@@ -61,7 +61,7 @@ export class BmbAIChatCardComponent {
     icon: 'bot_tecStandar',
   });
   isLoading = model<boolean>(false);
-  mode = model<'compact' | 'chat' | 'expanded'>('expanded');
+  mode = model<IBmbAIChatCardMode>('expanded');
 
   getClose = output();
   getBack = output();
