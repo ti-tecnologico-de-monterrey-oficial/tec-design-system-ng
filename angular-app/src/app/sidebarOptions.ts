@@ -180,6 +180,18 @@ export const sidebarOptions: SidebarElement[][] = [
           title: 'Breadcrumb',
           link: '/components/breadcrumb',
         },
+        {
+          id: 19,
+          icon: 'page_control',
+          title: 'Dot paginator',
+          link: '/components/dot-paginator',
+        },
+        {
+          id: 20,
+          icon: 'add_circle',
+          title: 'FAB',
+          link: '/components/fab',
+        },
       ],
     },
   ],

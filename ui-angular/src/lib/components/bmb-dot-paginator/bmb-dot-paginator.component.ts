@@ -8,13 +8,16 @@ import {
   computed,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
-import { TranslatePipe } from '../../../pipes/translations';
+import { BmbActionIconComponent } from '../old/bmb-action-icon/bmb-action-icon.component';
+import { TranslatePipe } from '../../pipes/translations';
+import {
+  getDotPaginatorClasses,
+  getNextDotIndex,
+  getPreviousDotIndex,
+} from '../../_shared/logic/components/dot-paginator';
+import type { Target } from '../../_shared/types/components/dot-paginator';
 
-export interface Target {
-  target: string;
-  index: number;
-}
+export type { Target } from '../../_shared/types/components/dot-paginator';
 
 @Component({
   selector: 'bmb-dot-paginator',
@@ -38,13 +41,7 @@ export class BmbDotPaginatorComponent {
   });
 
   getClasses(): string[] {
-    const classes: string[] = ['bmb_dot_paginator'];
-
-    if (this.appearance()) {
-      classes.push('bmb_dot_paginator-' + this.appearance());
-    }
-
-    return classes;
+    return getDotPaginatorClasses(this.appearance());
   }
 
   dotClick(index: number): void {
@@ -53,16 +50,21 @@ export class BmbDotPaginatorComponent {
   }
 
   prevItem(): void {
-    if (this.activeDotIndex() > 0) {
-      this.activeDotIndex.set(this.activeDotIndex() - 1);
-      this.onDotPress.emit(this.activeDotIndex());
-    }
+    const previousIndex = getPreviousDotIndex(this.activeDotIndex());
+    if (previousIndex === this.activeDotIndex()) return;
+
+    this.activeDotIndex.set(previousIndex);
+    this.onDotPress.emit(previousIndex);
   }
 
   nextItem(): void {
-    if (this.activeDotIndex() < this.numberOfDots() - 1) {
-      this.activeDotIndex.set(this.activeDotIndex() + 1);
-      this.onDotPress.emit(this.activeDotIndex());
-    }
+    const nextIndex = getNextDotIndex(
+      this.activeDotIndex(),
+      this.numberOfDots(),
+    );
+    if (nextIndex === this.activeDotIndex()) return;
+
+    this.activeDotIndex.set(nextIndex);
+    this.onDotPress.emit(nextIndex);
   }
 }

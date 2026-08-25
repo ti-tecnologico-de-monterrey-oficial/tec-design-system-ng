@@ -7,6 +7,8 @@ export * from './components/badge';
 export * from './components/bottom-navigation-bar';
 export * from './components/card';
 export * from './components/divider';
+export * from './components/dot-paginator';
+export * from './components/fab';
 export * from './components/grade-value';
 export * from './components/iframe';
 export * from './components/interactive-icon';
