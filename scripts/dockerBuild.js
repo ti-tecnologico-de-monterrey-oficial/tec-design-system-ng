@@ -47,18 +47,18 @@ async function runDockerCommands(version) {
     console.log('Temporary container created');
 
     // 3. Ensure destination directory exists
-    await fs.promises.mkdir(`./dist/ds-ng-${version}`, { recursive: true });
+    await fs.promises.mkdir(`./dist/ui-angular-${version}`, { recursive: true });
 
     // 4. Copy files from container
     await runCommand('docker', [
       'cp',
-      `temp-container-${version}:/ds-ng`,
-      `./dist/ds-ng-${version}`,
+      `temp-container-${version}:/ui-angular`,
+      `./dist/ui-angular-${version}`,
     ]);
     console.log('Files copied successfully');
 
     // 5. Modify package.json
-    const packageJsonPath = `./dist/ds-ng-${version}/ds-ng/package.json`;
+    const packageJsonPath = `./dist/ui-angular-${version}/package.json`;
     const packageJsonRaw = await fs.promises.readFile(packageJsonPath, 'utf-8');
     const packageJson = JSON.parse(packageJsonRaw);
     // 5.1 Update version: "1.5.10" -> "1.5.10-17-d"
