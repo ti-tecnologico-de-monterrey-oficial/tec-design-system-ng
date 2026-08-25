@@ -373,6 +373,20 @@ export const appRoutes: Route[] = [
       ),
   },
   {
+    path: 'components/dot-paginator',
+    title: 'BmbDotPaginator | Bamboo migration dashboard',
+    loadComponent: () =>
+      import('./components/dot-paginator-page/dot-paginator-page').then(
+        ({ DotPaginatorPage }) => DotPaginatorPage,
+      ),
+  },
+  {
+    path: 'components/fab',
+    title: 'BmbFab | Bamboo migration dashboard',
+    loadComponent: () =>
+      import('./components/fab-page/fab-page').then(({ FabPage }) => FabPage),
+  },
+  {
     path: 'components/ai-chat-bubble',
     title: 'BmbAiChatBubble | Bamboo migration dashboard',
     loadComponent: () =>

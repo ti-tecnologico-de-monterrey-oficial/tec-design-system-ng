@@ -1,6 +1,9 @@
-import { Meta, StoryObj } from '@storybook/angular';
+import type { Meta, StoryObj } from '@storybook/angular';
 import { BehaviorSubject } from 'rxjs';
-import { BmbDotPaginatorComponent } from './bmb-dot-paginator.component';
+import {
+  BmbDotPaginatorComponent,
+  type Target,
+} from './bmb-dot-paginator.component';
 import {
   attributes,
   getBasicExampleBlock,
@@ -12,11 +15,6 @@ import {
   getAppearanceParam,
   getOnClickParam,
 } from '@docs/utils/parameterDescriptions';
-
-export interface Target {
-  target: string;
-  index: number;
-}
 
 export default {
   title: 'Components/Status indicators/Dot paginator',
@@ -64,7 +62,7 @@ ${getBasicExampleBlock(
 </figure>
 <bmb-dot-paginator
   [activeDotIndex]="myActiveDotIndex"
-  [totalDots]="imgArray.length"
+  [targets]="myTargets"
   (onDotPress)="handleDotPress($event)"
 />
 \`\`\`

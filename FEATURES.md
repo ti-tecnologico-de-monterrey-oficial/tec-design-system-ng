@@ -1,10 +1,14 @@
-# Novedades ## [v1.6.4-d] -
-2026-08-22
+# Novedades ## [v1.6.4-e] -
+2026-08-25
 
 ### 🚀 Novedades
 
 *
+chore: se agregó componente bmb-ai-chat-card para evitar ruptura de código. En el nuevo componente se permite agregar los bmb-ai-chat-bubble e implementar sus propiedades sin agregarlas como dependencias.
+*
 feat(component) bmb-breadcrumb & bmb-bookmark migrados
+*
+feat(component) acción copy en bmb-ai-chat-bubble y algunos warning
 *
 feat(components/home card): Se agregó la propiedad showExpandAndCollapseButton al home card
 *
@@ -16,7 +20,7 @@ chore: se realizó ajuste por homologación de nomenclatura de clases de css.
 *
 feat(component) archivo nxw
 *
-chore: variables de color actualizadas
+chore: se agregaron logs para indicar componentes descontinuados. Se quitaron dependencias de componentes descontinuados.
 *
 chore: se agregaron validaciones para funcionalidad responsiva de las acciones mostradas en el encabezado del "Home card".
 *
@@ -36,35 +40,39 @@ feat(component) remplazar --docs por --documentation
 *
 fix(component/Portal): Se cierran los elementos proyectados si se detcta el evento de cambio de ruta en el navegador
 *
+feat(component) levantar proyecto con merge de rama principal
+*
 chore: Se agregó el MCP de NX en el proyecto
 *
 merge
 *
-feat(component) solución de merge e importación _shared
+chore: se modificó el gap del contenido.
 *
 chore: se agregó mayor detalle en la documentación para pruebas.
 *
-chore: se realizó ajuste por homologación de nomenclatura de clases de css.
-*
 Formato
 *
-chore: se eliminaron advertencias.
+v1.6.4-d pack
 *
 chore: "Progress bar" responsivo para "Dropzone".
 *
-chore: se realizaron ajustes para eliminar advertencias de código.
+chore: se agregó validación para evitar errores.
+*
+Se realiza la mezcla ara integrarlo a "AI chat card"
+*
+feat(component) update feature-prod
+*
+chore: se realizó depuración de código para el manejo de id del elemento.
+*
+chore: se agregó configuración correcta para funcionalidad del toggle.
 *
 fix(tests): remove unused imports in BmbLayoutItemDirective spec
 *
 revert change
 *
-chore: se modificó el gap del contenido.
+chore: se realizó ajuste por homologación de nomenclatura de clases de css.
 *
-chore: se realizó depuración de código para el manejo de id del elemento.
-*
-chore: nuevo escenario de pruebas.
-*
-chore: se agregó configuración correcta para funcionalidad del toggle.
+chore: se realizaron ajustes para eliminar advertencias de código.
 *
 fix(component / sidebar): Se corrigieron las alineciones dentro de los elementos del sidebar
 *
@@ -76,17 +84,29 @@ chore: se agregaron validaciones para funcionalidad responsiva de las acciones m
 *
 feat(component) merge feature-prod
 *
-chore: se agregó atributo para permitir el toggle en los íconos.
+chore: se eliminaron advertencias.
 *
-chore: "Progress bar" responsivo para "Dropzone"
+chore: nuevo escenario de pruebas.
 *
 migracion
 *
 fix(CI/CD): se corrigieron las pruebas automatizadas
 *
+chore: se agregó atributo para permitir el toggle en los íconos.
+*
+chore: "Progress bar" responsivo para "Dropzone"
+*
 feat(component) merge con rama principal
 *
+feat(component) solución de merge e importación _shared
+*
 feat(component) merge con feature-prod
+*
+chore(app): Se devolvío la funcionalidad del sandbox
+*
+fix(dropdown): Se corrigió el componente dropdown, en su versión de selección múltiple
+*
+chore: variables de color actualizadas
 *
 feat(component) BmbIframe merge con feature-prod
 *
@@ -96,21 +116,19 @@ chore: Se agregó un SKILL de bamboo, se actualizaron los controles de storybook
 *
 feat(component) merge package.json
 *
-chore(app): Se devolvío la funcionalidad del sandbox
-*
-fix(dropdown): Se corrigió el componente dropdown, en su versión de selección múltiple
-*
 feat(component) BmbiFrame versatil
 *
 chore(component) skeleton & value-counter migración
-*
-fix(component / calendar): Se corrigió el error de los filtros y los botones en responsivo
 *
 feat(component/home-card-header): se agrego documentación del componente.
 *
 chore: strorybook
 *
+feat(component) ajustar chat usuario y espacios
+*
 chore: se agregó configuración completa del Action icon.
+*
+feat(component/action-icon): se implementó la emisión del evento especificando el nombre del ícono para distinguir entre el ícono principal y el  alternativo. Se agregó también documentación para uso del componente en cambio de idioma.
 *
 feat(component/navidation-bar): se agrego emisión de click en elemento.
 *
@@ -118,9 +136,7 @@ feat(component) chat-burbble fijar copy_icon en vista movil y ajuste de color de
 *
 feat(component) merge feature-prod
 *
-feat(component) ajustar chat usuario y espacios
-*
-feat(component/action-icon): se implementó la emisión del evento especificando el nombre del ícono para distinguir entre el ícono principal y el  alternativo. Se agregó también documentación para uso del componente en cambio de idioma.
+fix(component / calendar): Se corrigió el error de los filtros y los botones en responsivo
 *
 fix(component) ajustar svg warning para visualizarse proporcional
 *
@@ -154,9 +170,15 @@ feat(components) atender comentarios de pr
 *
 Fix docs tabs: give each tab panel a unique content id so TableOfContents/Docs target the correct panel
 *
+ci(publish): remove dist/ui-angular before build to avoid publishing full-compiled artifacts
+*
 chore: se agrego documentación de referencia al "Translations service" para cambio de idioma.
 *
 fix(component/home card): Se agregó compatibilidad con accent colors para las acciones del header
+*
+fix: update package version format to include '-a' suffix for consistency
+*
+fix(ui-angular): build with partial compilation mode for package publish
 *
 fix(component/bmb-alert-center): add eslint directive for output prefix rule
 *
@@ -165,19 +187,17 @@ merge
 chore: se agregó configuración para permitir Typescript dentro de los archivos de documentación de Storybook.
 *
 feat(component) fix merge conflict
-*
-ci(publish): remove dist/ui-angular before build to avoid publishing full-compiled artifacts
-*
-fix: update package version format to include '-a' suffix for consistency
-*
-fix(ui-angular): build with partial compilation mode for package publish
 *
 feat(merge) conflic new-bamboo
 
 ### 🆕 Nuevos Componentes
 
+- **chore: se agregó componente bmb-ai-chat-card para evitar ruptura de código. En el nuevo componente se permite agregar los bmb-ai-chat-bubble e implementar sus propiedades sin agregarlas como dependencias.**:
+chore: se agregó componente bmb-ai-chat-card para evitar ruptura de código. En el nuevo componente se permite agregar los bmb-ai-chat-bubble e implementar sus propiedades sin agregarlas como dependencias.
 - **feat(component) bmb-breadcrumb & bmb-bookmark migrados**:
 feat(component) bmb-breadcrumb & bmb-bookmark migrados
+- **feat(component) acción copy en bmb-ai-chat-bubble y algunos warning**:
+feat(component) acción copy en bmb-ai-chat-bubble y algunos warning
 - **feat(components/home card): Se agregó la propiedad showExpandAndCollapseButton al home card**:
 feat(components/home card): Se agregó la propiedad showExpandAndCollapseButton al home card
 - **feat(component/home-card-header): se agregó funcionalidad responsiva.**:
@@ -188,8 +208,8 @@ feat(component / filter card): Se agregó la pestaña de favoritos
 chore: se realizó ajuste por homologación de nomenclatura de clases de css.
 - **feat(component) archivo nxw**:
 feat(component) archivo nxw
-- **chore: variables de color actualizadas**:
-chore: variables de color actualizadas
+- **chore: se agregaron logs para indicar componentes descontinuados. Se quitaron dependencias de componentes descontinuados.**:
+chore: se agregaron logs para indicar componentes descontinuados. Se quitaron dependencias de componentes descontinuados.
 - **chore: se agregaron validaciones para funcionalidad responsiva de las acciones mostradas en el encabezado del "Home card".**:
 chore: se agregaron validaciones para funcionalidad responsiva de las acciones mostradas en el encabezado del "Home card".
 - **feat(component/ai-chat-bubble): se implemento listado para propt en elementos de "Action menu".**:
@@ -208,36 +228,42 @@ feat(component/home card header): Se agruparon los elementos de las actions en m
 feat(component) remplazar --docs por --documentation
 - **fix(component/Portal): Se cierran los elementos proyectados si se detcta el evento de cambio de ruta en el navegador**:
 fix(component/Portal): Se cierran los elementos proyectados si se detcta el evento de cambio de ruta en el navegador
+- **feat(component) levantar proyecto con merge de rama principal**:
+feat(component) levantar proyecto con merge de rama principal
 - **chore: Se agregó el MCP de NX en el proyecto**:
 chore: Se agregó el MCP de NX en el proyecto
 - **merge**:
 merge
-- **feat(component) solución de merge e importación _shared**:
-feat(component) solución de merge e importación _shared
+- **chore: se modificó el gap del contenido.**:
+chore: se modificó el gap del contenido.
 - **chore: se agregó mayor detalle en la documentación para pruebas.**:
 chore: se agregó mayor detalle en la documentación para pruebas.
-- **chore: se realizó ajuste por homologación de nomenclatura de clases de css.**:
-chore: se realizó ajuste por homologación de nomenclatura de clases de css.
 - **Formato**:
 Formato
-- **chore: se eliminaron advertencias.**:
-chore: se eliminaron advertencias.
+- **v1.6.4-d pack**:
+v1.6.4-d pack
 - **chore: "Progress bar" responsivo para "Dropzone".**:
 chore: "Progress bar" responsivo para "Dropzone".
-- **chore: se realizaron ajustes para eliminar advertencias de código.**:
-chore: se realizaron ajustes para eliminar advertencias de código.
+- **chore: se agregó validación para evitar errores.**:
+chore: se agregó validación para evitar errores.
+- **Se realiza la mezcla ara integrarlo a "AI chat card"**:
+Se realiza la mezcla ara integrarlo a "AI chat card"
+
+Chat ia bubble copy
+- **feat(component) update feature-prod**:
+feat(component) update feature-prod
+- **chore: se realizó depuración de código para el manejo de id del elemento.**:
+chore: se realizó depuración de código para el manejo de id del elemento.
+- **chore: se agregó configuración correcta para funcionalidad del toggle.**:
+chore: se agregó configuración correcta para funcionalidad del toggle.
 - **fix(tests): remove unused imports in BmbLayoutItemDirective spec**:
 fix(tests): remove unused imports in BmbLayoutItemDirective spec
 - **revert change**:
 revert change
-- **chore: se modificó el gap del contenido.**:
-chore: se modificó el gap del contenido.
-- **chore: se realizó depuración de código para el manejo de id del elemento.**:
-chore: se realizó depuración de código para el manejo de id del elemento.
-- **chore: nuevo escenario de pruebas.**:
-chore: nuevo escenario de pruebas.
-- **chore: se agregó configuración correcta para funcionalidad del toggle.**:
-chore: se agregó configuración correcta para funcionalidad del toggle.
+- **chore: se realizó ajuste por homologación de nomenclatura de clases de css.**:
+chore: se realizó ajuste por homologación de nomenclatura de clases de css.
+- **chore: se realizaron ajustes para eliminar advertencias de código.**:
+chore: se realizaron ajustes para eliminar advertencias de código.
 - **fix(component / sidebar): Se corrigieron las alineciones dentro de los elementos del sidebar**:
 fix(component / sidebar): Se corrigieron las alineciones dentro de los elementos del sidebar
 - **chore: se realizo ajuste para permitir característica de mostrar el "Text link" sin el texto de soporte.**:
@@ -250,20 +276,32 @@ chore: se agregaron validaciones para funcionalidad responsiva de las acciones m
 chore: se agregaron validaciones para funcionalidad responsiva de las acciones mostradas en el encabezado del "Home card".
 - **feat(component) merge feature-prod**:
 feat(component) merge feature-prod
+- **chore: se eliminaron advertencias.**:
+chore: se eliminaron advertencias.
+- **chore: nuevo escenario de pruebas.**:
+chore: nuevo escenario de pruebas.
+- **migracion**:
+migracion
+- **fix(CI/CD): se corrigieron las pruebas automatizadas**:
+fix(CI/CD): se corrigieron las pruebas automatizadas
 - **chore: se agregó atributo para permitir el toggle en los íconos.**:
 chore: se agregó atributo para permitir el toggle en los íconos.
 - **chore: "Progress bar" responsivo para "Dropzone"**:
 chore: "Progress bar" responsivo para "Dropzone"
 
 chore: "Progress bar" responsivo para "Dropzone".
-- **migracion**:
-migracion
-- **fix(CI/CD): se corrigieron las pruebas automatizadas**:
-fix(CI/CD): se corrigieron las pruebas automatizadas
 - **feat(component) merge con rama principal**:
 feat(component) merge con rama principal
+- **feat(component) solución de merge e importación _shared**:
+feat(component) solución de merge e importación _shared
 - **feat(component) merge con feature-prod**:
 feat(component) merge con feature-prod
+- **chore(app): Se devolvío la funcionalidad del sandbox**:
+chore(app): Se devolvío la funcionalidad del sandbox
+- **fix(dropdown): Se corrigió el componente dropdown, en su versión de selección múltiple**:
+fix(dropdown): Se corrigió el componente dropdown, en su versión de selección múltiple
+- **chore: variables de color actualizadas**:
+chore: variables de color actualizadas
 - **feat(component) BmbIframe merge con feature-prod**:
 feat(component) BmbIframe merge con feature-prod
 - **feat(component) BmbIframe se agrego soporte nativo a componente**:
@@ -272,32 +310,28 @@ feat(component) BmbIframe se agrego soporte nativo a componente
 chore: Se agregó un SKILL de bamboo, se actualizaron los controles de storybook y se actualizó la documentación para agentes de código
 - **feat(component) merge package.json**:
 feat(component) merge package.json
-- **chore(app): Se devolvío la funcionalidad del sandbox**:
-chore(app): Se devolvío la funcionalidad del sandbox
-- **fix(dropdown): Se corrigió el componente dropdown, en su versión de selección múltiple**:
-fix(dropdown): Se corrigió el componente dropdown, en su versión de selección múltiple
 - **feat(component) BmbiFrame versatil**:
 feat(component) BmbiFrame versatil
 - **chore(component) skeleton & value-counter migración**:
 chore(component) skeleton & value-counter migración
-- **fix(component / calendar): Se corrigió el error de los filtros y los botones en responsivo**:
-fix(component / calendar): Se corrigió el error de los filtros y los botones en responsivo
 - **feat(component/home-card-header): se agrego documentación del componente.**:
 feat(component/home-card-header): se agrego documentación del componente.
 - **chore: strorybook**:
 chore: strorybook
+- **feat(component) ajustar chat usuario y espacios**:
+feat(component) ajustar chat usuario y espacios
 - **chore: se agregó configuración completa del Action icon.**:
 chore: se agregó configuración completa del Action icon.
+- **feat(component/action-icon): se implementó la emisión del evento especificando el nombre del ícono para distinguir entre el ícono principal y el  alternativo. Se agregó también documentación para uso del componente en cambio de idioma.**:
+feat(component/action-icon): se implementó la emisión del evento especificando el nombre del ícono para distinguir entre el ícono principal y el  alternativo. Se agregó también documentación para uso del componente en cambio de idioma.
 - **feat(component/navidation-bar): se agrego emisión de click en elemento.**:
 feat(component/navidation-bar): se agrego emisión de click en elemento.
 - **feat(component) chat-burbble fijar copy_icon en vista movil y ajuste de color de iconos en chat de usuario**:
 feat(component) chat-burbble fijar copy_icon en vista movil y ajuste de color de iconos en chat de usuario
 - **feat(component) merge feature-prod**:
 feat(component) merge feature-prod
-- **feat(component) ajustar chat usuario y espacios**:
-feat(component) ajustar chat usuario y espacios
-- **feat(component/action-icon): se implementó la emisión del evento especificando el nombre del ícono para distinguir entre el ícono principal y el  alternativo. Se agregó también documentación para uso del componente en cambio de idioma.**:
-feat(component/action-icon): se implementó la emisión del evento especificando el nombre del ícono para distinguir entre el ícono principal y el  alternativo. Se agregó también documentación para uso del componente en cambio de idioma.
+- **fix(component / calendar): Se corrigió el error de los filtros y los botones en responsivo**:
+fix(component / calendar): Se corrigió el error de los filtros y los botones en responsivo
 - **fix(component) ajustar svg warning para visualizarse proporcional**:
 fix(component) ajustar svg warning para visualizarse proporcional
 - **chore: se desacopla el componente navigation bar**:
@@ -334,10 +368,20 @@ feat(components) atender comentarios de pr
 Fix docs tabs: give each tab panel a unique content id so TableOfContents/Docs target the correct panel
 
 Co-authored-by: Copilot &lt;223556219+Copilot@users.noreply.github.com&gt;
+- **ci(publish): remove dist/ui-angular before build to avoid publishing full-compiled artifacts**:
+ci(publish): remove dist/ui-angular before build to avoid publishing full-compiled artifacts
+
+Co-authored-by: Copilot &lt;223556219+Copilot@users.noreply.github.com&gt;
 - **chore: se agrego documentación de referencia al "Translations service" para cambio de idioma.**:
 chore: se agrego documentación de referencia al "Translations service" para cambio de idioma.
 - **fix(component/home card): Se agregó compatibilidad con accent colors para las acciones del header**:
 fix(component/home card): Se agregó compatibilidad con accent colors para las acciones del header
+- **fix: update package version format to include '-a' suffix for consistency**:
+fix: update package version format to include '-a' suffix for consistency
+- **fix(ui-angular): build with partial compilation mode for package publish**:
+fix(ui-angular): build with partial compilation mode for package publish
+
+Co-authored-by: Copilot &lt;223556219+Copilot@users.noreply.github.com&gt;
 - **fix(component/bmb-alert-center): add eslint directive for output prefix rule**:
 fix(component/bmb-alert-center): add eslint directive for output prefix rule
 - **merge**:
@@ -346,23 +390,17 @@ merge
 chore: se agregó configuración para permitir Typescript dentro de los archivos de documentación de Storybook.
 - **feat(component) fix merge conflict**:
 feat(component) fix merge conflict
-- **ci(publish): remove dist/ui-angular before build to avoid publishing full-compiled artifacts**:
-ci(publish): remove dist/ui-angular before build to avoid publishing full-compiled artifacts
-
-Co-authored-by: Copilot &lt;223556219+Copilot@users.noreply.github.com&gt;
-- **fix: update package version format to include '-a' suffix for consistency**:
-fix: update package version format to include '-a' suffix for consistency
-- **fix(ui-angular): build with partial compilation mode for package publish**:
-fix(ui-angular): build with partial compilation mode for package publish
-
-Co-authored-by: Copilot &lt;223556219+Copilot@users.noreply.github.com&gt;
 - **feat(merge) conflic new-bamboo**:
 feat(merge) conflic new-bamboo
 
 ### 🔄 Componentes Actualizados
 
+- **chore: se agregó componente bmb-ai-chat-card para evitar ruptura de código. En el nuevo componente se permite agregar los bmb-ai-chat-bubble e implementar sus propiedades sin agregarlas como dependencias.**:
+chore: se agregó componente bmb-ai-chat-card para evitar ruptura de código. En el nuevo componente se permite agregar los bmb-ai-chat-bubble e implementar sus propiedades sin agregarlas como dependencias.
 - **feat(component) bmb-breadcrumb & bmb-bookmark migrados**:
 feat(component) bmb-breadcrumb & bmb-bookmark migrados
+- **feat(component) acción copy en bmb-ai-chat-bubble y algunos warning**:
+feat(component) acción copy en bmb-ai-chat-bubble y algunos warning
 - **feat(components/home card): Se agregó la propiedad showExpandAndCollapseButton al home card**:
 feat(components/home card): Se agregó la propiedad showExpandAndCollapseButton al home card
 - **feat(component/home-card-header): se agregó funcionalidad responsiva.**:
@@ -373,8 +411,8 @@ feat(component / filter card): Se agregó la pestaña de favoritos
 chore: se realizó ajuste por homologación de nomenclatura de clases de css.
 - **feat(component) archivo nxw**:
 feat(component) archivo nxw
-- **chore: variables de color actualizadas**:
-chore: variables de color actualizadas
+- **chore: se agregaron logs para indicar componentes descontinuados. Se quitaron dependencias de componentes descontinuados.**:
+chore: se agregaron logs para indicar componentes descontinuados. Se quitaron dependencias de componentes descontinuados.
 - **chore: se agregaron validaciones para funcionalidad responsiva de las acciones mostradas en el encabezado del "Home card".**:
 chore: se agregaron validaciones para funcionalidad responsiva de las acciones mostradas en el encabezado del "Home card".
 - **feat(component/ai-chat-bubble): se implemento listado para propt en elementos de "Action menu".**:
@@ -393,36 +431,42 @@ feat(component/home card header): Se agruparon los elementos de las actions en m
 feat(component) remplazar --docs por --documentation
 - **fix(component/Portal): Se cierran los elementos proyectados si se detcta el evento de cambio de ruta en el navegador**:
 fix(component/Portal): Se cierran los elementos proyectados si se detcta el evento de cambio de ruta en el navegador
+- **feat(component) levantar proyecto con merge de rama principal**:
+feat(component) levantar proyecto con merge de rama principal
 - **chore: Se agregó el MCP de NX en el proyecto**:
 chore: Se agregó el MCP de NX en el proyecto
 - **merge**:
 merge
-- **feat(component) solución de merge e importación _shared**:
-feat(component) solución de merge e importación _shared
+- **chore: se modificó el gap del contenido.**:
+chore: se modificó el gap del contenido.
 - **chore: se agregó mayor detalle en la documentación para pruebas.**:
 chore: se agregó mayor detalle en la documentación para pruebas.
-- **chore: se realizó ajuste por homologación de nomenclatura de clases de css.**:
-chore: se realizó ajuste por homologación de nomenclatura de clases de css.
 - **Formato**:
 Formato
-- **chore: se eliminaron advertencias.**:
-chore: se eliminaron advertencias.
+- **v1.6.4-d pack**:
+v1.6.4-d pack
 - **chore: "Progress bar" responsivo para "Dropzone".**:
 chore: "Progress bar" responsivo para "Dropzone".
-- **chore: se realizaron ajustes para eliminar advertencias de código.**:
-chore: se realizaron ajustes para eliminar advertencias de código.
+- **chore: se agregó validación para evitar errores.**:
+chore: se agregó validación para evitar errores.
+- **Se realiza la mezcla ara integrarlo a "AI chat card"**:
+Se realiza la mezcla ara integrarlo a "AI chat card"
+
+Chat ia bubble copy
+- **feat(component) update feature-prod**:
+feat(component) update feature-prod
+- **chore: se realizó depuración de código para el manejo de id del elemento.**:
+chore: se realizó depuración de código para el manejo de id del elemento.
+- **chore: se agregó configuración correcta para funcionalidad del toggle.**:
+chore: se agregó configuración correcta para funcionalidad del toggle.
 - **fix(tests): remove unused imports in BmbLayoutItemDirective spec**:
 fix(tests): remove unused imports in BmbLayoutItemDirective spec
 - **revert change**:
 revert change
-- **chore: se modificó el gap del contenido.**:
-chore: se modificó el gap del contenido.
-- **chore: se realizó depuración de código para el manejo de id del elemento.**:
-chore: se realizó depuración de código para el manejo de id del elemento.
-- **chore: nuevo escenario de pruebas.**:
-chore: nuevo escenario de pruebas.
-- **chore: se agregó configuración correcta para funcionalidad del toggle.**:
-chore: se agregó configuración correcta para funcionalidad del toggle.
+- **chore: se realizó ajuste por homologación de nomenclatura de clases de css.**:
+chore: se realizó ajuste por homologación de nomenclatura de clases de css.
+- **chore: se realizaron ajustes para eliminar advertencias de código.**:
+chore: se realizaron ajustes para eliminar advertencias de código.
 - **fix(component / sidebar): Se corrigieron las alineciones dentro de los elementos del sidebar**:
 fix(component / sidebar): Se corrigieron las alineciones dentro de los elementos del sidebar
 - **chore: se realizo ajuste para permitir característica de mostrar el "Text link" sin el texto de soporte.**:
@@ -435,20 +479,32 @@ chore: se agregaron validaciones para funcionalidad responsiva de las acciones m
 chore: se agregaron validaciones para funcionalidad responsiva de las acciones mostradas en el encabezado del "Home card".
 - **feat(component) merge feature-prod**:
 feat(component) merge feature-prod
+- **chore: se eliminaron advertencias.**:
+chore: se eliminaron advertencias.
+- **chore: nuevo escenario de pruebas.**:
+chore: nuevo escenario de pruebas.
+- **migracion**:
+migracion
+- **fix(CI/CD): se corrigieron las pruebas automatizadas**:
+fix(CI/CD): se corrigieron las pruebas automatizadas
 - **chore: se agregó atributo para permitir el toggle en los íconos.**:
 chore: se agregó atributo para permitir el toggle en los íconos.
 - **chore: "Progress bar" responsivo para "Dropzone"**:
 chore: "Progress bar" responsivo para "Dropzone"
 
 chore: "Progress bar" responsivo para "Dropzone".
-- **migracion**:
-migracion
-- **fix(CI/CD): se corrigieron las pruebas automatizadas**:
-fix(CI/CD): se corrigieron las pruebas automatizadas
 - **feat(component) merge con rama principal**:
 feat(component) merge con rama principal
+- **feat(component) solución de merge e importación _shared**:
+feat(component) solución de merge e importación _shared
 - **feat(component) merge con feature-prod**:
 feat(component) merge con feature-prod
+- **chore(app): Se devolvío la funcionalidad del sandbox**:
+chore(app): Se devolvío la funcionalidad del sandbox
+- **fix(dropdown): Se corrigió el componente dropdown, en su versión de selección múltiple**:
+fix(dropdown): Se corrigió el componente dropdown, en su versión de selección múltiple
+- **chore: variables de color actualizadas**:
+chore: variables de color actualizadas
 - **feat(component) BmbIframe merge con feature-prod**:
 feat(component) BmbIframe merge con feature-prod
 - **feat(component) BmbIframe se agrego soporte nativo a componente**:
@@ -457,32 +513,28 @@ feat(component) BmbIframe se agrego soporte nativo a componente
 chore: Se agregó un SKILL de bamboo, se actualizaron los controles de storybook y se actualizó la documentación para agentes de código
 - **feat(component) merge package.json**:
 feat(component) merge package.json
-- **chore(app): Se devolvío la funcionalidad del sandbox**:
-chore(app): Se devolvío la funcionalidad del sandbox
-- **fix(dropdown): Se corrigió el componente dropdown, en su versión de selección múltiple**:
-fix(dropdown): Se corrigió el componente dropdown, en su versión de selección múltiple
 - **feat(component) BmbiFrame versatil**:
 feat(component) BmbiFrame versatil
 - **chore(component) skeleton & value-counter migración**:
 chore(component) skeleton & value-counter migración
-- **fix(component / calendar): Se corrigió el error de los filtros y los botones en responsivo**:
-fix(component / calendar): Se corrigió el error de los filtros y los botones en responsivo
 - **feat(component/home-card-header): se agrego documentación del componente.**:
 feat(component/home-card-header): se agrego documentación del componente.
 - **chore: strorybook**:
 chore: strorybook
+- **feat(component) ajustar chat usuario y espacios**:
+feat(component) ajustar chat usuario y espacios
 - **chore: se agregó configuración completa del Action icon.**:
 chore: se agregó configuración completa del Action icon.
+- **feat(component/action-icon): se implementó la emisión del evento especificando el nombre del ícono para distinguir entre el ícono principal y el  alternativo. Se agregó también documentación para uso del componente en cambio de idioma.**:
+feat(component/action-icon): se implementó la emisión del evento especificando el nombre del ícono para distinguir entre el ícono principal y el  alternativo. Se agregó también documentación para uso del componente en cambio de idioma.
 - **feat(component/navidation-bar): se agrego emisión de click en elemento.**:
 feat(component/navidation-bar): se agrego emisión de click en elemento.
 - **feat(component) chat-burbble fijar copy_icon en vista movil y ajuste de color de iconos en chat de usuario**:
 feat(component) chat-burbble fijar copy_icon en vista movil y ajuste de color de iconos en chat de usuario
 - **feat(component) merge feature-prod**:
 feat(component) merge feature-prod
-- **feat(component) ajustar chat usuario y espacios**:
-feat(component) ajustar chat usuario y espacios
-- **feat(component/action-icon): se implementó la emisión del evento especificando el nombre del ícono para distinguir entre el ícono principal y el  alternativo. Se agregó también documentación para uso del componente en cambio de idioma.**:
-feat(component/action-icon): se implementó la emisión del evento especificando el nombre del ícono para distinguir entre el ícono principal y el  alternativo. Se agregó también documentación para uso del componente en cambio de idioma.
+- **fix(component / calendar): Se corrigió el error de los filtros y los botones en responsivo**:
+fix(component / calendar): Se corrigió el error de los filtros y los botones en responsivo
 - **fix(component) ajustar svg warning para visualizarse proporcional**:
 fix(component) ajustar svg warning para visualizarse proporcional
 - **chore: se desacopla el componente navigation bar**:
@@ -519,10 +571,20 @@ feat(components) atender comentarios de pr
 Fix docs tabs: give each tab panel a unique content id so TableOfContents/Docs target the correct panel
 
 Co-authored-by: Copilot &lt;223556219+Copilot@users.noreply.github.com&gt;
+- **ci(publish): remove dist/ui-angular before build to avoid publishing full-compiled artifacts**:
+ci(publish): remove dist/ui-angular before build to avoid publishing full-compiled artifacts
+
+Co-authored-by: Copilot &lt;223556219+Copilot@users.noreply.github.com&gt;
 - **chore: se agrego documentación de referencia al "Translations service" para cambio de idioma.**:
 chore: se agrego documentación de referencia al "Translations service" para cambio de idioma.
 - **fix(component/home card): Se agregó compatibilidad con accent colors para las acciones del header**:
 fix(component/home card): Se agregó compatibilidad con accent colors para las acciones del header
+- **fix: update package version format to include '-a' suffix for consistency**:
+fix: update package version format to include '-a' suffix for consistency
+- **fix(ui-angular): build with partial compilation mode for package publish**:
+fix(ui-angular): build with partial compilation mode for package publish
+
+Co-authored-by: Copilot &lt;223556219+Copilot@users.noreply.github.com&gt;
 - **fix(component/bmb-alert-center): add eslint directive for output prefix rule**:
 fix(component/bmb-alert-center): add eslint directive for output prefix rule
 - **merge**:
@@ -531,16 +593,6 @@ merge
 chore: se agregó configuración para permitir Typescript dentro de los archivos de documentación de Storybook.
 - **feat(component) fix merge conflict**:
 feat(component) fix merge conflict
-- **ci(publish): remove dist/ui-angular before build to avoid publishing full-compiled artifacts**:
-ci(publish): remove dist/ui-angular before build to avoid publishing full-compiled artifacts
-
-Co-authored-by: Copilot &lt;223556219+Copilot@users.noreply.github.com&gt;
-- **fix: update package version format to include '-a' suffix for consistency**:
-fix: update package version format to include '-a' suffix for consistency
-- **fix(ui-angular): build with partial compilation mode for package publish**:
-fix(ui-angular): build with partial compilation mode for package publish
-
-Co-authored-by: Copilot &lt;223556219+Copilot@users.noreply.github.com&gt;
 - **feat(merge) conflic new-bamboo**:
 feat(merge) conflic new-bamboo
 

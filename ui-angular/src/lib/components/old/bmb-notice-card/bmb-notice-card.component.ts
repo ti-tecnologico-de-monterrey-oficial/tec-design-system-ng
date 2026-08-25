@@ -9,7 +9,7 @@ import {
 } from '@angular/core';
 import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
 import { BmbDividerComponent } from '../../bmb-divider/bmb-divider.component';
-import { BmbDotPaginatorComponent } from '../bmb-dot-paginator/bmb-dot-paginator.component';
+import { BmbDotPaginatorComponent } from '../../bmb-dot-paginator/bmb-dot-paginator.component';
 import { BmbButtonDirective } from '../../../directives/old/bmb-button/button.directive';
 import { CommonModule } from '@angular/common';
 import { TranslatePipe } from '../../../pipes/translations';

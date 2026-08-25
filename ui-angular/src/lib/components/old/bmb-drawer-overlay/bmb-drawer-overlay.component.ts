@@ -6,7 +6,7 @@ import {
   input,
   output,
 } from '@angular/core';
-import { BmbFabComponent } from '../bmb-fab/bmb-fab.component';
+import { BmbFabComponent } from '../../bmb-fab/bmb-fab.component';
 import { BmbInteractiveIconComponent } from '../bmb-interactive-icon/bmb-interactive-icon.component';
 import { IBmbApp } from '../../../_shared/types';
 import { BmbInnerHeaderComponent } from '../bmb-inner-header/bmb-inner-header.component';

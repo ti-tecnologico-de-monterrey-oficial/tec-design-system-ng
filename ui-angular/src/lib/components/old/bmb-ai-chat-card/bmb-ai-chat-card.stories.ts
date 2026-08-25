@@ -12,25 +12,8 @@ import {
 import { CommonModule } from '@angular/common';
 import { BmbTopBarComponent } from '../bmb-top-bar/bmb-top-bar.component';
 import { BmbSidebarComponent } from '../bmb-sidebar/bmb-sidebar.component';
-import { BmbHomeCardChatComponent } from './bmb-home-card-chat.component';
-import { IBmbChatActionEvent } from '../bmb-chat-bubbles/types';
-
-const CHAT_BEHAVIOR_DOC = `
-### 💡 Dynamic Message Behavior
-
-The chat bubble behavior is now dynamically resolved based on each message.
-
-- **gptIcons**: Automatically enabled for bot messages.
-- **gptBot**: Applied only when the message is not from the user.
-- **isThinking**: Applied only to the last bot message when loading state is active.
-
-This ensures a more realistic chat experience without requiring manual configuration.
-
-#### Example behavior:
-- User message → no icons
-- Bot message → shows actions (like, copy, etc.)
-- Last bot message while loading → shows thinking animation
-`;
+import { BmbAIChatCardComponent } from './bmb-ai-chat-card.component';
+import { BmbAiChatBubbleComponent } from '../bmb-ai-chat-bubble/bmb-ai-chat-bubble.component';
 
 const HTMLtemplate = `<div class="bmb_template-single-home-card">
 <bmb-top-bar
@@ -45,27 +28,53 @@ const HTMLtemplate = `<div class="bmb_template-single-home-card">
   [lang]="'es'"
 />
 <main class="bmb_template-single-home-card-main">
-  <bmb-home-card-chat
-    [leftIcon]="args().leftIcon"
+  <bmb-ai-chat-card
     [bgIconAppearance]="args().bgIconAppearance"
     [componentTitle]="args().componentTitle"
     [subtitle]="args().subtitle"
     [placeholder]="args().placeholder"
-    [messagesHistory]="args().messages"
-    [botList]="args().botList"
     [isMobile]="args().isMobile"
     [testId]="args().testId"
     [mode]="args().mode"
     [currentBot]="args().currentBot"
     [isLoading]="args().isLoading"
-    (getBubbleAction)="args().getBubbleAction?.($event)"
+    [headerActions]="headerActions"
     (getSendMessage)="args().getSendMessage?.($event)"
     (getClose)="args().getClose?.()"
     (getBack)="args().getBack?.()"
-    (getExpand)="args().getExpand?.($event)"
-    (getNewChat)="args().getNewChat?.($event)"
+    (getExpanded)="args().getExpanded?.($event)"
   >
-  </bmb-home-card-chat>
+    <bmb-ai-chat-bubble
+      [botIcon]="'bot_tecStandar'"
+      [testId]="'chat-bubble'"
+      [message]="{
+        id: '5', type: 'options', timestamp: '2026-08-25T01:28:13.313Z',
+        isUser: false,
+        content: {text: 'Choose one option:',
+        options: [{id: '1', label: 'Option for conversational text-based prompts 1'}, {id: '2', label: 'Option for conversational text-based prompts 2'}, {id: '3', label: 'Option for conversational text-based prompts 3'}, {id: '4', label: 'Option for conversational text-based prompts 4'}, {id: '5', label: 'Option for conversational text-based prompts 5'}]}}"
+        [isThinking]="false"
+        [showActions]="true"
+        (getAction)="getAction($event)"
+        (getOptionClicked)="getOptionClicked($event)"
+    />
+
+    <bmb-ai-chat-bubble
+      [botIcon]="'bot_tecStandar'"
+      [testId]="'chat-bubble'"
+      [message]="{
+        id: '2',
+        type: 'text',
+        timestamp: '2026-08-25T01:25:05.172Z',
+        isUser: true,
+        userProfile: 'https://picsum.photos/id/64/200/300',
+        content: {text: 'I need help with Angular signals.'},
+      }"
+      [isThinking]="false"
+      [showActions]="false"
+      (getAction)="getAction($event)"
+      (getOptionClicked)="getOptionClicked($event)"
+    />
+  </bmb-ai-chat-card>
   </main>
 </div>
 <bmb-sidebar
@@ -86,18 +95,44 @@ const HTMLtemplate = `<div class="bmb_template-single-home-card">
   imports: [
     BmbTopBarComponent,
     BmbSidebarComponent,
-    BmbHomeCardChatComponent,
+    BmbAIChatCardComponent,
     CommonModule,
+    BmbAiChatBubbleComponent,
   ],
   selector: 'storybook-modal-wrapper',
   template: HTMLtemplate,
 })
 class StorybookModalWrapperComponent {
   args = input<any>();
+  headerActions = [
+    {
+      icon: 'language_spanish',
+      iconActiveToggle: 'language_us',
+      isAccentColor: false,
+      tooltipText: 'Language',
+      action: () => {
+        console.info('Language');
+      },
+    },
+    {
+      icon: 'info',
+      tooltipText: 'Info',
+      action: () => {
+        console.info('Info');
+      },
+    },
+    {
+      icon: 'new_window',
+      tooltipText: 'New chat',
+      action: () => {
+        console.info('New chat');
+      },
+    },
+  ];
 }
 
 export default {
-  title: 'Deprecated/Home card chat',
+  title: 'Components/Containers/AI Chat card',
   component: BmbTopBarComponent,
   tags: ['autodocs'],
   decorators: [
@@ -105,7 +140,7 @@ export default {
       imports: [
         StorybookModalWrapperComponent,
         BmbTopBarComponent,
-        BmbHomeCardChatComponent,
+        BmbAIChatCardComponent,
       ],
       providers: [],
     }),
@@ -155,7 +190,6 @@ export default {
       description: {
         component: `
 ${getGeneralDescription(`Below you will find an example of the instructions for building the **AI Chat card**.`)}
-${CHAT_BEHAVIOR_DOC}
 ${getSpecialSpecifications(
   `${getAlertBlockquote(
     `When you click on fullscreen icon, in Storybook doesn’t look the best due to the many elements, but in your project, it should display correctly.
@@ -168,7 +202,8 @@ ${getBasicExampleBlock(
   `
   BmbTopBarComponent,
   BmbSidebarComponent,
-  BmbHomeCardChatComponent
+  BmbAIChatCardComponent,
+  BmbAiChatBubbleComponent,
   `,
   '',
   ` // ===== STATE =====
@@ -187,86 +222,36 @@ ${getBasicExampleBlock(
   placeholder = 'Escribe un mensaje...';
 
   // ===== APPEARANCE =====
-  leftIcon = 'chevron_left';
   bgIconAppearance = 'gray-charade-500';
   isMobile = false;
-  testId = 'chat-bubble';
-
-  // ===== DATA =====
-  botList: IBotType[] = [
+  testId = 'ai-chat-bubble';
+  headerActions = [
     {
-      name: 'TecBot',
-      icon: 'bot_tecStandar',
-    },
-    {
-      name: 'SupportBot',
-      icon: 'support_agent',
-    },
-  ];
-
-  messages: IBmbChatMessage[] = [
-    {
-      id: '1',
-      type: 'text',
-      content: { text: 'Hola, ¿cómo estás?' },
-      isUserMessage: false,
-      time: new Date(),
-    },
-    {
-      id: '2',
-      type: 'text',
-      content: { text: 'Hola, quiero ayuda' },
-      isUserMessage: true,
-      userProfile: 'https://i.pravatar.cc/150?img=3',
-      time: new Date(),
-    },
-    {
-      id: '3',
-      type: 'mixed',
-      content: {
-        text: 'Mira esta imagen 👇',
-        imageUrl: 'https://picsum.photos/300/200',
+      icon: 'language_spanish',
+      iconActiveToggle: 'language_us',
+      isAccentColor: false,
+      tooltipText: 'Language',
+      action: () => {
+        console.info('Language');
       },
-      isUserMessage: false,
-      time: new Date(),
     },
     {
-      id: '4',
-      type: 'link',
-      content: {
-        text: 'Ir a Google',
-        link: 'https://www.google.com',
+      icon: 'info',
+      tooltipText: 'Info',
+      action: () => {
+        console.info('Info');
       },
-      isUserMessage: false,
-      time: new Date(),
     },
     {
-      id: '5',
-      type: 'options',
-      content: {
-        text: '¿Qué quieres hacer?',
-        options: [
-          {
-            title: 'Ver calendario',
-            link: 'calendar',
-            onButton: () => console.log('📅 Calendar clicked'),
-          },
-          {
-            title: 'Ir a inicio',
-            link: 'home',
-          },
-        ],
+      icon: 'new_window',
+      tooltipText: 'New chat',
+      action: () => {
+        console.info('New chat');
       },
-      isUserMessage: false,
-      time: new Date(),
     },
   ];
 
   // ===== EVENTS =====
-  handleBubbleAction(event: IBmbChatActionEvent) {
-    console.log('🔥 Bubble Action:', event);
-  }
-
   handleSendMessage(message: string) {
     console.log('📩 Message sent:', message);
   }
@@ -309,7 +294,7 @@ Controls how the chat is rendered.
       table: {
         category: 'Properties',
         type: { summary: `'compact' | 'chat' | 'expanded'` },
-        defaultValue: { summary: 'chat' },
+        defaultValue: { summary: 'expanded' },
       },
     },
 
@@ -373,80 +358,6 @@ When enabled, the last bot message will display a "thinking" animation.
       },
     },
 
-    // ===== DATA =====
-    messages: {
-      control: 'object',
-      description: `
-Defines the chat conversation.
-
-Each item represents a message and determines how it is rendered:
-
-- **text** → simple message
-- **mixed** → text + image
-- **link** → clickable link
-- **options** → button list
-- **template** → custom content
-  `,
-      table: {
-        category: 'Properties',
-        type: {
-          summary: 'IBmbChatMessage[]',
-          detail: `
-import { IBmbChatMessage } from '../../types';
-
-type IBmbChatMessage = {
-  id: string;
-  userProfile?: string;
-  isUserMessage: boolean;
-  type: 'text' | 'mixed' | 'image' | 'link' | 'options' | 'template';
-  content: {
-    text?: string;
-    imageUrl?: string;
-    link?: string;
-    options?: {
-      title: string;
-      target?: string;
-      link?: string;
-      onButton?: () => void;
-    }[];
-    template?: TemplateRef<any>;
-  };
-  time: Date;
-};
-      `,
-        },
-      },
-    },
-
-    botList: {
-      control: 'object',
-      description: `
-List of available bots that can be selected in the chat.
-    `,
-      table: {
-        category: 'Properties',
-        type: {
-          summary: 'IBotType[]',
-          detail: `
-import { IBotType } from '../../components/bmb-chat-bar/types';
-
-type IBotType = {
-  name: string;
-  icon: string;
-};
-    `,
-        },
-      },
-    },
-    leftIcon: {
-      control: 'text',
-      description: `Icon displayed on the left side of the header.`,
-      table: {
-        category: 'Properties',
-        type: { summary: 'string' },
-      },
-    },
-
     bgIconAppearance: {
       control: 'text',
       description: `Background color token used for the bot icon.`,
@@ -473,47 +384,6 @@ type IBotType = {
         type: { summary: 'string' },
       },
     },
-    botActions: {
-      control: 'object',
-      description: 'Enables the actions for the bot bubbles',
-      table: {
-        category: 'Properties',
-      },
-    },
-    getBubbleAction: {
-      action: 'bubbleAction',
-      control: false,
-      description: `
-Emitted when a user interacts with a message action (copy, like, etc).
-
-### Example usage:
-\`\`\`ts
-handleBubbleAction(event) {
-  if (event.action === 'copy') {
-    navigator.clipboard.writeText(event.message.content.text);
-  }
-
-  if (event.action === 'like') {
-    console.log('Liked message:', event.messageId);
-  }
-}
-\`\`\`
-  `,
-      table: {
-        category: 'Events',
-        type: {
-          summary: 'IBmbChatActionEvent',
-          detail: `
-{
-  action: 'copy' | 'like' | 'dislike' | 'repeat' | 'voice',
-  messageId: string,
-  message: IBmbChatMessage,
-  event?: Event
-}
-      `,
-        },
-      },
-    },
     getSendMessage: {
       control: false,
       description:
@@ -531,7 +401,7 @@ handleBubbleAction(event) {
       description: `
 Triggered when the chat is closed.
 
-### Example:
+Example:
 \`\`\`ts
 handleClose() {
   console.log('Chat closed');
@@ -552,7 +422,7 @@ handleClose() {
       description: `
 Triggered when the back button is pressed.
 
-### Example:
+Example:
 \`\`\`ts
 handleBack() {
   console.log('Back clicked');
@@ -566,13 +436,13 @@ handleBack() {
         },
       },
     },
-    getExpand: {
+    getExpanded: {
       action: 'expand',
       control: false,
       description: `
 Triggered when switching to expanded mode.
 
-### Example:
+Example:
 \`\`\`ts
 handleExpand() {
   console.log('Expanded chat view');
@@ -586,30 +456,8 @@ handleExpand() {
         },
       },
     },
-
-    getNewChat: {
-      action: 'newChat',
-      control: false,
-      description: `
-Triggered when starting a new conversation.
-
-### Example:
-\`\`\`ts
-handleNewChat() {
-  console.log('New chat started');
-}
-\`\`\`
-  `,
-      table: {
-        category: 'Events',
-        type: {
-          summary: '(value: boolean) => void',
-        },
-      },
-    },
   },
   args: {
-    // ===== STATE =====
     mode: 'compact',
 
     currentBot: {
@@ -619,54 +467,13 @@ handleNewChat() {
 
     isLoading: false,
 
-    // ===== CONTENT =====
     componentTitle: 'Asistente TECbot',
     subtitle: 'Asistente TECbot',
     placeholder: 'Escribe un mensaje...',
 
-    // ===== APPEARANCE =====
-    leftIcon: 'chevron_left',
     bgIconAppearance: 'gray-charade-500',
     isMobile: false,
-    testId: 'chat-bubble',
-
-    // ===== DATA =====
-    botList: [
-      {
-        name: 'TecBot',
-        icon: 'bot_tecStandar',
-      },
-    ],
-
-    messages: [
-      {
-        id: '1',
-        type: 'text',
-        content: { text: 'Hola, ¿cómo estás?' },
-        isUserMessage: false,
-        time: new Date(),
-      },
-      {
-        id: '2',
-        type: 'text',
-        content: { text: 'Hola, quiero ayuda' },
-        isUserMessage: true,
-        time: new Date(),
-      },
-      {
-        id: '3',
-        type: 'text',
-        content: { text: 'Claro, dime en qué puedo ayudarte' },
-        isUserMessage: false,
-        time: new Date(),
-      },
-    ],
-    botActions: ['copy', 'dislike', 'like', 'repeat', 'voice'],
-
-    // ===== EVENTS =====
-    getBubbleAction: (event: IBmbChatActionEvent) => {
-      console.log('🔥 Bubble Action:', event);
-    },
+    testId: 'ai-chat-bubble',
 
     getSendMessage: (message: string) => {
       console.log('📩 Send Message:', message);
@@ -680,12 +487,8 @@ handleNewChat() {
       console.log('⬅️ Back Clicked');
     },
 
-    getExpand: (event?: Event) => {
-      console.log('🔍 Expand Clicked:', event);
-    },
-
-    getNewChat: (value: boolean) => {
-      console.log('🆕 New Chat Triggered:', value);
+    getExpanded: (event?: boolean) => {
+      console.log('🔍 Expanded:', event);
     },
   },
 } as Meta;
