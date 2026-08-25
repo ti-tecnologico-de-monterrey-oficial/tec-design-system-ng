@@ -164,6 +164,7 @@ export * from './lib/components/old/bmb-modal/bmb-native-modal.component';
 export * from './lib/directives/old/bmb-selector/bmb-selector.directive';
 export * from './lib/components/old/bmb-table-lite/bmb-table-lite.component';
 export * from './lib/components/old/bmb-search-card/bmb-search-card.component';
+export * from './lib/components/old/bmb-ai-chat-card/bmb-ai-chat-card.component';
 
 // types
 export * from './lib/_shared/types';
