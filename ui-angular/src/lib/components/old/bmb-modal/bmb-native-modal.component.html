@@ -58,7 +58,7 @@
           <button
             bmbButton
             [appearance]="btn.appearance || 'secondary-outlined'"
-            (click)="btn.action()"
+            (click)="btn.action($event, btn)"
             [ngStyle]="{ flex: actions().length === 1 ? '1 1 auto' : 'none' }"
           >
             @if (btn.icon) {
