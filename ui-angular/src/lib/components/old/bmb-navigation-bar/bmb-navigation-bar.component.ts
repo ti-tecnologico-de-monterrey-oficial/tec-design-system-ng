@@ -38,8 +38,6 @@ export class BmbNavigationBarComponent {
   isMitecHeader = input<boolean>(false);
 
   handleClick(actionHeader: IBmbActionHeader): void {
-    if (actionHeader.action) {
-      actionHeader.action();
-    }
+    actionHeader.action?.();
   }
 }

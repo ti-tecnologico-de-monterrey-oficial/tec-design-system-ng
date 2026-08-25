@@ -107,14 +107,27 @@ describe('BmbAiChatBubbleComponent', () => {
     expect(element).toBeTruthy();
   });
 
-  it('should not render actions component for user message', () => {
+  it('should render only the copy action for a user message by default', () => {
     componentRef.setInput('message', mockUserMessage);
 
     fixture.detectChanges();
 
     const element = fixture.debugElement.query(By.css('bmb-chat-actions'));
+    const icons = fixture.debugElement.queryAll(
+      By.css('bmb-chat-actions bmb-icon'),
+    );
 
-    expect(element).toBeFalsy();
+    expect(element).toBeTruthy();
+    expect(icons).toHaveSize(1);
+  });
+
+  it('should hide user actions when userActions is empty', () => {
+    componentRef.setInput('message', mockUserMessage);
+    componentRef.setInput('userActions', []);
+
+    fixture.detectChanges();
+
+    expect(fixture.debugElement.query(By.css('bmb-chat-actions'))).toBeFalsy();
   });
 
   it('should not render actions component when showActions is false', () => {
@@ -139,6 +152,68 @@ describe('BmbAiChatBubbleComponent', () => {
     component['onAction'](mockEvent);
 
     expect(component.getAction.emit).toHaveBeenCalledWith(mockEvent);
+  });
+
+  it('should copy a user text message and restore the icon state', async () => {
+    jest.useFakeTimers();
+    const writeText = jest.fn().mockResolvedValue(undefined);
+    Object.defineProperty(navigator, 'clipboard', {
+      configurable: true,
+      value: { writeText },
+    });
+    componentRef.setInput('message', mockUserMessage);
+    fixture.detectChanges();
+
+    await component['onAction']({
+      action: 'copy',
+      messageId: mockUserMessage.id,
+      message: mockUserMessage,
+    });
+
+    expect(writeText).toHaveBeenCalledWith('Hello from user');
+    expect(component.copyState()).toBe('success');
+
+    jest.advanceTimersByTime(3000);
+    expect(component.copyState()).toBe('idle');
+    jest.useRealTimers();
+  });
+
+  it('should show an error state when clipboard rejects the copy', async () => {
+    jest.useFakeTimers();
+    Object.defineProperty(navigator, 'clipboard', {
+      configurable: true,
+      value: { writeText: jest.fn().mockRejectedValue(new Error('denied')) },
+    });
+    componentRef.setInput('message', mockUserMessage);
+    fixture.detectChanges();
+
+    await component['onAction']({
+      action: 'copy',
+      messageId: mockUserMessage.id,
+      message: mockUserMessage,
+    });
+
+    expect(component.copyState()).toBe('error');
+    jest.advanceTimersByTime(3000);
+    expect(component.copyState()).toBe('idle');
+    jest.useRealTimers();
+  });
+
+  it('should ignore additional copy actions while copy is pending', async () => {
+    const writeText = jest.fn().mockResolvedValue(undefined);
+    Object.defineProperty(navigator, 'clipboard', {
+      configurable: true,
+      value: { writeText },
+    });
+    component.copyState.set('pending');
+
+    await component['onAction']({
+      action: 'copy',
+      messageId: mockBotMessage.id,
+      message: mockBotMessage,
+    });
+
+    expect(writeText).not.toHaveBeenCalled();
   });
 
   it('should render text message component', () => {

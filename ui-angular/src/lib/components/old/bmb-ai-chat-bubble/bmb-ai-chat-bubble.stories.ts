@@ -169,6 +169,21 @@ Available actions:
       },
     },
 
+    userActions: {
+      control: 'object',
+      description:
+        'Actions displayed for user messages. Copy is enabled by default.',
+      table: {
+        category: 'Properties',
+        type: {
+          summary: 'BmbChatAction[]',
+        },
+        defaultValue: {
+          summary: "['copy']",
+        },
+      },
+    },
+
     imageNotFoundError: DBmbIconParamDesc.imageNotFoundError,
 
     getAction: {
@@ -190,6 +205,7 @@ Available actions:
     testId: 'chat-bubble',
     isThinking: false,
     showActions: true,
+    userActions: ['copy'],
     message: {
       id: '1',
       type: 'text',
@@ -214,7 +230,8 @@ export const Default: Story = {};
 
 export const UserMessage: Story = {
   args: {
-    showActions: false,
+    showActions: true,
+    userActions: ['copy'],
 
     message: {
       id: '2',

@@ -30,6 +30,7 @@
       </div>
       <div class="bmb_ai-chat-bubble-container">
         <div
+          #messageContent
           class="bmb_ai-chat-bubble-msg"
           [attr.data-testid]="testId() + '-message'"
         >
@@ -83,6 +84,19 @@
 
         <div class="bmb_ai-chat-bubble-extra">
           @if (message.isUser) {
+            @if (showActions() && userActions().length) {
+              <div
+                class="bmb_ai-chat-bubble-extra-container bmb_ai-chat-bubble-extra-container-user"
+                [class.is-copy-result-container]="copyState() !== 'idle'"
+              >
+                <bmb-chat-actions
+                  [message]="message"
+                  [actions]="userActions()"
+                  [copyState]="copyState()"
+                  (actionTriggered)="onAction($event)"
+                />
+              </div>
+            }
             <p class="bmb_ai-chat-bubble-extra-time">
               {{ message.timestamp | date: 'hh:mm a' }}
             </p>
@@ -91,6 +105,7 @@
               @if (showActions() && !message.isUser) {
                 <bmb-chat-actions
                   [message]="message"
+                  [copyState]="copyState()"
                   (actionTriggered)="onAction($event)"
                 />
               }
