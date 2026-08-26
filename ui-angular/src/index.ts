@@ -103,7 +103,7 @@ export * from './lib/components/old/bmb-push-notification/bmb-push-notification.
 export * from './lib/components/old/bmb-notification-card/bmb-notification-card.component';
 export * from './lib/components/old/bmb-login-onboarding/bmb-login-onboarding.component';
 export * from './lib/components/old/bmb-home-card-chat/bmb-home-card-chat.component';
-export * from './lib/components/old/bmb-paginator/bmb-paginator.component';
+export * from './lib/components/bmb-paginator/bmb-paginator.component';
 export * from './lib/components/old/bmb-account-statement/bmb-account-statement.component';
 export * from './lib/components/old/bmb-grades/bmb-grades.component';
 export * from './lib/components/old/bmb-web-templates/bmb-web-templates.component';
@@ -140,7 +140,7 @@ export * from './lib/components/old/bmb-text-editor/bmb-text-editor.component';
 export * from './lib/components/bmb-server-table/bmb-server-table.component';
 export * from './lib/components/old/bmb-list-items/bmb-list-items.component';
 export * from './lib/components/old/bmb-image/bmb-image.component';
-export * from './lib/components/old/bmb-icon-status/bmb-icon-status.component';
+export * from './lib/components/bmb-icon-status/bmb-icon-status.component';
 export * from './lib/components/old/bmb-chat-bubbles/bmb-chat-bubbles.component';
 export * from './lib/components/old/bmb-ai-chat-bubble/bmb-ai-chat-bubble.component';
 export * from './lib/components/old/bmb-digital-id/bmb-digital-id.component';

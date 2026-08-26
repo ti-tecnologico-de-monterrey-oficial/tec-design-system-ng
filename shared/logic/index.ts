@@ -5,6 +5,8 @@ export * from './components/container';
 export * from './components/divider';
 export * from './components/dot-paginator';
 export * from './components/fab';
+export * from './components/icon-status';
+export * from './components/paginator';
 export * from './components/pull-wedge';
 export * from './components/server-table';
 export * from './components/card';
