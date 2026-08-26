@@ -19,7 +19,6 @@ import { BmbSearchCardEmptyStateComponent } from './bmb-search-card-empty-state/
 import { BmbTranslationsService } from '../../../services/translations/translations.service';
 import { BmbSearchCardItemComponent } from './bmb-search-card-item/bmb-search-card-item.component';
 import { IBmbInteractiveIconAppearance } from '../../../_shared/types/components/interactive-icon';
-import { BmbLoaderComponent } from '../bmb-loader/bmb-loader.component';
 
 export interface IBmbSearchCardItemResult {
   id: string;
@@ -43,7 +42,6 @@ export interface IBmbSearchCardItemResult {
     CommonModule,
     BmbSearchCardEmptyStateComponent,
     BmbSearchCardItemComponent,
-    BmbLoaderComponent,
   ],
   templateUrl: './bmb-search-card.component.html',
   styleUrl: './bmb-search-card.component.scss',
@@ -54,8 +52,8 @@ export class BmbSearchCardComponent {
   results = input<IBmbSearchCardItemResult[]>([]);
   isLoading = input<boolean>(false);
   componentTitle = input<string>();
+
   title = input<string>(); // deprecated
-  favorites = input<IBmbSearchCardItemResult[]>([]);
 
   selectedTabId = model<number>(1);
 
@@ -64,42 +62,25 @@ export class BmbSearchCardComponent {
   getBookmarkItemClick = output<IBmbSearchCardItemResult>();
   private readonly destroyRef = inject(DestroyRef);
   private readonly subscriptions = new Subscription();
-  private translationsService: BmbTranslationsService = inject(
-    BmbTranslationsService,
-  );
+  private translationsService: BmbTranslationsService = inject(BmbTranslationsService);
 
   inputSearchControl = new FormControl('');
   computedResults = computed<{
     services: IBmbSearchCardItemResult[];
     persons: IBmbSearchCardItemResult[];
-    favorites: IBmbSearchCardItemResult[];
   }>(() => {
-    const newResults = this.results();
-
-    if (this.inputSearchControl.value === '') {
-      return {
-        services: [],
-        persons: [],
-        favorites: this.favorites(),
-      };
-    }
-
-    return newResults.reduce(
+    return this.results().reduce(
       (acc, item) => {
         if (item.type === 'service') {
-          if (item.isBookmarkActive) {
-            acc.favorites.push(item);
-            acc.services.push(item);
-          }
+          acc.services.push(item);
         } else if (item.type === 'person') {
           acc.persons.push(item);
         }
         return acc;
       },
-      { services: [], persons: [], favorites: [] } as {
+      { services: [], persons: [] } as {
         services: IBmbSearchCardItemResult[];
         persons: IBmbSearchCardItemResult[];
-        favorites: IBmbSearchCardItemResult[];
       },
     );
   });
@@ -114,16 +95,11 @@ export class BmbSearchCardComponent {
     },
     {
       id: 2,
-      title: this.translationsService.translate('search_card.tabs.favorites'),
-      badge: this.computedResults().favorites.length,
-    },
-    {
-      id: 3,
       title: this.translationsService.translate('search_card.tabs.services'),
       badge: this.computedResults().services.length,
     },
     {
-      id: 4,
+      id: 3,
       title: this.translationsService.translate('search_card.tabs.people'),
       badge: this.computedResults().persons.length,
     },
