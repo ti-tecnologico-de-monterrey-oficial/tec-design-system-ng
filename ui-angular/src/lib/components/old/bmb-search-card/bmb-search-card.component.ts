@@ -56,6 +56,7 @@ export class BmbSearchCardComponent {
   componentTitle = input<string>();
   title = input<string>(); // deprecated
   favorites = input<IBmbSearchCardItemResult[]>([]);
+  disableFavoritesTab = input<boolean>(true);
 
   selectedTabId = model<number>(1);
 
@@ -90,6 +91,8 @@ export class BmbSearchCardComponent {
           if (item.isBookmarkActive) {
             acc.favorites.push(item);
             acc.services.push(item);
+          } else {
+            acc.services.push(item);
           }
         } else if (item.type === 'person') {
           acc.persons.push(item);
@@ -103,9 +106,9 @@ export class BmbSearchCardComponent {
       },
     );
   });
-  tabsData = computed<IBmbTab[]>(() => [
+  tabsData = computed<IBmbTab[]>(() => {
+    const rowTabs = [
     {
-      id: 1,
       title: this.translationsService.translate('search_card.tabs.all'),
       badge:
         this.computedResults().persons.length +
@@ -113,21 +116,28 @@ export class BmbSearchCardComponent {
       isActive: true,
     },
     {
-      id: 2,
       title: this.translationsService.translate('search_card.tabs.favorites'),
       badge: this.computedResults().favorites.length,
     },
     {
-      id: 3,
       title: this.translationsService.translate('search_card.tabs.services'),
       badge: this.computedResults().services.length,
     },
     {
-      id: 4,
       title: this.translationsService.translate('search_card.tabs.people'),
       badge: this.computedResults().persons.length,
     },
-  ]);
+  ];
+
+  if (this.disableFavoritesTab()) {
+    rowTabs.splice(1, 1);
+  }
+
+    return rowTabs.map((tab, index) => ({
+      ...tab,
+      id: index,
+    }));
+  });
 
   constructor() {
     this.destroyRef.onDestroy(() => {

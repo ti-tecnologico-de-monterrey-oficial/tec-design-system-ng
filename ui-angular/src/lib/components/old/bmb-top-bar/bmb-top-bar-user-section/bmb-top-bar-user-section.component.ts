@@ -48,7 +48,7 @@ export class BmbTopBarUserSectionComponent {
   mitec = input<boolean>(false);
   showNotifications = input<boolean>(true);
   notificationNotification = input<IBmbDataAlert[]>([]);
-  showRoleButton = input<boolean>(false);
+  showRoleButton = input<boolean>(false); //Deprecated
   showSearchButton = input<boolean>(false);
   showHelpButton = input<boolean>(false);
   showFavoritesButton = input<boolean>(false);
@@ -56,7 +56,7 @@ export class BmbTopBarUserSectionComponent {
   helpButtonClick = output<MouseEvent>();
   userClick = output<MouseEvent>();
   alertClick = output<MouseEvent>();
-  roleButtonClick = output<MouseEvent>();
+  roleButtonClick = output<MouseEvent>(); //Deprecated
   searchButtonClick = output<MouseEvent>();
   getFavoritesClick = output<MouseEvent>();
 
@@ -73,15 +73,9 @@ export class BmbTopBarUserSectionComponent {
     const notification: IDropdownItem = {
       idItem: 'notifications',
       icon: 'notifications',
-      dotNotification: this.notificationNotification().length,
+      dotNotification: this.notificationNotification()?.length,
       text: this.translationService.translate('top_bar.notifications'),
       action: (event?: unknown) => this.openNotifications(event as MouseEvent),
-    };
-    const changeUser: IDropdownItem = {
-      idItem: 'change_user',
-      icon: 'compare_arrows',
-      text: this.translationService.translate('top_bar.role_switch'),
-      action: (event?: unknown) => this.handleRoleChange(event as MouseEvent),
     };
     const search: IDropdownItem = {
       idItem: 'search',
@@ -93,17 +87,18 @@ export class BmbTopBarUserSectionComponent {
       idItem: 'help',
       icon: 'help',
       text: this.translationService.translate('top_bar.help'),
-      action: (event?: unknown) => this.handleSearchChange(event as MouseEvent),
+      action: (event?: unknown) =>
+        this.handleHelpButtonClick(event as MouseEvent),
     };
     const favorites: IDropdownItem = {
       idItem: 'favorites',
       icon: 'bookmark',
       text: this.translationService.translate('top_bar.favorites'),
-      action: (event?: unknown) => this.handleSearchChange(event as MouseEvent),
+      action: (event?: unknown) =>
+        this.handleFavoritesClick(event as MouseEvent),
     };
 
     if (this.showHelpButton()) menu.unshift(help);
-    if (this.showRoleButton()) menu.unshift(changeUser);
     if (this.showSearchButton()) menu.unshift(search);
     if (this.showNotifications()) menu.unshift(notification);
     if (this.showFavoritesButton()) menu.unshift(favorites);
@@ -120,7 +115,7 @@ export class BmbTopBarUserSectionComponent {
   }
 
   totalNotifications(): number {
-    return this.notificationNotification().length;
+    return this.notificationNotification()?.length;
   }
 
   handleHelpButtonClick(event: MouseEvent): void {
@@ -129,10 +124,6 @@ export class BmbTopBarUserSectionComponent {
 
   handleUserClick(event: MouseEvent): void {
     this.userClick.emit(event);
-  }
-
-  handleRoleChange(event: MouseEvent): void {
-    this.roleButtonClick.emit(event);
   }
 
   handleSearchChange(event: MouseEvent): void {

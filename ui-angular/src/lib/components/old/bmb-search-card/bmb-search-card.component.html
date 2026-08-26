@@ -18,7 +18,7 @@
     />
     @if (isLoading()) {
       <bmb-loader [showInline]="true"></bmb-loader>
-    }@else if (!inputSearchControl.value) {
+    } @else if (!inputSearchControl.value && !disableFavoritesTab()) {
       @if (favorites().length) {
         <section class="bmb_search-card-results-section">
           <h3>{{ 'search_card.tabs.favorites' | translate }}</h3>
@@ -30,7 +30,7 @@
             }
           </ul>
         </section>
-      } @else {
+      } @else if (inputSearchControl.value && !disableFavoritesTab()) {
         <bmb-search-card-empty-state
           [inputHasValue]="!!inputSearchControl.value"
           [noResultsTitle]="
@@ -45,7 +45,7 @@
           icon="bookmark"
         ></bmb-search-card-empty-state>
       }
-    } @else {
+    } @else if (inputSearchControl.value) {
       <bmb-tabs [tabs]="tabsData()" [(selectedTabId)]="selectedTabId">
         @switch (selectedTabId()) {
           @case (1) {
