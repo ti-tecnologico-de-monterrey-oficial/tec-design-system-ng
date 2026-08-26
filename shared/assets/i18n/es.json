@@ -344,7 +344,8 @@
     "search": "Buscar",
     "role_switch": "Cambiar rol",
     "notifications": "Notificaciones",
-    "help": "Ayuda"
+    "help": "Ayuda",
+    "favorites": "Favoritos"
   },
   "image": {
     "previous": "Imagen anterior",

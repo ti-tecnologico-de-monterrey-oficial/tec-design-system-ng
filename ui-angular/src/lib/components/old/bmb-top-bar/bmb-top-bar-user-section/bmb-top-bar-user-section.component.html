@@ -16,6 +16,16 @@
         [items]="getMenu()"
       />
     }
+    @if (showFavoritesButton()) {
+      <bmb-action-icon
+        bmbLayoutItem
+        class="bmb_top-bar-user-section-no-mobile"
+        icon="bookmark"
+        [iconSize]="32"
+        (buttonClick)="handleFavoritesClick($event)"
+        [tooltipText]="'top_bar.favorites' | translate"
+      />
+    }
     @if (showSearchButton()) {
       <bmb-action-icon
         bmbLayoutItem
@@ -60,7 +70,7 @@
       bmbLayoutItem
       [ngClass]="{
         'bmb_top-bar-user-section-no-mobile':
-          mitec() && (showRoleButton() || showNotifications())
+          mitec() && (showRoleButton() || showNotifications()),
       }"
       icon="help"
       [showContainer]="false"

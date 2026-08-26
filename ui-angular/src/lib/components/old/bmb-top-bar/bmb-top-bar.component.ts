@@ -41,6 +41,7 @@ export class BmbTopBarComponent implements OnInit {
   showRoleButton = input<boolean>(false);
   showSearchButton = input<boolean>(false);
   showHelpButton = input<boolean>(false);
+  showFavoritesButton = input<boolean>(false);
   allowSidebarForMobile = input<boolean>(true);
   getLogoLink = input<string>('');
   getLogoTarget = input<IBmbTargetLink>('_blank');
@@ -55,6 +56,7 @@ export class BmbTopBarComponent implements OnInit {
   backToHomeClick = output<void>();
   getLogoClick = output<void>();
   searchButtonClick = output<MouseEvent>();
+  getFavoritesClick = output<MouseEvent>();
 
   showAnimation = true;
   imageDefault = 'assets/images/tec-logo.svg';
@@ -112,5 +114,9 @@ export class BmbTopBarComponent implements OnInit {
 
   handleLogoClick(): void {
     this.getLogoClick.emit();
+  }
+
+  handleFavoritesClick(event: MouseEvent): void {
+    this.getFavoritesClick.emit(event);
   }
 }
