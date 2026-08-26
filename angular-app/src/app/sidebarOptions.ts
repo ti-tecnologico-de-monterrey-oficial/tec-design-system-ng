@@ -204,6 +204,18 @@ export const sidebarOptions: SidebarElement[][] = [
           title: 'FAB',
           link: '/components/fab',
         },
+        {
+          id: 23,
+          icon: 'task_alt',
+          title: 'Icon status',
+          link: '/components/icon-status',
+        },
+        {
+          id: 24,
+          icon: 'navigate_next',
+          title: 'Paginator',
+          link: '/components/paginator',
+        },
       ],
     },
   ],

@@ -4,11 +4,21 @@ import {
   input,
   ViewEncapsulation,
 } from '@angular/core';
-import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { CommonModule } from '@angular/common';
+import { BmbIconComponent } from '../old/bmb-icon/bmb-icon.component';
+import {
+  getIconStatusClassName,
+  getIconStatusSize,
+} from '../../_shared/logic/components/icon-status';
+import type {
+  IBmbStatusAppearance,
+  IBmbStatusIconColor,
+} from '../../_shared/types/components/icon-status';
 
-export type IBmbStatusAppearance = 'success' | 'event' | 'warning' | 'error';
-export type IBmbStatusIconColor = 'primary' | 'secondary';
+export type {
+  IBmbStatusAppearance,
+  IBmbStatusIconColor,
+} from '../../_shared/types/components/icon-status';
 
 @Component({
   selector: 'bmb-icon-status',
@@ -25,10 +35,10 @@ export class BmbIconStatusComponent {
   iconColor = input<IBmbStatusIconColor>('primary');
 
   getIconSize(): number {
-    return (!!this.statusAppearance() && 60) || 120;
+    return getIconStatusSize(this.statusAppearance());
   }
 
   getClassName(baseClassName: string, className: string): string {
-    return (!!className && `${baseClassName}-${className}`) || '';
+    return getIconStatusClassName(baseClassName, className);
   }
 }

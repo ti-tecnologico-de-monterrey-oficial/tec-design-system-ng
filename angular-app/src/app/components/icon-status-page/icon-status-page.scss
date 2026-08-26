@@ -1,0 +1,52 @@
+@use '../../styles/playground';
+
+@include playground.page($controls-min: 18rem, $controls-max: 24rem);
+
+:host {
+  background: #f4f6f9;
+  color: #1f2937;
+  min-height: 100%;
+  padding: 2rem;
+}
+
+.preview {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+.helper-text {
+  margin: 0.5rem 0 0;
+}
+
+.variants {
+  margin-top: 2rem;
+}
+
+.variant-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+
+  article {
+    align-items: center;
+    background: #fff;
+    border: 1px solid #d8dee8;
+    border-radius: 0.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    min-height: 12rem;
+    padding: 1rem;
+  }
+
+  h3 {
+    margin: 0;
+  }
+}
+
+@media (max-width: 700px) {
+  :host {
+    padding: 1rem;
+  }
+}

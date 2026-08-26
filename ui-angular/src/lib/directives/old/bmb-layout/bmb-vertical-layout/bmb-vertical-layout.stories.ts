@@ -7,7 +7,7 @@ import {
   getGeneralDescription,
 } from '@docs/utils/utils';
 import { BmbVerticalLayoutItemDirective } from './bmb-vertical-layout-item.directive';
-import { BmbIconStatusComponent } from '../../../../components/old/bmb-icon-status/bmb-icon-status.component';
+import { BmbIconStatusComponent } from '../../../../components/bmb-icon-status/bmb-icon-status.component';
 import { BmbInnerHeaderComponent } from '../../../../components/old/bmb-inner-header/bmb-inner-header.component';
 import {
   BmbCardComponent,
