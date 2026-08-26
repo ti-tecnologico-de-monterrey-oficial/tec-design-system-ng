@@ -48,13 +48,13 @@ export const MediaCompleto: Story = {
   render: () => ({
     template: cardWrap(
       328,
-      420,
+      520,
       stack([
         imageMedia(),
         headerRow(
           titleWithAuthor(
             'Texto principal largo (máximo 2 líneas o 3 sin contenido complementario)',
-            '8',
+            '5',
             '700',
           ),
           menuAction,
@@ -72,13 +72,13 @@ export const MediaCompletoConSeleccion: Story = {
   render: () => ({
     template: cardWrap(
       328,
-      440,
+      540,
       stack([
         imageMedia(),
         rightAlign(actionsCluster({ selection: true, selected: true })),
         titleWithAuthor(
           'Texto principal largo (máximo 2 líneas o 3 sin contenido complementario)',
-          '8',
+          '5',
           '700',
         ),
         mutedLabel('Contenido complementario'),
@@ -100,7 +100,7 @@ export const IconCompleto: Story = {
         headerRow(iconMedia(), menuAction),
         titleWithAuthor(
           'Texto principal largo (máximo 3 líneas de texto con contenido inferior complementario)',
-          '8',
+          '5',
           '700',
         ),
         mutedLabel('Contenido complementario'),
@@ -116,13 +116,13 @@ export const IconCompletoConSeleccion: Story = {
   render: () => ({
     template: cardWrap(
       328,
-      360,
+      460,
       stack([
         rightAlign(actionsCluster({ selection: true, selected: true })),
         iconMedia(),
         titleWithAuthor(
           'Texto principal largo (máximo 3 líneas de texto con contenido inferior complementario)',
-          '8',
+          '5',
           '700',
         ),
         mutedLabel('Contenido complementario'),

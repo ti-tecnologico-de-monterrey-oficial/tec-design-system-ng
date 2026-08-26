@@ -36,7 +36,7 @@ const longBody =
 const build = (media: string, selection: boolean, selected: boolean) =>
   cardWrap(
     328,
-    360,
+    420,
     stack([
       rightAlign(actionsCluster({ selection, selected })),
       media,

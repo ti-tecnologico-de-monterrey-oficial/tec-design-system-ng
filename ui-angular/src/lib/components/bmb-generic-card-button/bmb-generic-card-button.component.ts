@@ -7,6 +7,8 @@ import {
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
+export type IBmbGenericCardButtonAppearance = 'default' | 'alternative';
+
 @Component({
   selector: 'bmb-generic-card-button',
   standalone: true,
@@ -19,6 +21,7 @@ import { CommonModule } from '@angular/common';
 export class BmbGenericCardButtonComponent {
   disabled = input<boolean>(false);
   selected = input<boolean>(false);
+  appearance = input<IBmbGenericCardButtonAppearance>('default');
 
   cardClick = output<MouseEvent | KeyboardEvent>();
 

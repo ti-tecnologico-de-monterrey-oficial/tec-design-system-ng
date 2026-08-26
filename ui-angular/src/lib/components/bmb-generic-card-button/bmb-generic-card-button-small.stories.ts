@@ -37,7 +37,7 @@ export const Compacto: Story = {
   render: () => ({
     template: cardWrap(
       328,
-      152,
+      180,
       stack([
         headerRow(iconMedia(), menuAction),
         titleWithAuthor(),
@@ -52,7 +52,7 @@ export const Acciones: Story = {
   render: () => ({
     template: cardWrap(
       328,
-      180,
+      200,
       stack([
         headerRow(iconMedia(), actionsCluster({ selection: true })),
         titleWithAuthor(),
@@ -67,7 +67,7 @@ export const ConTextLink: Story = {
   render: () => ({
     template: cardWrap(
       328,
-      200,
+      220,
       stack([
         headerRow(iconMedia(), actionsCluster({ selection: true })),
         titleWithAuthor(),
@@ -85,7 +85,7 @@ export const Seleccion: Story = {
   render: () => ({
     template: cardWrap(
       328,
-      160,
+      190,
       stack([
         headerRow(iconMedia(), selectionIcon(true)),
         titleWithAuthor(),
@@ -101,7 +101,7 @@ export const ResponsiveVerticalCompletoIcon: Story = {
   render: () => ({
     template: cardWrap(
       328,
-      280,
+      300,
       stack([
         headerRow(iconMedia(), menuAction),
         titleWithAuthor('Resumen de Texto', '6', '700'),
@@ -125,7 +125,7 @@ export const ResponsiveVerticalCompletoImage: Story = {
   render: () => ({
     template: cardWrap(
       328,
-      320,
+      420,
       grid(
         [
           gridItem(imageMedia(), 1, 1),

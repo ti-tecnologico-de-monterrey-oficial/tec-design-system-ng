@@ -38,7 +38,7 @@ export const Editorial: Story = {
   render: () => ({
     template: cardWrap(
       328,
-      208,
+      248,
       stack([
         headerRow(iconMedia(), menuAction),
         titleWithAuthor(),
@@ -54,7 +54,7 @@ export const EditorialConTextLink: Story = {
   render: () => ({
     template: cardWrap(
       328,
-      230,
+      270,
       stack([
         headerRow(iconMedia(), menuAction),
         titleWithAuthor(),
@@ -73,7 +73,7 @@ export const EditorialConActions: Story = {
   render: () => ({
     template: cardWrap(
       328,
-      230,
+      270,
       stack([
         headerRow(iconMedia(), actionsCluster({ selection: true })),
         titleWithAuthor(),
@@ -95,7 +95,7 @@ export const EditorialCompleto: Story = {
         badges([{ text: 'Info', appearance: 'info' }]),
         titleWithAuthor(
           'Texto principal largo (máximo 2 líneas o 3 sin contenido complementario)',
-          '8',
+          '5',
           '700',
         ),
         mutedLabel('Contenido complementario'),
@@ -111,7 +111,7 @@ export const EditorialCompletoSinMedia: Story = {
   render: () => ({
     template: cardWrap(
       328,
-      280,
+      300,
       stack([
         headerRow(
           badges([{ text: 'Info', appearance: 'info' }]),
@@ -119,7 +119,7 @@ export const EditorialCompletoSinMedia: Story = {
         ),
         titleWithAuthor(
           'Texto principal largo (máximo 3 líneas con contenido inferior complementario)',
-          '8',
+          '5',
           '700',
         ),
         mutedLabel('Contenido complementario'),
@@ -134,8 +134,8 @@ export const EditorialCompletoSinMedia: Story = {
 export const ResponsiveVerticalCompletoMedia: Story = {
   render: () => ({
     template: cardWrap(
-      328,
-      340,
+      368,
+      460,
       stack([
         imageMedia(),
         headerRow(titleWithAuthor('Resumen de Texto', '6', '700'), menuAction),
@@ -159,7 +159,7 @@ export const ResponsiveVerticalCompletoIcono: Story = {
   render: () => ({
     template: cardWrap(
       328,
-      320,
+      360,
       stack([
         headerRow(iconMedia(), menuAction),
         titleWithAuthor('Resumen de Texto', '6', '700'),

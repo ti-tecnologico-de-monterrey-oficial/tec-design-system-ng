@@ -1,6 +1,3 @@
-// Shared content fragments reused across the named Figma-matched example
-// stories (small / editorial / editorial-vertical / media-icon-completo /
-// quick-view). Pure string builders — no logic changes to the component.
 import { BmbBadgeComponent } from '../bmb-badge/bmb-badge.component';
 import { IBmbBadgeAppearance } from '../../_shared/types/components/badge';
 import { BmbBoxIconComponent } from '../old/bmb-box-icon/bmb-box-icon.component';
@@ -43,7 +40,6 @@ export const gridItem = (
 export const grid = (items: string, columns: number, rows: number) =>
   `<div bmbLayoutGrid [columns]="${columns}" [rows]="${rows}" height="100%">${items}</div>`;
 
-// A simple full-width vertical stack: one row per string, column 1.
 export const stack = (rows: string[]) =>
   grid(rows.map((r, i) => gridItem(r, 1, i + 1)).join('\n'), 1, rows.length);
 
@@ -65,14 +61,12 @@ const bookmarkAction = `<bmb-button-icon icon="bookmark" [showContainer]="false"
 export const selectionIcon = (selected: boolean) =>
   `<bmb-icon icon="${selected ? 'check_circle' : 'radio_button_unchecked'}" [size]="20" alt="${selected ? 'Seleccionado' : 'Seleccionar'}" />`;
 
-// The full "like + bookmark + menu [+ selection]" action cluster.
 export const actionsCluster = (opts: {
   selection?: boolean;
   selected?: boolean;
 } = {}) =>
   `<div style="display: flex; align-items: center; gap: 10px">${likeCount}${bookmarkAction}${menuAction}${opts.selection ? selectionIcon(!!opts.selected) : ''}</div>`;
 
-// Media (left) + actions (right), the recurring header row.
 export const headerRow = (media: string, actions: string) =>
   `<div style="display: flex; align-items: center; justify-content: space-between; gap: 8px">${media}${actions}</div>`;
 

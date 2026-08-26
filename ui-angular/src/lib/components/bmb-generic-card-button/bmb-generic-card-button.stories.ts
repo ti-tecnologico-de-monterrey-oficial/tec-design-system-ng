@@ -75,12 +75,16 @@ const wrap = (
   width: number,
   height: number,
   content: string,
-  opts: { selected?: boolean; disabled?: boolean } = {},
+  opts: {
+    selected?: boolean;
+    disabled?: boolean;
+    appearance?: 'default' | 'alternative';
+  } = {},
 ): Story => ({
   render: () => ({
     template: `<div style="padding: 1.5rem"><div style="width: ${width}px; height: ${height}px">
       <bmb-generic-card-button
-        ${opts.selected ? '[selected]="true" ' : ''}${opts.disabled ? '[disabled]="true" ' : ''}
+        ${opts.selected ? '[selected]="true" ' : ''}${opts.disabled ? '[disabled]="true" ' : ''}${opts.appearance ? `appearance="${opts.appearance}" ` : ''}
         (cardClick)="log('card clicked')"
       >
         ${content}
@@ -136,7 +140,19 @@ export const Disabled: Story = wrap(328, 208, defaultLayout, {
   disabled: true,
 });
 
-// --- Custom responsiveness: a genuinely different declared layout per bucket ---
+// appearance="alternative": #313649 at rest, #3F4965 on hover, #617196 selected.
+export const AlternativeContainerColor: Story = wrap(328, 208, defaultLayout, {
+  appearance: 'alternative',
+});
+
+export const AlternativeContainerColorSelected: Story = wrap(
+  328,
+  208,
+  defaultLayout,
+  { appearance: 'alternative', selected: true },
+);
+
+// Custom responsiveness: a different declared layout per bucket
 
 const mediumOnlyItems = [
   gridItem(

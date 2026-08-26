@@ -56,14 +56,14 @@ const horizontal = (media: string) =>
 
 export const Image: Story = {
   render: () => ({
-    template: cardWrap(508, 180, horizontal(imageMedia())),
+    template: cardWrap(788, 280, horizontal(imageMedia())),
     props,
   }),
 };
 
 export const Icon: Story = {
   render: () => ({
-    template: cardWrap(508, 180, horizontal(iconMedia())),
+    template: cardWrap(788, 280, horizontal(iconMedia())),
     props,
   }),
 };
@@ -71,8 +71,8 @@ export const Icon: Story = {
 export const QuickViewVertical: Story = {
   render: () => ({
     template: cardWrap(
-      328,
-      300,
+      368,
+      380,
       stack([
         iconMedia(),
         titleWithAuthor(
@@ -96,7 +96,7 @@ export const QuickViewIcon: Story = {
   render: () => ({
     template: cardWrap(
       328,
-      340,
+      400,
       stack([
         headerRow(iconMedia(), menuAction),
         titleWithAuthor('Resumen de Texto', '6', '700'),

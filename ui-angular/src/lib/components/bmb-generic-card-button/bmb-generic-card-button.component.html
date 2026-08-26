@@ -2,6 +2,7 @@
   class="bmb_generic_card_button"
   [class.bmb_generic_card_button-disabled]="disabled()"
   [class.bmb_generic_card_button-selected]="selected()"
+  [class.bmb_generic_card_button-alternative]="appearance() === 'alternative'"
   role="button"
   [attr.tabindex]="disabled() ? -1 : 0"
   [attr.aria-disabled]="disabled() || null"
@@ -10,15 +11,7 @@
   (keydown.enter)="handleKeydown($event)"
   (keydown.space)="handleKeydown($event)"
 >
-  <!--
-    Three content slots, not one grid: each is wherever the consumer puts
-    their own [bmbLayoutGrid] wrapper, so a declared M/L layout can be a
-    completely different shape than the default. Only one is ever visible —
-    see the @container rules in the stylesheet. -medium/-large stay hidden
-    (and fall back to -default) unless the consumer actually projects
-    something into them (:empty check), so declaring nothing means the
-    default layout is used at every size.
-  -->
+  <!-- medium/large are optional per-size overrides; default is the fallback -->
   <div class="bmb_generic_card_button-slot bmb_generic_card_button-slot-medium">
     <ng-content select="[bmbCardButtonMedium]" />
   </div>
