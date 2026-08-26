@@ -31,7 +31,7 @@ import { BmbTextLinkComponent } from '../bmb-text-link/bmb-text-link.component';
 import { BmbBotIconComponent } from '../bmb-bot-icon/bmb-bot-icon.component';
 import { BmbContainerButtonComponent } from '../bmb-container-button/bmb-container-button.component';
 import { BmbTranslationsService } from '../../../services/translations/translations.service';
-import { deprecatedComponentLog } from '../../../_shared/logic/deprecatedComponent';
+import { deprecatedComponentLog } from '@shared/logic/deprecatedComponent';
 
 export interface IBmbChatBubblesActions {
   key: TChatAction;

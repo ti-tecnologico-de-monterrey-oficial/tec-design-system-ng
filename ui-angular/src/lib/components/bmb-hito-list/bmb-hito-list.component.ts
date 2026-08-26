@@ -13,13 +13,13 @@ import { CommonModule } from '@angular/common';
 import type {
   IBmbHitoListEvents,
   ISelectedDate,
-} from '../../_shared/types/components/hito-list';
+} from '@shared/types/components/hito-list';
 import {
   formatHitoEventDate,
   getHitoEventTypeClass,
   getHitoMonthTitle,
   getHitoSelectedDate,
-} from '../../_shared/logic/components/hito-list';
+} from '@shared/logic/components/hito-list';
 
 @Component({
   selector: 'bmb-hito-list',

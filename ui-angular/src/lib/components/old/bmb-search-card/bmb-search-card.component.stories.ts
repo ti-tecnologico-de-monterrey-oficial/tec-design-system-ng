@@ -95,6 +95,16 @@ export default {
         type: { summary: 'EventEmitter<string>' },
       },
     },
+    favorites: {
+      control: 'object',
+      description:
+        'Array of favorite search results to display in the card. These will be shown when the search input is empty.',
+      table: {
+        type: { summary: 'IBmbSearchCardItemResult[]' },
+        defaultValue: { summary: '[]' },
+        category: 'Properties',
+      },
+    },
   },
   args: {
     componentTitle: '',
@@ -110,6 +120,7 @@ export default {
     },
     isLoading: false,
     results: [],
+    favorites: [],
   },
 } as Meta<typeof BmbSearchCardComponent>;
 

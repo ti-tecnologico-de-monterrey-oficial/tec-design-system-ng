@@ -16,7 +16,36 @@
       [control]="inputSearchControl"
       [isLoading]="isLoading()"
     />
-    @if (inputSearchControl.value) {
+    @if (isLoading()) {
+      <bmb-loader [showInline]="true"></bmb-loader>
+    }@else if (!inputSearchControl.value) {
+      @if (favorites().length) {
+        <section class="bmb_search-card-results-section">
+          <h3>{{ 'search_card.tabs.favorites' | translate }}</h3>
+          <ul class="bmb_search-card-results-list">
+            @for (favorite of favorites(); track $index) {
+              <ng-container
+                *ngTemplateOutlet="cardItem; context: { item: favorite }"
+              ></ng-container>
+            }
+          </ul>
+        </section>
+      } @else {
+        <bmb-search-card-empty-state
+          [inputHasValue]="!!inputSearchControl.value"
+          [noResultsTitle]="
+            'search_card.empty_state.no_favorites_found' | translate
+          "
+          [placeholderTitle]="
+            'search_card.empty_state.no_favorites_title' | translate
+          "
+          [placeholderParagraph]="
+            'search_card.empty_state.no_favorites_paragraph' | translate
+          "
+          icon="bookmark"
+        ></bmb-search-card-empty-state>
+      }
+    } @else {
       <bmb-tabs [tabs]="tabsData()" [(selectedTabId)]="selectedTabId">
         @switch (selectedTabId()) {
           @case (1) {
@@ -57,6 +86,42 @@
           }
           @case (2) {
             <div class="bmb_search-card-results">
+              @if (favorites().length) {
+                <section class="bmb_search-card-results-section">
+                  <h3>{{ 'search_card.tabs.favorites' | translate }}</h3>
+                  <ul class="bmb_search-card-results-list">
+                    @for (
+                      favorite of computedResults().favorites;
+                      track $index
+                    ) {
+                      <ng-container
+                        *ngTemplateOutlet="
+                          cardItem;
+                          context: { item: favorite }
+                        "
+                      ></ng-container>
+                    }
+                  </ul>
+                </section>
+              } @else {
+                <bmb-search-card-empty-state
+                  [inputHasValue]="!!inputSearchControl.value"
+                  [noResultsTitle]="
+                    'search_card.empty_state.no_favorites_found' | translate
+                  "
+                  [placeholderTitle]="
+                    'search_card.empty_state.no_favorites_title' | translate
+                  "
+                  [placeholderParagraph]="
+                    'search_card.empty_state.no_favorites_paragraph' | translate
+                  "
+                  icon="bookmark"
+                ></bmb-search-card-empty-state>
+              }
+            </div>
+          }
+          @case (3) {
+            <div class="bmb_search-card-results">
               @if (computedResults().services.length) {
                 <section class="bmb_search-card-results-section">
                   <h3>{{ 'search_card.tabs.services' | translate }}</h3>
@@ -75,7 +140,7 @@
               }
             </div>
           }
-          @case (3) {
+          @case (4) {
             <div class="bmb_search-card-results">
               @if (computedResults().persons.length) {
                 <section class="bmb_search-card-results-section">
@@ -98,7 +163,6 @@
         }
       </bmb-tabs>
     }
-    {{ isLoading() ? 'Loading...' : '' }}
   </bmb-home-card>
 </section>
 
