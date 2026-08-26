@@ -408,6 +408,7 @@ export class BmbTablesComponent implements AfterViewInit, OnInit, OnChanges {
     this._rawColumns = columns;
     this.applyColumnsAndConfig(columns);
     this.setupDynamicFilters();
+    this.updateDisplayColumns();
   }
 
   sanitizeHTML(label: string): SafeHtml {
@@ -529,6 +530,8 @@ export class BmbTablesComponent implements AfterViewInit, OnInit, OnChanges {
     if (this.tableConfig.showActions) {
       this.tableDisplayColumns?.push('actions');
     }
+
+    this.updateDisplayColumns();
   }
 
   isAllSelected() {
@@ -793,4 +796,24 @@ export class BmbTablesComponent implements AfterViewInit, OnInit, OnChanges {
     }
     return classList;
   }
+
+  private updateDisplayColumns() {
+    const baseColumns = this.tableColumns.map(col => col.def);
+    const displayColumns = [...baseColumns];
+
+    if (this.tableConfig?.isExpandible) {
+      displayColumns.unshift('expand');
+    }
+
+    if (this.tableConfig?.isSelectable) {
+      displayColumns.unshift('select');
+    }
+
+    if (this.tableConfig?.showActions) {
+      displayColumns.push('actions');
+    }
+
+    this.tableDisplayColumns = displayColumns;
+  }
+
 }
