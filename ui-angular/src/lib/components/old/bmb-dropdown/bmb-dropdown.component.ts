@@ -1,3 +1,4 @@
+/* eslint-disable @angular-eslint/no-output-on-prefix, @typescript-eslint/no-explicit-any */
 import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
@@ -40,7 +41,7 @@ import { BmbInputValidatorComponent } from '../bmb-input/bmb-input-validator/bmb
 import { BmbProjectionContentService } from '../../../services/old/projection/projection.service';
 import { BmbLayoutDirective } from '../../../directives/old/bmb-layout/bmb-layout.directive';
 import { BmbLayoutItemDirective } from '../../../directives/old/bmb-layout/bmb-layout-item.directive';
-import { BmbTagComponent } from '../bmb-tags/bmb-tags.component';
+import { BmbTagComponent } from '../../bmb-tags/bmb-tags.component';
 import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
 import { TranslatePipe } from '../../../pipes/translations';
 
@@ -98,10 +99,7 @@ export class BmbDropdownComponent implements OnInit, OnChanges {
   >(null);
 
   control = model<FormControl>(newFormControlByType());
-
-  // eslint-disable-next-line @angular-eslint/no-output-on-prefix
   onValueChange = output<any>();
-  // eslint-disable-next-line @angular-eslint/no-output-on-prefix
   onFocus = output<boolean>();
 
   uuid: string = getUUID();
@@ -117,7 +115,9 @@ export class BmbDropdownComponent implements OnInit, OnChanges {
 
   @ViewChild('contentDiv', { static: true }) contentRef!: ElementRef<any>;
 
-  private readonly projectionService: BmbProjectionContentService = inject(BmbProjectionContentService);
+  private readonly projectionService: BmbProjectionContentService = inject(
+    BmbProjectionContentService,
+  );
 
   constructor() {
     effect(() => {

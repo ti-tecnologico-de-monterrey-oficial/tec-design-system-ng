@@ -1,4 +1,5 @@
-import { BmbTagComponent } from './../bmb-tags/bmb-tags.component';
+/* eslint-disable @angular-eslint/no-output-on-prefix, @typescript-eslint/no-non-null-assertion */
+import { BmbTagComponent } from '../../bmb-tags/bmb-tags.component';
 import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
@@ -197,7 +198,7 @@ export class BmbInputTagsComponent implements OnInit, OnChanges {
             this.filteredOptions[this.filteredOptions.length - 1],
           );
         }
-      }); // juan, pedro sanchez, maria gomez, luis fernandez
+      });
     }
   }
 

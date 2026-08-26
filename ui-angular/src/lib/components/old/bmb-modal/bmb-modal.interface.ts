@@ -16,7 +16,7 @@ export interface IBmbActionButton {
   appearance?: IButtonAppearance;
   label: string;
   icon?: string;
-  action: () => void;
+  action: (event?: Event, btn?: IBmbActionButton) => void;
 }
 
 export interface ModalDataConfig {

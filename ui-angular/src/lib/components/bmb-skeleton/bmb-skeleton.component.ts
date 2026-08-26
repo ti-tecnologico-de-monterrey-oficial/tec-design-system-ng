@@ -10,8 +10,6 @@ import {
 } from '../../directives/old/bmb-layout-grid/bmb-layout-grid.directive';
 import type { BmbSkeletonType } from '../../_shared/types/components/skeleton';
 
-export type { BmbSkeletonType } from '../../_shared/types/components/skeleton';
-
 @Component({
   selector: 'bmb-skeleton',
   standalone: true,

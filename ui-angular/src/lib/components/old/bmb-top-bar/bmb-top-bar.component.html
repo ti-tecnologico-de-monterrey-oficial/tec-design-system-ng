@@ -2,7 +2,7 @@
   class="bmb_top-bar bmb_top-bar-animated"
   [ngClass]="{
     'bmb_top-bar-animated': showAnimation,
-    'bmb_top-bar-sidebar': allowSidebarForMobile()
+    'bmb_top-bar-sidebar': allowSidebarForMobile(),
   }"
 >
   <bmb-check-external-link-button
@@ -32,6 +32,7 @@
         [userInformation]="userInformation()!"
         [notificationNotification]="alertNotification()!"
         [showHelpButton]="showHelpButton() || mitec()"
+        [showFavoritesButton]="showFavoritesButton()"
         (helpButtonClick)="handleHelpButtonClick($event)"
         (userClick)="handleUserClick($event)"
         (alertClick)="handleAlertClick($event)"
@@ -40,6 +41,7 @@
         [showSearchButton]="showSearchButton()"
         (searchButtonClick)="handleSearchChange($event)"
         [showNotifications]="!!alertNotification()"
+        (getFavoritesClick)="handleFavoritesClick($event)"
       />
     }
   </nav>

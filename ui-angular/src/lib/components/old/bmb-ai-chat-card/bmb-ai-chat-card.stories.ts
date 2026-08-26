@@ -64,13 +64,13 @@ const HTMLtemplate = `<div class="bmb_template-single-home-card">
       [message]="{
         id: '2',
         type: 'text',
-        timestamp: '2026-08-25T01:25:05.172Z',
+        timestamp: '2026-08-25T22:47:25.997Z',
         isUser: true,
         userProfile: 'https://picsum.photos/id/64/200/300',
-        content: {text: 'I need help with Angular signals.'},
-      }"
-      [isThinking]="false"
-      [showActions]="false"
+        content: {text: 'I need help with Angular signals.'}
+      }" [isThinking]="false"
+      [showActions]="true"
+      [userActions]="['copy']"
       (getAction)="getAction($event)"
       (getOptionClicked)="getOptionClicked($event)"
     />

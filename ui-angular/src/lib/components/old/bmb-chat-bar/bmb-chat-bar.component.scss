@@ -31,7 +31,7 @@
       border-style: solid;
       border-width: rem.rem_calc(1 1 0 1);
       bottom: 50%;
-      height: rem.rem_calc(140);
+      height: rem.rem_calc(150);
       overflow: auto;
       transition: height 0.3s ease;
     }
@@ -42,7 +42,7 @@
       list-style: none;
       margin: 0;
       overflow: auto;
-      padding: var(--bmb-spacing-m);
+      padding: var(--bmb-spacing-m) var(--bmb-spacing-m) var(--bmb-spacing-s);
     }
 
     &-button {

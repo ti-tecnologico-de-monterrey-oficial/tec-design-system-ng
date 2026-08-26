@@ -1,8 +1,9 @@
-import { Component, signal, TemplateRef, viewChild } from '@angular/core';
+import { Component, inject, signal, TemplateRef, viewChild } from '@angular/core';
 import {
   BmbButtonDirective,
   BmbNativeModalService,
   BmbTablesComponent,
+  IBmbActionButton,
   IBmbNativeModal,
   TableColum,
 } from 'ui-angular';
@@ -16,8 +17,7 @@ import {
 })
 export class ModalsTemplatesComponent {
   searchTemplate = viewChild<TemplateRef<any>>('searchTemplate');
-
-  constructor(private modalService: BmbNativeModalService) {}
+  modalService = inject(BmbNativeModalService);
 
   tableConfig = {
     isSelectable: true,
@@ -613,15 +613,32 @@ export class ModalsTemplatesComponent {
     },
   ];
 
+  modalIDTemplate = signal('');
+
+
   tableSelection(event: any) {
     console.log(event);
   }
-  modalTemplate: IBmbNativeModal = {
-    title: 'Modal con Template',
-    content: this.searchTemplate(),
-  };
 
   openModalTemplate() {
-    this.modalService.openModal(this.modalTemplate);
+    const modalTemplate: IBmbNativeModal = {
+      title: 'Modal con Template',
+      content: this.searchTemplate(),
+      actions: [
+        {
+          buttonName: 'Cerrar',
+          appearance: 'secondary-outlined',
+          label: 'Cerrar',
+          icon: 'close',
+          action: (event?: Event, btn?: IBmbActionButton) => {
+            console.log('Cerrar modal con template', event, btn);
+            this.modalService.closeModal(this.modalIDTemplate());
+            this.modalIDTemplate.set('');
+          },
+        },
+      ],
+    };
+
+    this.modalIDTemplate.set(this.modalService.openModal(modalTemplate));
   }
 }

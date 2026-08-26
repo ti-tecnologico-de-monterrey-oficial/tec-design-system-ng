@@ -18,6 +18,9 @@ import {
   DBmbIconParamDesc,
   getOnClickParam,
 } from '@docs/utils/parameterDescriptions';
+import { BmbLayoutDirective } from '../../../directives/old/bmb-layout/bmb-layout.directive';
+import { BmbLayoutItemDirective } from '../../../directives/old/bmb-layout/bmb-layout-item.directive';
+import { BmbButtonDirective } from '../../../directives/old/bmb-button/button.directive';
 
 const GET_ACTION_DESCRIPTION = `
 ${getAlertBlockquote(
@@ -46,7 +49,13 @@ export default {
   component: BmbAiChatBubbleComponent,
   decorators: [
     moduleMetadata({
-      imports: [CommonModule, RouterTestingModule],
+      imports: [
+        CommonModule,
+        RouterTestingModule,
+        BmbLayoutDirective,
+        BmbLayoutItemDirective,
+        BmbButtonDirective,
+      ],
     }),
   ],
   parameters: {
@@ -376,7 +385,7 @@ export const MixedMessage: Story = {
   },
 };
 
-export const ChatGPTMessage: Story = {
+export const ChatGPTExample: Story = {
   render: () => ({
     template: `
     <div style="display: flex; flex-direction: column; gap: 1rem; width: 100%;">
@@ -407,8 +416,8 @@ export const ChatGPTMessage: Story = {
         }"
         [isThinking]="false"
         [showActions]="false"
-        (getAction)="getAction($event)"
-        (getOptionClicked)="getOptionClicked($event)"
+          (getAction)="getAction($event)"
+          (getOptionClicked)="getOptionClicked($event)"
       />
     </div>
     `,
@@ -448,35 +457,34 @@ export const TemplateMessage: Story = {
   render: () => ({
     template: `
       <ng-template #customTemplate>
-        <div
-          style="
-            padding:16px;
-            border-radius:12px;
-            background:#f5f5f5;
-            display:flex;
-            flex-direction:column;
-            gap:8px;
-          "
-        >
-          <strong>Custom Template Content</strong>
-
-          <span>
-            This content is rendered using
-            an Angular TemplateRef.
-          </span>
-
+       <!-- BmbLayoutDirective, BmbLayoutItemDirective, BmbButtonDirective, -->
+        <section bmbLayout gapSize="m" margin="none" justify="center" alignItems="center">
+          <p
+            bmbLayoutItem
+            [colSm]="4"
+            [colLg]="12"
+          > Root menu title </p>
           <button
-            style="
-              width:fit-content;
-              padding:8px 12px;
-              border:none;
-              border-radius:8px;
-              cursor:pointer;
-            "
+            bmbButton
+            size="small"
+            appearance="secondary-outlined"
+            bmbLayoutItem
+            [colSm]="4"
+            [colLg]="6"
           >
-            Action
+            Personal assistance
           </button>
-        </div>
+          <button
+            bmbButton
+            size="small"
+            appearance="secondary-outlined"
+            bmbLayoutItem
+            [colSm]="4"
+            [colLg]="6"
+          >
+            Menu
+          </button>
+        </section>
       </ng-template>
 
       <bmb-ai-chat-bubble

@@ -1,0 +1,26 @@
+@use '../../styles/playground';
+
+@include playground.page($controls-min: 18rem, $controls-max: 24rem);
+
+:host {
+  background: #f4f6f9;
+  color: #1f2937;
+  min-height: 100%;
+  padding: 2rem;
+}
+
+.preview {
+  align-items: center;
+  display: flex;
+}
+
+.preview bmb-icon-item {
+  width: 100%;
+  background: #000000;
+}
+
+@media (max-width: 700px) {
+  :host {
+    padding: 1rem;
+  }
+}

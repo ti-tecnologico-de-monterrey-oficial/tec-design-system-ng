@@ -1,0 +1,43 @@
+<header class="page-header">
+  <p class="eyebrow">Componente migrado</p>
+  <h1>BmbHitoList</h1>
+  <p>Prueba propiedades, selección, formato y métodos públicos del listado.</p>
+</header>
+
+<section class="playground" aria-labelledby="hito-list-properties-heading">
+  <aside class="controls">
+    <h2 id="hito-list-properties-heading">Propiedades y funciones</h2>
+    <label for="hito-date-format">dateFormat</label>
+    <select id="hito-date-format" [value]="dateFormat()" (change)="setDateFormat($any($event.target).value)">
+      <option value="dd LLL yyyy">dd LLL yyyy</option>
+      <option value="dd/MM/yyyy">dd/MM/yyyy</option>
+      <option value="LLLL dd, yyyy">LLLL dd, yyyy</option>
+    </select>
+    <label for="hito-lang">lang</label>
+    <select id="hito-lang" [value]="lang()" (change)="setLang($any($event.target).value)">
+      <option value="es">es</option>
+      <option value="en">en</option>
+      <option value="fr">fr</option>
+    </select>
+    <p><strong>now:</strong> {{ now().toISODate() }}</p>
+    <p><strong>selectedDate:</strong> {{ selectedDate().month }} {{ selectedDate().day }}</p>
+    <p><strong>orderedMonths:</strong> {{ orderedMonths().join(', ') }}</p>
+    <button type="button" (click)="reverseMonths()">Invertir orderedMonths</button>
+    <button type="button" (click)="scrollToCurrent()">Ejecutar scrollToItem</button>
+    <button type="button" (click)="showCurrentValues()">Probar título y parseo</button>
+    <output>{{ lastAction() }}</output>
+  </aside>
+
+  <div class="preview">
+    <bmb-hito-list
+      #hitoList
+      [dateFormat]="dateFormat()"
+      [lang]="lang()"
+      [now]="now()"
+      [events]="events"
+      [selectedDate]="selectedDate()"
+      [orderedMonths]="orderedMonths()"
+      (changeSelectedDate)="handleSelectedDate($event)"
+    />
+  </div>
+</section>
