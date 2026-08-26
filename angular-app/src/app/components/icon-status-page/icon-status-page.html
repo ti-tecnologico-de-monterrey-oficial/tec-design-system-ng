@@ -1,0 +1,74 @@
+<header class="page-header">
+  <p class="eyebrow">Componente migrado</p>
+  <h1>BmbIconStatus</h1>
+  <p>Prueba el icono, la apariencia de estado y el color sin apariencia.</p>
+</header>
+
+<section class="playground" aria-labelledby="icon-status-properties-heading">
+  <aside class="controls">
+    <h2 id="icon-status-properties-heading">Propiedades</h2>
+
+    <label for="icon-status-icon">icon</label>
+    <select
+      id="icon-status-icon"
+      [value]="icon()"
+      (change)="setIcon($any($event.target).value)"
+    >
+      @for (iconOption of icons; track iconOption) {
+        <option [value]="iconOption">{{ iconOption }}</option>
+      }
+    </select>
+
+    <label for="icon-status-appearance">statusAppearance</label>
+    <select
+      id="icon-status-appearance"
+      [value]="statusAppearance() ?? ''"
+      (change)="setStatusAppearance($any($event.target).value)"
+    >
+      <option value="">sin apariencia</option>
+      @for (appearance of appearances; track appearance) {
+        <option [value]="appearance">{{ appearance }}</option>
+      }
+    </select>
+
+    <label for="icon-status-color">iconColor</label>
+    <select
+      id="icon-status-color"
+      [value]="iconColor()"
+      (change)="setIconColor($any($event.target).value)"
+    >
+      @for (color of iconColors; track color) {
+        <option [value]="color">{{ color }}</option>
+      }
+    </select>
+
+    <p class="helper-text">
+      <strong>Tamaño calculado:</strong>
+      {{ statusAppearance() ? '60 px' : '120 px' }}
+    </p>
+  </aside>
+
+  <div class="preview">
+    <bmb-icon-status
+      [icon]="icon()"
+      [statusAppearance]="statusAppearance()"
+      [iconColor]="iconColor()"
+    />
+  </div>
+</section>
+
+<section class="variants" aria-labelledby="icon-status-variants-heading">
+  <h2 id="icon-status-variants-heading">Todas las apariencias</h2>
+  <div class="variant-grid">
+    @for (appearance of appearances; track appearance) {
+      <article>
+        <h3>{{ appearance }}</h3>
+        <bmb-icon-status [icon]="icon()" [statusAppearance]="appearance" />
+      </article>
+    }
+    <article>
+      <h3>sin apariencia</h3>
+      <bmb-icon-status [icon]="icon()" [iconColor]="iconColor()" />
+    </article>
+  </div>
+</section>
