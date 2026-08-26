@@ -200,8 +200,8 @@ The setting applies only to mobile.
     showHelpButton: getShowButton('help'),
     alertButtonClick: getOnClickParam(getOnEvent('alert', 'alertButtonClick')),
     positionButtonMenu: DBmbGenericParamDesc.deprecated,
-    roleButtonClick: getOnClickParam(getOnEvent('role', 'roleButtonClick')),
-    showRoleButton: getShowButton('role'),
+    roleButtonClick: DBmbGenericParamDesc.deprecated,
+    showRoleButton: DBmbGenericParamDesc.deprecated,
     searchButtonClick: getOnClickParam(
       getOnEvent('search', 'searchButtonClick'),
     ),
@@ -216,13 +216,15 @@ The setting applies only to mobile.
     hasLogoutButton: DBmbGenericParamDesc.deprecated,
     showLang: DBmbGenericParamDesc.deprecated,
     getLogoClick: getOnClickParam(getOnEvent('logo', 'getLogoClick')),
+    getFavoritesClick: getOnClickParam(
+      getOnEvent('favorites', 'getFavoritesClick'),
+    ),
   },
   args: {
     appPowered: 'Powered x Bamboo Design',
     userInformation: null,
     lang: 'es',
     mitec: false,
-    showRoleButton: false,
     showSearchButton: false,
     showHelpButton: false,
     helpButtonClick: () => {
@@ -230,9 +232,6 @@ The setting applies only to mobile.
     },
     alertButtonClick: () => {
       console.log('alertButtonClick clicked');
-    },
-    roleButtonClick: () => {
-      console.log('roleButtonClick clicked');
     },
     searchButtonClick: () => {
       console.log('searchButtonClick clicked');
@@ -303,8 +302,8 @@ export const MitecWithUserInformation: Story = {
   },
 };
 
-export const MitecWithUserInformationWithRoleChange: Story = {
-  name: 'Mitec with user information with role change',
+export const MitecWithUserInformationNAlerts: Story = {
+  name: 'Mitec with user information and notifications',
   args: {
     mitec: true,
     userInformation: {
@@ -312,7 +311,6 @@ export const MitecWithUserInformationWithRoleChange: Story = {
       image: 'https://picsum.photos/id/64/200/300',
       role: 'Alumno',
     },
-    showRoleButton: true,
     alertNotification: [
       {
         id: 10,
@@ -484,7 +482,6 @@ export const MitecWithUserInformationWithSearch: Story = {
       image: 'https://picsum.photos/id/64/200/300',
       role: 'Alumno',
     },
-    showRoleButton: true,
     showSearchButton: true,
     showFavoritesButton: true,
     showHelpButton: true,
