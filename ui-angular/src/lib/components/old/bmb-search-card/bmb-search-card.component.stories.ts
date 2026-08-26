@@ -105,6 +105,16 @@ export default {
         category: 'Properties',
       },
     },
+    disableFavoritesTab: {
+      control: 'boolean',
+      description:
+        'If true, the favorites tab will be disabled and not shown in the search card.',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'true' },
+        category: 'Properties',
+      },
+    },
   },
   args: {
     componentTitle: '',
@@ -120,6 +130,7 @@ export default {
     },
     isLoading: false,
     results: [],
+    disableFavoritesTab: true,
     favorites: [],
   },
 } as Meta<typeof BmbSearchCardComponent>;
