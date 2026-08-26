@@ -182,12 +182,24 @@ export const sidebarOptions: SidebarElement[][] = [
         },
         {
           id: 19,
+          icon: 'step',
+          title: 'Hito list',
+          link: '/components/hito-list',
+        },
+        {
+          id: 20,
+          icon: 'list',
+          title: 'Icon item',
+          link: '/components/icon-item',
+        },
+        {
+          id: 21,
           icon: 'page_control',
           title: 'Dot paginator',
           link: '/components/dot-paginator',
         },
         {
-          id: 20,
+          id: 22,
           icon: 'add_circle',
           title: 'FAB',
           link: '/components/fab',

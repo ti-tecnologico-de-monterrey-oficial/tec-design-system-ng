@@ -35,4 +35,16 @@ describe('BmbIconItemComponent', () => {
   it('should have a default iconSize of 24', () => {
     expect(component.iconSize()).toBe(24);
   });
+
+  it('should preserve the default divider and hide it when requested', () => {
+    expect(component.getClasses(component.showDivider())).toEqual({
+      no_divider: false,
+    });
+
+    componentRef.setInput('showDivider', false);
+
+    expect(component.getClasses(component.showDivider())).toEqual({
+      no_divider: true,
+    });
+  });
 });

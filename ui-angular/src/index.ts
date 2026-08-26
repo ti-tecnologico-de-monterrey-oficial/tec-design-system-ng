@@ -114,7 +114,7 @@ export * from './lib/components/old/bmb-date-range/bmb-date-range.component';
 export * from './lib/components/old/bmb-text-link/bmb-text-link.component';
 export * from './lib/components/old/bmb-evaluation-rubric/bmb-evaluation-rubric.component';
 export * from './lib/components/old/bmb-hito-card/bmb-hito-card.component';
-export * from './lib/components/old/bmb-hito-list/bmb-hito-list.component';
+export * from './lib/components/bmb-hito-list/bmb-hito-list.component';
 export * from './lib/components/old/bmb-dropzone/bmb-dropzone.component';
 export * from './lib/components/old/bmb-timestream-card/bmb-timestream-card.component';
 export * from './lib/components/old/bmb-input-tags/bmb-input-tags.component';
@@ -147,7 +147,14 @@ export * from './lib/components/old/bmb-digital-id/bmb-digital-id.component';
 export * from './lib/components/old/bmb-sounds-card/bmb-sounds-card.component';
 export * from './lib/components/old/bmb-chevron-title-selector/bmb-chevron-title-selector.component';
 export * from './lib/components/bmb-overlay/bmb-overlay.component';
-export * from './lib/components/old/bmb-icon-item/bmb-icon-item.component';
+export * from './lib/components/bmb-icon-item/bmb-icon-item.component';
+export type {
+  IBmbHitoListDay,
+  IBmbHitoListEventIndicator,
+  IBmbHitoListEvents,
+  IBmbHitoListMonth,
+  ISelectedDate,
+} from './lib/_shared/types/components/hito-list';
 export * from './lib/components/bmb-carousel/bmb-carousel.component';
 export * from './lib/components/old/bmb-action-menu/bmb-action-menu.component';
 export * from './lib/components/old/bmb-button-icon/bmb-button-icon.component';

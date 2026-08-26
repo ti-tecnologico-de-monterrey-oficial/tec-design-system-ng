@@ -11,7 +11,7 @@ import {
 } from '@angular/core';
 import { DateTime, Info } from 'luxon';
 import { BmbTimestreamErrorComponent } from './bmb-timestream-error/bmb-timestream-error.component';
-import { BmbHitoListComponent } from '../bmb-hito-list/bmb-hito-list.component';
+import { BmbHitoListComponent } from '../../bmb-hito-list/bmb-hito-list.component';
 import { BmbTimestreamDetailsComponent } from './bmb-timestream-detail/bmb-timestream-detail.component';
 import {
   ITimelineEvent,
