@@ -4,6 +4,7 @@ import {
   ChangeDetectionStrategy,
   output,
   input,
+  inject,
 } from '@angular/core';
 import { IUserInformation } from '../types';
 import { CommonModule } from '@angular/common';
@@ -17,6 +18,7 @@ import { IDropdownItem } from '../../../../_shared/types/index';
 import { BmbButtonIconComponent } from '../../bmb-button-icon/bmb-button-icon.component';
 import { BmbCheckExternalLinkButtonComponent } from '../../../bmb-check-external-link-button/bmb-check-external-link-button.component';
 import { TranslatePipe } from '../../../../pipes/translations';
+import { BmbTranslationsService } from '../../../../services/translations/translations.service';
 
 @Component({
   selector: 'bmb-top-bar-user-section',
@@ -49,12 +51,14 @@ export class BmbTopBarUserSectionComponent {
   showRoleButton = input<boolean>(false);
   showSearchButton = input<boolean>(false);
   showHelpButton = input<boolean>(false);
+  showFavoritesButton = input<boolean>(false);
 
   helpButtonClick = output<MouseEvent>();
   userClick = output<MouseEvent>();
   alertClick = output<MouseEvent>();
   roleButtonClick = output<MouseEvent>();
   searchButtonClick = output<MouseEvent>();
+  getFavoritesClick = output<MouseEvent>();
 
   isOpenNotifications = false;
   dialogPosition: { top: string; left: string } | null = {
@@ -62,40 +66,47 @@ export class BmbTopBarUserSectionComponent {
     left: '0px',
   };
   windowWidth = window.innerWidth;
+  private readonly translationService = inject(BmbTranslationsService);
 
   getMenu(): IDropdownItem[] {
-    const menu: IDropdownItem[] = [
-      {
-        idItem: 'help',
-        icon: 'help',
-        text: 'TECServices',
-        action: (event?: unknown) =>
-          this.handleHelpButtonClick(event as MouseEvent),
-      },
-    ];
+    const menu: IDropdownItem[] = [];
     const notification: IDropdownItem = {
       idItem: 'notifications',
       icon: 'notifications',
       dotNotification: this.notificationNotification().length,
-      text: 'Notificaciones',
+      text: this.translationService.translate('top_bar.notifications'),
       action: (event?: unknown) => this.openNotifications(event as MouseEvent),
     };
     const changeUser: IDropdownItem = {
       idItem: 'change_user',
       icon: 'compare_arrows',
-      text: 'Cambio de usuario',
+      text: this.translationService.translate('top_bar.role_switch'),
       action: (event?: unknown) => this.handleRoleChange(event as MouseEvent),
     };
     const search: IDropdownItem = {
       idItem: 'search',
       icon: 'search',
-      text: 'Buscar',
+      text: this.translationService.translate('top_bar.search'),
+      action: (event?: unknown) => this.handleSearchChange(event as MouseEvent),
+    };
+    const help: IDropdownItem = {
+      idItem: 'help',
+      icon: 'help',
+      text: this.translationService.translate('top_bar.help'),
+      action: (event?: unknown) => this.handleSearchChange(event as MouseEvent),
+    };
+    const favorites: IDropdownItem = {
+      idItem: 'favorites',
+      icon: 'bookmark',
+      text: this.translationService.translate('top_bar.favorites'),
       action: (event?: unknown) => this.handleSearchChange(event as MouseEvent),
     };
 
+    if (this.showHelpButton()) menu.unshift(help);
     if (this.showRoleButton()) menu.unshift(changeUser);
     if (this.showSearchButton()) menu.unshift(search);
     if (this.showNotifications()) menu.unshift(notification);
+    if (this.showFavoritesButton()) menu.unshift(favorites);
 
     return menu;
   }
@@ -126,5 +137,9 @@ export class BmbTopBarUserSectionComponent {
 
   handleSearchChange(event: MouseEvent): void {
     this.searchButtonClick.emit(event);
+  }
+
+  handleFavoritesClick(event: MouseEvent): void {
+    this.getFavoritesClick.emit(event);
   }
 }

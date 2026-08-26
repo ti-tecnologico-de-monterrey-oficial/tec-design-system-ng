@@ -344,7 +344,8 @@
     "search": "Search",
     "role_switch": "Switch role",
     "notifications": "Notifications",
-    "help": "Help"
+    "help": "Help",
+    "favorites": "Favorites"
   },
   "image": {
     "previous": "Previous image",

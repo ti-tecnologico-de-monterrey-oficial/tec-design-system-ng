@@ -486,6 +486,8 @@ export const MitecWithUserInformationWithSearch: Story = {
     },
     showRoleButton: true,
     showSearchButton: true,
+    showFavoritesButton: true,
+    showHelpButton: true,
     alertNotification: [
       {
         id: 10,
@@ -645,6 +647,9 @@ export const MitecWithUserInformationWithSearch: Story = {
         isArchived: false,
       },
     ],
+    getFavoritesClick: () => {
+      console.log('Favorites button');
+    },
   },
 };
 
