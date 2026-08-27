@@ -12,10 +12,7 @@ export * from './components/fab';
 export * from './components/grade-value';
 export * from './components/iframe';
 export * from './components/interactive-icon';
-export type {
-  IBmbStatusAppearance,
-  IBmbStatusIconColor,
-} from './components/icon-status';
+export * from './components/icon-status';
 export * from './components/layout';
 export * from './components/legend';
 export * from './components/notification-counter';
