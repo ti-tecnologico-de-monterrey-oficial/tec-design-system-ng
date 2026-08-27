@@ -1,5 +1,5 @@
 import { DateTime, Interval } from 'luxon';
-import { IBbmBgAppearance } from '../bmb-advertisement-card/types';
+import { IBbmBgAppearance } from '../../_shared/types/components/advertisement-card';
 import { IBmbColorSemantics } from '../../_shared/types/colors';
 
 export type IBmbCalendarMicroProgram = {

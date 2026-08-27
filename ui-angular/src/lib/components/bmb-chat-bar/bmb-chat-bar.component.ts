@@ -15,20 +15,20 @@ import {
 import type { OnInit } from '@angular/core';
 import { IBotType, IChatBarActions } from './types';
 import { defaultBotList } from './bot_list';
-import { BmbIconComponent } from '../old/bmb-icon/bmb-icon.component';
+import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { BmbDotPaginatorComponent } from '../bmb-dot-paginator/bmb-dot-paginator.component';
 import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
 import { ClickOutsideDirective } from '../../directives/old/utils/clickoutside.directive';
 import { BmbActionMenuComponent } from '../bmb-action-menu/bmb-action-menu.component';
-import { BmbItemComponent } from '../old/bmb-item/bmb-item.component';
+import { BmbItemComponent } from '../bmb-item/bmb-item.component';
 import { BmbNativeModalService } from '../../services/old/modal/native-modal.service';
 import {
   BmbProjectionContentService,
   IBmbProjectionContent,
 } from '../../services/old/projection/projection.service';
-import { IBmbNativeModal } from '../old/bmb-modal/bmb-modal.interface';
+import { IBmbNativeModal } from '../bmb-modal/bmb-modal.interface';
 import { TranslatePipe } from '../../pipes/translations';
 import { BmbBotIconComponent } from '../bmb-bot-icon/bmb-bot-icon.component';
 

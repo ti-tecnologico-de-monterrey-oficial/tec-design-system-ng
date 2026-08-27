@@ -18,7 +18,7 @@ import { CommonModule } from '@angular/common';
 import { BmbButtonDirective } from '../../../../directives/old/bmb-button/button.directive';
 import { Info } from 'luxon';
 import { orderDayNames } from '../../../../_shared/logic/utils';
-import { BmbInnerHeaderComponent } from '../../../old/bmb-inner-header/bmb-inner-header.component';
+import { BmbInnerHeaderComponent } from '../../../bmb-inner-header/bmb-inner-header.component';
 import { BmbChevronTitleSelectorComponent } from '../../../bmb-chevron-title-selector/bmb-chevron-title-selector.component';
 import { BmbPullWedgeComponent } from '../../../bmb-pull-wedge/bmb-pull-wedge.component';
 import { BmbTranslationsService } from '../../../../services/translations/translations.service';
@@ -30,7 +30,7 @@ import { BmbCheckboxComponent } from '../../../bmb-checkbox/bmb-checkbox.compone
 import { BmbLayoutItemDirective } from '../../../../directives/old/bmb-layout/bmb-layout-item.directive';
 import { BmbLayoutDirective } from '../../../../directives/old/bmb-layout/bmb-layout.directive';
 import { BmbDividerComponent } from '../../../bmb-divider/bmb-divider.component';
-import { BmbSwitchComponent } from '../../../old/bmb-switch/bmb-switch.component';
+import { BmbSwitchComponent } from '../../../bmb-switch/bmb-switch.component';
 
 @Component({
   selector: 'bmb-calendar-template-mobile',

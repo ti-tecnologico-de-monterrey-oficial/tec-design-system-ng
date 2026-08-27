@@ -6,7 +6,7 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { IBmbActionHeader } from '../../_shared/types';
-import { BmbNavigationBarComponent } from '../old/bmb-navigation-bar/bmb-navigation-bar.component';
+import { BmbNavigationBarComponent } from '../bmb-navigation-bar/bmb-navigation-bar.component';
 import { BmbContainerComponent } from '../bmb-container/bmb-container.component';
 import { IBmbFooterEvent, IBmbNavigationBarIcon, IBmbNavigationBarIcons } from '../../_shared/types/components/bottom-navigation-bar';
 

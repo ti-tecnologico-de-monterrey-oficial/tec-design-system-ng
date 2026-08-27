@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BmbLinkMessage } from '../../types';
-import { BmbTextLinkComponent } from '../../../old/bmb-text-link/bmb-text-link.component';
+import { BmbTextLinkComponent } from '../../../bmb-text-link/bmb-text-link.component';
 
 @Component({
   selector: 'bmb-link-message',

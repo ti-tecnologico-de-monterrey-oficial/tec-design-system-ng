@@ -26,7 +26,7 @@ import { LinkMessageComponent } from './bmb-message-renderers/bmb-link-message/b
 import { OptionsMessageComponent } from './bmb-message-renderers/bmb-options-message/bmb-options-message.component';
 import { TemplateMessageComponent } from './bmb-message-renderers/bmb-template-message/bmb-template-message.component';
 import { BmbUserImageComponent } from '../bmb-user-image/bmb-user-image.component';
-import { BmbIconComponent } from '../old/bmb-icon/bmb-icon.component';
+import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { BmbBotIconComponent } from '../bmb-bot-icon/bmb-bot-icon.component';
 
 export * from './types';

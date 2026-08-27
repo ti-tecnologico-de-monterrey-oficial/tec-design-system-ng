@@ -11,7 +11,7 @@ import {
   model,
   inject,
 } from '@angular/core';
-import { BmbTabsComponent, IBmbTab } from '../old/bmb-tabs/bmb-tabs.component';
+import { BmbTabsComponent, IBmbTab } from '../bmb-tabs/bmb-tabs.component';
 import { CommonModule } from '@angular/common';
 import { BmbLayoutDirective } from '../../directives/old/bmb-layout/bmb-layout.directive';
 import { BmbLayoutItemDirective } from '../../directives/old/bmb-layout/bmb-layout-item.directive';
@@ -32,11 +32,11 @@ import {
 import { BmbAlertCenterAdsComponent } from './bmb-alert-center-ads/bmb-alert-center-ads.component';
 import { BmbAlertCenterEmptyComponent } from './bmb-alert-center-empty/bmb-alert-center-empty.component';
 import { BmbAlertCenterService } from './bmb-alert-center.service';
-import { BmbLoaderComponent } from '../old/bmb-loader/bmb-loader.component';
+import { BmbLoaderComponent } from '../bmb-loader/bmb-loader.component';
 import { BmbNativeModalService } from '../../services/old/modal/native-modal.service';
-import { IBmbNativeModal } from '../old/bmb-modal/bmb-modal.interface';
+import { IBmbNativeModal } from '../bmb-modal/bmb-modal.interface';
 import { BmbTranslationsService } from '../../services/translations/translations.service';
-import { BmbAlertCenterDetailComponent } from '../old/utils/bmb-alert-center-detail/bmb-alert-center-detail.component';
+import { BmbAlertCenterDetailComponent } from '../utils/bmb-alert-center-detail/bmb-alert-center-detail.component';
 
 export * from './types';
 

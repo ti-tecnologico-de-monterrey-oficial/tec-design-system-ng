@@ -20,7 +20,6 @@
       </div>
     }
   }
-
   <div
     id="mainContentID"
     bmbLayoutItem
@@ -30,7 +29,6 @@
   >
     <ng-container [ngTemplateOutlet]="mainContent() ?? null" />
   </div>
-
   @if (rightContent().length) {
     @for (rightItem of rightContent(); track $index) {
       <div

@@ -10,7 +10,7 @@ import {
 
 import { DateTime } from 'luxon';
 
-import { BmbFormValidatorComponent } from '../old/bmb-form-validator/bmb-form-validator.component';
+import { BmbFormValidatorComponent } from '../bmb-form-validator/bmb-form-validator.component';
 
 import * as inputStory from '../bmb-input/bmb-input.stories';
 import * as calendarDatePickerStory from '../bmb-datepicker/bmb-datepicker.stories';

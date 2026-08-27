@@ -9,7 +9,7 @@ import {
   TemplateRef,
   ViewEncapsulation,
 } from '@angular/core';
-import { BmbThreeColsComponent } from '../../old/bmb-three-cols/bmb-three-cols.component';
+import { BmbThreeColsComponent } from '../../bmb-three-cols/bmb-three-cols.component';
 
 @Component({
   selector: 'bmb-container-button-base',

@@ -19,7 +19,7 @@ import { BmbCalendarTemplateDayComponent } from './common/bmb-calendar-template-
 import { BmbCalendarTemplateMonthComponent } from './common/bmb-calendar-template-month/bmb-calendar-template-month.component';
 import { BmbCalendarHeaderComponent } from './common/bmb-calendar-header/bmb-calendar-header.component';
 import { BmbCalendarTemplateMobileComponent } from './common/bmb-calendar-template-mobile/bmb-calendar-template-mobile.component';
-import { BmbLoaderComponent } from '../old/bmb-loader/bmb-loader.component';
+import { BmbLoaderComponent } from '../bmb-loader/bmb-loader.component';
 import {
   IBmbCalendarEvent,
   IBmbCalendarEventClick,

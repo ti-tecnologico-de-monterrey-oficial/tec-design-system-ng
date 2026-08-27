@@ -11,7 +11,7 @@ import {
   ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
-import { BmbHomeCardComponent } from '../old/bmb-home-card/bmb-home-card.component';
+import { BmbHomeCardComponent } from '../bmb-home-card/bmb-home-card.component';
 import {
   BmbChatBarComponent,
   defaultBotList,

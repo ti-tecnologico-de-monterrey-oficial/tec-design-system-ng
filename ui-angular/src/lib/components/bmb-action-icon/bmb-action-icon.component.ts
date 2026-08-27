@@ -9,13 +9,13 @@ import {
   TemplateRef,
   ViewEncapsulation,
 } from '@angular/core';
-import { BmbIconComponent } from '../old/bmb-icon/bmb-icon.component';
+import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { BmbCheckExternalLinkButtonComponent } from '../bmb-check-external-link-button/bmb-check-external-link-button.component';
 import { CommonModule } from '@angular/common';
 import { IBmbTargetLink } from '../../_shared/types/utils';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { sanitizeContent } from '../../_shared/logic/sanitizeContent';
-import { BmbTooltipBaseComponent } from '../old/bmb-tooltip/bmb-tooltip-base/bmb-tooltip-base.component';
+import { BmbTooltipBaseComponent } from '../bmb-tooltip/bmb-tooltip-base/bmb-tooltip-base.component';
 import { isImage } from '../../_shared/logic/utils';
 
 /*

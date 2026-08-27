@@ -25,7 +25,7 @@ import {
   IBmbInputValType,
 } from '../../../_shared/types/input';
 import { CommonModule } from '@angular/common';
-import { BmbTooltipComponent } from '../../old/bmb-tooltip/bmb-tooltip.component';
+import { BmbTooltipComponent } from '../../bmb-tooltip/bmb-tooltip.component';
 import { getPositionClass } from '../../../_shared/logic/utils';
 
 @Component({

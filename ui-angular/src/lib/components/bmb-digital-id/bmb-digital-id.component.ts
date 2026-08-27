@@ -7,9 +7,9 @@ import {
 } from '@angular/core';
 import { BmbButtonDirective } from '../../directives/old/bmb-button/button.directive';
 import { CommonModule } from '@angular/common';
-import { BmbUserSummaryContentComponent } from '../old/bmb-user-summary/bmb-user-summary-content/bmb-user-summary-content.component';
+import { BmbUserSummaryContentComponent } from '../bmb-user-summary/bmb-user-summary-content/bmb-user-summary-content.component';
 import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
-import { BmbImageComponent } from '../old/bmb-image/bmb-image.component';
+import { BmbImageComponent } from '../bmb-image/bmb-image.component';
 import { TranslatePipe } from '../../pipes/translations';
 
 /*

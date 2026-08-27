@@ -6,8 +6,8 @@ import {
   output,
   ViewEncapsulation,
 } from '@angular/core';
-import { BmbIconComponent } from '../../old/bmb-icon/bmb-icon.component';
-import { BmbTitleComponent } from '../../old/bmb-title/bmb-title.component';
+import { BmbIconComponent } from '../../bmb-icon/bmb-icon.component';
+import { BmbTitleComponent } from '../../bmb-title/bmb-title.component';
 import { BmbContainerButtonBaseComponent } from '../bmb-container-button-base/bmb-container-button-base.component';
 
 @Component({

@@ -11,7 +11,7 @@ import {
   effect,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { BmbIconComponent } from '../old/bmb-icon/bmb-icon.component';
+import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { BmbBadgeComponent } from '../bmb-badge/bmb-badge.component';
 import { BmbGradeValueComponent } from '../bmb-grade-value/bmb-grade-value.component';
 import { BmbLayoutItemDirective } from '../../directives/old/bmb-layout/bmb-layout-item.directive';
@@ -21,9 +21,9 @@ import { BmbCheckExternalLinkButtonComponent } from '../bmb-check-external-link-
 import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
 import { BmbBookmarkComponent } from '../bmb-bookmark/bmb-bookmark.component';
 import { BmbUserImageComponent } from '../bmb-user-image/bmb-user-image.component';
-import { BmbDropdownMenuComponent } from '../old/bmb-dropdown-menu/bmb-dropdown-menu.component';
+import { BmbDropdownMenuComponent } from '../bmb-dropdown-menu/bmb-dropdown-menu.component';
 import { logDeprecatedInput } from '../../_shared/logic/logDeprecatedInput';
-import type { IBbmBgAppearance } from '../bmb-advertisement-card/types';
+import type { IBbmBgAppearance } from '../../_shared/types/components/advertisement-card';
 
 const MOBILE_TABLET_QUERY = '(max-width: 992px)';
 

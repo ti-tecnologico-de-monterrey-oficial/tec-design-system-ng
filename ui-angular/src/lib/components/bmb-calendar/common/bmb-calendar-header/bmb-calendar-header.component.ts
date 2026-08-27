@@ -12,7 +12,7 @@ import {
   OnInit,
   effect,
 } from '@angular/core';
-import { BmbIconComponent } from '../../../old/bmb-icon/bmb-icon.component';
+import { BmbIconComponent } from '../../../bmb-icon/bmb-icon.component';
 import { DateTime } from 'luxon';
 import { IBmbCalendarView } from '../../types';
 import { BmbButtonGroupDirective } from '../../../../directives/old/bmb-button-group/bmb-button-group.directive';
@@ -27,7 +27,7 @@ import { BmbNativeModalService } from '../../../../services/old/modal/native-mod
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { BmbCheckboxComponent } from '../../../bmb-checkbox/bmb-checkbox.component';
 import { BmbDividerComponent } from '../../../bmb-divider/bmb-divider.component';
-import { BmbSwitchComponent } from '../../../old/bmb-switch/bmb-switch.component';
+import { BmbSwitchComponent } from '../../../bmb-switch/bmb-switch.component';
 
 @Component({
   selector: 'bmb-calendar-header',

@@ -17,16 +17,16 @@ import {
   BmbCardComponent,
   BmbCardContentComponent,
 } from '../bmb-card/bmb-card.component';
-import { BmbProgressBarComponent } from '../old/bmb-progress-bar/bmb-progress-bar.component';
+import { BmbProgressBarComponent } from '../bmb-progress-bar/bmb-progress-bar.component';
 import { DateTime } from 'luxon';
 import { BmbDividerComponent } from '../bmb-divider/bmb-divider.component';
 import { BmbButtonDirective } from '../../directives/old/bmb-button/button.directive';
-import { BmbRadialComponent } from '../old/bmb-radial/bmb-radial.component';
+import { BmbRadialComponent } from '../bmb-radial/bmb-radial.component';
 import { currencyFormat } from '../../_shared/logic/currencyFormat';
 import { BmbLayoutDirective } from '../../directives/old/bmb-layout/bmb-layout.directive';
 import { BmbLayoutItemDirective } from '../../directives/old/bmb-layout/bmb-layout-item.directive';
 import { BmbInputComponent } from '../bmb-input/bmb-input.component';
-import { BmbInnerHeaderComponent } from '../old/bmb-inner-header/bmb-inner-header.component';
+import { BmbInnerHeaderComponent } from '../bmb-inner-header/bmb-inner-header.component';
 import { BmbNativeModalService } from '../../services/old/modal/native-modal.service';
 import {
   FormControl,
@@ -34,7 +34,7 @@ import {
   Validators,
   ReactiveFormsModule,
 } from '@angular/forms';
-import { IBmbNativeModal } from '../old/bmb-modal/bmb-modal.interface';
+import { IBmbNativeModal } from '../bmb-modal/bmb-modal.interface';
 import { CommonModule } from '@angular/common';
 import { TranslatePipe } from '../../pipes/translations';
 import { logDeprecatedInput } from '../../_shared/logic/logDeprecatedInput';

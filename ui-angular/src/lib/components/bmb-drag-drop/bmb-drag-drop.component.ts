@@ -4,7 +4,7 @@ import {
   BmbCardComponent,
   BmbCardContentComponent,
 } from '../bmb-card/bmb-card.component';
-import { BmbItemComponent } from '../old/bmb-item/bmb-item.component';
+import { BmbItemComponent } from '../bmb-item/bmb-item.component';
 import { BmbDraggableDirective } from './bmb-draggable.directive';
 import { BmbDropzoneDirective } from './bmb-dropzone.directive';
 

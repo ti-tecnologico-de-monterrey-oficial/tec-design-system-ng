@@ -27,7 +27,7 @@ import { BmbAlertCenterEmptyComponent } from '../bmb-alert-center-empty/bmb-aler
 import { BmbLayoutItemDirective } from '../../../directives/old/bmb-layout/bmb-layout-item.directive';
 import { BmbCheckboxComponent } from '../../bmb-checkbox/bmb-checkbox.component';
 import { TranslatePipe } from '../../../pipes/translations';
-import { BmbNavigationBarComponent } from '../../old/bmb-navigation-bar/bmb-navigation-bar.component';
+import { BmbNavigationBarComponent } from '../../bmb-navigation-bar/bmb-navigation-bar.component';
 import { BmbTranslationsService } from '../../../services/translations/translations.service';
 
 @Component({

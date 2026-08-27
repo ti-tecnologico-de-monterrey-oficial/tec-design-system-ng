@@ -16,7 +16,7 @@ import {
   BmbChatCopyState,
   BmbChatMessage,
 } from '../types';
-import { BmbIconComponent } from '../../old/bmb-icon/bmb-icon.component';
+import { BmbIconComponent } from '../../bmb-icon/bmb-icon.component';
 import { BmbTranslationsService } from '../../../services/translations/translations.service';
 
 @Component({

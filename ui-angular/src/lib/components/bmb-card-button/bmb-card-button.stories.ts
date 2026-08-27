@@ -1,6 +1,6 @@
 import { Meta, moduleMetadata } from '@storybook/angular';
 import { BmbCardButtonComponent } from './bmb-card-button.component';
-import { BmbIconComponent } from '../old/bmb-icon/bmb-icon.component';
+import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import {
   attributes,
   getBasicExampleBlock,

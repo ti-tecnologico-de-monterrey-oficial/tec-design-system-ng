@@ -13,7 +13,7 @@ import { IBmbCalendarEvent, IBmbCalendarMicroProgram } from '../../types';
 import { DateTime } from 'luxon';
 import { getTimeRange, HOUR_HEIGHT } from '../../utils';
 import { CommonModule } from '@angular/common';
-import { IBmbNativeModal } from '../../../old/bmb-modal/bmb-modal.interface';
+import { IBmbNativeModal } from '../../../bmb-modal/bmb-modal.interface';
 import { BmbNativeModalService } from '../../../../services/old/modal/native-modal.service';
 import {
   BmbLayoutGridDirective,

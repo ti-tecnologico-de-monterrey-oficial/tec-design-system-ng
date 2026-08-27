@@ -9,13 +9,11 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { BmbButtonDirective } from '../../directives/old/bmb-button/button.directive';
-import { IBmbAdvertisementData } from './types';
-import { BmbHomeCardComponent } from '../old/bmb-home-card/bmb-home-card.component';
+import { IBmbAdvertisementData } from '../../_shared/types/components/advertisement-card';
+import { BmbHomeCardComponent } from '../bmb-home-card/bmb-home-card.component';
 import { BmbCarouselComponent } from '../bmb-carousel/bmb-carousel.component';
-import { BmbTabsComponent, IBmbTab } from '../old/bmb-tabs/bmb-tabs.component';
+import { BmbTabsComponent, IBmbTab } from '../bmb-tabs/bmb-tabs.component';
 import { TranslatePipe } from '../../pipes/translations';
-
-export * from './types';
 
 /*
  * TODO: This component is marked as "old" and its decommissioning is planned for future updates.

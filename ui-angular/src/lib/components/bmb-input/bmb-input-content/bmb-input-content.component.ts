@@ -10,7 +10,7 @@ import {
   TemplateRef,
   ViewEncapsulation,
 } from '@angular/core';
-import { BmbIconComponent } from '../../old/bmb-icon/bmb-icon.component';
+import { BmbIconComponent } from '../../bmb-icon/bmb-icon.component';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { BmbActionIconComponent } from '../../bmb-action-icon/bmb-action-icon.component';
 import {

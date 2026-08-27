@@ -1,6 +1,6 @@
 import { Meta, StoryObj } from '@storybook/angular';
 import { BmbContainerButtonComponent } from './bmb-container-button.component';
-import { IBbmBgAppearance } from '../bmb-advertisement-card/types';
+import { IBbmBgAppearance } from '../../_shared/types';
 import {
   attributes,
   getBasicExampleBlock,

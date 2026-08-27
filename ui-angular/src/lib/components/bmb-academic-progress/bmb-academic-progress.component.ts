@@ -8,7 +8,7 @@ import {
   SimpleChanges,
   ViewEncapsulation,
 } from '@angular/core';
-import { BmbFocusElementComponent } from '../old/bmb-focus-element/bmb-focus-element.component';
+import { BmbFocusElementComponent } from '../bmb-focus-element/bmb-focus-element.component';
 import { BmbLayoutDirective } from '../../directives/old/bmb-layout/bmb-layout.directive';
 import { BmbLayoutItemDirective } from '../../directives/old/bmb-layout/bmb-layout-item.directive';
 import { BmbContainerComponent } from '../bmb-container/bmb-container.component';

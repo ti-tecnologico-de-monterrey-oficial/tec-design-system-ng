@@ -11,7 +11,7 @@ import { IBmbColor } from '../../_shared/types/colors';
 import { CommonModule } from '@angular/common';
 import { logDeprecatedInput } from '../../_shared/logic/logDeprecatedInput';
 import { BmbDividerComponent } from '../bmb-divider/bmb-divider.component';
-import { BmbTitleContentComponent } from '../old/bmb-title-content/bmb-title-content.component';
+import { BmbTitleContentComponent } from '../bmb-title-content/bmb-title-content.component';
 import { BmbContainerComponent } from '../bmb-container/bmb-container.component';
 
 /*
