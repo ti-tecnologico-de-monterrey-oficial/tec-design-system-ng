@@ -1,0 +1,140 @@
+import {
+  Component,
+  ViewEncapsulation,
+  ChangeDetectionStrategy,
+  output,
+  input,
+  inject,
+} from '@angular/core';
+import { IUserInformation } from '../types';
+import { CommonModule } from '@angular/common';
+import { IBmbDataAlert } from '../../bmb-alert-center/types';
+import { BmbActionIconComponent } from '../../bmb-action-icon/bmb-action-icon.component';
+import { BmbLayoutItemDirective } from '../../../directives/bmb-layout/bmb-layout-item.directive';
+import { BmbLayoutDirective } from '../../../directives/bmb-layout/bmb-layout.directive';
+import { BmbUserSummaryContentComponent } from '../../bmb-user-summary/bmb-user-summary-content/bmb-user-summary-content.component';
+import { BmbDropdownMenuComponent } from '../../bmb-dropdown-menu/bmb-dropdown-menu.component';
+import { IDropdownItem } from '../../../_shared/types/index';
+import { BmbButtonIconComponent } from '../../bmb-button-icon/bmb-button-icon.component';
+import { BmbCheckExternalLinkButtonComponent } from '../../bmb-check-external-link-button/bmb-check-external-link-button.component';
+import { TranslatePipe } from '../../../pipes/translations';
+import { BmbTranslationsService } from '../../../services/translations/translations.service';
+
+/*
+ * TODO: This component is marked as "old" and its decommissioning is planned for future updates.
+ */
+
+@Component({
+  selector: 'bmb-top-bar-user-section',
+  standalone: true,
+  imports: [
+    CommonModule,
+    BmbDropdownMenuComponent,
+    BmbActionIconComponent,
+    BmbButtonIconComponent,
+    BmbUserSummaryContentComponent,
+    BmbLayoutDirective,
+    BmbLayoutItemDirective,
+    BmbCheckExternalLinkButtonComponent,
+    TranslatePipe,
+  ],
+  templateUrl: './bmb-top-bar-user-section.component.html',
+  styleUrl: './bmb-top-bar-user-section.component.scss',
+  encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush,
+})
+export class BmbTopBarUserSectionComponent {
+  userInformation = input<IUserInformation>({
+    image: '',
+    name: '',
+    role: '',
+  });
+  mitec = input<boolean>(false);
+  showNotifications = input<boolean>(true);
+  notificationNotification = input<IBmbDataAlert[]>([]);
+  showRoleButton = input<boolean>(false); //Deprecated
+  showSearchButton = input<boolean>(false);
+  showHelpButton = input<boolean>(false);
+  showFavoritesButton = input<boolean>(false);
+
+  helpButtonClick = output<MouseEvent>();
+  userClick = output<MouseEvent>();
+  alertClick = output<MouseEvent>();
+  roleButtonClick = output<MouseEvent>(); //Deprecated
+  searchButtonClick = output<MouseEvent>();
+  getFavoritesClick = output<MouseEvent>();
+
+  isOpenNotifications = false;
+  dialogPosition: { top: string; left: string } | null = {
+    top: '0px',
+    left: '0px',
+  };
+  windowWidth = window.innerWidth;
+  private readonly translationService = inject(BmbTranslationsService);
+
+  getMenu(): IDropdownItem[] {
+    const menu: IDropdownItem[] = [];
+    const notification: IDropdownItem = {
+      idItem: 'notifications',
+      icon: 'notifications',
+      dotNotification: this.notificationNotification()?.length,
+      text: this.translationService.translate('top_bar.notifications'),
+      action: (event?: unknown) => this.openNotifications(event as MouseEvent),
+    };
+    const search: IDropdownItem = {
+      idItem: 'search',
+      icon: 'search',
+      text: this.translationService.translate('top_bar.search'),
+      action: (event?: unknown) => this.handleSearchChange(event as MouseEvent),
+    };
+    const help: IDropdownItem = {
+      idItem: 'help',
+      icon: 'help',
+      text: this.translationService.translate('top_bar.help'),
+      action: (event?: unknown) =>
+        this.handleHelpButtonClick(event as MouseEvent),
+    };
+    const favorites: IDropdownItem = {
+      idItem: 'favorites',
+      icon: 'bookmark',
+      text: this.translationService.translate('top_bar.favorites'),
+      action: (event?: unknown) =>
+        this.handleFavoritesClick(event as MouseEvent),
+    };
+
+    if (this.showHelpButton()) menu.unshift(help);
+    if (this.showSearchButton()) menu.unshift(search);
+    if (this.showNotifications()) menu.unshift(notification);
+    if (this.showFavoritesButton()) menu.unshift(favorites);
+
+    return menu;
+  }
+
+  openNotifications(event: MouseEvent): void {
+    this.alertClick.emit(event);
+  }
+
+  closeNotifications(): void {
+    this.isOpenNotifications = false;
+  }
+
+  totalNotifications(): number {
+    return this.notificationNotification()?.length;
+  }
+
+  handleHelpButtonClick(event: MouseEvent): void {
+    this.helpButtonClick.emit(event);
+  }
+
+  handleUserClick(event: MouseEvent): void {
+    this.userClick.emit(event);
+  }
+
+  handleSearchChange(event: MouseEvent): void {
+    this.searchButtonClick.emit(event);
+  }
+
+  handleFavoritesClick(event: MouseEvent): void {
+    this.getFavoritesClick.emit(event);
+  }
+}

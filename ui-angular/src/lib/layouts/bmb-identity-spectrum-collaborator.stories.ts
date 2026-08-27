@@ -2,19 +2,19 @@ import { componentWrapperDecorator, Meta, StoryObj } from '@storybook/angular';
 import { Component, signal, TemplateRef, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 
-import { BmbTopBarComponent } from '../components/old/bmb-top-bar/bmb-top-bar.component';
-import { BmbSidebarComponent } from '../components/old/bmb-sidebar/bmb-sidebar.component';
-import { BmbHomeCardComponent } from '../components/old/bmb-home-card/bmb-home-card.component';
-import { BmbTabsComponent } from '../components/old/bmb-tabs/bmb-tabs.component';
-import { BmbUserSummaryContentComponent } from '../components/old/bmb-user-summary/bmb-user-summary-content/bmb-user-summary-content.component';
+import { BmbTopBarComponent } from '../components/bmb-top-bar/bmb-top-bar.component';
+import { BmbSidebarComponent } from '../components/bmb-sidebar/bmb-sidebar.component';
+import { BmbHomeCardComponent } from '../components/bmb-home-card/bmb-home-card.component';
+import { BmbTabsComponent } from '../components/bmb-tabs/bmb-tabs.component';
+import { BmbUserSummaryContentComponent } from '../components/bmb-user-summary/bmb-user-summary-content/bmb-user-summary-content.component';
 import {
   BmbCardComponent,
   BmbCardContentComponent,
 } from '../components/bmb-card/bmb-card.component';
-import { BmbFormValidatorComponent } from '../components/old/bmb-form-validator/bmb-form-validator.component';
-import { BmbInputComponent } from '../components/old/bmb-input/bmb-input.component';
+import { BmbFormValidatorComponent } from '../components/bmb-form-validator/bmb-form-validator.component';
+import { BmbInputComponent } from '../components/bmb-input/bmb-input.component';
 
-import { IBmbNativeModal } from '../components/old/bmb-modal/bmb-modal.interface';
+import { IBmbNativeModal } from '../components/bmb-modal/bmb-modal.interface';
 import { BmbNativeModalService } from '../services/old/modal/native-modal.service';
 import { IBmbActionHeader } from '../_shared/types/index';
 
@@ -25,17 +25,17 @@ import { BmbVerticalLayoutDirective } from '../directives/bmb-layout/bmb-vertica
 import { BmbVerticalLayoutItemDirective } from '../directives/bmb-layout/bmb-vertical-layout/bmb-vertical-layout-item.directive';
 import { BmbSelectorDirective } from '../directives/old/bmb-selector/bmb-selector.directive';
 
-import * as topBarStory from '../components/old/bmb-top-bar/bmb-top-bar.stories';
-import * as sideBarStory from '../components/old/bmb-sidebar/bmb-sidebar.stories';
-import * as homeCardStory from '../components/old/bmb-home-card/bmp-home-card.stories';
-import * as tabsStory from '../components/old/bmb-tabs/bmb-tabs.component.stories';
+import * as topBarStory from '../components/bmb-top-bar/bmb-top-bar.stories';
+import * as sideBarStory from '../components/bmb-sidebar/bmb-sidebar.stories';
+import * as homeCardStory from '../components/bmb-home-card/bmp-home-card.stories';
+import * as tabsStory from '../components/bmb-tabs/bmb-tabs.component.stories';
 import * as genericCardStory from '../components/bmb-card/bmb-card.stories';
-import * as userSummaryContentStory from '../components/old/bmb-user-summary/bmb-user-summary-content/bmb-user-summary-content.stories';
-import * as inputStory from '../components/old/bmb-input/bmb-input.stories';
-import * as itemItemStory from '../components/old/bmb-item/bmb-item.stories';
-import * as actionMenuStory from '../components/old/bmb-action-menu/bmb-action-menu.stories';
-import * as dropzoneStory from '../components/old/bmb-dropzone/bmb-dropzone.stories';
-import * as nativeModalStory from '../components/old/bmb-modal/bmb-native-modal.stories';
+import * as userSummaryContentStory from '../components/bmb-user-summary/bmb-user-summary-content/bmb-user-summary-content.stories';
+import * as inputStory from '../components/bmb-input/bmb-input.stories';
+import * as itemItemStory from '../components/bmb-item/bmb-item.stories';
+import * as actionMenuStory from '../components/bmb-action-menu/bmb-action-menu.stories';
+import * as dropzoneStory from '../components/bmb-dropzone/bmb-dropzone.stories';
+import * as nativeModalStory from '../components/bmb-modal/bmb-native-modal.stories';
 
 import * as buttonDirectiveStory from '../directives/old/bmb-button/button.stories';
 import * as layoutDirectiveStory from '../directives/bmb-layout/bmb-layout.stories';
@@ -54,9 +54,9 @@ import {
   getTechnicalDocReferences,
   RELEVANT_TITLE,
 } from '@docs/utils/utils';
-import { BmbActionMenuComponent } from '../components/old/bmb-action-menu/bmb-action-menu.component';
-import { BmbItemComponent } from '../components/old/bmb-item/bmb-item.component';
-import { BmbDropzoneComponent } from '../components/old/bmb-dropzone/bmb-dropzone.component';
+import { BmbActionMenuComponent } from '../components/bmb-action-menu/bmb-action-menu.component';
+import { BmbItemComponent } from '../components/bmb-item/bmb-item.component';
+import { BmbDropzoneComponent } from '../components/bmb-dropzone/bmb-dropzone.component';
 
 const HTML_TEMPLATE: string = `
 <div class="bmb_organism-identity-spectrum">
@@ -319,7 +319,7 @@ const HTML_TEMPLATE: string = `
                     value="Paloma Reyes Araujo"
                   />
                 </ng-template>
-              </bmb-action-menu>  
+              </bmb-action-menu>
             </bmb-card>
           </section>
         </section>
@@ -383,35 +383,35 @@ const HTML_TEMPLATE: string = `
                 <bmb-action-menu title="Contactos laborales" [showHeader]='true'>
                   <ng-template>
                     <h2 class="font-regular-5">Mi Líder</h2>
-                    <bmb-user-summary-content 
-                      [isProfile]="true" 
-                      [name]="'Arturo González Martínez'" 
-                      [userId]="'Director de Desarrollo'" 
-                      [image]="'https://picsum.photos/id/64/200/300'" 
-                      [isImageBordered]="false" 
-                      [altImage]="'Arturo González Martínez'" 
-                      [imageSize]="'mobile-medium'" 
-                      [infoCareer]="'Techvolution 2.0'" 
-                      [campus]="'L01290262'" 
-                      [email]="{label: 'agonzalez@tec.mx', link: 'mailto:agonzalez@tec.mx', target: '_blank'}" 
-                      [contentLayout]="'row'" 
+                    <bmb-user-summary-content
+                      [isProfile]="true"
+                      [name]="'Arturo González Martínez'"
+                      [userId]="'Director de Desarrollo'"
+                      [image]="'https://picsum.photos/id/64/200/300'"
+                      [isImageBordered]="false"
+                      [altImage]="'Arturo González Martínez'"
+                      [imageSize]="'mobile-medium'"
+                      [infoCareer]="'Techvolution 2.0'"
+                      [campus]="'L01290262'"
+                      [email]="{label: 'agonzalez@tec.mx', link: 'mailto:agonzalez@tec.mx', target: '_blank'}"
+                      [contentLayout]="'row'"
                       (onUserClick)="onUserClick($event)">
                     </bmb-user-summary-content>
                   </ng-template>
                   <ng-template>
                     <h2 class="font-regular-5">Mi Generalista</h2>
-                    <bmb-user-summary-content 
-                      [isProfile]="true" 
-                      [name]="'Ana María Gutiérrez Pineda'" 
-                      [userId]="'Generalista de Talento - Áreas de Apoyo'" 
-                      [image]="'https://picsum.photos/id/64/200/300'" 
-                      [isImageBordered]="false" 
-                      [altImage]="'Ana María Gutiérrez Pineda'" 
-                      [imageSize]="'mobile-medium'" 
-                      [infoCareer]="'TyE Áreas de Apoyo'" 
-                      [campus]="'L01290262'" 
-                      [email]="{label: 'agutierrez@tec.mx', link: 'mailto:agutierrez@tec.mx', target: '_blank'}" 
-                      [contentLayout]="'row'" 
+                    <bmb-user-summary-content
+                      [isProfile]="true"
+                      [name]="'Ana María Gutiérrez Pineda'"
+                      [userId]="'Generalista de Talento - Áreas de Apoyo'"
+                      [image]="'https://picsum.photos/id/64/200/300'"
+                      [isImageBordered]="false"
+                      [altImage]="'Ana María Gutiérrez Pineda'"
+                      [imageSize]="'mobile-medium'"
+                      [infoCareer]="'TyE Áreas de Apoyo'"
+                      [campus]="'L01290262'"
+                      [email]="{label: 'agutierrez@tec.mx', link: 'mailto:agutierrez@tec.mx', target: '_blank'}"
+                      [contentLayout]="'row'"
                       (onUserClick)="onUserClick($event)">
                     </bmb-user-summary-content>
                   </ng-template>

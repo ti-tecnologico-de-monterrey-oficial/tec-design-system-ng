@@ -26,17 +26,17 @@ import {
   getTECParticularitiesMessage,
 } from '@docs/utils/utils';
 
-import * as topBarStory from '../components/old/bmb-top-bar/bmb-top-bar.stories';
-import * as sideBarStory from '../components/old/bmb-sidebar/bmb-sidebar.stories';
-import * as homeCardStory from '../components/old/bmb-home-card/bmp-home-card.stories';
+import * as topBarStory from '../components/bmb-top-bar/bmb-top-bar.stories';
+import * as sideBarStory from '../components/bmb-sidebar/bmb-sidebar.stories';
+import * as homeCardStory from '../components/bmb-home-card/bmp-home-card.stories';
 import * as layoutStory from '../directives/bmb-layout/bmb-layout.stories';
 import * as layoutItemStory from '../directives/bmb-layout/bmb-layout.stories';
 import * as cardStory from '../components/bmb-card/bmb-card.stories';
-import * as accordionStory from '../components/old/bmb-accordion/bmb-accordion.stories';
+import * as accordionStory from '../components/bmb-accordion/bmb-accordion.stories';
 import * as cardHeaderStory from '../components/bmb-card/bmb-card.stories';
 import * as cardContentStory from '../components/bmb-card/bmb-card.stories';
 import * as accordionControlStory from '../directives/old/bmb-accordion/bmb-accordion-control.stories';
-import * as iconStory from '../components/old/bmb-icon/bmb-icon.stories';
+import * as iconStory from '../components/bmb-icon/bmb-icon.stories';
 import * as buttonStory from '../directives/old/bmb-button/button.stories';
 
 @Component({

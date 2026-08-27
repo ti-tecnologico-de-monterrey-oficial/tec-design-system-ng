@@ -1,7 +1,7 @@
 import {
   ITimelineEvent,
   IBmbTimestreamFilters,
-} from '../../ui-angular/src/lib/components/old/bmb-timestream/types';
+} from '../types/components/timestream';
 
 const checkFilters = (
   event: ITimelineEvent,

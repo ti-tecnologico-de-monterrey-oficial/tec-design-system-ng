@@ -16,6 +16,10 @@ import {
   IJustifyOptions,
 } from '../../_shared/types';
 
+/*
+ * TODO: This component is marked as "old" and its decommissioning is planned for future updates.
+ */
+
 @Component({
   selector: 'bmb-three-cols',
   standalone: true,

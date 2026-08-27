@@ -1,5 +1,5 @@
 import { Meta, StoryFn, StoryObj } from '@storybook/angular';
-import { BmbSidebarComponent } from '../../../components/old/bmb-sidebar/bmb-sidebar.component';
+import { BmbSidebarComponent } from '../../../components/bmb-sidebar/bmb-sidebar.component';
 
 export default {
   title: 'Hidden/Templates',
@@ -11,8 +11,8 @@ export default {
         component: `
 
 A Stand Alone Site Template is the skeleton or structure that visually organizes the elements of a web page to ensure a coherent and functional
-experience. Defines how these components are presented in the interface, ensuring a clear and consistent layout for navigation and use of the 
-site. 
+experience. Defines how these components are presented in the interface, ensuring a clear and consistent layout for navigation and use of the
+site.
 
 To use these templates it is necessary to use the classes that already come within the bamboo package. Below are examples with the different
 templates available for the sites. It is important to mention that these templates are for web use and must add the sidebar component

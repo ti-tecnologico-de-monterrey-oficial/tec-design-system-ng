@@ -9,7 +9,7 @@ import {
   getStandaloneGeneralDesc,
   getTechnicalOneReference,
 } from '@docs/utils/utils';
-import * as topBarStory from '../components/old/bmb-top-bar/bmb-top-bar.stories';
+import * as topBarStory from '../components/bmb-top-bar/bmb-top-bar.stories';
 
 @Component({
   standalone: true,

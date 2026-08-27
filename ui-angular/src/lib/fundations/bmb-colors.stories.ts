@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import {
   BmbTabsComponent,
   IBmbTab,
-} from '../components/old/bmb-tabs/bmb-tabs.component';
+} from '../components/bmb-tabs/bmb-tabs.component';
 import {
   DESIGN_SYSTEM_TITLE,
   getFoundationDescriptions,
@@ -15,7 +15,7 @@ import {
   SANDBOX_TITLE,
 } from '@docs/utils/utils';
 import { BmbDividerComponent } from '../components/bmb-divider/bmb-divider.component';
-import { BmbAccordionComponent } from '../components/old/bmb-accordion/bmb-accordion.component';
+import { BmbAccordionComponent } from '../components/bmb-accordion/bmb-accordion.component';
 import { BmbSelectorDirective } from '../directives/old/bmb-selector/bmb-selector.directive';
 import { BmbLayoutDirective } from '../directives/bmb-layout/bmb-layout.directive';
 import { BmbLayoutItemDirective } from '../directives/bmb-layout/bmb-layout-item.directive';

@@ -18,7 +18,7 @@ import {
   RELEVANT_TITLE,
 } from '@docs/utils/utils';
 import { DBmbLayoutParamDesc } from '@docs/utils/parameterDescriptions';
-import { BmbInteractiveIconComponent } from '../../components/old/bmb-interactive-icon/bmb-interactive-icon.component';
+import { BmbInteractiveIconComponent } from '../../components/bmb-interactive-icon/bmb-interactive-icon.component';
 
 const meta: Meta<BmbLayoutDirective> = {
   title: 'Foundations/Layouts/Layout',

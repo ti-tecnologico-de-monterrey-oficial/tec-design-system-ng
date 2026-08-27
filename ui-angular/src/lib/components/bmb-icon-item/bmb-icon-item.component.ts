@@ -4,9 +4,9 @@ import {
   input,
   ViewEncapsulation,
 } from '@angular/core';
-import { BmbItemComponent } from '../old/bmb-item/bmb-item.component';
+import { BmbItemComponent } from '../bmb-item/bmb-item.component';
 import { CommonModule } from '@angular/common';
-import { getIconItemClasses } from '@shared/logic/components/icon-item';
+import { getIconItemClasses } from '../../_shared/logic/components/icon-item';
 
 @Component({
   selector: 'bmb-icon-item',

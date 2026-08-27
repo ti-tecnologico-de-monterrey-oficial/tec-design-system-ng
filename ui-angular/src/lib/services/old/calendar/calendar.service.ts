@@ -1,5 +1,5 @@
 import { Injectable, signal } from '@angular/core';
-import { IBmbCalendarEvent } from '../../../components/old/bmb-calendar/types';
+import { IBmbCalendarEvent } from '../../../components/bmb-calendar/types';
 import { getUUID } from '../../../_shared/logic/utils';
 
 @Injectable({
