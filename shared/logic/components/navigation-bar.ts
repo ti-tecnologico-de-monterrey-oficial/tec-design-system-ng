@@ -7,7 +7,7 @@ import {
 export const executeNavigationAction = (
   actionHeader: IBmbActionHeader,
 ): void => {
-  actionHeader.action();
+  actionHeader.action?.();
 };
 
 export const getNavigationBarConfig = ({

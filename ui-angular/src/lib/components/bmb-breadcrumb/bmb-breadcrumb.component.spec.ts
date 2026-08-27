@@ -5,7 +5,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 import { of } from 'rxjs';
 import { CommonModule } from '@angular/common';
-import { BmbIconComponent } from '../old/bmb-icon/bmb-icon.component';
+import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 
 describe('BmbBreadcrumbComponent', () => {
   beforeEach(async () => {

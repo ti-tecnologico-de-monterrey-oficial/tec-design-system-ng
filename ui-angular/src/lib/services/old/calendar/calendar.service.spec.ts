@@ -1,5 +1,5 @@
 import { BmbCalendarService } from './calendar.service';
-import { IBmbCalendarEvent } from '../../../components/old/bmb-calendar/types';
+import { IBmbCalendarEvent } from '../../../components/bmb-calendar/types';
 
 describe('BmbCalendarService', () => {
   let service: BmbCalendarService;

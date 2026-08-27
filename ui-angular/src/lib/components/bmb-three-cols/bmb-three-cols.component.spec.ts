@@ -1,8 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { ComponentRef } from '@angular/core';
 import { BmbThreeColsComponent } from './bmb-three-cols.component';
-
-describe('BmbThreeColsComponent', () => {
+import { ComponentRef } from '@angular/core';
+describe('BmbThreeMainColumnsTemplateComponent', () => {
   let component: BmbThreeColsComponent;
   let fixture: ComponentFixture<BmbThreeColsComponent>;
   let componentRef: ComponentRef<BmbThreeColsComponent>;

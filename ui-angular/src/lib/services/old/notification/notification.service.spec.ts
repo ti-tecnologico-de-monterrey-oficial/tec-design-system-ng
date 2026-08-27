@@ -3,7 +3,7 @@ import {
   NotificationPositionX,
   NotificationPositionY,
 } from './notification.service';
-import { INotification } from '../../../components/old/bmb-push-notification/types';
+import { INotification } from '../../../components/bmb-push-notification/types';
 
 import { TestBed } from '@angular/core/testing';
 import { RendererFactory2 } from '@angular/core';

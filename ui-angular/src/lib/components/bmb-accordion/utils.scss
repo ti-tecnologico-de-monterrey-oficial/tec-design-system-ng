@@ -1,0 +1,7 @@
+@use '../../../../../shared/assets/styles/base/rem' as rem;
+
+$line_number: 3;
+$font-size: rem.rem_calc(14);
+$line-height: 1.25;
+$line_block_size: $line_number * $font-size * $line-height;
+$max-height: calc($line_block_size + var(--bmb-spacing-xs) + rem.rem_calc(20));
