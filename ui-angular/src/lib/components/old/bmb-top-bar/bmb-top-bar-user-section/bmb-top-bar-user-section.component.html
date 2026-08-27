@@ -9,13 +9,12 @@
   [ngClass]="{ 'bmb_top-bar-user-section-mitec': mitec() }"
 >
   @if (mitec()) {
-    @if (showRoleButton() || showNotifications()) {
-      <bmb-dropdown-menu
-        bmbLayoutItem
-        class="bmb_top-bar-user-section bmb_top-bar-user-section-menu bmb_top-bar-user-section-mobile"
-        [items]="getMenu()"
-      />
-    }
+    <bmb-dropdown-menu
+      bmbLayoutItem
+      class="bmb_top-bar-user-section bmb_top-bar-user-section-menu bmb_top-bar-user-section-mobile"
+      [items]="getMenu()"
+    />
+
     @if (showFavoritesButton()) {
       <bmb-action-icon
         bmbLayoutItem
@@ -35,15 +34,6 @@
         (buttonClick)="handleSearchChange($event)"
         [tooltipText]="'top_bar.search' | translate"
       />
-    } @else if (showRoleButton()) {
-      <bmb-action-icon
-        bmbLayoutItem
-        class="bmb_top-bar-user-section-no-mobile"
-        icon="compare_arrows"
-        [iconSize]="32"
-        (buttonClick)="handleRoleChange($event)"
-        [tooltipText]="'top_bar.role_switch' | translate"
-      />
     }
     @if (showNotifications()) {
       <bmb-action-icon
@@ -56,22 +46,11 @@
         [tooltipText]="'top_bar.notifications' | translate"
       />
     }
-  } @else if (showRoleButton()) {
-    <bmb-action-icon
-      bmbLayoutItem
-      icon="compare_arrows"
-      [iconSize]="32"
-      (buttonClick)="handleRoleChange($event)"
-      [tooltipText]="'top_bar.role_switch' | translate"
-    />
   }
   @if (showHelpButton() || mitec()) {
     <bmb-button-icon
       bmbLayoutItem
-      [ngClass]="{
-        'bmb_top-bar-user-section-no-mobile':
-          mitec() && (showRoleButton() || showNotifications()),
-      }"
+      class="bmb_top-bar-user-section-no-mobile"
       icon="help"
       [showContainer]="false"
       (onButtonClick)="handleHelpButtonClick($event)"
