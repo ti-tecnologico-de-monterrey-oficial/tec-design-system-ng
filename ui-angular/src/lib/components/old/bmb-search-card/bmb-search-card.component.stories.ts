@@ -95,6 +95,16 @@ export default {
         type: { summary: 'EventEmitter<string>' },
       },
     },
+    favorites: {
+      control: 'object',
+      description:
+        'Array of favorite search results to display in the card. These will be shown when the search input is empty.',
+      table: {
+        type: { summary: 'IBmbSearchCardItemResult[]' },
+        defaultValue: { summary: '[]' },
+        category: 'Properties',
+      },
+    },
   },
   args: {
     componentTitle: '',
@@ -110,9 +120,34 @@ export default {
     },
     isLoading: false,
     results: [],
+    favorites: [],
   },
 } as Meta<typeof BmbSearchCardComponent>;
 
 type Story = StoryObj<BmbSearchCardComponent>;
 
 export const Default: Story = {};
+
+export const WithFavorites: Story = {
+  args: {
+    disableFavoritesTab: false,
+    favorites: [
+      {
+        id: '1',
+        name: 'Favorite Service 1',
+        subtitle: 'Subtitle 1',
+        avatarOrIcon: 'home',
+        type: 'service',
+        isBookmarkActive: true,
+      },
+      {
+        id: '2',
+        name: 'Favorite service 2',
+        subtitle: 'Subtitle 2',
+        avatarOrIcon: 'arrow_right',
+        type: 'service',
+        isBookmarkActive: true,
+      },
+    ],
+  },
+};
