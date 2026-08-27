@@ -42,7 +42,7 @@ export class BmbTopBarComponent implements OnInit {
   lang = input<string>('es');
   mitec = input<boolean>(false);
   alertNotification = input<IBmbDataAlert[]>([]);
-  showRoleButton = input<boolean>(false);
+  showRoleButton = input<boolean>(false); //Deprecated
   showSearchButton = input<boolean>(false);
   showHelpButton = input<boolean>(false);
   showFavoritesButton = input<boolean>(false);
@@ -56,7 +56,7 @@ export class BmbTopBarComponent implements OnInit {
   helpButtonClick = output<MouseEvent>();
   userProfileClick = output<MouseEvent>();
   alertButtonClick = output<MouseEvent>();
-  roleButtonClick = output<MouseEvent>();
+  roleButtonClick = output<MouseEvent>(); //Deprecated
   backToHomeClick = output<void>();
   getLogoClick = output<void>();
   searchButtonClick = output<MouseEvent>();
@@ -102,10 +102,6 @@ export class BmbTopBarComponent implements OnInit {
 
   handleUserClick(event: MouseEvent) {
     this.userProfileClick.emit(event);
-  }
-
-  handleRoleChange(event: MouseEvent) {
-    this.roleButtonClick.emit(event);
   }
 
   handleSearchChange(event: MouseEvent): void {

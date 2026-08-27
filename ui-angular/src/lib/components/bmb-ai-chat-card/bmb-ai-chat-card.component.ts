@@ -25,7 +25,6 @@ import { BmbProjectionContentService } from '../../services/old/projection/proje
 import { CommonModule } from '@angular/common';
 import { BmbBotIconComponent } from '../bmb-bot-icon/bmb-bot-icon.component';
 import { IBmbActionHeader } from '../../_shared/types';
-import { BmbAiChatBubbleComponent } from '../bmb-ai-chat-bubble/bmb-ai-chat-bubble.component';
 
 export type IBmbAIChatCardMode = 'compact' | 'chat' | 'expanded';
 
@@ -43,7 +42,6 @@ export type IBmbAIChatCardMode = 'compact' | 'chat' | 'expanded';
     TranslatePipe,
     BmbActionIconComponent,
     BmbBotIconComponent,
-    BmbAiChatBubbleComponent,
   ],
   templateUrl: './bmb-ai-chat-card.component.html',
   styleUrl: './bmb-ai-chat-card.component.scss',
