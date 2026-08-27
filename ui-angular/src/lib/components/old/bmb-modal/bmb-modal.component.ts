@@ -16,7 +16,7 @@ import type { ModalDataConfig } from './bmb-modal.interface';
 import { BmbButtonDirective } from '../../../directives/old/bmb-button/button.directive';
 import { BmbThreeColsComponent } from '../bmb-three-cols/bmb-three-cols.component';
 import { BmbTitleContentComponent } from '../bmb-title-content/bmb-title-content.component';
-import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
+import { BmbActionIconComponent } from '../../bmb-action-icon/bmb-action-icon.component';
 
 @Component({
   selector: 'bmb-modal',

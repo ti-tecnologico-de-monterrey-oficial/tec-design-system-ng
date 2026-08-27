@@ -28,7 +28,7 @@ import {
 } from '../../../_shared/types/input';
 import { BmbDropdownContentComponent } from '../utils/bmb-dropdown-content/bmb-dropdown-content.component';
 import { IDropdownItem } from '../../../_shared/types';
-import { BmbInputContentComponent } from '../bmb-input/bmb-input-content/bmb-input-content.component';
+import { BmbInputContentComponent } from '../../bmb-input/bmb-input-content/bmb-input-content.component';
 import { startWith } from 'rxjs';
 import { getUUID } from '../../../_shared/logic/utils';
 import {
@@ -37,21 +37,13 @@ import {
   newFormControlByType,
   showError,
 } from '../../../_shared/logic/formControl';
-import { BmbInputValidatorComponent } from '../bmb-input/bmb-input-validator/bmb-input-validator.component';
+import { BmbInputValidatorComponent } from '../../bmb-input/bmb-input-validator/bmb-input-validator.component';
 import { BmbProjectionContentService } from '../../../services/old/projection/projection.service';
 import { BmbLayoutDirective } from '../../../directives/old/bmb-layout/bmb-layout.directive';
 import { BmbLayoutItemDirective } from '../../../directives/old/bmb-layout/bmb-layout-item.directive';
 import { BmbTagComponent } from '../../bmb-tags/bmb-tags.component';
-import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
+import { BmbActionIconComponent } from '../../bmb-action-icon/bmb-action-icon.component';
 import { TranslatePipe } from '../../../pipes/translations';
-
-export interface IBmbDropdownItem {
-  name: string;
-  value: string;
-  selectedText?: string; //internal
-  icon?: string;
-  id?: string;
-}
 
 @Component({
   selector: 'bmb-dropdown',

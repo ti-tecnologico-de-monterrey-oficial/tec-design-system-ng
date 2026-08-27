@@ -12,7 +12,7 @@ import { CommonModule } from '@angular/common';
 import { INotification, INotificationAction } from '../types';
 import { BmbIconComponent } from '../../bmb-icon/bmb-icon.component';
 import { BmbUserImageComponent } from '../../../bmb-user-image/bmb-user-image.component';
-import { BmbCheckboxComponent } from '../../bmb-checkbox/bmb-checkbox.component';
+import { BmbCheckboxComponent } from '../../../bmb-checkbox/bmb-checkbox.component';
 import { BmbButtonDirective } from '../../../../directives/old/bmb-button/button.directive';
 import {
   BMB_CREATIVE_COLOR_LIST,

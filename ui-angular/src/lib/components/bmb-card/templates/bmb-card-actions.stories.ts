@@ -3,7 +3,7 @@ import {
   BmbCardComponent,
   BmbCardContentComponent,
 } from '../bmb-card.component';
-import { BmbBoxIconComponent } from '../../old/bmb-box-icon/bmb-box-icon.component';
+import { BmbBoxIconComponent } from '../../bmb-box-icon/bmb-box-icon.component';
 import { BmbTitleComponent } from '../../old/bmb-title/bmb-title.component';
 import { BmbButtonDirective } from '../../../directives/old/bmb-button/button.directive';
 import { BmbLayoutDirective } from '../../../directives/old/bmb-layout/bmb-layout.directive';

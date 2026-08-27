@@ -12,7 +12,7 @@ import {
   BmbCardContentComponent,
 } from '../components/bmb-card/bmb-card.component';
 import { BmbFormValidatorComponent } from '../components/old/bmb-form-validator/bmb-form-validator.component';
-import { BmbInputComponent } from '../components/old/bmb-input/bmb-input.component';
+import { BmbInputComponent } from '../components/bmb-input/bmb-input.component';
 
 import { IBmbNativeModal } from '../components/old/bmb-modal/bmb-modal.interface';
 import { BmbNativeModalService } from '../services/old/modal/native-modal.service';
@@ -31,7 +31,7 @@ import * as homeCardStory from '../components/old/bmb-home-card/bmp-home-card.st
 import * as tabsStory from '../components/old/bmb-tabs/bmb-tabs.component.stories';
 import * as genericCardStory from '../components/bmb-card/bmb-card.stories';
 import * as userSummaryContentStory from '../components/old/bmb-user-summary/bmb-user-summary-content/bmb-user-summary-content.stories';
-import * as inputStory from '../components/old/bmb-input/bmb-input.stories';
+import * as inputStory from '../components/bmb-input/bmb-input.stories';
 import * as itemItemStory from '../components/old/bmb-item/bmb-item.stories';
 import * as actionMenuStory from '../components/old/bmb-action-menu/bmb-action-menu.stories';
 import * as dropzoneStory from '../components/old/bmb-dropzone/bmb-dropzone.stories';
@@ -319,7 +319,7 @@ const HTML_TEMPLATE: string = `
                     value="Paloma Reyes Araujo"
                   />
                 </ng-template>
-              </bmb-action-menu>  
+              </bmb-action-menu>
             </bmb-card>
           </section>
         </section>
@@ -383,35 +383,35 @@ const HTML_TEMPLATE: string = `
                 <bmb-action-menu title="Contactos laborales" [showHeader]='true'>
                   <ng-template>
                     <h2 class="font-regular-5">Mi Líder</h2>
-                    <bmb-user-summary-content 
-                      [isProfile]="true" 
-                      [name]="'Arturo González Martínez'" 
-                      [userId]="'Director de Desarrollo'" 
-                      [image]="'https://picsum.photos/id/64/200/300'" 
-                      [isImageBordered]="false" 
-                      [altImage]="'Arturo González Martínez'" 
-                      [imageSize]="'mobile-medium'" 
-                      [infoCareer]="'Techvolution 2.0'" 
-                      [campus]="'L01290262'" 
-                      [email]="{label: 'agonzalez@tec.mx', link: 'mailto:agonzalez@tec.mx', target: '_blank'}" 
-                      [contentLayout]="'row'" 
+                    <bmb-user-summary-content
+                      [isProfile]="true"
+                      [name]="'Arturo González Martínez'"
+                      [userId]="'Director de Desarrollo'"
+                      [image]="'https://picsum.photos/id/64/200/300'"
+                      [isImageBordered]="false"
+                      [altImage]="'Arturo González Martínez'"
+                      [imageSize]="'mobile-medium'"
+                      [infoCareer]="'Techvolution 2.0'"
+                      [campus]="'L01290262'"
+                      [email]="{label: 'agonzalez@tec.mx', link: 'mailto:agonzalez@tec.mx', target: '_blank'}"
+                      [contentLayout]="'row'"
                       (onUserClick)="onUserClick($event)">
                     </bmb-user-summary-content>
                   </ng-template>
                   <ng-template>
                     <h2 class="font-regular-5">Mi Generalista</h2>
-                    <bmb-user-summary-content 
-                      [isProfile]="true" 
-                      [name]="'Ana María Gutiérrez Pineda'" 
-                      [userId]="'Generalista de Talento - Áreas de Apoyo'" 
-                      [image]="'https://picsum.photos/id/64/200/300'" 
-                      [isImageBordered]="false" 
-                      [altImage]="'Ana María Gutiérrez Pineda'" 
-                      [imageSize]="'mobile-medium'" 
-                      [infoCareer]="'TyE Áreas de Apoyo'" 
-                      [campus]="'L01290262'" 
-                      [email]="{label: 'agutierrez@tec.mx', link: 'mailto:agutierrez@tec.mx', target: '_blank'}" 
-                      [contentLayout]="'row'" 
+                    <bmb-user-summary-content
+                      [isProfile]="true"
+                      [name]="'Ana María Gutiérrez Pineda'"
+                      [userId]="'Generalista de Talento - Áreas de Apoyo'"
+                      [image]="'https://picsum.photos/id/64/200/300'"
+                      [isImageBordered]="false"
+                      [altImage]="'Ana María Gutiérrez Pineda'"
+                      [imageSize]="'mobile-medium'"
+                      [infoCareer]="'TyE Áreas de Apoyo'"
+                      [campus]="'L01290262'"
+                      [email]="{label: 'agutierrez@tec.mx', link: 'mailto:agutierrez@tec.mx', target: '_blank'}"
+                      [contentLayout]="'row'"
                       (onUserClick)="onUserClick($event)">
                     </bmb-user-summary-content>
                   </ng-template>

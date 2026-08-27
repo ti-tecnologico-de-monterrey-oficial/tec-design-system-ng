@@ -9,14 +9,14 @@ import {
 } from '@angular/core';
 import { ReactiveFormsModule, FormGroup, FormControl } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { BmbInputComponent } from '../bmb-input/bmb-input.component';
+import { BmbInputComponent } from '../../bmb-input/bmb-input.component';
 import { BmbInputTagsComponent } from '../bmb-input-tags/bmb-input-tags.component';
 import { handleValidity } from '../../../_shared/logic/formControl';
-import { BmbDatepickerComponent } from '../bmb-datepicker/bmb-datepicker.component';
-import { BmbDateRangeComponent } from '../bmb-date-range/bmb-date-range.component';
+import { BmbDatepickerComponent } from '../../bmb-datepicker/bmb-datepicker.component';
+import { BmbDateRangeComponent } from '../../bmb-date-range/bmb-date-range.component';
 import { BmbDropdownComponent } from '../bmb-dropdown/bmb-dropdown.component';
 import { BmbInputPhoneNumberComponent } from '../bmb-input-phone-number/bmb-input-phone-number.component';
-import { BmbCheckboxComponent } from '../bmb-checkbox/bmb-checkbox.component';
+import { BmbCheckboxComponent } from '../../bmb-checkbox/bmb-checkbox.component';
 import { BmbRadialComponent } from '../bmb-radial/bmb-radial.component';
 import { BmbSwitchComponent } from '../bmb-switch/bmb-switch.component';
 

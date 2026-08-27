@@ -37,7 +37,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { SelectionModel } from '@angular/cdk/collections';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
-import { BmbCheckboxComponent } from '../bmb-checkbox/bmb-checkbox.component';
+import { BmbCheckboxComponent } from '../../bmb-checkbox/bmb-checkbox.component';
 import {
   IBmbFiltersPosition,
   TableColum,
@@ -45,10 +45,10 @@ import {
 } from './bmb-tables.interface';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
-import { BmbInputComponent } from '../bmb-input/bmb-input.component';
+import { BmbInputComponent } from '../../bmb-input/bmb-input.component';
 import { ReactiveFormsModule, FormControl, FormGroup } from '@angular/forms';
-import { BmbDateRangeComponent } from '../bmb-date-range/bmb-date-range.component';
-import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
+import { BmbDateRangeComponent } from '../../bmb-date-range/bmb-date-range.component';
+import { BmbActionIconComponent } from '../../bmb-action-icon/bmb-action-icon.component';
 import { DateTime } from 'luxon';
 import { sanitizeContent } from '../../../_shared/logic/sanitizeContent';
 import { TranslatePipe } from '../../../pipes/translations';

@@ -4,7 +4,7 @@ import {
   IBmbMenuEvent,
 } from './bmb-external-link.component';
 import { ComponentRef, ElementRef } from '@angular/core';
-import { IBmbFooterEvent } from '../bmb-bottom-navigation-bar/bmb-bottom-navigation-bar.component';
+import { IBmbFooterEvent } from '../../bmb-bottom-navigation-bar/bmb-bottom-navigation-bar.component';
 import { BmbProjectionContentService } from '../../../services/old/projection/projection.service';
 
 describe('BmbExternalLinkComponent', () => {

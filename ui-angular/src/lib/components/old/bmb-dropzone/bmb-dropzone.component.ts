@@ -32,7 +32,7 @@ import {
   handleValidity,
   newFormControlByType,
 } from '../../../_shared/logic/formControl';
-import { BmbInputValidatorComponent } from '../bmb-input/bmb-input-validator/bmb-input-validator.component';
+import { BmbInputValidatorComponent } from '../../bmb-input/bmb-input-validator/bmb-input-validator.component';
 
 interface FileData {
   id: string;

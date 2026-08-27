@@ -23,7 +23,7 @@ import {
   IBmbNativeModalSize,
   IBmbActionButton,
 } from './bmb-modal.interface';
-import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
+import { BmbActionIconComponent } from '../../bmb-action-icon/bmb-action-icon.component';
 import { BmbNativeModalService } from '../../../services/old/modal/native-modal.service';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { TranslatePipe } from '../../../pipes/translations';

@@ -1,11 +1,11 @@
-import { IBmbDropdownItem } from '../../components/old/bmb-dropdown/bmb-dropdown.component';
+import { IBmbDropdownItem } from '../types/components/dropdown';
 import { IDropdownItem } from '../types';
 import { getUUID } from './utils';
 
 export const convertListToSelectList = (
   options: string[] | IBmbDropdownItem[],
-  _icon: string = '',
-  showIcon: boolean = false,
+  _icon = '',
+  showIcon = false,
 ): IDropdownItem[] => {
   return options.reduce((acc: IDropdownItem[], currentElement) => {
     let id: string | undefined,
@@ -69,7 +69,7 @@ export const getValidInitialValues = (
     isMultiSelect,
   );
 
-  if (!!value) {
+  if (value) {
     const options = list.reduce(
       (accumulator: string[], currentElement: IBmbDropdownItem | string) => [
         ...accumulator,
@@ -98,7 +98,7 @@ export const getSelectedValues = (
   controlValue: string[] | null,
   value: string,
 ): string[] => {
-  if (!!controlValue) {
+  if (controlValue) {
     if (controlValue.includes(value)) {
       return controlValue.reduce((acc: string[], currentValue: string) => {
         if (currentValue === value) return acc;
@@ -115,7 +115,7 @@ export const filteredValue = (
   value: string,
   list: IDropdownItem[],
 ): IDropdownItem[] => {
-  if (!!value) {
+  if (value) {
     return list.filter((item: IDropdownItem) =>
       item.text.toLowerCase().includes(value.toLowerCase()),
     );

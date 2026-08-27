@@ -12,7 +12,7 @@ import {
 import { CommonModule } from '@angular/common';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { BmbButtonDirective } from '../../../directives/old/bmb-button/button.directive';
-import { IBbmBgAppearance } from '../bmb-advertisement-card/types';
+import { IBbmBgAppearance } from '../../bmb-advertisement-card/types';
 import { logDeprecatedInput } from '../../../_shared/logic/logDeprecatedInput';
 
 @Component({

@@ -3,7 +3,7 @@ import { BmbNotificationCardComponent } from './bmb-notification-card.component'
 import { BmbTranslationsService } from '../../../services/translations/translations.service';
 import { BmbProjectionContentService } from '../../../services/old/projection/projection.service';
 import { BmbNativeModalService } from '../../../services/old/modal/native-modal.service';
-import { IBmbDataAlert, IBmbDataAlertsParsed } from '../bmb-alert-center/types';
+import { IBmbDataAlert, IBmbDataAlertsParsed } from '../../bmb-alert-center/types';
 import { ComponentRef } from '@angular/core';
 import { DateTime } from 'luxon';
 import { BmbNotificationCardModalComponent } from './bmb-notification-card-modal/bmb-notification-card-modal.component';

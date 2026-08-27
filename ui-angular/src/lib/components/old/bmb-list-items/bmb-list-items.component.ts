@@ -6,10 +6,10 @@ import {
   output,
   ViewEncapsulation,
 } from '@angular/core';
-import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
+import { BmbActionIconComponent } from '../../bmb-action-icon/bmb-action-icon.component';
 import { DateTime } from 'luxon';
 import { CommonModule } from '@angular/common';
-import { BmbInputComponent } from '../bmb-input/bmb-input.component';
+import { BmbInputComponent } from '../../bmb-input/bmb-input.component';
 import { TranslatePipe } from '../../../pipes/translations';
 
 export interface IBmbListItemsElement {

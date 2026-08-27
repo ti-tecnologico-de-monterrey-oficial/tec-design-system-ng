@@ -2,7 +2,7 @@ import { Component, inject, input, output } from '@angular/core';
 import {
   IBmbDataAlert,
   IBmbDataAlertsParsed,
-} from '../../bmb-alert-center/types';
+} from '../../../bmb-alert-center/types';
 import { CommonModule } from '@angular/common';
 import { DomSanitizer } from '@angular/platform-browser';
 import { BmbImageComponent } from '../../bmb-image/bmb-image.component';

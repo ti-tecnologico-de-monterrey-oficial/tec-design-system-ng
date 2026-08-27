@@ -15,7 +15,7 @@ import { IBmbColor } from '../../../_shared/types/colors';
 import { IBmbActionHeader } from '../../../_shared/types';
 import { BmbNavigationBarComponent } from '../bmb-navigation-bar/bmb-navigation-bar.component';
 import { getClassNameByConditional } from '../../../_shared/logic/getClassName';
-import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
+import { BmbActionIconComponent } from '../../bmb-action-icon/bmb-action-icon.component';
 
 @Component({
   selector: 'bmb-header-section',

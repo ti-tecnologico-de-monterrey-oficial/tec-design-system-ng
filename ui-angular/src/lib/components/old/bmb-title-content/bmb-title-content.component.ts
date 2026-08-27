@@ -20,9 +20,9 @@ import {
   IBmbFontWeightContent,
 } from '../../../_shared/types';
 import { logDeprecatedInput } from '../../../_shared/logic/logDeprecatedInput';
-import { BmbBoxIconComponent } from '../bmb-box-icon/bmb-box-icon.component';
-import { BmbBotIconComponent } from '../bmb-bot-icon/bmb-bot-icon.component';
-import { IBotType } from '../bmb-chat-bar/types';
+import { BmbBoxIconComponent } from '../../bmb-box-icon/bmb-box-icon.component';
+import { BmbBotIconComponent } from '../../bmb-bot-icon/bmb-bot-icon.component';
+import { IBotType } from '../../bmb-chat-bar/types';
 
 @Component({
   selector: 'bmb-title-content',

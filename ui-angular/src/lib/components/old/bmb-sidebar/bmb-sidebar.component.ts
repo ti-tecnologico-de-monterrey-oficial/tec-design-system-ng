@@ -10,7 +10,7 @@ import { SidebarElement } from './bmb-sidebar.interface';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { BmbCheckExternalLinkButtonComponent } from '../../bmb-check-external-link-button/bmb-check-external-link-button.component';
 import { IPositionButtonMenu } from '../bmb-top-bar/types';
-import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
+import { BmbActionIconComponent } from '../../bmb-action-icon/bmb-action-icon.component';
 import { logDeprecatedInput } from '../../../_shared/logic/logDeprecatedInput';
 import { BmbDividerComponent } from '../../bmb-divider/bmb-divider.component';
 import { TranslatePipe } from '../../../pipes/translations';

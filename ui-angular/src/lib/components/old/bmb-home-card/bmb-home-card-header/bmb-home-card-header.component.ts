@@ -18,13 +18,13 @@ import {
 import { IBmbDataTopBar } from '../../../bmb-breadcrumb/bmb-breadcrumb.component';
 import { IBmbColor } from '../../../../_shared/types/colors';
 import { IBmbActionHeader } from '../../../../_shared/types/utils';
-import { IBotType } from '../../bmb-chat-bar/types';
+import { IBotType } from '../../../bmb-chat-bar/types';
 
 import { BmbTitleContentComponent } from '../../bmb-title-content/bmb-title-content.component';
 import { BmbThreeColsComponent } from '../../bmb-three-cols/bmb-three-cols.component';
-import { BmbActionIconComponent } from '../../bmb-action-icon/bmb-action-icon.component';
+import { BmbActionIconComponent } from '../../../bmb-action-icon/bmb-action-icon.component';
 import { BmbContainerComponent } from '../../../bmb-container/bmb-container.component';
-import { BmbActionMenuComponent } from '../../bmb-action-menu/bmb-action-menu.component';
+import { BmbActionMenuComponent } from '../../../bmb-action-menu/bmb-action-menu.component';
 import { BmbItemActionsComponent } from '../../bmb-item/bmb-item-actions/bmb-item-actions.component';
 import { BmbLayoutDirective } from '../../../../directives/old/bmb-layout/bmb-layout.directive';
 import { BmbLayoutItemDirective } from '../../../../directives/old/bmb-layout/bmb-layout-item.directive';

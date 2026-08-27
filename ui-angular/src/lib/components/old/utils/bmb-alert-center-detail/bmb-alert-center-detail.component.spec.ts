@@ -4,7 +4,7 @@ import { ComponentRef } from '@angular/core';
 import {
   IBmbDataAlert,
   IBmbDataAlertDetails,
-} from '../../bmb-alert-center/types';
+} from '../../../bmb-alert-center/types';
 import DOMPurify from 'dompurify';
 import { forbidTagsAndAttributes } from '../../../../_shared/logic/utils';
 

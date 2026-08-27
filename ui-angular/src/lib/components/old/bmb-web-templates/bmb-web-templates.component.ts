@@ -17,7 +17,7 @@ import { CommonModule } from '@angular/common';
 import { BmbDividerComponent } from '../../bmb-divider/bmb-divider.component';
 import { BmbLayoutDirective } from '../../../directives/old/bmb-layout/bmb-layout.directive';
 import { BmbLayoutItemDirective } from '../../../directives/old/bmb-layout/bmb-layout-item.directive';
-import { IBmbDataAlert } from '../bmb-alert-center/types';
+import { IBmbDataAlert } from '../../bmb-alert-center/types';
 
 export type IBmbTemplateName =
   | 'full-width-card'

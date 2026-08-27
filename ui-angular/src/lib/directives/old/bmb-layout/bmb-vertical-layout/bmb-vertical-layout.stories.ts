@@ -14,7 +14,7 @@ import {
   BmbCardContentComponent,
 } from '../../../../components/bmb-card/bmb-card.component';
 import { BmbProgressBarComponent } from '../../../../components/old/bmb-progress-bar/bmb-progress-bar.component';
-import { BmbChevronTitleSelectorComponent } from '../../../../components/old/bmb-chevron-title-selector/bmb-chevron-title-selector.component';
+import { BmbChevronTitleSelectorComponent } from '../../../../components/bmb-chevron-title-selector/bmb-chevron-title-selector.component';
 import { BmbLayoutDirective } from '../bmb-layout.directive';
 import { BmbLayoutItemDirective } from '../bmb-layout-item.directive';
 

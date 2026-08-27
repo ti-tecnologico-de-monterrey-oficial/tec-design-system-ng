@@ -9,7 +9,7 @@ import {
   getOnEvent,
   IBmbOnEvent,
 } from '@docs/utils/utils';
-import { BmbChevronTitleSelectorComponent } from '../bmb-chevron-title-selector/bmb-chevron-title-selector.component';
+import { BmbChevronTitleSelectorComponent } from '../../bmb-chevron-title-selector/bmb-chevron-title-selector.component';
 import {
   DBmbGenericParamDesc,
   DBmbIconParamDesc,

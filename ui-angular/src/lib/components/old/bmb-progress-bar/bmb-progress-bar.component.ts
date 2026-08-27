@@ -16,7 +16,7 @@ import { BmbLayoutItemDirective } from '../../../directives/old/bmb-layout/bmb-l
 import { BmbVerticalLayoutDirective } from '../../../directives/old/bmb-layout/bmb-vertical-layout/bmb-vertical-layout.directive';
 import { BmbVerticalLayoutItemDirective } from '../../../directives/old/bmb-layout/bmb-vertical-layout/bmb-vertical-layout-item.directive';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
-import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
+import { BmbActionIconComponent } from '../../bmb-action-icon/bmb-action-icon.component';
 import { logDeprecatedInput } from '../../../_shared/logic/logDeprecatedInput';
 
 export type IBmbProgressBarVariations = 'info' | 'warning' | 'error';

@@ -14,12 +14,12 @@ import {
 } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
-import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
+import { BmbActionIconComponent } from '../../bmb-action-icon/bmb-action-icon.component';
 import {
   BmbProjectionContentService,
   IBmbProjectionContent,
 } from '../../../services/old/projection/projection.service';
-import { BmbActionMenuComponent } from '../bmb-action-menu/bmb-action-menu.component';
+import { BmbActionMenuComponent } from '../../bmb-action-menu/bmb-action-menu.component';
 import { BmbItemComponent } from '../bmb-item/bmb-item.component';
 import { IActions } from './types';
 import { getInsertList, getSettingsList } from './list';

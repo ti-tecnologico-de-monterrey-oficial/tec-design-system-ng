@@ -13,7 +13,7 @@ import type { IBmbDataTopBar } from '../../../_shared/types';
 import { IBmbColor } from '../../../_shared/types/colors';
 import { IBmbActionHeader, SizeNames } from '../../../_shared/types';
 import { CommonModule } from '@angular/common';
-import { IBotType } from '../bmb-chat-bar/types';
+import { IBotType } from '../../bmb-chat-bar/types';
 import { logDeprecatedInput } from '../../../_shared/logic/logDeprecatedInput';
 
 @Component({

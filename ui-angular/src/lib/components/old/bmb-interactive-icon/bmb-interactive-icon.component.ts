@@ -20,7 +20,7 @@ import {
 } from '../../../_shared/types/foundations/colors/color-type';
 import { IBmbContrast } from '../../../_shared/types/colors';
 import { logDeprecatedInput } from '../../../_shared/logic/logDeprecatedInput';
-import { BmbBoxIconComponent } from '../bmb-box-icon/bmb-box-icon.component';
+import { BmbBoxIconComponent } from '../../bmb-box-icon/bmb-box-icon.component';
 import { IBmbTargetLink, IBmbInteractiveIconAppearance } from '../../../_shared/types';
 import { BmbTooltipBaseComponent } from '../bmb-tooltip/bmb-tooltip-base/bmb-tooltip-base.component';
 

@@ -40,13 +40,13 @@ import * as tabsStory from '../components/old/bmb-tabs/bmb-tabs.component.storie
 import * as accordionStory from '../components/old/bmb-accordion/bmb-accordion.stories';
 import * as cardHeaderStory from '../components/bmb-card/bmb-card.stories';
 import * as cardContentStory from '../components/bmb-card/bmb-card.stories';
-import * as containerButtonStory from '../components/old/bmb-container-button/bmb-container-button.stories';
+import * as containerButtonStory from '../components/bmb-container-button/bmb-container-button.stories';
 import * as imageStory from '../components/old/bmb-image/bmb-image.stories';
 import * as buttonDirectiveStory from '../directives/old/bmb-button/button.stories';
 import * as verticalLayoutStory from '../directives/old/bmb-layout/bmb-vertical-layout/bmb-vertical-layout.stories';
 import * as verticalLayoutItemStory from '../directives/old/bmb-layout/bmb-vertical-layout/bmb-vertical-layout-item.stories';
 import * as textLinkStory from '../components/old/bmb-text-link/bmb-text-link.stories';
-import * as checkboxStory from '../components/old/bmb-checkbox/bmb-checkbox.stories';
+import * as checkboxStory from '../components/bmb-checkbox/bmb-checkbox.stories';
 import * as dividerStory from '../components/bmb-divider/bmb-divider.stories';
 
 @Component({

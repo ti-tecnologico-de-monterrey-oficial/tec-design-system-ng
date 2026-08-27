@@ -11,7 +11,7 @@ import { BmbLayoutDirective } from '../../../../directives/old/bmb-layout/bmb-la
 import { BmbLayoutItemDirective } from '../../../../directives/old/bmb-layout/bmb-layout-item.directive';
 import { BmbUserImageComponent } from '../../../bmb-user-image/bmb-user-image.component';
 import { BmbBookmarkComponent } from '../../../bmb-bookmark/bmb-bookmark.component';
-import { BmbBoxIconComponent } from '../../bmb-box-icon/bmb-box-icon.component';
+import { BmbBoxIconComponent } from '../../../bmb-box-icon/bmb-box-icon.component';
 import { IBmbInteractiveIconAppearance } from '../../../../_shared/types/components/interactive-icon';
 
 @Component({

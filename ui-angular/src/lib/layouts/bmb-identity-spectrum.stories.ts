@@ -12,7 +12,7 @@ import {
   BmbCardContentComponent,
 } from '../components/bmb-card/bmb-card.component';
 import { BmbFormValidatorComponent } from '../components/old/bmb-form-validator/bmb-form-validator.component';
-import { BmbInputComponent } from '../components/old/bmb-input/bmb-input.component';
+import { BmbInputComponent } from '../components/bmb-input/bmb-input.component';
 
 import { IBmbNativeModal } from '../components/old/bmb-modal/bmb-modal.interface';
 import { BmbNativeModalService } from '../services/old/modal/native-modal.service';
@@ -31,7 +31,7 @@ import * as homeCardStory from '../components/old/bmb-home-card/bmp-home-card.st
 import * as tabsStory from '../components/old/bmb-tabs/bmb-tabs.component.stories';
 import * as genericCardStory from '../components/bmb-card/bmb-card.stories';
 import * as userSummaryContentStory from '../components/old/bmb-user-summary/bmb-user-summary-content/bmb-user-summary-content.stories';
-import * as inputStory from '../components/old/bmb-input/bmb-input.stories';
+import * as inputStory from '../components/bmb-input/bmb-input.stories';
 import * as itemItemStory from '../components/old/bmb-item/bmb-item.stories';
 import * as actionMenuStory from '../components/old/bmb-action-menu/bmb-action-menu.stories';
 import * as nativeModalStory from '../components/old/bmb-modal/bmb-native-modal.stories';
@@ -333,7 +333,7 @@ const HTML_TEMPLATE: string = `
                     value="Paloma Reyes Araujo"
                   />
                 </ng-template>
-              </bmb-action-menu>  
+              </bmb-action-menu>
             </bmb-card>
           </section>
         </section>
@@ -385,7 +385,7 @@ const HTML_TEMPLATE: string = `
                     value="Alumno Prog Internacional"
                   />
                 </ng-template>
-              </bmb-action-menu>  
+              </bmb-action-menu>
             </bmb-card>
           </section>
           <section bmbLayoutItem [colLg]="6">

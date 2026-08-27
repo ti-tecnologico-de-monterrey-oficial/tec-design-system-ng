@@ -13,11 +13,11 @@ import {
   IBmbFooterEvent,
   IBmbNavigationBarIcons,
 } from '../../../_shared/types/components/bottom-navigation-bar';
-import { BmbBottomNavigationBarComponent } from '../bmb-bottom-navigation-bar/bmb-bottom-navigation-bar.component';
+import { BmbBottomNavigationBarComponent } from '../../bmb-bottom-navigation-bar/bmb-bottom-navigation-bar.component';
 import { BmbDropdownContentComponent } from '../utils/bmb-dropdown-content/bmb-dropdown-content.component';
 import { BmbThreeColsComponent } from '../bmb-three-cols/bmb-three-cols.component';
 import { BmbTitleContentComponent } from '../bmb-title-content/bmb-title-content.component';
-import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
+import { BmbActionIconComponent } from '../../bmb-action-icon/bmb-action-icon.component';
 import { isExternalLink } from '../../../_shared/logic/utils';
 import { BmbContainerComponent } from '../../bmb-container/bmb-container.component';
 import { IDropdownItem } from '../../../_shared/types';

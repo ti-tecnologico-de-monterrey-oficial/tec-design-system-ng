@@ -7,7 +7,7 @@ import {
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BmbBadgeComponent } from '../../bmb-badge/bmb-badge.component';
-import { IBbmBgAppearance } from '../bmb-advertisement-card/types';
+import { IBbmBgAppearance } from '../../bmb-advertisement-card/types';
 import { IBmbContrast } from '../../../_shared/types/colors';
 
 export interface IBmbConcept {

@@ -21,7 +21,7 @@ import {
   ITimelineEventType,
 } from '../bmb-timestream/types';
 import { BmbBadgeComponent } from '../../bmb-badge/bmb-badge.component';
-import { IBbmBgAppearance } from '../bmb-advertisement-card/types';
+import { IBbmBgAppearance } from '../../bmb-advertisement-card/types';
 import { logDeprecatedInput } from '../../../_shared/logic/logDeprecatedInput';
 
 const MOBILE_QUERY = '(max-width: 767px)';

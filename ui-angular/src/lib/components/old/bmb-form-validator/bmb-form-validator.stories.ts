@@ -18,11 +18,11 @@ import {
   getStoryLink,
 } from '@docs/utils/utils';
 import { BmbButtonDirective } from '../../../directives/old/bmb-button/button.directive';
-import { BmbCheckboxComponent } from '../bmb-checkbox/bmb-checkbox.component';
-import { BmbDatepickerComponent } from '../bmb-datepicker/bmb-datepicker.component';
-import { BmbDateRangeComponent } from '../bmb-date-range/bmb-date-range.component';
+import { BmbCheckboxComponent } from '../../bmb-checkbox/bmb-checkbox.component';
+import { BmbDatepickerComponent } from '../../bmb-datepicker/bmb-datepicker.component';
+import { BmbDateRangeComponent } from '../../bmb-date-range/bmb-date-range.component';
 import { BmbDropdownComponent } from '../bmb-dropdown/bmb-dropdown.component';
-import { BmbInputComponent } from '../bmb-input/bmb-input.component';
+import { BmbInputComponent } from '../../bmb-input/bmb-input.component';
 import { BmbInputPhoneNumberComponent } from '../bmb-input-phone-number/bmb-input-phone-number.component';
 import { BmbInputTagsComponent } from '../bmb-input-tags/bmb-input-tags.component';
 import {
@@ -30,12 +30,12 @@ import {
   getFormControlDescription,
   getOnEventParam,
 } from '@docs/utils/parameterDescriptions';
-import * as calendarDatePicker from '../bmb-datepicker/bmb-datepicker.stories';
-import * as checkbox from '../bmb-checkbox/bmb-checkbox.stories';
-import * as datepickerRange from '../bmb-date-range/bmb-date-range.component.stories';
+import * as calendarDatePicker from '../../bmb-datepicker/bmb-datepicker.stories';
+import * as checkbox from '../../bmb-checkbox/bmb-checkbox.stories';
+import * as datepickerRange from '../../bmb-date-range/bmb-date-range.component.stories';
 import * as dropdown from '../bmb-dropdown/bmb-dropdown.stories';
 import * as phoneNumber from '../bmb-input-phone-number/bmb-input-phone-number.stories';
-import * as textInput from '../bmb-input/bmb-input.stories';
+import * as textInput from '../../bmb-input/bmb-input.stories';
 import * as textInputWithTags from '../bmb-input-tags/bmb_input-tags.stories';
 
 export default {

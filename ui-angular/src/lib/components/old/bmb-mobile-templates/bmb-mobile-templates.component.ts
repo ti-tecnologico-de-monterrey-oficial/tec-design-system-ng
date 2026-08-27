@@ -15,9 +15,9 @@ import {
   BmbCardComponent,
   BmbCardContentComponent,
 } from '../../bmb-card/bmb-card.component';
-import { BmbContainerButtonComponent } from '../bmb-container-button/bmb-container-button.component';
+import { BmbContainerButtonComponent } from '../../bmb-container-button/bmb-container-button.component';
 import { BmbLoginOnboardingComponent } from '../bmb-login-onboarding/bmb-login-onboarding.component';
-import { BmbCalendarComponent } from '../bmb-calendar/bmb-calendar.component';
+import { BmbCalendarComponent } from '../../bmb-calendar/bmb-calendar.component';
 import {
   BmbExternalLinkComponent,
   IBmbMenuEvent,

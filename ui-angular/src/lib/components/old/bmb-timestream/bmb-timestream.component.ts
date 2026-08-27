@@ -28,7 +28,7 @@ import { BmbButtonDirective } from '../../../directives/old/bmb-button/button.di
 import { BmbDividerComponent } from '../../bmb-divider/bmb-divider.component';
 import { BmbHitoCardComponent } from '../bmb-hito-card/bmb-hito-card.component';
 import { BmbBadgeComponent } from '../../bmb-badge/bmb-badge.component';
-import { IBbmBgAppearance } from '../bmb-advertisement-card/types';
+import { IBbmBgAppearance } from '../../bmb-advertisement-card/types';
 
 interface IPlaceholderObject {
   [key: string]: any | any[];

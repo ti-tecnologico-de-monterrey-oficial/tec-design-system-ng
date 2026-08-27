@@ -1,5 +1,5 @@
 import { DateTime } from 'luxon';
-import { IBbmBgAppearance } from '../bmb-advertisement-card/types';
+import { IBbmBgAppearance } from '../../bmb-advertisement-card/types';
 export type { ISelectedDate } from '../../../_shared/types/components/hito-list';
 
 export interface ITimelineDayEvent {

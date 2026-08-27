@@ -31,14 +31,14 @@ import {
   IBmbInputError,
   IBmbInputTooltipPosition,
 } from '../../../_shared/types/input';
-import { BmbInputValidatorComponent } from '../bmb-input/bmb-input-validator/bmb-input-validator.component';
+import { BmbInputValidatorComponent } from '../../bmb-input/bmb-input-validator/bmb-input-validator.component';
 import {
   buildErrorMessage,
   getCustomValidation,
   getCustomValidationMessage,
   getUUID,
 } from '../../../_shared/logic/utils';
-import { BmbInputContentComponent } from '../bmb-input/bmb-input-content/bmb-input-content.component';
+import { BmbInputContentComponent } from '../../bmb-input/bmb-input-content/bmb-input-content.component';
 import {
   assignNewFormControl,
   handleValidity,

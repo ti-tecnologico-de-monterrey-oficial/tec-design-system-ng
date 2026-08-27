@@ -9,10 +9,10 @@ import { CommonModule } from '@angular/common';
 import { BmbFormValidatorComponent } from './bmb-form-validator.component';
 import { FormControl, FormGroup } from '@angular/forms';
 import { BmbButtonDirective } from '../../../directives/old/bmb-button/button.directive';
-import { BmbCheckboxComponent } from '../bmb-checkbox/bmb-checkbox.component';
-import { BmbDatepickerComponent } from '../bmb-datepicker/bmb-datepicker.component';
-import { BmbDateRangeComponent } from '../bmb-date-range/bmb-date-range.component';
-import { BmbInputComponent } from '../bmb-input/bmb-input.component';
+import { BmbCheckboxComponent } from '../../bmb-checkbox/bmb-checkbox.component';
+import { BmbDatepickerComponent } from '../../bmb-datepicker/bmb-datepicker.component';
+import { BmbDateRangeComponent } from '../../bmb-date-range/bmb-date-range.component';
+import { BmbInputComponent } from '../../bmb-input/bmb-input.component';
 import { BmbInputPhoneNumberComponent } from '../bmb-input-phone-number/bmb-input-phone-number.component';
 import { BmbRadialComponent } from '../bmb-radial/bmb-radial.component';
 

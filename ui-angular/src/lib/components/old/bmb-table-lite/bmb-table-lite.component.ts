@@ -21,10 +21,10 @@ import { DateTime } from 'luxon';
 import { SelectionModel } from '@angular/cdk/collections';
 
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
-import { BmbCheckboxComponent } from '../bmb-checkbox/bmb-checkbox.component';
-import { BmbInputComponent } from '../bmb-input/bmb-input.component';
-import { BmbDateRangeComponent } from '../bmb-date-range/bmb-date-range.component';
-import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
+import { BmbCheckboxComponent } from '../../bmb-checkbox/bmb-checkbox.component';
+import { BmbInputComponent } from '../../bmb-input/bmb-input.component';
+import { BmbDateRangeComponent } from '../../bmb-date-range/bmb-date-range.component';
+import { BmbActionIconComponent } from '../../bmb-action-icon/bmb-action-icon.component';
 import { TranslatePipe } from '../../../pipes/translations';
 
 import {

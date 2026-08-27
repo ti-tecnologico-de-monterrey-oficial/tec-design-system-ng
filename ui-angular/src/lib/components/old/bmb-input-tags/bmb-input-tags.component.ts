@@ -29,10 +29,10 @@ import {
   getSelectedValues,
   getValidInitialValues,
 } from '../../../_shared/logic/dropdown';
-import { BmbInputValidatorComponent } from '../bmb-input/bmb-input-validator/bmb-input-validator.component';
+import { BmbInputValidatorComponent } from '../../bmb-input/bmb-input-validator/bmb-input-validator.component';
 import { BmbDropdownContentComponent } from '../utils/bmb-dropdown-content/bmb-dropdown-content.component';
 import { IDropdownItem } from '../../../_shared/types';
-import { BmbInputContentComponent } from '../bmb-input/bmb-input-content/bmb-input-content.component';
+import { BmbInputContentComponent } from '../../bmb-input/bmb-input-content/bmb-input-content.component';
 import { getUUID } from '../../../_shared/logic/utils';
 import {
   assignNewFormControl,

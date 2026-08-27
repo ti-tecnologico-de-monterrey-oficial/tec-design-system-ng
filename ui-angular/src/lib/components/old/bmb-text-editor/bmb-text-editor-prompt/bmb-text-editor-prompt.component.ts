@@ -6,9 +6,9 @@ import {
 import { BmbFormValidatorComponent } from '../../bmb-form-validator/bmb-form-validator.component';
 import { FormControl, FormGroup } from '@angular/forms';
 import { BmbButtonDirective } from '../../../../directives/old/bmb-button/button.directive';
-import { BmbInputComponent } from '../../bmb-input/bmb-input.component';
+import { BmbInputComponent } from '../../../bmb-input/bmb-input.component';
 import { TranslatePipe } from '../../../../pipes/translations';
-import { BmbCheckboxComponent } from '../../bmb-checkbox/bmb-checkbox.component';
+import { BmbCheckboxComponent } from '../../../bmb-checkbox/bmb-checkbox.component';
 import { BmbLayoutDirective } from '../../../../directives/old/bmb-layout/bmb-layout.directive';
 import { BmbLayoutItemDirective } from '../../../../directives/old/bmb-layout/bmb-layout-item.directive';
 import { BmbVerticalLayoutDirective } from '../../../../directives/old/bmb-layout/bmb-vertical-layout/bmb-vertical-layout.directive';
@@ -19,7 +19,7 @@ import {
   BMB_BASE_GENERAL_CONTRAST_LIST,
   BMB_SEMANTIC_COLOR_LIST,
 } from '../../../../_shared/types/foundations/colors/color-type';
-import { BmbActionIconComponent } from '../../bmb-action-icon/bmb-action-icon.component';
+import { BmbActionIconComponent } from '../../../bmb-action-icon/bmb-action-icon.component';
 
 export type IBmbTextEditorPromptType = 'link' | 'image' | 'color';
 

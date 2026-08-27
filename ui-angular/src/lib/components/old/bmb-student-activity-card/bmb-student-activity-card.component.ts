@@ -8,9 +8,9 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { DateTime } from 'luxon';
-import { IBmbEventType } from '../bmb-calendar/types';
+import { IBmbEventType } from '../../bmb-calendar/types';
 import { BmbBadgeComponent } from '../../bmb-badge/bmb-badge.component';
-import { IBbmBgAppearance } from '../bmb-advertisement-card/types';
+import { IBbmBgAppearance } from '../../bmb-advertisement-card/types';
 import { logDeprecatedInput } from '../../../_shared/logic/logDeprecatedInput';
 import { IBmbColorSemantics } from '../../../_shared/types';
 import { IBmbBadgeColors } from '../../../_shared/types/foundations/colors/color-type';

@@ -10,7 +10,7 @@ import {
 } from '@angular/core';
 import { BmbHomeCardComponent } from '../bmb-home-card/bmb-home-card.component';
 import { TranslatePipe } from '../../../pipes/translations';
-import { BmbInputComponent } from '../bmb-input/bmb-input.component';
+import { BmbInputComponent } from '../../bmb-input/bmb-input.component';
 import { BmbTabsComponent, IBmbTab } from '../bmb-tabs/bmb-tabs.component';
 import { FormControl } from '@angular/forms';
 import { CommonModule } from '@angular/common';
