@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component, QueryList, ViewChildren } from '@angular/core';
 import { BmbAccordionControlDirective } from './bmb-accordion-control.directive';
-import { BmbAccordionComponent } from '../../../components/old/bmb-accordion/bmb-accordion.component';
+import { BmbAccordionComponent } from '../../../components/bmb-accordion/bmb-accordion.component';
 import { By } from '@angular/platform-browser';
 import { KeyValueDiffers } from '@angular/core';
 

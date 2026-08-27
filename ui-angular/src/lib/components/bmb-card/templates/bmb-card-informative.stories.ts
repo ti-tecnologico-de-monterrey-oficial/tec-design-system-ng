@@ -4,9 +4,9 @@ import {
   BmbCardContentComponent,
 } from '../bmb-card.component';
 import { BmbBadgeComponent } from '../../bmb-badge/bmb-badge.component';
-import { BmbImageComponent } from '../../old/bmb-image/bmb-image.component';
-import { BmbTitleComponent } from '../../old/bmb-title/bmb-title.component';
-import { BmbTooltipComponent } from '../../old/bmb-tooltip/bmb-tooltip.component';
+import { BmbImageComponent } from '../../bmb-image/bmb-image.component';
+import { BmbTitleComponent } from '../../bmb-title/bmb-title.component';
+import { BmbTooltipComponent } from '../../bmb-tooltip/bmb-tooltip.component';
 import { BmbButtonDirective } from '../../../directives/old/bmb-button/button.directive';
 import { BmbLayoutDirective } from '../../../directives/old/bmb-layout/bmb-layout.directive';
 import { BmbLayoutItemDirective } from '../../../directives/old/bmb-layout/bmb-layout-item.directive';

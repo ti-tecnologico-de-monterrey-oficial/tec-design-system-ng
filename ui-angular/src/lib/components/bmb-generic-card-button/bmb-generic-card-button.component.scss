@@ -1,0 +1,125 @@
+@use '../../../../../shared/assets/styles/base/rem' as rem;
+
+// Unknown elements default to display: inline, which breaks width/height: 100% below.
+bmb-generic-card-button {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-width: rem.rem_calc(328); // narrowest reference size: S/M's width
+  min-height: rem.rem_calc(152); // shortest reference size: S's height
+}
+
+.bmb_generic_card_button {
+  container-type: size;
+  container-name: bmb-generic-card-button;
+  box-sizing: border-box;
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-width: rem.rem_calc(328);
+  min-height: rem.rem_calc(152);
+  padding: rem.rem_calc(16);
+  border: rem.rem_calc(1) solid var(--general-contrasts-container-outline);
+  border-radius: var(--bmb-radius-m);
+  background-color: var(--containers-modal);
+  box-shadow: var(--bmb-box-shadow-3);
+  cursor: pointer;
+  user-select: none;
+  overflow: hidden;
+
+  &:hover:not(.bmb_generic_card_button-disabled) {
+    background-color: var(--general-contrasts-15);
+  }
+
+  &:active:not(.bmb_generic_card_button-disabled) {
+    background-color: var(--general-contrasts-50);
+  }
+
+  &:focus-visible {
+    outline: rem.rem_calc(2) solid var(--general-contrasts-100);
+    outline-offset: rem.rem_calc(2);
+  }
+
+  &-disabled {
+    pointer-events: none;
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+
+  &-selected {
+    outline: rem.rem_calc(2) solid var(--buttons-stroke-primary-selected);
+    outline-offset: rem.rem_calc(-2);
+  }
+
+  // appearance="alternative": #313649 / hover #3F4965 / selected #617196.
+  &-alternative {
+    background-color: var(--containers-container-button);
+
+    &:hover:not(.bmb_generic_card_button-disabled) {
+      background-color: rgb(var(--gray-charade-700));
+    }
+
+    &.bmb_generic_card_button-selected {
+      background-color: rgb(var(--gray-charade-500));
+    }
+  }
+
+  // showContainer=false icons default to white (meant for overlaying images).
+  .bmb_button_icon:not(.bmb_button_icon-container):not(
+      .bmb_button_icon-active
+    ) {
+    color: var(--general-contrasts-100);
+  }
+}
+
+// Medium/large override the default only when non-empty; M and L don't
+// fall back to each other, only to default.
+.bmb_generic_card_button-slot {
+  width: 100%;
+  height: 100%;
+}
+
+.bmb_generic_card_button-slot-medium,
+.bmb_generic_card_button-slot-large {
+  display: none;
+}
+
+.bmb_generic_card_button-slot-default {
+  display: block;
+}
+
+// M — midpoint between S (152px) and M (208px) reference heights.
+@container bmb-generic-card-button (min-height: 180px) {
+  .bmb_generic_card_button-slot-medium:not(:empty) {
+    display: block;
+  }
+
+  .bmb_generic_card_button-slot-medium:not(:empty)
+    ~ .bmb_generic_card_button-slot-default {
+    display: none;
+  }
+}
+
+// L — midpoint between M (328px) and L (676px) reference widths. Wins over M
+// even when both thresholds match (a wide, 208px-tall card is L, not M).
+// !important is required: the M block above is also active at that size, and
+// without it its "hide default" rule keeps winning by specificity even after
+// this block decides medium shouldn't show.
+@container bmb-generic-card-button (min-width: 502px) {
+  .bmb_generic_card_button-slot-medium {
+    display: none !important;
+  }
+
+  .bmb_generic_card_button-slot-default {
+    display: block !important;
+  }
+
+  .bmb_generic_card_button-slot-large:not(:empty) {
+    display: block !important;
+  }
+
+  .bmb_generic_card_button-slot-large:not(:empty)
+    ~ .bmb_generic_card_button-slot-default {
+    display: none !important;
+  }
+}
