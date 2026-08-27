@@ -17,12 +17,12 @@ import {
   getStandaloneGeneralDesc,
   getTechnicalDocReferences,
 } from '@docs/utils/utils';
-import * as topBarStory from '../components/old/bmb-top-bar/bmb-top-bar.stories';
-import * as sideBarStory from '../components/old/bmb-sidebar/bmb-sidebar.stories';
+import * as topBarStory from '../components/bmb-top-bar/bmb-top-bar.stories';
+import * as sideBarStory from '../components/bmb-sidebar/bmb-sidebar.stories';
 import * as badgeStory from '../components/bmb-badge/bmb-badge.stories';
-import * as stepProgressBarStory from '../components/old/bmb-step-progress-bar/bmb-step-progress-bar.stories';
-import * as userSummaryStory from '../components/old/bmb-user-summary/bmb-user-summary.stories';
-import * as invoiceStory from '../components/old/bmb-invoice/bmb-invoice.stories';
+import * as stepProgressBarStory from '../components/bmb-step-progress-bar/bmb-step-progress-bar.stories';
+import * as userSummaryStory from '../components/bmb-user-summary/bmb-user-summary.stories';
+import * as invoiceStory from '../components/bmb-invoice/bmb-invoice.stories';
 import * as buttonStory from '../directives/old/bmb-button/button.stories';
 
 @Component({

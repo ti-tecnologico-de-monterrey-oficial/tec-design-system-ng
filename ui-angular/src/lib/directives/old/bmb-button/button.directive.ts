@@ -11,7 +11,7 @@ import {
   OnInit,
   OnChanges,
 } from '@angular/core';
-import { BmbIconComponent } from '../../../components/old/bmb-icon/bmb-icon.component';
+import { BmbIconComponent } from '../../../components/bmb-icon/bmb-icon.component';
 import {
   IBmbHorizontalPosition,
   IButtonAppearance,

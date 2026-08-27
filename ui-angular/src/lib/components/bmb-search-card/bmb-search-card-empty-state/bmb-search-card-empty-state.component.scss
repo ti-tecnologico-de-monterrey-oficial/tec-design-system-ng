@@ -1,0 +1,21 @@
+@use '../../../../../../shared/assets/styles/base/fonts' as fonts;
+
+.bmb_search-card-empty-state {
+  height: 100%;
+
+  &_icon {
+    opacity: 0.5;
+  }
+
+  &_primary {
+    @include fonts.font(7, regular);
+    font-weight: 400;
+    text-align: center;
+  }
+
+  &_secondary {
+    @include fonts.font(5, regular);
+    font-weight: 400;
+    text-align: center;
+  }
+}

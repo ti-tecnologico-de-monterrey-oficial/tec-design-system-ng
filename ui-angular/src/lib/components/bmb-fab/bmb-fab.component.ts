@@ -1,6 +1,6 @@
 import { Component, ViewEncapsulation, input, output } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { BmbIconComponent } from '../old/bmb-icon/bmb-icon.component';
+import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import {
   getFabClassName,
   getFabIconName,

@@ -8,7 +8,7 @@ import {
 } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { BmbNativeModalService } from './native-modal.service';
-import { IBmbNativeModal } from '../../../components/old/bmb-modal/bmb-modal.interface';
+import { IBmbNativeModal } from '../../../components/bmb-modal/bmb-modal.interface';
 import { getUUID } from '../../../_shared/logic/utils';
 
 @Component({

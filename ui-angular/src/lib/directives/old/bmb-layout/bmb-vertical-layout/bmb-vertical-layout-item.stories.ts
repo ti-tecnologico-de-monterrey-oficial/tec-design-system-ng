@@ -1,6 +1,6 @@
 import { Meta, moduleMetadata, StoryObj } from '@storybook/angular';
 import { BmbVerticalLayoutItemDirective } from './bmb-vertical-layout-item.directive';
-import { BmbIconStatusComponent } from '../../../../components/old/bmb-icon-status/bmb-icon-status.component';
+import { BmbIconStatusComponent } from '../../../../components/bmb-icon-status/bmb-icon-status.component';
 import {
   BmbCardComponent,
   BmbCardContentComponent,
@@ -8,7 +8,7 @@ import {
 import { BmbVerticalLayoutDirective } from './bmb-vertical-layout.directive';
 import { BmbLayoutDirective } from '../bmb-layout.directive';
 import { BmbLayoutItemDirective } from '../bmb-layout-item.directive';
-import { BmbTopBarComponent } from '../../../../components/old/bmb-top-bar/bmb-top-bar.component';
+import { BmbTopBarComponent } from '../../../../components/bmb-top-bar/bmb-top-bar.component';
 import {
   attributes,
   getAuxiliaryDescription,

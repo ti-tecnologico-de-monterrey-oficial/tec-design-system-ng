@@ -5,7 +5,7 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { BmbActionIconComponent } from '../old/bmb-action-icon/bmb-action-icon.component';
+import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
 import { TranslatePipe } from '../../pipes/translations';
 import {
   stopPropagation,

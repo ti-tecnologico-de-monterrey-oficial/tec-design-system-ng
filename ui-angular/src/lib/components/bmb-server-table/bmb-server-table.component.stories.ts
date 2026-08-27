@@ -1,7 +1,7 @@
 import { BmbServerTableComponent } from './bmb-server-table.component';
 import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
 import { CommonModule } from '@angular/common';
-import { BmbIconComponent } from '../old/bmb-icon/bmb-icon.component';
+import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import {
   getBasicExampleBlock,
   getGeneralComponentDescription,
