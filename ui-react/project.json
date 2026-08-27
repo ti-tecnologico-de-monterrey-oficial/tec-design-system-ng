@@ -10,7 +10,7 @@
       "executor": "nx:run-commands",
       "outputs": ["{workspaceRoot}/dist/ui-react/assets/shared"],
       "options": {
-        "command": "rm -rf dist/ui-react/assets/shared && mkdir -p dist/ui-react/assets && cp -R shared/assets dist/ui-react/assets/shared"
+        "command": "node scripts/sync-react-shared.mjs"
       }
     }
   }
