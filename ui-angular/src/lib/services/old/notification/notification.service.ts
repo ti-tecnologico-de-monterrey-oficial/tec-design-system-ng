@@ -10,9 +10,9 @@ import {
   ProviderToken,
   signal,
 } from '@angular/core';
-import { INotification } from '../../../components/old/bmb-push-notification/types';
+import { INotification } from '../../../components/bmb-push-notification/types';
 import { getUUID } from '../../../_shared/logic/utils';
-import { BmbPortalComponent } from '../../../components/old/bmb-portal/bmb-portal.component';
+import { BmbPortalComponent } from '../../../components/bmb-portal/bmb-portal.component';
 
 export type NotificationPositionX = 'left' | 'right';
 export type NotificationPositionY = 'top' | 'bottom';

@@ -10,7 +10,7 @@ import {
   inject,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { BmbActionIconComponent } from '../old/bmb-action-icon/bmb-action-icon.component';
+import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
 import { TranslatePipe } from '../../pipes/translations';
 import { getTagClasses } from '../../_shared/logic/components/tags';
 import { IBmbActivityTags } from '../../_shared/types/components/tags';

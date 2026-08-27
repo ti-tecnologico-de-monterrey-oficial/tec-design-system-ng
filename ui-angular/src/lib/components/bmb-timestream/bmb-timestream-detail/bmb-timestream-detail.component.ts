@@ -1,0 +1,104 @@
+import { CommonModule } from '@angular/common';
+import {
+  AfterViewInit,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  ElementRef,
+  EventEmitter,
+  input,
+  output,
+  effect,
+  OnChanges,
+  Output,
+  SimpleChanges,
+  ViewChild,
+  ViewEncapsulation,
+  inject,
+} from '@angular/core';
+import { DateTime } from 'luxon';
+import { ISelectedDate, ITimelineEvent, ITimelineEventParsed } from '../../../_shared/types/components/timestream';
+import { BmbHitoCardComponent } from '../../bmb-hito-card/bmb-hito-card.component';
+
+/*
+ * TODO: This component is marked as "old" and its decommissioning is planned for future updates.
+ */
+
+@Component({
+  selector: 'bmb-timestream-detail',
+  standalone: true,
+  imports: [CommonModule, BmbHitoCardComponent],
+  templateUrl: './bmb-timestream-detail.component.html',
+  styleUrl: './bmb-timestream-detail.component.scss',
+  encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush,
+})
+export class BmbTimestreamDetailsComponent implements AfterViewInit {
+  lang = input<string>('es');
+  now = input<DateTime>(DateTime.now());
+  selectedDate = input<ISelectedDate>({
+    day: '',
+    month: '',
+    date: this.now(),
+  });
+  orderedEvents = input<ITimelineEventParsed[]>([]);
+  isMicro = input<boolean>(false);
+
+  changeSelectedEvent = output<ITimelineEvent>();
+
+  @ViewChild('monthDetailList') monthList!: ElementRef;
+
+  private cdr: ChangeDetectorRef = inject(ChangeDetectorRef);
+
+  constructor() {
+    effect(() => {
+      const selectedDate = this.selectedDate();
+
+      if (selectedDate?.day) {
+        setTimeout(() => {
+          this.scrollToItem();
+        }, 1);
+      }
+    });
+  }
+
+  ngAfterViewInit(): void {
+    setTimeout(() => {
+      this.scrollToItem();
+    }, 1);
+  }
+
+  getCurrentMonth(date: string): boolean {
+    const parsedDate = DateTime.fromFormat(date, 'yyyy/MM');
+    return (
+      parsedDate.month === this.selectedDate().date.month &&
+      parsedDate.year === this.selectedDate().date.year
+    );
+  }
+
+  getMonthTitle(date: DateTime) {
+    return date.setLocale(this.lang()).toFormat('cccc dd LLLL yyyy');
+  }
+
+  scrollToItem() {
+    const currentMonthElement = this.monthList.nativeElement.querySelector(
+      '.bmb_timestream-detail-item-current',
+    );
+
+    if (currentMonthElement) {
+      currentMonthElement.scrollIntoView();
+    }
+  }
+
+  getDurationString(event: ITimelineEvent): string {
+    return `Duración: ${event.originalStart?.day} - ${event.endEvent?.setLocale(this.lang()).toFormat('dd LLLL yyyy')} (${(event.diff || 0) + 1} Días)`;
+  }
+
+  isTodayEvent(event: ITimelineEventParsed): boolean {
+    return event.date.hasSame(this.now(), 'day');
+  }
+
+  handleEventChange(event: ITimelineEvent) {
+    this.changeSelectedEvent.emit(event);
+  }
+}

@@ -24,7 +24,7 @@ import type {
   BmbProgressCircleSize,
   SvgConfig,
 } from '../../_shared/types';
-import { BmbIconComponent } from '../old/bmb-icon/bmb-icon.component';
+import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 
 @Component({
   selector: 'bmb-progress-circle',

@@ -8,7 +8,7 @@ import {
 import { BmbVerticalLayoutDirective } from './bmb-vertical-layout.directive';
 import { BmbLayoutDirective } from '../bmb-layout.directive';
 import { BmbLayoutItemDirective } from '../bmb-layout-item.directive';
-import { BmbTopBarComponent } from '../../../../components/old/bmb-top-bar/bmb-top-bar.component';
+import { BmbTopBarComponent } from '../../../../components/bmb-top-bar/bmb-top-bar.component';
 import {
   attributes,
   getAuxiliaryDescription,

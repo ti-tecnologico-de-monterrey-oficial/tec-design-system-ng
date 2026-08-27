@@ -10,8 +10,9 @@ import {
   AfterViewInit,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { BmbIconComponent } from '../old/bmb-icon/bmb-icon.component';
-import { getSelectClassName } from '../../_shared/logic/components/select';
+import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
+import { getSelectClassName } from '@shared/logic/components/select';
+import { BmbSelectItemComponent } from './bmb-select-item/bmb-select-item.component';
 
 @Component({
   selector: 'bmb-select',

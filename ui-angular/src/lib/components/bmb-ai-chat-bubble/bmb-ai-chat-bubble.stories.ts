@@ -1,0 +1,547 @@
+import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
+
+import { RouterTestingModule } from '@angular/router/testing';
+
+import { BmbAiChatBubbleComponent } from './bmb-ai-chat-bubble.component';
+import { CommonModule } from '@angular/common';
+import {
+  BlockquoteType,
+  getAlertBlockquote,
+  getBasicExampleBlock,
+  getGeneralComponentDescription,
+  getGeneralDescription,
+  getOnEvent,
+  getSpecialSpecifications,
+  RELEVANT_TITLE,
+} from '@docs/utils/utils';
+import {
+  DBmbIconParamDesc,
+  getOnClickParam,
+} from '@docs/utils/parameterDescriptions';
+import { BmbLayoutDirective } from '../../directives/old/bmb-layout/bmb-layout.directive';
+import { BmbLayoutItemDirective } from '../../directives/old/bmb-layout/bmb-layout-item.directive';
+import { BmbButtonDirective } from '../../directives/old/bmb-button/button.directive';
+
+const GET_ACTION_DESCRIPTION = `
+${getAlertBlockquote(
+  `The \`getAction\` event emits an object containing the triggered action, the related message information, and the native browser event.
+>
+Example:
+\`{ action: "dislike", messageId: "1", message: Object, nativeEvent: Object }\`
+`,
+  {
+    title: RELEVANT_TITLE.configuration,
+    blockquoteType: BlockquoteType.important,
+  },
+)}
+`,
+  SUPPORTED_MESSAGES_TYPE = `
+Supported message types include:
+- text messages
+- images
+- mixed
+- links
+- selectable options
+- custom templates<br/><br/>`;
+
+export default {
+  title: 'Components/Containers/AI Chat Bubble',
+  component: BmbAiChatBubbleComponent,
+  decorators: [
+    moduleMetadata({
+      imports: [
+        CommonModule,
+        RouterTestingModule,
+        BmbLayoutDirective,
+        BmbLayoutItemDirective,
+        BmbButtonDirective,
+      ],
+    }),
+  ],
+  parameters: {
+    docs: {
+      controls: {
+        exclude: [
+          // internal logic
+          'bubbleClasses',
+          'enableFeedback',
+          'loading',
+          'onAction',
+        ],
+      },
+      description: {
+        component: `
+    ${getGeneralDescription(
+      `${getGeneralComponentDescription({ name: 'ai-chat-bubble' })} is used to render user and assistant chat messages with support for interactive actions and multiple content types. It supports [AI icons](https://bamboo.tec.mx/latest/componentes/ai-chat-bar/ai-icons-PPp7SNig), and allows configuration of available [***AI Chat bar***](/docs/components-inputs-ai-chat-bar--documentation) actions.`,
+      {
+        generalDocLink:
+          'https://bamboo.tec.mx/latest/componentes/ai-chat-bubble/descripcion-general-kum7HyJA',
+      },
+    )}
+    ${getSpecialSpecifications(
+      `### ${GET_ACTION_DESCRIPTION}
+>${SUPPORTED_MESSAGES_TYPE}
+>
+Additional features include:
+- thinking/loading states
+- action interactions such as repeat, voice, copy, like, and dislike
+- customizable user and assistant icons
+`,
+      { showAdditionalBlockquote: true },
+    )}
+${getBasicExampleBlock('BmbAiChatBubbleComponent')}
+  `,
+      },
+    },
+  },
+  argTypes: {
+    botIcon: {
+      control: 'text',
+      description: 'Bot icon token used for assistant messages.',
+      table: {
+        category: 'Properties',
+        type: {
+          summary: 'string',
+        },
+        defaultValue: {
+          summary: 'bot_tecStandar',
+        },
+      },
+    },
+    testId: {
+      control: 'text',
+      description: 'Testing identifier used for automation selectors.',
+      table: {
+        category: 'Properties',
+        type: {
+          summary: 'string',
+        },
+        defaultValue: {
+          summary: 'chat-bubble',
+        },
+      },
+    },
+    message: {
+      control: 'object',
+      description: `
+Chat message rendered inside the bubble.
+
+${SUPPORTED_MESSAGES_TYPE}
+
+Additional supported properties:
+- \`like?: boolean\` Displays the like action as active.
+- \`dislike?: boolean\` Displays the dislike action as active.
+
+These properties can be used to render previously stored feedback when loading a conversation.
+  `,
+      table: {
+        category: 'Properties',
+        type: {
+          summary: 'BmbChatMessage',
+        },
+      },
+    },
+    isThinking: {
+      control: 'boolean',
+      description: 'Displays typing/loading animation state.',
+      table: {
+        category: 'Properties',
+        type: {
+          summary: 'boolean',
+        },
+        defaultValue: {
+          summary: 'false',
+        },
+      },
+    },
+
+    showActions: {
+      control: 'boolean',
+      description: `
+Displays chat action buttons.
+
+Available actions:
+- repeat
+- voice
+- copy
+- like
+- dislike
+      `,
+      table: {
+        category: 'Properties',
+        type: {
+          summary: 'boolean',
+        },
+        defaultValue: {
+          summary: 'true',
+        },
+      },
+    },
+
+    userActions: {
+      control: 'object',
+      description:
+        'Actions displayed for user messages. Copy is enabled by default.',
+      table: {
+        category: 'Properties',
+        type: {
+          summary: 'BmbChatAction[]',
+        },
+        defaultValue: {
+          summary: "['copy']",
+        },
+      },
+    },
+
+    imageNotFoundError: DBmbIconParamDesc.imageNotFoundError,
+
+    getAction: {
+      control: false,
+      description: GET_ACTION_DESCRIPTION,
+      table: {
+        category: 'Events',
+        type: {
+          summary: 'BmbChatActionEvent',
+        },
+      },
+    },
+    getOptionClicked: getOnClickParam(
+      getOnEvent('prompt option', 'getOptionClicked', 'IBmbChatOptionEvent'),
+    ),
+  },
+  args: {
+    botIcon: 'bot_tecStandar',
+    testId: 'chat-bubble',
+    isThinking: false,
+    showActions: true,
+    userActions: ['copy'],
+    message: {
+      id: '1',
+      type: 'text',
+      timestamp: new Date(),
+      isUser: false,
+      content: {
+        text: 'Hello! How can I help you today?',
+      },
+    },
+    getAction: ($event: undefined) => {
+      console.info('getAction', $event);
+    },
+    getOptionClicked: ($event: undefined) => {
+      console.info('getOptionClicked', $event);
+    },
+  },
+} as Meta<typeof BmbAiChatBubbleComponent>;
+
+type Story = StoryObj<BmbAiChatBubbleComponent>;
+
+export const Default: Story = {};
+
+export const UserMessage: Story = {
+  args: {
+    showActions: true,
+    userActions: ['copy'],
+
+    message: {
+      id: '2',
+      type: 'text',
+      timestamp: new Date(),
+      isUser: true,
+      userProfile: 'https://picsum.photos/id/64/200/300',
+      content: {
+        text: 'I need help with Angular signals.',
+      },
+    },
+  },
+};
+
+export const Thinking: Story = {
+  args: {
+    isThinking: true,
+
+    message: {
+      id: '3',
+      type: 'text',
+      timestamp: new Date(),
+      isUser: false,
+      content: {
+        text: '',
+      },
+    },
+  },
+};
+
+export const PromptOptions: Story = {
+  args: {
+    message: {
+      id: '5',
+      type: 'options',
+      timestamp: new Date(),
+      isUser: false,
+      content: {
+        text: 'Choose one option:',
+        options: [
+          {
+            id: '1',
+            label: 'Option for conversational text-based prompts 1',
+            action: () => {
+              console.info('option 1');
+            },
+          },
+          {
+            id: '2',
+            label: 'Option for conversational text-based prompts 2',
+            action: () => {
+              console.info('option 2');
+            },
+          },
+          {
+            id: '3',
+            label: 'Option for conversational text-based prompts 3',
+            action: () => {
+              console.info('option 3');
+            },
+          },
+          {
+            id: '4',
+            label: 'Option for conversational text-based prompts 4',
+            action: () => {
+              console.info('option 4');
+            },
+          },
+          {
+            id: '5',
+            label: 'Option for conversational text-based prompts 5',
+            action: () => {
+              console.info('option 5');
+            },
+          },
+        ],
+      },
+    },
+  },
+};
+
+export const TextMessage: Story = {
+  args: {
+    message: {
+      id: '6',
+      type: 'text',
+      timestamp: new Date(),
+      isUser: false,
+      content: {
+        text: `
+Angular Signals provide a reactive primitive for managing state
+without relying on RxJS subscriptions for simple scenarios.
+        `,
+      },
+    },
+  },
+};
+
+export const LinkMessage: Story = {
+  args: {
+    message: {
+      id: '7',
+      type: 'link',
+      timestamp: new Date(),
+      isUser: false,
+      content: {
+        text: 'Open Angular documentation',
+        href: 'https://angular.dev',
+        target: '_blank',
+      },
+    },
+  },
+};
+
+export const ImageMessage: Story = {
+  args: {
+    message: {
+      id: '8',
+      type: 'image',
+      timestamp: new Date(),
+      isUser: false,
+      content: {
+        imageUrl: 'https://picsum.photos/600/400',
+        alt: 'Generated AI image',
+      },
+    },
+  },
+};
+
+export const MixedMessage: Story = {
+  args: {
+    message: {
+      id: '9',
+      type: 'mixed',
+      timestamp: new Date(),
+      isUser: false,
+      content: {
+        text: 'Here is the generated image based on your request.',
+        imageUrl: 'https://picsum.photos/600/400',
+      },
+    },
+  },
+};
+
+export const ChatGPTExample: Story = {
+  render: () => ({
+    template: `
+    <div style="display: flex; flex-direction: column; gap: 1rem; width: 100%;">
+      <bmb-ai-chat-bubble
+        [botIcon]="'bot_tecStandar'"
+        [testId]="'chat-bubble'"
+        [message]="{
+          id: '5', type: 'options', timestamp: '2026-08-25T01:28:13.313Z',
+          isUser: false,
+          content: {text: 'Choose one option:',
+          options: [{id: '1', label: 'Option for conversational text-based prompts 1'}, {id: '2', label: 'Option for conversational text-based prompts 2'}, {id: '3', label: 'Option for conversational text-based prompts 3'}, {id: '4', label: 'Option for conversational text-based prompts 4'}, {id: '5', label: 'Option for conversational text-based prompts 5'}]}}"
+          [isThinking]="false"
+          [showActions]="true"
+          (getAction)="getAction($event)"
+          (getOptionClicked)="getOptionClicked($event)"
+      />
+
+      <bmb-ai-chat-bubble
+        [botIcon]="'bot_tecStandar'"
+        [testId]="'chat-bubble'"
+        [message]="{
+          id: '2',
+          type: 'text',
+          timestamp: '2026-08-25T01:25:05.172Z',
+          isUser: true,
+          userProfile: 'https://picsum.photos/id/64/200/300',
+          content: {text: 'I need help with Angular signals.'},
+        }"
+        [isThinking]="false"
+        [showActions]="false"
+          (getAction)="getAction($event)"
+          (getOptionClicked)="getOptionClicked($event)"
+      />
+    </div>
+    `,
+    props: {
+      assistantMessage: {
+        id: 'assistant-message',
+        isUserMessage: false,
+        type: 'text',
+        content: {
+          text: 'Ya está',
+        },
+        time: new Date(),
+      },
+      userMessage: {
+        id: 'user-message-copy',
+        isUserMessage: true,
+        userProfile: 'https://picsum.photos/id/64/200/300',
+        type: 'text',
+        content: {
+          text: '¿Puedes compartir esta respuesta en otro canal?',
+        },
+        time: new Date(),
+      },
+    },
+  }),
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Conversación de prueba. Coloca el cursor sobre el mensaje del usuario —o selecciónalo en móvil— para mostrar y probar la acción de copiar.',
+      },
+    },
+  },
+};
+
+export const TemplateMessage: Story = {
+  render: () => ({
+    template: `
+      <ng-template #customTemplate>
+       <!-- BmbLayoutDirective, BmbLayoutItemDirective, BmbButtonDirective, -->
+        <section bmbLayout gapSize="m" margin="none" justify="center" alignItems="center">
+          <p
+            bmbLayoutItem
+            [colSm]="4"
+            [colLg]="12"
+          > Root menu title </p>
+          <button
+            bmbButton
+            size="small"
+            appearance="secondary-outlined"
+            bmbLayoutItem
+            [colSm]="4"
+            [colLg]="6"
+          >
+            Personal assistance
+          </button>
+          <button
+            bmbButton
+            size="small"
+            appearance="secondary-outlined"
+            bmbLayoutItem
+            [colSm]="4"
+            [colLg]="6"
+          >
+            Menu
+          </button>
+        </section>
+      </ng-template>
+
+      <bmb-ai-chat-bubble
+        [message]="{
+          id: '11',
+          type: 'template',
+          timestamp: timestamp,
+          isUser: false,
+          content: {
+            template: customTemplate
+          }
+        }"
+      />
+    `,
+
+    props: {
+      timestamp: new Date(),
+    },
+  }),
+};
+
+export const ChatGPTMessageLiked: Story = {
+  args: {
+    showActions: true,
+    message: {
+      id: '11',
+      type: 'text',
+      timestamp: new Date(),
+      isUser: false,
+      like: true,
+      dislike: false,
+      content: {
+        text: `
+This message already contains positive feedback.
+The thumbs up icon should appear active.
+        `,
+      },
+    },
+  },
+};
+
+export const ChatGPTMessageDisliked: Story = {
+  args: {
+    showActions: true,
+    message: {
+      id: '12',
+      type: 'text',
+      timestamp: new Date(),
+      isUser: false,
+      like: false,
+      dislike: true,
+      content: {
+        text: `
+This message already contains negative feedback.
+The thumbs down icon should appear active.
+        `,
+      },
+    },
+  },
+};
