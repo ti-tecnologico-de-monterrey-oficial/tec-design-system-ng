@@ -7,13 +7,17 @@ import {
   ChangeDetectionStrategy,
   ViewEncapsulation,
 } from '@angular/core';
-import { BmbIconComponent } from '../old/bmb-icon/bmb-icon.component';
+import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import {
   getPaginatorPages,
   getPaginatorText,
   getPaginatorTotalPages,
   isPaginatorPageValid,
 } from '../../_shared/logic/components/paginator';
+
+/*
+ * TODO: This component is marked as "old" and its decommissioning is planned for future updates.
+ */
 
 @Component({
   selector: 'bmb-paginator',

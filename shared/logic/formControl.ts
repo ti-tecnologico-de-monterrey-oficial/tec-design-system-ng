@@ -1,6 +1,5 @@
 import { FormControl } from '@angular/forms';
-import { IBmbInputType } from '../../components/old/bmb-input/bmb-input.component';
-import { IBmbInputValType } from '../../components/old/bmb-input/bmb-input-validator/bmb-input-validator.component';
+import { IBmbInputType, IBmbInputValType } from '../types/input';
 
 export const showError = (control: FormControl): boolean => {
   return (control?.invalid && (control?.touched || control?.dirty)) || false;
@@ -8,7 +7,7 @@ export const showError = (control: FormControl): boolean => {
 
 export const newFormControlByType = (
   type: IBmbInputType | IBmbInputValType = 'text',
-  isMultipleFile: boolean = false,
+  isMultipleFile = false,
 ): FormControl => {
   if (
     type === 'radio' ||
@@ -28,7 +27,7 @@ export const assignNewFormControl = (
   name: string,
   control: FormControl,
   type: IBmbInputType | IBmbInputValType = 'text',
-  isMultipleFile: boolean = false,
+  isMultipleFile = false,
 ): FormControl | null => {
   if (!control) {
     console.warn(

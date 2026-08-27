@@ -1,5 +1,5 @@
 import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
-import { BmbIconComponent } from '../old/bmb-icon/bmb-icon.component';
+import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { BmbCheckExternalLinkButtonComponent } from './bmb-check-external-link-button.component';
 import {
   attributes,

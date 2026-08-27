@@ -1,0 +1,37 @@
+import {
+  Component,
+  input,
+  output,
+  ViewEncapsulation,
+  ChangeDetectionStrategy,
+} from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
+
+/*
+ * TODO: This component is marked as "old" and its decommissioning is planned for future updates.
+ */
+
+@Component({
+  standalone: true,
+  imports: [CommonModule, BmbIconComponent],
+  styleUrl: './bmb-stat-counter.component.scss',
+  selector: 'bmb-stat-counter',
+  templateUrl: './bmb-stat-counter.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None,
+})
+export class BmbStatCounterComponent {
+  activeStep = input<number>(0);
+  totalSteps = input<number>(0);
+
+  onStepPress = output<number>();
+
+  getStepsArray(): number[] {
+    return new Array(this.totalSteps() || 0).fill(0).map((_, i) => i);
+  }
+
+  onStepClicked(index: number): void {
+    this.onStepPress.emit(index);
+  }
+}

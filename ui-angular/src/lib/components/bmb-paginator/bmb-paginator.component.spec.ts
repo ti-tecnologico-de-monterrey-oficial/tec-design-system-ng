@@ -10,7 +10,6 @@ describe('BmbPaginatorComponent', () => {
       ok: true,
       text: async () => '<svg viewBox="0 0 24 24"></svg>',
     } as Response);
-
     fixture = TestBed.createComponent(BmbPaginatorComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
@@ -19,7 +18,6 @@ describe('BmbPaginatorComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-
   it('should calculate pages and pagination text', () => {
     fixture.componentRef.setInput('totalItems', 12);
     fixture.componentRef.setInput('itemsPerPage', 5);

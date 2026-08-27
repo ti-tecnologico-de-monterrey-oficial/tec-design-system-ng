@@ -5,7 +5,7 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { BmbIconComponent } from '../old/bmb-icon/bmb-icon.component';
+import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import {
   getIconStatusClassName,
   getIconStatusSize,
@@ -19,6 +19,10 @@ export type {
   IBmbStatusAppearance,
   IBmbStatusIconColor,
 } from '../../_shared/types/components/icon-status';
+
+/*
+ * TODO: This component is marked as "old" and its decommissioning is planned for future updates.
+ */
 
 @Component({
   selector: 'bmb-icon-status',

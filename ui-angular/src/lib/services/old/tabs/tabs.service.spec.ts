@@ -1,5 +1,5 @@
 import { TabsService } from './tabs.service';
-import { IBmbTab } from '../../../components/old/bmb-tabs/bmb-tabs.component';
+import { IBmbTab } from '../../../components/bmb-tabs/bmb-tabs.component';
 
 describe('TabsService', () => {
   let service: TabsService;
