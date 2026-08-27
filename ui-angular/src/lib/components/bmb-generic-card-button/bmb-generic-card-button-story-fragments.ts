@@ -1,11 +1,11 @@
 import { BmbBadgeComponent } from '../bmb-badge/bmb-badge.component';
 import { IBmbBadgeAppearance } from '../../_shared/types/components/badge';
-import { BmbBoxIconComponent } from '../old/bmb-box-icon/bmb-box-icon.component';
-import { BmbButtonIconComponent } from '../old/bmb-button-icon/bmb-button-icon.component';
-import { BmbIconComponent } from '../old/bmb-icon/bmb-icon.component';
-import { BmbImageComponent } from '../old/bmb-image/bmb-image.component';
-import { BmbTextLinkComponent } from '../old/bmb-text-link/bmb-text-link.component';
-import { BmbTitleComponent } from '../old/bmb-title/bmb-title.component';
+import { BmbBoxIconComponent } from '../bmb-box-icon/bmb-box-icon.component';
+import { BmbButtonIconComponent } from '../bmb-button-icon/bmb-button-icon.component';
+import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
+import { BmbImageComponent } from '../bmb-image/bmb-image.component';
+import { BmbTextLinkComponent } from '../bmb-text-link/bmb-text-link.component';
+import { BmbTitleComponent } from '../bmb-title/bmb-title.component';
 import {
   BmbLayoutGridDirective,
   BmbLayoutGridItemDirective,
