@@ -1,3 +1,4 @@
+/** eslint-disable @angular-eslint/no-output-on-prefix */
 import {
   ChangeDetectionStrategy,
   Component,
@@ -62,6 +63,7 @@ export class BmbChatBarComponent implements OnInit {
   showEmoji = input<boolean>(false);
   emojiIcon = input<string>('');
   enableMicInput = input<boolean>(false);
+  disableChangeBot = input<boolean>(false);
 
   currentBot = model<IBotType>();
   isLoading = model<boolean>(false);
