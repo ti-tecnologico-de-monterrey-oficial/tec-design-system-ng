@@ -1,14 +1,14 @@
 import type { StorybookConfig } from '@storybook/angular';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import dotenv from 'dotenv';
+// import dotenv from 'dotenv';
 
 const dirname = path.dirname(fileURLToPath(import.meta.url));
-dotenv.config({ path: path.resolve(dirname, '../../.env') });
+// dotenv.config({ path: path.resolve(dirname, '../../.env') });
 
 
 const config: StorybookConfig = {
-  stories: ['../src/lib/**/*.@(mdx|stories.@(js|jsx|ts|tsx))'],
+  stories: ['../src/lib/**/*.mdx', '../src/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
   addons: [
     '@storybook/addon-onboarding',
     '@storybook/addon-docs',

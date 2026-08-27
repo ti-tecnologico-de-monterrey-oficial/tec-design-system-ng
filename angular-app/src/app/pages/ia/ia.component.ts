@@ -8,6 +8,10 @@ import {
   BmbVerticalLayoutDirective,
   BmbVerticalLayoutItemDirective,
   IChatBarActions,
+  BmbAiChatBubbleComponent,
+  BmbChatMessage,
+  IBmbChatOptionEvent,
+  BmbChatActionEvent,
 } from 'ui-angular';
 import { CommonModule } from '@angular/common';
 
@@ -19,6 +23,7 @@ import { CommonModule } from '@angular/common';
     BmbVerticalLayoutDirective,
     BmbVerticalLayoutItemDirective,
     CommonModule,
+    BmbAiChatBubbleComponent,
   ],
   templateUrl: './ia.component.html',
   styleUrl: './ia.component.scss',
@@ -63,4 +68,26 @@ export class IaComponent {
       },
     },
   ];
+
+  message: BmbChatMessage = {
+    id: '5',
+    type: 'options',
+    timestamp: new Date('2026-08-22T02:14:36.444Z'),
+    isUser: false,
+    content: {
+      text: 'Choose one option:',
+      options: [
+        { id: '1', label: 'Option for conversational text-based prompts 1' },
+        { id: '2', label: 'Option for conversational text-based prompts 2' },
+      ],
+    },
+  };
+
+  getAction(event: BmbChatActionEvent) {
+    console.log('Action event received:', event);
+  }
+
+  getOptionClicked(event: IBmbChatOptionEvent) {
+    console.log('Option clicked event received:', event);
+  }
 }

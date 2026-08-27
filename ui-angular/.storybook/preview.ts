@@ -105,6 +105,7 @@ const preview: Preview = {
           'Templates',
           'Dev tools',
           'Internals',
+          'Deprecated',
         ],
         locales: 'en-US',
       },

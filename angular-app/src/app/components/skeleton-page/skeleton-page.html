@@ -1,0 +1,35 @@
+<header class="page-header">
+  <p class="eyebrow">Componente migrado</p>
+  <h1>BmbSkeleton</h1>
+  <p>Prueba cada estructura disponible para estados de carga.</p>
+</header>
+
+<section class="playground" aria-labelledby="skeleton-demo-heading">
+  <div class="controls">
+    <h2 id="skeleton-demo-heading">Propiedades</h2>
+    <label for="skeleton-type">type</label>
+    <select
+      id="skeleton-type"
+      [value]="type()"
+      (change)="setType($any($event.target).value)"
+    >
+      @for (option of types; track option) {
+      <option [value]="option">{{ option }}</option>
+      }
+    </select>
+    <p><strong>Valor actual:</strong> {{ type() }}</p>
+  </div>
+  <div class="preview"><bmb-skeleton [type]="type()" /></div>
+</section>
+
+<section class="gallery" aria-labelledby="skeleton-gallery-heading">
+  <h2 id="skeleton-gallery-heading">Todas las variantes</h2>
+  <div class="gallery-grid">
+    @for (option of types; track option) {
+    <article>
+      <h3>{{ option }}</h3>
+      <bmb-skeleton [type]="option" />
+    </article>
+    }
+  </div>
+</section>

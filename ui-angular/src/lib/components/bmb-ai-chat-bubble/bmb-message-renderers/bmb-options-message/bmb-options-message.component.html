@@ -1,0 +1,30 @@
+<section bmbVerticalLayout gapSize="s">
+  @if (message().content.text) {
+    <p class="bmb_ai-chat-bubble-options-text" bmbVerticalLayoutItem>
+      {{ message().content.text }}
+    </p>
+  }
+  <section bmbVerticalLayout gapSize="xs" bmbVerticalLayoutItem>
+    @for (option of message().content.options; track $index) {
+      @if (option.href) {
+        <bmb-item-informative-text
+          icon="prompt_suggestion"
+          [supportTextLinkLabel]="option.label"
+          [supportTextLink]="option.href"
+          [supportTextTarget]="option.target!"
+          bmbVerticalLayoutItem
+        />
+      } @else {
+        <bmb-item-actions
+          icon="prompt_suggestion"
+          [label]="option.label"
+          (getActionClick)="handleOptionClick($event, option)"
+          bmbVerticalLayoutItem
+        />
+      }
+      @if ($index < message().content.options.length - 1) {
+        <bmb-divider [removeMargin]="true" bmbVerticalLayoutItem />
+      }
+    }
+  </section>
+</section>

@@ -325,6 +325,68 @@ export const appRoutes: Route[] = [
       ),
   },
   {
+    path: 'components/skeleton',
+    title: 'BmbSkeleton | Bamboo migration dashboard',
+    loadComponent: () =>
+      import('./components/skeleton-page/skeleton-page').then(
+        ({ SkeletonPage }) => SkeletonPage,
+      ),
+  },
+  {
+    path: 'components/value-counter',
+    title: 'BmbValueCounter | Bamboo migration dashboard',
+    loadComponent: () =>
+      import('./components/value-counter-page/value-counter-page').then(
+        ({ ValueCounterPage }) => ValueCounterPage,
+      ),
+  },
+  {
+    path: 'components/bookmark',
+    title: 'BmbBookmark | Bamboo migration dashboard',
+    loadComponent: () =>
+      import('./components/bookmark-page/bookmark-page').then(
+        ({ BookmarkPage }) => BookmarkPage,
+      ),
+  },
+  {
+    path: 'components/breadcrumb',
+    title: 'BmbBreadcrumb | Bamboo migration dashboard',
+    loadComponent: () =>
+      import('./components/breadcrumb-page/breadcrumb-page').then(
+        ({ BreadcrumbPage }) => BreadcrumbPage,
+      ),
+  },
+  {
+    path: 'components/hito-list',
+    title: 'BmbHitoList | Bamboo migration dashboard',
+    loadComponent: () =>
+      import('./components/hito-list-page/hito-list-page').then(
+        ({ HitoListPage }) => HitoListPage,
+      ),
+  },
+  {
+    path: 'components/icon-item',
+    title: 'BmbIconItem | Bamboo migration dashboard',
+    loadComponent: () =>
+      import('./components/icon-item-page/icon-item-page').then(
+        ({ IconItemPage }) => IconItemPage,
+      ),
+  },
+  {
+    path: 'components/dot-paginator',
+    title: 'BmbDotPaginator | Bamboo migration dashboard',
+    loadComponent: () =>
+      import('./components/dot-paginator-page/dot-paginator-page').then(
+        ({ DotPaginatorPage }) => DotPaginatorPage,
+      ),
+  },
+  {
+    path: 'components/fab',
+    title: 'BmbFab | Bamboo migration dashboard',
+    loadComponent: () =>
+      import('./components/fab-page/fab-page').then(({ FabPage }) => FabPage),
+  },
+  {
     path: 'components/ai-chat-bubble',
     title: 'BmbAiChatBubble | Bamboo migration dashboard',
     loadComponent: () =>
@@ -340,5 +402,5 @@ export const appRoutes: Route[] = [
         ({ DropzonePage }) => DropzonePage,
       ),
   },
-  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: '**', redirectTo: 'components/carousel' },
 ];

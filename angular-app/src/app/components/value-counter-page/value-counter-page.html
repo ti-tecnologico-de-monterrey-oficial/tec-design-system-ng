@@ -1,0 +1,56 @@
+<header class="page-header">
+  <p class="eyebrow">Componente migrado</p>
+  <h1>BmbValueCounter</h1>
+  <p>Prueba el contenido y las opciones de formato del contador.</p>
+</header>
+
+<section class="playground" aria-labelledby="value-counter-demo-heading">
+  <div class="controls">
+    <h2 id="value-counter-demo-heading">Propiedades</h2>
+    <label for="counter-label">label</label>
+    <input
+      id="counter-label"
+      [value]="label()"
+      (input)="setLabel($any($event.target).value)"
+    />
+    <label for="counter-progress">progress</label>
+    <input
+      id="counter-progress"
+      [value]="progress()"
+      (input)="setProgress($any($event.target).value)"
+    />
+    <label for="counter-value">value</label>
+    <input
+      id="counter-value"
+      [value]="value()"
+      (input)="setValue($any($event.target).value)"
+    />
+    <label for="formatter-mode">textFormat</label>
+    <select
+      id="formatter-mode"
+      [value]="formatterMode()"
+      (change)="setFormatterMode($any($event.target).value)"
+    >
+      @for (mode of modes; track mode) {
+      <option [value]="mode">{{ mode }}</option>
+      }
+    </select>
+    <label for="counter-separator">textFormatSeparator</label>
+    <input
+      id="counter-separator"
+      maxlength="3"
+      [value]="separator()"
+      (input)="setSeparator($any($event.target).value)"
+    />
+    <p>En modo custom usa, por ejemplo, <code>:</code> o <code> de </code>.</p>
+  </div>
+  <div class="preview">
+    <bmb-value-counter
+      [label]="label()"
+      [progress]="progress()"
+      [value]="value()"
+      [textFormat]="formatter()"
+      [textFormatSeparator]="separator()"
+    />
+  </div>
+</section>

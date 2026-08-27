@@ -10,7 +10,7 @@ import {
   BmbTopBarComponent,
 } from '../../index';
 import { CommonModule } from '@angular/common';
-import { BmbImageComponent } from '../components/old/bmb-image/bmb-image.component';
+import { BmbImageComponent } from '../components/bmb-image/bmb-image.component';
 import {
   getBasicExampleBlock,
   getLandingGeneralDesc,
@@ -19,11 +19,11 @@ import {
   getTechnicalDocReferences,
   getTECParticularitiesMessage,
 } from '@docs/utils/utils';
-import * as topBarStory from '../components/old/bmb-top-bar/bmb-top-bar.stories';
-import * as sideBarStory from '../components/old/bmb-sidebar/bmb-sidebar.stories';
-import * as homeCardStory from '../components/old/bmb-home-card/bmp-home-card.stories';
+import * as topBarStory from '../components/bmb-top-bar/bmb-top-bar.stories';
+import * as sideBarStory from '../components/bmb-sidebar/bmb-sidebar.stories';
+import * as homeCardStory from '../components/bmb-home-card/bmp-home-card.stories';
 import * as cardStory from '../components/bmb-card/bmb-card.stories';
-import * as imageStory from '../components/old/bmb-image/bmb-image.stories';
+import * as imageStory from '../components/bmb-image/bmb-image.stories';
 import * as buttonStory from '../directives/old/bmb-button/button.stories';
 import * as layoutStory from '../directives/old/bmb-layout/bmb-layout.stories';
 

@@ -9,8 +9,8 @@ export type SizeNames =
   | 'l'
   | 'xl'
   | 'xxl'
-  | 'none'
   | 'auto'
+  | 'full'
   | '0'
   | '1'
   | '2'
@@ -138,7 +138,7 @@ export interface IBmbActionHeader {
   isAccentColor?: boolean;
   link?: string;
   target?: IBmbTargetLink;
-  action: (event?: Event, data?: any) => void;
+  action?: (event?: Event, data?: any) => void;
 }
 
 export interface IBmbLinkConfiguration extends IBmbLinkInfo {

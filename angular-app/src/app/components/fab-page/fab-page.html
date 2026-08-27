@@ -1,0 +1,75 @@
+<header class="page-header">
+  <p class="eyebrow">Componente migrado</p>
+  <h1>BmbFab</h1>
+  <p>Prueba todas sus propiedades, estado, getters, función y output.</p>
+</header>
+
+<section class="playground" aria-labelledby="fab-heading">
+  <aside class="controls">
+    <h2 id="fab-heading">Propiedades</h2>
+
+    <label for="fab-icon">icon</label>
+    <input
+      id="fab-icon"
+      [value]="icon()"
+      (input)="icon.set($any($event.target).value)"
+    />
+
+    <label for="fab-text">text</label>
+    <input
+      id="fab-text"
+      [value]="text()"
+      (input)="text.set($any($event.target).value)"
+    />
+
+    <label for="fab-size">size</label>
+    <select
+      id="fab-size"
+      [value]="size()"
+      (change)="setSize($any($event.target).value)"
+    >
+      <option value="small">small</option>
+      <option value="large">large</option>
+    </select>
+
+    <label for="fab-type">type</label>
+    <select
+      id="fab-type"
+      [value]="type()"
+      (change)="setType($any($event.target).value)"
+    >
+      <option value="normal">normal</option>
+      <option value="extended">extended</option>
+    </select>
+
+    <label class="toggle">
+      <input
+        type="checkbox"
+        [checked]="mitec()"
+        (change)="mitec.set($any($event.target).checked)"
+      />
+      mitec
+    </label>
+
+    <p><strong>isActive:</strong> {{ fab.isActive }}</p>
+    <p><strong>activeState:</strong> {{ fab.activeState }}</p>
+    <p><strong>className:</strong> {{ fab.className }}</p>
+    <p><strong>iconName:</strong> {{ fab.iconName }}</p>
+    <p><strong>Último evento:</strong> {{ lastEvent() }}</p>
+  </aside>
+
+  <div class="preview">
+    <bmb-fab
+      #fab
+      [icon]="icon()"
+      [size]="size()"
+      [mitec]="mitec()"
+      [text]="text()"
+      [type]="type()"
+      (fabClick)="registerClick($event)"
+    />
+    <button type="button" (click)="fab.isActive = false">
+      Restablecer isActive
+    </button>
+  </div>
+</section>

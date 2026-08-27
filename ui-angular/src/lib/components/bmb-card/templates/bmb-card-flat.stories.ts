@@ -3,8 +3,8 @@ import {
   BmbCardComponent,
   BmbCardContentComponent,
 } from '../bmb-card.component';
-import { BmbBoxIconComponent } from '../../old/bmb-box-icon/bmb-box-icon.component';
-import { BmbTitleComponent } from '../../old/bmb-title/bmb-title.component';
+import { BmbBoxIconComponent } from '../../bmb-box-icon/bmb-box-icon.component';
+import { BmbTitleComponent } from '../../bmb-title/bmb-title.component';
 import { BmbLayoutDirective } from '../../../directives/old/bmb-layout/bmb-layout.directive';
 import { BmbLayoutItemDirective } from '../../../directives/old/bmb-layout/bmb-layout-item.directive';
 import { staticCardStory } from './bmb-card-template-story.utils';
