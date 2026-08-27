@@ -276,6 +276,10 @@
     "repeat": "Repetir respuesta",
     "voice": "Escuchar respuesta",
     "copy": "Copiar contenido",
+    "edit": "Editar mensaje",
+    "cancel_edit": "Cancelar",
+    "save_edit": "Guardar",
+    "edit_warning": "Al guardar se eliminarán los mensajes posteriores",
     "like": "Me gusta",
     "dislike": "No me gusta"
   },
