@@ -18,8 +18,8 @@ import { BmbProgressBarComponent } from '../bmb-progress-bar/bmb-progress-bar.co
 import { getUUID } from '../../../_shared/logic/utils';
 import { IBmbContrast } from '../../../_shared/types/colors';
 import { TranslatePipe } from '../../../pipes/translations';
-import { BmbVerticalLayoutDirective } from '../../../directives/old/bmb-layout/bmb-vertical-layout/bmb-vertical-layout.directive';
-import { BmbVerticalLayoutItemDirective } from '../../../directives/old/bmb-layout/bmb-vertical-layout/bmb-vertical-layout-item.directive';
+import { BmbVerticalLayoutDirective } from '../../../directives/bmb-layout/bmb-vertical-layout/bmb-vertical-layout.directive';
+import { BmbVerticalLayoutItemDirective } from '../../../directives/bmb-layout/bmb-vertical-layout/bmb-vertical-layout-item.directive';
 import { BmbTranslationsService } from '../../../services/translations/translations.service';
 import {
   FormControl,

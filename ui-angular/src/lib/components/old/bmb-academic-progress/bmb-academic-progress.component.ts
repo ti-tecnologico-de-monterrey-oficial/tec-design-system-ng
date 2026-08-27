@@ -9,8 +9,8 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { BmbFocusElementComponent } from '../bmb-focus-element/bmb-focus-element.component';
-import { BmbLayoutDirective } from '../../../directives/old/bmb-layout/bmb-layout.directive';
-import { BmbLayoutItemDirective } from '../../../directives/old/bmb-layout/bmb-layout-item.directive';
+import { BmbLayoutDirective } from '../../../directives/bmb-layout/bmb-layout.directive';
+import { BmbLayoutItemDirective } from '../../../directives/bmb-layout/bmb-layout-item.directive';
 import { BmbContainerComponent } from '../../bmb-container/bmb-container.component';
 import { IBmbNameValuePair } from '../../../_shared/types/index';
 import { buildErrorMessage } from '../../../_shared/logic/utils';

@@ -9,8 +9,8 @@ import { BmbIconComponent } from '../../bmb-icon/bmb-icon.component';
 import { CommonModule } from '@angular/common';
 import { BmbTitleComponent } from '../../bmb-title/bmb-title.component';
 import { TranslatePipe } from '../../../../pipes/translations';
-import { BmbLayoutDirective } from '../../../../directives/old/bmb-layout/bmb-layout.directive';
-import { BmbLayoutItemDirective } from '../../../../directives/old/bmb-layout/bmb-layout-item.directive';
+import { BmbLayoutDirective } from '../../../../directives/bmb-layout/bmb-layout.directive';
+import { BmbLayoutItemDirective } from '../../../../directives/bmb-layout/bmb-layout-item.directive';
 
 @Component({
   selector: 'bmb-interactive-item-default',

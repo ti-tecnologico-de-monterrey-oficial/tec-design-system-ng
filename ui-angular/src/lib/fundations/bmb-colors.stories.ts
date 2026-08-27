@@ -17,10 +17,10 @@ import {
 import { BmbDividerComponent } from '../components/bmb-divider/bmb-divider.component';
 import { BmbAccordionComponent } from '../components/old/bmb-accordion/bmb-accordion.component';
 import { BmbSelectorDirective } from '../directives/old/bmb-selector/bmb-selector.directive';
-import { BmbLayoutDirective } from '../directives/old/bmb-layout/bmb-layout.directive';
-import { BmbLayoutItemDirective } from '../directives/old/bmb-layout/bmb-layout-item.directive';
-import { BmbVerticalLayoutDirective } from '../directives/old/bmb-layout/bmb-vertical-layout/bmb-vertical-layout.directive';
-import { BmbVerticalLayoutItemDirective } from '../directives/old/bmb-layout/bmb-vertical-layout/bmb-vertical-layout-item.directive';
+import { BmbLayoutDirective } from '../directives/bmb-layout/bmb-layout.directive';
+import { BmbLayoutItemDirective } from '../directives/bmb-layout/bmb-layout-item.directive';
+import { BmbVerticalLayoutDirective } from '../directives/bmb-layout/bmb-vertical-layout/bmb-vertical-layout.directive';
+import { BmbVerticalLayoutItemDirective } from '../directives/bmb-layout/bmb-vertical-layout/bmb-vertical-layout-item.directive';
 import {
   BMB_ALERT_COLOR_LIST,
   BMB_BASE_COLOR_LIST,

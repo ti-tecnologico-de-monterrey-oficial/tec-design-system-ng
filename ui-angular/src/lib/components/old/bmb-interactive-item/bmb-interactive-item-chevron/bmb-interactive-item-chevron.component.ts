@@ -5,8 +5,8 @@ import {
   output,
   ViewEncapsulation,
 } from '@angular/core';
-import { BmbLayoutDirective } from '../../../../directives/old/bmb-layout/bmb-layout.directive';
-import { BmbLayoutItemDirective } from '../../../../directives/old/bmb-layout/bmb-layout-item.directive';
+import { BmbLayoutDirective } from '../../../../directives/bmb-layout/bmb-layout.directive';
+import { BmbLayoutItemDirective } from '../../../../directives/bmb-layout/bmb-layout-item.directive';
 import { BmbIconComponent } from '../../bmb-icon/bmb-icon.component';
 import { BmbTitleComponent } from '../../bmb-title/bmb-title.component';
 

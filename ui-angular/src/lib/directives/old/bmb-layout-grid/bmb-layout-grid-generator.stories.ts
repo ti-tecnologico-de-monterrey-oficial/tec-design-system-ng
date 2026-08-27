@@ -15,8 +15,8 @@ import {
 import { CommonModule } from '@angular/common';
 import { BmbAccordionComponent } from '../../../components/old/bmb-accordion/bmb-accordion.component';
 import { BmbActionIconComponent } from '../../../components/old/bmb-action-icon/bmb-action-icon.component';
-import { BmbLayoutDirective } from '../bmb-layout/bmb-layout.directive';
-import { BmbLayoutItemDirective } from '../bmb-layout/bmb-layout-item.directive';
+import { BmbLayoutDirective } from '../../bmb-layout/bmb-layout.directive';
+import { BmbLayoutItemDirective } from '../../bmb-layout/bmb-layout-item.directive';
 
 @Component({
   standalone: true,

@@ -1,9 +1,9 @@
 import { Directive, HostBinding, input } from '@angular/core';
-import { SizeNames } from '../../_shared/types';
+import { SizeNames } from '@shared/types';
 import {
   IAlignItemsOptions,
   IJustifyOptions,
-} from '../../_shared/types/components/layout';
+} from '@shared/types/components/layout';
 
 export type ILayoutFlow = 'row' | 'reverse';
 export interface ILayoutFlowResponsive {

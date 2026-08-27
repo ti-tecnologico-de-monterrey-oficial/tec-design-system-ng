@@ -23,7 +23,7 @@ import * as sideBarStory from '../components/old/bmb-sidebar/bmb-sidebar.stories
 import * as homeCardStory from '../components/old/bmb-home-card/bmp-home-card.stories';
 import * as imageStory from '../components/old/bmb-image/bmb-image.stories';
 import * as textLinkStory from '../components/old/bmb-text-link/bmb-text-link.stories';
-import * as layoutStory from '../directives/old/bmb-layout/bmb-layout.stories';
+import * as layoutStory from '../directives/bmb-layout/bmb-layout.stories';
 
 @Component({
   standalone: true,
