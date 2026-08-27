@@ -216,6 +216,18 @@ export const sidebarOptions: SidebarElement[][] = [
           title: 'Paginator',
           link: '/components/paginator',
         },
+        {
+          id: 25,
+          icon: 'arrow_drop_down_circle',
+          title: 'Select',
+          link: '/components/select',
+        },
+        {
+          id: 26,
+          icon: 'donut_large',
+          title: 'Progress circle',
+          link: '/components/progress-circle',
+        },
       ],
     },
   ],

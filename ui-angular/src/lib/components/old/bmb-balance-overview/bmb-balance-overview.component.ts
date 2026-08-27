@@ -6,9 +6,7 @@ import {
   input,
   ViewEncapsulation,
 } from '@angular/core';
-import {
-  BmbProgressCircleComponent,
-} from '../bmb-progress-cirlce/bmb-progress-circle.component';
+import { BmbProgressCircleComponent } from '../../bmb-progress-circle/bmb-progress-circle.component';
 import { BmbLegendComponent } from '../../bmb-legend/bmb-legend.component';
 import { IBmbLegendVariations } from '../../../_shared/types/components/legend';
 import { BmbProgressCirclePathStatus } from '../../../_shared/types/components/progress-circle';

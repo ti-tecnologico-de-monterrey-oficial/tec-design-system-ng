@@ -1,6 +1,5 @@
-@use '../../../../../../shared/assets/styles/base/fonts' as fonts;
-@use '../../../../../../shared/assets/styles/base/rem' as rem;
-@use '../../../../../../shared/assets/styles/base/mixins' as mixins;
+@use '../../../../../shared/assets/styles/base/fonts' as fonts;
+@use '../../../../../shared/assets/styles/base/rem' as rem;
 
 $status: (
   'gray': var(--general-contrasts-input-background),
@@ -8,32 +7,31 @@ $status: (
   'error': var(--semantic-error),
   'warning': var(--semantic-warning),
 );
-//map-get($font-sizes, "small")
 
 .bmb_progress-circle {
   grid-area: 1 / 1 / 2 / 2;
 
   &-text {
     &-container {
-      grid-area: 1/1/2/2;
-      margin: 0;
-      width: 100%;
-      padding: 6%;
-      box-sizing: border-box;
-      text-align: center;
-      height: 100%;
       align-content: center;
+      box-sizing: border-box;
+      grid-area: 1/1/2/2;
+      height: 100%;
+      margin: 0;
+      padding: 6%;
+      text-align: center;
+      width: 100%;
     }
 
     &-content {
+      align-items: center;
+      border-radius: var(--bmb-radius-full);
       display: flex;
       flex-direction: column;
-      justify-content: center;
-      height: 100%;
-      margin: 0;
-      border-radius: var(--bmb-radius-full);
-      align-items: center;
       gap: clamp(0.25rem, 4cqw, 1rem);
+      height: 100%;
+      justify-content: center;
+      margin: 0;
     }
   }
 
@@ -45,15 +43,15 @@ $status: (
   }
 
   &-container {
-    display: grid;
     align-items: center;
-    justify-items: center;
+    display: grid;
     grid-template-columns: 100%;
     grid-template-rows: 100%;
+    justify-items: center;
 
     &-small {
-      width: rem.rem_calc(122);
       height: rem.rem_calc(122);
+      width: rem.rem_calc(122);
     }
 
     bmb-icon {
@@ -70,8 +68,8 @@ $status: (
   }
 
   &-fill {
-    stroke: var(--general-contrasts-input-background);
     fill: transparent;
+    stroke: var(--general-contrasts-input-background);
 
     @each $nameStatus, $colorStatus in $status {
       &-#{$nameStatus} {
@@ -85,8 +83,8 @@ $status: (
     transition: all;
 
     &-fill {
-      stroke: var(--general-contrasts-main-selection);
       fill: transparent;
+      stroke: var(--general-contrasts-main-selection);
     }
   }
 
@@ -106,7 +104,7 @@ $status: (
       @include fonts.font(9, bold);
       fill: var(--general-contrasts-100);
       font-size: clamp(1rem, 11.2cqw, 10rem);
-      word-wrap: break-word;
+      overflow-wrap: break-word;
     }
   }
 

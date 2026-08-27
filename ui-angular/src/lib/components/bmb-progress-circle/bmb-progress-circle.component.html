@@ -4,7 +4,6 @@
 >
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    onkeypress=""
     class="bmb_progress-circle"
     [attr.viewBox]="svg?.viewBox"
     preserveAspectRatio="xMidYMid meet"
@@ -45,31 +44,26 @@
       class="bmb_progress-circle-text-container"
       [ngClass]="getContainerClasses()"
     >
-      <p
+      <div
         class="bmb_progress-circle-text-content bmb_progress-circle-background"
       >
         @if (options().size !== 'small' && displayIcon()) {
           <bmb-icon
-            [icon]="displayIcon()!"
+            [icon]="displayIcon()"
             [alt]="'bmb_progress_circle.icon' | translate"
           />
         }
         @if (options().size !== 'small' && options().showTitle) {
           <h2 class="bmb_progress-circle-title-container">
             @if (isTitleString()) {
-              <span class="bmb_progress-circle-title">
-                {{ validTitle() }}
-              </span>
+              <span class="bmb_progress-circle-title">{{ validTitle() }}</span>
             } @else {
               @for (segment of validTitle(); track $index) {
-                <span class="bmb_progress-circle-title">
-                  {{ segment }}
-                </span>
+                <span class="bmb_progress-circle-title">{{ segment }}</span>
               }
             }
           </h2>
         }
-
         @if (shouldShowValueLabel()) {
           <p class="bmb_progress-circle-value-label">
             <span class="bmb_progress-circle-value-label-text">
@@ -77,7 +71,7 @@
             </span>
           </p>
         }
-      </p>
+      </div>
     </div>
   }
 </section>

@@ -4,15 +4,15 @@
   aria-autocomplete="none"
   aria-haspopup="listbox"
   tabindex="0"
-  aria-expanded="true"
+  [attr.aria-expanded]="isExpanded"
 >
   <span class="bmb_select-input">
-    <button class="bmb_select-input-button">
+    <button class="bmb_select-input-button" type="button">
       <ng-content select="[selectTemplate]"></ng-content>
     </button>
     <bmb-icon icon="zoom_out_map" />
   </span>
-  <ul class="bmb_select-list" [ngClass]="getClassName()">
+  <ul class="bmb_select-list" role="listbox" [ngClass]="getClassName()">
     <ng-content></ng-content>
   </ul>
 </section>

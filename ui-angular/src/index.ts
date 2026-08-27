@@ -73,7 +73,9 @@ export * from './lib/components/old/bmb-focus-element/bmb-focus-element.componen
 export * from './lib/components/old/bmb-user-summary/bmb-user-summary.component';
 export * from './lib/components/old/bmb-user-summary/bmb-user-summary-content/bmb-user-summary-content.component';
 export * from './lib/components/old/bmb-tabs/bmb-tabs.component';
-export * from './lib/components/old/bmb-progress-cirlce/bmb-progress-circle.component';
+export * from './lib/components/bmb-progress-circle/bmb-progress-circle.component';
+export * from './lib/components/bmb-select/bmb-select.component';
+export * from './lib/components/bmb-select/bmb-select-item/bmb-select-item.component';
 export * from './lib/components/old/bmb-sidebar/bmb-sidebar.component';
 export * from './lib/components/old/bmb-checkbox/bmb-checkbox.component';
 export * from './lib/components/old/bmb-calendar/bmb-calendar.component';

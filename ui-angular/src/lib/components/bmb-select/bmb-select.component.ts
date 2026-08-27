@@ -11,13 +11,12 @@ import {
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BmbIconComponent } from '../old/bmb-icon/bmb-icon.component';
-import { getSelectClassName } from '../../../../../shared/logic/components/select';
-import { BmbSelectItemComponent } from './bmb-select-item/bmb-select-item.component';
+import { getSelectClassName } from '../../_shared/logic/components/select';
 
 @Component({
   selector: 'bmb-select',
   standalone: true,
-  imports: [CommonModule, BmbIconComponent, BmbSelectItemComponent],
+  imports: [CommonModule, BmbIconComponent],
   templateUrl: './bmb-select.component.html',
   styleUrl: './bmb-select.component.scss',
   encapsulation: ViewEncapsulation.None,
@@ -26,13 +25,16 @@ import { BmbSelectItemComponent } from './bmb-select-item/bmb-select-item.compon
 export class BmbSelectComponent implements AfterViewInit {
   value = input<unknown>(null);
 
+  // eslint-disable-next-line @angular-eslint/no-output-on-prefix
   onValueChange = output<string>();
 
-  private elementRef: ElementRef = inject(ElementRef);
+  private readonly elementRef = inject<ElementRef<HTMLElement>>(ElementRef);
 
   @HostListener('document:click', ['$event'])
-  onClick(event: MouseEvent) {
-    if (this.childNodes?.contains(event.target)) {
+  onClick(event: MouseEvent): void {
+    const eventTarget = event.target;
+
+    if (eventTarget instanceof Node && this.childNodes?.contains(eventTarget)) {
       const targetElement = event.target as HTMLElement;
       const value = targetElement
         .closest('bmb-select-item')
@@ -48,11 +50,11 @@ export class BmbSelectComponent implements AfterViewInit {
 
   customTemplate = false;
 
-  ngAfterViewInit() {
+  ngAfterViewInit(): void {
     this.childNodes = this.elementRef.nativeElement;
   }
 
-  showPlaceholder() {
+  showPlaceholder(): void {
     this.customTemplate = true;
   }
 
@@ -62,5 +64,5 @@ export class BmbSelectComponent implements AfterViewInit {
     return getSelectClassName(this.isExpanded);
   }
 
-  private childNodes: any = null;
+  private childNodes: HTMLElement | null = null;
 }

@@ -1,0 +1,31 @@
+<header class="page-header">
+  <p class="eyebrow">Componente migrado</p>
+  <h1>BmbSelect</h1>
+  <p>Prueba el valor, la proyección de contenido y el evento de selección.</p>
+</header>
+
+<section class="playground" aria-labelledby="select-properties-heading">
+  <aside class="controls">
+    <h2 id="select-properties-heading">Propiedades</h2>
+    <label for="select-value">value</label>
+    <select
+      id="select-value"
+      [value]="selectedValue()"
+      (change)="select($any($event.target).value)"
+    >
+      <option value="first">Primera opción</option>
+      <option value="second">Segunda opción</option>
+      <option value="third">Tercera opción</option>
+    </select>
+    <p class="event"><strong>Último evento:</strong> {{ lastEvent() }}</p>
+  </aside>
+
+  <div class="preview">
+    <bmb-select [value]="selectedValue()" (onValueChange)="select($event)">
+      <span selectTemplate>{{ getSelectedLabel() }}</span>
+      <bmb-select-item value="first">Primera opción</bmb-select-item>
+      <bmb-select-item value="second">Segunda opción</bmb-select-item>
+      <bmb-select-item value="third">Tercera opción</bmb-select-item>
+    </bmb-select>
+  </div>
+</section>

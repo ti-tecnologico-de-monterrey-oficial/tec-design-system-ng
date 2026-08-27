@@ -373,6 +373,22 @@ export const appRoutes: Route[] = [
       ),
   },
   {
+    path: 'components/select',
+    title: 'BmbSelect | Bamboo migration dashboard',
+    loadComponent: () =>
+      import('./components/select-page/select-page').then(
+        ({ SelectPage }) => SelectPage,
+      ),
+  },
+  {
+    path: 'components/progress-circle',
+    title: 'BmbProgressCircle | Bamboo migration dashboard',
+    loadComponent: () =>
+      import('./components/progress-circle-page/progress-circle-page').then(
+        ({ ProgressCirclePage }) => ProgressCirclePage,
+      ),
+  },
+  {
     path: 'components/hito-list',
     title: 'BmbHitoList | Bamboo migration dashboard',
     loadComponent: () =>
