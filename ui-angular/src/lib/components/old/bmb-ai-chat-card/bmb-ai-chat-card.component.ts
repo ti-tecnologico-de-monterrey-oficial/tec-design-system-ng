@@ -52,6 +52,7 @@ export class BmbAIChatCardComponent {
   componentTitle = input<string>('');
   testId = input<string>('ai-chat-bubble');
   headerActions = input<IBmbActionHeader[]>([]);
+  enableMicInput = input<boolean>(true);
 
   currentBot = model<IBotType>({
     name: 'TecBot',

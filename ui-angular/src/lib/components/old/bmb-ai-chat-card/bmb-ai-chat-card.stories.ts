@@ -384,10 +384,19 @@ When enabled, the last bot message will display a "thinking" animation.
         type: { summary: 'string' },
       },
     },
+    enableMicInput: {
+      control: { type: 'boolean' },
+      description: 'Enables the microphone input feature.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'true' },
+      },
+    },
     getSendMessage: {
       control: false,
       description:
-        'Emmit when the user send a message or a bot has a new response',
+        'Emits when the user send a message or a bot has a new response',
       table: {
         category: 'Events',
         type: {
@@ -474,7 +483,7 @@ handleExpand() {
     bgIconAppearance: 'gray-charade-500',
     isMobile: false,
     testId: 'ai-chat-bubble',
-
+    enableMicInput: true,
     getSendMessage: (message: string) => {
       console.log('📩 Send Message:', message);
     },

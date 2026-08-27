@@ -23,6 +23,7 @@
         <bmb-chat-bar
           [placeholder]="placeholder()"
           [botList]="botList"
+          [enableMicInput]="enableMicInput()"
           [(currentBot)]="currentBot"
           [(isLoading)]="isLoading"
           (onSendMessage)="handleSend($event)"
