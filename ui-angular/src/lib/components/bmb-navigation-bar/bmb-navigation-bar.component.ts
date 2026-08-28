@@ -12,8 +12,8 @@ import {
 } from '../../_shared/types';
 import { CommonModule } from '@angular/common';
 import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
-import { BmbLayoutDirective } from '../../directives/old/bmb-layout/bmb-layout.directive';
-import { BmbLayoutItemDirective } from '../../directives/old/bmb-layout/bmb-layout-item.directive';
+import { BmbLayoutDirective } from '../../directives/bmb-layout/bmb-layout.directive';
+import { BmbLayoutItemDirective } from '../../directives/bmb-layout/bmb-layout-item.directive';
 
 /*
  * TODO: This component is marked as "old" and its decommissioning is planned for future updates.

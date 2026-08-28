@@ -26,8 +26,8 @@ import { BmbActionIconComponent } from '../../bmb-action-icon/bmb-action-icon.co
 import { BmbContainerComponent } from '../../bmb-container/bmb-container.component';
 import { BmbActionMenuComponent } from '../../bmb-action-menu/bmb-action-menu.component';
 import { BmbItemActionsComponent } from '../../bmb-item/bmb-item-actions/bmb-item-actions.component';
-import { BmbLayoutDirective } from '../../../directives/old/bmb-layout/bmb-layout.directive';
-import { BmbLayoutItemDirective } from '../../../directives/old/bmb-layout/bmb-layout-item.directive';
+import { BmbLayoutDirective } from '../../../directives/bmb-layout/bmb-layout.directive';
+import { BmbLayoutItemDirective } from '../../../directives/bmb-layout/bmb-layout-item.directive';
 
 import { logDeprecatedInput } from '../../../_shared/logic/logDeprecatedInput';
 import { TranslatePipe } from '../../../pipes/translations';

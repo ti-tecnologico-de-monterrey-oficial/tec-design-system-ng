@@ -24,7 +24,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { BmbAlertCenterListComponent } from '../bmb-alert-center-list/bmb-alert-center-list.component';
 import { BmbAlertCenterEmptyComponent } from '../bmb-alert-center-empty/bmb-alert-center-empty.component';
-import { BmbLayoutItemDirective } from '../../../directives/old/bmb-layout/bmb-layout-item.directive';
+import { BmbLayoutItemDirective } from '../../../directives/bmb-layout/bmb-layout-item.directive';
 import { BmbCheckboxComponent } from '../../bmb-checkbox/bmb-checkbox.component';
 import { TranslatePipe } from '../../../pipes/translations';
 import { BmbNavigationBarComponent } from '../../bmb-navigation-bar/bmb-navigation-bar.component';

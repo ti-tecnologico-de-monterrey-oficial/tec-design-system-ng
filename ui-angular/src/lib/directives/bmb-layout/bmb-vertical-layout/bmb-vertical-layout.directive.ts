@@ -1,6 +1,9 @@
 import { Directive, HostBinding, input } from '@angular/core';
-import { SizeNames } from '../../../../_shared/types/index';
-import { IAlignItemsOptions, IJustifyOptions } from '../../../../_shared/types/components/layout';
+import { SizeNames } from '../../../_shared/types';
+import {
+  IAlignItemsOptions,
+  IJustifyOptions,
+} from '../../../_shared/types/components/layout';
 
 @Directive({
   selector: '[bmbVerticalLayout]',

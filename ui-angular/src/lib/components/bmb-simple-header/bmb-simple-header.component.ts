@@ -7,8 +7,8 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
-import { BmbLayoutDirective } from '../../directives/old/bmb-layout/bmb-layout.directive';
-import { BmbLayoutItemDirective } from '../../directives/old/bmb-layout/bmb-layout-item.directive';
+import { BmbLayoutDirective } from '../../directives/bmb-layout/bmb-layout.directive';
+import { BmbLayoutItemDirective } from '../../directives/bmb-layout/bmb-layout-item.directive';
 import { logDeprecatedInput } from '../../_shared/logic/logDeprecatedInput';
 
 /*
