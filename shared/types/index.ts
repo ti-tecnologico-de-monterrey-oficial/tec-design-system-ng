@@ -14,6 +14,7 @@ export * from './components/dropdown';
 export * from './components/fab';
 export * from './components/grade-value';
 export * from './components/hito-list';
+export * from './components/icon';
 export * from './components/iframe';
 export * from './components/interactive-icon';
 export * from './components/icon-status';
