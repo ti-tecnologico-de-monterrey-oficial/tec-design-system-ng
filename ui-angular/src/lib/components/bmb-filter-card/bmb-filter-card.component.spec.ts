@@ -478,10 +478,9 @@ describe('BmbFilterCardComponent', () => {
     it('should open modal when openModalComponent is called', () => {
       const fixture = TestBed.createComponent(BmbFilterCardComponent);
       const component = fixture.componentInstance;
-      const modalSpy = jest.spyOn(
-        component['modalService'],
-        'openModal',
-      ).and.returnValue('modal-123');
+      const modalSpy = jest
+        .spyOn(component['modalService'], 'openModal')
+        .mockReturnValue('modal-123');
 
       component.openModalComponent();
 

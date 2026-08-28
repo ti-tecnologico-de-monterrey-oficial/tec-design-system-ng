@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, QueryList, ViewChildren } from '@angular/core';
+import { Component, QueryList, ViewChildren, signal } from '@angular/core';
 import { BmbAccordionControlDirective } from './bmb-accordion-control.directive';
 import { BmbAccordionComponent } from '../../../components/bmb-accordion/bmb-accordion.component';
 import { By } from '@angular/platform-browser';
@@ -7,7 +7,7 @@ import { KeyValueDiffers } from '@angular/core';
 
 @Component({
   template: `
-    <div bmbAccordionControl [accordionStates]="states">
+    <div bmbAccordionControl [accordionStates]="states()">
       <bmb-accordion [accordionId]="'a1'"></bmb-accordion>
       <bmb-accordion [accordionId]="'a2'"></bmb-accordion>
     </div>
@@ -16,7 +16,7 @@ import { KeyValueDiffers } from '@angular/core';
   imports: [BmbAccordionControlDirective, BmbAccordionComponent],
 })
 class TestHostComponent {
-  states = { a1: true, a2: false };
+  states = signal({ a1: true, a2: false });
   @ViewChildren(BmbAccordionComponent)
   accordions!: QueryList<BmbAccordionComponent>;
 }
@@ -73,12 +73,12 @@ describe('BmbAccordionControlDirective', () => {
     const accordions = hostComponent.accordions.toArray();
     accordions[1].opened.emit();
     fixture.detectChanges();
-    expect(hostComponent.states.a1).toBe(false);
-    expect(hostComponent.states.a2).toBe(true);
+    expect(hostComponent.states().a1).toBe(false);
+    expect(hostComponent.states().a2).toBe(true);
   });
 
   it('should update accordion states when accordionStates input changes', async () => {
-    hostComponent.states = { a1: false, a2: true };
+    hostComponent.states.set({ a1: false, a2: true });
     fixture.detectChanges();
     await fixture.whenStable();
     const accordions = hostComponent.accordions.toArray();
@@ -101,14 +101,14 @@ describe('BmbAccordionControlDirective', () => {
   it('should handle multiple state changes', async () => {
     const accordions = hostComponent.accordions.toArray();
 
-    hostComponent.states = { a1: false, a2: true };
+    hostComponent.states.set({ a1: false, a2: true });
     fixture.detectChanges();
     await fixture.whenStable();
 
     expect(accordions[0]._expanded()).toBe(false);
     expect(accordions[1]._expanded()).toBe(true);
 
-    hostComponent.states = { a1: true, a2: false };
+    hostComponent.states.set({ a1: true, a2: false });
     fixture.detectChanges();
     await fixture.whenStable();
 
@@ -119,10 +119,10 @@ describe('BmbAccordionControlDirective', () => {
     const directive = fixture.debugElement
       .query(By.directive(BmbAccordionControlDirective))
       .injector.get(BmbAccordionControlDirective);
-    const initialState = { ...hostComponent.states };
+    const initialState = { ...hostComponent.states() };
     fixture.destroy();
 
-    expect(hostComponent.states).toEqual(initialState);
+    expect(hostComponent.states()).toEqual(initialState);
   });
 });
 

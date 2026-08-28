@@ -218,8 +218,8 @@ describe('BmbImageComponent', () => {
       { src: 'image2.jpg', alt: 'Image 2' },
     ];
 
-    const nextSpy = jest.spyOn(component, 'next').and.callThrough();
-    const prevSpy = jest.spyOn(component, 'prev').and.callThrough();
+    const nextSpy = jest.spyOn(component, 'next');
+    const prevSpy = jest.spyOn(component, 'prev');
 
     componentRef.setInput('images', images);
     componentRef.setInput('enableZoom', false);

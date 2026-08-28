@@ -68,7 +68,7 @@ describe('BmbAlertCenterComponent', () => {
     );
     const translationsServiceSpy = jasmine.createSpyObj(
       'BmbTranslationsService',
-      ['translate'],
+      ['translate', 'getTranslationVersion'],
     );
 
     await TestBed.configureTestingModule({
@@ -137,7 +137,7 @@ describe('BmbAlertCenterComponent', () => {
       const mockDate = DateTime.fromISO(
         '2023-11-20T12:00:00',
       ) as DateTime<true>;
-      jest.spyOn(DateTime, 'now').and.returnValue(mockDate);
+      jest.spyOn(DateTime, 'now').mockReturnValue(mockDate);
       component.now = mockDate;
     });
 

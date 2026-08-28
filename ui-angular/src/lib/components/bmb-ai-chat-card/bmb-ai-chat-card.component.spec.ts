@@ -1,28 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { BmbHomeCardChatComponent } from './bmb-ai-chat-card.component';
+import { BmbAIChatCardComponent } from './bmb-ai-chat-card.component';
 import { ComponentRef } from '@angular/core';
 
-describe('BmbHomeCardChatComponent', () => {
-  let component: BmbHomeCardChatComponent;
-  let fixture: ComponentFixture<BmbHomeCardChatComponent>;
-  let componentRef: ComponentRef<BmbHomeCardChatComponent>;
+describe('BmbAIChatCardComponent', () => {
+  let component: BmbAIChatCardComponent;
+  let fixture: ComponentFixture<BmbAIChatCardComponent>;
+  let componentRef: ComponentRef<BmbAIChatCardComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [BmbHomeCardChatComponent],
+      imports: [BmbAIChatCardComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(BmbHomeCardChatComponent);
+    fixture = TestBed.createComponent(BmbAIChatCardComponent);
     component = fixture.componentInstance;
     componentRef = fixture.componentRef;
-    componentRef.setInput('messagesHistory', [
-      {
-        type: 'text',
-        content: { text: 'Hola, ¿cómo estás? En que puedo ayudarte' },
-        isUserMessage: false,
-        time: new Date('2025-02-19T14:31:00'),
-      },
-    ]);
     fixture.detectChanges();
   });
 

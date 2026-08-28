@@ -9,6 +9,7 @@ import { Component } from '@angular/core';
       <ng-template #actionMenuItem>Content</ng-template>
     </bmb-action-menu>
   `,
+  imports: [BmbActionMenuComponent],
 })
 class TestHostComponent {}
 
@@ -21,8 +22,7 @@ describe('BmbActionMenuComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [TestHostComponent],
-      imports: [BmbActionMenuComponent],
+      imports: [TestHostComponent, BmbActionMenuComponent],
     }).compileComponents();
 
     hostFixture = TestBed.createComponent(TestHostComponent);
