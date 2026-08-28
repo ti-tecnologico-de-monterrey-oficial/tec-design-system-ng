@@ -53,12 +53,7 @@ describe('BmbCalendarTemplateDayComponent', () => {
       },
     ];
 
-    calendarService.filteredEvents.set({
-      calendars: [],
-      [visibleDate.weekNumber]: {
-        [visibleDate.toFormat('yyyy-MM-dd')]: events,
-      },
-    });
+    calendarService.setOrderedEvents(events, 'iso');
 
     fixture = TestBed.createComponent(BmbCalendarTemplateDayComponent);
     component = fixture.componentInstance;
@@ -74,6 +69,7 @@ describe('BmbCalendarTemplateDayComponent', () => {
   });
 
   it('should return localized day name', () => {
+    translationsService.addDictionary('en', {});
     translationsService.setLanguage('en');
 
     expect(component.getNameDay()).toBe('Tuesday');

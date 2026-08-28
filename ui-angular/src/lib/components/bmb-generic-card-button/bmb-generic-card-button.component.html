@@ -8,8 +8,8 @@
   [attr.aria-disabled]="disabled() || null"
   [attr.aria-pressed]="selected() ? true : null"
   (click)="handleClick($event)"
-  (keydown.enter)="handleKeydown($event)"
-  (keydown.space)="handleKeydown($event)"
+  (keydown.enter)="handleKeydown($any($event))"
+  (keydown.space)="handleKeydown($any($event))"
 >
   <!-- medium/large are optional per-size overrides; default is the fallback -->
   <div class="bmb_generic_card_button-slot bmb_generic_card_button-slot-medium">

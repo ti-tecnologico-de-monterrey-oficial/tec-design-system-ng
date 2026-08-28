@@ -87,7 +87,7 @@ describe('BmbTextEditorComponent', () => {
     });
 
     it('should update form control when content changes', () => {
-      jest.spyOn(component, 'updateContent').and.callThrough();
+      jest.spyOn(component, 'updateContent');
 
       // Mock the editor element
       const mockEditor = {
@@ -107,7 +107,7 @@ describe('BmbTextEditorComponent', () => {
   describe('Editor Commands', () => {
     beforeEach(() => {
       fixture.detectChanges();
-      jest.spyOn(document, 'execCommand').and.returnValue(true);
+      jest.spyOn(document, 'execCommand').mockReturnValue(true);
       jest.spyOn(component, 'updateContent');
     });
 
@@ -203,7 +203,7 @@ describe('BmbTextEditorComponent', () => {
           .createSpy('getRangeAt')
           .and.returnValue(new Range()),
       };
-      jest.spyOn(window, 'getSelection').and.returnValue(mockSelection as any);
+      jest.spyOn(window, 'getSelection').mockReturnValue(mockSelection as any);
     });
 
     it('should not open link prompt', () => {
@@ -261,7 +261,7 @@ describe('BmbTextEditorComponent', () => {
     });
 
     it('should not insert link without selection', () => {
-      jest.spyOn(window, 'getSelection').and.returnValue(null);
+      jest.spyOn(window, 'getSelection').mockReturnValue(null);
 
       const values = { prompt_url: 'https://example.com' };
 
@@ -392,7 +392,7 @@ describe('BmbTextEditorComponent', () => {
         getRangeAt: jasmine.createSpy('getRangeAt'),
       };
 
-      jest.spyOn(window, 'getSelection').and.returnValue(mockSelection as any);
+      jest.spyOn(window, 'getSelection').mockReturnValue(mockSelection as any);
 
       component.detectAlignment();
 

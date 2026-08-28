@@ -357,6 +357,22 @@ export const appRoutes: Route[] = [
       ),
   },
   {
+    path: 'components/icon-status',
+    title: 'BmbIconStatus | Bamboo migration dashboard',
+    loadComponent: () =>
+      import('./components/icon-status-page/icon-status-page').then(
+        ({ IconStatusPage }) => IconStatusPage,
+      ),
+  },
+  {
+    path: 'components/paginator',
+    title: 'BmbPaginator | Bamboo migration dashboard',
+    loadComponent: () =>
+      import('./components/paginator-page/paginator-page').then(
+        ({ PaginatorPage }) => PaginatorPage,
+      ),
+  },
+  {
     path: 'components/hito-list',
     title: 'BmbHitoList | Bamboo migration dashboard',
     loadComponent: () =>
@@ -400,6 +416,22 @@ export const appRoutes: Route[] = [
     loadComponent: () =>
       import('./components/dropzone-page/dropzone-page').then(
         ({ DropzonePage }) => DropzonePage,
+      ),
+  },
+  {
+    path: 'components/bot-icon',
+    title: 'BmbBotIcon | Bamboo migration dashboard',
+    loadComponent: () =>
+      import('./components/bot-icon-page/bot-icon-page').then(
+        ({ BotIconPage }) => BotIconPage,
+      ),
+  },
+  {
+    path: 'components/navigation-bar',
+    title: 'BmbNavigationBar | Bamboo migration dashboard',
+    loadComponent: () =>
+      import('./components/navigation-bar-page/navigation-bar-page').then(
+        ({ NavigationBarPage }) => NavigationBarPage,
       ),
   },
   { path: '**', redirectTo: 'components/carousel' },

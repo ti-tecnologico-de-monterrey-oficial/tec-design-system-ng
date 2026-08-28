@@ -1,0 +1,92 @@
+<header class="page-header">
+  <p class="eyebrow">Componente migrado</p>
+  <h1>BmbNavigationBar</h1>
+  <p>Prueba propiedades de layout, acciones, enlaces y estados MiTec y vacío.</p>
+</header>
+
+<section class="playground" aria-labelledby="navigation-properties-heading">
+  <aside class="controls">
+    <h2 id="navigation-properties-heading">Propiedades</h2>
+
+    <label for="navigation-icon-size">iconSize</label>
+    <input
+      id="navigation-icon-size"
+      type="number"
+      min="0"
+      [value]="iconSize() || 0"
+      (input)="setIconSize(+$any($event.target).value)"
+    />
+
+    <label for="navigation-gap">gapSize</label>
+    <select
+      id="navigation-gap"
+      [value]="gapSize()"
+      (change)="setGapSize($any($event.target).value)"
+    >
+      @for (gap of ['none', 'xs', 's', 'm', 'l', 'xl']; track gap) {
+        <option [value]="gap">{{ gap }}</option>
+      }
+    </select>
+
+    <label for="navigation-justify">justify</label>
+    <select
+      id="navigation-justify"
+      [value]="justify()"
+      (change)="setJustify($any($event.target).value)"
+    >
+      @for (
+        option of ['start', 'center', 'end', 'spaceBetween', 'spaceAround'];
+        track option
+      ) {
+        <option [value]="option">{{ option }}</option>
+      }
+    </select>
+
+    <label for="navigation-align">alignItems</label>
+    <select
+      id="navigation-align"
+      [value]="alignItems()"
+      (change)="setAlignItems($any($event.target).value)"
+    >
+      @for (option of ['start', 'center', 'end', 'stretch']; track option) {
+        <option [value]="option">{{ option }}</option>
+      }
+    </select>
+
+    <label class="toggle">
+      <input
+        type="checkbox"
+        [checked]="isMitecHeader()"
+        (change)="isMitecHeader.set($any($event.target).checked)"
+      />
+      isMitecHeader
+    </label>
+
+    <label class="toggle">
+      <input
+        type="checkbox"
+        [checked]="emptyState()"
+        (change)="emptyState.set($any($event.target).checked)"
+      />
+      Estado vacío
+    </label>
+
+    <p><strong>Último evento:</strong> {{ lastEvent() }}</p>
+  </aside>
+
+  <div class="preview">
+    <bmb-navigation-bar
+      class="navigation-bar-demo"
+      [actionHeaders]="actionHeaders()"
+      [iconSize]="iconSize()"
+      [gapSize]="gapSize()"
+      [justify]="justify()"
+      [alignItems]="alignItems()"
+      [isMitecHeader]="isMitecHeader()"
+    />
+
+    @if (emptyState()) {
+      <p class="empty-state">No hay acciones configuradas.</p>
+    }
+  </div>
+</section>

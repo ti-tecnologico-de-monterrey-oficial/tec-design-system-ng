@@ -27,6 +27,14 @@
         />
         Mostrar copiar en usuario
       </label>
+      <label class="check">
+        <input
+          type="checkbox"
+          [checked]="userEditEnabled()"
+          (change)="userEditEnabled.set(!userEditEnabled())"
+        />
+        Mostrar editar en usuario
+      </label>
       <p class="event">
         <strong>Última acción:</strong> {{ conversationEvent() }}
       </p>
@@ -43,9 +51,11 @@
         @for (chatMessage of conversation(); track chatMessage.id) {
         <bmb-ai-chat-bubble
           [message]="chatMessage"
-          [userActions]="userCopyEnabled() ? ['copy'] : []"
+          [userActions]="userActions()"
           [testId]="chatMessage.id"
           (getAction)="handleConversationAction($event)"
+          (messageEditCancelled)="handleMessageEditCancelled($event)"
+          (messageEdited)="handleMessageEdited($event)"
         />
         }
       </div>

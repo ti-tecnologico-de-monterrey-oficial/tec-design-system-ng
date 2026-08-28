@@ -1,5 +1,9 @@
-import { IBmbActionHeader, SizeNames } from '../../types/utils';
-import {
+import type {
+  BmbNavigationBarGapSize,
+  IBmbActionHeader,
+  IBmbNavigationBarConfig,
+} from '../../types/components/navigation-bar';
+import type {
   IAlignItemsOptions,
   IJustifyOptions,
 } from '../../types/components/layout';
@@ -16,11 +20,11 @@ export const getNavigationBarConfig = ({
   alignItems,
   isMitecHeader,
 }: {
-  gapSize: SizeNames;
+  gapSize: BmbNavigationBarGapSize;
   justify: IJustifyOptions;
   alignItems: IAlignItemsOptions;
   isMitecHeader: boolean;
-}) => ({
+}): IBmbNavigationBarConfig => ({
   gapSize,
   justify,
   alignItems,

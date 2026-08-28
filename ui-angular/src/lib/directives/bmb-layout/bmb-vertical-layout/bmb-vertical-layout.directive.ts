@@ -1,6 +1,9 @@
-import { Directive, HostBinding, input } from '@angular/core';
-import { SizeNames } from '../../../../_shared/types/index';
-import { IAlignItemsOptions, IJustifyOptions } from '../../../../_shared/types/components/layout';
+import { Directive, effect, ElementRef, HostBinding, inject, input } from '@angular/core';
+import { SizeNames } from '../../../_shared/types';
+import {
+  IAlignItemsOptions,
+  IJustifyOptions,
+} from '../../../_shared/types/components/layout';
 
 @Directive({
   selector: '[bmbVerticalLayout]',
@@ -13,9 +16,12 @@ export class BmbVerticalLayoutDirective {
   layoutHeight = input<string>('auto');
   margin = input<SizeNames>('none');
 
-  @HostBinding('style.height')
-  get styleHeight(): string {
-    return this.layoutHeight();
+  private readonly el: ElementRef<HTMLElement> = inject(ElementRef);
+
+  constructor() {
+    effect(() => {
+      this.el.nativeElement.style.height = this.layoutHeight();
+    });
   }
 
   @HostBinding('class')

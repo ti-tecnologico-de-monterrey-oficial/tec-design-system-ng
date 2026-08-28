@@ -18,8 +18,8 @@ import {
   DBmbIconParamDesc,
   getOnClickParam,
 } from '@docs/utils/parameterDescriptions';
-import { BmbLayoutDirective } from '../../directives/old/bmb-layout/bmb-layout.directive';
-import { BmbLayoutItemDirective } from '../../directives/old/bmb-layout/bmb-layout-item.directive';
+import { BmbLayoutDirective } from '../../directives/bmb-layout/bmb-layout.directive';
+import { BmbLayoutItemDirective } from '../../directives/bmb-layout/bmb-layout-item.directive';
 import { BmbButtonDirective } from '../../directives/old/bmb-button/button.directive';
 
 const GET_ACTION_DESCRIPTION = `
@@ -84,7 +84,7 @@ export default {
 >
 Additional features include:
 - thinking/loading states
-- action interactions such as repeat, voice, copy, like, and dislike
+- action interactions such as repeat, voice, copy, edit, like, and dislike
 - customizable user and assistant icons
 `,
       { showAdditionalBlockquote: true },
@@ -164,6 +164,7 @@ Available actions:
 - repeat
 - voice
 - copy
+- edit
 - like
 - dislike
       `,
@@ -181,7 +182,7 @@ Available actions:
     userActions: {
       control: 'object',
       description:
-        'Actions displayed for user messages. Copy is enabled by default.',
+        "Actions displayed for user messages. Use ['copy', 'edit'] to enable both. Copy is enabled by default.",
       table: {
         category: 'Properties',
         type: {
@@ -203,6 +204,15 @@ Available actions:
         type: {
           summary: 'BmbChatActionEvent',
         },
+      },
+    },
+    messageEdited: {
+      control: false,
+      description:
+        'Emits the previous and edited user text messages when Save is selected.',
+      table: {
+        category: 'Events',
+        type: { summary: 'BmbChatMessageEditedEvent' },
       },
     },
     getOptionClicked: getOnClickParam(
@@ -230,6 +240,9 @@ Available actions:
     getOptionClicked: ($event: undefined) => {
       console.info('getOptionClicked', $event);
     },
+    messageEdited: ($event: undefined) => {
+      console.info('messageEdited', $event);
+    },
   },
 } as Meta<typeof BmbAiChatBubbleComponent>;
 
@@ -240,7 +253,7 @@ export const Default: Story = {};
 export const UserMessage: Story = {
   args: {
     showActions: true,
-    userActions: ['copy'],
+    userActions: ['copy', 'edit'],
 
     message: {
       id: '2',

@@ -1,4 +1,4 @@
-import { Meta, StoryObj } from '@storybook/angular';
+import type { Meta, StoryObj } from '@storybook/angular';
 import { BmbIconStatusComponent } from './bmb-icon-status.component';
 import {
   getBasicExampleBlock,
@@ -64,6 +64,6 @@ ${getBasicExampleBlock('BmbIconStatusComponent')}
   },
 } as Meta<typeof BmbIconStatusComponent>;
 
-type Story = StoryObj<BmbIconStatusComponent>;
+type Story = StoryObj<typeof BmbIconStatusComponent>;
 
 export const Default: Story = {};

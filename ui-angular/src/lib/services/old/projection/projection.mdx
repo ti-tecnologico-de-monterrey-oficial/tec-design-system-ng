@@ -41,10 +41,10 @@ import {
       ### ⚙️ Service methods
 
       <ul>
-        <li>***openContent(content: IBmbProjectionContent): void***: This method is used to open the projected content.</li>
-        <li>***closeContent(): void***: This method is used to close the projected content.</li>
-        <li>***getProjectedContent(): Observable\<IBmbProjectionContent | null\>***: This method is used to get the current projected content as an observable.</li>
-        <li>***isThereContentProjected(): boolean***: This method is used to check if there is any content projected.</li>
+        <li>***openContent(content: IBmbProjectionContent): string***: This method is used to open the projected content and returns its id.</li>
+        <li>***closeContent(id?: string): void***: This method is used to close the projected content (a single content by id, or all of them).</li>
+        <li>***getAllProjectedContents(): IBmbProjectionContent[]***: This method is used to get the full list of projected contents.</li>
+        <li>***isContentOpen(id: string): boolean***: This method is used to check if a content is projected by its id.</li>
       </ul>
 
       ### ⚙️ Usage

@@ -21,10 +21,10 @@ export * from './lib/pipes/translations';
 
 // Directives
 export * from './lib/directives/old/bmb-button/button.directive';
-export * from './lib/directives/old/bmb-layout/bmb-layout-item.directive';
-export * from './lib/directives/old/bmb-layout/bmb-layout.directive';
-export * from './lib/directives/old/bmb-layout/bmb-vertical-layout/bmb-vertical-layout.directive';
-export * from './lib/directives/old/bmb-layout/bmb-vertical-layout/bmb-vertical-layout-item.directive';
+export * from './lib/directives/bmb-layout/bmb-layout-item.directive';
+export * from './lib/directives/bmb-layout/bmb-layout.directive';
+export * from './lib/directives/bmb-layout/bmb-vertical-layout/bmb-vertical-layout.directive';
+export * from './lib/directives/bmb-layout/bmb-vertical-layout/bmb-vertical-layout-item.directive';
 export * from './lib/directives/old/bmb-button-group/bmb-button-group.directive';
 export * from './lib/directives/old/bmb-accordion/bmb-accordion-control.directive';
 export * from './lib/directives/old/bmb-layout-grid/bmb-layout-grid.directive';
@@ -143,6 +143,7 @@ export * from './lib/components/bmb-image/bmb-image.component';
 export * from './lib/components/bmb-icon-status/bmb-icon-status.component';
 export * from './lib/components/bmb-chat-bubbles/bmb-chat-bubbles.component';
 export * from './lib/components/bmb-ai-chat-bubble/bmb-ai-chat-bubble.component';
+export * from './lib/components/bmb-ai-chat-editor/bmb-ai-chat-editor.component';
 export * from './lib/components/bmb-digital-id/bmb-digital-id.component';
 export * from './lib/components/bmb-sounds-card/bmb-sounds-card.component';
 export * from './lib/components/bmb-chevron-title-selector/bmb-chevron-title-selector.component';
@@ -158,6 +159,7 @@ export type {
 export * from './lib/components/bmb-carousel/bmb-carousel.component';
 export * from './lib/components/bmb-action-menu/bmb-action-menu.component';
 export * from './lib/components/bmb-button-icon/bmb-button-icon.component';
+export * from './lib/components/bmb-bot-icon/bmb-bot-icon.component';
 export * from './lib/components/bmb-action-icon/bmb-action-icon.component';
 export * from './lib/components/bmb-form-validator/bmb-form-validator.component';
 export * from './lib/components/bmb-three-cols/bmb-three-cols.component';

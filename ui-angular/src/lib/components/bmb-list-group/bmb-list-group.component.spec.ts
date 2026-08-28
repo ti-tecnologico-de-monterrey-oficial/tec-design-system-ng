@@ -33,7 +33,7 @@ describe('BmbListGroupComponent', () => {
   });
 
   it('should return correct class names', () => {
-    jest.spyOn(component, 'showControls').and.returnValue(false);
+    jest.spyOn(component, 'showControls').mockReturnValue(false);
     expect(component.getClassNames()).toEqual([
       'bmb_list-group',
       'bmb_list-group-rounded',
@@ -42,7 +42,7 @@ describe('BmbListGroupComponent', () => {
   });
 
   it('should return correct styles', () => {
-    jest.spyOn(component, 'getVarStyles').and.callThrough();
+    jest.spyOn(component, 'getVarStyles');
     const styles = component.getStyles();
     expect(styles).toEqual({
       '--bmb-list-group-item-radius': 'var(--bmb-radius-m)',
@@ -95,7 +95,7 @@ describe('BmbListGroupItemComponent', () => {
   });
 
   it('should return correct class names', () => {
-    jest.spyOn(bmbListGroupStatusService, 'getListGroupStatus').and.returnValue([
+    jest.spyOn(bmbListGroupStatusService, 'getListGroupStatus').mockReturnValue([
       'test-id',
     ]);
     componentRef.setInput('isDisabled', true);
@@ -110,12 +110,12 @@ describe('BmbListGroupItemComponent', () => {
     jest.spyOn(
       bmbListGroupStatusService,
       'getListGroupConfiguration',
-    ).and.returnValue(config);
+    ).mockReturnValue(config);
     expect(component.getConfig()).toEqual(config);
   });
 
   it('should return correct selection length', () => {
-    jest.spyOn(bmbListGroupStatusService, 'getListGroupStatus').and.returnValue([
+    jest.spyOn(bmbListGroupStatusService, 'getListGroupStatus').mockReturnValue([
       'test-id',
     ]);
     expect(component.getSelectionLength()).toBe(1);
@@ -126,7 +126,7 @@ describe('BmbListGroupItemComponent', () => {
     jest.spyOn(
       bmbListGroupStatusService,
       'getListGroupConfiguration',
-    ).and.returnValue(config);
+    ).mockReturnValue(config);
     expect(component.showControls()).toBeTrue();
   });
 });

@@ -5,7 +5,13 @@ import {
   input,
   ViewEncapsulation,
 } from '@angular/core';
-import { isImage } from '../../_shared/logic/utils';
+import { getSVGName } from '../../_shared/logic/components/bot-icon';
+import type { BmbBotIconName } from '../../_shared/types/components/bot-icon';
+
+export type {
+  BmbBotIconName,
+  BmbBotIconPreset,
+} from '../../_shared/types/components/bot-icon';
 
 /*
  * TODO: This component is marked as "old" and its decommissioning is planned for future updates.
@@ -21,14 +27,9 @@ import { isImage } from '../../_shared/logic/utils';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BmbBotIconComponent {
-  iconName = input.required<string>();
+  iconName = input.required<BmbBotIconName>();
 
   get SVGName(): string {
-    if (isImage(this.iconName()))
-      return this.iconName().substring(
-        this.iconName().lastIndexOf('/') + 1,
-        this.iconName().lastIndexOf('.'),
-      );
-    return this.iconName();
+    return getSVGName(this.iconName());
   }
 }

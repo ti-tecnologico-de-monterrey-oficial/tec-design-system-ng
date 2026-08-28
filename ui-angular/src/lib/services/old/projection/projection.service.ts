@@ -55,7 +55,7 @@ export class BmbProjectionContentService {
     if (!content[hook]) return;
 
     try {
-      content?.[hook]({
+      content[hook]({
         contentId: content.id ?? '',
         reason,
       });
@@ -67,15 +67,9 @@ export class BmbProjectionContentService {
   private appRef: ApplicationRef = inject(ApplicationRef);
   private environmentInjector: EnvironmentInjector = inject(EnvironmentInjector);
 
-  private getOrCreatePortal() {
-    if (this.portalComponentRef) {
-      return this.portalComponentRef.instance;
-    }
-
-    const existingHost = document.querySelector('bmb-portal');
-
-    if (existingHost) {
-      return null;
+  private getOrCreatePortal(): void {
+    if (this.portalComponentRef || document.querySelector('bmb-portal')) {
+      return;
     }
 
     this.portalComponentRef = createComponent(BmbPortalComponent, {
@@ -87,14 +81,20 @@ export class BmbProjectionContentService {
       this.portalComponentRef.hostView as EmbeddedViewRef<any>
     ).rootNodes[0] as HTMLElement;
     document.body.appendChild(hostDomElem);
-
-    return this.portalComponentRef.instance;
   }
 
   openContent(content: IBmbProjectionContent) {
     this.getOrCreatePortal();
 
-    const id = content.id ?? crypto.randomUUID();
+    const id = content.id ?? this.generateId();
+
+    if (this.contentList().some((item) => item.id === id)) {
+      console.warn(
+        `Projected content with id "${id}" is already open. Skipping creation.`,
+      );
+      return id;
+    }
+
     const normalizedContent: IBmbProjectionContent = {
       ...content,
       id,
@@ -104,6 +104,17 @@ export class BmbProjectionContentService {
     this.runContentHook(normalizedContent, 'afterOpenContent', 'single');
 
     return id;
+  }
+
+  private generateId(): string {
+    if (
+      typeof crypto !== 'undefined' &&
+      typeof crypto.randomUUID === 'function'
+    ) {
+      return crypto.randomUUID();
+    }
+
+    return `projected-${Date.now()}-${Math.random().toString(36).slice(2)}`;
   }
 
   closeContent(id?: string) {
@@ -130,16 +141,8 @@ export class BmbProjectionContentService {
     this.runContentHook(content, 'afterCloseContent', 'single');
   }
 
-  getProjectedContent() {
+  getAllProjectedContents(): IBmbProjectionContent[] {
     return this.contentList();
-  }
-
-  getAllProjectedContents() {
-    return this.contentList();
-  }
-
-  isThereContentProjected() {
-    return this.contentList().length > 0;
   }
 
   isContentOpen(id: string) {
