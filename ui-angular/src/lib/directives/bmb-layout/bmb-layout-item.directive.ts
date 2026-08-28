@@ -11,7 +11,7 @@ import {
   IColumSizeFull,
   IColumSizeMobile,
   IMargin,
-} from '@shared/types/components/layout';
+} from '../../_shared/types/components/layout';
 
 @Directive({
   selector: '[bmbLayoutItem]',
