@@ -30,7 +30,7 @@ import { TemplateMessageComponent } from './bmb-message-renderers/bmb-template-m
 import { BmbUserImageComponent } from '../bmb-user-image/bmb-user-image.component';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { BmbBotIconComponent } from '../bmb-bot-icon/bmb-bot-icon.component';
-import { BmbChatEditorComponent } from '../bmb-chat-editor/bmb-chat-editor.component';
+import { BmbAiChatEditorComponent } from '../bmb-ai-chat-editor/bmb-ai-chat-editor.component';
 
 export * from './types';
 
@@ -53,7 +53,7 @@ export * from './types';
     BmbUserImageComponent,
     BmbIconComponent,
     BmbBotIconComponent,
-    BmbChatEditorComponent,
+    BmbAiChatEditorComponent,
   ],
   templateUrl: './bmb-ai-chat-bubble.component.html',
   styleUrl: './bmb-ai-chat-bubble.component.scss',

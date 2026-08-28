@@ -1,16 +1,16 @@
 import { Meta, StoryObj } from '@storybook/angular';
-import { BmbChatEditorComponent } from './bmb-chat-editor.component';
+import { BmbAiChatEditorComponent } from './bmb-ai-chat-editor.component';
 
 export default {
-  title: 'Components/Inputs/Chat Editor',
-  component: BmbChatEditorComponent,
+  title: 'Components/Inputs/AI Chat Editor',
+  component: BmbAiChatEditorComponent,
   args: {
     initialValue: 'In Angular 21, give me a guide for using signals and RxJS.',
-    testId: 'chat-editor',
+    testId: 'ai-chat-editor',
   },
-} as Meta<typeof BmbChatEditorComponent>;
+} as Meta<typeof BmbAiChatEditorComponent>;
 
-type Story = StoryObj<BmbChatEditorComponent>;
+type Story = StoryObj<BmbAiChatEditorComponent>;
 
 export const Default: Story = {};
 

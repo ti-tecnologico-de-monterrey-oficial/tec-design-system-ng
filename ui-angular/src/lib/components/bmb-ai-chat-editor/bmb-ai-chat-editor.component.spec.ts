@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ComponentRef } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { BmbChatEditorComponent } from './bmb-chat-editor.component';
+import { BmbAiChatEditorComponent } from './bmb-ai-chat-editor.component';
 import { BmbTranslationsService } from '../../services/translations/translations.service';
 
-describe('BmbChatEditorComponent', () => {
-  let fixture: ComponentFixture<BmbChatEditorComponent>;
-  let component: BmbChatEditorComponent;
-  let componentRef: ComponentRef<BmbChatEditorComponent>;
+describe('BmbAiChatEditorComponent', () => {
+  let fixture: ComponentFixture<BmbAiChatEditorComponent>;
+  let component: BmbAiChatEditorComponent;
+  let componentRef: ComponentRef<BmbAiChatEditorComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [BmbChatEditorComponent],
+      imports: [BmbAiChatEditorComponent],
       providers: [
         {
           provide: BmbTranslationsService,
@@ -20,7 +20,7 @@ describe('BmbChatEditorComponent', () => {
       ],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(BmbChatEditorComponent);
+    fixture = TestBed.createComponent(BmbAiChatEditorComponent);
     component = fixture.componentInstance;
     componentRef = fixture.componentRef;
     componentRef.setInput('initialValue', 'Original message');
@@ -36,7 +36,7 @@ describe('BmbChatEditorComponent', () => {
 
   it('should keep save disabled until the value changes', () => {
     const saveButton = fixture.debugElement.query(
-      By.css('[data-testid="chat-editor-save"]'),
+      By.css('[data-testid="ai-chat-editor-save"]'),
     ).nativeElement as HTMLButtonElement;
 
     expect(saveButton.disabled).toBe(true);
@@ -52,7 +52,7 @@ describe('BmbChatEditorComponent', () => {
     fixture.detectChanges();
 
     fixture.debugElement
-      .query(By.css('[data-testid="chat-editor-save"]'))
+      .query(By.css('[data-testid="ai-chat-editor-save"]'))
       .triggerEventHandler('click');
 
     expect(component.saveEvent.emit).toHaveBeenCalledWith(
@@ -69,7 +69,7 @@ describe('BmbChatEditorComponent', () => {
     fixture.detectChanges();
 
     const saveButton = fixture.debugElement.query(
-      By.css('[data-testid="chat-editor-save"]'),
+      By.css('[data-testid="ai-chat-editor-save"]'),
     ).nativeElement as HTMLButtonElement;
     expect(saveButton.disabled).toBe(true);
   });
@@ -83,7 +83,7 @@ describe('BmbChatEditorComponent', () => {
     });
 
     fixture.debugElement
-      .query(By.css('[data-testid="chat-editor-cancel"]'))
+      .query(By.css('[data-testid="ai-chat-editor-cancel"]'))
       .triggerEventHandler('click');
 
     expect(component['draft']()).toBe('Original message');

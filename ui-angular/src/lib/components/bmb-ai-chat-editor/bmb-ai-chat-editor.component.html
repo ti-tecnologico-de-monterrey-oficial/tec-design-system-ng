@@ -1,7 +1,7 @@
-<div class="bmb_chat-editor">
+<div class="bmb_ai-chat-editor">
   <textarea
     #textarea
-    class="bmb_chat-editor-textarea"
+    class="bmb_ai-chat-editor-textarea"
     rows="3"
     [value]="draft()"
     [attr.data-testid]="testId() + '-textarea'"
@@ -9,7 +9,7 @@
     (input)="updateDraft($event)"
   ></textarea>
 
-  <div class="bmb_chat-editor-controls">
+  <div class="bmb_ai-chat-editor-controls">
     <button
       bmbButton
       type="button"

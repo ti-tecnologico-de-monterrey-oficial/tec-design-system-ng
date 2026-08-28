@@ -15,16 +15,16 @@ import { BmbButtonDirective } from '../../directives/old/bmb-button/button.direc
 import { BmbTranslationsService } from '../../services/translations/translations.service';
 
 @Component({
-  selector: 'bmb-chat-editor',
+  selector: 'bmb-ai-chat-editor',
   standalone: true,
   imports: [BmbButtonDirective],
-  templateUrl: './bmb-chat-editor.component.html',
-  styleUrl: './bmb-chat-editor.component.scss',
+  templateUrl: './bmb-ai-chat-editor.component.html',
+  styleUrl: './bmb-ai-chat-editor.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class BmbChatEditorComponent implements AfterViewInit {
+export class BmbAiChatEditorComponent implements AfterViewInit {
   readonly initialValue = input.required<string>();
-  readonly testId = input('chat-editor');
+  readonly testId = input('ai-chat-editor');
 
   readonly cancelEvent = output<void>();
   readonly saveEvent = output<string>();
