@@ -1,0 +1,53 @@
+@use '../../styles/playground';
+
+@include playground.page(
+  $controls-min: 18rem,
+  $controls-max: 24rem,
+  $preview-min-height: calc(100vh - 15rem)
+);
+
+:host {
+  background: #f4f6f9;
+  color: #1f2937;
+  min-height: 100%;
+  padding: 2rem;
+}
+
+.preview {
+  align-items: stretch;
+  background: #4d4d4d;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  justify-content: stretch;
+  min-height: 32rem;
+  position: relative;
+
+  .navigation-bar-demo {
+    display: block;
+    flex: 1 1 auto;
+    height: 100%;
+    min-height: 0;
+    width: 100%;
+  }
+}
+
+:host ::ng-deep .navigation-bar-demo .bmb_navigation-bar {
+  box-sizing: border-box;
+  height: 100%;
+  width: 100%;
+}
+
+.empty-state {
+  color: #fff;
+  inset: 50% auto auto 50%;
+  margin: 0;
+  position: absolute;
+  transform: translate(-50%, -50%);
+}
+
+@media (max-width: 700px) {
+  :host {
+    padding: 1rem;
+  }
+}
