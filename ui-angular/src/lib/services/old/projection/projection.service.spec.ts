@@ -10,13 +10,12 @@ describe('BmbProjectionContentService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({});
     service = TestBed.inject(BmbProjectionContentService);
-    spyOn<any>(service, 'getOrCreatePortal').and.returnValue(null);
+    spyOn<any>(service, 'getOrCreatePortal');
     service.closeContent();
   });
 
   it('debe inicializar sin contenido proyectado', () => {
-    expect(service.getProjectedContent()).toEqual([]);
-    expect(service.isThereContentProjected()).toBe(false);
+    expect(service.getAllProjectedContents()).toEqual([]);
   });
 
   it('debe abrir contenido proyectado y generar un id', () => {
@@ -28,11 +27,10 @@ describe('BmbProjectionContentService', () => {
     };
 
     const id = service.openContent(content);
-    const projected = service.getProjectedContent();
+    const projected = service.getAllProjectedContents();
 
     expect(typeof id).toBe('string');
     expect(service.isContentOpen(id)).toBe(true);
-    expect(service.isThereContentProjected()).toBe(true);
     expect(projected.length).toBe(1);
     expect(projected[0]).toEqual(
       jasmine.objectContaining({
@@ -47,11 +45,10 @@ describe('BmbProjectionContentService', () => {
   it('debe cerrar el contenido proyectado', () => {
     const content: IBmbProjectionContent = { content: null };
     service.openContent(content);
-    expect(service.isThereContentProjected()).toBe(true);
+    expect(service.getAllProjectedContents().length).toBe(1);
 
     service.closeContent();
-    expect(service.getProjectedContent()).toEqual([]);
-    expect(service.isThereContentProjected()).toBe(false);
+    expect(service.getAllProjectedContents()).toEqual([]);
   });
 
   it('debe agregar cada contenido nuevo a la lista', () => {
@@ -59,10 +56,10 @@ describe('BmbProjectionContentService', () => {
     const content2: IBmbProjectionContent = { content: null, mode: 'partial' };
 
     service.openContent(content1);
-    const firstId = service.getProjectedContent()[0].id;
+    const firstId = service.getAllProjectedContents()[0].id;
 
     service.openContent(content2);
-    const projected = service.getProjectedContent();
+    const projected = service.getAllProjectedContents();
     const secondId = projected[1].id;
 
     expect(firstId).not.toEqual(secondId);
@@ -79,9 +76,41 @@ describe('BmbProjectionContentService', () => {
 
     expect(service.isContentOpen('first')).toBe(false);
     expect(service.isContentOpen('second')).toBe(true);
-    expect(service.getProjectedContent()).toEqual([
+    expect(service.getAllProjectedContents()).toEqual([
       jasmine.objectContaining({ id: 'second' }),
     ]);
+  });
+
+  it('debe rechazar contenido con un id ya existente', () => {
+    const content: IBmbProjectionContent = { id: 'duplicated', content: null };
+    const warnSpy = jest.spyOn(console, 'warn').mockImplementation();
+
+    service.openContent(content);
+    service.openContent(content);
+
+    expect(service.getAllProjectedContents().length).toBe(1);
+    expect(warnSpy).toHaveBeenCalled();
+    warnSpy.mockRestore();
+  });
+
+  it('debe generar un id propio cuando crypto.randomUUID no está disponible', () => {
+    const originalCrypto = globalThis.crypto;
+
+    Object.defineProperty(globalThis, 'crypto', {
+      value: { ...originalCrypto, randomUUID: undefined },
+      configurable: true,
+    });
+
+    try {
+      const id = service.openContent({ content: null });
+      expect(id).toMatch(/^projected-\d+-/);
+      expect(service.isContentOpen(id)).toBe(true);
+    } finally {
+      Object.defineProperty(globalThis, 'crypto', {
+        value: originalCrypto,
+        configurable: true,
+      });
+    }
   });
 
   it('debe ejecutar los hooks al abrir y cerrar contenido', () => {

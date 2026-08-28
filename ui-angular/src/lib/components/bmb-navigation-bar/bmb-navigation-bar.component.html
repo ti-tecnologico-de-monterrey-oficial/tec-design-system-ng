@@ -2,13 +2,13 @@
   class="bmb_navigation-bar"
   bmbLayout
   margin="none"
-  [justify]="justify()"
-  [gapSize]="gapSize()"
-  [alignItems]="alignItems()"
+  [justify]="config().justify"
+  [gapSize]="config().gapSize"
+  [alignItems]="config().alignItems"
   [dynamicCols]="true"
 >
   @for (actionHeader of actionHeaders(); track $index) {
-    @if (isMitecHeader()) {
+    @if (config().isMitecHeader) {
       <bmb-action-icon
         class="bmb_navigation-bar-icon"
         bmbLayoutItem

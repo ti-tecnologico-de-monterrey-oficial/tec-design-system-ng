@@ -1,19 +1,32 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  computed,
   input,
   ViewEncapsulation,
 } from '@angular/core';
-import {
+import type {
+  BmbNavigationBarGapSize,
   IBmbActionHeader,
-  SizeNames,
+  IBmbNavigationBarConfig,
+} from '../../_shared/types/components/navigation-bar';
+import type {
   IAlignItemsOptions,
   IJustifyOptions,
-} from '../../_shared/types';
+} from '../../_shared/types/components/layout';
+import {
+  executeNavigationAction,
+  getNavigationBarConfig,
+} from '../../_shared/logic/components/navigation-bar';
 import { CommonModule } from '@angular/common';
 import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
 import { BmbLayoutDirective } from '../../directives/bmb-layout/bmb-layout.directive';
 import { BmbLayoutItemDirective } from '../../directives/bmb-layout/bmb-layout-item.directive';
+
+export type {
+  IBmbActionHeader,
+  IBmbNavigationBarConfig,
+} from '../../_shared/types/components/navigation-bar';
 
 /*
  * TODO: This component is marked as "old" and its decommissioning is planned for future updates.
@@ -36,12 +49,21 @@ import { BmbLayoutItemDirective } from '../../directives/bmb-layout/bmb-layout-i
 export class BmbNavigationBarComponent {
   actionHeaders = input<IBmbActionHeader[]>([]);
   iconSize = input<number | undefined>();
-  gapSize = input<SizeNames>('m');
+  gapSize = input<BmbNavigationBarGapSize>('m');
   justify = input<IJustifyOptions>('spaceBetween');
   alignItems = input<IAlignItemsOptions>('start');
   isMitecHeader = input<boolean>(false);
 
+  readonly config = computed<IBmbNavigationBarConfig>(() =>
+    getNavigationBarConfig({
+      gapSize: this.gapSize(),
+      justify: this.justify(),
+      alignItems: this.alignItems(),
+      isMitecHeader: this.isMitecHeader(),
+    }),
+  );
+
   handleClick(actionHeader: IBmbActionHeader): void {
-    actionHeader.action?.();
+    executeNavigationAction(actionHeader);
   }
 }

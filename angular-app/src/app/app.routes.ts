@@ -418,5 +418,21 @@ export const appRoutes: Route[] = [
         ({ DropzonePage }) => DropzonePage,
       ),
   },
+  {
+    path: 'components/bot-icon',
+    title: 'BmbBotIcon | Bamboo migration dashboard',
+    loadComponent: () =>
+      import('./components/bot-icon-page/bot-icon-page').then(
+        ({ BotIconPage }) => BotIconPage,
+      ),
+  },
+  {
+    path: 'components/navigation-bar',
+    title: 'BmbNavigationBar | Bamboo migration dashboard',
+    loadComponent: () =>
+      import('./components/navigation-bar-page/navigation-bar-page').then(
+        ({ NavigationBarPage }) => NavigationBarPage,
+      ),
+  },
   { path: '**', redirectTo: 'components/carousel' },
 ];
