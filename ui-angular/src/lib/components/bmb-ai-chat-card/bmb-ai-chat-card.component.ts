@@ -1,5 +1,5 @@
 import {
-  AfterContentInit,
+  AfterViewInit,
   ChangeDetectionStrategy,
   Component,
   ContentChildren,
@@ -56,7 +56,7 @@ export type IBmbAIChatCardMode = (typeof BMB_AI_CHAT_CARD_MODE_LIST)[number];
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class BmbAIChatCardComponent implements AfterContentInit {
+export class BmbAIChatCardComponent implements AfterViewInit {
   bgIconAppearance = input<IBmbColor>('gray-charade-500');
   componentTitle = input<string>('');
   subtitle = input<string>();
@@ -82,14 +82,23 @@ export class BmbAIChatCardComponent implements AfterContentInit {
   private aiChatBar!: QueryList<BmbChatBarComponent>;
   protected isOneChatBar = signal(true);
 
-  ngAfterContentInit() {
+  ngAfterViewInit(): void {
     const _length = this.aiChatBar.length;
-    this.isOneChatBar.set(_length === 1);
+    // this.isOneChatBar.set(_length === 1);
 
     if (_length !== 1) {
       console.error(
         `Remember that there must be exactly one <bmb-chat-bar>; ${_length} were found. The component will not render.`,
       );
+    }
+
+    if (this.mode() === 'chat') {
+      this.contentProjected.openContent({
+        id: this.aiChatId,
+        content: this.aiChatContent,
+        dialogClass: ['bmb_ai-chat-card-dialog'],
+        focusOnOpen: true,
+      });
     }
   }
 

@@ -98,7 +98,7 @@
                 />
               } @else {
                 @for (headerAction of actionHeaders(); track $index) {
-                  @if ($index < maxActions) {
+                  @if ($index < MAX_ACTIONS) {
                     <bmb-action-icon
                       [idElement]="headerAction.icon.concat($index.toString())"
                       [icon]="headerAction.icon"

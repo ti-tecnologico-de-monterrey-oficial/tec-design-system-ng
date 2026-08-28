@@ -25,6 +25,7 @@ import {
 import { BmbAiChatBubbleComponent } from '../bmb-ai-chat-bubble/bmb-ai-chat-bubble.component';
 import { BmbChatBarComponent } from '../bmb-chat-bar/bmb-chat-bar.component';
 import {
+  DBmbGenericParamDesc,
   DBmbHomeCardHeaderParamDesc,
   getAppearanceParam,
 } from '@docs/utils/parameterDescriptions';
@@ -77,7 +78,6 @@ export default {
         BmbAiChatBubbleComponent,
         BmbChatBarComponent,
       ],
-      providers: [],
     }),
   ],
   parameters: {
@@ -159,7 +159,6 @@ This is a **model signal**, so it can be used as:
         },
       },
     },
-
     testId: {
       control: 'text',
       description: `Base test id used for automation and testing selectors.`,
@@ -168,6 +167,7 @@ This is a **model signal**, so it can be used as:
         type: { summary: 'string' },
       },
     },
+    headerActions: DBmbGenericParamDesc.actionHeaders,
   },
   args: {
     mode: 'compact',

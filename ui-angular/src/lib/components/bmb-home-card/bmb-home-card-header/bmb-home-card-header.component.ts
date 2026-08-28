@@ -81,7 +81,7 @@ export class BmbHomeCardHeaderComponent implements OnInit {
   @ViewChild('actionMenu') actionMenu!: TemplateRef<unknown>;
 
   actionLimit = signal(2);
-  maxActions = 8;
+  MAX_ACTIONS = 8;
   isGreaterThanLimit = false;
   idActionMenu = signal<string>('');
   private readonly contentProjected: BmbProjectionContentService = inject(
@@ -111,8 +111,8 @@ export class BmbHomeCardHeaderComponent implements OnInit {
   ngOnInit(): void {
     this.isGreaterThanLimit = this.actionHeaders().length > this.actionLimit();
 
-    if (this.actionHeaders().length > this.maxActions) {
-      throw new Error(buildMaxElementsErrorMessage(this.maxActions));
+    if (this.actionHeaders().length > this.MAX_ACTIONS) {
+      throw new Error(buildMaxElementsErrorMessage(this.MAX_ACTIONS));
     }
   }
 
