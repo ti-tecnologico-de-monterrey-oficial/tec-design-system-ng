@@ -70,6 +70,7 @@ export class BmbHomeCardHeaderComponent implements OnInit {
   isExpanded = model<boolean>(false);
   currentBot = model<IBotType>();
   componentTitle = input<string>(); // once title is removed, this should be required
+  showOneHeaderAction = input<boolean>(false);
 
   title = input<string>(); // deprecated
 
@@ -79,7 +80,7 @@ export class BmbHomeCardHeaderComponent implements OnInit {
 
   @ViewChild('actionMenu') actionMenu!: TemplateRef<unknown>;
 
-  actionLimit = 2;
+  actionLimit = signal(2);
   maxActions = 8;
   isGreaterThanLimit = false;
   idActionMenu = signal<string>('');
@@ -88,6 +89,9 @@ export class BmbHomeCardHeaderComponent implements OnInit {
   );
 
   constructor() {
+    if (this.showOneHeaderAction()) {
+      this.actionLimit.set(1);
+    }
     effect(() => {
       const deprecatedTitle = this.title();
       const newTitle = this.componentTitle();
@@ -105,7 +109,7 @@ export class BmbHomeCardHeaderComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.isGreaterThanLimit = this.actionHeaders().length > this.actionLimit;
+    this.isGreaterThanLimit = this.actionHeaders().length > this.actionLimit();
 
     if (this.actionHeaders().length > this.maxActions) {
       throw new Error(buildMaxElementsErrorMessage(this.maxActions));
@@ -116,29 +120,29 @@ export class BmbHomeCardHeaderComponent implements OnInit {
     return this.actionHeaders()[index];
   }
 
-  getIconName(): string {
+  protected getIconName(): string {
     return (!this.isMobile() && this.icon()) || '';
   }
 
-  getDataLocalNav(): IBmbDataTopBar[] {
+  protected getDataLocalNav(): IBmbDataTopBar[] {
     if (this.isMobile()) return [];
     return this.dataLocalNav();
   }
 
-  handleBack(): void {
+  protected handleBack(): void {
     this.onBack.emit();
   }
 
-  handleExpandChange(): void {
+  protected handleExpandChange(): void {
     this.onExpandClick.emit();
   }
 
-  handleCloseChange(): void {
+  protected handleCloseChange(): void {
     this.onClose.emit();
     this.contentProjected.closeContent(this.idActionMenu());
   }
 
-  handleHeaderActionClick(
+  protected handleHeaderActionClick(
     event: MouseEvent,
     headerAction: IBmbActionHeader,
   ): void {
@@ -147,7 +151,7 @@ export class BmbHomeCardHeaderComponent implements OnInit {
     }
   }
 
-  handleOpenActionMenu(event: MouseEvent | KeyboardEvent): void {
+  protected handleOpenActionMenu(event: MouseEvent | KeyboardEvent): void {
     if (!event.target) return;
     const data: IBmbProjectionContent = {
       content: this.actionMenu,
@@ -157,7 +161,7 @@ export class BmbHomeCardHeaderComponent implements OnInit {
     this.idActionMenu.set(this.contentProjected.openContent(data));
   }
 
-  handleCloseActionMenu(
+  protected handleCloseActionMenu(
     event: MouseEvent,
     headerAction: IBmbActionHeader,
   ): void {

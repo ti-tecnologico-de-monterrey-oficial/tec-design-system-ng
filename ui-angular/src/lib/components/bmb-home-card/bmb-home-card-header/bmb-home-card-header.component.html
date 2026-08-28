@@ -49,7 +49,11 @@
                   />
                 }
               } @else {
-                @if (actionHeaders().length === 1 && !showRightButton()) {
+                @if (
+                  actionLimit() > 1 &&
+                  actionHeaders().length === 1 &&
+                  !showRightButton()
+                ) {
                   <ng-container
                     *ngTemplateOutlet="
                       itemByIndex;
