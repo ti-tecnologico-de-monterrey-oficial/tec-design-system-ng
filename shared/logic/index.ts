@@ -17,3 +17,4 @@ export * from './components/bookmark';
 export * from './components/bot-icon';
 export * from './components/breadcrumb';
 export * from './components/navigation-bar';
+export * from './components/top-bar-item';

@@ -28,10 +28,6 @@ export type {
   IBmbNavigationBarConfig,
 } from '../../_shared/types/components/navigation-bar';
 
-/*
- * TODO: This component is marked as "old" and its decommissioning is planned for future updates.
- */
-
 @Component({
   selector: 'bmb-navigation-bar',
   standalone: true,

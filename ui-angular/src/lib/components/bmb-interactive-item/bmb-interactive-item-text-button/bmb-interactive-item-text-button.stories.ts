@@ -63,8 +63,8 @@ ${getActionMenuItemComponentDescription({
     icon: 'mobile_2',
     label: 'Title',
     value: 'info',
-    getActionClick: () => {
-      console.info('Action click');
+    getActionClick: (event: MouseEvent) => {
+      console.info('Action click', event);
     },
   },
 } as Meta<typeof BmbInteractiveItemTextButtonComponent>;
@@ -72,3 +72,9 @@ ${getActionMenuItemComponentDescription({
 type Story = StoryObj<BmbInteractiveItemTextButtonComponent>;
 
 export const Default: Story = {};
+
+export const Disabled: Story = {
+  args: {
+    isDisabled: true,
+  },
+};
