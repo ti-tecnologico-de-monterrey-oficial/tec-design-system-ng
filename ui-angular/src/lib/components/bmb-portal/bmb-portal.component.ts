@@ -47,9 +47,6 @@ export class BmbPortalComponent {
   private projectionService = inject(BmbProjectionContentService);
 
   modalSignal = computed(() => this.modalService.getModalList());
-  projectedContent = computed(() =>
-    this.projectionService.getProjectedContent(),
-  );
   notificationsList = computed(() =>
     this.notificationSignal.getNotificationList(),
   );
@@ -61,7 +58,7 @@ export class BmbPortalComponent {
 
   constructor() {
     effect((onCleanup) => {
-      const projectedContent = this.projectedContent();
+      const projectedContent = this.projectedContents();
       const modals = this.modalList();
 
       const popstateHandler = () => {
