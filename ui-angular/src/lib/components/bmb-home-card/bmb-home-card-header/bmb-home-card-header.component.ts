@@ -30,6 +30,7 @@ import { BmbLayoutDirective } from '../../../directives/old/bmb-layout/bmb-layou
 import { BmbLayoutItemDirective } from '../../../directives/old/bmb-layout/bmb-layout-item.directive';
 
 import { logDeprecatedInput } from '../../../_shared/logic/logDeprecatedInput';
+import { buildMaxElementsErrorMessage } from '../../../_shared/logic/utils';
 import { TranslatePipe } from '../../../pipes/translations';
 import {
   BmbProjectionContentService,
@@ -79,6 +80,7 @@ export class BmbHomeCardHeaderComponent implements OnInit {
   @ViewChild('actionMenu') actionMenu!: TemplateRef<unknown>;
 
   actionLimit = 2;
+  maxActions = 8;
   isGreaterThanLimit = false;
   idActionMenu = signal<string>('');
   private readonly contentProjected: BmbProjectionContentService = inject(
@@ -104,6 +106,10 @@ export class BmbHomeCardHeaderComponent implements OnInit {
 
   ngOnInit(): void {
     this.isGreaterThanLimit = this.actionHeaders().length > this.actionLimit;
+
+    if (this.actionHeaders().length > this.maxActions) {
+      throw new Error(buildMaxElementsErrorMessage(this.maxActions));
+    }
   }
 
   protected getHeaderAction(index: number): IBmbActionHeader {

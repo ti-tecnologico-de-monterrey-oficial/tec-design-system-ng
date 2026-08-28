@@ -94,27 +94,29 @@
                 />
               } @else {
                 @for (headerAction of actionHeaders(); track $index) {
-                  <bmb-action-icon
-                    [idElement]="headerAction.icon.concat($index.toString())"
-                    [icon]="headerAction.icon"
-                    [alt]="headerAction.alt || headerAction.icon"
-                    [tooltipText]="
-                      headerAction.tooltipText ||
-                      headerAction.alt ||
-                      headerAction.icon
-                    "
-                    [isAccentColor]="headerAction.isAccentColor"
-                    [iconSize]="24"
-                    [toggleIconActive]="headerAction.iconActiveToggle"
-                    [(isToggleActive)]="headerAction.isToggleActive"
-                    [link]="headerAction.link"
-                    [target]="headerAction.target"
-                    (buttonClick)="
-                      handleHeaderActionClick($event, headerAction)
-                    "
-                    bmbLayoutItem
-                    [isDynamicItem]="true"
-                  />
+                  @if ($index < maxActions) {
+                    <bmb-action-icon
+                      [idElement]="headerAction.icon.concat($index.toString())"
+                      [icon]="headerAction.icon"
+                      [alt]="headerAction.alt || headerAction.icon"
+                      [tooltipText]="
+                        headerAction.tooltipText ||
+                        headerAction.alt ||
+                        headerAction.icon
+                      "
+                      [isAccentColor]="headerAction.isAccentColor"
+                      [iconSize]="24"
+                      [toggleIconActive]="headerAction.iconActiveToggle"
+                      [(isToggleActive)]="headerAction.isToggleActive"
+                      [link]="headerAction.link"
+                      [target]="headerAction.target"
+                      (buttonClick)="
+                        handleHeaderActionClick($event, headerAction)
+                      "
+                      bmbLayoutItem
+                      [isDynamicItem]="true"
+                    />
+                  }
                 }
                 <ng-container
                   [ngTemplateOutlet]="expandAction"
