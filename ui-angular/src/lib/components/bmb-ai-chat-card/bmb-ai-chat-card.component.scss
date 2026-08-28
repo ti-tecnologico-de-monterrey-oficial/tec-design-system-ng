@@ -2,19 +2,22 @@
 @use '../../../../../shared/assets/styles/base/fonts' as fonts;
 @use '../../../../../shared/assets/styles/base/mixins' as mixins;
 
-.bmb_chat-card {
-  &-container {
+.bmb_ai-chat-card {
+  display: flex;
+  width: 100%;
+  height: 100%;
+
+  &-wrapper,
+  &-bubbles {
     display: flex;
     flex-direction: column;
-    overflow-y: scroll;
-    flex: 1;
-    overflow: visible;
-    padding: rem.rem_calc(0 10 0 20);
+    gap: var(--bmb-spacing-s);
+    width: 100%;
+    height: 100%;
   }
 
-  &-chatBar {
-    width: 100%;
-    padding: rem.rem_calc(1 10 20 10);
+  &-bubbles {
+    overflow-y: auto;
   }
 
   &-bot {
@@ -35,7 +38,7 @@
     }
   }
 
-  &-chat {
+  &-dialog {
     &.bmb_projected-content[open] {
       width: 50%;
       top: inherit;
@@ -44,41 +47,24 @@
       bottom: rem.rem_calc(20);
 
       > * {
-        display: flex;
-        width: 100%;
         height: calc(100vh - rem.rem_calc(100));
-        overflow: visible;
+      }
 
-        .bmb_chat-card {
-          margin-top: auto;
-          width: 100%;
-        }
-
-        .bmb_chat-card,
-        bmb-home-card,
-        .bmb_home-card,
-        .bmb_home-card-wrapper {
-          height: 100%;
-          width: 100%;
-          display: block;
-        }
-
-        .bmb_home-card-wrapper {
-          display: flex;
-          flex-direction: column;
-        }
-
-        .bmb_home-card-container {
-          flex: 1;
-          display: flex;
-          flex-direction: column;
-        }
+      .bmb_home-card-container {
+        height: calc(100% - rem.rem_calc(83));
       }
     }
-
-    &-actions {
-      display: flex;
-      gap: rem.rem_calc(10);
-    }
   }
+
+  bmb-home-card,
+  .bmb_home-card,
+  .bmb_home-card-wrapper {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+:host {
+  display: block;
+  height: 100%;
 }

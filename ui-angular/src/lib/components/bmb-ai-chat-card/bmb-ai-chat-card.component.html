@@ -1,55 +1,39 @@
-<ng-template #chatContent>
-  <section class="bmb_chat-card">
+<ng-template #aiChatContent>
+  <section class="bmb_ai-chat-card">
     <bmb-home-card
-      [leftIcon]="mode() === 'chat' ? undefined : 'chevron_left'"
+      [bgIconAppearance]="bgIconAppearance()"
       [componentTitle]="
         componentTitle() || ('home_card_chat.title' | translate)
       "
       [subtitle]="subtitle() || ('home_card_chat.subtitle' | translate)"
-      [isMobile]="isMobile()"
       [actionHeaders]="headerActions()"
-      [bgIconAppearance]="bgIconAppearance()"
-      contentPadding="xs"
-      [isExpanded]="isChatCardOpen()"
+      [isExpanded]="true"
+      [showOneHeaderAction]="true"
       [(currentBot)]="currentBot"
-      (onExpandClick)="handleChat()"
-      (onClose)="handleClose()"
-      (onBack)="handleBack()"
+      (onExpandClick)="handleExpandOrContract()"
     >
-      <div class="bmb_chat-card-container">
-        <ng-content select="bmb-ai-chat-bubble" />
-      </div>
-      <div class="bmb_chat-card-chatBar">
-        <bmb-chat-bar
-          [placeholder]="placeholder()"
-          [botList]="botList"
-          [enableMicInput]="enableMicInput()"
-          [(currentBot)]="currentBot"
-          [(isLoading)]="isLoading"
-          (onSendMessage)="handleSend($event)"
-        />
-      </div>
+      <section class="bmb_ai-chat-card-wrapper">
+        @if (isOneChatBar()) {
+          <section class="bmb_ai-chat-card-bubbles">
+            <ng-content select="bmb-ai-chat-bubble"></ng-content>
+          </section>
+
+          <div class="bmb_ai-chat-card-bar">
+            <ng-content select="bmb-chat-bar"></ng-content>
+          </div>
+        }
+      </section>
     </bmb-home-card>
   </section>
 </ng-template>
 
 @if (mode() === 'expanded') {
-  <ng-container *ngTemplateOutlet="chatContent" />
+  <ng-container *ngTemplateOutlet="aiChatContent" />
 }
-
-@if (mode() === 'chat') {
-  <ng-container *ngTemplateOutlet="chatContent" />
-}
-
-<ng-template #contentTemplate>
-  <div class="bmb_chat-card-chat-content">
-    <ng-container *ngTemplateOutlet="chatContent" />
-  </div>
-</ng-template>
 
 @if (currentBot() && mode() === 'compact') {
   <bmb-action-icon
-    class="bmb_chat-card-bot"
+    class="bmb_ai-chat-card-bot"
     [icon]="currentBot().icon"
     [tooltipText]="currentBot().name"
     [iconSize]="40"
