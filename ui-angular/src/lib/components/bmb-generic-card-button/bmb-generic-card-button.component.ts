@@ -30,8 +30,9 @@ export class BmbGenericCardButtonComponent {
     this.cardClick.emit(event);
   }
 
-  handleKeydown(event: KeyboardEvent): void {
+  handleKeydown(event: Event): void {
     if (this.disabled()) return;
+    if (!(event instanceof KeyboardEvent)) return;
     event.preventDefault();
     this.cardClick.emit(event);
   }
