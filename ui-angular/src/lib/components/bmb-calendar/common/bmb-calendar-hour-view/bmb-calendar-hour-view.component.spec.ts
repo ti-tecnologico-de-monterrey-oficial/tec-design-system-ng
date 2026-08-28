@@ -33,7 +33,7 @@ describe('BmbCalendarHourViewComponent', () => {
     const createHoursRowsSpy = jest.spyOn(
       component,
       'createHoursRows',
-    ).and.callThrough();
+    );
 
     component.ngOnChanges();
 

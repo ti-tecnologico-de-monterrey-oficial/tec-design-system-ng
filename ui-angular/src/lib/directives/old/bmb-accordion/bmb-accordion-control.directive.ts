@@ -10,8 +10,6 @@ import {
   QueryList,
   input,
   effect,
-  OnChanges,
-  SimpleChanges,
 } from '@angular/core';
 import { BmbAccordionComponent } from '../../../components/bmb-accordion/bmb-accordion.component';
 
@@ -20,7 +18,7 @@ import { BmbAccordionComponent } from '../../../components/bmb-accordion/bmb-acc
   standalone: true,
 })
 export class BmbAccordionControlDirective
-  implements AfterContentInit, OnDestroy, OnChanges
+  implements AfterContentInit, OnDestroy
 {
   accordionStates = input<{ [id: string]: boolean }>({});
 
@@ -30,6 +28,15 @@ export class BmbAccordionControlDirective
   accordions!: QueryList<BmbAccordionComponent>;
 
   private subscriptions: OutputRefSubscription[] = [];
+
+  constructor() {
+    effect(() => {
+      this.accordionStates();
+      if (this.contentInitialized) {
+        this.applyControlledStates();
+      }
+    });
+  }
 
   ngAfterContentInit(): void {
     this.contentInitialized = true;
@@ -48,12 +55,6 @@ export class BmbAccordionControlDirective
     });
 
     this.applyControlledStates();
-  }
-
-  ngOnChanges(changes: SimpleChanges): void {
-    if (changes['accordionStates'] && this.contentInitialized) {
-      this.applyControlledStates();
-    }
   }
 
   ngOnDestroy(): void {

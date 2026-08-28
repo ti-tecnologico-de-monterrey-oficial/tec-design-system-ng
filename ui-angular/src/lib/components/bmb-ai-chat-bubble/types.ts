@@ -89,7 +89,13 @@ export type BmbChatMessage =
   | BmbOptionsMessage
   | BmbTemplateMessage;
 
-export type BmbChatAction = 'repeat' | 'voice' | 'copy' | 'like' | 'dislike';
+export type BmbChatAction =
+  | 'repeat'
+  | 'voice'
+  | 'copy'
+  | 'like'
+  | 'dislike'
+  | 'edit';
 
 export type BmbChatCopyState = 'idle' | 'pending' | 'success' | 'error';
 
@@ -113,6 +119,14 @@ export interface BmbChatActionEvent {
    * Native DOM event.
    */
   nativeEvent?: Event;
+}
+
+export interface BmbChatMessageEditedEvent {
+  /** Message before editing. */
+  previousMessage: BmbTextMessage;
+
+  /** Message containing the edited text. */
+  editedMessage: BmbTextMessage;
 }
 
 export interface BmbChatActionConfig {

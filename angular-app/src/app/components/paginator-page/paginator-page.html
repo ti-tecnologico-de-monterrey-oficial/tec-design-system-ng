@@ -1,0 +1,59 @@
+<header class="page-header">
+  <p class="eyebrow">Componente migrado</p>
+  <h1>BmbPaginator</h1>
+  <p>Prueba sus propiedades, límites de navegación y el evento pageChange.</p>
+</header>
+
+<section class="playground" aria-labelledby="paginator-properties-heading">
+  <aside class="controls">
+    <h2 id="paginator-properties-heading">Propiedades</h2>
+
+    <label for="paginator-total-items">totalItems</label>
+    <input
+      id="paginator-total-items"
+      type="number"
+      min="0"
+      [value]="totalItems()"
+      (input)="setTotalItems(+$any($event.target).value)"
+    />
+
+    <label for="paginator-items-per-page">itemsPerPage</label>
+    <input
+      id="paginator-items-per-page"
+      type="number"
+      min="1"
+      [value]="itemsPerPage()"
+      (input)="setItemsPerPage(+$any($event.target).value)"
+    />
+
+    <label for="paginator-current-page">currentPage</label>
+    <input
+      id="paginator-current-page"
+      type="number"
+      min="1"
+      [max]="totalPages() || 1"
+      [value]="currentPage()"
+      (input)="setCurrentPage(+$any($event.target).value)"
+    />
+
+    <p><strong>Total de páginas:</strong> {{ totalPages() }}</p>
+    <p><strong>Último evento:</strong> {{ lastEvent() }}</p>
+  </aside>
+
+  <div class="preview">
+    <div class="items" aria-live="polite">
+      @for (item of visibleItems(); track item) {
+        <div>{{ item }}</div>
+      } @empty {
+        <p>No hay elementos para mostrar.</p>
+      }
+    </div>
+
+    <bmb-paginator
+      [totalItems]="totalItems()"
+      [itemsPerPage]="itemsPerPage()"
+      [currentPage]="currentPage()"
+      (pageChange)="handlePageChange($event)"
+    />
+  </div>
+</section>

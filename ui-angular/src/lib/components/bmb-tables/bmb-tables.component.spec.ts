@@ -37,6 +37,7 @@ interface TestRow {
     </ng-template>
     <bmb-table [data]="data" [columns]="columns" [config]="config"></bmb-table>
   `,
+  imports: [BmbTablesComponent],
 })
 class CellTemplateTestHostComponent implements OnInit {
   @ViewChild('cellTpl', { static: true }) cellTpl!: TemplateRef<unknown>;
@@ -76,8 +77,7 @@ describe('BmbTablesComponent - column cellTemplate', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [CellTemplateTestHostComponent],
-      imports: [BmbTablesComponent, NoopAnimationsModule],
+      imports: [CellTemplateTestHostComponent, BmbTablesComponent, NoopAnimationsModule],
     }).compileComponents();
 
     hostFixture = TestBed.createComponent(CellTemplateTestHostComponent);

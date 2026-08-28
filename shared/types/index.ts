@@ -17,6 +17,7 @@ export * from './components/hito-list';
 export * from './components/icon';
 export * from './components/iframe';
 export * from './components/interactive-icon';
+export * from './components/icon-status';
 export * from './components/layout';
 export * from './components/legend';
 export * from './components/notification-counter';

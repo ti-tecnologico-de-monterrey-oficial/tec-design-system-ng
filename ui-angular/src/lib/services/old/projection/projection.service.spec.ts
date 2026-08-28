@@ -1,4 +1,4 @@
-import { ApplicationRef, EnvironmentInjector } from '@angular/core';
+import { TestBed } from '@angular/core/testing';
 import {
   BmbProjectionContentService,
   IBmbProjectionContent,
@@ -6,17 +6,10 @@ import {
 
 describe('BmbProjectionContentService', () => {
   let service: BmbProjectionContentService;
-  let mockAppRef: ApplicationRef;
-  let mockEnvironmentInjector: EnvironmentInjector;
 
   beforeEach(() => {
-    mockAppRef = {
-      attachView: () => undefined,
-    } as any;
-
-    mockEnvironmentInjector = {} as any;
-
-    service = new BmbProjectionContentService();
+    TestBed.configureTestingModule({});
+    service = TestBed.inject(BmbProjectionContentService);
     spyOn<any>(service, 'getOrCreatePortal').and.returnValue(null);
     service.closeContent();
   });

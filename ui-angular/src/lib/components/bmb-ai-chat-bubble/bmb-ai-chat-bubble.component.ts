@@ -16,6 +16,8 @@ import {
   BmbChatAction,
   BmbChatCopyState,
   BmbChatMessage,
+  BmbChatMessageEditedEvent,
+  BmbTextMessage,
   IBmbChatOptionEvent,
 } from './types';
 import { ChatActionsComponent } from './bmb-chat-actions/bmb-chat-actions.component';
@@ -28,6 +30,7 @@ import { TemplateMessageComponent } from './bmb-message-renderers/bmb-template-m
 import { BmbUserImageComponent } from '../bmb-user-image/bmb-user-image.component';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { BmbBotIconComponent } from '../bmb-bot-icon/bmb-bot-icon.component';
+import { BmbAiChatEditorComponent } from '../bmb-ai-chat-editor/bmb-ai-chat-editor.component';
 
 export * from './types';
 
@@ -50,6 +53,7 @@ export * from './types';
     BmbUserImageComponent,
     BmbIconComponent,
     BmbBotIconComponent,
+    BmbAiChatEditorComponent,
   ],
   templateUrl: './bmb-ai-chat-bubble.component.html',
   styleUrl: './bmb-ai-chat-bubble.component.scss',
@@ -85,6 +89,7 @@ export class BmbAiChatBubbleComponent implements OnDestroy {
   readonly userActions = input<BmbChatAction[]>(['copy']);
 
   readonly copyState = signal<BmbChatCopyState>('idle');
+  readonly isEditing = signal(false);
 
   @ViewChild('messageContent')
   private messageContent?: ElementRef<HTMLElement>;
@@ -95,6 +100,8 @@ export class BmbAiChatBubbleComponent implements OnDestroy {
    * Emits action events.
    */
   readonly getAction = output<BmbChatActionEvent>();
+  readonly messageEdited = output<BmbChatMessageEditedEvent>();
+  readonly messageEditCancelled = output<BmbChatMessage>();
   getOptionClicked = output<IBmbChatOptionEvent>();
 
   /**
@@ -109,6 +116,7 @@ export class BmbAiChatBubbleComponent implements OnDestroy {
     'bmb_ai-chat-bubble-user': this.message().isUser,
     'bmb_ai-chat-bubble-bot': !this.message().isUser,
     'bmb_ai-chat-bubble-thinking': this.isThinking(),
+    'bmb_ai-chat-bubble-editing': this.isEditing(),
   }));
 
   protected async onAction(event: BmbChatActionEvent): Promise<void> {
@@ -119,7 +127,33 @@ export class BmbAiChatBubbleComponent implements OnDestroy {
       return;
     }
 
+    if (
+      event.action === 'edit' &&
+      event.message.isUser &&
+      event.message.type === 'text'
+    ) {
+      this.isEditing.set(true);
+    }
+
     this.getAction.emit(event);
+  }
+
+  protected cancelEdit(): void {
+    this.isEditing.set(false);
+    this.messageEditCancelled.emit(this.message());
+  }
+
+  protected saveEdit(text: string): void {
+    const previousMessage = this.message();
+    if (!previousMessage.isUser || previousMessage.type !== 'text') return;
+
+    const editedMessage: BmbTextMessage = {
+      ...previousMessage,
+      content: { text },
+    };
+
+    this.isEditing.set(false);
+    this.messageEdited.emit({ previousMessage, editedMessage });
   }
 
   protected handleOptionClick(event: IBmbChatOptionEvent): void {

@@ -22,6 +22,8 @@ describe('BmbSearchCardComponent', () => {
         };
         return translations[key] || key;
       }),
+      getTranslationVersion: () => 0,
+      getCurrentLanguage: () => 'es',
     };
 
     await TestBed.configureTestingModule({
@@ -67,6 +69,7 @@ describe('BmbSearchCardComponent', () => {
     ];
 
     componentRef.setInput('results', mockResults);
+    component.inputSearchControl.setValue('test');
     fixture.detectChanges();
 
     const result = component.computedResults();
@@ -95,6 +98,7 @@ describe('BmbSearchCardComponent', () => {
     ];
 
     componentRef.setInput('results', mockResults);
+    component.inputSearchControl.setValue('test');
     fixture.detectChanges();
 
     const tabs = component.tabsData();

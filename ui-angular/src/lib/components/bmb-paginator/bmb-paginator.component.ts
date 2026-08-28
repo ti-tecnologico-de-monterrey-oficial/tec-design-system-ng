@@ -8,6 +8,12 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
+import {
+  getPaginatorPages,
+  getPaginatorText,
+  getPaginatorTotalPages,
+  isPaginatorPageValid,
+} from '../../_shared/logic/components/paginator';
 
 /*
  * TODO: This component is marked as "old" and its decommissioning is planned for future updates.
@@ -30,33 +36,22 @@ export class BmbPaginatorComponent {
   pageChange = output<number>();
 
   totalPages = computed(() =>
-    Math.ceil(this.totalItems() / this.itemsPerPage()),
+    getPaginatorTotalPages(this.totalItems(), this.itemsPerPage()),
   );
 
   onPageChange(page: number): void {
-    if (page < 1 || page > this.totalPages()) return;
+    if (!isPaginatorPageValid(page, this.totalPages())) return;
     this.pageChange.emit(page);
   }
 
-  pages = computed(() => {
-    const pages = [];
-
-    for (let i = 1; i <= this.totalPages(); i++) {
-      pages.push(i);
-    }
-
-    return pages;
-  });
+  pages = computed(() => getPaginatorPages(this.totalPages()));
 
   getPaginationText(): string {
-    if (this.totalItems() == 0) {
-      return `0 de ${this.totalPages() || 0}`;
-    }
-    const startIndex = (this.currentPage() - 1) * this.itemsPerPage() + 1;
-    const endIndex = Math.min(
-      this.currentPage() * this.itemsPerPage(),
+    return getPaginatorText(
       this.totalItems(),
+      this.itemsPerPage(),
+      this.currentPage(),
+      this.totalPages(),
     );
-    return `${startIndex} - ${endIndex} de ${this.totalItems()}`;
   }
 }

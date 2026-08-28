@@ -5,14 +5,13 @@ import { By } from '@angular/platform-browser';
 import { OptionsMessageComponent } from './bmb-options-message.component';
 import { BmbOptionsMessage } from '../../types';
 import { provideRouter } from '@angular/router';
-
-let componentRef: ComponentRef<OptionsMessageComponent>;
+import { BmbItemInformativeTextComponent } from '../../../bmb-item/bmb-item-informative-text/bmb-item-informative-text.component';
+import { BmbItemActionsComponent } from '../../../bmb-item/bmb-item-actions/bmb-item-actions.component';
 
 describe('OptionsMessageComponent', () => {
   let component: OptionsMessageComponent;
   let fixture: ComponentFixture<OptionsMessageComponent>;
-
-  const optionAction = jasmine.createSpy('optionAction');
+  let componentRef: ComponentRef<OptionsMessageComponent>;
 
   const mockMessage: BmbOptionsMessage = {
     id: '1',
@@ -22,17 +21,8 @@ describe('OptionsMessageComponent', () => {
     content: {
       text: 'Select an option',
       options: [
-        {
-          id: '1',
-          label: 'Option 1',
-          href: '/option-1',
-          target: '_blank',
-          action: optionAction,
-        },
-        {
-          id: '2',
-          label: 'Option 2',
-        },
+        { id: '1', label: 'Option 1', href: '/option-1', target: '_blank' },
+        { id: '2', label: 'Option 2' },
       ],
     },
   };
@@ -60,106 +50,58 @@ describe('OptionsMessageComponent', () => {
     expect(component.message()).toEqual(mockMessage);
   });
 
-  it('should render wrapper container', () => {
-    const wrapper = fixture.debugElement.query(
-      By.css('.bmb_ai-chat-bubble-options'),
-    );
-
-    expect(wrapper).toBeTruthy();
-  });
-
   it('should render message text', () => {
     const textElement: HTMLElement = fixture.debugElement.query(
       By.css('.bmb_ai-chat-bubble-options-text'),
     ).nativeElement;
 
-    expect(textElement.textContent?.trim()).toBe(mockMessage.content.text!);
+    expect(textElement.textContent?.trim()).toBe('Select an option');
   });
 
-  it('should render all options', () => {
-    const buttons = fixture.debugElement.queryAll(
-      By.css('bmb-container-button'),
+  it('should render an informative text item for options with href', () => {
+    const informative = fixture.debugElement.queryAll(
+      By.directive(BmbItemInformativeTextComponent),
     );
 
-    expect(buttons.length).toBe(2);
+    expect(informative.length).toBe(1);
   });
 
-  it('should pass correct componentTitle input', () => {
-    const button = fixture.debugElement.queryAll(
-      By.css('bmb-container-button'),
-    )[0];
-
-    expect(button.componentInstance.componentTitle()).toBe('Option 1');
-  });
-
-  it('should pass correct target input', () => {
-    const button = fixture.debugElement.queryAll(
-      By.css('bmb-container-button'),
-    )[0];
-
-    expect(button.componentInstance.target()).toBe('_blank');
-  });
-
-  it('should fallback target to _self', () => {
-    const button = fixture.debugElement.queryAll(
-      By.css('bmb-container-button'),
-    )[1];
-
-    expect(button.componentInstance.target()).toBe('_self');
-  });
-
-  it('should pass correct link input', () => {
-    const button = fixture.debugElement.queryAll(
-      By.css('bmb-container-button'),
-    )[0];
-
-    expect(button.componentInstance.link()).toBe('/option-1');
-  });
-
-  it('should fallback link to empty string', () => {
-    const button = fixture.debugElement.queryAll(
-      By.css('bmb-container-button'),
-    )[1];
-
-    expect(button.componentInstance.link()).toBe('');
-  });
-
-  it('should set small input as true', () => {
-    const button = fixture.debugElement.query(By.css('bmb-container-button'));
-
-    expect(button.componentInstance.small()).toBeTrue();
-  });
-
-  it('should set square input as true', () => {
-    const button = fixture.debugElement.query(By.css('bmb-container-button'));
-
-    expect(button.componentInstance.square()).toBeTrue();
-  });
-
-  it('should render data-testid attribute', () => {
-    const button = fixture.debugElement.query(
-      By.css('[data-testid="chat-option-1"]'),
+  it('should render an action item for options without href', () => {
+    const actions = fixture.debugElement.queryAll(
+      By.directive(BmbItemActionsComponent),
     );
 
-    expect(button).toBeTruthy();
+    expect(actions.length).toBe(1);
   });
 
-  it('should trigger option action on button click', () => {
-    const button = fixture.debugElement.query(By.css('bmb-container-button'));
+  it('should pass correct inputs to informative text item', () => {
+    const informative = fixture.debugElement.query(
+      By.directive(BmbItemInformativeTextComponent),
+    ).componentInstance as BmbItemInformativeTextComponent;
 
-    button.triggerEventHandler('onButton', {});
-
-    expect(optionAction).toHaveBeenCalled();
+    expect(informative.supportTextLinkLabel()).toBe('Option 1');
+    expect(informative.supportTextLink()).toBe('/option-1');
+    expect(informative.supportTextTarget()).toBe('_blank');
   });
 
-  it('should not fail if option has no action', () => {
-    const secondButton = fixture.debugElement.queryAll(
-      By.css('bmb-container-button'),
-    )[1];
+  it('should pass correct label to action item', () => {
+    const action = fixture.debugElement.query(
+      By.directive(BmbItemActionsComponent),
+    ).componentInstance as BmbItemActionsComponent;
 
-    expect(() => {
-      secondButton.triggerEventHandler('onButton', {});
-    }).not.toThrow();
+    expect(action.label()).toBe('Option 2');
+  });
+
+  it('should emit getOptionClicked when action item is clicked', () => {
+    jest.spyOn(component.getOptionClicked, 'emit');
+
+    const action = fixture.debugElement.query(
+      By.directive(BmbItemActionsComponent),
+    );
+
+    action.triggerEventHandler('getActionClick', {});
+
+    expect(component.getOptionClicked.emit).toHaveBeenCalled();
   });
 
   it('should not render text when content.text is empty', () => {
