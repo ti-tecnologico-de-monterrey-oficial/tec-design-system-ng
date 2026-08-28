@@ -1,7 +1,7 @@
 import { Component, input, inject } from '@angular/core';
 import { BmbTranslationsService } from '../../../services/translations/translations.service';
 import { BmbIconComponent } from '../../bmb-icon/bmb-icon.component';
-import { BmbVerticalLayoutDirective } from '../../../directives/old/bmb-layout/bmb-vertical-layout/bmb-vertical-layout.directive';
+import { BmbVerticalLayoutDirective } from '../../../directives/bmb-layout/bmb-vertical-layout/bmb-vertical-layout.directive';
 
 @Component({
   selector: 'bmb-search-card-empty-state',

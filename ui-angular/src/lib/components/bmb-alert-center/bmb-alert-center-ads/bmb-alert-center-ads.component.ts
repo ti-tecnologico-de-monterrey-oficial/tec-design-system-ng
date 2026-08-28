@@ -8,7 +8,7 @@ import {
 import { IBmbAlertEmptyState, IBmbDataAlert } from '../types';
 import { CommonModule } from '@angular/common';
 import { BmbCarouselComponent } from '../../bmb-carousel/bmb-carousel.component';
-import { BmbLayoutItemDirective } from '../../../directives/old/bmb-layout/bmb-layout-item.directive';
+import { BmbLayoutItemDirective } from '../../../directives/bmb-layout/bmb-layout-item.directive';
 import { BmbAlertCenterEmptyComponent } from '../bmb-alert-center-empty/bmb-alert-center-empty.component';
 import { BmbAlertCenterDetailComponent } from '../../utils/bmb-alert-center-detail/bmb-alert-center-detail.component';
 

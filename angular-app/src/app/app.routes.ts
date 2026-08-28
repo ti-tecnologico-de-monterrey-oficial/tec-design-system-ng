@@ -357,6 +357,22 @@ export const appRoutes: Route[] = [
       ),
   },
   {
+    path: 'components/icon-status',
+    title: 'BmbIconStatus | Bamboo migration dashboard',
+    loadComponent: () =>
+      import('./components/icon-status-page/icon-status-page').then(
+        ({ IconStatusPage }) => IconStatusPage,
+      ),
+  },
+  {
+    path: 'components/paginator',
+    title: 'BmbPaginator | Bamboo migration dashboard',
+    loadComponent: () =>
+      import('./components/paginator-page/paginator-page').then(
+        ({ PaginatorPage }) => PaginatorPage,
+      ),
+  },
+  {
     path: 'components/hito-list',
     title: 'BmbHitoList | Bamboo migration dashboard',
     loadComponent: () =>

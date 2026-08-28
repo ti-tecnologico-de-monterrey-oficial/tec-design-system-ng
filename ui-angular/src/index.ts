@@ -21,10 +21,10 @@ export * from './lib/pipes/translations';
 
 // Directives
 export * from './lib/directives/old/bmb-button/button.directive';
-export * from './lib/directives/old/bmb-layout/bmb-layout-item.directive';
-export * from './lib/directives/old/bmb-layout/bmb-layout.directive';
-export * from './lib/directives/old/bmb-layout/bmb-vertical-layout/bmb-vertical-layout.directive';
-export * from './lib/directives/old/bmb-layout/bmb-vertical-layout/bmb-vertical-layout-item.directive';
+export * from './lib/directives/bmb-layout/bmb-layout-item.directive';
+export * from './lib/directives/bmb-layout/bmb-layout.directive';
+export * from './lib/directives/bmb-layout/bmb-vertical-layout/bmb-vertical-layout.directive';
+export * from './lib/directives/bmb-layout/bmb-vertical-layout/bmb-vertical-layout-item.directive';
 export * from './lib/directives/old/bmb-button-group/bmb-button-group.directive';
 export * from './lib/directives/old/bmb-accordion/bmb-accordion-control.directive';
 export * from './lib/directives/old/bmb-layout-grid/bmb-layout-grid.directive';

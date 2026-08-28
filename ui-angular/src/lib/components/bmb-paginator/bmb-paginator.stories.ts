@@ -1,4 +1,4 @@
-import { Meta, StoryObj } from '@storybook/angular';
+import type { Meta, StoryObj } from '@storybook/angular';
 import { BmbPaginatorComponent } from './bmb-paginator.component';
 import {
   getBasicExampleBlock,
@@ -121,7 +121,7 @@ ${getBasicExampleBlock(
       table: {
         type: { summary: 'number' },
         category: 'Properties',
-        defaultValue: { summary: 5 },
+        defaultValue: { summary: 1 },
       },
     },
     pageChange: getOnEventParam(
@@ -136,19 +136,6 @@ ${getBasicExampleBlock(
   },
 } as Meta<typeof BmbPaginatorComponent>;
 
-type Story = StoryObj<BmbPaginatorComponent>;
+type Story = StoryObj<typeof BmbPaginatorComponent>;
 
-export const Default: Story = {
-  args: {},
-  render: (args) => ({
-    props: args,
-    template: `
-        <bmb-paginator
-            [totalItems]="totalItems"
-            [itemsPerPage]="itemsPerPage"
-            [currentPage]="currentPage"
-            (pageChange)="onPageChange($event)">
-        </bmb-paginator>
-      `,
-  }),
-};
+export const Default: Story = {};

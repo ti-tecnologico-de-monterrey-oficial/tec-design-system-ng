@@ -13,8 +13,8 @@ import { BmbCheckboxComponent } from '../../bmb-checkbox/bmb-checkbox.component'
 import { IBmbDataAlertsParsed } from '../types';
 import { BmbBadgeComponent } from '../../bmb-badge/bmb-badge.component';
 import { DateTime } from 'luxon';
-import { BmbLayoutDirective } from '../../../directives/old/bmb-layout/bmb-layout.directive';
-import { BmbLayoutItemDirective } from '../../../directives/old/bmb-layout/bmb-layout-item.directive';
+import { BmbLayoutDirective } from '../../../directives/bmb-layout/bmb-layout.directive';
+import { BmbLayoutItemDirective } from '../../../directives/bmb-layout/bmb-layout-item.directive';
 import {
   BmbLayoutGridDirective,
   BmbLayoutGridItemDirective,

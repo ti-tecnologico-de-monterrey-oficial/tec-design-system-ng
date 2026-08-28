@@ -7,14 +7,14 @@ import {
   getGeneralDescription,
 } from '@docs/utils/utils';
 import { BmbVerticalLayoutItemDirective } from './bmb-vertical-layout-item.directive';
-import { BmbIconStatusComponent } from '../../../../components/bmb-icon-status/bmb-icon-status.component';
-import { BmbInnerHeaderComponent } from '../../../../components/bmb-inner-header/bmb-inner-header.component';
+import { BmbIconStatusComponent } from '../../../components/bmb-icon-status/bmb-icon-status.component';
+import { BmbInnerHeaderComponent } from '../../../components/bmb-inner-header/bmb-inner-header.component';
 import {
   BmbCardComponent,
   BmbCardContentComponent,
-} from '../../../../components/bmb-card/bmb-card.component';
-import { BmbProgressBarComponent } from '../../../../components/bmb-progress-bar/bmb-progress-bar.component';
-import { BmbChevronTitleSelectorComponent } from '../../../../components/bmb-chevron-title-selector/bmb-chevron-title-selector.component';
+} from '../../../components/bmb-card/bmb-card.component';
+import { BmbProgressBarComponent } from '../../../components/bmb-progress-bar/bmb-progress-bar.component';
+import { BmbChevronTitleSelectorComponent } from '../../../components/bmb-chevron-title-selector/bmb-chevron-title-selector.component';
 import { BmbLayoutDirective } from '../bmb-layout.directive';
 import { BmbLayoutItemDirective } from '../bmb-layout-item.directive';
 
