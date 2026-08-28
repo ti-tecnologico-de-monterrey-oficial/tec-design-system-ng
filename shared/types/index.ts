@@ -20,6 +20,7 @@ export * from './components/interactive-icon';
 export * from './components/icon-status';
 export * from './components/layout';
 export * from './components/legend';
+export * from './components/list-group';
 export * from './components/notification-counter';
 export * from './components/progress-circle';
 export * from './components/server-table';
