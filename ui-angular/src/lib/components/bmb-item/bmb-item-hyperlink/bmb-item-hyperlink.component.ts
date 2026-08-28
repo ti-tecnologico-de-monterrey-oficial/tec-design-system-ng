@@ -6,8 +6,8 @@ import {
 } from '@angular/core';
 import { IBmbTargetLink } from '../../../_shared/types/index';
 import { BmbIconComponent } from '../../bmb-icon/bmb-icon.component';
-import { BmbLayoutDirective } from '../../../directives/old/bmb-layout/bmb-layout.directive';
-import { BmbLayoutItemDirective } from '../../../directives/old/bmb-layout/bmb-layout-item.directive';
+import { BmbLayoutDirective } from '../../../directives/bmb-layout/bmb-layout.directive';
+import { BmbLayoutItemDirective } from '../../../directives/bmb-layout/bmb-layout-item.directive';
 import { BmbTextLinkComponent } from '../../bmb-text-link/bmb-text-link.component';
 
 @Component({

@@ -1,0 +1,35 @@
+@use '../../styles/playground';
+
+@include playground.page($controls-min: 18rem, $controls-max: 24rem);
+
+:host {
+  background: #f4f6f9;
+  color: #1f2937;
+  min-height: 100%;
+  padding: 2rem;
+}
+
+.preview {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  justify-content: space-between;
+}
+
+.items {
+  display: grid;
+  gap: 0.5rem;
+
+  div {
+    background: #f8fafc;
+    border: 1px solid #d8dee8;
+    border-radius: 0.5rem;
+    padding: 0.75rem 1rem;
+  }
+}
+
+@media (max-width: 700px) {
+  :host {
+    padding: 1rem;
+  }
+}
