@@ -1,3 +1,5 @@
+process.env.TZ = 'America/Mexico_City';
+
 module.exports = {
   displayName: 'ui-angular',
   preset: '../jest.preset.js',
