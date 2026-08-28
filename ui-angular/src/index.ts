@@ -159,6 +159,7 @@ export type {
 export * from './lib/components/bmb-carousel/bmb-carousel.component';
 export * from './lib/components/bmb-action-menu/bmb-action-menu.component';
 export * from './lib/components/bmb-button-icon/bmb-button-icon.component';
+export * from './lib/components/bmb-bot-icon/bmb-bot-icon.component';
 export * from './lib/components/bmb-action-icon/bmb-action-icon.component';
 export * from './lib/components/bmb-form-validator/bmb-form-validator.component';
 export * from './lib/components/bmb-three-cols/bmb-three-cols.component';

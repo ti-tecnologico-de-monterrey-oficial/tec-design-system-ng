@@ -216,6 +216,18 @@ export const sidebarOptions: SidebarElement[][] = [
           title: 'Paginator',
           link: '/components/paginator',
         },
+        {
+          id: 25,
+          icon: 'smart_toy',
+          title: 'Bot icon',
+          link: '/components/bot-icon',
+        },
+        {
+          id: 26,
+          icon: 'menu',
+          title: 'Navigation bar',
+          link: '/components/navigation-bar',
+        },
       ],
     },
   ],
