@@ -5,6 +5,7 @@ import {
   ViewEncapsulation,
   inject,
   effect,
+  untracked,
 } from '@angular/core';
 import { BmbNotificationService } from '../../services/old/notification/notification.service';
 import { INotification } from '../bmb-push-notification/types';
@@ -42,31 +43,26 @@ import { BmbProjectedContentComponent } from './bmb-projected-content/bmb-projec
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BmbPortalComponent {
-  private notificationSignal = inject(BmbNotificationService);
+  private notificationService = inject(BmbNotificationService);
   private modalService = inject(BmbNativeModalService);
   private projectionService = inject(BmbProjectionContentService);
 
-  modalSignal = computed(() => this.modalService.getModalList());
-  notificationsList = computed(() =>
-    this.notificationSignal.getNotificationList(),
+  modals = computed(() => this.modalService.getModalList());
+  notifications = computed(() =>
+    this.notificationService.getNotificationList(),
   );
   projectedContents = computed(() =>
     this.projectionService.getAllProjectedContents(),
   );
-  modalList = computed(() => this.modalService.getModalList());
-
 
   constructor() {
     effect((onCleanup) => {
-      const projectedContent = this.projectedContents();
-      const modals = this.modalList();
-
       const popstateHandler = () => {
-        if (modals.length > 0) {
+        if (untracked(() => this.modals()).length > 0) {
           this.modalService.closeAllModals();
         }
 
-        if (projectedContent.length > 0) {
+        if (untracked(() => this.projectedContents()).length > 0) {
           this.projectionService.closeContent();
         }
       };
@@ -81,16 +77,8 @@ export class BmbPortalComponent {
 
   closeNotification(notification: INotification) {
     if (notification.id) {
-      this.notificationSignal.deleteNotification(notification.id);
+      this.notificationService.deleteNotification(notification.id);
     }
-  }
-
-  getNotificationPosition() {
-    return this.notificationSignal.positionX;
-  }
-
-  handleCloseModal(id: string) {
-    this.modalService.closeModal(id);
   }
 
   handleModalClick(item: IBmbNativeModal, event: unknown) {
@@ -115,6 +103,6 @@ export class BmbPortalComponent {
   }
 
   hasToast(): boolean {
-    return this.notificationsList().some((n) => n.component === 'toast');
+    return this.notifications().some((n) => n.component === 'toast');
   }
 }

@@ -141,7 +141,7 @@ export class BmbProjectionContentService {
     this.runContentHook(content, 'afterCloseContent', 'single');
   }
 
-  getAllProjectedContents() {
+  getAllProjectedContents(): IBmbProjectionContent[] {
     return this.contentList();
   }
 
