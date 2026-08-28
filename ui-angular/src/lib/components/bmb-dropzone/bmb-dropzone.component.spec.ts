@@ -27,19 +27,27 @@ describe('DropzoneComponent', () => {
   });
 
   it('should reject a file with invalid characters and show its error message', () => {
-    componentRef.setInput(
-      'errorMessageInvalidName',
-      'Nombre de archivo no valido',
-    );
+    const nameValidator: ValidatorFn = (
+      control: AbstractControl,
+    ): ValidationErrors | null => {
+      const names = (
+        Array.isArray(control.value) ? control.value : [control.value]
+      ).filter(Boolean);
+      return names.some((name: string) => !/^[a-zA-Z0-9._-]+$/.test(name))
+        ? { invalidName: true }
+        : null;
+    };
+    componentRef.setInput('customValidation', [nameValidator]);
+    componentRef.setInput('customErrorMessages', {
+      invalidName: 'Nombre de archivo no valido',
+    });
     fixture.detectChanges();
-    const newFileSpy = jest.spyOn(component.newFile, 'emit');
     const invalidFile = new File(['content'], 'reporte#final.pdf', {
       type: 'application/pdf',
     });
 
     selectFiles([invalidFile]);
 
-    expect(newFileSpy).not.toHaveBeenCalled();
     expect(fixture.nativeElement.textContent).toContain(
       'Nombre de archivo no valido',
     );

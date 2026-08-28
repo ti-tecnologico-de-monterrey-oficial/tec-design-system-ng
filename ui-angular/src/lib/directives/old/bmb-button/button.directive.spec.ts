@@ -1,28 +1,32 @@
-import { TestBed } from '@angular/core/testing';
+import { Component } from '@angular/core';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
 import { BmbButtonDirective } from './button.directive';
-import {
-  ElementRef,
-  ViewContainerRef,
-  ChangeDetectorRef,
-  Renderer2,
-} from '@angular/core';
+
+@Component({
+  template: `<button bmbButton>Click</button>`,
+  imports: [BmbButtonDirective],
+})
+class TestHostComponent {}
 
 describe('ButtonDirective', () => {
+  let fixture: ComponentFixture<TestHostComponent>;
+  let directive: BmbButtonDirective;
+
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      imports: [TestHostComponent],
+    }).compileComponents();
+
+    fixture = TestBed.createComponent(TestHostComponent);
+    fixture.detectChanges();
+
+    directive = fixture.debugElement
+      .query(By.directive(BmbButtonDirective))
+      .injector.get(BmbButtonDirective);
+  });
+
   it('should create an instance', () => {
-    TestBed.runInInjectionContext(() => {
-      const elMock = {} as ElementRef<any>;
-      const viewContainerRefMock = {} as ViewContainerRef;
-      const cdrMock = {} as ChangeDetectorRef;
-      const rendererMock = {} as Renderer2;
-
-      const directive = new BmbButtonDirective(
-        elMock,
-        viewContainerRefMock,
-        cdrMock,
-        rendererMock,
-      );
-
-      expect(directive).toBeTruthy();
-    });
+    expect(directive).toBeTruthy();
   });
 });

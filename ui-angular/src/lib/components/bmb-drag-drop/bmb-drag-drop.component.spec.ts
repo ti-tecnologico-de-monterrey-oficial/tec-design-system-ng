@@ -93,7 +93,7 @@ describe('BmbDropzoneDirective', () => {
   });
 
   it('should clear drag state after drop', () => {
-    jest.spyOn(service, 'clearDrag').and.callThrough();
+    jest.spyOn(service, 'clearDrag');
 
     service.startDrag({
       id: 1,

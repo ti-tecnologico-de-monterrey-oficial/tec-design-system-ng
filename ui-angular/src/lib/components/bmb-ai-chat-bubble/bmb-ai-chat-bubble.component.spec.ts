@@ -144,7 +144,7 @@ describe('BmbAiChatBubbleComponent', () => {
     jest.spyOn(component.getAction, 'emit');
 
     const mockEvent: BmbChatActionEvent = {
-      action: 'copy',
+      action: 'like',
       messageId: '1',
       message: mockBotMessage,
     };

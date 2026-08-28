@@ -22,7 +22,7 @@
     "build:libs": "npm run json2sass && nx build ui-react && nx build ui-angular",
     "e2e:react": "nx e2e react-app-e2e",
     "e2e:angular": "nx e2e angular-app-e2e",
-    "check:ui": "rm -f dist/storybook/ui-angular/project.json && nx build ui-react && nx test ui-angular --runInBand",
+    "check:ui": "node -e \"try { require('fs').rmSync('dist/storybook/ui-angular/project.json', { force: true }); } catch (e) {}\" && nx build ui-react && nx test ui-angular --runInBand",
     "chromatic:angular": "dotenv -- sh -c 'CHROMATIC_PROJECT_TOKEN=$CHROMATIC_TOKEN_ANGULAR npx chromatic --project-root=ui-angular --storybook-build-dir=dist/storybook/ui-angular'",
     "chromatic:react": "dotenv -- sh -c 'CHROMATIC_PROJECT_TOKEN=$CHROMATIC_TOKEN_REACT npx chromatic --project-root=ui-react --storybook-build-dir=ui-react/storybook-static'",
     "chromatic:all": "npm run chromatic:angular && npm run chromatic:react",

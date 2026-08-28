@@ -1,16 +1,16 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { BmbVerticalLayoutDirective } from './bmb-vertical-layout.directive';
 
 @Component({
   template: `
-    <section id="layout" bmbVerticalLayout [layoutHeight]="height"></section>
+    <section id="layout" bmbVerticalLayout [layoutHeight]="height()"></section>
   `,
   standalone: true,
   imports: [BmbVerticalLayoutDirective],
 })
 class TestHostComponent {
-  height = 'auto';
+  height = signal('auto');
 }
 
 describe('BmbVerticalLayoutDirective', () => {
@@ -34,7 +34,7 @@ describe('BmbVerticalLayoutDirective', () => {
   it('should update host height when layoutHeight changes', () => {
     const component = fixture.componentInstance;
 
-    component.height = '200px';
+    component.height.set('200px');
     fixture.detectChanges();
 
     expect(host.style.height).toBe('200px');
