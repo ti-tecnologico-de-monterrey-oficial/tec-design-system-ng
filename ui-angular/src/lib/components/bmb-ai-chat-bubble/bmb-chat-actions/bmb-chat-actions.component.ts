@@ -80,6 +80,11 @@ export class ChatActionsComponent {
       label: this.translationService.translate('chat_bubbles.copy'),
     },
     {
+      action: 'edit',
+      icon: 'edit',
+      label: this.translationService.translate('chat_bubbles.edit'),
+    },
+    {
       action: 'like',
       icon: 'thumb_up',
       label: this.translationService.translate('chat_bubbles.like'),
@@ -100,6 +105,8 @@ export class ChatActionsComponent {
     this.internalActions().filter(
       (action) =>
         action.visible !== false &&
+        (action.action !== 'edit' ||
+          (this.message().isUser && this.message().type === 'text')) &&
         (this.actions() === null || this.actions()!.includes(action.action)),
     ),
   );

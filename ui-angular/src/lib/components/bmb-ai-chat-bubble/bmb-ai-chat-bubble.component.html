@@ -29,92 +29,101 @@
         }
       </div>
       <div class="bmb_ai-chat-bubble-container">
-        <div
-          #messageContent
-          class="bmb_ai-chat-bubble-msg"
-          [attr.data-testid]="testId() + '-message'"
-        >
-          @if (isThinking()) {
-            <div class="bmb_ai-chat-bubble-thinking-dots">
-              <span class="bmb_ai-chat-bubble-thinking-dot"></span>
-              <span class="bmb_ai-chat-bubble-thinking-dot"></span>
-              <span class="bmb_ai-chat-bubble-thinking-dot"></span>
-            </div>
-          } @else {
-            @switch (message.type) {
-              @case ('text') {
-                <bmb-text-message [message]="message" />
-              }
-
-              @case ('image') {
-                <bmb-image-message
-                  [message]="message"
-                  (imageNotFoundError)="imageNotFoundError.emit()"
-                />
-              }
-
-              @case ('mixed') {
-                <bmb-mixed-message
-                  [message]="message"
-                  (imageNotFoundError)="imageNotFoundError.emit()"
-                />
-              }
-
-              @case ('link') {
-                <bmb-link-message [message]="message" />
-              }
-
-              @case ('options') {
-                <bmb-options-message
-                  [message]="message"
-                  (getOptionClicked)="handleOptionClick($event)"
-                />
-              }
-
-              @case ('template') {
-                <bmb-template-message [message]="message" />
-              }
-
-              @default {
-                <bmb-text-message [message]="message" />
-              }
-            }
-          }
-        </div>
-
-        <div class="bmb_ai-chat-bubble-extra">
-          @if (message.isUser) {
-            @if (showActions() && userActions().length) {
-              <div
-                class="bmb_ai-chat-bubble-extra-container bmb_ai-chat-bubble-extra-container-user"
-                [class.is-copy-result-container]="copyState() !== 'idle'"
-              >
-                <bmb-chat-actions
-                  [message]="message"
-                  [actions]="userActions()"
-                  [copyState]="copyState()"
-                  (actionTriggered)="onAction($event)"
-                />
+        @if (isEditing() && message.isUser && message.type === 'text') {
+          <bmb-ai-chat-editor
+            [initialValue]="message.content.text"
+            [testId]="testId() + '-editor'"
+            (cancelEvent)="cancelEdit()"
+            (saveEvent)="saveEdit($event)"
+          />
+        } @else {
+          <div
+            #messageContent
+            class="bmb_ai-chat-bubble-msg"
+            [attr.data-testid]="testId() + '-message'"
+          >
+            @if (isThinking()) {
+              <div class="bmb_ai-chat-bubble-thinking-dots">
+                <span class="bmb_ai-chat-bubble-thinking-dot"></span>
+                <span class="bmb_ai-chat-bubble-thinking-dot"></span>
+                <span class="bmb_ai-chat-bubble-thinking-dot"></span>
               </div>
-            }
-            <p class="bmb_ai-chat-bubble-extra-time">
-              {{ message.timestamp | date: 'hh:mm a' }}
-            </p>
-          } @else {
-            <div class="bmb_ai-chat-bubble-extra-container">
-              @if (showActions() && !message.isUser) {
-                <bmb-chat-actions
-                  [message]="message"
-                  [copyState]="copyState()"
-                  (actionTriggered)="onAction($event)"
-                />
+            } @else {
+              @switch (message.type) {
+                @case ('text') {
+                  <bmb-text-message [message]="message" />
+                }
+
+                @case ('image') {
+                  <bmb-image-message
+                    [message]="message"
+                    (imageNotFoundError)="imageNotFoundError.emit()"
+                  />
+                }
+
+                @case ('mixed') {
+                  <bmb-mixed-message
+                    [message]="message"
+                    (imageNotFoundError)="imageNotFoundError.emit()"
+                  />
+                }
+
+                @case ('link') {
+                  <bmb-link-message [message]="message" />
+                }
+
+                @case ('options') {
+                  <bmb-options-message
+                    [message]="message"
+                    (getOptionClicked)="handleOptionClick($event)"
+                  />
+                }
+
+                @case ('template') {
+                  <bmb-template-message [message]="message" />
+                }
+
+                @default {
+                  <bmb-text-message [message]="message" />
+                }
               }
-            </div>
-            <p class="bmb_ai-chat-bubble-extra-time">
-              {{ message.timestamp | date: 'hh:mm a' }}
-            </p>
-          }
-        </div>
+            }
+          </div>
+
+          <div class="bmb_ai-chat-bubble-extra">
+            @if (message.isUser) {
+              @if (showActions() && userActions().length) {
+                <div
+                  class="bmb_ai-chat-bubble-extra-container bmb_ai-chat-bubble-extra-container-user"
+                  [class.is-copy-result-container]="copyState() !== 'idle'"
+                >
+                  <bmb-chat-actions
+                    [message]="message"
+                    [actions]="userActions()"
+                    [copyState]="copyState()"
+                    (actionTriggered)="onAction($event)"
+                  />
+                </div>
+              }
+              <p class="bmb_ai-chat-bubble-extra-time">
+                {{ message.timestamp | date: 'hh:mm a' }}
+              </p>
+            } @else {
+              <div class="bmb_ai-chat-bubble-extra-container">
+                @if (showActions() && !message.isUser) {
+                  <bmb-chat-actions
+                    [message]="message"
+                    [copyState]="copyState()"
+                    (actionTriggered)="onAction($event)"
+                  />
+                }
+              </div>
+              <p class="bmb_ai-chat-bubble-extra-time">
+                {{ message.timestamp | date: 'hh:mm a' }}
+              </p>
+            }
+          </div>
+        }
       </div>
     </div>
   </section>
