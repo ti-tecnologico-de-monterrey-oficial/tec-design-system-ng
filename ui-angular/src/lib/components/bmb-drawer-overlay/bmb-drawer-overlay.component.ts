@@ -2,6 +2,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   HostListener,
+  OnInit,
   ViewEncapsulation,
   input,
   output,
@@ -11,6 +12,7 @@ import { BmbInteractiveIconComponent } from '../bmb-interactive-icon/bmb-interac
 import { IBmbApp } from '../../_shared/types';
 import { BmbInnerHeaderComponent } from '../bmb-inner-header/bmb-inner-header.component';
 import { BmbTabsComponent, IBmbTab } from '../bmb-tabs/bmb-tabs.component';
+import { buildMaxElementsErrorMessage } from '../../_shared/logic/utils';
 
 /*
  * TODO: This component is marked as "old" and its decommissioning is planned for future updates.
@@ -30,7 +32,7 @@ import { BmbTabsComponent, IBmbTab } from '../bmb-tabs/bmb-tabs.component';
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
-export class BmbDrawerOverlayComponent {
+export class BmbDrawerOverlayComponent implements OnInit {
   menu = input<any>([]);
   componentTitle = input<string>('');
   dataSearch = input<string[]>([]);
@@ -46,6 +48,13 @@ export class BmbDrawerOverlayComponent {
   isFull: boolean = false;
   activeNavItemIndex: number = 0;
   menuItemLimit: number = 5;
+
+  ngOnInit(): void {
+    console.error('menu', this.menu());
+    if (this.menu()?.length > this.menuItemLimit) {
+      throw new Error(buildMaxElementsErrorMessage(this.menuItemLimit));
+    }
+  }
 
   toggleDrawer() {
     this.isOpen = !this.isOpen;
