@@ -6,42 +6,12 @@ import {
 import { INotification } from '../../../components/bmb-push-notification/types';
 
 import { TestBed } from '@angular/core/testing';
-import { RendererFactory2 } from '@angular/core';
 
 describe('BmbNotificationService', () => {
   let service: BmbNotificationService;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({
-      providers: [
-        BmbNotificationService,
-        {
-          provide: RendererFactory2,
-          useValue: {
-            createRenderer: () => ({
-              setProperty: () => {},
-              setAttribute: () => {},
-              removeAttribute: () => {},
-              addClass: () => {},
-              removeClass: () => {},
-              setStyle: () => {},
-              removeStyle: () => {},
-              destroy: () => {},
-              createElement: (name: string) => document.createElement(name),
-              createComment: (text: string) => document.createComment(text),
-              appendChild: () => {},
-              removeChild: () => {},
-              listen: () => () => {}, // Mock listen method
-            }),
-          },
-        },
-        {
-          provide: 'AppRef',
-          useValue: { attachView: () => {}, components: [] },
-        },
-        { provide: 'EnvironmentInjector', useValue: {} },
-      ],
-    });
+    TestBed.configureTestingModule({});
     service = TestBed.inject(BmbNotificationService);
     service.notificationList.set([]); // Reset state before each test
   });

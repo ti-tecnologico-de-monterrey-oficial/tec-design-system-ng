@@ -46,12 +46,15 @@ export class BmbTranslationsService {
       return;
     }
 
+    if (!this.dictionaries()[lang]) {
+      console.warn(
+        `The selected language "${lang}" does not have an associated dictionary.`,
+      );
+      return;
+    }
+
     this.currentLanguage.set(lang);
     this.bumpTranslationsVersion();
-
-    if (!this.dictionaries()[lang]) {
-      void this.loadDictionaryFromAssets(lang);
-    }
   }
 
   async loadDictionaryFromAssets(

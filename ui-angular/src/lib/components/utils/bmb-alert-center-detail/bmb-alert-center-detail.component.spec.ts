@@ -42,11 +42,11 @@ describe('BmbAlertCenterDetailComponent', () => {
     const dirtyHtml = '<div><script>alert("x")</script><p>ok</p></div>';
     const cleanedHtml = '<div><p>ok</p></div>';
 
-    jest.spyOn(DOMPurify, 'sanitize' as any).and.returnValue(cleanedHtml);
+    jest.spyOn(DOMPurify, 'sanitize' as any).mockReturnValue(cleanedHtml);
     const sanitizerSpy = jest.spyOn(
       (component as any).sanitizer,
       'bypassSecurityTrustHtml',
-    ).and.callThrough();
+    );
 
     const result = component.sanitizedHtml(dirtyHtml);
 
@@ -60,7 +60,7 @@ describe('BmbAlertCenterDetailComponent', () => {
 
   it('should emit alertEvent when handleAlertEvent is called', () => {
     const testAlert = { id: 'test-alert', title: 'Test' } as any;
-    const emitSpy = jest.spyOn(component.alertEvent, 'emit').and.callThrough();
+    const emitSpy = jest.spyOn(component.alertEvent, 'emit');
 
     component.handleAlertEvent(testAlert);
 

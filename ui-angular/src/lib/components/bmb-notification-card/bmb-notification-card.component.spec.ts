@@ -12,6 +12,12 @@ class MockBmbTranslationsService {
   translate(key: string) {
     return key;
   }
+  getTranslationVersion() {
+    return 0;
+  }
+  getCurrentLanguage() {
+    return 'es';
+  }
 }
 
 class MockBmbProjectionContentService {
