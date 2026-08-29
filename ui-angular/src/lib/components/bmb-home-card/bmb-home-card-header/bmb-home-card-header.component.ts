@@ -13,6 +13,7 @@ import {
   ViewChild,
   inject,
   signal,
+  computed,
 } from '@angular/core';
 
 import { IBmbDataTopBar } from '../../bmb-breadcrumb/bmb-breadcrumb.component';
@@ -80,7 +81,13 @@ export class BmbHomeCardHeaderComponent implements OnInit {
 
   @ViewChild('actionMenu') actionMenu!: TemplateRef<unknown>;
 
-  actionLimit = signal(2);
+  GENERAL_ACTIONS_LIMIT = 2;
+  AI_CHAT_CARD_PARTICULARITY_LIMIT = 1;
+  actionsLimit = computed(() =>
+    this.showOneHeaderAction()
+      ? this.AI_CHAT_CARD_PARTICULARITY_LIMIT
+      : this.GENERAL_ACTIONS_LIMIT,
+  );
   MAX_ACTIONS = 8;
   isGreaterThanLimit = false;
   idActionMenu = signal<string>('');
@@ -89,9 +96,6 @@ export class BmbHomeCardHeaderComponent implements OnInit {
   );
 
   constructor() {
-    if (this.showOneHeaderAction()) {
-      this.actionLimit.set(1);
-    }
     effect(() => {
       const deprecatedTitle = this.title();
       const newTitle = this.componentTitle();
@@ -109,7 +113,7 @@ export class BmbHomeCardHeaderComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.isGreaterThanLimit = this.actionHeaders().length > this.actionLimit();
+    this.isGreaterThanLimit = this.actionHeaders().length > this.actionsLimit();
 
     if (this.actionHeaders().length > this.MAX_ACTIONS) {
       throw new Error(buildMaxElementsErrorMessage(this.MAX_ACTIONS));
