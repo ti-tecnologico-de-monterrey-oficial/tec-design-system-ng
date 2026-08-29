@@ -2,15 +2,14 @@ import {
   AfterViewInit,
   ChangeDetectionStrategy,
   Component,
-  ContentChildren,
+  computed,
+  contentChildren,
   effect,
   inject,
   input,
   model,
-  QueryList,
-  signal,
   TemplateRef,
-  ViewChild,
+  viewChild,
   ViewEncapsulation,
 } from '@angular/core';
 import { BmbHomeCardComponent } from '../bmb-home-card/bmb-home-card.component';
@@ -74,48 +73,42 @@ export class BmbAIChatCardComponent implements AfterViewInit {
     BmbProjectionContentService,
   );
 
-  @ViewChild('aiChatContent') aiChatContent!: TemplateRef<any>;
+  private aiChatContent = viewChild<TemplateRef<any>>('aiChatContent');
   private aiChatId = 'ai_chat_bar_actions_dialog';
-  private initialMode = '';
+  private initialMode = this.mode();
 
-  @ContentChildren(BmbChatBarComponent)
-  private aiChatBar!: QueryList<BmbChatBarComponent>;
-  protected isOneChatBar = signal(true);
+  private aiChatBar = contentChildren(BmbChatBarComponent);
+  protected isOneChatBar = computed(() => this.aiChatBar().length === 1);
 
   ngAfterViewInit(): void {
-    const _length = this.aiChatBar.length;
-    // this.isOneChatBar.set(_length === 1);
+    const _length = this.aiChatBar().length;
 
     if (_length !== 1) {
       console.error(
-        `Remember that there must be exactly one <bmb-chat-bar>; ${_length} were found. The component will not render.`,
+        `Remember that there must be exactly one bmb-chat-bar; ${_length} were found. The component will not render.`,
       );
-    }
-
-    if (this.mode() === 'chat') {
-      this.contentProjected.openContent({
-        id: this.aiChatId,
-        content: this.aiChatContent,
-        dialogClass: ['bmb_ai-chat-card-dialog'],
-        focusOnOpen: true,
-      });
     }
   }
 
   constructor() {
     effect(() => {
       /**Handle - Content projection  */
-      if (this.mode() === 'chat') {
+      const content = this.aiChatContent();
+      const mode = this.mode();
+
+      if (mode === 'chat') {
+        if (!content) return;
+
         this.contentProjected.openContent({
           id: this.aiChatId,
-          content: this.aiChatContent,
+          content,
           dialogClass: ['bmb_ai-chat-card-dialog'],
           focusOnOpen: true,
         });
       } else if (
-        this.mode() === 'compact' ||
-        this.mode() === 'expanded' ||
-        this.mode() === 'invisible'
+        mode === 'compact' ||
+        mode === 'expanded' ||
+        mode === 'invisible'
       ) {
         if (this.contentProjected.isContentOpen(this.aiChatId)) {
           this.contentProjected.closeContent(this.aiChatId);
