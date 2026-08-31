@@ -1,7 +1,6 @@
 .page-shell {
   margin: 0 auto;
   max-width: 90rem;
-  padding: 2rem;
 }
 
 .eyebrow {
@@ -16,6 +15,7 @@
   gap: 2rem;
   grid-template-columns: minmax(14rem, 20rem) minmax(0, 1fr);
   margin-top: 2rem;
+  height: 100%;
 }
 
 .controls,
@@ -23,6 +23,7 @@
   border: 1px solid var(--general-contrasts-25);
   border-radius: 1rem;
   padding: 1.5rem;
+  height: 65%;
 }
 
 .field {
@@ -63,8 +64,11 @@
 }
 
 .card-demo {
-  margin-top: 2rem;
-  min-height: 28rem;
+  height: 100%;
+}
+
+.bmb_template-single-home-card-main {
+  padding-top: var(--bmb-spacing-s);
 }
 
 @media (max-width: 48rem) {
