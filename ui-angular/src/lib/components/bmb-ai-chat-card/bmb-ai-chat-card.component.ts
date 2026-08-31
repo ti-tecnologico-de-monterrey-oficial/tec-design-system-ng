@@ -8,6 +8,7 @@ import {
   inject,
   input,
   model,
+  OnInit,
   TemplateRef,
   viewChild,
   ViewEncapsulation,
@@ -55,7 +56,7 @@ export type IBmbAIChatCardMode = (typeof BMB_AI_CHAT_CARD_MODE_LIST)[number];
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class BmbAIChatCardComponent implements AfterViewInit {
+export class BmbAIChatCardComponent implements OnInit, AfterViewInit {
   bgIconAppearance = input<IBmbColor>('gray-charade-500');
   componentTitle = input<string>('');
   subtitle = input<string>();
@@ -75,10 +76,14 @@ export class BmbAIChatCardComponent implements AfterViewInit {
 
   private aiChatContent = viewChild<TemplateRef<any>>('aiChatContent');
   private aiChatId = 'ai_chat_bar_actions_dialog';
-  private initialMode = this.mode();
+  private initialMode: IBmbAIChatCardMode = 'expanded';
 
   private aiChatBar = contentChildren(BmbChatBarComponent);
   protected isOneChatBar = computed(() => this.aiChatBar().length === 1);
+
+  ngOnInit(): void {
+    this.initialMode = this.mode();
+  }
 
   ngAfterViewInit(): void {
     const _length = this.aiChatBar().length;
