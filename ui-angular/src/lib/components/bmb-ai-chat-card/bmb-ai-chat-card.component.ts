@@ -27,6 +27,7 @@ import { CommonModule } from '@angular/common';
 import { BmbBotIconComponent } from '../bmb-bot-icon/bmb-bot-icon.component';
 import { IBmbActionHeader } from '../../_shared/types';
 import { getUUID } from '../../_shared/logic/utils';
+import { BmbTranslationsService } from '../../services/translations/translations.service';
 
 export const BMB_AI_CHAT_CARD_MODE_LIST: string[] = [
   'compact',
@@ -73,13 +74,27 @@ export class BmbAIChatCardComponent implements OnInit, AfterViewInit {
   private contentProjected: BmbProjectionContentService = inject(
     BmbProjectionContentService,
   );
+  private readonly translationService = inject(BmbTranslationsService);
 
   private aiChatContent = viewChild<TemplateRef<any>>('aiChatContent');
-  private aiChatId = 'ai_chat_bar_actions_dialog';
-  private initialMode: IBmbAIChatCardMode = 'expanded';
 
   private aiChatBar = contentChildren(BmbChatBarComponent);
   protected isOneChatBar = computed(() => this.aiChatBar().length === 1);
+  protected headerActionList = computed(() =>
+    this.mode() === 'chat'
+      ? [
+          {
+            icon: 'zoom_out_map',
+            tooltipText: this.translationService.translate('home_card.expand'),
+            action: () => this.handleExpand(),
+          },
+          ...this.headerActions(),
+        ]
+      : [],
+  );
+
+  private aiChatId = 'ai_chat_bar_actions_dialog';
+  private initialMode: IBmbAIChatCardMode = 'expanded';
 
   ngOnInit(): void {
     this.initialMode = this.mode();
@@ -122,8 +137,12 @@ export class BmbAIChatCardComponent implements OnInit, AfterViewInit {
     });
   }
 
-  protected openChatFromCompact(): void {
+  protected openChat(): void {
     this.mode.set('chat');
+  }
+
+  protected handleExpand(): void {
+    this.mode.set('expanded');
   }
 
   protected handleExpandOrContract(): void {
@@ -132,6 +151,7 @@ export class BmbAIChatCardComponent implements OnInit, AfterViewInit {
       if (value === 'chat') {
         return this.initialMode === 'invisible' ? 'invisible' : 'compact';
       }
+      if (value === 'expanded') return 'chat';
       return 'expanded';
     });
   }

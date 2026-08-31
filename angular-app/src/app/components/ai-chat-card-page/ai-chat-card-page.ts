@@ -66,33 +66,10 @@ export class AiChatCardPage {
 
   readonly headerActions: IBmbActionHeader[] = [
     {
-      icon: 'language_spanish',
-      iconActiveToggle: 'language_us',
-      isAccentColor: false,
-      tooltipText: 'Language',
+      icon: 'chat_add_on',
+      tooltipText: 'New chat',
       action: () => {
-        console.info('Language');
-      },
-    },
-    {
-      icon: 'edit',
-      tooltipText: 'Edit',
-      action: () => {
-        console.info('Edit');
-      },
-    },
-    {
-      icon: 'delete',
-      tooltipText: 'Delete',
-      action: () => {
-        console.info('Delete');
-      },
-    },
-    {
-      icon: 'info',
-      tooltipText: 'Info',
-      action: () => {
-        console.info('Info');
+        console.info('New chat');
       },
     },
   ];

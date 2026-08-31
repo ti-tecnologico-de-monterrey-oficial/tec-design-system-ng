@@ -6,7 +6,7 @@
         componentTitle() || ('home_card_chat.title' | translate)
       "
       [subtitle]="subtitle() || ('home_card_chat.subtitle' | translate)"
-      [actionHeaders]="headerActions()"
+      [actionHeaders]="headerActionList()"
       [isExpanded]="true"
       [showOneHeaderAction]="true"
       [(currentBot)]="currentBot"
@@ -38,7 +38,7 @@
     [tooltipText]="currentBot().name"
     [iconSize]="40"
     [isSVGTemplate]="true"
-    (buttonClick)="openChatFromCompact()"
+    (buttonClick)="openChat()"
   >
     <ng-template #customActionIcon>
       <bmb-bot-icon [iconName]="currentBot().icon" />
