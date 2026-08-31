@@ -434,5 +434,21 @@ export const appRoutes: Route[] = [
         ({ NavigationBarPage }) => NavigationBarPage,
       ),
   },
+  {
+    path: 'components/box-icon',
+    title: 'BmbBoxIcon | Bamboo migration dashboard',
+    loadComponent: () =>
+      import('./components/box-icon-page/box-icon-page').then(
+        ({ BoxIconPage }) => BoxIconPage,
+      ),
+  },
+  {
+    path: 'components/alert-center-detail',
+    title: 'BmbAlertCenterDetail | Bamboo migration dashboard',
+    loadComponent: () =>
+      import('./components/alert-center-detail-page/alert-center-detail-page').then(
+        ({ AlertCenterDetailPage }) => AlertCenterDetailPage,
+      ),
+  },
   { path: '**', redirectTo: 'components/carousel' },
 ];
