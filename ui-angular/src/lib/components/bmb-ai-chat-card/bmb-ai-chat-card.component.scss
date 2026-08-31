@@ -3,8 +3,8 @@
 @use '../../../../../shared/assets/styles/base/mixins' as mixins;
 
 .bmb_ai-chat-card {
-  display: flex;
-  width: 100%;
+  display: block;
+  width: 100% !important;
   height: 100%;
 
   &-wrapper,
@@ -45,27 +45,27 @@
       left: inherit;
       right: rem.rem_calc(20);
       bottom: rem.rem_calc(20);
-
-      > * {
-        width: 100%;
-        height: calc(100dvh - rem.rem_calc(100));
-      }
-
-      .bmb_home-card-container {
-        height: calc(100% - rem.rem_calc(83));
-      }
+      height: calc(100dvh - rem.rem_calc(100));
     }
   }
 
   bmb-home-card,
   .bmb_home-card,
   .bmb_home-card-wrapper {
-    width: 100%;
     height: 100%;
+  }
+
+  .bmb_home-card-wrapper {
+    display: flex;
+    flex-direction: column;
   }
 }
 
-:host {
+bmb-ai-chat-card:not(:empty) {
   display: block;
   height: 100%;
+
+  .bmb_home-card-wrapper-container {
+    flex: 1;
+  }
 }
