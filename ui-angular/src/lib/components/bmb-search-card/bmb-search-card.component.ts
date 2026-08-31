@@ -111,6 +111,7 @@ export class BmbSearchCardComponent {
     );
   });
   tabsData = computed<IBmbTab[]>(() => {
+    const _disableFavoritesTab = this.disableFavoritesTab();
     const rowTabs = [
     {
       title: this.translationsService.translate('search_card.tabs.all'),
@@ -118,29 +119,28 @@ export class BmbSearchCardComponent {
         this.computedResults().persons.length +
         this.computedResults().services.length,
       isActive: true,
+      id: 0,
     },
     {
       title: this.translationsService.translate('search_card.tabs.favorites'),
       badge: this.computedResults().favorites.length,
+      id: 1,
+      isMobile: !_disableFavoritesTab,
+      isDesktop: !_disableFavoritesTab,
     },
     {
       title: this.translationsService.translate('search_card.tabs.services'),
       badge: this.computedResults().services.length,
+      id: 2,
     },
     {
       title: this.translationsService.translate('search_card.tabs.people'),
       badge: this.computedResults().persons.length,
+      id: 3,
     },
   ];
 
-  if (this.disableFavoritesTab()) {
-    rowTabs.splice(1, 1);
-  }
-
-    return rowTabs.map((tab, index) => ({
-      ...tab,
-      id: index,
-    }));
+    return rowTabs;
   });
 
   constructor() {

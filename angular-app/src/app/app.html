@@ -211,9 +211,10 @@
 
 <ng-template #searchTemplate>
   <bmb-search-card
-  [disableFavoritesTab]="false"
+    [disableFavoritesTab]="true"
     [componentTitle]="''"
     [inputPlaceholder]="''"
+    [favorites]="favorites"
     [results]="resultList()"
     (triggerSearch)="handleSearchChange($event)"
     [isLoading]="isSearchLoading()"
