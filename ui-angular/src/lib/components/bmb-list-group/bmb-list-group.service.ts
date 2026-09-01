@@ -1,9 +1,5 @@
 import { Injectable, signal } from '@angular/core';
-
-export interface IBmbListGroupServiceConfig {
-  isMultipleSelection: boolean;
-  showControls: boolean;
-}
+import { IBmbListGroupServiceConfig } from '../../_shared/types/components/list-group';
 
 @Injectable({
   providedIn: 'root',

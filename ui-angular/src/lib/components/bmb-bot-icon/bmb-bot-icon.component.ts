@@ -13,10 +13,6 @@ export type {
   BmbBotIconPreset,
 } from '../../_shared/types/components/bot-icon';
 
-/*
- * TODO: This component is marked as "old" and its decommissioning is planned for future updates.
- */
-
 @Component({
   selector: 'bmb-bot-icon',
   standalone: true,

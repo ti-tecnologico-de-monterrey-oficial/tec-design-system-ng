@@ -10,12 +10,14 @@ import {
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SizeNames } from '../../_shared/types';
-import { BorderType } from './types';
+import { BorderType } from '../../_shared/types/components/list-group';
+import {
+  getListGroupClassNames,
+  getListGroupStyles,
+  getListGroupVarStyles,
+} from '../../_shared/logic/components/list-group';
 import { BmbListGroupStatusService } from './bmb-list-group.service';
 
-/*
- * TODO: This component is marked as "old" and its decommissioning is planned for future updates.
- */
 
 @Component({
   selector: 'bmb-list-group',
@@ -58,28 +60,22 @@ export class BmbListGroupComponent implements OnInit {
   }
 
   getVarStyles(size: SizeNames | SizeNames[], unit = 'spacing') {
-    if (Array.isArray(size)) {
-      return size.map((s) => `var(--bmb-${unit}-${s})`).join(' ');
-    } else {
-      return `var(--bmb-${unit}-${size})`;
-    }
+    return getListGroupVarStyles(size, unit);
   }
 
   getClassNames() {
-    const classList = ['bmb_list-group', `bmb_list-group-${this.borderType()}`];
-    if (!this.showControls()) classList.push('bmb_list-group-no-controls');
-    if (this.isRowView()) classList.push('bmb_list-group-row');
-    return classList;
+    return getListGroupClassNames({
+      borderType: this.borderType(),
+      showControls: this.showControls(),
+      isRowView: this.isRowView(),
+    });
   }
 
   getStyles() {
-    return {
-      '--bmb-list-group-item-radius': this.getVarStyles(
-        this.borderRadius(),
-        'radius',
-      ),
-      '--bmb-list-group-item-padding': this.getVarStyles(this.padding()),
-      gap: `var(--bmb-spacing-${this.margin()})`,
-    };
+    return getListGroupStyles({
+      borderRadius: this.borderRadius(),
+      padding: this.padding(),
+      margin: this.margin(),
+    });
   }
 }
