@@ -53,4 +53,12 @@ describe('BmbGenericCardButtonComponent', () => {
 
     expect(emitSpy).not.toHaveBeenCalled();
   });
+
+  it('should ignore non-keyboard events', () => {
+    const emitSpy = jest.spyOn(component.cardClick, 'emit');
+
+    component.handleKeydown(new Event('keydown'));
+
+    expect(emitSpy).not.toHaveBeenCalled();
+  });
 });

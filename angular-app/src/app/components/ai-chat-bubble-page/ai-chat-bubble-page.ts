@@ -6,8 +6,10 @@ import {
 } from '@angular/core';
 import {
   BmbAiChatBubbleComponent,
+  type BmbChatAction,
   type BmbChatActionEvent,
   type BmbChatMessage,
+  type BmbChatMessageEditedEvent,
 } from 'ui-angular';
 import { CHAT_USER_IMAGE_OPTIONS } from './chat-user-image-options';
 
@@ -20,10 +22,11 @@ import { CHAT_USER_IMAGE_OPTIONS } from './chat-user-image-options';
 })
 export class AiChatBubblePage {
   readonly userCopyEnabled = signal(true);
+  readonly userEditEnabled = signal(true);
   readonly conversationEvent = signal('Sin interacciones');
   readonly userImageOptions = CHAT_USER_IMAGE_OPTIONS;
   readonly selectedUserImage = signal(CHAT_USER_IMAGE_OPTIONS[0].value);
-  private readonly baseConversation: BmbChatMessage[] = [
+  private readonly baseConversation = signal<BmbChatMessage[]>([
     {
       id: 'assistant-welcome',
       isUser: false,
@@ -56,10 +59,17 @@ export class AiChatBubblePage {
       },
       timestamp: new Date(),
     },
-  ];
+  ]);
+
+  readonly userActions = computed<BmbChatAction[]>(() => {
+    const actions: BmbChatAction[] = [];
+    if (this.userCopyEnabled()) actions.push('copy');
+    if (this.userEditEnabled()) actions.push('edit');
+    return actions;
+  });
 
   readonly conversation = computed<BmbChatMessage[]>(() =>
-    this.baseConversation.map((message) =>
+    this.baseConversation().map((message) =>
       message.isUser
         ? { ...message, userProfile: this.selectedUserImage() }
         : message,
@@ -71,6 +81,27 @@ export class AiChatBubblePage {
   }
 
   handleConversationAction(event: BmbChatActionEvent): void {
+    console.info('BmbAiChatBubble getAction:', event);
     this.conversationEvent.set(`${event.action} · mensaje ${event.messageId}`);
+  }
+
+  handleMessageEditCancelled(message: BmbChatMessage): void {
+    console.info('BmbAiChatBubble messageEditCancelled:', message);
+    this.conversationEvent.set(`edición cancelada · mensaje ${message.id}`);
+  }
+
+  handleMessageEdited(event: BmbChatMessageEditedEvent): void {
+    console.info('BmbAiChatBubble messageEdited:', event);
+    this.baseConversation.update((messages) => {
+      const messageIndex = messages.findIndex(
+        ({ id }) => id === event.previousMessage.id,
+      );
+
+      if (messageIndex === -1) return messages;
+
+      return [...messages.slice(0, messageIndex), event.editedMessage];
+    });
+
+    this.conversationEvent.set(`editado · mensaje ${event.previousMessage.id}`);
   }
 }

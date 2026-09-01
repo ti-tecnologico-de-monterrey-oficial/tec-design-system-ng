@@ -1,0 +1,35 @@
+<div class="bmb_ai-chat-editor">
+  <textarea
+    #textarea
+    class="bmb_ai-chat-editor-textarea"
+    rows="3"
+    [value]="draft()"
+    [attr.data-testid]="testId() + '-textarea'"
+    [attr.aria-label]="'Editar mensaje'"
+    (input)="updateDraft($event)"
+  ></textarea>
+
+  <div class="bmb_ai-chat-editor-controls">
+    <button
+      bmbButton
+      type="button"
+      appearance="transparent"
+      size="micro"
+      [attr.data-testid]="testId() + '-cancel'"
+      (click)="handleCancel()"
+    >
+      {{ cancelLabel }}
+    </button>
+    <button
+      bmbButton
+      type="button"
+      appearance="secondary-filled"
+      size="micro"
+      [disabled]="!canSave()"
+      [attr.data-testid]="testId() + '-save'"
+      (click)="handleSave()"
+    >
+      {{ saveLabel }}
+    </button>
+  </div>
+</div>

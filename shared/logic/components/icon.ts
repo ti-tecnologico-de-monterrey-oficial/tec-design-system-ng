@@ -1,22 +1,12 @@
-/**
- * Pure logic shared by the Angular bmb-icon implementation.
- */
+export const getIconFontVariationSettings = (): string => {
+  const fill = "'FILL' 1";
+  const weight = 'wght 400';
+  return `${fill}, ${weight}`;
+};
 
-export class BmbIconLogic {
-  static isImage(icon: string): boolean {
-    const regx = /\.|\//gm;
-    return regx.test(icon);
-  }
-
-  static getFontVariationSettings(): string {
-    return 'wght 400, grad 200, opsz 40';
-  }
-
-  static getImageStyles(size?: number): Record<string, string> {
-    return {
-      width: size ? `${size}px` : '1em',
-      height: size ? `${size}px` : '1em',
-      display: 'block',
-    };
-  }
-}
+export const getIconImageStyles = (
+  size?: number,
+): Record<string, string> => ({
+  width: size ? `${size}px` : '1em',
+  height: size ? `${size}px` : '1em',
+});

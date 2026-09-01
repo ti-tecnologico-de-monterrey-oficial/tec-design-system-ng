@@ -276,6 +276,10 @@
     "repeat": "Repeat answer",
     "voice": "Listen to answer",
     "copy": "Copy content",
+    "edit": "Edit message",
+    "cancel_edit": "Cancel",
+    "save_edit": "Save",
+    "edit_warning": "Saving will remove all subsequent messages",
     "like": "Like",
     "dislike": "Dislike"
   },

@@ -55,7 +55,7 @@ describe('ChatActionsComponent', () => {
   });
 
   it('should initialize internal actions', () => {
-    expect(component.internalActions().length).toBe(5);
+    expect(component.internalActions().length).toBe(6);
   });
 
   it('should render all visible actions', () => {
@@ -82,6 +82,24 @@ describe('ChatActionsComponent', () => {
   it('should filter actions using the configured action list', () => {
     componentRef.setInput('actions', ['copy']);
 
+    fixture.detectChanges();
+
+    expect(component.visibleActions().map((action) => action.action)).toEqual([
+      'copy',
+    ]);
+  });
+
+  it('should expose edit only for user text messages', () => {
+    componentRef.setInput('message', { ...mockMessage, isUser: true });
+    componentRef.setInput('actions', ['copy', 'edit']);
+    fixture.detectChanges();
+
+    expect(component.visibleActions().map((action) => action.action)).toEqual([
+      'copy',
+      'edit',
+    ]);
+
+    componentRef.setInput('message', mockMessage);
     fixture.detectChanges();
 
     expect(component.visibleActions().map((action) => action.action)).toEqual([
@@ -140,8 +158,8 @@ describe('ChatActionsComponent', () => {
       .internalActions()
       .find((item) => item.action === 'dislike');
 
-    expect(likeAction?.active).toBeTrue();
-    expect(dislikeAction?.active).toBeFalse();
+    expect(likeAction?.active).toBe(true);
+    expect(dislikeAction?.active).toBe(false);
   });
 
   it('should activate dislike action', () => {
@@ -159,8 +177,8 @@ describe('ChatActionsComponent', () => {
       .internalActions()
       .find((item) => item.action === 'dislike');
 
-    expect(likeAction?.active).toBeFalse();
-    expect(dislikeAction?.active).toBeTrue();
+    expect(likeAction?.active).toBe(false);
+    expect(dislikeAction?.active).toBe(true);
   });
 
   it('should toggle like action', () => {
@@ -175,7 +193,7 @@ describe('ChatActionsComponent', () => {
       .internalActions()
       .find((item) => item.action === 'like');
 
-    expect(likeAction?.active).toBeFalse();
+    expect(likeAction?.active).toBe(false);
   });
 
   it('should add active class to active action', () => {

@@ -59,6 +59,7 @@ export * from './lib/components/bmb-container-button/bmb-container-button-comple
 export * from './lib/components/bmb-container-button/bmb-container-button-complex-alternative/bmb-container-button-complex-alternative.component';
 export * from './lib/components/bmb-container-button/bmb-container-button-user-image/bmb-container-button-user-image.component';
 export * from './lib/components/bmb-box-icon/bmb-box-icon.component';
+export * from './lib/components/utils/bmb-alert-center-detail/bmb-alert-center-detail.component';
 export * from './lib/components/bmb-interactive-icon/bmb-interactive-icon.component';
 export * from './lib/components/bmb-fab/bmb-fab.component';
 export * from './lib/components/bmb-theme/bmb-theme.component';
@@ -143,6 +144,7 @@ export * from './lib/components/bmb-image/bmb-image.component';
 export * from './lib/components/bmb-icon-status/bmb-icon-status.component';
 export * from './lib/components/bmb-chat-bubbles/bmb-chat-bubbles.component';
 export * from './lib/components/bmb-ai-chat-bubble/bmb-ai-chat-bubble.component';
+export * from './lib/components/bmb-ai-chat-editor/bmb-ai-chat-editor.component';
 export * from './lib/components/bmb-digital-id/bmb-digital-id.component';
 export * from './lib/components/bmb-sounds-card/bmb-sounds-card.component';
 export * from './lib/components/bmb-chevron-title-selector/bmb-chevron-title-selector.component';
@@ -158,6 +160,7 @@ export type {
 export * from './lib/components/bmb-carousel/bmb-carousel.component';
 export * from './lib/components/bmb-action-menu/bmb-action-menu.component';
 export * from './lib/components/bmb-button-icon/bmb-button-icon.component';
+export * from './lib/components/bmb-bot-icon/bmb-bot-icon.component';
 export * from './lib/components/bmb-action-icon/bmb-action-icon.component';
 export * from './lib/components/bmb-form-validator/bmb-form-validator.component';
 export * from './lib/components/bmb-three-cols/bmb-three-cols.component';

@@ -1,0 +1,47 @@
+<header class="page-header">
+  <p class="eyebrow">Componente migrado</p>
+  <h1>BmbBotIcon</h1>
+  <p>Prueba identificadores integrados, nombres personalizados y archivos SVG.</p>
+</header>
+
+<section class="playground" aria-labelledby="bot-icon-properties-heading">
+  <aside class="controls">
+    <h2 id="bot-icon-properties-heading">Propiedades</h2>
+
+    <label for="bot-icon-preset">iconName predefinido</label>
+    <select
+      id="bot-icon-preset"
+      [value]="iconName()"
+      (change)="setIconName($any($event.target).value)"
+    >
+      @for (preset of presets; track preset) {
+        <option [value]="preset">{{ preset }}</option>
+      }
+    </select>
+
+    <label for="bot-icon-custom">iconName personalizado</label>
+    <input
+      id="bot-icon-custom"
+      type="text"
+      [value]="iconName()"
+      (input)="setIconName($any($event.target).value)"
+    />
+
+    <label for="bot-icon-color">Color</label>
+    <select
+      id="bot-icon-color"
+      [value]="iconColor()"
+      (change)="setIconColor($any($event.target).value)"
+    >
+      @for (option of colorOptions; track option.value) {
+        <option [value]="option.value">{{ option.label }}</option>
+      }
+    </select>
+
+    <p><strong>Valor actual:</strong> {{ iconName() || '(vacío)' }}</p>
+  </aside>
+
+  <div class="preview">
+    <bmb-bot-icon [iconName]="iconName()" [style.color]="iconColor()" />
+  </div>
+</section>

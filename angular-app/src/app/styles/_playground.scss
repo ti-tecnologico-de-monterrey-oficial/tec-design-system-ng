@@ -1,8 +1,10 @@
 $mobile-breakpoint: 700px;
 $surface: #fff;
+$preview-surface: #4d4d4f;
 $border-color: #d8dee8;
 $control-border-color: #8b96a8;
 $eyebrow-color: #356f5b;
+$text-color: #5f5a5a;
 
 @mixin page(
   $controls-min: 12rem,
@@ -41,7 +43,6 @@ $eyebrow-color: #356f5b;
 
   .controls,
   .preview {
-    background: $surface;
     border: 1px solid $border-color;
     border-radius: 0.75rem;
     padding: 1.5rem;
@@ -49,22 +50,32 @@ $eyebrow-color: #356f5b;
 
   .controls {
     align-self: start;
+    background: $surface;
+    color: $text-color;
     display: grid;
     gap: 0.75rem;
 
     h2 {
+      color: $text-color;
       margin: 0 0 0.5rem;
+    }
+
+    label,
+    output {
+      color: $text-color;
     }
 
     input,
     select {
       border: 1px solid $control-border-color;
       border-radius: 0.375rem;
+      color: $text-color;
       padding: 0.625rem;
     }
   }
 
   .preview {
+    background: $preview-surface;
     min-height: $preview-min-height;
     min-width: 0;
   }

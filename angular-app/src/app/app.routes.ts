@@ -418,5 +418,71 @@ export const appRoutes: Route[] = [
         ({ DropzonePage }) => DropzonePage,
       ),
   },
+  {
+    path: 'components/bot-icon',
+    title: 'BmbBotIcon | Bamboo migration dashboard',
+    loadComponent: () =>
+      import('./components/bot-icon-page/bot-icon-page').then(
+        ({ BotIconPage }) => BotIconPage,
+      ),
+  },
+  {
+    path: 'components/navigation-bar',
+    title: 'BmbNavigationBar | Bamboo migration dashboard',
+    loadComponent: () =>
+      import('./components/navigation-bar-page/navigation-bar-page').then(
+        ({ NavigationBarPage }) => NavigationBarPage,
+      ),
+  },
+  {
+    path: 'components/box-icon',
+    title: 'BmbBoxIcon | Bamboo migration dashboard',
+    loadComponent: () =>
+      import('./components/box-icon-page/box-icon-page').then(
+        ({ BoxIconPage }) => BoxIconPage,
+      ),
+  },
+  {
+    path: 'components/alert-center-detail',
+    title: 'BmbAlertCenterDetail | Bamboo migration dashboard',
+    loadComponent: () =>
+      import('./components/alert-center-detail-page/alert-center-detail-page').then(
+        ({ AlertCenterDetailPage }) => AlertCenterDetailPage,
+      ),
+  },
+  {
+    path: 'components/top-bar-item',
+    title: 'BmbTopBarItem | Bamboo migration dashboard',
+    loadComponent: () =>
+      import('./components/top-bar-item-page/top-bar-item-page').then(
+        ({ TopBarItemPage }) => TopBarItemPage,
+      ),
+  },
+  {
+    path: 'components/interactive-item-text-button',
+    title: 'BmbInteractiveItemTextButton | Bamboo migration dashboard',
+    loadComponent: () =>
+      import(
+        './components/interactive-item-text-button-page/interactive-item-text-button-page'
+      ).then(
+        ({ InteractiveItemTextButtonPage }) => InteractiveItemTextButtonPage,
+      ),
+  },
+  {
+    path: 'components/button-icon',
+    title: 'BmbButtonIcon | Bamboo migration dashboard',
+    loadComponent: () =>
+      import('./components/button-icon-page/button-icon-page').then(
+        ({ ButtonIconPage }) => ButtonIconPage,
+      ),
+  },
+  {
+    path: 'components/date-range',
+    title: 'BmbDateRange | Bamboo migration dashboard',
+    loadComponent: () =>
+      import('./components/date-range-page/date-range-page').then(
+        ({ DateRangePage }) => DateRangePage,
+      ),
+  },
   { path: '**', redirectTo: 'components/carousel' },
 ];
