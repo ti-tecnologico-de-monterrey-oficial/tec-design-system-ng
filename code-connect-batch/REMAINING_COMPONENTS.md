@@ -72,3 +72,17 @@ Admit a child only if Design publishes a stable independent component with an in
 | `bmb-stat-counter` | Only a `↳Progress_Bar_StatCounter` Playground/internal child exists. |
 | `bmb-theme` | No stable published Figma component target. |
 | `bmb-three-cols` | Layout primitive with no standalone semantic Figma component. |
+| `bmb-notification-counter` | Found 2026-08-27 audit. Matching `Notification Counter` node belongs to the Documentation library, not the Components library — same class of blocker as `bmb-mitec-logo-animation`. |
+
+## 2026-08-27 audit — exports outside the original 128 baseline (16)
+
+Comparing the full current `ui-angular/src/index.ts` (147 component/directive exports) against this tracker found 16 exports that postdate the original 128-export baseline and were never triaged. `ai-chat-card` is now connected (see `INVENTORY.md`); `notification-counter` was attempted and added to Blocked above; `accordion-simple-text` was attempted and is noted below. The rest are triaged here but not yet attempted.
+
+| Export | Disposition | Note |
+| --- | --- | --- |
+| `bmb-accordion-simple-text` | Attempted, blocked | Figma has an exact `Type: Simple Text` variant inside the `Accordion` component set (`13918:276747`), but Code Connect only allows one Angular mapping per top-level component/set node, and that node (`55:9576`) is already taken by the parent `bmb-accordion`. Publishing here would have required overwriting the already-verified `bmb-accordion` connection, so left unconnected. Would need Design to publish `Simple Text` as its own top-level component. |
+| `bmb-item-default`, `bmb-item-hyperlink`, `bmb-item-informative-text`, `bmb-item-actions` | Contract required | These are exactly the `bmb-item-[variant]` successors `CONTRACT_BACKLOG.md` predicted would replace the deprecated `item` — not yet individually evaluated for Figma nodes or required inputs. |
+| `bmb-interactive-item-chevron`, `bmb-interactive-item-default`, `bmb-interactive-item-text-button` | Contract required | Same pattern, successors to the deprecated `interactive-item`. Not yet evaluated. |
+| `bmb-accordion-control` | Parent/child composition | Directive child of the already-connected `bmb-accordion`; no independent Figma API expected. |
+| `bmb-layout-grid`, `bmb-layout-item`, `bmb-vertical-layout`, `bmb-vertical-layout-item` | Likely Blocked | Structural layout directives, same profile as already-blocked `bmb-form-validator`/`bmb-theme`/`bmb-three-cols` (no visual Figma component expected). Not yet confirmed. |
+| `bmb-selector` | Likely Blocked | `[bmbSelector]` is a state/class-binding directive (`idSelector`/`activeSelectorID` required inputs), not a visual component. Not yet confirmed. |
