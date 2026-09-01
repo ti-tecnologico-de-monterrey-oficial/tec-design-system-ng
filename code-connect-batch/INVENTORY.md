@@ -124,7 +124,7 @@ The 128 public Angular component exports from the original baseline reconcile to
 
 **Correction:** the `TODO: This component is marked as "old" and its decommissioning is planned for future updates.` comment cited earlier as a signal for `ai-chat-card`/`interactive-item-*` turns out to be boilerplate present on **114 of 194** component files in `develop` — including core, actively-used components like `bmb-accordion`, `bmb-navigation-bar`, and `bmb-web-templates`. It is not a meaningful per-component deprecation signal and should not be used to deprioritize future contract work.
 
-The complete per-export disposition and the smallest next contract are maintained in [REMAINING_COMPONENTS.md](REMAINING_COMPONENTS.md) and [CONTRACT_BACKLOG.md](CONTRACT_BACKLOG.md).
+The complete per-export disposition and the smallest next contract are maintained in [REMAINING_COMPONENTS.md](REMAINING_COMPONENTS.md) and [CONTRACT_BACKLOG.md](CONTRACT_BACKLOG.md). A machine-readable version of this whole inventory — connected/adapters/contract-required/parent-child/blocked, each with node IDs and reasons — is generated at [component-index.json](component-index.json) for tooling (e.g. the planned design-handoff triage agent) to consume.
 
 ## Angular equivalents confirmed; coverage pending
 

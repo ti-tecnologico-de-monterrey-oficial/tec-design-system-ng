@@ -1,0 +1,1317 @@
+{
+  "$schema_note": "Machine-readable manifest of Bamboo Design System <-> tec-design-system-ng Code Connect mappings, for consumption by a future design-handoff triage agent.",
+  "generatedAt": "2026-09-01",
+  "figmaFileKey": "Q4t8qIM5fklC9I3Atc1BrZ",
+  "figmaFileUrl": "https://www.figma.com/design/Q4t8qIM5fklC9I3Atc1BrZ/Bamboo-Design-System---Components",
+  "codeConnectLabel": "Angular",
+  "repo": "ti-tecnologico-de-monterrey-oficial/tec-design-system-ng",
+  "sourceBranchLayout": "ui-angular/src/lib/components/<name>/... (post-migration, develop@c1e81fde8); ui-angular/src/lib/directives/old/<name>/... for the 2 not-yet-migrated directives",
+  "counts": {
+    "connectedPublished": 99,
+    "pendingVerification": 1,
+    "internalAdapters": 3,
+    "contractRequired": 10,
+    "parentChildComposition": 12,
+    "blockedOutOfScope": 26
+  },
+  "connected": [
+    {
+      "file": "AcademicProgress.figma.ts",
+      "figmaNodeId": "4070:156265",
+      "figmaUrl": "https://www.figma.com/design/Q4t8qIM5fklC9I3Atc1BrZ/Bamboo-Design-System---Components?node-id=4070-156265",
+      "angularComponent": "BmbAcademicProgressComponent",
+      "angularSource": "ui-angular/src/lib/components/bmb-academic-progress/bmb-academic-progress.component.ts",
+      "codeConnectId": "bmb-academic-progress",
+      "status": "connected",
+      "figmaVerified": true
+    },
+    {
+      "file": "Accordion.figma.ts",
+      "figmaNodeId": "55:9576",
+      "figmaUrl": "https://www.figma.com/design/Q4t8qIM5fklC9I3Atc1BrZ/Bamboo-Design-System---Components?node-id=55-9576",
+      "angularComponent": "BmbAccordionComponent",
+      "angularSource": "ui-angular/src/lib/components/bmb-accordion/bmb-accordion.component.ts",
+      "codeConnectId": "bmb-accordion",
+      "status": "connected",
+      "figmaVerified": true
+    },
+    {
+      "file": "AccountStatement.figma.ts",
+      "figmaNodeId": "523:158681",
+      "figmaUrl": "https://www.figma.com/design/Q4t8qIM5fklC9I3Atc1BrZ/Bamboo-Design-System---Components?node-id=523-158681",
+      "angularComponent": "BmbAccountStatementComponent",
+      "angularSource": "ui-angular/src/lib/components/bmb-account-statement/bmb-account-statement.component.ts",
+      "codeConnectId": "bmb-account-statement",
+      "status": "connected",
+      "figmaVerified": true
+    },
+    {
+      "file": "ActionIcon.figma.ts",
+      "figmaNodeId": "3112:81086",
+      "figmaUrl": "https://www.figma.com/design/Q4t8qIM5fklC9I3Atc1BrZ/Bamboo-Design-System---Components?node-id=3112-81086",
+      "angularComponent": "BmbActionIconComponent",
+      "angularSource": "ui-angular/src/lib/components/bmb-action-icon/bmb-action-icon.component.ts",
+      "codeConnectId": "bmb-action-icon",
+      "status": "connected",
+      "figmaVerified": true
+    },
+    {
+      "file": "AdvertisementCard.figma.ts",
+      "figmaNodeId": "5787:120268",
+      "figmaUrl": "https://www.figma.com/design/Q4t8qIM5fklC9I3Atc1BrZ/Bamboo-Design-System---Components?node-id=5787-120268",
+      "angularComponent": "BmbAdvertisementCardComponent",
+      "angularSource": "ui-angular/src/lib/components/bmb-advertisement-card/bmb-advertisement-card.component.ts",
+      "codeConnectId": "bmb-advertisement-card",
+      "status": "connected",
+      "figmaVerified": true
+    },
+    {
+      "file": "AiChatBubble.figma.ts",
+      "figmaNodeId": "528:59470",
+      "figmaUrl": "https://www.figma.com/design/Q4t8qIM5fklC9I3Atc1BrZ/Bamboo-Design-System---Components?node-id=528-59470",
+      "angularComponent": "BmbAiChatBubbleComponent",
+      "angularSource": "ui-angular/src/lib/components/bmb-ai-chat-bubble/bmb-ai-chat-bubble.component.ts",
+      "codeConnectId": "example",
+      "status": "connected",
+      "figmaVerified": true
+    },
+    {
+      "file": "AiChatCard.figma.ts",
+      "figmaNodeId": "9268:46409",
+      "figmaUrl": "https://www.figma.com/design/Q4t8qIM5fklC9I3Atc1BrZ/Bamboo-Design-System---Components?node-id=9268-46409",
+      "angularComponent": "BmbAIChatCardComponent",
+      "angularSource": "ui-angular/src/lib/components/bmb-ai-chat-card/bmb-ai-chat-card.component.ts",
+      "codeConnectId": "bmb-ai-chat-card",
+      "status": "connected",
+      "figmaVerified": true
+    },
+    {
+      "file": "AlertCenter.figma.ts",
+      "figmaNodeId": "5132:222718",
+      "figmaUrl": "https://www.figma.com/design/Q4t8qIM5fklC9I3Atc1BrZ/Bamboo-Design-System---Components?node-id=5132-222718",
+      "angularComponent": "BmbAlertCenterComponent",
+      "angularSource": "ui-angular/src/lib/components/bmb-alert-center/bmb-alert-center.component.ts",
+      "codeConnectId": "bmb-alert-center",
+      "status": "connected",
+      "figmaVerified": true
+    },
+    {
+      "file": "Badge.figma.ts",
+      "figmaNodeId": "152:47367",
+      "figmaUrl": "https://www.figma.com/design/Q4t8qIM5fklC9I3Atc1BrZ/Bamboo-Design-System---Components?node-id=152-47367",
+      "angularComponent": "BmbBadgeComponent",
+      "angularSource": "ui-angular/src/lib/components/bmb-badge/bmb-badge.component.ts",
+      "codeConnectId": "bmb-badge",
+      "status": "connected",
+      "figmaVerified": true
+    },
+    {
+      "file": "BalanceOverview.figma.ts",
+      "figmaNodeId": "12694:57309",
+      "figmaUrl": "https://www.figma.com/design/Q4t8qIM5fklC9I3Atc1BrZ/Bamboo-Design-System---Components?node-id=12694-57309",
+      "angularComponent": "BmbBalanceOverviewComponent",
+      "angularSource": "ui-angular/src/lib/components/bmb-balance-overview/bmb-balance-overview.component.ts",
+      "codeConnectId": "bmb-balance-overview",
+      "status": "connected",
+      "figmaVerified": true
+    },
+    {
+      "file": "Bookmark.figma.ts",
+      "figmaNodeId": "8:7018",
+      "figmaUrl": "https://www.figma.com/design/Q4t8qIM5fklC9I3Atc1BrZ/Bamboo-Design-System---Components?node-id=8-7018",
+      "angularComponent": "BmbBookmarkComponent",
+      "angularSource": "ui-angular/src/lib/components/bmb-bookmark/bmb-bookmark.component.ts",
+      "codeConnectId": "bmb-bookmark",
+      "status": "connected",
+      "figmaVerified": true
+    },
+    {
+      "file": "BottomNavigationBar.figma.ts",
+      "figmaNodeId": "11836:53649",
+      "figmaUrl": "https://www.figma.com/design/Q4t8qIM5fklC9I3Atc1BrZ/Bamboo-Design-System---Components?node-id=11836-53649",
+      "angularComponent": "BmbBottomNavigationBarComponent",
+      "angularSource": "ui-angular/src/lib/components/bmb-bottom-navigation-bar/bmb-bottom-navigation-bar.component.ts",
+      "codeConnectId": "bmb-bottom-navigation-bar",
+      "status": "connected",
+      "figmaVerified": true
+    },
+    {
+      "file": "BoxIcon.figma.ts",
+      "figmaNodeId": "20:2782",
+      "figmaUrl": "https://www.figma.com/design/Q4t8qIM5fklC9I3Atc1BrZ/Bamboo-Design-System---Components?node-id=20-2782",
+      "angularComponent": "BmbBoxIconComponent",
+      "angularSource": "ui-angular/src/lib/components/bmb-box-icon/bmb-box-icon.component.ts",
+      "codeConnectId": "bmb-box-icon",
+      "status": "connected",
+      "figmaVerified": true
+    },
+    {
+      "file": "Breadcrumb.figma.ts",
+      "figmaNodeId": "149:37128",
+      "figmaUrl": "https://www.figma.com/design/Q4t8qIM5fklC9I3Atc1BrZ/Bamboo-Design-System---Components?node-id=149-37128",
+      "angularComponent": "BmbBreadcrumbComponent",
+      "angularSource": "ui-angular/src/lib/components/bmb-breadcrumb/bmb-breadcrumb.component.ts",
+      "codeConnectId": "bmb-breadcrumb",
+      "status": "connected",
+      "figmaVerified": true
+    },
+    {
+      "file": "Button.figma.ts",
+      "figmaNodeId": "6:4892",
+      "figmaUrl": "https://www.figma.com/design/Q4t8qIM5fklC9I3Atc1BrZ/Bamboo-Design-System---Components?node-id=6-4892",
+      "angularComponent": "BmbButtonDirective",
+      "angularSource": "ui-angular/src/lib/directives/old/bmb-button/button.directive.ts",
+      "codeConnectId": "bmb-button",
+      "status": "connected",
+      "figmaVerified": true
+    },
+    {
+      "file": "ButtonGroup.figma.ts",
+      "figmaNodeId": "20:13644",
+      "figmaUrl": "https://www.figma.com/design/Q4t8qIM5fklC9I3Atc1BrZ/Bamboo-Design-System---Components?node-id=20-13644",
+      "angularComponent": "BmbButtonGroupDirective",
+      "angularSource": "ui-angular/src/lib/directives/old/bmb-button-group/bmb-button-group.directive.ts",
+      "codeConnectId": "bmb-button-group",
+      "status": "connected",
+      "figmaVerified": true
+    },
+    {
+      "file": "ButtonIcon.figma.ts",
+      "figmaNodeId": "8:7401",
+      "figmaUrl": "https://www.figma.com/design/Q4t8qIM5fklC9I3Atc1BrZ/Bamboo-Design-System---Components?node-id=8-7401",
+      "angularComponent": "BmbButtonIconComponent",
+      "angularSource": "ui-angular/src/lib/components/bmb-button-icon/bmb-button-icon.component.ts",
+      "codeConnectId": "solid",
+      "status": "connected",
+      "figmaVerified": true
+    },
+    {
+      "file": "Calendar.figma.ts",
+      "figmaNodeId": "2640:89850",
+      "figmaUrl": "https://www.figma.com/design/Q4t8qIM5fklC9I3Atc1BrZ/Bamboo-Design-System---Components?node-id=2640-89850",
+      "angularComponent": "BmbCalendarComponent",
+      "angularSource": "ui-angular/src/lib/components/bmb-calendar/bmb-calendar.component.ts",
+      "codeConnectId": "bmb-calendar",
+      "status": "pending_verification",
+      "figmaVerified": false,
+      "note": "Published via CLI (Figma API confirmed upload) but Figma MCP get_code_connect_map has timed out on this node across many retries. Not counted in the published-template total until confirmed."
+    },
+    {
+      "file": "Carousel.figma.ts",
+      "figmaNodeId": "1933:100481",
+      "figmaUrl": "https://www.figma.com/design/Q4t8qIM5fklC9I3Atc1BrZ/Bamboo-Design-System---Components?node-id=1933-100481",
+      "angularComponent": "BmbCarouselComponent",
+      "angularSource": "ui-angular/src/lib/components/bmb-carousel/bmb-carousel.component.ts",
+      "codeConnectId": "bmb-carousel",
+      "status": "connected",
+      "figmaVerified": true
+    },
+    {
+      "file": "ChatBar.figma.ts",
+      "figmaNodeId": "564:148313",
+      "figmaUrl": "https://www.figma.com/design/Q4t8qIM5fklC9I3Atc1BrZ/Bamboo-Design-System---Components?node-id=564-148313",
+      "angularComponent": "BmbChatBarComponent",
+      "angularSource": "ui-angular/src/lib/components/bmb-chat-bar/bmb-chat-bar.component.ts",
+      "codeConnectId": "bmb-chat-bar",
+      "status": "connected",
+      "figmaVerified": true
+    },
+    {
+      "file": "Checkbox.figma.ts",
+      "figmaNodeId": "108:32761",
+      "figmaUrl": "https://www.figma.com/design/Q4t8qIM5fklC9I3Atc1BrZ/Bamboo-Design-System---Components?node-id=108-32761",
+      "angularComponent": "BmbCheckboxComponent",
+      "angularSource": "ui-angular/src/lib/components/bmb-checkbox/bmb-checkbox.component.ts",
+      "codeConnectId": "bmb-checkbox",
+      "status": "connected",
+      "figmaVerified": true
+    },
+    {
+      "file": "ChevronTitleSelector.figma.ts",
+      "figmaNodeId": "5566:99250",
+      "figmaUrl": "https://www.figma.com/design/Q4t8qIM5fklC9I3Atc1BrZ/Bamboo-Design-System---Components?node-id=5566-99250",
+      "angularComponent": "BmbChevronTitleSelectorComponent",
+      "angularSource": "ui-angular/src/lib/components/bmb-chevron-title-selector/bmb-chevron-title-selector.component.ts",
+      "codeConnectId": "bmb-chevron-title-selector",
+      "status": "connected",
+      "figmaVerified": true
+    },
+    {
+      "file": "Container.figma.ts",
+      "figmaNodeId": "61:5663",
+      "figmaUrl": "https://www.figma.com/design/Q4t8qIM5fklC9I3Atc1BrZ/Bamboo-Design-System---Components?node-id=61-5663",
+      "angularComponent": "BmbContainerComponent",
+      "angularSource": "ui-angular/src/lib/components/bmb-container/bmb-container.component.ts",
+      "codeConnectId": "bmb-container",
+      "status": "connected",
+      "figmaVerified": true
+    },
+    {
+      "file": "ContainerButton.figma.ts",
+      "figmaNodeId": "16:4087",
+      "figmaUrl": "https://www.figma.com/design/Q4t8qIM5fklC9I3Atc1BrZ/Bamboo-Design-System---Components?node-id=16-4087",
+      "angularComponent": "BmbContainerButtonComponent",
+      "angularSource": "ui-angular/src/lib/components/bmb-container-button/bmb-container-button.component.ts",
+      "codeConnectId": "bmb-container-button",
+      "status": "connected",
+      "figmaVerified": true
+    },
+    {
+      "file": "DateRange.figma.ts",
+      "figmaNodeId": "4474:86349",
+      "figmaUrl": "https://www.figma.com/design/Q4t8qIM5fklC9I3Atc1BrZ/Bamboo-Design-System---Components?node-id=4474-86349",
+      "angularComponent": "BmbDateRangeComponent",
+      "angularSource": "ui-angular/src/lib/components/bmb-date-range/bmb-date-range.component.ts",
+      "codeConnectId": "bmb-date-range",
+      "status": "connected",
+      "figmaVerified": true
+    },
+    {
+      "file": "Datepicker.figma.ts",
+      "figmaNodeId": "109:33585",
+      "figmaUrl": "https://www.figma.com/design/Q4t8qIM5fklC9I3Atc1BrZ/Bamboo-Design-System---Components?node-id=109-33585",
+      "angularComponent": "BmbDatepickerComponent",
+      "angularSource": "ui-angular/src/lib/components/bmb-datepicker/bmb-datepicker.component.ts",
+      "codeConnectId": "bmb-datepicker",
+      "status": "connected",
+      "figmaVerified": true
+    },
+    {
+      "file": "DigitalId.figma.ts",
+      "figmaNodeId": "3480:50512",
+      "figmaUrl": "https://www.figma.com/design/Q4t8qIM5fklC9I3Atc1BrZ/Bamboo-Design-System---Components?node-id=3480-50512",
+      "angularComponent": "BmbDigitalIdComponent",
+      "angularSource": "ui-angular/src/lib/components/bmb-digital-id/bmb-digital-id.component.ts",
+      "codeConnectId": "bmb-digital-id",
+      "status": "connected",
+      "figmaVerified": true
+    },
+    {
+      "file": "Divider.figma.ts",
+      "figmaNodeId": "61:5520",
+      "figmaUrl": "https://www.figma.com/design/Q4t8qIM5fklC9I3Atc1BrZ/Bamboo-Design-System---Components?node-id=61-5520",
+      "angularComponent": "BmbDividerComponent",
+      "angularSource": "ui-angular/src/lib/components/bmb-divider/bmb-divider.component.ts",
+      "codeConnectId": "bmb-divider",
+      "status": "connected",
+      "figmaVerified": true
+    },
+    {
+      "file": "DotPaginator.figma.ts",
+      "figmaNodeId": "5858:135729",
+      "figmaUrl": "https://www.figma.com/design/Q4t8qIM5fklC9I3Atc1BrZ/Bamboo-Design-System---Components?node-id=5858-135729",
+      "angularComponent": "BmbDotPaginatorComponent",
+      "angularSource": "ui-angular/src/lib/components/bmb-dot-paginator/bmb-dot-paginator.component.ts",
+      "codeConnectId": "bmb-dot-paginator",
+      "status": "connected",
+      "figmaVerified": true
+    },
+    {
+      "file": "DrawerOverlay.figma.ts",
+      "figmaNodeId": "474:98365",
+      "figmaUrl": "https://www.figma.com/design/Q4t8qIM5fklC9I3Atc1BrZ/Bamboo-Design-System---Components?node-id=474-98365",
+      "angularComponent": "BmbDrawerOverlayComponent",
+      "angularSource": "ui-angular/src/lib/components/bmb-drawer-overlay/bmb-drawer-overlay.component.ts",
+      "codeConnectId": "bmb-drawer-overlay",
+      "status": "connected",
+      "figmaVerified": true
+    },
+    {
+      "file": "Dropdown.figma.ts",
+      "figmaNodeId": "109:35160",
+      "figmaUrl": "https://www.figma.com/design/Q4t8qIM5fklC9I3Atc1BrZ/Bamboo-Design-System---Components?node-id=109-35160",
+      "angularComponent": "BmbDropdownComponent",
+      "angularSource": "ui-angular/src/lib/components/bmb-dropdown/bmb-dropdown.component.ts",
+      "codeConnectId": "bmb-dropdown",
+      "status": "connected",
+      "figmaVerified": true
+    },
+    {
+      "file": "DropdownMenu.figma.ts",
+      "figmaNodeId": "4070:158930",
+      "figmaUrl": "https://www.figma.com/design/Q4t8qIM5fklC9I3Atc1BrZ/Bamboo-Design-System---Components?node-id=4070-158930",
+      "angularComponent": "BmbDropdownMenuComponent",
+      "angularSource": "ui-angular/src/lib/components/bmb-dropdown-menu/bmb-dropdown-menu.component.ts",
+      "codeConnectId": "bmb-dropdown-menu",
+      "status": "connected",
+      "figmaVerified": true
+    },
+    {
+      "file": "Dropzone.figma.ts",
+      "figmaNodeId": "109:36648",
+      "figmaUrl": "https://www.figma.com/design/Q4t8qIM5fklC9I3Atc1BrZ/Bamboo-Design-System---Components?node-id=109-36648",
+      "angularComponent": "BmbDropzoneComponent",
+      "angularSource": "ui-angular/src/lib/components/bmb-dropzone/bmb-dropzone.component.ts",
+      "codeConnectId": "bmb-dropzone",
+      "status": "connected",
+      "figmaVerified": true
+    },
+    {
+      "file": "EvaluationRubric.figma.ts",
+      "figmaNodeId": "6865:91699",
+      "figmaUrl": "https://www.figma.com/design/Q4t8qIM5fklC9I3Atc1BrZ/Bamboo-Design-System---Components?node-id=6865-91699",
+      "angularComponent": "BmbEvaluationRubricComponent",
+      "angularSource": "ui-angular/src/lib/components/bmb-evaluation-rubric/bmb-evaluation-rubric.component.ts",
+      "codeConnectId": "bmb-evaluation-rubric",
+      "status": "connected",
+      "figmaVerified": true
+    },
+    {
+      "file": "FilterCard.figma.ts",
+      "figmaNodeId": "107:31067",
+      "figmaUrl": "https://www.figma.com/design/Q4t8qIM5fklC9I3Atc1BrZ/Bamboo-Design-System---Components?node-id=107-31067",
+      "angularComponent": "BmbFilterCardComponent",
+      "angularSource": "ui-angular/src/lib/components/bmb-filter-card/bmb-filter-card.component.ts",
+      "codeConnectId": "bmb-filter-card",
+      "status": "connected",
+      "figmaVerified": true
+    },
+    {
+      "file": "FocusElement.figma.ts",
+      "figmaNodeId": "152:37874",
+      "figmaUrl": "https://www.figma.com/design/Q4t8qIM5fklC9I3Atc1BrZ/Bamboo-Design-System---Components?node-id=152-37874",
+      "angularComponent": "BmbFocusElementComponent",
+      "angularSource": "ui-angular/src/lib/components/bmb-focus-element/bmb-focus-element.component.ts",
+      "codeConnectId": "bmb-focus-element",
+      "status": "connected",
+      "figmaVerified": true
+    },
+    {
+      "file": "FrequentAppsSelector.figma.ts",
+      "figmaNodeId": "151:37955",
+      "figmaUrl": "https://www.figma.com/design/Q4t8qIM5fklC9I3Atc1BrZ/Bamboo-Design-System---Components?node-id=151-37955",
+      "angularComponent": "BmbFrequentAppsSelectorComponent",
+      "angularSource": "ui-angular/src/lib/components/bmb-frequent-apps-selector/bmb-frequent-apps-selector.component.ts",
+      "codeConnectId": "bmb-frequent-apps-selector",
+      "status": "connected",
+      "figmaVerified": true
+    },
+    {
+      "file": "GradeValue.figma.ts",
+      "figmaNodeId": "152:47844",
+      "figmaUrl": "https://www.figma.com/design/Q4t8qIM5fklC9I3Atc1BrZ/Bamboo-Design-System---Components?node-id=152-47844",
+      "angularComponent": "BmbGradeValueComponent",
+      "angularSource": "ui-angular/src/lib/components/bmb-grade-value/bmb-grade-value.component.ts",
+      "codeConnectId": "bmb-grade-value",
+      "status": "connected",
+      "figmaVerified": true
+    },
+    {
+      "file": "Grades.figma.ts",
+      "figmaNodeId": "523:174572",
+      "figmaUrl": "https://www.figma.com/design/Q4t8qIM5fklC9I3Atc1BrZ/Bamboo-Design-System---Components?node-id=523-174572",
+      "angularComponent": "BmbGradesComponent",
+      "angularSource": "ui-angular/src/lib/components/bmb-grades/bmb-grades.component.ts",
+      "codeConnectId": "bmb-grades",
+      "status": "connected",
+      "figmaVerified": true
+    },
+    {
+      "file": "HeaderMobile.figma.ts",
+      "figmaNodeId": "61:9227",
+      "figmaUrl": "https://www.figma.com/design/Q4t8qIM5fklC9I3Atc1BrZ/Bamboo-Design-System---Components?node-id=61-9227",
+      "angularComponent": "BmbHeaderMobileComponent",
+      "angularSource": "ui-angular/src/lib/components/bmb-header-mobile/bmb-header-mobile.component.ts",
+      "codeConnectId": "bmb-header-mobile",
+      "status": "connected",
+      "figmaVerified": true
+    },
+    {
+      "file": "HitoCard.figma.ts",
+      "figmaNodeId": "62:9757",
+      "figmaUrl": "https://www.figma.com/design/Q4t8qIM5fklC9I3Atc1BrZ/Bamboo-Design-System---Components?node-id=62-9757",
+      "angularComponent": "BmbHitoCardComponent",
+      "angularSource": "ui-angular/src/lib/components/bmb-hito-card/bmb-hito-card.component.ts",
+      "codeConnectId": "bmb-hito-card",
+      "status": "connected",
+      "figmaVerified": true
+    },
+    {
+      "file": "HitoList.figma.ts",
+      "figmaNodeId": "472:20602",
+      "figmaUrl": "https://www.figma.com/design/Q4t8qIM5fklC9I3Atc1BrZ/Bamboo-Design-System---Components?node-id=472-20602",
+      "angularComponent": "BmbHitoListComponent",
+      "angularSource": "ui-angular/src/lib/components/bmb-hito-list/bmb-hito-list.component.ts",
+      "codeConnectId": "bmb-hito-list",
+      "status": "connected",
+      "figmaVerified": true
+    },
+    {
+      "file": "HomeCard.figma.ts",
+      "figmaNodeId": "474:95724",
+      "figmaUrl": "https://www.figma.com/design/Q4t8qIM5fklC9I3Atc1BrZ/Bamboo-Design-System---Components?node-id=474-95724",
+      "angularComponent": "BmbHomeCardComponent",
+      "angularSource": "ui-angular/src/lib/components/bmb-home-card/bmb-home-card.component.ts",
+      "codeConnectId": "bmb-home-card",
+      "status": "connected",
+      "figmaVerified": true
+    },
+    {
+      "file": "HomeSection.figma.ts",
+      "figmaNodeId": "523:213644",
+      "figmaUrl": "https://www.figma.com/design/Q4t8qIM5fklC9I3Atc1BrZ/Bamboo-Design-System---Components?node-id=523-213644",
+      "angularComponent": "BmbHomeSectionComponent",
+      "angularSource": "ui-angular/src/lib/components/bmb-home-section/bmb-home-section.component.ts",
+      "codeConnectId": "bmb-home-section",
+      "status": "connected",
+      "figmaVerified": true
+    },
+    {
+      "file": "IconItem.figma.ts",
+      "figmaNodeId": "3816:131183",
+      "figmaUrl": "https://www.figma.com/design/Q4t8qIM5fklC9I3Atc1BrZ/Bamboo-Design-System---Components?node-id=3816-131183",
+      "angularComponent": "BmbIconItemComponent",
+      "angularSource": "ui-angular/src/lib/components/bmb-icon-item/bmb-icon-item.component.ts",
+      "codeConnectId": "bmb-icon-item",
+      "status": "connected",
+      "figmaVerified": true
+    },
+    {
+      "file": "Iframe.figma.ts",
+      "figmaNodeId": "596:122793",
+      "figmaUrl": "https://www.figma.com/design/Q4t8qIM5fklC9I3Atc1BrZ/Bamboo-Design-System---Components?node-id=596-122793",
+      "angularComponent": "BmbIframeComponent",
+      "angularSource": "ui-angular/src/lib/components/bmb-iframe/bmb-iframe.component.ts",
+      "codeConnectId": "bmb-iframe",
+      "status": "connected",
+      "figmaVerified": true
+    },
+    {
+      "file": "Image.figma.ts",
+      "figmaNodeId": "2102:56629",
+      "figmaUrl": "https://www.figma.com/design/Q4t8qIM5fklC9I3Atc1BrZ/Bamboo-Design-System---Components?node-id=2102-56629",
+      "angularComponent": "BmbImageComponent",
+      "angularSource": "ui-angular/src/lib/components/bmb-image/bmb-image.component.ts",
+      "codeConnectId": "bmb-image",
+      "status": "connected",
+      "figmaVerified": true
+    },
+    {
+      "file": "InnerHeader.figma.ts",
+      "figmaNodeId": "61:9239",
+      "figmaUrl": "https://www.figma.com/design/Q4t8qIM5fklC9I3Atc1BrZ/Bamboo-Design-System---Components?node-id=61-9239",
+      "angularComponent": "BmbInnerHeaderComponent",
+      "angularSource": "ui-angular/src/lib/components/bmb-inner-header/bmb-inner-header.component.ts",
+      "codeConnectId": "bmb-inner-header",
+      "status": "connected",
+      "figmaVerified": true
+    },
+    {
+      "file": "Input.figma.ts",
+      "figmaNodeId": "109:37668",
+      "figmaUrl": "https://www.figma.com/design/Q4t8qIM5fklC9I3Atc1BrZ/Bamboo-Design-System---Components?node-id=109-37668",
+      "angularComponent": "BmbInputComponent",
+      "angularSource": "ui-angular/src/lib/components/bmb-input/bmb-input.component.ts",
+      "codeConnectId": "bmb-input",
+      "status": "connected",
+      "figmaVerified": true
+    },
+    {
+      "file": "InputPhoneNumber.figma.ts",
+      "figmaNodeId": "109:37834",
+      "figmaUrl": "https://www.figma.com/design/Q4t8qIM5fklC9I3Atc1BrZ/Bamboo-Design-System---Components?node-id=109-37834",
+      "angularComponent": "BmbInputPhoneNumberComponent",
+      "angularSource": "ui-angular/src/lib/components/bmb-input-phone-number/bmb-input-phone-number.component.ts",
+      "codeConnectId": "bmb-input-phone-number",
+      "status": "connected",
+      "figmaVerified": true
+    },
+    {
+      "file": "InputTags.figma.ts",
+      "figmaNodeId": "109:44803",
+      "figmaUrl": "https://www.figma.com/design/Q4t8qIM5fklC9I3Atc1BrZ/Bamboo-Design-System---Components?node-id=109-44803",
+      "angularComponent": "BmbInputTagsComponent",
+      "angularSource": "ui-angular/src/lib/components/bmb-input-tags/bmb-input-tags.component.ts",
+      "codeConnectId": "bmb-input-tags",
+      "status": "connected",
+      "figmaVerified": true
+    },
+    {
+      "file": "InteractiveIcon.figma.ts",
+      "figmaNodeId": "4918:96725",
+      "figmaUrl": "https://www.figma.com/design/Q4t8qIM5fklC9I3Atc1BrZ/Bamboo-Design-System---Components?node-id=4918-96725",
+      "angularComponent": "BmbInteractiveIconComponent",
+      "angularSource": "ui-angular/src/lib/components/bmb-interactive-icon/bmb-interactive-icon.component.ts",
+      "codeConnectId": "bmb-interactive-icon",
+      "status": "connected",
+      "figmaVerified": true
+    },
+    {
+      "file": "Invoice.figma.ts",
+      "figmaNodeId": "4921:96752",
+      "figmaUrl": "https://www.figma.com/design/Q4t8qIM5fklC9I3Atc1BrZ/Bamboo-Design-System---Components?node-id=4921-96752",
+      "angularComponent": "BmbInvoiceComponent",
+      "angularSource": "ui-angular/src/lib/components/bmb-invoice/bmb-invoice.component.ts",
+      "codeConnectId": "bmb-invoice",
+      "status": "connected",
+      "figmaVerified": true
+    },
+    {
+      "file": "Legend.figma.ts",
+      "figmaNodeId": "152:51305",
+      "figmaUrl": "https://www.figma.com/design/Q4t8qIM5fklC9I3Atc1BrZ/Bamboo-Design-System---Components?node-id=152-51305",
+      "angularComponent": "BmbLegendComponent",
+      "angularSource": "ui-angular/src/lib/components/bmb-legend/bmb-legend.component.ts",
+      "codeConnectId": "bmb-legend",
+      "status": "connected",
+      "figmaVerified": true
+    },
+    {
+      "file": "ListGroupItem.figma.ts",
+      "figmaNodeId": "82:26226",
+      "figmaUrl": "https://www.figma.com/design/Q4t8qIM5fklC9I3Atc1BrZ/Bamboo-Design-System---Components?node-id=82-26226",
+      "angularComponent": "BmbListGroupItemComponent",
+      "angularSource": "ui-angular/src/lib/components/bmb-list-group/bmb-list-group-item/bmb-list-group-item.component.ts",
+      "codeConnectId": "bmb-list-group-item",
+      "status": "connected",
+      "figmaVerified": true
+    },
+    {
+      "file": "Login.figma.ts",
+      "figmaNodeId": "2592:57821",
+      "figmaUrl": "https://www.figma.com/design/Q4t8qIM5fklC9I3Atc1BrZ/Bamboo-Design-System---Components?node-id=2592-57821",
+      "angularComponent": "BmbLoginComponent",
+      "angularSource": "ui-angular/src/lib/components/bmb-login/bmb-login.component.ts",
+      "codeConnectId": "bmb-login",
+      "status": "connected",
+      "figmaVerified": true
+    },
+    {
+      "file": "LoginOnboarding.figma.ts",
+      "figmaNodeId": "3480:60843",
+      "figmaUrl": "https://www.figma.com/design/Q4t8qIM5fklC9I3Atc1BrZ/Bamboo-Design-System---Components?node-id=3480-60843",
+      "angularComponent": "BmbLoginOnboardingComponent",
+      "angularSource": "ui-angular/src/lib/components/bmb-login-onboarding/bmb-login-onboarding.component.ts",
+      "codeConnectId": "bmb-login-onboarding",
+      "status": "connected",
+      "figmaVerified": true
+    },
+    {
+      "file": "MainFab.figma.ts",
+      "figmaNodeId": "1481:108540",
+      "figmaUrl": "https://www.figma.com/design/Q4t8qIM5fklC9I3Atc1BrZ/Bamboo-Design-System---Components?node-id=1481-108540",
+      "angularComponent": "BmbFabComponent",
+      "angularSource": "ui-angular/src/lib/components/bmb-fab/bmb-fab.component.ts",
+      "codeConnectId": "bmb-fab",
+      "status": "connected",
+      "figmaVerified": true
+    },
+    {
+      "file": "MediaCard.figma.ts",
+      "figmaNodeId": "107:31699",
+      "figmaUrl": "https://www.figma.com/design/Q4t8qIM5fklC9I3Atc1BrZ/Bamboo-Design-System---Components?node-id=107-31699",
+      "angularComponent": "BmbMediaCardComponent",
+      "angularSource": "ui-angular/src/lib/components/bmb-media-card/bmb-media-card.component.ts",
+      "codeConnectId": "bmb-media-card",
+      "status": "connected",
+      "figmaVerified": true
+    },
+    {
+      "file": "MobileTemplateCalendar.figma.ts",
+      "figmaNodeId": "523:207868",
+      "figmaUrl": "https://www.figma.com/design/Q4t8qIM5fklC9I3Atc1BrZ/Bamboo-Design-System---Components?node-id=523-207868",
+      "angularComponent": "BmbMobileTemplatesComponent",
+      "angularSource": "ui-angular/src/lib/components/bmb-mobile-templates/bmb-mobile-templates.component.ts",
+      "codeConnectId": "bmb-mobile-templates",
+      "status": "connected",
+      "figmaVerified": true
+    },
+    {
+      "file": "MobileTemplateExternalLink.figma.ts",
+      "figmaNodeId": "523:207883",
+      "figmaUrl": "https://www.figma.com/design/Q4t8qIM5fklC9I3Atc1BrZ/Bamboo-Design-System---Components?node-id=523-207883",
+      "angularComponent": "BmbMobileTemplatesComponent",
+      "angularSource": "ui-angular/src/lib/components/bmb-mobile-templates/bmb-mobile-templates.component.ts",
+      "codeConnectId": "bmb-mobile-templates",
+      "status": "connected",
+      "figmaVerified": true
+    },
+    {
+      "file": "Modal.figma.ts",
+      "figmaNodeId": "82:27913",
+      "figmaUrl": "https://www.figma.com/design/Q4t8qIM5fklC9I3Atc1BrZ/Bamboo-Design-System---Components?node-id=82-27913",
+      "angularComponent": "BmbModalComponent",
+      "angularSource": "ui-angular/src/lib/components/bmb-modal/bmb-modal.component.ts",
+      "codeConnectId": "bmb-modal",
+      "status": "connected",
+      "figmaVerified": true
+    },
+    {
+      "file": "MultiDotPaginator.figma.ts",
+      "figmaNodeId": "152:40344",
+      "figmaUrl": "https://www.figma.com/design/Q4t8qIM5fklC9I3Atc1BrZ/Bamboo-Design-System---Components?node-id=152-40344",
+      "angularComponent": "BmbMultiDotPaginatorComponent",
+      "angularSource": "ui-angular/src/lib/components/bmb-multi-dot-paginator/bmb-multi-dot-paginator.component.ts",
+      "codeConnectId": "bmb-multi-dot-paginator",
+      "status": "connected",
+      "figmaVerified": true
+    },
+    {
+      "file": "NavigationBar.figma.ts",
+      "figmaNodeId": "4070:156220",
+      "figmaUrl": "https://www.figma.com/design/Q4t8qIM5fklC9I3Atc1BrZ/Bamboo-Design-System---Components?node-id=4070-156220",
+      "angularComponent": "BmbNavigationBarComponent",
+      "angularSource": "ui-angular/src/lib/components/bmb-navigation-bar/bmb-navigation-bar.component.ts",
+      "codeConnectId": "bmb-navigation-bar",
+      "status": "connected",
+      "figmaVerified": true
+    },
+    {
+      "file": "NoticeCard.figma.ts",
+      "figmaNodeId": "6939:96312",
+      "figmaUrl": "https://www.figma.com/design/Q4t8qIM5fklC9I3Atc1BrZ/Bamboo-Design-System---Components?node-id=6939-96312",
+      "angularComponent": "BmbNoticeCardComponent",
+      "angularSource": "ui-angular/src/lib/components/bmb-notice-card/bmb-notice-card.component.ts",
+      "codeConnectId": "bmb-notice-card",
+      "status": "connected",
+      "figmaVerified": true
+    },
+    {
+      "file": "NotificationCard.figma.ts",
+      "figmaNodeId": "106:31504",
+      "figmaUrl": "https://www.figma.com/design/Q4t8qIM5fklC9I3Atc1BrZ/Bamboo-Design-System---Components?node-id=106-31504",
+      "angularComponent": "BmbNotificationCardComponent",
+      "angularSource": "ui-angular/src/lib/components/bmb-notification-card/bmb-notification-card.component.ts",
+      "codeConnectId": "bmb-notification-card",
+      "status": "connected",
+      "figmaVerified": true
+    },
+    {
+      "file": "Overlay.figma.ts",
+      "figmaNodeId": "82:30374",
+      "figmaUrl": "https://www.figma.com/design/Q4t8qIM5fklC9I3Atc1BrZ/Bamboo-Design-System---Components?node-id=82-30374",
+      "angularComponent": "BmbOverlayComponent",
+      "angularSource": "ui-angular/src/lib/components/bmb-overlay/bmb-overlay.component.ts",
+      "codeConnectId": "bmb-overlay",
+      "status": "connected",
+      "figmaVerified": true
+    },
+    {
+      "file": "Paginator.figma.ts",
+      "figmaNodeId": "152:40426",
+      "figmaUrl": "https://www.figma.com/design/Q4t8qIM5fklC9I3Atc1BrZ/Bamboo-Design-System---Components?node-id=152-40426",
+      "angularComponent": "BmbPaginatorComponent",
+      "angularSource": "ui-angular/src/lib/components/bmb-paginator/bmb-paginator.component.ts",
+      "codeConnectId": "bmb-paginator",
+      "status": "connected",
+      "figmaVerified": true
+    },
+    {
+      "file": "Profile.figma.ts",
+      "figmaNodeId": "3716:50775",
+      "figmaUrl": "https://www.figma.com/design/Q4t8qIM5fklC9I3Atc1BrZ/Bamboo-Design-System---Components?node-id=3716-50775",
+      "angularComponent": "BmbProfileComponent",
+      "angularSource": "ui-angular/src/lib/components/bmb-profile/bmb-profile.component.ts",
+      "codeConnectId": "bmb-profile",
+      "status": "connected",
+      "figmaVerified": true
+    },
+    {
+      "file": "ProgressBar.figma.ts",
+      "figmaNodeId": "6661:110420",
+      "figmaUrl": "https://www.figma.com/design/Q4t8qIM5fklC9I3Atc1BrZ/Bamboo-Design-System---Components?node-id=6661-110420",
+      "angularComponent": "BmbProgressBarComponent",
+      "angularSource": "ui-angular/src/lib/components/bmb-progress-bar/bmb-progress-bar.component.ts",
+      "codeConnectId": "bmb-progress-bar",
+      "status": "connected",
+      "figmaVerified": true
+    },
+    {
+      "file": "ProgressCircle.figma.ts",
+      "figmaNodeId": "4694:85975",
+      "figmaUrl": "https://www.figma.com/design/Q4t8qIM5fklC9I3Atc1BrZ/Bamboo-Design-System---Components?node-id=4694-85975",
+      "angularComponent": "BmbProgressCircleComponent",
+      "angularSource": "ui-angular/src/lib/components/bmb-progress-cirlce/bmb-progress-circle.component.ts",
+      "codeConnectId": "bmb-progress-circle",
+      "status": "connected",
+      "figmaVerified": true
+    },
+    {
+      "file": "PullWedge.figma.ts",
+      "figmaNodeId": "152:48174",
+      "figmaUrl": "https://www.figma.com/design/Q4t8qIM5fklC9I3Atc1BrZ/Bamboo-Design-System---Components?node-id=152-48174",
+      "angularComponent": "BmbPullWedgeComponent",
+      "angularSource": "ui-angular/src/lib/components/bmb-pull-wedge/bmb-pull-wedge.component.ts",
+      "codeConnectId": "bmb-pull-wedge",
+      "status": "connected",
+      "figmaVerified": true
+    },
+    {
+      "file": "PushNotification.figma.ts",
+      "figmaNodeId": "158:44494",
+      "figmaUrl": "https://www.figma.com/design/Q4t8qIM5fklC9I3Atc1BrZ/Bamboo-Design-System---Components?node-id=158-44494",
+      "angularComponent": "BmbPushNotificationComponent",
+      "angularSource": "ui-angular/src/lib/components/bmb-push-notification/bmb-push-notification.component.ts",
+      "codeConnectId": "bmb-push-notification",
+      "status": "connected",
+      "figmaVerified": true
+    },
+    {
+      "file": "Radial.figma.ts",
+      "figmaNodeId": "108:32755",
+      "figmaUrl": "https://www.figma.com/design/Q4t8qIM5fklC9I3Atc1BrZ/Bamboo-Design-System---Components?node-id=108-32755",
+      "angularComponent": "BmbRadialComponent",
+      "angularSource": "ui-angular/src/lib/components/bmb-radial/bmb-radial.component.ts",
+      "codeConnectId": "bmb-radial",
+      "status": "connected",
+      "figmaVerified": true
+    },
+    {
+      "file": "SearchCard.figma.ts",
+      "figmaNodeId": "9038:61107",
+      "figmaUrl": "https://www.figma.com/design/Q4t8qIM5fklC9I3Atc1BrZ/Bamboo-Design-System---Components?node-id=9038-61107",
+      "angularComponent": "BmbSearchCardComponent",
+      "angularSource": "ui-angular/src/lib/components/bmb-search-card/bmb-search-card.component.ts",
+      "codeConnectId": "bmb-search-card",
+      "status": "connected",
+      "figmaVerified": true
+    },
+    {
+      "file": "SearchInput.figma.ts",
+      "figmaNodeId": "109:37785",
+      "figmaUrl": "https://www.figma.com/design/Q4t8qIM5fklC9I3Atc1BrZ/Bamboo-Design-System---Components?node-id=109-37785",
+      "angularComponent": "BmbSearchInputComponent",
+      "angularSource": "ui-angular/src/lib/components/bmb-search-input/bmb-search-input.component.ts",
+      "codeConnectId": "bmb-search-input",
+      "status": "connected",
+      "figmaVerified": true
+    },
+    {
+      "file": "ServerTable.figma.ts",
+      "figmaNodeId": "9329:99012",
+      "figmaUrl": "https://www.figma.com/design/Q4t8qIM5fklC9I3Atc1BrZ/Bamboo-Design-System---Components?node-id=9329-99012",
+      "angularComponent": "BmbServerTableComponent",
+      "angularSource": "ui-angular/src/lib/components/bmb-server-table/bmb-server-table.component.ts",
+      "codeConnectId": "bmb-server-table",
+      "status": "connected",
+      "figmaVerified": true
+    },
+    {
+      "file": "Sidebar.figma.ts",
+      "figmaNodeId": "299:51502",
+      "figmaUrl": "https://www.figma.com/design/Q4t8qIM5fklC9I3Atc1BrZ/Bamboo-Design-System---Components?node-id=299-51502",
+      "angularComponent": "BmbSidebarComponent",
+      "angularSource": "ui-angular/src/lib/components/bmb-sidebar/bmb-sidebar.component.ts",
+      "codeConnectId": "bmb-sidebar",
+      "status": "connected",
+      "figmaVerified": true
+    },
+    {
+      "file": "SimpleHeader.figma.ts",
+      "figmaNodeId": "4070:156930",
+      "figmaUrl": "https://www.figma.com/design/Q4t8qIM5fklC9I3Atc1BrZ/Bamboo-Design-System---Components?node-id=4070-156930",
+      "angularComponent": "BmbSimpleHeaderComponent",
+      "angularSource": "ui-angular/src/lib/components/bmb-simple-header/bmb-simple-header.component.ts",
+      "codeConnectId": "bmb-simple-header",
+      "status": "connected",
+      "figmaVerified": true
+    },
+    {
+      "file": "SoundsCard.figma.ts",
+      "figmaNodeId": "2187:57109",
+      "figmaUrl": "https://www.figma.com/design/Q4t8qIM5fklC9I3Atc1BrZ/Bamboo-Design-System---Components?node-id=2187-57109",
+      "angularComponent": "BmbSoundsCardComponent",
+      "angularSource": "ui-angular/src/lib/components/bmb-sounds-card/bmb-sounds-card.component.ts",
+      "codeConnectId": "bmb-sounds-card",
+      "status": "connected",
+      "figmaVerified": true
+    },
+    {
+      "file": "StatusIcon.figma.ts",
+      "figmaNodeId": "1962:97709",
+      "figmaUrl": "https://www.figma.com/design/Q4t8qIM5fklC9I3Atc1BrZ/Bamboo-Design-System---Components?node-id=1962-97709",
+      "angularComponent": "BmbIconStatusComponent",
+      "angularSource": "ui-angular/src/lib/components/bmb-icon-status/bmb-icon-status.component.ts",
+      "codeConnectId": "bmb-icon-status",
+      "status": "connected",
+      "figmaVerified": true
+    },
+    {
+      "file": "StepProgressBar.figma.ts",
+      "figmaNodeId": "152:46103",
+      "figmaUrl": "https://www.figma.com/design/Q4t8qIM5fklC9I3Atc1BrZ/Bamboo-Design-System---Components?node-id=152-46103",
+      "angularComponent": "BmbStepProgressBarComponent",
+      "angularSource": "ui-angular/src/lib/components/bmb-step-progress-bar/bmb-step-progress-bar.component.ts",
+      "codeConnectId": "bmb-step-progress-bar",
+      "status": "connected",
+      "figmaVerified": true
+    },
+    {
+      "file": "StudentActivityCard.figma.ts",
+      "figmaNodeId": "107:33824",
+      "figmaUrl": "https://www.figma.com/design/Q4t8qIM5fklC9I3Atc1BrZ/Bamboo-Design-System---Components?node-id=107-33824",
+      "angularComponent": "BmbStudentActivityCardComponent",
+      "angularSource": "ui-angular/src/lib/components/bmb-student-activity-card/bmb-student-activity-card.component.ts",
+      "codeConnectId": "bmb-student-activity-card",
+      "status": "connected",
+      "figmaVerified": true
+    },
+    {
+      "file": "StudentActivityCardListItem.figma.ts",
+      "figmaNodeId": "107:33853",
+      "figmaUrl": "https://www.figma.com/design/Q4t8qIM5fklC9I3Atc1BrZ/Bamboo-Design-System---Components?node-id=107-33853",
+      "angularComponent": "BmbStudentActivityCardComponent",
+      "angularSource": "ui-angular/src/lib/components/bmb-student-activity-card/bmb-student-activity-card.component.ts",
+      "codeConnectId": "bmb-student-activity-card",
+      "status": "connected",
+      "figmaVerified": true
+    },
+    {
+      "file": "Switch.figma.ts",
+      "figmaNodeId": "108:32808",
+      "figmaUrl": "https://www.figma.com/design/Q4t8qIM5fklC9I3Atc1BrZ/Bamboo-Design-System---Components?node-id=108-32808",
+      "angularComponent": "BmbSwitchComponent",
+      "angularSource": "ui-angular/src/lib/components/bmb-switch/bmb-switch.component.ts",
+      "codeConnectId": "bmb-switch",
+      "status": "connected",
+      "figmaVerified": true
+    },
+    {
+      "file": "Table.figma.ts",
+      "figmaNodeId": "9087:83211",
+      "figmaUrl": "https://www.figma.com/design/Q4t8qIM5fklC9I3Atc1BrZ/Bamboo-Design-System---Components?node-id=9087-83211",
+      "angularComponent": "BmbTablesComponent",
+      "angularSource": "ui-angular/src/lib/components/bmb-tables/bmb-tables.component.ts",
+      "codeConnectId": "bmb-table",
+      "status": "connected",
+      "figmaVerified": true
+    },
+    {
+      "file": "TableLite.figma.ts",
+      "figmaNodeId": "9252:163784",
+      "figmaUrl": "https://www.figma.com/design/Q4t8qIM5fklC9I3Atc1BrZ/Bamboo-Design-System---Components?node-id=9252-163784",
+      "angularComponent": "BmbTableLiteComponent",
+      "angularSource": "ui-angular/src/lib/components/bmb-table-lite/bmb-table-lite.component.ts",
+      "codeConnectId": "bmb-table-lite",
+      "status": "connected",
+      "figmaVerified": true
+    },
+    {
+      "file": "Tabs.figma.ts",
+      "figmaNodeId": "159:44357",
+      "figmaUrl": "https://www.figma.com/design/Q4t8qIM5fklC9I3Atc1BrZ/Bamboo-Design-System---Components?node-id=159-44357",
+      "angularComponent": "BmbTabsComponent",
+      "angularSource": "ui-angular/src/lib/components/bmb-tabs/bmb-tabs.component.ts",
+      "codeConnectId": "bmb-tabs",
+      "status": "connected",
+      "figmaVerified": true
+    },
+    {
+      "file": "Tag.figma.ts",
+      "figmaNodeId": "153:47345",
+      "figmaUrl": "https://www.figma.com/design/Q4t8qIM5fklC9I3Atc1BrZ/Bamboo-Design-System---Components?node-id=153-47345",
+      "angularComponent": "BmbTagComponent",
+      "angularSource": "ui-angular/src/lib/components/bmb-tags/bmb-tags.component.ts",
+      "codeConnectId": "bmb-tag",
+      "status": "connected",
+      "figmaVerified": true
+    },
+    {
+      "file": "TextEditor.figma.ts",
+      "figmaNodeId": "6958:104707",
+      "figmaUrl": "https://www.figma.com/design/Q4t8qIM5fklC9I3Atc1BrZ/Bamboo-Design-System---Components?node-id=6958-104707",
+      "angularComponent": "BmbTextEditorComponent",
+      "angularSource": "ui-angular/src/lib/components/bmb-text-editor/bmb-text-editor.component.ts",
+      "codeConnectId": "bmb-text-editor",
+      "status": "connected",
+      "figmaVerified": true
+    },
+    {
+      "file": "TextLink.figma.ts",
+      "figmaNodeId": "20:3320",
+      "figmaUrl": "https://www.figma.com/design/Q4t8qIM5fklC9I3Atc1BrZ/Bamboo-Design-System---Components?node-id=20-3320",
+      "angularComponent": "BmbTextLinkComponent",
+      "angularSource": "ui-angular/src/lib/components/bmb-text-link/bmb-text-link.component.ts",
+      "codeConnectId": "bmb-text-link",
+      "status": "connected",
+      "figmaVerified": true
+    },
+    {
+      "file": "TimestreamCard.figma.ts",
+      "figmaNodeId": "427:10276",
+      "figmaUrl": "https://www.figma.com/design/Q4t8qIM5fklC9I3Atc1BrZ/Bamboo-Design-System---Components?node-id=427-10276",
+      "angularComponent": "BmbTimestreamCardComponent",
+      "angularSource": "ui-angular/src/lib/components/bmb-timestream-card/bmb-timestream-card.component.ts",
+      "codeConnectId": "bmb-timestream-card",
+      "status": "connected",
+      "figmaVerified": true
+    },
+    {
+      "file": "Toast.figma.ts",
+      "figmaNodeId": "152:46854",
+      "figmaUrl": "https://www.figma.com/design/Q4t8qIM5fklC9I3Atc1BrZ/Bamboo-Design-System---Components?node-id=152-46854",
+      "angularComponent": "BmbToastComponent",
+      "angularSource": "ui-angular/src/lib/components/bmb-toast/bmb-toast.component.ts",
+      "codeConnectId": "bmb-toast",
+      "status": "connected",
+      "figmaVerified": true
+    },
+    {
+      "file": "Tooltip.figma.ts",
+      "figmaNodeId": "152:47279",
+      "figmaUrl": "https://www.figma.com/design/Q4t8qIM5fklC9I3Atc1BrZ/Bamboo-Design-System---Components?node-id=152-47279",
+      "angularComponent": "BmbTooltipComponent",
+      "angularSource": "ui-angular/src/lib/components/bmb-tooltip/bmb-tooltip.component.ts",
+      "codeConnectId": "bmb-tooltip",
+      "status": "connected",
+      "figmaVerified": true
+    },
+    {
+      "file": "TopBar.figma.ts",
+      "figmaNodeId": "284:80432",
+      "figmaUrl": "https://www.figma.com/design/Q4t8qIM5fklC9I3Atc1BrZ/Bamboo-Design-System---Components?node-id=284-80432",
+      "angularComponent": "BmbTopBarComponent",
+      "angularSource": "ui-angular/src/lib/components/bmb-top-bar/bmb-top-bar.component.ts",
+      "codeConnectId": "bmb-top-bar",
+      "status": "connected",
+      "figmaVerified": true
+    },
+    {
+      "file": "Totp.figma.ts",
+      "figmaNodeId": "100:30139",
+      "figmaUrl": "https://www.figma.com/design/Q4t8qIM5fklC9I3Atc1BrZ/Bamboo-Design-System---Components?node-id=100-30139",
+      "angularComponent": "BmbTotpComponent",
+      "angularSource": "ui-angular/src/lib/components/bmb-totp/bmb-totp.component.ts",
+      "codeConnectId": "bmb-totp",
+      "status": "connected",
+      "figmaVerified": true
+    },
+    {
+      "file": "UserImage.figma.ts",
+      "figmaNodeId": "107:34907",
+      "figmaUrl": "https://www.figma.com/design/Q4t8qIM5fklC9I3Atc1BrZ/Bamboo-Design-System---Components?node-id=107-34907",
+      "angularComponent": "BmbUserImageComponent",
+      "angularSource": "ui-angular/src/lib/components/bmb-user-image/bmb-user-image.component.ts",
+      "codeConnectId": "bmb-user-image",
+      "status": "connected",
+      "figmaVerified": true
+    },
+    {
+      "file": "UserSummary.figma.ts",
+      "figmaNodeId": "100:31309",
+      "figmaUrl": "https://www.figma.com/design/Q4t8qIM5fklC9I3Atc1BrZ/Bamboo-Design-System---Components?node-id=100-31309",
+      "angularComponent": "BmbUserSummaryComponent",
+      "angularSource": "ui-angular/src/lib/components/bmb-user-summary/bmb-user-summary.component.ts",
+      "codeConnectId": "bmb-user-summary",
+      "status": "connected",
+      "figmaVerified": true
+    },
+    {
+      "file": "ValueCounter.figma.ts",
+      "figmaNodeId": "153:47541",
+      "figmaUrl": "https://www.figma.com/design/Q4t8qIM5fklC9I3Atc1BrZ/Bamboo-Design-System---Components?node-id=153-47541",
+      "angularComponent": "BmbValueCounterComponent",
+      "angularSource": "ui-angular/src/lib/components/bmb-value-counter/bmb-value-counter.component.ts",
+      "codeConnectId": "bmb-value-counter",
+      "status": "connected",
+      "figmaVerified": true
+    },
+    {
+      "file": "WebTemplates.figma.ts",
+      "figmaNodeId": "523:207773",
+      "figmaUrl": "https://www.figma.com/design/Q4t8qIM5fklC9I3Atc1BrZ/Bamboo-Design-System---Components?node-id=523-207773",
+      "angularComponent": "BmbWebTemplatesComponent",
+      "angularSource": "ui-angular/src/lib/components/bmb-web-templates/bmb-web-templates.component.ts",
+      "codeConnectId": "bmb-web-templates",
+      "status": "connected",
+      "figmaVerified": true
+    }
+  ],
+  "internalAdapters": [
+    {
+      "file": "ButtonGroupChevronItem.figma.ts",
+      "figmaNodeId": "8:7959",
+      "figmaUrl": "https://www.figma.com/design/Q4t8qIM5fklC9I3Atc1BrZ/Bamboo-Design-System---Components?node-id=8-7959",
+      "angularComponent": "BmbButtonDirective",
+      "angularSource": "ui-angular/src/lib/directives/old/bmb-button/button.directive.ts",
+      "codeConnectId": "bmb-button-group-chevron-item",
+      "status": "connected",
+      "figmaVerified": true,
+      "note": "Internal BB_1_4* composition adapter supporting the public Button group (bmbButtonGroup) dynamic item resolution; not a user-facing Angular component inventory entry on its own."
+    },
+    {
+      "file": "ButtonGroupItem.figma.ts",
+      "figmaNodeId": "20:13358",
+      "figmaUrl": "https://www.figma.com/design/Q4t8qIM5fklC9I3Atc1BrZ/Bamboo-Design-System---Components?node-id=20-13358",
+      "angularComponent": "BmbButtonDirective",
+      "angularSource": "ui-angular/src/lib/directives/old/bmb-button/button.directive.ts",
+      "codeConnectId": "bmb-button-group-item",
+      "status": "connected",
+      "figmaVerified": true,
+      "note": "Internal BB_1_4* composition adapter supporting the public Button group (bmbButtonGroup) dynamic item resolution; not a user-facing Angular component inventory entry on its own."
+    },
+    {
+      "file": "ButtonGroupSimpleItem.figma.ts",
+      "figmaNodeId": "20:16372",
+      "figmaUrl": "https://www.figma.com/design/Q4t8qIM5fklC9I3Atc1BrZ/Bamboo-Design-System---Components?node-id=20-16372",
+      "angularComponent": "BmbButtonDirective",
+      "angularSource": "ui-angular/src/lib/directives/old/bmb-button/button.directive.ts",
+      "codeConnectId": "bmb-button-group-simple-item",
+      "status": "connected",
+      "figmaVerified": true,
+      "note": "Internal BB_1_4* composition adapter supporting the public Button group (bmbButtonGroup) dynamic item resolution; not a user-facing Angular component inventory entry on its own."
+    }
+  ],
+  "contractRequired": [
+    {
+      "exportOrFamily": "title-content",
+      "family": "Navigation collections",
+      "angularComponent": "BmbTitleContentComponent",
+      "reason": "Runtime throws unless title/componentTitle is set; composes Breadcrumb + UserImage/BotIcon/BoxIcon + icon. No plausible stable Bamboo node found — closest candidate 'Simple header' lacks the breadcrumb/avatar composition.",
+      "missingContract": "Design publishes/confirms a semantic node with breadcrumb + avatar composition, or confirms Simple header is the intended target."
+    },
+    {
+      "exportOrFamily": "action-menu",
+      "family": "Projected collections",
+      "angularComponent": "BmbActionMenuComponent",
+      "reason": "Figma node's Type variant (Chevron, Text Link, Text Button, etc.) is single-row options, not a repeated Items SLOT. Uses contentChildren<TemplateRef> with no separate action-menu-item Angular class to target instead.",
+      "missingContract": "A true Items/Content SLOT with published semantic item children."
+    },
+    {
+      "exportOrFamily": "card-button",
+      "family": "Projected collections",
+      "angularComponent": "BmbCardButtonComponent",
+      "reason": "Two candidate nodes: 'Card button' (4281:218969, real usage, only a Size variant) and 'CardButton' (2978:76218, richer properties but lives on the excluded Playground page). Neither exposes ICardButton's title/body/badge/menuItems as real content properties.",
+      "missingContract": "A published (non-Playground) node exposing title/body/badge/menu content properties."
+    },
+    {
+      "exportOrFamily": "list-group",
+      "family": "Projected collections",
+      "angularComponent": "BmbListGroupComponent",
+      "reason": "The parent container (82:26226 is taken by the now-connected list-group-item) has zero content properties of its own — pure layout/behavior (border radius, padding, selection mode).",
+      "missingContract": "A genuine repeated Items SLOT on the parent container node."
+    },
+    {
+      "exportOrFamily": "list-items",
+      "family": "Projected collections",
+      "angularComponent": "BmbListItemsComponent",
+      "reason": "No independent Bamboo main component found after targeted searches.",
+      "missingContract": "Design publishes a dedicated node."
+    },
+    {
+      "exportOrFamily": "user-profile",
+      "family": "Data cards, profiles and rubrics",
+      "angularComponent": "BmbUserProfileComponent",
+      "reason": "No plausible stable Bamboo node found after multiple targeted searches (User profile, Profile card, User info header, icon/avatar candidates). Required userInfo object has no matching Figma content.",
+      "missingContract": "Design publishes a node exposing id/fullName/profilePicture content."
+    },
+    {
+      "exportOrFamily": "chat-bubble",
+      "family": "Chat, search and alerts",
+      "angularComponent": "BmbChatBubblesComponent",
+      "reason": "Required IBmbChatMessage/IBmbChatMessage[] has a time field typed strictly as Date; Angular template expressions cannot construct `new Date(...)` inline, so no literal both satisfies the type and stays truthful.",
+      "missingContract": "A documented public factory/pipe that can be invoked from a template to produce the Date value."
+    },
+    {
+      "exportOrFamily": "home-card-chat",
+      "family": "Chat, search and alerts",
+      "angularComponent": "BmbHomeCardChatComponent",
+      "reason": "Same Date-typed required field blocker as chat-bubble.",
+      "missingContract": "Same as chat-bubble."
+    },
+    {
+      "exportOrFamily": "timestream",
+      "family": "Calendars and timeline",
+      "angularComponent": "BmbTimestreamComponent",
+      "reason": "The outer container has no independent stable Bamboo node; MiTec assembles it ad hoc from already-connected Timestream card / Timestream Index / Hito list.",
+      "missingContract": "Design publishes a dedicated outer component."
+    },
+    {
+      "exportOrFamily": "item",
+      "family": "Tables",
+      "angularComponent": "BmbItemComponent",
+      "reason": "Deprecated in favor of bmb-item-[variant]/bmb-interactive-item-[variant] — low priority.",
+      "missingContract": "N/A — deprioritized due to deprecation."
+    }
+  ],
+  "parentChildComposition": [
+    {
+      "export": "user-summary-content",
+      "parent": "user-summary",
+      "reason": "Sole child of the connected user-summary (renders <bmb-user-summary-content> directly); no independent Figma node."
+    },
+    {
+      "export": "container-button-badge",
+      "parent": "bmb-container-button family",
+      "reason": "Child of the connected Container button family; no independent published Figma API."
+    },
+    {
+      "export": "container-button-complex",
+      "parent": "bmb-container-button family",
+      "reason": "Child of the connected Container button family; no independent published Figma API."
+    },
+    {
+      "export": "container-button-complex-alternative",
+      "parent": "bmb-container-button family",
+      "reason": "Child of the connected Container button family; no independent published Figma API."
+    },
+    {
+      "export": "container-button-default",
+      "parent": "bmb-container-button family",
+      "reason": "Child of the connected Container button family; no independent published Figma API."
+    },
+    {
+      "export": "container-button-grade",
+      "parent": "bmb-container-button family",
+      "reason": "Child of the connected Container button family; no independent published Figma API."
+    },
+    {
+      "export": "container-button-square",
+      "parent": "bmb-container-button family",
+      "reason": "Child of the connected Container button family; no independent published Figma API."
+    },
+    {
+      "export": "container-button-user-image",
+      "parent": "bmb-container-button family",
+      "reason": "Child of the connected Container button family; no independent published Figma API."
+    },
+    {
+      "export": "multi-dot-paginator-item",
+      "parent": "multi-dot-paginator",
+      "reason": "Repeated child of the connected paginator; cannot render independently without an item contract."
+    },
+    {
+      "export": "native-modal",
+      "parent": "modal",
+      "reason": "Implementation child of the connected Modal, not a standalone visual public component."
+    },
+    {
+      "export": "top-bar-item",
+      "parent": "top-bar",
+      "reason": "Repeated child of the connected Top bar; its semantic action contract is still missing."
+    },
+    {
+      "export": "accordion-control",
+      "parent": "accordion",
+      "reason": "ContentChildren-based directive that manages the already-connected bmb-accordion's expand/collapse state; no independent Figma API. Found 2026-08-27 audit."
+    }
+  ],
+  "blockedOutOfScope": [
+    {
+      "export": "bmb-card",
+      "reason": "No confirmed canonical published Figma main component; generic card-like assets are not enough."
+    },
+    {
+      "export": "bmb-external-link",
+      "reason": "No stable standalone Figma counterpart; only template-level usage is present."
+    },
+    {
+      "export": "bmb-form-validator",
+      "reason": "Infrastructure API (FormGroup), not a visual Figma component."
+    },
+    {
+      "export": "bmb-icon",
+      "reason": "Individual suggested icon nodes were non-persistent; the component name alone is not a stable Figma asset contract."
+    },
+    {
+      "export": "bmb-logo",
+      "reason": "Figma visual logo variants do not yet identify the public image/link/button API."
+    },
+    {
+      "export": "bmb-loader",
+      "reason": "Published Loader_Icon is an icon primitive with only a visual Size axis; not a confirmed Figma main component for the public Loading screen API."
+    },
+    {
+      "export": "bmb-mitec-logo-animation",
+      "reason": "Matching Mitec_Logo belongs to the documentation/external library, not this Bamboo main file."
+    },
+    {
+      "export": "bmb-portal",
+      "reason": "Infrastructure primitive with no visual Figma component."
+    },
+    {
+      "export": "bmb-skeleton",
+      "reason": "Multiple visual skeleton parts but no canonical public component set."
+    },
+    {
+      "export": "bmb-stat-counter",
+      "reason": "Only a Progress_Bar_StatCounter Playground/internal child exists."
+    },
+    {
+      "export": "bmb-theme",
+      "reason": "No stable published Figma component target."
+    },
+    {
+      "export": "bmb-three-cols",
+      "reason": "Layout primitive with no standalone semantic Figma component."
+    },
+    {
+      "export": "bmb-notification-counter",
+      "reason": "Matching Notification Counter node belongs to the Documentation library, not the Components library. Found 2026-08-27 audit."
+    },
+    {
+      "export": "bmb-accordion-simple-text",
+      "reason": "Exact Figma variant exists (Accordion > Type: Simple Text, node 13918:276747) but shares its top-level node (55:9576) with the already-connected bmb-accordion; Code Connect only supports one Angular mapping per top-level node. Found 2026-08-27 audit."
+    },
+    {
+      "export": "bmb-item-default",
+      "reason": "bmb-item-[variant] successor to deprecated item; no independent Bamboo main component found. Found 2026-08-27 audit."
+    },
+    {
+      "export": "bmb-item-hyperlink",
+      "reason": "Same as bmb-item-default. Found 2026-08-27 audit."
+    },
+    {
+      "export": "bmb-item-informative-text",
+      "reason": "Same as bmb-item-default. Found 2026-08-27 audit."
+    },
+    {
+      "export": "bmb-item-actions",
+      "reason": "Same as bmb-item-default. Found 2026-08-27 audit."
+    },
+    {
+      "export": "bmb-interactive-item-chevron",
+      "reason": "No independent Bamboo node; also marked TODO: decommissioning is planned in source. Found 2026-08-27 audit."
+    },
+    {
+      "export": "bmb-interactive-item-default",
+      "reason": "Same as bmb-interactive-item-chevron. Found 2026-08-27 audit."
+    },
+    {
+      "export": "bmb-interactive-item-text-button",
+      "reason": "Same as bmb-interactive-item-chevron. Found 2026-08-27 audit."
+    },
+    {
+      "export": "bmb-layout-grid",
+      "reason": "Structural layout directive (grid/flex sizing), no visual Figma identity. Found 2026-08-27 audit."
+    },
+    {
+      "export": "bmb-layout-item",
+      "reason": "Same as bmb-layout-grid. Found 2026-08-27 audit."
+    },
+    {
+      "export": "bmb-vertical-layout",
+      "reason": "Same as bmb-layout-grid. Found 2026-08-27 audit."
+    },
+    {
+      "export": "bmb-vertical-layout-item",
+      "reason": "Same as bmb-layout-grid. Found 2026-08-27 audit."
+    },
+    {
+      "export": "bmb-selector",
+      "reason": "[bmbSelector] is a state/class-binding directive (idSelector/activeSelectorID required inputs), not a visual component. Found 2026-08-27 audit."
+    }
+  ],
+  "mobileTemplatesPartialCoverage": {
+    "angularComponent": "BmbMobileTemplatesComponent",
+    "connectedValues": [
+      "calendar",
+      "external-link"
+    ],
+    "missingValues": [
+      "single-header",
+      "header-with-footer",
+      "card-header-with-footer",
+      "header-with-button-list",
+      "header-with-card-list",
+      "login"
+    ],
+    "reason": "Several near-identical TemplateMobile_* nodes exist (Blank, Blank2Buttons, ContainerButtonsV/H, Modal, Step, ExtendedHeader_ContainerButton) but none maps unambiguously to the remaining six template enum values."
+  },
+  "sources": [
+    "code-connect-batch/INVENTORY.md",
+    "code-connect-batch/REMAINING_COMPONENTS.md",
+    "code-connect-batch/CONTRACT_BACKLOG.md",
+    "code-connect-batch/DECISIONS.md"
+  ]
+}
