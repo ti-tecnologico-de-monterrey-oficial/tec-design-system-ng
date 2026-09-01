@@ -35,4 +35,66 @@ describe('BmbButtonIconComponent', () => {
     component.handlePress();
     expect(componentRef.instance.active()).toBe(false);
   });
+
+  it('should add the active class once the button is pressed', () => {
+    expect(component.getClassList()).not.toContain('bmb_button_icon-active');
+
+    component.handlePress();
+
+    expect(component.getClassList()).toContain('bmb_button_icon-active');
+  });
+
+  it('should only add the container and outline classes when showContainer is true', () => {
+    componentRef.setInput('showContainer', false);
+    componentRef.setInput('isOutline', true);
+    fixture.detectChanges();
+
+    expect(component.getClassList()).not.toContain('bmb_button_icon-container');
+    expect(component.getClassList()).not.toContain(
+      'bmb_button_icon-container-outline',
+    );
+
+    componentRef.setInput('showContainer', true);
+    fixture.detectChanges();
+
+    expect(component.getClassList()).toContain('bmb_button_icon-container');
+    expect(component.getClassList()).toContain(
+      'bmb_button_icon-container-outline',
+    );
+  });
+
+  it('should add the disabled class when disabled is true', () => {
+    componentRef.setInput('disabled', true);
+    fixture.detectChanges();
+
+    expect(component.getClassList()).toContain('bmb_button_icon-disabled');
+  });
+
+  it('should add the matching class for each contrast appearance', () => {
+    (['primary', 'alternative', 'solid'] as const).forEach((contrast) => {
+      componentRef.setInput('appearanceContrast', contrast);
+      fixture.detectChanges();
+
+      expect(component.getClassList()).toContain(
+        `bmb_button_icon-container-${contrast}`,
+      );
+    });
+
+    componentRef.setInput('appearanceContrast', 'default');
+    fixture.detectChanges();
+
+    expect(component.getClassList()).not.toContain(
+      'bmb_button_icon-container-default',
+    );
+  });
+
+  it('should emit onButtonClick with the originating event', () => {
+    const emitSpy = jest.fn();
+    component.onButtonClick.subscribe(emitSpy);
+    const event = new MouseEvent('click');
+
+    component.handleClick(event);
+
+    expect(emitSpy).toHaveBeenCalledWith(event);
+  });
 });

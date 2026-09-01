@@ -18,7 +18,10 @@ import {
   newFormControlByType,
 } from '../../_shared/logic/formControl';
 import { getUUID } from '../../_shared/logic/utils';
-import { DateTime } from 'luxon';
+import {
+  getDateRangeClasses,
+  getDisableDateBefore,
+} from '../../_shared/logic/components/date-range';
 
 /*
  * TODO: This component is marked as "old" and its decommissioning is planned for future updates.
@@ -86,17 +89,11 @@ export class BmbDateRangeComponent implements OnInit {
 
     const controlStartSubscription =
       this.controlStart()?.valueChanges.subscribe((value) => {
-        if (value) {
-          const parsedDate = DateTime.fromFormat(value, this.dateFormat());
-
-          if (!parsedDate.isValid) {
-            return;
-          }
-
-          this.disableDatesBeforeCurrent = parsedDate
-            .minus({ day: 1 })
-            .toFormat(this.dateFormat());
-        }
+        this.disableDatesBeforeCurrent = getDisableDateBefore(
+          value,
+          this.dateFormat(),
+          this.disableDatesBeforeCurrent,
+        );
       });
 
     const controlEndSubscription = this.controlEnd()?.valueChanges.subscribe(
@@ -117,8 +114,6 @@ export class BmbDateRangeComponent implements OnInit {
   }
 
   getClassList(): string[] {
-    const classList = ['bmb_date-range'];
-    if (!this.multipleRow()) classList.push('bmb_date-range-column');
-    return classList;
+    return getDateRangeClasses(this.multipleRow());
   }
 }
