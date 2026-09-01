@@ -11,20 +11,20 @@ import {
   output,
   signal,
 } from '@angular/core';
-import { BmbButtonDirective } from '../../directives/old/bmb-button/button.directive';
-import { BmbTranslationsService } from '../../services/translations/translations.service';
+import { BmbButtonDirective } from '../../../directives/old/bmb-button/button.directive';
+import { BmbTranslationsService } from '../../../services/translations/translations.service';
 
 @Component({
-  selector: 'bmb-ai-chat-editor',
+  selector: 'bmb-ai-chat-bubble-editor',
   standalone: true,
   imports: [BmbButtonDirective],
-  templateUrl: './bmb-ai-chat-editor.component.html',
-  styleUrl: './bmb-ai-chat-editor.component.scss',
+  templateUrl: './bmb-ai-chat-bubble-editor.component.html',
+  styleUrl: './bmb-ai-chat-bubble-editor.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class BmbAiChatEditorComponent implements AfterViewInit {
+export class BmbAiChatBubbleEditorComponent implements AfterViewInit {
   readonly initialValue = input.required<string>();
-  readonly testId = input('ai-chat-editor');
+  readonly testId = input('ai-chat-bubble-editor');
 
   readonly cancelEvent = output<void>();
   readonly saveEvent = output<string>();

@@ -46,6 +46,7 @@ Supported message types include:
 
 export default {
   title: 'Components/Containers/AI Chat Bubble',
+  tags: ['!autodocs'],
   component: BmbAiChatBubbleComponent,
   decorators: [
     moduleMetadata({
