@@ -1,19 +1,19 @@
 # Remaining public Angular ↔ Figma inventory
 
-Last reconciled: 2026-08-13 (Forms/editors + Data cards/profiles/rubrics + Chat/search/alerts + Header/template shells + Navigation collections families added; login-onboarding, table-lite, navigation-bar, drawer-overlay, and web-templates resolved via Carlos's TEC.mobi/Avance Académico/Gestor de Rúbricas references)
+Last reconciled: 2026-08-27 (2026-08-27 audit: compared the full current `ui-angular/src/index.ts` — 147 exports — against this tracker; found and fully triaged 16 exports added since the original 128-export baseline. `ai-chat-card` connected; the other 15 are Blocked or Parent/child. Previous entry 2026-08-13: Forms/editors + Data cards/profiles/rubrics + Chat/search/alerts + Header/template shells + Navigation collections families added; login-onboarding, table-lite, navigation-bar, drawer-overlay, and web-templates resolved via Carlos's TEC.mobi/Avance Académico/Gestor de Rúbricas references)
 
 ## Counting rule
 
-`projects/ds-ng/src/public-api.ts` exports 128 Angular components. The current templates cover 93 of those component classes (`grades`, `table`, `server-table` confirmed 2026-08-12; `datepicker`, `date-range`, `input-tags`, `text-editor`, `login`, `account-statement`, `digital-id`, `evaluation-rubric`, `profile`, `sounds-card`, `student-activity-card`, `alert-center`, `search-input`, `chat-bar`, `notification-card`, `search-card`, `header-mobile`, `mobile-templates`, `login-onboarding`, `table-lite`, `navigation-bar`, `bottom-navigation-bar`, `drawer-overlay`, `web-templates` confirmed 2026-08-13); Button and Button group are two additional public directive mappings recorded in [INVENTORY.md](INVENTORY.md). Three `BB_1_4*` templates are internal adapters and do not count as public coverage. `calendar` was also published (CLI success) but Figma MCP verification is still timing out — excluded from the count above until confirmed. `mobile-templates` is only partially covered — 2 of its 8 `template` enum values (`calendar`, `external-link`) have an unambiguous Figma node; the rest are deliberately not guessed (see `DECISIONS.md`).
+`projects/ds-ng/src/public-api.ts` (the original baseline) exports 128 Angular components. The current templates cover 93 of those component classes (`grades`, `table`, `server-table` confirmed 2026-08-12; `datepicker`, `date-range`, `input-tags`, `text-editor`, `login`, `account-statement`, `digital-id`, `evaluation-rubric`, `profile`, `sounds-card`, `student-activity-card`, `alert-center`, `search-input`, `chat-bar`, `notification-card`, `search-card`, `header-mobile`, `mobile-templates`, `login-onboarding`, `table-lite`, `navigation-bar`, `bottom-navigation-bar`, `drawer-overlay`, `web-templates` confirmed 2026-08-13); Button and Button group are two additional public directive mappings recorded in [INVENTORY.md](INVENTORY.md). Three `BB_1_4*` templates are internal adapters and do not count as public coverage. `calendar` was also published (CLI success) but Figma MCP verification is still timing out — excluded from the count above until confirmed. `mobile-templates` is only partially covered — 2 of its 8 `template` enum values (`calendar`, `external-link`) have an unambiguous Figma node; the rest are deliberately not guessed (see `DECISIONS.md`). Separately, `ai-chat-card` (1 export, connected 2026-08-27) sits outside this 128-export baseline entirely — see the audit section below.
 
-This leaves **34 public Angular component exports** without a confirmed template: 33 fully triaged below, plus `calendar` in its own pending-verification state (see `INVENTORY.md`). `title-content`, `user-profile`, `chat-bubble`, and `home-card-chat` remain contract-required. This is a triage list, not a mandate to create every remaining snippet.
+This leaves **34 public Angular component exports** without a confirmed template within the 128 baseline: 33 fully triaged below, plus `calendar` in its own pending-verification state (see `INVENTORY.md`). `title-content`, `user-profile`, `chat-bubble`, and `home-card-chat` remain contract-required. This is a triage list, not a mandate to create every remaining snippet.
 
 | Disposition | Count | Batch action |
 | --- | ---: | --- |
 | Candidate — validate and connect | 0 | Select at most three per run, inspect the stable published Figma node and Storybook, then publish only a canonical useful snippet. |
 | Contract required | 11 | Do not publish until the smallest listed design/code contract exists, OR the same "documented Storybook fixture / composition facade" precedent used for `grades`/`table`/`server-table`/`calendar`/`datepicker`/`date-range`/`input-tags`/`text-editor`/`login`/`account-statement`/`digital-id`/`evaluation-rubric`/`profile`/`sounds-card`/`student-activity-card`/`alert-center`/`search-input`/`chat-bar`/`notification-card`/`search-card`/`header-mobile`/`mobile-templates`/`login-onboarding`/`table-lite`/`navigation-bar`/`bottom-navigation-bar`/`drawer-overlay`/`web-templates` applies. See [CONTRACT_BACKLOG.md](CONTRACT_BACKLOG.md). |
-| Parent/child composition | 11 | Keep as a child or wrapper of a connected parent unless an independent Figma API and useful standalone usage emerges. |
-| Blocked / out of scope | 12 | Do not retry without a stable published Figma target or a scope/API change. |
+| Parent/child composition | 12 (11 baseline + `bmb-accordion-control`, found 2026-08-27) | Keep as a child or wrapper of a connected parent unless an independent Figma API and useful standalone usage emerges. |
+| Blocked / out of scope | 27 (12 baseline + 15 found 2026-08-27: `notification-counter`, `accordion-simple-text`, four `item-*` variants, three `interactive-item-*` variants, four layout directives, `selector`) | Do not retry without a stable published Figma target or a scope/API change. |
 
 ## Candidate — validate and connect (0)
 
@@ -53,10 +53,11 @@ Each export below has a confirmed public Angular API. It is intentionally not co
 | `multi-dot-paginator-item` | Repeated child of the connected paginator; cannot render independently without an item contract. |
 | `native-modal` | Implementation child of the connected Modal, not a standalone visual public component. |
 | `top-bar-item` | Repeated child of the connected Top bar; its semantic action contract is still missing. |
+| `accordion-control` | Found 2026-08-27 audit. `ContentChildren`-based directive that manages the already-connected `bmb-accordion`'s expand/collapse state; no independent Figma API. |
 
 Admit a child only if Design publishes a stable independent component with an independent usage contract.
 
-## Blocked / out of scope (12)
+## Blocked / out of scope (27)
 
 | Export | Reason |
 | --- | --- |
@@ -73,16 +74,22 @@ Admit a child only if Design publishes a stable independent component with an in
 | `bmb-theme` | No stable published Figma component target. |
 | `bmb-three-cols` | Layout primitive with no standalone semantic Figma component. |
 | `bmb-notification-counter` | Found 2026-08-27 audit. Matching `Notification Counter` node belongs to the Documentation library, not the Components library — same class of blocker as `bmb-mitec-logo-animation`. |
+| `bmb-accordion-simple-text` | Found 2026-08-27 audit. Exact Figma variant exists (`Accordion` → `Type: Simple Text`) but shares its top-level node with the already-connected `bmb-accordion`; Code Connect only supports one mapping per node. |
+| `bmb-item-default`, `bmb-item-hyperlink`, `bmb-item-informative-text`, `bmb-item-actions` | Found 2026-08-27 audit. `bmb-item-[variant]` successors to deprecated `item`; no independent Bamboo main component found. |
+| `bmb-interactive-item-chevron`, `bmb-interactive-item-default`, `bmb-interactive-item-text-button` | Found 2026-08-27 audit. No independent Bamboo node; also marked `TODO: decommissioning is planned` in source. |
+| `bmb-layout-grid`, `bmb-layout-item`, `bmb-vertical-layout`, `bmb-vertical-layout-item` | Found 2026-08-27 audit. Structural layout directives (grid/flex sizing), no visual Figma identity. |
+| `bmb-selector` | Found 2026-08-27 audit. State/class-binding directive, not a visual component. |
 
-## 2026-08-27 audit — exports outside the original 128 baseline (16)
+## 2026-08-27 audit — exports outside the original 128 baseline (16, fully triaged)
 
-Comparing the full current `ui-angular/src/index.ts` (147 component/directive exports) against this tracker found 16 exports that postdate the original 128-export baseline and were never triaged. `ai-chat-card` is now connected (see `INVENTORY.md`); `notification-counter` was attempted and added to Blocked above; `accordion-simple-text` was attempted and is noted below. The rest are triaged here but not yet attempted.
+Comparing the full current `ui-angular/src/index.ts` (147 component/directive exports) against this tracker found 16 exports that postdate the original 128-export baseline and were never triaged. `ai-chat-card` is now connected (see `INVENTORY.md`). The other 15 are all Blocked or Parent/child — none had a stable independent Bamboo node, and three are themselves marked for decommissioning in code.
 
 | Export | Disposition | Note |
 | --- | --- | --- |
-| `bmb-accordion-simple-text` | Attempted, blocked | Figma has an exact `Type: Simple Text` variant inside the `Accordion` component set (`13918:276747`), but Code Connect only allows one Angular mapping per top-level component/set node, and that node (`55:9576`) is already taken by the parent `bmb-accordion`. Publishing here would have required overwriting the already-verified `bmb-accordion` connection, so left unconnected. Would need Design to publish `Simple Text` as its own top-level component. |
-| `bmb-item-default`, `bmb-item-hyperlink`, `bmb-item-informative-text`, `bmb-item-actions` | Contract required | These are exactly the `bmb-item-[variant]` successors `CONTRACT_BACKLOG.md` predicted would replace the deprecated `item` — not yet individually evaluated for Figma nodes or required inputs. |
-| `bmb-interactive-item-chevron`, `bmb-interactive-item-default`, `bmb-interactive-item-text-button` | Contract required | Same pattern, successors to the deprecated `interactive-item`. Not yet evaluated. |
-| `bmb-accordion-control` | Parent/child composition | Directive child of the already-connected `bmb-accordion`; no independent Figma API expected. |
-| `bmb-layout-grid`, `bmb-layout-item`, `bmb-vertical-layout`, `bmb-vertical-layout-item` | Likely Blocked | Structural layout directives, same profile as already-blocked `bmb-form-validator`/`bmb-theme`/`bmb-three-cols` (no visual Figma component expected). Not yet confirmed. |
-| `bmb-selector` | Likely Blocked | `[bmbSelector]` is a state/class-binding directive (`idSelector`/`activeSelectorID` required inputs), not a visual component. Not yet confirmed. |
+| `bmb-accordion-simple-text` | Blocked | Figma has an exact `Type: Simple Text` variant inside the `Accordion` component set (`13918:276747`), but Code Connect only allows one Angular mapping per top-level component/set node, and that node (`55:9576`) is already taken by the parent `bmb-accordion`. Publishing here would have required overwriting the already-verified `bmb-accordion` connection, so left unconnected. Would need Design to publish `Simple Text` as its own top-level component. |
+| `bmb-notification-counter` | Blocked | Matching `Notification Counter` node belongs to the Documentation library, not the Components library — same class of blocker as `bmb-mitec-logo-animation`. (Duplicated in the main Blocked table above.) |
+| `bmb-item-default`, `bmb-item-hyperlink`, `bmb-item-informative-text`, `bmb-item-actions` | Blocked | These are the `bmb-item-[variant]` successors to the deprecated `item`. Searched `search_design_system` for "Item", "Interactive item" and variants of each selector name — no independent main component in the Components library; only unrelated matches (`Icon item`, already connected to a different component; `Skeleton_Item`; internal `BB_*`-prefixed building blocks explicitly documented as "should not be used independently"). |
+| `bmb-interactive-item-chevron`, `bmb-interactive-item-default`, `bmb-interactive-item-text-button` | Blocked | Same search result as above — no independent Bamboo node. All three also carry a `TODO: decommissioning is planned` comment in their own source, so even a future contract here would be short-lived. |
+| `bmb-layout-grid`, `bmb-layout-item`, `bmb-vertical-layout`, `bmb-vertical-layout-item` | Blocked | Confirmed structural layout directives (grid/flex sizing, gap, alignment) with no visual identity — same class as already-blocked `bmb-form-validator`/`bmb-theme`/`bmb-three-cols`. |
+| `bmb-selector` | Blocked | `[bmbSelector]` is a state/class-binding directive (`idSelector`/`activeSelectorID` required inputs), not a visual component. |
+| `bmb-accordion-control` | Parent/child composition | `ContentChildren`-based directive that manages the already-connected `bmb-accordion`'s expand/collapse state; no independent Figma API. |
