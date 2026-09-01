@@ -1,5 +1,5 @@
 // url=https://www.figma.com/design/Q4t8qIM5fklC9I3Atc1BrZ/Bamboo-Design-System---Components?node-id=109-44803
-// source=projects/ds-ng/src/lib/components/bmb-input-tags/bmb-input-tags.component.ts
+// source=ui-angular/src/lib/components/bmb-input-tags/bmb-input-tags.component.ts
 // component=BmbInputTagsComponent
 import figma from 'figma'
 

@@ -1,5 +1,5 @@
 // url=https://www.figma.com/design/Q4t8qIM5fklC9I3Atc1BrZ/Bamboo-Design-System---Components?node-id=158-44494
-// source=projects/ds-ng/src/lib/components/bmb-push-notification/bmb-push-notification.component.ts
+// source=ui-angular/src/lib/components/bmb-push-notification/bmb-push-notification.component.ts
 // component=BmbPushNotificationComponent
 import figma from 'figma'
 

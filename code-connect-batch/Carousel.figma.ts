@@ -1,5 +1,5 @@
 // url=https://www.figma.com/design/Q4t8qIM5fklC9I3Atc1BrZ/Bamboo-Design-System---Components?node-id=1933-100481
-// source=projects/ds-ng/src/lib/components/bmb-carousel/bmb-carousel.component.ts
+// source=ui-angular/src/lib/components/bmb-carousel/bmb-carousel.component.ts
 // component=BmbCarouselComponent
 import figma from 'figma'
 

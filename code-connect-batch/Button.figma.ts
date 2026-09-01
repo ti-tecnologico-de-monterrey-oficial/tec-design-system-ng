@@ -1,5 +1,5 @@
 // url=https://www.figma.com/design/Q4t8qIM5fklC9I3Atc1BrZ/Bamboo-Design-System---Components?node-id=6-4892
-// source=projects/ds-ng/src/lib/directives/bmb-button/button.directive.ts
+// source=ui-angular/src/lib/directives/old/bmb-button/button.directive.ts
 // component=BmbButtonDirective
 import figma from 'figma'
 

@@ -1,5 +1,5 @@
 // url=https://www.figma.com/design/Q4t8qIM5fklC9I3Atc1BrZ/Bamboo-Design-System---Components?node-id=11836-53649
-// source=projects/ds-ng/src/lib/components/bmb-bottom-navigation-bar/bmb-bottom-navigation-bar.component.ts
+// source=ui-angular/src/lib/components/bmb-bottom-navigation-bar/bmb-bottom-navigation-bar.component.ts
 // component=BmbBottomNavigationBarComponent
 import figma from 'figma'
 
