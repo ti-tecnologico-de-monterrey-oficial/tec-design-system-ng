@@ -1,0 +1,98 @@
+<header class="page-header">
+  <p class="eyebrow">Componente migrado</p>
+  <h1>BmbButtonIcon</h1>
+  <p>Cambia sus propiedades para validar cada variante de forma aislada.</p>
+</header>
+
+<section class="playground" aria-labelledby="button-icon-properties-heading">
+  <aside class="controls">
+    <h2 id="button-icon-properties-heading">Propiedades</h2>
+
+    <label for="button-icon-icon">icon</label>
+    <input
+      id="button-icon-icon"
+      type="text"
+      [value]="icon()"
+      (input)="setIcon($any($event.target).value)"
+    />
+
+    <label for="button-icon-id-element">idElement</label>
+    <input
+      id="button-icon-id-element"
+      type="text"
+      [value]="idElement()"
+      (input)="setIdElement($any($event.target).value)"
+    />
+
+    <label for="button-icon-alt">alt</label>
+    <input
+      id="button-icon-alt"
+      type="text"
+      [value]="alt()"
+      (input)="setAlt($any($event.target).value)"
+    />
+
+    <label for="button-icon-contrast">appearanceContrast</label>
+    <select
+      id="button-icon-contrast"
+      [value]="appearanceContrast()"
+      (change)="selectContrast($any($event.target).value)"
+    >
+      @for (option of contrasts; track option) {
+        <option [value]="option">{{ option }}</option>
+      }
+    </select>
+
+    <label class="toggle">
+      <input
+        type="checkbox"
+        [checked]="showContainer()"
+        (change)="setShowContainer($any($event.target).checked)"
+      />
+      showContainer
+    </label>
+
+    <label class="toggle">
+      <input
+        type="checkbox"
+        [checked]="isOutline()"
+        (change)="setIsOutline($any($event.target).checked)"
+      />
+      isOutline
+    </label>
+
+    <label class="toggle">
+      <input
+        type="checkbox"
+        [checked]="disabled()"
+        (change)="setDisabled($any($event.target).checked)"
+      />
+      disabled
+    </label>
+
+    <label class="toggle">
+      <input
+        type="checkbox"
+        [checked]="active()"
+        (change)="setActive($any($event.target).checked)"
+      />
+      active
+    </label>
+
+    <output>active: {{ active() }} · clicks: {{ clickCount() }}</output>
+  </aside>
+
+  <div class="preview">
+    <bmb-button-icon
+      [icon]="icon()"
+      [idElement]="idElement()"
+      [alt]="alt()"
+      [appearanceContrast]="appearanceContrast()"
+      [showContainer]="showContainer()"
+      [(isOutline)]="isOutline"
+      [disabled]="disabled()"
+      [(active)]="active"
+      (onButtonClick)="handleButtonClick()"
+    />
+  </div>
+</section>
