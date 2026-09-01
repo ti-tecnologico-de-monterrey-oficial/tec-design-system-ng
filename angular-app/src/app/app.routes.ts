@@ -450,5 +450,23 @@ export const appRoutes: Route[] = [
         ({ AlertCenterDetailPage }) => AlertCenterDetailPage,
       ),
   },
+  {
+    path: 'components/top-bar-item',
+    title: 'BmbTopBarItem | Bamboo migration dashboard',
+    loadComponent: () =>
+      import('./components/top-bar-item-page/top-bar-item-page').then(
+        ({ TopBarItemPage }) => TopBarItemPage,
+      ),
+  },
+  {
+    path: 'components/interactive-item-text-button',
+    title: 'BmbInteractiveItemTextButton | Bamboo migration dashboard',
+    loadComponent: () =>
+      import(
+        './components/interactive-item-text-button-page/interactive-item-text-button-page'
+      ).then(
+        ({ InteractiveItemTextButtonPage }) => InteractiveItemTextButtonPage,
+      ),
+  },
   { path: '**', redirectTo: 'components/carousel' },
 ];

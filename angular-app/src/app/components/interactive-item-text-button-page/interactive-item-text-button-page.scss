@@ -1,0 +1,40 @@
+@use '../../styles/playground';
+
+@include playground.page;
+
+:host {
+  background: #f4f6f9;
+  color: #1f2937;
+  min-height: 100%;
+  padding: 2rem;
+}
+
+.preview {
+  background: #4d4d4d;
+}
+
+.preview bmb-interactive-item-text-button {
+  display: block;
+  width: min(100%, 35rem);
+}
+
+:host ::ng-deep .preview .bmb_interactive-item-text-button {
+  background: #202330;
+  border: 0;
+  border-top: 1px solid #596782;
+  box-sizing: border-box;
+  color: #fff;
+  min-height: 3.5rem;
+  padding: 0;
+}
+
+:host ::ng-deep .preview .bmb_item-default {
+  color: #fff;
+  width: 100%;
+}
+
+@media (max-width: 700px) {
+  :host {
+    padding: 1rem;
+  }
+}

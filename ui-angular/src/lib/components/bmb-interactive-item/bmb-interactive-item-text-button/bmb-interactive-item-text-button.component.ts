@@ -7,10 +7,6 @@ import {
 } from '@angular/core';
 import { BmbItemDefaultComponent } from '../../bmb-item/children';
 
-/*
- * TODO: This component is marked as "old" and its decommissioning is planned for future updates.
- */
-
 @Component({
   selector: 'bmb-interactive-item-text-button',
   standalone: true,

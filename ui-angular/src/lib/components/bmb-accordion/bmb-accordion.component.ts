@@ -22,16 +22,15 @@ import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { BmbLayoutItemDirective } from '../../directives/bmb-layout/bmb-layout-item.directive';
 import { BmbLayoutDirective } from '../../directives/bmb-layout/bmb-layout.directive';
 import { IBmbContrast } from '../../_shared/types/colors';
+import {
+  getAccordionClasses,
+  getAccordionContentClasses,
+  getAccordionHeaderClasses,
+  getAccordionIconToggle,
+  getAccordionStyles,
+} from '../../_shared/logic/components/accordion';
 
-const calculateSize = (pixels: SizeNames | SizeNames[]): string => {
-  return Array.isArray(pixels)
-    ? pixels.map((size) => `var(--bmb-radius-${size})`).join(' ')
-    : `var(--bmb-radius-${pixels})`;
-};
 
-/*
- * TODO: This component is marked as "old" and its decommissioning is planned for future updates.
- */
 
 @Component({
   selector: 'bmb-accordion',
@@ -152,81 +151,37 @@ export class BmbAccordionComponent
   }
 
   getClassesAccordion(): string[] {
-    const classNames = [];
-
-    if (typeof this.borderRadius() === 'string') {
-      classNames.push(`bmb_radius-${this.borderRadius()}`);
-    }
-
-    if (typeof this.margin() === 'string') {
-      classNames.push(`bmb_margin-${this.margin()}`);
-    }
-
-    if (this.appearanceContrast() === 'primary') {
-      classNames.push('bmb_accordion-primary');
-    }
-
-    if (this.appearanceContrast() === 'alternative') {
-      classNames.push('bmb_accordion-alternative');
-    }
-
-    if (this._disabled()) {
-      classNames.push('disabled');
-    } else {
-      if (!this.bmbAccordionBasic() && this._active()) {
-        classNames.push('active');
-      }
-
-      if (this.bmbAccordionBasic() && !this.allowExpand()) {
-        classNames.push('notHovered');
-      }
-    }
-
-    return classNames;
+    return getAccordionClasses({
+      borderRadius: this.borderRadius(),
+      margin: this.margin(),
+      appearanceContrast: this.appearanceContrast(),
+      isDisabled: this._disabled(),
+      isBasic: !!this.bmbAccordionBasic(),
+      isActive: this._active(),
+      allowExpand: this.allowExpand(),
+    });
   }
 
   getClassesHeader(): string[] {
-    const classNames = [];
-
-    if (typeof this.paddingHeader() === 'string') {
-      classNames.push(`bmb_padding-${this.paddingHeader()}`);
-    }
-
-    if (this.hideToggle() && !this.icon()) {
-      classNames.push('bmb_accordion-header');
-    } else {
-      classNames.push('bmb_accordion-header-icon');
-    }
-
-    if (this._expanded()) {
-      classNames.push('bmb_accordion-header-open');
-    }
-
-    return classNames;
+    return getAccordionHeaderClasses({
+      paddingHeader: this.paddingHeader(),
+      hideToggle: this.hideToggle(),
+      icon: this.icon(),
+      isExpanded: this._expanded(),
+    });
   }
 
   getClassesContent(): string {
-    let classNames = 'bmb_accordion-content';
-
-    if (typeof this.paddingContent() === 'string') {
-      classNames = classNames + ` bmb_padding-${this.paddingContent()}`;
-    }
-
-    return classNames;
+    return getAccordionContentClasses({
+      paddingContent: this.paddingContent(),
+    });
   }
 
   getStyles(): Record<string, string> {
-    const styles: Record<string, string> = {};
-
-    if (typeof this.borderRadius() !== 'string') {
-      styles['border-radius'] = calculateSize(this.borderRadius());
-    }
-
-    if (typeof this.margin() !== 'string') {
-      styles['margin'] = calculateSize(this.margin());
-    }
-
-    return styles;
+    return getAccordionStyles({
+      borderRadius: this.borderRadius(),
+      margin: this.margin(),
+    });
   }
 
   toggle(event: MouseEvent): void {
@@ -248,9 +203,11 @@ export class BmbAccordionComponent
   }
 
   getIconToggle(): string {
-    return this.isOpen() || (this.bmbAccordionBasic() && this._expanded())
-      ? 'keyboard_arrow_up'
-      : 'keyboard_arrow_down';
+    return getAccordionIconToggle({
+      isOpen: this.isOpen(),
+      isBasic: !!this.bmbAccordionBasic(),
+      isExpanded: this._expanded(),
+    });
   }
 
   handleToggleKeyboard(event: KeyboardEvent): void {

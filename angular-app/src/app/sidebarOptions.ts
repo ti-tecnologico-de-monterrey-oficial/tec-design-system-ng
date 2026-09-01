@@ -228,6 +228,18 @@ export const sidebarOptions: SidebarElement[][] = [
           title: 'Navigation bar',
           link: '/components/navigation-bar',
         },
+        {
+          id: 27,
+          icon: 'view_list',
+          title: 'Top bar item',
+          link: '/components/top-bar-item',
+        },
+        {
+          id: 28,
+          icon: 'touch_app',
+          title: 'Interactive item text button',
+          link: '/components/interactive-item-text-button',
+        },
       ],
     },
   ],
