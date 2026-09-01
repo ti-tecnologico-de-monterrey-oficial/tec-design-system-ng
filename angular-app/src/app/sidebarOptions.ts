@@ -240,6 +240,18 @@ export const sidebarOptions: SidebarElement[][] = [
           title: 'Interactive item text button',
           link: '/components/interactive-item-text-button',
         },
+        {
+          id: 29,
+          icon: 'radio_button_checked',
+          title: 'Button icon',
+          link: '/components/button-icon',
+        },
+        {
+          id: 30,
+          icon: 'date_range',
+          title: 'Date range',
+          link: '/components/date-range',
+        },
       ],
     },
   ],
