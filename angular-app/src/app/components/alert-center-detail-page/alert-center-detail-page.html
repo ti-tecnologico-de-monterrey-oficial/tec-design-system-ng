@@ -1,0 +1,32 @@
+<section>
+  <h2>Alert center detail</h2>
+
+  <div class="controls">
+    <label>
+      Title
+      <input [value]="title()" (input)="title.set($any($event.target).value)" />
+    </label>
+
+    <label>
+      Style
+      <select [value]="textStyle()" (change)="textStyle.set($any($event.target).value)">
+        <option value="normal">normal</option>
+        <option value="bold">bold</option>
+        <option value="italic">italic</option>
+        <option value="underline">underline</option>
+      </select>
+    </label>
+
+    <label>
+      Link href
+      <input [value]="linkHref()" (input)="linkHref.set($any($event.target).value)" />
+    </label>
+
+    <label class="checkbox">
+      <input type="checkbox" [checked]="showHtml()" (change)="showHtml.set($any($event.target).checked)" />
+      Show HTML block
+    </label>
+  </div>
+
+  <bmb-alert-center-detail [alert]="alert()" />
+</section>

@@ -434,5 +434,39 @@ export const appRoutes: Route[] = [
         ({ NavigationBarPage }) => NavigationBarPage,
       ),
   },
+  {
+    path: 'components/box-icon',
+    title: 'BmbBoxIcon | Bamboo migration dashboard',
+    loadComponent: () =>
+      import('./components/box-icon-page/box-icon-page').then(
+        ({ BoxIconPage }) => BoxIconPage,
+      ),
+  },
+  {
+    path: 'components/alert-center-detail',
+    title: 'BmbAlertCenterDetail | Bamboo migration dashboard',
+    loadComponent: () =>
+      import('./components/alert-center-detail-page/alert-center-detail-page').then(
+        ({ AlertCenterDetailPage }) => AlertCenterDetailPage,
+      ),
+  },
+  {
+    path: 'components/top-bar-item',
+    title: 'BmbTopBarItem | Bamboo migration dashboard',
+    loadComponent: () =>
+      import('./components/top-bar-item-page/top-bar-item-page').then(
+        ({ TopBarItemPage }) => TopBarItemPage,
+      ),
+  },
+  {
+    path: 'components/interactive-item-text-button',
+    title: 'BmbInteractiveItemTextButton | Bamboo migration dashboard',
+    loadComponent: () =>
+      import(
+        './components/interactive-item-text-button-page/interactive-item-text-button-page'
+      ).then(
+        ({ InteractiveItemTextButtonPage }) => InteractiveItemTextButtonPage,
+      ),
+  },
   { path: '**', redirectTo: 'components/carousel' },
 ];

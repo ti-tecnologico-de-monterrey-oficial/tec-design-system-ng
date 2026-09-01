@@ -1,0 +1,68 @@
+<section>
+  <h2>Box icon</h2>
+
+  <div class="controls">
+    <label>
+      Icon name
+      <select [value]="iconName()" (change)="iconName.set($any($event.target).value)">
+        <option value="home">home</option>
+        <option value="notifications">notifications</option>
+        <option value="person">person</option>
+        <option value="mail">mail</option>
+        <option value="search">search</option>
+        <option value="check">check</option>
+        <option value="warning">warning</option>
+        <option value="settings">settings</option>
+        <option value="calendar_today">calendar_today</option>
+        <option value="download">download</option>
+      </select>
+    </label>
+
+    <label>
+      Alt text
+      <input [value]="iconAlt()" (input)="iconAlt.set($any($event.target).value)" />
+    </label>
+
+    <label>
+      Color
+      <select [value]="boxColor()" (change)="boxColor.set($any($event.target).value)">
+        <option value="transparent">transparent</option>
+        <option value="black-primary">black-primary</option>
+        <option value="semantic-success">semantic-success</option>
+        <option value="semantic-warning">semantic-warning</option>
+        <option value="semantic-error">semantic-error</option>
+        <option value="blue-tec">blue-tec</option>
+      </select>
+    </label>
+
+    <label>
+      Size
+      <select [value]="boxSize()" (change)="boxSize.set($any($event.target).value)">
+        <option value="small">small</option>
+        <option value="regular">regular</option>
+      </select>
+    </label>
+
+    <label>
+      Shape
+      <select [value]="boxShape()" (change)="boxShape.set($any($event.target).value)">
+        <option value="square">square</option>
+        <option value="circle">circle</option>
+      </select>
+    </label>
+
+    <label class="checkbox">
+      <input type="checkbox" [checked]="isIconFilled()" (change)="isIconFilled.set($any($event.target).checked)" />
+      Filled icon
+    </label>
+  </div>
+
+  <bmb-box-icon
+    [iconName]="iconName()"
+    [iconImageAlt]="iconAlt()"
+    [boxColor]="boxColor()"
+    [boxSize]="boxSize()"
+    [boxShape]="boxShape()"
+    [isIconFilled]="isIconFilled()"
+  />
+</section>

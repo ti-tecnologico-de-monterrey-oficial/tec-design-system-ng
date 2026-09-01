@@ -8,6 +8,10 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { BmbImageComponent } from '../../bmb-image/bmb-image.component';
 import { BmbButtonDirective } from '../../../directives/old/bmb-button/button.directive';
 import { sanitizeContent } from '../../../_shared/logic/sanitizeContent';
+import {
+  IBmbAlertCenterDetailTextStyle,
+} from '../../../_shared/types/components/alert-center-detail';
+import { getAlertCenterDetailClass } from '../../../_shared/logic/components/alert-center-detail';
 
 /*
  * TODO: This component is marked as "old" and its decommissioning is planned for future updates.
@@ -30,6 +34,10 @@ export class BmbAlertCenterDetailComponent {
   sanitizedHtml(html: string) {
     const clean = sanitizeContent(html);
     return this.sanitizer.bypassSecurityTrustHtml(clean); // NOSONAR Content is sanitized with DOMPurify - safe to bypass Angular sanitization
+  }
+
+  getAlertContentClass(style?: IBmbAlertCenterDetailTextStyle): string {
+    return getAlertCenterDetailClass(style);
   }
 
   handleAlertEvent(alert: IBmbDataAlertsParsed | IBmbDataAlert): void {

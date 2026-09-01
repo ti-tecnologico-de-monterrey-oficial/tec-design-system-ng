@@ -1,0 +1,59 @@
+<header class="page-header">
+  <p class="eyebrow">Componente migrado</p>
+  <h1>BmbInteractiveItemTextButton</h1>
+  <p>Prueba sus propiedades requeridas, estado deshabilitado y evento.</p>
+</header>
+
+<section
+  class="playground"
+  aria-labelledby="interactive-item-properties-heading"
+>
+  <aside class="controls">
+    <h2 id="interactive-item-properties-heading">Propiedades</h2>
+
+    <label for="interactive-item-icon">icon</label>
+    <input
+      id="interactive-item-icon"
+      type="text"
+      [value]="icon()"
+      (input)="icon.set($any($event.target).value)"
+    />
+
+    <label for="interactive-item-label">label</label>
+    <input
+      id="interactive-item-label"
+      type="text"
+      [value]="label()"
+      (input)="label.set($any($event.target).value)"
+    />
+
+    <label for="interactive-item-value">value</label>
+    <input
+      id="interactive-item-value"
+      type="text"
+      [value]="value()"
+      (input)="value.set($any($event.target).value)"
+    />
+
+    <label class="toggle">
+      <input
+        type="checkbox"
+        [checked]="isDisabled()"
+        (change)="isDisabled.set($any($event.target).checked)"
+      />
+      isDisabled
+    </label>
+
+    <p><strong>Último evento:</strong> {{ lastEvent() }}</p>
+  </aside>
+
+  <div class="preview">
+    <bmb-interactive-item-text-button
+      [icon]="icon()"
+      [label]="label()"
+      [value]="value()"
+      [isDisabled]="isDisabled()"
+      (getActionClick)="handleActionClick($event)"
+    />
+  </div>
+</section>
