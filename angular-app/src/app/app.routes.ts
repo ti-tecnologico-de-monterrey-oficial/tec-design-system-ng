@@ -435,6 +435,22 @@ export const appRoutes: Route[] = [
       ),
   },
   {
+    path: 'components/box-icon',
+    title: 'BmbBoxIcon | Bamboo migration dashboard',
+    loadComponent: () =>
+      import('./components/box-icon-page/box-icon-page').then(
+        ({ BoxIconPage }) => BoxIconPage,
+      ),
+  },
+  {
+    path: 'components/alert-center-detail',
+    title: 'BmbAlertCenterDetail | Bamboo migration dashboard',
+    loadComponent: () =>
+      import('./components/alert-center-detail-page/alert-center-detail-page').then(
+        ({ AlertCenterDetailPage }) => AlertCenterDetailPage,
+      ),
+  },
+  {
     path: 'components/top-bar-item',
     title: 'BmbTopBarItem | Bamboo migration dashboard',
     loadComponent: () =>
