@@ -1,0 +1,188 @@
+<header class="page-header">
+  <p class="eyebrow">Componente migrado</p>
+  <h1>BmbDateRange</h1>
+  <p>Cambia sus propiedades para validar cada variante de forma aislada.</p>
+</header>
+
+<section class="playground" aria-labelledby="date-range-properties-heading">
+  <aside class="controls">
+    <h2 id="date-range-properties-heading">Propiedades</h2>
+
+    <label for="date-range-input-id">inputId</label>
+    <input
+      id="date-range-input-id"
+      type="text"
+      [value]="inputId()"
+      (input)="setInputId($any($event.target).value)"
+    />
+
+    <label for="date-range-name">name</label>
+    <input
+      id="date-range-name"
+      type="text"
+      [value]="name()"
+      (input)="setName($any($event.target).value)"
+    />
+
+    <label for="date-range-label-start">labelStartDate</label>
+    <input
+      id="date-range-label-start"
+      type="text"
+      [value]="labelStartDate()"
+      (input)="setLabelStartDate($any($event.target).value)"
+    />
+
+    <label for="date-range-label-end">labelEndDate</label>
+    <input
+      id="date-range-label-end"
+      type="text"
+      [value]="labelEndDate()"
+      (input)="setLabelEndDate($any($event.target).value)"
+    />
+
+    <label for="date-range-icon">icon</label>
+    <input
+      id="date-range-icon"
+      type="text"
+      [value]="icon()"
+      (input)="setIcon($any($event.target).value)"
+    />
+
+    <label for="date-range-date-format">dateFormat</label>
+    <input
+      id="date-range-date-format"
+      type="text"
+      [value]="dateFormat()"
+      (input)="setDateFormat($any($event.target).value)"
+    />
+
+    <label for="date-range-placeholder-start">placeholderStartDate</label>
+    <input
+      id="date-range-placeholder-start"
+      type="text"
+      [value]="placeholderStartDate()"
+      (input)="setPlaceholderStartDate($any($event.target).value)"
+    />
+
+    <label for="date-range-placeholder-end">placeholderEndDate</label>
+    <input
+      id="date-range-placeholder-end"
+      type="text"
+      [value]="placeholderEndDate()"
+      (input)="setPlaceholderEndDate($any($event.target).value)"
+    />
+
+    <label for="date-range-step-year-picker">stepYearPicker</label>
+    <input
+      id="date-range-step-year-picker"
+      type="number"
+      [value]="stepYearPicker()"
+      (input)="setStepYearPicker($any($event.target).valueAsNumber)"
+    />
+
+    <label for="date-range-disable-before">disableDatesBefore</label>
+    <input
+      id="date-range-disable-before"
+      type="text"
+      [value]="disableDatesBefore()"
+      (input)="setDisableDatesBefore($any($event.target).value)"
+    />
+
+    <label for="date-range-disable-after">disableDatesAfter</label>
+    <input
+      id="date-range-disable-after"
+      type="text"
+      [value]="disableDatesAfter()"
+      (input)="setDisableDatesAfter($any($event.target).value)"
+    />
+
+    <label for="date-range-invalid-format-message"
+      >invalidFormatErrorMessage</label
+    >
+    <input
+      id="date-range-invalid-format-message"
+      type="text"
+      [value]="invalidFormatErrorMessage()"
+      (input)="setInvalidFormatErrorMessage($any($event.target).value)"
+    />
+
+    <label for="date-range-required-field-message"
+      >requiredFieldErrorMessage</label
+    >
+    <input
+      id="date-range-required-field-message"
+      type="text"
+      [value]="requiredFieldErrorMessage()"
+      (input)="setRequiredFieldErrorMessage($any($event.target).value)"
+    />
+
+    <label for="date-range-error-message">errorMessage</label>
+    <input
+      id="date-range-error-message"
+      type="text"
+      [value]="errorMessage()"
+      (input)="setErrorMessage($any($event.target).value)"
+    />
+
+    <label class="toggle">
+      <input
+        type="checkbox"
+        [checked]="multipleRow()"
+        (change)="setMultipleRow($any($event.target).checked)"
+      />
+      multipleRow
+    </label>
+
+    <label class="toggle">
+      <input
+        type="checkbox"
+        [checked]="isRequired()"
+        (change)="setIsRequired($any($event.target).checked)"
+      />
+      isRequired
+    </label>
+
+    <label class="toggle">
+      <input
+        type="checkbox"
+        [checked]="isClearable()"
+        (change)="setIsClearable($any($event.target).checked)"
+      />
+      isClearable
+    </label>
+
+    <label class="toggle">
+      <input
+        type="checkbox"
+        [checked]="disabled()"
+        (change)="setDisabled($any($event.target).checked)"
+      />
+      disabled
+    </label>
+  </aside>
+
+  <div class="preview">
+    <bmb-date-range
+      [inputId]="inputId()"
+      [name]="name()"
+      [labelStartDate]="labelStartDate()"
+      [labelEndDate]="labelEndDate()"
+      [icon]="icon()"
+      [dateFormat]="dateFormat()"
+      [placeholderStartDate]="placeholderStartDate()"
+      [placeholderEndDate]="placeholderEndDate()"
+      [stepYearPicker]="stepYearPicker()"
+      [disableDatesBefore]="disableDatesBefore()"
+      [disableDatesAfter]="disableDatesAfter()"
+      [invalidFormatErrorMessage]="invalidFormatErrorMessage()"
+      [requiredFieldErrorMessage]="requiredFieldErrorMessage()"
+      [errorMessage]="errorMessage()"
+      [controlStart]="controlStart"
+      [controlEnd]="controlEnd"
+      [multipleRow]="multipleRow()"
+      [isRequired]="isRequired()"
+      [isClearable]="isClearable()"
+      [disabled]="disabled()"
+    />
+  </div>
+</section>

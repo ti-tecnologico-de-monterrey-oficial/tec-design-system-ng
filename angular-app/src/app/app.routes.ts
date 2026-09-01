@@ -468,5 +468,21 @@ export const appRoutes: Route[] = [
         ({ InteractiveItemTextButtonPage }) => InteractiveItemTextButtonPage,
       ),
   },
+  {
+    path: 'components/button-icon',
+    title: 'BmbButtonIcon | Bamboo migration dashboard',
+    loadComponent: () =>
+      import('./components/button-icon-page/button-icon-page').then(
+        ({ ButtonIconPage }) => ButtonIconPage,
+      ),
+  },
+  {
+    path: 'components/date-range',
+    title: 'BmbDateRange | Bamboo migration dashboard',
+    loadComponent: () =>
+      import('./components/date-range-page/date-range-page').then(
+        ({ DateRangePage }) => DateRangePage,
+      ),
+  },
   { path: '**', redirectTo: 'components/carousel' },
 ];
