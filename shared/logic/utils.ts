@@ -91,6 +91,10 @@ export const buildErrorMessage = (inputs: string[]): string => {
   return elements;
 };
 
+export const buildMaxElementsErrorMessage = (maxElements: number): string => {
+  return `Remember that, according to the guidelines, a maximum of ${maxElements} items will be displayed; in this case, any items beyond that limit are discarded.`;
+};
+
 export const getPositionClass = (
   className: string,
   labelPosition: string,
