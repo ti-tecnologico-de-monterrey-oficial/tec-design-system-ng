@@ -587,3 +587,11 @@ Carlos gave two more admin-only canvases to sweep the same way as the atomic-com
 - **One duplicate-name false lead checked and closed**: `ORG_Component_AccessLink` (`523:204994`) looked self-referential to the "Access to external link" section, but `get_metadata` showed it is a 71×71 decorative index icon inside the documentation frame, not the organism itself — the actual demo composes already-connected `Inner header`/`Bottom navigation bar`/`Overlay`/`Modal`/`Dropdown Menu`. Confirms `bmb-external-link` stays Blocked (still no independent stable node), not a new candidate.
 
 No `.figma.ts` files created or modified. No decision gates raised — nothing here needs Carlos's sign-off, unlike the TopBar fork from the first sweep.
+
+## 2026-09-02, third pass — Calendar verification timeout resolved
+
+Carlos asked to chase down the `Calendar.figma.ts` "pending verification" status flagged since 2026-08-12 (`BmbCalendarComponent`, node `2640:89850`). Re-ran `get_code_connect_map` (label Angular) on that node — it completed this time (no timeout) and returned `hasTemplate: true` for the six `BmbCalendarComponent` instances nested in that frame (`474:94937`, `12977:92957`, `2642:54263`, `12977:93489`, `2642:56679`, `12977:94720`), each matching the published `<bmb-calendar />` snippet and source path exactly. Cross-checked with `get_code_connect_suggestions` on the same node: no Calendar-named instance appears in the unconnected list anymore, only its already-triaged internal children (`Schedule hour section`, `Schedule selector`, `Calendar schedule card`, `BB_ORG_1`/`BB_ORG_2`).
+
+No re-publish was needed — the CLI upload from 2026-08-12 was already correct; only the MCP verification call itself had been failing. Treating this as resolved rather than transient-and-still-suspect, since two independent MCP calls (`get_code_connect_map`, `get_code_connect_suggestions`) now agree.
+
+Updated `INVENTORY.md` (moved Calendar from "Pending verification" into the Connected table, total 100 → 101), `REMAINING_COMPONENTS.md` (baseline coverage 95 → 96 of 128, remaining triage list 32 → 31 exports), and `component-index.json` (`bmb-calendar` status `pending_verification` → `connected`, `figmaVerified` → `true`, counts `pendingVerification` 1 → 0, `connectedPublished` 100 → 101).

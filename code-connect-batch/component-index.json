@@ -1,14 +1,14 @@
 {
   "$schema_note": "Machine-readable manifest of Bamboo Design System <-> tec-design-system-ng Code Connect mappings, for consumption by a future design-handoff triage agent.",
-  "generatedAt": "2026-09-02",
+  "generatedAt": "2026-09-02T00:00:00Z",
   "figmaFileKey": "Q4t8qIM5fklC9I3Atc1BrZ",
   "figmaFileUrl": "https://www.figma.com/design/Q4t8qIM5fklC9I3Atc1BrZ/Bamboo-Design-System---Components",
   "codeConnectLabel": "Angular",
   "repo": "ti-tecnologico-de-monterrey-oficial/tec-design-system-ng",
   "sourceBranchLayout": "ui-angular/src/lib/components/<name>/... (post-migration, develop@c1e81fde8); ui-angular/src/lib/directives/old/<name>/... for the 2 not-yet-migrated directives",
   "counts": {
-    "connectedPublished": 100,
-    "pendingVerification": 1,
+    "connectedPublished": 101,
+    "pendingVerification": 0,
     "internalAdapters": 3,
     "contractRequired": 10,
     "parentChildComposition": 12,
@@ -192,9 +192,9 @@
       "angularComponent": "BmbCalendarComponent",
       "angularSource": "ui-angular/src/lib/components/bmb-calendar/bmb-calendar.component.ts",
       "codeConnectId": "bmb-calendar",
-      "status": "pending_verification",
-      "figmaVerified": false,
-      "note": "Published via CLI (Figma API confirmed upload) but Figma MCP get_code_connect_map has timed out on this node across many retries. Not counted in the published-template total until confirmed."
+      "status": "connected",
+      "figmaVerified": true,
+      "note": "Verification resolved 2026-09-02: get_code_connect_map previously timed out on this node; retried today and returned hasTemplate: true for the BmbCalendarComponent instances nested in this frame."
     },
     {
       "file": "Carousel.figma.ts",
