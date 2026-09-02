@@ -148,7 +148,7 @@ export class BmbAIChatCardComponent implements AfterViewInit, OnDestroy {
       /**Handle - Track last non-'chat' mode so contract can restore it */
       const mode = this.mode();
 
-      if (mode !== 'chat') {
+      if ((mode !== 'chat' && mode === 'invisible') || mode === 'compact') {
         this.lastNonChatMode = mode;
       }
     });
@@ -216,6 +216,7 @@ export class BmbAIChatCardComponent implements AfterViewInit, OnDestroy {
         return this.lastNonChatMode === 'invisible' ? 'invisible' : 'compact';
       }
       if (value === 'expanded') return 'chat';
+
       return 'expanded';
     });
   }

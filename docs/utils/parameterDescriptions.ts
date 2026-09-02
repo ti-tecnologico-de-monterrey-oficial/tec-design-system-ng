@@ -488,6 +488,14 @@ By default, the supported language are:
     ' with a keyboard'.concat(ON_CLICK_DESCRIPTION),
     'pressed',
   ),
+  testId: {
+    control: 'text',
+    description: `Sets the base test id used for automation and testing selectors.`,
+    table: {
+      category: 'Properties',
+      type: { summary: 'string' },
+    },
+  },
 };
 
 export const DBmbImageParamDesc = {

@@ -15,6 +15,7 @@ import {
   RELEVANT_TITLE,
 } from '@docs/utils/utils';
 import {
+  DBmbGenericParamDesc,
   DBmbIconParamDesc,
   getOnClickParam,
 } from '@docs/utils/parameterDescriptions';
@@ -108,19 +109,7 @@ ${getBasicExampleBlock('BmbAiChatBubbleComponent')}
         },
       },
     },
-    testId: {
-      control: 'text',
-      description: 'Testing identifier used for automation selectors.',
-      table: {
-        category: 'Properties',
-        type: {
-          summary: 'string',
-        },
-        defaultValue: {
-          summary: 'chat-bubble',
-        },
-      },
-    },
+    testId: DBmbGenericParamDesc.testId,
     message: {
       control: 'object',
       description: `
