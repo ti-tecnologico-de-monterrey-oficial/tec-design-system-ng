@@ -10,7 +10,6 @@ import {
   input,
   model,
   OnDestroy,
-  OnInit,
   TemplateRef,
   viewChild,
   ViewEncapsulation,
@@ -59,9 +58,7 @@ export type IBmbAIChatCardMode = (typeof BMB_AI_CHAT_CARD_MODE_LIST)[number];
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class BmbAIChatCardComponent
-  implements OnInit, AfterViewInit, OnDestroy
-{
+export class BmbAIChatCardComponent implements AfterViewInit, OnDestroy {
   bgIconAppearance = input<IBmbColor>('gray-charade-500');
   componentTitle = input<string>('');
   subtitle = input<string>();
@@ -104,11 +101,8 @@ export class BmbAIChatCardComponent
   );
 
   private aiChatId = 'ai_chat_bar_actions_dialog';
-  private initialMode: IBmbAIChatCardMode = 'expanded';
-
-  ngOnInit(): void {
-    this.initialMode = this.mode();
-  }
+  /**  Preserves the mode to return to when collapsing the chat.*/
+  private lastNonChatMode: IBmbAIChatCardMode = 'expanded';
 
   ngAfterViewInit(): void {
     const _length = this.aiChatBar().length;
@@ -150,6 +144,15 @@ export class BmbAIChatCardComponent
   }
 
   constructor() {
+    effect(() => {
+      /**Handle - Track last non-'chat' mode so contract can restore it */
+      const mode = this.mode();
+
+      if (mode !== 'chat') {
+        this.lastNonChatMode = mode;
+      }
+    });
+
     effect(() => {
       /**Handle - Auto-scroll "AI chat bubbles" to bottom on new content */
       const container = this.aiChatBubblesContainer()?.nativeElement;
@@ -210,7 +213,7 @@ export class BmbAIChatCardComponent
     this.mode.update((value) => {
       if (value === 'compact' || value === 'invisible') return 'chat';
       if (value === 'chat') {
-        return this.initialMode === 'invisible' ? 'invisible' : 'compact';
+        return this.lastNonChatMode === 'invisible' ? 'invisible' : 'compact';
       }
       if (value === 'expanded') return 'chat';
       return 'expanded';
