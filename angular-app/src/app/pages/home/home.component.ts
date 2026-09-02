@@ -28,6 +28,9 @@ import {
   ThemeService,
   BmbTextEditorComponent,
   IBmbActionHeader,
+  BmbAccordionComponent,
+  BmbActionMenuComponent,
+  BmbItemHyperlinkComponent,
 } from 'ui-angular';
 
 import { HelpMenuComponent } from '../help-menu/help-menu.component';
@@ -49,6 +52,9 @@ import { FormControl } from '@angular/forms';
     BmbHomeCardComponent,
     BmbImageComponent,
     BmbTextEditorComponent,
+    BmbAccordionComponent,
+    BmbActionMenuComponent,
+    BmbItemHyperlinkComponent,
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',

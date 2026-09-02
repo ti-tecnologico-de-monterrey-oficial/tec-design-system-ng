@@ -23,7 +23,7 @@ export const appRoutes: Route[] = [
       ),
   },
   {
-    path: 'test-card-button',
+    path: 'card-button',
     title: 'Card Button Test',
     loadComponent: () =>
       import('./pages/templates/generic-card.component').then(
@@ -203,9 +203,9 @@ export const appRoutes: Route[] = [
         (t) => t.AvatarsComponent,
       ),
   },
-  { path: 'components', pathMatch: 'full', redirectTo: 'components/carousel' },
+  { path: 'components', pathMatch: 'full', redirectTo: 'pages/carousel' },
   {
-    path: 'components/carousel',
+    path: 'pages/carousel',
     title: 'BmbCarousel | Bamboo migration dashboard',
     loadComponent: () =>
       import('./pages/carousel-page/carousel-page').then(
@@ -213,7 +213,7 @@ export const appRoutes: Route[] = [
       ),
   },
   {
-    path: 'components/container',
+    path: 'pages/container',
     title: 'BmbContainer | Bamboo migration dashboard',
     loadComponent: () =>
       import('./pages/container-page/container-page').then(
@@ -221,7 +221,7 @@ export const appRoutes: Route[] = [
       ),
   },
   {
-    path: 'components/divider',
+    path: 'pages/divider',
     title: 'BmbDivider | Bamboo migration dashboard',
     loadComponent: () =>
       import('./pages/divider-page/divider-page').then(
@@ -229,7 +229,7 @@ export const appRoutes: Route[] = [
       ),
   },
   {
-    path: 'components/mitec-logo-animation',
+    path: 'pages/mitec-logo-animation',
     title: 'BmbMitecLogoAnimation | Bamboo migration dashboard',
     loadComponent: () =>
       import(
@@ -237,7 +237,7 @@ export const appRoutes: Route[] = [
       ).then(({ MitecLogoAnimationPage }) => MitecLogoAnimationPage),
   },
   {
-    path: 'components/notification-counter',
+    path: 'pages/notification-counter',
     title: 'BmbNotificationCounter | Bamboo migration dashboard',
     loadComponent: () =>
       import(
@@ -245,7 +245,7 @@ export const appRoutes: Route[] = [
       ).then(({ NotificationCounterPage }) => NotificationCounterPage),
   },
   {
-    path: 'components/iframe',
+    path: 'pages/iframe',
     title: 'BmbIframe | Bamboo migration dashboard',
     loadComponent: () =>
       import('./pages/iframe-page/iframe-page').then(
@@ -253,7 +253,7 @@ export const appRoutes: Route[] = [
       ),
   },
   {
-    path: 'components/grade-value',
+    path: 'pages/grade-value',
     title: 'BmbGradeValue | Bamboo migration dashboard',
     loadComponent: () =>
       import('./pages/grade-value-page/grade-value-page').then(
@@ -261,15 +261,13 @@ export const appRoutes: Route[] = [
       ),
   },
   {
-    path: 'components/card',
-    title: 'BmbCard | Bamboo migration dashboard',
+    path: 'pages/card',
+    title: 'Generic card | BmbCard | Bamboo migration dashboard',
     loadComponent: () =>
-      import('./pages/card-page/card-page').then(
-        ({ CardPage }) => CardPage,
-      ),
+      import('./pages/card-page/card-page').then(({ CardPage }) => CardPage),
   },
   {
-    path: 'components/overlay',
+    path: 'pages/overlay',
     title: 'BmbOverlay | Bamboo migration dashboard',
     loadComponent: () =>
       import('./pages/overlay-page/overlay-page').then(
@@ -277,7 +275,7 @@ export const appRoutes: Route[] = [
       ),
   },
   {
-    path: 'components/modal',
+    path: 'pages/modal',
     title: 'BmbModal | Bamboo migration dashboard',
     loadComponent: () =>
       import('./pages/modal-page/modal-page').then(
@@ -285,7 +283,7 @@ export const appRoutes: Route[] = [
       ),
   },
   {
-    path: 'components/check-external-link-button',
+    path: 'pages/check-external-link-button',
     title: 'BmbCheckExternalLinkButton | Bamboo migration dashboard',
     loadComponent: () =>
       import(
@@ -293,15 +291,13 @@ export const appRoutes: Route[] = [
       ).then(({ CheckExternalLinkButtonPage }) => CheckExternalLinkButtonPage),
   },
   {
-    path: 'components/logo',
+    path: 'pages/logo',
     title: 'BmbLogo | Bamboo migration dashboard',
     loadComponent: () =>
-      import('./pages/logo-page/logo-page').then(
-        ({ LogoPage }) => LogoPage,
-      ),
+      import('./pages/logo-page/logo-page').then(({ LogoPage }) => LogoPage),
   },
   {
-    path: 'components/user-image',
+    path: 'pages/user-image',
     title: 'BmbUserImage | Bamboo migration dashboard',
     loadComponent: () =>
       import('./pages/user-image-page/user-image-page').then(
@@ -309,7 +305,7 @@ export const appRoutes: Route[] = [
       ),
   },
   {
-    path: 'components/pull-wedge',
+    path: 'pages/pull-wedge',
     title: 'BmbPullWedge | Bamboo migration dashboard',
     loadComponent: () =>
       import('./pages/pull-wedge/pull-wedge').then(
@@ -317,7 +313,7 @@ export const appRoutes: Route[] = [
       ),
   },
   {
-    path: 'components/server-table',
+    path: 'pages/server-table',
     title: 'BmbServerTable | Bamboo migration dashboard',
     loadComponent: () =>
       import('./pages/server-table/server-table').then(
@@ -325,7 +321,7 @@ export const appRoutes: Route[] = [
       ),
   },
   {
-    path: 'components/skeleton',
+    path: 'pages/skeleton',
     title: 'BmbSkeleton | Bamboo migration dashboard',
     loadComponent: () =>
       import('./pages/skeleton-page/skeleton-page').then(
@@ -333,7 +329,7 @@ export const appRoutes: Route[] = [
       ),
   },
   {
-    path: 'components/value-counter',
+    path: 'pages/value-counter',
     title: 'BmbValueCounter | Bamboo migration dashboard',
     loadComponent: () =>
       import('./pages/value-counter-page/value-counter-page').then(
@@ -341,7 +337,7 @@ export const appRoutes: Route[] = [
       ),
   },
   {
-    path: 'components/bookmark',
+    path: 'pages/bookmark',
     title: 'BmbBookmark | Bamboo migration dashboard',
     loadComponent: () =>
       import('./pages/bookmark-page/bookmark-page').then(
@@ -349,7 +345,7 @@ export const appRoutes: Route[] = [
       ),
   },
   {
-    path: 'components/breadcrumb',
+    path: 'pages/breadcrumb',
     title: 'BmbBreadcrumb | Bamboo migration dashboard',
     loadComponent: () =>
       import('./pages/breadcrumb-page/breadcrumb-page').then(
@@ -357,7 +353,7 @@ export const appRoutes: Route[] = [
       ),
   },
   {
-    path: 'components/icon-status',
+    path: 'pages/icon-status',
     title: 'BmbIconStatus | Bamboo migration dashboard',
     loadComponent: () =>
       import('./pages/icon-status-page/icon-status-page').then(
@@ -365,7 +361,7 @@ export const appRoutes: Route[] = [
       ),
   },
   {
-    path: 'components/paginator',
+    path: 'pages/paginator',
     title: 'BmbPaginator | Bamboo migration dashboard',
     loadComponent: () =>
       import('./pages/paginator-page/paginator-page').then(
@@ -373,7 +369,7 @@ export const appRoutes: Route[] = [
       ),
   },
   {
-    path: 'components/hito-list',
+    path: 'pages/hito-list',
     title: 'BmbHitoList | Bamboo migration dashboard',
     loadComponent: () =>
       import('./pages/hito-list-page/hito-list-page').then(
@@ -381,7 +377,7 @@ export const appRoutes: Route[] = [
       ),
   },
   {
-    path: 'components/icon-item',
+    path: 'pages/icon-item',
     title: 'BmbIconItem | Bamboo migration dashboard',
     loadComponent: () =>
       import('./pages/icon-item-page/icon-item-page').then(
@@ -389,7 +385,7 @@ export const appRoutes: Route[] = [
       ),
   },
   {
-    path: 'components/dot-paginator',
+    path: 'pages/dot-paginator',
     title: 'BmbDotPaginator | Bamboo migration dashboard',
     loadComponent: () =>
       import('./pages/dot-paginator-page/dot-paginator-page').then(
@@ -397,13 +393,13 @@ export const appRoutes: Route[] = [
       ),
   },
   {
-    path: 'components/fab',
+    path: 'pages/fab',
     title: 'BmbFab | Bamboo migration dashboard',
     loadComponent: () =>
       import('./pages/fab-page/fab-page').then(({ FabPage }) => FabPage),
   },
   {
-    path: 'components/ai-chat-bubble',
+    path: 'pages/ai-chat-bubble',
     title: 'BmbAiChatBubble | Bamboo migration dashboard',
     loadComponent: () =>
       import('./pages/ai-chat-bubble-page/ai-chat-bubble-page').then(
@@ -411,7 +407,7 @@ export const appRoutes: Route[] = [
       ),
   },
   {
-    path: 'components/dropzone',
+    path: 'pages/dropzone',
     title: 'BmbDropzone | Bamboo migration dashboard',
     loadComponent: () =>
       import('./pages/dropzone-page/dropzone-page').then(
@@ -419,7 +415,7 @@ export const appRoutes: Route[] = [
       ),
   },
   {
-    path: 'components/bot-icon',
+    path: 'pages/bot-icon',
     title: 'BmbBotIcon | Bamboo migration dashboard',
     loadComponent: () =>
       import('./pages/bot-icon-page/bot-icon-page').then(
@@ -427,7 +423,7 @@ export const appRoutes: Route[] = [
       ),
   },
   {
-    path: 'components/ai-chat-card',
+    path: 'pages/ai-chat-card',
     title: 'BmbAiChatCard | Bamboo migration dashboard',
     loadComponent: () =>
       import('./pages/ai-chat-card-page/ai-chat-card-page').then(
@@ -435,7 +431,7 @@ export const appRoutes: Route[] = [
       ),
   },
   {
-    path: 'components/navigation-bar',
+    path: 'pages/navigation-bar',
     title: 'BmbNavigationBar | Bamboo migration dashboard',
     loadComponent: () =>
       import('./pages/navigation-bar-page/navigation-bar-page').then(
@@ -443,7 +439,7 @@ export const appRoutes: Route[] = [
       ),
   },
   {
-    path: 'components/box-icon',
+    path: 'pages/box-icon',
     title: 'BmbBoxIcon | Bamboo migration dashboard',
     loadComponent: () =>
       import('./pages/box-icon-page/box-icon-page').then(
@@ -451,7 +447,7 @@ export const appRoutes: Route[] = [
       ),
   },
   {
-    path: 'components/alert-center-detail',
+    path: 'pages/alert-center-detail',
     title: 'BmbAlertCenterDetail | Bamboo migration dashboard',
     loadComponent: () =>
       import('./pages/alert-center-detail-page/alert-center-detail-page').then(
@@ -459,7 +455,7 @@ export const appRoutes: Route[] = [
       ),
   },
   {
-    path: 'components/top-bar-item',
+    path: 'pages/top-bar-item',
     title: 'BmbTopBarItem | Bamboo migration dashboard',
     loadComponent: () =>
       import('./pages/top-bar-item-page/top-bar-item-page').then(
@@ -467,7 +463,7 @@ export const appRoutes: Route[] = [
       ),
   },
   {
-    path: 'components/interactive-item-text-button',
+    path: 'pages/interactive-item-text-button',
     title: 'BmbInteractiveItemTextButton | Bamboo migration dashboard',
     loadComponent: () =>
       import(
@@ -477,7 +473,7 @@ export const appRoutes: Route[] = [
       ),
   },
   {
-    path: 'components/button-icon',
+    path: 'pages/button-icon',
     title: 'BmbButtonIcon | Bamboo migration dashboard',
     loadComponent: () =>
       import('./pages/button-icon-page/button-icon-page').then(
@@ -485,12 +481,12 @@ export const appRoutes: Route[] = [
       ),
   },
   {
-    path: 'components/date-range',
+    path: 'pages/date-range',
     title: 'BmbDateRange | Bamboo migration dashboard',
     loadComponent: () =>
       import('./pages/date-range-page/date-range-page').then(
         ({ DateRangePage }) => DateRangePage,
       ),
   },
-  { path: '**', redirectTo: 'components/carousel' },
+  { path: '**', redirectTo: 'pages/home' },
 ];
