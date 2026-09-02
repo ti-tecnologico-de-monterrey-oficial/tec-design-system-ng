@@ -6,6 +6,7 @@ import {
   effect,
   input,
   model,
+  signal,
   ViewEncapsulation,
 } from '@angular/core';
 import { BmbMultiDotPaginatorItemComponent } from './bmb-multi-dot-paginator-item/bmb-multi-dot-paginator-item.component';
@@ -33,7 +34,7 @@ import { TranslatePipe } from '../../pipes/translations';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class BmbMultiDotPaginatorComponent implements AfterContentInit {
+export class BmbMultiDotPaginatorComponent {
   subtitle = input<string>('');
   componentTitle = input<string>(); // once title is removed, this should be required
 
@@ -45,12 +46,14 @@ export class BmbMultiDotPaginatorComponent implements AfterContentInit {
     BmbMultiDotPaginatorItemComponent,
   );
 
-  numberOfElements: number[] = [];
+  numberOfElements = signal<number[]>([]);
 
   constructor() {
     effect(() => {
       const deprecatedTitle = this.title();
       const newTitle = this.componentTitle();
+      const childrenItems = this.childrenItems();
+      const activeChildren = this.selectedIndex();
       logDeprecatedInput(
         { name: 'title', hasValue: !!deprecatedTitle },
         { name: 'componentTitle', hasValue: !!newTitle },
@@ -61,12 +64,10 @@ export class BmbMultiDotPaginatorComponent implements AfterContentInit {
           'The "componentTitle" input is required. Please provide a value for it.',
         );
       }
-    });
-  }
 
-  ngAfterContentInit() {
-    this.numberOfElements = Array(this.childrenItems().length ?? 0).fill(0);
-    this.setClassActive(this.selectedIndex());
+      this.numberOfElements.set(Array(childrenItems?.length ?? 0).fill(0));
+      this.setClassActive(activeChildren);
+    });
   }
 
   protected selectItem(index: number) {
@@ -75,8 +76,8 @@ export class BmbMultiDotPaginatorComponent implements AfterContentInit {
 
   protected setClassActive(newIndex: number, oldIndex = 0) {
     const activeItem = this.childrenItems()[
-      newIndex === this.numberOfElements.length
-        ? this.numberOfElements.length - 1
+      newIndex === this.numberOfElements().length
+        ? this.numberOfElements().length - 1
         : newIndex
     ] as any;
     const oldItem = this.childrenItems()[oldIndex] as any;
@@ -107,12 +108,12 @@ export class BmbMultiDotPaginatorComponent implements AfterContentInit {
     }
 
     this.selectedIndex.set(
-      newIndex === this.numberOfElements.length ? newIndex - 1 : newIndex,
+      newIndex === this.numberOfElements().length ? newIndex - 1 : newIndex,
     );
   }
 
   protected setNextItem() {
-    if (this.selectedIndex() + 1 === this.numberOfElements.length) {
+    if (this.selectedIndex() + 1 === this.numberOfElements().length) {
       this.setClassActive(0, this.selectedIndex());
     } else {
       this.setClassActive(this.selectedIndex() + 1, this.selectedIndex());
@@ -126,7 +127,7 @@ export class BmbMultiDotPaginatorComponent implements AfterContentInit {
   }
 
   protected nextItem() {
-    if (this.selectedIndex() < this.numberOfElements.length) {
+    if (this.selectedIndex() < this.numberOfElements().length) {
       this.setClassActive(this.selectedIndex() + 1, this.selectedIndex());
     }
   }
