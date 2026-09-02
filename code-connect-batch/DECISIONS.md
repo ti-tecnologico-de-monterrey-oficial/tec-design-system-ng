@@ -601,3 +601,35 @@ Updated `INVENTORY.md` (moved Calendar from "Pending verification" into the Conn
 Carlos asked whether a product design showing the contract-required components would help, then asked for a handoff table to send to Design. Built `bamboo-contract-required-handoff.md` (delivered to Carlos, not stored in this repo) covering all 11 items with the exact Angular prop/interface shape, the current Figma candidate (or lack of one), and the minimal contract to publish. Two items (`chat-bubble`, `home-card-chat`) were flagged as *not* a Design ask — their blocker is a strictly-typed required `Date` field, which is an Engineering/typing decision, not a missing Figma property.
 
 While compiling it, found `bmb-sidebar` was never added to `REMAINING_COMPONENTS.md`/`CONTRACT_BACKLOG.md`/`component-index.json` even though `CONTRACT_STATE.md` has documented it as Contract required since the original 2026-08-12 NAV-01 discovery (`elements: SidebarElement[][]`, no `Items` SLOT on the published `Sidebar` node `299:51502`). This is very likely the source of a pre-existing off-by-one in this tracker's own arithmetic (95/96 connected + 31/32 remaining never summed to the stated 127/128 baseline). Folded `sidebar` into all three trackers as an 11th contract-required export (Contract required count 10 → 11); did not attempt to re-audit the rest of the ledger for further drift beyond this specific gap.
+
+## 2026-09-02, fifth pass — Card button's "Open in GitHub" link was dead; root-caused and fixed via CLI upgrade
+
+Carlos flagged that Card button's Figma Code Connect panel linked to a dead GitHub path (`ui-angular/src/lib/components/old/bmb-card-button/bmb-card-button.component.ts`, using the pre-2026-08-27-migration `old/` layout) instead of the correct `ui-angular/src/lib/components/bmb-card-button/bmb-card-button.component.ts` on `develop`.
+
+**This mapping predates this batch.** No `CardButton.figma.ts` existed in `code-connect-batch/` — Card button was tracked as Contract required (see the now-removed entry in `component-index.json`/`REMAINING_COMPONENTS.md`). The live Figma connection (`get_code_connect_map` on `4281:218969` returned real snippets for both `Size` variants) was published outside this pipeline, at some point before this project's tracking began, and was never touched by the 2026-08-27 batch path fix (which only iterated the batch's own 101 files).
+
+**Two separate bugs, not one:**
+
+1. **Stale `source=` path** — trivial, `old/` no longer exists for components post-migration.
+2. **Branch hardcoded to a dead name** — the real bug, and the one that would have defeated a same-CLI republish. Read `@figma/code-connect@1.3.3`'s own source (`dist/connect/project.js`):
+   ```js
+   function getGitRepoDefaultBranchName(repoPath) {
+       const DEFAULT_BRANCH_NAME = 'master';
+       const branches = spawnSync('git', ['branch', '-r'], { cwd: repoPath }).stdout...;
+       if (branches.includes('origin/main')) return 'main';
+       else return DEFAULT_BRANCH_NAME; // literal 'master'
+   }
+   ```
+   It only ever guesses `main` or `master` from local `git branch -r` at publish time — never reads the repo's actual default branch, and has no config override. This repo has neither `main` nor `master` in any of its 491 branches (confirmed via `git branch -a --list`) — only `develop`. Republishing with 1.3.3 today would have swapped `blob/main/...` for an equally-dead `blob/master/...`.
+
+   Checked `npm view @figma/code-connect versions`: current is `2.0.0` (we're pinned to `1.3.3` in `package.json`). Its `getGitRepoDefaultBranchName` now takes a `configDefaultBranch` override and, absent that, resolves via `git symbolic-ref refs/remotes/origin/HEAD` before falling back to the old main/master guess. This repo's `origin/HEAD` correctly resolves to `develop` (`git remote show origin` confirms "HEAD branch: develop"), so 2.0.0 would produce a correct `blob/develop/...` link with zero extra config.
+
+**Second finding while fixing this**: the pre-existing mapping was published against the two *variant child* nodes (`4281:218967`, `4281:218968`) rather than the parent component set (`4281:218969`). Confirmed via `get_context_for_code_connect` that `4281:218969` is a real component set with a `Size` variant (`Default`/`Small`), and its two children are `BB_1_6`/`BB_1_6_4`. `connect publish --dry-run` on the child nodes failed exactly like the earlier Bottom navigation bar / Accordion Simple Text cases: "node is not a top level component or component set." The original entry must have been written directly via API/plugin, bypassing this CLI validation — not reproducible in this pipeline.
+
+**Content check, not fabricated**: `componentTitle="Crear nuevo skill"`/`icon="add_circle"` matches Storybook's own `Default` story (`componentTitle: 'Create new skill'`, `icon: 'add_circle'`, translated to Spanish). `smallTitle="Chat Tec"` + the TecGPT bot image isn't a Storybook default (that one is generic: `'Title'`/`'info'`) but reads as a real production reference (Chat Tec/TecGPT), not an invented value. Kept both unchanged.
+
+**Fix applied**: wrote a single `CardButton.figma.ts` targeting the parent set (`4281:218969`), using `figma.selectedInstance.getEnum('Size', { Default: figma.code\`...\`, Small: figma.code\`...\` })` to keep both existing, real examples — same pattern as `Divider.figma.ts`, extended to switch the whole snippet rather than one value. Tested `parse` then `publish --dry-run` against the CLI's ephemeral `@figma/code-connect@2.0.0` (not the pinned `1.3.3` devDependency — did not touch `package.json`) before publishing for real. `get_code_connect_map` post-publish confirms `hasTemplate: true` on both variants, `source` corrected, `label: "Angular"`.
+
+**Not done**: did not bump the repo's pinned `@figma/code-connect` devDependency (1.3.3 → 2.0.0) or re-run the other 100 files against it — that's a bigger, separate call (parser behavior could differ across a major version) and Carlos asked to raise a ticket for it rather than do it inline. Every other published `.figma.ts` in this batch almost certainly has the same dead-link bug on its "Open in GitHub" button (their `source=` metadata is fine; the branch name baked into Figma's stored link at publish time is not) — flagged to Carlos as a batch-wide follow-up, not fixed here.
+
+**Docs updated**: `INVENTORY.md` (new Connected row, header note), `REMAINING_COMPONENTS.md` (`card-button` moved out of Contract required: 96→97 coverage, 32→31 remaining, 11→10 contract-required), `CONTRACT_BACKLOG.md` (clause added), `component-index.json` (moved entry, counts 101→102 / 11→10). `CONTRACT_IMPLEMENTATION_BACKLOG.md`'s COL-01 row left as-is — `card-button` is still a valid candidate parent for that unresolved item-level contract, this fix didn't touch that.
