@@ -7,8 +7,7 @@ import { getFormatName } from '@docs/utils/utils';
 
 <Meta of={mainStory} />
 <ListTemplate
-  main={mainStory}
-  content={[editorStory]}
+  content={[mainStory, editorStory]}
   context={{
     [getFormatName(
       editorStory.default.title,
