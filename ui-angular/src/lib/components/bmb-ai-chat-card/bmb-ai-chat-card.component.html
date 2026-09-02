@@ -14,11 +14,11 @@
     >
       <section class="bmb_ai-chat-card-wrapper">
         @if (isOneChatBar()) {
-          <section class="bmb_ai-chat-card-bubbles">
+          <section #aiChatBubblesContainer class="bmb_ai-chat-card-bubbles">
             <ng-content select="bmb-ai-chat-bubble"></ng-content>
           </section>
 
-          <div class="bmb_ai-chat-card-bar">
+          <div #aiChatBarContainer class="bmb_ai-chat-card-bar">
             <ng-content select="bmb-chat-bar"></ng-content>
           </div>
         }

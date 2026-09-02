@@ -123,34 +123,32 @@ ${getBasicExampleBlock(
     },
   },
   argTypes: {
-    mode: getAppearanceParam('mode', BMB_AI_CHAT_CARD_MODE_LIST, 'expanded'),
+    mode: getAppearanceParam(
+      'mode',
+      BMB_AI_CHAT_CARD_MODE_LIST,
+      'expanded',
+      `${getAlertBlockquote(
+        `
+Flows automatically supported by the component:
+ - "compact" -> "chat" (collapsing) -> compact
+ - "chat" (expanding) -> "expanded"
+ - "expanded" (collapsing) -> "chat"
+ - "invisible" -> "chat" (collapsing) -> invisible`,
+        {
+          title: RELEVANT_TITLE.important,
+          blockquoteType: BlockquoteType.important,
+        },
+      )}
+<br/>The "invisible" mode allows you to hide the "AI chat card"; to show it, you simply need to change the mode value to "chat".
+<br/><br/>In the case where the "invisible" mode is switched to "chat" mode via an external implementation, it automatically reverts to "invisible" upon collapsing.,
+`,
+    ),
     bgIconAppearance: DBmbHomeCardHeaderParamDesc.bgIconAppearance,
-    componentTitle: {
-      control: 'text',
-      description: `Main title displayed in the chat header.`,
-      table: {
-        category: 'Properties',
-        type: { summary: 'string' },
-      },
-    },
-    subtitle: {
-      control: 'text',
-      description: `Secondary text displayed below the title.`,
-      table: {
-        category: 'Properties',
-        type: { summary: 'string' },
-      },
-    },
-
+    componentTitle: DBmbHomeCardHeaderParamDesc.title,
+    subtitle: DBmbHomeCardHeaderParamDesc.subtitle,
     currentBot: {
       control: { type: 'object' },
-      description: `
-Sets the active bot for the chat.
-
-This is a **model signal**, so it can be used as:
-- \`[(currentBot)]="currentBot"\`
-- \`(currentBotChange)="handleCurrentBotChange($event)"\`
-    `,
+      description: 'Places the bot icon to the right of the title.',
       table: {
         category: 'Properties',
         type: { summary: 'IBotType' },
@@ -159,14 +157,7 @@ This is a **model signal**, so it can be used as:
         },
       },
     },
-    testId: {
-      control: 'text',
-      description: `Base test id used for automation and testing selectors.`,
-      table: {
-        category: 'Properties',
-        type: { summary: 'string' },
-      },
-    },
+    testId: DBmbGenericParamDesc.testId,
     headerActions: DBmbGenericParamDesc.actionHeaders,
   },
   args: {

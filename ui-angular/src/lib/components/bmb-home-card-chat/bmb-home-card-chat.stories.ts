@@ -14,6 +14,7 @@ import { BmbTopBarComponent } from '../bmb-top-bar/bmb-top-bar.component';
 import { BmbSidebarComponent } from '../bmb-sidebar/bmb-sidebar.component';
 import { BmbHomeCardChatComponent } from './bmb-home-card-chat.component';
 import { IBmbChatActionEvent } from '../bmb-chat-bubbles/types';
+import { DBmbGenericParamDesc } from '@docs/utils/parameterDescriptions';
 
 const CHAT_BEHAVIOR_DOC = `
 ### 💡 Dynamic Message Behavior
@@ -481,14 +482,7 @@ type IBotType = {
       },
     },
 
-    testId: {
-      control: 'text',
-      description: `Base test id used for automation and testing selectors.`,
-      table: {
-        category: 'Properties',
-        type: { summary: 'string' },
-      },
-    },
+    testId: DBmbGenericParamDesc.testId,
     botActions: {
       control: 'object',
       description: 'Enables the actions for the bot bubbles',
