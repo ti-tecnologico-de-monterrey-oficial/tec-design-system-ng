@@ -484,5 +484,21 @@ export const appRoutes: Route[] = [
         ({ DateRangePage }) => DateRangePage,
       ),
   },
+  {
+    path: 'components/focus-element',
+    title: 'BmbFocusElement | Bamboo migration dashboard',
+    loadComponent: () =>
+      import('./components/focus-element-page/focus-element-page').then(
+        ({ FocusElementPage }) => FocusElementPage,
+      ),
+  },
+  {
+    path: 'components/frequent-apps-selector',
+    title: 'BmbFrequentAppsSelector | Bamboo migration dashboard',
+    loadComponent: () =>
+      import(
+        './components/frequent-apps-selector-page/frequent-apps-selector-page'
+      ).then(({ FrequentAppsSelectorPage }) => FrequentAppsSelectorPage),
+  },
   { path: '**', redirectTo: 'components/carousel' },
 ];

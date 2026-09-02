@@ -11,6 +11,7 @@ import {
   IBmbInteractiveIconType,
 } from '../bmb-interactive-icon/bmb-interactive-icon.component';
 import { IBmbApp } from '../../_shared/types';
+import { getFrequentAppsSelectorClasses } from '../../_shared/logic/components/frequent-apps-selector';
 
 /*
  * TODO: This component is marked as "old" and its decommissioning is planned for future updates.
@@ -35,10 +36,7 @@ export class BmbFrequentAppsSelectorComponent {
   appClick = output<any>();
 
   getClassesFAC(): string[] {
-    return [
-      'bmb_frequent_apps-container',
-      `bmb_frequent_apps-container-${this.layout()}`,
-    ];
+    return getFrequentAppsSelectorClasses(this.layout());
   }
 
   handleButtonClick(app: IBmbApp): void {
