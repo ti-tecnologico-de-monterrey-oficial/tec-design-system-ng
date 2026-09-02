@@ -13,6 +13,7 @@ import {
   ViewChild,
   inject,
   signal,
+  computed,
 } from '@angular/core';
 
 import { IBmbDataTopBar } from '../../bmb-breadcrumb/bmb-breadcrumb.component';
@@ -30,6 +31,7 @@ import { BmbLayoutDirective } from '../../../directives/bmb-layout/bmb-layout.di
 import { BmbLayoutItemDirective } from '../../../directives/bmb-layout/bmb-layout-item.directive';
 
 import { logDeprecatedInput } from '../../../_shared/logic/logDeprecatedInput';
+import { buildMaxElementsErrorMessage } from '../../../_shared/logic/utils';
 import { TranslatePipe } from '../../../pipes/translations';
 import {
   BmbProjectionContentService,
@@ -69,6 +71,7 @@ export class BmbHomeCardHeaderComponent implements OnInit {
   isExpanded = model<boolean>(false);
   currentBot = model<IBotType>();
   componentTitle = input<string>(); // once title is removed, this should be required
+  showOneHeaderAction = input<boolean>(false);
 
   title = input<string>(); // deprecated
 
@@ -78,7 +81,14 @@ export class BmbHomeCardHeaderComponent implements OnInit {
 
   @ViewChild('actionMenu') actionMenu!: TemplateRef<unknown>;
 
-  actionLimit = 2;
+  GENERAL_ACTIONS_LIMIT = 2;
+  AI_CHAT_CARD_PARTICULARITY_LIMIT = 1;
+  actionsLimit = computed(() =>
+    this.showOneHeaderAction()
+      ? this.AI_CHAT_CARD_PARTICULARITY_LIMIT
+      : this.GENERAL_ACTIONS_LIMIT,
+  );
+  MAX_ACTIONS = 8;
   isGreaterThanLimit = false;
   idActionMenu = signal<string>('');
   private readonly contentProjected: BmbProjectionContentService = inject(
@@ -103,36 +113,40 @@ export class BmbHomeCardHeaderComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.isGreaterThanLimit = this.actionHeaders().length > this.actionLimit;
+    this.isGreaterThanLimit = this.actionHeaders().length > this.actionsLimit();
+
+    if (this.actionHeaders().length > this.MAX_ACTIONS) {
+      throw new Error(buildMaxElementsErrorMessage(this.MAX_ACTIONS));
+    }
   }
 
   protected getHeaderAction(index: number): IBmbActionHeader {
     return this.actionHeaders()[index];
   }
 
-  getIconName(): string {
+  protected getIconName(): string {
     return (!this.isMobile() && this.icon()) || '';
   }
 
-  getDataLocalNav(): IBmbDataTopBar[] {
+  protected getDataLocalNav(): IBmbDataTopBar[] {
     if (this.isMobile()) return [];
     return this.dataLocalNav();
   }
 
-  handleBack(): void {
+  protected handleBack(): void {
     this.onBack.emit();
   }
 
-  handleExpandChange(): void {
+  protected handleExpandChange(): void {
     this.onExpandClick.emit();
   }
 
-  handleCloseChange(): void {
+  protected handleCloseChange(): void {
     this.onClose.emit();
     this.contentProjected.closeContent(this.idActionMenu());
   }
 
-  handleHeaderActionClick(
+  protected handleHeaderActionClick(
     event: MouseEvent,
     headerAction: IBmbActionHeader,
   ): void {
@@ -141,7 +155,7 @@ export class BmbHomeCardHeaderComponent implements OnInit {
     }
   }
 
-  handleOpenActionMenu(event: MouseEvent | KeyboardEvent): void {
+  protected handleOpenActionMenu(event: MouseEvent | KeyboardEvent): void {
     if (!event.target) return;
     const data: IBmbProjectionContent = {
       content: this.actionMenu,
@@ -151,7 +165,7 @@ export class BmbHomeCardHeaderComponent implements OnInit {
     this.idActionMenu.set(this.contentProjected.openContent(data));
   }
 
-  handleCloseActionMenu(
+  protected handleCloseActionMenu(
     event: MouseEvent,
     headerAction: IBmbActionHeader,
   ): void {

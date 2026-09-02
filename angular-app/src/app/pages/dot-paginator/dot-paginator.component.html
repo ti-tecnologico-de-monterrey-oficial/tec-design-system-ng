@@ -1,8 +1,9 @@
 <bmb-multi-dot-paginator
   title="Test title"
   subtitle="Test subtitle"
-  [selectedIndex]="0"
+  [(selectedIndex)]="currentIndex"
 >
+@for (item of items(); track $index) {
   <bmb-multi-dot-paginator-item>
     <div bmbVerticalLayout layoutHeight="100%">
       <bmb-home-card
@@ -12,20 +13,13 @@
         title="Some title"
         contentPadding="none"
       >
-        <bmb-image
-          [src]="'assets/bg.jpg'"
-          [alt]="'Fruits'"
-          [borderRadius]="'m'"
-          [loading]="'lazy'"
-          width="100%"
-          [enableZoom]="false"
-          [isBlurredBackdrop]="false"
-          [animation]="'fade'"
-          [minHeight]="{ s: '400px', l: '100%' }"
-        ></bmb-image>
+
+        {{ item.title }}
       </bmb-home-card>
     </div>
   </bmb-multi-dot-paginator-item>
+}
+<!--
   <bmb-multi-dot-paginator-item>
     <div bmbVerticalLayout layoutHeight="100%">
       <bmb-home-card
@@ -45,8 +39,8 @@
           [images]="[
             {
               src: 'https://mitecpprd.tec.mx/api/images/mitec/colaboradores/Avisos/2022/mar//Dia_Internacional_Mujer.jpg',
-              alt: 'Image 1'
-            }
+              alt: 'Image 1',
+            },
           ]"
           [animation]="'fade'"
           [minHeight]="{ s: '400px', l: '100%' }"
@@ -75,12 +69,12 @@
           [images]="[
             {
               src: 'https://mitecpprd.tec.mx/api/images/mitec/colaboradores/Avisos/2022/mar//Dia_Internacional_Mujer.jpg',
-              alt: 'Image 1'
+              alt: 'Image 1',
             },
             {
               src: 'https://mitecpprd.tec.mx/api/images/mitec/colaboradores/Avisos/2022/mar//Dia_Internacional_Mujer.jpg',
-              alt: 'Image 1'
-            }
+              alt: 'Image 1',
+            },
           ]"
           [animation]="'fade'"
           [minHeight]="{ s: '400px', l: '100%' }"
@@ -394,5 +388,7 @@
   <bmb-multi-dot-paginator-item>Custom component</bmb-multi-dot-paginator-item>
   <bmb-multi-dot-paginator-item>
     <bmb-home-card title="Some title">Custom content</bmb-home-card>
-  </bmb-multi-dot-paginator-item>
+  </bmb-multi-dot-paginator-item> -->
 </bmb-multi-dot-paginator>
+<p>Current Index: {{ currentIndex() }}</p>
+<button (click)="currentIndex.set(currentIndex() + 1)">Next</button>

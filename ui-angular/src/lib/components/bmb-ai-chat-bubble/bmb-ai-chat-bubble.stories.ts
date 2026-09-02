@@ -15,6 +15,7 @@ import {
   RELEVANT_TITLE,
 } from '@docs/utils/utils';
 import {
+  DBmbGenericParamDesc,
   DBmbIconParamDesc,
   getOnClickParam,
 } from '@docs/utils/parameterDescriptions';
@@ -46,6 +47,7 @@ Supported message types include:
 
 export default {
   title: 'Components/Containers/AI Chat Bubble',
+  tags: ['!autodocs'],
   component: BmbAiChatBubbleComponent,
   decorators: [
     moduleMetadata({
@@ -108,19 +110,7 @@ ${getBasicExampleBlock('BmbAiChatBubbleComponent')}
         },
       },
     },
-    testId: {
-      control: 'text',
-      description: 'Testing identifier used for automation selectors.',
-      table: {
-        category: 'Properties',
-        type: {
-          summary: 'string',
-        },
-        defaultValue: {
-          summary: 'chat-bubble',
-        },
-      },
-    },
+    testId: DBmbGenericParamDesc.testId,
     message: {
       control: 'object',
       description: `

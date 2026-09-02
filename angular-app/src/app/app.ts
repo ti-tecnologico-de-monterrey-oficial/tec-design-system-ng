@@ -60,7 +60,6 @@ export class App {
 
   _isLoading = signal<boolean>(false);
 
-
   constructor() {
     this.searchSubject
       .pipe(debounceTime(1000), distinctUntilChanged())
@@ -558,4 +557,57 @@ https://live.tec.mx/cbweek</p><p>¡Te esperamos!`,
   }
 
   message = signal<string>('Hello from AppComponent!');
+
+  favorites: IBmbSearchCardItemResult[] = [
+    {
+      id: '1',
+      isBookmarkActive: true,
+      country_code: 'mx',
+      type: 'service',
+      name: 'Sooji (Semolina)',
+      subtitle: 'Food - Baking',
+      avatarOrIcon: 'https://robohash.org/quamitaquea.png?size=50x50&set=set1',
+      backgroundColorIcon: 'white_primary',
+    },
+    {
+      id: '2',
+      isBookmarkActive: true,
+      country_code: 'mx',
+      type: 'service',
+      name: 'Fitness Resistance Bands',
+      subtitle: 'Fitness',
+      avatarOrIcon: 'https://robohash.org/nemofugitqui.png?size=50x50&set=set1',
+      backgroundColorIcon: 'white_primary',
+    },
+    {
+      id: '3',
+      isBookmarkActive: true,
+      country_code: 'mx',
+      type: 'service',
+      name: 'Nutty Granola Clusters',
+      subtitle: 'Food - Cereal',
+      avatarOrIcon: 'home',
+      backgroundColorIcon: 'creative_ripelemon',
+    },
+    {
+      id: '4',
+      isBookmarkActive: true,
+      country_code: 'mx',
+      type: 'service',
+      name: 'Pet Grooming Brush',
+      subtitle: 'Pets',
+      avatarOrIcon:
+        'https://robohash.org/deseruntconsecteturdignissimos.png?size=50x50&set=set1',
+    },
+    {
+      id: '5',
+      isBookmarkActive: true,
+      country_code: 'mx',
+      type: 'service',
+      name: 'Frozen Chicken Nuggets',
+      subtitle: 'Food - Frozen Foods',
+      avatarOrIcon:
+        'https://robohash.org/dolordistinctioquaerat.png?size=50x50&set=set1',
+    },
+  ];
 }

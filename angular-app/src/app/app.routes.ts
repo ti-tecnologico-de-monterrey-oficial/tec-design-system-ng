@@ -427,6 +427,14 @@ export const appRoutes: Route[] = [
       ),
   },
   {
+    path: 'components/ai-chat-card',
+    title: 'BmbAiChatCard | Bamboo migration dashboard',
+    loadComponent: () =>
+      import('./components/ai-chat-card-page/ai-chat-card-page').then(
+        ({ AiChatCardPage }) => AiChatCardPage,
+      ),
+  },
+  {
     path: 'components/navigation-bar',
     title: 'BmbNavigationBar | Bamboo migration dashboard',
     loadComponent: () =>

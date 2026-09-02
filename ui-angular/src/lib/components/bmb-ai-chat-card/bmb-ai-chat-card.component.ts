@@ -1,20 +1,22 @@
 import {
+  AfterViewInit,
   ChangeDetectionStrategy,
   Component,
   computed,
+  contentChildren,
   effect,
+  ElementRef,
   inject,
   input,
   model,
-  output,
+  OnDestroy,
   TemplateRef,
-  ViewChild,
+  viewChild,
   ViewEncapsulation,
 } from '@angular/core';
 import { BmbHomeCardComponent } from '../bmb-home-card/bmb-home-card.component';
 import {
   BmbChatBarComponent,
-  defaultBotList,
   IBotType,
 } from '../bmb-chat-bar/bmb-chat-bar.component';
 import { IBmbColor } from '../../_shared/types/colors';
@@ -25,8 +27,17 @@ import { BmbProjectionContentService } from '../../services/old/projection/proje
 import { CommonModule } from '@angular/common';
 import { BmbBotIconComponent } from '../bmb-bot-icon/bmb-bot-icon.component';
 import { IBmbActionHeader } from '../../_shared/types';
+import { getUUID } from '../../_shared/logic/utils';
+import { BmbTranslationsService } from '../../services/translations/translations.service';
 
-export type IBmbAIChatCardMode = 'compact' | 'chat' | 'expanded';
+export const BMB_AI_CHAT_CARD_MODE_LIST: string[] = [
+  'compact',
+  'chat',
+  'expanded',
+  'invisible',
+] as const;
+
+export type IBmbAIChatCardMode = (typeof BMB_AI_CHAT_CARD_MODE_LIST)[number];
 
 /*
  * TODO: This component is marked as "old" and its decommissioning is planned for future updates.
@@ -38,7 +49,6 @@ export type IBmbAIChatCardMode = 'compact' | 'chat' | 'expanded';
   imports: [
     CommonModule,
     BmbHomeCardComponent,
-    BmbChatBarComponent,
     TranslatePipe,
     BmbActionIconComponent,
     BmbBotIconComponent,
@@ -48,151 +58,166 @@ export type IBmbAIChatCardMode = 'compact' | 'chat' | 'expanded';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class BmbAIChatCardComponent {
-  subtitle = input<string>();
-  isMobile = input<boolean>(false);
-  placeholder = input<string>('');
+export class BmbAIChatCardComponent implements AfterViewInit, OnDestroy {
   bgIconAppearance = input<IBmbColor>('gray-charade-500');
   componentTitle = input<string>('');
-  testId = input<string>('ai-chat-bubble');
+  subtitle = input<string>();
   headerActions = input<IBmbActionHeader[]>([]);
-
+  testId = input<string>(`ai_chat_card_test_${getUUID()}`);
   currentBot = model<IBotType>({
     name: 'TecBot',
     label: 'Tecbot Standard',
     icon: 'bot_tecStandar',
   });
-  isLoading = model<boolean>(false);
-  mode = model<IBmbAIChatCardMode>('expanded');
 
-  getClose = output();
-  getBack = output();
-  getSendMessage = output<string>();
-  getExpanded = output<boolean>();
+  mode = model<IBmbAIChatCardMode>('expanded');
 
   private contentProjected: BmbProjectionContentService = inject(
     BmbProjectionContentService,
   );
+  private readonly translationService = inject(BmbTranslationsService);
 
-  botList: IBotType[] = defaultBotList;
+  private aiChatContent = viewChild<TemplateRef<any>>('aiChatContent');
+  private aiChatBubblesContainer = viewChild<ElementRef<HTMLElement>>(
+    'aiChatBubblesContainer',
+  );
+  private aiChatBubblesObserver?: MutationObserver;
+  private aiChatBarContainer =
+    viewChild<ElementRef<HTMLElement>>('aiChatBarContainer');
 
-  @ViewChild('contentTemplate') contentTemplate!: TemplateRef<any>;
-  @ViewChild('chatBarActionsTemplate', { static: true })
-  chatBarTemplate!: TemplateRef<any>;
-  private chatCardChatId = 'chatCardChat';
+  private aiChatBar = contentChildren(BmbChatBarComponent);
+  protected isOneChatBar = computed(() => this.aiChatBar().length === 1);
+  protected headerActionList = computed(() =>
+    this.mode() === 'chat'
+      ? [
+          {
+            icon: 'zoom_out_map',
+            tooltipText: this.translationService.translate('home_card.expand'),
+            action: () => this.handleExpand(),
+          },
+          ...this.headerActions(),
+        ]
+      : [],
+  );
 
-  chatActionHeaders = computed<IBmbActionHeader[]>(() => {
-    if (this.mode() !== 'chat') {
-      return [];
+  private aiChatId = 'ai_chat_bar_actions_dialog';
+  /**  Preserves the mode to return to when collapsing the chat.*/
+  private lastNonChatMode: IBmbAIChatCardMode = 'expanded';
+
+  ngAfterViewInit(): void {
+    const _length = this.aiChatBar().length;
+
+    if (_length !== 1) {
+      console.error(
+        `Remember that there must be exactly one bmb-chat-bar; ${_length} were found. The component will not render.`,
+      );
     }
+  }
 
-    return [
-      {
-        icon: 'more_vert',
-        action: () => this.handleAddDialog(event),
-      },
-    ];
-  });
+  ngOnDestroy(): void {
+    this.aiChatBubblesObserver?.disconnect();
+  }
+
+  private scrollBubblesToBottom(): void {
+    const container = this.aiChatBubblesContainer()?.nativeElement;
+    if (!container) return;
+    container.scrollTop = container.scrollHeight;
+  }
+
+  private observeBubblesContainer(container: HTMLElement): void {
+    this.aiChatBubblesObserver?.disconnect();
+    this.aiChatBubblesObserver = new MutationObserver(() =>
+      this.scrollBubblesToBottom(),
+    );
+    this.aiChatBubblesObserver.observe(container, {
+      childList: true,
+      subtree: true,
+    });
+  }
+
+  private focusChatBarInput(): void {
+    const container = this.aiChatBarContainer()?.nativeElement;
+    const input = container?.querySelector<HTMLElement>(
+      'input, textarea, [contenteditable="true"]',
+    );
+    input?.focus();
+  }
 
   constructor() {
-    effect(
-      () => {
-        if (this.mode() === 'chat') {
-          if (!this.isChatCardOpen()) {
-            this.contentProjected.openContent({
-              id: this.chatCardChatId,
-              content: this.contentTemplate,
-              dialogClass: ['bmb_chat-card-chat'],
-              focusOnOpen: true,
-            });
-          }
-        } else {
-          if (this.isChatCardOpen()) {
-            this.contentProjected.closeContent(this.chatCardChatId);
-          }
+    effect(() => {
+      /**Handle - Track last non-'chat' mode so contract can restore it */
+      const mode = this.mode();
+
+      if ((mode !== 'chat' && mode === 'invisible') || mode === 'compact') {
+        this.lastNonChatMode = mode;
+      }
+    });
+
+    effect(() => {
+      /**Handle - Auto-scroll "AI chat bubbles" to bottom on new content */
+      const container = this.aiChatBubblesContainer()?.nativeElement;
+
+      if (container) {
+        this.observeBubblesContainer(container);
+        this.scrollBubblesToBottom();
+      } else {
+        this.aiChatBubblesObserver?.disconnect();
+      }
+    });
+
+    effect(() => {
+      /**Handle - Focus "AI chat bar" input when the bar container becomes available */
+      const container = this.aiChatBarContainer()?.nativeElement;
+      const mode = this.mode();
+
+      if (container && (mode === 'chat' || mode === 'expanded')) {
+        queueMicrotask(() => this.focusChatBarInput());
+      }
+    });
+
+    effect(() => {
+      /**Handle - Content projection  */
+      const content = this.aiChatContent();
+      const mode = this.mode();
+
+      if (mode === 'chat') {
+        if (!content) return;
+
+        this.contentProjected.openContent({
+          id: this.aiChatId,
+          content,
+          dialogClass: ['bmb_ai-chat-card-dialog'],
+          focusOnOpen: true,
+        });
+      } else if (
+        mode === 'compact' ||
+        mode === 'expanded' ||
+        mode === 'invisible'
+      ) {
+        if (this.contentProjected.isContentOpen(this.aiChatId)) {
+          this.contentProjected.closeContent(this.aiChatId);
         }
-      },
-      { allowSignalWrites: true },
-    );
+      }
+    });
   }
 
-  handleChat(): void {
-    if (this.isChatCardOpen()) {
-      this.contentProjected.closeContent(this.chatCardChatId);
-      this.closeChat();
-    }
-
-    this.getExpanded.emit(this.isChatCardOpen());
-  }
-
-  handleClose(): void {
-    if (this.isChatCardOpen()) {
-      this.contentProjected.closeContent(this.chatCardChatId);
-      this.closeChat();
-    }
-
-    this.getClose.emit();
-  }
-
-  handleBack(): void {
-    this.getBack.emit();
-  }
-
-  handleSend(message: string): void {
-    this.getSendMessage.emit(message);
-  }
-
-  openChatFromCompact(): void {
+  protected openChat(): void {
     this.mode.set('chat');
-
-    if (this.isChatCardOpen()) {
-      return;
-    }
-
-    this.contentProjected.openContent({
-      id: this.chatCardChatId,
-      content: this.contentTemplate,
-      dialogClass: ['bmb_chat-card-chat'],
-      focusOnOpen: true,
-    });
   }
 
-  closeChat(): void {
-    if (!this.isChatCardOpen()) {
-      this.mode.set('compact');
-      return;
-    }
-
-    this.contentProjected.closeContent(this.chatCardChatId);
-
-    queueMicrotask(() => {
-      this.mode.set('compact');
-    });
-  }
-
-  handleAddDialog(event?: Event): void {
-    const dialogId = 'chatBarActionsDialog';
-
-    if (this.contentProjected.isContentOpen(dialogId)) {
-      return;
-    }
-
-    const data = {
-      id: dialogId,
-      content: this.chatBarTemplate,
-      targetRef: event?.target as HTMLHtmlElement,
-      focusOnOpen: true,
-      showBackdrop: false,
-    };
-    this.contentProjected.openContent(data);
-  }
-
-  isChatCardOpen(): boolean {
-    return this.contentProjected.isContentOpen(this.chatCardChatId);
-  }
-
-  handleExpand(): void {
-    this.contentProjected.closeContent();
+  protected handleExpand(): void {
     this.mode.set('expanded');
+  }
+
+  protected handleExpandOrContract(): void {
+    this.mode.update((value) => {
+      if (value === 'compact' || value === 'invisible') return 'chat';
+      if (value === 'chat') {
+        return this.lastNonChatMode === 'invisible' ? 'invisible' : 'compact';
+      }
+      if (value === 'expanded') return 'chat';
+
+      return 'expanded';
+    });
   }
 }

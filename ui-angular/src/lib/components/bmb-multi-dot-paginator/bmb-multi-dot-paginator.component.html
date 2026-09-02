@@ -12,7 +12,7 @@
       class="bmb_multi-dot-paginator-content-list"
       [style]="
         '--numberOfElements: ' +
-        numberOfElements.length +
+        numberOfElements().length +
         '; --selected-child: ' +
         selectedIndex() +
         ';'
@@ -43,7 +43,7 @@
       class="bmb_multi-dot-paginator-list"
       [style]="'--selected-child: ' + selectedIndex() + ';'"
     >
-      @if (numberOfElements.length > 0) {
+      @if (numberOfElements().length > 0) {
         <li class="bmb_multi-dot-paginator-list-item">
           <bmb-action-icon
             [disabled]="selectedIndex() === 0"
@@ -54,7 +54,7 @@
           ></bmb-action-icon>
         </li>
       }
-      @for (dot of numberOfElements; track $index) {
+      @for (dot of numberOfElements(); track $index) {
         <li
           class="bmb_multi-dot-paginator-list-item"
           [ngClass]="{
@@ -78,25 +78,25 @@
         class="bmb_multi-dot-paginator-list-item"
         [ngClass]="{
           'bmb_multi-dot-paginator-list-item-active':
-            selectedIndex() === numberOfElements.length
+            selectedIndex() === numberOfElements().length
         }"
       >
         <button
           class="bmb_multi-dot-paginator-dot"
-          (click)="selectItem(numberOfElements.length)"
-          [title]="numberOfElements.length"
+          (click)="selectItem(numberOfElements().length)"
+          [title]="numberOfElements().length"
           [ngClass]="{
             'bmb_multi-dot-paginator-dot-active':
-              selectedIndex() === numberOfElements.length
+              selectedIndex() === numberOfElements().length
           }"
         >
           <span></span>
         </button>
       </li>
-      @if (numberOfElements.length > 0) {
+      @if (numberOfElements().length > 0) {
         <li class="bmb_multi-dot-paginator-list-item">
           <bmb-action-icon
-            [disabled]="selectedIndex() === numberOfElements.length"
+            [disabled]="selectedIndex() === numberOfElements().length"
             [icon]="'chevron_right'"
             [iconSize]="24"
             (buttonClick)="nextItem()"

@@ -51,7 +51,7 @@ describe('BmbMultiDotPaginatorComponent', () => {
   });
 
   it('should initialize three dot items', () => {
-    expect(component.numberOfElements.length).toBe(3);
+    expect(component.numberOfElements().length).toBe(3);
     expect(component.selectedIndex()).toBe(0);
   });
 

@@ -12,7 +12,6 @@ import {
   DBmbGenericParamDesc,
   DBmbHomeCardHeaderParamDesc,
 } from '@docs/utils/parameterDescriptions';
-import * as actionHeader from '../../bmb-navigation-bar/bmp-navigation-bar.stories';
 import * as actionIcon from '../../bmb-action-icon/bmp-action-icon.stories';
 
 export default {
@@ -39,10 +38,7 @@ ${getGeneralDescription(
 ${getSpecialSpecifications(
   `
 ${getTechnicalDocReferences({
-  references: [
-    { title: actionHeader.default.title! },
-    { title: actionIcon.default.title! },
-  ],
+  references: [{ title: actionIcon.default.title! }],
 })}
   `,
   { showAdditionalBlockquote: true },
