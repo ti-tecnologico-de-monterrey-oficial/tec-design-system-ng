@@ -4,6 +4,7 @@ import { getBasicExampleBlock, getGeneralDescription } from '@docs/utils/utils';
 import {
   DBmbIconParamDesc,
   DBmbInputParamDesc,
+  getPropertyParamDesc,
 } from '@docs/utils/parameterDescriptions';
 
 const importComments = `// optional you can customize the bot list from:
@@ -156,6 +157,10 @@ This is a model signal, so it is possible to use it as:
         defaultValue: { summary: 'false' },
       },
     },
+    disableChangeBot: getPropertyParamDesc('', {
+      controlType: 'boolean',
+      alternativeDescription: 'Disables the bot icon change functionality',
+    }),
     onSendMessage: {
       control: null,
       description: 'Emits the send event, export the output value.',
