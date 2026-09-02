@@ -1,8 +1,10 @@
+// eslint-disable @typescript-eslint/no-inferrable-types
 import { CommonModule } from '@angular/common';
 import {
   Component,
   computed,
   effect,
+  inject,
   Input,
   model,
   SimpleChanges,
@@ -26,13 +28,17 @@ import {
   ThemeService,
   BmbTextEditorComponent,
   IBmbActionHeader,
+  BmbAccordionComponent,
+  BmbActionMenuComponent,
+  BmbItemHyperlinkComponent,
 } from 'ui-angular';
 
-import { HelpMenuComponent } from '../../components/help-menu/help-menu.component';
-import { ModalWDropdownComponent } from '../../components/modal-w-dropdown/modal-w-dropdown.component';
+import { HelpMenuComponent } from '../help-menu/help-menu.component';
+import { ModalWDropdownComponent } from '../modal-w-dropdown/modal-w-dropdown.component';
 import { FormControl } from '@angular/forms';
 
 @Component({
+  //eslint-disable-next-line @angular-eslint/component-selector
   selector: 'bmb-home',
   standalone: true,
   imports: [
@@ -46,6 +52,9 @@ import { FormControl } from '@angular/forms';
     BmbHomeCardComponent,
     BmbImageComponent,
     BmbTextEditorComponent,
+    BmbAccordionComponent,
+    BmbActionMenuComponent,
+    BmbItemHyperlinkComponent,
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
@@ -53,7 +62,7 @@ import { FormControl } from '@angular/forms';
 })
 export class HomeComponent {
   @Input() id_grado_logro!: number | string | null | undefined;
-  @Input() nombre_grado_logro: string = '';
+  @Input() nombre_grado_logro = '';
 
   bookmarkActive = model<boolean>(false);
   @ViewChild('modalTemplate') modalTemplate!: TemplateRef<unknown>;
@@ -61,12 +70,12 @@ export class HomeComponent {
   notificationTemplate!: TemplateRef<unknown>;
   textEditorControl: FormControl = new FormControl('');
 
-  constructor(
-    private router: Router,
-    private contentProjected: BmbProjectionContentService,
-    private modalService: BmbNativeModalService,
-    private themeService: ThemeService,
-  ) {
+  router = inject(Router);
+  contentProjected = inject(BmbProjectionContentService);
+  modalService = inject(BmbNativeModalService);
+  themeService = inject(ThemeService);
+
+  constructor() {
     effect(() => {
       const theme = this.currentTheme();
 
@@ -164,8 +173,8 @@ export class HomeComponent {
     PENDIENTE: { claseColor: '--general-contrasts-80', llenos: 0 },
   };
 
-  claseColorActual: string = '--general-contrasts-80';
-  barrasLlenas: number = 0;
+  claseColorActual = '--general-contrasts-80';
+  barrasLlenas = 0;
   arrBarras: number[] = [1, 2, 3, 4];
 
   ngOnInit(): void {

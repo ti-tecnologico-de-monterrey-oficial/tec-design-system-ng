@@ -17,11 +17,8 @@ import {
   BmbProjectionContentService,
   BmbNotificationCardComponent,
   IBmbDataAlert,
-  ModalDataConfig,
-  BmbModalComponent,
   BmbDropdownComponent,
   BmbSearchCardComponent,
-  BmbHomeCardChatComponent,
   IBmbChatMessage,
   IBmbHomeCardChatMode,
   IBotType,
@@ -33,7 +30,7 @@ import { sidebarOptions } from './sidebarOptions';
 
 import persons from './pages/form-validator-test/persons.json';
 import services from './pages/form-validator-test/services.json';
-import { BmbDelayProfileComponent } from './components/bmb-delay-profile/bmb-delay-profile.component';
+import { BmbDelayProfileComponent } from './pages/bmb-delay-profile/bmb-delay-profile.component';
 
 @Component({
   selector: 'app-root',
@@ -43,7 +40,6 @@ import { BmbDelayProfileComponent } from './components/bmb-delay-profile/bmb-del
     BmbTopBarComponent,
     BmbSidebarComponent,
     BmbDropdownComponent,
-    BmbHomeCardChatComponent,
     BmbSearchCardComponent,
   ],
   templateUrl: './app.html',
