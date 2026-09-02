@@ -1,0 +1,45 @@
+<header class="page-header">
+  <p class="eyebrow">Componente migrado</p>
+  <h1>BmbFrequentAppsSelector</h1>
+  <p>Cambia sus propiedades para validar cada variante de forma aislada.</p>
+</header>
+
+<section
+  class="playground"
+  aria-labelledby="frequent-apps-selector-properties-heading"
+>
+  <aside class="controls">
+    <h2 id="frequent-apps-selector-properties-heading">Propiedades</h2>
+
+    <label for="frequent-apps-selector-layout">layout</label>
+    <select
+      id="frequent-apps-selector-layout"
+      [value]="layout()"
+      (change)="selectLayout($any($event.target).value)"
+    >
+      @for (option of layouts; track option) {
+        <option [value]="option">{{ option }}</option>
+      }
+    </select>
+
+    <label for="frequent-apps-selector-title">componentTitle</label>
+    <input
+      id="frequent-apps-selector-title"
+      type="text"
+      [value]="componentTitle()"
+      (input)="setComponentTitle($any($event.target).value)"
+    />
+
+    <output>último click: {{ lastClickedApp() || '(ninguno)' }}</output>
+  </aside>
+
+  <div class="preview">
+    <bmb-frequent-apps-selector
+      [apps]="apps()"
+      [layout]="layout()"
+      [componentTitle]="componentTitle()"
+      (appClick)="handleAppClick($event)"
+    />
+
+  </div>
+</section>

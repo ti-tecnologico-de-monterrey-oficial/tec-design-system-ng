@@ -264,6 +264,18 @@ export const sidebarOptions: SidebarElement[][] = [
           title: 'Home card',
           link: '/components/home-card',
         },
+        {
+          id: 33,
+          icon: 'center_focus_strong',
+          title: 'Focus element',
+          link: '/components/focus-element',
+        },
+        {
+          id: 34,
+          icon: 'apps',
+          title: 'Frequent apps selector',
+          link: '/components/frequent-apps-selector',
+        },
       ],
     },
   ],

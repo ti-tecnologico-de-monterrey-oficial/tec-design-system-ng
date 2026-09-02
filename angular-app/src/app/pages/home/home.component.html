@@ -3,14 +3,258 @@
 </header>
 
 <div class="bmb_template-margin-for-sidebar">
-  <section
-    bmbLayout
-    margin="none"
-    gapSize="m"
-    justify="stretch"
-    alignItems="stretch"
-  >
-    <!-- <bmb-container-button
+  <section bmbLayout margin="none" gapSize="m">
+    <section bmbLayoutItem [colSm]="4" [colLg]="6">
+      <bmb-accordion
+        #accordionComponents
+        borderRadius="m"
+        margin="none"
+        paddingHeader="m"
+        paddingContent="m"
+        icon="keyboard_arrow_down"
+        bmbLayoutItem
+      >
+        <ng-template #bmbAccordionHeader>
+          <h2>COMPONENTS</h2>
+        </ng-template>
+        <ng-template #bmbAccordionContent>
+          <section bmbVerticalLayout>
+            <bmb-accordion
+              borderRadius="m"
+              margin="none"
+              paddingHeader="m"
+              paddingContent="m"
+              icon="keyboard_arrow_down"
+              bmbVerticalLayoutItem
+              [rowGrow]="1"
+            >
+              <ng-template #bmbAccordionHeader>
+                <h2>Buttons</h2>
+              </ng-template>
+              <ng-template #bmbAccordionContent>
+                <bmb-action-menu #actionMenuButtons [showHeader]="false">
+                  <ng-template #actionMenuItem>
+                    <bmb-item-hyperlink
+                      icon="bookmark"
+                      label="Bookmark test"
+                      value="page"
+                      valueLink="/pages/bookmark"
+                    />
+                  </ng-template>
+                  <ng-template #actionMenuItem>
+                    <bmb-item-hyperlink
+                      icon="smart_button"
+                      label="Card button test"
+                      value="page"
+                      valueLink="/card-button"
+                    />
+                  </ng-template>
+                  <ng-template #actionMenuItem>
+                    <bmb-item-hyperlink
+                      icon="mode_standby"
+                      label="Fab test"
+                      value="page"
+                      valueLink="/pages/fab"
+                    />
+                  </ng-template>
+                </bmb-action-menu>
+              </ng-template>
+            </bmb-accordion>
+            <bmb-accordion
+              borderRadius="m"
+              margin="none"
+              paddingHeader="m"
+              paddingContent="m"
+              icon="keyboard_arrow_down"
+              bmbVerticalLayoutItem
+              [rowGrow]="1"
+            >
+              <ng-template #bmbAccordionHeader>
+                <h2>Containers</h2>
+              </ng-template>
+              <ng-template #bmbAccordionContent>
+                <bmb-action-menu #actionMenuContainers [showHeader]="false">
+                  <ng-template #actionMenuItem>
+                    <bmb-item-hyperlink
+                      icon="chat"
+                      label="AI Chat bubble"
+                      value="page"
+                      valueLink="/pages/ai-chat-bubble"
+                    />
+                  </ng-template>
+                  <ng-template #actionMenuItem>
+                    <bmb-item-hyperlink
+                      icon="forum"
+                      label="AI Chat card"
+                      value="page"
+                      valueLink="/pages/ai-chat-card"
+                    />
+                  </ng-template>
+                  <ng-template #actionMenuItem>
+                    <bmb-item-hyperlink
+                      icon="badge"
+                      label="Generic card"
+                      value="page"
+                      valueLink="/pages/card"
+                    />
+                  </ng-template>
+                  <ng-template #actionMenuItem>
+                    <bmb-item-hyperlink
+                      icon="dashboard"
+                      label="Home card"
+                      value="page"
+                      valueLink="/components/home-card"
+                    />
+                  </ng-template>
+                </bmb-action-menu>
+              </ng-template>
+            </bmb-accordion>
+            <bmb-accordion
+              borderRadius="m"
+              margin="none"
+              paddingHeader="m"
+              paddingContent="m"
+              icon="keyboard_arrow_down"
+              bmbVerticalLayoutItem
+              [rowGrow]="1"
+            >
+              <ng-template #bmbAccordionHeader>
+                <h2>Images</h2>
+              </ng-template>
+              <ng-template #bmbAccordionContent>
+                <bmb-action-menu [showHeader]="false">
+                  <ng-template #actionMenuItem>
+                    <bmb-item-hyperlink
+                      icon="info"
+                      label="Test"
+                      value="page"
+                      valueLink="/home"
+                    />
+                  </ng-template>
+                </bmb-action-menu>
+              </ng-template>
+            </bmb-accordion>
+            <bmb-accordion
+              borderRadius="m"
+              margin="none"
+              paddingHeader="m"
+              paddingContent="m"
+              icon="keyboard_arrow_down"
+              bmbVerticalLayoutItem
+              [rowGrow]="1"
+            >
+              <ng-template #bmbAccordionHeader>
+                <h2>Inputs</h2>
+              </ng-template>
+              <ng-template #bmbAccordionContent>
+                <bmb-action-menu [showHeader]="false">
+                  <ng-template #actionMenuItem>
+                    <bmb-item-hyperlink
+                      icon="date_range"
+                      label="Date picker range"
+                      value="page"
+                      valueLink="/pages/date-range"
+                    />
+                  </ng-template>
+                </bmb-action-menu>
+              </ng-template>
+            </bmb-accordion>
+            <bmb-accordion
+              borderRadius="m"
+              margin="none"
+              paddingHeader="m"
+              paddingContent="m"
+              icon="keyboard_arrow_down"
+              bmbVerticalLayoutItem
+              [rowGrow]="1"
+            >
+              <ng-template #bmbAccordionHeader>
+                <h2>Menus</h2>
+              </ng-template>
+              <ng-template #bmbAccordionContent>
+                <bmb-action-menu [showHeader]="false">
+                  <ng-template #actionMenuItem>
+                    <bmb-item-hyperlink
+                      icon="info"
+                      label="Test"
+                      value="page"
+                      valueLink="/home"
+                    />
+                  </ng-template>
+                </bmb-action-menu>
+              </ng-template>
+            </bmb-accordion>
+            <bmb-accordion
+              borderRadius="m"
+              margin="none"
+              paddingHeader="m"
+              paddingContent="m"
+              icon="keyboard_arrow_down"
+              bmbVerticalLayoutItem
+              [rowGrow]="1"
+            >
+              <ng-template #bmbAccordionHeader>
+                <h2>Status indicators</h2>
+              </ng-template>
+              <ng-template #bmbAccordionContent>
+                <bmb-action-menu [showHeader]="false">
+                  <ng-template #actionMenuItem>
+                    <bmb-item-hyperlink
+                      icon="center_focus_strong"
+                      label="Focus element"
+                      value="page"
+                      valueLink="/components/focus-element"
+                    />
+                  </ng-template>
+                  <ng-template #actionMenuItem>
+                    <bmb-item-hyperlink
+                      icon="hourglass_empty"
+                      label="Loading screen"
+                      value="page"
+                      valueLink="/components/loader"
+                    />
+                  </ng-template>
+                </bmb-action-menu>
+              </ng-template>
+            </bmb-accordion>
+            <bmb-accordion
+              borderRadius="m"
+              margin="none"
+              paddingHeader="m"
+              paddingContent="m"
+              icon="keyboard_arrow_down"
+              bmbVerticalLayoutItem
+              [rowGrow]="1"
+            >
+              <ng-template #bmbAccordionHeader>
+                <h2>Visual labels</h2>
+              </ng-template>
+              <ng-template #bmbAccordionContent>
+                <bmb-action-menu [showHeader]="false">
+                  <ng-template #actionMenuItem>
+                    <bmb-item-hyperlink
+                      icon="info"
+                      label="Test"
+                      value="page"
+                      valueLink="/home"
+                    />
+                  </ng-template>
+                </bmb-action-menu>
+              </ng-template>
+            </bmb-accordion>
+          </section>
+        </ng-template>
+      </bmb-accordion>
+    </section>
+    <section bmbLayoutItem [colSm]="4" [colLg]="6">
+      <section
+        bmbLayout
+        margin="none"
+        gapSize="m"
+        justify="stretch"
+        alignItems="stretch"
+      >
+        <!-- <bmb-container-button
       bmbLayoutItem
       [colLg]="4"
       [componentTitle]="'Enviar mensaje por Teams'"
@@ -33,45 +277,51 @@
       (getClickButton)="getClickButton($event)"
       (getClickBookmark)="getClickBookmark($event)"
     /> -->
-    <div bmbVerticalLayout bmbLayoutItem [colSm]="4" [colLg]="6" gapSize="m">
-      <section bmbVerticalLayoutItem [rowGrow]="1">
-        <bmb-image
-          [src]="
-            'https://farm2.staticflickr.com/1919/45579541712_f58c1fd0ed_o.jpg'
-          "
-          [mobileSrc]="
-            'https://2.bp.blogspot.com/-YkNDZEbKt_g/TYzcbF2_tkI/AAAAAAAAalk/Vt_MHS60Xv8/s1600/www.JoseLuisAvilaHerrera.BLOGSPOT.com%2B-%2BFunny%2BCats%2B-%2BGatitos%2Bmuy%2Btiernos%2B8.jpg'
-          "
-          [alt]="'Fruits'"
-          [width]="'clamp(200px, 100%, calc(50dvw - 3rem))'"
-          [ratio]="'1/1'"
-          [borderRadius]="'m'"
-          [loading]="'lazy'"
-          [enableZoom]="false"
-          [isBlurredBackdrop]="false"
-          [images]="[
-            {
-              src: 'https://farm2.staticflickr.com/1919/45579541712_f58c1fd0ed_o.jpg',
-              mobileSrc:
-                'https://2.bp.blogspot.com/-YkNDZEbKt_g/TYzcbF2_tkI/AAAAAAAAalk/Vt_MHS60Xv8/s1600/www.JoseLuisAvilaHerrera.BLOGSPOT.com%2B-%2BFunny%2BCats%2B-%2BGatitos%2Bmuy%2Btiernos%2B8.jpg',
-              alt: 'Image 1',
-            },
-            {
-              src: 'https://images.unsplash.com/photo-1546182990-dffeafbe841d',
-              mobileSrc:
-                'https://images.unsplash.com/photo-1546182990-dffeafbe841d?auto=format&fit=crop&w=800&q=60',
-              alt: 'Image 2',
-            },
-            {
-              src: 'https://images.unsplash.com/photo-1507149833265-60c372daea22',
-              alt: 'Image 3',
-            },
-          ]"
-          (imageClick)="handleImageClick($event)"
-        />
-      </section>
+        <div
+          bmbVerticalLayout
+          bmbLayoutItem
+          [colSm]="4"
+          [colLg]="6"
+          gapSize="m"
+        >
+          <section bmbVerticalLayoutItem [rowGrow]="1">
+            <bmb-image
+              [src]="
+                'https://farm2.staticflickr.com/1919/45579541712_f58c1fd0ed_o.jpg'
+              "
+              [mobileSrc]="
+                'https://2.bp.blogspot.com/-YkNDZEbKt_g/TYzcbF2_tkI/AAAAAAAAalk/Vt_MHS60Xv8/s1600/www.JoseLuisAvilaHerrera.BLOGSPOT.com%2B-%2BFunny%2BCats%2B-%2BGatitos%2Bmuy%2Btiernos%2B8.jpg'
+              "
+              [alt]="'Fruits'"
+              [width]="'clamp(200px, 100%, calc(50dvw - 3rem))'"
+              [ratio]="'1/1'"
+              [borderRadius]="'m'"
+              [loading]="'lazy'"
+              [enableZoom]="false"
+              [isBlurredBackdrop]="false"
+              [images]="[
+                {
+                  src: 'https://farm2.staticflickr.com/1919/45579541712_f58c1fd0ed_o.jpg',
+                  mobileSrc:
+                    'https://2.bp.blogspot.com/-YkNDZEbKt_g/TYzcbF2_tkI/AAAAAAAAalk/Vt_MHS60Xv8/s1600/www.JoseLuisAvilaHerrera.BLOGSPOT.com%2B-%2BFunny%2BCats%2B-%2BGatitos%2Bmuy%2Btiernos%2B8.jpg',
+                  alt: 'Image 1',
+                },
+                {
+                  src: 'https://images.unsplash.com/photo-1546182990-dffeafbe841d',
+                  mobileSrc:
+                    'https://images.unsplash.com/photo-1546182990-dffeafbe841d?auto=format&fit=crop&w=800&q=60',
+                  alt: 'Image 2',
+                },
+                {
+                  src: 'https://images.unsplash.com/photo-1507149833265-60c372daea22',
+                  alt: 'Image 3',
+                },
+              ]"
+              (imageClick)="handleImageClick($event)"
+            />
+          </section>
 
-      <!-- <bmb-accordion
+          <!-- <bmb-accordion
         borderRadius="m"
         margin="none"
         paddingHeader="m"
@@ -178,48 +428,56 @@
           </div>
         </ng-template>
       </bmb-accordion> -->
-      <bmb-home-card
-        leftIcon="chevron_left"
-        icon="account_balance_wallet"
-        bgIconAppearance="green-light"
-        title="Title"
-        subtitle="Subtitle"
-        [showRightButton]="true"
-        (onExpandClick)="onExpandClick2()"
-        bmbVerticalLayoutItem
-        [style.view-transition-name]="'homeCardTransition2'"
-        [actionHeaders]="homeCardActions"
-      >
-        <p>Content 2</p>
-        <button bmbButton (click)="handleHelpButtonClick($event)">Help</button>
-      </bmb-home-card>
-    </div>
+          <bmb-home-card
+            leftIcon="chevron_left"
+            icon="account_balance_wallet"
+            bgIconAppearance="green-light"
+            title="Title"
+            subtitle="Subtitle"
+            [showRightButton]="true"
+            (onExpandClick)="onExpandClick2()"
+            bmbVerticalLayoutItem
+            [style.view-transition-name]="'homeCardTransition2'"
+            [actionHeaders]="homeCardActions"
+          >
+            <p>Content 2</p>
+            <button bmbButton (click)="handleHelpButtonClick($event)">
+              Help
+            </button>
+          </bmb-home-card>
+        </div>
 
-    <div bmbVerticalLayout bmbLayoutItem [colSm]="4" [colLg]="6" gapSize="m">
-      <bmb-home-card
-        leftIcon="chevron_left"
-        title="Title"
-        [actionHeaders]="homeCardActions"
-        [isMobile]="true"
-        [showRightButton]="true"
-        bmbVerticalLayoutItem
-      >
-        <p>Content for home card</p>
-      </bmb-home-card>
-      <bmb-home-card
-        leftIcon="chevron_left"
-        icon="account_balance_wallet"
-        bgIconAppearance="green-light"
-        title="Title"
-        subtitle="Subtitle"
-        [showRightButton]="true"
-        (onExpandClick)="onExpandClick()"
-        bmbVerticalLayoutItem
-        [style.view-transition-name]="'homeCardTransition'"
-      >
-        <p>Small content for home</p>
-      </bmb-home-card>
-      <!-- <bmb-accordion
+        <div
+          bmbVerticalLayout
+          bmbLayoutItem
+          [colSm]="4"
+          [colLg]="6"
+          gapSize="m"
+        >
+          <bmb-home-card
+            leftIcon="chevron_left"
+            title="Title"
+            [actionHeaders]="homeCardActions"
+            [isMobile]="true"
+            [showRightButton]="true"
+            bmbVerticalLayoutItem
+          >
+            <p>Content for home card</p>
+          </bmb-home-card>
+          <bmb-home-card
+            leftIcon="chevron_left"
+            icon="account_balance_wallet"
+            bgIconAppearance="green-light"
+            title="Title"
+            subtitle="Subtitle"
+            [showRightButton]="true"
+            (onExpandClick)="onExpandClick()"
+            bmbVerticalLayoutItem
+            [style.view-transition-name]="'homeCardTransition'"
+          >
+            <p>Small content for home</p>
+          </bmb-home-card>
+          <!-- <bmb-accordion
         borderRadius="m"
         margin="none"
         paddingHeader="m"
@@ -329,6 +587,7 @@
         <ng-template #bmbAccordionHeader>
           <h2>Bamboo Events and news</h2>
         </ng-template>
+
         <ng-template #bmbAccordionContent>
           <p style="font-family: Poppins-Bold">
             Coming soon! Bamboo events and news will be displayed here.
@@ -364,14 +623,16 @@
           </button>
         </ng-template>
       </bmb-accordion> -->
-    </div>
+        </div>
+      </section>
+      <bmb-divider [type]="'simple'" />
+      <a href="https://www.youtube.com/" target="_blank"> enlace </a>
+      <bmb-divider [type]="'simple'" />
+      <bmb-text-editor [control]="textEditorControl" />
+      <bmb-divider [type]="'simple'" />
+      {{ textEditorControl.value | json }}
+    </section>
   </section>
-  <bmb-divider [type]="'simple'" />
-  <a href="https://www.youtube.com/" target="_blank"> enlace </a>
-  <bmb-divider [type]="'simple'" />
-  <bmb-text-editor [control]="textEditorControl" />
-  <bmb-divider [type]="'simple'" />
-  {{ textEditorControl.value | json }}
 </div>
 
 <ng-template #modalTemplate>

@@ -1,0 +1,92 @@
+<header class="page-header">
+  <p class="eyebrow">Componente migrado</p>
+  <h1>BmbFocusElement</h1>
+  <p>Cambia sus propiedades para validar cada variante de forma aislada.</p>
+</header>
+
+<section class="playground" aria-labelledby="focus-element-properties-heading">
+  <aside class="controls">
+    <h2 id="focus-element-properties-heading">Propiedades</h2>
+
+    <label class="toggle">
+      <input
+        type="checkbox"
+        [checked]="useIcon()"
+        (change)="setUseIcon($any($event.target).checked)"
+      />
+      Usar icon en vez de number
+    </label>
+
+    <label for="focus-element-icon">icon</label>
+    <input
+      id="focus-element-icon"
+      type="text"
+      [value]="icon()"
+      (input)="setIcon($any($event.target).value)"
+    />
+
+    <label for="focus-element-number">number</label>
+    <input
+      id="focus-element-number"
+      type="number"
+      [value]="number()"
+      (input)="setNumber($any($event.target).valueAsNumber)"
+    />
+
+    <label for="focus-element-title">componentTitle</label>
+    <input
+      id="focus-element-title"
+      type="text"
+      [value]="componentTitle()"
+      (input)="setComponentTitle($any($event.target).value)"
+    />
+
+    <label class="toggle">
+      <input
+        type="checkbox"
+        [checked]="isNormal()"
+        (change)="setIsNormal($any($event.target).checked)"
+      />
+      isNormal
+    </label>
+
+    <label class="toggle">
+      <input
+        type="checkbox"
+        [checked]="isNonFocused()"
+        (change)="setIsNonFocused($any($event.target).checked)"
+      />
+      isNonFocused
+    </label>
+
+    <label class="toggle">
+      <input
+        type="checkbox"
+        [checked]="isInheritedBg()"
+        (change)="setIsInheritedBg($any($event.target).checked)"
+      />
+      isInheritedBg
+    </label>
+
+    <label class="toggle">
+      <input
+        type="checkbox"
+        [checked]="isContainerSize()"
+        (change)="setIsContainerSize($any($event.target).checked)"
+      />
+      isContainerSize
+    </label>
+  </aside>
+
+  <div class="preview">
+    <bmb-focus-element
+      [icon]="useIcon() ? icon() : ''"
+      [number]="number()"
+      [componentTitle]="componentTitle()"
+      [isNormal]="isNormal()"
+      [isNonFocused]="isNonFocused()"
+      [isInheritedBg]="isInheritedBg()"
+      [isContainerSize]="isContainerSize()"
+    />
+  </div>
+</section>
