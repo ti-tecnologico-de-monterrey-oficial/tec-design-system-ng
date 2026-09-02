@@ -252,6 +252,18 @@ export const sidebarOptions: SidebarElement[][] = [
           title: 'Date range',
           link: '/components/date-range',
         },
+        {
+          id: 31,
+          icon: 'center_focus_strong',
+          title: 'Focus element',
+          link: '/components/focus-element',
+        },
+        {
+          id: 32,
+          icon: 'apps',
+          title: 'Frequent apps selector',
+          link: '/components/frequent-apps-selector',
+        },
       ],
     },
   ],
