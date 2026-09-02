@@ -5,9 +5,11 @@ import {
   computed,
   contentChildren,
   effect,
+  ElementRef,
   inject,
   input,
   model,
+  OnDestroy,
   OnInit,
   TemplateRef,
   viewChild,
@@ -57,7 +59,9 @@ export type IBmbAIChatCardMode = (typeof BMB_AI_CHAT_CARD_MODE_LIST)[number];
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class BmbAIChatCardComponent implements OnInit, AfterViewInit {
+export class BmbAIChatCardComponent
+  implements OnInit, AfterViewInit, OnDestroy
+{
   bgIconAppearance = input<IBmbColor>('gray-charade-500');
   componentTitle = input<string>('');
   subtitle = input<string>();
@@ -77,6 +81,12 @@ export class BmbAIChatCardComponent implements OnInit, AfterViewInit {
   private readonly translationService = inject(BmbTranslationsService);
 
   private aiChatContent = viewChild<TemplateRef<any>>('aiChatContent');
+  private aiChatBubblesContainer = viewChild<ElementRef<HTMLElement>>(
+    'aiChatBubblesContainer',
+  );
+  private aiChatBubblesObserver?: MutationObserver;
+  private aiChatBarContainer =
+    viewChild<ElementRef<HTMLElement>>('aiChatBarContainer');
 
   private aiChatBar = contentChildren(BmbChatBarComponent);
   protected isOneChatBar = computed(() => this.aiChatBar().length === 1);
@@ -110,7 +120,58 @@ export class BmbAIChatCardComponent implements OnInit, AfterViewInit {
     }
   }
 
+  ngOnDestroy(): void {
+    this.aiChatBubblesObserver?.disconnect();
+  }
+
+  private scrollBubblesToBottom(): void {
+    const container = this.aiChatBubblesContainer()?.nativeElement;
+    if (!container) return;
+    container.scrollTop = container.scrollHeight;
+  }
+
+  private observeBubblesContainer(container: HTMLElement): void {
+    this.aiChatBubblesObserver?.disconnect();
+    this.aiChatBubblesObserver = new MutationObserver(() =>
+      this.scrollBubblesToBottom(),
+    );
+    this.aiChatBubblesObserver.observe(container, {
+      childList: true,
+      subtree: true,
+    });
+  }
+
+  private focusChatBarInput(): void {
+    const container = this.aiChatBarContainer()?.nativeElement;
+    const input = container?.querySelector<HTMLElement>(
+      'input, textarea, [contenteditable="true"]',
+    );
+    input?.focus();
+  }
+
   constructor() {
+    effect(() => {
+      /**Handle - Auto-scroll "AI chat bubbles" to bottom on new content */
+      const container = this.aiChatBubblesContainer()?.nativeElement;
+
+      if (container) {
+        this.observeBubblesContainer(container);
+        this.scrollBubblesToBottom();
+      } else {
+        this.aiChatBubblesObserver?.disconnect();
+      }
+    });
+
+    effect(() => {
+      /**Handle - Focus "AI chat bar" input when the bar container becomes available */
+      const container = this.aiChatBarContainer()?.nativeElement;
+      const mode = this.mode();
+
+      if (container && (mode === 'chat' || mode === 'expanded')) {
+        queueMicrotask(() => this.focusChatBarInput());
+      }
+    });
+
     effect(() => {
       /**Handle - Content projection  */
       const content = this.aiChatContent();
