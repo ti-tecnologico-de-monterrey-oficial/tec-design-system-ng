@@ -10,7 +10,7 @@
     "connectedPublished": 101,
     "pendingVerification": 0,
     "internalAdapters": 3,
-    "contractRequired": 10,
+    "contractRequired": 11,
     "parentChildComposition": 12,
     "blockedOutOfScope": 25
   },
@@ -1133,6 +1133,10 @@
       "angularComponent": "BmbItemComponent",
       "reason": "Deprecated in favor of bmb-item-[variant]/bmb-interactive-item-[variant] — low priority.",
       "missingContract": "N/A — deprioritized due to deprecation."
+    },
+    {
+      "export": "bmb-sidebar",
+      "reason": "Only structural input is elements: SidebarElement[][] (fully data-driven array). Published Sidebar component (299:51502) exposes only an Expanded variant, no Items SLOT. Documented in CONTRACT_STATE.md since 2026-08-12 (NAV-01 discovery) but never folded into this index until 2026-09-02."
     }
   ],
   "parentChildComposition": [
