@@ -17,6 +17,7 @@ describe('BmbSearchCardComponent', () => {
       translate: jasmine.createSpy('translate').and.callFake((key: string) => {
         const translations: { [key: string]: string } = {
           'search_card.tabs.all': 'All',
+          'search_card.tabs.favorites': 'Favorites',
           'search_card.tabs.services': 'Services',
           'search_card.tabs.people': 'People',
         };
@@ -102,20 +103,24 @@ describe('BmbSearchCardComponent', () => {
     fixture.detectChanges();
 
     const tabs = component.tabsData();
-    expect(tabs.length).toBe(3);
+    expect(tabs.length).toBe(4);
 
     // Tab 1: All
     expect(tabs[0].title).toBe('All');
     expect(tabs[0].badge).toBe(2);
     expect(tabs[0].isActive).toBeTrue();
 
-    // Tab 2: Services
-    expect(tabs[1].title).toBe('Services');
-    expect(tabs[1].badge).toBe(1);
+    // Tab 2: Favorites
+    expect(tabs[1].title).toBe('Favorites');
+    expect(tabs[1].badge).toBe(0);
 
-    // Tab 3: People
-    expect(tabs[2].title).toBe('People');
+    // Tab 3: Services
+    expect(tabs[2].title).toBe('Services');
     expect(tabs[2].badge).toBe(1);
+
+    // Tab 4: People
+    expect(tabs[3].title).toBe('People');
+    expect(tabs[3].badge).toBe(1);
   });
 
   it('should emit triggerSearch when input control changes', (done) => {

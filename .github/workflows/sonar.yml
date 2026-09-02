@@ -24,13 +24,15 @@ jobs:
           args: >
             -Dsonar.organization=ti-tecnologico-de-monterrey-oficial
             -Dsonar.projectKey=tec-design-system-ng
-            -Dsonar.sources=./projects/ds-ng
+            -Dsonar.sources=./ui-angular,./ui-react
             -Dsonar.sourceEncoding=UTF-8
             -Dsonar.exclusions=**/node_modules/**
             -Dsonar.exclusions=**/*.stories.ts
             -Dsonar.exclusions=**/*.mdx
             -Dsonar.exclusions=**/*.spec.ts
+            -Dsonar.inclusions=**/*.spec.tsx
             -Dsonar.test.exclusions=**/*.spec.ts
+            -Dsonar.test.exclusions=**/*.spec.tsx
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Info de PR
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }} # Token Sonar
