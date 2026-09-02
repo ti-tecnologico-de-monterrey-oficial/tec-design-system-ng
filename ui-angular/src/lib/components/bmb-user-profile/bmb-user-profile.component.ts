@@ -5,7 +5,7 @@ import {
   output,
   ViewEncapsulation,
 } from '@angular/core';
-import { BmbButtonDirective } from '../../directives/old/bmb-button/button.directive';
+import { BmbButtonDirective } from '../../directives/bmb-button/button.directive';
 import { IBmbActionHeader, IBmbTargetLink, IBmbUserInfo } from '../../_shared/types';
 import {
   BmbHeaderMitecComponent,

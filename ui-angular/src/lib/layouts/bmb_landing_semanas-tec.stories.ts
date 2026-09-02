@@ -42,7 +42,7 @@ import * as cardHeaderStory from '../components/bmb-card/bmb-card.stories';
 import * as cardContentStory from '../components/bmb-card/bmb-card.stories';
 import * as containerButtonStory from '../components/bmb-container-button/bmb-container-button.stories';
 import * as imageStory from '../components/bmb-image/bmb-image.stories';
-import * as buttonDirectiveStory from '../directives/old/bmb-button/button.stories';
+import * as buttonDirectiveStory from '../directives/bmb-button/button.stories';
 import * as verticalLayoutStory from '../directives/bmb-layout/bmb-vertical-layout/bmb-vertical-layout.stories';
 import * as verticalLayoutItemStory from '../directives/bmb-layout/bmb-vertical-layout/bmb-vertical-layout-item.stories';
 import * as textLinkStory from '../components/bmb-text-link/bmb-text-link.stories';

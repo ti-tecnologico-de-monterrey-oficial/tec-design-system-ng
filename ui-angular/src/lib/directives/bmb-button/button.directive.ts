@@ -11,12 +11,13 @@ import {
   OnInit,
   OnChanges,
 } from '@angular/core';
-import { BmbIconComponent } from '../../../components/bmb-icon/bmb-icon.component';
+import { BmbIconComponent } from '../../components/bmb-icon/bmb-icon.component';
 import {
   IBmbHorizontalPosition,
   IButtonAppearance,
   IButtonSize,
-} from '../../../_shared/types';
+} from '../../_shared/types';
+import { getButtonClasses } from '../../_shared/logic/components/button';
 
 @Directive({
   selector: '[bmbButton]',
@@ -72,17 +73,13 @@ export class BmbButtonDirective implements OnInit, OnChanges {
   }
 
   @HostBinding('class') get elementClass(): string[] {
-    const classList = ['bmb_btn', `bmb_btn-${this.appearance()}`];
-    classList.push('bmb_btn-rounded');
-
-    if (this.case()) classList.push('bmb_btn-case');
-
-    if (this.enableButtonToggle() && this.isToggleActive())
-      classList.push('bmb_btn-toggle-active');
-
-    if (this.isMobile()) classList.push('bmb_btn-mobile');
-
-    return classList;
+    return getButtonClasses({
+      appearance: this.appearance(),
+      isCase: this.case(),
+      enableButtonToggle: this.enableButtonToggle(),
+      isToggleActive: this.isToggleActive(),
+      isMobile: this.isMobile(),
+    });
   }
 
   private addContent() {

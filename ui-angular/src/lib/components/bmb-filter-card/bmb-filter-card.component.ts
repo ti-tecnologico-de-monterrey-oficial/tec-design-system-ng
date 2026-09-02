@@ -26,7 +26,7 @@ import {
   IBmbVisibilityRule,
 } from './bmb-filter-card.interface';
 import { IBmbDropdownItem } from '../../_shared/types/components/dropdown';
-import { BmbButtonDirective } from '../../directives/old/bmb-button/button.directive';
+import { BmbButtonDirective } from '../../directives/bmb-button/button.directive';
 import { BmbDropdownComponent } from '../bmb-dropdown/bmb-dropdown.component';
 import { BmbTagComponent } from '../bmb-tags/bmb-tags.component';
 import { BmbNativeModalService } from '../../services/old/modal/native-modal.service';

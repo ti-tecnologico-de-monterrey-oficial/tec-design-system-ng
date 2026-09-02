@@ -5,7 +5,7 @@ import {
 } from '../../bmb-card/bmb-card.component';
 import { BmbFormValidatorComponent } from '../../bmb-form-validator/bmb-form-validator.component';
 import { FormControl, FormGroup } from '@angular/forms';
-import { BmbButtonDirective } from '../../../directives/old/bmb-button/button.directive';
+import { BmbButtonDirective } from '../../../directives/bmb-button/button.directive';
 import { BmbInputComponent } from '../../bmb-input/bmb-input.component';
 import { TranslatePipe } from '../../../pipes/translations';
 import { BmbCheckboxComponent } from '../../bmb-checkbox/bmb-checkbox.component';
