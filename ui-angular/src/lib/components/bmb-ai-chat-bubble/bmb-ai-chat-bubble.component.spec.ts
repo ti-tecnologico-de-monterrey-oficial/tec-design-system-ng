@@ -155,7 +155,7 @@ describe('BmbAiChatBubbleComponent', () => {
     fixture.detectChanges();
 
     const textarea = fixture.debugElement.query(
-      By.css('bmb-ai-chat-editor textarea'),
+      By.css('bmb-ai-chat-bubble-editor textarea'),
     ).nativeElement as HTMLTextAreaElement;
     expect(component.isEditing()).toBe(true);
     expect(textarea.value).toBe(mockUserMessage.content.text);

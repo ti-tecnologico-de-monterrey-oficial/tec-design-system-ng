@@ -30,7 +30,7 @@
       </div>
       <div class="bmb_ai-chat-bubble-container">
         @if (isEditing() && message.isUser && message.type === 'text') {
-          <bmb-ai-chat-editor
+          <bmb-ai-chat-bubble-editor
             [initialValue]="message.content.text"
             [testId]="testId() + '-editor'"
             (cancelEvent)="cancelEdit()"
