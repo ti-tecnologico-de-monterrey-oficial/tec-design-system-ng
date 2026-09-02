@@ -20,7 +20,7 @@
     />
     <section
       class="bmb_home-card-wrapper-container"
-      [ngClass]="'bmb_padding-' + contentPadding()"
+      [ngClass]="getContentClass()"
     >
       <ng-content />
     </section>

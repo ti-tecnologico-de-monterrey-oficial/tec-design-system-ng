@@ -1,0 +1,11 @@
+@use '../../styles/playground';
+
+@include playground.page;
+
+.preview {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  min-height: 24rem;
+  position: relative;
+}

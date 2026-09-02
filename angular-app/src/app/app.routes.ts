@@ -492,5 +492,21 @@ export const appRoutes: Route[] = [
         ({ DateRangePage }) => DateRangePage,
       ),
   },
+  {
+    path: 'components/loader',
+    title: 'BmbLoader | Bamboo migration dashboard',
+    loadComponent: () =>
+      import('./components/loader-page/loader-page').then(
+        ({ LoaderPage }) => LoaderPage,
+      ),
+  },
+  {
+    path: 'components/home-card',
+    title: 'BmbHomeCard | Bamboo migration dashboard',
+    loadComponent: () =>
+      import('./components/home-card-page/home-card-page').then(
+        ({ HomeCardPage }) => HomeCardPage,
+      ),
+  },
   { path: '**', redirectTo: 'components/carousel' },
 ];

@@ -252,6 +252,18 @@ export const sidebarOptions: SidebarElement[][] = [
           title: 'Date range',
           link: '/components/date-range',
         },
+        {
+          id: 31,
+          icon: 'hourglass_empty',
+          title: 'Loader',
+          link: '/components/loader',
+        },
+        {
+          id: 32,
+          icon: 'dashboard',
+          title: 'Home card',
+          link: '/components/home-card',
+        },
       ],
     },
   ],
