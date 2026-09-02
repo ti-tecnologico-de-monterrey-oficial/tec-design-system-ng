@@ -43,6 +43,7 @@ export class BmbHomeCardComponent {
   isExpanded = model<boolean>(false);
   currentBot = model<IBotType>();
   componentTitle = input<string>(); // once title is removed, this should be required
+  showOneHeaderAction = input<boolean>(false);
 
   title = input<string>(); // deprecated
 

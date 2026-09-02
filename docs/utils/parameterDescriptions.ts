@@ -357,25 +357,33 @@ These are to implement icons as buttons or links according to the needs of the a
         detail: `//Example
 [
   {
-    icon: 'home',
-    link: 'https://www.example.com/',
-  },
-  {
-    icon: 'share',
+    icon: 'language_spanish',
+    iconActiveToggle: 'language_us',
+    isAccentColor: false,
+    tooltipText: 'Language',
     action: () => {
-      console.log('share');
+      console.info('Language');
     },
   },
   {
-    icon: 'inventory_2',
+    icon: 'edit',
+    tooltipText: 'Edit',
+    action: () => {
+      console.info('Edit');
+    },
+  },
+  {
+    icon: 'delete',
+    tooltipText: 'Delete',
+    action: () => {
+      console.info('Delete');
+    },
+  },
+  {
+    icon: 'info',
+    tooltipText: 'Info',
     link: 'https://www.example.com/',
     target: '_blank',
-  },
-  {
-    icon: 'send',
-    action: () => {
-      console.log('send');
-    },
   },
 ]`,
       },

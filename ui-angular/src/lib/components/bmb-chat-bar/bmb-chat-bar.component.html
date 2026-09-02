@@ -10,7 +10,7 @@
     (dragleave)="onDragLeave($event)"
     [ngClass]="{
       'bmb_chat-bar-container-files': files.length > 0,
-      'bmb_chat-bar-drag': onDragFiles
+      'bmb_chat-bar-drag': onDragFiles,
     }"
     tabindex="0"
   >
@@ -39,18 +39,32 @@
       }
     </div>
     <div class="bmb_chat-bar-main" #containerRef>
-      <bmb-action-icon
-        class="bmb_chat-bar-bot"
-        [icon]="currentBot()?.icon!"
-        [tooltipText]="currentBot()?.name!"
-        [iconSize]="40"
-        [isSVGTemplate]="true"
-        (buttonClick)="handleDialog()"
-      >
-        <ng-template #customActionIcon>
-          <bmb-bot-icon [iconName]="currentBot()?.icon!" />
-        </ng-template>
-      </bmb-action-icon>
+      @if (!disableChangeBot()) {
+        <bmb-action-icon
+          class="bmb_chat-bar-bot"
+          [icon]="currentBot()?.icon!"
+          [tooltipText]="currentBot()?.name!"
+          [iconSize]="40"
+          [isSVGTemplate]="true"
+          (buttonClick)="handleDialog()"
+        >
+          <ng-template #customActionIcon>
+            <bmb-bot-icon [iconName]="currentBot()?.icon!" />
+          </ng-template>
+        </bmb-action-icon>
+      } @else {
+        <bmb-icon
+          class="bmb_chat-bar-bot"
+          [icon]="currentBot()?.icon!"
+          [title]="currentBot()?.name!"
+          [size]="40"
+          [isSVGTemplate]="true"
+        >
+          <ng-template #customIcon>
+            <bmb-bot-icon [iconName]="currentBot()?.icon!" />
+          </ng-template>
+        </bmb-icon>
+      }
       @if (!onDragFiles) {
         <div class="bmb_chat-bar-wrapper">
           <textarea
@@ -152,7 +166,7 @@
             class="bmb_chat-bar-dialog-button"
             [ngClass]="{
               'bmb_chat-bar-dialog-button-active':
-                bot.name === currentBot()?.name
+                bot.name === currentBot()?.name,
             }"
             [icon]="bot.icon"
             [tooltipText]="bot.name"
@@ -206,7 +220,7 @@
             class="bmb_chat-bar-dialog-button"
             [ngClass]="{
               'bmb_chat-bar-dialog-button-active':
-                bot.name === currentBot()?.name
+                bot.name === currentBot()?.name,
             }"
             [icon]="bot.icon"
             [tooltipText]="bot.name"

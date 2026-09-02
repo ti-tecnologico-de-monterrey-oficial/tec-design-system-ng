@@ -1,0 +1,59 @@
+<section class="page-shell">
+  <header>
+    <h1>AI Chat card</h1>
+  </header>
+
+  <div class="demo-grid">
+    <aside class="controls">
+      <h2>Propiedades</h2>
+      <label class="field">
+        <span>Mode</span>
+        <select [value]="mode()" (change)="selectMode($event)">
+          @for (option of modes; track option.value) {
+          <option [value]="option.value">{{ option.label }}</option>
+          }
+        </select>
+      </label>
+      <button class="trigger" type="button" (click)="chatCard()">
+        {{ 'Detonar AI Chat card' }}
+      </button>
+      <p class="event"><strong>Modo actual:</strong> {{ mode() }}</p>
+      <p class="event"><strong>Bot actual:</strong> {{ currentBot().name }}</p>
+    </aside>
+
+    <article class="preview">
+      <div class="card-demo">
+        <bmb-ai-chat-card
+          [mode]="mode()"
+          [componentTitle]="'TecBot Assistant'"
+          [subtitle]="'Asistente de inteligencia artificial'"
+          [headerActions]="headerActions"
+          [(currentBot)]="currentBot"
+        >
+          @for (chatMessage of messages; track chatMessage.id) {
+          <bmb-ai-chat-bubble
+            [botIcon]="'bot_tecStandar'"
+            [testId]="chatMessage.id"
+            [message]="chatMessage"
+            [isThinking]="false"
+            [showActions]="true"
+            [userActions]="chatMessage.isUser ? ['copy'] : []"
+            (getAction)="getAction($event)"
+            (getOptionClicked)="getOptionClicked($event)"
+          />
+          }
+
+          <bmb-chat-bar
+            [placeholder]="'Escribe tu mensaje'"
+            [botList]="botList"
+            [actionsList]="actionsList"
+            [showEmoji]="true"
+            [enableMicInput]="true"
+            [currentBot]="currentBot()"
+            [isLoading]="false"
+          />
+        </bmb-ai-chat-card>
+      </div>
+    </article>
+  </div>
+</section>
