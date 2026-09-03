@@ -21,7 +21,7 @@ export class CheckExternalLinkButtonPage {
 
   readonly link = (): string => {
     if (this.mode() === 'external') return 'https://tec.mx/';
-    if (this.mode() === 'internal') return '/components/card';
+    if (this.mode() === 'internal') return '/pages/card';
     return '';
   };
 

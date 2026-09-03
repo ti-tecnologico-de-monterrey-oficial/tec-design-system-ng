@@ -1,6 +1,6 @@
 @use '../../styles/playground';
 
-@include playground.page;
+@include playground.page(18rem, 23rem, 32rem);
 
 .playground {
   align-items: start;
@@ -10,6 +10,11 @@
   max-height: 90vh;
   overflow-y: scroll;
   scrollbar-gutter: stable;
+}
+
+.controls textarea {
+  min-height: 5rem;
+  resize: vertical;
 }
 
 .preview {
@@ -24,15 +29,24 @@
   top: 0;
 }
 
-.preview bmb-date-range {
+.preview bmb-media-card {
   display: block;
+  flex: 0 0 auto;
   max-width: 100%;
   width: 100%;
 }
 
 @media (max-width: 700px) {
+  .playground {
+    align-items: stretch;
+  }
+
+  .controls {
+    max-height: 32rem;
+  }
+
   .preview {
     height: min(32rem, 90vh);
-    position: relative;
+    position: static;
   }
 }
