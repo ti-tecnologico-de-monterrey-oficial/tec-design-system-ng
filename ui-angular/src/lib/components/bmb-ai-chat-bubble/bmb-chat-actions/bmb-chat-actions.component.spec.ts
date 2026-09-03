@@ -265,6 +265,7 @@ describe('ChatActionsComponent', () => {
 
   it('should render translated aria labels', () => {
     const icons = fixture.debugElement.queryAll(By.css('bmb-action-icon'));
+    componentRef.setInput('actions', ['repeat']);
 
     expect(icons[0].attributes['aria-label']).toContain('chat_bubbles.repeat');
   });
