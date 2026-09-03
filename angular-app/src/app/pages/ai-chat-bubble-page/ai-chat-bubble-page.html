@@ -47,18 +47,72 @@
         <p>Pasa el cursor sobre un mensaje del usuario para copiarlo.</p>
       </header>
 
-      <div class="conversation" data-testid="chat-conversation">
-        @for (chatMessage of conversation(); track chatMessage.id) {
-        <bmb-ai-chat-bubble
-          [message]="chatMessage"
-          [userActions]="userActions()"
-          [testId]="chatMessage.id"
-          (getAction)="handleConversationAction($event)"
-          (messageEditCancelled)="handleMessageEditCancelled($event)"
-          (messageEdited)="handleMessageEdited($event)"
-        />
+      <bmb-tabs [tabs]="tabs" (selected)="handleTabSelected($event)">
+        @if (activeTabId() === 1) {
+          <div class="conversation" data-testid="chat-conversation">
+            @for (chatMessage of conversation(); track chatMessage.id) {
+              <bmb-ai-chat-bubble
+                [message]="chatMessage"
+                [userActions]="userActions()"
+                [testId]="chatMessage.id"
+                (getAction)="handleConversationAction($event)"
+                (messageEditCancelled)="handleMessageEditCancelled($event)"
+                (messageEdited)="handleMessageEdited($event)"
+              />
+            }
+          </div>
         }
-      </div>
+        @if (activeTabId() === 2) {
+          <div class="conversation" data-testid="chat-media-conversation">
+            @for (chatMessage of mediaMessages(); track chatMessage.id) {
+              <bmb-ai-chat-bubble
+                [message]="chatMessage"
+                [userActions]="userActions()"
+                [testId]="chatMessage.id"
+                (getAction)="handleConversationAction($event)"
+                (imageNotFoundError)="handleImageLoadError()"
+              />
+            }
+          </div>
+        }
+        @if (activeTabId() === 3) {
+          <div class="conversation" data-testid="chat-options-conversation">
+            @for (chatMessage of optionsMessages(); track chatMessage.id) {
+              <bmb-ai-chat-bubble
+                [message]="chatMessage"
+                [userActions]="userActions()"
+                [testId]="chatMessage.id"
+                (getAction)="handleConversationAction($event)"
+                (getOptionClicked)="handleOptionSelected($event)"
+              />
+            }
+          </div>
+        }
+        @if (activeTabId() === 4) {
+          <div class="conversation" data-testid="chat-status-conversation">
+            @for (chatMessage of statusMessages(); track chatMessage.id) {
+              <bmb-ai-chat-bubble
+                [message]="chatMessage"
+                [userActions]="userActions()"
+                [testId]="chatMessage.id"
+                (getAction)="handleConversationAction($event)"
+              />
+            }
+          </div>
+        }
+        @if (activeTabId() === 5) {
+          <div class="conversation" data-testid="chat-disabled-actions-conversation">
+            @for (chatMessage of disabledActionsMessages(); track chatMessage.id) {
+              <bmb-ai-chat-bubble
+                [message]="chatMessage"
+                [userActions]="[]"
+                [showActions]="false"
+                [testId]="chatMessage.id"
+              />
+            }
+          </div>
+        }
+      </bmb-tabs>
     </article>
   </div>
 </section>
