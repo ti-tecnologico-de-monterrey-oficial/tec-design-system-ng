@@ -1,0 +1,175 @@
+@use '../../styles/playground';
+
+@include playground.page(
+  $controls-min: 26rem,
+  $controls-max: 32rem,
+  $preview-min-height: 32rem
+);
+
+.controls {
+  color: #20293a !important;
+  max-height: calc(100vh - 8rem);
+  min-width: 0;
+  overflow-y: auto;
+
+  > * {
+    min-width: 0;
+  }
+
+  h2,
+  label,
+  small {
+    color: #20293a !important;
+  }
+
+  label {
+    font-size: 0.875rem;
+    font-weight: 600;
+  }
+
+  input,
+  select,
+  textarea {
+    background-color: #fff !important;
+    box-sizing: border-box;
+    color: #111827 !important;
+    display: block;
+    font: inherit;
+    max-width: 100%;
+    min-width: 0;
+    width: 100% !important;
+  }
+
+  input::placeholder,
+  textarea::placeholder {
+    color: #667085 !important;
+    opacity: 1;
+  }
+
+  select option {
+    background-color: #fff !important;
+    color: #111827 !important;
+  }
+
+  textarea {
+    border: 1px solid #8b96a8;
+    border-radius: 0.375rem;
+    padding: 0.625rem;
+  }
+
+  input:disabled,
+  textarea:disabled {
+    background-color: #e5e7eb !important;
+    color: #4b5563 !important;
+    opacity: 1;
+  }
+
+  small {
+    color: #596579;
+    line-height: 1.5;
+  }
+}
+
+.controls h2:not(:first-child) {
+  margin-top: 1rem;
+}
+
+.controls textarea {
+  min-height: 7rem;
+  resize: vertical;
+}
+
+.checkbox-control {
+  align-items: center;
+  display: flex;
+  gap: 0.5rem;
+
+  input {
+    accent-color: #356f5b;
+    background-color: #fff !important;
+    flex: 0 0 auto;
+    margin: 0;
+    min-width: auto;
+    width: auto !important;
+  }
+}
+
+.preview {
+  color: #20293a !important;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  overflow: auto;
+
+  h2,
+  summary {
+    color: #20293a !important;
+  }
+}
+
+.preview-header {
+  align-items: flex-start;
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
+
+  h2,
+  p {
+    margin: 0;
+  }
+
+  p {
+    color: #596579 !important;
+    margin-top: 0.25rem;
+  }
+}
+
+.load-status {
+  background: #e7f4ee;
+  border-radius: 999px;
+  color: #245b48 !important;
+  flex: 0 0 auto;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.375rem 0.75rem;
+}
+
+.preview-frame {
+  border: 1px solid #d8dee8;
+  border-radius: 0.5rem;
+  min-height: 22rem;
+  overflow: auto;
+}
+
+.configuration {
+  border: 1px solid #d8dee8;
+  border-radius: 0.5rem;
+
+  summary {
+    cursor: pointer;
+    font-weight: 700;
+    padding: 0.75rem 1rem;
+  }
+
+  pre {
+    background: #18202f;
+    border-radius: 0 0 0.5rem 0.5rem;
+    color: #f4f7fb;
+    margin: 0;
+    max-height: 18rem;
+    overflow: auto;
+    padding: 1rem;
+    white-space: pre-wrap;
+    word-break: break-word;
+  }
+}
+
+@media (max-width: 700px) {
+  .controls {
+    max-height: none;
+  }
+
+  .preview-header {
+    flex-direction: column;
+  }
+}

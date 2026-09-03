@@ -1,0 +1,33 @@
+@use 'rem' as rem;
+
+@mixin appearance {
+  display: inline-flex;
+  line-height: rem.rem_calc(21);
+  text-decoration: underline;
+  position: relative;
+  cursor: pointer;
+  color: var(--buttons-text-link);
+}
+
+@mixin animation {
+  &:hover {
+    text-decoration: none;
+  }
+
+  &::after {
+    content: '';
+    width: 100%;
+    border-bottom: rem.rem_calc(2) solid currentColor;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    opacity: 0;
+    transform: scaleX(0);
+    transition: transform 0.2s ease;
+  }
+
+  &:hover::after {
+    opacity: 1;
+    transform: scaleX(1);
+  }
+}

@@ -1,0 +1,236 @@
+<section class="bmb_text-editor">
+  <header class="bmb_text-editor-header">
+    <span class="bmb_text-editor-header-group">
+      <select
+        id="BmbTextEditorSelect"
+        class="bmb_text-editor-header-select"
+        (change)="handleChange($event, 'formatBlock')"
+        [title]="'text_editor.format_block' | translate"
+      >
+        <option value="p">{{ 'text_editor.paragraph' | translate }}</option>
+        <option value="h1">{{ 'text_editor.title1' | translate }}</option>
+        <option value="h2">{{ 'text_editor.title2' | translate }}</option>
+        <option value="h3">{{ 'text_editor.title3' | translate }}</option>
+        <option value="blockquote">
+          {{ 'text_editor.appointment' | translate }}
+        </option>
+      </select>
+    </span>
+    <span class="bmb_text-editor-header-group hide-on-mobile">
+      <bmb-action-icon
+        idElement="text_editor_bold"
+        icon="format_bold"
+        [iconSize]="24"
+        [title]="'text_editor.bold' | translate"
+        (buttonClick)="addTextFormat('bold')"
+        [tooltipText]="'text_editor.bold' | translate"
+      />
+      <bmb-action-icon
+        idElement="text_editor_italic"
+        icon="format_italic"
+        [iconSize]="24"
+        [title]="'text_editor.italic' | translate"
+        [tooltipText]="'text_editor.italic' | translate"
+        (buttonClick)="addTextFormat('italic')"
+      />
+      <bmb-action-icon
+        idElement="text_editor_underline"
+        icon="format_underlined"
+        [iconSize]="24"
+        [title]="'text_editor.underline' | translate"
+        [tooltipText]="'text_editor.underline' | translate"
+        (buttonClick)="addTextFormat('underline')"
+      />
+      <bmb-action-icon
+        [style]="'color: var(--' + selectedColor() + ')'"
+        idElement="color"
+        icon="rectangle"
+        [iconSize]="24"
+        [tooltipText]="'text_editor.fore_color' | translate"
+        (buttonClick)="openPrompt('color', $event)"
+      />
+    </span>
+    <span class="bmb_text-editor-header-group bmb_text-editor-header-actions">
+      <bmb-action-icon
+        [style]="'color: var(--' + selectedColor() + ')'"
+        idElement="color"
+        icon="rectangle"
+        [iconSize]="24"
+        [tooltipText]="'text_editor.fore_color' | translate"
+        (buttonClick)="openPrompt('color', $event)"
+      />
+      <bmb-action-icon
+        idElement="text_editor_text_format"
+        icon="text_format"
+        [iconSize]="24"
+        (buttonClick)="handleInsertDialog($event)"
+        [tooltipText]="'text_editor.text_format' | translate"
+      />
+      <bmb-action-icon
+        idElement="text_editor.more"
+        icon="more_horiz"
+        [iconSize]="24"
+        (buttonClick)="handleMoreDialog($event)"
+        [tooltipText]="'text_editor.more' | translate"
+      />
+    </span>
+    <span class="bmb_text-editor-header-group hide-on-mobile">
+      <bmb-action-icon
+        [ngClass]="{ active: currentAlignment === 'left' }"
+        idElement="text_editor_left"
+        icon="format_align_left"
+        [iconSize]="24"
+        [title]="'text_editor.left' | translate"
+        [tooltipText]="'text_editor.left' | translate"
+        (buttonClick)="applyAlignment('left')"
+      />
+      <bmb-action-icon
+        [ngClass]="{ active: currentAlignment === 'center' }"
+        idElement="text_editor_center"
+        icon="format_align_center"
+        [iconSize]="24"
+        [title]="'text_editor.center' | translate"
+        [tooltipText]="'text_editor.center' | translate"
+        (buttonClick)="applyAlignment('center')"
+      />
+      <bmb-action-icon
+        [ngClass]="{ active: currentAlignment === 'right' }"
+        idElement="text_editor_right"
+        icon="format_align_right"
+        [iconSize]="24"
+        [title]="'text_editor.right' | translate"
+        [tooltipText]="'text_editor.right' | translate"
+        (buttonClick)="applyAlignment('right')"
+      />
+    </span>
+    <span class="bmb_text-editor-header-group hide-on-mobile">
+      <bmb-action-icon
+        idElement="text_editor_insert_ordered_list"
+        icon="format_list_numbered"
+        [iconSize]="24"
+        [title]="'text_editor.insert_ordered_list' | translate"
+        [tooltipText]="'text_editor.insert_ordered_list' | translate"
+        (buttonClick)="execCommand('insertOrderedList')"
+      />
+      <bmb-action-icon
+        idElement="text_editor_insert_unordered_list"
+        icon="format_list_bulleted"
+        [iconSize]="24"
+        [title]="'text_editor.insert_unordered_list' | translate"
+        [tooltipText]="'text_editor.insert_unordered_list' | translate"
+        (buttonClick)="execCommand('insertUnorderedList')"
+      />
+    </span>
+    <span class="bmb_text-editor-header-group hide-on-mobile">
+      <bmb-action-icon
+        idElement="text_editor_indent"
+        icon="format_indent_increase"
+        [iconSize]="24"
+        [title]="'text_editor.indent' | translate"
+        [tooltipText]="'text_editor.indent' | translate"
+        (buttonClick)="execCommand('indent')"
+      />
+      <bmb-action-icon
+        idElement="text_editor_outdent"
+        icon="format_indent_decrease"
+        [iconSize]="24"
+        [title]="'text_editor.outdent' | translate"
+        [tooltipText]="'text_editor.outdent' | translate"
+        (buttonClick)="execCommand('outdent')"
+      />
+    </span>
+    <span class="bmb_text-editor-header-group">
+      <bmb-action-icon
+        idElement="text_editor_insert_link"
+        icon="link"
+        [iconSize]="24"
+        [title]="'text_editor.insert_link' | translate"
+        [tooltipText]="'text_editor.insert_link' | translate"
+        (buttonClick)="openPrompt('link', $event)"
+      />
+      <bmb-action-icon
+        idElement="text_editor_insert_image"
+        icon="image"
+        [iconSize]="24"
+        [title]="'text_editor.insert_image' | translate"
+        [tooltipText]="'text_editor.insert_image' | translate"
+        (buttonClick)="openPrompt('image', $event)"
+      />
+    </span>
+    <span class="bmb_text-editor-header-group">
+      <bmb-action-icon
+        idElement="text_editor_clear_formatting"
+        icon="format_clear"
+        [iconSize]="24"
+        [title]="'text_editor.clear_formatting' | translate"
+        [tooltipText]="'text_editor.clear_formatting' | translate"
+        (buttonClick)="clearFormatting()"
+      />
+    </span>
+  </header>
+
+  <div
+    class="bmb_text-editor-content"
+    #editor
+    contenteditable="true"
+    (input)="updateContent()"
+    [innerHTML]="sanitizedContent()"
+  ></div>
+</section>
+
+<!-- Diálogo para definir filas y columnas -->
+<dialog class="dialog-overlay" [open]="showTableDialog">
+  <div class="dialog">
+    <h3>Insertar tabla</h3>
+    <label for="rows">Filas:</label>
+    <input type="number" id="rows" min="1" max="10" />
+
+    <label for="columns">Columnas:</label>
+    <input type="number" id="columns" min="1" max="10" />
+
+    <div class="dialog-buttons">
+      <button type="button" (click)="insertTable()">Insertar</button>
+      <button type="button" (click)="closeTableDialog()">Cancelar</button>
+    </div>
+  </div>
+</dialog>
+
+<ng-template #moreTemplate>
+  <section>
+    <bmb-action-menu
+      [showHeader]="false"
+      [componentTitle]="'text_editor.select_option' | translate"
+    >
+      @for (bot of settingsItems(); track $index) {
+        <ng-template>
+          <bmb-item
+            [icon]="bot.icon"
+            [label]="bot.name"
+            [isButton]="true"
+            (action)="bot.action()"
+          />
+        </ng-template>
+      }
+    </bmb-action-menu>
+  </section>
+</ng-template>
+
+<ng-template #insertTemplate>
+  <section>
+    <bmb-action-menu
+      [showHeader]="false"
+      [componentTitle]="'text_editor.select_option' | translate"
+    >
+      @for (bot of insertItems(); track $index) {
+        <ng-template>
+          <bmb-item
+            [icon]="bot.icon"
+            [label]="bot.name"
+            [isButton]="true"
+            (action)="bot.action()"
+          />
+        </ng-template>
+      }
+    </bmb-action-menu>
+  </section>
+</ng-template>

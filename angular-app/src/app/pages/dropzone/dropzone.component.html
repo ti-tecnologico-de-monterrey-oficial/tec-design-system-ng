@@ -1,0 +1,107 @@
+<bmb-form-validator
+  [(formGroup)]="userForm"
+  (formGroupState)="handleFormGroupState($event)"
+>
+  <section bmbVerticalLayout justify="center" alignItems="center" gapSize="xl">
+    <section
+      bmbVerticalLayout
+      gapSize="m"
+      bmbVerticalLayoutItem
+      style="max-width: 640px"
+    >
+      <section bmbVerticalLayoutItem>
+        <label for="multiple-files-switch">
+          <strong>Selección múltiple</strong>
+          — multiple: {{ multipleFiles() }}
+        </label>
+        <bmb-switch
+          inputId="multiple-files-switch"
+          ariaLabel="Activar o desactivar la selección múltiple"
+          [isChecked]="multipleFiles()"
+          (change)="handleMultipleFilesChange($event)"
+        />
+      </section>
+      <section bmbVerticalLayoutItem>
+        <label for="duplicate-files-switch">
+          <strong>Permitir archivos duplicados</strong>
+          — allowDuplicateFiles: {{ allowDuplicateFiles() }}
+        </label>
+        <bmb-switch
+          inputId="duplicate-files-switch"
+          ariaLabel="Permitir o rechazar archivos con el mismo nombre"
+          [isChecked]="allowDuplicateFiles()"
+          [disabled]="!multipleFiles()"
+          (change)="handleAllowDuplicateFilesChange($event)"
+        />
+      </section>
+      <section bmbVerticalLayoutItem>
+        <label for="duplicate-validation-switch">
+          <strong>Validar nombres duplicados</strong>
+          — customValidation: {{ validateDuplicateFiles() }}
+        </label>
+        <bmb-switch
+          inputId="duplicate-validation-switch"
+          ariaLabel="Activar o desactivar la validación personalizada de archivos duplicados"
+          [isChecked]="validateDuplicateFiles()"
+          [disabled]="!multipleFiles()"
+          (change)="handleDuplicateValidationChange($event)"
+        />
+      </section>
+      <p bmbVerticalLayoutItem>
+        Estado actual: multiple = <strong>{{ multipleFiles() }}</strong
+        >, allowDuplicateFiles = <strong>{{ allowDuplicateFiles() }}</strong
+        >, customValidation =
+        <strong>{{ validateDuplicateFiles() }}</strong>
+      </p>
+      <small bmbVerticalLayoutItem>
+        Para probar el mensaje de duplicado activa los tres switches y
+        selecciona dos veces un archivo con el mismo nombre.
+      </small>
+    </section>
+
+    <bmb-dropzone
+      inputId="dropzone_id"
+      name="dropzone"
+      [acceptedExtensions]="['csv', 'png']"
+      [fileSize]="10"
+      [multiple]="multipleFiles()"
+      [allowDuplicateFiles]="allowDuplicateFiles()"
+      [customValidation]="duplicateFileValidation"
+      [customErrorMessages]="
+        validateDuplicateFiles() ? customErrorMessages : noCustomErrorMessages
+      "
+      [progress]="progressFiles()"
+      linkLabel="Ver más información de formatos de archivo aceptados."
+      linkFilesSupported="https://www.youtube.com/"
+      (newFile)="onNewFile($event)"
+      (fileRemoved)="handleFileRemoved($event)"
+      bmbVerticalLayoutItem
+    />
+    <button
+      bmbButton
+      type="submit"
+      size="large"
+      appearance="primary"
+      bmbVerticalLayoutItem
+    >
+      Submit
+    </button>
+  </section>
+</bmb-form-validator>
+
+<!-- <div style="margin: 0 120px">
+  <bmb-filter-card
+    [modalTitle]="'Opciones Filtrado'"
+    [primaryBtnLabel]="'Aplicar Filtros'"
+    [secondaryBtnLabel]="'Limpiar Filtros'"
+    [icon]="'tune'"
+    [controlTypes]="filterControls"
+    [inLine]="true"
+    [showGlobalSearch]="true"
+    [showDropdown]="false"
+    [dropdownOptions]="['Apple', 'Banana', 'Orange', 'Pear', 'Grape']"
+    [placeholderSearch]="'Search'"
+    (applyFilters)="handleFilters($event)"
+    (resetFilters)="handleResetFilters()"
+  />
+</div> -->

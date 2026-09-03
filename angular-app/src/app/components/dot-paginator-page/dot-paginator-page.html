@@ -1,0 +1,71 @@
+<header class="page-header">
+  <p class="eyebrow">Componente migrado</p>
+  <h1>BmbDotPaginator</h1>
+  <p>Prueba sus inputs, modelo, output y métodos públicos de navegación.</p>
+</header>
+
+<section class="playground" aria-labelledby="dot-paginator-heading">
+  <aside class="controls">
+    <h2 id="dot-paginator-heading">Propiedades</h2>
+
+    <label for="appearance">appearance</label>
+    <select
+      id="appearance"
+      [value]="appearance()"
+      (change)="setAppearance($any($event.target).value)"
+    >
+      <option value="primary">primary</option>
+      <option value="secondary">secondary</option>
+      <option value="">sin apariencia</option>
+    </select>
+
+    <label for="target-count">targets (cantidad)</label>
+    <input
+      id="target-count"
+      type="number"
+      min="0"
+      [value]="targets().length"
+      (input)="setTargetCount(+$any($event.target).value)"
+    />
+
+    <label for="total-dots">totalDots (deprecated)</label>
+    <input
+      id="total-dots"
+      type="number"
+      min="0"
+      [value]="totalDots()"
+      (input)="setTotalDots(+$any($event.target).value)"
+    />
+
+    <label for="active-index">activeDotIndex</label>
+    <input
+      id="active-index"
+      type="number"
+      min="0"
+      [value]="activeDotIndex()"
+      (input)="handleDotPress(+$any($event.target).value)"
+    />
+
+    <p><strong>numberOfDots:</strong> {{ paginator.numberOfDots() }}</p>
+    <p><strong>getClasses():</strong> {{ paginator.getClasses().join(' ') }}</p>
+    <p><strong>Último evento:</strong> {{ lastEvent() }}</p>
+  </aside>
+
+  <div class="preview">
+    <div class="method-controls">
+      <button type="button" (click)="paginator.prevItem()">prevItem()</button>
+      <button type="button" (click)="paginator.dotClick(0)">dotClick(0)</button>
+      <button type="button" (click)="paginator.nextItem()">nextItem()</button>
+    </div>
+
+    <bmb-dot-paginator
+      #paginator
+      [activeDotIndex]="activeDotIndex()"
+      (activeDotIndexChange)="activeDotIndex.set($event)"
+      [targets]="targets()"
+      [appearance]="appearance()"
+      [totalDots]="totalDots()"
+      (onDotPress)="handleDotPress($event)"
+    />
+  </div>
+</section>

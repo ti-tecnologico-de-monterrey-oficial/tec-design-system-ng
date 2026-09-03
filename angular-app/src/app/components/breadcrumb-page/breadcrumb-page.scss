@@ -1,0 +1,40 @@
+@use '../../styles/playground';
+
+@include playground.page($controls-min: 18rem, $controls-max: 24rem);
+
+:host {
+  background: #f4f6f9;
+  color: #1f2937;
+  min-height: 100%;
+  padding: 2rem;
+}
+
+.preview {
+  align-items: flex-start;
+  display: flex;
+  padding: 2rem;
+
+  bmb-breadcrumb {
+    width: 100%;
+  }
+
+  &-top-bar {
+    background: #202532;
+  }
+}
+
+.helper-text {
+  color: #4b5563;
+  font-size: 0.875rem;
+  margin: 0.25rem 0 0;
+}
+
+@media (max-width: 700px) {
+  :host {
+    padding: 1rem;
+  }
+
+  .preview {
+    padding: 1rem;
+  }
+}

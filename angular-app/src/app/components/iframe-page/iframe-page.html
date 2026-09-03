@@ -1,0 +1,273 @@
+<header class="page-header">
+  <p class="eyebrow">Componente migrado</p>
+  <h1>BmbIframe</h1>
+  <p>Modifica todos sus atributos nativos y valida el resultado en vivo.</p>
+</header>
+
+<section class="playground" aria-labelledby="iframe-demo-title">
+  <div class="controls">
+    <h2 id="iframe-demo-title">Contenido y dimensiones</h2>
+    <label class="checkbox-control">
+      <input
+        id="iframe-use-srcdoc"
+        type="checkbox"
+        [checked]="useSrcdoc()"
+        (change)="setUseSrcdoc($any($event.target).checked)"
+      />
+      Usar srcdoc en lugar de src
+    </label>
+    <label for="iframe-src">src</label>
+    <input
+      id="iframe-src"
+      type="url"
+      [value]="src()"
+      [disabled]="useSrcdoc()"
+      (input)="setSrc($any($event.target).value)"
+    />
+    <label for="iframe-srcdoc">srcdoc</label>
+    <textarea
+      id="iframe-srcdoc"
+      rows="5"
+      [value]="srcdoc()"
+      [disabled]="!useSrcdoc()"
+      (input)="setSrcdoc($any($event.target).value)"
+    ></textarea>
+    <label for="iframe-width">width</label>
+    <input
+      id="iframe-width"
+      [value]="width()"
+      (input)="setWidth($any($event.target).value)"
+    />
+    <label for="iframe-height">height</label>
+    <input
+      id="iframe-height"
+      [value]="height()"
+      (input)="setHeight($any($event.target).value)"
+    />
+    <label for="iframe-loading">loading</label>
+    <select
+      id="iframe-loading"
+      [value]="loading()"
+      (change)="setLoading($any($event.target).value)"
+    >
+      @for (option of loadingOptions; track option) {
+      <option [value]="option">{{ option }}</option>
+      }
+    </select>
+    <label for="iframe-importance">importance</label>
+    <select
+      id="iframe-importance"
+      [value]="importance()"
+      (change)="setImportance($any($event.target).value)"
+    >
+      @for (option of importanceOptions; track option) {
+      <option [value]="option">{{ option }}</option>
+      }
+    </select>
+    <label for="iframe-frameborder">frameborder</label>
+    <input
+      id="iframe-frameborder"
+      [value]="frameborder()"
+      (input)="setFrameborder($any($event.target).value)"
+    />
+    <label for="iframe-scrolling">scrolling</label>
+    <select
+      id="iframe-scrolling"
+      [value]="scrolling()"
+      (change)="setScrolling($any($event.target).value)"
+    >
+      @for (option of scrollingOptions; track option) {
+      <option [value]="option">{{ option }}</option>
+      }
+    </select>
+    <label for="iframe-align">align</label>
+    <select
+      id="iframe-align"
+      [value]="align() ?? ''"
+      (change)="setAlign($any($event.target).value)"
+    >
+      <option value="">Sin atributo</option>
+      @for (option of alignOptions; track option) {
+      <option [value]="option">{{ option }}</option>
+      }
+    </select>
+    <label for="iframe-longdesc">longdesc</label>
+    <input
+      id="iframe-longdesc"
+      type="url"
+      placeholder="https://example.com/description"
+      [value]="longdesc() ?? ''"
+      (input)="setLongdesc($any($event.target).value)"
+    />
+    <label for="iframe-name">name</label>
+    <input
+      id="iframe-name"
+      [value]="name()"
+      (input)="setName($any($event.target).value)"
+    />
+    <label for="iframe-title">title</label>
+    <input
+      id="iframe-title"
+      [value]="title()"
+      (input)="setTitle($any($event.target).value)"
+    />
+
+    <h2>Seguridad y permisos</h2>
+    <label class="checkbox-control">
+      <input
+        id="iframe-sandbox-enabled"
+        type="checkbox"
+        [checked]="sandbox() !== null"
+        (change)="setSandboxEnabled($any($event.target).checked)"
+      />
+      Agregar sandbox
+    </label>
+    <label for="iframe-sandbox">sandbox</label>
+    <input
+      id="iframe-sandbox"
+      placeholder="allow-scripts allow-same-origin"
+      [value]="sandbox() ?? ''"
+      [disabled]="sandbox() === null"
+      (input)="setSandbox($any($event.target).value)"
+    />
+    <label class="checkbox-control">
+      <input
+        id="iframe-allow-enabled"
+        type="checkbox"
+        [checked]="allow() !== null"
+        (change)="setAllowEnabled($any($event.target).checked)"
+      />
+      Agregar allow
+    </label>
+    <label for="iframe-allow">allow</label>
+    <input
+      id="iframe-allow"
+      placeholder="fullscreen; camera; microphone"
+      [value]="allow() ?? ''"
+      [disabled]="allow() === null"
+      (input)="setAllow($any($event.target).value)"
+    />
+    <label class="checkbox-control">
+      <input
+        id="iframe-allow-fullscreen"
+        type="checkbox"
+        [checked]="allowFullscreen()"
+        (change)="setAllowFullscreen($any($event.target).checked)"
+      />
+      allowfullscreen
+    </label>
+    <label class="checkbox-control">
+      <input
+        id="iframe-credentialless"
+        type="checkbox"
+        [checked]="credentialless()"
+        (change)="setCredentialless($any($event.target).checked)"
+      />
+      credentialless
+    </label>
+    <label class="checkbox-control">
+      <input
+        id="iframe-csp-enabled"
+        type="checkbox"
+        [checked]="csp() !== null"
+        (change)="setCspEnabled($any($event.target).checked)"
+      />
+      Agregar csp
+    </label>
+    <label for="iframe-csp">csp</label>
+    <input
+      id="iframe-csp"
+      placeholder="default-src 'self'"
+      [value]="csp() ?? ''"
+      [disabled]="csp() === null"
+      (input)="setCsp($any($event.target).value)"
+    />
+    <label for="iframe-referrer-policy">referrerPolicy</label>
+    <select
+      id="iframe-referrer-policy"
+      [value]="referrerPolicy() ?? ''"
+      (change)="setReferrerPolicy($any($event.target).value)"
+    >
+      <option value="">Sin atributo</option>
+      @for (option of referrerPolicyOptions; track option) {
+      <option [value]="option">{{ option }}</option>
+      }
+    </select>
+
+    <h2>Atributos globales del iframe interno</h2>
+    <label for="iframe-id">id</label>
+    <input
+      id="iframe-id"
+      [value]="iframeId()"
+      (input)="iframeId.set($any($event.target).value)"
+    />
+    <label for="iframe-class">class</label>
+    <input
+      id="iframe-class"
+      [value]="iframeClass()"
+      (input)="iframeClass.set($any($event.target).value)"
+    />
+    <label for="iframe-style">style</label>
+    <input
+      id="iframe-style"
+      [value]="iframeStyle()"
+      (input)="iframeStyle.set($any($event.target).value)"
+    />
+    <label for="iframe-aria-label">aria-label</label>
+    <input
+      id="iframe-aria-label"
+      [value]="ariaLabel()"
+      (input)="ariaLabel.set($any($event.target).value)"
+    />
+    <label for="iframe-data-demo">data-demo</label>
+    <input
+      id="iframe-data-demo"
+      [value]="dataDemo()"
+      (input)="dataDemo.set($any($event.target).value)"
+    />
+    <small>Usa únicamente URLs y contenido HTML confiables.</small>
+  </div>
+
+  <div class="preview">
+    <div class="preview-header">
+      <div>
+        <h2>Vista previa</h2>
+        <p>Inspecciona el iframe renderizado y su configuración efectiva.</p>
+      </div>
+      <p class="load-status" role="status">Eventos load: {{ loadCount() }}</p>
+    </div>
+
+    <div class="preview-frame">
+      <bmb-iframe
+        [src]="src()"
+        [srcdoc]="useSrcdoc() ? srcdoc() : null"
+        [width]="width()"
+        [height]="height()"
+        [loading]="loading()"
+        [importance]="importance()"
+        [frameborder]="frameborder()"
+        [scrolling]="scrolling()"
+        [align]="align()"
+        [longdesc]="longdesc()"
+        [name]="name()"
+        [title]="title()"
+        [sandbox]="sandbox()"
+        [allow]="allow()"
+        [allowFullscreen]="allowFullscreen()"
+        [credentialless]="credentialless()"
+        [csp]="csp()"
+        [referrerPolicy]="referrerPolicy()"
+        [iframeId]="iframeId()"
+        [iframeClass]="iframeClass()"
+        [iframeStyle]="iframeStyle()"
+        [iframeAttributes]="iframeAttributes()"
+        (iframeLoad)="onIframeLoad()"
+      />
+    </div>
+
+    <details class="configuration" open>
+      <summary>Configuración efectiva</summary>
+      <pre data-testid="iframe-configuration">{{ configurationJson() }}</pre>
+    </details>
+  </div>
+</section>

@@ -1,0 +1,9 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+import * as mainStory from './bmb-native-modal.stories';
+import * as secondaryStory from './bmb-modal.stories';
+import { Tabs } from '@docs/components/Tabs.mdx';
+import { ListTemplate } from '@docs/components/ListTemplate.mdx';
+
+<Meta of={mainStory} />
+<ListTemplate>{secondaryStory}</ListTemplate>

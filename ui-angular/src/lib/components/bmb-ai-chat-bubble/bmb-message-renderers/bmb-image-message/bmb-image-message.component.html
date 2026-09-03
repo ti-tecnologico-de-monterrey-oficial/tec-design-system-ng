@@ -1,0 +1,9 @@
+<div class="bmb_ai-chat-bubble-image">
+  <img
+    class="bmb_ai-chat-bubble-image-picture"
+    [src]="message().content.imageUrl"
+    [alt]="message().content.alt || 'Chat image'"
+    loading="lazy"
+    (error)="handleImageNotFoundError(message().content.imageUrl, $event)"
+  />
+</div>

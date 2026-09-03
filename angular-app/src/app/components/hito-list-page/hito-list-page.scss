@@ -1,0 +1,39 @@
+@use '../../styles/playground';
+
+@include playground.page(
+  $controls-min: 19rem,
+  $controls-max: 25rem,
+  $preview-min-height: 24rem
+);
+
+:host {
+  background: #f4f6f9;
+  color: #1f2937;
+  min-height: 100%;
+  padding: 2rem;
+}
+
+.controls button {
+  cursor: pointer;
+  padding: 0.625rem;
+}
+
+.controls p {
+  margin: 0;
+}
+
+.preview {
+  height: 28rem;
+}
+
+.preview bmb-hito-list {
+  display: block;
+  height: 100%;
+  width: 100%;
+}
+
+@media (max-width: 700px) {
+  :host {
+    padding: 1rem;
+  }
+}

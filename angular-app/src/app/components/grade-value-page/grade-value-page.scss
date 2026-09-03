@@ -1,0 +1,17 @@
+@use '../../styles/playground';
+
+@include playground.page($controls-min: 16rem, $controls-max: 22rem);
+
+.preview {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  justify-content: center;
+  min-height: 18rem;
+
+  p {
+    color: var(--general-contrasts-75);
+    margin: 0;
+  }
+}

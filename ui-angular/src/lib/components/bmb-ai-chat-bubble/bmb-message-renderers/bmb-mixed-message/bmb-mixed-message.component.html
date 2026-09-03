@@ -1,0 +1,13 @@
+<div class="bmb_ai-chat-bubble-mixed">
+  <p class="bmb_ai-chat-bubble-mixed-text">
+    {{ message().content.text }}
+  </p>
+
+  <img
+    class="bmb_ai-chat-bubble-mixed-image"
+    [src]="message().content.imageUrl"
+    [attr.alt]="message().content.text || 'Message image'"
+    loading="lazy"
+    (error)="handleImageNotFoundError(message().content.imageUrl, $event)"
+  />
+</div>
