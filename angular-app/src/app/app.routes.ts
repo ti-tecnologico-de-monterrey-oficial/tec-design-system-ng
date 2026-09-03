@@ -489,6 +489,22 @@ export const appRoutes: Route[] = [
       ),
   },
   {
+    path: 'components/loader',
+    title: 'BmbLoader | Bamboo migration dashboard',
+    loadComponent: () =>
+      import('./components/loader-page/loader-page').then(
+        ({ LoaderPage }) => LoaderPage,
+      ),
+  },
+    {
+      path: 'components/home-card',
+      title: 'BmbHomeCard | Bamboo migration dashboard',
+      loadComponent: () =>
+        import('./components/home-card-page/home-card-page').then(
+          ({ HomeCardPage }) => HomeCardPage,
+        ),
+    },
+  {
     path: 'components/focus-element',
     title: 'BmbFocusElement | Bamboo migration dashboard',
     loadComponent: () =>

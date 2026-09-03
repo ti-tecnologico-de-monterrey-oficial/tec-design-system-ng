@@ -1,12 +1,9 @@
-@if (overlay() && !errorState()) {
+@if (shouldShowOverlay()) {
   <div class="bmb_loader-overlay"></div>
 }
 <div
   class="bmb_loader"
-  [ngClass]="{
-    'bmb_loader-modal': overlay() && !errorState(),
-    'bmb_loader-error': errorState()
-  }"
+  [ngClass]="getClassList()"
 >
   @if (!errorState()) {
     <div class="bmb_loader-loading">
@@ -16,7 +13,7 @@
   @if (errorState()) {
     <div
       class="bmb_loader-error-icon"
-      [ngClass]="'bmb_loader-error-icon-' + appearance()"
+      [ngClass]="getErrorIconClass()"
     >
       <bmb-icon
         [icon]="icon()"

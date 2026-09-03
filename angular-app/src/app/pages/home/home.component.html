@@ -98,6 +98,14 @@
                       valueLink="/pages/card"
                     />
                   </ng-template>
+                  <ng-template #actionMenuItem>
+                    <bmb-item-hyperlink
+                      icon="dashboard"
+                      label="Home card"
+                      value="page"
+                      valueLink="/components/home-card"
+                    />
+                  </ng-template>
                 </bmb-action-menu>
               </ng-template>
             </bmb-accordion>
@@ -142,10 +150,10 @@
                 <bmb-action-menu [showHeader]="false">
                   <ng-template #actionMenuItem>
                     <bmb-item-hyperlink
-                      icon="info"
-                      label="Test"
+                      icon="date_range"
+                      label="Date picker range"
                       value="page"
-                      valueLink="/home"
+                      valueLink="/pages/date-range"
                     />
                   </ng-template>
                 </bmb-action-menu>
@@ -192,10 +200,18 @@
                 <bmb-action-menu [showHeader]="false">
                   <ng-template #actionMenuItem>
                     <bmb-item-hyperlink
-                      icon="info"
-                      label="Test"
+                      icon="center_focus_strong"
+                      label="Focus element"
                       value="page"
-                      valueLink="/home"
+                      valueLink="/components/focus-element"
+                    />
+                  </ng-template>
+                  <ng-template #actionMenuItem>
+                    <bmb-item-hyperlink
+                      icon="hourglass_empty"
+                      label="Loading screen"
+                      value="page"
+                      valueLink="/components/loader"
                     />
                   </ng-template>
                 </bmb-action-menu>

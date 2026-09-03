@@ -254,12 +254,24 @@ export const sidebarOptions: SidebarElement[][] = [
         },
         {
           id: 31,
+          icon: 'hourglass_empty',
+          title: 'Loader',
+          link: '/components/loader',
+        },
+        {
+          id: 32,
+          icon: 'dashboard',
+          title: 'Home card',
+          link: '/components/home-card',
+        },
+        {
+          id: 33,
           icon: 'center_focus_strong',
           title: 'Focus element',
           link: '/components/focus-element',
         },
         {
-          id: 32,
+          id: 34,
           icon: 'apps',
           title: 'Frequent apps selector',
           link: '/components/frequent-apps-selector',

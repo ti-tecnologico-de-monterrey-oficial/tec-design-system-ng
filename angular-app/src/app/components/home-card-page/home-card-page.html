@@ -1,0 +1,97 @@
+<header class="page-header">
+  <p class="eyebrow">Componente migrado</p>
+  <h1>BmbHomeCard</h1>
+  <p>Cambia sus propiedades para validar cada variante de forma aislada.</p>
+</header>
+
+<section class="playground" aria-labelledby="home-card-properties-heading">
+  <aside class="controls">
+    <h2 id="home-card-properties-heading">Propiedades</h2>
+
+    <label for="home-card-title">componentTitle</label>
+    <input
+      id="home-card-title"
+      type="text"
+      [value]="componentTitle()"
+      (input)="setComponentTitle($any($event.target).value)"
+    />
+
+    <label for="home-card-subtitle">subtitle</label>
+    <input
+      id="home-card-subtitle"
+      type="text"
+      [value]="subtitle()"
+      (input)="setSubtitle($any($event.target).value)"
+    />
+
+    <label for="home-card-icon">icon</label>
+    <input
+      id="home-card-icon"
+      type="text"
+      [value]="icon()"
+      (input)="setIcon($any($event.target).value)"
+    />
+
+    <label for="home-card-content-padding">contentPadding</label>
+    <select
+      id="home-card-content-padding"
+      [value]="contentPadding()"
+      (change)="selectContentPadding($any($event.target).value)"
+    >
+      @for (option of contentPaddings; track option) {
+        <option [value]="option">{{ option }}</option>
+      }
+    </select>
+
+    <label class="toggle">
+      <input
+        type="checkbox"
+        [checked]="showRightButton()"
+        (change)="setShowRightButton($any($event.target).checked)"
+      />
+      showRightButton
+    </label>
+
+    <label class="toggle">
+      <input
+        type="checkbox"
+        [checked]="showOneHeaderAction()"
+        (change)="setShowOneHeaderAction($any($event.target).checked)"
+      />
+      showOneHeaderAction
+    </label>
+
+    <label class="toggle">
+      <input
+        type="checkbox"
+        [checked]="isMobile()"
+        (change)="setIsMobile($any($event.target).checked)"
+      />
+      isMobile
+    </label>
+
+    <output
+      >close: {{ closeCount() }} · back: {{ backCount() }} · expand:
+      {{ expandCount() }}</output
+    >
+  </aside>
+
+  <div class="preview">
+    <bmb-home-card
+      [componentTitle]="componentTitle()"
+      [subtitle]="subtitle()"
+      [icon]="icon()"
+      [actionHeaders]="actionHeaders()"
+      [contentPadding]="contentPadding()"
+      [showRightButton]="showRightButton()"
+      [showOneHeaderAction]="showOneHeaderAction()"
+      [isMobile]="isMobile()"
+      [(isExpanded)]="isExpanded"
+      (onClose)="handleClose()"
+      (onBack)="handleBack()"
+      (onExpandClick)="handleExpand()"
+    >
+      Contenido de ejemplo dentro de la tarjeta.
+    </bmb-home-card>
+  </div>
+</section>
