@@ -1037,6 +1037,17 @@
       "status": "connected_partial",
       "figmaVerified": true,
       "note": "2026-09-03: migrated off 4281:218969 (a stripped-down 'Card button' with only a Size variant) onto 2978:76218 — the richer 'Card button' component set previously mislabeled as a Playground component with '0 real instances' (disproven: a real usage instance 4281:219128 in Frame 2608680 is a child of this node). This node genuinely exposes Type (Add Content/Full Interactive/Badge), Menu (Inactive/Active) and Show Badges as bindable properties, now wired to isFullInteractive/hasMenu+menuItems/badge using only real Storybook fixtures (AddContentExample, MenuExample, BadgeContainerImageExample, ImageExample). 'Show Title Icon' and decorative content (thumb_up/128k/people-count) were deliberately left unbound: no matching Angular input exists, only ng-content-based customContent — binding them would have been fabrication. The old 4281:218969 mapping (4281:218968/4281:218967) was unpublished via `connect unpublish` so it no longer competes with this one. State and Color variant remain visual-only, excluded per project convention."
+    },
+    {
+      "file": "ListItems.figma.ts",
+      "figmaNodeId": "1644:67872",
+      "figmaUrl": "https://www.figma.com/design/Q4t8qIM5fklC9I3Atc1BrZ/Bamboo-Design-System---Components?node-id=1644-67872",
+      "angularComponent": "BmbListItemsComponent",
+      "angularSource": "ui-angular/src/lib/components/bmb-list-items/bmb-list-items.component.ts",
+      "codeConnectId": "bmb-list-items",
+      "status": "connected_partial",
+      "figmaVerified": true,
+      "note": "2026-09-03: found the real match — 'BuildingBlocks_Items list' (page “❖ Particularities”, missed by earlier searches scoped to “Main Components”). Its group section titles (Recientes/La semana pasada/Hace 30 días) match BmbListItemsComponent's own hardcoded, internally-computed group labels. No .stories.ts exists for this component, so `items` and `componentTitle` have no documented fixture to draw from — connected bare (`<bmb-list-items />`), all real Angular defaults, no fabrication. State (Empty/Populated) not bound since both render the same honest default. Still contract-required for real per-item content."
     }
   ],
   "internalAdapters": [
@@ -1097,18 +1108,11 @@
       "missingContract": "A genuine repeated Items SLOT on the parent container node."
     },
     {
-      "exportOrFamily": "list-items",
-      "family": "Projected collections",
-      "angularComponent": "BmbListItemsComponent",
-      "reason": "No independent Bamboo main component found after targeted searches.",
-      "missingContract": "Design publishes a dedicated node."
-    },
-    {
       "exportOrFamily": "user-profile",
       "family": "Data cards, profiles and rubrics",
       "angularComponent": "BmbUserProfileComponent",
-      "reason": "No plausible stable Bamboo node found after multiple targeted searches (User profile, Profile card, User info header, icon/avatar candidates). Required userInfo object has no matching Figma content.",
-      "missingContract": "Design publishes a node exposing id/fullName/profilePicture content."
+      "reason": "Real, actively-maintained published nodes DO exist — ORG_Component_MiPerfilPerson (11203:49510) and ORG_Component_MiPerfilMobile (1063:77119), confirmed via search_design_system (library-published, updated as recently as 2026-07-27) — correcting the earlier “no plausible node found” claim. But both are static screens with zero exposed Figma properties, and bmb-user-profile.stories.ts documents no real non-empty value for the required `userInfo` (id/fullName/profilePicture) — its story args are literally empty strings. The blocker is missing documented content, not a missing node.",
+      "missingContract": "A Storybook-documented, non-empty IBmbUserInfo fixture (or Design confirms these MiPerfil nodes are the intended target and supplies real sample content)."
     },
     {
       "exportOrFamily": "chat-bubble",
