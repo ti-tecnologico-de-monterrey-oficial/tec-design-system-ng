@@ -1,0 +1,113 @@
+<header class="page-header">
+  <p class="eyebrow">Componente Bamboo</p>
+  <h1>BmbNotificationCard</h1>
+  <p>
+    Valida notificaciones, anuncios, pestañas, eventos y su modal de detalle.
+  </p>
+</header>
+
+<section class="playground" aria-labelledby="notification-card-properties">
+  <aside class="controls">
+    <h2 id="notification-card-properties">Propiedades</h2>
+
+    <label for="notification-title">componentTitle</label>
+    <input
+      id="notification-title"
+      [value]="componentTitle()"
+      (input)="componentTitle.set($any($event.target).value)"
+    />
+
+    <label for="notification-icon">leftIcon</label>
+    <select
+      id="notification-icon"
+      [value]="leftIcon()"
+      (change)="leftIcon.set($any($event.target).value)"
+    >
+      @for (option of iconOptions; track option) {
+      <option [value]="option">{{ option || 'Sin icono' }}</option>
+      }
+    </select>
+
+    <label for="notification-height">maxHeight</label>
+    <input
+      id="notification-height"
+      [value]="maxHeight()"
+      (input)="maxHeight.set($any($event.target).value)"
+    />
+
+    <label for="notification-date-format">dateFormat</label>
+    <input
+      id="notification-date-format"
+      [value]="dateFormat()"
+      (input)="dateFormat.set($any($event.target).value)"
+    />
+
+    <label class="toggle"
+      ><input
+        type="checkbox"
+        [checked]="hideExpandBtn()"
+        (change)="hideExpandBtn.set($any($event.target).checked)"
+      />hideExpandBtn</label
+    >
+    <label class="toggle"
+      ><input
+        type="checkbox"
+        [checked]="enableRowClick()"
+        (change)="enableRowClick.set($any($event.target).checked)"
+      />enableRowClick</label
+    >
+    <label class="toggle"
+      ><input
+        type="checkbox"
+        [checked]="showAdvertisements()"
+        (change)="showAdvertisements.set($any($event.target).checked)"
+      />showAdvertisements</label
+    >
+    <label class="toggle"
+      ><input
+        type="checkbox"
+        [checked]="enableCustomHandlerClick()"
+        (change)="enableCustomHandlerClick.set($any($event.target).checked)"
+      />enableCustomHandlerClick</label
+    >
+    <label class="toggle"
+      ><input
+        type="checkbox"
+        [checked]="useEmptyState()"
+        (change)="useEmptyState.set($any($event.target).checked)"
+      />emptyStateData</label
+    >
+
+    <output><strong>Último evento:</strong> {{ lastEvent() }}</output>
+  </aside>
+
+  <div class="preview">
+    <bmb-notification-card
+      [data]="visibleNotifications()"
+      [advertisements]="advertisements()"
+      [hideExpandBtn]="hideExpandBtn()"
+      [maxHeight]="maxHeight()"
+      [enableRowClick]="enableRowClick()"
+      [emptyStateData]="{ primaryText: 'No hay notificaciones', secondaryText: 'Vuelve a consultar más tarde', showButton: false, size: 'medium' }"
+      [dateFormat]="dateFormat()"
+      [showAdvertisements]="showAdvertisements()"
+      [leftIcon]="leftIcon()"
+      [enableCustomHandlerClick]="enableCustomHandlerClick()"
+      [componentTitle]="componentTitle()"
+      (alertEvent)="recordAlert('alertEvent', $event)"
+      (showAlertDetail)="recordAlert('showAlertDetail', $event)"
+      (onExpandClick)="recordExpand()"
+    />
+
+    <section class="modal-preview" aria-labelledby="notification-modal-heading">
+      <h2 id="notification-modal-heading">BmbNotificationCardModal</h2>
+      <p>
+        Vista directa del contenido que se presenta al seleccionar una alerta.
+      </p>
+      <bmb-notification-card-modal
+        [visibleAlert]="selectedAlert()"
+        (alertEvent)="recordAlert('modal alertEvent', $event)"
+      />
+    </section>
+  </div>
+</section>

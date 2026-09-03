@@ -12,7 +12,7 @@ import {
 import { CommonModule } from '@angular/common';
 import { SizeNames } from '../../_shared/types';
 import { handleImageNotFoundError } from '../../_shared/logic/utils';
-import { IBmbMediaCardLoading } from '../bmb-media-card/bmb-media-card.component';
+import type { IBmbMediaCardLoading } from '../../_shared/types';
 import { BmbImageItem } from './types';
 import { BmbButtonIconComponent } from '../bmb-button-icon/bmb-button-icon.component';
 import { TranslatePipe } from '../../pipes/translations';

@@ -1,10 +1,4 @@
-export type IBmbNotificationCard = {
-  description: string;
-  time: string;
-};
-
-export type IBmbNotificationCardData = {
-  new: Array<IBmbNotificationCard>;
-  all: Array<IBmbNotificationCard>;
-  seen: Array<IBmbNotificationCard>;
-};
+export type {
+  IBmbNotificationCard,
+  IBmbNotificationCardData,
+} from '../../_shared/types';

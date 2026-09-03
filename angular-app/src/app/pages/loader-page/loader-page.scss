@@ -24,10 +24,21 @@
   top: 0;
 }
 
-.preview bmb-date-range {
-  display: block;
-  max-width: 100%;
-  width: 100%;
+:host ::ng-deep .preview {
+  .bmb_loader-error {
+    height: auto;
+    max-height: calc(90vh - 3rem);
+  }
+
+  .bmb_loader-modal,
+  .bmb_loader-overlay {
+    position: absolute;
+  }
+
+  .bmb_loader-overlay {
+    height: 100%;
+    width: 100%;
+  }
 }
 
 @media (max-width: 700px) {

@@ -21,7 +21,7 @@ describe('CheckExternalLinkButtonPage', () => {
 
   it('should expose links for each mode', () => {
     component.setMode('internal');
-    expect(component.link()).toBe('/components/card');
+    expect(component.link()).toBe('/pages/card');
     component.setMode('external');
     expect(component.link()).toBe('https://tec.mx/');
   });

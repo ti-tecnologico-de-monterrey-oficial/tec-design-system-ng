@@ -1,0 +1,19 @@
+@use '../../styles/playground';
+
+@include playground.page(18rem, 23rem, 38rem);
+
+.preview {
+  display: grid;
+  gap: 2rem;
+}
+
+.modal-preview {
+  background: var(--containers-main);
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+
+  h2,
+  p {
+    margin-top: 0;
+  }
+}
