@@ -1,0 +1,41 @@
+<header class="page-header">
+  <p class="eyebrow">Componente migrado</p>
+  <h1>BmbIconItem</h1>
+  <p>Prueba todas las propiedades del elemento con icono.</p>
+</header>
+
+<section class="playground" aria-labelledby="icon-item-properties-heading">
+  <aside class="controls">
+    <h2 id="icon-item-properties-heading">Propiedades</h2>
+    <label for="icon-item-icon">icon</label>
+    <select
+      id="icon-item-icon"
+      [value]="icon()"
+      (change)="setIcon($any($event.target).value)"
+    >
+      @for (iconOption of icons; track iconOption) {
+        <option [value]="iconOption">{{ iconOption }}</option>
+      }
+    </select>
+    <label for="icon-item-size">iconSize</label>
+    <input id="icon-item-size" type="number" min="8" max="64" [value]="iconSize()" (input)="setIconSize(+$any($event.target).value)" />
+    <label for="icon-item-label">label</label>
+    <input id="icon-item-label" [value]="label()" (input)="setLabel($any($event.target).value)" />
+    <label for="icon-item-value">value</label>
+    <input id="icon-item-value" [value]="value()" (input)="setValue($any($event.target).value)" />
+    <label class="toggle">
+      <input type="checkbox" [checked]="showDivider()" (change)="setShowDivider($any($event.target).checked)" />
+      showDivider
+    </label>
+  </aside>
+
+  <div class="preview">
+    <bmb-icon-item
+      [icon]="icon()"
+      [iconSize]="iconSize()"
+      [label]="label()"
+      [value]="value()"
+      [showDivider]="showDivider()"
+    />
+  </div>
+</section>

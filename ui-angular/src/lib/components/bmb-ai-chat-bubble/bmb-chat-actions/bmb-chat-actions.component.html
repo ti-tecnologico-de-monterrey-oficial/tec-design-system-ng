@@ -1,0 +1,24 @@
+@for (action of visibleActions(); track action.action) {
+  <bmb-icon
+    role="button"
+    [attr.tabindex]="
+      action.action === 'copy' && copyState() !== 'idle' ? -1 : 0
+    "
+    class="bmb_ai-chat-bubble-icon"
+    [icon]="getActionIcon(action)"
+    [size]="24"
+    [isFill]="true"
+    [attr.aria-label]="action.label"
+    [attr.aria-disabled]="action.action === 'copy' && copyState() !== 'idle'"
+    [ngClass]="{
+      'bmb_ai-chat-bubble-icon-active': action.active,
+      'is-disabled': action.action === 'copy' && copyState() !== 'idle',
+      'is-copy-result':
+        action.action === 'copy' &&
+        (copyState() === 'success' || copyState() === 'error'),
+    }"
+    (click)="triggerAction(action.action, $event)"
+    (keydown.enter)="triggerAction(action.action, $event)"
+    (keydown.space)="triggerAction(action.action, $event)"
+  />
+}

@@ -1,0 +1,50 @@
+<header class="page-header">
+  <p class="eyebrow">Componente migrado</p>
+  <h1>BmbGradeValue</h1>
+  <p>Prueba el valor, tipo y contraste visual de una calificación.</p>
+</header>
+
+<section class="playground" aria-labelledby="grade-value-demo-heading">
+  <div class="controls">
+    <h2 id="grade-value-demo-heading">Propiedades</h2>
+
+    <label for="grade-score">score</label>
+    <input
+      id="grade-score"
+      type="text"
+      [value]="score()"
+      (input)="setScore($any($event.target).value)"
+    />
+
+    <label for="grade-type">type</label>
+    <select
+      id="grade-type"
+      [value]="type()"
+      (change)="setType($any($event.target).value)"
+    >
+      @for (option of types; track option) {
+        <option [value]="option">{{ option }}</option>
+      }
+    </select>
+
+    <label for="grade-contrast">appearanceContrast</label>
+    <select
+      id="grade-contrast"
+      [value]="contrast()"
+      (change)="setContrast($any($event.target).value)"
+    >
+      @for (option of contrasts; track option) {
+        <option [value]="option">{{ option }}</option>
+      }
+    </select>
+  </div>
+
+  <div class="preview">
+    <bmb-grade-value
+      [score]="score()"
+      [type]="type()"
+      [appearanceContrast]="contrast()"
+    />
+    <p>Valor calculado: {{ score() }}</p>
+  </div>
+</section>

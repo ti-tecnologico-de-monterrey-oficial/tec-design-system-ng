@@ -1,0 +1,21 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+import * as mainStory from './bmb-guided-tour.stories';
+import * as variantStory from './bmb-guided-tour-variant.stories';
+import { ListTemplate } from '@docs/components/ListTemplate.mdx';
+import { getFormatName } from '@docs/utils/utils';
+
+<Meta title="Templates/Guided tour" />
+<ListTemplate
+  content={[variantStory, mainStory]}
+  context={{
+    [getFormatName(
+      mainStory.default.title,
+      /(\/)|( )/g,
+      '_',
+    ).toLocaleLowerCase()]: {
+      showStories: false,
+      showControls: false,
+    },
+  }}
+/>

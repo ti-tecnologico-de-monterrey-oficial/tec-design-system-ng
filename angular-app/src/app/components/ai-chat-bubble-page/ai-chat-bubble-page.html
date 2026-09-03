@@ -1,0 +1,54 @@
+<section class="page-shell">
+  <header>
+    <span class="eyebrow">COMPONENTE AI</span>
+    <h1>BmbAiChatBubble</h1>
+    <p>Prueba la distribución y las acciones de los mensajes del chat.</p>
+  </header>
+
+  <div class="demo-grid">
+    <aside class="controls">
+      <h2>Propiedades</h2>
+      <label class="field">
+        <span>Logo del chat de usuario</span>
+        <select
+          [value]="selectedUserImage()"
+          (change)="selectUserImage($event)"
+        >
+          @for (imageOption of userImageOptions; track imageOption.label) {
+          <option [value]="imageOption.value">{{ imageOption.label }}</option>
+          }
+        </select>
+      </label>
+      <label class="check">
+        <input
+          type="checkbox"
+          [checked]="userCopyEnabled()"
+          (change)="userCopyEnabled.set(!userCopyEnabled())"
+        />
+        Mostrar copiar en usuario
+      </label>
+      <p class="event">
+        <strong>Última acción:</strong> {{ conversationEvent() }}
+      </p>
+    </aside>
+
+    <article class="preview">
+      <header>
+        <span class="eyebrow">CONVERSACIÓN DE PRUEBA</span>
+        <h2>Mensajes GPT y usuario</h2>
+        <p>Pasa el cursor sobre un mensaje del usuario para copiarlo.</p>
+      </header>
+
+      <div class="conversation" data-testid="chat-conversation">
+        @for (chatMessage of conversation(); track chatMessage.id) {
+        <bmb-ai-chat-bubble
+          [message]="chatMessage"
+          [userActions]="userCopyEnabled() ? ['copy'] : []"
+          [testId]="chatMessage.id"
+          (getAction)="handleConversationAction($event)"
+        />
+        }
+      </div>
+    </article>
+  </div>
+</section>

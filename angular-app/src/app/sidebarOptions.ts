@@ -1,0 +1,325 @@
+import { SidebarElement } from 'ui-angular';
+
+export const sidebarOptions: SidebarElement[][] = [
+  [
+    {
+      id: 1,
+      icon: 'home',
+      title: 'Home',
+      link: '/home',
+    },
+    {
+      id: 8,
+      icon: 'table_chart',
+      title: 'Tables',
+      link: '',
+      children: [
+        {
+          id: 1,
+          icon: 'table',
+          title: 'Table Lite',
+          link: '/table-lite',
+        },
+        {
+          id: 2,
+          icon: 'table',
+          title: 'Table LTS',
+          link: '/table-lts',
+        },
+        {
+          id: 3,
+          icon: 'table',
+          title: 'Table main',
+          link: '/table-main',
+        },
+      ],
+    },
+    {
+      id: 4,
+      icon: 'reorder',
+      title: 'Inputs',
+      link: '',
+      children: [
+        {
+          id: 1,
+          icon: 'bmb_drive',
+          title: 'Forms',
+          link: '/form-validator',
+        },
+        {
+          id: 2,
+          icon: 'input',
+          title: 'Input',
+          link: '/input',
+        },
+        {
+          id: 3,
+          icon: 'dropdown',
+          title: 'Dropdown',
+          link: '/dropdown',
+        },
+        {
+          id: 4,
+          icon: 'upload_file',
+          title: 'Dropzone',
+          link: '/dropzone',
+        },
+      ],
+    },
+    {
+      id: 10,
+      icon: 'extension',
+      title: 'Migrados',
+      link: '',
+      children: [
+        {
+          id: 1,
+          icon: 'view_carousel',
+          title: 'Carousel',
+          link: '/components/carousel',
+        },
+        {
+          id: 2,
+          icon: 'check_box_outline_blank',
+          title: 'Container',
+          link: '/components/container',
+        },
+        {
+          id: 3,
+          icon: 'horizontal_rule',
+          title: 'Divider',
+          link: '/components/divider',
+        },
+        {
+          id: 4,
+          icon: 'animation',
+          title: 'MiTec logo animation',
+          link: '/components/mitec-logo-animation',
+        },
+        {
+          id: 5,
+          icon: 'notifications',
+          title: 'Notification counter',
+          link: '/components/notification-counter',
+        },
+        {
+          id: 6,
+          icon: 'iframe',
+          title: 'Iframe',
+          link: '/components/iframe',
+        },
+        {
+          id: 7,
+          icon: 'grade',
+          title: 'Grade value',
+          link: '/components/grade-value',
+        },
+        {
+          id: 8,
+          icon: 'cards',
+          title: 'Card',
+          link: '/components/card',
+        },
+        {
+          id: 9,
+          icon: 'layers',
+          title: 'Overlay',
+          link: '/components/overlay',
+        },
+        {
+          id: 10,
+          icon: 'open_in_new',
+          title: 'Check external link button',
+          link: '/components/check-external-link-button',
+        },
+        {
+          id: 11,
+          icon: 'image',
+          title: 'Logo',
+          link: '/components/logo',
+        },
+        {
+          id: 12,
+          icon: 'account_circle',
+          title: 'User image',
+          link: '/components/user-image',
+        },
+        {
+          id: 13,
+          icon: 'arrow_drop_down',
+          title: 'Pull wedge',
+          link: '/components/pull-wedge',
+        },
+        {
+          id: 14,
+          icon: 'table',
+          title: 'Server table',
+          link: '/components/server-table',
+        },
+        {
+          id: 15,
+          icon: 'hourglass_empty',
+          title: 'Skeleton',
+          link: '/components/skeleton',
+        },
+        {
+          id: 16,
+          icon: 'counter_1',
+          title: 'Value counter',
+          link: '/components/value-counter',
+        },
+        {
+          id: 17,
+          icon: 'bookmark',
+          title: 'Bookmark',
+          link: '/components/bookmark',
+        },
+        {
+          id: 18,
+          icon: 'chevron_right',
+          title: 'Breadcrumb',
+          link: '/components/breadcrumb',
+        },
+        {
+          id: 19,
+          icon: 'step',
+          title: 'Hito list',
+          link: '/components/hito-list',
+        },
+        {
+          id: 20,
+          icon: 'list',
+          title: 'Icon item',
+          link: '/components/icon-item',
+        },
+        {
+          id: 21,
+          icon: 'page_control',
+          title: 'Dot paginator',
+          link: '/components/dot-paginator',
+        },
+        {
+          id: 22,
+          icon: 'add_circle',
+          title: 'FAB',
+          link: '/components/fab',
+        },
+      ],
+    },
+  ],
+  [
+    {
+      id: 5,
+      icon: 'responsive_layout',
+      title: 'Layouts',
+      link: '',
+      children: [
+        {
+          id: 5,
+          icon: 'align_flex_center',
+          title: 'Flex',
+          link: '/flex',
+        },
+        {
+          id: 6,
+          icon: 'calendar_view_month',
+          title: 'Column sys',
+          link: '/col-sys',
+        },
+        {
+          id: 7,
+          icon: 'layers',
+          title: 'Modals',
+          link: '/modals',
+        },
+      ],
+    },
+    {
+      id: 6,
+      icon: 'step',
+      title: 'Indicators',
+      link: '',
+      children: [
+        {
+          id: 2,
+          icon: 'page_control',
+          title: 'Multi Dot Paginator',
+          link: '/multi-dot-paginator',
+        },
+        {
+          id: 2,
+          icon: 'steppers',
+          title: 'Step progress bar',
+          link: '/step-progress-bar',
+        },
+        {
+          id: 3,
+          icon: 'sound_detection_loud_sound',
+          title: 'TEC sound',
+          link: '/tec-sound',
+        },
+        {
+          id: 4,
+          icon: 'signal_wifi_4_bar',
+          title: 'Signal strength',
+          link: '/signal-strength',
+        },
+        { id: 8, icon: 'app_registration', title: 'Colors', link: '/colors' },
+      ],
+    },
+    {
+      id: 7,
+      icon: 'account_circle',
+      title: 'Profile',
+      link: '/profile',
+      children: [
+        {
+          id: 1,
+          icon: 'person',
+          title: 'Identity',
+          link: '/identity',
+        },
+        {
+          id: 2,
+          icon: 'notifications',
+          title: 'Alerts',
+          link: '/alerts',
+        },
+        {
+          id: 3,
+          icon: 'dashboard_2',
+          title: 'Dashboard activity',
+          link: '/dashboard-indicators',
+        },
+      ],
+    },
+    {
+      id: 9,
+      icon: 'account_circle',
+      title: 'Menu',
+      link: '',
+      children: [
+        {
+          id: 1,
+          icon: 'menu',
+          title: 'Menu',
+          link: '/menu',
+        },
+        {
+          id: 2,
+          icon: 'calendar_today',
+          title: 'Calendar',
+          link: '/calendar',
+        },
+        {
+          id: 3,
+          icon: 'blanket',
+          title: 'Custom event',
+          event: (event) => {
+            console.info('Custom event triggered', event);
+          },
+        },
+      ],
+    },
+  ],
+];

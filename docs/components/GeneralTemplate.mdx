@@ -1,0 +1,38 @@
+import {
+  Controls,
+  Canvas,
+  Description,
+  Meta,
+  Primary,
+  Stories,
+  Title,
+} from '@storybook/addon-docs/blocks';
+
+import { PreviewTitle, TitleOfControls } from './Utils.mdx';
+import { STORIES_TITLE } from '../utils/utils';
+
+export const GeneralTemplate = ({
+  children,
+  showStories = true,
+  showControls = true,
+}) => (
+  <section>
+    {children && <Meta of={children} />}
+    {(children && <Title of={children}>{children?.title}</Title>) || <Title />}
+    {(children && <Description of={children}>{children}</Description>) || (
+      <Description />
+    )}
+    <PreviewTitle />
+    {(children && <Primary of={children} />) || <Primary />}
+    {showControls && <TitleOfControls />}
+    {(children && showControls && <Controls of={children.Default} />) ||
+      (showControls && <Controls />)}
+    {children && showStories &&
+      Object.entries(children)
+        .filter(([name]) => name !== 'default' && name !== '__namedExportsOrder')
+        .map(([name, story]) => <Canvas key={name} of={story} />)}
+    {!children && showStories && (
+      <Stories title={STORIES_TITLE} includePrimary={false} />
+    )}
+  </section>
+);

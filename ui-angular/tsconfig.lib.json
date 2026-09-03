@@ -1,0 +1,34 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "outDir": "../dist/out-tsc",
+    "declaration": true,
+    "declarationMap": true,
+    "inlineSources": true,
+    "ignoreDeprecations": "6.0",
+    "types": [],
+    "baseUrl": ".",
+    "paths": {
+      "@shared/logic": ["src/lib/_shared/logic/index.ts"],
+      "@shared/logic/*": ["src/lib/_shared/logic/*"],
+      "@shared/types": ["src/lib/_shared/types/index.ts"],
+      "@shared/types/*": ["src/lib/_shared/types/*"]
+    }
+  },
+  "angularCompilerOptions": {
+    "compilationMode": "partial"
+  },
+  "include": ["src/**/*.ts"],
+  "exclude": [
+    "src/**/*.spec.ts",
+    "src/**/*.test.ts",
+    "jest.config.ts",
+    "jest.config.cts",
+    "src/test-setup.ts",
+    "**/*.stories.ts",
+    "**/*.stories.js",
+    "**/*.figma.ts",
+    "**/*-story.utils.ts",
+    "**/*.story.ts"
+  ]
+}

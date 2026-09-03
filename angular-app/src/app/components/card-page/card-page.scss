@@ -1,0 +1,39 @@
+@use '../../styles/playground';
+
+@include playground.page($controls-min: 16rem, $controls-max: 22rem);
+
+.preview {
+  display: grid;
+  min-height: 22rem;
+  place-items: center;
+
+  bmb-card {
+    display: block;
+    width: min(100%, 32rem);
+  }
+
+  h2,
+  p {
+    margin-block: 0 0.75rem;
+  }
+}
+
+.checkbox {
+  align-items: center;
+  display: flex;
+  gap: 0.5rem;
+}
+
+fieldset {
+  border: 1px solid var(--general-contrasts-25);
+  border-radius: 0.5rem;
+  display: grid;
+  gap: 0.5rem;
+  margin: 0;
+  padding: 0.75rem;
+
+  legend {
+    font-weight: 600;
+    padding-inline: 0.25rem;
+  }
+}

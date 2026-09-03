@@ -1,0 +1,47 @@
+import { CommonModule } from '@angular/common';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  effect,
+  input,
+  ViewEncapsulation,
+} from '@angular/core';
+import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
+import { logDeprecatedInput } from '../../_shared/logic/logDeprecatedInput';
+import { BmbTooltipBaseComponent } from './bmb-tooltip-base/bmb-tooltip-base.component';
+
+/*
+ * TODO: This component is marked as "old" and its decommissioning is planned for future updates.
+ */
+
+@Component({
+  selector: 'bmb-tooltip',
+  standalone: true,
+  imports: [CommonModule, BmbIconComponent, BmbTooltipBaseComponent],
+  templateUrl: './bmb-tooltip.component.html',
+  styleUrl: './bmb-tooltip.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None,
+})
+export class BmbTooltipComponent {
+  text = input<string>('');
+  icon = input<string>('help');
+  size = input<number>();
+  isFill = input<boolean>(true);
+  componentTitle = input<string>();
+
+  title = input<string>(); // deprecated
+  align = input<string>(); // deprecated
+  justify = input<string>(); // deprecated
+
+  constructor() {
+    effect(() => {
+      const deprecatedTitle = this.title();
+      const newTitle = this.componentTitle();
+      logDeprecatedInput(
+        { name: 'title', hasValue: !!deprecatedTitle },
+        { name: 'componentTitle', hasValue: !!newTitle },
+      );
+    });
+  }
+}

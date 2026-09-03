@@ -1,0 +1,20 @@
+<div
+  class="bmb_search-card-empty-state"
+  bmbVerticalLayout
+  gapSize="m"
+  justify="center"
+  alignItems="center"
+  margin="m"
+>
+  <div class="bmb_search-card-empty-state_icon">
+    <bmb-icon [icon]="icon()" [size]="64" [alt]="getTitleText()"></bmb-icon>
+  </div>
+  <h2 class="bmb_search-card-empty-state_primary">
+    {{ getTitleText() }}
+  </h2>
+  @if (placeholderParagraph()) {
+    <p class="bmb_search-card-empty-state_secondary">
+      {{ placeholderParagraph() }}
+    </p>
+  }
+</div>

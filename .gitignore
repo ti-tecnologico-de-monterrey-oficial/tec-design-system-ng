@@ -21,7 +21,11 @@ yarn-error.log
 .settings/
 *.sublime-workspace
 .env
-/.nx
+/.nx/installation
+/.nx/cache
+/.nx/workspace-data
+/.nx/self-healing
+/.nx/migrate-runs
 
 # Visual Studio Code
 .vscode/*
@@ -41,6 +45,7 @@ testem.log
 /typings
 documentation.json
 build-storybook.log
+.npm-cache
 
 # System files
 .DS_Store
@@ -52,3 +57,16 @@ storybook-static
 # Playwright
 /playwright-report
 /test-results
+
+.claude/worktrees
+.claude/settings.local.json
+
+# Libraries assets
+ui-angular/src/assets
+ui-angular/src/assets/*
+ui-angular/src/lib/_shared
+ui-angular/src/lib/_shared/*
+ui-react/src/assets
+ui-react/src/assets/*
+ui-react/src/lib/_shared
+ui-react/src/lib/_shared/*

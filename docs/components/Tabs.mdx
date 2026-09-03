@@ -1,0 +1,58 @@
+import { useState } from 'react';
+import { CustomTOC } from './CustomTOC.mdx';
+
+export const ContentTab = ({ children, status, showTableOfContents, contentsSelector = '#content' }) => (
+  <CustomTOC
+    showTableOfContents={showTableOfContents}
+    contentsSelector={contentsSelector}
+    status={status}
+  >
+    <div id={contentsSelector.replace('#','')}>{children}</div>
+  </CustomTOC>
+);
+
+export const Tabs = ({ tabs = [], content = [], showTableOfContents }) => {
+  const [selectedTab, setSelectedTab] = useState(0);
+  const selectedContent = content[selectedTab];
+
+return (
+
+<div className="bmb_doc-tabs">
+  <ul role="tablist" className="bmb_doc-tabs-header">
+    {tabs.map((tab, index) => (
+      <li role="presentation" key={index} className="bmb_doc-tabs-item">
+        <button
+          type="button"
+          role="tab"
+          id={`tab_${index}`}
+          aria-controls={`tabpanel_${index}`}
+          aria-selected={selectedTab === index}
+          className={`bmb_doc-tabs-button ${selectedTab === index ? 'active' : ''}`}
+          onClick={() => setSelectedTab(index)}
+        >
+          {tab}
+        </button>
+      </li>
+    ))}
+  </ul>
+  <section className="bmb_doc-tabs-content">
+    {selectedContent && (
+      <div
+        role="tabpanel"
+        id={`tabpanel_${selectedTab}`}
+        aria-labelledby={`tab_${selectedTab}`}
+        className="bmb_doc-tabs-panel"
+      >
+        <br />
+        <ContentTab
+          status="active"
+          contentsSelector={`#tab_content_${selectedTab}`}
+          showTableOfContents={showTableOfContents}
+        >
+          {selectedContent}
+        </ContentTab>
+      </div>
+    )}
+  </section>
+</div>
+); }
