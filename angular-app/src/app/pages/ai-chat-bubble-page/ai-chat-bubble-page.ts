@@ -184,7 +184,9 @@ export class AiChatBubblePage {
       isUser: false,
       type: 'text',
       status: 'error',
-      content: { text: 'No fue posible obtener una respuesta. Intenta de nuevo.' },
+      content: {
+        text: 'No fue posible obtener una respuesta. Intenta de nuevo.',
+      },
       timestamp: new Date(),
     },
   ]);

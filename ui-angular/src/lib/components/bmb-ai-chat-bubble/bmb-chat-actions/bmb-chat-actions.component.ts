@@ -16,13 +16,13 @@ import {
   BmbChatCopyState,
   BmbChatMessage,
 } from '../types';
-import { BmbIconComponent } from '../../bmb-icon/bmb-icon.component';
 import { BmbTranslationsService } from '../../../services/translations/translations.service';
+import { BmbActionIconComponent } from '../../bmb-action-icon/bmb-action-icon.component';
 
 @Component({
   selector: 'bmb-chat-actions',
   standalone: true,
-  imports: [CommonModule, BmbIconComponent],
+  imports: [CommonModule, BmbActionIconComponent],
   templateUrl: './bmb-chat-actions.component.html',
   styleUrl: './bmb-chat-actions.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -101,15 +101,13 @@ export class ChatActionsComponent {
   /**
    * Visible actions.
    */
-  readonly visibleActions = computed(() =>
-    this.internalActions().filter(
-      (action) =>
-        action.visible !== false &&
-        (action.action !== 'edit' ||
-          (this.message().isUser && this.message().type === 'text')) &&
-        (this.actions() === null || this.actions()!.includes(action.action)),
-    ),
-  );
+  readonly visibleActions = computed(() => {
+    return this.internalActions().filter(
+      (internalAction) =>
+        this.actions() !== null &&
+        this.actions()!.includes(internalAction.action),
+    );
+  });
 
   /**
    * Emits selected action.

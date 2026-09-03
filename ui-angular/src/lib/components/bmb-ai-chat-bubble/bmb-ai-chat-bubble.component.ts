@@ -86,7 +86,7 @@ export class BmbAiChatBubbleComponent implements OnDestroy {
   readonly showActions = input(true);
 
   /** Actions displayed for user messages. */
-  readonly userActions = input<BmbChatAction[]>(['copy']);
+  readonly actions = input<BmbChatAction[] | null>(null);
 
   readonly copyState = signal<BmbChatCopyState>('idle');
   readonly isEditing = signal(false);
@@ -108,6 +108,14 @@ export class BmbAiChatBubbleComponent implements OnDestroy {
    * Emits image not found events.
    */
   readonly imageNotFoundError = output<void>();
+  private PROMPT_ACTIONS: BmbChatAction[] = [
+    'repeat',
+    'voice',
+    'copy',
+    'like',
+    'dislike',
+  ];
+  private USER_ACTIONS: BmbChatAction[] = ['copy', 'edit'];
 
   /**
    * Bubble dynamic classes.
@@ -116,8 +124,36 @@ export class BmbAiChatBubbleComponent implements OnDestroy {
     'bmb_ai-chat-bubble-user': this.message().isUser,
     'bmb_ai-chat-bubble-bot': !this.message().isUser,
     'bmb_ai-chat-bubble-thinking': this.isThinking(),
-    'bmb_ai-chat-bubble-editing': this.isEditing(),
+    'bmb_ai-chat-bubble-editing': this.message().isUser && this.isEditing(),
   }));
+
+  protected _actions = computed<BmbChatAction[] | null>(() => {
+    if (this.message().isUser) {
+      if (this.showActions() && this.message().type === 'text') {
+        if (this.actions() === null) return ['copy'];
+        else
+          return (this.actions() ?? []).reduce(
+            (acc, action): BmbChatAction[] =>
+              this.USER_ACTIONS.includes(action) ? [...acc, action] : acc,
+            [] as BmbChatAction[],
+          );
+      }
+    } else {
+      if (this.showActions()) {
+        if (this.actions() === null) {
+          return this.PROMPT_ACTIONS;
+        } else {
+          return (this.actions() ?? []).reduce(
+            (acc, action): BmbChatAction[] =>
+              this.PROMPT_ACTIONS.includes(action) ? [...acc, action] : acc,
+            [] as BmbChatAction[],
+          );
+        }
+      }
+    }
+
+    return null;
+  });
 
   protected async onAction(event: BmbChatActionEvent): Promise<void> {
     if (event.action === 'copy') {
@@ -128,8 +164,8 @@ export class BmbAiChatBubbleComponent implements OnDestroy {
     }
 
     if (
-      event.action === 'edit' &&
       event.message.isUser &&
+      event.action === 'edit' &&
       event.message.type === 'text'
     ) {
       this.isEditing.set(true);
