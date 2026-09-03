@@ -1,13 +1,15 @@
 # Bamboo Angular component inventory for reverse Code Connect matching
 
-Last scanned: 2026-08-13
+> Method and reproducible codebase snapshot. Operational counts and remaining dispositions live in [README.md](README.md) and [CONTRACT_BACKLOG.md](CONTRACT_BACKLOG.md).
+
+Last scanned: 2026-08-17
 
 ## Canonical source
 
 The inventory starts from the public Angular API, not from the Figma suggestion list:
 
-- `projects/ds-ng/src/public-api.ts` exports **128** component source files with selectors.
-- **102** of those public components have a colocated Storybook story or MDX document.
+- `ui-angular/src/index.ts` exports **130** component source files with selectors.
+- **104** of those public components have a colocated Storybook story or MDX document.
 - [inventory-codebase.mjs](inventory-codebase.mjs) extracts each selector, class, public `input`, `model`, and `output` declarations, plus its source path and documentation signal.
 
 Run the complete machine-readable inventory:
@@ -21,6 +23,8 @@ Run the initial reverse-match candidate list (documented components with at most
 ```sh
 node code-connect-batch/inventory-codebase.mjs --candidates
 ```
+
+`--candidates` is a source-shape heuristic, not the active queue. Its output includes components already connected or terminally triaged; [CONTRACT_BACKLOG.md](CONTRACT_BACKLOG.md) is authoritative and currently has zero direct candidates.
 
 ## Reverse-match method
 
@@ -41,4 +45,4 @@ This prevents internal `BB_*` helpers, stale suggestion IDs, and visually simila
 
 ## Next priority queue
 
-The automation selects the deterministic candidates and terminal dispositions in [REMAINING_COMPONENTS.md](REMAINING_COMPONENTS.md). A published component on a Figma `Main Components - (Admin Only)` page remains eligible when its Angular API is public; Playground, test, prototype, and `BB_*` assets remain excluded. Contract-bound components are routed to [CONTRACT_BACKLOG.md](CONTRACT_BACKLOG.md) rather than being retried as empty templates.
+The automation selects deterministic candidates and terminal dispositions from [CONTRACT_BACKLOG.md](CONTRACT_BACKLOG.md). A published component on a Figma `Main Components - (Admin Only)` page remains eligible when its Angular API is public; Playground, test, prototype, and `BB_*` assets remain excluded. Contract-bound components are not retried as empty templates.

@@ -6,6 +6,43 @@ This is the design-to-code contract for Bamboo Angular Code Connect templates. I
 
 The public code API is authoritative for emitted Angular attributes. Figma property coverage and code equivalence are independent: a confirmed Angular equivalent is eligible for a canonical mapping even when Figma has visual-only variants or lacks an editable property. Those gaps are recorded as coverage, not as absence of a component.
 
+## Evidence strategy: Figma-first inventory, Storybook-first resolution
+
+The section inventory remains **Figma-first**: Figma defines which published targets still need an explicit disposition. Resolving each target is **Storybook-first**: the canonical Storybook story establishes how consumers actually assemble and configure the Angular API, and the Angular source then validates every selector, input, type, output, service and public export before a snippet is written.
+
+| Evidence | Authoritative for | Not authoritative for |
+| --- | --- | --- |
+| Bamboo Components Figma (`Q4t8qIM5fklC9I3Atc1BrZ`) | Published target identity, stable node ID, properties, variants, nested instances and final `hasTemplate` state. | Angular attribute names, required object shapes or service setup. |
+| Published Angular Storybook | Canonical usage, representative `args`, documented fixtures, projected composition and rendered states. | Whether an API is publicly exported or the exact TypeScript contract when source disagrees. |
+| Angular source and `ui-angular/src/index.ts` | Public export, selector/directive, inputs, outputs, types, required values and runtime composition. | Which Figma target is canonical. |
+| Figma Code Connect CLI/MCP | Parse, publish, suggestion reconciliation and post-publish verification. | Deciding a semantic match without Storybook/source evidence. |
+
+Current Storybook sources:
+
+- Published catalog: `https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/index.json`.
+- Rendered stories: the same Chromatic deployment.
+- Source stories: `ui-angular/src/lib/**/*.stories.ts` and adjacent MDX discovered by `ui-angular/.storybook/main.ts`.
+
+### Storybook MCP decision
+
+Do **not** install or register `@storybook/addon-mcp` for this Angular batch yet. As of 2026-08-17, the [official Storybook MCP documentation](https://storybook.js.org/docs/ai/mcp/overview) states that its manifests and MCP capabilities are in preview and supported only for React projects. In particular, the documentation toolset needed here (`list-all-documentation`, `get-documentation`, and `get-documentation-for-story`) cannot currently be treated as an authoritative Angular inventory.
+
+The Storybook MCP would be an evidence adapter, not a publisher: even after Angular support arrives, Figma MCP and the Code Connect CLI remain responsible for mapping and verification. Reconsider the addon only when the official documentation declares Angular manifest support and a smoke test against this Storybook successfully lists Bamboo components and returns their Angular stories/props. Until then, read the live `index.json`, story source and rendered Storybook directly.
+
+### Deterministic resolution procedure
+
+For every Figma target selected from a section:
+
+1. Resolve the stable main component node and record its Figma properties and published children.
+2. Search the live Storybook `index.json` for the exact component/family, then locate the corresponding story file. A name-only hit is a candidate, not proof.
+3. Read the story's `component`, `args`, `render`, decorators and MDX. Use the rendered story when structure or composition cannot be understood safely from source alone.
+4. Verify the referenced class/directive in `ui-angular/src/index.ts` and its source. Every emitted attribute must exist in this public API.
+5. Record the evidence row as `Figma node -> Story ID/file -> Angular export/selector -> disposition` in `DECISIONS.md` before publishing or skipping.
+6. Choose exactly one disposition: `Connected`, `Skipped`, `Contract required`, or `Blocked/external owner`.
+7. For `Connected`, create the parserless `.figma.ts`, parse, publish and verify. For `Skipped`, verify the UI state and suggestion disappearance. The other outcomes remain documented and do not receive synthetic mappings.
+
+For components consumers assemble manually, prefer the smallest canonical composition shown by Storybook. Use the public parent facade when one exists; otherwise connect independently useful public children and resolve them dynamically. A Storybook fixture may supply a required neutral value or a reduced representative object only when it is copied from a documented story and recorded as such. Never infer arrays, objects, slots or attributes merely from the rendered design.
+
 ## Eligibility and coverage
 
 Record two independent dimensions for every candidate.
@@ -26,11 +63,12 @@ The Figma page name is not an API classification. A component published in the B
 Still exclude the following from public-template discovery:
 
 - `🧩 Playground`, prototype, test, and `DONOTUSE` assets.
-- `BB_*` and other internal parts, except as a documented `nestable` adapter required by an eligible public parent.
+- Every unresolved `BB_*`: Bamboo confirms that this prefix means a Figma building block, not a consumable API. It is outside the mapping scope and its semantics remain represented by the public parent.
+- Icon-only targets and icon-library dependencies: they are outside this component-to-Angular mapping scope. Do not search for, connect or block on them.
 - A child/wrapper API already represented by a connected public parent, unless it has its own stable Figma component and a useful independent Angular usage.
 - Infrastructure-only Angular exports that have no visual public Figma component (for example form validation or portal primitives).
 
-The deterministic disposition for each remaining export is recorded in [REMAINING_COMPONENTS.md](REMAINING_COMPONENTS.md). Components requiring semantic data, projection, or service configuration are governed by [CONTRACT_BACKLOG.md](CONTRACT_BACKLOG.md), rather than being published as empty hosts.
+The deterministic disposition for each remaining export is recorded in [CONTRACT_BACKLOG.md](CONTRACT_BACKLOG.md). Components requiring semantic data, projection, or service configuration stay there rather than being published as empty hosts. [README.md](README.md) is the operational entry point.
 
 ## Required Figma property contract
 
@@ -72,13 +110,13 @@ For a composition recipe:
 
 ### Figma `BB_*` implementation components
 
-`BB_*` names identify implementation building blocks in this Figma library; they are not automatically Angular components. A published public parent may use a `BB_*` adapter only when the adapter has a verified public Angular equivalent. The adapter must be parserless, carry `metadata: { nestable: true }`, and dynamically resolve its configured children.
+`BB_*` means **Building Block** in Bamboo Figma. It is implementation/authoring infrastructure and is never a new public Code Connect target, even when a similarly shaped Angular directive or component exists.
 
-- Public parents are the primary Code Connect entries and must render resolved child snippets instead of an empty host.
-- `BB_*` adapters may map only the child properties proven by the Angular API. For example, `Disabled` may become `disabled` on a button child; `Hovered` and `Focused` remain visual-only.
-- `BB_*` wrappers that merely contain another BB forward that child through `findInstance()` and `executeTemplate()`; they do not add speculative attributes.
-- A BB with no stable published node, no confirmed Angular equivalent, or only decorative layout responsibility is not mapped.
-- Record every admitted family and its evidence in [BB_ADAPTERS.md](BB_ADAPTERS.md). Track public empty-host mappings in [COMPOSITION_REMEDIATION.md](COMPOSITION_REMEDIATION.md).
+- Every unresolved `BB_*` is excluded immediately; no Storybook/API matching is required beyond confirming the prefix.
+- Public parents remain the primary Code Connect entries and must express the consumable Angular API without publishing their BB children independently.
+- Existing BB adapters published before this convention change remain untouched until a separate removal audit is explicitly authorized; do not delete or overwrite them during normal batches.
+- The design-system owner handles `Skipped` dispositions for BB and icon targets in Figma UI. The Code Connect batch records them as out of scope and continues; it does not wait for UI verification.
+- `BB_ADAPTERS.md` is now a legacy register for the existing adapters, not an allowlist for creating new ones.
 
 ## Naming and variant hygiene
 

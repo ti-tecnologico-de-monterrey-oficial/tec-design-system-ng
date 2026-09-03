@@ -1,60 +1,27 @@
-// url=https://www.figma.com/design/Q4t8qIM5fklC9I3Atc1BrZ/Bamboo-Design-System---Components?node-id=2978-76218
+// url=https://www.figma.com/design/Q4t8qIM5fklC9I3Atc1BrZ/Bamboo-Design-System---Components?node-id=4281-218969
 // source=ui-angular/src/lib/components/bmb-card-button/bmb-card-button.component.ts
 // component=BmbCardButtonComponent
 import figma from 'figma'
 
 const instance = figma.selectedInstance
-
-// Menu: only meaningful for the Full Interactive branch. Values come from the
-// real MenuExample story (hasMenu + menuItems), never fabricated.
-const menuAttrs = instance.getEnum('Menu', {
-  Inactive: '',
-  Active: `
-  [hasMenu]="true"
-  [menuItems]="[
-    { icon: 'link', text: 'Link', url: 'https://example.com', target: '_back' },
-    { icon: 'delete', text: 'Delete', url: 'https://example.com', target: '_back' },
-    { icon: 'settings', text: 'Settings', url: 'https://example.com', target: '_back' }
-  ]"`,
+const size = instance.getEnum('Size', {
+  Default: 'default',
+  Small: 'small',
 })
-
-// Show Badges: only meaningful for the Badge branch. Maps to two real,
-// distinct Storybook stories (BadgeContainerImageExample vs ImageExample).
-const badgeAttrs = instance.getBoolean('Show Badges', {
-  true: `
-  [badge]="{ text: 'Badge 1', appearance: 'mitec_purple' }"
-  [textLink]="{ label: 'More', link: 'https://example.com', target: '_back' }"
-  body="This is the body content of the card button."`,
-  false: `
-  body="Test example | Test example | Test example"`,
-})
-
-const example = instance.getEnum('Type', {
-  'Add Content': figma.code`<bmb-card-button
-  [isFullInteractive]="false"
-  componentTitle="Create new skill"
-  icon="add_circle"
-/>`,
-  'Full Interactive': figma.code`<bmb-card-button
-  [isFullInteractive]="true"
-  [leftContent]="true"
-  leftContentIcon="note_add"
-  componentTitle="Title or Text summary"
-  icon="group"
-  body="This is the body content of the card button. It can be long and will be truncated with ellipsis after 3 lines."${menuAttrs}
-/>`,
-  Badge: figma.code`<bmb-card-button
-  [isFullInteractive]="true"
-  [leftContent]="true"
-  [leftContentImage]="{ src: 'https://picsum.photos/id/25/200/300', alt: 'Left content image' }"
-  componentTitle="Title or summary"${badgeAttrs}
-/>`,
-})
+const titleLayer = instance.findText('Title', { traverseInstances: true })
+const title =
+  titleLayer && titleLayer.type === 'TEXT' ? titleLayer.textContent : 'Title'
+const isSmall = size === 'small'
 
 export default {
-  example,
+  example: figma.code`<bmb-card-button [isSmall]="${isSmall}" ${
+    isSmall
+      ? figma.code`smallTitle="${title}" smallIcon="info" [botImage]="{ src: 'https://tecgpt0grl0prod0stg.blob.core.windows.net/gpt-portal-public/ICONOS/icon_modelo_CHAT_GPT.svg', alt: 'Chat Tec' }"`
+      : figma.code`[isFullInteractive]="false" componentTitle="${title}" icon="add_circle"`
+  } />`,
   imports: [
     "import { BmbCardButtonComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng'",
   ],
   id: 'bmb-card-button',
+  metadata: { nestable: true },
 }

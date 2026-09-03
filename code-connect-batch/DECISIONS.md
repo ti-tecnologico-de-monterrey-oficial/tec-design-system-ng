@@ -1,5 +1,7 @@
 # Code Connect batch - decision queue
 
+> Bitácora append-only. Las entradas antiguas pueden haber sido reemplazadas por decisiones posteriores; no uses sus conteos como estado vigente. Comienza en [README.md](README.md), consulta [INVENTORY.md](INVENTORY.md) para publicación y [CONTRACT_BACKLOG.md](CONTRACT_BACKLOG.md) para pendientes.
+
 See [CODE_CONNECT_CONVENTION.md](CODE_CONNECT_CONVENTION.md) for the shared Figma-to-Angular property contract, eligibility gate, and scan evidence that govern these decisions.
 
 The reverse-match source of truth is [CODEBASE_INVENTORY.md](CODEBASE_INVENTORY.md): Angular public API first, Figma validation second.
@@ -351,6 +353,8 @@ Every component assessed in this queue has a confirmed Angular equivalent. Previ
 - Public `BmbActionMenuComponent` receives its menu through Angular `TemplateRef` projection (`#actionMenuItem`), so publishing an empty host or reconstructing the rows from layers would be misleading.
 - Required contract: expose a genuine `Items`/`Content` SLOT with published semantic menu-item children. It is tracked in [CONTRACT_BACKLOG.md](CONTRACT_BACKLOG.md); no mapping was published.
 
+> Superseded on 2026-08-17 by the verified internal-adapter composition recorded at the end of this file. No Figma mutation or new SLOT was required because the stable `BB_5_1_1` variants map to existing public Angular item APIs and the parent already projects `#actionMenuItem` templates.
+
 ## Chevron title selector — approximate coverage (published)
 
 - Figma node `5566:99250` exposes `States=Default|Disabled-Further options|Disabled-Previous options` and `Container color=Default|Alternative`. Its visible `Header` layer supplies the public `componentTitle`.
@@ -497,201 +501,304 @@ Carlos supplied three references for this family: TEC.mobi "Calendar_FadeTransit
 - **Web templates** (`Template_2Column_NormalScreenLEFT`, `523:207773`) → `BmbWebTemplatesComponent`. All inputs optional, `template` defaults to `'full-width-card'`. Carlos's Gestor de Rúbricas reference literally instantiates this exact node name as its screen shell (`TopBar` + `column 5`/`column 4` two-pane layout matching `BmbTopBarComponent`/`BmbSidebarComponent` composition), confirming real usage. The sibling node `Template_2Column_NormalScreen` (`523:207759`) is functionally identical minus the left rail; either would have worked as a composition facade, this one was picked because it's the one Carlos's reference actually uses. Bare `<bmb-web-templates />`. Figma MCP confirmed `hasTemplate: true`.
 - **Not attempted: `title-content`**. `BmbTitleContentComponent` isn't `input.required()` by type, but its constructor `effect()` throws at runtime unless `title` (deprecated) or `componentTitle` is set — a real requirement, satisfiable with the Storybook `Default` fixture (`title="Title"`). The blocker is the Figma side: it composes `Breadcrumb` + `UserImage`/`BotIcon`/`BoxIcon` + an icon, and no stable Bamboo node matches that shape. The closest candidate found via `list_file_components_for_code_connect`, `Simple header` (`4070:156930`, 59 instances), only exposes a `Title Home` text property and a trailing-icon boolean — no breadcrumb, no avatar — so mapping to it would misrepresent the component's real composition. Left `Contract required` rather than guessed.
 
-## Repo restructuring — batch path fix (2026-08-27)
+## Documentation consolidation and public-export recount (2026-08-17)
+
+- Repaired `inventory-codebase.mjs` to read the migrated public entry point `ui-angular/src/index.ts` instead of the removed `projects/ds-ng/src/public-api.ts`.
+- The reproducible scan returns **130 component source exports / 130 selectors / 104 documented components**, not the 128/102 recorded by the pre-migration snapshot.
+- The two omitted public exports are not new direct candidates:
+  - `bmb-accordion-simple-text` is a documented wrapper that renders `BmbAccordionComponent`; no independent Figma target is confirmed. Classified `Parent/child composition` under the already-connected Accordion family.
+  - `bmb-notification-counter` is documented under `Internals/Notification counter` and is consumed by Icon/Tabs; no independent stable Figma target is confirmed. Classified `Parent/child composition`.
+- After the COL-01 follow-up below, consolidated state is **94 connected + 36 without independent confirmation = 130**: 10 contract, 13 parent/child, 12 blocked and Calendar pending MCP verification. The published public mapping count increased from 97 to 98.
+- `README.md` is now the operational entry point, `CONTRACT_BACKLOG.md` is the only active remaining queue, `INVENTORY.md` is the publication ledger, and this file remains append-only evidence. Older worklists/state files are explicitly historical.
+
+## COL-01 — List group item connected (2026-08-17)
+
+- **Figma:** published component set `List group`, node `82:26226`, asset key `2ac1d50bd45187ae7e9d0f2476074bb55c61a775`, 72 instances. Its default variant `82:26227` is a single 960×100 row containing header/description/info text, optional leading image/icon, trailing `BB_2_14`/Badge and Radial control. Despite the family name, it is an item, not a repeatable outer container.
+- **Angular:** `BmbListGroupItemComponent`, selector `bmb-list-group-item`, is exported from `ui-angular/src/index.ts`. Public safe correspondences are `Container color → appearanceContrast`, `Disabled → isDisabled`, `Selected → isActive`, and the unique `Text` layer → `headerText`. Storybook documents `id="list-group-item-1"` as its canonical required id and `personalizedTemplate=false` for the input-driven rendering.
+- **Intentional omissions:** `Device type?`, Hovered, leading image/type, help/tooltip and trailing content are not emitted because Figma does not expose the semantic icon/image URL, tooltip strings or a unique mapping for the two duplicate lowercase `text` layers. No BB adapter was invented.
+- **Publication:** `ListGroupItem.figma.ts` passed official CLI 1.5.3 parse and publish without `--force`; Figma MCP returned `hasTemplate: true` for variant `82:26227` with source `ui-angular/src/lib/components/old/bmb-list-group/bmb-list-group-item/bmb-list-group-item.component.ts`.
+- **Backlog effect:** `list-group-item` leaves `COL-01`. `list-group`, `action-menu`, `card-button` and `list-items` remain contract-required because none has a genuine repeatable item SLOT/collection contract yet.
+- **Calendar:** the component-set MCP lookup timed out again and still returned no map; no republication was attempted.
+
+## COL-01 — Card button connected (2026-08-17)
+
+- **Figma:** published component set `Card button`, node `4281:218969`, asset key `1a218151bed5a60c7aacf15aa1d066817b8f6984`, 43 instances. It exposes only `Size=Default|Small`; the verified variants are `4281:218968` and `4281:218967`. Their nested editable `Title` layers produce `Crear nuevo skill` and `Chat Tec` respectively.
+- **Angular:** `BmbCardButtonComponent`, selector `bmb-card-button`, is exported from `ui-angular/src/index.ts`. The `Default` variant matches the documented Storybook `AddContentExample`: `[isFullInteractive]="false"`, `componentTitle` from Figma and `icon="add_circle"`. The `Small` variant maps to `[isSmall]="true"`, `smallTitle` from Figma, `smallIcon="info"` and the Storybook-documented TecGPT `botImage` fixture.
+- **Intentional omissions:** the set does not expose menu items, badge data, body, custom content, disabled state or interaction events, so none is emitted. The nested `BB_1_6` and `BB_1_6_4` remain Figma implementation details and were not published as public APIs or adapters.
+- **Publication:** `CardButton.figma.ts` passed the official CLI 1.5.3 parse and was published alone with `--file`, without `--dry-run` or `--force`. Figma MCP returned `hasTemplate: true` for both variants and generated the expected source path `ui-angular/src/lib/components/old/bmb-card-button/bmb-card-button.component.ts`.
+- **Backlog effect:** `card-button` leaves `COL-01`. The active contract count changes from 10 to 9; `action-menu`, `list-group` and `list-items` remain because they require a genuine repeatable content/projection contract.
+
+## COL-01 — Action menu connected by verified composition (2026-08-17)
+
+- **Figma parent:** published component set `Action menu`, node `2109:71690`. Verified variants cover raw actions (`2109:71670`), informative rows (`9912:49726`), chevron (`2109:71583`), text button (`2109:71620`), checkmark (`2109:71636`), text link (`2109:71599`) and profile switch (`11085:49491`). Header title comes from the bound `BB_2_12_4` text when present; device and transient interaction state remain visual-only.
+- **Angular parent:** `BmbActionMenuComponent`, selector `bmb-action-menu`, is public and renders projected `TemplateRef`s named `#actionMenuItem`. The parent template now emits those real templates instead of an empty host.
+- **Internal child contract:** stable published set `BB_5_1_1` (`6751:92478`) maps its exhaustive `Type` variants to existing public APIs: `BmbInteractiveItemChevronComponent`, `BmbInteractiveItemDefaultComponent`, `BmbInteractiveItemTextButtonComponent` and `BmbItemHyperlinkComponent`. Only verified title/support/value text, active/disabled state and leading icon are emitted. The parserless `nestable` adapter is internal and does not count as a public mapping.
+- **Composition:** `ActionMenu.figma.ts` resolves connected `BB_5_1_1` descendants with `findConnectedInstances()` and `executeTemplate()`, wraps them in `#actionMenuItem`, and preserves visual order. Raw action and informative variants use their visible semantic text directly because they do not contain the BB child set.
+- **Publication and verification:** both files passed official CLI 1.5.3 parse and publish without `--dry-run` or `--force`. Figma MCP returned `hasTemplate: true` and populated canonical snippets for all seven checked variants, including the ordered profile rows `Colaborador`, `Egresado`, `Padre`.
+- **Backlog effect:** `action-menu` leaves `COL-01`. Consolidated state becomes 96 connected classes, 100 verified public mappings, 8 active contracts and 4 internal adapters.
+
+## Remaining contract Phase 0 refresh — List items and Timestream (2026-08-17)
+
+- **List items:** `BuildingBlocks_Items list` (`1644:67872`) is a stable visual match for `BmbListItemsComponent`: Empty/Populated variants group temporal list rows with action children. The Angular component, however, renders from `items: IBmbListItemsElement[]` and does not project arbitrary children. Therefore a generic Figma SLOT alone would not close the contract. The minimum is repeatable serializable data compatible with that public type, or a new public Angular projected-child API/official importable fixture.
+- **Timestream:** the earlier statement that no outer target exists is superseded. `Timestream mobile` (`474:32260`) is stable, but `View=Hito|Detail|Index|Filter` and `Scroll Bar` have no public Angular equivalents. `BmbTimestreamComponent` needs `events: ITimelineEvent[]` to render. The remaining contract is semantic event data or an officially importable fixture; mapping view names to nonexistent attributes or publishing a data-empty host remains disallowed.
 
-The `develop` branch migrated to an Nx monorepo layout (`ui-angular/`, `ui-react/`, etc.) starting mid-August. As of `develop`@`c1e81fde8` (2026-08-27), the component migration finished: `ui-angular/src/lib/components/old/` no longer exists, and all 127 component dirs live at `ui-angular/src/lib/components/<name>/`. The two connected directives (`bmb-button`, `bmb-button-group`) are the one exception — they still live under `ui-angular/src/lib/directives/old/<name>/`, since directive migration hasn't happened yet.
-
-Every one of the 101 published `.figma.ts` files in this batch still had `// source=projects/ds-ng/src/lib/...`, a path that no longer exists on `develop` at all. Ran a mechanical find/replace (`projects/ds-ng/src/lib/components/` → `ui-angular/src/lib/components/`, `projects/ds-ng/src/lib/directives/` → `ui-angular/src/lib/directives/old/`) across every file, republished all 101 via `connect publish --dir code-connect-batch`, and spot-verified `hasTemplate: true` + corrected `source` on a sample across component, component-set, and directive files (`bmb-academic-progress`, `bmb-table-lite`, `bmb-drawer-overlay`, `bmb-button-group`). No node/mapping changes — this only touches the `source=` metadata, not the Figma↔Angular pairing itself. `INVENTORY.md`'s Source column was fixed the same way.
-
-## 2026-08-27 audit — full inventory vs. current design system, plus the two "easy" attempts
-
-Carlos asked me to compare the current design system against the inventory to check for anything missing a push. Git-wise nothing was unpushed — but comparing the full current `ui-angular/src/index.ts` (147 component/directive exports) against this tracker's original 128-export baseline surfaced 16 exports added to the design system since that baseline was built and never triaged at all (not connected, not contract-required, not blocked — just absent from every doc). Full breakdown in `REMAINING_COMPONENTS.md`'s new "2026-08-27 audit" section.
-
-Of those 16, Carlos asked me to try connecting the two that looked easiest:
-
-- **`bmb-ai-chat-card` — connected.** `BmbAIChatCardComponent` has every input optional. Found its own top-level `AI Chat Card` component set (`9268:46409`, Web/Mobile variants) in the Components library. Bare `<bmb-ai-chat-card />` against the default `Web` variant (`8346:48848`). Figma MCP confirmed `hasTemplate: true`. Its own code has a `TODO: decommissioning is planned` comment, so this connection is expected to be temporary.
-- **`bmb-notification-counter` — blocked.** Both inputs (`counter`, `appearance`) are optional, so it would have been just as easy — but the only matching "Notification Counter" node in Figma lives in the **Documentation** library, not the Components library this project targets. Same class of blocker as `bmb-mitec-logo-animation`.
-- **`bmb-accordion-simple-text` — blocked, but for a new reason.** `BmbAccordionSimpleTextComponent` has two required inputs (`titleContent`, `textContent`) with clean documented Storybook fixtures, and Figma even has an exact matching variant: `Accordion` → `Type: Simple Text` (`13918:276747`). The problem is structural: that variant lives inside the same `Accordion` component-set node (`55:9576`) that's already connected to the parent `bmb-accordion`. The Code Connect CLI only accepts publishing against a top-level component or component-set node — not an individual variant child (confirmed by testing: "node is not a top level component or component set" for both this and, earlier, `bmb-bottom-navigation-bar`'s default variant). That means Code Connect only supports one Angular mapping per top-level node, and `55:9576` already has one (`bmb-accordion`, verified `hasTemplate: true`). Publishing `bmb-accordion-simple-text` there would have required overwriting that existing connection rather than adding a second one — risk not worth taking without Carlos confirming. Left unconnected; would need Design to publish `Simple Text` as its own independent top-level component to unblock.
-
-The remaining 13 audit exports (four `bmb-item-*` variants, three `bmb-interactive-item-*` variants, `bmb-accordion-control`, four layout directives, `bmb-selector`) are triaged by disposition in `REMAINING_COMPONENTS.md` but not yet individually evaluated for Figma nodes.
-
-## 2026-08-27 audit — remaining 13 exports triaged (2026-08-27, continued)
-
-Finished triaging the 13 exports left over from the audit above.
-
-- **Four `bmb-item-*` variants** (`item-default`, `item-hyperlink`, `item-informative-text`, `item-actions`) and **three `bmb-interactive-item-*` variants** (`interactive-item-chevron`, `interactive-item-default`, `interactive-item-text-button`): all have simple, truthful-to-express inputs (required strings, no `Date`/factory blockers) — these aren't code-level blockers. The blocker is Figma: searched `search_design_system` for "Item" and "Interactive item" restricted to the Components library; no independent main component matched any of the seven. The closest hits were either unrelated (`Icon item`, already connected to a different Angular component; `Skeleton_Item`; `Search Card Item`) or internal `BB_*`-prefixed building blocks whose own description says "should not be used independently." The three `interactive-item-*` files also carry `TODO: decommissioning is planned` in source, same as `ai-chat-card`. Left Blocked rather than guessed.
-- **`bmb-layout-grid`, `bmb-layout-item`, `bmb-vertical-layout`, `bmb-vertical-layout-item`**: read all four directive sources — confirmed pure structural/layout concerns (column/row sizing, gap, alignment, flex-grow), no visual identity of their own. Blocked, same class as `bmb-form-validator`/`bmb-theme`/`bmb-three-cols`.
-- **`bmb-selector`**: `[bmbSelector]` binds a CSS class based on `idSelector`/`activeSelectorID` — a state helper, not a visual component. Blocked.
-- **`bmb-accordion-control`**: a `ContentChildren`-based directive that manages the already-connected `bmb-accordion`'s expand/collapse behavior across its children. Parent/child composition, not independently connectable.
-
-With this, all 16 exports found in the 2026-08-27 audit are now fully triaged: 1 connected (`ai-chat-card`), 1 Parent/child (`accordion-control`), 14 Blocked.
-
-## 2026-08-27, second pass — re-checking the contract backlog for drift
-
-Carlos asked how to keep Code Connect "nourished" ahead of building a design-handoff triage agent. Re-checked every remaining Contract-required baseline item plus `mobile-templates`' 6 missing values against the current Bamboo library, since it had clearly moved since the original triage (new "AI Chat Card", new "Accordion" Simple Text variant found earlier today).
-
-- **`list-group-item` — connected.** Re-searching "List group" surfaced `82:26226`, a component set whose properties (`Leading img?`, `Trailing component`, `Help icon` + tooltip instance-swap, `Container color`, `List group type:`) are a single list-row's content — they don't describe a repeated container. That's a much better match for `BmbListGroupItemComponent` (only `id` is required; everything else — `headerText`/`descriptionText`/`infoText`/`icon`/`tooltipTitle`/`tooltipText`/`badgeAppearance`/`badgeText` — has a documented Storybook default) than for the parent `bmb-list-group`, which has no content properties at all (just layout/behavior: border radius, padding, selection mode). Wrapped the snippet in `<bmb-list-group>` because `BmbListGroupItemComponent` injects `BmbListGroupStatusService`, which only `bmb-list-group` provides — omitting the wrapper would be truthful-looking but throw at runtime. Figma MCP confirmed `hasTemplate: true` across 72 variant nodes. The parent `bmb-list-group` itself stays contract-required.
-- **`action-menu` — still blocked.** Its Figma node's `Type` variant (`Action Menu_Actions_Default`, `Chevron`, `Text Link`, `Text Button`, `Checkmark`, `Profile switch menu`, etc.) is the same shape as `list-group`'s: single-row options, not a repeated `Items` SLOT. `BmbActionMenuComponent` uses `contentChildren<TemplateRef>` for arbitrary projected content with no separate "action menu item" Angular class to target instead, so there's no equivalent child-level fix here. Contract required, unchanged.
-- **`card-button` — still blocked.** Two candidate nodes exist: "Card button" (`4281:218969`, only a `Size` variant, real usage — 43 instances) and "CardButton" (`2978:76218`, richer `Show Badges`/`Show Title Icon`/`Type`/`Menu` properties, but lives on the `🧩 Playground - (Admin ONLY)` page, 0 instances — Playground stays excluded per this project's existing convention). Neither exposes `ICardButton`'s `title`/`body`/`badge`/`menuItems` as real content properties. Contract required, unchanged.
-- **`list-items`, `user-profile`, `timestream`, `title-content`** — re-searched, no new matching node in any case. Unchanged from the 2026-08-13/08-27 findings above.
-- **`mobile-templates`' 6 missing `template` values** — re-listed every `TemplateMobile_*` node; same set as before (`Blank`, `Blank2Buttons`, `Blank_Box`, `ContainerButtonsV`, `ContainerButtonsH`, `ExtendedHeader_ContainerButton`, `Modal`, `Step`, `InnerSlot`), no new node unambiguously matches `single-header`/`header-with-footer`/`card-header-with-footer`/`header-with-button-list`/`header-with-card-list`/`login`. Unchanged.
-
-**Correction to an earlier claim today:** I flagged `ai-chat-card` and the three `interactive-item-*` variants as lower priority because their source carries `TODO: This component is marked as "old" and its decommissioning is planned for future updates.`. Checked how common that comment actually is: it's on **114 of 194** component files in `develop`, including `bmb-accordion`, `bmb-navigation-bar`, `bmb-web-templates`, and dozens of other components we've already connected and treat as first-class. It's boilerplate from the migration, not a real per-component signal — retracting that reasoning; it shouldn't be used to deprioritize future contract work.
-
-## 2026-08-27, second pass — structured JSON index for a future triage agent
-
-Built `code-connect-batch/component-index.json`: a machine-readable manifest generated from the actual `.figma.ts` templates (parsed for `url=`/`source=`/`component=`/`id`) plus the disposition tables in `REMAINING_COMPONENTS.md`. It has five buckets — `connected` (99, parsed straight from published templates, so it can't drift from what's actually live), `internalAdapters` (the 3 `BB_1_4*`-style Button-group item adapters, kept separate since they're not user-facing), `contractRequired` (10, with the specific missing contract for each), `parentChildComposition` (12), and `blockedOutOfScope` (26, itemized reasons) — plus a `mobileTemplatesPartialCoverage` note for the 6 still-missing `template` enum values. `Calendar.figma.ts` is flagged `pending_verification` rather than counted as connected, matching its documented status.
-
-This is meant to be the first input for the design-handoff triage agent Carlos wants to build next: a node ID + disposition + reason lookup instead of re-parsing markdown tables. Not regenerated automatically — needs a manual re-run of the parser whenever `.figma.ts` files or the disposition docs change.
-
-## 2026-09-02 — bmb-loader connected via 'Loading screen' (sweeping documentation canvases)
-
-Carlos asked me to walk two "Visual Labels"-style documentation canvases (node `5-65` "Visual Labels", node `5-64` "Status Indicator") to check for anything still unconnected. The first canvas had nothing new — everything either already connected or already-documented as blocked (`Notification Counter`, `ScrollBar` — the latter has no Angular component at all, it's pure CSS via `_scrollbar.scss`).
-
-The second canvas ("Status Indicator") surfaced a real gap: its "Loading Screen" section contains a published component literally named **Loading screen** (`152:38092`, page "🔒 Main Components - (Admin Only)", no variants, no properties). This is a different node from `Loader_Icon` (`1440:53909`), the icon-only primitive that was the sole thing evaluated when `bmb-loader` was originally marked Blocked — that evaluation never looked at `Loading screen` itself.
-
-Checked `BmbLoaderComponent`: every input is optional (`componentTitle`, `subtitle`, `overlay`, `isVisible`, `errorState`, `actions`, `buttonPrimary`, `buttonSecondary`, `icon`, `appearance`, `showInline` all have defaults). Its Storybook `Default` story sets `componentTitle: 'Cargando...'` — and a screenshot of the Figma node shows the exact same spinner + "Cargando…." text. Same title text in both, independently arrived at (Figma design vs. Angular Storybook default) — as strong a match as this project has found. Published `Loader.figma.ts` (`<bmb-loader componentTitle="Cargando..." />`), verified `hasTemplate: true` via Figma MCP. Moved `bmb-loader` from Blocked to Connected across `INVENTORY.md`, `REMAINING_COMPONENTS.md`, and `component-index.json` (baseline connected count 94→95, blocked 26→25, total published templates 99→100).
-
-Lesson for the future triage agent: a single failed match against one candidate node (e.g. an icon primitive) isn't enough to blocklist an export — worth periodically re-sweeping documentation/showcase canvases (pages like "Visual Labels", "Status Indicator") for components that were never in the original candidate search terms, since the component name on the canvas doesn't always match the export's obvious search term (searching "loader" surfaces `Loader_Icon` before `Loading screen`).
-
-## 2026-09-02 — Full section-by-section sweep of "🔒 Main Components (Admin Only)"; TopBar closed; BB_* confirmed skip
-
-Carlos asked to walk every section of the "🔒 Main Components - (Admin Only)" canvas (`Q4t8qIM5fklC9I3Atc1BrZ`, node `5:67`) one by one via `get_code_connect_suggestions`, to catch anything the earlier documentation-canvas sweeps (Visual Labels, Status Indicator) might have missed. Covered all ~85 top-level sections/categories on the page.
-
-**Result: no new candidates.** Every "not connected" instance returned across all sections was one of:
-- An internal `BB_*` adapter piece (numbered building blocks like `BB_6_8_4`, `BB_2_16_5`, etc.) — never an independently exported Angular component. Per this project's standing rule, these are not counted or evaluated individually.
-- A Material icon primitive (`chevron_left`, `help`, `close`, `send`, `email`, etc.) or a prototype-only animation node (`Proto_anim_*`) — not part of any component's public API surface.
-- A child instance of an already-connected parent (e.g. `Gcard_Header`, `SlotRow`/`SlotColumn`, `ChatBubble/*`, `BuildingBlocks_*`) — covered by the parent's own template.
-
-Two apparent leads were checked and closed:
-- **"Student activity selector"** (`151:38523`) — the section's own main component was itself unconnected, but no matching Angular export exists (`grep` of `public-api.ts` found only `bmb-student-activity-card`, already connected). No Angular target = out of scope, not a gap.
-- **A second "Main FAB" node** (`4281:219696`, inside the Buttons category section) — a duplicate component set sharing the name of the already-connected `Main FAB` (`1481:108540`, published as `MainFab.figma.ts`). Same class of duplicate-name situation already resolved for `FABOverlayDrawer`; the connected node remains the correct target, no action needed on the duplicate.
-
-**Carlos's decision on the two open items from this sweep:**
-
-1. **TopBar decision fork — closed, kept generic.** Declined to sign off on the 4 inferred boolean properties (`showHelpButton`, `showRoleButton`, `allowSidebarForMobile`, `appName`-tied `Title`) documented in `CONTRACT_STATE.md`'s NAV-01 section, since the correspondence was inferred from layout position rather than a documented contract. The existing bare `<bmb-top-bar />` facade (`TopBar.figma.ts`) stays as the final, correct implementation. No further TopBar work — this contract is done.
-2. **All `BB_*` internal-adapter instances surfaced by this sweep — confirmed skip.** Explicit instruction: do not create Code Connect mappings for any `BB_*` numbered building block found during section-by-section review. This reaffirms (does not change) the existing rule in `HANDOFF.md`/`CODE_CONNECT_CONVENTION.md` that `BB_*` adapters are internal-only and are never counted as public Angular API — logged here so a future pass doesn't re-litigate the same `BB_*` instances found today (`BB_6_8*`, `BB_6_9`, `BB_6_10*`, `BB_6_12*`, `BB_4_2*`, `BB_4_5*`, `BB_4_6`, `BB_4_11*`, `BB_4_12*`, `BB_2_3*`, `BB_2_8*`, `BB_2_10`, `BB_2_12*`, `BB_2_15_4`, `BB_2_16*`, `BB_5_3_3`, `BB_5_6`, `BB_7_10*`, `BB_8_4`, `BB_9_2`, `BB_1_5_2`, `BB_1_6_3`, `BB_3_2_4`).
-
-**Net effect:** the "0 candidates — validate and connect" count in `REMAINING_COMPONENTS.md` is reconfirmed accurate after an exhaustive sweep, not just a spot-check. No `.figma.ts` files were created or modified in this session; only this file and `CONTRACT_STATE.md` were updated.
-
-## 2026-09-02, second pass — swept "[Organisms]" and "[Particularities]" admin pages; no new candidates
-
-Carlos gave two more admin-only canvases to sweep the same way as the atomic-components page: `153:48080` ("🔒 Main Components [Organisms] - (Admin Only)", 30 sub-sections across Access-to-external-link/Account-statement/Notification-center/Calendar/Grades/Hito/Login-Onboarding/Timestream/Templates/Login-Layout categories) and `322:73131` ("🔒 Main Components [Particularities] - (Admin Only)", 18 sub-sections across mitec App/mitec Web/TEC.sign/Skill Studio/TECbot categories).
-
-**Result: no new candidates, same as the atomic sweep.** Everything unconnected fell into one of the already-established buckets:
-
-- **Composed product screens, not library components.** Most sections on both pages (`GuidedTourDesktop_*`, `GuidedTourMobile_*`, `Template_2Column_*`, `TemplateMobile_*`, `Template_GenericCard_*`, `Template_Table_*`, `Template Card Button`, `LayoutLogin`, `Sidebar4.0Switcher`/`Sidebar4.0Colaboradores`/`Sidebar4.0Estudiantes`, `TopBar4.0Switcher`, `Home2.0_ID_mitecApp`) are full composed mockup screens — the same category as the MiTec reference file per `HANDOFF.md`: evidence of usage, not a Code Connect target. Several are also duplicate-content confirmations of already-documented ambiguity, not new information: the `TemplateMobile_*` set found under "Template - Mobile" is the exact same 8-node set already discussed in `REMAINING_COMPONENTS.md` for `mobile-templates`' 6 unmapped enum values; the `Template_Table_*`/`Template_TablewFilter_*` set matches the already-resolved `table-lite` ambiguity (one variant picked, siblings intentionally left unpicked); `Template_GenericCard_*` reconfirms the existing `bmb-card` Blocked verdict (generic card-like assets, no independent API).
-- **Internal `BB_*` adapters and Material icon primitives** — same as the first sweep, not counted per standing rule.
-- **Children of already-connected parents, re-surfacing as expected**: `Notice card` (`4424:168952`, a variant instance of the already-connected `6939:96312`), `Chat Response`/`Chat Header`/`Chat History`/`Chat Container`/`Chat launcher` (children/compositions under `bmb-chat-bubbles`/`bmb-home-card-chat`, both already contract-required for the same `Date`-typing reason documented in `REMAINING_COMPONENTS.md`).
-- **Product-specific, not generic Bamboo library components**: `Firm selector`/`Visualizador PDF - TEC.sign` (TEC.sign-specific), `Landings` (mitec Web-specific) — no corresponding generic `ui-angular` export exists for these, same class as the MiTec-only evidence nodes.
-- **One duplicate-name false lead checked and closed**: `ORG_Component_AccessLink` (`523:204994`) looked self-referential to the "Access to external link" section, but `get_metadata` showed it is a 71×71 decorative index icon inside the documentation frame, not the organism itself — the actual demo composes already-connected `Inner header`/`Bottom navigation bar`/`Overlay`/`Modal`/`Dropdown Menu`. Confirms `bmb-external-link` stays Blocked (still no independent stable node), not a new candidate.
-
-No `.figma.ts` files created or modified. No decision gates raised — nothing here needs Carlos's sign-off, unlike the TopBar fork from the first sweep.
-
-## 2026-09-02, third pass — Calendar verification timeout resolved
-
-Carlos asked to chase down the `Calendar.figma.ts` "pending verification" status flagged since 2026-08-12 (`BmbCalendarComponent`, node `2640:89850`). Re-ran `get_code_connect_map` (label Angular) on that node — it completed this time (no timeout) and returned `hasTemplate: true` for the six `BmbCalendarComponent` instances nested in that frame (`474:94937`, `12977:92957`, `2642:54263`, `12977:93489`, `2642:56679`, `12977:94720`), each matching the published `<bmb-calendar />` snippet and source path exactly. Cross-checked with `get_code_connect_suggestions` on the same node: no Calendar-named instance appears in the unconnected list anymore, only its already-triaged internal children (`Schedule hour section`, `Schedule selector`, `Calendar schedule card`, `BB_ORG_1`/`BB_ORG_2`).
-
-No re-publish was needed — the CLI upload from 2026-08-12 was already correct; only the MCP verification call itself had been failing. Treating this as resolved rather than transient-and-still-suspect, since two independent MCP calls (`get_code_connect_map`, `get_code_connect_suggestions`) now agree.
-
-Updated `INVENTORY.md` (moved Calendar from "Pending verification" into the Connected table, total 100 → 101), `REMAINING_COMPONENTS.md` (baseline coverage 95 → 96 of 128, remaining triage list 32 → 31 exports), and `component-index.json` (`bmb-calendar` status `pending_verification` → `connected`, `figmaVerified` → `true`, counts `pendingVerification` 1 → 0, `connectedPublished` 100 → 101).
-
-## 2026-09-02, fourth pass — design handoff table for the 11 contract-required exports; fixed a tracking gap (Sidebar)
-
-Carlos asked whether a product design showing the contract-required components would help, then asked for a handoff table to send to Design. Built `bamboo-contract-required-handoff.md` (delivered to Carlos, not stored in this repo) covering all 11 items with the exact Angular prop/interface shape, the current Figma candidate (or lack of one), and the minimal contract to publish. Two items (`chat-bubble`, `home-card-chat`) were flagged as *not* a Design ask — their blocker is a strictly-typed required `Date` field, which is an Engineering/typing decision, not a missing Figma property.
-
-While compiling it, found `bmb-sidebar` was never added to `REMAINING_COMPONENTS.md`/`CONTRACT_BACKLOG.md`/`component-index.json` even though `CONTRACT_STATE.md` has documented it as Contract required since the original 2026-08-12 NAV-01 discovery (`elements: SidebarElement[][]`, no `Items` SLOT on the published `Sidebar` node `299:51502`). This is very likely the source of a pre-existing off-by-one in this tracker's own arithmetic (95/96 connected + 31/32 remaining never summed to the stated 127/128 baseline). Folded `sidebar` into all three trackers as an 11th contract-required export (Contract required count 10 → 11); did not attempt to re-audit the rest of the ledger for further drift beyond this specific gap.
-
-## 2026-09-02, fifth pass — Card button's "Open in GitHub" link was dead; root-caused and fixed via CLI upgrade
-
-Carlos flagged that Card button's Figma Code Connect panel linked to a dead GitHub path (`ui-angular/src/lib/components/old/bmb-card-button/bmb-card-button.component.ts`, using the pre-2026-08-27-migration `old/` layout) instead of the correct `ui-angular/src/lib/components/bmb-card-button/bmb-card-button.component.ts` on `develop`.
-
-**This mapping predates this batch.** No `CardButton.figma.ts` existed in `code-connect-batch/` — Card button was tracked as Contract required (see the now-removed entry in `component-index.json`/`REMAINING_COMPONENTS.md`). The live Figma connection (`get_code_connect_map` on `4281:218969` returned real snippets for both `Size` variants) was published outside this pipeline, at some point before this project's tracking began, and was never touched by the 2026-08-27 batch path fix (which only iterated the batch's own 101 files).
-
-**Two separate bugs, not one:**
-
-1. **Stale `source=` path** — trivial, `old/` no longer exists for components post-migration.
-2. **Branch hardcoded to a dead name** — the real bug, and the one that would have defeated a same-CLI republish. Read `@figma/code-connect@1.3.3`'s own source (`dist/connect/project.js`):
-   ```js
-   function getGitRepoDefaultBranchName(repoPath) {
-       const DEFAULT_BRANCH_NAME = 'master';
-       const branches = spawnSync('git', ['branch', '-r'], { cwd: repoPath }).stdout...;
-       if (branches.includes('origin/main')) return 'main';
-       else return DEFAULT_BRANCH_NAME; // literal 'master'
-   }
-   ```
-   It only ever guesses `main` or `master` from local `git branch -r` at publish time — never reads the repo's actual default branch, and has no config override. This repo has neither `main` nor `master` in any of its 491 branches (confirmed via `git branch -a --list`) — only `develop`. Republishing with 1.3.3 today would have swapped `blob/main/...` for an equally-dead `blob/master/...`.
-
-   Checked `npm view @figma/code-connect versions`: current is `2.0.0` (we're pinned to `1.3.3` in `package.json`). Its `getGitRepoDefaultBranchName` now takes a `configDefaultBranch` override and, absent that, resolves via `git symbolic-ref refs/remotes/origin/HEAD` before falling back to the old main/master guess. This repo's `origin/HEAD` correctly resolves to `develop` (`git remote show origin` confirms "HEAD branch: develop"), so 2.0.0 would produce a correct `blob/develop/...` link with zero extra config.
-
-**Second finding while fixing this**: the pre-existing mapping was published against the two *variant child* nodes (`4281:218967`, `4281:218968`) rather than the parent component set (`4281:218969`). Confirmed via `get_context_for_code_connect` that `4281:218969` is a real component set with a `Size` variant (`Default`/`Small`), and its two children are `BB_1_6`/`BB_1_6_4`. `connect publish --dry-run` on the child nodes failed exactly like the earlier Bottom navigation bar / Accordion Simple Text cases: "node is not a top level component or component set." The original entry must have been written directly via API/plugin, bypassing this CLI validation — not reproducible in this pipeline.
-
-**Content check, not fabricated**: `componentTitle="Crear nuevo skill"`/`icon="add_circle"` matches Storybook's own `Default` story (`componentTitle: 'Create new skill'`, `icon: 'add_circle'`, translated to Spanish). `smallTitle="Chat Tec"` + the TecGPT bot image isn't a Storybook default (that one is generic: `'Title'`/`'info'`) but reads as a real production reference (Chat Tec/TecGPT), not an invented value. Kept both unchanged.
-
-**Fix applied**: wrote a single `CardButton.figma.ts` targeting the parent set (`4281:218969`), using `figma.selectedInstance.getEnum('Size', { Default: figma.code\`...\`, Small: figma.code\`...\` })` to keep both existing, real examples — same pattern as `Divider.figma.ts`, extended to switch the whole snippet rather than one value. Tested `parse` then `publish --dry-run` against the CLI's ephemeral `@figma/code-connect@2.0.0` (not the pinned `1.3.3` devDependency — did not touch `package.json`) before publishing for real. `get_code_connect_map` post-publish confirms `hasTemplate: true` on both variants, `source` corrected, `label: "Angular"`.
-
-**Not done**: did not bump the repo's pinned `@figma/code-connect` devDependency (1.3.3 → 2.0.0) or re-run the other 100 files against it — that's a bigger, separate call (parser behavior could differ across a major version) and Carlos asked to raise a ticket for it rather than do it inline. Every other published `.figma.ts` in this batch almost certainly has the same dead-link bug on its "Open in GitHub" button (their `source=` metadata is fine; the branch name baked into Figma's stored link at publish time is not) — flagged to Carlos as a batch-wide follow-up, not fixed here.
-
-**Docs updated**: `INVENTORY.md` (new Connected row, header note), `REMAINING_COMPONENTS.md` (`card-button` moved out of Contract required: 96→97 coverage, 32→31 remaining, 11→10 contract-required), `CONTRACT_BACKLOG.md` (clause added), `component-index.json` (moved entry, counts 101→102 / 11→10). `CONTRACT_IMPLEMENTATION_BACKLOG.md`'s COL-01 row left as-is — `card-button` is still a valid candidate parent for that unresolved item-level contract, this fix didn't touch that.
-
-## 2026-09-03, sixth pass — Card button migrated to its real, richer twin (2978:76218); old target unpublished
-
-**Trigger.** While tracing the naming chaos Carlos flagged (BB_* internal codenames vs. public component names never fully reconciled), Carlos pointed at Frame 2608680 (node `4281:218993`) — four real production usages of "Card button". A REST API check of each instance's true `componentId` (not its possibly-renamed display name) showed three point at the `4281:218969` component set we'd published against, but the fourth (`4281:219128`, "Arquitectura" card with image + badge + textLink) points at a *different* component set, `2978:76218`. That node had been dismissed in the original Phase 0 analysis as living in a "Playground" page with "0 real instances" — now disproven.
-
-**Decision.** Migrate the Code Connect target from `4281:218969` to `2978:76218`, since the latter is the genuinely-used, genuinely-richer "Card button" — it actually exposes `Type` (Add Content/Full Interactive/Badge), `Menu` (Inactive/Active), `Show Badges` and `Show Title Icon` as component properties, versus `4281:218969`'s single `Size` variant.
-
-**Mapping, and what was deliberately left out.** Read the real Angular source (`bmb-card-button.component.ts`/`.html`) and Storybook fixtures (`bmb-card-button.stories.ts`) before writing anything:
-- `Type=Add Content` → `isFullInteractive=false` (AddContentExample: `componentTitle="Create new skill"`, `icon="add_circle"`).
-- `Type=Full Interactive` → `isFullInteractive=true` + `leftContentIcon`/`componentTitle`/`icon`/`body` (Default/MenuExample args). Nested `Menu` enum (`Inactive`/`Active`) bound to `hasMenu` + the real `menuItems` array from `MenuExample`.
-- `Type=Badge` → `leftContent`+`leftContentImage` (picsum placeholder — confirmed this exact URL is Storybook's own canonical fixture value for `leftContentImage`, not fabricated, contrary to an earlier session note that flagged a *different* stray `BB_1_6` connection using the same URL as fabricated — that flag was about the wrong target node, not the URL itself). Nested `Show Badges` boolean bound to two real, distinct stories: `true` → `BadgeContainerImageExample` (badge + textLink), `false` → `ImageExample` ("Without Badge").
-- **Not bound**: `Show Title Icon`, and the decorative thumb_up/"128k"/people-count content visible in Figma's "Full Interactive" example. Confirmed via `get_context_for_code_connect` and the component's `.html` template that none of this has a real Angular input — it's either not exposed at all or only reachable via `customContent`/`ng-content` (free-form template projection, not a formal prop). Carlos confirmed (via AskUserQuestion): bind only what's real; document the rest as a gap rather than fabricate or approximate.
-- `State`/`Color variant` excluded as visual-only, consistent with prior convention.
-
-**CLI bug #2 found: `connect unpublish --node` ignores `--dry-run`.** Tried to clean up the old `4281:218969` mapping via `unpublish --node <url> --label Angular --dry-run`; it printed "Files that would be unpublished:" but then proceeded to actually call Figma's delete endpoint anyway (confirmed by reading `commands/connect.js`: the `if (cmd.node) {...}` branch has no dry-run short-circuit — that only exists in the file-parsing `else` branch). It failed harmlessly here because the API rejected it ("No Code Connect CLI mapping found for this component" — the manually-constructed `--node` URL apparently doesn't match Figma's internal lookup format), so nothing was actually deleted, but this is a real, reproducible bug in `2.0.0` worth including in the ticket alongside the branch-detection bug from the fifth pass.
-
-**Safe path used instead.** Recreated the *original* `CardButton.figma.ts` content (the one that published `4281:218969`, taken verbatim from git history) in a scratch dir, and ran `connect unpublish --dir <scratch> --config code-connect-batch/figma.config.json` (the file-parsing path, which *does* respect `--dry-run` — verified dry-run first, then ran for real). Confirmed via `get_code_connect_map`: `4281:218968`/`4281:218967` now `hasTemplate: false`; all of `2978:76218`'s variant nodes now `hasTemplate: true` with the new, real bindings.
-
-**Known remaining mess, intentionally untouched.** Two stray connections at `4281:218957`/`4281:218932` — made by Carlos manually through Figma's own UI in an earlier pass — still point at the dead `ui-angular/src/lib/components/old/bmb-card-button/...` path and still show `hasTemplate: true`. These are outside this batch's `.figma.ts` files entirely (no local file declares them, so this repo's CLI can't clean them up), and Carlos said he'd hunt down and fix these himself.
-
-**Not done.** Second half of the originating instruction — auditing the other ~10 contract-required components for the same "hidden richer twin under a different node" failure mode — not yet started as of this entry.
-
-## 2026-09-03 — Checked Sidebar, Simple header and Action menu for a Card-button-style hidden richer twin: none found
-
-Carlos pointed at three links to check for the same failure mode just found on Card button (a richer twin published under a different/undiscovered node). Result: all three confirm the existing tracking was already correct — no naming-chaos discovery gap here.
-
-- **Sidebar** (`https://.../?node-id=299-51502`): identical to the already-tracked node (`299:51502`). Re-inspected its structure — still only an `Expanded` variant, with `BB_5_8_7`/`BB_5_8_6`/`BB_5_8_3`/`BB_5_8_2` internal codenames and no title-correlated content. Confirms the existing `component-index.json` contract-required entry (data-driven `elements: SidebarElement[][]`, no Items SLOT in Figma) is accurate, not a discovery miss.
-- **Simple header** (`https://.../?node-id=4070-156935`): this is a real usage *instance* ("Mi día de hoy"), not a master. Its true `componentId` (via REST API, same technique as the Card button investigation) is `4070:156930` — exactly the master already targeted by `SimpleHeader.figma.ts`. No hidden twin.
-- **Action menu** (`https://.../?node-id=2109-71690`): this is the full documentation frame containing all 16 `Type`×`Device` (Web/Mobile) variant symbols (Chevron, Text Button, Checkmark, Action Menu_Actions_Icon, Text Link, Action Menu_Actions_Default, ActionMenu_Informative text_icon, Profile switch menu). Inspected two of the richer-looking ones (`Action Menu_Actions_Icon`, `ActionMenu_Informative text_icon`) — both visually show 2-3 stacked rows, but each is a single fixed `Type` variant option with hardcoded, non-bindable text layers (no top-level property `key`), not a genuine data-driven Items/repeated-child SLOT. Confirms the existing `component-index.json` assessment ("Type variant is single-row options, not a repeated Items SLOT") — the `Device` split is new information but doesn't change the verdict.
-
-No Code Connect changes made; this was a verification-only pass, logged so these three aren't re-investigated from scratch.
-
-## 2026-09-03, seventh pass — swept remaining contract-required list for hidden richer twins; found list-items, refined user-profile
-
-Carlos's hunch: since Card button's real twin was hiding under nested `BB_*` naming, the other contract-required components might have the same problem. Used `list_file_components_for_code_connect` (the whole-file component graph, with real instance counts and child-instance tags) instead of one-off name searches, since it surfaces components on pages like "❖ Particularities" that earlier name-scoped searches (limited to "Main Components") never reached.
-
-**Found: `list-items` → `BuildingBlocks_Items list` (`1644:67872`).** Its Populated-state descendants are literally titled "Recientes"/"La semana pasada"/"Hace 30 días" — the exact same group labels `BmbListItemsComponent.orderEventsByDate()` computes internally. This is a genuine match, previously marked "No independent Bamboo main component found after targeted searches." Connected it — but honestly: `bmb-list-items` has no `.stories.ts` at all, so there's no documented, non-fabricated value for `items` or `componentTitle`. Shipped as bare `<bmb-list-items />` (every input has a real Angular default), same pattern as Sidebar's bare connection. `State` (Empty/Populated) not bound since both would render the identical honest default — binding it would imply a distinction that doesn't exist in the snippet.
-
-**Refined, not solved: `user-profile`.** Found `ORG_Component_MiPerfilPerson` (`11203:49510`, has a nested `BB_1_6_2`) and `ORG_Component_MiPerfilMobile` (`1063:77119`) via `search_design_system` — both real, published, actively-maintained library components (`MiPerfilPerson` updated 2026-07-27), directly corresponding to `bmb-user-profile`'s "Mi Perfil" flow (`BmbHeaderMitecComponent` + `BmbUserProfileContentComponent` + continue button). This disproves the earlier "no plausible node found" claim — a node exists. But: both are static `COMPONENT`s with zero exposed properties, and `bmb-user-profile.stories.ts`'s only story (`Default`) sets `userInfo: { id: '', fullName: '', profilePicture: '' }` — empty strings, not real content — for a `userInfo` that's `input.required<IBmbUserInfo>()`. So the actual blocker was always the missing documented fixture, not the missing node. Left contract-required, but the tracked `missingContract` now asks for a real, non-empty Storybook fixture (or Design confirming these MiPerfil nodes as intended target with real sample content), not "find a node."
-
-**Re-confirmed, not naming misses:** `title-content` (closest candidate, "Header mobile" `61:9227`, does have real `Breadcrumb`+`User image` children, but it's already correctly connected to a different, larger composite — `BmbHeaderMobileComponent` — not a 1:1 match for title-content's simpler avatar+title+breadcrumb shape), `list-group` (its only real content-bearing node, `82:26226`, is already correctly the `list-group-item` target — the plural wrapper genuinely has no separate Figma node), `action-menu` (confirmed via full properties: `Type`/`Device` are the only properties on `2109:71690`, no repeated-child SLOT mechanism despite visually-stacked rows), `chat-bubble`/`home-card-chat`/`timestream` (all previously-diagnosed as code-level or missing-outer-node issues, not naming problems — unaffected by this pass).
-
-**Not investigated this pass:** `item` (already deprioritized — deprecated in favor of `bmb-item-[variant]`).
-
-## 2026-09-03, eighth pass — enriched list-group-item's Code Connect binding; 3 properties left as open design questions
-
-Carlos asked for a review of `list-group` (`82:26226`) specifically. The existing connection (`ListGroupItem.figma.ts`) was already correct and non-fabricated — a single fixed example using the real Storybook `WithDefaultTemplate` values — but it left all 10 of the node's real properties unbound, publishing the same static snippet regardless of which Figma variant a designer had selected.
-
-**Enriched with 4 confirmed real bindings**, each verified by finding an explicit `references.visible` pointing at the exact property key in `get_context_for_code_connect` (checked across all three `List group type:` variants — Leading XL icon, Leading img, Flush w/img — to make sure the binding holds regardless of that dimension):
-- `List group state:` (Disabled/Enabled/Hovered/Selected) → `isDisabled`/`isActive`. `Hovered` has no Angular equivalent (transient CSS-only state) so it renders identically to `Enabled` rather than invent a prop.
-- `Trailing component` (boolean) → gates the `BB_2_14` badge instance; bound to whether `badgeAppearance`/`badgeText` are included.
-- `Help icon` (boolean) → gates the `help` tooltip-trigger instance; bound to whether `tooltipTitle`/`tooltipText` are included.
-- `Extra info 01` (boolean) → gates the third text line; bound to whether `infoText` is included.
-
-**Left unbound, flagged as open questions for Design** (checked and could not confirm, rather than guessed):
-- `Extra info 02` and `Leading img?` — searched for a `references.visible` pointing at either key across all three `List group type:` variants (Leading XL icon `82:26304`, Leading img `82:26273`, Flush w/img `82:26243`) and found none. Either orphaned from an earlier design iteration, or gating something this API doesn't surface (e.g. a raw image/fill swap rather than an INSTANCE/TEXT node — `get_context_for_code_connect` only enumerates INSTANCE and TEXT descendants). Worth asking Design directly rather than a fourth guess.
-- `Leading component` (boolean) — same story, no visible reference found in any inspected variant.
-- `List group type:`'s image branches (Leading img / Flush w/img) — structurally these should map to `imgSrc`, but `bmb-list-group-item.stories.ts` has no documented example value for it (only `icon` has a real fixture, `add_box`). The published example always shows the icon variant's content even when Figma's current selection is an image type — noted in the file's own comment.
-- `Container color`'s `None` option — Storybook's `argTypes.appearanceContrast.options` only documents `['default', 'primary', 'alternative']`; Figma's fourth option has no confirmed real equivalent (the type also allows `'solid'`, but that's undocumented too, so neither guess is used).
-- `↳ Icon Tooltip:` (instance-swap) and `Device type?` — no Angular equivalent exists at all (tooltip icon is hardcoded `"help"`; device is a pure layout/breakpoint choice).
-
-Verified via `get_code_connect_map` on two contrasting variant nodes (`82:26304` Enabled — no `isActive`/`isDisabled`; `82:26396` Selected — `[isActive]="true"` present) that the dynamic bindings are live.
+## COL-01 — List items connected from official component recipe (2026-08-17)
+
+- **Figma:** published component set `BuildingBlocks_Items list`, node `1644:67872`, exposes exactly `State=Populated|Empty`. Figma MCP verification targets were Populated `1644:67873` and Empty `1644:67906`.
+- **Angular:** public `BmbListItemsComponent` has defaults for `items=[]`, `addButtonIcon`, `showAddButton` and `dateFormat`. Its colocated `readme.md` documents the canonical `Historial de actividades` example with three dated items and the `add_circle` icon.
+- **Canonical mapping:** Empty emits `items=[]`; Populated emits the documented three-item array verbatim. The remaining scalar values also come from that same official recipe. No row data was reconstructed from decorative Figma children, and no unsupported projection/SLOT was invented.
+- **Publication:** `ListItems.figma.ts` passed official CLI 1.5.3 parse and publish without `--dry-run` or `--force`. Figma MCP returned `hasTemplate: true` and the expected state-specific snippets for both variants.
+- **Backlog effect:** `list-items` leaves `COL-01`. Consolidated state becomes 97 connected classes, 101 verified public mappings and 7 active contracts; only the outer `list-group` container remains in this family.
+
+## TIME-01 — Timestream connected from typed Storybook fixture (2026-08-17)
+
+- **Figma:** `Timestream mobile` (`474:32260`) is a stable published component set. Screenshots confirm its four variants are views of the same timeline experience: Hito `474:32261`, Index `474:32290`, Detail `474:32318` and Filter `474:32348`.
+- **Angular:** public `BmbTimestreamComponent` consumes `ITimelineEvent[]`; `View` and `Scroll Bar` are not public inputs. The official Storybook Default supplies a complete type-correct collection and scalar defaults.
+- **Canonical mapping:** the snippet uses one complete event copied from that Default fixture, preserving `isMicro=false`, `lang=es` and `dateFormat=yyyy-MM-dd`. The sample is deliberately trimmed to one event for legibility, following the existing table/grades fixture precedent. No view-specific fake attribute is emitted.
+- **Publication:** `Timestream.figma.ts` passed official CLI 1.5.3 parse and publish without `--dry-run` or `--force`. Figma MCP returned `hasTemplate: true` and the expected canonical snippet for all four variants.
+- **Backlog effect:** `TIME-01` is resolved. Consolidated state becomes 98 connected classes, 102 verified public mappings and 6 active contracts.
+
+## Calendar — delayed MCP verification resolved (2026-08-17)
+
+- **Figma:** `Calendar standard_Web` component set `2640:89850`; verified variants are Day/Responsive Off `474:94937`, Day/Responsive On `12977:92957`, Week/Off `2642:54263`, Week/On `12977:93489`, Month/Off `2642:56679` and Month/On `12977:94720`.
+- **Verification:** Figma MCP now returns `BmbCalendarComponent`, the migrated `ui-angular/src/lib/components/old/bmb-calendar/bmb-calendar.component.ts` source and `hasTemplate: true` for all six variants. The existing canonical snippet is `<bmb-calendar />`.
+- **Publication:** no republish was attempted; the earlier official CLI upload was already successful and the issue was delayed MCP visibility.
+- **Backlog effect:** Calendar leaves `Pending verification`. Consolidated state becomes 99 connected classes, 103 verified public mappings, 6 active contracts and no pending publication verification.
+
+## ITEM-01 — deprecated compatibility API removed from active contracts (2026-08-17)
+
+- **Angular evidence:** `BmbItemComponent` remains exported for compatibility, but its constructor emits the runtime warning: `This component is not longer supported, please use bmb-item-[variant] or bmb-interactive-item-[variant]`. Its Storybook location is `Internals/Item`.
+- **Replacement evidence:** the maintained public variants (`bmb-item-*` and `bmb-interactive-item-*`) are the APIs already used by the verified `BB_5_1_1` adapter and Action menu composition.
+- **Decision:** classify the legacy `item` export as `Blocked / out of scope`, not `Contract required`. Publishing the same Figma item family against both the supported variants and the deprecated wrapper would create ambiguous code guidance.
+- **Backlog effect:** active contracts decrease from 6 to 5; blocked/out-of-scope increases from 12 to 13. Public mapping count remains 103.
+
+## CHAT-01 — legacy chat-bubble removed from active contracts (2026-08-17)
+
+- **Angular evidence:** Storybook publishes `BmbChatBubblesComponent` under `Components/Containers/AI Chat Bubble/AI Chat bubble (deprecated)`. Its maintained replacement, `BmbAiChatBubbleComponent`, is a separate public export with a current message contract.
+- **Figma evidence:** stable `AI Chat bubble` set `528:59470` is already connected and MCP-verified against `BmbAiChatBubbleComponent`; reusing it for the deprecated export would create two competing Angular recommendations for one design component.
+- **Remaining contract:** `BmbHomeCardChatComponent` has a strong target in `AI Chat Card` (`9268:46409`), but its required `messagesHistory: IBmbChatMessage[]` still needs `time: Date`. The 1.6.4-b source and Storybook expose only inline `new Date()` examples, not an importable factory/fixture usable from Angular template syntax.
+- **Decision:** move only legacy `chat-bubble` to `Blocked / out of scope`; retain `home-card-chat` as the single `CHAT-01` contract.
+- **Backlog effect:** active contracts decrease from 5 to 4; blocked/out-of-scope increases from 13 to 14. Public mapping count remains 103.
+
+## COL-01 — outer List group Phase 0 contract locked (2026-08-17)
+
+- **Angular truth:** `BmbListGroupComponent` renders `<ul><ng-content></ng-content></ul>`. Its persistent public surface is `borderType`, `isMultipleSelection`, `isRowView`, `showControls` and `listGroupId`; spacing/radius defaults are `m`. Storybook's canonical example projects three `BmbListGroupItemComponent` children.
+- **Figma truth:** `List group` set `82:26226` contains 72 row variants and is already connected to `BmbListGroupItemComponent`. The exact library search returns no separate outer container. Read-only inspection confirmed the family lives in section `82:27546`, frame `82:26224`, on page `5:67` and already follows the library's token/component conventions.
+- **Locked Figma contract:** create one sibling component named `List group container`, reusing instances of `82:26226`. Expose three instance-swap slots (`Item 1`, `Item 2`, `Item 3`), visibility booleans for items 2/3, `Border type=Rounded|Flush`, plus booleans `Multiple selection`, `Row view` and `Show controls`. Do not create variables, BB components or reconstructed rows.
+- **Locked Code Connect contract:** a parserless parent resolves the three connected row instances with `executeTemplate()`, preserves order and wraps them in `<bmb-list-group>`. Map only the persistent public booleans/variant; use Storybook-neutral `listGroupId="list-group-1"` and default spacing/radius.
+- **Status:** Phase 0 is complete and implementation-ready. No Figma mutation was performed in this pass.
+
+## NAV-01 — title-content reclassified as internal composition (2026-08-17)
+
+- **Storybook evidence:** `BmbTitleContentComponent` is documented under `Internals/Title content template`, not as a standalone product component.
+- **Code evidence:** direct consumers include Grades, Evaluation rubric, Modal, Native modal, Home card header, Inner header, Chevron title selector and External link. It provides the shared title/subtitle/icon/breadcrumb template inside those parents.
+- **Figma evidence:** exact library search finds the public Breadcrumb family and an internal `BB_5_3_4`, but no standalone `Title content` main component. `Simple header` remains structurally different.
+- **Decision:** move `title-content` from `Contract required` to `Parent/child composition`. A new Figma main component would expose an implementation detail and duplicate parent-level guidance.
+- **Backlog effect:** active contracts decrease from 4 to 3; parent/child composition increases from 13 to 14. Public mapping count remains 103.
+
+## PROFILE-01 — MiTec product evidence disambiguates Profile card (2026-08-17)
+
+- **Product evidence:** read-only inspection of MiTec `Jf8Nd71tihhPZdv9xm6PnN`, page `650:11574`, found repeated `Profile card` instances (for example `6465:49812`, `10231:150096`, `9379:95293`) composed with `User Summary` and the actions `Mi Perfil` / `Cambiar de perfil`.
+- **Bamboo evidence:** exact library search returns the published `Profile card` family plus `ORG_Component_MiPerfil*`; the exact `User profile` search returns no main component with the onboarding/header/button structure required by `BmbUserProfileComponent`.
+- **Angular evidence:** `BmbUserProfileComponent` is documented under `Dev tools/User profile` and requires `{ id, fullName, profilePicture }`. Its header, alternate-account link and continue button distinguish it from the already-connected `BmbProfileComponent`/`Profile card` surface.
+- **Decision:** do not map `user-profile` to `Profile card`. Keep `PROFILE-01` active until Design publishes the dedicated target or Engineering explicitly marks the export as legacy. Storybook already supplies a type-correct neutral `userInfo`, so the remaining gap is target identity, not fixture syntax.
+
+## Figma-first — Botones section completed (2026-08-17)
+
+- **Selection:** Bamboo section `14050:2707`. Initial MCP suggestions contained 23 unique unmapped components; correlation with the file's 475 published assets identified 10 local published targets and 13 external/unpublished dependencies.
+- **Published additional targets:** `BB_1_6` (`16:929`, 148 instances), `BB_1_6_4` (`959:54437`, 6 instances) and `Card Button Small` (`1034:89621`, 0 instances) all have a direct visual and API match to the already-public `BmbCardButtonComponent`. They are recorded as additional Figma targets for the same public API, not new Angular classes.
+- **`BB_1_6` contract:** all `Type` values are exhaustive. Add Content maps to the public non-interactive recipe; Full Interactive maps title/body/disabled/menu and uses the exact Storybook menu fixture when active; Badge uses the exact Storybook image/badge fixture only when its Figma boolean is enabled. `State=Hover|Select`, `Color variant`, and the non-semantic title-icon toggle remain visual-only.
+- **Small-card contracts:** both small targets map editable `Title` to `smallTitle` and use the exact Storybook `smallIcon`/TecGPT `botImage` recipe. Their hover/selected and Mobile presentation state have no Angular input and are omitted.
+- **Verification:** all three files passed official CLI 1.5.3 parse and publish without `--dry-run` or `--force`. Figma MCP returned `hasTemplate: true` for 26 `BB_1_6` variants, three `BB_1_6_4` variants and three `Card Button Small` variants. Section suggestions no longer list those targets.
+- **Internal/helper dispositions:** `IndexLabel` (`6:4830`) and `IndexHeader` (`8:4130`) are library-documentation infrastructure; `BB_6_2` (`151:38706`) is a shared visual indicator used by Badge/Legend/Dot paginator and others; `BB_7_2` (`152:47817`) is the score label inside the connected Grade value family; `BB_1_6_2` (`16:1013`) is icon/image fill infrastructure inside Card button/Profile/Templates; `BB_5_5` (`109:35204`) is an internal row used by the already-connected Search/Dropdown/Dropdown Menu families; `BB_1_9` (`20:3163`) is a static text/icon artifact with no properties, reverse dependency or independent Angular API. None receives a speculative mapping.
+- **Coverage effect:** public mapping targets increase from 103 to 106; total local published templates increase from 107 to 110; global Figma coverage becomes 110/475 = 23.2%. Botones is fully triaged and Containers becomes the next active section.
+
+## Figma-first — Containers batch 1 (2026-08-17)
+
+- **Selection:** first deterministic high-use candidates from Containers (`14050:20207`): `BotIcon_Select` (`423:7684`, 64 instances), `AI Chat bar` (`413:72922`, 55 instances) and `Template_BoxTable` (`62:10544`, 36 instances).
+- **AI Chat bar:** direct additional target for public `BmbChatBarComponent`. Figma exposes Platform, State, three numbered icon toggles, Loading and Scroll bar. Only `Loading` has a verified one-to-one public API correspondence (`isLoading`); Storybook documents that model input and the source implements it directly. Platform is responsive, Attached/Drag and drop/Recording Audio are runtime states, Scroll bar is presentation, and the numbered toggles do not identify a stable semantic Angular input. The published snippet therefore emits only `[isLoading]`.
+- **BotIcon_Select:** `Internal/helper`, not a public component target. Its sole Figma property is transient `State=Selected|Enabled|Hover`; it is a child of AI Chat bar, Selector Tray and other compositions. The nearest code class, `BmbBotIconComponent`, requires only `iconName`, is consumed internally and is not exported by `ui-angular/src/index.ts`. A standalone mapping would falsely turn interaction styling into API guidance.
+- **Template_BoxTable:** `Internal/helper`, not a table API. It is a configurable cell primitive (`Contenido=Text|Component|Icon|Edit actions|Checkbox|User image|Badge|Header...`) consumed by `Template_RowTable` (301 instances). Angular tables render cells from `columns`/`data` and optional templates; mapping one cell to `BmbTablesComponent` or `BmbTableLiteComponent` would create a semantically wrong full-table snippet. The parent table mappings remain the public guidance.
+- **Verification:** `ChatBarContainer.figma.ts` passed official CLI 1.5.3 parse and publish without `--dry-run` or `--force`. Figma MCP returned `hasTemplate: true` for every returned variant, with snippets alternating `[isLoading]="true|false"` as designed.
+- **Coverage effect:** public mapping targets increase from 106 to 107; total mapped published targets increase from 110 to 111; global Figma coverage becomes 111/475 = 23.4%. Three Containers targets now have explicit disposition; the section remains active.
+
+## Figma-first — Containers batch 2 (2026-08-17)
+
+- **Selection:** next local published targets ordered by instance use after the first batch: `Slot` (`12879:134374`, 139 instances), `BB_2_18` (`1486:108383`, 104) and `BB_2_10` (`61:9376`, 63).
+- **Slot:** `Internal/helper`. Its only semantic property is a generic Figma `SLOT`; the two variants are `Default|InnerSlot`, and its visible authoring instruction says “Change me for a component”. Reverse dependencies span unrelated parents (`SlotRow`, `SlotColumn`, `BB_2_8`, Modal, Card button, AI Chat bubble and Template Card Button). There is no single Angular selector or API that this placeholder can truthfully recommend.
+- **BB_2_18:** `Internal/helper`. The set composes the already-connected Badge, Checkbox and Divider inside `Notification card` (`106:31504`), its only published parent. The nearest public Angular API is the parent `BmbNotificationCardComponent`, which consumes structured notification/advertisement collections; it does not export a row component matching this BB. Publishing the parent selector for an individual row would be semantically incorrect.
+- **BB_2_10:** `Internal/helper`. The node contains only carrier/time/battery text and variants `Normal|iPhoneContainer|iPhoneBlank`. It is shared visual status-bar chrome inside already-connected Header mobile, Inner header, Calendar and Login onboarding families. No public standalone Angular export or input contract exists.
+- **Coverage effect:** mapping count remains 111/475. Three additional targets now have an explicit disposition, reducing the untriaged Figma-first queue from 355 to 352 without fabricating coverage.
+
+## Figma-first — Containers batch 3 (2026-08-17)
+
+- **Selection:** `BB_2_11_5` (`62:9606`, 62 instances), `BB_2_11` (`62:9636`, 33) and `BB_2_12_3` (`474:96299`, 33).
+- **BB_2_11_5:** `Internal/helper`. Its editable date/title/subtitle and “Ver más” control are a temporal group header reused by Hito list, HitoListMicro, Timestream card/mobile and guided-tour compositions. There is no standalone Angular selector; the connected parent APIs own their event collections.
+- **BB_2_11:** `Internal/helper`. It composes icon, badge and description building blocks and is used exclusively by the already-connected Hito card (`62:9757`). Mapping this inner content node again to `BmbHitoCardComponent` would recommend a whole card for a partial layer.
+- **BB_2_12_3:** `Internal/helper`. This action/title header is consumed by Gcard_Header, AI Chat Card, Profile card, Timestream card and IDDigital. Its product-specific variants (`Mis acciones`, `Horario`, `CONECTA`, `TECbot`) do not define one Angular component API. The public parents remain authoritative.
+- **Coverage effect:** mappings remain 111/475; the untriaged queue decreases from 352 to 349.
+
+## Figma-first — Containers batch 4 (2026-08-17)
+
+- **Selection:** `Generic card` (`99:28392`, 32 instances), `BB_2_8` (`99:31713`, 25) and `BB_8_4_2` (`474:94211`, 25).
+- **Generic card:** direct match to exported `BmbCardComponent`. Figma exposes a true `SLOT`, matching Angular content projection. The exhaustive Style mapping preserves `Primary → primary` and `Secondary → secondary`; layout/composite styles with no public type use the Storybook default `normal`. Only the eight variants explicitly named Inner Slot interpolate `getSlot('Slot')`; the other eight emit an empty card host.
+- **SLOT QA:** the first generic interpolation exposed Figma's `Missing snippet for undefined` comment on non-slot variants. The final template branches exhaustively by Style before interpolating content. MCP verification returned 16/16 `hasTemplate: true`, correct source, and no undefined/missing-snippet output.
+- **BB_2_8:** `Internal/helper`. It is a 1–12-column slot grid shared by Generic card, Modal, Media card, Notification card, templates and action menus. Those layout variants have no standalone public selector; content is already represented through the parent SLOT where applicable.
+- **BB_8_4_2:** `Internal/helper`. Day/month plus Event/Regular/Start and Active/Inactive are internal date-marker presentation inside Calendar standard Mobile and related calendar/timestream building blocks. The connected Calendar/Timestream parents own the consumable APIs.
+- **Verification:** `GenericCard.figma.ts` passed CLI 1.5.3 parse and publish without `--dry-run` or `--force`; Figma MCP confirmed `hasTemplate: true` across 16 variants.
+- **Coverage effect:** public targets increase from 107 to 108; mapped published targets increase from 111 to 112; global coverage becomes 112/475 = 23.6%. The untriaged queue decreases from 349 to 346.
+
+## Figma-first — Containers UI reconciliation and completion rule correction (2026-08-17)
+
+- **Observed discrepancy:** Figma's Code Connect panel still reports a large unresolved set for Containers after four local batches. A fresh `get_code_connect_suggestions` call on section `14050:20207` returns 114 unique unmapped targets.
+- **Ownership split:** correlation with the published Bamboo library graph identifies 77 local published targets and 37 external/non-owned dependencies. Of the 77 local targets, 13 had already received a semantic diagnosis in this repository but still remain technically unconnected; 64 have not yet been triaged.
+- **Root cause:** the prior workflow treated `Internal/helper`, `External foundation` and `Duplicate/deprecated` as terminal local dispositions. Those labels are useful analysis, but they do not change Code Connect status in Figma and therefore cannot close a section.
+- **Corrected acceptance rule:** every local target surfaced in a section must end as either (a) `Connected`, with a canonical mapping verified by MCP, or (b) `Skipped` explicitly in Figma, with evidence that it is visual infrastructure, a prototype/deprecated duplicate or has no consumable Angular API. `Internal/helper` is now an intermediate diagnostic that must lead to one of those two outcomes.
+- **Safety rule:** never map a partial BB, slot placeholder, cell or visual chrome to an unrelated/full parent component merely to improve the percentage. Stable secondary targets may map to an existing public Angular API only when their own semantics and properties produce a truthful snippet.
+- **Tooling constraint:** the exposed Code Connect MCP and CLI support creating/publishing mappings, but no programmable `Skipped` operation was found in their public workflows. Until Figma exposes that operation, skip candidates remain an explicit UI-remediation queue rather than being counted as complete.
+
+## Figma-first — Containers batch 5 / Hito card internals (2026-08-17)
+
+- **Selection:** the next three unresolved nodes visible in the Hito-card family: `BB_2_11_2` (`62:9624`), `BB_2_11_3` (`62:9618`) and `BB_2_11_4` (`62:9612`). Their Figma metadata and screenshots were contrasted with `BmbHitoCardComponent`, `BmbBadgeComponent` and the official Hito-card/Badge Storybook stories.
+- **BB_2_11_2:** accepted as a stable secondary `nestable` adapter for public `BmbBadgeComponent`. All six `Status` values are exhaustive and map to the same semantics implemented by `BmbHitoCardComponent.appearanceBadge()`: Pending → normal/Pendiente, Started → strong/Iniciado, Revision → warning/En revisión, Finished → success/Finalizado, Canceled → error/Cancelado and Lorem Ipsum → strong/Lorem Ipsum. The snippet sets `[container]="false"`, matching the actual Hito-card template.
+- **BB_2_11_3:** `Skip required in UI`. It contains only the editable short-description and duration text areas rendered by `BmbHitoCardComponent`; no independent public selector exists. Mapping the partial layer to the whole Hito card would generate a structurally false snippet.
+- **BB_2_11_4:** `Skip required in UI`. Its Neutral/Active variants are only the timeline bullet presentation controlled by the parent Hito-card inputs. Mapping the dot to `BmbBadgeComponent` would incorrectly expose a visual implementation detail as a standalone component.
+- **Validation:** `HitoStatusBadge.figma.ts` passed official CLI 1.5.3 `parse --verbose` and published without `--dry-run` or `--force`. MCP returned `hasTemplate: true`, correct `ui-angular` source and canonical snippets for all six variants; the target no longer appears in Containers suggestions.
+- **Coverage effect:** mapped published targets increase from 112 to 113; internal adapters from 4 to 5; global Figma coverage becomes 113/475 = 23.8%. Containers now has 76 local unmapped targets: 15 diagnosed `Skip required in UI` and 61 untriaged.
+
+## Autonomous watchdog and first verified UI skip (2026-08-17)
+
+- **Operating mode:** an active Goal owns the continuous Figma-first run. The existing `bamboo-code-connect-contract-monitor` automation now runs every 30 minutes only as a watchdog: it does not start a second writer while the Goal or the local lock is active.
+- **Concurrency guard:** `/Users/csolares/Documents/5 - CODEX/tec.design/Codebase/.codex-locks/bamboo-code-connect.lock` is intentionally outside Git. A lock may be recovered only when it is older than 120 minutes and no Goal is active.
+- **Smoke-test target:** `BB_2_11_3` (`62:9618`), previously `not_connected`. The target is the editable description/duration block inside Hito card; repository, public exports and Storybook confirm there is no independent Angular selector or component API for it.
+- **Action:** opened the exact component in Figma Code Connect and used `Skip connection`; no Figma node, property or Angular API was modified.
+- **Verification:** the UI changed to `Skipped` and exposed “This design component has been skipped, but you can connect it now.” A subsequent MCP call for `62:9618` returned “All component instances in this selection are already connected to code via Code Connect. No additional mappings needed.” A section-level refresh dropped Containers from 113 to 112 suggestions, with `BB_2_11_3` absent.
+- **Queue effect:** Containers now has 75 local unresolved targets plus 37 external dependencies. Fourteen local targets are already diagnosed for UI skip and 61 remain untriaged. Mapping coverage remains 113/475; resolved UI dispositions increase by one.
+
+## Figma-first — Containers autonomous skip batch 1 / pre-action evidence (2026-08-17)
+
+- **State before mutation:** fresh MCP suggestions report `BB_2_11_4` (`62:9612`), `BB_2_11_5` (`62:9606`) and `BB_6_2` (`151:38706`) as not connected. None has a local Code Connect template.
+- **`BB_2_11_4`:** published component set with only `Property 1=Neutral|Active` and a nested `BB_6_2`. Angular exposes those visuals exclusively through `BmbHitoCardComponent.enable_bullet` and `is_active`; Storybook documents them as “Shows a bullet” and “Change the color of the bullet”. There is no independent selector/export for the dot.
+- **`BB_2_11_5`:** published date/group header with `Title`, `Subtitle`, `Ver más` and a visibility boolean. In code, the temporal heading and event counts are generated inside `BmbHitoListComponent` from `events`, `orderedMonths` and `selectedDate`; Storybook documents the whole list data contract, not a header component. There is no independent selector/export.
+- **`BB_6_2`:** published shared visual indicator with only `State=Active|Inactive (Small)|Inactive (Large)` and no descendants. It is reused inside Badge, Legend, paginator dots and other parents; repository/public-export search confirms no independent Angular API. Mapping it to Badge, Hito card or paginator would emit a structurally false component.
+- **Decision:** all three are eligible for Figma `Skipped`. The operation will change only Code Connect disposition, not design nodes or Angular APIs. Each target must show `Skipped` and disappear from its exact MCP suggestions before it is recorded as resolved.
+
+### Post-action verification
+
+- **UI result:** Figma Code Connect displayed `Skipped` for `BB_2_11_4`, `BB_2_11_5` and `BB_6_2`, including the reversible “Connect now” action. No design node, property or Angular source was modified.
+- **Exact MCP result:** `get_code_connect_suggestions` for `62:9612`, `62:9606` and `151:38706` returned “All component instances in this selection are already connected to code via Code Connect. No additional mappings needed.”
+- **Section reconciliation:** Containers dropped from 112 to 109 unresolved targets and from 75 to 72 local targets; its 37 external dependencies are unchanged. Botones dropped from 20 to 19 unresolved targets and from 7 to 6 local targets; its 13 external dependencies are unchanged because `BB_6_2` was shared by both sections.
+- **Coverage accounting:** Code Connect mappings remain 113/475. Verified UI skips increase from 1 to 4 and the Figma-first disposition queue decreases from 342 to 339; skips are not counted as mappings.
+
+## Figma-first — Containers autonomous skip batch 2 / pre-action evidence (2026-08-17)
+
+- **State before mutation:** exact MCP suggestions still report `BotIcon_Select` (`423:7684`), `Template_BoxTable` (`62:10544`) and `Slot` (`12879:134374`) as not connected. The section baseline is 109 unresolved targets: 72 local and 37 external.
+- **`BotIcon_Select`:** the published set exposes only transient presentation state `Selected|Enabled|Hover` and nests `BotIcon_Round`. The nearest class, legacy `BmbBotIconComponent`, accepts `iconName`, is not exported by `ui-angular/src/index.ts` and cannot represent those states as a public API. Its containing `AI Chat bar` already has a verified mapping.
+- **`Template_BoxTable`:** the published set is a polymorphic table-cell template with text fields, one instance swap and `Contenido` variants such as text, component, icon, edit actions, checkbox, user image, badge and header. Public `BmbTablesComponent`/`BmbTableLiteComponent` consume complete rows and data; mapping this cell to either full table would emit a structurally false snippet.
+- **`Slot`:** the published helper exposes a generic Figma `SLOT`, `Default|InnerSlot` and the authoring instruction “Change me for a component”. It is shared by unrelated cards, modal, grids and AI compositions and has no single Angular selector or consumable API.
+- **Decision:** the three targets are visual/composition infrastructure with sufficient evidence for Figma `Skipped`. Each must display `Skipped` in UI and its own node ID must disappear from the exact MCP suggestion list before it is counted as resolved; independently published descendants remain separate queue items.
+
+### Post-action verification
+
+- **UI result:** Figma Code Connect displayed `Skipped` for `BotIcon_Select`, `Template_BoxTable` and `Slot`, with the reversible `Connect now` state. No design layer, public Angular API or mapping file changed.
+- **Exact MCP result:** the target IDs `423:7684`, `62:10544` and `12879:134374` are absent from their own refreshed suggestion lists. `Slot` has no remaining suggestion. The first two selections still surface independently published descendants (`BotIcon_Round`, `BotIcon_Transparent`, checkbox/icon/slot helpers); those descendants remain unresolved and were not silently treated as part of this skip.
+- **Section reconciliation:** Containers dropped from 109 to 106 unresolved targets and from 72 to 69 local targets; 37 external dependencies are unchanged. Because `Slot` is shared, Imágenes is now 11/7/4, Inputs 39/23/16, Menús 85/35/50, Status indicators 64/46/18 and Visual labels 33/28/5 (`total/local/external`). Botones remains 19/6/13.
+- **Coverage accounting:** mappings remain 113/475. Verified UI skips increase from 4 to 7 and the Figma-first disposition queue decreases from 339 to 336. Containers retains eight diagnosed skip candidates plus 61 untriaged local targets.
+
+## Storybook-first resolution and MCP decision (2026-08-17)
+
+- **Operating model:** keep Figma-first discovery because Figma defines the published-target queue, but resolve each candidate Storybook-first. The durable evidence chain is `Figma node -> Storybook story/fixture -> Angular public export/API -> Code Connect disposition`.
+- **Verified Storybook surface:** the Angular project uses Storybook `10.5.3`; `ui-angular/.storybook/main.ts` discovers `../src/lib/**/*.@(mdx|stories.@(js|jsx|ts|tsx))`. The published Chromatic catalog at `https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/index.json` responded HTTP 200 on 2026-08-17.
+- **MCP decision:** do not add `@storybook/addon-mcp` to this branch. The official Storybook MCP documentation currently marks manifests/MCP as preview and React-only, so its documentation toolset cannot provide authoritative Angular component/prop discovery for Bamboo. The addon can be reconsidered only after official Angular manifest support and a successful `list-all-documentation`/`get-documentation` smoke test.
+- **Practical workflow:** enumerate from Figma MCP, locate the exact Storybook entry and source, use `args`/`render`/MDX plus the rendered story for canonical or manually assembled recipes, then validate all emitted selectors/attributes/types against `ui-angular/src/index.ts` and component source. Storybook fixtures may supply neutral required values only when copied and recorded; they never authorize invented API.
+- **Publication boundary:** Storybook remains evidence, not a Code Connect publisher. Parserless `.figma.ts`, official CLI parse/publish and Figma MCP `hasTemplate:true` remain the required connection path.
+
+## Buttons closure — six local helpers / pre-action evidence (2026-08-17)
+
+- **Live state:** a fresh suggestion query on Buttons (`14050:2707`) returns 19 unresolved targets: the six local Bamboo helpers below and 13 external icon/dependency targets. All six local node IDs remain `not connected` before this action.
+- **`IndexLabel` (`6:4830`):** Figma exposes no component properties and only a static `Label` text descendant. It is documentation-index chrome, not a public Angular component or Storybook surface.
+- **`IndexHeader` (`8:4130`):** Figma exposes a documentation `Title` plus nested Divider and already-public Container button. No independent Angular selector/export exists; connecting it would duplicate its children and turn file-navigation chrome into product API.
+- **`BB_1_9` (`20:3163`):** static `Button` text plus an `Icon_base`, with no properties, reverse product contract or public Angular export. It is not a configurable button API.
+- **`BB_7_2` (`152:47817`):** a single editable score label used inside the connected Grade value family. Angular exposes the score through the public parent, not through an independent selector.
+- **`BB_1_6_2` (`16:1013`):** visual Icon/Image/No-fill and size carrier used by Card button and other connected parents. Its content is implementation fill infrastructure and has no standalone public Angular/Storybook API.
+- **`BB_5_5` (`109:35204`):** internal list/input row with leading/trailing icon visibility and visual `OnSurface|Enable|Selected` state. Public Search/Dropdown parents own the consumable data and interaction APIs; no independent selector/export exists.
+- **Decision:** all six qualify for reversible Figma `Skipped`. Each must display `Skipped` in Code Connect and disappear from its exact suggestion query before being counted. The 13 external targets remain `Blocked/external owner`; this operation does not modify or silently resolve them.
+
+## HomeCard_Mobile — secondary public target / pre-publication evidence (2026-08-17)
+
+- **Figma:** `HomeCard_Mobile` (`523:213638`) is a stable published component with a `Gcard_Header` child containing editable title text and a connected `Generic card` body. Its identity is explicitly mobile; it does not expose an independent public property at the root.
+- **Storybook:** `Components/Containers/Home card` documents `BmbHomeCardComponent`, `componentTitle`, and the public `isMobile` input. The same story is the canonical usage surface for the already-connected desktop Home card.
+- **Angular:** `BmbHomeCardComponent` is exported by `ui-angular/src/index.ts`; selector `bmb-home-card`; `componentTitle` is the non-deprecated title API and `isMobile` is a public boolean input.
+- **Decision:** publish `HomeCard_Mobile` as a secondary target of the same public component, reading its visible nested title and emitting `[isMobile]="true"`. Do not duplicate internal Gcard/slot children or invent projected content.
+
+## Search Card family sanitation / pre-action evidence (2026-08-17)
+
+- **Public parent:** `Search Card` (`9038:61107`) is already connected to `BmbSearchCardComponent`, but its current snippet is an empty `<bmb-search-card />` facade. Figma exposes nine visual variants; `Empty (loading)` has a direct public correspondence to `isLoading`, and the nested `BB_2_12_4` supplies the visible component title.
+- **Storybook/API boundary:** Storybook `Components/Containers/Search card` documents `componentTitle`, `isLoading`, `inputPlaceholder` and `results`, but its canonical `results` value is `[]`. Angular confirms the same API. Therefore the parent mapping may add title/loading semantics but must not invent result records for the three Results variants or an `isMobile` input that the component does not expose.
+- **`Search Section` (`9039:46220`):** published internal grouping of Services/Persons and repeated Search Card Item children. Its data is computed inside `BmbSearchCardComponent` from `results`; no independently exported Angular selector represents a section.
+- **`Search Card Item` (`9038:60994`):** has configurable App/Person, size, transient state and Bookmark visibility, but `BmbSearchCardItemComponent` is an internal implementation class and is not exported by `ui-angular/src/index.ts`. Its public data contract is `IBmbSearchCardItemResult[]` on the parent.
+- **Decision:** update the parent mapping to emit `componentTitle` and exhaustive `isLoading`; keep result collections and mobile presentation omitted. Mark Search Section and Search Card Item `Skipped` only after the parent update is published and verified, because their behavior remains represented by the public parent rather than standalone APIs.
+
+### Sequence completion and verification
+
+- **Buttons helpers:** Figma UI now marks `IndexLabel` (`6:4830`), `IndexHeader` (`8:4130`), `BB_1_9` (`20:3163`), `BB_7_2` (`152:47817`), `BB_1_6_2` (`16:1013`) and `BB_5_5` (`109:35204`) as `Skipped`. Exact MCP queries no longer return those target IDs; independently published descendants remain separate when applicable.
+- **Buttons closure:** section `14050:2707` now returns 13 unresolved dependencies, all external/non-published in the Bamboo Components graph. Local unresolved count is zero, so Botones is closed without false mappings.
+- **HomeCard_Mobile:** `HomeCardMobile.figma.ts` passed Code Connect CLI 1.5.3 validation and was published without `--dry-run` or `--force`. MCP returns `hasTemplate: true`, source `ui-angular/src/lib/components/old/bmb-home-card/bmb-home-card.component.ts` and snippet `<bmb-home-card componentTitle="Title Home" [isMobile]="true" />`.
+- **Search Card parent:** the updated `SearchCard.figma.ts` passed the same parse/publish path. MCP returns `hasTemplate: true` across all nine variants; `Empty (loading)` emits `[isLoading]="true"`, the remaining variants emit `false`, and the visible title resolves to `Encuentra servicios o personas`.
+- **Search Card children:** `Search Card Item` (`9038:60994`) and `Search Section` (`9039:46220`) are verified `Skipped`. Their exact suggestion queries omit the target IDs and retain only independently published icon/layout dependencies.
+- **Containers reconciliation:** a final section query correlated with the published-file graph returns 87 unresolved targets: 50 local Bamboo targets and 37 external/non-owned dependencies. This sequence added one mapping target and eight verified skips; it did not change any public Angular API or design node.
+
+## Global `BB_*` disposition rule (2026-08-17)
+
+- **Product clarification:** Bamboo confirms that the `BB_` prefix means Figma Building Block. These targets are authoring/implementation pieces, not independently consumable Angular APIs.
+- **Rule:** every unresolved `BB_*` and every icon-only target is outside the connection scope. Do not create templates, adapters or speculative parent mappings for them.
+- **Parent responsibility:** the public parent remains connected and owns the generated Angular recipe. Non-BB descendants and external dependencies retain independent dispositions.
+- **Legacy boundary:** five BB adapters were already published before this clarification. They are not deleted or overwritten in this batch; removal requires a separate explicit audit because unpublishing would alter existing Code Connect behavior.
+- **Operational owner:** Carlos will mark BB/icon targets `Skipped` directly in Figma. The autonomous batch records the exclusion and immediately advances to the next public, non-BB, non-icon component; UI skip verification is no longer a gating condition for those two categories.
+
+## Containers — public-target pass after BB/icon exclusion (2026-08-17)
+
+- **Live selection:** immediately before publication, Containers (`14050:20207`) returned 64 unresolved suggestions: 29 published local targets and 35 external/non-owned dependencies. The local set was reviewed after excluding `BB_*` and icon-only targets as directed.
+- **Figma target:** `List item with actions` (`1643:64262`) is a stable four-variant component whose real set name and properties resolve to `State=Selected|Disabled|Enabled|Hover` plus editable `Text`.
+- **Storybook evidence:** `BmbListGroupItemComponent` documents the neutral required `id='list-group-item-1'`, `personalizedTemplate=false`, and public `headerText`, `isDisabled` and `isActive` inputs.
+- **Angular evidence:** `BmbListGroupItemComponent` is exported publicly; selector `bmb-list-group-item`; `id` is required and the three mapped fields are public inputs. No hover input exists.
+- **Decision:** publish this Figma set as a secondary `nestable` target of the same public list-item API. Map visible text, Disabled and Selected; emit no attribute for transient Hover beyond the false defaults.
+- **Verification:** `ListItemWithActions.figma.ts` passed Code Connect CLI 1.5.3 `parse --verbose` and published without `--dry-run` or `--force`. Figma MCP returned `hasTemplate: true`, Angular label and the expected `ui-angular` source for all four variants. Disabled emits `isDisabled=true`; Selected emits `isActive=true`; Enabled/Hover emit both false.
+- **Post-publication queue:** Containers now returns 63 suggestions: 28 local and 35 external. Remaining local non-BB/non-icon candidates are layout/prototype helpers (`Slot 1`, `SlotRow`, `SlotColumn`, `Expanded panel`, `Gcard_Header`, `Vertical layout container`, animation helpers) with no independent public selector, plus `AI Chat Card`, which remains `CHAT-01` because a useful snippet needs a public type-correct message fixture/factory for `IBmbChatMessage.time: Date`. No empty facade or fabricated payload is published.
+
+## CHAT-01 — resolved with a type-safe empty collection (2026-08-17)
+
+- **Figma evidence:** `AI Chat Card` (`9268:46409`) is a stable published two-variant set. Its only root property is `Property 1=Web|Mobile`; the `Mi día de hoy` title is nested under `BB_2_12_3` and is not exposed as a root semantic property. The visible `AI Chat bubble` is a child composition, not structured message data.
+- **Angular evidence:** exported `BmbHomeCardChatComponent`, selector `bmb-home-card-chat`, requires `messagesHistory: IBmbChatMessage[]`; `componentTitle` and `isMobile` are public inputs. An empty array is type-correct and the implementation handles it through an ordinary `@for` loop.
+- **Storybook evidence:** the canonical story proves the component API and documents message objects with `time: new Date()`. Those objects cannot be expressed safely inline in an Angular template, so the mapping does not copy or fabricate them.
+- **Decision:** publish a useful container-level recipe with the documented Storybook title `Asistente TECbot`, exhaustive Web/Mobile mapping and `[messagesHistory]="[]"`. This is not an empty host: it renders the public card and chat bar while keeping the unexposed title and missing structured conversation explicit as coverage debt.
+- **Verification:** `HomeCardChat.figma.ts` passed CLI 1.5.3 parse and publish without `--dry-run` or `--force`. MCP returned `hasTemplate: true` for Web (`isMobile=false`) and Mobile (`isMobile=true`), with the expected Angular label and `ui-angular` source.
+- **Queue effect:** `CHAT-01` leaves the active contract backlog. Containers drops to 62 suggestions: 27 local and 35 external. The 27 remaining local rows are BB/building-block or internal slot/prototype/layout helpers; no public direct target remains in this section snapshot.
+
+## Images — Image Carrousel composition and stale-node reconciliation (2026-08-17)
+
+- **Discovery:** the Images section (`14050:20466`) suggested `Image Carrousel` with main node `9034:46087`, but Figma MCP rejects that ID as invalid/non-persistent. Resolving the library component key through the Figma API identifies the current published set `9258:67822` in the same Bamboo file.
+- **Figma contract:** the current set exposes exhaustive `Slide=Default|2|3` and contains three `Image` children. Each child already has Code Connect id `bmb-image`; the set has no fake SLOT or media URL property.
+- **Angular/Storybook contract:** public `BmbCarouselComponent` projects arbitrary children carrying `#carouselItem` and exposes `selectedIndex` as a model input. Storybook's canonical example confirms three projected items.
+- **Decision:** publish a secondary `BmbCarouselComponent` target for the current set. Map Slide to zero-based selected index and resolve all three child images with `findConnectedInstances(...).executeTemplate()`, wrapping each result in a real `#carouselItem` container.
+- **Verification:** `ImageCarousel.figma.ts` passed CLI 1.5.3 parse/publish. MCP returned `hasTemplate: true` for all three current variants, correct `ui-angular` source, selected indexes `0|1|2`, and three nested `bmb-image` snippets without missing/undefined content.
+- **Stale reference:** section suggestions still contain old `9034:46087` through instance `10017:128824`. Its children resolve, but the parent cannot receive a template because its main node no longer exists. Design must replace that instance with current set `9258:67822` or mark the obsolete row `Skipped`; mapping the valid successor does not mutate the stale instance.
+- **Inputs follow-up:** the next section has the same pattern for `Phone number` (`109:37835`): invalid historical node while stable set `109:37834` is already connected. No duplicate/speculative mapping is created.
+
+## Menus and Status indicators — Sidebar and Loading screen (2026-08-17)
+
+- **Figma inventory:** Menus exposed `Sidebar mobile` (`299:51512`) as a stable public set with `Type=Main|Child`. Status indicators exposed the semantic `Loading screen` parent (`152:38092`), whose rendered text is `Cargando...`. This supersedes the earlier search that had found only the `Loader_Icon` primitive.
+- **Storybook evidence:** `Components/Menus/Sidebar` documents `BmbSidebarComponent`, `componentTitle` and the two-group `SidebarElement[][]` fixture with five primary and three secondary links. `Components/Status indicators/Loading screen` documents `BmbLoaderComponent` and the default title `Cargando...`.
+- **Angular evidence:** both components are exported by `ui-angular/src/index.ts`. `BmbSidebarComponent` exposes `elements` and `componentTitle`; it has no public input for Figma's expanded/main/child presentation states. `BmbLoaderComponent` exposes `componentTitle`; the fixed normal loading visual needs no invented size or animation input.
+- **Decision:** replace the empty primary Sidebar facade with the documented navigation recipe, publish the same canonical API for the stable mobile set, and connect the semantic Loading screen parent. Keep `Expanded`, `Main|Child`, spinner animation and icon size as visual-only details.
+- **Scope check:** `Breadcrumb_topBar`, `LocalNavigation` and `PageLink_2` resolve through Code Connect context to actual sets `BB_5_3_4`, `BB_5_3_3` and `BB_5_3_2`; `Sidebar mobile - pull` is a 32px icon-only target. They remain outside scope under the confirmed BB/icon rule.
+- **Verification:** `Sidebar.figma.ts`, `SidebarMobile.figma.ts` and `LoadingScreen.figma.ts` passed CLI 1.5.3 parse and publish without `--dry-run` or `--force`. MCP returned `hasTemplate: true`, label Angular and the expected `ui-angular` source for all three targets; their own IDs disappeared from suggestions, leaving only independently published BB/icon descendants.
+- **Queue effect:** the refreshed published-graph reconciliation reports Menus at 66 unresolved targets (18 local, 48 external) and Status indicators at 44 (29 local, 15 external). `bmb-loader` leaves Blocked/out-of-scope; the Angular inventory now has 101 connected classes.
+
+## Status indicators — complete public Skeleton API (2026-08-17)
+
+- **Figma evidence:** the published graph exposes `Skeleton_Header` (`564:149084`), `Skeleton_Stray` (`564:149088`), `Skeleton_Generic1` (`564:149094`), `Skeleton_Generic2` (`564:149101`), `Skeleton_Input` (`5865:90109`) and the target surfaced by the section as `Skeleton_Generic3` (`578:101654`). Screenshots match the six public structures. The last set currently reports the internal name `Skeleton_Container2` and two animation frames; both display the generic3 header/body container.
+- **Storybook/API evidence:** `Dev tools/Skeleton` documents exported `BmbSkeletonComponent`, selector `bmb-skeleton`, and the exhaustive public union `header|input|stray|generic1|generic2|generic3`. Each Figma target therefore has a direct, type-safe `type` value with no invented data.
+- **Decision:** publish one parserless secondary target per public type. Do not connect `Skeleton_Container`, `Skeleton_Headline`, `Skeleton_Circle` or `Skeleton_Item` as standalone Angular components because the source implements them as internal DOM sections with no corresponding input, selector or export.
+- **Verification:** all six templates passed CLI 1.5.3 parse/publish without `--dry-run` or `--force`. MCP returned `hasTemplate: true`, Angular label and the exact `ui-angular` source; the five targets instantiated in the Status section disappeared from its suggestions. `Skeleton_Input` was verified directly from the published graph despite having no live instance in that section selection.
+- **Queue effect:** Status indicators decreases from 44 to 39 unresolved targets (24 local, 15 external). `bmb-skeleton` leaves Blocked/out-of-scope and the Angular inventory reaches 102 connected classes.

@@ -1,39 +1,99 @@
-# Code Connect contract backlog
+# Bamboo Code Connect — backlog consolidado
 
-Last reconciled: 2026-08-27
+Última conciliación: **2026-08-17**
 
-This backlog turns the 10 public APIs marked `Contract required` into small, testable changes. It does not ask Design to encode whole TypeScript objects in a Figma text property and it does not authorize inventing records in templates.
+Este es el **único backlog activo**. El estado general y las reglas de ejecución están en [README.md](README.md); los mappings verificados están en [INVENTORY.md](INVENTORY.md). Los documentos `REMAINING_COMPONENTS.md`, `CONTRACT_IMPLEMENTATION_BACKLOG.md`, `CONTRACT_STATE.md` y `DOCUMENTATION_WORKLIST.md` son snapshots históricos y no deben dirigir nuevos ciclos.
 
-## Contract patterns
+## Resumen
 
-| Pattern | Minimum Figma change | Code Connect result |
+| Disposición | Cantidad | Acción |
+| --- | ---: | --- |
+| Candidate | 0 | No crear fachadas para aumentar cobertura. |
+| Contract required | 2 | Resolver el contrato mínimo de una familia por ciclo. |
+| Parent/child composition | 14 | Mantener cubierto por el padre salvo que Design publique un API independiente. |
+| Blocked / out of scope | 12 | No reintentar sin un cambio real de nodo, API o alcance. |
+
+## Contratos activos (2 exports)
+
+Orden recomendado: `COL-01`, `PROFILE-01`. `COL-01` ya tiene Phase 0 y contrato exacto; `PROFILE-01` depende de una decisión de identidad/legado.
+
+| ID | Exports | Evidencia confirmada | Contrato mínimo / decisión requerida | Estado |
+| --- | --- | --- | --- | --- |
+| `COL-01` | `list-group` | `action-menu`, `list-items`, `list-group-item` y `card-button` están conectados. `List group` (`82:26226`) representa una fila y el source Angular confirma que el padre es un `<ul>` con `<ng-content>`. Phase 0 verificó que no existe otro outer publicado. | Crear `List group container` en la misma sección, sin tokens nuevos: tres `INSTANCE_SWAP` (`Item 1..3`) con preferred value de la fila publicada, booleanos `Show item 2/3`, `Border type=Rounded|Flush`, `Multiple selection`, `Row view` y `Show controls`. El Code Connect padre ejecutará los templates hijos dentro de `<bmb-list-group>`. | Phase 0 completo y contrato exacto; falta la mutación/publicación Figma y después Code Connect. |
+| `PROFILE-01` | `user-profile` | El export exige `userInfo`. La evidencia MiTec usa `Profile card`/`User Summary`, ya representados por APIs distintas; la búsqueda exacta en Bamboo no devuelve un main component `User profile`. | Design publica el target de onboarding/perfil con `id`, `fullName` y `profilePicture`, o Engineering marca formalmente el export `Dev tools/User profile` como legado/fuera de alcance. No reutilizar `Profile card`. | Requiere target estable o decisión explícita de retiro; el objeto neutral sí está documentado en Storybook. |
+
+## Contratos resueltos
+
+| ID | Resultado | Verificación |
 | --- | --- | --- |
-| Repeated records | A nested published item component exposed through a true `SLOT`, plus the item's semantic properties | Resolve each item dynamically with `getSlot()`/`executeTemplate()`; no fabricated arrays. |
-| Simple identity/content | `Title`, `Subtitle`, `Description`, `Image`, `Alt`, `Href`, `Target` properties as applicable | Map strings directly; use only documented neutral values for code-required fields Figma does not model. |
-| Persistent behavior | `Disabled`, `Selected`, `Loading`, `Expanded` as explicit BOOLEANs only when Angular exposes the same public API | Emit the matching Angular input; retain hover/focus/pressed as visual-only. |
-| Service-owned container | A public payload/item component or documented public factory API | Show the payload/factory call rather than an empty service container. |
-| Angular projection | A genuine outer Figma `SLOT`, paired with one documented child markup form | Render dynamic child snippets; never reconstruct projected children from layers. |
+| `CHAT-01` | `AI Chat Card` se conectó a `BmbHomeCardChatComponent` con el título canónico de Storybook, Web/Mobile y la colección neutral type-safe `[messagesHistory]="[]"`. La conversación visual permanece como deuda de cobertura, no como bloqueo de publicación: convertir sus capas a `IBmbChatMessage[]` inventaría datos y un `Date`. | `HomeCardChat.figma.ts` pasó parse/publish; MCP confirmó `hasTemplate: true`, label Angular y source `ui-angular` para Web y Mobile. |
+| `LOADER-01` | El parent semántico estable `Loading screen` (`152:38092`) se conectó a `BmbLoaderComponent` con el texto fijo visible `Cargando...`. | `LoadingScreen.figma.ts` pasó parse/publish; MCP confirmó `hasTemplate: true`, label Angular y source `ui-angular`. `Loader_Icon` y `BB_6_5_2` permanecen fuera del API público. |
+| `SKELETON-01` | Los seis tipos públicos `header`, `input`, `stray`, `generic1`, `generic2` y `generic3` se conectaron a sus targets publicados equivalentes. | Los seis templates pasaron parse/publish; MCP confirmó `hasTemplate: true` y source `ui-angular`. Container/Headline/Circle permanecen como piezas internas sin input público independiente. |
 
-## Design contract groups
+## Regla de implementación por contrato
 
-| Group and Angular exports | Smallest contract to add | Owner boundary |
+Un contrato sólo pasa a implementación cuando existen las cuatro evidencias:
+
+1. Nodo Bamboo principal, estable y publicado en `Q4t8qIM5fklC9I3Atc1BrZ`.
+2. Export, selector y superficie pública confirmados en `ui-angular/src/index.ts` y su source.
+3. Storybook/MDX con el ejemplo mínimo canónico.
+4. Tabla exacta propiedad/SLOT Figma → API/proyección Angular, sin inferencias estructurales.
+
+Después se puede modificar **una familia Figma por ciclo**, validar metadata + screenshot, publicar la librería y crear el `.figma.ts`. El mapping sale del backlog sólo después de `parse`, publicación sin `--force` y `hasTemplate: true` por MCP.
+
+## Patrones permitidos
+
+| Patrón | Contrato válido | Resultado Code Connect |
 | --- | --- | --- |
-| Navigation collections: `title-content` | `navigation-bar`, `bottom-navigation-bar`, `drawer-overlay`, `web-templates` connected 2026-08-13 — `navigation-bar` (`4070:156220`), `drawer-overlay` (`FABOverlayDrawer`, `474:98365`), and `web-templates` (`Template_2Column_NormalScreenLEFT`, `523:207773`) are composition facades (all-optional inputs); `bottom-navigation-bar` (`Bottom navigation bar`, `11836:53649`) needed its fixed-shape required `navigationBarIcons` expressed via the documented Storybook default fixture as an inline object literal. Carlos's TEC.mobi/Gestor de Rúbricas references confirmed real usage matched the composition. See `INVENTORY.md`. `title-content` stays contract-required: no plausible stable Bamboo node found (`Simple header` is the closest candidate but lacks the breadcrumb/avatar composition `bmb-title-content` actually renders) — needs Design to publish a dedicated node or confirm `Simple header` is the intended target. `sidebar` (`BmbSidebarComponent`) also contract-required — added to this backlog 2026-09-02 after being found documented only in `CONTRACT_STATE.md` since 2026-08-12 and never folded in here: `elements: SidebarElement[][]` has no matching Figma SLOT on the published `Sidebar` (`299:51502`, only an `Expanded` variant). | Design publishes/confirms a semantic node for `title-content`; Design adds an `Items` SLOT (backed by a published per-item component) to `Sidebar` for `sidebar`. |
-| Projected menus and list groups: `action-menu`, `list-group`, `list-items`, `card-button` | A true `Items`/`Content` SLOT and published semantic item children; `Type` and `Device` alone remain visual composition | `list-group-item` connected 2026-08-27 — its Figma node is a genuine single-row component with matching semantic properties (leading icon/img, trailing component, help-icon tooltip), so it didn't need this contract. The parent `list-group` still does: it has zero content properties of its own. `action-menu`'s `Type` variant (`Chevron`, `Text Link`, `Text Button`, etc.) is also single-row, not a repeated SLOT — same gap. `card-button` migrated 2026-09-03 to the richer `2978:76218` node, which does genuinely expose `Type`/`Menu`/`Show Badges` — connected (partial) with real bindings for those (see `INVENTORY.md`), but title/body/badge text are still fixed content (no bindable text properties on the node) and the item-level SLOT gap remains open. `list-items` found and connected (bare) 2026-09-03 — `BuildingBlocks_Items list` (`1644:67872`, on the “❖ Particularities” page). No Storybook fixture exists for real item content, so it ships as `<bmb-list-items />` (real Angular defaults only). The parent connects only by dynamically rendering its resolved slot; never turn its current BB rows into a hardcoded menu. |
-| Data cards, profiles and rubrics: `user-profile` | `account-statement`, `profile`, `evaluation-rubric`, `student-activity-card`, `sounds-card`, `digital-id` connected 2026-08-13 — all had a plausible stable Bamboo node (`ORG_Component_AccountStatement`, `Profile card`, `Evaluation rubric`, `Student activity card_Button`/`_ItemList`, `Card TecSounds`, `Home2.0_ID`) and all-optional or Storybook-documented required inputs, so no new Figma properties were needed (see `INVENTORY.md`). `user-summary-content` reclassified as parent/child of the connected `user-summary`. `user-profile` — corrected 2026-09-03: real published nodes DO exist (`ORG_Component_MiPerfilPerson`/`ORG_Component_MiPerfilMobile`, both actively maintained in the library), but neither exposes Figma properties and `bmb-user-profile.stories.ts` documents no real non-empty `userInfo` (id/fullName/profilePicture) — its story args are empty strings. The blocker is missing documented content, not a missing node. | Design exposes content; Engineering supplies a documented neutral Storybook fixture where required. |
-| Chat/search/alerts: `chat-bubble`, `home-card-chat` | `alert-center`, `chat-bar`, `notification-card`, `search-card`, `search-input` connected 2026-08-13 — all had a plausible stable Bamboo node (`ORG_Component_AlertCenter`, `ChatBar`, `Notification card`, `Search Card`, `Search`) and all-optional Angular inputs, so no Figma content properties were needed (see `INVENTORY.md`). `chat-bubble`/`home-card-chat` are a code-level blocker, not a design one: their required message object has a `time: Date` field that Angular template syntax cannot construct inline (no `new` operator support) — needs a documented public factory/pipe before Code Connect can express it, not a Figma property. | The container connects only after its item API can be dynamically resolved. |
-| Calendars/timeline: `timestream` | The outer container has no independent stable Bamboo node (MiTec composes it from already-connected `Timestream card`/`Timestream Index`/`Hito list`); revisit only if Design publishes a dedicated outer component. `calendar` and `grades` connected 2026-08-12 without needing a new SLOT — see `INVENTORY.md`. | Engineering documents a minimal fixture and source data shape. |
-| Forms and editors: — | `date-range`, `datepicker`, `input-tags`, `text-editor`, `login`, `login-onboarding` all connected 2026-08-13 — see `INVENTORY.md`. `login-onboarding` was the one case in this whole batch where the unambiguous mapping needed evidence Carlos supplied (a TEC.mobi reference confirming the real onboarding flow) rather than something discoverable from the Bamboo library alone. | Individual field can connect first; screen/container stays contract-required until slots exist. |
-| Tables: `item` | `item` is deprecated (superseded by `bmb-item-[variant]`), low priority. `table` and `server-table` connected 2026-08-12; `table-lite` connected 2026-08-13 — Carlos's Avance Académico reference showed real usage of `Template_Table_EditActions_Badge_Web`, resolving the pick among the ~15 near-duplicate `Template_Table_*` variants. See `INVENTORY.md`. | No snippets for sample table rows until a repeatable row contract exists. |
-| Header and template shells: — | `header-mobile` connected 2026-08-13 (`Header mobile` node, required `text` + documented Storybook fixture). `mobile-templates` connected for 2 of 8 `template` values (`calendar` → `TemplateMobile_Calendar`, `external-link` → `TemplateMobile_ExternalLink`) — both unambiguous name matches. The other six values remain contract-required in spirit: several near-identical `TemplateMobile_*` nodes exist but none maps unambiguously to `single-header`/`header-with-footer`/`card-header-with-footer`/`header-with-button-list`/`header-with-card-list`/`login` — see `DECISIONS.md`. | Keep the six ambiguous template values undecided rather than emitting a screen façade. |
+| Registros repetidos | Hijo publicado + SLOT verdadero | Hijos dinámicos con `getSlot()`/`executeTemplate()`. |
+| Identidad/contenido simple | TEXT/BOOLEAN/VARIANT/INSTANCE_SWAP con equivalencia pública | Atributos directos; valores neutros sólo si Storybook los documenta. |
+| Proyección Angular | SLOT exterior + markup hijo documentado | Composición dinámica; nunca reconstruida desde capas visuales. |
+| Estado persistente | BOOLEAN/VARIANT sólo si existe input público equivalente | Hover/focus/pressed/transiciones se omiten. |
+| Servicio/objeto runtime | Factory, item público o receta importable | Snippet muestra la API soportada, no un host vacío. |
 
-## Code-only decisions required
+## Parent/child composition (14)
 
-Two cases cannot be solved solely in Figma:
+Estos exports ya están representados dentro de un padre conectado. No son trabajo activo salvo que aparezca un nodo y uso independiente.
 
-1. `bmb-notification-card` and related service-driven flows need a public notification payload/item API (or a documented builder function) that can be shown in a snippet.
-2. Components whose only configuration is dependency injection, `FormGroup`, `TemplateRef`, `Date`, or service state need a documented public usage recipe; no Figma property can safely manufacture those runtime objects. (`bmb-chat-bubble` / `bmb-home-card-chat`'s required `IBmbChatMessage.time: Date` is the current example — see `REMAINING_COMPONENTS.md`.)
+| Export | Padre / razón |
+| --- | --- |
+| `title-content` | Storybook lo clasifica como `Internals/Title content template`; el source lo usa como hijo de Grades, Evaluation rubric, Modal/Native modal, Home card header, Inner header, Chevron title selector y External link. Sus padres públicos ya representan las superficies de producto, por lo que no requiere target principal independiente. |
+| `accordion-simple-text` | Wrapper documentado de la familia Accordion ya conectada; renderiza `BmbAccordionComponent` y no tiene target Figma independiente confirmado. |
+| `notification-counter` | Primitive interno usado por Icon/Tabs; Storybook lo clasifica como `Internals/Notification counter` y no hay target standalone confirmado. |
+| `user-summary-content` | Hijo único de `user-summary`. |
+| `container-button-badge` | Hijo de Container button. |
+| `container-button-complex` | Hijo de Container button. |
+| `container-button-complex-alternative` | Hijo de Container button. |
+| `container-button-default` | Hijo de Container button. |
+| `container-button-grade` | Hijo de Container button. |
+| `container-button-square` | Hijo de Container button. |
+| `container-button-user-image` | Hijo de Container button. |
+| `multi-dot-paginator-item` | Hijo repetido del paginator conectado. |
+| `native-modal` | Implementación interna del Modal conectado. |
+| `top-bar-item` | Hijo repetido de Top bar, sin contrato independiente. |
 
-## Completion rule
+## Blocked / out of scope (12)
 
-A contract row is ready for Code Connect when the published Figma main component has the required semantic properties/SLOT, the Angular source exposes a corresponding public API or documented recipe, and a Storybook example demonstrates the canonical minimum data. The next batch then creates the `.figma.ts`, parses it, publishes it, and verifies `hasTemplate: true`.
+| Export | Motivo para no reintentar |
+| --- | --- |
+| `chat-bubble` | API legada: Storybook la publica como `AI Chat bubble (deprecated)`, mientras el target estable `AI Chat bubble` (`528:59470`) ya está conectado al reemplazo público `BmbAiChatBubbleComponent`. Duplicar el mismo target produciría guía ambigua. |
+| `item` | API legada y no soportada: su runtime dirige a `bmb-item-[variant]` / `bmb-interactive-item-[variant]`, y Storybook la clasifica como `Internals/Item`. Las variantes públicas modernas ya participan en la composición conectada de Action menu; no se duplica ese target para el wrapper legado. |
+| `bmb-card` | No hay main component canónico confirmado. |
+| `bmb-external-link` | Sólo existe uso dentro de templates, no target standalone estable. |
+| `bmb-form-validator` | Infraestructura basada en `FormGroup`, no componente visual. |
+| `bmb-icon` | Los nodos sugeridos no fueron persistentes; falta asset contract estable. |
+| `bmb-logo` | Las variantes visuales no identifican el API público de imagen/link/button. |
+| `bmb-mitec-logo-animation` | El match pertenece a otra librería/documentación. |
+| `bmb-portal` | Primitive de infraestructura sin representación visual propia. |
+| `bmb-stat-counter` | Sólo existe un hijo Playground/interno. |
+| `bmb-theme` | No hay target Figma publicado estable. |
+| `bmb-three-cols` | Primitive de layout sin contrato visual standalone. |
+
+## Deuda de cobertura en mappings ya conectados
+
+La cola de [COMPOSITION_REMEDIATION.md](COMPOSITION_REMEDIATION.md) no significa “sin conexión”. Sus filas están publicadas, pero el snippet puede ser una fachada limitada. Mantener dos ejes separados:
+
+- `publication state`: Connected / Pending / Blocked.
+- `coverage debt`: None / Contract required / Code API required.
+
+Button group y Action menu son las dos familias remediadas con adaptadores internos confirmados. El resto permanece conectado con deuda documentada; no se descuenta de los 120 mappings públicos verificados.

@@ -3,17 +3,26 @@
 // component=BmbListItemsComponent
 import figma from 'figma'
 
-// This Figma node's grouped sections ("Recientes"/"La semana pasada"/"Hace 30
-// días") match BmbListItemsComponent's own internally-computed group titles —
-// they are not a Figma-driven or user-supplied value. `items` and
-// `componentTitle` have no Storybook-documented fixture (bmb-list-items has
-// no .stories.ts), so per project convention they are left at their real,
-// documented Angular defaults rather than fabricated. Both Empty and
-// Populated states render the same, fully-valid default usage.
+const instance = figma.selectedInstance
+const populated = instance.getEnum('State', {
+  Empty: false,
+  Populated: true,
+})
+const items = populated
+  ? "[{ title: 'Reunión de equipo', date: '2025-10-08', icon: 'group' }, { title: 'Entrega de reporte', date: '2025-10-01', icon: 'description' }, { title: 'Actualización de sistema', date: '2025-09-15', icon: 'update' }]"
+  : '[]'
+
 export default {
-  example: figma.code`<bmb-list-items />`,
+  example: figma.code`<bmb-list-items
+  componentTitle="Historial de actividades"
+  addButtonIcon="add_circle"
+  [showAddButton]="true"
+  [items]="${items}"
+  dateFormat="yyyy-MM-dd"
+/>`,
   imports: [
     "import { BmbListItemsComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng'",
   ],
   id: 'bmb-list-items',
+  metadata: { nestable: true },
 }
