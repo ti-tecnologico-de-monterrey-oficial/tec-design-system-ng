@@ -109,21 +109,22 @@ describe('BmbAiChatBubbleComponent', () => {
 
   it('should render only the copy action for a user message by default', () => {
     componentRef.setInput('message', mockUserMessage);
+    componentRef.setInput('showActions', true);
 
     fixture.detectChanges();
 
     const element = fixture.debugElement.query(By.css('bmb-chat-actions'));
     const icons = fixture.debugElement.queryAll(
-      By.css('bmb-chat-actions bmb-icon'),
+      By.css('bmb-chat-actions bmb-action-icon'),
     );
 
     expect(element).toBeTruthy();
     expect(icons.length).toBe(1);
   });
 
-  it('should hide user actions when userActions is empty', () => {
+  it('should hide user actions when actions is empty', () => {
     componentRef.setInput('message', mockUserMessage);
-    componentRef.setInput('userActions', []);
+    componentRef.setInput('actions', []);
 
     fixture.detectChanges();
 
@@ -132,7 +133,7 @@ describe('BmbAiChatBubbleComponent', () => {
 
   it('should render configured copy and edit actions for a user text message', () => {
     componentRef.setInput('message', mockUserMessage);
-    componentRef.setInput('userActions', ['copy', 'edit']);
+    componentRef.setInput('actions', ['copy', 'edit']);
     fixture.detectChanges();
 
     const icons = fixture.debugElement.queryAll(
@@ -144,7 +145,7 @@ describe('BmbAiChatBubbleComponent', () => {
 
   it('should enter edit mode and keep the original text in the editor', async () => {
     componentRef.setInput('message', mockUserMessage);
-    componentRef.setInput('userActions', ['copy', 'edit']);
+    componentRef.setInput('actions', ['copy', 'edit']);
     fixture.detectChanges();
 
     await component['onAction']({
