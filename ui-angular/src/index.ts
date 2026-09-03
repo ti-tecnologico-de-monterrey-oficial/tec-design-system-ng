@@ -20,7 +20,7 @@ export * from './lib/services/icon/icon.service';
 export * from './lib/pipes/translations';
 
 // Directives
-export * from './lib/directives/old/bmb-button/button.directive';
+export * from './lib/directives/bmb-button/button.directive';
 export * from './lib/directives/bmb-layout/bmb-layout-item.directive';
 export * from './lib/directives/bmb-layout/bmb-layout.directive';
 export * from './lib/directives/bmb-layout/bmb-vertical-layout/bmb-vertical-layout.directive';

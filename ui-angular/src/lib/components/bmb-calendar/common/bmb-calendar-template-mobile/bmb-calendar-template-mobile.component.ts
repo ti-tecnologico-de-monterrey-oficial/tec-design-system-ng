@@ -15,7 +15,7 @@ import {
 import { DateTime } from 'luxon';
 import { getWeeksInMonth, weeksAndDays } from '../../utils';
 import { CommonModule } from '@angular/common';
-import { BmbButtonDirective } from '../../../../directives/old/bmb-button/button.directive';
+import { BmbButtonDirective } from '../../../../directives/bmb-button/button.directive';
 import { Info } from 'luxon';
 import { orderDayNames } from '../../../../_shared/logic/utils';
 import { BmbInnerHeaderComponent } from '../../../bmb-inner-header/bmb-inner-header.component';
