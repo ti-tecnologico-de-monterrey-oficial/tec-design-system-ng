@@ -34,7 +34,7 @@ import * as cardStory from '../components/bmb-card/bmb-card.stories';
 import * as cardHeaderStory from '../components/bmb-card/bmb-card.stories';
 import * as cardContentStory from '../components/bmb-card/bmb-card.stories';
 import * as iconStory from '../components/bmb-icon/bmb-icon.stories';
-import * as buttonStory from '../directives/old/bmb-button/button.stories';
+import * as buttonStory from '../directives/bmb-button/button.stories';
 import * as dropdownStory from '../components/bmb-dropdown/bmb-dropdown.stories';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 

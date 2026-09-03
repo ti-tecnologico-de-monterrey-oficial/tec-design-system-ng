@@ -12,7 +12,7 @@ import { BmbLayoutDirective } from '../../../directives/bmb-layout/bmb-layout.di
 import { BmbLayoutItemDirective } from '../../../directives/bmb-layout/bmb-layout-item.directive';
 import { DateTime, Info } from 'luxon';
 
-import { BmbButtonDirective } from '../../../directives/old/bmb-button/button.directive';
+import { BmbButtonDirective } from '../../../directives/bmb-button/button.directive';
 import { CommonModule } from '@angular/common';
 import { orderDayNames } from '../../../_shared/logic/utils';
 import { weeksAndDays } from '../../bmb-calendar/utils';

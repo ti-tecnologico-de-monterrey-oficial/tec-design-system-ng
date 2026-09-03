@@ -17,7 +17,7 @@ import {
   getOnEvent,
   getStoryLink,
 } from '@docs/utils/utils';
-import { BmbButtonDirective } from '../../directives/old/bmb-button/button.directive';
+import { BmbButtonDirective } from '../../directives/bmb-button/button.directive';
 import { BmbCheckboxComponent } from '../bmb-checkbox/bmb-checkbox.component';
 import { BmbDatepickerComponent } from '../bmb-datepicker/bmb-datepicker.component';
 import { BmbDateRangeComponent } from '../bmb-date-range/bmb-date-range.component';

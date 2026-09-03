@@ -6,7 +6,7 @@ import {
 } from '../bmb-card.component';
 import { BmbIconComponent } from '../../bmb-icon/bmb-icon.component';
 import { BmbTitleComponent } from '../../bmb-title/bmb-title.component';
-import { BmbButtonDirective } from '../../../directives/old/bmb-button/button.directive';
+import { BmbButtonDirective } from '../../../directives/bmb-button/button.directive';
 import { BmbLayoutDirective } from '../../../directives/bmb-layout/bmb-layout.directive';
 import { BmbLayoutItemDirective } from '../../../directives/bmb-layout/bmb-layout-item.directive';
 import { BmbVerticalLayoutDirective } from '../../../directives/bmb-layout/bmb-vertical-layout/bmb-vertical-layout.directive';

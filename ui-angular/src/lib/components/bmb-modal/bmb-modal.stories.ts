@@ -8,7 +8,7 @@ import {
 } from '@storybook/angular';
 import { BmbModalComponent } from './bmb-modal.component';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
-import { BmbButtonDirective } from '../../directives/old/bmb-button/button.directive';
+import { BmbButtonDirective } from '../../directives/bmb-button/button.directive';
 import { MatDialog } from '@angular/material/dialog';
 import {
   DESIGN_SYSTEM_TITLE,

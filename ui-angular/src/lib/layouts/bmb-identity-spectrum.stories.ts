@@ -18,7 +18,7 @@ import { IBmbNativeModal } from '../components/bmb-modal/bmb-modal.interface';
 import { BmbNativeModalService } from '../services/old/modal/native-modal.service';
 import { IBmbActionHeader } from '@shared/types';
 
-import { BmbButtonDirective } from '../directives/old/bmb-button/button.directive';
+import { BmbButtonDirective } from '../directives/bmb-button/button.directive';
 import { BmbLayoutDirective } from '../directives/bmb-layout/bmb-layout.directive';
 import { BmbLayoutItemDirective } from '../directives/bmb-layout/bmb-layout-item.directive';
 import { BmbVerticalLayoutDirective } from '../directives/bmb-layout/bmb-vertical-layout/bmb-vertical-layout.directive';
@@ -36,7 +36,7 @@ import * as itemItemStory from '../components/bmb-item/bmb-item.stories';
 import * as actionMenuStory from '../components/bmb-action-menu/bmb-action-menu.stories';
 import * as nativeModalStory from '../components/bmb-modal/bmb-native-modal.stories';
 
-import * as buttonDirectiveStory from '../directives/old/bmb-button/button.stories';
+import * as buttonDirectiveStory from '../directives/bmb-button/button.stories';
 import * as layoutDirectiveStory from '../directives/bmb-layout/bmb-layout.stories';
 import * as verticalLayoutDirectiveStory from '../directives/bmb-layout/bmb-vertical-layout/bmb-vertical-layout.stories';
 import * as selectorDirectiveStory from '../directives/old/bmb-selector/bmb-selector.stories';

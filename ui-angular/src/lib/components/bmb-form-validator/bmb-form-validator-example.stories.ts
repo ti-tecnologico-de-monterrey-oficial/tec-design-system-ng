@@ -8,7 +8,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BmbFormValidatorComponent } from './bmb-form-validator.component';
 import { FormControl, FormGroup } from '@angular/forms';
-import { BmbButtonDirective } from '../../directives/old/bmb-button/button.directive';
+import { BmbButtonDirective } from '../../directives/bmb-button/button.directive';
 import { BmbCheckboxComponent } from '../bmb-checkbox/bmb-checkbox.component';
 import { BmbDatepickerComponent } from '../bmb-datepicker/bmb-datepicker.component';
 import { BmbDateRangeComponent } from '../bmb-date-range/bmb-date-range.component';

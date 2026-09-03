@@ -23,7 +23,7 @@ import * as badgeStory from '../components/bmb-badge/bmb-badge.stories';
 import * as stepProgressBarStory from '../components/bmb-step-progress-bar/bmb-step-progress-bar.stories';
 import * as userSummaryStory from '../components/bmb-user-summary/bmb-user-summary.stories';
 import * as invoiceStory from '../components/bmb-invoice/bmb-invoice.stories';
-import * as buttonStory from '../directives/old/bmb-button/button.stories';
+import * as buttonStory from '../directives/bmb-button/button.stories';
 
 @Component({
   standalone: true,
