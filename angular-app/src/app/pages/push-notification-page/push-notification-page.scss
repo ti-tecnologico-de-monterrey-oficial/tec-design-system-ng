@@ -1,0 +1,38 @@
+@use '../../styles/playground';
+
+@include playground.page(18rem, 22rem, 32rem);
+
+.playground {
+  align-items: start;
+}
+.controls {
+  max-height: 90vh;
+  overflow-y: scroll;
+  scrollbar-gutter: stable;
+}
+.controls textarea {
+  min-height: 5rem;
+  resize: vertical;
+}
+.controls button {
+  cursor: pointer;
+  margin-top: var(--bmb-spacing-s);
+  padding: var(--bmb-spacing-s);
+}
+.preview {
+  height: 90vh;
+  max-height: 90vh;
+  overflow: auto;
+  position: sticky;
+  top: 0;
+}
+
+@media (max-width: 700px) {
+  .controls {
+    max-height: 32rem;
+  }
+  .preview {
+    height: min(32rem, 90vh);
+    position: static;
+  }
+}

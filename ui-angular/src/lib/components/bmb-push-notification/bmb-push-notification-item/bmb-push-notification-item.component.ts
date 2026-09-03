@@ -9,19 +9,19 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { INotification, INotificationAction } from '../types';
+import type { INotification, INotificationAction } from '../types';
 import { BmbIconComponent } from '../../bmb-icon/bmb-icon.component';
 import { BmbUserImageComponent } from '../../bmb-user-image/bmb-user-image.component';
 import { BmbCheckboxComponent } from '../../bmb-checkbox/bmb-checkbox.component';
 import { BmbButtonDirective } from '../../../directives/old/bmb-button/button.directive';
 import {
-  BMB_CREATIVE_COLOR_LIST,
-  BMB_SEMANTIC_COLOR_LIST,
-} from '../../../_shared/types/foundations/colors/color-type';
-
-/*
- * TODO: This component is marked as "old" and its decommissioning is planned for future updates.
- */
+  getPushNotificationAppIcon,
+  getPushNotificationAppName,
+  getPushNotificationClasses,
+  getPushNotificationIconClasses,
+  isValidPushNotificationFullVariant,
+  isValidPushNotificationRegularVariant,
+} from '../../../_shared/logic/components/push-notification';
 
 @Component({
   selector: 'bmb-push-notification-item',
@@ -43,24 +43,11 @@ export class BmbPushNotificationItemComponent {
 
   onClose = output<MouseEvent>();
 
-  isValidForFullVariant = computed<boolean>(
-    () =>
-      BMB_SEMANTIC_COLOR_LIST.some(
-        (element: string) => this.notification().type === element,
-      ) ||
-      BMB_CREATIVE_COLOR_LIST.some(
-        (element: string) => this.notification().type === element,
-      ) ||
-      this.notification().type === 'black-primary' ||
-      this.notification().type === 'blue-tec',
+  isValidForFullVariant = computed<boolean>(() =>
+    isValidPushNotificationFullVariant(this.notification().type),
   );
-  isValidVariant = computed<boolean>(
-    () =>
-      !BMB_SEMANTIC_COLOR_LIST.some(
-        (element: string) => this.notification().type === element,
-      ) ||
-      this.notification().type === 'black-primary' ||
-      this.notification().type === 'neon-primary',
+  isValidVariant = computed<boolean>(() =>
+    isValidPushNotificationRegularVariant(this.notification().type),
   );
 
   isExpanded = true;
@@ -82,29 +69,15 @@ export class BmbPushNotificationItemComponent {
   }
 
   getNotificationClasses(): string[] {
-    const classList = [
-      'bmb_push-notification-item',
-      `bmb_push-notification-item-type-${this.notification()?.type}`,
-    ];
-
-    if (this.notification()?.isFullColor && this.isValidForFullVariant()) {
-      classList.push('bmb_push-notification-item-full-color');
-    } else {
-      if (!this.notification()?.isFullColor && this.isValidVariant())
-        classList.push('bmb_push-notification-item-regular-tmp');
-    }
-
-    if (!this.isExpanded)
-      classList.push('bmb_push-notification-item-contracted');
-
-    return classList;
+    return getPushNotificationClasses({
+      type: this.notification().type,
+      isFullColor: this.notification().isFullColor,
+      isExpanded: this.isExpanded,
+    });
   }
 
   getIconClasses(): string[] {
-    return [
-      'bmb_push-notification-item-icon',
-      `bmb_push-notification-item-icon-${this.notification()?.type}`,
-    ];
+    return getPushNotificationIconClasses(this.notification().type);
   }
 
   handleClose(event: MouseEvent) {
@@ -116,11 +89,11 @@ export class BmbPushNotificationItemComponent {
   }
 
   getAppIcon(): string {
-    return this.notification().appIcon ?? 'assets/images/tec-logo-mob.svg';
+    return getPushNotificationAppIcon(this.notification().appIcon);
   }
 
   getAppName(): string {
-    return this.notification().appName ?? 'itesm.com';
+    return getPushNotificationAppName(this.notification().appName);
   }
 
   handleDontAskAgain() {
