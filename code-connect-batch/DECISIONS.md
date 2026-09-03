@@ -676,3 +676,22 @@ Carlos's hunch: since Card button's real twin was hiding under nested `BB_*` nam
 **Re-confirmed, not naming misses:** `title-content` (closest candidate, "Header mobile" `61:9227`, does have real `Breadcrumb`+`User image` children, but it's already correctly connected to a different, larger composite — `BmbHeaderMobileComponent` — not a 1:1 match for title-content's simpler avatar+title+breadcrumb shape), `list-group` (its only real content-bearing node, `82:26226`, is already correctly the `list-group-item` target — the plural wrapper genuinely has no separate Figma node), `action-menu` (confirmed via full properties: `Type`/`Device` are the only properties on `2109:71690`, no repeated-child SLOT mechanism despite visually-stacked rows), `chat-bubble`/`home-card-chat`/`timestream` (all previously-diagnosed as code-level or missing-outer-node issues, not naming problems — unaffected by this pass).
 
 **Not investigated this pass:** `item` (already deprioritized — deprecated in favor of `bmb-item-[variant]`).
+
+## 2026-09-03, eighth pass — enriched list-group-item's Code Connect binding; 3 properties left as open design questions
+
+Carlos asked for a review of `list-group` (`82:26226`) specifically. The existing connection (`ListGroupItem.figma.ts`) was already correct and non-fabricated — a single fixed example using the real Storybook `WithDefaultTemplate` values — but it left all 10 of the node's real properties unbound, publishing the same static snippet regardless of which Figma variant a designer had selected.
+
+**Enriched with 4 confirmed real bindings**, each verified by finding an explicit `references.visible` pointing at the exact property key in `get_context_for_code_connect` (checked across all three `List group type:` variants — Leading XL icon, Leading img, Flush w/img — to make sure the binding holds regardless of that dimension):
+- `List group state:` (Disabled/Enabled/Hovered/Selected) → `isDisabled`/`isActive`. `Hovered` has no Angular equivalent (transient CSS-only state) so it renders identically to `Enabled` rather than invent a prop.
+- `Trailing component` (boolean) → gates the `BB_2_14` badge instance; bound to whether `badgeAppearance`/`badgeText` are included.
+- `Help icon` (boolean) → gates the `help` tooltip-trigger instance; bound to whether `tooltipTitle`/`tooltipText` are included.
+- `Extra info 01` (boolean) → gates the third text line; bound to whether `infoText` is included.
+
+**Left unbound, flagged as open questions for Design** (checked and could not confirm, rather than guessed):
+- `Extra info 02` and `Leading img?` — searched for a `references.visible` pointing at either key across all three `List group type:` variants (Leading XL icon `82:26304`, Leading img `82:26273`, Flush w/img `82:26243`) and found none. Either orphaned from an earlier design iteration, or gating something this API doesn't surface (e.g. a raw image/fill swap rather than an INSTANCE/TEXT node — `get_context_for_code_connect` only enumerates INSTANCE and TEXT descendants). Worth asking Design directly rather than a fourth guess.
+- `Leading component` (boolean) — same story, no visible reference found in any inspected variant.
+- `List group type:`'s image branches (Leading img / Flush w/img) — structurally these should map to `imgSrc`, but `bmb-list-group-item.stories.ts` has no documented example value for it (only `icon` has a real fixture, `add_box`). The published example always shows the icon variant's content even when Figma's current selection is an image type — noted in the file's own comment.
+- `Container color`'s `None` option — Storybook's `argTypes.appearanceContrast.options` only documents `['default', 'primary', 'alternative']`; Figma's fourth option has no confirmed real equivalent (the type also allows `'solid'`, but that's undocumented too, so neither guess is used).
+- `↳ Icon Tooltip:` (instance-swap) and `Device type?` — no Angular equivalent exists at all (tooltip icon is hardcoded `"help"`; device is a pure layout/breakpoint choice).
+
+Verified via `get_code_connect_map` on two contrasting variant nodes (`82:26304` Enabled — no `isActive`/`isDisabled`; `82:26396` Selected — `[isActive]="true"` present) that the dynamic bindings are live.
