@@ -178,6 +178,32 @@
   </div>
 </ng-template>
 
+<bmb-ai-chat-card
+  [componentTitle]="'TecBot Assistant'"
+  [subtitle]="'Asistente de inteligencia artificial'"
+  [headerActions]="headerActions"
+  [(currentBot)]="currentBot"
+  [(mode)]="mode"
+>
+  @for (chatMessage of messages; track chatMessage.id) {
+  <bmb-ai-chat-bubble
+    [botIcon]="'bot_tecStandar'"
+    [testId]="chatMessage.id"
+    [message]="chatMessage"
+    [isThinking]="false"
+    [showActions]="true"
+  />
+  }
+
+  <bmb-chat-bar
+    [placeholder]="'Escribe tu mensaje'"
+    [actionsList]="actionsList"
+    [showEmoji]="true"
+    [enableMicInput]="true"
+    [isLoading]="false"
+  />
+</bmb-ai-chat-card>
+
 <ng-template #modalLTSTemplate>
   <div>
     <bmb-dropdown

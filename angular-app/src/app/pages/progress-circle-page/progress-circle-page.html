@@ -1,0 +1,144 @@
+<header class="page-header">
+  <p class="eyebrow">Componente Bamboo</p>
+  <h1>BmbProgressCircle</h1>
+  <p>Valida el progreso, tamaños, etiquetas, iconos y estados semánticos.</p>
+</header>
+
+<section class="playground" aria-labelledby="progress-circle-properties">
+  <aside class="controls">
+    <h2 id="progress-circle-properties">Propiedades</h2>
+
+    <label for="progress-percent">percent</label>
+    <input
+      id="progress-percent"
+      type="number"
+      min="0"
+      max="100"
+      [value]="percent()"
+      (input)="setPercent($any($event.target).value)"
+    />
+
+    <label for="progress-label">valueLabel</label>
+    <input
+      id="progress-label"
+      [value]="valueLabel()"
+      (input)="valueLabel.set($any($event.target).value)"
+    />
+
+    <label for="progress-title">componentTitle</label>
+    <input
+      id="progress-title"
+      [value]="componentTitle()"
+      (input)="componentTitle.set($any($event.target).value)"
+    />
+
+    <label for="progress-deprecated-title">title (deprecated)</label>
+    <input
+      id="progress-deprecated-title"
+      [value]="deprecatedTitle()"
+      (input)="deprecatedTitle.set($any($event.target).value)"
+    />
+
+    <label for="progress-status">fillPathStatus</label>
+    <select
+      id="progress-status"
+      [value]="fillPathStatus()"
+      (change)="fillPathStatus.set($any($event.target).value)"
+    >
+      @for (status of statuses; track status) {
+      <option [value]="status">{{ status }}</option>
+      }
+    </select>
+
+    <label for="progress-size">size</label>
+    <select
+      id="progress-size"
+      [value]="size()"
+      (change)="size.set($any($event.target).value)"
+    >
+      @for (option of sizes; track option) {
+      <option [value]="option">{{ option }}</option>
+      }
+    </select>
+
+    <label for="progress-icon">icon</label>
+    <select
+      id="progress-icon"
+      [value]="icon()"
+      (change)="icon.set($any($event.target).value)"
+    >
+      @for (option of icons; track option) {
+      <option [value]="option">{{ option || 'Sin icono' }}</option>
+      }
+    </select>
+
+    <label class="toggle"
+      ><input
+        type="checkbox"
+        [checked]="showValueLabel()"
+        (change)="showValueLabel.set($any($event.target).checked)"
+      />showValueLabel</label
+    >
+    <label class="toggle"
+      ><input
+        type="checkbox"
+        [checked]="showTitle()"
+        (change)="showTitle.set($any($event.target).checked)"
+      />showTitle</label
+    >
+    <label class="toggle"
+      ><input
+        type="checkbox"
+        [checked]="showBackground()"
+        (change)="showBackground.set($any($event.target).checked)"
+      />showBackground</label
+    >
+    <label class="toggle"
+      ><input
+        type="checkbox"
+        [checked]="showRestBackground()"
+        (change)="showRestBackground.set($any($event.target).checked)"
+      />showRestBackground</label
+    >
+    <label class="toggle"
+      ><input
+        type="checkbox"
+        [checked]="fullFillPathStatus()"
+        (change)="fullFillPathStatus.set($any($event.target).checked)"
+      />fullFillPathStatus</label
+    >
+    <label class="toggle"
+      ><input
+        type="checkbox"
+        [checked]="showOperationState()"
+        (change)="showOperationState.set($any($event.target).checked)"
+      />showOperationState</label
+    >
+    <label class="toggle"
+      ><input
+        type="checkbox"
+        [checked]="emptyState()"
+        (change)="emptyState.set($any($event.target).checked)"
+      />emptyState</label
+    >
+  </aside>
+
+  <div class="preview">
+    <bmb-progress-circle
+      [percent]="percent()"
+      [valueLabel]="valueLabel()"
+      [componentTitle]="componentTitle()"
+      [title]="deprecatedTitle()"
+      [showValueLabel]="showValueLabel()"
+      [showTitle]="showTitle()"
+      [showBackground]="showBackground()"
+      [showRestBackground]="showRestBackground()"
+      [fillPathStatus]="fillPathStatus()"
+      [fullFillPathStatus]="fullFillPathStatus()"
+      [size]="size()"
+      [icon]="icon()"
+      [showOperationState]="showOperationState()"
+      [emptyState]="emptyState()"
+    />
+  </div>
+</section>

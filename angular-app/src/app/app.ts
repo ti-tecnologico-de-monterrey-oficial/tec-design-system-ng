@@ -23,6 +23,12 @@ import {
   IBmbHomeCardChatMode,
   IBotType,
   IBmbSearchCardItemResult,
+  BmbAIChatCardComponent,
+  BmbAiChatBubbleComponent,
+  IBmbActionHeader,
+  IChatBarActions,
+  BmbChatMessage,
+  BmbChatBarComponent,
 } from 'ui-angular';
 import { Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
@@ -41,6 +47,9 @@ import { BmbDelayProfileComponent } from './pages/bmb-delay-profile/bmb-delay-pr
     BmbSidebarComponent,
     BmbDropdownComponent,
     BmbSearchCardComponent,
+    BmbAIChatCardComponent,
+    BmbAiChatBubbleComponent,
+    BmbChatBarComponent,
   ],
   templateUrl: './app.html',
   styleUrl: './app.scss',
@@ -103,43 +112,7 @@ export class App {
     name: 'TecBot',
     icon: 'bot_tecStandar',
   };
-  messages: IBmbChatMessage[] = [
-    {
-      id: '1',
-      type: 'text',
-      content: { text: 'Hola, ¿cómo estás? En que puedo ayudarte' },
-      isUserMessage: false,
-      time: new Date('2025-02-19T14:31:00'),
-    },
-    {
-      id: '2',
-      type: 'text',
-      content: {
-        text: 'Hola, me gustaria un pequeño resumen de la festividad del dia de la bandera en México',
-      },
-      userProfile: 'https://picsum.photos/id/64/200/301',
-      isUserMessage: true,
-      time: new Date('2025-02-19T14:32:00'),
-    },
-    {
-      id: '3',
-      type: 'text',
-      content: {
-        text: 'El Día de la Bandera en México se celebra el 24 de febrero de cada año. Esta fecha conmemora la adopción de la bandera actual en 1821, tras la independencia del país. Es un día para rendir homenaje a los símbolos patrios y a la historia de México, destacando la importancia de la unidad y el orgullo nacional. En este día se realizan ceremonias cívicas y militares en todo el país.',
-      },
-      userProfile: 'https://picsum.photos/id/64/200/301',
-      isUserMessage: false,
-      time: new Date('2025-02-19T14:33:00'),
-    },
-    {
-      id: '4',
-      type: 'text',
-      content: { text: 'Gracias.' },
-      userProfile: 'https://picsum.photos/id/64/200/301',
-      isUserMessage: true,
-      time: new Date('2025-02-19T14:34:00'),
-    },
-  ];
+
   handleSendMessage(value: unknown): void {
     console.info('handleSendMessage app', value);
 
@@ -606,4 +579,93 @@ https://live.tec.mx/cbweek</p><p>¡Te esperamos!`,
         'https://robohash.org/dolordistinctioquaerat.png?size=50x50&set=set1',
     },
   ];
+  readonly headerActions: IBmbActionHeader[] = [
+      {
+        icon: 'chat_add_on',
+        tooltipText: 'New chat',
+        action: () => {
+          console.info('New chat');
+        },
+      },
+    ];
+
+    readonly actionsList: IChatBarActions[] = [
+      {
+        name: 'Adjuntar archivo',
+        label: 'Adjuntar archivo',
+        icon: 'attach_file',
+        action: () => {
+          console.log('Adjuntar archivo');
+        },
+      },
+    ];
+
+    readonly messages: BmbChatMessage[] = [
+      {
+        id: '1',
+        type: 'text',
+        timestamp: new Date('2026-08-25T22:47:25.997Z'),
+        isUser: true,
+        userProfile: 'https://picsum.photos/id/64/200/300',
+        content: { text: 'I need help with Angular signals.' },
+      },
+      {
+        id: '2',
+        type: 'options',
+        timestamp: new Date('2026-08-25T01:28:13.313Z'),
+        isUser: false,
+        content: {
+          text: 'Choose one option:',
+          options: [
+            { id: '1', label: 'Option for conversational text-based prompts 1' },
+            { id: '2', label: 'Option for conversational text-based prompts 2' },
+            { id: '3', label: 'Option for conversational text-based prompts 3' },
+          ],
+        },
+      },
+      {
+        id: '3',
+        type: 'text',
+        timestamp: new Date('2026-08-25T22:47:25.997Z'),
+        isUser: true,
+        userProfile: 'https://picsum.photos/id/64/200/300',
+        content: { text: 'I need help with Angular signals.' },
+      },
+      {
+        id: '4',
+        type: 'options',
+        timestamp: new Date('2026-08-25T01:28:13.313Z'),
+        isUser: false,
+        content: {
+          text: 'Choose one option:',
+          options: [
+            { id: '1', label: 'Option for conversational text-based prompts 1' },
+            { id: '2', label: 'Option for conversational text-based prompts 2' },
+            { id: '3', label: 'Option for conversational text-based prompts 3' },
+          ],
+        },
+      },
+      {
+        id: '5',
+        type: 'text',
+        timestamp: new Date('2026-08-25T22:47:25.997Z'),
+        isUser: true,
+        userProfile: 'https://picsum.photos/id/64/200/300',
+        content: { text: 'I need help with Angular signals.' },
+      },
+      {
+        id: '6',
+        type: 'options',
+        timestamp: new Date('2026-08-25T01:28:13.313Z'),
+        isUser: false,
+        content: {
+          text: 'Choose one option:',
+          options: [
+            { id: '1', label: 'Option for conversational text-based prompts 1' },
+            { id: '2', label: 'Option for conversational text-based prompts 2' },
+            { id: '3', label: 'Option for conversational text-based prompts 3' },
+          ],
+        },
+      },
+    ];
 }

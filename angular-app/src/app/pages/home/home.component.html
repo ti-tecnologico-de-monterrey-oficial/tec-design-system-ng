@@ -121,6 +121,14 @@
                       valueLink="/pages/notification-card"
                     />
                   </ng-template>
+                  <ng-template #actionMenuItem>
+                    <bmb-item-hyperlink
+                      icon="notification_important"
+                      label="Push notification"
+                      value="page"
+                      valueLink="/pages/push-notification"
+                    />
+                  </ng-template>
                 </bmb-action-menu>
               </ng-template>
             </bmb-accordion>
@@ -227,6 +235,14 @@
                       label="Loading screen"
                       value="page"
                       valueLink="/pages/loader"
+                    />
+                  </ng-template>
+                  <ng-template #actionMenuItem>
+                    <bmb-item-hyperlink
+                      icon="donut_large"
+                      label="Progress circle"
+                      value="page"
+                      valueLink="/pages/progress-circle"
                     />
                   </ng-template>
                 </bmb-action-menu>

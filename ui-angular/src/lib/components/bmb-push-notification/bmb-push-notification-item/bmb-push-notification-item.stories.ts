@@ -9,7 +9,7 @@ import {
   BMB_CREATIVE_COLOR_LIST,
   BMB_MITEC_COLOR_LIST,
   BMB_SEMANTIC_COLOR_LIST,
-} from '@shared/types/foundations/colors/color-type';
+} from '../../../_shared/types/foundations/colors/color-type';
 import { BmbDividerComponent } from '../../bmb-divider/bmb-divider.component';
 
 const variants: string[] = [
