@@ -149,14 +149,6 @@ These properties can be used to render previously stored feedback when loading a
       control: 'boolean',
       description: `
 Displays chat action buttons.
-
-Available actions:
-- repeat
-- voice
-- copy
-- edit
-- like
-- dislike
       `,
       table: {
         category: 'Properties',
@@ -169,17 +161,37 @@ Available actions:
       },
     },
 
-    userActions: {
+    actions: {
       control: 'object',
-      description:
-        "Actions displayed for user messages. Use ['copy', 'edit'] to enable both. Copy is enabled by default.",
+      description: `Sets the actions displayed for messages.
+
+Available prompt actions:
+- repeat
+- voice
+- copy
+- like
+- dislike
+${getAlertBlockquote(
+  `For customized actions:
+- ['repeat','voice','copy']
+- ['like','dislike']
+- ...
+`,
+  { title: RELEVANT_TITLE.example, blockquoteType: BlockquoteType.important },
+)}
+
+Available user actions:
+- copy
+- edit
+
+For user message use ['copy', 'edit'] to enable both. Copy is enabled by default.`,
       table: {
         category: 'Properties',
         type: {
           summary: 'BmbChatAction[]',
         },
         defaultValue: {
-          summary: "['copy']",
+          summary: 'null',
         },
       },
     },
@@ -214,7 +226,7 @@ Available actions:
     testId: 'chat-bubble',
     isThinking: false,
     showActions: true,
-    userActions: ['copy'],
+    actions: ['repeat', 'voice', 'copy', 'like', 'dislike'],
     message: {
       id: '1',
       type: 'text',
@@ -243,7 +255,7 @@ export const Default: Story = {};
 export const UserMessage: Story = {
   args: {
     showActions: true,
-    userActions: ['copy', 'edit'],
+    actions: ['copy', 'edit'],
 
     message: {
       id: '2',
