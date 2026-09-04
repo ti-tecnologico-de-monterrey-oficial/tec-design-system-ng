@@ -130,7 +130,7 @@ export class BmbAiChatBubbleComponent implements OnDestroy {
   protected _actions = computed<BmbChatAction[] | null>(() => {
     if (this.message().isUser) {
       if (this.showActions() && this.message().type === 'text') {
-        if (this.actions() === null) return ['copy'];
+        if (this.actions() === null || !this.actions()?.length) return ['copy'];
         else
           return (this.actions() ?? []).reduce(
             (acc, action): BmbChatAction[] =>

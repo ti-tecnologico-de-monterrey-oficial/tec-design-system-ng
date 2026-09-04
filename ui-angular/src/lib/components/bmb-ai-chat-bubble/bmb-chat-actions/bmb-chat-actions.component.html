@@ -7,8 +7,8 @@
     class="bmb_ai-chat-bubble-icon"
     [icon]="getActionIcon(action)"
     [iconSize]="24"
-    [isFill]="true"
-    [attr.aria-label]="action.label"
+    [tooltipText]="action.label | translate"
+    [attr.aria-label]="action.label | translate"
     [attr.aria-disabled]="action.action === 'copy' && copyState() !== 'idle'"
     [ngClass]="{
       'bmb_ai-chat-bubble-icon-active': action.active,

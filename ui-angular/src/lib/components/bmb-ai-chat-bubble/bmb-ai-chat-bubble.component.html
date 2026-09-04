@@ -92,7 +92,7 @@
 
           <div class="bmb_ai-chat-bubble-extra">
             @if (message.isUser) {
-              @if (showActions() && actions()?.length) {
+              @if (showActions() && _actions()?.length) {
                 <div
                   class="bmb_ai-chat-bubble-extra-container bmb_ai-chat-bubble-extra-container-user"
                   [class.is-copy-result-container]="copyState() !== 'idle'"
@@ -110,7 +110,7 @@
               </p>
             } @else {
               <div class="bmb_ai-chat-bubble-extra-container">
-                @if (showActions()) {
+                @if (showActions() && _actions()?.length) {
                   <bmb-chat-actions
                     [message]="message"
                     [actions]="_actions()"

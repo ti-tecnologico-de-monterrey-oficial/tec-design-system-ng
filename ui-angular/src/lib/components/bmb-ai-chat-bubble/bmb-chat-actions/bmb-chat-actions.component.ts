@@ -3,7 +3,6 @@ import {
   Component,
   computed,
   effect,
-  inject,
   input,
   output,
   signal,
@@ -16,13 +15,13 @@ import {
   BmbChatCopyState,
   BmbChatMessage,
 } from '../types';
-import { BmbTranslationsService } from '../../../services/translations/translations.service';
 import { BmbActionIconComponent } from '../../bmb-action-icon/bmb-action-icon.component';
+import { TranslatePipe } from '../../../pipes/translations';
 
 @Component({
   selector: 'bmb-chat-actions',
   standalone: true,
-  imports: [CommonModule, BmbActionIconComponent],
+  imports: [CommonModule, BmbActionIconComponent, TranslatePipe],
   templateUrl: './bmb-chat-actions.component.html',
   styleUrl: './bmb-chat-actions.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -31,34 +30,31 @@ export class ChatActionsComponent {
   readonly message = input.required<BmbChatMessage>();
   readonly actions = input<BmbChatAction[] | null>(null);
   readonly copyState = input<BmbChatCopyState>('idle');
-  private readonly translationService = inject(BmbTranslationsService);
+
   constructor() {
-    effect(
-      () => {
-        const message = this.message();
+    effect(() => {
+      const message = this.message();
 
-        this.internalActions.update((actions) =>
-          actions.map((action) => {
-            if (action.action === 'like') {
-              return {
-                ...action,
-                active: message.like ?? false,
-              };
-            }
+      this.internalActions.update((actions) =>
+        actions.map((action) => {
+          if (action.action === 'like') {
+            return {
+              ...action,
+              active: message.like ?? false,
+            };
+          }
 
-            if (action.action === 'dislike') {
-              return {
-                ...action,
-                active: message.dislike ?? false,
-              };
-            }
+          if (action.action === 'dislike') {
+            return {
+              ...action,
+              active: message.dislike ?? false,
+            };
+          }
 
-            return action;
-          }),
-        );
-      },
-      { allowSignalWrites: true },
-    );
+          return action;
+        }),
+      );
+    });
   }
   /**
    * Configurable actions.
@@ -67,33 +63,33 @@ export class ChatActionsComponent {
     {
       action: 'repeat',
       icon: 'repeat',
-      label: this.translationService.translate('chat_bubbles.repeat'),
+      label: 'chat_bubbles.repeat',
     },
     {
       action: 'voice',
       icon: 'record_voice_over',
-      label: this.translationService.translate('chat_bubbles.voice'),
+      label: 'chat_bubbles.voice',
     },
     {
       action: 'copy',
       icon: 'content_copy',
-      label: this.translationService.translate('chat_bubbles.copy'),
+      label: 'chat_bubbles.copy',
     },
     {
       action: 'edit',
       icon: 'edit',
-      label: this.translationService.translate('chat_bubbles.edit'),
+      label: 'chat_bubbles.edit',
     },
     {
       action: 'like',
       icon: 'thumb_up',
-      label: this.translationService.translate('chat_bubbles.like'),
+      label: 'chat_bubbles.like',
       active: false,
     },
     {
       action: 'dislike',
       icon: 'thumb_down',
-      label: this.translationService.translate('chat_bubbles.dislike'),
+      label: 'chat_bubbles.dislike',
       active: false,
     },
   ]);

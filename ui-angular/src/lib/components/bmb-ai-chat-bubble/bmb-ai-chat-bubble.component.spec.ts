@@ -122,10 +122,9 @@ describe('BmbAiChatBubbleComponent', () => {
     expect(icons.length).toBe(1);
   });
 
-  it('should hide user actions when actions is empty', () => {
+  it('should hide user actions when showActions false', () => {
     componentRef.setInput('message', mockUserMessage);
-    componentRef.setInput('actions', []);
-
+    componentRef.setInput('showActions', false);
     fixture.detectChanges();
 
     expect(fixture.debugElement.query(By.css('bmb-chat-actions'))).toBeFalsy();
