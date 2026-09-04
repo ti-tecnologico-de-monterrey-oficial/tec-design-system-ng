@@ -75,6 +75,7 @@
             name="bmbChatBarBot"
             class="bmb_chat-bar-input"
             [formControl]="control"
+            [disabled]="_disabledInput()"
             (keydown)="handleKeyDown($event)"
             autocomplete="off"
           ></textarea>
