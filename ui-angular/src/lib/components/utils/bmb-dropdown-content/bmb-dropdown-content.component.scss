@@ -27,7 +27,7 @@
   &-element {
     display: flex;
     width: 100%;
-    height: rem.rem_calc(48);
+    min-height: rem.rem_calc(48);
     padding: var(--bmb-spacing-s) var(--bmb-spacing-m);
     gap: var(--bmb-spacing-m);
     align-items: center;
@@ -35,10 +35,16 @@
     color: currentColor;
 
     &-text {
-      max-width: 100%;
+      flex: 1;
+      overflow-wrap: break-word;
+      display: -webkit-box;
+      display: box;
+      -webkit-line-clamp: 3;
+      line-clamp: 3;
+      -webkit-box-orient: vertical;
+      box-orient: vertical;
+      text-align: left;
       overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
     }
 
     &-indicator {
@@ -64,7 +70,6 @@
       &-element {
         text-decoration: none;
         width: 100%;
-        height: rem.rem_calc(48);
 
         &:hover,
         &:focus,

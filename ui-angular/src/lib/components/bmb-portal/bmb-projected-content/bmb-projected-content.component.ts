@@ -105,11 +105,23 @@ export class BmbProjectedContentComponent {
         ? (height - (targetPosition.bottom - mode)).toFixed(0) + 'px'
         : 'auto';
 
+    const screenEdgeOffset = 16;
+    const maxAvailableWidth =
+      left !== 'auto'
+        ? width - targetPosition.left - screenEdgeOffset
+        : targetPosition.right - screenEdgeOffset;
+
     return {
       inset: `${top} ${right} ${bottom} ${left}`,
       width: this.fixSizeToRef()
         ? targetPosition.width.toFixed(0) + 'px'
         : 'auto',
+      'max-width': this.fixSizeToRef()
+        ? undefined
+        : `${maxAvailableWidth.toFixed(0)}px`,
+      'min-width': this.fixSizeToRef()
+        ? undefined
+        : `${targetPosition.width.toFixed(0)}px`,
       display: 'flex',
       'max-height': `calc(100dvh - (${top} + ${bottom} + 1rem))`,
       'justify-content': width > 1000 && width / 2 ? 'flex-end' : 'flex-start',

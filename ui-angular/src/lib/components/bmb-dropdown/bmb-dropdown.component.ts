@@ -248,7 +248,6 @@ export class BmbDropdownComponent implements OnInit, OnChanges {
     const data = {
       content: BmbDropdownContentComponent,
       targetRef: this.contentRef?.nativeElement,
-      fixSizeToRef: true,
       showBackdrop: false,
       id: this.dialogID,
       inputContext: {
@@ -263,6 +262,7 @@ export class BmbDropdownComponent implements OnInit, OnChanges {
       },
       focusOnOpen: true,
       forceMobileCenter: this.isFilterable(),
+      fixSizeToRef: false,
     };
     this.projectionService.openContent(data);
   }
