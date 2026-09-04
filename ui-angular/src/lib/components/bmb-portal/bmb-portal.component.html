@@ -3,8 +3,8 @@
     <ng-container
       [ngTemplateOutlet]="commonTemplate"
       [ngTemplateOutletContext]="{
-        notifications: notificationsList(),
-        position: 'top-left'
+        notifications: notifications(),
+        position: 'top-left',
       }"
     />
   </div>
@@ -12,8 +12,8 @@
     <ng-container
       [ngTemplateOutlet]="commonTemplate"
       [ngTemplateOutletContext]="{
-        notifications: notificationsList(),
-        position: 'top-center'
+        notifications: notifications(),
+        position: 'top-center',
       }"
     />
   </div>
@@ -21,8 +21,8 @@
     <ng-container
       [ngTemplateOutlet]="commonTemplate"
       [ngTemplateOutletContext]="{
-        notifications: notificationsList(),
-        position: 'top-right'
+        notifications: notifications(),
+        position: 'top-right',
       }"
     />
   </div>
@@ -30,8 +30,8 @@
     <ng-container
       [ngTemplateOutlet]="commonTemplate"
       [ngTemplateOutletContext]="{
-        notifications: notificationsList(),
-        position: 'bottom-left'
+        notifications: notifications(),
+        position: 'bottom-left',
       }"
     />
   </div>
@@ -39,8 +39,8 @@
     <ng-container
       [ngTemplateOutlet]="commonTemplate"
       [ngTemplateOutletContext]="{
-        notifications: notificationsList(),
-        position: 'bottom-center'
+        notifications: notifications(),
+        position: 'bottom-center',
       }"
     />
   </div>
@@ -48,14 +48,14 @@
     <ng-container
       [ngTemplateOutlet]="commonTemplate"
       [ngTemplateOutletContext]="{
-        notifications: notificationsList(),
-        position: 'bottom-right'
+        notifications: notifications(),
+        position: 'bottom-right',
       }"
     />
   </div>
 </section>
 
-@for (item of modalSignal(); track $index) {
+@for (item of modals(); track $index) {
   <bmb-native-modal
     [componentTitle]="item.title || ''"
     [content]="item.content || ''"
@@ -69,25 +69,24 @@
     (closeModalClicked)="handleModalClick(item, $event)"
   />
 }
-
-<ng-container
-  *ngFor="let dialog of projectedContents(); trackBy: trackByDialogId"
->
-  <bmb-projected-content
-    [contentId]="dialog.id ?? ''"
-    [content]="dialog.content ?? null"
-    [htmlRef]="dialog.targetRef ?? null"
-    [mode]="dialog.mode ?? 'outside'"
-    [fixSizeToRef]="dialog.fixSizeToRef ?? false"
-    [inputContext]="dialog.inputContext ?? {}"
-    [showBackdrop]="dialog.showBackdrop ?? true"
-    [outputContext]="dialog.outputContext ?? {}"
-    [focusOnOpen]="dialog.focusOnOpen ?? true"
-    [dialogClass]="dialog.dialogClass ?? ''"
-    [forceMobileCenter]="dialog.forceMobileCenter ?? false"
-    (removeContent)="handleRemoveProjectedContent(dialog.id)"
-  ></bmb-projected-content>
-</ng-container>
+@for (dialog of projectedContents(); track $index) {
+  <ng-container>
+    <bmb-projected-content
+      [contentId]="dialog.id ?? ''"
+      [content]="dialog.content ?? null"
+      [htmlRef]="dialog.targetRef ?? null"
+      [mode]="dialog.mode ?? 'outside'"
+      [fixSizeToRef]="dialog.fixSizeToRef ?? false"
+      [inputContext]="dialog.inputContext ?? {}"
+      [showBackdrop]="dialog.showBackdrop ?? true"
+      [outputContext]="dialog.outputContext ?? {}"
+      [focusOnOpen]="dialog.focusOnOpen ?? true"
+      [dialogClass]="dialog.dialogClass ?? ''"
+      [forceMobileCenter]="dialog.forceMobileCenter ?? false"
+      (removeContent)="handleRemoveProjectedContent(dialog.id)"
+    ></bmb-projected-content>
+  </ng-container>
+}
 
 <ng-template
   #commonTemplate

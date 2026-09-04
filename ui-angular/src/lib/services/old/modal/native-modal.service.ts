@@ -71,6 +71,9 @@ export class BmbNativeModalService {
       newModal.modalId && newModal.modalId !== ''
         ? newModal.modalId
         : getUUID();
+    if (this.checkIfModalExists(id)) {
+      return id;
+    }
     this.getOrCreatePortal();
     this.modalList.update((currentModals) => [
       ...currentModals,

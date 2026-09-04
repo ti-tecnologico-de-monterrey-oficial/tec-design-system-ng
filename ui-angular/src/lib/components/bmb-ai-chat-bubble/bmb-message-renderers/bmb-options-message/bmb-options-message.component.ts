@@ -13,8 +13,8 @@ import {
 import { BmbItemInformativeTextComponent } from '../../../bmb-item/bmb-item-informative-text/bmb-item-informative-text.component';
 import { BmbItemActionsComponent } from '../../../bmb-item/bmb-item-actions/bmb-item-actions.component';
 import { BmbDividerComponent } from '../../../bmb-divider/bmb-divider.component';
-import { BmbVerticalLayoutDirective } from '../../../../directives/old/bmb-layout/bmb-vertical-layout/bmb-vertical-layout.directive';
-import { BmbVerticalLayoutItemDirective } from '../../../../directives/old/bmb-layout/bmb-vertical-layout/bmb-vertical-layout-item.directive';
+import { BmbVerticalLayoutDirective } from '../../../../directives/bmb-layout/bmb-vertical-layout/bmb-vertical-layout.directive';
+import { BmbVerticalLayoutItemDirective } from '../../../../directives/bmb-layout/bmb-vertical-layout/bmb-vertical-layout-item.directive';
 
 @Component({
   selector: 'bmb-options-message',

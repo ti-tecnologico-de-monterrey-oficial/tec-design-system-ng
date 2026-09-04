@@ -8,7 +8,7 @@ import {
   signal,
   TemplateRef,
 } from '@angular/core';
-import { BmbButtonDirective } from '../../directives/old/bmb-button/button.directive';
+import { BmbButtonDirective } from '../../directives/bmb-button/button.directive';
 import {
   IBmbActionButton,
   IBmbNativeModalSize,

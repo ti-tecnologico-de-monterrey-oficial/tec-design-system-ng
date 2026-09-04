@@ -1,0 +1,113 @@
+import {
+  Directive,
+  ElementRef,
+  HostBinding,
+  ViewContainerRef,
+  ChangeDetectorRef,
+  Renderer2,
+  SimpleChanges,
+  input,
+  inject,
+  OnInit,
+  OnChanges,
+} from '@angular/core';
+import { BmbIconComponent } from '../../components/bmb-icon/bmb-icon.component';
+import {
+  IBmbHorizontalPosition,
+  IButtonAppearance,
+  IButtonSize,
+} from '../../_shared/types';
+import { getButtonClasses } from '../../_shared/logic/components/button';
+
+@Directive({
+  selector: '[bmbButton]',
+  standalone: true,
+})
+export class BmbButtonDirective implements OnInit, OnChanges {
+  icon = input<string>('');
+  iconSize = input<number | undefined>(16);
+  position = input<IBmbHorizontalPosition>('left');
+  case = input<boolean>(false);
+  appearance = input<IButtonAppearance>('primary');
+  size = input<IButtonSize>('small');
+  isToggleActive = input<boolean>(false);
+  enableButtonToggle = input<boolean>(false);
+  isRounded = input<boolean>(true);
+  isMobile = input<boolean>(false);
+  iconAlt = input<string>('icon');
+
+  private providedInputs: Set<string> = new Set();
+
+  private el: ElementRef = inject(ElementRef);
+  private viewContainerRef: ViewContainerRef = inject(ViewContainerRef);
+  private cdr: ChangeDetectorRef = inject(ChangeDetectorRef);
+  private renderer: Renderer2 = inject(Renderer2);
+
+  ngOnInit(): void {
+    this.addContent();
+    this.applyAttributes();
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    Object.keys(changes).forEach((input) => {
+      this.providedInputs.add(input);
+    });
+
+    this.applyAttributes();
+    this.addContent();
+    this.cdr.markForCheck();
+  }
+
+  private applyAttributes() {
+    if (this.providedInputs.has('size') && this.size()) {
+      this.renderer.setAttribute(this.el.nativeElement, 'size', this.size());
+    }
+
+    if (this.providedInputs.has('position')) {
+      this.renderer.setAttribute(
+        this.el.nativeElement,
+        'position',
+        this.position(),
+      );
+    }
+  }
+
+  @HostBinding('class') get elementClass(): string[] {
+    return getButtonClasses({
+      appearance: this.appearance(),
+      isCase: this.case(),
+      enableButtonToggle: this.enableButtonToggle(),
+      isToggleActive: this.isToggleActive(),
+      isMobile: this.isMobile(),
+    });
+  }
+
+  private addContent() {
+    this.viewContainerRef.clear();
+
+    if (this.icon()) {
+      const iconComponentRef =
+        this.viewContainerRef.createComponent(BmbIconComponent);
+      const iconComponent = iconComponentRef.instance;
+      iconComponent.icon = this.icon;
+      iconComponent.alt = this.iconAlt;
+
+      if (this.iconSize()) {
+        iconComponent.size = this.iconSize;
+      }
+
+      if (this.position() === 'right') {
+        this.el.nativeElement.insertBefore(
+          iconComponentRef.location.nativeElement,
+          this.el.nativeElement.lastChild.nextSibling,
+        );
+        return;
+      }
+
+      this.el.nativeElement.insertBefore(
+        iconComponentRef.location.nativeElement,
+        this.el.nativeElement.firstChild,
+      );
+    }
+  }
+}

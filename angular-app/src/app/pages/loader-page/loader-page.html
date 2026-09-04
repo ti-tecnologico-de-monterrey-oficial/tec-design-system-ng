@@ -1,0 +1,130 @@
+<header class="page-header">
+  <p class="eyebrow">Componente migrado</p>
+  <h1>BmbLoader</h1>
+  <p>Cambia sus propiedades para validar cada variante de forma aislada.</p>
+</header>
+
+<section class="playground" aria-labelledby="loader-properties-heading">
+  <aside class="controls">
+    <h2 id="loader-properties-heading">Propiedades</h2>
+
+    <label class="toggle">
+      <input
+        type="checkbox"
+        [checked]="showInline()"
+        (change)="setShowInline($any($event.target).checked)"
+      />
+      showInline
+    </label>
+
+    <label class="toggle">
+      <input
+        type="checkbox"
+        [checked]="isVisible()"
+        (change)="setIsVisible($any($event.target).checked)"
+      />
+      isVisible
+    </label>
+
+    <label class="toggle">
+      <input
+        type="checkbox"
+        [checked]="overlay()"
+        (change)="setOverlay($any($event.target).checked)"
+      />
+      overlay
+    </label>
+
+    <label class="toggle">
+      <input
+        type="checkbox"
+        [checked]="errorState()"
+        (change)="setErrorState($any($event.target).checked)"
+      />
+      errorState
+    </label>
+
+    <label class="toggle">
+      <input
+        type="checkbox"
+        [checked]="actions()"
+        (change)="setActions($any($event.target).checked)"
+      />
+      actions
+    </label>
+
+    <label for="loader-appearance">appearance</label>
+    <select
+      id="loader-appearance"
+      [value]="appearance()"
+      (change)="setAppearance($any($event.target).value)"
+    >
+      @for (option of appearances; track option) {
+        <option [value]="option">{{ option }}</option>
+      }
+    </select>
+
+    <label for="loader-icon">icon</label>
+    <input
+      id="loader-icon"
+      type="text"
+      [value]="icon()"
+      (input)="setIcon($any($event.target).value)"
+    />
+
+    <label for="loader-title">componentTitle</label>
+    <input
+      id="loader-title"
+      type="text"
+      [value]="componentTitle()"
+      (input)="setComponentTitle($any($event.target).value)"
+    />
+
+    <label for="loader-subtitle">subtitle</label>
+    <input
+      id="loader-subtitle"
+      type="text"
+      [value]="subtitle()"
+      (input)="setSubtitle($any($event.target).value)"
+    />
+
+    <label for="loader-button-primary">buttonPrimary</label>
+    <input
+      id="loader-button-primary"
+      type="text"
+      [value]="buttonPrimary()"
+      (input)="setButtonPrimary($any($event.target).value)"
+    />
+
+    <label for="loader-button-secondary">buttonSecondary</label>
+    <input
+      id="loader-button-secondary"
+      type="text"
+      [value]="buttonSecondary()"
+      (input)="setButtonSecondary($any($event.target).value)"
+    />
+
+    <output
+      >clicks: primary {{ primaryClicks() }} · secondary
+      {{ secondaryClicks() }}</output
+    >
+  </aside>
+
+  <div class="preview">
+    <bmb-loader
+      [appearance]="appearance()"
+      [icon]="icon()"
+      [componentTitle]="componentTitle()"
+      [subtitle]="subtitle()"
+      [overlay]="overlay()"
+      [isVisible]="isVisible()"
+      [errorState]="errorState()"
+      [actions]="actions()"
+      [buttonPrimary]="buttonPrimary()"
+      [buttonSecondary]="buttonSecondary()"
+      [showInline]="showInline()"
+      (onButtonPrimary)="handleButtonPrimary()"
+      (onButtonSecondary)="handleButtonSecondary()"
+    />
+  </div>
+</section>

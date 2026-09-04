@@ -9,6 +9,7 @@ import {
 import { CommonModule } from '@angular/common';
 import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
 import { IBmbContrast } from '../../_shared/types/colors';
+import { getButtonIconClasses } from '../../_shared/logic/components/button-icon';
 
 /*
  * TODO: This component is marked as "old" and its decommissioning is planned for future updates.
@@ -35,6 +36,16 @@ export class BmbButtonIconComponent {
 
   // eslint-disable-next-line @angular-eslint/no-output-on-prefix
   onButtonClick = output<MouseEvent>();
+
+  getClassList(): string[] {
+    return getButtonIconClasses({
+      active: this.active(),
+      showContainer: this.showContainer(),
+      isOutline: this.isOutline(),
+      disabled: this.disabled(),
+      appearanceContrast: this.appearanceContrast(),
+    });
+  }
 
   handlePress(): void {
     this.active.update((value) => !value);

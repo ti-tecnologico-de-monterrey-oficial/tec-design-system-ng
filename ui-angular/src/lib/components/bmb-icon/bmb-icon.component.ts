@@ -19,11 +19,15 @@ import { BmbNotificationCounterComponent } from '../bmb-notification-counter/bmb
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { BmbIconService } from '../../services/icon/icon.service';
 import { sanitizeContent } from '../../_shared/logic/sanitizeContent';
+import { BmbCustomIconsComponent } from './bmb-custom-icons/bmb-custom-icons.component';
 import {
   BmbCustomIconList,
   BmbCustomIconListType,
-  BmbCustomIconsComponent,
-} from './bmb-custom-icons/bmb-custom-icons.component';
+} from '../../_shared/types/components/icon';
+import {
+  getIconFontVariationSettings,
+  getIconImageStyles,
+} from '../../_shared/logic/components/icon';
 import { A11yModule } from '@angular/cdk/a11y';
 import { getUUID } from '../../_shared/logic/utils';
 
@@ -144,16 +148,11 @@ export class BmbIconComponent implements OnInit {
   }
 
   getFontVariationSettings(): string {
-    const fill = "'FILL' 1";
-    const weight = 'wght 400';
-    return `${fill}, ${weight}`;
+    return getIconFontVariationSettings();
   }
 
   getImageStyles() {
-    return {
-      width: this.size() ? `${this.size()}px` : '1em',
-      height: this.size() ? `${this.size()}px` : '1em',
-    };
+    return getIconImageStyles(this.size());
   }
 
   get safeSVG(): SafeHtml | null {

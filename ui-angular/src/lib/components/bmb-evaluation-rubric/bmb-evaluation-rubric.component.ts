@@ -9,14 +9,14 @@ import {
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BmbFocusElementComponent } from '../bmb-focus-element/bmb-focus-element.component';
-import { BmbLayoutDirective } from '../../directives/old/bmb-layout/bmb-layout.directive';
-import { BmbLayoutItemDirective } from '../../directives/old/bmb-layout/bmb-layout-item.directive';
+import { BmbLayoutDirective } from '../../directives/bmb-layout/bmb-layout.directive';
+import { BmbLayoutItemDirective } from '../../directives/bmb-layout/bmb-layout-item.directive';
 import { BmbDividerComponent } from '../bmb-divider/bmb-divider.component';
 import { BmbTooltipComponent } from '../bmb-tooltip/bmb-tooltip.component';
 import {
   BmbInputComponent,
 } from '../bmb-input/bmb-input.component';
-import { BmbButtonDirective } from '../../directives/old/bmb-button/button.directive';
+import { BmbButtonDirective } from '../../directives/bmb-button/button.directive';
 import { BmbThreeColsComponent } from '../bmb-three-cols/bmb-three-cols.component';
 import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
 import { BmbTitleContentComponent } from '../bmb-title-content/bmb-title-content.component';

@@ -7,28 +7,18 @@ import {
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BmbBadgeComponent } from '../bmb-badge/bmb-badge.component';
-import { IBbmBgAppearance } from '../../_shared/types/components/advertisement-card';
 import { IBmbContrast } from '../../_shared/types/colors';
+import {
+  IBmbConcept,
+  IBmbInvoice,
+} from '../../_shared/types/components/invoice';
+import {
+  getInvoiceComponentClasses,
+  isInvoiceValueNegative,
+} from '../../_shared/logic/components/invoice';
 
-export interface IBmbConcept {
-  concept: string;
-  quantity: string;
-  price?: number;
-  badge?: { label: string; appearance: IBbmBgAppearance; container: boolean };
-}
+export type { IBmbConcept, IBmbInvoice };
 
-export interface IBmbInvoice {
-  concept: IBmbConcept[];
-  total: {
-    label: string;
-    value: string;
-    equivalence: string[];
-  };
-}
-
-/*
- * TODO: This component is marked as "old" and its decommissioning is planned for future updates.
- */
 
 @Component({
   selector: 'bmb-invoice',
@@ -46,22 +36,10 @@ export class BmbInvoiceComponent implements OnInit {
   ngOnInit(): void {}
 
   isNegative(value: string): boolean {
-    const isNegative = value.trim().startsWith('-');
-    const number = parseFloat(value.replace(/[^\d.-]/g, ''));
-    return isNegative || number < 0;
+    return isInvoiceValueNegative(value);
   }
 
   getInvoiceClasses(): string[] {
-    const classes: string[] = ['bmb_invoice'];
-
-    if (this.appearanceContrast() === 'primary') {
-      classes.push('bmb_invoice-primary');
-    }
-
-    if (this.appearanceContrast() === 'alternative') {
-      classes.push('bmb_invoice-alternative');
-    }
-
-    return classes;
+    return getInvoiceComponentClasses(this.appearanceContrast());
   }
 }

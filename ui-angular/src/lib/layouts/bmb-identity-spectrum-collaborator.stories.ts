@@ -18,11 +18,11 @@ import { IBmbNativeModal } from '../components/bmb-modal/bmb-modal.interface';
 import { BmbNativeModalService } from '../services/old/modal/native-modal.service';
 import { IBmbActionHeader } from '../_shared/types/index';
 
-import { BmbButtonDirective } from '../directives/old/bmb-button/button.directive';
-import { BmbLayoutDirective } from '../directives/old/bmb-layout/bmb-layout.directive';
-import { BmbLayoutItemDirective } from '../directives/old/bmb-layout/bmb-layout-item.directive';
-import { BmbVerticalLayoutDirective } from '../directives/old/bmb-layout/bmb-vertical-layout/bmb-vertical-layout.directive';
-import { BmbVerticalLayoutItemDirective } from '../directives/old/bmb-layout/bmb-vertical-layout/bmb-vertical-layout-item.directive';
+import { BmbButtonDirective } from '../directives/bmb-button/button.directive';
+import { BmbLayoutDirective } from '../directives/bmb-layout/bmb-layout.directive';
+import { BmbLayoutItemDirective } from '../directives/bmb-layout/bmb-layout-item.directive';
+import { BmbVerticalLayoutDirective } from '../directives/bmb-layout/bmb-vertical-layout/bmb-vertical-layout.directive';
+import { BmbVerticalLayoutItemDirective } from '../directives/bmb-layout/bmb-vertical-layout/bmb-vertical-layout-item.directive';
 import { BmbSelectorDirective } from '../directives/old/bmb-selector/bmb-selector.directive';
 
 import * as topBarStory from '../components/bmb-top-bar/bmb-top-bar.stories';
@@ -37,9 +37,9 @@ import * as actionMenuStory from '../components/bmb-action-menu/bmb-action-menu.
 import * as dropzoneStory from '../components/bmb-dropzone/bmb-dropzone.stories';
 import * as nativeModalStory from '../components/bmb-modal/bmb-native-modal.stories';
 
-import * as buttonDirectiveStory from '../directives/old/bmb-button/button.stories';
-import * as layoutDirectiveStory from '../directives/old/bmb-layout/bmb-layout.stories';
-import * as verticalLayoutDirectiveStory from '../directives/old/bmb-layout/bmb-vertical-layout/bmb-vertical-layout.stories';
+import * as buttonDirectiveStory from '../directives/bmb-button/button.stories';
+import * as layoutDirectiveStory from '../directives/bmb-layout/bmb-layout.stories';
+import * as verticalLayoutDirectiveStory from '../directives/bmb-layout/bmb-vertical-layout/bmb-vertical-layout.stories';
 import * as selectorDirectiveStory from '../directives/old/bmb-selector/bmb-selector.stories';
 
 import {

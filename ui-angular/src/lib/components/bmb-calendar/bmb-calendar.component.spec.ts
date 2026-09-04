@@ -35,49 +35,40 @@ describe('BmbCalendarComponent', () => {
   });
 
   it('should emit week visible dates on handleDateChange', () => {
-    jest.spyOn(component.onDateChange, 'emit');
+    const emitSpy = jest.spyOn(component.onDateChange, 'emit');
     const now = DateTime.now();
 
     component.handleDateChange('week', now);
 
     expect(component.view()).toBe('week');
-    expect(component.onDateChange.emit).toHaveBeenCalledWith(
-      jasmine.objectContaining({
+    expect(emitSpy).toHaveBeenCalledWith(
+      expect.objectContaining({
         range: 'week',
         now: now.toISO(),
-        visibleDates: jasmine.any(Array),
+        visibleDates: expect.any(Array),
       }),
     );
-    expect(
-      (component.onDateChange.emit as jasmine.Spy).calls.mostRecent().args[0]
-        .visibleDates.length,
-    ).toBe(7);
+    expect(emitSpy.mock.calls[0][0].visibleDates.length).toBe(7);
   });
 
   it('should emit month visible dates on handleDateChange', () => {
-    jest.spyOn(component.onDateChange, 'emit');
+    const emitSpy = jest.spyOn(component.onDateChange, 'emit');
     const now = DateTime.now();
 
     component.handleDateChange('month', now);
 
     expect(component.view()).toBe('month');
-    expect(
-      (component.onDateChange.emit as jasmine.Spy).calls.mostRecent().args[0]
-        .visibleDates.length,
-    ).toBe(35);
+    expect(emitSpy.mock.calls[0][0].visibleDates.length).toBe(35);
   });
 
   it('should emit day visible dates on handleDateChange', () => {
-    jest.spyOn(component.onDateChange, 'emit');
+    const emitSpy = jest.spyOn(component.onDateChange, 'emit');
     const now = DateTime.now();
 
     component.handleDateChange('day', now);
 
     expect(component.view()).toBe('day');
-    expect(
-      (component.onDateChange.emit as jasmine.Spy).calls.mostRecent().args[0]
-        .visibleDates.length,
-    ).toBe(35);
+    expect(emitSpy.mock.calls[0][0].visibleDates.length).toBe(35);
   });
 
   it('should return correct height string', () => {
@@ -101,7 +92,10 @@ describe('BmbCalendarComponent', () => {
   });
 
   it('should set mobile view on resize when width is less than 1000', () => {
-    spyOnProperty(window, 'innerWidth', 'get').and.returnValue(900);
+    Object.defineProperty(window, 'innerWidth', {
+      configurable: true,
+      get: () => 900,
+    });
 
     component.resize();
 
@@ -111,7 +105,10 @@ describe('BmbCalendarComponent', () => {
 
   it('should disable mobile header on resize when width is greater than or equal to 1000', () => {
     component.isMobileHeader = true;
-    spyOnProperty(window, 'innerWidth', 'get').and.returnValue(1000);
+    Object.defineProperty(window, 'innerWidth', {
+      configurable: true,
+      get: () => 1000,
+    });
 
     component.resize();
 
@@ -120,7 +117,10 @@ describe('BmbCalendarComponent', () => {
 
   it('should set mobile view on ngAfterViewInit when width is less than 1000', () => {
     component.view.set('week');
-    spyOnProperty(window, 'innerWidth', 'get').and.returnValue(999);
+    Object.defineProperty(window, 'innerWidth', {
+      configurable: true,
+      get: () => 999,
+    });
 
     component.ngAfterViewInit();
 

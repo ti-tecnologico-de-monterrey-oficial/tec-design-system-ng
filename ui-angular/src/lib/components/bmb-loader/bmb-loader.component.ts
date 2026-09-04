@@ -11,13 +11,15 @@ import {
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
-import { BmbButtonDirective } from '../../directives/old/bmb-button/button.directive';
+import { BmbButtonDirective } from '../../directives/bmb-button/button.directive';
 import { IBbmBgAppearance } from '../../_shared/types/components/advertisement-card';
 import { logDeprecatedInput } from '../../_shared/logic/logDeprecatedInput';
+import {
+  getLoaderClasses,
+  getLoaderErrorIconClass,
+  shouldShowLoaderOverlay,
+} from '../../_shared/logic/components/loader';
 
-/*
- * TODO: This component is marked as "old" and its decommissioning is planned for future updates.
- */
 
 @Component({
   selector: 'bmb-loader',
@@ -82,7 +84,7 @@ export class BmbLoaderComponent {
     if (this.isVisible()) {
       document.body.appendChild(this.elRef.nativeElement);
 
-      if (this.overlay() && !this.errorState()) {
+      if (this.shouldShowOverlay()) {
         this.renderer.addClass(document.body, 'bmb_loader-body-overlay');
       }
     } else {
@@ -105,6 +107,18 @@ export class BmbLoaderComponent {
 
   private isInsideIframe(): boolean {
     return window.self !== window.top;
+  }
+
+  shouldShowOverlay(): boolean {
+    return shouldShowLoaderOverlay(this.overlay(), this.errorState());
+  }
+
+  getClassList(): Record<string, boolean> {
+    return getLoaderClasses(this.overlay(), this.errorState());
+  }
+
+  getErrorIconClass(): string {
+    return getLoaderErrorIconClass(this.appearance());
   }
 
   handleButtonPrimary(event: MouseEvent) {

@@ -6,6 +6,7 @@ export * from './components/action-icon';
 export * from './components/advertisement-card';
 export * from './components/badge';
 export * from './components/bottom-navigation-bar';
+export * from './components/bot-icon';
 export * from './components/breadcrumb';
 export * from './components/card';
 export * from './components/divider';
@@ -14,11 +15,18 @@ export * from './components/dropdown';
 export * from './components/fab';
 export * from './components/grade-value';
 export * from './components/hito-list';
+export * from './components/icon';
 export * from './components/iframe';
 export * from './components/interactive-icon';
+export * from './components/invoice';
+export * from './components/icon-status';
 export * from './components/layout';
 export * from './components/legend';
+export * from './components/list-group';
+export * from './components/media-card';
 export * from './components/notification-counter';
+export * from './components/notification-card';
+export * from './components/navigation-bar';
 export * from './components/progress-circle';
 export * from './components/server-table';
 export * from './components/skeleton';
@@ -29,8 +37,6 @@ export * from './components/value-counter';
 
 export * from './input';
 export * from './utils';
-
-
 
 /* TODO: Move all types below to a separate files */
 export * from './components/action-icon';

@@ -1,0 +1,39 @@
+@use '../../styles/playground';
+
+@include playground.page;
+
+.preview {
+  align-items: stretch;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  justify-content: center;
+
+  bmb-frequent-apps-selector {
+    width: 100%;
+  }
+}
+
+.configuration {
+  border: 1px solid #d8dee8;
+  border-radius: 0.5rem;
+  width: 100%;
+
+  summary {
+    cursor: pointer;
+    font-weight: 700;
+    padding: 0.75rem 1rem;
+  }
+
+  pre {
+    background: #18202f;
+    border-radius: 0 0 0.5rem 0.5rem;
+    color: #f4f7fb;
+    margin: 0;
+    max-height: 18rem;
+    overflow: auto;
+    padding: 1rem;
+    white-space: pre-wrap;
+    word-break: break-word;
+  }
+}

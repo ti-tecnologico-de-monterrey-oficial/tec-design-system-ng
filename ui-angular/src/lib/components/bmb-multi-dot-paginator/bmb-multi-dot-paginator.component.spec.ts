@@ -14,6 +14,7 @@ import { Component } from '@angular/core';
       <bmb-multi-dot-paginator-item>Item 3</bmb-multi-dot-paginator-item>
     </bmb-multi-dot-paginator>
   `,
+  imports: [BmbMultiDotPaginatorComponent, BmbMultiDotPaginatorItemComponent],
 })
 class TestHostComponent {}
 
@@ -24,11 +25,7 @@ describe('BmbMultiDotPaginatorComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [TestHostComponent],
-      imports: [
-        BmbMultiDotPaginatorComponent,
-        BmbMultiDotPaginatorItemComponent,
-      ],
+      imports: [TestHostComponent],
     }).compileComponents();
 
     hostFixture = TestBed.createComponent(TestHostComponent);
@@ -54,7 +51,7 @@ describe('BmbMultiDotPaginatorComponent', () => {
   });
 
   it('should initialize three dot items', () => {
-    expect(component.numberOfElements.length).toBe(3);
+    expect(component.numberOfElements().length).toBe(3);
     expect(component.selectedIndex()).toBe(0);
   });
 

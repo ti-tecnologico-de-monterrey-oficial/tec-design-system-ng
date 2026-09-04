@@ -71,17 +71,19 @@
               }
             } @else {
               @if (isGreaterThanLimit) {
-                <ng-container
-                  *ngTemplateOutlet="
-                    itemByIndex;
-                    context: {
-                      headerAction: getHeaderAction(0),
-                      idElement: 0,
-                    }
-                  "
-                  bmbLayoutItem
-                  [isDynamicItem]="true"
-                />
+                @if (actionsLimit() > AI_CHAT_CARD_PARTICULARITY_LIMIT) {
+                  <ng-container
+                    *ngTemplateOutlet="
+                      itemByIndex;
+                      context: {
+                        headerAction: getHeaderAction(0),
+                        idElement: 0,
+                      }
+                    "
+                    bmbLayoutItem
+                    [isDynamicItem]="true"
+                  />
+                }
                 <ng-container
                   [ngTemplateOutlet]="moreAction"
                   bmbLayoutItem
@@ -94,27 +96,29 @@
                 />
               } @else {
                 @for (headerAction of actionHeaders(); track $index) {
-                  <bmb-action-icon
-                    [idElement]="headerAction.icon.concat($index.toString())"
-                    [icon]="headerAction.icon"
-                    [alt]="headerAction.alt || headerAction.icon"
-                    [tooltipText]="
-                      headerAction.tooltipText ||
-                      headerAction.alt ||
-                      headerAction.icon
-                    "
-                    [isAccentColor]="headerAction.isAccentColor"
-                    [iconSize]="24"
-                    [toggleIconActive]="headerAction.iconActiveToggle"
-                    [(isToggleActive)]="headerAction.isToggleActive"
-                    [link]="headerAction.link"
-                    [target]="headerAction.target"
-                    (buttonClick)="
-                      handleHeaderActionClick($event, headerAction)
-                    "
-                    bmbLayoutItem
-                    [isDynamicItem]="true"
-                  />
+                  @if ($index < MAX_ACTIONS) {
+                    <bmb-action-icon
+                      [idElement]="headerAction.icon.concat($index.toString())"
+                      [icon]="headerAction.icon"
+                      [alt]="headerAction.alt || headerAction.icon"
+                      [tooltipText]="
+                        headerAction.tooltipText ||
+                        headerAction.alt ||
+                        headerAction.icon
+                      "
+                      [isAccentColor]="headerAction.isAccentColor"
+                      [iconSize]="24"
+                      [toggleIconActive]="headerAction.iconActiveToggle"
+                      [(isToggleActive)]="headerAction.isToggleActive"
+                      [link]="headerAction.link"
+                      [target]="headerAction.target"
+                      (buttonClick)="
+                        handleHeaderActionClick($event, headerAction)
+                      "
+                      bmbLayoutItem
+                      [isDynamicItem]="true"
+                    />
+                  }
                 }
                 <ng-container
                   [ngTemplateOutlet]="expandAction"
@@ -206,7 +210,9 @@
             (getActionClick)="handleCloseActionMenu($event, headerAction)"
           />
         </ng-template>
-      } @else if ($index) {
+      } @else if (
+        actionsLimit() === AI_CHAT_CARD_PARTICULARITY_LIMIT || $index
+      ) {
         <ng-template #actionMenuItem>
           <bmb-item-actions
             [icon]="headerAction.icon"

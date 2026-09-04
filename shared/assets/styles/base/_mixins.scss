@@ -260,7 +260,7 @@
 
   @if $mark_type == 'selected' {
     &::after {
-      @include input-checked(10, 4);
+      @include input-checked(10, 6);
       border: solid rgb(var(--white-primary));
       border-width: rem.rem_calc(0 2 2 0);
       transform: rotate(45deg);

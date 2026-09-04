@@ -11,7 +11,7 @@ import { BmbMobileTemplatesComponent } from '../bmb-mobile-templates/bmb-mobile-
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { BmbContainerButtonComponent } from '../bmb-container-button/bmb-container-button.component';
 import { BmbThemeComponent } from '../bmb-theme/bmb-theme.component';
-import { BmbButtonDirective } from '../../directives/old/bmb-button/button.directive';
+import { BmbButtonDirective } from '../../directives/bmb-button/button.directive';
 import {
   IBmbCollaboratorProfileData,
   IBmbProfileData,
@@ -33,8 +33,8 @@ import {
   BmbCardComponent,
   BmbCardContentComponent,
 } from '../bmb-card/bmb-card.component';
-import { BmbLayoutDirective } from '../../directives/old/bmb-layout/bmb-layout.directive';
-import { BmbLayoutItemDirective } from '../../directives/old/bmb-layout/bmb-layout-item.directive';
+import { BmbLayoutDirective } from '../../directives/bmb-layout/bmb-layout.directive';
+import { BmbLayoutItemDirective } from '../../directives/bmb-layout/bmb-layout-item.directive';
 import { BmbUserImageComponent } from '../bmb-user-image/bmb-user-image.component';
 import { BmbLoaderComponent } from '../bmb-loader/bmb-loader.component';
 

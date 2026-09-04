@@ -1,0 +1,49 @@
+@use '../../styles/playground';
+
+@include playground.page;
+
+.playground {
+  align-items: start;
+}
+
+.controls {
+  max-height: 90vh;
+  overflow-y: scroll;
+  scrollbar-gutter: stable;
+}
+
+.preview {
+  align-items: safe center;
+  display: flex;
+  height: 90vh;
+  justify-content: safe center;
+  max-height: 90vh;
+  overflow: auto;
+  position: sticky;
+  scrollbar-gutter: stable;
+  top: 0;
+}
+
+:host ::ng-deep .preview {
+  .bmb_loader-error {
+    height: auto;
+    max-height: calc(90vh - 3rem);
+  }
+
+  .bmb_loader-modal,
+  .bmb_loader-overlay {
+    position: absolute;
+  }
+
+  .bmb_loader-overlay {
+    height: 100%;
+    width: 100%;
+  }
+}
+
+@media (max-width: 700px) {
+  .preview {
+    height: min(32rem, 90vh);
+    position: relative;
+  }
+}

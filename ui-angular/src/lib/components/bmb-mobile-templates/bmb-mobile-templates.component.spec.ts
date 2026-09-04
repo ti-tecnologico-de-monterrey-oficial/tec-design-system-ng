@@ -38,6 +38,7 @@ describe('BmbMobileTemplatesComponent', () => {
   // Test external link inputs
   it('should set external link inputs correctly', () => {
     componentRef.setInput('template', 'external-link');
+    componentRef.setInput('componentTitle', 'External Link Title');
     componentRef.setInput('buttonList', { subtitle: 'External Link Subtitle' });
     fixture.detectChanges();
     expect(

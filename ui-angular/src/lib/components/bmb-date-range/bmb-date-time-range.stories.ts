@@ -27,9 +27,9 @@ import {
   RELEVANT_TITLE,
 } from '@docs/utils/utils';
 import { BmbDatepickerComponent } from '../bmb-datepicker/bmb-datepicker.component';
-import { BmbButtonDirective } from '../../directives/old/bmb-button/button.directive';
-import { BmbLayoutDirective } from '../../directives/old/bmb-layout/bmb-layout.directive';
-import { BmbLayoutItemDirective } from '../../directives/old/bmb-layout/bmb-layout-item.directive';
+import { BmbButtonDirective } from '../../directives/bmb-button/button.directive';
+import { BmbLayoutDirective } from '../../directives/bmb-layout/bmb-layout.directive';
+import { BmbLayoutItemDirective } from '../../directives/bmb-layout/bmb-layout-item.directive';
 import { BmbInputComponent } from '../bmb-input/bmb-input.component';
 
 const HTML_TEMPLATE: string = `

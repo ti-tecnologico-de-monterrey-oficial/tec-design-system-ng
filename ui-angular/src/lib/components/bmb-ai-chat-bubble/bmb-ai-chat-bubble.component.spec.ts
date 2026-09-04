@@ -109,25 +109,97 @@ describe('BmbAiChatBubbleComponent', () => {
 
   it('should render only the copy action for a user message by default', () => {
     componentRef.setInput('message', mockUserMessage);
+    componentRef.setInput('showActions', true);
 
     fixture.detectChanges();
 
     const element = fixture.debugElement.query(By.css('bmb-chat-actions'));
     const icons = fixture.debugElement.queryAll(
-      By.css('bmb-chat-actions bmb-icon'),
+      By.css('bmb-chat-actions bmb-action-icon'),
     );
 
     expect(element).toBeTruthy();
-    expect(icons).toHaveSize(1);
+    expect(icons.length).toBe(1);
   });
 
-  it('should hide user actions when userActions is empty', () => {
+  it('should hide user actions when showActions false', () => {
     componentRef.setInput('message', mockUserMessage);
-    componentRef.setInput('userActions', []);
-
+    componentRef.setInput('showActions', false);
     fixture.detectChanges();
 
     expect(fixture.debugElement.query(By.css('bmb-chat-actions'))).toBeFalsy();
+  });
+
+  it('should render configured copy and edit actions for a user text message', () => {
+    componentRef.setInput('message', mockUserMessage);
+    componentRef.setInput('actions', ['copy', 'edit']);
+    fixture.detectChanges();
+
+    const icons = fixture.debugElement.queryAll(
+      By.css('bmb-chat-actions bmb-icon'),
+    );
+
+    expect(icons.length).toBe(2);
+  });
+
+  it('should enter edit mode and keep the original text in the editor', async () => {
+    componentRef.setInput('message', mockUserMessage);
+    componentRef.setInput('actions', ['copy', 'edit']);
+    fixture.detectChanges();
+
+    await component['onAction']({
+      action: 'edit',
+      messageId: mockUserMessage.id,
+      message: mockUserMessage,
+    });
+    fixture.detectChanges();
+
+    const textarea = fixture.debugElement.query(
+      By.css('bmb-ai-chat-bubble-editor textarea'),
+    ).nativeElement as HTMLTextAreaElement;
+    expect(component.isEditing()).toBe(true);
+    expect(textarea.value).toBe(mockUserMessage.content.text);
+    expect(fixture.debugElement.query(By.css('bmb-chat-actions'))).toBeFalsy();
+  });
+
+  it('should cancel editing without emitting a changed message', async () => {
+    jest.spyOn(component.messageEdited, 'emit');
+    jest.spyOn(component.messageEditCancelled, 'emit');
+    componentRef.setInput('message', mockUserMessage);
+
+    await component['onAction']({
+      action: 'edit',
+      messageId: mockUserMessage.id,
+      message: mockUserMessage,
+    });
+    component['cancelEdit']();
+
+    expect(component.isEditing()).toBe(false);
+    expect(component.messageEdited.emit).not.toHaveBeenCalled();
+    expect(component.messageEditCancelled.emit).toHaveBeenCalledWith(
+      mockUserMessage,
+    );
+  });
+
+  it('should emit the previous and edited messages when saving', async () => {
+    jest.spyOn(component.messageEdited, 'emit');
+    componentRef.setInput('message', mockUserMessage);
+
+    await component['onAction']({
+      action: 'edit',
+      messageId: mockUserMessage.id,
+      message: mockUserMessage,
+    });
+    component['saveEdit']('First line\nSecond line');
+
+    expect(component.messageEdited.emit).toHaveBeenCalledWith({
+      previousMessage: mockUserMessage,
+      editedMessage: {
+        ...mockUserMessage,
+        content: { text: 'First line\nSecond line' },
+      },
+    });
+    expect(component.isEditing()).toBe(false);
   });
 
   it('should not render actions component when showActions is false', () => {
@@ -144,7 +216,7 @@ describe('BmbAiChatBubbleComponent', () => {
     jest.spyOn(component.getAction, 'emit');
 
     const mockEvent: BmbChatActionEvent = {
-      action: 'copy',
+      action: 'repeat',
       messageId: '1',
       message: mockBotMessage,
     };

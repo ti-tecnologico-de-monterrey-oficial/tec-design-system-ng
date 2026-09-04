@@ -15,10 +15,7 @@ import { IBmbActionHeader, SizeNames } from '../../_shared/types';
 import { CommonModule } from '@angular/common';
 import { IBotType } from '../bmb-chat-bar/types';
 import { logDeprecatedInput } from '../../_shared/logic/logDeprecatedInput';
-
-/*
- * TODO: This component is marked as "old" and its decommissioning is planned for future updates.
- */
+import { getHomeCardContentClass } from '../../_shared/logic/components/home-card';
 
 @Component({
   selector: 'bmb-home-card',
@@ -43,6 +40,7 @@ export class BmbHomeCardComponent {
   isExpanded = model<boolean>(false);
   currentBot = model<IBotType>();
   componentTitle = input<string>(); // once title is removed, this should be required
+  showOneHeaderAction = input<boolean>(false);
 
   title = input<string>(); // deprecated
 
@@ -77,5 +75,9 @@ export class BmbHomeCardComponent {
 
   handleExpand(): void {
     this.onExpandClick.emit();
+  }
+
+  getContentClass(): string {
+    return getHomeCardContentClass(this.contentPadding());
   }
 }

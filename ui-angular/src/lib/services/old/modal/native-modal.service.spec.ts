@@ -1,75 +1,15 @@
-import {
-  ApplicationRef,
-  Component,
-  EnvironmentInjector,
-  ElementRef,
-  inject,
-  NgModule,
-} from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { BmbNativeModalService } from './native-modal.service';
 import { IBmbNativeModal } from '../../../components/bmb-modal/bmb-modal.interface';
 import { getUUID } from '../../../_shared/logic/utils';
 
-@Component({
-  selector: 'bmb-portal',
-  standalone: true,
-  template: '<div></div>',
-})
-class MockBmbPortalComponent {
-  environmentInjector: any = null;
-  instance: any = {};
-  hostView: any = { rootNodes: [document.createElement('div')] };
-  ref = { destroy: () => {} };
-
-  static createEnvironmentInjector() {
-    const injector = new EnvironmentInjector(null as any);
-    return injector;
-  }
-
-  constructor() {
-    this.environmentInjector = MockBmbPortalComponent.createEnvironmentInjector();
-  }
-}
-
-@NgModule({
-  declarations: [MockBmbPortalComponent],
-  providers: [
-    {
-      provide: ElementRef,
-      useValue: {
-        nativeElement: document.createElement('div'),
-      },
-    },
-  ],
-})
-export class BmbNativeMockModule { }
-
-let mockApplicationRef: any;
-
-beforeAll(() => {
-  TestBed.configureTestingModule({
-    imports: [BmbNativeMockModule, BmbNativeModalService],
-    providers: [
-      {
-        provide: ApplicationRef,
-        useValue: (mockApplicationRef = {
-          attachView: jest.fn(),
-          detachView: jest.fn(),
-          updateInnerNoop: jest.fn(),
-          markForCheck: jest.fn(),
-        }),
-      },
-      EnvironmentInjector,
-    ],
-  });
-});
-
 describe('BmbNativeModalService', () => {
   let service: BmbNativeModalService;
 
   beforeEach(() => {
+    TestBed.configureTestingModule({});
     service = TestBed.inject(BmbNativeModalService);
+    spyOn<any>(service, 'getOrCreatePortal').and.returnValue(null);
   });
 
   it('should be created', () => {
@@ -111,11 +51,11 @@ describe('BmbNativeModalService', () => {
       animate: true,
     };
 
-    const id = __TEST_SERVICE.openModal(newModal);
+    const id = service.openModal(newModal);
 
     expect(id).toBeDefined();
     expect(typeof id).toBe('string');
-    expect(__TEST_SERVICE.checkIfModalExists(id)).toBe(true);
+    expect(service.checkIfModalExists(id)).toBe(true);
   });
 
   it('should generate a valid UUID', () => {
@@ -166,12 +106,12 @@ describe('BmbNativeModalService', () => {
       animate: true,
     };
 
-    __TEST_SERVICE.openModal(modal1);
-    __TEST_SERVICE.openModal(modal2);
-    expect(__TEST_SERVICE.getModalList()).toHaveLength(2);
+    service.openModal(modal1);
+    service.openModal(modal2);
+    expect(service.getModalList()).toHaveLength(2);
 
-    __TEST_SERVICE.closeAllModals();
-    expect(__TEST_SERVICE.getModalList()).toEqual([]);
+    service.closeAllModals();
+    expect(service.getModalList()).toEqual([]);
   });
 
   it('should not allow opening a modal that is already open', () => {
@@ -186,12 +126,12 @@ describe('BmbNativeModalService', () => {
       animate: true,
     };
 
-    __TEST_SERVICE.openModal(newModal);
-    expect(__TEST_SERVICE.checkIfModalExists('modal-duplicate')).toBe(true);
+    service.openModal(newModal);
+    expect(service.checkIfModalExists('modal-duplicate')).toBe(true);
 
     // Opening the same modal again should not create a duplicate
-    const id2 = __TEST_SERVICE.openModal(newModal);
+    const id2 = service.openModal(newModal);
     expect(id2).toBe('modal-duplicate');
-    expect(__TEST_SERVICE.getModalList()).toHaveLength(1);
+    expect(service.getModalList()).toHaveLength(1);
   });
 });

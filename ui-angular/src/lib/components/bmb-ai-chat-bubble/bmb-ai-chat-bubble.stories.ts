@@ -15,12 +15,13 @@ import {
   RELEVANT_TITLE,
 } from '@docs/utils/utils';
 import {
+  DBmbGenericParamDesc,
   DBmbIconParamDesc,
   getOnClickParam,
 } from '@docs/utils/parameterDescriptions';
-import { BmbLayoutDirective } from '../../directives/old/bmb-layout/bmb-layout.directive';
-import { BmbLayoutItemDirective } from '../../directives/old/bmb-layout/bmb-layout-item.directive';
-import { BmbButtonDirective } from '../../directives/old/bmb-button/button.directive';
+import { BmbLayoutDirective } from '../../directives/bmb-layout/bmb-layout.directive';
+import { BmbLayoutItemDirective } from '../../directives/bmb-layout/bmb-layout-item.directive';
+import { BmbButtonDirective } from '../../directives/bmb-button/button.directive';
 
 const GET_ACTION_DESCRIPTION = `
 ${getAlertBlockquote(
@@ -46,6 +47,7 @@ Supported message types include:
 
 export default {
   title: 'Components/Containers/AI Chat Bubble',
+  tags: ['!autodocs'],
   component: BmbAiChatBubbleComponent,
   decorators: [
     moduleMetadata({
@@ -84,7 +86,7 @@ export default {
 >
 Additional features include:
 - thinking/loading states
-- action interactions such as repeat, voice, copy, like, and dislike
+- action interactions such as repeat, voice, copy, edit, like, and dislike
 - customizable user and assistant icons
 `,
       { showAdditionalBlockquote: true },
@@ -108,19 +110,7 @@ ${getBasicExampleBlock('BmbAiChatBubbleComponent')}
         },
       },
     },
-    testId: {
-      control: 'text',
-      description: 'Testing identifier used for automation selectors.',
-      table: {
-        category: 'Properties',
-        type: {
-          summary: 'string',
-        },
-        defaultValue: {
-          summary: 'chat-bubble',
-        },
-      },
-    },
+    testId: DBmbGenericParamDesc.testId,
     message: {
       control: 'object',
       description: `
@@ -159,13 +149,6 @@ These properties can be used to render previously stored feedback when loading a
       control: 'boolean',
       description: `
 Displays chat action buttons.
-
-Available actions:
-- repeat
-- voice
-- copy
-- like
-- dislike
       `,
       table: {
         category: 'Properties',
@@ -178,17 +161,37 @@ Available actions:
       },
     },
 
-    userActions: {
+    actions: {
       control: 'object',
-      description:
-        'Actions displayed for user messages. Copy is enabled by default.',
+      description: `Sets the actions displayed for messages.
+
+Available prompt actions:
+- repeat
+- voice
+- copy
+- like
+- dislike
+${getAlertBlockquote(
+  `For customized actions:
+- ['repeat','voice','copy']
+- ['like','dislike']
+- ...
+`,
+  { title: RELEVANT_TITLE.example, blockquoteType: BlockquoteType.important },
+)}
+
+Available user actions:
+- copy
+- edit
+
+For user message use ['copy', 'edit'] to enable both. Copy is enabled by default.`,
       table: {
         category: 'Properties',
         type: {
           summary: 'BmbChatAction[]',
         },
         defaultValue: {
-          summary: "['copy']",
+          summary: 'null',
         },
       },
     },
@@ -205,6 +208,15 @@ Available actions:
         },
       },
     },
+    messageEdited: {
+      control: false,
+      description:
+        'Emits the previous and edited user text messages when Save is selected.',
+      table: {
+        category: 'Events',
+        type: { summary: 'BmbChatMessageEditedEvent' },
+      },
+    },
     getOptionClicked: getOnClickParam(
       getOnEvent('prompt option', 'getOptionClicked', 'IBmbChatOptionEvent'),
     ),
@@ -214,7 +226,7 @@ Available actions:
     testId: 'chat-bubble',
     isThinking: false,
     showActions: true,
-    userActions: ['copy'],
+    actions: ['repeat', 'voice', 'copy', 'like', 'dislike'],
     message: {
       id: '1',
       type: 'text',
@@ -230,6 +242,9 @@ Available actions:
     getOptionClicked: ($event: undefined) => {
       console.info('getOptionClicked', $event);
     },
+    messageEdited: ($event: undefined) => {
+      console.info('messageEdited', $event);
+    },
   },
 } as Meta<typeof BmbAiChatBubbleComponent>;
 
@@ -240,7 +255,7 @@ export const Default: Story = {};
 export const UserMessage: Story = {
   args: {
     showActions: true,
-    userActions: ['copy'],
+    actions: ['copy', 'edit'],
 
     message: {
       id: '2',

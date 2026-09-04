@@ -6,7 +6,7 @@ import {
   ViewEncapsulation,
   inject,
 } from '@angular/core';
-import { BmbButtonDirective } from '../../directives/old/bmb-button/button.directive';
+import { BmbButtonDirective } from '../../directives/bmb-button/button.directive';
 import { FormGroup } from '@angular/forms';
 import { BmbUserProfileService } from '../../services/old/user/profile.service';
 import {
@@ -17,9 +17,7 @@ import { IBmbTargetLink } from '../../_shared/types';
 import { BmbLoginContentComponent } from './bmb-login-content/bmb-login-content.component';
 import { TranslatePipe } from '../../pipes/translations';
 
-/*
- * TODO: This component is marked as "old" and its decommissioning is planned for future updates.
- */
+
 
 @Component({
   selector: 'bmb-login',

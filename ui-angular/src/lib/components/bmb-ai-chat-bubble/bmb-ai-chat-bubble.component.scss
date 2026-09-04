@@ -68,6 +68,10 @@
     flex-flow: column;
   }
 
+  &-editing &-container {
+    width: min(70%, rem.rem_calc(640));
+  }
+
   &-msg {
     @include fonts.font(4, regular);
     min-height: rem.rem_calc(45);

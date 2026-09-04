@@ -16,6 +16,8 @@ import {
   BmbChatAction,
   BmbChatCopyState,
   BmbChatMessage,
+  BmbChatMessageEditedEvent,
+  BmbTextMessage,
   IBmbChatOptionEvent,
 } from './types';
 import { ChatActionsComponent } from './bmb-chat-actions/bmb-chat-actions.component';
@@ -28,6 +30,7 @@ import { TemplateMessageComponent } from './bmb-message-renderers/bmb-template-m
 import { BmbUserImageComponent } from '../bmb-user-image/bmb-user-image.component';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { BmbBotIconComponent } from '../bmb-bot-icon/bmb-bot-icon.component';
+import { BmbAiChatBubbleEditorComponent } from './bmb-ai-chat-bubble-editor/bmb-ai-chat-bubble-editor.component';
 
 export * from './types';
 
@@ -50,6 +53,7 @@ export * from './types';
     BmbUserImageComponent,
     BmbIconComponent,
     BmbBotIconComponent,
+    BmbAiChatBubbleEditorComponent,
   ],
   templateUrl: './bmb-ai-chat-bubble.component.html',
   styleUrl: './bmb-ai-chat-bubble.component.scss',
@@ -82,9 +86,10 @@ export class BmbAiChatBubbleComponent implements OnDestroy {
   readonly showActions = input(true);
 
   /** Actions displayed for user messages. */
-  readonly userActions = input<BmbChatAction[]>(['copy']);
+  readonly actions = input<BmbChatAction[] | null>(null);
 
   readonly copyState = signal<BmbChatCopyState>('idle');
+  readonly isEditing = signal(false);
 
   @ViewChild('messageContent')
   private messageContent?: ElementRef<HTMLElement>;
@@ -95,12 +100,22 @@ export class BmbAiChatBubbleComponent implements OnDestroy {
    * Emits action events.
    */
   readonly getAction = output<BmbChatActionEvent>();
+  readonly messageEdited = output<BmbChatMessageEditedEvent>();
+  readonly messageEditCancelled = output<BmbChatMessage>();
   getOptionClicked = output<IBmbChatOptionEvent>();
 
   /**
    * Emits image not found events.
    */
   readonly imageNotFoundError = output<void>();
+  private PROMPT_ACTIONS: BmbChatAction[] = [
+    'repeat',
+    'voice',
+    'copy',
+    'like',
+    'dislike',
+  ];
+  private USER_ACTIONS: BmbChatAction[] = ['copy', 'edit'];
 
   /**
    * Bubble dynamic classes.
@@ -109,7 +124,36 @@ export class BmbAiChatBubbleComponent implements OnDestroy {
     'bmb_ai-chat-bubble-user': this.message().isUser,
     'bmb_ai-chat-bubble-bot': !this.message().isUser,
     'bmb_ai-chat-bubble-thinking': this.isThinking(),
+    'bmb_ai-chat-bubble-editing': this.message().isUser && this.isEditing(),
   }));
+
+  protected _actions = computed<BmbChatAction[] | null>(() => {
+    if (this.message().isUser) {
+      if (this.showActions() && this.message().type === 'text') {
+        if (this.actions() === null || !this.actions()?.length) return ['copy'];
+        else
+          return (this.actions() ?? []).reduce(
+            (acc, action): BmbChatAction[] =>
+              this.USER_ACTIONS.includes(action) ? [...acc, action] : acc,
+            [] as BmbChatAction[],
+          );
+      }
+    } else {
+      if (this.showActions()) {
+        if (this.actions() === null) {
+          return this.PROMPT_ACTIONS;
+        } else {
+          return (this.actions() ?? []).reduce(
+            (acc, action): BmbChatAction[] =>
+              this.PROMPT_ACTIONS.includes(action) ? [...acc, action] : acc,
+            [] as BmbChatAction[],
+          );
+        }
+      }
+    }
+
+    return null;
+  });
 
   protected async onAction(event: BmbChatActionEvent): Promise<void> {
     if (event.action === 'copy') {
@@ -119,7 +163,33 @@ export class BmbAiChatBubbleComponent implements OnDestroy {
       return;
     }
 
+    if (
+      event.message.isUser &&
+      event.action === 'edit' &&
+      event.message.type === 'text'
+    ) {
+      this.isEditing.set(true);
+    }
+
     this.getAction.emit(event);
+  }
+
+  protected cancelEdit(): void {
+    this.isEditing.set(false);
+    this.messageEditCancelled.emit(this.message());
+  }
+
+  protected saveEdit(text: string): void {
+    const previousMessage = this.message();
+    if (!previousMessage.isUser || previousMessage.type !== 'text') return;
+
+    const editedMessage: BmbTextMessage = {
+      ...previousMessage,
+      content: { text },
+    };
+
+    this.isEditing.set(false);
+    this.messageEdited.emit({ previousMessage, editedMessage });
   }
 
   protected handleOptionClick(event: IBmbChatOptionEvent): void {

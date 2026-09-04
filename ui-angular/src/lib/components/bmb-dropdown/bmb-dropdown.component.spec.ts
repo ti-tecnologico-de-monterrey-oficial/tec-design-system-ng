@@ -4,7 +4,7 @@ import {
   BmbDropdownComponent,
   IBmbDropdownItem,
 } from './bmb-dropdown.component';
-import { BmbProjectionContentService } from '../../../services/old/projection/projection.service';
+import { BmbProjectionContentService } from '../../services/old/projection/projection.service';
 
 describe('BmbDropdownComponent', () => {
   let component: BmbDropdownComponent;
@@ -272,7 +272,7 @@ describe('BmbDropdownComponent', () => {
 
       expect(projectionService.openContent).toHaveBeenCalledWith(
         jasmine.objectContaining({
-          fixSizeToRef: true,
+          fixSizeToRef: false,
           showBackdrop: false,
           focusOnOpen: true,
         }),

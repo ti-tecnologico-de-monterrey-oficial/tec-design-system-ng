@@ -8,6 +8,11 @@ import {
 import { CommonModule } from '@angular/common';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { logDeprecatedInput } from '../../_shared/logic/logDeprecatedInput';
+import {
+  getFocusElementBackgroundClass,
+  getFocusElementCircleClasses,
+  isFocusElementFocused,
+} from '../../_shared/logic/components/focus-element';
 
 /*
  * TODO: This component is marked as "old" and its decommissioning is planned for future updates.
@@ -47,26 +52,20 @@ export class BmbFocusElementComponent {
     });
   }
   getBackgroundClass(): string {
-    if (this.isInheritedBg()) return `${this.baseClass}-inherited_bg`;
-    return `${this.baseClass}-normal_bg`;
+    return getFocusElementBackgroundClass(this.baseClass, this.isInheritedBg());
   }
 
   getCircleClass(): string[] {
-    const classNames: string[] = [
-      this.getBackgroundClass(),
-      `${this.baseClass}-circle`,
-    ];
-
-    if (this.isContainerSize())
-      classNames.push(`${this.baseClass}-circle-container`);
-    if (this.isNonFocused())
-      return [...classNames, `${this.baseClass}-non_focused`];
-    if (this.isNormal())
-      return [...classNames, `${this.baseClass}-normal_circle`];
-    return [...classNames, `${this.baseClass}-circle_focused`];
+    return getFocusElementCircleClasses({
+      baseClass: this.baseClass,
+      isContainerSize: this.isContainerSize(),
+      isNonFocused: this.isNonFocused(),
+      isNormal: this.isNormal(),
+      isInheritedBg: this.isInheritedBg(),
+    });
   }
 
   isFocused(): boolean {
-    return !this.isNonFocused() && !this.isNormal();
+    return isFocusElementFocused(this.isNonFocused(), this.isNormal());
   }
 }

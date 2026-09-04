@@ -15,7 +15,7 @@ import {
 import { DateTime } from 'luxon';
 import { getWeeksInMonth, weeksAndDays } from '../../utils';
 import { CommonModule } from '@angular/common';
-import { BmbButtonDirective } from '../../../../directives/old/bmb-button/button.directive';
+import { BmbButtonDirective } from '../../../../directives/bmb-button/button.directive';
 import { Info } from 'luxon';
 import { orderDayNames } from '../../../../_shared/logic/utils';
 import { BmbInnerHeaderComponent } from '../../../bmb-inner-header/bmb-inner-header.component';
@@ -27,8 +27,8 @@ import { BmbCalendarComponentService } from '../../bmb-calendar.service';
 import { BmbNativeModalService } from '../../../../services/old/modal/native-modal.service';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { BmbCheckboxComponent } from '../../../bmb-checkbox/bmb-checkbox.component';
-import { BmbLayoutItemDirective } from '../../../../directives/old/bmb-layout/bmb-layout-item.directive';
-import { BmbLayoutDirective } from '../../../../directives/old/bmb-layout/bmb-layout.directive';
+import { BmbLayoutItemDirective } from '../../../../directives/bmb-layout/bmb-layout-item.directive';
+import { BmbLayoutDirective } from '../../../../directives/bmb-layout/bmb-layout.directive';
 import { BmbDividerComponent } from '../../../bmb-divider/bmb-divider.component';
 import { BmbSwitchComponent } from '../../../bmb-switch/bmb-switch.component';
 

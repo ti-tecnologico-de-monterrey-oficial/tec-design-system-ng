@@ -7,17 +7,27 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SizeNames, IBmbTargetLink } from '../../_shared/types';
+import type {
+  IBmbMediaCardLoading,
+  IBmbMediaCardType,
+  IBmbTargetLink,
+  SizeNames,
+} from '../../_shared/types';
 import { BmbUserImageComponent } from '../bmb-user-image/bmb-user-image.component';
 import { isExternalLink } from '../../_shared/logic/utils';
 import { logDeprecatedInput } from '../../_shared/logic/logDeprecatedInput';
+import {
+  getMediaCardBackgroundColor,
+  getMediaCardClasses,
+  getMediaCardContentClasses,
+  getMediaCardFigureClasses,
+  normalizeMediaCardText,
+} from '../../_shared/logic/components/media-card';
 
-export type IBmbMediaCardType = 'inline' | 'floating' | 'author_detail';
-export type IBmbMediaCardLoading = 'lazy' | 'eager';
-
-/*
- * TODO: This component is marked as "old" and its decommissioning is planned for future updates.
- */
+export type {
+  IBmbMediaCardLoading,
+  IBmbMediaCardType,
+} from '../../_shared/types';
 
 @Component({
   selector: 'bmb-media-card',
@@ -71,40 +81,32 @@ export class BmbMediaCardComponent {
   }
 
   getClasses(): string[] {
-    const classes = [];
-    classes.push(`bmb_radius-${this.borderRadius()}`);
-    if (this.enableZoom()) classes.push('bmb_media-card-figure-zoom');
-    return classes;
+    return getMediaCardFigureClasses(this.borderRadius(), this.enableZoom());
   }
 
   getContentClasses(): string[] {
-    const classes = [];
-    if (this.type() === 'inline')
-      classes.push(`bmb_radius-${this.borderRadius()}`);
-    if (this.isBlurredBackdrop())
-      classes.push('bmb_media-card-content-container-backdrop');
-    if (this.fullmediaCard()) classes.push('bmb_media-card-content-full');
-    return classes;
+    return getMediaCardContentClasses(
+      this.type(),
+      this.borderRadius(),
+      this.isBlurredBackdrop(),
+      this.fullmediaCard(),
+    );
   }
 
   getBackgroundColor(): Record<string, string> {
-    if (this.type() === 'inline') return {};
-    return this.bgColor()
-      ? { 'background-color': `rgb(var(${this.bgColor()}))` }
-      : { 'background-color': 'transparent' };
+    return getMediaCardBackgroundColor(this.type(), this.bgColor());
   }
 
   getUserAttribute(attribute: string | undefined): string {
-    return attribute || '';
+    return normalizeMediaCardText(attribute);
   }
 
   getMediaCardClasses(isLink: boolean): string[] {
-    const classes = [];
-    if (this.boxShadow()) classes.push('bmb_media-card-box-shadow');
-    if (isLink) classes.push(`bmb_media-card-${this.type()}`);
-    if (!isLink && !this.ratio()) {
-      classes.push('bmb_media-card-auto-layout');
-    }
-    return classes;
+    return getMediaCardClasses({
+      boxShadow: this.boxShadow(),
+      isLink,
+      ratio: this.ratio(),
+      type: this.type(),
+    });
   }
 }

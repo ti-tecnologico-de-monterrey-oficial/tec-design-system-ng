@@ -16,10 +16,9 @@ import { BmbImageComponent } from '../../bmb-image/bmb-image.component';
 import { IBbmBgAppearance } from '../../../_shared/types/components/advertisement-card';
 import { BmbListGroupStatusService } from '../bmb-list-group.service';
 import { IBmbContrast } from '../../../_shared/types/colors';
+import { getListGroupItemClasses } from '../../../_shared/logic/components/list-group';
 
-/*
- * TODO: This component is marked as "old" and its decommissioning is planned for future updates.
- */
+
 
 @Component({
   selector: 'bmb-list-group-item',
@@ -75,14 +74,11 @@ export class BmbListGroupItemComponent implements OnInit {
       .getListGroupStatus()
       .includes(this.id());
 
-    const classNames = ['bmb_list-group-item'];
-
-    classNames.push(`bmb_list-group-item-${this.appearanceContrast()}`);
-
-    if (isElementSelected) classNames.push('bmb_list-group-item-selected');
-    if (this.isDisabled()) classNames.push('bmb_list-group-item-disabled');
-
-    return classNames;
+    return getListGroupItemClasses({
+      appearanceContrast: this.appearanceContrast(),
+      isElementSelected,
+      isDisabled: this.isDisabled(),
+    });
   }
 
   getConfig() {

@@ -23,7 +23,7 @@ export const appRoutes: Route[] = [
       ),
   },
   {
-    path: 'test-card-button',
+    path: 'card-button',
     title: 'Card Button Test',
     loadComponent: () =>
       import('./pages/templates/generic-card.component').then(
@@ -203,204 +203,338 @@ export const appRoutes: Route[] = [
         (t) => t.AvatarsComponent,
       ),
   },
-  { path: 'components', pathMatch: 'full', redirectTo: 'components/carousel' },
+  { path: 'pages', pathMatch: 'full', redirectTo: 'pages/carousel' },
   {
-    path: 'components/carousel',
+    path: 'pages/carousel',
     title: 'BmbCarousel | Bamboo migration dashboard',
     loadComponent: () =>
-      import('./components/carousel-page/carousel-page').then(
+      import('./pages/carousel-page/carousel-page').then(
         ({ CarouselPage }) => CarouselPage,
       ),
   },
   {
-    path: 'components/container',
+    path: 'pages/container',
     title: 'BmbContainer | Bamboo migration dashboard',
     loadComponent: () =>
-      import('./components/container-page/container-page').then(
+      import('./pages/container-page/container-page').then(
         ({ ContainerPage }) => ContainerPage,
       ),
   },
   {
-    path: 'components/divider',
+    path: 'pages/divider',
     title: 'BmbDivider | Bamboo migration dashboard',
     loadComponent: () =>
-      import('./components/divider-page/divider-page').then(
+      import('./pages/divider-page/divider-page').then(
         ({ DividerPage }) => DividerPage,
       ),
   },
   {
-    path: 'components/mitec-logo-animation',
+    path: 'pages/mitec-logo-animation',
     title: 'BmbMitecLogoAnimation | Bamboo migration dashboard',
     loadComponent: () =>
       import(
-        './components/mitec-logo-animation-page/mitec-logo-animation-page'
+        './pages/mitec-logo-animation-page/mitec-logo-animation-page'
       ).then(({ MitecLogoAnimationPage }) => MitecLogoAnimationPage),
   },
   {
-    path: 'components/notification-counter',
+    path: 'pages/notification-counter',
     title: 'BmbNotificationCounter | Bamboo migration dashboard',
     loadComponent: () =>
       import(
-        './components/notification-counter-page/notification-counter-page'
+        './pages/notification-counter-page/notification-counter-page'
       ).then(({ NotificationCounterPage }) => NotificationCounterPage),
   },
   {
-    path: 'components/iframe',
+    path: 'pages/iframe',
     title: 'BmbIframe | Bamboo migration dashboard',
     loadComponent: () =>
-      import('./components/iframe-page/iframe-page').then(
+      import('./pages/iframe-page/iframe-page').then(
         ({ IframePage }) => IframePage,
       ),
   },
   {
-    path: 'components/grade-value',
+    path: 'pages/grade-value',
     title: 'BmbGradeValue | Bamboo migration dashboard',
     loadComponent: () =>
-      import('./components/grade-value-page/grade-value-page').then(
+      import('./pages/grade-value-page/grade-value-page').then(
         ({ GradeValuePage }) => GradeValuePage,
       ),
   },
   {
-    path: 'components/card',
-    title: 'BmbCard | Bamboo migration dashboard',
+    path: 'pages/card',
+    title: 'Generic card | BmbCard | Bamboo migration dashboard',
     loadComponent: () =>
-      import('./components/card-page/card-page').then(
-        ({ CardPage }) => CardPage,
-      ),
+      import('./pages/card-page/card-page').then(({ CardPage }) => CardPage),
   },
   {
-    path: 'components/overlay',
+    path: 'pages/overlay',
     title: 'BmbOverlay | Bamboo migration dashboard',
     loadComponent: () =>
-      import('./components/overlay-page/overlay-page').then(
+      import('./pages/overlay-page/overlay-page').then(
         ({ OverlayPage }) => OverlayPage,
       ),
   },
   {
-    path: 'components/modal',
+    path: 'pages/modal',
     title: 'BmbModal | Bamboo migration dashboard',
     loadComponent: () =>
-      import('./components/modal-page/modal-page').then(
+      import('./pages/modal-page/modal-page').then(
         ({ ModalPage }) => ModalPage,
       ),
   },
   {
-    path: 'components/check-external-link-button',
+    path: 'pages/check-external-link-button',
     title: 'BmbCheckExternalLinkButton | Bamboo migration dashboard',
     loadComponent: () =>
       import(
-        './components/check-external-link-button-page/check-external-link-button-page'
+        './pages/check-external-link-button-page/check-external-link-button-page'
       ).then(({ CheckExternalLinkButtonPage }) => CheckExternalLinkButtonPage),
   },
   {
-    path: 'components/logo',
+    path: 'pages/logo',
     title: 'BmbLogo | Bamboo migration dashboard',
     loadComponent: () =>
-      import('./components/logo-page/logo-page').then(
-        ({ LogoPage }) => LogoPage,
-      ),
+      import('./pages/logo-page/logo-page').then(({ LogoPage }) => LogoPage),
   },
   {
-    path: 'components/user-image',
+    path: 'pages/user-image',
     title: 'BmbUserImage | Bamboo migration dashboard',
     loadComponent: () =>
-      import('./components/user-image-page/user-image-page').then(
+      import('./pages/user-image-page/user-image-page').then(
         ({ UserImagePage }) => UserImagePage,
       ),
   },
   {
-    path: 'components/pull-wedge',
+    path: 'pages/pull-wedge',
     title: 'BmbPullWedge | Bamboo migration dashboard',
     loadComponent: () =>
-      import('./components/pull-wedge/pull-wedge').then(
+      import('./pages/pull-wedge/pull-wedge').then(
         ({ PullWedgePage }) => PullWedgePage,
       ),
   },
   {
-    path: 'components/server-table',
+    path: 'pages/server-table',
     title: 'BmbServerTable | Bamboo migration dashboard',
     loadComponent: () =>
-      import('./components/server-table/server-table').then(
+      import('./pages/server-table/server-table').then(
         ({ ServerTablePage }) => ServerTablePage,
       ),
   },
   {
-    path: 'components/skeleton',
+    path: 'pages/skeleton',
     title: 'BmbSkeleton | Bamboo migration dashboard',
     loadComponent: () =>
-      import('./components/skeleton-page/skeleton-page').then(
+      import('./pages/skeleton-page/skeleton-page').then(
         ({ SkeletonPage }) => SkeletonPage,
       ),
   },
   {
-    path: 'components/value-counter',
+    path: 'pages/value-counter',
     title: 'BmbValueCounter | Bamboo migration dashboard',
     loadComponent: () =>
-      import('./components/value-counter-page/value-counter-page').then(
+      import('./pages/value-counter-page/value-counter-page').then(
         ({ ValueCounterPage }) => ValueCounterPage,
       ),
   },
   {
-    path: 'components/bookmark',
+    path: 'pages/bookmark',
     title: 'BmbBookmark | Bamboo migration dashboard',
     loadComponent: () =>
-      import('./components/bookmark-page/bookmark-page').then(
+      import('./pages/bookmark-page/bookmark-page').then(
         ({ BookmarkPage }) => BookmarkPage,
       ),
   },
   {
-    path: 'components/breadcrumb',
+    path: 'pages/breadcrumb',
     title: 'BmbBreadcrumb | Bamboo migration dashboard',
     loadComponent: () =>
-      import('./components/breadcrumb-page/breadcrumb-page').then(
+      import('./pages/breadcrumb-page/breadcrumb-page').then(
         ({ BreadcrumbPage }) => BreadcrumbPage,
       ),
   },
   {
-    path: 'components/hito-list',
+    path: 'pages/icon-status',
+    title: 'BmbIconStatus | Bamboo migration dashboard',
+    loadComponent: () =>
+      import('./pages/icon-status-page/icon-status-page').then(
+        ({ IconStatusPage }) => IconStatusPage,
+      ),
+  },
+  {
+    path: 'pages/paginator',
+    title: 'BmbPaginator | Bamboo migration dashboard',
+    loadComponent: () =>
+      import('./pages/paginator-page/paginator-page').then(
+        ({ PaginatorPage }) => PaginatorPage,
+      ),
+  },
+  {
+    path: 'pages/hito-list',
     title: 'BmbHitoList | Bamboo migration dashboard',
     loadComponent: () =>
-      import('./components/hito-list-page/hito-list-page').then(
+      import('./pages/hito-list-page/hito-list-page').then(
         ({ HitoListPage }) => HitoListPage,
       ),
   },
   {
-    path: 'components/icon-item',
+    path: 'pages/icon-item',
     title: 'BmbIconItem | Bamboo migration dashboard',
     loadComponent: () =>
-      import('./components/icon-item-page/icon-item-page').then(
+      import('./pages/icon-item-page/icon-item-page').then(
         ({ IconItemPage }) => IconItemPage,
       ),
   },
   {
-    path: 'components/dot-paginator',
+    path: 'pages/dot-paginator',
     title: 'BmbDotPaginator | Bamboo migration dashboard',
     loadComponent: () =>
-      import('./components/dot-paginator-page/dot-paginator-page').then(
+      import('./pages/dot-paginator-page/dot-paginator-page').then(
         ({ DotPaginatorPage }) => DotPaginatorPage,
       ),
   },
   {
-    path: 'components/fab',
+    path: 'pages/fab',
     title: 'BmbFab | Bamboo migration dashboard',
     loadComponent: () =>
-      import('./components/fab-page/fab-page').then(({ FabPage }) => FabPage),
+      import('./pages/fab-page/fab-page').then(({ FabPage }) => FabPage),
   },
   {
-    path: 'components/ai-chat-bubble',
+    path: 'pages/ai-chat-bubble',
     title: 'BmbAiChatBubble | Bamboo migration dashboard',
     loadComponent: () =>
-      import('./components/ai-chat-bubble-page/ai-chat-bubble-page').then(
+      import('./pages/ai-chat-bubble-page/ai-chat-bubble-page').then(
         ({ AiChatBubblePage }) => AiChatBubblePage,
       ),
   },
   {
-    path: 'components/dropzone',
+    path: 'pages/dropzone',
     title: 'BmbDropzone | Bamboo migration dashboard',
     loadComponent: () =>
-      import('./components/dropzone-page/dropzone-page').then(
+      import('./pages/dropzone-page/dropzone-page').then(
         ({ DropzonePage }) => DropzonePage,
       ),
   },
-  { path: '**', redirectTo: 'components/carousel' },
+  {
+    path: 'pages/bot-icon',
+    title: 'BmbBotIcon | Bamboo migration dashboard',
+    loadComponent: () =>
+      import('./pages/bot-icon-page/bot-icon-page').then(
+        ({ BotIconPage }) => BotIconPage,
+      ),
+  },
+  {
+    path: 'pages/ai-chat-card',
+    title: 'BmbAiChatCard | Bamboo migration dashboard',
+    loadComponent: () =>
+      import('./pages/ai-chat-card-page/ai-chat-card-page').then(
+        ({ AiChatCardPage }) => AiChatCardPage,
+      ),
+  },
+  {
+    path: 'pages/navigation-bar',
+    title: 'BmbNavigationBar | Bamboo migration dashboard',
+    loadComponent: () =>
+      import('./pages/navigation-bar-page/navigation-bar-page').then(
+        ({ NavigationBarPage }) => NavigationBarPage,
+      ),
+  },
+  {
+    path: 'pages/box-icon',
+    title: 'BmbBoxIcon | Bamboo migration dashboard',
+    loadComponent: () =>
+      import('./pages/box-icon-page/box-icon-page').then(
+        ({ BoxIconPage }) => BoxIconPage,
+      ),
+  },
+  {
+    path: 'pages/alert-center-detail',
+    title: 'BmbAlertCenterDetail | Bamboo migration dashboard',
+    loadComponent: () =>
+      import('./pages/alert-center-detail-page/alert-center-detail-page').then(
+        ({ AlertCenterDetailPage }) => AlertCenterDetailPage,
+      ),
+  },
+  {
+    path: 'pages/top-bar-item',
+    title: 'BmbTopBarItem | Bamboo migration dashboard',
+    loadComponent: () =>
+      import('./pages/top-bar-item-page/top-bar-item-page').then(
+        ({ TopBarItemPage }) => TopBarItemPage,
+      ),
+  },
+  {
+    path: 'pages/interactive-item-text-button',
+    title: 'BmbInteractiveItemTextButton | Bamboo migration dashboard',
+    loadComponent: () =>
+      import(
+        './pages/interactive-item-text-button-page/interactive-item-text-button-page'
+      ).then(
+        ({ InteractiveItemTextButtonPage }) => InteractiveItemTextButtonPage,
+      ),
+  },
+  {
+    path: 'pages/button-icon',
+    title: 'BmbButtonIcon | Bamboo migration dashboard',
+    loadComponent: () =>
+      import('./pages/button-icon-page/button-icon-page').then(
+        ({ ButtonIconPage }) => ButtonIconPage,
+      ),
+  },
+  {
+    path: 'pages/date-range',
+    title: 'BmbDateRange | Bamboo migration dashboard',
+    loadComponent: () =>
+      import('./pages/date-range-page/date-range-page').then(
+        ({ DateRangePage }) => DateRangePage,
+      ),
+  },
+  {
+    path: 'pages/loader',
+    title: 'BmbLoader | Bamboo migration dashboard',
+    loadComponent: () =>
+      import('./pages/loader-page/loader-page').then(
+        ({ LoaderPage }) => LoaderPage,
+      ),
+  },
+  {
+    path: 'pages/home-card',
+    title: 'BmbHomeCard | Bamboo migration dashboard',
+    loadComponent: () =>
+      import('./pages/home-card-page/home-card-page').then(
+        ({ HomeCardPage }) => HomeCardPage,
+      ),
+  },
+  {
+    path: 'pages/focus-element',
+    title: 'BmbFocusElement | Bamboo migration dashboard',
+    loadComponent: () =>
+      import('./pages/focus-element-page/focus-element-page').then(
+        ({ FocusElementPage }) => FocusElementPage,
+      ),
+  },
+  {
+    path: 'pages/frequent-apps-selector',
+    title: 'BmbFrequentAppsSelector | Bamboo migration dashboard',
+    loadComponent: () =>
+      import(
+        './pages/frequent-apps-selector-page/frequent-apps-selector-page'
+      ).then(({ FrequentAppsSelectorPage }) => FrequentAppsSelectorPage),
+  },
+  {
+    path: 'pages/media-card',
+    title: 'BmbMediaCard | Bamboo migration dashboard',
+    loadComponent: () =>
+      import('./pages/media-card-page/media-card-page').then(
+        ({ MediaCardPage }) => MediaCardPage,
+      ),
+  },
+  {
+    path: 'pages/notification-card',
+    title: 'BmbNotificationCard | Bamboo migration dashboard',
+    loadComponent: () =>
+      import('./pages/notification-card-page/notification-card-page').then(
+        ({ NotificationCardPage }) => NotificationCardPage,
+      ),
+  },
+  { path: '**', redirectTo: 'pages/home' },
 ];

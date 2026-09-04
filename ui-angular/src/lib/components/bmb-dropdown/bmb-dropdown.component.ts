@@ -39,8 +39,8 @@ import {
 } from '../../_shared/logic/formControl';
 import { BmbInputValidatorComponent } from '../bmb-input/bmb-input-validator/bmb-input-validator.component';
 import { BmbProjectionContentService } from '../../services/old/projection/projection.service';
-import { BmbLayoutDirective } from '../../directives/old/bmb-layout/bmb-layout.directive';
-import { BmbLayoutItemDirective } from '../../directives/old/bmb-layout/bmb-layout-item.directive';
+import { BmbLayoutDirective } from '../../directives/bmb-layout/bmb-layout.directive';
+import { BmbLayoutItemDirective } from '../../directives/bmb-layout/bmb-layout-item.directive';
 import { BmbTagComponent } from '../bmb-tags/bmb-tags.component';
 import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
 import { TranslatePipe } from '../../pipes/translations';
@@ -248,7 +248,6 @@ export class BmbDropdownComponent implements OnInit, OnChanges {
     const data = {
       content: BmbDropdownContentComponent,
       targetRef: this.contentRef?.nativeElement,
-      fixSizeToRef: true,
       showBackdrop: false,
       id: this.dialogID,
       inputContext: {
@@ -263,6 +262,7 @@ export class BmbDropdownComponent implements OnInit, OnChanges {
       },
       focusOnOpen: true,
       forceMobileCenter: this.isFilterable(),
+      fixSizeToRef: false,
     };
     this.projectionService.openContent(data);
   }

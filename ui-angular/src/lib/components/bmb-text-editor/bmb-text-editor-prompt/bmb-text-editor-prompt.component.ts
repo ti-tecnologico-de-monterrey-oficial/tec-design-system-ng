@@ -5,14 +5,14 @@ import {
 } from '../../bmb-card/bmb-card.component';
 import { BmbFormValidatorComponent } from '../../bmb-form-validator/bmb-form-validator.component';
 import { FormControl, FormGroup } from '@angular/forms';
-import { BmbButtonDirective } from '../../../directives/old/bmb-button/button.directive';
+import { BmbButtonDirective } from '../../../directives/bmb-button/button.directive';
 import { BmbInputComponent } from '../../bmb-input/bmb-input.component';
 import { TranslatePipe } from '../../../pipes/translations';
 import { BmbCheckboxComponent } from '../../bmb-checkbox/bmb-checkbox.component';
-import { BmbLayoutDirective } from '../../../directives/old/bmb-layout/bmb-layout.directive';
-import { BmbLayoutItemDirective } from '../../../directives/old/bmb-layout/bmb-layout-item.directive';
-import { BmbVerticalLayoutDirective } from '../../../directives/old/bmb-layout/bmb-vertical-layout/bmb-vertical-layout.directive';
-import { BmbVerticalLayoutItemDirective } from '../../../directives/old/bmb-layout/bmb-vertical-layout/bmb-vertical-layout-item.directive';
+import { BmbLayoutDirective } from '../../../directives/bmb-layout/bmb-layout.directive';
+import { BmbLayoutItemDirective } from '../../../directives/bmb-layout/bmb-layout-item.directive';
+import { BmbVerticalLayoutDirective } from '../../../directives/bmb-layout/bmb-vertical-layout/bmb-vertical-layout.directive';
+import { BmbVerticalLayoutItemDirective } from '../../../directives/bmb-layout/bmb-vertical-layout/bmb-vertical-layout-item.directive';
 import { BmbRadialComponent } from '../../bmb-radial/bmb-radial.component';
 import { CommonModule } from '@angular/common';
 import {
