@@ -1,4 +1,3 @@
-/** eslint-disable @angular-eslint/no-output-on-prefix */
 import {
   ChangeDetectionStrategy,
   Component,
@@ -72,9 +71,13 @@ export class BmbChatBarComponent implements OnInit {
   currentBot = model<IBotType>();
   isLoading = model<boolean>(false);
 
+  // eslint-disable-next-line @angular-eslint/no-output-on-prefix
   onSendMessage = output<string>();
+  // eslint-disable-next-line @angular-eslint/no-output-on-prefix
   onSendFiles = output<File[]>();
+  // eslint-disable-next-line @angular-eslint/no-output-on-prefix
   onRecord = output<boolean>();
+  // eslint-disable-next-line @angular-eslint/no-output-on-prefix
   onEmoji = output<boolean>();
 
   files: File[] = [];

@@ -37,7 +37,7 @@
             [message]="chatMessage"
             [isThinking]="false"
             [showActions]="true"
-            [userActions]="chatMessage.isUser ? ['copy'] : []"
+            [actions]="chatMessage.isUser ? ['copy'] : []"
             (getAction)="getAction($event)"
             (getOptionClicked)="getOptionClicked($event)"
           />
