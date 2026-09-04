@@ -1,8 +1,8 @@
 import fs from 'node:fs'
 import path from 'node:path'
 
-const sourceRoot = 'projects/ds-ng/src'
-const publicApiPath = path.join(sourceRoot, 'public-api.ts')
+const sourceRoot = 'ui-angular/src'
+const publicApiPath = path.join(sourceRoot, 'index.ts')
 const publicApi = fs.readFileSync(publicApiPath, 'utf8')
 const exportPaths = [
   ...new Set(

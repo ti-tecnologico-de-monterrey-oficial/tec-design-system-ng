@@ -1,18 +1,18 @@
 {
   "$schema_note": "Machine-readable manifest of Bamboo Design System <-> tec-design-system-ng Code Connect mappings, for consumption by a future design-handoff triage agent.",
-  "generatedAt": "2026-09-01",
+  "generatedAt": "2026-09-02T00:00:00Z",
   "figmaFileKey": "Q4t8qIM5fklC9I3Atc1BrZ",
   "figmaFileUrl": "https://www.figma.com/design/Q4t8qIM5fklC9I3Atc1BrZ/Bamboo-Design-System---Components",
   "codeConnectLabel": "Angular",
   "repo": "ti-tecnologico-de-monterrey-oficial/tec-design-system-ng",
   "sourceBranchLayout": "ui-angular/src/lib/components/<name>/... (post-migration, develop@c1e81fde8); ui-angular/src/lib/directives/old/<name>/... for the 2 not-yet-migrated directives",
   "counts": {
-    "connectedPublished": 99,
-    "pendingVerification": 1,
+    "connectedPublished": 102,
+    "pendingVerification": 0,
     "internalAdapters": 3,
     "contractRequired": 10,
     "parentChildComposition": 12,
-    "blockedOutOfScope": 26
+    "blockedOutOfScope": 25
   },
   "connected": [
     {
@@ -192,9 +192,9 @@
       "angularComponent": "BmbCalendarComponent",
       "angularSource": "ui-angular/src/lib/components/bmb-calendar/bmb-calendar.component.ts",
       "codeConnectId": "bmb-calendar",
-      "status": "pending_verification",
-      "figmaVerified": false,
-      "note": "Published via CLI (Figma API confirmed upload) but Figma MCP get_code_connect_map has timed out on this node across many retries. Not counted in the published-template total until confirmed."
+      "status": "connected",
+      "figmaVerified": true,
+      "note": "Verification resolved 2026-09-02: get_code_connect_map previously timed out on this node; retried today and returned hasTemplate: true for the BmbCalendarComponent instances nested in this frame."
     },
     {
       "file": "Carousel.figma.ts",
@@ -565,6 +565,17 @@
       "codeConnectId": "bmb-list-group-item",
       "status": "connected",
       "figmaVerified": true
+    },
+    {
+      "file": "Loader.figma.ts",
+      "figmaNodeId": "152:38092",
+      "figmaUrl": "https://www.figma.com/design/Q4t8qIM5fklC9I3Atc1BrZ/Bamboo-Design-System---Components?node-id=152-38092",
+      "angularComponent": "BmbLoaderComponent",
+      "angularSource": "ui-angular/src/lib/components/bmb-loader/bmb-loader.component.ts",
+      "codeConnectId": "bmb-loader",
+      "status": "connected",
+      "figmaVerified": true,
+      "note": "Found 2026-09-02 sweeping the Status Indicator documentation canvas; distinct from Loader_Icon (icon primitive, not a match). All inputs optional; componentTitle=\"Cargando...\" is the exact Storybook Default fixture value."
     },
     {
       "file": "Login.figma.ts",
@@ -1015,6 +1026,28 @@
       "codeConnectId": "bmb-web-templates",
       "status": "connected",
       "figmaVerified": true
+    },
+    {
+      "file": "CardButton.figma.ts",
+      "figmaNodeId": "2978:76218",
+      "figmaUrl": "https://www.figma.com/design/Q4t8qIM5fklC9I3Atc1BrZ/Bamboo-Design-System---Components?node-id=2978-76218",
+      "angularComponent": "BmbCardButtonComponent",
+      "angularSource": "ui-angular/src/lib/components/bmb-card-button/bmb-card-button.component.ts",
+      "codeConnectId": "bmb-card-button",
+      "status": "connected_partial",
+      "figmaVerified": true,
+      "note": "2026-09-03: migrated off 4281:218969 (a stripped-down 'Card button' with only a Size variant) onto 2978:76218 — the richer 'Card button' component set previously mislabeled as a Playground component with '0 real instances' (disproven: a real usage instance 4281:219128 in Frame 2608680 is a child of this node). This node genuinely exposes Type (Add Content/Full Interactive/Badge), Menu (Inactive/Active) and Show Badges as bindable properties, now wired to isFullInteractive/hasMenu+menuItems/badge using only real Storybook fixtures (AddContentExample, MenuExample, BadgeContainerImageExample, ImageExample). 'Show Title Icon' and decorative content (thumb_up/128k/people-count) were deliberately left unbound: no matching Angular input exists, only ng-content-based customContent — binding them would have been fabrication. The old 4281:218969 mapping (4281:218968/4281:218967) was unpublished via `connect unpublish` so it no longer competes with this one. State and Color variant remain visual-only, excluded per project convention."
+    },
+    {
+      "file": "ListItems.figma.ts",
+      "figmaNodeId": "1644:67872",
+      "figmaUrl": "https://www.figma.com/design/Q4t8qIM5fklC9I3Atc1BrZ/Bamboo-Design-System---Components?node-id=1644-67872",
+      "angularComponent": "BmbListItemsComponent",
+      "angularSource": "ui-angular/src/lib/components/bmb-list-items/bmb-list-items.component.ts",
+      "codeConnectId": "bmb-list-items",
+      "status": "connected_partial",
+      "figmaVerified": true,
+      "note": "2026-09-03: found the real match — 'BuildingBlocks_Items list' (page “❖ Particularities”, missed by earlier searches scoped to “Main Components”). Its group section titles (Recientes/La semana pasada/Hace 30 días) match BmbListItemsComponent's own hardcoded, internally-computed group labels. No .stories.ts exists for this component, so `items` and `componentTitle` have no documented fixture to draw from — connected bare (`<bmb-list-items />`), all real Angular defaults, no fabrication. State (Empty/Populated) not bound since both render the same honest default. Still contract-required for real per-item content."
     }
   ],
   "internalAdapters": [
@@ -1068,13 +1101,6 @@
       "missingContract": "A true Items/Content SLOT with published semantic item children."
     },
     {
-      "exportOrFamily": "card-button",
-      "family": "Projected collections",
-      "angularComponent": "BmbCardButtonComponent",
-      "reason": "Two candidate nodes: 'Card button' (4281:218969, real usage, only a Size variant) and 'CardButton' (2978:76218, richer properties but lives on the excluded Playground page). Neither exposes ICardButton's title/body/badge/menuItems as real content properties.",
-      "missingContract": "A published (non-Playground) node exposing title/body/badge/menu content properties."
-    },
-    {
       "exportOrFamily": "list-group",
       "family": "Projected collections",
       "angularComponent": "BmbListGroupComponent",
@@ -1082,18 +1108,11 @@
       "missingContract": "A genuine repeated Items SLOT on the parent container node."
     },
     {
-      "exportOrFamily": "list-items",
-      "family": "Projected collections",
-      "angularComponent": "BmbListItemsComponent",
-      "reason": "No independent Bamboo main component found after targeted searches.",
-      "missingContract": "Design publishes a dedicated node."
-    },
-    {
       "exportOrFamily": "user-profile",
       "family": "Data cards, profiles and rubrics",
       "angularComponent": "BmbUserProfileComponent",
-      "reason": "No plausible stable Bamboo node found after multiple targeted searches (User profile, Profile card, User info header, icon/avatar candidates). Required userInfo object has no matching Figma content.",
-      "missingContract": "Design publishes a node exposing id/fullName/profilePicture content."
+      "reason": "Real, actively-maintained published nodes DO exist — ORG_Component_MiPerfilPerson (11203:49510) and ORG_Component_MiPerfilMobile (1063:77119), confirmed via search_design_system (library-published, updated as recently as 2026-07-27) — correcting the earlier “no plausible node found” claim. But both are static screens with zero exposed Figma properties, and bmb-user-profile.stories.ts documents no real non-empty value for the required `userInfo` (id/fullName/profilePicture) — its story args are literally empty strings. The blocker is missing documented content, not a missing node.",
+      "missingContract": "A Storybook-documented, non-empty IBmbUserInfo fixture (or Design confirms these MiPerfil nodes are the intended target and supplies real sample content)."
     },
     {
       "exportOrFamily": "chat-bubble",
@@ -1122,6 +1141,10 @@
       "angularComponent": "BmbItemComponent",
       "reason": "Deprecated in favor of bmb-item-[variant]/bmb-interactive-item-[variant] — low priority.",
       "missingContract": "N/A — deprioritized due to deprecation."
+    },
+    {
+      "export": "bmb-sidebar",
+      "reason": "Only structural input is elements: SidebarElement[][] (fully data-driven array). Published Sidebar component (299:51502) exposes only an Expanded variant, no Items SLOT. Documented in CONTRACT_STATE.md since 2026-08-12 (NAV-01 discovery) but never folded into this index until 2026-09-02."
     }
   ],
   "parentChildComposition": [
@@ -1206,10 +1229,6 @@
     {
       "export": "bmb-logo",
       "reason": "Figma visual logo variants do not yet identify the public image/link/button API."
-    },
-    {
-      "export": "bmb-loader",
-      "reason": "Published Loader_Icon is an icon primitive with only a visual Size axis; not a confirmed Figma main component for the public Loading screen API."
     },
     {
       "export": "bmb-mitec-logo-animation",
