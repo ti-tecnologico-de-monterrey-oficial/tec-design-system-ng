@@ -122,6 +122,14 @@
                       valueLink="/pages/notification-card"
                     />
                   </ng-template>
+                  <ng-template #actionMenuItem>
+                    <bmb-item-hyperlink
+                      icon="title"
+                      label="Simple header"
+                      value="page"
+                      valueLink="/pages/simple-header"
+                    />
+                  </ng-template>
                 </bmb-action-menu>
               </ng-template>
             </bmb-accordion>
@@ -230,29 +238,12 @@
                       valueLink="/pages/loader"
                     />
                   </ng-template>
-                </bmb-action-menu>
-              </ng-template>
-            </bmb-accordion>
-            <bmb-accordion
-              borderRadius="m"
-              margin="none"
-              paddingHeader="m"
-              paddingContent="m"
-              icon="keyboard_arrow_down"
-              bmbVerticalLayoutItem
-              [rowGrow]="1"
-            >
-              <ng-template #bmbAccordionHeader>
-                <h2>Visual labels</h2>
-              </ng-template>
-              <ng-template #bmbAccordionContent>
-                <bmb-action-menu [showHeader]="false">
                   <ng-template #actionMenuItem>
                     <bmb-item-hyperlink
-                      icon="info"
-                      label="Test"
+                      icon="steppers"
+                      label="Step progress bar"
                       value="page"
-                      valueLink="/home"
+                      valueLink="/pages/step-progress-bar"
                     />
                   </ng-template>
                 </bmb-action-menu>

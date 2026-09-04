@@ -276,6 +276,18 @@ export const sidebarOptions: SidebarElement[][] = [
           title: 'Frequent apps selector',
           link: '/pages/frequent-apps-selector',
         },
+        {
+          id: 35,
+          icon: 'title',
+          title: 'Simple header',
+          link: '/pages/simple-header',
+        },
+        {
+          id: 36,
+          icon: 'steppers',
+          title: 'Step progress bar',
+          link: '/pages/step-progress-bar',
+        },
       ],
     },
   ],
@@ -322,7 +334,7 @@ export const sidebarOptions: SidebarElement[][] = [
           id: 2,
           icon: 'steppers',
           title: 'Step progress bar',
-          link: '/step-progress-bar',
+          link: '/pages/step-progress-bar',
         },
         {
           id: 3,
