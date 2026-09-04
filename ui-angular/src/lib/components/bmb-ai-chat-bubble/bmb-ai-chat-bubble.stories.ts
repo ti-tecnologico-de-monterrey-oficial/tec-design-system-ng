@@ -21,7 +21,7 @@ import {
 } from '@docs/utils/parameterDescriptions';
 import { BmbLayoutDirective } from '../../directives/bmb-layout/bmb-layout.directive';
 import { BmbLayoutItemDirective } from '../../directives/bmb-layout/bmb-layout-item.directive';
-import { BmbButtonDirective } from '../../directives/old/bmb-button/button.directive';
+import { BmbButtonDirective } from '../../directives/bmb-button/button.directive';
 
 const GET_ACTION_DESCRIPTION = `
 ${getAlertBlockquote(

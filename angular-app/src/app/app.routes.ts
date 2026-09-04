@@ -203,7 +203,7 @@ export const appRoutes: Route[] = [
         (t) => t.AvatarsComponent,
       ),
   },
-  { path: 'components', pathMatch: 'full', redirectTo: 'pages/carousel' },
+  { path: 'pages', pathMatch: 'full', redirectTo: 'pages/carousel' },
   {
     path: 'pages/carousel',
     title: 'BmbCarousel | Bamboo migration dashboard',
@@ -489,20 +489,52 @@ export const appRoutes: Route[] = [
       ),
   },
   {
-    path: 'components/focus-element',
+    path: 'pages/loader',
+    title: 'BmbLoader | Bamboo migration dashboard',
+    loadComponent: () =>
+      import('./pages/loader-page/loader-page').then(
+        ({ LoaderPage }) => LoaderPage,
+      ),
+  },
+  {
+    path: 'pages/home-card',
+    title: 'BmbHomeCard | Bamboo migration dashboard',
+    loadComponent: () =>
+      import('./pages/home-card-page/home-card-page').then(
+        ({ HomeCardPage }) => HomeCardPage,
+      ),
+  },
+  {
+    path: 'pages/focus-element',
     title: 'BmbFocusElement | Bamboo migration dashboard',
     loadComponent: () =>
-      import('./components/focus-element-page/focus-element-page').then(
+      import('./pages/focus-element-page/focus-element-page').then(
         ({ FocusElementPage }) => FocusElementPage,
       ),
   },
   {
-    path: 'components/frequent-apps-selector',
+    path: 'pages/frequent-apps-selector',
     title: 'BmbFrequentAppsSelector | Bamboo migration dashboard',
     loadComponent: () =>
       import(
-        './components/frequent-apps-selector-page/frequent-apps-selector-page'
+        './pages/frequent-apps-selector-page/frequent-apps-selector-page'
       ).then(({ FrequentAppsSelectorPage }) => FrequentAppsSelectorPage),
   },
-   { path: '**', redirectTo: 'pages/home' },
+  {
+    path: 'pages/media-card',
+    title: 'BmbMediaCard | Bamboo migration dashboard',
+    loadComponent: () =>
+      import('./pages/media-card-page/media-card-page').then(
+        ({ MediaCardPage }) => MediaCardPage,
+      ),
+  },
+  {
+    path: 'pages/notification-card',
+    title: 'BmbNotificationCard | Bamboo migration dashboard',
+    loadComponent: () =>
+      import('./pages/notification-card-page/notification-card-page').then(
+        ({ NotificationCardPage }) => NotificationCardPage,
+      ),
+  },
+  { path: '**', redirectTo: 'pages/home' },
 ];

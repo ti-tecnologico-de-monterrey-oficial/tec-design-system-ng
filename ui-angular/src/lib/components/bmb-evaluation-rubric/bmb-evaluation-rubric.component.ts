@@ -16,7 +16,7 @@ import { BmbTooltipComponent } from '../bmb-tooltip/bmb-tooltip.component';
 import {
   BmbInputComponent,
 } from '../bmb-input/bmb-input.component';
-import { BmbButtonDirective } from '../../directives/old/bmb-button/button.directive';
+import { BmbButtonDirective } from '../../directives/bmb-button/button.directive';
 import { BmbThreeColsComponent } from '../bmb-three-cols/bmb-three-cols.component';
 import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
 import { BmbTitleContentComponent } from '../bmb-title-content/bmb-title-content.component';

@@ -7,7 +7,7 @@ import { BmbBadgeComponent } from '../../bmb-badge/bmb-badge.component';
 import { BmbImageComponent } from '../../bmb-image/bmb-image.component';
 import { BmbTitleComponent } from '../../bmb-title/bmb-title.component';
 import { BmbTooltipComponent } from '../../bmb-tooltip/bmb-tooltip.component';
-import { BmbButtonDirective } from '../../../directives/old/bmb-button/button.directive';
+import { BmbButtonDirective } from '../../../directives/bmb-button/button.directive';
 import { BmbLayoutDirective } from '../../../directives/bmb-layout/bmb-layout.directive';
 import { BmbLayoutItemDirective } from '../../../directives/bmb-layout/bmb-layout-item.directive';
 import { BmbVerticalLayoutDirective } from '../../../directives/bmb-layout/bmb-vertical-layout/bmb-vertical-layout.directive';

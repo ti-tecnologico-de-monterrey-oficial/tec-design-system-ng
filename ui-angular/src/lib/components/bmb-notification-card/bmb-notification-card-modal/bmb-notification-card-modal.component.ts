@@ -5,13 +5,12 @@ import {
   output,
   ViewEncapsulation,
 } from '@angular/core';
-import { IBmbDataAlert, IBmbDataAlertsParsed } from '../../bmb-alert-center/types';
+import {
+  IBmbDataAlert,
+  IBmbDataAlertsParsed,
+} from '../../bmb-alert-center/types';
 import { CommonModule } from '@angular/common';
 import { BmbAlertCenterDetailComponent } from '../../utils/bmb-alert-center-detail/bmb-alert-center-detail.component';
-
-/*
- * TODO: This component is marked as "old" and its decommissioning is planned for future updates.
- */
 
 @Component({
   selector: 'bmb-notification-card-modal',

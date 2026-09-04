@@ -18,7 +18,7 @@ body:has(.bmb_projected-backdrop) {
     animation: fadein 0.3s ease-in forwards;
 
     > * {
-      width: max-content;
+      width: 100%;
       display: block;
       height: 100%;
     }

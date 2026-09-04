@@ -25,10 +25,7 @@ import { BmbProjectionContentService } from '../../services/old/projection/proje
 import { BmbNativeModalService } from '../../services/old/modal/native-modal.service';
 import { BmbNotificationCardModalComponent } from './bmb-notification-card-modal/bmb-notification-card-modal.component';
 import { TranslatePipe } from '../../pipes/translations';
-
-/*
- * TODO: This component is marked as "old" and its decommissioning is planned for future updates.
- */
+import { countUnreadItems } from '../../_shared/logic/components/notification-card';
 
 @Component({
   selector: 'bmb-notification-card',
@@ -80,8 +77,12 @@ export class BmbNotificationCardComponent {
   });
   visibleAlert: IBmbDataAlertsParsed | null = null;
 
-  private translationsService: BmbTranslationsService = inject(BmbTranslationsService);
-  private projectionService: BmbProjectionContentService = inject(BmbProjectionContentService);
+  private translationsService: BmbTranslationsService = inject(
+    BmbTranslationsService,
+  );
+  private projectionService: BmbProjectionContentService = inject(
+    BmbProjectionContentService,
+  );
   private modalService: BmbNativeModalService = inject(BmbNativeModalService);
 
   getEmptyStateData(): IBmbAlertEmptyState {
@@ -101,17 +102,8 @@ export class BmbNotificationCardComponent {
   selectedTab = model<number>(1);
   badgeTabs = computed<number[]>(() => {
     return [
-      this.data().reduce((acc: number, alert: IBmbDataAlert) => {
-        if (!alert.isRead) return acc + 1;
-        return acc;
-      }, 0),
-      this.advertisements().reduce(
-        (acc: number, advertisement: IBmbDataAlert) => {
-          if (!advertisement.isRead) return acc + 1;
-          return acc;
-        },
-        0,
-      ),
+      countUnreadItems(this.data()),
+      countUnreadItems(this.advertisements()),
     ];
   });
   tabsConfig = computed<IBmbTab[]>(() => {

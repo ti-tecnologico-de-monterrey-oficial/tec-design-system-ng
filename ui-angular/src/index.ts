@@ -20,7 +20,7 @@ export * from './lib/services/icon/icon.service';
 export * from './lib/pipes/translations';
 
 // Directives
-export * from './lib/directives/old/bmb-button/button.directive';
+export * from './lib/directives/bmb-button/button.directive';
 export * from './lib/directives/bmb-layout/bmb-layout-item.directive';
 export * from './lib/directives/bmb-layout/bmb-layout.directive';
 export * from './lib/directives/bmb-layout/bmb-vertical-layout/bmb-vertical-layout.directive';
@@ -102,6 +102,7 @@ export * from './lib/components/bmb-home-card/bmb-home-card.component';
 export * from './lib/components/bmb-chat-bar/bmb-chat-bar.component';
 export * from './lib/components/bmb-push-notification/bmb-push-notification.component';
 export * from './lib/components/bmb-notification-card/bmb-notification-card.component';
+export * from './lib/components/bmb-notification-card/bmb-notification-card-modal/bmb-notification-card-modal.component';
 export * from './lib/components/bmb-login-onboarding/bmb-login-onboarding.component';
 export * from './lib/components/bmb-home-card-chat/bmb-home-card-chat.component';
 export * from './lib/components/bmb-paginator/bmb-paginator.component';

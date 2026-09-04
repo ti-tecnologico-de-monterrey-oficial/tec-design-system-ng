@@ -21,18 +21,18 @@ export class BreadcrumbPage {
   readonly itemCount = signal(5);
   readonly availableCounts = [1, 2, 3, 4, 5, 6];
   readonly allItems: IBmbDataTopBar[] = [
-    { text: 'Inicio', link: '/components/breadcrumb' },
-    { text: 'Admisiones', link: '/components/breadcrumb?level=admisiones' },
-    { text: 'Profesional', link: '/components/breadcrumb?level=profesional' },
-    { text: 'Programas', link: '/components/breadcrumb?level=programas' },
-    { text: 'Ingeniería', link: '/components/breadcrumb?level=ingenieria' },
+    { text: 'Inicio', link: '/pages/breadcrumb' },
+    { text: 'Admisiones', link: '/pages/breadcrumb?level=admisiones' },
+    { text: 'Profesional', link: '/pages/breadcrumb?level=profesional' },
+    { text: 'Programas', link: '/pages/breadcrumb?level=programas' },
+    { text: 'Ingeniería', link: '/pages/breadcrumb?level=ingenieria' },
     { text: 'Detalle del programa' },
   ];
   readonly dataLocalNav = computed(() =>
     this.allItems.slice(0, this.itemCount()),
   );
   readonly dataTopBar: IBmbDataTopBar[] = [
-    { text: 'Tecnológico de Monterrey', link: '/components/breadcrumb' },
+    { text: 'Tecnológico de Monterrey', link: '/pages/breadcrumb' },
     { text: 'Detalle de navegación' },
   ];
 

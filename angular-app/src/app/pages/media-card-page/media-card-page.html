@@ -1,0 +1,210 @@
+<header class="page-header">
+  <p class="eyebrow">Componente Bamboo</p>
+  <h1>BmbMediaCard</h1>
+  <p>Valida imágenes, contenido, enlaces, autor y variantes visuales.</p>
+</header>
+
+<section class="playground" aria-labelledby="media-card-properties">
+  <aside class="controls">
+    <h2 id="media-card-properties">Propiedades</h2>
+
+    <label for="media-type">type</label>
+    <select
+      id="media-type"
+      [value]="type()"
+      (change)="type.set($any($event.target).value)"
+    >
+      @for (option of types; track option) {
+      <option [value]="option">{{ option }}</option>
+      }
+    </select>
+
+    <label for="media-title">componentTitle</label>
+    <input
+      id="media-title"
+      [value]="componentTitle()"
+      (input)="componentTitle.set($any($event.target).value)"
+    />
+
+    <label for="media-subtitle">subtitle</label>
+    <input
+      id="media-subtitle"
+      [value]="subtitle()"
+      (input)="subtitle.set($any($event.target).value)"
+    />
+
+    <label for="media-content">content</label>
+    <textarea
+      id="media-content"
+      [value]="content()"
+      (input)="content.set($any($event.target).value)"
+    ></textarea>
+
+    <label for="media-date">date</label>
+    <input
+      id="media-date"
+      [value]="date()"
+      (input)="date.set($any($event.target).value)"
+    />
+
+    <label for="media-src">src</label>
+    <input
+      id="media-src"
+      [value]="src()"
+      (input)="src.set($any($event.target).value)"
+    />
+
+    <label for="media-mobile-src">mobileSrc</label>
+    <input
+      id="media-mobile-src"
+      [value]="mobileSrc()"
+      (input)="mobileSrc.set($any($event.target).value)"
+    />
+
+    <label for="media-alt">alt</label>
+    <input
+      id="media-alt"
+      [value]="alt()"
+      (input)="alt.set($any($event.target).value)"
+    />
+
+    <label for="media-width">width</label>
+    <input
+      id="media-width"
+      [value]="width()"
+      (input)="width.set($any($event.target).value)"
+    />
+
+    <label for="media-ratio">ratio</label>
+    <input
+      id="media-ratio"
+      [value]="ratio()"
+      (input)="ratio.set($any($event.target).value)"
+    />
+
+    <label for="media-radius">borderRadius</label>
+    <select
+      id="media-radius"
+      [value]="borderRadius()"
+      (change)="borderRadius.set($any($event.target).value)"
+    >
+      @for (option of borderRadii; track option) {
+      <option [value]="option">{{ option }}</option>
+      }
+    </select>
+
+    <label for="media-loading">loading</label>
+    <select
+      id="media-loading"
+      [value]="loading()"
+      (change)="loading.set($any($event.target).value)"
+    >
+      @for (option of loadings; track option) {
+      <option [value]="option">{{ option }}</option>
+      }
+    </select>
+
+    <label for="media-background">bgColor</label>
+    <select
+      id="media-background"
+      [value]="bgColor()"
+      (change)="bgColor.set($any($event.target).value)"
+    >
+      @for (option of backgroundColors; track option) {
+      <option [value]="option">{{ option || 'Sin color' }}</option>
+      }
+    </select>
+
+    <label for="media-link">link</label>
+    <input
+      id="media-link"
+      [value]="link()"
+      (input)="link.set($any($event.target).value)"
+    />
+
+    <label for="media-target">target</label>
+    <select
+      id="media-target"
+      [value]="target()"
+      (change)="target.set($any($event.target).value)"
+    >
+      @for (option of targets; track option) {
+      <option [value]="option">{{ option }}</option>
+      }
+    </select>
+
+    <label for="media-user-name">userName</label>
+    <input
+      id="media-user-name"
+      [value]="userName()"
+      (input)="userName.set($any($event.target).value)"
+    />
+
+    <label for="media-user-image">userImage</label>
+    <input
+      id="media-user-image"
+      [value]="userImage()"
+      (input)="userImage.set($any($event.target).value)"
+    />
+
+    <label class="toggle"
+      ><input
+        type="checkbox"
+        [checked]="enableZoom()"
+        (change)="enableZoom.set($any($event.target).checked)"
+      />enableZoom</label
+    >
+    <label class="toggle"
+      ><input
+        type="checkbox"
+        [checked]="isBlurredBackdrop()"
+        (change)="isBlurredBackdrop.set($any($event.target).checked)"
+      />isBlurredBackdrop</label
+    >
+    <label class="toggle"
+      ><input
+        type="checkbox"
+        [checked]="fullmediaCard()"
+        (change)="fullmediaCard.set($any($event.target).checked)"
+      />fullmediaCard</label
+    >
+    <label class="toggle"
+      ><input
+        type="checkbox"
+        [checked]="boxShadow()"
+        (change)="boxShadow.set($any($event.target).checked)"
+      />boxShadow</label
+    >
+
+    <output>mediaCardClicked: {{ clickCount() }}</output>
+  </aside>
+
+  <div class="preview">
+    <bmb-media-card
+      [link]="link()"
+      [target]="target()"
+      [src]="src()"
+      [mobileSrc]="mobileSrc()"
+      [alt]="alt()"
+      [width]="width()"
+      [ratio]="ratio()"
+      [borderRadius]="borderRadius()"
+      [loading]="loading()"
+      [enableZoom]="enableZoom()"
+      [isBlurredBackdrop]="isBlurredBackdrop()"
+      [type]="type()"
+      [subtitle]="subtitle()"
+      [content]="content()"
+      [date]="date()"
+      [userName]="userName()"
+      [userImage]="userImage()"
+      [fullmediaCard]="fullmediaCard()"
+      [bgColor]="bgColor()"
+      [boxShadow]="boxShadow()"
+      [componentTitle]="componentTitle()"
+      (mediaCardClicked)="handleMediaCardClick()"
+    >
+      <span>Contenido proyectado</span>
+    </bmb-media-card>
+  </div>
+</section>
