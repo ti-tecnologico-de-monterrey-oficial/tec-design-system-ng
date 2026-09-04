@@ -67,6 +67,7 @@ export class BmbChatBarComponent implements OnInit {
   emojiIcon = input<string>('');
   enableMicInput = input<boolean>(false);
   disableChangeBot = input<boolean>(false);
+  disabledInput = model<boolean>(false);
 
   currentBot = model<IBotType>();
   isLoading = model<boolean>(false);
@@ -111,6 +112,10 @@ export class BmbChatBarComponent implements OnInit {
   );
   private readonly nativeModalService: BmbNativeModalService = inject(
     BmbNativeModalService,
+  );
+
+  protected readonly _disabledInput = computed(
+    () => this.isLoading() || this.disabledInput(),
   );
 
   ngOnInit(): void {

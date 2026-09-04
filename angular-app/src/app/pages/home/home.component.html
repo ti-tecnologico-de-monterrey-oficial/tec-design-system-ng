@@ -7,6 +7,7 @@
     <section bmbLayoutItem [colSm]="4" [colLg]="6">
       <bmb-accordion
         #accordionComponents
+        [expanded]="true"
         borderRadius="m"
         margin="none"
         paddingHeader="m"
@@ -169,6 +170,12 @@
                       label="Date picker range"
                       value="page"
                       valueLink="/pages/date-range"
+                    />
+                    <bmb-item-hyperlink
+                      icon="comment"
+                      label="AI chat bar"
+                      value="page"
+                      valueLink="/pages/ai-chat-bar"
                     />
                   </ng-template>
                 </bmb-action-menu>
