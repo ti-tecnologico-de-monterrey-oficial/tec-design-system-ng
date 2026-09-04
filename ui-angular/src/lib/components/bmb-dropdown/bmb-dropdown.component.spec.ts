@@ -272,7 +272,7 @@ describe('BmbDropdownComponent', () => {
 
       expect(projectionService.openContent).toHaveBeenCalledWith(
         jasmine.objectContaining({
-          fixSizeToRef: true,
+          fixSizeToRef: false,
           showBackdrop: false,
           focusOnOpen: true,
         }),

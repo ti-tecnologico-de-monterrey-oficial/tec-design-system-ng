@@ -26,13 +26,8 @@ jobs:
             -Dsonar.projectKey=tec-design-system-ng
             -Dsonar.sources=./ui-angular,./ui-react
             -Dsonar.sourceEncoding=UTF-8
-            -Dsonar.exclusions=**/node_modules/**
-            -Dsonar.exclusions=**/*.stories.ts
-            -Dsonar.exclusions=**/*.mdx
-            -Dsonar.exclusions=**/*.spec.ts
-            -Dsonar.inclusions=**/*.spec.tsx
-            -Dsonar.test.exclusions=**/*.spec.ts
-            -Dsonar.test.exclusions=**/*.spec.tsx
+            -Dsonar.exclusions=**/node_modules/**,**/*.stories.ts,**/*.mdx,**/*.spec.ts,**/*.spec.tsx
+            -Dsonar.test.exclusions=**/*.spec.ts,**/*.spec.tsx
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Info de PR
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }} # Token Sonar
