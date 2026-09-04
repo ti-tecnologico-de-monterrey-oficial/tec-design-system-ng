@@ -5,6 +5,7 @@ import {
   DrawProgressCircleParams,
   BmbProgressCirclePathStatus,
   BmbProgressCircleOptionsInterface,
+  BmbProgressCircleSize,
 } from '../../types/components/progress-circle';
 
 /**
@@ -183,7 +184,7 @@ export const buildProgressCircleOptions = ({
   valueLabel: string;
   title: string | string[];
   showBackground: boolean;
-  size: any;
+  size: BmbProgressCircleSize | any;
 }): BmbProgressCircleOptionsInterface => ({
   responsive: true,
   backgroundPadding: -9,
@@ -299,7 +300,7 @@ export const getDisplayIcon = ({
 /**
  * Returns the container CSS classes.
  */
-export const getContainerClasses = ({
+export const getProgressCircleContainerClasses = ({
   emptyState,
   showOperationState,
   fillPathStatus,
