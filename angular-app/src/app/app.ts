@@ -2,7 +2,9 @@ import {
   ChangeDetectionStrategy,
   Component,
   computed,
+  effect,
   inject,
+  model,
   signal,
   TemplateRef,
   ViewChild,
@@ -57,7 +59,7 @@ import { BmbDelayProfileComponent } from './pages/bmb-delay-profile/bmb-delay-pr
   standalone: true,
 })
 export class App {
-  private router = inject(Router);
+  router = inject(Router);
   private modalService = inject(BmbNativeModalService);
   private projectionService = inject(BmbProjectionContentService);
 
@@ -92,6 +94,14 @@ export class App {
         this.resultList.set([...filteredPersons, ...filteredServices]);
         this.isSearchLoading.set(false);
       });
+
+    effect(() => {
+      const _newMode = this.mode();
+      if (_newMode === 'expanded') {
+        this.router.navigate(['/pages/ai-chat-card']);
+        this.mode.set('compact');
+      }
+    });
   }
 
   @ViewChild('modalTemplate') modalTemplate!: TemplateRef<unknown>;
@@ -106,7 +116,7 @@ export class App {
 
   routes: SidebarElement[][] = sidebarOptions;
 
-  mode: IBmbHomeCardChatMode = 'compact';
+  mode = model<IBmbHomeCardChatMode>('compact');
 
   currentBot: IBotType = {
     name: 'TecBot',

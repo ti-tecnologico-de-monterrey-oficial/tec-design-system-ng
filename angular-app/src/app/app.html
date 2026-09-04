@@ -178,6 +178,7 @@
   </div>
 </ng-template>
 
+@if (router.url !== '/pages/ai-chat-card') {
 <bmb-ai-chat-card
   [componentTitle]="'TecBot Assistant'"
   [subtitle]="'Asistente de inteligencia artificial'"
@@ -203,6 +204,7 @@
     [isLoading]="false"
   />
 </bmb-ai-chat-card>
+}
 
 <ng-template #modalLTSTemplate>
   <div>
