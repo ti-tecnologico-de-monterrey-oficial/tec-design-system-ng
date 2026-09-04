@@ -250,6 +250,10 @@
       width: calc(50% - var(--bmb-spacing-s));
     }
   }
+
+  .bmb_check-external-link-button:has(.bmb_icon-figure) {
+    display: inline-flex;
+  }
 }
 
 @keyframes loading {

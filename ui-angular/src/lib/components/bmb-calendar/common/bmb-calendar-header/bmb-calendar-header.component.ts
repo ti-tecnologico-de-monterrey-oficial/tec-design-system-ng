@@ -50,7 +50,7 @@ import { BmbSwitchComponent } from '../../../bmb-switch/bmb-switch.component';
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
-export class BmbCalendarHeaderComponent  implements OnInit {
+export class BmbCalendarHeaderComponent implements OnInit {
   view = input<IBmbCalendarView>('week');
   showFilterButton = input<boolean>(false);
 
@@ -141,13 +141,14 @@ export class BmbCalendarHeaderComponent  implements OnInit {
         modifyDate({ config: { days: 7 }, date: this.currentDate() });
         break;
       case 'month':
-        const newDate = DateTime.fromObject({
-          month: this.currentDate().month,
-          year: this.currentDate().year,
-          day: 1,
+        modifyDate({
+          config: { month: 1 },
+          date: DateTime.fromObject({
+            month: this.currentDate().month,
+            year: this.currentDate().year,
+            day: 1,
+          }),
         });
-
-        modifyDate({ config: { month: 1 }, date: newDate });
         break;
 
       default:
