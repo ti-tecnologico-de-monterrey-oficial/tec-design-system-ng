@@ -276,6 +276,18 @@ export const sidebarOptions: SidebarElement[][] = [
           title: 'Frequent apps selector',
           link: '/pages/frequent-apps-selector',
         },
+        {
+          id: 35,
+          icon: 'donut_large',
+          title: 'Progress circle',
+          link: '/pages/progress-circle',
+        },
+        {
+          id: 36,
+          icon: 'notification_important',
+          title: 'Push notification',
+          link: '/pages/push-notification',
+        },
       ],
     },
   ],

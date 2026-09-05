@@ -544,5 +544,21 @@ export const appRoutes: Route[] = [
         ({ NotificationCardPage }) => NotificationCardPage,
       ),
   },
+  {
+    path: 'pages/progress-circle',
+    title: 'BmbProgressCircle | Bamboo migration dashboard',
+    loadComponent: () =>
+      import('./pages/progress-circle-page/progress-circle-page').then(
+        ({ ProgressCirclePage }) => ProgressCirclePage,
+      ),
+  },
+  {
+    path: 'pages/push-notification',
+    title: 'BmbPushNotification | Bamboo migration dashboard',
+    loadComponent: () =>
+      import('./pages/push-notification-page/push-notification-page').then(
+        ({ PushNotificationPage }) => PushNotificationPage,
+      ),
+  },
   { path: '**', redirectTo: '/home' },
 ];

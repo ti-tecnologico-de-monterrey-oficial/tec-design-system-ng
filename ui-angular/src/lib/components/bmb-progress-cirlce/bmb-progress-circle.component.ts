@@ -1,49 +1,32 @@
-import {
-  BmbProgressCircleOptionsInterface,
-  BmbProgressCircleSize,
-} from './bmb-progress-circle.interface';
 import { CommonModule } from '@angular/common';
 import {
-  Component,
-  OnChanges,
-  SimpleChanges,
-  ViewEncapsulation,
   ChangeDetectionStrategy,
-  input,
+  Component,
   computed,
+  input,
+  OnChanges,
   OnInit,
+  ViewEncapsulation,
 } from '@angular/core';
-import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
+import {
+  buildProgressCircleOptions,
+  drawProgressCircle,
+  getProgressCircleContainerClasses,
+  getDisplayIcon,
+  getFillPathStatus,
+  isProgressCircleFullColored,
+  polarToCartesian as calculateProgressCircleCoordinates,
+  shouldShowProgressPath,
+  shouldShowValueLabel,
+} from '../../_shared/logic/components/progress-circle';
+import type {
+  BmbProgressCircleOptionsInterface,
+  BmbProgressCirclePathStatus,
+  BmbProgressCircleSize,
+  SvgConfig,
+} from '../../_shared/types/components/progress-circle';
 import { TranslatePipe } from '../../pipes/translations';
-import { BmbProgressCirclePathStatus } from '../../_shared/types/components/progress-circle';
-
-// Add this interface at the top of your file or in a suitable place
-interface SvgConfig {
-  viewBox: string;
-  height: number | string;
-  width: number | string;
-  backgroundCircle: {
-    cx: number;
-    cy: number;
-    r: number;
-  };
-  circle: {
-    cx: number;
-    cy: number;
-    r: number;
-    strokeWidth: number;
-  };
-  path: {
-    d: string;
-    strokeWidth: number;
-    fill: string;
-    strokeLinecap: string;
-  };
-}
-
-/*
- * TODO: This component is marked as "old" and its decommissioning is planned for future updates.
- */
+import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 
 @Component({
   selector: 'bmb-progress-circle',
@@ -69,20 +52,12 @@ export class BmbProgressCircleComponent implements OnChanges, OnInit {
   showOperationState = input<boolean>(false);
   emptyState = input<boolean>(false);
 
-  title = input<string | string[]>(''); // deprecated
+  /** @deprecated Use componentTitle instead. */
+  title = input<string | string[]>('');
 
-  validTitle = computed(() => {
-    return this.componentTitle() || this.title();
-  });
-  options = computed<BmbProgressCircleOptionsInterface>(() => {
-    const opts: BmbProgressCircleOptionsInterface = {
-      responsive: true,
-      backgroundPadding: -9,
-      radius: 100,
-      space: -5,
-      outerStrokeWidth: 5,
-      outerStrokeLinecap: 'round',
-      innerStrokeWidth: 5,
+  validTitle = computed(() => this.componentTitle() || this.title());
+  options = computed<BmbProgressCircleOptionsInterface>(() =>
+    buildProgressCircleOptions({
       percent: this.percent() ?? 0,
       showTitle: this.showTitle() ?? false,
       showValueLabel: this.showValueLabel() ?? false,
@@ -90,28 +65,23 @@ export class BmbProgressCircleComponent implements OnChanges, OnInit {
       title: this.validTitle() ?? '',
       showBackground: this.showBackground() ?? true,
       size: this.size() ?? 'default',
-    };
-    return opts;
-  });
+    }),
+  );
 
   _lastPercent = 0;
   svg: SvgConfig | null = null;
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.render();
   }
 
-  ngOnChanges() {
+  ngOnChanges(): void {
     this.render();
   }
 
-  render() {
+  render(): void {
     this.draw(this.options().percent);
     this._lastPercent = this.options().percent;
-  }
-
-  isTitleString(): boolean {
-    return typeof this.validTitle() === 'string';
   }
 
   polarToCartesian(
@@ -119,183 +89,70 @@ export class BmbProgressCircleComponent implements OnChanges, OnInit {
     centerY: number,
     radius: number,
     angleInDegrees: number,
-  ) {
-    const angleInRadius = (angleInDegrees * Math.PI) / 180;
-    const x = centerX + Math.sin(angleInRadius) * radius;
-    const y = centerY - Math.cos(angleInRadius) * radius;
-    return { x: x, y: y };
-  }
-
-  draw(percent: number) {
-    percent = Math.abs(percent);
-    let circlePercent = percent > 100 ? 100 : percent;
-    let boxSize =
-      this.options().radius * 2 + this.options().outerStrokeWidth * 2;
-    let centre = { x: boxSize / 2, y: boxSize / 2 };
-    let startPoint = { x: centre.x, y: centre.y - this.options().radius };
-    let endPoint = this.polarToCartesian(
-      centre.x,
-      centre.y,
-      this.options().radius,
-      (360 * circlePercent) / 100,
+  ): { x: number; y: number } {
+    return calculateProgressCircleCoordinates(
+      centerX,
+      centerY,
+      radius,
+      angleInDegrees,
     );
-    let largeArcFlag: any;
-    let sweepFlag: any;
-    if (circlePercent > 50) {
-      [largeArcFlag, sweepFlag] = [1, 0];
-    } else {
-      [largeArcFlag, sweepFlag] = [0, 0];
-    }
-    let titlePercent = this.options().percent;
-    let titleTextPercent = titlePercent;
-    let title = {
-      x: centre.x,
-      y: centre.y,
-      textAnchor: 'middle',
-      texts: new Array<any>(),
-      tspans: new Array<any>(),
-    };
-    if (this.validTitle() === '') {
-      title.texts.push(titleTextPercent);
-    } else {
-      if (this.validTitle() instanceof Array) {
-        title.texts = [...(this.validTitle() as string[])];
-      } else {
-        title.texts.push((this.validTitle() as string).toString());
-      }
-    }
-    let valueLabel = {
-      x: centre.x,
-      y: centre.y,
-      textAnchor: 'middle',
-      texts: new Array<any>(),
-      tspans: new Array<any>(),
-    };
-    if (this.valueLabel() === undefined) {
-      valueLabel.texts.push(`0`);
-    } else {
-      valueLabel.texts.push(this.valueLabel());
-    }
-    let rowCount = 0,
-      rowNum = 1;
-    this.options().showTitle && (rowCount += title.texts.length);
-    this.options().showValueLabel && (rowCount += valueLabel.texts.length);
-    if (this.options().showTitle) {
-      for (let span of title.texts) {
-        title.tspans.push({
-          span: span,
-          dy: this.getRelativeY(rowNum, rowCount),
-        });
-        rowNum++;
-      }
-    }
-    if (this.options().showValueLabel) {
-      for (let span of valueLabel.texts) {
-        valueLabel.tspans.push({
-          span: span,
-          dy: this.getRelativeY(rowNum, rowCount),
-        });
-        rowNum++;
-      }
-    }
-    this.svg = {
-      viewBox: `0 0 ${boxSize} ${boxSize}`,
-      width: this.options().responsive ? '100%' : boxSize,
-      height: this.options().responsive ? '100%' : boxSize,
-      backgroundCircle: {
-        cx: centre.x,
-        cy: centre.y,
-        r:
-          this.options().radius +
-          this.options().outerStrokeWidth / 2 +
-          this.options().backgroundPadding,
-      },
-      path: {
-        d: `
-          M ${startPoint.x} ${startPoint.y}
-          A ${this.options().radius} ${this.options().radius} 0 ${largeArcFlag} 1 ${endPoint.x} ${endPoint.y}
-        `,
-        strokeWidth: this.options().outerStrokeWidth,
-        strokeLinecap: this.options().outerStrokeLinecap,
-        fill: 'none',
-      },
-      circle: {
-        cx: centre.x,
-        cy: centre.y,
-        r:
-          this.options().radius -
-          this.options().space -
-          this.options().outerStrokeWidth / 2 -
-          this.options().innerStrokeWidth / 2,
-        strokeWidth: this.options().innerStrokeWidth,
-      },
-    };
   }
 
-  private getRelativeY(rowNum: number, rowCount: number): string {
-    let initialOffset = -0.18,
-      offset = 1.2;
-    return (initialOffset + offset * (rowNum - rowCount / 2)).toFixed(2) + 'em';
+  draw(percent: number): void {
+    this.svg = drawProgressCircle({
+      options: this.options(),
+      percent,
+      title: this.validTitle(),
+      valueLabel: this.valueLabel(),
+    });
+  }
+
+  isTitleString(): boolean {
+    return typeof this.validTitle() === 'string';
   }
 
   getFillPathStatus(): string {
-    return `bmb_progress-circle-fill-${this.fillPathStatus()}`;
+    return getFillPathStatus(this.fillPathStatus());
   }
 
   isFullColored(): boolean {
-    const status = this.fillPathStatus();
-    return (
-      this.fullFillPathStatus() &&
-      ['success', 'error', 'warning'].includes(status)
+    return isProgressCircleFullColored(
+      this.fullFillPathStatus(),
+      this.fillPathStatus(),
     );
   }
 
   shouldShowProgressPath(): boolean {
-    if (this.emptyState()) {
-      return false;
-    }
-
-    return !!this.percent() && !this.isFullColored();
+    return shouldShowProgressPath({
+      emptyState: this.emptyState(),
+      percent: this.percent(),
+      fullFillPathStatus: this.fullFillPathStatus(),
+      fillPathStatus: this.fillPathStatus(),
+    });
   }
 
   shouldShowValueLabel(): boolean {
-    if (
-      this.showOperationState() &&
-      (this.fillPathStatus() === 'success' || this.fillPathStatus() === 'error')
-    ) {
-      return this.options().showValueLabel;
-    }
-
-    return this.options().showValueLabel && !this.isFullColored();
+    return shouldShowValueLabel({
+      showOperationState: this.showOperationState(),
+      fillPathStatus: this.fillPathStatus(),
+      showValueLabel: this.options().showValueLabel,
+      fullFillPathStatus: this.fullFillPathStatus(),
+    });
   }
 
-  displayIcon = computed(() => {
-    if (this.fullFillPathStatus() && this.fillPathStatus() === 'success') {
-      return 'check_circle';
-    }
-
-    if (this.fullFillPathStatus() && this.fillPathStatus() === 'error') {
-      return 'error';
-    }
-
-    return this.icon();
-  });
+  displayIcon = computed(() =>
+    getDisplayIcon({
+      fullFillPathStatus: this.fullFillPathStatus(),
+      fillPathStatus: this.fillPathStatus(),
+      icon: this.icon(),
+    }),
+  );
 
   getContainerClasses(): string[] {
-    const classes: string[] = [];
-
-    if (this.emptyState()) {
-      classes.push('bmb_progress-circle-empty');
-    }
-
-    if (this.showOperationState() && this.fillPathStatus() === 'success') {
-      classes.push('bmb_progress-circle-operation-success');
-    }
-
-    if (this.showOperationState() && this.fillPathStatus() === 'error') {
-      classes.push('bmb_progress-circle-operation-error');
-    }
-
-    return classes;
+    return getProgressCircleContainerClasses({
+      emptyState: this.emptyState(),
+      showOperationState: this.showOperationState(),
+      fillPathStatus: this.fillPathStatus(),
+    });
   }
 }
