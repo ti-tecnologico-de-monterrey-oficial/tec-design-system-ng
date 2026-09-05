@@ -5,7 +5,6 @@ import {
   effect,
   input,
   output,
-  type InputSignal,
   ViewEncapsulation,
 } from '@angular/core';
 import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
@@ -30,17 +29,12 @@ export class BmbSimpleHeaderComponent {
   icon = input<string>('');
   iconAlternativeColor = input<boolean>(false);
   componentTitle = input<string>();
-  readonly legacyTitle = input<string | undefined>(undefined, {
-    alias: 'title',
-  });
 
-  /** @deprecated Use componentTitle instead. */
-  get title(): InputSignal<string | undefined> {
-    return this.legacyTitle;
-  }
+  /** Legacy input retained for compatibility. Prefer componentTitle. */
+  title = input<string>();
 
   readonly displayTitle = computed(() =>
-    getSimpleHeaderTitle(this.componentTitle(), this.legacyTitle()),
+    getSimpleHeaderTitle(this.componentTitle(), this.title()),
   );
   readonly iconColor = computed(() =>
     getSimpleHeaderIconColor(this.iconAlternativeColor()),
@@ -51,7 +45,7 @@ export class BmbSimpleHeaderComponent {
 
   constructor() {
     effect(() => {
-      const deprecatedTitle = this.legacyTitle();
+      const deprecatedTitle = this.title();
       const newTitle = this.componentTitle();
       logDeprecatedInput(
         { name: 'title', hasValue: !!deprecatedTitle },
