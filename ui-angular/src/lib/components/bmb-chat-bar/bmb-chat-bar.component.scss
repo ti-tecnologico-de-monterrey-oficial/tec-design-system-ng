@@ -110,6 +110,10 @@
     flex: 1;
     min-width: 0;
     position: relative;
+
+    &.disabled textarea {
+      cursor: not-allowed;
+    }
   }
 
   &-input {

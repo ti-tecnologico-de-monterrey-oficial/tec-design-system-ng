@@ -2,6 +2,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   computed,
+  effect,
   ElementRef,
   inject,
   input,
@@ -114,9 +115,17 @@ export class BmbChatBarComponent implements OnInit {
     BmbNativeModalService,
   );
 
-  protected readonly _disabledInput = computed(
+  protected readonly _disabledInput = computed<boolean>(
     () => this.isLoading() || this.disabledInput(),
   );
+
+  private readonly _syncDisabledState = effect(() => {
+    if (this._disabledInput()) {
+      this.control.disable({ emitEvent: false });
+    } else {
+      this.control.enable({ emitEvent: false });
+    }
+  });
 
   ngOnInit(): void {
     this.currentBot.update(
