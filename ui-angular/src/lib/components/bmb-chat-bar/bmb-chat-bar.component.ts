@@ -182,6 +182,7 @@ export class BmbChatBarComponent implements OnInit {
     const data: IBmbProjectionContent = {
       content: this.chatBarTemplate,
       targetRef: event.target as HTMLElement,
+      fixSizeToRef: false,
     };
 
     this.contentProjected.openContent(data);

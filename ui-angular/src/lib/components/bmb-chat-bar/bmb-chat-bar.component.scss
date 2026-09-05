@@ -147,6 +147,7 @@
     &-dialog {
       max-width: rem.rem_calc(350);
       width: max-content;
+      min-width: rem.rem_calc(250);
     }
   }
 

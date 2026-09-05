@@ -13,7 +13,7 @@ bmb-projected-content {
 .bmb_projected-content {
   position: fixed;
   border: 0 none;
-  z-index: 2000;
+  z-index: 1000;
   padding: 0;
   background-color: transparent;
   margin: 0;
@@ -64,7 +64,7 @@ bmb-projected-content {
 
 .bmb_projected-backdrop {
   position: fixed;
-  z-index: 2000;
+  z-index: 1000;
   background-color: transparent;
   margin: 0;
   width: 100%;
