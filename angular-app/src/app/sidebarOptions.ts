@@ -288,6 +288,12 @@ export const sidebarOptions: SidebarElement[][] = [
           title: 'Push notification',
           link: '/pages/push-notification',
         },
+        {
+          id: 37,
+          icon: 'info',
+          title: 'Toast',
+          link: '/pages/toast',
+        },
       ],
     },
   ],
