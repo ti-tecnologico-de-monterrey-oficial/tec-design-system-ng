@@ -278,12 +278,24 @@ export const sidebarOptions: SidebarElement[][] = [
         },
         {
           id: 35,
+          icon: 'title',
+          title: 'Simple header',
+          link: '/pages/simple-header',
+        },
+        {
+          id: 36,
+          icon: 'steppers',
+          title: 'Step progress bar',
+          link: '/pages/step-progress-bar',
+        },
+        {
+          id: 37,
           icon: 'donut_large',
           title: 'Progress circle',
           link: '/pages/progress-circle',
         },
         {
-          id: 36,
+          id: 38,
           icon: 'notification_important',
           title: 'Push notification',
           link: '/pages/push-notification',
@@ -334,7 +346,7 @@ export const sidebarOptions: SidebarElement[][] = [
           id: 2,
           icon: 'steppers',
           title: 'Step progress bar',
-          link: '/step-progress-bar',
+          link: '/pages/step-progress-bar',
         },
         {
           id: 3,

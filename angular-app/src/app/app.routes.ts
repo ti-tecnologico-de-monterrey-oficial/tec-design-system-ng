@@ -145,11 +145,8 @@ export const appRoutes: Route[] = [
   },
   {
     path: 'step-progress-bar',
-    title: 'Step progress bar',
-    loadComponent: () =>
-      import('./pages/step-progress-bar/step-progress-car.component').then(
-        (n) => n.BmbStepProgressBarPageComponent,
-      ),
+    pathMatch: 'full',
+    redirectTo: 'pages/step-progress-bar',
   },
   {
     path: 'dashboard-indicators',
@@ -542,6 +539,22 @@ export const appRoutes: Route[] = [
     loadComponent: () =>
       import('./pages/notification-card-page/notification-card-page').then(
         ({ NotificationCardPage }) => NotificationCardPage,
+      ),
+  },
+  {
+    path: 'pages/simple-header',
+    title: 'BmbSimpleHeader | Bamboo migration dashboard',
+    loadComponent: () =>
+      import('./pages/simple-header-page/simple-header-page').then(
+        ({ SimpleHeaderPage }) => SimpleHeaderPage,
+      ),
+  },
+  {
+    path: 'pages/step-progress-bar',
+    title: 'BmbStepProgressBar | Bamboo migration dashboard',
+    loadComponent: () =>
+      import('./pages/step-progress-bar/step-progress-bar-page').then(
+        ({ StepProgressBarPage }) => StepProgressBarPage,
       ),
   },
   {

@@ -3,13 +3,9 @@ import {
   BmbMultiDotPaginatorItemComponent,
   BmbMultiDotPaginatorComponent,
   BmbHomeCardComponent,
-  BmbBalanceOverviewComponent,
   BmbImageComponent,
   BmbVerticalLayoutDirective,
   BmbVerticalLayoutItemDirective,
-  BmbInteractiveIconComponent,
-  BmbLayoutDirective,
-  BmbLayoutItemDirective,
 } from 'ui-angular';
 
 @Component({
@@ -19,13 +15,9 @@ import {
     BmbMultiDotPaginatorItemComponent,
     BmbMultiDotPaginatorComponent,
     BmbHomeCardComponent,
-    BmbBalanceOverviewComponent,
     BmbImageComponent,
     BmbVerticalLayoutDirective,
     BmbVerticalLayoutItemDirective,
-    BmbInteractiveIconComponent,
-    BmbLayoutDirective,
-    BmbLayoutItemDirective,
   ],
   templateUrl: './dot-paginator.component.html',
   styleUrl: './dot-paginator.component.scss',

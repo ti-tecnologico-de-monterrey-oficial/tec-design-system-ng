@@ -22,3 +22,5 @@ export * from './components/notification-card';
 export * from './components/progress-circle';
 export * from './components/push-notification';
 export * from './components/top-bar-item';
+export * from './components/simple-header';
+export * from './components/step-progress-bar';
