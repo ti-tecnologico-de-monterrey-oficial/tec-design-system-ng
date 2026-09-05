@@ -7,10 +7,7 @@ import {
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
-
-/*
- * TODO: This component is marked as "old" and its decommissioning is planned for future updates.
- */
+import { getStatCounterStepsArray } from '../../_shared/logic/components/stat-counter';
 
 @Component({
   standalone: true,
@@ -28,7 +25,7 @@ export class BmbStatCounterComponent {
   onStepPress = output<number>();
 
   getStepsArray(): number[] {
-    return new Array(this.totalSteps() || 0).fill(0).map((_, i) => i);
+    return getStatCounterStepsArray(this.totalSteps());
   }
 
   onStepClicked(index: number): void {

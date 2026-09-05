@@ -31,10 +31,6 @@ import {
 import { A11yModule } from '@angular/cdk/a11y';
 import { getUUID } from '../../_shared/logic/utils';
 
-/*
- * TODO: This component is marked as "old" and its decommissioning is planned for future updates.
- */
-
 @Component({
   selector: 'bmb-icon',
   standalone: true,

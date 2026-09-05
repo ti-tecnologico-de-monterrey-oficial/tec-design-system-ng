@@ -56,6 +56,7 @@
       border: rem.rem_calc(1) solid var(--general-contrasts-container-outline);
       border-radius: 0 0 var(--bmb-radius-l) var(--bmb-radius-l);
       overflow: hidden;
+      flex: 1;
     }
   }
 }

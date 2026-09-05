@@ -7,15 +7,33 @@
   <bmb-multi-dot-paginator-item>
     <div bmbVerticalLayout layoutHeight="100%">
       <bmb-home-card
-        bmbVerticalLayoutItem
-        [disableScroll]="true"
-        [rowGrow]="1"
-        title="Some title"
-        contentPadding="none"
-      >
-
-        {{ item.title }}
-      </bmb-home-card>
+          leftIcon="chevron_left"
+          icon="account_balance_wallet"
+          bgIconAppearance="green-light"
+          title="Title"
+          subtitle="Subtitle"
+          [showRightButton]="true"
+          [style.view-transition-name]="'homeCardTransition2'"
+          contentPadding="none"
+          bmbVerticalLayoutItem
+          [rowGrow]="1"
+          [disableScroll]="true"
+        >
+          <bmb-image
+            [src]="
+              'https://farm2.staticflickr.com/1919/45579541712_f58c1fd0ed_o.jpg'
+            "
+            [mobileSrc]="
+              'https://2.bp.blogspot.com/-YkNDZEbKt_g/TYzcbF2_tkI/AAAAAAAAalk/Vt_MHS60Xv8/s1600/www.JoseLuisAvilaHerrera.BLOGSPOT.com%2B-%2BFunny%2BCats%2B-%2BGatitos%2Bmuy%2Btiernos%2B8.jpg'
+            "
+            [alt]="'Fruits'"
+            [width]="'clamp(200px, 100%, calc(50dvw - 3rem))'"
+            [borderRadius]="'none'"
+            [loading]="'lazy'"
+            [enableZoom]="false"
+            [isBlurredBackdrop]="false"
+          />
+        </bmb-home-card>
     </div>
   </bmb-multi-dot-paginator-item>
 }
