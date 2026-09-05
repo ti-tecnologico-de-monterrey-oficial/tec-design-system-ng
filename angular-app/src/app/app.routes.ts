@@ -415,6 +415,14 @@ export const appRoutes: Route[] = [
       ),
   },
   {
+    path: 'pages/ai-chat-bar',
+    title: 'BmbChatBar | Bamboo migration dashboard',
+    loadComponent: () =>
+      import('./pages/chat-bar-page/chat-bar-page').then(
+        ({ ChatBarPage }) => ChatBarPage,
+      ),
+  },
+  {
     path: 'pages/bot-icon',
     title: 'BmbBotIcon | Bamboo migration dashboard',
     loadComponent: () =>
@@ -536,5 +544,21 @@ export const appRoutes: Route[] = [
         ({ NotificationCardPage }) => NotificationCardPage,
       ),
   },
-  { path: '**', redirectTo: 'pages/home' },
+  {
+    path: 'pages/progress-circle',
+    title: 'BmbProgressCircle | Bamboo migration dashboard',
+    loadComponent: () =>
+      import('./pages/progress-circle-page/progress-circle-page').then(
+        ({ ProgressCirclePage }) => ProgressCirclePage,
+      ),
+  },
+  {
+    path: 'pages/push-notification',
+    title: 'BmbPushNotification | Bamboo migration dashboard',
+    loadComponent: () =>
+      import('./pages/push-notification-page/push-notification-page').then(
+        ({ PushNotificationPage }) => PushNotificationPage,
+      ),
+  },
+  { path: '**', redirectTo: '/home' },
 ];

@@ -37,9 +37,7 @@ describe('BmbProgressCircleComponent', () => {
   it('should draw the correct SVG path', () => {
     componentRef.setInput('percent', 75);
     component.render();
-    const path = component?.svg?.path.d;
-    expect(path).toContain(`
-          M 105 5
-          A 100 100 0 1 1 5 105.00000000000001`);
+    const normalizedPath = component.svg?.path.d.replace(/\s+/g, ' ').trim();
+    expect(normalizedPath).toBe('M 105 5 A 100 100 0 1 1 5 105.00000000000001');
   });
 });

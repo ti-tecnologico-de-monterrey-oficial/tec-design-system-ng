@@ -19,10 +19,6 @@ import {
   showError,
 } from '../../_shared/logic/formControl';
 
-/*
- * TODO: This component is marked as "old" and its decommissioning is planned for future updates.
- */
-
 @Component({
   selector: 'bmb-radial',
   standalone: true,

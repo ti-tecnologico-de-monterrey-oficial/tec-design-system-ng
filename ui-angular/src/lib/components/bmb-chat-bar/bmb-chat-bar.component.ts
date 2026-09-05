@@ -1,8 +1,8 @@
-/** eslint-disable @angular-eslint/no-output-on-prefix */
 import {
   ChangeDetectionStrategy,
   Component,
   computed,
+  effect,
   ElementRef,
   inject,
   input,
@@ -68,13 +68,18 @@ export class BmbChatBarComponent implements OnInit {
   emojiIcon = input<string>('');
   enableMicInput = input<boolean>(false);
   disableChangeBot = input<boolean>(false);
+  disabledInput = model<boolean>(false);
 
   currentBot = model<IBotType>();
   isLoading = model<boolean>(false);
 
+  // eslint-disable-next-line @angular-eslint/no-output-on-prefix
   onSendMessage = output<string>();
+  // eslint-disable-next-line @angular-eslint/no-output-on-prefix
   onSendFiles = output<File[]>();
+  // eslint-disable-next-line @angular-eslint/no-output-on-prefix
   onRecord = output<boolean>();
+  // eslint-disable-next-line @angular-eslint/no-output-on-prefix
   onEmoji = output<boolean>();
 
   files: File[] = [];
@@ -109,6 +114,18 @@ export class BmbChatBarComponent implements OnInit {
   private readonly nativeModalService: BmbNativeModalService = inject(
     BmbNativeModalService,
   );
+
+  protected readonly _disabledInput = computed<boolean>(
+    () => this.isLoading() || this.disabledInput(),
+  );
+
+  private readonly _syncDisabledState = effect(() => {
+    if (this._disabledInput()) {
+      this.control.disable({ emitEvent: false });
+    } else {
+      this.control.enable({ emitEvent: false });
+    }
+  });
 
   ngOnInit(): void {
     this.currentBot.update(
@@ -174,6 +191,7 @@ export class BmbChatBarComponent implements OnInit {
     const data: IBmbProjectionContent = {
       content: this.chatBarTemplate,
       targetRef: event.target as HTMLElement,
+      fixSizeToRef: false,
     };
 
     this.contentProjected.openContent(data);

@@ -139,6 +139,13 @@ Flows automatically supported by the component:
           blockquoteType: BlockquoteType.important,
         },
       )}
+<br/>
+      ${getAlertBlockquote(
+        `
+If the AI chat card is in "expanded" mode, it will occupy the full available space, so we recommend redirect to a page where it can be used exclusively for this purpose in layouts where this behavior is desired.
+        `,
+        { title: RELEVANT_TITLE.warning, blockquoteType: BlockquoteType.warning },
+      )}
 <br/>The "invisible" mode allows you to hide the "AI chat card"; to show it, you simply need to change the mode value to "chat".
 <br/><br/>In the case where the "invisible" mode is switched to "chat" mode via an external implementation, it automatically reverts to "invisible" upon collapsing.,
 `,

@@ -28,6 +28,7 @@ export * from './components/notification-counter';
 export * from './components/notification-card';
 export * from './components/navigation-bar';
 export * from './components/progress-circle';
+export * from './components/push-notification';
 export * from './components/server-table';
 export * from './components/skeleton';
 export * from './components/tags';

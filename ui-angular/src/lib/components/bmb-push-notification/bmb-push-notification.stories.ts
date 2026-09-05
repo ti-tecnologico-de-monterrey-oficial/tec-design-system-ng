@@ -23,7 +23,7 @@ import {
   getOnEventParam,
   getPropertyParamDesc,
 } from '@docs/utils/parameterDescriptions';
-import { BMB_PUSH_NOTIFICATION_COLOR_LIST } from '@shared/types/foundations/colors/color-type';
+import { BMB_PUSH_NOTIFICATION_COLOR_LIST } from '../../_shared/types/foundations/colors/color-type';
 
 const TITLE_PROPERTY_DESCRIPTION = getPropertyParamDesc('notification');
 @Component({

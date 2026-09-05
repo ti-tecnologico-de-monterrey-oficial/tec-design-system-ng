@@ -1,4 +1,3 @@
-/* eslint-disable @angular-eslint/no-output-on-prefix, @typescript-eslint/no-non-null-assertion */
 import { BmbTagComponent } from '../bmb-tags/bmb-tags.component';
 import { CommonModule } from '@angular/common';
 import {
@@ -85,7 +84,9 @@ export class BmbInputTagsComponent implements OnInit, OnChanges {
   tagOptions = model<string[] | IBmbDropdownItem[]>([]);
   control = model<FormControl>(newFormControlByType());
 
+  // eslint-disable-next-line @angular-eslint/no-output-on-prefix
   onKeyDown = output<KeyboardEvent>();
+  // eslint-disable-next-line @angular-eslint/no-output-on-prefix
   onChange = output<string[]>();
 
   uuid: string = getUUID();

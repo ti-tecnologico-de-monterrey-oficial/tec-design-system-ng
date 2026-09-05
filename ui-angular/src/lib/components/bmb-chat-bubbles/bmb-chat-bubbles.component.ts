@@ -1,4 +1,3 @@
-/* eslint-disable @angular-eslint/no-output-on-prefix */
 import {
   ChangeDetectionStrategy,
   Component,
@@ -43,7 +42,7 @@ export interface IBmbChatBubblesActions {
 export * from './types';
 
 /*
- * TODO: This component is marked as "old" and its decommissioning is planned for future updates.
+ * DO NOT MIGRATE THIS COMPONENT, IT IS DEPRECATED AND WILL BE REMOVED IN FUTURE UPDATES.
  */
 
 @Component({

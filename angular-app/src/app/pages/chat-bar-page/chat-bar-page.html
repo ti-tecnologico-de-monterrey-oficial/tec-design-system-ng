@@ -1,0 +1,70 @@
+<section class="page-shell">
+  <header>
+    <span class="eyebrow">COMPONENTE</span>
+    <h1>BmbChatBar</h1>
+    <p>Prueba la barra de conversación con bots, emojis y adjuntos.</p>
+  </header>
+
+  <div class="demo-grid">
+    <aside class="controls">
+      <h2>Propiedades</h2>
+      <label class="check">
+        <input
+          type="checkbox"
+          [checked]="showEmoji()"
+          (change)="showEmoji.set(!showEmoji())"
+        />
+        Mostrar emoji
+      </label>
+      <label class="check">
+        <input
+          type="checkbox"
+          [checked]="enableMicInput()"
+          (change)="enableMicInput.set(!enableMicInput())"
+        />
+        Habilitar micrófono
+      </label>
+      <label class="check">
+        <input
+          type="checkbox"
+          [checked]="disableChangeBot()"
+          (change)="disableChangeBot.set(!disableChangeBot())"
+        />
+        Deshabilitar cambio de bot
+      </label>
+      <label class="check">
+        <input
+          type="checkbox"
+          [checked]="disabledInput()"
+          (change)="disabledInput.set(!disabledInput())"
+        />
+        Deshabilitar input
+      </label>
+      <p class="event">
+        <strong>Última acción:</strong> {{ lastEvent() }}
+      </p>
+    </aside>
+
+    <article class="preview">
+      <header>
+        <span class="eyebrow">VISTA PREVIA</span>
+        <h2>Bot activo: {{ currentBot()?.label ?? 'TecBot' }}</h2>
+      </header>
+
+      <bmb-chat-bar
+        placeholder="Escribe un mensaje..."
+        [showEmoji]="showEmoji()"
+        [enableMicInput]="enableMicInput()"
+        [disableChangeBot]="disableChangeBot()"
+        [(disabledInput)]="disabledInput"
+        [(isLoading)]="isLoading"
+        [currentBot]="currentBot()"
+        (currentBotChange)="handleCurrentBotChange($event)"
+        (onSendMessage)="handleSendMessage($event)"
+        (onSendFiles)="handleSendFiles($event)"
+        (onRecord)="handleRecord($event)"
+        (onEmoji)="handleEmoji($event)"
+      />
+    </article>
+  </div>
+</section>
