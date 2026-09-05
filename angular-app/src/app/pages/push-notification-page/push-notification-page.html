@@ -1,0 +1,121 @@
+<header class="page-header">
+  <p class="eyebrow">Componente Bamboo</p>
+  <h1>BmbPushNotification</h1>
+  <p>Valida contenido, colores, aplicación, usuario, acciones y cierre.</p>
+</header>
+
+<section class="playground" aria-labelledby="push-notification-properties">
+  <aside class="controls">
+    <h2 id="push-notification-properties">Propiedades</h2>
+    <label for="push-title">title</label
+    ><input
+      id="push-title"
+      [value]="title()"
+      (input)="title.set($any($event.target).value)"
+    />
+    <label for="push-subtitle">subTitle</label
+    ><input
+      id="push-subtitle"
+      [value]="subTitle()"
+      (input)="subTitle.set($any($event.target).value)"
+    />
+    <label for="push-content">content</label
+    ><textarea
+      id="push-content"
+      [value]="content()"
+      (input)="content.set($any($event.target).value)"
+    ></textarea>
+    <label for="push-icon">icon</label
+    ><select
+      id="push-icon"
+      [value]="icon()"
+      (change)="icon.set($any($event.target).value)"
+    >
+      @for (option of icons; track option) {
+      <option [value]="option">{{ option }}</option>
+      }
+    </select>
+    <label for="push-type">type</label
+    ><select
+      id="push-type"
+      [value]="type()"
+      (change)="type.set($any($event.target).value)"
+    >
+      @for (option of types; track option) {
+      <option [value]="option">{{ option }}</option>
+      }
+    </select>
+    <label for="push-delay">delay</label
+    ><input
+      id="push-delay"
+      type="number"
+      [value]="delay()"
+      (input)="setDelay($any($event.target).value)"
+    />
+    <label for="push-date">date</label
+    ><input
+      id="push-date"
+      [value]="date()"
+      (input)="date.set($any($event.target).value)"
+    />
+    <label for="push-app-name">appName</label
+    ><input
+      id="push-app-name"
+      [value]="appName()"
+      (input)="appName.set($any($event.target).value)"
+    />
+    <label for="push-app-icon">appIcon</label
+    ><input
+      id="push-app-icon"
+      [value]="appIcon()"
+      (input)="appIcon.set($any($event.target).value)"
+    />
+    <label for="push-media">media</label
+    ><input
+      id="push-media"
+      [value]="media()"
+      (input)="media.set($any($event.target).value)"
+    />
+    <label for="push-user-name">userName</label
+    ><input
+      id="push-user-name"
+      [value]="userName()"
+      (input)="userName.set($any($event.target).value)"
+    />
+    <label for="push-user-avatar">userAvatar</label
+    ><input
+      id="push-user-avatar"
+      [value]="userAvatar()"
+      (input)="userAvatar.set($any($event.target).value)"
+    />
+    <label for="push-user-mail">userMail</label
+    ><input
+      id="push-user-mail"
+      [value]="userMail()"
+      (input)="userMail.set($any($event.target).value)"
+    />
+    <label class="toggle"
+      ><input
+        type="checkbox"
+        [checked]="isFullColor()"
+        (change)="isFullColor.set($any($event.target).checked)"
+      />isFullColor</label
+    >
+    <label class="toggle"
+      ><input
+        type="checkbox"
+        [checked]="enableDontAskAgain()"
+        (change)="enableDontAskAgain.set($any($event.target).checked)"
+      />dontAskAgainEvent</label
+    >
+    <button type="button" (click)="addNotification()">
+      Agregar notificación
+    </button>
+    <button type="button" (click)="clearNotifications()">
+      Limpiar notificaciones
+    </button>
+    <output>Último evento: {{ lastEvent() }}</output>
+  </aside>
+
+  <div class="preview"><bmb-push-notification /></div>
+</section>

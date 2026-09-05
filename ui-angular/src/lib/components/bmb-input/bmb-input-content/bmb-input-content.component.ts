@@ -1,4 +1,3 @@
-/* eslint-disable @angular-eslint/no-output-on-prefix */
 import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
@@ -62,10 +61,15 @@ export class BmbInputContentComponent {
 
   control = model<FormControl>(new FormControl());
 
+  // eslint-disable-next-line @angular-eslint/no-output-on-prefix
   onFocus = output<boolean>();
+  // eslint-disable-next-line @angular-eslint/no-output-on-prefix
   onBlur = output<boolean>();
+  // eslint-disable-next-line @angular-eslint/no-output-on-prefix
   onChange = output<HTMLInputElement>();
+  // eslint-disable-next-line @angular-eslint/no-output-on-prefix
   onKeyDown = output<KeyboardEvent>();
+  // eslint-disable-next-line @angular-eslint/no-output-on-prefix
   onKeyUp = output<KeyboardEvent>();
   clearEvent = output<void>();
 

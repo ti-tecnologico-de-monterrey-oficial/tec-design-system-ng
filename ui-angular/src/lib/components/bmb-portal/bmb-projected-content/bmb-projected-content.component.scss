@@ -4,10 +4,16 @@ body:has(.bmb_projected-backdrop) {
   overflow: hidden;
 }
 
+bmb-projected-content {
+  .bmb_overlay {
+    z-index: 1000;
+  }
+}
+
 .bmb_projected-content {
   position: fixed;
   border: 0 none;
-  z-index: 2000;
+  z-index: 1000;
   padding: 0;
   background-color: transparent;
   margin: 0;
@@ -16,6 +22,7 @@ body:has(.bmb_projected-backdrop) {
 
   &[open] {
     animation: fadein 0.3s ease-in forwards;
+    z-index: 1000;
 
     > * {
       width: 100%;
@@ -57,7 +64,7 @@ body:has(.bmb_projected-backdrop) {
 
 .bmb_projected-backdrop {
   position: fixed;
-  z-index: 2000;
+  z-index: 1000;
   background-color: transparent;
   margin: 0;
   width: 100%;

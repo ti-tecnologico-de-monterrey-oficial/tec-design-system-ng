@@ -288,6 +288,18 @@ export const sidebarOptions: SidebarElement[][] = [
           title: 'Step progress bar',
           link: '/pages/step-progress-bar',
         },
+        {
+          id: 37,
+          icon: 'donut_large',
+          title: 'Progress circle',
+          link: '/pages/progress-circle',
+        },
+        {
+          id: 38,
+          icon: 'notification_important',
+          title: 'Push notification',
+          link: '/pages/push-notification',
+        },
       ],
     },
   ],
