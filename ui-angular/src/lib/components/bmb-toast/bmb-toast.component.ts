@@ -9,39 +9,13 @@ import {
 import { CommonModule } from '@angular/common';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { logDeprecatedInput } from '../../_shared/logic/logDeprecatedInput';
+import { BmbToastAppearance } from '../../_shared/types/components/toast';
+import {
+  getToastClasses,
+  getToastIcon,
+} from '../../_shared/logic/components/toast';
 
-export type BmbToastAppearance =
-  | 'neutral'
-  | 'primary'
-  | 'warning'
-  | 'error'
-  | 'event'
-  | 'successful'
-  | 'reminder'
-  | 'mitec_blue'
-  | 'mitec_red'
-  | 'mitec_green'
-  | 'mitec_orange'
-  | 'mitec_light_green'
-  | 'mitec_purple'
-  | 'creative_violet'
-  | 'creative_indigo'
-  | 'creative_emerald'
-  | 'creative_licorice'
-  | 'creative_darkteal'
-  | 'creative_peach'
-  | 'creative_sepia'
-  | 'creative_softred'
-  | 'creative_wattle'
-  | 'creative_shipcove'
-  | 'creative_plantation'
-  | 'creative_rum'
-  | 'creative_hibiscus'
-  | 'creative_ripelemon';
-
-/*
- * TODO: This component is marked as "old" and its decommissioning is planned for future updates.
- */
+export type { BmbToastAppearance };
 
 @Component({
   standalone: true,
@@ -76,29 +50,11 @@ export class BmbToastComponent {
   }
 
   getClasses(): string[] {
-    const classes: string[] = ['bmb_toast'];
-
-    if (this.appearance()) {
-      classes.push('bmb_toast-' + this.appearance());
-    }
-
-    return classes;
+    return getToastClasses(this.appearance());
   }
 
   getIcon(): string {
-    const icons: { [key: string]: string } = {
-      neutral: 'info',
-      warning: 'warning',
-      error: 'error',
-      event: 'notification_important',
-      reminder: 'info',
-      successful: 'check_circle',
-      primary: 'info',
-    };
-
-    if (icons[this.appearance()]) return icons[this.appearance()];
-
-    return 'info';
+    return getToastIcon(this.appearance());
   }
 
   handleClose(event: MouseEvent): void {

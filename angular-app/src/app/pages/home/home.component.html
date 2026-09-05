@@ -220,7 +220,10 @@
                 <h2>Status indicators</h2>
               </ng-template>
               <ng-template #bmbAccordionContent>
-                <bmb-action-menu [showHeader]="false">
+                <bmb-action-menu
+                  componentTitle="Status indicators"
+                  [showHeader]="false"
+                >
                   <ng-template #actionMenuItem>
                     <bmb-item-hyperlink
                       icon="center_focus_strong"
@@ -243,6 +246,14 @@
                       label="Progress circle"
                       value="page"
                       valueLink="/pages/progress-circle"
+                    />
+                  </ng-template>
+                  <ng-template #actionMenuItem>
+                    <bmb-item-hyperlink
+                      icon="info"
+                      label="Toast"
+                      value="page"
+                      valueLink="/pages/toast"
                     />
                   </ng-template>
                 </bmb-action-menu>
