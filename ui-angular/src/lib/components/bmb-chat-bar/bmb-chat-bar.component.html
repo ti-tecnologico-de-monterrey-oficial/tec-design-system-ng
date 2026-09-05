@@ -66,7 +66,10 @@
         </bmb-icon>
       }
       @if (!onDragFiles) {
-        <div class="bmb_chat-bar-wrapper">
+        <div
+          class="bmb_chat-bar-wrapper"
+          [ngClass]="{ disabled: _disabledInput() }"
+        >
           <textarea
             rows="2"
             (input)="autoResize()"
@@ -75,6 +78,7 @@
             name="bmbChatBarBot"
             class="bmb_chat-bar-input"
             [formControl]="control"
+            [disabled]="_disabledInput()"
             (keydown)="handleKeyDown($event)"
             autocomplete="off"
           ></textarea>
@@ -193,17 +197,14 @@
 
 <ng-template #chatBarTemplate>
   <section class="bmb_chat-bar-add-dialog">
-    <bmb-action-menu
-      [showHeader]="false"
-      componentTitle="Selecciona una opción"
-    >
-      @for (bot of actionsList(); track $index) {
-        <ng-template>
+    <bmb-action-menu [showHeader]="false" componentTitle="Plus menu">
+      @for (action of actionsList(); track $index) {
+        <ng-template #actionMenuItem>
           <bmb-item
-            [icon]="bot.icon"
-            [label]="bot.name"
+            [icon]="action.icon"
+            [label]="action.name"
             [isButton]="true"
-            (action)="bot.action()"
+            (action)="action.action()"
           />
         </ng-template>
       }

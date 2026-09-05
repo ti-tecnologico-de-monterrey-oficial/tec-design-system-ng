@@ -415,6 +415,14 @@ export const appRoutes: Route[] = [
       ),
   },
   {
+    path: 'pages/ai-chat-bar',
+    title: 'BmbChatBar | Bamboo migration dashboard',
+    loadComponent: () =>
+      import('./pages/chat-bar-page/chat-bar-page').then(
+        ({ ChatBarPage }) => ChatBarPage,
+      ),
+  },
+  {
     path: 'pages/bot-icon',
     title: 'BmbBotIcon | Bamboo migration dashboard',
     loadComponent: () =>
@@ -552,5 +560,5 @@ export const appRoutes: Route[] = [
         ({ PushNotificationPage }) => PushNotificationPage,
       ),
   },
-  { path: '**', redirectTo: 'pages/home' },
+  { path: '**', redirectTo: '/home' },
 ];

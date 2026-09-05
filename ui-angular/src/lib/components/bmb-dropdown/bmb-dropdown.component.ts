@@ -1,4 +1,3 @@
-/* eslint-disable @angular-eslint/no-output-on-prefix, @typescript-eslint/no-explicit-any */
 import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
@@ -95,7 +94,9 @@ export class BmbDropdownComponent implements OnInit, OnChanges {
   >(null);
 
   control = model<FormControl>(newFormControlByType());
+  // eslint-disable-next-line @angular-eslint/no-output-on-prefix
   onValueChange = output<any>();
+  // eslint-disable-next-line @angular-eslint/no-output-on-prefix
   onFocus = output<boolean>();
 
   uuid: string = getUUID();
