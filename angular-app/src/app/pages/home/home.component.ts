@@ -16,7 +16,6 @@ import { Router } from '@angular/router';
 import {
   BmbLayoutDirective,
   BmbLayoutItemDirective,
-  BmbButtonDirective,
   BmbVerticalLayoutDirective,
   BmbVerticalLayoutItemDirective,
   BmbDividerComponent,
@@ -45,7 +44,6 @@ import { FormControl } from '@angular/forms';
     CommonModule,
     BmbLayoutDirective,
     BmbLayoutItemDirective,
-    BmbButtonDirective,
     BmbVerticalLayoutDirective,
     BmbVerticalLayoutItemDirective,
     BmbDividerComponent,

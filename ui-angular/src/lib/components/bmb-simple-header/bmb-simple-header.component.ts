@@ -5,6 +5,7 @@ import {
   effect,
   input,
   output,
+  type InputSignal,
   ViewEncapsulation,
 } from '@angular/core';
 import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
@@ -15,6 +16,7 @@ import {
   getSimpleHeaderIconColor,
   getSimpleHeaderTitle,
 } from '../../_shared/logic/components/simple-header';
+import type { IBmbActionIconEventType } from '../../_shared/types/components/action-icon';
 
 @Component({
   selector: 'bmb-simple-header',
@@ -28,23 +30,28 @@ export class BmbSimpleHeaderComponent {
   icon = input<string>('');
   iconAlternativeColor = input<boolean>(false);
   componentTitle = input<string>();
+  readonly legacyTitle = input<string | undefined>(undefined, {
+    alias: 'title',
+  });
 
   /** @deprecated Use componentTitle instead. */
-  title = input<string>();
+  get title(): InputSignal<string | undefined> {
+    return this.legacyTitle;
+  }
 
   readonly displayTitle = computed(() =>
-    getSimpleHeaderTitle(this.componentTitle(), this.title()),
+    getSimpleHeaderTitle(this.componentTitle(), this.legacyTitle()),
   );
   readonly iconColor = computed(() =>
     getSimpleHeaderIconColor(this.iconAlternativeColor()),
   );
 
   // eslint-disable-next-line @angular-eslint/no-output-on-prefix
-  onIconClick = output<MouseEvent | any>();
+  onIconClick = output<MouseEvent | IBmbActionIconEventType>();
 
   constructor() {
     effect(() => {
-      const deprecatedTitle = this.title();
+      const deprecatedTitle = this.legacyTitle();
       const newTitle = this.componentTitle();
       logDeprecatedInput(
         { name: 'title', hasValue: !!deprecatedTitle },
@@ -53,7 +60,7 @@ export class BmbSimpleHeaderComponent {
     });
   }
 
-  handleClick(event: MouseEvent | any): void {
+  handleClick(event: MouseEvent | IBmbActionIconEventType): void {
     this.onIconClick.emit(event);
   }
 }
