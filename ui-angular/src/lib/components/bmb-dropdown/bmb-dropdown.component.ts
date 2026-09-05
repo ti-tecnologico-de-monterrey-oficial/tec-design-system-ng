@@ -130,12 +130,8 @@ export class BmbDropdownComponent implements OnInit, OnChanges {
 
   ngOnInit() {
     if (!this.control()) {
-      const control = assignNewFormControl(this.name(), this.control());
-      if (control !== null) {
-        this.control.set(control);
-      } else {
-        this.isControlNull = true;
-      }
+      this.control.set(assignNewFormControl(this.name(), this.control())!);
+      this.isControlNull = true;
     }
 
     if (!this.isMultiSelect() && Array.isArray(this.control()?.value)) {
