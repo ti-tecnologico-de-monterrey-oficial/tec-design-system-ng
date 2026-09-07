@@ -573,5 +573,21 @@ export const appRoutes: Route[] = [
         ({ PushNotificationPage }) => PushNotificationPage,
       ),
   },
+  {
+    path: 'pages/student-activity-card',
+    title: 'BmbStudentActivityCard | Bamboo migration dashboard',
+    loadComponent: () =>
+      import(
+        './pages/student-activity-card-page/student-activity-card-page'
+      ).then(({ StudentActivityCardPage }) => StudentActivityCardPage),
+  },
+  {
+    path: 'pages/timestamp-detail',
+    title: 'BmbTimestreamDetail | Bamboo migration dashboard',
+    loadComponent: () =>
+      import('./pages/timestamp-detail-page/timestamp-detail-page').then(
+        ({ TimestampDetailPage }) => TimestampDetailPage,
+      ),
+  },
   { path: '**', redirectTo: '/home' },
 ];

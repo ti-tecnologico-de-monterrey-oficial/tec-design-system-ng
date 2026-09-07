@@ -96,6 +96,7 @@ export * from './lib/components/bmb-stat-counter/bmb-stat-counter.component';
 export * from './lib/components/bmb-datepicker/bmb-datepicker.component';
 export * from './lib/components/bmb-input-phone-number/bmb-input-phone-number.component';
 export * from './lib/components/bmb-timestream/bmb-timestream.component';
+export * from './lib/components/bmb-timestream/bmb-timestream-detail/bmb-timestream-detail.component';
 export * from './lib/components/bmb-student-activity-card/bmb-student-activity-card.component';
 export * from './lib/components/bmb-advertisement-card/bmb-advertisement-card.component';
 export * from './lib/components/bmb-home-card/bmb-home-card.component';

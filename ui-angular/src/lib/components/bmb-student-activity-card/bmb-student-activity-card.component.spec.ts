@@ -38,6 +38,16 @@ describe('BmbStudentActivityCardComponent', () => {
     expect(component.parsedEndDate.hour).toBe(11);
   });
 
+  it('should update parsed dates when inputs change', () => {
+    componentRef.setInput('startDate', '2026-09-07 14:00:00');
+    componentRef.setInput('endDate', '2026-09-07 15:30:00');
+    fixture.detectChanges();
+
+    expect(component.parsedStartDate.hour).toBe(14);
+    expect(component.parsedEndDate.hour).toBe(15);
+    expect(component.parsedEndDate.minute).toBe(30);
+  });
+
   it('should return correct card classes', () => {
     componentRef.setInput('isListItem', true);
     componentRef.setInput('type', 'academic');
@@ -82,5 +92,16 @@ describe('BmbStudentActivityCardComponent', () => {
     expect(component.getBulletStyles()).toEqual({
       'background-color': 'rgb(var(--error-primary))',
     });
+  });
+
+  it('should keep the deprecated title as a visual fallback', () => {
+    componentRef.setInput('componentTitle', '');
+    componentRef.setInput('title', 'Legacy activity');
+    fixture.detectChanges();
+
+    expect(
+      fixture.nativeElement.querySelector('.bmb_student-activity-card-title')
+        .textContent,
+    ).toContain('Legacy activity');
   });
 });
