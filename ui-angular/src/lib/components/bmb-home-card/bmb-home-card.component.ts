@@ -1,4 +1,3 @@
-/* eslint-disable @angular-eslint/no-output-on-prefix */
 import {
   ChangeDetectionStrategy,
   Component,
@@ -44,8 +43,11 @@ export class BmbHomeCardComponent {
 
   title = input<string>(); // deprecated
 
+  // eslint-disable-next-line @angular-eslint/no-output-on-prefix
   onClose = output();
+  // eslint-disable-next-line @angular-eslint/no-output-on-prefix
   onBack = output();
+  // eslint-disable-next-line @angular-eslint/no-output-on-prefix
   onExpandClick = output();
 
   constructor() {

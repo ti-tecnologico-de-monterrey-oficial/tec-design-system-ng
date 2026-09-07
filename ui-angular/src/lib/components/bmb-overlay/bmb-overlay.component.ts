@@ -3,6 +3,7 @@ import {
   Component,
   output,
   input,
+  ViewEncapsulation,
 } from '@angular/core';
 import { getUUID } from '../../_shared/logic/utils';
 
@@ -12,6 +13,7 @@ import { getUUID } from '../../_shared/logic/utils';
   templateUrl: './bmb-overlay.component.html',
   styleUrl: './bmb-overlay.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None,
 })
 export class BmbOverlayComponent {
   active = input<boolean>(false);

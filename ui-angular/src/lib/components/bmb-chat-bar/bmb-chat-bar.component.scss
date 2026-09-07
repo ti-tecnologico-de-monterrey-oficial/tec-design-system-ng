@@ -110,6 +110,10 @@
     flex: 1;
     min-width: 0;
     position: relative;
+
+    &.disabled textarea {
+      cursor: not-allowed;
+    }
   }
 
   &-input {
@@ -147,6 +151,7 @@
     &-dialog {
       max-width: rem.rem_calc(350);
       width: max-content;
+      min-width: rem.rem_calc(250);
     }
   }
 
@@ -249,6 +254,10 @@
       justify-content: center;
       width: calc(50% - var(--bmb-spacing-s));
     }
+  }
+
+  .bmb_check-external-link-button:has(.bmb_icon-figure) {
+    display: inline-flex;
   }
 }
 

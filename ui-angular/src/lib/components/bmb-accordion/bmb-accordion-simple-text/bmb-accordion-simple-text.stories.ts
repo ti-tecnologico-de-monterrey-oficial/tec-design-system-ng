@@ -58,3 +58,11 @@ ${getBasicExampleBlock('BmbAccordionComponent')}
 type Story = StoryObj<BmbAccordionSimpleTextComponent>;
 
 export const Default: Story = {};
+
+export const Text: Story = {
+  args: {
+    textContent: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut justo ante,
+      mattis nec libero a, malesuada pellentesque sem. Aliquam erat volutpat.
+      Nulla ut consequat turpis, id efficitur velit.`,
+  },
+};

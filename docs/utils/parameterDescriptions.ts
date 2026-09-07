@@ -81,7 +81,8 @@ export const getModelDescription = (propertyName: string): string =>
   getAlertBlockquote(
     `
 Remember that model is two-way binding (signal), it is possible to use it as:
-    \`[(${propertyName})]="${propertyName}"\``,
+    [(${propertyName})]="${propertyName}"
+    \`(${propertyName}Change)="handle${propertyName.substring(0, 1).toUpperCase()}${propertyName.substring(1)}Change()\``,
     {
       title: RELEVANT_TITLE.configuration,
       blockquoteType: BlockquoteType.important,
