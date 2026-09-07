@@ -61,7 +61,7 @@
   }
 }
 
-bmb-ai-chat-card:not(:empty) {
+bmb-ai-chat-card:has(.bmb_ai-chat-card-expanded) {
   display: block;
   height: 100%;
 

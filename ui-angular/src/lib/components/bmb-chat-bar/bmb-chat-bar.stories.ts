@@ -4,6 +4,7 @@ import { getBasicExampleBlock, getGeneralDescription } from '@docs/utils/utils';
 import {
   DBmbIconParamDesc,
   DBmbInputParamDesc,
+  getModelDescription,
   getPropertyParamDesc,
 } from '@docs/utils/parameterDescriptions';
 
@@ -161,6 +162,18 @@ This is a model signal, so it is possible to use it as:
       controlType: 'boolean',
       alternativeDescription: 'Disables the bot icon change functionality',
     }),
+    disabledInput: {
+      control: { type: 'boolean' },
+      description: `
+Disables the input when \`true\`, blocking user typing.
+${getModelDescription('disabledInput')}
+      `,
+      table: {
+        category: 'Properties',
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
+    },
     onSendMessage: {
       control: null,
       description: 'Emits the send event, export the output value.',
@@ -208,6 +221,7 @@ This is a model signal, so it is possible to use it as:
   args: {
     placeholder: 'Custom placeholder',
     isLoading: false,
+    disabledInput: false,
     enableMicInput: false,
     actionsList: [
       {

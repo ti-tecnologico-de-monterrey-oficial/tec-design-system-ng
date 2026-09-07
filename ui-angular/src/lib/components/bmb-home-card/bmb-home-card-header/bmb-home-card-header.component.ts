@@ -1,4 +1,3 @@
-/* eslint-disable @angular-eslint/no-output-on-prefix */
 import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
@@ -75,8 +74,11 @@ export class BmbHomeCardHeaderComponent implements OnInit {
 
   title = input<string>(); // deprecated
 
+  // eslint-disable-next-line @angular-eslint/no-output-on-prefix
   onClose = output();
+  // eslint-disable-next-line @angular-eslint/no-output-on-prefix
   onBack = output();
+  // eslint-disable-next-line @angular-eslint/no-output-on-prefix
   onExpandClick = output();
 
   @ViewChild('actionMenu') actionMenu!: TemplateRef<unknown>;

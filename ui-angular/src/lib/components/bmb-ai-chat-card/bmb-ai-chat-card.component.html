@@ -1,5 +1,5 @@
 <ng-template #aiChatContent>
-  <section class="bmb_ai-chat-card">
+  <section class="bmb_ai-chat-card" [ngClass]="'bmb_ai-chat-card-' + mode()">
     <bmb-home-card
       [bgIconAppearance]="bgIconAppearance()"
       [componentTitle]="
@@ -34,6 +34,7 @@
 @if (currentBot() && mode() === 'compact') {
   <bmb-action-icon
     class="bmb_ai-chat-card-bot"
+    [ngClass]="'bmb_ai-chat-card-' + mode()"
     [icon]="currentBot().icon"
     [tooltipText]="currentBot().name"
     [iconSize]="40"

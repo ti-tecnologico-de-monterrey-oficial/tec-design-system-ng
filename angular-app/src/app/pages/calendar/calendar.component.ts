@@ -1,4 +1,4 @@
-import { Component, computed, model, OnInit } from '@angular/core';
+import { Component, computed, inject, model, OnInit } from '@angular/core';
 import {
   BmbCalendarComponent,
   BmbCalendarService,
@@ -9,7 +9,6 @@ import {
 import { DateTime } from 'luxon';
 
 @Component({
-  // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'app-calendar',
   standalone: true,
   imports: [BmbCalendarComponent, BmbSwitchComponent],
@@ -17,10 +16,8 @@ import { DateTime } from 'luxon';
   styleUrl: './calendar.component.scss',
 })
 export class CalendarComponent implements OnInit {
-  constructor(
-    private bmbCalendarService: BmbCalendarService,
-    private translationsService: BmbTranslationsService,
-  ) {}
+  private bmbCalendarService = inject(BmbCalendarService);
+  private translationsService = inject(BmbTranslationsService);
 
   calendarFilters = model<{ [key: string]: boolean }>({});
   lang = computed(() => this.translationsService.getCurrentLanguage());

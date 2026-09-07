@@ -38,7 +38,7 @@ export class AiChatCardPage {
     { value: 'invisible', label: 'Invisible' },
   ];
 
-  readonly mode = signal<IBmbAIChatCardMode>('compact');
+  readonly mode = signal<IBmbAIChatCardMode>('expanded');
   readonly currentBot = signal<IBotType>({
     name: 'TecBot',
     label: 'Tecbot Standard',
