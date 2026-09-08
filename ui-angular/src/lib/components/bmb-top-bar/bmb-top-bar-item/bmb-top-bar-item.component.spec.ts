@@ -19,7 +19,8 @@ describe('BmbTopBarItemComponent', () => {
   });
 
   it('should create with the inactive state by default', () => {
-    const item: HTMLLIElement = fixture.nativeElement.querySelector('li');
+    const item: HTMLDivElement =
+      fixture.nativeElement.querySelector('.bmb_top-bar-item');
 
     expect(component).toBeTruthy();
     expect(component.isActive()).toBe(false);
@@ -30,18 +31,21 @@ describe('BmbTopBarItemComponent', () => {
   it('should add and remove the active class', () => {
     componentRef.setInput('isActive', true);
     fixture.detectChanges();
-    let item: HTMLLIElement = fixture.nativeElement.querySelector('li');
+    let item: HTMLDivElement =
+      fixture.nativeElement.querySelector('.bmb_top-bar-item');
     expect(item.classList).toContain('bmb_top-bar-item-active');
 
     componentRef.setInput('isActive', false);
     fixture.detectChanges();
-    item = fixture.nativeElement.querySelector('li');
+    item = fixture.nativeElement.querySelector('.bmb_top-bar-item');
     expect(item.classList).not.toContain('bmb_top-bar-item-active');
   });
 
-  it('should project content inside the list item', () => {
-    const item: HTMLLIElement = fixture.nativeElement.querySelector('li');
+  it('should render its content inside the list-item host', () => {
+    const item: HTMLDivElement =
+      fixture.nativeElement.querySelector('.bmb_top-bar-item');
 
-    expect(item.tagName).toBe('LI');
+    expect(item.tagName).toBe('DIV');
+    expect(fixture.nativeElement.getAttribute('role')).toBe('listitem');
   });
 });

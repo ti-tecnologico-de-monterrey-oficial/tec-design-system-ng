@@ -122,6 +122,16 @@
                       valueLink="/pages/notification-card"
                     />
                   </ng-template>
+
+                  <ng-template #actionMenuItem>
+                    <bmb-item-hyperlink
+                      icon="title"
+                      label="Simple header"
+                      value="page"
+                      valueLink="/pages/simple-header"
+                    />
+                  </ng-template>
+
                   <ng-template #actionMenuItem>
                     <bmb-item-hyperlink
                       icon="notification_important"
@@ -282,10 +292,10 @@
                 <bmb-action-menu [showHeader]="false">
                   <ng-template #actionMenuItem>
                     <bmb-item-hyperlink
-                      icon="info"
-                      label="Test"
+                      icon="steppers"
+                      label="Step progress bar"
                       value="page"
-                      valueLink="/home"
+                      valueLink="/pages/step-progress-bar"
                     />
                   </ng-template>
                 </bmb-action-menu>
