@@ -1,0 +1,57 @@
+<header class="page-header">
+  <p class="eyebrow">Componente Bamboo</p>
+  <h1>BmbSimpleHeader</h1>
+  <p>Valida el título, icono, color alternativo y evento del encabezado.</p>
+</header>
+
+<section class="playground" aria-labelledby="simple-header-properties">
+  <aside class="controls">
+    <h2 id="simple-header-properties">Propiedades</h2>
+
+    <label for="simple-header-title">componentTitle</label>
+    <input
+      id="simple-header-title"
+      [value]="componentTitle()"
+      (input)="componentTitle.set($any($event.target).value)"
+    />
+
+    <label for="simple-header-deprecated-title">title (deprecated)</label>
+    <input
+      id="simple-header-deprecated-title"
+      [value]="deprecatedTitle()"
+      (input)="deprecatedTitle.set($any($event.target).value)"
+    />
+
+    <label for="simple-header-icon">icon</label>
+    <select
+      id="simple-header-icon"
+      [value]="icon()"
+      (change)="icon.set($any($event.target).value)"
+    >
+      @for (option of icons; track option) {
+      <option [value]="option">{{ option || 'Sin icono' }}</option>
+      }
+    </select>
+
+    <label class="toggle">
+      <input
+        type="checkbox"
+        [checked]="iconAlternativeColor()"
+        (change)="iconAlternativeColor.set($any($event.target).checked)"
+      />
+      iconAlternativeColor
+    </label>
+
+    <output>Último evento: {{ lastEvent() }}</output>
+  </aside>
+
+  <div class="preview">
+    <bmb-simple-header
+      [componentTitle]="componentTitle()"
+      [title]="deprecatedTitle()"
+      [icon]="icon()"
+      [iconAlternativeColor]="iconAlternativeColor()"
+      (onIconClick)="handleIconClick($event)"
+    />
+  </div>
+</section>

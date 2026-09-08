@@ -26,7 +26,7 @@
               ? true
               : size() === 'normal' || size() === 'default'
                 ? getStepNumber(index) > getActiveStepNumber()
-                : getStepNumber(index) >= getActiveStepNumber()
+                : getStepNumber(index) >= getActiveStepNumber(),
         }"
         [disabled]="
           type() === 'step-panel' ||
@@ -34,7 +34,7 @@
           getStepNumber(index) > getActiveStepNumber()
         "
         (click)="handleStepClicked(index)"
-        onkeypress="handleStepPressed(index)"
+        (keydown.enter)="handleStepPressed(index)"
         bmbLayoutItem
       >
         <bmb-focus-element
@@ -70,7 +70,8 @@
               pending:
                 type() === 'step-panel' &&
                 getStepNumber(index) >= getActiveStepNumber(),
-              'bmb_step-progress-bar-text-title-wizard': type() === 'step-panel'
+              'bmb_step-progress-bar-text-title-wizard':
+                type() === 'step-panel',
             }"
             bmbVerticalLayoutItem
           >
@@ -101,7 +102,7 @@
         [ngClass]="{
           completed: getStepNumber(index) < getActiveStepNumber(),
           'bmb_step-progress-bar-line-horizontal': type() === 'horizontal',
-          'bmb_step-progress-bar-line-vertical': type() !== 'horizontal'
+          'bmb_step-progress-bar-line-vertical': type() !== 'horizontal',
         }"
         [attr.bmbLayoutItem]="type() === 'horizontal' ? true : null"
         [attr.bmbVerticalLayoutItem]="type() !== 'horizontal' ? true : null"
@@ -125,7 +126,7 @@
   class="bmb_step-progress-bar"
   [ngClass]="{
     'bmb_step-progress-bar-horizontal': type() === 'horizontal',
-    'bmb_step-progress-bar-vertical': type() !== 'horizontal'
+    'bmb_step-progress-bar-vertical': type() !== 'horizontal',
   }"
 >
   @if (type() == 'horizontal') {

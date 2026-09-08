@@ -1,0 +1,98 @@
+<header class="page-header">
+  <p class="eyebrow">Componente Bamboo</p>
+  <h1>BmbStepProgressBar</h1>
+  <p>Valida pasos horizontales, verticales, paneles, etiquetas y eventos.</p>
+</header>
+
+<section class="playground" aria-labelledby="step-progress-properties">
+  <aside class="controls">
+    <h2 id="step-progress-properties">Propiedades</h2>
+    <label for="step-active">activeStep</label>
+    <input
+      id="step-active"
+      type="number"
+      min="0"
+      [value]="activeStep()"
+      (input)="setNumber('activeStep', $any($event.target).value)"
+    />
+    <label for="step-total">totalSteps</label>
+    <input
+      id="step-total"
+      type="number"
+      min="0"
+      [value]="totalSteps()"
+      (input)="setNumber('totalSteps', $any($event.target).value)"
+    />
+    <label for="step-size">size</label>
+    <select
+      id="step-size"
+      [value]="size()"
+      (change)="size.set($any($event.target).value)"
+    >
+      @for (option of sizes; track option) {
+      <option [value]="option">{{ option }}</option>
+      }
+    </select>
+    <label for="step-type">type</label>
+    <select
+      id="step-type"
+      [value]="type()"
+      (change)="type.set($any($event.target).value)"
+    >
+      @for (option of types; track option) {
+      <option [value]="option">{{ option }}</option>
+      }
+    </select>
+    <label for="step-labels">labelSteps (una etiqueta por línea)</label>
+    <textarea
+      id="step-labels"
+      [value]="labelSteps().join('\n')"
+      (input)="setLabels($any($event.target).value)"
+    ></textarea>
+    <label for="step-complete">labelComplete</label>
+    <input
+      id="step-complete"
+      [value]="labelComplete()"
+      (input)="labelComplete.set($any($event.target).value)"
+    />
+    <label for="step-incomplete">labelIncomplete</label>
+    <input
+      id="step-incomplete"
+      [value]="labelIncomplete()"
+      (input)="labelIncomplete.set($any($event.target).value)"
+    />
+    <label class="toggle"
+      ><input
+        type="checkbox"
+        [checked]="freeze()"
+        (change)="freeze.set($any($event.target).checked)"
+      />freeze</label
+    >
+    <output>Último evento: {{ lastEvent() }}</output>
+  </aside>
+
+  <div class="preview">
+    <ng-template #stepOne><p>Contenido del paso Inicio.</p></ng-template>
+    <ng-template #stepTwo
+      ><p>Contenido del paso Datos personales.</p></ng-template
+    >
+    <ng-template #stepThree
+      ><p>Contenido del paso Confirmación.</p></ng-template
+    >
+    <ng-template #stepFour><p>Contenido del paso Finalizado.</p></ng-template>
+    <bmb-step-progress-bar
+      [activeStep]="activeStep()"
+      (activeStepChange)="activeStep.set($event)"
+      [totalSteps]="totalSteps()"
+      [size]="size()"
+      [freeze]="freeze()"
+      [type]="type()"
+      [labelSteps]="labelSteps()"
+      [labelComplete]="labelComplete()"
+      [labelIncomplete]="labelIncomplete()"
+      [stepTemplates]="[stepOne, stepTwo, stepThree, stepFour]"
+      (onStepPress)="recordEvent('onStepPress', $event)"
+      (onStepPanelPress)="recordEvent('onStepPanelPress', $event)"
+    />
+  </div>
+</section>
