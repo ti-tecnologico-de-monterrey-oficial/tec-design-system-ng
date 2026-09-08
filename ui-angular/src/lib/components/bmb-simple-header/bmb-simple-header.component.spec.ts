@@ -34,6 +34,18 @@ describe('BmbSimpleHeaderComponent', () => {
     expect(component.displayTitle()).toBe('Anterior');
   });
 
+  it('should expose an empty title when neither title is configured', () => {
+    expect(component.displayTitle()).toBe('');
+  });
+
+  it('should calculate both icon color variants', () => {
+    expect(component.iconColor()).toBe('currentColor');
+
+    componentRef.setInput('iconAlternativeColor', true);
+
+    expect(component.iconColor()).toBe('var(--buttons-primary-normal)');
+  });
+
   it('should emit the icon click event', () => {
     const event = new MouseEvent('click');
     const listener = jest.fn();

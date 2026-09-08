@@ -10,10 +10,6 @@ import { BmbButtonDirective } from '../../directives/bmb-button/button.directive
 import { BmbUserSummaryContentComponent } from './bmb-user-summary-content/bmb-user-summary-content.component';
 import { TranslatePipe } from '../../pipes/translations';
 
-/*
- * TODO: This component is marked as "old" and its decommissioning is planned for future updates.
- */
-
 @Component({
   selector: 'bmb-user-summary',
   standalone: true,

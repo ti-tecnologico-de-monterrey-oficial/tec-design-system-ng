@@ -46,6 +46,7 @@ export interface IBmbProjectionContent {
 export class BmbProjectionContentService {
   readonly contentList = signal<IBmbProjectionContent[]>([]);
   private portalComponentRef: ComponentRef<BmbPortalComponent> | null = null;
+  private generatedIdSequence = 0;
 
   runContentHook(
     content: IBmbProjectionContent,
@@ -65,7 +66,8 @@ export class BmbProjectionContentService {
   }
 
   private appRef: ApplicationRef = inject(ApplicationRef);
-  private environmentInjector: EnvironmentInjector = inject(EnvironmentInjector);
+  private environmentInjector: EnvironmentInjector =
+    inject(EnvironmentInjector);
 
   private getOrCreatePortal(): void {
     if (this.portalComponentRef || document.querySelector('bmb-portal')) {
@@ -114,7 +116,16 @@ export class BmbProjectionContentService {
       return crypto.randomUUID();
     }
 
-    return `projected-${Date.now()}-${Math.random().toString(36).slice(2)}`;
+    if (
+      typeof crypto !== 'undefined' &&
+      typeof crypto.getRandomValues === 'function'
+    ) {
+      const randomValues = crypto.getRandomValues(new Uint32Array(2));
+      return `projected-${randomValues[0].toString(36)}-${randomValues[1].toString(36)}`;
+    }
+
+    this.generatedIdSequence += 1;
+    return `projected-${Date.now()}-${this.generatedIdSequence}`;
   }
 
   closeContent(id?: string) {

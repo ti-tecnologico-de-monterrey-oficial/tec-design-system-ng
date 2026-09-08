@@ -30,6 +30,7 @@ export const Warning: Story = {
   args: { appearance: 'warning' },
 };
 
-export const Error: Story = {
+export const ErrorAppearance: Story = {
+  name: 'Error',
   args: { appearance: 'error' },
 };

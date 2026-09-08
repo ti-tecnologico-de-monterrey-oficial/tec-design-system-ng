@@ -103,7 +103,7 @@ describe('BmbProjectionContentService', () => {
 
     try {
       const id = service.openContent({ content: null });
-      expect(id).toMatch(/^projected-\d+-/);
+      expect(id).toMatch(/^projected-[a-z\d]+-[a-z\d]+$/);
       expect(service.isContentOpen(id)).toBe(true);
     } finally {
       Object.defineProperty(globalThis, 'crypto', {
