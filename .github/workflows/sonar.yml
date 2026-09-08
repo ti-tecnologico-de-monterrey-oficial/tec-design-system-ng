@@ -18,6 +18,17 @@ jobs:
         with:
           fetch-depth: 0 # Mejor relevancia del análisis
 
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Test Angular Library with coverage
+        run: npx nx run ui-angular:test --coverage
+
       - name: SonarQube Scan
         uses: SonarSource/sonarqube-scan-action@master
         with:
@@ -28,6 +39,7 @@ jobs:
             -Dsonar.sourceEncoding=UTF-8
             -Dsonar.exclusions=**/node_modules/**,**/*.stories.ts,**/*.mdx,**/*.spec.ts,**/*.spec.tsx
             -Dsonar.test.exclusions=**/*.spec.ts,**/*.spec.tsx
+            -Dsonar.javascript.lcov.reportPaths=coverage/ui-angular/lcov.info
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Info de PR
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }} # Token Sonar
