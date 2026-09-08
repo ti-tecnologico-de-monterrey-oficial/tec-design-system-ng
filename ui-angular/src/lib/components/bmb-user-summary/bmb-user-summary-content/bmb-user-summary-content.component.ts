@@ -16,12 +16,15 @@ import {
 } from '../../../_shared/types/index';
 import { BmbTextLinkComponent } from '../../bmb-text-link/bmb-text-link.component';
 import { BmbIconComponent } from '../../bmb-icon/bmb-icon.component';
+import { IBmbContentLayoutSummary } from '../../../_shared/types/components/user-summary';
+import {
+  getUserSummaryContentClass,
+  getUserSummaryEmailAsLink,
+  getUserSummaryName,
+  getUserSummarySalutationClasses,
+} from '../../../_shared/logic/components/user-summary';
 
-export type IBmbContentLayoutSummary = 'column' | 'row';
-
-/*
- * TODO: This component is marked as "old" and its decommissioning is planned for future updates.
- */
+export type { IBmbContentLayoutSummary };
 
 @Component({
   selector: 'bmb-user-summary-content',
@@ -61,31 +64,28 @@ export class BmbUserSummaryContentComponent {
   onUserClick = output<MouseEvent>();
 
   getClass(mainClassName: string): string[] {
-    const classes: string[] = [];
-    if (!!this.name()) classes.push(`${mainClassName}-${this.contentLayout()}`);
-
-    return classes;
+    return getUserSummaryContentClass(
+      mainClassName,
+      this.name(),
+      this.contentLayout(),
+    );
   }
 
   getSalutationClasses(
     mainClassName: string,
     isRole: boolean = false,
   ): string[] {
-    const classes: string[] = this.getClass(mainClassName);
-
-    if (!this.isProfile() && this.contentLayout() === 'column')
-      classes.push(`${mainClassName}-salutation`);
-    if (isRole && this.contentLayout() === 'row') {
-      classes.push('bmb_top-bar-user-section-role');
-      classes.push('bmb_user-summary_content-wrapper-role');
-    }
-    return classes;
+    return getUserSummarySalutationClasses({
+      mainClassName,
+      name: this.name(),
+      contentLayout: this.contentLayout(),
+      isProfile: this.isProfile(),
+      isRole,
+    });
   }
 
   getName(): string {
-    if (!!this.salutation() && !this.isProfile())
-      return `¡${this.salutation()}${!!this.name() ? ' '.concat(this.name()) : ''}!`;
-    return this.name();
+    return getUserSummaryName(this.name(), this.salutation(), this.isProfile());
   }
 
   handleUserClick(event: MouseEvent) {
@@ -93,7 +93,6 @@ export class BmbUserSummaryContentComponent {
   }
 
   get emailAsLink(): IBmbLinkConfiguration | null {
-    const value = this.email();
-    return typeof value === 'object' && value !== null ? value : null;
+    return getUserSummaryEmailAsLink(this.email());
   }
 }

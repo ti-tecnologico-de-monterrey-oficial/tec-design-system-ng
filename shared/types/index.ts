@@ -35,6 +35,7 @@ export * from './components/skeleton';
 export * from './components/tags';
 export * from './components/title';
 export * from './components/tooltip';
+export * from './components/user-summary';
 export * from './components/value-counter';
 
 export * from './input';
