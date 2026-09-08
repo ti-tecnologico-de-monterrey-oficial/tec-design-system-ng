@@ -163,4 +163,54 @@ describe('BmbTimestreamTimelineEventsComponent', () => {
 
     expect(() => component.scrollToItem()).not.toThrow();
   });
+
+  it('should render the empty state when there are no events', () => {
+    fixture.componentRef.setInput('orderedEvents', []);
+    fixture.detectChanges();
+
+    expect(fixture.nativeElement.textContent).toContain(
+      'No hay eventos para mostrar.',
+    );
+  });
+
+  it('should render micro events only when they belong to today', () => {
+    fixture.componentRef.setInput('now', DateTime.fromISO('2026-09-07'));
+    fixture.componentRef.setInput('isMicro', true);
+    fixture.componentRef.setInput('orderedEvents', [
+      parsedEvent,
+      {
+        ...parsedEvent,
+        date: DateTime.fromISO('2026-09-08'),
+      },
+    ]);
+    fixture.detectChanges();
+
+    expect(
+      fixture.nativeElement.querySelectorAll(
+        '.bmb_timestream-detail-item',
+      ).length,
+    ).toBe(1);
+    expect(
+      fixture.nativeElement.querySelector(
+        '.bmb_timestream-detail-item-header-micro',
+      ),
+    ).toBeTruthy();
+    expect(
+      fixture.nativeElement.querySelector(
+        '.bmb_timestream-detail-content-micro',
+      ),
+    ).toBeTruthy();
+  });
+
+  it('should render the plural milestone label', () => {
+    fixture.componentRef.setInput('orderedEvents', [
+      {
+        ...parsedEvent,
+        events: [event, { ...event, id: 2 }],
+      },
+    ]);
+    fixture.detectChanges();
+
+    expect(fixture.nativeElement.textContent).toContain('2 HITOS');
+  });
 });
