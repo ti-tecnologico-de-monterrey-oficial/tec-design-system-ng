@@ -573,5 +573,13 @@ export const appRoutes: Route[] = [
         ({ PushNotificationPage }) => PushNotificationPage,
       ),
   },
-  { path: '**', redirectTo: '/home' },
+  {
+    path: 'pages/toast',
+    title: 'BmbToast | Bamboo migration dashboard',
+    loadComponent: () =>
+      import('./pages/toast-page/toast-page').then(
+        ({ ToastPage }) => ToastPage,
+      ),
+  },
+  { path: '**', redirectTo: 'home' },
 ];

@@ -1,0 +1,56 @@
+<header class="page-header">
+  <p class="eyebrow">Componente Bamboo</p>
+  <h1>BmbToast</h1>
+  <p>Valida las variantes de apariencia, título, descripción y cierre.</p>
+</header>
+
+<section class="playground" aria-labelledby="toast-properties">
+  <aside class="controls">
+    <h2 id="toast-properties">Propiedades</h2>
+
+    <label for="toast-appearance">appearance</label>
+    <select
+      id="toast-appearance"
+      [value]="appearance()"
+      (change)="appearance.set($any($event.target).value)"
+    >
+      @for (option of appearances; track option) {
+        <option [value]="option">{{ option }}</option>
+      }
+    </select>
+
+    <label for="toast-title">componentTitle</label>
+    <input
+      id="toast-title"
+      [value]="componentTitle()"
+      (input)="componentTitle.set($any($event.target).value)"
+    />
+
+    <label for="toast-description">description</label>
+    <input
+      id="toast-description"
+      [value]="description()"
+      (input)="description.set($any($event.target).value)"
+    />
+
+    <label class="toggle"
+      ><input
+        type="checkbox"
+        [checked]="isClosable()"
+        (change)="isClosable.set($any($event.target).checked)"
+      />isClosable</label
+    >
+
+    <p>Último evento: {{ lastEvent() }}</p>
+  </aside>
+
+  <div class="preview">
+    <bmb-toast
+      [appearance]="appearance()"
+      [componentTitle]="componentTitle()"
+      [description]="description()"
+      [isClosable]="isClosable()"
+      (onClose)="handleClose()"
+    />
+  </div>
+</section>

@@ -11,7 +11,7 @@ export * from './lib/components/bmb-login-onboarding/bmb-login-onboarding.servic
 export * from './lib/components/bmb-alert-center/bmb-alert-center.service';
 export * from './lib/services/old/modal/native-modal.service';
 export * from './lib/services/old/projection/projection.service';
-export * from './lib/services/old/theme/theme.service';
+export * from './lib/services/theme/theme.service';
 export * from './lib/services/old/toast/toast.service';
 export * from './lib/services/translations/translations.service';
 export * from './lib/services/icon/icon.service';
