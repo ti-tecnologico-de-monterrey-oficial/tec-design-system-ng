@@ -581,5 +581,13 @@ export const appRoutes: Route[] = [
         ({ ToastPage }) => ToastPage,
       ),
   },
+  {
+    path: 'pages/balance-overview',
+    title: 'BmbBalanceOverview | Bamboo migration dashboard',
+    loadComponent: () =>
+      import('./pages/balance-overview-page/balance-overview-page').then(
+        ({ BalanceOverviewPage }) => BalanceOverviewPage,
+      ),
+  },
   { path: '**', redirectTo: 'home' },
 ];

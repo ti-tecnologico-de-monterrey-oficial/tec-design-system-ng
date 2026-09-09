@@ -301,10 +301,16 @@ export const sidebarOptions: SidebarElement[][] = [
           link: '/pages/push-notification',
         },
         {
-          id: 37,
+          id: 39,
           icon: 'info',
           title: 'Toast',
           link: '/pages/toast',
+        },
+        {
+          id: 40,
+          icon: 'account_balance_wallet',
+          title: 'Balance overview',
+          link: '/pages/balance-overview',
         },
       ],
     },
