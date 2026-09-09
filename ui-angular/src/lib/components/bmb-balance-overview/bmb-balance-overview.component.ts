@@ -13,10 +13,7 @@ import { BmbLegendComponent } from '../bmb-legend/bmb-legend.component';
 import { IBmbLegendVariations } from '../../_shared/types/components/legend';
 import { BmbProgressCirclePathStatus } from '../../_shared/types/components/progress-circle';
 import { TranslatePipe } from '../../pipes/translations';
-
-/*
- * TODO: This component is marked as "old" and its decommissioning is planned for future updates.
- */
+import { resolveBalanceOverviewProgressCircleTitle } from '../../_shared/logic/components/balance-overview';
 
 @Component({
   selector: 'bmb-balance-overview',
@@ -37,10 +34,9 @@ export class BmbBalanceOverviewComponent {
   progressCircleValue = input<string>('');
   showProgressCircleValue = input<boolean>(true);
   progressCircleTitle = input<string | string[]>('');
-  resolvedProgressCircleTitle = computed<string | string[]>(() => {
-    const title = this.progressCircleTitle();
-    return Array.isArray(title) && title.length === 0 ? '' : title;
-  });
+  resolvedProgressCircleTitle = computed<string | string[]>(() =>
+    resolveBalanceOverviewProgressCircleTitle(this.progressCircleTitle()),
+  );
   showProgressCircleTitle = input<boolean>(true);
   showProgressCircleBackground = input<boolean>(true);
   labelPrimary = input<string>('');
