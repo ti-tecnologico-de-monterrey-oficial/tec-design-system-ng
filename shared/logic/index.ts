@@ -24,3 +24,5 @@ export * from './components/push-notification';
 export * from './components/top-bar-item';
 export * from './components/simple-header';
 export * from './components/step-progress-bar';
+export * from './components/drag-drop';
+export * from './components/dropdown-menu';

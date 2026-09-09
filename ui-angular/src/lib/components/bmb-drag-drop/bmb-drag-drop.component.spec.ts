@@ -4,6 +4,7 @@ import { By } from '@angular/platform-browser';
 
 import { BmbDropzoneDirective } from './bmb-dropzone.directive';
 import { BmbDragDropService } from './bmb-drag-drop.service';
+import { BmbDragDropComponent } from './bmb-drag-drop.component';
 
 @Component({
   standalone: true,
@@ -110,5 +111,45 @@ describe('BmbDropzoneDirective', () => {
     expect(service.clearDrag).toHaveBeenCalled();
 
     expect(service.draggedItem()).toBeNull();
+  });
+});
+
+describe('BmbDragDropComponent', () => {
+  it('should move valid items between lists', async () => {
+    await TestBed.configureTestingModule({
+      imports: [BmbDragDropComponent],
+    }).compileComponents();
+
+    const fixture = TestBed.createComponent(BmbDragDropComponent);
+    const component = fixture.componentInstance;
+    fixture.detectChanges();
+
+    const item = component.leftItems()[0];
+    component.moveItem(item, 'right');
+
+    expect(component.leftItems()).not.toContain(item);
+    expect(component.rightItems()).toContain(item);
+
+    component.moveItem(item, 'left');
+
+    expect(component.leftItems()).toContain(item);
+    expect(component.rightItems()).not.toContain(item);
+  });
+
+  it('should ignore values that are not drag items', async () => {
+    await TestBed.configureTestingModule({
+      imports: [BmbDragDropComponent],
+    }).compileComponents();
+
+    const fixture = TestBed.createComponent(BmbDragDropComponent);
+    const component = fixture.componentInstance;
+    fixture.detectChanges();
+    const leftItems = component.leftItems();
+    const rightItems = component.rightItems();
+
+    component.moveItem({ id: 'invalid' }, 'right');
+
+    expect(component.leftItems()).toEqual(leftItems);
+    expect(component.rightItems()).toEqual(rightItems);
   });
 });
