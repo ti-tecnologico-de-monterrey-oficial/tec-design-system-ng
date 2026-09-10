@@ -312,6 +312,12 @@ export const sidebarOptions: SidebarElement[][] = [
           title: 'Balance overview',
           link: '/pages/balance-overview',
         },
+        {
+          id: 41,
+          icon: 'edit_note',
+          title: 'Input',
+          link: '/pages/input',
+        },
       ],
     },
   ],
