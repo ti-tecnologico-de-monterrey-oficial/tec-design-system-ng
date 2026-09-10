@@ -605,5 +605,13 @@ export const appRoutes: Route[] = [
         ({ BalanceOverviewPage }) => BalanceOverviewPage,
       ),
   },
+  {
+    path: 'pages/input',
+    title: 'BmbInput | Bamboo migration dashboard',
+    loadComponent: () =>
+      import('./pages/input-page/input-page').then(
+        ({ InputPage }) => InputPage,
+      ),
+  },
   { path: '**', redirectTo: 'home' },
 ];

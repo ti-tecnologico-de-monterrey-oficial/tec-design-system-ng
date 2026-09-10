@@ -27,10 +27,6 @@ import {
   IBmbAdditionalAction,
 } from '../../_shared/types/input';
 
-/*
- * TODO: This component is marked as "old" and its decommissioning is planned for future updates.
- */
-
 @Component({
   selector: 'bmb-input',
   styleUrl: './bmb-input.component.scss',

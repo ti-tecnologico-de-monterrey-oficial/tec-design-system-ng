@@ -197,7 +197,7 @@
                 <h2>Inputs</h2>
               </ng-template>
               <ng-template #bmbAccordionContent>
-                <bmb-action-menu [showHeader]="false">
+                <bmb-action-menu componentTitle="Inputs" [showHeader]="false">
                   <ng-template #actionMenuItem>
                     <bmb-item-hyperlink
                       icon="date_range"
@@ -210,6 +210,14 @@
                       label="AI chat bar"
                       value="page"
                       valueLink="/pages/ai-chat-bar"
+                    />
+                  </ng-template>
+                  <ng-template #actionMenuItem>
+                    <bmb-item-hyperlink
+                      icon="edit_note"
+                      label="Input"
+                      value="page"
+                      valueLink="/pages/input"
                     />
                   </ng-template>
                 </bmb-action-menu>
