@@ -318,6 +318,12 @@ export const sidebarOptions: SidebarElement[][] = [
           title: 'Input',
           link: '/pages/input',
         },
+        {
+          id: 42,
+          icon: 'arrow_forward',
+          title: 'Text link',
+          link: '/pages/text-link',
+        },
       ],
     },
   ],

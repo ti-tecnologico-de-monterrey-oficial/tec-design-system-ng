@@ -305,13 +305,24 @@
                 <h2>Visual labels</h2>
               </ng-template>
               <ng-template #bmbAccordionContent>
-                <bmb-action-menu [showHeader]="false">
+                <bmb-action-menu
+                  componentTitle="Visual labels"
+                  [showHeader]="false"
+                >
                   <ng-template #actionMenuItem>
                     <bmb-item-hyperlink
                       icon="steppers"
                       label="Step progress bar"
                       value="page"
                       valueLink="/pages/step-progress-bar"
+                    />
+                  </ng-template>
+                  <ng-template #actionMenuItem>
+                    <bmb-item-hyperlink
+                      icon="arrow_forward"
+                      label="Text link"
+                      value="page"
+                      valueLink="/pages/text-link"
                     />
                   </ng-template>
                 </bmb-action-menu>
