@@ -18,6 +18,11 @@ import {
   IBmbInputType,
 } from '../../../_shared/types/input';
 import { TranslatePipe } from '../../../pipes/translations';
+import {
+  getInputContentAdditionalActionIcon,
+  getInputContentType,
+  shouldShowInputContentAdditionalAction,
+} from '../../../_shared/logic/components/input-content';
 
 @Component({
   selector: 'bmb-input-content',
@@ -110,37 +115,26 @@ export class BmbInputContentComponent {
   }
 
   getType() {
-    if (this.showAdditionalAction()) {
-      if (this.additionalAction() === 'showHide' && !this.isHide) {
-        return 'text';
-      }
-    }
-
-    return this.type();
+    return getInputContentType({
+      type: this.type(),
+      additionalAction: this.additionalAction(),
+      isHide: this.isHide,
+    });
   }
 
   showAdditionalAction(): boolean {
-    if (
-      !!this.getAdditionalActionIcon() &&
-      this.additionalAction() !== 'none'
-    ) {
-      if (this.additionalAction() === 'showHide') {
-        return this.type() === 'password';
-      }
-
-      return true;
-    }
-
-    return false;
+    return shouldShowInputContentAdditionalAction({
+      additionalAction: this.additionalAction(),
+      type: this.type(),
+      isHide: this.isHide,
+    });
   }
 
   getAdditionalActionIcon(): string {
-    if (this.additionalAction() === 'copy') return 'content_copy';
-    if (this.additionalAction() === 'showHide') {
-      if (this.isHide) return 'visibility';
-      return 'visibility_off';
-    }
-    return '';
+    return getInputContentAdditionalActionIcon(
+      this.additionalAction(),
+      this.isHide,
+    );
   }
 
   actionToExecute(): void {

@@ -1,0 +1,147 @@
+<header class="page-header">
+  <p class="eyebrow">Componente Bamboo</p>
+  <h1>BmbInput</h1>
+  <p>Valida tipos, apariencia, validaciones, tooltip y acciones adicionales.</p>
+</header>
+
+<section class="playground" aria-labelledby="input-properties">
+  <aside class="controls">
+    <h2 id="input-properties">Propiedades</h2>
+
+    <label for="input-type">type</label>
+    <select
+      id="input-type"
+      [value]="type()"
+      (change)="type.set($any($event.target).value)"
+    >
+      @for (option of types; track option) {
+        <option [value]="option">{{ option }}</option>
+      }
+    </select>
+
+    <label for="input-appearance">appearance</label>
+    <select
+      id="input-appearance"
+      [value]="appearance()"
+      (change)="appearance.set($any($event.target).value)"
+    >
+      @for (option of appearances; track option) {
+        <option [value]="option">{{ option }}</option>
+      }
+    </select>
+
+    <label for="input-label">label</label>
+    <input
+      id="input-label"
+      [value]="label()"
+      (input)="label.set($any($event.target).value)"
+    />
+
+    <label for="input-placeholder">placeholder</label>
+    <input
+      id="input-placeholder"
+      [value]="placeholder()"
+      (input)="placeholder.set($any($event.target).value)"
+    />
+
+    <label for="input-icon">icon</label>
+    <input
+      id="input-icon"
+      [value]="icon()"
+      (input)="icon.set($any($event.target).value)"
+    />
+
+    <label for="input-error">errorMessage</label>
+    <input
+      id="input-error"
+      [value]="errorMessage()"
+      (input)="errorMessage.set($any($event.target).value)"
+    />
+
+    <label for="input-helper">helperMessage</label>
+    <input
+      id="input-helper"
+      [value]="helperMessage()"
+      (input)="helperMessage.set($any($event.target).value)"
+    />
+
+    <label for="input-tooltip">tooltip</label>
+    <input
+      id="input-tooltip"
+      [value]="tooltip()"
+      (input)="tooltip.set($any($event.target).value)"
+    />
+
+    <label for="input-additional-action">additionalAction</label>
+    <select
+      id="input-additional-action"
+      [value]="additionalAction()"
+      (change)="additionalAction.set($any($event.target).value)"
+    >
+      @for (option of additionalActions; track option) {
+        <option [value]="option">{{ option }}</option>
+      }
+    </select>
+
+    <label for="input-maxlength">maxlength</label>
+    <input
+      id="input-maxlength"
+      type="number"
+      [value]="maxlength() ?? ''"
+      (input)="setMaxlength($any($event.target).value)"
+    />
+
+    <label class="toggle"
+      ><input
+        type="checkbox"
+        [checked]="disabled()"
+        (change)="disabled.set($any($event.target).checked)"
+      />disabled</label
+    >
+    <label class="toggle"
+      ><input
+        type="checkbox"
+        [checked]="isRequired()"
+        (change)="isRequired.set($any($event.target).checked)"
+      />isRequired</label
+    >
+    <label class="toggle"
+      ><input
+        type="checkbox"
+        [checked]="isClearable()"
+        (change)="isClearable.set($any($event.target).checked)"
+      />isClearable</label
+    >
+    <label class="toggle"
+      ><input
+        type="checkbox"
+        [checked]="showMaxTextLength()"
+        (change)="showMaxTextLength.set($any($event.target).checked)"
+      />showMaxTextLength</label
+    >
+
+    <p>Último evento: {{ lastEvent() }}</p>
+  </aside>
+
+  <div class="preview">
+    <bmb-input
+      [type]="type()"
+      [appearance]="appearance()"
+      [label]="label()"
+      [placeholder]="placeholder()"
+      [icon]="icon()"
+      [errorMessage]="errorMessage()"
+      [helperMessage]="helperMessage()"
+      [disabled]="disabled()"
+      [isRequired]="isRequired()"
+      [tooltip]="tooltip()"
+      [additionalAction]="additionalAction()"
+      [isClearable]="isClearable()"
+      [showMaxTextLength]="showMaxTextLength()"
+      [maxlength]="maxlength()"
+      (onChange)="handleChange()"
+      (isFocus)="handleFocus()"
+      (isBlur)="handleBlur()"
+    />
+  </div>
+</section>
