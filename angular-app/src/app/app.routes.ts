@@ -637,5 +637,13 @@ export const appRoutes: Route[] = [
         ({ TextLinkPage }) => TextLinkPage,
       ),
   },
+  {
+    path: 'pages/switch',
+    title: 'BmbSwitch | Bamboo migration dashboard',
+    loadComponent: () =>
+      import('./pages/switch-page/switch-page').then(
+        ({ SwitchPage }) => SwitchPage,
+      ),
+  },
   { path: '**', redirectTo: 'home' },
 ];
