@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { BmbTitleComponent } from '../../../../../ui-angular/src/lib/components/bmb-title/bmb-title.component';
 import {
   BmbBadgeComponent,
   BmbBoxIconComponent,
@@ -30,6 +31,7 @@ import {
     BmbLayoutDirective,
     BmbLayoutItemDirective,
     BmbTooltipComponent,
+    BmbTitleComponent,
     BmbVerticalLayoutDirective,
     BmbVerticalLayoutItemDirective,
   ],

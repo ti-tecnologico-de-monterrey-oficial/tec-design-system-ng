@@ -387,4 +387,171 @@
       </div>
     </div>
   </section>
+  <br />
+
+  <section aria-labelledby="informative-media-detail-vertical">
+    <h2 id="informative-media-detail-vertical">Informative Media Detail Vertical</h2>
+
+    <div bmbLayout margin="none" gapSize="none" alignItems="start">
+      <div bmbLayoutItem [colSm]="4" [colLg]="4" [colXl]="4">
+        <bmb-card type="normal" borderRadius="l" margin="none">
+          <bmb-card-content padding="l">
+            <div bmbVerticalLayout margin="none" gapSize="m" alignItems="stretch">
+              <bmb-image
+                bmbVerticalLayoutItem
+                [src]="informativeImage"
+                alt="Edificio de Rectoría del Tecnológico de Monterrey"
+                ratio="5 / 2"
+                borderRadius="l"
+                objectFit="cover"
+              />
+
+              <div bmbVerticalLayoutItem>
+                <div bmbLayout margin="none" gapSize="s" alignItems="center">
+                  <bmb-badge bmbLayoutItem text="Badge" appearance="creative-use-violet" />
+                  <bmb-badge bmbLayoutItem text="Badge" appearance="creative-use-hibiscus" />
+                </div>
+              </div>
+
+              <bmb-title
+                bmbVerticalLayoutItem
+                componentTitle="Title"
+                titleSize="6"
+                titleFontWeight="400"
+              />
+
+              <p bmbVerticalLayoutItem>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce
+                volutpat rhoncus leo vel pharetra. Donec feugiat enim pharetra
+                ipsum euismod, sed.
+              </p>
+
+              <div bmbVerticalLayoutItem>
+                <div bmbLayout margin="none" gapSize="none" justify="end" alignItems="center">
+                  <button
+                    bmbButton
+                    type="button"
+                    appearance="transparent"
+                    size="small"
+                    icon="open_in_new"
+                    [iconSize]="24"
+                    iconAlt="Abrir detalle"
+                    aria-label="Abrir detalle"
+                    (click)="handleButtonClick($event)"
+                  ></button>
+                </div>
+              </div>
+            </div>
+          </bmb-card-content>
+        </bmb-card>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="informative-media-detail-horizontal">
+    <h2 id="informative-media-detail-horizontal">Informative Media Detail Horizontal</h2>
+    <div bmbLayout margin="none" gapSize="none" alignItems="start">
+      <div bmbLayoutItem [colSm]="4" [colLg]="6" [colXl]="6">
+        <bmb-card type="normal" borderRadius="l" margin="none">
+          <bmb-card-content padding="none">
+            <div bmbLayout margin="none" gapSize="none" alignItems="stretch">
+              <div bmbLayoutItem [colSm]="4" [colLg]="4" [colXl]="4">
+                <bmb-image
+                  [src]="informativeImage"
+                  alt="Edificio del Tecnológico de Monterrey"
+                  borderRadius="l"
+                  objectFit="cover"
+                />
+              </div>
+              <div bmbLayoutItem [colSm]="4" [colLg]="8" [colXl]="8">
+                <bmb-card-content padding="m">
+                  <div bmbVerticalLayout margin="none" gapSize="m" alignItems="stretch" layoutHeight="100%">
+                    <div bmbVerticalLayoutItem>
+                      <div bmbLayout margin="none" gapSize="s" alignItems="center">
+                        <bmb-badge bmbLayoutItem text="Badge" appearance="creative-use-violet" />
+                        <bmb-badge bmbLayoutItem text="Badge" appearance="creative-use-hibiscus" />
+                      </div>
+                    </div>
+                    <bmb-title bmbVerticalLayoutItem componentTitle="Title" titleSize="6" titleFontWeight="400" />
+                    <p bmbVerticalLayoutItem [rowGrow]="1" [disableScroll]="true">
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                      Fusce volutpat rhoncus leo vel pharetra. Donec feugiat enim
+                      pharetra ipsum euismod, sed.
+                    </p>
+                    <div bmbVerticalLayoutItem>
+                      <div bmbLayout margin="none" gapSize="none" justify="end" alignItems="center">
+                        <button
+                          bmbButton
+                          type="button"
+                          appearance="transparent"
+                          size="small"
+                          icon="open_in_new"
+                          [iconSize]="24"
+                          iconAlt="Abrir detalle"
+                          aria-label="Abrir detalle"
+                          (click)="handleButtonClick($event)"
+                        ></button>
+                      </div>
+                    </div>
+                  </div>
+                </bmb-card-content>
+              </div>
+            </div>
+          </bmb-card-content>
+        </bmb-card>
+      </div>
+    </div>
+  </section>
+  <section aria-labelledby="informative-media-simple">
+    <h2 id="informative-media-simple">Informative Media Simple</h2>
+
+    <div bmbLayout margin="none" gapSize="none" alignItems="start">
+      <div bmbLayoutItem [colSm]="4" [colLg]="4" [colXl]="4">
+        <bmb-card type="transparent" borderRadius="l" margin="none">
+          <bmb-card-content padding="l">
+            <div bmbVerticalLayout margin="none" gapSize="xl" alignItems="stretch">
+              <bmb-image
+                bmbVerticalLayoutItem
+                [src]="informativeImage"
+                alt="Edificio del Tecnológico de Monterrey"
+                ratio="12 / 5"
+                borderRadius="l"
+                objectFit="cover"
+              />
+
+              <p bmbVerticalLayoutItem>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do.
+              </p>
+
+              <p bmbVerticalLayoutItem>Lorem ipsum dolor</p>
+
+              <p bmbVerticalLayoutItem>Lorem ipsum dolor</p>
+
+              <div bmbVerticalLayoutItem>
+                <div bmbLayout margin="none" gapSize="s" justify="spaceBetween" alignItems="center">
+                  <div bmbLayoutItem>
+                    <div bmbLayout margin="none" gapSize="s" alignItems="center">
+                      <bmb-badge bmbLayoutItem text="Badge" appearance="creative-use-violet" />
+                      <bmb-badge bmbLayoutItem text="Badge" appearance="creative-use-hibiscus" />
+                    </div>
+                  </div>
+                  <button
+                    bmbButton
+                    type="button"
+                    appearance="transparent"
+                    size="small"
+                    icon="open_in_new"
+                    [iconSize]="24"
+                    iconAlt="Abrir detalle"
+                    aria-label="Abrir detalle"
+                    (click)="handleButtonClick($event)"
+                  ></button>
+                </div>
+              </div>
+            </div>
+          </bmb-card-content>
+        </bmb-card>
+      </div>
+    </div>
+  </section>
 </main>
