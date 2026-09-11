@@ -1,0 +1,129 @@
+<header class="page-header">
+  <p class="eyebrow">Componente Bamboo</p>
+  <h1>BmbStudentActivityCard</h1>
+  <p>Valida contenido, fechas, variantes, imagen y presentación en lista.</p>
+</header>
+
+<section class="playground" aria-labelledby="student-activity-properties">
+  <aside class="controls">
+    <h2 id="student-activity-properties">Propiedades</h2>
+
+    <label for="activity-start">startDate</label>
+    <input
+      id="activity-start"
+      [value]="startDate()"
+      (input)="startDate.set($any($event.target).value)"
+    />
+
+    <label for="activity-end">endDate</label>
+    <input
+      id="activity-end"
+      [value]="endDate()"
+      (input)="endDate.set($any($event.target).value)"
+    />
+
+    <label for="activity-format">dateFormat</label>
+    <input
+      id="activity-format"
+      [value]="dateFormat()"
+      (input)="dateFormat.set($any($event.target).value)"
+    />
+
+    <label for="activity-title">componentTitle</label>
+    <input
+      id="activity-title"
+      [value]="componentTitle()"
+      (input)="componentTitle.set($any($event.target).value)"
+    />
+
+    <label for="activity-legacy-title">title (deprecated)</label>
+    <input
+      id="activity-legacy-title"
+      [value]="deprecatedTitle()"
+      (input)="deprecatedTitle.set($any($event.target).value)"
+    />
+
+    <label for="activity-location">location</label>
+    <input
+      id="activity-location"
+      [value]="location()"
+      (input)="location.set($any($event.target).value)"
+    />
+
+    <label for="activity-responsible">responsible</label>
+    <input
+      id="activity-responsible"
+      [value]="responsible()"
+      (input)="responsible.set($any($event.target).value)"
+    />
+
+    <label for="activity-badge">badgeText</label>
+    <input
+      id="activity-badge"
+      [value]="badgeText()"
+      (input)="badgeText.set($any($event.target).value)"
+    />
+
+    <label for="activity-image">image</label>
+    <input
+      id="activity-image"
+      [value]="image()"
+      (input)="image.set($any($event.target).value)"
+    />
+
+    <label for="activity-type">type</label>
+    <select
+      id="activity-type"
+      [value]="type()"
+      (change)="type.set($any($event.target).value)"
+    >
+      @for (option of types; track option) {
+      <option [value]="option">{{ option }}</option>
+      }
+    </select>
+
+    <label for="activity-bullet">bulletColor</label>
+    <select
+      id="activity-bullet"
+      [value]="bulletColor()"
+      (change)="bulletColor.set($any($event.target).value)"
+    >
+      @for (option of bulletColors; track option) {
+      <option [value]="option">{{ option }}</option>
+      }
+    </select>
+
+    <label class="toggle"
+      ><input
+        type="checkbox"
+        [checked]="isListItem()"
+        (change)="isListItem.set($any($event.target).checked)"
+      />isListItem</label
+    >
+    <label class="toggle"
+      ><input
+        type="checkbox"
+        [checked]="disableImage()"
+        (change)="disableImage.set($any($event.target).checked)"
+      />disableImage</label
+    >
+  </aside>
+
+  <div class="preview">
+    <bmb-student-activity-card
+      [startDate]="startDate()"
+      [endDate]="endDate()"
+      [location]="location()"
+      [responsible]="responsible()"
+      [type]="type()"
+      [isListItem]="isListItem()"
+      [image]="image()"
+      [dateFormat]="dateFormat()"
+      [badgeText]="badgeText()"
+      [componentTitle]="componentTitle()"
+      [title]="deprecatedTitle()"
+      [disableImage]="disableImage()"
+      [bulletColor]="bulletColor()"
+    />
+  </div>
+</section>
