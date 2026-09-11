@@ -16,10 +16,10 @@ import {
 import { getUUID } from '../../_shared/logic/utils';
 import { BmbInputValidatorComponent } from '../bmb-input/bmb-input-validator/bmb-input-validator.component';
 import { TranslatePipe } from '../../pipes/translations';
-
-/*
- * TODO: This component is marked as "old" and its decommissioning is planned for future updates.
- */
+import {
+  computeSwitchIcon,
+  shouldShowSwitchLabel,
+} from '../../_shared/logic/components/switch';
 
 @Component({
   selector: 'bmb-switch',
@@ -65,31 +65,23 @@ export class BmbSwitchComponent {
   }
 
   getSwitchIcon(): string {
-    if (
-      !!this.rightIcon() &&
-      !!this.leftIcon() &&
-      !!!this.rightText() &&
-      !!!this.leftText()
-    ) {
-      if (this.isChecked()) return this.rightIcon();
-      return this.leftIcon();
-    }
-
-    return '';
+    return computeSwitchIcon({
+      rightIcon: this.rightIcon(),
+      leftIcon: this.leftIcon(),
+      rightText: this.rightText(),
+      leftText: this.leftText(),
+      isChecked: this.isChecked(),
+    });
   }
 
   showSwitchLabel(position: string): boolean {
-    if (
-      !!this.rightIcon() ||
-      !!!this.rightText() ||
-      !!this.leftIcon() ||
-      !!!this.leftText()
-    ) {
-      if (position === 'left') return !!this.leftText();
-      if (position === 'right') return !!this.rightText();
-    }
-
-    return false;
+    return shouldShowSwitchLabel({
+      position,
+      rightIcon: this.rightIcon(),
+      leftIcon: this.leftIcon(),
+      rightText: this.rightText(),
+      leftText: this.leftText(),
+    });
   }
 
   handleChange(event: Event): void {

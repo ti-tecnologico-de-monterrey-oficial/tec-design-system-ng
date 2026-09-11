@@ -324,6 +324,12 @@ export const sidebarOptions: SidebarElement[][] = [
           title: 'Text link',
           link: '/pages/text-link',
         },
+        {
+          id: 43,
+          icon: 'toggle_on',
+          title: 'Switch',
+          link: '/pages/switch',
+        },
       ],
     },
   ],

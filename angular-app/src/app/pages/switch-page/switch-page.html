@@ -1,0 +1,68 @@
+<header class="page-header">
+  <p class="eyebrow">Componente Bamboo</p>
+  <h1>BmbSwitch</h1>
+  <p>Valida textos, íconos, estado y el evento de cambio.</p>
+</header>
+
+<section class="playground" aria-labelledby="switch-properties">
+  <aside class="controls">
+    <h2 id="switch-properties">Propiedades</h2>
+
+    <label for="switch-left-text">leftText</label>
+    <input
+      id="switch-left-text"
+      [value]="leftText()"
+      (input)="leftText.set($any($event.target).value)"
+    />
+
+    <label for="switch-right-text">rightText</label>
+    <input
+      id="switch-right-text"
+      [value]="rightText()"
+      (input)="rightText.set($any($event.target).value)"
+    />
+
+    <label for="switch-left-icon">leftIcon</label>
+    <input
+      id="switch-left-icon"
+      [value]="leftIcon()"
+      (input)="leftIcon.set($any($event.target).value)"
+    />
+
+    <label for="switch-right-icon">rightIcon</label>
+    <input
+      id="switch-right-icon"
+      [value]="rightIcon()"
+      (input)="rightIcon.set($any($event.target).value)"
+    />
+
+    <label class="toggle"
+      ><input
+        type="checkbox"
+        [checked]="isChecked()"
+        (change)="isChecked.set($any($event.target).checked)"
+      />isChecked</label
+    >
+    <label class="toggle"
+      ><input
+        type="checkbox"
+        [checked]="disabled()"
+        (change)="disabled.set($any($event.target).checked)"
+      />disabled</label
+    >
+
+    <p>Último evento: {{ lastEvent() }}</p>
+  </aside>
+
+  <div class="preview">
+    <bmb-switch
+      [leftText]="leftText()"
+      [rightText]="rightText()"
+      [leftIcon]="leftIcon()"
+      [rightIcon]="rightIcon()"
+      [isChecked]="isChecked()"
+      [disabled]="disabled()"
+      (change)="handleChange($event)"
+    />
+  </div>
+</section>
