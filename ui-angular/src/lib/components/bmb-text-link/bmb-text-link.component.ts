@@ -9,13 +9,13 @@ import { IBmbTargetLink } from '../../_shared/types';
 import { BmbCheckExternalLinkButtonComponent } from '../bmb-check-external-link-button/bmb-check-external-link-button.component';
 import { CommonModule } from '@angular/common';
 import { getUUID } from '../../_shared/logic/utils';
+import {
+  IBmbIconPosition,
+  IBmbTextLinkStyle,
+} from '../../_shared/types/components/text-link';
+import { getTextLinkPositionClass } from '../../_shared/logic/components/text-link';
 
-export type IBmbIconPosition = 'left' | 'right';
-export type IBmbTextLinkStyle = 'icon' | 'underlined';
-
-/*
- * TODO: This component is marked as "old" and its decommissioning is planned for future updates.
- */
+export type { IBmbIconPosition, IBmbTextLinkStyle };
 
 @Component({
   selector: 'bmb-text-link',
@@ -41,9 +41,6 @@ export class BmbTextLinkComponent {
   testId = input<string>(getUUID());
 
   get positionClass(): string {
-    if (this.textLinkStyle() === 'icon')
-      return 'bmb_text-link-item-position_'.concat(this.iconPosition());
-
-    return '';
+    return getTextLinkPositionClass(this.textLinkStyle(), this.iconPosition());
   }
 }

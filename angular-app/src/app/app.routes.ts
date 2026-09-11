@@ -613,5 +613,13 @@ export const appRoutes: Route[] = [
         ({ InputPage }) => InputPage,
       ),
   },
+  {
+    path: 'pages/text-link',
+    title: 'BmbTextLink | Bamboo migration dashboard',
+    loadComponent: () =>
+      import('./pages/text-link-page/text-link-page').then(
+        ({ TextLinkPage }) => TextLinkPage,
+      ),
+  },
   { path: '**', redirectTo: 'home' },
 ];

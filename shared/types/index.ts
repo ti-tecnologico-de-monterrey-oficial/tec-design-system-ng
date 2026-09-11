@@ -35,6 +35,7 @@ export * from './components/push-notification';
 export * from './components/server-table';
 export * from './components/skeleton';
 export * from './components/tags';
+export * from './components/text-link';
 export * from './components/title';
 export * from './components/toast';
 export * from './components/tooltip';
