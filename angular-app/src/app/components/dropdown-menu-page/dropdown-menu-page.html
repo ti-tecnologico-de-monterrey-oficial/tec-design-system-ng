@@ -1,0 +1,50 @@
+<header class="page-header">
+  <p class="eyebrow">Componente Bamboo</p>
+  <h1>BmbDropdownMenu</h1>
+  <p>Valida el icono, los enlaces, las acciones y la selección de opciones.</p>
+</header>
+
+<section class="playground" aria-labelledby="dropdown-menu-properties">
+  <aside class="controls">
+    <h2 id="dropdown-menu-properties">Propiedades</h2>
+
+    <label for="dropdown-icon">icon</label>
+    <select
+      id="dropdown-icon"
+      [value]="icon()"
+      (change)="icon.set($any($event.target).value)"
+    >
+      @for (option of iconOptions; track option) {
+      <option [value]="option">{{ option }}</option>
+      }
+    </select>
+
+    <label class="toggle">
+      <input
+        type="checkbox"
+        [checked]="showExternalLink()"
+        (change)="showExternalLink.set($any($event.target).checked); updateItems()"
+      />
+      External link item
+    </label>
+    <label class="toggle">
+      <input
+        type="checkbox"
+        [checked]="showActions()"
+        (change)="showActions.set($any($event.target).checked); updateItems()"
+      />
+      Action items
+    </label>
+
+    <output><strong>Items:</strong> {{ items().length }}</output>
+    <output><strong>Último evento:</strong> {{ lastSelectedItem() }}</output>
+  </aside>
+
+  <div class="preview">
+    <bmb-dropdown-menu
+      [items]="items()"
+      [icon]="icon()"
+      (clickedItem)="handleItemClick($event)"
+    />
+  </div>
+</section>

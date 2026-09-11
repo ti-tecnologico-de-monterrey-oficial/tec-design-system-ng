@@ -140,6 +140,15 @@
                       valueLink="/pages/push-notification"
                     />
                   </ng-template>
+
+                  <ng-template #actionMenuItem>
+                    <bmb-item-hyperlink
+                      icon="swap_vert"
+                      label="Drag y Drop"
+                      value="page"
+                      valueLink="/page/drag-drop"
+                    />
+                  </ng-template>
                   <ng-template #actionMenuItem>
                     <bmb-item-hyperlink
                       icon="school"
@@ -148,6 +157,16 @@
                       valueLink="/pages/student-activity-card"
                     />
                   </ng-template>
+
+                  <ng-template #actionMenuItem>
+                    <bmb-item-hyperlink
+                      icon="more_vert"
+                      label="# Dropdown menu"
+                      value="page"
+                      valueLink="/page/dropdown-menu"
+                    />
+                  </ng-template>
+
                   <ng-template #actionMenuItem>
                     <bmb-item-hyperlink
                       icon="timeline"
@@ -173,14 +192,6 @@
               </ng-template>
               <ng-template #bmbAccordionContent>
                 <bmb-action-menu [showHeader]="false">
-                  <ng-template #actionMenuItem>
-                    <bmb-item-hyperlink
-                      icon="info"
-                      label="Test"
-                      value="page"
-                      valueLink="/home"
-                    />
-                  </ng-template>
                 </bmb-action-menu>
               </ng-template>
             </bmb-accordion>
@@ -237,14 +248,6 @@
               </ng-template>
               <ng-template #bmbAccordionContent>
                 <bmb-action-menu [showHeader]="false">
-                  <ng-template #actionMenuItem>
-                    <bmb-item-hyperlink
-                      icon="info"
-                      label="Test"
-                      value="page"
-                      valueLink="/home"
-                    />
-                  </ng-template>
                 </bmb-action-menu>
               </ng-template>
             </bmb-accordion>

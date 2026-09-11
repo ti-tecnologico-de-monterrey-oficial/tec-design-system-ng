@@ -574,7 +574,23 @@ export const appRoutes: Route[] = [
       ),
   },
   {
-    path: 'pages/student-activity-card',
+    path: 'page/drag-drop',
+    title: 'Drag y Drop | Bamboo migration dashboard',
+    loadComponent: () =>
+      import('./components/drag-drop-page/drag-drop-page').then(
+        ({ DragDropPage }) => DragDropPage,
+      ),
+  },
+  {
+    path: 'page/dropdown-menu',
+    title: '# Dropdown menu | Bamboo migration dashboard',
+    loadComponent: () =>
+      import('./components/dropdown-menu-page/dropdown-menu-page').then(
+        ({ DropdownMenuPage }) => DropdownMenuPage,
+      ),
+  },
+  {
+  path: 'pages/student-activity-card',
     title: 'BmbStudentActivityCard | Bamboo migration dashboard',
     loadComponent: () =>
       import(

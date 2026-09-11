@@ -38,6 +38,7 @@ export * from './lib/components/bmb-badge/bmb-badge.component';
 export * from './lib/components/bmb-breadcrumb/bmb-breadcrumb.component';
 export * from './lib/components/bmb-card-button/bmb-card-button.component';
 export * from './lib/components/bmb-dropdown-menu/bmb-dropdown-menu.component';
+export * from './lib/components/bmb-drag-drop/bmb-drag-drop.component';
 export * from './lib/components/bmb-filter-card/bmb-filter-card.component';
 export * from './lib/components/bmb-inner-header/bmb-inner-header.component';
 export * from './lib/components/bmb-pull-wedge/bmb-pull-wedge.component';
