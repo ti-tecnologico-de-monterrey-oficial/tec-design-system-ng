@@ -13,6 +13,12 @@ import {
 } from '@angular/core';
 import { DOCUMENT, isPlatformBrowser } from '@angular/common';
 import { BmbTranslationsService } from '../../../services/translations/translations.service';
+import {
+  buildTooltipStyle,
+  calculateTooltipPosition,
+  createTooltipContent as buildTooltipContent,
+} from '../../../_shared/logic/components/tooltip';
+import { TooltipPosition } from '../../../_shared/types/components/tooltip';
 
 @Component({
   selector: 'bmb-tooltip-base',
@@ -57,7 +63,7 @@ export class BmbTooltipBaseComponent {
     });
   }
 
-  getPosition() {
+  getPosition(): TooltipPosition {
     if (!this.isBrowserEnvironment()) {
       return {
         top: null,
@@ -67,59 +73,12 @@ export class BmbTooltipBaseComponent {
       };
     }
 
-    const width = window.innerWidth;
-    const height = window.innerHeight;
-    const targetPosition =
-      this.tooltipContainer.nativeElement.getBoundingClientRect();
-    const spacing = 8;
-    const minSpaceForSideTooltip = 300;
-    const tooltipWidth = this.tooltipElement?.offsetWidth || 280;
-    const spaceOnLeft = targetPosition.left;
-    const spaceOnRight = width - targetPosition.right;
-    const canShowOnLeft = spaceOnLeft >= minSpaceForSideTooltip;
-    const canShowOnRight = spaceOnRight >= minSpaceForSideTooltip;
-
-    let left: string | null = null;
-    let right: string | null = null;
-    let top: string | null = null;
-    let bottom: string | null = null;
-
-    if (!canShowOnLeft && !canShowOnRight) {
-      top =
-        targetPosition.top <= height / 2
-          ? `${targetPosition.bottom + spacing}px`
-          : null;
-      bottom =
-        targetPosition.top > height / 2
-          ? `${Math.max(height - targetPosition.top + spacing, 0)}px`
-          : null;
-      const centerLeft = Math.max((width - tooltipWidth) / 2, spacing);
-      left = `${centerLeft}px`;
-    } else {
-      if (canShowOnLeft && canShowOnRight) {
-        if (targetPosition.left <= width / 2) {
-          left = `${targetPosition.right + spacing}px`;
-        } else {
-          right = `${Math.max(width - targetPosition.left + spacing, 0)}px`;
-        }
-      } else if (canShowOnLeft) {
-        right = `${Math.max(width - targetPosition.left + spacing, 0)}px`;
-      } else {
-        left = `${targetPosition.right + spacing}px`;
-      }
-      top = targetPosition.top <= height / 2 ? `${targetPosition.top}px` : null;
-      bottom =
-        targetPosition.top > height / 2
-          ? `${Math.max(height - targetPosition.bottom, 0)}px`
-          : null;
-    }
-
-    return {
-      top,
-      left,
-      right,
-      bottom,
-    };
+    return calculateTooltipPosition({
+      targetElement: this.tooltipContainer.nativeElement,
+      tooltipWidth: this.tooltipElement?.offsetWidth || 280,
+      windowWidth: window.innerWidth,
+      windowHeight: window.innerHeight,
+    });
   }
 
   showTooltip(): void {
@@ -173,23 +132,11 @@ export class BmbTooltipBaseComponent {
   }
 
   private createTooltipContent(): HTMLElement {
-    const section = this.document.createElement('section');
-    section.className = 'bmb_tooltip';
-    section.setAttribute('aria-describedby', 'tooltip-content');
-
-    if (this.componentTitle()) {
-      const titleElement = this.document.createElement('strong');
-      titleElement.textContent = this.componentTitle() || '';
-      section.appendChild(titleElement);
-    }
-
-    if (this.text()) {
-      const textElement = this.document.createElement('span');
-      textElement.textContent = this.text();
-      section.appendChild(textElement);
-    }
-
-    return section;
+    return buildTooltipContent({
+      title: this.componentTitle(),
+      text: this.text(),
+      document: this.document,
+    });
   }
 
   private updateTooltipContent(): void {
@@ -211,27 +158,7 @@ export class BmbTooltipBaseComponent {
     }
 
     const position = this.getPosition();
-    const newPosition: Record<string, string> = {
-      position: 'fixed',
-      top: 'auto',
-      right: 'auto',
-      bottom: 'auto',
-      left: 'auto',
-      margin: '0',
-    };
-
-    if (position.top) {
-      newPosition['top'] = position.top;
-    }
-    if (position.left) {
-      newPosition['left'] = position.left;
-    }
-    if (position.right) {
-      newPosition['right'] = position.right;
-    }
-    if (position.bottom) {
-      newPosition['bottom'] = position.bottom;
-    }
+    const newPosition = buildTooltipStyle(position);
     Object.assign(this.tooltipElement.style, newPosition);
   }
 

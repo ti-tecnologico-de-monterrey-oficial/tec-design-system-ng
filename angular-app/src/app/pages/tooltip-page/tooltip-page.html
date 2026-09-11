@@ -1,0 +1,52 @@
+<header class="page-header">
+  <p class="eyebrow">Componente Bamboo</p>
+  <h1>BmbTooltip</h1>
+  <p>
+    Valida título, texto e ícono. Pasa el cursor (o el foco) sobre el ícono
+    del preview para ver el tooltip.
+  </p>
+</header>
+
+<section class="playground" aria-labelledby="tooltip-properties">
+  <aside class="controls">
+    <h2 id="tooltip-properties">Propiedades</h2>
+
+    <label for="tooltip-title">componentTitle</label>
+    <input
+      id="tooltip-title"
+      [value]="componentTitle()"
+      (input)="componentTitle.set($any($event.target).value)"
+    />
+
+    <label for="tooltip-text">text</label>
+    <input
+      id="tooltip-text"
+      [value]="text()"
+      (input)="text.set($any($event.target).value)"
+    />
+
+    <label for="tooltip-icon">icon</label>
+    <input
+      id="tooltip-icon"
+      [value]="icon()"
+      (input)="icon.set($any($event.target).value)"
+    />
+
+    <label for="tooltip-size">size</label>
+    <input
+      id="tooltip-size"
+      type="number"
+      [value]="size()"
+      (input)="size.set($any($event.target).valueAsNumber || 0)"
+    />
+  </aside>
+
+  <div class="preview">
+    <bmb-tooltip
+      [componentTitle]="componentTitle()"
+      [text]="text()"
+      [icon]="icon()"
+      [size]="size()"
+    />
+  </div>
+</section>
