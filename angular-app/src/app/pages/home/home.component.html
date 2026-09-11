@@ -140,6 +140,7 @@
                       valueLink="/pages/push-notification"
                     />
                   </ng-template>
+
                   <ng-template #actionMenuItem>
                     <bmb-item-hyperlink
                       icon="swap_vert"
@@ -150,10 +151,28 @@
                   </ng-template>
                   <ng-template #actionMenuItem>
                     <bmb-item-hyperlink
+                      icon="school"
+                      label="Student activity card"
+                      value="page"
+                      valueLink="/pages/student-activity-card"
+                    />
+                  </ng-template>
+
+                  <ng-template #actionMenuItem>
+                    <bmb-item-hyperlink
                       icon="more_vert"
                       label="# Dropdown menu"
                       value="page"
                       valueLink="/page/dropdown-menu"
+                    />
+                  </ng-template>
+
+                  <ng-template #actionMenuItem>
+                    <bmb-item-hyperlink
+                      icon="timeline"
+                      label="Timestamp detail"
+                      value="page"
+                      valueLink="/pages/timestamp-detail"
                     />
                   </ng-template>
                 </bmb-action-menu>
@@ -189,7 +208,7 @@
                 <h2>Inputs</h2>
               </ng-template>
               <ng-template #bmbAccordionContent>
-                <bmb-action-menu [showHeader]="false">
+                <bmb-action-menu componentTitle="Inputs" [showHeader]="false">
                   <ng-template #actionMenuItem>
                     <bmb-item-hyperlink
                       icon="date_range"
@@ -202,6 +221,14 @@
                       label="AI chat bar"
                       value="page"
                       valueLink="/pages/ai-chat-bar"
+                    />
+                  </ng-template>
+                  <ng-template #actionMenuItem>
+                    <bmb-item-hyperlink
+                      icon="edit_note"
+                      label="Input"
+                      value="page"
+                      valueLink="/pages/input"
                     />
                   </ng-template>
                 </bmb-action-menu>
@@ -237,7 +264,10 @@
                 <h2>Status indicators</h2>
               </ng-template>
               <ng-template #bmbAccordionContent>
-                <bmb-action-menu [showHeader]="false">
+                <bmb-action-menu
+                  componentTitle="Status indicators"
+                  [showHeader]="false"
+                >
                   <ng-template #actionMenuItem>
                     <bmb-item-hyperlink
                       icon="center_focus_strong"
@@ -262,6 +292,39 @@
                       valueLink="/pages/progress-circle"
                     />
                   </ng-template>
+                  <ng-template #actionMenuItem>
+                    <bmb-item-hyperlink
+                      icon="info"
+                      label="Toast"
+                      value="page"
+                      valueLink="/pages/toast"
+                    />
+                  </ng-template>
+                  <ng-template #actionMenuItem>
+                    <bmb-item-hyperlink
+                      icon="account_balance_wallet"
+                      label="Balance overview"
+                      value="page"
+                      valueLink="/pages/balance-overview"
+                    />
+                  </ng-template>
+                </bmb-action-menu>
+              </ng-template>
+            </bmb-accordion>
+            <bmb-accordion
+              borderRadius="m"
+              margin="none"
+              paddingHeader="m"
+              paddingContent="m"
+              icon="keyboard_arrow_down"
+              bmbVerticalLayoutItem
+              [rowGrow]="1"
+            >
+              <ng-template #bmbAccordionHeader>
+                <h2>Visual labels</h2>
+              </ng-template>
+              <ng-template #bmbAccordionContent>
+                <bmb-action-menu [showHeader]="false">
                   <ng-template #actionMenuItem>
                     <bmb-item-hyperlink
                       icon="steppers"

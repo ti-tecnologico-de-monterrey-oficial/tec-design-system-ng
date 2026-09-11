@@ -11,7 +11,7 @@ export * from './lib/components/bmb-login-onboarding/bmb-login-onboarding.servic
 export * from './lib/components/bmb-alert-center/bmb-alert-center.service';
 export * from './lib/services/old/modal/native-modal.service';
 export * from './lib/services/old/projection/projection.service';
-export * from './lib/services/old/theme/theme.service';
+export * from './lib/services/theme/theme.service';
 export * from './lib/services/old/toast/toast.service';
 export * from './lib/services/translations/translations.service';
 export * from './lib/services/icon/icon.service';
@@ -97,6 +97,7 @@ export * from './lib/components/bmb-stat-counter/bmb-stat-counter.component';
 export * from './lib/components/bmb-datepicker/bmb-datepicker.component';
 export * from './lib/components/bmb-input-phone-number/bmb-input-phone-number.component';
 export * from './lib/components/bmb-timestream/bmb-timestream.component';
+export * from './lib/components/bmb-timestream/bmb-timestream-detail/bmb-timestream-detail.component';
 export * from './lib/components/bmb-student-activity-card/bmb-student-activity-card.component';
 export * from './lib/components/bmb-advertisement-card/bmb-advertisement-card.component';
 export * from './lib/components/bmb-home-card/bmb-home-card.component';

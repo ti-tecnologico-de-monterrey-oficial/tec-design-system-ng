@@ -1,0 +1,14 @@
+@use '../../styles/playground';
+
+@include playground.page(18rem, 22rem, 20rem);
+
+.preview {
+  align-items: safe center;
+  display: flex;
+  justify-content: safe center;
+}
+.preview bmb-balance-overview {
+  display: block;
+  flex: 0 0 auto;
+  width: min(100%, 32rem);
+}

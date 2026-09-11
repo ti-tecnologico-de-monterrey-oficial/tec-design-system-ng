@@ -4,18 +4,20 @@ import {
   Component,
   effect,
   input,
+  OnChanges,
   ViewEncapsulation,
 } from '@angular/core';
 import { DateTime } from 'luxon';
-import { IBmbEventType } from '../bmb-calendar/types';
+import type { IBmbEventType } from '../bmb-calendar/types';
 import { BmbBadgeComponent } from '../bmb-badge/bmb-badge.component';
 import { logDeprecatedInput } from '../../_shared/logic/logDeprecatedInput';
-import { IBmbColorSemantics, IBbmBgAppearance } from '../../_shared/types';
-import { IBmbBadgeColors } from '../../_shared/types/foundations/colors/color-type';
-
-/*
- * TODO: This component is marked as "old" and its decommissioning is planned for future updates.
- */
+import type { IBmbColorSemantics, IBbmBgAppearance } from '../../_shared/types';
+import type { IBmbBadgeColors } from '../../_shared/types/foundations/colors/color-type';
+import {
+  getStudentActivityBadgeAppearance,
+  getStudentActivityBulletStyles,
+  getStudentActivityCardClasses,
+} from '../../_shared/logic/components/student-activity-card';
 
 @Component({
   selector: 'bmb-student-activity-card',
@@ -26,7 +28,7 @@ import { IBmbBadgeColors } from '../../_shared/types/foundations/colors/color-ty
   templateUrl: './bmb-student-activity-card.component.html',
   styleUrl: './bmb-student-activity-card.component.scss',
 })
-export class BmbStudentActivityCardComponent {
+export class BmbStudentActivityCardComponent implements OnChanges {
   startDate = input.required<string>();
   endDate = input.required<string>();
   location = input<string>();
@@ -56,7 +58,7 @@ export class BmbStudentActivityCardComponent {
   parsedStartDate: DateTime = DateTime.now();
   parsedEndDate: DateTime = DateTime.now();
 
-  ngOnInit() {
+  ngOnChanges(): void {
     this.parsedStartDate = DateTime.fromFormat(
       this.startDate(),
       this.dateFormat(),
@@ -65,31 +67,18 @@ export class BmbStudentActivityCardComponent {
   }
 
   getCardClasses(): string[] {
-    const classes = ['bmb_student-activity-card'];
-    if (this.isListItem()) classes.push('bmb_student-activity-card-list-item');
-    if (this.isListItem() && this.disableImage())
-      classes.push('bmb_student-activity-card-list-item-no-image');
-    else classes.push(`bmb_student-activity-card-${this.type()}`);
-
-    return classes;
+    return getStudentActivityCardClasses({
+      isListItem: this.isListItem(),
+      disableImage: this.disableImage(),
+      type: this.type(),
+    });
   }
 
   getBadgeType(): IBbmBgAppearance | IBmbBadgeColors {
-    switch (this.type()) {
-      case 'academic':
-        return 'creative-use-strong';
-      case 'life':
-        return 'mitec_green';
-      case 'events':
-        return 'mitec_purple';
-      case 'save_the_date':
-        return 'mitec_orange';
-    }
+    return getStudentActivityBadgeAppearance(this.type());
   }
 
   getBulletStyles(): object {
-    return {
-      'background-color': `rgb(var(--${this.bulletColor()}))`,
-    };
+    return getStudentActivityBulletStyles(this.bulletColor());
   }
 }

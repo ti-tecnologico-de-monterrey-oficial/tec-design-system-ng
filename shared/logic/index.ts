@@ -26,3 +26,5 @@ export * from './components/simple-header';
 export * from './components/step-progress-bar';
 export * from './components/drag-drop';
 export * from './components/dropdown-menu';
+export * from './components/student-activity-card';
+export * from './components/timestream-detail';

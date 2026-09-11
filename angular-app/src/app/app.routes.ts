@@ -589,5 +589,45 @@ export const appRoutes: Route[] = [
         ({ DropdownMenuPage }) => DropdownMenuPage,
       ),
   },
+  {
+  path: 'pages/student-activity-card',
+    title: 'BmbStudentActivityCard | Bamboo migration dashboard',
+    loadComponent: () =>
+      import(
+        './pages/student-activity-card-page/student-activity-card-page'
+      ).then(({ StudentActivityCardPage }) => StudentActivityCardPage),
+  },
+  {
+    path: 'pages/timestamp-detail',
+    title: 'BmbTimestreamDetail | Bamboo migration dashboard',
+    loadComponent: () =>
+      import('./pages/timestamp-detail-page/timestamp-detail-page').then(
+        ({ TimestampDetailPage }) => TimestampDetailPage,
+      ),
+  },
+  {
+    path: 'pages/toast',
+    title: 'BmbToast | Bamboo migration dashboard',
+    loadComponent: () =>
+      import('./pages/toast-page/toast-page').then(
+        ({ ToastPage }) => ToastPage,
+      ),
+  },
+  {
+    path: 'pages/balance-overview',
+    title: 'BmbBalanceOverview | Bamboo migration dashboard',
+    loadComponent: () =>
+      import('./pages/balance-overview-page/balance-overview-page').then(
+        ({ BalanceOverviewPage }) => BalanceOverviewPage,
+      ),
+  },
+  {
+    path: 'pages/input',
+    title: 'BmbInput | Bamboo migration dashboard',
+    loadComponent: () =>
+      import('./pages/input-page/input-page').then(
+        ({ InputPage }) => InputPage,
+      ),
+  },
   { path: '**', redirectTo: '/home' },
 ];
