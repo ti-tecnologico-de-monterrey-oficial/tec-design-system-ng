@@ -1,0 +1,161 @@
+<header class="page-header">
+  <p class="eyebrow">Componente Bamboo</p>
+  <h1>BmbBalanceOverview</h1>
+  <p>Valida el resumen de balance: circulo de progreso, etiquetas y estados.</p>
+</header>
+
+<section class="playground" aria-labelledby="balance-overview-properties">
+  <aside class="controls">
+    <h2 id="balance-overview-properties">Propiedades</h2>
+
+    <label for="bo-percent">progressCirclePercent</label>
+    <input
+      id="bo-percent"
+      type="number"
+      min="0"
+      max="100"
+      [value]="percent()"
+      (input)="setPercent($any($event.target).value)"
+    />
+
+    <label for="bo-value">progressCircleValue</label>
+    <input
+      id="bo-value"
+      [value]="progressCircleValue()"
+      (input)="progressCircleValue.set($any($event.target).value)"
+    />
+
+    <label for="bo-title">progressCircleTitle</label>
+    <input
+      id="bo-title"
+      [value]="progressCircleTitle()"
+      (input)="progressCircleTitle.set($any($event.target).value)"
+    />
+
+    <label for="bo-status">progressCircleFillPathStatus</label>
+    <select
+      id="bo-status"
+      [value]="fillPathStatus()"
+      (change)="fillPathStatus.set($any($event.target).value)"
+    >
+      @for (status of statuses; track status) {
+        <option [value]="status">{{ status }}</option>
+      }
+    </select>
+
+    <label for="bo-icon">icon</label>
+    <input
+      id="bo-icon"
+      [value]="icon()"
+      (input)="icon.set($any($event.target).value)"
+    />
+
+    <label for="bo-indicator">indicatorAppearance</label>
+    <select
+      id="bo-indicator"
+      [value]="indicatorAppearance() ?? ''"
+      (change)="
+        indicatorAppearance.set($any($event.target).value || null)
+      "
+    >
+      <option value="">(auto)</option>
+      @for (appearance of indicatorAppearances; track appearance) {
+        <option [value]="appearance">{{ appearance }}</option>
+      }
+    </select>
+
+    <label for="bo-label-primary">labelPrimary</label>
+    <input
+      id="bo-label-primary"
+      [value]="labelPrimary()"
+      (input)="labelPrimary.set($any($event.target).value)"
+    />
+
+    <label for="bo-value-primary">valuePrimary</label>
+    <input
+      id="bo-value-primary"
+      [value]="valuePrimary()"
+      (input)="valuePrimary.set($any($event.target).value)"
+    />
+
+    <label for="bo-label-secondary">labelSecondary</label>
+    <input
+      id="bo-label-secondary"
+      [value]="labelSecondary()"
+      (input)="labelSecondary.set($any($event.target).value)"
+    />
+
+    <label for="bo-value-secondary">valueSecondary</label>
+    <input
+      id="bo-value-secondary"
+      [value]="valueSecondary()"
+      (input)="valueSecondary.set($any($event.target).value)"
+    />
+
+    <label class="toggle"
+      ><input
+        type="checkbox"
+        [checked]="showProgressCircleValue()"
+        (change)="showProgressCircleValue.set($any($event.target).checked)"
+      />showProgressCircleValue</label
+    >
+    <label class="toggle"
+      ><input
+        type="checkbox"
+        [checked]="showProgressCircleTitle()"
+        (change)="showProgressCircleTitle.set($any($event.target).checked)"
+      />showProgressCircleTitle</label
+    >
+    <label class="toggle"
+      ><input
+        type="checkbox"
+        [checked]="showProgressCircleBackground()"
+        (change)="
+          showProgressCircleBackground.set($any($event.target).checked)
+        "
+      />showProgressCircleBackground</label
+    >
+    <label class="toggle"
+      ><input
+        type="checkbox"
+        [checked]="fullFillPathStatus()"
+        (change)="fullFillPathStatus.set($any($event.target).checked)"
+      />progressCircleFullFillPathStatus</label
+    >
+    <label class="toggle"
+      ><input
+        type="checkbox"
+        [checked]="showOperationState()"
+        (change)="showOperationState.set($any($event.target).checked)"
+      />showProgressCircleOperationState</label
+    >
+    <label class="toggle"
+      ><input
+        type="checkbox"
+        [checked]="emptyState()"
+        (change)="emptyState.set($any($event.target).checked)"
+      />emptyState</label
+    >
+  </aside>
+
+  <div class="preview">
+    <bmb-balance-overview
+      [progressCirclePercent]="percent()"
+      [progressCircleValue]="progressCircleValue()"
+      [showProgressCircleValue]="showProgressCircleValue()"
+      [progressCircleTitle]="progressCircleTitle()"
+      [showProgressCircleTitle]="showProgressCircleTitle()"
+      [showProgressCircleBackground]="showProgressCircleBackground()"
+      [icon]="icon()"
+      [progressCircleFillPathStatus]="fillPathStatus()"
+      [progressCircleFullFillPathStatus]="fullFillPathStatus()"
+      [showProgressCircleOperationState]="showOperationState()"
+      [indicatorAppearance]="indicatorAppearance()"
+      [emptyState]="emptyState()"
+      [labelPrimary]="labelPrimary()"
+      [valuePrimary]="valuePrimary()"
+      [labelSecondary]="labelSecondary()"
+      [valueSecondary]="valueSecondary()"
+    />
+  </div>
+</section>

@@ -13,10 +13,6 @@ import {
 import { IBmbApp } from '../../_shared/types';
 import { getFrequentAppsSelectorClasses } from '../../_shared/logic/components/frequent-apps-selector';
 
-/*
- * TODO: This component is marked as "old" and its decommissioning is planned for future updates.
- */
-
 @Component({
   selector: 'bmb-frequent-apps-selector',
   styleUrl: './bmb-frequent-apps-selector.component.scss',

@@ -38,6 +38,16 @@ describe('BmbStudentActivityCardComponent', () => {
     expect(component.parsedEndDate.hour).toBe(11);
   });
 
+  it('should update parsed dates when inputs change', () => {
+    componentRef.setInput('startDate', '2026-09-07 14:00:00');
+    componentRef.setInput('endDate', '2026-09-07 15:30:00');
+    fixture.detectChanges();
+
+    expect(component.parsedStartDate.hour).toBe(14);
+    expect(component.parsedEndDate.hour).toBe(15);
+    expect(component.parsedEndDate.minute).toBe(30);
+  });
+
   it('should return correct card classes', () => {
     componentRef.setInput('isListItem', true);
     componentRef.setInput('type', 'academic');
@@ -82,5 +92,64 @@ describe('BmbStudentActivityCardComponent', () => {
     expect(component.getBulletStyles()).toEqual({
       'background-color': 'rgb(var(--error-primary))',
     });
+  });
+
+  it('should keep the deprecated title as a visual fallback', () => {
+    componentRef.setInput('componentTitle', '');
+    componentRef.setInput('title', 'Legacy activity');
+    fixture.detectChanges();
+
+    expect(
+      fixture.nativeElement.querySelector('.bmb_student-activity-card-title')
+        .textContent,
+    ).toContain('Legacy activity');
+  });
+
+  it('should render the image variant for list items', () => {
+    componentRef.setInput('isListItem', true);
+    componentRef.setInput('image', 'activity.png');
+    componentRef.setInput('componentTitle', 'Activity title');
+    fixture.detectChanges();
+
+    expect(
+      fixture.nativeElement.querySelector(
+        '.bmb_student-activity-card-image-pic',
+      ).src,
+    ).toContain('activity.png');
+    expect(
+      fixture.nativeElement.querySelector(
+        '.bmb_student-activity-card-content-location',
+      ).textContent,
+    ).not.toContain('undefined');
+  });
+
+  it('should render the bullet variant when the image is disabled', () => {
+    componentRef.setInput('isListItem', true);
+    componentRef.setInput('disableImage', true);
+    componentRef.setInput('bulletColor', 'warning-primary');
+    fixture.detectChanges();
+
+    expect(
+      fixture.nativeElement.querySelector('.bmb_student-activity-card-bullet'),
+    ).toBeTruthy();
+    expect(
+      fixture.nativeElement.querySelector(
+        '.bmb_student-activity-card-image',
+      ),
+    ).toBeNull();
+  });
+
+  it('should omit the responsible person from list items', () => {
+    componentRef.setInput('isListItem', true);
+    componentRef.setInput('location', 'Campus');
+    componentRef.setInput('responsible', 'Responsible person');
+    fixture.detectChanges();
+
+    const location = fixture.nativeElement.querySelector(
+      '.bmb_student-activity-card-content-location',
+    );
+
+    expect(location.textContent).toContain('Campus');
+    expect(location.textContent).not.toContain('Responsible person');
   });
 });

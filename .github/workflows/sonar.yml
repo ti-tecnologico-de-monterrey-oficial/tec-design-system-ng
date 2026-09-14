@@ -26,8 +26,9 @@ jobs:
             -Dsonar.projectKey=tec-design-system-ng
             -Dsonar.sources=./ui-angular,./ui-react
             -Dsonar.sourceEncoding=UTF-8
-            -Dsonar.exclusions=**/node_modules/**,**/*.stories.ts,**/*.mdx,**/*.spec.ts,**/*.spec.tsx
+            -Dsonar.exclusions=**/node_modules/**,**/*.stories.ts,**/*.stories.tsx,**/*.mdx,**/*.spec.ts,**/*.spec.tsx
             -Dsonar.test.exclusions=**/*.spec.ts,**/*.spec.tsx
+            -Dsonar.javascript.lcov.reportPaths=coverage/ui-angular/lcov.info
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Info de PR
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }} # Token Sonar

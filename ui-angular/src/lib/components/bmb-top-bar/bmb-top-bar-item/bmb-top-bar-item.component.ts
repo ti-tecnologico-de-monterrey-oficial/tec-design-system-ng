@@ -13,6 +13,7 @@ import { getTopBarItemActiveClass } from '../../../_shared/logic/components/top-
   imports: [CommonModule],
   templateUrl: './bmb-top-bar-item.component.html',
   styleUrl: './bmb-top-bar-item.component.scss',
+  host: { role: 'listitem' },
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

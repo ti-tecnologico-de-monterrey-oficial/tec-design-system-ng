@@ -145,11 +145,8 @@ export const appRoutes: Route[] = [
   },
   {
     path: 'step-progress-bar',
-    title: 'Step progress bar',
-    loadComponent: () =>
-      import('./pages/step-progress-bar/step-progress-car.component').then(
-        (n) => n.BmbStepProgressBarPageComponent,
-      ),
+    pathMatch: 'full',
+    redirectTo: 'pages/step-progress-bar',
   },
   {
     path: 'dashboard-indicators',
@@ -545,6 +542,22 @@ export const appRoutes: Route[] = [
       ),
   },
   {
+    path: 'pages/simple-header',
+    title: 'BmbSimpleHeader | Bamboo migration dashboard',
+    loadComponent: () =>
+      import('./pages/simple-header-page/simple-header-page').then(
+        ({ SimpleHeaderPage }) => SimpleHeaderPage,
+      ),
+  },
+  {
+    path: 'pages/step-progress-bar',
+    title: 'BmbStepProgressBar | Bamboo migration dashboard',
+    loadComponent: () =>
+      import('./pages/step-progress-bar/step-progress-bar-page').then(
+        ({ StepProgressBarPage }) => StepProgressBarPage,
+      ),
+  },
+  {
     path: 'pages/progress-circle',
     title: 'BmbProgressCircle | Bamboo migration dashboard',
     loadComponent: () =>
@@ -560,5 +573,77 @@ export const appRoutes: Route[] = [
         ({ PushNotificationPage }) => PushNotificationPage,
       ),
   },
-  { path: '**', redirectTo: '/home' },
+  {
+    path: 'page/drag-drop',
+    title: 'Drag y Drop | Bamboo migration dashboard',
+    loadComponent: () =>
+      import('./components/drag-drop-page/drag-drop-page').then(
+        ({ DragDropPage }) => DragDropPage,
+      ),
+  },
+  {
+    path: 'page/dropdown-menu',
+    title: '# Dropdown menu | Bamboo migration dashboard',
+    loadComponent: () =>
+      import('./components/dropdown-menu-page/dropdown-menu-page').then(
+        ({ DropdownMenuPage }) => DropdownMenuPage,
+      ),
+  },
+  {
+  path: 'pages/student-activity-card',
+    title: 'BmbStudentActivityCard | Bamboo migration dashboard',
+    loadComponent: () =>
+      import(
+        './pages/student-activity-card-page/student-activity-card-page'
+      ).then(({ StudentActivityCardPage }) => StudentActivityCardPage),
+  },
+  {
+    path: 'pages/timestamp-detail',
+    title: 'BmbTimestreamDetail | Bamboo migration dashboard',
+    loadComponent: () =>
+      import('./pages/timestamp-detail-page/timestamp-detail-page').then(
+        ({ TimestampDetailPage }) => TimestampDetailPage,
+      ),
+  },
+  {
+    path: 'pages/toast',
+    title: 'BmbToast | Bamboo migration dashboard',
+    loadComponent: () =>
+      import('./pages/toast-page/toast-page').then(
+        ({ ToastPage }) => ToastPage,
+      ),
+  },
+  {
+    path: 'pages/balance-overview',
+    title: 'BmbBalanceOverview | Bamboo migration dashboard',
+    loadComponent: () =>
+      import('./pages/balance-overview-page/balance-overview-page').then(
+        ({ BalanceOverviewPage }) => BalanceOverviewPage,
+      ),
+  },
+  {
+    path: 'pages/input',
+    title: 'BmbInput | Bamboo migration dashboard',
+    loadComponent: () =>
+      import('./pages/input-page/input-page').then(
+        ({ InputPage }) => InputPage,
+      ),
+  },
+  {
+    path: 'pages/text-link',
+    title: 'BmbTextLink | Bamboo migration dashboard',
+    loadComponent: () =>
+      import('./pages/text-link-page/text-link-page').then(
+        ({ TextLinkPage }) => TextLinkPage,
+      ),
+  },
+  {
+    path: 'pages/switch',
+    title: 'BmbSwitch | Bamboo migration dashboard',
+    loadComponent: () =>
+      import('./pages/switch-page/switch-page').then(
+        ({ SwitchPage }) => SwitchPage,
+      ),
+  },
+  { path: '**', redirectTo: 'home' },
 ];

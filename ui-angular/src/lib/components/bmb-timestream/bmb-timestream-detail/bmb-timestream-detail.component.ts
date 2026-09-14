@@ -2,27 +2,27 @@ import { CommonModule } from '@angular/common';
 import {
   AfterViewInit,
   ChangeDetectionStrategy,
-  ChangeDetectorRef,
   Component,
   ElementRef,
-  EventEmitter,
   input,
   output,
   effect,
-  OnChanges,
-  Output,
-  SimpleChanges,
   ViewChild,
   ViewEncapsulation,
-  inject,
 } from '@angular/core';
 import { DateTime } from 'luxon';
-import { ISelectedDate, ITimelineEvent, ITimelineEventParsed } from '../../../_shared/types/components/timestream';
+import type {
+  ISelectedDate,
+  ITimelineEvent,
+  ITimelineEventParsed,
+} from '../../../_shared/types/components/timestream';
 import { BmbHitoCardComponent } from '../../bmb-hito-card/bmb-hito-card.component';
-
-/*
- * TODO: This component is marked as "old" and its decommissioning is planned for future updates.
- */
+import {
+  getTimestreamDurationString,
+  getTimestreamMonthTitle,
+  isTimestreamCurrentMonth,
+  isTimestreamTodayEvent,
+} from '../../../_shared/logic/components/timestream-detail';
 
 @Component({
   selector: 'bmb-timestream-detail',
@@ -48,8 +48,6 @@ export class BmbTimestreamDetailsComponent implements AfterViewInit {
 
   @ViewChild('monthDetailList') monthList!: ElementRef;
 
-  private cdr: ChangeDetectorRef = inject(ChangeDetectorRef);
-
   constructor() {
     effect(() => {
       const selectedDate = this.selectedDate();
@@ -69,15 +67,11 @@ export class BmbTimestreamDetailsComponent implements AfterViewInit {
   }
 
   getCurrentMonth(date: string): boolean {
-    const parsedDate = DateTime.fromFormat(date, 'yyyy/MM');
-    return (
-      parsedDate.month === this.selectedDate().date.month &&
-      parsedDate.year === this.selectedDate().date.year
-    );
+    return isTimestreamCurrentMonth(date, this.selectedDate().date);
   }
 
-  getMonthTitle(date: DateTime) {
-    return date.setLocale(this.lang()).toFormat('cccc dd LLLL yyyy');
+  getMonthTitle(date: DateTime): string {
+    return getTimestreamMonthTitle(date, this.lang());
   }
 
   scrollToItem() {
@@ -91,11 +85,11 @@ export class BmbTimestreamDetailsComponent implements AfterViewInit {
   }
 
   getDurationString(event: ITimelineEvent): string {
-    return `Duración: ${event.originalStart?.day} - ${event.endEvent?.setLocale(this.lang()).toFormat('dd LLLL yyyy')} (${(event.diff || 0) + 1} Días)`;
+    return getTimestreamDurationString(event, this.lang());
   }
 
   isTodayEvent(event: ITimelineEventParsed): boolean {
-    return event.date.hasSame(this.now(), 'day');
+    return isTimestreamTodayEvent(event, this.now());
   }
 
   handleEventChange(event: ITimelineEvent) {

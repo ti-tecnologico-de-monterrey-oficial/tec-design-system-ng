@@ -1,0 +1,73 @@
+<header class="page-header">
+  <p class="eyebrow">Componente Bamboo</p>
+  <h1>BmbTextLink</h1>
+  <p>Valida el estilo, posición del ícono, target y estado deshabilitado.</p>
+</header>
+
+<section class="playground" aria-labelledby="text-link-properties">
+  <aside class="controls">
+    <h2 id="text-link-properties">Propiedades</h2>
+
+    <label for="tl-text">textLink</label>
+    <input
+      id="tl-text"
+      [value]="textLink()"
+      (input)="textLink.set($any($event.target).value)"
+    />
+
+    <label for="tl-link">link</label>
+    <input
+      id="tl-link"
+      [value]="link()"
+      (input)="link.set($any($event.target).value)"
+    />
+
+    <label for="tl-style">textLinkStyle</label>
+    <select
+      id="tl-style"
+      [value]="textLinkStyle()"
+      (change)="textLinkStyle.set($any($event.target).value)"
+    >
+      @for (option of textLinkStyles; track option) {
+        <option [value]="option">{{ option }}</option>
+      }
+    </select>
+
+    <label for="tl-icon">icon</label>
+    <input
+      id="tl-icon"
+      [value]="icon()"
+      (input)="icon.set($any($event.target).value)"
+    />
+
+    <label for="tl-icon-position">iconPosition</label>
+    <select
+      id="tl-icon-position"
+      [value]="iconPosition()"
+      (change)="iconPosition.set($any($event.target).value)"
+    >
+      @for (option of iconPositions; track option) {
+        <option [value]="option">{{ option }}</option>
+      }
+    </select>
+
+    <label class="toggle"
+      ><input
+        type="checkbox"
+        [checked]="disabled()"
+        (change)="disabled.set($any($event.target).checked)"
+      />disabled</label
+    >
+  </aside>
+
+  <div class="preview">
+    <bmb-text-link
+      [textLink]="textLink()"
+      [link]="link()"
+      [textLinkStyle]="textLinkStyle()"
+      [icon]="icon()"
+      [iconPosition]="iconPosition()"
+      [disabled]="disabled()"
+    />
+  </div>
+</section>

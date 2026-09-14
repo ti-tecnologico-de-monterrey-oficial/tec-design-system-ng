@@ -1,0 +1,12 @@
+@use '../../styles/playground';
+
+@include playground.page(18rem, 23rem, 38rem);
+
+.preview {
+  align-items: start;
+}
+
+.preview bmb-drag-drop {
+  display: block;
+  width: 100%;
+}

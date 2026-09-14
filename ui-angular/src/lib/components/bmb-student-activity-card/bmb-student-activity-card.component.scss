@@ -2,26 +2,22 @@
 @use '../../../../../shared/assets/styles/base/fonts' as fonts;
 
 $types: (
-  'academic':
-    linear-gradient(
+  'academic': linear-gradient(
       139deg,
       rgb(var(--blue-mariner-950)) -47.21%,
       rgb(var(--blue-mariner-900)) 93.52%
     ),
-  'life':
-    linear-gradient(
+  'life': linear-gradient(
       325deg,
       rgb(var(--green-primary)) 18.73%,
       rgb(var(--green-light)) 103.37%
     ),
-  'events':
-    linear-gradient(
+  'events': linear-gradient(
       132deg,
       rgb(var(--purple-primary)) -7.51%,
       rgb(var(--purple-light)) 98.98%
     ),
-  'save_the_date':
-    linear-gradient(
+  'save_the_date': linear-gradient(
       132deg,
       rgb(var(--yellow-primary)) -7.51%,
       rgb(var(--mitec-orange-primary)) 98.98%

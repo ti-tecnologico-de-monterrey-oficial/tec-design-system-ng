@@ -1,0 +1,13 @@
+<section bmbLayout alignItems="center">
+  <h4 bmbLayoutItem [isDynamicItem]="true" [colGrow]="1">
+    {{ displayTitle() }}
+  </h4>
+  <span [style.color]="iconColor()">
+    <bmb-action-icon
+      [icon]="icon()"
+      [iconSize]="24"
+      (buttonClick)="handleClick($event)"
+      [tooltipText]="displayTitle()"
+    />
+  </span>
+</section>

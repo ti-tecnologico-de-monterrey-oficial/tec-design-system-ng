@@ -1,6 +1,7 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  computed,
   effect,
   input,
   output,
@@ -10,36 +11,17 @@ import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.compo
 import { BmbLayoutDirective } from '../../directives/bmb-layout/bmb-layout.directive';
 import { BmbLayoutItemDirective } from '../../directives/bmb-layout/bmb-layout-item.directive';
 import { logDeprecatedInput } from '../../_shared/logic/logDeprecatedInput';
-
-/*
- * TODO: This component is marked as "old" and its decommissioning is planned for future updates.
- */
+import {
+  getSimpleHeaderIconColor,
+  getSimpleHeaderTitle,
+} from '../../_shared/logic/components/simple-header';
+import type { IBmbActionIconEventType } from '../../_shared/types/components/action-icon';
 
 @Component({
   selector: 'bmb-simple-header',
   standalone: true,
   imports: [BmbLayoutDirective, BmbLayoutItemDirective, BmbActionIconComponent],
-  template: `
-    <section bmbLayout alignItems="center">
-      <h4 bmbLayoutItem [isDynamicItem]="true" [colGrow]="1">
-        {{ componentTitle() || title() }}
-      </h4>
-      <span
-        [style.color]="
-          iconAlternativeColor()
-            ? 'var(--buttons-primary-normal)'
-            : 'currentColor'
-        "
-      >
-        <bmb-action-icon
-          [icon]="icon()"
-          [iconSize]="24"
-          (buttonClick)="handleClick($event)"
-          [tooltipText]="componentTitle() || title() || ''"
-        />
-      </span>
-    </section>
-  `,
+  templateUrl: './bmb-simple-header.component.html',
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -48,10 +30,18 @@ export class BmbSimpleHeaderComponent {
   iconAlternativeColor = input<boolean>(false);
   componentTitle = input<string>();
 
-  title = input<string>(); // deprecated
+  /** Legacy input retained for compatibility. Prefer componentTitle. */
+  title = input<string>();
+
+  readonly displayTitle = computed(() =>
+    getSimpleHeaderTitle(this.componentTitle(), this.title()),
+  );
+  readonly iconColor = computed(() =>
+    getSimpleHeaderIconColor(this.iconAlternativeColor()),
+  );
 
   // eslint-disable-next-line @angular-eslint/no-output-on-prefix
-  onIconClick = output<any>();
+  onIconClick = output<MouseEvent | IBmbActionIconEventType>();
 
   constructor() {
     effect(() => {
@@ -64,7 +54,7 @@ export class BmbSimpleHeaderComponent {
     });
   }
 
-  handleClick(event: any): void {
+  handleClick(event: MouseEvent | IBmbActionIconEventType): void {
     this.onIconClick.emit(event);
   }
 }
