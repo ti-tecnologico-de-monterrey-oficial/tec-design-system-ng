@@ -10,10 +10,6 @@ import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { logDeprecatedInput } from '../../_shared/logic/logDeprecatedInput';
 import { BmbTooltipBaseComponent } from './bmb-tooltip-base/bmb-tooltip-base.component';
 
-/*
- * TODO: This component is marked as "old" and its decommissioning is planned for future updates.
- */
-
 @Component({
   selector: 'bmb-tooltip',
   standalone: true,

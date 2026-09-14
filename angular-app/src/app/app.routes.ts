@@ -645,5 +645,13 @@ export const appRoutes: Route[] = [
         ({ SwitchPage }) => SwitchPage,
       ),
   },
+  {
+    path: 'pages/tooltip',
+    title: 'BmbTooltip | Bamboo migration dashboard',
+    loadComponent: () =>
+      import('./pages/tooltip-page/tooltip-page').then(
+        ({ TooltipPage }) => TooltipPage,
+      ),
+  },
   { path: '**', redirectTo: 'home' },
 ];
