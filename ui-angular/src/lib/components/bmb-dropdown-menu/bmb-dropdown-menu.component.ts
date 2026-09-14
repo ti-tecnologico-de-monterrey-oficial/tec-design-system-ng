@@ -14,6 +14,7 @@ import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.compo
 import { IDropdownItem } from '../../_shared/types';
 import { BmbProjectionContentService } from '../../services/old/projection/projection.service';
 import { TranslatePipe } from '../../pipes/translations';
+import { handleDropdownItemSelection } from '../../_shared/logic/components/dropdown-menu';
 
 export type IBmbDropdownMenuIcon = 'more_vert' | 'more_horiz';
 
@@ -51,8 +52,11 @@ export class BmbDropdownMenuComponent {
       inputContext: { items: this.items() },
       outputContext: {
         clickedItem: (item: IDropdownItem) => {
-          this.clickedItem.emit(item);
-          this.projectionService.closeContent(this.contentID());
+          handleDropdownItemSelection(
+            item,
+            (selectedItem) => this.clickedItem.emit(selectedItem),
+            () => this.projectionService.closeContent(this.contentID()),
+          );
         },
       },
       focusOnOpen: true,

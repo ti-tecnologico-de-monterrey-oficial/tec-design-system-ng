@@ -1,0 +1,176 @@
+
+ NX   Running target build for project angular-app and 2 tasks it depends on:
+
+
+
+> nx run ui-angular:sync-shared
+
+> node scripts/sync-angular-shared.mjs
+
+
+> nx run ui-angular:build:production
+
+(node:15444) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[34mBuilding Angular Package[39m
+[7m[36m[debug] Found primary entry point: @ti-tecnologico-de-monterrey-oficial/ds-ng[39m[27m
+[7m[36m[debug] Initializing tsconfig for @ti-tecnologico-de-monterrey-oficial/ds-ng[39m[27m
+[7m[36m[debug] Analysing sources for @ti-tecnologico-de-monterrey-oficial/ds-ng[39m[27m
+[7m[36m[debug] tsc program structure is reused: No old program[39m[27m
+[37m
+------------------------------------------------------------------------------[39m
+[37mBuilding entry point '@ti-tecnologico-de-monterrey-oficial/ds-ng'[39m
+[37m------------------------------------------------------------------------------[39m
+- Compiling with Angular sources in partial compilation mode.
+[32m√[39m Compiling with Angular sources in partial compilation mode.
+- Copying assets
+[32m√[39m Copying assets
+- Writing package manifest
+[7m[36m[debug] Writing package.json[39m[27m
+[7m[36m[debug] Dependency @material-symbols/svg-400 is allowed in 'dependencies'[39m[27m
+[7m[36m[debug] Dependency dompurify is allowed in 'dependencies'[39m[27m
+[7m[36m[debug] Dependency luxon is allowed in 'dependencies'[39m[27m
+[7m[36m[debug] Dependency tslib is allowed in 'dependencies'[39m[27m
+[34mi[39m Removing devDependencies section in package.json.
+[32m√[39m Writing package manifest
+[32m√[39m Built @ti-tecnologico-de-monterrey-oficial/ds-ng
+[32m
+------------------------------------------------------------------------------[39m
+[32mBuilt Angular Package
+- from: C:/code/bamboo/tec-design-system-ng/ui-angular
+- to:   C:/code/bamboo/tec-design-system-ng/dist/ui-angular[39m
+[32m------------------------------------------------------------------------------[39m
+[37m[37m
+Build at: [1m2026-09-11T12:50:04.589Z[22m - Time: [1m114564[22mms
+[39m[39m
+
+> nx run angular-app:build:development
+
+(node:18320) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[33m>[39m Building...
+(node:18320) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[32m√[39m Building...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m                [2m | [22m [1mRaw size[22m
+[32mchunk-MLQDLBZ5.js[39m  [2m | [22m[2m-[22m                    [2m | [22m[36m935.43 kB[39m[2m | [22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m                 [2m | [22m[36m414.86 kB[39m[2m | [22m
+[32mchunk-K6BBLYT4.js[39m  [2m | [22m[2m-[22m                    [2m | [22m[36m278.19 kB[39m[2m | [22m
+[32mchunk-YSYZ2O6E.js[39m  [2m | [22m[2m-[22m                    [2m | [22m[36m253.70 kB[39m[2m | [22m
+[32mchunk-UF4KKDA7.js[39m  [2m | [22m[2m-[22m                    [2m | [22m[36m235.56 kB[39m[2m | [22m
+[32mchunk-WHLNYDEF.js[39m  [2m | [22m[2m-[22m                    [2m | [22m[36m211.85 kB[39m[2m | [22m
+[32mstyles.css[39m         [2m | [22m[2mstyles[22m               [2m | [22m[36m203.03 kB[39m[2m | [22m
+[32mchunk-BTHSOUTO.js[39m  [2m | [22m[2m-[22m                    [2m | [22m[36m168.72 kB[39m[2m | [22m
+[32mchunk-3YJGX72V.js[39m  [2m | [22m[2m-[22m                    [2m | [22m[36m163.63 kB[39m[2m | [22m
+[32mchunk-DIZ6JYV5.js[39m  [2m | [22m[2m-[22m                    [2m | [22m[36m132.82 kB[39m[2m | [22m
+[32mchunk-QZCUDGAC.js[39m  [2m | [22m[2m-[22m                    [2m | [22m[36m131.47 kB[39m[2m | [22m
+[32mchunk-BAUAS3BB.js[39m  [2m | [22m[2m-[22m                    [2m | [22m[36m129.27 kB[39m[2m | [22m
+[32mchunk-C6PXHWMO.js[39m  [2m | [22m[2m-[22m                    [2m | [22m[36m123.62 kB[39m[2m | [22m
+[32mchunk-CWZE76DM.js[39m  [2m | [22m[2m-[22m                    [2m | [22m[36m113.55 kB[39m[2m | [22m
+[32mchunk-YRNNELYO.js[39m  [2m | [22m[2m-[22m                    [2m | [22m[36m110.42 kB[39m[2m | [22m
+[32mchunk-AOCA52HD.js[39m  [2m | [22m[2m-[22m                    [2m | [22m [36m79.04 kB[39m[2m | [22m
+[32mchunk-KW2MRCSB.js[39m  [2m | [22m[2m-[22m        
+            [2m | [22m [36m75.55 kB[39m[2m | [22m
+[32mchunk-CB5JHAOS.js[39m  [2m | [22m[2m-[22m                    [2m | [22m [36m74.72 kB[39m[2m | [22m
+[32mchunk-RVY2OS5S.js[39m  [2m | [22m[2m-[22m                    [2m | [22m [36m63.51 kB[39m[2m | [22m
+[32mchunk-R257F5TS.js[39m  [2m | [22m[2m-[22m                    [2m | [22m [36m61.85 kB[39m[2m | [22m
+[32mchunk-76GQRJX5.js[39m  [2m | [22m[2m-[22m                    [2m | [22m [36m54.45 kB[39m[2m | [22m
+[32mchunk-IFCVIYRK.js[39m  [2m | [22m[2m-[22m                    [2m | [22m [36m51.16 kB[39m[2m | [22m
+[32mchunk-AJCS7HYP.js[39m  [2m | [22m[2m-[22m                    [2m | [22m [36m48.54 kB[39m[2m | [22m
+[32mchunk-VWN6OXCQ.js[39m  [2m | [22m[2m-[22m                    [2m | [22m [36m47.48 kB[39m[2m | [22m
+[32mchunk-AFNLUG65.js[39m  [2m | [22m[2m-[22m                    [2m | [22m [36m46.90 kB[39m[2m | [22m
+[32mchunk-IPSJ5SPB.js[39m  [2m | [22m[2m-[22m                    [2m | [22m [36m42.88 kB[39m[2m | [22m
+[32mchunk-P4LPHCCA.js[39m  [2m | [22m[2m-[22m                    [2m | [22m [36m41.45 kB[39m[2m | [22m
+[32mchunk-4GJ5ARHH.js[39m  [2m | [22m[2m-[22m                    [2m | [22m [36m39.33 kB[39m[2m | [22m
+[32mchunk-BQHV6DAY.js[39m  [2m | [22m[2m-[22m                    [2m | [22m [36m38.29 kB[39m[2m | [22m
+[32mchunk-5N7OPGBH.js[39m  [2m | [22m[2m-[22m                    [2m | [22m [36m37.92 kB[39m[2m | [22m
+[32mchunk-NWK7YKTB.js[39m  [2m | [22m[2m-[22m                    [2m | [22m [36m37.85 kB[39m[2m | [22m
+[32mchunk-G6BNK354.js[39m  [2m | [22m[2m-[22m                    [2m | [22m [36m36.88 kB[39m[2m | [22m
+[32mchunk-6I5CV6ES.js[39m  [2m | [22m[2m-[22m                    [2m | [22m [36m34.98 kB[39m[2m | [22m
+[32mchunk-JZA5C4DQ.js[39m  [2m | [22m[2m-[22m                    [2m | [22m [36m34.15 kB[39m[2m | [22m
+[32mchunk-KFP72QNH.js[39m  [2m | [22m[2m-[22m                    [2m | [22m [36m32.96 kB[39m[2m | [22m
+[32mchunk-AV5CLSID.js[39m  [2m | [22m[2m-[22m                    [2m | [22m [36m31.73 kB[39m[2m | [22m
+[32mchunk-5AVRS3XH.js[39m  [2m | [22m[2m-[22m                    [2m | [22m [36m31.53 kB[39m[2m | [22m
+[32mchunk-O5V5PGOZ.js[39m  [2m | [22m[2m-[22m                    [2m | [22m [36m29.37 kB[39m[2m | [22m
+[32mchunk-S7ZDIWQS.js[39m  [2m | [22m[2m-[22m                    [2m | [22m [36m28.26 kB[39m[2m | [22m
+[32mchunk-GV3QC5YC.js[39m  [2m | [22m[2m-[22m                    [2m | [22m [36m28.24 kB[39m[2m | [22m
+[32mchunk-UQ2A5VMX.js[39m  [2m | [22m[2m-[22m                    [2m | [22m [36m27.61 kB[39m[2m | [22m
+[32mchunk-XIIUUGU3.js[39m  [2m | [22m[2m-[22m                    [2m | [22m [36m26.37 kB[39m[2m | [22m
+[32mchunk-HYGQ7F2P.js[39m  [2m | [22m[2m-[22m                    [2m | [22m [36m25.28 kB[39m[2m | [22m
+[32mchunk-JHKKF4BW.js[39m  [2m | [22m[2m-[22m                    [2m | [22m [36m21.01 kB[39m[2m | [22m
+[32mchunk-IU5I5RYJ.js[39m  [2m | [22m[2m-[22m                    [2m | [22m [36m20.79 kB[39m[2m | [22m
+[32mchunk-ZFVGRBJF.js[39m  [2m | [22m[2m-[22m                    [2m | [22m [36m20.53 kB[39m[2m | [22m
+[32mchunk-MG3WK2X6.js[39m  [2m | [22m[2m-[22m                    [2m | [22m [36m20.29 kB[39m[2m | [22m
+[32mchunk-JWFIRULE.js[39m  [2m | [22m[2m-[22m                    [2m | [22m [36m19.88 kB[39m[2m | [22m
+[32mchunk-H24Y23EP.js[39m  [2m | [22m[2m-[22m                    [2m | [22m [36m18.04 kB[39m[2m | [22m
+[32mchunk-TFTOT3KX.js[39m  [2m | [22m[2m-[22m                    [2m | [22m [36m16.96 kB[39m[2m | [22m
+[32mchunk-XGLYDRBS.js[39m  [2m | [22m[2m-[22m                    [2m | [22m [36m16.48 kB[39m[2m | [22m
+[32mchunk-DSC2CEPW.js[39m  [2m 
+| [22m[2m-[22m                    [2m | [22m [36m14.99 kB[39m[2m | [22m
+[32mchunk-B2EWD4JW.js[39m  [2m | [22m[2m-[22m                    [2m | [22m [36m14.99 kB[39m[2m | [22m
+[32mchunk-ANGREVYR.js[39m  [2m | [22m[2m-[22m                    [2m | [22m [36m14.41 kB[39m[2m | [22m
+[32mchunk-S5WJ27OL.js[39m  [2m | [22m[2m-[22m                    [2m | [22m [36m14.27 kB[39m[2m | [22m
+[32mchunk-BLKGZCDJ.js[39m  [2m | [22m[2m-[22m                    [2m | [22m [36m13.90 kB[39m[2m | [22m
+[32mchunk-V5SSESZE.js[39m  [2m | [22m[2m-[22m                    [2m | [22m [36m13.78 kB[39m[2m | [22m
+[32mchunk-HZBH75HG.js[39m  [2m | [22m[2m-[22m                    [2m | [22m [36m12.38 kB[39m[2m | [22m
+[32mchunk-X64OG5QS.js[39m  [2m | [22m[2m-[22m                    [2m | [22m [36m12.32 kB[39m[2m | [22m
+[32mchunk-FWV2WBRF.js[39m  [2m | [22m[2m-[22m                    [2m | [22m [36m11.87 kB[39m[2m | [22m
+[32mchunk-FPNQUIU7.js[39m  [2m | [22m[2m-[22m                    [2m | [22m [36m11.47 kB[39m[2m | [22m
+[32mchunk-NSQDTLRZ.js[39m  [2m | [22m[2m-[22m                    [2m | [22m [36m10.95 kB[39m[2m | [22m
+[32mchunk-LN76CA5Z.js[39m  [2m | [22m[2m-[22m                    [2m | [22m [36m10.84 kB[39m[2m | [22m
+[32mchunk-BWQTU4TP.js[39m  [2m | [22m[2m-[22m                    [2m | [22m  [36m8.40 kB[39m[2m | [22m
+[32mchunk-7JN5VZJZ.js[39m  [2m | [22m[2m-[22m                    [2m | [22m  [36m6.75 kB[39m[2m | [22m
+[32mchunk-EBBZM5IR.js[39m  [2m | [22m[2m-[22m                    [2m | [22m  [36m6.39 kB[39m[2m | [22m
+[32mchunk-I5D3RBM4.js[39m  [2m | [22m[2m-[22m                    [2m | [22m  [36m6.31 kB[39m[2m | [22m
+[32mchunk-S5TKYJO6.js[39m  [2m | [22m[2m-[22m                    [2m | [22m  [36m5.42 kB[39m[2m | [22m
+[32mchunk-WCNZUWLD.js[39m  [2m | [22m[2m-[22m                    [2m | [22m  [36m5.19 kB[39m[2m | [22m
+[32mchunk-STUVCXG5.js[39m  [2m | [22m[2m-[22m                    [2m | [22m  [36m4.22 kB[39m[2m | [22m
+[32mchunk-LWRAFZXC.js[39m  [2m | [22m[2m-[22m                    [2m | [22m  [36m3.99 kB[39m[2m | [22m
+[32mchunk-OU4LY3N6.js[39m  [2m | [22m[2m-[22m                    [2m | [22m  [36m3.96 kB[39m[2m | [22m
+[32mchunk-C6CN3JUC.js[39m  [2m | [22m[2m-[22m                    [2m | [22m  [36m3.84 kB[39m[2m | [22m
+[32mchunk-MF3IBBDZ.js[39m  [2m | [22m[2m-[22m                    [2m | [22m  [36m3.68 kB[39m[2m | [22m
+[32mchunk-UPHE35U7.js[39m  [2m | [22m[2m-[22m                    [2m | [22m  [36m2.95 kB[39m[2m | [22m
+[32mchunk-MADBGN3I.js[39m  [2m | [22m[2m-[22m                    [2m | [22m  [36m2.59 kB[39m[2m | [22m
+[32mchunk-ZTWTYHFF.js[39m  [2m | [22m[2m-[22m                    [2m | [22m  [36m1.97 kB[39m[2m | [22m
+[32mchunk-PBEXJEM6.js[39m  [2m | [22m[2m-[22m                    [2m | [22m  [36m1.96 kB[39m[2m | [22m
+[32mchunk-JBE5LB4T.js[39m  [2m | [22m[2m-[22m                    [2m | [22m  [36m1.63 kB[39m[2m | [22m
+[32mchunk-QXMKXZOD.js[39m  [2m | [22m[2m-[22m                    [2m | [22m  [36m1.26 kB[39m[2m | [22m
+[32mchunk-PTFY3KPV.js[39m  [2m | [22m[2m-[22m                    [2m | [22m[36m971 bytes[39m[2m | [22m
+[1m [22m                  [2m | [22m[1mInitial total[22m        [2m | [22m  [1m5.20 MB[22m
+[1mLazy chunk files[22m   [2m | [22m[1mNames[22m                [2m | [22m [1mRaw size[22m
+[32mchunk-DWQSCKBP.js[39m  [2m | [22m[2m-[22m                    [2m | [22m[36m601.69 kB[39m[2m | [22m
+[32mchunk-6WHDF6B2.js[39m  [2m | [22m[2mai-chat-bubble-page[22m  [2m | [22m[36m222.81 kB[39m[2m | [22m
+[32mchunk-W4YAIPBB.js[39m  [2m | [22m[2m-[22m                    [2m | [22m[36m214.86 kB[39m[2m | [22m
+[32mchunk-PFLTZV6K.js[39m  [2m |
+ [22m[2mtable-lite-component[22m [2m | [22m[36m107.87 kB[39m[2m | [22m
+[32mchunk-7BHAB2HR.js[39m  [2m | [22m[2malerts-component[22m     [2m | [22m [36m92.91 kB[39m[2m | [22m
+[32mchunk-VC43ON3Q.js[39m  [2m | [22m[2m-[22m                    [2m | [22m [36m91.25 kB[39m[2m | [22m
+[32mchunk-6RHKWXCS.js[39m  [2m | [22m[2m-[22m                    [2m | [22m [36m88.01 kB[39m[2m | [22m
+[32mchunk-BSXAL3HB.js[39m  [2m | [22m[2m-[22m                    [2m | [22m [36m81.11 kB[39m[2m | [22m
+[32mchunk-SK3DJGCS.js[39m  [2m | [22m[2m-[22m                    [2m | [22m [36m76.38 kB[39m[2m | [22m
+[32mchunk-G66EWW6H.js[39m  [2m | [22m[2m-[22m                    [2m | [22m [36m74.81 kB[39m[2m | [22m
+[32mchunk-76YWC7WQ.js[39m  [2m | [22m[2mhome-component[22m       [2m | [22m [36m74.80 kB[39m[2m | [22m
+[32mchunk-MUQEJISA.js[39m  [2m | [22m[2mmy-page-component[22m    [2m | [22m [36m74.46 kB[39m[2m | [22m
+[32mchunk-V653FY3A.js[39m  [2m | [22m[2minput-component[22m      [2m | [22m [36m74.10 kB[39m[2m | [22m
+[32mchunk-5W6ICES4.js[39m  [2m | [22m[2mtimestamp-detail-page[22m[2m | [22m [36m74.05 kB[39m[2m | [22m
+[32mchunk-25WE5FOS.js[39m  [2m | [22m[2mmedia-card-page[22m      [2m | [22m [36m72.31 kB[39m[2m | [22m
+[2m...and 80 more lazy chunks files. Use "--verbose" to show all the files.[22m
+Application bundle generation complete. [102.858 seconds] - 2026-09-11T12:51:59.634Z
+Output location: C:\code\bamboo\tec-design-system-ng\dist\angular-app
+
+
+
+ NX   Successfully ran target build for project angular-app and 2 tasks it depends on
+
+
+  Run duration:      5m 23s
+  Cache:             0/3 hit (0%)
+  Critical path:     5m 23s (3 tasks)
+  Recoverable time:  <1ms
+
+  Recommendations:
+    - Drastically reduce your run duration by sharing a cache across your team and CI → https://nx.dev/ci/features/remote-cache?utm_source=nx-cli&utm_medium=cli&utm_campaign=performance-report&utm_content=remote-cache.
+    - Speed up or split the longest tasks on the critical path:
+        angular-app:build:development    2m 44s
+        ui-angular:build:production      2m 35s
+        ui-angular:sync-shared             3.6s

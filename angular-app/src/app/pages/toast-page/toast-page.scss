@@ -1,0 +1,14 @@
+@use '../../styles/playground';
+
+@include playground.page(18rem, 22rem, 12rem);
+
+.preview {
+  align-items: safe center;
+  display: flex;
+  justify-content: safe center;
+}
+.preview bmb-toast {
+  display: block;
+  flex: 0 0 auto;
+  width: min(100%, 28rem);
+}

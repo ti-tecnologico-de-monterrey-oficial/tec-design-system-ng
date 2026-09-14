@@ -7,6 +7,10 @@ import {
 import { BmbItemComponent } from '../bmb-item/bmb-item.component';
 import { BmbDraggableDirective } from './bmb-draggable.directive';
 import { BmbDropzoneDirective } from './bmb-dropzone.directive';
+import {
+  isDragItem,
+  moveDragItem,
+} from '../../_shared/logic/components/drag-drop';
 
 interface DragItem {
   id: number;
@@ -40,29 +44,18 @@ export class BmbDragDropComponent {
   rightItems = signal<DragItem[]>([{ id: 3, label: 'Item C' }]);
 
   moveItem(item: unknown, target: 'left' | 'right') {
-    if (!this.isDragItem(item)) {
+    if (!isDragItem(item)) {
       return;
     }
 
-    this.leftItems.update((items) => items.filter((i) => i.id !== item.id));
-
-    this.rightItems.update((items) => items.filter((i) => i.id !== item.id));
-
-    if (target === 'left') {
-      this.leftItems.update((items) => [...items, item]);
-    } else {
-      this.rightItems.update((items) => [...items, item]);
-    }
-  }
-
-  private isDragItem(item: unknown): item is DragItem {
-    return (
-      typeof item === 'object' &&
-      item !== null &&
-      'id' in item &&
-      typeof item.id === 'number' &&
-      'label' in item &&
-      typeof item.label === 'string'
+    const [leftItems, rightItems] = moveDragItem(
+      this.leftItems(),
+      this.rightItems(),
+      item,
+      target,
     );
+
+    this.leftItems.set(leftItems);
+    this.rightItems.set(rightItems);
   }
 }

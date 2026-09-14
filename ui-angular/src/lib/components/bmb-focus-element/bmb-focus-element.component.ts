@@ -14,10 +14,6 @@ import {
   isFocusElementFocused,
 } from '../../_shared/logic/components/focus-element';
 
-/*
- * TODO: This component is marked as "old" and its decommissioning is planned for future updates.
- */
-
 @Component({
   selector: 'bmb-focus-element',
   styleUrl: './bmb-focus-element.component.scss',

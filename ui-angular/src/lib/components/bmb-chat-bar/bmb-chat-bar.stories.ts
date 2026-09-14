@@ -217,8 +217,28 @@ ${getModelDescription('disabledInput')}
         defaultValue: { summary: 'false' },
       },
     },
+    isBotSpeaking: {
+      control: { type: 'boolean' },
+      description: 'Shows when the bot is speaking',
+      table: {
+        category: 'Properties',
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      }
+    },
+    disabledBotSpeaking: {
+      control: { type: 'boolean' },
+      description: 'Disable the bot speaking',
+      table: {
+        category: 'Properties',
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      }
+    },
   },
   args: {
+    isBotSpeaking: false,
+    disabledBotSpeaking: false,
     placeholder: 'Custom placeholder',
     isLoading: false,
     disabledInput: false,

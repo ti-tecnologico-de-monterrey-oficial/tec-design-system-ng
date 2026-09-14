@@ -17,16 +17,20 @@ import { BmbTranslationsService } from '../../services/translations/translations
 import { BmbFocusElementComponent } from '../bmb-focus-element/bmb-focus-element.component';
 import { BmbLayoutDirective } from '../../directives/bmb-layout/bmb-layout.directive';
 import { BmbLayoutItemDirective } from '../../directives/bmb-layout/bmb-layout-item.directive';
-import { ɵEmptyOutletComponent } from '@angular/router';
 import { BmbVerticalLayoutDirective } from '../../directives/bmb-layout/bmb-vertical-layout/bmb-vertical-layout.directive';
 import { BmbVerticalLayoutItemDirective } from '../../directives/bmb-layout/bmb-vertical-layout/bmb-vertical-layout-item.directive';
 import { BmbSelectorDirective } from '../../directives/old/bmb-selector/bmb-selector.directive';
-
-const MOBILE_TABLET_QUERY = '(max-width: 992px)';
-
-/*
- * TODO: This component is marked as "old" and its decommissioning is planned for future updates.
- */
+import {
+  getActiveStepProgressNumber,
+  getStepProgressIndexes,
+  getStepProgressNumber,
+  STEP_PROGRESS_BAR_MOBILE_TABLET_QUERY,
+  truncateStepProgressLabel,
+} from '../../_shared/logic/components/step-progress-bar';
+import type {
+  BmbStepProgressBarSize,
+  BmbStepProgressBarType,
+} from '../../_shared/types/components/step-progress-bar';
 
 @Component({
   selector: 'bmb-step-progress-bar',
@@ -39,7 +43,6 @@ const MOBILE_TABLET_QUERY = '(max-width: 992px)';
     BmbVerticalLayoutItemDirective,
     BmbSelectorDirective,
     BmbFocusElementComponent,
-    ɵEmptyOutletComponent,
   ],
   templateUrl: './bmb-step-progress-bar.component.html',
   styleUrl: './bmb-step-progress-bar.component.scss',
@@ -49,9 +52,9 @@ const MOBILE_TABLET_QUERY = '(max-width: 992px)';
 export class BmbStepProgressBarComponent implements OnInit {
   activeStep = model<number>(0);
   totalSteps = input<number>(0);
-  size = input<'normal' | 'default' | 'small' | 'medium'>('normal');
+  size = input<BmbStepProgressBarSize>('normal');
   freeze = input<boolean>(false);
-  type = input<'horizontal' | 'vertical' | 'step-panel'>('vertical');
+  type = input<BmbStepProgressBarType>('vertical');
   labelSteps = input<string[]>([]);
   labelComplete = input<string>();
   labelIncomplete = input<string>();
@@ -61,10 +64,12 @@ export class BmbStepProgressBarComponent implements OnInit {
   onStepPanelPress = output<number>();
 
   private destroyRef = inject(DestroyRef);
-  private translateService: BmbTranslationsService = inject(BmbTranslationsService);
+  private translateService: BmbTranslationsService = inject(
+    BmbTranslationsService,
+  );
   private mql =
-    typeof window !== 'undefined'
-      ? window.matchMedia(MOBILE_TABLET_QUERY)
+    typeof window !== 'undefined' && typeof window.matchMedia === 'function'
+      ? window.matchMedia(STEP_PROGRESS_BAR_MOBILE_TABLET_QUERY)
       : null;
   private abort = new AbortController();
 
@@ -83,17 +88,16 @@ export class BmbStepProgressBarComponent implements OnInit {
     if (this.type() === 'step-panel') this.activeStep.set(0);
   }
 
-  private truncate = (s?: string, n = 90) =>
-    s ? (s.length > n ? s.slice(0, n).trimEnd() + '…' : s) : '';
-
   readonly maxChars = computed(() => (this.isMobileOrTablet() ? 70 : 90));
 
   readonly labelStepsTruncated = computed(() =>
-    (this.labelSteps() || []).map((txt) => this.truncate(txt, this.maxChars())),
+    (this.labelSteps() || []).map((text) =>
+      truncateStepProgressLabel(text, this.maxChars()),
+    ),
   );
 
   readonly labelCompleteTruncated = computed(() =>
-    this.truncate(
+    truncateStepProgressLabel(
       this.labelComplete() ||
         this.translateService.translate('step_progress_bar.label_completed'),
       this.maxChars(),
@@ -101,7 +105,7 @@ export class BmbStepProgressBarComponent implements OnInit {
   );
 
   readonly labelIncompleteTruncated = computed(() =>
-    this.truncate(
+    truncateStepProgressLabel(
       this.labelIncomplete() ||
         this.translateService.translate('step_progress_bar.label_pending'),
       this.maxChars(),
@@ -109,7 +113,7 @@ export class BmbStepProgressBarComponent implements OnInit {
   );
 
   get stepsArray(): number[] {
-    return new Array(this.totalSteps() || 0).fill(0).map((_, i) => i);
+    return getStepProgressIndexes(this.totalSteps());
   }
 
   handleStepPressed(index: number): void {
@@ -122,10 +126,10 @@ export class BmbStepProgressBarComponent implements OnInit {
   }
 
   getStepNumber(index: number): number {
-    return index + 1;
+    return getStepProgressNumber(index);
   }
 
   getActiveStepNumber(): number {
-    return this.activeStep() + 1;
+    return getActiveStepProgressNumber(this.activeStep());
   }
 }

@@ -132,6 +132,15 @@
               [tooltipText]="'chat_bar.mic' | translate"
             />
           }
+          @if (isBotSpeaking() && !disabledBotSpeaking()) {
+            <bmb-action-icon
+              class="bmb_chat-bar-mic"
+              icon="no_sound"
+              [iconSize]="32"
+              (buttonClick)="handleDisableBotSpeaking()"
+              [tooltipText]="'chat_bar.no_sound' | translate"
+            />
+          }
         }
         <bmb-action-icon
           class="bmb_chat-bar-send"

@@ -72,6 +72,8 @@ export class BmbChatBarComponent implements OnInit {
 
   currentBot = model<IBotType>();
   isLoading = model<boolean>(false);
+  isBotSpeaking = model<boolean>(false);
+  disabledBotSpeaking = model<boolean>(false);
 
   // eslint-disable-next-line @angular-eslint/no-output-on-prefix
   onSendMessage = output<string>();
@@ -276,5 +278,9 @@ export class BmbChatBarComponent implements OnInit {
 
     const minHeight = 57;
     textarea.style.height = `${Math.max(textarea.scrollHeight, minHeight)}px`;
+  }
+
+  handleDisableBotSpeaking(): void {
+    this.isBotSpeaking.set(false);
   }
 }

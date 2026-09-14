@@ -163,39 +163,35 @@ export class BmbFilterCardComponent implements OnInit {
               originalControl: control,
             };
             break;
-          case 'radial':
-            {
-              const controlName = this.filterForm.get(control.name);
-              if (controlName) {
-                controlName.setValue(
-                  control.checked ? control.label : controlName.value,
-                );
-                const storedValue = this.storedValues[control.name];
-                this.storedValues[control.name] = {
-                  ...storedValue,
-                  checked: control.checked || storedValue.checked,
-                  value: control.checked
-                    ? (control.value ?? control.label)
-                    : storedValue.value,
-                  originalControl: [...storedValue.originalControl, control],
-                };
-              } else {
-                this.filterForm.addControl(
-                  control.name,
-                  new FormControl<string>(control.checked ? control.label : ''),
-                );
-                this.storedValues[control.name] = {
-                  ...control,
-                  checked: control.checked ?? false,
-                  value: control.checked
-                    ? (control.value ?? control.label)
-                    : '',
-                  originalControl: [control],
-                };
-              }
-              break;
+          case 'radial': {
+            const controlName = this.filterForm.get(control.name);
+            if (controlName) {
+              controlName.setValue(
+                control.checked ? control.label : controlName.value,
+              );
+              const storedValue = this.storedValues[control.name];
+              this.storedValues[control.name] = {
+                ...storedValue,
+                checked: control.checked || storedValue.checked,
+                value: control.checked
+                  ? (control.value ?? control.label)
+                  : storedValue.value,
+                originalControl: [...storedValue.originalControl, control],
+              };
+            } else {
+              this.filterForm.addControl(
+                control.name,
+                new FormControl<string>(control.checked ? control.label : ''),
+              );
+              this.storedValues[control.name] = {
+                ...control,
+                checked: control.checked ?? false,
+                value: control.checked ? (control.value ?? control.label) : '',
+                originalControl: [control],
+              };
             }
             break;
+          }
           case 'dropdown':
             this.filterForm.addControl(
               control.name,

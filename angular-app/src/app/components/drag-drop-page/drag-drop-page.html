@@ -1,0 +1,22 @@
+<header class="page-header">
+  <p class="eyebrow">Componente Bamboo</p>
+  <h1>BmbDragDrop</h1>
+  <p>Mueve elementos entre listas o usa los controles para probar sus funciones.</p>
+</header>
+
+<section class="playground" aria-labelledby="drag-drop-properties">
+  <aside class="controls">
+    <h2 id="drag-drop-properties">Propiedades y funciones</h2>
+
+    <output><strong>Lista izquierda:</strong> {{ dragDrop?.leftItems()?.length ?? 0 }} elementos</output>
+    <output><strong>Lista derecha:</strong> {{ dragDrop?.rightItems()?.length ?? 0 }} elementos</output>
+
+    <button type="button" (click)="moveItemToLeft()">Mover primero a la izquierda</button>
+    <button type="button" (click)="moveItemToRight()">Mover primero a la derecha</button>
+    <button type="button" (click)="resetItems()">Restablecer elementos</button>
+  </aside>
+
+  <div class="preview">
+    <bmb-drag-drop />
+  </div>
+</section>

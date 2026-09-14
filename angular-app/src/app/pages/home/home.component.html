@@ -122,12 +122,57 @@
                       valueLink="/pages/notification-card"
                     />
                   </ng-template>
+
+                  <ng-template #actionMenuItem>
+                    <bmb-item-hyperlink
+                      icon="title"
+                      label="Simple header"
+                      value="page"
+                      valueLink="/pages/simple-header"
+                    />
+                  </ng-template>
+
                   <ng-template #actionMenuItem>
                     <bmb-item-hyperlink
                       icon="notification_important"
                       label="Push notification"
                       value="page"
                       valueLink="/pages/push-notification"
+                    />
+                  </ng-template>
+
+                  <ng-template #actionMenuItem>
+                    <bmb-item-hyperlink
+                      icon="swap_vert"
+                      label="Drag y Drop"
+                      value="page"
+                      valueLink="/page/drag-drop"
+                    />
+                  </ng-template>
+                  <ng-template #actionMenuItem>
+                    <bmb-item-hyperlink
+                      icon="school"
+                      label="Student activity card"
+                      value="page"
+                      valueLink="/pages/student-activity-card"
+                    />
+                  </ng-template>
+
+                  <ng-template #actionMenuItem>
+                    <bmb-item-hyperlink
+                      icon="more_vert"
+                      label="# Dropdown menu"
+                      value="page"
+                      valueLink="/page/dropdown-menu"
+                    />
+                  </ng-template>
+
+                  <ng-template #actionMenuItem>
+                    <bmb-item-hyperlink
+                      icon="timeline"
+                      label="Timestamp detail"
+                      value="page"
+                      valueLink="/pages/timestamp-detail"
                     />
                   </ng-template>
                 </bmb-action-menu>
@@ -147,14 +192,6 @@
               </ng-template>
               <ng-template #bmbAccordionContent>
                 <bmb-action-menu [showHeader]="false">
-                  <ng-template #actionMenuItem>
-                    <bmb-item-hyperlink
-                      icon="info"
-                      label="Test"
-                      value="page"
-                      valueLink="/home"
-                    />
-                  </ng-template>
                 </bmb-action-menu>
               </ng-template>
             </bmb-accordion>
@@ -171,7 +208,7 @@
                 <h2>Inputs</h2>
               </ng-template>
               <ng-template #bmbAccordionContent>
-                <bmb-action-menu [showHeader]="false">
+                <bmb-action-menu componentTitle="Inputs" [showHeader]="false">
                   <ng-template #actionMenuItem>
                     <bmb-item-hyperlink
                       icon="date_range"
@@ -184,6 +221,22 @@
                       label="AI chat bar"
                       value="page"
                       valueLink="/pages/ai-chat-bar"
+                    />
+                  </ng-template>
+                  <ng-template #actionMenuItem>
+                    <bmb-item-hyperlink
+                      icon="edit_note"
+                      label="Input"
+                      value="page"
+                      valueLink="/pages/input"
+                    />
+                  </ng-template>
+                  <ng-template #actionMenuItem>
+                    <bmb-item-hyperlink
+                      icon="toggle_on"
+                      label="Switch"
+                      value="page"
+                      valueLink="/pages/switch"
                     />
                   </ng-template>
                 </bmb-action-menu>
@@ -203,14 +256,6 @@
               </ng-template>
               <ng-template #bmbAccordionContent>
                 <bmb-action-menu [showHeader]="false">
-                  <ng-template #actionMenuItem>
-                    <bmb-item-hyperlink
-                      icon="info"
-                      label="Test"
-                      value="page"
-                      valueLink="/home"
-                    />
-                  </ng-template>
                 </bmb-action-menu>
               </ng-template>
             </bmb-accordion>
@@ -227,7 +272,10 @@
                 <h2>Status indicators</h2>
               </ng-template>
               <ng-template #bmbAccordionContent>
-                <bmb-action-menu [showHeader]="false">
+                <bmb-action-menu
+                  componentTitle="Status indicators"
+                  [showHeader]="false"
+                >
                   <ng-template #actionMenuItem>
                     <bmb-item-hyperlink
                       icon="center_focus_strong"
@@ -252,6 +300,22 @@
                       valueLink="/pages/progress-circle"
                     />
                   </ng-template>
+                  <ng-template #actionMenuItem>
+                    <bmb-item-hyperlink
+                      icon="info"
+                      label="Toast"
+                      value="page"
+                      valueLink="/pages/toast"
+                    />
+                  </ng-template>
+                  <ng-template #actionMenuItem>
+                    <bmb-item-hyperlink
+                      icon="account_balance_wallet"
+                      label="Balance overview"
+                      value="page"
+                      valueLink="/pages/balance-overview"
+                    />
+                  </ng-template>
                 </bmb-action-menu>
               </ng-template>
             </bmb-accordion>
@@ -268,13 +332,24 @@
                 <h2>Visual labels</h2>
               </ng-template>
               <ng-template #bmbAccordionContent>
-                <bmb-action-menu [showHeader]="false">
+                <bmb-action-menu
+                  componentTitle="Visual labels"
+                  [showHeader]="false"
+                >
                   <ng-template #actionMenuItem>
                     <bmb-item-hyperlink
-                      icon="info"
-                      label="Test"
+                      icon="steppers"
+                      label="Step progress bar"
                       value="page"
-                      valueLink="/home"
+                      valueLink="/pages/step-progress-bar"
+                    />
+                  </ng-template>
+                  <ng-template #actionMenuItem>
+                    <bmb-item-hyperlink
+                      icon="arrow_forward"
+                      label="Text link"
+                      value="page"
+                      valueLink="/pages/text-link"
                     />
                   </ng-template>
                 </bmb-action-menu>

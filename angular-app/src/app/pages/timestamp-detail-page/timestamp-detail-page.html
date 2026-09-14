@@ -1,0 +1,79 @@
+<header class="page-header">
+  <p class="eyebrow">Componente Bamboo</p>
+  <h1>BmbTimestreamDetail</h1>
+  <p>Valida eventos, fechas, idioma, selección y la variante compacta.</p>
+</header>
+
+<section class="playground" aria-labelledby="timestamp-detail-properties">
+  <aside class="controls">
+    <h2 id="timestamp-detail-properties">Propiedades</h2>
+
+    <label for="timestamp-lang">lang</label>
+    <select
+      id="timestamp-lang"
+      [value]="lang()"
+      (change)="lang.set($any($event.target).value)"
+    >
+      @for (language of languages; track language) {
+      <option [value]="language">{{ language }}</option>
+      }
+    </select>
+
+    <label for="timestamp-now">now</label>
+    <input
+      id="timestamp-now"
+      type="date"
+      [value]="now()"
+      (input)="now.set($any($event.target).value)"
+    />
+
+    <label for="timestamp-selected-date">selectedDate</label>
+    <input
+      id="timestamp-selected-date"
+      type="date"
+      [value]="selectedDateValue()"
+      (input)="selectedDateValue.set($any($event.target).value)"
+    />
+
+    <label for="timestamp-title">orderedEvents · title</label>
+    <input
+      id="timestamp-title"
+      [value]="eventTitle()"
+      (input)="eventTitle.set($any($event.target).value)"
+    />
+
+    <label for="timestamp-description">orderedEvents · short_description</label>
+    <textarea
+      id="timestamp-description"
+      [value]="shortDescription()"
+      (input)="shortDescription.set($any($event.target).value)"
+    ></textarea>
+
+    <label class="toggle"
+      ><input
+        type="checkbox"
+        [checked]="selected()"
+        (change)="selected.set($any($event.target).checked)"
+      />selected event</label
+    >
+    <label class="toggle"
+      ><input
+        type="checkbox"
+        [checked]="isMicro()"
+        (change)="isMicro.set($any($event.target).checked)"
+      />isMicro</label
+    >
+    <output>Último evento: {{ lastEvent() }}</output>
+  </aside>
+
+  <div class="preview">
+    <bmb-timestream-detail
+      [lang]="lang()"
+      [now]="nowDate()"
+      [selectedDate]="selectedDate()"
+      [orderedEvents]="orderedEvents()"
+      [isMicro]="isMicro()"
+      (changeSelectedEvent)="recordEvent($event)"
+    />
+  </div>
+</section>
