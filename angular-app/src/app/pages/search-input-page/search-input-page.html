@@ -1,0 +1,38 @@
+<header class="page-header">
+  <p class="eyebrow">Componente Bamboo</p>
+  <h1>BmbSearchInput</h1>
+  <p>Valida el filtrado local, el estado de carga y los eventos.</p>
+</header>
+
+<section class="playground" aria-labelledby="search-input-properties">
+  <aside class="controls">
+    <h2 id="search-input-properties">Propiedades</h2>
+
+    <label for="si-placeholder">placeholder</label>
+    <input
+      id="si-placeholder"
+      [value]="placeholder()"
+      (input)="placeholder.set($any($event.target).value)"
+    />
+
+    <label class="toggle"
+      ><input
+        type="checkbox"
+        [checked]="isLoading()"
+        (change)="isLoading.set($any($event.target).checked)"
+      />isLoading</label
+    >
+
+    <p>Último evento: {{ lastEvent() }}</p>
+  </aside>
+
+  <div class="preview">
+    <bmb-search-input
+      [data]="data()"
+      [placeholder]="placeholder()"
+      [isLoading]="isLoading()"
+      (onValueChange)="handleValueChange($event)"
+      (onClearField)="handleClearField()"
+    />
+  </div>
+</section>
