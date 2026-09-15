@@ -1,395 +1,22 @@
-<main>
-  <h1>Informative</h1>
+import { ChangeDetectionStrategy, Component, inject, input } from '@angular/core';
+import { BreakpointObserver } from '@angular/cdk/layout';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { map } from 'rxjs';
+import type { StoryObj } from '@storybook/angular';
+import { BmbCardComponent, BmbCardContentComponent } from '../bmb-card.component';
+import { BmbBadgeComponent } from '../../bmb-badge/bmb-badge.component';
+import { BmbImageComponent } from '../../bmb-image/bmb-image.component';
+import { BmbTitleComponent } from '../../bmb-title/bmb-title.component';
+import { BmbFocusElementComponent } from '../../bmb-focus-element/bmb-focus-element.component';
+import { BmbDividerComponent } from '../../bmb-divider/bmb-divider.component';
+import { BmbButtonDirective } from '../../../directives/bmb-button/button.directive';
+import { BmbLayoutDirective } from '../../../directives/bmb-layout/bmb-layout.directive';
+import { BmbLayoutItemDirective } from '../../../directives/bmb-layout/bmb-layout-item.directive';
+import { BmbVerticalLayoutDirective } from '../../../directives/bmb-layout/bmb-vertical-layout/bmb-vertical-layout.directive';
+import { BmbVerticalLayoutItemDirective } from '../../../directives/bmb-layout/bmb-vertical-layout/bmb-vertical-layout-item.directive';
 
-  <section>
-    <bmb-card type="normal" borderRadius="l" margin="none">
-      <bmb-card-content padding="l">
-        <div
-          bmbLayout
-          margin="none"
-          gapSize="xl"
-          alignItems="stretch"
-          [flow]="{ m: 'row', l: 'reverse', xl: 'reverse' }"
-        >
-          <bmb-image
-            bmbLayoutItem
-            [colSm]="4"
-            [colLg]="5"
-            [colXl]="5"
-            [src]="informativeImage"
-            alt="Edificio de Rectoría del Tecnológico de Monterrey"
-            ratio="16 / 9"
-            borderRadius="m"
-            objectFit="cover"
-            [minHeight]="{ s: '14rem', l: '18rem' }"
-          />
-
-          <div bmbLayoutItem [colSm]="4" [colLg]="7" [colXl]="7">
-            <div
-              bmbVerticalLayout
-              margin="none"
-              gapSize="m"
-              justify="spaceBetween"
-              alignItems="stretch"
-              layoutHeight="100%"
-            >
-              <div bmbVerticalLayoutItem>
-                <div
-                  bmbLayout
-                  margin="none"
-                  gapSize="s"
-                  alignItems="center"
-                  [avoidRowWrap]="true"
-                >
-                  <bmb-tooltip
-                    bmbLayoutItem
-                    icon="info"
-                    text="Additional information"
-                    componentTitle="Information"
-                    [size]="20"
-                  />
-                  <bmb-badge
-                    bmbLayoutItem
-                    text="Badge"
-                    appearance="creative-violet"
-                  />
-                </div>
-              </div>
-
-              <bmb-title
-                bmbVerticalLayoutItem
-                componentTitle="Title"
-                titleSize="10"
-                titleFontWeight="700"
-                subtitle="Complementary text"
-                subtitleSize="6"
-                subtitleFontWeight="400"
-              />
-
-              <hr bmbVerticalLayoutItem />
-
-              <p bmbVerticalLayoutItem>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, Lorem
-                ipsum dolor sit amet, consectetur adipiscing elit. Fusce
-                volutpat rhoncus leo vel pharetra. Donec feugiat enim pharetra
-                ipsum euismod, sed maximus justo pharetra.
-              </p>
-
-              <div bmbVerticalLayoutItem>
-                <div bmbLayout margin="none" gapSize="l" alignItems="center">
-                  <div bmbLayoutItem [colSm]="4" [colLg]="2" [colXl]="2">
-                    <button
-                      bmbButton
-                      appearance="secondary-outlined"
-                      size="large"
-                      (click)="handleButtonClick($event)"
-                    >
-                      Button
-                    </button>
-                  </div>
-                  <div bmbLayoutItem [colSm]="4" [colLg]="4" [colXl]="4">
-                    <button
-                      bmbButton
-                      appearance="secondary-outlined"
-                      size="large"
-                      (click)="handleButtonClick($event)"
-                    >
-                      Secondary button
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </bmb-card-content>
-    </bmb-card>
-  </section>
-
-  <h2>Flat</h2>
-
-  <section>
-    <div bmbLayout margin="none" gapSize="m" alignItems="stretch">
-      <div bmbLayoutItem [colSm]="4" [colLg]="2" [colXl]="2">
-        <bmb-card type="normal" borderRadius="m" margin="none">
-          <bmb-card-content padding="l">
-            <div
-              bmbLayout
-              margin="none"
-              gapSize="m"
-              justify="center"
-              alignItems="center"
-            >
-              <div bmbLayoutItem [colSm]="1" [colLg]="12" [colXl]="12">
-                <div
-                  bmbLayout
-                  margin="none"
-                  gapSize="none"
-                  justify="center"
-                  alignItems="center"
-                >
-                  <bmb-box-icon
-                    iconName="crop_16_9"
-                    boxSize="regular"
-                    boxShape="circle"
-                    boxColor="black-primary"
-                  />
-                </div>
-              </div>
-
-              <bmb-title
-                bmbLayoutItem
-                [colSm]="3"
-                [colLg]="12"
-                [colXl]="12"
-                componentTitle="Title"
-                titleSize="5"
-                titleFontWeight="500"
-                subtitle="Complementary text"
-                subtitleSize="4"
-                subtitleFontWeight="400"
-              />
-            </div>
-          </bmb-card-content>
-        </bmb-card>
-      </div>
-    </div>
-  </section>
-
-  <h2>Actions</h2>
-
-  <section>
-    <div bmbLayout margin="none" gapSize="m" alignItems="stretch">
-      <div bmbLayoutItem [colSm]="4" [colLg]="3" [colXl]="3">
-        <bmb-card type="normal" borderRadius="m" margin="none">
-          <bmb-card-content padding="l">
-            <div
-              bmbLayout
-              margin="none"
-              gapSize="m"
-              justify="center"
-              alignItems="center"
-            >
-              <div bmbLayoutItem [colSm]="1" [colLg]="12" [colXl]="12">
-                <div
-                  bmbLayout
-                  margin="none"
-                  gapSize="none"
-                  justify="center"
-                  alignItems="center"
-                >
-                  <bmb-box-icon
-                    iconName="home"
-                    boxSize="regular"
-                    boxShape="circle"
-                    boxColor="black-primary"
-                  />
-                </div>
-              </div>
-
-              <bmb-title
-                bmbLayoutItem
-                [colSm]="1"
-                [colLg]="12"
-                [colXl]="12"
-                componentTitle="Title"
-                titleSize="5"
-                titleFontWeight="500"
-                subtitle="Text content"
-                subtitleSize="4"
-                subtitleFontWeight="400"
-              />
-
-              <div bmbLayoutItem [colSm]="2" [colLg]="12" [colXl]="12">
-                <button
-                  bmbButton
-                  appearance="secondary-outlined"
-                  size="large"
-                  (click)="handleButtonClick($event)"
-                >
-                  Button
-                </button>
-              </div>
-            </div>
-          </bmb-card-content>
-        </bmb-card>
-      </div>
-    </div>
-  </section>
-
-  <h2>Home</h2>
-
-  <section>
-    <div bmbLayout margin="none" gapSize="m" alignItems="stretch">
-      <div bmbLayoutItem [colSm]="4" [colLg]="4" [colXl]="4">
-        <bmb-card
-          type="normal"
-          borderRadius="l"
-          margin="none"
-          boxShadowStyle="box-shadow-3"
-        >
-          <bmb-card-header padding="l">Title</bmb-card-header>
-          <bmb-card-content padding="l">
-            <div
-              bmbVerticalLayout
-              margin="none"
-              gapSize="l"
-              alignItems="stretch"
-              layoutHeight="34rem"
-            >
-              <div bmbVerticalLayoutItem>
-                <div
-                  bmbLayout
-                  margin="none"
-                  gapSize="m"
-                  justify="spaceBetween"
-                  alignItems="center"
-                  [avoidRowWrap]="true"
-                >
-                  <span bmbLayoutItem>Lorem ipsum</span>
-                  <span bmbLayoutItem>0 / 00</span>
-                </div>
-              </div>
-
-              <div bmbVerticalLayoutItem [rowGrow]="1">
-                <div
-                  bmbVerticalLayout
-                  margin="none"
-                  gapSize="l"
-                  alignItems="stretch"
-                >
-                  @for (file of [1, 2, 3, 4, 5]; track file) {
-                    <div bmbVerticalLayoutItem>
-                      <bmb-card type="normal" borderRadius="m" margin="none">
-                        <bmb-card-content padding="l">
-                          <div
-                            bmbLayout
-                            margin="none"
-                            gapSize="m"
-                            alignItems="center"
-                            [avoidRowWrap]="true"
-                          >
-                            <bmb-icon
-                              bmbLayoutItem
-                              icon="image"
-                              [size]="24"
-                              alt="Archivo de imagen"
-                            />
-
-                            <bmb-title
-                              bmbLayoutItem
-                              [isDynamicItem]="true"
-                              [colGrow]="1"
-                              componentTitle="Nombre_Archivo.png"
-                              titleSize="5"
-                              titleFontWeight="500"
-                              subtitle="Descripción del documento agregado"
-                              subtitleSize="4"
-                              subtitleFontWeight="400"
-                            />
-
-                            <bmb-icon
-                              bmbLayoutItem
-                              icon="file_open"
-                              [size]="24"
-                              alt="Abrir archivo"
-                            />
-                          </div>
-                        </bmb-card-content>
-                      </bmb-card>
-                    </div>
-                  }
-                </div>
-              </div>
-            </div>
-          </bmb-card-content>
-        </bmb-card>
-      </div>
-    </div>
-  </section>
-
-  <h2>Empty</h2>
-
-  <section>
-    <div bmbLayout margin="none" gapSize="m" alignItems="stretch">
-      <div bmbLayoutItem [colSm]="4" [colLg]="4" [colXl]="4">
-        <bmb-card
-          type="normal"
-          borderRadius="l"
-          margin="none"
-          boxShadowStyle="box-shadow-3"
-        >
-          <bmb-card-header padding="l">Title</bmb-card-header>
-
-          <bmb-card-content padding="l">
-            <div
-              bmbVerticalLayout
-              margin="none"
-              gapSize="l"
-              alignItems="stretch"
-              layoutHeight="36rem"
-            >
-              <div bmbVerticalLayoutItem>
-                <div
-                  bmbLayout
-                  margin="none"
-                  gapSize="m"
-                  justify="spaceBetween"
-                  alignItems="center"
-                  [avoidRowWrap]="true"
-                >
-                  <span bmbLayoutItem>Lorem ipsum</span>
-                  <span bmbLayoutItem>0 / 10</span>
-                </div>
-              </div>
-
-              <div bmbVerticalLayoutItem [rowGrow]="1" [disableScroll]="true">
-                <div
-                  bmbVerticalLayout
-                  margin="none"
-                  gapSize="xl"
-                  justify="center"
-                  alignItems="center"
-                  layoutHeight="100%"
-                >
-                  <bmb-icon
-                    bmbVerticalLayoutItem
-                    icon="thumb_up"
-                    [size]="80"
-                    alt="Sin elementos"
-                  />
-
-                  <bmb-title
-                    bmbVerticalLayoutItem
-                    componentTitle="Title"
-                    titleSize="8"
-                    titleFontWeight="700"
-                    subtitle="Lorem ipsum dolor sit amet, consectetur adipiscing elit,"
-                    subtitleSize="4"
-                    subtitleFontWeight="400"
-                  />
-
-                  <div bmbVerticalLayoutItem [isFullWidth]="false">
-                    <button
-                      bmbButton
-                      appearance="primary"
-                      size="large"
-                      (click)="handleButtonClick($event)"
-                    >
-                      Button
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </bmb-card-content>
-        </bmb-card>
-      </div>
-    </div>
-  </section>
-  <br />
-
-  <section aria-labelledby="informative-media-detail-vertical">
+export const CARD_EXAMPLES = {
+  'informative-media-detail-vertical': `<section aria-labelledby="informative-media-detail-vertical">
     <h2 id="informative-media-detail-vertical">Informative Media Detail Vertical</h2>
 
     <div bmbLayout margin="none" gapSize="none" alignItems="start">
@@ -446,9 +73,8 @@
         </bmb-card>
       </div>
     </div>
-  </section>
-
-  <section aria-labelledby="informative-media-detail-horizontal">
+  </section>`,
+  'informative-media-detail-horizontal': `<section aria-labelledby="informative-media-detail-horizontal">
     <h2 id="informative-media-detail-horizontal">Informative Media Detail Horizontal</h2>
     <div bmbLayout margin="none" gapSize="none" alignItems="start">
       <div bmbLayoutItem [colSm]="4" [colLg]="6" [colXl]="6">
@@ -501,8 +127,8 @@
         </bmb-card>
       </div>
     </div>
-  </section>
-  <section aria-labelledby="informative-media-simple">
+  </section>`,
+  'informative-media-simple': `<section aria-labelledby="informative-media-simple">
     <h2 id="informative-media-simple">Informative Media Simple</h2>
 
     <div bmbLayout margin="none" gapSize="none" alignItems="start">
@@ -553,8 +179,8 @@
         </bmb-card>
       </div>
     </div>
-  </section>
-  <section aria-labelledby="informative-media-simple-horizontal">
+  </section>`,
+  'informative-media-simple-horizontal': `<section aria-labelledby="informative-media-simple-horizontal">
     <h2 id="informative-media-simple-horizontal">Informative Media Simple Horizontal</h2>
 
     <div bmbLayout margin="none" gapSize="none" alignItems="start">
@@ -639,8 +265,8 @@
         </bmb-card>
       </div>
     </div>
-  </section>
-  <section aria-labelledby="informative-focus-element">
+  </section>`,
+  'informative-focus-element': `<section aria-labelledby="informative-focus-element">
     <h2 id="informative-focus-element">Informative FocusElement</h2>
 
     <div bmbLayout margin="none" gapSize="none" alignItems="start">
@@ -669,8 +295,8 @@
         </bmb-card>
       </div>
     </div>
-  </section>
-  <section aria-labelledby="informative-item-list">
+  </section>`,
+  'informative-item-list': `<section aria-labelledby="informative-item-list">
     <h2 id="informative-item-list">Informative ItemList</h2>
 
     <div bmbVerticalLayout margin="none" gapSize="m" alignItems="stretch" role="list">
@@ -761,5 +387,64 @@
         </div>
       }
     </div>
-  </section>
-</main>
+  </section>`,
+} as const;
+
+export type CardExampleVariant = keyof typeof CARD_EXAMPLES;
+
+// Storybook-only host: keeps examples independent of angular-app.
+@Component({
+  selector: 'bmb-card-example',
+  standalone: true,
+  imports: [BmbCardComponent, BmbCardContentComponent, BmbBadgeComponent,
+    BmbImageComponent, BmbTitleComponent, BmbFocusElementComponent,
+    BmbDividerComponent, BmbButtonDirective, BmbLayoutDirective,
+    BmbLayoutItemDirective, BmbVerticalLayoutDirective, BmbVerticalLayoutItemDirective],
+  template: `@switch (variant()) {
+  @case ('informative-media-detail-vertical') { ${CARD_EXAMPLES['informative-media-detail-vertical']} }
+  @case ('informative-media-detail-horizontal') { ${CARD_EXAMPLES['informative-media-detail-horizontal']} }
+  @case ('informative-media-simple') { ${CARD_EXAMPLES['informative-media-simple']} }
+  @case ('informative-media-simple-horizontal') { ${CARD_EXAMPLES['informative-media-simple-horizontal']} }
+  @case ('informative-focus-element') { ${CARD_EXAMPLES['informative-focus-element']} }
+  @case ('informative-item-list') { ${CARD_EXAMPLES['informative-item-list']} }
+}`,
+  styleUrl: './bmb-card-examples.story.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+})
+export class BmbCardExampleComponent {
+  variant = input<CardExampleVariant>('informative-media-detail-vertical');
+  readonly isItemListMobile = toSignal(
+    inject(BreakpointObserver)
+      .observe('(width < 1001px)')
+      .pipe(map((state) => state.matches)),
+    { initialValue: false },
+  );
+
+  readonly informativeItems = [
+    { id: 1, stackedMobileActions: true, showSubtitle: true, showComplement: true },
+    { id: 2, stackedMobileActions: true, showSubtitle: true, showComplement: true },
+    { id: 3, stackedMobileActions: false, showSubtitle: true, showComplement: true },
+    { id: 4, stackedMobileActions: false, showSubtitle: true, showComplement: true },
+    { id: 5, stackedMobileActions: false, showSubtitle: true, showComplement: true },
+    { id: 6, stackedMobileActions: false, showSubtitle: false, showComplement: false },
+  ];
+
+  readonly informativeImage =
+    'https://conecta.tec.mx/sites/default/files/inline-images/tec-de-monterrey.webp';
+
+  handleButtonClick(event: MouseEvent): void {
+    event.stopPropagation();
+  }
+}
+
+export function cardExampleStory(variant: CardExampleVariant, mobile = false): StoryObj<BmbCardExampleComponent> {
+  return {
+    args: { variant },
+    render: (args) => ({ props: args, template: '<bmb-card-example [variant]="variant" />' }),
+    globals: { viewport: { value: mobile ? 'small' : 'extra', isRotated: false } },
+    parameters: {
+      layout: 'padded',
+      docs: { source: { code: CARD_EXAMPLES[variant], language: 'html' } },
+    },
+  };
+}

@@ -6,6 +6,12 @@ import * as flatStory from './templates/bmb-card-flat.stories';
 import * as actionsStory from './templates/bmb-card-actions.stories';
 import * as homeStory from './templates/bmb-card-home.stories';
 import * as emptyStory from './templates/bmb-card-empty.stories';
+import * as mediaDetailVerticalStory from './templates/bmb-card-informative-media-detail-vertical.stories';
+import * as mediaDetailHorizontalStory from './templates/bmb-card-informative-media-detail-horizontal.stories';
+import * as mediaSimpleStory from './templates/bmb-card-informative-media-simple.stories';
+import * as mediaSimpleHorizontalStory from './templates/bmb-card-informative-media-simple-horizontal.stories';
+import * as focusElementStory from './templates/bmb-card-informative-focus-element.stories';
+import * as itemListStory from './templates/bmb-card-informative-item-list.stories';
 import { ListTemplate } from '@docs/components/ListTemplate.mdx';
 import { getFormatName } from '@docs/utils/utils';
 
@@ -18,8 +24,18 @@ import { getFormatName } from '@docs/utils/utils';
     actionsStory,
     homeStory,
     emptyStory,
+    mediaDetailVerticalStory,
+    mediaDetailHorizontalStory,
+    mediaSimpleStory,
+    mediaSimpleHorizontalStory,
+    focusElementStory,
+    itemListStory,
   ]}
   context={{
+    ...Object.fromEntries([mediaDetailVerticalStory, mediaDetailHorizontalStory, mediaSimpleStory, mediaSimpleHorizontalStory, focusElementStory, itemListStory].map((story) => [
+      getFormatName(story.default.title, /(\/)|( )/g, '_').toLocaleLowerCase(),
+      { showStories: true, showControls: false },
+    ])),
     [getFormatName(
       mainStory.default.title,
       /(\/)|( )/g,
