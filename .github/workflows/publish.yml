@@ -154,6 +154,10 @@ jobs:
 
       - name: Publish to NPM
         run: |
-          npm publish ./dist/ui-angular --tag a${{ env.ANGULAR_VERSION }} --access public
+          npm publish ./dist/ui-angular --tag latest --access public
+
+          PACKAGE_NAME=$(node -p "require('./dist/ui-angular/package.json').name")
+          PACKAGE_VERSION=$(node -p "require('./dist/ui-angular/package.json').version")
+          npm dist-tag add "${PACKAGE_NAME}@${PACKAGE_VERSION}" a22
         env:
           NPM_CONFIG_PROVENANCE: false
