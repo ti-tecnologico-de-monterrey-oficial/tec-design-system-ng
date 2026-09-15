@@ -32,7 +32,7 @@
       </section>
     </span>
   </button>
-  @if (isService()) {
+  @if (isService() && showBookmark()) {
     <div bmbLayoutItem [isDynamicItem]="true">
       <bmb-bookmark
         [isActive]="isBookmarkActive()"

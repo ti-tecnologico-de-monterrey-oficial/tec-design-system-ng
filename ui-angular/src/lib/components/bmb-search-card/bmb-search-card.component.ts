@@ -29,6 +29,7 @@ export interface IBmbSearchCardItemResult {
   backgroundColorIcon?: IBmbInteractiveIconAppearance;
   type: 'person' | 'service';
   isBookmarkActive?: boolean;
+  showBookmark?: boolean;
   [key: string]: any;
 }
 
