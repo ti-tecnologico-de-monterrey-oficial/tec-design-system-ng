@@ -34,7 +34,7 @@ export const CARD_EXAMPLES = {
               />
 
               <div bmbVerticalLayoutItem>
-                <div bmbLayout margin="none" gapSize="s" alignItems="center">
+                <div bmbLayout margin="none" gapSize="s" alignItems="center" [horizontalScroll]="true" role="group" aria-label="Etiquetas" tabindex="0">
                   <bmb-badge bmbLayoutItem text="Badge" appearance="creative-use-violet" />
                   <bmb-badge bmbLayoutItem text="Badge" appearance="creative-use-hibiscus" />
                 </div>
@@ -93,7 +93,7 @@ export const CARD_EXAMPLES = {
                 <bmb-card-content padding="m">
                   <div bmbVerticalLayout margin="none" gapSize="m" alignItems="stretch" layoutHeight="100%">
                     <div bmbVerticalLayoutItem>
-                      <div bmbLayout margin="none" gapSize="s" alignItems="center">
+                      <div bmbLayout margin="none" gapSize="s" alignItems="center" [horizontalScroll]="true" role="group" aria-label="Etiquetas" tabindex="0">
                         <bmb-badge bmbLayoutItem text="Badge" appearance="creative-use-violet" />
                         <bmb-badge bmbLayoutItem text="Badge" appearance="creative-use-hibiscus" />
                       </div>
@@ -154,9 +154,9 @@ export const CARD_EXAMPLES = {
               <p bmbVerticalLayoutItem>Lorem ipsum dolor</p>
 
               <div bmbVerticalLayoutItem>
-                <div bmbLayout margin="none" gapSize="s" justify="spaceBetween" alignItems="center">
-                  <div bmbLayoutItem>
-                    <div bmbLayout margin="none" gapSize="s" alignItems="center">
+                <div bmbLayout margin="none" gapSize="s" justify="spaceBetween" alignItems="center" [avoidRowWrap]="true">
+                  <div bmbLayoutItem [isDynamicItem]="true" [colGrow]="1">
+                    <div bmbLayout margin="none" gapSize="s" alignItems="center" [horizontalScroll]="true" role="group" aria-label="Etiquetas" tabindex="0">
                       <bmb-badge bmbLayoutItem text="Badge" appearance="creative-use-violet" />
                       <bmb-badge bmbLayoutItem text="Badge" appearance="creative-use-hibiscus" />
                     </div>
@@ -191,14 +191,16 @@ export const CARD_EXAMPLES = {
               <div bmbVerticalLayoutItem>
                 <div bmbLayout margin="none" gapSize="m" alignItems="stretch" [avoidRowWrap]="true">
                   <div bmbLayoutItem>
-                    <bmb-image
-                      [src]="informativeImage"
-                      alt="Edificio del Tecnológico de Monterrey"
-                      width="5rem"
-                      ratio="1 / 1"
-                      borderRadius="m"
-                      objectFit="cover"
-                    />
+                    <div bmbVerticalLayout margin="none" gapSize="none" layoutHeight="100%">
+                      <bmb-image
+                        [src]="informativeImage"
+                        alt="Edificio del Tecnológico de Monterrey"
+                        width="5rem"
+                        ratio="1 / 1"
+                        borderRadius="m"
+                        objectFit="cover"
+                      />
+                    </div>
                   </div>
                   <div bmbLayoutItem [isDynamicItem]="true" [colGrow]="1">
                     <div bmbVerticalLayout margin="none" gapSize="s" justify="spaceBetween" alignItems="stretch" layoutHeight="100%">
@@ -218,7 +220,7 @@ export const CARD_EXAMPLES = {
                         </div>
                       </div>
                       <div bmbVerticalLayoutItem>
-                        <div bmbLayout margin="none" gapSize="s" alignItems="center" [avoidRowWrap]="true" role="group" aria-label="Etiquetas" tabindex="0">
+                        <div bmbLayout margin="none" gapSize="s" alignItems="center" [avoidRowWrap]="true" [horizontalScroll]="true" role="group" aria-label="Etiquetas" tabindex="0">
                           <bmb-badge bmbLayoutItem text="semantic-info-event" appearance="semantic-info-event" />
                           <bmb-badge bmbLayoutItem text="semantic-success" appearance="semantic-success" />
                         </div>

@@ -4,21 +4,7 @@
 }
 
 // Reach the image inside Bamboo while keeping the override local to this template.
-:host ::ng-deep [aria-labelledby='informative-media-detail-horizontal'] bmb-image .bmb_image-figure-image {
+:host ::ng-deep [aria-labelledby='informative-media-detail-horizontal'] bmb-image .bmb_image-figure-image,
+:host ::ng-deep [aria-labelledby='informative-media-simple-horizontal'] bmb-image .bmb_image-figure-image {
   height: 100%;
-}
-
-[aria-labelledby='informative-media-simple-horizontal'] {
-  [bmbLayoutItem] {
-    min-width: 0;
-  }
-
-  [aria-label='Etiquetas'] {
-    overflow-x: auto;
-
-    bmb-badge {
-      flex-shrink: 0;
-      white-space: nowrap;
-    }
-  }
 }
