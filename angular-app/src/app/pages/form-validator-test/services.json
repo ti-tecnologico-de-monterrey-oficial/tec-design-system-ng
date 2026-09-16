@@ -76,7 +76,7 @@
   },
   {
     "id": 9,
-    "isBookmarkActive": false,
+    "showBookmark": false,
     "country_code": "mx",
     "type": "service",
     "name": "Italian Meatballs",
@@ -85,7 +85,7 @@
   },
   {
     "id": 10,
-    "isBookmarkActive": false,
+    "showBookmark": false,
     "country_code": "mx",
     "type": "service",
     "name": "Buttermilk Pancakes",
@@ -94,7 +94,7 @@
   },
   {
     "id": 11,
-    "isBookmarkActive": false,
+    "showBookmark": false,
     "country_code": "mx",
     "type": "service",
     "name": "Cinnamon Rolls",
@@ -103,7 +103,7 @@
   },
   {
     "id": 12,
-    "isBookmarkActive": false,
+    "showBookmark": false,
     "country_code": "mx",
     "type": "service",
     "name": "Smart Wi-Fi Camera",
@@ -112,7 +112,7 @@
   },
   {
     "id": 13,
-    "isBookmarkActive": false,
+    "showBookmark": false,
     "country_code": "mx",
     "type": "service",
     "name": "Inflatable Paddle Board",

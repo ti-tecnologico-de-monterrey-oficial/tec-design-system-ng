@@ -38,6 +38,7 @@ export class BmbSearchCardItemComponent {
   isService = input<boolean>(true);
   backgroundColorIcon = input<IBmbInteractiveIconAppearance>('white_primary');
   isBookmarkActive = input<boolean>(false);
+  showBookmark = input<boolean>(true);
 
   triggerClick = output<void>();
   getBookmarkClick = output<void>();
