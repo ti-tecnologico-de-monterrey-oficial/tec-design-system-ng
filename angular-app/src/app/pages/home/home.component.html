@@ -76,6 +76,22 @@
                 <bmb-action-menu #actionMenuContainers [showHeader]="false">
                   <ng-template #actionMenuItem>
                     <bmb-item-hyperlink
+                      icon="person"
+                      label="Item default"
+                      value="page"
+                      valueLink="/pages/item-default"
+                    />
+                  </ng-template>
+                  <ng-template #actionMenuItem>
+                    <bmb-item-hyperlink
+                      icon="chevron_right"
+                      label="Item chevron"
+                      value="page"
+                      valueLink="/pages/item-chevron"
+                    />
+                  </ng-template>
+                  <ng-template #actionMenuItem>
+                    <bmb-item-hyperlink
                       icon="chat"
                       label="AI Chat bubble"
                       value="page"

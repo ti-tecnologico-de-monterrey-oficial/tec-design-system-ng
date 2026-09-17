@@ -1,0 +1,59 @@
+<section bmbVerticalLayout gapSize="m" margin="m" alignItems="stretch">
+  <h1>Item default</h1>
+  <div bmbLayout margin="none" gapSize="m" alignItems="start">
+    <section
+      bmbLayoutItem
+      [colSm]="4"
+      [colLg]="4"
+      aria-labelledby="item-default-properties"
+    >
+      <bmb-container appearance="primary-home">
+        <div bmbVerticalLayout gapSize="m">
+          <h2 id="item-default-properties">Propiedades</h2>
+          <label
+            >itemTitle
+            <input
+              [value]="itemTitle()"
+              (input)="itemTitle.set($any($event.target).value)"
+          /></label>
+          <label
+            >icon
+            <input
+              [value]="icon()"
+              (input)="icon.set($any($event.target).value)"
+          /></label>
+          <label
+            >isActive
+            <select
+              [value]="isActive() === undefined ? 'undefined' : isActive() ? 'true' : 'false'"
+              (change)="isActive.set($any($event.target).value === 'undefined' ? undefined : $any($event.target).value === 'true')"
+            >
+              <option value="false">false</option>
+              <option value="true">true</option>
+              <option value="undefined">undefined</option>
+            </select></label
+          >
+
+          <p aria-live="polite">Último evento: {{ lastEvent() }}</p>
+        </div>
+      </bmb-container>
+    </section>
+    <section bmbLayoutItem [colSm]="4" [colLg]="8" aria-label="Vista previa">
+      <bmb-container appearance="contrast-box-container">
+        <div
+          bmbVerticalLayout
+          layoutHeight="320px"
+          justify="center"
+          alignItems="center"
+        >
+          <bmb-interactive-item-default
+            [itemTitle]="itemTitle()"
+            [icon]="icon()"
+            [isActive]="isActive()"
+            (getActionClick)="handleActionClick($event)"
+          />
+        </div>
+      </bmb-container>
+    </section>
+  </div>
+</section>
