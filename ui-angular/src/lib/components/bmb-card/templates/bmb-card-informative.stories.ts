@@ -15,7 +15,7 @@ import { BmbVerticalLayoutItemDirective } from '../../../directives/bmb-layout/b
 import { staticCardStory } from './bmb-card-template-story.utils';
 
 const meta: Meta<BmbCardComponent> = {
-  title: 'Templates/Container Button/Informative',
+  title: 'Templates/Generic card/Informative',
   component: BmbCardComponent,
   tags: ['!autodocs'],
   decorators: [

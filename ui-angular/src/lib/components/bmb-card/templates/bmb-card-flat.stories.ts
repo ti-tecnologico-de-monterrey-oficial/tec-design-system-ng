@@ -10,7 +10,7 @@ import { BmbLayoutItemDirective } from '../../../directives/bmb-layout/bmb-layou
 import { staticCardStory } from './bmb-card-template-story.utils';
 
 const meta: Meta<BmbCardComponent> = {
-  title: 'Templates/Container Button/Flat',
+  title: 'Templates/Generic card/Flat',
   component: BmbCardComponent,
   tags: ['!autodocs'],
   decorators: [

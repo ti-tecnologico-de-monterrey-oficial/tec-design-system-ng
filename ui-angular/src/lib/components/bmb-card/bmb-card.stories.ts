@@ -23,19 +23,19 @@ const templateVariants = [
   'Actions',
   'Home',
   'Empty',
-  'Informative Media Detail Vertical',
-  'Informative Media Detail Horizontal',
-  'Informative Media Simple',
-  'Informative Media Simple Horizontal',
-  'Informative FocusElement',
-  'Informative ItemList',
+  'Informative media detail vertical',
+  'Informative media detail horizontal',
+  'Informative media simple',
+  'Informative media simple horizontal',
+  'Informative focus element',
+  'Informative item list',
 ];
 
 const getTemplateVariantsSection = (): string => `
 <h2>Template variants</h2>
 <p>
   Reusable examples are available in
-  <a href="?path=/docs/templates-container-button--documentation">Templates / Container Button</a>, built with
+  <a href="?path=/docs/templates-generic-card--documentation">Templates / Generic card</a>, built with
   <code>BmbCardComponent</code>, Bamboo components and Bamboo layout directives.
   Typography is configured through Bamboo component inputs.
   Every template provides Desktop and Mobile previews with copy-ready HTML.

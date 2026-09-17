@@ -13,7 +13,7 @@ import { BmbVerticalLayoutItemDirective } from '../../../directives/bmb-layout/b
 import { staticCardStory } from './bmb-card-template-story.utils';
 
 const meta: Meta<BmbCardComponent> = {
-  title: 'Templates/Container Button/Home',
+  title: 'Templates/Generic card/Home',
   component: BmbCardComponent,
   tags: ['!autodocs'],
   decorators: [
