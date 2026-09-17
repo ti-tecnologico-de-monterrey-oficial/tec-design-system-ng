@@ -290,6 +290,7 @@ export const CARD_EXAMPLES = {
                 bmbVerticalLayoutItem
                 [isFullWidth]="false"
                 [number]="1"
+                [isCurrentColor]="true"
                 componentTitle="Title"
               />
             </div>

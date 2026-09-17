@@ -3,7 +3,7 @@ import type { Meta } from '@storybook/angular';
 import { BmbCardExampleComponent, cardExampleStory } from './bmb-card-examples.story';
 
 const meta: Meta<BmbCardExampleComponent> = {
-  title: 'Components/Containers/Generic card/Informative Media Detail Vertical',
+  title: 'Templates/Container Button/Informative Media Detail Vertical',
   component: BmbCardExampleComponent,
   tags: ['!autodocs'],
   decorators: [moduleMetadata({ imports: [BmbCardExampleComponent] })],
