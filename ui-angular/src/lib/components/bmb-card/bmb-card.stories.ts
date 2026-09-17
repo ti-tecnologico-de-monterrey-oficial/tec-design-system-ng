@@ -17,12 +17,25 @@ import {
   getSpecialSpecifications,
 } from '@docs/utils/utils';
 
-const templateVariants = ['Informative', 'Flat', 'Actions', 'Home', 'Empty'];
+const templateVariants = [
+  'Informative',
+  'Flat',
+  'Actions',
+  'Home',
+  'Empty',
+  'Informative media detail vertical',
+  'Informative media detail horizontal',
+  'Informative media simple',
+  'Informative media simple horizontal',
+  'Informative focus element',
+  'Informative item list',
+];
 
 const getTemplateVariantsSection = (): string => `
 <h2>Template variants</h2>
 <p>
-  The Generic card documentation includes reusable examples built with
+  Reusable examples are available in
+  <a href="?path=/docs/templates-generic-card--documentation">Templates / Generic card</a>, built with
   <code>BmbCardComponent</code>, Bamboo components and Bamboo layout directives.
   Typography is configured through Bamboo component inputs.
   Every template provides Desktop and Mobile previews with copy-ready HTML.
