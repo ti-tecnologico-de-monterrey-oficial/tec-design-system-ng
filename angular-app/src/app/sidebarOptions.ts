@@ -336,6 +336,12 @@ export const sidebarOptions: SidebarElement[][] = [
           title: 'Tooltip',
           link: '/pages/tooltip',
         },
+        {
+          id: 45,
+          icon: 'search',
+          title: 'Search input',
+          link: '/pages/search-input',
+        },
       ],
     },
   ],

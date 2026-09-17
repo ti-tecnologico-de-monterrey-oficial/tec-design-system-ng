@@ -653,5 +653,13 @@ export const appRoutes: Route[] = [
         ({ TooltipPage }) => TooltipPage,
       ),
   },
+  {
+    path: 'pages/search-input',
+    title: 'BmbSearchInput | Bamboo migration dashboard',
+    loadComponent: () =>
+      import('./pages/search-input-page/search-input-page').then(
+        ({ SearchInputPage }) => SearchInputPage,
+      ),
+  },
   { path: '**', redirectTo: 'home' },
 ];
