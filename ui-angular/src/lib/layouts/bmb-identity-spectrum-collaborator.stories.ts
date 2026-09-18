@@ -1,5 +1,11 @@
 import { componentWrapperDecorator, Meta, StoryObj } from '@storybook/angular';
-import { Component, signal, TemplateRef, ViewChild } from '@angular/core';
+import {
+  Component,
+  inject,
+  signal,
+  TemplateRef,
+  ViewChild,
+} from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 
 import { BmbTopBarComponent } from '../components/bmb-top-bar/bmb-top-bar.component';
@@ -58,7 +64,7 @@ import { BmbActionMenuComponent } from '../components/bmb-action-menu/bmb-action
 import { BmbItemComponent } from '../components/bmb-item/bmb-item.component';
 import { BmbDropzoneComponent } from '../components/bmb-dropzone/bmb-dropzone.component';
 
-const HTML_TEMPLATE: string = `
+const HTML_TEMPLATE = `
 <div class="bmb_organism-identity-spectrum">
   <bmb-top-bar
     [userInformation]="{
@@ -613,11 +619,10 @@ export class StorybookIdentitySpectrumCollaborator {
   goToLink(): void {
     window.open('https://www.successfactors.com/', '_blank');
   }
+  modalService = inject(BmbNativeModalService);
+  fb = inject(FormBuilder);
 
-  constructor(
-    private modalService: BmbNativeModalService,
-    private fb: FormBuilder,
-  ) {
+  constructor() {
     this.userForm = this.fb.group({
       bmbFileInput: [null],
       email: [''],
@@ -670,7 +675,7 @@ export class StorybookIdentitySpectrumCollaborator {
     const updated = files.filter((f) => f.name !== fileName);
 
     this.userForm.patchValue({
-      bmbFileInput: updated.length > 1 ? updated : updated[0] ?? null,
+      bmbFileInput: updated.length > 1 ? updated : (updated[0] ?? null),
     });
 
     const progressMap = { ...this.progress() };
@@ -716,9 +721,6 @@ export default {
         component: `${getGeneralDescription(
           `<br/>***Identity spectrum Collaborators*** is a ${DESIGN_SYSTEM_TITLE} organism where profile details are displayed and some of the data can be edited.
 <br/><br/>`,
-          {
-            isSubStory: true,
-          },
         )}
 ${getSpecialSpecifications(
   `

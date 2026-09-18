@@ -23,7 +23,13 @@ export default {
       page: () => getPageStructureForTemplateStories(),
       description: {
         component: `
-${getGeneralDescription(`${DESIGN_SYSTEM_TITLE} ***Table - Server side*** allows rendering highly configurable and interactive tables.`, { generalDocLink: 'https://bamboo.tec.mx/latest/componentes/table/descripcion-general-h1hRplJO', isSubStory: true })}
+${getGeneralDescription(
+  `${DESIGN_SYSTEM_TITLE} ***Table - Server side*** allows rendering highly configurable and interactive tables.`,
+  {
+    generalDocLink:
+      'https://bamboo.tec.mx/latest/componentes/table/descripcion-general-h1hRplJO',
+  },
+)}
 ${getBasicExampleBlock(
   'BmbTablesComponent',
   `
@@ -158,7 +164,6 @@ ${getBasicExampleBlock(
   editData(id: any): void {
     console.log('Editing row:', id);
   }`,
-  true,
 )}
         `,
       },

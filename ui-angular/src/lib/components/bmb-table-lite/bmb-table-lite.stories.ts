@@ -11,7 +11,7 @@ import {
 import { BmbTableLiteComponent } from './bmb-table-lite.component';
 import { BmbBadgeComponent } from '../bmb-badge/bmb-badge.component';
 
-const additionalBlock: string = `
+const additionalBlock = `
   @ViewChild('infoTemplate') infoTemplate!: TemplateRef<any>;
   @ViewChild('lastNameTemplate') lastNameTemplate!: TemplateRef<any>;
   @ViewChild('actionTemplate') actionTemplate!: TemplateRef<any>;
@@ -382,10 +382,9 @@ custom actions, and templating for both actions and detail rows.
   {
     generalDocLink:
       'https://bamboo.tec.mx/latest/componentes/table/descripcion-general-h1hRplJO',
-    isSubStory: true,
   },
 )}
-${getSpecialSpecifications(getEmptyStateMessage(), { showAdditionalBlockquote: true, isSubStory: true })}
+${getSpecialSpecifications(getEmptyStateMessage(), { showAdditionalBlockquote: true })}
 ${getBasicExampleBlock(
   `
   BmbIconComponent,
@@ -396,7 +395,6 @@ ${getBasicExampleBlock(
 `,
   '',
   additionalBlock,
-  true,
 )}
 \`\`\`html
 

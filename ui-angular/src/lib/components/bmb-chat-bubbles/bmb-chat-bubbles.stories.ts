@@ -63,10 +63,9 @@ It supports [AI icons](https://bamboo.tec.mx/latest/componentes/ai-chat-bar/ai-i
   {
     generalDocLink:
       'https://bamboo.tec.mx/latest/componentes/ai-chat-bubble/descripcion-general-kum7HyJA',
-    isSubStory: true,
   },
 )}
-${getSpecialSpecifications(`### ${IMPORTANT_DESCRIPTION}`, { isSubStory: true })}
+${getSpecialSpecifications(`### ${IMPORTANT_DESCRIPTION}`)}
         `,
       },
     },
