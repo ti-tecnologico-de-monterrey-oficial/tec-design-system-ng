@@ -1,9 +1,9 @@
 <section class="bmb_login-content">
   <span class="bmb_login-content-input">
     <bmb-input
-      placeholder="Usuario"
+      [placeholder]="'login.username_placeholder' | translate"
       icon="account_circle"
-      errorMessage="El usuario es requerido"
+      [errorMessage]="'login.username_required' | translate"
       appearance="normal"
       [disabled]="false"
       [control]="getFormControl('user')"
@@ -14,10 +14,10 @@
   <span class="bmb_login-content-input">
     <bmb-input
       type="password"
-      placeholder="Contraseña"
+      [placeholder]="'login.password_placeholder' | translate"
       icon="lock"
       additionalAction="showHide"
-      errorMessage="La contraseña es requerida"
+      [errorMessage]="'login.password_required' | translate"
       appearance="normal"
       [disabled]="false"
       [control]="getFormControl('password')"

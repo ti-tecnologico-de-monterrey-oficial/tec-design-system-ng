@@ -4,11 +4,12 @@ import {
   input,
   ViewEncapsulation,
 } from '@angular/core';
+import { TranslatePipe } from '../../pipes/translations';
 
 @Component({
   selector: 'bmb-mitec-logo-animation',
   standalone: true,
-  imports: [],
+  imports: [TranslatePipe],
   templateUrl: './bmb-mitec-logo-animation.component.html',
   styleUrl: './bmb-mitec-logo-animation.component.scss',
   encapsulation: ViewEncapsulation.None,

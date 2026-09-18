@@ -11,6 +11,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { BmbTextLinkComponent } from '../../bmb-text-link/bmb-text-link.component';
 import { IBmbTargetLink } from '../../../_shared/types/index';
 import { BmbCheckboxComponent } from '../../bmb-checkbox/bmb-checkbox.component';
+import { TranslatePipe } from '../../../pipes/translations';
 
 /*
  * TODO: This component is marked as "old" and its decommissioning is planned for future updates.
@@ -19,7 +20,12 @@ import { BmbCheckboxComponent } from '../../bmb-checkbox/bmb-checkbox.component'
 @Component({
   selector: 'bmb-login-content',
   standalone: true,
-  imports: [BmbInputComponent, BmbCheckboxComponent, BmbTextLinkComponent],
+  imports: [
+    BmbInputComponent,
+    BmbCheckboxComponent,
+    BmbTextLinkComponent,
+    TranslatePipe,
+  ],
   templateUrl: './bmb-login-content.component.html',
   styleUrl: './bmb-login-content.component.scss',
   encapsulation: ViewEncapsulation.None,

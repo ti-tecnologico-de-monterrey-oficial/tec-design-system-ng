@@ -9,6 +9,7 @@ import { CommonModule } from '@angular/common';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { BmbContainerComponent } from '../bmb-container/bmb-container.component';
 import { logDeprecatedInput } from '../../_shared/logic/logDeprecatedInput';
+import { TranslatePipe } from '../../pipes/translations';
 
 /*
  * TODO: This component is marked as "old" and its decommissioning is planned for future updates.
@@ -17,7 +18,7 @@ import { logDeprecatedInput } from '../../_shared/logic/logDeprecatedInput';
 @Component({
   selector: 'bmb-home-section',
   standalone: true,
-  imports: [CommonModule, BmbContainerComponent, BmbIconComponent],
+  imports: [CommonModule, BmbContainerComponent, BmbIconComponent, TranslatePipe],
   styleUrl: './bmb-home-section.component.scss',
   templateUrl: './bmb-home-section.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,

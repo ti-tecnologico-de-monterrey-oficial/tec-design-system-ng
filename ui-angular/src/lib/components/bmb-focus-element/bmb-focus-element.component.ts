@@ -13,13 +13,14 @@ import {
   getFocusElementCircleClasses,
   isFocusElementFocused,
 } from '../../_shared/logic/components/focus-element';
+import { TranslatePipe } from '../../pipes/translations';
 
 @Component({
   selector: 'bmb-focus-element',
   styleUrl: './bmb-focus-element.component.scss',
   templateUrl: './bmb-focus-element.component.html',
   standalone: true,
-  imports: [CommonModule, BmbIconComponent],
+  imports: [CommonModule, BmbIconComponent, TranslatePipe],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
@@ -35,7 +36,7 @@ export class BmbFocusElementComponent {
 
   title = input<string>(); // deprecated
 
-  baseClass: string = 'bmb_focus-element';
+  baseClass = 'bmb_focus-element';
 
   constructor() {
     effect(() => {

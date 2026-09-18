@@ -11,13 +11,14 @@ import type { FabSize, FabType } from '../../_shared/types/components/fab';
 
 export { FAB_SIZE, FAB_TYPE } from '../../_shared/types/components/fab';
 export type { FabSize, FabType } from '../../_shared/types/components/fab';
+import { TranslatePipe } from '../../pipes/translations';
 
 @Component({
   selector: 'bmb-fab',
   styleUrl: './bmb-fab.component.scss',
   templateUrl: './bmb-fab.component.html',
   standalone: true,
-  imports: [CommonModule, BmbIconComponent],
+  imports: [CommonModule, BmbIconComponent, TranslatePipe],
   encapsulation: ViewEncapsulation.None,
 })
 export class BmbFabComponent {
@@ -29,7 +30,7 @@ export class BmbFabComponent {
 
   fabClick = output<MouseEvent>();
 
-  isActive: boolean = false;
+  isActive = false;
 
   handleFabClick(event: MouseEvent): void {
     if (this.activeState) {

@@ -14,7 +14,7 @@
       }"
       [icon]="iconName"
       [size]="mitec() ? 32 : type() === 'extended' ? 24 : 48"
-      alt="FAB icon"
+      [alt]="'fab.icon_alt' | translate"
     />
   </button>
   @if (mitec() && !!text()) {

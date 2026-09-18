@@ -46,7 +46,7 @@
           {{ this.currentRole() }}
         </span>
         <span class="bmb_profile-info-change-role-item">
-          Cambia de perfil
+          {{ 'profile.change_profile' | translate }}
         </span>
         <bmb-icon [icon]="'keyboard_arrow_right'" [size]="24" />
       </bmb-check-external-link-button>
@@ -216,21 +216,21 @@
     @if (isMobile() && !isStandAlone()) {
       <section class="bmb_profile-access">
         <bmb-container-button
-          componentTitle="ID Digital"
+          [componentTitle]="'profile.digital_id' | translate"
           iconLeft="person"
           iconRight="chevron_right"
           [link]="idDigitalLink()"
           [target]="targetLinks()!"
         />
         <bmb-container-button
-          componentTitle="Acceso a Campus"
+          [componentTitle]="'profile.campus_access' | translate"
           iconLeft="qr_code"
           iconRight="chevron_right"
           [link]="campusAcessLink()"
           [target]="targetLinks()!"
         />
         <bmb-container-button
-          componentTitle="TecServices"
+          [componentTitle]="'profile.tec_services' | translate"
           iconLeft="forum"
           iconRight="chevron_right"
           [link]="tecServicesLink()"
@@ -250,7 +250,7 @@
         position="left"
         (click)="closeSession()"
       >
-        Cerrar Sesión
+        {{ 'profile.close_session' | translate }}
       </button>
     </section>
   </section>
@@ -260,7 +260,7 @@
   <section class="bmb_profile-stand_alone">
     @if (isLoading()) {
       <bmb-loader
-        componentTitle="Cargando perfil"
+        [componentTitle]="'profile.loading' | translate"
         [showInline]="true"
       ></bmb-loader>
     } @else {
@@ -269,14 +269,14 @@
   </section>
 } @else if (isMobile()) {
   <bmb-mobile-templates
-    [componentTitle]="'Mi Perfil'"
+    [componentTitle]="'profile.my_profile' | translate"
     (externalLinkOnClose)="closeProfile()"
     (handleRightClick)="handleRight($event)"
   >
     <ng-template #bmbTemplateMain>
       @if (isLoading()) {
         <bmb-loader
-          componentTitle="Cargando perfil"
+          [componentTitle]="'profile.loading' | translate"
           [showInline]="true"
         ></bmb-loader>
       } @else {
@@ -288,7 +288,7 @@
   <bmb-home-card
     icon="person"
     bgIconAppearance="green-light"
-    componentTitle="Mi perfil"
+    [componentTitle]="'profile.my_profile' | translate"
     contentPadding="l"
     [showRightButton]="enableExpandButton()"
     (onBack)="handleBack($event)"
@@ -297,7 +297,7 @@
   >
     @if (isLoading()) {
       <bmb-loader
-        componentTitle="Cargando perfil"
+        [componentTitle]="'profile.loading' | translate"
         [showInline]="true"
       ></bmb-loader>
     } @else {

@@ -64,13 +64,37 @@ export * from './types';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BmbAlertCenterComponent {
+  private readonly translationsService: BmbTranslationsService = inject(
+    BmbTranslationsService,
+  );
+
   dateFormat = input<string>('dd/MM/yyyy');
   tabsName = input<string[] | IBmbAlertCenterTabConfig[]>([
-    { title: 'Notificaciones', isMobile: true, isDesktop: true },
-    { title: 'No leídos', isMobile: true, isDesktop: true },
-    { title: 'Favoritos', isMobile: false, isDesktop: true },
-    { title: 'Archivados', isMobile: false, isDesktop: true },
-    { title: 'Anuncios', isMobile: false, isDesktop: false },
+    {
+      title: this.translationsService.translate('alert_center.tabs.notifications'),
+      isMobile: true,
+      isDesktop: true,
+    },
+    {
+      title: this.translationsService.translate('alert_center.tabs.unread'),
+      isMobile: true,
+      isDesktop: true,
+    },
+    {
+      title: this.translationsService.translate('alert_center.tabs.favorites'),
+      isMobile: false,
+      isDesktop: true,
+    },
+    {
+      title: this.translationsService.translate('alert_center.tabs.archived'),
+      isMobile: false,
+      isDesktop: true,
+    },
+    {
+      title: this.translationsService.translate('alert_center.tabs.ads'),
+      isMobile: false,
+      isDesktop: false,
+    },
   ]);
   hideTabs = input<boolean>(false);
   enableMultipleSelection = input<boolean>(true);
@@ -107,7 +131,6 @@ export class BmbAlertCenterComponent {
 
   nativeModalService: BmbNativeModalService = inject(BmbNativeModalService);
   bmbAlertCenterService: BmbAlertCenterService = inject(BmbAlertCenterService);
-  translationsService: BmbTranslationsService = inject(BmbTranslationsService);
 
   alertList = computed<IBmbDataAlert[]>(() => {
     const alertsOnInput = this.alerts();
@@ -206,7 +229,7 @@ export class BmbAlertCenterComponent {
         actions: [
           {
             buttonName: 'close',
-            label: 'Cerrar',
+            label: this.translationsService.translate('alert_center.close'),
             appearance: 'secondary-outlined',
             action: this.handleCloseDetail.bind(this, item),
           },

@@ -72,18 +72,18 @@
   <bmb-action-menu
     class="bmb_chat-card-chat-actions"
     [showHeader]="false"
-    componentTitle="Selecciona una opción"
+    [componentTitle]="'home_card_chat.select_option' | translate"
   >
     <ng-template>
       <bmb-item
-        label="Expandir Chat"
+        [label]="'home_card_chat.expand_chat' | translate"
         [isButton]="true"
         (action)="handleExpand()"
       />
     </ng-template>
     <ng-template>
       <bmb-item
-        label="Iniciar nuevo chat"
+        [label]="'home_card_chat.new_chat' | translate"
         [isButton]="true"
         (action)="handleExpand()"
       />

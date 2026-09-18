@@ -24,6 +24,7 @@ import { IDropdownItem } from '../../_shared/types';
 import { BmbProjectionContentService } from '../../services/old/projection/projection.service';
 import { logDeprecatedInput } from '../../_shared/logic/logDeprecatedInput';
 import { TranslatePipe } from '../../pipes/translations';
+import { BmbTranslationsService } from '../../services/translations/translations.service';
 
 export type IBmbMenuEvent = 'link' | 'openNew' | 'info';
 
@@ -48,6 +49,8 @@ export type IBmbMenuEvent = 'link' | 'openNew' | 'info';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BmbExternalLinkComponent {
+  private readonly translationsService = inject(BmbTranslationsService);
+
   subtitle = input.required<string>();
   navigationBarIcons = input<IBmbNavigationBarIcons>({
     one: { name: 'arrow_back_ios', label: '' },
@@ -93,17 +96,17 @@ export class BmbExternalLinkComponent {
   menuItems: IDropdownItem[] = [
     {
       icon: 'link',
-      text: 'Copiar enlace',
+      text: this.translationsService.translate('external_link.menu.copy_link'),
       action: () => this.onMenuOptionClick('link'),
     },
     {
       icon: 'open_in_new',
-      text: 'Abrir en navegador',
+      text: this.translationsService.translate('external_link.menu.open_browser'),
       action: () => this.onMenuOptionClick('openNew'),
     },
     {
       icon: 'info',
-      text: 'Más información',
+      text: this.translationsService.translate('external_link.menu.more_info'),
       action: () => this.onMenuOptionClick('info'),
     },
   ];

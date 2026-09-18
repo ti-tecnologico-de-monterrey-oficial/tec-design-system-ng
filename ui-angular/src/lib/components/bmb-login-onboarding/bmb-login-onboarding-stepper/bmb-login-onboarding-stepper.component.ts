@@ -11,6 +11,7 @@ import { BmbLoginOnboardingStepperStepTwoComponent } from './bmb-login-onboardin
 import { BmbLoginOnboardingStepperStepThreeComponent } from './bmb-login-onboarding-stepper-steps/bmb-login-onboarding-stepper-step-three.component';
 import { BmbLoginOnboardingStepperStepFourComponent } from './bmb-login-onboarding-stepper-steps/bmb-login-onboarding-stepper-step-four.component';
 import { BmbLoginOnboardingService } from '../bmb-login-onboarding.service';
+import { TranslatePipe } from '../../../pipes/translations';
 
 @Component({
   selector: 'bmb-login-onboarding-stepper',
@@ -21,6 +22,7 @@ import { BmbLoginOnboardingService } from '../bmb-login-onboarding.service';
     BmbLoginOnboardingStepperStepTwoComponent,
     BmbLoginOnboardingStepperStepThreeComponent,
     BmbLoginOnboardingStepperStepFourComponent,
+    TranslatePipe,
   ],
   templateUrl: './bmb-login-onboarding-stepper.component.html',
   styleUrl: './bmb-login-onboarding-stepper.component.scss',

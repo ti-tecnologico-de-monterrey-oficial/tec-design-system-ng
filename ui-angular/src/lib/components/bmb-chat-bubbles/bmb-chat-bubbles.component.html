@@ -29,7 +29,7 @@
           <bmb-icon
             class="bmb_chat-bubble-profile-bot"
             [size]="20"
-            alt="bot"
+            [alt]="'chat_bubbles.bot_alt' | translate"
             [isSVGTemplate]="true"
           >
             <ng-template #customIcon>
@@ -61,7 +61,7 @@
                 class="bmb_chat-bubble-msg-image"
                 [attr.data-testid]="testId() + '-image'"
                 [src]="message().content.imageUrl"
-                alt="Imagen adjunta al mensaje"
+                [alt]="'chat_bubbles.attached_image_alt' | translate"
               />
             }
 

@@ -14,6 +14,7 @@ import { IBmbDataAlert } from '../bmb-alert-center/types';
 import { getMobileResolutionSize } from '../../_shared/logic/utils';
 import { BmbCheckExternalLinkButtonComponent } from '../bmb-check-external-link-button/bmb-check-external-link-button.component';
 import { IBmbTargetLink } from '../../_shared/types';
+import { TranslatePipe } from '../../pipes/translations';
 
 export type { IUserInformation } from './types';
 
@@ -28,6 +29,7 @@ export type { IUserInformation } from './types';
     CommonModule,
     BmbTopBarUserSectionComponent,
     BmbCheckExternalLinkButtonComponent,
+    TranslatePipe,
   ],
   templateUrl: './bmb-top-bar.component.html',
   styleUrl: './bmb-top-bar.component.scss',
