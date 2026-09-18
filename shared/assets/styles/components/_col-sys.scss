@@ -272,3 +272,21 @@ $alignItemsOptions: (
     }
   }
 }
+
+// Opt-in horizontal scrolling; retain intrinsic item widths.
+.bmb_layout-horizontal-scroll.bmb_layout-horizontal-scroll {
+  flex-wrap: nowrap;
+  min-width: 0;
+  max-width: 100%;
+  overflow-x: auto;
+
+  > * {
+    flex-shrink: 0;
+    white-space: nowrap;
+  }
+}
+
+// Allow flex ancestors of an opted-in scroller to fit the available width.
+.bmb_layout-item:has(.bmb_layout-horizontal-scroll) {
+  min-width: 0;
+}

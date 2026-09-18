@@ -9,6 +9,7 @@ import {
   output,
 } from '@angular/core';
 import { Subscription, filter, fromEvent } from 'rxjs';
+import { isInsideClickOutsideContainer } from '../../_shared/logic/components/click-outside';
 
 @Directive({
   selector: '[clickOutside]',
@@ -35,10 +36,9 @@ export class ClickOutsideDirective implements AfterViewInit, OnDestroy {
   }
 
   isInside(elementToCheck: HTMLElement): boolean {
-    return (
-      elementToCheck === this.element.nativeElement ||
-      this.element.nativeElement.contains(elementToCheck) ||
-      elementToCheck?.classList?.contains('modal-persist')
+    return isInsideClickOutsideContainer(
+      elementToCheck,
+      this.element.nativeElement,
     );
   }
 

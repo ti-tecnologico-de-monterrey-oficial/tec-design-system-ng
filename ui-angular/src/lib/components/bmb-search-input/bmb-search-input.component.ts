@@ -16,16 +16,12 @@ import { debounceTime } from 'rxjs/operators';
 import { getUUID } from '../../_shared/logic/utils';
 import { BmbDropdownContentComponent } from '../utils/bmb-dropdown-content/bmb-dropdown-content.component';
 import { BmbInputContentComponent } from '../bmb-input/bmb-input-content/bmb-input-content.component';
-import { ClickOutsideDirective } from '../../directives/old/utils/clickoutside.directive';
+import { ClickOutsideDirective } from '../../directives/click-outside/clickoutside.directive';
 import { IDropdownItem } from '../../_shared/types';
 import {
   convertListToSelectList,
   filteredValue,
 } from '../../_shared/logic/dropdown';
-
-/*
- * TODO: This component is marked as "old" and its decommissioning is planned for future updates.
- */
 
 @Component({
   selector: 'bmb-search-input',

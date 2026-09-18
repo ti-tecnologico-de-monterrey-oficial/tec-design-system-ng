@@ -21,7 +21,7 @@ import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { BmbDotPaginatorComponent } from '../bmb-dot-paginator/bmb-dot-paginator.component';
 import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
-import { ClickOutsideDirective } from '../../directives/old/utils/clickoutside.directive';
+import { ClickOutsideDirective } from '../../directives/click-outside/clickoutside.directive';
 import { BmbActionMenuComponent } from '../bmb-action-menu/bmb-action-menu.component';
 import { BmbItemComponent } from '../bmb-item/bmb-item.component';
 import { BmbNativeModalService } from '../../services/old/modal/native-modal.service';

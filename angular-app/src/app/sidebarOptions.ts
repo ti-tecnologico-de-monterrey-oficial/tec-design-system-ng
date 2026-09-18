@@ -330,6 +330,18 @@ export const sidebarOptions: SidebarElement[][] = [
           title: 'Switch',
           link: '/pages/switch',
         },
+        {
+          id: 44,
+          icon: 'help',
+          title: 'Tooltip',
+          link: '/pages/tooltip',
+        },
+        {
+          id: 45,
+          icon: 'search',
+          title: 'Search input',
+          link: '/pages/search-input',
+        },
       ],
     },
   ],
