@@ -58,9 +58,9 @@
   "private": false,
   "dependencies": {
     "@angular/cdk": "22.0.4",
-    "@angular/common": "22.0.4",
-    "@angular/compiler": "22.0.4",
-    "@angular/core": "22.0.4",
+    "@angular/common": "22.1.1",
+    "@angular/compiler": "22.1.7",
+    "@angular/core": "22.1.0",
     "@angular/forms": "22.0.4",
     "@angular/material": "22.0.4",
     "@angular/platform-browser": "22.0.4",
@@ -78,11 +78,11 @@
     "zone.js": "~0.16.2"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "22.0.4",
+    "@angular-devkit/build-angular": "22.1.8",
     "@angular-devkit/core": "22.0.4",
     "@angular-devkit/schematics": "22.0.4",
     "@angular/animations": "22.0.4",
-    "@angular/build": "22.0.4",
+    "@angular/build": "22.1.8",
     "@angular/cli": "22.0.4",
     "@angular/compiler-cli": "22.0.4",
     "@angular/language-service": "22.0.4",
@@ -147,7 +147,7 @@
     "tslib": "2.3.0",
     "typescript": "6.0.3",
     "typescript-eslint": "8.58.0",
-    "vite": "8.0.16",
+    "vite": "8.3.0",
     "vite-plugin-dts": "4.5.0"
   },
   "files": [
