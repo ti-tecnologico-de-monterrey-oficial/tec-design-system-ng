@@ -11,25 +11,16 @@ import { DateTime } from 'luxon';
 import { CommonModule } from '@angular/common';
 import { BmbInputComponent } from '../bmb-input/bmb-input.component';
 import { TranslatePipe } from '../../pipes/translations';
+import {
+  IBmbListItemsElement,
+  IBmbListItemsElementGroupedByDate,
+} from '../../_shared/types/components/list-items';
+import {
+  groupListItemsByDate,
+  getListItemRelativeDate,
+} from '../../_shared/logic/components/list-items';
 
-export interface IBmbListItemsElement {
-  title: string;
-  date: string;
-  disabled?: boolean;
-  icon?: string;
-  formattedDate?: DateTime;
-}
-
-interface IBmbListItemsElementGroupedByDate {
-  recent: IBmbListItemsElement[];
-  lastWeek: IBmbListItemsElement[];
-  lastMonth: IBmbListItemsElement[];
-  rest: IBmbListItemsElement[];
-}
-
-/*
- * TODO: This component is marked as "old" and its decommissioning is planned for future updates.
- */
+export type { IBmbListItemsElement, IBmbListItemsElementGroupedByDate };
 
 @Component({
   selector: 'bmb-list-items',
@@ -72,50 +63,14 @@ export class BmbListItemsComponent implements OnInit {
   }
 
   orderEventsByDate() {
-    const orderedDates = this.items().sort((a, b) => {
-      const dateA = DateTime.fromFormat(a.date, this.dateFormat());
-      const dateB = DateTime.fromFormat(b.date, this.dateFormat());
-      return dateA < dateB ? 1 : -1;
-    });
-
-    const objEvents = orderedDates.reduce(
-      (acc: IBmbListItemsElementGroupedByDate, event: IBmbListItemsElement) => {
-        const date = DateTime.fromFormat(event.date, this.dateFormat());
-        const now = DateTime.now();
-        const diff = now.diff(date, 'days').days;
-        if (diff < 2) {
-          acc.recent.push({ ...event, formattedDate: date });
-        } else if (diff < 7) {
-          acc.lastWeek.push({ ...event, formattedDate: date });
-        } else if (diff < 30) {
-          acc.lastMonth.push({ ...event, formattedDate: date });
-        } else {
-          acc.rest.push({ ...event, formattedDate: date });
-        }
-        return acc;
-      },
-      {
-        recent: [],
-        lastWeek: [],
-        lastMonth: [],
-        rest: [],
-      },
+    this.itemsGropedByDate = groupListItemsByDate(
+      this.items(),
+      this.dateFormat(),
     );
-
-    this.itemsGropedByDate = objEvents;
     return '';
   }
 
   getFormattedDate(date: DateTime) {
-    const now = DateTime.now();
-    const diff = now.diff(date, 'days').days;
-
-    if (diff < 1) {
-      return 'Hoy';
-    } else if (diff < 2) {
-      return 'Ayer';
-    } else {
-      return date.toFormat('dd/MM');
-    }
+    return getListItemRelativeDate(date);
   }
 }

@@ -661,5 +661,19 @@ export const appRoutes: Route[] = [
         ({ SearchInputPage }) => SearchInputPage,
       ),
   },
+  {
+    path: 'pages/tabs',
+    title: 'BmbTabs | Bamboo migration dashboard',
+    loadComponent: () =>
+      import('./pages/tabs-page/tabs-page').then(({ TabsPage }) => TabsPage),
+  },
+  {
+    path: 'pages/list-items',
+    title: 'BmbListItems | Bamboo migration dashboard',
+    loadComponent: () =>
+      import('./pages/list-items-page/list-items-page').then(
+        ({ ListItemsPage }) => ListItemsPage,
+      ),
+  },
   { path: '**', redirectTo: 'home' },
 ];
