@@ -1,6 +1,7 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  inject,
   input,
   output,
   ViewEncapsulation,
@@ -11,6 +12,7 @@ import { BmbCarouselComponent } from '../../bmb-carousel/bmb-carousel.component'
 import { BmbLayoutItemDirective } from '../../../directives/bmb-layout/bmb-layout-item.directive';
 import { BmbAlertCenterEmptyComponent } from '../bmb-alert-center-empty/bmb-alert-center-empty.component';
 import { BmbAlertCenterDetailComponent } from '../../utils/bmb-alert-center-detail/bmb-alert-center-detail.component';
+import { BmbTranslationsService } from '../../../services/translations/translations.service';
 
 @Component({
   selector: 'bmb-alert-center-ads',
@@ -28,9 +30,11 @@ import { BmbAlertCenterDetailComponent } from '../../utils/bmb-alert-center-deta
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BmbAlertCenterAdsComponent {
+  private readonly translationsService = inject(BmbTranslationsService);
+
   advertisements = input.required<IBmbDataAlert[]>();
   emptyStateData = input<IBmbAlertEmptyState>({
-    primaryText: 'No tienes notificaciones para mostrar',
+    primaryText: this.translationsService.translate('alert_center.empty_state.primary_text'),
     secondaryText: '',
     tertiaryText: '',
     buttonText: '',

@@ -17,7 +17,12 @@
     "progress_title": "Total Paid"
   },
   "advertisement_card": {
-    "title": "My Ads"
+    "title": "My Ads",
+    "tabs": {
+      "promotions": "Promotions",
+      "announcements": "Announcements",
+      "information": "Information"
+    }
   },
   "alert_center": {
     "empty_state": {
@@ -36,7 +41,15 @@
     },
     "list": {
       "select_all_button": "Select All"
-    }
+    },
+    "tabs": {
+      "notifications": "Notifications",
+      "unread": "Unread",
+      "favorites": "Favorites",
+      "archived": "Archived",
+      "ads": "Ads"
+    },
+    "close": "Close"
   },
   "balance_overview": {
     "progress_circle_value": "Progress Circle Value",
@@ -77,11 +90,16 @@
     "add": "Add",
     "mic": "Microphone",
     "send_message": "Send message",
-    "loading": "Loading..."
+    "loading": "Loading...",
+    "default_bot_label": "Standard Tecbot",
+    "select_bot": "Select a bot",
+    "plus_menu": "Plus menu"
   },
   "digital_id": {
     "secondary_button_label": "Download ID as PDF",
-    "close": "Close"
+    "close": "Close",
+    "background_alt": "Background Image",
+    "logo_alt": "Tec de Monterrey"
   },
   "dropzone": {
     "drop_instructions": "Drag and drop your files here or",
@@ -91,25 +109,66 @@
     "error_message_size": "File size exceeds the allowed limit",
     "error_message_invalid_name": "Invalid file name",
     "format_files_label": "Specification of formats and weight",
-    "link_label": "View more information about accepted file formats."
+    "link_label": "View more information about accepted file formats.",
+    "icon_alt": "Drop zone icon"
   },
   "header_mitec": {
     "header_label": "STUDENTS"
   },
   "home_card_chat": {
     "title": "TecBot assistant",
-    "subtitle": "Chat"
+    "subtitle": "Chat",
+    "select_option": "Select an option",
+    "expand_chat": "Expand Chat",
+    "new_chat": "Start new chat",
+    "default_bot_label": "Standard Tecbot"
   },
   "login": {
     "header_label": "STUDENTS",
     "forgotten_password": "Forgot your password?",
     "remember_me": "Remember me",
     "login_as_guest": "Login as Guest",
-    "button_label": "Log In"
+    "button_label": "Log In",
+    "username_placeholder": "Username",
+    "password_placeholder": "Password",
+    "username_required": "Username is required",
+    "password_required": "Password is required"
   },
   "login_onboarding": {
     "another_account": "Log in with another account",
-    "forgot_password": "Forgot your password?"
+    "forgot_password": "Forgot your password?",
+    "invalid_step": "Invalid step",
+    "invalid_page": "Invalid page",
+    "enter": "Enter",
+    "start_registration": "Start registration",
+    "registration_notice": "This registration process will only be done once",
+    "biometric_notice": "Your login will always be with your biometric data",
+    "logo_alt": "Tecnológico de Monterrey",
+    "check_circle_alt": "Check circle",
+    "registration_complete_title": "Your registration is complete!",
+    "finish": "Finish",
+    "stepper": {
+      "step_four": {
+        "title": "Step 4",
+        "subtitle": "Activate your campus entry",
+        "label": "With this feature your Digital ID will let you enter campus automatically.",
+        "sublabel": "(You can always use your Digital ID manually and change this setting later)",
+        "cancel": "No, thanks",
+        "continue": "Activate",
+        "modal_title": "Campus entry",
+        "modal_content": "You will be able to change this setting at any time",
+        "modal_accept": "Accept"
+      },
+      "step_two": {
+        "title": "Step 2",
+        "subtitle": "Enter your TOTP",
+        "label": "Remember you must have the authenticator app",
+        "sublabel": "(Google/Microsoft Authenticator)",
+        "cancel": "Previous",
+        "continue": "Next",
+        "invalid_code": "Invalid code, please try again"
+      }
+    }
   },
   "notice_card": {
     "button_text": "Understood",
@@ -167,7 +226,11 @@
         "target_label": "Select Target",
         "target_placeholder": "Select an option",
         "target_helper": "Select the target of the link.",
-        "rel_label": "Add rel attribute (noopener noreferrer)"
+        "rel_label": "Add rel attribute (noopener noreferrer)",
+        "target_blank": "Blank",
+        "target_self": "Self",
+        "target_parent": "Parent",
+        "target_top": "Top"
       },
       "image": {
         "image_label": "Insert Image",
@@ -181,7 +244,18 @@
         "height_label": "Height",
         "height_placeholder": "100",
         "size_unit": "Unit of measure",
-        "alignment_type": "Alignment type"
+        "alignment_type": "Alignment type",
+        "alignment_fit": "Fit",
+        "alignment_contains": "Contains",
+        "alignment_cover": "Cover",
+        "alignment_none": "None"
+      },
+      "table": {
+        "insert_table": "Insert Table",
+        "columns": "Columns",
+        "insert": "Insert",
+        "cancel": "Cancel",
+        "rows": "Rows"
       },
       "primary_button": "Insert",
       "secondary_button": "Cancel"
@@ -198,7 +272,8 @@
     "empty_state": {
       "primary_text": "You have no notifications to show"
     },
-    "title": "My Notifications"
+    "title": "My Notifications",
+    "invalid_id_selected": "Invalid ID selected"
   },
   "notification_center": {
     "actions": {
@@ -228,7 +303,9 @@
       "search": "Search",
       "filter": "Filter"
     },
-    "search": "Search"
+    "search": "Search",
+    "expand_row": "expand row",
+    "row_actions": "row actions"
   },
   "search_card": {
     "title": "Find services or people",
@@ -262,15 +339,36 @@
     },
     "global_search": {
       "placeholder": "Search..."
-    }
+    },
+    "icon_alt": "Filter icon"
   },
   "interactive_item_default": {
     "active": "Active",
-    "inactive": "Inactive"
+    "inactive": "Inactive",
+    "icon_alt": "Profile switch menu"
   },
   "profile": {
     "leader": "My Leader",
-    "generalist": "My Generalist"
+    "generalist": "My Generalist",
+    "change_profile": "Change profile",
+    "close_session": "Log out",
+    "loading": "Loading profile",
+    "my_profile": "My profile",
+    "digital_id": "Digital ID",
+    "campus_access": "Campus Access",
+    "tec_services": "TecServices",
+    "semester": "Semester",
+    "campus": "Campus",
+    "program": "Program",
+    "work_history": "Work History",
+    "curp": "Curp",
+    "position": "Position",
+    "area": "Area",
+    "icon_left_alt": "Image of icon left",
+    "language": "Language",
+    "theme": "Theme",
+    "light": "Light",
+    "dark": "Dark"
   },
   "chat_bubbles": {
     "repeat": "Repeat answer",
@@ -281,7 +379,9 @@
     "save_edit": "Save",
     "edit_warning": "Saving will remove all subsequent messages",
     "like": "Like",
-    "dislike": "Dislike"
+    "dislike": "Dislike",
+    "bot_alt": "bot",
+    "attached_image_alt": "Image attached to the message"
   },
   "bookmark": {
     "bookmark": "Bookmark"
@@ -303,11 +403,17 @@
     "open_menu": "Open menu"
   },
   "evaluation_rubric": {
-    "close": "Close"
+    "close": "Close",
+    "left_icon_alt": "Left icon"
   },
   "external_link": {
     "close": "Close",
-    "open_menu": "Open menu"
+    "open_menu": "Open menu",
+    "menu": {
+      "copy_link": "Copy link",
+      "open_browser": "Open in browser",
+      "more_info": "More information"
+    }
   },
   "home_card": {
     "back": "Back",
@@ -335,7 +441,8 @@
   "sidebar": {
     "back": "Back",
     "close": "Close",
-    "open_menu": "Open menu"
+    "open_menu": "Open menu",
+    "nav_aria_label": "Sidebar Navigation"
   },
   "tabs": {
     "previous": "Previous",
@@ -349,7 +456,8 @@
     "role_switch": "Switch role",
     "notifications": "Notifications",
     "help": "Help",
-    "favorites": "Favorites"
+    "favorites": "Favorites",
+    "logo_alt": "TEC de Monterrey"
   },
   "image": {
     "previous": "Previous image",
@@ -357,5 +465,89 @@
   },
   "bmb_progress_circle": {
     "icon": "Progress circle icon"
+  },
+  "timestream": {
+    "valid_date_formats": "Date format is not valid",
+    "error": "Error",
+    "invalid_date_error": "The dateFormat or the start and end dates are not valid.",
+    "related_to": "Related to",
+    "tabs": {
+      "description": "Description",
+      "instances": "Instances"
+    }
+  },
+  "timestream_card": {
+    "filter_options": "Filter options",
+    "close_filters_alt": "Close filters",
+    "apply_filters": "Apply filters",
+    "clear_filters": "Clear filters",
+    "filters": {
+      "type": "Type",
+      "pending": "Pending",
+      "done": "Done",
+      "active": "Started",
+      "under_review": "Under review",
+      "instances": "Instances",
+      "all": "All",
+      "multiple": "Multiple",
+      "one": "One"
+    }
+  },
+  "alert_center_detail": {
+    "invalid_type": "Invalid type"
+  },
+  "accordion": {
+    "toggle_icon_alt": "Accordion toggle icon",
+    "icon_alt": "Accordion icon"
+  },
+  "ai_chat_bubble": {
+    "aria_label": "Chat",
+    "bot_alt": "bot"
+  },
+  "alert_center_empty": {
+    "icon_alt": "Alert center empty icon"
+  },
+  "card_button": {
+    "small_icon_alt": "Small icon",
+    "button_aria_label": "button"
+  },
+  "container_button": {
+    "icon_left_alt": "Icon left",
+    "icon_right_alt": "Icon right"
+  },
+  "fab": {
+    "icon_alt": "FAB icon"
+  },
+  "focus_element": {
+    "icon_alt": "Focus element icon"
+  },
+  "header_mobile": {
+    "trailing_icon_alt": "Trailing icon"
+  },
+  "header_section": {
+    "icon_alt": "Section icon"
+  },
+  "hito_card": {
+    "icon_alt": "Hito card icon"
+  },
+  "home_section": {
+    "icon_alt": "Home section icon"
+  },
+  "icon_status": {
+    "icon_alt": "status icon"
+  },
+  "item": {
+    "icon_alt": "Item icon"
+  },
+  "drag_drop": {
+    "item_a": "Item A",
+    "item_b": "Item B",
+    "item_c": "Item C"
+  },
+  "mitec_logo_animation": {
+    "alt": "mitec"
+  },
+  "push_notification_item": {
+    "dont_ask_again": "Don't ask again"
   }
 }
