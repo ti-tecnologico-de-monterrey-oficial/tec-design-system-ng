@@ -17,6 +17,7 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { sanitizeContent } from '../../_shared/logic/sanitizeContent';
 import { BmbVerticalLayoutDirective } from '../../directives/bmb-layout/bmb-vertical-layout/bmb-vertical-layout.directive';
 import { BmbVerticalLayoutItemDirective } from '../../directives/bmb-layout/bmb-vertical-layout/bmb-vertical-layout-item.directive';
+import { TranslatePipe } from '../../pipes/translations';
 
 /*
  * TODO: This component is marked as "old" and its decommissioning is planned for future updates.
@@ -33,6 +34,7 @@ import { BmbVerticalLayoutItemDirective } from '../../directives/bmb-layout/bmb-
     BmbLayoutItemDirective,
     BmbVerticalLayoutDirective,
     BmbVerticalLayoutItemDirective,
+    TranslatePipe,
   ],
   templateUrl: './bmb-item.component.html',
   styleUrl: './bmb-item.component.scss',

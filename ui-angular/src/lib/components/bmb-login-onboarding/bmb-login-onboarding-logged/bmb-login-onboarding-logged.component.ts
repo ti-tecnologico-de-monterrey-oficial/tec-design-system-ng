@@ -10,6 +10,7 @@ import { BmbLoginOnboardingService } from '../bmb-login-onboarding.service';
 import { IBmbLinkConfiguration, IBmbUserInfo } from '../../../_shared/types/index';
 import { BmbUserProfileContentComponent } from '../../bmb-user-profile/bmb-user-profile-content/bmb-user-profile-content.component';
 import { BmbMitecLogoAnimationComponent } from '../../bmb-mitec-logo-animation/bmb-mitec-logo-animation.component';
+import { TranslatePipe } from '../../../pipes/translations';
 
 @Component({
   selector: 'bmb-login-onboarding-logged',
@@ -18,6 +19,7 @@ import { BmbMitecLogoAnimationComponent } from '../../bmb-mitec-logo-animation/b
     BmbButtonDirective,
     BmbUserProfileContentComponent,
     BmbMitecLogoAnimationComponent,
+    TranslatePipe,
   ],
   templateUrl: './bmb-login-onboarding-logged.component.html',
   styleUrl: './bmb-login-onboarding-logged.component.scss',

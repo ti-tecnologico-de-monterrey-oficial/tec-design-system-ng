@@ -195,21 +195,34 @@ export class BmbTextEditorComponent implements AfterViewInit, OnInit {
 
   insertLink(values: Record<string, unknown>): void {
     const selection = globalThis.getSelection();
+    const savedSelection = this.userSelection;
 
-    if (!selection || !values['prompt_url']) {
+    if ((!selection && !savedSelection) || !values['prompt_url']) {
       return;
     }
 
     this.execCommand('createLink', values['prompt_url'] as string);
-    const range = selection.getRangeAt(0);
-    const parentNode = range.commonAncestorContainer.parentNode;
-    if (parentNode && parentNode instanceof HTMLAnchorElement) {
-      parentNode.target = (values['target'] as string) || '_self';
+    const range = savedSelection ?? selection?.getRangeAt(0);
+    if (!range) {
+      return;
+    }
+
+    const parentElement =
+      range.commonAncestorContainer instanceof HTMLElement
+        ? range.commonAncestorContainer
+        : range.commonAncestorContainer.parentElement;
+    const linkElement =
+      parentElement?.closest('a') ?? parentElement?.querySelector('a');
+
+    if (linkElement) {
+      linkElement.target = (values['target'] as string) || '_self';
 
       if (values['rel']) {
-        parentNode.rel = 'noopener noreferrer';
+        linkElement.rel = 'noopener noreferrer';
       }
     }
+
+    this.updateContent();
   }
 
   insertImage(values: Record<string, unknown>): void {
@@ -261,7 +274,7 @@ export class BmbTextEditorComponent implements AfterViewInit, OnInit {
     try {
       new URL(url); // Intenta crear un objeto URL
       return true;
-    } catch (error) {
+    } catch {
       return false;
     }
   }

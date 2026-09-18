@@ -131,6 +131,15 @@ ${RELEVANT_TITLE.configuration}
         type: { summary: 'ILayoutFlow | ILayoutFlowResponsive' },
       },
     },
+    horizontalScroll: {
+      control: { type: 'boolean' },
+      description: 'Keeps items in one row and enables horizontal scrolling only when they overflow.',
+      table: {
+        category: 'Properties',
+        defaultValue: { summary: 'false' },
+        type: { summary: 'boolean' },
+      },
+    },
     avoidRowWrap: {
       control: { type: 'boolean' },
       description: 'Prevents items from wrapping to the next row when true.',
@@ -148,6 +157,7 @@ ${RELEVANT_TITLE.configuration}
     justify: 'start',
     alignItems: 'start',
     avoidRowWrap: false,
+    horizontalScroll: false,
     flow: 'row',
   },
 };

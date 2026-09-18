@@ -1,6 +1,6 @@
 <section class="bmb_login-onboarding-logged">
   <section class="bmb_login-onboarding-logged-tec_logo">
-    <img alt="Tecnológico de Monterrey" [src]="tecLogoImage" />
+    <img [alt]="'login_onboarding.logo_alt' | translate" [src]="tecLogoImage" />
   </section>
   <section class="bmb_login-onboarding-logged-mitec_logo">
     <bmb-mitec-logo-animation label="" />
@@ -15,7 +15,7 @@
   </section>
   <section>
     <button type="button" bmbButton size="large" (click)="_handleContinue()">
-      Ingresar
+      {{ 'login_onboarding.enter' | translate }}
     </button>
   </section>
 </section>

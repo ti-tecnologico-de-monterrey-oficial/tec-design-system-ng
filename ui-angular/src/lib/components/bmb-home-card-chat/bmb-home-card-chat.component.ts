@@ -66,6 +66,8 @@ export type IBmbHomeCardChatMode = 'compact' | 'chat' | 'expanded';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BmbHomeCardChatComponent implements OnInit {
+  private translationService = inject(BmbTranslationsService);
+
   subtitle = input<string>();
   isMobile = input<boolean>(false);
   placeholder = input<string>('');
@@ -88,7 +90,7 @@ export class BmbHomeCardChatComponent implements OnInit {
 
   currentBot = model<IBotType>({
     name: 'TecBot',
-    label: 'Tecbot Standard',
+    label: this.translationService.translate('home_card_chat.default_bot_label'),
     icon: 'bot_tecStandar',
   });
   isLoading = model<boolean>(false);
@@ -101,7 +103,6 @@ export class BmbHomeCardChatComponent implements OnInit {
   getNewChat = output<boolean>();
   getExpand = output<any>();
 
-  private translationService = inject(BmbTranslationsService);
   private contentProjected: BmbProjectionContentService = inject(
     BmbProjectionContentService,
   );

@@ -22,6 +22,7 @@ import {
   isValidPushNotificationFullVariant,
   isValidPushNotificationRegularVariant,
 } from '../../../_shared/logic/components/push-notification';
+import { TranslatePipe } from '../../../pipes/translations';
 
 @Component({
   selector: 'bmb-push-notification-item',
@@ -32,6 +33,7 @@ import {
     BmbUserImageComponent,
     BmbCheckboxComponent,
     BmbButtonDirective,
+    TranslatePipe,
   ],
   templateUrl: './bmb-push-notification-item.component.html',
   styleUrl: './bmb-push-notification-item.component.scss',

@@ -9,19 +9,21 @@ import { BmbLoginOnboardingStepperStepComponent } from './bmb-login-onboarding-s
 import { BmbTotpComponent } from '../../../bmb-totp/bmb-totp.component';
 import { BmbLoginOnboardingService } from '../../bmb-login-onboarding.service';
 import { IBmbError } from '../../../../_shared/types/utils';
+import { BmbTranslationsService } from '../../../../services/translations/translations.service';
+import { TranslatePipe } from '../../../../pipes/translations';
 
 @Component({
   selector: 'bmb-login-onboarding-stepper-step-two',
   standalone: true,
-  imports: [BmbLoginOnboardingStepperStepComponent, BmbTotpComponent],
+  imports: [BmbLoginOnboardingStepperStepComponent, BmbTotpComponent, TranslatePipe],
   template: `
     <bmb-login-onboarding-stepper-step
-      componentTitle="Paso 2"
-      subtitle="Ingresa tu ToTP"
-      label="Recuerda que debes contar con la aplicación de identificación"
-      sublabel="(Google/Microsoft Authenticator)"
-      cancelBackLabel="Anterior "
-      continueLabel="Siguiente"
+      [componentTitle]="'login_onboarding.stepper.step_two.title' | translate"
+      [subtitle]="'login_onboarding.stepper.step_two.subtitle' | translate"
+      [label]="'login_onboarding.stepper.step_two.label' | translate"
+      [sublabel]="'login_onboarding.stepper.step_two.sublabel' | translate"
+      [cancelBackLabel]="'login_onboarding.stepper.step_two.cancel' | translate"
+      [continueLabel]="'login_onboarding.stepper.step_two.continue' | translate"
       [isContinueDisable]="isContinueDisable"
       (handleContinue)="_handleContinueStep()"
     >
@@ -46,6 +48,7 @@ export class BmbLoginOnboardingStepperStepTwoComponent {
   isContinueDisable = true;
 
   private loginOnboardingService: BmbLoginOnboardingService = inject(BmbLoginOnboardingService);
+  private readonly translationsService = inject(BmbTranslationsService);
 
   getCodeError(): boolean {
     return this.error && this.error.codeError;
@@ -79,7 +82,7 @@ export class BmbLoginOnboardingStepperStepTwoComponent {
 
         this.error = {
           codeError: true,
-          errorMessage: 'Código no válido, por favor intenta de nuevo',
+          errorMessage: this.translationsService.translate('login_onboarding.stepper.step_two.invalid_code'),
         };
       },
     });

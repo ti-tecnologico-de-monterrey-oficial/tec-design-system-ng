@@ -1,6 +1,6 @@
 <section class="bmb_login-onboarding-login">
   <section class="bmb_login-onboarding-login-tec_logo">
-    <img alt="Tecnológico de Monterrey" [src]="tecLogoImage" />
+    <img [alt]="'login_onboarding.logo_alt' | translate" [src]="tecLogoImage" />
   </section>
   <section class="bmb_login-onboarding-login-mitec_logo">
     <bmb-mitec-logo-animation label="" />
@@ -13,12 +13,12 @@
       (click)="_handleContinuePage()"
       type="button"
     >
-      Iniciar registro
+      {{ 'login_onboarding.start_registration' | translate }}
     </button>
     <p>
-      Este proceso de registro se realizará una única vez
+      {{ 'login_onboarding.registration_notice' | translate }}
       <br />
-      Tu inicio de sesión siempre será con tus datos biométricos
+      {{ 'login_onboarding.biometric_notice' | translate }}
     </p>
   </section>
 </section>

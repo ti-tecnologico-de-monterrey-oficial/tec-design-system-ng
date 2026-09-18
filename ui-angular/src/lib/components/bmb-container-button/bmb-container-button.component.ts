@@ -24,6 +24,7 @@ import { BmbUserImageComponent } from '../bmb-user-image/bmb-user-image.componen
 import { BmbDropdownMenuComponent } from '../bmb-dropdown-menu/bmb-dropdown-menu.component';
 import { logDeprecatedInput } from '../../_shared/logic/logDeprecatedInput';
 import type { IBbmBgAppearance } from '../../_shared/types/components/advertisement-card';
+import { TranslatePipe } from '../../pipes/translations';
 
 const MOBILE_TABLET_QUERY = '(max-width: 992px)';
 
@@ -46,6 +47,7 @@ const MOBILE_TABLET_QUERY = '(max-width: 992px)';
     BmbActionIconComponent,
     BmbBookmarkComponent,
     BmbDropdownMenuComponent,
+    TranslatePipe,
   ],
   styleUrl: './bmb-container-button.component.scss',
   templateUrl: './bmb-container-button.component.html',

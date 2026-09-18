@@ -76,6 +76,22 @@
                 <bmb-action-menu #actionMenuContainers [showHeader]="false">
                   <ng-template #actionMenuItem>
                     <bmb-item-hyperlink
+                      icon="person"
+                      label="Item default"
+                      value="page"
+                      valueLink="/pages/item-default"
+                    />
+                  </ng-template>
+                  <ng-template #actionMenuItem>
+                    <bmb-item-hyperlink
+                      icon="chevron_right"
+                      label="Item chevron"
+                      value="page"
+                      valueLink="/pages/item-chevron"
+                    />
+                  </ng-template>
+                  <ng-template #actionMenuItem>
+                    <bmb-item-hyperlink
                       icon="chat"
                       label="AI Chat bubble"
                       value="page"
@@ -175,6 +191,14 @@
                       valueLink="/pages/timestamp-detail"
                     />
                   </ng-template>
+                  <ng-template #actionMenuItem>
+                    <bmb-item-hyperlink
+                      icon="list"
+                      label="List items"
+                      value="page"
+                      valueLink="/pages/list-items"
+                    />
+                  </ng-template>
                 </bmb-action-menu>
               </ng-template>
             </bmb-accordion>
@@ -237,6 +261,14 @@
                       label="Switch"
                       value="page"
                       valueLink="/pages/switch"
+                    />
+                  </ng-template>
+                  <ng-template #actionMenuItem>
+                    <bmb-item-hyperlink
+                      icon="search"
+                      label="Search input"
+                      value="page"
+                      valueLink="/pages/search-input"
                     />
                   </ng-template>
                 </bmb-action-menu>
@@ -350,6 +382,22 @@
                       label="Text link"
                       value="page"
                       valueLink="/pages/text-link"
+                    />
+                  </ng-template>
+                  <ng-template #actionMenuItem>
+                    <bmb-item-hyperlink
+                      icon="help"
+                      label="Tooltip"
+                      value="page"
+                      valueLink="/pages/tooltip"
+                    />
+                  </ng-template>
+                  <ng-template #actionMenuItem>
+                    <bmb-item-hyperlink
+                      icon="tab"
+                      label="Tabs"
+                      value="page"
+                      valueLink="/pages/tabs"
                     />
                   </ng-template>
                 </bmb-action-menu>

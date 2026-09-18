@@ -29,6 +29,7 @@ import {
   getAccordionIconToggle,
   getAccordionStyles,
 } from '../../_shared/logic/components/accordion';
+import { TranslatePipe } from '../../pipes/translations';
 
 
 
@@ -40,6 +41,7 @@ import {
     BmbIconComponent,
     BmbLayoutDirective,
     BmbLayoutItemDirective,
+    TranslatePipe,
   ],
   templateUrl: './bmb-accordion.component.html',
   styleUrl: './bmb-accordion.component.scss',

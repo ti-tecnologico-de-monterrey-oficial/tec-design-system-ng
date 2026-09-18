@@ -163,7 +163,7 @@
       open: isOpen,
       'bmb_sidebar-right': position() === 'right',
     }"
-    aria-label="Sidebar Navigation"
+    [attr.aria-label]="'sidebar.nav_aria_label' | translate"
   >
     <ng-container
       *ngTemplateOutlet="

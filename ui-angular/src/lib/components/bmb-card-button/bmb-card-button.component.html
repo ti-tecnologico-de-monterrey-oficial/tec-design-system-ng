@@ -11,7 +11,7 @@
           [icon]="smallIcon()"
           [size]="24"
           class="bmb_card_button-small-top-icon"
-          alt="Small icon"
+          [alt]="'card_button.small_icon_alt' | translate"
         />
         @if (isABotTemplate(botImage()?.src!)) {
           <bmb-icon [size]="48" [alt]="botImage()?.alt!" [isSVGTemplate]="true">
@@ -51,7 +51,7 @@
           !textLink(),
         disabled: isDisabled()
       }"
-      aria-label="button"
+      [attr.aria-label]="'card_button.button_aria_label' | translate"
       (click)="handleAddContent($event)"
       (keypress)="handleAddContent($event)"
     >
@@ -118,7 +118,7 @@
           tabindex="0"
           class="bmb_card_button-header"
           (click)="handleTitleClick($event)"
-          aria-label="button"
+          [attr.aria-label]="'card_button.button_aria_label' | translate"
           (keypress)="handleTitleClick($event)"
         >
           <h2 class="bmb_card_button-header-text">

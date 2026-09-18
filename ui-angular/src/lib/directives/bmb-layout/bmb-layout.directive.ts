@@ -24,6 +24,7 @@ export class BmbLayoutDirective {
   alignItems = input<IAlignItemsOptions>('start');
   isContainerQuery = input<boolean>();
   avoidRowWrap = input<boolean>(false);
+  horizontalScroll = input<boolean>(false);
   flow = input<ILayoutFlow | ILayoutFlowResponsive>('row');
 
   @HostBinding('class') get elementClass(): string[] {
@@ -49,6 +50,8 @@ export class BmbLayoutDirective {
     if (this.isContainerQuery()) classes.push(`${baseClassName}-container`);
     else classes.push(baseClassName);
     if (this.avoidRowWrap()) classes.push(`${baseClassName}-no-row-wrap`);
+
+    if (this.horizontalScroll()) classes.push(`${baseClassName}-horizontal-scroll`);
 
     return classes;
   }

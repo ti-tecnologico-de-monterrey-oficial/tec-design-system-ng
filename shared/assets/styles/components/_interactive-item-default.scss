@@ -1,0 +1,17 @@
+@use './item-mixins' as mixins;
+
+.bmb_interactive-item-default {
+  @include mixins.action-item();
+
+  &-title {
+    &.active {
+      .bmb_title-wrapper-subtitle {
+        opacity: 1;
+      }
+    }
+  }
+}
+
+bmb-interactive-item-default {
+  display: flex;
+}

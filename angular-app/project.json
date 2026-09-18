@@ -55,6 +55,9 @@
           "optimization": false,
           "extractLicenses": false,
           "sourceMap": true
+        },
+        "performance": {
+          "outputHashing": "all"
         }
       }
     },

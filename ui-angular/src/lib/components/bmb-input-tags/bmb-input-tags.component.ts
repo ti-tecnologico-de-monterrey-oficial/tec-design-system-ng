@@ -20,7 +20,7 @@ import {
   IBmbInputError,
   IBmbInputTooltipPosition,
 } from '../../_shared/types/input';
-import { ClickOutsideDirective } from '../../directives/old/utils/clickoutside.directive';
+import { ClickOutsideDirective } from '../../directives/click-outside/clickoutside.directive';
 import { debounceTime } from 'rxjs';
 import {
   convertListToSelectList,

@@ -6,7 +6,7 @@
   gapSize="s"
 >
   @if (icon()) {
-    <bmb-icon [icon]="icon()" [size]="24" alt="Item icon" bmbLayoutItem />
+    <bmb-icon [icon]="icon()" [size]="24" [alt]="'item.icon_alt' | translate" bmbLayoutItem />
   }
   <section bmbLayoutItem [isDynamicItem]="true" [colGrow]="1">
     <section bmbLayout margin="none" justify="spaceBetween">
