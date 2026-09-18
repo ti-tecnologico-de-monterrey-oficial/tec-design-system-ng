@@ -23,6 +23,8 @@ const templateVariants = [
   'Actions',
   'Home',
   'Empty',
+  'Informative balance',
+  'Informative media expanded vertical',
   'Informative media detail vertical',
   'Informative media detail horizontal',
   'Informative media simple',
