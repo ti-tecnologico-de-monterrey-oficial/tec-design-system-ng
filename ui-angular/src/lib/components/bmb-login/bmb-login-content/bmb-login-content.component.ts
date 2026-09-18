@@ -1,6 +1,7 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  inject,
   input,
   model,
   output,
@@ -12,6 +13,7 @@ import { BmbTextLinkComponent } from '../../bmb-text-link/bmb-text-link.componen
 import { IBmbTargetLink } from '../../../_shared/types/index';
 import { BmbCheckboxComponent } from '../../bmb-checkbox/bmb-checkbox.component';
 import { TranslatePipe } from '../../../pipes/translations';
+import { BmbTranslationsService } from '../../../services/translations/translations.service';
 
 /*
  * TODO: This component is marked as "old" and its decommissioning is planned for future updates.
@@ -32,13 +34,19 @@ import { TranslatePipe } from '../../../pipes/translations';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BmbLoginContentComponent {
+  private readonly translationsService = inject(BmbTranslationsService);
+
   forgottenPasswordLabel = input.required<string>();
   forgottenPasswordLink = input<string>('');
   forgottenPasswordTarget = input<IBmbTargetLink>('_blank');
   showRememberMeCheckbox = input<boolean>(false);
-  rememberMeCheckboxLabel = input<string>('Recordarme');
+  rememberMeCheckboxLabel = input<string>(
+    this.translationsService.translate('login.remember_me'),
+  );
   showLoginAsGuest = input<boolean>(false);
-  loginAsGuestLabel = input<string>('Entrar como invitado');
+  loginAsGuestLabel = input<string>(
+    this.translationsService.translate('login.login_as_guest'),
+  );
   loginAsGuestLink = input<string>('');
   loginAsGuestTarget = input<IBmbTargetLink>('_blank');
   onContinue = model<boolean>();

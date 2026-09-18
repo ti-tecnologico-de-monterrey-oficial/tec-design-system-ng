@@ -2,32 +2,32 @@
   <section class="bmb_profile-info">
     <bmb-icon-item
       icon="calendar_month"
-      label="Semestre"
+      [label]="'profile.semester' | translate"
       [value]="_studentData.period"
     />
 
     <bmb-icon-item
       icon="location_on"
-      label="Campus"
+      [label]="'profile.campus' | translate"
       [value]="_studentData.campus"
     />
 
     <bmb-icon-item
       icon="library_books"
-      label="Programa"
+      [label]="'profile.program' | translate"
       [value]="_studentData.program"
     />
 
     @if (_studentData.isExatec && _studentData.linkedin) {
       <bmb-icon-item
         icon="work_history"
-        label="Historial Laboral"
+        [label]="'profile.work_history' | translate"
         [value]="_studentData.linkedin"
       />
     } @else if (!_studentData.isExatec && _studentData.curp) {
       <bmb-icon-item
         icon="assignment_ind"
-        label="Curp"
+        [label]="'profile.curp' | translate"
         [value]="_studentData.curp"
       />
     }
@@ -53,12 +53,12 @@
     }
     <bmb-icon-item
       icon="id_card"
-      label="Puesto"
+      [label]="'profile.position' | translate"
       [value]="collaboratorData()?.position!"
     />
     <bmb-icon-item
       icon="location_on"
-      label="Área"
+      [label]="'profile.area' | translate"
       [value]="collaboratorData()?.area!"
       [showDivider]="false"
     />
@@ -76,7 +76,7 @@
           >
             <bmb-user-image
               size="desktop-small"
-              altImage="Image of icon left"
+              [altImage]="'profile.icon_left_alt' | translate"
               bmbLayoutItem
               [isDynamicItem]="true"
               [image]="leader.userData.userImg"
@@ -110,7 +110,7 @@
           >
             <bmb-user-image
               size="desktop-small"
-              altImage="Image of icon left"
+              [altImage]="'profile.icon_left_alt' | translate"
               bmbLayoutItem
               [isDynamicItem]="true"
               [image]="generalist.userData.userImg"
@@ -158,7 +158,7 @@
       <section class="bmb_profile-info-container theme">
         <div class="bmb_profile-info-container-item">
           <bmb-icon [icon]="'language'" [size]="24" />
-          <span class="bmb_profile-info-container-item-text">Idioma</span>
+          <span class="bmb_profile-info-container-item-text">{{ 'profile.language' | translate }}</span>
         </div>
         <div class="bmb_profile-lang-container">
           <bmb-radial
@@ -190,9 +190,9 @@
     <section class="bmb_profile-info-container theme">
       <div class="bmb_profile-info-container-item">
         <bmb-icon [icon]="'palette'" [size]="24" />
-        <span class="bmb_profile-info-container-item-text">Tema</span>
+        <span class="bmb_profile-info-container-item-text">{{ 'profile.theme' | translate }}</span>
       </div>
-      <bmb-theme leftText="Light" rightText="Dark" [showControls]="true" />
+      <bmb-theme [leftText]="'profile.light' | translate" [rightText]="'profile.dark' | translate" [showControls]="true" />
     </section>
 
     @if (enableVersionBack()) {

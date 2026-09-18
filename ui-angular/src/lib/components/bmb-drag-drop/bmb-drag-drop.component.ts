@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import {
   BmbCardComponent,
   BmbCardContentComponent,
@@ -11,6 +11,7 @@ import {
   isDragItem,
   moveDragItem,
 } from '../../_shared/logic/components/drag-drop';
+import { BmbTranslationsService } from '../../services/translations/translations.service';
 
 interface DragItem {
   id: number;
@@ -36,12 +37,16 @@ interface DragItem {
   styleUrl: './bmb-drag-drop.component.scss',
 })
 export class BmbDragDropComponent {
+  private readonly translationsService = inject(BmbTranslationsService);
+
   leftItems = signal<DragItem[]>([
-    { id: 1, label: 'Item A' },
-    { id: 2, label: 'Item B' },
+    { id: 1, label: this.translationsService.translate('drag_drop.item_a') },
+    { id: 2, label: this.translationsService.translate('drag_drop.item_b') },
   ]);
 
-  rightItems = signal<DragItem[]>([{ id: 3, label: 'Item C' }]);
+  rightItems = signal<DragItem[]>([
+    { id: 3, label: this.translationsService.translate('drag_drop.item_c') },
+  ]);
 
   moveItem(item: unknown, target: 'left' | 'right') {
     if (!isDragItem(item)) {
