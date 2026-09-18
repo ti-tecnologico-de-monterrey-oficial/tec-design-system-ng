@@ -342,6 +342,18 @@ export const sidebarOptions: SidebarElement[][] = [
           title: 'Search input',
           link: '/pages/search-input',
         },
+        {
+          id: 46,
+          icon: 'tab',
+          title: 'Tabs',
+          link: '/pages/tabs',
+        },
+        {
+          id: 47,
+          icon: 'list',
+          title: 'List items',
+          link: '/pages/list-items',
+        },
       ],
     },
   ],

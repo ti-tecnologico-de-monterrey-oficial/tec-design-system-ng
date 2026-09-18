@@ -1,5 +1,17 @@
 import { setupZonelessTestEnv } from 'jest-preset-angular/setup-env/zoneless';
 
+// jsdom doesn't implement ResizeObserver, which ui-angular components
+// such as BmbTabsComponent use in ngAfterViewInit.
+if (typeof window !== 'undefined' && !window.ResizeObserver) {
+  class ResizeObserverMock {
+    observe = jest.fn();
+    unobserve = jest.fn();
+    disconnect = jest.fn();
+  }
+  (window as any).ResizeObserver = ResizeObserverMock;
+  (globalThis as any).ResizeObserver = ResizeObserverMock;
+}
+
 // jsdom doesn't expose `spellcheck` as a known HTMLElement property, which
 // fails Angular's strict property checks when rendering ui-angular inputs.
 if (
