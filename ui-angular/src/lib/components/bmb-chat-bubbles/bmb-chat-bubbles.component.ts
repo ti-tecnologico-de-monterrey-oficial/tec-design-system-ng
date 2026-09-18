@@ -32,6 +32,7 @@ import { BmbBotIconComponent } from '../bmb-bot-icon/bmb-bot-icon.component';
 import { BmbContainerButtonComponent } from '../bmb-container-button/bmb-container-button.component';
 import { BmbTranslationsService } from '../../services/translations/translations.service';
 import { deprecatedComponentLog } from '../../_shared/logic/deprecatedComponent';
+import { TranslatePipe } from '../../pipes/translations';
 
 export interface IBmbChatBubblesActions {
   key: TChatAction;
@@ -55,6 +56,7 @@ export * from './types';
     BmbIconComponent,
     BmbTextLinkComponent,
     BmbContainerButtonComponent,
+    TranslatePipe,
   ],
   templateUrl: './bmb-chat-bubbles.component.html',
   styleUrl: './bmb-chat-bubbles.component.scss',

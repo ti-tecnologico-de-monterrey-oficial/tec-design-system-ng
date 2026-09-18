@@ -19,6 +19,7 @@ export type {
   IBmbStatusAppearance,
   IBmbStatusIconColor,
 } from '../../_shared/types/components/icon-status';
+import { TranslatePipe } from '../../pipes/translations';
 
 /*
  * TODO: This component is marked as "old" and its decommissioning is planned for future updates.
@@ -27,7 +28,7 @@ export type {
 @Component({
   selector: 'bmb-icon-status',
   standalone: true,
-  imports: [CommonModule, BmbIconComponent],
+  imports: [CommonModule, BmbIconComponent, TranslatePipe],
   templateUrl: './bmb-icon-status.component.html',
   styleUrl: './bmb-icon-status.component.scss',
   encapsulation: ViewEncapsulation.None,

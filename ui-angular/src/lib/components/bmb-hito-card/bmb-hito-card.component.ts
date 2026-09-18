@@ -23,6 +23,7 @@ import {
 import { BmbBadgeComponent } from '../bmb-badge/bmb-badge.component';
 import { IBbmBgAppearance } from '../../_shared/types/components/advertisement-card';
 import { logDeprecatedInput } from '../../_shared/logic/logDeprecatedInput';
+import { TranslatePipe } from '../../pipes/translations';
 
 const MOBILE_QUERY = '(max-width: 767px)';
 
@@ -39,6 +40,7 @@ const MOBILE_QUERY = '(max-width: 767px)';
     BmbCardContentComponent,
     BmbIconComponent,
     BmbBadgeComponent,
+    TranslatePipe,
   ],
   templateUrl: './bmb-hito-card.component.html',
   styleUrl: './bmb-hito-card.component.scss',

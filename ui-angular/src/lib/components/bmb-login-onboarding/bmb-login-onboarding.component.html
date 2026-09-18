@@ -21,7 +21,7 @@
       <bmb-login-onboarding-logged (handleRequest)="_handleRequest($event)" />
     }
     @default {
-      <p>Invalid page</p>
+      <p>{{ 'login_onboarding.invalid_page' | translate }}</p>
     }
   }
   @if (getIsLoading()) {

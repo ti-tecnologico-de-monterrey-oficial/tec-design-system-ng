@@ -29,6 +29,8 @@ import { BmbDividerComponent } from '../bmb-divider/bmb-divider.component';
 import { BmbHitoCardComponent } from '../bmb-hito-card/bmb-hito-card.component';
 import { BmbBadgeComponent } from '../bmb-badge/bmb-badge.component';
 import { IBbmBgAppearance } from '../../_shared/types/components/advertisement-card';
+import { BmbTranslationsService } from '../../services/translations/translations.service';
+import { TranslatePipe } from '../../pipes/translations';
 
 interface IPlaceholderObject {
   [key: string]: any | any[];
@@ -65,6 +67,7 @@ export interface IBmbClamp {
     BmbDividerComponent,
     BmbHitoCardComponent,
     BmbBadgeComponent,
+    TranslatePipe,
   ],
   templateUrl: './bmb-timestream.component.html',
   styleUrl: './bmb-timestream.component.scss',
@@ -72,6 +75,8 @@ export interface IBmbClamp {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BmbTimestreamComponent {
+  private readonly translationsService = inject(BmbTranslationsService);
+
   isMicro = input<boolean>(false);
   lang = input<string>('es');
   dateFormat = input<string>('dd/MM/yyyy');
@@ -97,8 +102,8 @@ export class BmbTimestreamComponent {
   newModal!: TemplateRef<any>;
   selectedEvent: ITimelineEvent | null = null;
   eventTabs: Tab[] = [
-    { id: 1, title: 'Descripción', isActive: true },
-    { id: 2, title: 'Instancias' },
+    { id: 1, title: this.translationsService.translate('timestream.tabs.description'), isActive: true },
+    { id: 2, title: this.translationsService.translate('timestream.tabs.instances') },
   ];
   tabSelected = 1;
 

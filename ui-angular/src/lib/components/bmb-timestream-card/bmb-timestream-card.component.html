@@ -21,20 +21,20 @@
       <bmb-card-content>
         <header class="bmb-timestream-card-filters-header">
           <h2 class="bmb-timestream-card-filters-header-title">
-            Opciones de filtrado
+            {{ 'timestream_card.filter_options' | translate }}
           </h2>
           <button (click)="handleCloseFilters()">
             <bmb-icon
               icon="close"
               [size]="20"
-              [alt]="subtitle() || 'Cerrar filtros'"
+              [alt]="subtitle() || ('timestream_card.close_filters_alt' | translate)"
             />
           </button>
         </header>
         <bmb-filter-card
           [inLine]="true"
-          primaryBtnLabel="Aplicar filtros"
-          secondaryBtnLabel="Limpiar filtros"
+          [primaryBtnLabel]="'timestream_card.apply_filters' | translate"
+          [secondaryBtnLabel]="'timestream_card.clear_filters' | translate"
           [controlTypes]="filters"
           (applyFilters)="handleFiltersChange($event)"
         />

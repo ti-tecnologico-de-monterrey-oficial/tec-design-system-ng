@@ -32,6 +32,7 @@ import {
 import { IBmbNativeModal } from '../bmb-modal/bmb-modal.interface';
 import { TranslatePipe } from '../../pipes/translations';
 import { BmbBotIconComponent } from '../bmb-bot-icon/bmb-bot-icon.component';
+import { BmbTranslationsService } from '../../services/translations/translations.service';
 
 export { defaultBotList, defaultActionList } from './bot_list';
 export type { IBotType, IChatBarActions } from './types';
@@ -116,6 +117,7 @@ export class BmbChatBarComponent implements OnInit {
   private readonly nativeModalService: BmbNativeModalService = inject(
     BmbNativeModalService,
   );
+  private readonly translationsService = inject(BmbTranslationsService);
 
   protected readonly _disabledInput = computed<boolean>(
     () => this.isLoading() || this.disabledInput(),
@@ -134,7 +136,7 @@ export class BmbChatBarComponent implements OnInit {
       (
         bot: IBotType = {
           name: 'TecBot',
-          label: 'Tecbot Standard',
+          label: this.translationsService.translate('chat_bar.default_bot_label'),
           icon: 'bot_tecStandar',
         },
       ): IBotType => bot,
@@ -171,7 +173,7 @@ export class BmbChatBarComponent implements OnInit {
         const data: IBmbNativeModal = {
           content: this.mobileBotSelectorTemplate,
           size: 'small',
-          title: 'Selecciona un bot',
+          title: this.translationsService.translate('chat_bar.select_bot'),
         };
 
         this.modalID.set(this.nativeModalService.openModal(data));

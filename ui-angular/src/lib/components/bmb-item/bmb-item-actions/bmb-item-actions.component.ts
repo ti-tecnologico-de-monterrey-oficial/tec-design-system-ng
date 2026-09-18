@@ -8,11 +8,12 @@ import {
 import { BmbIconComponent } from '../../bmb-icon/bmb-icon.component';
 import { BmbLayoutDirective } from '../../../directives/bmb-layout/bmb-layout.directive';
 import { BmbLayoutItemDirective } from '../../../directives/bmb-layout/bmb-layout-item.directive';
+import { TranslatePipe } from '../../../pipes/translations';
 
 @Component({
   selector: 'bmb-item-actions',
   standalone: true,
-  imports: [BmbIconComponent, BmbLayoutDirective, BmbLayoutItemDirective],
+  imports: [BmbIconComponent, BmbLayoutDirective, BmbLayoutItemDirective, TranslatePipe],
   templateUrl: './bmb-item-actions.component.html',
   styleUrl: './bmb-item-actions.component.scss',
   encapsulation: ViewEncapsulation.None,

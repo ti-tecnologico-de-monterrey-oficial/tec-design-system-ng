@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { BmbAdvertisementCardComponent } from './bmb-advertisement-card.component';
 import { ComponentRef } from '@angular/core';
-import { IBmbAdvertisementData } from './types';
+import { IBmbAdvertisementData } from '../../_shared/types';
 
 describe('BmbAdvertisementCardComponent', () => {
   let component: BmbAdvertisementCardComponent;
@@ -78,14 +78,20 @@ describe('BmbAdvertisementCardComponent', () => {
 
   it('should initialize tabsData correctly', () => {
     expect(component.tabsData.length).toBe(3);
-    expect(component.tabsData[0].title).toBe('Promociones');
-    expect(component.tabsData[1].title).toBe('Avisos');
-    expect(component.tabsData[2].title).toBe('Información');
+    expect(component.tabsData[0].title).toBe(
+      'advertisement_card.tabs.promotions',
+    );
+    expect(component.tabsData[1].title).toBe(
+      'advertisement_card.tabs.announcements',
+    );
+    expect(component.tabsData[2].title).toBe(
+      'advertisement_card.tabs.information',
+    );
   });
 
   it('should toggle expanded state', () => {
     component.expanded = true;
-    expect(component.expanded).toBeTrue();
+    expect(component.expanded).toBe(true);
   });
 
   it('should set selectedTabId correctly', () => {

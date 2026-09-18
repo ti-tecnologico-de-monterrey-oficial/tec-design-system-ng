@@ -62,7 +62,7 @@
     "@angular/platform-browser": "20.0.6",
     "@angular/router": "20.0.6",
     "@material-symbols/svg-400": "^0.39.1",
-    "dompurify": "^3.4.1",
+    "dompurify": "^3.4.15",
     "dotenv": "^16.4.7",
     "luxon": "^3.7.2",
     "rollup-plugin-copy": "3.5.0",

@@ -129,7 +129,7 @@
             mat-header-cell
             *matHeaderCellDef
             class="bmb_table-expand"
-            aria-label="row actions"
+            [attr.aria-label]="'table.row_actions' | translate"
           >
             &nbsp;
           </th>
@@ -138,7 +138,7 @@
               <ng-container>
                 <button
                   mat-icon-button
-                  aria-label="expand row"
+                  [attr.aria-label]="'table.expand_row' | translate"
                   (click)="
                     expandedElement = expandedElement === row ? null : row;
                     $event.stopPropagation()

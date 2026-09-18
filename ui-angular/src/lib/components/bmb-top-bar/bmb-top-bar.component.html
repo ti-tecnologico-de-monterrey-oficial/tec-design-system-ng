@@ -15,7 +15,7 @@
       <picture>
         <source [media]="getNoMobileResolutionSize()" [srcset]="image()" />
         <source [srcset]="mobileImage()" />
-        <img [src]="image()" alt="TEC de Monterrey" loading="lazy" />
+        <img [src]="image()" [alt]="'top_bar.logo_alt' | translate" loading="lazy" />
       </picture>
     </figure>
   </bmb-check-external-link-button>
